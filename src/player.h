@@ -12,6 +12,13 @@ enum PlayerCompareAttrib
     PLAYER_COMPARE_ATTRIBUTE_END
 };
 
+enum PlayerCardType
+{
+    PLAYER_CARD_YELLOW = 0,
+    PLAYER_CARD_RED, 
+    PLAYER_CARD_END
+};
+
 Player
 player_new(Team *tm, gint average_skill);
 
@@ -86,5 +93,11 @@ player_get_game_skill(const Player *pl, gboolean skill);
 
 void
 player_decrease_fitness(Player *pl);
+
+gint
+player_card_get(const Player *pl, gint clid, gint card_type);
+
+void
+player_card_set(Player *pl, gint clid, gint card_type, gint value, gboolean diff);
 
 #endif

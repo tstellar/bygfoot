@@ -2,7 +2,6 @@
 #define LIVE_GAME_STRUCT_H
 
 #include "bygfoot.h"
-#include "fixture.h"
 #include "game.h"
 
 /** Events happening during a live game.
@@ -44,8 +43,14 @@ enum LiveGameEventType
     LIVE_GAME_EVENT_STADIUM_RIOTS,
     LIVE_GAME_EVENT_SUBSTITUTION,
     LIVE_GAME_EVENT_STRUCTURE_CHANGE,
-    LIVE_GAME_EVENT_STYLE_CHANGE,
-    LIVE_GAME_EVENT_BOOST_CHANGE,
+    LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_DEFEND,
+    LIVE_GAME_EVENT_STYLE_CHANGE_DEFEND,
+    LIVE_GAME_EVENT_STYLE_CHANGE_BALANCED,
+    LIVE_GAME_EVENT_STYLE_CHANGE_ATTACK,
+    LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_ATTACK,
+    LIVE_GAME_EVENT_BOOST_CHANGE_ANTI,
+    LIVE_GAME_EVENT_BOOST_CHANGE_OFF,
+    LIVE_GAME_EVENT_BOOST_CHANGE_ON,
     LIVE_GAME_EVENT_END
 };
 
@@ -85,8 +90,9 @@ enum LiveGameUnitTime
 /** Indices for the values in #LiveGameStats. */
 enum LiveGameStatValue
 {
-    LIVE_GAME_STAT_VALUE_GOALS = 0,
+    LIVE_GAME_STAT_VALUE_GOALS_REGULAR = 0,
     LIVE_GAME_STAT_VALUE_SHOTS,
+    LIVE_GAME_STAT_VALUE_SHOT_PERCENTAGE,
     LIVE_GAME_STAT_VALUE_POSSESSION,
     LIVE_GAME_STAT_VALUE_PENALTIES,
     LIVE_GAME_STAT_VALUE_FOULS,
@@ -104,13 +110,22 @@ enum LiveGameUnitArea
     LIVE_GAME_UNIT_AREA_END
 };
 
+enum LiveGameStatArray
+{
+    LIVE_GAME_STAT_ARRAY_SCORERS = 0,
+    LIVE_GAME_STAT_ARRAY_REDS,
+    LIVE_GAME_STAT_ARRAY_YELLOWS,
+    LIVE_GAME_STAT_ARRAY_INJURED,
+    LIVE_GAME_STAT_ARRAY_END
+};
+
 /** Some stats for a live game like ball possession,
     shots on goal etc. */
 typedef struct
 {
     gfloat possession;
     gint values[2][LIVE_GAME_STAT_VALUE_END];
-
+    GPtrArray *players[LIVE_GAME_STAT_ARRAY_END][2];
 } LiveGameStats;
 
 /** A struct telling us what's happening at

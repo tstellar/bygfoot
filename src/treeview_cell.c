@@ -171,7 +171,7 @@ treeview_cell_player_contract_to_cell(GtkCellRenderer *renderer, gchar *buf, gin
 void
 treeview_cell_player_cards_to_cell(gchar *buf, const Player *pl)
 {
-    gint i;
+    gint yellow;
     Fixture *fix =
 	team_get_next_fixture(pl->team);
 
@@ -185,24 +185,24 @@ treeview_cell_player_cards_to_cell(gchar *buf, const Player *pl)
 		sprintf(buf, "%d(%d)", g_array_index(pl->cards, PlayerCard, 0).yellow,
 			player_all_cards(pl));
 	    else
-		sprintf(buf, "%d", g_array_index(pl->cards, PlayerCard, 0).yellow);		
+		sprintf(buf, "%d", g_array_index(pl->cards, PlayerCard, 0).yellow);
 	}
 
 	return;
     }
 
-    for(i=0;i<pl->cards->len;i++)
-	if(g_array_index(pl->cards, PlayerCard, 0).clid == fix->clid)
-	{
-	    if(opt_user_int("int_opt_user_show_overall"))
-		sprintf(buf, "%d(%d)", g_array_index(pl->cards, PlayerCard, i).yellow,
-			player_all_cards(pl));
-	    else
-		sprintf(buf, "%d", g_array_index(pl->cards, PlayerCard, i).yellow);
-	    return;
-	}
+    yellow = player_card_get(pl, fix->clid, PLAYER_CARD_YELLOW);
 
-    strcpy(buf, "0");
+    if(yellow != -1)
+    {
+	if(opt_user_int("int_opt_user_show_overall"))
+	    sprintf(buf, "%d(%d)", yellow,
+		    player_all_cards(pl));
+	else
+	    sprintf(buf, "%d", yellow);
+    }
+    else
+	strcpy(buf, "0");
 }
 
 /** Render a cell of player status.

@@ -78,10 +78,4 @@ team_find_appropriate_structure(const Team *tm);
 void
 team_rearrange(Team *tm);
 
-gchar*
-team_style_to_char(gint style);
-
-gint
-team_get_current_structure(const Team *tm);
-
 #endif

@@ -1,6 +1,7 @@
 #include "fixture.h"
 #include "game.h"
 #include "game_gui.h"
+#include "live_game_struct.h"
 #include "maths.h"
 #include "misc.h"
 #include "option.h"
@@ -54,12 +55,12 @@ game_get_values(const Fixture *fix, gfloat team_values[][GAME_TEAM_VALUE_END],
 		((1 + style_factor) * (1 + home_advantage * (i == 0)) *
 		 (1 + const_float("float_player_boost_skill_effect") * tm[i]->boost));
 
-	printf("%s attack %.1f midf %.1f defend %.1f style %d struct %d\n",
-	       tm[i]->name->str,
-	       team_values[i][GAME_TEAM_VALUE_ATTACK],
-	       team_values[i][GAME_TEAM_VALUE_MIDFIELD],
-	       team_values[i][GAME_TEAM_VALUE_DEFEND],
-	       tm[i]->style, tm[i]->structure);
+/* 	printf("%s attack %.1f midf %.1f defend %.1f style %d struct %d\n", */
+/* 	       tm[i]->name->str, */
+/* 	       team_values[i][GAME_TEAM_VALUE_ATTACK], */
+/* 	       team_values[i][GAME_TEAM_VALUE_MIDFIELD], */
+/* 	       team_values[i][GAME_TEAM_VALUE_DEFEND], */
+/* 	       tm[i]->style, tm[i]->structure); */
     }
 }
 
@@ -232,9 +233,14 @@ game_initialize(Fixture *fix)
 
     for(i=0;i<2;i++)
 	for(j=0;j<11;j++)
+	{
 	    if(player_of(fix->teams[i], j)->cskill > 0)
 		game_player_increase(fix->clid, player_of(fix->teams[i], j),
 				     GAME_PLAYER_INCREASE_GAMES);
+
+	    if(player_card_get(player_of(fix->teams[i], j), fix->clid, PLAYER_CARD_RED) > 0)
+		player_card_set(player_of(fix->teams[i], j), fix->clid, PLAYER_CARD_RED, -1, TRUE);
+	}
 }
 
 /** Save the team states in the current live game
@@ -572,48 +578,6 @@ game_player_get_ban_duration(void)
     return -1;
 }
 
-/** Send off a player. Choose number of weeks banned randomly.
-    @param clid League or cup id of the match.
-    @param pl The player.
-    @param red Whether it's a red or a yellow card.
-    @param second_yellow Whether this is only a yellow. */
-void
-game_player_card(gint clid, Player *pl, gboolean red, gboolean second_yellow)
-{
-    gint i;
-    PlayerCard new;
-
-    if(red)
-	pl->cskill = 0;
-
-    for(i=0;i<pl->cards->len;i++)
-	if(g_array_index(pl->cards, PlayerCard, i).clid == clid)
-	{
-	    if(red)
-	    {
-		if(second_yellow)
-		{
-		    g_array_index(pl->cards, PlayerCard, i).yellow = 0;
-		    g_array_index(pl->cards, PlayerCard, i).red = 1;
-		}
-		else
-		    g_array_index(pl->cards, PlayerCard, i).red = 
-			game_player_get_ban_duration();
-	    }
-	    else
-		g_array_index(pl->cards, PlayerCard, i).yellow++;
-	    return;
-	}
-
-    new.clid = clid;
-    new.red = 0;
-    new.yellow = 0;
-
-    g_array_append_val(pl->cards, new);
-
-    game_player_card(clid, pl, red, second_yellow);
-}
-
 /** Find out whether we make a sub after a send-off.
     @param tm The team.
     @param player The player index.
@@ -675,7 +639,210 @@ game_decrease_fitness(const Fixture *fix)
     gint i, j;
 
     for(i=0;i<2;i++)
-	for(j=0;j<11;j++)
-	    if(player_of(fix->teams[i], j)->cskill > 0)
-		player_decrease_fitness(player_of(fix->teams[i], j));
+    {
+	if(team_is_user(fix->teams[i]) != -1)
+	    for(j=0;j<11;j++)
+		if(player_of(fix->teams[i], j)->cskill > 0)
+		    player_decrease_fitness(player_of(fix->teams[i], j));
+    }
+}
+
+/** Assemble some stats like ball possession or shots
+    on goal.
+    @param live_game The pointer to the match.
+    @see #LiveGameStats */
+void
+game_create_stats(gpointer live_game)
+{
+    LiveGame *match = (LiveGame*)live_game;
+    gint i, possession[2] = {0, 0}, reg_goals[2] = {0, 0};
+    LiveGameStats *stat = &match->stats;
+
+    game_create_stats_players(live_game);
+
+    for(i=0;i<LIVE_GAME_STAT_VALUE_END;i++)
+	stat->values[0][i] =
+	    stat->values[1][i] = 0;
+    
+    for(i=0;i<2;i++)
+	stat->values[i][LIVE_GAME_STAT_VALUE_GOALS_REGULAR] = 
+	    math_sum_int_array(match->fix->result[i], 2);
+
+    for(i=0;i<match->units->len;i++)
+    {
+	if(g_array_index(match->units, LiveGameUnit, i).event.type == 
+	   LIVE_GAME_EVENT_PENALTIES)
+	    break;
+
+	if(g_array_index(match->units, LiveGameUnit, i).minute != -1)
+	    possession[g_array_index(match->units, LiveGameUnit, i).possession]++;
+
+	if(g_array_index(match->units, LiveGameUnit, i).event.type == LIVE_GAME_EVENT_SCORING_CHANCE ||
+	   g_array_index(match->units, LiveGameUnit, i).event.type == LIVE_GAME_EVENT_FREE_KICK)
+	    stat->values[g_array_index(match->units, LiveGameUnit, i).possession][LIVE_GAME_STAT_VALUE_SHOTS]++;
+	else if(g_array_index(match->units, LiveGameUnit, i).event.type == LIVE_GAME_EVENT_PENALTY)
+	    stat->values[g_array_index(match->units, LiveGameUnit, i).possession]
+		[LIVE_GAME_STAT_VALUE_PENALTIES]++;
+	else if(g_array_index(match->units, LiveGameUnit, i).event.type == LIVE_GAME_EVENT_INJURY)
+	    stat->values[g_array_index(match->units, LiveGameUnit, i).event.values[LIVE_GAME_EVENT_VALUE_TEAM]]
+		[LIVE_GAME_STAT_VALUE_INJURIES]++;
+	else if(g_array_index(match->units, LiveGameUnit, i).event.type == LIVE_GAME_EVENT_FOUL ||
+		g_array_index(match->units, LiveGameUnit, i).event.type == LIVE_GAME_EVENT_FOUL_YELLOW ||
+		g_array_index(match->units, LiveGameUnit, i).event.type == LIVE_GAME_EVENT_FOUL_RED ||
+		g_array_index(match->units, LiveGameUnit, i).event.type == LIVE_GAME_EVENT_FOUL_RED_INJURY)
+	{
+	    stat->values[g_array_index(match->units, LiveGameUnit, i).event.values[LIVE_GAME_EVENT_VALUE_TEAM]]
+		[LIVE_GAME_STAT_VALUE_FOULS]++;
+	    if(g_array_index(match->units, LiveGameUnit, i).event.type == LIVE_GAME_EVENT_FOUL_YELLOW)
+		stat->values[g_array_index(match->units, LiveGameUnit, i).
+			     event.values[LIVE_GAME_EVENT_VALUE_TEAM]][LIVE_GAME_STAT_VALUE_CARDS]++;
+	}
+	else if(g_array_index(match->units, LiveGameUnit, i).event.type == LIVE_GAME_EVENT_SEND_OFF)
+	    stat->values[g_array_index(match->units, LiveGameUnit, i).event.values[LIVE_GAME_EVENT_VALUE_TEAM]]
+		[LIVE_GAME_STAT_VALUE_REDS]++;
+	else if(g_array_index(match->units, LiveGameUnit, i).event.type == LIVE_GAME_EVENT_GOAL &&
+		g_array_index(match->units, LiveGameUnit, i - 1).event.type != LIVE_GAME_EVENT_PENALTY)
+	    reg_goals[g_array_index(match->units, LiveGameUnit, i).
+		      event.values[LIVE_GAME_EVENT_VALUE_TEAM]]++;
+    }
+
+    for(i=0;i<2;i++)
+    {
+	stat->values[i][LIVE_GAME_STAT_VALUE_POSSESSION] = 
+	    (gint)rint((gfloat)possession[i] / (gfloat)(possession[0] + possession[1]) * 100);
+	stat->values[i][LIVE_GAME_STAT_VALUE_SHOT_PERCENTAGE] = 
+	    (stat->values[i][LIVE_GAME_STAT_VALUE_SHOTS] > 0) ?
+	    (gint)rint(((gfloat)reg_goals[i] / (gfloat)stat->values[i][LIVE_GAME_STAT_VALUE_SHOTS])
+		       * 100) : 0;
+    }
+
+/*d*/
+    printf("goals reg\t %d \t %d\n", stat->values[0][LIVE_GAME_STAT_VALUE_GOALS_REGULAR],
+	   stat->values[1][LIVE_GAME_STAT_VALUE_GOALS_REGULAR]);
+    printf("shots\t %d \t %d\n", stat->values[0][LIVE_GAME_STAT_VALUE_SHOTS],
+	   stat->values[1][LIVE_GAME_STAT_VALUE_SHOTS]);
+    printf("shotperc\t %d%% \t %d%%\n", stat->values[0][LIVE_GAME_STAT_VALUE_SHOT_PERCENTAGE],
+	   stat->values[1][LIVE_GAME_STAT_VALUE_SHOT_PERCENTAGE]);
+    printf("poss\t %d%% \t %d%%\n", stat->values[0][LIVE_GAME_STAT_VALUE_POSSESSION],
+	   stat->values[1][LIVE_GAME_STAT_VALUE_POSSESSION]);
+    printf("pen.\t %d \t %d\n", stat->values[0][LIVE_GAME_STAT_VALUE_PENALTIES],
+	   stat->values[1][LIVE_GAME_STAT_VALUE_PENALTIES]);
+    printf("fouls\t %d \t %d\n", stat->values[0][LIVE_GAME_STAT_VALUE_FOULS],
+	   stat->values[1][LIVE_GAME_STAT_VALUE_FOULS]);
+    printf("cards\t %d \t %d\n", stat->values[0][LIVE_GAME_STAT_VALUE_CARDS],
+	   stat->values[1][LIVE_GAME_STAT_VALUE_CARDS]);
+    printf("reds\t %d \t %d\n", stat->values[0][LIVE_GAME_STAT_VALUE_REDS],
+	   stat->values[1][LIVE_GAME_STAT_VALUE_REDS]);
+    printf("inj.\t %d \t %d\n", stat->values[0][LIVE_GAME_STAT_VALUE_INJURIES],
+	   stat->values[1][LIVE_GAME_STAT_VALUE_INJURIES]);
+}
+
+/** Create arrays containing the names of the
+    goal scorers and sent off and injured players.
+    @param live_game The live game we examine. */
+void
+game_create_stats_players(gpointer live_game)
+{
+    gint i, j;
+    LiveGame *match = (LiveGame*)live_game;
+    LiveGameStats *stats = &match->stats;
+    gint limit = const_int("int_team_max_players");
+    gint scorer_ids[2][limit];
+    gint cnt[2] = {0, 0};
+    gint team, player, player2, array_index;
+    gint minute = 0;
+    gchar buf[SMALL], buf2[SMALL];
+    GString *new = NULL;
+    gboolean own_goal;
+    GPtrArray *players = NULL;
+
+    for(i=0;i<limit;i++)
+	scorer_ids[0][i] = scorer_ids[1][i] = -1;
+
+    for(i=0;i<match->units->len;i++)
+    {	
+	if(g_array_index(match->units, LiveGameUnit, i).event.type == LIVE_GAME_EVENT_PENALTIES)
+	    return;
+
+	minute = MAX(minute, g_array_index(match->units, LiveGameUnit, i).minute);
+	team = g_array_index(match->units, LiveGameUnit, i).event.values[LIVE_GAME_EVENT_VALUE_TEAM];
+	player = g_array_index(match->units, LiveGameUnit, i).event.values[LIVE_GAME_EVENT_VALUE_PLAYER];
+	player2 = g_array_index(match->units, LiveGameUnit, i).event.values[LIVE_GAME_EVENT_VALUE_PLAYER2];
+
+	if(g_array_index(match->units, LiveGameUnit, i).event.type == LIVE_GAME_EVENT_GOAL ||
+	   g_array_index(match->units, LiveGameUnit, i).event.type == LIVE_GAME_EVENT_OWN_GOAL)
+	{
+	    own_goal = (g_array_index(match->units, LiveGameUnit, i).event.type == LIVE_GAME_EVENT_OWN_GOAL);
+	    array_index = (own_goal) ? !team : team;
+
+	    if(g_array_index(match->units, LiveGameUnit, i - 1).event.type == LIVE_GAME_EVENT_PENALTY)
+		strcpy(buf2, " (P)");
+	    else if(g_array_index(match->units, LiveGameUnit, i - 1).event.type == LIVE_GAME_EVENT_FREE_KICK)
+		strcpy(buf2, " (FK)");
+	    else if(g_array_index(match->units, LiveGameUnit, i).event.type == LIVE_GAME_EVENT_OWN_GOAL)
+		strcpy(buf2, " (OG)");
+	    else 
+		strcpy(buf2, "");
+
+	    if(query_integer_is_in_array(player + (100 * own_goal), scorer_ids[array_index], 0, limit))
+	    {
+		for(j=0;j<stats->players[LIVE_GAME_STAT_ARRAY_SCORERS][array_index]->len;j++)
+		{
+		    if(g_str_has_prefix(((GString*)g_ptr_array_index(
+					     stats->players[LIVE_GAME_STAT_ARRAY_SCORERS][array_index], j))->str,
+					player_of_id(match->fix->teams[team], player)->name->str))
+		    {
+			sprintf(buf, "%s %d",
+				((GString*)g_ptr_array_index(
+				    stats->players[LIVE_GAME_STAT_ARRAY_SCORERS][array_index], j))->str,
+				minute);
+			strcat(buf, buf2);
+			g_string_printf(((GString*)g_ptr_array_index(
+					     stats->players[LIVE_GAME_STAT_ARRAY_SCORERS][array_index], j)),
+					"%s", buf);
+			break;
+		    }
+
+		    if(j == stats->players[LIVE_GAME_STAT_ARRAY_SCORERS][array_index]->len)
+			g_warning("game_create_stats_scorers: didn't find scorer %d (team %d)\n",
+				  player, team);
+		}
+	    }
+	    else
+	    {
+		sprintf(buf, "%s %d", player_of_id(match->fix->teams[team], player)->name->str,
+			minute);
+		strcat(buf, buf2);
+		new = g_string_new(buf);
+		g_ptr_array_add(stats->players[LIVE_GAME_STAT_ARRAY_SCORERS][array_index], new);
+		scorer_ids[array_index][cnt[array_index]] = player + (100 * own_goal);
+		cnt[array_index]++;
+	    }
+	}
+	else
+	{
+	    strcpy(buf, "");
+	    if(g_array_index(match->units, LiveGameUnit, i).event.type == LIVE_GAME_EVENT_INJURY)
+	    {
+		sprintf(buf, "%s", player_of_id(match->fix->teams[team], player)->name->str);
+		players = stats->players[LIVE_GAME_STAT_ARRAY_INJURED][team];
+	    }
+	    else if(g_array_index(match->units, LiveGameUnit, i).event.type == LIVE_GAME_EVENT_FOUL_YELLOW)
+	    {
+		sprintf(buf, "%s", player_of_id(match->fix->teams[team], player2)->name->str);
+		players = stats->players[LIVE_GAME_STAT_ARRAY_YELLOWS][team];
+	    }
+	    else if(g_array_index(match->units, LiveGameUnit, i).event.type == LIVE_GAME_EVENT_SEND_OFF)
+	    {
+		sprintf(buf, "%s", player_of_id(match->fix->teams[team], player)->name->str);
+		players = stats->players[LIVE_GAME_STAT_ARRAY_REDS][team];
+	    }
+
+	    if(strlen(buf) > 0)
+	    {
+		new = g_string_new(buf);
+		g_ptr_array_add(players, new);
+	    }
+	}
+    }
 }

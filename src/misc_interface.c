@@ -546,6 +546,11 @@ create_window_live (void)
   GtkWidget *hbox52;
   GtkWidget *image57;
   GtkWidget *label73;
+  GtkWidget *button_show_stats;
+  GtkWidget *alignment20;
+  GtkWidget *hbox56;
+  GtkWidget *image60;
+  GtkWidget *label77;
   GtkWidget *button_live_close;
   GtkObject *spinbutton_speed_adj;
   GtkWidget *spinbutton_speed;
@@ -650,6 +655,25 @@ create_window_live (void)
   gtk_widget_show (label73);
   gtk_box_pack_start (GTK_BOX (hbox52), label73, FALSE, FALSE, 0);
 
+  button_show_stats = gtk_button_new ();
+  gtk_box_pack_start (GTK_BOX (hbox48), button_show_stats, FALSE, FALSE, 0);
+
+  alignment20 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment20);
+  gtk_container_add (GTK_CONTAINER (button_show_stats), alignment20);
+
+  hbox56 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox56);
+  gtk_container_add (GTK_CONTAINER (alignment20), hbox56);
+
+  image60 = gtk_image_new_from_stock ("gtk-select-color", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image60);
+  gtk_box_pack_start (GTK_BOX (hbox56), image60, FALSE, FALSE, 0);
+
+  label77 = gtk_label_new_with_mnemonic (_("_Show stats"));
+  gtk_widget_show (label77);
+  gtk_box_pack_start (GTK_BOX (hbox56), label77, FALSE, FALSE, 0);
+
   button_live_close = gtk_button_new_from_stock ("gtk-close");
   gtk_widget_show (button_live_close);
   gtk_box_pack_start (GTK_BOX (hbox48), button_live_close, FALSE, FALSE, 0);
@@ -669,6 +693,9 @@ create_window_live (void)
                     NULL);
   g_signal_connect ((gpointer) button_resume, "clicked",
                     G_CALLBACK (on_button_resume_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_show_stats, "clicked",
+                    G_CALLBACK (on_button_show_stats_clicked),
                     NULL);
   g_signal_connect ((gpointer) button_live_close, "clicked",
                     G_CALLBACK (on_button_live_close_clicked),
@@ -699,6 +726,11 @@ create_window_live (void)
   GLADE_HOOKUP_OBJECT (window_live, hbox52, "hbox52");
   GLADE_HOOKUP_OBJECT (window_live, image57, "image57");
   GLADE_HOOKUP_OBJECT (window_live, label73, "label73");
+  GLADE_HOOKUP_OBJECT (window_live, button_show_stats, "button_show_stats");
+  GLADE_HOOKUP_OBJECT (window_live, alignment20, "alignment20");
+  GLADE_HOOKUP_OBJECT (window_live, hbox56, "hbox56");
+  GLADE_HOOKUP_OBJECT (window_live, image60, "image60");
+  GLADE_HOOKUP_OBJECT (window_live, label77, "label77");
   GLADE_HOOKUP_OBJECT (window_live, button_live_close, "button_live_close");
   GLADE_HOOKUP_OBJECT (window_live, spinbutton_speed, "spinbutton_speed");
 

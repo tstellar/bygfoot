@@ -583,7 +583,7 @@ player_is_banned(const Player *pl)
 {
     gint i;
     Fixture *fix = team_get_next_fixture(pl->team);
-    gint yellow_red;
+    gint yellow_red, yellow, red;
 
     if(fix == NULL)
 	return 0;
@@ -593,18 +593,14 @@ player_is_banned(const Player *pl)
     else
 	yellow_red = cup_from_clid(fix->clid)->yellow_red;
     
-    for(i=0;i<pl->cards->len;i++)
-	if(g_array_index(pl->cards, PlayerCard, 0).clid == fix->clid)
-	{
-	    if(g_array_index(pl->cards, PlayerCard, 0).red > 0)
-		return g_array_index(pl->cards, PlayerCard, 0).red;
-	    
-	    if(g_array_index(pl->cards, PlayerCard, 0).yellow ==
-	       yellow_red - 1)
-		return -1;
+    yellow = player_card_get(pl, fix->clid, PLAYER_CARD_YELLOW);
+    red = player_card_get(pl, fix->clid, PLAYER_CARD_RED);
 
-	    return 0;
-	}
+    if(red > 0)
+	return red;
+
+    if(yellow == yellow_red - 1)
+	return -1;
 
     return 0;
 }
@@ -629,7 +625,7 @@ player_get_game_skill(const Player *pl, gboolean skill)
 void
 player_decrease_fitness(Player *pl)
 {
-    gint i;
+    gint i, reduction;
     gint age_limits[7] =
 	{const_int("int_player_fitness_decrease_peak_age_diff1"),
 	 const_int("int_player_fitness_decrease_peak_age_diff2"),
@@ -654,5 +650,76 @@ player_decrease_fitness(Player *pl)
 	if(diff > age_limits[i])
 	    break;
 
-    pl->fitness = MAX(0, pl->fitness - reduce[i]);
+    reduction = (gint)rint((gfloat)reduce[i] * 
+			   (1 + pl->team->boost * const_float("float_player_boost_fitness_effect")));
+    
+    pl->fitness = MAX(0, pl->fitness - reduction);
+}
+
+/** Return the number of yellow cards of a player
+    or the number of weeks banned.
+    @param pl The player.
+    @param clid The cup or league id.
+    @param card_type Whether red or yellow cards. */
+gint
+player_card_get(const Player *pl, gint clid, gint card_type)
+{
+    gint i;
+    gint return_value = -1;
+    
+    for(i=0;i<pl->cards->len;i++)
+	if(g_array_index(pl->cards, PlayerCard, i).clid == clid)
+	{
+	    if(card_type == PLAYER_CARD_YELLOW)
+		return_value = g_array_index(pl->cards, PlayerCard, i).yellow;
+	    else
+		return_value = g_array_index(pl->cards, PlayerCard, i).red;
+
+	    break;
+	}
+
+    return return_value;
+}
+
+/** Change a card value for the player.
+    @param pl The player.
+    @param clid The cup or league id.
+    @param card_type Whether red or yellow card.
+    @param value The new value.
+    @param diff Whether we add the value to the old one or
+    replace the old value by the new one. */
+void
+player_card_set(Player *pl, gint clid, gint card_type, gint value, gboolean diff)
+{
+    gint i, *card_value;
+    PlayerCard new;
+
+    for(i=0;i<pl->cards->len;i++)
+	if(g_array_index(pl->cards, PlayerCard, i).clid == clid)
+	{
+	    if(card_type == PLAYER_CARD_YELLOW)
+		card_value = &g_array_index(pl->cards, PlayerCard, i).yellow;
+	    else
+		card_value = &g_array_index(pl->cards, PlayerCard, i).red;
+
+	    if(diff)
+		*card_value += value;
+	    else
+		*card_value = value;
+
+	    if(*card_value < 0)
+	    {
+		g_warning("player_card_set: negative card value; setting to 0\n");
+		*card_value = 0;
+	    }
+	    
+	    return;
+	}
+
+    new.clid = clid;
+    new.yellow = new.red = 0;
+
+    g_array_append_val(pl->cards, new);
+
+    player_card_set(pl, clid, card_type, value, diff);
 }

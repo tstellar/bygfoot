@@ -188,8 +188,6 @@ float_live_game_foul_red_injury 50
 float_live_game_foul_red 80
 float_live_game_foul_yellow 230
 
-    gfloat duration[6]={0,0.7,0.85,0.95,0.975,1};
-
 # ban duration probabilities
 # should add up to 1000
 float_live_game_ban_1 700
@@ -245,6 +243,10 @@ int_player_injury_duration_shoulder 10
 int_player_injury_duration_dev_shoulder 5
 int_player_injury_duration_ligament 22
 int_player_injury_duration_dev_ligament 8
+
+# fitness decrease when injury is temporary
+int_live_game_temp_injury_fitness_decrease_lower 200
+int_live_game_temp_injury_fitness_decrease_upper 800
 
 # refresh rate of the player list during a live game
 # the smaller the more often the list gets refreshed
@@ -374,24 +376,30 @@ string_treeview_cell_color_player_bad_cskill_fg red
 string_treeview_cell_live_game_result_attributes weight='bold' size='large'
 
 # icons used in live games
-string_live_game_event_start_match_icon
+string_live_game_event_start_match_icon whistle.png
 string_live_game_event_lost_possession_icon
-string_live_game_event_penalty_icon
-string_live_game_event_scoring_chance_icon
+string_live_game_event_penalty_icon striker.png
+string_live_game_event_scoring_chance_icon striker.png
 string_live_game_event_goal_icon goal.png
-string_live_game_event_own_goal_icon goal.png
+string_live_game_event_own_goal_icon own_goal.png
 string_live_game_event_post_icon
 string_live_game_event_save_icon save.png
-string_live_game_event_missed_icon
+string_live_game_event_missed_icon miss.png
 string_live_game_event_foul_icon
 string_live_game_event_foul_yellow_icon yellow.png
 string_live_game_event_send_off_icon red.png
-string_live_game_event_injury_icon
-string_live_game_event_temp_injury_icon
+string_live_game_event_injury_icon injury.png
+string_live_game_event_temp_injury_icon injury_temp.png
 string_live_game_event_stadium_breakdown_icon
 string_live_game_event_stadium_fire_icon
 string_live_game_event_stadium_riots_icon
-string_live_game_event_substitution_icon
-string_live_game_event_structure_change_icon
-string_live_game_event_style_change_icon
-string_live_game_event_boost_change_icon
+string_live_game_event_substitution_icon sub.png
+string_live_game_event_structure_change_icon structure_change.png
+string_live_game_event_style_change_all_out_defend_icon style_change.png
+string_live_game_event_style_change_defend_icon style_change.png
+string_live_game_event_style_change_balanced_icon style_change.png
+string_live_game_event_style_change_attack_icon style_change.png
+string_live_game_event_style_change_all_out_attack_icon boost_change.png
+string_live_game_event_boost_change_anti_icon boost_change.png
+string_live_game_event_boost_change_off_icon style_change.png
+string_live_game_event_boost_change_on_icon boost_change.png

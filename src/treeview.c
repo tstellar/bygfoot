@@ -179,10 +179,22 @@ treeview_live_game_icon(gint event_type)
 	return const_str("string_live_game_event_substitution_icon");
     else if(event_type == LIVE_GAME_EVENT_STRUCTURE_CHANGE)
 	return const_str("string_live_game_event_structure_change_icon");
-    else if(event_type == LIVE_GAME_EVENT_STYLE_CHANGE)
-	return const_str("string_live_game_event_style_change_icon");
-    else if(event_type == LIVE_GAME_EVENT_BOOST_CHANGE)
-	return const_str("string_live_game_event_boost_change_icon");
+    else if(event_type == LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_DEFEND)
+	return const_str("string_live_game_event_style_change_all_out_defend_icon");
+    else if(event_type == LIVE_GAME_EVENT_STYLE_CHANGE_DEFEND)
+	return const_str("string_live_game_event_style_change_defend_icon");
+    else if(event_type == LIVE_GAME_EVENT_STYLE_CHANGE_BALANCED)
+	return const_str("string_live_game_event_style_change_balanced_icon");
+    else if(event_type == LIVE_GAME_EVENT_STYLE_CHANGE_ATTACK)
+	return const_str("string_live_game_event_style_change_attack_icon");
+    else if(event_type == LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_ATTACK)
+	return const_str("string_live_game_event_style_change_all_out_attack_icon");
+    else if(event_type == LIVE_GAME_EVENT_BOOST_CHANGE_ANTI)
+	return const_str("string_live_game_event_boost_change_anti_icon");
+    else if(event_type == LIVE_GAME_EVENT_BOOST_CHANGE_OFF)
+	return const_str("string_live_game_event_boost_change_off_icon");
+    else if(event_type == LIVE_GAME_EVENT_BOOST_CHANGE_ON)
+	return const_str("string_live_game_event_boost_change_on_icon");
     else
 	return "";
 }
@@ -814,6 +826,139 @@ treeview_show_users_startup(void)
     
     treeview_set_up_users_startup(treeview);
     model = treeview_create_users_startup();
+    gtk_tree_view_set_model(treeview, model);
+    g_object_unref(model);
+}
+
+/** Fill a model with live game stats.
+    @param live_game The live game.  */
+GtkTreeModel*
+treeview_create_game_stats(LiveGame *live_game)
+{
+    gint i, j, k;
+    LiveGameStats *stats = &live_game->stats;
+    GtkListStore  *liststore;
+    GtkTreeIter iter;
+    gchar buf[2][SMALL];
+    gchar buf3[SMALL];
+    gchar *categories[LIVE_GAME_STAT_VALUE_END] =
+	{_("Goals (w/o pen.)"),
+	 _("Shots"),   
+	 _("Shot %"),   
+	 _("Possession"),   
+	 _("Penalties"),   
+	 _("Fouls"),   
+	 _("Yellows"),   
+	 _("Reds"),   
+	 _("Injuries")};
+
+    liststore = gtk_list_store_new(3,
+				   G_TYPE_STRING,
+				   G_TYPE_STRING,
+				   G_TYPE_STRING);
+
+    sprintf(buf[0], "%d : %d",
+	    math_sum_int_array(live_game->fix->result[0], 3),
+	    math_sum_int_array(live_game->fix->result[1], 3));
+    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_set(liststore, &iter, 0, live_game->fix->teams[0]->name->str,
+		       1, buf[0],
+		       2, live_game->fix->teams[1]->name->str,
+		       -1);
+
+    for(k=0;k<LIVE_GAME_STAT_ARRAY_END;k++)
+    {
+	if(k == LIVE_GAME_STAT_ARRAY_SCORERS)
+	{
+	    strcpy(buf[0], "");
+	    strcpy(buf[1], "");
+	}
+	else
+	{
+	    strcpy(buf[1], "   </span>");
+	    if(k == LIVE_GAME_STAT_ARRAY_INJURED)
+		sprintf(buf[0], "<span background='%s'>   ", 
+			const_str("string_treeview_cell_color_player_injury"));
+	    else if(k == LIVE_GAME_STAT_ARRAY_REDS)
+		sprintf(buf[0], "<span background='%s'>   ", 
+			const_str("string_treeview_cell_color_player_banned"));
+	    else if(k == LIVE_GAME_STAT_ARRAY_YELLOWS)
+		sprintf(buf[0], "<span background='%s'>   ", 
+			const_str("string_treeview_cell_color_player_yellow_danger"));
+	}
+	for(i=0;i<MAX(stats->players[k][0]->len, 
+		      stats->players[k][1]->len);i++)
+	{
+	    gtk_list_store_append(liststore, &iter);
+	    gtk_list_store_set(liststore, &iter, 1, "", -1);
+	    for(j=0;j<2;j++)
+	    {
+		if(i < stats->players[k][j]->len)
+		{
+		    sprintf(buf3, "%s%s%s", buf[0],
+			    ((GString*)g_ptr_array_index(stats->players[k][j], i))->str,
+			    buf[1]);
+		    gtk_list_store_set(liststore, &iter, j * 2, buf3, -1);
+		}
+	    }
+	}
+    }
+
+    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_set(liststore, &iter, 0, "", 1, "", 2, "", -1);
+
+    for(i=0;i<LIVE_GAME_STAT_VALUE_END;i++)
+    {
+	for(j=0;j<2;j++)
+	    sprintf(buf[j], "%d", stats->values[j][i]);
+
+	gtk_list_store_append(liststore, &iter);
+	gtk_list_store_set(liststore, &iter, 0, buf[0],
+			   1, categories[i],
+			   2, buf[1], -1);
+    }
+
+    return GTK_TREE_MODEL(liststore);
+}
+
+/** Configure a treeview to show game stats.
+    @param treeview The treeview. */
+void
+treeview_set_up_game_stats(GtkTreeView *treeview)
+{
+    gint i;
+    GtkTreeViewColumn   *col;
+    GtkCellRenderer     *renderer;
+
+    gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
+				GTK_SELECTION_NONE);
+
+    for(i=0;i<3;i++)
+    {
+	col = gtk_tree_view_column_new();
+	gtk_tree_view_append_column(treeview, col);
+	renderer = gtk_cell_renderer_text_new();
+	gtk_tree_view_column_pack_start(col, renderer, TRUE);
+	gtk_tree_view_column_add_attribute(col, renderer,
+					   "markup", i);
+
+	g_object_set(renderer, "xalign", 0 + (2 - i) * 0.5,
+		     NULL);
+    }    
+}
+
+/** Show the stats of the live game in a treeview.
+    @param live_game The live game. */
+void
+treeview_show_game_stats(GtkTreeView *treeview, LiveGame *live_game)
+{
+    GtkTreeModel *model = NULL;
+
+    treeview_clear(treeview);
+    gtk_tree_view_set_headers_visible(treeview, FALSE);
+    
+    treeview_set_up_game_stats(treeview);
+    model = treeview_create_game_stats(live_game);
     gtk_tree_view_set_model(treeview, model);
     g_object_unref(model);
 }

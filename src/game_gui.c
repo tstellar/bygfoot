@@ -24,7 +24,8 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
     GtkProgressBar *progress_bar;
     GtkWidget *button_pause = lookup_widget(window.live, "button_pause"),
 	*button_resume = lookup_widget(window.live, "button_resume"),
-	*button_live_close = lookup_widget(window.live, "button_live_close");
+	*button_live_close = lookup_widget(window.live, "button_live_close"),
+	*button_show_stats = lookup_widget(window.live, "button_show_stats");
 
     if(unit->event.type == LIVE_GAME_EVENT_START_MATCH)
 	treeview_live_game_show_initial_commentary(unit);
@@ -48,12 +49,14 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
     if(unit->event.type == LIVE_GAME_EVENT_START_MATCH)
     {
 	gtk_widget_set_sensitive(button_live_close, FALSE);
+	gtk_widget_hide(button_show_stats);
 	gtk_widget_show(button_pause);
 	gtk_widget_hide(button_resume);
     }
     else if(unit->event.type == LIVE_GAME_EVENT_END_MATCH)
     {
 	gtk_widget_set_sensitive(lookup_widget(window.live, "button_live_close"), TRUE);
+	gtk_widget_show(button_show_stats);
 	gtk_widget_hide(lookup_widget(window.live, "button_pause"));
     }
     else if(unit->event.type == LIVE_GAME_EVENT_PENALTIES)
@@ -148,8 +151,8 @@ game_gui_get_radio_items(GtkWidget **style, GtkWidget **scout,
     physio[3] = lookup_widget(window.main, "menu_physio_bad");
 
     boost[0] = lookup_widget(window.main, "menu_boost_anti");
-    boost[1] = lookup_widget(window.main, "menu_boost_normal");
-    boost[2] = lookup_widget(window.main, "menu_boost");
+    boost[1] = lookup_widget(window.main, "menu_boost_off");
+    boost[2] = lookup_widget(window.main, "menu_boost_on");
 }
 
 /** Set information like season, user, week etc. into the appropriate labels. */

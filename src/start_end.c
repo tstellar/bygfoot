@@ -1,6 +1,7 @@
 #include "cup.h"
 #include "file.h"
 #include "fixture.h"
+#include "gui.h"
 #include "league.h"
 #include "live_game.h"
 #include "main.h"
@@ -198,19 +199,18 @@ end_week_round_results(void)
 		{
 		    live_game_calculate_fixture(&g_array_index(cp(i).fixtures, Fixture, j));
 		    /*d*/
-		    printf("%d %d %d %25s %d %d %d - %d %d %d %-25s\n", week, week_round,
-			   g_array_index(cp(i).fixtures, Fixture, j).clid,
-			   g_array_index(cp(i).fixtures, Fixture, j).teams[0]->name->str,
-			   g_array_index(cp(i).fixtures, Fixture, j).result[0][0],
-			   g_array_index(cp(i).fixtures, Fixture, j).result[0][1],		       
-			   g_array_index(cp(i).fixtures, Fixture, j).result[0][2],		       
-			   g_array_index(cp(i).fixtures, Fixture, j).result[1][0],		       
-			   g_array_index(cp(i).fixtures, Fixture, j).result[1][1],		       
-			   g_array_index(cp(i).fixtures, Fixture, j).result[1][2],		       
-			   g_array_index(cp(i).fixtures, Fixture, j).teams[1]->name->str);
+/* 		    printf("%d %d %d %25s %d %d %d - %d %d %d %-25s\n", week, week_round, */
+/* 			   g_array_index(cp(i).fixtures, Fixture, j).clid, */
+/* 			   g_array_index(cp(i).fixtures, Fixture, j).teams[0]->name->str, */
+/* 			   g_array_index(cp(i).fixtures, Fixture, j).result[0][0], */
+/* 			   g_array_index(cp(i).fixtures, Fixture, j).result[0][1],		        */
+/* 			   g_array_index(cp(i).fixtures, Fixture, j).result[0][2],		        */
+/* 			   g_array_index(cp(i).fixtures, Fixture, j).result[1][0],		        */
+/* 			   g_array_index(cp(i).fixtures, Fixture, j).result[1][1],		        */
+/* 			   g_array_index(cp(i).fixtures, Fixture, j).result[1][2],		        */
+/* 			   g_array_index(cp(i).fixtures, Fixture, j).teams[1]->name->str); */
 		}
     }
-    printf("\n");
 }
 
 /** Sort league and cup tables. */

@@ -603,8 +603,9 @@ on_menu_team_button_press_event        (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data)
 {
-    player_of(usr(0).tm, 10)->cskill = 0;
-    player_of(usr(0).tm, 10)->health = 10;
+    /*d*/
+/*     player_of(usr(0).tm, 10)->cskill = 0; */
+/*     player_of(usr(0).tm, 10)->health = 10; */
 
     game_gui_read_radio_items(widget);
 

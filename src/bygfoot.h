@@ -87,7 +87,8 @@ typedef struct
 	*startup,
 	*startup_users,
 	*live,
-	*warning;
+	*warning,
+	*progress;
 } Windows;
 
 /** A struct representing an option or a constant. */

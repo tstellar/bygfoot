@@ -11,6 +11,7 @@
 User
 user_new(void)
 {
+    gint i;
     User new;
 
     new.name = g_string_new("NONAME");
@@ -19,6 +20,10 @@ user_new(void)
 
     new.live_game.units = NULL;
     new.live_game.fix = NULL;
+
+    for(i=0;i<LIVE_GAME_STAT_ARRAY_END;i++)
+	new.live_game.stats.players[i][0] = 
+	    new.live_game.stats.players[i][1] = NULL;
 
     new.options = g_array_new(FALSE, FALSE, sizeof(Option));
 

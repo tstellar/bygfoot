@@ -1,6 +1,8 @@
 #include "gui.h"
 #include "misc.h"
+#include "support.h"
 #include "variables.h"
+#include "window.h"
 
 /* Set into or append an integer into a label.
    @param label The label.
@@ -50,3 +52,33 @@ gui_label_set_text_from_float(GtkLabel *label, gfloat number,
     gtk_label_set_text(label, buf);
 }
 
+/* Show a window with a progress bar.
+   @param value The value of the progress bar. If set to 1
+   or < 0 the progress bar window gets destroyed.
+   @param text The text to show in the progress bar. */
+void
+gui_show_progress(gfloat value, gchar *text)
+{
+    GtkProgressBar *progressbar = NULL;
+
+    if(value == 1 || value < 0)
+    {
+	window_destroy(&window.progress, FALSE);
+	return;
+    }
+
+    if(window.progress == NULL)
+	window_create(WINDOW_PROGRESS);
+    progressbar = GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar"));
+
+    if(value >= 0 && value < 1)
+	gtk_progress_bar_set_fraction(progressbar, value);
+    else
+	gtk_progress_bar_pulse(progressbar);
+
+    if(text != NULL)
+	gtk_progress_bar_set_text(progressbar, text);
+
+    while(gtk_events_pending())
+	gtk_main_iteration();
+}

@@ -82,12 +82,18 @@ gint
 game_find_to_substitute(const Team *tm);
 
 void
-game_player_card(gint clid, Player *pl, gboolean red, gboolean second_yellow);
-
-void
 game_substitute_player_send_off(Team *tm, gint player_number, 
 				gint *to_substitute, gint *substitute);
 void
 game_decrease_fitness(const Fixture *fix);
+
+gint
+game_player_get_ban_duration(void);
+
+void
+game_create_stats(gpointer live_game);
+
+void
+game_create_stats_players(gpointer live_game);
 
 #endif

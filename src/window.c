@@ -40,20 +40,6 @@ window_show_startup(void)
     free_g_string_array(&dir_contents);
 }
 
-/** Set 'Bygfoot x.y.z' into the title of a window.
-    @param window The window widget pointer.
-    @see #VERS */
-GtkWidget*
-window_set_version(GtkWidget *wind)
-{
-    gchar buf[SMALL];
-
-    sprintf(buf, "Bygfoot Football Manager %s", VERS);
-    gtk_window_set_title(GTK_WINDOW(wind), buf);
-
-    return wind;
-}
-
 /** Create and show a window. Which one depends on the argument.
     @param window_type An integer telling us which window to
     create.
@@ -65,8 +51,11 @@ GtkWidget*
 window_create(gint window_type)
 {
     gint old_popups_active = popups_active;
+    gchar buf[SMALL];
     GtkWidget *wind = NULL;
     
+    sprintf(buf, "Bygfoot Football Manager %s", VERS);
+
     switch(window_type)
     {
 	default:
@@ -100,6 +89,7 @@ window_create(gint window_type)
 		popups_active++;
 		window.live = create_window_live();
 	    }
+	    strcpy(buf, "Bygfoot Live game");
 	    wind = window.live;
 	    gtk_spin_button_set_value(
 		GTK_SPIN_BUTTON(lookup_widget(wind, "spinbutton_speed")),
@@ -113,6 +103,7 @@ window_create(gint window_type)
 		popups_active++;
 		window.startup_users = create_window_startup_users();
 	    }
+	    strcpy(buf, "Users");
 	    wind = window.startup_users;
 	    break;
 	case WINDOW_WARNING:
@@ -121,10 +112,19 @@ window_create(gint window_type)
 	    else
 		window.warning = create_window_warning();
 	    wind = window.warning;
+	    strcpy(buf, "Erm...");
+	    break;
+	case WINDOW_PROGRESS:
+	    if(window.progress != NULL)
+		g_warning("window_create: called on already existing window\n");
+	    else
+		window.progress = create_window_progress();
+	    wind = window.progress;
+	    strcpy(buf, "");
 	    break;
     }
 
-    window_set_version(wind);
+    gtk_window_set_title(GTK_WINDOW(wind), buf);
     gtk_widget_show(wind);
 
     if(popups_active < old_popups_active && window.main != NULL)

@@ -79,13 +79,24 @@ free_option_array(GArray **array, gboolean reset)
 void
 free_live_game(LiveGame *match)
 {
-    gint i;
+    gint i, j, k;
 
     if(match->units == NULL)
 	return;
 
     for(i=0;i<match->units->len;i++)
 	free_g_string(&g_array_index(match->units, LiveGameUnit, i).event.commentary);
+
+    for(i=0;i<2;i++)
+    {
+	for(j=0;j<LIVE_GAME_STAT_ARRAY_END;j++)
+	{
+	    for(k=0;k<match->stats.players[j][i]->len;k++)
+		free_g_string((GString**)&g_ptr_array_index(match->stats.players[j][i], k));
+	
+	    free_g_ptr_array(&match->stats.players[j][i]);
+	}
+    }
     
     free_g_array(&match->units);
 }

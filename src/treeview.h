@@ -84,4 +84,13 @@ treeview_create_users_startup(void);
 void
 treeview_set_up_users_startup(GtkTreeView *treeview);
 
+GtkTreeModel*
+treeview_create_game_stats(LiveGame *live_game);
+
+void
+treeview_show_game_stats(GtkTreeView *treeview, LiveGame *live_game);
+
+void
+treeview_set_up_game_stats(GtkTreeView *treeview);
+
 #endif

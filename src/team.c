@@ -604,29 +604,3 @@ team_rearrange(Team *tm)
 		player_get_cskill(player_of(tm, i), player_of(tm, i)->cpos) : player_of(tm, i)->skill;
     }
 }
-
-/** Describe the playing style in words.
-    @param style The team style.
-    @return The name of the style. */
-gchar*
-team_style_to_char(gint style)
-{
-    switch(style)
-    {
-	default:
-	    g_warning("team_style_to_char: unknown style %d\n", style);
-	    return NULL;
-	case PLAYING_STYLE_ALL_OUT_DEFEND:
-	    return _("All Out Defend");
-	case PLAYING_STYLE_DEFEND:
-	    return _("Defend");
-	case PLAYING_STYLE_BALANCED:
-	    return _("Balanced");
-	case PLAYING_STYLE_ATTACK:
-	    return _("Attack");
-	case PLAYING_STYLE_ALL_OUT_ATTACK:
-	    return _("All Out Attack");
-    }
-
-    return NULL;
-}
