@@ -42,7 +42,6 @@ window_show_startup(void)
     free_g_string_array(&dir_contents);
 }
 
-
 /**  Show the options window. */
 void
 window_show_options(void)
@@ -50,6 +49,19 @@ window_show_options(void)
     window_create(WINDOW_OPTIONS);
 
     option_gui_set_up_window();
+}
+
+/** Show the player list context menu, triggered by 'event'. */
+void
+window_show_menu_player(GdkEvent *event)
+{
+    if(window.menu_player != NULL)
+	window_destroy(&window.menu_player, FALSE);
+
+    window.menu_player = create_menu_player();
+
+    gtk_menu_popup(GTK_MENU(window.menu_player), NULL, NULL, NULL, NULL, 
+		   ((GdkEventButton*)event)->button, gdk_event_get_time(event));
 }
 
 /** Show the digits window with the labels and values set 
@@ -155,6 +167,14 @@ window_show_stadium(void)
 	gtk_label_set_text(label_stadium_status, _("No improvements currently in progress."));
 }
 
+gboolean
+window_show(gpointer window)
+{
+    gtk_widget_show((GtkWidget*)window);
+
+    return FALSE;
+}
+
 /** Show the window where the user can select between yes and no.
     @param text The text shown in the window.
     @param checkbutton Whether to show the checkbutton. */
@@ -225,17 +245,6 @@ window_create(gint window_type)
 	    gtk_spin_button_set_value(
 		GTK_SPIN_BUTTON(lookup_widget(wind, "spinbutton_speed")),
 		(gfloat)option_int("int_opt_user_live_game_speed", &usr(stat2).options));
-	    break;
-	case WINDOW_STARTUP_USERS:
-	    if(window.startup_users != NULL)
-		g_warning("window_create: called on already existing window\n");
-	    else
-	    {
-		popups_active++;
-		window.startup_users = create_window_startup_users();
-	    }
-	    strcpy(buf, "Users");
-	    wind = window.startup_users;
 	    break;
 	case WINDOW_WARNING:
 	    if(window.warning != NULL)
@@ -324,10 +333,18 @@ window_create(gint window_type)
 	    wind = window.contract;
 	    strcpy(buf, "Contract offer");
 	    break;
+	case WINDOW_USER_MANAGEMENT:
+	    if(window.user_management != NULL)
+		g_warning("window_create: called on already existing window\n");
+	    else
+		window.user_management = create_window_user_management();
+	    wind = window.user_management;
+	    strcpy(buf, "User management");
+	    break;
     }
 
     gtk_window_set_title(GTK_WINDOW(wind), buf);
-    gtk_widget_show(wind);
+    g_timeout_add(20, (GSourceFunc)window_show, (gpointer)wind);
 
     if(popups_active != old_popups_active &&
        window.main != NULL)

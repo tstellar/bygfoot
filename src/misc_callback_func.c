@@ -68,7 +68,6 @@ misc_callback_start_game(void)
 	user_set_up_team_new_game(&usr(i));
 
     window_destroy(&window.startup, TRUE);
-    window_destroy(&window.startup_users, TRUE);
 
     window_create(WINDOW_MAIN);
     
@@ -83,7 +82,9 @@ misc_callback_add_player(void)
 	GTK_TOGGLE_BUTTON(lookup_widget(window.startup, "team_selection_radio1"));
     GtkToggleButton *team_selection_radio2 =
 	GTK_TOGGLE_BUTTON(lookup_widget(window.startup, "team_selection_radio2"));
-    GtkTreeView *treeview =
+    GtkTreeView *treeview_users =
+	GTK_TREE_VIEW(lookup_widget(window.startup, "treeview_users"));
+    GtkTreeView *treeview_startup =
 	GTK_TREE_VIEW(lookup_widget(window.startup, "treeview_startup"));
     GtkEntry *entry_player_name = 
 	GTK_ENTRY(lookup_widget(window.startup, "entry_player_name"));
@@ -102,14 +103,13 @@ misc_callback_add_player(void)
     else
 	new_user.scout = -1;
 
-    new_user.tm = treeview_get_pointer(treeview, 2);
+    new_user.tm = treeview_get_pointer(treeview_startup, 2);
 
     g_array_append_val(users, new_user);
 
-    treeview_show_users_startup();
+    treeview_show_users(treeview_users);
 
-    treeview_show_team_list(GTK_TREE_VIEW(lookup_widget(window.startup, "treeview_startup")),
-			    FALSE, FALSE);
+    treeview_show_team_list(treeview_startup, FALSE, FALSE);
 
     if(users->len == 1)
     {
@@ -124,13 +124,14 @@ void
 misc_callback_remove_user(GdkEventButton *event)
 {
     GtkTreeView *treeview =
-	GTK_TREE_VIEW(lookup_widget(window.startup_users, "treeview_users"));
+	GTK_TREE_VIEW(lookup_widget(window.startup, "treeview_users"));
     
-    treeview_select_row(treeview, event);
+    if(!treeview_select_row(treeview, event))
+	return;
 
     user_remove(treeview_get_index(treeview, 0) - 1, FALSE);
     
-    treeview_show_users_startup();
+    treeview_show_users(treeview);
     
     if(users->len == 0)
     {

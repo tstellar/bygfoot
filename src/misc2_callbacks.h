@@ -62,3 +62,29 @@ gboolean
 on_window_contract_delete_event        (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data);
+
+void
+on_entry_user_management_activate      (GtkEntry        *entry,
+                                        gpointer         user_data);
+
+void
+on_button_user_management_add_clicked  (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_user_management_close_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data);
+
+gboolean
+on_treeview_user_management_users_button_press_event
+                                        (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data);
+
+void
+on_treeview_user_management_teams_row_activated
+                                        (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data);

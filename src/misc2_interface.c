@@ -766,3 +766,167 @@ create_window_contract (void)
   return window_contract;
 }
 
+GtkWidget*
+create_window_user_management (void)
+{
+  GtkWidget *window_user_management;
+  GtkWidget *vbox19;
+  GtkWidget *hbox23;
+  GtkWidget *hpaned1;
+  GtkWidget *vbox20;
+  GtkWidget *label47;
+  GtkWidget *scrolledwindow2;
+  GtkWidget *viewport1;
+  GtkWidget *treeview_user_management_users;
+  GtkWidget *vbox21;
+  GtkWidget *label46;
+  GtkWidget *scrolledwindow3;
+  GtkWidget *treeview_user_management_teams;
+  GtkWidget *hbox21;
+  GtkWidget *entry_user_management;
+  GtkWidget *button_user_management_add;
+  GtkWidget *alignment7;
+  GtkWidget *hbox22;
+  GtkWidget *image11;
+  GtkWidget *label45;
+  GtkWidget *hseparator9;
+  GtkWidget *button_user_management_close;
+
+  window_user_management = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_container_set_border_width (GTK_CONTAINER (window_user_management), 5);
+  gtk_window_set_title (GTK_WINDOW (window_user_management), _("window1"));
+  gtk_window_set_position (GTK_WINDOW (window_user_management), GTK_WIN_POS_CENTER);
+  gtk_window_set_default_size (GTK_WINDOW (window_user_management), 600, 550);
+
+  vbox19 = gtk_vbox_new (FALSE, 5);
+  gtk_widget_show (vbox19);
+  gtk_container_add (GTK_CONTAINER (window_user_management), vbox19);
+
+  hbox23 = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (hbox23);
+  gtk_box_pack_start (GTK_BOX (vbox19), hbox23, TRUE, TRUE, 0);
+
+  hpaned1 = gtk_hpaned_new ();
+  gtk_widget_show (hpaned1);
+  gtk_box_pack_start (GTK_BOX (hbox23), hpaned1, TRUE, TRUE, 0);
+  gtk_paned_set_position (GTK_PANED (hpaned1), 200);
+
+  vbox20 = gtk_vbox_new (FALSE, 0);
+  gtk_widget_show (vbox20);
+  gtk_paned_pack1 (GTK_PANED (hpaned1), vbox20, FALSE, TRUE);
+
+  label47 = gtk_label_new (_("Users -- click to remove"));
+  gtk_widget_show (label47);
+  gtk_box_pack_start (GTK_BOX (vbox20), label47, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label47), GTK_JUSTIFY_LEFT);
+
+  scrolledwindow2 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrolledwindow2);
+  gtk_box_pack_start (GTK_BOX (vbox20), scrolledwindow2, TRUE, TRUE, 0);
+
+  viewport1 = gtk_viewport_new (NULL, NULL);
+  gtk_widget_show (viewport1);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow2), viewport1);
+
+  treeview_user_management_users = gtk_tree_view_new ();
+  gtk_widget_show (treeview_user_management_users);
+  gtk_container_add (GTK_CONTAINER (viewport1), treeview_user_management_users);
+
+  vbox21 = gtk_vbox_new (FALSE, 0);
+  gtk_widget_show (vbox21);
+  gtk_paned_pack2 (GTK_PANED (hpaned1), vbox21, TRUE, TRUE);
+
+  label46 = gtk_label_new (_("Available teams"));
+  gtk_widget_show (label46);
+  gtk_box_pack_start (GTK_BOX (vbox21), label46, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label46), GTK_JUSTIFY_LEFT);
+
+  scrolledwindow3 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrolledwindow3);
+  gtk_box_pack_start (GTK_BOX (vbox21), scrolledwindow3, TRUE, TRUE, 0);
+
+  treeview_user_management_teams = gtk_tree_view_new ();
+  gtk_widget_show (treeview_user_management_teams);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow3), treeview_user_management_teams);
+
+  hbox21 = gtk_hbox_new (FALSE, 5);
+  gtk_widget_show (hbox21);
+  gtk_box_pack_start (GTK_BOX (vbox19), hbox21, FALSE, FALSE, 0);
+
+  entry_user_management = gtk_entry_new ();
+  gtk_widget_show (entry_user_management);
+  gtk_box_pack_start (GTK_BOX (hbox21), entry_user_management, TRUE, TRUE, 0);
+
+  button_user_management_add = gtk_button_new ();
+  gtk_widget_show (button_user_management_add);
+  gtk_box_pack_start (GTK_BOX (hbox21), button_user_management_add, FALSE, FALSE, 0);
+
+  alignment7 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment7);
+  gtk_container_add (GTK_CONTAINER (button_user_management_add), alignment7);
+
+  hbox22 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox22);
+  gtk_container_add (GTK_CONTAINER (alignment7), hbox22);
+
+  image11 = gtk_image_new_from_stock ("gtk-add", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image11);
+  gtk_box_pack_start (GTK_BOX (hbox22), image11, FALSE, FALSE, 0);
+
+  label45 = gtk_label_new_with_mnemonic (_("Add user"));
+  gtk_widget_show (label45);
+  gtk_box_pack_start (GTK_BOX (hbox22), label45, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label45), GTK_JUSTIFY_LEFT);
+
+  hseparator9 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator9);
+  gtk_box_pack_start (GTK_BOX (vbox19), hseparator9, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (hseparator9, 1, 10);
+
+  button_user_management_close = gtk_button_new_from_stock ("gtk-close");
+  gtk_widget_show (button_user_management_close);
+  gtk_box_pack_start (GTK_BOX (vbox19), button_user_management_close, FALSE, FALSE, 0);
+
+  g_signal_connect ((gpointer) treeview_user_management_users, "button_press_event",
+                    G_CALLBACK (on_treeview_user_management_users_button_press_event),
+                    NULL);
+  g_signal_connect ((gpointer) treeview_user_management_teams, "row_activated",
+                    G_CALLBACK (on_treeview_user_management_teams_row_activated),
+                    NULL);
+  g_signal_connect ((gpointer) entry_user_management, "activate",
+                    G_CALLBACK (on_entry_user_management_activate),
+                    NULL);
+  g_signal_connect ((gpointer) button_user_management_add, "clicked",
+                    G_CALLBACK (on_button_user_management_add_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_user_management_close, "clicked",
+                    G_CALLBACK (on_button_user_management_close_clicked),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (window_user_management, window_user_management, "window_user_management");
+  GLADE_HOOKUP_OBJECT (window_user_management, vbox19, "vbox19");
+  GLADE_HOOKUP_OBJECT (window_user_management, hbox23, "hbox23");
+  GLADE_HOOKUP_OBJECT (window_user_management, hpaned1, "hpaned1");
+  GLADE_HOOKUP_OBJECT (window_user_management, vbox20, "vbox20");
+  GLADE_HOOKUP_OBJECT (window_user_management, label47, "label47");
+  GLADE_HOOKUP_OBJECT (window_user_management, scrolledwindow2, "scrolledwindow2");
+  GLADE_HOOKUP_OBJECT (window_user_management, viewport1, "viewport1");
+  GLADE_HOOKUP_OBJECT (window_user_management, treeview_user_management_users, "treeview_user_management_users");
+  GLADE_HOOKUP_OBJECT (window_user_management, vbox21, "vbox21");
+  GLADE_HOOKUP_OBJECT (window_user_management, label46, "label46");
+  GLADE_HOOKUP_OBJECT (window_user_management, scrolledwindow3, "scrolledwindow3");
+  GLADE_HOOKUP_OBJECT (window_user_management, treeview_user_management_teams, "treeview_user_management_teams");
+  GLADE_HOOKUP_OBJECT (window_user_management, hbox21, "hbox21");
+  GLADE_HOOKUP_OBJECT (window_user_management, entry_user_management, "entry_user_management");
+  GLADE_HOOKUP_OBJECT (window_user_management, button_user_management_add, "button_user_management_add");
+  GLADE_HOOKUP_OBJECT (window_user_management, alignment7, "alignment7");
+  GLADE_HOOKUP_OBJECT (window_user_management, hbox22, "hbox22");
+  GLADE_HOOKUP_OBJECT (window_user_management, image11, "image11");
+  GLADE_HOOKUP_OBJECT (window_user_management, label45, "label45");
+  GLADE_HOOKUP_OBJECT (window_user_management, hseparator9, "hseparator9");
+  GLADE_HOOKUP_OBJECT (window_user_management, button_user_management_close, "button_user_management_close");
+
+  return window_user_management;
+}
+

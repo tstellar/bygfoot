@@ -5,6 +5,7 @@
 #include "misc.h"
 #include "option.h"
 #include "player.h"
+#include "team.h"
 #include "transfer.h"
 #include "user.h"
 #include "window.h"
@@ -125,10 +126,18 @@ user_set_up_finances(User *user)
 void
 user_remove(gint idx, gboolean regenerate_team)
 {
+    gint i;
+
+    if(regenerate_team)
+    {
+	for(i=0;i<usr(idx).tm->players->len;i++)
+	    free_player(&g_array_index(usr(idx).tm->players, Player, i));
+
+	team_generate_players_stadium(usr(idx).tm);
+    }
+
     free_user(&usr(idx));
     g_array_remove_index(users, idx);
-
-    /*todo regenerate*/
 }
 
 void

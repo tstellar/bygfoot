@@ -947,10 +947,10 @@ game_update_stats(gpointer live_game, gconstpointer live_game_unit)
 	stats->values[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]][LIVE_GAME_STAT_VALUE_REDS]++;
 	game_update_stats_player(live_game, live_game_unit);
     }
-    else if(unit->event.type == LIVE_GAME_EVENT_GOAL &&
-	    live_game_unit_before(unit, -1)->event.type != LIVE_GAME_EVENT_PENALTY)
+    else if(unit->event.type == LIVE_GAME_EVENT_GOAL)
     {
-	stats->values[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]][LIVE_GAME_STAT_VALUE_GOALS_REGULAR]++;
+	if(live_game_unit_before(unit, -1)->event.type != LIVE_GAME_EVENT_PENALTY)
+	    stats->values[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]][LIVE_GAME_STAT_VALUE_GOALS_REGULAR]++;
 	game_update_stats_player(live_game, live_game_unit);
     }
     

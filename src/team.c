@@ -362,9 +362,9 @@ Team*
 team_get_pointer_from_ids(gint clid, gint id)
 {    
     if(clid < ID_CUP_START)
-	return &g_array_index(lig(clid % 1000).teams, Team, id);
+	return &g_array_index(lig(league_cup_get_index_from_clid(clid)).teams, Team, id);
     else
-	return &g_array_index(cp(clid % 1000).teams, Team, id);
+	return &g_array_index(cp(league_cup_get_index_from_clid(clid)).teams, Team, id);
 }
 
 /** Return the players of the team in a pointer array.
@@ -903,9 +903,7 @@ gint
 team_get_index(const Team *tm)
 {
     gint i;
-    GArray *teams = (tm->clid < ID_CUP_START) ?
-	league_from_clid(tm->clid)->teams :
-	cup_from_clid(tm->clid)->teams;
+    GArray *teams = league_cup_get_teams(tm->clid);
 
     for(i=0;i<teams->len;i++)
 	if(&g_array_index(teams, Team, i) == tm)

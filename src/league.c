@@ -210,9 +210,7 @@ Fixture*
 league_cup_get_next_fixture(gint clid, gint week_number, gint week_round_number)
 {
     gint i;
-    GArray *fixtures = (clid < ID_CUP_START) ?
-	league_from_clid(clid)->fixtures :
-	cup_from_clid(clid)->fixtures;
+    GArray *fixtures = league_cup_get_fixtures(clid);
 
     for(i=0;i<fixtures->len;i++)
 	if(g_array_index(fixtures, Fixture, i).week_number > week_number ||
@@ -230,9 +228,7 @@ Fixture*
 league_cup_get_previous_fixture(gint clid, gint week_number, gint week_round_number)
 {
     gint i;
-    GArray *fixtures = (clid < ID_CUP_START) ?
-	league_from_clid(clid)->fixtures :
-	cup_from_clid(clid)->fixtures;
+    GArray *fixtures = league_cup_get_fixtures(clid);
 
     for(i=fixtures->len - 1;i>=0;i--)
 	if(g_array_index(fixtures, Fixture, i).week_number < week_number ||
@@ -266,9 +262,7 @@ league_cup_average_capacity(gint clid)
 {
     gint i;
     gfloat sum = 0;
-    const GArray *teams = (clid < ID_CUP_START) ?
-	league_from_clid(clid)->teams :
-	cup_from_clid(clid)->teams;
+    const GArray *teams = league_cup_get_teams(clid);
 
     for(i=0;i<teams->len;i++)
 	if(team_is_user(&g_array_index(teams, Team, i)) == -1)

@@ -26,6 +26,7 @@ enum MonOut
     MON_OUT_JOURNEY,
     MON_OUT_STADIUM_IMPROVEMENT,
     MON_OUT_STADIUM_BILLS,
+    MON_OUT_COMPENSATIONS,
     MON_OUT_TRANSFERS,
     MON_OUT_END
 };
@@ -41,7 +42,6 @@ enum CounterValue
     COUNT_USER_WARNING, /**< Whether there was already a warning about rumours (new coach). */
     COUNT_USER_INC_CAP, /**< How many weeks until the stadium capacity is increased. */
     COUNT_USER_INC_SAF, /**< How often the stadium safety was increased (in a week). */
-    COUNT_USER_AUTOSAVE, /**< How often the game is autosaved. */
     COUNT_USER_STADIUM_CAPACITY, /**< Counter for building stadium seats. */
     COUNT_USER_STADIUM_SAFETY, /**< Counter for increasing stadium safety. */
     COUNT_USER_OLD_WAGE1,

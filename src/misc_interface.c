@@ -31,6 +31,9 @@ create_window_startup (void)
 {
   GtkWidget *window_startup;
   GtkWidget *vbox2;
+  GtkWidget *hpaned1;
+  GtkWidget *scrolledwindow10;
+  GtkWidget *treeview_users;
   GtkWidget *scrolledwindow1;
   GtkWidget *treeview_startup;
   GtkWidget *hseparator10;
@@ -88,19 +91,34 @@ create_window_startup (void)
 
   window_startup = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_startup), 6);
-  gtk_window_set_title (GTK_WINDOW (window_startup), _("Select team and country"));
   gtk_window_set_position (GTK_WINDOW (window_startup), GTK_WIN_POS_CENTER);
-  gtk_window_set_default_size (GTK_WINDOW (window_startup), 500, 600);
+  gtk_window_set_default_size (GTK_WINDOW (window_startup), 550, 600);
 
   vbox2 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox2);
   gtk_container_add (GTK_CONTAINER (window_startup), vbox2);
 
+  hpaned1 = gtk_hpaned_new ();
+  gtk_widget_show (hpaned1);
+  gtk_box_pack_start (GTK_BOX (vbox2), hpaned1, TRUE, TRUE, 0);
+  gtk_paned_set_position (GTK_PANED (hpaned1), 200);
+
+  scrolledwindow10 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrolledwindow10);
+  gtk_paned_pack1 (GTK_PANED (hpaned1), scrolledwindow10, FALSE, TRUE);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow10), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow10), GTK_SHADOW_IN);
+
+  treeview_users = gtk_tree_view_new ();
+  gtk_widget_show (treeview_users);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow10), treeview_users);
+  gtk_tooltips_set_tip (tooltips, treeview_users, _("Click on a player to remove him"), NULL);
+
   scrolledwindow1 = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (scrolledwindow1);
-  gtk_box_pack_start (GTK_BOX (vbox2), scrolledwindow1, TRUE, TRUE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (scrolledwindow1), 6);
+  gtk_paned_pack2 (GTK_PANED (hpaned1), scrolledwindow1, TRUE, TRUE);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow1), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow1), GTK_SHADOW_IN);
 
   treeview_startup = gtk_tree_view_new ();
   gtk_widget_show (treeview_startup);
@@ -339,6 +357,9 @@ create_window_startup (void)
   g_signal_connect ((gpointer) window_startup, "delete_event",
                     G_CALLBACK (on_team_selection_cancel_clicked),
                     NULL);
+  g_signal_connect ((gpointer) treeview_users, "button_press_event",
+                    G_CALLBACK (on_treeview_users_button_press_event),
+                    NULL);
   g_signal_connect ((gpointer) treeview_startup, "row_activated",
                     G_CALLBACK (on_team_selection_tv_row_activated),
                     NULL);
@@ -367,6 +388,9 @@ create_window_startup (void)
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (window_startup, window_startup, "window_startup");
   GLADE_HOOKUP_OBJECT (window_startup, vbox2, "vbox2");
+  GLADE_HOOKUP_OBJECT (window_startup, hpaned1, "hpaned1");
+  GLADE_HOOKUP_OBJECT (window_startup, scrolledwindow10, "scrolledwindow10");
+  GLADE_HOOKUP_OBJECT (window_startup, treeview_users, "treeview_users");
   GLADE_HOOKUP_OBJECT (window_startup, scrolledwindow1, "scrolledwindow1");
   GLADE_HOOKUP_OBJECT (window_startup, treeview_startup, "treeview_startup");
   GLADE_HOOKUP_OBJECT (window_startup, hseparator10, "hseparator10");
@@ -875,45 +899,6 @@ create_help_window (void)
   gtk_window_add_accel_group (GTK_WINDOW (help_window), accel_group);
 
   return help_window;
-}
-
-GtkWidget*
-create_window_startup_users (void)
-{
-  GtkWidget *window_startup_users;
-  GtkWidget *scrolledwindow10;
-  GtkWidget *treeview_users;
-  GtkTooltips *tooltips;
-
-  tooltips = gtk_tooltips_new ();
-
-  window_startup_users = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_title (GTK_WINDOW (window_startup_users), _("Players"));
-  gtk_window_set_default_size (GTK_WINDOW (window_startup_users), 250, 200);
-
-  scrolledwindow10 = gtk_scrolled_window_new (NULL, NULL);
-  gtk_widget_show (scrolledwindow10);
-  gtk_container_add (GTK_CONTAINER (window_startup_users), scrolledwindow10);
-
-  treeview_users = gtk_tree_view_new ();
-  gtk_widget_show (treeview_users);
-  gtk_container_add (GTK_CONTAINER (scrolledwindow10), treeview_users);
-  gtk_tooltips_set_tip (tooltips, treeview_users, _("Click on a player to remove him"), NULL);
-
-  g_signal_connect ((gpointer) window_startup_users, "delete_event",
-                    G_CALLBACK (on_window_startup_users_delete_event),
-                    NULL);
-  g_signal_connect ((gpointer) treeview_users, "button_press_event",
-                    G_CALLBACK (on_treeview_users_button_press_event),
-                    NULL);
-
-  /* Store pointers to all widgets, for use by lookup_widget(). */
-  GLADE_HOOKUP_OBJECT_NO_REF (window_startup_users, window_startup_users, "window_startup_users");
-  GLADE_HOOKUP_OBJECT (window_startup_users, scrolledwindow10, "scrolledwindow10");
-  GLADE_HOOKUP_OBJECT (window_startup_users, treeview_users, "treeview_users");
-  GLADE_HOOKUP_OBJECT_NO_REF (window_startup_users, tooltips, "tooltips");
-
-  return window_startup_users;
 }
 
 GtkWidget*

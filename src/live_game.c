@@ -568,7 +568,9 @@ live_game_event_penalty(void)
 
 	if(team_is_user(tm[last_unit.possession]) != -1 &&
 	   option_int("int_opt_user_penalty_shooter",
-		      &usr(team_is_user(tm[last_unit.possession])).options) != -1)
+		      &usr(team_is_user(tm[last_unit.possession])).options) != -1 &&
+	   player_of_id(tm[last_unit.possession], option_int("int_opt_user_penalty_shooter",
+							     &usr(team_is_user(tm[last_unit.possession])).options)) != NULL)
 	    last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
 		option_int("int_opt_user_penalty_shooter",
 			   &usr(team_is_user(tm[last_unit.possession])).options);
@@ -721,10 +723,12 @@ live_game_event_free_kick(void)
     new.event.commentary = g_string_new("freekick");
     if(team_is_user(tm[new.possession]) != -1 &&
        option_int("int_opt_user_penalty_shooter",
-		  &usr(team_is_user(tm[last_unit.possession])).options) != -1)
+		  &usr(team_is_user(tm[last_unit.possession])).options) != -1 &&
+       player_of_id(tm[new.possession], option_int("int_opt_user_penalty_shooter",
+						   &usr(team_is_user(tm[new.possession])).options)) != NULL)
 	new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
 	    option_int("int_opt_user_penalty_shooter",
-		       &usr(team_is_user(tm[last_unit.possession])).options);
+		       &usr(team_is_user(tm[new.possession])).options);
     else
 	new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
 	    game_get_player(tm[new.possession], new.area, 0, -1, TRUE);
@@ -1115,7 +1119,7 @@ live_game_unit_before(const LiveGameUnit* unit, gint gap)
 {
     gint i;
 
-    if(gap < 0)
+    if(gap > 0)
     {
 	for(i=unis->len - 1;i>=0;i--)
 	    if(&uni(i) == unit)
@@ -1131,7 +1135,7 @@ live_game_unit_before(const LiveGameUnit* unit, gint gap)
 	for(i=unis->len - 1;i>=0;i--)
 	    if(&uni(i) == unit)
 	    {
-		if(i + gap < unis->len)
+		if(i + gap < unis->len - 1)
 		    return &uni(i + gap);
 		else
 		    g_warning("live_game_unit_before: no unit found for gap %d\n", gap);

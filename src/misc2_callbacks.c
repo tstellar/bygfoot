@@ -4,8 +4,10 @@
 #include "misc2_callbacks.h"
 #include "misc2_callback_func.h"
 #include "misc2_interface.h"
+#include "player.h"
 #include "support.h"
 #include "transfer.h"
+#include "treeview.h"
 #include "user.h"
 #include "window.h"
 
@@ -122,8 +124,9 @@ on_window_yesno_delete_event           (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+    on_button_yesno_no_clicked(NULL, NULL);
 
-  return FALSE;
+    return FALSE;
 }
 
 
@@ -147,8 +150,22 @@ on_button_yesno_yes_clicked            (GtkButton       *button,
 	case STATUS_TRANSFER_OFFER:
 	    misc2_callback_transfer_user_player();
 	    break;
+	case STATUS_FIRE_PLAYER:
+	    player_remove_from_team(current_user.tm, stat1);
+	    current_user.money -= stat2;
+	    current_user.money_out[1][MON_OUT_COMPENSATIONS] -= stat2;
+	    treeview_show_user_player_list();
+	    break;
+	case STATUS_USER_MANAGEMENT:
+	    user_remove(stat1, TRUE);
+	    treeview_show_users(GTK_TREE_VIEW(lookup_widget(window.user_management,
+							    "treeview_user_management_users")));
+	    treeview_show_team_list(GTK_TREE_VIEW(lookup_widget(window.user_management, 
+								"treeview_user_management_teams")),
+				    FALSE, FALSE);
+	    break;
     }
-    /*d*/
+    
     window_destroy(&window.yesno, TRUE);
 }
 
@@ -177,3 +194,65 @@ on_window_contract_delete_event        (GtkWidget       *widget,
     return TRUE;
 }
 
+
+void
+on_entry_user_management_activate      (GtkEntry        *entry,
+                                        gpointer         user_data)
+{
+    on_button_user_management_add_clicked(NULL, NULL);
+}
+
+
+void
+on_button_user_management_add_clicked  (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    misc2_callback_add_user();
+}
+
+
+void
+on_button_user_management_close_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    window_destroy(&window.user_management, FALSE);
+}
+
+
+gboolean
+on_treeview_user_management_users_button_press_event
+                                        (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data)
+{
+    gchar buf[SMALL];
+    gint idx = -1;
+
+    if(!treeview_select_row(GTK_TREE_VIEW(widget), event))
+	return TRUE;
+    
+    idx = treeview_get_index(GTK_TREE_VIEW(widget), 0) - 1;
+
+    if(users->len == 1)
+    {
+	game_gui_show_warning("You can't play Bygfoot with 0 users!");
+	return TRUE;
+    }
+
+    stat1 = idx;
+    sprintf(buf, "Remove user %s from the game?", usr(idx).name->str);
+    window_show_yesno(buf, FALSE);
+    
+    return FALSE;
+}
+
+void
+on_treeview_user_management_teams_row_activated
+                                        (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data)
+{
+    on_button_user_management_add_clicked(NULL, NULL);
+}

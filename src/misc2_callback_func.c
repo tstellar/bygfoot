@@ -1,3 +1,4 @@
+#include "file.h"
 #include "finance.h"
 #include "game_gui.h"
 #include "maths.h"
@@ -107,7 +108,7 @@ misc2_callback_contract_offer(void)
 	    {
 		pl->contract += (i + 1);
 		pl->wage = value;
-		sprintf(buf, _("%s has accepted your offer."), pl->name->str);
+		sprintf(buf, _("%s accepts your offer."), pl->name->str);
 		game_gui_print_message(buf);
 		window_destroy(&window.contract, FALSE);
 	    }
@@ -133,4 +134,31 @@ misc2_callback_contract_offer(void)
 	    break;
 	}
     }
+}
+
+/** Add a user to the users array. */
+void
+misc2_callback_add_user(void)
+{
+    GtkTreeView *treeview_user_management_teams =
+	GTK_TREE_VIEW(lookup_widget(window.user_management, "treeview_user_management_teams"));
+    GtkEntry *entry_user_management = 
+	GTK_ENTRY(lookup_widget(window.user_management, "entry_user_management"));
+    const gchar *user_name = gtk_entry_get_text(entry_user_management);
+    User new_user = user_new();
+    
+    if(strlen(user_name) > 0)
+	g_string_printf(new_user.name, "%s", user_name);
+    
+    gtk_entry_set_text(entry_user_management, "");
+
+    new_user.tm = treeview_get_pointer(treeview_user_management_teams, 2);
+
+    g_array_append_val(users, new_user);
+
+    user_set_up_team(&usr(users->len - 1));
+    file_load_user_conf_file(&usr(users->len - 1));
+
+    treeview_show_users(GTK_TREE_VIEW(lookup_widget(window.user_management, "treeview_user_management_users")));
+    treeview_show_team_list(treeview_user_management_teams, FALSE, FALSE);
 }

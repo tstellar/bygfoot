@@ -3,6 +3,7 @@
 #include "game_gui.h"
 #include "main.h"
 #include "option.h"
+#include "player.h"
 #include "team.h"
 #include "transfer.h"
 #include "treeview.h"
@@ -106,7 +107,8 @@ void
 on_button_preview_clicked              (GtkButton       *button,
                                         gpointer         user_data)
 {
-
+    stat0 = STATUS_SHOW_PREVIEW;
+    treeview_show_preview();
 }
 
 
@@ -133,8 +135,8 @@ on_player_list1_button_press_event     (GtkWidget       *widget,
 {
     gint idx = -1;
 
-    treeview_select_row(GTK_TREE_VIEW(widget), event);
-    idx = treeview_get_index(GTK_TREE_VIEW(widget), 0);
+    if(treeview_select_row(GTK_TREE_VIEW(widget), event))
+	idx = treeview_get_index(GTK_TREE_VIEW(widget), 0);
 
     if(idx < 0 || idx - 1 == selected_row[0])
     {
@@ -194,6 +196,9 @@ on_button_cl_back_clicked              (GtkButton       *button,
 	case STATUS_BROWSE_TEAMS:
 	    callback_show_team(SHOW_PREVIOUS_LEAGUE);
 	    break;
+	case STATUS_SHOW_PLAYER_LIST:
+	    callback_show_player_list(SHOW_PREVIOUS_LEAGUE);
+	    break;
     }
 }
 
@@ -212,6 +217,9 @@ on_button_cl_forward_clicked           (GtkButton       *button,
 	    break;
 	case STATUS_BROWSE_TEAMS:
 	    callback_show_team(SHOW_NEXT_LEAGUE);
+	    break;
+	case STATUS_SHOW_PLAYER_LIST:
+	    callback_show_player_list(SHOW_NEXT_LEAGUE);
 	    break;
     }
 }
@@ -269,7 +277,15 @@ void
 on_menu_put_on_transfer_list_activate  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-
+    if(selected_row[0] == -1)
+	game_gui_print_message(_("You haven't selected a player."));
+    else if(query_transfer_player_is_on_list(player_of(current_user.tm, selected_row[0])))
+	game_gui_print_message(_("The player is already on the list."));
+    else
+    {
+	transfer_add_remove_user_player(player_of(current_user.tm, selected_row[0]));
+	selected_row[0] = -1;
+    }
 }
 
 
@@ -277,7 +293,15 @@ void
 on_menu_remove_from_transfer_list_activate (GtkMenuItem     *menuitem,
 					    gpointer         user_data)
 {
-
+    if(selected_row[0] == -1)
+	game_gui_print_message(_("You haven't selected a player."));
+    else if(!query_transfer_player_is_on_list(player_of(current_user.tm, selected_row[0])))
+	game_gui_print_message(_("The player is not on the list."));
+    else
+    {
+	transfer_add_remove_user_player(player_of(current_user.tm, selected_row[0]));
+	selected_row[0] = -1;
+    }
 }
 
 
@@ -285,7 +309,13 @@ void
 on_menu_fire_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-
+    if(selected_row[0] == -1)
+	game_gui_print_message(_("You haven't selected a player."));
+    else
+    {
+	callback_fire_player(selected_row[0]);
+	selected_row[0] = -1;
+    }
 }
 
 
@@ -293,113 +323,29 @@ void
 on_menu_shoots_penalties_activate      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    gchar buf[SMALL];
 
+    if(selected_row[0] == -1)
+	game_gui_print_message(_("You haven't selected a player."));
+    else if(player_of(current_user.tm, selected_row[0])->id ==
+	    opt_user_int("int_opt_user_penalty_shooter"))
+    {
+	opt_user_set_int("int_opt_user_penalty_shooter", -1);
+	game_gui_print_message(_("Penalty/free kick shooter deselected."));
+	treeview_show_user_player_list();
+    }
+    else
+    {
+	sprintf(buf, "%s will shoot penalties and free kicks when he plays.",
+		player_of(current_user.tm, selected_row[0])->name->str);
+	opt_user_set_int("int_opt_user_penalty_shooter",
+			 player_of(current_user.tm, selected_row[0])->id);
+	game_gui_print_message(buf);
+	treeview_show_user_player_list();
+    }
+
+    selected_row[0] = -1;
 }
-
-
-void
-on_menu_all_out_defend_activate        (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_defend_activate                (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_balanced_activate              (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_attack_activate                (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_all_out_attack_activate        (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_scout_best_activate            (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_scout_good_activate            (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_scout_average_activate         (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_scout_bad_activate             (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_physio_best_activate           (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_physio_good_activate           (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_physio_average_activate        (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_physio_bad_activate            (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
 
 void
 on_menu_my_league_results_activate     (GtkMenuItem     *menuitem,
@@ -430,8 +376,10 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
 {
     gint idx;
 
-    treeview_select_row(GTK_TREE_VIEW(widget), event);
-    idx = treeview_get_index(GTK_TREE_VIEW(widget), 0);
+    if(treeview_select_row(GTK_TREE_VIEW(widget), event))
+	idx = treeview_get_index(GTK_TREE_VIEW(widget), 0);
+    else
+	return FALSE;
 
     switch(stat0)
     {
@@ -517,7 +465,11 @@ void
 on_menu_manage_users_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-
+    stat0 = STATUS_USER_MANAGEMENT;
+    window_create(WINDOW_USER_MANAGEMENT);
+    treeview_show_users(GTK_TREE_VIEW(lookup_widget(window.user_management, "treeview_user_management_users")));
+    treeview_show_team_list(GTK_TREE_VIEW(lookup_widget(window.user_management, "treeview_user_management_teams")),
+			    FALSE, FALSE);
 }
 
 
@@ -562,7 +514,9 @@ on_eventbox_style_button_press_event   (GtkWidget       *widget,
 
     game_gui_write_meters();
     game_gui_write_radio_items();
-    treeview_show_next_opponent();
+    
+    if(stat0 == STATUS_MAIN)
+	treeview_show_next_opponent();
 
     return FALSE;
 }
@@ -591,7 +545,9 @@ on_eventbox_boost_button_press_event   (GtkWidget       *widget,
 
     game_gui_write_meters();
     game_gui_write_radio_items();
-    treeview_show_next_opponent();
+
+    if(stat0 == STATUS_MAIN)
+	treeview_show_next_opponent();
 
     return FALSE;
 }
@@ -650,5 +606,66 @@ on_menu_offer_new_contract_activate    (GtkMenuItem     *menuitem,
     }
 
     callback_offer_new_contract(selected_row[0]);
+    selected_row[0] = -1;
+}
+
+
+void
+on_player_menu_show_info_activate      (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+
+}
+
+
+void
+on_player_menu_put_on_transfer_list_activate
+                                        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    on_menu_put_on_transfer_list_activate(NULL, NULL);
+}
+
+
+void
+on_player_menu_remove_from_transfer_list_activate
+                                        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    on_menu_remove_from_transfer_list_activate(NULL, NULL);
+}
+
+
+void
+on_player_menu_offer_new_contract_activate
+                                        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    on_menu_offer_new_contract_activate(NULL, NULL);
+}
+
+
+void
+on_player_menu_fire_activate           (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    on_menu_fire_activate(NULL, NULL);
+}
+
+
+void
+on_player_menu_shoots_penalties_activate
+                                        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    on_menu_shoots_penalties_activate(NULL, NULL);
+}
+
+void
+on_menu_browse_players_activate        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    callback_show_player_list(SHOW_CURRENT);
+    stat0 = STATUS_SHOW_PLAYER_LIST;
 }
 

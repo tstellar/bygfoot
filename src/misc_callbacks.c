@@ -50,46 +50,12 @@ on_team_selection_tv_row_activated     (GtkTreeView     *treeview,
     on_button_add_player_clicked(NULL, NULL);
 }
 
-
-void
-on_radiobutton_country_toggled         (GtkToggleButton *togglebutton,
-                                        gpointer         user_data)
-{
-
-}
-
-
 void
 on_button_select_country_file_clicked  (GtkButton       *button,
                                         gpointer         user_data)
 {
 
 }
-
-
-void
-on_checkbutton_load_randomly_toggled   (GtkToggleButton *togglebutton,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_checkbutton_only_names_toggled      (GtkToggleButton *togglebutton,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_button_start_editor_clicked         (GtkButton       *button,
-                                        gpointer         user_data)
-{
-
-}
-
 
 void
 on_team_selection_load_clicked         (GtkButton       *button,
@@ -312,13 +278,3 @@ on_spinbutton_capacity_button_press_event  (GtkWidget       *widget,
     
     return FALSE;
 }
-
-gboolean
-on_window_startup_users_delete_event   (GtkWidget       *widget,
-                                        GdkEvent        *event,
-                                        gpointer         user_data)
-{
-
-    return TRUE;
-}
-

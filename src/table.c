@@ -114,16 +114,12 @@ table_element_compare_func(gconstpointer a,
 	return 0;
 
     clid = GPOINTER_TO_INT(clid_pointer);
+
+    fixtures = league_cup_get_fixtures(clid);
     if(clid < ID_CUP_START)
-    {
 	cup_round = -1;
-	fixtures = league_from_clid(clid)->fixtures;
-    }
     else
-    {
 	cup_round = g_array_index(cup_from_clid(clid)->tables, Table, 0).round;
-	fixtures = cup_from_clid(clid)->fixtures;
-    }
     
     /*todo use misc_int_compare*/
     if(element1->values[TABLE_PTS] > element2->values[TABLE_PTS])

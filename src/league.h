@@ -5,6 +5,9 @@
 #include "league_struct.h"
 #include "fixture_struct.h"
 
+#define league_cup_get_teams(clid) (clid < ID_CUP_START) ? league_from_clid(clid)->teams : cup_from_clid(clid)->teams
+#define league_cup_get_fixtures(clid) (clid < ID_CUP_START) ? league_from_clid(clid)->fixtures : cup_from_clid(clid)->fixtures
+
 League
 league_new(void);
 

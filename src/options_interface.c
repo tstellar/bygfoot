@@ -53,13 +53,19 @@ create_window_options (void)
   GtkObject *spinbutton_refresh_adj;
   GtkWidget *spinbutton_refresh;
   GtkWidget *label10;
-  GtkWidget *entry_constants_file;
   GtkWidget *button_font_name;
   GtkWidget *alignment1;
   GtkWidget *hbox7;
   GtkWidget *image1;
   GtkWidget *label34;
   GtkWidget *entry_font_name;
+  GtkWidget *hbox8;
+  GtkWidget *entry_constants_file;
+  GtkWidget *button_reload_constants;
+  GtkWidget *alignment2;
+  GtkWidget *hbox9;
+  GtkWidget *image2;
+  GtkWidget *label35;
   GtkWidget *label1;
   GtkWidget *hbox4;
   GtkWidget *vbox4;
@@ -276,13 +282,6 @@ create_window_options (void)
   gtk_label_set_justify (GTK_LABEL (label10), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label10), 1, 0.5);
 
-  entry_constants_file = gtk_entry_new ();
-  gtk_widget_show (entry_constants_file);
-  gtk_table_attach (GTK_TABLE (table1), entry_constants_file, 1, 2, 3, 4,
-                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
-                    (GtkAttachOptions) (0), 0, 0);
-  gtk_tooltips_set_tip (tooltips, entry_constants_file, _("File containing settings which determine a lot of aspects of the game behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."), NULL);
-
   button_font_name = gtk_button_new ();
   gtk_widget_show (button_font_name);
   gtk_table_attach (GTK_TABLE (table1), button_font_name, 0, 1, 4, 5,
@@ -311,6 +310,39 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table1), entry_font_name, 1, 2, 4, 5,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
+
+  hbox8 = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (hbox8);
+  gtk_table_attach (GTK_TABLE (table1), hbox8, 1, 2, 3, 4,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (GTK_FILL), 0, 0);
+
+  entry_constants_file = gtk_entry_new ();
+  gtk_widget_show (entry_constants_file);
+  gtk_box_pack_start (GTK_BOX (hbox8), entry_constants_file, TRUE, TRUE, 0);
+  gtk_tooltips_set_tip (tooltips, entry_constants_file, _("File containing settings which determine a lot of aspects of the game behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."), NULL);
+
+  button_reload_constants = gtk_button_new ();
+  gtk_widget_show (button_reload_constants);
+  gtk_box_pack_start (GTK_BOX (hbox8), button_reload_constants, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, button_reload_constants, _("Reload the constants file"), NULL);
+
+  alignment2 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment2);
+  gtk_container_add (GTK_CONTAINER (button_reload_constants), alignment2);
+
+  hbox9 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox9);
+  gtk_container_add (GTK_CONTAINER (alignment2), hbox9);
+
+  image2 = gtk_image_new_from_stock ("gtk-refresh", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image2);
+  gtk_box_pack_start (GTK_BOX (hbox9), image2, FALSE, FALSE, 0);
+
+  label35 = gtk_label_new_with_mnemonic (_("Reload"));
+  gtk_widget_show (label35);
+  gtk_box_pack_start (GTK_BOX (hbox9), label35, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label35), GTK_JUSTIFY_LEFT);
 
   label1 = gtk_label_new (_("Global"));
   gtk_widget_show (label1);
@@ -866,6 +898,9 @@ create_window_options (void)
   g_signal_connect ((gpointer) button_font_name, "clicked",
                     G_CALLBACK (on_button_font_name_clicked),
                     NULL);
+  g_signal_connect ((gpointer) button_reload_constants, "clicked",
+                    G_CALLBACK (on_button_reload_constants_clicked),
+                    NULL);
   g_signal_connect ((gpointer) button_ok, "clicked",
                     G_CALLBACK (on_button_options_ok_clicked),
                     NULL);
@@ -895,13 +930,19 @@ create_window_options (void)
   GLADE_HOOKUP_OBJECT (window_options, spinbutton_precision, "spinbutton_precision");
   GLADE_HOOKUP_OBJECT (window_options, spinbutton_refresh, "spinbutton_refresh");
   GLADE_HOOKUP_OBJECT (window_options, label10, "label10");
-  GLADE_HOOKUP_OBJECT (window_options, entry_constants_file, "entry_constants_file");
   GLADE_HOOKUP_OBJECT (window_options, button_font_name, "button_font_name");
   GLADE_HOOKUP_OBJECT (window_options, alignment1, "alignment1");
   GLADE_HOOKUP_OBJECT (window_options, hbox7, "hbox7");
   GLADE_HOOKUP_OBJECT (window_options, image1, "image1");
   GLADE_HOOKUP_OBJECT (window_options, label34, "label34");
   GLADE_HOOKUP_OBJECT (window_options, entry_font_name, "entry_font_name");
+  GLADE_HOOKUP_OBJECT (window_options, hbox8, "hbox8");
+  GLADE_HOOKUP_OBJECT (window_options, entry_constants_file, "entry_constants_file");
+  GLADE_HOOKUP_OBJECT (window_options, button_reload_constants, "button_reload_constants");
+  GLADE_HOOKUP_OBJECT (window_options, alignment2, "alignment2");
+  GLADE_HOOKUP_OBJECT (window_options, hbox9, "hbox9");
+  GLADE_HOOKUP_OBJECT (window_options, image2, "image2");
+  GLADE_HOOKUP_OBJECT (window_options, label35, "label35");
   GLADE_HOOKUP_OBJECT (window_options, label1, "label1");
   GLADE_HOOKUP_OBJECT (window_options, hbox4, "hbox4");
   GLADE_HOOKUP_OBJECT (window_options, vbox4, "vbox4");

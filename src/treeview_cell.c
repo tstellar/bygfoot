@@ -82,7 +82,13 @@ treeview_cell_player_to_cell(GtkTreeViewColumn *col,
     switch(attribute)
     {
 	default:
+	    g_warning("treeview_cell_player_to_cell: unknown attribute %d.\n", attribute);
+	    break;
+	case PLAYER_LIST_ATTRIBUTE_NAME:
 	    strcpy(buf, pl->name->str);
+	    if(pl->team == current_user.tm &&
+	       opt_user_int("int_opt_user_penalty_shooter") == pl->id)
+		strcat(buf, _(" (P)"));
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_CPOS:
 	    treeview_cell_player_pos_to_cell(renderer, buf, pl->cpos);

@@ -1,10 +1,13 @@
 #include "finance.h"
 #include "free.h"
+#include "game_gui.h"
 #include "maths.h"
 #include "option.h"
 #include "player.h"
+#include "support.h"
 #include "team.h"
 #include "transfer.h"
+#include "treeview.h"
 #include "user.h"
 
 /** Weekly update of the transfer list. */
@@ -174,13 +177,6 @@ transfer_evaluate_offers(void)
 	
 	    if(idx != -1)
 	    {
-		/*d*/
-		printf("%s val %d wa %d fee %d wag %d\n",
-		       player_of_id(trans(i).tm, trans(i).id)->name->str,
-		       player_of_id(trans(i).tm, trans(i).id)->value,
-		       player_of_id(trans(i).tm, trans(i).id)->wage, transoff(i, idx).fee,
-		       transoff(i, idx).wage);
-
 		for(j=idx + 1;j<trans(i).offers->len;j++)
 		    user_event_add(user_from_team(transoff(i, j).tm),
 				   EVENT_TYPE_TRANSFER_OFFER_REJECTED, -1, -1,
@@ -395,4 +391,27 @@ transfer_remove_offer(gint idx, const Team *tm)
 	}    
 
     return FALSE;
+}
+
+/** Add or remove a user player from the transfer list. */
+void
+transfer_add_remove_user_player(Player *pl)
+{
+    gchar buf[SMALL];
+
+    if(!query_transfer_player_is_on_list(pl))
+    {
+	transfer_add_player(pl,
+			    (gint)rint(((gfloat)const_int("int_transfer_time_lower") +
+					(gfloat)const_int("int_transfer_time_upper")) / 2));
+	sprintf(buf, _("%s has been added to the transfer list for %d weeks."),
+		pl->name->str, 
+		(gint)rint(((gfloat)const_int("int_transfer_time_lower") +
+			    (gfloat)const_int("int_transfer_time_upper")) / 2));
+	game_gui_print_message(buf);
+    }
+    else
+	transfer_remove_player_ptr(pl);
+
+    treeview_show_transfer_list(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")));
 }

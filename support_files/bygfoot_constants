@@ -159,12 +159,19 @@ float_treeview_cell_limit_player_contract_below1 10000
 float_treeview_cell_limit_player_contract_below2 7000
 float_treeview_cell_limit_player_contract_below3 4000
 
+# the factor that determines how much money the user has to pay
+# if he fires a player
+float_player_fire_wage_factor 100000
+
 # the integer that the cell data functions will interpret as an empty string.
 int_treeview_cell_int_empty -5
 
 # number of results shown in the next opponent
 # info
 int_treeview_latest_results 10
+
+# number of matches shown in the preview
+int_treeview_coming_matches 4
 
 # number of |'s for an ideal 442 team in the opponent preview
 int_treeview_max_pipes 50

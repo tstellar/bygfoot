@@ -7,5 +7,4 @@ GtkWidget* create_fsel_window (void);
 GtkWidget* create_window_font_sel (void);
 GtkWidget* create_window_live (void);
 GtkWidget* create_help_window (void);
-GtkWidget* create_window_startup_users (void);
 GtkWidget* create_window_stadium (void);

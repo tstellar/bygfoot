@@ -33,4 +33,10 @@ callback_offer_new_contract(gint idx);
 void
 callback_show_team(gint type);
 
+void
+callback_show_player_list(gint type);
+
+void
+callback_fire_player(gint idx);
+
 #endif

@@ -10,7 +10,6 @@ enum Windows
     WINDOW_MAIN = 0,
     WINDOW_STARTUP,
     WINDOW_LIVE,
-    WINDOW_STARTUP_USERS,
     WINDOW_WARNING,
     WINDOW_PROGRESS,
     WINDOW_DIGITS,
@@ -20,6 +19,7 @@ enum Windows
     WINDOW_OPTIONS,
     WINDOW_FONT_SEL,
     WINDOW_CONTRACT,
+    WINDOW_USER_MANAGEMENT,
     WINDOW_END
 };
 
@@ -43,5 +43,8 @@ window_show_yesno(gchar *text, gboolean checkbutton);
 
 void
 window_show_options(void);
+
+void
+window_show_menu_player(GdkEvent *event);
 
 #endif

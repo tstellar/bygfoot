@@ -70,8 +70,6 @@ callback_show_next_live_game(void)
 void
 callback_player_clicked(gint idx, GdkEventButton *event)
 {
-    gchar buf[SMALL];
-
     /* Only accept single-clicks right now. */
     if(event->type != GDK_BUTTON_PRESS)
 	return;
@@ -100,29 +98,20 @@ callback_player_clicked(gint idx, GdkEventButton *event)
 	selected_row[0] = -1;
 
 	treeview_show_user_player_list();
-	treeview_show_next_opponent();
+	if(stat0 == STATUS_MAIN)
+	    treeview_show_next_opponent();
     }
     else if(event->button == 3)
     {
 	if(stat0 == STATUS_SHOW_TRANSFER_LIST)
 	{
-	    selected_row[0] = -1;
-	    
-	    if(!query_transfer_player_is_on_list(player_of(current_user.tm, idx)))
-	    {
-		transfer_add_player(player_of(current_user.tm, idx),
-				    (gint)rint(((gfloat)const_int("int_transfer_time_lower") +
-						(gfloat)const_int("int_transfer_time_upper")) / 2));
-		sprintf(buf, _("%s has been added to the transfer list for %d weeks."),
-			player_of(current_user.tm, idx)->name->str, 
-			(gint)rint(((gfloat)const_int("int_transfer_time_lower") +
-				    (gfloat)const_int("int_transfer_time_upper")) / 2));
-		game_gui_print_message(buf);
-	    }
-	    else
-		transfer_remove_player_ptr(player_of(current_user.tm, idx));
-
-	    treeview_show_transfer_list(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")));
+	    selected_row[0] = -1;	    
+	    transfer_add_remove_user_player(player_of(current_user.tm, idx));
+	}
+	else
+	{
+	    window_show_menu_player((GdkEvent*)event);
+	    selected_row[0] = idx;
 	}
     }
 }
@@ -350,9 +339,7 @@ callback_show_team(gint type)
 	else
 	    stat2 = league_cup_get_previous_clid(stat2);
 
-	statp = (gpointer)(stat2 < ID_CUP_START) ?
-	    league_from_clid(stat2)->teams :
-	    cup_from_clid(stat2)->teams;
+	statp = (gpointer)league_cup_get_teams(stat2);
 
 	stat1 = 0;
 	tm = &g_array_index((GArray*)statp, Team, stat1);
@@ -360,12 +347,52 @@ callback_show_team(gint type)
 
     stat0 = STATUS_BROWSE_TEAMS;
     stat2 = tm->clid;
-    statp = (gpointer)(tm->clid < ID_CUP_START) ?
-	league_from_clid(tm->clid)->teams :
-	cup_from_clid(tm->clid)->teams;
+    statp = (gpointer)league_cup_get_teams(tm->clid);
 
     if(tm != current_user.tm)
 	treeview_show_player_list_team(treeview_right, tm, current_user.scout % 10);
     else
 	callback_show_team((type == SHOW_PREVIOUS) ? SHOW_PREVIOUS : SHOW_NEXT);
+}
+
+/** Show a sortable list of all players in a league or cup. */
+void
+callback_show_player_list(gint type)
+{
+    GArray *teams = NULL;
+
+    switch(type)
+    {
+	case SHOW_CURRENT:
+	    stat1 = current_user.tm->clid;
+	    break;
+	case SHOW_NEXT_LEAGUE:
+	    stat1 = league_cup_get_next_clid(stat1);
+	    break;
+	case SHOW_PREVIOUS_LEAGUE:
+	    stat1 = league_cup_get_previous_clid(stat1);
+	    break;
+    }
+
+    teams = league_cup_get_teams(stat1);
+
+    treeview_show_all_players(teams);
+}
+
+/** Fire a player. */
+void
+callback_fire_player(gint idx)
+{
+    gchar buf[SMALL], buf2[SMALL];
+    Player *pl = player_of(current_user.tm, idx);
+
+    stat0 = STATUS_FIRE_PLAYER;
+    stat1 = idx;
+    stat2 = (gint)rint(pl->wage * const_float("float_player_fire_wage_factor") * pl->contract);
+
+    misc_print_grouped_int(stat2, buf2, FALSE);
+
+    sprintf(buf, _("You want to fire %s. Since his contract expires in %.1f years, he demands a compensation of %s. Do you accept?"), pl->name->str, pl->contract, buf2);
+
+    window_show_yesno(buf, FALSE);
 }

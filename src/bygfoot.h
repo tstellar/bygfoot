@@ -87,7 +87,6 @@ typedef struct
 {
     GtkWidget *main,
 	*startup,
-	*startup_users,
 	*live,
 	*warning,
 	*progress,
@@ -97,7 +96,9 @@ typedef struct
 	*yesno,
 	*options,
 	*font_sel,
-	*contract;
+	*contract,
+	*menu_player,
+	*user_management;
 } Windows;
 
 /** A struct representing an option or a constant. */

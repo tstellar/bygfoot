@@ -106,4 +106,7 @@ fixture_get_matches(const Team *tm1, const Team *tm2);
 GPtrArray*
 fixture_get_league_matches(const Team *tm1, const Team *tm2);
 
+GPtrArray*
+fixture_get_coming(const Team *tm);
+
 #endif

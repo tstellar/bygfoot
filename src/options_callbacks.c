@@ -4,6 +4,7 @@
 
 #include <gtk/gtk.h>
 
+#include "file.h"
 #include "options_callbacks.h"
 #include "options_interface.h"
 #include "option_gui.h"
@@ -34,5 +35,16 @@ on_button_font_name_clicked            (GtkButton       *button,
                                         gpointer         user_data)
 {
     window_create(WINDOW_FONT_SEL);
+}
+
+
+void
+on_button_reload_constants_clicked     (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    const gchar *constants_file =
+	gtk_entry_get_text(GTK_ENTRY(lookup_widget(window.options, "entry_constants_file")));
+
+    file_load_constants_file(constants_file);
 }
 

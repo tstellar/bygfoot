@@ -24,8 +24,11 @@ main_init_variables(void)
     transfer_list = NULL;
     player_names = NULL;
 
-    window.main = window.startup = window.startup_users =
-	window.live = window.warning = NULL;
+    window.main = window.startup =
+	window.live = window.warning = window.progress = window.digits =
+	window.stadium = window.job_offer = window.yesno = 
+	window.options = window.font_sel = window.contract = 
+	window.menu_player = window.user_management = NULL;
     
     live_game_temp.units = NULL;
 
@@ -78,7 +81,6 @@ main_init(gint argc, gchar *argv[])
 gint
 main (gint argc, gchar *argv[])
 {
-    gint x_pos, y_pos;
 
 #ifdef ENABLE_NLS
     bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
@@ -91,14 +93,10 @@ main (gint argc, gchar *argv[])
   
     main_init(argc, argv);
 
-    window_create(WINDOW_STARTUP_USERS);
     window_show_startup();
-    gtk_window_get_position(GTK_WINDOW(window.startup), &x_pos, &y_pos);
-    gtk_window_move(GTK_WINDOW(window.startup_users), x_pos,  y_pos);
     stat0 = STATUS_TEAM_SELECTION;
     /*d*/
-    on_button_add_player_clicked(NULL, NULL);
-    
+    on_button_add_player_clicked(NULL, NULL);   
 
     gtk_main ();
 

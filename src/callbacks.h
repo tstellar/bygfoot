@@ -120,58 +120,6 @@ on_menu_shoots_penalties_activate      (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
-on_menu_all_out_defend_activate        (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_defend_activate                (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_balanced_activate              (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_attack_activate                (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_all_out_attack_activate        (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_scout_best_activate            (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_scout_good_activate            (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_scout_average_activate         (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_scout_bad_activate             (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_physio_best_activate           (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_physio_good_activate           (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_physio_average_activate        (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_physio_bad_activate            (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
 on_menu_my_league_results_activate     (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
@@ -254,7 +202,6 @@ gboolean
 on_menu_check_button_press_event       (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data);
-#endif
 
 void
 on_menu_live_game_activate             (GtkMenuItem     *menuitem,
@@ -262,4 +209,37 @@ on_menu_live_game_activate             (GtkMenuItem     *menuitem,
 
 void
 on_menu_offer_new_contract_activate    (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_player_menu_show_info_activate      (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_player_menu_put_on_transfer_list_activate
+                                        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_player_menu_remove_from_transfer_list_activate
+                                        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_player_menu_offer_new_contract_activate
+                                        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_player_menu_fire_activate           (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_player_menu_shoots_penalties_activate
+                                        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+#endif
+
+void
+on_menu_browse_players_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data);

@@ -7,7 +7,7 @@
 #include "user_struct.h"
 #include "table_struct.h"
 
-void
+gboolean
 treeview_select_row(GtkTreeView *treeview, GdkEventButton *event);
 
 GdkPixbuf*
@@ -46,7 +46,7 @@ GtkTreeModel*
 treeview_create_player_list(GPtrArray *players, gint *attributes, gint max, gboolean show_separator);
 
 void
-treeview_set_up_player_list (GtkTreeView *treeview, gint *attributes, gint max);
+treeview_set_up_player_list (GtkTreeView *treeview, gint *attributes, gint max, gboolean show_separator);
 
 void
 treeview_show_player_list(GtkTreeView *treeview, GPtrArray *players, PlayerListAttribute attribute,
@@ -80,13 +80,13 @@ void
 treeview_live_game_show_result(const LiveGameUnit *unit);
 
 void
-treeview_show_users_startup(void);
+treeview_show_users(GtkTreeView *treeview);
 
 GtkTreeModel*
-treeview_create_users_startup(void);
+treeview_create_users(void);
 
 void
-treeview_set_up_users_startup(GtkTreeView *treeview);
+treeview_set_up_users(GtkTreeView *treeview);
 
 GtkTreeModel*
 treeview_create_game_stats(LiveGame *live_game);
@@ -108,7 +108,7 @@ GtkTreeModel*
 treeview_create_fixtures(gint clid, gint week_number, gint week_round_number);
 
 void
-treeview_create_fixtures_header(const Fixture *fix, GtkListStore *liststore);
+treeview_create_fixtures_header(const Fixture *fix, GtkListStore *liststore, gboolean blank_line);
 
 void
 treeview_create_fixture(const Fixture *fix, GtkListStore *liststore);
@@ -182,5 +182,20 @@ treeview_team_compare(GtkTreeModel *model,
 		      GtkTreeIter *a,
 		      GtkTreeIter *b,
 		      gpointer user_data);
+
+void
+treeview_show_all_players(GArray *teams);
+
+gint
+treeview_player_compare(GtkTreeModel *model,
+			GtkTreeIter *a,
+			GtkTreeIter *b,
+			gpointer user_data);
+
+GtkTreeModel*
+treeview_create_preview(void);
+
+void
+treeview_show_preview(void);
 
 #endif

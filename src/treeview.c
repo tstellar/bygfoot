@@ -18,7 +18,7 @@
 #include "user.h"
 
 /** Select the row that's been clicked on. */
-void
+gboolean
 treeview_select_row(GtkTreeView *treeview, GdkEventButton *event)
 {
     GtkTreeSelection *selection =
@@ -28,10 +28,12 @@ treeview_select_row(GtkTreeView *treeview, GdkEventButton *event)
     if(!gtk_tree_view_get_path_at_pos(treeview,
 				      event->x, event->y,
 				      &path, NULL, NULL, NULL))
-	return;
+	return FALSE;
 
     gtk_tree_selection_select_path(selection, path);
     gtk_tree_path_free(path);
+
+    return TRUE;
 }
 
 /** Return the number in the 'column'th column of the currently
@@ -247,7 +249,8 @@ treeview_team_compare(GtkTreeModel *model,
 		      gpointer user_data)
 {
     gint type = GPOINTER_TO_INT(user_data);
-    gpointer *tm1, *tm2;
+    Team *tm1, *tm2;
+    gint return_value = 0;
 
     gtk_tree_model_get(model, a, 4, &tm1, -1);
     gtk_tree_model_get(model, b, 4, &tm2, -1);
@@ -258,12 +261,12 @@ treeview_team_compare(GtkTreeModel *model,
 	    g_warning("treeview_team_compare: unknown type %d.\n", type);
 	    break;
 	case TEAM_COMPARE_AV_SKILL:
-	    return misc_float_compare(team_get_average_skill((Team*)tm1, FALSE),
-				      team_get_average_skill((Team*)tm2, FALSE));
+	    return_value = misc_float_compare(team_get_average_skill(tm1, FALSE),
+				      team_get_average_skill(tm2, FALSE));
 	    break;
     }
 
-    return 0;
+    return return_value;
 }
 
 /**
@@ -434,6 +437,62 @@ treeview_show_team_list(GtkTreeView *treeview, gboolean show_cup_teams,
     g_object_unref(team_list);
 }
 
+/** Compare two players in a treeview. */
+gint
+treeview_player_compare(GtkTreeModel *model,
+			GtkTreeIter *a,
+			GtkTreeIter *b,
+			gpointer user_data)
+{
+    gint type = GPOINTER_TO_INT(user_data);
+    Player *pl1, *pl2;
+    gint return_value = 0;
+
+    gtk_tree_model_get(model, a, 4, &pl1, -1);
+    gtk_tree_model_get(model, b, 4, &pl2, -1);
+
+    switch(type)
+    {
+	default:
+	    g_warning("treeview_player_compare: unknown type %d.\n", type);
+	    break;
+	case PLAYER_LIST_ATTRIBUTE_POS:
+	    return_value = misc_int_compare(pl1->pos, pl2->pos);
+	    break;
+	case PLAYER_LIST_ATTRIBUTE_GOALS:
+	    return_value = misc_int_compare(player_games_goals_get(pl1, pl1->team->clid, PLAYER_VALUE_GOALS),
+					    player_games_goals_get(pl2, pl2->team->clid, PLAYER_VALUE_GOALS));
+	    break;
+	case PLAYER_LIST_ATTRIBUTE_SHOTS:
+	    return_value = misc_int_compare(player_games_goals_get(pl1, pl1->team->clid, PLAYER_VALUE_SHOTS),
+					    player_games_goals_get(pl2, pl2->team->clid, PLAYER_VALUE_SHOTS));
+	    break;
+	case PLAYER_LIST_ATTRIBUTE_GAMES:
+	    return_value = misc_int_compare(player_games_goals_get(pl1, pl1->team->clid, PLAYER_VALUE_GAMES),
+					    player_games_goals_get(pl2, pl2->team->clid, PLAYER_VALUE_GAMES));
+	    break;
+	case PLAYER_LIST_ATTRIBUTE_SKILL:
+	    return_value = misc_float_compare(pl1->skill, pl2->skill);
+	    break;
+	case PLAYER_LIST_ATTRIBUTE_AGE:
+	    return_value = misc_float_compare(pl1->age, pl2->age);
+	    break;
+	case PLAYER_LIST_ATTRIBUTE_ETAL:
+	    return_value = misc_float_compare(pl1->etal[current_user.scout % 10], 
+					      pl2->etal[current_user.scout % 10]);
+	    break;
+	case PLAYER_LIST_ATTRIBUTE_VALUE:
+	    return_value = misc_int_compare(pl1->value, pl2->value);
+	    break;
+	case PLAYER_LIST_ATTRIBUTE_WAGE:
+	    return_value = misc_int_compare(pl1->wage, pl2->wage);
+	    break;
+    }
+
+    return return_value;
+
+}
+
 /** Create the list store for a player list. 
     @param players The array containing the players.
     @param attributes An array containing the attributes we show.
@@ -472,12 +531,29 @@ treeview_create_player_list(GPtrArray *players, gint *attributes, gint max, gboo
 	    gtk_list_store_set(liststore, &iter, j + 1, g_ptr_array_index(players, i), -1);
     }
 
+    if(!show_separator)
+    {
+	for(i=0;i<max;i++)
+	    if(attributes[i] == PLAYER_LIST_ATTRIBUTE_POS ||
+	       attributes[i] == PLAYER_LIST_ATTRIBUTE_SKILL ||
+	       attributes[i] == PLAYER_LIST_ATTRIBUTE_GOALS ||
+	       attributes[i] == PLAYER_LIST_ATTRIBUTE_SHOTS ||
+	       attributes[i] == PLAYER_LIST_ATTRIBUTE_GAMES ||
+	       attributes[i] == PLAYER_LIST_ATTRIBUTE_AGE ||
+	       attributes[i] == PLAYER_LIST_ATTRIBUTE_ETAL ||
+	       attributes[i] == PLAYER_LIST_ATTRIBUTE_VALUE ||
+	       attributes[i] == PLAYER_LIST_ATTRIBUTE_WAGE)
+		gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(liststore), i + 1,
+						treeview_player_compare, GINT_TO_POINTER(attributes[i]), NULL);
+    }
+    
     return (GtkTreeModel*)liststore;
 }
 
 /** Set up the tree view for a player list */
 void
-treeview_set_up_player_list (GtkTreeView *treeview, gint *attributes, gint max)
+treeview_set_up_player_list (GtkTreeView *treeview, gint *attributes, gint max,
+			     gboolean show_separator)
 {
     gint i;
     GtkTreeViewColumn   *col;
@@ -536,6 +612,18 @@ treeview_set_up_player_list (GtkTreeView *treeview, gint *attributes, gint max)
 	    g_object_set(renderer, "xalign", 0.5,
 			 NULL);
 	}
+	
+	if(!show_separator && 
+	   (attributes[i] == PLAYER_LIST_ATTRIBUTE_POS ||
+	    attributes[i] == PLAYER_LIST_ATTRIBUTE_SKILL ||
+	    attributes[i] == PLAYER_LIST_ATTRIBUTE_GOALS ||
+	    attributes[i] == PLAYER_LIST_ATTRIBUTE_SHOTS ||
+	    attributes[i] == PLAYER_LIST_ATTRIBUTE_GAMES ||
+	    attributes[i] == PLAYER_LIST_ATTRIBUTE_AGE ||
+	    attributes[i] == PLAYER_LIST_ATTRIBUTE_ETAL ||
+	    attributes[i] == PLAYER_LIST_ATTRIBUTE_VALUE ||
+	    attributes[i] == PLAYER_LIST_ATTRIBUTE_WAGE))
+	    gtk_tree_view_column_set_sort_column_id(col, i + 1);	    
     }
 }
 
@@ -561,7 +649,7 @@ treeview_show_player_list(GtkTreeView *treeview, GPtrArray *players, PlayerListA
 	if(attribute.on_off[i])
 	    attributes[cnt++] = i;
 
-    treeview_set_up_player_list(treeview, attributes, columns);
+    treeview_set_up_player_list(treeview, attributes, columns, show_separator);
 
     model = treeview_create_player_list(players, attributes, columns, show_separator);
 
@@ -814,7 +902,7 @@ treeview_live_game_show_result(const LiveGameUnit *unit)
 
 /** Fill a tree model with the users. */
 GtkTreeModel*
-treeview_create_users_startup(void)
+treeview_create_users(void)
 {
     gint i;
     GtkListStore  *liststore;
@@ -853,7 +941,7 @@ treeview_create_users_startup(void)
 /** Set up the users treeview.
     @param treeview The treeview we use. */
 void
-treeview_set_up_users_startup(GtkTreeView *treeview)
+treeview_set_up_users(GtkTreeView *treeview)
 {
     gint i;
     GtkTreeViewColumn   *col;
@@ -862,7 +950,7 @@ treeview_set_up_users_startup(GtkTreeView *treeview)
 	{"",
 	 _("Name"),
 	 _("Team"),
-	 _("Start in")};
+	 _("League")};
 
     gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
 				GTK_SELECTION_SINGLE);
@@ -875,7 +963,7 @@ treeview_set_up_users_startup(GtkTreeView *treeview)
 	gtk_tree_view_column_set_title(col, titles[i]);
 	gtk_tree_view_append_column(treeview, col);
 	renderer = treeview_cell_renderer_text_new();
-	gtk_tree_view_column_pack_start(col, renderer, TRUE);
+	gtk_tree_view_column_pack_start(col, renderer, (i != 3));
 	gtk_tree_view_column_add_attribute(col, renderer,
 					   "text", i);
     }    
@@ -884,16 +972,14 @@ treeview_set_up_users_startup(GtkTreeView *treeview)
 /** Show the list of users at startup.
     @param treeview The treeview we use. */
 void
-treeview_show_users_startup(void)
+treeview_show_users(GtkTreeView *treeview)
 {
-    GtkTreeView *treeview =
-	GTK_TREE_VIEW(lookup_widget(window.startup_users, "treeview_users"));
     GtkTreeModel *model = NULL;
 
     treeview_clear(treeview);
     
-    treeview_set_up_users_startup(treeview);
-    model = treeview_create_users_startup();
+    treeview_set_up_users(treeview);
+    model = treeview_create_users();
     gtk_tree_view_set_model(treeview, model);
     g_object_unref(model);
 }
@@ -1063,9 +1149,10 @@ treeview_show_game_stats(GtkTreeView *treeview, LiveGame *live_game)
 /** Write some general information like cup/league name,
     week etc. into a liststore.
     @param fix A 'sample' fixture.
-    @param liststore The liststore we edit. */
+    @param liststore The liststore we edit.
+    @param blank_line Whether to draw a blank line after the header. */
 void
-treeview_create_fixtures_header(const Fixture *fix, GtkListStore *liststore)
+treeview_create_fixtures_header(const Fixture *fix, GtkListStore *liststore, gboolean blank_line)
 {
     GtkTreeIter iter;
     GdkPixbuf *symbol = NULL;
@@ -1101,8 +1188,11 @@ treeview_create_fixtures_header(const Fixture *fix, GtkListStore *liststore)
     gtk_list_store_append(liststore, &iter);
     gtk_list_store_set(liststore, &iter, 0, symbol, 1, buf, 2, "", 3, buf2, 4, symbol, -1);
 
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, NULL, 1, "", 2, "", 3, "", 4, NULL, -1);
+    if(blank_line)
+    {
+	gtk_list_store_append(liststore, &iter);
+	gtk_list_store_set(liststore, &iter, 0, NULL, 1, "", 2, "", 3, "", 4, NULL, -1);
+    }
 
     if(symbol != NULL)
 	g_object_unref(symbol);
@@ -1191,12 +1281,12 @@ treeview_create_fixtures(gint clid, gint week_number, gint week_round_number)
 				   GDK_TYPE_PIXBUF);
 
     treeview_create_fixtures_header((Fixture*)g_ptr_array_index(fixtures, 0),
-				    liststore);
+				    liststore, TRUE);
 
     for(i=0;i<fixtures->len;i++)
 	treeview_create_fixture((Fixture*)g_ptr_array_index(fixtures, i), liststore);
 
-    free_g_ptr_array(&fixtures);
+    g_ptr_array_free(fixtures, TRUE);
 
     return GTK_TREE_MODEL(liststore);
 }
@@ -1210,7 +1300,7 @@ treeview_set_up_fixtures(GtkTreeView *treeview)
 
     gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
 				GTK_SELECTION_NONE);
-    gtk_tree_view_set_rules_hint(treeview, TRUE);
+    gtk_tree_view_set_rules_hint(treeview, FALSE);
     gtk_tree_view_set_headers_visible(treeview, FALSE);
 
     col = gtk_tree_view_column_new();
@@ -1528,7 +1618,8 @@ treeview_create_finances(const User* user)
 	 _("Scout"),
 	 _("Journey costs"),
 	 _("Stadium improvements"),
-	 _("Stadium bills")};
+	 _("Stadium bills"),
+	 _("Compensations")};
     GtkTreeIter iter;
     GtkListStore *liststore = 
 	gtk_list_store_new(3,
@@ -1994,6 +2085,76 @@ treeview_show_league_results(GtkTreeView *treeview)
     
     treeview_set_up_league_results(treeview);
     model = treeview_create_league_results();
+    gtk_tree_view_set_model(treeview, model);
+    g_object_unref(model);
+}
+
+/** Show a list of all players in the teams. */
+void
+treeview_show_all_players(GArray *teams)
+{
+    gint i, j;
+    GPtrArray *players = g_ptr_array_new();
+
+    for(i=0;i<teams->len;i++)
+	if(&g_array_index(teams, Team, i) != current_user.tm)
+	    for(j=0;j<g_array_index(teams, Team, i).players->len;j++)
+		g_ptr_array_add(players, &g_array_index(g_array_index(teams, Team, i).players,
+							Player, j));
+
+    treeview_show_player_list(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")),
+			      players, 
+			      treeview_get_attributes_from_scout(current_user.scout), FALSE);    
+}
+
+GtkTreeModel*
+treeview_create_preview(void)
+{
+    gint i;
+    GtkListStore  *liststore;
+    GPtrArray *fixtures = fixture_get_coming(current_user.tm);
+    gint max = MIN(const_int("int_treeview_coming_matches"), fixtures->len);
+    GtkTreeIter iter;
+
+    if(fixtures->len == 0)
+    {
+	free_g_ptr_array(&fixtures);
+	return NULL;
+    }
+
+    liststore = gtk_list_store_new(5,
+				   GDK_TYPE_PIXBUF,
+				   G_TYPE_STRING,
+				   G_TYPE_STRING,
+				   G_TYPE_STRING,
+				   GDK_TYPE_PIXBUF);
+
+    for(i=0;i<max;i++)
+    {
+	treeview_create_fixtures_header((Fixture*)g_ptr_array_index(fixtures, i),
+					liststore, FALSE);
+	treeview_create_fixture((Fixture*)g_ptr_array_index(fixtures, i), liststore);
+
+	gtk_list_store_append(liststore, &iter);
+	gtk_list_store_set(liststore, &iter, 0, NULL, 1, "", 2, "", 3, "", 4, NULL, -1);
+    }
+	
+    g_ptr_array_free(fixtures, TRUE);
+
+    return GTK_TREE_MODEL(liststore);
+}
+
+/** Show a preview of the current user's next games. */
+void
+treeview_show_preview(void)
+{
+    GtkTreeView *treeview = GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right"));
+    GtkTreeModel *model = NULL;
+
+    treeview_clear(treeview);
+    
+    treeview_set_up_fixtures(treeview);
+    model = treeview_create_preview();
     gtk_tree_view_set_model(treeview, model);
     g_object_unref(model);
 }
