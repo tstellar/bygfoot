@@ -64,7 +64,7 @@ misc2_callback_transfer_user_player(void)
 }
 
 /** Change the user team's structure to a value he's specified. */
-void
+gboolean
 misc2_callback_change_structure(gint structure)
 {
     gchar buf[SMALL];
@@ -73,12 +73,14 @@ misc2_callback_change_structure(gint structure)
        math_get_place(structure, 3) != 10)
     {
 	sprintf(buf, _("The structure value %d is invalid."), structure);
-	game_gui_print_message(buf);
-	return;
+	game_gui_show_warning(buf);
+	return FALSE;
     }
 
     team_change_structure(current_user.tm, structure);
     treeview_show_user_player_list();
+
+    return TRUE;
 }
 
 /** Handle a click on the contract offer button. */

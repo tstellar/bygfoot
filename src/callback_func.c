@@ -122,12 +122,6 @@ callback_show_last_match(void)
 {
     gint i;
 
-    if(current_user.live_game.units->len == 0)
-    {
-	game_gui_show_warning("No match to show.");
-	return;
-    }
-
     stat2 = cur_user;
 
     window_create(WINDOW_LIVE);
@@ -198,7 +192,7 @@ callback_get_loan(void)
 	return;
     }
 
-    stat0 = STATUS_GET_LOAN;
+    stat1 = STATUS_GET_LOAN;
     misc_print_grouped_int(max_loan, buf2, FALSE);
     sprintf(buf, _("You can take out at most %s."), buf2);
 
@@ -224,7 +218,7 @@ callback_pay_loan(void)
 	return;
     }
 
-    stat0 = STATUS_PAY_LOAN;
+    stat1 = STATUS_PAY_LOAN;
     misc_print_grouped_int(max_payback, buf2, FALSE);
     sprintf(buf, _("You can pay back at most %s"), buf2);
 
@@ -254,7 +248,8 @@ callback_transfer_list_clicked(gint idx)
 
     sprintf(buf, _("You are making an offer for %s. Your scout's recommendations for value and wage are preset."),
 	    player_of_id(tr->tm, tr->id)->name->str);
-    stat1 = idx;
+    stat1 = STATUS_SHOW_TRANSFER_LIST;
+    stat2 = idx;
 
     window_show_digits(buf, _("Fee"), tr->fee[current_user.scout % 10],
 		       _("Wage"), tr->wage[current_user.scout % 10]);

@@ -505,19 +505,35 @@ game_gui_write_check_items(void)
 void
 game_gui_read_check_items(GtkWidget *widget)
 {
+    gchar buf[SMALL];
     GtkWidget *menu_job_offers = 
 	lookup_widget(window.main, "menu_job_offers"),
 	*menu_live_game = lookup_widget(window.main, "menu_live_game"),
 	*menu_overwrite = lookup_widget(window.main, "menu_overwrite");
 
     if(widget == menu_job_offers)
+    {
 	opt_user_set_int("int_opt_user_show_job_offers", !opt_user_int("int_opt_user_show_job_offers"));
+	sprintf(buf, "Job offers set to %s.",
+		team_attribute_to_char(TEAM_ATTRIBUTE_BOOST, 
+				       opt_user_int("int_opt_user_show_job_offers")));
+    }
     else if(widget == menu_live_game)
     {
 	opt_user_set_int("int_opt_user_show_live_game", !opt_user_int("int_opt_user_show_live_game"));
+	sprintf(buf, "Live game set to %s.",
+		team_attribute_to_char(TEAM_ATTRIBUTE_BOOST, 
+				       opt_user_int("int_opt_user_show_live_game")));
     }
     else if(widget == menu_overwrite)
+    {
 	opt_set_int("int_opt_save_will_overwrite", !opt_int("int_opt_save_will_overwrite"));
+	sprintf(buf, "Overwrite set to %s.",
+		team_attribute_to_char(TEAM_ATTRIBUTE_BOOST, 
+				       opt_int("int_opt_save_will_overwrite")));
+    }
     else
 	g_warning("game_gui_read_check_items: unknown widget.");
+
+    game_gui_print_message(buf);
 }

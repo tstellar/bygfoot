@@ -457,7 +457,7 @@ void
 on_menu_custom_structure_activate      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    stat0 = STATUS_CUSTOM_STRUCTURE;
+    stat1 = STATUS_CUSTOM_STRUCTURE;
     window_show_digits(_("Enter a structure. The digits must sum up to 10."),
 		       NULL, -1, _("Structure"), current_user.tm->structure);
 }
@@ -489,6 +489,12 @@ void
 on_menu_user_show_last_match_activate  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    if(current_user.live_game.units->len == 0)
+    {
+	game_gui_show_warning("No match to show.");
+	return;
+    }
+
     stat0 = STATUS_SHOW_LAST_MATCH;
     callback_show_last_match();
 }
@@ -498,6 +504,12 @@ void
 on_menu_user_show_last_stats_activate  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    if(current_user.live_game.units->len == 0)
+    {
+	game_gui_show_warning("No match to show.");
+	return;
+    }
+
     stat0 = STATUS_SHOW_LAST_MATCH_STATS;
     treeview_show_game_stats(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")),
 			     &current_user.live_game);
@@ -592,21 +604,6 @@ on_menu_check_button_press_event       (GtkWidget       *widget,
     return FALSE;
 }
 
-
-void
-on_menu_live_game_activate             (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-    gchar buf[SMALL];
-
-    game_gui_read_check_items(GTK_WIDGET(menuitem));
-    sprintf(buf, "Live game set to %s.", 
-	    team_attribute_to_char(TEAM_ATTRIBUTE_BOOST, 
-				   opt_user_int("int_opt_user_show_live_game")));
-    game_gui_print_message(buf);
-}
-
-
 void
 on_menu_offer_new_contract_activate    (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
@@ -680,4 +677,3 @@ on_menu_browse_players_activate        (GtkMenuItem     *menuitem,
     callback_show_player_list(SHOW_CURRENT);
     stat0 = STATUS_SHOW_PLAYER_LIST;
 }
-

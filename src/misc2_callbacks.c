@@ -86,8 +86,9 @@ on_button_digits_ok_clicked            (GtkButton       *button,
     gint values[2] =
 	{gtk_spin_button_get_value_as_int(spinbutton1),
 	 gtk_spin_button_get_value_as_int(spinbutton2)};
+    gboolean destroy_window = TRUE;
 
-    switch(stat0)
+    switch(stat1)
     {
 	case STATUS_GET_LOAN:
 	    finance_get_loan(values[0]);
@@ -96,17 +97,18 @@ on_button_digits_ok_clicked            (GtkButton       *button,
 	    finance_pay_loan(values[0]);
 	    break;
 	case STATUS_SHOW_TRANSFER_LIST:
-	    if(transfer_add_offer(stat1, current_user.tm, values[0], values[1]))
+	    if(transfer_add_offer(stat2, current_user.tm, values[0], values[1]))
 		game_gui_print_message(_("Your offer has been updated."));
 	    else
 		game_gui_print_message(_("Your offer will be considered next week."));
 	    break;
 	case STATUS_CUSTOM_STRUCTURE:
-	    misc2_callback_change_structure(values[1]);
+	    destroy_window = misc2_callback_change_structure(values[1]);
 	    break;
     }
 
-    window_destroy(&window.digits, TRUE);
+    if(destroy_window)
+	window_destroy(&window.digits, TRUE);
 
     game_gui_set_main_window_header();
 }
