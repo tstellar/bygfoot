@@ -135,26 +135,56 @@ treeview_get_col_number_column (GtkTreeViewColumn *col)
 gchar*
 treeview_live_game_icon(gint event_type)
 {
-    switch(event_type)
-    {
-	default:
-	    return "";
-	    break;
-	case LIVE_GAME_EVENT_FOUL_YELLOW:
-	    return "yellow.png";
-	    break;
-	case LIVE_GAME_EVENT_SEND_OFF:
-	    return "red.png";
-	    break;
-	case LIVE_GAME_EVENT_SAVE:
-	    return "save.png";
-	    break;
-	case LIVE_GAME_EVENT_GOAL:
-	    return "goal.png";
-	    break;
-    }
-
-    return "";
+    if(event_type == LIVE_GAME_EVENT_START_MATCH ||
+       event_type == LIVE_GAME_EVENT_END_MATCH ||
+       event_type == LIVE_GAME_EVENT_HALF_TIME ||
+       event_type == LIVE_GAME_EVENT_EXTRA_TIME ||
+       event_type == LIVE_GAME_EVENT_PENALTIES)
+	return const_str("string_live_game_event_start_match_icon");
+    else if(event_type == LIVE_GAME_EVENT_LOST_POSSESSION)
+	return const_str("string_live_game_event_lost_possession_icon");
+    else if(event_type == LIVE_GAME_EVENT_PENALTY)
+	return const_str("string_live_game_event_penalty_icon");
+    else if(event_type == LIVE_GAME_EVENT_SCORING_CHANCE ||
+	    event_type == LIVE_GAME_EVENT_FREE_KICK)
+	return const_str("string_live_game_event_scoring_chance_icon");
+    else if(event_type == LIVE_GAME_EVENT_GOAL)
+	return const_str("string_live_game_event_goal_icon");
+    else if(event_type == LIVE_GAME_EVENT_OWN_GOAL)
+	return const_str("string_live_game_event_own_goal_icon");
+    else if(event_type == LIVE_GAME_EVENT_POST ||
+	    event_type == LIVE_GAME_EVENT_CROSS_BAR)
+	return const_str("string_live_game_event_post_icon");
+    else if(event_type == LIVE_GAME_EVENT_SAVE)
+	return const_str("string_live_game_event_save_icon");
+    else if(event_type == LIVE_GAME_EVENT_MISSED)
+	return const_str("string_live_game_event_missed_icon");
+    else if(event_type == LIVE_GAME_EVENT_FOUL)
+	return const_str("string_live_game_event_foul_icon");
+    else if(event_type == LIVE_GAME_EVENT_FOUL_YELLOW)
+	return const_str("string_live_game_event_foul_yellow_icon");
+    else if(event_type == LIVE_GAME_EVENT_SEND_OFF)
+	return const_str("string_live_game_event_send_off_icon");
+    else if(event_type == LIVE_GAME_EVENT_INJURY)
+	return const_str("string_live_game_event_injury_icon");
+    else if(event_type == LIVE_GAME_EVENT_TEMP_INJURY)
+	return const_str("string_live_game_event_temp_injury_icon");
+    else if(event_type == LIVE_GAME_EVENT_STADIUM_BREAKDOWN)
+	return const_str("string_live_game_event_stadium_breakdown_icon");
+    else if(event_type == LIVE_GAME_EVENT_STADIUM_FIRE)
+	return const_str("string_live_game_event_stadium_fire_icon");
+    else if(event_type == LIVE_GAME_EVENT_STADIUM_RIOTS)
+	return const_str("string_live_game_event_stadium_riots_icon");
+    else if(event_type == LIVE_GAME_EVENT_SUBSTITUTION)
+	return const_str("string_live_game_event_substitution_icon");
+    else if(event_type == LIVE_GAME_EVENT_STRUCTURE_CHANGE)
+	return const_str("string_live_game_event_structure_change_icon");
+    else if(event_type == LIVE_GAME_EVENT_STYLE_CHANGE)
+	return const_str("string_live_game_event_style_change_icon");
+    else if(event_type == LIVE_GAME_EVENT_BOOST_CHANGE)
+	return const_str("string_live_game_event_boost_change_icon");
+    else
+	return "";
 }
 
 /** Return a new pixbuf created from the specified filename.

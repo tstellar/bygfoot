@@ -213,6 +213,8 @@ file_get_next_opt_line(FILE *fil, gchar *opt_name, gchar *opt_value)
     gchar buf[BIG];
 
     strcpy(buf, "");
+    strcpy(opt_name, "");
+    strcpy(opt_value, "");
 
     while( (buf[0] == '#' || strlen(buf) == 0) &&
 	   feof(fil) == 0)
