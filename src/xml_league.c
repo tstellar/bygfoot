@@ -24,6 +24,7 @@
 #define TAG_PROM_REL "prom_rel"
 #define TAG_PROM_GAMES "prom_games"
 #define TAG_PROM_GAMES_DEST_SID "prom_games_dest_sid"
+#define TAG_PROM_GAMES_NUMBER_OF_ADVANCE "prom_games_number_of_advance"
 #define TAG_PROM_GAMES_CUP "cup"
 #define TAG_PROM_REL_ELEMENT "prom_rel_element"
 #define TAG_PROM_REL_ELEMENT_RANK_START "rank_start"
@@ -51,6 +52,7 @@ enum XmlLeagueStates
     STATE_PROM_REL,
     STATE_PROM_GAMES,
     STATE_PROM_GAMES_DEST_SID,
+    STATE_PROM_GAMES_NUMBER_OF_ADVANCE,
     STATE_PROM_GAMES_CUP,
     STATE_PROM_REL_ELEMENT,
     STATE_PROM_REL_ELEMENT_RANK_START,
@@ -117,6 +119,8 @@ xml_league_read_start_element (GMarkupParseContext *context,
 	state = STATE_PROM_GAMES;
     else if(strcmp(element_name, TAG_PROM_GAMES_DEST_SID) == 0)
 	state = STATE_PROM_GAMES_DEST_SID;
+    else if(strcmp(element_name, TAG_PROM_GAMES_NUMBER_OF_ADVANCE) == 0)
+	state = STATE_PROM_GAMES_NUMBER_OF_ADVANCE;
     else if(strcmp(element_name, TAG_PROM_GAMES_CUP) == 0)
 	state = STATE_PROM_GAMES_CUP;
     else if(strcmp(element_name, TAG_PROM_REL_ELEMENT) == 0)
@@ -178,6 +182,7 @@ xml_league_read_end_element    (GMarkupParseContext *context,
 	    strcmp(element_name, TAG_PROM_REL_ELEMENT) == 0)
 	state = STATE_PROM_REL;
     else if(strcmp(element_name, TAG_PROM_GAMES_DEST_SID) == 0 ||
+	    strcmp(element_name, TAG_PROM_GAMES_NUMBER_OF_ADVANCE) == 0 ||
 	    strcmp(element_name, TAG_PROM_GAMES_CUP) == 0)
 	state = STATE_PROM_GAMES;
     else if(strcmp(element_name, TAG_PROM_REL_ELEMENT_RANK_START) == 0 ||
@@ -237,6 +242,8 @@ xml_league_read_text         (GMarkupParseContext *context,
 	new_league.average_skill = value;
     else if(state == STATE_PROM_GAMES_DEST_SID)
 	g_string_printf(new_league.prom_rel.prom_games_dest_sid, "%s", buf);
+    else if(state == STATE_PROM_GAMES_NUMBER_OF_ADVANCE)
+	new_league.prom_rel.prom_games_number_of_advance = value;
     else if(state == STATE_PROM_GAMES_CUP)
     {
 	strcat(buf, ".xml");

@@ -79,6 +79,8 @@ load_save_save_game(const gchar *filename)
 
     gui_show_progress(1, "Done.");
 
+    load_save_last_save_set(fullname);
+
     g_free(prefix);
     g_free(fullname);
 
@@ -145,4 +147,42 @@ load_save_load_game(const gchar* filename)
     g_string_printf(save_file, "%s", filename);
 
     gui_show_progress(-1, "");
+}
+
+/** Store the name of the last savegame in the users home dir. */
+void
+load_save_last_save_set(const gchar *filename)
+{
+    gchar buf[SMALL];
+    const gchar *home = g_get_home_dir();
+    FILE *fil = NULL;
+
+    sprintf(buf, "%s/%s/saves/last_save", home, HOMEDIRNAME);
+
+    if(!file_my_fopen(buf, "w", &fil, FALSE))
+	return;
+
+    fprintf(fil, "%s", filename);
+
+    fclose(fil);
+}
+
+/** Return the filename of the last savegame. */
+gchar*
+load_save_last_save_get(void)
+{
+    gchar buf[SMALL];
+    const gchar *home = g_get_home_dir();
+    FILE *fil = NULL;
+
+    sprintf(buf, "%s/%s/saves/last_save", home, HOMEDIRNAME);
+
+    if(!file_my_fopen(buf, "r", &fil, FALSE))
+	return NULL;
+
+    fscanf(fil, "%s", buf);
+
+    fclose(fil);
+
+    return g_strdup(buf);
 }

@@ -117,4 +117,8 @@ on_spinbutton_capacity_button_press_event
                                         (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data);
+
+void
+on_button_startup_resume_clicked       (GtkButton       *button,
+                                        gpointer         user_data);
 #endif

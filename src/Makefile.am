@@ -26,8 +26,8 @@ bygfoot_SOURCES = \
 	main.c cup_struct.h misc_callbacks.h file.h free.h league_struct.h live_game.h main.h transfer_struct.h variables.h window.h \
 	maths.c maths.h misc.h \
 	misc.c main.h maths.h misc.h \
-	misc_callbacks.c callbacks.h callback_func.h game.h game_gui.h live_game.h load_save.h main.h misc_callback_func.h misc_callbacks.h option.h user.h variables.h window.h xml_name.h \
-	misc_callback_func.c misc_callback_func.h start_end.h support.h team.h treeview.h user.h variables.h xml_country.h \
+	misc_callbacks.c callbacks.h callback_func.h game.h game_gui.h live_game.h load_save.h main.h misc_callback_func.h misc_callbacks.h option.h user.h variables.h window.h \
+	misc_callback_func.c callbacks.h finance.h game.h game_gui.h gui.h load_save.h maths.h misc_callback_func.h option.h start_end.h support.h treeview.h user.h variables.h window.h xml_country.h xml_name.h \
 	misc_interface.c  misc_interface.h misc_callbacks.h support.h \
 	misc2_callbacks.c finance.h game_gui.h main.h misc2_callbacks.h misc2_callback_func.h misc2_interface.h player.h support.h transfer.h treeview.h user.h window.h \
 	misc2_callback_func.c file.h finance.h game_gui.h maths.h misc2_callback_func.h option.h player.h support.h team.h treeview.h transfer.h user.h window.h \

@@ -12,7 +12,6 @@
 #include "user.h"
 #include "variables.h"
 #include "window.h"
-#include "xml_name.h"
 
 void
 on_button_add_player_clicked           (GtkButton       *button,
@@ -97,14 +96,7 @@ on_button_fsel_ok_clicked              (GtkButton       *button,
 	on_button_back_to_main_clicked(NULL, NULL);
     }
     else if(stat1 == STATUS_LOAD_GAME_TEAM_SELECTION)
-    {
-	window_destroy(&window.startup, TRUE);
-	window_create(WINDOW_MAIN);
-	xml_name_read(opt_str("string_opt_player_names_file"), 1000);
-	load_save_load_game(filename);
-	cur_user = 0;
-	on_button_back_to_main_clicked(NULL, NULL);
-    }
+	misc_callback_startup_load(filename);
 
     window_destroy(&window.file_sel, FALSE);
 }
@@ -305,3 +297,18 @@ on_spinbutton_capacity_button_press_event  (GtkWidget       *widget,
     
     return FALSE;
 }
+
+void
+on_button_startup_resume_clicked       (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    gchar *last_save = load_save_last_save_get();
+
+    if(last_save == NULL)
+	return;
+
+    misc_callback_startup_load(last_save);
+    
+    g_free(last_save);
+}
+

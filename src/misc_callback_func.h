@@ -24,4 +24,7 @@ misc_callback_improve_stadium(void);
 void
 misc_callback_update_stadium_window(gboolean capacity);
 
+void
+misc_callback_startup_load(const gchar *filename);
+
 #endif

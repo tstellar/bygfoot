@@ -75,6 +75,11 @@ create_window_startup (void)
   GtkWidget *hbox6;
   GtkWidget *image4;
   GtkWidget *label5;
+  GtkWidget *button_startup_resume;
+  GtkWidget *alignment21;
+  GtkWidget *hbox68;
+  GtkWidget *image61;
+  GtkWidget *label108;
   GtkAccelGroup *accel_group;
   GtkTooltips *tooltips;
 
@@ -315,6 +320,27 @@ create_window_startup (void)
   gtk_box_pack_start (GTK_BOX (hbox6), label5, FALSE, FALSE, 0);
   gtk_label_set_justify (GTK_LABEL (label5), GTK_JUSTIFY_LEFT);
 
+  button_startup_resume = gtk_button_new ();
+  gtk_widget_show (button_startup_resume);
+  gtk_box_pack_start (GTK_BOX (vbox2), button_startup_resume, FALSE, FALSE, 0);
+
+  alignment21 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment21);
+  gtk_container_add (GTK_CONTAINER (button_startup_resume), alignment21);
+
+  hbox68 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox68);
+  gtk_container_add (GTK_CONTAINER (alignment21), hbox68);
+
+  image61 = gtk_image_new_from_stock ("gtk-jump-to", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image61);
+  gtk_box_pack_start (GTK_BOX (hbox68), image61, FALSE, FALSE, 0);
+
+  label108 = gtk_label_new_with_mnemonic (_("Resume last game"));
+  gtk_widget_show (label108);
+  gtk_box_pack_start (GTK_BOX (hbox68), label108, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label108), GTK_JUSTIFY_LEFT);
+
   g_signal_connect ((gpointer) window_startup, "delete_event",
                     G_CALLBACK (on_team_selection_cancel_clicked),
                     NULL);
@@ -341,6 +367,9 @@ create_window_startup (void)
                     NULL);
   g_signal_connect ((gpointer) team_selection_load, "clicked",
                     G_CALLBACK (on_team_selection_load_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_startup_resume, "clicked",
+                    G_CALLBACK (on_button_startup_resume_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -389,6 +418,11 @@ create_window_startup (void)
   GLADE_HOOKUP_OBJECT (window_startup, hbox6, "hbox6");
   GLADE_HOOKUP_OBJECT (window_startup, image4, "image4");
   GLADE_HOOKUP_OBJECT (window_startup, label5, "label5");
+  GLADE_HOOKUP_OBJECT (window_startup, button_startup_resume, "button_startup_resume");
+  GLADE_HOOKUP_OBJECT (window_startup, alignment21, "alignment21");
+  GLADE_HOOKUP_OBJECT (window_startup, hbox68, "hbox68");
+  GLADE_HOOKUP_OBJECT (window_startup, image61, "image61");
+  GLADE_HOOKUP_OBJECT (window_startup, label108, "label108");
   GLADE_HOOKUP_OBJECT_NO_REF (window_startup, tooltips, "tooltips");
 
   gtk_widget_grab_focus (treeview_startup);

@@ -149,7 +149,7 @@ league_cup_get_next_clid(gint clid)
 	else if(cps->len > 0)
 	    return_value = cp(0).id;
 	else
-	    return_value = clid;
+	    return_value = lig(0).id;
     }
     else
     {
@@ -185,7 +185,7 @@ league_cup_get_previous_clid(gint clid)
 	else if(cps->len > 0)
 	    return_value = cp(cps->len - 1).id;
 	else
-	    return_value = clid;
+	    return_value = lig(ligs->len - 1).id;
     }
     else
     {

@@ -1,9 +1,12 @@
+#include "callbacks.h"
 #include "finance.h"
 #include "game.h"
 #include "game_gui.h"
 #include "gui.h"
+#include "load_save.h"
 #include "maths.h"
 #include "misc_callback_func.h"
+#include "option.h"
 #include "start_end.h"
 #include "support.h"
 #include "treeview.h"
@@ -11,6 +14,7 @@
 #include "variables.h"
 #include "window.h"
 #include "xml_country.h"
+#include "xml_name.h"
 
 /* show the teams from the leagues in the country in
    the startup window */
@@ -205,4 +209,16 @@ misc_callback_improve_stadium(void)
 
     window_destroy(&window.stadium, TRUE);
     game_gui_set_main_window_header();
+}
+
+/** Load a savegame directly from the startup window. */
+void
+misc_callback_startup_load(const gchar *filename)
+{
+    window_destroy(&window.startup, TRUE);
+    window_create(WINDOW_MAIN);
+    xml_name_read(opt_str("string_opt_player_names_file"), 1000);
+    load_save_load_game(filename);
+    cur_user = 0;
+    on_button_back_to_main_clicked(NULL, NULL);
 }
