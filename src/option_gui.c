@@ -1,6 +1,7 @@
 #include "option.h"
 #include "option_gui.h"
 #include "support.h"
+#include "user.h"
 #include "variables.h"
 
 /** An enumeration for all the options that are boolean,
@@ -13,17 +14,17 @@ enum BooleanOptions
     BOOL_OPT_MAXIMIZE,
     BOOL_OPT_PREFER_MESS,
     BOOL_OPT_AUTOSAVE,
-/*     BOOL_OPT_CONF_UNFIT, */
-/*     BOOL_OPT_SHOW_LIVE, */
-/*     BOOL_OPT_SHOW_TENDENCY, */
-/*     BOOL_OPT_PAUSE_INJURY, */
-/*     BOOL_OPT_PAUSE_RED, */
-/*     BOOL_OPT_PAUSE_BREAK, */
-/*     BOOL_OPT_AUTO_SUB, */
-/*     BOOL_OPT_SHOW_JOB, */
-/*     BOOL_OPT_REARRANGE, */
-/*     BOOL_OPT_SWAP, */
-/*     BOOL_OPT_SHOW_OVERALL, */
+    BOOL_OPT_CONF_UNFIT,
+    BOOL_OPT_SHOW_LIVE,
+    BOOL_OPT_SHOW_TENDENCY,
+    BOOL_OPT_PAUSE_INJURY,
+    BOOL_OPT_PAUSE_RED,
+    BOOL_OPT_PAUSE_BREAK,
+    BOOL_OPT_AUTO_SUB,
+    BOOL_OPT_SHOW_JOB,
+    BOOL_OPT_REARRANGE,
+    BOOL_OPT_SWAP,
+    BOOL_OPT_SHOW_OVERALL,
 /*     BOOL_OPT_PL1_ATT_NAME, */
 /*     BOOL_OPT_PL1_ATT_CPOS, */
 /*     BOOL_OPT_PL1_ATT_POS, */
@@ -92,49 +93,49 @@ option_gui_write_bool_widgets(gint **bool_options, GtkToggleButton **bool_widget
 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_autosave"));
     bool_options[BOOL_OPT_AUTOSAVE] = opt_intp("int_opt_autosave");
 
-/*     bool_widgets[BOOL_OPT_CONF_UNFIT] = */
-/* 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_")); */
-/*     bool_options[BOOL_OPT_CONF_UNFIT] = opt_user_intp("int_opt_user_"); */
+    bool_widgets[BOOL_OPT_CONF_UNFIT] =
+	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_conf_unfit"));
+    bool_options[BOOL_OPT_CONF_UNFIT] = opt_user_intp("int_opt_user_confirm_unfit");
 
-/*     bool_widgets[BOOL_OPT_SHOW_LIVE] = */
-/* 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_")); */
-/*     bool_options[BOOL_OPT_SHOW_LIVE] = opt_user_intp("int_opt_user_"); */
+    bool_widgets[BOOL_OPT_SHOW_LIVE] =
+	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_show_live"));
+    bool_options[BOOL_OPT_SHOW_LIVE] = opt_user_intp("int_opt_user_show_live_game");
 
-/*     bool_widgets[BOOL_OPT_SHOW_TENDENCY] = */
-/* 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_")); */
-/*     bool_options[BOOL_OPT_SHOW_TENDENCY] = opt_user_intp("int_opt_user_"); */
+    bool_widgets[BOOL_OPT_SHOW_TENDENCY] =
+	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_show_tendency"));
+    bool_options[BOOL_OPT_SHOW_TENDENCY] = opt_user_intp("int_opt_user_show_tendency_bar");
 
-/*     bool_widgets[BOOL_OPT_PAUSE_INJURY] = */
-/* 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_")); */
-/*     bool_options[BOOL_OPT_PAUSE_INJURY] = opt_user_intp("int_opt_user_"); */
+    bool_widgets[BOOL_OPT_PAUSE_INJURY] =
+	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_pause_injury"));
+    bool_options[BOOL_OPT_PAUSE_INJURY] = opt_user_intp("int_opt_user_pause_injury");
 
-/*     bool_widgets[BOOL_OPT_PAUSE_RED] = */
-/* 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_")); */
-/*     bool_options[BOOL_OPT_PAUSE_RED] = opt_user_intp("int_opt_user_"); */
+    bool_widgets[BOOL_OPT_PAUSE_RED] =
+	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_pause_red"));
+    bool_options[BOOL_OPT_PAUSE_RED] = opt_user_intp("int_opt_user_pause_red");
 
-/*     bool_widgets[BOOL_OPT_PAUSE_BREAK] = */
-/* 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_")); */
-/*     bool_options[BOOL_OPT_PAUSE_BREAK] = opt_user_intp("int_opt_user_"); */
+    bool_widgets[BOOL_OPT_PAUSE_BREAK] =
+	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_pause_break"));
+    bool_options[BOOL_OPT_PAUSE_BREAK] = opt_user_intp("int_opt_user_pause_break");
 
-/*     bool_widgets[BOOL_OPT_AUTO_SUB] = */
-/* 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_")); */
-/*     bool_options[BOOL_OPT_AUTO_SUB] = opt_user_intp("int_opt_user_"); */
+    bool_widgets[BOOL_OPT_AUTO_SUB] =
+	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_auto_sub"));
+    bool_options[BOOL_OPT_AUTO_SUB] = opt_user_intp("int_opt_user_auto_sub");
 
-/*     bool_widgets[BOOL_OPT_SHOW_JOB] = */
-/* 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_")); */
-/*     bool_options[BOOL_OPT_SHOW_JOB] = opt_user_intp("int_opt_user_"); */
+    bool_widgets[BOOL_OPT_SHOW_JOB] =
+	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_show_job"));
+    bool_options[BOOL_OPT_SHOW_JOB] = opt_user_intp("int_opt_user_show_job_offers");
 
-/*     bool_widgets[BOOL_OPT_REARRANGE] = */
-/* 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_")); */
-/*     bool_options[BOOL_OPT_REARRANGE] = opt_user_intp("int_opt_user_"); */
+    bool_widgets[BOOL_OPT_REARRANGE] =
+	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_rearrange_adapts"));
+    bool_options[BOOL_OPT_REARRANGE] = opt_user_intp("int_opt_user_reaarrange_adapts");
 
-/*     bool_widgets[BOOL_OPT_SWAP] = */
-/* 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_")); */
-/*     bool_options[BOOL_OPT_SWAP] = opt_user_intp("int_opt_user_"); */
+    bool_widgets[BOOL_OPT_SWAP] =
+	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_swap_adapts"));
+    bool_options[BOOL_OPT_SWAP] = opt_user_intp("int_opt_user_swap_adapts");
 
-/*     bool_widgets[BOOL_OPT_SHOW_OVERALL] = */
-/* 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_")); */
-/*     bool_options[BOOL_OPT_SHOW_OVERALL] = opt_user_intp("int_opt_user_"); */
+    bool_widgets[BOOL_OPT_SHOW_OVERALL] =
+	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_show_overall"));
+    bool_options[BOOL_OPT_SHOW_OVERALL] = opt_user_intp("int_opt_user_show_overall");
 
 /*     bool_widgets[BOOL_OPT_PL1_ATT_NAME] = */
 /* 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_")); */
@@ -286,8 +287,8 @@ enum SpinOptions
 {
     SPIN_OPT_AUTOSAVE = 0,
     SPIN_OPT_PRECISION,
-/*     SPIN_OPT_REFRESH, */
-/*     SPIN_OPT_LIVE_SPEED, */
+    SPIN_OPT_REFRESH,
+    SPIN_OPT_LIVE_SPEED,
     SPIN_OPT_END
 };
 
@@ -303,13 +304,13 @@ option_gui_write_spin_widgets(gint **spin_options, GtkSpinButton **spin_widgets)
 	GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_precision"));
     spin_options[SPIN_OPT_PRECISION] = opt_intp("int_opt_player_precision");
 
-/*     spin_widgets[SPIN_OPT_REFRESH] = */
-/* 	GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_refresh")); */
-/*     spin_options[SPIN_OPT_REFRESH] = opt_intp("int_opt_live_game_player_list_refresh"); */
+    spin_widgets[SPIN_OPT_REFRESH] =
+	GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_refresh"));
+    spin_options[SPIN_OPT_REFRESH] = opt_intp("int_opt_live_game_player_list_refresh");
 
-/*     spin_widgets[SPIN_OPT_LIVE_SPEED] = */
-/* 	GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_")); */
-/*     spin_options[SPIN_OPT_LIVE_SPEED] = opt_user_intp("int_opt_user_live_game_speed"); */
+    spin_widgets[SPIN_OPT_LIVE_SPEED] =
+	GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_live_speed"));
+    spin_options[SPIN_OPT_LIVE_SPEED] = opt_user_intp("int_opt_user_live_game_speed");
 }
 
 
@@ -367,3 +368,4 @@ option_gui_set_up_window(void)
     for(i=0;i<ENTRY_OPT_END;i++)
 	gtk_entry_set_text(entry_widgets[i], (entry_options[i])->str);
 }
+

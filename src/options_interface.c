@@ -59,9 +59,32 @@ create_window_options (void)
   GtkWidget *entry_constants_file;
   GtkWidget *entry_user_file;
   GtkWidget *label1;
-  GtkWidget *empty_notebook_page;
+  GtkWidget *hbox4;
+  GtkWidget *vbox4;
+  GtkWidget *checkbutton_show_live;
+  GtkWidget *checkbutton_show_tendency;
+  GtkWidget *hbox5;
+  GtkWidget *label12;
+  GtkObject *spinbutton_live_speed_adj;
+  GtkWidget *spinbutton_live_speed;
+  GtkWidget *checkbutton_auto_sub;
+  GtkWidget *vseparator2;
+  GtkWidget *vbox5;
+  GtkWidget *checkbutton_pause_injury;
+  GtkWidget *checkbutton_pause_red;
+  GtkWidget *checkbutton_pause_break;
   GtkWidget *label2;
+  GtkWidget *hbox6;
+  GtkWidget *vbox6;
+  GtkWidget *checkbutton_conf_unfit;
+  GtkWidget *checkbutton_show_job;
+  GtkWidget *vseparator3;
+  GtkWidget *vbox7;
+  GtkWidget *checkbutton_rearrange_adapts;
+  GtkWidget *checkbutton_swap_adapts;
+  GtkWidget *checkbutton_show_overall;
   GtkWidget *label3;
+  GtkWidget *empty_notebook_page;
   GtkWidget *label4;
   GtkWidget *label5;
   GtkWidget *hseparator1;
@@ -159,6 +182,7 @@ create_window_options (void)
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_label_set_justify (GTK_LABEL (label7), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label7), 1, 0.5);
 
   label8 = gtk_label_new (_("Player list refresh rate "));
   gtk_widget_show (label8);
@@ -166,6 +190,7 @@ create_window_options (void)
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_label_set_justify (GTK_LABEL (label8), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label8), 1, 0.5);
 
   spinbutton_precision_adj = gtk_adjustment_new (1, 0, 3, 1, 10, 10);
   spinbutton_precision = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_precision_adj), 1, 0);
@@ -189,6 +214,7 @@ create_window_options (void)
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_label_set_justify (GTK_LABEL (label9), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label9), 1, 0.5);
 
   label10 = gtk_label_new (_("Constants file "));
   gtk_widget_show (label10);
@@ -196,6 +222,7 @@ create_window_options (void)
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_label_set_justify (GTK_LABEL (label10), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label10), 1, 0.5);
 
   label11 = gtk_label_new (_("Default user conf file "));
   gtk_widget_show (label11);
@@ -203,6 +230,7 @@ create_window_options (void)
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_label_set_justify (GTK_LABEL (label11), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label11), 1, 0.5);
 
   entry_names_file = gtk_entry_new ();
   gtk_widget_show (entry_names_file);
@@ -227,18 +255,103 @@ create_window_options (void)
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 0), label1);
   gtk_label_set_justify (GTK_LABEL (label1), GTK_JUSTIFY_LEFT);
 
-  empty_notebook_page = gtk_vbox_new (FALSE, 0);
-  gtk_widget_show (empty_notebook_page);
-  gtk_container_add (GTK_CONTAINER (notebook1), empty_notebook_page);
+  hbox4 = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (hbox4);
+  gtk_container_add (GTK_CONTAINER (notebook1), hbox4);
+
+  vbox4 = gtk_vbox_new (FALSE, 0);
+  gtk_widget_show (vbox4);
+  gtk_box_pack_start (GTK_BOX (hbox4), vbox4, TRUE, TRUE, 0);
+
+  checkbutton_show_live = gtk_check_button_new_with_mnemonic (_("Show live game"));
+  gtk_widget_show (checkbutton_show_live);
+  gtk_box_pack_start (GTK_BOX (vbox4), checkbutton_show_live, FALSE, FALSE, 0);
+
+  checkbutton_show_tendency = gtk_check_button_new_with_mnemonic (_("Show tendency bar"));
+  gtk_widget_show (checkbutton_show_tendency);
+  gtk_box_pack_start (GTK_BOX (vbox4), checkbutton_show_tendency, FALSE, FALSE, 0);
+
+  hbox5 = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (hbox5);
+  gtk_box_pack_start (GTK_BOX (vbox4), hbox5, FALSE, FALSE, 0);
+
+  label12 = gtk_label_new (_("Live game speed factor "));
+  gtk_widget_show (label12);
+  gtk_box_pack_start (GTK_BOX (hbox5), label12, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label12), GTK_JUSTIFY_LEFT);
+
+  spinbutton_live_speed_adj = gtk_adjustment_new (0, -10, 20, 1, 10, 10);
+  spinbutton_live_speed = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_live_speed_adj), 1, 0);
+  gtk_widget_show (spinbutton_live_speed);
+  gtk_box_pack_start (GTK_BOX (hbox5), spinbutton_live_speed, FALSE, FALSE, 0);
+  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_live_speed), TRUE);
+
+  checkbutton_auto_sub = gtk_check_button_new_with_mnemonic (_("Automatic substitutions"));
+  gtk_widget_show (checkbutton_auto_sub);
+  gtk_box_pack_start (GTK_BOX (vbox4), checkbutton_auto_sub, FALSE, FALSE, 0);
+
+  vseparator2 = gtk_vseparator_new ();
+  gtk_widget_show (vseparator2);
+  gtk_box_pack_start (GTK_BOX (hbox4), vseparator2, FALSE, TRUE, 0);
+  gtk_widget_set_size_request (vseparator2, 10, 1);
+
+  vbox5 = gtk_vbox_new (FALSE, 0);
+  gtk_widget_show (vbox5);
+  gtk_box_pack_start (GTK_BOX (hbox4), vbox5, TRUE, TRUE, 0);
+
+  checkbutton_pause_injury = gtk_check_button_new_with_mnemonic (_("Pause when injury"));
+  gtk_widget_show (checkbutton_pause_injury);
+  gtk_box_pack_start (GTK_BOX (vbox5), checkbutton_pause_injury, FALSE, FALSE, 0);
+
+  checkbutton_pause_red = gtk_check_button_new_with_mnemonic (_("Pause when red card"));
+  gtk_widget_show (checkbutton_pause_red);
+  gtk_box_pack_start (GTK_BOX (vbox5), checkbutton_pause_red, FALSE, FALSE, 0);
+
+  checkbutton_pause_break = gtk_check_button_new_with_mnemonic (_("Pause when break"));
+  gtk_widget_show (checkbutton_pause_break);
+  gtk_box_pack_start (GTK_BOX (vbox5), checkbutton_pause_break, FALSE, FALSE, 0);
 
   label2 = gtk_label_new (_("Live game"));
   gtk_widget_show (label2);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 1), label2);
   gtk_label_set_justify (GTK_LABEL (label2), GTK_JUSTIFY_LEFT);
 
-  empty_notebook_page = gtk_vbox_new (FALSE, 0);
-  gtk_widget_show (empty_notebook_page);
-  gtk_container_add (GTK_CONTAINER (notebook1), empty_notebook_page);
+  hbox6 = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (hbox6);
+  gtk_container_add (GTK_CONTAINER (notebook1), hbox6);
+
+  vbox6 = gtk_vbox_new (FALSE, 0);
+  gtk_widget_show (vbox6);
+  gtk_box_pack_start (GTK_BOX (hbox6), vbox6, TRUE, TRUE, 0);
+
+  checkbutton_conf_unfit = gtk_check_button_new_with_mnemonic (_("Confirm when unfit"));
+  gtk_widget_show (checkbutton_conf_unfit);
+  gtk_box_pack_start (GTK_BOX (vbox6), checkbutton_conf_unfit, FALSE, FALSE, 0);
+
+  checkbutton_show_job = gtk_check_button_new_with_mnemonic (_("Show job offers"));
+  gtk_widget_show (checkbutton_show_job);
+  gtk_box_pack_start (GTK_BOX (vbox6), checkbutton_show_job, FALSE, FALSE, 0);
+
+  vseparator3 = gtk_vseparator_new ();
+  gtk_widget_show (vseparator3);
+  gtk_box_pack_start (GTK_BOX (hbox6), vseparator3, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (vseparator3, 10, 1);
+
+  vbox7 = gtk_vbox_new (FALSE, 0);
+  gtk_widget_show (vbox7);
+  gtk_box_pack_start (GTK_BOX (hbox6), vbox7, TRUE, TRUE, 0);
+
+  checkbutton_rearrange_adapts = gtk_check_button_new_with_mnemonic (_("Rearrange adapts structure"));
+  gtk_widget_show (checkbutton_rearrange_adapts);
+  gtk_box_pack_start (GTK_BOX (vbox7), checkbutton_rearrange_adapts, FALSE, FALSE, 0);
+
+  checkbutton_swap_adapts = gtk_check_button_new_with_mnemonic (_("Swap adapts structure"));
+  gtk_widget_show (checkbutton_swap_adapts);
+  gtk_box_pack_start (GTK_BOX (vbox7), checkbutton_swap_adapts, FALSE, FALSE, 0);
+
+  checkbutton_show_overall = gtk_check_button_new_with_mnemonic (_("Show overall games/goals"));
+  gtk_widget_show (checkbutton_show_overall);
+  gtk_box_pack_start (GTK_BOX (vbox7), checkbutton_show_overall, FALSE, FALSE, 0);
 
   label3 = gtk_label_new (_("Misc."));
   gtk_widget_show (label3);
@@ -331,7 +444,29 @@ create_window_options (void)
   GLADE_HOOKUP_OBJECT (window_options, entry_constants_file, "entry_constants_file");
   GLADE_HOOKUP_OBJECT (window_options, entry_user_file, "entry_user_file");
   GLADE_HOOKUP_OBJECT (window_options, label1, "label1");
+  GLADE_HOOKUP_OBJECT (window_options, hbox4, "hbox4");
+  GLADE_HOOKUP_OBJECT (window_options, vbox4, "vbox4");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_show_live, "checkbutton_show_live");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_show_tendency, "checkbutton_show_tendency");
+  GLADE_HOOKUP_OBJECT (window_options, hbox5, "hbox5");
+  GLADE_HOOKUP_OBJECT (window_options, label12, "label12");
+  GLADE_HOOKUP_OBJECT (window_options, spinbutton_live_speed, "spinbutton_live_speed");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_auto_sub, "checkbutton_auto_sub");
+  GLADE_HOOKUP_OBJECT (window_options, vseparator2, "vseparator2");
+  GLADE_HOOKUP_OBJECT (window_options, vbox5, "vbox5");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_pause_injury, "checkbutton_pause_injury");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_pause_red, "checkbutton_pause_red");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_pause_break, "checkbutton_pause_break");
   GLADE_HOOKUP_OBJECT (window_options, label2, "label2");
+  GLADE_HOOKUP_OBJECT (window_options, hbox6, "hbox6");
+  GLADE_HOOKUP_OBJECT (window_options, vbox6, "vbox6");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_conf_unfit, "checkbutton_conf_unfit");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_show_job, "checkbutton_show_job");
+  GLADE_HOOKUP_OBJECT (window_options, vseparator3, "vseparator3");
+  GLADE_HOOKUP_OBJECT (window_options, vbox7, "vbox7");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_rearrange_adapts, "checkbutton_rearrange_adapts");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_swap_adapts, "checkbutton_swap_adapts");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_show_overall, "checkbutton_show_overall");
   GLADE_HOOKUP_OBJECT (window_options, label3, "label3");
   GLADE_HOOKUP_OBJECT (window_options, label4, "label4");
   GLADE_HOOKUP_OBJECT (window_options, label5, "label5");
