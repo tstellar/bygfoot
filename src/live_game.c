@@ -112,7 +112,7 @@ live_game_fill_new_unit(LiveGameUnit *new)
     LiveGameUnit *old = &last_unit;
     gfloat rndom = math_rnd(0, 1);
     gfloat stadium_event = 
-	1 - powf((gfloat)tm0->stadium.safety / 100,
+	1 - powf((gfloat)tm0->stadium.safety,
 		 const_float("float_live_game_stadium_event_exponent"));
     gfloat possession_change, scoring_chance = 0, 
 	injury_event_prob, foul_event_prob;
@@ -126,10 +126,10 @@ live_game_fill_new_unit(LiveGameUnit *new)
 
     injury_event_prob = const_float("float_live_game_injury") * 
 	(1 + (const_float("float_player_boost_injury_effect") *
-	      (tm[0]->boost != 0 || tm[1]->boost != 0)));
+	      (tm0->boost != 0 || tm1->boost != 0)));
 
     foul_event_prob = const_float("float_live_game_foul") *
-	(1 + (tm[0]->boost + tm[1]->boost) * const_float("float_team_boost_foul_factor"));
+	(1 + (tm0->boost + tm1->boost) * const_float("float_team_boost_foul_factor"));
 
     new->possession = old->possession;
 
@@ -430,18 +430,31 @@ live_game_event_injury(gint team, gint player, gboolean create_new)
 void
 live_game_event_stadium(void)
 {
+    gint i;
     gfloat rndom = math_rnd(0, 1);
+    gfloat probs[3] =
+	{const_float("float_live_game_stadium_event_breakdown"),
+	 const_float("float_live_game_stadium_event_riots"),
+	 const_float("float_live_game_stadium_event_fire")};
+
+    for(i=1;i<3;i++)
+	probs[i] += probs[i - 1];
 
     if(opt_int("int_opt_debug"))
 	printf("live_game_event_stadium\n");
-    if(rndom < const_float("float_live_game_stadium_event_fire"))
-	last_unit.event.type = LIVE_GAME_EVENT_STADIUM_FIRE;
-    else if(rndom < const_float("float_live_game_stadium_event_riots"))
-	last_unit.event.type = LIVE_GAME_EVENT_STADIUM_RIOTS;
-    else if(rndom < const_float("float_live_game_stadium_event_breakdown"))
+    if(rndom <= probs[0])
 	last_unit.event.type = LIVE_GAME_EVENT_STADIUM_BREAKDOWN;
+    else if(rndom <= probs[1])
+	last_unit.event.type = LIVE_GAME_EVENT_STADIUM_RIOTS;
+    else if(rndom <= probs[2])
+	last_unit.event.type = LIVE_GAME_EVENT_STADIUM_FIRE;
 
     live_game_finish_unit();
+
+    if(team_is_user(tm0) != -1)
+	game_stadium_event(&tm0->stadium, last_unit.event.type);
+
+    match->stadium_event = TRUE;
 
     live_game_event_general(TRUE);
 }
@@ -1473,7 +1486,7 @@ live_game_injury_get_player(void)
 	for(i=1;i<11;i++)
 	{
 	    fitness_factor = (player_of(tm[j], i)->fitness < 0.025) ?
-		40 : 1 / ((gfloat)player_of(tm[j], i)->fitness / 10000);
+		40 : 1 / ((gfloat)player_of(tm[j], i)->fitness);
 	    probs[i + j * 11] = probs[i + j * 11 - 1] + (1 - goalie_factor) * fitness_factor *
 		(player_of(tm[j], i)->cskill != 0) * (1 + tm[j]->boost * boost_factor);
 	}
@@ -1484,7 +1497,7 @@ live_game_injury_get_player(void)
     if(rndom < probs[0])
     {
 	last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] = 
-	    player_of(tm[0], 0)->id;
+	    player_of(tm0, 0)->id;
 	last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM] = 0;
     }
     else

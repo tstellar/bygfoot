@@ -259,3 +259,21 @@ league_get_index(gint clid)
 
     return -1;
 }
+
+/** Return the average stadium capacity of cpu teams
+    in the specified league or cup. */
+gint
+league_cup_average_capacity(gint clid)
+{
+    gint i;
+    gfloat sum = 0;
+    const GArray *teams = (clid < ID_CUP_START) ?
+	league_from_clid(clid)->teams :
+	cup_from_clid(clid)->teams;
+
+    for(i=0;i<teams->len;i++)
+	if(team_is_user(&g_array_index(teams, Team, i)) == -1)
+	    sum += g_array_index(teams, Team, i).stadium.capacity;
+
+    return sum / (gfloat)teams->len;
+}

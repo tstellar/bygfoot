@@ -1,6 +1,9 @@
+#include "cup.h"
+#include "finance.h"
 #include "fixture.h"
 #include "game.h"
 #include "game_gui.h"
+#include "league.h"
 #include "live_game.h"
 #include "maths.h"
 #include "misc.h"
@@ -236,11 +239,25 @@ void
 game_initialize(Fixture *fix)
 {
     gint i, j;
+    gfloat journey_factor =
+	(fix->clid < ID_CUP_START ||
+	 (fix->clid >= ID_CUP_START && 
+	  cup_from_clid(fix->clid)->type == CUP_TYPE_NATIONAL)) ?
+	const_float("float_game_finance_journey_factor_national") :
+	const_float("float_game_finance_journey_factor_international");    
+    gint user_idx = team_is_user(fix->teams[0]);
 
-    /*d*/
-    fix->attendance = 1000;
+    game_assign_attendance(fix);
+
+    if(user_idx != -1)
+    {
+	usr(user_idx).money += (fix->attendance * const_int("int_team_stadium_ticket_price"));
+	usr(user_idx).money_in[1][MON_IN_TICKET] += 
+	    (fix->attendance * const_int("int_team_stadium_ticket_price"));
+    }
 
     for(i=0;i<2;i++)
+    {
 	for(j=0;j<fix->teams[i]->players->len;j++)
 	{
 	    if(j < 11)
@@ -253,6 +270,63 @@ game_initialize(Fixture *fix)
 	    player_of(fix->teams[i], j)->participation = 
 		(j < 11 && player_of(fix->teams[i], j)->cskill > 0);
 	}
+
+	if(team_is_user(fix->teams[i]) != -1 &&
+	   (i == 1 || !fix->home_advantage))
+	    usr(team_is_user(fix->teams[i])).money_out[1][MON_OUT_JOURNEY] -= 
+		(gint)(finance_wage_unit(fix->teams[i]) * journey_factor);
+    }
+
+    if(team_is_user(fix->teams[0]) != -1 && fix->home_advantage)
+    {
+	fix->teams[0]->stadium.safety -= 
+	    math_rnd(const_float("float_game_stadium_safety_deterioration_lower"),
+		     const_float("float_game_stadium_safety_deterioration_upper"));
+	fix->teams[0]->stadium.safety = CLAMP(fix->teams[0]->stadium.safety, 0, 1);
+    }
+    
+}
+
+/** Find out how many spectators there were,
+    depending on safety of the stadium etc.
+    @param fix The match we examine. */
+void
+game_assign_attendance(Fixture *fix)
+{
+    Team *tm[2] = {fix->teams[0], fix->teams[1]};
+    gfloat factor = 
+	math_rnd(const_float("float_game_stadium_attendance_percentage_lower"),
+		 const_float("float_game_stadium_attendance_percentage_upper")) *
+	powf(tm[0]->stadium.safety, 
+	     const_float("float_game_stadium_attendance_safety_exponent"));
+    gint max_att = MIN((gint)rint((gfloat)league_cup_average_capacity(fix->clid) *
+				  const_float("float_game_stadium_attendance_average_exceed_factor")),
+		       tm[0]->stadium.capacity);
+
+    if(fix->clid < ID_CUP_START && 
+       team_rank(tm[1], fix->clid) < 
+       (gint)rint((gfloat)league_from_clid(fix->clid)->teams->len *
+		  const_float("float_game_stadium_attendance_rank_percentage")))
+	factor *= const_float("float_game_stadium_attendance_rank_factor");
+
+    if(fix->clid >= ID_CUP_START)
+    {
+	if(cup_from_clid(fix->clid)->rounds->len - fix->round <=
+	   const_int("int_game_stadium_attendance_cup_rounds_full_house"))
+	    factor = 1;
+	else if(cup_from_clid(fix->clid)->type == CUP_TYPE_NATIONAL)
+	    factor *= const_float("float_game_stadium_attendance_cup_national_factor");
+	else
+	    factor *= const_float("float_game_stadium_attendance_cup_international_factor");
+    }
+
+    fix->attendance = MIN((gint)rint((gfloat)tm[0]->stadium.capacity * factor), max_att);
+
+    tm[0]->stadium.average_attendance = 
+	(gint)rint((gfloat)(tm[0]->stadium.average_attendance * tm[0]->stadium.games + fix->attendance) /
+		   (gfloat)(tm[0]->stadium.games + 1));
+    tm[0]->stadium.possible_attendance += tm[0]->stadium.capacity;
+    tm[0]->stadium.games++;
 }
 
 /** Save the team states in the current live game
@@ -985,4 +1059,33 @@ game_post_match(Fixture *fix)
 	else
 	    team_update_post_match(fix->teams[i], fix->clid);
     }
+}
+
+/** Reduce stadium capacity and safety after a stadium event.
+    @param user The user whose stadium we demolish.
+    @param type The event type. */
+void
+game_stadium_event(Stadium *stadium, gint type)
+{
+    gfloat reduce;
+    gfloat reduce_factor[3][2] =
+	{{const_float("float_game_stadium_safety_reduce_breakdown_lower"),
+	  const_float("float_game_stadium_safety_reduce_breakdown_upper")},
+	 {const_float("float_game_stadium_safety_reduce_riots_lower"),
+	  const_float("float_game_stadium_safety_reduce_riots_upper")},
+	 {const_float("float_game_stadium_safety_reduce_fire_lower"),
+	  const_float("float_game_stadium_safety_reduce_fire_upper")}};
+
+    reduce = math_rnd(reduce_factor[type - LIVE_GAME_EVENT_STADIUM_BREAKDOWN][0],
+		      reduce_factor[type - LIVE_GAME_EVENT_STADIUM_BREAKDOWN][1]);
+    
+    printf("event %d saf %.2f cap %d\n",
+	   type - LIVE_GAME_EVENT_STADIUM_BREAKDOWN, stadium->safety, stadium->capacity);
+    stadium->safety *= (1 - reduce);
+    stadium->capacity = (gint)rint((gfloat)stadium->capacity *
+				   (1 - reduce *
+				    const_float("float_game_stadium_capacity_reduce_factor")));
+
+    printf("2 event %d saf %.2f cap %d\n",
+	   type - LIVE_GAME_EVENT_STADIUM_BREAKDOWN, stadium->safety, stadium->capacity);
 }

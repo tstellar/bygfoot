@@ -54,8 +54,56 @@ float_team_stadium_safety_upper 10000
 # generation
 int_team_stadium_ticket_price 30
 
-# factor for stadium size
-float_team_stadium_size_wage_factor 24000
+# factor for stadium size; this determines the income
+# of the user teams
+float_team_stadium_size_wage_factor 25000
+
+# stadium safety deterioration values (per game)
+float_game_stadium_safety_deterioration_lower 20
+float_game_stadium_safety_deterioration_upper 50
+
+# journey cost factor for national and international games
+float_game_finance_journey_factor_national 3000
+float_game_finance_journey_factor_international 6000
+
+# how many spectators in a perfectly safe stadium
+float_game_stadium_attendance_percentage_lower 7000
+float_game_stadium_attendance_percentage_upper 11000
+
+# percentage increasing factor in cup games
+float_game_stadium_attendance_cup_national_factor	11500
+float_game_stadium_attendance_cup_international_factor	12500	
+
+# how many rounds before the final there's full house
+int_game_stadium_attendance_cup_rounds_full_house 3
+
+# below which rank (in pct. of the number of teams in the league)
+# there are more spectators
+float_game_stadium_attendance_rank_percentage 2500
+
+# factor for an opponent with high rank
+float_game_stadium_attendance_rank_factor 11000
+
+# exponent of the stadium safety (the bigger the greater
+# the influence of the safety on the percentage)
+float_game_stadium_attendance_safety_exponent 5000
+
+# how many spectators there can be at most compared to
+# the average stadium size in the league
+float_game_stadium_attendance_average_exceed_factor 20000
+
+# reduce (in percentage) of capacity for different
+# stadium events
+float_game_stadium_safety_reduce_breakdown_lower 300
+float_game_stadium_safety_reduce_breakdown_upper 600
+float_game_stadium_safety_reduce_riots_lower	  500
+float_game_stadium_safety_reduce_riots_upper	  1000
+float_game_stadium_safety_reduce_fire_lower	  1000
+float_game_stadium_safety_reduce_fire_upper	  1500
+
+# factor we multiply the safety reduction with to obtain the
+# capacity reduction; the bigger the higher the reduction
+float_game_stadium_capacity_reduce_factor 15000
 
 # lsu addition for injured players who are older
 # than their peak age
@@ -108,6 +156,31 @@ float_player_max_skill 990000
 int_initial_money_lower 80
 int_initial_money_upper 110
 
+# wage factors for scout and physio
+# four apiece because of the different qualities
+float_finance_scout_factor1 20000
+float_finance_scout_factor2 15000
+float_finance_scout_factor3 10000
+float_finance_scout_factor4 5000
+
+float_finance_physio_factor1 6000
+float_finance_physio_factor2 5000
+float_finance_physio_factor3 4000
+float_finance_physio_factor4 3000
+
+# interest rate
+float_finance_interest 200
+
+# weight of player values (compared to stadium capacity)
+# for drawing credit and loan; between 0 and 10000
+float_finance_credit_player_value_weight 1000
+
+# influence of the stadium safety on the value of the stadium
+float_finance_credit_stadium_safety_exponent 2500
+
+# scaling factors for the drawing credit and loan
+float_finance_credit_factor_drawing 2000
+float_finance_credit_factor_loan    8000
 
 # live game scale configuration
 float_game_gui_live_game_scale_attack	3000
@@ -215,15 +288,20 @@ float_live_game_possession_after_post 3000
 float_live_game_general_event_second_player 5000
 
 # constants for stadium events. 
-float_live_game_stadium_event_exponent	500
-float_live_game_stadium_event_fire	2000
-float_live_game_stadium_event_riots	5000
-float_live_game_stadium_event_breakdown 10000
+# influence of the stadium safety on the stadium
+# event probability
+float_live_game_stadium_event_exponent	150
+
+# probabilities of different events; should add
+# up to 10000
+float_live_game_stadium_event_breakdown 6000
+float_live_game_stadium_event_riots	3000
+float_live_game_stadium_event_fire	1000
 
 # foul probabilities. 
 float_live_game_foul		1100
-float_live_game_foul_red_injury 500
-float_live_game_foul_red	800
+float_live_game_foul_red_injury 400
+float_live_game_foul_red	600
 float_live_game_foul_yellow	2300
 
 # ban duration probabilities
@@ -239,9 +317,9 @@ float_live_game_ban_5 200
 float_live_game_foul_by_possession 2000
 
 # injury probabilities. 
-float_live_game_injury			170
+float_live_game_injury			140
 float_live_game_injury_goalie_factor	2000
-float_live_game_injury_is_temp		7000
+float_live_game_injury_is_temp		7500
 
 # probabilities for different injuries
 # these should add up to 1000
@@ -559,3 +637,6 @@ string_treeview_table_promotion lightblue
 string_treeview_table_relegation lightgreen
 string_treeview_table_promgames khaki
 string_treeview_table_best_advance khaki
+
+# colour for expenses in the finances
+string_treeview_finances_expenses_fg red

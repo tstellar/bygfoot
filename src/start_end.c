@@ -1,6 +1,8 @@
 #include "cup.h"
 #include "file.h"
+#include "finance.h"
 #include "fixture.h"
+#include "game_gui.h"
 #include "gui.h"
 #include "league.h"
 #include "live_game.h"
@@ -32,7 +34,9 @@ WeekFunc start_week_round_funcs[] =
 
 /** Array of functions called when a week
     is started. */
-WeekFunc start_week_funcs[] = {start_week_update_user_teams, NULL};
+WeekFunc start_week_funcs[] = 
+{start_week_update_users, start_week_update_user_teams,
+ start_week_update_user_finances, NULL};
 
 WeekFunc end_week_funcs[] = {NULL};
 
@@ -246,8 +250,11 @@ start_week_round(void)
 	start_func++;
     }
 
-/*     if(!user_games_this_week_round()) */
-/* 	end_week_round(); */
+    if(!user_games_this_week_round())
+	end_week_round();
+
+    current_user = 0;
+    game_gui_show_main();
 }
 
 /** Start a new week. */
@@ -284,4 +291,30 @@ start_week_round_update_user_teams(void)
     
     for(i=0;i<users->len;i++)
 	team_update_user_team_week_roundly(usr(i).tm);
+}
+
+/** Deduce wages etc. */
+void
+start_week_update_user_finances(void)
+{
+    gint i;
+
+    for(i=0;i<users->len;i++)
+	finance_update_user_weekly(&usr(i));
+}
+
+/** Some general user update. */
+void
+start_week_update_users(void)
+{
+    gint i;
+
+    for(i=0;i<users->len;i++)
+    {
+	if(usr(i).scout >= 100)
+	    usr(i).scout = math_get_place(usr(i).scout, 2);
+	
+	if(usr(i).physio >= 100)
+	    usr(i).physio = math_get_place(usr(i).physio, 2);
+    }
 }

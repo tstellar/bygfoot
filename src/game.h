@@ -92,4 +92,10 @@ game_update_stats_player(gpointer live_game, gconstpointer live_game_unit);
 void
 game_post_match(Fixture *fix);
 
+void
+game_assign_attendance(Fixture *fix);
+
+void
+game_stadium_event(Stadium *stadium, gint type);
+
 #endif

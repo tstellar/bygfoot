@@ -45,7 +45,10 @@ callback_show_next_live_game(void)
 		if(g_array_index(cp(i).fixtures, Fixture, j).week_number == week &&
 		   g_array_index(cp(i).fixtures, Fixture, j).week_round_number == week_round &&
 		   fixture_user_team_involved(&g_array_index(cp(i).fixtures, Fixture, j)) != -1 &&
-		   g_array_index(cp(i).fixtures, Fixture, j).attendance == -1)
+		   g_array_index(cp(i).fixtures, Fixture, j).attendance == -1 &&
+		   option_int("int_opt_user_show_live_game",
+			      usr(fixture_user_team_involved(&g_array_index(cp(i).fixtures, Fixture, j))).
+			      options))
 		{
 		    live_game_calculate_fixture(&g_array_index(cp(i).fixtures, Fixture, j));
 		    return;
@@ -68,24 +71,6 @@ callback_show_next_live_game(void)
 void
 callback_player_clicked(gint idx, GdkEventButton *event)
 {
-    /*d*/
-    gint i,j,k, sum=0, cnt;
-
-    for(i=0;i<ligs->len;i++)
-    {
-	sum = cnt = 0;
-	for(j=0;j<lig(i).teams->len;j++)
-	{
-	    for(k=0;k<g_array_index(lig(i).teams, Team, j).players->len;k++)
-	    {
-		sum += g_array_index(g_array_index(lig(i).teams, Team, j).players, Player, k).wage;
-	    }
-	    cnt++;
-	}
-
-	printf("%s %d\n", lig(i).name->str, (gint)rint((gfloat)sum / (gfloat)cnt));
-    }
-
     /** Only accept single-clicks right now. */
     if(event->type != GDK_BUTTON_PRESS)
 	return;

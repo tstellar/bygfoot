@@ -2,6 +2,7 @@
 
 #include "cup.h"
 #include "file.h"
+#include "finance.h"
 #include "fixture.h"
 #include "free.h"
 #include "gui.h"
@@ -870,6 +871,11 @@ treeview_create_game_stats(LiveGame *live_game)
 	}
     }
 
+    misc_print_grouped_int(live_game->fix->attendance, buf[0], FALSE);
+    sprintf(buf[1], "Attendance\n%s", buf[0]);
+    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_set(liststore, &iter, 0, buf[1], 1, "", 2, "", -1);
+
     gtk_list_store_append(liststore, &iter);
     gtk_list_store_set(liststore, &iter, 0, "", 1, "", 2, "", -1);
 
@@ -969,7 +975,7 @@ treeview_create_fixtures_header(const Fixture *fix, GtkListStore *liststore)
 	    const_str("string_treeview_fixture_header_bg"),
 	    const_str("string_treeview_fixture_header_fg"),
 	    name, round_name);
-    sprintf(buf2, _("<span background='%s' foreground='%s'>%s</span>"),
+    sprintf(buf2, "<span background='%s' foreground='%s'>%s</span>",
 	    const_str("string_treeview_fixture_header_bg"),
 	    const_str("string_treeview_fixture_header_fg"), buf3);
 
@@ -1380,6 +1386,146 @@ treeview_show_table(GtkTreeView *treeview, gint clid)
     
     treeview_set_up_table(treeview);
     model = treeview_create_table(clid);
+    gtk_tree_view_set_model(treeview, model);
+    g_object_unref(model);
+}
+
+GtkTreeModel*
+treeview_create_finances(const User* user)
+{
+    gint i, balance = 0;
+    gchar buf[SMALL], buf2[SMALL], buf3[SMALL];
+    gint *in = user->money_in[0],
+	*out = user->money_out[0];
+    gchar *in_titles[MON_IN_TRANSFERS] =
+	{_("Prize money"),
+	 _("Ticket income")};
+    gchar *out_titles[MON_OUT_TRANSFERS] =
+	{_("Wages"),
+	 _("Physio"),
+	 _("Scout"),
+	 _("Journey costs"),
+	 _("Stadium improvements"),
+	 _("Stadium bills")};
+    GtkTreeIter iter;
+    GtkListStore *liststore = 
+	gtk_list_store_new(3,
+			   G_TYPE_STRING,
+			   G_TYPE_STRING,
+			   G_TYPE_STRING);
+
+    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_set(liststore, &iter, 0, _("Last week's finances"), 1, "", 2, "", -1);
+
+    for(i=0;i<MON_IN_TRANSFERS;i++)
+	if(in[i] != 0)
+	{
+	    misc_print_grouped_int(in[i], buf, FALSE);
+	    gtk_list_store_append(liststore, &iter);
+	    gtk_list_store_set(liststore, &iter, 0, in_titles[i], 1, buf, 2, "", -1);
+	    balance += in[i];
+	}
+
+    if(in[MON_IN_TRANSFERS] != 0 || out[MON_OUT_TRANSFERS] != 0)
+    {
+	misc_print_grouped_int(in[MON_IN_TRANSFERS], buf, FALSE);
+	misc_print_grouped_int(out[MON_IN_TRANSFERS], buf3, FALSE);
+	sprintf(buf2, "<span foreground='%s'>%s</span>",
+		const_str("string_treeview_finances_expenses_fg"), buf3);
+	gtk_list_store_append(liststore, &iter);
+	gtk_list_store_set(liststore, &iter, 0, _("Transfers"), 1, buf, 2, buf2, -1);
+	balance += (in[MON_IN_TRANSFERS] + out[MON_OUT_TRANSFERS]);
+    }
+
+    for(i=0;i<MON_OUT_TRANSFERS;i++)
+	if(out[i] != 0)
+	{
+	    misc_print_grouped_int(out[i], buf3, FALSE);
+	    sprintf(buf, "<span foreground='%s'>%s</span>",
+		    const_str("string_treeview_finances_expenses_fg"), buf3);
+	    gtk_list_store_append(liststore, &iter);
+	    gtk_list_store_set(liststore, &iter, 0, out_titles[i], 1, "", 2, buf, -1);
+	    balance += out[i];
+	}    
+
+    misc_print_grouped_int(balance, buf, FALSE);
+    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_set(liststore, &iter, 0, _("Balance"), 1, "", 2, "", -1);
+    if(balance >= 0)
+	strcpy(buf2, buf);
+    else
+	sprintf(buf2, "<span foreground='%s'>%s</span>",
+		const_str("string_treeview_finances_expenses_fg"), buf);
+    gtk_list_store_set(liststore, &iter, 1 + (balance < 0), buf2, -1);
+
+    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_set(liststore, &iter, 0, "", 1, "", 2, "", -1);
+
+    misc_print_grouped_int(user->money, buf, FALSE);
+    gtk_list_store_append(liststore, &iter);
+    if(user->money >= 0)
+	strcpy(buf2, buf);
+    else
+	sprintf(buf2, "<span foreground='%s'>%s</span>",
+		const_str("string_treeview_finances_expenses_fg"), buf);
+    gtk_list_store_set(liststore, &iter, 0, _("Money"), 1, buf2, 2, "", -1);
+
+    misc_print_grouped_int(finance_team_drawing_credit_loan(user->tm, FALSE), buf, FALSE);
+    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_set(liststore, &iter, 0, _("Drawing credit"), 1, buf, 2, "", -1);
+    
+    if(user->debt != 0)
+    {
+	misc_print_grouped_int(user->debt, buf, FALSE);
+	sprintf(buf2, "<span foreground='%s'>%s</span>",
+		const_str("string_treeview_finances_expenses_fg"), buf);
+	gtk_list_store_append(liststore, &iter);
+	gtk_list_store_set(liststore, &iter, 0, _("Debt"), 1, "", 2, buf2, -1);
+    }	
+
+    return GTK_TREE_MODEL(liststore);
+}
+
+void
+treeview_set_up_finances(GtkTreeView *treeview)
+{
+    gint i;
+    GtkTreeViewColumn   *col;
+    GtkCellRenderer     *renderer;
+    gchar *titles[3] =
+	{"",
+	 _("Income"),
+	 _("Expenses")};
+
+    gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
+				GTK_SELECTION_NONE);
+
+    for(i=0;i<3;i++)
+    {
+	col = gtk_tree_view_column_new();
+	gtk_tree_view_column_set_title(col, titles[i]);
+	gtk_tree_view_append_column(treeview, col);
+	renderer = gtk_cell_renderer_text_new();
+	gtk_tree_view_column_pack_start(col, renderer, FALSE);
+	gtk_tree_view_column_add_attribute(col, renderer,
+					   "markup", i);
+
+	if(i == 0)
+	    g_object_set(renderer, "xalign", 1.0, NULL);
+    }
+}
+
+/** Show the finance overview of the user. */
+void
+treeview_show_finances(GtkTreeView *treeview, const User* user)
+{
+    GtkTreeModel *model = NULL;
+
+    treeview_clear(treeview);
+    gtk_tree_view_set_headers_visible(treeview, TRUE);
+    
+    treeview_set_up_finances(treeview);
+    model = treeview_create_finances(user);
     gtk_tree_view_set_model(treeview, model);
     g_object_unref(model);
 }

@@ -42,15 +42,15 @@ create_main_window (void)
   GtkWidget *trennlinie1;
   GtkWidget *separatormenuitem1;
   GtkWidget *start_editor;
-  GtkWidget *image217;
+  GtkWidget *image222;
   GtkWidget *start_update;
-  GtkWidget *image218;
+  GtkWidget *image223;
   GtkWidget *trennlinie2;
   GtkWidget *menu_quit;
   GtkWidget *menu_options;
   GtkWidget *menu_options_menu;
   GtkWidget *menu_preferences;
-  GtkWidget *image219;
+  GtkWidget *image224;
   GtkWidget *trennlinie7;
   GtkWidget *menu_notify;
   GtkWidget *menu_job_offers;
@@ -109,17 +109,17 @@ create_main_window (void)
   GtkWidget *menu_user_show_last_stats;
   GtkWidget *trennlinie9;
   GtkWidget *menu_next_user;
-  GtkWidget *image220;
+  GtkWidget *image225;
   GtkWidget *menu_previous_user;
-  GtkWidget *image221;
+  GtkWidget *image226;
   GtkWidget *menu_manage_users;
-  GtkWidget *image222;
+  GtkWidget *image227;
   GtkWidget *menu_finances_stadium;
   GtkWidget *menu_finances_stadium_menu;
-  GtkWidget *menu_increase_capacity;
-  GtkWidget *menu_increase_safety;
+  GtkWidget *menu_show_finances;
   GtkWidget *menu_get_loan;
   GtkWidget *menu_pay_loan;
+  GtkWidget *menu_show_stadium;
   GtkWidget *menu_help;
   GtkWidget *menu_help_menu;
   GtkWidget *menu_about;
@@ -263,17 +263,17 @@ create_main_window (void)
   gtk_widget_show (start_editor);
   gtk_container_add (GTK_CONTAINER (menu_file_menu), start_editor);
 
-  image217 = gtk_image_new_from_stock ("gtk-preferences", GTK_ICON_SIZE_MENU);
-  gtk_widget_show (image217);
-  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (start_editor), image217);
+  image222 = gtk_image_new_from_stock ("gtk-preferences", GTK_ICON_SIZE_MENU);
+  gtk_widget_show (image222);
+  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (start_editor), image222);
 
   start_update = gtk_image_menu_item_new_with_mnemonic (_("Start Bygfoot Online Update"));
   gtk_widget_show (start_update);
   gtk_container_add (GTK_CONTAINER (menu_file_menu), start_update);
 
-  image218 = gtk_image_new_from_stock ("gtk-refresh", GTK_ICON_SIZE_MENU);
-  gtk_widget_show (image218);
-  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (start_update), image218);
+  image223 = gtk_image_new_from_stock ("gtk-refresh", GTK_ICON_SIZE_MENU);
+  gtk_widget_show (image223);
+  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (start_update), image223);
 
   trennlinie2 = gtk_separator_menu_item_new ();
   gtk_widget_show (trennlinie2);
@@ -295,9 +295,9 @@ create_main_window (void)
   gtk_widget_show (menu_preferences);
   gtk_container_add (GTK_CONTAINER (menu_options_menu), menu_preferences);
 
-  image219 = gtk_image_new_from_stock ("gtk-preferences", GTK_ICON_SIZE_MENU);
-  gtk_widget_show (image219);
-  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_preferences), image219);
+  image224 = gtk_image_new_from_stock ("gtk-preferences", GTK_ICON_SIZE_MENU);
+  gtk_widget_show (image224);
+  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_preferences), image224);
 
   trennlinie7 = gtk_separator_menu_item_new ();
   gtk_widget_show (trennlinie7);
@@ -554,9 +554,9 @@ create_main_window (void)
                               GDK_F9, 0,
                               GTK_ACCEL_VISIBLE);
 
-  image220 = gtk_image_new_from_stock ("gtk-go-forward", GTK_ICON_SIZE_MENU);
-  gtk_widget_show (image220);
-  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_next_user), image220);
+  image225 = gtk_image_new_from_stock ("gtk-go-forward", GTK_ICON_SIZE_MENU);
+  gtk_widget_show (image225);
+  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_next_user), image225);
 
   menu_previous_user = gtk_image_menu_item_new_with_mnemonic (_("Previous user"));
   gtk_widget_show (menu_previous_user);
@@ -565,9 +565,9 @@ create_main_window (void)
                               GDK_F8, 0,
                               GTK_ACCEL_VISIBLE);
 
-  image221 = gtk_image_new_from_stock ("gtk-go-back", GTK_ICON_SIZE_MENU);
-  gtk_widget_show (image221);
-  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_previous_user), image221);
+  image226 = gtk_image_new_from_stock ("gtk-go-back", GTK_ICON_SIZE_MENU);
+  gtk_widget_show (image226);
+  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_previous_user), image226);
 
   menu_manage_users = gtk_image_menu_item_new_with_mnemonic (_("Manage users"));
   gtk_widget_show (menu_manage_users);
@@ -576,9 +576,9 @@ create_main_window (void)
                               GDK_F12, 0,
                               GTK_ACCEL_VISIBLE);
 
-  image222 = gtk_image_new_from_stock ("gtk-justify-fill", GTK_ICON_SIZE_MENU);
-  gtk_widget_show (image222);
-  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_manage_users), image222);
+  image227 = gtk_image_new_from_stock ("gtk-justify-fill", GTK_ICON_SIZE_MENU);
+  gtk_widget_show (image227);
+  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_manage_users), image227);
 
   menu_finances_stadium = gtk_menu_item_new_with_mnemonic (_("FinStad"));
   gtk_widget_show (menu_finances_stadium);
@@ -587,13 +587,12 @@ create_main_window (void)
   menu_finances_stadium_menu = gtk_menu_new ();
   gtk_menu_item_set_submenu (GTK_MENU_ITEM (menu_finances_stadium), menu_finances_stadium_menu);
 
-  menu_increase_capacity = gtk_menu_item_new_with_mnemonic (_("Increase capacity"));
-  gtk_widget_show (menu_increase_capacity);
-  gtk_container_add (GTK_CONTAINER (menu_finances_stadium_menu), menu_increase_capacity);
-
-  menu_increase_safety = gtk_menu_item_new_with_mnemonic (_("Increase safety"));
-  gtk_widget_show (menu_increase_safety);
-  gtk_container_add (GTK_CONTAINER (menu_finances_stadium_menu), menu_increase_safety);
+  menu_show_finances = gtk_menu_item_new_with_mnemonic (_("Show finances"));
+  gtk_widget_show (menu_show_finances);
+  gtk_container_add (GTK_CONTAINER (menu_finances_stadium_menu), menu_show_finances);
+  gtk_widget_add_accelerator (menu_show_finances, "activate", accel_group,
+                              GDK_f, 0,
+                              GTK_ACCEL_VISIBLE);
 
   menu_get_loan = gtk_menu_item_new_with_mnemonic (_("Get loan"));
   gtk_widget_show (menu_get_loan);
@@ -602,6 +601,13 @@ create_main_window (void)
   menu_pay_loan = gtk_menu_item_new_with_mnemonic (_("Pay loan"));
   gtk_widget_show (menu_pay_loan);
   gtk_container_add (GTK_CONTAINER (menu_finances_stadium_menu), menu_pay_loan);
+
+  menu_show_stadium = gtk_menu_item_new_with_mnemonic (_("Show stadium"));
+  gtk_widget_show (menu_show_stadium);
+  gtk_container_add (GTK_CONTAINER (menu_finances_stadium_menu), menu_show_stadium);
+  gtk_widget_add_accelerator (menu_show_stadium, "activate", accel_group,
+                              GDK_f, GDK_CONTROL_MASK,
+                              GTK_ACCEL_VISIBLE);
 
   menu_help = gtk_menu_item_new_with_mnemonic (_("_Help"));
   gtk_widget_show (menu_help);
@@ -1157,17 +1163,17 @@ create_main_window (void)
   g_signal_connect ((gpointer) menu_finances_stadium, "activate",
                     G_CALLBACK (on_menu_finances_stadium_activate),
                     NULL);
-  g_signal_connect ((gpointer) menu_increase_capacity, "activate",
-                    G_CALLBACK (on_menu_increase_capacity_activate),
-                    NULL);
-  g_signal_connect ((gpointer) menu_increase_safety, "activate",
-                    G_CALLBACK (on_menu_increase_safety_activate),
+  g_signal_connect ((gpointer) menu_show_finances, "activate",
+                    G_CALLBACK (on_menu_show_finances_activate),
                     NULL);
   g_signal_connect ((gpointer) menu_get_loan, "activate",
                     G_CALLBACK (on_menu_get_loan_activate),
                     NULL);
   g_signal_connect ((gpointer) menu_pay_loan, "activate",
                     G_CALLBACK (on_menu_pay_loan_activate),
+                    NULL);
+  g_signal_connect ((gpointer) menu_show_stadium, "activate",
+                    G_CALLBACK (on_menu_show_stadium_activate),
                     NULL);
   g_signal_connect ((gpointer) menu_about, "activate",
                     G_CALLBACK (on_menu_about_activate),
@@ -1243,15 +1249,15 @@ create_main_window (void)
   GLADE_HOOKUP_OBJECT (main_window, trennlinie1, "trennlinie1");
   GLADE_HOOKUP_OBJECT (main_window, separatormenuitem1, "separatormenuitem1");
   GLADE_HOOKUP_OBJECT (main_window, start_editor, "start_editor");
-  GLADE_HOOKUP_OBJECT (main_window, image217, "image217");
+  GLADE_HOOKUP_OBJECT (main_window, image222, "image222");
   GLADE_HOOKUP_OBJECT (main_window, start_update, "start_update");
-  GLADE_HOOKUP_OBJECT (main_window, image218, "image218");
+  GLADE_HOOKUP_OBJECT (main_window, image223, "image223");
   GLADE_HOOKUP_OBJECT (main_window, trennlinie2, "trennlinie2");
   GLADE_HOOKUP_OBJECT (main_window, menu_quit, "menu_quit");
   GLADE_HOOKUP_OBJECT (main_window, menu_options, "menu_options");
   GLADE_HOOKUP_OBJECT (main_window, menu_options_menu, "menu_options_menu");
   GLADE_HOOKUP_OBJECT (main_window, menu_preferences, "menu_preferences");
-  GLADE_HOOKUP_OBJECT (main_window, image219, "image219");
+  GLADE_HOOKUP_OBJECT (main_window, image224, "image224");
   GLADE_HOOKUP_OBJECT (main_window, trennlinie7, "trennlinie7");
   GLADE_HOOKUP_OBJECT (main_window, menu_notify, "menu_notify");
   GLADE_HOOKUP_OBJECT (main_window, menu_job_offers, "menu_job_offers");
@@ -1306,17 +1312,17 @@ create_main_window (void)
   GLADE_HOOKUP_OBJECT (main_window, menu_user_show_last_stats, "menu_user_show_last_stats");
   GLADE_HOOKUP_OBJECT (main_window, trennlinie9, "trennlinie9");
   GLADE_HOOKUP_OBJECT (main_window, menu_next_user, "menu_next_user");
-  GLADE_HOOKUP_OBJECT (main_window, image220, "image220");
+  GLADE_HOOKUP_OBJECT (main_window, image225, "image225");
   GLADE_HOOKUP_OBJECT (main_window, menu_previous_user, "menu_previous_user");
-  GLADE_HOOKUP_OBJECT (main_window, image221, "image221");
+  GLADE_HOOKUP_OBJECT (main_window, image226, "image226");
   GLADE_HOOKUP_OBJECT (main_window, menu_manage_users, "menu_manage_users");
-  GLADE_HOOKUP_OBJECT (main_window, image222, "image222");
+  GLADE_HOOKUP_OBJECT (main_window, image227, "image227");
   GLADE_HOOKUP_OBJECT (main_window, menu_finances_stadium, "menu_finances_stadium");
   GLADE_HOOKUP_OBJECT (main_window, menu_finances_stadium_menu, "menu_finances_stadium_menu");
-  GLADE_HOOKUP_OBJECT (main_window, menu_increase_capacity, "menu_increase_capacity");
-  GLADE_HOOKUP_OBJECT (main_window, menu_increase_safety, "menu_increase_safety");
+  GLADE_HOOKUP_OBJECT (main_window, menu_show_finances, "menu_show_finances");
   GLADE_HOOKUP_OBJECT (main_window, menu_get_loan, "menu_get_loan");
   GLADE_HOOKUP_OBJECT (main_window, menu_pay_loan, "menu_pay_loan");
+  GLADE_HOOKUP_OBJECT (main_window, menu_show_stadium, "menu_show_stadium");
   GLADE_HOOKUP_OBJECT (main_window, menu_help, "menu_help");
   GLADE_HOOKUP_OBJECT (main_window, menu_help_menu, "menu_help_menu");
   GLADE_HOOKUP_OBJECT (main_window, menu_about, "menu_about");

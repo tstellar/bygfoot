@@ -725,8 +725,7 @@ fixture_get_week_round_list(gint clid, gint week_number, gint week_round_number)
 void
 fixture_result_to_buf(const Fixture *fix, gchar *buf)
 {
-    gchar local_buf[SMALL],
-	local_buf2[SMALL];
+    gchar local_buf[SMALL];
 
     if(fix->attendance < 0)
 	strcpy(buf, "-- : --");
@@ -740,10 +739,9 @@ fixture_result_to_buf(const Fixture *fix, gchar *buf)
 	    strcat(local_buf, " e.t.");
 
 	if(fix->second_leg)
-	{
-	    fixture_result_to_buf(fixture_get_first_leg(fix), local_buf2);
-	    sprintf(buf, "%s\n(%s)", local_buf, local_buf2);
-	}
+	    sprintf(buf, "%s (%d - %d)", local_buf,
+		    fixture_get_first_leg(fix)->result[1][0],
+		    fixture_get_first_leg(fix)->result[0][0]);
 	else
 	    strcpy(buf, local_buf);
     }    

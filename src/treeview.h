@@ -128,4 +128,13 @@ void
 treeview_get_table_element_colours(const Table *table, gint idx, gchar *colour_fg, 
 				   gchar *colour_bg, gboolean user);
 
+void
+treeview_show_finances(GtkTreeView *treeview, const User* user);
+
+void
+treeview_set_up_finances(GtkTreeView *treeview);
+
+GtkTreeModel*
+treeview_create_finances(const User* user);
+
 #endif

@@ -226,14 +226,6 @@ on_menu_finances_stadium_activate      (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
-on_menu_increase_capacity_activate     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_increase_safety_activate       (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
 on_menu_get_loan_activate              (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
@@ -297,4 +289,12 @@ on_button_cl_back_clicked              (GtkButton       *button,
 
 void
 on_button_cl_forward_clicked           (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_menu_show_finances_activate         (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_menu_show_stadium_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data);

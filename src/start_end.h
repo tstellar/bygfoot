@@ -42,4 +42,10 @@ start_week_update_user_teams(void);
 void
 start_week_round_update_user_teams(void);
 
+void
+start_week_update_user_finances(void);
+
+void
+start_week_update_users(void);
+
 #endif

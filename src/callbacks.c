@@ -513,22 +513,6 @@ on_menu_finances_stadium_activate      (GtkMenuItem     *menuitem,
 
 
 void
-on_menu_increase_capacity_activate     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_increase_safety_activate       (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
 on_menu_get_loan_activate              (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -674,3 +658,20 @@ on_eventbox_boost_button_press_event   (GtkWidget       *widget,
 
   return FALSE;
 }
+
+void
+on_menu_show_finances_activate         (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    treeview_show_finances(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")),
+			   &usr(current_user));
+}
+
+
+void
+on_menu_show_stadium_activate          (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+
+}
+

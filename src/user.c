@@ -90,10 +90,13 @@ user_set_up_finances(User *user)
 {
     gint i;
 
-    for(i=0; i<FIN_END;i++)
-	user->finances[i] = 0;
-
-    user->finances[FIN_MONEY] = 
+    for(i=0; i<MON_OUT_END;i++)
+	user->money_out[0][i] = user->money_out[1][i] = 0;
+    for(i=0; i<MON_IN_END;i++)
+	user->money_in[0][i] = user->money_in[1][i] = 0;
+    
+    user->debt = 0;
+    user->money = 
 	math_round_integer(user->tm->stadium.capacity * 
 			   math_rndi(const_int("int_initial_money_lower"),
 				     const_int("int_initial_money_upper")), 2);
@@ -146,8 +149,8 @@ user_games_in_week_round(gint week_number, gint week_round_number)
 	for(i=0;i<cps->len;i++)
 	    for(j=0;j<cp(i).fixtures->len;j++)
 		if(fixture_user_team_involved(&g_array_index(cp(i).fixtures, Fixture, j)) != -1 &&
-		   g_array_index(lig(i).fixtures, Fixture, j).week_number == week_number &&
-		   g_array_index(lig(i).fixtures, Fixture, j).week_round_number == week_round_number)
+		   g_array_index(cp(i).fixtures, Fixture, j).week_number == week_number &&
+		   g_array_index(cp(i).fixtures, Fixture, j).week_round_number == week_round_number)
 		    return TRUE;
     }
 

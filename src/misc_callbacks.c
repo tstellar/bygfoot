@@ -4,6 +4,7 @@
 #include "free.h"
 #include "game_gui.h"
 #include "live_game.h"
+#include "main.h"
 #include "misc_callback_func.h"
 #include "misc_callbacks.h"
 #include "option.h"
@@ -39,8 +40,7 @@ void
 on_team_selection_cancel_clicked       (GtkButton       *button,
                                         gpointer         user_data)
 {
-    free_memory();
-    gtk_main_quit();
+    main_exit_program(EXIT_OK, NULL);
 }
 
 
@@ -50,8 +50,7 @@ on_team_selection_tv_row_activated     (GtkTreeView     *treeview,
                                         GtkTreeViewColumn *column,
                                         gpointer         user_data)
 {
-    if(GTK_WIDGET_IS_SENSITIVE(lookup_widget(window.startup, "team_selection_ok")))
-	misc_callback_start_game();
+    on_button_add_player_clicked(NULL, NULL);
 }
 
 

@@ -183,7 +183,7 @@ game_gui_set_main_window_header(void)
     gui_label_set_text_from_int(label_week, week, FALSE);
     gui_label_set_text_from_int(label_round, week_round, FALSE);
     gui_label_set_text_from_int(label_rank, week_round, FALSE);
-    gui_label_set_text_from_int(label_money, usr(current_user).finances[FIN_MONEY], FALSE);
+    gui_label_set_text_from_int(label_money, usr(current_user).money, FALSE);
     gui_label_set_text_from_int(label_rank, 
 				team_rank(usr(current_user).tm, usr(current_user).tm->clid), FALSE);
 

@@ -37,4 +37,7 @@ league_cup_get_previous_fixture(gint clid, gint week_number, gint week_round_num
 gint
 league_get_index(gint clid);
 
+gint
+league_cup_average_capacity(gint clid);
+
 #endif

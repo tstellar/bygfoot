@@ -6,6 +6,28 @@
 #include "team_struct.h"
 #include "live_game_struct.h"
 
+/** Indices for the money_in array. */
+enum MonIn
+{
+    MON_IN_PRIZE = 0,
+    MON_IN_TICKET,
+    MON_IN_TRANSFERS,
+    MON_IN_END
+};
+
+/** Indices for the money_out array. */
+enum MonOut
+{
+    MON_OUT_WAGE = 0,
+    MON_OUT_PHYSIO,
+    MON_OUT_SCOUT,
+    MON_OUT_JOURNEY,
+    MON_OUT_STADIUM_IMPROVEMENT,
+    MON_OUT_STADIUM_BILLS,
+    MON_OUT_TRANSFERS,
+    MON_OUT_END
+};
+
 /** A structure representing a human player. */
 typedef struct
 {
@@ -15,8 +37,11 @@ typedef struct
     Team *tm;
     /** User options. */
     GArray *options;
-    /** The user's finances. @see #FinanceValue */
-    gint finances[FIN_END];
+    /** The user's money, debt, income and expenses.
+	We have double arrays to store information about
+	the current and the past week. */
+    gint money, debt, money_in[2][MON_IN_END],
+	money_out[2][MON_OUT_END];
     /** The attributes shown in the player lists.
 	@see #PlayerListAttribute
 	@see #PlayerListAttributeValue */
