@@ -613,6 +613,9 @@ int_transfer_contract_upper 4
 # or below their peak age for longer contracts than 1 year
 float_contract_scale_factor 300
 
+# max. number of offers when a new contract is negotiated
+int_contract_max_offers 3
+
 #### colours and icons
 
 # live game scale configuration
@@ -731,3 +734,6 @@ string_treeview_opponent_skill_negative_fg darkgreen
 # background of the home column in the league results
 string_treeview_league_results_away_bg lightgrey
 string_treeview_league_results_away_fg black
+
+# foreground of own team bar in the opponent preview
+string_treeview_opponent_value_colour_fg darkgreen

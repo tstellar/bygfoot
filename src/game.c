@@ -1102,6 +1102,7 @@ game_get_max_values(gfloat max_values[3])
 
     for(i=0;i<3;i++)
     {
+	max_values[i] = 0;
 	for(j=1;j<11;j++)
 	{
 	    pl.cpos = player_get_position_from_structure(442, j);

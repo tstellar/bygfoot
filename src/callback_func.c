@@ -287,9 +287,15 @@ callback_offer_new_contract(gint idx)
 	game_gui_print_message(_("You can't offer a new contract if the old one is still above 2 years."));
 	return;
     }
+    else if(pl->offers == const_int("int_contract_max_offers"))
+    {
+	game_gui_print_message(_("The player won't negotiate with you anymore."));
+	return;
+    }
 
     stat0 = STATUS_CONTRACT_OFFER;
     stat1 = player_assign_wage(pl);
+    statp = (gpointer)pl;
 
     if(pl->age < pl->peak_age)
 	stat1 = MAX(stat1, pl->wage);
@@ -298,7 +304,8 @@ callback_offer_new_contract(gint idx)
 
     window_create(WINDOW_CONTRACT);
 
-    sprintf(buf, "You are negotiating with %s about a new contract. Pay attention to what you're doing; if you don't come to terms with him within 3 offers, he's going to leave your team after his current contract expires (unless you sell him).\nYour scout's recommendations are preset:", pl->name->str);
+    sprintf(buf, "You are negotiating with %s about a new contract. Pay attention to what you're doing; if you don't come to terms with him within %d offers, he's going to leave your team after his current contract expires (unless you sell him).\nYour scout's recommendations are preset:", pl->name->str,
+	    const_int("int_contract_max_offers"));
     gtk_label_set_text(GTK_LABEL(lookup_widget(window.contract, "label_contract")), buf);
 
     for(i=0;i<4;i++)

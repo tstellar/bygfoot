@@ -1706,7 +1706,7 @@ void
 treeview_create_next_opponent_values(GtkListStore *liststore, const Fixture *fix)
 {
     gint i, j;
-    gchar buf[SMALL];
+    gchar buf[SMALL], buf2[SMALL];
     gfloat max_values[3],
 	team_values[2][GAME_TEAM_VALUE_END];
     gchar *titles[3] =
@@ -1720,10 +1720,17 @@ treeview_create_next_opponent_values(GtkListStore *liststore, const Fixture *fix
 
     for(i=0;i<3;i++)
     {
-	strcpy(buf, "");
+	strcpy(buf2, "");
 	for(j=0;j<(gint)rint((gfloat)const_int("int_treeview_max_pipes") *
 			     (team_values[fix->teams[0] == current_user.tm][i] / max_values[i]));j++)
+	    strcat(buf2, "|");
+
+	sprintf(buf, "%s\n<span foreground='%s'>", buf2,
+		const_str("string_treeview_opponent_value_colour_fg"));
+	for(j=0;j<(gint)rint((gfloat)const_int("int_treeview_max_pipes") *
+			     (team_values[fix->teams[0] != current_user.tm][i] / max_values[i]));j++)
 	    strcat(buf, "|");
+	strcat(buf, "</span>");
 
 	gtk_list_store_append(liststore, &iter);
 	gtk_list_store_set(liststore, &iter, 0, titles[i], 1, buf, -1);
