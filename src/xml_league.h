@@ -2,7 +2,6 @@
 #define XML_LEAGUE_H
 
 #include "bygfoot.h"
-#include "team_struct.h"
 
 void
 xml_league_read_start_element (GMarkupParseContext *context,

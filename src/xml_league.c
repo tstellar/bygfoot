@@ -134,6 +134,7 @@ xml_league_read_start_element (GMarkupParseContext *context,
     else if(strcmp(element_name, TAG_TEAM) == 0)
     {
 	new_team = team_new();
+	g_string_printf(new_team.symbol, "%s", new_league.symbol->str);
 	new_team.clid = new_league.id;
 	new_team.id = team_cnt++;
 	g_array_append_val(new_league.teams, new_team);	
@@ -158,6 +159,8 @@ xml_league_read_end_element    (GMarkupParseContext *context,
 				gpointer             user_data,
 				GError             **error)
 {
+    TableElement new_table_element;
+
     if(strcmp(element_name, TAG_NAME) == 0 ||
        strcmp(element_name, TAG_SHORT_NAME) == 0 ||
        strcmp(element_name, TAG_SID) == 0 ||
@@ -181,7 +184,12 @@ xml_league_read_end_element    (GMarkupParseContext *context,
 	    strcmp(element_name, TAG_PROM_REL_ELEMENT_DEST_SID) == 0)
 	state = STATE_PROM_REL_ELEMENT;
     else if(strcmp(element_name, TAG_TEAM) == 0)
+    {
 	state = STATE_TEAMS;
+	new_table_element = league_table_element_new(
+	    &g_array_index(new_league.teams, Team, new_league.teams->len - 1));
+	g_array_append_val(new_league.table.elements, new_table_element);
+    }
     else if(strcmp(element_name, TAG_TEAM_NAME) == 0)
 	state = STATE_TEAM;
     else if(strcmp(element_name, TAG_LEAGUE) != 0)
@@ -211,7 +219,10 @@ xml_league_read_text         (GMarkupParseContext *context,
     value = (gint)g_ascii_strtod(buf, NULL);
 
     if(state == STATE_NAME)
+    {
 	g_string_printf(new_league.name, "%s", buf);
+	g_string_printf(new_league.table.name, "%s", buf);
+    }
     else if(state == STATE_SHORT_NAME)
 	g_string_printf(new_league.short_name, "%s", buf);
     else if(state == STATE_SID)
@@ -286,7 +297,7 @@ xml_league_read(const gchar *league_name, GArray *leagues)
     if(!g_file_get_contents(file_name, &file_contents, &length, &error))
     {
 	g_warning("xml_league_read: error reading file %s\n", file_name);
-	misc_print_error(error, FALSE);
+	misc_print_error(&error, FALSE);
 	return;
     }
 
@@ -306,6 +317,6 @@ xml_league_read(const gchar *league_name, GArray *leagues)
     else
     {
 	g_critical("xml_league_read: error parsing file %s\n", buf);
-	misc_print_error(error, TRUE);
+	misc_print_error(&error, TRUE);
     }
 }

@@ -1,4 +1,5 @@
 #include "cup.h"
+#include "file.h"
 #include "fixture.h"
 #include "league.h"
 #include "main.h"
@@ -10,13 +11,12 @@
 #include "variables.h"
 #include "xml_name.h"
 
-
 /** Generate the teams etc. */
 void
 start_new_game(void)
 {
-    start_write_variables();
     xml_name_read(PLAYER_NAMES_FILE, -1);
+    start_write_variables();
     start_generate_league_teams();
     start_new_season();
     xml_name_read(PLAYER_NAMES_FILE, 1000);
@@ -26,7 +26,16 @@ start_new_game(void)
 void
 start_new_season(void)
 {
+    gint i;
+
+    xml_name_read(PLAYER_NAMES_FILE, 1000);
     start_load_cup_teams();
+
+    for(i=0;i<ligs->len;i++)
+	fixture_write_league_fixtures(&lig(i));
+
+    for(i=0;i<cps->len;i++)
+	fixture_write_cup_fixtures(&cp(i));
 }
 
 /** Fill some global variables with default values at the
@@ -34,11 +43,13 @@ start_new_season(void)
 void
 start_write_variables(void)
 {
+    gint i;
+
     season = week = week_round = 1;
     scout = physio = QUALITY_AVERAGE;
     
-    fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));
-    transfer_list = g_array_new(FALSE, FALSE, sizeof(TransferPlayer));        
+    transfer_list = g_array_new(FALSE, FALSE, sizeof(TransferPlayer));
+    file_load_conf_file();
 }
 
 /** Generate the teams in the leagues. */
@@ -49,10 +60,8 @@ start_generate_league_teams(void)
     Team *tm;
 
     if(ligs->len == 0)
-    {
-	g_warning("start_generate_league_teams: no leagues found. there must be at least one league in the game.\n");
-	main_exit_program(EXIT_NO_LEAGUES);
-    }
+	main_exit_program(EXIT_NO_LEAGUES,
+			  "start_generate_league_teams: no leagues found. there must be at least one league in the game.\n");
 
     for(i=0;i<ligs->len;i++)
     {
@@ -81,19 +90,20 @@ start_load_cup_teams(void)
 	    cup_load_choose_teams(&cp(i));
 	    cup_load_choose_team_user(&cp(i));
 
-	    for(j=0;j<cp(i).teams->len;j++)
-	    {
-		printf("%d %s clid %d id %d\n", j,
-		       g_array_index(cp(i).teams, Team, j).name->str,
-		       g_array_index(cp(i).teams, Team, j).clid,
-		       g_array_index(cp(i).teams, Team, j).id);
-		printf("%s %d %d\n", 
-		       g_array_index(g_array_index(cp(i).teams, Team, j).players,
-				     Player, 0).name->str,
-		       g_array_index(g_array_index(cp(i).teams, Team, j).players,
-				     Player, 0).skill,
-		       g_array_index(g_array_index(cp(i).teams, Team, j).players,
-				     Player, 0).talent);
-	    }
+	    /*d*/
+/* 	    for(j=0;j<cp(i).teams->len;j++) */
+/* 	    { */
+/* 		printf("%d %s clid %d id %d\n", j, */
+/* 		       g_array_index(cp(i).teams, Team, j).name->str, */
+/* 		       g_array_index(cp(i).teams, Team, j).clid, */
+/* 		       g_array_index(cp(i).teams, Team, j).id); */
+/* 	    } */
+/* 	    for(j=0;j<cp(i).user_teams->len;j++) */
+/* 	    { */
+/* 		printf("%d %s clid %d id %d\n", j, */
+/* 		       ((Team*)g_ptr_array_index(cp(i).user_teams, j))->name->str, */
+/* 		       ((Team*)g_ptr_array_index(cp(i).user_teams, j))->clid, */
+/* 		       ((Team*)g_ptr_array_index(cp(i).user_teams, j))->id); */
+/* 	    } */
 	}
 }

@@ -1,10 +1,12 @@
 #include "misc_callback_func.h"
 #include "start_end.h"
 #include "support.h"
+#include "team.h"
 #include "treeview.h"
+#include "user.h"
 #include "variables.h"
+#include "window.h"
 #include "xml_country.h"
-
 
 /* show the teams from the leagues in the country in
    the startup window */
@@ -56,9 +58,17 @@ misc_callback_start_game(GtkWidget *widget)
 {
     GtkTreeView *treeview =
 	GTK_TREE_VIEW(lookup_widget(widget, "treeview_startup"));
+    GtkWidget *window_startup =
+	lookup_widget(widget, "window_startup");
     
-    my_team_clid = treeview_get_index(treeview, 0);
-    my_team_id = treeview_get_index(treeview, 1);
-
+    my_team = treeview_get_pointer(treeview, 2);
     start_new_game();
+
+    user_set_up_my_team_new_game(widget);
+
+    window_destroy(&window_startup);
+
+    window_show_main();
+    
+    treeview_show_user_player_list(1);
 }

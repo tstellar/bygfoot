@@ -1,6 +1,7 @@
 #ifndef LEAGUE_STRUCT_H
 #define LEAGUE_STRUCT_H
 
+#include "bygfoot.h"
 #include "table_struct.h"
 
 /**
@@ -67,6 +68,8 @@ typedef struct
     /** League table.
 	@see Table */
     Table table;
+    /** The fixtures of a season for the league. */
+    GArray *fixtures;
 } League;
 
 #endif

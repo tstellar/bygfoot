@@ -5,11 +5,8 @@
 #include "player_struct.h"
 #include "team_struct.h"
 
-/** Highest skill and talent a player can have.  */
-#define CONSTANT_PLAYER_MAX_SKILL 99
-
 Player
-player_new(const Team *tm, gint average_skill);
+player_new(Team *tm, gint average_skill);
 
 gint
 player_new_id(const GArray *players);
@@ -34,5 +31,23 @@ player_copy(const Player *source, Player *dest);
 
 void
 player_append_to_array(const Player *pl, Team *tm);
+
+void
+player_remove_from_team(Team *tm, gint player_number);
+
+gint
+player_all_games_goals(const Player *pl, gboolean goals);
+
+gint
+player_all_cards(const Player *pl);
+
+Player*
+player_of_ids(gint clid, gint team_id, gint id);
+
+Player*
+player_of(const Team *tm, gint number);
+
+Player*
+player_of_id(const Team *tm, gint id);
 
 #endif

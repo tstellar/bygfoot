@@ -107,7 +107,7 @@ xml_name_read(const gchar *names_file, gint number_of_names)
     if(!g_file_get_contents(file_name, &file_contents, &length, &error))
     {
 	g_warning("xml_name_read: error reading file %s\n", file_name);
-	misc_print_error(error, FALSE);
+	misc_print_error(&error, FALSE);
 	return;
     }
     
@@ -126,7 +126,7 @@ xml_name_read(const gchar *names_file, gint number_of_names)
     else
     {
 	g_critical("xml_name_read: error parsing file %s\n", buf);
-	misc_print_error(error, TRUE);
+	misc_print_error(&error, TRUE);
     }
 
     if(number_of_names == -1)

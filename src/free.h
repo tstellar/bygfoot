@@ -4,11 +4,15 @@
 #include "bygfoot.h"
 #include "cup_struct.h"
 #include "league_struct.h"
+#include "live_game_struct.h"
 #include "player_struct.h"
 #include "team_struct.h"
 
 void
 free_g_array(GArray **array);
+
+void
+free_g_ptr_array(GPtrArray **array);
 
 void
 free_g_string(GString **string);
@@ -38,6 +42,9 @@ void
 free_cup(Cup *cup);
 
 void
+free_cup_tables(GArray *tables);
+
+void
 free_cup_choose_team(CupChooseTeam *cup_choose_team);
 
 void
@@ -48,5 +55,8 @@ free_g_string_array(GPtrArray **array);
 
 void
 free_player(Player *pl);
+
+void
+free_live_game(LiveGame *match);
 
 #endif

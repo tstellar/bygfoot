@@ -41,11 +41,6 @@ create_window_startup (void)
   GSList *team_selection_radio1_group = NULL;
   GtkWidget *team_selection_radio2;
   GtkWidget *team_selection_radio3;
-  GtkWidget *eventbox2;
-  GtkWidget *hbox50;
-  GtkWidget *radiobutton_cl;
-  GtkWidget *radiobutton_cwc;
-  GtkWidget *radiobutton_uefa;
   GtkWidget *hseparator11;
   GtkWidget *vbox34;
   GtkWidget *label69;
@@ -157,38 +152,6 @@ create_window_startup (void)
   gtk_container_set_border_width (GTK_CONTAINER (team_selection_radio3), 3);
   gtk_radio_button_set_group (GTK_RADIO_BUTTON (team_selection_radio3), team_selection_radio1_group);
   team_selection_radio1_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (team_selection_radio3));
-
-  eventbox2 = gtk_event_box_new ();
-  gtk_widget_show (eventbox2);
-  gtk_box_pack_start (GTK_BOX (vbox2), eventbox2, FALSE, FALSE, 0);
-
-  hbox50 = gtk_hbox_new (FALSE, 0);
-  gtk_widget_show (hbox50);
-  gtk_container_add (GTK_CONTAINER (eventbox2), hbox50);
-
-  radiobutton_cl = gtk_radio_button_new_with_mnemonic (NULL, _("CL"));
-  gtk_widget_show (radiobutton_cl);
-  gtk_box_pack_start (GTK_BOX (hbox50), radiobutton_cl, FALSE, FALSE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (radiobutton_cl), 3);
-  gtk_tooltips_set_tip (tooltips, radiobutton_cl, _("Play only in Champions' League / Copa Libertadores"), NULL);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton_cl), team_selection_radio1_group);
-  team_selection_radio1_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton_cl));
-
-  radiobutton_cwc = gtk_radio_button_new_with_mnemonic (NULL, _("CWC / Conm."));
-  gtk_widget_show (radiobutton_cwc);
-  gtk_box_pack_start (GTK_BOX (hbox50), radiobutton_cwc, FALSE, FALSE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (radiobutton_cwc), 3);
-  gtk_tooltips_set_tip (tooltips, radiobutton_cwc, _("Play only in Cup Winners' Cup / Copa Conmebol"), NULL);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton_cwc), team_selection_radio1_group);
-  team_selection_radio1_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton_cwc));
-
-  radiobutton_uefa = gtk_radio_button_new_with_mnemonic (NULL, _("UEFA / Sul-Americana"));
-  gtk_widget_show (radiobutton_uefa);
-  gtk_box_pack_start (GTK_BOX (hbox50), radiobutton_uefa, FALSE, FALSE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (radiobutton_uefa), 3);
-  gtk_tooltips_set_tip (tooltips, radiobutton_uefa, _("Play only in UEFA Cup / Copa Sul-Americana"), NULL);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton_uefa), team_selection_radio1_group);
-  team_selection_radio1_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton_uefa));
 
   hseparator11 = gtk_hseparator_new ();
   gtk_widget_show (hseparator11);
@@ -431,11 +394,6 @@ create_window_startup (void)
   GLADE_HOOKUP_OBJECT (window_startup, team_selection_radio1, "team_selection_radio1");
   GLADE_HOOKUP_OBJECT (window_startup, team_selection_radio2, "team_selection_radio2");
   GLADE_HOOKUP_OBJECT (window_startup, team_selection_radio3, "team_selection_radio3");
-  GLADE_HOOKUP_OBJECT (window_startup, eventbox2, "eventbox2");
-  GLADE_HOOKUP_OBJECT (window_startup, hbox50, "hbox50");
-  GLADE_HOOKUP_OBJECT (window_startup, radiobutton_cl, "radiobutton_cl");
-  GLADE_HOOKUP_OBJECT (window_startup, radiobutton_cwc, "radiobutton_cwc");
-  GLADE_HOOKUP_OBJECT (window_startup, radiobutton_uefa, "radiobutton_uefa");
   GLADE_HOOKUP_OBJECT (window_startup, hseparator11, "hseparator11");
   GLADE_HOOKUP_OBJECT (window_startup, vbox34, "vbox34");
   GLADE_HOOKUP_OBJECT (window_startup, label69, "label69");
@@ -478,6 +436,7 @@ create_window_startup (void)
   GLADE_HOOKUP_OBJECT (window_startup, label5, "label5");
   GLADE_HOOKUP_OBJECT_NO_REF (window_startup, tooltips, "tooltips");
 
+  gtk_widget_grab_focus (treeview_startup);
   gtk_window_add_accel_group (GTK_WINDOW (window_startup), accel_group);
 
   return window_startup;
@@ -852,114 +811,176 @@ create_font_sel_window (void)
 }
 
 GtkWidget*
-create_live_window (void)
+create_window_live (void)
 {
-  GtkWidget *live_window;
-  GtkWidget *vbox23;
-  GtkWidget *hscale_tendency;
-  GtkWidget *scrolledwindow_live;
-  GtkWidget *treeview_live;
+  GtkWidget *window_live;
+  GtkWidget *vbox36;
   GtkWidget *progressbar_live;
   GtkWidget *hruler_live;
-  GtkWidget *vbox26;
-  GtkWidget *check_live_window_show_live;
-  GtkWidget *check_live_window_tendency;
+  GtkWidget *hbox50;
+  GtkWidget *vbox38;
+  GtkWidget *scrolledwindow8;
+  GtkWidget *treeview_result;
+  GtkWidget *scrolledwindow9;
+  GtkWidget *treeview_commentary;
+  GtkWidget *hbox48;
+  GtkWidget *button_pause;
+  GtkWidget *alignment16;
+  GtkWidget *hbox51;
+  GtkWidget *image56;
+  GtkWidget *label72;
+  GtkWidget *button_resume;
+  GtkWidget *alignment17;
+  GtkWidget *hbox52;
+  GtkWidget *image57;
+  GtkWidget *label73;
   GtkWidget *button_live_close;
   GtkAccelGroup *accel_group;
-  GtkTooltips *tooltips;
-
-  tooltips = gtk_tooltips_new ();
 
   accel_group = gtk_accel_group_new ();
 
-  live_window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  gtk_container_set_border_width (GTK_CONTAINER (live_window), 6);
-  gtk_window_set_title (GTK_WINDOW (live_window), _("Live game"));
-  gtk_window_set_position (GTK_WINDOW (live_window), GTK_WIN_POS_CENTER);
-  gtk_window_set_default_size (GTK_WINDOW (live_window), 450, 550);
+  window_live = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_container_set_border_width (GTK_CONTAINER (window_live), 6);
+  gtk_window_set_title (GTK_WINDOW (window_live), _("Live game"));
+  gtk_window_set_position (GTK_WINDOW (window_live), GTK_WIN_POS_CENTER);
+  gtk_window_set_default_size (GTK_WINDOW (window_live), 450, 550);
 
-  vbox23 = gtk_vbox_new (FALSE, 0);
-  gtk_widget_show (vbox23);
-  gtk_container_add (GTK_CONTAINER (live_window), vbox23);
-
-  hscale_tendency = gtk_hscale_new (GTK_ADJUSTMENT (gtk_adjustment_new (0.5, 0, 1, 0, 0, 0)));
-  gtk_widget_show (hscale_tendency);
-  gtk_box_pack_start (GTK_BOX (vbox23), hscale_tendency, FALSE, FALSE, 0);
-  gtk_scale_set_draw_value (GTK_SCALE (hscale_tendency), FALSE);
-
-  scrolledwindow_live = gtk_scrolled_window_new (NULL, NULL);
-  gtk_widget_show (scrolledwindow_live);
-  gtk_box_pack_start (GTK_BOX (vbox23), scrolledwindow_live, TRUE, TRUE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (scrolledwindow_live), 2);
-  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow_live), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow_live), GTK_SHADOW_IN);
-
-  treeview_live = gtk_tree_view_new ();
-  gtk_widget_show (treeview_live);
-  gtk_container_add (GTK_CONTAINER (scrolledwindow_live), treeview_live);
+  vbox36 = gtk_vbox_new (FALSE, 0);
+  gtk_widget_show (vbox36);
+  gtk_container_add (GTK_CONTAINER (window_live), vbox36);
 
   progressbar_live = gtk_progress_bar_new ();
   gtk_widget_show (progressbar_live);
-  gtk_box_pack_start (GTK_BOX (vbox23), progressbar_live, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (vbox36), progressbar_live, FALSE, FALSE, 0);
 
   hruler_live = gtk_hruler_new ();
   gtk_widget_show (hruler_live);
-  gtk_box_pack_start (GTK_BOX (vbox23), hruler_live, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (vbox36), hruler_live, FALSE, TRUE, 0);
   gtk_widget_set_sensitive (hruler_live, FALSE);
-  gtk_ruler_set_range (GTK_RULER (hruler_live), 0, 120, 55.0685, 0);
+  gtk_ruler_set_range (GTK_RULER (hruler_live), 0, 120, 77.2603, 120);
 
-  vbox26 = gtk_vbox_new (FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (vbox23), vbox26, FALSE, FALSE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (vbox26), 4);
+  hbox50 = gtk_hbox_new (FALSE, 3);
+  gtk_widget_show (hbox50);
+  gtk_box_pack_start (GTK_BOX (vbox36), hbox50, TRUE, TRUE, 0);
 
-  check_live_window_show_live = gtk_check_button_new_with_mnemonic (_("Show live games"));
-  gtk_widget_show (check_live_window_show_live);
-  gtk_box_pack_start (GTK_BOX (vbox26), check_live_window_show_live, FALSE, FALSE, 0);
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check_live_window_show_live), TRUE);
+  vbox38 = gtk_vbox_new (FALSE, 3);
+  gtk_widget_show (vbox38);
+  gtk_box_pack_start (GTK_BOX (hbox50), vbox38, TRUE, TRUE, 0);
 
-  check_live_window_tendency = gtk_check_button_new_with_mnemonic (_("Show tendency bar"));
-  gtk_widget_show (check_live_window_tendency);
-  gtk_box_pack_start (GTK_BOX (vbox26), check_live_window_tendency, FALSE, FALSE, 0);
+  scrolledwindow8 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrolledwindow8);
+  gtk_box_pack_start (GTK_BOX (vbox38), scrolledwindow8, FALSE, TRUE, 0);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow8), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow8), GTK_SHADOW_ETCHED_IN);
 
-  button_live_close = gtk_button_new_from_stock ("gtk-close");
-  gtk_widget_show (button_live_close);
-  gtk_box_pack_start (GTK_BOX (vbox26), button_live_close, FALSE, FALSE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (button_live_close), 2);
-  gtk_tooltips_set_tip (tooltips, button_live_close, _("Esc"), NULL);
-  gtk_widget_add_accelerator (button_live_close, "clicked", accel_group,
-                              GDK_Escape, 0,
-                              GTK_ACCEL_VISIBLE);
-  gtk_widget_add_accelerator (button_live_close, "clicked", accel_group,
-                              GDK_Return, 0,
-                              GTK_ACCEL_VISIBLE);
-  gtk_widget_add_accelerator (button_live_close, "clicked", accel_group,
+  treeview_result = gtk_tree_view_new ();
+  gtk_widget_show (treeview_result);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow8), treeview_result);
+  gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview_result), FALSE);
+
+  scrolledwindow9 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrolledwindow9);
+  gtk_box_pack_start (GTK_BOX (vbox38), scrolledwindow9, TRUE, TRUE, 0);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow9), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow9), GTK_SHADOW_ETCHED_IN);
+
+  treeview_commentary = gtk_tree_view_new ();
+  gtk_widget_show (treeview_commentary);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow9), treeview_commentary);
+
+  hbox48 = gtk_hbox_new (FALSE, 4);
+  gtk_widget_show (hbox48);
+  gtk_box_pack_start (GTK_BOX (vbox36), hbox48, FALSE, TRUE, 5);
+
+  button_pause = gtk_button_new ();
+  gtk_widget_show (button_pause);
+  gtk_box_pack_start (GTK_BOX (hbox48), button_pause, FALSE, FALSE, 0);
+  gtk_widget_add_accelerator (button_pause, "clicked", accel_group,
                               GDK_space, 0,
                               GTK_ACCEL_VISIBLE);
 
-  g_signal_connect ((gpointer) live_window, "delete_event",
+  alignment16 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment16);
+  gtk_container_add (GTK_CONTAINER (button_pause), alignment16);
+
+  hbox51 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox51);
+  gtk_container_add (GTK_CONTAINER (alignment16), hbox51);
+
+  image56 = gtk_image_new_from_stock ("gtk-no", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image56);
+  gtk_box_pack_start (GTK_BOX (hbox51), image56, FALSE, FALSE, 0);
+
+  label72 = gtk_label_new_with_mnemonic (_("Pause"));
+  gtk_widget_show (label72);
+  gtk_box_pack_start (GTK_BOX (hbox51), label72, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label72), GTK_JUSTIFY_LEFT);
+
+  button_resume = gtk_button_new ();
+  gtk_box_pack_start (GTK_BOX (hbox48), button_resume, FALSE, FALSE, 0);
+
+  alignment17 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment17);
+  gtk_container_add (GTK_CONTAINER (button_resume), alignment17);
+
+  hbox52 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox52);
+  gtk_container_add (GTK_CONTAINER (alignment17), hbox52);
+
+  image57 = gtk_image_new_from_stock ("gtk-yes", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image57);
+  gtk_box_pack_start (GTK_BOX (hbox52), image57, FALSE, FALSE, 0);
+
+  label73 = gtk_label_new_with_mnemonic (_("Resume"));
+  gtk_widget_show (label73);
+  gtk_box_pack_start (GTK_BOX (hbox52), label73, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label73), GTK_JUSTIFY_LEFT);
+
+  button_live_close = gtk_button_new_from_stock ("gtk-close");
+  gtk_widget_show (button_live_close);
+  gtk_box_pack_start (GTK_BOX (hbox48), button_live_close, FALSE, FALSE, 0);
+  gtk_widget_set_sensitive (button_live_close, FALSE);
+
+  g_signal_connect ((gpointer) window_live, "delete_event",
                     G_CALLBACK (on_live_window_delete_event),
+                    NULL);
+  g_signal_connect ((gpointer) button_pause, "clicked",
+                    G_CALLBACK (on_button_pause_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_resume, "clicked",
+                    G_CALLBACK (on_button_resume_clicked),
                     NULL);
   g_signal_connect ((gpointer) button_live_close, "clicked",
                     G_CALLBACK (on_button_live_close_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
-  GLADE_HOOKUP_OBJECT_NO_REF (live_window, live_window, "live_window");
-  GLADE_HOOKUP_OBJECT (live_window, vbox23, "vbox23");
-  GLADE_HOOKUP_OBJECT (live_window, hscale_tendency, "hscale_tendency");
-  GLADE_HOOKUP_OBJECT (live_window, scrolledwindow_live, "scrolledwindow_live");
-  GLADE_HOOKUP_OBJECT (live_window, treeview_live, "treeview_live");
-  GLADE_HOOKUP_OBJECT (live_window, progressbar_live, "progressbar_live");
-  GLADE_HOOKUP_OBJECT (live_window, hruler_live, "hruler_live");
-  GLADE_HOOKUP_OBJECT (live_window, vbox26, "vbox26");
-  GLADE_HOOKUP_OBJECT (live_window, check_live_window_show_live, "check_live_window_show_live");
-  GLADE_HOOKUP_OBJECT (live_window, check_live_window_tendency, "check_live_window_tendency");
-  GLADE_HOOKUP_OBJECT (live_window, button_live_close, "button_live_close");
-  GLADE_HOOKUP_OBJECT_NO_REF (live_window, tooltips, "tooltips");
+  GLADE_HOOKUP_OBJECT_NO_REF (window_live, window_live, "window_live");
+  GLADE_HOOKUP_OBJECT (window_live, vbox36, "vbox36");
+  GLADE_HOOKUP_OBJECT (window_live, progressbar_live, "progressbar_live");
+  GLADE_HOOKUP_OBJECT (window_live, hruler_live, "hruler_live");
+  GLADE_HOOKUP_OBJECT (window_live, hbox50, "hbox50");
+  GLADE_HOOKUP_OBJECT (window_live, vbox38, "vbox38");
+  GLADE_HOOKUP_OBJECT (window_live, scrolledwindow8, "scrolledwindow8");
+  GLADE_HOOKUP_OBJECT (window_live, treeview_result, "treeview_result");
+  GLADE_HOOKUP_OBJECT (window_live, scrolledwindow9, "scrolledwindow9");
+  GLADE_HOOKUP_OBJECT (window_live, treeview_commentary, "treeview_commentary");
+  GLADE_HOOKUP_OBJECT (window_live, hbox48, "hbox48");
+  GLADE_HOOKUP_OBJECT (window_live, button_pause, "button_pause");
+  GLADE_HOOKUP_OBJECT (window_live, alignment16, "alignment16");
+  GLADE_HOOKUP_OBJECT (window_live, hbox51, "hbox51");
+  GLADE_HOOKUP_OBJECT (window_live, image56, "image56");
+  GLADE_HOOKUP_OBJECT (window_live, label72, "label72");
+  GLADE_HOOKUP_OBJECT (window_live, button_resume, "button_resume");
+  GLADE_HOOKUP_OBJECT (window_live, alignment17, "alignment17");
+  GLADE_HOOKUP_OBJECT (window_live, hbox52, "hbox52");
+  GLADE_HOOKUP_OBJECT (window_live, image57, "image57");
+  GLADE_HOOKUP_OBJECT (window_live, label73, "label73");
+  GLADE_HOOKUP_OBJECT (window_live, button_live_close, "button_live_close");
 
-  gtk_window_add_accel_group (GTK_WINDOW (live_window), accel_group);
+  gtk_window_add_accel_group (GTK_WINDOW (window_live), accel_group);
 
-  return live_window;
+  return window_live;
 }
 
 GtkWidget*

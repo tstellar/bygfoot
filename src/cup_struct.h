@@ -1,6 +1,7 @@
 #ifndef CUP_STRUCT_H
 #define CUP_STRUCT_H
 
+#include "bygfoot.h"
 #include "table_struct.h"
 
 /** Types for cups. */
@@ -101,9 +102,21 @@ typedef struct
     /** The rounds of the cup.
 	@see #CupRound*/
     GArray *rounds;
+    /** Pointer array containing teams that got a bye for a round of the cup. */
+    GPtrArray *bye;
     /** The teams belonging to the cup. 
 	Relevant only if it's an international one. */
     GArray *teams;
+    /** Pointers to the teams from the leagues that participate. */
+    GPtrArray *user_teams;
+    /** An array of tables for round robin groups. */
+    GArray *tables;
+    /** The fixtures of a season for the cup. */
+    GArray *fixtures;
+    /** The week and week_round at the beginning of which the fixtures
+	have to be updated. */
+    gint next_fixture_update_week;
+    gint next_fixture_update_week_round;
 } Cup;
 
 #endif

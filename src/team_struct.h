@@ -1,6 +1,8 @@
 #ifndef TEAM_STRUCT_H
 #define TEAM_STRUCT_H
 
+#include "bygfoot.h"
+
 /**
    Playing styles for teams.
    @see The match result calculating functions.
@@ -51,6 +53,7 @@ typedef struct
 typedef struct
 {
     GString *name;
+    GString *symbol;
     
     gint clid, /**< Numerical id of the league or cup the team belongs to. */
 	id, /**< Id of the team. */

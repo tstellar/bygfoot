@@ -1,6 +1,9 @@
 #ifndef TABLE_STRUCT_H
 #define TABLE_STRUCT_H
 
+#include "bygfoot.h"
+#include "team_struct.h"
+
 /**
    Table element values.
    @see TableElement
@@ -25,7 +28,7 @@ enum TableElementValues
 */
 typedef struct
 {
-    gint team_id;
+    Team *team;
     gint values[TABLE_END];
 } TableElement;
 
@@ -36,7 +39,7 @@ typedef struct
 typedef struct
 {
     GString *name;
-    gint league_id;
+    gint clid;
     GArray *elements;
 } Table;
 

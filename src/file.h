@@ -2,6 +2,7 @@
 #define FILE_H
 
 #include "bygfoot.h"
+#include "player_struct.h"
 
 void
 file_add_support_directory_recursive                   (const gchar     *directory);
@@ -19,6 +20,18 @@ void
 file_get_player_names(gint number_of_names);
 
 gboolean
-my_fopen(const gchar *filename, gchar *bits, FILE **fil, gboolean abort_program);
+file_my_fopen(const gchar *filename, gchar *bits, FILE **fil, gboolean abort_program);
+
+void
+file_get_definitions_dir(gchar *dir);
+
+void
+file_write_opt_names(gchar opt_names[][50], gchar player_list_att_names[][PLAYER_LIST_ATTRIBUTE_END][50]);
+
+void
+file_load_conf_file(void);
+
+void
+file_save_conf(void);
 
 #endif

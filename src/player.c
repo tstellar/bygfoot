@@ -28,7 +28,7 @@
     team for players 13 to CONSTANT_TEAM_MAX_PLAYERS.
     Player 11 is always the second goalie. */
 #define CONSTANT_PLAYER_POS_BOUND1 15
-#define CONSTANT_PLAYER_POS_BOUND2 17
+#define CONSTANT_PLAYER_POS_BOUND2 18
 
 /** Bounds for the contract time at player generation. */
 #define CONSTANT_PLAYER_CONTRACT_LOWER 52
@@ -61,7 +61,7 @@
     The player's skill can deviate from this value by #CONSTANT_PLAYER_AVERAGE_SKILL_VARIANCE %
     @return A newly created player. */
 Player
-player_new(const Team *tm, gint average_skill)
+player_new(Team *tm, gint average_skill)
 {
     gfloat skill_factor = 
 	math_rnd(1 - CONSTANT_PLAYER_AVERAGE_SKILL_VARIANCE,
@@ -70,8 +70,6 @@ player_new(const Team *tm, gint average_skill)
 
     new.name = 
 	g_string_new(((GString*)g_ptr_array_index(player_names, math_rndi(0, player_names->len - 1)))->str);
-    new.clid = tm->clid;
-    new.team_id = tm->id;
     new.id = player_new_id(tm->players);
     new.pos = player_get_position_from_structure(tm->structure, tm->players->len);
     new.cpos = new.pos;
@@ -87,7 +85,8 @@ player_new(const Team *tm, gint average_skill)
     new.talent = player_new_talent(new.skill);
     new.etal = player_estimate_talent(&new);
     new.fitness = math_rndi(CONSTANT_PLAYER_FITNESS_LOWER, CONSTANT_PLAYER_FITNESS_UPPER);
-    new.health = new.recovery = new.goals = new.games = 0;
+    new.health = new.recovery = 0;
+    new.games_goals = g_array_new(FALSE, FALSE, sizeof(PlayerGamesGoals));
     new.value = player_assign_value(&new);
     new.wage = player_assign_wage(&new);
     new.contract = math_rndi(CONSTANT_PLAYER_CONTRACT_LOWER, CONSTANT_PLAYER_CONTRACT_UPPER);
@@ -95,12 +94,13 @@ player_new(const Team *tm, gint average_skill)
     new.cards = g_array_new(FALSE, FALSE, sizeof(PlayerCard));
     /* todo: make player history struct. */
     new.history = NULL;
+    new.team = tm;
     
     return new;
 }
 
 /** Return a player id that's not yet 'occupied'.
-    @param players The player array the new player will belong to. 
+    @param players The player array the new player will belong to.
     @return A new id that none of the other players has. */
 gint
 player_new_id(const GArray *players)
@@ -248,11 +248,16 @@ player_copy(const Player *source, Player *dest)
     *dest = *source;
     dest->name = g_string_new(source->name->str);
     dest->cards = g_array_new(FALSE, FALSE, sizeof(PlayerCard));
+    dest->games_goals = g_array_new(FALSE, FALSE, sizeof(PlayerGamesGoals));
     dest->history = NULL;
 
     for(i=0;i<source->cards->len;i++)
 	g_array_append_val(dest->cards, 
 			   g_array_index(source->cards, PlayerCard, i));
+
+    for(i=0;i<source->games_goals->len;i++)
+	g_array_append_val(dest->games_goals, 
+			   g_array_index(source->games_goals, PlayerGamesGoals, i));
 }
 
 /** Copy a player into a team in a way that allows us to
@@ -268,4 +273,112 @@ player_append_to_array(const Player *pl, Team *tm)
     player_copy(pl, &new_player);
 
     g_array_append_val(tm->players, new_player);
+}
+
+/** Remove a player from a team. */
+void
+player_remove_from_team(Team *tm, gint player_number)
+{
+    free_player(&g_array_index(tm->players, Player, player_number));
+
+    g_array_remove_index(tm->players, player_number);
+}
+
+/** Return the pointer to the player given by the ids.
+    @param clid The cup/league id of the team.
+    @param team_id The id of the team.
+    @param id The id of the player.
+    @return A pointer to the player or NULL if he wasn't to be found. */
+Player*
+player_of_ids(gint clid, gint team_id, gint id)
+{
+    gint i;
+    Team *tm = team_get_pointer_from_ids(clid, team_id);
+    Player *pl = NULL;
+    
+    if(tm != NULL)
+    {
+	for(i=0;i<tm->players->len;i++)
+	    if(g_array_index(tm->players, Player, i).id == id)
+	    {
+		pl = &g_array_index(tm->players, Player, i);
+		break;
+	    }		
+    }
+
+    if(pl == NULL)
+	g_warning("player_of_ids: didn't find player with ids %d and %d and %d\n",
+		  clid, team_id, id);
+
+    return pl;
+}
+
+/** Return the number of all games or goals the player's
+    participated in / scored in all cups and leagues.
+    @param pl The player we examine. 
+    @param goals Whether we sum up the goals.
+    @return The number of goals. */
+gint
+player_all_games_goals(const Player *pl, gboolean goals)
+{
+    gint i, sum = 0;
+
+    for(i=0;i<pl->games_goals->len;i++)
+	if(goals)
+	    sum += g_array_index(pl->games_goals, PlayerGamesGoals, i).goals;
+	else
+	    sum += g_array_index(pl->games_goals, PlayerGamesGoals, i).games;
+
+    return sum;
+}
+
+/** Return the sum of all the yellow cards in all
+    leagues and cups for the player.
+    @param pl The player we examine.
+    @return The number of all cards.*/
+gint
+player_all_cards(const Player *pl)
+{
+    gint i, sum = 0;
+
+    for(i=0;i<pl->cards->len;i++)
+	sum += g_array_index(pl->cards, PlayerCard, i).yellow;
+
+    return sum;
+}
+
+/** Return a pointer to the number'th player of the team.
+    @param tm The team.
+    @param number The player number.
+    @return A pointer to the player or NULL. */
+Player*
+player_of(const Team *tm, gint number)
+{
+    if(tm->players->len <= number)
+    {
+	g_warning("player_of: Player list of team %s too short for number %d.\n",
+		  tm->name->str, number);
+	return NULL;
+    }
+
+    return &g_array_index(tm->players, Player, number);
+}
+
+
+/** Return a pointer to the player with specified id of the team.
+    @param tm The team.
+    @param id The player's id.
+    @return A pointer to the player or NULL. */
+Player*
+player_of_id(const Team *tm, gint id)
+{
+    gint i;
+    
+    for(i=0;i<tm->players->len;i++)
+	if(g_array_index(tm->players, Player, i).id == id)
+	    return &g_array_index(tm->players, Player, i);
+    
+    g_warning("player_of_id: didn't find player with id %d of team %s\n", id, tm->name->str);
+    
+    return NULL;
 }

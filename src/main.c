@@ -12,7 +12,6 @@
 #include "variables.h"
 #include "window.h"
 
-
 /**
    Initialize some global variables. Most of them get nullified.
 */
@@ -21,11 +20,19 @@ main_init_variables(void)
 {
     ligs = cps = NULL;
     country.name = country.symbol = country.sid = NULL;
-    fixtures = NULL;
     transfer_list = NULL;
     player_names = NULL;
+    my_team = NULL;
     
     font_name = g_string_new("0");
+    debug = FALSE;
+
+    live_game.units = g_array_new(FALSE, FALSE, sizeof(LiveGameUnit));
+    live_game.window = NULL;
+    live_game_temp.units = g_array_new(FALSE, FALSE, sizeof(LiveGameUnit));
+    live_game_temp.window = NULL;
+
+    popups_active = 0;
 }
 
 /**
@@ -79,21 +86,26 @@ main (gint argc, gchar *argv[])
 
   gtk_main ();
 
-  main_exit_program(EXIT_OK);
+  main_exit_program(EXIT_OK, NULL);
 
   return 0;
 }
 
-/** Exit the program with the given exit code. Try to
+/** Exit the program with the given exit code and message. Try to
     destroy all widgets and free all memory first.
     @param exit_code The number we return to the shell.
+    @param exit_message The message we print.
     @return The exit code of the program. */
 void
-main_exit_program(gint exit_code)
+main_exit_program(gint exit_code, gchar *exit_message)
 {
     if(gtk_main_level() > 0)
 	gtk_main_quit();
 
     free_memory();
+    
+    if(exit_message != NULL)
+	g_warning(exit_message);
+    
     exit(exit_code);
 }

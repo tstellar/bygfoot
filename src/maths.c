@@ -150,3 +150,32 @@ math_generate_permutation(gint *array, gint start, gint end)
     for(i=0;i<end - start;i++)
 	misc_swap_int(&array[i], &array[math_rndi(i, end - start)]);
 }
+
+/** This function tells us how many teams from 'number' teams
+    have to be left away to obtain a power of 2. */
+gint
+math_get_bye_len(gint number)
+{
+    gint i;
+
+    for(i=10;i>=0;i--)
+	if((gint)powf(2, i) <= number)
+	    break;
+
+    return number - (gint)powf(2, i);
+}
+
+/** Return the sum of the integers in the array.
+    @param array The integer array.
+    @param max The size of the array.
+    @return The sum of all the integers in the array. */
+gint
+math_sum_int_array(gint *array, gint max)
+{
+    gint i, sum = 0;
+
+    for(i=0;i<max;i++)
+	sum += array[i];
+
+    return sum;
+}

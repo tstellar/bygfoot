@@ -1,19 +1,11 @@
-#include "window.h"
+#include "file.h"
+#include "free.h"
 #include "interface.h"
 #include "main.h"
 #include "misc_interface.h"
-#include "file.h"
-#include "free.h"
 #include "support.h"
-
-/**  These are used to keep track of open windows.
-     @see window_create() */
-enum Windows
-{
-    WINDOW_MAIN = 0,
-    WINDOW_STARTUP,
-    WINDOW_END
-};
+#include "variables.h"
+#include "window.h"
 
 /**
    Show the country selection window. All files with prefix
@@ -31,12 +23,9 @@ window_show_startup(void)
     GList *combo_strings = NULL;
     gint i;
     
-    sprintf(country_dir, "%s/.bygfoot/definitions/", g_get_home_dir());
+    file_get_definitions_dir(country_dir);
 
     dir_contents = file_dir_get_contents((const gchar*)country_dir, "country_");
-
-    if(dir_contents == NULL)
-	main_exit_program(EXIT_DIR_OPEN_FAILED);
 
     for(i=0;i<dir_contents->len;i++)
 	combo_strings = g_list_append(combo_strings,
@@ -45,6 +34,15 @@ window_show_startup(void)
     gtk_combo_set_popdown_strings(GTK_COMBO(combo_country), combo_strings);
 
     free_g_string_array(&dir_contents);
+}
+
+/** Create and show the main window. */
+void
+window_show_main(void)
+{
+    main_window = window_create(WINDOW_MAIN);
+
+    gtk_widget_show(main_window);
 }
 
 /** Set 'Bygfoot x.y.z' into the title of a window.
@@ -70,20 +68,58 @@ GtkWidget*
 window_create(gint window_type)
 {
     GtkWidget *window = NULL;
+    
+    popups_active++;
 
     switch(window_type)
     {
 	default:
-	    window = create_main_window();
+	    if(main_window == NULL)
+	    {
+		window = create_main_window();
+		popups_active--;
+	    }
+	    else
+		window = main_window;
 	    window_set_version(window);
 	    break;
 	case WINDOW_STARTUP:
 	    window = create_window_startup();
 	    window_set_version(window);
 	    break;
+	case WINDOW_LIVE:
+	    window = create_window_live();
+	    window_set_version(window);
+	    break;
     }    
 
     gtk_widget_show(window);
 
+    if(popups_active != 0 && main_window != NULL)
+	gtk_widget_set_sensitive(main_window, FALSE);
+
     return window;
 }
+
+/** Destroy a window widget and set the popups and
+    main window sensitivity correctly. 
+    @param window The window we destroy. */
+void
+window_destroy(GtkWidget **window)
+{
+    if(*window == NULL)
+	return;
+
+    if(*window != main_window)
+    {
+	popups_active--;
+
+	if(popups_active == 0 && main_window != NULL)
+	    gtk_widget_set_sensitive(main_window, TRUE);
+    }
+
+    gtk_widget_destroy(*window);
+
+    *window = NULL;
+}
+

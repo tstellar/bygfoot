@@ -2,67 +2,46 @@
 #define FIXTURE_H
 
 #include "bygfoot.h"
+#include "cup_struct.h"
+#include "fixture_struct.h"
+#include "league_struct.h"
 
-/** Possible goal types. */
-enum GoalType
-{
-    GOAL_TYPE_REGULAR= 0,
-    GOAL_TYPE_OWN,
-    GOAL_TYPE_PENALTY,
-    GOAL_TYPE_PENALTY_MISSED,
-    GOAL_TYPE_PENALTY_SAVE,
-    GOAL_TYPE_PENALTY_POST,
-    GOAL_TYPE_PENALTY_CROSS,
-    GOAL_TYPE_END
-};
+void
+fixture_write_league_fixtures(League *league);
 
-/** Possible goal times. */
-enum GoalTime
-{
-    /** In regulation. */
-    GOAL_TIME_REGULATION = 0,
-    /** In extra time. */
-    GOAL_TIME_EXTRA,
-    /** In penalty shoot-out. */
-    GOAL_TIME_PENALTY,
-    GOAL_TIME_END
-};
+void
+fixture_write_cup_fixtures(Cup *cup);
 
-/** Structure representing a goal. */
-typedef struct
-{    
-    gint minute, /**< The minute it happened. */
-	team_number, /**< The team that scored (0 or 1). */
-	time, /**< Whether it was in regulation, extra time or penalties. */
-	type; /** What kind of goal it was (e.g. penalty). */
+void
+fixture_write_cup_round_robin(Cup *cup, gint cup_round);
 
-    /** Name of the scorer. */
-    GString *scorer_name;
-} Goal;
+void
+fixture_write_round_robin(gpointer league_cup, gint cup_round, GPtrArray *teams);
 
-/** Structure representing a fixture, or, in other words,
-    a match. */
-typedef struct
-{
-    /** The cup or league the fixture belongs to. */
-    gint clid;
-    /** The round (in a cup) the fixture belongs to. */
-    gint round;    
-    /** When it takes place. */
-    gint week_number, week_round_number;
-    /** The teams involved. */
-    gint team_clid[2], team_id[2];
-    /** The number of goals for each team in
-	regulation, extra time and penalty shoot-out. */
-    gint result[2][3];
-    /** Whether there's home advantage, this is second leg,
-	or the game has to be decided. */
-    gboolean home_advantage, second_leg, decisive;
-    /** How many people attended and whether there were
-	special events. */
-    gint attendance, stadium_event;
-    /** The goals that were scored. */
-    GArray *goals;
-} Fixture;
+void
+fixture_write_round_robin_matchday(GArray *fixtures, gint cup_round, GPtrArray *teams,
+				   gint special, gint week_number, gint week_round_number,
+				   gint clid, gboolean home_advantage, gboolean second_leg,
+				   gboolean decisive);
+
+void
+fixture_write_knockout_round(GPtrArray *teams, Cup *cup, gint cup_round);
+
+void
+fixture_write(GArray *fixtures, Team *home_team, Team *away_team, gint week_number,
+	      gint week_round_number, gint clid, gint cup_round, gboolean home_advantage,
+	      gboolean second_leg, gboolean decisive);
+
+gint
+fixture_get_free_round(gint week_number, gint clid);
+
+gboolean
+query_fixture_is_earlier(const Fixture *fix1, const Fixture *fix2);
+
+gboolean
+query_fixture_is_draw(const Fixture *fix);
+
+gboolean
+query_my_team_involved(const Fixture *fix);
 
 #endif

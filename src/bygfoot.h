@@ -31,10 +31,11 @@ enum ExitCodes
 {
     EXIT_OK = 0, /**< Normal exit. */
     EXIT_DIR_OPEN_FAILED, /**< Exit when the $HOME/.bygfoot/definitions directory can't be opened. */
-    EXIT_FILE_OPEN_FAILED,
+    EXIT_FILE_OPEN_FAILED, /** A file could not be opened. */
     EXIT_PRINT_ERROR, /**< Exit when the print_error function is called on a set error.*/
-    EXIT_NO_LEAGUES,
-    EXIT_CHOOSE_TEAM_ERROR,
+    EXIT_NO_LEAGUES, /**< The game must contain at least one league. */
+    EXIT_CHOOSE_TEAM_ERROR, /**< There was a problem loading the choose_teams. @see cup_load_choose_teams() */
+    EXIT_FIXTURE_WRITE_ERROR, /** There was an error writing the fixtures. */
     EXIT_END
 };
 

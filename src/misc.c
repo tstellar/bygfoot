@@ -1,5 +1,6 @@
 #include "free.h"
 #include "main.h"
+#include "maths.h"
 #include "misc.h"
 
 /**
@@ -10,22 +11,23 @@
    @param abort_program Whether or not we continue or exit the program.
 */
 void
-misc_print_error(GError *error, gboolean abort_program)
+misc_print_error(GError **error, gboolean abort_program)
 {
     gchar buf[SMALL];
 
-    if(error == NULL)
+    if(*error == NULL)
 	return;
     
-    sprintf(buf, "%s", error->message);
+    sprintf(buf, "%s", (*error)->message);
 
     g_warning("error message: %s\n", buf);
     /*d*/
 /*     show_popup_window(buf); */
-    g_error_free(error);
+    g_error_free(*error);
+    *error = NULL;
 
     if(abort_program)
-	main_exit_program(EXIT_PRINT_ERROR);
+	main_exit_program(EXIT_PRINT_ERROR, NULL);
 }
 
 /** Swap two integers.
@@ -35,6 +37,18 @@ void
 misc_swap_int(gint *first, gint *second)
 {
     gint swap = *first;
+
+    *first = *second;
+    *second = swap;
+}
+
+/** Swap two pointers.
+    @param first The first pointer.
+    @param second The second pointer. */
+void
+misc_swap_gpointer(gpointer *first, gpointer *second)
+{
+    gpointer swap = *first;
 
     *first = *second;
     *second = swap;
@@ -82,4 +96,73 @@ misc_separate_strings(gchar *string)
     }
 
     return string_array;
+}
+
+/** Write a pointer array randomly into another one and free
+    the original one.
+    @param array The array to randomise.
+    @return A new pointer array containing the items in random order. */
+GPtrArray*
+misc_randomise_g_pointer_array(GPtrArray *array)
+{
+    GPtrArray *new = g_ptr_array_new();
+    gint order[array->len];
+    gint i;
+
+    math_generate_permutation(order, 0, array->len - 1);
+
+    for(i=0;i<array->len;i++)
+	g_ptr_array_add(new, g_ptr_array_index(array, order[i]));
+
+    g_ptr_array_free(array, TRUE);
+
+    return new;
+}
+
+/** Print a thousands-grouped output of 'number' into 'buf',
+    like 2 234 345 instead of 2234345.
+    @param number The number to print. 
+    @buf The buffer to hold the number.
+    @append Whether to overwrite the buffer or append. */
+void
+misc_print_grouped_int(gint number, gchar *buf, gboolean append)
+{
+    gint i;
+    gchar buf2[SMALL];
+    gint length = 0;
+    gfloat copy = (gfloat)(abs(number));
+    gint number2 = abs(number);
+
+    if(!append)
+      strcpy(buf, "");
+
+    while(copy >= 1)
+    {
+	copy /= 10;
+	length++;
+    }
+
+    if(length > 9)
+    {
+	sprintf(buf2, "%d", number);
+	strcat(buf, buf2);
+	return;
+    }
+
+    for(i = length; i > 0; i--)
+    {
+	sprintf(buf2, "%d", math_get_place(number2, i));
+	strcat(buf, buf2);
+	if(i % 3 == 1)
+	    strcat(buf, " ");
+    }
+
+    if(number < 0)
+    {
+	sprintf(buf2, "- ");
+	strcat(buf2, buf);
+	sprintf(buf, "%s", buf2);
+    }
+    else if(number == 0)
+	strcat(buf, "0");
 }

@@ -1,3 +1,5 @@
+#include "cup_struct.h"
+#include "fixture_struct.h"
 #include "league.h"
 #include "team.h"
 #include "variables.h"
@@ -26,9 +28,11 @@ league_new(void)
     new.prom_rel.elements = g_array_new(FALSE, FALSE, sizeof(PromRelElement));
 
     new.teams = g_array_new(FALSE, FALSE, sizeof(Team));
+    
+    new.fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));
 
     new.table.name = g_string_new("");
-    new.table.league_id = new.id;
+    new.table.clid = new.id;
     new.table.elements = g_array_new(FALSE, FALSE, sizeof(TableElement));
 
     new.first_week = new.week_gap = 1;
@@ -77,4 +81,52 @@ league_new_id(void)
 
     g_warning("league_new_id: didn't find a free numerical id.");
     return -1;
+}
+
+/** Return a nullified table element.
+    @see #TableElement */
+TableElement
+league_table_element_new(Team *team)
+{
+    gint i;
+    TableElement new;
+
+    new.team = team;
+
+    for(i=0;i<TABLE_END;i++)
+	new.values[i] = 0;
+
+    return new;
+}
+
+/** Get the array index of the given league or cup id.
+    @param clid The id of the league or cup.
+    @return The index in the leagues or cups array. */
+gint
+league_cup_get_index_from_clid(gint clid)
+{
+    gint i;
+    gint index = -1;
+
+    if(clid < ID_CUP_START)
+    {
+	for(i=0;i<ligs->len;i++)
+	    if(lig(i).id == clid)
+	    {
+		index = i;
+		break;
+	    }
+    }
+    else
+	for(i=0;i<cps->len;i++)
+	    if(cp(i).id == clid)
+	    {
+		index = i;
+		break;
+	    }
+
+    if(index == -1)
+	g_warning("league_cup_get_index_from_clid: couldn't find league or cup with index %d\n", clid);
+
+    return index;
 }

@@ -4,6 +4,8 @@
 #include "free.h"
 #include "misc_callback_func.h"
 #include "misc_callbacks.h"
+#include "variables.h"
+#include "window.h"
 
 void
 on_team_selection_cancel_clicked       (GtkButton       *button,
@@ -190,7 +192,7 @@ void
 on_button_live_close_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
-
+    window_destroy(&live_game.window);
 }
 
 
@@ -214,4 +216,19 @@ on_combo_country_entry_changed         (GtkEditable     *editable,
 	return;
 
     misc_callback_show_team_list(GTK_WIDGET(editable), entry_text);
+}
+
+void
+on_button_pause_clicked                (GtkButton       *button,
+                                        gpointer         user_data)
+{
+
+}
+
+
+void
+on_button_resume_clicked               (GtkButton       *button,
+                                        gpointer         user_data)
+{
+
 }

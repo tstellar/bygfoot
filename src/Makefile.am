@@ -17,7 +17,7 @@ bygfoot_SOURCES = \
 	editor_interface.c  editor_interface.h \
 	file.c file.h free.h misc.h support.h \
 	finance.c finance.h \
-	fixture.c fixture.h \
+	fixture.c cup.h fixture.h league_struct.h main.h maths.h misc.h team.h variables.h \
 	free.c cup.h fixture.h free.h league.h player.h variables.h \
 	game.c game.h \
 	game_gui.c game_gui.h \
@@ -27,12 +27,13 @@ bygfoot_SOURCES = \
 	history.c history.h \
 	interface.c callbacks.h interface.h support.h \
 	league.c league.h team.h variables.h \
+	live_game.c game.h live_game.h variables.h \
 	load_save.c load_save.h  \
 	main.c file.h free.h main.h variables.h window.h \
 	maths.c maths.h misc.h variables.h \
 	misc.c free.h misc.h \
 	misc_callbacks.c free.h misc_callback_func.h misc_callbacks.h \
-	misc_callback_func.c misc_callback_func.h start_end.h support.h treeview.h variables.h xml_country.h \
+	misc_callback_func.c misc_callback_func.h start_end.h support.h team.h treeview.h user.h variables.h xml_country.h \
 	misc_interface.c  misc_interface.h misc_callbacks.h support.h \
 	misc2_callbacks.c misc2_callbacks.h \
 	misc2_interface.c  misc2_interface.h misc2_callbacks.h support.h \
@@ -46,6 +47,7 @@ bygfoot_SOURCES = \
 	transfer.c transfer.h \
 	treeview.c gui.h league.h support.h team.h treeview.h variables.h \
 	treeview_cell.c treeview_cell.h \
+	user.c team.h user.h \
 	window.c misc_interface.h file.h free.h support.h window.h \
 	xml_cup.c cup.h file.h misc.h variables.h xml_cup.h \
 	xml_country.c file.h free.h league.h misc.h variables.h xml_cup.h xml_country.h xml_league.h \

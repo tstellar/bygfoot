@@ -1,3 +1,6 @@
+#ifndef MISC_CALLBACS_H
+#define MISC_CALLBACS_H
+
 #include "bygfoot.h"
 #include "misc_interface.h"
 #include "support.h"
@@ -103,3 +106,13 @@ on_button_help_close_clicked           (GtkButton       *button,
 void
 on_combo_country_entry_changed         (GtkEditable     *editable,
                                         gpointer         user_data);
+
+void
+on_button_pause_clicked                (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_resume_clicked               (GtkButton       *button,
+                                        gpointer         user_data);
+
+#endif

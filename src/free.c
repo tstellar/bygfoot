@@ -4,33 +4,7 @@
 #include "league.h"
 #include "player.h"
 #include "variables.h"
-
-
-/** Free a GString if it isn't NULL.
-    @param string The string to be freed. */
-void
-free_g_string(GString **string)
-{
-    if(*string == NULL)
-	return;
-
-    g_string_free(*string, TRUE);
-
-    *string = NULL;
-}
-
-/** Free a GArray if it isn't NULL.
-    @param array The array to be freed. */
-void
-free_g_array(GArray **array)
-{
-    if(*array == NULL)
-	return;
-
-    g_array_free(*array, TRUE);
-
-    *array = NULL;
-}
+#include "window.h"
 
 /**
    Free all memory allocated by the program.
@@ -42,7 +16,27 @@ free_memory(void)
     free_variables();
     free_country();
     free_g_string(&font_name);
+    free_live_game(&live_game);
+    free_live_game(&live_game_temp);
 }
+
+/** Free a live game variable. */
+void
+free_live_game(LiveGame *match)
+{
+    gint i;
+
+    window_destroy(&match->window);
+
+    if(match->units == NULL)
+	return;
+
+    for(i=0;i<match->units->len;i++)
+	free_g_string(&g_array_index(match->units, LiveGameUnit, i).event.commentary);
+    
+    free_g_array(&match->units);
+}
+
 
 /**
    Free the main variable of the game, #country.
@@ -109,6 +103,8 @@ free_league(League *league)
 
     for(i=0;i<3;i++)
 	free_g_array(arrays[i]);
+
+    free_g_array(&league->fixtures);
 }
 
 /** Free the memory occupied by a teams array.
@@ -209,6 +205,32 @@ free_cup(Cup *cup)
 
     for(i=0;i<3;i++)
 	free_g_array(arrays[i]);
+
+    free_g_array(&cup->fixtures);
+
+    free_g_ptr_array(&cup->bye);
+    free_g_ptr_array(&cup->user_teams);
+
+    free_cup_tables(cup->tables);
+}
+
+/** Free the memory occupied by the cup tables.
+    @param tables The array containing the tables. */
+void
+free_cup_tables(GArray *tables)
+{
+    gint i;
+
+    if(tables == NULL)
+	return;
+
+    for(i=0;i<tables->len;i++)
+    {
+	free_g_string(&g_array_index(tables, Table, i).name);
+	free_g_array(&g_array_index(tables, Table, i).elements);
+    }
+
+    free_g_array(&tables);
 }
 
 /**
@@ -225,22 +247,9 @@ free_cup_choose_team(CupChooseTeam *cup_choose_team)
 void
 free_variables(void)
 {
-    gint i, j;
-    GArray **arrays[2] = 
-	{&transfer_list,
-	 &fixtures};
-    
     free_g_string_array(&player_names);
 
-    if(fixtures != NULL)	
-	for(i=0;i<fixtures->len;i++)
-	    for(j=0;j<g_array_index(fixtures, Fixture, i).goals->len;j++)
-		free_g_string(&g_array_index(
-				  g_array_index(
-				      fixtures, Fixture, i).goals, Goal, j).scorer_name);
-
-    for(i=0;i<2;i++)
-	free_g_array(arrays[i]);
+    free_g_array(&transfer_list);
 }
 
 /**
@@ -257,6 +266,43 @@ free_g_string_array(GPtrArray **array)
 
     for(i=0;i<(*array)->len;i++)
 	free_g_string((GString**)&g_ptr_array_index(*array, i));
+
+    free_g_ptr_array(array);
+}
+
+/** Free a GString if it isn't NULL.
+    @param string The string to be freed. */
+void
+free_g_string(GString **string)
+{
+    if(*string == NULL)
+	return;
+
+    g_string_free(*string, TRUE);
+
+    *string = NULL;
+}
+
+/** Free a GArray if it isn't NULL.
+    @param array The array to be freed. */
+void
+free_g_array(GArray **array)
+{
+    if(*array == NULL)
+	return;
+
+    g_array_free(*array, TRUE);
+
+    *array = NULL;
+}
+
+/** Free a GPtrArray if it isn't NULL.
+    @param array The array to be freed. */
+void
+free_g_ptr_array(GPtrArray **array)
+{
+    if(*array == NULL)
+	return;
 
     g_ptr_array_free(*array, TRUE);
 

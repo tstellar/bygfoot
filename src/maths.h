@@ -27,4 +27,10 @@ math_round_integer(gint number, gint places);
 void
 math_generate_permutation(gint *array, gint start, gint end);
 
+gint
+math_get_bye_len(gint number);
+
+gint
+math_sum_int_array(gint *array, gint max);
+
 #endif
