@@ -98,7 +98,7 @@
 		      <signal name="activate" handler="on_start_editor_activate" last_modification_time="Sun, 30 May 2004 19:58:16 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image222">
+			<widget class="GtkImage" id="image227">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-preferences</property>
 			  <property name="icon_size">1</property>
@@ -119,7 +119,7 @@
 		      <signal name="activate" handler="on_start_update_activate" last_modification_time="Mon, 13 Sep 2004 12:30:42 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image223">
+			<widget class="GtkImage" id="image228">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-refresh</property>
 			  <property name="icon_size">1</property>
@@ -168,7 +168,7 @@
 		      <signal name="activate" handler="on_menu_preferences_activate" last_modification_time="Sun, 02 Jan 2005 15:30:45 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image224">
+			<widget class="GtkImage" id="image229">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-preferences</property>
 			  <property name="icon_size">1</property>
@@ -654,7 +654,7 @@
 		      <accelerator key="F9" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image225">
+			<widget class="GtkImage" id="image230">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-go-forward</property>
 			  <property name="icon_size">1</property>
@@ -676,7 +676,7 @@
 		      <accelerator key="F8" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image226">
+			<widget class="GtkImage" id="image231">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-go-back</property>
 			  <property name="icon_size">1</property>
@@ -698,7 +698,7 @@
 		      <accelerator key="F12" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image227">
+			<widget class="GtkImage" id="image232">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-justify-fill</property>
 			  <property name="icon_size">1</property>
@@ -720,7 +720,6 @@
 	      <property name="visible">True</property>
 	      <property name="label" translatable="yes">FinStad</property>
 	      <property name="use_underline">True</property>
-	      <signal name="activate" handler="on_menu_finances_stadium_activate" last_modification_time="Mon, 03 Jan 2005 17:14:21 GMT"/>
 
 	      <child>
 		<widget class="GtkMenu" id="menu_finances_stadium_menu">

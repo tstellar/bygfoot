@@ -18,4 +18,10 @@ misc_callback_remove_user(GdkEventButton *event);
 void
 misc_callback_pause_live_game(void);
 
+void
+misc_callback_improve_stadium(void);
+
+void
+misc_callback_update_stadium_window(gboolean capacity);
+
 #endif

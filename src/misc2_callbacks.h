@@ -39,3 +39,11 @@ gboolean
 on_button_warning_clicked              (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data);
+
+void
+on_button_digits_ok_clicked            (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_digits_cancel_clicked        (GtkButton       *button,
+                                        gpointer         user_data);

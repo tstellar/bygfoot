@@ -37,6 +37,8 @@ main_init_variables(void)
     popups_active = 0;
     selected_row[0] = selected_row[1] = -1;
 
+    timeout_id = -1;
+
     file_load_conf_files();
 }
 

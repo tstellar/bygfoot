@@ -18,4 +18,10 @@ callback_show_fixtures(gint type);
 void
 callback_show_tables(gint type);
 
+void
+callback_pay_loan(void);
+
+void
+callback_get_loan(void);
+
 #endif

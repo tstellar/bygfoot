@@ -316,5 +316,7 @@ start_week_update_users(void)
 	
 	if(usr(i).physio >= 100)
 	    usr(i).physio = math_get_place(usr(i).physio, 2);
+
+	user_weekly_update_counters(&usr(i));
     }
 }

@@ -245,15 +245,22 @@ game_initialize(Fixture *fix)
 	  cup_from_clid(fix->clid)->type == CUP_TYPE_NATIONAL)) ?
 	const_float("float_game_finance_journey_factor_national") :
 	const_float("float_game_finance_journey_factor_international");    
-    gint user_idx = team_is_user(fix->teams[0]);
+    gint user_idx[2] = {team_is_user(fix->teams[0]), team_is_user(fix->teams[1])};
+    gint ticket_income = 0;
 
     game_assign_attendance(fix);
+    ticket_income = 
+	fix->attendance * const_int("int_team_stadium_ticket_price");
 
-    if(user_idx != -1)
+    if(user_idx[0] != -1 && fix->home_advantage)
     {
-	usr(user_idx).money += (fix->attendance * const_int("int_team_stadium_ticket_price"));
-	usr(user_idx).money_in[1][MON_IN_TICKET] += 
-	    (fix->attendance * const_int("int_team_stadium_ticket_price"));
+	usr(user_idx[0]).money += ticket_income;
+	usr(user_idx[0]).money_in[1][MON_IN_TICKET] += ticket_income;
+
+	fix->teams[0]->stadium.safety -= 
+	    math_rnd(const_float("float_game_stadium_safety_deterioration_lower"),
+		     const_float("float_game_stadium_safety_deterioration_upper"));
+	fix->teams[0]->stadium.safety = CLAMP(fix->teams[0]->stadium.safety, 0, 1);
     }
 
     for(i=0;i<2;i++)
@@ -271,20 +278,18 @@ game_initialize(Fixture *fix)
 		(j < 11 && player_of(fix->teams[i], j)->cskill > 0);
 	}
 
-	if(team_is_user(fix->teams[i]) != -1 &&
-	   (i == 1 || !fix->home_advantage))
-	    usr(team_is_user(fix->teams[i])).money_out[1][MON_OUT_JOURNEY] -= 
-		(gint)(finance_wage_unit(fix->teams[i]) * journey_factor);
+	if(user_idx[i] != -1)
+	{
+	    if(i == 1 || !fix->home_advantage)
+		usr(user_idx[i]).money_out[1][MON_OUT_JOURNEY] -= 
+		    (gint)(finance_wage_unit(fix->teams[i]) * journey_factor);
+	    if(!fix->home_advantage)
+	    {
+		usr(user_idx[i]).money_in[1][MON_IN_TICKET] += (gint)rint((gfloat)ticket_income / 2);
+		usr(user_idx[i]).money += (gint)rint((gfloat)ticket_income / 2);
+	    }
+	}
     }
-
-    if(team_is_user(fix->teams[0]) != -1 && fix->home_advantage)
-    {
-	fix->teams[0]->stadium.safety -= 
-	    math_rnd(const_float("float_game_stadium_safety_deterioration_lower"),
-		     const_float("float_game_stadium_safety_deterioration_upper"));
-	fix->teams[0]->stadium.safety = CLAMP(fix->teams[0]->stadium.safety, 0, 1);
-    }
-    
 }
 
 /** Find out how many spectators there were,

@@ -1415,7 +1415,7 @@ treeview_create_finances(const User* user)
 			   G_TYPE_STRING);
 
     gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, _("Last week's finances"), 1, "", 2, "", -1);
+    gtk_list_store_set(liststore, &iter, 0, _("Bi-weekly balance"), 1, "", 2, "", -1);
 
     for(i=0;i<MON_IN_TRANSFERS;i++)
 	if(in[i] != 0)
@@ -1479,9 +1479,10 @@ treeview_create_finances(const User* user)
 	misc_print_grouped_int(user->debt, buf, FALSE);
 	sprintf(buf2, "<span foreground='%s'>%s</span>",
 		const_str("string_treeview_finances_expenses_fg"), buf);
+	sprintf(buf, _("Debt (repay in %d weeks)"), user->counters[COUNT_USER_LOAN]);
 	gtk_list_store_append(liststore, &iter);
-	gtk_list_store_set(liststore, &iter, 0, _("Debt"), 1, "", 2, buf2, -1);
-    }	
+	gtk_list_store_set(liststore, &iter, 0, buf, 1, "", 2, buf2, -1);
+    }
 
     return GTK_TREE_MODEL(liststore);
 }

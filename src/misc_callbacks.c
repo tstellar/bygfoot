@@ -249,3 +249,46 @@ on_treeview_users_button_press_event   (GtkWidget       *widget,
 
     return FALSE;
 }
+
+void
+on_spinbutton_capacity_value_changed   (GtkSpinButton   *spinbutton,
+                                        gpointer         user_data)
+{
+    misc_callback_update_stadium_window(TRUE);
+}
+
+
+void
+on_spinbutton_safety_value_changed     (GtkSpinButton   *spinbutton,
+                                        gpointer         user_data)
+{
+    misc_callback_update_stadium_window(FALSE);
+}
+
+
+void
+on_button_stadium_ok_clicked           (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    misc_callback_improve_stadium();
+}
+
+
+void
+on_button_stadium_cancel_clicked       (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    window_destroy(&window.stadium, TRUE);
+}
+
+
+gboolean
+on_spinbutton_capacity_button_press_event  (GtkWidget       *widget,
+					    GdkEventButton  *event,
+					    gpointer         user_data)
+{
+    if(event->button == 2)
+	gtk_spin_button_set_value(GTK_SPIN_BUTTON(widget), 0);
+
+    return FALSE;
+}

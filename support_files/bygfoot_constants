@@ -4,6 +4,26 @@
 # number of seconds until messages disappear
 int_game_gui_message_duration 5
 
+# base values for stadium improvement: 500 seats and 5%
+int_stadium_improvement_base_seats 500
+float_stadium_improvement_base_safety 500
+
+# values at which maximum discount is reached
+int_stadium_improvement_max_discount_seats 2000
+float_stadium_improvement_max_discount_safety 2000
+
+# maximum discount
+float_stadium_improvement_max_discount 4000
+
+# wage unit factor for 500 seats or 5% safety
+float_stadium_improvement_wage_unit_factor_seats 150000
+float_stadium_improvement_wage_unit_factor_safety 60000
+
+# these determine how much the weekly seats and
+# safety increase can deviate from the base values 500 and 5%
+int_stadium_improvement_seats_variance 100
+float_stadium_improvement_safety_variance 100
+
 # lower limit for player ages. 
 float_player_age_lower 180000
 # upper limit for player ages. 
@@ -171,16 +191,20 @@ float_finance_physio_factor4 3000
 # interest rate
 float_finance_interest 200
 
-# weight of player values (compared to stadium capacity)
-# for drawing credit and loan; between 0 and 10000
-float_finance_credit_player_value_weight 1000
+# weight of player values and stadium capacity
+# for drawing credit and loan
+float_finance_credit_player_value_weight 600
+float_finance_credit_stadium_weight 300000
 
 # influence of the stadium safety on the value of the stadium
 float_finance_credit_stadium_safety_exponent 2500
 
 # scaling factors for the drawing credit and loan
-float_finance_credit_factor_drawing 2000
-float_finance_credit_factor_loan    8000
+float_finance_credit_factor_drawing 3000
+float_finance_credit_factor_loan    7000
+
+# number of weeks to pay back a loan
+int_finance_payback_weeks 15
 
 # live game scale configuration
 float_game_gui_live_game_scale_attack	3000
@@ -290,7 +314,7 @@ float_live_game_general_event_second_player 5000
 # constants for stadium events. 
 # influence of the stadium safety on the stadium
 # event probability
-float_live_game_stadium_event_exponent	150
+float_live_game_stadium_event_exponent	50
 
 # probabilities of different events; should add
 # up to 10000
@@ -300,7 +324,7 @@ float_live_game_stadium_event_fire	1000
 
 # foul probabilities. 
 float_live_game_foul		1100
-float_live_game_foul_red_injury 400
+float_live_game_foul_red_injury 200
 float_live_game_foul_red	600
 float_live_game_foul_yellow	2300
 
@@ -317,7 +341,7 @@ float_live_game_ban_5 200
 float_live_game_foul_by_possession 2000
 
 # injury probabilities. 
-float_live_game_injury			140
+float_live_game_injury			100
 float_live_game_injury_goalie_factor	2000
 float_live_game_injury_is_temp		7500
 

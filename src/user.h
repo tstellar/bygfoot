@@ -33,4 +33,7 @@ user_games_in_week_round(gint week_number, gint week_round_number);
 User*
 user_from_team(const Team *tm);
 
+void
+user_weekly_update_counters(User *user);
+
 #endif

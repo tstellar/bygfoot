@@ -222,10 +222,6 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data);
 void
-on_menu_finances_stadium_activate      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
 on_menu_get_loan_activate              (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
@@ -271,7 +267,6 @@ on_menu_user_show_last_match_activate  (GtkMenuItem     *menuitem,
 void
 on_menu_user_show_last_stats_activate  (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
-#endif
 
 gboolean
 on_eventbox_style_button_press_event   (GtkWidget       *widget,
@@ -298,3 +293,4 @@ on_menu_show_finances_activate         (GtkMenuItem     *menuitem,
 void
 on_menu_show_stadium_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
+#endif

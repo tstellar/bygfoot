@@ -112,7 +112,7 @@ live_game_fill_new_unit(LiveGameUnit *new)
     LiveGameUnit *old = &last_unit;
     gfloat rndom = math_rnd(0, 1);
     gfloat stadium_event = 
-	1 - powf((gfloat)tm0->stadium.safety,
+	1 - powf(tm0->stadium.safety,
 		 const_float("float_live_game_stadium_event_exponent"));
     gfloat possession_change, scoring_chance = 0, 
 	injury_event_prob, foul_event_prob;

@@ -1,9 +1,11 @@
 #include "callback_func.h"
 #include "cup.h"
+#include "finance.h"
 #include "fixture.h"
 #include "game_gui.h"
 #include "league.h"
 #include "live_game.h"
+#include "misc.h"
 #include "option.h"
 #include "player.h"
 #include "start_end.h"
@@ -167,4 +169,51 @@ callback_show_tables(gint type)
     stat1 = clid;
 
     treeview_show_table(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")), clid);
+}
+
+/** Open the digits window to get a loan. */
+void
+callback_get_loan(void)
+{
+    gchar buf[SMALL], buf2[SMALL];
+    gint max_loan = 
+	finance_team_drawing_credit_loan(usr(current_user).tm, TRUE) + usr(current_user).debt;
+
+    if(max_loan <= 0)
+    {
+	game_gui_print_message(_("The bank doesn't grant you more money."));
+	return;
+    }
+
+    stat0 = STATUS_GET_LOAN;
+    misc_print_grouped_int(max_loan, buf2, FALSE);
+    sprintf(buf, _("You can take out at most %s."), buf2);
+
+    window_show_digits(buf, _("Loan"), max_loan, NULL, 0);
+}
+
+/** Open the digits window to pay back a loan. */
+void
+callback_pay_loan(void)
+{
+    gchar buf[SMALL], buf2[SMALL];
+    gint max_payback = MIN(BUDGET(current_user), -usr(current_user).debt);
+
+    if(usr(current_user).debt == 0)
+    {
+	game_gui_print_message(_("You are not indebted."));
+	return;
+    }
+
+    if(max_payback <= 0)
+    {
+	game_gui_print_message(_("You don't have enough money to pay back."));
+	return;
+    }
+
+    stat0 = STATUS_PAY_LOAN;
+    misc_print_grouped_int(max_payback, buf2, FALSE);
+    sprintf(buf, _("You can pay back at most %s"), buf2);
+
+    window_show_digits(buf, _("Payback"), max_payback, NULL, 0);
 }

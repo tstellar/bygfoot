@@ -28,6 +28,12 @@ user_new(void)
 
     new.options = g_array_new(FALSE, FALSE, sizeof(Option));
 
+    for(i=0;i<COUNT_USER_END;i++)
+	new.counters[i] = 0;
+
+    new.counters[COUNT_USER_LOAN] =
+	new.counters[COUNT_USER_POSITIVE] = -1;
+
     return new;
 }
 
@@ -173,4 +179,53 @@ user_from_team(const Team *tm)
 	      tm->name->str);
 
     return NULL;
+}
+
+/** Update the counters of the users. */
+void
+user_weekly_update_counters(User *user)
+{
+    gint *cnts = user->counters;
+    gint increase_capacity;
+    gfloat increase_safety;
+
+    printf("cap %d saf %.2f cnts %d %d\n",
+	   user->tm->stadium.capacity,
+	   user->tm->stadium.safety,
+	   cnts[COUNT_USER_STADIUM_CAPACITY],
+	   cnts[COUNT_USER_STADIUM_SAFETY]);
+
+    if(cnts[COUNT_USER_STADIUM_CAPACITY] > 0)
+    {
+	increase_capacity = math_rndi(const_int("int_stadium_improvement_base_seats") - 
+				      const_int("int_stadium_improvement_seats_variance"),
+				      const_int("int_stadium_improvement_base_seats") + 
+				      const_int("int_stadium_improvement_seats_variance"));
+	user->tm->stadium.capacity += MIN(cnts[COUNT_USER_STADIUM_CAPACITY],
+					  increase_capacity);
+	cnts[COUNT_USER_STADIUM_CAPACITY] = 
+	    MAX(cnts[COUNT_USER_STADIUM_CAPACITY] - increase_capacity, 0);
+    }
+
+    if(cnts[COUNT_USER_STADIUM_SAFETY] > 0)
+    {
+	increase_safety = math_rnd(const_float("float_stadium_improvement_base_safety") - 
+				   const_float("float_stadium_improvement_safety_variance"),
+				   const_float("float_stadium_improvement_base_safety") + 
+				   const_float("float_stadium_improvement_safety_variance"));
+	user->tm->stadium.safety += MIN((gfloat)cnts[COUNT_USER_STADIUM_SAFETY] / 100,
+					increase_safety);
+	user->tm->stadium.safety = MIN(user->tm->stadium.safety, 1);
+
+	cnts[COUNT_USER_STADIUM_SAFETY] = 
+	    MAX(cnts[COUNT_USER_STADIUM_SAFETY] - (gint)rint(increase_safety * 100), 0);
+    }
+
+    printf("inc %d %.2f\n", increase_capacity, increase_safety);
+
+    printf("cap %d saf %.2f cnts %d %d\n",
+	   user->tm->stadium.capacity,
+	   user->tm->stadium.safety,
+	   cnts[COUNT_USER_STADIUM_CAPACITY],
+	   cnts[COUNT_USER_STADIUM_SAFETY]);
 }

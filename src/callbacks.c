@@ -6,6 +6,7 @@
 #include "team.h"
 #include "treeview.h"
 #include "variables.h"
+#include "window.h"
 
 /*d*/
 #include "player.h"
@@ -499,17 +500,19 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data)
 {
+    switch(stat0)
+    {
+	case STATUS_SHOW_FINANCES:
+	    if(event->button == 1)		
+		callback_get_loan();
+	    else if(event->button == 3)
+		callback_pay_loan();
+	    break;
+    }
 
-  return FALSE;
+    return FALSE;
 }
 
-
-void
-on_menu_finances_stadium_activate      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
 
 
 void
@@ -663,6 +666,8 @@ void
 on_menu_show_finances_activate         (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    stat0 = STATUS_SHOW_FINANCES;
+    game_gui_print_message("Left-click on the list to get a loan. Right-click to pay back.");
     treeview_show_finances(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")),
 			   &usr(current_user));
 }
@@ -672,6 +677,6 @@ void
 on_menu_show_stadium_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-
+    window_show_stadium();
 }
 

@@ -52,3 +52,4 @@ GArray *users;
 /** The index of the current user in the #users array. */
 gint current_user;
 
+gint timeout_id;

@@ -899,3 +899,297 @@ create_window_startup_users (void)
   return window_startup_users;
 }
 
+GtkWidget*
+create_window_stadium (void)
+{
+  GtkWidget *window_stadium;
+  GtkWidget *vbox39;
+  GtkWidget *vbox48;
+  GtkWidget *hbox66;
+  GtkWidget *label106;
+  GtkWidget *label_stadium_status;
+  GtkWidget *hbox62;
+  GtkWidget *label101;
+  GtkWidget *label_capacity;
+  GtkWidget *label102;
+  GtkWidget *hbox63;
+  GtkWidget *label103;
+  GtkWidget *progressbar_safety;
+  GtkWidget *hseparator14;
+  GtkWidget *vbox43;
+  GtkWidget *label90;
+  GtkWidget *hbox61;
+  GtkWidget *vbox44;
+  GtkWidget *label91;
+  GtkObject *spinbutton_capacity_adj;
+  GtkWidget *spinbutton_capacity;
+  GtkWidget *vbox46;
+  GtkWidget *label93;
+  GtkWidget *label_costs_capacity;
+  GtkWidget *label95;
+  GtkWidget *label_duration_capacity;
+  GtkWidget *vbox45;
+  GtkWidget *label92;
+  GtkObject *spinbutton_safety_adj;
+  GtkWidget *spinbutton_safety;
+  GtkWidget *vbox47;
+  GtkWidget *label94;
+  GtkWidget *label_costs_safety;
+  GtkWidget *label96;
+  GtkWidget *label_duration_safety;
+  GtkWidget *hseparator15;
+  GtkWidget *button_stadium_ok;
+  GtkWidget *alignment20;
+  GtkWidget *hbox67;
+  GtkWidget *image60;
+  GtkWidget *label107;
+  GtkWidget *button_stadium_cancel;
+  GtkAccelGroup *accel_group;
+  GtkTooltips *tooltips;
+
+  tooltips = gtk_tooltips_new ();
+
+  accel_group = gtk_accel_group_new ();
+
+  window_stadium = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_container_set_border_width (GTK_CONTAINER (window_stadium), 5);
+  gtk_window_set_title (GTK_WINDOW (window_stadium), _("window1"));
+  gtk_window_set_position (GTK_WINDOW (window_stadium), GTK_WIN_POS_CENTER);
+
+  vbox39 = gtk_vbox_new (FALSE, 5);
+  gtk_widget_show (vbox39);
+  gtk_container_add (GTK_CONTAINER (window_stadium), vbox39);
+
+  vbox48 = gtk_vbox_new (FALSE, 3);
+  gtk_widget_show (vbox48);
+  gtk_box_pack_start (GTK_BOX (vbox39), vbox48, FALSE, FALSE, 0);
+
+  hbox66 = gtk_hbox_new (FALSE, 3);
+  gtk_widget_show (hbox66);
+  gtk_box_pack_start (GTK_BOX (vbox48), hbox66, TRUE, TRUE, 0);
+
+  label106 = gtk_label_new (_("Status:               "));
+  gtk_widget_show (label106);
+  gtk_box_pack_start (GTK_BOX (hbox66), label106, FALSE, FALSE, 0);
+
+  label_stadium_status = gtk_label_new (_("label107"));
+  gtk_widget_show (label_stadium_status);
+  gtk_box_pack_start (GTK_BOX (hbox66), label_stadium_status, FALSE, FALSE, 0);
+
+  hbox62 = gtk_hbox_new (FALSE, 3);
+  gtk_widget_show (hbox62);
+  gtk_box_pack_start (GTK_BOX (vbox48), hbox62, FALSE, FALSE, 0);
+
+  label101 = gtk_label_new (_("Current capacity:"));
+  gtk_widget_show (label101);
+  gtk_box_pack_start (GTK_BOX (hbox62), label101, FALSE, FALSE, 0);
+
+  label_capacity = gtk_label_new (_("label104"));
+  gtk_widget_show (label_capacity);
+  gtk_box_pack_start (GTK_BOX (hbox62), label_capacity, FALSE, FALSE, 0);
+
+  label102 = gtk_label_new (_("seats"));
+  gtk_widget_show (label102);
+  gtk_box_pack_start (GTK_BOX (hbox62), label102, FALSE, FALSE, 0);
+
+  hbox63 = gtk_hbox_new (FALSE, 3);
+  gtk_widget_show (hbox63);
+  gtk_box_pack_start (GTK_BOX (vbox48), hbox63, FALSE, FALSE, 0);
+
+  label103 = gtk_label_new (_("Current safety:   "));
+  gtk_widget_show (label103);
+  gtk_box_pack_start (GTK_BOX (hbox63), label103, FALSE, FALSE, 0);
+
+  progressbar_safety = gtk_progress_bar_new ();
+  gtk_widget_show (progressbar_safety);
+  gtk_box_pack_start (GTK_BOX (hbox63), progressbar_safety, FALSE, FALSE, 0);
+
+  hseparator14 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator14);
+  gtk_box_pack_start (GTK_BOX (vbox39), hseparator14, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (hseparator14, 1, 10);
+
+  vbox43 = gtk_vbox_new (FALSE, 0);
+  gtk_widget_show (vbox43);
+  gtk_box_pack_start (GTK_BOX (vbox39), vbox43, FALSE, FALSE, 0);
+
+  label90 = gtk_label_new (_("Increase"));
+  gtk_widget_show (label90);
+  gtk_box_pack_start (GTK_BOX (vbox43), label90, FALSE, FALSE, 0);
+
+  hbox61 = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (hbox61);
+  gtk_box_pack_start (GTK_BOX (vbox43), hbox61, FALSE, FALSE, 0);
+
+  vbox44 = gtk_vbox_new (FALSE, 3);
+  gtk_widget_show (vbox44);
+  gtk_box_pack_start (GTK_BOX (hbox61), vbox44, TRUE, TRUE, 0);
+
+  label91 = gtk_label_new (_("Capacity (seats)"));
+  gtk_widget_show (label91);
+  gtk_box_pack_start (GTK_BOX (vbox44), label91, FALSE, FALSE, 0);
+
+  spinbutton_capacity_adj = gtk_adjustment_new (1, 0, 10000, 1, 100, 10);
+  spinbutton_capacity = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_capacity_adj), 1, 0);
+  gtk_widget_show (spinbutton_capacity);
+  gtk_box_pack_start (GTK_BOX (vbox44), spinbutton_capacity, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, spinbutton_capacity, _("Middle-click to set to 0"), NULL);
+
+  vbox46 = gtk_vbox_new (FALSE, 3);
+  gtk_widget_show (vbox46);
+  gtk_box_pack_start (GTK_BOX (vbox44), vbox46, FALSE, FALSE, 0);
+
+  label93 = gtk_label_new (_("Costs"));
+  gtk_widget_show (label93);
+  gtk_box_pack_start (GTK_BOX (vbox46), label93, FALSE, FALSE, 0);
+
+  label_costs_capacity = gtk_label_new (_("label97"));
+  gtk_widget_show (label_costs_capacity);
+  gtk_box_pack_start (GTK_BOX (vbox46), label_costs_capacity, FALSE, FALSE, 0);
+
+  label95 = gtk_label_new (_("Expected duration"));
+  gtk_widget_show (label95);
+  gtk_box_pack_start (GTK_BOX (vbox46), label95, FALSE, FALSE, 0);
+
+  label_duration_capacity = gtk_label_new (_("label99"));
+  gtk_widget_show (label_duration_capacity);
+  gtk_box_pack_start (GTK_BOX (vbox46), label_duration_capacity, FALSE, FALSE, 0);
+
+  vbox45 = gtk_vbox_new (FALSE, 3);
+  gtk_widget_show (vbox45);
+  gtk_box_pack_start (GTK_BOX (hbox61), vbox45, TRUE, TRUE, 0);
+
+  label92 = gtk_label_new (_("Safety (%)"));
+  gtk_widget_show (label92);
+  gtk_box_pack_start (GTK_BOX (vbox45), label92, FALSE, FALSE, 0);
+
+  spinbutton_safety_adj = gtk_adjustment_new (1, 0, 100, 1, 5, 10);
+  spinbutton_safety = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_safety_adj), 1, 0);
+  gtk_widget_show (spinbutton_safety);
+  gtk_box_pack_start (GTK_BOX (vbox45), spinbutton_safety, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, spinbutton_safety, _("Middle-click to set to 0"), NULL);
+
+  vbox47 = gtk_vbox_new (FALSE, 3);
+  gtk_widget_show (vbox47);
+  gtk_box_pack_start (GTK_BOX (vbox45), vbox47, FALSE, FALSE, 0);
+
+  label94 = gtk_label_new (_("Costs"));
+  gtk_widget_show (label94);
+  gtk_box_pack_start (GTK_BOX (vbox47), label94, FALSE, FALSE, 0);
+
+  label_costs_safety = gtk_label_new (_("label98"));
+  gtk_widget_show (label_costs_safety);
+  gtk_box_pack_start (GTK_BOX (vbox47), label_costs_safety, FALSE, FALSE, 0);
+
+  label96 = gtk_label_new (_("Expected duration"));
+  gtk_widget_show (label96);
+  gtk_box_pack_start (GTK_BOX (vbox47), label96, FALSE, FALSE, 0);
+
+  label_duration_safety = gtk_label_new (_("label100"));
+  gtk_widget_show (label_duration_safety);
+  gtk_box_pack_start (GTK_BOX (vbox47), label_duration_safety, FALSE, FALSE, 0);
+
+  hseparator15 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator15);
+  gtk_box_pack_start (GTK_BOX (vbox39), hseparator15, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (hseparator15, 1, 10);
+
+  button_stadium_ok = gtk_button_new ();
+  gtk_widget_show (button_stadium_ok);
+  gtk_box_pack_start (GTK_BOX (vbox39), button_stadium_ok, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, button_stadium_ok, _("Return"), NULL);
+  gtk_widget_add_accelerator (button_stadium_ok, "clicked", accel_group,
+                              GDK_Return, 0,
+                              GTK_ACCEL_VISIBLE);
+
+  alignment20 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment20);
+  gtk_container_add (GTK_CONTAINER (button_stadium_ok), alignment20);
+
+  hbox67 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox67);
+  gtk_container_add (GTK_CONTAINER (alignment20), hbox67);
+
+  image60 = gtk_image_new_from_stock ("gtk-apply", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image60);
+  gtk_box_pack_start (GTK_BOX (hbox67), image60, FALSE, FALSE, 0);
+
+  label107 = gtk_label_new_with_mnemonic ("Improve!");
+  gtk_widget_show (label107);
+  gtk_box_pack_start (GTK_BOX (hbox67), label107, FALSE, FALSE, 0);
+
+  button_stadium_cancel = gtk_button_new_from_stock ("gtk-close");
+  gtk_widget_show (button_stadium_cancel);
+  gtk_box_pack_start (GTK_BOX (vbox39), button_stadium_cancel, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, button_stadium_cancel, _("Esc"), NULL);
+  gtk_widget_add_accelerator (button_stadium_cancel, "clicked", accel_group,
+                              GDK_Escape, 0,
+                              GTK_ACCEL_VISIBLE);
+
+  g_signal_connect ((gpointer) spinbutton_capacity, "value_changed",
+                    G_CALLBACK (on_spinbutton_capacity_value_changed),
+                    NULL);
+  g_signal_connect ((gpointer) spinbutton_capacity, "button_press_event",
+                    G_CALLBACK (on_spinbutton_capacity_button_press_event),
+                    NULL);
+  g_signal_connect ((gpointer) spinbutton_safety, "value_changed",
+                    G_CALLBACK (on_spinbutton_safety_value_changed),
+                    NULL);
+  g_signal_connect ((gpointer) spinbutton_safety, "button_press_event",
+                    G_CALLBACK (on_spinbutton_capacity_button_press_event),
+                    NULL);
+  g_signal_connect ((gpointer) button_stadium_ok, "clicked",
+                    G_CALLBACK (on_button_stadium_ok_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_stadium_cancel, "clicked",
+                    G_CALLBACK (on_button_stadium_cancel_clicked),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (window_stadium, window_stadium, "window_stadium");
+  GLADE_HOOKUP_OBJECT (window_stadium, vbox39, "vbox39");
+  GLADE_HOOKUP_OBJECT (window_stadium, vbox48, "vbox48");
+  GLADE_HOOKUP_OBJECT (window_stadium, hbox66, "hbox66");
+  GLADE_HOOKUP_OBJECT (window_stadium, label106, "label106");
+  GLADE_HOOKUP_OBJECT (window_stadium, label_stadium_status, "label_stadium_status");
+  GLADE_HOOKUP_OBJECT (window_stadium, hbox62, "hbox62");
+  GLADE_HOOKUP_OBJECT (window_stadium, label101, "label101");
+  GLADE_HOOKUP_OBJECT (window_stadium, label_capacity, "label_capacity");
+  GLADE_HOOKUP_OBJECT (window_stadium, label102, "label102");
+  GLADE_HOOKUP_OBJECT (window_stadium, hbox63, "hbox63");
+  GLADE_HOOKUP_OBJECT (window_stadium, label103, "label103");
+  GLADE_HOOKUP_OBJECT (window_stadium, progressbar_safety, "progressbar_safety");
+  GLADE_HOOKUP_OBJECT (window_stadium, hseparator14, "hseparator14");
+  GLADE_HOOKUP_OBJECT (window_stadium, vbox43, "vbox43");
+  GLADE_HOOKUP_OBJECT (window_stadium, label90, "label90");
+  GLADE_HOOKUP_OBJECT (window_stadium, hbox61, "hbox61");
+  GLADE_HOOKUP_OBJECT (window_stadium, vbox44, "vbox44");
+  GLADE_HOOKUP_OBJECT (window_stadium, label91, "label91");
+  GLADE_HOOKUP_OBJECT (window_stadium, spinbutton_capacity, "spinbutton_capacity");
+  GLADE_HOOKUP_OBJECT (window_stadium, vbox46, "vbox46");
+  GLADE_HOOKUP_OBJECT (window_stadium, label93, "label93");
+  GLADE_HOOKUP_OBJECT (window_stadium, label_costs_capacity, "label_costs_capacity");
+  GLADE_HOOKUP_OBJECT (window_stadium, label95, "label95");
+  GLADE_HOOKUP_OBJECT (window_stadium, label_duration_capacity, "label_duration_capacity");
+  GLADE_HOOKUP_OBJECT (window_stadium, vbox45, "vbox45");
+  GLADE_HOOKUP_OBJECT (window_stadium, label92, "label92");
+  GLADE_HOOKUP_OBJECT (window_stadium, spinbutton_safety, "spinbutton_safety");
+  GLADE_HOOKUP_OBJECT (window_stadium, vbox47, "vbox47");
+  GLADE_HOOKUP_OBJECT (window_stadium, label94, "label94");
+  GLADE_HOOKUP_OBJECT (window_stadium, label_costs_safety, "label_costs_safety");
+  GLADE_HOOKUP_OBJECT (window_stadium, label96, "label96");
+  GLADE_HOOKUP_OBJECT (window_stadium, label_duration_safety, "label_duration_safety");
+  GLADE_HOOKUP_OBJECT (window_stadium, hseparator15, "hseparator15");
+  GLADE_HOOKUP_OBJECT (window_stadium, button_stadium_ok, "button_stadium_ok");
+  GLADE_HOOKUP_OBJECT (window_stadium, alignment20, "alignment20");
+  GLADE_HOOKUP_OBJECT (window_stadium, hbox67, "hbox67");
+  GLADE_HOOKUP_OBJECT (window_stadium, image60, "image60");
+  GLADE_HOOKUP_OBJECT (window_stadium, label107, "label107");
+  GLADE_HOOKUP_OBJECT (window_stadium, button_stadium_cancel, "button_stadium_cancel");
+  GLADE_HOOKUP_OBJECT_NO_REF (window_stadium, tooltips, "tooltips");
+
+  gtk_window_add_accel_group (GTK_WINDOW (window_stadium), accel_group);
+
+  return window_stadium;
+}
+

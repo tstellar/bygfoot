@@ -309,8 +309,11 @@ game_gui_print_message(gchar *text)
 {
     gtk_entry_set_text(GTK_ENTRY(lookup_widget(window.main, "entry_message")), text);
 
-    g_timeout_add(const_int("int_game_gui_message_duration") * 1000,
-		  (GSourceFunc)game_gui_clear_entry_message, NULL);
+    if(timeout_id != -1)
+	g_source_remove(timeout_id);
+
+    timeout_id = g_timeout_add(const_int("int_game_gui_message_duration") * 1000,
+			       (GSourceFunc)game_gui_clear_entry_message, NULL);
 }
 
 /** Function that gets called from time to time. */

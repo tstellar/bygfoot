@@ -1,8 +1,11 @@
+#include "callbacks.h"
 #include "finance.h"
+#include "game_gui.h"
 #include "maths.h"
 #include "option.h"
 #include "player.h"
 #include "user.h"
+#include "window.h"
 
 /** Weekly update of finances. */
 void
@@ -46,10 +49,19 @@ finance_update_user_weekly(User *user)
 
     user->money_out[1][MON_OUT_SCOUT] -= (gint)(finance_wage_unit(tm) * scout_factor[user->scout % 10]);
 
-    user->debt = (gint)rint((gfloat)user->debt * const_float("float_finance_interest"));
+    user->debt = (gint)rint((gfloat)user->debt * (1 + const_float("float_finance_interest")));
 
     for(i=0;i<MON_OUT_END;i++)
 	user->money += user->money_out[1][i];
+
+    if(user->counters[COUNT_USER_LOAN] > -1)
+	user->counters[COUNT_USER_LOAN]--;
+    if(user->counters[COUNT_USER_LOAN] == 0)
+	/*todo*/
+	;
+    else if(user->counters[COUNT_USER_LOAN] == -1 && user->debt != 0)
+	/*todo*/
+	;
 }
 
 /** Return a base value for team finances.
@@ -77,19 +89,130 @@ finance_team_drawing_credit_loan(const Team *tm, gboolean loan)
     for(i=0;i<tm->players->len;i++)
 	sum += player_of(tm, i)->value;
     
-/*     printf("pl %.0f stad %.0f\n", sum, */
-/* 	   (gfloat)tm->stadium.capacity * powf(tm->stadium.safety, */
-/* 					       const_float("float_finance_credit_stadium_safety_exponent"))); */
-
     sum = (sum * const_float("float_finance_credit_player_value_weight")) +
-	((gfloat)tm->stadium.capacity * powf(tm->stadium.safety,
-					     const_float("float_finance_credit_stadium_safety_exponent"))
-	 * (1 - const_float("float_finance_credit_player_value_weight")));
-
-/*     printf(" sum %.0f\n", sum); */
+	((gfloat)tm->stadium.capacity * 
+	 powf(tm->stadium.safety, const_float("float_finance_credit_stadium_safety_exponent")) *
+	 const_float("float_finance_credit_stadium_weight"));
 
     sum *= (loan) ? const_float("float_finance_credit_factor_loan") :
 	const_float("float_finance_credit_factor_drawing");
 
     return (gint)rint(sum);
+}
+
+/** Contract a loan for the current user.
+    @param value The amount of money. */
+void
+finance_get_loan(gint value)
+{
+    gchar buf[SMALL];
+
+    usr(current_user).money += value;
+    usr(current_user).debt -= value;
+
+    usr(current_user).counters[COUNT_USER_LOAN] = (usr(current_user).counters[COUNT_USER_LOAN] == -1) ?
+	const_int("int_finance_payback_weeks") : 
+	usr(current_user).counters[COUNT_USER_LOAN];    
+
+    sprintf(buf, _("You have %d weeks to pay back your loan."),
+	    usr(current_user).counters[COUNT_USER_LOAN]); 
+    game_gui_print_message(buf);
+
+    window_destroy(&window.digits, TRUE);
+
+    on_menu_show_finances_activate(NULL, NULL);
+}
+
+
+/** Pay back some loan for the current user.
+    @param value The amount of money paid back. */
+void
+finance_pay_loan(gint value)
+{
+    gchar buf[SMALL];
+    gint add = (gint)rint((gfloat)value / (gfloat)(-usr(current_user).debt) * 
+			  (gfloat)const_int("int_finance_payback_weeks"));    
+
+    usr(current_user).money -= value;
+    usr(current_user).debt += value;
+
+    if(usr(current_user).debt == 0)
+    {
+	usr(current_user).counters[COUNT_USER_LOAN] = -1;
+	strcpy(buf, _("You are free from debt."));
+    }
+    else
+    {
+	usr(current_user).counters[COUNT_USER_LOAN] = 
+	    MIN(usr(current_user).counters[COUNT_USER_LOAN] + add,
+		const_int("int_finance_payback_weeks"));
+	sprintf(buf, _("You have %d weeks to pay back the rest of your loan."),
+		usr(current_user).counters[COUNT_USER_LOAN]);
+    }
+
+    game_gui_print_message(buf);
+    window_destroy(&window.digits, TRUE);
+
+    on_menu_show_finances_activate(NULL, NULL);
+}
+
+/** Return the cost of a stadium improvement.
+    @param value The improvement value, either number of new seats
+    or safety increase.
+    @param capacity Whether seats are built or capacity increased. */
+gint
+finance_get_stadium_improvement_cost(gfloat value, gboolean capacity)
+{
+    gfloat return_value;
+
+    if(capacity)
+    {
+	return_value = finance_wage_unit(usr(current_user).tm) * 
+	    (value / (gfloat)const_int("int_stadium_improvement_base_seats"))*
+	    const_float("float_stadium_improvement_wage_unit_factor_seats");
+
+	if(value - (gfloat)const_int("int_stadium_improvement_base_seats") >= 
+	   const_int("int_stadium_improvement_max_discount_seats"))
+	    return_value *= (1 - const_float("float_stadium_improvement_max_discount"));
+	else
+	    return_value *= (1 - const_float("float_stadium_improvement_max_discount") *
+			     ((value - (gfloat)const_int("int_stadium_improvement_base_seats")) / 
+			      (gfloat)const_int("int_stadium_improvement_max_discount_seats")));
+    }
+    else
+    {
+	return_value = finance_wage_unit(usr(current_user).tm) * 
+	    (value / const_float("float_stadium_improvement_base_safety"))*
+	    const_float("float_stadium_improvement_wage_unit_factor_safety");
+
+	if(value - const_float("float_stadium_improvement_base_safety") >=
+	   const_float("float_stadium_improvement_max_discount_safety"))
+	    return_value *= (1 - const_float("float_stadium_improvement_max_discount"));
+	else
+	    return_value *= (1 - const_float("float_stadium_improvement_max_discount") *
+			     ((value - const_float("float_stadium_improvement_base_safety")) / 
+			      const_float("float_stadium_improvement_max_discount_safety")));
+    }
+	
+    return (gint)rint(return_value);
+}
+
+/** Return the expected duration of a stadium improvement.
+    @param value The improvement value, either number of new seats
+    or safety increase.
+    @param capacity Whether seats are built or capacity increased. */
+gint
+finance_get_stadium_improvement_duration(gfloat value, gboolean capacity)
+{
+    gint return_value;
+
+    if(capacity)
+	return_value = (gint)((value - 1) /
+			      (gfloat)const_int("int_stadium_improvement_base_seats")) + 1;
+    else
+	return_value = 
+	    (gint)(((gint)rint(value * 100) - 1) /
+		   (gint)rint(const_float("float_stadium_improvement_base_safety") * 100)) + 1;
+
+    return return_value;
 }

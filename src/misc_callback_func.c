@@ -1,6 +1,10 @@
+#include "finance.h"
 #include "game.h"
 #include "game_gui.h"
+#include "gui.h"
+#include "maths.h"
 #include "misc_callback_func.h"
+#include "option.h"
 #include "start_end.h"
 #include "support.h"
 #include "team.h"
@@ -154,4 +158,81 @@ misc_callback_pause_live_game(void)
     }
 
     stat0 = STATUS_LIVE_GAME_PAUSE;
+}
+
+/** Update the cost and expected duration labels in the stadium
+    window when the user's clicked on the spinbuttons. 
+    @param capacity Whether to update the capacity or safety labels. */
+void
+misc_callback_update_stadium_window(gboolean capacity)
+{
+    GtkLabel *label_costs_capacity = 
+	GTK_LABEL(lookup_widget(window.stadium, "label_costs_capacity")),
+	*label_costs_safety =
+	GTK_LABEL(lookup_widget(window.stadium, "label_costs_safety")),
+	*label_duration_capacity =
+	GTK_LABEL(lookup_widget(window.stadium, "label_duration_capacity")),
+	*label_duration_safety =
+	GTK_LABEL(lookup_widget(window.stadium, "label_duration_safety"));
+    GtkSpinButton *spinbutton_capacity =
+	GTK_SPIN_BUTTON(lookup_widget(window.stadium, "spinbutton_capacity")),
+	*spinbutton_safety =
+	GTK_SPIN_BUTTON(lookup_widget(window.stadium, "spinbutton_safety"));
+    gfloat value_capacity = gtk_spin_button_get_value(spinbutton_capacity),
+	value_safety = gtk_spin_button_get_value(spinbutton_safety) / 100;
+    gint cost, duration;
+      
+    if(capacity)
+    {
+	cost = finance_get_stadium_improvement_cost(value_capacity, TRUE);
+	duration = finance_get_stadium_improvement_duration(value_capacity, TRUE);
+	gui_label_set_text_from_int(label_costs_capacity, cost, FALSE);
+	gui_label_set_text_from_int(label_duration_capacity, duration, FALSE);
+    }
+    else
+    {
+	cost = finance_get_stadium_improvement_cost(value_safety, FALSE);
+	duration = finance_get_stadium_improvement_duration(value_safety, FALSE);
+	gui_label_set_text_from_int(label_costs_safety, cost, FALSE);
+	gui_label_set_text_from_int(label_duration_safety, duration, FALSE);
+    }
+}
+
+/** Handle a click on the OK button of the stadium window. */
+void
+misc_callback_improve_stadium(void)
+{
+    GtkSpinButton *spinbutton_capacity =
+	GTK_SPIN_BUTTON(lookup_widget(window.stadium, "spinbutton_capacity")),
+	*spinbutton_safety =
+	GTK_SPIN_BUTTON(lookup_widget(window.stadium, "spinbutton_safety"));
+    gint value_capacity = gtk_spin_button_get_value_as_int(spinbutton_capacity),
+	value_safety = gtk_spin_button_get_value_as_int(spinbutton_safety);
+    gint cost_capacity, cost_safety;
+
+    if(value_safety + usr(current_user).counters[COUNT_USER_STADIUM_SAFETY]
+       > 101 - usr(current_user).tm->stadium.safety * 100)
+    {
+	game_gui_show_warning("Safety improvement too high, reset to highest possible value.");
+	value_safety = (gint)rint(100 - usr(current_user).tm->stadium.safety * 100) -
+	    usr(current_user).counters[COUNT_USER_STADIUM_SAFETY];
+    }
+
+    cost_capacity = finance_get_stadium_improvement_cost(value_capacity, TRUE);
+    cost_safety = finance_get_stadium_improvement_cost((gfloat)value_safety / 100, FALSE);
+
+    if(cost_safety + cost_capacity > BUDGET(current_user))
+    {
+	game_gui_show_warning(_("You don't have the money."));
+	return;
+    }
+
+    usr(current_user).money -= (cost_capacity + cost_safety);
+    usr(current_user).money_out[1][MON_OUT_STADIUM_IMPROVEMENT] -= (cost_safety + cost_capacity);
+
+    usr(current_user).counters[COUNT_USER_STADIUM_CAPACITY] += value_capacity;
+    usr(current_user).counters[COUNT_USER_STADIUM_SAFETY] += value_safety;
+
+    window_destroy(&window.stadium, TRUE);
+    game_gui_set_main_window_header();
 }

@@ -112,4 +112,26 @@ on_treeview_users_button_press_event   (GtkWidget       *widget,
 void
 on_entry_player_name_activate          (GtkEntry        *entry,
                                         gpointer         user_data);
+
+void
+on_spinbutton_capacity_value_changed   (GtkSpinButton   *spinbutton,
+                                        gpointer         user_data);
+
+void
+on_spinbutton_safety_value_changed     (GtkSpinButton   *spinbutton,
+                                        gpointer         user_data);
+
+void
+on_button_stadium_ok_clicked           (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_stadium_cancel_clicked       (GtkButton       *button,
+                                        gpointer         user_data);
+
+gboolean
+on_spinbutton_capacity_button_press_event
+                                        (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data);
 #endif

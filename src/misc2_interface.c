@@ -916,6 +916,7 @@ create_window_warning (void)
   label_warning = gtk_label_new (_("label42"));
   gtk_widget_show (label_warning);
   gtk_box_pack_start (GTK_BOX (vbox13), label_warning, FALSE, FALSE, 0);
+  gtk_label_set_line_wrap (GTK_LABEL (label_warning), TRUE);
 
   button_warning = gtk_button_new_from_stock ("gtk-close");
   gtk_widget_show (button_warning);
@@ -939,5 +940,123 @@ create_window_warning (void)
   GLADE_HOOKUP_OBJECT (window_warning, button_warning, "button_warning");
 
   return window_warning;
+}
+
+GtkWidget*
+create_window_digits (void)
+{
+  GtkWidget *window_digits;
+  GtkWidget *vbox14;
+  GtkWidget *label_main;
+  GtkWidget *hbox15;
+  GtkWidget *vbox15;
+  GtkWidget *label_1;
+  GtkObject *spinbutton1_adj;
+  GtkWidget *spinbutton1;
+  GtkWidget *vbox16;
+  GtkWidget *label_2;
+  GtkObject *spinbutton2_adj;
+  GtkWidget *spinbutton2;
+  GtkWidget *hbox16;
+  GtkWidget *button_digits_ok;
+  GtkWidget *button_digits_cancel;
+  GtkAccelGroup *accel_group;
+  GtkTooltips *tooltips;
+
+  tooltips = gtk_tooltips_new ();
+
+  accel_group = gtk_accel_group_new ();
+
+  window_digits = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_container_set_border_width (GTK_CONTAINER (window_digits), 5);
+  gtk_window_set_title (GTK_WINDOW (window_digits), _("window1"));
+  gtk_window_set_position (GTK_WINDOW (window_digits), GTK_WIN_POS_CENTER);
+
+  vbox14 = gtk_vbox_new (FALSE, 10);
+  gtk_widget_show (vbox14);
+  gtk_container_add (GTK_CONTAINER (window_digits), vbox14);
+
+  label_main = gtk_label_new (_("label42"));
+  gtk_widget_show (label_main);
+  gtk_box_pack_start (GTK_BOX (vbox14), label_main, FALSE, FALSE, 0);
+
+  hbox15 = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (hbox15);
+  gtk_box_pack_start (GTK_BOX (vbox14), hbox15, FALSE, TRUE, 0);
+
+  vbox15 = gtk_vbox_new (FALSE, 0);
+  gtk_widget_show (vbox15);
+  gtk_box_pack_start (GTK_BOX (hbox15), vbox15, TRUE, TRUE, 0);
+
+  label_1 = gtk_label_new (_("label43"));
+  gtk_widget_show (label_1);
+  gtk_box_pack_start (GTK_BOX (vbox15), label_1, FALSE, FALSE, 0);
+
+  spinbutton1_adj = gtk_adjustment_new (1, 0, 100000000, 1, 1000, 10);
+  spinbutton1 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton1_adj), 1, 0);
+  gtk_widget_show (spinbutton1);
+  gtk_box_pack_start (GTK_BOX (vbox15), spinbutton1, FALSE, FALSE, 0);
+  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton1), TRUE);
+
+  vbox16 = gtk_vbox_new (FALSE, 0);
+  gtk_widget_show (vbox16);
+  gtk_box_pack_start (GTK_BOX (hbox15), vbox16, TRUE, TRUE, 0);
+
+  label_2 = gtk_label_new (_("label44"));
+  gtk_widget_show (label_2);
+  gtk_box_pack_start (GTK_BOX (vbox16), label_2, FALSE, FALSE, 0);
+
+  spinbutton2_adj = gtk_adjustment_new (1, 0, 100000000, 1000, 10000, 10);
+  spinbutton2 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton2_adj), 1, 0);
+  gtk_widget_show (spinbutton2);
+  gtk_box_pack_start (GTK_BOX (vbox16), spinbutton2, FALSE, FALSE, 0);
+  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton2), TRUE);
+
+  hbox16 = gtk_hbox_new (FALSE, 3);
+  gtk_widget_show (hbox16);
+  gtk_box_pack_start (GTK_BOX (vbox14), hbox16, FALSE, TRUE, 0);
+
+  button_digits_ok = gtk_button_new_from_stock ("gtk-ok");
+  gtk_widget_show (button_digits_ok);
+  gtk_box_pack_start (GTK_BOX (hbox16), button_digits_ok, TRUE, TRUE, 0);
+  gtk_tooltips_set_tip (tooltips, button_digits_ok, _("Return"), NULL);
+  gtk_widget_add_accelerator (button_digits_ok, "clicked", accel_group,
+                              GDK_Return, 0,
+                              GTK_ACCEL_VISIBLE);
+
+  button_digits_cancel = gtk_button_new_from_stock ("gtk-cancel");
+  gtk_widget_show (button_digits_cancel);
+  gtk_box_pack_start (GTK_BOX (hbox16), button_digits_cancel, TRUE, TRUE, 0);
+  gtk_tooltips_set_tip (tooltips, button_digits_cancel, _("Esc"), NULL);
+  gtk_widget_add_accelerator (button_digits_cancel, "clicked", accel_group,
+                              GDK_Escape, 0,
+                              GTK_ACCEL_VISIBLE);
+
+  g_signal_connect ((gpointer) button_digits_ok, "clicked",
+                    G_CALLBACK (on_button_digits_ok_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_digits_cancel, "clicked",
+                    G_CALLBACK (on_button_digits_cancel_clicked),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (window_digits, window_digits, "window_digits");
+  GLADE_HOOKUP_OBJECT (window_digits, vbox14, "vbox14");
+  GLADE_HOOKUP_OBJECT (window_digits, label_main, "label_main");
+  GLADE_HOOKUP_OBJECT (window_digits, hbox15, "hbox15");
+  GLADE_HOOKUP_OBJECT (window_digits, vbox15, "vbox15");
+  GLADE_HOOKUP_OBJECT (window_digits, label_1, "label_1");
+  GLADE_HOOKUP_OBJECT (window_digits, spinbutton1, "spinbutton1");
+  GLADE_HOOKUP_OBJECT (window_digits, vbox16, "vbox16");
+  GLADE_HOOKUP_OBJECT (window_digits, label_2, "label_2");
+  GLADE_HOOKUP_OBJECT (window_digits, spinbutton2, "spinbutton2");
+  GLADE_HOOKUP_OBJECT (window_digits, hbox16, "hbox16");
+  GLADE_HOOKUP_OBJECT (window_digits, button_digits_ok, "button_digits_ok");
+  GLADE_HOOKUP_OBJECT (window_digits, button_digits_cancel, "button_digits_cancel");
+  GLADE_HOOKUP_OBJECT_NO_REF (window_digits, tooltips, "tooltips");
+
+  gtk_window_add_accel_group (GTK_WINDOW (window_digits), accel_group);
+
+  return window_digits;
 }
 
