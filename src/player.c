@@ -87,8 +87,6 @@ player_new_id(const GArray *players)
 	    return j;
     }
 
-    g_warning("player_new_id: didn't find id for a new player.\n");
-
     return -1;
 }
 
@@ -246,15 +244,6 @@ player_append_to_array(const Player *pl, Team *tm)
     g_array_append_val(tm->players, new_player);
 }
 
-/** Remove a player from a team. */
-void
-player_remove_from_team(Team *tm, gint player_number)
-{
-    free_player(&g_array_index(tm->players, Player, player_number));
-
-    g_array_remove_index(tm->players, player_number);
-}
-
 /** Return the pointer to the player given by the ids.
     @param clid The cup/league id of the team.
     @param team_id The id of the team.
@@ -295,7 +284,7 @@ player_id_index(const Team *tm, gint player_id)
     gint i;
 
     for(i=0;i<tm->players->len;i++)
-	if(g_array_index(tm->players, Player, i).id == player_id)
+	if(player_of(tm, i)->id == player_id)
 	    return i;
     
     g_warning("player_id_index: didn't find player with id %d of team %s\n", player_id, tm->name->str);
@@ -906,6 +895,13 @@ player_update_skill(Player *pl)
 
     pl->skill = CLAMP(pl->skill, 0, pl->talent);
     pl->cskill = player_get_cskill(pl, pl->cpos);
+
+    for(i=0;i<QUALITY_END;i++)
+	if(pl->skill > pl->etal[i])
+	{
+	    player_estimate_talent(pl);
+	    break;
+	}
 }
 
 /** Update players in user teams (age, skill, fitness etc.)
@@ -932,9 +928,16 @@ void
 player_remove_contract(Team *tm, gint idx)
 {
     /*todo: add event*/
+    player_remove_from_team(tm, idx);
+}
 
+/** Remove a player from a team.
+    @param idx The player index in the players array. */
+void
+player_remove_from_team(Team *tm, gint idx)
+{
     free_player(player_of(tm, idx));
-    g_array_remove_index(tm->players, idx);
+    g_array_remove_index(tm->players, idx);    
 }
 
 /** Make some player updates after a match
@@ -943,6 +946,30 @@ player_remove_contract(Team *tm, gint idx)
 void
 player_update_post_match(Player *pl)
 {
+    Fixture *fix = team_get_next_fixture(pl->team);
+
     if(pl->health == 0)
 	player_update_fitness(pl);
+    else if(pl->cskill == 0 &&
+	    (fix == NULL || player_card_get(pl, fix->clid, PLAYER_VALUE_CARD_RED) == 0))
+	pl->cskill = player_get_cskill(pl, pl->cpos);
+}
+
+/** Replace a player by a new one in a cpu team. */
+void
+player_replace_by_new(Player *pl)
+{
+    Team *tm = pl->team;
+    gint idx = player_id_index(tm, pl->id);
+    Player new = player_new(tm, team_get_average_skill(tm, FALSE));
+    
+    if(tm == &g_array_index(lig(0).teams, Team, 4))
+	printf("NEWPLAYER %s %s\n", pl->name->str, new.name->str);
+
+    new.pos = pl->pos;
+    new.cpos = pl->cpos;
+    new.id = pl->id;
+
+    player_remove_from_team(tm, idx);
+    g_array_insert_val(tm->players, idx, new);
 }

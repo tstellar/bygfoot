@@ -159,7 +159,6 @@ cup_load_choose_teams(Cup *cup)
 	    {
 		team_append_to_array_with_ids(&g_array_index(teams, Team, permutation[j]), cup->teams,
 					      cup->id, cup->teams->len);
-		team_generate_players(&g_array_index(cup->teams, Team, cup->teams->len - 1));
 		number_of_teams++;
 	    }
 
@@ -174,6 +173,9 @@ cup_load_choose_teams(Cup *cup)
 	free_teams_array(&teams);
 	free_leagues_array(&leagues);
     }
+
+    for(i=0;i<cup->teams->len;i++)
+	team_generate_players(&g_array_index(cup->teams, Team, i));
 
     /*d*/
 /*     printf("\n%s\n", cup->name->str); */

@@ -311,6 +311,28 @@ float_team_boost_foul_by_possession_factor2 9000
 # influence of boost on foul probability
 float_team_boost_foul_factor 4000
 
+# probability that be better goalie gets substituted
+# when updating the cpu teams
+float_team_replace_worse_goalie 8000
+
+# prob that new players come into the cpu team
+float_team_new_player_probability 500
+
+# upper and lower limits for the number of new players
+int_team_new_players_lower 1
+int_team_new_players_upper 2
+
+# upper and lower limits for the number of subs
+# in cpu teams
+int_team_subs_lower 1
+int_team_subs_upper 3
+
+# prob that the team style gets changed
+float_team_new_style 1000
+
+# prob that the team structure gets changed
+float_team_new_structure 500
+
 # the influence of the fitness on the current skill.
 #    this determines the player's contribution to the team
 #    during a game. the higher the value the bigger the influence.

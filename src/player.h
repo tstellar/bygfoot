@@ -49,9 +49,6 @@ player_copy(const Player *source, Player *dest);
 void
 player_append_to_array(const Player *pl, Team *tm);
 
-void
-player_remove_from_team(Team *tm, gint player_number);
-
 gint
 player_all_games_goals(const Player *pl, gint type);
 
@@ -123,5 +120,11 @@ player_update_fitness(Player *pl);
 
 void
 player_update_post_match(Player *pl);
+
+void
+player_replace_by_new(Player *pl);
+
+void
+player_remove_from_team(Team *tm, gint idx);
 
 #endif

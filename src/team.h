@@ -88,9 +88,21 @@ void
 team_update_user_team_weekly(Team *tm);
 
 void
-team_update_cpu_team(Team *tm);
+team_update_cpu_team(Team *tm, gboolean reset_fitness);
 
 void
 team_update_post_match(Team *tm);
+
+void
+team_update_cpu_corrections(Team *tm, gboolean reset_fitness);
+
+void
+team_update_cpu_subs(Team *tm);
+
+void
+team_update_cpu_structure(Team *tm);
+
+void
+team_update_cpu_new_players(Team *tm);
 
 #endif

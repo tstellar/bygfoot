@@ -157,6 +157,14 @@ game_get_player(const Team *tm, gint player_type,
     else
     {
 	g_warning("game_get_player: All players injured or banned, apparently.\n");
+	printf("player list:\n");
+	for(i=0;i<tm->players->len;i++)
+	{
+	    if(i < 10)
+		printf("prob %.3f  ", probs[i]);
+	    printf("%d %20s health %d cskill %.2f\n", i, player_of(tm, i)->name->str,
+		   player_of(tm, i)->health, player_of(tm, i)->cskill);
+	}
 	return -1;
     }
 
@@ -456,9 +464,10 @@ game_substitute_player(Team *tm, gint player_number)
 	(math_get_place(team_find_appropriate_structure(tm), 1) + 
 	 math_get_place(team_find_appropriate_structure(tm), 2) + 
 	 math_get_place(team_find_appropriate_structure(tm), 3) != 10 ||
-	 player_substitution_good_structure(tm->structure,
-					    player_of(tm, player_number)->cpos,
-					    ((Player*)g_ptr_array_index(substitutes, 0))->pos));
+	 (player_of(tm, player_number)->cpos != ((Player*)g_ptr_array_index(substitutes, 0))->pos &&
+	  player_substitution_good_structure(tm->structure,
+					     player_of(tm, player_number)->cpos,
+					     ((Player*)g_ptr_array_index(substitutes, 0))->pos)));
 
     substitute = ((Player*)g_ptr_array_index(substitutes, 0))->id;
 
@@ -973,8 +982,9 @@ game_post_match(Fixture *fix)
     for(i=0;i<2;i++)
     {
 	if(team_is_user(fix->teams[i]) == -1)
-	    team_update_cpu_team(fix->teams[i]);
-	else
+	    team_update_cpu_team(fix->teams[i],
+				 (fixture_user_team_involved(fix) != -1));
+	else if(fix->teams[i]->clid == fix->clid)
 	    team_update_post_match(fix->teams[i]);
     }
 }

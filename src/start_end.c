@@ -116,7 +116,7 @@ start_generate_league_teams(void)
 void
 start_load_cup_teams(void)
 {
-    gint i, j;
+    gint i, j, k;
 
     for(i=0;i<cps->len;i++)
 	if(cp(i).type == CUP_TYPE_INTERNATIONAL)
@@ -212,6 +212,17 @@ end_week_round_results(void)
 /* 			   g_array_index(cp(i).fixtures, Fixture, j).result[1][2],		        */
 /* 			   g_array_index(cp(i).fixtures, Fixture, j).teams[1]->name->str); */
 		}
+    }
+
+    /*d*/
+    Team *tm = &g_array_index(lig(0).teams, Team, 4);
+    Player *pl = NULL;
+    printf("\n+++ struc %d style %d\n", tm->structure, tm->style);
+    for(i=0;i<tm->players->len;i++)
+    {
+	pl = player_of(tm, i);
+	printf("%20s p %d cp %d s %.0f cs %.0f fi %.2f\n",
+	       pl->name->str, pl->pos, pl->cpos, pl->skill, pl->cskill, pl->fitness);
     }
 }
 
