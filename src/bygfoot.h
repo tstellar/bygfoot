@@ -35,12 +35,10 @@ enum ExitCodes
     EXIT_END
 };
 
-typedef struct _Country Country;
-
 /**
  * A struct representing a country.
  */
-struct _Country
+typedef struct
 {
     GString *name, /**< Name of the country. */
 	*symbol, /**< Symbol of the country, e.g. a flag pixmap. */
@@ -50,7 +48,7 @@ struct _Country
     GArray *leagues,
 	*cups,
 	*supercups;
-};
+} Country;
 
 /** Convenience abbreviation. */
 #define ligs country.leagues

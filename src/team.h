@@ -5,13 +5,11 @@
 #include "maths.h"
 #include "player.h"
 
-typedef struct _Team Team;
-
 /**
    Structure representing a team.
-   @see _Player
+   @see Player
 */
-struct _Team
+typedef struct
 {
     GString *name;
     /**
@@ -32,7 +30,7 @@ struct _Team
        Array of players.
     */
     GArray *players;
-};
+} Team;
 
 Team
 team_new(void);

@@ -4,9 +4,6 @@
 #include "variables.h"
 #include "bygfoot.h"
 
-typedef struct _Player Player;
-typedef struct _PlayerCard PlayerCard;
-
 /**
    Player attribute indices.
 */
@@ -36,7 +33,7 @@ enum PlayerAttributes
    Representation of a player.
    @see #PlayerAttributes
 */
-struct _Player
+typedef struct
 {
     GString *name;   
     gint values[PLAYER_END];
@@ -45,13 +42,13 @@ struct _Player
     GArray *cards;
     /** Player history. To be specified. */
     GArray *history;
-};
+} Player;
 
 /**
    Cards in different cups are counted separately for players;
    for each league or cup the cards are stored in such a struct.
 */
-struct _PlayerCard
+typedef struct
 {
     /** Numerical id of the league or cup. */
     gint league_cup_id;
@@ -59,6 +56,6 @@ struct _PlayerCard
     gint yellow;
     /** Number of weeks the player is banned. */
     gint red;
-};
+} PlayerCard;
 
 #endif
