@@ -16,13 +16,19 @@ treeview_cell_team_selection(GtkTreeViewColumn *col,
 			     GtkTreeIter       *iter,
 			     gpointer           user_data)
 {
-    gint column = GPOINTER_TO_INT(user_data);
+    gchar buf[SMALL];
+    gint column = treeview_get_col_number_column(col);
     gpointer team_pointer;
 
     gtk_tree_model_get(model, iter, column, &team_pointer, -1);
 
     if(column == 2)
 	g_object_set(renderer, "text", ((Team*)team_pointer)->name->str, NULL);
+    else if(column == 4)
+    {
+	sprintf(buf, "%.1f", team_get_average_skill((Team*)team_pointer, FALSE));
+	g_object_set(renderer, "text", buf, NULL);
+    }
     else
 	g_warning("treeview_cell_team_selection: unknown column: %d\n", column);
 }
@@ -35,7 +41,7 @@ treeview_cell_int_to_cell(GtkTreeViewColumn *col,
 			  GtkTreeIter       *iter,
 			  gpointer           user_data)
 {
-    gint column = GPOINTER_TO_INT(user_data);
+    gint column = treeview_get_col_number_column(col);
     gint value;
     gchar  buf[SMALL];
 

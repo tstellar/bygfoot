@@ -165,7 +165,15 @@ void
 on_button_contract_offer_clicked       (GtkButton       *button,
                                         gpointer         user_data)
 {
-
-    /*d*/
-    window_destroy(&window.contract, FALSE);
+    misc2_callback_contract_offer();
 }
+
+gboolean
+on_window_contract_delete_event        (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data)
+{
+
+    return TRUE;
+}
+

@@ -9,5 +9,8 @@ misc2_callback_transfer_user_player(void);
 void
 misc2_callback_change_structure(gint structure);
 
+void
+misc2_callback_contract_offer(void);
+
 #endif
 

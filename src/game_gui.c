@@ -304,6 +304,8 @@ game_gui_read_radio_items(GtkWidget *widget)
     if(old_scout != current_user.scout ||
        old_physio != current_user.physio)
 	game_gui_print_message(_("Next week you'll fire him and hire a new one."));
+
+    treeview_show_next_opponent();
 }
 
 /** Show the main menu. */
@@ -312,7 +314,7 @@ game_gui_show_main(void)
 {
     game_gui_set_main_window_header();
     treeview_show_user_player_list();
-    treeview_show_next_opponent(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")));
+    treeview_show_next_opponent();
 }
 
 /** Print a message into the main window entry. */

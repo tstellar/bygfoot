@@ -34,10 +34,6 @@ on_menu_about_activate                 (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
-on_menu_team_editor_help_activate      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
 on_button_load_clicked                 (GtkButton       *button,
                                         gpointer         user_data);
 
@@ -95,15 +91,11 @@ on_menu_tables_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
-on_players1_activate                   (GtkMenuItem     *menuitem,
+on_players_activate                   (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
 on_menu_season_history_activate        (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_player_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
@@ -191,13 +183,6 @@ on_menu_browse_teams_activate          (GtkMenuItem     *menuitem,
 gboolean
 on_treeview_right_button_press_event   (GtkWidget       *widget,
                                         GdkEventButton  *event,
-                                        gpointer         user_data);
-void
-on_menu_get_loan_activate              (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_pay_loan_activate              (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void

@@ -54,8 +54,11 @@ game_get_values(const Fixture *fix, gfloat team_values[][GAME_TEAM_VALUE_END],
 
 	for(j=GAME_TEAM_VALUE_DEFEND;j<GAME_TEAM_VALUE_DEFEND + 3;j++)
 	    team_values[i][j] *= 
-		((1 + style_factor) * (1 + home_advantage * (i == 0)) *
+		((1 + home_advantage * (i == 0)) *
 		 (1 + const_float("float_player_boost_skill_effect") * tm[i]->boost));
+
+	team_values[i][GAME_TEAM_VALUE_DEFEND] *= (1 - style_factor);
+	team_values[i][GAME_TEAM_VALUE_ATTACK] *= (1 + style_factor);
 
 	/*d*/
 /* 	if(fixture_user_team_involved(fix) != -1) */

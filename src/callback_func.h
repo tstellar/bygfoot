@@ -30,4 +30,7 @@ callback_transfer_list_clicked(gint idx);
 void
 callback_offer_new_contract(gint idx);
 
+void
+callback_show_team(gint type);
+
 #endif

@@ -114,14 +114,14 @@ team_generate_players_stadium(Team *tm)
     if(tm->clid < ID_CUP_START)
 	average_skill = 
 	    const_float("float_player_max_skill") * skill_factor *
-	    ((gfloat)team_return_league_cup_value_int(tm, LEAGUE_CUP_VALUE_AVERAGE_SKILL) / 1000);
+	    ((gfloat)team_return_league_cup_value_int(tm, LEAGUE_CUP_VALUE_AVERAGE_SKILL) / 10000);
     else
 	average_skill = 
-	    skill_factor * lig(0).average_skill *
-	    ((gfloat)team_return_league_cup_value_int(tm, LEAGUE_CUP_VALUE_SKILL_DIFF) / 1000);
+	    skill_factor * team_get_average_skills(lig(0).teams) *
+	    (1 + (gfloat)team_return_league_cup_value_int(tm, LEAGUE_CUP_VALUE_SKILL_DIFF) / 10000);
 
-    average_skill = CLAMP(average_skill, 0, const_float("float_player_max_skill"));
-    
+    average_skill = CLAMP(average_skill, 0, const_float("float_player_max_skill"));    
+
     for(i=0;i<const_int("int_team_max_players");i++)
     {
 	new = player_new(tm, average_skill);
@@ -485,7 +485,7 @@ team_get_average_skill(const Team *tm, gboolean cskill)
 	    counter++;
 	}
 
-    return sum / (gfloat)counter;
+    return (counter > 0) ? sum / (gfloat)counter : 0;
 }
 
 /** Return the rank of the team.
@@ -896,4 +896,38 @@ team_get_new(const Team *tm, gboolean fire)
     g_ptr_array_free(teams, TRUE);
 
     return return_value;
+}
+
+/** Return the index of the team in the teams array. */
+gint
+team_get_index(const Team *tm)
+{
+    gint i;
+    GArray *teams = (tm->clid < ID_CUP_START) ?
+	league_from_clid(tm->clid)->teams :
+	cup_from_clid(tm->clid)->teams;
+
+    for(i=0;i<teams->len;i++)
+	if(&g_array_index(teams, Team, i) == tm)
+	    return i;
+
+    g_warning("team_get_index: team %s not found.\n", tm->name->str);
+
+    return -1;
+}
+
+/** Return the average of the average skills of the teams in the array. */
+gfloat
+team_get_average_skills(const GArray *teams)
+{
+    gint i;
+    gfloat sum = 0;
+
+    if(teams->len == 0)
+	return 0;
+
+    for(i=0;i<teams->len;i++)
+	sum += team_get_average_skill(&g_array_index(teams, Team, i), FALSE);
+
+    return sum / teams->len;
 }

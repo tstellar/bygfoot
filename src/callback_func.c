@@ -100,6 +100,7 @@ callback_player_clicked(gint idx, GdkEventButton *event)
 	selected_row[0] = -1;
 
 	treeview_show_user_player_list();
+	treeview_show_next_opponent();
     }
     else if(event->button == 3)
     {
@@ -293,7 +294,6 @@ callback_offer_new_contract(gint idx)
 	return;
     }
 
-    stat0 = STATUS_CONTRACT_OFFER;
     stat1 = player_assign_wage(pl);
     statp = (gpointer)pl;
 
@@ -310,8 +310,6 @@ callback_offer_new_contract(gint idx)
 
     for(i=0;i<4;i++)
     {
-	printf("ag %.1f %d\n", pl->peak_age,
-	       (gint)rint((gfloat)stat1 * (1 + i * const_float("float_contract_scale_factor"))));
 	sprintf(buf, "spinbutton_contract%d", i + 1);
 	spinbuttons[i] = GTK_SPIN_BUTTON(lookup_widget(window.contract, buf));
 
@@ -321,4 +319,53 @@ callback_offer_new_contract(gint idx)
 					     powf(-1, (pl->age > pl->peak_age)))) *
 				       (1 + scout_dev)));
     }
+}
+
+/** Show the player list of a team in the browse-teams mode. */
+void
+callback_show_team(gint type)
+{
+    GtkTreeView *treeview_right = GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right"));
+    const Team *tm;
+
+    if(type == SHOW_CURRENT)
+    {
+	tm = (const Team*)treeview_get_pointer(treeview_right, 2);
+	stat1 = team_get_index(tm);
+    }
+    else if(type == SHOW_NEXT)
+    {
+	stat1 = (stat1 == ((GArray*)statp)->len - 1) ? 0 : stat1 + 1;
+	tm = &g_array_index((GArray*)statp, Team, stat1);
+    }
+    else if(type == SHOW_PREVIOUS)
+    {
+	stat1 = (stat1 == 0) ? ((GArray*)statp)->len - 1 : stat1 - 1;
+	tm = &g_array_index((GArray*)statp, Team, stat1);
+    }
+    else
+    {
+	if(type == SHOW_NEXT_LEAGUE)
+	    stat2 = league_cup_get_next_clid(stat2);
+	else
+	    stat2 = league_cup_get_previous_clid(stat2);
+
+	statp = (gpointer)(stat2 < ID_CUP_START) ?
+	    league_from_clid(stat2)->teams :
+	    cup_from_clid(stat2)->teams;
+
+	stat1 = 0;
+	tm = &g_array_index((GArray*)statp, Team, stat1);
+    }
+
+    stat0 = STATUS_BROWSE_TEAMS;
+    stat2 = tm->clid;
+    statp = (gpointer)(tm->clid < ID_CUP_START) ?
+	league_from_clid(tm->clid)->teams :
+	cup_from_clid(tm->clid)->teams;
+
+    if(tm != current_user.tm)
+	treeview_show_player_list_team(treeview_right, tm, current_user.scout % 10);
+    else
+	callback_show_team((type == SHOW_PREVIOUS) ? SHOW_PREVIOUS : SHOW_NEXT);
 }

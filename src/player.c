@@ -20,7 +20,7 @@ player_new(Team *tm, gfloat average_skill)
     gfloat skill_factor = 
 	math_rnd(1 - const_float("float_player_average_skill_variance"),
 		 1 + const_float("float_player_average_skill_variance"));
-    Player new;    
+    Player new;
 
     new.name = 
 	g_string_new(((GString*)g_ptr_array_index(player_names, math_rndi(0, player_names->len - 1)))->str);
@@ -44,10 +44,10 @@ player_new(Team *tm, gfloat average_skill)
 
     if(new.peak_age - new.age > const_float("float_player_peak_age_diff_younger1") ||
        new.peak_age - new.age < const_float("float_player_peak_age_diff_older1"))
-	new.skill = new.skill * const_float("float_player_skill_reduction1");
+	new.skill = new.skill * (1 - const_float("float_player_skill_reduction1"));
     else if(new.peak_age - new.age > const_float("float_player_peak_age_diff_younger2") ||
 	    new.peak_age - new.age < const_float("float_player_peak_age_diff_peak_older"))
-	new.skill = new.skill * const_float("float_player_skill_reduction2");
+	new.skill = new.skill * (1 - const_float("float_player_skill_reduction2"));
 
     new.cskill = new.skill;
 

@@ -43,8 +43,8 @@ float_player_fitness_upper 10000
 
 # skill reduction factor for very young and very old players
 # at generation
-float_player_skill_reduction1 7500
-float_player_skill_reduction2 9000
+float_player_skill_reduction1 500
+float_player_skill_reduction2 250
 
 # value scale factor (we take 1 + factor or 1 - factor
 # in the game) for values of young/old players
@@ -167,7 +167,7 @@ int_treeview_cell_int_empty -5
 int_treeview_latest_results 10
 
 # number of |'s for an ideal 442 team in the opponent preview
-int_treeview_max_pipes 30
+int_treeview_max_pipes 50
 
 # maximum number of players in a team.
 int_team_max_players 20
@@ -221,7 +221,7 @@ float_game_gui_live_game_scale_range	100000
 
 # How much a player's skill can deviate from 
 # the average skill in his team.
-float_player_average_skill_variance 1000
+float_player_average_skill_variance 750
 
 # these determine the value calculation of players.
 # value is a function of skill and talent involving

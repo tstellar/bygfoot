@@ -734,6 +734,9 @@ create_window_contract (void)
   gtk_box_pack_start (GTK_BOX (hbox20), label44, FALSE, FALSE, 0);
   gtk_label_set_justify (GTK_LABEL (label44), GTK_JUSTIFY_LEFT);
 
+  g_signal_connect ((gpointer) window_contract, "delete_event",
+                    G_CALLBACK (on_window_contract_delete_event),
+                    NULL);
   g_signal_connect ((gpointer) button_contract_offer, "clicked",
                     G_CALLBACK (on_button_contract_offer_clicked),
                     NULL);

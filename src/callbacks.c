@@ -68,14 +68,6 @@ on_menu_about_activate                 (GtkMenuItem     *menuitem,
 
 
 void
-on_menu_team_editor_help_activate      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
 on_button_load_clicked                 (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -164,6 +156,9 @@ on_button_browse_forward_clicked       (GtkButton       *button,
 	case STATUS_SHOW_FIXTURES:
 	    callback_show_fixtures(SHOW_NEXT);
 	    break;
+	case STATUS_BROWSE_TEAMS:
+	    callback_show_team(SHOW_NEXT);
+	    break;
     }
 }
 
@@ -177,6 +172,8 @@ on_button_browse_back_clicked          (GtkButton       *button,
 	case STATUS_SHOW_FIXTURES:
 	    callback_show_fixtures(SHOW_PREVIOUS);
 	    break;
+	case STATUS_BROWSE_TEAMS:
+	    callback_show_team(SHOW_PREVIOUS);
     }
 }
 
@@ -194,6 +191,9 @@ on_button_cl_back_clicked              (GtkButton       *button,
 	case STATUS_SHOW_TABLES:
 	    callback_show_tables(SHOW_PREVIOUS_LEAGUE);
 	    break;
+	case STATUS_BROWSE_TEAMS:
+	    callback_show_team(SHOW_PREVIOUS_LEAGUE);
+	    break;
     }
 }
 
@@ -209,6 +209,9 @@ on_button_cl_forward_clicked           (GtkButton       *button,
 	    break;
 	case STATUS_SHOW_TABLES:
 	    callback_show_tables(SHOW_NEXT_LEAGUE);
+	    break;
+	case STATUS_BROWSE_TEAMS:
+	    callback_show_team(SHOW_NEXT_LEAGUE);
 	    break;
     }
 }
@@ -239,8 +242,8 @@ on_menu_tables_activate                (GtkMenuItem     *menuitem,
 
 
 void
-on_players1_activate                   (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_players_activate                   (GtkMenuItem     *menuitem,
+				       gpointer         user_data)
 {
 
 }
@@ -248,14 +251,6 @@ on_players1_activate                   (GtkMenuItem     *menuitem,
 
 void
 on_menu_season_history_activate        (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_player_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 
@@ -424,7 +419,7 @@ on_menu_browse_teams_activate          (GtkMenuItem     *menuitem,
 
     treeview_show_team_list(GTK_TREE_VIEW(treeview_right), TRUE, TRUE);
 
-    stat0 = STATUS_BROWSE_TEAMS;
+    stat0 = STATUS_SHOW_TEAM_LIST;
 }
 
 
@@ -458,28 +453,13 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
 		return TRUE;
 	    }
 	    break;
+	case STATUS_SHOW_TEAM_LIST:
+	    callback_show_team(SHOW_CURRENT);
+	    break;
     }
 
     return FALSE;
 }
-
-
-
-void
-on_menu_get_loan_activate              (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_pay_loan_activate              (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
 
 void
 on_menu_next_user_activate             (GtkMenuItem     *menuitem,
@@ -582,6 +562,7 @@ on_eventbox_style_button_press_event   (GtkWidget       *widget,
 
     game_gui_write_meters();
     game_gui_write_radio_items();
+    treeview_show_next_opponent();
 
     return FALSE;
 }
@@ -610,8 +591,9 @@ on_eventbox_boost_button_press_event   (GtkWidget       *widget,
 
     game_gui_write_meters();
     game_gui_write_radio_items();
+    treeview_show_next_opponent();
 
-  return FALSE;
+    return FALSE;
 }
 
 void

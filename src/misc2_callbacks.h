@@ -57,3 +57,8 @@ on_button_contract_offer_clicked       (GtkButton       *button,
                                         gpointer         user_data);
 
 #endif
+
+gboolean
+on_window_contract_delete_event        (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data);

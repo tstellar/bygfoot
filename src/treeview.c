@@ -239,6 +239,33 @@ treeview_pixbuf_from_filename(gchar *filename)
     return symbol;
 }
 
+/** Function comparing two teams in a team list treeview. */
+gint
+treeview_team_compare(GtkTreeModel *model,
+		      GtkTreeIter *a,
+		      GtkTreeIter *b,
+		      gpointer user_data)
+{
+    gint type = GPOINTER_TO_INT(user_data);
+    gpointer *tm1, *tm2;
+
+    gtk_tree_model_get(model, a, 4, &tm1, -1);
+    gtk_tree_model_get(model, b, 4, &tm2, -1);
+
+    switch(type)
+    {
+	default:
+	    g_warning("treeview_team_compare: unknown type %d.\n", type);
+	    break;
+	case TEAM_COMPARE_AV_SKILL:
+	    return misc_float_compare(team_get_average_skill((Team*)tm1, FALSE),
+				      team_get_average_skill((Team*)tm2, FALSE));
+	    break;
+    }
+
+    return 0;
+}
+
 /**
    Creates the model for the treeview in the team selection window.
    The model contains a list of all the teams from the leagues in
@@ -257,11 +284,12 @@ treeview_create_team_selection_list(gboolean show_cup_teams, gboolean show_user_
     GtkTreeIter iter;
     GdkPixbuf *symbol = NULL;
 
-    liststore = gtk_list_store_new(4,
+    liststore = gtk_list_store_new(5,
 				   G_TYPE_INT,
 				   GDK_TYPE_PIXBUF,
 				   G_TYPE_POINTER,
-				   G_TYPE_STRING);
+				   G_TYPE_STRING,
+				   G_TYPE_POINTER);
 
     for(i=0;i<ligs->len;i++)
     {
@@ -277,6 +305,7 @@ treeview_create_team_selection_list(gboolean show_cup_teams, gboolean show_user_
 				   1, symbol,
 				   2, (gpointer)&g_array_index(lig(i).teams, Team, j),
 				   3, lig(i).name->str,
+				   4, (gpointer)&g_array_index(lig(i).teams, Team, j),
 				   -1);
 	    }
 	}	    
@@ -301,10 +330,14 @@ treeview_create_team_selection_list(gboolean show_cup_teams, gboolean show_user_
 				   1, symbol,
 				   2, (gpointer)&g_array_index(cp(i).teams, Team, j),
 				   3, cp(i).name->str,
+				   4, (gpointer)&g_array_index(cp(i).teams, Team, j),
 				   -1);
 		if(symbol != NULL)
 		    g_object_unref(symbol);
 	    }
+
+    gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(liststore), 4,
+				    treeview_team_compare, GINT_TO_POINTER(TEAM_COMPARE_AV_SKILL), NULL);
 
     return GTK_TREE_MODEL(liststore);
 }
@@ -323,7 +356,7 @@ treeview_set_up_team_selection_treeview (GtkTreeView *treeview)
     gtk_tree_selection_set_mode(
 	gtk_tree_view_get_selection(treeview),
 	GTK_SELECTION_BROWSE);
-    
+    gtk_tree_view_set_headers_visible(treeview, TRUE);    
     gtk_tree_view_set_rules_hint(treeview, TRUE);
 
     /* Numbering the teams */
@@ -350,7 +383,7 @@ treeview_set_up_team_selection_treeview (GtkTreeView *treeview)
     gtk_tree_view_column_pack_start(col, renderer, TRUE);
     gtk_tree_view_column_set_cell_data_func(col, renderer,
 					    treeview_cell_team_selection,
-					    GINT_TO_POINTER(2), NULL);
+					    NULL, NULL);
     /* League column */
     col = gtk_tree_view_column_new();
     gtk_tree_view_column_set_title(col, _("League"));
@@ -359,6 +392,18 @@ treeview_set_up_team_selection_treeview (GtkTreeView *treeview)
     gtk_tree_view_column_pack_start(col, renderer, TRUE);
     gtk_tree_view_column_add_attribute(col, renderer,
 				       "text", 3);
+
+    /* Average skill */
+    col = gtk_tree_view_column_new();
+    gtk_tree_view_column_set_title(col, _("Av.Sk."));
+    gtk_tree_view_column_set_sort_column_id(col, 4);
+    gtk_tree_view_append_column(treeview, col);
+    renderer = treeview_cell_renderer_text_new();
+    gtk_tree_view_column_pack_start(col, renderer, TRUE);
+    gtk_tree_view_column_set_cell_data_func(col, renderer,
+					    treeview_cell_team_selection,
+					    NULL, NULL);
+
 }
 
 /** Shows the list of teams in the game.
@@ -460,6 +505,8 @@ treeview_set_up_player_list (GtkTreeView *treeview, gint *attributes, gint max)
     gtk_tree_selection_set_mode(
 	gtk_tree_view_get_selection(treeview),
 	GTK_SELECTION_SINGLE);
+    gtk_tree_view_set_rules_hint(treeview, FALSE);
+    gtk_tree_view_set_headers_visible(treeview, TRUE);
     
     /* number the players */
     col = gtk_tree_view_column_new();
@@ -509,7 +556,6 @@ treeview_show_player_list(GtkTreeView *treeview, GPtrArray *players, PlayerListA
     GtkTreeModel *model = NULL;
     
     treeview_clear(treeview);
-    gtk_tree_view_set_headers_visible(treeview, TRUE);
 
     for(i=0;i<PLAYER_LIST_ATTRIBUTE_END;i++)
 	if(attribute.on_off[i])
@@ -656,6 +702,7 @@ treeview_live_game_set_up_commentary(void)
 
     gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
 				GTK_SELECTION_NONE);
+    gtk_tree_view_set_headers_visible(treeview, FALSE);
     
     col = gtk_tree_view_column_new();
     gtk_tree_view_append_column(treeview, col);
@@ -689,7 +736,6 @@ treeview_live_game_show_initial_commentary(const LiveGameUnit *unit)
     GtkTreeModel *model = NULL;
     
     treeview_clear(treeview);
-    gtk_tree_view_set_headers_visible(treeview, FALSE);
 
     treeview_live_game_set_up_commentary();
 
@@ -732,6 +778,7 @@ treeview_live_game_set_up_result(void)
 
     gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
 				GTK_SELECTION_NONE);
+    gtk_tree_view_set_headers_visible(treeview, FALSE);
     
     for(i=0;i<3;i++)
     {
@@ -756,7 +803,6 @@ treeview_live_game_show_result(const LiveGameUnit *unit)
     GtkTreeModel *model = NULL;
     
     treeview_clear(treeview);
-    gtk_tree_view_set_headers_visible(treeview, FALSE);
 
     treeview_live_game_set_up_result();
 
@@ -820,6 +866,8 @@ treeview_set_up_users_startup(GtkTreeView *treeview)
 
     gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
 				GTK_SELECTION_SINGLE);
+    gtk_tree_view_set_rules_hint(treeview, FALSE);
+    gtk_tree_view_set_headers_visible(treeview, TRUE);
 
     for(i=0;i<4;i++)
     {
@@ -843,7 +891,6 @@ treeview_show_users_startup(void)
     GtkTreeModel *model = NULL;
 
     treeview_clear(treeview);
-    gtk_tree_view_set_headers_visible(treeview, TRUE);
     
     treeview_set_up_users_startup(treeview);
     model = treeview_create_users_startup();
@@ -981,6 +1028,8 @@ treeview_set_up_game_stats(GtkTreeView *treeview)
 
     gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
 				GTK_SELECTION_NONE);
+    gtk_tree_view_set_rules_hint(treeview, FALSE);
+    gtk_tree_view_set_headers_visible(treeview, FALSE);
 
     for(i=0;i<3;i++)
     {
@@ -1004,7 +1053,6 @@ treeview_show_game_stats(GtkTreeView *treeview, LiveGame *live_game)
     GtkTreeModel *model = NULL;
 
     treeview_clear(treeview);
-    gtk_tree_view_set_headers_visible(treeview, FALSE);
     
     treeview_set_up_game_stats(treeview);
     model = treeview_create_game_stats(live_game);
@@ -1162,7 +1210,9 @@ treeview_set_up_fixtures(GtkTreeView *treeview)
 
     gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
 				GTK_SELECTION_NONE);
-    
+    gtk_tree_view_set_rules_hint(treeview, TRUE);
+    gtk_tree_view_set_headers_visible(treeview, FALSE);
+
     col = gtk_tree_view_column_new();
     gtk_tree_view_append_column(treeview, col);
     renderer = gtk_cell_renderer_pixbuf_new();
@@ -1207,7 +1257,6 @@ treeview_show_fixtures(GtkTreeView *treeview, gint clid,
     GtkTreeModel *model = NULL;
 
     treeview_clear(treeview);
-    gtk_tree_view_set_headers_visible(treeview, FALSE);
     
     treeview_set_up_fixtures(treeview);
     model = treeview_create_fixtures(clid, week_number, week_round_number);
@@ -1422,7 +1471,9 @@ treeview_set_up_table(GtkTreeView *treeview)
 
     gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
 				GTK_SELECTION_NONE);
-    
+    gtk_tree_view_set_rules_hint(treeview, FALSE);
+    gtk_tree_view_set_headers_visible(treeview, TRUE);
+
     col = gtk_tree_view_column_new();
     gtk_tree_view_append_column(treeview, col);
     renderer = gtk_cell_renderer_pixbuf_new();
@@ -1454,7 +1505,6 @@ treeview_show_table(GtkTreeView *treeview, gint clid)
     GtkTreeModel *model = NULL;
 
     treeview_clear(treeview);
-    gtk_tree_view_set_headers_visible(treeview, TRUE);
     
     treeview_set_up_table(treeview);
     model = treeview_create_table(clid);
@@ -1572,6 +1622,8 @@ treeview_set_up_finances(GtkTreeView *treeview)
 
     gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
 				GTK_SELECTION_NONE);
+    gtk_tree_view_set_rules_hint(treeview, FALSE);
+    gtk_tree_view_set_headers_visible(treeview, TRUE);
 
     for(i=0;i<3;i++)
     {
@@ -1595,7 +1647,6 @@ treeview_show_finances(GtkTreeView *treeview, const User* user)
     GtkTreeModel *model = NULL;
 
     treeview_clear(treeview);
-    gtk_tree_view_set_headers_visible(treeview, TRUE);
     
     treeview_set_up_finances(treeview);
     model = treeview_create_finances(user);
@@ -1772,18 +1823,18 @@ treeview_create_next_opponent(void)
 	gtk_list_store_set(liststore, &iter, 0, _("Rank"), 1, buf, -1);
     }
 
-    sprintf(buf, "%.1f", team_get_average_skill(opp, FALSE));
-    if(team_get_average_skill(opp, FALSE) >
-       team_get_average_skill(current_user.tm, FALSE))
+    sprintf(buf, "%.1f", team_get_average_skill(opp, TRUE));
+    if(team_get_average_skill(opp, TRUE) >
+       team_get_average_skill(current_user.tm, TRUE))
 	sprintf(buf2, " (<span foreground='%s'>%+.1f</span>)",
 		const_str("string_treeview_opponent_skill_positive_fg"),
-		team_get_average_skill(opp, FALSE) -
-		team_get_average_skill(current_user.tm, FALSE));
+		team_get_average_skill(opp, TRUE) -
+		team_get_average_skill(current_user.tm, TRUE));
     else
 	sprintf(buf2, " (<span foreground='%s'>%+.1f</span>)",
 		const_str("string_treeview_opponent_skill_negative_fg"),
-		team_get_average_skill(opp, FALSE) -
-		team_get_average_skill(current_user.tm, FALSE));
+		team_get_average_skill(opp, TRUE) -
+		team_get_average_skill(current_user.tm, TRUE));
 
     strcat(buf, buf2);
     gtk_list_store_append(liststore, &iter);
@@ -1821,6 +1872,8 @@ treeview_set_up_next_opponent(GtkTreeView *treeview)
 
     gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
 				GTK_SELECTION_NONE);
+    gtk_tree_view_set_rules_hint(treeview, FALSE);
+    gtk_tree_view_set_headers_visible(treeview, FALSE);
 
     for(i=0;i<2;i++)
     {
@@ -1835,12 +1888,13 @@ treeview_set_up_next_opponent(GtkTreeView *treeview)
 
 /** Show some information about the next opponent. */
 void
-treeview_show_next_opponent(GtkTreeView *treeview)
+treeview_show_next_opponent(void)
 {
+    GtkTreeView *treeview = 
+	GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right"));
     GtkTreeModel *model = NULL;
 
     treeview_clear(treeview);
-    gtk_tree_view_set_headers_visible(treeview, FALSE);
     
     treeview_set_up_next_opponent(treeview);
     model = treeview_create_next_opponent();
@@ -1914,6 +1968,8 @@ treeview_set_up_league_results(GtkTreeView *treeview)
 
     gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
 				GTK_SELECTION_NONE);
+    gtk_tree_view_set_rules_hint(treeview, TRUE);
+    gtk_tree_view_set_headers_visible(treeview, TRUE);
 
     for(i=0;i<3;i++)
     {
@@ -1935,7 +1991,6 @@ treeview_show_league_results(GtkTreeView *treeview)
     GtkTreeModel *model = NULL;
 
     treeview_clear(treeview);
-    gtk_tree_view_set_headers_visible(treeview, TRUE);
     
     treeview_set_up_league_results(treeview);
     model = treeview_create_league_results();

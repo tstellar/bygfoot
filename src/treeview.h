@@ -151,7 +151,7 @@ void
 treeview_show_transfer_list(GtkTreeView *treeview);
 
 void
-treeview_show_next_opponent(GtkTreeView *treeview);
+treeview_show_next_opponent(void);
 
 void
 treeview_set_up_next_opponent(GtkTreeView *treeview);
@@ -176,5 +176,11 @@ treeview_create_league_results(void);
 
 void
 treeview_create_next_opponent_values(GtkListStore *liststore, const Fixture *fix);
+
+gint
+treeview_team_compare(GtkTreeModel *model,
+		      GtkTreeIter *a,
+		      GtkTreeIter *b,
+		      gpointer user_data);
 
 #endif
