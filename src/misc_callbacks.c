@@ -232,3 +232,12 @@ on_button_resume_clicked               (GtkButton       *button,
 {
 
 }
+
+void
+on_spinbutton_speed_value_changed      (GtkSpinButton   *spinbutton,
+                                        gpointer         user_data)
+{
+    options[OPT_LIVE_SPEED] = 
+	gtk_spin_button_get_value_as_int(spinbutton);    
+}
+

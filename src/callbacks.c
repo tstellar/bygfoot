@@ -146,7 +146,30 @@ void
 on_button_new_week_clicked             (GtkButton       *button,
                                         gpointer         user_data)
 {
+    /*d*/
+    gint i, j, k;
+    Fixture *fix;/*  = &g_array_index(lig(0).fixtures, Fixture, */
+/* 				  math_rndi(0, lig(0).fixtures->len - 1)); */
+    
+    for(k=0;k<lig(0).fixtures->len;k++)
+	if(g_array_index(lig(0).fixtures, Fixture, k).week_number == week &&
+	   g_array_index(lig(0).fixtures, Fixture, k).week_round_number == 1)
+	{
+	    fix = &g_array_index(lig(0).fixtures, Fixture, k);
+    
+	    printf("\n");
+	    for(j=0;j<2;j++)
+	    {
+		printf("%s %d %d %.1f\n", fix->teams[j]->name->str, fix->teams[j]->structure,
+		       fix->teams[j]->style, team_average_cskill(fix->teams[j]));
+	    }
+	    
+	    live_game_calculate_fixture(fix);
+	    printf("%d : %d\n", math_sum_int_array(fix->result[0], 3),
+		   math_sum_int_array(fix->result[1], 3));
+	}
 
+    week++;
 }
 
 
@@ -626,28 +649,6 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data)
 {
-    /*d*/
-    gint i, j, k;
-    Fixture *fix;/*  = &g_array_index(lig(0).fixtures, Fixture, */
-/* 				  math_rndi(0, lig(0).fixtures->len - 1)); */
-    
-    for(k=0;k<lig(0).fixtures->len;k++)
-	if(g_array_index(lig(0).fixtures, Fixture, k).week_number == 1 &&
-	   g_array_index(lig(0).fixtures, Fixture, k).week_round_number == 1)
-	{
-	    fix = &g_array_index(lig(0).fixtures, Fixture, k);
-    
-	    printf("\n");
-	    for(j=0;j<2;j++)
-	    {
-		printf("%s %d %d %.1f\n", fix->teams[j]->name->str, fix->teams[j]->structure,
-		       fix->teams[j]->style, team_average_cskill(fix->teams[j]));
-	    }
-	    
-	    live_game_calculate_fixture(fix);
-	    printf("%d : %d\n", math_sum_int_array(fix->result[0], 3),
-		   math_sum_int_array(fix->result[1], 3));
-	}
 
   return FALSE;
 }

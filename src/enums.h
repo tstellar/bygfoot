@@ -47,7 +47,7 @@ enum OptionValue
     OPT_BOOL_CONF_QUIT, /**< Quit confirmation.  */
     OPT_BOOL_OVERWRITE, /**< Clicking on save overwrites current save game. */
     OPT_BOOL_SHOW_LIVE, /**< Whether live game is shown. */
-    OPT_LIVE_DURATION, /**< Live game speed. */
+    OPT_LIVE_SPEED, /**< Live game speed. */
     OPT_BOOL_LIVE_TENDENCY, /**< Tendency bar. */
     OPT_BOOL_MAXIMIZE, /**< Whether to start maximized. */
     OPT_BOOL_NOTIFY, /**< Whether transfer list notification is on. */

@@ -90,6 +90,9 @@ window_create(gint window_type)
 	case WINDOW_LIVE:
 	    window = create_window_live();
 	    window_set_version(window);
+	    gtk_spin_button_set_value(
+		GTK_SPIN_BUTTON(lookup_widget(window, "spinbutton_speed")),
+		(gfloat)options[OPT_LIVE_SPEED]);
 	    break;
     }    
 

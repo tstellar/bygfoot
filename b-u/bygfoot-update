@@ -10,7 +10,7 @@
 # using wget to retrieve patches from the homepage
 
 # version number
-version="0.6"
+version="0.8"
 # the bygfoot release version the script is shipped with
 relversion=VERSION
 # the current release version on the server
@@ -57,6 +57,10 @@ format_src=.tar.bz2
 format_srpm=.src.rpm
 format_deb=-1_i386.deb
 format=
+# which cvs version to get
+cvs_version1=bygfoot-unstable
+cvs_version2=bygfoot2-unstable
+cvs_version=
 
 # options
 
@@ -676,8 +680,55 @@ function get_mode()
 
 function get_cvs()
 {
+    echo
+    echo "** b-u: Which CVS version would you like to download?"
+    echo "** b-u: - [1] 1.7 branch"
+    echo "** b-u: - (2) 1.9 branch"
+    
+    read tempvar
+
+    if [ -z $tempvar ]; then
+	cvs_version=$cvs_version1
+    else
+	if [ $tempvar -eq 2 ]; then
+	    cvs_version=$cvs_version2
+	else
+	    cvs_version=$cvs_version1
+	fi
+    fi
+
+    echo
+    echo "** b-u: If you'd like to check out as a developer, enter your"
+    echo "** b-u: SourceForge.net username. Press RETURN to download anonymously."
+
+    read tempvar
+
+    if [ -z $tempvar ]; then
+	cvs_command="cvs -d:pserver:anonymous@cvs.sf.net:/cvsroot/bygfoot"
+    else
+	cvs_command="cvs -d:ext:$tempvar@cvs.sf.net:/cvsroot/bygfoot"
+    fi
+
     cd $tmpdir
-    cvs -d:pserver:anonymous@cvs.sf.net:/cvsroot/bygfoot checkout bygfoot-unstable
+    $cvs_command checkout $cvs_version
+
+    if [ $recompile -eq 0 -a $auto -eq 0 ]; then
+	echo "** b-u: Would you like me to execute 'autogen.sh && make' ? ([y]/n)"
+	read tempvar
+	if [ ! -z $tempvar ]; then
+	    if [ $tempvar != "y" ]; then
+		echo
+		echo "** b-u: done."
+		exit $EXITOK
+	    fi
+	fi
+    fi
+
+    if [ $recompile -ne -1 ]; then
+	cd $cvs_version
+	./autogen.sh && make
+    fi
+
     exit $EXITOK
 }
 

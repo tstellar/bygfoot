@@ -116,3 +116,7 @@ on_button_resume_clicked               (GtkButton       *button,
                                         gpointer         user_data);
 
 #endif
+
+void
+on_spinbutton_speed_value_changed      (GtkSpinButton   *spinbutton,
+                                        gpointer         user_data);

@@ -835,6 +835,8 @@ create_window_live (void)
   GtkWidget *image57;
   GtkWidget *label73;
   GtkWidget *button_live_close;
+  GtkObject *spinbutton_speed_adj;
+  GtkWidget *spinbutton_speed;
   GtkAccelGroup *accel_group;
 
   accel_group = gtk_accel_group_new ();
@@ -857,7 +859,7 @@ create_window_live (void)
   gtk_widget_show (hruler_live);
   gtk_box_pack_start (GTK_BOX (vbox36), hruler_live, FALSE, TRUE, 0);
   gtk_widget_set_sensitive (hruler_live, FALSE);
-  gtk_ruler_set_range (GTK_RULER (hruler_live), 0, 120, 77.2603, 120);
+  gtk_ruler_set_range (GTK_RULER (hruler_live), 0, 120, 66.5753, 120);
 
   hbox50 = gtk_hbox_new (FALSE, 3);
   gtk_widget_show (hbox50);
@@ -941,6 +943,12 @@ create_window_live (void)
   gtk_box_pack_start (GTK_BOX (hbox48), button_live_close, FALSE, FALSE, 0);
   gtk_widget_set_sensitive (button_live_close, FALSE);
 
+  spinbutton_speed_adj = gtk_adjustment_new (0, -10, 20, 1, 10, 10);
+  spinbutton_speed = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_speed_adj), 1, 0);
+  gtk_widget_show (spinbutton_speed);
+  gtk_box_pack_end (GTK_BOX (hbox48), spinbutton_speed, FALSE, TRUE, 0);
+  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_speed), TRUE);
+
   g_signal_connect ((gpointer) window_live, "delete_event",
                     G_CALLBACK (on_live_window_delete_event),
                     NULL);
@@ -952,6 +960,9 @@ create_window_live (void)
                     NULL);
   g_signal_connect ((gpointer) button_live_close, "clicked",
                     G_CALLBACK (on_button_live_close_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) spinbutton_speed, "value_changed",
+                    G_CALLBACK (on_spinbutton_speed_value_changed),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -977,6 +988,7 @@ create_window_live (void)
   GLADE_HOOKUP_OBJECT (window_live, image57, "image57");
   GLADE_HOOKUP_OBJECT (window_live, label73, "label73");
   GLADE_HOOKUP_OBJECT (window_live, button_live_close, "button_live_close");
+  GLADE_HOOKUP_OBJECT (window_live, spinbutton_speed, "spinbutton_speed");
 
   gtk_window_add_accel_group (GTK_WINDOW (window_live), accel_group);
 

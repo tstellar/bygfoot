@@ -47,8 +47,8 @@ team_new(void)
     new.symbol = g_string_new("");
     
     new.clid = new.id = -1;
-    new.structure = 442;//team_assign_playing_structure();
-    new.style = 0;//team_assign_playing_style();
+    new.structure = team_assign_playing_structure();
+    new.style = team_assign_playing_style();
 
     new.stadium = team_stadium_new();
 

@@ -239,7 +239,7 @@ file_write_opt_names(gchar opt_names[][50], gchar player_list_att_names[][PLAYER
     strcpy(opt_names[OPT_BOOL_CONF_QUIT], "confirm_quit");
     strcpy(opt_names[OPT_BOOL_OVERWRITE], "save_will_ovewrite");
     strcpy(opt_names[OPT_BOOL_SHOW_LIVE], "show_live_game");
-    strcpy(opt_names[OPT_LIVE_DURATION], "live_game_duration");
+    strcpy(opt_names[OPT_LIVE_SPEED], "live_game_speed");
     strcpy(opt_names[OPT_BOOL_LIVE_TENDENCY], "show_tendency_bar");
     strcpy(opt_names[OPT_BOOL_MAXIMIZE], "maximize_main_window");
 

@@ -57,7 +57,7 @@
 /** Base probability for possession change. */
 #define CONSTANT_LIVE_GAME_POSSESSION_CHANGES 0.2
 /** Influence of attack/defense values on the possession change. */
-#define CONSTANT_LIVE_GAME_POSSESSION_TEAM_EXPONENT 5
+#define CONSTANT_LIVE_GAME_POSSESSION_TEAM_EXPONENT 4
 
 /** Probability of NOT having a scoring chance after one
     possession. With each possession the probability gets smaller. */

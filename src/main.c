@@ -52,10 +52,10 @@ main_init(gint argc, gchar *argv[])
     srandom((unsigned)time(NULL));
 
     file_add_support_directory_recursive(PACKAGE_DATA_DIR "/" PACKAGE "/support_files");  
+    sprintf(buf, "%s/.bygfoot", g_get_home_dir());
+    file_add_support_directory_recursive(buf);
     sprintf(buf, "%s/support_files", pwd);
     g_free(pwd);
-    file_add_support_directory_recursive(buf);
-    sprintf(buf, "%s/.bygfoot", g_get_home_dir());
     file_add_support_directory_recursive(buf);
 
     main_init_variables();

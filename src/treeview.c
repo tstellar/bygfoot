@@ -441,7 +441,7 @@ treeview_live_game_show_game_unit(const LiveGameUnit *unit)
 
     progress_bar = GTK_PROGRESS_BAR(lookup_widget(live_game.window, "progressbar_live"));
     gtk_progress_bar_set_fraction(progress_bar, (gfloat)live_game_unit_get_minute(unit) / 120);
-    usleep(500);
+    usleep(500500 + options[OPT_LIVE_SPEED] * 50000);
     while(gtk_events_pending())
 	gtk_main_iteration();
 

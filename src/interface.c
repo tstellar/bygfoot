@@ -307,9 +307,6 @@ create_main_window (void)
   menu_quit = gtk_image_menu_item_new_from_stock ("gtk-quit", accel_group);
   gtk_widget_show (menu_quit);
   gtk_container_add (GTK_CONTAINER (menuitem1_menu), menu_quit);
-  gtk_widget_add_accelerator (menu_quit, "activate", accel_group,
-                              GDK_q, GDK_CONTROL_MASK,
-                              GTK_ACCEL_VISIBLE);
 
   options1 = gtk_menu_item_new_with_mnemonic (_("Options"));
   gtk_widget_show (options1);
@@ -657,7 +654,7 @@ create_main_window (void)
   gtk_container_set_border_width (GTK_CONTAINER (button_quit), 2);
   gtk_tooltips_set_tip (tooltips, button_quit, _("Quit (Ctrl - Q)"), NULL);
   gtk_widget_add_accelerator (button_quit, "clicked", accel_group,
-                              GDK_q, GDK_CONTROL_MASK,
+                              GDK_q, 0,
                               GTK_ACCEL_VISIBLE);
 
   image13 = gtk_image_new_from_stock ("gtk-quit", GTK_ICON_SIZE_BUTTON);
@@ -998,9 +995,6 @@ create_main_window (void)
   gtk_box_pack_start (GTK_BOX (vbox16), button_browse_back, FALSE, FALSE, 0);
   gtk_container_set_border_width (GTK_CONTAINER (button_browse_back), 2);
   gtk_tooltips_set_tip (tooltips, button_browse_back, _("Previous (Q)"), NULL);
-  gtk_widget_add_accelerator (button_browse_back, "clicked", accel_group,
-                              GDK_q, 0,
-                              GTK_ACCEL_VISIBLE);
 
   image10 = gtk_image_new_from_stock ("gtk-go-back", GTK_ICON_SIZE_BUTTON);
   gtk_widget_show (image10);
