@@ -3,6 +3,7 @@
 #include "free.h"
 #include "league.h"
 #include "player.h"
+#include "user.h"
 #include "variables.h"
 #include "window.h"
 
@@ -15,9 +16,63 @@ free_memory(void)
 {
     free_variables();
     free_country();
-    free_g_string(&font_name);
-    free_live_game(&live_game);
+    free_users();
     free_live_game(&live_game_temp);
+}
+
+/** Free the users array. */
+void
+free_users(void)
+{
+    gint i;
+
+    if(users == NULL)
+	return;
+
+    for(i=0;i<users->len;i++)
+	free_user(&usr(i));
+
+    free_g_array(&users);
+}
+
+/** Free the memory the user occupies.
+    @param user The user we free. */
+void
+free_user(User *user)
+{
+    free_g_string(&user->name);
+    free_g_string(&user->font_name);
+    free_live_game(&user->live_game);
+    free_option_array(&user->options, FALSE);
+}
+
+/** Free an array of options.
+    @param array The array we free.
+    @param reset Whether to create the array anew (empty).
+    @see #Option */
+void
+free_option_array(GArray **array, gboolean reset)
+{
+    gint i;
+
+    if(*array == NULL)
+    {
+	if(reset)
+	    *array = g_array_new(FALSE, FALSE, sizeof(Option));
+
+	return;
+    }
+    
+    for(i=0;i<(*array)->len;i++)
+    {
+	free_g_string(&g_array_index(*array, Option, i).name);
+	free_g_string(&g_array_index(*array, Option, i).string_value);
+    }
+
+    free_g_array(array);
+
+    if(reset)
+	*array = g_array_new(FALSE, FALSE, sizeof(Option));
 }
 
 /** Free a live game variable. */
@@ -25,8 +80,6 @@ void
 free_live_game(LiveGame *match)
 {
     gint i;
-
-    window_destroy(&match->window);
 
     if(match->units == NULL)
 	return;
@@ -250,6 +303,9 @@ free_variables(void)
     free_g_string_array(&player_names);
 
     free_g_array(&transfer_list);
+
+    free_option_array(&options, FALSE);
+    free_option_array(&constants, FALSE);
 }
 
 /**

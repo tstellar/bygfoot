@@ -2,10 +2,6 @@
 #define TREEVIEW_CELL_H
 
 #include "bygfoot.h"
-#include "variables.h"
-
-/** The integer that the cell data functions will interpret as an empty string. */
-#define CONSTANT_TREEVIEW_CELL_INT_EMPTY -5
 
 void
 treeview_cell_team_selection(GtkTreeViewColumn *col,
@@ -15,7 +11,6 @@ treeview_cell_team_selection(GtkTreeViewColumn *col,
 			     gpointer           user_data);
 
 
-/** Render an integer. This is only so that we know when to draw nothing. */
 void
 treeview_cell_int_to_cell(GtkTreeViewColumn *col,
 			  GtkCellRenderer   *renderer,
@@ -23,7 +18,6 @@ treeview_cell_int_to_cell(GtkTreeViewColumn *col,
 			  GtkTreeIter       *iter,
 			  gpointer           user_data);
 
-/** Render a player list cell. */
 void
 treeview_cell_player_to_cell(GtkTreeViewColumn *col,
 			     GtkCellRenderer   *renderer,
@@ -55,5 +49,8 @@ treeview_cell_live_game_result(GtkTreeViewColumn *col,
 			       GtkTreeModel      *model,
 			       GtkTreeIter       *iter,
 			       gpointer           user_data);
+
+void
+treeview_cell_player_cskill_to_cell(GtkCellRenderer *renderer, gchar *buf, const Player *pl);
 
 #endif

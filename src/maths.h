@@ -31,6 +31,6 @@ gint
 math_get_bye_len(gint number);
 
 gint
-math_sum_int_array(gint *array, gint max);
+math_sum_int_array(const gint *array, gint max);
 
 #endif

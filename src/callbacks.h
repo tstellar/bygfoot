@@ -2,7 +2,6 @@
 #define CALLBACKS_H
 
 #include "bygfoot.h"
-
 #include "interface.h"
 #include "support.h"
 
@@ -79,11 +78,6 @@ void
 on_button_help_clicked                 (GtkButton       *button,
                                         gpointer         user_data);
 
-gboolean
-on_player_list_button_press_event      (GtkWidget       *widget,
-                                        GdkEventButton  *event,
-                                        gpointer         user_data);
-
 void
 on_structure_entry_activate            (GtkEntry        *entry,
                                         gpointer         user_data);
@@ -153,54 +147,6 @@ on_menu_fixtures_activate              (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
-on_menu_league1_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_league2_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_league3_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_league4_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_league5_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_league6_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_cup_1_activate                 (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_cup2_activate                  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_cup3_activate                  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_cup4_activate                  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_cup5_activate                  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_cup6_activate                  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
 on_menu_tables_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
@@ -213,19 +159,11 @@ on_menu_season_history_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
-on_menu_team_history_activate          (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
 on_menu_player_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
 on_menu_show_info_activate             (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_show_history_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
@@ -298,10 +236,6 @@ on_menu_physio_bad_activate            (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
-on_menu_boost_activate                 (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
 on_menu_my_league_results_activate     (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
@@ -314,8 +248,6 @@ gboolean
 on_treeview_right_button_press_event   (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data);
-#endif
-
 void
 on_menu_finances_stadium_activate      (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
@@ -334,4 +266,35 @@ on_menu_get_loan_activate              (GtkMenuItem     *menuitem,
 
 void
 on_menu_pay_loan_activate              (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_menu_next_user_activate             (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_menu_previous_user_activate         (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_menu_show_user_list_activate        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_menu_custom_structure_activate      (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+gboolean
+on_player_list1_button_press_event     (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data);
+
+gboolean
+on_menu_team_button_press_event        (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data);
+#endif
+
+void
+on_menu_manage_users_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data);

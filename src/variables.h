@@ -3,6 +3,7 @@
 #include "live_game_struct.h"
 #include "player_struct.h"
 #include "team_struct.h"
+#include "user_struct.h"
 
 /**
  * The main variable of the game.
@@ -10,55 +11,44 @@
  */
 Country country;
 
-/** The id of the league or cup of the user's team and its numerical id. */
-Team *my_team;
-
 /** The season, week and week round numbers. 
     We keep track of the time in the game with these variables. */
 gint season, week, week_round;
 
-/** The user's scout and physio qualities.
-    @see #Quality */
-gint scout, physio;
-
-/** The user's finances. @see #FinanceValue */
-gint finances[FIN_END];
-/** The user's settings. @see #OptionValue */
-gint options[OPT_END];
-/** The attributes shown in the player lists.
-    @see #PlayerListAttribute
-    @see #PlayerListAttributeValue */
-PlayerListAttribute player_list_attributes[3];
-
-/** Some counters. @see #CounterValue */
-gint counters[COUNT_END];
+/** Array of options that get read from
+    bygfoot.conf. */
+GArray *options;
+/** Array of constants that get read from the constans
+    file specified in bygfoot.conf. */
+GArray *constants;
 
 /** The array containing players to be transfered.
     @see TransferPlayer */
 GArray *transfer_list;
 
-/** The font used in treeviews. */
-GString *font_name;
-
-/** Whether we are in debug mode. */
-gboolean debug;
-
 /** These help us keep track of what's happening. */
-gint status, status2, status3, status4, status5;
+gint status[5];
+
+/** The currently selected rows in the treeviews. */
+gint selected_row[2];
 
 /** An array of player names that we keep in memory. */
 GPtrArray *player_names;
 
-/** The pointer to the main window of the game. */
-GtkWidget *main_window;
+/** The struct containing the window pointers. */
+Windows window;
 
 /** With this we keep track of the number of popup
     windows and make the main window sensitive or
     insensitive, depending. */
 gint popups_active;
 
-/** The variable for the latest user live game. @see #Game */
-LiveGame live_game;
-
 /** The variable for non-user games (which aren't shown). */
 LiveGame live_game_temp;
+
+/** The array of human players. @see #User */
+GArray *users;
+
+/** The index of the current user in the #users array. */
+gint current_user;
+

@@ -34,14 +34,6 @@ create_window_startup (void)
   GtkWidget *scrolledwindow1;
   GtkWidget *treeview_startup;
   GtkWidget *hseparator10;
-  GtkWidget *label4;
-  GtkWidget *eventbox1;
-  GtkWidget *hbox2;
-  GtkWidget *team_selection_radio1;
-  GSList *team_selection_radio1_group = NULL;
-  GtkWidget *team_selection_radio2;
-  GtkWidget *team_selection_radio3;
-  GtkWidget *hseparator11;
   GtkWidget *vbox34;
   GtkWidget *label69;
   GtkWidget *hbox44;
@@ -53,24 +45,30 @@ create_window_startup (void)
   GtkWidget *hbox45;
   GtkWidget *image45;
   GtkWidget *label70;
+  GtkWidget *hseparator11;
+  GtkWidget *label4;
+  GtkWidget *eventbox1;
+  GtkWidget *hbox2;
+  GtkWidget *team_selection_radio1;
+  GSList *team_selection_radio1_group = NULL;
+  GtkWidget *team_selection_radio2;
+  GtkWidget *team_selection_radio3;
   GtkWidget *hseparator12;
-  GtkWidget *hbox46;
-  GtkWidget *vbox35;
-  GtkWidget *checkbutton_no_def;
-  GtkWidget *checkbutton_only_names;
-  GtkWidget *checkbutton_load_my_team;
-  GtkWidget *vseparator18;
-  GtkWidget *button_start_editor;
-  GtkWidget *alignment15;
-  GtkWidget *hbox47;
-  GtkWidget *image55;
-  GtkWidget *label71;
+  GtkWidget *hbox54;
+  GtkWidget *label75;
+  GtkWidget *entry_player_name;
+  GtkWidget *button_add_player;
+  GtkWidget *alignment19;
+  GtkWidget *hbox55;
+  GtkWidget *image59;
+  GtkWidget *label76;
+  GtkWidget *hseparator13;
   GtkWidget *hbox3;
   GtkWidget *team_selection_ok;
-  GtkWidget *alignment1;
-  GtkWidget *hbox4;
-  GtkWidget *image2;
-  GtkWidget *label1;
+  GtkWidget *alignment18;
+  GtkWidget *hbox53;
+  GtkWidget *image58;
+  GtkWidget *label74;
   GtkWidget *team_selection_cancel;
   GtkWidget *alignment2;
   GtkWidget *hbox5;
@@ -115,47 +113,6 @@ create_window_startup (void)
   gtk_widget_show (hseparator10);
   gtk_box_pack_start (GTK_BOX (vbox2), hseparator10, FALSE, FALSE, 0);
   gtk_widget_set_size_request (hseparator10, 1, 10);
-
-  label4 = gtk_label_new (_("Start in"));
-  gtk_widget_show (label4);
-  gtk_box_pack_start (GTK_BOX (vbox2), label4, FALSE, FALSE, 0);
-  gtk_misc_set_alignment (GTK_MISC (label4), 0.05, 0.5);
-
-  eventbox1 = gtk_event_box_new ();
-  gtk_widget_show (eventbox1);
-  gtk_box_pack_start (GTK_BOX (vbox2), eventbox1, FALSE, TRUE, 5);
-  gtk_tooltips_set_tip (tooltips, eventbox1, _("Play normal league games and cups"), NULL);
-
-  hbox2 = gtk_hbox_new (FALSE, 0);
-  gtk_widget_show (hbox2);
-  gtk_container_add (GTK_CONTAINER (eventbox1), hbox2);
-
-  team_selection_radio1 = gtk_radio_button_new_with_mnemonic (NULL, _("Top league"));
-  gtk_widget_show (team_selection_radio1);
-  gtk_box_pack_start (GTK_BOX (hbox2), team_selection_radio1, FALSE, FALSE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (team_selection_radio1), 3);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (team_selection_radio1), team_selection_radio1_group);
-  team_selection_radio1_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (team_selection_radio1));
-
-  team_selection_radio2 = gtk_radio_button_new_with_mnemonic (NULL, _("Current league"));
-  gtk_widget_show (team_selection_radio2);
-  gtk_box_pack_start (GTK_BOX (hbox2), team_selection_radio2, FALSE, FALSE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (team_selection_radio2), 3);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (team_selection_radio2), team_selection_radio1_group);
-  team_selection_radio1_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (team_selection_radio2));
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (team_selection_radio2), TRUE);
-
-  team_selection_radio3 = gtk_radio_button_new_with_mnemonic (NULL, _("Bottom league"));
-  gtk_widget_show (team_selection_radio3);
-  gtk_box_pack_start (GTK_BOX (hbox2), team_selection_radio3, FALSE, FALSE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (team_selection_radio3), 3);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (team_selection_radio3), team_selection_radio1_group);
-  team_selection_radio1_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (team_selection_radio3));
-
-  hseparator11 = gtk_hseparator_new ();
-  gtk_widget_show (hseparator11);
-  gtk_box_pack_start (GTK_BOX (vbox2), hseparator11, FALSE, FALSE, 0);
-  gtk_widget_set_size_request (hseparator11, 1, 10);
 
   vbox34 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox34);
@@ -206,64 +163,90 @@ create_window_startup (void)
   gtk_widget_show (label70);
   gtk_box_pack_start (GTK_BOX (hbox45), label70, FALSE, FALSE, 0);
 
+  hseparator11 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator11);
+  gtk_box_pack_start (GTK_BOX (vbox2), hseparator11, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (hseparator11, 1, 10);
+
+  label4 = gtk_label_new (_("Start in"));
+  gtk_widget_show (label4);
+  gtk_box_pack_start (GTK_BOX (vbox2), label4, FALSE, FALSE, 0);
+  gtk_misc_set_alignment (GTK_MISC (label4), 0.05, 0.5);
+
+  eventbox1 = gtk_event_box_new ();
+  gtk_widget_show (eventbox1);
+  gtk_box_pack_start (GTK_BOX (vbox2), eventbox1, FALSE, TRUE, 5);
+  gtk_tooltips_set_tip (tooltips, eventbox1, _("Play normal league games and cups"), NULL);
+
+  hbox2 = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (hbox2);
+  gtk_container_add (GTK_CONTAINER (eventbox1), hbox2);
+
+  team_selection_radio1 = gtk_radio_button_new_with_mnemonic (NULL, _("Top league"));
+  gtk_widget_show (team_selection_radio1);
+  gtk_box_pack_start (GTK_BOX (hbox2), team_selection_radio1, FALSE, FALSE, 0);
+  gtk_container_set_border_width (GTK_CONTAINER (team_selection_radio1), 3);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (team_selection_radio1), team_selection_radio1_group);
+  team_selection_radio1_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (team_selection_radio1));
+
+  team_selection_radio2 = gtk_radio_button_new_with_mnemonic (NULL, _("Current league"));
+  gtk_widget_show (team_selection_radio2);
+  gtk_box_pack_start (GTK_BOX (hbox2), team_selection_radio2, FALSE, FALSE, 0);
+  gtk_container_set_border_width (GTK_CONTAINER (team_selection_radio2), 3);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (team_selection_radio2), team_selection_radio1_group);
+  team_selection_radio1_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (team_selection_radio2));
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (team_selection_radio2), TRUE);
+
+  team_selection_radio3 = gtk_radio_button_new_with_mnemonic (NULL, _("Bottom league"));
+  gtk_widget_show (team_selection_radio3);
+  gtk_box_pack_start (GTK_BOX (hbox2), team_selection_radio3, FALSE, FALSE, 0);
+  gtk_container_set_border_width (GTK_CONTAINER (team_selection_radio3), 3);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (team_selection_radio3), team_selection_radio1_group);
+  team_selection_radio1_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (team_selection_radio3));
+
   hseparator12 = gtk_hseparator_new ();
   gtk_widget_show (hseparator12);
   gtk_box_pack_start (GTK_BOX (vbox2), hseparator12, FALSE, FALSE, 0);
   gtk_widget_set_size_request (hseparator12, 1, 10);
 
-  hbox46 = gtk_hbox_new (FALSE, 0);
-  gtk_widget_show (hbox46);
-  gtk_box_pack_start (GTK_BOX (vbox2), hbox46, FALSE, TRUE, 0);
+  hbox54 = gtk_hbox_new (FALSE, 5);
+  gtk_widget_show (hbox54);
+  gtk_box_pack_start (GTK_BOX (vbox2), hbox54, FALSE, TRUE, 0);
 
-  vbox35 = gtk_vbox_new (FALSE, 0);
-  gtk_widget_show (vbox35);
-  gtk_box_pack_start (GTK_BOX (hbox46), vbox35, FALSE, TRUE, 0);
+  label75 = gtk_label_new (_("Player name"));
+  gtk_widget_show (label75);
+  gtk_box_pack_start (GTK_BOX (hbox54), label75, FALSE, FALSE, 0);
 
-  checkbutton_no_def = gtk_check_button_new_with_mnemonic (_("Don't load team definitions"));
-  gtk_widget_show (checkbutton_no_def);
-  gtk_box_pack_start (GTK_BOX (vbox35), checkbutton_no_def, FALSE, FALSE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (checkbutton_no_def), 2);
-  gtk_tooltips_set_tip (tooltips, checkbutton_no_def, _("If you check this, the game generates all players randomly and won't read the file with team definitions"), NULL);
+  entry_player_name = gtk_entry_new ();
+  gtk_widget_show (entry_player_name);
+  gtk_box_pack_start (GTK_BOX (hbox54), entry_player_name, TRUE, TRUE, 0);
+  gtk_entry_set_max_length (GTK_ENTRY (entry_player_name), 12);
+  gtk_entry_set_width_chars (GTK_ENTRY (entry_player_name), 12);
 
-  checkbutton_only_names = gtk_check_button_new_with_mnemonic (_("Load only names from team definition file"));
-  gtk_widget_show (checkbutton_only_names);
-  gtk_box_pack_start (GTK_BOX (vbox35), checkbutton_only_names, FALSE, FALSE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (checkbutton_only_names), 2);
-  gtk_tooltips_set_tip (tooltips, checkbutton_only_names, _("If you check this, only the player names and the team structures are loaded from the definition file, values like skill or age are generated randomly"), NULL);
+  button_add_player = gtk_button_new ();
+  gtk_widget_show (button_add_player);
+  gtk_box_pack_start (GTK_BOX (hbox54), button_add_player, FALSE, FALSE, 0);
 
-  checkbutton_load_my_team = gtk_check_button_new_with_mnemonic (_("Load my team from definitions file"));
-  gtk_widget_show (checkbutton_load_my_team);
-  gtk_box_pack_start (GTK_BOX (vbox35), checkbutton_load_my_team, FALSE, FALSE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (checkbutton_load_my_team), 2);
-  gtk_tooltips_set_tip (tooltips, checkbutton_load_my_team, _("Check this if you'd like to have your team loaded from the definitions file no matter what the other checkbuttons say."), NULL);
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (checkbutton_load_my_team), TRUE);
+  alignment19 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment19);
+  gtk_container_add (GTK_CONTAINER (button_add_player), alignment19);
 
-  vseparator18 = gtk_vseparator_new ();
-  gtk_widget_show (vseparator18);
-  gtk_box_pack_start (GTK_BOX (hbox46), vseparator18, FALSE, TRUE, 0);
-  gtk_widget_set_size_request (vseparator18, 10, 1);
+  hbox55 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox55);
+  gtk_container_add (GTK_CONTAINER (alignment19), hbox55);
 
-  button_start_editor = gtk_button_new ();
-  gtk_widget_show (button_start_editor);
-  gtk_box_pack_start (GTK_BOX (hbox46), button_start_editor, TRUE, TRUE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (button_start_editor), 3);
-  gtk_tooltips_set_tip (tooltips, button_start_editor, _("You can start the editor from the commandline with 'bygfoot -e' or '--editor'"), NULL);
+  image59 = gtk_image_new_from_stock ("gtk-add", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image59);
+  gtk_box_pack_start (GTK_BOX (hbox55), image59, FALSE, FALSE, 0);
 
-  alignment15 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment15);
-  gtk_container_add (GTK_CONTAINER (button_start_editor), alignment15);
+  label76 = gtk_label_new_with_mnemonic (_("Add player"));
+  gtk_widget_show (label76);
+  gtk_box_pack_start (GTK_BOX (hbox55), label76, FALSE, FALSE, 0);
 
-  hbox47 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox47);
-  gtk_container_add (GTK_CONTAINER (alignment15), hbox47);
-
-  image55 = gtk_image_new_from_stock ("gtk-preferences", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image55);
-  gtk_box_pack_start (GTK_BOX (hbox47), image55, FALSE, FALSE, 0);
-
-  label71 = gtk_label_new_with_mnemonic (_("Start Bygfoot Team Editor"));
-  gtk_widget_show (label71);
-  gtk_box_pack_start (GTK_BOX (hbox47), label71, FALSE, FALSE, 0);
+  hseparator13 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator13);
+  gtk_box_pack_start (GTK_BOX (vbox2), hseparator13, FALSE, TRUE, 0);
+  gtk_widget_set_size_request (hseparator13, 1, 10);
 
   hbox3 = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (hbox3);
@@ -273,26 +256,27 @@ create_window_startup (void)
   gtk_widget_show (team_selection_ok);
   gtk_box_pack_start (GTK_BOX (hbox3), team_selection_ok, TRUE, TRUE, 0);
   gtk_container_set_border_width (GTK_CONTAINER (team_selection_ok), 2);
-  gtk_tooltips_set_tip (tooltips, team_selection_ok, _("Return"), NULL);
+  gtk_widget_set_sensitive (team_selection_ok, FALSE);
+  gtk_tooltips_set_tip (tooltips, team_selection_ok, _("Space"), NULL);
   gtk_widget_add_accelerator (team_selection_ok, "clicked", accel_group,
-                              GDK_Return, 0,
+                              GDK_space, 0,
                               GTK_ACCEL_VISIBLE);
 
-  alignment1 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment1);
-  gtk_container_add (GTK_CONTAINER (team_selection_ok), alignment1);
+  alignment18 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment18);
+  gtk_container_add (GTK_CONTAINER (team_selection_ok), alignment18);
 
-  hbox4 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox4);
-  gtk_container_add (GTK_CONTAINER (alignment1), hbox4);
+  hbox53 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox53);
+  gtk_container_add (GTK_CONTAINER (alignment18), hbox53);
 
-  image2 = gtk_image_new_from_stock ("gtk-apply", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image2);
-  gtk_box_pack_start (GTK_BOX (hbox4), image2, FALSE, FALSE, 0);
+  image58 = gtk_image_new_from_stock ("gtk-apply", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image58);
+  gtk_box_pack_start (GTK_BOX (hbox53), image58, FALSE, FALSE, 0);
 
-  label1 = gtk_label_new_with_mnemonic (_("OK"));
-  gtk_widget_show (label1);
-  gtk_box_pack_start (GTK_BOX (hbox4), label1, FALSE, FALSE, 0);
+  label74 = gtk_label_new_with_mnemonic (_("Start"));
+  gtk_widget_show (label74);
+  gtk_box_pack_start (GTK_BOX (hbox53), label74, FALSE, FALSE, 0);
 
   team_selection_cancel = gtk_button_new ();
   gtk_widget_show (team_selection_cancel);
@@ -356,14 +340,11 @@ create_window_startup (void)
   g_signal_connect ((gpointer) button_select_country_file, "clicked",
                     G_CALLBACK (on_button_select_country_file_clicked),
                     NULL);
-  g_signal_connect ((gpointer) checkbutton_no_def, "toggled",
-                    G_CALLBACK (on_checkbutton_load_randomly_toggled),
+  g_signal_connect ((gpointer) entry_player_name, "activate",
+                    G_CALLBACK (on_entry_player_name_activate),
                     NULL);
-  g_signal_connect ((gpointer) checkbutton_only_names, "toggled",
-                    G_CALLBACK (on_checkbutton_only_names_toggled),
-                    NULL);
-  g_signal_connect ((gpointer) button_start_editor, "clicked",
-                    G_CALLBACK (on_button_start_editor_clicked),
+  g_signal_connect ((gpointer) button_add_player, "clicked",
+                    G_CALLBACK (on_button_add_player_clicked),
                     NULL);
   g_signal_connect ((gpointer) team_selection_ok, "clicked",
                     G_CALLBACK (on_team_selection_ok_clicked),
@@ -381,13 +362,6 @@ create_window_startup (void)
   GLADE_HOOKUP_OBJECT (window_startup, scrolledwindow1, "scrolledwindow1");
   GLADE_HOOKUP_OBJECT (window_startup, treeview_startup, "treeview_startup");
   GLADE_HOOKUP_OBJECT (window_startup, hseparator10, "hseparator10");
-  GLADE_HOOKUP_OBJECT (window_startup, label4, "label4");
-  GLADE_HOOKUP_OBJECT (window_startup, eventbox1, "eventbox1");
-  GLADE_HOOKUP_OBJECT (window_startup, hbox2, "hbox2");
-  GLADE_HOOKUP_OBJECT (window_startup, team_selection_radio1, "team_selection_radio1");
-  GLADE_HOOKUP_OBJECT (window_startup, team_selection_radio2, "team_selection_radio2");
-  GLADE_HOOKUP_OBJECT (window_startup, team_selection_radio3, "team_selection_radio3");
-  GLADE_HOOKUP_OBJECT (window_startup, hseparator11, "hseparator11");
   GLADE_HOOKUP_OBJECT (window_startup, vbox34, "vbox34");
   GLADE_HOOKUP_OBJECT (window_startup, label69, "label69");
   GLADE_HOOKUP_OBJECT (window_startup, hbox44, "hbox44");
@@ -399,24 +373,29 @@ create_window_startup (void)
   GLADE_HOOKUP_OBJECT (window_startup, hbox45, "hbox45");
   GLADE_HOOKUP_OBJECT (window_startup, image45, "image45");
   GLADE_HOOKUP_OBJECT (window_startup, label70, "label70");
+  GLADE_HOOKUP_OBJECT (window_startup, hseparator11, "hseparator11");
+  GLADE_HOOKUP_OBJECT (window_startup, label4, "label4");
+  GLADE_HOOKUP_OBJECT (window_startup, eventbox1, "eventbox1");
+  GLADE_HOOKUP_OBJECT (window_startup, hbox2, "hbox2");
+  GLADE_HOOKUP_OBJECT (window_startup, team_selection_radio1, "team_selection_radio1");
+  GLADE_HOOKUP_OBJECT (window_startup, team_selection_radio2, "team_selection_radio2");
+  GLADE_HOOKUP_OBJECT (window_startup, team_selection_radio3, "team_selection_radio3");
   GLADE_HOOKUP_OBJECT (window_startup, hseparator12, "hseparator12");
-  GLADE_HOOKUP_OBJECT (window_startup, hbox46, "hbox46");
-  GLADE_HOOKUP_OBJECT (window_startup, vbox35, "vbox35");
-  GLADE_HOOKUP_OBJECT (window_startup, checkbutton_no_def, "checkbutton_no_def");
-  GLADE_HOOKUP_OBJECT (window_startup, checkbutton_only_names, "checkbutton_only_names");
-  GLADE_HOOKUP_OBJECT (window_startup, checkbutton_load_my_team, "checkbutton_load_my_team");
-  GLADE_HOOKUP_OBJECT (window_startup, vseparator18, "vseparator18");
-  GLADE_HOOKUP_OBJECT (window_startup, button_start_editor, "button_start_editor");
-  GLADE_HOOKUP_OBJECT (window_startup, alignment15, "alignment15");
-  GLADE_HOOKUP_OBJECT (window_startup, hbox47, "hbox47");
-  GLADE_HOOKUP_OBJECT (window_startup, image55, "image55");
-  GLADE_HOOKUP_OBJECT (window_startup, label71, "label71");
+  GLADE_HOOKUP_OBJECT (window_startup, hbox54, "hbox54");
+  GLADE_HOOKUP_OBJECT (window_startup, label75, "label75");
+  GLADE_HOOKUP_OBJECT (window_startup, entry_player_name, "entry_player_name");
+  GLADE_HOOKUP_OBJECT (window_startup, button_add_player, "button_add_player");
+  GLADE_HOOKUP_OBJECT (window_startup, alignment19, "alignment19");
+  GLADE_HOOKUP_OBJECT (window_startup, hbox55, "hbox55");
+  GLADE_HOOKUP_OBJECT (window_startup, image59, "image59");
+  GLADE_HOOKUP_OBJECT (window_startup, label76, "label76");
+  GLADE_HOOKUP_OBJECT (window_startup, hseparator13, "hseparator13");
   GLADE_HOOKUP_OBJECT (window_startup, hbox3, "hbox3");
   GLADE_HOOKUP_OBJECT (window_startup, team_selection_ok, "team_selection_ok");
-  GLADE_HOOKUP_OBJECT (window_startup, alignment1, "alignment1");
-  GLADE_HOOKUP_OBJECT (window_startup, hbox4, "hbox4");
-  GLADE_HOOKUP_OBJECT (window_startup, image2, "image2");
-  GLADE_HOOKUP_OBJECT (window_startup, label1, "label1");
+  GLADE_HOOKUP_OBJECT (window_startup, alignment18, "alignment18");
+  GLADE_HOOKUP_OBJECT (window_startup, hbox53, "hbox53");
+  GLADE_HOOKUP_OBJECT (window_startup, image58, "image58");
+  GLADE_HOOKUP_OBJECT (window_startup, label74, "label74");
   GLADE_HOOKUP_OBJECT (window_startup, team_selection_cancel, "team_selection_cancel");
   GLADE_HOOKUP_OBJECT (window_startup, alignment2, "alignment2");
   GLADE_HOOKUP_OBJECT (window_startup, hbox5, "hbox5");
@@ -1071,5 +1050,42 @@ create_help_window (void)
   gtk_window_add_accel_group (GTK_WINDOW (help_window), accel_group);
 
   return help_window;
+}
+
+GtkWidget*
+create_window_startup_users (void)
+{
+  GtkWidget *window_startup_users;
+  GtkWidget *scrolledwindow10;
+  GtkWidget *treeview_users;
+  GtkTooltips *tooltips;
+
+  tooltips = gtk_tooltips_new ();
+
+  window_startup_users = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_window_set_title (GTK_WINDOW (window_startup_users), _("Players"));
+  gtk_window_set_default_size (GTK_WINDOW (window_startup_users), 250, 200);
+  gtk_window_set_gravity (GTK_WINDOW (window_startup_users), GDK_GRAVITY_NORTH_EAST);
+
+  scrolledwindow10 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrolledwindow10);
+  gtk_container_add (GTK_CONTAINER (window_startup_users), scrolledwindow10);
+
+  treeview_users = gtk_tree_view_new ();
+  gtk_widget_show (treeview_users);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow10), treeview_users);
+  gtk_tooltips_set_tip (tooltips, treeview_users, _("Click on a player to remove him"), NULL);
+
+  g_signal_connect ((gpointer) treeview_users, "button_press_event",
+                    G_CALLBACK (on_treeview_users_button_press_event),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (window_startup_users, window_startup_users, "window_startup_users");
+  GLADE_HOOKUP_OBJECT (window_startup_users, scrolledwindow10, "scrolledwindow10");
+  GLADE_HOOKUP_OBJECT (window_startup_users, treeview_users, "treeview_users");
+  GLADE_HOOKUP_OBJECT_NO_REF (window_startup_users, tooltips, "tooltips");
+
+  return window_startup_users;
 }
 

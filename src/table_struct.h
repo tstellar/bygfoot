@@ -40,6 +40,8 @@ typedef struct
 {
     GString *name;
     gint clid;
+    /** The cup round (or -1 if it's a league). */
+    gint round;
     GArray *elements;
 } Table;
 

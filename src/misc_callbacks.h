@@ -115,8 +115,22 @@ void
 on_button_resume_clicked               (GtkButton       *button,
                                         gpointer         user_data);
 
-#endif
 
 void
 on_spinbutton_speed_value_changed      (GtkSpinButton   *spinbutton,
+                                        gpointer         user_data);
+
+void
+on_button_add_player_clicked           (GtkButton       *button,
+                                        gpointer         user_data);
+
+#endif
+
+gboolean
+on_treeview_users_button_press_event   (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data);
+
+void
+on_entry_player_name_activate          (GtkEntry        *entry,
                                         gpointer         user_data);

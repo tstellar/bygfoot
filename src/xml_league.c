@@ -2,6 +2,7 @@
 #include "league.h"
 #include "misc.h"
 #include "team.h"
+#include "table.h"
 #include "variables.h"
 #include "xml_league.h"
 
@@ -159,8 +160,6 @@ xml_league_read_end_element    (GMarkupParseContext *context,
 				gpointer             user_data,
 				GError             **error)
 {
-    TableElement new_table_element;
-
     if(strcmp(element_name, TAG_NAME) == 0 ||
        strcmp(element_name, TAG_SHORT_NAME) == 0 ||
        strcmp(element_name, TAG_SID) == 0 ||
@@ -184,12 +183,7 @@ xml_league_read_end_element    (GMarkupParseContext *context,
 	    strcmp(element_name, TAG_PROM_REL_ELEMENT_DEST_SID) == 0)
 	state = STATE_PROM_REL_ELEMENT;
     else if(strcmp(element_name, TAG_TEAM) == 0)
-    {
 	state = STATE_TEAMS;
-	new_table_element = league_table_element_new(
-	    &g_array_index(new_league.teams, Team, new_league.teams->len - 1));
-	g_array_append_val(new_league.table.elements, new_table_element);
-    }
     else if(strcmp(element_name, TAG_TEAM_NAME) == 0)
 	state = STATE_TEAM;
     else if(strcmp(element_name, TAG_LEAGUE) != 0)
@@ -275,6 +269,8 @@ xml_league_read_text         (GMarkupParseContext *context,
 void
 xml_league_read(const gchar *league_name, GArray *leagues)
 {
+    gint i;
+    TableElement new_table_element;
     gchar *file_name = file_find_support_file(league_name);
     GMarkupParser parser = {xml_league_read_start_element,
 			    xml_league_read_end_element,
@@ -313,6 +309,12 @@ xml_league_read(const gchar *league_name, GArray *leagues)
 	g_free(file_contents);
 	
 	g_array_append_val(leagues, new_league);
+	for(i=0;i<lig(ligs->len - 1).teams->len;i++)
+	{
+	    new_table_element = 
+		table_element_new(&g_array_index(lig(ligs->len - 1).teams, Team, i));
+	    g_array_append_val(lig(ligs->len - 1).table.elements, new_table_element);
+	}
     }
     else
     {

@@ -10,14 +10,12 @@ enum Windows
     WINDOW_MAIN = 0,
     WINDOW_STARTUP,
     WINDOW_LIVE,
+    WINDOW_STARTUP_USERS,
     WINDOW_END
 };
 
 void
 window_show_startup(void);
-
-void
-window_show_main(void);
 
 GtkWidget*
 window_set_version(GtkWidget *window);

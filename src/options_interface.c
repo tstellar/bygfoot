@@ -306,7 +306,6 @@ create_opt_window (void)
   label53 = gtk_label_new (_("At the beginning of a new week show first"));
   gtk_widget_show (label53);
   gtk_box_pack_start (GTK_BOX (vbox32), label53, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label53), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label53), 0, 0.5);
 
   hbox66 = gtk_hbox_new (FALSE, 0);
@@ -344,7 +343,6 @@ create_opt_window (void)
   label43 = gtk_label_new (_("       Live game duration factor   "));
   gtk_widget_show (label43);
   gtk_box_pack_start (GTK_BOX (hbox21), label43, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label43), GTK_JUSTIFY_LEFT);
 
   spin_live_duration_adj = gtk_adjustment_new (0, -100, 100, 1, 10, 10);
   spin_live_duration = gtk_spin_button_new (GTK_ADJUSTMENT (spin_live_duration_adj), 1, 0);
@@ -361,7 +359,6 @@ create_opt_window (void)
   label58 = gtk_label_new (_("       "));
   gtk_widget_show (label58);
   gtk_box_pack_start (GTK_BOX (hbox39), label58, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label58), GTK_JUSTIFY_LEFT);
 
   check_live_tendency = gtk_check_button_new_with_mnemonic (_("Show live game tendency bar"));
   gtk_widget_show (check_live_tendency);
@@ -393,12 +390,10 @@ create_opt_window (void)
   label55 = gtk_label_new_with_mnemonic (_("Change font"));
   gtk_widget_show (label55);
   gtk_box_pack_start (GTK_BOX (hbox35), label55, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label55), GTK_JUSTIFY_LEFT);
 
   label54 = gtk_label_new (_(" used in the main windows"));
   gtk_widget_show (label54);
   gtk_box_pack_start (GTK_BOX (hbox34), label54, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label54), GTK_JUSTIFY_LEFT);
 
   hbox46 = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (hbox46);
@@ -407,7 +402,6 @@ create_opt_window (void)
   label71 = gtk_label_new (_("Change team name "));
   gtk_widget_show (label71);
   gtk_box_pack_start (GTK_BOX (hbox46), label71, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label71), GTK_JUSTIFY_LEFT);
 
   entry_team_name = gtk_entry_new ();
   gtk_widget_show (entry_team_name);
@@ -436,7 +430,6 @@ create_opt_window (void)
   label45 = gtk_label_new (_("Messages"));
   gtk_widget_show (label45);
   gtk_box_pack_start (GTK_BOX (hbox22), label45, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label45), GTK_JUSTIFY_LEFT);
 
   radio_mess1 = gtk_radio_button_new_with_mnemonic (NULL, _("Moving"));
   gtk_widget_show (radio_mess1);
@@ -495,12 +488,10 @@ create_opt_window (void)
   label89 = gtk_label_new (_("Apperance and behaviour of the game"));
   gtk_widget_show (label89);
   gtk_frame_set_label_widget (GTK_FRAME (frame1), label89);
-  gtk_label_set_justify (GTK_LABEL (label89), GTK_JUSTIFY_LEFT);
 
   label83 = gtk_label_new (_("Look & Feel"));
   gtk_widget_show (label83);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 0), label83);
-  gtk_label_set_justify (GTK_LABEL (label83), GTK_JUSTIFY_LEFT);
 
   frame2 = gtk_frame_new (NULL);
   gtk_widget_show (frame2);
@@ -534,17 +525,14 @@ create_opt_window (void)
   label82 = gtk_label_new (_("  weeks"));
   gtk_widget_show (label82);
   gtk_box_pack_start (GTK_BOX (hbox62), label82, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label82), GTK_JUSTIFY_LEFT);
 
   label90 = gtk_label_new (_("Options for loading and saving games"));
   gtk_widget_show (label90);
   gtk_frame_set_label_widget (GTK_FRAME (frame2), label90);
-  gtk_label_set_justify (GTK_LABEL (label90), GTK_JUSTIFY_LEFT);
 
   label84 = gtk_label_new (_("Load & Save"));
   gtk_widget_show (label84);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 1), label84);
-  gtk_label_set_justify (GTK_LABEL (label84), GTK_JUSTIFY_LEFT);
 
   frame3 = gtk_frame_new (NULL);
   gtk_widget_show (frame3);
@@ -675,7 +663,6 @@ create_opt_window (void)
   label78 = gtk_label_new ("");
   gtk_widget_show (label78);
   gtk_box_pack_start (GTK_BOX (vbox28), label78, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label78), GTK_JUSTIFY_LEFT);
   gtk_misc_set_padding (GTK_MISC (label78), 0, 4);
 
   vbox29 = gtk_vbox_new (FALSE, 2);
@@ -727,25 +714,21 @@ create_opt_window (void)
   label73 = gtk_label_new (_("  and  "));
   gtk_widget_show (label73);
   gtk_box_pack_start (GTK_BOX (vbox30), label73, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label73), GTK_JUSTIFY_LEFT);
   gtk_misc_set_padding (GTK_MISC (label73), 0, 4);
 
   label74 = gtk_label_new (_("  and  "));
   gtk_widget_show (label74);
   gtk_box_pack_start (GTK_BOX (vbox30), label74, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label74), GTK_JUSTIFY_LEFT);
   gtk_misc_set_padding (GTK_MISC (label74), 0, 4);
 
   label75 = gtk_label_new (_("  and  "));
   gtk_widget_show (label75);
   gtk_box_pack_start (GTK_BOX (vbox30), label75, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label75), GTK_JUSTIFY_LEFT);
   gtk_misc_set_padding (GTK_MISC (label75), 0, 4);
 
   label76 = gtk_label_new ("");
   gtk_widget_show (label76);
   gtk_box_pack_start (GTK_BOX (vbox30), label76, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label76), GTK_JUSTIFY_LEFT);
   gtk_misc_set_padding (GTK_MISC (label76), 0, 4);
 
   hbox54 = gtk_hbox_new (FALSE, 0);
@@ -797,7 +780,6 @@ create_opt_window (void)
   label77 = gtk_label_new ("");
   gtk_widget_show (label77);
   gtk_box_pack_start (GTK_BOX (vboxa31), label77, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label77), GTK_JUSTIFY_LEFT);
   gtk_misc_set_padding (GTK_MISC (label77), 0, 4);
 
   hbox53 = gtk_hbox_new (FALSE, 0);
@@ -822,17 +804,14 @@ create_opt_window (void)
   label95 = gtk_label_new ("");
   gtk_widget_show (label95);
   gtk_frame_set_label_widget (GTK_FRAME (frame7), label95);
-  gtk_label_set_justify (GTK_LABEL (label95), GTK_JUSTIFY_LEFT);
 
   label91 = gtk_label_new (_("Options concering the transfer list"));
   gtk_widget_show (label91);
   gtk_frame_set_label_widget (GTK_FRAME (frame3), label91);
-  gtk_label_set_justify (GTK_LABEL (label91), GTK_JUSTIFY_LEFT);
 
   label85 = gtk_label_new (_("Transfers"));
   gtk_widget_show (label85);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 2), label85);
-  gtk_label_set_justify (GTK_LABEL (label85), GTK_JUSTIFY_LEFT);
 
   frame4 = gtk_frame_new (NULL);
   gtk_widget_show (frame4);
@@ -864,12 +843,10 @@ create_opt_window (void)
   label92 = gtk_label_new (_("Whether to confirm certain actions"));
   gtk_widget_show (label92);
   gtk_frame_set_label_widget (GTK_FRAME (frame4), label92);
-  gtk_label_set_justify (GTK_LABEL (label92), GTK_JUSTIFY_LEFT);
 
   label86 = gtk_label_new (_("Confirmations"));
   gtk_widget_show (label86);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 3), label86);
-  gtk_label_set_justify (GTK_LABEL (label86), GTK_JUSTIFY_LEFT);
 
   frame5 = gtk_frame_new (NULL);
   gtk_widget_show (frame5);
@@ -891,7 +868,6 @@ create_opt_window (void)
   label98 = gtk_label_new (_("Attribute"));
   gtk_widget_show (label98);
   gtk_box_pack_start (GTK_BOX (vbox42), label98, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label98), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label98), 1.11759e-08, 0.5);
 
   hseparator12 = gtk_hseparator_new ();
@@ -902,97 +878,81 @@ create_opt_window (void)
   label109 = gtk_label_new (_("Name"));
   gtk_widget_show (label109);
   gtk_box_pack_start (GTK_BOX (vbox42), label109, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label109), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label109), 0, 0.5);
 
   label110 = gtk_label_new (_("Current position"));
   gtk_widget_show (label110);
   gtk_box_pack_start (GTK_BOX (vbox42), label110, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label110), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label110), 0, 0.5);
 
   label111 = gtk_label_new (_("Position"));
   gtk_widget_show (label111);
   gtk_box_pack_start (GTK_BOX (vbox42), label111, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label111), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label111), 0, 0.5);
 
   label112 = gtk_label_new (_("Current skill"));
   gtk_widget_show (label112);
   gtk_box_pack_start (GTK_BOX (vbox42), label112, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label112), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label112), 0, 0.5);
 
   label99 = gtk_label_new (_("Skill"));
   gtk_widget_show (label99);
   gtk_box_pack_start (GTK_BOX (vbox42), label99, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label99), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label99), 0, 0.5);
 
   label100 = gtk_label_new (_("Fitness"));
   gtk_widget_show (label100);
   gtk_box_pack_start (GTK_BOX (vbox42), label100, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label100), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label100), 0, 0.5);
 
   label101 = gtk_label_new (_("Games"));
   gtk_widget_show (label101);
   gtk_box_pack_start (GTK_BOX (vbox42), label101, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label101), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label101), 0, 0.5);
 
   label102 = gtk_label_new (_("Goals"));
   gtk_widget_show (label102);
   gtk_box_pack_start (GTK_BOX (vbox42), label102, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label102), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label102), 0, 0.5);
 
   label103 = gtk_label_new (_("Status"));
   gtk_widget_show (label103);
   gtk_box_pack_start (GTK_BOX (vbox42), label103, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label103), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label103), 0, 0.5);
 
   label104 = gtk_label_new (_("Age"));
   gtk_widget_show (label104);
   gtk_box_pack_start (GTK_BOX (vbox42), label104, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label104), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label104), 0, 0.5);
 
   label105 = gtk_label_new (_("Estimated talent"));
   gtk_widget_show (label105);
   gtk_box_pack_start (GTK_BOX (vbox42), label105, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label105), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label105), 0, 0.5);
 
   label106 = gtk_label_new (_("Yellow cards"));
   gtk_widget_show (label106);
   gtk_box_pack_start (GTK_BOX (vbox42), label106, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label106), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label106), 0, 0.5);
 
   label107 = gtk_label_new (_("Value"));
   gtk_widget_show (label107);
   gtk_box_pack_start (GTK_BOX (vbox42), label107, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label107), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label107), 0, 0.5);
 
   label108 = gtk_label_new (_("Wage"));
   gtk_widget_show (label108);
   gtk_box_pack_start (GTK_BOX (vbox42), label108, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label108), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label108), 0, 0.5);
 
   label113 = gtk_label_new (_("Team"));
   gtk_widget_show (label113);
   gtk_box_pack_start (GTK_BOX (vbox42), label113, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label113), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label113), 0, 0.5);
 
   label114 = gtk_label_new (_("League"));
   gtk_widget_show (label114);
   gtk_box_pack_start (GTK_BOX (vbox42), label114, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label114), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label114), 0, 0.5);
 
   vseparator6 = gtk_vseparator_new ();
@@ -1007,7 +967,6 @@ create_opt_window (void)
   label130 = gtk_label_new (_("Player list 1"));
   gtk_widget_show (label130);
   gtk_box_pack_start (GTK_BOX (vbox45), label130, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label130), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label130), 2.23517e-10, 0.5);
 
   hseparator13 = gtk_hseparator_new ();
@@ -1091,7 +1050,6 @@ create_opt_window (void)
   label115 = gtk_label_new (_("Player list 2"));
   gtk_widget_show (label115);
   gtk_box_pack_start (GTK_BOX (vbox46), label115, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label115), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label115), 0, 0.5);
 
   hseparator14 = gtk_hseparator_new ();
@@ -1166,12 +1124,10 @@ create_opt_window (void)
   label93 = gtk_label_new (_("Player attributes that are shown in the two player lists"));
   gtk_widget_show (label93);
   gtk_frame_set_label_widget (GTK_FRAME (frame5), label93);
-  gtk_label_set_justify (GTK_LABEL (label93), GTK_JUSTIFY_LEFT);
 
   label87 = gtk_label_new (_("Player attributes"));
   gtk_widget_show (label87);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 4), label87);
-  gtk_label_set_justify (GTK_LABEL (label87), GTK_JUSTIFY_LEFT);
 
   frame8 = gtk_frame_new (NULL);
   gtk_widget_show (frame8);
@@ -1189,7 +1145,6 @@ create_opt_window (void)
   label136 = gtk_label_new (_("Option"));
   gtk_widget_show (label136);
   gtk_box_pack_start (GTK_BOX (vbox50), label136, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label136), GTK_JUSTIFY_LEFT);
 
   hseparator17 = gtk_hseparator_new ();
   gtk_widget_show (hseparator17);
@@ -1208,7 +1163,6 @@ create_opt_window (void)
   label140 = gtk_label_new (_("Update interval (in weeks)"));
   gtk_widget_show (label140);
   gtk_container_add (GTK_CONTAINER (eventbox4), label140);
-  gtk_label_set_justify (GTK_LABEL (label140), GTK_JUSTIFY_LEFT);
 
   eventbox5 = gtk_event_box_new ();
   gtk_widget_show (eventbox5);
@@ -1218,7 +1172,6 @@ create_opt_window (void)
   label141 = gtk_label_new (_("Maximal history length"));
   gtk_widget_show (label141);
   gtk_container_add (GTK_CONTAINER (eventbox5), label141);
-  gtk_label_set_justify (GTK_LABEL (label141), GTK_JUSTIFY_LEFT);
 
   eventbox6 = gtk_event_box_new ();
   gtk_widget_show (eventbox6);
@@ -1228,7 +1181,6 @@ create_opt_window (void)
   label142 = gtk_label_new (_("Delete history at end of season"));
   gtk_widget_show (label142);
   gtk_container_add (GTK_CONTAINER (eventbox6), label142);
-  gtk_label_set_justify (GTK_LABEL (label142), GTK_JUSTIFY_LEFT);
 
   vseparator8 = gtk_vseparator_new ();
   gtk_widget_show (vseparator8);
@@ -1241,7 +1193,6 @@ create_opt_window (void)
   label134 = gtk_label_new (_("Team histories"));
   gtk_widget_show (label134);
   gtk_box_pack_start (GTK_BOX (vbox48), label134, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label134), GTK_JUSTIFY_LEFT);
 
   hseparator15 = gtk_hseparator_new ();
   gtk_widget_show (hseparator15);
@@ -1279,7 +1230,6 @@ create_opt_window (void)
   label135 = gtk_label_new (_("Player histories"));
   gtk_widget_show (label135);
   gtk_box_pack_start (GTK_BOX (vbox49), label135, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label135), GTK_JUSTIFY_LEFT);
 
   hseparator16 = gtk_hseparator_new ();
   gtk_widget_show (hseparator16);
@@ -1308,12 +1258,10 @@ create_opt_window (void)
   label132 = gtk_label_new (_("Team and player histories"));
   gtk_widget_show (label132);
   gtk_frame_set_label_widget (GTK_FRAME (frame8), label132);
-  gtk_label_set_justify (GTK_LABEL (label132), GTK_JUSTIFY_LEFT);
 
   label131 = gtk_label_new (_("Histories"));
   gtk_widget_show (label131);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 5), label131);
-  gtk_label_set_justify (GTK_LABEL (label131), GTK_JUSTIFY_LEFT);
 
   frame6 = gtk_frame_new (NULL);
   gtk_widget_show (frame6);
@@ -1334,12 +1282,10 @@ create_opt_window (void)
   label94 = gtk_label_new (_("Miscellaneous options"));
   gtk_widget_show (label94);
   gtk_frame_set_label_widget (GTK_FRAME (frame6), label94);
-  gtk_label_set_justify (GTK_LABEL (label94), GTK_JUSTIFY_LEFT);
 
   label88 = gtk_label_new (_("Misc"));
   gtk_widget_show (label88);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 6), label88);
-  gtk_label_set_justify (GTK_LABEL (label88), GTK_JUSTIFY_LEFT);
 
   hseparator8 = gtk_hseparator_new ();
   gtk_widget_show (hseparator8);
@@ -1379,7 +1325,6 @@ create_opt_window (void)
   label47 = gtk_label_new_with_mnemonic (_("OK"));
   gtk_widget_show (label47);
   gtk_box_pack_start (GTK_BOX (hbox26), label47, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label47), GTK_JUSTIFY_LEFT);
 
   button_opt_cancel = gtk_button_new ();
   gtk_widget_show (button_opt_cancel);
@@ -1405,7 +1350,6 @@ create_opt_window (void)
   label48 = gtk_label_new_with_mnemonic (_("Cancel"));
   gtk_widget_show (label48);
   gtk_box_pack_start (GTK_BOX (hbox27), label48, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label48), GTK_JUSTIFY_LEFT);
 
   g_signal_connect ((gpointer) opt_window, "delete_event",
                     G_CALLBACK (on_opt_window_delete_event),

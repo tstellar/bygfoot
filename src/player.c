@@ -1,59 +1,11 @@
+#include "cup.h"
 #include "free.h"
 #include "league.h"
 #include "maths.h"
+#include "option.h"
 #include "player.h"
 #include "team.h"
 #include "variables.h"
-
-/** How much a player's skill can deviate from 
-    the average skill in his team. */
-#define CONSTANT_PLAYER_AVERAGE_SKILL_VARIANCE 0.1
-/** Lower limit for player ages. */
-#define CONSTANT_PLAYER_AGE_LOWER (18 * 52)
-/** Upper limit for player ages. */
-#define CONSTANT_PLAYER_AGE_UPPER (36 * 52)
-/** Lower limit for player peak ages. */
-#define CONSTANT_PLAYER_PEAK_AGE_LOWER (30 * 52)
-/** Upper limit for player peak ages. */
-#define CONSTANT_PLAYER_PEAK_AGE_UPPER (33 * 52)
-/** By how many weeks the peak age of goalies is
-    greater. */
-#define CONSTANT_PLAYER_PEAK_AGE_GOALIE_ADDITION (2 * 52)
-/** Limits for initial fitness. */
-#define CONSTANT_PLAYER_FITNESS_LOWER 85
-/** Limits for initial fitness. */
-#define CONSTANT_PLAYER_FITNESS_UPPER 100
-
-/** The bounds determining the player positions in a newly created
-    team for players 13 to CONSTANT_TEAM_MAX_PLAYERS.
-    Player 11 is always the second goalie. */
-#define CONSTANT_PLAYER_POS_BOUND1 15
-#define CONSTANT_PLAYER_POS_BOUND2 18
-
-/** Bounds for the contract time at player generation. */
-#define CONSTANT_PLAYER_CONTRACT_LOWER 52
-#define CONSTANT_PLAYER_CONTRACT_UPPER 4 * 52
-
-/** Bounds for the last skill update at player generation. */
-#define CONSTANT_PLAYER_LSU_LOWER 2
-#define CONSTANT_PLAYER_LSU_UPPER 10
-
-/** These determine the value calculation of players.
-    Value is a function of skill and talent involving
-    a power.
-    @see player_assign_value()*/
-#define CONSTANT_PLAYER_VALUE_SKILL_WEIGHT 0.65
-#define CONSTANT_PLAYER_VALUE_POWER 3.5
-
-/** These determine the wage calculation of players.
-    Wage depends on the value and a random factor near 1. 
-    @see player_assign_wage() */
-#define CONSTANT_PLAYER_WAGE_VALUE_FACTOR 0.01
-#define CONSTANT_PLAYER_WAGE_RANDOM_DEV 0.15
-
-/** This determines the accuracy of the scout's 
-    talent estimate. The smaller the better. */
-#define CONSTANT_PLAYER_ETAL_SCOUT_FACTOR 7
 
 /** Create and return a new player.
     @param tm The team the player will belong to.
@@ -64,8 +16,8 @@ Player
 player_new(Team *tm, gint average_skill)
 {
     gfloat skill_factor = 
-	math_rnd(1 - CONSTANT_PLAYER_AVERAGE_SKILL_VARIANCE,
-		 1 + CONSTANT_PLAYER_AVERAGE_SKILL_VARIANCE);
+	math_rnd(1 - const_float("float_player_average_skill_variance"),
+		 1 + const_float("float_player_average_skill_variance"));
     Player new;
 
     new.name = 
@@ -73,27 +25,32 @@ player_new(Team *tm, gint average_skill)
     new.id = player_new_id(tm->players);
     new.pos = player_get_position_from_structure(tm->structure, tm->players->len);
     new.cpos = new.pos;
-    new.skill = CLAMP((gint)rint((gfloat)average_skill * skill_factor), 0, CONSTANT_PLAYER_MAX_SKILL);
+    new.skill = CLAMP((gint)rint((gfloat)average_skill * skill_factor), 0, 
+		      const_int("int_player_max_skill"));
     new.cskill = new.skill;
-    new.age = math_gauss_disti(CONSTANT_PLAYER_AGE_LOWER,
-			       CONSTANT_PLAYER_AGE_UPPER);
+    new.age = math_gauss_disti(const_int("int_player_age_lower"),
+			       const_int("int_player_age_upper"));
     new.peak_age =
-	math_rndi(CONSTANT_PLAYER_PEAK_AGE_LOWER +
-		  (new.pos == PLAYER_POS_GOALIE) * CONSTANT_PLAYER_PEAK_AGE_GOALIE_ADDITION,
-		  CONSTANT_PLAYER_PEAK_AGE_UPPER +
-		  (new.pos == PLAYER_POS_GOALIE) * CONSTANT_PLAYER_PEAK_AGE_GOALIE_ADDITION);
+	math_rndi(const_int("int_player_peak_age_lower") +
+		  (new.pos == PLAYER_POS_GOALIE) * 
+		  const_int("int_player_peak_age_goalie_addition"),
+		  const_int("int_player_peak_age_upper") +
+		  (new.pos == PLAYER_POS_GOALIE) * 
+		  const_int("int_player_peak_age_goalie_addition"));
     new.talent = player_new_talent(new.skill);
-    new.etal = player_estimate_talent(&new);
-    new.fitness = math_rndi(CONSTANT_PLAYER_FITNESS_LOWER, CONSTANT_PLAYER_FITNESS_UPPER);
+    player_estimate_talent(&new);
+    new.fitness = math_rndi(const_int("int_player_fitness_lower"),
+			    const_int("int_player_fitness_upper"));
     new.health = new.recovery = 0;
     new.games_goals = g_array_new(FALSE, FALSE, sizeof(PlayerGamesGoals));
     new.value = player_assign_value(&new);
     new.wage = player_assign_wage(&new);
-    new.contract = math_rndi(CONSTANT_PLAYER_CONTRACT_LOWER, CONSTANT_PLAYER_CONTRACT_UPPER);
-    new.lsu = math_rndi(CONSTANT_PLAYER_LSU_LOWER, CONSTANT_PLAYER_LSU_UPPER);
+    new.contract = math_rndi(const_int("int_player_contract_lower"),
+			     const_int("int_player_contract_upper"));
+    new.lsu = math_rndi(const_int("int_player_lsu_lower"),
+			const_int("int_player_lsu_upper"));
     new.cards = g_array_new(FALSE, FALSE, sizeof(PlayerCard));
-    /* todo: make player history struct. */
-    new.history = NULL;
+
     new.team = tm;
     
     return new;
@@ -107,7 +64,7 @@ player_new_id(const GArray *players)
 {
     gint i, j;
 
-    for(i=0;i<CONSTANT_TEAM_MAX_PLAYERS;i++)
+    for(i=0;i<const_int("int_team_max_players");i++)
     {
 	for(j=0;j<players->len;j++)
 	    if(g_array_index(players, Player, j).id == i)
@@ -140,10 +97,10 @@ player_get_position_from_structure(gint structure, gint player_number)
     if(player_number % 11 == 0)
 	position = PLAYER_POS_GOALIE;
     else if(player_number < bound[0] ||
-	    (player_number > 10 && player_number < CONSTANT_PLAYER_POS_BOUND1))
+	    (player_number > 10 && player_number < const_int("int_player_pos_bound1")))
 	position = PLAYER_POS_DEFENDER;
     else if(player_number < bound[1] ||
-	    (player_number > 10 && player_number < CONSTANT_PLAYER_POS_BOUND2))
+	    (player_number > 10 && player_number < const_int("int_player_pos_bound2")))
 	position = PLAYER_POS_MIDFIELDER;
     else
 	position = PLAYER_POS_FORWARD;
@@ -157,37 +114,37 @@ player_get_position_from_structure(gint structure, gint player_number)
 gint
 player_new_talent(gint skill)
 {
-    gint talent = math_gauss_disti(2 * skill - CONSTANT_PLAYER_MAX_SKILL,
-				   CONSTANT_PLAYER_MAX_SKILL);
+    gint talent = math_gauss_disti(2 * skill - const_int("int_player_max_skill"),
+				   const_int("int_player_max_skill"));
     if(talent < skill)
 	talent = 2 * skill - talent;
 
     return talent;
 }
 
-/** Estimate a player's talent. The quality of the estimate
-    depends on the quality of the scout.
-    @param pl The player of which we'd like to estimate the talent.
-    @return A talent estimate. */
-gint
-player_estimate_talent(const Player *pl)
+/** Estimate a player's talent.
+    @param pl The player of which we'd like to estimate the talent. */
+void
+player_estimate_talent(Player *pl)
 {
-    gint i;
+    gint i, j;
+    gint scout_deviance[QUALITY_END];
 
     /* the maximal deviance in both directions */
     gint deviance_bound[2] =
-	{pl->talent - pl->skill, CONSTANT_PLAYER_MAX_SKILL - pl->talent};
+	{pl->talent - pl->skill, const_int("int_player_max_skill") - pl->talent};
 
-    /* the scout's maximal deviance */
-    gfloat scout_deviance = (scout % 10) * CONSTANT_PLAYER_ETAL_SCOUT_FACTOR;
-
-    /* adjust deviance_bounds with regard to the scout's
-       deviance */
-    for(i=0;i<2;i++)
-	deviance_bound[i] = MIN(deviance_bound[i], scout_deviance);
-
-    return math_rndi(pl->talent - deviance_bound[0],
-		     pl->talent + deviance_bound[1]);
+    for(i=0;i<QUALITY_END;i++)
+    {
+	scout_deviance[i] = (i + 1) * const_int("int_player_etal_scout_factor");
+	/* adjust deviance_bounds with regard to the scout's
+	   deviance */
+	for(j=0;j<2;j++)
+	    deviance_bound[j] = MIN(deviance_bound[j], scout_deviance[i]);
+	
+	pl->etal[i] = math_rndi(pl->talent - deviance_bound[0],
+				pl->talent + deviance_bound[1]);
+    }
 }
 
 /** Assign a (transfer) value to a player. The value depends on skill,
@@ -199,17 +156,19 @@ player_assign_value(const Player *pl)
 {
     gint value;
 
-    value = (gint)powf((CONSTANT_PLAYER_VALUE_SKILL_WEIGHT * (gfloat)pl->skill
-			+ (1 - CONSTANT_PLAYER_VALUE_SKILL_WEIGHT) * (gfloat)pl->talent * 0.7),
-		       CONSTANT_PLAYER_VALUE_POWER);
+    value = (gint)powf((const_float("float_player_value_skill_weight") *
+			(gfloat)pl->skill +
+			(1 - const_float("float_player_value_skill_weight")) *
+			(gfloat)pl->talent * 0.7),
+		       const_float("float_player_value_power"));
 
-    if(pl->age <= CONSTANT_PLAYER_AGE_LOWER + 2 * 52)
+    if(pl->age <= const_int("int_player_age_lower") + 2 * 52)
 	value = (gint)((gfloat)value * 1.05);
-    else if(pl->age <= CONSTANT_PLAYER_AGE_LOWER + 4 * 52)
+    else if(pl->age <= const_int("int_player_age_lower") + 4 * 52)
 	value = (gint)((gfloat)value * 1.1);
-    else if(pl->age >= CONSTANT_PLAYER_AGE_UPPER - 4 * 52)
+    else if(pl->age >= const_int("int_player_age_upper") - 4 * 52)
 	value = (gint)((gfloat)value * 0.95);
-    else if(pl->age >= CONSTANT_PLAYER_AGE_UPPER - 2 * 52)
+    else if(pl->age >= const_int("int_player_age_upper") - 2 * 52)
 	value = (gint)((gfloat)value * 0.9);
 
     value = math_round_integer(value, 2);
@@ -226,9 +185,9 @@ player_assign_wage(const Player *pl)
 {
     gfloat wage;
 
-    wage = rint(((gfloat)pl->value * CONSTANT_PLAYER_WAGE_VALUE_FACTOR) *
-		math_rnd(1 - CONSTANT_PLAYER_WAGE_RANDOM_DEV,
-			 1 + CONSTANT_PLAYER_WAGE_RANDOM_DEV) );
+    wage = rint(((gfloat)pl->value * const_float("float_player_wage_value_factor")) *
+		math_rnd(1 - const_float("float_player_wage_random_dev"),
+			 1 + const_float("float_player_wage_random_dev") ));
 
     return math_round_integer((gint)wage, 1);
 }
@@ -249,7 +208,6 @@ player_copy(const Player *source, Player *dest)
     dest->name = g_string_new(source->name->str);
     dest->cards = g_array_new(FALSE, FALSE, sizeof(PlayerCard));
     dest->games_goals = g_array_new(FALSE, FALSE, sizeof(PlayerGamesGoals));
-    dest->history = NULL;
 
     for(i=0;i<source->cards->len;i++)
 	g_array_append_val(dest->cards, 
@@ -268,7 +226,7 @@ player_copy(const Player *source, Player *dest)
 void
 player_append_to_array(const Player *pl, Team *tm)
 {
-    Player new_player = player_new(tm, CONSTANT_PLAYER_MAX_SKILL);
+    Player new_player = player_new(tm, const_int("int_player_max_skill"));
 
     player_copy(pl, &new_player);
 
@@ -381,4 +339,143 @@ player_of_id(const Team *tm, gint id)
     g_warning("player_of_id: didn't find player with id %d of team %s\n", id, tm->name->str);
     
     return NULL;
+}
+
+/** Compare two players in a pointer array.
+    @param pl1 Pointer to the pointer to the first player.
+    @param pl2 Pointer to the pointer to the second player.
+    @param data Coded integer that tells us which attribute to compare. */
+gint
+player_compare_func(gconstpointer a, gconstpointer b, gpointer data)
+{
+    const Player *pl1 = *(const Player**)a;
+    const Player *pl2 = *(const Player**)b;
+    gint type = GPOINTER_TO_INT(data);
+    gint return_value = 0;
+
+    if(type == PLAYER_COMPARE_ATTRIBUTE_GAME_SKILL)
+    {
+	if(pl1->cskill == pl2->cskill && pl1->fitness == pl2->fitness)
+	    return_value = 0;
+	else if((gfloat)pl1->cskill * 
+		powf((gfloat)pl1->fitness / 100, 
+		     const_float("float_player_fitness_exponent")) >
+		(gfloat)pl2->cskill * 
+		powf((gfloat)pl2->fitness / 100, 
+		     const_float("float_player_fitness_exponent")))
+	    return_value = -1;
+	else
+	    return_value = 1;
+    }
+
+    return return_value;
+}
+
+/** Move a player from one player array to another one.
+    @param tm1 The source team.
+    @param player_number The index of the player in the players array.
+    @param tm2 The dest team.
+    @param insert_at The new index of the player in the players array. */
+void
+player_move(Team *tm1, gint player_number, Team *tm2, gint insert_at)
+{
+    Player pl = *player_of(tm1, player_number);
+
+    pl.team = tm2;
+
+    g_array_remove_index(tm1->players, player_number);
+
+    g_array_insert_val(tm2->players, insert_at, pl);
+}
+
+/** Swap two players. */
+void
+player_swap(Team *tm1, gint player_number1, Team *tm2, gint player_number2)
+{
+    gint move = (tm1 == tm2 && player_number1 < player_number2) ? 
+	-1 : 1;
+
+    player_move(tm1, player_number1, tm2, player_number2);
+    if(player_number2 < 11)
+	player_of(tm2, player_number2)->cpos = 
+	    player_get_position_from_structure(tm2->structure, player_number2);
+    else
+	player_of(tm2, player_number2)->cpos = player_of(tm2, player_number2)->pos;
+    player_of(tm2, player_number2)->cskill =
+	player_get_cskill(player_of(tm2, player_number2));
+
+    player_move(tm2, player_number2 + move,
+		tm1, player_number1);    
+    if(player_number1 < 11)
+	player_of(tm1, player_number1)->cpos = 
+	    player_get_position_from_structure(tm1->structure, player_number1);
+    else
+	player_of(tm1, player_number1)->cpos = player_of(tm1, player_number1)->pos;
+    player_of(tm1, player_number1)->cskill =
+	player_get_cskill(player_of(tm1, player_number1));
+}
+
+/** Return the player's cskill depending on
+    whether he's on his normal position or not.
+    @param pl The player we examine.
+    @return A new cskill. */
+gint
+player_get_cskill(const Player *pl)
+{
+    gfloat cskill_factor;
+
+    if(pl->health != PLAYER_INJURY_NONE ||
+       player_is_banned(pl) > 0)
+	cskill_factor = 0.0;
+    else if(pl->pos == pl->cpos)
+	cskill_factor = 1.0;
+    else if(pl->cpos == PLAYER_POS_GOALIE ||
+	    pl->pos == PLAYER_POS_GOALIE)
+	cskill_factor = 0.5;
+    else if(abs(pl->cpos - pl->pos) == 2)
+	cskill_factor = 0.65;
+    else
+    	cskill_factor = 0.75;
+
+    if(pl->cpos != pl->pos)
+	return MIN(pl->talent * cskill_factor, pl->skill);
+    else
+	return pl->skill * (cskill_factor != 0);
+}
+
+/** Find out whether the player is banned in
+    the next match or whether he will be if he
+    gets a yellow card.
+    @param pl The player we examine.
+    @return Number of games banned, or 0 if not banned, or -1
+    if yellow. */
+gint
+player_is_banned(const Player *pl)
+{
+    gint i;
+    Fixture *fix = team_get_next_fixture(pl->team);
+    gint yellow_red;
+
+    if(fix == NULL)
+	return 0;
+
+    if(fix->clid < ID_CUP_START)
+	yellow_red = league_from_clid(fix->clid)->yellow_red;
+    else
+	yellow_red = cup_from_clid(fix->clid)->yellow_red;
+    
+    for(i=0;i<pl->cards->len;i++)
+	if(g_array_index(pl->cards, PlayerCard, 0).clid == fix->clid)
+	{
+	    if(g_array_index(pl->cards, PlayerCard, 0).red > 0)
+		return g_array_index(pl->cards, PlayerCard, 0).red;
+	    
+	    if(g_array_index(pl->cards, PlayerCard, 0).yellow ==
+	       yellow_red - 1)
+		return -1;
+
+	    return 0;
+	}
+
+    return 0;
 }

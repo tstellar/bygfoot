@@ -5,6 +5,12 @@
 #include "player_struct.h"
 #include "team_struct.h"
 
+enum PlayerCompareAttrib
+{
+    PLAYER_COMPARE_ATTRIBUTE_GAME_SKILL = 0,
+    PLAYER_COMPARE_ATTRIBUTE_END
+};
+
 Player
 player_new(Team *tm, gint average_skill);
 
@@ -17,8 +23,8 @@ player_get_position_from_structure(gint structure, gint player_number);
 gint
 player_new_talent(gint skill);
 
-gint
-player_estimate_talent(const Player *pl);
+void
+player_estimate_talent(Player *pl);
 
 gint
 player_assign_value(const Player *pl);
@@ -49,5 +55,20 @@ player_of(const Team *tm, gint number);
 
 Player*
 player_of_id(const Team *tm, gint id);
+
+gint
+player_compare_func(gconstpointer a, gconstpointer b, gpointer data);
+
+void
+player_move(Team *tm1, gint player_number, Team *tm2, gint insert_at);
+
+void
+player_swap(Team *tm1, gint player_number1, Team *tm2, gint player_number2);
+
+gint
+player_get_cskill(const Player *pl);
+
+gint
+player_is_banned(const Player *pl);
 
 #endif

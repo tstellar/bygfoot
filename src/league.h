@@ -19,4 +19,7 @@ league_table_element_new(Team *team);
 gint
 league_cup_get_index_from_clid(gint clid);
 
+League*
+league_from_clid(gint clid);
+
 #endif

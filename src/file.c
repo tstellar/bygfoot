@@ -2,7 +2,9 @@
 #include "free.h"
 #include "main.h"
 #include "misc.h"
+#include "option.h"
 #include "support.h"
+#include "user.h"
 #include "variables.h"
 
 /**
@@ -196,191 +198,118 @@ file_get_definitions_dir(gchar *dir)
 }
 
 /** Read the file until the next line that's not a comment or
-   a blank line and copy the line into buf.
-   @param fil The file stream.
-   @param buf The buffer we fill.
-   @return TRUE if the file still contains lines to read, FALSE otherwise. */
+    a blank line. Split the line into the part before and after
+    the first white space and copy them into the char arrays.
+    Trailing and leading white spaces and trailing comments are stripped.
+    @param fil The file stream.
+    @param opt_name The first char array (an option name, mostly).
+    @param opt_value The second array (an option value, mostly).
+    @return TRUE if the file still contains lines to read, FALSE otherwise. */
 gboolean
-file_get_next_line(FILE *fil, gchar *buf)
+file_get_next_opt_line(FILE *fil, gchar *opt_name, gchar *opt_value)
 {
-    gchar local_buf[BIG];
+    gint i;
+    gchar trash[SMALL];
+    gchar buf[BIG];
 
-    strcpy(local_buf, "");
+    strcpy(buf, "");
 
-    while( (local_buf[0] == '#' || strlen(local_buf) == 0) &&
+    while( (buf[0] == '#' || strlen(buf) == 0) &&
 	   feof(fil) == 0)
 	{
-	    fscanf(fil, "%[\n \t]*", local_buf);
-	    fscanf(fil, "%[^\n]", local_buf);
+	    fscanf(fil, "%[\n \t]*", buf);
+	    fscanf(fil, "%[^\n]", buf);
 	}
 
-    if(local_buf[0] != '#' && strlen(local_buf) != 0)
+    if(buf[0] != '#' && strlen(buf) != 0)
     {
-	if(strlen(local_buf) > 100)
+	if(strlen(buf) > 100)
 	    g_warning("\n the text file I'm reading contains a line longer than 100 chars.\n\n");
 
-	if(buf != NULL)
-	    strcpy(buf, local_buf);
+	for(i=0;i<strlen(buf);i++)
+	    if(buf[i] == '#')
+	    {
+		buf[i] = '\0';
+		break;
+	    }
+
+	for(i=strlen(buf) - 1;i>0;i--)
+	    if(buf[i] == '\t' || buf[i] == ' ')
+		buf[i] = '\0';
+	    else
+		break;
+	
+	sscanf(buf, "%[^ ]%[ ]%[^\n]", opt_name, trash, opt_value);
     }
 
     return (feof(fil) == 0);
 }
 
-/** Supply the strings in the config file that belong to the options.
-    @param opt_names The array we write the optionstrings into.
-    @param player_list_att_names The array we write the player list attribute strings into. */
+/** Load a file containing name - value pairs into
+    the specified array. */
 void
-file_write_opt_names(gchar opt_names[][50], gchar player_list_att_names[][PLAYER_LIST_ATTRIBUTE_END][50])
+file_load_opt_file(FILE *fil, GArray **option_array)
 {
-    gint i, j;
+    gchar opt_name[SMALL], opt_value[SMALL];
+    Option new;
 
-    strcpy(opt_names[OPT_BOOL_CONF_NEW_ROUND], "confirm_new_week_round");
-    strcpy(opt_names[OPT_BOOL_CONF_UNFIT], "confirm_unfit");
-    strcpy(opt_names[OPT_BOOL_CONF_QUIT], "confirm_quit");
-    strcpy(opt_names[OPT_BOOL_OVERWRITE], "save_will_ovewrite");
-    strcpy(opt_names[OPT_BOOL_SHOW_LIVE], "show_live_game");
-    strcpy(opt_names[OPT_LIVE_SPEED], "live_game_speed");
-    strcpy(opt_names[OPT_BOOL_LIVE_TENDENCY], "show_tendency_bar");
-    strcpy(opt_names[OPT_BOOL_MAXIMIZE], "maximize_main_window");
+    free_option_array(option_array, TRUE);
 
-    strcpy(opt_names[OPT_BOOL_NOTIFY], "notify_transfer");
-    strcpy(opt_names[OPT_NOTIFY_POS], "notify_pos");
-    strcpy(opt_names[OPT_NOTIFY_LEAGUE_UPPER], "notify_league_upper");
-    strcpy(opt_names[OPT_NOTIFY_LEAGUE_LOWER], "notify_league_lower");
-    strcpy(opt_names[OPT_BOOL_NOTIFY_CUPS], "notify_cups");    
-    strcpy(opt_names[OPT_NOTIFY_AGE_UPPER], "notify_age_upper");
-    strcpy(opt_names[OPT_NOTIFY_AGE_LOWER], "notify_age_lower");
-    strcpy(opt_names[OPT_NOTIFY_SKILL_UPPER], "notify_skill_upper");
-    strcpy(opt_names[OPT_NOTIFY_SKILL_LOWER], "notify_skill_lower");
-    strcpy(opt_names[OPT_NOTIFY_ETAL_UPPER], "notify_etal_upper");
-    strcpy(opt_names[OPT_NOTIFY_ETAL_LOWER], "notify_etal_lower");
-    strcpy(opt_names[OPT_NOTIFY_VALUE], "notify_value");
-
-    strcpy(opt_names[OPT_BOOL_JOBS], "show_job_offers");
-    strcpy(opt_names[OPT_MESS], "message_style");
-    strcpy(opt_names[OPT_BOOL_PREFER_MESS], "prefer_messages");
-
-    strcpy(opt_names[OPT_BOOL_AUTOSAVE], "autosave");
-    strcpy(opt_names[OPT_AUTOSAVE_INTERVAL], "autosave_interval");
-
-    strcpy(opt_names[OPT_BOOL_SORT_TRANSFERS], "sort_transfer_list");
-    strcpy(opt_names[OPT_SORT_TRANSFERS_ATTRIBUTE], "sort_transfer_attribute");
-    strcpy(opt_names[OPT_BOOL_REARRANGE], "reaarrange_adapts");
-    strcpy(opt_names[OPT_BOOL_SWAP], "swap_adapts");
-
-    strcpy(opt_names[OPT_HISTORY_TEAM_INTERVAL], "history_team_interval");
-    strcpy(opt_names[OPT_HISTORY_PLAYER_INTERVAL], "history_player_interval");
-    strcpy(opt_names[OPT_HISTORY_TEAM_MAX], "history_team_max");
-    strcpy(opt_names[OPT_HISTORY_PLAYER_MAX], "history_player_max");
-    strcpy(opt_names[OPT_BOOL_HISTORY_TEAM_DELETE], "history_team_delete");
-    strcpy(opt_names[OPT_BOOL_HISTORY_PLAYER_DELETE], "history_player_delete");
-
-    strcpy(opt_names[OPT_BOOL_BOOST], "boost");
-    strcpy(opt_names[OPT_BOOL_COMPRESS], "compress");
-    strcpy(opt_names[OPT_BOOL_OBJECTIVE], "objective");
-    strcpy(opt_names[OPT_PENALTY_SHOOTER], "penalty_shooter");
-
-    for(i=0;i<2;i++)
+    while(file_get_next_opt_line(fil, opt_name, opt_value))
     {
-	for(j=0;j<PLAYER_LIST_ATTRIBUTE_END;j++)
-	    sprintf(player_list_att_names[i][j], "pl%d_att_", i + 1);
-	
-	strcat(player_list_att_names[i][PLAYER_LIST_ATTRIBUTE_NAME], "name");
-	strcat(player_list_att_names[i][PLAYER_LIST_ATTRIBUTE_CPOS], "cpos");
-	strcat(player_list_att_names[i][PLAYER_LIST_ATTRIBUTE_POS], "pos");
-	strcat(player_list_att_names[i][PLAYER_LIST_ATTRIBUTE_CSKILL], "cskill");
-	strcat(player_list_att_names[i][PLAYER_LIST_ATTRIBUTE_SKILL], "skill");
-	strcat(player_list_att_names[i][PLAYER_LIST_ATTRIBUTE_FITNESS], "fitness");
-	strcat(player_list_att_names[i][PLAYER_LIST_ATTRIBUTE_GAMES], "games");
-	strcat(player_list_att_names[i][PLAYER_LIST_ATTRIBUTE_GOALS], "goals");
-	strcat(player_list_att_names[i][PLAYER_LIST_ATTRIBUTE_STATUS], "status");
-	strcat(player_list_att_names[i][PLAYER_LIST_ATTRIBUTE_CARDS], "cards");
-	strcat(player_list_att_names[i][PLAYER_LIST_ATTRIBUTE_AGE], "age");
-	strcat(player_list_att_names[i][PLAYER_LIST_ATTRIBUTE_ETAL], "etal");
-	strcat(player_list_att_names[i][PLAYER_LIST_ATTRIBUTE_VALUE], "value");
-	strcat(player_list_att_names[i][PLAYER_LIST_ATTRIBUTE_WAGE], "wage");
-	strcat(player_list_att_names[i][PLAYER_LIST_ATTRIBUTE_CONTRACT], "contract");
-	strcat(player_list_att_names[i][PLAYER_LIST_ATTRIBUTE_TEAM], "team");
-	strcat(player_list_att_names[i][PLAYER_LIST_ATTRIBUTE_LEAGUE_CUP], "league_cup");
+	new.name = g_string_new(opt_name);	
+	if(g_str_has_prefix(opt_name, "string_"))
+	{
+	    new.string_value = g_string_new(opt_value);
+	    new.value = -1;
+	}
+	else
+	{
+	    new.string_value = NULL;
+	    sscanf(opt_value, "%d", &new.value);
+	}
+
+	g_array_append_val(*option_array, new);
     }
+
+    fclose(fil);
 }
 
 /** Load the options at the beginning of a new game from
-    the configuration file. */
+    the configuration files. */
 void
-file_load_conf_file(void)
+file_load_conf_files(void)
 {
-    gint i, j;
-    gchar opt_names[OPT_END][50];
-    gchar player_list_attribute_names[2][PLAYER_LIST_ATTRIBUTE_END][50];
-    FILE *fil;
-    gchar *conf_file = file_find_support_file("bygfoot.conf");
-    gchar buf[SMALL];
-    gchar buf2[SMALL];
-    gchar trash[SMALL];
-
-    file_my_fopen(conf_file, "r", &fil, TRUE);
-
-    g_free(conf_file);
-
-    file_write_opt_names(opt_names, player_list_attribute_names);
-
-    while(file_get_next_line(fil, buf))
-    {
-	for(i=0;i<OPT_END;i++)
-	    if(strncmp(opt_names[i], buf, strlen(opt_names[i])) == 0)
-		sscanf(buf, "%[^-0-9 ]%d", trash, &options[i]);
-
-	for(j=0;j<2;j++)
-	    for(i=0;i<PLAYER_LIST_ATTRIBUTE_END;i++)
-		if(strncmp(player_list_attribute_names[j][i], buf, strlen(player_list_attribute_names[j][i])) == 0)
-		    sscanf(buf, "%[^ ]%[ ]%d", trash, buf2,
-			   &player_list_attributes[j].on_off[i]);
-
-	if(strncmp(buf, "font_name", strlen("font_name")) == 0)
-	{
-	    sscanf(buf, "%[font_name ]%[^\n]", trash, buf2);
-	    g_string_printf(font_name, "%s", buf2);
-	}
-
-	if(strncmp(buf, "debug", strlen("debug")) == 0)
-	    sscanf(buf, "%[debug ]%d", trash, &debug);
-    }
-}
-
-/** Save the current options to the configuration file. */
-void
-file_save_conf(void)
-{
-    gint i, j;
-    gchar opt_names[OPT_END][50];
-    gchar player_list_att_names[2][PLAYER_LIST_ATTRIBUTE_END][50];
     FILE *fil = NULL;
     gchar *conf_file = file_find_support_file("bygfoot.conf");
 
-    if(!file_my_fopen(conf_file, "w", &fil, FALSE))
-	return;
-    
+    file_my_fopen(conf_file, "r", &fil, TRUE);
     g_free(conf_file);
 
-    file_write_opt_names(opt_names, player_list_att_names);
+    file_load_opt_file(fil, &options);
 
-    for(i=0;i<OPT_PENALTY_SHOOTER;i++)
-	fprintf(fil, "%s %d\n", opt_names[i], options[i]);
+    file_my_fopen(opt_str("string_opt_constants_file"), "r", &fil, TRUE);
+    file_load_opt_file(fil, &constants);
+}
 
-    fprintf(fil, "%s -1\n", opt_names[OPT_PENALTY_SHOOTER]);
+/** Load a user-specific conf file.
+    @param user The user we load the file for. */
+void
+file_load_user_conf_file(User *user)
+{
+    FILE *fil = NULL;
+    gchar *conf_file = NULL, buf[SMALL];
 
-    for(j=0;j<2;j++)
+    sprintf(buf, "bygfoot_%s.conf", user->name->str);
+    conf_file = file_find_support_file(buf);
+    
+    if(conf_file == NULL ||
+       !file_my_fopen(conf_file, "r", &fil, FALSE))
     {
-	fprintf(fil, "\n");
-	for(i=0;i<PLAYER_LIST_ATTRIBUTE_END;i++)
-	    fprintf(fil, "%s %d\n", player_list_att_names[j][i],
-		    player_list_attributes[j].on_off[i]);
+	g_free(conf_file);
+	conf_file = file_find_support_file(opt_str("string_opt_default_user_conf_file"));
+	file_my_fopen(conf_file, "r", &fil, TRUE);
     }
 
-    fprintf(fil, "\n");
-    fprintf(fil, "font_name %s\n", font_name->str);
-    fprintf(fil, "debug %d\n", debug);
-
-    fclose(fil);
+    file_load_opt_file(fil, &user->options);
 }

@@ -7,6 +7,7 @@
 #include "live_game_struct.h"
 #include "player_struct.h"
 #include "team_struct.h"
+#include "user_struct.h"
 
 void
 free_g_array(GArray **array);
@@ -19,6 +20,12 @@ free_g_string(GString **string);
 
 void
 free_memory(void);
+
+void
+free_users(void);
+
+void
+free_user(User *user);
 
 void
 free_country(void);
@@ -58,5 +65,8 @@ free_player(Player *pl);
 
 void
 free_live_game(LiveGame *match);
+
+void
+free_option_array(GArray **array, gboolean reset);
 
 #endif

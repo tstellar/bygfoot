@@ -1,9 +1,12 @@
 #include "file.h"
 #include "free.h"
+#include "game_gui.h"
 #include "interface.h"
 #include "main.h"
 #include "misc_interface.h"
+#include "option.h"
 #include "support.h"
+#include "user.h"
 #include "variables.h"
 #include "window.h"
 
@@ -36,27 +39,18 @@ window_show_startup(void)
     free_g_string_array(&dir_contents);
 }
 
-/** Create and show the main window. */
-void
-window_show_main(void)
-{
-    main_window = window_create(WINDOW_MAIN);
-
-    gtk_widget_show(main_window);
-}
-
 /** Set 'Bygfoot x.y.z' into the title of a window.
     @param window The window widget pointer.
     @see #VERS */
 GtkWidget*
-window_set_version(GtkWidget *window)
+window_set_version(GtkWidget *wind)
 {
     gchar buf[SMALL];
 
     sprintf(buf, "Bygfoot Football Manager %s", VERS);
-    gtk_window_set_title(GTK_WINDOW(window), buf);
+    gtk_window_set_title(GTK_WINDOW(wind), buf);
 
-    return window;
+    return wind;
 }
 
 /** Create and show a window. Which one depends on the argument.
@@ -67,62 +61,76 @@ window_set_version(GtkWidget *window)
 GtkWidget*
 window_create(gint window_type)
 {
-    GtkWidget *window = NULL;
+    GtkWidget *wind = NULL;
     
     popups_active++;
 
     switch(window_type)
     {
 	default:
-	    if(main_window == NULL)
+	    if(window.main == NULL)
 	    {
-		window = create_main_window();
+		window.main = create_main_window();
 		popups_active--;
+		wind = window.main;
+		game_gui_print_message("Welcome to Bygfoot "VERS);
 	    }
 	    else
-		window = main_window;
-	    window_set_version(window);
+		wind = window.main;
 	    break;
 	case WINDOW_STARTUP:
-	    window = create_window_startup();
-	    window_set_version(window);
+	    if(window.startup != NULL)
+		g_warning("window_create: called on already existing window\n");
+	    else
+		window.startup = create_window_startup();
+	    wind = window.startup;
 	    break;
 	case WINDOW_LIVE:
-	    window = create_window_live();
-	    window_set_version(window);
+	    if(window.live != NULL)
+		g_warning("window_create: called on already existing window\n");
+	    else
+		window.live = create_window_live();
+	    wind = window.live;
 	    gtk_spin_button_set_value(
-		GTK_SPIN_BUTTON(lookup_widget(window, "spinbutton_speed")),
-		(gfloat)options[OPT_LIVE_SPEED]);
+		GTK_SPIN_BUTTON(lookup_widget(wind, "spinbutton_speed")),
+		(gfloat)option_int("int_opt_user_live_game_speed", usr(stat2).options));
 	    break;
-    }    
+	case WINDOW_STARTUP_USERS:
+	    if(window.startup_users != NULL)
+		g_warning("window_create: called on already existing window\n");
+	    else
+		window.startup_users = create_window_startup_users();
+	    wind = window.startup_users;
+	    break;
+    }
 
-    gtk_widget_show(window);
+    window_set_version(wind);
+    gtk_widget_show(wind);
 
-    if(popups_active != 0 && main_window != NULL)
-	gtk_widget_set_sensitive(main_window, FALSE);
+    if(popups_active != 0 && window.main != NULL)
+	gtk_widget_set_sensitive(window.main, FALSE);
 
-    return window;
+    return wind;
 }
 
 /** Destroy a window widget and set the popups and
     main window sensitivity correctly. 
     @param window The window we destroy. */
 void
-window_destroy(GtkWidget **window)
+window_destroy(GtkWidget **wind)
 {
-    if(*window == NULL)
+    if(*wind == NULL)
 	return;
 
-    if(*window != main_window)
+    if(*wind != window.main)
     {
 	popups_active--;
 
-	if(popups_active == 0 && main_window != NULL)
-	    gtk_widget_set_sensitive(main_window, TRUE);
+	if(popups_active == 0 && window.main != NULL)
+	    gtk_widget_set_sensitive(window.main, TRUE);
     }
 
-    gtk_widget_destroy(*window);
+    gtk_widget_destroy(*wind);
 
-    *window = NULL;
+    *wind = NULL;
 }
-

@@ -4,9 +4,6 @@
 #include "bygfoot.h"
 #include "team.h"
 
-#define CONSTANT_TRANSFER_MAX_PLAYERS 20
-#define CONSTANT_TRANSFER_DEADLINE 35
-
 /** Structure representing a player on the transfer list. */
 typedef struct
 {

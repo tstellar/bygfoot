@@ -4,6 +4,10 @@
 #include "bygfoot.h"
 #include "live_game_struct.h"
 #include "player_struct.h"
+#include "user_struct.h"
+
+void
+treeview_select_row(GtkTreeView *treeview, GdkEventButton *event);
 
 GdkPixbuf*
 treeview_pixbuf_from_filename(gchar *filename);
@@ -24,13 +28,15 @@ gint
 treeview_get_col_number_column (GtkTreeViewColumn *col);
 
 GtkTreeModel*
-treeview_create_team_selection_list(gboolean show_cup_teams);
+treeview_create_team_selection_list(gboolean show_cup_teams,
+				    gboolean show_user_teams);
 
 void
 treeview_set_up_team_selection_treeview (GtkTreeView *treeview);
 
 void
-treeview_show_team_list(GtkTreeView *treeview, gboolean show_cup_teams);
+treeview_show_team_list(GtkTreeView *treeview, gboolean show_cup_teams,
+			gboolean show_user_teams);
 
 GtkTreeModel*
 treeview_create_player_list(GPtrArray *players, gint *attributes, gint max, gboolean show_separator);
@@ -43,7 +49,7 @@ treeview_show_player_list(GtkTreeView *treeview, GPtrArray *players, PlayerListA
 			  gboolean show_separator);
 
 void
-treeview_show_user_player_list(gint player_list);
+treeview_show_user_player_list(const User *user, gint player_list);
 
 void
 treeview_live_game_show_commentary(const LiveGameUnit *unit);
@@ -68,5 +74,14 @@ treeview_live_game_set_up_result(void);
 
 void
 treeview_live_game_show_result(const LiveGameUnit *unit);
+
+void
+treeview_show_users_startup(void);
+
+GtkTreeModel*
+treeview_create_users_startup(void);
+
+void
+treeview_set_up_users_startup(GtkTreeView *treeview);
 
 #endif

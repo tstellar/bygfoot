@@ -6,9 +6,6 @@
 #include "fixture_struct.h"
 #include "team_struct.h"
 
-/** Maximum number of players in a team. */
-#define CONSTANT_TEAM_MAX_PLAYERS 20
-
 Team
 team_new(void);
 
@@ -64,6 +61,21 @@ Fixture*
 team_get_next_fixture(const Team *tm);
 
 gfloat
-team_average_cskill(const Team *tm);
+team_get_average_skill(const Team *tm, gboolean cskill);
+
+gint
+team_is_user(const Team *tm);
+
+gint
+team_rank(const Team *tm);
+
+void
+team_change_structure(Team *tm, gint new_structure);
+
+gint
+team_find_appropriate_structure(const Team *tm);
+
+void
+team_rearrange(Team *tm);
 
 #endif

@@ -141,6 +141,9 @@ typedef struct
 	like a substitution that doesn't count as a 
 	match time consuming event. @see #GameUnitTime */
     gint minute, time;
+    
+    /** The match result at the time of this unit. */
+    gint result[2];
 
     /** The event belonging to the game unit. */
     LiveGameEvent event;
@@ -165,9 +168,8 @@ typedef struct
     gfloat home_advantage;
     /** The array of units. @see #GameUnit */
     GArray *units;
+    /** Match statistics. @see #LiveGameStats */
     LiveGameStats stats;
-    GtkWidget *window;
-
 } LiveGame;
 
 #endif

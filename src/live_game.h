@@ -65,7 +65,7 @@ void
 live_game_event_send_off(gint team, gint player);
 
 void
-live_game_generate_commentary(LiveGameUnit *unit);
+live_game_generate_commentary(LiveGameUnit *unit, gboolean show_unit);
 
 void
 live_game_event_duel(void);

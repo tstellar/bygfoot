@@ -4,9 +4,18 @@
 #include "bygfoot.h"
 
 void
-misc_callback_start_game(GtkWidget *widget);
+misc_callback_start_game(void);
 
 void
 misc_callback_show_team_list(GtkWidget *widget, const gchar *country_file);
+
+void
+misc_callback_add_player(void);
+
+void
+misc_callback_remove_user(GdkEventButton *event);
+
+void
+misc_callback_pause_live_game(void);
 
 #endif

@@ -2,14 +2,36 @@
 #include "file.h"
 #include "fixture.h"
 #include "league.h"
+#include "live_game.h"
 #include "main.h"
 #include "maths.h"
 #include "player.h"
 #include "start_end.h"
+#include "table.h"
 #include "team.h"
 #include "transfer.h"
+#include "user.h"
 #include "variables.h"
 #include "xml_name.h"
+
+/** Prototype of a function called at the start or
+    end of a week round. */
+typedef void(*WeekFunc)(void);
+
+/** Array of functions called when a week round
+    is ended. */
+WeekFunc end_week_round_funcs[] =
+{end_week_round_results, end_week_round_sort_tables, 
+ end_week_round_update_fixtures, NULL};
+
+/** Array of functions called when a week round
+    is started. */
+WeekFunc start_week_round_funcs[] =
+{NULL};
+
+/** Array of functions called when a week
+    is started. */
+WeekFunc start_week_funcs[] = {NULL};
 
 /** Generate the teams etc. */
 void
@@ -46,10 +68,12 @@ start_write_variables(void)
     gint i;
 
     season = week = week_round = 1;
-    scout = physio = QUALITY_AVERAGE;
-    
+    current_user = 0;
+    //week=23; week_round = 2;    
     transfer_list = g_array_new(FALSE, FALSE, sizeof(TransferPlayer));
-    file_load_conf_file();
+
+    for(i=0;i<users->len;i++)
+	file_load_user_conf_file(&usr(i));
 }
 
 /** Generate the teams in the leagues. */
@@ -89,21 +113,156 @@ start_load_cup_teams(void)
 	{
 	    cup_load_choose_teams(&cp(i));
 	    cup_load_choose_team_user(&cp(i));
-
-	    /*d*/
-/* 	    for(j=0;j<cp(i).teams->len;j++) */
-/* 	    { */
-/* 		printf("%d %s clid %d id %d\n", j, */
-/* 		       g_array_index(cp(i).teams, Team, j).name->str, */
-/* 		       g_array_index(cp(i).teams, Team, j).clid, */
-/* 		       g_array_index(cp(i).teams, Team, j).id); */
-/* 	    } */
-/* 	    for(j=0;j<cp(i).user_teams->len;j++) */
-/* 	    { */
-/* 		printf("%d %s clid %d id %d\n", j, */
-/* 		       ((Team*)g_ptr_array_index(cp(i).user_teams, j))->name->str, */
-/* 		       ((Team*)g_ptr_array_index(cp(i).user_teams, j))->clid, */
-/* 		       ((Team*)g_ptr_array_index(cp(i).user_teams, j))->id); */
-/* 	    } */
 	}
+}
+
+/** End a week round. */
+void
+end_week_round(void)
+{
+    gint i;
+    gboolean new_week = TRUE;
+    WeekFunc *end_func = end_week_round_funcs;
+
+    while(*end_func != NULL)
+    {
+	(*end_func)();
+	end_func++;
+    }
+
+    week_round++;
+
+    for(i=0;i<ligs->len;i++)
+	if(query_fixture_in_week_round(lig(i).id, week, week_round))
+	{
+	    new_week = FALSE;
+	    break;
+	}
+
+    for(i=0;i<cps->len;i++)
+	if(query_fixture_in_week_round(cp(i).id, week, week_round))
+	{
+	    new_week = FALSE;
+	    break;
+	}
+
+    if(new_week)
+    {
+	week++;
+	week_round = 1;
+
+	start_week();
+    }
+
+    start_week_round();
+}
+
+/** Calculate the match results of a week round. */
+void
+end_week_round_results(void)
+{
+    gint i, j;
+
+    if(week_round == 1)
+    {
+	for(i=0;i<ligs->len;i++)
+	    for(j=0;j<lig(i).fixtures->len;j++)
+		if(g_array_index(lig(i).fixtures, Fixture, j).week_number == week &&
+		   g_array_index(lig(i).fixtures, Fixture, j).week_round_number == week_round &&
+		   g_array_index(lig(i).fixtures, Fixture, j).attendance == -1)
+		{
+		    live_game_calculate_fixture(&g_array_index(lig(i).fixtures, Fixture, j));
+		    /*d*/
+/* 		printf("%d %d %d %25s %2d - %2d %-25s\n", week, week_round, */
+/* 		       g_array_index(lig(i).fixtures, Fixture, j).clid, */
+/* 		       g_array_index(lig(i).fixtures, Fixture, j).teams[0]->name->str, */
+/* 		       g_array_index(lig(i).fixtures, Fixture, j).result[0][0], */
+/* 		       g_array_index(lig(i).fixtures, Fixture, j).result[1][0], */
+/* 		       g_array_index(lig(i).fixtures, Fixture, j).teams[1]->name->str); */
+		}
+    }
+    else
+    {
+	for(i=0;i<cps->len;i++)
+	    for(j=0;j<cp(i).fixtures->len;j++)
+		if(g_array_index(cp(i).fixtures, Fixture, j).week_number == week &&
+		   g_array_index(cp(i).fixtures, Fixture, j).week_round_number == week_round &&
+		   g_array_index(lig(i).fixtures, Fixture, j).attendance == -1)
+		{
+		    live_game_calculate_fixture(&g_array_index(cp(i).fixtures, Fixture, j));
+		    /*d*/
+		    printf("%d %d %d %25s %d %d %d - %d %d %d %-25s\n", week, week_round,
+			   g_array_index(cp(i).fixtures, Fixture, j).clid,
+			   g_array_index(cp(i).fixtures, Fixture, j).teams[0]->name->str,
+			   g_array_index(cp(i).fixtures, Fixture, j).result[0][0],
+			   g_array_index(cp(i).fixtures, Fixture, j).result[0][1],		       
+			   g_array_index(cp(i).fixtures, Fixture, j).result[0][2],		       
+			   g_array_index(cp(i).fixtures, Fixture, j).result[1][0],		       
+			   g_array_index(cp(i).fixtures, Fixture, j).result[1][1],		       
+			   g_array_index(cp(i).fixtures, Fixture, j).result[1][2],		       
+			   g_array_index(cp(i).fixtures, Fixture, j).teams[1]->name->str);
+		}
+    }
+    printf("\n");
+}
+
+/** Sort league and cup tables. */
+void
+end_week_round_sort_tables(void)
+{
+    gint i, j;
+
+    for(i=0;i<ligs->len;i++)
+	if(query_fixture_in_week_round(lig(i).id, week, week_round))
+	    g_array_sort_with_data(lig(i).table.elements,
+				   (GCompareDataFunc)table_element_compare_func,
+				   GINT_TO_POINTER(lig(i).id));
+
+    for(i=0;i<cps->len;i++)
+	if(cp(i).tables !=  NULL && cp(i).tables->len != 0 && 
+	   query_fixture_in_week_round(cp(i).id, week, week_round) &&
+	   g_array_index(cp(i).fixtures, Fixture, cp(i).fixtures->len - 1).round ==
+	   g_array_index(cp(i).tables, Table, 0).round)
+	    for(j=0;j<cp(i).tables->len;j++)
+		g_array_sort_with_data(g_array_index(cp(i).tables, Table, j).elements,
+				       (GCompareDataFunc)table_element_compare_func,
+				       GINT_TO_POINTER(cp(i).id));
+}
+
+/** Update cup fixtures. */
+void
+end_week_round_update_fixtures(void)
+{
+    gint i;
+
+    for(i=0;i<cps->len;i++)
+	if(cp(i).next_fixture_update_week == week &&
+	   cp(i).next_fixture_update_week_round == week_round)
+	    fixture_update(&cp(i));
+}
+
+/** Start a new week round. */
+void
+start_week_round(void)
+{
+    WeekFunc *start_func = start_week_round_funcs;
+
+    while(*start_func != NULL)
+    {
+	(*start_func)();
+	start_func++;
+    }
+}
+
+/** Start a new week. */
+void
+start_week(void)
+{
+    WeekFunc *start_func = start_week_funcs;
+
+    while(*start_func != NULL)
+    {
+	(*start_func)();
+	start_func++;
+    }
 }

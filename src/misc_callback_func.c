@@ -1,3 +1,4 @@
+#include "game_gui.h"
 #include "misc_callback_func.h"
 #include "start_end.h"
 #include "support.h"
@@ -19,7 +20,7 @@ misc_callback_show_team_list(GtkWidget *widget, const gchar *country_file)
 
     xml_country_read(country_file);
 
-    treeview_show_team_list(GTK_TREE_VIEW(treeview_startup), FALSE);
+    treeview_show_team_list(GTK_TREE_VIEW(treeview_startup), FALSE, FALSE);
 
 /*d*/
 /*     for(i=0;i<cps->len;i++) */
@@ -50,25 +51,99 @@ misc_callback_show_team_list(GtkWidget *widget, const gchar *country_file)
 /*     } */
 }
 
-/** Start a new game after the user's selected a team.
-    @param widget A widget from the startup window that enables us
-    to get the row in the team list the user has selected. */
+/** Start a new game after users and teams are selected. */
 void
-misc_callback_start_game(GtkWidget *widget)
+misc_callback_start_game(void)
 {
-    GtkTreeView *treeview =
-	GTK_TREE_VIEW(lookup_widget(widget, "treeview_startup"));
-    GtkWidget *window_startup =
-	lookup_widget(widget, "window_startup");
-    
-    my_team = treeview_get_pointer(treeview, 2);
+    gint i;
+
+    stat0 = STATUS_MAIN;
+
     start_new_game();
 
-    user_set_up_my_team_new_game(widget);
+    for(i=0;i<users->len;i++)	
+	user_set_up_team_new_game(&usr(i));
 
-    window_destroy(&window_startup);
+    window_destroy(&window.startup);
+    window_destroy(&window.startup_users);
 
-    window_show_main();
+    window_create(WINDOW_MAIN);
     
-    treeview_show_user_player_list(1);
+    game_gui_show_main();
+}
+
+/** Add a user to the users array. */
+void
+misc_callback_add_player(void)
+{
+    GtkToggleButton *team_selection_radio1 =
+	GTK_TOGGLE_BUTTON(lookup_widget(window.startup, "team_selection_radio1"));
+    GtkToggleButton *team_selection_radio2 =
+	GTK_TOGGLE_BUTTON(lookup_widget(window.startup, "team_selection_radio2"));
+    GtkTreeView *treeview =
+	GTK_TREE_VIEW(lookup_widget(window.startup, "treeview_startup"));
+    GtkEntry *entry_player_name = 
+	GTK_ENTRY(lookup_widget(window.startup, "entry_player_name"));
+    const gchar *player_name = gtk_entry_get_text(entry_player_name);
+    User new_user = user_new();
+    
+    if(strlen(player_name) > 0)
+	g_string_printf(new_user.name, "%s", player_name);
+    
+    gtk_entry_set_text(entry_player_name, "");
+
+    if(gtk_toggle_button_get_active(team_selection_radio1))
+	new_user.scout = 1;
+    else if(gtk_toggle_button_get_active(team_selection_radio2))
+	new_user.scout = 0;
+    else
+	new_user.scout = -1;
+
+    new_user.tm = treeview_get_pointer(treeview, 2);
+
+    g_array_append_val(users, new_user);
+
+    treeview_show_users_startup();
+
+    treeview_show_team_list(GTK_TREE_VIEW(lookup_widget(window.startup, "treeview_startup")),
+			    FALSE, FALSE);
+
+    if(users->len == 1)
+    {
+	gtk_widget_set_sensitive(lookup_widget(window.startup, "team_selection_ok"), TRUE);
+	gtk_widget_set_sensitive(lookup_widget(window.startup, "combo_country"), FALSE);
+    }
+}
+
+/** Remove a user from the users list. 
+    @param event The mouse click event on the treeview. */
+void
+misc_callback_remove_user(GdkEventButton *event)
+{
+    GtkTreeView *treeview =
+	GTK_TREE_VIEW(lookup_widget(window.startup_users, "treeview_users"));
+    
+    treeview_select_row(treeview, event);
+
+    user_remove(treeview_get_index(treeview, 0) - 1, FALSE);
+    
+    treeview_show_users_startup();
+    
+    if(users->len == 0)
+    {
+	gtk_widget_set_sensitive(lookup_widget(window.startup, "team_selection_ok"), FALSE);
+	gtk_widget_set_sensitive(lookup_widget(window.startup, "combo_country"), TRUE);
+    }
+}
+
+/** Stop the live game so that users can make subs etc. */
+void
+misc_callback_pause_live_game(void)
+{
+    gtk_widget_hide(lookup_widget(window.live, "button_pause"));
+    gtk_widget_show(lookup_widget(window.live, "button_resume"));
+
+    game_gui_set_main_window_sensitivity(TRUE);
+
+    stat0 = STATUS_LIVE_GAME_PAUSE;
 }

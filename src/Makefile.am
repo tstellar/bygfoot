@@ -12,9 +12,6 @@ bygfoot_SOURCES = \
 	callback_func.c callback_func.h \
 	callbacks.c callbacks.h \
 	cup.c cup.h free.h maths.h misc.h team.h variables.h xml_league.h \
-	editor_callback_func.c editor_callback_func.h \
-	editor_callbacks.c editor_callbacks.h \
-	editor_interface.c  editor_interface.h \
 	file.c file.h free.h misc.h support.h \
 	finance.c finance.h \
 	fixture.c cup.h fixture.h league_struct.h main.h maths.h misc.h team.h variables.h \
@@ -43,11 +40,12 @@ bygfoot_SOURCES = \
 	player.c free.h league.h maths.h player.h team.h variables.h \
 	start_end.c cup.h fixture.h league.h maths.h player.h start_end.h team.h transfer.h variables.h xml_name.h \
 	support.c support.h \
+	table.c table.h \
 	team.c cup.h free.h league.h maths.h player.h team.h variables.h \
 	transfer.c transfer.h \
 	treeview.c gui.h league.h support.h team.h treeview.h variables.h \
 	treeview_cell.c treeview_cell.h \
-	user.c team.h user.h \
+	user.c team.h user.h user_struct.h \
 	window.c misc_interface.h file.h free.h support.h window.h \
 	xml_cup.c cup.h file.h misc.h variables.h xml_cup.h \
 	xml_country.c file.h free.h league.h misc.h variables.h xml_cup.h xml_country.h xml_league.h \

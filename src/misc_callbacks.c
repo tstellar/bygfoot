@@ -1,11 +1,38 @@
 #include <string.h>
 
-
+#include "callback_func.h"
 #include "free.h"
+#include "game_gui.h"
+#include "live_game.h"
 #include "misc_callback_func.h"
 #include "misc_callbacks.h"
+#include "option.h"
+#include "user.h"
 #include "variables.h"
 #include "window.h"
+
+void
+on_button_add_player_clicked           (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    misc_callback_add_player();
+}
+
+
+void
+on_entry_player_name_activate          (GtkEntry        *entry,
+                                        gpointer         user_data)
+{
+    on_button_add_player_clicked(NULL, NULL);
+}
+
+
+void
+on_team_selection_ok_clicked           (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    misc_callback_start_game();
+}
 
 void
 on_team_selection_cancel_clicked       (GtkButton       *button,
@@ -22,7 +49,8 @@ on_team_selection_tv_row_activated     (GtkTreeView     *treeview,
                                         GtkTreeViewColumn *column,
                                         gpointer         user_data)
 {
-    misc_callback_start_game(GTK_WIDGET(treeview));
+    if(GTK_WIDGET_IS_SENSITIVE(lookup_widget(window.startup, "team_selection_ok")))
+	misc_callback_start_game();
 }
 
 
@@ -63,16 +91,6 @@ on_button_start_editor_clicked         (GtkButton       *button,
                                         gpointer         user_data)
 {
 
-}
-
-
-void
-on_team_selection_ok_clicked           (GtkButton       *button,
-                                        gpointer         user_data)
-{
-
-    misc_callback_start_game(GTK_WIDGET(button));
-   
 }
 
 
@@ -192,7 +210,7 @@ void
 on_button_live_close_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
-    window_destroy(&live_game.window);
+    callback_show_next_live_game();
 }
 
 
@@ -222,7 +240,7 @@ void
 on_button_pause_clicked                (GtkButton       *button,
                                         gpointer         user_data)
 {
-
+    misc_callback_pause_live_game();
 }
 
 
@@ -230,14 +248,29 @@ void
 on_button_resume_clicked               (GtkButton       *button,
                                         gpointer         user_data)
 {
-
+    gtk_widget_hide(GTK_WIDGET(button));
+    gtk_widget_show(lookup_widget(window.live, "button_pause"));
+    game_gui_set_main_window_sensitivity(FALSE);
+    live_game_calculate_fixture(NULL);
 }
 
 void
 on_spinbutton_speed_value_changed      (GtkSpinButton   *spinbutton,
                                         gpointer         user_data)
 {
-    options[OPT_LIVE_SPEED] = 
-	gtk_spin_button_get_value_as_int(spinbutton);    
+    option_set_int("int_opt_user_live_game_speed",
+		   usr(stat2).options, gtk_spin_button_get_value_as_int(spinbutton));
 }
 
+
+
+gboolean
+on_treeview_users_button_press_event   (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data)
+{
+    misc_callback_remove_user(event);
+
+
+    return FALSE;
+}

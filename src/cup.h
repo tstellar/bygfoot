@@ -37,4 +37,7 @@ cup_get_matchdays_in_cup_round(const Cup *cup, gint cup_round);
 gint
 cup_round_get_number_of_teams(const Cup *cup, gint cup_round);
 
+Cup*
+cup_from_clid(gint clid);
+
 #endif

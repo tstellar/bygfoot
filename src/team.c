@@ -3,34 +3,11 @@
 #include "free.h"
 #include "league.h"
 #include "maths.h"
+#include "option.h"
 #include "player.h"
 #include "team.h"
+#include "user.h"
 #include "variables.h"
-
-/**
-   Constants determining the probabilities for
-   the playing styles of CPU teams.
-   @see team_assign_playing_style().
-*/
-#define CONSTANT_TEAM_PLAYING_STYLE_PROB1 0.1
-#define CONSTANT_TEAM_PLAYING_STYLE_PROB2 0.25
-#define CONSTANT_TEAM_PLAYING_STYLE_PROB3 0.75
-#define CONSTANT_TEAM_PLAYING_STYLE_PROB4 0.9
-
-/**
-   Constants determining the probabilities for
-   the playing structures of CPU teams.
-   @see team_assign_playing_structure().
-*/
-#define CONSTANT_TEAM_PLAYING_STRUCTURE_PROB1 0.15
-#define CONSTANT_TEAM_PLAYING_STRUCTURE_PROB2 0.5
-#define CONSTANT_TEAM_PLAYING_STRUCTURE_PROB3 0.7
-#define CONSTANT_TEAM_PLAYING_STRUCTURE_PROB4 0.85
-
-/** Kinda hard to explain. 
-    @see team_generate_players()
-    @see player_generate() */
-#define CONSTANT_TEAM_SKILL_VARIANCE 0.2//0.075/*d*/
 
 /**
    Generate a team with default values, e.g. 
@@ -60,7 +37,6 @@ team_new(void)
 /**
    Return a random playing style.
    @see The #TeamPlayingStyle enumeration.
-   @see The #CONSTANT_TEAM_PLAYING_STYLE_PROB1 define.
 */
 gint
 team_assign_playing_style(void)
@@ -70,16 +46,16 @@ team_assign_playing_style(void)
   rndom = math_rnd(0,1);
 
   /* all out defend */
-  if(rndom < CONSTANT_TEAM_PLAYING_STYLE_PROB1)
+  if(rndom < const_float("float_team_playing_style_prob1"))
     return -2;
   /* defend */
-  else if(rndom < CONSTANT_TEAM_PLAYING_STYLE_PROB2)
+  else if(rndom < const_float("float_team_playing_style_prob2"))
     return -1;
   /* balanced */
-  else if(rndom < CONSTANT_TEAM_PLAYING_STYLE_PROB3)
+  else if(rndom < const_float("float_team_playing_style_prob3"))
     return 0;
   /* attack */
-  else if(rndom < CONSTANT_TEAM_PLAYING_STYLE_PROB4)
+  else if(rndom < const_float("float_team_playing_style_prob4"))
     return 1;
 
   /* all out attack */
@@ -88,20 +64,19 @@ team_assign_playing_style(void)
 
 /**
    Return a random playing structure.
-   @see The #CONSTANT_TEAM_PLAYING_STRUCTURE_PROB1 define.
 */
 gint
 team_assign_playing_structure(void)
 {
   gfloat rndom = math_rnd(0,1);
     
-  if(rndom < CONSTANT_TEAM_PLAYING_STRUCTURE_PROB1)
+  if(rndom < const_float("float_team_playing_structure_prob1"))
     return 532;
-  else if(rndom < CONSTANT_TEAM_PLAYING_STRUCTURE_PROB2)
+  else if(rndom < const_float("float_team_playing_structure_prob2"))
     return 442;
-  else if(rndom < CONSTANT_TEAM_PLAYING_STRUCTURE_PROB3)
+  else if(rndom < const_float("float_team_playing_structure_prob3"))
     return 352;
-  else if(rndom < CONSTANT_TEAM_PLAYING_STRUCTURE_PROB4)
+  else if(rndom < const_float("float_team_playing_structure_prob4"))
     return 433;
 
   return 343;
@@ -128,8 +103,8 @@ void
 team_generate_players(Team *tm)
 {
     gint i;    
-    gfloat skill_factor = math_rnd(1 - CONSTANT_TEAM_SKILL_VARIANCE,
-				   1 + CONSTANT_TEAM_SKILL_VARIANCE);
+    gfloat skill_factor = math_rnd(1 - const_float("float_team_skill_variance"),
+				   1 + const_float("float_team_skill_variance"));
     Player new;
     gint average_skill;
 
@@ -143,9 +118,9 @@ team_generate_players(Team *tm)
 		       (gfloat)team_return_league_cup_value_int(tm, LEAGUE_CUP_VALUE_SKILL_DIFF)) *
 	    skill_factor;
 
-    average_skill = CLAMP(average_skill, 0, CONSTANT_PLAYER_MAX_SKILL);
+    average_skill = CLAMP(average_skill, 0, const_int("int_player_max_skill"));
     
-    for(i=0;i<CONSTANT_TEAM_MAX_PLAYERS;i++)
+    for(i=0;i<const_int("int_team_max_players");i++)
     {
 	new = player_new(tm, average_skill);
 	g_array_append_val(tm->players, new);
@@ -218,7 +193,7 @@ team_get_league_cup_string(const Team *tm, gint value_type, gchar *buf)
 {
     gint idx = league_cup_get_index_from_clid(tm->clid);
 
-    if(tm->clid >= ID_CUP_START)
+    if(tm->clid < ID_CUP_START)
 	switch(value_type)
 	{
 	    default:
@@ -273,7 +248,7 @@ team_copy(const Team *source, Team *dest)
     
     for(i=0;i<source->players->len;i++)
     {
-	new_player = player_new(dest, CONSTANT_PLAYER_MAX_SKILL);
+	new_player = player_new(dest, const_int("int_player_max_skill"));
 	free_player(&new_player);
 	player_copy(&g_array_index(source->players, Player, i),
 		    &new_player);
@@ -487,17 +462,162 @@ team_get_next_fixture(const Team *tm)
     return fix;
 }
 
-/** Calculate the average cskill of the first 11 players.
-    @param tm The team we examine. 
-    @return The average skill. */
-gfloat
-team_average_cskill(const Team *tm)
+/** Check whether the team is a user-managed team.
+    @param tm The team we examine.
+    @return The user's index in the #users array or -1.*/
+gint
+team_is_user(const Team *tm)
 {
     gint i;
+
+    for(i=0;i<users->len;i++)
+	if(usr(i).tm == tm)
+	    return i;
+
+    return -1;
+}
+
+/** Return the overall average skill or
+    the cskill of the first 11 players.
+    @param tm The team we examine.
+    @param cskill Whether to take into account all players. */
+gfloat
+team_get_average_skill(const Team *tm, gboolean cskill)
+{
+    gint i, counter = 0;
     gfloat sum = 0;
 
-    for(i=0;i<MIN(11, tm->players->len);i++)
-	sum += ((gfloat)player_of(tm, i)->cskill * powf((gfloat)player_of(tm, i)->fitness / 100, 0.25));
+    if(!cskill)
+    {
+	for(i=0;i<tm->players->len;i++)
+	    if(player_of(tm, i)->cskill != 0)
+	    {
+		sum += player_of(tm, i)->skill;
+		counter++;
+	    }
+    }
+    else
+	for(i=0;i<11;i++)
+	{
+	    sum += player_of(tm, i)->cskill * 
+		powf((gfloat)player_of(tm, i)->fitness / 100, 
+		     const_float("float_player_fitness_exponent"));
+	    counter++;
+	}
 
-    return sum / (gfloat)(i - 1);
+    return sum / (gfloat)counter;
+}
+
+/** Return the rank of the team.
+    @param tm The team we examine. */
+gint
+team_rank(const Team *tm)
+{
+    gint i, j;
+    GArray *elements = NULL;
+
+    if(tm->clid < ID_CUP_START)
+    {
+	elements = league_from_clid(tm->clid)->table.elements;
+	for(i=0;i<elements->len;i++)
+	    if(g_array_index(elements, TableElement, i).team == tm)
+		return i + 1;
+    }
+    else
+    {
+	for(i=0;i<cup_from_clid(tm->clid)->tables->len;i++)
+	{
+	    elements = g_array_index(cup_from_clid(tm->clid)->tables, Table, i).elements;
+	    for(j=0;j<elements->len;j++)
+		if(g_array_index(elements, TableElement, j).team == tm)
+		    return j + 1;
+	}
+    }
+
+    return -1;
+}
+
+/** Return the structure that fits the positions of
+    the first 11 players.
+    @param tm The team we examine.
+    @return A new structure. */
+gint
+team_find_appropriate_structure(const Team *tm)
+{
+  gint i;
+  gint structure = 0;
+
+  for(i=1;i<11;i++)
+    {
+	if(player_of(tm, i)->pos == PLAYER_POS_DEFENDER)
+	    structure += 100;
+	else if(player_of(tm, i)->pos == PLAYER_POS_MIDFIELDER)
+	    structure += 10;
+	else
+	    structure++;
+    }
+    
+  return structure;
+}
+
+/** Change the structure of a team and the appropriate
+    cpos and cskill values.
+    @param tm The team.
+    @param new_structure The new structure value, e.g. 442. */
+void
+team_change_structure(Team *tm, gint new_structure)
+{
+  gint i;
+
+  tm->structure = new_structure;
+
+  for(i=1;i<11;i++)
+    {
+	player_of(tm, i)->cpos =
+	    player_get_position_from_structure(new_structure, i);
+
+	player_of(tm, i)->cskill =
+	    player_get_cskill(player_of(tm, i));
+    }
+}
+
+/* Try to set each of the first 11 players on his
+   favoured position and sort the substitutes by position.
+   @param tm The team we rearrange. */
+void
+team_rearrange(Team *tm)
+{
+  gint i, j;
+
+  /* reaarrange field players */
+  for(i=0;i<11;i++)
+    {
+      if(player_of(tm, i)->pos !=
+	 player_of(tm, i)->cpos)
+      {
+	  for(j=i+1;j<11;j++)
+	      if(player_of(tm, j)->pos ==
+		 player_of(tm, i)->cpos &&
+		 player_of(tm, j)->cskill > 0)
+	      {
+		  player_swap(tm, i, tm, j);
+		  break;
+	      }
+      }
+    }
+    
+  /* sort substitutes */
+  i = 11;
+  while(i != tm->players->len)
+    {
+	for(j=i+1;j<tm->players->len;j++)
+	    if(player_of(tm, i)->pos >
+	       player_of(tm, j)->pos)
+	    {
+		player_swap(tm, i, tm, j);
+		i = 10;
+		break;
+	    }
+	i++;
+    }
 }

@@ -1,12 +1,7 @@
 #include "callbacks.h"
-/*d*/
-#include "game.h"
-#include "live_game.h"
-#include "maths.h"
-#include "player.h"
-#include "team.h"
-
-#include "gui.h"
+#include "callback_func.h"
+#include "enums.h"
+#include "game_gui.h"
 #include "main.h"
 #include "treeview.h"
 #include "variables.h"
@@ -146,29 +141,8 @@ void
 on_button_new_week_clicked             (GtkButton       *button,
                                         gpointer         user_data)
 {
-    /*d*/
-    gint i, j, k;
-    Fixture *fix;/*  = &g_array_index(lig(0).fixtures, Fixture, */
-/* 				  math_rndi(0, lig(0).fixtures->len - 1)); */
-    
-    for(k=0;k<lig(0).fixtures->len;k++)
-	if(g_array_index(lig(0).fixtures, Fixture, k).week_number == week &&
-	   g_array_index(lig(0).fixtures, Fixture, k).week_round_number == 1)
-	{
-	    fix = &g_array_index(lig(0).fixtures, Fixture, k);
-    
-	    printf("\n");
-	    for(j=0;j<2;j++)
-	    {
-		printf("%s structure %d style %d av. cskill %.1f\n", 
-		       fix->teams[j]->name->str, fix->teams[j]->structure,
-		       fix->teams[j]->style, team_average_cskill(fix->teams[j]));
-	    }
-	    
-	    live_game_calculate_fixture(fix);
-	}
-
-    week++;
+    stat0 = STATUS_SHOW_LIVE_GAME;
+    callback_show_next_live_game();
 }
 
 
@@ -179,13 +153,26 @@ on_button_help_clicked                 (GtkButton       *button,
 
 }
 
+
 gboolean
-on_player_list_button_press_event      (GtkWidget       *widget,
+on_player_list1_button_press_event     (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data)
 {
+    gint idx = -1;
 
-  return FALSE;
+    treeview_select_row(GTK_TREE_VIEW(widget), event);
+    idx = treeview_get_index(GTK_TREE_VIEW(widget), 0);
+
+    if(idx < 0)
+    {
+	selected_row[0] = -1;
+	return FALSE;
+    }
+
+    callback_player_clicked(idx - 1, event);
+
+    return FALSE;
 }
 
 
@@ -325,103 +312,6 @@ on_menu_fixtures_activate              (GtkMenuItem     *menuitem,
 
 }
 
-
-void
-on_menu_league1_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_league2_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_league3_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_league4_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_league5_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_league6_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_cup_1_activate                 (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_cup2_activate                  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_cup3_activate                  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_cup4_activate                  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_cup5_activate                  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_cup6_activate                  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
 void
 on_menu_tables_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
@@ -447,14 +337,6 @@ on_menu_season_history_activate        (GtkMenuItem     *menuitem,
 
 
 void
-on_menu_team_history_activate          (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
 on_menu_player_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -464,14 +346,6 @@ on_menu_player_activate                (GtkMenuItem     *menuitem,
 
 void
 on_menu_show_info_activate             (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_show_history_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 
@@ -615,14 +489,6 @@ on_menu_physio_bad_activate            (GtkMenuItem     *menuitem,
 
 
 void
-on_menu_boost_activate                 (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
 on_menu_my_league_results_activate     (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -635,11 +501,11 @@ on_menu_browse_teams_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
     GtkWidget *treeview_right =
-	lookup_widget(main_window, "treeview_right");
+	lookup_widget(window.main, "treeview_right");
 
-    treeview_show_team_list(GTK_TREE_VIEW(treeview_right), TRUE);
+    treeview_show_team_list(GTK_TREE_VIEW(treeview_right), TRUE, TRUE);
 
-    status = STATUS_BROWSE_TEAMS;
+    stat0 = STATUS_BROWSE_TEAMS;
 }
 
 
@@ -687,6 +553,62 @@ on_menu_get_loan_activate              (GtkMenuItem     *menuitem,
 
 void
 on_menu_pay_loan_activate              (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+
+}
+
+
+void
+on_menu_next_user_activate             (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    current_user = (current_user + 1) % users->len;
+
+    stat0 = STATUS_MAIN;
+    game_gui_show_main();
+}
+
+
+void
+on_menu_previous_user_activate         (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    current_user = (current_user == 0) ? users->len - 1 : current_user - 1;
+
+    stat0 = STATUS_MAIN;
+    game_gui_show_main();
+}
+
+
+void
+on_menu_show_user_list_activate        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+
+}
+
+
+void
+on_menu_custom_structure_activate      (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+
+}
+
+
+gboolean
+on_menu_team_button_press_event        (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data)
+{
+    game_gui_read_radio_items(widget);
+
+    return FALSE;
+}
+
+void
+on_menu_manage_users_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 

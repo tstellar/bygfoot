@@ -2,23 +2,8 @@
 #define PLAYER_STRUCT_H
 
 #include "bygfoot.h"
+#include "enums.h"
 #include "team_struct.h"
-
-/** Highest skill and talent a player can have.  */
-#define CONSTANT_PLAYER_MAX_SKILL 99
-/** Influence of boost on player's skill. */
-#define CONSTANT_PLAYER_BOOST_SKILL_EFFECT 0.3
-/** Influence of boost on player's fitness decay. */
-#define CONSTANT_PLAYER_BOOST_FITNESS_EFFECT 1.0
-/** Influence of boost on injury probability. */
-#define CONSTANT_PLAYER_BOOST_INJURY_EFFECT 1.0
-/** Influence of boost on cards probability. */
-#define CONSTANT_PLAYER_BOOST_CARD_EFFECT 1.0
-
-/** The influence of the fitness on the current skill.
-    This determines the player's contribution to the team
-    during a game. The higher the value the bigger the influence. */
-#define CONSTANT_PLAYER_FITNESS_IMPACT_ON_SKILL 0.25
 
 /**
    Player positions.
@@ -75,12 +60,13 @@ typedef struct
     
     gint pos, /**< Position. @see #PlayerPos */
 	cpos, /**< Current position. @see #PlayerPos */
-	skill, /**< Skill. Between 0 and CONSTANT_PLAYER_MAX_SKILL. */
+	skill, /**< Skill. Between 0 and a constant (specified in the constants file). */
 	cskill, /**< Current Skill. */
 	age, /**< Age in weeks */
 	peak_age, /**< Age at which the player reaches his peak ability. */
 	talent, /**< Talent. The peak ability (which isn't always reached). */
-	etal, /**< Estimated talent (the user never sees the actual talent). */
+	etal[QUALITY_END], /**< Estimated talent (the user never sees the actual talent).
+			      Depends on scout quality. */
 	fitness, /**< Fitness. Between 0 and 99. */
 	health, /**< Health. An integer signifying an injury or good health. @see #PlayerInjury */
 	recovery, /**< Weeks until the player gets healthy. */
@@ -97,8 +83,6 @@ typedef struct
     /** Array of cards; one item per league and cup.
 	@see PlayerCard*/
     GArray *cards;
-    /** Player history. To be specified. */
-    GArray *history;
 
     /** Pointer to the player's team. */
     Team *team;

@@ -7,69 +7,30 @@
 #include "live_game.h"
 #include "maths.h"
 #include "misc.h"
+#include "option.h"
 #include "support.h"
 #include "team.h"
 #include "treeview.h"
 #include "treeview_cell.h"
+#include "user.h"
 #include "variables.h"
 #include "window.h"
 
-/** Return the filename of the icon going with the LiveGameEvent
-    with type event_type.
-    @param event_type The type of the event.
-    @return A filename specifying a pixmap. */
-gchar*
-treeview_live_game_icon(gint event_type)
+/** Select the row that's been clicked on. */
+void
+treeview_select_row(GtkTreeView *treeview, GdkEventButton *event)
 {
-    switch(event_type)
-    {
-	default:
-	    return "";
-	    break;
-	case LIVE_GAME_EVENT_FOUL_YELLOW:
-	    return "yellow.png";
-	    break;
-	case LIVE_GAME_EVENT_FOUL_RED:
-	    return "red.png";
-	    break;
-	case LIVE_GAME_EVENT_SEND_OFF:
-	    return "red.png";
-	    break;
-	case LIVE_GAME_EVENT_SAVE:
-	    return "save.png";
-	    break;
-	case LIVE_GAME_EVENT_GOAL:
-	    return "goal.png";
-	    break;
-    }
+    GtkTreeSelection *selection =
+	gtk_tree_view_get_selection(treeview);
+    GtkTreePath *path;
+    
+    if(!gtk_tree_view_get_path_at_pos(treeview,
+				      event->x, event->y,
+				      &path, NULL, NULL, NULL))
+	return;
 
-    return "";
-}
-
-/** Return a new pixbuf created from the specified filename.
-    @param filename Name of a pixmap file located in one of the support directories. 
-    @return A new pixbuf or NULL on error. */
-GdkPixbuf*
-treeview_pixbuf_from_filename(gchar *filename)
-{
-    GdkPixbuf *symbol = NULL;
-    GError *error = NULL;
-    gchar *symbol_file = NULL;
-
-    if(filename != NULL && strlen(filename) != 0)
-    {
-	symbol_file = file_find_support_file(filename);
-	if(symbol_file != NULL)
-	{
-	    symbol = gdk_pixbuf_new_from_file(symbol_file, &error);
-	    misc_print_error(&error, FALSE);
-	    g_free(symbol_file);
-	}
-    }
-    else
-	symbol = NULL;
-
-    return symbol;
+    gtk_tree_selection_select_path(selection, path);
+    gtk_tree_path_free(path);
 }
 
 /** Return the number in the 'column'th column of the currently
@@ -130,7 +91,7 @@ treeview_clear(GtkTreeView *treeview)
     gint i;
     gint number_of_columns;
     GtkTreeView *list = (treeview == NULL) ?
-	GTK_TREE_VIEW(lookup_widget(main_window, "player_info")) :
+	GTK_TREE_VIEW(lookup_widget(window.main, "player_info")) :
 	treeview;
 
     gtk_tree_view_set_model(GTK_TREE_VIEW(list),
@@ -167,6 +128,64 @@ treeview_get_col_number_column (GtkTreeViewColumn *col)
     return num;
 }
 
+/** Return the filename of the icon going with the LiveGameEvent
+    with type event_type.
+    @param event_type The type of the event.
+    @return A filename specifying a pixmap. */
+gchar*
+treeview_live_game_icon(gint event_type)
+{
+    switch(event_type)
+    {
+	default:
+	    return "";
+	    break;
+	case LIVE_GAME_EVENT_FOUL_YELLOW:
+	    return "yellow.png";
+	    break;
+	case LIVE_GAME_EVENT_FOUL_RED:
+	    return "red.png";
+	    break;
+	case LIVE_GAME_EVENT_SEND_OFF:
+	    return "red.png";
+	    break;
+	case LIVE_GAME_EVENT_SAVE:
+	    return "save.png";
+	    break;
+	case LIVE_GAME_EVENT_GOAL:
+	    return "goal.png";
+	    break;
+    }
+
+    return "";
+}
+
+/** Return a new pixbuf created from the specified filename.
+    @param filename Name of a pixmap file located in one of the support directories. 
+    @return A new pixbuf or NULL on error. */
+GdkPixbuf*
+treeview_pixbuf_from_filename(gchar *filename)
+{
+    GdkPixbuf *symbol = NULL;
+    GError *error = NULL;
+    gchar *symbol_file = NULL;
+
+    if(filename != NULL && strlen(filename) != 0)
+    {
+	symbol_file = file_find_support_file(filename);
+	if(symbol_file != NULL)
+	{
+	    symbol = gdk_pixbuf_new_from_file(symbol_file, &error);
+	    misc_print_error(&error, FALSE);
+	    g_free(symbol_file);
+	}
+    }
+    else
+	symbol = NULL;
+
+    return symbol;
+}
+
 /**
    Creates the model for the treeview in the team selection window.
    The model contains a list of all the teams from the leagues in
@@ -174,10 +193,11 @@ treeview_get_col_number_column (GtkTreeViewColumn *col)
    teams from international cups are shown, too.
    @param show_cup_teams Whether or not teams from international
    cups are shown.
+   @param show_user_teams Whether or not user teams are shown.
    @return The model containing the team names.
 */
 GtkTreeModel*
-treeview_create_team_selection_list(gboolean show_cup_teams)
+treeview_create_team_selection_list(gboolean show_cup_teams, gboolean show_user_teams)
 {
     gint i, j, cnt = 1;
     GtkListStore  *liststore;
@@ -196,13 +216,16 @@ treeview_create_team_selection_list(gboolean show_cup_teams)
 
 	for(j=0;j<lig(i).teams->len;j++)
 	{
-	    gtk_list_store_append(liststore, &iter);
-	    gtk_list_store_set(liststore, &iter,
-			       0, cnt++,
-			       1, symbol,
-			       2, (gpointer)&g_array_index(lig(i).teams, Team, j),
-			       3, lig(i).name->str,
-			       -1);
+	    if(team_is_user(&g_array_index(lig(i).teams, Team, j)) == -1)
+	    {
+		gtk_list_store_append(liststore, &iter);
+		gtk_list_store_set(liststore, &iter,
+				   0, cnt++,
+				   1, symbol,
+				   2, (gpointer)&g_array_index(lig(i).teams, Team, j),
+				   3, lig(i).name->str,
+				   -1);
+	    }
 	}	    
 
 	if(symbol != NULL)
@@ -257,8 +280,6 @@ treeview_set_up_team_selection_treeview (GtkTreeView *treeview)
     gtk_tree_view_column_pack_start(col, renderer, TRUE);
     gtk_tree_view_column_add_attribute(col, renderer,
 				       "text", 0);
-    if(strcmp(font_name->str, "0") != 0)
-	g_object_set(renderer, "font", font_name->str, NULL);
 
     /* Flags */
     col = gtk_tree_view_column_new();
@@ -293,12 +314,14 @@ treeview_set_up_team_selection_treeview (GtkTreeView *treeview)
     @param treeview The treeview we show the list in.
     @param show_cup_teams Whether or not teams from international
     cups are shown.
+    @param show_user_teams Whether or not user teams are shown.
 */
 void
-treeview_show_team_list(GtkTreeView *treeview, gboolean show_cup_teams)
+treeview_show_team_list(GtkTreeView *treeview, gboolean show_cup_teams,
+			gboolean show_user_teams)
 {
     GtkTreeModel *team_list = 
-	treeview_create_team_selection_list(show_cup_teams);
+	treeview_create_team_selection_list(show_cup_teams, show_user_teams);
     GtkTreeSelection *selection;
      
     treeview_clear(treeview);
@@ -337,7 +360,7 @@ treeview_create_player_list(GPtrArray *players, gint *attributes, gint max, gboo
 	gtk_list_store_append(liststore, &iter);
 	if(show_separator && i == 11)
 	{
-	    gtk_list_store_set(liststore, &iter, 0, CONSTANT_TREEVIEW_CELL_INT_EMPTY, -1);
+	    gtk_list_store_set(liststore, &iter, 0, const_int("int_treeview_cell_int_empty"), -1);
 	    for(j=0;j<max;j++)
 		gtk_list_store_set(liststore, &iter, j + 1, NULL, -1);
 	    
@@ -418,7 +441,7 @@ treeview_set_up_player_list (GtkTreeView *treeview, gint *attributes, gint max)
     player attributes according to 'attrib'.
     @param treeview The treeview we fill.
     @param players The pointer array with the players. We free it afterwards.
-    @param attrib The #PlayerListAttrib that determines which attributes to show.
+    @param attrib The #PlayerListAttribute that determines which attributes to show.
     @param show_separator Whether we draw a blank line after the 11th player. */
 void
 treeview_show_player_list(GtkTreeView *treeview, GPtrArray *players, PlayerListAttribute attribute,
@@ -445,16 +468,19 @@ treeview_show_player_list(GtkTreeView *treeview, GPtrArray *players, PlayerListA
 }
 
 /** Show the list of the user's players in the left view.
+    @param user The user we show the players of.
     @param player_list The tab we use. */
 void
-treeview_show_user_player_list(gint player_list)
+treeview_show_user_player_list(const User *user, gint player_list)
 {
+    PlayerListAttribute attribute;
     GtkWidget *treeview = (player_list == 1) ?
-	lookup_widget(main_window, "player_list1") :
-	lookup_widget(main_window, "player_list2");
+	lookup_widget(window.main, "player_list1") :
+	lookup_widget(window.main, "player_list2");
 
-    treeview_show_player_list(GTK_TREE_VIEW(treeview), team_get_player_pointers(my_team),
-			      player_list_attributes[(player_list != 1)], TRUE);
+    user_set_player_list_attributes(user, &attribute, player_list);
+    treeview_show_player_list(GTK_TREE_VIEW(treeview),
+			      team_get_player_pointers(user->tm), attribute, TRUE);
 }
 
 /** Show the commentary and the minute belonging to the unit. 
@@ -465,11 +491,11 @@ treeview_live_game_show_commentary(const LiveGameUnit *unit)
     GdkPixbuf *symbol = NULL;
     GtkAdjustment *adjustment =
 	gtk_scrolled_window_get_vadjustment(
-	    GTK_SCROLLED_WINDOW(lookup_widget(live_game.window,
+	    GTK_SCROLLED_WINDOW(lookup_widget(window.live,
 					      "scrolledwindow9")));
     GtkListStore *liststore =
 	GTK_LIST_STORE(
-	    gtk_tree_view_get_model(GTK_TREE_VIEW(lookup_widget(live_game.window, "treeview_commentary"))));
+	    gtk_tree_view_get_model(GTK_TREE_VIEW(lookup_widget(window.live, "treeview_commentary"))));
     GtkTreeIter iter;
     gchar buf[SMALL];
 
@@ -494,7 +520,6 @@ treeview_live_game_show_commentary(const LiveGameUnit *unit)
 GtkTreeModel*
 treeview_live_game_create_init_commentary(const LiveGameUnit *unit)
 {
-    gint i, j;
     GtkListStore  *liststore;
     GtkTreeIter iter;
     GdkPixbuf *symbol = NULL;
@@ -525,7 +550,7 @@ void
 treeview_live_game_set_up_commentary(void)
 {
     GtkTreeView *treeview =
-	GTK_TREE_VIEW(lookup_widget(live_game.window, "treeview_commentary"));
+	GTK_TREE_VIEW(lookup_widget(window.live, "treeview_commentary"));
     GtkTreeViewColumn   *col;
     GtkCellRenderer     *renderer;
 
@@ -560,7 +585,7 @@ void
 treeview_live_game_show_initial_commentary(const LiveGameUnit *unit)
 {
     GtkTreeView *treeview =
-	GTK_TREE_VIEW(lookup_widget(live_game.window, "treeview_commentary"));
+	GTK_TREE_VIEW(lookup_widget(window.live, "treeview_commentary"));
     GtkTreeModel *model = NULL;
     
     treeview_clear(treeview);
@@ -595,8 +620,8 @@ treeview_live_game_create_result(const LiveGameUnit *unit)
 				   GDK_TYPE_PIXBUF);
 
     gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, NULL, 1, (gpointer)live_game.fix,
-		       2, (gpointer)live_game.fix, 3, (gpointer)live_game.fix, 4, NULL, -1);
+    gtk_list_store_set(liststore, &iter, 0, NULL, 1, (gpointer)usr(stat2).live_game.fix,
+		       2, (gpointer)unit, 3, (gpointer)usr(stat2).live_game.fix, 4, NULL, -1);
 
     gtk_list_store_set(liststore, &iter, 0 + (unit->possession == 1) * 4, symbol, -1);
 
@@ -611,7 +636,7 @@ void
 treeview_live_game_set_up_result(void)
 {
     GtkTreeView *treeview =
-	GTK_TREE_VIEW(lookup_widget(live_game.window, "treeview_result"));
+	GTK_TREE_VIEW(lookup_widget(window.live, "treeview_result"));
     GtkTreeViewColumn   *col;
     GtkCellRenderer     *renderer;
 
@@ -664,7 +689,7 @@ void
 treeview_live_game_show_result(const LiveGameUnit *unit)
 {
     GtkTreeView *treeview =
-	GTK_TREE_VIEW(lookup_widget(live_game.window, "treeview_result"));
+	GTK_TREE_VIEW(lookup_widget(window.live, "treeview_result"));
     GtkTreeModel *model = NULL;
     
     treeview_clear(treeview);
@@ -676,4 +701,89 @@ treeview_live_game_show_result(const LiveGameUnit *unit)
 
     gtk_tree_view_set_model(treeview, model);
     g_object_unref(model);    
+}
+
+/** Fill a tree model with the users. */
+GtkTreeModel*
+treeview_create_users_startup(void)
+{
+    gint i;
+    GtkListStore  *liststore;
+    GtkTreeIter iter;
+
+    liststore = gtk_list_store_new(4,
+				   G_TYPE_INT,
+				   G_TYPE_STRING,
+				   G_TYPE_STRING,
+				   G_TYPE_STRING);
+    for(i=0;i<users->len;i++)
+    {
+	gtk_list_store_append(liststore, &iter);
+	gtk_list_store_set(liststore, &iter, 0, i + 1,
+			   1, usr(i).name->str,
+			   2, usr(i).tm->name->str,
+			   -1);
+
+	if(stat0 == STATUS_TEAM_SELECTION && usr(i).scout != 0)
+	{
+	    if(usr(i).scout == 1)
+		gtk_list_store_set(liststore, &iter, 3,
+				   lig(0).name->str, -1);
+	    else
+		gtk_list_store_set(liststore, &iter, 3,
+				   lig(ligs->len - 1).name->str, -1);
+	}
+	else
+	    gtk_list_store_set(liststore, &iter, 3,
+			       league_from_clid(usr(i).tm->clid)->name->str, -1);
+    }
+
+    return GTK_TREE_MODEL(liststore);
+}
+
+/** Set up the users treeview.
+    @param treeview The treeview we use. */
+void
+treeview_set_up_users_startup(GtkTreeView *treeview)
+{
+    gint i;
+    GtkTreeViewColumn   *col;
+    GtkCellRenderer     *renderer;
+    gchar *titles[4] =
+	{_(""),
+	 _("Name"),
+	 _("Team"),
+	 _("Start in")};
+
+    gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
+				GTK_SELECTION_SINGLE);
+
+    for(i=0;i<4;i++)
+    {
+	col = gtk_tree_view_column_new();
+	gtk_tree_view_column_set_title(col, titles[i]);
+	gtk_tree_view_append_column(treeview, col);
+	renderer = gtk_cell_renderer_text_new();
+	gtk_tree_view_column_pack_start(col, renderer, TRUE);
+	gtk_tree_view_column_add_attribute(col, renderer,
+					   "text", i);
+    }    
+}
+
+/** Show the list of users at startup.
+    @param treeview The treeview we use. */
+void
+treeview_show_users_startup(void)
+{
+    GtkTreeView *treeview =
+	GTK_TREE_VIEW(lookup_widget(window.startup_users, "treeview_users"));
+    GtkTreeModel *model = NULL;
+
+    treeview_clear(treeview);
+    gtk_tree_view_set_headers_visible(treeview, TRUE);
+    
+    treeview_set_up_users_startup(treeview);
+    model = treeview_create_users_startup();
+    gtk_tree_view_set_model(treeview, model);
+    g_object_unref(model);
 }

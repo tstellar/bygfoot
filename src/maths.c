@@ -158,11 +158,11 @@ math_get_bye_len(gint number)
 {
     gint i;
 
-    for(i=10;i>=0;i--)
-	if((gint)powf(2, i) <= number)
+    for(i=0;i<20;i++)
+	if((gint)powf(2, i) >= number)
 	    break;
 
-    return number - (gint)powf(2, i);
+    return (gint)powf(2, i) - number;
 }
 
 /** Return the sum of the integers in the array.
@@ -170,7 +170,7 @@ math_get_bye_len(gint number)
     @param max The size of the array.
     @return The sum of all the integers in the array. */
 gint
-math_sum_int_array(gint *array, gint max)
+math_sum_int_array(const gint *array, gint max)
 {
     gint i, sum = 0;
 

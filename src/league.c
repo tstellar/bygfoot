@@ -33,6 +33,7 @@ league_new(void)
 
     new.table.name = g_string_new("");
     new.table.clid = new.id;
+    new.table.round = -1;
     new.table.elements = g_array_new(FALSE, FALSE, sizeof(TableElement));
 
     new.first_week = new.week_gap = 1;
@@ -83,22 +84,6 @@ league_new_id(void)
     return -1;
 }
 
-/** Return a nullified table element.
-    @see #TableElement */
-TableElement
-league_table_element_new(Team *team)
-{
-    gint i;
-    TableElement new;
-
-    new.team = team;
-
-    for(i=0;i<TABLE_END;i++)
-	new.values[i] = 0;
-
-    return new;
-}
-
 /** Get the array index of the given league or cup id.
     @param clid The id of the league or cup.
     @return The index in the leagues or cups array. */
@@ -129,4 +114,20 @@ league_cup_get_index_from_clid(gint clid)
 	g_warning("league_cup_get_index_from_clid: couldn't find league or cup with index %d\n", clid);
 
     return index;
+}
+
+/** Return the league pointer belonging to the id.
+    @param clid The id we look for.
+    @return The league pointer or NULL if failed. */
+League*
+league_from_clid(gint clid)
+{
+    gint i;
+
+    for(i=0;i<ligs->len;i++)
+	if(lig(i).id == clid)
+	    return &lig(i);
+
+    g_warning("league_from_clid: didn't find league with id %d\n", clid);
+    return NULL;
 }

@@ -5,14 +5,6 @@
 #include "fixture_struct.h"
 #include "player_struct.h"
 
-/** Influence of the fitness on the player contribution.
-    The higher the worse. @see game_get_player_contribution() */
-#define CONSTANT_GAME_PLAYER_FITNESS_EXPONENT 0.25
-/* #define CONSTANT_GAME_HOME_ADVANTAGE_LOWER 0.04 */
-/* #define CONSTANT_GAME_HOME_ADVANTAGE_UPPER 0.08 */
-#define CONSTANT_GAME_HOME_ADVANTAGE_LOWER 0.04
-#define CONSTANT_GAME_HOME_ADVANTAGE_UPPER 0.08
-
 /** Indices for the team_value array.
     @see game_get_values() */
 enum GameTeamValue
@@ -49,5 +41,11 @@ game_get_player(const Team *tm, gint player_type,
 
 void
 game_get_player_probs(GArray *players, gfloat *probs, gfloat *weights, gboolean skills);
+
+gint
+game_get_penalty_taker(const Team *tm, gint last_penalty);
+
+void
+game_calculate_attendance(Fixture *fix);
 
 #endif

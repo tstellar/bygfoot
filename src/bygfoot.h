@@ -24,6 +24,33 @@
 #define SMALL 10000
 #define BIG 1000000
 
+/** Starting numbers of league, cup and supercup numerical ids. */
+#define ID_LEAGUE_START 1000
+#define ID_CUP_START 2000
+
+/** The player names file. */
+#define PLAYER_NAMES_FILE "player_names.xml"
+
+/** Convenience abbreviation. */
+#define ligs country.leagues
+/** Convenience abbreviation. */
+#define lig(i) g_array_index(country.leagues, League, i)
+
+/** Convenience abbreviation. */
+#define cps country.cups
+/** Convenience abbreviation. */
+#define cp(i) g_array_index(country.cups, Cup, i)
+
+/** Convenience abbreviation. */
+#define player_name(i) ((GString*)g_ptr_array_index(player_names, i))->str;
+
+/** Convenience abbrevs. */
+#define stat0 status[0]
+#define stat1 status[1]
+#define stat2 status[2]
+#define stat3 status[3]
+#define stat4 status[4]
+
 /**
  * Exit codes.
  */
@@ -39,23 +66,6 @@ enum ExitCodes
     EXIT_END
 };
 
-/** Scout and physio qualities. */
-enum Quality
-{
-    QUALITY_BEST = 1,
-    QUALITY_GOOD,
-    QUALITY_AVERAGE,
-    QUALITY_BAD,
-    QUALITY_END
-};
-
-/** Starting numbers of league, cup and supercup numerical ids. */
-#define ID_LEAGUE_START 1000
-#define ID_CUP_START 2000
-
-/** The player names file. */
-#define PLAYER_NAMES_FILE "player_names.xml"
-
 /**
  * A struct representing a country.
  */
@@ -69,17 +79,21 @@ typedef struct
     GArray *leagues, *cups;
 } Country;
 
-/** Convenience abbreviation. */
-#define ligs country.leagues
-/** Convenience abbreviation. */
-#define lig(i) g_array_index(country.leagues, League, i)
+/** Struct used for having all the windows
+    in one place. */
+typedef struct
+{
+    GtkWidget *main,
+	*startup,
+	*startup_users,
+	*live;
+} Windows;
 
-/** Convenience abbreviation. */
-#define cps country.cups
-/** Convenience abbreviation. */
-#define cp(i) g_array_index(country.cups, Cup, i)
-
-/** Convenience abbreviation. */
-#define player_name(i) ((GString*)g_ptr_array_index(player_names, i))->str;
+/** A struct representing an option or a constant. */
+typedef struct
+{
+    GString *name, *string_value;
+    gint value;
+} Option;
 
 #endif

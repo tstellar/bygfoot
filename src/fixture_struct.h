@@ -12,6 +12,8 @@ typedef struct
     gint clid;
     /** The round (in a cup) the fixture belongs to. */
     gint round;    
+    /** The replay number (ie. how often the match was repeated because of a draw). */
+    gint replay_number;
     /** When it takes place. */
     gint week_number, week_round_number;
     /** The teams involved. */

@@ -6,6 +6,7 @@
 #include <time.h>
 
 /*d*/
+#include "misc_callbacks.h"
 #include "file.h"
 #include "free.h"
 #include "main.h"
@@ -22,17 +23,21 @@ main_init_variables(void)
     country.name = country.symbol = country.sid = NULL;
     transfer_list = NULL;
     player_names = NULL;
-    my_team = NULL;
-    
-    font_name = g_string_new("0");
-    debug = FALSE;
 
-    live_game.units = g_array_new(FALSE, FALSE, sizeof(LiveGameUnit));
-    live_game.window = NULL;
-    live_game_temp.units = g_array_new(FALSE, FALSE, sizeof(LiveGameUnit));
-    live_game_temp.window = NULL;
+    window.main = window.startup = window.startup_users =
+	window.live = NULL;
+    
+    live_game_temp.units = NULL;
+
+    users = g_array_new(FALSE, FALSE, sizeof(User));
+
+    options = g_array_new(FALSE, FALSE, sizeof(Option));
+    constants = g_array_new(FALSE, FALSE, sizeof(Option));
 
     popups_active = 0;
+    selected_row[0] = selected_row[1] = -1;
+
+    file_load_conf_files();
 }
 
 /**
@@ -70,25 +75,33 @@ main_init(gint argc, gchar *argv[])
 gint
 main (gint argc, gchar *argv[])
 {
+    gint x_pos, y_pos;
 
 #ifdef ENABLE_NLS
     bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
     bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
     textdomain (GETTEXT_PACKAGE);
 #endif
-    
-  gtk_set_locale ();
-  gtk_init (&argc, &argv);
+
+    gtk_set_locale ();
+    gtk_init (&argc, &argv);
   
-  main_init(argc, argv);
+    main_init(argc, argv);
 
-  window_show_startup();
+    window_create(WINDOW_STARTUP_USERS);
+    window_show_startup();
+    gtk_window_get_position(GTK_WINDOW(window.startup), &x_pos, &y_pos);
+    gtk_window_move(GTK_WINDOW(window.startup_users), x_pos,  y_pos);
+    stat0 = STATUS_TEAM_SELECTION;
+    /*d*/
+    on_button_add_player_clicked(NULL, NULL);
+    
 
-  gtk_main ();
+    gtk_main ();
 
-  main_exit_program(EXIT_OK, NULL);
+    main_exit_program(EXIT_OK, NULL);
 
-  return 0;
+    return 0;
 }
 
 /** Exit the program with the given exit code and message. Try to

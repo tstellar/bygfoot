@@ -230,8 +230,9 @@ cup_load_choose_team_user(Cup *cup)
 
 	    for(i = choose_team->start_idx - 1; i <= choose_team->end_idx - 1; i++)
 	    {
-		if(!query_is_in_international_cups(&g_array_index(lig(number - 1).teams,
-								  Team, permutation[i - choose_team->start_idx + 1])))
+		if(!query_is_in_international_cups(
+		       &g_array_index(lig(number - 1).teams,
+				      Team, permutation[i - choose_team->start_idx + 1])))
 		{
 		    g_ptr_array_add(cup->user_teams,
 				    (gpointer)&g_array_index(lig(number - 1).teams,
@@ -305,7 +306,8 @@ cup_get_matchdays_in_cup_round(const Cup *cup, gint cup_round)
     {
 	number_of_teams = cup_round_get_number_of_teams(cup, cup_round);
 	number_of_matchdays = 
-	    2 * (number_of_teams / g_array_index(cup->rounds, CupRound, cup_round).round_robin_number_of_groups - 1);
+	    2 * (number_of_teams / g_array_index(cup->rounds, CupRound, cup_round).
+		 round_robin_number_of_groups);
     }
     else if(g_array_index(cup->rounds, CupRound, cup_round).home_away)
 	number_of_matchdays = 2;
@@ -352,4 +354,20 @@ cup_get_team_pointers(const Cup *cup)
 	g_ptr_array_add(teams, g_ptr_array_index(cup->user_teams, i));
 
     return teams;
+}
+
+/** Return the cup pointer belonging to the id.
+    @param clid The id we look for.
+    @return The cup pointer or NULL if failed. */
+Cup*
+cup_from_clid(gint clid)
+{
+    gint i;
+
+    for(i=0;i<cps->len;i++)
+	if(cp(i).id == clid)
+	    return &cp(i);
+
+    g_warning("cup_from_clid: didn't find cup with id %d\n", clid);
+    return NULL;
 }

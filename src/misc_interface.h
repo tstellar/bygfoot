@@ -8,3 +8,4 @@ GtkWidget* create_fsel_window (void);
 GtkWidget* create_font_sel_window (void);
 GtkWidget* create_window_live (void);
 GtkWidget* create_help_window (void);
+GtkWidget* create_window_startup_users (void);
