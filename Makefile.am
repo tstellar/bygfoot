@@ -11,9 +11,9 @@ EXTRA_DIST = \
 
 dist_man6_MANS = man/bygfoot.6
 
-SUPPORT_DIRS = support_files support_files/text_files support_files/pixmaps 
+SUPPORT_DIRS = support_files support_files/pixmaps support_files/definitions support_files/names 
 
-SUPPORT_FILES = support_files/text_files/help support_files/text_files/country_br support_files/text_files/country_de support_files/text_files/country_es support_files/text_files/country_fr support_files/text_files/country_hu support_files/text_files/country_it support_files/text_files/country_mx support_files/text_files/country_pl support_files/text_files/country_ro support_files/text_files/teams support_files/text_files/country_eng support_files/text_files/bygfoot.conf support_files/text_files/player_names support_files/pixmaps/flag_ro.png support_files/pixmaps/bygfoot_team_editor_icon.png support_files/pixmaps/bygfoot_icon.png support_files/pixmaps/flag_eng.png support_files/pixmaps/pay_loan.png support_files/pixmaps/inc_cap.png support_files/pixmaps/new_week.png support_files/pixmaps/preview.png support_files/pixmaps/get_loan.png support_files/pixmaps/transfers.png support_files/pixmaps/fire_player.png support_files/pixmaps/inc_saf.png support_files/pixmaps/football.png support_files/pixmaps/flag_br.png support_files/pixmaps/flag_de.png support_files/pixmaps/fin_stad.png support_files/pixmaps/flag_es.png support_files/pixmaps/flag_fr.png support_files/pixmaps/flag_hu.png support_files/pixmaps/flag_it.png support_files/pixmaps/flag_mx.png support_files/pixmaps/flag_pl.png 
+SUPPORT_FILES = support_files/pixmaps/flag_ro.png support_files/pixmaps/bygfoot_team_editor_icon.png support_files/pixmaps/bygfoot_icon.png support_files/pixmaps/flag_eng.png support_files/pixmaps/pay_loan.png support_files/pixmaps/inc_cap.png support_files/pixmaps/new_week.png support_files/pixmaps/preview.png support_files/pixmaps/get_loan.png support_files/pixmaps/transfers.png support_files/pixmaps/fire_player.png support_files/pixmaps/inc_saf.png support_files/pixmaps/football.png support_files/pixmaps/flag_br.png support_files/pixmaps/flag_de.png support_files/pixmaps/fin_stad.png support_files/pixmaps/flag_es.png support_files/pixmaps/flag_fr.png support_files/pixmaps/flag_hu.png support_files/pixmaps/flag_it.png support_files/pixmaps/flag_mx.png support_files/pixmaps/flag_pl.png support_files/definitions/country_england.xml support_files/definitions/league_england1.xml support_files/definitions/league_england2.xml support_files/definitions/league_england3.xml support_files/definitions/league_england4.xml support_files/definitions/league_england5.xml support_files/definitions/cup_england_fa.xml support_files/definitions/cup_england_prom_games.xml support_files/definitions/cup_england_league.xml support_files/bygfoot.conf support_files/names/player_names 
 
 install-data-local:
 	@$(NORMAL_INSTALL)
@@ -29,3 +29,9 @@ uninstall:
 	rm -rf $(prefix)/bin/bygfoot*
 	rm -rf $(prefix)/man/man6/bygfoot.6
 	for dir in $(prefix)/share/locale/*; do rm -rf $$dir/LC_MESSAGES/bygfoot*; done
+
+doc:
+	doxygen Doxyfile 1> /dev/null
+
+doc-verbose:
+	doxygen Doxyfile
