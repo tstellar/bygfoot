@@ -255,8 +255,7 @@ file_load_opt_file(FILE *fil, OptionList *optionlist)
     gchar opt_name[SMALL], opt_value[SMALL];
     Option new;
 
-    free_option_array(&optionlist->list, TRUE);
-    g_datalist_init(&optionlist->datalist);
+    free_option_list(optionlist, TRUE);
 
     while(file_get_next_opt_line(fil, opt_name, opt_value))
     {

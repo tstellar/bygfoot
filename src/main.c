@@ -32,6 +32,9 @@ main_init_variables(void)
     users = g_array_new(FALSE, FALSE, sizeof(User));
     transfer_list = g_array_new(FALSE, FALSE, sizeof(Transfer));
 
+    constants.list = options.list = NULL;
+    constants.datalist = options.datalist = NULL;
+
     popups_active = 0;
     selected_row[0] = selected_row[1] = -1;
 

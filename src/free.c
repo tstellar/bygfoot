@@ -40,7 +40,7 @@ free_user(User *user)
     free_g_string(&user->name);
     free_g_string(&user->font_name);
     free_live_game(&user->live_game);
-    free_option_array(&user->options.list, FALSE);
+    free_option_list(&user->options, FALSE);
 
     for(i=0;i<user->events->len;i++)
 	free_event(&g_array_index(user->events, Event, i));
@@ -60,28 +60,34 @@ free_event(Event *event)
     @param reset Whether to create the array anew (empty).
     @see #Option */
 void
-free_option_array(GArray **array, gboolean reset)
+free_option_list(OptionList *optionlist, gboolean reset)
 {
     gint i;
 
-    if(*array == NULL)
+    if(optionlist->list == NULL)
     {
 	if(reset)
-	    *array = g_array_new(FALSE, FALSE, sizeof(Option));
+	{
+	    optionlist->list = g_array_new(FALSE, FALSE, sizeof(Option));
+	    g_datalist_init(&optionlist->datalist);
+	}
 
 	return;
     }
     
-    for(i=0;i<(*array)->len;i++)
+    for(i=0;i<optionlist->list->len;i++)
     {
-	free_g_string(&g_array_index(*array, Option, i).name);
-	free_g_string(&g_array_index(*array, Option, i).string_value);
+	free_g_string(&g_array_index(optionlist->list, Option, i).name);
+	free_g_string(&g_array_index(optionlist->list, Option, i).string_value);
     }
 
-    free_g_array(array);
+    free_g_array(&optionlist->list);
 
     if(reset)
-	*array = g_array_new(FALSE, FALSE, sizeof(Option));
+    {
+	optionlist->list = g_array_new(FALSE, FALSE, sizeof(Option));
+	g_datalist_init(&optionlist->datalist);
+    }
 }
 
 /** Free a live game variable. */
@@ -323,8 +329,8 @@ free_variables(void)
 
     free_g_array(&transfer_list);
 
-    free_option_array(&options.list, FALSE);
-    free_option_array(&constants.list, FALSE);
+    free_option_list(&options, FALSE);
+    free_option_list(&constants, FALSE);
 }
 
 /**

@@ -28,6 +28,8 @@ user_new(void)
 	    new.live_game.stats.players[i][1] = NULL;
 
     new.events = g_array_new(FALSE, FALSE, sizeof(Event)); 
+    new.options.list = NULL;
+    new.options.datalist = NULL;
 
     return new;
 }
