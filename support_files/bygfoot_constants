@@ -14,10 +14,10 @@ int_player_peak_age_upper 1716
 # by how many weeks the peak age of goalies is
 #    greater. 
 int_player_peak_age_goalie_addition 104
+# limits for initial fitness (read it as 85%)
+int_player_fitness_lower 8500
 # limits for initial fitness. 
-int_player_fitness_lower 85
-# limits for initial fitness. 
-int_player_fitness_upper 100
+int_player_fitness_upper 10000
 
 # the bounds determining the player positions in a newly created
 # team for players 13 to constant_team_max_players.
@@ -39,9 +39,9 @@ int_player_etal_scout_factor 7
 
 # fitness limits below which fitness is shown
 # in orange and red etc.
-int_treeview_cell_limit_player_fitness_below1 85
-int_treeview_cell_limit_player_fitness_below2 70
-int_treeview_cell_limit_player_fitness_below3 60
+int_treeview_cell_limit_player_fitness_below1 8500
+int_treeview_cell_limit_player_fitness_below2 7000
+int_treeview_cell_limit_player_fitness_below3 6000
 
 # contract limits below which contract time is shown
 # in orange and red etc.
@@ -209,7 +209,7 @@ float_live_game_scoring_chance_is_header 350
 float_game_style_factor 75
 
 # influence of boost on player's skill.
-float_player_boost_skill_effect 300
+float_player_boost_skill_effect 150
 # influence of boost on player's fitness decay.
 float_player_boost_fitness_effect 1000
 # influence of boost on injury probability.
@@ -230,6 +230,17 @@ float_player_fitness_exponent 250
 float_game_home_advantage_lower 40
 float_game_home_advantage_upper 80
 
+# How the cskill of field players get weighted for the team values in
+#    a match
+float_player_team_weight_defender_defense 1000
+float_player_team_weight_defender_midfield 400
+float_player_team_weight_defender_attack 250
+float_player_team_weight_midfielder_defense 625
+float_player_team_weight_midfielder_midfield 1000
+float_player_team_weight_midfielder_attack 625
+float_player_team_weight_forward_defense 200
+float_player_team_weight_forward_midfield 600
+float_player_team_weight_forward_attack 1300
 
 
 #### string constants
@@ -277,3 +288,26 @@ string_treeview_cell_color_player_bad_cskill_fg red
 
 # font attributes for the live game window result.
 string_treeview_cell_live_game_result_attributes weight='bold' size='large'
+
+# icons used in live games
+string_live_game_event_start_match_icon
+string_live_game_event_lost_possession_icon
+string_live_game_event_penalty_icon
+string_live_game_event_scoring_chance_icon
+string_live_game_event_goal_icon goal.png
+string_live_game_event_own_goal_icon goal.png
+string_live_game_event_post_icon
+string_live_game_event_save_icon save.png
+string_live_game_event_missed_icon
+string_live_game_event_foul_icon
+string_live_game_event_foul_yellow_icon yellow.png
+string_live_game_event_send_off_icon red.png
+string_live_game_event_injury_icon
+string_live_game_event_temp_injury_icon
+string_live_game_event_stadium_breakdown_icon
+string_live_game_event_stadium_fire_icon
+string_live_game_event_stadium_riots_icon
+string_live_game_event_substitution_icon
+string_live_game_event_structure_change_icon
+string_live_game_event_style_change_icon
+string_live_game_event_boost_change_icon
