@@ -17,6 +17,7 @@ enum Windows
     WINDOW_STADIUM,
     WINDOW_JOB_OFFER,
     WINDOW_YESNO,
+    WINDOW_OPTIONS,
     WINDOW_END
 };
 
@@ -37,5 +38,8 @@ window_show_stadium(void);
 
 void
 window_show_yesno(gchar *text, gboolean checkbutton);
+
+void
+window_show_options(void);
 
 #endif

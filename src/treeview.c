@@ -1327,12 +1327,13 @@ treeview_create_single_table(GtkListStore *liststore, const Table *table, gint n
 	
 	gtk_list_store_set(liststore, &iter, 0, symbol, -1);
 
+	/*todo: cup choose team user */
 	treeview_get_table_element_colours(table, i, colour_fg, colour_bg, FALSE);
-	sprintf(buf[0], "<span background='%s' foreground = '%s'>%d</span>",
+	sprintf(buf[0], "<span background='%s' foreground='%s'>%d</span>",
 		colour_bg, colour_fg, i + 1);
 
 	treeview_get_table_element_colours(table, i, colour_fg, colour_bg, TRUE);
-	sprintf(buf[1], "<span background='%s' foreground = '%s'>%s</span>", 
+	sprintf(buf[1], "<span background='%s' foreground='%s'>%s</span>", 
 		colour_bg, colour_fg, elem->team->name->str);
 
 	for(j=2;j<10;j++)
@@ -1607,9 +1608,46 @@ treeview_show_transfer_list(GtkTreeView *treeview)
 void
 treeview_create_own_results(const Team *tm, gchar *buf)
 {
-
+    gint i, res[2];
+    gchar buf2[SMALL];
+    GPtrArray *matches = fixture_get_matches(current_user.tm, tm);        
 
     strcpy(buf, "");
+
+    for(i=0;i<matches->len;i++)
+    {
+	res[0] = math_sum_int_array(((Fixture*)g_ptr_array_index(matches, i))->result[0], 2);
+	res[1] = math_sum_int_array(((Fixture*)g_ptr_array_index(matches, i))->result[1], 2);
+	
+	if(res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] != current_user.tm] >
+	   res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm])
+	    sprintf(buf2, _("W %d : %d"), 
+		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] != current_user.tm],
+		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm]);
+	else if(res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] != current_user.tm] <
+		res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm])
+	    sprintf(buf2, _("L %d : %d"), 
+		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] != current_user.tm],
+		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm]);
+	else
+	    sprintf(buf2, _("D %d : %d"),
+		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] != current_user.tm],
+		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm]);
+	
+	if(((Fixture*)g_ptr_array_index(matches, i))->home_advantage)
+	{
+	    if(((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm)
+		strcat(buf2, _(" (H) "));
+	    else
+		strcat(buf2, _(" (A) "));
+	}
+	else
+	    strcat(buf2, _(" (N) "));
+
+	strcat(buf, buf2);
+    }
+
+    g_ptr_array_free(matches, TRUE);
 }
 
 /** Show a row of WDWWLL type results and the goals for and against.

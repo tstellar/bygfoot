@@ -249,12 +249,14 @@ file_get_next_opt_line(FILE *fil, gchar *opt_name, gchar *opt_value)
 /** Load a file containing name - value pairs into
     the specified array. */
 void
-file_load_opt_file(FILE *fil, GArray **option_array)
+file_load_opt_file(FILE *fil, OptionList *optionlist)
 {
+    gint i;
     gchar opt_name[SMALL], opt_value[SMALL];
     Option new;
 
-    free_option_array(option_array, TRUE);
+    free_option_array(&optionlist->list, TRUE);
+    g_datalist_init(&optionlist->datalist);
 
     while(file_get_next_opt_line(fil, opt_name, opt_value))
     {
@@ -270,8 +272,12 @@ file_load_opt_file(FILE *fil, GArray **option_array)
 	    sscanf(opt_value, "%d", &new.value);
 	}
 
-	g_array_append_val(*option_array, new);
+	g_array_append_val(optionlist->list, new);
     }
+
+    for(i=0;i<optionlist->list->len;i++)
+	g_datalist_set_data(&optionlist->datalist, g_array_index(optionlist->list, Option, i).name->str,
+			    &g_array_index(optionlist->list, Option, i));
 
     fclose(fil);
 }

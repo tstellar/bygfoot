@@ -40,7 +40,7 @@ free_user(User *user)
     free_g_string(&user->name);
     free_g_string(&user->font_name);
     free_live_game(&user->live_game);
-    free_option_array(&user->options, FALSE);
+    free_option_array(&user->options.list, FALSE);
 
     for(i=0;i<user->events->len;i++)
 	free_event(&g_array_index(user->events, Event, i));
@@ -323,8 +323,8 @@ free_variables(void)
 
     free_g_array(&transfer_list);
 
-    free_option_array(&options, FALSE);
-    free_option_array(&constants, FALSE);
+    free_option_array(&options.list, FALSE);
+    free_option_array(&constants.list, FALSE);
 }
 
 /**

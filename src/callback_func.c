@@ -33,7 +33,7 @@ callback_show_next_live_game(void)
 		   fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j)) != -1 &&
 		   g_array_index(lig(i).fixtures, Fixture, j).attendance == -1 &&
 		    option_int("int_opt_user_show_live_game",
-			       usr(fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j))).
+			       &usr(fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j))).
 			       options))
 		{
 		    live_game_calculate_fixture(&g_array_index(lig(i).fixtures, Fixture, j));
@@ -49,7 +49,7 @@ callback_show_next_live_game(void)
 		   fixture_user_team_involved(&g_array_index(cp(i).fixtures, Fixture, j)) != -1 &&
 		   g_array_index(cp(i).fixtures, Fixture, j).attendance == -1 &&
 		   option_int("int_opt_user_show_live_game",
-			      usr(fixture_user_team_involved(&g_array_index(cp(i).fixtures, Fixture, j))).
+			      &usr(fixture_user_team_involved(&g_array_index(cp(i).fixtures, Fixture, j))).
 			      options))
 		{
 		    live_game_calculate_fixture(&g_array_index(cp(i).fixtures, Fixture, j));

@@ -229,7 +229,7 @@ live_game_evaluate_unit(LiveGameUnit *unit)
     {
 	live_game_finish_unit();
 	if(type != LIVE_GAME_EVENT_END_MATCH && show && 
-	   option_int("int_opt_user_pause_break", usr(fixture_user_team_involved(match->fix)).options))
+	   option_int("int_opt_user_pause_break", &usr(fixture_user_team_involved(match->fix)).options))
 	    misc_callback_pause_live_game();
     }
     else if(type != LIVE_GAME_EVENT_END_MATCH)
@@ -397,9 +397,9 @@ live_game_event_injury(gint team, gint player, gboolean create_new)
 	    if(show && 
 	       team_is_user(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]]) != -1 && 
 	       option_int("int_opt_user_pause_injury",
-			  usr(team_is_user(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]])).options) &&
+			  &usr(team_is_user(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]])).options) &&
 	       !option_int("int_opt_user_auto_sub",
-			   usr(team_is_user(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]])).options))
+			   &usr(team_is_user(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]])).options))
 		misc_callback_pause_live_game();
 	    else if(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->players->len > 11)
 	    {
@@ -568,10 +568,10 @@ live_game_event_penalty(void)
 
 	if(team_is_user(tm[last_unit.possession]) != -1 &&
 	   option_int("int_opt_user_penalty_shooter",
-		      usr(team_is_user(tm[last_unit.possession])).options) != -1)
+		      &usr(team_is_user(tm[last_unit.possession])).options) != -1)
 	    last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
 		option_int("int_opt_user_penalty_shooter",
-			     usr(team_is_user(tm[last_unit.possession])).options);
+			   &usr(team_is_user(tm[last_unit.possession])).options);
 	else
 	    last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
 		game_get_player(tm[last_unit.possession], GAME_PLAYER_TYPE_PENALTY, -1, -1, FALSE);
@@ -721,10 +721,10 @@ live_game_event_free_kick(void)
     new.event.commentary = g_string_new("freekick");
     if(team_is_user(tm[new.possession]) != -1 &&
        option_int("int_opt_user_penalty_shooter",
-		    usr(team_is_user(tm[last_unit.possession])).options) != -1)
+		  &usr(team_is_user(tm[last_unit.possession])).options) != -1)
 	new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
 	    option_int("int_opt_user_penalty_shooter",
-			 usr(team_is_user(tm[last_unit.possession])).options);
+		       &usr(team_is_user(tm[last_unit.possession])).options);
     else
 	new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
 	    game_get_player(tm[new.possession], new.area, 0, -1, TRUE);
@@ -770,9 +770,9 @@ live_game_event_send_off(gint team, gint player, gboolean second_yellow)
     {
 	if(show && team_is_user(tm[team]) != -1 &&
 	   option_int("int_opt_user_pause_red",
-		      usr(team_is_user(tm[team])).options) &&
+		      &usr(team_is_user(tm[team])).options) &&
 	   !option_int("int_opt_user_auto_sub",
-		       usr(team_is_user(tm[team])).options))
+		       &usr(team_is_user(tm[team])).options))
 	    misc_callback_pause_live_game();
 	else if(tm[team]->players->len > 11)
 	{
@@ -1151,7 +1151,7 @@ live_game_reset(Fixture *fix)
 	&usr(fixture_user_team_involved(fix)).live_game : &live_game_temp;
     show = (fixture_user_team_involved(fix) != -1 && 
 	    option_int("int_opt_user_show_live_game", 
-			 usr(fixture_user_team_involved(fix)).options));
+		       &usr(fixture_user_team_involved(fix)).options));
 
     stat2 = fixture_user_team_involved(fix);
 
@@ -1439,7 +1439,7 @@ live_game_finish_unit(void)
 	game_get_values(match->fix, match->team_values,
 			match->home_advantage);
 	if(stat2 == cur_user && show &&
-	   unit->minute % const_int("int_live_game_player_list_refresh") == 0)
+	   unit->minute % opt_int("int_opt_live_game_player_list_refresh") == 0)
 	    treeview_show_user_player_list(&current_user);
     }
 

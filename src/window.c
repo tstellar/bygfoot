@@ -7,6 +7,8 @@
 #include "misc_interface.h"
 #include "misc2_interface.h"
 #include "option.h"
+#include "option_gui.h"
+#include "options_interface.h"
 #include "support.h"
 #include "user.h"
 #include "window.h"
@@ -39,6 +41,17 @@ window_show_startup(void)
 
     free_g_string_array(&dir_contents);
 }
+
+
+/**  Show the options window. */
+void
+window_show_options(void)
+{
+    window_create(WINDOW_OPTIONS);
+
+    option_gui_set_up_window();
+}
+
 
 /** Show the digits window with the labels and values set 
     according to the arguments. */
@@ -210,7 +223,7 @@ window_create(gint window_type)
 	    wind = window.live;
 	    gtk_spin_button_set_value(
 		GTK_SPIN_BUTTON(lookup_widget(wind, "spinbutton_speed")),
-		(gfloat)option_int("int_opt_user_live_game_speed", usr(stat2).options));
+		(gfloat)option_int("int_opt_user_live_game_speed", &usr(stat2).options));
 	    break;
 	case WINDOW_STARTUP_USERS:
 	    if(window.startup_users != NULL)
@@ -282,6 +295,17 @@ window_create(gint window_type)
 	    }
 	    wind = window.yesno;
 	    strcpy(buf, "???");
+	    break;
+	case WINDOW_OPTIONS:
+	    if(window.options != NULL)
+		g_warning("window_create: called on already existing window\n");
+	    else
+	    {
+		popups_active++;
+		window.options = create_window_options();
+	    }
+	    wind = window.options;
+	    strcpy(buf, "Options");
 	    break;
     }
 

@@ -1,6 +1,7 @@
 #include "bygfoot.h"
 #include "enums.h"
 #include "live_game_struct.h"
+#include "option_struct.h"
 #include "player_struct.h"
 #include "team_struct.h"
 #include "user_struct.h"
@@ -17,10 +18,10 @@ gint season, week, week_round;
 
 /** Array of options that get read from
     bygfoot.conf. */
-GArray *options;
-/** Array of constants that get read from the constans
+OptionList options;
+/** Array of constants that get read from the constants
     file specified in bygfoot.conf. */
-GArray *constants;
+OptionList constants;
 
 /** The array containing players to be transfered.
     @see TransferPlayer */

@@ -234,7 +234,7 @@ void
 on_menu_preferences_activate           (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-
+    window_show_options();
 }
 
 

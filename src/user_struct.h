@@ -4,6 +4,7 @@
 #include "bygfoot.h"
 #include "enums.h"
 #include "live_game_struct.h"
+#include "option_struct.h"
 #include "player_struct.h"
 #include "team_struct.h"
 
@@ -59,7 +60,7 @@ typedef struct
     /** The team the user manages. */
     Team *tm;
     /** User options. */
-    GArray *options;
+    OptionList options;
     /** Events shown each week. */
     GArray *events;
     /** User counters (not changeable by the user),

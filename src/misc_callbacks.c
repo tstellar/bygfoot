@@ -231,7 +231,7 @@ on_spinbutton_speed_value_changed      (GtkSpinButton   *spinbutton,
                                         gpointer         user_data)
 {
     option_set_int("int_opt_user_live_game_speed",
-		   usr(stat2).options, gtk_spin_button_get_value_as_int(spinbutton));
+		   &usr(stat2).options, gtk_spin_button_get_value_as_int(spinbutton));
 }
 
 

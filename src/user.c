@@ -27,7 +27,6 @@ user_new(void)
 	new.live_game.stats.players[i][0] = 
 	    new.live_game.stats.players[i][1] = NULL;
 
-    new.options = g_array_new(FALSE, FALSE, sizeof(Option));
     new.events = g_array_new(FALSE, FALSE, sizeof(Event)); 
 
     return new;
@@ -139,10 +138,10 @@ user_set_player_list_attributes(const User *user, PlayerListAttribute *attribute
 
     sprintf(prefix, "int_opt_user_pl%d_att", list_number);
 
-    for(i=0;i<user->options->len;i++)
-	if(g_str_has_prefix(g_array_index(user->options, Option, i).name->str, prefix))
+    for(i=0;i<user->options.list->len;i++)
+	if(g_str_has_prefix(g_array_index(user->options.list, Option, i).name->str, prefix))
 	{
-	    attribute->on_off[cnt] = g_array_index(user->options, Option, i).value;
+	    attribute->on_off[cnt] = g_array_index(user->options.list, Option, i).value;
 	    cnt++;
 	}
 }

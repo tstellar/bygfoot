@@ -100,4 +100,7 @@ fixture_get_latest(const Team *tm);
 gint
 fixture_compare_func(gconstpointer a, gconstpointer b, gpointer data);
 
+GPtrArray*
+fixture_get_matches(const Team *tm1, const Team *tm2);
+
 #endif

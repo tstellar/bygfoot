@@ -251,6 +251,7 @@ fixture_winner_of(const Fixture *fix)
 
     first_leg = fixture_get_first_leg(fix);
 
+    /*d*/
     printf("win_of %s %d - %d %s\n",
 	   fix->teams[0]->name->str, fix->result[0][0],
 	   fix->result[1][0],
@@ -920,4 +921,39 @@ fixture_get_latest(const Team *tm)
     g_ptr_array_sort_with_data(latest, fixture_compare_func, GINT_TO_POINTER(FIXTURE_COMPARE_DATE));
 
     return latest;
+}
+
+/** Return a pointer array with all the matches featuring the two teams. */
+GPtrArray*
+fixture_get_matches(const Team *tm1, const Team *tm2)
+{
+    gint i, j;
+    GPtrArray *matches = g_ptr_array_new();
+
+    for(i=0;i<ligs->len;i++)
+	if(lig(i).id == tm1->clid)
+	    for(j=0;j<lig(i).fixtures->len;j++)
+	    {
+		if(g_array_index(lig(i).fixtures, Fixture, j).attendance == -1)
+		    break;
+		else if((g_array_index(lig(i).fixtures, Fixture, j).teams[0] == tm1 &&
+			 g_array_index(lig(i).fixtures, Fixture, j).teams[1] == tm2) ||
+			(g_array_index(lig(i).fixtures, Fixture, j).teams[0] == tm2 &&
+			 g_array_index(lig(i).fixtures, Fixture, j).teams[1] == tm1))
+		    g_ptr_array_add(matches, &g_array_index(lig(i).fixtures, Fixture, j));
+	    }
+
+    for(i=0;i<cps->len;i++)
+	for(j=0;j<cp(i).fixtures->len;j++)
+	{
+	    if(g_array_index(cp(i).fixtures, Fixture, j).attendance == -1)
+		break;
+	    else if((g_array_index(cp(i).fixtures, Fixture, j).teams[0] == tm1 &&
+		     g_array_index(cp(i).fixtures, Fixture, j).teams[1] == tm2) ||
+		    (g_array_index(cp(i).fixtures, Fixture, j).teams[0] == tm2 &&
+		     g_array_index(cp(i).fixtures, Fixture, j).teams[1] == tm1))
+		g_ptr_array_add(matches, &g_array_index(cp(i).fixtures, Fixture, j));
+	}
+
+    return matches;
 }

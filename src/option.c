@@ -7,15 +7,28 @@
     @return The string_value of the option.
     @see #Option */
 gchar*
-option_string(gchar *name, GArray *option_array)
+option_string(const gchar *name, OptionList *optionlist)
 {
-    gint i;
+    gpointer element = g_datalist_get_data(&optionlist->datalist, name);
+    
+    if(element == NULL)
+	g_warning("option_string: option named %s not found\n", name);
+    else
+	return ((Option*)element)->string_value->str;
 
-    for(i=0;i<option_array->len;i++)
-	if(strcmp(g_array_index(option_array, Option, i).name->str, name) == 0)
-	    return g_array_index(option_array, Option, i).string_value->str;
+    return NULL;
+}
 
-    g_warning("option_string: option named %s not found\n", name);
+/** Return the GString pointer going with the option. */
+GString*
+option_string_pointer(const gchar *name, OptionList *optionlist)
+{
+    gpointer element = g_datalist_get_data(&optionlist->datalist, name);
+    
+    if(element == NULL)
+	g_warning("option_string: option named %s not found\n", name);
+    else
+	return ((Option*)element)->string_value;
 
     return NULL;
 }
@@ -26,17 +39,30 @@ option_string(gchar *name, GArray *option_array)
     @return The value of the option.
     @see #Option */
 gint
-option_int(gchar *name, GArray *option_array)
+option_int(const gchar *name, OptionList *optionlist)
 {
-    gint i;
-
-    for(i=0;i<option_array->len;i++)
-	if(strcmp(g_array_index(option_array, Option, i).name->str, name) == 0)
-	    return g_array_index(option_array, Option, i).value;
-
-    g_warning("option_int: option named %s not found\n", name);
+    gpointer element = g_datalist_get_data(&optionlist->datalist, name);
+    
+    if(element == NULL)
+	g_warning("option_int: option named %s not found\n", name);
+    else
+	return ((Option*)element)->value;
 
     return -1;
+}
+
+/** Return the address of an options variable. */
+gint*
+option_int_pointer(const gchar *name, OptionList *optionlist)
+{
+    gpointer element = g_datalist_get_data(&optionlist->datalist, name);
+    
+    if(element == NULL)
+	g_warning("option_int: option named %s not found\n", name);
+    else
+	return &((Option*)element)->value;
+
+    return NULL;
 }
 
 /** Return the int going with the option named 'name'
@@ -45,15 +71,14 @@ option_int(gchar *name, GArray *option_array)
     @return The value of the option cast to float and divided by 1000.
     @see #Option */
 gfloat
-option_float(gchar *name, GArray *option_array)
+option_float(const gchar *name, OptionList *optionlist)
 {
-    gint i;
+    gpointer element = g_datalist_get_data(&optionlist->datalist, name);
     
-    for(i=0;i<option_array->len;i++)
-	if(strcmp(g_array_index(option_array, Option, i).name->str, name) == 0)
-	    return (gfloat)g_array_index(option_array, Option, i).value / 10000;
-
-    g_warning("option_float: option named %s not found\n", name);
+    if(element == NULL)
+	g_warning("option_float: option named %s not found\n", name);
+    else
+	return (gfloat)((Option*)element)->value / 10000;
 
     return -1;
 }
@@ -63,19 +88,14 @@ option_float(gchar *name, GArray *option_array)
     @param option_array The option array.
     @param new_value The value we set. */
 void
-option_set_string(gchar *name, GArray *option_array, gchar *new_value)
+option_set_string(const gchar *name, OptionList *optionlist, const gchar *new_value)
 {
-    gint i;
-
-    for(i=0;i<option_array->len;i++)
-	if(strcmp(g_array_index(option_array, Option, i).name->str, name) == 0)
-	{
-		g_string_printf(g_array_index(option_array, Option, i).string_value,
-				"%s", new_value);
-		return;
-	}
-
-    g_warning("option_set_string: option named %s not found\n", name);
+    gpointer element = g_datalist_get_data(&optionlist->datalist, name);
+    
+    if(element == NULL)
+	g_warning("option_set_string: option named %s not found\n", name);
+    else
+	g_string_printf(((Option*)element)->string_value, "%s", new_value);
 }
 
 /** Change the value of an int option in the array.
@@ -83,16 +103,12 @@ option_set_string(gchar *name, GArray *option_array, gchar *new_value)
     @param option_array The option array.
     @param new_value The value we set. */
 void
-option_set_int(gchar *name, GArray *option_array, gint new_value)
+option_set_int(const gchar *name, OptionList *optionlist, gint new_value)
 {
-    gint i;
+    gpointer element = g_datalist_get_data(&optionlist->datalist, name);
     
-    for(i=0;i<option_array->len;i++)
-	if(strcmp(g_array_index(option_array, Option, i).name->str, name) == 0)
-	{
-	    g_array_index(option_array, Option, i).value = new_value;
-	    return;
-	}
-
-    g_warning("option_set_int: option named %s not found\n", name);
+    if(element == NULL)
+	g_warning("option_set_int: option named %s not found\n", name);
+    else
+	((Option*)element)->value = new_value;
 }

@@ -50,7 +50,7 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
     gtk_progress_bar_set_fraction(progress_bar, (fraction > 1) ? 1 : fraction);
     gtk_progress_bar_set_text(progress_bar, buf);
     usleep(500500 + option_int("int_opt_user_live_game_speed",
-				 usr(stat2).options) * 50000);
+			       &usr(stat2).options) * 50000);
     while(gtk_events_pending())
 	gtk_main_iteration();
 
