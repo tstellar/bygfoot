@@ -87,5 +87,7 @@ game_player_card(gint clid, Player *pl, gboolean red, gboolean second_yellow);
 void
 game_substitute_player_send_off(Team *tm, gint player_number, 
 				gint *to_substitute, gint *substitute);
+void
+game_decrease_fitness(const Fixture *fix);
 
 #endif

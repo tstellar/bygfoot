@@ -100,4 +100,7 @@ live_game_event_substitution(gint team_number, gint sub_in, gint sub_out);
 void
 live_game_event_team_change(gint team_number, gint event_type);
 
+void
+live_game_finish_unit(void);
+
 #endif

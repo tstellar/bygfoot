@@ -666,3 +666,16 @@ game_substitute_player_send_off(Team *tm, gint player_number,
 	treeview_show_user_player_list(&usr(current_user), 1);
     }
 }
+
+/** Decrease the players' fitness during a live game.
+    @param fix The match being played. */
+void
+game_decrease_fitness(const Fixture *fix)
+{
+    gint i, j;
+
+    for(i=0;i<2;i++)
+	for(j=0;j<11;j++)
+	    if(player_of(fix->teams[i], j)->cskill > 0)
+		player_decrease_fitness(player_of(fix->teams[i], j));
+}

@@ -84,4 +84,7 @@ player_id_index(const Team *tm, gint player_id);
 gfloat
 player_get_game_skill(const Player *pl, gboolean skill);
 
+void
+player_decrease_fitness(Player *pl);
+
 #endif

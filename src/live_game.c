@@ -226,13 +226,13 @@ live_game_evaluate_unit(LiveGameUnit *unit)
     else if(type == LIVE_GAME_EVENT_GENERAL)
 	live_game_event_general(FALSE);
     else if(type == LIVE_GAME_EVENT_START_MATCH)
-	live_game_generate_commentary(&last_unit);
+	live_game_finish_unit();
     else if(type == LIVE_GAME_EVENT_HALF_TIME ||
 	    type == LIVE_GAME_EVENT_EXTRA_TIME ||
 	    type == LIVE_GAME_EVENT_PENALTIES ||
 	    type == LIVE_GAME_EVENT_END_MATCH)
     {
-	live_game_generate_commentary(&last_unit);
+	live_game_finish_unit();
 	if(type != LIVE_GAME_EVENT_END_MATCH && show && 
 	   option_int("int_opt_user_pause_break", usr(fixture_user_team_involved(match->fix)).options))
 	    misc_callback_pause_live_game();
@@ -292,7 +292,7 @@ live_game_event_foul(void)
 
     last_unit.event.type = type;
 
-    live_game_generate_commentary(&last_unit);
+    live_game_finish_unit();
 
     if(type == LIVE_GAME_EVENT_FOUL_RED ||
        type == LIVE_GAME_EVENT_FOUL_RED_INJURY ||
@@ -344,7 +344,7 @@ live_game_event_lost_possession(void)
 	       last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER],
 	       last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2]);
 
-    live_game_generate_commentary(&last_unit);
+    live_game_finish_unit();
 
     live_game_event_general(TRUE);
 }
@@ -382,7 +382,7 @@ live_game_event_injury(gint team, gint player, gboolean create_new)
     if(math_rnd(0, 1) < const_float("float_live_game_injury_is_temp"))
 	last_unit.event.type = LIVE_GAME_EVENT_TEMP_INJURY;
 
-    live_game_generate_commentary(&last_unit);
+    live_game_finish_unit();
 
     if(last_unit.event.type == LIVE_GAME_EVENT_INJURY)
     {
@@ -437,7 +437,7 @@ live_game_event_stadium(void)
     else if(rndom < const_float("float_live_game_stadium_event_breakdown"))
 	last_unit.event.type = LIVE_GAME_EVENT_STADIUM_BREAKDOWN;
 
-    live_game_generate_commentary(&last_unit);
+    live_game_finish_unit();
 
     live_game_event_general(TRUE);
 }
@@ -494,7 +494,7 @@ live_game_event_scoring_chance(void)
 	}
     }
 
-    live_game_generate_commentary(&last_unit);
+    live_game_finish_unit();
 
     live_game_event_duel();
 }
@@ -559,7 +559,7 @@ live_game_event_penalty(void)
 		game_get_player(tm[last_unit.possession], GAME_PLAYER_TYPE_PENALTY, -1, -1, FALSE);
     }
 
-    live_game_generate_commentary(&last_unit);
+    live_game_finish_unit();
 
     live_game_event_duel();
 }
@@ -644,7 +644,7 @@ live_game_event_general(gboolean create_new)
 	       last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER],
 	       last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2]);
 
-    live_game_generate_commentary(&last_unit);
+    live_game_finish_unit();
 }
 
 /** Fill in the players values in a general unit. */
@@ -713,7 +713,7 @@ live_game_event_free_kick(void)
 
     g_array_append_val(unis, new);
 
-    live_game_generate_commentary(&last_unit);
+    live_game_finish_unit();
 
     live_game_event_duel();
 }
@@ -739,7 +739,7 @@ live_game_event_send_off(gint team, gint player, gboolean second_yellow)
 
     g_array_append_val(unis, new);
 
-    live_game_generate_commentary(&last_unit);
+    live_game_finish_unit();
 
     game_player_card(match->fix->clid, player_of_id(tm[team], player), TRUE, second_yellow);
     
@@ -805,7 +805,7 @@ live_game_event_substitution(gint team_number, gint sub_in, gint sub_out)
 
     g_array_append_val(unis, new);
 
-    live_game_generate_commentary(&last_unit);
+    live_game_finish_unit();
 }
 
 /** Show a team change event, e.g. structure change. 
@@ -827,7 +827,7 @@ live_game_event_team_change(gint team_number, gint event_type)
 
     g_array_append_val(unis, new);
     
-    live_game_generate_commentary(&last_unit);
+    live_game_finish_unit();
 }
 
 /** Calculate whether a player who tries to score succeeds. */
@@ -898,7 +898,7 @@ live_game_event_duel(void)
 
     g_array_append_val(unis, new);
 
-    live_game_generate_commentary(&last_unit);
+    live_game_finish_unit();
 
     if(last_unit.time != LIVE_GAME_UNIT_TIME_PENALTIES)
 	live_game_event_general(TRUE);
@@ -1279,9 +1279,6 @@ live_game_generate_commentary(LiveGameUnit *unit)
 		g_string_printf(commentary, "%s changes anti-boost to ON.",
 				tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->name->str);
     }
-    
-    if(show)
-	game_gui_live_game_show_unit(unit);
 }
 
 /** Assemble some stats like ball possession or shots
@@ -1406,6 +1403,26 @@ live_game_pit_teams(const LiveGameUnit *unit, gfloat exponent)
 		      match->team_values[!unit->possession][GAME_TEAM_VALUE_DEFEND], exponent);
 
     return factor;
+}
+
+/** Some polishing of the latest unit. Write commentary etc. */
+void
+live_game_finish_unit(void)
+{
+    LiveGameUnit *unit = &last_unit;
+
+    live_game_generate_commentary(unit);
+
+    if(unit->minute != -1 && unit->time != LIVE_GAME_UNIT_TIME_PENALTIES)
+    {
+	game_decrease_fitness(match->fix);
+	if(stat2 == current_user && 
+	   unit->minute % const_int("int_live_game_player_list_refresh") == 0)
+	    treeview_show_user_player_list(&usr(current_user), 1);
+    }
+
+    if(show)
+	game_gui_live_game_show_unit(unit);
 }
 
 /** Find a random player (influenced by fitness) who gets

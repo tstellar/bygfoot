@@ -623,3 +623,36 @@ player_get_game_skill(const Player *pl, gboolean skill)
     return (gfloat)pl->cskill * powf((gfloat)pl->fitness / 10000,
 				     const_float("float_player_fitness_impact_on_skill"));
 }
+
+/** Decrease a player's fitness during a match.
+    @param pl The player.  */
+void
+player_decrease_fitness(Player *pl)
+{
+    gint i;
+    gint age_limits[7] =
+	{const_int("int_player_fitness_decrease_peak_age_diff1"),
+	 const_int("int_player_fitness_decrease_peak_age_diff2"),
+	 const_int("int_player_fitness_decrease_peak_age_diff3"),
+	 const_int("int_player_fitness_decrease_peak_age_diff4"),
+	 const_int("int_player_fitness_decrease_peak_age_diff5"),
+	 const_int("int_player_fitness_decrease_peak_age_diff6"),
+	 const_int("int_player_fitness_decrease_peak_age_diff7")};
+    gint reduce[8] =
+	{const_int("int_player_fitness_decrease_minus1"),
+	 const_int("int_player_fitness_decrease_minus2"),
+	 const_int("int_player_fitness_decrease_minus3"),
+	 const_int("int_player_fitness_decrease_minus4"),
+	 const_int("int_player_fitness_decrease_minus5"),
+	 const_int("int_player_fitness_decrease_minus6"),
+	 const_int("int_player_fitness_decrease_minus7"),
+	 const_int("int_player_fitness_decrease_minus_else")};
+
+    gint diff = pl->peak_age - pl->age;
+
+    for(i=0;i<7;i++)
+	if(diff > age_limits[i])
+	    break;
+
+    pl->fitness = MAX(0, pl->fitness - reduce[i]);
+}

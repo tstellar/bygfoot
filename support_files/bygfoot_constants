@@ -185,7 +185,7 @@ float_live_game_stadium_event_breakdown 1000
 # foul probabilities. 
 float_live_game_foul 110
 float_live_game_foul_red_injury 50
-float_live_game_foul_red 800
+float_live_game_foul_red 80
 float_live_game_foul_yellow 230
 
     gfloat duration[6]={0,0.7,0.85,0.95,0.975,1};
@@ -246,6 +246,10 @@ int_player_injury_duration_dev_shoulder 5
 int_player_injury_duration_ligament 22
 int_player_injury_duration_dev_ligament 8
 
+# refresh rate of the player list during a live game
+# the smaller the more often the list gets refreshed
+int_live_game_player_list_refresh 5
+
 # probability that a scoring chance is an own goal. 
 float_live_game_scoring_chance_is_own_goal 10
 
@@ -287,6 +291,24 @@ float_player_fitness_impact_on_skill 250
 # influence of the fitness on the player contribution.
 #    the higher the worse. @see game_get_player_contribution()
 float_player_fitness_exponent 250
+
+# these determine the players' fitness decrease during
+# a match
+int_player_fitness_decrease_peak_age_diff1 500
+int_player_fitness_decrease_minus1 8
+int_player_fitness_decrease_peak_age_diff2 250
+int_player_fitness_decrease_minus2 7
+int_player_fitness_decrease_peak_age_diff3 150
+int_player_fitness_decrease_minus3 6
+int_player_fitness_decrease_peak_age_diff4 100
+int_player_fitness_decrease_minus4 5
+int_player_fitness_decrease_peak_age_diff5 -100
+int_player_fitness_decrease_minus5 5
+int_player_fitness_decrease_peak_age_diff6 -200
+int_player_fitness_decrease_minus6 7
+int_player_fitness_decrease_peak_age_diff7 -400
+int_player_fitness_decrease_minus7 10
+int_player_fitness_decrease_minus_else 15
 
 # bounds for the home advantage factor
 float_game_home_advantage_lower 40
