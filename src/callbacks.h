@@ -78,22 +78,6 @@ void
 on_button_help_clicked                 (GtkButton       *button,
                                         gpointer         user_data);
 
-void
-on_structure_entry_activate            (GtkEntry        *entry,
-                                        gpointer         user_data);
-
-void
-on_structure_button_clicked            (GtkButton       *button,
-                                        gpointer         user_data);
-
-void
-on_button_rearrange_clicked            (GtkButton       *button,
-                                        gpointer         user_data);
-
-void
-on_button_undo_clicked                 (GtkButton       *button,
-                                        gpointer         user_data);
-
 gboolean
 on_player_list2_button_press_event      (GtkWidget       *widget,
 					 GdkEventButton  *event,
@@ -109,17 +93,6 @@ on_button_browse_forward_clicked       (GtkButton       *button,
 
 void
 on_button_browse_back_clicked          (GtkButton       *button,
-                                        gpointer         user_data);
-
-void
-on_optionmenu_finstad_changed          (GtkOptionMenu   *optionmenu,
-                                        gpointer         user_data);
-void
-on_button_fixtures_clicked             (GtkButton       *button,
-                                        gpointer         user_data);
-
-void
-on_button_tables_clicked               (GtkButton       *button,
                                         gpointer         user_data);
 
 void
@@ -316,4 +289,12 @@ on_eventbox_style_button_press_event   (GtkWidget       *widget,
 gboolean
 on_eventbox_boost_button_press_event   (GtkWidget       *widget,
                                         GdkEventButton  *event,
+                                        gpointer         user_data);
+
+void
+on_button_cl_back_clicked              (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_cl_forward_clicked           (GtkButton       *button,
                                         gpointer         user_data);

@@ -130,4 +130,7 @@ player_remove_from_team(Team *tm, gint idx);
 void
 player_update_week_roundly(Team *tm, gint idx);
 
+void
+player_update_injury(Player *pl);
+
 #endif

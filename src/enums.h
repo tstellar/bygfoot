@@ -58,11 +58,9 @@ enum Status0Value
     STATUS_LIVE_GAME_PAUSE,
     STATUS_BROWSE_TEAMS,
     STATUS_TEAM_SELECTION,
-    /** We set this so that we know that
-	gui signals have to be ignored for the time being. */
-    STATUS_GUI_NO_REACTION,
     STATUS_SHOW_LAST_MATCH,
     STATUS_SHOW_LAST_MATCH_STATS,
+    STATUS_SHOW_FIXTURES,
     STATUS_END
 };
 

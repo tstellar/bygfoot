@@ -416,7 +416,7 @@ game_player_injury(Player *pl)
 	if(rndom >= injury_probs[i - 1] && rndom < injury_probs[i])
 	{	    
 	    pl->health = i;
-	    pl->recovery = duration[i - 1];
+	    pl->recovery = duration[i - 1] + 1;
 	    pl->cskill = pl->fitness = 0;	     
 	}
 }

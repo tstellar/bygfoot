@@ -270,6 +270,22 @@ int_player_injury_duration_dev_shoulder		5
 int_player_injury_duration_ligament		22
 int_player_injury_duration_dev_ligament		8
 
+# probability of injury time decrease for
+# best and good physios (values of average and bad are
+# obtained by mirroring these
+# the values should add up to 10000
+float_player_injury_recovery_best0 1000
+float_player_injury_recovery_best1 6500
+float_player_injury_recovery_best2 2500
+
+float_player_injury_recovery_good0 1500
+float_player_injury_recovery_good1 6500
+float_player_injury_recovery_good2 2000
+
+# fitness bounds after the player is recovered
+float_player_injury_recovery_fitness_lower 5000
+float_player_injury_recovery_fitness_upper 7000
+
 # fitness decrease when injury is temporary
 float_live_game_temp_injury_fitness_decrease_lower 200
 float_live_game_temp_injury_fitness_decrease_upper 800
@@ -481,6 +497,19 @@ string_treeview_cell_color_player_contract_below3 red
 # colours for cskill in wrong position
 string_treeview_cell_color_player_bad_cskill_bg lightblue
 string_treeview_cell_color_player_bad_cskill_fg red
+
+# fixture list colours
+# the header, e.g. 'champions' league round robin'
+string_treeview_fixture_header_bg lightgrey
+string_treeview_fixture_header_fg black
+
+# team of current user
+string_treeview_fixture_current_user_bg darkblue
+string_treeview_fixture_current_user_fg white
+
+# teams of other users
+string_treeview_fixture_user_bg lightsteelblue
+string_treeview_fixture_user_fg black
 
 # font attributes for the live game window result.
 string_treeview_cell_live_game_result_attributes weight='bold' size='large'

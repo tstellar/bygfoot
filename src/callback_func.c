@@ -121,3 +121,19 @@ callback_show_last_match(void)
     for(i=0;i<usr(current_user).live_game.units->len;i++)
 	game_gui_live_game_show_unit(&g_array_index(usr(current_user).live_game.units, LiveGameUnit, i));
 }
+
+/** Show some fixtures.
+    @param type An integer telling us which league/cup and which
+    week and round to show. */
+void
+callback_show_fixtures(gint type)
+{
+    const Fixture *fix = fixture_get(type, stat1, stat2, stat3,
+				     usr(current_user).tm);
+
+    treeview_show_fixtures(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")),
+			   fix->clid, fix->week_number, fix->week_round_number);
+    stat1 = fix->clid;
+    stat2 = fix->week_number;
+    stat3 = fix->week_round_number;
+}

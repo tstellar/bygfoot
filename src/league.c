@@ -1,4 +1,4 @@
-#include "cup_struct.h"
+#include "cup.h"
 #include "fixture_struct.h"
 #include "league.h"
 #include "team.h"
@@ -130,4 +130,132 @@ league_from_clid(gint clid)
 
     g_warning("league_from_clid: didn't find league with id %d\n", clid);
     return NULL;
+}
+
+/** Return the id of the next league (or cup if we are
+    at the end of the leagues array).
+    @param clid The id of the current league or cup. */
+gint
+league_cup_get_next_clid(gint clid)
+{
+    gint i, return_value = -1;
+
+    if(clid < ID_CUP_START)
+    {
+	for(i=0;i<ligs->len;i++)
+	    if(lig(i).id == clid)
+		break;
+
+	if(i != ligs->len - 1)
+	    return_value = lig(i + 1).id;
+	else if(cps->len > 0)
+	    return_value = cp(0).id;
+	else
+	    return_value = clid;
+    }
+    else
+    {
+	for(i=0;i<cps->len;i++)
+	    if(cp(i).id == clid)
+		break;
+
+	if(i != cps->len - 1)
+	    return_value = cp(i + 1).id;
+	else
+	    return_value = lig(0).id;
+    }
+
+    return return_value;
+}
+
+
+/** Return the id of the previous league or cup.
+    @param clid The id of the current league or cup. */
+gint
+league_cup_get_previous_clid(gint clid)
+{
+    gint i, return_value = -1;
+
+    if(clid < ID_CUP_START)
+    {
+	for(i=ligs->len - 1;i>=0;i--)
+	    if(lig(i).id == clid)
+		break;
+
+	if(i != 0)
+	    return_value = lig(i - 1).id;
+	else if(cps->len > 0)
+	    return_value = cp(cps->len - 1).id;
+	else
+	    return_value = clid;
+    }
+    else
+    {
+	for(i=cps->len - 1;i>=0;i--)
+	    if(cp(i).id == clid)
+		break;
+
+	if(i != 0)
+	    return_value = cp(i - 1).id;
+	else
+	    return_value = lig(ligs->len - 1).id;
+    }
+
+    return return_value;
+}
+
+/** Return the fixture coming after the specified week and round. 
+    @param league The league the fixtures of which we examine. 
+    @return A fixture pointer or NULL. */
+Fixture*
+league_cup_get_next_fixture(gint clid, gint week_number, gint week_round_number)
+{
+    gint i;
+    GArray *fixtures = (clid < ID_CUP_START) ?
+	league_from_clid(clid)->fixtures :
+	cup_from_clid(clid)->fixtures;
+
+    for(i=0;i<fixtures->len;i++)
+	if(g_array_index(fixtures, Fixture, i).week_number > week_number ||
+	   (g_array_index(fixtures, Fixture, i).week_number == week_number &&
+	    g_array_index(fixtures, Fixture, i).week_round_number > week_round_number))
+	    return &g_array_index(fixtures, Fixture, i);
+
+    return NULL;
+}
+
+/** Return the fixture coming just before the specified week and round. 
+    @param league The league the fixtures of which we examine. 
+    @return A fixture pointer or NULL. */
+Fixture*
+league_cup_get_previous_fixture(gint clid, gint week_number, gint week_round_number)
+{
+    gint i;
+    GArray *fixtures = (clid < ID_CUP_START) ?
+	league_from_clid(clid)->fixtures :
+	cup_from_clid(clid)->fixtures;
+
+    for(i=fixtures->len - 1;i>=0;i--)
+	if(g_array_index(fixtures, Fixture, i).week_number < week_number ||
+	   (g_array_index(fixtures, Fixture, i).week_number == week_number &&
+	    g_array_index(fixtures, Fixture, i).week_round_number < week_round_number))
+	    return &g_array_index(fixtures, Fixture, i);
+
+    return NULL;
+}
+
+
+/** Return the number of league in the leagues array. */
+gint
+league_get_index(gint clid)
+{
+    gint i;
+
+    for(i=0;i<ligs->len;i++)
+	if(lig(i).id == clid)
+	    return i;
+
+    g_warning("league_get_index: reached end of leagues array; clid is %d\n", clid);
+
+    return -1;
 }

@@ -58,7 +58,7 @@ GPtrArray*
 team_get_player_pointers(const Team *tm);
 
 Fixture*
-team_get_next_fixture(const Team *tm);
+team_get_fixture(const Team *tm, gboolean last_fixture);
 
 gfloat
 team_get_average_skill(const Team *tm, gboolean cskill);
@@ -67,7 +67,7 @@ gint
 team_is_user(const Team *tm);
 
 gint
-team_rank(const Team *tm);
+team_rank(const Team *tm, gint clid);
 
 void
 team_change_structure(Team *tm, gint new_structure);

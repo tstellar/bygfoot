@@ -30,4 +30,7 @@ user_set_player_list_attributes(const User *user, PlayerListAttribute *attribute
 gboolean
 user_games_in_week_round(gint week_number, gint week_round_number);
 
+User*
+user_from_team(const Team *tm);
+
 #endif

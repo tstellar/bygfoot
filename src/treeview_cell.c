@@ -174,7 +174,7 @@ treeview_cell_player_cards_to_cell(gchar *buf, const Player *pl)
 {
     gint yellow;
     Fixture *fix =
-	team_get_next_fixture(pl->team);
+	team_get_fixture(pl->team, FALSE);
 
     if(fix == NULL)
     {
@@ -245,7 +245,7 @@ treeview_cell_player_status_to_cell(GtkCellRenderer *renderer, gchar *buf, const
 void
 treeview_cell_player_games_goals_to_cell(gchar *buf, const Player *pl, gint type)
 {
-    Fixture *fix = team_get_next_fixture(pl->team);
+    Fixture *fix = team_get_fixture(pl->team, FALSE);
     gint clid = pl->team->clid;
 
     if(pl->games_goals->len == 0)

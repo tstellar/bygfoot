@@ -98,7 +98,7 @@
 		      <signal name="activate" handler="on_start_editor_activate" last_modification_time="Sun, 30 May 2004 19:58:16 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image204">
+			<widget class="GtkImage" id="image209">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-preferences</property>
 			  <property name="icon_size">1</property>
@@ -119,7 +119,7 @@
 		      <signal name="activate" handler="on_start_update_activate" last_modification_time="Mon, 13 Sep 2004 12:30:42 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image205">
+			<widget class="GtkImage" id="image210">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-refresh</property>
 			  <property name="icon_size">1</property>
@@ -168,7 +168,7 @@
 		      <signal name="activate" handler="on_menu_preferences_activate" last_modification_time="Sun, 02 Jan 2005 15:30:45 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image206">
+			<widget class="GtkImage" id="image211">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-preferences</property>
 			  <property name="icon_size">1</property>
@@ -246,6 +246,7 @@
 		      <property name="label" translatable="yes">My fixtures</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="on_menu_fixtures_activate" last_modification_time="Sun, 02 Jan 2005 15:38:39 GMT"/>
+		      <accelerator key="F4" modifiers="0" signal="activate"/>
 		    </widget>
 		  </child>
 
@@ -312,7 +313,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">All Out Defend</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">False</property>
+			      <property name="active">True</property>
 			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:16:56 GMT"/>
 			    </widget>
 			  </child>
@@ -322,7 +323,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">Defend</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">False</property>
+			      <property name="active">True</property>
 			      <property name="group">menu_all_out_defend</property>
 			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:17:07 GMT"/>
 			    </widget>
@@ -333,7 +334,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">Balanced</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">False</property>
+			      <property name="active">True</property>
 			      <property name="group">menu_all_out_defend</property>
 			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:17:14 GMT"/>
 			    </widget>
@@ -344,7 +345,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">Attack</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">False</property>
+			      <property name="active">True</property>
 			      <property name="group">menu_all_out_defend</property>
 			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:17:20 GMT"/>
 			    </widget>
@@ -379,7 +380,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">Best</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">False</property>
+			      <property name="active">True</property>
 			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:15:47 GMT"/>
 			    </widget>
 			  </child>
@@ -389,7 +390,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">Good</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">False</property>
+			      <property name="active">True</property>
 			      <property name="group">menu_scout_best</property>
 			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:15:35 GMT"/>
 			    </widget>
@@ -400,7 +401,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">Average</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">False</property>
+			      <property name="active">True</property>
 			      <property name="group">menu_scout_best</property>
 			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:15:54 GMT"/>
 			    </widget>
@@ -435,7 +436,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">Best</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">False</property>
+			      <property name="active">True</property>
 			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:16:14 GMT"/>
 			    </widget>
 			  </child>
@@ -445,7 +446,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">Good</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">False</property>
+			      <property name="active">True</property>
 			      <property name="group">menu_physio_best</property>
 			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:16:21 GMT"/>
 			    </widget>
@@ -456,7 +457,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">Average</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">False</property>
+			      <property name="active">True</property>
 			      <property name="group">menu_physio_best</property>
 			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:16:28 GMT"/>
 			    </widget>
@@ -491,7 +492,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">On</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">False</property>
+			      <property name="active">True</property>
 			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Tue, 08 Mar 2005 16:37:57 GMT"/>
 			    </widget>
 			  </child>
@@ -501,7 +502,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">Off</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">False</property>
+			      <property name="active">True</property>
 			      <property name="group">menu_boost_on</property>
 			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Tue, 08 Mar 2005 16:37:48 GMT"/>
 			    </widget>
@@ -652,7 +653,7 @@
 		      <accelerator key="F9" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image207">
+			<widget class="GtkImage" id="image212">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-go-forward</property>
 			  <property name="icon_size">1</property>
@@ -674,7 +675,7 @@
 		      <accelerator key="F8" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image208">
+			<widget class="GtkImage" id="image213">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-go-back</property>
 			  <property name="icon_size">1</property>
@@ -696,7 +697,7 @@
 		      <accelerator key="F12" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image209">
+			<widget class="GtkImage" id="image214">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-justify-fill</property>
 			  <property name="icon_size">1</property>
@@ -877,7 +878,6 @@
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
 	      <signal name="clicked" handler="on_button_quit_clicked" last_modification_time="Fri, 06 Feb 2004 17:14:19 GMT"/>
-	      <accelerator key="q" modifiers="0" signal="clicked"/>
 
 	      <child>
 		<widget class="GtkImage" id="image13">
@@ -1781,296 +1781,122 @@
 		    <widget class="GtkHBox" id="hbox_14">
 		      <property name="visible">True</property>
 		      <property name="homogeneous">False</property>
-		      <property name="spacing">0</property>
+		      <property name="spacing">2</property>
 
 		      <child>
-			<widget class="GtkVBox" id="vbox14">
+			<widget class="GtkButton" id="button_cl_back">
 			  <property name="visible">True</property>
-			  <property name="homogeneous">False</property>
-			  <property name="spacing">0</property>
+			  <property name="tooltip" translatable="yes">Previous league/cup (1)</property>
+			  <property name="can_focus">True</property>
+			  <property name="relief">GTK_RELIEF_NORMAL</property>
+			  <property name="focus_on_click">True</property>
+			  <signal name="clicked" handler="on_button_cl_back_clicked" last_modification_time="Mon, 14 Mar 2005 09:36:55 GMT"/>
+			  <accelerator key="1" modifiers="0" signal="clicked"/>
 
 			  <child>
-			    <widget class="GtkLabel" id="label31">
+			    <widget class="GtkImage" id="image215">
 			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">   </property>
-			      <property name="use_underline">False</property>
-			      <property name="use_markup">False</property>
-			      <property name="justify">GTK_JUSTIFY_LEFT</property>
-			      <property name="wrap">False</property>
-			      <property name="selectable">False</property>
+			      <property name="stock">gtk-go-back</property>
+			      <property name="icon_size">4</property>
 			      <property name="xalign">0.5</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
 			      <property name="ypad">0</property>
 			    </widget>
-			    <packing>
-			      <property name="padding">0</property>
-			      <property name="expand">False</property>
-			      <property name="fill">False</property>
-			    </packing>
 			  </child>
 			</widget>
 			<packing>
 			  <property name="padding">0</property>
-			  <property name="expand">False</property>
-			  <property name="fill">False</property>
-			  <property name="pack_type">GTK_PACK_END</property>
+			  <property name="expand">True</property>
+			  <property name="fill">True</property>
 			</packing>
 		      </child>
 
 		      <child>
-			<widget class="GtkHBox" id="hbox15">
+			<widget class="GtkButton" id="button_cl_forward">
 			  <property name="visible">True</property>
-			  <property name="homogeneous">False</property>
-			  <property name="spacing">0</property>
+			  <property name="tooltip" translatable="yes">Next league/cup (2)</property>
+			  <property name="can_focus">True</property>
+			  <property name="relief">GTK_RELIEF_NORMAL</property>
+			  <property name="focus_on_click">True</property>
+			  <signal name="clicked" handler="on_button_cl_forward_clicked" last_modification_time="Mon, 14 Mar 2005 09:37:07 GMT"/>
+			  <accelerator key="2" modifiers="0" signal="clicked"/>
 
 			  <child>
-			    <widget class="GtkVBox" id="vbox15">
+			    <widget class="GtkImage" id="image216">
 			      <property name="visible">True</property>
-			      <property name="homogeneous">False</property>
-			      <property name="spacing">0</property>
-
-			      <child>
-				<widget class="GtkLabel" id="label33">
-				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">   </property>
-				  <property name="use_underline">False</property>
-				  <property name="use_markup">False</property>
-				  <property name="justify">GTK_JUSTIFY_LEFT</property>
-				  <property name="wrap">False</property>
-				  <property name="selectable">False</property>
-				  <property name="xalign">0.5</property>
-				  <property name="yalign">0.5</property>
-				  <property name="xpad">0</property>
-				  <property name="ypad">0</property>
-				</widget>
-				<packing>
-				  <property name="padding">0</property>
-				  <property name="expand">False</property>
-				  <property name="fill">False</property>
-				</packing>
-			      </child>
-
-			      <child>
-				<widget class="GtkButton" id="button_browse_forward">
-				  <property name="border_width">2</property>
-				  <property name="visible">True</property>
-				  <property name="tooltip" translatable="yes">Next (W)</property>
-				  <property name="can_focus">True</property>
-				  <property name="relief">GTK_RELIEF_NORMAL</property>
-				  <property name="focus_on_click">True</property>
-				  <signal name="clicked" handler="on_button_browse_forward_clicked" last_modification_time="Sun, 01 Feb 2004 12:04:29 GMT"/>
-				  <accelerator key="w" modifiers="0" signal="clicked"/>
-
-				  <child>
-				    <widget class="GtkImage" id="image9">
-				      <property name="visible">True</property>
-				      <property name="stock">gtk-go-forward</property>
-				      <property name="icon_size">4</property>
-				      <property name="xalign">0.5</property>
-				      <property name="yalign">0.5</property>
-				      <property name="xpad">0</property>
-				      <property name="ypad">0</property>
-				    </widget>
-				  </child>
-				</widget>
-				<packing>
-				  <property name="padding">0</property>
-				  <property name="expand">False</property>
-				  <property name="fill">False</property>
-				</packing>
-			      </child>
+			      <property name="stock">gtk-go-forward</property>
+			      <property name="icon_size">4</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
 			    </widget>
-			    <packing>
-			      <property name="padding">0</property>
-			      <property name="expand">False</property>
-			      <property name="fill">False</property>
-			      <property name="pack_type">GTK_PACK_END</property>
-			    </packing>
-			  </child>
-
-			  <child>
-			    <widget class="GtkVBox" id="vbox16">
-			      <property name="visible">True</property>
-			      <property name="homogeneous">False</property>
-			      <property name="spacing">0</property>
-
-			      <child>
-				<widget class="GtkLabel" id="label32">
-				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">   </property>
-				  <property name="use_underline">False</property>
-				  <property name="use_markup">False</property>
-				  <property name="justify">GTK_JUSTIFY_LEFT</property>
-				  <property name="wrap">False</property>
-				  <property name="selectable">False</property>
-				  <property name="xalign">0.5</property>
-				  <property name="yalign">0.5</property>
-				  <property name="xpad">0</property>
-				  <property name="ypad">0</property>
-				</widget>
-				<packing>
-				  <property name="padding">0</property>
-				  <property name="expand">False</property>
-				  <property name="fill">False</property>
-				</packing>
-			      </child>
-
-			      <child>
-				<widget class="GtkButton" id="button_browse_back">
-				  <property name="border_width">2</property>
-				  <property name="visible">True</property>
-				  <property name="tooltip" translatable="yes">Previous (Q)</property>
-				  <property name="can_focus">True</property>
-				  <property name="relief">GTK_RELIEF_NORMAL</property>
-				  <property name="focus_on_click">True</property>
-				  <signal name="clicked" handler="on_button_browse_back_clicked" last_modification_time="Sun, 01 Feb 2004 12:04:37 GMT"/>
-
-				  <child>
-				    <widget class="GtkImage" id="image10">
-				      <property name="visible">True</property>
-				      <property name="stock">gtk-go-back</property>
-				      <property name="icon_size">4</property>
-				      <property name="xalign">0.5</property>
-				      <property name="yalign">0.5</property>
-				      <property name="xpad">0</property>
-				      <property name="ypad">0</property>
-				    </widget>
-				  </child>
-				</widget>
-				<packing>
-				  <property name="padding">0</property>
-				  <property name="expand">False</property>
-				  <property name="fill">False</property>
-				</packing>
-			      </child>
-			    </widget>
-			    <packing>
-			      <property name="padding">0</property>
-			      <property name="expand">False</property>
-			      <property name="fill">False</property>
-			      <property name="pack_type">GTK_PACK_END</property>
-			    </packing>
 			  </child>
 			</widget>
 			<packing>
 			  <property name="padding">0</property>
-			  <property name="expand">False</property>
-			  <property name="fill">False</property>
-			  <property name="pack_type">GTK_PACK_END</property>
+			  <property name="expand">True</property>
+			  <property name="fill">True</property>
 			</packing>
 		      </child>
 
 		      <child>
-			<widget class="GtkHBox" id="hbox41">
-			  <property name="homogeneous">False</property>
-			  <property name="spacing">0</property>
+			<widget class="GtkButton" id="button_browse_back">
+			  <property name="border_width">2</property>
+			  <property name="visible">True</property>
+			  <property name="tooltip" translatable="yes">Previous (Q)</property>
+			  <property name="can_focus">True</property>
+			  <property name="relief">GTK_RELIEF_NORMAL</property>
+			  <property name="focus_on_click">True</property>
+			  <signal name="clicked" handler="on_button_browse_back_clicked" last_modification_time="Sun, 01 Feb 2004 12:04:37 GMT"/>
+			  <accelerator key="q" modifiers="0" signal="clicked"/>
 
 			  <child>
-			    <widget class="GtkVBox" id="vbox33">
+			    <widget class="GtkImage" id="image10">
 			      <property name="visible">True</property>
-			      <property name="homogeneous">False</property>
-			      <property name="spacing">0</property>
-
-			      <child>
-				<widget class="GtkLabel" id="label66">
-				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">   </property>
-				  <property name="use_underline">False</property>
-				  <property name="use_markup">False</property>
-				  <property name="justify">GTK_JUSTIFY_LEFT</property>
-				  <property name="wrap">False</property>
-				  <property name="selectable">False</property>
-				  <property name="xalign">0.5</property>
-				  <property name="yalign">0.5</property>
-				  <property name="xpad">0</property>
-				  <property name="ypad">0</property>
-				</widget>
-				<packing>
-				  <property name="padding">0</property>
-				  <property name="expand">False</property>
-				  <property name="fill">False</property>
-				</packing>
-			      </child>
+			      <property name="stock">gtk-go-back</property>
+			      <property name="icon_size">4</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
 			    </widget>
-			    <packing>
-			      <property name="padding">0</property>
-			      <property name="expand">False</property>
-			      <property name="fill">True</property>
-			    </packing>
-			  </child>
-
-			  <child>
-			    <widget class="GtkVBox" id="vbox29">
-			      <property name="visible">True</property>
-			      <property name="homogeneous">False</property>
-			      <property name="spacing">0</property>
-
-			      <child>
-				<widget class="GtkLabel" id="label62">
-				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">   </property>
-				  <property name="use_underline">False</property>
-				  <property name="use_markup">False</property>
-				  <property name="justify">GTK_JUSTIFY_LEFT</property>
-				  <property name="wrap">False</property>
-				  <property name="selectable">False</property>
-				  <property name="xalign">0.5</property>
-				  <property name="yalign">0.5</property>
-				  <property name="xpad">0</property>
-				  <property name="ypad">0</property>
-				</widget>
-				<packing>
-				  <property name="padding">0</property>
-				  <property name="expand">False</property>
-				  <property name="fill">False</property>
-				</packing>
-			      </child>
-			    </widget>
-			    <packing>
-			      <property name="padding">0</property>
-			      <property name="expand">False</property>
-			      <property name="fill">True</property>
-			    </packing>
-			  </child>
-
-			  <child>
-			    <widget class="GtkVBox" id="vbox34">
-			      <property name="visible">True</property>
-			      <property name="homogeneous">False</property>
-			      <property name="spacing">0</property>
-
-			      <child>
-				<widget class="GtkLabel" id="label70">
-				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">   </property>
-				  <property name="use_underline">False</property>
-				  <property name="use_markup">False</property>
-				  <property name="justify">GTK_JUSTIFY_LEFT</property>
-				  <property name="wrap">False</property>
-				  <property name="selectable">False</property>
-				  <property name="xalign">0.5</property>
-				  <property name="yalign">0.5</property>
-				  <property name="xpad">0</property>
-				  <property name="ypad">0</property>
-				</widget>
-				<packing>
-				  <property name="padding">0</property>
-				  <property name="expand">False</property>
-				  <property name="fill">False</property>
-				</packing>
-			      </child>
-			    </widget>
-			    <packing>
-			      <property name="padding">0</property>
-			      <property name="expand">False</property>
-			      <property name="fill">False</property>
-			    </packing>
 			  </child>
 			</widget>
 			<packing>
 			  <property name="padding">0</property>
-			  <property name="expand">False</property>
+			  <property name="expand">True</property>
+			  <property name="fill">True</property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkButton" id="button_browse_forward">
+			  <property name="border_width">2</property>
+			  <property name="visible">True</property>
+			  <property name="tooltip" translatable="yes">Next (W)</property>
+			  <property name="can_focus">True</property>
+			  <property name="relief">GTK_RELIEF_NORMAL</property>
+			  <property name="focus_on_click">True</property>
+			  <signal name="clicked" handler="on_button_browse_forward_clicked" last_modification_time="Sun, 01 Feb 2004 12:04:29 GMT"/>
+			  <accelerator key="w" modifiers="0" signal="clicked"/>
+
+			  <child>
+			    <widget class="GtkImage" id="image9">
+			      <property name="visible">True</property>
+			      <property name="stock">gtk-go-forward</property>
+			      <property name="icon_size">4</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			  </child>
+			</widget>
+			<packing>
+			  <property name="padding">0</property>
+			  <property name="expand">True</property>
 			  <property name="fill">True</property>
 			</packing>
 		      </child>
@@ -2078,7 +1904,7 @@
 		    <packing>
 		      <property name="padding">4</property>
 		      <property name="expand">False</property>
-		      <property name="fill">True</property>
+		      <property name="fill">False</property>
 		    </packing>
 		  </child>
 

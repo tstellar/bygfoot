@@ -171,7 +171,10 @@ end_week_round(void)
 void
 end_week_round_results(void)
 {
-    gint i, j;
+    gint i, j, done = 0;
+    gchar buf[SMALL], buf2[SMALL];
+    gfloat num_matches =
+	(gfloat)fixture_get_number_of_matches(week, week_round);
 
     if(week_round == 1)
     {
@@ -182,13 +185,13 @@ end_week_round_results(void)
 		   g_array_index(lig(i).fixtures, Fixture, j).attendance == -1)
 		{
 		    live_game_calculate_fixture(&g_array_index(lig(i).fixtures, Fixture, j));
-		    /*d*/
-/* 		printf("%d %d %d %25s %2d - %2d %-25s\n", week, week_round, */
-/* 		       g_array_index(lig(i).fixtures, Fixture, j).clid, */
-/* 		       g_array_index(lig(i).fixtures, Fixture, j).teams[0]->name->str, */
-/* 		       g_array_index(lig(i).fixtures, Fixture, j).result[0][0], */
-/* 		       g_array_index(lig(i).fixtures, Fixture, j).result[1][0], */
-/* 		       g_array_index(lig(i).fixtures, Fixture, j).teams[1]->name->str); */
+		    done++;
+		    fixture_result_to_buf(&g_array_index(lig(i).fixtures, Fixture, j), buf);
+		    sprintf(buf2, "%s %s %s",
+			    g_array_index(lig(i).fixtures, Fixture, j).teams[0]->name->str,
+			    buf,
+			    g_array_index(lig(i).fixtures, Fixture, j).teams[1]->name->str);
+		    gui_show_progress((gfloat)done / num_matches, buf2);
 		}
     }
     else
@@ -200,30 +203,17 @@ end_week_round_results(void)
 		   g_array_index(cp(i).fixtures, Fixture, j).attendance == -1)
 		{
 		    live_game_calculate_fixture(&g_array_index(cp(i).fixtures, Fixture, j));
-		    /*d*/
-/* 		    printf("%d %d %d %25s %d %d %d - %d %d %d %-25s\n", week, week_round, */
-/* 			   g_array_index(cp(i).fixtures, Fixture, j).clid, */
-/* 			   g_array_index(cp(i).fixtures, Fixture, j).teams[0]->name->str, */
-/* 			   g_array_index(cp(i).fixtures, Fixture, j).result[0][0], */
-/* 			   g_array_index(cp(i).fixtures, Fixture, j).result[0][1],		        */
-/* 			   g_array_index(cp(i).fixtures, Fixture, j).result[0][2],		        */
-/* 			   g_array_index(cp(i).fixtures, Fixture, j).result[1][0],		        */
-/* 			   g_array_index(cp(i).fixtures, Fixture, j).result[1][1],		        */
-/* 			   g_array_index(cp(i).fixtures, Fixture, j).result[1][2],		        */
-/* 			   g_array_index(cp(i).fixtures, Fixture, j).teams[1]->name->str); */
+		    done++;
+		    fixture_result_to_buf(&g_array_index(cp(i).fixtures, Fixture, j), buf);
+		    sprintf(buf2, "%s %s %s",
+			    g_array_index(cp(i).fixtures, Fixture, j).teams[0]->name->str,
+			    buf,
+			    g_array_index(cp(i).fixtures, Fixture, j).teams[1]->name->str);
+		    gui_show_progress((gfloat)done / num_matches, buf2);
 		}
     }
 
-    /*d*/
-    Team *tm = &g_array_index(lig(0).teams, Team, 4);
-    Player *pl = NULL;
-    printf("\n+++ struc %d style %d\n", tm->structure, tm->style);
-    for(i=0;i<tm->players->len;i++)
-    {
-	pl = player_of(tm, i);
-	printf("%20s p %d cp %d s %.0f cs %.0f fi %.2f\n",
-	       pl->name->str, pl->pos, pl->cpos, pl->skill, pl->cskill, pl->fitness);
-    }
+    gui_show_progress(-1, "");
 }
 
 /** Sort league and cup tables. */

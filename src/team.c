@@ -427,14 +427,15 @@ team_get_player_pointers(const Team *tm)
     return players;
 }
 
-/** Return a pointer to the next fixture the team plays in.
+/** Return a pointer to the next or last fixture the team participates in.
     @param tm The team we examine.
     @return The pointer to the fixture or NULL if none is found. */
 Fixture*
-team_get_next_fixture(const Team *tm)
+team_get_fixture(const Team *tm, gboolean last_fixture)
 {
     gint i, j;
-    Fixture *fix = NULL;
+    Fixture *next_fix = NULL,
+	*last_fix = NULL;    
 
     for(i=0;i<ligs->len;i++)
     {
@@ -442,12 +443,21 @@ team_get_next_fixture(const Team *tm)
 	{
 	    for(j=0;j<lig(i).fixtures->len;j++)
 		if((g_array_index(lig(i).fixtures, Fixture, j).teams[0] == tm ||
-		    g_array_index(lig(i).fixtures, Fixture, j).teams[1] == tm) &&
-		   g_array_index(lig(i).fixtures, Fixture, j).week_number >= week &&
-		   (g_array_index(lig(i).fixtures, Fixture, j).week_round_number >= week_round ||
-		    g_array_index(lig(i).fixtures, Fixture, j).week_number > week) &&
-		   (fix == NULL || query_fixture_is_earlier(&g_array_index(lig(i).fixtures, Fixture, j), fix)))
-		    fix = &g_array_index(lig(i).fixtures, Fixture, j);
+		    g_array_index(lig(i).fixtures, Fixture, j).teams[1] == tm))
+		{
+		    if(g_array_index(lig(i).fixtures, Fixture, j).week_number >= week &&
+		       (g_array_index(lig(i).fixtures, Fixture, j).week_round_number >= week_round ||
+			g_array_index(lig(i).fixtures, Fixture, j).week_number > week) &&
+		       (next_fix == NULL ||
+			query_fixture_is_earlier(&g_array_index(lig(i).fixtures, Fixture, j), next_fix)))
+			next_fix = &g_array_index(lig(i).fixtures, Fixture, j);
+		    else if(g_array_index(lig(i).fixtures, Fixture, j).week_number <= week &&
+			    (g_array_index(lig(i).fixtures, Fixture, j).week_round_number < week_round ||
+			     g_array_index(lig(i).fixtures, Fixture, j).week_number < week) &&
+			    (last_fix == NULL ||
+			     query_fixture_is_later(&g_array_index(lig(i).fixtures, Fixture, j), last_fix)))
+			last_fix = &g_array_index(lig(i).fixtures, Fixture, j);
+		}
 	}
     }
 
@@ -458,16 +468,25 @@ team_get_next_fixture(const Team *tm)
 	{
 	    for(j=0;j<cp(i).fixtures->len;j++)
 		if((g_array_index(cp(i).fixtures, Fixture, j).teams[0] == tm ||
-		    g_array_index(cp(i).fixtures, Fixture, j).teams[1] == tm) &&
-		   g_array_index(cp(i).fixtures, Fixture, j).week_number >= week &&
-		   (g_array_index(cp(i).fixtures, Fixture, j).week_round_number >= week_round ||
-		    g_array_index(cp(i).fixtures, Fixture, j).week_number > week) &&
-		   (fix == NULL || query_fixture_is_earlier(&g_array_index(cp(i).fixtures, Fixture, j), fix)))
-		    fix = &g_array_index(cp(i).fixtures, Fixture, j);
+		    g_array_index(cp(i).fixtures, Fixture, j).teams[1] == tm))
+		{
+		    if(g_array_index(cp(i).fixtures, Fixture, j).week_number >= week &&
+		       (g_array_index(cp(i).fixtures, Fixture, j).week_round_number >= week_round ||
+			g_array_index(cp(i).fixtures, Fixture, j).week_number > week) &&
+		       (next_fix == NULL ||
+			query_fixture_is_earlier(&g_array_index(cp(i).fixtures, Fixture, j), next_fix)))
+			next_fix = &g_array_index(cp(i).fixtures, Fixture, j);
+		    else if(g_array_index(cp(i).fixtures, Fixture, j).week_number <= week &&
+			    (g_array_index(cp(i).fixtures, Fixture, j).week_round_number < week_round ||
+			     g_array_index(cp(i).fixtures, Fixture, j).week_number < week) &&
+			    (last_fix == NULL ||
+			     query_fixture_is_later(&g_array_index(cp(i).fixtures, Fixture, j), last_fix)))
+			last_fix = &g_array_index(cp(i).fixtures, Fixture, j);
+		}
 	}
     }
 
-    return fix;
+    return (last_fixture) ? last_fix : next_fix;
 }
 
 /** Check whether the team is a user-managed team.
@@ -515,25 +534,26 @@ team_get_average_skill(const Team *tm, gboolean cskill)
 }
 
 /** Return the rank of the team.
-    @param tm The team we examine. */
+    @param tm The team we examine. 
+    @param clid The league or cup we browse the table of. */
 gint
-team_rank(const Team *tm)
+team_rank(const Team *tm, gint clid)
 {
     gint i, j;
     GArray *elements = NULL;
 
-    if(tm->clid < ID_CUP_START)
+    if(clid < ID_CUP_START)
     {
-	elements = league_from_clid(tm->clid)->table.elements;
+	elements = league_from_clid(clid)->table.elements;
 	for(i=0;i<elements->len;i++)
 	    if(g_array_index(elements, TableElement, i).team == tm)
 		return i + 1;
     }
     else
     {
-	for(i=0;i<cup_from_clid(tm->clid)->tables->len;i++)
+	for(i=0;i<cup_from_clid(clid)->tables->len;i++)
 	{
-	    elements = g_array_index(cup_from_clid(tm->clid)->tables, Table, i).elements;
+	    elements = g_array_index(cup_from_clid(clid)->tables, Table, i).elements;
 	    for(j=0;j<elements->len;j++)
 		if(g_array_index(elements, TableElement, j).team == tm)
 		    return j + 1;

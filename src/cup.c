@@ -1,5 +1,4 @@
 #include "cup.h"
-#include "fixture_struct.h"
 #include "free.h"
 #include "main.h"
 #include "maths.h"
@@ -372,4 +371,40 @@ cup_from_clid(gint clid)
 
     g_warning("cup_from_clid: didn't find cup with id %d\n", clid);
     return NULL;
+}
+
+/** Return the name of a cup round, e.g. 'round robin'
+    or 'final' or so.
+    @param fix A fixture belonging to the round.
+    @param buf The buffer we write the name into*/
+void
+cup_round_name(const Fixture *fix, gchar *buf)
+{
+    const Cup *cup = cup_from_clid(fix->clid);
+    const CupRound *cup_round = 
+	&g_array_index(cup->rounds, CupRound, fix->round);
+
+    if(cup_round->round_robin_number_of_groups > 0)
+	strcpy(buf, "Round robin");
+    else
+    {
+	if(fix->round == cup->rounds->len - 1)
+	    strcpy(buf, _("Final"));
+	else if(fix->round == cup->rounds->len - 2)
+	    strcpy(buf, _("Semi-final"));
+	else if(fix->round == cup->rounds->len - 3)
+	    strcpy(buf, _("Quarter-final"));
+	else
+	    sprintf(buf, _("Last %d"), (gint)rint(powf(2, cup->rounds->len - fix->round)));
+	    
+	if(cup_round->home_away)
+	{
+	    if(fix->second_leg)
+		strcat(buf, " -- Second leg");
+	    else
+		strcat(buf, " -- First leg");
+	}
+	else if(fix->replay_number > 0)
+	    strcat(buf, " -- Replay match");
+    }	
 }

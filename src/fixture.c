@@ -7,6 +7,7 @@
 #include "misc.h"
 #include "table.h"
 #include "team.h"
+#include "user.h"
 #include "variables.h"
 
 /** Write the fixtures for the given league
@@ -588,6 +589,19 @@ query_fixture_is_earlier(const Fixture *fix1, const Fixture *fix2)
 	     fix1->week_round_number < fix2->week_round_number));
 }
 
+/** Check whether the date of a fixture is later 
+    than of a second one.
+    @param fix1 The first fixture.
+    @param fix2 The second fixture.
+    @return TRUE if fix1 is later than fix2, FALSE otherwise. */
+gboolean
+query_fixture_is_later(const Fixture *fix1, const Fixture *fix2)
+{
+    return (fix1->week_number > fix2->week_number ||
+	    (fix1->week_number == fix2->week_number && 
+	     fix1->week_round_number > fix2->week_round_number));
+}
+
 /** Find out whether the current result of the fixture
     is a draw. This is a bit tricky because of second-leg games.
     In general (as a definition), fixtures with 'decisive' FALSE
@@ -684,4 +698,172 @@ fixture_get_first_leg(const Fixture *fix)
 		  cup_from_clid(fix->clid)->name->str, fix->round);
 
     return first_leg;
+}
+
+/** Return a list of fixture pointers.
+    @param clid The cup or league id.
+    @param week_number The week number of the fixtures.
+    @param week_round_number The week round of the fixtures. */
+GPtrArray*
+fixture_get_week_round_list(gint clid, gint week_number, gint week_round_number)
+{
+    gint i;
+    GArray *fixtures = (clid < ID_CUP_START) ?
+	league_from_clid(clid)->fixtures :
+	cup_from_clid(clid)->fixtures;
+    GPtrArray *fixtures_array = g_ptr_array_new();
+
+    for(i=0;i<fixtures->len;i++)
+	if(g_array_index(fixtures, Fixture, i).week_number == week_number &&
+	   g_array_index(fixtures, Fixture, i).week_round_number == week_round_number)
+	    g_ptr_array_add(fixtures_array, &g_array_index(fixtures, Fixture, i));
+
+    return fixtures_array;
+}
+
+/** Print the result of the fixture into a buffer. */
+void
+fixture_result_to_buf(const Fixture *fix, gchar *buf)
+{
+    gchar local_buf[SMALL],
+	local_buf2[SMALL];
+
+    if(fix->attendance < 0)
+	strcpy(buf, "-- : --");
+    else
+    {
+	sprintf(local_buf, "%d - %d", math_sum_int_array(fix->result[0], 3),
+		math_sum_int_array(fix->result[1], 3));
+	if(fix->result[0][2] + fix->result[1][2] != 0)
+	    strcat(local_buf, " p.");
+	else if(fix->result[0][1] + fix->result[1][1] != 0)
+	    strcat(local_buf, " e.t.");
+
+	if(fix->second_leg)
+	{
+	    fixture_result_to_buf(fixture_get_first_leg(fix), local_buf2);
+	    sprintf(buf, "%s\n(%s)", local_buf, local_buf2);
+	}
+	else
+	    strcpy(buf, local_buf);
+    }    
+}
+
+/** Return the number of fixtures in a given week round.
+    @param week_number The week number the fixtures should have.
+    @param week_round_number The week round number the fixtures should have.
+    @return The number of matches. */
+gint
+fixture_get_number_of_matches(gint week_number, gint week_round_number)
+{
+    gint i, j;
+    gint sum = 0;
+
+    if(week_round_number > 1)
+    {
+	for(i=0;i<cps->len;i++)
+	    for(j=0;j<cp(i).fixtures->len;j++)
+		if(g_array_index(cp(i).fixtures, Fixture, j).week_number == week_number &&
+		   g_array_index(cp(i).fixtures, Fixture, j).week_round_number == week_round_number)
+		    sum++;
+    }
+    else
+    {
+	for(i=0;i<ligs->len;i++)
+	    for(j=0;j<lig(i).fixtures->len;j++)
+		if(g_array_index(lig(i).fixtures, Fixture, j).week_number == week_number &&
+		   g_array_index(lig(i).fixtures, Fixture, j).week_round_number == week_round_number)
+		    sum++;
+    }
+
+    return sum;
+}
+
+/** Return a fixture from the following match-day.
+    @param clid The cup/league id.
+    @param week_number The current week.
+    @param week_round_number The current round.
+    @return A fixture pointer. */
+Fixture*
+fixture_get_next(gint clid, gint week_number, gint week_round_number)
+{
+    gint i;
+    GArray *fixtures = (clid < ID_CUP_START) ?
+	league_from_clid(clid)->fixtures :
+	cup_from_clid(clid)->fixtures;
+
+    for(i=0;i<fixtures->len;i++)
+	if(g_array_index(fixtures, Fixture, i).week_number > week_number ||
+	   (g_array_index(fixtures, Fixture, i).week_number == week_number &&
+	    g_array_index(fixtures, Fixture, i).week_round_number > week_round_number))
+	    return &g_array_index(fixtures, Fixture, i);
+
+    return &g_array_index(fixtures, Fixture, 0);
+}
+
+/** Return a fixture from the previous match-day.
+    @param clid The cup/league id.
+    @param week_number The current week.
+    @param week_round_number The current round.
+    @return A fixture pointer. */
+Fixture*
+fixture_get_previous(gint clid, gint week_number, gint week_round_number)
+{
+    gint i;
+    GArray *fixtures = (clid < ID_CUP_START) ?
+	league_from_clid(clid)->fixtures :
+	cup_from_clid(clid)->fixtures;
+
+    for(i=fixtures->len - 1;i>=0;i--)
+	if(g_array_index(fixtures, Fixture, i).week_number < week_number ||
+	   (g_array_index(fixtures, Fixture, i).week_number == week_number &&
+	    g_array_index(fixtures, Fixture, i).week_round_number < week_round_number))
+	    return &g_array_index(fixtures, Fixture, i);
+
+    return &g_array_index(fixtures, Fixture, fixtures->len - 1);
+}
+
+/** Find a certain fixture for displaying in the right treeview.
+    @param type Type telling us how to look for the fixture (@see #ShowFixType)
+    @param clid The id of the current league/cup we're showing.
+    @param week_number The week we're showing.
+    @param week_round_number The round we're showing.
+    @param tm A team pointer (for the case SHOW_FIX_TEAM).
+    @return A fixture pointer or NULL. */
+Fixture*
+fixture_get(gint type, gint clid, gint week_number, gint week_round_number, const Team *tm)
+{
+    Fixture *fix = NULL;
+    gint new_clid = -1;
+
+    if(type == SHOW_FIX_TEAM)
+    {
+	fix = team_get_fixture(tm, TRUE);
+	if(fix == NULL)
+	    fix = team_get_fixture(tm, FALSE);
+    }
+    else if(type == SHOW_FIX_CURRENT)
+    {
+	fix = league_cup_get_previous_fixture(clid, week_number, week_round_number);
+	if(fix == NULL)
+	    fix = league_cup_get_next_fixture(clid, week_number, week_round_number);
+    }
+    else if(type == SHOW_FIX_NEXT)
+	fix = fixture_get_next(clid, week_number, week_round_number);
+    else if(type == SHOW_FIX_PREVIOUS)
+	    fix = fixture_get_previous(clid, week_number, week_round_number);
+    else if(type == SHOW_FIX_NEXT_LEAGUE ||
+	    type == SHOW_FIX_PREVIOUS_LEAGUE)
+    {
+	    new_clid = (type == SHOW_FIX_NEXT_LEAGUE) ?
+		league_cup_get_next_clid(clid):
+		league_cup_get_previous_clid(clid);
+	    fix = fixture_get(SHOW_FIX_CURRENT, new_clid, week, week_round, NULL);
+    }
+
+    if(fix == NULL)
+	g_warning("fixture_get: no fixture found for type %d clid %d week %d round %d\n",
+		  type, clid, week_number, week_round_number);
+
+    return fix;
 }

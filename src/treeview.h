@@ -93,4 +93,20 @@ treeview_show_game_stats(GtkTreeView *treeview, LiveGame *live_game);
 void
 treeview_set_up_game_stats(GtkTreeView *treeview);
 
+void
+treeview_show_fixtures(GtkTreeView *treeview, gint clid, 
+		       gint week_number, gint week_round_number);
+
+void
+treeview_set_up_fixtures(GtkTreeView *treeview);
+
+GtkTreeModel*
+treeview_create_fixtures(gint clid, gint week_number, gint week_round_number);
+
+void
+treeview_create_fixtures_header(const Fixture *fix, GtkListStore *liststore);
+
+void
+treeview_create_fixture(const Fixture *fix, GtkListStore *liststore);
+
 #endif

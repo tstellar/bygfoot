@@ -1,6 +1,7 @@
 #include "callbacks.h"
 #include "callback_func.h"
 #include "enums.h"
+#include "fixture.h"
 #include "game_gui.h"
 #include "main.h"
 #include "team.h"
@@ -16,7 +17,7 @@ on_button_quit_clicked                 (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
-    main_exit_program(EXIT_OK, NULL);
+    on_menu_quit_activate(NULL, NULL);
 
     return FALSE;
 }
@@ -74,7 +75,7 @@ void
 on_menu_quit_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-
+    main_exit_program(EXIT_OK, NULL);
 }
 
 
@@ -189,53 +190,16 @@ on_player_list2_button_press_event     (GtkWidget       *widget,
   return FALSE;
 }
 
-
-void
-on_structure_entry_activate            (GtkEntry        *entry,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_structure_button_clicked            (GtkButton       *button,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_button_rearrange_clicked            (GtkButton       *button,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_button_undo_clicked                 (GtkButton       *button,
-                                        gpointer         user_data)
-{
-
-}
-
-
-
-void
-on_button_browse_clicked               (GtkButton       *button,
-                                        gpointer         user_data)
-{
-
-}
-
-
 void
 on_button_browse_forward_clicked       (GtkButton       *button,
                                         gpointer         user_data)
 {
-
+    switch(stat0)
+    {
+	case STATUS_SHOW_FIXTURES:
+	    callback_show_fixtures(SHOW_FIX_NEXT);
+	    break;
+    }
 }
 
 
@@ -243,31 +207,41 @@ void
 on_button_browse_back_clicked          (GtkButton       *button,
                                         gpointer         user_data)
 {
-
+    switch(stat0)
+    {
+	case STATUS_SHOW_FIXTURES:
+	    callback_show_fixtures(SHOW_FIX_PREVIOUS);
+	    break;
+    }
 }
 
-void
-on_optionmenu_finstad_changed          (GtkOptionMenu   *optionmenu,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_button_fixtures_clicked             (GtkButton       *button,
-                                        gpointer         user_data)
-{
-
-}
 
 
 void
-on_button_tables_clicked               (GtkButton       *button,
+on_button_cl_back_clicked              (GtkButton       *button,
                                         gpointer         user_data)
 {
-
+    switch(stat0)
+    {
+	case STATUS_SHOW_FIXTURES:
+	    callback_show_fixtures(SHOW_FIX_PREVIOUS_LEAGUE);
+	    break;
+    }
 }
+
+
+void
+on_button_cl_forward_clicked           (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    switch(stat0)
+    {
+	case STATUS_SHOW_FIXTURES:
+	    callback_show_fixtures(SHOW_FIX_NEXT_LEAGUE);
+	    break;
+    }
+}
+
 
 void
 on_menu_preferences_activate           (GtkMenuItem     *menuitem,
@@ -313,7 +287,8 @@ void
 on_menu_fixtures_activate              (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-
+    stat0 = STATUS_SHOW_FIXTURES;
+    callback_show_fixtures(SHOW_FIX_TEAM);
 }
 
 void
@@ -693,4 +668,3 @@ on_eventbox_boost_button_press_event   (GtkWidget       *widget,
 
   return FALSE;
 }
-

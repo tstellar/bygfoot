@@ -1,6 +1,8 @@
 #include <unistd.h>
 
+#include "cup.h"
 #include "file.h"
+#include "fixture.h"
 #include "free.h"
 #include "gui.h"
 #include "league.h"
@@ -666,6 +668,7 @@ treeview_live_game_create_result(const LiveGameUnit *unit)
 void
 treeview_live_game_set_up_result(void)
 {
+    gint i;
     GtkTreeView *treeview =
 	GTK_TREE_VIEW(lookup_widget(window.live, "treeview_result"));
     GtkTreeViewColumn   *col;
@@ -674,29 +677,16 @@ treeview_live_game_set_up_result(void)
     gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
 				GTK_SELECTION_NONE);
     
-    col = gtk_tree_view_column_new();
-    gtk_tree_view_append_column(treeview, col);
-    renderer = gtk_cell_renderer_text_new();
-    gtk_tree_view_column_pack_start(col, renderer, TRUE);
-    gtk_tree_view_column_set_cell_data_func(col, renderer,
-					    treeview_cell_live_game_result,
-					    NULL, NULL);
-
-    col = gtk_tree_view_column_new();
-    gtk_tree_view_append_column(treeview, col);
-    renderer = gtk_cell_renderer_text_new();
-    gtk_tree_view_column_pack_start(col, renderer, TRUE);
-    gtk_tree_view_column_set_cell_data_func(col, renderer,
-					    treeview_cell_live_game_result,
-					    NULL, NULL);
-
-    col = gtk_tree_view_column_new();
-    gtk_tree_view_append_column(treeview, col);
-    renderer = gtk_cell_renderer_text_new();
-    gtk_tree_view_column_pack_start(col, renderer, TRUE);
-    gtk_tree_view_column_set_cell_data_func(col, renderer,
-					    treeview_cell_live_game_result,
-					    NULL, NULL);
+    for(i=0;i<3;i++)
+    {
+	col = gtk_tree_view_column_new();
+	gtk_tree_view_append_column(treeview, col);
+	renderer = gtk_cell_renderer_text_new();
+	gtk_tree_view_column_pack_start(col, renderer, TRUE);
+	gtk_tree_view_column_set_cell_data_func(col, renderer,
+						treeview_cell_live_game_result,
+						NULL, NULL);
+    }
 }
 
 /** Write the current result of the live game into
@@ -941,6 +931,206 @@ treeview_show_game_stats(GtkTreeView *treeview, LiveGame *live_game)
     
     treeview_set_up_game_stats(treeview);
     model = treeview_create_game_stats(live_game);
+    gtk_tree_view_set_model(treeview, model);
+    g_object_unref(model);
+}
+
+/** Write some general information like cup/league name,
+    week etc. into a liststore.
+    @param fix A 'sample' fixture.
+    @param liststore The liststore we edit. */
+void
+treeview_create_fixtures_header(const Fixture *fix, GtkListStore *liststore)
+{
+    GtkTreeIter iter;
+    GdkPixbuf *symbol = NULL;
+    gchar buf[SMALL], buf2[SMALL], buf3[SMALL],
+	round_name[SMALL];
+    gchar *name = NULL;
+
+    sprintf(buf3, _("Week %d Round %d"), fix->week_number, fix->week_round_number);
+
+    if(fix->clid < ID_CUP_START)
+    {
+	name = league_from_clid(fix->clid)->name->str;
+	strcpy(round_name, "");
+	symbol = treeview_pixbuf_from_filename(league_from_clid(fix->clid)->symbol->str);
+    }
+    else
+    {
+	name = cup_from_clid(fix->clid)->name->str;
+	cup_round_name(fix, buf);
+	sprintf(round_name, "\n%s", buf);
+	strcat(buf3, "\n");
+	symbol = treeview_pixbuf_from_filename(cup_from_clid(fix->clid)->symbol->str);
+    }
+    
+    sprintf(buf, "<span background='%s' foreground='%s'>%s%s</span>", 
+	    const_str("string_treeview_fixture_header_bg"),
+	    const_str("string_treeview_fixture_header_fg"),
+	    name, round_name);
+    sprintf(buf2, _("<span background='%s' foreground='%s'>%s</span>"),
+	    const_str("string_treeview_fixture_header_bg"),
+	    const_str("string_treeview_fixture_header_fg"), buf3);
+
+    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_set(liststore, &iter, 0, symbol, 1, buf, 2, "", 3, buf2, 4, symbol, -1);
+
+    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_set(liststore, &iter, 0, NULL, 1, "", 2, "", 3, "", 4, NULL, -1);
+
+    if(symbol != NULL)
+	g_object_unref(symbol);
+}
+
+/** Display a fixture in a liststore. */
+void
+treeview_create_fixture(const Fixture *fix, GtkListStore *liststore)
+{
+    gint i;
+    GtkTreeIter iter;
+    GdkPixbuf *symbol[2] = {NULL, NULL};
+    gchar buf_result[SMALL], buf[3][SMALL];
+    gchar *colour_fg = NULL, *colour_bg = NULL;
+
+    if(fix->clid >= ID_CUP_START &&
+       cup_from_clid(fix->clid)->type == CUP_TYPE_INTERNATIONAL)
+	for(i=0;i<2;i++)
+	    symbol[i] = treeview_pixbuf_from_filename(fix->teams[i]->symbol->str);
+    
+    if(fixture_user_team_involved(fix) != -1)
+    {
+	if(fixture_user_team_involved(fix) == current_user)
+	{
+	    colour_fg = const_str("string_treeview_fixture_current_user_fg");
+	    colour_bg = const_str("string_treeview_fixture_current_user_bg");
+	}
+	else
+	{
+	    colour_fg = const_str("string_treeview_fixture_user_fg");
+	    colour_bg = const_str("string_treeview_fixture_user_bg");
+	}
+    }
+    else
+    {
+	colour_fg = const_str("string_treeview_cell_color_default_foreground");
+	colour_bg = const_str("string_treeview_cell_color_default_background");
+    }   
+
+    fixture_result_to_buf(fix, buf_result);
+
+    for(i=0;i<2;i++)
+	if(team_rank(fix->teams[i], fix->clid) != -1)
+	    sprintf(buf[i], "<span background='%s' foreground='%s'>%s [%d]</span>",
+		    colour_bg, colour_fg, fix->teams[i]->name->str,
+		    team_rank(fix->teams[i], fix->clid));
+	else if(fix->clid >= ID_CUP_START &&
+		cup_from_clid(fix->clid)->type == CUP_TYPE_NATIONAL)
+	    sprintf(buf[i], "<span background='%s' foreground='%s'>%s (%d)</span>",
+		    colour_bg, colour_fg, fix->teams[i]->name->str,
+		    league_get_index(fix->teams[i]->clid) + 1);
+	else
+	    sprintf(buf[i], "<span background='%s' foreground='%s'>%s</span>",
+		    colour_bg, colour_fg, fix->teams[i]->name->str);
+
+    sprintf(buf[2], "<span background='%s' foreground='%s'>%s</span>",
+	    colour_bg, colour_fg, buf_result);
+
+    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_set(liststore, &iter, 0, symbol[0],
+		       1, buf[0], 2, buf[2], 3, buf[1], 4, symbol[1], -1);
+
+    for(i=0;i<2;i++)
+	if(symbol[i] != NULL)
+	    g_object_unref(symbol[i]);
+}
+
+GtkTreeModel*
+treeview_create_fixtures(gint clid, gint week_number, gint week_round_number)
+{
+    gint i;
+    GtkListStore  *liststore;
+    GPtrArray *fixtures = fixture_get_week_round_list(clid, week_number, week_round_number);
+
+    if(fixtures->len == 0)
+    {
+	free_g_ptr_array(&fixtures);
+	return NULL;
+    }
+
+    liststore = gtk_list_store_new(5,
+				   GDK_TYPE_PIXBUF,
+				   G_TYPE_STRING,
+				   G_TYPE_STRING,
+				   G_TYPE_STRING,
+				   GDK_TYPE_PIXBUF);
+
+    treeview_create_fixtures_header((Fixture*)g_ptr_array_index(fixtures, 0),
+				    liststore);
+
+    for(i=0;i<fixtures->len;i++)
+	treeview_create_fixture((Fixture*)g_ptr_array_index(fixtures, i), liststore);
+
+    free_g_ptr_array(&fixtures);
+
+    return GTK_TREE_MODEL(liststore);
+}
+
+void
+treeview_set_up_fixtures(GtkTreeView *treeview)
+{
+    gint i;
+    GtkTreeViewColumn   *col;
+    GtkCellRenderer     *renderer;
+
+    gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
+				GTK_SELECTION_NONE);
+    
+    col = gtk_tree_view_column_new();
+    gtk_tree_view_append_column(treeview, col);
+    renderer = gtk_cell_renderer_pixbuf_new();
+    g_object_set(renderer, "cell-background", "lightgrey", NULL);
+    gtk_tree_view_column_pack_start(col, renderer, TRUE);
+    gtk_tree_view_column_add_attribute(col, renderer,
+				       "pixbuf", 0);
+
+    for(i=0;i<3;i++)
+    {
+	col = gtk_tree_view_column_new();
+	gtk_tree_view_append_column(treeview, col);
+	renderer = gtk_cell_renderer_text_new();
+	gtk_tree_view_column_pack_start(col, renderer, TRUE);
+	gtk_tree_view_column_add_attribute(col, renderer,
+					   "markup", i + 1);
+
+	g_object_set(renderer, "xalign", 0 + (2 - i) * 0.5,
+		     NULL);
+    }
+
+    col = gtk_tree_view_column_new();
+    gtk_tree_view_append_column(treeview, col);
+    renderer = gtk_cell_renderer_pixbuf_new();
+    gtk_tree_view_column_pack_start(col, renderer, TRUE);
+    gtk_tree_view_column_add_attribute(col, renderer,
+				       "pixbuf", 4);
+}
+
+/** Show some fixtures in a treeview.
+    @param treeview The treeview we use.
+    @param clid The cup / league id.
+    @param week_number The week number of the fixtures.
+    @param week_round_number The week round. */
+void
+treeview_show_fixtures(GtkTreeView *treeview, gint clid, 
+		       gint week_number, gint week_round_number)
+{
+    GtkTreeModel *model = NULL;
+
+    treeview_clear(treeview);
+    gtk_tree_view_set_headers_visible(treeview, FALSE);
+    
+    treeview_set_up_fixtures(treeview);
+    model = treeview_create_fixtures(clid, week_number, week_round_number);
     gtk_tree_view_set_model(treeview, model);
     g_object_unref(model);
 }

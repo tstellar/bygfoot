@@ -12,4 +12,7 @@ callback_player_clicked(gint idx, GdkEventButton *event);
 void
 callback_show_last_match(void);
 
+void
+callback_show_fixtures(gint type);
+
 #endif

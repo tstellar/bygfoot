@@ -7,6 +7,7 @@
 #include "option.h"
 #include "player.h"
 #include "team.h"
+#include "user.h"
 #include "variables.h"
 
 /** Create and return a new player.
@@ -579,7 +580,7 @@ player_get_cskill(const Player *pl, gint position)
 gint
 player_is_banned(const Player *pl)
 {
-    Fixture *fix = team_get_next_fixture(pl->team);
+    Fixture *fix = team_get_fixture(pl->team, FALSE);
     gint yellow_red = -1, yellow, red;
 
     if(fix == NULL)
@@ -904,6 +905,49 @@ player_update_skill(Player *pl)
 	}
 }
 
+/** Decrement the number of weeks until
+    recovery depending on the user's physio.
+    @param pl An injured player. */
+void
+player_update_injury(Player *pl)
+{
+    gint i, j;
+    gfloat rndom;
+    gint physio = user_from_team(pl->team)->physio;
+    gfloat injury_decrease_probs[4][3] =
+	{{const_float("float_player_injury_recovery_best0"),
+	  const_float("float_player_injury_recovery_best1"),
+	  const_float("float_player_injury_recovery_best2")},
+	 {const_float("float_player_injury_recovery_good0"),
+	  const_float("float_player_injury_recovery_good1"),
+	  const_float("float_player_injury_recovery_good2")},
+	 {const_float("float_player_injury_recovery_good2"),
+	  const_float("float_player_injury_recovery_good1"),
+	  const_float("float_player_injury_recovery_good0")},
+	 {const_float("float_player_injury_recovery_best2"),
+	  const_float("float_player_injury_recovery_best1"),
+	  const_float("float_player_injury_recovery_best0")}};
+
+    for(j=1;j<3;j++)
+	injury_decrease_probs[physio][j] += injury_decrease_probs[physio][j - 1];
+
+    rndom = math_rnd(0, 1);
+
+    for(i=0;i<3;i++)
+	if(rndom <= injury_decrease_probs[physio][i])
+	{
+	    pl->recovery = MAX(pl->recovery - i, 0);
+	    break;
+	}
+
+    if(pl->recovery == 0)
+    {
+	pl->health = 0;
+	pl->fitness = math_rnd(const_float("float_player_injury_recovery_fitness_lower"),
+			       const_float("float_player_injury_recovery_fitness_upper"));
+    }
+}
+
 /** Update players in user teams (age, skill, fitness etc.)
     @param tm The team of the player.
     @param idx The index in the players array. */
@@ -919,6 +963,8 @@ player_update_weekly(Team *tm, gint idx)
 	player_remove_contract(tm, idx);
 
     player_update_skill(pl);
+    if(pl->health > 0)
+	player_update_injury(pl);    
 }
 
 /** Remove a player from a user team after the contract expired.
@@ -962,9 +1008,6 @@ player_replace_by_new(Player *pl)
     gint idx = player_id_index(tm, pl->id);
     Player new = player_new(tm, team_get_average_skill(tm, FALSE));
     
-    if(tm == &g_array_index(lig(0).teams, Team, 4))
-	printf("NEWPLAYER %s %s\n", pl->name->str, new.name->str);
-
     new.pos = pl->pos;
     new.cpos = pl->cpos;
     new.id = pl->id;

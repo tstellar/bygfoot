@@ -153,3 +153,21 @@ user_games_in_week_round(gint week_number, gint week_round_number)
 
     return FALSE;
 }
+
+/** Get the user managing the team.
+    @param tm The team.
+    @return A pointer to the user. */
+User*
+user_from_team(const Team *tm)
+{
+    gint i;
+
+    for(i=0;i<users->len;i++)
+	if(usr(i).tm == tm)
+	    return &usr(i);
+
+    g_warning("User going with team %s not found.\n",
+	      tm->name->str);
+
+    return NULL;
+}

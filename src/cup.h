@@ -3,6 +3,7 @@
 
 #include "bygfoot.h"
 #include "cup_struct.h"
+#include "fixture_struct.h"
 
 Cup
 cup_new(void);
@@ -39,5 +40,8 @@ cup_round_get_number_of_teams(const Cup *cup, gint cup_round);
 
 Cup*
 cup_from_clid(gint clid);
+
+void
+cup_round_name(const Fixture *fix, gchar *buf);
 
 #endif

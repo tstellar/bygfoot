@@ -6,6 +6,17 @@
 #include "fixture_struct.h"
 #include "league_struct.h"
 
+enum ShowFixType
+{
+    SHOW_FIX_TEAM = 0,
+    SHOW_FIX_CURRENT,
+    SHOW_FIX_NEXT,
+    SHOW_FIX_PREVIOUS,
+    SHOW_FIX_NEXT_LEAGUE,
+    SHOW_FIX_PREVIOUS_LEAGUE,
+    SHOW_FIX_END
+};
+
 void
 fixture_write_league_fixtures(League *league);
 
@@ -53,6 +64,9 @@ gboolean
 query_fixture_is_earlier(const Fixture *fix1, const Fixture *fix2);
 
 gboolean
+query_fixture_is_later(const Fixture *fix1, const Fixture *fix2);
+
+gboolean
 query_fixture_is_draw(const Fixture *fix);
 
 gint
@@ -66,5 +80,23 @@ query_fixture_in_week_round(gint clid, gint week_number, gint week_round_number)
 
 Fixture*
 fixture_get_first_leg(const Fixture *fix);
+
+GPtrArray*
+fixture_get_week_round_list(gint clid, gint week_number, gint week_round_number);
+
+void
+fixture_result_to_buf(const Fixture *fix, gchar *buf);
+
+gint
+fixture_get_number_of_matches(gint week_number, gint week_round_number);
+
+Fixture*
+fixture_get(gint type, gint clid, gint week_number, gint week_round_number, const Team *tm);
+
+Fixture*
+fixture_get_next(gint clid, gint week_number, gint week_round_number);
+
+Fixture*
+fixture_get_previous(gint clid, gint week_number, gint week_round_number);
 
 #endif

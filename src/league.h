@@ -22,4 +22,19 @@ league_cup_get_index_from_clid(gint clid);
 League*
 league_from_clid(gint clid);
 
+gint
+league_cup_get_next_clid(gint clid);
+
+gint
+league_cup_get_previous_clid(gint clid);
+
+Fixture*
+league_cup_get_next_fixture(gint clid, gint week_number, gint week_round_number);
+
+Fixture*
+league_cup_get_previous_fixture(gint clid, gint week_number, gint week_round_number);
+
+gint
+league_get_index(gint clid);
+
 #endif
