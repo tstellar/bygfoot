@@ -298,4 +298,22 @@ void
 on_menu_manage_users_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
+
+void
+on_menu_user_show_last_match_activate  (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_menu_user_show_last_stats_activate  (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
 #endif
+
+gboolean
+on_eventbox_style_button_press_event   (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data);
+
+gboolean
+on_eventbox_boost_button_press_event   (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data);

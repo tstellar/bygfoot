@@ -1536,3 +1536,11 @@ live_game_resume(void)
     live_game_calculate_fixture(usr(stat2).live_game.fix);
 }
 
+
+/** Set the match variable to the live game.
+    @param live_game The live game 'match' will point to. */
+void
+live_game_set_match(LiveGame *live_game)
+{
+    match = live_game;
+}

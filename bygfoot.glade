@@ -98,7 +98,7 @@
 		      <signal name="activate" handler="on_start_editor_activate" last_modification_time="Sun, 30 May 2004 19:58:16 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image194">
+			<widget class="GtkImage" id="image204">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-preferences</property>
 			  <property name="icon_size">1</property>
@@ -119,7 +119,7 @@
 		      <signal name="activate" handler="on_start_update_activate" last_modification_time="Mon, 13 Sep 2004 12:30:42 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image195">
+			<widget class="GtkImage" id="image205">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-refresh</property>
 			  <property name="icon_size">1</property>
@@ -168,7 +168,7 @@
 		      <signal name="activate" handler="on_menu_preferences_activate" last_modification_time="Sun, 02 Jan 2005 15:30:45 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image196">
+			<widget class="GtkImage" id="image206">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-preferences</property>
 			  <property name="icon_size">1</property>
@@ -312,7 +312,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">All Out Defend</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">True</property>
+			      <property name="active">False</property>
 			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:16:56 GMT"/>
 			    </widget>
 			  </child>
@@ -322,7 +322,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">Defend</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">True</property>
+			      <property name="active">False</property>
 			      <property name="group">menu_all_out_defend</property>
 			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:17:07 GMT"/>
 			    </widget>
@@ -333,7 +333,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">Balanced</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">True</property>
+			      <property name="active">False</property>
 			      <property name="group">menu_all_out_defend</property>
 			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:17:14 GMT"/>
 			    </widget>
@@ -344,7 +344,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">Attack</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">True</property>
+			      <property name="active">False</property>
 			      <property name="group">menu_all_out_defend</property>
 			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:17:20 GMT"/>
 			    </widget>
@@ -379,7 +379,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">Best</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">True</property>
+			      <property name="active">False</property>
 			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:15:47 GMT"/>
 			    </widget>
 			  </child>
@@ -389,7 +389,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">Good</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">True</property>
+			      <property name="active">False</property>
 			      <property name="group">menu_scout_best</property>
 			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:15:35 GMT"/>
 			    </widget>
@@ -400,7 +400,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">Average</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">True</property>
+			      <property name="active">False</property>
 			      <property name="group">menu_scout_best</property>
 			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:15:54 GMT"/>
 			    </widget>
@@ -435,7 +435,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">Best</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">True</property>
+			      <property name="active">False</property>
 			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:16:14 GMT"/>
 			    </widget>
 			  </child>
@@ -445,7 +445,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">Good</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">True</property>
+			      <property name="active">False</property>
 			      <property name="group">menu_physio_best</property>
 			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:16:21 GMT"/>
 			    </widget>
@@ -456,7 +456,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">Average</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">True</property>
+			      <property name="active">False</property>
 			      <property name="group">menu_physio_best</property>
 			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:16:28 GMT"/>
 			    </widget>
@@ -491,7 +491,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">On</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">True</property>
+			      <property name="active">False</property>
 			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Tue, 08 Mar 2005 16:37:57 GMT"/>
 			    </widget>
 			  </child>
@@ -501,7 +501,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">Off</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">True</property>
+			      <property name="active">False</property>
 			      <property name="group">menu_boost_on</property>
 			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Tue, 08 Mar 2005 16:37:48 GMT"/>
 			    </widget>
@@ -619,6 +619,31 @@
 		<widget class="GtkMenu" id="menu_user_menu">
 
 		  <child>
+		    <widget class="GtkMenuItem" id="menu_user_show_last_match">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">Show last match</property>
+		      <property name="use_underline">True</property>
+		      <signal name="activate" handler="on_menu_user_show_last_match_activate" last_modification_time="Fri, 11 Mar 2005 15:22:26 GMT"/>
+		    </widget>
+		  </child>
+
+		  <child>
+		    <widget class="GtkMenuItem" id="menu_user_show_last_stats">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">Show last match stats</property>
+		      <property name="use_underline">True</property>
+		      <signal name="activate" handler="on_menu_user_show_last_stats_activate" last_modification_time="Fri, 11 Mar 2005 15:22:17 GMT"/>
+		      <accelerator key="F2" modifiers="0" signal="activate"/>
+		    </widget>
+		  </child>
+
+		  <child>
+		    <widget class="GtkSeparatorMenuItem" id="trennlinie9">
+		      <property name="visible">True</property>
+		    </widget>
+		  </child>
+
+		  <child>
 		    <widget class="GtkImageMenuItem" id="menu_next_user">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Next user</property>
@@ -627,7 +652,7 @@
 		      <accelerator key="F9" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image197">
+			<widget class="GtkImage" id="image207">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-go-forward</property>
 			  <property name="icon_size">1</property>
@@ -649,7 +674,7 @@
 		      <accelerator key="F8" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image198">
+			<widget class="GtkImage" id="image208">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-go-back</property>
 			  <property name="icon_size">1</property>
@@ -671,7 +696,7 @@
 		      <accelerator key="F12" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image199">
+			<widget class="GtkImage" id="image209">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-justify-fill</property>
 			  <property name="icon_size">1</property>
@@ -1306,6 +1331,54 @@
 		  <property name="visible">True</property>
 		  <property name="homogeneous">False</property>
 		  <property name="spacing">0</property>
+
+		  <child>
+		    <widget class="GtkEventBox" id="eventbox_style">
+		      <property name="visible">True</property>
+		      <property name="visible_window">True</property>
+		      <property name="above_child">False</property>
+		      <signal name="button_press_event" handler="on_eventbox_style_button_press_event" last_modification_time="Fri, 11 Mar 2005 15:30:28 GMT"/>
+
+		      <child>
+			<widget class="GtkImage" id="image_style">
+			  <property name="visible">True</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">2</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
+		    </widget>
+		    <packing>
+		      <property name="padding">0</property>
+		      <property name="expand">True</property>
+		      <property name="fill">True</property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkEventBox" id="eventbox_boost">
+		      <property name="visible">True</property>
+		      <property name="visible_window">True</property>
+		      <property name="above_child">False</property>
+		      <signal name="button_press_event" handler="on_eventbox_boost_button_press_event" last_modification_time="Fri, 11 Mar 2005 15:30:40 GMT"/>
+
+		      <child>
+			<widget class="GtkImage" id="image_boost">
+			  <property name="visible">True</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">2</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
+		    </widget>
+		    <packing>
+		      <property name="padding">0</property>
+		      <property name="expand">True</property>
+		      <property name="fill">True</property>
+		    </packing>
+		  </child>
 
 		  <child>
 		    <widget class="GtkEventBox" id="eventbox_team_name">

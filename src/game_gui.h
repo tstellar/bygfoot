@@ -41,4 +41,7 @@ game_gui_write_av_skills(void);
 void
 game_gui_show_warning(gchar *text);
 
+void
+game_gui_write_meters(void);
+
 #endif

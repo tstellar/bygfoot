@@ -78,4 +78,10 @@ team_find_appropriate_structure(const Team *tm);
 void
 team_rearrange(Team *tm);
 
+gchar*
+team_attribute_to_char(gint attribute, gint value);
+
+void
+team_change_attribute_with_message(Team * tm, gint attribute, gint new_value);
+
 #endif

@@ -127,7 +127,8 @@ window_create(gint window_type)
     gtk_window_set_title(GTK_WINDOW(wind), buf);
     gtk_widget_show(wind);
 
-    if(popups_active < old_popups_active && window.main != NULL)
+    if(popups_active != old_popups_active &&
+       window.main != NULL)
 	gtk_widget_set_sensitive(window.main, FALSE);
 
     return wind;

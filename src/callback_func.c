@@ -7,6 +7,7 @@
 #include "option.h"
 #include "player.h"
 #include "start_end.h"
+#include "support.h"
 #include "team.h"
 #include "treeview.h"
 #include "user.h"
@@ -87,4 +88,28 @@ callback_player_clicked(gint idx, GdkEventButton *event)
 
 	treeview_show_user_player_list(&usr(current_user), 1);
     }
+}
+
+/** Show the last match of the current user. */
+void
+callback_show_last_match(void)
+{
+    gint i;
+
+    if(usr(current_user).live_game.units == NULL)
+    {
+	game_gui_show_warning("No match to show.");
+	return;
+    }
+
+    stat2 = current_user;
+
+    window_create(WINDOW_LIVE);
+
+    treeview_show_game_stats(GTK_TREE_VIEW(lookup_widget(window.live, "treeview_stats")),
+			     &usr(current_user).live_game);
+    live_game_set_match(&usr(current_user).live_game);
+
+    for(i=0;i<usr(current_user).live_game.units->len;i++)
+	game_gui_live_game_show_unit(&g_array_index(usr(current_user).live_game.units, LiveGameUnit, i));
 }

@@ -50,6 +50,7 @@
 #define stat2 status[2]
 #define stat3 status[3]
 #define stat4 status[4]
+#define old_stat status[5]
 
 /**
  * Exit codes.

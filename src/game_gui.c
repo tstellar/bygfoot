@@ -56,7 +56,8 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
     if(unit->event.type == LIVE_GAME_EVENT_START_MATCH)
     {
 	gtk_widget_set_sensitive(button_live_close, FALSE);
-	gtk_widget_show(button_pause);
+	if(stat0 != STATUS_SHOW_LAST_MATCH)
+	    gtk_widget_show(button_pause);
 	gtk_widget_hide(button_resume);
     }
     else if(unit->event.type == LIVE_GAME_EVENT_END_MATCH)
@@ -187,6 +188,8 @@ game_gui_set_main_window_header(void)
     game_gui_write_av_skills();
 
     game_gui_write_radio_items();
+
+    game_gui_write_meters();
 }
 
 /** Set the average skills of the current team
@@ -216,6 +219,33 @@ game_gui_write_radio_items(void)
     gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(scout[usr(current_user).scout]), TRUE);
     gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(physio[usr(current_user).physio]), TRUE);
     gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(boost[usr(current_user).tm->boost + 1]), TRUE);
+}
+
+/** Set the appropriate images for the style and boost meters. */
+void
+game_gui_write_meters(void)
+{
+    gint i;
+    GtkImage *image_style = GTK_IMAGE(lookup_widget(window.main, "image_style")),
+	*image_boost = GTK_IMAGE(lookup_widget(window.main, "image_boost"));
+    gchar *image_style_files[5] = 
+	{file_find_support_file(const_str("string_game_gui_style_all_out_defend_icon")),
+	 file_find_support_file(const_str("string_game_gui_style_defend_icon")),
+	 file_find_support_file(const_str("string_game_gui_style_balanced_icon")),
+	 file_find_support_file(const_str("string_game_gui_style_attack_icon")),
+	 file_find_support_file(const_str("string_game_gui_style_all_out_attack_icon"))};
+    gchar *image_boost_files[3] =
+	{file_find_support_file(const_str("string_game_gui_boost_anti_icon")),
+	 file_find_support_file(const_str("string_game_gui_boost_off_icon")),
+	 file_find_support_file(const_str("string_game_gui_boost_on_icon"))};
+
+    gtk_image_set_from_file(image_style, image_style_files[usr(current_user).tm->style + 2]);
+    gtk_image_set_from_file(image_boost, image_boost_files[usr(current_user).tm->boost + 1]);
+
+    for(i=0;i<5;i++)
+	g_free(image_style_files[i]);
+    for(i=0;i<3;i++)
+	g_free(image_boost_files[i]);
 }
 
 /** Set playing style etc. variables according to
@@ -303,6 +333,8 @@ enum MainWindowInensitiveItems
     INSENSITIVE_ITEM_MENU_REMOVE_FROM_TRANSFER_LIST,
     INSENSITIVE_ITEM_MENU_FIRE,
     INSENSITIVE_ITEM_MENU_MANAGE_USERS,
+    INSENSITIVE_ITEM_MENU_USER_SHOW_LAST,
+    INSENSITIVE_ITEM_MENU_USER_SHOW_LAST_STATS,
     INSENSITIVE_ITEM_MENU_FINANCES_STADIUM,
     INSENSITIVE_ITEM_MENU_HELP,
     INSENSITIVE_ITEM_END
@@ -341,6 +373,10 @@ game_gui_set_main_window_sensitivity(gboolean value)
 	lookup_widget(window.main, "menu_fire");
     insensitive_items[INSENSITIVE_ITEM_MENU_MANAGE_USERS] = 
 	lookup_widget(window.main, "menu_manage_users");
+    insensitive_items[INSENSITIVE_ITEM_MENU_USER_SHOW_LAST] = 
+	lookup_widget(window.main, "menu_user_show_last_match");
+    insensitive_items[INSENSITIVE_ITEM_MENU_USER_SHOW_LAST_STATS] = 
+	lookup_widget(window.main, "menu_user_show_last_stats");
     insensitive_items[INSENSITIVE_ITEM_MENU_FINANCES_STADIUM] = 
 	lookup_widget(window.main, "menu_finances_stadium");
     insensitive_items[INSENSITIVE_ITEM_MENU_HELP] = 

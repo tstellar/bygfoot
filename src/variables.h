@@ -27,7 +27,7 @@ GArray *constants;
 GArray *transfer_list;
 
 /** These help us keep track of what's happening. */
-gint status[5];
+gint status[6];
 
 /** The currently selected rows in the treeviews. */
 gint selected_row[2];

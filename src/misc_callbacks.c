@@ -175,7 +175,10 @@ on_button_live_close_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
     stat2 = -1;
-    callback_show_next_live_game();
+    if(stat0 != STATUS_SHOW_LAST_MATCH)
+	callback_show_next_live_game();
+    else
+	window_destroy(&window.live, TRUE);
 }
 
 

@@ -1,6 +1,7 @@
 #include "cup.h"
 #include "fixture.h"
 #include "free.h"
+#include "game_gui.h"
 #include "league.h"
 #include "maths.h"
 #include "option.h"
@@ -603,4 +604,72 @@ team_rearrange(Team *tm)
 	    player_of(tm, i)->cskill = (i < 11) ?
 		player_get_cskill(player_of(tm, i), player_of(tm, i)->cpos) : player_of(tm, i)->skill;
     }
+}
+
+/** Return the name of the current setting of a team attribute, e.g. style.
+    @param  tm The team.
+    @param attribute The attribute. */
+gchar*
+team_attribute_to_char(gint attribute, gint value)
+{
+    switch(attribute)
+    {
+	default:
+	    g_warning("team_attribute_to_char: unknown attribute %d\n", attribute);
+	    break;
+	case TEAM_ATTRIBUTE_STYLE:
+	    switch(value)
+	    {
+		case -2:
+		    return _("ALL OUT DEFEND");
+		case -1:
+		    return _("DEFEND");
+		case 0:
+		    return _("BALANCED");
+		case 1:
+		    return _("ATTACK");
+		case 2:
+		    return _("ALL OUT ATTACK");
+	    }
+	    break;
+	case TEAM_ATTRIBUTE_BOOST:
+	    switch(value)
+	    {
+		case -1:
+		    return _("ANTI");
+		case 0:
+		    return _("OFF");
+		case 1:
+		    return _("ON");
+	    }
+	    break;
+    }
+
+    return NULL;
+}
+
+/** Change a team attribute of the current user and print a message.
+    @param attribute The attribute.
+    @param new_value The new value. */
+void
+team_change_attribute_with_message(Team *tm, gint attribute, gint new_value)
+{
+    gchar buf[SMALL];
+
+    switch(attribute)
+    {
+	default:
+	    g_warning("team_attribute_to_char: unknown attribute %d\n", attribute);
+	    break;
+	case TEAM_ATTRIBUTE_STYLE:
+	    usr(current_user).tm->style = new_value;
+	    sprintf(buf, "Team style changed to %s.", team_attribute_to_char(attribute, new_value));
+	    break;
+	case TEAM_ATTRIBUTE_BOOST:
+	    usr(current_user).tm->boost = new_value;
+	    sprintf(buf, "Boost changed to %s.", team_attribute_to_char(attribute, new_value));
+	    break;
+    }
+
+    game_gui_print_message(buf);
 }

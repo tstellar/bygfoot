@@ -3,20 +3,6 @@
 
 #include "bygfoot.h"
 
-/**
-   Playing styles for teams.
-   @see The match result calculating functions.
-*/
-enum TeamPlayingStyle
-{
-    PLAYING_STYLE_ALL_OUT_DEFEND = -2,
-    PLAYING_STYLE_DEFEND,
-    PLAYING_STYLE_BALANCED,
-    PLAYING_STYLE_ATTACK,
-    PLAYING_STYLE_ALL_OUT_ATTACK,
-    PLAYING_STYLE_END
-};
-
 /** @see team_return_league_cup_value_int() */
 enum LeagueCupValue
 {
@@ -34,6 +20,14 @@ enum LeagueCupValue
     LEAGUE_CUP_VALUE_CUP_TYPE,
     LEAGUE_CUP_VALUE_SKILL_DIFF,
     LEAGUE_CUP_VALUE_END
+};
+
+/** Some team attributes. */
+enum TeamAttribute
+{
+    TEAM_ATTRIBUTE_STYLE = 0,
+    TEAM_ATTRIBUTE_BOOST,
+    TEAM_ATTRIBUTE_END
 };
 
 /** The stadium of a team. */

@@ -106,4 +106,7 @@ live_game_finish_unit(void);
 LiveGameUnit*
 live_game_unit_before(const LiveGameUnit* unit, gint gap);
 
+void
+live_game_set_match(LiveGame *live_game);
+
 #endif

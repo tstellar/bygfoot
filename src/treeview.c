@@ -180,21 +180,21 @@ treeview_live_game_icon(gint event_type)
     else if(event_type == LIVE_GAME_EVENT_STRUCTURE_CHANGE)
 	return const_str("string_live_game_event_structure_change_icon");
     else if(event_type == LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_DEFEND)
-	return const_str("string_live_game_event_style_change_all_out_defend_icon");
+	return const_str("string_game_gui_style_all_out_defend_icon");
     else if(event_type == LIVE_GAME_EVENT_STYLE_CHANGE_DEFEND)
-	return const_str("string_live_game_event_style_change_defend_icon");
+	return const_str("string_game_gui_style_defend_icon");
     else if(event_type == LIVE_GAME_EVENT_STYLE_CHANGE_BALANCED)
-	return const_str("string_live_game_event_style_change_balanced_icon");
+	return const_str("string_game_gui_style_balanced_icon");
     else if(event_type == LIVE_GAME_EVENT_STYLE_CHANGE_ATTACK)
-	return const_str("string_live_game_event_style_change_attack_icon");
+	return const_str("string_game_gui_style_attack_icon");
     else if(event_type == LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_ATTACK)
-	return const_str("string_live_game_event_style_change_all_out_attack_icon");
+	return const_str("string_game_gui_style_all_out_attack_icon");
     else if(event_type == LIVE_GAME_EVENT_BOOST_CHANGE_ANTI)
-	return const_str("string_live_game_event_boost_change_anti_icon");
+	return const_str("string_game_gui_boost_anti_icon");
     else if(event_type == LIVE_GAME_EVENT_BOOST_CHANGE_OFF)
-	return const_str("string_live_game_event_boost_change_off_icon");
+	return const_str("string_game_gui_boost_off_icon");
     else if(event_type == LIVE_GAME_EVENT_BOOST_CHANGE_ON)
-	return const_str("string_live_game_event_boost_change_on_icon");
+	return const_str("string_game_gui_boost_on_icon");
     else
 	return "";
 }
