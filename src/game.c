@@ -63,7 +63,7 @@ game_get_values(const Fixture *fix, gfloat team_values[][GAME_TEAM_VALUE_END],
 	    ((1 - style_factor) * (1 + home_advantage * (i == 0)) *
 	     (1 + CONSTANT_PLAYER_BOOST_SKILL_EFFECT * (tm[i] == my_team && options[OPT_BOOL_BOOST] == 1)));
 	
-	printf("%s %.1f %.1f\n", tm[i]->name->str, team_values[i][GAME_TEAM_VALUE_ATTACK],
+	printf("%s attack %.1f defend %.1f\n", tm[i]->name->str, team_values[i][GAME_TEAM_VALUE_ATTACK],
 	       team_values[i][GAME_TEAM_VALUE_DEFEND]);
     }    
 }

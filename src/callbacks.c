@@ -160,13 +160,12 @@ on_button_new_week_clicked             (GtkButton       *button,
 	    printf("\n");
 	    for(j=0;j<2;j++)
 	    {
-		printf("%s %d %d %.1f\n", fix->teams[j]->name->str, fix->teams[j]->structure,
+		printf("%s structure %d style %d av. cskill %.1f\n", 
+		       fix->teams[j]->name->str, fix->teams[j]->structure,
 		       fix->teams[j]->style, team_average_cskill(fix->teams[j]));
 	    }
 	    
 	    live_game_calculate_fixture(fix);
-	    printf("%d : %d\n", math_sum_int_array(fix->result[0], 3),
-		   math_sum_int_array(fix->result[1], 3));
 	}
 
     week++;
