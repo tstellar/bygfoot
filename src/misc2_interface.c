@@ -707,6 +707,7 @@ create_window_digits (void)
   label_main = gtk_label_new (_("label42"));
   gtk_widget_show (label_main);
   gtk_box_pack_start (GTK_BOX (vbox14), label_main, FALSE, FALSE, 0);
+  gtk_label_set_line_wrap (GTK_LABEL (label_main), TRUE);
 
   hbox15 = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (hbox15);

@@ -4,6 +4,7 @@
 #include "game_gui.h"
 #include "main.h"
 #include "team.h"
+#include "transfer.h"
 #include "treeview.h"
 #include "variables.h"
 #include "window.h"
@@ -123,15 +124,9 @@ void
 on_button_transfers_clicked            (GtkButton       *button,
                                         gpointer         user_data)
 {
-
-}
-
-
-void
-on_button_fin_stad_clicked             (GtkButton       *button,
-                                        gpointer         user_data)
-{
-
+    stat0 = STATUS_SHOW_TRANSFER_LIST;
+    game_gui_print_message(_("Left click to make an offer. Right click to remove offer."));
+    treeview_show_transfer_list(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")));
 }
 
 
@@ -178,16 +173,6 @@ on_player_list1_button_press_event     (GtkWidget       *widget,
     callback_player_clicked(idx - 1, event);
 
     return FALSE;
-}
-
-
-gboolean
-on_player_list2_button_press_event     (GtkWidget       *widget,
-                                        GdkEventButton  *event,
-                                        gpointer         user_data)
-{
-
-  return FALSE;
 }
 
 void
@@ -500,6 +485,11 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data)
 {
+    gint idx;
+
+    treeview_select_row(GTK_TREE_VIEW(widget), event);
+    idx = treeview_get_index(GTK_TREE_VIEW(widget), 0);
+
     switch(stat0)
     {
 	case STATUS_SHOW_FINANCES:
@@ -507,6 +497,17 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
 		callback_get_loan();
 	    else if(event->button == 3)
 		callback_pay_loan();
+	    break;
+	case STATUS_SHOW_TRANSFER_LIST:
+	    if(event->button == 1)
+		callback_transfer_list_clicked(idx - 1);
+	    else if(event->button == 3)
+	    {
+		if(transfer_remove_offer(idx - 1, current_user.tm))
+		    game_gui_print_message(_("Your offer has been removed."));
+		else
+		    game_gui_print_message(_("You haven't made an offer for the player."));
+	    }
 	    break;
     }
 
@@ -576,10 +577,6 @@ on_menu_team_button_press_event        (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data)
 {
-    /*d*/
-/*     player_of(usr(0).tm, 10)->cskill = 0; */
-/*     player_of(usr(0).tm, 10)->health = 10; */
-
     game_gui_read_radio_items(widget);
 
     return FALSE;
@@ -683,4 +680,3 @@ on_menu_show_stadium_activate          (GtkMenuItem     *menuitem,
 {
     window_show_stadium();
 }
-

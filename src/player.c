@@ -148,7 +148,8 @@ player_estimate_talent(Player *pl)
 
     for(i=0;i<QUALITY_END;i++)
     {
-	scout_deviance[i] = (i + 1) * const_float("float_player_etal_scout_factor");
+	scout_deviance[i] = (i + 1) * const_float("float_player_max_skill") *
+	    (const_float("float_player_etal_scout_factor") / 100);
 	/* adjust deviance_bounds with regard to the scout's
 	   deviance */
 	for(j=0;j<2;j++)
@@ -1003,9 +1004,11 @@ player_update_post_match(Player *pl, gint clid)
 	player_card_set(pl, clid, PLAYER_VALUE_CARD_RED, -1, TRUE);
 }
 
-/** Replace a player by a new one in a cpu team. */
+/** Replace a player by a new one in a cpu team. 
+    @param free_player Whether to free the memory occupied
+    by the player. */
 void
-player_replace_by_new(Player *pl)
+player_replace_by_new(Player *pl, gboolean free_player)
 {
     Team *tm = pl->team;
     gint idx = player_id_index(tm, pl->id);
@@ -1015,7 +1018,10 @@ player_replace_by_new(Player *pl)
     new.cpos = pl->cpos;
     new.id = pl->id;
 
-    player_remove_from_team(tm, idx);
+    if(free_player)
+	player_remove_from_team(tm, idx);
+    else
+	g_array_remove_index(tm->players, idx);
     g_array_insert_val(tm->players, idx, new);
 }
 

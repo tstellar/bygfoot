@@ -84,11 +84,18 @@ typedef struct
 
 enum EventType
 {
-    EVENT_TYPE_PLAYER_LEFT = 0,
+    EVENT_TYPE_WARNING = 0,
+    EVENT_TYPE_PLAYER_LEFT,
     EVENT_TYPE_PAYBACK,
+    EVENT_TYPE_OVERDRAW,
     EVENT_TYPE_JOB_OFFER,
     EVENT_TYPE_FIRE_FINANCE,
-    EVENT_TYPE_FIRE_UNSUCCESSFUL
+    EVENT_TYPE_FIRE_UNSUCCESSFUL,
+    EVENT_TYPE_TRANSFER_OFFER_REJECTED,
+    EVENT_TYPE_TRANSFER_OFFER_MONEY,
+    EVENT_TYPE_TRANSFER_OFFER_ROSTER,
+    EVENT_TYPE_TRANSFER_OFFER_ACCEPTED,
+    EVENT_TYPE_END
 };
 
 /** A structure representing an event for a user. This is used
@@ -102,9 +109,9 @@ typedef struct
     /** Some values that are used for different purposes. */
     gint value1, value2;
     /** A pointer for different purposes. */
-    gpointer pointer_value;
+    gpointer value_pointer;
     /** A string for different purposes. */
-    GString *string_value;
+    GString *value_string;
 
 } Event;
 

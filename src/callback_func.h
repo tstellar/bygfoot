@@ -24,4 +24,7 @@ callback_pay_loan(void);
 void
 callback_get_loan(void);
 
+void
+callback_transfer_list_clicked(gint idx);
+
 #endif

@@ -98,7 +98,6 @@ user_set_up_counters(User *user)
 
     user->counters[COUNT_USER_LOAN] =
 	user->counters[COUNT_USER_POSITIVE] = -1;
-
 }
 /** Set up the user's finances when he's got a new team.
     @param user The user we set up the finances for. */
@@ -238,8 +237,8 @@ user_event_new(void)
     new.user = NULL;
     new.type = -1;
     new.value1 = new.value2 = -1;
-    new.pointer_value = NULL;
-    new.string_value = NULL;
+    new.value_pointer = NULL;
+    new.value_string = NULL;
 
     return new;
 }
@@ -247,7 +246,7 @@ user_event_new(void)
 /** Add an event with the specified values to the event array of the user. */
 void
 user_event_add(User *user, gint type, gint value1, gint value2, 
-	       gpointer pointer_value, gchar *string_value)
+	       gpointer value_pointer, gchar *value_string)
 {
     Event new = user_event_new();
 
@@ -255,10 +254,10 @@ user_event_add(User *user, gint type, gint value1, gint value2,
     new.type = type;
     new.value1 = value1;
     new.value2 = value2;
-    new.pointer_value = pointer_value;
+    new.value_pointer = value_pointer;
     
-    if(string_value != NULL)
-	new.string_value = g_string_new(string_value);
+    if(value_string != NULL)
+	new.value_string = g_string_new(value_string);
     
 
     g_array_append_val(user->events, new);
@@ -298,17 +297,49 @@ user_event_show_next(void)
 	    break;
 	case EVENT_TYPE_PLAYER_LEFT:
 	    sprintf(buf, _("%s has left your team because his contract expired."),
-		    event->string_value->str);
+		    event->value_string->str);
 	    game_gui_show_warning(buf);
+	    user_event_remove(&current_user, 0);
 	    break;
-	case EVENT_TYPE_PAYBACK:
-	    game_gui_show_warning(event->string_value->str);
+	case EVENT_TYPE_WARNING:
+	    game_gui_show_warning(event->value_string->str);
 	    user_event_remove(&current_user, 0);
 	    break;
 	case EVENT_TYPE_FIRE_FINANCE:
 	    stat0 = STATUS_JOB_OFFER_FIRE_FINANCE;
-	    statp = event->pointer_value;
-	    game_gui_show_job_offer((Team*)event->pointer_value, STATUS_JOB_OFFER_FIRE_FINANCE);
+	    statp = event->value_pointer;
+	    game_gui_show_job_offer((Team*)event->value_pointer, STATUS_JOB_OFFER_FIRE_FINANCE);
+	    user_event_remove(&current_user, 0);
+	    break;
+	case EVENT_TYPE_OVERDRAW:
+	    if(event->value1 == 1)
+		sprintf(buf, _("You have overdrawn your bank account. The team owners give you %d weeks to exceed your drawing credit limit again."), const_int("int_finance_overdraw_positive"));
+	    else
+		sprintf(buf, _("You have overdrawn your bank account once again. Bear in mind that after the fourth time you get fired.\nThe team owners give you %d weeks to exceed your drawing credit limit again."), const_int("int_finance_overdraw_positive"));
+	    game_gui_show_warning(buf);
+	    user_event_remove(&current_user, 0);
+	    break;
+	case EVENT_TYPE_TRANSFER_OFFER_REJECTED:
+	    sprintf(buf, _("The owners of %s have rejected your offer for %s. Either the fee or the wage you suggested was too low, apparently."), ((Team*)event->value_pointer)->name->str, event->value_string->str);
+	    game_gui_show_warning(buf);
+	    user_event_remove(&current_user, 0);
+	    break;
+	case EVENT_TYPE_TRANSFER_OFFER_MONEY:
+	    sprintf(buf, _("You didn't have enough money to buy %s from %s."),
+		    event->value_string->str, ((Team*)event->value_pointer)->name->str);
+	    game_gui_show_warning(buf);
+	    user_event_remove(&current_user, 0);
+	    break;
+	case EVENT_TYPE_TRANSFER_OFFER_ROSTER:
+	    sprintf(buf, _("Your roster is full. You couldn't buy %s from %s."),
+		    event->value_string->str, ((Team*)event->value_pointer)->name->str);
+	    game_gui_show_warning(buf);
+	    user_event_remove(&current_user, 0);
+	    break;
+	case EVENT_TYPE_TRANSFER_OFFER_ACCEPTED:
+	    sprintf(buf, _("Congratulations! The owners of %s have accepted your offer for %s!"),
+		    ((Team*)event->value_pointer)->name->str, event->value_string->str);
+	    game_gui_show_warning(buf);
 	    user_event_remove(&current_user, 0);
 	    break;
     }
@@ -324,4 +355,19 @@ user_change_team(User *user, Team *tm)
     user_set_up_team(user);
     for(i=user->events->len - 1; i >= 0; i--)
 	user_event_remove(user, i);    
+}
+
+/** Return the index of the user in the users array. */
+gint
+user_get_index(User *user)
+{ 
+    gint i;
+
+    for(i=0;i<users->len;i++)
+	if(&usr(i) == user)
+	    return i;
+
+    g_warning("user_get_index: user not found.\n");
+    
+    return -1;
 }

@@ -3,6 +3,7 @@
 
 #include "bygfoot.h"
 #include "league_struct.h"
+#include "fixture_struct.h"
 
 League
 league_new(void);

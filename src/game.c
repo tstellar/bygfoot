@@ -304,7 +304,7 @@ game_assign_attendance(Fixture *fix)
 		 const_float("float_game_stadium_attendance_percentage_upper")) *
 	powf(tm[0]->stadium.safety, 
 	     const_float("float_game_stadium_attendance_safety_exponent"));
-    gint max_att = MIN((gint)rint((gfloat)league_cup_average_capacity(fix->clid) *
+    gint max_att = MIN((gint)rint((gfloat)league_cup_average_capacity(tm[0]->clid) *
 				  const_float("float_game_stadium_attendance_average_exceed_factor")),
 		       tm[0]->stadium.capacity);
 
@@ -1084,13 +1084,8 @@ game_stadium_event(Stadium *stadium, gint type)
     reduce = math_rnd(reduce_factor[type - LIVE_GAME_EVENT_STADIUM_BREAKDOWN][0],
 		      reduce_factor[type - LIVE_GAME_EVENT_STADIUM_BREAKDOWN][1]);
     
-    printf("event %d saf %.2f cap %d\n",
-	   type - LIVE_GAME_EVENT_STADIUM_BREAKDOWN, stadium->safety, stadium->capacity);
     stadium->safety *= (1 - reduce);
     stadium->capacity = (gint)rint((gfloat)stadium->capacity *
 				   (1 - reduce *
 				    const_float("float_game_stadium_capacity_reduce_factor")));
-
-    printf("2 event %d saf %.2f cap %d\n",
-	   type - LIVE_GAME_EVENT_STADIUM_BREAKDOWN, stadium->safety, stadium->capacity);
 }

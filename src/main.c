@@ -5,11 +5,11 @@
 
 #include <time.h>
 
-/*d*/
 #include "misc_callbacks.h"
 #include "file.h"
 #include "free.h"
 #include "main.h"
+#include "transfer_struct.h"
 #include "variables.h"
 #include "window.h"
 
@@ -30,9 +30,9 @@ main_init_variables(void)
     live_game_temp.units = NULL;
 
     users = g_array_new(FALSE, FALSE, sizeof(User));
-
     options = g_array_new(FALSE, FALSE, sizeof(Option));
     constants = g_array_new(FALSE, FALSE, sizeof(Option));
+    transfer_list = g_array_new(FALSE, FALSE, sizeof(Transfer));
 
     popups_active = 0;
     selected_row[0] = selected_row[1] = -1;

@@ -184,7 +184,7 @@ typedef struct
     gint started_game;
     /** We keep track of the stadium events because
 	there shouldn't be more than one of them in a game. */
-    gboolean stadium_event;
+    gint stadium_event;
     /** Attacking, defending etc. values for both teams.
 	@see #GameTeamValue */
     gfloat team_values[2][GAME_TEAM_VALUE_END];

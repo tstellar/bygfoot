@@ -56,12 +56,35 @@ finance_update_user_weekly(User *user)
     for(i=0;i<MON_OUT_END;i++)
 	user->money += user->money_out[1][i];
 
+    if(user->money < -finance_team_drawing_credit_loan(user->tm, FALSE) &&
+       user->counters[COUNT_USER_POSITIVE] == -1)
+    {
+	user->counters[COUNT_USER_OVERDRAWN]++;
+	if(user->counters[COUNT_USER_OVERDRAWN] <=
+	   const_int("int_finance_overdraw_limit"))
+	{
+	    user_event_add(user, EVENT_TYPE_OVERDRAW, 
+			   user->counters[COUNT_USER_OVERDRAWN], -1, NULL, NULL);
+	    user->counters[COUNT_USER_POSITIVE] =
+		const_int("int_finance_overdraw_positive");
+	}
+    }
+    else if(user->counters[COUNT_USER_POSITIVE] > -1)
+	user->counters[COUNT_USER_POSITIVE]--;	    
+
     if(user->counters[COUNT_USER_LOAN] > -1)
 	user->counters[COUNT_USER_LOAN]--;
+
     if(user->counters[COUNT_USER_LOAN] == 0)
-	user_event_add(user, EVENT_TYPE_PAYBACK, -1, -1, NULL, 
+	user_event_add(user, EVENT_TYPE_WARNING, -1, -1, NULL, 
 		       _("You have to pay back your loan this week."));
-    else if(user->counters[COUNT_USER_LOAN] == -1 && user->debt != 0)
+    if(user->counters[COUNT_USER_POSITIVE] == 0)
+	user_event_add(user, EVENT_TYPE_WARNING, -1, -1, NULL, 
+		       _("Your bank account has to exceed your drawing credit limit next week."));
+
+    if((user->counters[COUNT_USER_LOAN] == -1 && user->debt != 0) ||
+       (user->counters[COUNT_USER_POSITIVE] == -1 &&
+	user->money < -finance_team_drawing_credit_loan(user->tm, FALSE)))
     {
 	new_team = team_get_new(tm, TRUE);
 	user_event_add(user, EVENT_TYPE_FIRE_FINANCE, -1, -1, new_team, NULL);
@@ -122,8 +145,6 @@ finance_get_loan(gint value)
 	    current_user.counters[COUNT_USER_LOAN]); 
     game_gui_print_message(buf);
 
-    window_destroy(&window.digits, TRUE);
-
     on_menu_show_finances_activate(NULL, NULL);
 }
 
@@ -155,8 +176,6 @@ finance_pay_loan(gint value)
     }
 
     game_gui_print_message(buf);
-    window_destroy(&window.digits, TRUE);
-
     on_menu_show_finances_activate(NULL, NULL);
 }
 

@@ -137,8 +137,6 @@ create_main_window (void)
   GtkWidget *image20;
   GtkWidget *button_transfers;
   GtkWidget *image32;
-  GtkWidget *button_fin_stad;
-  GtkWidget *image33;
   GtkWidget *button_preview;
   GtkWidget *image36;
   GtkWidget *vseparator16;
@@ -700,19 +698,6 @@ create_main_window (void)
   gtk_widget_show (image32);
   gtk_container_add (GTK_CONTAINER (button_transfers), image32);
 
-  button_fin_stad = gtk_button_new ();
-  gtk_widget_show (button_fin_stad);
-  gtk_box_pack_start (GTK_BOX (hbox1), button_fin_stad, FALSE, FALSE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (button_fin_stad), 2);
-  gtk_tooltips_set_tip (tooltips, button_fin_stad, _("Finances and stadium (F)"), NULL);
-  gtk_widget_add_accelerator (button_fin_stad, "clicked", accel_group,
-                              GDK_f, 0,
-                              GTK_ACCEL_VISIBLE);
-
-  image33 = create_pixmap (main_window, "fin_stad.png");
-  gtk_widget_show (image33);
-  gtk_container_add (GTK_CONTAINER (button_fin_stad), image33);
-
   button_preview = gtk_button_new ();
   gtk_widget_show (button_preview);
   gtk_box_pack_start (GTK_BOX (hbox1), button_preview, FALSE, FALSE, 0);
@@ -1193,9 +1178,6 @@ create_main_window (void)
   g_signal_connect ((gpointer) button_transfers, "clicked",
                     G_CALLBACK (on_button_transfers_clicked),
                     NULL);
-  g_signal_connect ((gpointer) button_fin_stad, "clicked",
-                    G_CALLBACK (on_button_fin_stad_clicked),
-                    NULL);
   g_signal_connect ((gpointer) button_preview, "clicked",
                     G_CALLBACK (on_button_preview_clicked),
                     NULL);
@@ -1215,7 +1197,7 @@ create_main_window (void)
                     G_CALLBACK (on_player_list1_button_press_event),
                     NULL);
   g_signal_connect ((gpointer) player_list2, "button_press_event",
-                    G_CALLBACK (on_player_list2_button_press_event),
+                    G_CALLBACK (on_player_list1_button_press_event),
                     NULL);
   g_signal_connect ((gpointer) button_cl_back, "clicked",
                     G_CALLBACK (on_button_cl_back_clicked),
@@ -1337,8 +1319,6 @@ create_main_window (void)
   GLADE_HOOKUP_OBJECT (main_window, image20, "image20");
   GLADE_HOOKUP_OBJECT (main_window, button_transfers, "button_transfers");
   GLADE_HOOKUP_OBJECT (main_window, image32, "image32");
-  GLADE_HOOKUP_OBJECT (main_window, button_fin_stad, "button_fin_stad");
-  GLADE_HOOKUP_OBJECT (main_window, image33, "image33");
   GLADE_HOOKUP_OBJECT (main_window, button_preview, "button_preview");
   GLADE_HOOKUP_OBJECT (main_window, image36, "image36");
   GLADE_HOOKUP_OBJECT (main_window, vseparator16, "vseparator16");

@@ -63,10 +63,6 @@ on_button_transfers_clicked            (GtkButton       *button,
                                         gpointer         user_data);
 
 void
-on_button_fin_stad_clicked             (GtkButton       *button,
-                                        gpointer         user_data);
-
-void
 on_button_preview_clicked              (GtkButton       *button,
                                         gpointer         user_data);
 

@@ -56,4 +56,7 @@ user_change_team(User *user, Team *tm);
 void
 user_set_up_counters(User *user);
 
+gint
+user_get_index(User *user);
+
 #endif

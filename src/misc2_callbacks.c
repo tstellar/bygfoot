@@ -5,6 +5,7 @@
 #include "misc2_callbacks.h"
 #include "misc2_interface.h"
 #include "support.h"
+#include "transfer.h"
 #include "user.h"
 #include "variables.h"
 #include "window.h"
@@ -126,7 +127,15 @@ on_button_digits_ok_clicked            (GtkButton       *button,
 	case STATUS_PAY_LOAN:
 	    finance_pay_loan(values[0]);
 	    break;
+	case STATUS_SHOW_TRANSFER_LIST:
+	    if(transfer_add_offer(stat1, current_user.tm, values[0], values[1]))
+		game_gui_print_message(_("Your offer has been updated."));
+	    else
+		game_gui_print_message(_("Your offer will be considered next week."));
+	    break;
     }
+
+    window_destroy(&window.digits, TRUE);
 
     game_gui_set_main_window_header();
 }

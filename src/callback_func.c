@@ -1,4 +1,5 @@
 #include "callback_func.h"
+#include "callbacks.h"
 #include "cup.h"
 #include "finance.h"
 #include "fixture.h"
@@ -11,6 +12,7 @@
 #include "start_end.h"
 #include "support.h"
 #include "team.h"
+#include "transfer.h"
 #include "treeview.h"
 #include "user.h"
 #include "variables.h"
@@ -212,4 +214,33 @@ callback_pay_loan(void)
     sprintf(buf, _("You can pay back at most %s"), buf2);
 
     window_show_digits(buf, _("Payback"), max_payback, NULL, 0);
+}
+
+/** Handle a click on the transfer list. 
+    @param idx The index of the selected player in the transfer list. */
+void
+callback_transfer_list_clicked(gint idx)
+{
+    gchar buf[SMALL];
+    Transfer *tr = &trans(idx);
+
+    if(tr->pl->team == current_user.tm)
+    {
+	transfer_remove_player(idx);
+	on_button_transfers_clicked(NULL, NULL);
+	return;
+    }
+    
+    if(current_user.tm->players->len == const_int("int_team_max_players"))
+    {
+	game_gui_show_warning(_("Your roster is already full. You can't buy more players."));
+	return;
+    }
+
+    sprintf(buf, _("You are making an offer for %s. Your scout's recommendations for value and wage are preset."),
+	    tr->pl->name->str);
+    stat1 = idx;
+
+    window_show_digits(buf, _("Fee"), tr->fee[current_user.scout % 10],
+		       _("Wage"), tr->wage[current_user.scout % 10]);
 }

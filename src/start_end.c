@@ -36,7 +36,7 @@ WeekFunc start_week_round_funcs[] =
     is started. */
 WeekFunc start_week_funcs[] = 
 {start_week_update_users, start_week_update_user_teams,
- start_week_update_user_finances, NULL};
+ start_week_update_user_finances, transfer_update, NULL};
 
 WeekFunc end_week_funcs[] = {NULL};
 
@@ -77,7 +77,6 @@ start_write_variables(void)
     season = week = week_round = 1;
     cur_user = 0;
 /*     week=24; week_round = 2; */
-    transfer_list = g_array_new(FALSE, FALSE, sizeof(TransferPlayer));
 
     for(i=0;i<users->len;i++)
 	file_load_user_conf_file(&usr(i));
@@ -197,6 +196,7 @@ end_week_round_results(void)
 			    buf,
 			    g_array_index(cp(i).fixtures, Fixture, j).teams[1]->name->str);
 		    gui_show_progress((gfloat)done / num_matches, buf2);
+		    printf("%s\n", buf2);
 		}
     }
 

@@ -170,6 +170,7 @@ game_gui_get_radio_items(GtkWidget **style, GtkWidget **scout,
 void
 game_gui_set_main_window_header(void)
 {
+    gchar buf[SMALL];
     GtkLabel *label_user= GTK_LABEL(lookup_widget(window.main, "label_user"));
     GtkLabel *label_season= GTK_LABEL(lookup_widget(window.main, "label_season"));
     GtkLabel *label_week= GTK_LABEL(lookup_widget(window.main, "label_week"));
@@ -184,7 +185,10 @@ game_gui_set_main_window_header(void)
     gui_label_set_text_from_int(label_week, week, FALSE);
     gui_label_set_text_from_int(label_round, week_round, FALSE);
     gui_label_set_text_from_int(label_rank, week_round, FALSE);
-    gui_label_set_text_from_int(label_money, current_user.money, FALSE);
+
+    misc_print_grouped_int(current_user.money, buf, FALSE);
+    gtk_label_set_text(label_money, buf);
+
     gui_label_set_text_from_int(label_rank, 
 				team_rank(current_user.tm, current_user.tm->clid), FALSE);
 

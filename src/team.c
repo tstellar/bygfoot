@@ -797,7 +797,7 @@ team_update_cpu_new_players(Team *tm)
     math_generate_permutation(player_numbers, 0, tm->players->len - 1);
 
     for(i=0;i<number_of_new;i++)
-	player_replace_by_new(player_of(tm, player_numbers[i]));
+	player_replace_by_new(player_of(tm, player_numbers[i]), TRUE);
 }
 
 /** Heal players, re-set fitnesses, make some random subs
@@ -865,7 +865,7 @@ team_compare_func(gconstpointer a, gconstpointer b, gpointer data)
 	*(const Team**)b : (const Team*)b;
     gint return_value = 0;
 
-    if(type == TEAM_COMPARE_RANK)
+    if(type == TEAM_COMPARE_LEAGUE_RANK)
     {
 	if(tm1->clid == tm2->clid)
 	    return_value = misc_int_compare(team_rank(tm2, tm2->clid), team_rank(tm1, tm1->clid));
@@ -874,22 +874,37 @@ team_compare_func(gconstpointer a, gconstpointer b, gpointer data)
 		league_cup_get_index_from_clid(tm2->clid),
 		league_cup_get_index_from_clid(tm1->clid));
     }
+    else if(type == TEAM_COMPARE_UNSORTED)
+	return 0;
 
     return return_value;
 }
 
 /** Return the teams from all leagues sorted by the
     specified function. 
-    @param type The integer to pass to the compare function. */
+    @param type The integer to pass to the compare function.
+    @param cup Whether we return the international cup teams or league teams. */
 GPtrArray*
-team_get_sorted(GCompareDataFunc compare_function, gint type)
+team_get_sorted(GCompareDataFunc compare_function, gint type, gboolean cup)
 { 
     gint i, j;
     GPtrArray *teams = g_ptr_array_new();
 
-    for(i=0;i<ligs->len;i++)
-	for(j=0;j<lig(i).teams->len;j++)
-	    g_ptr_array_add(teams, team_get_pointer_from_ids(lig(i).id, j));
+    if(!cup)
+    {
+	for(i=0;i<ligs->len;i++)
+	    for(j=0;j<lig(i).teams->len;j++)
+		g_ptr_array_add(teams, team_get_pointer_from_ids(lig(i).id, j));
+    }
+    else
+    {
+	for(i=0;i<cps->len;i++)
+	{
+	    if(cp(i).type == CUP_TYPE_INTERNATIONAL)
+		for(j=0;j<cp(i).teams->len;j++)
+		    g_ptr_array_add(teams, team_get_pointer_from_ids(cp(i).id, j));
+	}
+    }
 
     g_ptr_array_sort_with_data(teams, compare_function, GINT_TO_POINTER(type));
 
@@ -908,7 +923,7 @@ team_get_new(const Team *tm, gboolean fire)
 	bound2 = (fire) ? const_int("int_team_new_bound_lower") :
 	const_int("int_team_new_bound_upper");
     gint idx = -1;
-    GPtrArray *teams = team_get_sorted(team_compare_func, TEAM_COMPARE_RANK);
+    GPtrArray *teams = team_get_sorted(team_compare_func, TEAM_COMPARE_LEAGUE_RANK, FALSE);
     Team *return_value;
 
     for(i=0;i<teams->len;i++)
@@ -932,6 +947,8 @@ team_get_new(const Team *tm, gboolean fire)
     return_value = (Team*)g_ptr_array_index(teams, math_rndi(i - bound1, i + bound2));
     while(return_value == tm)
 	return_value = (Team*)g_ptr_array_index(teams, math_rndi(i - bound1, i + bound2));
+
+    g_ptr_array_free(teams, TRUE);
 
     return return_value;
 }

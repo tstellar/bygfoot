@@ -13,6 +13,7 @@
 #include "option.h"
 #include "support.h"
 #include "team.h"
+#include "transfer.h"
 #include "treeview.h"
 #include "treeview_cell.h"
 #include "user.h"
@@ -470,7 +471,9 @@ treeview_set_up_player_list (GtkTreeView *treeview, gint *attributes, gint max)
 						GINT_TO_POINTER(attributes[i]),
 						NULL);
 
-	if(attributes[i] != PLAYER_LIST_ATTRIBUTE_NAME)
+	if(attributes[i] != PLAYER_LIST_ATTRIBUTE_NAME &&
+	   attributes[i] != PLAYER_LIST_ATTRIBUTE_TEAM &&
+	   attributes[i] != PLAYER_LIST_ATTRIBUTE_LEAGUE_CUP)
 	{
 	    gtk_tree_view_column_set_alignment(col, 0.5);
 	    g_object_set(renderer, "xalign", 0.5,
@@ -918,6 +921,22 @@ treeview_create_game_stats(LiveGame *live_game)
     sprintf(buf[1], "Attendance\n%s", buf[0]);
     gtk_list_store_append(liststore, &iter);
     gtk_list_store_set(liststore, &iter, 0, buf[1], 1, "", 2, "", -1);
+
+    if(live_game->stadium_event != -1)
+    {
+	gtk_list_store_append(liststore, &iter);
+	if(live_game->stadium_event == LIVE_GAME_EVENT_STADIUM_BREAKDOWN)
+	    sprintf(buf[0], _("<span background='%s'>There were technical problems\nin the stadium.</span>"),
+			      const_str("string_treeview_stadium_event_bg"));
+	else if(live_game->stadium_event == LIVE_GAME_EVENT_STADIUM_RIOTS)
+	    sprintf(buf[0], _("<span background='%s'>There were riots\nin the stadium.</span>"),
+		    const_str("string_treeview_stadium_event_bg"));
+	else
+	    sprintf(buf[0], _("<span background='%s'>There was a fire\nin the stadium.</span>"),
+		    const_str("string_treeview_stadium_event_bg"));
+
+	gtk_list_store_set(liststore, &iter, 0, buf[0], 1, "", 2, "", -1);
+    }
 
     gtk_list_store_append(liststore, &iter);
     gtk_list_store_set(liststore, &iter, 0, "", 1, "", 2, "", -1);
@@ -1572,4 +1591,18 @@ treeview_show_finances(GtkTreeView *treeview, const User* user)
     model = treeview_create_finances(user);
     gtk_tree_view_set_model(treeview, model);
     g_object_unref(model);
+}
+
+/** Show the transfer list. */
+void
+treeview_show_transfer_list(GtkTreeView *treeview)
+{
+    gint i;
+    GPtrArray *players = g_ptr_array_new();
+
+    for(i=0;i<transfer_list->len;i++)
+	g_ptr_array_add(players, trans(i).pl);
+
+    treeview_show_player_list(treeview, players, 
+			      treeview_get_attributes_from_scout(current_user.scout), FALSE);
 }

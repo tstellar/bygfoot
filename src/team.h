@@ -9,7 +9,8 @@
 /** Possibilities for team comparison. */
 enum TeamCompare
 {
-    TEAM_COMPARE_RANK = 0,
+    TEAM_COMPARE_LEAGUE_RANK = 0,
+    TEAM_COMPARE_UNSORTED,
     TEAM_COMPARE_END
 };
 
@@ -119,7 +120,7 @@ Team*
 team_get_new(const Team *tm, gboolean fire);
 
 GPtrArray*
-team_get_sorted(GCompareDataFunc compare_function, gint type);
+team_get_sorted(GCompareDataFunc compare_function, gint type, gboolean cup);
 
 gint
 team_compare_func(gconstpointer a, gconstpointer b, gpointer data);

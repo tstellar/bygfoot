@@ -57,7 +57,7 @@ free_user(User *user)
 void
 free_event(Event *event)
 {
-    free_g_string(&event->string_value);
+    free_g_string(&event->value_string);
 }
 
 /** Free an array of options.

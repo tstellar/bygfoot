@@ -143,4 +143,7 @@ treeview_show_player_list_team(GtkTreeView *treeview, const Team *tm, gint scout
 PlayerListAttribute
 treeview_get_attributes_from_scout(gint scout);
 
+void
+treeview_show_transfer_list(GtkTreeView *treeview);
+
 #endif

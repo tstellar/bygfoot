@@ -147,7 +147,7 @@ live_game_fill_new_unit(LiveGameUnit *new)
 	new->event.type = LIVE_GAME_EVENT_INJURY;
     else if(rndom < foul_event_prob +
 	    injury_event_prob +
-	    stadium_event && !match->stadium_event)
+	    stadium_event && match->stadium_event == -1)
 	new->event.type = LIVE_GAME_EVENT_STADIUM;
     else if(rndom < foul_event_prob +
 	    injury_event_prob +
@@ -454,7 +454,7 @@ live_game_event_stadium(void)
     if(team_is_user(tm0) != -1)
 	game_stadium_event(&tm0->stadium, last_unit.event.type);
 
-    match->stadium_event = TRUE;
+    match->stadium_event = last_unit.event.type;
 
     live_game_event_general(TRUE);
 }
@@ -762,7 +762,7 @@ live_game_event_send_off(gint team, gint player, gboolean second_yellow)
 
     player_of_id(tm[team], player)->cskill = 0;
     if(second_yellow)
-	player_card_set(player_of_id(tm[team], player), match->fix->clid, PLAYER_VALUE_CARD_RED, 1, FALSE);
+	player_card_set(player_of_id(tm[team], player), match->fix->clid, PLAYER_VALUE_CARD_RED, 2, FALSE);
     else
 	player_card_set(player_of_id(tm[team], player), match->fix->clid, PLAYER_VALUE_CARD_RED, 
 			game_player_get_ban_duration(), FALSE);
@@ -1174,7 +1174,7 @@ live_game_reset(Fixture *fix)
 
     match->fix = fix;
     match->subs_left[0] = match->subs_left[1] = 3;
-    match->stadium_event = FALSE;
+    match->stadium_event = -1;
     
     if(fix->home_advantage)
 	match->home_advantage = 

@@ -162,10 +162,6 @@ float_treeview_cell_limit_player_contract_below3 4000
 # the integer that the cell data functions will interpret as an empty string.
 int_treeview_cell_int_empty -5
 
-# transfer list configuration
-int_transfer_max_players 20
-int_transfer_deadline 35
-
 # maximum number of players in a team.
 int_team_max_players 20
 
@@ -175,6 +171,11 @@ float_player_max_skill 990000
 # determines initial money of the users
 int_initial_money_lower 80
 int_initial_money_upper 110
+
+# how often a user may overdraw his bank account
+int_finance_overdraw_limit 3
+# how many weeks until he's got to be positive
+int_finance_overdraw_positive 6
 
 # wage factors for scout and physio
 # four apiece because of the different qualities
@@ -562,6 +563,27 @@ float_player_team_weight_forward_defense	2000
 float_player_team_weight_forward_midfield	6000
 float_player_team_weight_forward_attack		13000
 
+# transfer list configuration
+# maximal number of players on the list
+int_transfer_max_players 20
+
+# deadline in perc. of the longest league
+# e.g if a league has 100 matchdays deadline would be after
+# week 70
+float_transfer_deadline_percentage 7500
+# number of new players on the list each week
+int_transfer_new_players_lower 0
+int_transfer_new_players_upper 4
+# how long they stay on the list
+int_transfer_time_lower 3
+int_transfer_time_upper 5
+# percentage of players from international cup teams
+float_transfer_cup_percentage 2500
+
+# scout deviance in percent of the players' values and wages
+# this value is the deviance for the best scout; the others
+# are obtained by multiplying it
+float_transfer_scout_deviance 400
 
 #### colours and icons
 
@@ -669,3 +691,6 @@ string_treeview_table_best_advance khaki
 
 # colour for expenses in the finances
 string_treeview_finances_expenses_fg red
+
+# background colour of a stadium event in the stats
+string_treeview_stadium_event_bg orange

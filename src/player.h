@@ -122,7 +122,7 @@ void
 player_update_post_match(Player *pl, gint clid);
 
 void
-player_replace_by_new(Player *pl);
+player_replace_by_new(Player *pl, gboolean free_player);
 
 void
 player_remove_from_team(Team *tm, gint idx);
