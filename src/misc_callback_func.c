@@ -150,7 +150,7 @@ misc_callback_pause_live_game(void)
     game_save_team_states();
 
     if(stat2 == cur_user)
-	treeview_show_user_player_list(&current_user);
+	treeview_show_user_player_list();
 
     stat0 = STATUS_LIVE_GAME_PAUSE;
 }

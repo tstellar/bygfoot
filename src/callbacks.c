@@ -427,7 +427,8 @@ void
 on_menu_my_league_results_activate     (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-
+    stat0 = STATUS_SHOW_LEAGUE_RESULTS;
+    treeview_show_league_results(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")));
 }
 
 

@@ -524,10 +524,9 @@ treeview_show_player_list(GtkTreeView *treeview, GPtrArray *players, PlayerListA
     g_ptr_array_free(players, TRUE);
 }
 
-/** Show the list of the user's players in the left view.
-    @param user The user we show the players of. */
+/** Show the list of the current user's players in the left view. */
 void
-treeview_show_user_player_list(const User *user)
+treeview_show_user_player_list(void)
 {
     gint i;
     GPtrArray *players = NULL;
@@ -538,8 +537,8 @@ treeview_show_user_player_list(const User *user)
 
     for(i=0;i<2;i++)
     {
-	players = team_get_player_pointers(user->tm);
-	user_set_player_list_attributes(user, &attribute, i + 1);
+	players = team_get_player_pointers(current_user.tm);
+	user_set_player_list_attributes(&current_user, &attribute, i + 1);
 	treeview_show_player_list(GTK_TREE_VIEW(treeview[i]), players, attribute, TRUE);
     }
 }
@@ -1806,6 +1805,101 @@ treeview_show_next_opponent(GtkTreeView *treeview)
     
     treeview_set_up_next_opponent(treeview);
     model = treeview_create_next_opponent();
+    gtk_tree_view_set_model(treeview, model);
+    g_object_unref(model);
+}
+
+GtkTreeModel*
+treeview_create_league_results(void)
+{
+    gint i, j;
+    gchar buf[2][SMALL],
+	name[SMALL], away[SMALL];
+    GPtrArray *matches = NULL;
+    GArray *table_elements = 
+	league_from_clid(current_user.tm->clid)->table.elements;
+    GtkListStore *liststore = 
+	gtk_list_store_new(3, G_TYPE_STRING, G_TYPE_STRING,
+			   G_TYPE_STRING);
+    GtkTreeIter iter;
+
+    for(i=0;i<table_elements->len;i++)
+	if(g_array_index(table_elements, TableElement, i).team != current_user.tm)
+	{
+	    if(team_is_user(g_array_index(table_elements, TableElement, i).team) != -1)
+		sprintf(name, "<span background='%s'>%s</span>",
+			const_str("string_treeview_user_bg"),
+			g_array_index(table_elements, TableElement, i).team->name->str);
+	    else
+		strcpy(name, g_array_index(table_elements, TableElement, i).team->name->str);
+
+	    matches = fixture_get_league_matches(current_user.tm,
+						 g_array_index(table_elements, TableElement, i).team);
+
+	    for(j=0;j<2;j++)
+		if(((Fixture*)g_ptr_array_index(matches, j))->attendance != -1)
+		    sprintf(buf[(((Fixture*)g_ptr_array_index(matches, j))->teams[0] != current_user.tm)],
+			    "%d - %d",
+			    ((Fixture*)g_ptr_array_index(matches, j))->result
+			    [(((Fixture*)g_ptr_array_index(matches, j))->teams[0] != current_user.tm)][0],
+			    ((Fixture*)g_ptr_array_index(matches, j))->result
+			    [(((Fixture*)g_ptr_array_index(matches, j))->teams[0] == current_user.tm)][0]);
+		else
+		    strcpy(buf[(((Fixture*)g_ptr_array_index(matches, j))->teams[0] != current_user.tm)],
+			   "--:--");
+
+	    sprintf(away, "<span background='%s' foreground='%s'>%s</span>",
+		    const_str("string_treeview_league_results_away_bg"),
+		    const_str("string_treeview_league_results_away_fg"),
+		    buf[1]);
+	    gtk_list_store_append(liststore, &iter);
+	    gtk_list_store_set(liststore, &iter, 0, name,
+			       1, buf[0], 2, away, -1);
+
+	    g_ptr_array_free(matches, TRUE);
+	}
+
+    return GTK_TREE_MODEL(liststore);
+}
+
+void
+treeview_set_up_league_results(GtkTreeView *treeview)
+{
+    gint i;
+    gchar *titles[3] =
+	{_("Team"),
+	 _("Home"),
+	 _("Away")};
+    GtkTreeViewColumn   *col;
+    GtkCellRenderer     *renderer;
+
+    gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
+				GTK_SELECTION_NONE);
+
+    for(i=0;i<3;i++)
+    {
+	col = gtk_tree_view_column_new();
+	gtk_tree_view_column_set_title(col, titles[i]);
+	gtk_tree_view_append_column(treeview, col);
+	renderer = treeview_cell_renderer_text_new();
+	gtk_tree_view_column_pack_start(col, renderer, FALSE);
+	gtk_tree_view_column_add_attribute(col, renderer,
+					   "markup", i);
+    }
+}
+
+/** Show the results of the current user against fellow
+    league teams. */
+void
+treeview_show_league_results(GtkTreeView *treeview)
+{
+    GtkTreeModel *model = NULL;
+
+    treeview_clear(treeview);
+    gtk_tree_view_set_headers_visible(treeview, TRUE);
+    
+    treeview_set_up_league_results(treeview);
+    model = treeview_create_league_results();
     gtk_tree_view_set_model(treeview, model);
     g_object_unref(model);
 }

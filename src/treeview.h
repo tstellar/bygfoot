@@ -53,7 +53,7 @@ treeview_show_player_list(GtkTreeView *treeview, GPtrArray *players, PlayerListA
 			  gboolean show_separator);
 
 void
-treeview_show_user_player_list(const User *user);
+treeview_show_user_player_list(void);
 
 void
 treeview_live_game_show_commentary(const LiveGameUnit *unit);
@@ -164,5 +164,14 @@ treeview_create_next_opponent_results(const Team *tm, gchar *result_buf, gchar *
 
 void
 treeview_create_own_results(const Team *tm, gchar *buf);
+
+void
+treeview_show_league_results(GtkTreeView *treeview);
+
+void
+treeview_set_up_league_results(GtkTreeView *treeview);
+
+GtkTreeModel*
+treeview_create_league_results(void);
 
 #endif

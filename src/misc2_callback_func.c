@@ -56,7 +56,7 @@ misc2_callback_transfer_user_player(void)
 	transfer_remove_player(stat1);
     }
 
-    treeview_show_user_player_list(&current_user);
+    treeview_show_user_player_list();
     game_gui_set_main_window_header();
 }
 
@@ -75,5 +75,5 @@ misc2_callback_change_structure(gint structure)
     }
 
     team_change_structure(current_user.tm, structure);
-    treeview_show_user_player_list(&current_user);
+    treeview_show_user_player_list();
 }

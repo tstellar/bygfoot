@@ -103,4 +103,7 @@ fixture_compare_func(gconstpointer a, gconstpointer b, gpointer data);
 GPtrArray*
 fixture_get_matches(const Team *tm1, const Team *tm2);
 
+GPtrArray*
+fixture_get_league_matches(const Team *tm1, const Team *tm2);
+
 #endif

@@ -1440,7 +1440,7 @@ live_game_finish_unit(void)
 			match->home_advantage);
 	if(stat2 == cur_user && show &&
 	   unit->minute % opt_int("int_opt_live_game_player_list_refresh") == 0)
-	    treeview_show_user_player_list(&current_user);
+	    treeview_show_user_player_list();
     }
 
     if(fixture_user_team_involved(match->fix) != -1)

@@ -957,3 +957,24 @@ fixture_get_matches(const Team *tm1, const Team *tm2)
 
     return matches;
 }
+
+/** Return the matches the teams play in their league. */
+GPtrArray*
+fixture_get_league_matches(const Team *tm1, const Team *tm2)
+{
+    gint i, j;
+    GPtrArray *matches = g_ptr_array_new();
+
+    for(i=0;i<ligs->len;i++)
+	if(lig(i).id == tm1->clid)
+	    for(j=0;j<lig(i).fixtures->len;j++)
+	    {
+		if((g_array_index(lig(i).fixtures, Fixture, j).teams[0] == tm1 &&
+		    g_array_index(lig(i).fixtures, Fixture, j).teams[1] == tm2) ||
+		   (g_array_index(lig(i).fixtures, Fixture, j).teams[0] == tm2 &&
+		    g_array_index(lig(i).fixtures, Fixture, j).teams[1] == tm1))
+		    g_ptr_array_add(matches, &g_array_index(lig(i).fixtures, Fixture, j));
+	    }
+
+    return matches;
+}

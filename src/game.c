@@ -563,7 +563,7 @@ game_substitute_player(Team *tm, gint player_number)
 	game_gui_write_av_skills();
 	
 	selected_row[0] = -1;	
-	treeview_show_user_player_list(&current_user);
+	treeview_show_user_player_list();
     }
 
     return substitute;
@@ -688,7 +688,7 @@ game_substitute_player_send_off(Team *tm, gint player_number,
 	game_gui_write_av_skills();
 	
 	selected_row[0] = -1;	
-	treeview_show_user_player_list(&current_user);
+	treeview_show_user_player_list();
     }
 }
 

@@ -98,7 +98,7 @@ callback_player_clicked(gint idx, GdkEventButton *event)
 
 	selected_row[0] = -1;
 
-	treeview_show_user_player_list(&current_user);
+	treeview_show_user_player_list();
     }
     else if(event->button == 3)
     {
