@@ -91,7 +91,7 @@ void
 team_update_cpu_team(Team *tm, gboolean reset_fitness);
 
 void
-team_update_post_match(Team *tm);
+team_update_post_match(Team *tm, gint clid);
 
 void
 team_update_cpu_corrections(Team *tm, gboolean reset_fitness);
@@ -104,5 +104,8 @@ team_update_cpu_structure(Team *tm);
 
 void
 team_update_cpu_new_players(Team *tm);
+
+void
+team_update_user_team_week_roundly(Team *tm);
 
 #endif

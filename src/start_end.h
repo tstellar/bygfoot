@@ -39,4 +39,7 @@ start_week(void);
 void
 start_week_update_user_teams(void);
 
+void
+start_week_round_update_user_teams(void);
+
 #endif

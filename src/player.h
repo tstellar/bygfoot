@@ -119,12 +119,15 @@ void
 player_update_fitness(Player *pl);
 
 void
-player_update_post_match(Player *pl);
+player_update_post_match(Player *pl, gint clid);
 
 void
 player_replace_by_new(Player *pl);
 
 void
 player_remove_from_team(Team *tm, gint idx);
+
+void
+player_update_week_roundly(Team *tm, gint idx);
 
 #endif

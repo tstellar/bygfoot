@@ -149,7 +149,7 @@ treeview_cell_player_to_cell(GtkTreeViewColumn *col,
 void
 treeview_cell_player_contract_to_cell(GtkCellRenderer *renderer, gchar *buf, gfloat contract_time)
 {
-    sprintf(buf, "%.*f", opt_int("int_opt_player_precision"),
+    sprintf(buf, "%.*f", 1 + opt_int("int_opt_player_precision"),
 	    contract_time);
 
     if(contract_time < const_float("float_treeview_cell_limit_player_contract_below3"))

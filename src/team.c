@@ -797,12 +797,24 @@ team_update_user_team_weekly(Team *tm)
 }
 
 /** Regenerate player fitness etc. after a match. 
-    @param tm The user team we examine. */
+    @param tm The user team we examine.
+    @param clid The fixture clid. */
 void
-team_update_post_match(Team *tm)
+team_update_post_match(Team *tm, gint clid)
 {
     gint i;
 
     for(i=0;i<tm->players->len;i++)
-	player_update_post_match(player_of(tm, i));
+	player_update_post_match(player_of(tm, i), clid);
+}
+
+/** Some updates each round.
+    @param tm The user team we examine. */
+void
+team_update_user_team_week_roundly(Team *tm)
+{
+    gint i;
+
+    for(i=0;i<tm->players->len;i++)
+	player_update_week_roundly(tm, i);
 }

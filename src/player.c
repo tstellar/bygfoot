@@ -172,7 +172,6 @@ player_assign_value(const Player *pl)
 			(1 - const_float("float_player_value_skill_weight")) * pl->talent * 0.7),
 		       const_float("float_player_value_power"));
     
-    /*todooooo*/
     if(diff > const_float("float_player_peak_age_diff_older1"))
 	value = (gint)rint((gfloat)value * (1 - const_float("float_player_value_scale1")));
     else if(diff > const_float("float_player_peak_age_diff_peak_older"))
@@ -187,8 +186,8 @@ player_assign_value(const Player *pl)
     return value;
 }
 
-/** Assign a value to a player. The value depends on skill,
-    talent and age.
+/** Assign a wage to a player. The wage depends mainly on
+    the value.
     @param pl The player we examine. 
     @return The wage of the player. */
 gint
@@ -895,6 +894,7 @@ player_update_skill(Player *pl)
 
     pl->skill = CLAMP(pl->skill, 0, pl->talent);
     pl->cskill = player_get_cskill(pl, pl->cpos);
+    pl->value = player_assign_value(pl);
 
     for(i=0;i<QUALITY_END;i++)
 	if(pl->skill > pl->etal[i])
@@ -942,17 +942,16 @@ player_remove_from_team(Team *tm, gint idx)
 
 /** Make some player updates after a match
     for user players.
-    @param pl The player we update. */
+    @param pl The player we update.
+    @param clid The fixture clid. */
 void
-player_update_post_match(Player *pl)
+player_update_post_match(Player *pl, gint clid)
 {
-    Fixture *fix = team_get_next_fixture(pl->team);
-
     if(pl->health == 0)
 	player_update_fitness(pl);
-    else if(pl->cskill == 0 &&
-	    (fix == NULL || player_card_get(pl, fix->clid, PLAYER_VALUE_CARD_RED) == 0))
-	pl->cskill = player_get_cskill(pl, pl->cpos);
+    		
+    if(player_card_get(pl, clid, PLAYER_VALUE_CARD_RED) > 0)
+	player_card_set(pl, clid, PLAYER_VALUE_CARD_RED, -1, TRUE);
 }
 
 /** Replace a player by a new one in a cpu team. */
@@ -972,4 +971,17 @@ player_replace_by_new(Player *pl)
 
     player_remove_from_team(tm, idx);
     g_array_insert_val(tm->players, idx, new);
+}
+
+/** Update players in user teams.
+    @param tm The team of the player.
+    @param idx The index in the players array. */
+/*d maybe argument player pointer?*/
+void
+player_update_week_roundly(Team *tm, gint idx)
+{
+    Player *pl = player_of(tm, idx);
+
+    pl->cskill = (pl->health > 0 || player_is_banned(pl) > 0) ?
+	0 : player_get_cskill(pl, pl->cpos);
 }

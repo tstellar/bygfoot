@@ -248,9 +248,6 @@ game_initialize(Fixture *fix)
 		if(player_of(fix->teams[i], j)->cskill > 0)
 		    player_games_goals_set(player_of(fix->teams[i], j), fix->clid,
 					   PLAYER_VALUE_GAMES, 1, TRUE);
-		
-		if(player_card_get(player_of(fix->teams[i], j), fix->clid, PLAYER_VALUE_CARD_RED) > 0)
-		    player_card_set(player_of(fix->teams[i], j), fix->clid, PLAYER_VALUE_CARD_RED, -1, TRUE);
 	    }
 		
 	    player_of(fix->teams[i], j)->participation = 
@@ -558,7 +555,7 @@ game_player_get_ban_duration(void)
     
     for(i=1;i<6;i++)
 	if(duration_probs[i - 1] < rndom && rndom < duration_probs[i])
-	    return i;
+	    return i + 1;
 
     return -1;
 }
@@ -981,10 +978,11 @@ game_post_match(Fixture *fix)
     
     for(i=0;i<2;i++)
     {
-	if(team_is_user(fix->teams[i]) == -1)
+	if(team_is_user(fix->teams[i]) == -1 &&
+	   fix->teams[i]->clid == fix->clid)
 	    team_update_cpu_team(fix->teams[i],
 				 (fixture_user_team_involved(fix) != -1));
-	else if(fix->teams[i]->clid == fix->clid)
-	    team_update_post_match(fix->teams[i]);
+	else
+	    team_update_post_match(fix->teams[i], fix->clid);
     }
 }

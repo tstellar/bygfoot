@@ -28,7 +28,7 @@ WeekFunc end_week_round_funcs[] =
 /** Array of functions called when a week round
     is started. */
 WeekFunc start_week_round_funcs[] =
-{NULL};
+{start_week_round_update_user_teams, NULL};
 
 /** Array of functions called when a week
     is started. */
@@ -273,8 +273,8 @@ start_week_round(void)
 	start_func++;
     }
 
-    if(!user_games_this_week_round())
-	end_week_round();
+/*     if(!user_games_this_week_round()) */
+/* 	end_week_round(); */
 }
 
 /** Start a new week. */
@@ -290,7 +290,7 @@ start_week(void)
     }
 }
 
-/** Fitness increase etc. of players.
+/** Age increase etc. of players.
     CPU teams get updated at the end of their matches
     (to avoid cup teams getting updated too often). */
 void
@@ -300,4 +300,15 @@ start_week_update_user_teams(void)
     
     for(i=0;i<users->len;i++)
 	team_update_user_team_weekly(usr(i).tm);
+}
+
+/** Do some things at the beginning of each new round for
+    the user teams. */
+void
+start_week_round_update_user_teams(void)
+{
+    gint i;
+    
+    for(i=0;i<users->len;i++)
+	team_update_user_team_week_roundly(usr(i).tm);
 }
