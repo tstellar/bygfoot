@@ -17,41 +17,12 @@
 void
 misc_callback_show_team_list(GtkWidget *widget, const gchar *country_file)
 {
-    gint i,j;
     GtkWidget *treeview_startup =
 	lookup_widget(widget, "treeview_startup");
 
     xml_country_read(country_file);
 
     treeview_show_team_list(GTK_TREE_VIEW(treeview_startup), FALSE, FALSE);
-
-/*d*/
-/*     for(i=0;i<cps->len;i++) */
-/*     { */
-/* 	printf("** %d **\n", i); */
-/* 	printf("name %s short_name %s symbol %s id %s\n", cp(i).name->str, cp(i).short_name->str, cp(i).symbol->str, cp(i).sid->str); */
-/* 	printf("nid %d type %d last %d gap %d skilldiff %d cap %d\n", cp(i).id, cp(i).type, cp(i).last_week, cp(i).week_gap, cp(i).skill_diff, cp(i).average_capacity); */
-
-/* 	for(j=0;j<cp(i).rounds->len;j++) */
-/* 	    printf("%d homeaway %d repl %d neutr %d groups %d adv %d best %d\n", j, */
-/* 		   g_array_index(cp(i).rounds, CupRound, j).home_away, */
-/* 		   g_array_index(cp(i).rounds, CupRound, j).replay, */
-/* 		   g_array_index(cp(i).rounds, CupRound, j).neutral, */
-/* 		   g_array_index(cp(i).rounds, CupRound, j).round_robin_number_of_groups, */
-/* 		   g_array_index(cp(i).rounds, CupRound, j).round_robin_number_of_advance, */
-/* 		   g_array_index(cp(i).rounds, CupRound, j).round_robin_number_of_best_advance); */
-
-/* 	printf("\n"); */
-/* 	for(j=0;j<cp(i).choose_teams->len;j++) */
-/* 	    printf("%d id %s num %d start %d end %d rand %d\n", j, */
-/* 		   g_array_index(cp(i).choose_teams, CupChooseTeam, j).sid->str, */
-/* 		   g_array_index(cp(i).choose_teams, CupChooseTeam, j).number_of_teams, */
-/* 		   g_array_index(cp(i).choose_teams, CupChooseTeam, j).start_idx, */
-/* 		   g_array_index(cp(i).choose_teams, CupChooseTeam, j).end_idx, */
-/* 		   g_array_index(cp(i).choose_teams, CupChooseTeam, j).randomly); */
-
-/* 	printf("\n"); */
-/*     } */
 }
 
 /** Start a new game after users and teams are selected. */
@@ -123,15 +94,18 @@ misc_callback_add_player(void)
 void
 misc_callback_remove_user(GdkEventButton *event)
 {
-    GtkTreeView *treeview =
+    GtkTreeView *treeview_users =
 	GTK_TREE_VIEW(lookup_widget(window.startup, "treeview_users"));
+    GtkTreeView *treeview_startup =
+	GTK_TREE_VIEW(lookup_widget(window.startup, "treeview_startup"));
     
-    if(!treeview_select_row(treeview, event))
+    if(!treeview_select_row(treeview_users, event))
 	return;
 
-    user_remove(treeview_get_index(treeview, 0) - 1, FALSE);
+    user_remove(treeview_get_index(treeview_users, 0) - 1, FALSE);
     
-    treeview_show_users(treeview);
+    treeview_show_users(treeview_users);
+    treeview_show_team_list(treeview_startup, FALSE, FALSE);
     
     if(users->len == 0)
     {

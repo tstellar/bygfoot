@@ -205,6 +205,9 @@ transfer_evaluate_offers(void)
 		    player_of(transoff(i, idx).tm, transoff(i, idx).tm->players->len - 1)->contract = 
 			(gfloat)math_rndi(const_int("int_transfer_contract_lower"),
 					  const_int("int_transfer_contract_upper"));
+		    player_of(transoff(i, idx).tm, transoff(i, idx).tm->players->len - 1)->id = -1;
+		    player_of(transoff(i, idx).tm, transoff(i, idx).tm->players->len - 1)->id = 
+			   player_new_id(transoff(i, idx).tm->players);
 		    user_from_team(transoff(i, idx).tm)->money -= transoff(i, idx).fee;
 		    user_from_team(transoff(i, idx).tm)->money_out[1][MON_OUT_TRANSFERS] -=
 			transoff(i, idx).fee;

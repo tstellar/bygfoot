@@ -12,6 +12,7 @@
 #include "user.h"
 #include "variables.h"
 #include "window.h"
+#include "xml_name.h"
 
 void
 on_button_add_player_clicked           (GtkButton       *button,
@@ -64,7 +65,8 @@ void
 on_team_selection_load_clicked         (GtkButton       *button,
                                         gpointer         user_data)
 {
-
+    stat1 = STATUS_LOAD_GAME_TEAM_SELECTION;
+    window_show_file_sel();
 }
 
 
@@ -90,14 +92,18 @@ on_button_fsel_ok_clicked              (GtkButton       *button,
 	load_save_save_game(filename);
     else if(stat1 == STATUS_LOAD_GAME)
     {
-	if(!g_file_test(filename, G_FILE_TEST_EXISTS))
-	    game_gui_show_warning("File not found.");
-	else
-	{
-	    load_save_load_game(filename);
-	    cur_user = 0;
-	    on_button_back_to_main_clicked(NULL, NULL);
-	}
+	load_save_load_game(filename);
+	cur_user = 0;
+	on_button_back_to_main_clicked(NULL, NULL);
+    }
+    else if(stat1 == STATUS_LOAD_GAME_TEAM_SELECTION)
+    {
+	window_destroy(&window.startup, TRUE);
+	window_create(WINDOW_MAIN);
+	xml_name_read(opt_str("string_opt_player_names_file"), 1000);
+	load_save_load_game(filename);
+	cur_user = 0;
+	on_button_back_to_main_clicked(NULL, NULL);
     }
 
     window_destroy(&window.file_sel, FALSE);
@@ -250,7 +256,6 @@ on_treeview_users_button_press_event   (GtkWidget       *widget,
                                         gpointer         user_data)
 {
     misc_callback_remove_user(event);
-
 
     return FALSE;
 }

@@ -1,5 +1,6 @@
 #include <unistd.h>
 
+#include "callbacks.h"
 #include "file.h"
 #include "game_gui.h"
 #include "gui.h"
@@ -313,7 +314,14 @@ game_gui_show_main(void)
 {
     game_gui_set_main_window_header();
     treeview_show_user_player_list();
-    treeview_show_next_opponent();
+
+    if(current_user.counters[COUNT_USER_SHOW_RES])
+    {
+	on_menu_user_show_last_stats_activate(NULL, NULL);
+	current_user.counters[COUNT_USER_SHOW_RES] = 0;
+    }
+    else
+	treeview_show_next_opponent();
 }
 
 /** Print a message into the main window entry. */

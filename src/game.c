@@ -285,11 +285,14 @@ game_initialize(Fixture *fix)
 	    if(i == 1 || !fix->home_advantage)
 		usr(user_idx[i]).money_out[1][MON_OUT_JOURNEY] -= 
 		    (gint)(finance_wage_unit(fix->teams[i]) * journey_factor);
+
 	    if(!fix->home_advantage)
 	    {
 		usr(user_idx[i]).money_in[1][MON_IN_TICKET] += (gint)rint((gfloat)ticket_income / 2);
 		usr(user_idx[i]).money += (gint)rint((gfloat)ticket_income / 2);
 	    }
+
+	    usr(user_idx[i]).counters[COUNT_USER_SHOW_RES] = 1;
 	}
     }
 }

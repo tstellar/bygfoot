@@ -8,6 +8,7 @@
 #include "live_game.h"
 #include "main.h"
 #include "maths.h"
+#include "option.h"
 #include "start_end.h"
 #include "table.h"
 #include "team.h"
@@ -43,11 +44,11 @@ WeekFunc end_week_funcs[] = {NULL};
 void
 start_new_game(void)
 {
-    xml_name_read(PLAYER_NAMES_FILE, -1);
+    xml_name_read(opt_str("string_opt_player_names_file"), -1);
     start_write_variables();
     start_generate_league_teams();
     start_new_season();
-    xml_name_read(PLAYER_NAMES_FILE, 1000);
+    xml_name_read(opt_str("string_opt_player_names_file"), 1000);
 }
 
 /** Make new fixtures, nullify things etc. */
@@ -56,7 +57,7 @@ start_new_season(void)
 {
     gint i;
 
-    xml_name_read(PLAYER_NAMES_FILE, 1000);
+    xml_name_read(opt_str("string_opt_player_names_file"), 1000);
     start_load_cup_teams();
 
     for(i=0;i<ligs->len;i++)

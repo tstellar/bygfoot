@@ -17,7 +17,7 @@ bygfoot_SOURCES = \
 	fixture.c cup.h fixture.h free.h league.h main.h maths.h misc.h table.h team.h variables.h \
 	free.c free.h user.h variables.h \
 	game.c cup.h finance.h fixture.h game.h game_gui.h league.h live_game.h maths.h misc.h option.h player.h table.h team.h treeview.h user.h variables.h \
-	game_gui.c file.h game_gui.h gui.h league.h live_game.h maths.h misc.h option.h treeview.h support.h team.h user.h variables.h window.h \
+	game_gui.c file.h callbacks.h file.h game_gui.h gui.h league.h live_game.h maths.h misc.h option.h treeview.h support.h team.h user.h variables.h window.h \
 	gui.c gui.h misc.h support.h variables.h window.h \
 	interface.c callbacks.h interface.h support.h \
 	league.c cup.h league.h table.h team.h variables.h \
@@ -26,7 +26,7 @@ bygfoot_SOURCES = \
 	main.c misc_callbacks.h file.h free.h live_game.h main.h transfer_struct.h variables.h window.h \
 	maths.c maths.h misc.h \
 	misc.c main.h maths.h misc.h \
-	misc_callbacks.c callbacks.h callback_func.h game.h game_gui.h live_game.h load_save.h main.h misc_callback_func.h misc_callbacks.h option.h user.h variables.h window.h \
+	misc_callbacks.c callbacks.h callback_func.h game.h game_gui.h live_game.h load_save.h main.h misc_callback_func.h misc_callbacks.h option.h user.h variables.h window.h xml_name.h \
 	misc_callback_func.c misc_callback_func.h start_end.h support.h team.h treeview.h user.h variables.h xml_country.h \
 	misc_interface.c  misc_interface.h misc_callbacks.h support.h \
 	misc2_callbacks.c finance.h game_gui.h main.h misc2_callbacks.h misc2_callback_func.h misc2_interface.h player.h support.h transfer.h treeview.h user.h window.h \
@@ -37,7 +37,7 @@ bygfoot_SOURCES = \
 	options_callbacks.c file.h options_callbacks.h options_interface.h option_gui.h support.h user.h variables.h window.h \
 	options_interface.c  options_interface.h options_callbacks.h support.h \
 	player.c cup.h free.h game_gui.h league.h maths.h misc.h option.h player.h team.h user.h \
-	start_end.c cup.h file.h finance.h fixture.h game_gui.h gui.h league.h live_game.h main.h maths.h start_end.h table.h team.h transfer.h user.h variables.h xml_name.h \
+	start_end.c cup.h file.h finance.h fixture.h game_gui.h gui.h league.h live_game.h main.h maths.h option.h start_end.h table.h team.h transfer.h user.h variables.h xml_name.h \
 	support.c support.h \
 	table.c cup.h league.h table.h variables.h \
 	team.c cup.h fixture.h game.h game_gui.h league.h maths.h misc.h option.h player.h team.h transfer.h user.h \

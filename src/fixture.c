@@ -38,34 +38,11 @@ fixture_new(void)
 void
 fixture_write_league_fixtures(League *league)
 {
-    /*d*/
-    gint i;
-    Fixture *fix = NULL;
     GPtrArray *teams = NULL;
     
     teams = team_get_pointers_from_array(league->teams);
 
     fixture_write_round_robin((gpointer)league, -1, teams);
-
-    /*d*/
-/*     printf("\n%s\n", league->name->str); */
-/*     for(i=0;i<league->fixtures->len;i++) */
-/*     { */
-/* 	fix = &g_array_index(league->fixtures, Fixture, i); */
-/* 	if(i > 0 && */
-/* 	   g_array_index(league->fixtures, Fixture, i).week_number != */
-/* 	   g_array_index(league->fixtures, Fixture, i - 1).week_number) */
-/* 	    printf("\nweek %d\n", g_array_index(league->fixtures, Fixture, i).week_number); */
-
-/* 	printf("%s -- %s round %d week %d wr %d res %d %d home %d sec %d dec %d\n", */
-/* 	       fix->teams[0]->name->str, fix->teams[1]->name->str, */
-/* 	       fix->round, */
-/* 	       fix->week_number, fix->week_round_number, */
-/* 	       fix->result[0][0], fix->result[1][0], */
-/* 	       fix->home_advantage, fix->second_leg, */
-/* 	       fix->decisive); */
-	       
-/*     } */
 }
 
 /** Write the fixtures for the given cup
@@ -74,9 +51,6 @@ fixture_write_league_fixtures(League *league)
 void
 fixture_write_cup_fixtures(Cup *cup)
 {
-    /*d*/
-    gint i;
-    Fixture *fix = NULL;
     GPtrArray *teams = NULL;
 
     if(g_array_index(cup->rounds, CupRound, 0).
@@ -91,27 +65,6 @@ fixture_write_cup_fixtures(Cup *cup)
 
 	fixture_write_knockout_round(cup, 0, teams);
     }
-
-    /*d*/
-/*     printf("\n%s\n", cup->name->str); */
-/*     for(i=0;i<cup->fixtures->len;i++) */
-/*     { */
-/* 	fix = &g_array_index(cup->fixtures, Fixture, i); */
-/* 	if(i > 0 && */
-/* 	   g_array_index(cup->fixtures, Fixture, i).week_number != */
-/* 	   g_array_index(cup->fixtures, Fixture, i - 1).week_number) */
-/* 	    printf("\nweek %d\n", g_array_index(cup->fixtures, Fixture, i).week_number); */
-
-/* 	printf("%2d %s -- %s round %d week %d wr %d res %d %d home %d sec %d dec %d\n", i, */
-/* 	       fix->teams[0]->name->str, */
-/* 	       fix->teams[1]->name->str, */
-/* 	       fix->round, */
-/* 	       fix->week_number, fix->week_round_number, */
-/* 	       fix->result[0][0], fix->result[1][0], */
-/* 	       fix->home_advantage, fix->second_leg, */
-/* 	       fix->decisive); */
-	       
-/*     } */
 }
 
 /** Update the fixtures for the given cup. 
@@ -320,6 +273,7 @@ fixture_update_write_replays(Cup *cup)
 
     return_value = (g_array_index(fixtures, Fixture, fixtures->len - 1).replay_number == replay_number);
 
+    /*d*/
     printf("retval %d\n", return_value);
     return return_value;
 }

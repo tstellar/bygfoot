@@ -39,15 +39,8 @@ create_window_startup (void)
   GtkWidget *hseparator10;
   GtkWidget *vbox34;
   GtkWidget *label69;
-  GtkWidget *hbox44;
   GtkWidget *combo_country;
   GtkWidget *combo_country_entry;
-  GtkWidget *vseparator17;
-  GtkWidget *button_select_country_file;
-  GtkWidget *alignment14;
-  GtkWidget *hbox45;
-  GtkWidget *image45;
-  GtkWidget *label70;
   GtkWidget *hseparator11;
   GtkWidget *label4;
   GtkWidget *eventbox1;
@@ -140,48 +133,16 @@ create_window_startup (void)
   gtk_widget_show (label69);
   gtk_box_pack_start (GTK_BOX (vbox34), label69, FALSE, FALSE, 0);
   gtk_label_set_justify (GTK_LABEL (label69), GTK_JUSTIFY_LEFT);
-  gtk_misc_set_alignment (GTK_MISC (label69), 0.05, 0.5);
   gtk_misc_set_padding (GTK_MISC (label69), 0, 5);
-
-  hbox44 = gtk_hbox_new (FALSE, 0);
-  gtk_widget_show (hbox44);
-  gtk_box_pack_start (GTK_BOX (vbox34), hbox44, TRUE, TRUE, 0);
 
   combo_country = gtk_combo_new ();
   g_object_set_data (G_OBJECT (GTK_COMBO (combo_country)->popwin),
                      "GladeParentKey", combo_country);
   gtk_widget_show (combo_country);
-  gtk_box_pack_start (GTK_BOX (hbox44), combo_country, FALSE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (vbox34), combo_country, FALSE, FALSE, 0);
 
   combo_country_entry = GTK_COMBO (combo_country)->entry;
   gtk_widget_show (combo_country_entry);
-
-  vseparator17 = gtk_vseparator_new ();
-  gtk_widget_show (vseparator17);
-  gtk_box_pack_start (GTK_BOX (hbox44), vseparator17, FALSE, FALSE, 0);
-  gtk_widget_set_size_request (vseparator17, 15, 1);
-
-  button_select_country_file = gtk_button_new ();
-  gtk_widget_show (button_select_country_file);
-  gtk_box_pack_start (GTK_BOX (hbox44), button_select_country_file, TRUE, TRUE, 2);
-  gtk_tooltips_set_tip (tooltips, button_select_country_file, _("Choose a custom country file (see Help)"), NULL);
-
-  alignment14 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment14);
-  gtk_container_add (GTK_CONTAINER (button_select_country_file), alignment14);
-
-  hbox45 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox45);
-  gtk_container_add (GTK_CONTAINER (alignment14), hbox45);
-
-  image45 = gtk_image_new_from_stock ("gtk-open", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image45);
-  gtk_box_pack_start (GTK_BOX (hbox45), image45, FALSE, FALSE, 0);
-
-  label70 = gtk_label_new_with_mnemonic (_("Select a country file"));
-  gtk_widget_show (label70);
-  gtk_box_pack_start (GTK_BOX (hbox45), label70, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label70), GTK_JUSTIFY_LEFT);
 
   hseparator11 = gtk_hseparator_new ();
   gtk_widget_show (hseparator11);
@@ -366,9 +327,6 @@ create_window_startup (void)
   g_signal_connect ((gpointer) combo_country_entry, "changed",
                     G_CALLBACK (on_combo_country_entry_changed),
                     NULL);
-  g_signal_connect ((gpointer) button_select_country_file, "clicked",
-                    G_CALLBACK (on_button_select_country_file_clicked),
-                    NULL);
   g_signal_connect ((gpointer) entry_player_name, "activate",
                     G_CALLBACK (on_entry_player_name_activate),
                     NULL);
@@ -396,15 +354,8 @@ create_window_startup (void)
   GLADE_HOOKUP_OBJECT (window_startup, hseparator10, "hseparator10");
   GLADE_HOOKUP_OBJECT (window_startup, vbox34, "vbox34");
   GLADE_HOOKUP_OBJECT (window_startup, label69, "label69");
-  GLADE_HOOKUP_OBJECT (window_startup, hbox44, "hbox44");
   GLADE_HOOKUP_OBJECT (window_startup, combo_country, "combo_country");
   GLADE_HOOKUP_OBJECT (window_startup, combo_country_entry, "combo_country_entry");
-  GLADE_HOOKUP_OBJECT (window_startup, vseparator17, "vseparator17");
-  GLADE_HOOKUP_OBJECT (window_startup, button_select_country_file, "button_select_country_file");
-  GLADE_HOOKUP_OBJECT (window_startup, alignment14, "alignment14");
-  GLADE_HOOKUP_OBJECT (window_startup, hbox45, "hbox45");
-  GLADE_HOOKUP_OBJECT (window_startup, image45, "image45");
-  GLADE_HOOKUP_OBJECT (window_startup, label70, "label70");
   GLADE_HOOKUP_OBJECT (window_startup, hseparator11, "hseparator11");
   GLADE_HOOKUP_OBJECT (window_startup, label4, "label4");
   GLADE_HOOKUP_OBJECT (window_startup, eventbox1, "eventbox1");

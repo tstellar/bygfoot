@@ -85,7 +85,7 @@ player_new_id(const GArray *players)
 		break;
 
 	if(j == players->len)
-	    return j;
+	    return i;
     }
 
     return -1;

@@ -44,11 +44,7 @@ enum CounterValue
     COUNT_USER_INC_SAF, /**< How often the stadium safety was increased (in a week). */
     COUNT_USER_STADIUM_CAPACITY, /**< Counter for building stadium seats. */
     COUNT_USER_STADIUM_SAFETY, /**< Counter for increasing stadium safety. */
-    COUNT_USER_OLD_WAGE1,
-    COUNT_USER_OLD_WAGE2,
-    COUNT_USER_OLD_WAGE3,
-    COUNT_USER_OLD_WAGE4,
-    COUNT_USER_OLD_WAGE5,
+    COUNT_USER_SHOW_RES, /**< Whether the latest result is shown when the main window gets refreshed. */
     COUNT_USER_END
 };
 

@@ -31,9 +31,6 @@
 #define ID_LEAGUE_START 1000
 #define ID_CUP_START 2000
 
-/** The player names file. */
-#define PLAYER_NAMES_FILE "player_names.xml"
-
 /** Convenience abbreviation. */
 #define ligs country.leagues
 /** Convenience abbreviation. */

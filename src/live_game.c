@@ -76,7 +76,7 @@ live_game_create_unit(void)
 {
     LiveGameUnit new;
 
-    if(opt_int("int_opt_debug"))
+    if(opt_int("int_opt_debug") > 100)
 	printf("live_game_create_unit\n");
     if(unis->len == 0)
     {
@@ -127,7 +127,7 @@ live_game_fill_new_unit(LiveGameUnit *new)
     gfloat possession_change, scoring_chance = 0, 
 	injury_event_prob, foul_event_prob;
 
-    if(opt_int("int_opt_debug"))
+    if(opt_int("int_opt_debug") > 100)
 	printf("live_game_fill_new_unit\n");
 
     possession_change = const_float("float_live_game_event_general") *
@@ -185,7 +185,7 @@ live_game_create_start_unit(void)
 {
     LiveGameUnit new;
 
-    if(opt_int("int_opt_debug"))
+    if(opt_int("int_opt_debug") > 100)
 	printf("live_game_create_start_unit\n");
     new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
 	new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] = -1;
@@ -215,7 +215,7 @@ live_game_evaluate_unit(LiveGameUnit *unit)
 {
     gint type = unit->event.type;
 
-    if(opt_int("int_opt_debug"))
+    if(opt_int("int_opt_debug") > 100)
 	printf("live_game_evaluate_unit type %d\n", type);
     if(type == LIVE_GAME_EVENT_FOUL)
 	live_game_event_foul();
@@ -257,7 +257,7 @@ live_game_event_foul(void)
     gfloat rndom = math_rnd(0, 1);
     gint type, fouled_player, foul_player, foul_team;
 
-    if(opt_int("int_opt_debug"))
+    if(opt_int("int_opt_debug") > 100)
 	printf("live_game_event_foul\n");
     if(math_rnd(0, 1) > const_float("float_live_game_foul_by_possession") *
        game_get_foul_possession_factor(
@@ -331,7 +331,7 @@ live_game_event_foul(void)
 void
 live_game_event_lost_possession(void)
 {
-    if(opt_int("int_opt_debug"))
+    if(opt_int("int_opt_debug") > 100)
 	printf("live_game_event_lost_possession\n");
     last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
 	game_get_player(tm[last_unit.possession], 
@@ -345,7 +345,7 @@ live_game_event_lost_possession(void)
 	    game_get_player(tm[!last_unit.possession], 
 			    uni(unis->len - 2).area, 0, -1, FALSE);
 
-    if(opt_int("int_opt_debug"))
+    if(opt_int("int_opt_debug") > 100)
 	printf("## pls %d %d\n", 
 	       last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER],
 	       last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2]);
@@ -367,7 +367,7 @@ live_game_event_injury(gint team, gint player, gboolean create_new)
     LiveGameUnit new;
     gint old_structure = -1;
 
-    if(opt_int("int_opt_debug"))
+    if(opt_int("int_opt_debug") > 100)
 	printf("live_game_event_injury\n");
     if(create_new)
     {
@@ -450,7 +450,7 @@ live_game_event_stadium(void)
     for(i=1;i<3;i++)
 	probs[i] += probs[i - 1];
 
-    if(opt_int("int_opt_debug"))
+    if(opt_int("int_opt_debug") > 100)
 	printf("live_game_event_stadium\n");
     if(rndom <= probs[0])
 	last_unit.event.type = LIVE_GAME_EVENT_STADIUM_BREAKDOWN;
@@ -480,7 +480,7 @@ live_game_event_scoring_chance(void)
     else
 	res_idx = 0;
 
-    if(opt_int("int_opt_debug"))
+    if(opt_int("int_opt_debug") > 100)
 	printf("live_game_event_scoring_chance\n");
 
     if(math_rnd(0, 1) < const_float("float_live_game_scoring_chance_is_own_goal"))
@@ -534,7 +534,7 @@ live_game_event_penalty(void)
 {
     LiveGameUnit new;
 
-    if(opt_int("int_opt_debug"))
+    if(opt_int("int_opt_debug") > 100)
 	printf("live_game_event_penalty\n");
 
     if(last_unit.time != LIVE_GAME_UNIT_TIME_PENALTIES)
@@ -602,7 +602,7 @@ live_game_event_general(gboolean create_new)
 {
     LiveGameUnit new;
 
-    if(opt_int("int_opt_debug"))
+    if(opt_int("int_opt_debug") > 100)
 	printf("live_game_event_general\n");
     if(create_new)
     {
@@ -629,7 +629,7 @@ live_game_event_general(gboolean create_new)
 	     last_unit.event.type == LIVE_GAME_EVENT_CROSS_BAR) &&
 	    math_rnd(0, 1) < const_float("float_live_game_possession_after_post")))
 	{
-	    if(opt_int("int_opt_debug"))
+	    if(opt_int("int_opt_debug") > 100)
 		printf("##### last type: %d\n", last_unit.event.type);
 	    new.possession = last_unit.possession;
 	    new.area = (last_unit.event.type == LIVE_GAME_EVENT_GENERAL) ?
@@ -670,7 +670,7 @@ live_game_event_general(gboolean create_new)
 
     live_game_event_general_get_players();
 
-    if(opt_int("int_opt_debug"))
+    if(opt_int("int_opt_debug") > 100)
 	printf("+++ general %d %d\n",
 	       last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER],
 	       last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2]);
@@ -688,7 +688,7 @@ live_game_event_general_get_players(void)
 	uni(unis->len - 2).event.values[LIVE_GAME_EVENT_VALUE_PLAYER];
     gint type = uni(unis->len - 2).event.type;
 	
-    if(opt_int("int_opt_debug"))
+    if(opt_int("int_opt_debug") > 100)
 	printf("live_game_event_general_get_players\n");
     *pl1 = *pl2 = -1;
 
@@ -721,7 +721,7 @@ live_game_event_free_kick(void)
 {
     LiveGameUnit new = last_unit;
 
-    if(opt_int("int_opt_debug"))
+    if(opt_int("int_opt_debug") > 100)
 	printf("live_game_event_free_kick\n");
     new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
 	new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] = -1;
@@ -758,7 +758,7 @@ live_game_event_send_off(gint team, gint player, gboolean second_yellow)
     LiveGameUnit new = last_unit;
     gint substitute = -1, to_substitute = -1;
 
-    if(opt_int("int_opt_debug"))
+    if(opt_int("int_opt_debug") > 100)
 	printf("live_game_event_send_off\n");
     new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
 	new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] = -1;
@@ -882,7 +882,7 @@ live_game_event_duel(void)
     Player *attacker, *goalie;
     gint res_idx1, res_idx2;
 
-    if(opt_int("int_opt_debug"))
+    if(opt_int("int_opt_debug") > 100)
 	printf("live_game_event_duel\n");
 
     new.minute = -1;

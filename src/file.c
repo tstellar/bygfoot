@@ -422,7 +422,7 @@ file_load_user_conf_file(User *user)
 
     sprintf(buf, "bygfoot_%s.conf", user->name->str);
     conf_file = file_find_support_file(buf);
-    
+
     if(conf_file == NULL ||
        !file_my_fopen(conf_file, "r", &fil, FALSE))
     {
