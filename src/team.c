@@ -30,7 +30,7 @@
 /** Kinda hard to explain. 
     @see team_generate_players()
     @see player_generate() */
-#define CONSTANT_TEAM_SKILL_VARIANCE 0.2//0.075
+#define CONSTANT_TEAM_SKILL_VARIANCE 0.2//0.075/*d*/
 
 /**
    Generate a team with default values, e.g. 

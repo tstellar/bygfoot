@@ -46,9 +46,6 @@ void
 treeview_show_user_player_list(gint player_list);
 
 void
-treeview_live_game_show_game_unit(const LiveGameUnit *unit);
-
-void
 treeview_live_game_show_commentary(const LiveGameUnit *unit);
 
 void

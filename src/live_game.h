@@ -41,7 +41,7 @@ void
 live_game_event_lost_possession(void);
 
 void
-live_game_event_injury(gint player, gboolean create_new);
+live_game_event_injury(gint team, gint player, gboolean create_new);
 
 void
 live_game_event_stadium(void);
@@ -56,10 +56,13 @@ void
 live_game_event_general(gboolean create_new);
 
 void
+live_game_event_general_get_players(void);
+
+void
 live_game_event_free_kick(void);
 
 void
-live_game_event_send_off(gint player);
+live_game_event_send_off(gint team, gint player);
 
 void
 live_game_generate_commentary(LiveGameUnit *unit);
@@ -78,5 +81,14 @@ live_game_unit_get_minute(const LiveGameUnit *unit);
 
 void
 live_game_create_stats(void);
+
+gint
+live_game_get_area(const LiveGameUnit *unit);
+
+gfloat
+live_game_pit_teams(const LiveGameUnit *unit, gfloat exponent);
+
+void
+live_game_event_injury_get_player(void);
 
 #endif

@@ -457,33 +457,6 @@ treeview_show_user_player_list(gint player_list)
 			      player_list_attributes[(player_list != 1)], TRUE);
 }
 
-/** Show a live game unit in the live game window.
-    @param unit The unit we show. */
-void
-treeview_live_game_show_game_unit(const LiveGameUnit *unit)
-{
-    GtkProgressBar *progress_bar;
-
-    if(live_game.window == NULL)
-    {
-	live_game.window = window_create(WINDOW_LIVE);
-	treeview_live_game_show_initial_commentary(unit);
-    }
-    else
-	treeview_live_game_show_commentary(unit);
-
-    treeview_live_game_show_result(unit);
-
-    progress_bar = GTK_PROGRESS_BAR(lookup_widget(live_game.window, "progressbar_live"));
-    gtk_progress_bar_set_fraction(progress_bar, (gfloat)live_game_unit_get_minute(unit) / 120);
-    usleep(500500 + options[OPT_LIVE_SPEED] * 50000);
-    while(gtk_events_pending())
-	gtk_main_iteration();
-
-    if(unit->event.type == LIVE_GAME_EVENT_END_MATCH)
-	gtk_widget_set_sensitive(lookup_widget(live_game.window, "button_live_close"), TRUE);
-}
-
 /** Show the commentary and the minute belonging to the unit. 
     @param unit The #LiveGameUnit we show. */
 void

@@ -17,8 +17,9 @@
     @see game_get_values() */
 enum GameTeamValue
 {
-    GAME_TEAM_VALUE_ATTACK = 0,
-    GAME_TEAM_VALUE_DEFEND,
+    GAME_TEAM_VALUE_DEFEND = 0,
+    GAME_TEAM_VALUE_MIDFIELD,
+    GAME_TEAM_VALUE_ATTACK,
     GAME_TEAM_VALUE_GOALIE,
     GAME_TEAM_VALUE_END
 };
@@ -26,9 +27,9 @@ enum GameTeamValue
 /** Player types. @see game_get_player() */
 enum GamePlayerType
 {
-    GAME_PLAYER_TYPE_ATTACKER = 0,
-    GAME_PLAYER_TYPE_ATTACKING,
-    GAME_PLAYER_TYPE_DEFENDER,
+    GAME_PLAYER_TYPE_ATTACK = 0,
+    GAME_PLAYER_TYPE_MIDFIELD,
+    GAME_PLAYER_TYPE_DEFEND,
     GAME_PLAYER_TYPE_PENALTY,
     GAME_PLAYER_TYPE_INJURY,
     GAME_PLAYER_TYPE_END
@@ -42,9 +43,11 @@ gfloat
 game_get_player_contribution(const Player *pl, gboolean attack);
 
 gint
-game_get_player(const Team *tm, gint player_type, gint number_of_penalty, gint not_this_one);
+game_get_player(const Team *tm, gint player_type, 
+		gint number_of_penalty, gint not_this_one,
+		gboolean skills);
 
 void
-game_get_player_probs(GArray *players, gfloat *probs, gfloat *weights);
+game_get_player_probs(GArray *players, gfloat *probs, gfloat *weights, gboolean skills);
 
 #endif

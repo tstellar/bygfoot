@@ -97,6 +97,14 @@ enum LiveGameStatValue
     LIVE_GAME_STAT_VALUE_END
 };
 
+enum LiveGameUnitArea
+{
+    LIVE_GAME_UNIT_AREA_DEFEND = GAME_PLAYER_TYPE_DEFEND,
+    LIVE_GAME_UNIT_AREA_MIDFIELD = GAME_PLAYER_TYPE_MIDFIELD,
+    LIVE_GAME_UNIT_AREA_ATTACK = GAME_PLAYER_TYPE_ATTACK,
+    LIVE_GAME_UNIT_AREA_END
+};
+
 /** Some stats for a live game like ball possession,
     shots on goal etc. */
 typedef struct
@@ -124,9 +132,10 @@ typedef struct
 typedef struct
 {   
     /** Tells us which of the teams is in possession
-	of the ball and how long already. This is used
-	to calculate the probability of a scoring chance. */
-    gint possession, possession_time;
+	of the ball. */
+    gint possession;
+    /** The area of the pitch the ball is currently in. */
+    gint area;
     /** Which minute of the game and which part of
 	the game. If 'minute' is -1 we have an event
 	like a substitution that doesn't count as a 
