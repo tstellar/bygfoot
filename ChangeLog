@@ -1,0 +1,265 @@
+10/10/2004: v1.7.3
+	- introduced Arnaud Le Rouzic's XML load/save system (thanks,
+	Arnaud!)
+	- added possibility to compress savegames
+	- improved the options window (tabs make it more orderly now)
+	- added second player list (also with tabs)
+	- complete Bygfoot packages can be downloaded with the update
+	script now
+	
+09/30/2004: v1.7.2
+	- added country file for Mexico (thanks to Arturo Mendez)
+	- improved the update script
+	- added a simple gui for the script
+	- added updated country file for Italy (thanks to Marco Fabbri)
+	- fixed a bug that led to no ticket income for cup games
+	- fixed a bug that occurred when you made a stadium enlargement
+        over several weeks
+	- replaced official team names with city names because of
+	trademark issues (the official names can be downloaded from
+	http://www.bygfoot.com)
+	- removed official player names because of the same reason (you
+	can still download them from the homepage)
+
+09/30/2004: v1.6.2
+	- improved the update script
+	- added updated country file for Italy (thanks to Marco Fabbri)
+	- fixed a bug that led to no ticket income for cup games
+	- fixed a bug that occurred when you made a stadium enlargement
+        over several weeks
+	- replaced official team names with city names because of
+	trademark issues (the official names can be downloaded from
+	http://www.bygfoot.com)
+	- removed official player names because of the same reason (you
+	can still download them from the homepage)
+
+09/09/2004: v1.6.1 + 1.7.1
+	- corrected a bug that caused the game to hang if live games were
+	switched on and there were no games to play
+	- added an online update script for the source package
+	('bygfoot-update')
+
+09/05/2004: v1.7.0
+	- added injuries and cards display for opponent teams in the match
+	summary
+	- clicking on a team name in the tables shows the team's player list
+	- clicking on a fixture shows the player list of one of the teams,
+	depending on the mouse button you use
+	- job offers show a lot more information on the team offering the
+	job
+	- a player can suffer an injury that forces him to retire
+	- added own goals and penalties in regulation and extra time
+	- added reasons why a player was banned (thanks to Tom Chance for
+	the correct football expressions)
+	- added player and some more team awards (with prize money) at the
+	end of a season
+
+09/05/2004: v1.6.0
+	- added possibility to have messages shown instead of popups
+	when possible
+	- added extended stadium capacity enlargement possibilities
+	- added possibility to fire a player
+	- added 'Player actions' button
+	- changed the current skill and fitness display a bit: current
+	skill is now the skill that's really used when computing games
+	(except for the home advantage factor); fitness can be 100% now
+	and is shown in different colors (thanks to arnaudus)
+	- corrected a minor display bug (you could see the updated rank in
+	the main window when playing two live games already after the
+	first one)
+	- added uninstall possibility for the src version
+	- added manpage
+	- added a configuration file:
+	$HOME/.bygfoot/text_files/bygfoot.conf; this way, your favourite
+	settings get loaded even if you start a new game
+	- added physician quality (like scout); better physician costs
+	more but players heal better on average
+	- healing time of players can be overestimated; until now it was
+	always underestimated (i.e. the player was injured _at least_ as
+	long as the expected recovery time)
+	- corrected a save/load bug that occurred when you saved a game
+	just before getting a new scout
+
+	NOTE: The 1.6 branch is not savegame-compatible to the 1.4.x
+	versions.
+	
+08/17/2004: v1.5.2
+	- added possibility to have messages shown instead of popups
+	when possible
+	- added extended stadium capacity enlargement possibilities
+	- added possibility to fire a player
+	- added 'Player actions' button
+	- changed the current skill and fitness display a bit: current
+	skill is now the skill that's really used when computing games
+	(except for the home advantage factor); fitness can be 100% now
+	and is shown in different colors (thanks to arnaudus)
+	- corrected a minor display bug (you could see the updated rank in
+	the main window when playing two live games already after the
+	first one)
+
+08/17/2004: v1.4.3
+	- corrected the '1-2'-bug: you couldn't enter these two digits
+	into fields like the structure field because they were used as
+	keyboard shortcuts for browsing forward and back. browsing's done
+	with 'q' and 'w' now, and 'q' quits the game only when the browse
+	buttons aren't shown (e.g. in main menu mode)
+	- corrected some minor transfer list bugs (there seem to be
+	infinitely many of these :-( )
+	- fixed a bug that occurred when cup matches that ended drawn were
+	shown
+	- corrected a sorting bug (occurred when computing the tables)
+
+07/12/2004: v1.4.2, v1.5.1
+	- corrected the transfer list bug
+	
+07/10/2004: v1.5.0
+	- added uninstall possibility for the src version
+	- added manpage
+	- added a configuration file:
+	$HOME/.bygfoot/text_files/bygfoot.conf; this way, your favourite
+	settings get loaded even if you start a new game
+	- added physician quality (like scout); better physician costs
+	more but players heal better on average
+	- healing time of players can be overestimated; until now it was
+	always underestimated (i.e. the player was injured _at least_ as
+	long as the expected recovery time)
+
+	NOTE: This version is unfortunately once again not
+	savegame-compatible to 1.4.0. I'm terribly sorry.
+
+07/10/2004: v1.4.1
+	- corrected the freeze bug that occurred when you had a
+	$HOME/.bygfoot directory from an older Bygfoot version
+	- fixed bookmaker's tip bug (thanks to metoneca)
+	- changed that absurd 'physicist' to 'physio'
+	- reduced the damage a fire caused to your stadium
+
+07/03/2004: v1.4.0
+	- added Michal Rudolf's country file for Poland
+	- added possibility to play in international cups only
+	(e.g. participate in Champions' League only, without playing
+	regular league games)
+	- you can see information on your next opponents in the right part
+	of the main window
+	- swapping two players automatically adapts team structure (but
+	you can switch this off, of course)
+	- as you can see: the version numbering has changed. no
+	alphas and omegas anymore!
+	- added export/import features to the Editor; you can export
+	individual teams to files and import such files into your local
+	team definitions file
+	- extended the filter rules for transfer list notification
+	- added Autosave option
+	- fixed a non-technical bug: european team names didn't
+	change at the beginning of a new season
+	- fixed a scrolling bug that occurred in the live game window when
+	penalties were shot
+	- added average skill labels in the main window
+	- players are put onto the transfer list by right-clicking instead
+	of left-clicking; left-clicking always swaps players now
+	- converted player names to lowercase (which sounds easier than it
+	is in reality; utf8 seems to have disadvantages, too)
+	- the 'Rearrange Team' button automatically changes the team
+	structure to the appropriate value
+	- savegames located in the $HOME/.bygfoot/saves directory can be
+	loaded from the command line without full path names
+	- country files located in one of the support files directories
+	(e.g. $HOME/.bygfoot/text_files) can be loaded with '-f filename'
+	without full path names
+	- fixed a money bug: you can pay debts with your drawing
+        credit now
+	- introduced playing style for cpu-teams (they always played
+	balanced until now)
+	- added variable interest rates for your debts (the more you owe,
+	the lower the interest rate)
+	- added possibility to display fixtures of all leagues
+
+	NOTE: This version is unfortunately not compatible anymore to
+	saved games of previous versions.
+	
+06/10/2004: v1.3 beta
+	- corrected a horrible bug in the prize money function (thanks to
+	Ken Brush)
+	- added possibility to change team names with the Editor
+	- added Jose Geraldo Gouvea's country file for Brazil
+	- fixed some compiler warnings
+	- fixed a bug that made it impossible to load a custom country
+	file from the team selection window
+
+05/24/2004: v1.3 alpha
+	- first version including the Bygfoot Team Editor
+	- you can edit complete teams and store them in a text file
+	- switched to UTF-8 encoding: all text files are encoded that way,
+	so that almost any special character (eg. in a team or player
+	name) can be displayed correctly
+	- added Cristian Spoiala's country file for Romania
+	- fixed a bug that made it possible that you got hired by your own
+	team
+	- fixed a bug that occured when displaying a game result
+	- created several new source files so that the code is distributed
+	better now
+
+05/07/2004: v1.1 beta
+	- added possibility to change the name of your team
+	- added possibility to filter transfer notifications by age
+	- added prize money for teams finishing 1st - 3rd in the league
+	- fixed a bug that caused players to have empty name when loading
+	games from the command line
+	- fixed a bug that led to poor attendance in cup games
+	- added unselect feature in the player list
+	- really good players appear less often on the transfer list
+	- added drawing credit
+	
+04/16/2004: v1.1 alpha 'Eurofoot'
+	- added some European leagues to choose from; the game
+	structure stays the same, though
+	- accordingly, the player names aren't just English ones anymore but
+	international ones
+	- improved player generation phase concerning speed: the game
+	starts much quicker now
+	- improved 'new week' functions; the results come even quicker
+	- you can create an own 'localisation' by copying and editing one
+	of the 'team_names_XX' files, so that you have custom team names
+	and league/cup names
+	- added an 'Undo' button
+
+	NOTE: This version is unfortunately not compatible anymore to
+	saved games of previous versions. This is because of the new
+	player and team names.
+
+04/07/2004: v1.0 final 'Quickfoot'
+	- connected the skill level of European teams to the average level
+	of the Premiership so that it doesn't become too easy to win the
+	European Cups after a couple of seasons
+	- worked a bit on speed issues; the game should start a bit faster
+	and calculate the results quicker, too	
+
+02/24/2004: v1.0 beta
+	- stadium values may be increased twice a week now
+	- added some buttons to give easier access to tables and fixtures
+	- added quick options in the main window
+	- changed most of the finance issues: the ticket income is higher,
+	  but the difference between players with similar propertiers
+	  (skill etc.) in different leagues is much smaller now
+	- UEFA Cup is now harder to win
+	- fixed a bug that led to the same number of goal chances in every
+          game regardless of the individual teams that played (this made
+	  it very hard for even the best teams to win predictably against
+	  weaker opponents)
+	- fixed a bug that allowed players to have a talent above 9.9
+	- fixed a bug that caused the game to reject some normal save
+	  files
+	- fixed a bug that made it less probable to sell a player the
+	  better the scout was
+	- fixed a bug that caused a player with expected recovery time 11
+	  to get healthy within a week
+
+02/14/2004: v1.0 alpha
+	- first graphical version using GTK+ 2
+	- new features: - live game
+	                - playing style (attack/defend)
+			- buy players not on the transferlist
+	
+01/02/2002 v0.5 pre-alpha, alpha and beta
+	 - text-based version full of pointers and containing an
+	 untraceable segfault 
