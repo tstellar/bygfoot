@@ -92,10 +92,7 @@ main (gint argc, gchar *argv[])
     window_show_startup();
     gtk_window_get_position(GTK_WINDOW(window.startup), &x_pos, &y_pos);
     gtk_window_move(GTK_WINDOW(window.startup_users), x_pos,  y_pos);
-    stat0 = STATUS_TEAM_SELECTION;
-    /*d*/
-    on_button_add_player_clicked(NULL, NULL);
-    
+    stat0 = STATUS_TEAM_SELECTION;   
 
     gtk_main ();
 
