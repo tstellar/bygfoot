@@ -10,9 +10,12 @@
 #define CONSTANT_GAME_GUI_LIVE_GAME_SCALE_ATTACK 0.3
 #define CONSTANT_GAME_GUI_LIVE_GAME_SCALE_CHANCE 0.45
 #define CONSTANT_GAME_GUI_LIVE_GAME_SCALE_RANGE 10.0
-#define CONSTANT_GAME_GUI_LIVE_GAME_SCALE_CHANCE_COLOR "orange"
-#define CONSTANT_GAME_GUI_LIVE_GAME_SCALE_GOAL_COLOR "red"
-#define CONSTANT_GAME_GUI_LIVE_GAME_SCALE_MISS_COLOR "lightgreen"
+#define CONSTANT_GAME_GUI_LIVE_GAME_SCALE_COLOR_DEFEND "lightblue"
+#define CONSTANT_GAME_GUI_LIVE_GAME_SCALE_COLOR_MIDFIELD "khaki"
+#define CONSTANT_GAME_GUI_LIVE_GAME_SCALE_COLOR_ATTACK "gold"
+#define CONSTANT_GAME_GUI_LIVE_GAME_SCALE_COLOR_CHANCE "orange"
+#define CONSTANT_GAME_GUI_LIVE_GAME_SCALE_COLOR_GOAL "red"
+#define CONSTANT_GAME_GUI_LIVE_GAME_SCALE_COLOR_MISS "lightgreen"
 
 /** Show the live game in the live game window.
     @param unit The current unit we show. */
@@ -64,12 +67,15 @@ game_gui_live_game_set_hscale(const LiveGameUnit *unit, GtkHScale *hscale)
     gtk_widget_modify_bg(GTK_WIDGET(hscale), GTK_STATE_NORMAL, NULL);
 
     if(unit->area == LIVE_GAME_UNIT_AREA_MIDFIELD)
+    {
+	gdk_color_parse(CONSTANT_GAME_GUI_LIVE_GAME_SCALE_COLOR_MIDFIELD, &color);
 	gtk_range_set_value(GTK_RANGE(hscale),
 			    CONSTANT_GAME_GUI_LIVE_GAME_SCALE_RANGE / 2);
-    else if(unit->event.type == LIVE_GAME_EVENT_GOAL)
+    }
+    else if(unit->event.type == LIVE_GAME_EVENT_GOAL ||
+	    unit->event.type == LIVE_GAME_EVENT_OWN_GOAL)
     {
-	gdk_color_parse(CONSTANT_GAME_GUI_LIVE_GAME_SCALE_GOAL_COLOR, &color);
-	gtk_widget_modify_bg(GTK_WIDGET(hscale), GTK_STATE_NORMAL, &color);
+	gdk_color_parse(CONSTANT_GAME_GUI_LIVE_GAME_SCALE_COLOR_GOAL, &color);
 
 	gtk_range_set_value(GTK_RANGE(hscale), 
 			    CONSTANT_GAME_GUI_LIVE_GAME_SCALE_RANGE * (unit->possession == 0));
@@ -78,8 +84,7 @@ game_gui_live_game_set_hscale(const LiveGameUnit *unit, GtkHScale *hscale)
 	    unit->event.type == LIVE_GAME_EVENT_PENALTY ||
 	    unit->event.type == LIVE_GAME_EVENT_FREE_KICK)
     {
-	gdk_color_parse(CONSTANT_GAME_GUI_LIVE_GAME_SCALE_CHANCE_COLOR, &color);
-	gtk_widget_modify_bg(GTK_WIDGET(hscale), GTK_STATE_NORMAL, &color);
+	gdk_color_parse(CONSTANT_GAME_GUI_LIVE_GAME_SCALE_COLOR_CHANCE, &color);
 
 	gtk_range_set_value(GTK_RANGE(hscale), 
 			    CONSTANT_GAME_GUI_LIVE_GAME_SCALE_RANGE / 2 +
@@ -91,24 +96,29 @@ game_gui_live_game_set_hscale(const LiveGameUnit *unit, GtkHScale *hscale)
 	    unit->event.type == LIVE_GAME_EVENT_MISSED ||
 	    unit->event.type == LIVE_GAME_EVENT_SAVE ||
 	    unit->event.type == LIVE_GAME_EVENT_CROSS_BAR)
-    {
-	gdk_color_parse(CONSTANT_GAME_GUI_LIVE_GAME_SCALE_MISS_COLOR, &color);
-	gtk_widget_modify_bg(GTK_WIDGET(hscale), GTK_STATE_NORMAL, &color);
-    }
+	gdk_color_parse(CONSTANT_GAME_GUI_LIVE_GAME_SCALE_COLOR_MISS, &color);
     else if(unit->area == LIVE_GAME_UNIT_AREA_ATTACK)
+    {
+	gdk_color_parse(CONSTANT_GAME_GUI_LIVE_GAME_SCALE_COLOR_ATTACK, &color);	
 	gtk_range_set_value(GTK_RANGE(hscale),
 			    CONSTANT_GAME_GUI_LIVE_GAME_SCALE_RANGE / 2 +
 			    (CONSTANT_GAME_GUI_LIVE_GAME_SCALE_RANGE * 
 			     CONSTANT_GAME_GUI_LIVE_GAME_SCALE_ATTACK *
 			     ((unit->possession == 0) ? 1 : -1)));
+    }
     else if(unit->area == LIVE_GAME_UNIT_AREA_DEFEND)
+    {
+	gdk_color_parse(CONSTANT_GAME_GUI_LIVE_GAME_SCALE_COLOR_DEFEND, &color);
 	gtk_range_set_value(GTK_RANGE(hscale),
 			    CONSTANT_GAME_GUI_LIVE_GAME_SCALE_RANGE / 2 +
 			    (CONSTANT_GAME_GUI_LIVE_GAME_SCALE_RANGE * 
 			     CONSTANT_GAME_GUI_LIVE_GAME_SCALE_ATTACK *
 			     ((unit->possession == 0) ? -1 : 1)));
+    }
     else
 	g_warning("game_gui_live_game_set_hscale: don't know what to do!\n");
+
+    gtk_widget_modify_bg(GTK_WIDGET(hscale), GTK_STATE_NORMAL, &color);
 
     if(debug)
 	printf("***** area %d value %.1f\n", unit->area, gtk_range_get_value(GTK_RANGE(hscale)));
