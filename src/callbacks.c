@@ -499,7 +499,7 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
 		callback_pay_loan();
 	    break;
 	case STATUS_SHOW_TRANSFER_LIST:
-	    if(event->button == 1)
+	    if(event->button == 1 || trans(idx - 1).tm == current_user.tm)
 		callback_transfer_list_clicked(idx - 1);
 	    else if(event->button == 3)
 	    {
@@ -507,6 +507,7 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
 		    game_gui_print_message(_("Your offer has been removed."));
 		else
 		    game_gui_print_message(_("You haven't made an offer for the player."));
+		return TRUE;
 	    }
 	    break;
     }

@@ -1,5 +1,3 @@
-#include <unistd.h>
-
 #include "cup.h"
 #include "file.h"
 #include "finance.h"
@@ -10,6 +8,7 @@
 #include "live_game.h"
 #include "maths.h"
 #include "misc.h"
+#include "player.h"
 #include "option.h"
 #include "support.h"
 #include "team.h"
@@ -1491,7 +1490,7 @@ treeview_create_finances(const User* user)
     if(in[MON_IN_TRANSFERS] != 0 || out[MON_OUT_TRANSFERS] != 0)
     {
 	misc_print_grouped_int(in[MON_IN_TRANSFERS], buf, FALSE);
-	misc_print_grouped_int(out[MON_IN_TRANSFERS], buf3, FALSE);
+	misc_print_grouped_int(out[MON_OUT_TRANSFERS], buf3, FALSE);
 	sprintf(buf2, "<span foreground='%s'>%s</span>",
 		const_str("string_treeview_finances_expenses_fg"), buf3);
 	gtk_list_store_append(liststore, &iter);
@@ -1601,7 +1600,7 @@ treeview_show_transfer_list(GtkTreeView *treeview)
     GPtrArray *players = g_ptr_array_new();
 
     for(i=0;i<transfer_list->len;i++)
-	g_ptr_array_add(players, trans(i).pl);
+	g_ptr_array_add(players, player_of_id(trans(i).tm, trans(i).id));
 
     treeview_show_player_list(treeview, players, 
 			      treeview_get_attributes_from_scout(current_user.scout), FALSE);

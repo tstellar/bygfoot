@@ -581,9 +581,30 @@ int_transfer_time_upper 5
 float_transfer_cup_percentage 2500
 
 # scout deviance in percent of the players' values and wages
-# this value is the deviance for the best scout; the others
+# these values are the deviance for the best scout; the others
 # are obtained by multiplying it
-float_transfer_scout_deviance 400
+float_transfer_scout_deviance_value 200
+float_transfer_scout_deviance_wage 400
+
+# probability for an offer when a user
+# player's on the list
+float_transfer_offer_prob_max 5000
+# reduce factor (multiplied by the scout value)
+float_transfer_offer_prob_reduce 1000
+
+# deviance bounds of the fee from the value
+# values for average and bad scout are mirrored
+
+# best scout
+float_transfer_offer_fee_best_lower -500
+float_transfer_offer_fee_best_upper 1500
+# good scout
+float_transfer_offer_fee_good_lower -800
+float_transfer_offer_fee_good_upper 1200
+
+# bounds for contract time of a newly acquired player
+int_transfer_contract_lower 1
+int_transfer_contract_upper 4
 
 #### colours and icons
 

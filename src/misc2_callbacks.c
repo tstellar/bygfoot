@@ -4,8 +4,10 @@
 #include "main.h"
 #include "misc2_callbacks.h"
 #include "misc2_interface.h"
+#include "player.h"
 #include "support.h"
 #include "transfer.h"
+#include "treeview.h"
 #include "user.h"
 #include "variables.h"
 #include "window.h"
@@ -61,39 +63,6 @@ on_button_offer_cancel_clicked         (GtkButton       *button,
     game_gui_show_main();
 }
 
-gboolean
-on_graph_window_delete_event           (GtkWidget       *widget,
-                                        GdkEvent        *event,
-                                        gpointer         user_data)
-{
-
-  return FALSE;
-}
-
-
-void
-on_optionmenu_player_changed           (GtkOptionMenu   *optionmenu,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_optionmenu_team_changed             (GtkOptionMenu   *optionmenu,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_button_close_clicked                (GtkButton       *button,
-                                        gpointer         user_data)
-{
-
-}
-
 
 gboolean
 on_button_warning_clicked              (GtkWidget       *widget,
@@ -147,3 +116,53 @@ on_button_digits_cancel_clicked        (GtkButton       *button,
 {
     window_destroy(&window.digits, TRUE);
 }
+
+gboolean
+on_window_yesno_delete_event           (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data)
+{
+
+  return FALSE;
+}
+
+
+void
+on_checkbutton_yesno_toggled           (GtkToggleButton *togglebutton,
+                                        gpointer         user_data)
+{
+
+}
+
+
+void
+on_button_yesno_yes_clicked            (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    switch(stat0)
+    {
+	default:
+	    g_warning("on_button_yesno_yes_clicked: unknown status %d\n", stat0);
+	    break;
+	case STATUS_TRANSFER_OFFER:
+	    current_user.money += transoff(stat1, 0).fee;
+	    current_user.money_in[1][MON_IN_TRANSFERS] += transoff(stat1, 0).fee;
+	    player_remove_from_team(current_user.tm, 
+				    player_id_index(current_user.tm, trans(stat1).id));
+	    transfer_remove_player(stat1);
+	    treeview_show_user_player_list(&current_user);
+	    game_gui_set_main_window_header();	    
+	    break;
+    }
+    /*d*/
+    window_destroy(&window.yesno, TRUE);
+}
+
+
+void
+on_button_yesno_no_clicked             (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    window_destroy(&window.yesno, TRUE);
+}
+

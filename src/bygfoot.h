@@ -93,7 +93,8 @@ typedef struct
 	*progress,
 	*digits,
 	*stadium,
-	*job_offer;
+	*job_offer,
+	*yesno;
 } Windows;
 
 /** A struct representing an option or a constant. */

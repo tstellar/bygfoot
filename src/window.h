@@ -16,6 +16,7 @@ enum Windows
     WINDOW_DIGITS,
     WINDOW_STADIUM,
     WINDOW_JOB_OFFER,
+    WINDOW_YESNO,
     WINDOW_END
 };
 
@@ -33,5 +34,8 @@ window_show_digits(gchar *text_main, gchar* text1, gint value1, gchar* text2, gi
 
 void
 window_show_stadium(void);
+
+void
+window_show_yesno(gchar *text, gboolean checkbutton);
 
 #endif

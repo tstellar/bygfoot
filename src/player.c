@@ -204,47 +204,6 @@ player_assign_wage(const Player *pl)
     return math_round_integer((gint)wage, 1);
 }
 
-/** Copy a player to another player. The destination player
-    has to be a fully allocated player (because he gets 
-    freed before we copy).
-    @param source The player we copy.
-    @param dest The player we overwrite. */
-void
-player_copy(const Player *source, Player *dest)
-{
-    gint i;
-
-    free_player(dest);
-
-    *dest = *source;
-    dest->name = g_string_new(source->name->str);
-    dest->cards = g_array_new(FALSE, FALSE, sizeof(PlayerCard));
-    dest->games_goals = g_array_new(FALSE, FALSE, sizeof(PlayerGamesGoals));
-
-    for(i=0;i<source->cards->len;i++)
-	g_array_append_val(dest->cards, 
-			   g_array_index(source->cards, PlayerCard, i));
-
-    for(i=0;i<source->games_goals->len;i++)
-	g_array_append_val(dest->games_goals, 
-			   g_array_index(source->games_goals, PlayerGamesGoals, i));
-}
-
-/** Copy a player into a team in a way that allows us to
-    free the player afterwards.
-    @param pl The player we copy.
-    @param tm The team we copy the player to.
-    @see player_copy() */
-void
-player_append_to_array(const Player *pl, Team *tm)
-{
-    Player new_player = player_new(tm, const_float("float_player_max_skill"));
-
-    player_copy(pl, &new_player);
-
-    g_array_append_val(tm->players, new_player);
-}
-
 /** Return the pointer to the player given by the ids.
     @param clid The cup/league id of the team.
     @param team_id The id of the team.
@@ -484,6 +443,31 @@ player_substitution_good_structure(gint old_structure, gint old_pos, gint player
 	(gint)rint(powf(10, PLAYER_POS_FORWARD - player_pos));
 
     return query_integer_is_in_array(new_structure, accepted_structures, 0, 5);
+}
+
+/** Copy a player into a team.
+    @param pl The player.
+    @param tm The dest team.
+    @param insert_at The new index of the player in the players array. */
+void
+player_copy(Player *pl, Team *tm, gint insert_at)
+{
+    Player new = *pl;
+
+    new.team = tm;
+    new.id = player_new_id(tm->players);
+    
+    g_array_insert_val(tm->players, insert_at, new);
+
+    if(insert_at < 11)
+	player_of(tm, insert_at)->cpos = 
+	    player_get_position_from_structure(tm->structure, insert_at);
+    else
+	player_of(tm, insert_at)->cpos = player_of(tm, insert_at)->pos;
+
+    player_of(tm, insert_at)->cskill =
+	player_get_cskill(player_of(tm, insert_at), 
+			  player_of(tm, insert_at)->cpos);
 }
 
 /** Move a player from one player array to another one.

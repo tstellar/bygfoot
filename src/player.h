@@ -43,12 +43,6 @@ player_assign_value(const Player *pl);
 gint
 player_assign_wage(const Player *pl);
 
-void
-player_copy(const Player *source, Player *dest);
-
-void
-player_append_to_array(const Player *pl, Team *tm);
-
 gint
 player_all_games_goals(const Player *pl, gint type);
 
@@ -132,5 +126,8 @@ player_update_week_roundly(Team *tm, gint idx);
 
 void
 player_update_injury(Player *pl);
+
+void
+player_copy(Player *pl, Team *tm, gint insert_at);
 
 #endif

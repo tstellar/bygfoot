@@ -196,7 +196,6 @@ end_week_round_results(void)
 			    buf,
 			    g_array_index(cp(i).fixtures, Fixture, j).teams[1]->name->str);
 		    gui_show_progress((gfloat)done / num_matches, buf2);
-		    printf("%s\n", buf2);
 		}
     }
 

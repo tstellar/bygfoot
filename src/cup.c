@@ -121,11 +121,15 @@ cup_load_choose_teams(Cup *cup)
 	for(j=0;j<sids->len;j++)
 	{
 	    xml_league_read(((GString*)g_ptr_array_index(sids, j))->str, leagues);
-	    for(k=0;k<g_array_index(leagues, League, leagues->len - 1).teams->len;k++)
-		team_append_to_array(
-		    &g_array_index(g_array_index(leagues, League, leagues->len - 1).teams, Team,  k),
-		    teams);
+
+	    for(k=0; k < g_array_index(leagues, League, leagues->len - 1).teams->len; k++)
+		g_array_append_val(teams, g_array_index(
+				       g_array_index(leagues, League, leagues->len - 1).teams, Team,  k));
+
+	    g_array_free(g_array_index(leagues, League, leagues->len - 1).teams, TRUE);
 	}
+
+	g_array_free(leagues, TRUE);
 
 	gint permutation[teams->len];
 	for(j=0;j<teams->len;j++)
@@ -155,8 +159,10 @@ cup_load_choose_teams(Cup *cup)
 	{
 	    if(!query_is_in_international_cups(&g_array_index(teams, Team, permutation[j])))
 	    {
-		team_append_to_array_with_ids(&g_array_index(teams, Team, permutation[j]), cup->teams,
-					      cup->id, cup->teams->len);
+		g_array_append_val(cup->teams, g_array_index(teams, Team, permutation[j]));
+		g_array_index(cup->teams, Team, cup->teams->len - 1).clid = cup->id;
+		g_array_index(cup->teams, Team, cup->teams->len - 1).id = cup->teams->len;
+
 		number_of_teams++;
 	    }
 
@@ -166,10 +172,13 @@ cup_load_choose_teams(Cup *cup)
 
 	if(number_of_teams != choose_team->number_of_teams)
 	    cup_choose_team_abort(cup, choose_team, FALSE);
+
+	for(j=teams->len - 1; j>=0;j--)
+	    if(query_is_in_international_cups(&g_array_index(teams, Team, j)))
+		g_array_remove_index(teams, j);
 	
 	free_g_string_array(&sids);
 	free_teams_array(&teams);
-	free_leagues_array(&leagues);
     }
 
     for(i=0;i<cup->teams->len;i++)

@@ -9,6 +9,7 @@
 #include "option.h"
 #include "player.h"
 #include "team.h"
+#include "transfer.h"
 #include "user.h"
 #include "variables.h"
 
@@ -242,65 +243,6 @@ team_get_league_cup_string(const Team *tm, gint value_type, gchar *buf)
 		sprintf(buf, "%s", cp(idx).symbol->str);
 		break;
 	}
-}
-
-/** Copy a team to another team. The destination team
-    has to be a fully allocated team (because it gets 
-    freed before we copy).
-    @param source The team we copy.
-    @param dest The team we overwrite. */
-void
-team_copy(const Team *source, Team *dest)
-{
-    gint i;
-    Player new_player;
-
-    free_team(dest);
-    
-    *dest = *source;
-
-    dest->name = g_string_new(source->name->str);
-
-    dest->players = g_array_new(FALSE, FALSE, sizeof(Player));
-    
-    for(i=0;i<source->players->len;i++)
-    {
-	new_player = player_new(dest, const_float("float_player_max_skill"));
-	free_player(&new_player);
-	player_copy(&g_array_index(source->players, Player, i),
-		    &new_player);
-	g_array_append_val(dest->players, new_player);
-    }
-}
-
-/** Copy a team to an array in a way that allows us to
-    free the team afterwards.
-    @param tm The team we copy.
-    @param teams_array The array of teams we copy the team to.
-    @see team_copy() */
-void
-team_append_to_array(const Team *tm, GArray *teams_array)
-{
-    Team new_team = team_new();
-
-    team_copy(tm, &new_team);
-
-    g_array_append_val(teams_array, new_team);
-}
-
-/** Copy a team to an array and assign new ids.
-    @param tm The team we copy.
-    @param teams_array The array of teams we copy the team to.
-    @param clid The cup/league id we assign.
-    @param id The team id we assign.
- */
-void
-team_append_to_array_with_ids(const Team *tm, GArray *teams_array, gint clid, gint id)
-{
-    team_append_to_array(tm, teams_array);
-
-    g_array_index(teams_array, Team, teams_array->len - 1).clid = clid;
-    g_array_index(teams_array, Team, teams_array->len - 1).id = id;
 }
 
 /** Check whether the team is already part of an
@@ -797,7 +739,10 @@ team_update_cpu_new_players(Team *tm)
     math_generate_permutation(player_numbers, 0, tm->players->len - 1);
 
     for(i=0;i<number_of_new;i++)
-	player_replace_by_new(player_of(tm, player_numbers[i]), TRUE);
+    {
+	if(!query_transfer_player_is_on_list(player_of(tm, player_numbers[i])))
+	    player_replace_by_new(player_of(tm, player_numbers[i]), TRUE);
+    }
 }
 
 /** Heal players, re-set fitnesses, make some random subs
@@ -858,7 +803,7 @@ team_update_user_team_week_roundly(Team *tm)
 gint
 team_compare_func(gconstpointer a, gconstpointer b, gpointer data)
 {
-    gint type = GPOINTER_TO_INT(data) % 100;;
+    gint type = GPOINTER_TO_INT(data) % 100;
     const Team *tm1 = (GPOINTER_TO_INT(data) < 100) ? 
 	*(const Team**)a : (const Team*)a;
     const Team *tm2 = (GPOINTER_TO_INT(data) < 100) ? 

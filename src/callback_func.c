@@ -71,7 +71,9 @@ callback_show_next_live_game(void)
 void
 callback_player_clicked(gint idx, GdkEventButton *event)
 {
-    /** Only accept single-clicks right now. */
+    gchar buf[SMALL];
+
+    /* Only accept single-clicks right now. */
     if(event->type != GDK_BUTTON_PRESS)
 	return;
 
@@ -98,6 +100,29 @@ callback_player_clicked(gint idx, GdkEventButton *event)
 	selected_row[0] = -1;
 
 	treeview_show_user_player_list(&current_user);
+    }
+    else if(event->button == 3)
+    {
+	if(stat0 == STATUS_SHOW_TRANSFER_LIST)
+	{
+	    selected_row[0] = -1;
+	    
+	    if(!query_transfer_player_is_on_list(player_of(current_user.tm, idx)))
+	    {
+		transfer_add_player(player_of(current_user.tm, idx),
+				    (gint)rint(((gfloat)const_int("int_transfer_time_lower") +
+						(gfloat)const_int("int_transfer_time_upper")) / 2));
+		sprintf(buf, _("%s has been added to the transfer list for %d weeks."),
+			player_of(current_user.tm, idx)->name->str, 
+			(gint)rint(((gfloat)const_int("int_transfer_time_lower") +
+				    (gfloat)const_int("int_transfer_time_upper")) / 2));
+		game_gui_print_message(buf);
+	    }
+	    else
+		transfer_remove_player_ptr(player_of(current_user.tm, idx));
+
+	    treeview_show_transfer_list(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")));
+	}
     }
 }
 
@@ -224,7 +249,7 @@ callback_transfer_list_clicked(gint idx)
     gchar buf[SMALL];
     Transfer *tr = &trans(idx);
 
-    if(tr->pl->team == current_user.tm)
+    if(tr->tm == current_user.tm)
     {
 	transfer_remove_player(idx);
 	on_button_transfers_clicked(NULL, NULL);
@@ -238,7 +263,7 @@ callback_transfer_list_clicked(gint idx)
     }
 
     sprintf(buf, _("You are making an offer for %s. Your scout's recommendations for value and wage are preset."),
-	    tr->pl->name->str);
+	    player_of_id(tr->tm, tr->id)->name->str);
     stat1 = idx;
 
     window_show_digits(buf, _("Fee"), tr->fee[current_user.scout % 10],

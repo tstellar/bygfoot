@@ -38,15 +38,6 @@ team_return_league_cup_value_int(const Team *tm, gint value_type);
 void
 team_get_league_cup_string(const Team *tm, gint value_type, gchar *buf);
 
-void
-team_copy(const Team *source, Team *dest);
-
-void
-team_append_to_array(const Team *tm, GArray *teams_array);
-
-void
-team_append_to_array_with_ids(const Team *tm, GArray *teams_array, gint clid, gint id);
-
 gboolean
 query_is_in_international_cups(const Team *tm);
 

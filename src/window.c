@@ -145,6 +145,20 @@ window_show_stadium(void)
 	gtk_label_set_text(label_stadium_status, _("No improvements currently in progress."));
 }
 
+/** Show the window where the user can select between yes and no.
+    @param text The text shown in the window.
+    @param checkbutton Whether to show the checkbutton. */
+void
+window_show_yesno(gchar *text, gboolean checkbutton)
+{
+    window_create(WINDOW_YESNO);
+
+    gtk_label_set_text(GTK_LABEL(lookup_widget(window.yesno, "label_yesno")), text);
+    
+    if(!checkbutton)
+	gtk_widget_hide(lookup_widget(window.yesno, "checkbutton_yesno"));
+}
+
 /** Create and show a window. Which one depends on the argument.
     @param window_type An integer telling us which window to
     create.
@@ -259,6 +273,17 @@ window_create(gint window_type)
 	    }
 	    wind = window.job_offer;
 	    strcpy(buf, _("Job offer"));
+	    break;
+	case WINDOW_YESNO:
+	    if(window.yesno != NULL)
+		g_warning("window_create: called on already existing window\n");
+	    else
+	    {
+		popups_active++;
+		window.yesno = create_window_yesno();
+	    }
+	    wind = window.yesno;
+	    strcpy(buf, "???");
 	    break;
     }
 

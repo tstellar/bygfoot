@@ -3,6 +3,7 @@
 
 #include "bygfoot.h"
 #include "player_struct.h"
+#include "team_struct.h"
 #include "transfer_struct.h"
 #include "variables.h"
 
@@ -35,7 +36,7 @@ void
 transfer_remove_player(gint idx);
 
 gboolean
-query_player_is_on_transfer_list(const Player *pl);
+query_transfer_player_is_on_list(const Player *pl);
 
 gboolean
 transfer_add_offer(gint idx, Team *tm, gint fee, gint wage);
@@ -45,5 +46,11 @@ transfer_remove_offer(gint idx, const Team *tm);
 
 gint
 transfer_offer_compare_func(gconstpointer a, gconstpointer b);
+
+void
+transfer_remove_player_ptr(const Player *pl);
+
+Team*
+transfer_team_get_new(void);
 
 #endif

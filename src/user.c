@@ -3,11 +3,14 @@
 #include "game_gui.h"
 #include "league.h"
 #include "maths.h"
+#include "misc.h"
 #include "option.h"
 #include "player.h"
 #include "support.h"
 #include "team.h"
+#include "transfer.h"
 #include "user.h"
+#include "window.h"
 
 /** Create a new user with default values. */
 User
@@ -278,7 +281,8 @@ void
 user_event_show_next(void)
 {    
     Event *event = NULL;
-    gchar buf[BIG];
+    gchar buf[BIG],
+	buf2[SMALL], buf3[SMALL];
 
     if(current_user.events->len == 0)
     {
@@ -299,17 +303,14 @@ user_event_show_next(void)
 	    sprintf(buf, _("%s has left your team because his contract expired."),
 		    event->value_string->str);
 	    game_gui_show_warning(buf);
-	    user_event_remove(&current_user, 0);
 	    break;
 	case EVENT_TYPE_WARNING:
 	    game_gui_show_warning(event->value_string->str);
-	    user_event_remove(&current_user, 0);
 	    break;
 	case EVENT_TYPE_FIRE_FINANCE:
 	    stat0 = STATUS_JOB_OFFER_FIRE_FINANCE;
 	    statp = event->value_pointer;
 	    game_gui_show_job_offer((Team*)event->value_pointer, STATUS_JOB_OFFER_FIRE_FINANCE);
-	    user_event_remove(&current_user, 0);
 	    break;
 	case EVENT_TYPE_OVERDRAW:
 	    if(event->value1 == 1)
@@ -317,32 +318,47 @@ user_event_show_next(void)
 	    else
 		sprintf(buf, _("You have overdrawn your bank account once again. Bear in mind that after the fourth time you get fired.\nThe team owners give you %d weeks to exceed your drawing credit limit again."), const_int("int_finance_overdraw_positive"));
 	    game_gui_show_warning(buf);
-	    user_event_remove(&current_user, 0);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_REJECTED:
 	    sprintf(buf, _("The owners of %s have rejected your offer for %s. Either the fee or the wage you suggested was too low, apparently."), ((Team*)event->value_pointer)->name->str, event->value_string->str);
 	    game_gui_show_warning(buf);
-	    user_event_remove(&current_user, 0);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_MONEY:
 	    sprintf(buf, _("You didn't have enough money to buy %s from %s."),
 		    event->value_string->str, ((Team*)event->value_pointer)->name->str);
 	    game_gui_show_warning(buf);
-	    user_event_remove(&current_user, 0);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_ROSTER:
 	    sprintf(buf, _("Your roster is full. You couldn't buy %s from %s."),
 		    event->value_string->str, ((Team*)event->value_pointer)->name->str);
 	    game_gui_show_warning(buf);
-	    user_event_remove(&current_user, 0);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_ACCEPTED:
 	    sprintf(buf, _("Congratulations! The owners of %s have accepted your offer for %s!"),
 		    ((Team*)event->value_pointer)->name->str, event->value_string->str);
 	    game_gui_show_warning(buf);
-	    user_event_remove(&current_user, 0);
+	    break;
+	case EVENT_TYPE_TRANSFER_OFFER:
+	    misc_print_grouped_int(transoff(event->value1, 0).fee, buf2, FALSE);
+	    misc_print_grouped_int(
+		ABS(transoff(event->value1, 0).fee - 
+		    player_of_id(event->user->tm, trans(event->value1).id)->value), buf3, FALSE);
+	    if(transoff(event->value1, 0).fee - 
+	       player_of_id(event->user->tm, trans(event->value1).id)->value > 0)
+		strcat(buf3, " more");
+	    else
+		strcat(buf3, " less");
+
+	    sprintf(buf, _("%s would like to buy %s. They offer %s for him, which is %s than the player's value. Do you accept?"), transoff(event->value1, 0).tm->name->str,
+		    player_of_id(event->user->tm, trans(event->value1).id)->name->str,
+		    buf2, buf3);
+	    stat0 = STATUS_TRANSFER_OFFER;
+	    stat1 = event->value1;
+	    window_show_yesno(buf, FALSE);
 	    break;
     }
+
+    user_event_remove(&current_user, 0);
 }
 
 /** Change the team of a user. */

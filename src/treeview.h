@@ -5,6 +5,7 @@
 #include "live_game_struct.h"
 #include "player_struct.h"
 #include "user_struct.h"
+#include "table_struct.h"
 
 void
 treeview_select_row(GtkTreeView *treeview, GdkEventButton *event);
