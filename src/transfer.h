@@ -53,4 +53,7 @@ transfer_remove_player_ptr(const Player *pl);
 Team*
 transfer_team_get_new(void);
 
+gint
+transfer_get_index(const Team *tm, gint id);
+
 #endif

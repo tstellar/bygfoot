@@ -8,7 +8,6 @@
 #include "live_game.h"
 #include "main.h"
 #include "maths.h"
-#include "player.h"
 #include "start_end.h"
 #include "table.h"
 #include "team.h"

@@ -1,4 +1,3 @@
-#include "maths.h"
 #include "misc.h"
 #include "option.h"
 #include "player.h"

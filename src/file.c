@@ -4,7 +4,6 @@
 #include "misc.h"
 #include "option.h"
 #include "support.h"
-#include "user.h"
 #include "variables.h"
 
 /**

@@ -2,7 +2,7 @@
 #define LIVE_GAME_STRUCT_H
 
 #include "bygfoot.h"
-#include "game.h"
+#include "fixture_struct.h"
 
 /** Events happening during a live game.
     @see #LiveGameEvent
@@ -76,6 +76,15 @@ enum LiveGameEventValue2
     LIVE_GAME_EVENT_VALUE2_END
 };
 
+
+enum LiveGameUnitArea
+{
+    LIVE_GAME_UNIT_AREA_DEFEND = 0,
+    LIVE_GAME_UNIT_AREA_MIDFIELD,
+    LIVE_GAME_UNIT_AREA_ATTACK,
+    LIVE_GAME_UNIT_AREA_END
+};
+
 /** Indices for the time variable of th
     #LiveGameUnit struct.  */
 enum LiveGameUnitTime
@@ -102,14 +111,6 @@ enum LiveGameStatValue
     LIVE_GAME_STAT_VALUE_END
 };
 
-enum LiveGameUnitArea
-{
-    LIVE_GAME_UNIT_AREA_DEFEND = GAME_PLAYER_TYPE_DEFEND,
-    LIVE_GAME_UNIT_AREA_MIDFIELD = GAME_PLAYER_TYPE_MIDFIELD,
-    LIVE_GAME_UNIT_AREA_ATTACK = GAME_PLAYER_TYPE_ATTACK,
-    LIVE_GAME_UNIT_AREA_END
-};
-
 enum LiveGameStatArray
 {
     LIVE_GAME_STAT_ARRAY_SCORERS = 0,
@@ -117,6 +118,17 @@ enum LiveGameStatArray
     LIVE_GAME_STAT_ARRAY_REDS,
     LIVE_GAME_STAT_ARRAY_INJURED,
     LIVE_GAME_STAT_ARRAY_END
+};
+
+/** Indices for the team_value array.
+    @see game_get_values() */
+enum GameTeamValue
+{
+    GAME_TEAM_VALUE_DEFEND = 0,
+    GAME_TEAM_VALUE_MIDFIELD,
+    GAME_TEAM_VALUE_ATTACK,
+    GAME_TEAM_VALUE_GOALIE,
+    GAME_TEAM_VALUE_END
 };
 
 /** Some stats for a live game like ball possession,

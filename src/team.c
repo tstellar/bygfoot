@@ -1,6 +1,5 @@
 #include "cup.h"
 #include "fixture.h"
-#include "free.h"
 #include "game.h"
 #include "game_gui.h"
 #include "league.h"
@@ -11,7 +10,6 @@
 #include "team.h"
 #include "transfer.h"
 #include "user.h"
-#include "variables.h"
 
 /**
    Generate a team with default values, e.g. 

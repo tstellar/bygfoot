@@ -1,6 +1,5 @@
 #include "cup.h"
 #include "league.h"
-#include "maths.h"
 #include "table.h"
 #include "variables.h"
 

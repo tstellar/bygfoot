@@ -1,17 +1,12 @@
 #include "callbacks.h"
 #include "callback_func.h"
-#include "enums.h"
 #include "game_gui.h"
 #include "main.h"
 #include "team.h"
 #include "transfer.h"
 #include "treeview.h"
-#include "variables.h"
-#include "window.h"
-
-/*d*/
-#include "player.h"
 #include "user.h"
+#include "window.h"
 
 gboolean
 on_button_quit_clicked                 (GtkWidget       *widget,

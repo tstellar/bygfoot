@@ -1,14 +1,11 @@
-#include <string.h>
-
 #include "callback_func.h"
-#include "free.h"
+#include "game.h"
 #include "game_gui.h"
 #include "live_game.h"
 #include "main.h"
 #include "misc_callback_func.h"
 #include "misc_callbacks.h"
 #include "option.h"
-#include "treeview.h"
 #include "user.h"
 #include "variables.h"
 #include "window.h"

@@ -6,7 +6,6 @@
 #include "player.h"
 #include "team.h"
 #include "user.h"
-#include "window.h"
 
 /** Weekly update of finances. */
 void

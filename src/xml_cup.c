@@ -1,9 +1,7 @@
 #include "cup.h"
 #include "file.h"
 #include "misc.h"
-#include "variables.h"
 #include "xml_cup.h"
-
 
 /**
  * The tags used in the XML files defining cups.

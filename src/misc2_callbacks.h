@@ -1,3 +1,6 @@
+#ifndef MISC2_CALLBACKS_H
+#define MISC2_CALLBACKS_H
+
 #include <gtk/gtk.h>
 
 
@@ -47,3 +50,6 @@ on_button_yesno_yes_clicked            (GtkButton       *button,
 void
 on_button_yesno_no_clicked             (GtkButton       *button,
                                         gpointer         user_data);
+
+#endif
+

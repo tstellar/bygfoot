@@ -3,8 +3,9 @@
 
 #include "bygfoot.h"
 #include "enums.h"
-#include "team_struct.h"
 #include "live_game_struct.h"
+#include "player_struct.h"
+#include "team_struct.h"
 
 /** Indices for the money_in array. */
 enum MonIn
@@ -96,6 +97,7 @@ enum EventType
     EVENT_TYPE_TRANSFER_OFFER_MONEY,
     EVENT_TYPE_TRANSFER_OFFER_ROSTER,
     EVENT_TYPE_TRANSFER_OFFER_ACCEPTED,
+    EVENT_TYPE_TRANSFER_OFFER_OUTBID,
     EVENT_TYPE_END
 };
 

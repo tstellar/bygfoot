@@ -8,7 +8,6 @@
 #include "player.h"
 #include "team.h"
 #include "user.h"
-#include "variables.h"
 
 /** Create and return a new player.
     @param tm The team the player will belong to.

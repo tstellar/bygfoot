@@ -1,7 +1,5 @@
 #include "maths.h"
 #include "misc.h"
-#include "variables.h"
-
 
 /**
    Generate a Gauss-distributed (pseudo)random number.

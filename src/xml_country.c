@@ -1,6 +1,5 @@
 #include "file.h"
 #include "free.h"
-#include "league.h"
 #include "misc.h"
 #include "variables.h"
 #include "xml_cup.h"

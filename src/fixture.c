@@ -7,7 +7,6 @@
 #include "misc.h"
 #include "table.h"
 #include "team.h"
-#include "user.h"
 #include "variables.h"
 
 /** Write the fixtures for the given league

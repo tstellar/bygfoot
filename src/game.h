@@ -4,24 +4,14 @@
 #include "bygfoot.h"
 #include "fixture_struct.h"
 #include "player_struct.h"
-
-/** Indices for the team_value array.
-    @see game_get_values() */
-enum GameTeamValue
-{
-    GAME_TEAM_VALUE_DEFEND = 0,
-    GAME_TEAM_VALUE_MIDFIELD,
-    GAME_TEAM_VALUE_ATTACK,
-    GAME_TEAM_VALUE_GOALIE,
-    GAME_TEAM_VALUE_END
-};
+#include "live_game_struct.h"
 
 /** Player types. @see game_get_player() */
 enum GamePlayerType
 {
-    GAME_PLAYER_TYPE_ATTACK = 0,
-    GAME_PLAYER_TYPE_MIDFIELD,
-    GAME_PLAYER_TYPE_DEFEND,
+    GAME_PLAYER_TYPE_DEFEND = LIVE_GAME_UNIT_AREA_DEFEND,
+    GAME_PLAYER_TYPE_MIDFIELD = LIVE_GAME_UNIT_AREA_MIDFIELD,
+    GAME_PLAYER_TYPE_ATTACK = LIVE_GAME_UNIT_AREA_ATTACK,
     GAME_PLAYER_TYPE_PENALTY,
     GAME_PLAYER_TYPE_END
 };

@@ -3,7 +3,6 @@
 #include "finance.h"
 #include "fixture.h"
 #include "free.h"
-#include "gui.h"
 #include "league.h"
 #include "live_game.h"
 #include "maths.h"
@@ -16,8 +15,6 @@
 #include "treeview.h"
 #include "treeview_cell.h"
 #include "user.h"
-#include "variables.h"
-#include "window.h"
 
 /** Select the row that's been clicked on. */
 void

@@ -1,11 +1,6 @@
-#include "cup.h"
-#include "fixture.h"
 #include "free.h"
-#include "league.h"
-#include "player.h"
 #include "user.h"
 #include "variables.h"
-#include "window.h"
 
 /**
    Free all memory allocated by the program.

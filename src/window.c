@@ -4,13 +4,11 @@
 #include "game_gui.h"
 #include "gui.h"
 #include "interface.h"
-#include "main.h"
 #include "misc_interface.h"
 #include "misc2_interface.h"
 #include "option.h"
 #include "support.h"
 #include "user.h"
-#include "variables.h"
 #include "window.h"
 
 /**

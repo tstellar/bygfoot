@@ -1,5 +1,4 @@
 #include "cup.h"
-#include "fixture_struct.h"
 #include "league.h"
 #include "team.h"
 #include "variables.h"

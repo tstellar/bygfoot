@@ -1,15 +1,12 @@
-#include "bygfoot.h"
 #include "finance.h"
 #include "game_gui.h"
 #include "main.h"
 #include "misc2_callbacks.h"
+#include "misc2_callback_func.h"
 #include "misc2_interface.h"
-#include "player.h"
 #include "support.h"
 #include "transfer.h"
-#include "treeview.h"
 #include "user.h"
-#include "variables.h"
 #include "window.h"
 
 
@@ -145,13 +142,7 @@ on_button_yesno_yes_clicked            (GtkButton       *button,
 	    g_warning("on_button_yesno_yes_clicked: unknown status %d\n", stat0);
 	    break;
 	case STATUS_TRANSFER_OFFER:
-	    current_user.money += transoff(stat1, 0).fee;
-	    current_user.money_in[1][MON_IN_TRANSFERS] += transoff(stat1, 0).fee;
-	    player_remove_from_team(current_user.tm, 
-				    player_id_index(current_user.tm, trans(stat1).id));
-	    transfer_remove_player(stat1);
-	    treeview_show_user_player_list(&current_user);
-	    game_gui_set_main_window_header();	    
+	    misc2_callback_transfer_user_player();
 	    break;
     }
     /*d*/

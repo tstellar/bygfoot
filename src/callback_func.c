@@ -10,12 +10,10 @@
 #include "option.h"
 #include "player.h"
 #include "start_end.h"
-#include "support.h"
 #include "team.h"
 #include "transfer.h"
 #include "treeview.h"
 #include "user.h"
-#include "variables.h"
 #include "window.h"
 
 /** Show the users' live games. */

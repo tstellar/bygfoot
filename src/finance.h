@@ -2,7 +2,6 @@
 #define FINANCE_H
 
 #include "bygfoot.h"
-#include "variables.h"
 #include "user_struct.h"
 
 /** The amount of money the user can spend. */

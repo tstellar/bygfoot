@@ -1,6 +1,5 @@
 #include "finance.h"
 #include "free.h"
-#include "league.h"
 #include "maths.h"
 #include "option.h"
 #include "player.h"
@@ -28,20 +27,25 @@ transfer_update(void)
 
     for(i=transfer_list->len - 1;i>=0;i--)
     {
-	trans(i).time--;
-	if(trans(i).time == 0)
-	    transfer_remove_player(i);
+	if(team_is_user(trans(i).tm) == -1 ||
+	   trans(i).offers->len == 0)
+	{
+	    trans(i).time--;
+	    if(trans(i).time == 0)
+		transfer_remove_player(i);
+	}
     }
 
     transfer_add_new_players();
     transfer_add_offers();
 }
 
-/** Add offers for the users' players on the list. */
+/** Add offers for the users' players on the list.
+    We also sort the offers from other users. */
 void
 transfer_add_offers(void)
 {
-    gint i;
+    gint i, j;
     gfloat scout_factor_bounds[4][2] =
 	{{const_float("float_transfer_offer_fee_best_lower"),
 	  const_float("float_transfer_offer_fee_best_upper")},
@@ -64,9 +68,35 @@ transfer_add_offers(void)
 					      scout_factor_bounds[user_from_team(trans(i).tm)->scout % 10][0],
 					      scout_factor_bounds[user_from_team(trans(i).tm)->scout % 10][1]))),
 			       -1);
+	}
+	else if(team_is_user(trans(i).tm) != -1 &&
+		trans(i).offers->len > 1)
+	{
+	    g_array_sort(trans(i).offers, transfer_offer_compare_func);
+	    for(j=trans(i).offers->len - 1; j >= 0; j--)
+		if(transoff(i, j).fee > BUDGET(user_get_index(user_from_team(transoff(i, j).tm))))
+		{
+		    user_event_add(user_from_team(transoff(i, j).tm),
+				   EVENT_TYPE_TRANSFER_OFFER_MONEY, -1, -1,
+				   trans(i).tm, player_of_id(trans(i).tm, trans(i).id)->name->str);
+		    user_event_remove(user_from_team(trans(i).tm),
+				      user_event_get_index(user_from_team(trans(i).tm), 
+							   EVENT_TYPE_TRANSFER_OFFER, trans(i).id,
+							   -1, NULL, NULL));
+		    g_array_remove_index(trans(i).offers, j);
+		}	    
 
-	    user_event_add(user_from_team(trans(i).tm), EVENT_TYPE_TRANSFER_OFFER,
-			   i, -1, NULL, NULL);
+	    for(j=trans(i).offers->len - 1; j >= 1; j--)
+	    {
+		user_event_add(user_from_team(transoff(i, j).tm),
+			       EVENT_TYPE_TRANSFER_OFFER_OUTBID, -1, -1,
+			       trans(i).tm, player_of_id(trans(i).tm, trans(i).id)->name->str);
+		user_event_remove(user_from_team(trans(i).tm),
+				  user_event_get_index(user_from_team(trans(i).tm), 
+						       EVENT_TYPE_TRANSFER_OFFER, trans(i).id,
+						       -1, NULL, NULL));
+		g_array_remove_index(trans(i).offers, j);
+	    }
 	}
 }
 
@@ -328,7 +358,27 @@ transfer_add_offer(gint idx, Team *tm, gint fee, gint wage)
 
     g_array_append_val(trans(idx).offers, new);
 
+    if(team_is_user(trans(idx).tm) != -1)
+	user_event_add(user_from_team(trans(idx).tm), EVENT_TYPE_TRANSFER_OFFER,
+		       trans(idx).id, -1, NULL, NULL);
+    
     return FALSE;
+}
+
+/** Return the index of the transfer containing the player going with
+    the team and the id. */
+gint
+transfer_get_index(const Team *tm, gint id)
+{
+    gint i;
+
+    for(i=0;i<transfer_list->len;i++)
+	if(trans(i).tm == tm && trans(i).id == id)
+	    return i;
+
+    g_warning("transfer_get_index: didn't find transfer.\n");
+
+    return -1;
 }
 
 /** Remove any offers from the team for the given transfer player. */

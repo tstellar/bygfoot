@@ -1,13 +1,10 @@
 #include "fixture.h"
 #include "free.h"
 #include "game_gui.h"
-#include "league.h"
 #include "maths.h"
 #include "misc.h"
 #include "option.h"
 #include "player.h"
-#include "support.h"
-#include "team.h"
 #include "transfer.h"
 #include "user.h"
 #include "window.h"
@@ -261,7 +258,8 @@ user_event_add(User *user, gint type, gint value1, gint value2,
     
     if(value_string != NULL)
 	new.value_string = g_string_new(value_string);
-    
+    else
+	new.value_string = NULL;    
 
     g_array_append_val(user->events, new);
 }
@@ -276,6 +274,28 @@ user_event_remove(User *user, gint idx)
     g_array_remove_index(user->events, idx);
 }
 
+/** Find the event index going with the values. */
+gint
+user_event_get_index(User *user, gint type, gint value1, gint value2, 
+		     gpointer value_pointer, gchar *value_string)
+{
+    gint i;
+
+    for(i=0;i<user->events->len;i++)
+	if(g_array_index(user->events, Event, i).type == type &&
+	   g_array_index(user->events, Event, i).value1 == value1 &&
+	   g_array_index(user->events, Event, i).value2 == value2 &&
+	   g_array_index(user->events, Event, i).value_pointer == value_pointer &&
+	   ((gpointer)g_array_index(user->events, Event, i).value_string == (gpointer)value_string ||
+	    strcmp(g_array_index(user->events, Event, i).value_string->str, value_string) == 0))
+	    return i;
+
+    g_warning("user_event_get_index: didn't find index.");
+
+    return -1;
+}
+		     
+
 /** Show the next event for the current user. */
 void
 user_event_show_next(void)
@@ -283,6 +303,7 @@ user_event_show_next(void)
     Event *event = NULL;
     gchar buf[BIG],
 	buf2[SMALL], buf3[SMALL];
+    gint temp_int = -1;
 
     if(current_user.events->len == 0)
     {
@@ -339,22 +360,27 @@ user_event_show_next(void)
 	    game_gui_show_warning(buf);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER:
-	    misc_print_grouped_int(transoff(event->value1, 0).fee, buf2, FALSE);
-	    misc_print_grouped_int(
-		ABS(transoff(event->value1, 0).fee - 
-		    player_of_id(event->user->tm, trans(event->value1).id)->value), buf3, FALSE);
-	    if(transoff(event->value1, 0).fee - 
-	       player_of_id(event->user->tm, trans(event->value1).id)->value > 0)
+	    temp_int = transfer_get_index(event->user->tm, event->value1);
+	    misc_print_grouped_int(transoff(temp_int, 0).fee, buf2, FALSE);
+	    misc_print_grouped_int(ABS(transoff(temp_int, 0).fee - 
+				       player_of_id(event->user->tm, trans(temp_int).id)->value), buf3, FALSE);
+	    if(transoff(temp_int, 0).fee - 
+	       player_of_id(event->user->tm, trans(temp_int).id)->value > 0)
 		strcat(buf3, " more");
 	    else
 		strcat(buf3, " less");
 
-	    sprintf(buf, _("%s would like to buy %s. They offer %s for him, which is %s than the player's value. Do you accept?"), transoff(event->value1, 0).tm->name->str,
-		    player_of_id(event->user->tm, trans(event->value1).id)->name->str,
+	    sprintf(buf, _("%s would like to buy %s. They offer %s for him, which is %s than the player's value. Do you accept?"), transoff(temp_int, 0).tm->name->str,
+		    player_of_id(event->user->tm, trans(temp_int).id)->name->str,
 		    buf2, buf3);
 	    stat0 = STATUS_TRANSFER_OFFER;
-	    stat1 = event->value1;
+	    stat1 = temp_int;
 	    window_show_yesno(buf, FALSE);
+	    break;
+	case EVENT_TYPE_TRANSFER_OFFER_OUTBID:
+	    sprintf(buf, _("There was a higher bid for %s than yours."),
+		    event->value_string->str);
+	    game_gui_show_warning(buf);
 	    break;
     }
 
