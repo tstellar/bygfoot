@@ -5,6 +5,12 @@
 #include "live_game_struct.h"
 #include "player_struct.h"
 
+GdkPixbuf*
+treeview_pixbuf_from_filename(gchar *filename);
+
+gchar*
+treeview_live_game_icon(gint event_type);
+
 gint
 treeview_get_index(GtkTreeView *treeview, gint column);
 

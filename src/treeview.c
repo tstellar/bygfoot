@@ -14,6 +14,66 @@
 #include "variables.h"
 #include "window.h"
 
+/** Return the filename of the icon going with the LiveGameEvent
+    with type event_type.
+    @param event_type The type of the event.
+    @return A filename specifying a pixmap. */
+gchar*
+treeview_live_game_icon(gint event_type)
+{
+    switch(event_type)
+    {
+	default:
+	    return "";
+	    break;
+	case LIVE_GAME_EVENT_FOUL_YELLOW:
+	    return "yellow.png";
+	    break;
+	case LIVE_GAME_EVENT_FOUL_RED:
+	    return "red.png";
+	    break;
+	case LIVE_GAME_EVENT_SEND_OFF:
+	    return "red.png";
+	    break;
+	case LIVE_GAME_EVENT_SAVE:
+	    return "save.png";
+	    break;
+	case LIVE_GAME_EVENT_GOAL:
+	    return "goal.png";
+	    break;
+    }
+
+    return "";
+}
+
+/** Return a new pixbuf created from the specified filename.
+    @param filename Name of a pixmap file located in one of the support directories. 
+    @return A new pixbuf or NULL on error. */
+GdkPixbuf*
+treeview_pixbuf_from_filename(gchar *filename)
+{
+    GdkPixbuf *symbol = NULL;
+    GError *error = NULL;
+    gchar *symbol_file = NULL;
+
+    if(filename != NULL && strlen(filename) != 0)
+    {
+	symbol_file = file_find_support_file(filename);
+	if(symbol_file != NULL)
+	{
+	    symbol = gdk_pixbuf_new_from_file(symbol_file, &error);
+	    misc_print_error(&error, FALSE);
+	    g_free(symbol_file);
+	}
+    }
+    else
+	symbol = NULL;
+
+    printf("%s %p ", filename, symbol);fflush(NULL);
+
+    return symbol;
+}
+
 /** Return the number in the 'column'th column of the currently
     selected row of the treeview.
     @param treeview The treeview argument.
@@ -125,8 +185,6 @@ treeview_create_team_selection_list(gboolean show_cup_teams)
     GtkListStore  *liststore;
     GtkTreeIter iter;
     GdkPixbuf *symbol = NULL;
-    GError *error = NULL;
-    gchar *symbol_file = NULL;
 
     liststore = gtk_list_store_new(4,
 				   G_TYPE_INT,
@@ -136,20 +194,7 @@ treeview_create_team_selection_list(gboolean show_cup_teams)
 
     for(i=0;i<ligs->len;i++)
     {
-	if(strlen(lig(i).symbol->str) != 0)
-	{
-	    symbol_file = file_find_support_file(lig(i).symbol->str);
-	    if(symbol_file != NULL)
-	    {
-		symbol = gdk_pixbuf_new_from_file(symbol_file, &error);
-		g_free(symbol_file);
-	    }
-	    else
-		symbol = NULL;
-	    misc_print_error(&error, FALSE);
-	}
-	else
-	    symbol = NULL;
+	symbol = treeview_pixbuf_from_filename(lig(i).symbol->str);
 
 	for(j=0;j<lig(i).teams->len;j++)
 	{
@@ -161,6 +206,9 @@ treeview_create_team_selection_list(gboolean show_cup_teams)
 			       3, lig(i).name->str,
 			       -1);
 	}	    
+
+	if(symbol != NULL)
+	    g_object_unref(symbol);
     }
 
     if(!show_cup_teams)    
@@ -170,21 +218,8 @@ treeview_create_team_selection_list(gboolean show_cup_teams)
 	if(cp(i).type == CUP_TYPE_INTERNATIONAL)
 	    for(j=0;j<cp(i).teams->len;j++)
 	    {
-		if(strlen(g_array_index(cp(i).teams, Team, j).symbol->str) != 0)
-		{
-		    symbol_file = 
-			file_find_support_file(g_array_index(cp(i).teams, Team, j).symbol->str);
-		    if(symbol_file != NULL)
-		    {
-			symbol = gdk_pixbuf_new_from_file(symbol_file, &error);
-			g_free(symbol_file);
-		    }
-		    else
-			symbol = NULL;
-		    misc_print_error(&error, FALSE);
-		}
-		else
-		    symbol = NULL;
+		symbol = 
+		    treeview_pixbuf_from_filename(g_array_index(cp(i).teams, Team, j).symbol->str);
 
 		gtk_list_store_append(liststore, &iter);
 		gtk_list_store_set(liststore, &iter,
@@ -193,6 +228,8 @@ treeview_create_team_selection_list(gboolean show_cup_teams)
 				   2, (gpointer)&g_array_index(cp(i).teams, Team, j),
 				   3, cp(i).name->str,
 				   -1);
+		if(symbol != NULL)
+		    g_object_unref(symbol);
 	    }
 
     return GTK_TREE_MODEL(liststore);
@@ -454,6 +491,7 @@ treeview_live_game_show_game_unit(const LiveGameUnit *unit)
 void
 treeview_live_game_show_commentary(const LiveGameUnit *unit)
 {
+    GdkPixbuf *symbol = NULL;
     GtkAdjustment *adjustment =
 	gtk_scrolled_window_get_vadjustment(
 	    GTK_SCROLLED_WINDOW(lookup_widget(live_game.window,
@@ -464,10 +502,15 @@ treeview_live_game_show_commentary(const LiveGameUnit *unit)
     GtkTreeIter iter;
     gchar buf[SMALL];
 
+    symbol = 
+	treeview_pixbuf_from_filename(treeview_live_game_icon(unit->event.type));
     sprintf(buf, "%d.", live_game_unit_get_minute(unit));
     gtk_list_store_prepend(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, buf, 1, NULL,
-		       2, unit->event.commentary->str, -1);    
+    gtk_list_store_set(liststore, &iter, 0, buf, 1, symbol,
+		       2, unit->event.commentary->str, -1);
+
+    if(symbol != NULL)
+	g_object_unref(symbol);
 
     adjustment->value = adjustment->lower - adjustment->page_size;
     gtk_adjustment_value_changed(adjustment);
@@ -484,8 +527,6 @@ treeview_live_game_create_init_commentary(const LiveGameUnit *unit)
     GtkListStore  *liststore;
     GtkTreeIter iter;
     GdkPixbuf *symbol = NULL;
-    GError *error = NULL;
-    gchar *symbol_file = NULL;
     gchar buf[SMALL];
 
     liststore = gtk_list_store_new(3,
@@ -494,10 +535,16 @@ treeview_live_game_create_init_commentary(const LiveGameUnit *unit)
 				   G_TYPE_STRING);
 
     sprintf(buf, "%d.", unit->minute);
-    /*todo: icons*/
+
+    symbol = 
+	treeview_pixbuf_from_filename(treeview_live_game_icon(unit->event.type));
+
     gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, buf, 1, NULL, 2,
+    gtk_list_store_set(liststore, &iter, 0, buf, 1, symbol, 2,
 		       unit->event.commentary->str, -1);
+
+    if(symbol != NULL)
+	g_object_unref(symbol);
 
     return GTK_TREE_MODEL(liststore);
 }
