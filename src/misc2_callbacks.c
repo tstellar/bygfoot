@@ -99,6 +99,9 @@ on_button_digits_ok_clicked            (GtkButton       *button,
 	    else
 		game_gui_print_message(_("Your offer will be considered next week."));
 	    break;
+	case STATUS_CUSTOM_STRUCTURE:
+	    misc2_callback_change_structure(values[1]);
+	    break;
     }
 
     window_destroy(&window.digits, TRUE);

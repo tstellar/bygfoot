@@ -1184,6 +1184,7 @@
 
 	  <child>
 	    <widget class="GtkButton" id="button_resume">
+	      <property name="visible">True</property>
 	      <property name="can_focus">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <signal name="clicked" handler="on_button_resume_clicked" last_modification_time="Sat, 08 Jan 2005 11:22:05 GMT"/>

@@ -200,6 +200,8 @@ window_create(gint window_type)
 	    }
 	    else
 		wind = window.main;
+	    if(opt_int("int_opt_maximize_main_window"))
+		gtk_window_maximize(GTK_WINDOW(wind));
 	    break;
 	case WINDOW_STARTUP:
 	    if(window.startup != NULL)

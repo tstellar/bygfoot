@@ -63,19 +63,19 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
     {
 	gtk_widget_set_sensitive(button_live_close, FALSE);
 	if(stat0 != STATUS_SHOW_LAST_MATCH)
-	    gtk_widget_show(button_pause);
-	gtk_widget_hide(button_resume);
+	    gtk_widget_set_sensitive(button_pause, TRUE);
+	gtk_widget_set_sensitive(button_resume, FALSE);
     }
     else if(unit->event.type == LIVE_GAME_EVENT_END_MATCH)
     {
-	gtk_widget_set_sensitive(lookup_widget(window.live, "button_live_close"), TRUE);
-	gtk_widget_hide(lookup_widget(window.live, "button_pause"));
-	gtk_widget_hide(lookup_widget(window.live, "button_resume"));
+	gtk_widget_set_sensitive(button_live_close, TRUE);
+	gtk_widget_set_sensitive(button_pause, FALSE);
+	gtk_widget_set_sensitive(button_resume, FALSE);
     }
     else if(unit->event.type == LIVE_GAME_EVENT_PENALTIES)
     {
-	gtk_widget_hide(lookup_widget(window.live, "button_pause"));	
-	gtk_widget_hide(lookup_widget(window.live, "button_resume"));
+	gtk_widget_set_sensitive(button_pause, FALSE);	
+	gtk_widget_set_sensitive(button_resume, FALSE);
     }
 }
 
@@ -504,7 +504,9 @@ game_gui_read_check_items(GtkWidget *widget)
     if(widget == menu_job_offers)
 	opt_user_set_int("int_opt_user_show_job_offers", !opt_user_int("int_opt_user_show_job_offers"));
     else if(widget == menu_live_game)
+    {
 	opt_user_set_int("int_opt_user_show_live_game", !opt_user_int("int_opt_user_show_live_game"));
+    }
     else if(widget == menu_overwrite)
 	opt_set_int("int_opt_save_will_overwrite", !opt_int("int_opt_save_will_overwrite"));
     else

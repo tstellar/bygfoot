@@ -234,11 +234,11 @@ on_button_resume_clicked               (GtkButton       *button,
 {
     if(game_check_live_game_resume_state())
     {
-	gtk_widget_hide(GTK_WIDGET(button));
+	gtk_widget_set_sensitive(GTK_WIDGET(button), FALSE);
 	if(g_array_index(usr(stat2).live_game.units, LiveGameUnit, 
 			 usr(stat2).live_game.units->len - 1).event.type != 
 	   LIVE_GAME_EVENT_PENALTIES)
-	    gtk_widget_show(lookup_widget(window.live, "button_pause"));
+	    gtk_widget_set_sensitive(lookup_widget(window.live, "button_pause"), TRUE);
 	game_gui_set_main_window_sensitivity(FALSE);
 	live_game_resume();
     }

@@ -59,3 +59,21 @@ misc2_callback_transfer_user_player(void)
     treeview_show_user_player_list(&current_user);
     game_gui_set_main_window_header();
 }
+
+/** Change the user team's structure to a value he's specified. */
+void
+misc2_callback_change_structure(gint structure)
+{
+    gchar buf[SMALL];
+
+    if(math_get_place(structure, 1) + math_get_place(structure, 2) + 
+       math_get_place(structure, 3) != 10)
+    {
+	sprintf(buf, _("The structure value %d is invalid."), structure);
+	game_gui_print_message(buf);
+	return;
+    }
+
+    team_change_structure(current_user.tm, structure);
+    treeview_show_user_player_list(&current_user);
+}

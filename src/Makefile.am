@@ -10,7 +10,7 @@ bin_PROGRAMS = bygfoot
 
 bygfoot_SOURCES = \
 	callback_func.c callback_func.h callbacks.h cup.h finance.h fixture.h game_gui.h league.h live_game.h misc.h option.h player.h start_end.h team.h transfer.h treeview.h user.h window.h \
-	callbacks.c callbacks.h callback_func.h game_gui.h main.h team.h transfer.h treeview.h user.h window.h \
+	callbacks.c callbacks.h callback_func.h game_gui.h main.h option.h team.h transfer.h treeview.h user.h window.h \
 	cup.c cup.h free.h main.h maths.h misc.h team.h variables.h xml_league.h \
 	file.c file.h free.h main.h misc.h option.h support.h variables.h \
 	finance.c callbacks.h finance.h game_gui.h maths.h option.h player.h team.h user.h \

@@ -279,3 +279,7 @@ on_menu_check_button_press_event       (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data);
 #endif
+
+void
+on_menu_live_game_activate             (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);

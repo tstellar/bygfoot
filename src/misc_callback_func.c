@@ -143,8 +143,8 @@ misc_callback_remove_user(GdkEventButton *event)
 void
 misc_callback_pause_live_game(void)
 {
-    gtk_widget_hide(lookup_widget(window.live, "button_pause"));
-    gtk_widget_show(lookup_widget(window.live, "button_resume"));
+    gtk_widget_set_sensitive(lookup_widget(window.live, "button_pause"), FALSE);
+    gtk_widget_set_sensitive(lookup_widget(window.live, "button_resume"), TRUE);
 
     game_gui_set_main_window_sensitivity(TRUE);
     game_save_team_states();

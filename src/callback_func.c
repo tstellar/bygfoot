@@ -93,6 +93,7 @@ callback_player_clicked(gint idx, GdkEventButton *event)
 				  team_find_appropriate_structure(current_user.tm));
 	    team_rearrange(current_user.tm);
 	}
+
 	game_gui_write_av_skills();
 
 	selected_row[0] = -1;

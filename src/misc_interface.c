@@ -693,6 +693,7 @@ create_window_live (void)
   gtk_label_set_justify (GTK_LABEL (label72), GTK_JUSTIFY_LEFT);
 
   button_resume = gtk_button_new ();
+  gtk_widget_show (button_resume);
   gtk_box_pack_start (GTK_BOX (hbox48), button_resume, FALSE, FALSE, 0);
   gtk_widget_add_accelerator (button_resume, "clicked", accel_group,
                               GDK_Return, 0,

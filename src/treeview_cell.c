@@ -264,7 +264,8 @@ treeview_cell_player_games_goals_to_cell(gchar *buf, const Player *pl, gint type
 void
 treeview_cell_player_fitness_to_cell(GtkCellRenderer *renderer, gchar *buf, gfloat fitness)
 {
-    sprintf(buf, "%d%%", (gint)rint(fitness * 100));
+    sprintf(buf, "%.*f%%", opt_int("int_opt_player_precision"),
+	    fitness * 100);
 
     if(fitness < const_float("float_treeview_cell_limit_player_fitness_below3"))
 	g_object_set(renderer, "foreground", 

@@ -82,7 +82,6 @@ create_window_options (void)
   GtkWidget *checkbutton_show_job;
   GtkWidget *vseparator3;
   GtkWidget *vbox7;
-  GtkWidget *checkbutton_rearrange_adapts;
   GtkWidget *checkbutton_swap_adapts;
   GtkWidget *checkbutton_show_overall;
   GtkWidget *label3;
@@ -403,10 +402,6 @@ create_window_options (void)
   vbox7 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox7);
   gtk_box_pack_start (GTK_BOX (hbox6), vbox7, TRUE, TRUE, 0);
-
-  checkbutton_rearrange_adapts = gtk_check_button_new_with_mnemonic (_("Rearrange adapts structure"));
-  gtk_widget_show (checkbutton_rearrange_adapts);
-  gtk_box_pack_start (GTK_BOX (vbox7), checkbutton_rearrange_adapts, FALSE, FALSE, 0);
 
   checkbutton_swap_adapts = gtk_check_button_new_with_mnemonic (_("Swap adapts structure"));
   gtk_widget_show (checkbutton_swap_adapts);
@@ -928,7 +923,6 @@ create_window_options (void)
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_show_job, "checkbutton_show_job");
   GLADE_HOOKUP_OBJECT (window_options, vseparator3, "vseparator3");
   GLADE_HOOKUP_OBJECT (window_options, vbox7, "vbox7");
-  GLADE_HOOKUP_OBJECT (window_options, checkbutton_rearrange_adapts, "checkbutton_rearrange_adapts");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_swap_adapts, "checkbutton_swap_adapts");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_show_overall, "checkbutton_show_overall");
   GLADE_HOOKUP_OBJECT (window_options, label3, "label3");

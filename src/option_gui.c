@@ -23,7 +23,6 @@ enum BooleanOptions
     BOOL_OPT_PAUSE_BREAK,
     BOOL_OPT_AUTO_SUB,
     BOOL_OPT_SHOW_JOB,
-    BOOL_OPT_REARRANGE,
     BOOL_OPT_SWAP,
     BOOL_OPT_SHOW_OVERALL,
     BOOL_OPT_PL1_ATT_NAME,
@@ -125,10 +124,6 @@ option_gui_write_bool_widgets(gint **bool_options, GtkToggleButton **bool_widget
     bool_widgets[BOOL_OPT_SHOW_JOB] =
 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_show_job"));
     bool_options[BOOL_OPT_SHOW_JOB] = opt_user_intp("int_opt_user_show_job_offers");
-
-    bool_widgets[BOOL_OPT_REARRANGE] =
-	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_rearrange_adapts"));
-    bool_options[BOOL_OPT_REARRANGE] = opt_user_intp("int_opt_user_reaarrange_adapts");
 
     bool_widgets[BOOL_OPT_SWAP] =
 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_swap_adapts"));

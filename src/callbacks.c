@@ -2,6 +2,7 @@
 #include "callback_func.h"
 #include "game_gui.h"
 #include "main.h"
+#include "option.h"
 #include "team.h"
 #include "transfer.h"
 #include "treeview.h"
@@ -532,7 +533,9 @@ void
 on_menu_custom_structure_activate      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-
+    stat0 = STATUS_CUSTOM_STRUCTURE;
+    window_show_digits(_("Enter a structure. The digits must sum up to 10."),
+		       NULL, -1, _("Structure"), current_user.tm->structure);
 }
 
 
@@ -653,5 +656,19 @@ on_menu_check_button_press_event       (GtkWidget       *widget,
     game_gui_read_check_items(widget);
 
     return FALSE;
+}
+
+
+void
+on_menu_live_game_activate             (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    gchar buf[SMALL];
+
+    game_gui_read_check_items(GTK_WIDGET(menuitem));
+    sprintf(buf, "Live game set to %s.", 
+	    team_attribute_to_char(TEAM_ATTRIBUTE_BOOST, 
+				   opt_user_int("int_opt_user_show_live_game")));
+    game_gui_print_message(buf);
 }
 
