@@ -160,3 +160,12 @@ on_button_yesno_no_clicked             (GtkButton       *button,
     window_destroy(&window.yesno, TRUE);
 }
 
+
+void
+on_button_contract_offer_clicked       (GtkButton       *button,
+                                        gpointer         user_data)
+{
+
+    /*d*/
+    window_destroy(&window.contract, FALSE);
+}

@@ -51,5 +51,9 @@ void
 on_button_yesno_no_clicked             (GtkButton       *button,
                                         gpointer         user_data);
 
-#endif
 
+void
+on_button_contract_offer_clicked       (GtkButton       *button,
+                                        gpointer         user_data);
+
+#endif

@@ -65,6 +65,7 @@ player_new(Team *tm, gfloat average_skill)
 
     new.team = tm;
     new.participation = FALSE;
+    new.offers = 0;
     
     return new;
 }

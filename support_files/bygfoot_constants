@@ -166,6 +166,9 @@ int_treeview_cell_int_empty -5
 # info
 int_treeview_latest_results 10
 
+# number of |'s for an ideal 442 team in the opponent preview
+int_treeview_max_pipes 30
+
 # maximum number of players in a team.
 int_team_max_players 20
 
@@ -584,7 +587,7 @@ float_transfer_cup_percentage 2500
 # these values are the deviance for the best scout; the others
 # are obtained by multiplying it
 float_transfer_scout_deviance_value 200
-float_transfer_scout_deviance_wage 400
+float_transfer_scout_deviance_wage 300
 
 # probability for an offer when a user
 # player's on the list
@@ -605,6 +608,10 @@ float_transfer_offer_fee_good_upper 1200
 # bounds for contract time of a newly acquired player
 int_transfer_contract_lower 1
 int_transfer_contract_upper 4
+
+# wage increase/decrease in percentage for players above
+# or below their peak age for longer contracts than 1 year
+float_contract_scale_factor 300
 
 #### colours and icons
 

@@ -88,4 +88,7 @@ game_assign_attendance(Fixture *fix);
 void
 game_stadium_event(Stadium *stadium, gint type);
 
+void
+game_get_max_values(gfloat max_values[3]);
+
 #endif

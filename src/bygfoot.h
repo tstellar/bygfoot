@@ -96,7 +96,8 @@ typedef struct
 	*job_offer,
 	*yesno,
 	*options,
-	*font_sel;
+	*font_sel,
+	*contract;
 } Windows;
 
 /** A struct representing an option or a constant. */

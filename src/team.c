@@ -676,6 +676,8 @@ team_update_cpu_corrections(Team *tm, gboolean reset_fitness)
 	    pl->fitness = math_rnd(const_float("float_player_fitness_lower"),
 				   const_float("float_player_fitness_upper"));
     }
+    
+    tm->structure = team_find_appropriate_structure(tm);
 
     if(!player_substitution_good_structure(tm->structure,
 					   player_of(tm, 1)->pos, player_of(tm, 1)->pos))

@@ -83,6 +83,7 @@ create_window_job_offer (void)
   label_text = gtk_label_new (_("label20"));
   gtk_widget_show (label_text);
   gtk_box_pack_start (GTK_BOX (vbox5), label_text, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label_text), GTK_JUSTIFY_LEFT);
   gtk_label_set_line_wrap (GTK_LABEL (label_text), TRUE);
 
   hseparator5 = gtk_hseparator_new ();
@@ -101,31 +102,37 @@ create_window_job_offer (void)
   label15 = gtk_label_new (_("Name"));
   gtk_widget_show (label15);
   gtk_box_pack_start (GTK_BOX (vbox6), label15, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label15), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label15), 2.23517e-10, 0.5);
 
   label16 = gtk_label_new (_("League"));
   gtk_widget_show (label16);
   gtk_box_pack_start (GTK_BOX (vbox6), label16, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label16), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label16), 2.23517e-10, 0.5);
 
   label17 = gtk_label_new (_("Rank"));
   gtk_widget_show (label17);
   gtk_box_pack_start (GTK_BOX (vbox6), label17, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label17), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label17), 2.23517e-10, 0.5);
 
   label18 = gtk_label_new (_("Money (approx.)"));
   gtk_widget_show (label18);
   gtk_box_pack_start (GTK_BOX (vbox6), label18, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label18), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label18), 2.23517e-10, 0.5);
 
   label19 = gtk_label_new (_("Stadium capacity"));
   gtk_widget_show (label19);
   gtk_box_pack_start (GTK_BOX (vbox6), label19, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label19), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label19), 2.23517e-10, 0.5);
 
   label14 = gtk_label_new (_("Stadium safety"));
   gtk_widget_show (label14);
   gtk_box_pack_start (GTK_BOX (vbox6), label14, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label14), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label14), 0, 0.5);
 
   vseparator3 = gtk_vseparator_new ();
@@ -140,26 +147,32 @@ create_window_job_offer (void)
   label_name = gtk_label_new (_("label21"));
   gtk_widget_show (label_name);
   gtk_box_pack_start (GTK_BOX (vbox7), label_name, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label_name), GTK_JUSTIFY_LEFT);
 
   label_league = gtk_label_new (_("label22"));
   gtk_widget_show (label_league);
   gtk_box_pack_start (GTK_BOX (vbox7), label_league, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label_league), GTK_JUSTIFY_LEFT);
 
   label_rank = gtk_label_new (_("label23"));
   gtk_widget_show (label_rank);
   gtk_box_pack_start (GTK_BOX (vbox7), label_rank, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label_rank), GTK_JUSTIFY_LEFT);
 
   label_money = gtk_label_new (_("label24"));
   gtk_widget_show (label_money);
   gtk_box_pack_start (GTK_BOX (vbox7), label_money, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label_money), GTK_JUSTIFY_LEFT);
 
   label_cap = gtk_label_new (_("label25"));
   gtk_widget_show (label_cap);
   gtk_box_pack_start (GTK_BOX (vbox7), label_cap, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label_cap), GTK_JUSTIFY_LEFT);
 
   label_saf = gtk_label_new (_("label26"));
   gtk_widget_show (label_saf);
   gtk_box_pack_start (GTK_BOX (vbox7), label_saf, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label_saf), GTK_JUSTIFY_LEFT);
 
   hseparator6 = gtk_hseparator_new ();
   gtk_widget_show (hseparator6);
@@ -169,6 +182,7 @@ create_window_job_offer (void)
   label28 = gtk_label_new (_("Player list"));
   gtk_widget_show (label28);
   gtk_box_pack_start (GTK_BOX (vbox5), label28, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label28), GTK_JUSTIFY_LEFT);
 
   hbox17 = gtk_hbox_new (FALSE, 5);
   gtk_widget_show (hbox17);
@@ -177,10 +191,12 @@ create_window_job_offer (void)
   label42 = gtk_label_new (_("Average skill:"));
   gtk_widget_show (label42);
   gtk_box_pack_start (GTK_BOX (hbox17), label42, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label42), GTK_JUSTIFY_LEFT);
 
   label_average_skill = gtk_label_new (_("label43"));
   gtk_widget_show (label_average_skill);
   gtk_box_pack_start (GTK_BOX (hbox17), label_average_skill, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label_average_skill), GTK_JUSTIFY_LEFT);
 
   scrolledwindow1 = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (scrolledwindow1);
@@ -199,6 +215,7 @@ create_window_job_offer (void)
   label_text2 = gtk_label_new (_("label27"));
   gtk_widget_show (label_text2);
   gtk_box_pack_start (GTK_BOX (vbox5), label_text2, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label_text2), GTK_JUSTIFY_LEFT);
   gtk_misc_set_padding (GTK_MISC (label_text2), 0, 5);
 
   hbox6 = gtk_hbox_new (FALSE, 0);
@@ -225,6 +242,7 @@ create_window_job_offer (void)
   label31 = gtk_label_new_with_mnemonic (_("OK"));
   gtk_widget_show (label31);
   gtk_box_pack_start (GTK_BOX (hbox9), label31, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label31), GTK_JUSTIFY_LEFT);
 
   button_cancel = gtk_button_new ();
   gtk_widget_show (button_cancel);
@@ -246,6 +264,7 @@ create_window_job_offer (void)
   label30 = gtk_label_new_with_mnemonic (_("Cancel"));
   gtk_widget_show (label30);
   gtk_box_pack_start (GTK_BOX (hbox8), label30, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label30), GTK_JUSTIFY_LEFT);
 
   g_signal_connect ((gpointer) button_ok, "clicked",
                     G_CALLBACK (on_button_offer_ok_clicked),
@@ -347,6 +366,7 @@ create_window_warning (void)
   label_warning = gtk_label_new (_("label42"));
   gtk_widget_show (label_warning);
   gtk_box_pack_start (GTK_BOX (vbox13), label_warning, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label_warning), GTK_JUSTIFY_LEFT);
   gtk_label_set_line_wrap (GTK_LABEL (label_warning), TRUE);
 
   button_warning = gtk_button_new_from_stock ("gtk-close");
@@ -410,6 +430,7 @@ create_window_digits (void)
   label_main = gtk_label_new (_("label42"));
   gtk_widget_show (label_main);
   gtk_box_pack_start (GTK_BOX (vbox14), label_main, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label_main), GTK_JUSTIFY_LEFT);
   gtk_label_set_line_wrap (GTK_LABEL (label_main), TRUE);
 
   hbox15 = gtk_hbox_new (FALSE, 0);
@@ -423,8 +444,9 @@ create_window_digits (void)
   label_1 = gtk_label_new (_("label43"));
   gtk_widget_show (label_1);
   gtk_box_pack_start (GTK_BOX (vbox15), label_1, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label_1), GTK_JUSTIFY_LEFT);
 
-  spinbutton1_adj = gtk_adjustment_new (1, 0, 100000000, 10, 1000, 10);
+  spinbutton1_adj = gtk_adjustment_new (1, 0, 1e+08, 10, 1000, 10);
   spinbutton1 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton1_adj), 1, 0);
   gtk_widget_show (spinbutton1);
   gtk_box_pack_start (GTK_BOX (vbox15), spinbutton1, FALSE, FALSE, 0);
@@ -437,8 +459,9 @@ create_window_digits (void)
   label_2 = gtk_label_new (_("label44"));
   gtk_widget_show (label_2);
   gtk_box_pack_start (GTK_BOX (vbox16), label_2, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label_2), GTK_JUSTIFY_LEFT);
 
-  spinbutton2_adj = gtk_adjustment_new (1, 0, 100000000, 1, 100, 10);
+  spinbutton2_adj = gtk_adjustment_new (1, 0, 1e+08, 1, 100, 10);
   spinbutton2 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton2_adj), 1, 0);
   gtk_widget_show (spinbutton2);
   gtk_box_pack_start (GTK_BOX (vbox16), spinbutton2, FALSE, FALSE, 0);
@@ -520,6 +543,7 @@ create_window_yesno (void)
   label_yesno = gtk_label_new (_("label43"));
   gtk_widget_show (label_yesno);
   gtk_box_pack_start (GTK_BOX (vbox17), label_yesno, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label_yesno), GTK_JUSTIFY_LEFT);
   gtk_label_set_line_wrap (GTK_LABEL (label_yesno), TRUE);
 
   checkbutton_yesno = gtk_check_button_new_with_mnemonic (_("Don't bother me with this next time."));
@@ -562,5 +586,180 @@ create_window_yesno (void)
   GLADE_HOOKUP_OBJECT (window_yesno, button_yesno_no, "button_yesno_no");
 
   return window_yesno;
+}
+
+GtkWidget*
+create_window_contract (void)
+{
+  GtkWidget *window_contract;
+  GtkWidget *vbox18;
+  GtkWidget *image9;
+  GtkWidget *label_contract;
+  GtkWidget *table1;
+  GtkWidget *radiobutton_contract1;
+  GSList *radiobutton_contract1_group = NULL;
+  GtkWidget *radiobutton_contract3;
+  GtkWidget *radiobutton_contract4;
+  GtkWidget *radiobutton_contract2;
+  GtkObject *spinbutton_contract1_adj;
+  GtkWidget *spinbutton_contract1;
+  GtkObject *spinbutton_contract2_adj;
+  GtkWidget *spinbutton_contract2;
+  GtkObject *spinbutton_contract3_adj;
+  GtkWidget *spinbutton_contract3;
+  GtkObject *spinbutton_contract4_adj;
+  GtkWidget *spinbutton_contract4;
+  GtkWidget *hseparator8;
+  GtkWidget *hbox19;
+  GtkWidget *button_contract_offer;
+  GtkWidget *alignment6;
+  GtkWidget *hbox20;
+  GtkWidget *image10;
+  GtkWidget *label44;
+
+  window_contract = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_container_set_border_width (GTK_CONTAINER (window_contract), 5);
+  gtk_window_set_title (GTK_WINDOW (window_contract), _("window1"));
+  gtk_window_set_position (GTK_WINDOW (window_contract), GTK_WIN_POS_CENTER);
+  gtk_window_set_modal (GTK_WINDOW (window_contract), TRUE);
+
+  vbox18 = gtk_vbox_new (FALSE, 3);
+  gtk_widget_show (vbox18);
+  gtk_container_add (GTK_CONTAINER (window_contract), vbox18);
+
+  image9 = gtk_image_new_from_stock ("gtk-new", GTK_ICON_SIZE_DIALOG);
+  gtk_widget_show (image9);
+  gtk_box_pack_start (GTK_BOX (vbox18), image9, FALSE, FALSE, 0);
+
+  label_contract = gtk_label_new (_("label43"));
+  gtk_widget_show (label_contract);
+  gtk_box_pack_start (GTK_BOX (vbox18), label_contract, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label_contract), GTK_JUSTIFY_LEFT);
+  gtk_label_set_line_wrap (GTK_LABEL (label_contract), TRUE);
+
+  table1 = gtk_table_new (4, 2, FALSE);
+  gtk_widget_show (table1);
+  gtk_box_pack_start (GTK_BOX (vbox18), table1, FALSE, FALSE, 0);
+  gtk_table_set_col_spacings (GTK_TABLE (table1), 3);
+
+  radiobutton_contract1 = gtk_radio_button_new_with_mnemonic (NULL, _("1 year"));
+  gtk_widget_show (radiobutton_contract1);
+  gtk_table_attach (GTK_TABLE (table1), radiobutton_contract1, 0, 1, 0, 1,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton_contract1), radiobutton_contract1_group);
+  radiobutton_contract1_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton_contract1));
+
+  radiobutton_contract3 = gtk_radio_button_new_with_mnemonic (NULL, _("3 years"));
+  gtk_widget_show (radiobutton_contract3);
+  gtk_table_attach (GTK_TABLE (table1), radiobutton_contract3, 0, 1, 2, 3,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton_contract3), radiobutton_contract1_group);
+  radiobutton_contract1_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton_contract3));
+
+  radiobutton_contract4 = gtk_radio_button_new_with_mnemonic (NULL, _("4 years"));
+  gtk_widget_show (radiobutton_contract4);
+  gtk_table_attach (GTK_TABLE (table1), radiobutton_contract4, 0, 1, 3, 4,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton_contract4), radiobutton_contract1_group);
+  radiobutton_contract1_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton_contract4));
+
+  radiobutton_contract2 = gtk_radio_button_new_with_mnemonic (NULL, _("2 years"));
+  gtk_widget_show (radiobutton_contract2);
+  gtk_table_attach (GTK_TABLE (table1), radiobutton_contract2, 0, 1, 1, 2,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton_contract2), radiobutton_contract1_group);
+  radiobutton_contract1_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton_contract2));
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (radiobutton_contract2), TRUE);
+
+  spinbutton_contract1_adj = gtk_adjustment_new (1, 1, 100000, 1, 100, 10);
+  spinbutton_contract1 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_contract1_adj), 1, 0);
+  gtk_widget_show (spinbutton_contract1);
+  gtk_table_attach (GTK_TABLE (table1), spinbutton_contract1, 1, 2, 0, 1,
+                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_contract1), TRUE);
+
+  spinbutton_contract2_adj = gtk_adjustment_new (1, 1, 100000, 1, 100, 10);
+  spinbutton_contract2 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_contract2_adj), 1, 0);
+  gtk_widget_show (spinbutton_contract2);
+  gtk_table_attach (GTK_TABLE (table1), spinbutton_contract2, 1, 2, 1, 2,
+                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  spinbutton_contract3_adj = gtk_adjustment_new (1, 1, 100000, 1, 100, 10);
+  spinbutton_contract3 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_contract3_adj), 1, 0);
+  gtk_widget_show (spinbutton_contract3);
+  gtk_table_attach (GTK_TABLE (table1), spinbutton_contract3, 1, 2, 2, 3,
+                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  spinbutton_contract4_adj = gtk_adjustment_new (1, 1, 100000, 1, 100, 10);
+  spinbutton_contract4 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_contract4_adj), 1, 0);
+  gtk_widget_show (spinbutton_contract4);
+  gtk_table_attach (GTK_TABLE (table1), spinbutton_contract4, 1, 2, 3, 4,
+                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  hseparator8 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator8);
+  gtk_box_pack_start (GTK_BOX (vbox18), hseparator8, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (hseparator8, 1, 10);
+
+  hbox19 = gtk_hbox_new (FALSE, 3);
+  gtk_widget_show (hbox19);
+  gtk_box_pack_start (GTK_BOX (vbox18), hbox19, FALSE, FALSE, 0);
+
+  button_contract_offer = gtk_button_new ();
+  gtk_widget_show (button_contract_offer);
+  gtk_box_pack_start (GTK_BOX (hbox19), button_contract_offer, TRUE, TRUE, 0);
+
+  alignment6 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment6);
+  gtk_container_add (GTK_CONTAINER (button_contract_offer), alignment6);
+
+  hbox20 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox20);
+  gtk_container_add (GTK_CONTAINER (alignment6), hbox20);
+
+  image10 = gtk_image_new_from_stock ("gtk-apply", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image10);
+  gtk_box_pack_start (GTK_BOX (hbox20), image10, FALSE, FALSE, 0);
+
+  label44 = gtk_label_new_with_mnemonic (_("Make offer"));
+  gtk_widget_show (label44);
+  gtk_box_pack_start (GTK_BOX (hbox20), label44, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label44), GTK_JUSTIFY_LEFT);
+
+  g_signal_connect ((gpointer) button_contract_offer, "clicked",
+                    G_CALLBACK (on_button_contract_offer_clicked),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (window_contract, window_contract, "window_contract");
+  GLADE_HOOKUP_OBJECT (window_contract, vbox18, "vbox18");
+  GLADE_HOOKUP_OBJECT (window_contract, image9, "image9");
+  GLADE_HOOKUP_OBJECT (window_contract, label_contract, "label_contract");
+  GLADE_HOOKUP_OBJECT (window_contract, table1, "table1");
+  GLADE_HOOKUP_OBJECT (window_contract, radiobutton_contract1, "radiobutton_contract1");
+  GLADE_HOOKUP_OBJECT (window_contract, radiobutton_contract3, "radiobutton_contract3");
+  GLADE_HOOKUP_OBJECT (window_contract, radiobutton_contract4, "radiobutton_contract4");
+  GLADE_HOOKUP_OBJECT (window_contract, radiobutton_contract2, "radiobutton_contract2");
+  GLADE_HOOKUP_OBJECT (window_contract, spinbutton_contract1, "spinbutton_contract1");
+  GLADE_HOOKUP_OBJECT (window_contract, spinbutton_contract2, "spinbutton_contract2");
+  GLADE_HOOKUP_OBJECT (window_contract, spinbutton_contract3, "spinbutton_contract3");
+  GLADE_HOOKUP_OBJECT (window_contract, spinbutton_contract4, "spinbutton_contract4");
+  GLADE_HOOKUP_OBJECT (window_contract, hseparator8, "hseparator8");
+  GLADE_HOOKUP_OBJECT (window_contract, hbox19, "hbox19");
+  GLADE_HOOKUP_OBJECT (window_contract, button_contract_offer, "button_contract_offer");
+  GLADE_HOOKUP_OBJECT (window_contract, alignment6, "alignment6");
+  GLADE_HOOKUP_OBJECT (window_contract, hbox20, "hbox20");
+  GLADE_HOOKUP_OBJECT (window_contract, image10, "image10");
+  GLADE_HOOKUP_OBJECT (window_contract, label44, "label44");
+
+  return window_contract;
 }
 

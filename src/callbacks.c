@@ -51,23 +51,6 @@ on_menu_save_as_activate               (GtkMenuItem     *menuitem,
 
 }
 
-
-void
-on_start_editor_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_start_update_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
 void
 on_menu_quit_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
@@ -671,5 +654,19 @@ on_menu_live_game_activate             (GtkMenuItem     *menuitem,
 	    team_attribute_to_char(TEAM_ATTRIBUTE_BOOST, 
 				   opt_user_int("int_opt_user_show_live_game")));
     game_gui_print_message(buf);
+}
+
+
+void
+on_menu_offer_new_contract_activate    (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    if(selected_row[0] == -1)
+    {
+	game_gui_print_message(_("You haven't selected a player."));
+	return;
+    }
+
+    callback_offer_new_contract(selected_row[0]);
 }
 

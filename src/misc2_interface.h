@@ -7,3 +7,4 @@ GtkWidget* create_window_progress (void);
 GtkWidget* create_window_warning (void);
 GtkWidget* create_window_digits (void);
 GtkWidget* create_window_yesno (void);
+GtkWidget* create_window_contract (void);

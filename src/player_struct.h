@@ -78,8 +78,9 @@ typedef struct
 	recovery, /**< Weeks until the player gets healthy. */
 	id, /**< Id of the player within the team. */
 	value, /**< Value of the player. */
-	wage; /**< Wage of the player. */
-
+	wage, /**< Wage of the player. */
+	offers; /**< Number of times the player received a contract offer. */
+	
     gfloat skill, /**< Skill. Between 0 and a constant (specified in the constants file). */
 	cskill, /**< Current Skill. */
 	talent, /**< Talent. The peak ability (which isn't always reached). */

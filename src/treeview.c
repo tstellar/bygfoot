@@ -3,6 +3,7 @@
 #include "finance.h"
 #include "fixture.h"
 #include "free.h"
+#include "game.h"
 #include "league.h"
 #include "live_game.h"
 #include "maths.h"
@@ -1700,6 +1701,35 @@ treeview_create_next_opponent_results(const Team *tm, gchar *result_buf, gchar *
     g_ptr_array_free(latest_fixtures, TRUE);
 }
 
+/** Create attack, midfield and defend bars. */
+void
+treeview_create_next_opponent_values(GtkListStore *liststore, const Fixture *fix)
+{
+    gint i, j;
+    gchar buf[SMALL];
+    gfloat max_values[3],
+	team_values[2][GAME_TEAM_VALUE_END];
+    gchar *titles[3] =
+	{_("Defend"),
+	 _("Midfield"),
+	 _("Attack")};
+    GtkTreeIter iter;
+    
+    game_get_values(fix, team_values, 0);
+    game_get_max_values(max_values);
+
+    for(i=0;i<3;i++)
+    {
+	strcpy(buf, "");
+	for(j=0;j<(gint)rint((gfloat)const_int("int_treeview_max_pipes") *
+			     (team_values[fix->teams[0] == current_user.tm][i] / max_values[i]));j++)
+	    strcat(buf, "|");
+
+	gtk_list_store_append(liststore, &iter);
+	gtk_list_store_set(liststore, &iter, 0, titles[i], 1, buf, -1);
+    }
+}
+
 GtkTreeModel*
 treeview_create_next_opponent(void)
 {
@@ -1759,6 +1789,8 @@ treeview_create_next_opponent(void)
     sprintf(buf, "%d", opp->structure);
     gtk_list_store_append(liststore, &iter);
     gtk_list_store_set(liststore, &iter, 0, _("Team structure"), 1, buf, -1);
+
+    treeview_create_next_opponent_values(liststore, fix);
 
     treeview_create_next_opponent_results(opp, buf, buf2);
     gtk_list_store_append(liststore, &iter);

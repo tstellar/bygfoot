@@ -6,6 +6,7 @@
 #include "game_gui.h"
 #include "league.h"
 #include "live_game.h"
+#include "maths.h"
 #include "misc.h"
 #include "option.h"
 #include "player.h"
@@ -267,4 +268,50 @@ callback_transfer_list_clicked(gint idx)
 
     window_show_digits(buf, _("Fee"), tr->fee[current_user.scout % 10],
 		       _("Wage"), tr->wage[current_user.scout % 10]);
+}
+
+/** Show the contract window for the player with the specified index. */
+void
+callback_offer_new_contract(gint idx)
+{
+    gint i;
+    gchar buf[SMALL];
+    Player *pl = player_of(current_user.tm, idx);
+    gfloat scout_dev = math_rnd(-const_float("float_transfer_scout_deviance_wage"),
+				const_float("float_transfer_scout_deviance_wage")) *
+	(current_user.scout % 10 + 1);
+    GtkSpinButton *spinbuttons[4];
+
+    if(pl->contract >= 2)
+    {
+	game_gui_print_message(_("You can't offer a new contract if the old one is still above 2 years."));
+	return;
+    }
+
+    stat0 = STATUS_CONTRACT_OFFER;
+    stat1 = player_assign_wage(pl);
+
+    if(pl->age < pl->peak_age)
+	stat1 = MAX(stat1, pl->wage);
+    else
+	stat1 = MIN(stat1, pl->wage);
+
+    window_create(WINDOW_CONTRACT);
+
+    sprintf(buf, "You are negotiating with %s about a new contract. Pay attention to what you're doing; if you don't come to terms with him within 3 offers, he's going to leave your team after his current contract expires (unless you sell him).\nYour scout's recommendations are preset:", pl->name->str);
+    gtk_label_set_text(GTK_LABEL(lookup_widget(window.contract, "label_contract")), buf);
+
+    for(i=0;i<4;i++)
+    {
+	printf("ag %.1f %d\n", pl->peak_age,
+	       (gint)rint((gfloat)stat1 * (1 + i * const_float("float_contract_scale_factor"))));
+	sprintf(buf, "spinbutton_contract%d", i + 1);
+	spinbuttons[i] = GTK_SPIN_BUTTON(lookup_widget(window.contract, buf));
+
+	gtk_spin_button_set_value(spinbuttons[i],
+				  rint((gfloat)stat1 * 
+				       (1 + (i * const_float("float_contract_scale_factor") *
+					     powf(-1, (pl->age > pl->peak_age)))) *
+				       (1 + scout_dev)));
+    }
 }

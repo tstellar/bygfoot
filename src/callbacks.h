@@ -25,15 +25,6 @@ on_menu_save_activate                  (GtkMenuItem     *menuitem,
 void
 on_menu_save_as_activate               (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
-
-void
-on_start_editor_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_start_update_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
 void
 on_menu_quit_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
@@ -282,4 +273,8 @@ on_menu_check_button_press_event       (GtkWidget       *widget,
 
 void
 on_menu_live_game_activate             (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_menu_offer_new_contract_activate    (GtkMenuItem     *menuitem,
                                         gpointer         user_data);

@@ -9,7 +9,7 @@ INCLUDES = \
 bin_PROGRAMS = bygfoot
 
 bygfoot_SOURCES = \
-	callback_func.c callback_func.h callbacks.h cup.h finance.h fixture.h game_gui.h league.h live_game.h misc.h option.h player.h start_end.h team.h transfer.h treeview.h user.h window.h \
+	callback_func.c callback_func.h callbacks.h cup.h finance.h fixture.h game_gui.h league.h live_game.h maths.h misc.h option.h player.h start_end.h team.h transfer.h treeview.h user.h window.h \
 	callbacks.c callbacks.h callback_func.h game_gui.h main.h option.h team.h transfer.h treeview.h user.h window.h \
 	cup.c cup.h free.h main.h maths.h misc.h team.h variables.h xml_league.h \
 	file.c file.h free.h main.h misc.h option.h support.h variables.h \
@@ -42,7 +42,7 @@ bygfoot_SOURCES = \
 	table.c cup.h league.h table.h variables.h \
 	team.c cup.h fixture.h game.h game_gui.h league.h maths.h misc.h option.h player.h team.h transfer.h user.h \
 	transfer.c finance.h free.h maths.h option.h player.h team.h transfer.h user.h \
-	treeview.c cup.h file.h finance.h fixture.h free.h league.h live_game.h maths.h misc.h player.h option.h support.h team.h transfer.h treeview.h treeview_cell.h user.h \
+	treeview.c cup.h file.h finance.h fixture.h free.h game.h league.h live_game.h maths.h misc.h player.h option.h support.h team.h transfer.h treeview.h treeview_cell.h user.h \
 	treeview_cell.c misc.h option.h player.h team.h treeview.h treeview_cell.h user.h variables.h \
 	user.c fixture.h free.h game_gui.h maths.h misc.h option.h player.h transfer.h user.h window.h \
 	window.c file.h finance.h free.h game_gui.h gui.h interface.h misc_interface.h misc2_interface.h option.h support.h user.h window.h \

@@ -52,7 +52,6 @@ window_show_options(void)
     option_gui_set_up_window();
 }
 
-
 /** Show the digits window with the labels and values set 
     according to the arguments. */
 void
@@ -316,6 +315,14 @@ window_create(gint window_type)
 		window.font_sel = create_window_font_sel();
 	    wind = window.font_sel;
 	    strcpy(buf, "Select font");
+	    break;
+	case WINDOW_CONTRACT:
+	    if(window.contract != NULL)
+		g_warning("window_create: called on already existing window\n");
+	    else
+		window.contract = create_window_contract();
+	    wind = window.contract;
+	    strcpy(buf, "Contract offer");
 	    break;
     }
 

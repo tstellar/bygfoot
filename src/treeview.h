@@ -174,4 +174,7 @@ treeview_set_up_league_results(GtkTreeView *treeview);
 GtkTreeModel*
 treeview_create_league_results(void);
 
+void
+treeview_create_next_opponent_values(GtkListStore *liststore, const Fixture *fix);
+
 #endif

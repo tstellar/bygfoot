@@ -19,6 +19,7 @@ enum Windows
     WINDOW_YESNO,
     WINDOW_OPTIONS,
     WINDOW_FONT_SEL,
+    WINDOW_CONTRACT,
     WINDOW_END
 };
 

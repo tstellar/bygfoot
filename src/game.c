@@ -30,8 +30,6 @@ game_get_values(const Fixture *fix, gfloat team_values[][GAME_TEAM_VALUE_END],
     Team *tm[2] = {fix->teams[0], fix->teams[1]};
     gfloat style_factor;
 
-    /*d*/
-/*     printf("\nhome %.2f\n", home_advantage); */
     for(i=0;i<2;i++)
     {
 	for(j=0;j<GAME_TEAM_VALUE_END;j++)
@@ -59,6 +57,7 @@ game_get_values(const Fixture *fix, gfloat team_values[][GAME_TEAM_VALUE_END],
 		((1 + style_factor) * (1 + home_advantage * (i == 0)) *
 		 (1 + const_float("float_player_boost_skill_effect") * tm[i]->boost));
 
+	/*d*/
 /* 	if(fixture_user_team_involved(fix) != -1) */
 /* 	{ */
 /* 	    printf("week %d %d\n", week, week_round); */
@@ -1088,4 +1087,25 @@ game_stadium_event(Stadium *stadium, gint type)
     stadium->capacity = (gint)rint((gfloat)stadium->capacity *
 				   (1 - reduce *
 				    const_float("float_game_stadium_capacity_reduce_factor")));
+}
+
+/** Return the maximum possible values for defence, midfield and attack. 
+    Used in the opponent preview. */
+void
+game_get_max_values(gfloat max_values[3])
+{
+    gint i, j;
+    Player pl;
+
+    pl.skill = pl.cskill = const_float("float_player_max_skill");
+    pl.fitness = 1;
+
+    for(i=0;i<3;i++)
+    {
+	for(j=1;j<11;j++)
+	{
+	    pl.cpos = player_get_position_from_structure(442, j);
+	    max_values[i] += game_get_player_contribution(&pl, i);
+	}
+    }
 }
