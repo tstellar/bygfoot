@@ -15,6 +15,8 @@ option_gui_write_entry_widgets(GString **entry_options, GtkEntry **entry_widgets
 void
 option_gui_set_up_window(void);
 
+void
+option_gui_write_options(void);
 
 #endif
 

@@ -52,12 +52,14 @@ create_window_options (void)
   GtkWidget *spinbutton_precision;
   GtkObject *spinbutton_refresh_adj;
   GtkWidget *spinbutton_refresh;
-  GtkWidget *label9;
   GtkWidget *label10;
-  GtkWidget *label11;
-  GtkWidget *entry_names_file;
   GtkWidget *entry_constants_file;
-  GtkWidget *entry_user_file;
+  GtkWidget *button_font_name;
+  GtkWidget *alignment1;
+  GtkWidget *hbox7;
+  GtkWidget *image1;
+  GtkWidget *label34;
+  GtkWidget *entry_font_name;
   GtkWidget *label1;
   GtkWidget *hbox4;
   GtkWidget *vbox4;
@@ -84,9 +86,68 @@ create_window_options (void)
   GtkWidget *checkbutton_swap_adapts;
   GtkWidget *checkbutton_show_overall;
   GtkWidget *label3;
-  GtkWidget *empty_notebook_page;
+  GtkWidget *table2;
+  GtkWidget *label13;
+  GtkWidget *label14;
+  GtkWidget *label15;
+  GtkWidget *label16;
+  GtkWidget *label17;
+  GtkWidget *label18;
+  GtkWidget *label19;
+  GtkWidget *label20;
+  GtkWidget *label21;
+  GtkWidget *label22;
+  GtkWidget *label23;
+  GtkWidget *label24;
+  GtkWidget *label25;
+  GtkWidget *label26;
+  GtkWidget *label27;
+  GtkWidget *label28;
+  GtkWidget *label29;
+  GtkWidget *label30;
+  GtkWidget *checkbutton1;
+  GtkWidget *checkbutton20;
+  GtkWidget *checkbutton2;
+  GtkWidget *checkbutton3;
+  GtkWidget *checkbutton4;
+  GtkWidget *checkbutton5;
+  GtkWidget *checkbutton6;
+  GtkWidget *checkbutton7;
+  GtkWidget *checkbutton8;
+  GtkWidget *checkbutton9;
+  GtkWidget *checkbutton10;
+  GtkWidget *checkbutton11;
+  GtkWidget *checkbutton12;
+  GtkWidget *checkbutton13;
+  GtkWidget *checkbutton14;
+  GtkWidget *checkbutton15;
+  GtkWidget *checkbutton16;
+  GtkWidget *checkbutton17;
+  GtkWidget *checkbutton18;
+  GtkWidget *checkbutton19;
+  GtkWidget *checkbutton21;
+  GtkWidget *checkbutton22;
+  GtkWidget *checkbutton23;
+  GtkWidget *checkbutton24;
+  GtkWidget *checkbutton25;
+  GtkWidget *checkbutton26;
+  GtkWidget *checkbutton27;
+  GtkWidget *checkbutton28;
+  GtkWidget *checkbutton29;
+  GtkWidget *checkbutton30;
+  GtkWidget *checkbutton31;
+  GtkWidget *checkbutton32;
+  GtkWidget *checkbutton33;
+  GtkWidget *checkbutton34;
+  GtkWidget *checkbutton35;
+  GtkWidget *checkbutton36;
+  GtkWidget *hseparator3;
+  GtkWidget *hseparator4;
+  GtkWidget *label31;
+  GtkWidget *label32;
+  GtkWidget *label33;
+  GtkWidget *hseparator2;
   GtkWidget *label4;
-  GtkWidget *label5;
   GtkWidget *hseparator1;
   GtkWidget *hbox1;
   GtkWidget *vbox2;
@@ -149,7 +210,7 @@ create_window_options (void)
   gtk_box_pack_start (GTK_BOX (hbox2), vseparator1, FALSE, FALSE, 0);
   gtk_widget_set_size_request (vseparator1, 10, 1);
 
-  table1 = gtk_table_new (6, 2, FALSE);
+  table1 = gtk_table_new (5, 2, FALSE);
   gtk_widget_show (table1);
   gtk_box_pack_start (GTK_BOX (hbox2), table1, TRUE, TRUE, 0);
 
@@ -208,45 +269,47 @@ create_window_options (void)
                     (GtkAttachOptions) (0), 0, 0);
   gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_refresh), TRUE);
 
-  label9 = gtk_label_new (_("Player names file "));
-  gtk_widget_show (label9);
-  gtk_table_attach (GTK_TABLE (table1), label9, 0, 1, 3, 4,
-                    (GtkAttachOptions) (GTK_FILL),
-                    (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label9), GTK_JUSTIFY_LEFT);
-  gtk_misc_set_alignment (GTK_MISC (label9), 1, 0.5);
-
   label10 = gtk_label_new (_("Constants file "));
   gtk_widget_show (label10);
-  gtk_table_attach (GTK_TABLE (table1), label10, 0, 1, 4, 5,
+  gtk_table_attach (GTK_TABLE (table1), label10, 0, 1, 3, 4,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_label_set_justify (GTK_LABEL (label10), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label10), 1, 0.5);
 
-  label11 = gtk_label_new (_("Default user conf file "));
-  gtk_widget_show (label11);
-  gtk_table_attach (GTK_TABLE (table1), label11, 0, 1, 5, 6,
-                    (GtkAttachOptions) (GTK_FILL),
-                    (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label11), GTK_JUSTIFY_LEFT);
-  gtk_misc_set_alignment (GTK_MISC (label11), 1, 0.5);
-
-  entry_names_file = gtk_entry_new ();
-  gtk_widget_show (entry_names_file);
-  gtk_table_attach (GTK_TABLE (table1), entry_names_file, 1, 2, 3, 4,
-                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
-                    (GtkAttachOptions) (0), 0, 0);
-
   entry_constants_file = gtk_entry_new ();
   gtk_widget_show (entry_constants_file);
-  gtk_table_attach (GTK_TABLE (table1), entry_constants_file, 1, 2, 4, 5,
+  gtk_table_attach (GTK_TABLE (table1), entry_constants_file, 1, 2, 3, 4,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
+  gtk_tooltips_set_tip (tooltips, entry_constants_file, _("File containing settings which determine a lot of aspects of the game behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."), NULL);
 
-  entry_user_file = gtk_entry_new ();
-  gtk_widget_show (entry_user_file);
-  gtk_table_attach (GTK_TABLE (table1), entry_user_file, 1, 2, 5, 6,
+  button_font_name = gtk_button_new ();
+  gtk_widget_show (button_font_name);
+  gtk_table_attach (GTK_TABLE (table1), button_font_name, 0, 1, 4, 5,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  alignment1 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment1);
+  gtk_container_add (GTK_CONTAINER (button_font_name), alignment1);
+
+  hbox7 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox7);
+  gtk_container_add (GTK_CONTAINER (alignment1), hbox7);
+
+  image1 = gtk_image_new_from_stock ("gtk-select-font", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image1);
+  gtk_box_pack_start (GTK_BOX (hbox7), image1, FALSE, FALSE, 0);
+
+  label34 = gtk_label_new_with_mnemonic (_("Font name"));
+  gtk_widget_show (label34);
+  gtk_box_pack_start (GTK_BOX (hbox7), label34, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label34), GTK_JUSTIFY_LEFT);
+
+  entry_font_name = gtk_entry_new ();
+  gtk_widget_show (entry_font_name);
+  gtk_table_attach (GTK_TABLE (table1), entry_font_name, 1, 2, 4, 5,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
 
@@ -358,23 +421,419 @@ create_window_options (void)
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 2), label3);
   gtk_label_set_justify (GTK_LABEL (label3), GTK_JUSTIFY_LEFT);
 
-  empty_notebook_page = gtk_vbox_new (FALSE, 0);
-  gtk_widget_show (empty_notebook_page);
-  gtk_container_add (GTK_CONTAINER (notebook1), empty_notebook_page);
+  table2 = gtk_table_new (20, 3, FALSE);
+  gtk_widget_show (table2);
+  gtk_container_add (GTK_CONTAINER (notebook1), table2);
 
-  label4 = gtk_label_new (_("Player attributes"));
+  label13 = gtk_label_new (_("Name "));
+  gtk_widget_show (label13);
+  gtk_table_attach (GTK_TABLE (table2), label13, 0, 1, 2, 3,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_label_set_justify (GTK_LABEL (label13), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label13), 0, 0.5);
+
+  label14 = gtk_label_new (_("CPos "));
+  gtk_widget_show (label14);
+  gtk_table_attach (GTK_TABLE (table2), label14, 0, 1, 3, 4,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_label_set_justify (GTK_LABEL (label14), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label14), 0, 0.5);
+
+  label15 = gtk_label_new (_("Pos "));
+  gtk_widget_show (label15);
+  gtk_table_attach (GTK_TABLE (table2), label15, 0, 1, 4, 5,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_label_set_justify (GTK_LABEL (label15), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label15), 0, 0.5);
+
+  label16 = gtk_label_new (_("CSkill "));
+  gtk_widget_show (label16);
+  gtk_table_attach (GTK_TABLE (table2), label16, 0, 1, 5, 6,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_label_set_justify (GTK_LABEL (label16), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label16), 0, 0.5);
+
+  label17 = gtk_label_new (_("Skill "));
+  gtk_widget_show (label17);
+  gtk_table_attach (GTK_TABLE (table2), label17, 0, 1, 6, 7,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_label_set_justify (GTK_LABEL (label17), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label17), 0, 0.5);
+
+  label18 = gtk_label_new (_("Fitness "));
+  gtk_widget_show (label18);
+  gtk_table_attach (GTK_TABLE (table2), label18, 0, 1, 7, 8,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_label_set_justify (GTK_LABEL (label18), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label18), 0, 0.5);
+
+  label19 = gtk_label_new (_("Games "));
+  gtk_widget_show (label19);
+  gtk_table_attach (GTK_TABLE (table2), label19, 0, 1, 8, 9,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_label_set_justify (GTK_LABEL (label19), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label19), 0, 0.5);
+
+  label20 = gtk_label_new (_("Shots "));
+  gtk_widget_show (label20);
+  gtk_table_attach (GTK_TABLE (table2), label20, 0, 1, 9, 10,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_label_set_justify (GTK_LABEL (label20), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label20), 0, 0.5);
+
+  label21 = gtk_label_new (_("Goals "));
+  gtk_widget_show (label21);
+  gtk_table_attach (GTK_TABLE (table2), label21, 0, 1, 10, 11,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_label_set_justify (GTK_LABEL (label21), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label21), 0, 0.5);
+
+  label22 = gtk_label_new (_("Status "));
+  gtk_widget_show (label22);
+  gtk_table_attach (GTK_TABLE (table2), label22, 0, 1, 11, 12,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_label_set_justify (GTK_LABEL (label22), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label22), 0, 0.5);
+
+  label23 = gtk_label_new (_("Cards "));
+  gtk_widget_show (label23);
+  gtk_table_attach (GTK_TABLE (table2), label23, 0, 1, 12, 13,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_label_set_justify (GTK_LABEL (label23), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label23), 0, 0.5);
+
+  label24 = gtk_label_new (_("Age "));
+  gtk_widget_show (label24);
+  gtk_table_attach (GTK_TABLE (table2), label24, 0, 1, 13, 14,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_label_set_justify (GTK_LABEL (label24), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label24), 0, 0.5);
+
+  label25 = gtk_label_new (_("Etal "));
+  gtk_widget_show (label25);
+  gtk_table_attach (GTK_TABLE (table2), label25, 0, 1, 14, 15,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_label_set_justify (GTK_LABEL (label25), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label25), 0, 0.5);
+
+  label26 = gtk_label_new (_("Value "));
+  gtk_widget_show (label26);
+  gtk_table_attach (GTK_TABLE (table2), label26, 0, 1, 15, 16,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_label_set_justify (GTK_LABEL (label26), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label26), 0, 0.5);
+
+  label27 = gtk_label_new (_("Wage "));
+  gtk_widget_show (label27);
+  gtk_table_attach (GTK_TABLE (table2), label27, 0, 1, 16, 17,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_label_set_justify (GTK_LABEL (label27), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label27), 0, 0.5);
+
+  label28 = gtk_label_new (_("Contract "));
+  gtk_widget_show (label28);
+  gtk_table_attach (GTK_TABLE (table2), label28, 0, 1, 17, 18,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_label_set_justify (GTK_LABEL (label28), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label28), 0, 0.5);
+
+  label29 = gtk_label_new (_("League "));
+  gtk_widget_show (label29);
+  gtk_table_attach (GTK_TABLE (table2), label29, 0, 1, 19, 20,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_label_set_justify (GTK_LABEL (label29), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label29), 0, 0.5);
+
+  label30 = gtk_label_new (_("Team "));
+  gtk_widget_show (label30);
+  gtk_table_attach (GTK_TABLE (table2), label30, 0, 1, 18, 19,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_label_set_justify (GTK_LABEL (label30), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label30), 0, 0.5);
+
+  checkbutton1 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton1);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton1, 1, 2, 2, 3,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton20 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton20);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton20, 2, 3, 3, 4,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton2 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton2);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton2, 1, 2, 3, 4,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton3 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton3);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton3, 1, 2, 4, 5,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton4 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton4);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton4, 1, 2, 5, 6,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton5 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton5);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton5, 1, 2, 6, 7,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton6 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton6);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton6, 1, 2, 7, 8,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton7 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton7);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton7, 1, 2, 8, 9,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton8 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton8);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton8, 1, 2, 9, 10,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton9 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton9);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton9, 1, 2, 10, 11,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton10 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton10);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton10, 1, 2, 11, 12,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton11 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton11);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton11, 1, 2, 12, 13,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton12 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton12);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton12, 1, 2, 13, 14,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton13 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton13);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton13, 1, 2, 14, 15,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton14 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton14);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton14, 1, 2, 15, 16,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton15 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton15);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton15, 1, 2, 16, 17,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton16 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton16);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton16, 1, 2, 17, 18,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton17 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton17);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton17, 1, 2, 18, 19,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton18 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton18);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton18, 1, 2, 19, 20,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton19 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton19);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton19, 2, 3, 2, 3,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton21 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton21);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton21, 2, 3, 4, 5,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton22 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton22);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton22, 2, 3, 5, 6,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton23 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton23);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton23, 2, 3, 6, 7,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton24 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton24);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton24, 2, 3, 7, 8,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton25 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton25);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton25, 2, 3, 8, 9,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton26 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton26);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton26, 2, 3, 9, 10,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton27 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton27);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton27, 2, 3, 10, 11,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton28 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton28);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton28, 2, 3, 11, 12,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton29 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton29);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton29, 2, 3, 12, 13,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton30 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton30);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton30, 2, 3, 13, 14,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton31 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton31);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton31, 2, 3, 14, 15,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton32 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton32);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton32, 2, 3, 15, 16,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton33 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton33);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton33, 2, 3, 16, 17,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton34 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton34);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton34, 2, 3, 17, 18,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton35 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton35);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton35, 2, 3, 18, 19,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  checkbutton36 = gtk_check_button_new_with_mnemonic ("");
+  gtk_widget_show (checkbutton36);
+  gtk_table_attach (GTK_TABLE (table2), checkbutton36, 2, 3, 19, 20,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  hseparator3 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator3);
+  gtk_table_attach (GTK_TABLE (table2), hseparator3, 1, 2, 1, 2,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (GTK_FILL), 0, 0);
+  gtk_widget_set_size_request (hseparator3, 1, 10);
+
+  hseparator4 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator4);
+  gtk_table_attach (GTK_TABLE (table2), hseparator4, 2, 3, 1, 2,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (GTK_FILL), 0, 0);
+  gtk_widget_set_size_request (hseparator4, 1, 10);
+
+  label31 = gtk_label_new (_("Attribute "));
+  gtk_widget_show (label31);
+  gtk_table_attach (GTK_TABLE (table2), label31, 0, 1, 0, 1,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_label_set_justify (GTK_LABEL (label31), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label31), 0, 0.5);
+
+  label32 = gtk_label_new (_("List 1 "));
+  gtk_widget_show (label32);
+  gtk_table_attach (GTK_TABLE (table2), label32, 1, 2, 0, 1,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_label_set_justify (GTK_LABEL (label32), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label32), 0, 0.5);
+
+  label33 = gtk_label_new (_("List 2"));
+  gtk_widget_show (label33);
+  gtk_table_attach (GTK_TABLE (table2), label33, 2, 3, 0, 1,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_label_set_justify (GTK_LABEL (label33), GTK_JUSTIFY_LEFT);
+  gtk_misc_set_alignment (GTK_MISC (label33), 0, 0.5);
+
+  hseparator2 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator2);
+  gtk_table_attach (GTK_TABLE (table2), hseparator2, 0, 1, 1, 2,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (GTK_FILL), 0, 0);
+  gtk_widget_set_size_request (hseparator2, 1, 10);
+
+  label4 = gtk_label_new (_("Player attributes shown"));
   gtk_widget_show (label4);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 3), label4);
   gtk_label_set_justify (GTK_LABEL (label4), GTK_JUSTIFY_LEFT);
-
-  empty_notebook_page = gtk_vbox_new (FALSE, 0);
-  gtk_widget_show (empty_notebook_page);
-  gtk_container_add (GTK_CONTAINER (notebook1), empty_notebook_page);
-
-  label5 = gtk_label_new (_("label5"));
-  gtk_widget_show (label5);
-  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 4), label5);
-  gtk_label_set_justify (GTK_LABEL (label5), GTK_JUSTIFY_LEFT);
 
   hseparator1 = gtk_hseparator_new ();
   gtk_widget_show (hseparator1);
@@ -409,6 +868,9 @@ create_window_options (void)
                               GDK_Escape, 0,
                               GTK_ACCEL_VISIBLE);
 
+  g_signal_connect ((gpointer) button_font_name, "clicked",
+                    G_CALLBACK (on_button_font_name_clicked),
+                    NULL);
   g_signal_connect ((gpointer) button_ok, "clicked",
                     G_CALLBACK (on_button_options_ok_clicked),
                     NULL);
@@ -437,12 +899,14 @@ create_window_options (void)
   GLADE_HOOKUP_OBJECT (window_options, label8, "label8");
   GLADE_HOOKUP_OBJECT (window_options, spinbutton_precision, "spinbutton_precision");
   GLADE_HOOKUP_OBJECT (window_options, spinbutton_refresh, "spinbutton_refresh");
-  GLADE_HOOKUP_OBJECT (window_options, label9, "label9");
   GLADE_HOOKUP_OBJECT (window_options, label10, "label10");
-  GLADE_HOOKUP_OBJECT (window_options, label11, "label11");
-  GLADE_HOOKUP_OBJECT (window_options, entry_names_file, "entry_names_file");
   GLADE_HOOKUP_OBJECT (window_options, entry_constants_file, "entry_constants_file");
-  GLADE_HOOKUP_OBJECT (window_options, entry_user_file, "entry_user_file");
+  GLADE_HOOKUP_OBJECT (window_options, button_font_name, "button_font_name");
+  GLADE_HOOKUP_OBJECT (window_options, alignment1, "alignment1");
+  GLADE_HOOKUP_OBJECT (window_options, hbox7, "hbox7");
+  GLADE_HOOKUP_OBJECT (window_options, image1, "image1");
+  GLADE_HOOKUP_OBJECT (window_options, label34, "label34");
+  GLADE_HOOKUP_OBJECT (window_options, entry_font_name, "entry_font_name");
   GLADE_HOOKUP_OBJECT (window_options, label1, "label1");
   GLADE_HOOKUP_OBJECT (window_options, hbox4, "hbox4");
   GLADE_HOOKUP_OBJECT (window_options, vbox4, "vbox4");
@@ -468,8 +932,68 @@ create_window_options (void)
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_swap_adapts, "checkbutton_swap_adapts");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_show_overall, "checkbutton_show_overall");
   GLADE_HOOKUP_OBJECT (window_options, label3, "label3");
+  GLADE_HOOKUP_OBJECT (window_options, table2, "table2");
+  GLADE_HOOKUP_OBJECT (window_options, label13, "label13");
+  GLADE_HOOKUP_OBJECT (window_options, label14, "label14");
+  GLADE_HOOKUP_OBJECT (window_options, label15, "label15");
+  GLADE_HOOKUP_OBJECT (window_options, label16, "label16");
+  GLADE_HOOKUP_OBJECT (window_options, label17, "label17");
+  GLADE_HOOKUP_OBJECT (window_options, label18, "label18");
+  GLADE_HOOKUP_OBJECT (window_options, label19, "label19");
+  GLADE_HOOKUP_OBJECT (window_options, label20, "label20");
+  GLADE_HOOKUP_OBJECT (window_options, label21, "label21");
+  GLADE_HOOKUP_OBJECT (window_options, label22, "label22");
+  GLADE_HOOKUP_OBJECT (window_options, label23, "label23");
+  GLADE_HOOKUP_OBJECT (window_options, label24, "label24");
+  GLADE_HOOKUP_OBJECT (window_options, label25, "label25");
+  GLADE_HOOKUP_OBJECT (window_options, label26, "label26");
+  GLADE_HOOKUP_OBJECT (window_options, label27, "label27");
+  GLADE_HOOKUP_OBJECT (window_options, label28, "label28");
+  GLADE_HOOKUP_OBJECT (window_options, label29, "label29");
+  GLADE_HOOKUP_OBJECT (window_options, label30, "label30");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton1, "checkbutton1");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton20, "checkbutton20");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton2, "checkbutton2");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton3, "checkbutton3");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton4, "checkbutton4");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton5, "checkbutton5");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton6, "checkbutton6");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton7, "checkbutton7");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton8, "checkbutton8");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton9, "checkbutton9");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton10, "checkbutton10");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton11, "checkbutton11");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton12, "checkbutton12");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton13, "checkbutton13");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton14, "checkbutton14");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton15, "checkbutton15");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton16, "checkbutton16");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton17, "checkbutton17");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton18, "checkbutton18");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton19, "checkbutton19");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton21, "checkbutton21");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton22, "checkbutton22");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton23, "checkbutton23");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton24, "checkbutton24");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton25, "checkbutton25");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton26, "checkbutton26");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton27, "checkbutton27");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton28, "checkbutton28");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton29, "checkbutton29");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton30, "checkbutton30");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton31, "checkbutton31");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton32, "checkbutton32");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton33, "checkbutton33");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton34, "checkbutton34");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton35, "checkbutton35");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton36, "checkbutton36");
+  GLADE_HOOKUP_OBJECT (window_options, hseparator3, "hseparator3");
+  GLADE_HOOKUP_OBJECT (window_options, hseparator4, "hseparator4");
+  GLADE_HOOKUP_OBJECT (window_options, label31, "label31");
+  GLADE_HOOKUP_OBJECT (window_options, label32, "label32");
+  GLADE_HOOKUP_OBJECT (window_options, label33, "label33");
+  GLADE_HOOKUP_OBJECT (window_options, hseparator2, "hseparator2");
   GLADE_HOOKUP_OBJECT (window_options, label4, "label4");
-  GLADE_HOOKUP_OBJECT (window_options, label5, "label5");
   GLADE_HOOKUP_OBJECT (window_options, hseparator1, "hseparator1");
   GLADE_HOOKUP_OBJECT (window_options, hbox1, "hbox1");
   GLADE_HOOKUP_OBJECT (window_options, vbox2, "vbox2");

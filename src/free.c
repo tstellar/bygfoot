@@ -38,7 +38,6 @@ free_user(User *user)
     gint i;
 
     free_g_string(&user->name);
-    free_g_string(&user->font_name);
     free_live_game(&user->live_game);
     free_option_list(&user->options, FALSE);
 

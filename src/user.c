@@ -17,7 +17,6 @@ user_new(void)
     User new;
 
     new.name = g_string_new("NONAME");
-    new.font_name = g_string_new("0");
     new.tm = NULL;
 
     new.live_game.units = NULL;

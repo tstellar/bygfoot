@@ -47,4 +47,10 @@ game_gui_write_meters(void);
 void
 game_gui_show_job_offer(Team *team, gint type);
 
+void
+game_gui_write_check_items(void);
+
+void
+game_gui_read_check_items(GtkWidget *widget);
+
 #endif

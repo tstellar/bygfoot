@@ -135,3 +135,8 @@ on_spinbutton_capacity_button_press_event
                                         GdkEventButton  *event,
                                         gpointer         user_data);
 #endif
+
+gboolean
+on_window_startup_users_delete_event   (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data);

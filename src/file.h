@@ -43,6 +43,6 @@ void
 file_load_user_conf_file(User *user);
 
 void
-file_load_const_file(void);
+file_load_constants_file(const gchar* file_name);
 
 #endif

@@ -307,6 +307,14 @@ window_create(gint window_type)
 	    wind = window.options;
 	    strcpy(buf, "Options");
 	    break;
+	case WINDOW_FONT_SEL:
+	    if(window.font_sel != NULL)
+		g_warning("window_create: called on already existing window\n");
+	    else
+		window.font_sel = create_window_font_sel();
+	    wind = window.font_sel;
+	    strcpy(buf, "Select font");
+	    break;
     }
 
     gtk_window_set_title(GTK_WINDOW(wind), buf);

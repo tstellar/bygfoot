@@ -294,7 +294,16 @@ file_load_conf_files(void)
 
     file_load_opt_file(fil, &options);
 
-    file_my_fopen(opt_str("string_opt_constants_file"), "r", &fil, TRUE);
+    file_load_constants_file(opt_str("string_opt_constants_file"));
+}
+
+/** Load the constants from the given file. */
+void
+file_load_constants_file(const gchar* file_name)
+{
+    FILE *fil = NULL;
+
+    file_my_fopen(file_name, "r", &fil, TRUE);
     file_load_opt_file(fil, &constants);
 }
 

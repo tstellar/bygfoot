@@ -18,6 +18,7 @@ enum Windows
     WINDOW_JOB_OFFER,
     WINDOW_YESNO,
     WINDOW_OPTIONS,
+    WINDOW_FONT_SEL,
     WINDOW_END
 };
 

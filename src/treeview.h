@@ -13,6 +13,9 @@ treeview_select_row(GtkTreeView *treeview, GdkEventButton *event);
 GdkPixbuf*
 treeview_pixbuf_from_filename(gchar *filename);
 
+GtkCellRenderer*
+treeview_cell_renderer_text_new(void);
+
 gchar*
 treeview_live_game_icon(gint event_type);
 

@@ -23,7 +23,10 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
 {
     gchar buf[SMALL];
     gfloat fraction = (gfloat)live_game_unit_get_minute(unit) / 90;
-    GtkProgressBar *progress_bar;
+    GtkProgressBar *progress_bar =
+	GTK_PROGRESS_BAR(lookup_widget(window.live, "progressbar_live"));
+    GtkHScale *hscale = 
+	GTK_HSCALE(lookup_widget(window.live, "hscale_area"));
     GtkWidget *button_pause = lookup_widget(window.live, "button_pause"),
 	*button_resume = lookup_widget(window.live, "button_resume"),
 	*button_live_close = lookup_widget(window.live, "button_live_close"),
@@ -42,11 +45,13 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
     gtk_widget_modify_bg(eventbox_poss[unit->possession], GTK_STATE_NORMAL, &color);
     gtk_widget_modify_bg(eventbox_poss[!unit->possession], GTK_STATE_NORMAL, NULL);
 
-    game_gui_live_game_set_hscale(unit,
-				  GTK_HSCALE(lookup_widget(window.live, "hscale_area")));
+    if(option_int("int_opt_user_show_tendency_bar",
+		  &usr(stat2).options))
+	game_gui_live_game_set_hscale(unit, hscale);
+    else
+	gtk_widget_hide(GTK_WIDGET(hscale));
 
     sprintf(buf, "%d.", live_game_unit_get_minute(unit));
-    progress_bar = GTK_PROGRESS_BAR(lookup_widget(window.live, "progressbar_live"));
     gtk_progress_bar_set_fraction(progress_bar, (fraction > 1) ? 1 : fraction);
     gtk_progress_bar_set_text(progress_bar, buf);
     usleep(500500 + option_int("int_opt_user_live_game_speed",
@@ -200,6 +205,8 @@ game_gui_set_main_window_header(void)
     game_gui_write_radio_items();
 
     game_gui_write_meters();
+
+    game_gui_write_check_items();
 }
 
 /** Set the average skills of the current team
@@ -469,4 +476,37 @@ game_gui_show_job_offer(Team *team, gint type)
     treeview_show_player_list_team(GTK_TREE_VIEW(lookup_widget(window.job_offer, "treeview_players")),
 				   team, 
 				   (type != STATUS_JOB_OFFER_SUCCESS) ? 2 : current_user.scout);
+}
+
+/** Write the checkbuttons in the menus. */
+void
+game_gui_write_check_items(void)
+{
+    GtkCheckMenuItem *menu_job_offers = 
+	GTK_CHECK_MENU_ITEM(lookup_widget(window.main, "menu_job_offers")),
+	*menu_live_game = GTK_CHECK_MENU_ITEM(lookup_widget(window.main, "menu_live_game")),
+	*menu_overwrite = GTK_CHECK_MENU_ITEM(lookup_widget(window.main, "menu_overwrite"));
+
+    gtk_check_menu_item_set_active(menu_job_offers, opt_user_int("int_opt_user_show_job_offers"));
+    gtk_check_menu_item_set_active(menu_live_game, opt_user_int("int_opt_user_show_live_game"));
+    gtk_check_menu_item_set_active(menu_overwrite, opt_int("int_opt_save_will_overwrite"));
+}
+
+/** Change the options according to the check menu widgets. */
+void
+game_gui_read_check_items(GtkWidget *widget)
+{
+    GtkWidget *menu_job_offers = 
+	lookup_widget(window.main, "menu_job_offers"),
+	*menu_live_game = lookup_widget(window.main, "menu_live_game"),
+	*menu_overwrite = lookup_widget(window.main, "menu_overwrite");
+
+    if(widget == menu_job_offers)
+	opt_user_set_int("int_opt_user_show_job_offers", !opt_user_int("int_opt_user_show_job_offers"));
+    else if(widget == menu_live_game)
+	opt_user_set_int("int_opt_user_show_live_game", !opt_user_int("int_opt_user_show_live_game"));
+    else if(widget == menu_overwrite)
+	opt_set_int("int_opt_save_will_overwrite", !opt_int("int_opt_save_will_overwrite"));
+    else
+	g_warning("game_gui_read_check_items: unknown widget.");
 }

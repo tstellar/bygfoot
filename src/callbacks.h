@@ -96,22 +96,6 @@ on_menu_preferences_activate           (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
-on_menu_notify_activate                (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_job_offers_activate            (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_live_game_activate             (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_overwrite_activate             (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
 on_menu_fixtures_activate              (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
@@ -288,5 +272,10 @@ on_menu_show_finances_activate         (GtkMenuItem     *menuitem,
 
 void
 on_menu_show_stadium_activate          (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+gboolean
+on_menu_check_button_press_event       (GtkWidget       *widget,
+                                        GdkEventButton  *event,
                                         gpointer         user_data);
 #endif

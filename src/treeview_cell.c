@@ -39,9 +39,6 @@ treeview_cell_int_to_cell(GtkTreeViewColumn *col,
     gint value;
     gchar  buf[SMALL];
 
-    if(strcmp(current_user.font_name->str, "0") != 0)
-	g_object_set(renderer, "font", current_user.font_name->str, NULL);
-
     gtk_tree_model_get(model, iter, column, &value, -1);
     
     if(value == const_int("int_treeview_cell_int_empty"))
@@ -64,9 +61,6 @@ treeview_cell_player_to_cell(GtkTreeViewColumn *col,
     gint attribute = GPOINTER_TO_INT(user_data);
     gchar  buf[SMALL];
     Player *pl;
-
-    if(strcmp(current_user.font_name->str, "0") != 0)
-	g_object_set(renderer, "font", current_user.font_name->str, NULL);
 
     g_object_set(renderer, "text", "", "foreground",
 		 const_str("string_treeview_cell_color_default_foreground"),
@@ -362,9 +356,6 @@ treeview_cell_live_game_result(GtkTreeViewColumn *col,
     gchar  buf[SMALL];    
     Fixture *fix = NULL;
     LiveGameUnit *unit = NULL;
-
-    if(strcmp(current_user.font_name->str, "0") != 0)
-	g_object_set(renderer, "font", current_user.font_name->str, NULL);
 
     strcpy(buf, "");
 

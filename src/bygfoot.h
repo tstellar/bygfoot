@@ -95,7 +95,8 @@ typedef struct
 	*stadium,
 	*job_offer,
 	*yesno,
-	*options;
+	*options,
+	*font_sel;
 } Windows;
 
 /** A struct representing an option or a constant. */

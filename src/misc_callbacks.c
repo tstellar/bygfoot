@@ -121,7 +121,6 @@ void
 on_button_fsel_cancel_clicked          (GtkButton       *button,
                                         gpointer         user_data)
 {
-
 }
 
 
@@ -130,8 +129,9 @@ on_button_font_sel_cancel_clicked      (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+    window_destroy(&window.font_sel, FALSE);
 
-  return FALSE;
+    return FALSE;
 }
 
 
@@ -139,7 +139,16 @@ void
 on_button_font_sel_ok_clicked          (GtkButton       *button,
                                         gpointer         user_data)
 {
+    gchar *font = 
+	gtk_font_selection_dialog_get_font_name(GTK_FONT_SELECTION_DIALOG(window.font_sel));
 
+    if(font != NULL)
+    {
+	gtk_entry_set_text(GTK_ENTRY(lookup_widget(window.options, "entry_font_name")), font);
+	g_free(font);
+    }
+
+    window_destroy(&window.font_sel, FALSE);
 }
 
 
@@ -147,7 +156,18 @@ void
 on_button_font_sel_apply_clicked       (GtkButton       *button,
                                         gpointer         user_data)
 {
+    gchar *font = 
+	gtk_font_selection_dialog_get_font_name(GTK_FONT_SELECTION_DIALOG(window.font_sel));
 
+    if(font != NULL)
+    {
+	opt_set_str("string_opt_font_name", font);
+	gtk_entry_set_text(GTK_ENTRY(lookup_widget(window.options, "entry_font_name")), font);
+	g_free(font);
+
+	stat0 = STATUS_MAIN;
+	game_gui_show_main();
+    }
 }
 
 
@@ -292,3 +312,13 @@ on_spinbutton_capacity_button_press_event  (GtkWidget       *widget,
     
     return FALSE;
 }
+
+gboolean
+on_window_startup_users_delete_event   (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data)
+{
+
+    return TRUE;
+}
+

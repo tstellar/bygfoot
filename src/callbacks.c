@@ -237,39 +237,6 @@ on_menu_preferences_activate           (GtkMenuItem     *menuitem,
     window_show_options();
 }
 
-
-void
-on_menu_notify_activate                (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_job_offers_activate            (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_live_game_activate             (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_menu_overwrite_activate             (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
 void
 on_menu_fixtures_activate              (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
@@ -677,3 +644,14 @@ on_menu_show_stadium_activate          (GtkMenuItem     *menuitem,
 {
     window_show_stadium();
 }
+
+gboolean
+on_menu_check_button_press_event       (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data)
+{
+    game_gui_read_check_items(widget);
+
+    return FALSE;
+}
+

@@ -128,6 +128,19 @@ treeview_get_col_number_column (GtkTreeViewColumn *col)
     return num;
 }
 
+/** Return a cell renderer with font name set
+    according to the font option. */
+GtkCellRenderer*
+treeview_cell_renderer_text_new(void)
+{
+    GtkCellRenderer *renderer = gtk_cell_renderer_text_new();
+
+    if(strlen(opt_str("string_opt_font_name")) > 0)
+	g_object_set(renderer, "font", opt_str("string_opt_font_name"), NULL);
+    
+    return renderer;
+}
+
 /** Return the filename of the icon going with the LiveGameEvent
     with type event_type.
     @param event_type The type of the event.
@@ -315,7 +328,7 @@ treeview_set_up_team_selection_treeview (GtkTreeView *treeview)
     /* Numbering the teams */
     col = gtk_tree_view_column_new();
     gtk_tree_view_append_column(treeview, col);
-    renderer = gtk_cell_renderer_text_new();
+    renderer = treeview_cell_renderer_text_new();
     gtk_tree_view_column_pack_start(col, renderer, TRUE);
     gtk_tree_view_column_add_attribute(col, renderer,
 				       "text", 0);
@@ -332,7 +345,7 @@ treeview_set_up_team_selection_treeview (GtkTreeView *treeview)
     col = gtk_tree_view_column_new();
     gtk_tree_view_column_set_title(col, _("Team"));
     gtk_tree_view_append_column(treeview, col);
-    renderer = gtk_cell_renderer_text_new();
+    renderer = treeview_cell_renderer_text_new();
     gtk_tree_view_column_pack_start(col, renderer, TRUE);
     gtk_tree_view_column_set_cell_data_func(col, renderer,
 					    treeview_cell_team_selection,
@@ -341,7 +354,7 @@ treeview_set_up_team_selection_treeview (GtkTreeView *treeview)
     col = gtk_tree_view_column_new();
     gtk_tree_view_column_set_title(col, _("League"));
     gtk_tree_view_append_column(treeview, col);
-    renderer = gtk_cell_renderer_text_new();
+    renderer = treeview_cell_renderer_text_new();
     gtk_tree_view_column_pack_start(col, renderer, TRUE);
     gtk_tree_view_column_add_attribute(col, renderer,
 				       "text", 3);
@@ -450,7 +463,7 @@ treeview_set_up_player_list (GtkTreeView *treeview, gint *attributes, gint max)
     /* number the players */
     col = gtk_tree_view_column_new();
     gtk_tree_view_append_column(treeview, col);
-    renderer = gtk_cell_renderer_text_new();
+    renderer = treeview_cell_renderer_text_new();
     gtk_tree_view_column_pack_start(col, renderer, TRUE);
     gtk_tree_view_column_set_cell_data_func(col, renderer,
 					    treeview_cell_int_to_cell,
@@ -460,7 +473,7 @@ treeview_set_up_player_list (GtkTreeView *treeview, gint *attributes, gint max)
 	col = gtk_tree_view_column_new();
 	gtk_tree_view_column_set_title(col, titles[attributes[i]]);
 	gtk_tree_view_append_column(treeview, col);
-	renderer = gtk_cell_renderer_text_new();
+	renderer = treeview_cell_renderer_text_new();
 	gtk_tree_view_column_pack_start(col, renderer, TRUE);
 	gtk_tree_view_column_set_cell_data_func(col, renderer,
 						treeview_cell_player_to_cell,
@@ -646,7 +659,7 @@ treeview_live_game_set_up_commentary(void)
     
     col = gtk_tree_view_column_new();
     gtk_tree_view_append_column(treeview, col);
-    renderer = gtk_cell_renderer_text_new();
+    renderer = treeview_cell_renderer_text_new();
     gtk_tree_view_column_pack_start(col, renderer, TRUE);
     gtk_tree_view_column_add_attribute(col, renderer,
 				       "text", 0);
@@ -660,7 +673,7 @@ treeview_live_game_set_up_commentary(void)
 
     col = gtk_tree_view_column_new();
     gtk_tree_view_append_column(treeview, col);
-    renderer = gtk_cell_renderer_text_new();
+    renderer = treeview_cell_renderer_text_new();
     gtk_tree_view_column_pack_start(col, renderer, TRUE);
     gtk_tree_view_column_add_attribute(col, renderer,
 				       "text", 2);
@@ -724,7 +737,7 @@ treeview_live_game_set_up_result(void)
     {
 	col = gtk_tree_view_column_new();
 	gtk_tree_view_append_column(treeview, col);
-	renderer = gtk_cell_renderer_text_new();
+	renderer = treeview_cell_renderer_text_new();
 	gtk_tree_view_column_pack_start(col, renderer, TRUE);
 	gtk_tree_view_column_set_cell_data_func(col, renderer,
 						treeview_cell_live_game_result,
@@ -813,7 +826,7 @@ treeview_set_up_users_startup(GtkTreeView *treeview)
 	col = gtk_tree_view_column_new();
 	gtk_tree_view_column_set_title(col, titles[i]);
 	gtk_tree_view_append_column(treeview, col);
-	renderer = gtk_cell_renderer_text_new();
+	renderer = treeview_cell_renderer_text_new();
 	gtk_tree_view_column_pack_start(col, renderer, TRUE);
 	gtk_tree_view_column_add_attribute(col, renderer,
 					   "text", i);
@@ -973,7 +986,7 @@ treeview_set_up_game_stats(GtkTreeView *treeview)
     {
 	col = gtk_tree_view_column_new();
 	gtk_tree_view_append_column(treeview, col);
-	renderer = gtk_cell_renderer_text_new();
+	renderer = treeview_cell_renderer_text_new();
 	gtk_tree_view_column_pack_start(col, renderer, TRUE);
 	gtk_tree_view_column_add_attribute(col, renderer,
 					   "markup", i);
@@ -1163,7 +1176,7 @@ treeview_set_up_fixtures(GtkTreeView *treeview)
     {
 	col = gtk_tree_view_column_new();
 	gtk_tree_view_append_column(treeview, col);
-	renderer = gtk_cell_renderer_text_new();
+	renderer = treeview_cell_renderer_text_new();
 	gtk_tree_view_column_pack_start(col, renderer, TRUE);
 	gtk_tree_view_column_add_attribute(col, renderer,
 					   "markup", i + 1);
@@ -1424,7 +1437,7 @@ treeview_set_up_table(GtkTreeView *treeview)
 	col = gtk_tree_view_column_new();
 	gtk_tree_view_column_set_title(col, titles[i]);
 	gtk_tree_view_append_column(treeview, col);
-	renderer = gtk_cell_renderer_text_new();
+	renderer = treeview_cell_renderer_text_new();
 	gtk_tree_view_column_pack_start(col, renderer, FALSE);
 	gtk_tree_view_column_add_attribute(col, renderer,
 					   "markup", i);
@@ -1565,7 +1578,7 @@ treeview_set_up_finances(GtkTreeView *treeview)
 	col = gtk_tree_view_column_new();
 	gtk_tree_view_column_set_title(col, titles[i]);
 	gtk_tree_view_append_column(treeview, col);
-	renderer = gtk_cell_renderer_text_new();
+	renderer = treeview_cell_renderer_text_new();
 	gtk_tree_view_column_pack_start(col, renderer, FALSE);
 	gtk_tree_view_column_add_attribute(col, renderer,
 					   "markup", i);
@@ -1775,7 +1788,7 @@ treeview_set_up_next_opponent(GtkTreeView *treeview)
     {
 	col = gtk_tree_view_column_new();
 	gtk_tree_view_append_column(treeview, col);
-	renderer = gtk_cell_renderer_text_new();
+	renderer = treeview_cell_renderer_text_new();
 	gtk_tree_view_column_pack_start(col, renderer, FALSE);
 	gtk_tree_view_column_add_attribute(col, renderer,
 					   "markup", i);
