@@ -22,7 +22,7 @@ void
 free_memory(void);
 
 void
-free_users(void);
+free_users(gboolean reset);
 
 void
 free_user(User *user);
@@ -31,7 +31,7 @@ void
 free_country(void);
 
 void
-free_leagues_array(GArray **leagues);
+free_leagues_array(GArray **leagues, gboolean reset);
 
 void
 free_league(League *league);
@@ -43,7 +43,7 @@ void
 free_team(Team *team);
 
 void
-free_cups_array(GArray **cups);
+free_cups_array(GArray **cups, gboolean reset);
 
 void
 free_cup(Cup *cup);
@@ -71,5 +71,8 @@ free_option_list(OptionList *optionlist, gboolean reset);
 
 void
 free_event(Event *event);
+
+void
+free_support_dirs(void);
 
 #endif

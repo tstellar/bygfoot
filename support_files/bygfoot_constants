@@ -1,6 +1,13 @@
 #### float constants get divided by 10000 and loaded as floats
 #### so we write 5000 if we'd like to have 0.5
 
+# commands to compress and uncompress save files
+string_save_compress_command zip -q
+string_save_uncompress_command unzip -qq
+
+# suffix of compressed files
+string_save_suffix .zip
+
 # number of seconds until messages disappear
 int_game_gui_message_duration 5
 

@@ -1,6 +1,7 @@
 #include "fixture.h"
 #include "free.h"
 #include "game_gui.h"
+#include "live_game.h"
 #include "maths.h"
 #include "misc.h"
 #include "option.h"
@@ -14,18 +15,12 @@
 User
 user_new(void)
 {
-    gint i;
     User new;
 
     new.name = g_string_new("NONAME");
     new.tm = NULL;
 
-    new.live_game.units = NULL;
-    new.live_game.fix = NULL;
-
-    for(i=0;i<LIVE_GAME_STAT_ARRAY_END;i++)
-	new.live_game.stats.players[i][0] = 
-	    new.live_game.stats.players[i][1] = NULL;
+    live_game_reset(&new.live_game, NULL, FALSE);
 
     new.events = g_array_new(FALSE, FALSE, sizeof(Event)); 
     new.options.list = NULL;

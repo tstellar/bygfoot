@@ -3,6 +3,20 @@
 #include "table.h"
 #include "variables.h"
 
+/** Return a newly allocated empty table. */
+Table
+table_new(void)
+{
+    Table new;
+
+    new.name = g_string_new("");
+    new.clid = -1;
+    new.round = -1;
+    new.elements = g_array_new(FALSE, FALSE, sizeof(TableElement));
+
+    return new;
+}
+
 /** Return a nullified table element.
     @param team The team pointer of the element.
     @param clid The cup/league id.

@@ -9,6 +9,29 @@
 #include "team.h"
 #include "variables.h"
 
+/** Return a fixture with default values. */
+Fixture
+fixture_new(void)
+{
+    gint i;
+    Fixture new;
+
+    new.clid = new.round = -1;
+    new.replay_number = 0;
+    new.week_number = new.week_round_number = -1;
+    new.teams[0] = new.teams[1] = NULL;
+    
+    for(i=0;i<3;i++)
+	new.result[0][i] = new.result[1][i] = 0;
+
+    new.home_advantage = 1;
+    new.second_leg = 0;
+    new.decisive = 0;
+    new.attendance = -1;
+
+    return new;
+}
+
 /** Write the fixtures for the given league
     at the beginning of a new season. 
     @param league The league we write the fixtures for. */
@@ -1003,4 +1026,20 @@ fixture_get_league_matches(const Team *tm1, const Team *tm2)
 	    }
 
     return matches;
+}
+
+/** Return the index of the fixture in the fixtures array. */
+gint
+fixture_get_index(const Fixture *fix)
+{
+    gint i;
+    const GArray *fixtures = league_cup_get_fixtures(fix->clid);
+    
+    for(i=0;i<fixtures->len;i++)
+	if(fix == &g_array_index(fixtures, Fixture, i))
+	    return i;
+
+    g_warning("fixture_get_index: fixture not found.\n");
+
+    return -1;
 }

@@ -62,8 +62,7 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
     if(unit->event.type == LIVE_GAME_EVENT_START_MATCH)
     {
 	gtk_widget_set_sensitive(button_live_close, FALSE);
-	if(stat0 != STATUS_SHOW_LAST_MATCH)
-	    gtk_widget_set_sensitive(button_pause, TRUE);
+	gtk_widget_set_sensitive(button_pause, 	(stat0 != STATUS_SHOW_LAST_MATCH));
 	gtk_widget_set_sensitive(button_resume, FALSE);
     }
     else if(unit->event.type == LIVE_GAME_EVENT_END_MATCH)

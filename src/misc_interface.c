@@ -447,9 +447,9 @@ create_window_startup (void)
 }
 
 GtkWidget*
-create_fsel_window (void)
+create_window_file_sel (void)
 {
-  GtkWidget *fsel_window;
+  GtkWidget *window_file_sel;
   GtkWidget *button_fsel_ok;
   GtkWidget *button_fsel_cancel;
   GtkAccelGroup *accel_group;
@@ -459,11 +459,12 @@ create_fsel_window (void)
 
   accel_group = gtk_accel_group_new ();
 
-  fsel_window = gtk_file_selection_new (_("Choose file"));
-  gtk_container_set_border_width (GTK_CONTAINER (fsel_window), 10);
-  gtk_window_set_position (GTK_WINDOW (fsel_window), GTK_WIN_POS_CENTER);
+  window_file_sel = gtk_file_selection_new (_("Choose file"));
+  gtk_container_set_border_width (GTK_CONTAINER (window_file_sel), 10);
+  gtk_window_set_position (GTK_WINDOW (window_file_sel), GTK_WIN_POS_CENTER);
+  gtk_window_set_modal (GTK_WINDOW (window_file_sel), TRUE);
 
-  button_fsel_ok = GTK_FILE_SELECTION (fsel_window)->ok_button;
+  button_fsel_ok = GTK_FILE_SELECTION (window_file_sel)->ok_button;
   gtk_widget_show (button_fsel_ok);
   GTK_WIDGET_SET_FLAGS (button_fsel_ok, GTK_CAN_DEFAULT);
   gtk_tooltips_set_tip (tooltips, button_fsel_ok, _("Return"), NULL);
@@ -471,7 +472,7 @@ create_fsel_window (void)
                               GDK_Return, 0,
                               GTK_ACCEL_VISIBLE);
 
-  button_fsel_cancel = GTK_FILE_SELECTION (fsel_window)->cancel_button;
+  button_fsel_cancel = GTK_FILE_SELECTION (window_file_sel)->cancel_button;
   gtk_widget_show (button_fsel_cancel);
   GTK_WIDGET_SET_FLAGS (button_fsel_cancel, GTK_CAN_DEFAULT);
   gtk_tooltips_set_tip (tooltips, button_fsel_cancel, _("Esc"), NULL);
@@ -479,7 +480,7 @@ create_fsel_window (void)
                               GDK_Escape, 0,
                               GTK_ACCEL_VISIBLE);
 
-  g_signal_connect ((gpointer) fsel_window, "delete_event",
+  g_signal_connect ((gpointer) window_file_sel, "delete_event",
                     G_CALLBACK (on_fsel_window_delete_event),
                     NULL);
   g_signal_connect ((gpointer) button_fsel_ok, "clicked",
@@ -490,14 +491,14 @@ create_fsel_window (void)
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
-  GLADE_HOOKUP_OBJECT_NO_REF (fsel_window, fsel_window, "fsel_window");
-  GLADE_HOOKUP_OBJECT_NO_REF (fsel_window, button_fsel_ok, "button_fsel_ok");
-  GLADE_HOOKUP_OBJECT_NO_REF (fsel_window, button_fsel_cancel, "button_fsel_cancel");
-  GLADE_HOOKUP_OBJECT_NO_REF (fsel_window, tooltips, "tooltips");
+  GLADE_HOOKUP_OBJECT_NO_REF (window_file_sel, window_file_sel, "window_file_sel");
+  GLADE_HOOKUP_OBJECT_NO_REF (window_file_sel, button_fsel_ok, "button_fsel_ok");
+  GLADE_HOOKUP_OBJECT_NO_REF (window_file_sel, button_fsel_cancel, "button_fsel_cancel");
+  GLADE_HOOKUP_OBJECT_NO_REF (window_file_sel, tooltips, "tooltips");
 
-  gtk_window_add_accel_group (GTK_WINDOW (fsel_window), accel_group);
+  gtk_window_add_accel_group (GTK_WINDOW (window_file_sel), accel_group);
 
-  return fsel_window;
+  return window_file_sel;
 }
 
 GtkWidget*

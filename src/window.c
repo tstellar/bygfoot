@@ -24,14 +24,14 @@ window_show_startup(void)
 	window_create(WINDOW_STARTUP);
     GtkWidget *combo_country =
 	lookup_widget(window_startup, "combo_country");
-    gchar country_dir[SMALL];
+    const gchar *country_dir;
     GPtrArray *dir_contents = NULL;
     GList *combo_strings = NULL;
     gint i;
     
-    file_get_definitions_dir(country_dir);
+    country_dir = file_get_definitions_dir();
 
-    dir_contents = file_dir_get_contents((const gchar*)country_dir, "country_");
+    dir_contents = file_dir_get_contents(country_dir, "country_", "");
 
     for(i=0;i<dir_contents->len;i++)
 	combo_strings = g_list_append(combo_strings,
@@ -40,6 +40,25 @@ window_show_startup(void)
     gtk_combo_set_popdown_strings(GTK_COMBO(combo_country), combo_strings);
 
     free_g_string_array(&dir_contents);
+}
+
+/** Show the file selection window. */
+void
+window_show_file_sel(void)
+{
+    gchar buf[SMALL];
+    const gchar *home = g_get_home_dir();
+
+    window_create(WINDOW_FILE_SEL);
+
+    if(strlen(save_file->str) > 0)
+	gtk_file_selection_set_filename(GTK_FILE_SELECTION(window.file_sel),
+					save_file->str);
+    else
+    {
+	sprintf(buf, "%s/%s/saves/", home, HOMEDIRNAME);
+	gtk_file_selection_set_filename(GTK_FILE_SELECTION(window.file_sel), buf);
+    }
 }
 
 /**  Show the options window. */
@@ -324,6 +343,14 @@ window_create(gint window_type)
 		window.font_sel = create_window_font_sel();
 	    wind = window.font_sel;
 	    strcpy(buf, "Select font");
+	    break;
+	case WINDOW_FILE_SEL:
+	    if(window.file_sel != NULL)
+		g_warning("window_create: called on already existing window\n");
+	    else
+		window.file_sel = create_window_file_sel();
+	    wind = window.file_sel;
+	    strcpy(buf, "Select file");
 	    break;
 	case WINDOW_CONTRACT:
 	    if(window.contract != NULL)

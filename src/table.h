@@ -5,6 +5,9 @@
 #include "fixture_struct.h"
 #include "table_struct.h"
 
+Table
+table_new(void);
+
 TableElement
 table_element_new(Team *team);
 

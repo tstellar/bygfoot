@@ -68,12 +68,6 @@ gint
 game_player_get_ban_duration(void);
 
 void
-game_create_stats(gpointer live_game);
-
-void
-game_create_stats_players(gpointer live_game);
-
-void
 game_update_stats(gpointer live_game, gconstpointer live_game_unit);
 
 void

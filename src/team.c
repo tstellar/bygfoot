@@ -361,10 +361,17 @@ team_get_pointers_from_choose_teams(const GArray *choose_teams)
 Team*
 team_get_pointer_from_ids(gint clid, gint id)
 {    
-    if(clid < ID_CUP_START)
-	return &g_array_index(lig(league_cup_get_index_from_clid(clid)).teams, Team, id);
-    else
-	return &g_array_index(cp(league_cup_get_index_from_clid(clid)).teams, Team, id);
+    gint i;
+    const GArray *teams = league_cup_get_teams(clid);
+    
+    for(i=0;i<teams->len;i++)
+	if(g_array_index(teams, Team, i).id == id)
+	    return &g_array_index(teams, Team, i);
+
+    g_warning("team_get_pointer_from_ids: team with clid %d id %d not found.",
+	      clid, id);
+
+    return NULL;
 }
 
 /** Return the players of the team in a pointer array.

@@ -12,6 +12,9 @@ enum FixtureCompare
     FIXTURE_COMPARE_END
 };
 
+Fixture
+fixture_new(void);
+
 void
 fixture_write_league_fixtures(League *league);
 
@@ -108,5 +111,8 @@ fixture_get_league_matches(const Team *tm1, const Team *tm2);
 
 GPtrArray*
 fixture_get_coming(const Team *tm);
+
+gint
+fixture_get_index(const Fixture *fix);
 
 #endif

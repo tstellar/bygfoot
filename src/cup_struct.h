@@ -91,6 +91,11 @@ typedef struct
     gint skill_diff;
     /** Array with rules how teams are chosen.
 	@see #CupChooseTeam */
+    /** The week and week_round at the beginning of which the fixtures
+	have to be updated. */
+    gint next_fixture_update_week;
+    gint next_fixture_update_week_round;
+
     GArray *choose_teams;
     /** The ChooseTeam rule according to which
 	the participant from the user's league is chosen.
@@ -111,10 +116,6 @@ typedef struct
     GArray *tables;
     /** The fixtures of a season for the cup. */
     GArray *fixtures;
-    /** The week and week_round at the beginning of which the fixtures
-	have to be updated. */
-    gint next_fixture_update_week;
-    gint next_fixture_update_week_round;
 } Cup;
 
 #endif

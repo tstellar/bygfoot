@@ -1,5 +1,6 @@
 #include "cup.h"
 #include "league.h"
+#include "table.h"
 #include "team.h"
 #include "variables.h"
 
@@ -29,10 +30,8 @@ league_new(void)
     
     new.fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));
 
-    new.table.name = g_string_new("");
+    new.table = table_new();
     new.table.clid = new.id;
-    new.table.round = -1;
-    new.table.elements = g_array_new(FALSE, FALSE, sizeof(TableElement));
 
     new.first_week = new.week_gap = 1;
     new.yellow_red = 1000;
@@ -110,7 +109,7 @@ league_cup_get_index_from_clid(gint clid)
 	    }
 
     if(index == -1)
-	g_warning("league_cup_get_index_from_clid: couldn't find league or cup with index %d\n", clid);
+	g_warning("league_cup_get_index_from_clid: couldn't find league or cup with id %d\n", clid);
 
     return index;
 }

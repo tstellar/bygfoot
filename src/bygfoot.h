@@ -18,6 +18,9 @@
  */
 #define VERS "1.9.0"
 
+/** Home dir name */
+#define HOMEDIRNAME ".bygfoot-1.9"
+
 /**
  * Convenience macros, used for string sizes (typically buf[SMALL]).
  */
@@ -96,16 +99,9 @@ typedef struct
 	*yesno,
 	*options,
 	*font_sel,
+	*file_sel,
 	*contract,
 	*menu_player,
 	*user_management;
 } Windows;
-
-/** A struct representing an option or a constant. */
-typedef struct
-{
-    GString *name, *string_value;
-    gint value;
-} Option;
-
 #endif

@@ -11,23 +11,31 @@ free_memory(void)
 {
     free_variables();
     free_country();
-    free_users();
+    free_users(FALSE);
     free_live_game(&live_game_temp);
+    free_support_dirs();
 }
 
 /** Free the users array. */
 void
-free_users(void)
+free_users(gboolean reset)
 {
     gint i;
 
     if(users == NULL)
+    {
+	if(reset)
+	    users = g_array_new(FALSE, FALSE, sizeof(User));
 	return;
+    }
 
     for(i=0;i<users->len;i++)
 	free_user(&usr(i));
 
     free_g_array(&users);
+
+    if(reset)
+	users = g_array_new(FALSE, FALSE, sizeof(User));
 }
 
 /** Free the memory the user occupies.
@@ -129,9 +137,9 @@ free_country(void)
     for(i=0;i<3;i++)
 	free_g_string(strings[i]);
 
-    free_leagues_array(&ligs);
+    free_leagues_array(&ligs, FALSE);
 
-    free_cups_array(&cps);
+    free_cups_array(&cps, FALSE);
 }
 
 /**
@@ -139,17 +147,24 @@ free_country(void)
    @param leagues The pointer to the array we free.
 */
 void
-free_leagues_array(GArray **leagues)
+free_leagues_array(GArray **leagues, gboolean reset)
 {
     gint i;
 
     if(*leagues == NULL)
+    {
+	if(reset)
+	    *leagues = g_array_new(FALSE, FALSE, sizeof(League));
 	return;
+    }
 
     for(i=0;i<(*leagues)->len;i++)
 	free_league(&g_array_index(*leagues, League, i));
 
     free_g_array(leagues);
+
+    if(reset)
+	*leagues = g_array_new(FALSE, FALSE, sizeof(League));
 }
 
 /**
@@ -237,17 +252,24 @@ free_player(Player *pl)
    @param cups The pointer to the array we free.
 */
 void
-free_cups_array(GArray **cups)
+free_cups_array(GArray **cups, gboolean reset)
 {
     gint i;
 
     if(*cups == NULL)
+    {
+	if(reset)
+	    *cups = g_array_new(FALSE, FALSE, sizeof(Cup));
 	return;
+    }
 
     for(i=0;i<(*cups)->len;i++)
 	free_cup(&g_array_index(*cups, Cup, i));
 
     free_g_array(cups);
+
+    if(reset)
+	*cups = g_array_new(FALSE, FALSE, sizeof(Cup));
 }
 
 /**
@@ -330,6 +352,8 @@ free_variables(void)
 
     free_option_list(&options, FALSE);
     free_option_list(&constants, FALSE);
+
+    free_g_string(&save_file);
 }
 
 /**
@@ -387,4 +411,23 @@ free_g_ptr_array(GPtrArray **array)
     g_ptr_array_free(*array, TRUE);
 
     *array = NULL;
+}
+
+/** Free the glist containing the support directories. */
+void
+free_support_dirs(void)
+{
+  GList *elem = support_directories;
+
+  if(elem == NULL)
+      return;
+
+  while(elem)
+  {
+      g_free ((gchar*)elem->data);
+      elem = elem->next;
+  }
+
+  g_list_free(support_directories);
+  support_directories = NULL;
 }

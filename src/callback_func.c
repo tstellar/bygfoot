@@ -122,7 +122,7 @@ callback_show_last_match(void)
 {
     gint i;
 
-    if(current_user.live_game.units == NULL)
+    if(current_user.live_game.units->len == 0)
     {
 	game_gui_show_warning("No match to show.");
 	return;

@@ -101,7 +101,7 @@ start_generate_league_teams(void)
 void
 start_load_cup_teams(void)
 {
-    gint i, j, k;
+    gint i;
 
     for(i=0;i<cps->len;i++)
 	if(cp(i).type == CUP_TYPE_INTERNATIONAL)

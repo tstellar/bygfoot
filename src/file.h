@@ -14,8 +14,14 @@ file_find_support_file                       (const gchar     *filename);
 gboolean
 file_get_next_opt_line(FILE *fil, gchar *opt_name, gchar *opt_value);
 
+void
+file_load_opt_file(const gchar *filename, OptionList *optionlist);
+
+void
+file_save_opt_file(const gchar *filename, OptionList *optionlist);
+
 GPtrArray*
-file_dir_get_contents(const gchar *dir_name, const gchar *prefix);
+file_dir_get_contents(const gchar *dir_name, const gchar *prefix, const gchar *suffix);
 
 void
 file_get_player_names(gint number_of_names);
@@ -23,26 +29,34 @@ file_get_player_names(gint number_of_names);
 gboolean
 file_my_fopen(const gchar *filename, gchar *bits, FILE **fil, gboolean abort_program);
 
-void
-file_get_definitions_dir(gchar *dir);
-
-void
-file_write_opt_names(gchar opt_names[][50], gchar conf_file_names[][100]);
-
-void
-file_write_user_opt_names(gchar user_opt_names[][50],
-			  gchar player_list_att_names[][PLAYER_LIST_ATTRIBUTE_END][50]);
+const gchar*
+file_get_definitions_dir(void);
 
 void
 file_load_conf_files(void);
 
 void
-file_save_conf(void);
-
-void
 file_load_user_conf_file(User *user);
 
 void
-file_load_constants_file(const gchar* file_name);
+file_check_home_dir(void);
+
+void
+file_check_home_dir_copy_conf_files(void);
+
+void
+file_check_home_dir_copy_definition_files(void);
+
+gboolean
+file_my_system(const gchar *command);
+
+const gchar*
+file_get_first_support_dir(void);
+
+void
+file_compress_files(const gchar *destfile, const gchar *prefix);
+
+void
+file_decompress(const gchar *filename);
 
 #endif

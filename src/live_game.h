@@ -74,7 +74,7 @@ gboolean
 query_live_game_second_yellow(gint team, gint player);
 
 void
-live_game_reset(Fixture *fix);
+live_game_reset(LiveGame *live_game, Fixture *fix, gboolean free_variable);
 
 gint
 live_game_unit_get_minute(const LiveGameUnit *unit);

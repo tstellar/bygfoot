@@ -7,14 +7,6 @@
 #include "variables.h"
 
 /**
-   The list of directories the file_find_support_file() function
-   searches for support files (e.g. pixmaps or text files).
-   @see file_find_support_file()
-   @see file_add_support_directory_recursive()
-*/
-static GList *support_directories = NULL;
-
-/**
    Add the specified directory to the list of directories file_find_support_file()
    searches for support files.
    Any subdirectories are added recursively.
@@ -36,6 +28,7 @@ file_add_support_directory_recursive                   (const gchar     *directo
     add_pixmap_directory(directory);
     support_directories = g_list_prepend (support_directories,
 					  g_strdup (directory));
+
     while(TRUE)
     {
 	file = g_dir_read_name(newdir);
@@ -68,10 +61,8 @@ file_add_support_directory_recursive                   (const gchar     *directo
 gchar*
 file_find_support_file                       (const gchar     *filename)
 {
-  GList *elem;
+  GList *elem = support_directories;
 
-  /* We step through each of the pixmaps directory to find it. */
-  elem = support_directories;
   while (elem)
     {
       gchar *pathname = g_strdup_printf ("%s%s%s", (gchar*)elem->data,
@@ -82,7 +73,25 @@ file_find_support_file                       (const gchar     *filename)
       g_free (pathname);
       elem = elem->next;
     }
+
+/*   if(opt_int("int_opt_debug")) */
+/*       g_warning("file_find_support_file: file '%s' not found.", filename); */
+
   return NULL;
+}
+
+/** Execute command with 'system' and give a warning if return value is -1.
+    @return TRUE on success, FALSE, otherwise. */
+gboolean
+file_my_system(const gchar *command)
+{
+    if(system(command) == -1)
+    {
+	g_warning("file_my_system: system returned -1 when executing '%s'.", command);
+	return FALSE;
+    }
+
+    return TRUE;
 }
 
 /** A custom function opening files.
@@ -114,8 +123,6 @@ file_my_fopen(const gchar *filename, gchar *bits, FILE **fil, gboolean abort_pro
     sprintf(buf, "Could not open file '%s' in mode '%s'.\n", filename, bits);
 
     g_warning(buf);
-    /*d*/
-/*     show_popup_window(buf, NULL); */
 
     if(abort_program)
 	main_exit_program(EXIT_FILE_OPEN_FAILED, NULL);
@@ -123,18 +130,112 @@ file_my_fopen(const gchar *filename, gchar *bits, FILE **fil, gboolean abort_pro
     return FALSE;
 }
 
+/** Create a $HOME/.bygfoot dir and other stuff if necessary. */
+void
+file_check_home_dir_create_dirs(void)
+{
+    gint i;
+    gchar *dirs[3] =
+	{HOMEDIRNAME,
+	 HOMEDIRNAME"/definitions",
+	 HOMEDIRNAME"/saves"};
+    const gchar *home = g_get_home_dir();
+    gchar buf[SMALL];
+
+    for(i=0;i<3;i++)
+    {
+	sprintf(buf, "%s/%s", home, dirs[i]);
+	if(!g_file_test(buf, G_FILE_TEST_EXISTS))
+	{
+	    sprintf(buf, "mkdir -v %s/%s", home, dirs[i]);
+	    file_my_system(buf);
+	}
+    }
+}
+
+/** Copy the basic config files into the user home dir. */
+void
+file_check_home_dir_copy_conf_files(void)
+{
+    gint i;
+    gchar *conf_files[3] =
+	{"bygfoot.conf",
+	 "bygfoot_user.conf",
+	 "bygfoot_constants"};
+    const gchar *home = g_get_home_dir();
+    gchar *conf_file = NULL;
+    gchar buf[SMALL];
+
+    for(i=0;i<3;i++)
+    {
+	sprintf(buf, "%s/%s/%s", home, HOMEDIRNAME, conf_files[i]);
+	if(!g_file_test(buf, G_FILE_TEST_EXISTS))
+	{
+	    conf_file = file_find_support_file(conf_files[i]);
+	    sprintf(buf, "cp -v %s %s/%s/%s", conf_file, home, HOMEDIRNAME, conf_files[i]);
+	    file_my_system(buf);
+	}
+    }
+}
+
+/** Copy the xml definition files into the home dir. */
+void
+file_check_home_dir_copy_definition_files(void)
+{
+    gint i;
+    gchar buf[SMALL];
+    const gchar *home = g_get_home_dir();
+    GPtrArray *dir_contents = NULL;    
+    GList *elem = support_directories;
+  
+    while(elem != NULL)
+    {	
+	if(g_str_has_suffix((gchar*)elem->data, "definitions"))
+	{
+	    dir_contents = file_dir_get_contents((gchar*)elem->data, "", ".xml");
+	    
+	    for(i=0;i<dir_contents->len;i++)
+	    {
+		sprintf(buf, "%s/%s/definitions/%s", home, HOMEDIRNAME, 
+			((GString*)g_ptr_array_index(dir_contents, i))->str);
+		if(!g_file_test(buf, G_FILE_TEST_EXISTS))
+		{
+		    sprintf(buf, "cp -v %s/%s %s/%s/definitions/%s", (gchar*)elem->data,
+			    ((GString*)g_ptr_array_index(dir_contents, i))->str,
+			    home, HOMEDIRNAME, ((GString*)g_ptr_array_index(dir_contents, i))->str);
+		    file_my_system(buf);
+		}
+	    }
+
+	    free_g_string_array(&dir_contents);
+	}
+
+	elem = elem->next;
+    }
+}
+
+/** Copy some files into the user's home directory. */
+void
+file_check_home_dir(void)
+{
+    file_check_home_dir_create_dirs();
+    file_check_home_dir_copy_conf_files();
+    file_check_home_dir_copy_definition_files();
+}
+
 /**
    Retrieve those files in the given directory
-   that start with the given prefix. The file names are stored
+   that start with the given prefix and suffix. The file names are stored
    in an array of GStrings.
    @param dir_name The full path to the directory.
    @param prefix The prefix that files must have to be included.
+   @param suffix The suffix that files must have to be included.
    @return A GPtrArray with pointers to the GStrings of the file
-   names. The GStrings and the array must be freed with file_dir_free_contents().
-   @see file_dir_free_contents()
+   names. The GStrings and the array must be freed with free_g_string_array().
+   @see free_g_string_array()
 */
 GPtrArray*
-file_dir_get_contents(const gchar *dir_name, const gchar *prefix)
+file_dir_get_contents(const gchar *dir_name, const gchar *prefix, const gchar *suffix)
 {
     GError *error = NULL;
     GDir *dir = g_dir_open(dir_name, 0, &error);
@@ -154,7 +255,8 @@ file_dir_get_contents(const gchar *dir_name, const gchar *prefix)
 
     while(file != NULL)
     {
-	if(g_str_has_prefix(file, prefix))
+	if(g_str_has_prefix(file, prefix) &&
+	   g_str_has_suffix(file, suffix))
 	{
 	    new = g_string_new(file);
 	    g_ptr_array_add(contents, (gpointer)new);
@@ -167,33 +269,26 @@ file_dir_get_contents(const gchar *dir_name, const gchar *prefix)
     return contents;
 }
 
-/** Write the first directory called 'definitions' from the support
-    directories array into the buffer.
-    @param dir The string buffer we write the directory path into. */
-void
-file_get_definitions_dir(gchar *dir)
+/** Return the first directory called 'definitions' from the support
+    directories array. */
+const gchar*
+file_get_definitions_dir(void)
 {
-    GList *elem;
-
-    strcpy(dir, "");
-
-    elem = support_directories;
+    GList *elem = support_directories;
   
     while(elem != NULL)
     {
 	if(g_str_has_suffix((gchar*)elem->data, "definitions") ||
 	   g_str_has_suffix((gchar*)elem->data, "definitions/"))
-	{
-	    strcpy(dir, (gchar*)elem->data);
-	    break;
-	}
+	    return (gchar*)elem->data;
 	
 	elem = elem->next;
     }
 
-    if(strlen(dir) == 0)
-	main_exit_program(EXIT_DIR_OPEN_FAILED,
-			  "Didn't find definitions directory.\n");
+    main_exit_program(EXIT_DIR_OPEN_FAILED,
+		      "Didn't find definitions directory.\n");
+
+    return NULL;
 }
 
 /** Read the file until the next line that's not a comment or
@@ -240,22 +335,45 @@ file_get_next_opt_line(FILE *fil, gchar *opt_name, gchar *opt_value)
 	    else
 		break;
 	
-	sscanf(buf, "%[^ \t]%[^a-zA-Z0-9_-]%[^\n]", opt_name, trash, opt_value);
+	sscanf(buf, "%[^ \t]%[ \t]%[^\n]", opt_name, trash, opt_value);
     }
 
     return (feof(fil) == 0);
 }
 
+/** Save an optionlist to a file. */
+void
+file_save_opt_file(const gchar *filename, OptionList *optionlist)
+{
+    gint i;
+    FILE *fil = NULL;
+
+    file_my_fopen(filename, "w", &fil, TRUE);
+
+    for(i=0;i<optionlist->list->len;i++)
+	if(g_str_has_prefix(g_array_index(optionlist->list, Option, i).name->str, "string_"))
+	    fprintf(fil, "%s %s\n", g_array_index(optionlist->list, Option, i).name->str,
+		    g_array_index(optionlist->list, Option, i).string_value->str);
+	else
+	    fprintf(fil, "%s %d\n", g_array_index(optionlist->list, Option, i).name->str,
+		    g_array_index(optionlist->list, Option, i).value);
+    
+    fclose(fil);
+}
+
 /** Load a file containing name - value pairs into
     the specified array. */
 void
-file_load_opt_file(FILE *fil, OptionList *optionlist)
+file_load_opt_file(const gchar *filename, OptionList *optionlist)
 {
     gint i;
     gchar opt_name[SMALL], opt_value[SMALL];
     Option new;
+    FILE *fil = NULL;
 
     free_option_list(optionlist, TRUE);
+
+    file_my_fopen(filename, "r", &fil, TRUE);
 
     while(file_get_next_opt_line(fil, opt_name, opt_value))
     {
@@ -286,25 +404,12 @@ file_load_opt_file(FILE *fil, OptionList *optionlist)
 void
 file_load_conf_files(void)
 {
-    FILE *fil = NULL;
     gchar *conf_file = file_find_support_file("bygfoot.conf");
 
-    file_my_fopen(conf_file, "r", &fil, TRUE);
+    file_load_opt_file(conf_file, &options);
     g_free(conf_file);
 
-    file_load_opt_file(fil, &options);
-
-    file_load_constants_file(opt_str("string_opt_constants_file"));
-}
-
-/** Load the constants from the given file. */
-void
-file_load_constants_file(const gchar* file_name)
-{
-    FILE *fil = NULL;
-
-    file_my_fopen(file_name, "r", &fil, TRUE);
-    file_load_opt_file(fil, &constants);
+    file_load_opt_file(opt_str("string_opt_constants_file"), &constants);
 }
 
 /** Load a user-specific conf file.
@@ -323,8 +428,79 @@ file_load_user_conf_file(User *user)
     {
 	g_free(conf_file);
 	conf_file = file_find_support_file(opt_str("string_opt_default_user_conf_file"));
-	file_my_fopen(conf_file, "r", &fil, TRUE);
     }
 
-    file_load_opt_file(fil, &user->options);
+    file_load_opt_file(conf_file, &user->options);
+    g_free(conf_file);
+}
+
+/** Return the primary support dir (probably './support_files' or 
+    the Bygfoot dir in $HOME). */
+const gchar*
+file_get_first_support_dir(void)
+{
+    GList *elem = support_directories;
+  
+    while (elem)
+    {
+	if(g_str_has_suffix((gchar*)elem->data, HOMEDIRNAME) ||
+	   g_str_has_suffix((gchar*)elem->data, "support_files"))
+	    return (const gchar*)elem->data;
+
+	elem = elem->next;
+    }
+
+    g_warning("file_get_first_support_dir: no primary support dir found.");
+
+    return NULL;
+}
+
+/** Compress the files starting with the prefix.
+    @param destfile The name of the file to create. */
+void
+file_compress_files(const gchar *destfile, const gchar *prefix)
+{
+    gint i;
+    gchar buf[SMALL];
+    gchar *basename = g_path_get_basename(prefix),
+	*dirname = g_path_get_dirname(prefix),
+	*zipbasename = g_path_get_basename(destfile);
+    GPtrArray *files = file_dir_get_contents(dirname, basename, "");
+
+    sprintf(buf, "pushd 1> /dev/null %s; %s %s", dirname,
+	    const_str("string_save_compress_command"), zipbasename);
+
+    for(i=0;i<files->len;i++)
+    {
+	strcat(buf, " ");
+	strcat(buf, ((GString*)g_ptr_array_index(files, i))->str);
+    }
+
+    strcat(buf, "; popd 1> /dev/null");
+    file_my_system(buf);
+
+    sprintf(buf, "rm -rf %s/%s*", dirname, basename);
+    file_my_system(buf);
+
+    free_g_string_array(&files);
+
+    g_free(basename);
+    g_free(dirname);
+    g_free(zipbasename);
+}
+
+/** Decompress the specified file. */
+void
+file_decompress(const gchar *filename)
+{
+    gchar buf[SMALL];
+    gchar *dirname = g_path_get_dirname(filename),
+	*basename = g_path_get_basename(filename);
+
+    sprintf(buf, "pushd %s 1> /dev/null; %s %s", dirname,
+	    const_str("string_save_uncompress_command"), basename);
+
+    file_my_system(buf);
+
+    g_free(dirname);
 }

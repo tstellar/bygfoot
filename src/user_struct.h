@@ -71,15 +71,9 @@ typedef struct
 	the current and the past week. */
     gint money, debt, money_in[2][MON_IN_END],
 	money_out[2][MON_OUT_END];
-    /** The attributes shown in the player lists.
-	@see #PlayerListAttribute
-	@see #PlayerListAttributeValue */
-    PlayerListAttribute player_list_attributes[3];
     /** The user's scout and physio qualities.
 	@see #Quality */
     gint scout, physio;
-    /** The font used in treeviews. */
-    GString *font_name;
     /** The variable for the latest user live game. @see #Game */
     LiveGame live_game;
 } User;

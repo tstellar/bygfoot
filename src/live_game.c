@@ -37,7 +37,18 @@ live_game_calculate_fixture(Fixture *fix)
 {
     if(stat0 != STATUS_LIVE_GAME_PAUSE)
     {
-	live_game_reset(fix);
+	match = (fixture_user_team_involved(fix) != -1) ? 
+	    &usr(fixture_user_team_involved(fix)).live_game : &live_game_temp;
+	show = (fixture_user_team_involved(fix) != -1 && 
+		option_int("int_opt_user_show_live_game", 
+			   &usr(fixture_user_team_involved(fix)).options));
+
+	stat2 = fixture_user_team_involved(fix);
+
+	if(show && window.live == NULL)
+	    window.live = window_create(WINDOW_LIVE);
+
+	live_game_reset(match, fix, TRUE);
 	game_initialize(fix);
     }
     else
@@ -1145,46 +1156,6 @@ live_game_unit_before(const LiveGameUnit* unit, gint gap)
     return NULL;
 }
 
-/** Free the live game variable before we begin a new live game.
-    @param fix The fixture we'll show. */
-void
-live_game_reset(Fixture *fix)
-{
-    gint i;
-    match = (fixture_user_team_involved(fix) != -1) ? 
-	&usr(fixture_user_team_involved(fix)).live_game : &live_game_temp;
-    show = (fixture_user_team_involved(fix) != -1 && 
-	    option_int("int_opt_user_show_live_game", 
-		       &usr(fixture_user_team_involved(fix)).options));
-
-    stat2 = fixture_user_team_involved(fix);
-
-    if(show && window.live == NULL)
-	window.live = window_create(WINDOW_LIVE);
-
-    free_live_game(match);
-    unis = g_array_new(FALSE, FALSE, sizeof(LiveGameUnit));
-    
-    for(i=0;i<LIVE_GAME_STAT_ARRAY_END;i++)
-    {
-	match->stats.players[0][i] = g_ptr_array_new();
-	match->stats.players[1][i] = g_ptr_array_new();
-    }
-
-    for(i=0;i<LIVE_GAME_STAT_VALUE_END;i++)
-	match->stats.values[0][i] =
-	    match->stats.values[1][i] = 0;
-
-    match->fix = fix;
-    match->subs_left[0] = match->subs_left[1] = 3;
-    match->stadium_event = -1;
-    
-    if(fix->home_advantage)
-	match->home_advantage = 
-	    math_rnd(const_float("float_game_home_advantage_lower"),
-		     const_float("float_game_home_advantage_upper"));
-}
-
 /** Generate commentary for the live game event in the unit
     and show the unit in the live game window.
     @param unit The unit we comment. */
@@ -1557,4 +1528,40 @@ void
 live_game_set_match(LiveGame *live_game)
 {
     match = live_game;
+}
+
+/** Reset the live game variable before we begin a new live game.
+    @param live_game The pointer to the live game.
+    @param fix The fixture we'll show.
+    @param free Whether or not to free the variable before resetting. */
+void
+live_game_reset(LiveGame *live_game, Fixture *fix, gboolean free_variable)
+{
+    gint i;
+
+    if(free_variable)
+	free_live_game(live_game);
+
+    live_game->units = g_array_new(FALSE, FALSE, sizeof(LiveGameUnit));
+    
+    for(i=0;i<LIVE_GAME_STAT_ARRAY_END;i++)
+    {
+	live_game->stats.players[0][i] = g_ptr_array_new();
+	live_game->stats.players[1][i] = g_ptr_array_new();
+    }
+
+    for(i=0;i<LIVE_GAME_STAT_VALUE_END;i++)
+	live_game->stats.values[0][i] =
+	    live_game->stats.values[1][i] = 0;
+
+    live_game->fix = fix;
+    live_game->subs_left[0] = live_game->subs_left[1] = 3;
+    live_game->stadium_event = -1;
+    
+    if(fix != NULL && fix->home_advantage)
+	live_game->home_advantage = 
+	    math_rnd(const_float("float_game_home_advantage_lower"),
+		     const_float("float_game_home_advantage_upper"));
+    else
+	live_game->home_advantage = 0;
 }

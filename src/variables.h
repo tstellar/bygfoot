@@ -12,6 +12,9 @@
  */
 Country country;
 
+/** The array of human players. @see #User */
+GArray *users;
+
 /** The season, week and week round numbers. 
     We keep track of the time in the game with these variables. */
 gint season, week, week_round;
@@ -50,10 +53,20 @@ gint popups_active;
 /** The variable for non-user games (which aren't shown). */
 LiveGame live_game_temp;
 
-/** The array of human players. @see #User */
-GArray *users;
-
 /** The index of the current user in the #users array. */
 gint cur_user;
 
 gint timeout_id;
+
+GRand *rand_generator;
+/**
+   The list of directories the file_find_support_file() function
+   searches for support files (e.g. pixmaps or text files).
+   @see file_find_support_file()
+   @see file_add_support_directory_recursive()
+*/
+GList *support_directories;
+
+/** The name of the current save file (gets updated when a game is
+    saved or loaded).  */
+GString *save_file;

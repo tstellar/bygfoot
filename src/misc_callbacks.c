@@ -1,7 +1,10 @@
+#include "callbacks.h"
 #include "callback_func.h"
 #include "game.h"
 #include "game_gui.h"
+#include "gui.h"
 #include "live_game.h"
+#include "load_save.h"
 #include "main.h"
 #include "misc_callback_func.h"
 #include "misc_callbacks.h"
@@ -70,8 +73,9 @@ on_fsel_window_delete_event            (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+    on_button_fsel_cancel_clicked(NULL, NULL);
 
-  return FALSE;
+    return FALSE;
 }
 
 
@@ -79,7 +83,24 @@ void
 on_button_fsel_ok_clicked              (GtkButton       *button,
                                         gpointer         user_data)
 {
+    const gchar *filename = 
+	gtk_file_selection_get_filename(GTK_FILE_SELECTION(window.file_sel));
 
+    if(stat1 == STATUS_SAVE_GAME)
+	load_save_save_game(filename);
+    else if(stat1 == STATUS_LOAD_GAME)
+    {
+	if(!g_file_test(filename, G_FILE_TEST_EXISTS))
+	    game_gui_show_warning("File not found.");
+	else
+	{
+	    load_save_load_game(filename);
+	    cur_user = 0;
+	    on_button_back_to_main_clicked(NULL, NULL);
+	}
+    }
+
+    window_destroy(&window.file_sel, FALSE);
 }
 
 
@@ -87,6 +108,7 @@ void
 on_button_fsel_cancel_clicked          (GtkButton       *button,
                                         gpointer         user_data)
 {
+    window_destroy(&window.file_sel, FALSE);
 }
 
 

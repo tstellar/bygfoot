@@ -20,8 +20,6 @@ misc_print_error(GError **error, gboolean abort_program)
     sprintf(buf, "%s", (*error)->message);
 
     g_warning("error message: %s\n", buf);
-    /*d*/
-/*     show_popup_window(buf); */
     g_error_free(*error);
     *error = NULL;
 
@@ -206,4 +204,53 @@ misc_float_compare(gfloat first, gfloat second)
 	return 1;
 
     return 0;
+}
+
+/** Remove some of the first or last characters from src and copy
+    the rest to dest; no error-checking is done. */
+void
+misc_truncate_string(const gchar *src, gchar *dest, gint number_of_chars)
+{
+    gint i;
+    gint num = ABS(number_of_chars);
+    
+    if(number_of_chars >= 0)
+    {
+	strncpy(dest, src, strlen(src) - num);
+	dest[strlen(src) - num] = '\0';
+	return;
+    }
+
+    for(i=0;i<strlen(src);i++)
+	if(i >= num)
+	    dest[i - num] = src[i];
+    
+    dest[i - num] = '\0';
+}
+
+/** Find out whether the first string contains the second string. */
+gboolean
+misc_string_contains(const gchar *string, const gchar *text)
+{
+    gint i, j;
+    gint lens = strlen(string),
+	lent = strlen(text);
+
+    if(lent > lens)
+	return FALSE;
+       
+    if(lent == lens)
+	return (strcmp(text, string) == 0);
+
+    for(i=0;i<lens - lent + 1;i++)
+    {
+	for(j=0;j<lent;j++)
+	    if(string[i + j] != text[j])
+		break;
+	
+	if(j == lent)
+	    return TRUE;
+    }
+
+    return FALSE;
 }

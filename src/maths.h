@@ -8,15 +8,15 @@
 /**
    Macros for random number generation (#rnd for float, #rndi and #gauss_disti for integer).
 */
-#define math_rnd(lower,upper) ((gfloat)random()/(gfloat)0x7fffffff*((upper)-(lower))+(lower))
-#define math_rndi(lower,upper) ((gint)rint( math_rnd((gfloat)(lower) - 0.499, (gfloat)(upper) + 0.499) ))
+#define math_rnd(lower,upper) g_rand_double_range(rand_generator, lower, upper)
+#define math_rndi(lower,upper) g_rand_int_range(rand_generator, lower, upper + 1)
 #define math_gauss_disti(lower, upper) ((gint)rint( math_gauss_dist((gfloat)lower - 0.499, (gfloat)upper + 0.499)))
 
-gfloat
+gdouble
 math_gaussrand(void);
 
-gfloat
-math_gauss_dist(gfloat lower, gfloat upper);
+gdouble
+math_gauss_dist(gdouble lower, gdouble upper);
 
 gint
 math_get_place(gint value, gint place);

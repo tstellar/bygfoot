@@ -389,7 +389,7 @@ option_gui_write_options(void)
     {
 	if(i == ENTRY_OPT_CONSTANTS && 
 	   strcmp(gtk_entry_get_text(entry_widgets[i]), opt_str("string_opt_constants_file" )) != 0)
-	    file_load_constants_file(gtk_entry_get_text(entry_widgets[i]));
+	    file_load_opt_file(gtk_entry_get_text(entry_widgets[i]), &constants);
 
 	g_string_printf(entry_options[i], "%s", gtk_entry_get_text(entry_widgets[i]));
     }

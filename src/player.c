@@ -54,7 +54,6 @@ player_new(Team *tm, gfloat average_skill)
     new.fitness = math_rnd(const_float("float_player_fitness_lower"),
 			   const_float("float_player_fitness_upper"));
     new.health = new.recovery = 0;
-    new.games_goals = g_array_new(FALSE, FALSE, sizeof(PlayerGamesGoals));
     new.value = player_assign_value(&new);
     new.wage = player_assign_wage(&new);
     new.contract = math_rnd(const_float("float_player_contract_lower"),
@@ -62,6 +61,7 @@ player_new(Team *tm, gfloat average_skill)
     new.lsu = math_rnd(const_float("float_player_lsu_lower"),
 		       const_float("float_player_lsu_upper"));
     new.cards = g_array_new(FALSE, FALSE, sizeof(PlayerCard));
+    new.games_goals = g_array_new(FALSE, FALSE, sizeof(PlayerGamesGoals));
 
     new.team = tm;
     new.participation = FALSE;

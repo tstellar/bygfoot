@@ -1,6 +1,7 @@
 #include "callbacks.h"
 #include "callback_func.h"
 #include "game_gui.h"
+#include "load_save.h"
 #include "main.h"
 #include "option.h"
 #include "player.h"
@@ -33,7 +34,8 @@ void
 on_menu_open_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-
+    stat1 = STATUS_LOAD_GAME;
+    window_show_file_sel();
 }
 
 
@@ -41,7 +43,11 @@ void
 on_menu_save_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-
+    if(!opt_int("int_opt_save_will_overwrite") ||
+       strlen(save_file->str) == 0)
+	on_menu_save_as_activate(NULL, NULL);
+    else
+	load_save_save_game(save_file->str);
 }
 
 
@@ -49,7 +55,8 @@ void
 on_menu_save_as_activate               (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-
+    stat1 = STATUS_SAVE_GAME;
+    window_show_file_sel();
 }
 
 void
@@ -72,7 +79,7 @@ void
 on_button_load_clicked                 (GtkButton       *button,
                                         gpointer         user_data)
 {
-
+    on_menu_open_activate(NULL, NULL);
 }
 
 
@@ -80,7 +87,7 @@ void
 on_button_save_clicked                 (GtkButton       *button,
                                         gpointer         user_data)
 {
-
+    on_menu_save_activate(NULL, NULL);
 }
 
 
@@ -376,10 +383,15 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
 {
     gint idx;
 
+    if(gtk_tree_selection_get_mode(
+	   gtk_tree_view_get_selection(GTK_TREE_VIEW(widget))) ==
+       GTK_SELECTION_NONE)
+	return TRUE;
+
     if(treeview_select_row(GTK_TREE_VIEW(widget), event))
 	idx = treeview_get_index(GTK_TREE_VIEW(widget), 0);
     else
-	return FALSE;
+	return TRUE;
 
     switch(stat0)
     {
@@ -406,7 +418,7 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
 	    break;
     }
 
-    return FALSE;
+    return TRUE;
 }
 
 void

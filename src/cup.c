@@ -161,7 +161,7 @@ cup_load_choose_teams(Cup *cup)
 	    {
 		g_array_append_val(cup->teams, g_array_index(teams, Team, permutation[j]));
 		g_array_index(cup->teams, Team, cup->teams->len - 1).clid = cup->id;
-		g_array_index(cup->teams, Team, cup->teams->len - 1).id = cup->teams->len;
+		g_array_index(cup->teams, Team, cup->teams->len - 1).id = cup->teams->len - 1;
 
 		number_of_teams++;
 	    }

@@ -774,13 +774,13 @@
   </child>
 </widget>
 
-<widget class="GtkFileSelection" id="fsel_window">
+<widget class="GtkFileSelection" id="window_file_sel">
   <property name="border_width">10</property>
   <property name="visible">True</property>
   <property name="title" translatable="yes">Choose file</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_CENTER</property>
-  <property name="modal">False</property>
+  <property name="modal">True</property>
   <property name="resizable">True</property>
   <property name="destroy_with_parent">False</property>
   <property name="show_fileops">True</property>

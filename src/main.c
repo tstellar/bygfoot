@@ -8,6 +8,7 @@
 #include "misc_callbacks.h"
 #include "file.h"
 #include "free.h"
+#include "live_game.h"
 #include "main.h"
 #include "transfer_struct.h"
 #include "variables.h"
@@ -27,13 +28,15 @@ main_init_variables(void)
     window.main = window.startup =
 	window.live = window.warning = window.progress = window.digits =
 	window.stadium = window.job_offer = window.yesno = 
-	window.options = window.font_sel = window.contract = 
+	window.options = window.font_sel = window.file_sel = window.contract = 
 	window.menu_player = window.user_management = NULL;
     
-    live_game_temp.units = NULL;
+    live_game_reset(&live_game_temp, NULL, FALSE);
 
     users = g_array_new(FALSE, FALSE, sizeof(User));
     transfer_list = g_array_new(FALSE, FALSE, sizeof(Transfer));
+
+    save_file = g_string_new("");
 
     constants.list = options.list = NULL;
     constants.datalist = options.datalist = NULL;
@@ -60,14 +63,19 @@ main_init(gint argc, gchar *argv[])
     gchar *pwd = g_get_current_dir();
 
     /* initialize the random nr generator */
-    srandom((unsigned)time(NULL));
+    rand_generator = g_rand_new();
+
+    support_directories = NULL;
 
     file_add_support_directory_recursive(PACKAGE_DATA_DIR "/" PACKAGE "/support_files");  
-    sprintf(buf, "%s/.bygfoot", g_get_home_dir());
+    sprintf(buf, "%s/%s", g_get_home_dir(), HOMEDIRNAME);
     file_add_support_directory_recursive(buf);
+
     sprintf(buf, "%s/support_files", pwd);
     g_free(pwd);
     file_add_support_directory_recursive(buf);
+    
+    file_check_home_dir();
 
     main_init_variables();
 }

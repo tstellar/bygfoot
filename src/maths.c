@@ -1,22 +1,23 @@
 #include "maths.h"
 #include "misc.h"
+#include "variables.h"
 
 /**
    Generate a Gauss-distributed (pseudo)random number.
    "By Box and Muller, and recommended by Knuth".
    @return A Gauss-distributed random number.
 */
-gfloat
+gdouble
 math_gaussrand(void)
 {
-    static gfloat V1, V2, S;
+    static gdouble V1, V2, S;
     static gint phase = 0;
-    gfloat X;
+    gdouble X;
 
     if(phase == 0) {
 	do {
-	    gfloat U1 = (gfloat)rand() / RAND_MAX;
-	    gfloat U2 = (gfloat)rand() / RAND_MAX;
+	    gdouble U1 = g_rand_double(rand_generator);
+	    gdouble U2 = g_rand_double(rand_generator);
 
 	    V1 = 2 * U1 - 1;
 	    V2 = 2 * U2 - 1;
@@ -42,13 +43,13 @@ math_gaussrand(void)
    @param upper Upper cutoff boundary.
    @return A Gauss-distributed number 
 */
-gfloat
-math_gauss_dist(gfloat lower, gfloat upper)
+gdouble
+math_gauss_dist(gdouble lower, gdouble upper)
 {						   
-    gfloat result;				   
+    gdouble result;				   
      	
-    result = (gfloat)(upper - lower) / 6 * math_gaussrand() 
-	+ (gfloat)(upper + lower) / 2;
+    result = (upper - lower) / 6 * math_gaussrand()
+	+ (upper + lower) / 2;
 
     if(result < lower)
 	result = lower;
