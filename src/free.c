@@ -10,7 +10,7 @@ void
 free_memory(void)
 {
     free_variables();
-    free_country();
+    free_country(FALSE);
     free_users(FALSE);
     free_live_game(&live_game_temp);
     free_support_dirs();
@@ -128,18 +128,22 @@ free_live_game(LiveGame *match)
    Free the main variable of the game, #country.
 */
 void
-free_country(void)
+free_country(gboolean reset)
 {
     gint i;
     GString **strings[3] = 
 	{&country.name, &country.symbol, &country.sid};
 
     for(i=0;i<3;i++)
+    {
 	free_g_string(strings[i]);
+	if(reset)
+	    *strings[i] = g_string_new("");
+    }
 
-    free_leagues_array(&ligs, FALSE);
+    free_leagues_array(&ligs, reset);
 
-    free_cups_array(&cps, FALSE);
+    free_cups_array(&cps, reset);
 }
 
 /**

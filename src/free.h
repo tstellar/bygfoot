@@ -28,7 +28,7 @@ void
 free_user(User *user);
 
 void
-free_country(void);
+free_country(gboolean reset);
 
 void
 free_leagues_array(GArray **leagues, gboolean reset);

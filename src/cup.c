@@ -52,7 +52,7 @@ cup_new_id(void)
 {
     gint i, j;
 
-    if(cps == NULL)
+    if(cps->len == 0)
 	return ID_CUP_START;
 
     for(i=ID_CUP_START;i<ID_CUP_START+1000;i++)

@@ -23,7 +23,7 @@ bygfoot_SOURCES = \
 	league.c cup.h league.h table.h team.h variables.h \
 	live_game.c fixture.h free.h game.h game_gui.h live_game.h maths.h misc_callback_func.h option.h player.h support.h team.h treeview.h user.h variables.h window.h \
 	load_save.c file.h gui.h load_save.h option.h support.h variables.h xml_loadsave_misc.h xml_loadsave_cup.h xml_loadsave_league.h xml_loadsave_transfers.h xml_loadsave_users.h xml.h \
-	main.c misc_callbacks.h file.h free.h live_game.h main.h transfer_struct.h variables.h window.h \
+	main.c cup_struct.h misc_callbacks.h file.h free.h league_struct.h live_game.h main.h transfer_struct.h variables.h window.h \
 	maths.c maths.h misc.h \
 	misc.c main.h maths.h misc.h \
 	misc_callbacks.c callbacks.h callback_func.h game.h game_gui.h live_game.h load_save.h main.h misc_callback_func.h misc_callbacks.h option.h user.h variables.h window.h xml_name.h \
