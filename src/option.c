@@ -51,7 +51,7 @@ option_float(gchar *name, GArray *option_array)
     
     for(i=0;i<option_array->len;i++)
 	if(strcmp(g_array_index(option_array, Option, i).name->str, name) == 0)
-	    return (gfloat)g_array_index(option_array, Option, i).value / 1000;
+	    return (gfloat)g_array_index(option_array, Option, i).value / 10000;
 
     g_warning("option_float: option named %s not found\n", name);
 

@@ -9,7 +9,6 @@
 #include "option.h"
 #include "player.h"
 #include "support.h"
-#include "table.h"
 #include "team.h"
 #include "treeview.h"
 #include "user.h"
@@ -57,13 +56,7 @@ live_game_calculate_fixture(Fixture *fix)
 	  stat0 != STATUS_LIVE_GAME_PAUSE);
 
     if(stat0 != STATUS_LIVE_GAME_PAUSE)
-    {
-/* 	if(fixture_user_team_involved(fix) != -1) */
-/* 	    game_create_stats(match); */
-	
-	if(query_fixture_has_tables(fix))
-	    table_update(fix);
-    }
+	game_post_match(fix);
 }
 
 /** Create a game unit for the live game.
@@ -309,7 +302,7 @@ live_game_event_foul(void)
     }
     else if(type == LIVE_GAME_EVENT_FOUL_YELLOW)
 	player_card_set(player_of_id(tm[foul_team], foul_player),
-			match->fix->clid, PLAYER_CARD_YELLOW, 1, TRUE);
+			match->fix->clid, PLAYER_VALUE_CARD_YELLOW, 1, TRUE);
 
     if(last_unit.area == LIVE_GAME_UNIT_AREA_ATTACK && foul_team ==
        last_unit.possession)
@@ -389,8 +382,8 @@ live_game_event_injury(gint team, gint player, gboolean create_new)
 		     last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->fitness =
 	    MAX(0, player_of_id(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]],
 				last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->fitness -
-		math_rndi(const_int("int_live_game_temp_injury_fitness_decrease_lower"),
-			  const_int("int_live_game_temp_injury_fitness_decrease_upper")));
+		math_rnd(const_float("float_live_game_temp_injury_fitness_decrease_lower"),
+			 const_float("float_live_game_temp_injury_fitness_decrease_upper")));
     }
     
     live_game_finish_unit();
@@ -756,9 +749,9 @@ live_game_event_send_off(gint team, gint player, gboolean second_yellow)
 
     player_of_id(tm[team], player)->cskill = 0;
     if(second_yellow)
-	player_card_set(player_of_id(tm[team], player), match->fix->clid, PLAYER_CARD_RED, 1, FALSE);
+	player_card_set(player_of_id(tm[team], player), match->fix->clid, PLAYER_VALUE_CARD_RED, 1, FALSE);
     else
-	player_card_set(player_of_id(tm[team], player), match->fix->clid, PLAYER_CARD_RED, 
+	player_card_set(player_of_id(tm[team], player), match->fix->clid, PLAYER_VALUE_CARD_RED, 
 			game_player_get_ban_duration(), FALSE);
     
     if(match->subs_left[team] > 0)
@@ -818,8 +811,11 @@ live_game_event_substitution(gint team_number, gint sub_in, gint sub_out)
 
 
     if(player_of_id(tm[team_number], sub_in)->cskill > 0)
-	game_player_increase(match->fix->clid, player_of_id(tm[team_number], sub_in), 
-			     GAME_PLAYER_INCREASE_GAMES);
+    {
+	player_games_goals_set(player_of_id(tm[team_number], sub_in),
+			       match->fix->clid, PLAYER_VALUE_GAMES, 1, TRUE);
+	player_of_id(tm[team_number], sub_in)->participation = TRUE;
+    }
 
     g_array_append_val(unis, new);
 
@@ -871,10 +867,9 @@ live_game_event_duel(void)
     attacker = player_of_id(tm[new.possession],
 			    new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER]);
     goalie = player_of(tm[!new.possession], 0);
-    duel_factor = (((gfloat)attacker->cskill * powf((gfloat)attacker->fitness / 10000, 
-						    const_float("float_player_fitness_exponent"))) /
-		   ((gfloat)goalie->cskill * powf((gfloat)goalie->fitness / 10000, 
-						  const_float("float_player_fitness_exponent"))));
+    duel_factor = player_get_game_skill(attacker, FALSE) /
+	player_get_game_skill(goalie, FALSE);
+
     res_idx1 = new.possession;
     if(new.time == LIVE_GAME_UNIT_TIME_PENALTIES)
 	res_idx2 = 2;
@@ -896,8 +891,8 @@ live_game_event_duel(void)
 
     if(new.time != LIVE_GAME_UNIT_TIME_PENALTIES)
     {
-	game_player_increase(match->fix->clid, attacker, GAME_PLAYER_INCREASE_SHOTS);
-	game_player_increase(match->fix->clid, goalie, GAME_PLAYER_INCREASE_SHOTS);
+	player_games_goals_set(attacker, match->fix->clid, PLAYER_VALUE_SHOTS, 1, TRUE);
+	player_games_goals_set(goalie, match->fix->clid, PLAYER_VALUE_SHOTS, 1, TRUE);
     }
 
     if(rndom < scoring_prob)
@@ -908,8 +903,8 @@ live_game_event_duel(void)
 
 	if(new.time != LIVE_GAME_UNIT_TIME_PENALTIES)
 	{
-	    game_player_increase(match->fix->clid, attacker, GAME_PLAYER_INCREASE_GOALS);
-	    game_player_increase(match->fix->clid, goalie, GAME_PLAYER_INCREASE_GOALS);
+	    player_games_goals_set(attacker, match->fix->clid, PLAYER_VALUE_GOALS, 1, TRUE);
+	    player_games_goals_set(goalie, match->fix->clid, PLAYER_VALUE_GOALS, 1, TRUE);
 	}
     }
     else
@@ -1429,6 +1424,8 @@ live_game_finish_unit(void)
        fixture_user_team_involved(match->fix) != -1)
     {
 	game_decrease_fitness(match->fix);
+	game_get_values(match->fix, match->team_values,
+			match->home_advantage);
 	if(stat2 == current_user && show &&
 	   unit->minute % const_int("int_live_game_player_list_refresh") == 0)
 	    treeview_show_user_player_list(&usr(current_user), 1);
@@ -1439,8 +1436,9 @@ live_game_finish_unit(void)
 	if(unit->time != LIVE_GAME_UNIT_TIME_PENALTIES)
 	{
 	    game_update_stats(match, unit);
-	    treeview_show_game_stats(GTK_TREE_VIEW(lookup_widget(window.live, "treeview_stats")),
-				     match);
+	    if(show)
+		treeview_show_game_stats(GTK_TREE_VIEW(lookup_widget(window.live, "treeview_stats")),
+					 match);
 	}
 
 	live_game_generate_commentary(unit);
@@ -1466,7 +1464,7 @@ live_game_injury_get_player(void)
     for(j=0;j<2;j++)
     {
 	fitness_factor = (player_of(tm[j], 0)->fitness < 0.025) ?
-	    40 : 1 / ((gfloat)player_of(tm[j], 0)->fitness / 10000);
+	    40 : 1 / player_of(tm[j], 0)->fitness;
 	probs[j * 11] = goalie_factor * fitness_factor * 
 	    (player_of(tm[j], 0)->cskill != 0) * (1 + tm[j]->boost * boost_factor);
 	if(j == 1)
@@ -1518,7 +1516,7 @@ live_game_resume(void)
 	    {
 		usr(stat2).live_game.subs_left[i]--;
 		live_game_event_substitution(i, subs_in[j], subs_out[j]);
-	    }	
+	    }
 	}
 
 	if(tm[i]->structure != usr(stat2).live_game.team_state[i].structure)

@@ -34,12 +34,13 @@ enum TeamAttribute
 typedef struct
 {    
     gint capacity, /**< How many people fit in. Default: -1 (depends on league). */
-	safety, /**< Safety percentage between 0 and 100. Default: randomized. */
 	average_attendance, /**< How many people watched on average. Default: 0. */
 	possible_attendance, /**< How many people would've watched if every game had been
 				sold out. We need this only to compute the average attendance in percentage
 				of the capacity. Default: 0. */
 	games; /**< Number of games. Default: 0. */
+    gfloat safety; /**< Safety percentage between 0 and 100. Default: randomized. */
+
 } Stadium;
 
 /** Structure representing a team.

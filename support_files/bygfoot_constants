@@ -1,23 +1,35 @@
-#### int constants
+#### float constants get divided by 10000 and loaded as floats
+#### so we write 5000 if we'd like to have 0.5
 
 # number of seconds until messages disappear
 int_game_gui_message_duration 5
 
 # lower limit for player ages. 
-int_player_age_lower 936
+float_player_age_lower 180000
 # upper limit for player ages. 
-int_player_age_upper 1872
+float_player_age_upper 360000
 # lower limit for player peak ages. 
-int_player_peak_age_lower 1560
+float_player_peak_age_lower 300000
 # upper limit for player peak ages. 
-int_player_peak_age_upper 1716
-# by how many weeks the peak age of goalies is
+float_player_peak_age_upper 330000
+# by how many years the peak age of goalies is
 #    greater. 
-int_player_peak_age_goalie_addition 104
+float_player_peak_age_goalie_addition 20000
+
 # limits for initial fitness (read it as 85%)
-int_player_fitness_lower 8500
+float_player_fitness_lower 8500
 # limits for initial fitness. 
-int_player_fitness_upper 10000
+float_player_fitness_upper 10000
+
+# skill reduction factor for very young and very old players
+# at generation
+float_player_skill_reduction1 7500
+float_player_skill_reduction2 9000
+
+# value scale factor (we take 1 + factor or 1 - factor
+# in the game) for values of young/old players
+float_player_value_scale1 1000
+float_player_value_scale2 500
 
 # the bounds determining the player positions in a newly created
 # team for players 13 to constant_team_max_players.
@@ -26,28 +38,46 @@ int_player_pos_bound1 15
 int_player_pos_bound2 18
 
 # bounds for the contract time at player generation. 
-int_player_contract_lower 52
-int_player_contract_upper 208
+float_player_contract_lower 10000
+float_player_contract_upper 40000
 
 # bounds for the last skill update at player generation. 
-int_player_lsu_lower 2
-int_player_lsu_upper 10
+float_player_lsu_lower 20000
+float_player_lsu_upper 100000
+
+# lsu addition for injured players who are older
+# than their peak age
+float_player_lsu_injured_old 15000
+
+# percentage of league games a player has to participate
+# in to have his lsu increased
+float_player_lsu_games_percentage 3000
+
+# probability that the lsu gets increased even
+# if the player didn't participate in that many games
+float_player_lsu_increase_prob 4000
+
+# the lsu above which a skill update is considered
+float_player_lsu_update_limit 120000
+
+# 1 - probability that the update occurs right away
+float_player_lsu_update_base_prob 8000
 
 # this determines the accuracy of the scout's 
 # talent estimate. the smaller the better.
-int_player_etal_scout_factor 7
+float_player_etal_scout_factor 70000
 
 # fitness limits below which fitness is shown
 # in orange and red etc.
-int_treeview_cell_limit_player_fitness_below1 8500
-int_treeview_cell_limit_player_fitness_below2 7000
-int_treeview_cell_limit_player_fitness_below3 6000
+float_treeview_cell_limit_player_fitness_below1 8500
+float_treeview_cell_limit_player_fitness_below2 7000
+float_treeview_cell_limit_player_fitness_below3 6000
 
 # contract limits below which contract time is shown
 # in orange and red etc.
-int_treeview_cell_limit_player_contract_below1 52
-int_treeview_cell_limit_player_contract_below2 40
-int_treeview_cell_limit_player_contract_below3 20
+float_treeview_cell_limit_player_contract_below1 10000
+float_treeview_cell_limit_player_contract_below2 7000
+float_treeview_cell_limit_player_contract_below3 4000
 
 # the integer that the cell data functions will interpret as an empty string.
 int_treeview_cell_int_empty -5
@@ -60,312 +90,359 @@ int_transfer_deadline 35
 int_team_max_players 20
 
 # highest skill and talent a player can have.
-int_player_max_skill 99
+float_player_max_skill 990000
 
 # determines initial money of the users
 int_initial_money_lower 80
 int_initial_money_upper 110
 
 
-#### float constants
-#### these get divided by 1000 and loaded as floats
-#### so we write 500 if we'd like to have 0.5
-
 # live game scale configuration
-float_game_gui_live_game_scale_attack 300
-float_game_gui_live_game_scale_chance 450
-float_game_gui_live_game_scale_range 10000
+float_game_gui_live_game_scale_attack	3000
+float_game_gui_live_game_scale_chance	4500
+float_game_gui_live_game_scale_range	100000
 
 # How much a player's skill can deviate from 
 # the average skill in his team.
-float_player_average_skill_variance 100
+float_player_average_skill_variance 1000
 
 # these determine the value calculation of players.
 # value is a function of skill and talent involving
 # a power.
-float_player_value_skill_weight 650
-float_player_value_power 3500
+float_player_value_skill_weight		6500
+float_player_value_power		35000
 
 # these determine the wage calculation of players.
 # wage depends on the value and a random factor near 1.
-float_player_wage_value_factor 10
-float_player_wage_random_dev 150
+float_player_wage_value_factor	100
+float_player_wage_random_dev	1500
 
 #   constants determining the probabilities for
 #   the playing styles of cpu teams.
-float_team_playing_style_prob1 100
-float_team_playing_style_prob2 250
-float_team_playing_style_prob3 750
-float_team_playing_style_prob4 900
+float_team_playing_style_prob1 1000
+float_team_playing_style_prob2 2500
+float_team_playing_style_prob3 7500
+float_team_playing_style_prob4 9000
 
 #   constants determining the probabilities for
 #   the playing structures of cpu teams.
-float_team_playing_structure_prob1 150
-float_team_playing_structure_prob2 500
-float_team_playing_structure_prob3 700
-float_team_playing_structure_prob4 850
+float_team_playing_structure_prob1 1500
+float_team_playing_structure_prob2 5000
+float_team_playing_structure_prob3 7000
+float_team_playing_structure_prob4 8500
 
 # kinda hard to explain. 
 #   @see team_generate_players()
 #   @see player_generate()
-float_team_skill_variance 75
+float_team_skill_variance 750
 
 # base probability that the ball gets from defending area
 # to midfield area.
-float_live_game_area_def_mid 500
+float_live_game_area_def_mid 5000
 # influence of attack/defend values on the base probability; the lower
 # the smaller the influence.
-float_live_game_area_def_mid_team_exponent 1000
+float_live_game_area_def_mid_team_exponent 10000
 
 # base probability that the ball gets from midfield area
 # to attack area or back to defend area. 
-float_live_game_area_mid_att 500
-float_live_game_area_mid_def 300
+float_live_game_area_mid_att 5000
+float_live_game_area_mid_def 3000
 # influence of attack/defend values on the base probability; the lower
 # the smaller the influence.
-float_live_game_area_mid_team_exponent 1250
+float_live_game_area_mid_team_exponent 12500
 
 # base probability that the ball gets from attacking area
 # to midfield area.
-float_live_game_area_att_mid 300
+float_live_game_area_att_mid 3000
 # influence of attack/defend values on the base probability; the lower
 #    the smaller the influence. 
-float_live_game_area_att_mid_team_exponent 1000
+float_live_game_area_att_mid_team_exponent 10000
 
 # base probability of a general event (no foul, no injury, no goal etc.) 
-float_live_game_event_general 500
+float_live_game_event_general 5000
 
 # base probability for possession change. 
-float_live_game_possession_changes 200
+float_live_game_possession_changes 2000
 # influence of the team values on the possession change. 
-float_live_game_possession_team_exponent 4000
+float_live_game_possession_team_exponent 40000
 
 # base prob for a scoring chance if a team is attacking. 
-float_live_game_scoring_chance 300
+float_live_game_scoring_chance 3000
 # team values influence on the scoring chance. 
-float_live_game_scoring_chance_team_exponent 1250
+float_live_game_scoring_chance_team_exponent 12500
 
 # probability that it's the player in possession who
 #    has the scoring chance. 
-float_live_game_player_in_poss_shoots 500
+float_live_game_player_in_poss_shoots 5000
 
 # base probability to score with a scoring chance. 
-float_live_game_score_base_prob 300
+float_live_game_score_base_prob 3000
 # base probability to score with a free kick. 
-float_live_game_score_free_kick 50
+float_live_game_score_free_kick 500
 # base probability to score with a penalty. 
-float_live_game_score_penalty 800
+float_live_game_score_penalty 8000
 # influence of the attacker/goalie skills on the probability to score. 
-float_live_game_score_duel_exponent 300
+float_live_game_score_duel_exponent 3000
 # influence of the team attacking/defending values on the probability to score. 
-float_live_game_score_team_exponent 700
+float_live_game_score_team_exponent 7000
 
 # the smaller this number, the smaller the probability of
 #    many stopping minutes after 90 or 45 minutes. 
-float_live_game_break_base 600
+float_live_game_break_base 6000
 # the bigger this number, the faster the probability of
 #    yet another additional minute after the 45th minute decays. 
-float_live_game_45_break_exponent_factor 1300
+float_live_game_45_break_exponent_factor 13000
 # the bigger this number, the faster the probability of
 #    yet another additional minute after the 90th minute decays. 
-float_live_game_90_break_exponent_factor 700
+float_live_game_90_break_exponent_factor 7000
 # the probability that the team that shot on the goal stays
 #    in possession after a post or cross-bar hit. 
-float_live_game_possession_after_post 300
+float_live_game_possession_after_post 3000
 
 # probability that there is a passing event after a special event.
-float_live_game_general_event_second_player 500
+float_live_game_general_event_second_player 5000
 
 # constants for stadium events. 
-float_live_game_stadium_event_exponent 50
-float_live_game_stadium_event_fire 200
-float_live_game_stadium_event_riots 500
-float_live_game_stadium_event_breakdown 1000
+float_live_game_stadium_event_exponent	500
+float_live_game_stadium_event_fire	2000
+float_live_game_stadium_event_riots	5000
+float_live_game_stadium_event_breakdown 10000
 
 # foul probabilities. 
-float_live_game_foul 110
-float_live_game_foul_red_injury 50
-float_live_game_foul_red 80
-float_live_game_foul_yellow 230
+float_live_game_foul		0 #1100
+float_live_game_foul_red_injury 500
+float_live_game_foul_red	800
+float_live_game_foul_yellow	2300
 
 # ban duration probabilities
 # should add up to 1000
-float_live_game_ban_1 700
-float_live_game_ban_2 150
-float_live_game_ban_3 100
-float_live_game_ban_4 30
-float_live_game_ban_5 20
+float_live_game_ban_1 7000
+float_live_game_ban_2 1500
+float_live_game_ban_3 1000
+float_live_game_ban_4 300
+float_live_game_ban_5 200
 
 # probability that the foul player is from the
 # team that has the ball
-float_live_game_foul_by_possession 200
+float_live_game_foul_by_possession 2000
 
 # injury probabilities. 
-float_live_game_injury 17
-float_live_game_injury_goalie_factor 200
-float_live_game_injury_is_temp 700
+float_live_game_injury			0 #170
+float_live_game_injury_goalie_factor	2000
+float_live_game_injury_is_temp		7000
 
 # probabilities for different injuries
 # these should add up to 1000
-float_player_injury_concussion 200
-float_player_injury_pulled_muscle 200
-float_player_injury_hamstring 150
-float_player_injury_groin 150
-float_player_injury_frac_ankle 100
-float_player_injury_rib 75
-float_player_injury_leg 40
-float_player_injury_brok_ankle 40
-float_player_injury_arm 20
-float_player_injury_shoulder 15
-float_player_injury_ligament 7
-float_player_injury_career_stop 3
+float_player_injury_concussion		2000
+float_player_injury_pulled_muscle	2000
+float_player_injury_hamstring		1500
+float_player_injury_groin		1500
+float_player_injury_frac_ankle		1000
+float_player_injury_rib			750
+float_player_injury_leg			400
+float_player_injury_brok_ankle		400
+float_player_injury_arm			200
+float_player_injury_shoulder		150
+float_player_injury_ligament		70
+float_player_injury_career_stop		30
 
 # duration of the injuries (mean and deviance)
-int_player_injury_duration_concussion 2
-int_player_injury_duration_dev_concussion 1
-int_player_injury_duration_pulled_muscle 3
-int_player_injury_duration_dev_pulled_muscle 1
-int_player_injury_duration_hamstring 5
-int_player_injury_duration_dev_hamstring 2
-int_player_injury_duration_groin 5
-int_player_injury_duration_dev_groin 2
-int_player_injury_duration_frac_ankle 6
-int_player_injury_duration_dev_frac_ankle 2
-int_player_injury_duration_rib 8
-int_player_injury_duration_dev_rib 4
-int_player_injury_duration_leg 9
-int_player_injury_duration_dev_leg 4
-int_player_injury_duration_brok_ankle 11
-int_player_injury_duration_dev_brok_ankle 5
-int_player_injury_duration_arm 6
-int_player_injury_duration_dev_arm 2
-int_player_injury_duration_shoulder 10
-int_player_injury_duration_dev_shoulder 5
-int_player_injury_duration_ligament 22
-int_player_injury_duration_dev_ligament 8
+int_player_injury_duration_concussion		2
+int_player_injury_duration_dev_concussion	1
+int_player_injury_duration_pulled_muscle	3
+int_player_injury_duration_dev_pulled_muscle	1
+int_player_injury_duration_hamstring		5
+int_player_injury_duration_dev_hamstring	2
+int_player_injury_duration_groin		5
+int_player_injury_duration_dev_groin		2
+int_player_injury_duration_frac_ankle		6
+int_player_injury_duration_dev_frac_ankle	2
+int_player_injury_duration_rib			8
+int_player_injury_duration_dev_rib		4
+int_player_injury_duration_leg			9
+int_player_injury_duration_dev_leg		4
+int_player_injury_duration_brok_ankle		11
+int_player_injury_duration_dev_brok_ankle	5
+int_player_injury_duration_arm			6
+int_player_injury_duration_dev_arm		2
+int_player_injury_duration_shoulder		10
+int_player_injury_duration_dev_shoulder		5
+int_player_injury_duration_ligament		22
+int_player_injury_duration_dev_ligament		8
 
 # fitness decrease when injury is temporary
-int_live_game_temp_injury_fitness_decrease_lower 200
-int_live_game_temp_injury_fitness_decrease_upper 800
+float_live_game_temp_injury_fitness_decrease_lower 200
+float_live_game_temp_injury_fitness_decrease_upper 800
 
 # refresh rate of the player list during a live game
 # the smaller the more often the list gets refreshed
 int_live_game_player_list_refresh 5
 
 # probability that a scoring chance is an own goal. 
-float_live_game_scoring_chance_is_own_goal 10
+float_live_game_scoring_chance_is_own_goal 100
 
 # probability of a free kick after a foul. 
-float_live_game_free_kick_prob 150
+float_live_game_free_kick_prob 1500
 
 # probability of a penalty after a foul. 
-float_live_game_penalty_prob 50
+float_live_game_penalty_prob 500
 
 # probability that a scoring chance is a header. 
-float_live_game_scoring_chance_is_header 350
+float_live_game_scoring_chance_is_header 3500
 
 # influence in % of the game style towards more attack.
-float_game_style_factor 75
+float_game_style_factor 750
 
 # influence of boost on player's skill.
 # these should be between 0 and 1
-float_player_boost_skill_effect 150
+float_player_boost_skill_effect 1500
 # influence of boost on player's fitness decay.
-float_player_boost_fitness_effect 500
+float_player_boost_fitness_effect 5000
 # influence of boost on injury probability.
-float_player_boost_injury_effect 500
+float_player_boost_injury_effect 5000
 # influence of boost on cards probability.
-float_player_boost_card_effect 500
+float_player_boost_card_effect 5000
 
 # influence of team boost on probability that the team in possession
 # of the ball fouls
-float_team_boost_foul_by_possession_factor1 500
-float_team_boost_foul_by_possession_factor2 900
+float_team_boost_foul_by_possession_factor1 5000
+float_team_boost_foul_by_possession_factor2 9000
 
 # influence of boost on foul probability
-float_team_boost_foul_factor 400
+float_team_boost_foul_factor 4000
 
 # the influence of the fitness on the current skill.
 #    this determines the player's contribution to the team
 #    during a game. the higher the value the bigger the influence.
-float_player_fitness_impact_on_skill 250
+float_player_fitness_exponent 2500
 
-# influence of the fitness on the player contribution.
-#    the higher the worse. @see game_get_player_contribution()
-float_player_fitness_exponent 250
+# difference limits between age and peak age
+float_player_peak_age_diff_younger1	 100000		# 10 years younger
+float_player_peak_age_diff_younger2	 50000		# 5 years younger
+float_player_peak_age_diff_younger3	 30000		# 3 years younger
+float_player_peak_age_diff_peak_younger	 20000		# 2 years younger
+float_player_peak_age_diff_peak_older	 -20000		# 2 years older
+float_player_peak_age_diff_older1	 -40000		# 4 years older
+float_player_peak_age_diff_older2	 -80000		# 8 years older
+
+# values determining player skill development
+# depending on peak-age - age
+# factors; the higher the faster players develop
+float_player_skill_devel_younger1_lower 500
+float_player_skill_devel_younger1_upper 1000
+
+float_player_skill_devel_younger2_lower 1000
+float_player_skill_devel_younger2_upper 1500
+
+float_player_skill_devel_younger3_lower 1000
+float_player_skill_devel_younger3_upper 2000
+
+# increase and decrease around peak age
+float_player_skill_devel_peak_lower -20000
+float_player_skill_devel_peak_upper 20000
+
+# decrease in skill units
+float_player_skill_devel_older1_lower -20000
+float_player_skill_devel_older1_upper -50000
+
+float_player_skill_devel_older2_lower -30000
+float_player_skill_devel_older2_upper -70000
+
+float_player_skill_devel_else_lower -50000
+float_player_skill_devel_else_upper -120000
+
 
 # these determine the players' fitness decrease during
-# a match
-int_player_fitness_decrease_peak_age_diff1 500
-int_player_fitness_decrease_minus1 8
-int_player_fitness_decrease_peak_age_diff2 250
-int_player_fitness_decrease_minus2 7
-int_player_fitness_decrease_peak_age_diff3 150
-int_player_fitness_decrease_minus3 6
-int_player_fitness_decrease_peak_age_diff4 100
-int_player_fitness_decrease_minus4 5
-int_player_fitness_decrease_peak_age_diff5 -100
-int_player_fitness_decrease_minus5 5
-int_player_fitness_decrease_peak_age_diff6 -200
-int_player_fitness_decrease_minus6 7
-int_player_fitness_decrease_peak_age_diff7 -400
-int_player_fitness_decrease_minus7 10
-int_player_fitness_decrease_minus_else 15
+# a match (depending on the peak age diff
+float_player_fitness_decrease_younger1		6
+float_player_fitness_decrease_younger2		5
+float_player_fitness_decrease_younger3		4
+float_player_fitness_decrease_peak_younger	3
+float_player_fitness_decrease_peak_older	3
+float_player_fitness_decrease_older1		5
+float_player_fitness_decrease_older2		8
+float_player_fitness_decrease_else		12
+
+# goalies get affected less by the decrease
+float_player_fitness_decrease_factor_goalie	5000
+
+# float_player_fitness_decrease_younger1		12
+# float_player_fitness_decrease_younger2		11
+# float_player_fitness_decrease_younger3		10
+# float_player_fitness_decrease_peak_younger	9
+# float_player_fitness_decrease_peak_older	9
+# float_player_fitness_decrease_older1		11
+# float_player_fitness_decrease_older2		14
+# float_player_fitness_decrease_else		19
+
+# fitness increase (after games) in percentage of
+# the decrease values above
+float_player_fitness_increase_younger1		1000
+float_player_fitness_increase_younger2		1200
+float_player_fitness_increase_younger3		1400
+float_player_fitness_increase_peak_younger	1500
+float_player_fitness_increase_peak_older	1500
+float_player_fitness_increase_older1		1000
+float_player_fitness_increase_older2		800
+float_player_fitness_increase_else		500
+
+# random variance for fitness increase
+float_player_fitness_increase_variance		300
 
 # bounds for the home advantage factor
-float_game_home_advantage_lower 40
-float_game_home_advantage_upper 80
+float_game_home_advantage_lower 400
+float_game_home_advantage_upper 800
 
 # How the cskill of field players get weighted for the team values in
 #    a match
-float_player_team_weight_defender_defense 1000
-float_player_team_weight_defender_midfield 400
-float_player_team_weight_defender_attack 250
-float_player_team_weight_midfielder_defense 625
-float_player_team_weight_midfielder_midfield 1000
-float_player_team_weight_midfielder_attack 625
-float_player_team_weight_forward_defense 200
-float_player_team_weight_forward_midfield 600
-float_player_team_weight_forward_attack 1300
+float_player_team_weight_defender_defense	10000
+float_player_team_weight_defender_midfield	4000
+float_player_team_weight_defender_attack	2500
+float_player_team_weight_midfielder_defense	6250
+float_player_team_weight_midfielder_midfield	10000
+float_player_team_weight_midfielder_attack	6250
+float_player_team_weight_forward_defense	2000
+float_player_team_weight_forward_midfield	6000
+float_player_team_weight_forward_attack		13000
 
 
 #### string constants
 
 # live game scale configuration
-string_game_gui_live_game_scale_color_defend lightblue
-string_game_gui_live_game_scale_color_midfield khaki
-string_game_gui_live_game_scale_color_attack gold
-string_game_gui_live_game_scale_color_chance orange
-string_game_gui_live_game_scale_color_goal red
-string_game_gui_live_game_scale_color_miss lightgreen
+string_game_gui_live_game_scale_color_defend	lightblue
+string_game_gui_live_game_scale_color_midfield	khaki
+string_game_gui_live_game_scale_color_attack	gold
+string_game_gui_live_game_scale_color_chance	orange
+string_game_gui_live_game_scale_color_goal	red
+string_game_gui_live_game_scale_color_miss	lightgreen
 
 # meter icons (style, boost) in the main window
-string_game_gui_style_all_out_attack_icon style_all_atk.png
-string_game_gui_style_attack_icon style_atk.png
-string_game_gui_style_balanced_icon style_bal.png
-string_game_gui_style_defend_icon style_def.png
-string_game_gui_style_all_out_defend_icon style_all_def.png
+string_game_gui_style_all_out_attack_icon	style_all_atk.png
+string_game_gui_style_attack_icon		style_atk.png
+string_game_gui_style_balanced_icon		style_bal.png
+string_game_gui_style_defend_icon		style_def.png
+string_game_gui_style_all_out_defend_icon	style_all_def.png
 
-string_game_gui_boost_on_icon boost_on.png
-string_game_gui_boost_off_icon boost_off.png
-string_game_gui_boost_anti_icon boost_anti.png
+string_game_gui_boost_on_icon			boost_on.png
+string_game_gui_boost_off_icon			boost_off.png
+string_game_gui_boost_anti_icon			boost_anti.png
 
 # default background and foreground in treeviews
 string_treeview_cell_color_default_background white
 string_treeview_cell_color_default_foreground black
 
 # player list colours
-string_treeview_cell_color_player_pos_goalie_bg black
-string_treeview_cell_color_player_pos_goalie_fg white
-string_treeview_cell_color_player_pos_defender_bg darkgreen
-string_treeview_cell_color_player_pos_defender_fg white
-string_treeview_cell_color_player_pos_midfielder_bg darkblue
-string_treeview_cell_color_player_pos_midfielder_fg white
-string_treeview_cell_color_player_pos_forward_bg darkred
-string_treeview_cell_color_player_pos_forward_fg white
+string_treeview_cell_color_player_pos_goalie_bg		black
+string_treeview_cell_color_player_pos_goalie_fg		white
+string_treeview_cell_color_player_pos_defender_bg	darkgreen
+string_treeview_cell_color_player_pos_defender_fg	white
+string_treeview_cell_color_player_pos_midfielder_bg	darkblue
+string_treeview_cell_color_player_pos_midfielder_fg	white
+string_treeview_cell_color_player_pos_forward_bg	darkred
+string_treeview_cell_color_player_pos_forward_fg	white
 
 string_treeview_cell_color_player_injury lightgreen
-string_treeview_cell_color_player_banned red
+string_treeview_cell_color_player_banned	red
 string_treeview_cell_color_player_yellow_danger yellow
 
 string_treeview_cell_color_player_fitness_normal darkgreen
@@ -390,22 +467,22 @@ string_treeview_cell_live_game_result_attributes weight='bold' size='large'
 string_live_game_possession_color darkblue
 
 # icons used in live games
-string_live_game_event_start_match_icon whistle.png
+string_live_game_event_start_match_icon		whistle.png
 string_live_game_event_lost_possession_icon
-string_live_game_event_penalty_icon scoring_chance.png
-string_live_game_event_scoring_chance_icon scoring_chance.png
-string_live_game_event_goal_icon goal.png
-string_live_game_event_own_goal_icon own_goal.png
+string_live_game_event_penalty_icon		scoring_chance.png
+string_live_game_event_scoring_chance_icon	scoring_chance.png
+string_live_game_event_goal_icon		goal.png
+string_live_game_event_own_goal_icon		own_goal.png
 string_live_game_event_post_icon
-string_live_game_event_save_icon save.png
-string_live_game_event_missed_icon miss.png
+string_live_game_event_save_icon		save.png
+string_live_game_event_missed_icon		miss.png
 string_live_game_event_foul_icon
-string_live_game_event_foul_yellow_icon yellow.png
-string_live_game_event_send_off_icon red.png
-string_live_game_event_injury_icon injury.png
-string_live_game_event_temp_injury_icon injury_temp.png
+string_live_game_event_foul_yellow_icon		yellow.png
+string_live_game_event_send_off_icon		red.png
+string_live_game_event_injury_icon		injury.png
+string_live_game_event_temp_injury_icon		injury_temp.png
 string_live_game_event_stadium_breakdown_icon
 string_live_game_event_stadium_fire_icon
 string_live_game_event_stadium_riots_icon
-string_live_game_event_substitution_icon sub.png
-string_live_game_event_structure_change_icon structure_change.png
+string_live_game_event_substitution_icon	sub.png
+string_live_game_event_structure_change_icon	structure_change.png

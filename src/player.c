@@ -15,45 +15,56 @@
     The player's skill can deviate from this value by #CONSTANT_PLAYER_AVERAGE_SKILL_VARIANCE %
     @return A newly created player. */
 Player
-player_new(Team *tm, gint average_skill)
+player_new(Team *tm, gfloat average_skill)
 {
     gfloat skill_factor = 
 	math_rnd(1 - const_float("float_player_average_skill_variance"),
 		 1 + const_float("float_player_average_skill_variance"));
-    Player new;
+    Player new;    
 
     new.name = 
 	g_string_new(((GString*)g_ptr_array_index(player_names, math_rndi(0, player_names->len - 1)))->str);
     new.id = player_new_id(tm->players);
     new.pos = player_get_position_from_structure(tm->structure, tm->players->len);
     new.cpos = new.pos;
-    new.skill = CLAMP((gint)rint((gfloat)average_skill * skill_factor), 0, 
-		      const_int("int_player_max_skill"));
-    new.cskill = new.skill;
-    new.age = math_gauss_disti(const_int("int_player_age_lower"),
-			       const_int("int_player_age_upper"));
+    new.age = math_gauss_dist(const_float("float_player_age_lower"),
+			      const_float("float_player_age_upper"));
     new.peak_age =
-	math_rndi(const_int("int_player_peak_age_lower") +
-		  (new.pos == PLAYER_POS_GOALIE) * 
-		  const_int("int_player_peak_age_goalie_addition"),
-		  const_int("int_player_peak_age_upper") +
-		  (new.pos == PLAYER_POS_GOALIE) * 
-		  const_int("int_player_peak_age_goalie_addition"));
+	math_rnd(const_float("float_player_peak_age_lower") +
+		 (new.pos == PLAYER_POS_GOALIE) * 
+		 const_float("float_player_peak_age_goalie_addition"),
+		 const_float("float_player_peak_age_upper") +
+		 (new.pos == PLAYER_POS_GOALIE) * 
+		 const_float("float_player_peak_age_goalie_addition"));
+
+    new.skill = CLAMP(average_skill * skill_factor, 0, 
+		      const_float("float_player_max_skill"));
     new.talent = player_new_talent(new.skill);
     player_estimate_talent(&new);
-    new.fitness = math_rndi(const_int("int_player_fitness_lower"),
-			    const_int("int_player_fitness_upper"));
+
+    if(new.peak_age - new.age > const_float("float_player_peak_age_diff_younger1") ||
+       new.peak_age - new.age < const_float("float_player_peak_age_diff_older1"))
+	new.skill = new.skill * const_float("float_player_skill_reduction1");
+    else if(new.peak_age - new.age > const_float("float_player_peak_age_diff_younger2") ||
+	    new.peak_age - new.age < const_float("float_player_peak_age_diff_peak_older"))
+	new.skill = new.skill * const_float("float_player_skill_reduction2");
+
+    new.cskill = new.skill;
+
+    new.fitness = math_rnd(const_float("float_player_fitness_lower"),
+			   const_float("float_player_fitness_upper"));
     new.health = new.recovery = 0;
     new.games_goals = g_array_new(FALSE, FALSE, sizeof(PlayerGamesGoals));
     new.value = player_assign_value(&new);
     new.wage = player_assign_wage(&new);
-    new.contract = math_rndi(const_int("int_player_contract_lower"),
-			     const_int("int_player_contract_upper"));
-    new.lsu = math_rndi(const_int("int_player_lsu_lower"),
-			const_int("int_player_lsu_upper"));
+    new.contract = math_rnd(const_float("float_player_contract_lower"),
+			    const_float("float_player_contract_upper"));
+    new.lsu = math_rnd(const_float("float_player_lsu_lower"),
+		       const_float("float_player_lsu_upper"));
     new.cards = g_array_new(FALSE, FALSE, sizeof(PlayerCard));
 
     new.team = tm;
+    new.participation = FALSE;
     
     return new;
 }
@@ -113,11 +124,11 @@ player_get_position_from_structure(gint structure, gint player_number)
 /** Calculate the talent value of the player based on his skill.
     @param skill The player's skill.
     @return The new talent value. */
-gint
-player_new_talent(gint skill)
+gfloat
+player_new_talent(gfloat skill)
 {
-    gint talent = math_gauss_disti(2 * skill - const_int("int_player_max_skill"),
-				   const_int("int_player_max_skill"));
+    gfloat talent = math_gauss_dist(2 * skill - const_float("float_player_max_skill"),
+				    const_float("float_player_max_skill"));
     if(talent < skill)
 	talent = 2 * skill - talent;
 
@@ -130,22 +141,22 @@ void
 player_estimate_talent(Player *pl)
 {
     gint i, j;
-    gint scout_deviance[QUALITY_END];
+    gfloat scout_deviance[QUALITY_END];
 
     /* the maximal deviance in both directions */
-    gint deviance_bound[2] =
-	{pl->talent - pl->skill, const_int("int_player_max_skill") - pl->talent};
+    gfloat deviance_bound[2] =
+	{pl->talent - pl->skill, const_float("float_player_max_skill") - pl->talent};
 
     for(i=0;i<QUALITY_END;i++)
     {
-	scout_deviance[i] = (i + 1) * const_int("int_player_etal_scout_factor");
+	scout_deviance[i] = (i + 1) * const_float("float_player_etal_scout_factor");
 	/* adjust deviance_bounds with regard to the scout's
 	   deviance */
 	for(j=0;j<2;j++)
 	    deviance_bound[j] = MIN(deviance_bound[j], scout_deviance[i]);
 	
-	pl->etal[i] = math_rndi(pl->talent - deviance_bound[0],
-				pl->talent + deviance_bound[1]);
+	pl->etal[i] = math_rnd(pl->talent - deviance_bound[0],
+			       pl->talent + deviance_bound[1]);
     }
 }
 
@@ -157,21 +168,21 @@ gint
 player_assign_value(const Player *pl)
 {
     gint value;
+    gfloat diff = pl->peak_age - pl->age;
 
-    value = (gint)powf((const_float("float_player_value_skill_weight") *
-			(gfloat)pl->skill +
-			(1 - const_float("float_player_value_skill_weight")) *
-			(gfloat)pl->talent * 0.7),
+    value = (gint)powf((const_float("float_player_value_skill_weight") * pl->skill +
+			(1 - const_float("float_player_value_skill_weight")) * pl->talent * 0.7),
 		       const_float("float_player_value_power"));
-
-    if(pl->age <= const_int("int_player_age_lower") + 2 * 52)
-	value = (gint)((gfloat)value * 1.05);
-    else if(pl->age <= const_int("int_player_age_lower") + 4 * 52)
-	value = (gint)((gfloat)value * 1.1);
-    else if(pl->age >= const_int("int_player_age_upper") - 4 * 52)
-	value = (gint)((gfloat)value * 0.95);
-    else if(pl->age >= const_int("int_player_age_upper") - 2 * 52)
-	value = (gint)((gfloat)value * 0.9);
+    
+    /*todooooo*/
+    if(diff > const_float("float_player_peak_age_diff_older1"))
+	value = (gint)rint((gfloat)value * (1 - const_float("float_player_value_scale1")));
+    else if(diff > const_float("float_player_peak_age_diff_peak_older"))
+	value = (gint)rint((gfloat)value * (1 - const_float("float_player_value_scale2")));
+    else if(diff < const_float("float_player_peak_age_diff_younger1"))
+	value = (gint)rint((gfloat)value * (1 + const_float("float_player_value_scale1")));
+    else if(diff < const_float("float_player_peak_age_diff_younger2"))
+	value = (gint)rint((gfloat)value * (1 + const_float("float_player_value_scale2")));
 
     value = math_round_integer(value, 2);
 
@@ -228,7 +239,7 @@ player_copy(const Player *source, Player *dest)
 void
 player_append_to_array(const Player *pl, Team *tm)
 {
-    Player new_player = player_new(tm, const_int("int_player_max_skill"));
+    Player new_player = player_new(tm, const_float("float_player_max_skill"));
 
     player_copy(pl, &new_player);
 
@@ -339,11 +350,11 @@ player_all_games_goals(const Player *pl, gint type)
     gint i, sum = 0;
 
     for(i=0;i<pl->games_goals->len;i++)
-	if(type == PLAYER_LIST_ATTRIBUTE_GOALS)
+	if(type == PLAYER_VALUE_GOALS)
 	    sum += g_array_index(pl->games_goals, PlayerGamesGoals, i).goals;
-	else if(type == PLAYER_LIST_ATTRIBUTE_GAMES)
+	else if(type == PLAYER_VALUE_GAMES)
 	    sum += g_array_index(pl->games_goals, PlayerGamesGoals, i).games;
-	else if(type == PLAYER_LIST_ATTRIBUTE_SHOTS)
+	else if(type == PLAYER_VALUE_SHOTS)
 	    sum += g_array_index(pl->games_goals, PlayerGamesGoals, i).shots;
 
     return sum;
@@ -397,9 +408,10 @@ player_compare_func(gconstpointer a, gconstpointer b, gpointer data)
 	else if(pl2->pos != pl1->pos)
 	    return_value = misc_int_compare(pl2->pos, pl1->pos);
 	else
-	    return_value = 
-		misc_float_compare(player_get_game_skill(pl1, TRUE),
-				   player_get_game_skill(pl2, TRUE));
+	    return_value = 0;
+/* 	    return_value =  */
+/* 		misc_float_compare(player_get_game_skill(pl1, TRUE), */
+/* 				   player_get_game_skill(pl2, TRUE)); */
     }
 
     return return_value;
@@ -418,14 +430,12 @@ player_compare_substitute_func(gconstpointer a, gconstpointer b, gpointer data)
     const Player *pl1 = *(const Player**)a;
     const Player *pl2 = *(const Player**)b;
     gint position = GPOINTER_TO_INT(data);
-    gint skill_for_pos1 = (gint)rint((gfloat)player_get_cskill(pl1, position) * 
-				     powf((gfloat)pl1->fitness / 10000, 
-					  const_float("float_player_fitness_impact_on_skill"))),
-	skill_for_pos2 = (gint)rint((gfloat)player_get_cskill(pl2, position) * 
-				     powf((gfloat)pl2->fitness / 10000, 
-					  const_float("float_player_fitness_impact_on_skill")));
-    gint game_skill1 = (gint)rint(player_get_game_skill(pl1, FALSE)),
-	game_skill2 = (gint)rint(player_get_game_skill(pl2, FALSE));
+    gfloat skill_for_pos1 = player_get_cskill(pl1, position) * 
+	powf(pl1->fitness, const_float("float_player_fitness_exponent")),
+	skill_for_pos2 = player_get_cskill(pl2, position) * 
+	powf(pl2->fitness, const_float("float_player_fitness_exponent"));
+    gfloat game_skill1 = player_get_game_skill(pl1, FALSE),
+	game_skill2 = player_get_game_skill(pl2, FALSE);
     gboolean good_structure1 =
 	player_substitution_good_structure(pl1->team->structure, position, pl1->pos),
 	good_structure2 =
@@ -434,7 +444,7 @@ player_compare_substitute_func(gconstpointer a, gconstpointer b, gpointer data)
 
     if(pl1->pos == position && pl2->pos == position)
 	return_value = 
-	    misc_int_compare(game_skill1, game_skill2);
+	    misc_float_compare(game_skill1, game_skill2);
     else if(pl1->pos == position)
 	return_value = -1;
     else if(pl2->pos == position)
@@ -443,20 +453,20 @@ player_compare_substitute_func(gconstpointer a, gconstpointer b, gpointer data)
     {
 	if(good_structure1 && good_structure2)
 	    return_value =
-		misc_int_compare(game_skill1, game_skill2);
+		misc_float_compare(game_skill1, game_skill2);
 	else if(good_structure1)
 	    return_value =
-		misc_int_compare(game_skill1, skill_for_pos2);
+		misc_float_compare(game_skill1, skill_for_pos2);
 	else if(good_structure2)
 	    return_value =
-		misc_int_compare(skill_for_pos1, game_skill2);
+		misc_float_compare(skill_for_pos1, game_skill2);
 	else
 	    return_value = 
-		misc_int_compare(skill_for_pos1, skill_for_pos2);
+		misc_float_compare(skill_for_pos1, skill_for_pos2);
     }
     else
 	return_value = 
-	    misc_int_compare(skill_for_pos1, skill_for_pos2);
+	    misc_float_compare(skill_for_pos1, skill_for_pos2);
 
 /*     printf("%s %d %s %d   %d\n", pl1->name->str, pl1->pos, pl2->name->str,  */
 /* 	   pl2->pos, return_value); */
@@ -547,7 +557,7 @@ player_swap(Team *tm1, gint player_number1, Team *tm2, gint player_number2)
     @param pl The player we examine.
     @param position The position we's like to put the player.
     @return A new cskill. */
-gint
+gfloat
 player_get_cskill(const Player *pl, gint position)
 {
     gfloat cskill_factor;
@@ -566,7 +576,7 @@ player_get_cskill(const Player *pl, gint position)
 	else
 	    cskill_factor = 0.75;
 
-	return MIN((gint)rint((gfloat)pl->talent * cskill_factor), pl->skill);
+	return MIN(pl->talent * cskill_factor, pl->skill);
     }
     else
 	return pl->skill;
@@ -581,9 +591,8 @@ player_get_cskill(const Player *pl, gint position)
 gint
 player_is_banned(const Player *pl)
 {
-    gint i;
     Fixture *fix = team_get_next_fixture(pl->team);
-    gint yellow_red, yellow, red;
+    gint yellow_red = -1, yellow, red;
 
     if(fix == NULL)
 	return 0;
@@ -593,8 +602,8 @@ player_is_banned(const Player *pl)
     else
 	yellow_red = cup_from_clid(fix->clid)->yellow_red;
     
-    yellow = player_card_get(pl, fix->clid, PLAYER_CARD_YELLOW);
-    red = player_card_get(pl, fix->clid, PLAYER_CARD_RED);
+    yellow = player_card_get(pl, fix->clid, PLAYER_VALUE_CARD_YELLOW);
+    red = player_card_get(pl, fix->clid, PLAYER_VALUE_CARD_RED);
 
     if(red > 0)
 	return red;
@@ -613,11 +622,9 @@ gfloat
 player_get_game_skill(const Player *pl, gboolean skill)
 {
     if(skill)
-	return (gfloat)pl->skill * powf((gfloat)pl->fitness / 10000,
-					const_float("float_player_fitness_impact_on_skill"));
+	return pl->skill * powf(pl->fitness, const_float("float_player_fitness_exponent"));
 
-    return (gfloat)pl->cskill * powf((gfloat)pl->fitness / 10000,
-				     const_float("float_player_fitness_impact_on_skill"));
+    return pl->cskill * powf(pl->fitness, const_float("float_player_fitness_exponent"));
 }
 
 /** Decrease a player's fitness during a match.
@@ -625,35 +632,78 @@ player_get_game_skill(const Player *pl, gboolean skill)
 void
 player_decrease_fitness(Player *pl)
 {
-    gint i, reduction;
-    gint age_limits[7] =
-	{const_int("int_player_fitness_decrease_peak_age_diff1"),
-	 const_int("int_player_fitness_decrease_peak_age_diff2"),
-	 const_int("int_player_fitness_decrease_peak_age_diff3"),
-	 const_int("int_player_fitness_decrease_peak_age_diff4"),
-	 const_int("int_player_fitness_decrease_peak_age_diff5"),
-	 const_int("int_player_fitness_decrease_peak_age_diff6"),
-	 const_int("int_player_fitness_decrease_peak_age_diff7")};
-    gint reduce[8] =
-	{const_int("int_player_fitness_decrease_minus1"),
-	 const_int("int_player_fitness_decrease_minus2"),
-	 const_int("int_player_fitness_decrease_minus3"),
-	 const_int("int_player_fitness_decrease_minus4"),
-	 const_int("int_player_fitness_decrease_minus5"),
-	 const_int("int_player_fitness_decrease_minus6"),
-	 const_int("int_player_fitness_decrease_minus7"),
-	 const_int("int_player_fitness_decrease_minus_else")};
+    gint i;
+    gint age_limits[7] = {const_float("float_player_peak_age_diff_younger1"),
+			  const_float("float_player_peak_age_diff_younger2"),
+			  const_float("float_player_peak_age_diff_younger3"),
+			  const_float("float_player_peak_age_diff_peak_younger"),
+			  const_float("float_player_peak_age_diff_peak_older"),
+			  const_float("float_player_peak_age_diff_older1"),
+			  const_float("float_player_peak_age_diff_older2")};
+    gfloat reduce[8] =
+	{const_float("float_player_fitness_decrease_younger1"),
+	 const_float("float_player_fitness_decrease_younger2"),
+	 const_float("float_player_fitness_decrease_younger3"),
+	 const_float("float_player_fitness_decrease_peak_younger"),
+	 const_float("float_player_fitness_decrease_peak_older"),
+	 const_float("float_player_fitness_decrease_older1"),
+	 const_float("float_player_fitness_decrease_older2"),
+	 const_float("float_player_fitness_decrease_else")};
 
-    gint diff = pl->peak_age - pl->age;
+    gfloat diff = pl->peak_age - pl->age;
+    gfloat reduction;
 
     for(i=0;i<7;i++)
 	if(diff > age_limits[i])
 	    break;
 
-    reduction = (gint)rint((gfloat)reduce[i] * 
-			   (1 + pl->team->boost * const_float("float_player_boost_fitness_effect")));
+    reduction = reduce[i] * (1 + (gfloat)pl->team->boost * const_float("float_player_boost_fitness_effect")) *
+	(1 - (pl->cpos == 0) * const_float("float_player_fitness_decrease_factor_goalie"));
     
     pl->fitness = MAX(0, pl->fitness - reduction);
+}
+
+
+/** Increase of player fitness after a match.
+    Depends on the decrease values and the
+    percentage values that determine how much of the
+    decrease a player gains.
+    @param pl The player we edit. */
+void
+player_update_fitness(Player *pl)
+{
+    gint i;
+    gint age_limits[7] = {const_float("float_player_peak_age_diff_younger1"),
+			  const_float("float_player_peak_age_diff_younger2"),
+			  const_float("float_player_peak_age_diff_younger3"),
+			  const_float("float_player_peak_age_diff_peak_younger"),
+			  const_float("float_player_peak_age_diff_peak_older"),
+			  const_float("float_player_peak_age_diff_older1"),
+			  const_float("float_player_peak_age_diff_older2")};
+    gfloat increase_base[8] =
+	{const_float("float_player_fitness_increase_younger1"),
+	 const_float("float_player_fitness_increase_younger2"),
+	 const_float("float_player_fitness_increase_younger3"),
+	 const_float("float_player_fitness_increase_peak_younger"),
+	 const_float("float_player_fitness_increase_peak_older"),
+	 const_float("float_player_fitness_increase_older1"),
+	 const_float("float_player_fitness_increase_older2"),
+	 const_float("float_player_fitness_increase_else")};
+
+    gfloat diff = pl->peak_age - pl->age;
+    gfloat increase = -1;
+
+    if(pl->participation)
+	return;
+
+    for(i=0;i<7;i++)
+	if(diff > age_limits[i])
+	    break;
+
+    increase = math_rnd(increase_base[i] - const_float("float_player_fitness_increase_variance"),
+			increase_base[i] + const_float("float_player_fitness_increase_variance"));
+
+    pl->fitness = MIN(pl->fitness + increase, 1);
 }
 
 /** Return the number of yellow cards of a player
@@ -665,12 +715,12 @@ gint
 player_card_get(const Player *pl, gint clid, gint card_type)
 {
     gint i;
-    gint return_value = -1;
+    gint return_value = 0;
     
     for(i=0;i<pl->cards->len;i++)
 	if(g_array_index(pl->cards, PlayerCard, i).clid == clid)
 	{
-	    if(card_type == PLAYER_CARD_YELLOW)
+	    if(card_type == PLAYER_VALUE_CARD_YELLOW)
 		return_value = g_array_index(pl->cards, PlayerCard, i).yellow;
 	    else
 		return_value = g_array_index(pl->cards, PlayerCard, i).red;
@@ -691,15 +741,15 @@ player_card_get(const Player *pl, gint clid, gint card_type)
 void
 player_card_set(Player *pl, gint clid, gint card_type, gint value, gboolean diff)
 {
-    gint i, *card_value;
+    gint i, *card_value = NULL;
     PlayerCard new;
 
     for(i=0;i<pl->cards->len;i++)
 	if(g_array_index(pl->cards, PlayerCard, i).clid == clid)
 	{
-	    if(card_type == PLAYER_CARD_YELLOW)
+	    if(card_type == PLAYER_VALUE_CARD_YELLOW)
 		card_value = &g_array_index(pl->cards, PlayerCard, i).yellow;
-	    else
+	    else if(card_type == PLAYER_VALUE_CARD_RED)
 		card_value = &g_array_index(pl->cards, PlayerCard, i).red;
 
 	    if(diff)
@@ -722,4 +772,177 @@ player_card_set(Player *pl, gint clid, gint card_type, gint value, gboolean diff
     g_array_append_val(pl->cards, new);
 
     player_card_set(pl, clid, card_type, value, diff);
+}
+
+/** Return the number of games or goals.
+    @param pl The player.
+    @param clid The cup or league id.
+    @param card_type Whether games or goals cards. */
+gint
+player_games_goals_get(const Player *pl, gint clid, gint type)
+{
+    gint i, return_value = 0;
+
+    for(i=0;i<pl->games_goals->len;i++)
+	if(g_array_index(pl->games_goals, PlayerGamesGoals, i).clid == clid)
+	{
+	    if(type == PLAYER_VALUE_GAMES)
+		return_value = g_array_index(pl->games_goals, PlayerGamesGoals, i).games;
+	    else if(type == PLAYER_VALUE_GOALS)
+		return_value = g_array_index(pl->games_goals, PlayerGamesGoals, i).goals;
+	    else if(type == PLAYER_VALUE_SHOTS)
+		return_value = g_array_index(pl->games_goals, PlayerGamesGoals, i).shots;
+	}
+
+    return return_value;
+}
+
+/** Change a card value for the player.
+    @param pl The player.
+    @param clid The cup or league id.
+    @param type Whether games or goals or shots.
+    @param value The new value.
+    @param diff Whether we add the value to the old one or
+    replace the old value by the new one. */
+void
+player_games_goals_set(Player *pl, gint clid, gint type, gint value, gboolean diff)
+{
+    gint i, *games_goals_value = NULL;
+    PlayerGamesGoals new;
+
+    for(i=0;i<pl->games_goals->len;i++)
+	if(g_array_index(pl->games_goals, PlayerGamesGoals, i).clid == clid)
+	{
+	    if(type == PLAYER_VALUE_GAMES)
+		games_goals_value = &g_array_index(pl->games_goals, PlayerGamesGoals, i).games;
+	    else if(type == PLAYER_VALUE_GOALS)
+		games_goals_value = &g_array_index(pl->games_goals, PlayerGamesGoals, i).goals;
+	    else if(type == PLAYER_VALUE_SHOTS)
+		games_goals_value = &g_array_index(pl->games_goals, PlayerGamesGoals, i).shots;
+
+	    if(diff)
+		*games_goals_value += value;
+	    else
+		*games_goals_value = value;
+
+	    if(*games_goals_value < 0)
+	    {
+		g_warning("player_games_goals_set: negative value; setting to 0\n");
+		*games_goals_value = 0;
+	    }
+	    
+	    return;
+	}
+
+    new.clid = clid;
+    new.games = new.goals = new.shots = 0;
+
+    g_array_append_val(pl->games_goals, new);
+
+    player_games_goals_set(pl, clid, type, value, diff);
+}
+
+/** Update skill and lsu of a user player.
+    @param pl The player we update. */
+void
+player_update_skill(Player *pl)
+{
+    gint i;
+    gint age_limits[7] =
+	{const_float("float_player_peak_age_diff_younger1"),
+	 const_float("float_player_peak_age_diff_younger2"),
+	 const_float("float_player_peak_age_diff_younger3"),
+	 const_float("float_player_peak_age_diff_peak_younger"),
+	 const_float("float_player_peak_age_diff_peak_older"),
+	 const_float("float_player_peak_age_diff_older1"),
+	 const_float("float_player_peak_age_diff_older2")};
+    gfloat factor_limits[3][2] =
+	{{const_float("float_player_skill_devel_younger1_lower"),
+	  const_float("float_player_skill_devel_younger1_upper")},
+	 {const_float("float_player_skill_devel_younger2_lower"),
+	  const_float("float_player_skill_devel_younger2_upper")},
+	 {const_float("float_player_skill_devel_younger3_lower"),
+	  const_float("float_player_skill_devel_younger3_upper")}};
+    gint increase_decrease[4][2] =
+	{{const_float("float_player_skill_devel_peak_lower"),
+	  const_float("float_player_skill_devel_peak_upper")},
+	 {const_float("float_player_skill_devel_older1_lower"),
+	  const_float("float_player_skill_devel_older1_upper")},
+	 {const_float("float_player_skill_devel_older2_lower"),
+	  const_float("float_player_skill_devel_older2_upper")},
+	 {const_float("float_player_skill_devel_else_lower"),
+	  const_float("float_player_skill_devel_else_upper")}};
+    gfloat diff;
+
+    if(pl->age > pl->peak_age)
+	pl->lsu += (pl->health == 0) ? 1 : const_float("float_player_lsu_injured_old");
+    else if(pl->health == 0 &&
+	    ((gfloat)player_games_goals_get(pl, pl->team->clid, PLAYER_VALUE_GAMES) / (gfloat)week >=
+	     const_float("float_player_lsu_games_percentage") || 
+	     math_rnd(0, 1) <= const_float("float_player_lsu_increase_prob")))
+	pl->lsu++;
+
+    if(pl->lsu < const_float("float_player_lsu_update_limit") ||
+       math_rnd(0, 1) < powf(const_float("float_player_lsu_update_base_prob"),
+			     pl->lsu - const_float("float_player_lsu_update_limit")))
+	return;
+	
+    pl->lsu = 0;
+
+    diff = pl->peak_age - pl->age;
+
+    for(i=0;i<7;i++)
+	if(diff > age_limits[i])
+	    break;
+
+    if(i < 3)
+	pl->skill += (pl->talent - pl->skill) * math_rnd(factor_limits[i][0], factor_limits[i][1]);
+    else if(i < 5)
+	pl->skill += math_rnd(increase_decrease[0][0], increase_decrease[0][1]);
+    else if(i < 7)
+	pl->skill += math_rnd(increase_decrease[i - 4][0], increase_decrease[i - 4][1]);
+    else
+	pl->skill += math_rnd(increase_decrease[3][0], increase_decrease[3][1]);
+
+    pl->skill = CLAMP(pl->skill, 0, pl->talent);
+    pl->cskill = player_get_cskill(pl, pl->cpos);
+}
+
+/** Update players in user teams (age, skill, fitness etc.)
+    @param tm The team of the player.
+    @param idx The index in the players array. */
+void
+player_update_weekly(Team *tm, gint idx)
+{
+    Player *pl = player_of(tm, idx);
+    
+    pl->age += 0.0192;
+    pl->contract -= 0.0192;
+
+    if(pl->contract <= 0)
+	player_remove_contract(tm, idx);
+
+    player_update_skill(pl);
+}
+
+/** Remove a player from a user team after the contract expired.
+    @param tm The user team.
+    @param idx The player index. */
+void
+player_remove_contract(Team *tm, gint idx)
+{
+    /*todo: add event*/
+
+    free_player(player_of(tm, idx));
+    g_array_remove_index(tm->players, idx);
+}
+
+/** Make some player updates after a match
+    for user players.
+    @param pl The player we update. */
+void
+player_update_post_match(Player *pl)
+{
+    if(pl->health == 0)
+	player_update_fitness(pl);
 }

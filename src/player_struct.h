@@ -74,21 +74,25 @@ typedef struct
     
     gint pos, /**< Position. @see #PlayerPos */
 	cpos, /**< Current position. @see #PlayerPos */
-	skill, /**< Skill. Between 0 and a constant (specified in the constants file). */
-	cskill, /**< Current Skill. */
-	age, /**< Age in weeks */
-	peak_age, /**< Age at which the player reaches his peak ability. */
-	talent, /**< Talent. The peak ability (which isn't always reached). */
-	etal[QUALITY_END], /**< Estimated talent (the user never sees the actual talent).
-			      Depends on scout quality. */
-	fitness, /**< Fitness. Between 0 and 9900. */
 	health, /**< Health. An integer signifying an injury or good health. @see #PlayerInjury */
 	recovery, /**< Weeks until the player gets healthy. */
 	id, /**< Id of the player within the team. */
 	value, /**< Value of the player. */
-	wage, /**< Wage of the player. */
-	contract, /**< The number of weeks until the player's contract expires. */
-	lsu; /**< Last skill update. Number of weeks since the player skill was last updated. */
+	wage; /**< Wage of the player. */
+
+    gfloat skill, /**< Skill. Between 0 and a constant (specified in the constants file). */
+	cskill, /**< Current Skill. */
+	talent, /**< Talent. The peak ability (which isn't always reached). */
+	etal[QUALITY_END], /**< Estimated talent (the user never sees the actual talent).
+			      Depends on scout quality. */
+	fitness, /**< Fitness. Between 0 and 1. */
+	lsu, /**< Last skill update. Number of weeks since the player skill was last updated. */
+	age, /**< Age in years. */
+	peak_age, /**< Age at which the player reaches his peak ability. */
+	contract; /**< The years until the player's contract expires. */
+
+    /** Whether the player participated in the team's last match. */
+    gboolean participation;
 
     /** Array of games and goals; one item per league and cup.
 	@see PlayerGamesGoals */

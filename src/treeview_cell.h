@@ -26,7 +26,7 @@ treeview_cell_player_to_cell(GtkTreeViewColumn *col,
 			     gpointer           user_data);
 
 void
-treeview_cell_player_contract_to_cell(GtkCellRenderer *renderer, gchar *buf, gint contract_time);
+treeview_cell_player_contract_to_cell(GtkCellRenderer *renderer, gchar *buf, gfloat contract_time);
 
 void
 treeview_cell_player_cards_to_cell(gchar *buf, const Player *pl);
@@ -38,7 +38,7 @@ void
 treeview_cell_player_games_goals_to_cell(gchar *buf, const Player *pl, gint type);
 
 void
-treeview_cell_player_fitness_to_cell(GtkCellRenderer *renderer, gchar *buf, gint fitness);
+treeview_cell_player_fitness_to_cell(GtkCellRenderer *renderer, gchar *buf, gfloat fitness);
 
 void
 treeview_cell_player_pos_to_cell(GtkCellRenderer *renderer, gchar *buf, gint pos);

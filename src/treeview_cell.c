@@ -95,13 +95,12 @@ treeview_cell_player_to_cell(GtkTreeViewColumn *col,
 	    treeview_cell_player_cskill_to_cell(renderer, buf, pl);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_SKILL:
-	    sprintf(buf, "%d", pl->skill);
+	    sprintf(buf, "%.*f", opt_int("int_opt_player_precision"), pl->skill);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_FITNESS:
 	    treeview_cell_player_fitness_to_cell(renderer, buf, pl->fitness);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_GAMES:
-	    /*todo*/
 	    treeview_cell_player_games_goals_to_cell(buf, pl, PLAYER_LIST_ATTRIBUTE_GAMES);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_GOALS:
@@ -117,10 +116,11 @@ treeview_cell_player_to_cell(GtkTreeViewColumn *col,
 	    treeview_cell_player_cards_to_cell(buf, pl);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_AGE:
-	    sprintf(buf, "%d", (gint)rint((gfloat)pl->age / 52));
+	    sprintf(buf, "%.*f", opt_int("int_opt_player_precision"), pl->age);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_ETAL:
-	    sprintf(buf, "%d", pl->etal[usr(current_user).scout % 10]);
+	    sprintf(buf, "%.*f", opt_int("int_opt_player_precision"),
+		    pl->etal[usr(current_user).scout % 10]);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_VALUE:
 	    misc_print_grouped_int(pl->value, buf, FALSE);
@@ -147,17 +147,18 @@ treeview_cell_player_to_cell(GtkTreeViewColumn *col,
     @param buf The string the cell will contain.
     @param contract_time The contract time in weeks. */
 void
-treeview_cell_player_contract_to_cell(GtkCellRenderer *renderer, gchar *buf, gint contract_time)
+treeview_cell_player_contract_to_cell(GtkCellRenderer *renderer, gchar *buf, gfloat contract_time)
 {
-    sprintf(buf, "%.1f", (gfloat)contract_time / 52);
+    sprintf(buf, "%.*f", opt_int("int_opt_player_precision"),
+	    contract_time);
 
-    if(contract_time < const_int("int_treeview_cell_limit_player_contract_below3"))
+    if(contract_time < const_float("float_treeview_cell_limit_player_contract_below3"))
 	g_object_set(renderer, "foreground", 
 		     const_str("string_treeview_cell_color_player_contract_below3"), NULL);
-    else if(contract_time < const_int("int_treeview_cell_limit_player_contract_below2"))
+    else if(contract_time < const_float("float_treeview_cell_limit_player_contract_below2"))
 	g_object_set(renderer, "foreground", 
 		     const_str("string_treeview_cell_color_player_contract_below2"), NULL);
-    else if(contract_time < const_int("int_treeview_cell_limit_player_contract_below1"))
+    else if(contract_time < const_float("float_treeview_cell_limit_player_contract_below1"))
 	g_object_set(renderer, "foreground", 
 		     const_str("string_treeview_cell_color_player_contract_below1"), NULL);
     else
@@ -191,7 +192,7 @@ treeview_cell_player_cards_to_cell(gchar *buf, const Player *pl)
 	return;
     }
 
-    yellow = player_card_get(pl, fix->clid, PLAYER_CARD_YELLOW);
+    yellow = player_card_get(pl, fix->clid, PLAYER_VALUE_CARD_YELLOW);
 
     if(yellow != -1)
     {
@@ -244,8 +245,8 @@ treeview_cell_player_status_to_cell(GtkCellRenderer *renderer, gchar *buf, const
 void
 treeview_cell_player_games_goals_to_cell(gchar *buf, const Player *pl, gint type)
 {
-    gint i, idx = -1;
     Fixture *fix = team_get_next_fixture(pl->team);
+    gint clid = pl->team->clid;
 
     if(pl->games_goals->len == 0)
     {
@@ -253,42 +254,14 @@ treeview_cell_player_games_goals_to_cell(gchar *buf, const Player *pl, gint type
 	return;
     }
 
-    if(fix == NULL)
-	    idx = 0;
-    else
-    {
-	for(i=0;i<pl->games_goals->len;i++)
-	    if(g_array_index(pl->games_goals, PlayerGamesGoals, i).clid == fix->clid)
-	    {
-		idx = i;
-		break;
-	    }
-    }
+    if(fix != NULL)
+	clid = fix->clid;
 
-    if(type == PLAYER_LIST_ATTRIBUTE_GOALS)
-    {
-	if(opt_user_int("int_opt_user_show_overall"))
-	    sprintf(buf, "%d(%d)", g_array_index(pl->games_goals, PlayerGamesGoals, idx).goals,
-		    player_all_games_goals(pl, PLAYER_LIST_ATTRIBUTE_GOALS));
-	else
-	    sprintf(buf, "%d", g_array_index(pl->games_goals, PlayerGamesGoals, idx).goals);
-    }
-    else if(type == PLAYER_LIST_ATTRIBUTE_GAMES)
-    {
-	if(opt_user_int("int_opt_user_show_overall"))
-	    sprintf(buf, "%d(%d)", g_array_index(pl->games_goals, PlayerGamesGoals, idx).games,
-		    player_all_games_goals(pl, PLAYER_LIST_ATTRIBUTE_GAMES));
-	else
-	    sprintf(buf, "%d", g_array_index(pl->games_goals, PlayerGamesGoals, idx).games);
-    }
-    else if(type == PLAYER_LIST_ATTRIBUTE_SHOTS)
-    {
-	if(opt_user_int("int_opt_user_show_overall"))
-	    sprintf(buf, "%d(%d)", g_array_index(pl->games_goals, PlayerGamesGoals, idx).shots,
-		    player_all_games_goals(pl, PLAYER_LIST_ATTRIBUTE_SHOTS));
-	else
-	    sprintf(buf, "%d", g_array_index(pl->games_goals, PlayerGamesGoals, idx).shots);
-    }
+    if(opt_user_int("int_opt_user_show_overall"))
+	sprintf(buf, "%d(%d)", player_games_goals_get(pl, clid, type),
+		player_all_games_goals(pl, PLAYER_VALUE_GOALS));
+    else
+	sprintf(buf, "%d", player_games_goals_get(pl, clid, type));
 }
 
 /** Render a cell of player fitness.
@@ -296,17 +269,17 @@ treeview_cell_player_games_goals_to_cell(gchar *buf, const Player *pl, gint type
     @param buf The string the cell will contain.
     @param fitness The fitness of the player. */
 void
-treeview_cell_player_fitness_to_cell(GtkCellRenderer *renderer, gchar *buf, gint fitness)
+treeview_cell_player_fitness_to_cell(GtkCellRenderer *renderer, gchar *buf, gfloat fitness)
 {
-    sprintf(buf, "%d%%", (gint)rint((gfloat)fitness / 100));
+    sprintf(buf, "%d%%", (gint)rint(fitness * 100));
 
-    if(fitness < const_int("int_treeview_cell_limit_player_fitness_below3"))
+    if(fitness < const_float("float_treeview_cell_limit_player_fitness_below3"))
 	g_object_set(renderer, "foreground", 
 		     const_str("string_treeview_cell_color_player_fitness_below3"), NULL);
-    else if(fitness < const_int("int_treeview_cell_limit_player_fitness_below2"))
+    else if(fitness < const_float("float_treeview_cell_limit_player_fitness_below2"))
 	g_object_set(renderer, "foreground", 
 		     const_str("string_treeview_cell_color_player_fitness_below2"), NULL);
-    else if(fitness < const_int("int_treeview_cell_limit_player_fitness_below2"))
+    else if(fitness < const_float("float_treeview_cell_limit_player_fitness_below2"))
 	g_object_set(renderer, "foreground", 
 		     const_str("string_treeview_cell_color_player_fitness_below2"), NULL);
     else
@@ -361,7 +334,8 @@ treeview_cell_player_pos_to_cell(GtkCellRenderer *renderer, gchar *buf, gint pos
 void
 treeview_cell_player_cskill_to_cell(GtkCellRenderer *renderer, gchar *buf, const Player *pl)
 {
-    sprintf(buf, "%d", (gint)rint(player_get_game_skill(pl, FALSE)));
+    sprintf(buf, "%.*f", opt_int("int_opt_player_precision"),
+	    player_get_game_skill(pl, FALSE));
 	    
     if(pl->cskill < pl->skill)
 	g_object_set(renderer, "background", 

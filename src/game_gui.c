@@ -64,9 +64,13 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
     {
 	gtk_widget_set_sensitive(lookup_widget(window.live, "button_live_close"), TRUE);
 	gtk_widget_hide(lookup_widget(window.live, "button_pause"));
+	gtk_widget_hide(lookup_widget(window.live, "button_resume"));
     }
     else if(unit->event.type == LIVE_GAME_EVENT_PENALTIES)
+    {
 	gtk_widget_hide(lookup_widget(window.live, "button_pause"));	
+	gtk_widget_hide(lookup_widget(window.live, "button_resume"));
+    }
 }
 
 /** Set the area scale position and color in the live game window.

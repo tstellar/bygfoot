@@ -29,7 +29,10 @@ callback_show_next_live_game(void)
 		if(g_array_index(lig(i).fixtures, Fixture, j).week_number == week &&
 		   g_array_index(lig(i).fixtures, Fixture, j).week_round_number == week_round &&
 		   fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j)) != -1 &&
-		   g_array_index(lig(i).fixtures, Fixture, j).attendance == -1)
+		   g_array_index(lig(i).fixtures, Fixture, j).attendance == -1 &&
+		    option_int("int_opt_user_show_live_game",
+			       usr(fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j))).
+			       options))
 		{
 		    live_game_calculate_fixture(&g_array_index(lig(i).fixtures, Fixture, j));
 		    return;
@@ -54,6 +57,9 @@ callback_show_next_live_game(void)
     /* no more user games to show: end round. */
     end_week_round();
     stat0 = STATUS_MAIN;
+
+    /*d*/
+    game_gui_show_main();
 }
 
 /** Handle a click on the player list.
@@ -76,9 +82,11 @@ callback_player_clicked(gint idx, GdkEventButton *event)
 
 	player_swap(usr(current_user).tm, selected_row[0],
 		    usr(current_user).tm, idx);
-	if(opt_user_int("int_opt_user_swap_adapts") == 1)
+	if(opt_user_int("int_opt_user_swap_adapts") == 1 &&
+	   usr(current_user).tm->structure !=
+	   team_find_appropriate_structure(usr(current_user).tm))
 	{
-	    team_change_structure(usr(current_user).tm, 
+	    team_change_structure(usr(current_user).tm,
 				  team_find_appropriate_structure(usr(current_user).tm));
 	    team_rearrange(usr(current_user).tm);
 	}

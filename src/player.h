@@ -12,15 +12,18 @@ enum PlayerCompareAttrib
     PLAYER_COMPARE_ATTRIBUTE_END
 };
 
-enum PlayerCardType
+enum PlayerValue
 {
-    PLAYER_CARD_YELLOW = 0,
-    PLAYER_CARD_RED, 
-    PLAYER_CARD_END
+    PLAYER_VALUE_CARD_YELLOW = 0,
+    PLAYER_VALUE_CARD_RED, 
+    PLAYER_VALUE_GAMES,
+    PLAYER_VALUE_GOALS,
+    PLAYER_VALUE_SHOTS,
+    PLAYER_VALUE_END
 };
 
 Player
-player_new(Team *tm, gint average_skill);
+player_new(Team *tm, gfloat average_skill);
 
 gint
 player_new_id(const GArray *players);
@@ -28,8 +31,8 @@ player_new_id(const GArray *players);
 gint
 player_get_position_from_structure(gint structure, gint player_number);
 
-gint
-player_new_talent(gint skill);
+gfloat
+player_new_talent(gfloat skill);
 
 void
 player_estimate_talent(Player *pl);
@@ -76,7 +79,7 @@ player_move(Team *tm1, gint player_number, Team *tm2, gint insert_at);
 void
 player_swap(Team *tm1, gint player_number1, Team *tm2, gint player_number2);
 
-gint
+gfloat
 player_get_cskill(const Player *pl, gint position);
 
 gint
@@ -99,5 +102,26 @@ player_card_get(const Player *pl, gint clid, gint card_type);
 
 void
 player_card_set(Player *pl, gint clid, gint card_type, gint value, gboolean diff);
+
+void
+player_games_goals_set(Player *pl, gint clid, gint type, gint value, gboolean diff);
+
+gint
+player_games_goals_get(const Player *pl, gint clid, gint type);
+
+void
+player_update_weekly(Team *tm, gint idx);
+
+void
+player_remove_contract(Team *tm, gint idx);
+
+void
+player_update_skill(Player *pl);
+
+void
+player_update_fitness(Player *pl);
+
+void
+player_update_post_match(Player *pl);
 
 #endif

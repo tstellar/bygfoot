@@ -108,21 +108,18 @@ team_generate_players(Team *tm)
     gfloat skill_factor = math_rnd(1 - const_float("float_team_skill_variance"),
 				   1 + const_float("float_team_skill_variance"));
     Player new;
-    gint average_skill;
+    gfloat average_skill;
 
     if(tm->clid < ID_CUP_START)
 	average_skill = 
-	    (gint)rint((gfloat)const_int("int_player_max_skill") *
-		       ((gfloat)team_return_league_cup_value_int(tm, LEAGUE_CUP_VALUE_AVERAGE_SKILL) / 100) *
-		       skill_factor);
+	    const_float("float_player_max_skill") * skill_factor *
+	    ((gfloat)team_return_league_cup_value_int(tm, LEAGUE_CUP_VALUE_AVERAGE_SKILL) / 100);
     else
 	average_skill = 
-	    (gint)rint((gfloat)const_int("int_player_max_skill") *
-		       (((gfloat)lig(0).average_skill +
-			 (gfloat)team_return_league_cup_value_int(tm, LEAGUE_CUP_VALUE_SKILL_DIFF)) / 100) *
-		       skill_factor);
+	    skill_factor * lig(0).average_skill *
+	    ((gfloat)team_return_league_cup_value_int(tm, LEAGUE_CUP_VALUE_SKILL_DIFF) / 1000);
 
-    average_skill = CLAMP(average_skill, 0, const_int("int_player_max_skill"));
+    average_skill = CLAMP(average_skill, 0, const_float("float_player_max_skill"));
     
     for(i=0;i<const_int("int_team_max_players");i++)
     {
@@ -252,7 +249,7 @@ team_copy(const Team *source, Team *dest)
     
     for(i=0;i<source->players->len;i++)
     {
-	new_player = player_new(dest, const_int("int_player_max_skill"));
+	new_player = player_new(dest, const_float("float_player_max_skill"));
 	free_player(&new_player);
 	player_copy(&g_array_index(source->players, Player, i),
 		    &new_player);
@@ -509,9 +506,7 @@ team_get_average_skill(const Team *tm, gboolean cskill)
     else
 	for(i=0;i<11;i++)
 	{
-	    sum += player_of(tm, i)->cskill * 
-		powf((gfloat)player_of(tm, i)->fitness / 10000, 
-		     const_float("float_player_fitness_exponent"));
+	    sum += player_get_game_skill(player_of(tm, i), FALSE);
 	    counter++;
 	}
 
@@ -672,4 +667,35 @@ team_change_attribute_with_message(Team *tm, gint attribute, gint new_value)
     }
 
     game_gui_print_message(buf);
+}
+
+/** Heal players, re-set fitnesses, make some random subs
+    and replace some players with new ones.
+    @param tm The team we examine. */
+void
+team_update_cpu_team(Team *tm)
+{
+
+}
+
+/** Increase player ages etc.
+    @param tm The user team we examine. */
+void
+team_update_user_team_weekly(Team *tm)
+{
+    gint i;
+
+    for(i=0;i<tm->players->len;i++)
+	player_update_weekly(tm, i);
+}
+
+/** Regenerate player fitness etc. after a match. 
+    @param tm The user team we examine. */
+void
+team_update_post_match(Team *tm)
+{
+    gint i;
+
+    for(i=0;i<tm->players->len;i++)
+	player_update_post_match(player_of(tm, i));
 }

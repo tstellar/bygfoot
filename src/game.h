@@ -26,16 +26,6 @@ enum GamePlayerType
     GAME_PLAYER_TYPE_END
 };
 
-/** @see game_player_increase() */
-enum GamePlayerIncreaseType
-{
-    GAME_PLAYER_INCREASE_SHOTS = 0,
-    GAME_PLAYER_INCREASE_GOALS,
-    GAME_PLAYER_INCREASE_GAMES,
-    GAME_PLAYER_INCREASE_YELLOW,
-    GAME_PLAYER_INCREASE_END
-};
-
 void
 game_get_values(const Fixture *fix, gfloat team_values[][GAME_TEAM_VALUE_END],
 		gfloat home_advantage);
@@ -70,9 +60,6 @@ gint
 game_substitute_player(Team *tm, gint player_number);
 
 void
-game_player_increase(gint clid, Player *pl, gint type);
-
-void
 game_player_injury(Player *pl);
 
 gfloat
@@ -101,5 +88,8 @@ game_update_stats(gpointer live_game, gconstpointer live_game_unit);
 
 void
 game_update_stats_player(gpointer live_game, gconstpointer live_game_unit);
+
+void
+game_post_match(Fixture *fix);
 
 #endif

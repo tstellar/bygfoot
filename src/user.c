@@ -1,3 +1,4 @@
+#include "fixture.h"
 #include "free.h"
 #include "league.h"
 #include "maths.h"
@@ -123,4 +124,32 @@ user_set_player_list_attributes(const User *user, PlayerListAttribute *attribute
 	    attribute->on_off[cnt] = g_array_index(user->options, Option, i).value;
 	    cnt++;
 	}
+}
+
+/** Find out whether there are user games at the specified date. */
+gboolean
+user_games_in_week_round(gint week_number, gint week_round_number)
+{
+    gint i, j;
+
+    if(week_round_number == 1)
+    {
+	for(i=0;i<ligs->len;i++)
+	    for(j=0;j<lig(i).fixtures->len;j++)
+		if(fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j)) != -1 &&
+		   g_array_index(lig(i).fixtures, Fixture, j).week_number == week_number &&
+		   g_array_index(lig(i).fixtures, Fixture, j).week_round_number == week_round_number)
+		    return TRUE;
+    }
+    else
+    {
+	for(i=0;i<cps->len;i++)
+	    for(j=0;j<cp(i).fixtures->len;j++)
+		if(fixture_user_team_involved(&g_array_index(cp(i).fixtures, Fixture, j)) != -1 &&
+		   g_array_index(lig(i).fixtures, Fixture, j).week_number == week_number &&
+		   g_array_index(lig(i).fixtures, Fixture, j).week_round_number == week_round_number)
+		    return TRUE;
+    }
+
+    return FALSE;
 }

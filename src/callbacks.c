@@ -168,7 +168,7 @@ on_player_list1_button_press_event     (GtkWidget       *widget,
     treeview_select_row(GTK_TREE_VIEW(widget), event);
     idx = treeview_get_index(GTK_TREE_VIEW(widget), 0);
 
-    if(idx < 0)
+    if(idx < 0 || idx - 1 == selected_row[0])
     {
 	selected_row[0] = -1;
 	return FALSE;
@@ -649,10 +649,10 @@ on_eventbox_style_button_press_event   (GtkWidget       *widget,
     if(event->type != GDK_BUTTON_PRESS)
 	return FALSE;
 
-    if(event->button == 1)
+    if(event->button == 3)
 	new_style = (usr(current_user).tm->style != 2) ?
 	    usr(current_user).tm->style + 1 : -2;
-    else if(event->button == 3)
+    else if(event->button == 1)
 	new_style = (usr(current_user).tm->style != -2) ?
 	    usr(current_user).tm->style - 1 : 2;
     else
@@ -677,10 +677,10 @@ on_eventbox_boost_button_press_event   (GtkWidget       *widget,
     if(event->type != GDK_BUTTON_PRESS)
 	return FALSE;
 
-    if(event->button == 1)
+    if(event->button == 3)
 	new_boost = (usr(current_user).tm->boost != 1) ?
 	    usr(current_user).tm->boost + 1 : -1;
-    else if(event->button == 3)
+    else if(event->button == 1)
 	new_boost = (usr(current_user).tm->boost != -1) ?
 	    usr(current_user).tm->boost - 1 : 1;
     else

@@ -6,6 +6,7 @@
 #include "misc.h"
 #include "option.h"
 #include "player.h"
+#include "table.h"
 #include "team.h"
 #include "treeview.h"
 #include "user.h"
@@ -55,12 +56,16 @@ game_get_values(const Fixture *fix, gfloat team_values[][GAME_TEAM_VALUE_END],
 		((1 + style_factor) * (1 + home_advantage * (i == 0)) *
 		 (1 + const_float("float_player_boost_skill_effect") * tm[i]->boost));
 
-/* 	printf("%s attack %.1f midf %.1f defend %.1f style %d struct %d\n", */
-/* 	       tm[i]->name->str, */
-/* 	       team_values[i][GAME_TEAM_VALUE_ATTACK], */
-/* 	       team_values[i][GAME_TEAM_VALUE_MIDFIELD], */
-/* 	       team_values[i][GAME_TEAM_VALUE_DEFEND], */
-/* 	       tm[i]->style, tm[i]->structure); */
+	if(fixture_user_team_involved(fix) != -1)
+	{
+	    printf("week %d %d\n", week, week_round);
+	    printf("%s attack %.1f midf %.1f defend %.1f style %d struct %d\n",
+		   tm[i]->name->str,
+		   team_values[i][GAME_TEAM_VALUE_ATTACK],
+		   team_values[i][GAME_TEAM_VALUE_MIDFIELD],
+		   team_values[i][GAME_TEAM_VALUE_DEFEND],
+		   tm[i]->style, tm[i]->structure);
+	}
     }
 }
 
@@ -170,17 +175,13 @@ game_get_player_probs(GArray *players, gfloat *probs, gfloat *weights, gboolean 
 {
     gint i;
 
-    probs[0] = (skills) ? (gfloat)g_array_index(players, Player, 1).cskill * 
-	powf((gfloat)g_array_index(players, Player, 1).fitness, 
-	     const_float("float_player_fitness_exponent")) *
+    probs[0] = (skills) ? player_get_game_skill(&g_array_index(players, Player, 1), FALSE) *
 	weights[g_array_index(players, Player, 1).pos - 1] :
 	weights[g_array_index(players, Player, 1).pos - 1] *
 	(g_array_index(players, Player, 1).cskill != 0);
     for(i=1;i<10;i++)
 	probs[i] = probs[i - 1] + 
-	    ((skills) ? (gfloat)g_array_index(players, Player, i + 1).cskill * 
-	     powf((gfloat)g_array_index(players, Player, i + 1).fitness, 
-		  const_float("float_player_fitness_exponent")) *
+	    ((skills) ? player_get_game_skill(&g_array_index(players, Player, i + 1), FALSE) *
 	     weights[g_array_index(players, Player, i + 1).pos - 1] :
 	     weights[g_array_index(players, Player, i + 1).pos - 1] *
 	     (g_array_index(players, Player, i + 1).cskill != 0));
@@ -232,14 +233,20 @@ game_initialize(Fixture *fix)
     fix->attendance = 1000;
 
     for(i=0;i<2;i++)
-	for(j=0;j<11;j++)
+	for(j=0;j<fix->teams[i]->players->len;j++)
 	{
-	    if(player_of(fix->teams[i], j)->cskill > 0)
-		game_player_increase(fix->clid, player_of(fix->teams[i], j),
-				     GAME_PLAYER_INCREASE_GAMES);
-
-	    if(player_card_get(player_of(fix->teams[i], j), fix->clid, PLAYER_CARD_RED) > 0)
-		player_card_set(player_of(fix->teams[i], j), fix->clid, PLAYER_CARD_RED, -1, TRUE);
+	    if(j < 11)
+	    {
+		if(player_of(fix->teams[i], j)->cskill > 0)
+		    player_games_goals_set(player_of(fix->teams[i], j), fix->clid,
+					   PLAYER_VALUE_GAMES, 1, TRUE);
+		
+		if(player_card_get(player_of(fix->teams[i], j), fix->clid, PLAYER_VALUE_CARD_RED) > 0)
+		    player_card_set(player_of(fix->teams[i], j), fix->clid, PLAYER_VALUE_CARD_RED, -1, TRUE);
+	    }
+		
+	    player_of(fix->teams[i], j)->participation = 
+		(j < 11 && player_of(fix->teams[i], j)->cskill > 0);
 	}
 }
 
@@ -325,38 +332,6 @@ game_get_subs(gint team_number, gint *subs_in, gint *subs_out)
 	    subs_out[cnt] = usr(stat2).live_game.team_state[team_number].player_ids[i];
 	    cnt++;
 	}
-}
-
-/** Increase the number of shots in the player struct.
-    @param fix The game being played.
-    @param team The team index.
-    @param player_id The player id. */
-void
-game_player_increase(gint clid, Player *pl, gint type)
-{
-    gint i;
-    PlayerGamesGoals new;
-
-    for(i=0;i<pl->games_goals->len;i++)
-	if(g_array_index(pl->games_goals, PlayerGamesGoals, i).clid == clid)
-	{
-	    if(type == GAME_PLAYER_INCREASE_SHOTS)
-		g_array_index(pl->games_goals, PlayerGamesGoals, i).shots++;
-	    else if(type == GAME_PLAYER_INCREASE_GOALS)
-		g_array_index(pl->games_goals, PlayerGamesGoals, i).goals++;
-	    else if(type == GAME_PLAYER_INCREASE_GAMES)
-		g_array_index(pl->games_goals, PlayerGamesGoals, i).games++;
-		
-	    return;
-	}
-
-    /* Entry not found, we create a new one. */    
-    new.clid = clid;
-    new.shots = new.goals = new.games = 0;
-
-    g_array_append_val(pl->games_goals, new);
-
-    game_player_increase(clid, pl, type);
 }
 
 /** Choose an injury for a player and adjust health values.
@@ -486,6 +461,7 @@ game_substitute_player(Team *tm, gint player_number)
 					    ((Player*)g_ptr_array_index(substitutes, 0))->pos));
 
     substitute = ((Player*)g_ptr_array_index(substitutes, 0))->id;
+
     player_swap(tm, player_number,
 		tm, player_id_index(tm, ((Player*)g_ptr_array_index(substitutes, 0))->id));
 
@@ -640,10 +616,9 @@ game_decrease_fitness(const Fixture *fix)
 
     for(i=0;i<2;i++)
     {
-	if(team_is_user(fix->teams[i]) != -1)
-	    for(j=0;j<11;j++)
-		if(player_of(fix->teams[i], j)->cskill > 0)
-		    player_decrease_fitness(player_of(fix->teams[i], j));
+	for(j=0;j<11;j++)
+	    if(player_of(fix->teams[i], j)->cskill > 0)
+		player_decrease_fitness(player_of(fix->teams[i], j));
     }
 }
 
@@ -982,5 +957,24 @@ game_update_stats_player(gpointer live_game, gconstpointer live_game_unit)
 	    new = g_string_new(buf);
 	    g_ptr_array_add(players, new);
 	}
+    }
+}
+
+/** Make some team updates after a match.
+    @param fix The match we examine. */
+void
+game_post_match(Fixture *fix)
+{
+    gint i;
+
+    if(query_fixture_has_tables(fix))
+	table_update(fix);
+    
+    for(i=0;i<2;i++)
+    {
+	if(team_is_user(fix->teams[i]) == -1)
+	    team_update_cpu_team(fix->teams[i]);
+	else
+	    team_update_post_match(fix->teams[i]);
     }
 }

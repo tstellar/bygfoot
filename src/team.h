@@ -84,4 +84,13 @@ team_attribute_to_char(gint attribute, gint value);
 void
 team_change_attribute_with_message(Team * tm, gint attribute, gint new_value);
 
+void
+team_update_user_team_weekly(Team *tm);
+
+void
+team_update_cpu_team(Team *tm);
+
+void
+team_update_post_match(Team *tm);
+
 #endif

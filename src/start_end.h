@@ -36,4 +36,7 @@ start_week_round(void);
 void
 start_week(void);
 
+void
+start_week_update_user_teams(void);
+
 #endif
