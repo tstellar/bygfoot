@@ -22,7 +22,7 @@ gboolean
 query_is_my_team(const Team *tm);
 
 void
-team_generate_players(Team *tm);
+team_generate_players_stadium(Team *tm);
 
 gint
 team_return_league_cup_value_int(const Team *tm, gint value_type);

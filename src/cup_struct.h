@@ -89,8 +89,6 @@ typedef struct
 	the league with highest average skill.
 	Default: 0. */
     gint skill_diff;
-    /** Average stadium capacity. Default: -1. */
-    gint average_capacity;
     /** Array with rules how teams are chosen.
 	@see #CupChooseTeam */
     GArray *choose_teams;

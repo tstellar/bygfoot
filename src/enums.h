@@ -61,7 +61,21 @@ enum Status0Value
     STATUS_SHOW_LAST_MATCH,
     STATUS_SHOW_LAST_MATCH_STATS,
     STATUS_SHOW_FIXTURES,
+    STATUS_SHOW_TABLES,
     STATUS_END
+};
+
+/** Enum used to determine what kind of fixtures or
+    tables to show (e.g. when an arrow is clicked on). */
+enum ShowType
+{
+    SHOW_TEAM = 0,
+    SHOW_CURRENT,
+    SHOW_NEXT,
+    SHOW_PREVIOUS,
+    SHOW_NEXT_LEAGUE,
+    SHOW_PREVIOUS_LEAGUE,
+    SHOW_END
 };
 
 #endif

@@ -60,14 +60,7 @@ start_new_season(void)
 	fixture_write_league_fixtures(&lig(i));
 
     for(i=0;i<cps->len;i++)
-    {
 	fixture_write_cup_fixtures(&cp(i));
-	/*d*/
-/* 	printf("%s %d %d %d\n", */
-/* 	       cp(i).name->str, cp(i).id,  */
-/* 	       g_array_index(cp(i).fixtures, Fixture, 0).week_number, */
-/* 	       g_array_index(cp(i).fixtures, Fixture, 0).week_round_number);	        */
-    }
 }
 
 /** Fill some global variables with default values at the
@@ -91,24 +84,14 @@ void
 start_generate_league_teams(void)
 {
     gint i, j;    
-    Team *tm;
 
     if(ligs->len == 0)
 	main_exit_program(EXIT_NO_LEAGUES,
 			  "start_generate_league_teams: no leagues found. there must be at least one league in the game.\n");
 
     for(i=0;i<ligs->len;i++)
-    {
 	for(j=0;j<lig(i).teams->len;j++)
-	{
-	    tm = &g_array_index(lig(i).teams, Team, j);
-	    tm->stadium.capacity = 
-		math_gauss_disti((gint)(lig(i).average_capacity * 0.66),
-				 (gint)(lig(i).average_capacity * 1.33));
-	    
-	    team_generate_players(tm);
-	}
-    }
+	    team_generate_players_stadium(&g_array_index(lig(i).teams, Team, j));
 }
 
 /** Load the names from the xml files for the cups

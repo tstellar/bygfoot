@@ -1002,13 +1002,13 @@ treeview_create_fixture(const Fixture *fix, GtkListStore *liststore)
     {
 	if(fixture_user_team_involved(fix) == current_user)
 	{
-	    colour_fg = const_str("string_treeview_fixture_current_user_fg");
-	    colour_bg = const_str("string_treeview_fixture_current_user_bg");
+	    colour_fg = const_str("string_treeview_current_user_fg");
+	    colour_bg = const_str("string_treeview_current_user_bg");
 	}
 	else
 	{
-	    colour_fg = const_str("string_treeview_fixture_user_fg");
-	    colour_bg = const_str("string_treeview_fixture_user_bg");
+	    colour_fg = const_str("string_treeview_user_fg");
+	    colour_bg = const_str("string_treeview_user_bg");
 	}
     }
     else
@@ -1089,7 +1089,8 @@ treeview_set_up_fixtures(GtkTreeView *treeview)
     col = gtk_tree_view_column_new();
     gtk_tree_view_append_column(treeview, col);
     renderer = gtk_cell_renderer_pixbuf_new();
-    g_object_set(renderer, "cell-background", "lightgrey", NULL);
+    g_object_set(renderer, "cell-background", 
+		 const_str("string_treeview_symbol_bg"), NULL);
     gtk_tree_view_column_pack_start(col, renderer, TRUE);
     gtk_tree_view_column_add_attribute(col, renderer,
 				       "pixbuf", 0);
@@ -1110,7 +1111,9 @@ treeview_set_up_fixtures(GtkTreeView *treeview)
     col = gtk_tree_view_column_new();
     gtk_tree_view_append_column(treeview, col);
     renderer = gtk_cell_renderer_pixbuf_new();
-    gtk_tree_view_column_pack_start(col, renderer, TRUE);
+    g_object_set(renderer, "cell-background", 
+		 const_str("string_treeview_symbol_bg"), NULL);
+    gtk_tree_view_column_pack_start(col, renderer, FALSE);
     gtk_tree_view_column_add_attribute(col, renderer,
 				       "pixbuf", 4);
 }
@@ -1131,6 +1134,252 @@ treeview_show_fixtures(GtkTreeView *treeview, gint clid,
     
     treeview_set_up_fixtures(treeview);
     model = treeview_create_fixtures(clid, week_number, week_round_number);
+    gtk_tree_view_set_model(treeview, model);
+    g_object_unref(model);
+}
+
+/** Write the header for a table into the liststore
+    @param clid The cup or league id.
+    @param number The number of the table if we display more than one. */
+void
+treeview_table_write_header(GtkListStore *liststore, gint clid, gint number)
+{
+    gint i;
+    gchar buf[SMALL];
+    GdkPixbuf *symbol = NULL;
+    GtkTreeIter iter;
+
+    if(clid < ID_CUP_START)
+    {
+	symbol = treeview_pixbuf_from_filename(league_from_clid(clid)->symbol->str);
+	strcpy(buf, league_from_clid(clid)->name->str);
+    }
+    else
+    {
+	symbol = treeview_pixbuf_from_filename(cup_from_clid(clid)->symbol->str);
+	sprintf(buf, _("%s Group %d"), cup_from_clid(clid)->name->str, number);
+    }
+
+    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_set(liststore, &iter, 0, symbol, 1, "", 2, buf, -1);
+
+    for(i=3;i<11;i++)
+	gtk_list_store_set(liststore, &iter, i, "", -1);
+
+    if(symbol != NULL)
+	g_object_unref(symbol);
+}
+
+/** Get the colours for a team in the tables.
+    @param table The table pointer.
+    @param idx The index of the element we're looking at.
+    @param user Whether to take into account user colours. */
+void
+treeview_get_table_element_colours(const Table *table, gint idx, gchar *colour_fg, 
+				   gchar *colour_bg, gboolean user)
+{
+    gint i;
+    const TableElement *elem = &g_array_index(table->elements, TableElement, idx);
+    const PromRelElement *pelem = NULL;
+    const League *league = NULL;
+    GPtrArray *cup_advance = NULL;
+    
+
+    strcpy(colour_fg, const_str("string_treeview_cell_color_default_foreground"));
+    strcpy(colour_bg, const_str("string_treeview_cell_color_default_background"));
+    
+    if(user && elem->team == usr(current_user).tm)
+    {
+	strcpy(colour_fg, const_str("string_treeview_current_user_fg"));
+	strcpy(colour_bg, const_str("string_treeview_current_user_bg"));
+    }
+    else if(user && team_is_user(elem->team) != -1)
+    {
+	strcpy(colour_fg, const_str("string_treeview_user_fg"));
+	strcpy(colour_bg, const_str("string_treeview_user_bg"));
+    }
+    else if(table->clid < ID_CUP_START)
+    {
+	league = league_from_clid(table->clid);
+
+	if(idx + 1 == 1)
+	    strcpy(colour_bg, const_str("string_treeview_table_first"));
+	else
+	{
+	    for(i=0;i<league->prom_rel.elements->len;i++)
+	    {
+		pelem = &g_array_index(league_from_clid(table->clid)->prom_rel.elements, PromRelElement, i);
+		if(pelem->ranks[0] <= idx + 1 && idx + 1 <= pelem->ranks[1])
+		{
+		    if(pelem->type == PROM_REL_PROMOTION)
+			strcpy(colour_bg, const_str("string_treeview_table_promotion"));
+		    else if(pelem->type == PROM_REL_RELEGATION)
+		    strcpy(colour_bg, const_str("string_treeview_table_relegation"));
+		}
+	    }
+
+	    if(strlen(league->prom_rel.prom_games_dest_sid->str) != 0 &&
+	       g_array_index(league->prom_rel.prom_games_cup.choose_teams, 
+			     CupChooseTeam, 0).start_idx <= idx + 1 &&
+	       idx + 1 <= g_array_index(league->prom_rel.prom_games_cup.choose_teams,
+					CupChooseTeam, 0).end_idx)
+		strcpy(colour_bg, const_str("string_treeview_table_promgames"));
+	}
+    }
+    else
+    {
+	cup_advance = 
+	    fixture_get_round_robin_advance(cup_from_clid(table->clid), table->round);
+	for(i=0;i<cup_advance->len;i++)
+	    if((Team*)g_ptr_array_index(cup_advance, i) == elem->team)
+		strcpy(colour_bg, const_str("string_treeview_table_promotion"));
+	
+	free_g_ptr_array(&cup_advance);
+    }
+}
+
+/** Display a table in the liststore. 
+    @param number The number of the table if we display more than one
+    (cups, round robin); or -1 for leagues. */
+void
+treeview_create_single_table(GtkListStore *liststore, const Table *table, gint number)
+{
+    gint i, j;
+    GtkTreeIter iter;
+    GdkPixbuf *symbol = NULL;
+    TableElement *elem = NULL;
+    gchar buf[10][SMALL];
+    gchar colour_bg[SMALL], colour_fg[SMALL];
+
+    treeview_table_write_header(liststore, table->clid, number);    
+
+    for(i=0;i<table->elements->len;i++)
+    {
+	gtk_list_store_append(liststore, &iter);
+
+	elem = &g_array_index(table->elements, TableElement, i);
+	if(table->clid >= ID_CUP_START)
+	    symbol = treeview_pixbuf_from_filename(elem->team->symbol->str);
+	
+	gtk_list_store_set(liststore, &iter, 0, symbol, -1);
+
+	treeview_get_table_element_colours(table, i, colour_fg, colour_bg, FALSE);
+	sprintf(buf[0], "<span background='%s' foreground = '%s'>%d</span>",
+		colour_bg, colour_fg, i + 1);
+
+	treeview_get_table_element_colours(table, i, colour_fg, colour_bg, TRUE);
+	sprintf(buf[1], "<span background='%s' foreground = '%s'>%s</span>", 
+		colour_bg, colour_fg, elem->team->name->str);
+
+	for(j=2;j<10;j++)
+	    if(j - 2 != TABLE_GD)
+		sprintf(buf[j], "%d", elem->values[j - 2]);
+	    else
+		sprintf(buf[j], "%+d", elem->values[j - 2]);
+
+	for(j=0;j<10;j++)
+	    gtk_list_store_set(liststore, &iter, j + 1, buf[j], -1);
+
+	if(symbol != NULL)
+	    g_object_unref(symbol);
+    }
+
+    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_set(liststore, &iter, 0, NULL, -1);
+    for(j=1;j<11;j++)
+	gtk_list_store_set(liststore, &iter, j, "", -1);
+}
+
+/** Create a league table or one or more cup tables. */
+GtkTreeModel*
+treeview_create_table(gint clid)
+{
+    gint i;
+    GArray *tables = NULL;
+    GtkListStore *liststore = 
+	gtk_list_store_new(11,
+			   GDK_TYPE_PIXBUF,
+			   G_TYPE_STRING,
+			   G_TYPE_STRING,
+			   G_TYPE_STRING,
+			   G_TYPE_STRING,
+			   G_TYPE_STRING,
+			   G_TYPE_STRING,
+			   G_TYPE_STRING,
+			   G_TYPE_STRING,
+			   G_TYPE_STRING,
+			   G_TYPE_STRING);
+    
+    if(clid < ID_CUP_START)
+	treeview_create_single_table(liststore, 
+				     &league_from_clid(clid)->table, -1);
+    else
+    {
+	tables = cup_from_clid(clid)->tables;
+	for(i=0;i<tables->len;i++)
+	    treeview_create_single_table(liststore, &g_array_index(tables, Table, i), i + 1);
+    }
+
+    return GTK_TREE_MODEL(liststore);
+}
+
+void
+treeview_set_up_table(GtkTreeView *treeview)
+{
+    gint i;
+    GtkTreeViewColumn   *col;
+    GtkCellRenderer     *renderer;
+    gchar *titles[11] =
+	{"",
+	 "",
+	 _("Team"),
+	 _("PL"),
+	 _("W"),
+	 _("D"),
+	 _("L"),
+	 _("GF"),
+	 _("GA"),
+	 _("GD"),
+	 _("PTS")};
+
+    gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
+				GTK_SELECTION_NONE);
+    
+    col = gtk_tree_view_column_new();
+    gtk_tree_view_append_column(treeview, col);
+    renderer = gtk_cell_renderer_pixbuf_new();
+    g_object_set(renderer, "cell-background", 
+		 const_str("string_treeview_symbol_bg"), NULL);
+    gtk_tree_view_column_pack_start(col, renderer, TRUE);
+    gtk_tree_view_column_add_attribute(col, renderer,
+				       "pixbuf", 0);
+
+    for(i=1;i<11;i++)
+    {
+	col = gtk_tree_view_column_new();
+	gtk_tree_view_column_set_title(col, titles[i]);
+	gtk_tree_view_append_column(treeview, col);
+	renderer = gtk_cell_renderer_text_new();
+	gtk_tree_view_column_pack_start(col, renderer, FALSE);
+	gtk_tree_view_column_add_attribute(col, renderer,
+					   "markup", i);
+
+	if(i == 1)
+	    g_object_set(renderer, "xalign", 1.0, NULL);
+    }
+}
+
+/** Show the table going with a league or cup. */
+void
+treeview_show_table(GtkTreeView *treeview, gint clid)
+{
+    GtkTreeModel *model = NULL;
+
+    treeview_clear(treeview);
+    gtk_tree_view_set_headers_visible(treeview, TRUE);
+    
+    treeview_set_up_table(treeview);
+    model = treeview_create_table(clid);
     gtk_tree_view_set_model(treeview, model);
     g_object_unref(model);
 }

@@ -17,6 +17,7 @@ enum TableElementValues
     TABLE_LOST,
     TABLE_GF,
     TABLE_GA,
+    TABLE_GD,
     TABLE_PTS,
     TABLE_END
 };

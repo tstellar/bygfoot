@@ -30,8 +30,6 @@ team_new(void)
     new.style = team_assign_playing_style();
     new.boost = 0;
 
-    new.stadium = team_stadium_new();
-
     new.players = g_array_new(FALSE, FALSE, sizeof(Player));
 
     return new;
@@ -92,7 +90,8 @@ team_stadium_new(void)
     Stadium new;
 
     new.capacity = -1;
-    new.safety = math_gauss_disti(80, 100);
+    new.safety = 0;
+
     new.average_attendance = 
 	new.possible_attendance = 
 	new.games = 0;
@@ -100,21 +99,22 @@ team_stadium_new(void)
     return new;
 }
 
-/* Fill the players array of the team.
+/* Fill the players array of the team and the stadium.
    @param tm The team that gets filled. */
 void
-team_generate_players(Team *tm)
+team_generate_players_stadium(Team *tm)
 {
     gint i;    
     gfloat skill_factor = math_rnd(1 - const_float("float_team_skill_variance"),
 				   1 + const_float("float_team_skill_variance"));
     Player new;
     gfloat average_skill;
+    gfloat wages = 0;
 
     if(tm->clid < ID_CUP_START)
 	average_skill = 
 	    const_float("float_player_max_skill") * skill_factor *
-	    ((gfloat)team_return_league_cup_value_int(tm, LEAGUE_CUP_VALUE_AVERAGE_SKILL) / 100);
+	    ((gfloat)team_return_league_cup_value_int(tm, LEAGUE_CUP_VALUE_AVERAGE_SKILL) / 1000);
     else
 	average_skill = 
 	    skill_factor * lig(0).average_skill *
@@ -125,8 +125,26 @@ team_generate_players(Team *tm)
     for(i=0;i<const_int("int_team_max_players");i++)
     {
 	new = player_new(tm, average_skill);
+	wages += new.wage;
 	g_array_append_val(tm->players, new);
     }
+
+    tm->stadium.average_attendance = tm->stadium.possible_attendance =
+	tm->stadium.games = 0;    
+    tm->stadium.safety = 
+	math_rnd(const_float("float_team_stadium_safety_lower"),
+		 const_float("float_team_stadium_safety_upper"));
+
+    tm->stadium.capacity = 
+	math_round_integer((gint)rint((wages / (gfloat)const_int("int_team_stadium_ticket_price")) *
+				      const_float("float_team_stadium_size_wage_factor")), 2);
+
+    /*d*/
+/*     printf("%30s wag %.0f stadcap %d cap * tick %d diff %d\n", */
+/* 	   tm->name->str, wages, tm->stadium.capacity, */
+/* 	   tm->stadium.capacity * const_int("int_team_stadium_ticket_price"), */
+/* 	   math_round_integer((gint)(2 * wages) -  */
+/* 			      tm->stadium.capacity * const_int("int_team_stadium_ticket_price"), 3)); */
 }
 
 /** Return a certain value from the league or cup struct
@@ -150,8 +168,6 @@ team_return_league_cup_value_int(const Team *tm, gint value_type)
 		return cp(idx).week_gap;
 	    case LEAGUE_CUP_VALUE_YELLOW_RED:
 		return cp(idx).yellow_red;
-	    case LEAGUE_CUP_VALUE_AVERAGE_CAPACITY:
-		return cp(idx).average_capacity;
 	    case LEAGUE_CUP_VALUE_CUP_TYPE:
 		return cp(idx).type;
 	    case LEAGUE_CUP_VALUE_SKILL_DIFF:
@@ -174,8 +190,6 @@ team_return_league_cup_value_int(const Team *tm, gint value_type)
 	    return lig(idx).yellow_red;
 	case LEAGUE_CUP_VALUE_AVERAGE_SKILL:
 	    return lig(idx).average_skill;
-	case LEAGUE_CUP_VALUE_AVERAGE_CAPACITY:
-	    return lig(idx).average_capacity;
 	default:
 	    g_warning("team_return_league_cup_value_int: unknown value_type for leagues: %d\n",
 		      value_type);

@@ -146,12 +146,11 @@ void
 free_league(League *league)
 {
     gint i;
-    GString **strings[7] = 
+    GString **strings[6] = 
 	{&league->name,
 	 &league->short_name,
 	 &league->symbol,
 	 &league->sid,
-	 &league->prom_rel.prom_games_cup_sid,
 	 &league->prom_rel.prom_games_dest_sid,
 	 &league->table.name};
     GArray **arrays[3] = 
@@ -159,7 +158,7 @@ free_league(League *league)
 	 &league->prom_rel.elements,
 	 &league->table.elements};
 
-    for(i=0;i<7;i++)
+    for(i=0;i<6;i++)
 	free_g_string(strings[i]);
 
     if(league->teams != NULL)

@@ -27,7 +27,6 @@ cup_new(void)
     new.last_week = new.week_gap = -1;
     new.yellow_red = 1000;
     new.skill_diff = 0;
-    new.average_capacity = -1;
 
     new.choose_teams = g_array_new(FALSE, FALSE, sizeof(CupChooseTeam));
     new.choose_team_user = cup_choose_team_new();
@@ -174,7 +173,7 @@ cup_load_choose_teams(Cup *cup)
     }
 
     for(i=0;i<cup->teams->len;i++)
-	team_generate_players(&g_array_index(cup->teams, Team, i));
+	team_generate_players_stadium(&g_array_index(cup->teams, Team, i));
 
     /*d*/
 /*     printf("\n%s\n", cup->name->str); */

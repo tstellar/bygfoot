@@ -68,6 +68,24 @@ callback_show_next_live_game(void)
 void
 callback_player_clicked(gint idx, GdkEventButton *event)
 {
+    /*d*/
+    gint i,j,k, sum=0, cnt;
+
+    for(i=0;i<ligs->len;i++)
+    {
+	sum = cnt = 0;
+	for(j=0;j<lig(i).teams->len;j++)
+	{
+	    for(k=0;k<g_array_index(lig(i).teams, Team, j).players->len;k++)
+	    {
+		sum += g_array_index(g_array_index(lig(i).teams, Team, j).players, Player, k).wage;
+	    }
+	    cnt++;
+	}
+
+	printf("%s %d\n", lig(i).name->str, (gint)rint((gfloat)sum / (gfloat)cnt));
+    }
+
     /** Only accept single-clicks right now. */
     if(event->type != GDK_BUTTON_PRESS)
 	return;
@@ -136,4 +154,32 @@ callback_show_fixtures(gint type)
     stat1 = fix->clid;
     stat2 = fix->week_number;
     stat3 = fix->week_round_number;
+}
+
+/** Show tables.
+    @type Integer telling us whether to show the current user's
+    tables or those of the previous/next league/cup. */
+void
+callback_show_tables(gint type)
+{
+    gint clid = -1;
+
+    if(type == SHOW_CURRENT)
+	clid = usr(current_user).tm->clid;
+    else if(type == SHOW_NEXT_LEAGUE)
+    {
+	clid = league_cup_get_next_clid(stat1);
+	while(clid >= ID_CUP_START && cup_from_clid(clid)->tables->len == 0)
+	    clid = league_cup_get_next_clid(clid);
+    }
+    else if(type == SHOW_PREVIOUS_LEAGUE)
+    {
+	clid = league_cup_get_previous_clid(stat1);
+	while(clid >= ID_CUP_START && cup_from_clid(clid)->tables->len == 0)
+	    clid = league_cup_get_previous_clid(clid);
+    }
+
+    stat1 = clid;
+
+    treeview_show_table(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")), clid);
 }

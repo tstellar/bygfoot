@@ -3,6 +3,14 @@
 
 #include "bygfoot.h"
 #include "table_struct.h"
+#include "cup_struct.h"
+
+enum PromRelType
+{
+    PROM_REL_PROMOTION = 0,
+    PROM_REL_RELEGATION,
+    PROM_REL_NONE
+};
 
 /**
    An element representing a promotion or relegation rule.
@@ -14,6 +22,7 @@ typedef struct
 {
     gint ranks[2]; /**< The range of teams; default 0 and 0 */
     GString *dest_sid; /**< The id of the destination league. Default "" */
+    gint type; /**< Type. Promotion or relegation or none. */
 } PromRelElement;
 
 /**
@@ -26,16 +35,14 @@ typedef struct
 {
     /** The id of the league the promotion games winner gets promoted to. Default "" */
     GString *prom_games_dest_sid;
-    /** The id of the cup that specifies the promotion games format.
-	We regard the promotion games as a national cup like any other cup.
-	@see Cup
-    */
-    GString *prom_games_cup_sid; /* "" */
 
     /** Array with promotion/relegation rules.
 	@see PromRelElement
     */
     GArray *elements;
+
+    /** The cup determining how the promotion games are handled. */
+    Cup prom_games_cup;
 } PromRel;
 
 /**
@@ -60,8 +67,6 @@ typedef struct
     gint yellow_red;
     /** Average skill for the first season. Default: -1. */
     gint average_skill;
-    /** Average stadium capacity. Default: -1. */
-    gint average_capacity;
     /** Array of teams in the league.
 	@see Team */
     GArray *teams;

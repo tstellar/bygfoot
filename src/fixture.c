@@ -165,7 +165,7 @@ fixture_get_cup_round_winners(const Cup *cup)
     const CupRound *cupround = &g_array_index(cup->rounds, CupRound, round);
 
     if(cupround->round_robin_number_of_groups > 0)
-	return fixture_get_round_robin_advance(cup);
+	return fixture_get_round_robin_advance(cup, round);
 
     array = g_ptr_array_new();
 
@@ -204,13 +204,13 @@ fixture_get_cup_round_winners(const Cup *cup)
 /** Return an array of teams advancing from a round robin
     stage of a cup. 
     @param cup The cup.
+    @param round The cup round.
     @return The pointers to the teams. */
 GPtrArray*
-fixture_get_round_robin_advance(const Cup *cup)
+fixture_get_round_robin_advance(const Cup *cup, gint round)
 {
     gint i, j;
     GArray *fixtures = cup->fixtures;
-    gint round = g_array_index(fixtures, Fixture, fixtures->len - 1).round;
     GPtrArray *array = g_ptr_array_new();
     const CupRound *cupround = &g_array_index(cup->rounds, CupRound, round);
     GArray *best_advance = g_array_new(FALSE, FALSE, sizeof(TableElement));
@@ -828,7 +828,7 @@ fixture_get_previous(gint clid, gint week_number, gint week_round_number)
     @param clid The id of the current league/cup we're showing.
     @param week_number The week we're showing.
     @param week_round_number The round we're showing.
-    @param tm A team pointer (for the case SHOW_FIX_TEAM).
+    @param tm A team pointer (for the case SHOW_TEAM).
     @return A fixture pointer or NULL. */
 Fixture*
 fixture_get(gint type, gint clid, gint week_number, gint week_round_number, const Team *tm)
@@ -836,29 +836,29 @@ fixture_get(gint type, gint clid, gint week_number, gint week_round_number, cons
     Fixture *fix = NULL;
     gint new_clid = -1;
 
-    if(type == SHOW_FIX_TEAM)
+    if(type == SHOW_TEAM)
     {
 	fix = team_get_fixture(tm, TRUE);
 	if(fix == NULL)
 	    fix = team_get_fixture(tm, FALSE);
     }
-    else if(type == SHOW_FIX_CURRENT)
+    else if(type == SHOW_CURRENT)
     {
 	fix = league_cup_get_previous_fixture(clid, week_number, week_round_number);
 	if(fix == NULL)
 	    fix = league_cup_get_next_fixture(clid, week_number, week_round_number);
     }
-    else if(type == SHOW_FIX_NEXT)
+    else if(type == SHOW_NEXT)
 	fix = fixture_get_next(clid, week_number, week_round_number);
-    else if(type == SHOW_FIX_PREVIOUS)
+    else if(type == SHOW_PREVIOUS)
 	    fix = fixture_get_previous(clid, week_number, week_round_number);
-    else if(type == SHOW_FIX_NEXT_LEAGUE ||
-	    type == SHOW_FIX_PREVIOUS_LEAGUE)
+    else if(type == SHOW_NEXT_LEAGUE ||
+	    type == SHOW_PREVIOUS_LEAGUE)
     {
-	    new_clid = (type == SHOW_FIX_NEXT_LEAGUE) ?
+	    new_clid = (type == SHOW_NEXT_LEAGUE) ?
 		league_cup_get_next_clid(clid):
 		league_cup_get_previous_clid(clid);
-	    fix = fixture_get(SHOW_FIX_CURRENT, new_clid, week, week_round, NULL);
+	    fix = fixture_get(SHOW_CURRENT, new_clid, week, week_round, NULL);
     }
 
     if(fix == NULL)

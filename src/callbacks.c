@@ -1,7 +1,6 @@
 #include "callbacks.h"
 #include "callback_func.h"
 #include "enums.h"
-#include "fixture.h"
 #include "game_gui.h"
 #include "main.h"
 #include "team.h"
@@ -197,7 +196,7 @@ on_button_browse_forward_clicked       (GtkButton       *button,
     switch(stat0)
     {
 	case STATUS_SHOW_FIXTURES:
-	    callback_show_fixtures(SHOW_FIX_NEXT);
+	    callback_show_fixtures(SHOW_NEXT);
 	    break;
     }
 }
@@ -210,7 +209,7 @@ on_button_browse_back_clicked          (GtkButton       *button,
     switch(stat0)
     {
 	case STATUS_SHOW_FIXTURES:
-	    callback_show_fixtures(SHOW_FIX_PREVIOUS);
+	    callback_show_fixtures(SHOW_PREVIOUS);
 	    break;
     }
 }
@@ -224,7 +223,10 @@ on_button_cl_back_clicked              (GtkButton       *button,
     switch(stat0)
     {
 	case STATUS_SHOW_FIXTURES:
-	    callback_show_fixtures(SHOW_FIX_PREVIOUS_LEAGUE);
+	    callback_show_fixtures(SHOW_PREVIOUS_LEAGUE);
+	    break;
+	case STATUS_SHOW_TABLES:
+	    callback_show_tables(SHOW_PREVIOUS_LEAGUE);
 	    break;
     }
 }
@@ -237,7 +239,10 @@ on_button_cl_forward_clicked           (GtkButton       *button,
     switch(stat0)
     {
 	case STATUS_SHOW_FIXTURES:
-	    callback_show_fixtures(SHOW_FIX_NEXT_LEAGUE);
+	    callback_show_fixtures(SHOW_NEXT_LEAGUE);
+	    break;
+	case STATUS_SHOW_TABLES:
+	    callback_show_tables(SHOW_NEXT_LEAGUE);
 	    break;
     }
 }
@@ -288,14 +293,15 @@ on_menu_fixtures_activate              (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
     stat0 = STATUS_SHOW_FIXTURES;
-    callback_show_fixtures(SHOW_FIX_TEAM);
+    callback_show_fixtures(SHOW_TEAM);
 }
 
 void
 on_menu_tables_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-
+    stat0 = STATUS_SHOW_TABLES;
+    callback_show_tables(SHOW_CURRENT);
 }
 
 

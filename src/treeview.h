@@ -109,4 +109,23 @@ treeview_create_fixtures_header(const Fixture *fix, GtkListStore *liststore);
 void
 treeview_create_fixture(const Fixture *fix, GtkListStore *liststore);
 
+void
+treeview_show_table(GtkTreeView *treeview, gint clid);
+
+void
+treeview_set_up_table(GtkTreeView *treeview);
+
+GtkTreeModel*
+treeview_create_table(gint clid);
+
+void
+treeview_create_single_table(GtkListStore *liststore, const Table *table, gint number);
+
+void
+treeview_table_write_header(GtkListStore *liststore, gint clid, gint number);
+
+void
+treeview_get_table_element_colours(const Table *table, gint idx, gchar *colour_fg, 
+				   gchar *colour_bg, gboolean user);
+
 #endif

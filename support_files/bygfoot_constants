@@ -45,6 +45,18 @@ float_player_contract_upper 40000
 float_player_lsu_lower 20000
 float_player_lsu_upper 100000
 
+# stadium safety bounds at generation
+float_team_stadium_safety_lower 8000
+float_team_stadium_safety_upper 10000
+
+# ticket price; this determines together with
+# the player wages the size of the stadium at
+# generation
+int_team_stadium_ticket_price 30
+
+# factor for stadium size
+float_team_stadium_size_wage_factor 24000
+
 # lsu addition for injured players who are older
 # than their peak age
 float_player_lsu_injured_old 15000
@@ -444,7 +456,7 @@ float_player_team_weight_forward_midfield	6000
 float_player_team_weight_forward_attack		13000
 
 
-#### string constants
+#### colours and icons
 
 # live game scale configuration
 string_game_gui_live_game_scale_color_defend	lightblue
@@ -464,6 +476,33 @@ string_game_gui_style_all_out_defend_icon	style_all_def.png
 string_game_gui_boost_on_icon			boost_on.png
 string_game_gui_boost_off_icon			boost_off.png
 string_game_gui_boost_anti_icon			boost_anti.png
+
+# icons used in live games
+string_live_game_event_start_match_icon		whistle.png
+string_live_game_event_lost_possession_icon
+string_live_game_event_penalty_icon		scoring_chance.png
+string_live_game_event_scoring_chance_icon	scoring_chance.png
+string_live_game_event_goal_icon		goal.png
+string_live_game_event_own_goal_icon		own_goal.png
+string_live_game_event_post_icon
+string_live_game_event_save_icon		save.png
+string_live_game_event_missed_icon		miss.png
+string_live_game_event_foul_icon
+string_live_game_event_foul_yellow_icon		yellow.png
+string_live_game_event_send_off_icon		red.png
+string_live_game_event_injury_icon		injury.png
+string_live_game_event_temp_injury_icon		injury_temp.png
+string_live_game_event_stadium_breakdown_icon
+string_live_game_event_stadium_fire_icon
+string_live_game_event_stadium_riots_icon
+string_live_game_event_substitution_icon	sub.png
+string_live_game_event_structure_change_icon	structure_change.png
+
+# font attributes for the live game window result.
+string_treeview_cell_live_game_result_attributes weight='bold' size='large'
+
+# colour indicating ball possession during a live game
+string_live_game_possession_color darkblue
 
 # default background and foreground in treeviews
 string_treeview_cell_color_default_background white
@@ -504,36 +543,19 @@ string_treeview_fixture_header_bg lightgrey
 string_treeview_fixture_header_fg black
 
 # team of current user
-string_treeview_fixture_current_user_bg darkblue
-string_treeview_fixture_current_user_fg white
+string_treeview_current_user_bg darkblue
+string_treeview_current_user_fg white
 
 # teams of other users
-string_treeview_fixture_user_bg lightsteelblue
-string_treeview_fixture_user_fg black
+string_treeview_user_bg wheat
+string_treeview_user_fg black
 
-# font attributes for the live game window result.
-string_treeview_cell_live_game_result_attributes weight='bold' size='large'
+# background of the team and league/cup symbols
+string_treeview_symbol_bg lightgrey
 
-# colour indicating ball possession during a live game
-string_live_game_possession_color darkblue
-
-# icons used in live games
-string_live_game_event_start_match_icon		whistle.png
-string_live_game_event_lost_possession_icon
-string_live_game_event_penalty_icon		scoring_chance.png
-string_live_game_event_scoring_chance_icon	scoring_chance.png
-string_live_game_event_goal_icon		goal.png
-string_live_game_event_own_goal_icon		own_goal.png
-string_live_game_event_post_icon
-string_live_game_event_save_icon		save.png
-string_live_game_event_missed_icon		miss.png
-string_live_game_event_foul_icon
-string_live_game_event_foul_yellow_icon		yellow.png
-string_live_game_event_send_off_icon		red.png
-string_live_game_event_injury_icon		injury.png
-string_live_game_event_temp_injury_icon		injury_temp.png
-string_live_game_event_stadium_breakdown_icon
-string_live_game_event_stadium_fire_icon
-string_live_game_event_stadium_riots_icon
-string_live_game_event_substitution_icon	sub.png
-string_live_game_event_structure_change_icon	structure_change.png
+# background for the teams in a table
+string_treeview_table_first tomato
+string_treeview_table_promotion lightblue
+string_treeview_table_relegation lightgreen
+string_treeview_table_promgames khaki
+string_treeview_table_best_advance khaki

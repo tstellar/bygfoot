@@ -40,6 +40,8 @@ table_update(const Fixture *fix)
 	elements[i]->values[TABLE_PLAYED]++;
 	elements[i]->values[TABLE_GF] += fix->result[i][0];
 	elements[i]->values[TABLE_GA] += fix->result[!i][0];
+	elements[i]->values[TABLE_GD] = 
+	    elements[i]->values[TABLE_GF] - elements[i]->values[TABLE_GA];
     }
     
     if(fix->result[0][0] == fix->result[1][0])

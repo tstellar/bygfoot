@@ -21,10 +21,9 @@ league_new(void)
     
     new.id = league_new_id();
 
-    new.average_skill = new.average_capacity = -1;
+    new.average_skill = -1;
 
     new.prom_rel.prom_games_dest_sid = g_string_new("");
-    new.prom_rel.prom_games_cup_sid = g_string_new("");
     new.prom_rel.elements = g_array_new(FALSE, FALSE, sizeof(PromRelElement));
 
     new.teams = g_array_new(FALSE, FALSE, sizeof(Team));
@@ -54,6 +53,7 @@ prom_rel_element_new(void)
 
     new.ranks[0] = new.ranks[1] = 0;
     new.dest_sid = g_string_new("");
+    new.type = PROM_REL_NONE;
 
     return new;
 }

@@ -15,4 +15,7 @@ callback_show_last_match(void);
 void
 callback_show_fixtures(gint type);
 
+void
+callback_show_tables(gint type);
+
 #endif

@@ -6,17 +6,6 @@
 #include "fixture_struct.h"
 #include "league_struct.h"
 
-enum ShowFixType
-{
-    SHOW_FIX_TEAM = 0,
-    SHOW_FIX_CURRENT,
-    SHOW_FIX_NEXT,
-    SHOW_FIX_PREVIOUS,
-    SHOW_FIX_NEXT_LEAGUE,
-    SHOW_FIX_PREVIOUS_LEAGUE,
-    SHOW_FIX_END
-};
-
 void
 fixture_write_league_fixtures(League *league);
 
@@ -52,7 +41,7 @@ GPtrArray*
 fixture_get_cup_round_winners(const Cup *cup);
 
 GPtrArray*
-fixture_get_round_robin_advance(const Cup *cup);
+fixture_get_round_robin_advance(const Cup *cup, gint round);
 
 Team*
 fixture_winner_of(const Fixture *fix);
