@@ -22,6 +22,9 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
     gchar buf[SMALL];
     gfloat fraction = (gfloat)live_game_unit_get_minute(unit) / 90;
     GtkProgressBar *progress_bar;
+    GtkWidget *button_pause = lookup_widget(window.live, "button_pause"),
+	*button_resume = lookup_widget(window.live, "button_resume"),
+	*button_live_close = lookup_widget(window.live, "button_live_close");
 
     if(unit->event.type == LIVE_GAME_EVENT_START_MATCH)
 	treeview_live_game_show_initial_commentary(unit);
@@ -42,7 +45,13 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
     while(gtk_events_pending())
 	gtk_main_iteration();
 
-    if(unit->event.type == LIVE_GAME_EVENT_END_MATCH)
+    if(unit->event.type == LIVE_GAME_EVENT_START_MATCH)
+    {
+	gtk_widget_set_sensitive(button_live_close, FALSE);
+	gtk_widget_show(button_pause);
+	gtk_widget_hide(button_resume);
+    }
+    else if(unit->event.type == LIVE_GAME_EVENT_END_MATCH)
     {
 	gtk_widget_set_sensitive(lookup_widget(window.live, "button_live_close"), TRUE);
 	gtk_widget_hide(lookup_widget(window.live, "button_pause"));
@@ -120,7 +129,7 @@ game_gui_live_game_set_hscale(const LiveGameUnit *unit, GtkHScale *hscale)
 /** Look up the widgets in the main window. */
 void
 game_gui_get_radio_items(GtkWidget **style, GtkWidget **scout,
-			 GtkWidget **physio)
+			 GtkWidget **physio, GtkWidget **boost)
 {
     style[0] = lookup_widget(window.main, "menu_all_out_defend");
     style[1] = lookup_widget(window.main, "menu_defend");
@@ -137,6 +146,10 @@ game_gui_get_radio_items(GtkWidget **style, GtkWidget **scout,
     physio[1] = lookup_widget(window.main, "menu_physio_good");
     physio[2] = lookup_widget(window.main, "menu_physio_average");
     physio[3] = lookup_widget(window.main, "menu_physio_bad");
+
+    boost[0] = lookup_widget(window.main, "menu_boost_anti");
+    boost[1] = lookup_widget(window.main, "menu_boost_normal");
+    boost[2] = lookup_widget(window.main, "menu_boost");
 }
 
 /** Set information like season, user, week etc. into the appropriate labels. */
@@ -187,15 +200,14 @@ game_gui_write_av_skills(void)
 void
 game_gui_write_radio_items(void)
 {
-    GtkCheckMenuItem *boost = GTK_CHECK_MENU_ITEM(lookup_widget(window.main, "menu_boost"));
-    GtkWidget *style[5], *scout[4], *physio[4];
+    GtkWidget *style[5], *scout[4], *physio[4], *boost[3];
 
-    game_gui_get_radio_items(style, scout, physio);
+    game_gui_get_radio_items(style, scout, physio, boost);
 
     gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(style[usr(current_user).tm->style + 2]), TRUE);
     gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(scout[usr(current_user).scout]), TRUE);
     gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(physio[usr(current_user).physio]), TRUE);
-    gtk_check_menu_item_set_active(boost, usr(current_user).tm->boost);
+    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(boost[usr(current_user).tm->boost + 1]), TRUE);
 }
 
 /** Set playing style etc. variables according to
@@ -205,15 +217,16 @@ void
 game_gui_read_radio_items(GtkWidget *widget)
 {
     gint i;
-    GtkWidget *boost = lookup_widget(window.main, "menu_boost");
+    GtkWidget *boost[3];
     GtkWidget *style[5], *scout[4], *physio[4];
     gint old_scout = usr(current_user).scout,
 	old_physio = usr(current_user).physio;
 
-    game_gui_get_radio_items(style, scout, physio);
+    game_gui_get_radio_items(style, scout, physio, boost);
 
-    if(widget == boost)
-	usr(current_user).tm->boost = !usr(current_user).tm->boost;
+    for(i=0;i<3;i++)
+	if(widget == boost[i])
+	    usr(current_user).tm->boost = i - 1;
 
     for(i=0;i<5;i++)
 	if(widget == style[i])

@@ -293,8 +293,9 @@ gboolean
 on_menu_team_button_press_event        (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data);
-#endif
 
 void
 on_menu_manage_users_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
+
+#endif

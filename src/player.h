@@ -8,6 +8,7 @@
 enum PlayerCompareAttrib
 {
     PLAYER_COMPARE_ATTRIBUTE_GAME_SKILL = 0,
+    PLAYER_COMPARE_ATTRIBUTE_POS,
     PLAYER_COMPARE_ATTRIBUTE_END
 };
 
@@ -79,5 +80,8 @@ player_substitution_good_structure(gint old_structure, gint old_pos, gint player
 
 gint
 player_id_index(const Team *tm, gint player_id);
+
+gfloat
+player_get_game_skill(const Player *pl, gboolean skill);
 
 #endif

@@ -123,7 +123,8 @@ table_element_compare_func(gconstpointer a,
 	cup_round = g_array_index(cup_from_clid(clid)->tables, Table, 0).round;
 	fixtures = cup_from_clid(clid)->fixtures;
     }
-
+    
+    /*todo use misc_int_compare*/
     if(element1->values[TABLE_PTS] > element2->values[TABLE_PTS])
 	value = -1;
 

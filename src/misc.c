@@ -196,3 +196,15 @@ misc_int_compare(gint first, gint second)
 
     return 0;
 }
+
+/** Compare two floats. */
+gint
+misc_float_compare(gfloat first, gfloat second)
+{
+    if(first > second)
+	return -1;
+    else if(first < second)
+	return 1;
+
+    return 0;
+}

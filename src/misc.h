@@ -27,4 +27,7 @@ query_integer_is_in_array(gint item, gint *array, gint min, gint max);
 gint
 misc_int_compare(gint first, gint second);
 
+gint
+misc_float_compare(gfloat first, gfloat second);
+
 #endif

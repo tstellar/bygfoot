@@ -1,5 +1,6 @@
 #include "cup.h"
 #include "free.h"
+#include "game_gui.h"
 #include "league.h"
 #include "maths.h"
 #include "misc.h"
@@ -371,14 +372,35 @@ player_all_cards(const Player *pl)
 gint
 player_compare_func(gconstpointer a, gconstpointer b, gpointer data)
 {
-    const Player *pl1 = *(const Player**)a;
-    const Player *pl2 = *(const Player**)b;
-    gint type = GPOINTER_TO_INT(data);
+    gint type = GPOINTER_TO_INT(data) % 100;
+    const Player *pl1 = (GPOINTER_TO_INT(data) < 100) ? 
+	*(const Player**)a : (const Player*)a;
+    const Player *pl2 = (GPOINTER_TO_INT(data) < 100) ? 
+	*(const Player**)b : (const Player*)b;
     gint return_value = 0;
 
     if(type == PLAYER_COMPARE_ATTRIBUTE_GAME_SKILL)
 	return_value = 
-	    misc_int_compare(pl1->cskill * pl1->fitness, pl2->cskill * pl2->fitness);
+	    misc_float_compare(player_get_game_skill(pl1, FALSE),
+			       player_get_game_skill(pl2, FALSE));
+    else if(type == PLAYER_COMPARE_ATTRIBUTE_POS)
+    {
+	if(MIN(player_id_index(pl1->team, pl1->id), player_id_index(pl2->team, pl2->id)) < 11 &&
+	   MAX(player_id_index(pl1->team, pl1->id), player_id_index(pl2->team, pl2->id)) >= 11)
+	    return_value = 
+		(player_id_index(pl1->team, pl1->id) > player_id_index(pl2->team, pl2->id)) ?
+		1 : -1;
+	else if(pl1->cskill == 0)
+	    return_value = (pl2->cskill == 0) ? 0 : 1;
+	else if(pl2->cskill == 0)
+	    return_value = (pl1->cskill == 0) ? 0 : -1;
+	else if(pl2->pos != pl1->pos)
+	    return_value = misc_int_compare(pl2->pos, pl1->pos);
+	else
+	    return_value = 
+		misc_float_compare(player_get_game_skill(pl1, TRUE),
+				   player_get_game_skill(pl2, TRUE));
+    }
 
     return return_value;
 }
@@ -396,10 +418,14 @@ player_compare_substitute_func(gconstpointer a, gconstpointer b, gpointer data)
     const Player *pl1 = *(const Player**)a;
     const Player *pl2 = *(const Player**)b;
     gint position = GPOINTER_TO_INT(data);
-    gint skill_for_pos1 = player_get_cskill(pl1, position) * pl1->fitness,
-	skill_for_pos2 = player_get_cskill(pl2, position) * pl2->fitness;
-    gint game_skill1 = pl1->cskill * pl1->fitness, 
-	game_skill2 = pl2->cskill * pl2->fitness;
+    gint skill_for_pos1 = (gint)rint((gfloat)player_get_cskill(pl1, position) * 
+				     powf((gfloat)pl1->fitness / 10000, 
+					  const_float("float_player_fitness_impact_on_skill"))),
+	skill_for_pos2 = (gint)rint((gfloat)player_get_cskill(pl2, position) * 
+				     powf((gfloat)pl2->fitness / 10000, 
+					  const_float("float_player_fitness_impact_on_skill")));
+    gint game_skill1 = (gint)rint(player_get_game_skill(pl1, FALSE)),
+	game_skill2 = (gint)rint(player_get_game_skill(pl2, FALSE));
     gboolean good_structure1 =
 	player_substitution_good_structure(pl1->team->structure, position, pl1->pos),
 	good_structure2 =
@@ -411,10 +437,8 @@ player_compare_substitute_func(gconstpointer a, gconstpointer b, gpointer data)
 	    misc_int_compare(game_skill1, game_skill2);
     else if(pl1->pos == position)
 	return_value = -1;
-    //misc_int_compare(game_skill1, skill_for_pos2);
     else if(pl2->pos == position)
 	return_value = 1;
-    //misc_int_compare(skill_for_pos1, game_skill2);
     else if(position != PLAYER_POS_GOALIE)
     {
 	if(good_structure1 && good_structure2)
@@ -485,6 +509,16 @@ player_swap(Team *tm1, gint player_number1, Team *tm2, gint player_number2)
 {
     gint move = (tm1 == tm2 && player_number1 < player_number2) ? 
 	-1 : 1;
+
+    if(stat0 == STATUS_LIVE_GAME_PAUSE)
+    {
+	if((player_number1 < 11 && player_is_banned(player_of(tm1, player_number1))) || 
+	   (player_number2 < 11 && player_is_banned(player_of(tm1, player_number2))))
+	{
+	    game_gui_show_warning("You can't replace a banned player.");
+	    return;
+	}
+    }
 
     player_move(tm1, player_number1, tm2, player_number2);
     if(player_number2 < 11)
@@ -573,4 +607,19 @@ player_is_banned(const Player *pl)
 	}
 
     return 0;
+}
+
+/** Return the player's skill contribution to his team.
+    @param pl The player.
+    @param skill Whether to take his skill or current skill into account.
+    @return A float value representing the player's contribution. */
+gfloat
+player_get_game_skill(const Player *pl, gboolean skill)
+{
+    if(skill)
+	return (gfloat)pl->skill * powf((gfloat)pl->fitness / 10000,
+					const_float("float_player_fitness_impact_on_skill"));
+
+    return (gfloat)pl->cskill * powf((gfloat)pl->fitness / 10000,
+				     const_float("float_player_fitness_impact_on_skill"));
 }

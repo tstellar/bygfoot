@@ -62,7 +62,7 @@ void
 live_game_event_free_kick(void);
 
 void
-live_game_event_send_off(gint team, gint player);
+live_game_event_send_off(gint team, gint player, gboolean second_yellow);
 
 void
 live_game_generate_commentary(LiveGameUnit *unit);

@@ -159,8 +159,13 @@ on_live_window_delete_event            (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+    if(GTK_WIDGET_IS_SENSITIVE(lookup_widget(widget, "button_live_close")))
+    {
+	on_button_live_close_clicked(NULL, NULL);
+	return FALSE;
+    }
 
-  return FALSE;
+    return TRUE;
 }
 
 
@@ -241,3 +246,4 @@ on_treeview_users_button_press_event   (GtkWidget       *widget,
 
     return FALSE;
 }
+

@@ -180,8 +180,13 @@ treeview_cell_player_cards_to_cell(gchar *buf, const Player *pl)
 	if(pl->cards->len == 0)
 	    strcpy(buf, "0");
 	else
-	    sprintf(buf, "%d(%d)", g_array_index(pl->cards, PlayerCard, 0).yellow,
-		    player_all_cards(pl));
+	{
+	    if(opt_user_int("int_opt_user_show_overall"))
+		sprintf(buf, "%d(%d)", g_array_index(pl->cards, PlayerCard, 0).yellow,
+			player_all_cards(pl));
+	    else
+		sprintf(buf, "%d", g_array_index(pl->cards, PlayerCard, 0).yellow);		
+	}
 
 	return;
     }
@@ -189,8 +194,11 @@ treeview_cell_player_cards_to_cell(gchar *buf, const Player *pl)
     for(i=0;i<pl->cards->len;i++)
 	if(g_array_index(pl->cards, PlayerCard, 0).clid == fix->clid)
 	{
-	    sprintf(buf, "%d(%d)", g_array_index(pl->cards, PlayerCard, i).yellow,
-		    player_all_cards(pl));
+	    if(opt_user_int("int_opt_user_show_overall"))
+		sprintf(buf, "%d(%d)", g_array_index(pl->cards, PlayerCard, i).yellow,
+			player_all_cards(pl));
+	    else
+		sprintf(buf, "%d", g_array_index(pl->cards, PlayerCard, i).yellow);
 	    return;
 	}
 
@@ -258,14 +266,29 @@ treeview_cell_player_games_goals_to_cell(gchar *buf, const Player *pl, gint type
     }
 
     if(type == PLAYER_LIST_ATTRIBUTE_GOALS)
-	sprintf(buf, "%d(%d)", g_array_index(pl->games_goals, PlayerGamesGoals, idx).goals,
-		player_all_games_goals(pl, PLAYER_LIST_ATTRIBUTE_GOALS));
+    {
+	if(opt_user_int("int_opt_user_show_overall"))
+	    sprintf(buf, "%d(%d)", g_array_index(pl->games_goals, PlayerGamesGoals, idx).goals,
+		    player_all_games_goals(pl, PLAYER_LIST_ATTRIBUTE_GOALS));
+	else
+	    sprintf(buf, "%d", g_array_index(pl->games_goals, PlayerGamesGoals, idx).goals);
+    }
     else if(type == PLAYER_LIST_ATTRIBUTE_GAMES)
-	sprintf(buf, "%d(%d)", g_array_index(pl->games_goals, PlayerGamesGoals, idx).games,
-		player_all_games_goals(pl, PLAYER_LIST_ATTRIBUTE_GAMES));
+    {
+	if(opt_user_int("int_opt_user_show_overall"))
+	    sprintf(buf, "%d(%d)", g_array_index(pl->games_goals, PlayerGamesGoals, idx).games,
+		    player_all_games_goals(pl, PLAYER_LIST_ATTRIBUTE_GAMES));
+	else
+	    sprintf(buf, "%d", g_array_index(pl->games_goals, PlayerGamesGoals, idx).games);
+    }
     else if(type == PLAYER_LIST_ATTRIBUTE_SHOTS)
-	sprintf(buf, "%d(%d)", g_array_index(pl->games_goals, PlayerGamesGoals, idx).shots,
-		player_all_games_goals(pl, PLAYER_LIST_ATTRIBUTE_SHOTS));
+    {
+	if(opt_user_int("int_opt_user_show_overall"))
+	    sprintf(buf, "%d(%d)", g_array_index(pl->games_goals, PlayerGamesGoals, idx).shots,
+		    player_all_games_goals(pl, PLAYER_LIST_ATTRIBUTE_SHOTS));
+	else
+	    sprintf(buf, "%d", g_array_index(pl->games_goals, PlayerGamesGoals, idx).shots);
+    }
 }
 
 /** Render a cell of player fitness.
@@ -338,9 +361,7 @@ treeview_cell_player_pos_to_cell(GtkCellRenderer *renderer, gchar *buf, gint pos
 void
 treeview_cell_player_cskill_to_cell(GtkCellRenderer *renderer, gchar *buf, const Player *pl)
 {
-    sprintf(buf, "%d", (gint)rint((gfloat)pl->cskill * 
-				  powf((gfloat)pl->fitness / 10000, 
-				       const_float("float_player_fitness_impact_on_skill"))));
+    sprintf(buf, "%d", (gint)rint(player_get_game_skill(pl, FALSE)));
 	    
     if(pl->cskill < pl->skill)
 	g_object_set(renderer, "background", 

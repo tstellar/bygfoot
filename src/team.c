@@ -26,7 +26,7 @@ team_new(void)
     new.clid = new.id = -1;
     new.structure = team_assign_playing_structure();
     new.style = team_assign_playing_style();
-    new.boost = FALSE;
+    new.boost = 0;
 
     new.stadium = team_stadium_new();
 
@@ -444,7 +444,10 @@ team_get_next_fixture(const Team *tm)
 	    for(j=0;j<lig(i).fixtures->len;j++)
 		if((g_array_index(lig(i).fixtures, Fixture, j).teams[0] == tm ||
 		    g_array_index(lig(i).fixtures, Fixture, j).teams[1] == tm) &&
-		   (fix == NULL || query_fixture_is_earlier(fix, &g_array_index(lig(i).fixtures, Fixture, j))))
+		   g_array_index(lig(i).fixtures, Fixture, j).week_number >= week &&
+		   (g_array_index(lig(i).fixtures, Fixture, j).week_round_number >= week_round ||
+		    g_array_index(lig(i).fixtures, Fixture, j).week_number > week) &&
+		   (fix == NULL || query_fixture_is_earlier(&g_array_index(lig(i).fixtures, Fixture, j), fix)))
 		    fix = &g_array_index(lig(i).fixtures, Fixture, j);
 	}
     }
@@ -457,7 +460,10 @@ team_get_next_fixture(const Team *tm)
 	    for(j=0;j<cp(i).fixtures->len;j++)
 		if((g_array_index(cp(i).fixtures, Fixture, j).teams[0] == tm ||
 		    g_array_index(cp(i).fixtures, Fixture, j).teams[1] == tm) &&
-		   (fix == NULL || query_fixture_is_earlier(fix, &g_array_index(cp(i).fixtures, Fixture, j))))
+		   g_array_index(cp(i).fixtures, Fixture, j).week_number >= week &&
+		   (g_array_index(cp(i).fixtures, Fixture, j).week_round_number >= week_round ||
+		    g_array_index(cp(i).fixtures, Fixture, j).week_number > week) &&
+		   (fix == NULL || query_fixture_is_earlier(&g_array_index(cp(i).fixtures, Fixture, j), fix)))
 		    fix = &g_array_index(cp(i).fixtures, Fixture, j);
 	}
     }
@@ -550,16 +556,10 @@ team_find_appropriate_structure(const Team *tm)
   gint i;
   gint structure = 0;
 
-  for(i=1;i<11;i++)
-    {
-	if(player_of(tm, i)->pos == PLAYER_POS_DEFENDER)
-	    structure += 100;
-	else if(player_of(tm, i)->pos == PLAYER_POS_MIDFIELDER)
-	    structure += 10;
-	else
-	    structure++;
-    }
-    
+  for(i=0;i<11;i++)
+      if(player_of(tm, i)->cskill > 0 && player_of(tm, i)->pos != 0)
+	  structure += (gint)rint(powf(10, PLAYER_POS_FORWARD - player_of(tm, i)->pos));
+
   return structure;
 }
 
@@ -590,38 +590,18 @@ team_change_structure(Team *tm, gint new_structure)
 void
 team_rearrange(Team *tm)
 {
-  gint i, j;
+    gint i;
 
-  /* reaarrange field players */
-  for(i=0;i<11;i++)
+    g_array_sort_with_data(tm->players, (GCompareDataFunc)player_compare_func,
+			   GINT_TO_POINTER(100 + PLAYER_COMPARE_ATTRIBUTE_POS));
+
+    for(i=0;i<tm->players->len;i++)
     {
-      if(player_of(tm, i)->pos !=
-	 player_of(tm, i)->cpos)
-      {
-	  for(j=i+1;j<11;j++)
-	      if(player_of(tm, j)->pos ==
-		 player_of(tm, i)->cpos &&
-		 player_of(tm, j)->cskill > 0)
-	      {
-		  player_swap(tm, i, tm, j);
-		  break;
-	      }
-      }
-    }
-    
-  /* sort substitutes */
-  i = 11;
-  while(i != tm->players->len)
-    {
-	for(j=i+1;j<tm->players->len;j++)
-	    if(player_of(tm, i)->pos >
-	       player_of(tm, j)->pos)
-	    {
-		player_swap(tm, i, tm, j);
-		i = 10;
-		break;
-	    }
-	i++;
+	player_of(tm, i)->cpos = (i < 11) ?
+	    player_get_position_from_structure(tm->structure, i) : player_of(tm, i)->pos;
+	if(player_of(tm, i)->cskill > 0)
+	    player_of(tm, i)->cskill = (i < 11) ?
+		player_get_cskill(player_of(tm, i), player_of(tm, i)->cpos) : player_of(tm, i)->skill;
     }
 }
 

@@ -6,6 +6,10 @@
 #include "treeview.h"
 #include "variables.h"
 
+/*d*/
+#include "player.h"
+#include "user.h"
+
 gboolean
 on_button_quit_clicked                 (GtkWidget       *widget,
                                         GdkEvent        *event,
@@ -599,6 +603,9 @@ on_menu_team_button_press_event        (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data)
 {
+    player_of(usr(0).tm, 10)->cskill = 0;
+    player_of(usr(0).tm, 10)->health = 10;
+
     game_gui_read_radio_items(widget);
 
     return FALSE;
@@ -610,4 +617,3 @@ on_menu_manage_users_activate          (GtkMenuItem     *menuitem,
 {
 
 }
-

@@ -18,7 +18,7 @@ game_gui_show_main(void);
 
 void
 game_gui_get_radio_items(GtkWidget **style, GtkWidget **scout,
-			 GtkWidget **physio);
+			 GtkWidget **physio, GtkWidget **boost);
 
 void
 game_gui_print_message(gchar *text);

@@ -85,9 +85,8 @@ game_get_player_contribution(const Player *pl, gint type)
 	  const_float("float_player_team_weight_forward_midfield"), 
 	  const_float("float_player_team_weight_forward_attack")}};
 
-    return (gfloat)(pl->cskill * powf((gfloat)pl->fitness / 10000, 
-				      const_float("float_player_fitness_exponent")) *
-		    player_weights[pl->cpos - 1][type - GAME_TEAM_VALUE_DEFEND]);
+    return player_get_game_skill(pl, FALSE) *
+	player_weights[pl->cpos - 1][type - GAME_TEAM_VALUE_DEFEND];
 }
 
 /** Return a random attacking or defending player
@@ -109,6 +108,7 @@ game_get_player(const Team *tm, gint player_type,
     gfloat probs[10];
     gfloat rndom;
 
+    /*todo move to constants file?*/
     if(player_type == GAME_PLAYER_TYPE_ATTACK)
     {
 	weights[0] = 0.25;
@@ -127,23 +127,31 @@ game_get_player(const Team *tm, gint player_type,
 	weights[1] = 0.5;
 	weights[2] = 0.25;
     }
-    else if(player_type == GAME_PLAYER_TYPE_INJURY)
-	weights[0] = -1;
     else if(player_type == GAME_PLAYER_TYPE_PENALTY)
 	return game_get_penalty_taker(tm, last_penalty);
+    else
+	g_warning("game_get_player: unknown player type %d\n", player_type);
 
     game_get_player_probs(tm->players, probs, weights, skills);
 
-    while(player == not_this_one)
+    if(probs[9] > 0)
     {
-	rndom = math_rnd(0, probs[9]);
-
-	if(rndom < probs[0])
-	    player = player_of(tm, 1)->id;
-	else
-	    for(i=1;i<10;i++)
-		if(rndom < probs[i] && rndom > probs[i - 1])
-		    player = player_of(tm, i + 1)->id;
+	while(player == not_this_one)
+	{
+	    rndom = math_rnd(0, probs[9]);
+	    
+	    if(rndom < probs[0])
+		player = player_of(tm, 1)->id;
+	    else
+		for(i=1;i<10;i++)
+		    if(rndom < probs[i] && rndom > probs[i - 1])
+			player = player_of(tm, i + 1)->id;
+	}
+    }
+    else
+    {
+	g_warning("game_get_player: All players injured or banned, apparently.\n");
+	return -1;
     }
 
     return player;
@@ -161,24 +169,20 @@ game_get_player_probs(GArray *players, gfloat *probs, gfloat *weights, gboolean 
 {
     gint i;
 
-    if(weights[0] == -1)
-	for(i=0;i<10;i++)
-	    probs[i] = 1;
-    else
-    {
-	probs[0] = (skills) ? (gfloat)g_array_index(players, Player, 1).cskill * 
-	    powf((gfloat)g_array_index(players, Player, 1).fitness, 
-		 const_float("float_player_fitness_exponent")) *
-	    weights[g_array_index(players, Player, 1).pos - 1] :
-	    weights[g_array_index(players, Player, 1).pos - 1];
-	for(i=1;i<10;i++)
-	    probs[i] = probs[i - 1] + 
-		((skills) ? (gfloat)g_array_index(players, Player, i + 1).cskill * 
-		 powf((gfloat)g_array_index(players, Player, i + 1).fitness, 
-		      const_float("float_player_fitness_exponent")) *
-		 weights[g_array_index(players, Player, i + 1).pos - 1] :
-		 weights[g_array_index(players, Player, i + 1).pos - 1]);
-    }
+    probs[0] = (skills) ? (gfloat)g_array_index(players, Player, 1).cskill * 
+	powf((gfloat)g_array_index(players, Player, 1).fitness, 
+	     const_float("float_player_fitness_exponent")) *
+	weights[g_array_index(players, Player, 1).pos - 1] :
+	weights[g_array_index(players, Player, 1).pos - 1] *
+	(g_array_index(players, Player, 1).cskill != 0);
+    for(i=1;i<10;i++)
+	probs[i] = probs[i - 1] + 
+	    ((skills) ? (gfloat)g_array_index(players, Player, i + 1).cskill * 
+	     powf((gfloat)g_array_index(players, Player, i + 1).fitness, 
+		  const_float("float_player_fitness_exponent")) *
+	     weights[g_array_index(players, Player, i + 1).pos - 1] :
+	     weights[g_array_index(players, Player, i + 1).pos - 1] *
+	     (g_array_index(players, Player, i + 1).cskill != 0));
 }
 
 /** Return the player who's shooting the following penalty
@@ -229,7 +233,7 @@ game_initialize(Fixture *fix)
     for(i=0;i<2;i++)
 	for(j=0;j<11;j++)
 	    if(player_of(fix->teams[i], j)->cskill > 0)
-		game_player_increase(fix, player_of(fix->teams[i], j),
+		game_player_increase(fix->clid, player_of(fix->teams[i], j),
 				     GAME_PLAYER_INCREASE_GAMES);
 }
 
@@ -317,6 +321,140 @@ game_get_subs(gint team_number, gint *subs_in, gint *subs_out)
 	}
 }
 
+/** Increase the number of shots in the player struct.
+    @param fix The game being played.
+    @param team The team index.
+    @param player_id The player id. */
+void
+game_player_increase(gint clid, Player *pl, gint type)
+{
+    gint i;
+    PlayerGamesGoals new;
+
+    for(i=0;i<pl->games_goals->len;i++)
+	if(g_array_index(pl->games_goals, PlayerGamesGoals, i).clid == clid)
+	{
+	    if(type == GAME_PLAYER_INCREASE_SHOTS)
+		g_array_index(pl->games_goals, PlayerGamesGoals, i).shots++;
+	    else if(type == GAME_PLAYER_INCREASE_GOALS)
+		g_array_index(pl->games_goals, PlayerGamesGoals, i).goals++;
+	    else if(type == GAME_PLAYER_INCREASE_GAMES)
+		g_array_index(pl->games_goals, PlayerGamesGoals, i).games++;
+		
+	    return;
+	}
+
+    /* Entry not found, we create a new one. */    
+    new.clid = clid;
+    new.shots = new.goals = new.games = 0;
+
+    g_array_append_val(pl->games_goals, new);
+
+    game_player_increase(clid, pl, type);
+}
+
+/** Choose an injury for a player and adjust health values.
+    @param pl The player that gets injured. */
+void
+game_player_injury(Player *pl)
+{
+    gint i;
+    gfloat rndom;
+    /* probabilities of different injuries */
+    gfloat injury_probs[13]={0,
+			     const_float("float_player_injury_concussion"),
+			     const_float("float_player_injury_pulled_muscle"),
+			     const_float("float_player_injury_hamstring"),
+			     const_float("float_player_injury_groin"),
+			     const_float("float_player_injury_frac_ankle"),
+			     const_float("float_player_injury_rib"),
+			     const_float("float_player_injury_leg"),
+			     const_float("float_player_injury_brok_ankle"),
+			     const_float("float_player_injury_arm"),
+			     const_float("float_player_injury_shoulder"),
+			     const_float("float_player_injury_ligament"),
+			     const_float("float_player_injury_career_stop")};
+    
+    gint duration[12]={
+	math_gauss_disti(const_int("int_player_injury_duration_concussion") - 
+			 const_int("int_player_injury_duration_dev_concussion"),
+			 const_int("int_player_injury_duration_concussion") + 
+			 const_int("int_player_injury_duration_dev_concussion")),
+	math_gauss_disti(const_int("int_player_injury_duration_pulled_muscle") -
+			 const_int("int_player_injury_duration_dev_pulled_muscle"),
+			 const_int("int_player_injury_duration_pulled_muscle") +
+			 const_int("int_player_injury_duration_dev_pulled_muscle")),
+	math_gauss_disti(const_int("int_player_injury_duration_hamstring") -
+			 const_int("int_player_injury_duration_dev_hamstring"),
+			 const_int("int_player_injury_duration_hamstring") +
+			 const_int("int_player_injury_duration_dev_hamstring")),
+	math_gauss_disti(const_int("int_player_injury_duration_groin") -
+			 const_int("int_player_injury_duration_dev_groin"),
+			 const_int("int_player_injury_duration_groin") +
+			 const_int("int_player_injury_duration_dev_groin")),
+	math_gauss_disti(const_int("int_player_injury_duration_frac_ankle") -
+			 const_int("int_player_injury_duration_dev_frac_ankle"),
+			 const_int("int_player_injury_duration_frac_ankle") +
+			 const_int("int_player_injury_duration_dev_frac_ankle")),
+	math_gauss_disti(const_int("int_player_injury_duration_rib") -
+			 const_int("int_player_injury_duration_dev_rib"),
+			 const_int("int_player_injury_duration_rib") +
+			 const_int("int_player_injury_duration_dev_rib")),
+	math_gauss_disti(const_int("int_player_injury_duration_leg") -
+			 const_int("int_player_injury_duration_dev_leg"),
+			 const_int("int_player_injury_duration_leg") +
+			 const_int("int_player_injury_duration_dev_leg")),
+	math_gauss_disti(const_int("int_player_injury_duration_brok_ankle") -
+			 const_int("int_player_injury_duration_dev_brok_ankle"),
+			 const_int("int_player_injury_duration_brok_ankle") +
+			 const_int("int_player_injury_duration_dev_brok_ankle")),
+	math_gauss_disti(const_int("int_player_injury_duration_arm") - 
+			 const_int("int_player_injury_duration_dev_arm"),
+			 const_int("int_player_injury_duration_arm") +
+			 const_int("int_player_injury_duration_dev_arm")),
+	math_gauss_disti(const_int("int_player_injury_duration_shoulder") -
+			 const_int("int_player_injury_duration_dev_shoulder"),
+			 const_int("int_player_injury_duration_shoulder") +
+			 const_int("int_player_injury_duration_dev_shoulder")),
+	math_gauss_disti(const_int("int_player_injury_duration_ligament") -
+			 const_int("int_player_injury_duration_dev_ligament"),
+			 const_int("int_player_injury_duration_ligament") +
+			 const_int("int_player_injury_duration_dev_ligament"))};
+
+    for(i=1;i<13;i++)
+	injury_probs[i] += injury_probs[i - 1];
+
+    rndom = math_rnd(0, 1);
+
+    for(i=1;i<13;i++)
+	if(rndom >= injury_probs[i - 1] && rndom < injury_probs[i])
+	{	    
+	    pl->health = i;
+	    pl->recovery = duration[i - 1];
+	    pl->cskill = pl->fitness = 0;	     
+	}
+}
+
+/** Return a factor influencing who's fouled whom
+    depending on the states of the team boosts.
+    @param boost1 Boost of the team in possession.
+    @param boost2 Boost of the team not in possession.
+    @return A factor.
+*/
+gfloat
+game_get_foul_possession_factor(gint boost1, gint boost2)
+{
+    if(boost1 == boost2)
+	return 1;
+
+    if(abs(boost1 - boost2) == 1)
+	return 1 + const_float("float_team_boost_foul_by_possession_factor1") *
+	    (1 - 2 * (boost1 < boost2));
+
+    return 1 + const_float("float_team_boost_foul_by_possession_factor2") *
+	(1 - 2 * (boost1 < boost2));
+}
+
 /** Substitute a player during a match.
     @param tm The team we work on.
     @param player_number The index of the player. */
@@ -331,13 +469,15 @@ game_substitute_player(Team *tm, gint player_number)
     for(i=11;i<tm->players->len;i++)
 	g_ptr_array_add(substitutes, player_of(tm, i));
 
-/*     printf("################## %d\n", player_of(tm, player_number)->cpos); */
     g_ptr_array_sort_with_data(substitutes, (GCompareDataFunc)player_compare_substitute_func,
 			       GINT_TO_POINTER(player_of(tm, player_number)->cpos));
     adapt_structure = 
-	player_substitution_good_structure(tm->structure,
-					   player_of(tm, player_number)->cpos,
-					   ((Player*)g_ptr_array_index(substitutes, 0))->pos);
+	(math_get_place(team_find_appropriate_structure(tm), 1) + 
+	 math_get_place(team_find_appropriate_structure(tm), 2) + 
+	 math_get_place(team_find_appropriate_structure(tm), 3) != 10 ||
+	 player_substitution_good_structure(tm->structure,
+					    player_of(tm, player_number)->cpos,
+					    ((Player*)g_ptr_array_index(substitutes, 0))->pos));
 
     substitute = ((Player*)g_ptr_array_index(substitutes, 0))->id;
     player_swap(tm, player_number,
@@ -362,36 +502,167 @@ game_substitute_player(Team *tm, gint player_number)
     return substitute;
 }
 
-/** Increase the number of shots in the player struct.
-    @param fix The game being played.
-    @param team The team index.
-    @param player_id The player id. */
-void
-game_player_increase(const Fixture *fix, Player *pl, gint type)
+/** Find out whether we substitute a player to balance
+    a team after a red card.
+    @param tm The team.
+    @return A player index or -1 if we don't substitute.
+*/
+gint
+game_find_to_substitute(const Team *tm)
 {
     gint i;
-    PlayerGamesGoals new;
+    gint position_to_substitute = -1;    
+    GPtrArray *players = g_ptr_array_new();
+    gint return_value = -1;
+    gint current_structure = team_find_appropriate_structure(tm);
+    gint num_forw = current_structure % 10,
+	num_mid = math_get_place(current_structure, 2),
+	num_def = math_get_place(current_structure, 3);
 
-    for(i=0;i<pl->games_goals->len;i++)
-	if(g_array_index(pl->games_goals, PlayerGamesGoals, i).clid == fix->clid)
+    for(i=0;i<11;i++)
+	if(player_is_banned(player_of(tm, i)) <= 0)
+	    g_ptr_array_add(players, player_of(tm, i));
+
+    g_ptr_array_sort_with_data(players, (GCompareDataFunc)player_compare_func,
+			       GINT_TO_POINTER(PLAYER_COMPARE_ATTRIBUTE_GAME_SKILL));
+
+    if(num_forw > 1 || MAX(num_mid, num_def) <= 2)
+	position_to_substitute = PLAYER_POS_FORWARD;    
+    else if(ABS(num_def - num_mid) > 1 ||
+	    (num_forw == 0 && MAX(num_mid, num_def) > 2))
+	position_to_substitute = (num_def > num_mid) ? PLAYER_POS_DEFENDER : PLAYER_POS_MIDFIELDER;
+    else
+	return -1;
+
+    for(i=players->len - 1; i >= 0; i--)
+	if(((Player*)g_ptr_array_index(players, i))->pos == position_to_substitute)
 	{
-	    if(type == GAME_PLAYER_INCREASE_SHOTS)
-		g_array_index(pl->games_goals, PlayerGamesGoals, i).shots++;
-	    else if(type == GAME_PLAYER_INCREASE_GOALS)
-		g_array_index(pl->games_goals, PlayerGamesGoals, i).goals++;
-	    else if(type == GAME_PLAYER_INCREASE_GAMES)
-		g_array_index(pl->games_goals, PlayerGamesGoals, i).games++;
+	    return_value = ((Player*)g_ptr_array_index(players, i))->id;
+	    g_ptr_array_free(players, TRUE);
+	    return return_value;
+	}
+
+    g_ptr_array_free(players, TRUE);
+    return -1;
+}
+
+/** Find out how long a player is banned. */
+gint
+game_player_get_ban_duration(void)
+{
+    gint i;
+    gfloat rndom;
+    gfloat duration_probs[6] =
+	{0,
+	 const_float("float_live_game_ban_1"),
+	 const_float("float_live_game_ban_2"),
+	 const_float("float_live_game_ban_3"),
+	 const_float("float_live_game_ban_4"),
+	 const_float("float_live_game_ban_5")};
+
+    for(i=1;i<6;i++)
+	duration_probs[i] += duration_probs[i - 1];
+
+    rndom = math_rnd(0, 1);
+    
+    for(i=1;i<6;i++)
+	if(duration_probs[i - 1] < rndom && rndom < duration_probs[i])
+	    return i;
+
+    return -1;
+}
+
+/** Send off a player. Choose number of weeks banned randomly.
+    @param clid League or cup id of the match.
+    @param pl The player.
+    @param red Whether it's a red or a yellow card.
+    @param second_yellow Whether this is only a yellow. */
+void
+game_player_card(gint clid, Player *pl, gboolean red, gboolean second_yellow)
+{
+    gint i;
+    PlayerCard new;
+
+    if(red)
+	pl->cskill = 0;
+
+    for(i=0;i<pl->cards->len;i++)
+	if(g_array_index(pl->cards, PlayerCard, i).clid == clid)
+	{
+	    if(red)
+	    {
+		if(second_yellow)
+		{
+		    g_array_index(pl->cards, PlayerCard, i).yellow = 0;
+		    g_array_index(pl->cards, PlayerCard, i).red = 1;
+		}
+		else
+		    g_array_index(pl->cards, PlayerCard, i).red = 
+			game_player_get_ban_duration();
+	    }
+	    else
+		g_array_index(pl->cards, PlayerCard, i).yellow++;
 	    return;
 	}
 
-    /* Entry not found, we create a new one. */
+    new.clid = clid;
+    new.red = 0;
+    new.yellow = 0;
 
-    
-    new.clid = fix->clid;
-    new.shots = new.goals = new.games = 0;
+    g_array_append_val(pl->cards, new);
 
-    g_array_append_val(pl->games_goals, new);
-
-    game_player_increase(fix, pl, type);
+    game_player_card(clid, pl, red, second_yellow);
 }
 
+/** Find out whether we make a sub after a send-off.
+    @param tm The team.
+    @param player The player index.
+    @param to_substitute The return location for the index of
+    the player to substitute.
+    @param substitute The return location for the player who comes into the game. */
+void
+game_substitute_player_send_off(Team *tm, gint player_number, 
+				gint *to_substitute, gint *substitute)
+{
+    gint i;
+    gint position = -1;
+    GPtrArray *substitutes = NULL;
+    gint current_structure = team_find_appropriate_structure(tm);
+    gint num_forw = current_structure % 10,
+	num_mid = math_get_place(current_structure, 2),
+	num_def = math_get_place(current_structure, 3);
+
+    *to_substitute = game_find_to_substitute(tm);
+
+    if(*to_substitute == -1)
+	return;
+
+    substitutes = g_ptr_array_new();
+    for(i=11;i<tm->players->len;i++)
+	g_ptr_array_add(substitutes, player_of(tm, i));
+
+    if(num_forw == 0 && MAX(num_def, num_mid) > 2)
+	position = PLAYER_POS_FORWARD;
+    else
+	position = (num_def > num_mid) ? PLAYER_POS_MIDFIELDER : PLAYER_POS_DEFENDER;
+
+    g_ptr_array_sort_with_data(substitutes, (GCompareDataFunc)player_compare_substitute_func,
+			       GINT_TO_POINTER(position));
+    
+    *substitute = ((Player*)g_ptr_array_index(substitutes, 0))->id;
+    player_swap(tm, player_id_index(tm, *to_substitute),
+		tm, player_id_index(tm, *substitute));
+
+    g_ptr_array_free(substitutes, TRUE);
+
+    team_change_structure(tm, team_find_appropriate_structure(tm));
+    team_rearrange(tm);
+
+    if(team_is_user(tm) == current_user)
+    {
+	game_gui_write_av_skills();
+	
+	selected_row[0] = -1;	
+	treeview_show_user_player_list(&usr(current_user), 1);
+    }
+}

@@ -241,7 +241,7 @@ file_get_next_opt_line(FILE *fil, gchar *opt_name, gchar *opt_value)
 	    else
 		break;
 	
-	sscanf(buf, "%[^ ]%[ ]%[^\n]", opt_name, trash, opt_value);
+	sscanf(buf, "%[^ \t]%[^a-zA-Z0-9_-]%[^\n]", opt_name, trash, opt_value);
     }
 
     return (feof(fil) == 0);

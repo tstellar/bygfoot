@@ -58,8 +58,8 @@ typedef struct
     gint clid, /**< Numerical id of the league or cup the team belongs to. */
 	id, /**< Id of the team. */
 	structure, /**< Playing structure. @see team_assign_playing_structure() */
-	style; /**< Playing style. @see team_assign_playing_style() */
-    gboolean boost; /**< Whether player boost is switched on. */
+	style, /**< Playing style. @see team_assign_playing_style() */
+	boost; /**< Whether player boost or anti-boost is switched on. */
     
     Stadium stadium;
     /**

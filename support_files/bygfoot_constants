@@ -185,13 +185,66 @@ float_live_game_stadium_event_breakdown 1000
 # foul probabilities. 
 float_live_game_foul 110
 float_live_game_foul_red_injury 50
-float_live_game_foul_red 80
+float_live_game_foul_red 800
 float_live_game_foul_yellow 230
+
+    gfloat duration[6]={0,0.7,0.85,0.95,0.975,1};
+
+# ban duration probabilities
+# should add up to 1000
+float_live_game_ban_1 700
+float_live_game_ban_2 150
+float_live_game_ban_3 100
+float_live_game_ban_4 30
+float_live_game_ban_5 20
+
+# probability that the foul player is from the
+# team that has the ball
+float_live_game_foul_by_possession 200
 
 # injury probabilities. 
 float_live_game_injury 17
 float_live_game_injury_goalie_factor 200
 float_live_game_injury_is_temp 700
+
+# probabilities for different injuries
+# these should add up to 1000
+float_player_injury_concussion 200
+float_player_injury_pulled_muscle 200
+float_player_injury_hamstring 150
+float_player_injury_groin 150
+float_player_injury_frac_ankle 100
+float_player_injury_rib 75
+float_player_injury_leg 40
+float_player_injury_brok_ankle 40
+float_player_injury_arm 20
+float_player_injury_shoulder 15
+float_player_injury_ligament 7
+float_player_injury_career_stop 3
+
+# duration of the injuries (mean and deviance)
+int_player_injury_duration_concussion 2
+int_player_injury_duration_dev_concussion 1
+int_player_injury_duration_pulled_muscle 3
+int_player_injury_duration_dev_pulled_muscle 1
+int_player_injury_duration_hamstring 5
+int_player_injury_duration_dev_hamstring 2
+int_player_injury_duration_groin 5
+int_player_injury_duration_dev_groin 2
+int_player_injury_duration_frac_ankle 6
+int_player_injury_duration_dev_frac_ankle 2
+int_player_injury_duration_rib 8
+int_player_injury_duration_dev_rib 4
+int_player_injury_duration_leg 9
+int_player_injury_duration_dev_leg 4
+int_player_injury_duration_brok_ankle 11
+int_player_injury_duration_dev_brok_ankle 5
+int_player_injury_duration_arm 6
+int_player_injury_duration_dev_arm 2
+int_player_injury_duration_shoulder 10
+int_player_injury_duration_dev_shoulder 5
+int_player_injury_duration_ligament 22
+int_player_injury_duration_dev_ligament 8
 
 # probability that a scoring chance is an own goal. 
 float_live_game_scoring_chance_is_own_goal 10
@@ -209,13 +262,22 @@ float_live_game_scoring_chance_is_header 350
 float_game_style_factor 75
 
 # influence of boost on player's skill.
+# these should be between 0 and 1
 float_player_boost_skill_effect 150
 # influence of boost on player's fitness decay.
-float_player_boost_fitness_effect 1000
+float_player_boost_fitness_effect 500
 # influence of boost on injury probability.
-float_player_boost_injury_effect 1000
+float_player_boost_injury_effect 500
 # influence of boost on cards probability.
-float_player_boost_card_effect 1000
+float_player_boost_card_effect 500
+
+# influence of team boost on probability that the team in possession
+# of the ball fouls
+float_team_boost_foul_by_possession_factor1 500
+float_team_boost_foul_by_possession_factor2 900
+
+# influence of boost on foul probability
+float_team_boost_foul_factor 400
 
 # the influence of the fitness on the current skill.
 #    this determines the player's contribution to the team

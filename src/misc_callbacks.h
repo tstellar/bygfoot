@@ -103,7 +103,6 @@ void
 on_button_add_player_clicked           (GtkButton       *button,
                                         gpointer         user_data);
 
-#endif
 
 gboolean
 on_treeview_users_button_press_event   (GtkWidget       *widget,
@@ -113,3 +112,4 @@ on_treeview_users_button_press_event   (GtkWidget       *widget,
 void
 on_entry_player_name_activate          (GtkEntry        *entry,
                                         gpointer         user_data);
+#endif

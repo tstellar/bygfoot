@@ -147,5 +147,11 @@ misc_callback_pause_live_game(void)
     game_gui_set_main_window_sensitivity(TRUE);
     game_save_team_states();
 
+    if(stat2 == current_user)
+    {
+	treeview_show_user_player_list(&usr(current_user), 1);
+	treeview_show_user_player_list(&usr(current_user), 2);
+    }
+
     stat0 = STATUS_LIVE_GAME_PAUSE;
 }
