@@ -69,8 +69,6 @@ treeview_pixbuf_from_filename(gchar *filename)
     else
 	symbol = NULL;
 
-    printf("%s %p ", filename, symbol);fflush(NULL);
-
     return symbol;
 }
 
@@ -612,19 +610,9 @@ treeview_live_game_create_result(const LiveGameUnit *unit)
     GtkListStore  *liststore;
     GtkTreeIter iter;
     GdkPixbuf *symbol = NULL;    
-    GError *error = NULL;
-    gchar *symbol_file = NULL;
 
-    symbol_file = 
-	file_find_support_file("possession_ball.png");
-    if(symbol_file != NULL)
-    {
-	symbol = gdk_pixbuf_new_from_file(symbol_file, &error);
-	g_free(symbol_file);
-    }
-    else
-	symbol = NULL;
-    misc_print_error(&error, FALSE);    
+    symbol = 
+	treeview_pixbuf_from_filename("possession_ball.png");
 
     liststore = gtk_list_store_new(5,
 				   GDK_TYPE_PIXBUF,
@@ -638,6 +626,9 @@ treeview_live_game_create_result(const LiveGameUnit *unit)
 		       2, (gpointer)live_game.fix, 3, (gpointer)live_game.fix, 4, NULL, -1);
 
     gtk_list_store_set(liststore, &iter, 0 + (unit->possession == 1) * 4, symbol, -1);
+
+    if(symbol != NULL)
+	g_object_unref(symbol);
 
     return GTK_TREE_MODEL(liststore);
 }
