@@ -2,10 +2,9 @@
 #define TREEVIEW_H
 
 #include "bygfoot.h"
-#include "gui.h"
-#include "league.h"
-#include "team.h"
-#include "variables.h"
+
+gint
+treeview_get_index(GtkTreeView *treeview, gint column);
 
 void
 treeview_clear(GtkTreeView *treeview);

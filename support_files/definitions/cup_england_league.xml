@@ -3,11 +3,9 @@
   <name>League Cup</name>
   <short_name>League Cup</short_name>
   <symbol>flag_en.png</symbol>
-  <id>england_league</id>
-  <type>national</type> 
+  <sid>england_league</sid>
   <last_week>48</last_week>
   <week_gap>4</week_gap>
-  <yellow_red>3</yellow_red>
 
   <cup_rounds>
     <cup_round>
@@ -26,6 +24,7 @@
       <home_away>0</home_away>
     </cup_round>
     <cup_round>
+      <home_away>0</home_away>
     </cup_round>
     <cup_round>
       <home_away>0</home_away>
@@ -35,20 +34,16 @@
 
   <choose_teams>
     <choose_team>
-      <choose_team_id>england1</choose_team_id>
-      <number_of_teams>-1</number_of_teams>
+      <choose_team_sid>england1</choose_team_sid>
     </choose_team>
     <choose_team>
-      <choose_team_id>england2</choose_team_id>
-      <number_of_teams>-1</number_of_teams>
+      <choose_team_sid>england2</choose_team_sid>
     </choose_team>
     <choose_team>
-      <choose_team_id>england3</choose_team_id>
-      <number_of_teams>-1</number_of_teams>
+      <choose_team_sid>england3</choose_team_sid>
     </choose_team>
     <choose_team>
-      <choose_team_id>england4</choose_team_id>
-      <number_of_teams>-1</number_of_teams>
+      <choose_team_sid>england4</choose_team_sid>
     </choose_team>
   </choose_teams>
 </cup>

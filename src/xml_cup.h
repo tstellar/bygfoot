@@ -2,9 +2,6 @@
 #define XML_CUP_H
 
 #include "bygfoot.h"
-#include "misc.h"
-#include "gui.h"
-#include "variables.h"
 
 void
 xml_cup_read_text         (GMarkupParseContext *context,
@@ -29,6 +26,6 @@ xml_cup_read_end_element    (GMarkupParseContext *context,
 
 
 void
-xml_cup_read(const gchar *file);
+xml_cup_read(const gchar *file, GArray *cups);
 
 #endif

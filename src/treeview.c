@@ -1,4 +1,33 @@
+#include "gui.h"
+#include "league.h"
+#include "support.h"
+#include "team.h"
 #include "treeview.h"
+#include "variables.h"
+
+
+/** Return the number in the 'column'th column of the currently
+    selected row of the treeview.
+    @param treeview The treeview argument.
+    @param column The column we'd like to get the contents of.
+    @return The number in the given column of the selected row.
+*/
+gint
+treeview_get_index(GtkTreeView *treeview, gint column)
+{
+    gint value;
+    GtkTreeSelection *selection	= 
+	gtk_tree_view_get_selection(treeview);
+    GtkTreeModel     *model;
+    GtkTreeIter       iter;
+    
+    gtk_tree_selection_get_selected(selection, &model, &iter);
+
+    gtk_tree_model_get(model, &iter, column,
+		       &value, -1);
+
+    return value;
+}
 
 /**
  * Removes all columns from a GTK treeview. I didn't find a better way
@@ -41,14 +70,15 @@ treeview_clear(GtkTreeView *treeview)
 GtkTreeModel*
 treeview_create_team_selection_list(gboolean show_cup_teams)
 {
-    gint i, j, counter = 1;
+    gint i, j;
     GtkListStore  *liststore;
     GtkTreeIter iter;
 
-    liststore = gtk_list_store_new(3,
+    liststore = gtk_list_store_new(4,
+				   G_TYPE_INT,
 				   G_TYPE_INT,
 				   G_TYPE_STRING,
-				   G_TYPE_STRING);   
+				   G_TYPE_STRING);
 
     for(i=0;i<ligs->len;i++)
     {
@@ -56,9 +86,10 @@ treeview_create_team_selection_list(gboolean show_cup_teams)
 	{
 	    gtk_list_store_append(liststore, &iter);
 	    gtk_list_store_set(liststore, &iter,
-			       0, counter++,
-			       1, g_array_index(lig(i).teams, Team, j).name->str,
-			       2, lig(i).name->str,
+			       0, lig(i).id,
+			       1, g_array_index(lig(i).teams, Team, j).id,
+			       2, g_array_index(lig(i).teams, Team, j).name->str,
+			       3, lig(i).name->str,
 			       -1);
 	}	    
     }
@@ -83,8 +114,9 @@ treeview_set_up_team_selection_treeview (GtkTreeView *treeview)
     
     gtk_tree_view_set_rules_hint(treeview, TRUE);
 
-    /* number the teams */
+    /* League id column */
     col = gtk_tree_view_column_new();
+    gtk_tree_view_column_set_title(col, _("LID"));
     gtk_tree_view_append_column(treeview, col);
     renderer = gtk_cell_renderer_text_new();
     gtk_tree_view_column_pack_start(col, renderer, TRUE);
@@ -93,9 +125,9 @@ treeview_set_up_team_selection_treeview (GtkTreeView *treeview)
     if(strcmp(font_name->str, "0") != 0)
 	g_object_set(renderer, "font", font_name->str, NULL);
 
-    /* set up team name column */
+    /* Team id column */
     col = gtk_tree_view_column_new();
-    gtk_tree_view_column_set_title(col, _("Team"));
+    gtk_tree_view_column_set_title(col, _("TID"));
     gtk_tree_view_append_column(treeview, col);
     renderer = gtk_cell_renderer_text_new();
     gtk_tree_view_column_pack_start(col, renderer, TRUE);
@@ -104,14 +136,25 @@ treeview_set_up_team_selection_treeview (GtkTreeView *treeview)
     if(strcmp(font_name->str, "0") != 0)
 	g_object_set(renderer, "font", font_name->str, NULL);
 
-    /* league column */
+    /* Team name column */
     col = gtk_tree_view_column_new();
-    gtk_tree_view_column_set_title(col, _("League"));
+    gtk_tree_view_column_set_title(col, _("Team name"));
     gtk_tree_view_append_column(treeview, col);
     renderer = gtk_cell_renderer_text_new();
     gtk_tree_view_column_pack_start(col, renderer, TRUE);
     gtk_tree_view_column_add_attribute(col, renderer,
 				       "text", 2);
+    if(strcmp(font_name->str, "0") != 0)
+	g_object_set(renderer, "font", font_name->str, NULL);
+
+    /* league column */
+    col = gtk_tree_view_column_new();
+    gtk_tree_view_column_set_title(col, _("League name"));
+    gtk_tree_view_append_column(treeview, col);
+    renderer = gtk_cell_renderer_text_new();
+    gtk_tree_view_column_pack_start(col, renderer, TRUE);
+    gtk_tree_view_column_add_attribute(col, renderer,
+				       "text", 3);
 }
 
 /** Shows the list of teams in the game.

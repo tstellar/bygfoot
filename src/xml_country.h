@@ -2,13 +2,6 @@
 #define XML_COUNTRY_H
 
 #include "bygfoot.h"
-#include "free.h"
-#include "gui.h"
-#include "league.h"
-#include "misc.h"
-#include "variables.h"
-#include "xml_cup.h"
-#include "xml_league.h"
 
 GPtrArray*
 xml_country_get_team_names(const gchar *country_name);

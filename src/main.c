@@ -3,16 +3,27 @@
  * Glade will not overwrite this file.
  */
 
+#include <time.h>
+
+/*d*/
+#include "file.h"
+#include "free.h"
 #include "main.h"
+#include "variables.h"
+#include "window.h"
+
 
 /**
    Initialize some global variables. Most of them get nullified.
 */
 void
-set_variables(void)
+main_init_variables(void)
 {
-    ligs = cps = country.supercups = NULL;
-    country.name = country.symbol = country.id = NULL;
+    ligs = cps = NULL;
+    country.name = country.symbol = country.sid = NULL;
+    fixtures = NULL;
+    transfer_list = NULL;
+    player_names = NULL;
     
     font_name = g_string_new("0");
 }
@@ -25,7 +36,7 @@ set_variables(void)
    @param argv Command line arguments array.
 */
 void
-bygfoot_init(gint argc, gchar *argv[])
+main_init(gint argc, gchar *argv[])
 {
     gchar buf[SMALL];
     gchar *pwd = g_get_current_dir();
@@ -33,15 +44,14 @@ bygfoot_init(gint argc, gchar *argv[])
     /* initialize the random nr generator */
     srandom((unsigned)time(NULL));
 
-    add_support_directory_recursive(PACKAGE_DATA_DIR "/" PACKAGE "/support_files");  
+    file_add_support_directory_recursive(PACKAGE_DATA_DIR "/" PACKAGE "/support_files");  
     sprintf(buf, "%s/support_files", pwd);
     g_free(pwd);
-    add_support_directory_recursive(buf);
+    file_add_support_directory_recursive(buf);
     sprintf(buf, "%s/.bygfoot", g_get_home_dir());
-    add_support_directory_recursive(buf);
+    file_add_support_directory_recursive(buf);
 
-    set_variables();
-
+    main_init_variables();
 }
 
 /**
@@ -63,12 +73,27 @@ main (gint argc, gchar *argv[])
   gtk_set_locale ();
   gtk_init (&argc, &argv);
   
-  bygfoot_init(argc, argv);
+  main_init(argc, argv);
 
   window_show_startup();
 
   gtk_main ();
 
-  free_memory();
+  main_exit_program(EXIT_OK);
+
   return 0;
+}
+
+/** Exit the program with the given exit code. Try to
+    destroy all widgets and free all memory first.
+    @param exit_code The number we return to the shell.
+    @return The exit code of the program. */
+void
+main_exit_program(gint exit_code)
+{
+    if(gtk_main_level() > 0)
+	gtk_main_quit();
+
+    free_memory();
+    exit(exit_code);
 }

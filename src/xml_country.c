@@ -1,4 +1,11 @@
+#include "file.h"
+#include "free.h"
+#include "league.h"
+#include "misc.h"
+#include "variables.h"
+#include "xml_cup.h"
 #include "xml_country.h"
+#include "xml_league.h"
 
 /**
  * The tags used in the XML files defining countries.
@@ -6,7 +13,7 @@
 #define TAG_COUNTRY "country"
 #define TAG_NAME "name"
 #define TAG_SYMBOL "symbol"
-#define TAG_ID "id"
+#define TAG_SID "sid"
 #define TAG_LEAGUES "leagues"
 #define TAG_LEAGUE "league"
 #define TAG_CUPS "cups"
@@ -20,7 +27,7 @@ enum XmlCountryStates
     STATE_COUNTRY = 0,
     STATE_NAME,
     STATE_SYMBOL,
-    STATE_ID,
+    STATE_SID,
     STATE_LEAGUES,
     STATE_LEAGUE,
     STATE_CUPS,
@@ -51,8 +58,8 @@ xml_country_read_start_element (GMarkupParseContext *context,
 	state = STATE_NAME;
     else if(strcmp(element_name, TAG_SYMBOL) == 0)
 	state = STATE_SYMBOL;
-    else if(strcmp(element_name, TAG_ID) == 0)
-	state = STATE_ID;
+    else if(strcmp(element_name, TAG_SID) == 0)
+	state = STATE_SID;
     else if(strcmp(element_name, TAG_LEAGUES) == 0)
     {
 	state = STATE_LEAGUES;
@@ -64,8 +71,8 @@ xml_country_read_start_element (GMarkupParseContext *context,
     else if(strcmp(element_name, TAG_CUPS) == 0)
     {
 	state = STATE_CUPS;
-/* 	if(cups == NULL) */
-/* 	    cups = g_array_new(FALSE, FALSE, sizeof(Cup)); */
+	if(cps == NULL)
+	    cps = g_array_new(FALSE, FALSE, sizeof(Cup));
     }
     else if(strcmp(element_name, TAG_CUP) == 0)
 	state = STATE_CUP;
@@ -88,7 +95,7 @@ xml_country_read_end_element    (GMarkupParseContext *context,
 {
     if(strcmp(element_name, TAG_NAME) == 0 ||
        strcmp(element_name, TAG_SYMBOL) == 0 ||
-       strcmp(element_name, TAG_ID) == 0 ||
+       strcmp(element_name, TAG_SID) == 0 ||
        strcmp(element_name, TAG_LEAGUES) == 0 ||
        strcmp(element_name, TAG_CUPS) == 0)
 	state = STATE_COUNTRY;
@@ -124,12 +131,12 @@ xml_country_read_text         (GMarkupParseContext *context,
 	country.name = g_string_new(buf);
     else if(state == STATE_SYMBOL)
 	country.symbol = g_string_new(buf);
-    else if(state == STATE_ID)
-	country.id = g_string_new(buf);
+    else if(state == STATE_SID)
+	country.sid = g_string_new(buf);
     else if(state == STATE_LEAGUE)
-	xml_league_read(buf);
+	xml_league_read(buf, ligs);
     else if(state == STATE_CUP)
-	xml_cup_read(buf);
+	xml_cup_read(buf, cps);
 }
 
 
@@ -144,7 +151,7 @@ xml_country_read_text         (GMarkupParseContext *context,
 void
 xml_country_read(const gchar *country_name)
 {
-    gchar *file_name = find_support_file(country_name);
+    gchar *file_name = file_find_support_file(country_name);
     GMarkupParser parser = {xml_country_read_start_element,
 			    xml_country_read_end_element,
 			    xml_country_read_text, NULL, NULL};
@@ -160,7 +167,7 @@ xml_country_read(const gchar *country_name)
     if(file_name == NULL)
     {
 	sprintf(buf, "country_%s.xml", country_name);
-	file_name = find_support_file(buf);
+	file_name = file_find_support_file(buf);
     }
 	
     if(!g_file_get_contents(file_name, &file_contents, &length, &error))

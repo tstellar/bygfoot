@@ -1,8 +1,4 @@
-#ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif
-
-#include <gtk/gtk.h>
+#include "bygfoot.h"
 
 #include "interface.h"
 #include "support.h"

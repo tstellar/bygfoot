@@ -1,26 +1,30 @@
-#ifndef MATH_H
-#define MATH_H
+#ifndef MATHS_H
+#define MATHS_H
 
 #include <math.h>
+
 #include "bygfoot.h"
-#include "variables.h"
 
 /**
-   Macros for random number generation (#rnd for float and #rndi for integer).
+   Macros for random number generation (#rnd for float, #rndi and #gauss_disti for integer).
 */
-#define rnd(lower,upper) ((gfloat)random()/(gfloat)0x7fffffff*((upper)-(lower))+(lower))
-#define rndi(lower,upper) ((gint)rint( rnd((gfloat)(lower) - 0.499, (gfloat)(upper) + 0.499) ))
+#define math_rnd(lower,upper) ((gfloat)random()/(gfloat)0x7fffffff*((upper)-(lower))+(lower))
+#define math_rndi(lower,upper) ((gint)rint( math_rnd((gfloat)(lower) - 0.499, (gfloat)(upper) + 0.499) ))
+#define math_gauss_disti(lower, upper) ((gint)rint( math_gauss_dist((gfloat)lower - 0.499, (gfloat)upper + 0.499)))
 
 gfloat
-gaussrand(void);
+math_gaussrand(void);
 
 gfloat
-gauss_dist(gfloat lower, gfloat upper);
+math_gauss_dist(gfloat lower, gfloat upper);
 
 gint
-get_place(gint value, gint place);
+math_get_place(gint value, gint place);
 
 gint
-round_integer(gint number, gint places);
+math_round_integer(gint number, gint places);
+
+void
+math_generate_permutation(gint *array, gint start, gint end);
 
 #endif

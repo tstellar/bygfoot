@@ -1,18 +1,15 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-/*d*/
 #include "bygfoot.h"
-#include "gui.h"
-#include "support.h"
-#include "time.h"
-#include "variables.h"
-#include "window.h"
 
 void
-bygfoot_init(gint argc, gchar *argv[]);
+main_init(gint argc, gchar *argv[]);
 
 void
-set_variables(void);
+main_init_variables(void);
+
+void
+main_exit_program(gint exit_code);
 
 #endif

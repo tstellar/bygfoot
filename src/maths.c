@@ -1,4 +1,7 @@
 #include "maths.h"
+#include "misc.h"
+#include "variables.h"
+
 
 /**
    Generate a Gauss-distributed (pseudo)random number.
@@ -6,7 +9,7 @@
    @return A Gauss-distributed random number.
 */
 gfloat
-gaussrand(void)
+math_gaussrand(void)
 {
     static gfloat V1, V2, S;
     static gint phase = 0;
@@ -33,7 +36,7 @@ gaussrand(void)
 
 /**
    Generate a Gauss-distributed random number within given boundaries
-   using gaussrand().
+   using math_gaussrand().
    Expectation value of the distribution is (upper + lower) / 2,
    the variance is so that the number is between the boundaries with probability
    99,7 %. If the number isn't between the boundaries, we cut off.
@@ -42,11 +45,11 @@ gaussrand(void)
    @return A Gauss-distributed number 
 */
 gfloat
-gauss_dist(gfloat lower, gfloat upper)
+math_gauss_dist(gfloat lower, gfloat upper)
 {						   
     gfloat result;				   
      	
-    result = (gfloat)(upper - lower) / 6 * gaussrand() 
+    result = (gfloat)(upper - lower) / 6 * math_gaussrand() 
 	+ (gfloat)(upper + lower) / 2;
 
     if(result < lower)
@@ -78,7 +81,7 @@ gauss_dist(gfloat lower, gfloat upper)
    @return A part of the integer 'value'.
  */
 gint
-get_place(gint value, gint place)
+math_get_place(gint value, gint place)
 {
     if(place < 10)
 	return (value % (gint)powf(10, place) -
@@ -112,7 +115,7 @@ get_place(gint value, gint place)
    @return The rounded integer.
 */
 gint
-round_integer(gint number, gint places)
+math_round_integer(gint number, gint places)
 {
     gint length = 0;
     gfloat copy = (gfloat)number;
@@ -129,4 +132,21 @@ round_integer(gint number, gint places)
 
     return (gint)rint( (gfloat)number / powf(10, length + places) ) *
 	powf(10, length + places);
+}
+
+/** Generate a permutation of integers and write it to 'array'.
+    @param array The integer array we store the permutation in. 
+    It must have size at least end - start - 1.
+    @param start The integer to start with.
+    @param end The integer to end with. */
+void
+math_generate_permutation(gint *array, gint start, gint end)
+{
+    gint i;
+
+    for(i = start; i < end + 1; i++)
+	array[i - start] = i;
+
+    for(i=0;i<end - start;i++)
+	misc_swap_int(&array[i], &array[math_rndi(i, end - start)]);
 }

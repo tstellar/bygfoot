@@ -1,6 +1,6 @@
 gyözö
 
-working on: loading of countries, leagues and cups from xml files.
+working on: generating the fixtures at the beginning of a season.
 
 current tasks:
 implement a function 'file_check_home_dir' in file.c that checks whether
@@ -17,4 +17,4 @@ list of files:
 $HOME/.bygfoot/definitions/{any xml files found in the support_files/definitions directory}
 $HOME/.bygfoot/names/{any files found in the support_files/names directory}
 
-the function should get called in bygfoot_init in main.c.
+the function should get called in main_init in main.c.

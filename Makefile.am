@@ -35,3 +35,6 @@ doc:
 
 doc-verbose:
 	doxygen Doxyfile
+
+doc-clean:
+	rm -rf docs/*

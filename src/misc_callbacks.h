@@ -1,11 +1,4 @@
-#ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif
-
-#include <gtk/gtk.h>
-#include <string.h>
-
-#include "misc_callback_func.h"
+#include "bygfoot.h"
 #include "misc_interface.h"
 #include "support.h"
 

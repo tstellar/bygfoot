@@ -11,7 +11,7 @@
 
 #include <gtk/gtk.h>
 
-#include "gettext.h"
+#include "gettext_macros.h"
 
 /**
  * Program version number.
@@ -30,10 +30,30 @@
 enum ExitCodes
 {
     EXIT_OK = 0, /**< Normal exit. */
-    EXIT_DIR_OPEN, /**< Exit when the $HOME/.bygfoot/definitions directory can't be opened. */
+    EXIT_DIR_OPEN_FAILED, /**< Exit when the $HOME/.bygfoot/definitions directory can't be opened. */
+    EXIT_FILE_OPEN_FAILED,
     EXIT_PRINT_ERROR, /**< Exit when the print_error function is called on a set error.*/
+    EXIT_NO_LEAGUES,
+    EXIT_CHOOSE_TEAM_ERROR,
     EXIT_END
 };
+
+/** Scout and physio qualities. */
+enum Quality
+{
+    QUALITY_BEST = 1,
+    QUALITY_GOOD,
+    QUALITY_AVERAGE,
+    QUALITY_BAD,
+    QUALITY_END
+};
+
+/** Starting numbers of league, cup and supercup numerical ids. */
+#define ID_LEAGUE_START 1000
+#define ID_CUP_START 2000
+
+/** The player names file. */
+#define PLAYER_NAMES_FILE "player_names.xml"
 
 /**
  * A struct representing a country.
@@ -41,13 +61,11 @@ enum ExitCodes
 typedef struct
 {
     GString *name, /**< Name of the country. */
-	*symbol, /**< Symbol of the country, e.g. a flag pixmap. */
-	*id; /**< Id of the country, e.g. 'england'. */
+	*symbol, /**< Symbol of the country, eg a flag pixmap. */
+	*sid; /**< Id of the country, eg 'england'. */
 
-    /** Leagues, cups and supercups arrays.  */
-    GArray *leagues,
-	*cups,
-	*supercups;
+    /** Leagues and cups arrays. */
+    GArray *leagues, *cups;
 } Country;
 
 /** Convenience abbreviation. */
@@ -60,11 +78,7 @@ typedef struct
 /** Convenience abbreviation. */
 #define cp(i) g_array_index(country.cups, Cup, i)
 
-gint my_team;
-/** The font used in treeviews. */
-GString *font_name;
-
-/** The pointer to the main window of the game. */
-GtkWidget *main_window;
+/** Convenience abbreviation. */
+#define player_name(i) ((GString*)g_ptr_array_index(player_names, i))->str;
 
 #endif

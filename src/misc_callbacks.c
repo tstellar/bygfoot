@@ -1,3 +1,8 @@
+#include <string.h>
+
+
+#include "free.h"
+#include "misc_callback_func.h"
 #include "misc_callbacks.h"
 
 void
@@ -15,7 +20,7 @@ on_team_selection_tv_row_activated     (GtkTreeView     *treeview,
                                         GtkTreeViewColumn *column,
                                         gpointer         user_data)
 {
-
+    misc_callback_start_game(GTK_WIDGET(treeview));
 }
 
 
@@ -64,6 +69,8 @@ on_team_selection_ok_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
 
+    misc_callback_start_game(GTK_WIDGET(button));
+   
 }
 
 

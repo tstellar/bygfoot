@@ -2,10 +2,7 @@
 #define XML_LEAGUE_H
 
 #include "bygfoot.h"
-#include "league.h"
-#include "gui.h"
-#include "misc.h"
-#include "variables.h"
+#include "team_struct.h"
 
 void
 xml_league_read_start_element (GMarkupParseContext *context,
@@ -29,6 +26,6 @@ xml_league_read_text         (GMarkupParseContext *context,
 			      GError             **error);
 
 void
-xml_league_read(const gchar *league_name);
+xml_league_read(const gchar *league_name, GArray *leagues);
 
 #endif
