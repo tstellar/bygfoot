@@ -162,6 +162,10 @@ float_treeview_cell_limit_player_contract_below3 4000
 # the integer that the cell data functions will interpret as an empty string.
 int_treeview_cell_int_empty -5
 
+# number of results shown in the next opponent
+# info
+int_treeview_latest_results 10
+
 # maximum number of players in a team.
 int_team_max_players 20
 
@@ -715,3 +719,8 @@ string_treeview_finances_expenses_fg red
 
 # background colour of a stadium event in the stats
 string_treeview_stadium_event_bg orange
+
+# foregrounds for positive or negative skill difference
+# in the oppononent info
+string_treeview_opponent_skill_positive_fg darkred
+string_treeview_opponent_skill_negative_fg darkgreen

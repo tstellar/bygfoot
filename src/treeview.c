@@ -1602,3 +1602,159 @@ treeview_show_transfer_list(GtkTreeView *treeview)
     treeview_show_player_list(treeview, players, 
 			      treeview_get_attributes_from_scout(current_user.scout), FALSE);
 }
+
+/** Show the results of the user team against the specified team. */
+void
+treeview_create_own_results(const Team *tm, gchar *buf)
+{
+
+
+    strcpy(buf, "");
+}
+
+/** Show a row of WDWWLL type results and the goals for and against.
+    @param tm The team we find the results for.
+    @param buf The buffer we print the results into. */
+void
+treeview_create_next_opponent_results(const Team *tm, gchar *result_buf, gchar *goals_buf)
+{
+    gint i;
+    GPtrArray *latest_fixtures = fixture_get_latest(tm);
+    gint res[2], goals[2] = {0, 0};
+    gint end_idx = latest_fixtures->len - const_int("int_treeview_latest_results");
+
+    strcpy(result_buf, "");
+    end_idx = MAX(0, end_idx);
+    for(i=latest_fixtures->len - 1;i>=end_idx;i--)
+    {
+	res[0] = math_sum_int_array(((Fixture*)g_ptr_array_index(latest_fixtures, i))->result[0], 3);
+	res[1] = math_sum_int_array(((Fixture*)g_ptr_array_index(latest_fixtures, i))->result[1], 3);
+	goals[0] += 
+	    math_sum_int_array(((Fixture*)
+				g_ptr_array_index(latest_fixtures, i))->
+			       result[(((Fixture*)g_ptr_array_index(latest_fixtures, i))->teams[0] != tm)], 2);
+	goals[1] += 
+	    math_sum_int_array(((Fixture*)
+				g_ptr_array_index(latest_fixtures, i))->
+			       result[(((Fixture*)g_ptr_array_index(latest_fixtures, i))->teams[0] == tm)], 2);
+	if(res[0] == res[1])
+	    strcat(result_buf, _("D "));
+	else if(res[(((Fixture*)g_ptr_array_index(latest_fixtures, i))->teams[0] == tm)] >
+		res[(((Fixture*)g_ptr_array_index(latest_fixtures, i))->teams[0] != tm)])
+	    strcat(result_buf, _("L "));
+	else
+	    strcat(result_buf, _("W "));
+    }
+
+    sprintf(goals_buf, "%d : %d", goals[0], goals[1]);
+    g_ptr_array_free(latest_fixtures, TRUE);
+}
+
+GtkTreeModel*
+treeview_create_next_opponent(void)
+{
+    gchar buf[SMALL], buf2[SMALL];
+    const Fixture *fix = team_get_fixture(current_user.tm, FALSE);
+    const Team *opp = (fix == NULL) ? NULL :
+	fix->teams[fix->teams[0] == current_user.tm];
+    GtkListStore *liststore = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_STRING);
+    GtkTreeIter iter;
+
+    if(opp == NULL)
+	return NULL;
+    
+    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_set(liststore, &iter, 0, _("Your next opponent"), -1);
+    if(!fix->home_advantage)
+	gtk_list_store_set(liststore, &iter, 1, _("Neutral ground"), -1);
+    else if(fix->teams[0] == current_user.tm)
+	gtk_list_store_set(liststore, &iter, 1, _("Home"), -1);
+    else
+	gtk_list_store_set(liststore, &iter, 1, _("Away"), -1);    
+   
+    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_set(liststore, &iter, 0, "", 1, "", -1);
+
+    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_set(liststore, &iter, 0, _("Team"), 1, opp->name->str, -1);
+    
+    if(opp->clid < ID_CUP_START)
+    {
+	sprintf(buf, "%d (%s)", team_rank(opp, opp->clid), league_from_clid(opp->clid)->name->str);
+	gtk_list_store_append(liststore, &iter);
+	gtk_list_store_set(liststore, &iter, 0, _("Rank"), 1, buf, -1);
+    }
+
+    sprintf(buf, "%.1f", team_get_average_skill(opp, FALSE));
+    if(team_get_average_skill(opp, FALSE) >
+       team_get_average_skill(current_user.tm, FALSE))
+	sprintf(buf2, " (<span foreground='%s'>%+.1f</span>)",
+		const_str("string_treeview_opponent_skill_positive_fg"),
+		team_get_average_skill(opp, FALSE) -
+		team_get_average_skill(current_user.tm, FALSE));
+    else
+	sprintf(buf2, " (<span foreground='%s'>%+.1f</span>)",
+		const_str("string_treeview_opponent_skill_negative_fg"),
+		team_get_average_skill(opp, FALSE) -
+		team_get_average_skill(current_user.tm, FALSE));
+
+    strcat(buf, buf2);
+    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_set(liststore, &iter, 0, _("Average skill"), 1, buf, -1);
+
+    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_set(liststore, &iter, 0, _("Playing style"), 1, 
+		       team_attribute_to_char(TEAM_ATTRIBUTE_STYLE, opp->style), -1);
+
+    sprintf(buf, "%d", opp->structure);
+    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_set(liststore, &iter, 0, _("Team structure"), 1, buf, -1);
+
+    treeview_create_next_opponent_results(opp, buf, buf2);
+    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_set(liststore, &iter, 0, _("Latest results"), 1, buf, -1);
+    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_set(liststore, &iter, 0, _("Goals"), 1, buf2, -1);
+
+    treeview_create_own_results(opp, buf);
+    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_set(liststore, &iter, 0, _("Your results"), 1, buf, -1);
+    
+    return GTK_TREE_MODEL(liststore);
+}
+
+void
+treeview_set_up_next_opponent(GtkTreeView *treeview)
+{
+    gint i;
+    GtkTreeViewColumn   *col;
+    GtkCellRenderer     *renderer;
+
+    gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
+				GTK_SELECTION_NONE);
+
+    for(i=0;i<2;i++)
+    {
+	col = gtk_tree_view_column_new();
+	gtk_tree_view_append_column(treeview, col);
+	renderer = gtk_cell_renderer_text_new();
+	gtk_tree_view_column_pack_start(col, renderer, FALSE);
+	gtk_tree_view_column_add_attribute(col, renderer,
+					   "markup", i);
+    }
+}
+
+/** Show some information about the next opponent. */
+void
+treeview_show_next_opponent(GtkTreeView *treeview)
+{
+    GtkTreeModel *model = NULL;
+
+    treeview_clear(treeview);
+    gtk_tree_view_set_headers_visible(treeview, FALSE);
+    
+    treeview_set_up_next_opponent(treeview);
+    model = treeview_create_next_opponent();
+    gtk_tree_view_set_model(treeview, model);
+    g_object_unref(model);
+}

@@ -111,7 +111,8 @@ void
 on_button_back_to_main_clicked         (GtkButton       *button,
                                         gpointer         user_data)
 {
-
+    stat0 = STATUS_MAIN;
+    game_gui_show_main();
 }
 
 

@@ -863,3 +863,61 @@ fixture_get(gint type, gint clid, gint week_number, gint week_round_number, cons
 
     return fix;
 }
+
+gint
+fixture_compare_func(gconstpointer a, gconstpointer b, gpointer data)
+{
+    const Fixture *fix1 = *(const Fixture**)a,
+	*fix2 = *(const Fixture**)b;
+    gint type = GPOINTER_TO_INT(data);
+    gint return_value = 0;
+
+    switch(type)
+    {
+	default:
+	    g_warning("fixture_compare_func: unknown type %d.\n", type);
+	    break;
+	case FIXTURE_COMPARE_DATE:
+	    if(query_fixture_is_earlier(fix1, fix2))
+		return_value = -1;
+	    else
+		return_value = 1;
+	    break;
+    }
+
+    return return_value;
+}
+
+/** Return an array with the last fixtures of the team. */
+GPtrArray*
+fixture_get_latest(const Team *tm)
+{
+    gint i, j;
+    GPtrArray *latest = g_ptr_array_new();
+
+    for(i=0;i<ligs->len;i++)
+	if(lig(i).id == tm->clid)
+	{
+	    for(j=0;j<lig(i).fixtures->len;j++)
+		if(g_array_index(lig(i).fixtures, Fixture, j).attendance == -1)
+		    break;
+		else if(g_array_index(lig(i).fixtures, Fixture, j).teams[0] == tm ||
+			g_array_index(lig(i).fixtures, Fixture, j).teams[1] == tm)
+		    g_ptr_array_add(latest, &g_array_index(lig(i).fixtures, Fixture, j));
+	}
+    
+    if(query_is_in_international_cups(tm))
+    for(i=0;i<cps->len;i++)
+    {
+	for(j=0;j<cp(i).fixtures->len;j++)
+	    if(g_array_index(cp(i).fixtures, Fixture, j).attendance == -1)
+		break;
+	    else if(g_array_index(cp(i).fixtures, Fixture, j).teams[0] == tm ||
+		    g_array_index(cp(i).fixtures, Fixture, j).teams[1] == tm)
+		g_ptr_array_add(latest, &g_array_index(cp(i).fixtures, Fixture, j));
+    }
+
+    g_ptr_array_sort_with_data(latest, fixture_compare_func, GINT_TO_POINTER(FIXTURE_COMPARE_DATE));
+
+    return latest;
+}

@@ -147,4 +147,19 @@ treeview_get_attributes_from_scout(gint scout);
 void
 treeview_show_transfer_list(GtkTreeView *treeview);
 
+void
+treeview_show_next_opponent(GtkTreeView *treeview);
+
+void
+treeview_set_up_next_opponent(GtkTreeView *treeview);
+
+GtkTreeModel*
+treeview_create_next_opponent(void);
+
+void
+treeview_create_next_opponent_results(const Team *tm, gchar *result_buf, gchar *goals_buf);
+
+void
+treeview_create_own_results(const Team *tm, gchar *buf);
+
 #endif

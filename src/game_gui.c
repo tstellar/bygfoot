@@ -305,6 +305,7 @@ game_gui_show_main(void)
 {
     game_gui_set_main_window_header();
     treeview_show_user_player_list(&current_user);
+    treeview_show_next_opponent(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")));
 }
 
 /** Print a message into the main window entry. */

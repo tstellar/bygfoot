@@ -6,6 +6,12 @@
 #include "fixture_struct.h"
 #include "league_struct.h"
 
+enum FixtureCompare
+{
+    FIXTURE_COMPARE_DATE = 0,
+    FIXTURE_COMPARE_END
+};
+
 void
 fixture_write_league_fixtures(League *league);
 
@@ -87,5 +93,11 @@ fixture_get_next(gint clid, gint week_number, gint week_round_number);
 
 Fixture*
 fixture_get_previous(gint clid, gint week_number, gint week_round_number);
+
+GPtrArray*
+fixture_get_latest(const Team *tm);
+
+gint
+fixture_compare_func(gconstpointer a, gconstpointer b, gpointer data);
 
 #endif
