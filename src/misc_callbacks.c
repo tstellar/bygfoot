@@ -247,14 +247,3 @@ on_treeview_users_button_press_event   (GtkWidget       *widget,
 
     return FALSE;
 }
-
-void
-on_button_show_stats_clicked           (GtkButton       *button,
-                                        gpointer         user_data)
-{
-    treeview_show_game_stats(GTK_TREE_VIEW(lookup_widget(window.live, 
-							 "treeview_commentary")),
-			     &usr(stat2).live_game);
-
-    gtk_widget_hide(GTK_WIDGET(button));
-}

@@ -8,6 +8,7 @@
 #include "misc_callback_func.h"
 #include "option.h"
 #include "player.h"
+#include "support.h"
 #include "table.h"
 #include "team.h"
 #include "treeview.h"
@@ -57,8 +58,8 @@ live_game_calculate_fixture(Fixture *fix)
 
     if(stat0 != STATUS_LIVE_GAME_PAUSE)
     {
-	if(fixture_user_team_involved(fix) != -1)
-	    game_create_stats(match);
+/* 	if(fixture_user_team_involved(fix) != -1) */
+/* 	    game_create_stats(match); */
 	
 	if(query_fixture_has_tables(fix))
 	    table_update(fix);
@@ -1099,6 +1100,40 @@ live_game_unit_get_minute(const LiveGameUnit *unit)
     return -1;
 }
 
+/** Return the unit before or after the specified one.
+    @param unit The unit specified.
+    @param gap How many units to skip. */
+LiveGameUnit*
+live_game_unit_before(const LiveGameUnit* unit, gint gap)
+{
+    gint i;
+
+    if(gap < 0)
+    {
+	for(i=unis->len - 1;i>=0;i--)
+	    if(&uni(i) == unit)
+	    {
+		if(i - gap > 0)
+		    return &uni(i - gap);
+		else
+		    g_warning("live_game_unit_before: no unit found for gap %d\n", gap);
+	    }
+    }
+    else
+    {
+	for(i=unis->len - 1;i>=0;i--)
+	    if(&uni(i) == unit)
+	    {
+		if(i + gap < unis->len)
+		    return &uni(i + gap);
+		else
+		    g_warning("live_game_unit_before: no unit found for gap %d\n", gap);
+	    }
+    }
+
+    return NULL;
+}
+
 /** Free the live game variable before we begin a new live game.
     @param fix The fixture we'll show. */
 void
@@ -1121,9 +1156,13 @@ live_game_reset(Fixture *fix)
     
     for(i=0;i<LIVE_GAME_STAT_ARRAY_END;i++)
     {
-	match->stats.players[i][0] = g_ptr_array_new();
-	match->stats.players[i][1] = g_ptr_array_new();
+	match->stats.players[0][i] = g_ptr_array_new();
+	match->stats.players[1][i] = g_ptr_array_new();
     }
+
+    for(i=0;i<LIVE_GAME_STAT_VALUE_END;i++)
+	match->stats.values[0][i] =
+	    match->stats.values[1][i] = 0;
 
     match->fix = fix;
     match->subs_left[0] = match->subs_left[1] = 3;
@@ -1386,8 +1425,6 @@ live_game_finish_unit(void)
 {
     LiveGameUnit *unit = &last_unit;
 
-    live_game_generate_commentary(unit);
-
     if(unit->minute != -1 && unit->time != LIVE_GAME_UNIT_TIME_PENALTIES &&
        fixture_user_team_involved(match->fix) != -1)
     {
@@ -1395,6 +1432,18 @@ live_game_finish_unit(void)
 	if(stat2 == current_user && show &&
 	   unit->minute % const_int("int_live_game_player_list_refresh") == 0)
 	    treeview_show_user_player_list(&usr(current_user), 1);
+    }
+
+    if(fixture_user_team_involved(match->fix) != -1)
+    {
+	if(unit->time != LIVE_GAME_UNIT_TIME_PENALTIES)
+	{
+	    game_update_stats(match, unit);
+	    treeview_show_game_stats(GTK_TREE_VIEW(lookup_widget(window.live, "treeview_stats")),
+				     match);
+	}
+
+	live_game_generate_commentary(unit);
     }
 
     if(show)

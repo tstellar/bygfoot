@@ -96,4 +96,10 @@ game_create_stats(gpointer live_game);
 void
 game_create_stats_players(gpointer live_game);
 
+void
+game_update_stats(gpointer live_game, gconstpointer live_game_unit);
+
+void
+game_update_stats_player(gpointer live_game, gconstpointer live_game_unit);
+
 #endif

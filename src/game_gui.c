@@ -1,5 +1,6 @@
 #include <unistd.h>
 
+#include "file.h"
 #include "game_gui.h"
 #include "gui.h"
 #include "league.h"
@@ -25,7 +26,9 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
     GtkWidget *button_pause = lookup_widget(window.live, "button_pause"),
 	*button_resume = lookup_widget(window.live, "button_resume"),
 	*button_live_close = lookup_widget(window.live, "button_live_close"),
-	*button_show_stats = lookup_widget(window.live, "button_show_stats");
+	*eventbox_poss[2] = {lookup_widget(window.live, "eventbox_poss0"),
+			     lookup_widget(window.live, "eventbox_poss1")};
+    GdkColor color;
 
     if(unit->event.type == LIVE_GAME_EVENT_START_MATCH)
 	treeview_live_game_show_initial_commentary(unit);
@@ -33,6 +36,10 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
 	treeview_live_game_show_commentary(unit);
 
     treeview_live_game_show_result(unit);
+
+    gdk_color_parse (const_str("string_live_game_possession_color"), &color);
+    gtk_widget_modify_bg(eventbox_poss[unit->possession], GTK_STATE_NORMAL, &color);
+    gtk_widget_modify_bg(eventbox_poss[!unit->possession], GTK_STATE_NORMAL, NULL);
 
     game_gui_live_game_set_hscale(unit,
 				  GTK_HSCALE(lookup_widget(window.live, "hscale_area")));
@@ -49,14 +56,12 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
     if(unit->event.type == LIVE_GAME_EVENT_START_MATCH)
     {
 	gtk_widget_set_sensitive(button_live_close, FALSE);
-	gtk_widget_hide(button_show_stats);
 	gtk_widget_show(button_pause);
 	gtk_widget_hide(button_resume);
     }
     else if(unit->event.type == LIVE_GAME_EVENT_END_MATCH)
     {
 	gtk_widget_set_sensitive(lookup_widget(window.live, "button_live_close"), TRUE);
-	gtk_widget_show(button_show_stats);
 	gtk_widget_hide(lookup_widget(window.live, "button_pause"));
     }
     else if(unit->event.type == LIVE_GAME_EVENT_PENALTIES)

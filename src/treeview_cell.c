@@ -395,14 +395,14 @@ treeview_cell_live_game_result(GtkTreeViewColumn *col,
 
     strcpy(buf, "");
 
-    if(column == 1 || column == 3)
+    if(column == 0 || column == 2)
     {
 	gtk_tree_model_get(model, iter, column, &fix, -1);
 	sprintf(buf, "<span %s>%s</span>", 
 		const_str("string_treeview_cell_live_game_result_attributes"),
-		fix->teams[column == 3]->name->str);
+		fix->teams[column == 2]->name->str);
     }
-    else if(column == 2)
+    else if(column == 1)
     {
 	gtk_tree_model_get(model, iter, column, &unit, -1);
 	sprintf(buf, "<span %s>%d : %d</span>", 

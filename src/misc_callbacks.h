@@ -112,8 +112,4 @@ on_treeview_users_button_press_event   (GtkWidget       *widget,
 void
 on_entry_player_name_activate          (GtkEntry        *entry,
                                         gpointer         user_data);
-
-void
-on_button_show_stats_clicked           (GtkButton       *button,
-                                        gpointer         user_data);
 #endif

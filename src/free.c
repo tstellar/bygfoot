@@ -91,10 +91,10 @@ free_live_game(LiveGame *match)
     {
 	for(j=0;j<LIVE_GAME_STAT_ARRAY_END;j++)
 	{
-	    for(k=0;k<match->stats.players[j][i]->len;k++)
-		free_g_string((GString**)&g_ptr_array_index(match->stats.players[j][i], k));
+	    for(k=0;k<match->stats.players[i][j]->len;k++)
+		free_g_string((GString**)&g_ptr_array_index(match->stats.players[i][j], k));
 	
-	    free_g_ptr_array(&match->stats.players[j][i]);
+	    free_g_ptr_array(&match->stats.players[i][j]);
 	}
     }
     

@@ -1,7 +1,7 @@
 #include "fixture.h"
 #include "game.h"
 #include "game_gui.h"
-#include "live_game_struct.h"
+#include "live_game.h"
 #include "maths.h"
 #include "misc.h"
 #include "option.h"
@@ -792,11 +792,10 @@ game_create_stats_players(gpointer live_game)
 					     stats->players[LIVE_GAME_STAT_ARRAY_SCORERS][array_index], j))->str,
 					player_of_id(match->fix->teams[team], player)->name->str))
 		    {
-			sprintf(buf, "%s %d",
+			sprintf(buf, "%s %d%s",
 				((GString*)g_ptr_array_index(
 				    stats->players[LIVE_GAME_STAT_ARRAY_SCORERS][array_index], j))->str,
-				minute);
-			strcat(buf, buf2);
+				minute, buf2);
 			g_string_printf(((GString*)g_ptr_array_index(
 					     stats->players[LIVE_GAME_STAT_ARRAY_SCORERS][array_index], j)),
 					"%s", buf);
@@ -810,9 +809,8 @@ game_create_stats_players(gpointer live_game)
 	    }
 	    else
 	    {
-		sprintf(buf, "%s %d", player_of_id(match->fix->teams[team], player)->name->str,
-			minute);
-		strcat(buf, buf2);
+		sprintf(buf, "%s %d%s", player_of_id(match->fix->teams[team], player)->name->str,
+			minute, buf2);
 		new = g_string_new(buf);
 		g_ptr_array_add(stats->players[LIVE_GAME_STAT_ARRAY_SCORERS][array_index], new);
 		scorer_ids[array_index][cnt[array_index]] = player + (100 * own_goal);
@@ -843,6 +841,146 @@ game_create_stats_players(gpointer live_game)
 		new = g_string_new(buf);
 		g_ptr_array_add(players, new);
 	    }
+	}
+    }
+}
+
+/** Update the live game stats using the live game unit.
+    @param live_game_stats Pointer to the live game.
+    @param live_game_unit The live game unit. */
+void
+game_update_stats(gpointer live_game, gconstpointer live_game_unit)
+{
+    gint i;
+    LiveGameStats *stats = &((LiveGame*)live_game)->stats;
+    const LiveGameUnit *unit = (const LiveGameUnit*)live_game_unit;
+    
+    if(unit->minute != -1)
+	stats->values[unit->possession][LIVE_GAME_STAT_VALUE_POSSESSION]++;
+
+    if(unit->event.type == LIVE_GAME_EVENT_SCORING_CHANCE ||
+       unit->event.type == LIVE_GAME_EVENT_FREE_KICK)
+	stats->values[unit->possession][LIVE_GAME_STAT_VALUE_SHOTS]++;
+    else if(unit->event.type == LIVE_GAME_EVENT_PENALTY)
+	stats->values[unit->possession][LIVE_GAME_STAT_VALUE_PENALTIES]++;
+    else if(unit->event.type == LIVE_GAME_EVENT_INJURY)
+    {
+	stats->values[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]][LIVE_GAME_STAT_VALUE_INJURIES]++;
+	game_update_stats_player(live_game, live_game_unit);
+    }
+    else if(unit->event.type == LIVE_GAME_EVENT_FOUL ||
+	    unit->event.type == LIVE_GAME_EVENT_FOUL_YELLOW ||
+	    unit->event.type == LIVE_GAME_EVENT_FOUL_RED ||
+	    unit->event.type == LIVE_GAME_EVENT_FOUL_RED_INJURY)
+    {
+	stats->values[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]][LIVE_GAME_STAT_VALUE_FOULS]++;
+	if(unit->event.type == LIVE_GAME_EVENT_FOUL_YELLOW)
+	{
+	    stats->values[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]][LIVE_GAME_STAT_VALUE_CARDS]++;
+	    game_update_stats_player(live_game, live_game_unit);
+	}
+    }
+    else if(unit->event.type == LIVE_GAME_EVENT_SEND_OFF)
+    {
+	stats->values[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]][LIVE_GAME_STAT_VALUE_REDS]++;
+	game_update_stats_player(live_game, live_game_unit);
+    }
+    else if(unit->event.type == LIVE_GAME_EVENT_GOAL &&
+	    live_game_unit_before(unit, -1)->event.type != LIVE_GAME_EVENT_PENALTY)
+    {
+	stats->values[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]][LIVE_GAME_STAT_VALUE_GOALS_REGULAR]++;
+	game_update_stats_player(live_game, live_game_unit);
+    }
+    
+    for(i=0;i<2;i++)
+	stats->values[i][LIVE_GAME_STAT_VALUE_SHOT_PERCENTAGE] =
+	    (stats->values[i][LIVE_GAME_STAT_VALUE_SHOTS] > 0) ?
+	    (gint)rint(((gfloat)stats->values[i][LIVE_GAME_STAT_VALUE_GOALS_REGULAR] /
+			(gfloat)stats->values[i][LIVE_GAME_STAT_VALUE_SHOTS]) * 100) : 0;
+}
+
+/** Update the player array in the live game stats.
+    @param live_game Pointer to the live game.
+    @param team The team of the player.
+    @param player The player id.
+    @param type The type of the stat. */
+void
+game_update_stats_player(gpointer live_game, gconstpointer live_game_unit)
+{
+    gint i;
+    gchar buf[SMALL], buf2[SMALL];    
+    LiveGameStats *stats = &((LiveGame*)live_game)->stats;
+    const LiveGameUnit *unit = (const LiveGameUnit*)live_game_unit;
+    gint minute = live_game_unit_get_minute(unit), array_index = -1;
+    gboolean own_goal;
+    gint team = unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM],
+	player = unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER],
+	player2 = unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER2];
+    const Team *tm[2] = {((LiveGame*)live_game)->fix->teams[0], 
+			 ((LiveGame*)live_game)->fix->teams[1]};
+    GString *new = NULL;
+    GPtrArray *players = NULL;
+    
+    if(unit->event.type == LIVE_GAME_EVENT_GOAL ||
+       unit->event.type == LIVE_GAME_EVENT_OWN_GOAL)
+    {
+	own_goal = (unit->event.type == LIVE_GAME_EVENT_OWN_GOAL);
+	array_index = (own_goal) ? !team : team;
+
+	if(live_game_unit_before(unit, -1)->event.type == LIVE_GAME_EVENT_PENALTY)
+	    strcpy(buf2, " (P)");
+	else if(live_game_unit_before(unit, -1)->event.type == LIVE_GAME_EVENT_FREE_KICK)
+	    strcpy(buf2, " (FK)");
+	else if(unit->event.type == LIVE_GAME_EVENT_OWN_GOAL)
+	    strcpy(buf2, " (OG)");
+	else 
+	    strcpy(buf2, "");
+
+	for(i=0;i<stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS]->len;i++)
+	{
+	    if(g_str_has_prefix(((GString*)g_ptr_array_index(
+				     stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS], i))->str,
+				player_of_id(tm[team], player)->name->str))
+	    {
+		sprintf(buf, "%s %d%s",
+			((GString*)g_ptr_array_index(
+			    stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS], i))->str,
+			minute, buf2);
+		g_string_printf(((GString*)g_ptr_array_index(
+				     stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS], i)),
+				"%s", buf);
+		return;
+	    }
+	}
+    
+	sprintf(buf, "%s %d%s", player_of_id(tm[team], player)->name->str,
+		minute, buf2);
+	new = g_string_new(buf);
+	g_ptr_array_add(stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS], new);
+    }
+    else
+    {
+	strcpy(buf, "");
+	if(unit->event.type == LIVE_GAME_EVENT_INJURY)
+	{
+	    sprintf(buf, "%s", player_of_id(tm[team], player)->name->str);
+	    players = stats->players[team][LIVE_GAME_STAT_ARRAY_INJURED];
+	}
+	else if(unit->event.type == LIVE_GAME_EVENT_FOUL_YELLOW)
+	{
+	    sprintf(buf, "%s", player_of_id(tm[team], player2)->name->str);
+	    players = stats->players[team][LIVE_GAME_STAT_ARRAY_YELLOWS];
+	}
+	else if(unit->event.type == LIVE_GAME_EVENT_SEND_OFF)
+	{
+	    sprintf(buf, "%s", player_of_id(tm[team], player)->name->str);
+	    players = stats->players[team][LIVE_GAME_STAT_ARRAY_REDS];
+	}
+
+	if(strlen(buf) > 0)
+	{
+	    new = g_string_new(buf);
+	    g_ptr_array_add(players, new);
 	}
     }
 }

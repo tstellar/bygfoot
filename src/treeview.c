@@ -649,26 +649,15 @@ treeview_live_game_create_result(const LiveGameUnit *unit)
 {
     GtkListStore  *liststore;
     GtkTreeIter iter;
-    GdkPixbuf *symbol = NULL;    
 
-    symbol = 
-	treeview_pixbuf_from_filename("possession_ball.png");
-
-    liststore = gtk_list_store_new(5,
-				   GDK_TYPE_PIXBUF,
+    liststore = gtk_list_store_new(3,
 				   G_TYPE_POINTER,
 				   G_TYPE_POINTER,
-				   G_TYPE_POINTER,
-				   GDK_TYPE_PIXBUF);
+				   G_TYPE_POINTER);
 
     gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, NULL, 1, (gpointer)usr(stat2).live_game.fix,
-		       2, (gpointer)unit, 3, (gpointer)usr(stat2).live_game.fix, 4, NULL, -1);
-
-    gtk_list_store_set(liststore, &iter, 0 + (unit->possession == 1) * 4, symbol, -1);
-
-    if(symbol != NULL)
-	g_object_unref(symbol);
+    gtk_list_store_set(liststore, &iter, 0, (gpointer)usr(stat2).live_game.fix,
+		       1, (gpointer)unit, 2, (gpointer)usr(stat2).live_game.fix, -1);
 
     return GTK_TREE_MODEL(liststore);
 }
@@ -687,13 +676,6 @@ treeview_live_game_set_up_result(void)
     
     col = gtk_tree_view_column_new();
     gtk_tree_view_append_column(treeview, col);
-    renderer = gtk_cell_renderer_pixbuf_new();
-    gtk_tree_view_column_pack_start(col, renderer, FALSE);
-    gtk_tree_view_column_add_attribute(col, renderer,
-				       "pixbuf", 0);
-
-    col = gtk_tree_view_column_new();
-    gtk_tree_view_append_column(treeview, col);
     renderer = gtk_cell_renderer_text_new();
     gtk_tree_view_column_pack_start(col, renderer, TRUE);
     gtk_tree_view_column_set_cell_data_func(col, renderer,
@@ -715,13 +697,6 @@ treeview_live_game_set_up_result(void)
     gtk_tree_view_column_set_cell_data_func(col, renderer,
 					    treeview_cell_live_game_result,
 					    NULL, NULL);
-
-    col = gtk_tree_view_column_new();
-    gtk_tree_view_append_column(treeview, col);
-    renderer = gtk_cell_renderer_pixbuf_new();
-    gtk_tree_view_column_pack_start(col, renderer, FALSE);
-    gtk_tree_view_column_add_attribute(col, renderer,
-				       "pixbuf", 4);
 }
 
 /** Write the current result of the live game into
@@ -886,17 +861,18 @@ treeview_create_game_stats(LiveGame *live_game)
 		sprintf(buf[0], "<span background='%s'>   ", 
 			const_str("string_treeview_cell_color_player_yellow_danger"));
 	}
-	for(i=0;i<MAX(stats->players[k][0]->len, 
-		      stats->players[k][1]->len);i++)
+
+	for(i=0;i<MAX(stats->players[0][k]->len,
+		      stats->players[1][k]->len);i++)
 	{
 	    gtk_list_store_append(liststore, &iter);
 	    gtk_list_store_set(liststore, &iter, 1, "", -1);
 	    for(j=0;j<2;j++)
 	    {
-		if(i < stats->players[k][j]->len)
+		if(i < stats->players[j][k]->len)
 		{
 		    sprintf(buf3, "%s%s%s", buf[0],
-			    ((GString*)g_ptr_array_index(stats->players[k][j], i))->str,
+			    ((GString*)g_ptr_array_index(stats->players[j][k], i))->str,
 			    buf[1]);
 		    gtk_list_store_set(liststore, &iter, j * 2, buf3, -1);
 		}
@@ -909,8 +885,14 @@ treeview_create_game_stats(LiveGame *live_game)
 
     for(i=0;i<LIVE_GAME_STAT_VALUE_END;i++)
     {
-	for(j=0;j<2;j++)
-	    sprintf(buf[j], "%d", stats->values[j][i]);
+	if(i != LIVE_GAME_STAT_VALUE_POSSESSION)
+	    for(j=0;j<2;j++)
+		sprintf(buf[j], "%d", stats->values[j][i]);
+	else
+	    for(j=0;j<2;j++)
+		sprintf(buf[j], "%d", (gint)rint(100 * ((gfloat)stats->values[j][i] /
+							((gfloat)stats->values[0][i] + 
+							 (gfloat)stats->values[1][i]))));
 
 	gtk_list_store_append(liststore, &iter);
 	gtk_list_store_set(liststore, &iter, 0, buf[0],

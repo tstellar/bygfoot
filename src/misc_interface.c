@@ -530,11 +530,21 @@ create_window_live (void)
   GtkWidget *progressbar_live;
   GtkWidget *hbox50;
   GtkWidget *vbox38;
+  GtkWidget *hbox57;
+  GtkWidget *eventbox_poss0;
+  GtkWidget *label78;
   GtkWidget *scrolledwindow8;
   GtkWidget *treeview_result;
+  GtkWidget *eventbox_poss1;
+  GtkWidget *label79;
   GtkWidget *hscale_area;
+  GtkWidget *notebook1;
   GtkWidget *scrolledwindow9;
   GtkWidget *treeview_commentary;
+  GtkWidget *label80;
+  GtkWidget *scrolledwindow11;
+  GtkWidget *treeview_stats;
+  GtkWidget *label81;
   GtkWidget *hbox48;
   GtkWidget *button_pause;
   GtkWidget *alignment16;
@@ -546,11 +556,6 @@ create_window_live (void)
   GtkWidget *hbox52;
   GtkWidget *image57;
   GtkWidget *label73;
-  GtkWidget *button_show_stats;
-  GtkWidget *alignment20;
-  GtkWidget *hbox56;
-  GtkWidget *image60;
-  GtkWidget *label77;
   GtkWidget *button_live_close;
   GtkObject *spinbutton_speed_adj;
   GtkWidget *spinbutton_speed;
@@ -580,9 +585,21 @@ create_window_live (void)
   gtk_widget_show (vbox38);
   gtk_box_pack_start (GTK_BOX (hbox50), vbox38, TRUE, TRUE, 0);
 
+  hbox57 = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (hbox57);
+  gtk_box_pack_start (GTK_BOX (vbox38), hbox57, FALSE, FALSE, 0);
+
+  eventbox_poss0 = gtk_event_box_new ();
+  gtk_widget_show (eventbox_poss0);
+  gtk_box_pack_start (GTK_BOX (hbox57), eventbox_poss0, FALSE, TRUE, 0);
+
+  label78 = gtk_label_new (_("   "));
+  gtk_widget_show (label78);
+  gtk_container_add (GTK_CONTAINER (eventbox_poss0), label78);
+
   scrolledwindow8 = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (scrolledwindow8);
-  gtk_box_pack_start (GTK_BOX (vbox38), scrolledwindow8, FALSE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox57), scrolledwindow8, TRUE, TRUE, 0);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow8), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow8), GTK_SHADOW_ETCHED_IN);
 
@@ -591,20 +608,50 @@ create_window_live (void)
   gtk_container_add (GTK_CONTAINER (scrolledwindow8), treeview_result);
   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview_result), FALSE);
 
+  eventbox_poss1 = gtk_event_box_new ();
+  gtk_widget_show (eventbox_poss1);
+  gtk_box_pack_start (GTK_BOX (hbox57), eventbox_poss1, FALSE, TRUE, 0);
+
+  label79 = gtk_label_new (_("   "));
+  gtk_widget_show (label79);
+  gtk_container_add (GTK_CONTAINER (eventbox_poss1), label79);
+
   hscale_area = gtk_hscale_new (GTK_ADJUSTMENT (gtk_adjustment_new (5, 0, 10, 0, 0, 0)));
   gtk_widget_show (hscale_area);
   gtk_box_pack_start (GTK_BOX (vbox38), hscale_area, FALSE, TRUE, 0);
   gtk_scale_set_draw_value (GTK_SCALE (hscale_area), FALSE);
 
+  notebook1 = gtk_notebook_new ();
+  gtk_widget_show (notebook1);
+  gtk_box_pack_start (GTK_BOX (vbox38), notebook1, TRUE, TRUE, 0);
+
   scrolledwindow9 = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (scrolledwindow9);
-  gtk_box_pack_start (GTK_BOX (vbox38), scrolledwindow9, TRUE, TRUE, 0);
+  gtk_container_add (GTK_CONTAINER (notebook1), scrolledwindow9);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow9), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow9), GTK_SHADOW_ETCHED_IN);
 
   treeview_commentary = gtk_tree_view_new ();
   gtk_widget_show (treeview_commentary);
   gtk_container_add (GTK_CONTAINER (scrolledwindow9), treeview_commentary);
+
+  label80 = gtk_label_new (_("Commentary"));
+  gtk_widget_show (label80);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 0), label80);
+
+  scrolledwindow11 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrolledwindow11);
+  gtk_container_add (GTK_CONTAINER (notebook1), scrolledwindow11);
+  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow11), GTK_SHADOW_IN);
+
+  treeview_stats = gtk_tree_view_new ();
+  gtk_widget_show (treeview_stats);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow11), treeview_stats);
+  gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview_stats), FALSE);
+
+  label81 = gtk_label_new (_("Statistics"));
+  gtk_widget_show (label81);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 1), label81);
 
   hbox48 = gtk_hbox_new (FALSE, 4);
   gtk_widget_show (hbox48);
@@ -655,25 +702,6 @@ create_window_live (void)
   gtk_widget_show (label73);
   gtk_box_pack_start (GTK_BOX (hbox52), label73, FALSE, FALSE, 0);
 
-  button_show_stats = gtk_button_new ();
-  gtk_box_pack_start (GTK_BOX (hbox48), button_show_stats, FALSE, FALSE, 0);
-
-  alignment20 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment20);
-  gtk_container_add (GTK_CONTAINER (button_show_stats), alignment20);
-
-  hbox56 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox56);
-  gtk_container_add (GTK_CONTAINER (alignment20), hbox56);
-
-  image60 = gtk_image_new_from_stock ("gtk-select-color", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image60);
-  gtk_box_pack_start (GTK_BOX (hbox56), image60, FALSE, FALSE, 0);
-
-  label77 = gtk_label_new_with_mnemonic (_("_Show stats"));
-  gtk_widget_show (label77);
-  gtk_box_pack_start (GTK_BOX (hbox56), label77, FALSE, FALSE, 0);
-
   button_live_close = gtk_button_new_from_stock ("gtk-close");
   gtk_widget_show (button_live_close);
   gtk_box_pack_start (GTK_BOX (hbox48), button_live_close, FALSE, FALSE, 0);
@@ -694,9 +722,6 @@ create_window_live (void)
   g_signal_connect ((gpointer) button_resume, "clicked",
                     G_CALLBACK (on_button_resume_clicked),
                     NULL);
-  g_signal_connect ((gpointer) button_show_stats, "clicked",
-                    G_CALLBACK (on_button_show_stats_clicked),
-                    NULL);
   g_signal_connect ((gpointer) button_live_close, "clicked",
                     G_CALLBACK (on_button_live_close_clicked),
                     NULL);
@@ -710,11 +735,21 @@ create_window_live (void)
   GLADE_HOOKUP_OBJECT (window_live, progressbar_live, "progressbar_live");
   GLADE_HOOKUP_OBJECT (window_live, hbox50, "hbox50");
   GLADE_HOOKUP_OBJECT (window_live, vbox38, "vbox38");
+  GLADE_HOOKUP_OBJECT (window_live, hbox57, "hbox57");
+  GLADE_HOOKUP_OBJECT (window_live, eventbox_poss0, "eventbox_poss0");
+  GLADE_HOOKUP_OBJECT (window_live, label78, "label78");
   GLADE_HOOKUP_OBJECT (window_live, scrolledwindow8, "scrolledwindow8");
   GLADE_HOOKUP_OBJECT (window_live, treeview_result, "treeview_result");
+  GLADE_HOOKUP_OBJECT (window_live, eventbox_poss1, "eventbox_poss1");
+  GLADE_HOOKUP_OBJECT (window_live, label79, "label79");
   GLADE_HOOKUP_OBJECT (window_live, hscale_area, "hscale_area");
+  GLADE_HOOKUP_OBJECT (window_live, notebook1, "notebook1");
   GLADE_HOOKUP_OBJECT (window_live, scrolledwindow9, "scrolledwindow9");
   GLADE_HOOKUP_OBJECT (window_live, treeview_commentary, "treeview_commentary");
+  GLADE_HOOKUP_OBJECT (window_live, label80, "label80");
+  GLADE_HOOKUP_OBJECT (window_live, scrolledwindow11, "scrolledwindow11");
+  GLADE_HOOKUP_OBJECT (window_live, treeview_stats, "treeview_stats");
+  GLADE_HOOKUP_OBJECT (window_live, label81, "label81");
   GLADE_HOOKUP_OBJECT (window_live, hbox48, "hbox48");
   GLADE_HOOKUP_OBJECT (window_live, button_pause, "button_pause");
   GLADE_HOOKUP_OBJECT (window_live, alignment16, "alignment16");
@@ -726,11 +761,6 @@ create_window_live (void)
   GLADE_HOOKUP_OBJECT (window_live, hbox52, "hbox52");
   GLADE_HOOKUP_OBJECT (window_live, image57, "image57");
   GLADE_HOOKUP_OBJECT (window_live, label73, "label73");
-  GLADE_HOOKUP_OBJECT (window_live, button_show_stats, "button_show_stats");
-  GLADE_HOOKUP_OBJECT (window_live, alignment20, "alignment20");
-  GLADE_HOOKUP_OBJECT (window_live, hbox56, "hbox56");
-  GLADE_HOOKUP_OBJECT (window_live, image60, "image60");
-  GLADE_HOOKUP_OBJECT (window_live, label77, "label77");
   GLADE_HOOKUP_OBJECT (window_live, button_live_close, "button_live_close");
   GLADE_HOOKUP_OBJECT (window_live, spinbutton_speed, "spinbutton_speed");
 

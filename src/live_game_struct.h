@@ -125,7 +125,7 @@ typedef struct
 {
     gfloat possession;
     gint values[2][LIVE_GAME_STAT_VALUE_END];
-    GPtrArray *players[LIVE_GAME_STAT_ARRAY_END][2];
+    GPtrArray *players[2][LIVE_GAME_STAT_ARRAY_END];
 } LiveGameStats;
 
 /** A struct telling us what's happening at
@@ -191,7 +191,7 @@ typedef struct
     /** The home advantage factor. */
     gfloat home_advantage;
     /** The array of units. @see #GameUnit */
-    GArray *units;
+    GArray *units;    
     /** Match statistics. @see #LiveGameStats */
     LiveGameStats stats;
     LiveGameTeamState team_state[2];

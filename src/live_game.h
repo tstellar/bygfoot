@@ -103,4 +103,7 @@ live_game_event_team_change(gint team_number, gint event_type);
 void
 live_game_finish_unit(void);
 
+LiveGameUnit*
+live_game_unit_before(const LiveGameUnit* unit, gint gap);
+
 #endif
