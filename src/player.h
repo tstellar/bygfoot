@@ -42,7 +42,7 @@ void
 player_remove_from_team(Team *tm, gint player_number);
 
 gint
-player_all_games_goals(const Player *pl, gboolean goals);
+player_all_games_goals(const Player *pl, gint type);
 
 gint
 player_all_cards(const Player *pl);
@@ -59,6 +59,9 @@ player_of_id(const Team *tm, gint id);
 gint
 player_compare_func(gconstpointer a, gconstpointer b, gpointer data);
 
+gint
+player_compare_substitute_func(gconstpointer a, gconstpointer b, gpointer data);
+
 void
 player_move(Team *tm1, gint player_number, Team *tm2, gint insert_at);
 
@@ -66,9 +69,15 @@ void
 player_swap(Team *tm1, gint player_number1, Team *tm2, gint player_number2);
 
 gint
-player_get_cskill(const Player *pl);
+player_get_cskill(const Player *pl, gint position);
 
 gint
 player_is_banned(const Player *pl);
+
+gboolean
+player_substitution_good_structure(gint old_structure, gint old_pos, gint player_pos);
+
+gint
+player_id_index(const Team *tm, gint player_id);
 
 #endif

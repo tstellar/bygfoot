@@ -35,7 +35,7 @@ void
 live_game_evaluate_unit(LiveGameUnit *unit);
 
 void
-live_game_event_foul(gboolean general);
+live_game_event_foul(void);
 
 void
 live_game_event_lost_possession(void);
@@ -65,7 +65,7 @@ void
 live_game_event_send_off(gint team, gint player);
 
 void
-live_game_generate_commentary(LiveGameUnit *unit, gboolean show_unit);
+live_game_generate_commentary(LiveGameUnit *unit);
 
 void
 live_game_event_duel(void);
@@ -89,6 +89,15 @@ gfloat
 live_game_pit_teams(const LiveGameUnit *unit, gfloat exponent);
 
 void
-live_game_event_injury_get_player(void);
+live_game_injury_get_player(void);
+
+void
+live_game_resume(void);
+
+void
+live_game_event_substitution(gint team_number, gint sub_in, gint sub_out);
+
+void
+live_game_event_team_change(gint team_number, gint event_type);
 
 #endif

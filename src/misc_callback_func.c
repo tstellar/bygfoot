@@ -1,3 +1,4 @@
+#include "game.h"
 #include "game_gui.h"
 #include "misc_callback_func.h"
 #include "start_end.h"
@@ -64,8 +65,8 @@ misc_callback_start_game(void)
     for(i=0;i<users->len;i++)	
 	user_set_up_team_new_game(&usr(i));
 
-    window_destroy(&window.startup);
-    window_destroy(&window.startup_users);
+    window_destroy(&window.startup, TRUE);
+    window_destroy(&window.startup_users, TRUE);
 
     window_create(WINDOW_MAIN);
     
@@ -144,6 +145,7 @@ misc_callback_pause_live_game(void)
     gtk_widget_show(lookup_widget(window.live, "button_resume"));
 
     game_gui_set_main_window_sensitivity(TRUE);
+    game_save_team_states();
 
     stat0 = STATUS_LIVE_GAME_PAUSE;
 }

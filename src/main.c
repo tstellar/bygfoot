@@ -25,7 +25,7 @@ main_init_variables(void)
     player_names = NULL;
 
     window.main = window.startup = window.startup_users =
-	window.live = NULL;
+	window.live = window.warning = NULL;
     
     live_game_temp.units = NULL;
 
@@ -92,7 +92,10 @@ main (gint argc, gchar *argv[])
     window_show_startup();
     gtk_window_get_position(GTK_WINDOW(window.startup), &x_pos, &y_pos);
     gtk_window_move(GTK_WINDOW(window.startup_users), x_pos,  y_pos);
-    stat0 = STATUS_TEAM_SELECTION;   
+    stat0 = STATUS_TEAM_SELECTION;
+    /*d*/
+    on_button_add_player_clicked(NULL, NULL);
+    
 
     gtk_main ();
 

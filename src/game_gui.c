@@ -11,6 +11,7 @@
 #include "team.h"
 #include "user.h"
 #include "variables.h"
+#include "window.h"
 
 /** Show the live game in the live game window.
     @param unit The current unit we show.
@@ -46,6 +47,8 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
 	gtk_widget_set_sensitive(lookup_widget(window.live, "button_live_close"), TRUE);
 	gtk_widget_hide(lookup_widget(window.live, "button_pause"));
     }
+    else if(unit->event.type == LIVE_GAME_EVENT_PENALTIES)
+	gtk_widget_hide(lookup_widget(window.live, "button_pause"));	
 }
 
 /** Set the area scale position and color in the live game window.
@@ -192,7 +195,7 @@ game_gui_write_radio_items(void)
     gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(style[usr(current_user).tm->style + 2]), TRUE);
     gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(scout[usr(current_user).scout]), TRUE);
     gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(physio[usr(current_user).physio]), TRUE);
-    gtk_check_menu_item_set_active(boost, opt_user_int("int_opt_user_boost"));
+    gtk_check_menu_item_set_active(boost, usr(current_user).tm->boost);
 }
 
 /** Set playing style etc. variables according to
@@ -210,8 +213,7 @@ game_gui_read_radio_items(GtkWidget *widget)
     game_gui_get_radio_items(style, scout, physio);
 
     if(widget == boost)
-	opt_user_set_int("int_opt_user_boost",
-			 !opt_user_int("int_opt_user_boost"));
+	usr(current_user).tm->boost = !usr(current_user).tm->boost;
 
     for(i=0;i<5;i++)
 	if(widget == style[i])
@@ -327,4 +329,14 @@ game_gui_set_main_window_sensitivity(gboolean value)
 	gtk_widget_set_sensitive(insensitive_items[i], !value);
 
     gtk_widget_set_sensitive(window.main, value);
+}
+
+/** Show a window with a warning.
+    @param text The text to show in the window. */
+void
+game_gui_show_warning(gchar *text)
+{
+    window_create(WINDOW_WARNING);
+
+    gtk_label_set_text(GTK_LABEL(lookup_widget(window.warning, "label_warning")), text);    
 }

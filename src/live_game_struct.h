@@ -45,8 +45,7 @@ enum LiveGameEventType
     LIVE_GAME_EVENT_SUBSTITUTION,
     LIVE_GAME_EVENT_STRUCTURE_CHANGE,
     LIVE_GAME_EVENT_STYLE_CHANGE,
-/*     LIVE_GAME_EVENT_, */
-/*     LIVE_GAME_EVENT_, */
+    LIVE_GAME_EVENT_BOOST_CHANGE,
     LIVE_GAME_EVENT_END
 };
 
@@ -150,6 +149,16 @@ typedef struct
 
 } LiveGameUnit;
 
+/** A structure storing team settings during a live game
+    pause (so that we know what users have changed in pauses. */
+typedef struct
+{
+    gint structure, style;
+    gboolean boost;
+    gint player_ids[11];
+
+} LiveGameTeamState;
+
 typedef struct
 {
     /** The fixture that belongs to the game. */
@@ -170,6 +179,7 @@ typedef struct
     GArray *units;
     /** Match statistics. @see #LiveGameStats */
     LiveGameStats stats;
+    LiveGameTeamState team_state[2];
 } LiveGame;
 
 #endif

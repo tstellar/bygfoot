@@ -57,7 +57,14 @@ start_new_season(void)
 	fixture_write_league_fixtures(&lig(i));
 
     for(i=0;i<cps->len;i++)
+    {
 	fixture_write_cup_fixtures(&cp(i));
+	/*d*/
+/* 	printf("%s %d %d %d\n", */
+/* 	       cp(i).name->str, cp(i).id,  */
+/* 	       g_array_index(cp(i).fixtures, Fixture, 0).week_number, */
+/* 	       g_array_index(cp(i).fixtures, Fixture, 0).week_round_number);	        */
+    }
 }
 
 /** Fill some global variables with default values at the
@@ -69,7 +76,7 @@ start_write_variables(void)
 
     season = week = week_round = 1;
     current_user = 0;
-    //week=23; week_round = 2;    
+/*     week=24; week_round = 2; */
     transfer_list = g_array_new(FALSE, FALSE, sizeof(TransferPlayer));
 
     for(i=0;i<users->len;i++)
@@ -187,7 +194,7 @@ end_week_round_results(void)
 	    for(j=0;j<cp(i).fixtures->len;j++)
 		if(g_array_index(cp(i).fixtures, Fixture, j).week_number == week &&
 		   g_array_index(cp(i).fixtures, Fixture, j).week_round_number == week_round &&
-		   g_array_index(lig(i).fixtures, Fixture, j).attendance == -1)
+		   g_array_index(cp(i).fixtures, Fixture, j).attendance == -1)
 		{
 		    live_game_calculate_fixture(&g_array_index(cp(i).fixtures, Fixture, j));
 		    /*d*/

@@ -34,3 +34,8 @@ on_optionmenu_team_changed             (GtkOptionMenu   *optionmenu,
 void
 on_button_close_clicked                (GtkButton       *button,
                                         gpointer         user_data);
+
+gboolean
+on_button_warning_clicked              (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data);

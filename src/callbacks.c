@@ -141,7 +141,6 @@ void
 on_button_new_week_clicked             (GtkButton       *button,
                                         gpointer         user_data)
 {
-    stat0 = STATUS_SHOW_LIVE_GAME;
     callback_show_next_live_game();
 }
 
@@ -565,7 +564,6 @@ on_menu_next_user_activate             (GtkMenuItem     *menuitem,
 {
     current_user = (current_user + 1) % users->len;
 
-    stat0 = STATUS_MAIN;
     game_gui_show_main();
 }
 
@@ -576,7 +574,6 @@ on_menu_previous_user_activate         (GtkMenuItem     *menuitem,
 {
     current_user = (current_user == 0) ? users->len - 1 : current_user - 1;
 
-    stat0 = STATUS_MAIN;
     game_gui_show_main();
 }
 

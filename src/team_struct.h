@@ -59,7 +59,8 @@ typedef struct
 	id, /**< Id of the team. */
 	structure, /**< Playing structure. @see team_assign_playing_structure() */
 	style; /**< Playing style. @see team_assign_playing_style() */
-
+    gboolean boost; /**< Whether player boost is switched on. */
+    
     Stadium stadium;
     /**
        Array of players.

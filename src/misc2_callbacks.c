@@ -4,9 +4,12 @@
 
 #include <gtk/gtk.h>
 
+#include "bygfoot.h"
 #include "misc2_callbacks.h"
 #include "misc2_interface.h"
 #include "support.h"
+#include "variables.h"
+#include "window.h"
 
 
 gboolean
@@ -74,5 +77,16 @@ on_button_close_clicked                (GtkButton       *button,
                                         gpointer         user_data)
 {
 
+}
+
+
+gboolean
+on_button_warning_clicked              (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data)
+{
+    window_destroy(&window.warning, FALSE);
+
+    return FALSE;
 }
 

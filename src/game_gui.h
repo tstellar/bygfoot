@@ -38,4 +38,7 @@ game_gui_set_main_window_sensitivity(gboolean value);
 void
 game_gui_write_av_skills(void);
 
+void
+game_gui_show_warning(gchar *text);
+
 #endif

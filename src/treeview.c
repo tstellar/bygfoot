@@ -143,9 +143,6 @@ treeview_live_game_icon(gint event_type)
 	case LIVE_GAME_EVENT_FOUL_YELLOW:
 	    return "yellow.png";
 	    break;
-	case LIVE_GAME_EVENT_FOUL_RED:
-	    return "red.png";
-	    break;
 	case LIVE_GAME_EVENT_SEND_OFF:
 	    return "red.png";
 	    break;
@@ -393,6 +390,7 @@ treeview_set_up_player_list (GtkTreeView *treeview, gint *attributes, gint max)
 	 _("Fit"),
 	 _("Ga"),
 	 _("Go"),
+	 _("Sh"),
 	 _("Status"),
 	 _("YC"),
 	 _("Age"),
@@ -465,6 +463,8 @@ treeview_show_player_list(GtkTreeView *treeview, GPtrArray *players, PlayerListA
 
     gtk_tree_view_set_model(treeview, model);
     g_object_unref(model);
+
+    g_ptr_array_free(players, TRUE);
 }
 
 /** Show the list of the user's players in the left view.
@@ -501,7 +501,7 @@ treeview_live_game_show_commentary(const LiveGameUnit *unit)
 
     symbol = 
 	treeview_pixbuf_from_filename(treeview_live_game_icon(unit->event.type));
-    sprintf(buf, "%d.", live_game_unit_get_minute(unit));
+    sprintf(buf, "%3d.", live_game_unit_get_minute(unit));
     gtk_list_store_prepend(liststore, &iter);
     gtk_list_store_set(liststore, &iter, 0, buf, 1, symbol,
 		       2, unit->event.commentary->str, -1);
@@ -530,7 +530,7 @@ treeview_live_game_create_init_commentary(const LiveGameUnit *unit)
 				   GDK_TYPE_PIXBUF,
 				   G_TYPE_STRING);
 
-    sprintf(buf, "%d.", unit->minute);
+    sprintf(buf, "%3d.", unit->minute);
 
     symbol = 
 	treeview_pixbuf_from_filename(treeview_live_game_icon(unit->event.type));
@@ -750,7 +750,7 @@ treeview_set_up_users_startup(GtkTreeView *treeview)
     GtkTreeViewColumn   *col;
     GtkCellRenderer     *renderer;
     gchar *titles[4] =
-	{_(""),
+	{"",
 	 _("Name"),
 	 _("Team"),
 	 _("Start in")};

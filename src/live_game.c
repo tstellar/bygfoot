@@ -35,28 +35,21 @@ gboolean show;
 void
 live_game_calculate_fixture(Fixture *fix)
 {
-    Fixture *local_fix = NULL;
-
-    if(stat0 !=  STATUS_LIVE_GAME_PAUSE)
+    if(stat0 != STATUS_LIVE_GAME_PAUSE)
     {
-	local_fix = fix;
-	live_game_reset(local_fix);
-	game_calculate_attendance(local_fix);
+	live_game_reset(fix);
+	game_initialize(fix);	
     }
     else
-    {
 	stat0 = STATUS_SHOW_LIVE_GAME;
-	local_fix = usr(stat2).live_game.fix;
-	match = &usr(stat2).live_game;
-    }
+
+    game_get_values(match->fix, match->team_values,
+		    match->home_advantage);
 
     do
     {
 	live_game_create_unit();	
 	live_game_evaluate_unit(&last_unit);
-	
-	if(show)
-	    game_gui_live_game_show_unit(&last_unit);
     }
     while(last_unit.event.type != LIVE_GAME_EVENT_END_MATCH &&
 	  stat0 != STATUS_LIVE_GAME_PAUSE);
@@ -65,8 +58,8 @@ live_game_calculate_fixture(Fixture *fix)
     {
 	live_game_create_stats();
 	
-	if(query_fixture_has_tables(local_fix))
-	    table_update(local_fix);
+	if(query_fixture_has_tables(fix))
+	    table_update(fix);
     }
 }
 
@@ -77,7 +70,7 @@ live_game_create_unit(void)
 {
     LiveGameUnit new;
 
-    if(opt_int("int_opt_debug") && fixture_user_team_involved(match->fix) != -1)
+    if(opt_int("int_opt_debug"))
 	printf("live_game_create_unit\n");
     if(unis->len == 0)
     {
@@ -104,7 +97,6 @@ live_game_create_unit(void)
     {
 	new.event.type = live_game_get_break();
 	new.possession = last_unit.possession;
-	live_game_generate_commentary(&new, FALSE);
 	g_array_append_val(unis, new);
 	return;
     }
@@ -128,7 +120,7 @@ live_game_fill_new_unit(LiveGameUnit *new)
 		 const_float("float_live_game_stadium_event_exponent"));
     gfloat possession_change, scoring_chance = 0;
 
-    if(opt_int("int_opt_debug") && fixture_user_team_involved(match->fix) != -1)
+    if(opt_int("int_opt_debug"))
 	printf("live_game_fill_new_unit\n");
     possession_change = const_float("float_live_game_event_general") *
 	const_float("float_live_game_possession_changes") /
@@ -178,7 +170,7 @@ live_game_create_start_unit(void)
 {
     LiveGameUnit new;
 
-    if(opt_int("int_opt_debug") && fixture_user_team_involved(match->fix) != -1)
+    if(opt_int("int_opt_debug"))
 	printf("live_game_create_start_unit\n");
     new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
 	new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] = -1;
@@ -208,10 +200,10 @@ live_game_evaluate_unit(LiveGameUnit *unit)
 {
     gint type = unit->event.type;
 
-    if(opt_int("int_opt_debug") && fixture_user_team_involved(match->fix) != -1)
+    if(opt_int("int_opt_debug"))
 	printf("live_game_evaluate_unit type %d\n", type);
     if(type == LIVE_GAME_EVENT_FOUL)
-	live_game_event_foul(TRUE);
+	live_game_event_foul();
     else if(type == LIVE_GAME_EVENT_LOST_POSSESSION)
 	live_game_event_lost_possession();
     else if(type == LIVE_GAME_EVENT_INJURY)
@@ -225,13 +217,15 @@ live_game_evaluate_unit(LiveGameUnit *unit)
     else if(type == LIVE_GAME_EVENT_GENERAL)
 	live_game_event_general(FALSE);
     else if(type == LIVE_GAME_EVENT_START_MATCH)
-	live_game_generate_commentary(&last_unit, TRUE);
+	live_game_generate_commentary(&last_unit);
     else if(type == LIVE_GAME_EVENT_HALF_TIME ||
 	    type == LIVE_GAME_EVENT_EXTRA_TIME ||
-	    type == LIVE_GAME_EVENT_PENALTIES)
+	    type == LIVE_GAME_EVENT_PENALTIES ||
+	    type == LIVE_GAME_EVENT_END_MATCH)
     {
-	live_game_generate_commentary(&last_unit, FALSE);
-	if(show)
+	live_game_generate_commentary(&last_unit);
+	if(type != LIVE_GAME_EVENT_END_MATCH && show && 
+	   option_int("int_opt_user_pause_break", usr(fixture_user_team_involved(match->fix)).options))
 	    misc_callback_pause_live_game();
     }
     else if(type != LIVE_GAME_EVENT_END_MATCH)
@@ -243,22 +237,22 @@ live_game_evaluate_unit(LiveGameUnit *unit)
     @param general Whether to create a general event after
     showing this one. @see live_game_event_general() */
 void
-live_game_event_foul(gboolean general)
+live_game_event_foul(void)
 {
     gfloat rndom = math_rnd(0, 1);
-    gint type;
+    gint type, fouled_player, foul_player;
 
-    if(opt_int("int_opt_debug") && fixture_user_team_involved(match->fix) != -1)
+    if(opt_int("int_opt_debug"))
 	printf("live_game_event_foul\n");
     if(uni(unis->len - 2).event.type == LIVE_GAME_EVENT_GENERAL)
-	last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
+	fouled_player = last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
 	    uni(unis->len - 2).event.values[LIVE_GAME_EVENT_VALUE_PLAYER];
     else
-	last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
+	fouled_player = last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
 	    game_get_player(tm[last_unit.possession],
 			    last_unit.area, 0, -1, FALSE);
 
-    last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] =
+    foul_player = last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] =
 	game_get_player(tm[!last_unit.possession],
 			last_unit.area, 0, -1, FALSE);
 
@@ -273,7 +267,7 @@ live_game_event_foul(gboolean general)
 
     last_unit.event.type = type;
 
-    live_game_generate_commentary(&last_unit, TRUE);
+    live_game_generate_commentary(&last_unit);
 
     if(type == LIVE_GAME_EVENT_FOUL_RED ||
        type == LIVE_GAME_EVENT_FOUL_RED_INJURY ||
@@ -281,11 +275,9 @@ live_game_event_foul(gboolean general)
 	query_live_game_second_yellow(!last_unit.possession,
 				      last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2])))
     {
-	live_game_event_send_off(!last_unit.possession,
-				 last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2]);
+	live_game_event_send_off(!last_unit.possession, foul_player);
 	if(type == LIVE_GAME_EVENT_FOUL_RED_INJURY)
-	    live_game_event_injury(last_unit.possession,
-				   last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER], TRUE);
+	    live_game_event_injury(last_unit.possession, fouled_player, TRUE);
     }
 
     if(last_unit.area == LIVE_GAME_UNIT_AREA_ATTACK)
@@ -295,18 +287,14 @@ live_game_event_foul(gboolean general)
 	    live_game_event_penalty();
 	else if(rndom < const_float("float_live_game_free_kick_prob"))
 	    live_game_event_free_kick();
-	else
-	    live_game_event_general(TRUE);
     }
-    else
-	live_game_event_general(TRUE);
 }
 
 /** Calculate a lost possession event. */
 void
 live_game_event_lost_possession(void)
 {
-    if(opt_int("int_opt_debug") && fixture_user_team_involved(match->fix) != -1)
+    if(opt_int("int_opt_debug"))
 	printf("live_game_event_lost_possession\n");
     last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
 	game_get_player(tm[last_unit.possession], 
@@ -320,12 +308,12 @@ live_game_event_lost_possession(void)
 	    game_get_player(tm[!last_unit.possession], 
 			    uni(unis->len - 2).area, 0, -1, FALSE);
 
-    if(opt_int("int_opt_debug") && fixture_user_team_involved(match->fix) != -1)
+    if(opt_int("int_opt_debug"))
 	printf("## pls %d %d\n", 
 	       last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER],
 	       last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2]);
 
-    live_game_generate_commentary(&last_unit, TRUE);
+    live_game_generate_commentary(&last_unit);
 
     live_game_event_general(TRUE);
 }
@@ -340,8 +328,9 @@ void
 live_game_event_injury(gint team, gint player, gboolean create_new)
 {
     LiveGameUnit new;
+    gint old_structure = -1;
 
-    if(opt_int("int_opt_debug") && fixture_user_team_involved(match->fix) != -1)
+    if(opt_int("int_opt_debug"))
 	printf("live_game_event_injury\n");
     if(create_new)
     {
@@ -354,7 +343,7 @@ live_game_event_injury(gint team, gint player, gboolean create_new)
 	    team;
     }
     else
-	live_game_event_injury_get_player();
+	live_game_injury_get_player();
     
     last_unit.minute = -1;
     last_unit.event.type = LIVE_GAME_EVENT_INJURY;
@@ -362,10 +351,33 @@ live_game_event_injury(gint team, gint player, gboolean create_new)
     if(math_rnd(0, 1) < const_float("float_live_game_injury_is_temp"))
 	last_unit.event.type = LIVE_GAME_EVENT_TEMP_INJURY;
 
-    live_game_generate_commentary(&last_unit, TRUE);
+    live_game_generate_commentary(&last_unit);
 
-    /*d*/
-    live_game_event_general(TRUE);
+    if(last_unit.event.type == LIVE_GAME_EVENT_INJURY)
+    {
+	if(show && 
+	   team_is_user(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]]) != -1 && 
+	   option_int("int_opt_user_pause_injury",
+		      usr(team_is_user(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]])).options) &&
+	   !option_int("int_opt_user_auto_sub",
+		       usr(team_is_user(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]])).options))
+	    misc_callback_pause_live_game();
+	else if(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->players->len > 11)
+	{
+	    old_structure = tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->structure;
+	    live_game_event_substitution(
+		last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM],
+		game_substitute_player(
+		    tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]],
+		    player_id_index(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]],
+				    last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER])),
+		last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER]);
+
+	    if(old_structure != tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->structure)
+		live_game_event_team_change(last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM],
+					    LIVE_GAME_EVENT_STRUCTURE_CHANGE);
+	}
+    }
 }
 
 /** Calculate a stadium event. */
@@ -374,7 +386,7 @@ live_game_event_stadium(void)
 {
     gfloat rndom = math_rnd(0, 1);
 
-    if(opt_int("int_opt_debug") && fixture_user_team_involved(match->fix) != -1)
+    if(opt_int("int_opt_debug"))
 	printf("live_game_event_stadium\n");
     if(rndom < const_float("float_live_game_stadium_event_fire"))
 	last_unit.event.type = LIVE_GAME_EVENT_STADIUM_FIRE;
@@ -383,7 +395,7 @@ live_game_event_stadium(void)
     else if(rndom < const_float("float_live_game_stadium_event_breakdown"))
 	last_unit.event.type = LIVE_GAME_EVENT_STADIUM_BREAKDOWN;
 
-    live_game_generate_commentary(&last_unit, TRUE);
+    live_game_generate_commentary(&last_unit);
 
     live_game_event_general(TRUE);
 }
@@ -392,7 +404,7 @@ live_game_event_stadium(void)
 void
 live_game_event_scoring_chance(void)
 {
-    if(opt_int("int_opt_debug") && fixture_user_team_involved(match->fix) != -1)
+    if(opt_int("int_opt_debug"))
 	printf("live_game_event_scoring_chance\n");
     if(math_rnd(0, 1) < const_float("float_live_game_scoring_chance_is_own_goal"))
     {
@@ -430,7 +442,7 @@ live_game_event_scoring_chance(void)
 	}
     }
 
-    live_game_generate_commentary(&last_unit, TRUE);
+    live_game_generate_commentary(&last_unit);
 
     live_game_event_duel();
 }
@@ -441,7 +453,7 @@ live_game_event_penalty(void)
 {
     LiveGameUnit new;
 
-    if(opt_int("int_opt_debug") && fixture_user_team_involved(match->fix) != -1)
+    if(opt_int("int_opt_debug"))
 	printf("live_game_event_penalty\n");
 
     if(last_unit.time != LIVE_GAME_UNIT_TIME_PENALTIES)
@@ -495,7 +507,7 @@ live_game_event_penalty(void)
 		game_get_player(tm[last_unit.possession], GAME_PLAYER_TYPE_PENALTY, -1, -1, FALSE);
     }
 
-    live_game_generate_commentary(&last_unit, TRUE);
+    live_game_generate_commentary(&last_unit);
 
     live_game_event_duel();
 }
@@ -507,7 +519,7 @@ live_game_event_general(gboolean create_new)
 {
     LiveGameUnit new;
 
-    if(opt_int("int_opt_debug") && fixture_user_team_involved(match->fix) != -1)
+    if(opt_int("int_opt_debug"))
 	printf("live_game_event_general\n");
     if(create_new)
     {
@@ -534,7 +546,7 @@ live_game_event_general(gboolean create_new)
 	     last_unit.event.type == LIVE_GAME_EVENT_CROSS_BAR) &&
 	    math_rnd(0, 1) < const_float("float_live_game_possession_after_post")))
 	{
-	    if(opt_int("int_opt_debug") && fixture_user_team_involved(match->fix) != -1)
+	    if(opt_int("int_opt_debug"))
 		printf("##### last type: %d\n", last_unit.event.type);
 	    new.possession = last_unit.possession;
 	    new.area = (last_unit.event.type == LIVE_GAME_EVENT_GENERAL) ?
@@ -575,12 +587,12 @@ live_game_event_general(gboolean create_new)
 
     live_game_event_general_get_players();
 
-    if(opt_int("int_opt_debug") && fixture_user_team_involved(match->fix) != -1)
+    if(opt_int("int_opt_debug"))
 	printf("+++ general %d %d\n",
 	       last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER],
 	       last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2]);
 
-    live_game_generate_commentary(&last_unit, FALSE);
+    live_game_generate_commentary(&last_unit);
 }
 
 /** Fill in the players values in a general unit. */
@@ -590,21 +602,19 @@ live_game_event_general_get_players(void)
     gint *pl1 = &last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER];
     gint *pl2 = &last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2];
     gint old_pl1 = 
-	uni(unis->len - 2).event.values[LIVE_GAME_EVENT_VALUE_PLAYER],
-	old_pl2 = 
-	uni(unis->len - 2).event.values[LIVE_GAME_EVENT_VALUE_PLAYER2];
+	uni(unis->len - 2).event.values[LIVE_GAME_EVENT_VALUE_PLAYER];
     gint type = uni(unis->len - 2).event.type;
 	
-    if(opt_int("int_opt_debug") && fixture_user_team_involved(match->fix) != -1)
+    if(opt_int("int_opt_debug"))
 	printf("live_game_event_general_get_players\n");
     *pl1 = *pl2 = -1;
 
     if(type == LIVE_GAME_EVENT_LOST_POSSESSION)
     {
-	*pl1 = old_pl2;
-	*pl2 = game_get_player(tm[last_unit.possession], 
+	*pl1 = game_get_player(tm[last_unit.possession], 
 			       last_unit.area, 0, *pl1,
 			       TRUE);
+	*pl2 = old_pl1;
     }
     else if(type != LIVE_GAME_EVENT_GENERAL)
     {
@@ -628,7 +638,7 @@ live_game_event_free_kick(void)
 {
     LiveGameUnit new = last_unit;
 
-    if(opt_int("int_opt_debug") && fixture_user_team_involved(match->fix) != -1)
+    if(opt_int("int_opt_debug"))
 	printf("live_game_event_free_kick\n");
     new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
 	new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] = -1;
@@ -651,7 +661,7 @@ live_game_event_free_kick(void)
 
     g_array_append_val(unis, new);
 
-    live_game_generate_commentary(&last_unit, TRUE);
+    live_game_generate_commentary(&last_unit);
 
     live_game_event_duel();
 }
@@ -660,9 +670,10 @@ live_game_event_free_kick(void)
 void
 live_game_event_send_off(gint team, gint player)
 {
+    gint old_structure = tm[team]->structure;
     LiveGameUnit new = last_unit;
 
-    if(opt_int("int_opt_debug") && fixture_user_team_involved(match->fix) != -1)
+    if(opt_int("int_opt_debug"))
 	printf("live_game_event_send_off\n");
     new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
 	new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] = -1;
@@ -676,7 +687,69 @@ live_game_event_send_off(gint team, gint player)
 
     g_array_append_val(unis, new);
 
-    live_game_generate_commentary(&last_unit, TRUE);
+    live_game_generate_commentary(&last_unit);
+
+    if(show && team_is_user(tm[team]) != -1 &&
+       option_int("int_opt_user_pause_red",
+		  usr(team_is_user(tm[team])).options) &&
+       !option_int("int_opt_user_auto_sub",
+		   usr(team_is_user(tm[team])).options))
+	misc_callback_pause_live_game();
+    else if(tm[team]->players->len > 11)
+    {
+	old_structure = tm[team]->structure;
+	live_game_event_substitution(team, 
+				     game_substitute_player(tm[team],
+							    player_id_index(tm[team], player)), player);
+
+	if(old_structure != tm[team]->structure)
+	    live_game_event_team_change(team, LIVE_GAME_EVENT_STRUCTURE_CHANGE);
+    }
+}
+
+/** Show a substitution event.
+    @param team_number The team that substitutes.
+    @param sub_in The id of the player who moves into the team.
+    @param sub_out The id of the player who gets replaced. */
+void
+live_game_event_substitution(gint team_number, gint sub_in, gint sub_out)
+{
+    LiveGameUnit new = last_unit;
+    
+    new.minute = -1;
+    new.time = live_game_get_time(&last_unit);
+    new.event.commentary = g_string_new("dummy commentary");
+
+    new.event.type = LIVE_GAME_EVENT_SUBSTITUTION;
+    new.event.values[LIVE_GAME_EVENT_VALUE_TEAM] = team_number;
+    new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] = sub_in;
+    new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] = sub_out;
+
+    g_array_append_val(unis, new);
+
+    live_game_generate_commentary(&last_unit);
+}
+
+/** Show a team change event, e.g. structure change. 
+    @param team_number The index of the team.
+    @param event_type The event type. */
+void
+live_game_event_team_change(gint team_number, gint event_type)
+{
+    LiveGameUnit new = last_unit;
+    
+    new.minute = -1;
+    new.time = live_game_get_time(&last_unit);
+    new.event.commentary = g_string_new("dummy commentary");
+
+    new.event.values[LIVE_GAME_EVENT_VALUE_TEAM] = team_number;
+    new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
+	new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] = -1;    
+    new.event.type = event_type;
+
+    g_array_append_val(unis, new);
+    
+    live_game_generate_commentary(&last_unit);
 }
 
 /** Calculate whether a player who tries to score succeeds. */
@@ -690,7 +763,7 @@ live_game_event_duel(void)
     Player *attacker, *goalie;
     gint res_idx1, res_idx2;
 
-    if(opt_int("int_opt_debug") && fixture_user_team_involved(match->fix) != -1)
+    if(opt_int("int_opt_debug"))
 	printf("live_game_event_duel\n");
 
     new.minute = -1;
@@ -698,12 +771,12 @@ live_game_event_duel(void)
 
     new.event.commentary = g_string_new("duel");
 	
-    attacker = player_of(tm[new.possession],
-			 new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER]);
+    attacker = player_of_id(tm[new.possession],
+			    new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER]);
     goalie = player_of(tm[!new.possession], 0);
-    duel_factor = (((gfloat)attacker->cskill * powf((gfloat)attacker->fitness / 100, 
+    duel_factor = (((gfloat)attacker->cskill * powf((gfloat)attacker->fitness / 10000, 
 						    const_float("float_player_fitness_exponent"))) /
-		   ((gfloat)goalie->cskill * powf((gfloat)goalie->fitness / 100, 
+		   ((gfloat)goalie->cskill * powf((gfloat)goalie->fitness / 10000, 
 						  const_float("float_player_fitness_exponent"))));
     res_idx1 = new.possession;
     if(new.time == LIVE_GAME_UNIT_TIME_PENALTIES)
@@ -724,18 +797,30 @@ live_game_event_duel(void)
 		 match->team_values[!new.possession][GAME_TEAM_VALUE_DEFEND],
 		 const_float("float_live_game_score_team_exponent"));
 
+    if(new.time != LIVE_GAME_UNIT_TIME_PENALTIES)
+    {
+	game_player_increase(match->fix, attacker, GAME_PLAYER_INCREASE_SHOTS);
+	game_player_increase(match->fix, goalie, GAME_PLAYER_INCREASE_SHOTS);
+    }
+
     if(rndom < scoring_prob)
     {
 	new.event.type = LIVE_GAME_EVENT_GOAL;
 	match->fix->result[res_idx1][res_idx2]++;
 	new.result[res_idx1]++;
+
+	if(new.time != LIVE_GAME_UNIT_TIME_PENALTIES)
+	{
+	    game_player_increase(match->fix, attacker, GAME_PLAYER_INCREASE_GOALS);
+	    game_player_increase(match->fix, goalie, GAME_PLAYER_INCREASE_GOALS);
+	}
     }
     else
 	new.event.type = math_gauss_disti(LIVE_GAME_EVENT_POST, LIVE_GAME_EVENT_CROSS_BAR);
 
     g_array_append_val(unis, new);
 
-    live_game_generate_commentary(&last_unit, TRUE);
+    live_game_generate_commentary(&last_unit);
 
     if(last_unit.time != LIVE_GAME_UNIT_TIME_PENALTIES)
 	live_game_event_general(TRUE);
@@ -945,21 +1030,22 @@ live_game_reset(Fixture *fix)
 	match->home_advantage = 
 	    math_rnd(const_float("float_game_home_advantage_lower"),
 		     const_float("float_game_home_advantage_upper"));
-
-    game_get_values(match->fix, match->team_values,
-		    match->home_advantage);
 }
 
 /** Generate commentary for the live game event in the unit
     and show the unit in the live game window.
     @param unit The unit we comment. */
 void
-live_game_generate_commentary(LiveGameUnit *unit, gboolean show_unit)
+live_game_generate_commentary(LiveGameUnit *unit)
 {
     GString *commentary = unit->event.commentary;
 
     switch(unit->event.type)
     {
+	default:
+	    g_warning("live_game_generate_commentary: unknown event type %d\n",
+		      unit->event.type);
+	    break;
 	case LIVE_GAME_EVENT_GENERAL:
 	    if(unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER] != -1 &&
 	       unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] != -1)
@@ -1066,12 +1152,12 @@ live_game_generate_commentary(LiveGameUnit *unit, gboolean show_unit)
 	    break;
 	case LIVE_GAME_EVENT_INJURY:
 	    g_string_printf(commentary, "%s is injured.",
-			    player_of_id(tm[unit->possession], 
+			    player_of_id(tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]], 
 					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->name->str);
 	    break;
 	case LIVE_GAME_EVENT_TEMP_INJURY:
 	    g_string_printf(commentary, "%s is injured but he can continue to play.",
-			    player_of_id(tm[unit->possession], 
+			    player_of_id(tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]], 
 					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->name->str);
 	    break;
 	case LIVE_GAME_EVENT_PENALTIES:
@@ -1086,9 +1172,34 @@ live_game_generate_commentary(LiveGameUnit *unit, gboolean show_unit)
 	case LIVE_GAME_EVENT_STADIUM_RIOTS:
 	    g_string_printf(commentary, "There are riots in the stadium.");
 	    break;
+	case LIVE_GAME_EVENT_SUBSTITUTION:
+	    g_string_printf(commentary, "%s substitutes %s for %s.",
+			    tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->name->str,
+			    player_of_id(tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]],
+					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->name->str,
+			    player_of_id(tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]],
+					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER2])->name->str);
+	    break;
+	case LIVE_GAME_EVENT_STRUCTURE_CHANGE:
+	    g_string_printf(commentary, "%s changes structure to %d.",
+			    tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->name->str,
+			    tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->structure);
+	    break;
+	case LIVE_GAME_EVENT_STYLE_CHANGE:
+	    g_string_printf(commentary, "%s changes style to %s.",
+			    tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->name->str,
+			    team_style_to_char(tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->style));
+	    break;
+	case LIVE_GAME_EVENT_BOOST_CHANGE:
+	    if(tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->boost)
+		g_string_printf(commentary, "%s changes boost to ON.",
+				tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->name->str);
+	    else
+		g_string_printf(commentary, "%s changes boost to OFF.",
+				tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->name->str);		
     }
-
-    if(show && show_unit)
+    
+    if(show)
 	game_gui_live_game_show_unit(unit);
 }
 
@@ -1219,7 +1330,7 @@ live_game_pit_teams(const LiveGameUnit *unit, gfloat exponent)
 /** Find a random player (influenced by fitness) who gets
     injured. */
 void
-live_game_event_injury_get_player(void)
+live_game_injury_get_player(void)
 {
     gint i, j;
     gfloat probs[22];
@@ -1228,14 +1339,17 @@ live_game_event_injury_get_player(void)
     for(j=0;j<2;j++)
     {
 	probs[j * 11] = const_float("float_live_game_injury_goalie_factor") * 
-	    (gfloat)(100 - player_of(tm[j], 0)->fitness) * 
+	    ((gfloat)(10000 - player_of(tm[j], 0)->fitness) / 100) * 
 	    (player_of(tm[j], 0)->cskill != 0);
+	if(j == 1)
+	    probs[11] += probs[10];
+	
 	for(i=1;i<11;i++)
 	    probs[i + j * 11] = probs[i + j * 11 - 1] + 
-		(gfloat)(100 - player_of(tm[j], i)->fitness) * 
+		((gfloat)(10000 - player_of(tm[j], i)->fitness) / 100) * 
 		(player_of(tm[j], i)->cskill != 0);
     }
-	
+    
     rndom = math_rnd(0, probs[21]);
 
     if(rndom < probs[0])
@@ -1253,3 +1367,39 @@ live_game_event_injury_get_player(void)
 		last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM] = (i > 10);
 	    }
 }
+
+/** Resume a live game. Show team changes. */
+void
+live_game_resume(void)
+{
+    gint i, j;
+    gint subs_in[3],
+	subs_out[3];
+
+    match = &usr(stat2).live_game;
+
+    for(i=0;i<2;i++)
+    {
+	game_get_subs(i, subs_in, subs_out);
+	for(j=0;j<3;j++)
+	{
+	    if(subs_in[j] != -1)
+	    {
+		usr(stat2).live_game.subs_left[i]--;
+		live_game_event_substitution(i, subs_in[j], subs_out[j]);
+	    }	
+	}
+
+	if(tm[i]->structure != usr(stat2).live_game.team_state[i].structure)
+	    live_game_event_team_change(i, LIVE_GAME_EVENT_STRUCTURE_CHANGE);
+
+	if(tm[i]->style != usr(stat2).live_game.team_state[i].style)
+	    live_game_event_team_change(i, LIVE_GAME_EVENT_STYLE_CHANGE);
+
+	if(tm[i]->boost != usr(stat2).live_game.team_state[i].boost)
+	    live_game_event_team_change(i, LIVE_GAME_EVENT_BOOST_CHANGE);
+    }
+
+    live_game_calculate_fixture(usr(stat2).live_game.fix);
+}
+

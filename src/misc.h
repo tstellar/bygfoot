@@ -21,4 +21,10 @@ misc_randomise_g_pointer_array(GPtrArray *array);
 void
 misc_print_grouped_int(gint number, gchar *buf, gboolean append);
 
+gboolean
+query_integer_is_in_array(gint item, gint *array, gint min, gint max);
+
+gint
+misc_int_compare(gint first, gint second);
+
 #endif

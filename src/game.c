@@ -1,19 +1,14 @@
 #include "fixture.h"
 #include "game.h"
+#include "game_gui.h"
 #include "maths.h"
+#include "misc.h"
 #include "option.h"
 #include "player.h"
 #include "team.h"
+#include "treeview.h"
 #include "user.h"
 #include "variables.h"
-
-/** How the cskill of field players get weighted for the team values in
-    a match. Rows are player position, columns value type. 
-    @see game_get_player_contribution() */
-gfloat player_weights[3][3] =
-{{1, 0.4, 0.25},
- {0.625, 1, 0.625},
- {0.2, 0.6, 1.3}};
 
 /** Calculate attacking, defending and goalie values for the two teams
     of a fixture.
@@ -42,9 +37,7 @@ game_get_values(const Fixture *fix, gfloat team_values[][GAME_TEAM_VALUE_END],
 	team_values[i][GAME_TEAM_VALUE_GOALIE] = 
 	    game_get_player_contribution(player_of(tm[i], 0), FALSE) * 
 	    (1 + home_advantage * (i == 0)) *
-	    (1 + const_float("float_player_boost_skill_effect") * 
-	     (team_is_user(tm[i]) != -1 &&
-	      option_int("int_opt_user_boost", usr(team_is_user(tm[i])).options) == 1));
+	    (1 + const_float("float_player_boost_skill_effect") * tm[i]->boost);
 
 	for(j=1;j<11;j++)
 	{
@@ -56,17 +49,18 @@ game_get_values(const Fixture *fix, gfloat team_values[][GAME_TEAM_VALUE_END],
 		game_get_player_contribution(player_of(tm[i], j), GAME_TEAM_VALUE_DEFEND);
 	}
 
-	team_values[i][GAME_TEAM_VALUE_ATTACK] *= 
-	    ((1 + style_factor) * (1 + home_advantage * (i == 0)) *
-	     (1 + const_float("float_player_boost_skill_effect") *
-	      (team_is_user(tm[i]) != -1 &&
-	       option_int("int_opt_user_boost", usr(team_is_user(tm[i])).options) == 1)));
-	team_values[i][GAME_TEAM_VALUE_DEFEND] *= 
-	    ((1 - style_factor) * (1 + home_advantage * (i == 0)) *
-	     (1 + const_float("float_player_boost_skill_effect") * 
-	      (team_is_user(tm[i]) != -1 &&
-	       option_int("int_opt_user_boost", usr(team_is_user(tm[i])).options) == 1)));
-    }    
+	for(j=GAME_TEAM_VALUE_DEFEND;j<GAME_TEAM_VALUE_DEFEND + 3;j++)
+	    team_values[i][j] *= 
+		((1 + style_factor) * (1 + home_advantage * (i == 0)) *
+		 (1 + const_float("float_player_boost_skill_effect") * tm[i]->boost));
+
+	printf("%s attack %.1f midf %.1f defend %.1f style %d struct %d\n",
+	       tm[i]->name->str,
+	       team_values[i][GAME_TEAM_VALUE_ATTACK],
+	       team_values[i][GAME_TEAM_VALUE_MIDFIELD],
+	       team_values[i][GAME_TEAM_VALUE_DEFEND],
+	       tm[i]->style, tm[i]->structure);
+    }
 }
 
 /** Return the contribution of a player to the attack, midfield or defend.
@@ -77,7 +71,21 @@ game_get_values(const Fixture *fix, gfloat team_values[][GAME_TEAM_VALUE_END],
 gfloat
 game_get_player_contribution(const Player *pl, gint type)
 {
-    return (gfloat)(pl->cskill * powf((gfloat)pl->fitness / 100, 
+/** How the cskill of field players get weighted for the team values in
+    a match. Rows are player position, columns value type. 
+    @see game_get_player_contribution() */
+    gfloat player_weights[3][3] =
+	{{const_float("float_player_team_weight_defender_defense"), 
+	  const_float("float_player_team_weight_defender_midfield"),
+	  const_float("float_player_team_weight_defender_attack")},
+	 {const_float("float_player_team_weight_midfielder_defense"), 
+	  const_float("float_player_team_weight_midfielder_midfield"), 
+	  const_float("float_player_team_weight_midfielder_attack")},
+	 {const_float("float_player_team_weight_forward_defense"), 
+	  const_float("float_player_team_weight_forward_midfield"), 
+	  const_float("float_player_team_weight_forward_attack")}};
+
+    return (gfloat)(pl->cskill * powf((gfloat)pl->fitness / 10000, 
 				      const_float("float_player_fitness_exponent")) *
 		    player_weights[pl->cpos - 1][type - GAME_TEAM_VALUE_DEFEND]);
 }
@@ -181,7 +189,7 @@ game_get_player_probs(GArray *players, gfloat *probs, gfloat *weights, gboolean 
 gint
 game_get_penalty_taker(const Team *tm, gint last_penalty)
 {
-    gint i;
+    gint i, return_value = -1;
     GPtrArray *players = g_ptr_array_new();
 
     for(i=0;i<11;i++)
@@ -193,20 +201,197 @@ game_get_penalty_taker(const Team *tm, gint last_penalty)
 
     if(last_penalty == -1 ||
        last_penalty == ((Player*)g_ptr_array_index(players, players->len - 1))->id)
-	return ((Player*)g_ptr_array_index(players, 0))->id;
+	return_value = ((Player*)g_ptr_array_index(players, 0))->id;
 
     for(i=0;i<players->len - 1;i++)
 	if(last_penalty == ((Player*)g_ptr_array_index(players, i))->id)
-	    return ((Player*)g_ptr_array_index(players, i + 1))->id;
+	{
+	    return_value = ((Player*)g_ptr_array_index(players, i + 1))->id;
+	    break;
+	}
 
-    return -1;
+    g_ptr_array_free(players, TRUE);
+
+    return return_value;
 }
 
-/** Calculate the number of spectators.
+/** Do some things that have to be done at the beginning of a
+    game, e.g. calculate attendance etc.
     @param fix The fixture we examine. */
 void
-game_calculate_attendance(Fixture *fix)
+game_initialize(Fixture *fix)
 {
+    gint i, j;
+
     /*d*/
     fix->attendance = 1000;
+
+    for(i=0;i<2;i++)
+	for(j=0;j<11;j++)
+	    if(player_of(fix->teams[i], j)->cskill > 0)
+		game_player_increase(fix, player_of(fix->teams[i], j),
+				     GAME_PLAYER_INCREASE_GAMES);
 }
+
+/** Save the team states in the current live game
+    when a pause occurs. */
+void
+game_save_team_states(void)
+{
+    gint i, j;
+    const Team *teams[2] = {usr(stat2).live_game.fix->teams[0], 
+			    usr(stat2).live_game.fix->teams[1]};
+
+    for(i=0;i<2;i++)
+    {
+	usr(stat2).live_game.team_state[i].structure = 
+	    teams[i]->structure;
+	usr(stat2).live_game.team_state[i].style = 
+	    teams[i]->style;
+	usr(stat2).live_game.team_state[i].boost = 
+	    teams[i]->boost;
+	
+	for(j=0;j<11;j++)
+	    usr(stat2).live_game.team_state[i].player_ids[j] = 
+		player_of(teams[i], j)->id;
+    }
+}
+
+/** Check whether the number of substitutions
+    during a live game pause isn't too high.
+    @return TRUE if the subs were ok, FALSE else. */
+gboolean
+game_check_live_game_resume_state(void)
+{
+    gint i, j;
+    gint subs[2] = {0, 0};
+    const Team *teams[2] = {usr(stat2).live_game.fix->teams[0], 
+			    usr(stat2).live_game.fix->teams[1]};
+    gboolean return_value = TRUE;
+
+    for(i=0;i<2;i++)
+    {
+	for(j=0;j<11;j++)
+	    if(!query_integer_is_in_array(player_of(teams[i], j)->id,
+					  usr(stat2).live_game.team_state[i].player_ids,
+					  0, 11))
+		subs[i]++;
+	
+	if(subs[i] > usr(stat2).live_game.subs_left[i])
+	    return_value = FALSE;
+    }
+
+    return return_value;
+}
+
+/** Find pairs of substituted players after a live game pause. */
+void
+game_get_subs(gint team_number, gint *subs_in, gint *subs_out)
+{
+    gint i, cnt = 0;
+    const Team *tm = usr(stat2).live_game.fix->teams[team_number];
+    gint current_players[11];
+    
+    for(i=0;i<3;i++)
+	subs_in[i] = subs_out[i] = -1;
+    
+    for(i=0;i<11;i++)
+    {
+	current_players[i] = player_of(tm, i)->id;
+	if(!query_integer_is_in_array(player_of(tm, i)->id,
+				      usr(stat2).live_game.team_state[team_number].player_ids,
+				      0, 11))
+	{
+	    subs_in[cnt] = player_of(tm, i)->id;
+	    cnt++;
+	}
+    }
+
+    cnt = 0;
+    for(i=0;i<11;i++)
+	if(!query_integer_is_in_array(usr(stat2).live_game.team_state[team_number].player_ids[i],
+				      current_players, 0, 11))
+	{
+	    subs_out[cnt] = usr(stat2).live_game.team_state[team_number].player_ids[i];
+	    cnt++;
+	}
+}
+
+/** Substitute a player during a match.
+    @param tm The team we work on.
+    @param player_number The index of the player. */
+gint
+game_substitute_player(Team *tm, gint player_number)
+{
+    gint i;
+    GPtrArray *substitutes = g_ptr_array_new();
+    gboolean adapt_structure;
+    gint substitute = -1;
+
+    for(i=11;i<tm->players->len;i++)
+	g_ptr_array_add(substitutes, player_of(tm, i));
+
+/*     printf("################## %d\n", player_of(tm, player_number)->cpos); */
+    g_ptr_array_sort_with_data(substitutes, (GCompareDataFunc)player_compare_substitute_func,
+			       GINT_TO_POINTER(player_of(tm, player_number)->cpos));
+    adapt_structure = 
+	player_substitution_good_structure(tm->structure,
+					   player_of(tm, player_number)->cpos,
+					   ((Player*)g_ptr_array_index(substitutes, 0))->pos);
+
+    substitute = ((Player*)g_ptr_array_index(substitutes, 0))->id;
+    player_swap(tm, player_number,
+		tm, player_id_index(tm, ((Player*)g_ptr_array_index(substitutes, 0))->id));
+
+    g_ptr_array_free(substitutes, TRUE);
+
+    if(adapt_structure)
+    {
+	team_change_structure(tm, team_find_appropriate_structure(tm));
+	team_rearrange(tm);
+    }
+
+    if(team_is_user(tm) == current_user)
+    {
+	game_gui_write_av_skills();
+	
+	selected_row[0] = -1;	
+	treeview_show_user_player_list(&usr(current_user), 1);
+    }
+
+    return substitute;
+}
+
+/** Increase the number of shots in the player struct.
+    @param fix The game being played.
+    @param team The team index.
+    @param player_id The player id. */
+void
+game_player_increase(const Fixture *fix, Player *pl, gint type)
+{
+    gint i;
+    PlayerGamesGoals new;
+
+    for(i=0;i<pl->games_goals->len;i++)
+	if(g_array_index(pl->games_goals, PlayerGamesGoals, i).clid == fix->clid)
+	{
+	    if(type == GAME_PLAYER_INCREASE_SHOTS)
+		g_array_index(pl->games_goals, PlayerGamesGoals, i).shots++;
+	    else if(type == GAME_PLAYER_INCREASE_GOALS)
+		g_array_index(pl->games_goals, PlayerGamesGoals, i).goals++;
+	    else if(type == GAME_PLAYER_INCREASE_GAMES)
+		g_array_index(pl->games_goals, PlayerGamesGoals, i).games++;
+	    return;
+	}
+
+    /* Entry not found, we create a new one. */
+
+    
+    new.clid = fix->clid;
+    new.shots = new.goals = new.games = 0;
+
+    g_array_append_val(pl->games_goals, new);
+
+    game_player_increase(fix, pl, type);
+}
+

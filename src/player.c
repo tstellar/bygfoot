@@ -2,6 +2,7 @@
 #include "free.h"
 #include "league.h"
 #include "maths.h"
+#include "misc.h"
 #include "option.h"
 #include "player.h"
 #include "team.h"
@@ -271,38 +272,23 @@ player_of_ids(gint clid, gint team_id, gint id)
     return pl;
 }
 
-/** Return the number of all games or goals the player's
-    participated in / scored in all cups and leagues.
-    @param pl The player we examine. 
-    @param goals Whether we sum up the goals.
-    @return The number of goals. */
+/** Get a player's index in the players array from
+    his id.
+    @param tm The team.
+    @param player_id The player's id. 
+    @return The array index or -1. */
 gint
-player_all_games_goals(const Player *pl, gboolean goals)
+player_id_index(const Team *tm, gint player_id)
 {
-    gint i, sum = 0;
+    gint i;
 
-    for(i=0;i<pl->games_goals->len;i++)
-	if(goals)
-	    sum += g_array_index(pl->games_goals, PlayerGamesGoals, i).goals;
-	else
-	    sum += g_array_index(pl->games_goals, PlayerGamesGoals, i).games;
-
-    return sum;
-}
-
-/** Return the sum of all the yellow cards in all
-    leagues and cups for the player.
-    @param pl The player we examine.
-    @return The number of all cards.*/
-gint
-player_all_cards(const Player *pl)
-{
-    gint i, sum = 0;
-
-    for(i=0;i<pl->cards->len;i++)
-	sum += g_array_index(pl->cards, PlayerCard, i).yellow;
-
-    return sum;
+    for(i=0;i<tm->players->len;i++)
+	if(g_array_index(tm->players, Player, i).id == player_id)
+	    return i;
+    
+    g_warning("player_id_index: didn't find player with id %d of team %s\n", player_id, tm->name->str);
+    
+    return -1;
 }
 
 /** Return a pointer to the number'th player of the team.
@@ -341,10 +327,47 @@ player_of_id(const Team *tm, gint id)
     return NULL;
 }
 
+/** Return the number of all games or goals the player's
+    participated in / scored in all cups and leagues.
+    @param pl The player we examine. 
+    @param goals Whether we sum up the goals.
+    @return The number of goals. */
+gint
+player_all_games_goals(const Player *pl, gint type)
+{
+    gint i, sum = 0;
+
+    for(i=0;i<pl->games_goals->len;i++)
+	if(type == PLAYER_LIST_ATTRIBUTE_GOALS)
+	    sum += g_array_index(pl->games_goals, PlayerGamesGoals, i).goals;
+	else if(type == PLAYER_LIST_ATTRIBUTE_GAMES)
+	    sum += g_array_index(pl->games_goals, PlayerGamesGoals, i).games;
+	else if(type == PLAYER_LIST_ATTRIBUTE_SHOTS)
+	    sum += g_array_index(pl->games_goals, PlayerGamesGoals, i).shots;
+
+    return sum;
+}
+
+/** Return the sum of all the yellow cards in all
+    leagues and cups for the player.
+    @param pl The player we examine.
+    @return The number of all cards.*/
+gint
+player_all_cards(const Player *pl)
+{
+    gint i, sum = 0;
+
+    for(i=0;i<pl->cards->len;i++)
+	sum += g_array_index(pl->cards, PlayerCard, i).yellow;
+
+    return sum;
+}
+
 /** Compare two players in a pointer array.
     @param pl1 Pointer to the pointer to the first player.
     @param pl2 Pointer to the pointer to the second player.
-    @param data Coded integer that tells us which attribute to compare. */
+    @param data Coded integer that tells us which attribute to compare. 
+    @return 1, 0 or -1 (see the C qsort() function). */
 gint
 player_compare_func(gconstpointer a, gconstpointer b, gpointer data)
 {
@@ -354,21 +377,89 @@ player_compare_func(gconstpointer a, gconstpointer b, gpointer data)
     gint return_value = 0;
 
     if(type == PLAYER_COMPARE_ATTRIBUTE_GAME_SKILL)
-    {
-	if(pl1->cskill == pl2->cskill && pl1->fitness == pl2->fitness)
-	    return_value = 0;
-	else if((gfloat)pl1->cskill * 
-		powf((gfloat)pl1->fitness / 100, 
-		     const_float("float_player_fitness_exponent")) >
-		(gfloat)pl2->cskill * 
-		powf((gfloat)pl2->fitness / 100, 
-		     const_float("float_player_fitness_exponent")))
-	    return_value = -1;
-	else
-	    return_value = 1;
-    }
+	return_value = 
+	    misc_int_compare(pl1->cskill * pl1->fitness, pl2->cskill * pl2->fitness);
 
     return return_value;
+}
+
+
+/** Compare two players in a pointer array.
+    @param pl1 Pointer to the pointer to the first player.
+    @param pl2 Pointer to the pointer to the second player.
+    @param data Coded integer that tells us which position we
+    would like to substitute.
+    @return 1, 0 or -1 (see the C qsort() function). */
+gint
+player_compare_substitute_func(gconstpointer a, gconstpointer b, gpointer data)
+{
+    const Player *pl1 = *(const Player**)a;
+    const Player *pl2 = *(const Player**)b;
+    gint position = GPOINTER_TO_INT(data);
+    gint skill_for_pos1 = player_get_cskill(pl1, position) * pl1->fitness,
+	skill_for_pos2 = player_get_cskill(pl2, position) * pl2->fitness;
+    gint game_skill1 = pl1->cskill * pl1->fitness, 
+	game_skill2 = pl2->cskill * pl2->fitness;
+    gboolean good_structure1 =
+	player_substitution_good_structure(pl1->team->structure, position, pl1->pos),
+	good_structure2 =
+	player_substitution_good_structure(pl2->team->structure, position, pl2->pos);
+    gint return_value = 0;
+
+    if(pl1->pos == position && pl2->pos == position)
+	return_value = 
+	    misc_int_compare(game_skill1, game_skill2);
+    else if(pl1->pos == position)
+	return_value = -1;
+    //misc_int_compare(game_skill1, skill_for_pos2);
+    else if(pl2->pos == position)
+	return_value = 1;
+    //misc_int_compare(skill_for_pos1, game_skill2);
+    else if(position != PLAYER_POS_GOALIE)
+    {
+	if(good_structure1 && good_structure2)
+	    return_value =
+		misc_int_compare(game_skill1, game_skill2);
+	else if(good_structure1)
+	    return_value =
+		misc_int_compare(game_skill1, skill_for_pos2);
+	else if(good_structure2)
+	    return_value =
+		misc_int_compare(skill_for_pos1, game_skill2);
+	else
+	    return_value = 
+		misc_int_compare(skill_for_pos1, skill_for_pos2);
+    }
+    else
+	return_value = 
+	    misc_int_compare(skill_for_pos1, skill_for_pos2);
+
+/*     printf("%s %d %s %d   %d\n", pl1->name->str, pl1->pos, pl2->name->str,  */
+/* 	   pl2->pos, return_value); */
+/*     printf("\t gaski %.1f %.1f skipos %.1f %.1f struc %d %d\n", */
+/* 	   (gfloat)game_skill1 / 10000, (gfloat)game_skill2 / 10000, */
+/* 	   (gfloat)skill_for_pos1 / 10000, (gfloat)skill_for_pos2 / 10000, */
+/* 	   good_structure1, good_structure2); */
+	   	   
+    return return_value;
+}
+
+/** Find out whether substituting a player into a team
+    and adapting the team structure results in a normal
+    structure.
+    @param old_structure The team's structure before substituting.
+    @param old_pos The position of the player that gets replaced.
+    @param player_pos The position of the player that comes into the game.
+    @return TRUE or FALSE. */
+gboolean
+player_substitution_good_structure(gint old_structure, gint old_pos, gint player_pos)
+{
+    gint accepted_structures[5] = {532, 442, 352, 433, 343};
+    gint new_structure = 
+	old_structure - (gint)rint(powf(10, PLAYER_POS_FORWARD - old_pos)) +
+	(gint)rint(powf(10, PLAYER_POS_FORWARD - player_pos));
+
+    return query_integer_is_in_array(new_structure, accepted_structures, 0, 5);
 }
 
 /** Move a player from one player array to another one.
@@ -401,8 +492,9 @@ player_swap(Team *tm1, gint player_number1, Team *tm2, gint player_number2)
 	    player_get_position_from_structure(tm2->structure, player_number2);
     else
 	player_of(tm2, player_number2)->cpos = player_of(tm2, player_number2)->pos;
+
     player_of(tm2, player_number2)->cskill =
-	player_get_cskill(player_of(tm2, player_number2));
+	player_get_cskill(player_of(tm2, player_number2), player_of(tm2, player_number2)->cpos);
 
     player_move(tm2, player_number2 + move,
 		tm1, player_number1);    
@@ -411,36 +503,39 @@ player_swap(Team *tm1, gint player_number1, Team *tm2, gint player_number2)
 	    player_get_position_from_structure(tm1->structure, player_number1);
     else
 	player_of(tm1, player_number1)->cpos = player_of(tm1, player_number1)->pos;
+
     player_of(tm1, player_number1)->cskill =
-	player_get_cskill(player_of(tm1, player_number1));
+	player_get_cskill(player_of(tm1, player_number1), player_of(tm1, player_number1)->cpos);
 }
 
 /** Return the player's cskill depending on
     whether he's on his normal position or not.
     @param pl The player we examine.
+    @param position The position we's like to put the player.
     @return A new cskill. */
 gint
-player_get_cskill(const Player *pl)
+player_get_cskill(const Player *pl, gint position)
 {
     gfloat cskill_factor;
 
     if(pl->health != PLAYER_INJURY_NONE ||
        player_is_banned(pl) > 0)
-	cskill_factor = 0.0;
-    else if(pl->pos == pl->cpos)
-	cskill_factor = 1.0;
-    else if(pl->cpos == PLAYER_POS_GOALIE ||
-	    pl->pos == PLAYER_POS_GOALIE)
-	cskill_factor = 0.5;
-    else if(abs(pl->cpos - pl->pos) == 2)
-	cskill_factor = 0.65;
-    else
-    	cskill_factor = 0.75;
+	return 0;
 
-    if(pl->cpos != pl->pos)
-	return MIN(pl->talent * cskill_factor, pl->skill);
+    if(pl->pos != position)
+    {
+	if(position == PLAYER_POS_GOALIE ||
+	   pl->pos == PLAYER_POS_GOALIE)
+	    cskill_factor = 0.5;
+	else if(abs(position - pl->pos) == 2)
+	    cskill_factor = 0.65;
+	else
+	    cskill_factor = 0.75;
+
+	return MIN((gint)rint((gfloat)pl->talent * cskill_factor), pl->skill);
+    }
     else
-	return pl->skill * (cskill_factor != 0);
+	return pl->skill;
 }
 
 /** Find out whether the player is banned in

@@ -27,6 +27,15 @@ enum GamePlayerType
     GAME_PLAYER_TYPE_END
 };
 
+/** @see game_player_increase() */
+enum GamePlayerIncreaseType
+{
+    GAME_PLAYER_INCREASE_SHOTS = 0,
+    GAME_PLAYER_INCREASE_GOALS,
+    GAME_PLAYER_INCREASE_GAMES,
+    GAME_PLAYER_INCREASE_END
+};
+
 void
 game_get_values(const Fixture *fix, gfloat team_values[][GAME_TEAM_VALUE_END],
 		gfloat home_advantage);
@@ -46,6 +55,21 @@ gint
 game_get_penalty_taker(const Team *tm, gint last_penalty);
 
 void
-game_calculate_attendance(Fixture *fix);
+game_initialize(Fixture *fix);
+
+void
+game_save_team_states(void);
+
+gboolean
+game_check_live_game_resume_state(void);
+
+void
+game_get_subs(gint team_number, gint *subs_in, gint *subs_out);
+
+gint
+game_substitute_player(Team *tm, gint player_number);
+
+void
+game_player_increase(const Fixture *fix, Player *pl, gint type);
 
 #endif

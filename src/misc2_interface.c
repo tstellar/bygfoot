@@ -889,3 +889,54 @@ create_progressbar_window (void)
   return progressbar_window;
 }
 
+GtkWidget*
+create_window_warning (void)
+{
+  GtkWidget *window_warning;
+  GtkWidget *vbox13;
+  GtkWidget *image7;
+  GtkWidget *label_warning;
+  GtkWidget *button_warning;
+
+  window_warning = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_container_set_border_width (GTK_CONTAINER (window_warning), 10);
+  gtk_window_set_title (GTK_WINDOW (window_warning), _("window1"));
+  gtk_window_set_position (GTK_WINDOW (window_warning), GTK_WIN_POS_CENTER);
+  gtk_window_set_modal (GTK_WINDOW (window_warning), TRUE);
+
+  vbox13 = gtk_vbox_new (FALSE, 10);
+  gtk_widget_show (vbox13);
+  gtk_container_add (GTK_CONTAINER (window_warning), vbox13);
+
+  image7 = gtk_image_new_from_stock ("gtk-dialog-warning", GTK_ICON_SIZE_DIALOG);
+  gtk_widget_show (image7);
+  gtk_box_pack_start (GTK_BOX (vbox13), image7, FALSE, TRUE, 0);
+
+  label_warning = gtk_label_new (_("label42"));
+  gtk_widget_show (label_warning);
+  gtk_box_pack_start (GTK_BOX (vbox13), label_warning, FALSE, FALSE, 0);
+
+  button_warning = gtk_button_new_from_stock ("gtk-close");
+  gtk_widget_show (button_warning);
+  gtk_box_pack_start (GTK_BOX (vbox13), button_warning, FALSE, FALSE, 0);
+
+  g_signal_connect ((gpointer) window_warning, "delete_event",
+                    G_CALLBACK (on_button_warning_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) window_warning, "destroy_event",
+                    G_CALLBACK (on_button_warning_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_warning, "clicked",
+                    G_CALLBACK (on_button_warning_clicked),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (window_warning, window_warning, "window_warning");
+  GLADE_HOOKUP_OBJECT (window_warning, vbox13, "vbox13");
+  GLADE_HOOKUP_OBJECT (window_warning, image7, "image7");
+  GLADE_HOOKUP_OBJECT (window_warning, label_warning, "label_warning");
+  GLADE_HOOKUP_OBJECT (window_warning, button_warning, "button_warning");
+
+  return window_warning;
+}
+

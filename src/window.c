@@ -4,6 +4,7 @@
 #include "interface.h"
 #include "main.h"
 #include "misc_interface.h"
+#include "misc2_interface.h"
 #include "option.h"
 #include "support.h"
 #include "user.h"
@@ -56,22 +57,25 @@ window_set_version(GtkWidget *wind)
 /** Create and show a window. Which one depends on the argument.
     @param window_type An integer telling us which window to
     create.
+    @param count_popups Whether this window adds to the popup
+    counter that determines when the main window gets (in)sensitive.
     @return The pointer to the new window.
     @see #Windows */
 GtkWidget*
 window_create(gint window_type)
 {
+    gint old_popups_active = popups_active;
     GtkWidget *wind = NULL;
     
-    popups_active++;
-
     switch(window_type)
     {
 	default:
+	    g_warning("window_create: unknown window type %d\n", window_type);
+	    break;
+	case WINDOW_MAIN:
 	    if(window.main == NULL)
 	    {
 		window.main = create_main_window();
-		popups_active--;
 		wind = window.main;
 		game_gui_print_message("Welcome to Bygfoot "VERS);
 	    }
@@ -82,14 +86,20 @@ window_create(gint window_type)
 	    if(window.startup != NULL)
 		g_warning("window_create: called on already existing window\n");
 	    else
+	    {
+		popups_active++;
 		window.startup = create_window_startup();
+	    }
 	    wind = window.startup;
 	    break;
 	case WINDOW_LIVE:
 	    if(window.live != NULL)
 		g_warning("window_create: called on already existing window\n");
 	    else
+	    {
+		popups_active++;
 		window.live = create_window_live();
+	    }
 	    wind = window.live;
 	    gtk_spin_button_set_value(
 		GTK_SPIN_BUTTON(lookup_widget(wind, "spinbutton_speed")),
@@ -99,15 +109,25 @@ window_create(gint window_type)
 	    if(window.startup_users != NULL)
 		g_warning("window_create: called on already existing window\n");
 	    else
+	    {
+		popups_active++;
 		window.startup_users = create_window_startup_users();
+	    }
 	    wind = window.startup_users;
+	    break;
+	case WINDOW_WARNING:
+	    if(window.warning != NULL)
+		g_warning("window_create: called on already existing window\n");
+	    else
+		window.warning = create_window_warning();
+	    wind = window.warning;
 	    break;
     }
 
     window_set_version(wind);
     gtk_widget_show(wind);
 
-    if(popups_active != 0 && window.main != NULL)
+    if(popups_active < old_popups_active && window.main != NULL)
 	gtk_widget_set_sensitive(window.main, FALSE);
 
     return wind;
@@ -115,14 +135,16 @@ window_create(gint window_type)
 
 /** Destroy a window widget and set the popups and
     main window sensitivity correctly. 
-    @param window The window we destroy. */
+    @param window The window we destroy.
+    @param count_popups Whether this window adds to the popup
+    counter that determines when the main window gets (in)sensitive. */
 void
-window_destroy(GtkWidget **wind)
+window_destroy(GtkWidget **wind, gboolean count_popups)
 {
     if(*wind == NULL)
 	return;
 
-    if(*wind != window.main)
+    if(*wind != window.main && count_popups)
     {
 	popups_active--;
 

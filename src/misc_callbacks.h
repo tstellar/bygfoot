@@ -44,27 +44,6 @@ on_team_selection_load_clicked         (GtkButton       *button,
                                         gpointer         user_data);
 
 gboolean
-on_popup_window_delete_event           (GtkWidget       *widget,
-                                        GdkEvent        *event,
-                                        gpointer         user_data);
-
-void
-on_popup_check_toggled                 (GtkToggleButton *togglebutton,
-                                        gpointer         user_data);
-
-void
-on_button_popup_ok_clicked             (GtkButton       *button,
-                                        gpointer         user_data);
-
-void
-on_button_popup_cancel_clicked         (GtkButton       *button,
-                                        gpointer         user_data);
-
-void
-on_button_popup_close_clicked          (GtkButton       *button,
-                                        gpointer         user_data);
-
-gboolean
 on_fsel_window_delete_event            (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data);

@@ -19,6 +19,8 @@ callback_show_next_live_game(void)
 {
     gint i, j;
 
+    stat0 = STATUS_SHOW_LIVE_GAME;
+
     if(week_round == 1)
     {
 	for(i=0;i<ligs->len;i++)
@@ -38,7 +40,7 @@ callback_show_next_live_game(void)
 	    for(j=0;j<cp(i).fixtures->len;j++)
 		if(g_array_index(cp(i).fixtures, Fixture, j).week_number == week &&
 		   g_array_index(cp(i).fixtures, Fixture, j).week_round_number == week_round &&
-		   fixture_user_team_involved(&g_array_index(cp(i).fixtures, Fixture, j)) &&
+		   fixture_user_team_involved(&g_array_index(cp(i).fixtures, Fixture, j)) != -1 &&
 		   g_array_index(cp(i).fixtures, Fixture, j).attendance == -1)
 		{
 		    live_game_calculate_fixture(&g_array_index(cp(i).fixtures, Fixture, j));
@@ -46,7 +48,7 @@ callback_show_next_live_game(void)
 		}
     }
 
-    window_destroy(&window.live);
+    window_destroy(&window.live, TRUE);
 
     /* no more user games to show: end round. */
     end_week_round();

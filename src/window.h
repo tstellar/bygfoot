@@ -11,6 +11,7 @@ enum Windows
     WINDOW_STARTUP,
     WINDOW_LIVE,
     WINDOW_STARTUP_USERS,
+    WINDOW_WARNING,
     WINDOW_END
 };
 
@@ -24,6 +25,6 @@ GtkWidget*
 window_create(gint window_type);
 
 void
-window_destroy(GtkWidget **window);
+window_destroy(GtkWidget **wind, gboolean count_popups);
 
 #endif

@@ -166,3 +166,33 @@ misc_print_grouped_int(gint number, gchar *buf, gboolean append)
     else if(number == 0)
 	strcat(buf, "0");
 }
+
+/** Check whether 'item' is in array 'array' between
+    'min' and 'max'.
+    @param array The integer list.
+    @param min The lower delimitor (inclusive).
+    @param max The upper delimitor (exclusive).
+    @param item The item we look for. */
+gboolean
+query_integer_is_in_array(gint item, gint *array, gint min, gint max)
+{
+    gint i;
+
+    for(i=min;i<max;i++)
+	if(item == array[i])
+	    return TRUE;
+    
+    return FALSE;
+}
+
+/** Compare two integers. */
+gint
+misc_int_compare(gint first, gint second)
+{
+    if(first > second)
+	return -1;
+    else if(first < second)
+	return 1;
+
+    return 0;
+}

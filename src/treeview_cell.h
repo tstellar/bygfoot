@@ -35,7 +35,7 @@ void
 treeview_cell_player_status_to_cell(GtkCellRenderer *renderer, gchar *buf, const Player *pl);
 
 void
-treeview_cell_player_games_goals_to_cell(gchar *buf, const Player *pl, gboolean goals);
+treeview_cell_player_games_goals_to_cell(gchar *buf, const Player *pl, gint type);
 
 void
 treeview_cell_player_fitness_to_cell(GtkCellRenderer *renderer, gchar *buf, gint fitness);

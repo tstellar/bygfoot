@@ -42,6 +42,8 @@ typedef struct
     gint games;
     /** Number of goals (scored for field players or conceded for goalies). */
     gint goals;
+    /** Number of shots (taken or faced). */
+    gint shots;
 } PlayerGamesGoals;
 
 enum PlayerInjury
@@ -67,7 +69,7 @@ typedef struct
 	talent, /**< Talent. The peak ability (which isn't always reached). */
 	etal[QUALITY_END], /**< Estimated talent (the user never sees the actual talent).
 			      Depends on scout quality. */
-	fitness, /**< Fitness. Between 0 and 99. */
+	fitness, /**< Fitness. Between 0 and 9900. */
 	health, /**< Health. An integer signifying an injury or good health. @see #PlayerInjury */
 	recovery, /**< Weeks until the player gets healthy. */
 	id, /**< Id of the player within the team. */
@@ -99,6 +101,7 @@ enum PlayerListAttributeValue
     PLAYER_LIST_ATTRIBUTE_FITNESS,
     PLAYER_LIST_ATTRIBUTE_GAMES,
     PLAYER_LIST_ATTRIBUTE_GOALS,
+    PLAYER_LIST_ATTRIBUTE_SHOTS,
     PLAYER_LIST_ATTRIBUTE_STATUS,
     PLAYER_LIST_ATTRIBUTE_CARDS,
     PLAYER_LIST_ATTRIBUTE_AGE,

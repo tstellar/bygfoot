@@ -103,48 +103,6 @@ on_team_selection_load_clicked         (GtkButton       *button,
 
 
 gboolean
-on_popup_window_delete_event           (GtkWidget       *widget,
-                                        GdkEvent        *event,
-                                        gpointer         user_data)
-{
-
-  return FALSE;
-}
-
-
-void
-on_popup_check_toggled                 (GtkToggleButton *togglebutton,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_button_popup_ok_clicked             (GtkButton       *button,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_button_popup_cancel_clicked         (GtkButton       *button,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_button_popup_close_clicked          (GtkButton       *button,
-                                        gpointer         user_data)
-{
-
-}
-
-
-gboolean
 on_fsel_window_delete_event            (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
@@ -210,6 +168,7 @@ void
 on_button_live_close_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
+    stat2 = -1;
     callback_show_next_live_game();
 }
 
@@ -248,10 +207,18 @@ void
 on_button_resume_clicked               (GtkButton       *button,
                                         gpointer         user_data)
 {
-    gtk_widget_hide(GTK_WIDGET(button));
-    gtk_widget_show(lookup_widget(window.live, "button_pause"));
-    game_gui_set_main_window_sensitivity(FALSE);
-    live_game_calculate_fixture(NULL);
+    if(game_check_live_game_resume_state())
+    {
+	gtk_widget_hide(GTK_WIDGET(button));
+	if(g_array_index(usr(stat2).live_game.units, LiveGameUnit, 
+			 usr(stat2).live_game.units->len - 1).event.type != 
+	   LIVE_GAME_EVENT_PENALTIES)
+	    gtk_widget_show(lookup_widget(window.live, "button_pause"));
+	game_gui_set_main_window_sensitivity(FALSE);
+	live_game_resume();
+    }
+    else
+	game_gui_show_warning("There were too many substitutions. Only 3 per game are allowed.");
 }
 
 void

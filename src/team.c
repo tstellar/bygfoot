@@ -26,6 +26,7 @@ team_new(void)
     new.clid = new.id = -1;
     new.structure = team_assign_playing_structure();
     new.style = team_assign_playing_style();
+    new.boost = FALSE;
 
     new.stadium = team_stadium_new();
 
@@ -110,13 +111,15 @@ team_generate_players(Team *tm)
 
     if(tm->clid < ID_CUP_START)
 	average_skill = 
-	    (gint)rint((gfloat)team_return_league_cup_value_int(tm, LEAGUE_CUP_VALUE_AVERAGE_SKILL) *
+	    (gint)rint((gfloat)const_int("int_player_max_skill") *
+		       ((gfloat)team_return_league_cup_value_int(tm, LEAGUE_CUP_VALUE_AVERAGE_SKILL) / 100) *
 		       skill_factor);
     else
 	average_skill = 
-	    (gint)rint((gfloat)lig(0).average_skill +
-		       (gfloat)team_return_league_cup_value_int(tm, LEAGUE_CUP_VALUE_SKILL_DIFF)) *
-	    skill_factor;
+	    (gint)rint((gfloat)const_int("int_player_max_skill") *
+		       (((gfloat)lig(0).average_skill +
+			 (gfloat)team_return_league_cup_value_int(tm, LEAGUE_CUP_VALUE_SKILL_DIFF)) / 100) *
+		       skill_factor);
 
     average_skill = CLAMP(average_skill, 0, const_int("int_player_max_skill"));
     
@@ -500,7 +503,7 @@ team_get_average_skill(const Team *tm, gboolean cskill)
 	for(i=0;i<11;i++)
 	{
 	    sum += player_of(tm, i)->cskill * 
-		powf((gfloat)player_of(tm, i)->fitness / 100, 
+		powf((gfloat)player_of(tm, i)->fitness / 10000, 
 		     const_float("float_player_fitness_exponent"));
 	    counter++;
 	}
@@ -577,7 +580,7 @@ team_change_structure(Team *tm, gint new_structure)
 	    player_get_position_from_structure(new_structure, i);
 
 	player_of(tm, i)->cskill =
-	    player_get_cskill(player_of(tm, i));
+	    player_get_cskill(player_of(tm, i), player_of(tm, i)->cpos);
     }
 }
 
@@ -620,4 +623,30 @@ team_rearrange(Team *tm)
 	    }
 	i++;
     }
+}
+
+/** Describe the playing style in words.
+    @param style The team style.
+    @return The name of the style. */
+gchar*
+team_style_to_char(gint style)
+{
+    switch(style)
+    {
+	default:
+	    g_warning("team_style_to_char: unknown style %d\n", style);
+	    return NULL;
+	case PLAYING_STYLE_ALL_OUT_DEFEND:
+	    return _("All Out Defend");
+	case PLAYING_STYLE_DEFEND:
+	    return _("Defend");
+	case PLAYING_STYLE_BALANCED:
+	    return _("Balanced");
+	case PLAYING_STYLE_ATTACK:
+	    return _("Attack");
+	case PLAYING_STYLE_ALL_OUT_ATTACK:
+	    return _("All Out Attack");
+    }
+
+    return NULL;
 }

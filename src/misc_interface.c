@@ -415,261 +415,6 @@ create_window_startup (void)
 }
 
 GtkWidget*
-create_popup_window (void)
-{
-  GtkWidget *popup_window;
-  GtkWidget *vbox12;
-  GtkWidget *hbox16;
-  GtkWidget *label_popup_status;
-  GtkWidget *vseparator12;
-  GtkWidget *label_popup_status2;
-  GtkWidget *vseparator13;
-  GtkWidget *label_popup_status3;
-  GtkWidget *hbox20;
-  GtkWidget *image_popup_warning;
-  GtkWidget *image_popup_question;
-  GtkWidget *label_popup_text;
-  GtkWidget *radiobutton0;
-  GSList *radiobutton0_group = NULL;
-  GtkWidget *radiobutton1;
-  GtkWidget *check_popup;
-  GtkWidget *hbox17;
-  GtkWidget *button_popup_ok;
-  GtkWidget *alignment6;
-  GtkWidget *hbox30;
-  GtkWidget *image27;
-  GtkWidget *label50;
-  GtkWidget *button_popup_cancel;
-  GtkWidget *alignment7;
-  GtkWidget *hbox31;
-  GtkWidget *image28;
-  GtkWidget *label51;
-  GtkWidget *button_popup_close;
-  GtkWidget *alignment8;
-  GtkWidget *hbox32;
-  GtkWidget *image29;
-  GtkWidget *label52;
-  GtkWidget *button8;
-  GtkWidget *button9;
-  GtkWidget *button10;
-  GtkAccelGroup *accel_group;
-  GtkTooltips *tooltips;
-
-  tooltips = gtk_tooltips_new ();
-
-  accel_group = gtk_accel_group_new ();
-
-  popup_window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  gtk_container_set_border_width (GTK_CONTAINER (popup_window), 6);
-  gtk_window_set_title (GTK_WINDOW (popup_window), _("Bygfoot"));
-  gtk_window_set_position (GTK_WINDOW (popup_window), GTK_WIN_POS_CENTER);
-
-  vbox12 = gtk_vbox_new (FALSE, 0);
-  gtk_widget_show (vbox12);
-  gtk_container_add (GTK_CONTAINER (popup_window), vbox12);
-
-  hbox16 = gtk_hbox_new (FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (vbox12), hbox16, TRUE, TRUE, 0);
-
-  label_popup_status = gtk_label_new (_("-1"));
-  gtk_widget_show (label_popup_status);
-  gtk_box_pack_start (GTK_BOX (hbox16), label_popup_status, FALSE, FALSE, 0);
-  gtk_misc_set_padding (GTK_MISC (label_popup_status), 29, 0);
-
-  vseparator12 = gtk_vseparator_new ();
-  gtk_widget_show (vseparator12);
-  gtk_box_pack_start (GTK_BOX (hbox16), vseparator12, TRUE, TRUE, 0);
-
-  label_popup_status2 = gtk_label_new (_("-1"));
-  gtk_widget_show (label_popup_status2);
-  gtk_box_pack_start (GTK_BOX (hbox16), label_popup_status2, FALSE, FALSE, 0);
-  gtk_misc_set_padding (GTK_MISC (label_popup_status2), 22, 0);
-
-  vseparator13 = gtk_vseparator_new ();
-  gtk_widget_show (vseparator13);
-  gtk_box_pack_start (GTK_BOX (hbox16), vseparator13, TRUE, TRUE, 0);
-
-  label_popup_status3 = gtk_label_new (_("-1"));
-  gtk_widget_show (label_popup_status3);
-  gtk_box_pack_start (GTK_BOX (hbox16), label_popup_status3, FALSE, FALSE, 0);
-  gtk_misc_set_padding (GTK_MISC (label_popup_status3), 23, 0);
-
-  hbox20 = gtk_hbox_new (FALSE, 0);
-  gtk_widget_show (hbox20);
-  gtk_box_pack_start (GTK_BOX (vbox12), hbox20, TRUE, TRUE, 0);
-
-  image_popup_warning = gtk_image_new_from_stock ("gtk-dialog-warning", GTK_ICON_SIZE_DIALOG);
-  gtk_box_pack_start (GTK_BOX (hbox20), image_popup_warning, TRUE, TRUE, 0);
-  gtk_misc_set_padding (GTK_MISC (image_popup_warning), 5, 5);
-
-  image_popup_question = gtk_image_new_from_stock ("gtk-dialog-question", GTK_ICON_SIZE_DIALOG);
-  gtk_box_pack_start (GTK_BOX (hbox20), image_popup_question, TRUE, TRUE, 0);
-  gtk_misc_set_padding (GTK_MISC (image_popup_question), 5, 5);
-
-  label_popup_text = gtk_label_new (_("label23"));
-  gtk_widget_show (label_popup_text);
-  gtk_box_pack_start (GTK_BOX (vbox12), label_popup_text, FALSE, FALSE, 10);
-  gtk_label_set_line_wrap (GTK_LABEL (label_popup_text), TRUE);
-  gtk_misc_set_padding (GTK_MISC (label_popup_text), 0, 6);
-
-  radiobutton0 = gtk_radio_button_new_with_mnemonic (NULL, _("radiobutton0"));
-  gtk_box_pack_start (GTK_BOX (vbox12), radiobutton0, FALSE, FALSE, 0);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton0), radiobutton0_group);
-  radiobutton0_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton0));
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (radiobutton0), TRUE);
-
-  radiobutton1 = gtk_radio_button_new_with_mnemonic (NULL, _("radiobutton1"));
-  gtk_box_pack_start (GTK_BOX (vbox12), radiobutton1, FALSE, FALSE, 0);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton1), radiobutton0_group);
-  radiobutton0_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton1));
-
-  check_popup = gtk_check_button_new_with_mnemonic (_("Don't bother me with this next time"));
-  gtk_box_pack_start (GTK_BOX (vbox12), check_popup, FALSE, FALSE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (check_popup), 3);
-
-  hbox17 = gtk_hbox_new (FALSE, 0);
-  gtk_widget_show (hbox17);
-  gtk_box_pack_start (GTK_BOX (vbox12), hbox17, TRUE, TRUE, 0);
-
-  button_popup_ok = gtk_button_new ();
-  gtk_box_pack_start (GTK_BOX (hbox17), button_popup_ok, TRUE, TRUE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (button_popup_ok), 2);
-  gtk_tooltips_set_tip (tooltips, button_popup_ok, _("Return"), NULL);
-  gtk_widget_add_accelerator (button_popup_ok, "clicked", accel_group,
-                              GDK_Return, 0,
-                              GTK_ACCEL_VISIBLE);
-
-  alignment6 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment6);
-  gtk_container_add (GTK_CONTAINER (button_popup_ok), alignment6);
-
-  hbox30 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox30);
-  gtk_container_add (GTK_CONTAINER (alignment6), hbox30);
-
-  image27 = gtk_image_new_from_stock ("gtk-apply", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image27);
-  gtk_box_pack_start (GTK_BOX (hbox30), image27, FALSE, FALSE, 0);
-
-  label50 = gtk_label_new_with_mnemonic (_("OK"));
-  gtk_widget_show (label50);
-  gtk_box_pack_start (GTK_BOX (hbox30), label50, FALSE, FALSE, 0);
-
-  button_popup_cancel = gtk_button_new ();
-  gtk_box_pack_start (GTK_BOX (hbox17), button_popup_cancel, TRUE, TRUE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (button_popup_cancel), 2);
-  gtk_tooltips_set_tip (tooltips, button_popup_cancel, _("Esc"), NULL);
-  gtk_widget_add_accelerator (button_popup_cancel, "clicked", accel_group,
-                              GDK_Escape, 0,
-                              GTK_ACCEL_VISIBLE);
-
-  alignment7 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment7);
-  gtk_container_add (GTK_CONTAINER (button_popup_cancel), alignment7);
-
-  hbox31 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox31);
-  gtk_container_add (GTK_CONTAINER (alignment7), hbox31);
-
-  image28 = gtk_image_new_from_stock ("gtk-cancel", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image28);
-  gtk_box_pack_start (GTK_BOX (hbox31), image28, FALSE, FALSE, 0);
-
-  label51 = gtk_label_new_with_mnemonic (_("Cancel"));
-  gtk_widget_show (label51);
-  gtk_box_pack_start (GTK_BOX (hbox31), label51, FALSE, FALSE, 0);
-
-  button_popup_close = gtk_button_new ();
-  gtk_box_pack_start (GTK_BOX (hbox17), button_popup_close, TRUE, TRUE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (button_popup_close), 2);
-
-  alignment8 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment8);
-  gtk_container_add (GTK_CONTAINER (button_popup_close), alignment8);
-
-  hbox32 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox32);
-  gtk_container_add (GTK_CONTAINER (alignment8), hbox32);
-
-  image29 = gtk_image_new_from_stock ("gtk-close", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image29);
-  gtk_box_pack_start (GTK_BOX (hbox32), image29, FALSE, FALSE, 0);
-
-  label52 = gtk_label_new_with_mnemonic (_("Close"));
-  gtk_widget_show (label52);
-  gtk_box_pack_start (GTK_BOX (hbox32), label52, FALSE, FALSE, 0);
-
-  button8 = gtk_button_new_with_mnemonic (_("button8"));
-  gtk_box_pack_start (GTK_BOX (hbox17), button8, TRUE, TRUE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (button8), 2);
-
-  button9 = gtk_button_new_with_mnemonic (_("button9"));
-  gtk_box_pack_start (GTK_BOX (hbox17), button9, TRUE, TRUE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (button9), 2);
-
-  button10 = gtk_button_new_with_mnemonic (_("button10"));
-  gtk_box_pack_start (GTK_BOX (hbox17), button10, TRUE, TRUE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (button10), 2);
-
-  g_signal_connect ((gpointer) popup_window, "delete_event",
-                    G_CALLBACK (on_popup_window_delete_event),
-                    NULL);
-  g_signal_connect ((gpointer) check_popup, "toggled",
-                    G_CALLBACK (on_popup_check_toggled),
-                    NULL);
-  g_signal_connect ((gpointer) button_popup_ok, "clicked",
-                    G_CALLBACK (on_button_popup_ok_clicked),
-                    NULL);
-  g_signal_connect ((gpointer) button_popup_cancel, "clicked",
-                    G_CALLBACK (on_button_popup_cancel_clicked),
-                    NULL);
-  g_signal_connect ((gpointer) button_popup_close, "clicked",
-                    G_CALLBACK (on_button_popup_close_clicked),
-                    NULL);
-
-  /* Store pointers to all widgets, for use by lookup_widget(). */
-  GLADE_HOOKUP_OBJECT_NO_REF (popup_window, popup_window, "popup_window");
-  GLADE_HOOKUP_OBJECT (popup_window, vbox12, "vbox12");
-  GLADE_HOOKUP_OBJECT (popup_window, hbox16, "hbox16");
-  GLADE_HOOKUP_OBJECT (popup_window, label_popup_status, "label_popup_status");
-  GLADE_HOOKUP_OBJECT (popup_window, vseparator12, "vseparator12");
-  GLADE_HOOKUP_OBJECT (popup_window, label_popup_status2, "label_popup_status2");
-  GLADE_HOOKUP_OBJECT (popup_window, vseparator13, "vseparator13");
-  GLADE_HOOKUP_OBJECT (popup_window, label_popup_status3, "label_popup_status3");
-  GLADE_HOOKUP_OBJECT (popup_window, hbox20, "hbox20");
-  GLADE_HOOKUP_OBJECT (popup_window, image_popup_warning, "image_popup_warning");
-  GLADE_HOOKUP_OBJECT (popup_window, image_popup_question, "image_popup_question");
-  GLADE_HOOKUP_OBJECT (popup_window, label_popup_text, "label_popup_text");
-  GLADE_HOOKUP_OBJECT (popup_window, radiobutton0, "radiobutton0");
-  GLADE_HOOKUP_OBJECT (popup_window, radiobutton1, "radiobutton1");
-  GLADE_HOOKUP_OBJECT (popup_window, check_popup, "check_popup");
-  GLADE_HOOKUP_OBJECT (popup_window, hbox17, "hbox17");
-  GLADE_HOOKUP_OBJECT (popup_window, button_popup_ok, "button_popup_ok");
-  GLADE_HOOKUP_OBJECT (popup_window, alignment6, "alignment6");
-  GLADE_HOOKUP_OBJECT (popup_window, hbox30, "hbox30");
-  GLADE_HOOKUP_OBJECT (popup_window, image27, "image27");
-  GLADE_HOOKUP_OBJECT (popup_window, label50, "label50");
-  GLADE_HOOKUP_OBJECT (popup_window, button_popup_cancel, "button_popup_cancel");
-  GLADE_HOOKUP_OBJECT (popup_window, alignment7, "alignment7");
-  GLADE_HOOKUP_OBJECT (popup_window, hbox31, "hbox31");
-  GLADE_HOOKUP_OBJECT (popup_window, image28, "image28");
-  GLADE_HOOKUP_OBJECT (popup_window, label51, "label51");
-  GLADE_HOOKUP_OBJECT (popup_window, button_popup_close, "button_popup_close");
-  GLADE_HOOKUP_OBJECT (popup_window, alignment8, "alignment8");
-  GLADE_HOOKUP_OBJECT (popup_window, hbox32, "hbox32");
-  GLADE_HOOKUP_OBJECT (popup_window, image29, "image29");
-  GLADE_HOOKUP_OBJECT (popup_window, label52, "label52");
-  GLADE_HOOKUP_OBJECT (popup_window, button8, "button8");
-  GLADE_HOOKUP_OBJECT (popup_window, button9, "button9");
-  GLADE_HOOKUP_OBJECT (popup_window, button10, "button10");
-  GLADE_HOOKUP_OBJECT_NO_REF (popup_window, tooltips, "tooltips");
-
-  gtk_window_add_accel_group (GTK_WINDOW (popup_window), accel_group);
-
-  return popup_window;
-}
-
-GtkWidget*
 create_fsel_window (void)
 {
   GtkWidget *fsel_window;
@@ -864,7 +609,7 @@ create_window_live (void)
   gtk_widget_show (button_pause);
   gtk_box_pack_start (GTK_BOX (hbox48), button_pause, FALSE, FALSE, 0);
   gtk_widget_add_accelerator (button_pause, "clicked", accel_group,
-                              GDK_space, 0,
+                              GDK_Escape, 0,
                               GTK_ACCEL_VISIBLE);
 
   alignment16 = gtk_alignment_new (0.5, 0.5, 0, 0);
@@ -879,12 +624,15 @@ create_window_live (void)
   gtk_widget_show (image56);
   gtk_box_pack_start (GTK_BOX (hbox51), image56, FALSE, FALSE, 0);
 
-  label72 = gtk_label_new_with_mnemonic (_("Pause"));
+  label72 = gtk_label_new_with_mnemonic (_("_Pause"));
   gtk_widget_show (label72);
   gtk_box_pack_start (GTK_BOX (hbox51), label72, FALSE, FALSE, 0);
 
   button_resume = gtk_button_new ();
   gtk_box_pack_start (GTK_BOX (hbox48), button_resume, FALSE, FALSE, 0);
+  gtk_widget_add_accelerator (button_resume, "clicked", accel_group,
+                              GDK_Return, 0,
+                              GTK_ACCEL_VISIBLE);
 
   alignment17 = gtk_alignment_new (0.5, 0.5, 0, 0);
   gtk_widget_show (alignment17);
@@ -898,7 +646,7 @@ create_window_live (void)
   gtk_widget_show (image57);
   gtk_box_pack_start (GTK_BOX (hbox52), image57, FALSE, FALSE, 0);
 
-  label73 = gtk_label_new_with_mnemonic (_("Resume"));
+  label73 = gtk_label_new_with_mnemonic (_("_Resume"));
   gtk_widget_show (label73);
   gtk_box_pack_start (GTK_BOX (hbox52), label73, FALSE, FALSE, 0);
 
