@@ -1439,9 +1439,9 @@ live_game_finish_unit(void)
 	game_decrease_fitness(match->fix);
 	game_get_values(match->fix, match->team_values,
 			match->home_advantage);
-	if(stat2 == current_user && show &&
+	if(stat2 == cur_user && show &&
 	   unit->minute % const_int("int_live_game_player_list_refresh") == 0)
-	    treeview_show_user_player_list(&usr(current_user), 1);
+	    treeview_show_user_player_list(&current_user);
     }
 
     if(fixture_user_team_involved(match->fix) != -1)

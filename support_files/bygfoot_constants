@@ -245,6 +245,11 @@ float_team_playing_structure_prob4 8500
 #   @see player_generate()
 float_team_skill_variance 750
 
+# bounds for new teams when user's been fired
+# counted in the tables relative to his team
+int_team_new_bound_upper 10
+int_team_new_bound_lower 20
+
 # base probability that the ball gets from defending area
 # to midfield area.
 float_live_game_area_def_mid 5000
@@ -314,7 +319,7 @@ float_live_game_general_event_second_player 5000
 # constants for stadium events. 
 # influence of the stadium safety on the stadium
 # event probability
-float_live_game_stadium_event_exponent	50
+float_live_game_stadium_event_exponent 13
 
 # probabilities of different events; should add
 # up to 10000

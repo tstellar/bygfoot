@@ -6,6 +6,7 @@
 #include "league.h"
 #include "live_game.h"
 #include "maths.h"
+#include "misc.h"
 #include "option.h"
 #include "treeview.h"
 #include "support.h"
@@ -178,17 +179,17 @@ game_gui_set_main_window_header(void)
     GtkLabel *label_rank= GTK_LABEL(lookup_widget(window.main, "label_rank"));
     GtkLabel *label_money= GTK_LABEL(lookup_widget(window.main, "label_money"));
 
-    gtk_label_set_text(label_user, usr(current_user).name->str);
+    gtk_label_set_text(label_user, current_user.name->str);
     gui_label_set_text_from_int(label_season, season, FALSE);
     gui_label_set_text_from_int(label_week, week, FALSE);
     gui_label_set_text_from_int(label_round, week_round, FALSE);
     gui_label_set_text_from_int(label_rank, week_round, FALSE);
-    gui_label_set_text_from_int(label_money, usr(current_user).money, FALSE);
+    gui_label_set_text_from_int(label_money, current_user.money, FALSE);
     gui_label_set_text_from_int(label_rank, 
-				team_rank(usr(current_user).tm, usr(current_user).tm->clid), FALSE);
+				team_rank(current_user.tm, current_user.tm->clid), FALSE);
 
-    gtk_label_set_text(label_team, usr(current_user).tm->name->str);
-    gtk_label_set_text(label_league, league_from_clid(usr(current_user).tm->clid)->name->str);    
+    gtk_label_set_text(label_team, current_user.tm->name->str);
+    gtk_label_set_text(label_league, league_from_clid(current_user.tm->clid)->name->str);    
 
     game_gui_write_av_skills();
 
@@ -206,8 +207,8 @@ game_gui_write_av_skills(void)
     GtkLabel *label_av_skills= GTK_LABEL(lookup_widget(window.main, "label_av_skills"));
 
     sprintf(buf, "%.1f  %.1f", 
-	    team_get_average_skill(usr(current_user).tm, TRUE),
-	    team_get_average_skill(usr(current_user).tm, FALSE));
+	    team_get_average_skill(current_user.tm, TRUE),
+	    team_get_average_skill(current_user.tm, FALSE));
     gtk_label_set_text(label_av_skills, buf);
 }
 
@@ -220,10 +221,10 @@ game_gui_write_radio_items(void)
 
     game_gui_get_radio_items(style, scout, physio, boost);
 
-    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(style[usr(current_user).tm->style + 2]), TRUE);
-    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(scout[usr(current_user).scout]), TRUE);
-    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(physio[usr(current_user).physio]), TRUE);
-    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(boost[usr(current_user).tm->boost + 1]), TRUE);
+    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(style[current_user.tm->style + 2]), TRUE);
+    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(scout[current_user.scout % 10]), TRUE);
+    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(physio[current_user.physio % 10]), TRUE);
+    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(boost[current_user.tm->boost + 1]), TRUE);
 }
 
 /** Set the appropriate images for the style and boost meters. */
@@ -244,8 +245,8 @@ game_gui_write_meters(void)
 	 file_find_support_file(const_str("string_game_gui_boost_off_icon")),
 	 file_find_support_file(const_str("string_game_gui_boost_on_icon"))};
 
-    gtk_image_set_from_file(image_style, image_style_files[usr(current_user).tm->style + 2]);
-    gtk_image_set_from_file(image_boost, image_boost_files[usr(current_user).tm->boost + 1]);
+    gtk_image_set_from_file(image_style, image_style_files[current_user.tm->style + 2]);
+    gtk_image_set_from_file(image_boost, image_boost_files[current_user.tm->boost + 1]);
 
     for(i=0;i<5;i++)
 	g_free(image_style_files[i]);
@@ -262,35 +263,35 @@ game_gui_read_radio_items(GtkWidget *widget)
     gint i;
     GtkWidget *boost[3];
     GtkWidget *style[5], *scout[4], *physio[4];
-    gint old_scout = usr(current_user).scout,
-	old_physio = usr(current_user).physio;
+    gint old_scout = current_user.scout,
+	old_physio = current_user.physio;
 
     game_gui_get_radio_items(style, scout, physio, boost);
 
     for(i=0;i<3;i++)
 	if(widget == boost[i])
-	    usr(current_user).tm->boost = i - 1;
+	    current_user.tm->boost = i - 1;
 
     for(i=0;i<5;i++)
 	if(widget == style[i])
-	    usr(current_user).tm->style = i - 2;
+	    current_user.tm->style = i - 2;
     
     for(i=0;i<4;i++)
 	if(widget == scout[i])
-	    usr(current_user).scout = 100 + i * 10 + old_scout % 10;
+	    current_user.scout = 100 + i * 10 + old_scout % 10;
 
     for(i=0;i<4;i++)
 	if(widget == physio[i])
-	    usr(current_user).physio = 100 + i * 10 + old_physio % 10;
+	    current_user.physio = 100 + i * 10 + old_physio % 10;
     
-    if(math_get_place(usr(current_user).scout, 2) == old_scout % 10)
-	usr(current_user).scout = old_scout % 10;
+    if(math_get_place(current_user.scout, 2) == old_scout % 10)
+	current_user.scout = old_scout % 10;
 
-    if(math_get_place(usr(current_user).physio, 2) == old_physio % 10)
-	usr(current_user).physio = old_physio % 10;
+    if(math_get_place(current_user.physio, 2) == old_physio % 10)
+	current_user.physio = old_physio % 10;
 
-    if(old_scout != usr(current_user).scout ||
-       old_physio != usr(current_user).physio)
+    if(old_scout != current_user.scout ||
+       old_physio != current_user.physio)
 	game_gui_print_message(_("Next week you'll fire him and hire a new one."));
 }
 
@@ -299,8 +300,7 @@ void
 game_gui_show_main(void)
 {
     game_gui_set_main_window_header();
-    treeview_show_user_player_list(&usr(current_user), 1);
-    treeview_show_user_player_list(&usr(current_user), 2);
+    treeview_show_user_player_list(&current_user);
 }
 
 /** Print a message into the main window entry. */
@@ -404,4 +404,64 @@ game_gui_show_warning(gchar *text)
     window_create(WINDOW_WARNING);
 
     gtk_label_set_text(GTK_LABEL(lookup_widget(window.warning, "label_warning")), text);    
+}
+
+/** Show the job offer window.
+    @param team The team offering the job.
+    @param type The offer type (whether the user's been fired). */
+void
+game_gui_show_job_offer(Team *team, gint type)
+{
+    gchar buf[SMALL], buf2[SMALL];    
+    GtkLabel *label_text, *label_text2, *label_name, 
+	*label_league, *label_rank, *label_money,
+	*label_cap, *label_saf, *label_average_skill;
+
+    window_create(WINDOW_JOB_OFFER);
+
+    label_text = GTK_LABEL(lookup_widget(window.job_offer, "label_text"));
+    label_text2 = GTK_LABEL(lookup_widget(window.job_offer, "label_text2"));
+    label_name = GTK_LABEL(lookup_widget(window.job_offer, "label_name"));
+    label_league = GTK_LABEL(lookup_widget(window.job_offer, "label_league"));
+    label_rank = GTK_LABEL(lookup_widget(window.job_offer, "label_rank"));
+    label_money = GTK_LABEL(lookup_widget(window.job_offer, "label_money"));
+    label_cap = GTK_LABEL(lookup_widget(window.job_offer, "label_cap"));
+    label_saf = GTK_LABEL(lookup_widget(window.job_offer, "label_saf"));
+    label_average_skill = GTK_LABEL(lookup_widget(window.job_offer, "label_average_skill"));
+
+    if(type == STATUS_JOB_OFFER_FIRE_FINANCE)
+	sprintf(buf, _("The team owners have fired you because of financial mismanagement. Luckily, the owners of %s have heard of your dismissal and offer you a job. Here's some information on %s:"),
+		team->name->str, team->name->str);
+    else if(type == STATUS_JOB_OFFER_FIRE_FAILURE)
+	sprintf(buf, _("The team owners have fired you because of unsuccessfulness. Luckily, the owners of %s have heard of your dismissal and offer you a job. Here's some information on %s:"),
+		team->name->str, team->name->str);
+    else if(type == STATUS_JOB_OFFER_SUCCESS)
+	sprintf(buf, _("The owners of %s are deeply impressed by your success with %s and would like to hire you. Here's some information on %s:"),
+		current_user.tm->name->str,
+		team->name->str, team->name->str);
+    
+    strcpy(buf2, _("Accept?"));
+    if(type != STATUS_JOB_OFFER_SUCCESS)
+	strcat(buf2, _(" (NOTE: If you don't, the game is over for you.)"));
+
+    gtk_label_set_text(label_text, buf);
+    gtk_label_set_text(label_text2, buf2);
+    gtk_label_set_text(label_name, team->name->str);
+    gtk_label_set_text(label_league, league_from_clid(team->clid)->name->str);
+    gui_label_set_text_from_int(label_rank, team_rank(team, team->clid), FALSE);
+    misc_print_grouped_int(math_round_integer(team->stadium.capacity * 
+					      math_rndi(const_int("int_initial_money_lower"),
+							const_int("int_initial_money_upper")), 2),
+			   buf, FALSE);
+    gtk_label_set_text(label_money, buf);
+    misc_print_grouped_int(team->stadium.capacity, buf, FALSE);
+    gtk_label_set_text(label_cap, buf);
+    gui_label_set_text_from_int(label_saf, (gint)rint(team->stadium.safety * 100), FALSE);
+
+    sprintf(buf, "%.1f", team_get_average_skill(team, FALSE));
+    gtk_label_set_text(label_average_skill, buf);
+
+    treeview_show_player_list_team(GTK_TREE_VIEW(lookup_widget(window.job_offer, "treeview_players")),
+				   team, 
+				   (type != STATUS_JOB_OFFER_SUCCESS) ? 2 : current_user.scout);
 }

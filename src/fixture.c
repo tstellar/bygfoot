@@ -210,7 +210,6 @@ GPtrArray*
 fixture_get_round_robin_advance(const Cup *cup, gint round)
 {
     gint i, j;
-    GArray *fixtures = cup->fixtures;
     GPtrArray *array = g_ptr_array_new();
     const CupRound *cupround = &g_array_index(cup->rounds, CupRound, round);
     GArray *best_advance = g_array_new(FALSE, FALSE, sizeof(TableElement));

@@ -75,7 +75,7 @@ start_write_variables(void)
     gint i;
 
     season = week = week_round = 1;
-    current_user = 0;
+    cur_user = 0;
 /*     week=24; week_round = 2; */
     transfer_list = g_array_new(FALSE, FALSE, sizeof(TransferPlayer));
 
@@ -252,9 +252,14 @@ start_week_round(void)
 
     if(!user_games_this_week_round())
 	end_week_round();
-
-    current_user = 0;
-    game_gui_show_main();
+    else
+    {
+	cur_user = 0;
+	game_gui_show_main();    
+	
+	if(week_round == 1)
+	    user_event_show_next();
+    }
 }
 
 /** Start a new week. */

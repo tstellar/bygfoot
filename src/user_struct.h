@@ -59,6 +59,8 @@ typedef struct
     Team *tm;
     /** User options. */
     GArray *options;
+    /** Events shown each week. */
+    GArray *events;
     /** User counters (not changeable by the user),
 	like number of weeks until debt has to be paid back. */
     gint counters[COUNT_USER_END];
@@ -79,5 +81,31 @@ typedef struct
     /** The variable for the latest user live game. @see #Game */
     LiveGame live_game;
 } User;
+
+enum EventType
+{
+    EVENT_TYPE_PLAYER_LEFT = 0,
+    EVENT_TYPE_PAYBACK,
+    EVENT_TYPE_JOB_OFFER,
+    EVENT_TYPE_FIRE_FINANCE,
+    EVENT_TYPE_FIRE_UNSUCCESSFUL
+};
+
+/** A structure representing an event for a user. This is used
+    to show information like a successful transfer or a job offer. */
+typedef struct
+{
+    /** Pointer to the user the event belongs to. */
+    User *user;
+    /** Type of the event. See #EventType. */
+    gint type;
+    /** Some values that are used for different purposes. */
+    gint value1, value2;
+    /** A pointer for different purposes. */
+    gpointer pointer_value;
+    /** A string for different purposes. */
+    GString *string_value;
+
+} Event;
 
 #endif

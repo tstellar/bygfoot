@@ -61,10 +61,6 @@ callback_show_next_live_game(void)
 
     /* no more user games to show: end round. */
     end_week_round();
-    stat0 = STATUS_MAIN;
-
-    /*d*/
-    game_gui_show_main();
 }
 
 /** Handle a click on the player list.
@@ -85,21 +81,21 @@ callback_player_clicked(gint idx, GdkEventButton *event)
 	    return;
 	}
 
-	player_swap(usr(current_user).tm, selected_row[0],
-		    usr(current_user).tm, idx);
+	player_swap(current_user.tm, selected_row[0],
+		    current_user.tm, idx);
 	if(opt_user_int("int_opt_user_swap_adapts") == 1 &&
-	   usr(current_user).tm->structure !=
-	   team_find_appropriate_structure(usr(current_user).tm))
+	   current_user.tm->structure !=
+	   team_find_appropriate_structure(current_user.tm))
 	{
-	    team_change_structure(usr(current_user).tm,
-				  team_find_appropriate_structure(usr(current_user).tm));
-	    team_rearrange(usr(current_user).tm);
+	    team_change_structure(current_user.tm,
+				  team_find_appropriate_structure(current_user.tm));
+	    team_rearrange(current_user.tm);
 	}
 	game_gui_write_av_skills();
 
 	selected_row[0] = -1;
 
-	treeview_show_user_player_list(&usr(current_user), 1);
+	treeview_show_user_player_list(&current_user);
     }
 }
 
@@ -109,22 +105,22 @@ callback_show_last_match(void)
 {
     gint i;
 
-    if(usr(current_user).live_game.units == NULL)
+    if(current_user.live_game.units == NULL)
     {
 	game_gui_show_warning("No match to show.");
 	return;
     }
 
-    stat2 = current_user;
+    stat2 = cur_user;
 
     window_create(WINDOW_LIVE);
 
     treeview_show_game_stats(GTK_TREE_VIEW(lookup_widget(window.live, "treeview_stats")),
-			     &usr(current_user).live_game);
-    live_game_set_match(&usr(current_user).live_game);
+			     &current_user.live_game);
+    live_game_set_match(&current_user.live_game);
 
-    for(i=0;i<usr(current_user).live_game.units->len;i++)
-	game_gui_live_game_show_unit(&g_array_index(usr(current_user).live_game.units, LiveGameUnit, i));
+    for(i=0;i<current_user.live_game.units->len;i++)
+	game_gui_live_game_show_unit(&g_array_index(current_user.live_game.units, LiveGameUnit, i));
 }
 
 /** Show some fixtures.
@@ -134,7 +130,7 @@ void
 callback_show_fixtures(gint type)
 {
     const Fixture *fix = fixture_get(type, stat1, stat2, stat3,
-				     usr(current_user).tm);
+				     current_user.tm);
 
     treeview_show_fixtures(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")),
 			   fix->clid, fix->week_number, fix->week_round_number);
@@ -152,7 +148,7 @@ callback_show_tables(gint type)
     gint clid = -1;
 
     if(type == SHOW_CURRENT)
-	clid = usr(current_user).tm->clid;
+	clid = current_user.tm->clid;
     else if(type == SHOW_NEXT_LEAGUE)
     {
 	clid = league_cup_get_next_clid(stat1);
@@ -177,7 +173,7 @@ callback_get_loan(void)
 {
     gchar buf[SMALL], buf2[SMALL];
     gint max_loan = 
-	finance_team_drawing_credit_loan(usr(current_user).tm, TRUE) + usr(current_user).debt;
+	finance_team_drawing_credit_loan(current_user.tm, TRUE) + current_user.debt;
 
     if(max_loan <= 0)
     {
@@ -197,9 +193,9 @@ void
 callback_pay_loan(void)
 {
     gchar buf[SMALL], buf2[SMALL];
-    gint max_payback = MIN(BUDGET(current_user), -usr(current_user).debt);
+    gint max_payback = MIN(BUDGET(cur_user), -current_user.debt);
 
-    if(usr(current_user).debt == 0)
+    if(current_user.debt == 0)
     {
 	game_gui_print_message(_("You are not indebted."));
 	return;

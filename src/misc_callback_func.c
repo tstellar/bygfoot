@@ -151,11 +151,8 @@ misc_callback_pause_live_game(void)
     game_gui_set_main_window_sensitivity(TRUE);
     game_save_team_states();
 
-    if(stat2 == current_user)
-    {
-	treeview_show_user_player_list(&usr(current_user), 1);
-	treeview_show_user_player_list(&usr(current_user), 2);
-    }
+    if(stat2 == cur_user)
+	treeview_show_user_player_list(&current_user);
 
     stat0 = STATUS_LIVE_GAME_PAUSE;
 }
@@ -210,28 +207,28 @@ misc_callback_improve_stadium(void)
 	value_safety = gtk_spin_button_get_value_as_int(spinbutton_safety);
     gint cost_capacity, cost_safety;
 
-    if(value_safety + usr(current_user).counters[COUNT_USER_STADIUM_SAFETY]
-       > 101 - usr(current_user).tm->stadium.safety * 100)
+    if(value_safety + current_user.counters[COUNT_USER_STADIUM_SAFETY]
+       > 101 - current_user.tm->stadium.safety * 100)
     {
 	game_gui_show_warning("Safety improvement too high, reset to highest possible value.");
-	value_safety = (gint)rint(100 - usr(current_user).tm->stadium.safety * 100) -
-	    usr(current_user).counters[COUNT_USER_STADIUM_SAFETY];
+	value_safety = (gint)rint(100 - current_user.tm->stadium.safety * 100) -
+	    current_user.counters[COUNT_USER_STADIUM_SAFETY];
     }
 
     cost_capacity = finance_get_stadium_improvement_cost(value_capacity, TRUE);
     cost_safety = finance_get_stadium_improvement_cost((gfloat)value_safety / 100, FALSE);
 
-    if(cost_safety + cost_capacity > BUDGET(current_user))
+    if(cost_safety + cost_capacity > BUDGET(cur_user))
     {
 	game_gui_show_warning(_("You don't have the money."));
 	return;
     }
 
-    usr(current_user).money -= (cost_capacity + cost_safety);
-    usr(current_user).money_out[1][MON_OUT_STADIUM_IMPROVEMENT] -= (cost_safety + cost_capacity);
+    current_user.money -= (cost_capacity + cost_safety);
+    current_user.money_out[1][MON_OUT_STADIUM_IMPROVEMENT] -= (cost_safety + cost_capacity);
 
-    usr(current_user).counters[COUNT_USER_STADIUM_CAPACITY] += value_capacity;
-    usr(current_user).counters[COUNT_USER_STADIUM_SAFETY] += value_safety;
+    current_user.counters[COUNT_USER_STADIUM_CAPACITY] += value_capacity;
+    current_user.counters[COUNT_USER_STADIUM_SAFETY] += value_safety;
 
     window_destroy(&window.stadium, TRUE);
     game_gui_set_main_window_header();

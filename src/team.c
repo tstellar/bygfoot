@@ -5,6 +5,7 @@
 #include "game_gui.h"
 #include "league.h"
 #include "maths.h"
+#include "misc.h"
 #include "option.h"
 #include "player.h"
 #include "team.h"
@@ -692,11 +693,11 @@ team_change_attribute_with_message(Team *tm, gint attribute, gint new_value)
 	    g_warning("team_attribute_to_char: unknown attribute %d\n", attribute);
 	    break;
 	case TEAM_ATTRIBUTE_STYLE:
-	    usr(current_user).tm->style = new_value;
+	    current_user.tm->style = new_value;
 	    sprintf(buf, "Team style changed to %s.", team_attribute_to_char(attribute, new_value));
 	    break;
 	case TEAM_ATTRIBUTE_BOOST:
-	    usr(current_user).tm->boost = new_value;
+	    current_user.tm->boost = new_value;
 	    sprintf(buf, "Boost changed to %s.", team_attribute_to_char(attribute, new_value));
 	    break;
     }
@@ -826,7 +827,7 @@ team_update_user_team_weekly(Team *tm)
 {
     gint i;
 
-    for(i=0;i<tm->players->len;i++)
+    for(i=tm->players->len - 1;i>=0;i--)
 	player_update_weekly(tm, i);
 }
 
@@ -851,4 +852,86 @@ team_update_user_team_week_roundly(Team *tm)
 
     for(i=0;i<tm->players->len;i++)
 	player_update_week_roundly(tm, i);
+}
+
+/** Compare function for team arrays or pointer arrays. */
+gint
+team_compare_func(gconstpointer a, gconstpointer b, gpointer data)
+{
+    gint type = GPOINTER_TO_INT(data) % 100;;
+    const Team *tm1 = (GPOINTER_TO_INT(data) < 100) ? 
+	*(const Team**)a : (const Team*)a;
+    const Team *tm2 = (GPOINTER_TO_INT(data) < 100) ? 
+	*(const Team**)b : (const Team*)b;
+    gint return_value = 0;
+
+    if(type == TEAM_COMPARE_RANK)
+    {
+	if(tm1->clid == tm2->clid)
+	    return_value = misc_int_compare(team_rank(tm2, tm2->clid), team_rank(tm1, tm1->clid));
+	else
+	    return_value = misc_int_compare(
+		league_cup_get_index_from_clid(tm2->clid),
+		league_cup_get_index_from_clid(tm1->clid));
+    }
+
+    return return_value;
+}
+
+/** Return the teams from all leagues sorted by the
+    specified function. 
+    @param type The integer to pass to the compare function. */
+GPtrArray*
+team_get_sorted(GCompareDataFunc compare_function, gint type)
+{ 
+    gint i, j;
+    GPtrArray *teams = g_ptr_array_new();
+
+    for(i=0;i<ligs->len;i++)
+	for(j=0;j<lig(i).teams->len;j++)
+	    g_ptr_array_add(teams, team_get_pointer_from_ids(lig(i).id, j));
+
+    g_ptr_array_sort_with_data(teams, compare_function, GINT_TO_POINTER(type));
+
+    return teams;
+}
+
+/** Find a new team for a user, depending on whether he's been
+    fired or very successful. */
+Team*
+team_get_new(const Team *tm, gboolean fire)
+{
+    gint i;
+    gint lower = 0, upper = 0;
+    gint bound1 = (fire) ? const_int("int_team_new_bound_upper") :
+	const_int("int_team_new_bound_lower"),
+	bound2 = (fire) ? const_int("int_team_new_bound_lower") :
+	const_int("int_team_new_bound_upper");
+    gint idx = -1;
+    GPtrArray *teams = team_get_sorted(team_compare_func, TEAM_COMPARE_RANK);
+    Team *return_value;
+
+    for(i=0;i<teams->len;i++)
+	if((Team*)g_ptr_array_index(teams, i) != tm)
+	    upper++;
+	else
+	{
+	    idx = i;
+	    break;
+	}
+
+    for(i=teams->len - 1; i >= 0; i--)
+	if((Team*)g_ptr_array_index(teams, i) != tm)
+	    lower++;
+	else
+	    break;
+    
+    bound1 = MIN(bound1, upper);
+    bound2 = MIN(bound2, lower);
+
+    return_value = (Team*)g_ptr_array_index(teams, math_rndi(i - bound1, i + bound2));
+    while(return_value == tm)
+	return_value = (Team*)g_ptr_array_index(teams, math_rndi(i - bound1, i + bound2));
+
+    return return_value;
 }

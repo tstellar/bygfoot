@@ -29,6 +29,19 @@ enum FinanceValue
     FIN_END
 };
 
+/** Enum used to determine what kind of fixtures or
+    tables to show (e.g. when an arrow is clicked on). */
+enum ShowType
+{
+    SHOW_TEAM = 0,
+    SHOW_CURRENT,
+    SHOW_NEXT,
+    SHOW_PREVIOUS,
+    SHOW_NEXT_LEAGUE,
+    SHOW_PREVIOUS_LEAGUE,
+    SHOW_END
+};
+
 /** Possible values for a status variable. */
 enum Status0Value
 {
@@ -45,20 +58,11 @@ enum Status0Value
     STATUS_SHOW_FINANCES,
     STATUS_GET_LOAN,
     STATUS_PAY_LOAN,
+    STATUS_SHOW_EVENT,
+    STATUS_JOB_OFFER_SUCCESS,
+    STATUS_JOB_OFFER_FIRE_FINANCE,
+    STATUS_JOB_OFFER_FIRE_FAILURE,
     STATUS_END
-};
-
-/** Enum used to determine what kind of fixtures or
-    tables to show (e.g. when an arrow is clicked on). */
-enum ShowType
-{
-    SHOW_TEAM = 0,
-    SHOW_CURRENT,
-    SHOW_NEXT,
-    SHOW_PREVIOUS,
-    SHOW_NEXT_LEAGUE,
-    SHOW_PREVIOUS_LEAGUE,
-    SHOW_END
 };
 
 #endif

@@ -29,6 +29,9 @@ GArray *transfer_list;
 /** These help us keep track of what's happening. */
 gint status[6];
 
+/** A pointer we store temporary stuff in. */
+gpointer statp;
+
 /** The currently selected rows in the treeviews. */
 gint selected_row[2];
 
@@ -50,6 +53,6 @@ LiveGame live_game_temp;
 GArray *users;
 
 /** The index of the current user in the #users array. */
-gint current_user;
+gint cur_user;
 
 gint timeout_id;

@@ -558,12 +558,12 @@ game_substitute_player(Team *tm, gint player_number)
 	team_rearrange(tm);
     }
 
-    if(team_is_user(tm) == current_user)
+    if(team_is_user(tm) == cur_user)
     {
 	game_gui_write_av_skills();
 	
 	selected_row[0] = -1;	
-	treeview_show_user_player_list(&usr(current_user), 1);
+	treeview_show_user_player_list(&current_user);
     }
 
     return substitute;
@@ -683,12 +683,12 @@ game_substitute_player_send_off(Team *tm, gint player_number,
     team_change_structure(tm, team_find_appropriate_structure(tm));
     team_rearrange(tm);
 
-    if(team_is_user(tm) == current_user)
+    if(team_is_user(tm) == cur_user)
     {
 	game_gui_write_av_skills();
 	
 	selected_row[0] = -1;	
-	treeview_show_user_player_list(&usr(current_user), 1);
+	treeview_show_user_player_list(&current_user);
     }
 }
 

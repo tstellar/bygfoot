@@ -364,7 +364,7 @@ player_all_cards(const Player *pl)
     return sum;
 }
 
-/** Compare two players in a pointer array.
+/** Compare two players in a (pointer) array.
     @param pl1 Pointer to the pointer to the first player.
     @param pl2 Pointer to the pointer to the second player.
     @param data Coded integer that tells us which attribute to compare. 
@@ -781,6 +781,8 @@ player_games_goals_get(const Player *pl, gint clid, gint type)
 		return_value = g_array_index(pl->games_goals, PlayerGamesGoals, i).goals;
 	    else if(type == PLAYER_VALUE_SHOTS)
 		return_value = g_array_index(pl->games_goals, PlayerGamesGoals, i).shots;
+	    else
+		g_warning("player_games_goals_get: unknown type %d.\n", type);
 	}
 
     return return_value;
@@ -973,7 +975,8 @@ player_update_weekly(Team *tm, gint idx)
 void
 player_remove_contract(Team *tm, gint idx)
 {
-    /*todo: add event*/
+    user_event_add(user_from_team(tm), EVENT_TYPE_PLAYER_LEFT, -1, -1, NULL,
+		   player_of(tm, idx)->name->str);
     player_remove_from_team(tm, idx);
 }
 

@@ -49,7 +49,7 @@ treeview_show_player_list(GtkTreeView *treeview, GPtrArray *players, PlayerListA
 			  gboolean show_separator);
 
 void
-treeview_show_user_player_list(const User *user, gint player_list);
+treeview_show_user_player_list(const User *user);
 
 void
 treeview_live_game_show_commentary(const LiveGameUnit *unit);
@@ -136,5 +136,11 @@ treeview_set_up_finances(GtkTreeView *treeview);
 
 GtkTreeModel*
 treeview_create_finances(const User* user);
+
+void
+treeview_show_player_list_team(GtkTreeView *treeview, const Team *tm, gint scout);
+
+PlayerListAttribute
+treeview_get_attributes_from_scout(gint scout);
 
 #endif

@@ -4,6 +4,7 @@
 #include "maths.h"
 #include "option.h"
 #include "player.h"
+#include "team.h"
 #include "user.h"
 #include "window.h"
 
@@ -13,6 +14,7 @@ finance_update_user_weekly(User *user)
 {
     gint i;
     Team *tm = user->tm;
+    Team *new_team = NULL;
     gfloat physio_factor[4] =
 	{const_float("float_finance_physio_factor1"),
 	 const_float("float_finance_physio_factor2"),
@@ -57,11 +59,13 @@ finance_update_user_weekly(User *user)
     if(user->counters[COUNT_USER_LOAN] > -1)
 	user->counters[COUNT_USER_LOAN]--;
     if(user->counters[COUNT_USER_LOAN] == 0)
-	/*todo*/
-	;
+	user_event_add(user, EVENT_TYPE_PAYBACK, -1, -1, NULL, 
+		       _("You have to pay back your loan this week."));
     else if(user->counters[COUNT_USER_LOAN] == -1 && user->debt != 0)
-	/*todo*/
-	;
+    {
+	new_team = team_get_new(tm, TRUE);
+	user_event_add(user, EVENT_TYPE_FIRE_FINANCE, -1, -1, new_team, NULL);
+    }
 }
 
 /** Return a base value for team finances.
@@ -107,15 +111,15 @@ finance_get_loan(gint value)
 {
     gchar buf[SMALL];
 
-    usr(current_user).money += value;
-    usr(current_user).debt -= value;
+    current_user.money += value;
+    current_user.debt -= value;
 
-    usr(current_user).counters[COUNT_USER_LOAN] = (usr(current_user).counters[COUNT_USER_LOAN] == -1) ?
+    current_user.counters[COUNT_USER_LOAN] = (current_user.counters[COUNT_USER_LOAN] == -1) ?
 	const_int("int_finance_payback_weeks") : 
-	usr(current_user).counters[COUNT_USER_LOAN];    
+	current_user.counters[COUNT_USER_LOAN];    
 
     sprintf(buf, _("You have %d weeks to pay back your loan."),
-	    usr(current_user).counters[COUNT_USER_LOAN]); 
+	    current_user.counters[COUNT_USER_LOAN]); 
     game_gui_print_message(buf);
 
     window_destroy(&window.digits, TRUE);
@@ -130,24 +134,24 @@ void
 finance_pay_loan(gint value)
 {
     gchar buf[SMALL];
-    gint add = (gint)rint((gfloat)value / (gfloat)(-usr(current_user).debt) * 
+    gint add = (gint)rint((gfloat)value / (gfloat)(-current_user.debt) * 
 			  (gfloat)const_int("int_finance_payback_weeks"));    
 
-    usr(current_user).money -= value;
-    usr(current_user).debt += value;
+    current_user.money -= value;
+    current_user.debt += value;
 
-    if(usr(current_user).debt == 0)
+    if(current_user.debt == 0)
     {
-	usr(current_user).counters[COUNT_USER_LOAN] = -1;
+	current_user.counters[COUNT_USER_LOAN] = -1;
 	strcpy(buf, _("You are free from debt."));
     }
     else
     {
-	usr(current_user).counters[COUNT_USER_LOAN] = 
-	    MIN(usr(current_user).counters[COUNT_USER_LOAN] + add,
+	current_user.counters[COUNT_USER_LOAN] = 
+	    MIN(current_user.counters[COUNT_USER_LOAN] + add,
 		const_int("int_finance_payback_weeks"));
 	sprintf(buf, _("You have %d weeks to pay back the rest of your loan."),
-		usr(current_user).counters[COUNT_USER_LOAN]);
+		current_user.counters[COUNT_USER_LOAN]);
     }
 
     game_gui_print_message(buf);
@@ -167,7 +171,7 @@ finance_get_stadium_improvement_cost(gfloat value, gboolean capacity)
 
     if(capacity)
     {
-	return_value = finance_wage_unit(usr(current_user).tm) * 
+	return_value = finance_wage_unit(current_user.tm) * 
 	    (value / (gfloat)const_int("int_stadium_improvement_base_seats"))*
 	    const_float("float_stadium_improvement_wage_unit_factor_seats");
 
@@ -181,7 +185,7 @@ finance_get_stadium_improvement_cost(gfloat value, gboolean capacity)
     }
     else
     {
-	return_value = finance_wage_unit(usr(current_user).tm) * 
+	return_value = finance_wage_unit(current_user.tm) * 
 	    (value / const_float("float_stadium_improvement_base_safety"))*
 	    const_float("float_stadium_improvement_wage_unit_factor_safety");
 

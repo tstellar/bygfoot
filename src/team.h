@@ -6,6 +6,13 @@
 #include "fixture_struct.h"
 #include "team_struct.h"
 
+/** Possibilities for team comparison. */
+enum TeamCompare
+{
+    TEAM_COMPARE_RANK = 0,
+    TEAM_COMPARE_END
+};
+
 Team
 team_new(void);
 
@@ -107,5 +114,14 @@ team_update_cpu_new_players(Team *tm);
 
 void
 team_update_user_team_week_roundly(Team *tm);
+
+Team*
+team_get_new(const Team *tm, gboolean fire);
+
+GPtrArray*
+team_get_sorted(GCompareDataFunc compare_function, gint type);
+
+gint
+team_compare_func(gconstpointer a, gconstpointer b, gpointer data);
 
 #endif

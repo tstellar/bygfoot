@@ -15,13 +15,13 @@
 #define opt_set_str(name, value) option_set_string(name, options, value)
 #define opt_set_float(name, value) option_set_float(name, options, value)
 
-#define opt_user_str(name) option_string(name, usr(current_user).options)
-#define opt_user_int(name) option_int(name, usr(current_user).options)
-#define opt_user_float(name) option_float(name, usr(current_user).options)
+#define opt_user_str(name) option_string(name, current_user.options)
+#define opt_user_int(name) option_int(name, current_user.options)
+#define opt_user_float(name) option_float(name, current_user.options)
 
-#define opt_user_set_int(name, value) option_set_int(name, usr(current_user).options, value)
-#define opt_user_set_str(name, value) option_set_string(name, usr(current_user).options, value)
-#define opt_user_set_float(name, value) option_set_float(name, usr(current_user).options, value)
+#define opt_user_set_int(name, value) option_set_int(name, current_user.options, value)
+#define opt_user_set_str(name, value) option_set_string(name, current_user.options, value)
+#define opt_user_set_float(name, value) option_set_float(name, current_user.options, value)
 
 #define const_str(name) option_string(name, constants)
 #define const_int(name) option_int(name, constants)

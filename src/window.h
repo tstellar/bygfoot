@@ -15,6 +15,7 @@ enum Windows
     WINDOW_PROGRESS,
     WINDOW_DIGITS,
     WINDOW_STADIUM,
+    WINDOW_JOB_OFFER,
     WINDOW_END
 };
 

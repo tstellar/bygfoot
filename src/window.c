@@ -85,7 +85,7 @@ void
 window_show_stadium(void)
 {
     gchar buf[SMALL];
-    const Team *tm = usr(current_user).tm;
+    const Team *tm = current_user.tm;
     GtkLabel *label_capacity,
 	*label_costs_capacity, *label_costs_safety,
 	*label_duration_capacity, *label_duration_safety,
@@ -129,16 +129,16 @@ window_show_stadium(void)
     sprintf(buf, "%d%%", (gint)rint(tm->stadium.safety * 100));
     gtk_progress_bar_set_text(progressbar_safety, buf);
 
-    if(usr(current_user).counters[COUNT_USER_STADIUM_CAPACITY] + 
-       usr(current_user).counters[COUNT_USER_STADIUM_SAFETY] != 0)
+    if(current_user.counters[COUNT_USER_STADIUM_CAPACITY] + 
+       current_user.counters[COUNT_USER_STADIUM_SAFETY] != 0)
     {
 	sprintf(buf, _("Improvement in progress.\n%d seats and %d%% safety still to be done.\nExpected finish: %d weeks."),
-		usr(current_user).counters[COUNT_USER_STADIUM_CAPACITY],
-		usr(current_user).counters[COUNT_USER_STADIUM_SAFETY],
+		current_user.counters[COUNT_USER_STADIUM_CAPACITY],
+		current_user.counters[COUNT_USER_STADIUM_SAFETY],
 		MAX(finance_get_stadium_improvement_duration(
-			(gfloat)usr(current_user).counters[COUNT_USER_STADIUM_CAPACITY], TRUE),
+			(gfloat)current_user.counters[COUNT_USER_STADIUM_CAPACITY], TRUE),
 		    finance_get_stadium_improvement_duration(
-			(gfloat)usr(current_user).counters[COUNT_USER_STADIUM_SAFETY] / 100, FALSE)));
+			(gfloat)current_user.counters[COUNT_USER_STADIUM_SAFETY] / 100, FALSE)));
 	gtk_label_set_text(label_stadium_status, buf);
     }
     else
@@ -248,6 +248,17 @@ window_create(gint window_type)
 	    }
 	    wind = window.stadium;
 	    strcpy(buf, _("Your stadium"));
+	    break;
+	case WINDOW_JOB_OFFER:
+	    if(window.job_offer != NULL)
+		g_warning("window_create: called on already existing window\n");
+	    else
+	    {
+		popups_active++;
+		window.job_offer = create_window_job_offer();
+	    }
+	    wind = window.job_offer;
+	    strcpy(buf, _("Job offer"));
 	    break;
     }
 

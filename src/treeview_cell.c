@@ -40,8 +40,8 @@ treeview_cell_int_to_cell(GtkTreeViewColumn *col,
     gint value;
     gchar  buf[SMALL];
 
-    if(strcmp(usr(current_user).font_name->str, "0") != 0)
-	g_object_set(renderer, "font", usr(current_user).font_name->str, NULL);
+    if(strcmp(current_user.font_name->str, "0") != 0)
+	g_object_set(renderer, "font", current_user.font_name->str, NULL);
 
     gtk_tree_model_get(model, iter, column, &value, -1);
     
@@ -66,8 +66,8 @@ treeview_cell_player_to_cell(GtkTreeViewColumn *col,
     gchar  buf[SMALL];
     Player *pl;
 
-    if(strcmp(usr(current_user).font_name->str, "0") != 0)
-	g_object_set(renderer, "font", usr(current_user).font_name->str, NULL);
+    if(strcmp(current_user.font_name->str, "0") != 0)
+	g_object_set(renderer, "font", current_user.font_name->str, NULL);
 
     g_object_set(renderer, "text", "", "foreground",
 		 const_str("string_treeview_cell_color_default_foreground"),
@@ -101,13 +101,13 @@ treeview_cell_player_to_cell(GtkTreeViewColumn *col,
 	    treeview_cell_player_fitness_to_cell(renderer, buf, pl->fitness);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_GAMES:
-	    treeview_cell_player_games_goals_to_cell(buf, pl, PLAYER_LIST_ATTRIBUTE_GAMES);
+	    treeview_cell_player_games_goals_to_cell(buf, pl, PLAYER_VALUE_GAMES);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_GOALS:
-	    treeview_cell_player_games_goals_to_cell(buf, pl, PLAYER_LIST_ATTRIBUTE_GOALS);
+	    treeview_cell_player_games_goals_to_cell(buf, pl, PLAYER_VALUE_GOALS);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_SHOTS:
-	    treeview_cell_player_games_goals_to_cell(buf, pl, PLAYER_LIST_ATTRIBUTE_SHOTS);
+	    treeview_cell_player_games_goals_to_cell(buf, pl, PLAYER_VALUE_SHOTS);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_STATUS:
 	    treeview_cell_player_status_to_cell(renderer, buf, pl);
@@ -120,7 +120,7 @@ treeview_cell_player_to_cell(GtkTreeViewColumn *col,
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_ETAL:
 	    sprintf(buf, "%.*f", opt_int("int_opt_player_precision"),
-		    pl->etal[usr(current_user).scout % 10]);
+		    pl->etal[current_user.scout % 10]);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_VALUE:
 	    misc_print_grouped_int(pl->value, buf, FALSE);
@@ -364,8 +364,8 @@ treeview_cell_live_game_result(GtkTreeViewColumn *col,
     Fixture *fix = NULL;
     LiveGameUnit *unit = NULL;
 
-    if(strcmp(usr(current_user).font_name->str, "0") != 0)
-	g_object_set(renderer, "font", usr(current_user).font_name->str, NULL);
+    if(strcmp(current_user.font_name->str, "0") != 0)
+	g_object_set(renderer, "font", current_user.font_name->str, NULL);
 
     strcpy(buf, "");
 

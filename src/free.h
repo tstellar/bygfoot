@@ -69,4 +69,7 @@ free_live_game(LiveGame *match);
 void
 free_option_array(GArray **array, gboolean reset);
 
+void
+free_event(Event *event);
+
 #endif

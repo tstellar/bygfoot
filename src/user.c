@@ -1,5 +1,6 @@
 #include "fixture.h"
 #include "free.h"
+#include "game_gui.h"
 #include "league.h"
 #include "maths.h"
 #include "option.h"
@@ -27,12 +28,7 @@ user_new(void)
 	    new.live_game.stats.players[i][1] = NULL;
 
     new.options = g_array_new(FALSE, FALSE, sizeof(Option));
-
-    for(i=0;i<COUNT_USER_END;i++)
-	new.counters[i] = 0;
-
-    new.counters[COUNT_USER_LOAN] =
-	new.counters[COUNT_USER_POSITIVE] = -1;
+    new.events = g_array_new(FALSE, FALSE, sizeof(Event)); 
 
     return new;
 }
@@ -87,8 +83,23 @@ user_set_up_team(User *user)
     user->scout = user->physio = QUALITY_AVERAGE;
     
     user_set_up_finances(user);
+    user_set_up_counters(user);
 }
 
+
+/** Set the counters of the user to their initial values. */
+void
+user_set_up_counters(User *user)
+{
+    gint i;
+
+    for(i=0;i<COUNT_USER_END;i++)
+	user->counters[i] = 0;
+
+    user->counters[COUNT_USER_LOAN] =
+	user->counters[COUNT_USER_POSITIVE] = -1;
+
+}
 /** Set up the user's finances when he's got a new team.
     @param user The user we set up the finances for. */
 void
@@ -117,6 +128,8 @@ user_remove(gint idx, gboolean regenerate_team)
 {
     free_user(&usr(idx));
     g_array_remove_index(users, idx);
+
+    /*todo regenerate*/
 }
 
 void
@@ -189,12 +202,6 @@ user_weekly_update_counters(User *user)
     gint increase_capacity;
     gfloat increase_safety;
 
-    printf("cap %d saf %.2f cnts %d %d\n",
-	   user->tm->stadium.capacity,
-	   user->tm->stadium.safety,
-	   cnts[COUNT_USER_STADIUM_CAPACITY],
-	   cnts[COUNT_USER_STADIUM_SAFETY]);
-
     if(cnts[COUNT_USER_STADIUM_CAPACITY] > 0)
     {
 	increase_capacity = math_rndi(const_int("int_stadium_improvement_base_seats") - 
@@ -220,12 +227,101 @@ user_weekly_update_counters(User *user)
 	cnts[COUNT_USER_STADIUM_SAFETY] = 
 	    MAX(cnts[COUNT_USER_STADIUM_SAFETY] - (gint)rint(increase_safety * 100), 0);
     }
+}
 
-    printf("inc %d %.2f\n", increase_capacity, increase_safety);
+/** Return a default new user event. */
+Event
+user_event_new(void)
+{
+    Event new;
 
-    printf("cap %d saf %.2f cnts %d %d\n",
-	   user->tm->stadium.capacity,
-	   user->tm->stadium.safety,
-	   cnts[COUNT_USER_STADIUM_CAPACITY],
-	   cnts[COUNT_USER_STADIUM_SAFETY]);
+    new.user = NULL;
+    new.type = -1;
+    new.value1 = new.value2 = -1;
+    new.pointer_value = NULL;
+    new.string_value = NULL;
+
+    return new;
+}
+
+/** Add an event with the specified values to the event array of the user. */
+void
+user_event_add(User *user, gint type, gint value1, gint value2, 
+	       gpointer pointer_value, gchar *string_value)
+{
+    Event new = user_event_new();
+
+    new.user = user;
+    new.type = type;
+    new.value1 = value1;
+    new.value2 = value2;
+    new.pointer_value = pointer_value;
+    
+    if(string_value != NULL)
+	new.string_value = g_string_new(string_value);
+    
+
+    g_array_append_val(user->events, new);
+}
+
+/** Remove an event from the user event array.
+    @param user The user.
+    @param idx The index of the event in the array. */
+void
+user_event_remove(User *user, gint idx)
+{
+    free_event(&g_array_index(user->events, Event, idx));
+    g_array_remove_index(user->events, idx);
+}
+
+/** Show the next event for the current user. */
+void
+user_event_show_next(void)
+{    
+    Event *event = NULL;
+    gchar buf[BIG];
+
+    if(current_user.events->len == 0)
+    {
+	stat0 = STATUS_MAIN;
+	return;
+    }
+
+    stat0 = STATUS_SHOW_EVENT;
+
+    event = &g_array_index(current_user.events, Event, 0);
+
+    switch(event->type)
+    {
+	default:
+	    g_warning("user_event_show_next: unknown event type %d\n", event->type);
+	    break;
+	case EVENT_TYPE_PLAYER_LEFT:
+	    sprintf(buf, _("%s has left your team because his contract expired."),
+		    event->string_value->str);
+	    game_gui_show_warning(buf);
+	    break;
+	case EVENT_TYPE_PAYBACK:
+	    game_gui_show_warning(event->string_value->str);
+	    user_event_remove(&current_user, 0);
+	    break;
+	case EVENT_TYPE_FIRE_FINANCE:
+	    stat0 = STATUS_JOB_OFFER_FIRE_FINANCE;
+	    statp = event->pointer_value;
+	    game_gui_show_job_offer((Team*)event->pointer_value, STATUS_JOB_OFFER_FIRE_FINANCE);
+	    user_event_remove(&current_user, 0);
+	    break;
+    }
+}
+
+/** Change the team of a user. */
+void
+user_change_team(User *user, Team *tm)
+{
+    gint i;
+    user->tm = tm;
+
+    user_set_up_team(user);
+    for(i=user->events->len - 1; i >= 0; i--)
+	user_event_remove(user, i);    
 }

@@ -64,6 +64,7 @@ enum ExitCodes
     EXIT_NO_LEAGUES, /**< The game must contain at least one league. */
     EXIT_CHOOSE_TEAM_ERROR, /**< There was a problem loading the choose_teams. @see cup_load_choose_teams() */
     EXIT_FIXTURE_WRITE_ERROR, /** There was an error writing the fixtures. */
+    EXIT_USER_FIRED,
     EXIT_END
 };
 
@@ -91,7 +92,8 @@ typedef struct
 	*warning,
 	*progress,
 	*digits,
-	*stadium;
+	*stadium,
+	*job_offer;
 } Windows;
 
 /** A struct representing an option or a constant. */

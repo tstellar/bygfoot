@@ -40,10 +40,24 @@ free_users(void)
 void
 free_user(User *user)
 {
+    gint i;
+
     free_g_string(&user->name);
     free_g_string(&user->font_name);
     free_live_game(&user->live_game);
     free_option_array(&user->options, FALSE);
+
+    for(i=0;i<user->events->len;i++)
+	free_event(&g_array_index(user->events, Event, i));
+
+    free_g_array(&user->events);
+}
+
+/** Free a user event. */
+void
+free_event(Event *event)
+{
+    free_g_string(&event->string_value);
 }
 
 /** Free an array of options.

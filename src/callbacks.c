@@ -535,7 +535,9 @@ void
 on_menu_next_user_activate             (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    current_user = (current_user + 1) % users->len;
+    cur_user = (cur_user + 1) % users->len;
+
+    user_event_show_next();
 
     game_gui_show_main();
 }
@@ -545,7 +547,9 @@ void
 on_menu_previous_user_activate         (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    current_user = (current_user == 0) ? users->len - 1 : current_user - 1;
+    cur_user = (cur_user == 0) ? users->len - 1 : cur_user - 1;
+
+    user_event_show_next();
 
     game_gui_show_main();
 }
@@ -604,7 +608,7 @@ on_menu_user_show_last_stats_activate  (GtkMenuItem     *menuitem,
 {
     stat0 = STATUS_SHOW_LAST_MATCH_STATS;
     treeview_show_game_stats(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")),
-			     &usr(current_user).live_game);
+			     &current_user.live_game);
 }
 
 gboolean
@@ -618,15 +622,15 @@ on_eventbox_style_button_press_event   (GtkWidget       *widget,
 	return FALSE;
 
     if(event->button == 3)
-	new_style = (usr(current_user).tm->style != 2) ?
-	    usr(current_user).tm->style + 1 : -2;
+	new_style = (current_user.tm->style != 2) ?
+	    current_user.tm->style + 1 : -2;
     else if(event->button == 1)
-	new_style = (usr(current_user).tm->style != -2) ?
-	    usr(current_user).tm->style - 1 : 2;
+	new_style = (current_user.tm->style != -2) ?
+	    current_user.tm->style - 1 : 2;
     else
 	return FALSE;
 
-    team_change_attribute_with_message(usr(current_user).tm, TEAM_ATTRIBUTE_STYLE, new_style);
+    team_change_attribute_with_message(current_user.tm, TEAM_ATTRIBUTE_STYLE, new_style);
 
     game_gui_write_meters();
     game_gui_write_radio_items();
@@ -646,15 +650,15 @@ on_eventbox_boost_button_press_event   (GtkWidget       *widget,
 	return FALSE;
 
     if(event->button == 3)
-	new_boost = (usr(current_user).tm->boost != 1) ?
-	    usr(current_user).tm->boost + 1 : -1;
+	new_boost = (current_user.tm->boost != 1) ?
+	    current_user.tm->boost + 1 : -1;
     else if(event->button == 1)
-	new_boost = (usr(current_user).tm->boost != -1) ?
-	    usr(current_user).tm->boost - 1 : 1;
+	new_boost = (current_user.tm->boost != -1) ?
+	    current_user.tm->boost - 1 : 1;
     else
 	return FALSE;
 
-    team_change_attribute_with_message(usr(current_user).tm, TEAM_ATTRIBUTE_BOOST, new_boost);
+    team_change_attribute_with_message(current_user.tm, TEAM_ATTRIBUTE_BOOST, new_boost);
 
     game_gui_write_meters();
     game_gui_write_radio_items();
@@ -669,7 +673,7 @@ on_menu_show_finances_activate         (GtkMenuItem     *menuitem,
     stat0 = STATUS_SHOW_FINANCES;
     game_gui_print_message("Left-click on the list to get a loan. Right-click to pay back.");
     treeview_show_finances(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")),
-			   &usr(current_user));
+			   &current_user);
 }
 
 

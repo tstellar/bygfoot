@@ -513,19 +513,62 @@ treeview_show_player_list(GtkTreeView *treeview, GPtrArray *players, PlayerListA
 }
 
 /** Show the list of the user's players in the left view.
-    @param user The user we show the players of.
-    @param player_list The tab we use. */
+    @param user The user we show the players of. */
 void
-treeview_show_user_player_list(const User *user, gint player_list)
+treeview_show_user_player_list(const User *user)
 {
+    gint i;
+    GPtrArray *players = NULL;
     PlayerListAttribute attribute;
-    GtkWidget *treeview = (player_list == 1) ?
-	lookup_widget(window.main, "player_list1") :
-	lookup_widget(window.main, "player_list2");
+    GtkWidget *treeview[2] = 
+	{lookup_widget(window.main, "player_list1"),
+	 lookup_widget(window.main, "player_list2")};
 
-    user_set_player_list_attributes(user, &attribute, player_list);
-    treeview_show_player_list(GTK_TREE_VIEW(treeview),
-			      team_get_player_pointers(user->tm), attribute, TRUE);
+    for(i=0;i<2;i++)
+    {
+	players = team_get_player_pointers(user->tm);
+	user_set_player_list_attributes(user, &attribute, i + 1);
+	treeview_show_player_list(GTK_TREE_VIEW(treeview[i]), players, attribute, TRUE);
+    }
+}
+
+/** Determine the attributes shown in the player list depending on the scout
+    quality. */
+PlayerListAttribute
+treeview_get_attributes_from_scout(gint scout)
+{
+    gint i;
+    PlayerListAttribute attribute;
+
+    for(i=0;i<PLAYER_LIST_ATTRIBUTE_END;i++)
+	attribute.on_off[i] = FALSE;
+
+    attribute.on_off[PLAYER_LIST_ATTRIBUTE_NAME] =
+	attribute.on_off[PLAYER_LIST_ATTRIBUTE_POS] =
+	attribute.on_off[PLAYER_LIST_ATTRIBUTE_SKILL] =
+	attribute.on_off[PLAYER_LIST_ATTRIBUTE_TEAM] =
+	attribute.on_off[PLAYER_LIST_ATTRIBUTE_LEAGUE_CUP] = TRUE;
+
+    if(scout < 3)
+	attribute.on_off[PLAYER_LIST_ATTRIBUTE_ETAL] = TRUE;
+    if(scout < 2)
+	attribute.on_off[PLAYER_LIST_ATTRIBUTE_AGE] = TRUE;
+    if(scout < 1)
+	attribute.on_off[PLAYER_LIST_ATTRIBUTE_GAMES] =
+	    attribute.on_off[PLAYER_LIST_ATTRIBUTE_GOALS] = TRUE;
+
+    return attribute;
+}
+
+/** Show the player list of a foreign team depending on the
+    scout quality. */
+void
+treeview_show_player_list_team(GtkTreeView *treeview, const Team *tm, gint scout)
+{
+    GPtrArray *players = team_get_player_pointers(tm);
+
+    treeview_show_player_list(treeview, players, 
+			      treeview_get_attributes_from_scout(scout), TRUE);
 }
 
 /** Show the commentary and the minute belonging to the unit. 
@@ -1006,7 +1049,7 @@ treeview_create_fixture(const Fixture *fix, GtkListStore *liststore)
     
     if(fixture_user_team_involved(fix) != -1)
     {
-	if(fixture_user_team_involved(fix) == current_user)
+	if(fixture_user_team_involved(fix) == cur_user)
 	{
 	    colour_fg = const_str("string_treeview_current_user_fg");
 	    colour_bg = const_str("string_treeview_current_user_bg");
@@ -1194,7 +1237,7 @@ treeview_get_table_element_colours(const Table *table, gint idx, gchar *colour_f
     strcpy(colour_fg, const_str("string_treeview_cell_color_default_foreground"));
     strcpy(colour_bg, const_str("string_treeview_cell_color_default_background"));
     
-    if(user && elem->team == usr(current_user).tm)
+    if(user && elem->team == current_user.tm)
     {
 	strcpy(colour_fg, const_str("string_treeview_current_user_fg"));
 	strcpy(colour_bg, const_str("string_treeview_current_user_bg"));

@@ -44,4 +44,7 @@ game_gui_show_warning(gchar *text);
 void
 game_gui_write_meters(void);
 
+void
+game_gui_show_job_offer(Team *team, gint type);
+
 #endif
