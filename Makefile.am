@@ -1,42 +1,55 @@
 ## Process this file with automake to produce Makefile.in
-
 AM_CFLAGS = -Wall
 
-SUBDIRS = src po
+INCLUDES = \
+	-DPACKAGE_DATA_DIR=\""$(datadir)"\" \
+	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
+	@PACKAGE_CFLAGS@
 
-bin_SCRIPTS = bygfoot-update
+bin_PROGRAMS = bygfoot
 
-EXTRA_DIST = \
-	autogen.sh \
-	bygfoot.glade \
-	bygfoot.gladep
+bygfoot_SOURCES = \
+	callback_func.c callback_func.h callbacks.h cup.h finance.h fixture.h game_gui.h league.h live_game.h misc.h option.h player.h start_end.h team.h transfer.h treeview.h user.h window.h \
+	callbacks.c callbacks.h callback_func.h game_gui.h main.h team.h transfer.h treeview.h user.h window.h \
+	cup.c cup.h free.h main.h maths.h misc.h team.h variables.h xml_league.h \
+	file.c file.h free.h main.h misc.h option.h support.h variables.h \
+	finance.c callbacks.h finance.h game_gui.h maths.h option.h player.h team.h user.h \
+	fixture.c cup.h fixture.h free.h league.h main.h maths.h misc.h table.h team.h variables.h \
+	free.c free.h user.h variables.h \
+	game.c cup.h finance.h fixture.h game.h game_gui.h league.h live_game.h maths.h misc.h option.h player.h table.h team.h treeview.h user.h variables.h \
+	game_gui.c file.h game_gui.h gui.h league.h live_game.h maths.h misc.h option.h treeview.h support.h team.h user.h variables.h window.h \
+	gui.c gui.h misc.h support.h variables.h window.h \
+	interface.c callbacks.h interface.h support.h \
+	league.c cup.h league.h team.h variables.h \
+	live_game.c fixture.h free.h game.h game_gui.h live_game.h maths.h misc_callback_func.h option.h player.h support.h team.h treeview.h user.h variables.h window.h \
+	load_save.c load_save.h  \
+	main.c misc_callbacks.h file.h free.h main.h transfer_struct.h variables.h window.h \
+	maths.c maths.h misc.h \
+	misc.c main.h maths.h misc.h \
+	misc_callbacks.c free.h misc_callback_func.h misc_callbacks.h \
+	misc_callback_func.c misc_callback_func.h start_end.h support.h team.h treeview.h user.h variables.h xml_country.h \
+	misc_interface.c  misc_interface.h misc_callbacks.h support.h \
+	misc2_callbacks.c finance.h game_gui.h main.h misc2_callbacks.h misc2_callback_func.h misc2_interface.h support.h transfer.h user.h window.h \
+	misc2_callback_func.c finance.h game_gui.h maths.h misc2_callback_func.h option.h player.h team.h treeview.h transfer.h user.h \
+	misc2_interface.c  misc2_interface.h misc2_callbacks.h support.h \
+	option.c option.h variables.h \
+	option_gui.c option_gui.h option.h variables.h support.h \
+	options_callbacks.c options_callbacks.h \
+	options_interface.c  options_interface.h options_callbacks.h support.h \
+	player.c cup.h free.h game_gui.h league.h maths.h misc.h option.h player.h team.h user.h \
+	start_end.c cup.h file.h finance.h fixture.h game_gui.h gui.h league.h live_game.h main.h maths.h start_end.h table.h team.h transfer.h user.h variables.h xml_name.h \
+	support.c support.h \
+	table.c cup.h league.h table.h variables.h \
+	team.c cup.h fixture.h game.h game_gui.h league.h maths.h misc.h option.h player.h team.h transfer.h user.h \
+	transfer.c finance.h free.h maths.h option.h player.h team.h transfer.h user.h \
+	treeview.c cup.h file.h finance.h fixture.h free.h league.h live_game.h maths.h misc.h player.h option.h support.h team.h transfer.h treeview.h treeview_cell.h user.h \
+	treeview_cell.c misc.h option.h player.h team.h treeview.h treeview_cell.h user.h variables.h \
+	user.c fixture.h free.h game_gui.h maths.h misc.h option.h player.h transfer.h user.h window.h \
+	window.c file.h finance.h free.h game_gui.h gui.h interface.h misc_interface.h misc2_interface.h option.h support.h user.h window.h \
+	xml_cup.c cup.h file.h misc.h xml_cup.h \
+	xml_country.c file.h free.h misc.h variables.h xml_cup.h xml_country.h xml_league.h \
+	xml_league.c cup_struct.h file.h free.h league.h misc.h team.h table.h variables.h xml_league.h xml_cup.h \
+	xml_name.c file.h free.h maths.h misc.h variables.h xml_name.h
 
-dist_man6_MANS = man/bygfoot.6
+bygfoot_LDADD = @PACKAGE_LIBS@ $(INTLLIBS)
 
-SUPPORT_DIRS = support_files support_files/names support_files/pixmaps support_files/pixmaps/live_game support_files/definitions 
-
-SUPPORT_FILES = support_files/names/player_names.xml support_files/bygfoot.conf support_files/pixmaps/flag_ro.png support_files/pixmaps/bygfoot_team_editor_icon.png support_files/pixmaps/bygfoot_icon.png support_files/pixmaps/pay_loan.png support_files/pixmaps/inc_cap.png support_files/pixmaps/new_week.png support_files/pixmaps/preview.png support_files/pixmaps/get_loan.png support_files/pixmaps/transfers.png support_files/pixmaps/fire_player.png support_files/pixmaps/inc_saf.png support_files/pixmaps/football.png support_files/pixmaps/flag_br.png support_files/pixmaps/flag_de.png support_files/pixmaps/fin_stad.png support_files/pixmaps/flag_en.png support_files/pixmaps/flag_es.png support_files/pixmaps/flag_fr.png support_files/pixmaps/possession_ball.png support_files/pixmaps/flag_hu.png support_files/pixmaps/live_game/yellow.png support_files/pixmaps/live_game/red.png support_files/pixmaps/live_game/save.png support_files/pixmaps/live_game/goal.png support_files/pixmaps/flag_it.png support_files/pixmaps/flag_mx.png support_files/pixmaps/flag_pl.png support_files/definitions/league_turkey1_short.xml support_files/definitions/league_italy1_short.xml support_files/definitions/league_germany1_short.xml support_files/definitions/country_england.xml support_files/definitions/league_russia1_short.xml support_files/definitions/league_scotland1_short.xml support_files/definitions/league_england1.xml support_files/definitions/league_england2.xml support_files/definitions/league_england3.xml support_files/definitions/league_england4.xml support_files/definitions/league_england5.xml support_files/definitions/league_greece1_short.xml support_files/definitions/league_denmark1_short.xml support_files/definitions/cup_england_fa.xml support_files/definitions/cup_champ_league.xml support_files/definitions/league_ukraine1_short.xml support_files/definitions/league_switzerland1_short.xml support_files/definitions/cup_cwc.xml support_files/definitions/league_netherlands1_short.xml support_files/definitions/league_europe_div.xml support_files/definitions/league_czech1_short.xml support_files/definitions/cup_england_prom_games.xml support_files/definitions/league_portugal1_short.xml support_files/definitions/league_spain1_short.xml support_files/definitions/cup_uefa.xml support_files/definitions/cup_england_league.xml support_files/definitions/league_belgium1_short.xml support_files/definitions/league_france1_short.xml 
-
-install-data-local:
-	@$(NORMAL_INSTALL)
-	for dir in $(SUPPORT_DIRS); do $(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$$dir; done
-	for file in $(SUPPORT_FILES); do $(INSTALL_DATA) $$file $(DESTDIR)$(pkgdatadir)/$$file; done
-
-dist-hook:
-	for dir in $(SUPPORT_DIRS); do mkdir $(distdir)/$$dir; done
-	for file in $(SUPPORT_FILES); do cp -p $$file $(distdir)/$$file; done
-
-uninstall:
-	rm -rf $(DESTDIR)$(pkgdatadir)
-	rm -rf $(prefix)/bin/bygfoot*
-	rm -rf $(prefix)/man/man6/bygfoot.6
-	for dir in $(prefix)/share/locale/*; do rm -rf $$dir/LC_MESSAGES/bygfoot*; done
-
-doc:
-	doxygen Doxyfile 1> /dev/null
-
-doc-verbose:
-	doxygen Doxyfile
-
-doc-clean:
-	rm -rf docs/*
