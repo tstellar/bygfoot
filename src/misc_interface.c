@@ -1033,7 +1033,7 @@ create_window_stadium (void)
   spinbutton_capacity = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_capacity_adj), 1, 0);
   gtk_widget_show (spinbutton_capacity);
   gtk_box_pack_start (GTK_BOX (vbox44), spinbutton_capacity, FALSE, FALSE, 0);
-  gtk_tooltips_set_tip (tooltips, spinbutton_capacity, _("Middle-click to set to 0"), NULL);
+  gtk_tooltips_set_tip (tooltips, spinbutton_capacity, _("Right-click to set to 0"), NULL);
 
   vbox46 = gtk_vbox_new (FALSE, 3);
   gtk_widget_show (vbox46);
@@ -1067,7 +1067,7 @@ create_window_stadium (void)
   spinbutton_safety = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_safety_adj), 1, 0);
   gtk_widget_show (spinbutton_safety);
   gtk_box_pack_start (GTK_BOX (vbox45), spinbutton_safety, FALSE, FALSE, 0);
-  gtk_tooltips_set_tip (tooltips, spinbutton_safety, _("Middle-click to set to 0"), NULL);
+  gtk_tooltips_set_tip (tooltips, spinbutton_safety, _("Right-click to set to 0"), NULL);
 
   vbox47 = gtk_vbox_new (FALSE, 3);
   gtk_widget_show (vbox47);

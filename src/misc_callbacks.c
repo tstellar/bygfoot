@@ -287,8 +287,11 @@ on_spinbutton_capacity_button_press_event  (GtkWidget       *widget,
 					    GdkEventButton  *event,
 					    gpointer         user_data)
 {
-    if(event->button == 2)
+    if(event->button == 3)
+    {
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(widget), 0);
-
+	return TRUE;
+    }
+    
     return FALSE;
 }
