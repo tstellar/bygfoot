@@ -804,7 +804,6 @@ create_window_live (void)
   GtkWidget *window_live;
   GtkWidget *vbox36;
   GtkWidget *progressbar_live;
-  GtkWidget *hruler_live;
   GtkWidget *hbox50;
   GtkWidget *vbox38;
   GtkWidget *scrolledwindow8;
@@ -843,12 +842,6 @@ create_window_live (void)
   progressbar_live = gtk_progress_bar_new ();
   gtk_widget_show (progressbar_live);
   gtk_box_pack_start (GTK_BOX (vbox36), progressbar_live, FALSE, FALSE, 0);
-
-  hruler_live = gtk_hruler_new ();
-  gtk_widget_show (hruler_live);
-  gtk_box_pack_start (GTK_BOX (vbox36), hruler_live, FALSE, TRUE, 0);
-  gtk_widget_set_sensitive (hruler_live, FALSE);
-  gtk_ruler_set_range (GTK_RULER (hruler_live), 0, 120, 41.3699, 120);
 
   hbox50 = gtk_hbox_new (FALSE, 3);
   gtk_widget_show (hbox50);
@@ -961,7 +954,6 @@ create_window_live (void)
   GLADE_HOOKUP_OBJECT_NO_REF (window_live, window_live, "window_live");
   GLADE_HOOKUP_OBJECT (window_live, vbox36, "vbox36");
   GLADE_HOOKUP_OBJECT (window_live, progressbar_live, "progressbar_live");
-  GLADE_HOOKUP_OBJECT (window_live, hruler_live, "hruler_live");
   GLADE_HOOKUP_OBJECT (window_live, hbox50, "hbox50");
   GLADE_HOOKUP_OBJECT (window_live, vbox38, "vbox38");
   GLADE_HOOKUP_OBJECT (window_live, scrolledwindow8, "scrolledwindow8");

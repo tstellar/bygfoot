@@ -19,6 +19,8 @@
 void
 game_gui_live_game_show_unit(const LiveGameUnit *unit)
 {
+    gchar buf[SMALL];
+    gfloat fraction = (gfloat)live_game_unit_get_minute(unit) / 90;
     GtkProgressBar *progress_bar;
 
     if(live_game.window == NULL)
@@ -38,8 +40,10 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
     game_gui_live_game_set_hscale(unit,
 				  GTK_HSCALE(lookup_widget(live_game.window, "hscale_area")));    
 
+    sprintf(buf, "%d.", live_game_unit_get_minute(unit));
     progress_bar = GTK_PROGRESS_BAR(lookup_widget(live_game.window, "progressbar_live"));
-    gtk_progress_bar_set_fraction(progress_bar, (gfloat)live_game_unit_get_minute(unit) / 120);
+    gtk_progress_bar_set_fraction(progress_bar, (fraction > 1) ? 1 : fraction);
+    gtk_progress_bar_set_text(progress_bar, buf);
     usleep(500500 + options[OPT_LIVE_SPEED] * 50000);
     while(gtk_events_pending())
 	gtk_main_iteration();
