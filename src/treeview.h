@@ -207,4 +207,7 @@ treeview_set_up_player_info(GtkTreeView *treeview);
 GtkTreeModel*
 treeview_create_player_info(const Player *pl);
 
+gint
+treeview_iter_get_row(GtkTreeModel *model, GtkTreeIter *iter);
+
 #endif

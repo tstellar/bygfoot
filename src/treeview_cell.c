@@ -1,3 +1,5 @@
+#include "cup.h"
+#include "league.h"
 #include "misc.h"
 #include "option.h"
 #include "player.h"
@@ -55,6 +57,194 @@ treeview_cell_int_to_cell(GtkTreeViewColumn *col,
     g_object_set(renderer, "text", buf, NULL);
 }
 
+/** Render a cell in the player info view. */
+void
+treeview_cell_player_ext_info_to_cell(GtkTreeViewColumn *col,
+				      GtkCellRenderer   *renderer,
+				      GtkTreeModel      *model,
+				      GtkTreeIter       *iter,
+				      gpointer           user_data)
+{
+    gint column = treeview_get_col_number_column(col);
+    gint row_idx = treeview_iter_get_row(model, iter);
+    const Player *pl;
+
+    g_object_set(renderer, "text", "", "foreground",
+		 const_str("string_treeview_cell_color_default_foreground"),
+		 "background",
+		 const_str("string_treeview_cell_color_default_background"), NULL);
+
+    gtk_tree_model_get(model, iter, column, &pl, -1);
+
+    if(pl == NULL)
+	return;
+
+    switch(row_idx)
+    {
+	default:
+	    g_warning("treeview_cell_player_ext_info_to_cell: unknown row index %d\n",
+		      row_idx);
+	    break;
+	case PLAYER_INFO_ATTRIBUTE_NAME:
+	    treeview_cell_player_to_cell(col, renderer, model,
+					 iter, GINT_TO_POINTER(PLAYER_LIST_ATTRIBUTE_NAME));
+	    break;
+	case PLAYER_INFO_ATTRIBUTE_POS:
+	    treeview_cell_player_to_cell(col, renderer, model,
+					 iter, GINT_TO_POINTER(PLAYER_LIST_ATTRIBUTE_POS));
+	    break;
+	case PLAYER_INFO_ATTRIBUTE_CPOS:
+	    treeview_cell_player_to_cell(col, renderer, model,
+					 iter, GINT_TO_POINTER(PLAYER_LIST_ATTRIBUTE_CPOS));
+	    break;
+	case PLAYER_INFO_ATTRIBUTE_SKILL:
+	    treeview_cell_player_to_cell(col, renderer, model,
+					 iter, GINT_TO_POINTER(PLAYER_LIST_ATTRIBUTE_SKILL));
+	    break;
+	case PLAYER_INFO_ATTRIBUTE_CSKILL:
+	    treeview_cell_player_to_cell(col, renderer, model,
+					 iter, GINT_TO_POINTER(PLAYER_LIST_ATTRIBUTE_CSKILL));
+	    break;
+	case PLAYER_INFO_ATTRIBUTE_FITNESS:
+	    treeview_cell_player_to_cell(col, renderer, model,
+					 iter, GINT_TO_POINTER(PLAYER_LIST_ATTRIBUTE_FITNESS));
+	    break;
+	case PLAYER_INFO_ATTRIBUTE_ETAL:
+	    treeview_cell_player_to_cell(col, renderer, model,
+					 iter, GINT_TO_POINTER(PLAYER_LIST_ATTRIBUTE_ETAL));
+	    break;
+	case PLAYER_INFO_ATTRIBUTE_AGE:
+	    treeview_cell_player_to_cell(col, renderer, model,
+					 iter, GINT_TO_POINTER(PLAYER_LIST_ATTRIBUTE_AGE));
+	    break;
+	case PLAYER_INFO_ATTRIBUTE_VALUE:
+	    treeview_cell_player_to_cell(col, renderer, model,
+					 iter, GINT_TO_POINTER(PLAYER_LIST_ATTRIBUTE_VALUE));
+	    break;
+	case PLAYER_INFO_ATTRIBUTE_WAGE:
+	    treeview_cell_player_to_cell(col, renderer, model,
+					 iter, GINT_TO_POINTER(PLAYER_LIST_ATTRIBUTE_WAGE));
+	    break;
+	case PLAYER_INFO_ATTRIBUTE_CONTRACT:
+	    treeview_cell_player_to_cell(col, renderer, model,
+					 iter, GINT_TO_POINTER(PLAYER_LIST_ATTRIBUTE_CONTRACT));
+	    break;
+	case PLAYER_INFO_ATTRIBUTE_HEALTH:
+	    treeview_cell_player_info_health_to_cell(renderer, pl);
+	    break;
+	case PLAYER_INFO_ATTRIBUTE_GAMES_GOALS:
+	    treeview_cell_player_info_games_goals_to_cell(renderer, pl->games_goals);
+	    break;
+	case PLAYER_INFO_ATTRIBUTE_YELLOW_CARDS:
+	    treeview_cell_player_info_yellow_to_cell(renderer, pl->cards);
+	    break;
+	case PLAYER_INFO_ATTRIBUTE_BANNED:
+	    treeview_cell_player_info_banned_to_cell(renderer, pl->cards);
+	    break;
+	case PLAYER_INFO_ATTRIBUTE_OFFERS:
+	    if(pl->offers > 0)
+		g_object_set(renderer, "text", _("Player doesn't negotiate anymore"), NULL);
+	    else
+		g_object_set(renderer, "text", _("Player accepts new offers"), NULL);
+	    break;
+    }
+}
+
+void
+treeview_cell_player_info_banned_to_cell(GtkCellRenderer *renderer, const GArray *cards)
+{
+    gint i;
+    gchar buf[SMALL], buf2[SMALL];
+
+    strcpy(buf, "");
+
+    for(i=0;i<cards->len;i++)
+	if(g_array_index(cards, PlayerCard, i).red > 0)
+	{
+	    sprintf(buf2, "%s: %d weeks  ",
+		    league_cup_get_name_string(g_array_index(cards, PlayerCard, i).clid),
+		    g_array_index(cards, PlayerCard, i).red);
+	    strcat(buf, buf2);
+	}	
+
+    g_object_set(renderer, "text", buf, NULL);
+
+    if(strlen(buf) > 0)
+	g_object_set(renderer, "background", 
+		     const_str("string_treeview_cell_color_player_banned"), NULL);
+}
+
+void
+treeview_cell_player_info_yellow_to_cell(GtkCellRenderer *renderer, const GArray *cards)
+{
+    gint i;
+    gint yellow_red = -1;
+    gchar buf[SMALL], buf2[SMALL];
+
+    strcpy(buf, "");
+
+    for(i=0;i<cards->len;i++)
+    {
+	yellow_red = league_cup_get_yellow_red(g_array_index(cards, PlayerCard, i).clid);
+
+	if(g_array_index(cards, PlayerCard, i).yellow > 0)
+	{
+	    if(yellow_red < 1000)
+	    {
+		sprintf(buf2, "%s: %d (%d)  ",
+			league_cup_get_name_string(g_array_index(cards, PlayerCard, i).clid),
+			g_array_index(cards, PlayerCard, i).yellow, yellow_red);
+	    }
+	    else
+		sprintf(buf2, "%s: %d (no limit)  ",
+			league_cup_get_name_string(g_array_index(cards, PlayerCard, i).clid),
+			g_array_index(cards, PlayerCard, i).yellow);
+	    
+	    strcat(buf, buf2);
+	}
+    }
+
+    g_object_set(renderer, "text", buf, NULL);
+}
+
+void
+treeview_cell_player_info_games_goals_to_cell(GtkCellRenderer *renderer, const GArray *games_goals)
+{
+    gint i;
+    gchar buf[SMALL], buf2[SMALL];
+
+    strcpy(buf, "");
+
+    for(i=0;i<games_goals->len;i++)
+    {
+	sprintf(buf2, "%s: %d/%d  ", 
+		league_cup_get_name_string(g_array_index(games_goals, PlayerGamesGoals, i).clid),
+		g_array_index(games_goals, PlayerGamesGoals, i).games,
+		g_array_index(games_goals, PlayerGamesGoals, i).goals);		
+	strcat(buf, buf2);
+    }
+
+    g_object_set(renderer, "text", buf, NULL);
+}
+
+void
+treeview_cell_player_info_health_to_cell(GtkCellRenderer *renderer, const Player *pl)
+{
+    gchar buf[SMALL];
+
+    if(pl->health != 0)
+    {
+	sprintf(buf, "%s (expected recovery in %d weeks)",
+		player_injury_to_char(pl->health), pl->recovery);
+	g_object_set(renderer, "background",
+		     const_str("string_treeview_cell_color_player_injury"), NULL);
+    }
+    else
+	strcpy(buf, "OK");
+
+    g_object_set(renderer, "text", buf, NULL);
+}
+
 /** Render a player list cell. */
 void
 treeview_cell_player_to_cell(GtkTreeViewColumn *col,
@@ -66,7 +256,7 @@ treeview_cell_player_to_cell(GtkTreeViewColumn *col,
     gint column = treeview_get_col_number_column(col);
     gint attribute = GPOINTER_TO_INT(user_data);
     gchar  buf[SMALL];
-    Player *pl;
+    const Player *pl;
 
     g_object_set(renderer, "text", "", "foreground",
 		 const_str("string_treeview_cell_color_default_foreground"),
@@ -264,7 +454,7 @@ treeview_cell_player_games_goals_to_cell(gchar *buf, const Player *pl, gint type
 
     if(opt_user_int("int_opt_user_show_overall"))
 	sprintf(buf, "%d(%d)", player_games_goals_get(pl, clid, type),
-		player_all_games_goals(pl, PLAYER_VALUE_GOALS));
+		player_all_games_goals(pl, type));
     else
 	sprintf(buf, "%d", player_games_goals_get(pl, clid, type));
 }

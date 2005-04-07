@@ -43,7 +43,7 @@ bygfoot_SOURCES = \
 	team.c cup.h fixture.h game.h game_gui.h league.h maths.h misc.h option.h player.h team.h transfer.h user.h \
 	transfer.c finance.h free.h game_gui.h maths.h option.h player.h support.h team.h transfer.h treeview.h user.h \
 	treeview.c cup.h file.h finance.h fixture.h free.h game.h league.h live_game.h maths.h misc.h player.h option.h support.h team.h transfer.h treeview.h treeview_cell.h user.h \
-	treeview_cell.c misc.h option.h player.h team.h treeview.h treeview_cell.h user.h variables.h \
+	treeview_cell.c cup.h league.h misc.h option.h player.h team.h treeview.h treeview_cell.h user.h variables.h \
 	user.c fixture.h free.h game_gui.h live_game.h maths.h misc.h option.h player.h team.h transfer.h treeview.h user.h window.h \
 	window.c file.h finance.h free.h game_gui.h gui.h interface.h misc_interface.h misc2_interface.h option.h support.h user.h window.h \
 	xml.c cup.h file.h free.h gui.h league.h misc.h support.h table.h transfer_struct.h user.h variables.h xml.h xml_loadsave_cup.h xml_loadsave_league.h xml_loadsave_teams.h xml_loadsave_fixtures.h xml_loadsave_table.h xml_loadsave_transfers.h xml_loadsave_users.h \

@@ -271,13 +271,13 @@ game_initialize(Fixture *fix)
 	{
 	    if(j < 11)
 	    {
-		if(player_of(fix->teams[i], j)->cskill > 0)
-		    player_games_goals_set(player_of(fix->teams[i], j), fix->clid,
+		if(g_array_index(fix->teams[i]->players, Player, j).cskill > 0)
+		    player_games_goals_set(&g_array_index(fix->teams[i]->players, Player, j), fix->clid,
 					   PLAYER_VALUE_GAMES, 1, TRUE);
 	    }
 		
-	    player_of(fix->teams[i], j)->participation = 
-		(j < 11 && player_of(fix->teams[i], j)->cskill > 0);
+	    g_array_index(fix->teams[i]->players, Player, j).participation = 
+		(j < 11 && g_array_index(fix->teams[i]->players, Player, j).cskill > 0);
 	}
 
 	if(user_idx[i] != -1)
@@ -545,7 +545,8 @@ game_substitute_player(Team *tm, gint player_number)
     gint substitute = -1;
 
     for(i=11;i<tm->players->len;i++)
-	g_ptr_array_add(substitutes, player_of(tm, i));
+	if(g_array_index(tm->players, Player, i).cskill > 0)
+	    g_ptr_array_add(substitutes, &g_array_index(tm->players, Player, i));
 
     g_ptr_array_sort_with_data(substitutes, (GCompareDataFunc)player_compare_substitute_func,
 			       GINT_TO_POINTER(player_of(tm, player_number)->cpos));

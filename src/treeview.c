@@ -131,6 +131,20 @@ treeview_get_col_number_column (GtkTreeViewColumn *col)
     return num;
 }
 
+/** Return the row index of the iter in the model. 
+    Since we only work with flat models (no children),
+    the path is a single number. */
+gint
+treeview_iter_get_row(GtkTreeModel *model, GtkTreeIter *iter)
+{
+    gchar *path = gtk_tree_model_get_string_from_iter(model, iter);
+    gint row_idx = (gint)g_ascii_strtod(path, NULL);
+
+    g_free(path);
+
+    return row_idx;
+}
+
 /** Return a cell renderer with font name set
     according to the font option. */
 GtkCellRenderer*
@@ -2163,63 +2177,33 @@ GtkTreeModel*
 treeview_create_player_info(const Player *pl)
 {
     gint i;
-    gchar buf[SMALL];
-    gint pos[2] = {pl->pos, pl->cpos};
     GtkListStore  *liststore = gtk_list_store_new(2,
 						  G_TYPE_STRING,
-						  G_TYPE_STRING);
+						  G_TYPE_POINTER);
     GtkTreeIter iter;
+    gchar *titles[PLAYER_INFO_ATTRIBUTE_END] =
+	{_("Name"),
+	 _("Position"),
+	 _("Current position"),
+	 _("Skill"),
+	 _("Current skill"),
+	 _("Fitness"),
+	 _("Estimated talent"),
+	 _("Age"),
+	 _("Health"),
+	 _("Value"),
+	 _("Wage"),
+	 _("Contract"),
+	 _("Games/Goals"),
+	 _("Yellow cards (limit)"),
+	 _("Banned"),
+	 _("New contract\noffers")};
 
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, _("Name"), 1,
-		       pl->name->str, -1);
-    
-/*     for(i=0;i<2;i++) */
-/*     { */
-/* 	if(pos[i] == PLAYER_POS_GOALIE) */
-/* 	    sprintf(buf, "<span background='%s' foreground='%s'>%s</span>", */
-/* 		    const_str("string_treeview_cell_color_player_pos_goalie_bg"), */
-/* 		    const_str("string_treeview_cell_color_player_pos_goalie_fg"), */
-/* 		    _("Goalkeeper")); */
-/* 	else if(pos[i] == PLAYER_POS_DEFENDER) */
-/* 	    sprintf(buf, "<span background='%s' foreground='%s'>%s</span>", */
-/* 		    const_str("string_treeview_cell_color_player_pos_defender_bg"), */
-/* 		    const_str("string_treeview_cell_color_player_pos_defender_fg"), */
-/* 		    _("Defender")); */
-/* 	else if(pos[i] == PLAYER_POS_MIDFIELDER) */
-/* 	    sprintf(buf, "<span background='%s' foreground='%s'>%s</span>", */
-/* 		    const_str("string_treeview_cell_color_player_pos_midfielder_bg"), */
-/* 		    const_str("string_treeview_cell_color_player_pos_midfielder_fg"), */
-/* 		    _("Midfielder")); */
-/* 	else if(pos[i] == PLAYER_POS_FORWARD) */
-/* 	    sprintf(buf, "<span background='%s' foreground='%s'>%s</span>", */
-/* 		    const_str("string_treeview_cell_color_player_pos_forward_bg"), */
-/* 		    const_str("string_treeview_cell_color_player_pos_forward_fg"), */
-/* 		    _("Forward")); */
-
-/* 	gtk_list_store_append(liststore, &iter); */
-	
-/* 	if(i == 0) */
-/* 	    gtk_list_store_set(liststore, &iter, 0, _("Position"), 1, */
-/* 			       buf, -1); */
-/* 	else */
-/* 	    gtk_list_store_set(liststore, &iter, 0, _("Current position"), 1, */
-/* 			       buf, -1);	 */
-/*     } */
-
-/*     gtk_list_store_append(liststore, &iter); */
-/*     sprintf(buf, "%" */
-/*     gtk_list_store_set(liststore, &iter, 0, _("Skill"),  */
-
-/*     gtk_list_store_append(liststore, &iter); */
-/*     if(pl->health != 0) */
-/* 	sprintf(buf, "%s (expected recovery in %d weeks)", */
-/* 		player_injury_to_char(pl->health), pl->recovery); */
-/*     else */
-/* 	strcpy(buf, "OK"); */
-/*     gtk_list_store_set(liststore, &iter, 0, _("Health"), 1, buf, -1); */
-
-    
+    for(i=0;i<PLAYER_INFO_ATTRIBUTE_END;i++)
+    {
+	gtk_list_store_append(liststore, &iter);
+	gtk_list_store_set(liststore, &iter, 0, titles[i], 1, pl, -1);
+    }
 
     return GTK_TREE_MODEL(liststore);
 }
@@ -2227,24 +2211,28 @@ treeview_create_player_info(const Player *pl)
 void
 treeview_set_up_player_info(GtkTreeView *treeview)
 {
-    gint i;
     GtkTreeViewColumn   *col;
     GtkCellRenderer     *renderer;
 
     gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
 				GTK_SELECTION_NONE);
-    gtk_tree_view_set_rules_hint(treeview, TRUE);
+    gtk_tree_view_set_rules_hint(treeview, FALSE);
     gtk_tree_view_set_headers_visible(treeview, FALSE);
 
-    for(i=0;i<2;i++)
-    {
-	col = gtk_tree_view_column_new();
-	gtk_tree_view_append_column(treeview, col);
-	renderer = treeview_cell_renderer_text_new();
-	gtk_tree_view_column_pack_start(col, renderer, FALSE);
-	gtk_tree_view_column_add_attribute(col, renderer,
-					   "markup", i);
-    }
+    col = gtk_tree_view_column_new();
+    gtk_tree_view_append_column(treeview, col);
+    renderer = treeview_cell_renderer_text_new();
+    gtk_tree_view_column_pack_start(col, renderer, FALSE);
+    gtk_tree_view_column_add_attribute(col, renderer,
+				       "markup", 0);
+
+    col = gtk_tree_view_column_new();
+    gtk_tree_view_append_column(treeview, col);
+    renderer = treeview_cell_renderer_text_new();
+    gtk_tree_view_column_pack_start(col, renderer, FALSE);
+    gtk_tree_view_column_set_cell_data_func(col, renderer,
+					    treeview_cell_player_ext_info_to_cell,
+					    NULL, NULL);
 }
 
 /** Show extended information about the player in the right treeview. */

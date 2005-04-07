@@ -26,6 +26,13 @@ treeview_cell_player_to_cell(GtkTreeViewColumn *col,
 			     gpointer           user_data);
 
 void
+treeview_cell_player_ext_info_to_cell(GtkTreeViewColumn *col,
+				      GtkCellRenderer   *renderer,
+				      GtkTreeModel      *model,
+				      GtkTreeIter       *iter,
+				      gpointer           user_data);
+
+void
 treeview_cell_player_contract_to_cell(GtkCellRenderer *renderer, gchar *buf, gfloat contract_time);
 
 void
@@ -52,5 +59,17 @@ treeview_cell_live_game_result(GtkTreeViewColumn *col,
 
 void
 treeview_cell_player_cskill_to_cell(GtkCellRenderer *renderer, gchar *buf, const Player *pl);
+
+void
+treeview_cell_player_info_health_to_cell(GtkCellRenderer *renderer, const Player *pl);
+
+void
+treeview_cell_player_info_games_goals_to_cell(GtkCellRenderer *renderer, const GArray *games_goals);
+
+void
+treeview_cell_player_info_yellow_to_cell(GtkCellRenderer *renderer, const GArray *cards);
+
+void
+treeview_cell_player_info_banned_to_cell(GtkCellRenderer *renderer, const GArray *cards);
 
 #endif

@@ -464,10 +464,11 @@ file_compress_files(const gchar *destfile, const gchar *prefix)
     gchar buf[SMALL];
     gchar *basename = g_path_get_basename(prefix),
 	*dirname = g_path_get_dirname(prefix),
-	*zipbasename = g_path_get_basename(destfile);
+	*zipbasename = g_path_get_basename(destfile),
+	*pwd = g_get_current_dir();
     GPtrArray *files = file_dir_get_contents(dirname, basename, "");
 
-    sprintf(buf, "pushd 1> /dev/null %s; %s %s", dirname,
+    sprintf(buf, "cd 1> /dev/null %s; %s %s", dirname,
 	    const_str("string_save_compress_command"), zipbasename);
 
     for(i=0;i<files->len;i++)
@@ -476,10 +477,9 @@ file_compress_files(const gchar *destfile, const gchar *prefix)
 	strcat(buf, ((GString*)g_ptr_array_index(files, i))->str);
     }
 
-    strcat(buf, "; popd 1> /dev/null");
     file_my_system(buf);
 
-    sprintf(buf, "rm -rf %s/%s*", dirname, basename);
+    sprintf(buf, "cd %s; rm -rf %s/%s*", pwd, dirname, basename);
     file_my_system(buf);
 
     free_g_string_array(&files);
@@ -487,6 +487,7 @@ file_compress_files(const gchar *destfile, const gchar *prefix)
     g_free(basename);
     g_free(dirname);
     g_free(zipbasename);
+    g_free(pwd);
 }
 
 /** Decompress the specified file. */
@@ -497,7 +498,7 @@ file_decompress(const gchar *filename)
     gchar *dirname = g_path_get_dirname(filename),
 	*basename = g_path_get_basename(filename);
 
-    sprintf(buf, "pushd %s 1> /dev/null; %s %s", dirname,
+    sprintf(buf, "cd %s 1> /dev/null; %s %s", dirname,
 	    const_str("string_save_uncompress_command"), basename);
 
     file_my_system(buf);
