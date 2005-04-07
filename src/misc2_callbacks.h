@@ -40,10 +40,6 @@ on_window_yesno_delete_event           (GtkWidget       *widget,
                                         gpointer         user_data);
 
 void
-on_checkbutton_yesno_toggled           (GtkToggleButton *togglebutton,
-                                        gpointer         user_data);
-
-void
 on_button_yesno_yes_clicked            (GtkButton       *button,
                                         gpointer         user_data);
 
@@ -56,7 +52,6 @@ void
 on_button_contract_offer_clicked       (GtkButton       *button,
                                         gpointer         user_data);
 
-#endif
 
 gboolean
 on_window_contract_delete_event        (GtkWidget       *widget,
@@ -88,3 +83,4 @@ on_treeview_user_management_teams_row_activated
                                         GtkTreePath     *path,
                                         GtkTreeViewColumn *column,
                                         gpointer         user_data);
+#endif

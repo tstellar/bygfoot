@@ -209,6 +209,8 @@ misc_callback_improve_stadium(void)
 
     window_destroy(&window.stadium, TRUE);
     game_gui_set_main_window_header();
+
+    setsav0;
 }
 
 /** Load a savegame directly from the startup window. */

@@ -283,8 +283,11 @@ game_initialize(Fixture *fix)
 	if(user_idx[i] != -1)
 	{
 	    if(i == 1 || !fix->home_advantage)
+	    {
 		usr(user_idx[i]).money_out[1][MON_OUT_JOURNEY] -= 
 		    (gint)(finance_wage_unit(fix->teams[i]) * journey_factor);
+		usr(user_idx[i]).money -= (gint)(finance_wage_unit(fix->teams[i]) * journey_factor);
+	    }
 
 	    if(!fix->home_advantage)
 	    {
@@ -489,7 +492,8 @@ game_player_injury(Player *pl)
 	math_gauss_disti(const_int("int_player_injury_duration_ligament") -
 			 const_int("int_player_injury_duration_dev_ligament"),
 			 const_int("int_player_injury_duration_ligament") +
-			 const_int("int_player_injury_duration_dev_ligament"))};
+			 const_int("int_player_injury_duration_dev_ligament")),
+	50};
 
     for(i=1;i<13;i++)
 	injury_probs[i] += injury_probs[i - 1];
@@ -503,6 +507,10 @@ game_player_injury(Player *pl)
 	    pl->recovery = duration[i - 1] + 1;
 	    pl->cskill = pl->fitness = 0;	     
 	}
+
+    if(pl->health == PLAYER_INJURY_CAREER_STOP && team_is_user(pl->team) != -1)
+	user_event_add(&usr(team_is_user(pl->team)), EVENT_TYPE_PLAYER_CAREER_STOP, pl->id, -1,
+		       NULL, NULL);
 }
 
 /** Return a factor influencing who's fouled whom

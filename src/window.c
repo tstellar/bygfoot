@@ -130,9 +130,11 @@ window_show_stadium(void)
     GtkLabel *label_capacity,
 	*label_costs_capacity, *label_costs_safety,
 	*label_duration_capacity, *label_duration_safety,
-	*label_stadium_status;
+	*label_stadium_status, *label_average_attendance;
     GtkSpinButton *spinbutton_capacity, *spinbutton_safety;
-    GtkProgressBar *progressbar_safety;
+    GtkProgressBar *progressbar_safety,
+	*progressbar_average_attendance;
+    gfloat average_attendance_perc = 0;
 
     window_create(WINDOW_STADIUM);
 
@@ -142,11 +144,13 @@ window_show_stadium(void)
     label_duration_capacity = GTK_LABEL(lookup_widget(window.stadium, "label_duration_capacity"));
     label_duration_safety = GTK_LABEL(lookup_widget(window.stadium, "label_duration_safety"));
     label_stadium_status = GTK_LABEL(lookup_widget(window.stadium, "label_stadium_status"));
+    label_average_attendance = GTK_LABEL(lookup_widget(window.stadium, "label_average_attendance"));
     
     spinbutton_capacity = GTK_SPIN_BUTTON(lookup_widget(window.stadium, "spinbutton_capacity"));
     spinbutton_safety = GTK_SPIN_BUTTON(lookup_widget(window.stadium, "spinbutton_safety"));
 
     progressbar_safety = GTK_PROGRESS_BAR(lookup_widget(window.stadium, "progressbar_safety"));
+    progressbar_average_attendance = GTK_PROGRESS_BAR(lookup_widget(window.stadium, "progressbar_average_attendance"));
 
     gui_label_set_text_from_int(label_capacity, tm->stadium.capacity, FALSE);
     gui_label_set_text_from_int(label_costs_capacity, 
@@ -159,16 +163,27 @@ window_show_stadium(void)
 					    100)), FALSE);
     gui_label_set_text_from_int(label_duration_capacity, 1, FALSE);
     gui_label_set_text_from_int(label_duration_safety, 1, FALSE);
+    gui_label_set_text_from_int(label_average_attendance, tm->stadium.average_attendance, FALSE);
+    
 
     gtk_spin_button_set_value(spinbutton_capacity, 
 			      (gdouble)const_int("int_stadium_improvement_base_seats"));
     gtk_spin_button_set_value(spinbutton_safety, 
 			      const_float("float_stadium_improvement_base_safety") * 100);
 
+    if(tm->stadium.games > 0)
+	average_attendance_perc =
+	    (gfloat)(tm->stadium.average_attendance * tm->stadium.games) /
+	    (gfloat)tm->stadium.possible_attendance;
+
     gtk_progress_bar_set_fraction(progressbar_safety, tm->stadium.safety);
+    gtk_progress_bar_set_fraction(progressbar_average_attendance, average_attendance_perc);
 
     sprintf(buf, "%d%%", (gint)rint(tm->stadium.safety * 100));
     gtk_progress_bar_set_text(progressbar_safety, buf);
+
+    sprintf(buf, "%d%%", (gint)rint(average_attendance_perc * 100));
+    gtk_progress_bar_set_text(progressbar_average_attendance, buf);
 
     if(current_user.counters[COUNT_USER_STADIUM_CAPACITY] + 
        current_user.counters[COUNT_USER_STADIUM_SAFETY] != 0)
@@ -198,14 +213,11 @@ window_show(gpointer window)
     @param text The text shown in the window.
     @param checkbutton Whether to show the checkbutton. */
 void
-window_show_yesno(gchar *text, gboolean checkbutton)
+window_show_yesno(gchar *text)
 {
     window_create(WINDOW_YESNO);
 
     gtk_label_set_text(GTK_LABEL(lookup_widget(window.yesno, "label_yesno")), text);
-    
-    if(!checkbutton)
-	gtk_widget_hide(lookup_widget(window.yesno, "checkbutton_yesno"));
 }
 
 /** Create and show a window. Which one depends on the argument.

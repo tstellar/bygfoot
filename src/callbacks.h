@@ -99,10 +99,6 @@ on_menu_season_history_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
-on_menu_show_info_activate             (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
 on_menu_put_on_transfer_list_activate  (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
@@ -139,10 +135,6 @@ on_menu_next_user_activate             (GtkMenuItem     *menuitem,
 
 void
 on_menu_previous_user_activate         (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_menu_show_user_list_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
@@ -207,8 +199,8 @@ on_menu_offer_new_contract_activate    (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
-on_player_menu_show_info_activate      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_menu_show_info_activate      (GtkMenuItem     *menuitem,
+				 gpointer         user_data);
 
 void
 on_player_menu_put_on_transfer_list_activate
@@ -236,5 +228,9 @@ on_player_menu_shoots_penalties_activate
 
 void
 on_menu_browse_players_activate        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_player_menu_show_info_activate      (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 #endif

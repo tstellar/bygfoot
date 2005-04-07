@@ -9,13 +9,12 @@
     e.g. whether or not quit requires confirmation. */
 enum BooleanOptions
 {
-    BOOL_OPT_CONF_NEW_WEEK = 0,
-    BOOL_OPT_CONF_QUIT,
+    BOOL_OPT_CONF_QUIT = 0,
+    BOOL_OPT_CONF_UNFIT,
     BOOL_OPT_SAVE_OVERWRITE,
     BOOL_OPT_MAXIMIZE,
     BOOL_OPT_PREFER_MESS,
     BOOL_OPT_AUTOSAVE,
-    BOOL_OPT_CONF_UNFIT,
     BOOL_OPT_SHOW_LIVE,
     BOOL_OPT_SHOW_TENDENCY,
     BOOL_OPT_PAUSE_INJURY,
@@ -69,13 +68,13 @@ enum BooleanOptions
 void
 option_gui_write_bool_widgets(gint **bool_options, GtkToggleButton **bool_widgets)
 {
-    bool_widgets[BOOL_OPT_CONF_NEW_WEEK] = 
-	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_conf_new_week_round"));
-    bool_options[BOOL_OPT_CONF_NEW_WEEK] = opt_intp("int_opt_confirm_new_week_round");
-
     bool_widgets[BOOL_OPT_CONF_QUIT] = 
 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_conf_quit"));
     bool_options[BOOL_OPT_CONF_QUIT] = opt_intp("int_opt_confirm_quit");
+
+    bool_widgets[BOOL_OPT_CONF_UNFIT] =
+	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_conf_unfit"));
+    bool_options[BOOL_OPT_CONF_UNFIT] = opt_intp("int_opt_confirm_unfit");
 
     bool_widgets[BOOL_OPT_SAVE_OVERWRITE] = 
 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_save_overwrite"));
@@ -92,10 +91,6 @@ option_gui_write_bool_widgets(gint **bool_options, GtkToggleButton **bool_widget
     bool_widgets[BOOL_OPT_AUTOSAVE] = 
 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_autosave"));
     bool_options[BOOL_OPT_AUTOSAVE] = opt_intp("int_opt_autosave");
-
-    bool_widgets[BOOL_OPT_CONF_UNFIT] =
-	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_conf_unfit"));
-    bool_options[BOOL_OPT_CONF_UNFIT] = opt_user_intp("int_opt_user_confirm_unfit");
 
     bool_widgets[BOOL_OPT_SHOW_LIVE] =
 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_show_live"));
@@ -282,6 +277,7 @@ option_gui_write_bool_widgets(gint **bool_options, GtkToggleButton **bool_widget
 enum SpinOptions
 {
     SPIN_OPT_AUTOSAVE = 0,
+    SPIN_OPT_AUTOSAVE_FILES,
     SPIN_OPT_PRECISION,
     SPIN_OPT_REFRESH,
     SPIN_OPT_LIVE_SPEED,
@@ -295,6 +291,10 @@ option_gui_write_spin_widgets(gint **spin_options, GtkSpinButton **spin_widgets)
     spin_widgets[SPIN_OPT_AUTOSAVE] =
 	GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_autosave"));
     spin_options[SPIN_OPT_AUTOSAVE] = opt_intp("int_opt_autosave_interval");
+
+    spin_widgets[SPIN_OPT_AUTOSAVE_FILES] =
+	GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_autosave_files"));
+    spin_options[SPIN_OPT_AUTOSAVE_FILES] = opt_intp("int_opt_autosave_files");
 
     spin_widgets[SPIN_OPT_PRECISION] =
 	GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_precision"));

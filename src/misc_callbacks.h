@@ -15,10 +15,6 @@ on_team_selection_tv_row_activated     (GtkTreeView     *treeview,
                                         GtkTreeViewColumn *column,
                                         gpointer         user_data);
 void
-on_button_select_country_file_clicked  (GtkButton       *button,
-                                        gpointer         user_data);
-
-void
 on_team_selection_ok_clicked           (GtkButton       *button,
                                         gpointer         user_data);
 

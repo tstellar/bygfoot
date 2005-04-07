@@ -1,6 +1,14 @@
 #ifndef ENUMS_H
 #define ENUMS_H
 
+/** Some counters. */
+enum Counters
+{
+    COUNT_AUTOSAVE = 0,
+    COUNT_AUTOSAVE_FILE,
+    COUNT_END
+};
+
 /** Scout and physio qualities. */
 enum Quality
 {
@@ -50,6 +58,7 @@ enum Status0Value
     STATUS_SHOW_LIVE_GAME,
     STATUS_LIVE_GAME_PAUSE,
     STATUS_SHOW_TEAM_LIST,
+    STATUS_SHOW_PLAYER_INFO,
     STATUS_BROWSE_TEAMS,
     STATUS_TEAM_SELECTION,
     STATUS_SHOW_LAST_MATCH,
@@ -75,6 +84,8 @@ enum Status0Value
     STATUS_SAVE_GAME,
     STATUS_LOAD_GAME,
     STATUS_LOAD_GAME_TEAM_SELECTION,
+    STATUS_QUERY_UNFIT,
+    STATUS_QUERY_QUIT,
     STATUS_END
 };
 

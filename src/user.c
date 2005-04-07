@@ -8,6 +8,7 @@
 #include "player.h"
 #include "team.h"
 #include "transfer.h"
+#include "treeview.h"
 #include "user.h"
 #include "window.h"
 
@@ -153,7 +154,20 @@ user_set_player_list_attributes(const User *user, PlayerListAttribute *attribute
 
 /** Find out whether there are user games at the specified date. */
 gboolean
-user_games_in_week_round(gint week_number, gint week_round_number)
+query_user_games_in_week_round(gint week_number, gint week_round_number)
+{
+    gint i;
+
+    for(i=0;i<users->len;i++)
+	if(query_user_game_in_week_round(i, week_number, week_round_number))
+	    return TRUE;
+
+    return FALSE;
+}
+
+/** Find out whether the specified user has a match at the specified date. */
+gboolean
+query_user_game_in_week_round(gint usr_idx, gint week_number, gint week_round_number)
 {
     gint i, j;
 
@@ -161,7 +175,7 @@ user_games_in_week_round(gint week_number, gint week_round_number)
     {
 	for(i=0;i<ligs->len;i++)
 	    for(j=0;j<lig(i).fixtures->len;j++)
-		if(fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j)) != -1 &&
+		if(fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j)) == usr_idx &&
 		   g_array_index(lig(i).fixtures, Fixture, j).week_number == week_number &&
 		   g_array_index(lig(i).fixtures, Fixture, j).week_round_number == week_round_number)
 		    return TRUE;
@@ -170,7 +184,7 @@ user_games_in_week_round(gint week_number, gint week_round_number)
     {
 	for(i=0;i<cps->len;i++)
 	    for(j=0;j<cp(i).fixtures->len;j++)
-		if(fixture_user_team_involved(&g_array_index(cp(i).fixtures, Fixture, j)) != -1 &&
+		if(fixture_user_team_involved(&g_array_index(cp(i).fixtures, Fixture, j)) == usr_idx &&
 		   g_array_index(cp(i).fixtures, Fixture, j).week_number == week_number &&
 		   g_array_index(cp(i).fixtures, Fixture, j).week_round_number == week_round_number)
 		    return TRUE;
@@ -178,6 +192,7 @@ user_games_in_week_round(gint week_number, gint week_round_number)
 
     return FALSE;
 }
+
 
 /** Get the user managing the team.
     @param tm The team.
@@ -310,12 +325,9 @@ user_event_show_next(void)
     gint temp_int = -1;
 
     if(current_user.events->len == 0)
-    {
-	stat0 = STATUS_MAIN;
 	return;
-    }
 
-    stat0 = STATUS_SHOW_EVENT;
+    stat1 = STATUS_SHOW_EVENT;
 
     event = &g_array_index(current_user.events, Event, 0);
 
@@ -377,13 +389,25 @@ user_event_show_next(void)
 	    sprintf(buf, _("%s would like to buy %s. They offer %s for him, which is %s than the player's value. Do you accept?"), transoff(temp_int, 0).tm->name->str,
 		    player_of_id(event->user->tm, trans(temp_int).id)->name->str,
 		    buf2, buf3);
-	    stat0 = STATUS_TRANSFER_OFFER;
-	    stat1 = temp_int;
-	    window_show_yesno(buf, FALSE);
+	    stat1 = STATUS_TRANSFER_OFFER;
+	    stat2 = temp_int;
+	    window_show_yesno(buf);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_OUTBID:
 	    sprintf(buf, _("There was a higher bid for %s than yours."),
 		    event->value_string->str);
+	    game_gui_show_warning(buf);
+	    break;
+	case EVENT_TYPE_PLAYER_CAREER_STOP:
+	    sprintf(buf, _("%s's injury was so severe that he can't play football on a professional level anymore. He leaves your team."), player_of_id(event->user->tm, event->value1)->name->str);
+	    if(event->user->tm->players->len < 12)
+	    {
+		strcat(buf, _(" Fortunately he's got a cousin who can help your team out."));
+		player_replace_by_new(player_of_id(event->user->tm, event->value1), TRUE);
+	    }
+	    else
+		player_remove_from_team(event->user->tm, player_id_index(event->user->tm, event->value1));
+	    treeview_show_user_player_list();
 	    game_gui_show_warning(buf);
 	    break;
     }
@@ -416,4 +440,25 @@ user_get_index(User *user)
     g_warning("user_get_index: user not found.\n");
     
     return -1;
+}
+
+/** Check whether one of the user teams has an unfit player
+    in the startup formation. */
+gboolean
+query_user_teams_have_unfit(void)
+{
+    gint i, j;
+
+    for(i=0;i<users->len;i++)
+    {
+	if(query_user_game_in_week_round(i, week, week_round))
+	{
+	    for(j=0;j<11;j++)
+		if(g_array_index(usr(i).tm->players, Player, j).health != 0 ||
+		   player_is_banned(&g_array_index(usr(i).tm->players, Player, j)))
+		    return TRUE;
+	}
+    }
+
+    return FALSE;
 }

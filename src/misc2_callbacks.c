@@ -1,3 +1,4 @@
+#include "callback_func.h"
 #include "finance.h"
 #include "game_gui.h"
 #include "main.h"
@@ -39,6 +40,8 @@ on_button_offer_ok_clicked             (GtkButton       *button,
     game_gui_show_main();
 
     window_destroy(&window.job_offer, TRUE);
+
+    setsav0;
 }
 
 
@@ -70,7 +73,7 @@ on_button_warning_clicked              (GtkWidget       *widget,
 {
     window_destroy(&window.warning, FALSE);
 
-    if(stat0 == STATUS_SHOW_EVENT)
+    if(stat1 == STATUS_SHOW_EVENT)
 	user_event_show_next();
 
     return FALSE;
@@ -111,6 +114,8 @@ on_button_digits_ok_clicked            (GtkButton       *button,
 	window_destroy(&window.digits, TRUE);
 
     game_gui_set_main_window_header();
+
+    setsav0;
 }
 
 
@@ -131,44 +136,43 @@ on_window_yesno_delete_event           (GtkWidget       *widget,
     return FALSE;
 }
 
-
-void
-on_checkbutton_yesno_toggled           (GtkToggleButton *togglebutton,
-                                        gpointer         user_data)
-{
-
-}
-
-
 void
 on_button_yesno_yes_clicked            (GtkButton       *button,
                                         gpointer         user_data)
-{
-    switch(stat0)
+{    
+    window_destroy(&window.yesno, TRUE);
+    setsav0;
+
+    switch(stat1)
     {
 	default:
-	    g_warning("on_button_yesno_yes_clicked: unknown status %d\n", stat0);
+	    g_warning("on_button_yesno_yes_clicked: unknown status %d\n", stat1);
 	    break;
 	case STATUS_TRANSFER_OFFER:
 	    misc2_callback_transfer_user_player();
 	    break;
 	case STATUS_FIRE_PLAYER:
-	    player_remove_from_team(current_user.tm, stat1);
-	    current_user.money -= stat2;
-	    current_user.money_out[1][MON_OUT_COMPENSATIONS] -= stat2;
+	    player_remove_from_team(current_user.tm, stat2);
+	    current_user.money -= stat3;
+	    current_user.money_out[1][MON_OUT_COMPENSATIONS] -= stat3;
 	    treeview_show_user_player_list();
+	    game_gui_set_main_window_header();
 	    break;
 	case STATUS_USER_MANAGEMENT:
-	    user_remove(stat1, TRUE);
+	    user_remove(stat2, TRUE);
 	    treeview_show_users(GTK_TREE_VIEW(lookup_widget(window.user_management,
 							    "treeview_user_management_users")));
 	    treeview_show_team_list(GTK_TREE_VIEW(lookup_widget(window.user_management, 
 								"treeview_user_management_teams")),
 				    FALSE, FALSE);
 	    break;
+	case STATUS_QUERY_UNFIT:
+	    callback_show_next_live_game();
+	    break;
+	case STATUS_QUERY_QUIT:
+	    main_exit_program(EXIT_OK, NULL);
+	    break;
     }
-    
-    window_destroy(&window.yesno, TRUE);
 }
 
 
@@ -238,13 +242,13 @@ on_treeview_user_management_users_button_press_event
 
     if(users->len == 1)
     {
-	game_gui_show_warning("You can't play Bygfoot with 0 users!");
+	game_gui_show_warning("You can't play Bygfoot without users!");
 	return TRUE;
     }
 
-    stat1 = idx;
+    stat2 = idx;
     sprintf(buf, "Remove user %s from the game?", usr(idx).name->str);
-    window_show_yesno(buf, FALSE);
+    window_show_yesno(buf);
     
     return FALSE;
 }

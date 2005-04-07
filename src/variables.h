@@ -30,6 +30,9 @@ OptionList constants;
     @see TransferPlayer */
 GArray *transfer_list;
 
+/** Some counters we use. */
+gint counters[COUNT_END];
+
 /** These help us keep track of what's happening. */
 gint status[6];
 

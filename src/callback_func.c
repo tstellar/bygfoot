@@ -36,7 +36,7 @@ callback_show_next_live_game(void)
 		    option_int("int_opt_user_show_live_game",
 			       &usr(fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j))).
 			       options))
-		{
+	{
 		    live_game_calculate_fixture(&g_array_index(lig(i).fixtures, Fixture, j));
 		    return;
 		}
@@ -62,6 +62,8 @@ callback_show_next_live_game(void)
 
     /* no more user games to show: end round. */
     end_week_round();
+
+    setsav0;
 }
 
 /** Handle a click on the player list.
@@ -114,6 +116,8 @@ callback_player_clicked(gint idx, GdkEventButton *event)
 	    selected_row[0] = idx;
 	}
     }
+
+    setsav0;
 }
 
 /** Show the last match of the current user. */
@@ -237,6 +241,7 @@ callback_transfer_list_clicked(gint idx)
     {
 	transfer_remove_player(idx);
 	on_button_transfers_clicked(NULL, NULL);
+	setsav0;
 	return;
     }
     
@@ -303,6 +308,8 @@ callback_offer_new_contract(gint idx)
 					     powf(-1, (pl->age > pl->peak_age)))) *
 				       (1 + scout_dev)));
     }
+
+    setsav0;
 }
 
 /** Show the player list of a team in the browse-teams mode. */
@@ -381,13 +388,13 @@ callback_fire_player(gint idx)
     gchar buf[SMALL], buf2[SMALL];
     Player *pl = player_of(current_user.tm, idx);
 
-    stat0 = STATUS_FIRE_PLAYER;
-    stat1 = idx;
-    stat2 = (gint)rint(pl->wage * const_float("float_player_fire_wage_factor") * pl->contract);
+    stat1 = STATUS_FIRE_PLAYER;
+    stat2 = idx;
+    stat3 = (gint)rint(pl->wage * const_float("float_player_fire_wage_factor") * pl->contract);
 
-    misc_print_grouped_int(stat2, buf2, FALSE);
+    misc_print_grouped_int(stat3, buf2, FALSE);
 
     sprintf(buf, _("You want to fire %s. Since his contract expires in %.1f years, he demands a compensation of %s. Do you accept?"), pl->name->str, pl->contract, buf2);
 
-    window_show_yesno(buf, FALSE);
+    window_show_yesno(buf);
 }

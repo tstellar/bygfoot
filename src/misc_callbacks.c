@@ -12,6 +12,7 @@
 #include "user.h"
 #include "variables.h"
 #include "window.h"
+#include "xml_country.h"
 
 void
 on_button_add_player_clicked           (GtkButton       *button,
@@ -51,13 +52,6 @@ on_team_selection_tv_row_activated     (GtkTreeView     *treeview,
                                         gpointer         user_data)
 {
     on_button_add_player_clicked(NULL, NULL);
-}
-
-void
-on_button_select_country_file_clicked  (GtkButton       *button,
-                                        gpointer         user_data)
-{
-
 }
 
 void
@@ -153,6 +147,8 @@ on_button_font_sel_apply_clicked       (GtkButton       *button,
 
 	stat0 = STATUS_MAIN;
 	game_gui_show_main();
+
+	setsav0;
     }
 }
 
@@ -311,4 +307,3 @@ on_button_startup_resume_clicked       (GtkButton       *button,
     
     g_free(last_save);
 }
-

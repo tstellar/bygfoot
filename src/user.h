@@ -7,7 +7,7 @@
 
 /** Convenience abbrevs. */
 #define usr(i) g_array_index(users, User, i)
-#define user_games_this_week_round() user_games_in_week_round(week, week_round)
+#define query_user_games_this_week_round() query_user_games_in_week_round(week, week_round)
 #define current_user usr(cur_user)
 
 void
@@ -29,7 +29,10 @@ void
 user_set_player_list_attributes(const User *user, PlayerListAttribute *attribute, gint list_number);
 
 gboolean
-user_games_in_week_round(gint week_number, gint week_round_number);
+query_user_game_in_week_round(gint usr_idx, gint week_number, gint week_round_number);
+
+gboolean
+query_user_games_in_week_round(gint week_number, gint week_round_number);
 
 User*
 user_from_team(const Team *tm);
@@ -62,5 +65,8 @@ user_get_index(User *user);
 gint
 user_event_get_index(User *user, gint type, gint value1, gint value2, 
 		     gpointer value_pointer, gchar *value_string);
+
+gboolean
+query_user_teams_have_unfit(void);
 
 #endif

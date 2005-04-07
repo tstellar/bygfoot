@@ -103,6 +103,7 @@ main (gint argc, gchar *argv[])
 
     window_show_startup();
     stat0 = STATUS_TEAM_SELECTION;
+
     /*d*/
     on_button_add_player_clicked(NULL, NULL);   
 

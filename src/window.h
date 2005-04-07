@@ -43,7 +43,7 @@ void
 window_show_stadium(void);
 
 void
-window_show_yesno(gchar *text, gboolean checkbutton);
+window_show_yesno(gchar *text);
 
 void
 window_show_options(void);

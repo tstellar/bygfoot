@@ -1021,3 +1021,54 @@ player_update_week_roundly(Team *tm, gint idx)
     pl->cskill = (pl->health > 0 || player_is_banned(pl) > 0) ?
 	0 : player_get_cskill(pl, pl->cpos);
 }
+
+/** Return injury descriptions.  */
+gchar*
+player_injury_to_char(gint injury_type)
+{      
+    switch(injury_type)
+    {
+	default:
+	    g_warning("player_injury_to_char: unknown type %d\n", injury_type);
+	    return NULL;
+	    break;
+	case PLAYER_INJURY_NONE:
+	    return _("OK");
+	    break;
+	case PLAYER_INJURY_CONCUSSION:
+	    return _("Concussion");
+	    break;
+	case PLAYER_INJURY_PULLED_MUSCLE:
+	    return _("Pulled muscle");
+	    break;
+	case PLAYER_INJURY_HAMSTRING:
+	    return _("Hamstring");
+	    break;
+	case PLAYER_INJURY_GROIN:
+	    return _("Groin injury");
+	    break;
+	case PLAYER_INJURY_FRAC_ANKLE:
+	    return _("Fractured ankle");
+	    break;
+	case PLAYER_INJURY_RIB:
+	    return _("Broken rib");
+	    break;
+	case PLAYER_INJURY_LEG:
+	    return _("Broken leg");
+	    break;
+	case PLAYER_INJURY_BROK_ANKLE:
+	    return _("Broken ankle");
+	    break;
+	case PLAYER_INJURY_ARM:
+	    return _("Broken arm");
+	    break;
+	case PLAYER_INJURY_SHOULDER:
+	    return _("Broken shoulder");
+	    break;
+	case PLAYER_INJURY_LIGAMENT:
+	    return _("Torn crucial ligament");
+	    break;
+    }
+
+    return NULL;
+}

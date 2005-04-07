@@ -130,4 +130,8 @@ player_update_injury(Player *pl);
 void
 player_copy(Player *pl, Team *tm, gint insert_at);
 
+gchar*
+player_injury_to_char(gint injury_type);
+
+
 #endif

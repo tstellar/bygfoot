@@ -48,4 +48,7 @@ start_week_update_user_finances(void);
 void
 start_week_update_users(void);
 
+void
+end_week_round_autosave(void);
+
 #endif

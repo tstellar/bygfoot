@@ -341,7 +341,8 @@ game_gui_print_message(gchar *text)
 gboolean
 game_gui_clear_entry_message(gpointer data)
 {
-    gtk_entry_set_text(GTK_ENTRY(lookup_widget(window.main, "entry_message")), "");
+    if(window.main != NULL)
+	gtk_entry_set_text(GTK_ENTRY(lookup_widget(window.main, "entry_message")), "");
 
     return FALSE;
 }

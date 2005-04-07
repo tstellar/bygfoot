@@ -1,5 +1,6 @@
 #include "file.h"
 #include "gui.h"
+#include "game_gui.h"
 #include "load_save.h"
 #include "option.h"
 #include "support.h"
@@ -85,6 +86,7 @@ load_save_save_game(const gchar *filename)
     g_free(fullname);
 
     gui_show_progress(-1, "");
+    setsav1;
 }
 
 /** Load the game from the specified file. */
@@ -147,6 +149,7 @@ load_save_load_game(const gchar* filename)
     g_string_printf(save_file, "%s", filename);
 
     gui_show_progress(-1, "");
+    setsav1;
 }
 
 /** Store the name of the last savegame in the users home dir. */
@@ -185,4 +188,23 @@ load_save_last_save_get(void)
     fclose(fil);
 
     return g_strdup(buf);
+}
+
+/** Write an autosave. */
+void
+load_save_autosave(void)
+{
+    gchar buf[SMALL];
+    const gchar *home = g_get_home_dir();
+    FILE *fil = NULL;
+    
+    sprintf(buf, "%s/%s/saves/autosave%02d.zip", home, HOMEDIRNAME,
+	    counters[COUNT_AUTOSAVE_FILE]);
+
+    if(!file_my_fopen(buf, "w", &fil, FALSE))
+	return;
+
+    load_save_save_game(buf);
+
+    counters[COUNT_AUTOSAVE_FILE] = (counters[COUNT_AUTOSAVE_FILE] + 1) % opt_int("int_opt_autosave_files");
 }

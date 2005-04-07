@@ -6,6 +6,7 @@
 #include "gui.h"
 #include "league.h"
 #include "live_game.h"
+#include "load_save.h"
 #include "main.h"
 #include "maths.h"
 #include "option.h"
@@ -24,7 +25,7 @@ typedef void(*WeekFunc)(void);
 /** Array of functions called when a week round
     is ended. */
 WeekFunc end_week_round_funcs[] =
-{end_week_round_results, end_week_round_sort_tables, 
+{end_week_round_autosave, end_week_round_results, end_week_round_sort_tables, 
  end_week_round_update_fixtures, NULL};
 
 /** Array of functions called when a week round
@@ -249,14 +250,15 @@ start_week_round(void)
 	start_func++;
     }
 
-    if(!user_games_this_week_round())
+    if(!query_user_games_this_week_round())
 	end_week_round();
     else
     {
 	cur_user = 0;
 	game_gui_show_main();    
 	
-	if(week_round == 1)
+	/*d ??*/
+/* 	if(week_round == 1) */
 	    user_event_show_next();
     }
 }
@@ -323,4 +325,18 @@ start_week_update_users(void)
 
 	user_weekly_update_counters(&usr(i));
     }
+}
+
+/** Save the game if autosave is on. */
+void
+end_week_round_autosave(void)
+{
+    if(!opt_int("int_opt_autosave") ||
+       !query_user_games_this_week_round())
+	return;
+
+    counters[COUNT_AUTOSAVE] = (counters[COUNT_AUTOSAVE] + 1) % opt_int("int_opt_autosave_interval");
+
+    if(counters[COUNT_AUTOSAVE] == 0)
+	load_save_autosave();
 }

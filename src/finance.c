@@ -42,18 +42,20 @@ finance_update_user_weekly(User *user)
     for(i=0;i<tm->players->len;i++)
     {
 	user->money_out[1][MON_OUT_WAGE] -= player_of(tm, i)->wage;
+	user->money -= player_of(tm, i)->wage;
 
 	if(player_of(tm, i)->health > 0)
+	{
+	    user->money -= (gint)(finance_wage_unit(tm) * physio_factor[user->physio % 10]);
 	    user->money_out[1][MON_OUT_PHYSIO] -= 
 		(gint)(finance_wage_unit(tm) * physio_factor[user->physio % 10]);
+	}
     }
 
     user->money_out[1][MON_OUT_SCOUT] -= (gint)(finance_wage_unit(tm) * scout_factor[user->scout % 10]);
+    user->money -=  (gint)(finance_wage_unit(tm) * scout_factor[user->scout % 10]);
 
     user->debt = (gint)rint((gfloat)user->debt * (1 + const_float("float_finance_interest")));
-
-    for(i=0;i<MON_OUT_END;i++)
-	user->money += user->money_out[1][i];
 
     if(user->money < -finance_team_drawing_credit_loan(user->tm, FALSE) &&
        user->counters[COUNT_USER_POSITIVE] == -1)

@@ -1,5 +1,6 @@
 #include "callbacks.h"
 #include "callback_func.h"
+#include "free.h"
 #include "game_gui.h"
 #include "load_save.h"
 #include "main.h"
@@ -26,7 +27,12 @@ void
 on_menu_new_activate                   (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    window_destroy(&window.main, FALSE);
+    free_memory();
 
+    main_init(-1, NULL);
+    window_show_startup();
+    stat0 = STATUS_TEAM_SELECTION;
 }
 
 
@@ -63,7 +69,13 @@ void
 on_menu_quit_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    main_exit_program(EXIT_OK, NULL);
+    if(!getsav || !opt_int("int_opt_confirm_quit"))
+	main_exit_program(EXIT_OK, NULL);
+    else
+    {
+	stat1 = STATUS_QUERY_QUIT;
+	window_show_yesno("The current game state is unsaved and will be lost. Continue?");
+    }
 }
 
 
@@ -123,7 +135,14 @@ void
 on_button_new_week_clicked             (GtkButton       *button,
                                         gpointer         user_data)
 {
-    callback_show_next_live_game();
+    if(!opt_int("int_opt_confirm_unfit") ||
+       !query_user_teams_have_unfit())
+	callback_show_next_live_game();
+    else
+    {
+	stat1 = STATUS_QUERY_UNFIT;
+	window_show_yesno(_("There are injured or banned players in one of the user teams. Continue?"));
+    }
 }
 
 
@@ -273,14 +292,6 @@ on_menu_season_history_activate        (GtkMenuItem     *menuitem,
 
 
 void
-on_menu_show_info_activate             (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
 on_menu_put_on_transfer_list_activate  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -290,6 +301,7 @@ on_menu_put_on_transfer_list_activate  (GtkMenuItem     *menuitem,
 	game_gui_print_message(_("The player is already on the list."));
     else
     {
+	setsav0;
 	transfer_add_remove_user_player(player_of(current_user.tm, selected_row[0]));
 	selected_row[0] = -1;
     }
@@ -306,6 +318,7 @@ on_menu_remove_from_transfer_list_activate (GtkMenuItem     *menuitem,
 	game_gui_print_message(_("The player is not on the list."));
     else
     {
+	setsav0;
 	transfer_add_remove_user_player(player_of(current_user.tm, selected_row[0]));
 	selected_row[0] = -1;
     }
@@ -340,6 +353,7 @@ on_menu_shoots_penalties_activate      (GtkMenuItem     *menuitem,
 	opt_user_set_int("int_opt_user_penalty_shooter", -1);
 	game_gui_print_message(_("Penalty/free kick shooter deselected."));
 	treeview_show_user_player_list();
+	setsav0;
     }
     else
     {
@@ -349,6 +363,7 @@ on_menu_shoots_penalties_activate      (GtkMenuItem     *menuitem,
 			 player_of(current_user.tm, selected_row[0])->id);
 	game_gui_print_message(buf);
 	treeview_show_user_player_list();
+	setsav0;
     }
 
     selected_row[0] = -1;
@@ -446,14 +461,6 @@ on_menu_previous_user_activate         (GtkMenuItem     *menuitem,
 
 
 void
-on_menu_show_user_list_activate        (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
 on_menu_custom_structure_activate      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -469,6 +476,7 @@ on_menu_team_button_press_event        (GtkWidget       *widget,
                                         gpointer         user_data)
 {
     game_gui_read_radio_items(widget);
+    setsav0;
 
     return FALSE;
 }
@@ -477,7 +485,7 @@ void
 on_menu_manage_users_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    stat0 = STATUS_USER_MANAGEMENT;
+    stat0 = stat1 = STATUS_USER_MANAGEMENT;
     window_create(WINDOW_USER_MANAGEMENT);
     treeview_show_users(GTK_TREE_VIEW(lookup_widget(window.user_management, "treeview_user_management_users")));
     treeview_show_team_list(GTK_TREE_VIEW(lookup_widget(window.user_management, "treeview_user_management_teams")),
@@ -542,6 +550,8 @@ on_eventbox_style_button_press_event   (GtkWidget       *widget,
     if(stat0 == STATUS_MAIN)
 	treeview_show_next_opponent();
 
+    setsav0;
+
     return FALSE;
 }
 
@@ -573,6 +583,8 @@ on_eventbox_boost_button_press_event   (GtkWidget       *widget,
     if(stat0 == STATUS_MAIN)
 	treeview_show_next_opponent();
 
+    setsav0;
+
     return FALSE;
 }
 
@@ -601,6 +613,8 @@ on_menu_check_button_press_event       (GtkWidget       *widget,
 {
     game_gui_read_check_items(widget);
 
+    setsav0;
+	
     return FALSE;
 }
 
@@ -616,14 +630,23 @@ on_menu_offer_new_contract_activate    (GtkMenuItem     *menuitem,
 
     callback_offer_new_contract(selected_row[0]);
     selected_row[0] = -1;
+
+    setsav0;
 }
 
 
 void
-on_player_menu_show_info_activate      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_menu_show_info_activate      (GtkMenuItem     *menuitem,
+				 gpointer         user_data)
 {
+    if(selected_row[0] == -1)
+    {
+	game_gui_print_message(_("You haven't selected a player."));
+	return;
+    }    
 
+    stat0 = STATUS_SHOW_PLAYER_INFO;
+    treeview_show_player_info(player_of(current_user.tm, selected_row[0]));
 }
 
 
@@ -677,3 +700,11 @@ on_menu_browse_players_activate        (GtkMenuItem     *menuitem,
     callback_show_player_list(SHOW_CURRENT);
     stat0 = STATUS_SHOW_PLAYER_LIST;
 }
+
+void
+on_player_menu_show_info_activate      (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    on_menu_show_info_activate(NULL, NULL);
+}
+

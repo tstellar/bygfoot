@@ -198,4 +198,13 @@ treeview_create_preview(void);
 void
 treeview_show_preview(void);
 
+void
+treeview_show_player_info(const Player *pl);
+
+void
+treeview_set_up_player_info(GtkTreeView *treeview);
+
+GtkTreeModel*
+treeview_create_player_info(const Player *pl);
+
 #endif

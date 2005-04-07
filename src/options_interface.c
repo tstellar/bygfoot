@@ -34,8 +34,8 @@ create_window_options (void)
   GtkWidget *notebook1;
   GtkWidget *hbox2;
   GtkWidget *vbox3;
-  GtkWidget *checkbutton_conf_new_week_round;
   GtkWidget *checkbutton_conf_quit;
+  GtkWidget *checkbutton_conf_unfit;
   GtkWidget *checkbutton_save_overwrite;
   GtkWidget *checkbutton_maximize;
   GtkWidget *checkbutton_pref_mess;
@@ -46,6 +46,9 @@ create_window_options (void)
   GtkWidget *label6;
   GtkObject *spinbutton_autosave_adj;
   GtkWidget *spinbutton_autosave;
+  GtkWidget *label36;
+  GtkObject *spinbutton_autosave_files_adj;
+  GtkWidget *spinbutton_autosave_files;
   GtkWidget *label7;
   GtkWidget *label8;
   GtkObject *spinbutton_precision_adj;
@@ -84,7 +87,6 @@ create_window_options (void)
   GtkWidget *label2;
   GtkWidget *hbox6;
   GtkWidget *vbox6;
-  GtkWidget *checkbutton_conf_unfit;
   GtkWidget *checkbutton_show_job;
   GtkWidget *vseparator3;
   GtkWidget *vbox7;
@@ -190,13 +192,15 @@ create_window_options (void)
   gtk_widget_show (vbox3);
   gtk_box_pack_start (GTK_BOX (hbox2), vbox3, TRUE, TRUE, 0);
 
-  checkbutton_conf_new_week_round = gtk_check_button_new_with_mnemonic (_("Confirm new week round"));
-  gtk_widget_show (checkbutton_conf_new_week_round);
-  gtk_box_pack_start (GTK_BOX (vbox3), checkbutton_conf_new_week_round, FALSE, FALSE, 0);
-
-  checkbutton_conf_quit = gtk_check_button_new_with_mnemonic (_("Confirm quit"));
+  checkbutton_conf_quit = gtk_check_button_new_with_mnemonic (_("Confirm quit when not saved"));
   gtk_widget_show (checkbutton_conf_quit);
   gtk_box_pack_start (GTK_BOX (vbox3), checkbutton_conf_quit, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_conf_quit, _("Whether to show a confirmation popup when you press quit and the game state is not saved"), NULL);
+
+  checkbutton_conf_unfit = gtk_check_button_new_with_mnemonic (_("Confirm when unfit"));
+  gtk_widget_show (checkbutton_conf_unfit);
+  gtk_box_pack_start (GTK_BOX (vbox3), checkbutton_conf_unfit, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_conf_unfit, _("Whether to show a confirmation popup if a user team has an injured or banned player in the startup formation"), NULL);
 
   checkbutton_save_overwrite = gtk_check_button_new_with_mnemonic (_("Save overwrites"));
   gtk_widget_show (checkbutton_save_overwrite);
@@ -240,7 +244,19 @@ create_window_options (void)
   spinbutton_autosave = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_autosave_adj), 1, 0);
   gtk_widget_show (spinbutton_autosave);
   gtk_box_pack_start (GTK_BOX (hbox3), spinbutton_autosave, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, spinbutton_autosave, _("How often the game is saved automatically"), NULL);
   gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_autosave), TRUE);
+
+  label36 = gtk_label_new (_(" Autosave files "));
+  gtk_widget_show (label36);
+  gtk_box_pack_start (GTK_BOX (hbox3), label36, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label36), GTK_JUSTIFY_LEFT);
+
+  spinbutton_autosave_files_adj = gtk_adjustment_new (1, 0, 100, 1, 10, 10);
+  spinbutton_autosave_files = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_autosave_files_adj), 1, 0);
+  gtk_widget_show (spinbutton_autosave_files);
+  gtk_box_pack_start (GTK_BOX (hbox3), spinbutton_autosave_files, TRUE, TRUE, 0);
+  gtk_tooltips_set_tip (tooltips, spinbutton_autosave_files, _("How many files the autosave uses"), NULL);
 
   label7 = gtk_label_new (_("Player attribute precision "));
   gtk_widget_show (label7);
@@ -417,10 +433,6 @@ create_window_options (void)
   vbox6 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox6);
   gtk_box_pack_start (GTK_BOX (hbox6), vbox6, TRUE, TRUE, 0);
-
-  checkbutton_conf_unfit = gtk_check_button_new_with_mnemonic (_("Confirm when unfit"));
-  gtk_widget_show (checkbutton_conf_unfit);
-  gtk_box_pack_start (GTK_BOX (vbox6), checkbutton_conf_unfit, FALSE, FALSE, 0);
 
   checkbutton_show_job = gtk_check_button_new_with_mnemonic (_("Show job offers"));
   gtk_widget_show (checkbutton_show_job);
@@ -914,8 +926,8 @@ create_window_options (void)
   GLADE_HOOKUP_OBJECT (window_options, notebook1, "notebook1");
   GLADE_HOOKUP_OBJECT (window_options, hbox2, "hbox2");
   GLADE_HOOKUP_OBJECT (window_options, vbox3, "vbox3");
-  GLADE_HOOKUP_OBJECT (window_options, checkbutton_conf_new_week_round, "checkbutton_conf_new_week_round");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_conf_quit, "checkbutton_conf_quit");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_conf_unfit, "checkbutton_conf_unfit");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_save_overwrite, "checkbutton_save_overwrite");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_maximize, "checkbutton_maximize");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_pref_mess, "checkbutton_pref_mess");
@@ -925,6 +937,8 @@ create_window_options (void)
   GLADE_HOOKUP_OBJECT (window_options, hbox3, "hbox3");
   GLADE_HOOKUP_OBJECT (window_options, label6, "label6");
   GLADE_HOOKUP_OBJECT (window_options, spinbutton_autosave, "spinbutton_autosave");
+  GLADE_HOOKUP_OBJECT (window_options, label36, "label36");
+  GLADE_HOOKUP_OBJECT (window_options, spinbutton_autosave_files, "spinbutton_autosave_files");
   GLADE_HOOKUP_OBJECT (window_options, label7, "label7");
   GLADE_HOOKUP_OBJECT (window_options, label8, "label8");
   GLADE_HOOKUP_OBJECT (window_options, spinbutton_precision, "spinbutton_precision");
@@ -960,7 +974,6 @@ create_window_options (void)
   GLADE_HOOKUP_OBJECT (window_options, label2, "label2");
   GLADE_HOOKUP_OBJECT (window_options, hbox6, "hbox6");
   GLADE_HOOKUP_OBJECT (window_options, vbox6, "vbox6");
-  GLADE_HOOKUP_OBJECT (window_options, checkbutton_conf_unfit, "checkbutton_conf_unfit");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_show_job, "checkbutton_show_job");
   GLADE_HOOKUP_OBJECT (window_options, vseparator3, "vseparator3");
   GLADE_HOOKUP_OBJECT (window_options, vbox7, "vbox7");

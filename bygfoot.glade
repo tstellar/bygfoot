@@ -772,7 +772,7 @@
 	    <widget class="GtkButton" id="button_save">
 	      <property name="border_width">2</property>
 	      <property name="visible">True</property>
-	      <property name="tooltip" translatable="yes">Save game (S or Ctrl - S)</property>
+	      <property name="tooltip" translatable="yes">Save game (Ctrl - S)</property>
 	      <property name="can_focus">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <signal name="clicked" handler="on_button_save_clicked" last_modification_time="Fri, 06 Feb 2004 10:20:01 GMT"/>
@@ -1841,7 +1841,7 @@
       <property name="visible">True</property>
       <property name="label" translatable="yes">Show info</property>
       <property name="use_underline">True</property>
-      <signal name="activate" handler="on_player_menu_show_info_activate" last_modification_time="Sat, 26 Mar 2005 08:47:31 GMT"/>
+      <signal name="activate" handler="on_player_menu_show_info_activate" last_modification_time="Wed, 06 Apr 2005 13:36:41 GMT"/>
     </widget>
   </child>
 

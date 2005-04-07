@@ -522,7 +522,6 @@ create_window_yesno (void)
   GtkWidget *vbox17;
   GtkWidget *image8;
   GtkWidget *label_yesno;
-  GtkWidget *checkbutton_yesno;
   GtkWidget *hbox18;
   GtkWidget *button_yesno_yes;
   GtkWidget *button_yesno_no;
@@ -532,7 +531,7 @@ create_window_yesno (void)
   gtk_window_set_title (GTK_WINDOW (window_yesno), _("window1"));
   gtk_window_set_position (GTK_WINDOW (window_yesno), GTK_WIN_POS_CENTER);
 
-  vbox17 = gtk_vbox_new (FALSE, 3);
+  vbox17 = gtk_vbox_new (FALSE, 5);
   gtk_widget_show (vbox17);
   gtk_container_add (GTK_CONTAINER (window_yesno), vbox17);
 
@@ -545,10 +544,6 @@ create_window_yesno (void)
   gtk_box_pack_start (GTK_BOX (vbox17), label_yesno, FALSE, FALSE, 0);
   gtk_label_set_justify (GTK_LABEL (label_yesno), GTK_JUSTIFY_LEFT);
   gtk_label_set_line_wrap (GTK_LABEL (label_yesno), TRUE);
-
-  checkbutton_yesno = gtk_check_button_new_with_mnemonic (_("Don't bother me with this next time."));
-  gtk_widget_show (checkbutton_yesno);
-  gtk_box_pack_start (GTK_BOX (vbox17), checkbutton_yesno, FALSE, FALSE, 0);
 
   hbox18 = gtk_hbox_new (FALSE, 3);
   gtk_widget_show (hbox18);
@@ -565,9 +560,6 @@ create_window_yesno (void)
   g_signal_connect ((gpointer) window_yesno, "delete_event",
                     G_CALLBACK (on_window_yesno_delete_event),
                     NULL);
-  g_signal_connect ((gpointer) checkbutton_yesno, "toggled",
-                    G_CALLBACK (on_checkbutton_yesno_toggled),
-                    NULL);
   g_signal_connect ((gpointer) button_yesno_yes, "clicked",
                     G_CALLBACK (on_button_yesno_yes_clicked),
                     NULL);
@@ -580,7 +572,6 @@ create_window_yesno (void)
   GLADE_HOOKUP_OBJECT (window_yesno, vbox17, "vbox17");
   GLADE_HOOKUP_OBJECT (window_yesno, image8, "image8");
   GLADE_HOOKUP_OBJECT (window_yesno, label_yesno, "label_yesno");
-  GLADE_HOOKUP_OBJECT (window_yesno, checkbutton_yesno, "checkbutton_yesno");
   GLADE_HOOKUP_OBJECT (window_yesno, hbox18, "hbox18");
   GLADE_HOOKUP_OBJECT (window_yesno, button_yesno_yes, "button_yesno_yes");
   GLADE_HOOKUP_OBJECT (window_yesno, button_yesno_no, "button_yesno_no");

@@ -612,7 +612,7 @@ create_main_window (void)
   gtk_widget_show (button_save);
   gtk_box_pack_start (GTK_BOX (hbox1), button_save, FALSE, FALSE, 0);
   gtk_container_set_border_width (GTK_CONTAINER (button_save), 2);
-  gtk_tooltips_set_tip (tooltips, button_save, _("Save game (S or Ctrl - S)"), NULL);
+  gtk_tooltips_set_tip (tooltips, button_save, _("Save game (Ctrl - S)"), NULL);
   gtk_widget_add_accelerator (button_save, "clicked", accel_group,
                               GDK_s, 0,
                               GTK_ACCEL_VISIBLE);

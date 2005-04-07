@@ -75,7 +75,6 @@ xml_country_read_start_element (GMarkupParseContext *context,
     }
     else if(strcmp(element_name, TAG_CUP) == 0)
 	state = STATE_CUP;
-
     else if(strcmp(element_name, TAG_COUNTRY) != 0)
 	g_warning("xml_country_read_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
