@@ -4,6 +4,7 @@
 #include "game_gui.h"
 #include "gui.h"
 #include "interface.h"
+#include "main.h"
 #include "misc_interface.h"
 #include "misc2_interface.h"
 #include "option.h"
@@ -24,22 +25,22 @@ window_show_startup(void)
 	window_create(WINDOW_STARTUP);
     GtkWidget *combo_country =
 	lookup_widget(window_startup, "combo_country");
-    const gchar *country_dir;
-    GPtrArray *dir_contents = NULL;
+    GPtrArray *country_files = NULL;
     GList *combo_strings = NULL;
     gint i;
     
-    country_dir = file_get_definitions_dir();
+    country_files = file_get_country_files();
 
-    dir_contents = file_dir_get_contents(country_dir, "country_", "");
+    if(country_files->len == 0)
+	main_exit_program(EXIT_NO_COUNTRY_FILES, "Didn't find any country definition files in the support directories.");
 
-    for(i=0;i<dir_contents->len;i++)
+    for(i=0;i<country_files->len;i++)
 	combo_strings = g_list_append(combo_strings,
-				      ((GString*)g_ptr_array_index(dir_contents, i))->str);
+				      ((GString*)g_ptr_array_index(country_files, i))->str);
 
     gtk_combo_set_popdown_strings(GTK_COMBO(combo_country), combo_strings);
 
-    free_g_string_array(&dir_contents);
+    free_g_string_array(&country_files);
 }
 
 /** Show the file selection window. */

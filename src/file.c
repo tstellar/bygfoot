@@ -53,13 +53,14 @@ file_add_support_directory_recursive                   (const gchar     *directo
    the full path name.
    The return value must be freed.
    @param filename The name of the file we look for (without path).
+   @param warning Whether to show a warning if we don't find the file.
    @return A pointer to the full path string of the file or NULL if
    we didn't find the file. The gchar* must be freed.
    @see #support_directories
    @see file_add_support_directory_recursive()
 */
 gchar*
-file_find_support_file                       (const gchar     *filename)
+file_find_support_file                       (const gchar     *filename, gboolean warning)
 {
   GList *elem = support_directories;
 
@@ -74,8 +75,8 @@ file_find_support_file                       (const gchar     *filename)
       elem = elem->next;
     }
 
-/*   if(opt_int("int_opt_debug")) */
-/*       g_warning("file_find_support_file: file '%s' not found.", filename); */
+  if(warning)
+      g_warning("file_find_support_file: file '%s' not found.", filename);
 
   return NULL;
 }
@@ -104,7 +105,7 @@ gboolean
 file_my_fopen(const gchar *filename, gchar *bits, FILE **fil, gboolean abort_program)
 {
     gchar buf[SMALL];
-    gchar *support_file = file_find_support_file(filename);
+    gchar *support_file = file_find_support_file(filename, FALSE);
     *fil = fopen(filename, bits);
 
     if(*fil != NULL)
@@ -171,7 +172,7 @@ file_check_home_dir_copy_conf_files(void)
 	sprintf(buf, "%s/%s/%s", home, HOMEDIRNAME, conf_files[i]);
 	if(!g_file_test(buf, G_FILE_TEST_EXISTS))
 	{
-	    conf_file = file_find_support_file(conf_files[i]);
+	    conf_file = file_find_support_file(conf_files[i], TRUE);
 	    sprintf(buf, "cp -v %s %s/%s/%s", conf_file, home, HOMEDIRNAME, conf_files[i]);
 	    file_my_system(buf);
 	}
@@ -239,19 +240,19 @@ file_dir_get_contents(const gchar *dir_name, const gchar *prefix, const gchar *s
 {
     GError *error = NULL;
     GDir *dir = g_dir_open(dir_name, 0, &error);
-    GPtrArray *contents = NULL;
+    GPtrArray *contents = g_ptr_array_new();
     GString *new = NULL;
     const gchar *file = NULL;
 
     misc_print_error(&error, FALSE);
 
     if(dir == NULL)
-	return NULL;
+	return contents;
     
     file = g_dir_read_name(dir);
 
-    if(file != NULL)
-	contents = g_ptr_array_new();
+    if(file == NULL)
+	return contents;
 
     while(file != NULL)
     {
@@ -269,26 +270,34 @@ file_dir_get_contents(const gchar *dir_name, const gchar *prefix, const gchar *s
     return contents;
 }
 
-/** Return the first directory called 'definitions' from the support
-    directories array. */
-const gchar*
-file_get_definitions_dir(void)
+/** Return the country definition files found in the support dirs. */
+GPtrArray*
+file_get_country_files(void)
 {
+    gint i;
     GList *elem = support_directories;
-  
+    GPtrArray *country_files = g_ptr_array_new();
+    GPtrArray *dir_contents = NULL;
+    GString *new_string = NULL;
+
     while(elem != NULL)
     {
-	if(g_str_has_suffix((gchar*)elem->data, "definitions") ||
-	   g_str_has_suffix((gchar*)elem->data, "definitions/"))
-	    return (gchar*)elem->data;
-	
+	dir_contents = file_dir_get_contents((gchar*)elem->data, "country_", ".xml");
+
+	for(i=0;i<dir_contents->len;i++)
+	    if(!query_misc_string_in_array(((GString*)g_ptr_array_index(dir_contents, i))->str,
+					   country_files))
+	    {
+		new_string = g_string_new(((GString*)g_ptr_array_index(dir_contents, i))->str);
+		g_ptr_array_add(country_files, new_string);
+	    }
+
+	free_g_string_array(&dir_contents);
+
 	elem = elem->next;
     }
 
-    main_exit_program(EXIT_DIR_OPEN_FAILED,
-		      "Didn't find definitions directory.\n");
-
-    return NULL;
+    return country_files;
 }
 
 /** Read the file until the next line that's not a comment or
@@ -404,7 +413,7 @@ file_load_opt_file(const gchar *filename, OptionList *optionlist)
 void
 file_load_conf_files(void)
 {
-    gchar *conf_file = file_find_support_file("bygfoot.conf");
+    gchar *conf_file = file_find_support_file("bygfoot.conf", TRUE);
 
     file_load_opt_file(conf_file, &options);
     g_free(conf_file);
@@ -421,13 +430,13 @@ file_load_user_conf_file(User *user)
     gchar *conf_file = NULL, buf[SMALL];
 
     sprintf(buf, "bygfoot_%s.conf", user->name->str);
-    conf_file = file_find_support_file(buf);
+    conf_file = file_find_support_file(buf, FALSE);
 
     if(conf_file == NULL ||
        !file_my_fopen(conf_file, "r", &fil, FALSE))
     {
 	g_free(conf_file);
-	conf_file = file_find_support_file(opt_str("string_opt_default_user_conf_file"));
+	conf_file = file_find_support_file(opt_str("string_opt_default_user_conf_file"), TRUE);
     }
 
     file_load_opt_file(conf_file, &user->options);

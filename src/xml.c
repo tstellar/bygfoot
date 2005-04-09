@@ -65,7 +65,7 @@ xml_load_leagues(const gchar *dirname, const gchar *basename)
 	if(!g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_table.xml") && 
 	   !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_fixtures.xml") &&
 	   !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_teams.xml") &&
-	   !misc_string_contains(((GString*)g_ptr_array_index(dir_contents, i))->str, "_promcup"))
+	   !query_misc_string_contains(((GString*)g_ptr_array_index(dir_contents, i))->str, "_promcup"))
 	    xml_load_league(dirname, ((GString*)g_ptr_array_index(dir_contents, i))->str,
 			    dir_contents);
     
@@ -107,7 +107,7 @@ xml_load_league(const gchar *dirname, const gchar *basename, const GPtrArray *di
 
 	for(i=0;i<dir_contents->len;i++)
 	    if(g_str_has_prefix(((GString*)g_ptr_array_index(dir_contents, i))->str, buf) &&
-	       !misc_string_contains(((GString*)g_ptr_array_index(dir_contents, i))->str, "_table") &&
+	       !query_misc_string_contains(((GString*)g_ptr_array_index(dir_contents, i))->str, "_table") &&
 	       !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_fixtures.xml") &&
 	       !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_teams.xml"))
 	    {
@@ -134,7 +134,7 @@ xml_load_cups(const gchar *dirname, const gchar *basename)
     
     for(i=0;i<dir_contents->len;i++)
     {
-	if(!misc_string_contains(((GString*)g_ptr_array_index(dir_contents, i))->str, "_table") &&
+	if(!query_misc_string_contains(((GString*)g_ptr_array_index(dir_contents, i))->str, "_table") &&
 	   !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_fixtures.xml") &&
 	   !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_teams.xml"))
 	    xml_load_cup(dirname, ((GString*)g_ptr_array_index(dir_contents, i))->str,
@@ -177,7 +177,7 @@ xml_load_cup(const gchar *dirname, const gchar *basename, const GPtrArray *dir_c
     {
 	if(g_str_has_prefix(((GString*)g_ptr_array_index(dir_contents, i))->str,
 			    prefix) &&
-	   misc_string_contains(((GString*)g_ptr_array_index(dir_contents, i))->str,
+	   query_misc_string_contains(((GString*)g_ptr_array_index(dir_contents, i))->str,
 				"_table"))
 	{
 	    new_table = table_new();

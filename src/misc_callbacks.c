@@ -84,11 +84,7 @@ on_button_fsel_ok_clicked              (GtkButton       *button,
     if(stat1 == STATUS_SAVE_GAME)
 	load_save_save_game(filename);
     else if(stat1 == STATUS_LOAD_GAME)
-    {
 	load_save_load_game(filename);
-	cur_user = 0;
-	on_button_back_to_main_clicked(NULL, NULL);
-    }
     else if(stat1 == STATUS_LOAD_GAME_TEAM_SELECTION)
 	misc_callback_startup_load(filename);
 
@@ -269,6 +265,9 @@ on_button_stadium_ok_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
     misc_callback_improve_stadium();
+
+    if(stat0 == STATUS_SHOW_FINANCES)
+	on_menu_show_finances_activate(NULL, NULL);
 }
 
 
@@ -298,12 +297,15 @@ void
 on_button_startup_resume_clicked       (GtkButton       *button,
                                         gpointer         user_data)
 {
-    gchar *last_save = load_save_last_save_get();
-
-    if(last_save == NULL)
-	return;
-
-    misc_callback_startup_load(last_save);
-    
-    g_free(last_save);
+    misc_callback_startup_load("last_save");
 }
+
+gboolean
+on_window_stadium_delete_event         (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data)
+{
+
+    return TRUE;
+}
+

@@ -113,7 +113,7 @@ misc2_callback_contract_offer(void)
 		pl->contract += (i + 1);
 		pl->wage = value;
 		sprintf(buf, _("%s accepts your offer."), pl->name->str);
-		game_gui_print_message(buf);
+		game_gui_show_warning(buf);
 		window_destroy(&window.contract, FALSE);
 	    }
 	    else

@@ -34,6 +34,9 @@ void
 misc_truncate_string(const gchar *src, gchar *dest, gint number_of_chars);
 
 gboolean
-misc_string_contains(const gchar *string, const gchar *text);
+query_misc_string_contains(const gchar *string, const gchar *text);
+
+gboolean
+query_misc_string_in_array(const gchar *string, GPtrArray *array);
 
 #endif

@@ -664,10 +664,17 @@ team_update_cpu_corrections(Team *tm, gboolean reset_fitness)
     for(i=0;i<tm->players->len;i++)
     {
 	pl = player_of(tm, i);
+
+	for(j=0;j<pl->cards->len;j++)
+	    g_array_index(pl->cards, PlayerCard, j).red = 0;	
+
 	if(pl->cskill == 0)
 	{
 	    pl->health = pl->recovery = 0;
 	    pl->cskill = player_get_cskill(pl, pl->cpos);
+
+	    pl->fitness = math_rnd(const_float("float_player_fitness_lower"),
+				   const_float("float_player_fitness_upper"));
 	}
 	
 	if(pl->pos != pl->cpos)
@@ -676,18 +683,16 @@ team_update_cpu_corrections(Team *tm, gboolean reset_fitness)
 	    pl->cskill = player_get_cskill(pl, pl->cpos);
 	}
 
-	for(j=0;j<pl->cards->len;j++)
-	    g_array_index(pl->cards, PlayerCard, j).red = 0;	
-
 	if(reset_fitness)
 	    pl->fitness = math_rnd(const_float("float_player_fitness_lower"),
 				   const_float("float_player_fitness_upper"));
     }
     
+    team_rearrange(tm);
+    
     tm->structure = team_find_appropriate_structure(tm);
 
-    if(!player_substitution_good_structure(tm->structure,
-					   player_of(tm, 1)->pos, player_of(tm, 1)->pos))
+    if(!player_substitution_good_structure(tm->structure, PLAYER_POS_DEFENDER, PLAYER_POS_DEFENDER))
     {
 	tm->structure = team_assign_playing_structure();
 	for(i=0;i<tm->players->len;i++)
@@ -755,7 +760,7 @@ team_update_cpu_new_players(Team *tm)
 /** Heal players, re-set fitnesses, make some random subs
     and replace some players with new ones.
     @param tm The team we examine.
-    @param reset_fitness Whether to reset the fitness values of playes. */
+    @param reset_fitness Whether to reset the fitness values of players. */
 void
 team_update_cpu_team(Team *tm, gboolean reset_fitness)
 {

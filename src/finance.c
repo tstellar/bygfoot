@@ -144,9 +144,9 @@ finance_get_loan(gint value)
 
     sprintf(buf, _("You have %d weeks to pay back your loan."),
 	    current_user.counters[COUNT_USER_LOAN]); 
-    game_gui_print_message(buf);
 
     on_menu_show_finances_activate(NULL, NULL);
+    game_gui_print_message(buf);
 }
 
 
@@ -176,8 +176,8 @@ finance_pay_loan(gint value)
 		current_user.counters[COUNT_USER_LOAN]);
     }
 
-    game_gui_print_message(buf);
     on_menu_show_finances_activate(NULL, NULL);
+    game_gui_print_message(buf);
 }
 
 /** Return the cost of a stadium improvement.

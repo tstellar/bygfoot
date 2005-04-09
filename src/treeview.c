@@ -241,7 +241,7 @@ treeview_pixbuf_from_filename(gchar *filename)
 
     if(filename != NULL && strlen(filename) != 0)
     {
-	symbol_file = file_find_support_file(filename);
+	symbol_file = file_find_support_file(filename, FALSE);
 	if(symbol_file != NULL)
 	{
 	    symbol = gdk_pixbuf_new_from_file(symbol_file, &error);
@@ -1010,7 +1010,7 @@ treeview_create_game_stats(LiveGame *live_game)
     gchar buf[2][SMALL];
     gchar buf3[SMALL];
     gchar *categories[LIVE_GAME_STAT_VALUE_END] =
-	{_("Goals (w/o pen.)"),
+	{_("Goals (regular)"),
 	 _("Shots"),   
 	 _("Shot %"),   
 	 _("Possession"),   
@@ -1616,6 +1616,37 @@ treeview_show_table(GtkTreeView *treeview, gint clid)
     g_object_unref(model);
 }
 
+/** Print some quick info about the stadium in the finances view. */
+void
+treeview_create_stadium_summary(GtkListStore *liststore)
+{
+    gchar buf[SMALL];
+    GtkTreeIter iter;
+
+    gtk_list_store_append(liststore, &iter);
+    misc_print_grouped_int(current_user.tm->stadium.capacity, buf, FALSE);
+    gtk_list_store_set(liststore, &iter, 0, _("Stadium capacity"), 1, buf, 2, "", -1);
+
+    gtk_list_store_append(liststore, &iter);
+    sprintf(buf, "%.0f", current_user.tm->stadium.safety * 100);
+    gtk_list_store_set(liststore, &iter, 0, _("Stadium safety"), 1, buf, 2, "", -1);
+
+    if(current_user.counters[COUNT_USER_STADIUM_CAPACITY] + 
+       current_user.counters[COUNT_USER_STADIUM_SAFETY] != 0)
+    {
+	gtk_list_store_append(liststore, &iter);
+	sprintf(buf, _("Improvement in progress.\n%d seats and %d%% safety still to be done.\nExpected finish: %d weeks."),
+		current_user.counters[COUNT_USER_STADIUM_CAPACITY],
+		current_user.counters[COUNT_USER_STADIUM_SAFETY],
+		MAX(finance_get_stadium_improvement_duration(
+			(gfloat)current_user.counters[COUNT_USER_STADIUM_CAPACITY], TRUE),
+		    finance_get_stadium_improvement_duration(
+			(gfloat)current_user.counters[COUNT_USER_STADIUM_SAFETY] / 100, FALSE)));
+
+	gtk_list_store_set(liststore, &iter, 0, _("Stadium status"), 1, buf, 2, "", -1);
+    }
+}
+
 GtkTreeModel*
 treeview_create_finances(const User* user)
 {
@@ -1710,6 +1741,11 @@ treeview_create_finances(const User* user)
 	gtk_list_store_append(liststore, &iter);
 	gtk_list_store_set(liststore, &iter, 0, buf, 1, "", 2, buf2, -1);
     }
+
+    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_set(liststore, &iter, 0, "", 1, "", 2, "", -1);
+
+    treeview_create_stadium_summary(liststore);
 
     return GTK_TREE_MODEL(liststore);
 }

@@ -210,4 +210,7 @@ treeview_create_player_info(const Player *pl);
 gint
 treeview_iter_get_row(GtkTreeModel *model, GtkTreeIter *iter);
 
+void
+treeview_create_stadium_summary(GtkListStore *liststore);
+
 #endif

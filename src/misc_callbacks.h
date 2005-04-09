@@ -118,3 +118,8 @@ void
 on_button_startup_resume_clicked       (GtkButton       *button,
                                         gpointer         user_data);
 #endif
+
+gboolean
+on_window_stadium_delete_event         (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data);

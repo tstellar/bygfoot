@@ -484,7 +484,7 @@ int_team_subs_upper 3
 float_team_new_style 1000
 
 # prob that the team structure gets changed
-float_team_new_structure 500
+float_team_new_structure 2000
 
 # the influence of the fitness on the current skill.
 #    this determines the player's contribution to the team
@@ -746,7 +746,7 @@ string_treeview_opponent_skill_positive_fg darkred
 string_treeview_opponent_skill_negative_fg darkgreen
 
 # background of the home column in the league results
-string_treeview_league_results_away_bg lightgrey
+string_treeview_league_results_away_bg white
 string_treeview_league_results_away_fg black
 
 # foreground of own team bar in the opponent preview

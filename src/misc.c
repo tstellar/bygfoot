@@ -230,7 +230,7 @@ misc_truncate_string(const gchar *src, gchar *dest, gint number_of_chars)
 
 /** Find out whether the first string contains the second string. */
 gboolean
-misc_string_contains(const gchar *string, const gchar *text)
+query_misc_string_contains(const gchar *string, const gchar *text)
 {
     gint i, j;
     gint lens = strlen(string),
@@ -251,6 +251,19 @@ misc_string_contains(const gchar *string, const gchar *text)
 	if(j == lent)
 	    return TRUE;
     }
+
+    return FALSE;
+}
+
+/** Check whether the string is in the GString array. */
+gboolean
+query_misc_string_in_array(const gchar *string, GPtrArray *array)
+{
+    gint i;
+
+    for(i=0;i<array->len;i++)
+	if(strcmp(string, ((GString*)g_ptr_array_index(array, i))->str) == 0)
+	    return TRUE;
 
     return FALSE;
 }

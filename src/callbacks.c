@@ -108,6 +108,7 @@ on_button_back_to_main_clicked         (GtkButton       *button,
                                         gpointer         user_data)
 {
     stat0 = STATUS_MAIN;
+    gtk_notebook_set_current_page(GTK_NOTEBOOK(lookup_widget(window.main, "notebook_player")), 0);
     game_gui_show_main();
 }
 
@@ -119,6 +120,7 @@ on_button_transfers_clicked            (GtkButton       *button,
     stat0 = STATUS_SHOW_TRANSFER_LIST;
     game_gui_print_message(_("Left click to make an offer. Right click to remove offer."));
     treeview_show_transfer_list(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")));
+    gtk_notebook_set_current_page(GTK_NOTEBOOK(lookup_widget(window.main, "notebook_player")), 1);
 }
 
 
@@ -161,6 +163,12 @@ on_player_list1_button_press_event     (GtkWidget       *widget,
 {
     gint idx = -1;
 
+    if(event->button == 2)
+    {
+	on_menu_rearrange_team_activate(NULL, NULL);
+	return TRUE;
+    }
+
     if(treeview_select_row(GTK_TREE_VIEW(widget), event))
 	idx = treeview_get_index(GTK_TREE_VIEW(widget), 0);
 
@@ -187,6 +195,10 @@ on_button_browse_forward_clicked       (GtkButton       *button,
 	case STATUS_BROWSE_TEAMS:
 	    callback_show_team(SHOW_NEXT);
 	    break;
+	case STATUS_SHOW_PLAYER_INFO:
+	    selected_row[0] = (selected_row[0] + 1) % current_user.tm->players->len;
+	    on_menu_show_info_activate(NULL, NULL);
+	    break;
     }
 }
 
@@ -202,10 +214,13 @@ on_button_browse_back_clicked          (GtkButton       *button,
 	    break;
 	case STATUS_BROWSE_TEAMS:
 	    callback_show_team(SHOW_PREVIOUS);
+	    break;
+	case STATUS_SHOW_PLAYER_INFO:
+	    selected_row[0] = (selected_row[0] == 0) ? current_user.tm->players->len - 1 : selected_row[0] - 1;
+	    on_menu_show_info_activate(NULL, NULL);
+	    break;
     }
 }
-
-
 
 void
 on_button_cl_back_clicked              (GtkButton       *button,
@@ -398,6 +413,16 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
 {
     gint idx;
 
+    if(stat0 == STATUS_SHOW_FINANCES)
+    {
+	if(event->button == 1)
+	    callback_get_loan();
+	else if(event->button == 3)
+	    callback_pay_loan();
+	else if(event->button == 2)
+	    on_menu_show_stadium_activate(NULL, NULL);
+    }
+
     if(gtk_tree_selection_get_mode(
 	   gtk_tree_view_get_selection(GTK_TREE_VIEW(widget))) ==
        GTK_SELECTION_NONE)
@@ -410,12 +435,6 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
 
     switch(stat0)
     {
-	case STATUS_SHOW_FINANCES:
-	    if(event->button == 1)		
-		callback_get_loan();
-	    else if(event->button == 3)
-		callback_pay_loan();
-	    break;
 	case STATUS_SHOW_TRANSFER_LIST:
 	    if(event->button == 1 || trans(idx - 1).tm == current_user.tm)
 		callback_transfer_list_clicked(idx - 1);
@@ -519,8 +538,7 @@ on_menu_user_show_last_stats_activate  (GtkMenuItem     *menuitem,
     }
 
     stat0 = STATUS_SHOW_LAST_MATCH_STATS;
-    treeview_show_game_stats(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")),
-			     &current_user.live_game);
+    callback_show_last_match_stats();
 }
 
 gboolean
@@ -593,7 +611,7 @@ on_menu_show_finances_activate         (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
     stat0 = STATUS_SHOW_FINANCES;
-    game_gui_print_message("Left-click on the list to get a loan. Right-click to pay back.");
+    game_gui_print_message("Left-click: get loan; Right-click: pay back; Middle click: stadium window.");
     treeview_show_finances(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")),
 			   &current_user);
 }
@@ -708,3 +726,19 @@ on_player_menu_show_info_activate      (GtkMenuItem     *menuitem,
     on_menu_show_info_activate(NULL, NULL);
 }
 
+
+void
+on_menu_rearrange_team_activate        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    team_rearrange(current_user.tm);
+    treeview_show_user_player_list();
+}
+
+
+void
+on_menu_load_last_save_activate        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    load_save_load_game("last_save");
+}

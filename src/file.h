@@ -9,7 +9,7 @@ void
 file_add_support_directory_recursive                   (const gchar     *directory);
 
 gchar*
-file_find_support_file                       (const gchar     *filename);
+file_find_support_file                       (const gchar     *filename, gboolean warning);
 
 gboolean
 file_get_next_opt_line(FILE *fil, gchar *opt_name, gchar *opt_value);
@@ -29,8 +29,8 @@ file_get_player_names(gint number_of_names);
 gboolean
 file_my_fopen(const gchar *filename, gchar *bits, FILE **fil, gboolean abort_program);
 
-const gchar*
-file_get_definitions_dir(void);
+GPtrArray*
+file_get_country_files(void);
 
 void
 file_load_conf_files(void);

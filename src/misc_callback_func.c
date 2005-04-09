@@ -221,6 +221,4 @@ misc_callback_startup_load(const gchar *filename)
     window_create(WINDOW_MAIN);
     xml_name_read(opt_str("string_opt_player_names_file"), 1000);
     load_save_load_game(filename);
-    cur_user = 0;
-    on_button_back_to_main_clicked(NULL, NULL);
 }

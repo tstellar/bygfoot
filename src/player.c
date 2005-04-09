@@ -668,7 +668,10 @@ player_update_fitness(Player *pl)
     gfloat increase = -1;
 
     if(pl->participation)
+    {
+	pl->participation = FALSE;
 	return;
+    }
 
     for(i=0;i<7;i++)
 	if(diff > age_limits[i])
@@ -946,6 +949,7 @@ player_update_weekly(Team *tm, gint idx)
     pl->age += 0.0192;
     pl->contract -= 0.0192;
 
+    /*todo: warning*/
     if(pl->contract <= 0)
 	player_remove_contract(tm, idx);
 
@@ -981,9 +985,6 @@ player_remove_from_team(Team *tm, gint idx)
 void
 player_update_post_match(Player *pl, gint clid)
 {
-    if(pl->health == 0)
-	player_update_fitness(pl);
-    		
     if(player_card_get(pl, clid, PLAYER_VALUE_CARD_RED) > 0)
 	player_card_set(pl, clid, PLAYER_VALUE_CARD_RED, -1, TRUE);
 }
@@ -1018,8 +1019,11 @@ player_update_week_roundly(Team *tm, gint idx)
 {
     Player *pl = player_of(tm, idx);
 
+    if(pl->health == 0)
+	player_update_fitness(pl);
+    		
     pl->cskill = (pl->health > 0 || player_is_banned(pl) > 0) ?
-	0 : player_get_cskill(pl, pl->cpos);
+	0 : player_get_cskill(pl, pl->cpos);    
 }
 
 /** Return injury descriptions.  */

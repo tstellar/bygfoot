@@ -91,7 +91,7 @@ void
 xml_name_read(const gchar *names_file, gint number_of_names)
 {
     gint i;
-    gchar *file_name = file_find_support_file(names_file);
+    gchar *file_name = file_find_support_file(names_file, FALSE);
     GMarkupParser parser = {xml_name_read_start_element,
 			    xml_name_read_end_element,
 			    xml_name_read_text, NULL, NULL};

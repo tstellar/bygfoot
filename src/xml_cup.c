@@ -312,7 +312,7 @@ xml_cup_read_text         (GMarkupParseContext *context,
 void
 xml_cup_read(const gchar *cup_name, GArray *cups)
 {
-    gchar *file_name = file_find_support_file(cup_name);
+    gchar *file_name = file_find_support_file(cup_name, FALSE);
     GMarkupParser parser = {xml_cup_read_start_element,
 			    xml_cup_read_end_element,
 			    xml_cup_read_text, NULL, NULL};
@@ -328,7 +328,7 @@ xml_cup_read(const gchar *cup_name, GArray *cups)
     if(file_name == NULL)
     {
 	sprintf(buf, "cup_%s.xml", cup_name);
-	file_name = file_find_support_file(buf);
+	file_name = file_find_support_file(buf, TRUE);
     }
 
     if(!g_file_get_contents(file_name, &file_contents, &length, &error))

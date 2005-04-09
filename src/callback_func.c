@@ -130,12 +130,28 @@ callback_show_last_match(void)
 
     window_create(WINDOW_LIVE);
 
+    current_user.live_game.fix = 
+	&g_array_index(league_cup_get_fixtures(current_user.live_game.fix_clid),
+		       Fixture, current_user.live_game.fix_idx);
+
     treeview_show_game_stats(GTK_TREE_VIEW(lookup_widget(window.live, "treeview_stats")),
 			     &current_user.live_game);
     live_game_set_match(&current_user.live_game);
 
     for(i=0;i<current_user.live_game.units->len;i++)
 	game_gui_live_game_show_unit(&g_array_index(current_user.live_game.units, LiveGameUnit, i));
+}
+
+/** Show the last match stats of the current user. */
+void
+callback_show_last_match_stats(void)
+{
+    current_user.live_game.fix = 
+	&g_array_index(league_cup_get_fixtures(current_user.live_game.fix_clid),
+		       Fixture, current_user.live_game.fix_idx);
+    
+    treeview_show_game_stats(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")),
+			     &current_user.live_game);
 }
 
 /** Show some fixtures.

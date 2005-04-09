@@ -1,3 +1,4 @@
+#include "callbacks.h"
 #include "file.h"
 #include "gui.h"
 #include "game_gui.h"
@@ -12,7 +13,7 @@
 #include "xml_loadsave_transfers.h"
 #include "xml.h"
 
-#define PROGRESS_MAX 6
+#define PROGRESS_MAX 7
 
 /** Save the game to the specified file. */
 void
@@ -39,6 +40,16 @@ load_save_save_game(const gchar *filename)
     gui_show_progress(0, "Saving miscellaneous...");
 
     xml_loadsave_misc_write(prefix);
+
+    gui_show_progress(
+	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
+	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	"Saving options/constants...");
+
+    sprintf(buf, "%s___options", prefix);
+    file_save_opt_file(buf, &options);
+    sprintf(buf, "%s___constants", prefix);
+    file_save_opt_file(buf, &constants);
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
@@ -98,6 +109,25 @@ load_save_load_game(const gchar* filename)
 	*dirname = g_path_get_dirname(filename);
     gchar *prefix = g_strndup(basename, strlen(basename) - strlen(const_str("string_save_suffix")));
 
+    if(strcmp(basename, "last_save") == 0)
+    {
+	g_free(basename);
+	g_free(dirname);
+	g_free(prefix);
+
+	basename = load_save_last_save_get();
+
+	if(basename != NULL)
+	{
+	    load_save_load_game(basename);
+	    g_free(basename);
+	}
+	else
+	    g_warning("load_save_load_game: last save file not found.\n");
+
+	return;
+    }
+
     gui_show_progress(0, "Uncompressing savegame...");
 
     file_decompress(filename);
@@ -108,6 +138,16 @@ load_save_load_game(const gchar* filename)
 	"Loading miscellaneous...");
 
     xml_loadsave_misc_read(dirname, prefix);
+
+    gui_show_progress(
+	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
+	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	"Loading options/constants...");
+
+    sprintf(buf, "%s___options", prefix);
+    file_load_opt_file(buf, &options);
+    sprintf(buf, "%s___constants", prefix);
+    file_load_opt_file(buf, &constants);
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
@@ -150,6 +190,9 @@ load_save_load_game(const gchar* filename)
 
     gui_show_progress(-1, "");
     setsav1;
+
+    cur_user = 0;
+    on_button_back_to_main_clicked(NULL, NULL);
 }
 
 /** Store the name of the last savegame in the users home dir. */

@@ -216,7 +216,6 @@ fixture_get_round_robin_advance(const Cup *cup, gint round)
 Team*
 fixture_winner_of(const Fixture *fix)
 {
-    gint i;
     const Fixture *first_leg;
     const CupRound *cupround = 
 	&g_array_index(cup_from_clid(fix->clid)->rounds, CupRound, fix->round);

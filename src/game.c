@@ -274,10 +274,9 @@ game_initialize(Fixture *fix)
 		if(g_array_index(fix->teams[i]->players, Player, j).cskill > 0)
 		    player_games_goals_set(&g_array_index(fix->teams[i]->players, Player, j), fix->clid,
 					   PLAYER_VALUE_GAMES, 1, TRUE);
-	    }
 		
-	    g_array_index(fix->teams[i]->players, Player, j).participation = 
-		(j < 11 && g_array_index(fix->teams[i]->players, Player, j).cskill > 0);
+		g_array_index(fix->teams[i]->players, Player, j).participation = TRUE;
+	    }
 	}
 
 	if(user_idx[i] != -1)
@@ -875,8 +874,7 @@ game_post_match(Fixture *fix)
     
     for(i=0;i<2;i++)
     {
-	if(team_is_user(fix->teams[i]) == -1 &&
-	   fix->teams[i]->clid == fix->clid)
+	if(team_is_user(fix->teams[i]) == -1)
 	    team_update_cpu_team(fix->teams[i],
 				 (fixture_user_team_involved(fix) != -1));
 	else

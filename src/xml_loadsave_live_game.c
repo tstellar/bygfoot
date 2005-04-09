@@ -154,10 +154,13 @@ xml_loadsave_live_game_text         (GMarkupParseContext *context,
     int_value = (gint)g_ascii_strtod(buf, NULL);
 
     if(state == TAG_LIVE_GAME_FIX_CLID)
-	fix_clid = int_value;
+	lgame->fix_clid = int_value;
     else if(state == TAG_LIVE_GAME_FIX_IDX)
-	lgame->fix = &g_array_index(league_cup_get_fixtures(fix_clid),
+    {
+	lgame->fix_idx = int_value;
+	lgame->fix = &g_array_index(league_cup_get_fixtures(lgame->fix_clid),
 				    Fixture, int_value);
+    }
     else if(state == TAG_LIVE_GAME_UNIT_POSSESSION)
 	new_unit.possession = int_value;
     else if(state == TAG_LIVE_GAME_UNIT_AREA)

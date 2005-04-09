@@ -161,7 +161,7 @@ treeview_cell_player_info_banned_to_cell(GtkCellRenderer *renderer, const GArray
     for(i=0;i<cards->len;i++)
 	if(g_array_index(cards, PlayerCard, i).red > 0)
 	{
-	    sprintf(buf2, "%s: %d weeks  ",
+	    sprintf(buf2, "%s: %d weeks\n",
 		    league_cup_get_name_string(g_array_index(cards, PlayerCard, i).clid),
 		    g_array_index(cards, PlayerCard, i).red);
 	    strcat(buf, buf2);
@@ -191,12 +191,12 @@ treeview_cell_player_info_yellow_to_cell(GtkCellRenderer *renderer, const GArray
 	{
 	    if(yellow_red < 1000)
 	    {
-		sprintf(buf2, "%s: %d (%d)  ",
+		sprintf(buf2, "%s: %d (%d)\n",
 			league_cup_get_name_string(g_array_index(cards, PlayerCard, i).clid),
 			g_array_index(cards, PlayerCard, i).yellow, yellow_red);
 	    }
 	    else
-		sprintf(buf2, "%s: %d (no limit)  ",
+		sprintf(buf2, "%s: %d (no limit)\n",
 			league_cup_get_name_string(g_array_index(cards, PlayerCard, i).clid),
 			g_array_index(cards, PlayerCard, i).yellow);
 	    
@@ -217,7 +217,7 @@ treeview_cell_player_info_games_goals_to_cell(GtkCellRenderer *renderer, const G
 
     for(i=0;i<games_goals->len;i++)
     {
-	sprintf(buf2, "%s: %d/%d  ", 
+	sprintf(buf2, "%s: %d/%d\n", 
 		league_cup_get_name_string(g_array_index(games_goals, PlayerGamesGoals, i).clid),
 		g_array_index(games_goals, PlayerGamesGoals, i).games,
 		g_array_index(games_goals, PlayerGamesGoals, i).goals);		

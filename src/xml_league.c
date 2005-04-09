@@ -295,7 +295,7 @@ xml_league_read(const gchar *league_name, GArray *leagues)
 {
     gint i;
     TableElement new_table_element;
-    gchar *file_name = file_find_support_file(league_name);
+    gchar *file_name = file_find_support_file(league_name, FALSE);
     GMarkupParser parser = {xml_league_read_start_element,
 			    xml_league_read_end_element,
 			    xml_league_read_text, NULL, NULL};
@@ -311,7 +311,7 @@ xml_league_read(const gchar *league_name, GArray *leagues)
     if(file_name == NULL)
     {
 	sprintf(buf, "league_%s.xml", league_name);
-	file_name = file_find_support_file(buf);
+	file_name = file_find_support_file(buf, TRUE);
     }
 
     if(!g_file_get_contents(file_name, &file_contents, &length, &error))

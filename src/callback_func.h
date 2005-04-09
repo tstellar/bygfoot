@@ -39,4 +39,7 @@ callback_show_player_list(gint type);
 void
 callback_fire_player(gint idx);
 
+void
+callback_show_last_match_stats(void);
+
 #endif

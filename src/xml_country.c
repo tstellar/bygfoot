@@ -149,7 +149,7 @@ xml_country_read_text         (GMarkupParseContext *context,
 void
 xml_country_read(const gchar *country_name)
 {
-    gchar *file_name = file_find_support_file(country_name);
+    gchar *file_name = file_find_support_file(country_name, FALSE);
     GMarkupParser parser = {xml_country_read_start_element,
 			    xml_country_read_end_element,
 			    xml_country_read_text, NULL, NULL};
@@ -165,7 +165,7 @@ xml_country_read(const gchar *country_name)
     if(file_name == NULL)
     {
 	sprintf(buf, "country_%s.xml", country_name);
-	file_name = file_find_support_file(buf);
+	file_name = file_find_support_file(buf, TRUE);
     }
 	
     if(!g_file_get_contents(file_name, &file_contents, &length, &error))

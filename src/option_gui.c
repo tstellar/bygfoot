@@ -1,3 +1,4 @@
+#include "callbacks.h"
 #include "file.h"
 #include "option.h"
 #include "option_gui.h"
@@ -387,10 +388,13 @@ option_gui_write_options(void)
 
     for(i=0;i<ENTRY_OPT_END;i++)
     {
-	if(i == ENTRY_OPT_CONSTANTS && 
-	   strcmp(gtk_entry_get_text(entry_widgets[i]), opt_str("string_opt_constants_file" )) != 0)
-	    file_load_opt_file(gtk_entry_get_text(entry_widgets[i]), &constants);
-
 	g_string_printf(entry_options[i], "%s", gtk_entry_get_text(entry_widgets[i]));
+
+	if(i == ENTRY_OPT_CONSTANTS && 
+	   strcmp(gtk_entry_get_text(entry_widgets[i]), opt_str("string_opt_constants_file")) != 0)
+	    file_load_opt_file(gtk_entry_get_text(entry_widgets[i]), &constants);
+	else if(i == ENTRY_OPT_FONT_NAME &&
+		strcmp(gtk_entry_get_text(entry_widgets[i]), opt_str("string_opt_font_name")) != 0)
+	    on_button_back_to_main_clicked(NULL, NULL);
     }
 }

@@ -162,7 +162,7 @@ end_week_round_results(void)
     gchar buf[SMALL], buf2[SMALL];
     gfloat num_matches =
 	(gfloat)fixture_get_number_of_matches(week, week_round);
-
+    
     if(week_round == 1)
     {
 	for(i=0;i<ligs->len;i++)
@@ -172,6 +172,7 @@ end_week_round_results(void)
 		   g_array_index(lig(i).fixtures, Fixture, j).attendance == -1)
 		{
 		    live_game_calculate_fixture(&g_array_index(lig(i).fixtures, Fixture, j));
+
 		    done++;
 		    fixture_result_to_buf(&g_array_index(lig(i).fixtures, Fixture, j), buf);
 		    sprintf(buf2, "%s %s %s",
@@ -190,6 +191,7 @@ end_week_round_results(void)
 		   g_array_index(cp(i).fixtures, Fixture, j).attendance == -1)
 		{
 		    live_game_calculate_fixture(&g_array_index(cp(i).fixtures, Fixture, j));
+
 		    done++;
 		    fixture_result_to_buf(&g_array_index(cp(i).fixtures, Fixture, j), buf);
 		    sprintf(buf2, "%s %s %s",

@@ -246,15 +246,15 @@ game_gui_write_meters(void)
     GtkImage *image_style = GTK_IMAGE(lookup_widget(window.main, "image_style")),
 	*image_boost = GTK_IMAGE(lookup_widget(window.main, "image_boost"));
     gchar *image_style_files[5] = 
-	{file_find_support_file(const_str("string_game_gui_style_all_out_defend_icon")),
-	 file_find_support_file(const_str("string_game_gui_style_defend_icon")),
-	 file_find_support_file(const_str("string_game_gui_style_balanced_icon")),
-	 file_find_support_file(const_str("string_game_gui_style_attack_icon")),
-	 file_find_support_file(const_str("string_game_gui_style_all_out_attack_icon"))};
+	{file_find_support_file(const_str("string_game_gui_style_all_out_defend_icon"), TRUE),
+	 file_find_support_file(const_str("string_game_gui_style_defend_icon"), TRUE),
+	 file_find_support_file(const_str("string_game_gui_style_balanced_icon"), TRUE),
+	 file_find_support_file(const_str("string_game_gui_style_attack_icon"), TRUE),
+	 file_find_support_file(const_str("string_game_gui_style_all_out_attack_icon"), TRUE)};
     gchar *image_boost_files[3] =
-	{file_find_support_file(const_str("string_game_gui_boost_anti_icon")),
-	 file_find_support_file(const_str("string_game_gui_boost_off_icon")),
-	 file_find_support_file(const_str("string_game_gui_boost_on_icon"))};
+	{file_find_support_file(const_str("string_game_gui_boost_anti_icon"), TRUE),
+	 file_find_support_file(const_str("string_game_gui_boost_off_icon"), TRUE),
+	 file_find_support_file(const_str("string_game_gui_boost_on_icon"), TRUE)};
 
     gtk_image_set_from_file(image_style, image_style_files[current_user.tm->style + 2]);
     gtk_image_set_from_file(image_boost, image_boost_files[current_user.tm->boost + 1]);

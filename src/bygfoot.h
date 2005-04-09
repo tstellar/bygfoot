@@ -58,7 +58,7 @@
 enum ExitCodes
 {
     EXIT_OK = 0, /**< Normal exit. */
-    EXIT_DIR_OPEN_FAILED, /**< Exit when the $HOME/.bygfoot/definitions directory can't be opened. */
+    EXIT_NO_COUNTRY_FILES, /**< Exit when no country files have been found. */
     EXIT_FILE_OPEN_FAILED, /** A file could not be opened. */
     EXIT_PRINT_ERROR, /**< Exit when the print_error function is called on a set error.*/
     EXIT_NO_LEAGUES, /**< The game must contain at least one league. */

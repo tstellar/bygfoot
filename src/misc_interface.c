@@ -336,7 +336,7 @@ create_window_startup (void)
   gtk_widget_show (image61);
   gtk_box_pack_start (GTK_BOX (hbox68), image61, FALSE, FALSE, 0);
 
-  label108 = gtk_label_new_with_mnemonic (_("Resume last game"));
+  label108 = gtk_label_new_with_mnemonic (_("_Resume last game"));
   gtk_widget_show (label108);
   gtk_box_pack_start (GTK_BOX (hbox68), label108, FALSE, FALSE, 0);
   gtk_label_set_justify (GTK_LABEL (label108), GTK_JUSTIFY_LEFT);
@@ -1175,6 +1175,9 @@ create_window_stadium (void)
                               GDK_Escape, 0,
                               GTK_ACCEL_VISIBLE);
 
+  g_signal_connect ((gpointer) window_stadium, "delete_event",
+                    G_CALLBACK (on_window_stadium_delete_event),
+                    NULL);
   g_signal_connect ((gpointer) spinbutton_capacity, "value_changed",
                     G_CALLBACK (on_spinbutton_capacity_value_changed),
                     NULL);
