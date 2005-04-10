@@ -77,6 +77,8 @@ start_write_variables(void)
 
     season = week = week_round = 1;
     cur_user = 0;
+
+    /*d*/
 /*     week=24; week_round = 2; */
 
     for(i=0;i<users->len;i++)

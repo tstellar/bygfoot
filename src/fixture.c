@@ -459,12 +459,15 @@ fixture_write_knockout_round(Cup *cup, gint cup_round, GPtrArray *teams)
     teams = misc_randomise_g_pointer_array(teams);
 
     if(bye_len != 0)
+    {
+	fixture_sort_teams_bye(teams, bye_len);
 	for(i=0;i<bye_len;i++)
 	{
 	    /*d*/
 /* 	    printf("bye %d %s\n", i, ((Team*)g_ptr_array_index(teams, len - bye_len + i))->name->str); */
 	    g_ptr_array_add(cup->bye, g_ptr_array_index(teams, len - bye_len + i));
 	}
+    }
     else
 	free_g_ptr_array(&cup->bye);
 
@@ -995,4 +998,35 @@ fixture_get_index(const Fixture *fix)
     g_warning("fixture_get_index: fixture not found.\n");
 
     return -1;
+}
+
+/** Move teams from upper leagues to the beginning of the 
+    array so that they get the bye. 
+    @param teams The randomised array of teams.
+    @param bye_len The number of teams that get a bye.
+    @return A new array. */
+void
+fixture_sort_teams_bye(GPtrArray *teams, gint bye_len)
+{
+    gint i, j, moved = 0;
+    GPtrArray *new_array = g_ptr_array_new();
+
+    for(i=0;i<ligs->len;i++)
+	for(j=teams->len - 1; j >= 0; j--)
+	    if(((Team*)g_ptr_array_index(teams, j))->clid == lig(i).id && moved < bye_len)
+	    {
+		g_ptr_array_add(new_array, g_ptr_array_index(teams, j));
+		g_ptr_array_remove_index(teams, j);
+		moved++;
+	    }
+	    else if(moved == bye_len)
+	    {
+		break;
+		break;
+	    }
+
+    for(i=0;i<new_array->len;i++)
+	g_ptr_array_add(teams, g_ptr_array_index(new_array, i));
+
+    g_ptr_array_free(new_array, TRUE);
 }

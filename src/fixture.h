@@ -115,4 +115,7 @@ fixture_get_coming(const Team *tm);
 gint
 fixture_get_index(const Fixture *fix);
 
+void
+fixture_sort_teams_bye(GPtrArray *teams, gint bye_len);
+
 #endif
