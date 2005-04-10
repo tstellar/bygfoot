@@ -1820,7 +1820,7 @@
 		      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		      <property name="snap_to_ticks">False</property>
 		      <property name="wrap">False</property>
-		      <property name="adjustment">1 0 10000 1 100 10</property>
+		      <property name="adjustment">0 0 10000 1 100 10</property>
 		      <signal name="value_changed" handler="on_spinbutton_capacity_value_changed" last_modification_time="Thu, 17 Mar 2005 13:40:45 GMT"/>
 		      <signal name="button_press_event" handler="on_spinbutton_capacity_button_press_event" last_modification_time="Thu, 17 Mar 2005 20:19:07 GMT"/>
 		    </widget>
@@ -1861,7 +1861,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label_costs_capacity">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">label97</property>
+			  <property name="label" translatable="yes">0</property>
 			  <property name="use_underline">False</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1903,7 +1903,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label_duration_capacity">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">label99</property>
+			  <property name="label" translatable="yes">0</property>
 			  <property name="use_underline">False</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1973,7 +1973,7 @@
 		      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		      <property name="snap_to_ticks">False</property>
 		      <property name="wrap">False</property>
-		      <property name="adjustment">1 0 100 1 5 10</property>
+		      <property name="adjustment">0 0 100 1 5 10</property>
 		      <signal name="value_changed" handler="on_spinbutton_safety_value_changed" last_modification_time="Thu, 17 Mar 2005 13:40:49 GMT"/>
 		      <signal name="button_press_event" handler="on_spinbutton_capacity_button_press_event" last_modification_time="Thu, 17 Mar 2005 20:21:27 GMT"/>
 		    </widget>
@@ -2014,7 +2014,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label_costs_safety">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">label98</property>
+			  <property name="label" translatable="yes">0</property>
 			  <property name="use_underline">False</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -2056,7 +2056,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label_duration_safety">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">label100</property>
+			  <property name="label" translatable="yes">0</property>
 			  <property name="use_underline">False</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>

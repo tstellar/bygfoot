@@ -37,7 +37,7 @@ void
 free_league(League *league);
 
 void
-free_teams_array(GArray **teams);
+free_teams_array(GArray **teams, gboolean reset);
 
 void
 free_team(Team *team);
@@ -49,7 +49,7 @@ void
 free_cup(Cup *cup);
 
 void
-free_cup_tables(GArray *tables);
+free_cup_tables(GArray *tables, gboolean reset);
 
 void
 free_cup_choose_team(CupChooseTeam *cup_choose_team);
@@ -74,5 +74,8 @@ free_event(Event *event);
 
 void
 free_support_dirs(void);
+
+void
+free_fixtures_array(GArray **fixtures, gboolean reset);
 
 #endif

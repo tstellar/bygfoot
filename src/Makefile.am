@@ -33,7 +33,7 @@ bygfoot_SOURCES = \
 	misc2_callback_func.c file.h finance.h game_gui.h maths.h misc2_callback_func.h option.h player.h support.h team.h treeview.h transfer.h user.h window.h \
 	misc2_interface.c  misc2_interface.h misc2_callbacks.h support.h \
 	option.c option.h variables.h \
-	option_gui.c file.h callbacks.h option_gui.h option.h support.h user.h variables.h \
+	option_gui.c file.h game_gui.h callbacks.h option_gui.h option.h support.h user.h variables.h \
 	options_callbacks.c file.h options_callbacks.h options_interface.h option_gui.h support.h user.h variables.h window.h \
 	options_interface.c  options_interface.h options_callbacks.h support.h \
 	player.c cup.h free.h game_gui.h league.h maths.h misc.h option.h player.h team.h user.h \

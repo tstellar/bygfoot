@@ -1634,7 +1634,7 @@ treeview_create_stadium_summary(GtkListStore *liststore)
     gtk_list_store_set(liststore, &iter, 0, _("Stadium capacity"), 1, buf, 2, "", -1);
 
     gtk_list_store_append(liststore, &iter);
-    sprintf(buf, "%.0f", current_user.tm->stadium.safety * 100);
+    sprintf(buf, "%.0f%%", current_user.tm->stadium.safety * 100);
     gtk_list_store_set(liststore, &iter, 0, _("Stadium safety"), 1, buf, 2, "", -1);
 
     if(current_user.counters[COUNT_USER_STADIUM_CAPACITY] + 

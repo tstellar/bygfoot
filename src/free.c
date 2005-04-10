@@ -195,28 +195,35 @@ free_league(League *league)
 	free_g_string(strings[i]);
 
     if(league->teams != NULL)
-	free_teams_array(&league->teams);
+	free_teams_array(&league->teams, FALSE);
 
     for(i=0;i<3;i++)
 	free_g_array(arrays[i]);
 
-    free_g_array(&league->fixtures);
+    free_fixtures_array(&league->fixtures, FALSE);
 }
 
 /** Free the memory occupied by a teams array.
     @param teams The pointer to the array we free. */
 void
-free_teams_array(GArray **teams)
+free_teams_array(GArray **teams, gboolean reset)
 {
     gint i;
 
     if(*teams == NULL)
+    {
+	if(reset)
+	    *teams = g_array_new(FALSE, FALSE, sizeof(Team));
 	return;
+    }
 
     for(i=0;i<(*teams)->len;i++)
 	free_team(&g_array_index(*teams, Team, i));
 
     free_g_array(teams);
+
+    if(reset)
+	*teams = g_array_new(FALSE, FALSE, sizeof(Team));
 }
 
 /**
@@ -289,10 +296,9 @@ free_cup(Cup *cup)
 	 &cup->short_name,
 	 &cup->symbol,
 	 &cup->sid};
-    GArray **arrays[3] = 
+    GArray **arrays[2] = 
 	{&cup->choose_teams,
-	 &cup->rounds,
-	 &cup->teams};
+	 &cup->rounds};
 
     for(i=0;i<4;i++)
 	free_g_string(strings[i]);
@@ -302,30 +308,58 @@ free_cup(Cup *cup)
 	    free_cup_choose_team(&g_array_index(cup->choose_teams, CupChooseTeam, i));
     free_cup_choose_team(&cup->choose_team_user);
 
-    if(cup->teams != NULL)
-	for(i=0;i<cup->teams->len;i++)
-	    free_team(&g_array_index(cup->teams, Team, i));
+    free_teams_array(&cup->teams, FALSE);
 
-    for(i=0;i<3;i++)
+    for(i=0;i<2;i++)
 	free_g_array(arrays[i]);
 
-    free_g_array(&cup->fixtures);
+    free_fixtures_array(&cup->fixtures, FALSE);
 
     free_g_ptr_array(&cup->bye);
     free_g_ptr_array(&cup->user_teams);
 
-    free_cup_tables(cup->tables);
+    free_cup_tables(cup->tables, FALSE);
+}
+
+/** Free an array of fixtures. */
+void
+free_fixtures_array(GArray **fixtures, gboolean reset)
+{
+    gint i;
+
+    if(*fixtures == NULL)
+    {
+	if(reset)
+	    *fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));
+	return;
+    }
+
+    for(i=0;i<*fixtures->len;i++)
+    {
+	g_string_free(g_array_index(*fixtures, Fixture, i).team_names[0], TRUE);
+	g_string_free(g_array_index(*fixtures, Fixture, i).team_names[1], TRUE);
+    }
+
+    free_g_array(fixtures);
+
+    if(reset)
+	*fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));
 }
 
 /** Free the memory occupied by the cup tables.
     @param tables The array containing the tables. */
 void
-free_cup_tables(GArray *tables)
+free_cup_tables(GArray *tables, gboolean reset)
 {
     gint i;
 
     if(tables == NULL)
+    {
+	if(reset)
+	    tables = g_array_new(FALSE, FALSE, sizeof(Table));
+
 	return;
+    }
 
     for(i=0;i<tables->len;i++)
     {
@@ -334,6 +368,9 @@ free_cup_tables(GArray *tables)
     }
 
     free_g_array(&tables);
+
+    if(reset)
+	tables = g_array_new(FALSE, FALSE, sizeof(Table));
 }
 
 /**

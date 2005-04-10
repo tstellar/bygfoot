@@ -58,6 +58,8 @@ start_new_season(void)
 {
     gint i;
 
+    week = week_round = 1;
+
     xml_name_read(opt_str("string_opt_player_names_file"), 1000);
     start_load_cup_teams();
 
@@ -75,7 +77,7 @@ start_write_variables(void)
 {
     gint i;
 
-    season = week = week_round = 1;
+    season = 1;
     cur_user = 0;
 
     /*d*/

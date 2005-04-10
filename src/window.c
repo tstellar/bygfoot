@@ -129,10 +129,7 @@ window_show_stadium(void)
     gchar buf[SMALL];
     const Team *tm = current_user.tm;
     GtkLabel *label_capacity,
-	*label_costs_capacity, *label_costs_safety,
-	*label_duration_capacity, *label_duration_safety,
 	*label_stadium_status, *label_average_attendance;
-    GtkSpinButton *spinbutton_capacity, *spinbutton_safety;
     GtkProgressBar *progressbar_safety,
 	*progressbar_average_attendance;
     gfloat average_attendance_perc = 0;
@@ -140,37 +137,15 @@ window_show_stadium(void)
     window_create(WINDOW_STADIUM);
 
     label_capacity = GTK_LABEL(lookup_widget(window.stadium, "label_capacity"));
-    label_costs_capacity = GTK_LABEL(lookup_widget(window.stadium, "label_costs_capacity"));
-    label_costs_safety = GTK_LABEL(lookup_widget(window.stadium, "label_costs_safety"));
-    label_duration_capacity = GTK_LABEL(lookup_widget(window.stadium, "label_duration_capacity"));
-    label_duration_safety = GTK_LABEL(lookup_widget(window.stadium, "label_duration_safety"));
     label_stadium_status = GTK_LABEL(lookup_widget(window.stadium, "label_stadium_status"));
     label_average_attendance = GTK_LABEL(lookup_widget(window.stadium, "label_average_attendance"));
     
-    spinbutton_capacity = GTK_SPIN_BUTTON(lookup_widget(window.stadium, "spinbutton_capacity"));
-    spinbutton_safety = GTK_SPIN_BUTTON(lookup_widget(window.stadium, "spinbutton_safety"));
-
     progressbar_safety = GTK_PROGRESS_BAR(lookup_widget(window.stadium, "progressbar_safety"));
     progressbar_average_attendance = GTK_PROGRESS_BAR(lookup_widget(window.stadium, "progressbar_average_attendance"));
 
     gui_label_set_text_from_int(label_capacity, tm->stadium.capacity, FALSE);
-    gui_label_set_text_from_int(label_costs_capacity, 
-				(gint)rint(finance_wage_unit(tm) *
-					   const_float("float_stadium_improvement_wage_unit_factor_seats")),
-				FALSE);
-    gui_label_set_text_from_int(label_costs_safety, 
-				(gint)rint(finance_wage_unit(tm) *
-					   (const_float("float_stadium_improvement_wage_unit_factor_safety") /
-					    100)), FALSE);
-    gui_label_set_text_from_int(label_duration_capacity, 1, FALSE);
-    gui_label_set_text_from_int(label_duration_safety, 1, FALSE);
     gui_label_set_text_from_int(label_average_attendance, tm->stadium.average_attendance, FALSE);
     
-
-    gtk_spin_button_set_value(spinbutton_capacity, 
-			      (gdouble)const_int("int_stadium_improvement_base_seats"));
-    gtk_spin_button_set_value(spinbutton_safety, 
-			      const_float("float_stadium_improvement_base_safety") * 100);
 
     if(tm->stadium.games > 0)
 	average_attendance_perc =

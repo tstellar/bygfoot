@@ -1,5 +1,6 @@
 #include "callbacks.h"
 #include "file.h"
+#include "game_gui.h"
 #include "option.h"
 #include "option_gui.h"
 #include "support.h"
@@ -397,4 +398,6 @@ option_gui_write_options(void)
 		strcmp(gtk_entry_get_text(entry_widgets[i]), opt_str("string_opt_font_name")) != 0)
 	    on_button_back_to_main_clicked(NULL, NULL);
     }
+
+    game_gui_write_check_items();
 }

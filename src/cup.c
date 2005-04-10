@@ -3,6 +3,7 @@
 #include "main.h"
 #include "maths.h"
 #include "misc.h"
+#include "table.h"
 #include "team.h"
 #include "variables.h"
 #include "xml_league.h"
@@ -111,6 +112,8 @@ cup_load_choose_teams(Cup *cup)
     GArray *leagues = NULL;
     GPtrArray *sids = NULL;
 
+    free_teams_array(&cup->teams, TRUE);
+
     for(i=0;i<cup->choose_teams->len;i++)
     {
 	choose_team = &g_array_index(cup->choose_teams, CupChooseTeam, i);
@@ -178,7 +181,7 @@ cup_load_choose_teams(Cup *cup)
 		g_array_remove_index(teams, j);
 	
 	free_g_string_array(&sids);
-	free_teams_array(&teams);
+	free_teams_array(&teams, FALSE);
     }
 
     for(i=0;i<cup->teams->len;i++)
@@ -203,6 +206,11 @@ cup_load_choose_team_user(Cup *cup)
 
     sscanf(choose_team->sid->str, "%[^0-9]%d", type, &number);
 
+    if(strcmp(type, "league") != 0 &&
+       strcmp(type, "cup") != 0)
+	cup_choose_team_abort(cup, choose_team, TRUE);
+	
+    /** Teams from a league. */
     if(strcmp(type, "league") == 0)
     {
 	if(ligs->len < number ||
@@ -211,9 +219,11 @@ cup_load_choose_team_user(Cup *cup)
 	
 	for(i = choose_team->start_idx - 1; i <= choose_team->end_idx - 1; i++)
 	{
-	    if(!query_is_in_international_cups(&g_array_index(lig(number - 1).teams, Team, i)))
+	    if(!query_is_in_international_cups(
+		   g_array_index(lig(number - 1).table.elements, TableElement, i).team))
 	    {
-		g_ptr_array_add(cup->user_teams, (gpointer)&g_array_index(lig(number - 1).teams, Team, i));
+		g_ptr_array_add(cup->user_teams, 
+				g_array_index(lig(number - 1).table.elements, TableElement, i).team);
 		number_of_teams++;
 	    }
 	    
@@ -227,40 +237,41 @@ cup_load_choose_team_user(Cup *cup)
 	return;
     }
 
-    if(strcmp(type, "cup") == 0)
+    /** Teams from a cup; special case: in the first season,
+	we load random teams from the first league. */
+    if(season == 1)
     {
-	if(season == 1)
+	if(lig(0).teams->len < choose_team->number_of_teams)
+	    cup_choose_team_abort(cup, choose_team, TRUE);
+
+	gint permutation[lig(0).teams->len];
+	math_generate_permutation(permutation, 0, lig(0).teams->len - 1);
+
+	for(i = choose_team->start_idx - 1; i <= choose_team->end_idx - 1; i++)
 	{
-	    if(lig(0).teams->len < choose_team->number_of_teams)
-		cup_choose_team_abort(cup, choose_team, TRUE);
-
-	    gint permutation[lig(0).teams->len];
-	    math_generate_permutation(permutation, 0, lig(0).teams->len - 1);
-
-	    for(i = choose_team->start_idx - 1; i <= choose_team->end_idx - 1; i++)
+	    if(!query_is_in_international_cups(
+		   &g_array_index(lig(number - 1).teams,
+				  Team, permutation[i - choose_team->start_idx + 1])))
 	    {
-		if(!query_is_in_international_cups(
-		       &g_array_index(lig(number - 1).teams,
-				      Team, permutation[i - choose_team->start_idx + 1])))
-		{
-		    g_ptr_array_add(cup->user_teams,
-				    (gpointer)&g_array_index(lig(number - 1).teams,
-							     Team, permutation[i - choose_team->start_idx + 1]));
-		    number_of_teams++;
-		}
-		
-		if(number_of_teams == choose_team->number_of_teams)
-		    break;
+		g_ptr_array_add(cup->user_teams,
+				(gpointer)&g_array_index(lig(number - 1).teams,
+							 Team, permutation[i - choose_team->start_idx + 1]));
+		number_of_teams++;
 	    }
-	    
-	    if(number_of_teams != choose_team->number_of_teams)
-		cup_choose_team_abort(cup, choose_team, TRUE);
-
-	    return;
+		
+	    if(number_of_teams == choose_team->number_of_teams)
+		break;
 	}
+	    
+	if(number_of_teams != choose_team->number_of_teams)
+	    cup_choose_team_abort(cup, choose_team, TRUE);
 
-	/** todo: load teams from a cup */
+	return;
     }
+
+    /** Teams from a cup: normal case. We sort the teams that
+	participated in the cup. */
+    
 }
 
 /** Print an error and exit the program if there's a problem loading

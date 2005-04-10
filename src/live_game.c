@@ -413,10 +413,11 @@ live_game_event_injury(gint team, gint player, gboolean create_new)
 	{
 	    if(show && 
 	       team_is_user(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]]) != -1 && 
-	       option_int("int_opt_user_pause_injury",
-			  &usr(team_is_user(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]])).options) &&
-	       !option_int("int_opt_user_auto_sub",
-			   &usr(team_is_user(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]])).options))
+	       ((option_int("int_opt_user_pause_injury",
+			    &usr(team_is_user(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]])).options) &&
+		 !option_int("int_opt_user_auto_sub",
+			     &usr(team_is_user(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]])).options)) ||
+		tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->players->len == 11))
 		misc_callback_pause_live_game();
 	    else if(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->players->len > 11)
 	    {
@@ -790,10 +791,11 @@ live_game_event_send_off(gint team, gint player, gboolean second_yellow)
     if(match->subs_left[team] > 0)
     {
 	if(show && team_is_user(tm[team]) != -1 &&
-	   option_int("int_opt_user_pause_red",
-		      &usr(team_is_user(tm[team])).options) &&
-	   !option_int("int_opt_user_auto_sub",
-		       &usr(team_is_user(tm[team])).options))
+	   ((option_int("int_opt_user_pause_red",
+			&usr(team_is_user(tm[team])).options) &&
+	     !option_int("int_opt_user_auto_sub",
+			 &usr(team_is_user(tm[team])).options)) ||
+	    tm[team]->players->len == 1))
 	    misc_callback_pause_live_game();
 	else if(tm[team]->players->len > 11)
 	{

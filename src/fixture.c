@@ -20,6 +20,7 @@ fixture_new(void)
     new.replay_number = 0;
     new.week_number = new.week_round_number = -1;
     new.teams[0] = new.teams[1] = NULL;
+    new.team_names[0] = new.team_names[1] = NULL;
     
     for(i=0;i<3;i++)
 	new.result[0][i] = new.result[1][i] = 0;
@@ -42,6 +43,8 @@ fixture_write_league_fixtures(League *league)
     
     teams = team_get_pointers_from_array(league->teams);
 
+    free_fixtures_array(league->fixtures, TRUE);
+
     fixture_write_round_robin((gpointer)league, -1, teams);
 }
 
@@ -52,6 +55,8 @@ void
 fixture_write_cup_fixtures(Cup *cup)
 {
     GPtrArray *teams = NULL;
+
+    free_fixtures_array(cup->fixtures, TRUE);
 
     if(g_array_index(cup->rounds, CupRound, 0).
        round_robin_number_of_groups > 0)
@@ -300,8 +305,7 @@ fixture_write_cup_round_robin(Cup *cup, gint cup_round, GPtrArray *teams)
 	main_exit_program(EXIT_FIXTURE_WRITE_ERROR, NULL);
     }
 
-    free_cup_tables(cup->tables);
-    cup->tables = g_array_new(FALSE, FALSE, sizeof(Table));
+    free_cup_tables(cup->tables, TRUE);
 
     for(i=0;i<number_of_groups;i++)
     {
@@ -515,8 +519,11 @@ fixture_write(GArray *fixtures, Team *home_team, Team *away_team, gint week_numb
     new.replay_number = replay_number;
     new.week_number = week_number;
     new.week_round_number = week_round_number;
-    new.teams[0] = (Team*)home_team;
-    new.teams[1] = (Team*)away_team;
+    new.teams[0] = home_team;
+    new.teams[1] = away_team;
+    new.team_names[0] = g_string_new(home_team->name->str);
+    new.team_names[1] = g_string_new(away_team->name->str);
+    
     for(i=0;i<3;i++)
 	new.result[0][i] = new.result[1][i] = 0;
 

@@ -1068,7 +1068,7 @@ create_window_stadium (void)
   gtk_box_pack_start (GTK_BOX (vbox44), label91, FALSE, FALSE, 0);
   gtk_label_set_justify (GTK_LABEL (label91), GTK_JUSTIFY_LEFT);
 
-  spinbutton_capacity_adj = gtk_adjustment_new (1, 0, 10000, 1, 100, 10);
+  spinbutton_capacity_adj = gtk_adjustment_new (0, 0, 10000, 1, 100, 10);
   spinbutton_capacity = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_capacity_adj), 1, 0);
   gtk_widget_show (spinbutton_capacity);
   gtk_box_pack_start (GTK_BOX (vbox44), spinbutton_capacity, FALSE, FALSE, 0);
@@ -1083,7 +1083,7 @@ create_window_stadium (void)
   gtk_box_pack_start (GTK_BOX (vbox46), label93, FALSE, FALSE, 0);
   gtk_label_set_justify (GTK_LABEL (label93), GTK_JUSTIFY_LEFT);
 
-  label_costs_capacity = gtk_label_new (_("label97"));
+  label_costs_capacity = gtk_label_new (_("0"));
   gtk_widget_show (label_costs_capacity);
   gtk_box_pack_start (GTK_BOX (vbox46), label_costs_capacity, FALSE, FALSE, 0);
   gtk_label_set_justify (GTK_LABEL (label_costs_capacity), GTK_JUSTIFY_LEFT);
@@ -1093,7 +1093,7 @@ create_window_stadium (void)
   gtk_box_pack_start (GTK_BOX (vbox46), label95, FALSE, FALSE, 0);
   gtk_label_set_justify (GTK_LABEL (label95), GTK_JUSTIFY_LEFT);
 
-  label_duration_capacity = gtk_label_new (_("label99"));
+  label_duration_capacity = gtk_label_new (_("0"));
   gtk_widget_show (label_duration_capacity);
   gtk_box_pack_start (GTK_BOX (vbox46), label_duration_capacity, FALSE, FALSE, 0);
   gtk_label_set_justify (GTK_LABEL (label_duration_capacity), GTK_JUSTIFY_LEFT);
@@ -1107,7 +1107,7 @@ create_window_stadium (void)
   gtk_box_pack_start (GTK_BOX (vbox45), label92, FALSE, FALSE, 0);
   gtk_label_set_justify (GTK_LABEL (label92), GTK_JUSTIFY_LEFT);
 
-  spinbutton_safety_adj = gtk_adjustment_new (1, 0, 100, 1, 5, 10);
+  spinbutton_safety_adj = gtk_adjustment_new (0, 0, 100, 1, 5, 10);
   spinbutton_safety = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_safety_adj), 1, 0);
   gtk_widget_show (spinbutton_safety);
   gtk_box_pack_start (GTK_BOX (vbox45), spinbutton_safety, FALSE, FALSE, 0);
@@ -1122,7 +1122,7 @@ create_window_stadium (void)
   gtk_box_pack_start (GTK_BOX (vbox47), label94, FALSE, FALSE, 0);
   gtk_label_set_justify (GTK_LABEL (label94), GTK_JUSTIFY_LEFT);
 
-  label_costs_safety = gtk_label_new (_("label98"));
+  label_costs_safety = gtk_label_new (_("0"));
   gtk_widget_show (label_costs_safety);
   gtk_box_pack_start (GTK_BOX (vbox47), label_costs_safety, FALSE, FALSE, 0);
   gtk_label_set_justify (GTK_LABEL (label_costs_safety), GTK_JUSTIFY_LEFT);
@@ -1132,7 +1132,7 @@ create_window_stadium (void)
   gtk_box_pack_start (GTK_BOX (vbox47), label96, FALSE, FALSE, 0);
   gtk_label_set_justify (GTK_LABEL (label96), GTK_JUSTIFY_LEFT);
 
-  label_duration_safety = gtk_label_new (_("label100"));
+  label_duration_safety = gtk_label_new (_("0"));
   gtk_widget_show (label_duration_safety);
   gtk_box_pack_start (GTK_BOX (vbox47), label_duration_safety, FALSE, FALSE, 0);
   gtk_label_set_justify (GTK_LABEL (label_duration_safety), GTK_JUSTIFY_LEFT);
