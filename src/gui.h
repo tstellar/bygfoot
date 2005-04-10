@@ -13,4 +13,10 @@ gui_label_set_text_from_float(GtkLabel *label, gfloat number,
 void
 gui_show_progress(gfloat value, gchar *text);
 
+void
+gui_set_arrow_pair(gint pair, gboolean state);
+
+void
+gui_set_arrows(void);
+
 #endif

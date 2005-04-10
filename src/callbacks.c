@@ -2,6 +2,7 @@
 #include "callback_func.h"
 #include "free.h"
 #include "game_gui.h"
+#include "gui.h"
 #include "load_save.h"
 #include "main.h"
 #include "option.h"
@@ -110,6 +111,8 @@ on_button_back_to_main_clicked         (GtkButton       *button,
     stat0 = STATUS_MAIN;
     gtk_notebook_set_current_page(GTK_NOTEBOOK(lookup_widget(window.main, "notebook_player")), 0);
     game_gui_show_main();
+
+    gui_set_arrows();
 }
 
 
@@ -121,6 +124,8 @@ on_button_transfers_clicked            (GtkButton       *button,
     game_gui_print_message(_("Left click to make an offer. Right click to remove offer."));
     treeview_show_transfer_list(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")));
     gtk_notebook_set_current_page(GTK_NOTEBOOK(lookup_widget(window.main, "notebook_player")), 1);
+
+    gui_set_arrows();
 }
 
 
@@ -130,6 +135,8 @@ on_button_preview_clicked              (GtkButton       *button,
 {
     stat0 = STATUS_SHOW_PREVIEW;
     treeview_show_preview();
+
+    gui_set_arrows();
 }
 
 
@@ -279,6 +286,8 @@ on_menu_fixtures_activate              (GtkMenuItem     *menuitem,
 {
     stat0 = STATUS_SHOW_FIXTURES;
     callback_show_fixtures(SHOW_TEAM);
+
+    gui_set_arrows();
 }
 
 void
@@ -287,6 +296,8 @@ on_menu_tables_activate                (GtkMenuItem     *menuitem,
 {
     stat0 = STATUS_SHOW_TABLES;
     callback_show_tables(SHOW_CURRENT);
+
+    gui_set_arrows();
 }
 
 
@@ -388,6 +399,8 @@ on_menu_my_league_results_activate     (GtkMenuItem     *menuitem,
 {
     stat0 = STATUS_SHOW_LEAGUE_RESULTS;
     treeview_show_league_results(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")));
+
+    gui_set_arrows();
 }
 
 
@@ -401,6 +414,8 @@ on_menu_browse_teams_activate          (GtkMenuItem     *menuitem,
     treeview_show_team_list(GTK_TREE_VIEW(treeview_right), TRUE, TRUE);
 
     stat0 = STATUS_SHOW_TEAM_LIST;
+
+    gui_set_arrows();
 }
 
 
@@ -461,7 +476,7 @@ on_menu_next_user_activate             (GtkMenuItem     *menuitem,
 
     user_event_show_next();
 
-    game_gui_show_main();
+    on_button_back_to_main_clicked(NULL, NULL);
 }
 
 
@@ -473,7 +488,7 @@ on_menu_previous_user_activate         (GtkMenuItem     *menuitem,
 
     user_event_show_next();
 
-    game_gui_show_main();
+    on_button_back_to_main_clicked(NULL, NULL);
 }
 
 
@@ -537,6 +552,8 @@ on_menu_user_show_last_stats_activate  (GtkMenuItem     *menuitem,
 
     stat0 = STATUS_SHOW_LAST_MATCH_STATS;
     callback_show_last_match_stats();
+
+    gui_set_arrows();
 }
 
 gboolean
@@ -612,6 +629,8 @@ on_menu_show_finances_activate         (GtkMenuItem     *menuitem,
     game_gui_print_message("Left-click: get loan; Right-click: pay back; Middle click: stadium window.");
     treeview_show_finances(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")),
 			   &current_user);
+
+    gui_set_arrows();
 }
 
 
@@ -662,6 +681,8 @@ on_menu_show_info_activate      (GtkMenuItem     *menuitem,
 
     stat0 = STATUS_SHOW_PLAYER_INFO;
     treeview_show_player_info(player_of(current_user.tm, selected_row[0]));
+
+    gui_set_arrows();
 }
 
 
@@ -714,6 +735,8 @@ on_menu_browse_players_activate        (GtkMenuItem     *menuitem,
 {
     callback_show_player_list(SHOW_CURRENT);
     stat0 = STATUS_SHOW_PLAYER_LIST;
+
+    gui_set_arrows();
 }
 
 void

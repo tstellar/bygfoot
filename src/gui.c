@@ -82,3 +82,42 @@ gui_show_progress(gfloat value, gchar *text)
     while(gtk_events_pending())
 	gtk_main_iteration();
 }
+
+/** Set either the right pair of arrows atop the right
+    treeview or the left pair or both to the specified
+    sensitivity state. */
+void
+gui_set_arrow_pair(gint pair, gboolean state)
+{
+    gint i, j;
+    GtkWidget *buttons[2][2] =
+	{{lookup_widget(window.main ,"button_cl_back"),
+	  lookup_widget(window.main ,"button_cl_forward")},
+	 {lookup_widget(window.main ,"button_browse_back"),
+	  lookup_widget(window.main ,"button_browse_forward")}};
+
+    if(pair < 3)
+	for(i=0;i<2;i++)
+	    gtk_widget_set_sensitive(buttons[pair][i], state);
+    else
+	for(i=0;i<2;i++)
+	    for(j=0;j<2;j++)
+		gtk_widget_set_sensitive(buttons[i][j], state);
+}
+
+/** Examine the status variable and set the
+    sensitivity of the arrows atop the right treeview
+    accordingly. */
+void
+gui_set_arrows(void)
+{
+    gui_set_arrow_pair(3, FALSE);
+
+    if(stat0 == STATUS_SHOW_FIXTURES)
+	gui_set_arrow_pair(3, TRUE);
+    else if(stat0 == STATUS_SHOW_PLAYER_INFO)
+	gui_set_arrow_pair(1, TRUE);
+    else if(stat0 == STATUS_SHOW_TABLES ||
+	    stat0 == STATUS_SHOW_PLAYER_LIST)
+	gui_set_arrow_pair(0, TRUE);
+}

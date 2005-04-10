@@ -474,8 +474,14 @@ treeview_player_compare(GtkTreeModel *model,
 	    return_value = misc_int_compare(pl1->pos, pl2->pos);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_GOALS:
-	    return_value = misc_int_compare(player_games_goals_get(pl1, pl1->team->clid, PLAYER_VALUE_GOALS),
-					    player_games_goals_get(pl2, pl2->team->clid, PLAYER_VALUE_GOALS));
+	    if(pl1->pos == 0 && pl2->pos == 0)
+		return_value = misc_int_compare(player_games_goals_get(pl2, pl2->team->clid, PLAYER_VALUE_GOALS),
+						player_games_goals_get(pl1, pl1->team->clid, PLAYER_VALUE_GOALS));
+	    else if(pl1->pos == 0 || pl2->pos == 0)
+		return_value = (pl1->pos == 0) ? 1 : -1;
+	    else
+		return_value = misc_int_compare(player_games_goals_get(pl1, pl1->team->clid, PLAYER_VALUE_GOALS),
+						player_games_goals_get(pl2, pl2->team->clid, PLAYER_VALUE_GOALS));
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_SHOTS:
 	    return_value = misc_int_compare(player_games_goals_get(pl1, pl1->team->clid, PLAYER_VALUE_SHOTS),
