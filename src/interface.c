@@ -785,6 +785,7 @@ create_main_window (void)
   eventbox_style = gtk_event_box_new ();
   gtk_widget_show (eventbox_style);
   gtk_box_pack_start (GTK_BOX (hbox48), eventbox_style, TRUE, TRUE, 0);
+  gtk_tooltips_set_tip (tooltips, eventbox_style, _("Right click and left click to change your playing style"), NULL);
 
   image_style = create_pixmap (main_window, NULL);
   gtk_widget_show (image_style);
@@ -794,6 +795,7 @@ create_main_window (void)
   eventbox_boost = gtk_event_box_new ();
   gtk_widget_show (eventbox_boost);
   gtk_box_pack_start (GTK_BOX (hbox48), eventbox_boost, TRUE, TRUE, 0);
+  gtk_tooltips_set_tip (tooltips, eventbox_boost, _("Right click and left click to change boost state"), NULL);
 
   image_boost = create_pixmap (main_window, NULL);
   gtk_widget_show (image_boost);

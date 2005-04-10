@@ -1261,6 +1261,7 @@
 		  <child>
 		    <widget class="GtkEventBox" id="eventbox_style">
 		      <property name="visible">True</property>
+		      <property name="tooltip" translatable="yes">Right click and left click to change your playing style</property>
 		      <signal name="button_press_event" handler="on_eventbox_style_button_press_event" last_modification_time="Fri, 11 Mar 2005 15:30:28 GMT"/>
 
 		      <child>
@@ -1283,6 +1284,7 @@
 		  <child>
 		    <widget class="GtkEventBox" id="eventbox_boost">
 		      <property name="visible">True</property>
+		      <property name="tooltip" translatable="yes">Right click and left click to change boost state</property>
 		      <signal name="button_press_event" handler="on_eventbox_boost_button_press_event" last_modification_time="Fri, 11 Mar 2005 15:30:40 GMT"/>
 
 		      <child>

@@ -290,12 +290,12 @@ callback_offer_new_contract(gint idx)
 
     if(pl->contract >= 2)
     {
-	game_gui_print_message(_("You can't offer a new contract if the old one is still above 2 years."));
+	game_gui_show_warning(_("You can't offer a new contract if the old one is still above 2 years."));
 	return;
     }
     else if(pl->offers == const_int("int_contract_max_offers"))
     {
-	game_gui_print_message(_("The player won't negotiate with you anymore."));
+	game_gui_show_warning(_("The player won't negotiate with you anymore."));
 	return;
     }
 

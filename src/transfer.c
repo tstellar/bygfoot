@@ -208,6 +208,8 @@ transfer_evaluate_offers(void)
 		    player_of(transoff(i, idx).tm, transoff(i, idx).tm->players->len - 1)->id = -1;
 		    player_of(transoff(i, idx).tm, transoff(i, idx).tm->players->len - 1)->id = 
 			   player_new_id(transoff(i, idx).tm->players);
+		    player_of(transoff(i, idx).tm, transoff(i, idx).tm->players->len - 1)->wage = 
+			transoff(i, idx).wage;
 		    user_from_team(transoff(i, idx).tm)->money -= transoff(i, idx).fee;
 		    user_from_team(transoff(i, idx).tm)->money_out[1][MON_OUT_TRANSFERS] -=
 			transoff(i, idx).fee;

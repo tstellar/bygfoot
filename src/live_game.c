@@ -99,7 +99,13 @@ live_game_create_unit(void)
     new.result[0] = last_unit.result[0];
     new.result[1] = last_unit.result[1];
 
-    if(query_live_game_event_is_break(new.minute, new.time))
+    if(last_unit.event.type == LIVE_GAME_EVENT_HALF_TIME ||
+       last_unit.event.type == LIVE_GAME_EVENT_EXTRA_TIME)
+    {
+	live_game_event_general(TRUE);
+	return;
+    }
+    else if(query_live_game_event_is_break(new.minute, new.time))
     {
 	new.event.type = live_game_get_break();
 	new.possession = last_unit.possession;

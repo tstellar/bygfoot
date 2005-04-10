@@ -318,7 +318,6 @@ on_menu_put_on_transfer_list_activate  (GtkMenuItem     *menuitem,
     {
 	setsav0;
 	transfer_add_remove_user_player(player_of(current_user.tm, selected_row[0]));
-	selected_row[0] = -1;
     }
 }
 
@@ -335,7 +334,6 @@ on_menu_remove_from_transfer_list_activate (GtkMenuItem     *menuitem,
     {
 	setsav0;
 	transfer_add_remove_user_player(player_of(current_user.tm, selected_row[0]));
-	selected_row[0] = -1;
     }
 }
 
@@ -346,6 +344,8 @@ on_menu_fire_activate                  (GtkMenuItem     *menuitem,
 {
     if(selected_row[0] == -1)
 	game_gui_print_message(_("You haven't selected a player."));
+    else if(current_user.tm->players->len == 11)
+	game_gui_show_warning(_("Your team can't have less than 11 players."));
     else
     {
 	callback_fire_player(selected_row[0]);
@@ -380,8 +380,6 @@ on_menu_shoots_penalties_activate      (GtkMenuItem     *menuitem,
 	treeview_show_user_player_list();
 	setsav0;
     }
-
-    selected_row[0] = -1;
 }
 
 void
@@ -647,7 +645,6 @@ on_menu_offer_new_contract_activate    (GtkMenuItem     *menuitem,
     }
 
     callback_offer_new_contract(selected_row[0]);
-    selected_row[0] = -1;
 
     setsav0;
 }
