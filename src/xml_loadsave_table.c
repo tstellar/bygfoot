@@ -12,7 +12,7 @@ enum
     TAG_END
 };
 
-gint state, valueidx, team_clid;
+gint state, valueidx;
 TableElement new_element;
 Table *new_table;
 
@@ -68,8 +68,7 @@ xml_loadsave_table_end_element    (GMarkupParseContext *context,
 	    g_array_append_val(new_table->elements, new_element);
     }
     else if(tag == TAG_TABLE_ELEMENT_VALUE ||
-	    tag == TAG_TEAM_ID ||
-	    tag == TAG_TEAM_CLID)
+	    tag == TAG_TEAM_ID)
     {
 	state = TAG_TABLE_ELEMENT;
 	if(tag == TAG_TABLE_ELEMENT_VALUE)
@@ -101,10 +100,11 @@ xml_loadsave_table_text         (GMarkupParseContext *context,
 	new_table->clid = int_value;
     else if(state == TAG_ROUND)
 	new_table->round = int_value;
-    else if(state == TAG_TEAM_CLID)
-	team_clid = int_value;
     else if(state == TAG_TEAM_ID)
-	new_element.team = team_get_pointer_from_ids(team_clid, int_value);
+    {
+	new_element.team = team_of_id(int_value);
+	new_element.team_id = int_value;
+    }
     else if(state == TAG_TABLE_ELEMENT_VALUE)
 	new_element.values[valueidx] = int_value;
 }
@@ -162,11 +162,9 @@ xml_loadsave_table_write(const gchar *filename, const Table *table)
     {
 	fprintf(fil, "<_%d>\n", TAG_TABLE_ELEMENT);
 	
-	xml_write_int(fil, g_array_index(table->elements, TableElement, i).team->clid, 
-		      TAG_TEAM_CLID, I1);
 	xml_write_int(fil, g_array_index(table->elements, TableElement, i).team->id, 
 		      TAG_TEAM_ID, I1);
-
+	
 	for(j=0;j<TABLE_END;j++)
 	    xml_write_int(fil, g_array_index(table->elements, TableElement, i).values[j], 
 			  TAG_TABLE_ELEMENT_VALUE, I1);

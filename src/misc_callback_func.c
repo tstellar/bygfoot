@@ -65,6 +65,7 @@ misc_callback_add_player(void)
 	GTK_ENTRY(lookup_widget(window.startup, "entry_player_name"));
     const gchar *player_name = gtk_entry_get_text(entry_player_name);
     User new_user = user_new();
+    Team *tm = (Team*)treeview_get_pointer(treeview_startup, 2);
     
     if(strlen(player_name) > 0)
 	g_string_printf(new_user.name, "%s", player_name);
@@ -78,7 +79,8 @@ misc_callback_add_player(void)
     else
 	new_user.scout = -1;
 
-    new_user.tm = treeview_get_pointer(treeview_startup, 2);
+    new_user.tm = tm;
+    new_user.team_id = tm->id;
 
     g_array_append_val(users, new_user);
 

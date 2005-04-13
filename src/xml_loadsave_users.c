@@ -23,7 +23,7 @@ enum
     TAG_END
 };
 
-gint state, idx_mon_in, idx_mon_out, idx, team_clid;
+gint state, idx_mon_in, idx_mon_out, idx;
 User new_user;
 
 void
@@ -88,7 +88,6 @@ xml_loadsave_users_end_element    (GMarkupParseContext *context,
 	    tag == TAG_USER_SCOUT ||
 	    tag == TAG_USER_PHYSIO ||
 	    tag == TAG_NAME ||
-	    tag == TAG_TEAM_CLID ||
 	    tag == TAG_TEAM_ID)
     {
 	state = TAG_USER;
@@ -131,10 +130,11 @@ xml_loadsave_users_text         (GMarkupParseContext *context,
 
     if(state == TAG_NAME)
 	g_string_printf(new_user.name, "%s", buf);
-    else if(state == TAG_TEAM_CLID)
-	team_clid = int_value;
     else if(state == TAG_TEAM_ID)
-	new_user.tm = team_get_pointer_from_ids(team_clid, int_value);
+    {
+	new_user.tm = team_of_id(int_value);
+	new_user.team_id = int_value;
+    }
     else if(state == TAG_USER_MONEY)
 	new_user.money = int_value;
     else if(state == TAG_USER_DEBT)
@@ -213,8 +213,7 @@ xml_loadsave_users_write(const gchar *prefix)
 	fprintf(fil, "<_%d>\n", TAG_USER);
 
 	xml_write_g_string(fil, usr(i).name, TAG_NAME, I1);
-	xml_write_int(fil, usr(i).tm->clid, TAG_TEAM_CLID, I1);
-	xml_write_int(fil, usr(i).tm->id, TAG_TEAM_ID, I1);
+	xml_write_int(fil, usr(i).team_id, TAG_TEAM_ID, I1);
 	xml_write_int(fil, usr(i).money, TAG_USER_MONEY, I1);
 	xml_write_int(fil, usr(i).debt, TAG_USER_DEBT, I1);
 	xml_write_int(fil, usr(i).scout, TAG_USER_SCOUT, I1);

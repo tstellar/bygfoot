@@ -66,7 +66,7 @@ transfer_add_offers(void)
 	   (user_from_team(trans(i).tm)->scout % 10 * const_float("float_transfer_offer_prob_reduce")))
 	{
 	    transfer_add_offer(i, transfer_team_get_new(),
-			       (gint)rint((gfloat)player_of_id(trans(i).tm, trans(i).id)->value *
+			       (gint)rint((gfloat)player_of_id_team(trans(i).tm, trans(i).id)->value *
 					  (1 + math_rnd(
 					      scout_factor_bounds[user_from_team(trans(i).tm)->scout % 10][0],
 					      scout_factor_bounds[user_from_team(trans(i).tm)->scout % 10][1]))),
@@ -81,7 +81,7 @@ transfer_add_offers(void)
 		{
 		    user_event_add(user_from_team(transoff(i, j).tm),
 				   EVENT_TYPE_TRANSFER_OFFER_MONEY, -1, -1,
-				   trans(i).tm, player_of_id(trans(i).tm, trans(i).id)->name->str);
+				   trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name->str);
 		    user_event_remove(user_from_team(trans(i).tm),
 				      user_event_get_index(user_from_team(trans(i).tm), 
 							   EVENT_TYPE_TRANSFER_OFFER, trans(i).id,
@@ -93,7 +93,7 @@ transfer_add_offers(void)
 	    {
 		user_event_add(user_from_team(transoff(i, j).tm),
 			       EVENT_TYPE_TRANSFER_OFFER_OUTBID, -1, -1,
-			       trans(i).tm, player_of_id(trans(i).tm, trans(i).id)->name->str);
+			       trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name->str);
 		user_event_remove(user_from_team(trans(i).tm),
 				  user_event_get_index(user_from_team(trans(i).tm), 
 						       EVENT_TYPE_TRANSFER_OFFER, trans(i).id,
@@ -168,7 +168,7 @@ transfer_evaluate_offers(void)
 		   transoff(i, j).fee > BUDGET(user_get_index(user_from_team(transoff(i, j).tm))))
 		    user_event_add(user_from_team(transoff(i, j).tm),
 				   EVENT_TYPE_TRANSFER_OFFER_MONEY, -1, -1,
-				   trans(i).tm, player_of_id(trans(i).tm, trans(i).id)->name->str);
+				   trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name->str);
 		else
 		{
 		    idx = j;
@@ -180,40 +180,37 @@ transfer_evaluate_offers(void)
 		for(j=idx + 1;j<trans(i).offers->len;j++)
 		    user_event_add(user_from_team(transoff(i, j).tm),
 				   EVENT_TYPE_TRANSFER_OFFER_REJECTED, -1, -1,
-				   trans(i).tm, player_of_id(trans(i).tm, trans(i).id)->name->str);
+				   trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name->str);
 
-		if(player_of_id(trans(i).tm, trans(i).id)->value > transoff(i, idx).fee ||
-		   player_of_id(trans(i).tm, trans(i).id)->wage > transoff(i, idx).wage)
+		if(player_of_id_team(trans(i).tm, trans(i).id)->value > transoff(i, idx).fee ||
+		   player_of_id_team(trans(i).tm, trans(i).id)->wage > transoff(i, idx).wage)
 		    user_event_add(user_from_team(transoff(i, idx).tm),
 				   EVENT_TYPE_TRANSFER_OFFER_REJECTED, -1, -1,
-				   trans(i).tm, player_of_id(trans(i).tm, trans(i).id)->name->str);
+				   trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name->str);
 		else if(transoff(i, idx).fee > BUDGET(user_get_index(user_from_team(transoff(i, idx).tm))))
 		    user_event_add(user_from_team(transoff(i, idx).tm),
 				   EVENT_TYPE_TRANSFER_OFFER_MONEY, -1, -1,
-				   trans(i).tm, player_of_id(trans(i).tm, trans(i).id)->name->str);
+				   trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name->str);
 		else if(transoff(i, idx).tm->players->len >= const_int("int_team_max_players"))
 		    user_event_add(user_from_team(transoff(i, idx).tm),
 				   EVENT_TYPE_TRANSFER_OFFER_ROSTER, -1, -1,
-				   trans(i).tm, player_of_id(trans(i).tm, trans(i).id)->name->str);
+				   trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name->str);
 		else
 		{
 		    user_event_add(user_from_team(transoff(i, idx).tm),
 				   EVENT_TYPE_TRANSFER_OFFER_ACCEPTED, -1, -1,
-				   trans(i).tm, player_of_id(trans(i).tm, trans(i).id)->name->str);
-		    player_copy(player_of_id(trans(i).tm, trans(i).id),
+				   trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name->str);
+		    player_copy(player_of_id_team(trans(i).tm, trans(i).id),
 				transoff(i, idx).tm, transoff(i, idx).tm->players->len);
-		    player_of(transoff(i, idx).tm, transoff(i, idx).tm->players->len - 1)->contract = 
+		    player_of_idx_team(transoff(i, idx).tm, transoff(i, idx).tm->players->len - 1)->contract = 
 			(gfloat)math_rndi(const_int("int_transfer_contract_lower"),
 					  const_int("int_transfer_contract_upper"));
-		    player_of(transoff(i, idx).tm, transoff(i, idx).tm->players->len - 1)->id = -1;
-		    player_of(transoff(i, idx).tm, transoff(i, idx).tm->players->len - 1)->id = 
-			   player_new_id(transoff(i, idx).tm->players);
-		    player_of(transoff(i, idx).tm, transoff(i, idx).tm->players->len - 1)->wage = 
+		    player_of_idx_team(transoff(i, idx).tm, transoff(i, idx).tm->players->len - 1)->wage = 
 			transoff(i, idx).wage;
 		    user_from_team(transoff(i, idx).tm)->money -= transoff(i, idx).fee;
 		    user_from_team(transoff(i, idx).tm)->money_out[1][MON_OUT_TRANSFERS] -=
 			transoff(i, idx).fee;
-		    player_replace_by_new(player_of_id(trans(i).tm, trans(i).id), FALSE);
+		    player_replace_by_new(player_of_id_team(trans(i).tm, trans(i).id), FALSE);
 		    transfer_remove_player(i);
 		    accept = TRUE;
 		}
@@ -256,7 +253,7 @@ transfer_player_get_new(gboolean cup)
 	  query_transfer_player_is_on_list(pl))
     {
 	tm = (Team*)g_ptr_array_index(teams, math_rndi(0, teams->len - 1));
-	pl = player_of(tm, math_rndi(0, tm->players->len - 1));
+	pl = player_of_idx_team(tm, math_rndi(0, tm->players->len - 1));
     }
     
     return pl;
@@ -317,7 +314,7 @@ transfer_remove_player_ptr(const Player *pl)
     gint i;
 
     for(i=0;i<transfer_list->len;i++)
-	if(player_of_id(trans(i).tm, trans(i).id) == pl)
+	if(player_of_id_team(trans(i).tm, trans(i).id) == pl)
 	{
 	    transfer_remove_player(i);
 	    break;

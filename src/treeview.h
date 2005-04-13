@@ -2,6 +2,7 @@
 #define TREEVIEW_H
 
 #include "bygfoot.h"
+#include "league_struct.h"
 #include "live_game_struct.h"
 #include "player_struct.h"
 #include "user_struct.h"
@@ -131,6 +132,9 @@ treeview_table_write_header(GtkListStore *liststore, gint clid, gint number);
 void
 treeview_get_table_element_colours(const Table *table, gint idx, gchar *colour_fg, 
 				   gchar *colour_bg, gboolean user);
+
+gboolean
+treeview_get_table_element_colour_cups(const League *league, gint idx, gchar *colour_bg);
 
 void
 treeview_show_finances(GtkTreeView *treeview, const User* user);

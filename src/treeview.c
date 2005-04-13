@@ -686,7 +686,7 @@ treeview_show_user_player_list(void)
     gint i;
     GPtrArray *players = NULL;
     PlayerListAttribute attribute;
-    GtkWidget *treeview[2] = 
+    GtkWidget *treeview[2] =
 	{lookup_widget(window.main, "player_list1"),
 	 lookup_widget(window.main, "player_list2")};
 
@@ -1031,9 +1031,11 @@ treeview_create_game_stats(LiveGame *live_game)
 				   G_TYPE_STRING,
 				   G_TYPE_STRING);
 
-    sprintf(buf[0], "%d : %d",
-	    math_sum_int_array(live_game->fix->result[0], 3),
-	    math_sum_int_array(live_game->fix->result[1], 3));
+    /*d*/
+    fixture_result_to_buf(live_game->fix, buf[0]);
+/*     sprintf(buf[0], "%d : %d", */
+/* 	    math_sum_int_array(live_game->fix->result[0], 3), */
+/* 	    math_sum_int_array(live_game->fix->result[1], 3)); */
     gtk_list_store_append(liststore, &iter);
     gtk_list_store_set(liststore, &iter, 0, live_game->fix->teams[0]->name->str,
 		       1, buf[0],
@@ -1406,6 +1408,38 @@ treeview_table_write_header(GtkListStore *liststore, gint clid, gint number)
 	g_object_unref(symbol);
 }
 
+/** Find out whether the team given by the index in the league
+    table would participate in an international cup and set the
+    colours accordingly. */
+gboolean
+treeview_get_table_element_colour_cups(const League *league, gint idx, gchar *colour_bg)
+{
+    gint i;
+    gint league_idx = league_get_index(league->id) + 1;
+    gchar buf[SMALL];
+
+    sprintf(buf, "league%d", league_idx);
+
+    for(i=0;i<cps->len;i++)
+	if(cp(i).type == CUP_TYPE_INTERNATIONAL &&
+	   strcmp(cp(i).choose_team_user.sid->str, buf) == 0)
+	{
+	    if((idx + 1 >= cp(i).choose_team_user.start_idx &&
+		idx + 1 <= cp(i).choose_team_user.end_idx && 
+		cp(i).choose_team_user.randomly) ||
+	       (idx + 1 >= cp(i).choose_team_user.start_idx &&
+		idx + 1 < cp(i).choose_team_user.start_idx + 
+		cp(i).choose_team_user.number_of_teams &&
+		!cp(i).choose_team_user.randomly))
+	    {
+		strcpy(colour_bg, const_str("string_treeview_table_cup"));
+		return TRUE;
+	    }
+	}
+
+    return FALSE;
+}
+
 /** Get the colours for a team in the tables.
     @param table The table pointer.
     @param idx The index of the element we're looking at.
@@ -1420,7 +1454,6 @@ treeview_get_table_element_colours(const Table *table, gint idx, gchar *colour_f
     const League *league = NULL;
     GPtrArray *cup_advance = NULL;
     
-
     strcpy(colour_fg, const_str("string_treeview_cell_color_default_foreground"));
     strcpy(colour_bg, const_str("string_treeview_cell_color_default_background"));
     
@@ -1441,25 +1474,29 @@ treeview_get_table_element_colours(const Table *table, gint idx, gchar *colour_f
 	if(idx + 1 == 1)
 	    strcpy(colour_bg, const_str("string_treeview_table_first"));
 	else
-	{
-	    for(i=0;i<league->prom_rel.elements->len;i++)
+	{	    
+	    if(!treeview_get_table_element_colour_cups(league, idx, colour_bg))
 	    {
-		pelem = &g_array_index(league_from_clid(table->clid)->prom_rel.elements, PromRelElement, i);
-		if(pelem->ranks[0] <= idx + 1 && idx + 1 <= pelem->ranks[1])
+		for(i=0;i<league->prom_rel.elements->len;i++)
 		{
-		    if(pelem->type == PROM_REL_PROMOTION)
-			strcpy(colour_bg, const_str("string_treeview_table_promotion"));
-		    else if(pelem->type == PROM_REL_RELEGATION)
-		    strcpy(colour_bg, const_str("string_treeview_table_relegation"));
+		    pelem = &g_array_index(league_from_clid(table->clid)->prom_rel.elements, PromRelElement, i);
+		    if(pelem->ranks[0] <= idx + 1 && idx + 1 <= pelem->ranks[1])
+		    {
+			if(pelem->type == PROM_REL_PROMOTION)
+			    strcpy(colour_bg, const_str("string_treeview_table_promotion"));
+			else if(pelem->type == PROM_REL_RELEGATION)
+			    strcpy(colour_bg, const_str("string_treeview_table_relegation"));
+		    }
 		}
-	    }
 
-	    if(strlen(league->prom_rel.prom_games_dest_sid->str) != 0 &&
-	       g_array_index(league->prom_rel.prom_games_cup.choose_teams, 
-			     CupChooseTeam, 0).start_idx <= idx + 1 &&
-	       idx + 1 <= g_array_index(league->prom_rel.prom_games_cup.choose_teams,
-					CupChooseTeam, 0).end_idx)
-		strcpy(colour_bg, const_str("string_treeview_table_promgames"));
+/* 		if(strlen(league->prom_rel.prom_games_dest_sid->str) != 0 && */
+/* 		   g_array_index(league->prom_rel.prom_games_cup.choose_teams,  */
+/* 				 CupChooseTeam, 0).start_idx <= idx + 1 && */
+/* 		   idx + 1 <= g_array_index(league->prom_rel.prom_games_cup.choose_teams, */
+/* 					    CupChooseTeam, 0).end_idx) */
+		if(query_league_rank_in_prom_games(league, idx + 1))
+		    strcpy(colour_bg, const_str("string_treeview_table_promgames"));
+	    }
 	}
     }
     else
@@ -1809,7 +1846,7 @@ treeview_show_transfer_list(GtkTreeView *treeview)
     GPtrArray *players = g_ptr_array_new();
 
     for(i=0;i<transfer_list->len;i++)
-	g_ptr_array_add(players, player_of_id(trans(i).tm, trans(i).id));
+	g_ptr_array_add(players, player_of_id_team(trans(i).tm, trans(i).id));
 
     treeview_show_player_list(treeview, players, 
 			      treeview_get_attributes_from_scout(current_user.scout), FALSE);
@@ -1956,7 +1993,11 @@ treeview_create_next_opponent(void)
 	gtk_list_store_set(liststore, &iter, 1, _("Home"), -1);
     else
 	gtk_list_store_set(liststore, &iter, 1, _("Away"), -1);    
-   
+
+    gtk_list_store_append(liststore, &iter);
+    sprintf(buf, "Week %d Round %d", fix->week_number, fix->week_round_number);
+    gtk_list_store_set(liststore, &iter, 0, buf, 1, "", -1);
+
     gtk_list_store_append(liststore, &iter);
     gtk_list_store_set(liststore, &iter, 0, "", 1, "", -1);
 
@@ -2046,7 +2087,9 @@ treeview_show_next_opponent(void)
     treeview_set_up_next_opponent(treeview);
     model = treeview_create_next_opponent();
     gtk_tree_view_set_model(treeview, model);
-    g_object_unref(model);
+
+    if(model != NULL)
+	g_object_unref(model);
 }
 
 GtkTreeModel*
@@ -2236,9 +2279,9 @@ treeview_create_player_info(const Player *pl)
 	 _("Value"),
 	 _("Wage"),
 	 _("Contract"),
-	 _("Games/Goals"),
-	 _("Yellow cards (limit)"),
-	 _("Banned"),
+	 _("Games/Goals\n"),
+	 _("Yellow cards (limit)\n"),
+	 _("Banned\n"),
 	 _("New contract\noffers")};
 
     for(i=0;i<PLAYER_INFO_ATTRIBUTE_END;i++)

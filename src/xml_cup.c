@@ -1,5 +1,6 @@
 #include "cup.h"
 #include "file.h"
+#include "main.h"
 #include "misc.h"
 #include "xml_cup.h"
 
@@ -355,5 +356,14 @@ xml_cup_read(const gchar *cup_name, GArray *cups)
     {
 	g_critical("xml_cup_read: error parsing file %s\n", buf);
 	misc_print_error(&error, TRUE);
+    }
+
+    if(g_array_index(g_array_index(cups, Cup, cups->len - 1).rounds, 
+		     CupRound, g_array_index(cups, Cup, cups->len - 1).rounds->len - 1).
+       round_robin_number_of_groups != 0)
+    {
+	sprintf(buf, "xml_cup_read: last cup round of cup %s is round robin which is forbidden.\n",
+		g_array_index(cups, Cup, cups->len - 1).name->str);
+	main_exit_program(EXIT_CUP_LAST_ROUND, buf);
     }
 }

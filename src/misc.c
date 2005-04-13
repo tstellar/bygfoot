@@ -182,6 +182,19 @@ query_integer_is_in_array(gint item, gint *array, gint min, gint max)
     return FALSE;
 }
 
+/** Check whether the number is in the array. */
+gboolean
+query_misc_integer_is_in_g_array(gint item, GArray *array)
+{
+    gint i;
+
+    for(i=0;i<array->len;i++)
+	if(item == g_array_index(array, gint, i))
+	    return TRUE;
+
+    return FALSE;
+}
+
 /** Compare two integers. */
 gint
 misc_int_compare(gint first, gint second)

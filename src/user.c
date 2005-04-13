@@ -20,7 +20,8 @@ user_new(void)
 
     new.name = g_string_new("NONAME");
     new.tm = NULL;
-
+    new.team_id = -1;
+    
     live_game_reset(&new.live_game, NULL, FALSE);
 
     new.events = g_array_new(FALSE, FALSE, sizeof(Event)); 
@@ -57,6 +58,7 @@ user_set_up_team_new_game(User *user)
 	g_string_printf(user->tm->name, "%s", buf);
 
 	user->tm = &g_array_index(lig(lig_idx).teams, Team, rndom);
+	user->team_id = g_array_index(lig(lig_idx).teams, Team, rndom).id;
 
 	user_set_up_team(user);
     }
@@ -379,15 +381,15 @@ user_event_show_next(void)
 	    temp_int = transfer_get_index(event->user->tm, event->value1);
 	    misc_print_grouped_int(transoff(temp_int, 0).fee, buf2, FALSE);
 	    misc_print_grouped_int(ABS(transoff(temp_int, 0).fee - 
-				       player_of_id(event->user->tm, trans(temp_int).id)->value), buf3, FALSE);
+				       player_of_id_team(event->user->tm, trans(temp_int).id)->value), buf3, FALSE);
 	    if(transoff(temp_int, 0).fee - 
-	       player_of_id(event->user->tm, trans(temp_int).id)->value > 0)
+	       player_of_id_team(event->user->tm, trans(temp_int).id)->value > 0)
 		strcat(buf3, " more");
 	    else
 		strcat(buf3, " less");
 
 	    sprintf(buf, _("%s would like to buy %s. They offer %s for him, which is %s than the player's value. Do you accept?"), transoff(temp_int, 0).tm->name->str,
-		    player_of_id(event->user->tm, trans(temp_int).id)->name->str,
+		    player_of_id_team(event->user->tm, trans(temp_int).id)->name->str,
 		    buf2, buf3);
 	    stat1 = STATUS_TRANSFER_OFFER;
 	    stat2 = temp_int;
@@ -399,11 +401,11 @@ user_event_show_next(void)
 	    game_gui_show_warning(buf);
 	    break;
 	case EVENT_TYPE_PLAYER_CAREER_STOP:
-	    sprintf(buf, _("%s's injury was so severe that he can't play football on a professional level anymore. He leaves your team."), player_of_id(event->user->tm, event->value1)->name->str);
+	    sprintf(buf, _("%s's injury was so severe that he can't play football on a professional level anymore. He leaves your team."), player_of_id_team(event->user->tm, event->value1)->name->str);
 	    if(event->user->tm->players->len < 12)
 	    {
 		strcat(buf, _(" Fortunately he's got a cousin who can help your team out."));
-		player_replace_by_new(player_of_id(event->user->tm, event->value1), TRUE);
+		player_replace_by_new(player_of_id_team(event->user->tm, event->value1), TRUE);
 	    }
 	    else
 		player_remove_from_team(event->user->tm, player_id_index(event->user->tm, event->value1));
@@ -421,6 +423,7 @@ user_change_team(User *user, Team *tm)
 {
     gint i;
     user->tm = tm;
+    user->team_id = tm->id;
 
     user_set_up_team(user);
     for(i=user->events->len - 1; i >= 0; i--)

@@ -74,3 +74,41 @@ on_button_reload_constants_clicked     (GtkButton       *button,
     file_load_opt_file(constants_file, &constants);
 }
 
+
+gboolean
+on_checkbutton_save_global_button_press_event
+                                        (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data)
+{
+    if(event->button == 3)
+    {
+	gchar *conf_file = file_find_support_file("bygfoot.conf", TRUE);
+	
+	file_load_opt_file(conf_file, &options);
+	g_free(conf_file);
+
+	option_gui_set_up_window();
+    }
+
+    
+    return TRUE;
+}
+
+
+gboolean
+on_checkbutton_save_user_button_press_event
+                                        (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data)
+{
+
+    if(event->button == 3)
+    {
+	file_load_user_conf_file(&current_user);
+	option_gui_set_up_window();
+    }
+
+    return TRUE;
+}
+

@@ -359,7 +359,11 @@ window_create(gint window_type)
     }
 
     gtk_window_set_title(GTK_WINDOW(wind), buf);
-    g_timeout_add(20, (GSourceFunc)window_show, (gpointer)wind);
+
+    if(window_type != WINDOW_PROGRESS)
+	g_timeout_add(20, (GSourceFunc)window_show, (gpointer)wind);
+    else
+	gtk_widget_show(wind);
 
     if(popups_active != old_popups_active &&
        window.main != NULL)

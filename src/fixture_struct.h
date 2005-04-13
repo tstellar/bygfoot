@@ -18,9 +18,9 @@ typedef struct
     gint week_number, week_round_number;
     /** The teams involved. */
     Team *teams[2];
-    /** Names of the teams. Needed when the team
-	pointers get invalid (e.g. after promotion/relegation) */
-    GString *team_names[2];
+    /** Ids of the teams. Needed when the team
+	pointers get invalid (e.g. after promotion/relegation). */
+    gint team_ids[2];
     /** The number of goals for each team in
 	regulation, extra time and penalty shoot-out. */
     gint result[2][3];

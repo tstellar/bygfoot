@@ -29,9 +29,9 @@ misc2_callback_transfer_user_player(void)
 	    user_from_team(new_team)->money -= transoff(stat2, 0).fee;
 	    user_from_team(new_team)->money_out[1][MON_OUT_TRANSFERS] -= 
 		transoff(stat2, 0).fee;
-	    player_copy(player_of_id(trans(stat2).tm, trans(stat2).id),
+	    player_copy(player_of_id_team(trans(stat2).tm, trans(stat2).id),
 			new_team, new_team->players->len);
-	    player_of(new_team, new_team->players->len - 1)->contract = 
+	    player_of_idx_team(new_team, new_team->players->len - 1)->contract = 
 		(gfloat)math_rndi(const_int("int_transfer_contract_lower"),
 				  const_int("int_transfer_contract_upper"));
 	    g_array_remove_index(current_user.tm->players, 
@@ -42,10 +42,10 @@ misc2_callback_transfer_user_player(void)
 	{
 	    sprintf(buf, _("%s couldn't afford to buy %s or his roster was full."),
 		    user_from_team(new_team)->name->str, 
-		    player_of_id(trans(stat2).tm, trans(stat2).id)->name->str);
+		    player_of_id_team(trans(stat2).tm, trans(stat2).id)->name->str);
 	    game_gui_show_warning(buf);
 	    sprintf(buf, _("You didn't have enough money to buy %s or your roster was full."),
-		    player_of_id(trans(stat2).tm, trans(stat2).id)->name->str);
+		    player_of_id_team(trans(stat2).tm, trans(stat2).id)->name->str);
 	    user_event_add(user_from_team(new_team), EVENT_TYPE_WARNING, -1, -1, NULL, buf);
 	    g_array_remove_index(trans(stat2).offers, 0);
 	}
@@ -150,13 +150,15 @@ misc2_callback_add_user(void)
 	GTK_ENTRY(lookup_widget(window.user_management, "entry_user_management"));
     const gchar *user_name = gtk_entry_get_text(entry_user_management);
     User new_user = user_new();
+    Team *tm = (Team*)treeview_get_pointer(treeview_user_management_teams, 2);
     
     if(strlen(user_name) > 0)
 	g_string_printf(new_user.name, "%s", user_name);
     
     gtk_entry_set_text(entry_user_management, "");
 
-    new_user.tm = treeview_get_pointer(treeview_user_management_teams, 2);
+    new_user.tm = tm;
+    new_user.team_id = tm->id;
 
     g_array_append_val(users, new_user);
 

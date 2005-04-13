@@ -9,7 +9,7 @@ Cup
 cup_new(void);
 
 gint
-cup_new_id(void);
+cup_new_id(gboolean prom_cup);
 
 CupChooseTeam
 cup_choose_team_new(void);
@@ -43,5 +43,17 @@ cup_from_clid(gint clid);
 
 void
 cup_round_name(const Fixture *fix, gchar *buf);
+
+GPtrArray*
+cup_get_teams_sorted(const Cup *cup);
+
+GPtrArray*
+cup_get_teams_from_names(GPtrArray *team_names);
+
+gint
+cup_compare_success(gconstpointer a, gconstpointer b, gpointer data);
+
+gint
+cup_get_round_reached(const Team *tm, const GArray *fixtures);
 
 #endif

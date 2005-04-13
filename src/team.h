@@ -15,6 +15,15 @@ enum TeamCompare
     TEAM_COMPARE_END
 };
 
+/** A struct needed when managing promotions
+    and relegations. */
+typedef struct
+{
+    Team tm; /**< The team we move. */
+    gint league_idx; /** The index of the league that the team gets moved to. */
+
+} TeamMove;
+
 Team
 team_new(void);
 
@@ -52,7 +61,7 @@ GPtrArray*
 team_get_pointers_from_choose_teams(const GArray *choose_teams);
 
 Team*
-team_get_pointer_from_ids(gint clid, gint id);
+team_of_id(gint id);
 
 GPtrArray*
 team_get_player_pointers(const Team *tm);
@@ -122,5 +131,11 @@ team_get_index(const Team *tm);
 
 gfloat
 team_get_average_skills(const GArray *teams);
+
+gboolean
+query_team_plays(const Team *tm, gint week_number, gint week_round_number);
+
+Team*
+team_get_from_name(const gchar *name);
 
 #endif

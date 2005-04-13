@@ -179,28 +179,37 @@ void
 free_league(League *league)
 {
     gint i;
-    GString **strings[6] = 
+    GString **strings[5] = 
 	{&league->name,
 	 &league->short_name,
 	 &league->symbol,
 	 &league->sid,
-	 &league->prom_rel.prom_games_dest_sid,
-	 &league->table.name};
-    GArray **arrays[3] = 
+	 &league->prom_rel.prom_games_dest_sid};
+    GArray **arrays[2] = 
 	{&league->teams,
-	 &league->prom_rel.elements,
-	 &league->table.elements};
+	 &league->prom_rel.elements};
 
-    for(i=0;i<6;i++)
+    for(i=0;i<5;i++)
 	free_g_string(strings[i]);
 
     if(league->teams != NULL)
 	free_teams_array(&league->teams, FALSE);
 
-    for(i=0;i<3;i++)
+    for(i=0;i<2;i++)
 	free_g_array(arrays[i]);
 
-    free_fixtures_array(&league->fixtures, FALSE);
+    free_table(&league->table);
+
+    free_g_array(&league->fixtures);
+}
+
+/** Free a table. */
+void
+free_table(Table *table)
+{
+    free_g_string(&table->name);
+
+    free_g_array(&table->elements);
 }
 
 /** Free the memory occupied by a teams array.
@@ -313,37 +322,12 @@ free_cup(Cup *cup)
     for(i=0;i<2;i++)
 	free_g_array(arrays[i]);
 
-    free_fixtures_array(&cup->fixtures, FALSE);
+    free_g_array(&cup->fixtures);
 
     free_g_ptr_array(&cup->bye);
     free_g_ptr_array(&cup->user_teams);
 
     free_cup_tables(cup->tables, FALSE);
-}
-
-/** Free an array of fixtures. */
-void
-free_fixtures_array(GArray **fixtures, gboolean reset)
-{
-    gint i;
-
-    if(*fixtures == NULL)
-    {
-	if(reset)
-	    *fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));
-	return;
-    }
-
-    for(i=0;i<*fixtures->len;i++)
-    {
-	g_string_free(g_array_index(*fixtures, Fixture, i).team_names[0], TRUE);
-	g_string_free(g_array_index(*fixtures, Fixture, i).team_names[1], TRUE);
-    }
-
-    free_g_array(fixtures);
-
-    if(reset)
-	*fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));
 }
 
 /** Free the memory occupied by the cup tables.
@@ -362,10 +346,7 @@ free_cup_tables(GArray *tables, gboolean reset)
     }
 
     for(i=0;i<tables->len;i++)
-    {
-	free_g_string(&g_array_index(tables, Table, i).name);
-	free_g_array(&g_array_index(tables, Table, i).elements);
-    }
+	free_table(&g_array_index(tables, Table, i));
 
     free_g_array(&tables);
 

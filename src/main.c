@@ -20,10 +20,15 @@
 void
 main_init_variables(void)
 {
+    gint i;
+
     ligs = cps = NULL;
     country.name = country.symbol = country.sid = NULL;
     transfer_list = NULL;
     player_names = NULL;
+
+    for(i=0;i<COUNT_END;i++)
+	counters[i] = 0;
 
     window.main = window.startup =
 	window.live = window.warning = window.progress = window.digits =

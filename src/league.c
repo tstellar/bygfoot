@@ -1,5 +1,6 @@
 #include "cup.h"
 #include "league.h"
+#include "player.h"
 #include "table.h"
 #include "team.h"
 #include "variables.h"
@@ -24,6 +25,9 @@ league_new(void)
     new.average_skill = -1;
 
     new.prom_rel.prom_games_dest_sid = g_string_new("");
+    new.prom_rel.prom_games_loser_sid = g_string_new("");
+    new.prom_rel.prom_games_number_of_advance = 1;
+
     new.prom_rel.elements = g_array_new(FALSE, FALSE, sizeof(PromRelElement));
 
     new.teams = g_array_new(FALSE, FALSE, sizeof(Team));
@@ -155,7 +159,7 @@ league_cup_get_next_clid(gint clid)
     {
 	for(i=0;i<cps->len;i++)
 	    if(cp(i).id == clid)
-		break;
+		break;	
 
 	if(i != cps->len - 1)
 	    return_value = cp(i + 1).id;
@@ -268,4 +272,205 @@ league_cup_average_capacity(gint clid)
 	    sum += g_array_index(teams, Team, i).stadium.capacity;
 
     return sum / (gfloat)teams->len;
+}
+
+/** Get the index of the league with the specified string id. */
+gint
+league_index_from_sid(const gchar *sid)
+{
+    gint i;
+
+    for(i=0;i<ligs->len;i++)
+	if(strcmp(lig(i).sid->str, sid) == 0)
+	    return i;
+
+    g_warning("league_index_from_sid: no index found for sid '%s'.\n", sid);
+
+    return -1;
+}
+
+/** Remove the team with the specified id from the teams
+    array without freeing the memory (used in promotion/relegation). */
+void
+league_remove_team_with_id(League *league, gint id)
+{
+    gint i;
+
+    for(i=0;i<league->teams->len;i++)
+	if(g_array_index(league->teams, Team, i).id == id)
+	{
+	    g_array_remove_index(league->teams, i);
+	    return;
+	}
+
+    g_warning("league_remove_team_with_id: team with id %d in league %s not found\n",
+	      id, league->name->str);
+}
+
+/** Add the teams to promote/relegate from the league to the array
+    and remove them from the leagues. */
+void
+league_get_team_movements(League *league, GArray *team_movements)
+{
+    gint i, j, cp_idx = -1;
+    gint dest_idx;
+    gint move_len = team_movements->len;
+    TeamMove new_move;
+    const GArray *elements = league->prom_rel.elements;
+    GPtrArray *prom_games_teams = NULL;
+
+    for(i=0;i<elements->len;i++)
+    {
+	for(j=g_array_index(elements, PromRelElement, i).ranks[0];
+	    j<=g_array_index(elements, PromRelElement, i).ranks[1]; j++)
+	{
+	    new_move.tm = *(g_array_index(league->table.elements, TableElement, j - 1).team);
+	    new_move.league_idx = league_index_from_sid(g_array_index(elements, PromRelElement, i).dest_sid->str);
+
+	    g_array_append_val(team_movements, new_move);
+	}
+    }
+
+    if(strlen(league->prom_rel.prom_games_dest_sid->str) > 0)
+    {
+	for(i=0;i<cps->len;i++)
+	    if(cp(i).id >= ID_PROM_CUP_START)
+	    {
+		for(j=0;j<cp(i).fixtures->len;j++)
+		{
+		    if(g_array_index(cp(i).fixtures, Fixture, j).teams[0]->clid == league->id ||
+		       g_array_index(cp(i).fixtures, Fixture, j).teams[1]->clid == league->id)
+		    {
+			cp_idx = i;
+			break;
+		    }
+		}
+	    
+		if(cp_idx != -1)
+		    break;
+	    }
+
+	if(cp_idx == -1)
+	{
+	    g_warning("league_get_team_movements: promotion games cup not found for league %s (dest_sid %s).\n",
+		      league->name->str, league->prom_rel.prom_games_dest_sid->str);
+	    return;
+	}
+
+	prom_games_teams = cup_get_teams_sorted(&cp(cp_idx));
+	dest_idx = league_index_from_sid(league->prom_rel.prom_games_dest_sid->str);
+
+	for(i=0;i<league->prom_rel.prom_games_number_of_advance;i++)
+	{
+	    new_move.tm = *((Team*)g_ptr_array_index(prom_games_teams, i));
+	    new_move.league_idx = dest_idx;
+	    g_array_append_val(team_movements, new_move);
+	}
+
+	if(strlen(league->prom_rel.prom_games_loser_sid->str) > 0)
+	{
+	    dest_idx = league_index_from_sid(league->prom_rel.prom_games_loser_sid->str);
+
+	    for(i=league->prom_rel.prom_games_number_of_advance;i<prom_games_teams->len;i++)
+	    {
+		new_move.tm = *((Team*)g_ptr_array_index(prom_games_teams, i));
+		new_move.league_idx = dest_idx;
+		g_array_append_val(team_movements, new_move);
+	    }
+	}
+
+	g_ptr_array_free(prom_games_teams, TRUE);
+    }
+    
+    for(i=move_len;i<team_movements->len;i++)
+	league_remove_team_with_id(league_from_clid(g_array_index(team_movements, TeamMove, i).tm.clid),
+				   g_array_index(team_movements, TeamMove, i).tm.id);
+}
+
+
+/** Nullify league stuff at the beginning of a season. */
+void
+league_season_start(League *league)
+{
+    gint i, j;
+
+    for(i=0;i<league->table.elements->len;i++)
+    {
+	g_array_index(league->table.elements, TableElement, i).team = 
+	    &g_array_index(league->teams, Team, i);
+	g_array_index(league->table.elements, TableElement, i).team_id = 
+	    g_array_index(league->teams, Team, i).id;
+
+	for(j=0;j<TABLE_END;j++)
+	    g_array_index(league->table.elements, TableElement, i).values[j] = 0;
+    }
+
+    /*todo: make teams better if user champion?*/
+    for(i=0;i<league->teams->len;i++)
+	for(j=0;j<g_array_index(league->teams, Team, i).players->len;j++)
+	    player_season_start(&g_array_index(g_array_index(league->teams, Team, i).players, Player, j));
+}
+
+
+/** Find out whether the team with specified rank in the league
+    would participate in promotion games were the season to end. */
+gboolean
+query_league_rank_in_prom_games(const League *league, gint rank)
+{
+    gint i, j;
+
+    for(i=0;i<ligs->len;i++)
+	if(strlen(lig(i).prom_rel.prom_games_dest_sid->str) > 0)
+	{
+	    for(j=0;j<lig(i).prom_rel.prom_games_cup.choose_teams->len;j++)
+		if(strcmp(g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, CupChooseTeam, j).sid->str,
+			  league->sid->str) == 0 &&
+		   ((rank >= g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, CupChooseTeam, j).start_idx &&
+		     rank <= g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, CupChooseTeam, j).end_idx && 
+		     g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, CupChooseTeam, j).randomly) ||
+		    (rank >= g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, CupChooseTeam, j).start_idx &&
+		     rank < g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, CupChooseTeam, j).start_idx + 
+		     g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, CupChooseTeam, j).number_of_teams &&
+		     !g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, CupChooseTeam, j).randomly)))
+		    return TRUE;
+	}
+
+    return FALSE;
+}
+
+/** Find out whether the promotion games fixtures can be written. */
+gboolean
+query_league_prom_games_begin(const League *league)
+{
+    gint i, j;
+    gboolean proceed = FALSE;
+
+    for(i=0;i<league->prom_rel.prom_games_cup.choose_teams->len;i++)
+    {
+	for(j=0;j<ligs->len;j++)
+	    if(strcmp(lig(j).sid->str,
+		      g_array_index(league->prom_rel.prom_games_cup.choose_teams,
+				    CupChooseTeam, i).sid->str) == 0 &&
+	       g_array_index(lig(j).fixtures, Fixture,
+			     lig(j).fixtures->len - 1).week_number == week &&
+	       g_array_index(lig(j).fixtures, Fixture,
+			     lig(j).fixtures->len - 1).week_round_number == week_round)
+		proceed =  TRUE;
+    }
+
+    if(!proceed)
+	return FALSE;
+
+    for(i=0;i<league->prom_rel.prom_games_cup.choose_teams->len;i++)
+    {
+	for(j=0;j<ligs->len;j++)
+	    if(strcmp(lig(j).sid->str,
+		      g_array_index(league->prom_rel.prom_games_cup.choose_teams,
+				    CupChooseTeam, i).sid->str) == 0 &&
+	       g_array_index(lig(j).fixtures, Fixture,
+			     lig(j).fixtures->len - 1).attendance == -1)
+		return FALSE;
+    }
+    
+    return TRUE;
 }

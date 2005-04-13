@@ -39,4 +39,7 @@ query_misc_string_contains(const gchar *string, const gchar *text);
 gboolean
 query_misc_string_in_array(const gchar *string, GPtrArray *array);
 
+gboolean
+query_misc_integer_is_in_g_array(gint item, GArray *array);
+
 #endif

@@ -15,6 +15,8 @@ enum
     TAG_LEAGUE_AVERAGE_SKILL,
     TAG_LEAGUE_PROM_REL,
     TAG_LEAGUE_PROM_REL_PROM_GAMES_DEST_SID,
+    TAG_LEAGUE_PROM_REL_PROM_GAMES_LOSER_SID,
+    TAG_LEAGUE_PROM_REL_PROM_GAMES_NUMBER_OF_ADVANCE,
     TAG_LEAGUE_PROM_REL_CUP,
     TAG_LEAGUE_PROM_REL_ELEMENTS,
     TAG_LEAGUE_PROM_REL_ELEMENT,
@@ -85,6 +87,8 @@ xml_loadsave_league_end_element    (GMarkupParseContext *context,
        tag == TAG_LEAGUE_PROM_REL)
 	state = TAG_LEAGUE;
     else if(tag == TAG_LEAGUE_PROM_REL_PROM_GAMES_DEST_SID ||
+	    tag == TAG_LEAGUE_PROM_REL_PROM_GAMES_LOSER_SID ||
+	    tag == TAG_LEAGUE_PROM_REL_PROM_GAMES_NUMBER_OF_ADVANCE ||
 	    tag == TAG_LEAGUE_PROM_REL_CUP ||
 	    tag == TAG_LEAGUE_PROM_REL_ELEMENTS)
 	state = TAG_LEAGUE_PROM_REL;
@@ -141,6 +145,10 @@ xml_loadsave_league_text         (GMarkupParseContext *context,
 	new_league->average_skill = int_value;
     else if(state == TAG_LEAGUE_PROM_REL_PROM_GAMES_DEST_SID)
 	g_string_printf(new_league->prom_rel.prom_games_dest_sid, "%s", buf);
+    else if(state == TAG_LEAGUE_PROM_REL_PROM_GAMES_NUMBER_OF_ADVANCE)
+	new_league->prom_rel.prom_games_number_of_advance = int_value;
+    else if(state == TAG_LEAGUE_PROM_REL_PROM_GAMES_LOSER_SID)
+	g_string_printf(new_league->prom_rel.prom_games_loser_sid, "%s", buf);
     else if(state == TAG_LEAGUE_PROM_REL_ELEMENT_RANK)
 	new_element.ranks[promrankidx] = int_value;
     else if(state == TAG_LEAGUE_PROM_REL_ELEMENT_TYPE)
@@ -221,10 +229,16 @@ xml_loadsave_league_write(const gchar *prefix, const League *league)
     {
 	xml_write_g_string(fil, league->prom_rel.prom_games_dest_sid,
 			   TAG_LEAGUE_PROM_REL_PROM_GAMES_DEST_SID, I2);
+	xml_write_int(fil, league->prom_rel.prom_games_number_of_advance, 
+		      TAG_LEAGUE_PROM_REL_PROM_GAMES_NUMBER_OF_ADVANCE, I2);
 	
 	sprintf(buf, "%s___league_%d_promcup", prefix, league->id);
 	xml_loadsave_cup_write(buf, &league->prom_rel.prom_games_cup);
     }
+
+    if(strlen(league->prom_rel.prom_games_loser_sid->str) != 0)
+	xml_write_g_string(fil, league->prom_rel.prom_games_loser_sid,
+			   TAG_LEAGUE_PROM_REL_PROM_GAMES_LOSER_SID, I2);
 
     fprintf(fil, "%s<_%d>\n", I2, TAG_LEAGUE_PROM_REL_ELEMENTS);
     for(i=0;i<league->prom_rel.elements->len;i++)

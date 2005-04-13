@@ -35,7 +35,11 @@ typedef struct
 {
     /** The id of the league the promotion games winner gets promoted to. Default "" */
     GString *prom_games_dest_sid;
-    /** Number of teams that advance from the promotion games. */
+
+    /** The id of the league the promotion games losers get moved to. Default "" */
+    GString *prom_games_loser_sid;
+
+    /** Number of teams that advance from the promotion games. Default: 1. */
     gint prom_games_number_of_advance;
     
     /** Array with promotion/relegation rules.

@@ -5,6 +5,7 @@
 #include "load_save.h"
 #include "option.h"
 #include "support.h"
+#include "user.h"
 #include "variables.h"
 #include "xml_loadsave_misc.h"
 #include "xml_loadsave_cup.h"
@@ -188,6 +189,8 @@ load_save_load_game(const gchar* filename)
 
     g_string_printf(save_file, "%s", filename);
 
+    load_save_last_save_set(filename);
+
     gui_show_progress(-1, "");
     setsav1;
 
@@ -241,6 +244,15 @@ load_save_autosave(void)
     const gchar *home = g_get_home_dir();
     FILE *fil = NULL;
     
+    if(!opt_int("int_opt_autosave") ||
+       !query_user_games_this_week_round())
+	return;
+
+    counters[COUNT_AUTOSAVE] = (counters[COUNT_AUTOSAVE] + 1) % opt_int("int_opt_autosave_interval");
+
+    if(counters[COUNT_AUTOSAVE] != 0)
+	return;
+
     sprintf(buf, "%s/%s/saves/autosave%02d.zip", home, HOMEDIRNAME,
 	    counters[COUNT_AUTOSAVE_FILE]);
 

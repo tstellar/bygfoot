@@ -38,18 +38,18 @@ game_get_values(const Fixture *fix, gfloat team_values[][GAME_TEAM_VALUE_END],
 	style_factor = (gfloat)tm[i]->style * const_float("float_game_style_factor");
 
 	team_values[i][GAME_TEAM_VALUE_GOALIE] = 
-	    game_get_player_contribution(player_of(tm[i], 0), FALSE) * 
+	    game_get_player_contribution(player_of_idx_team(tm[i], 0), FALSE) * 
 	    (1 + home_advantage * (i == 0)) *
 	    (1 + const_float("float_player_boost_skill_effect") * tm[i]->boost);
 
 	for(j=1;j<11;j++)
 	{
 	    team_values[i][GAME_TEAM_VALUE_ATTACK] +=
-		game_get_player_contribution(player_of(tm[i], j), GAME_TEAM_VALUE_ATTACK);
+		game_get_player_contribution(player_of_idx_team(tm[i], j), GAME_TEAM_VALUE_ATTACK);
 	    team_values[i][GAME_TEAM_VALUE_MIDFIELD] +=
-		game_get_player_contribution(player_of(tm[i], j), GAME_TEAM_VALUE_MIDFIELD);
+		game_get_player_contribution(player_of_idx_team(tm[i], j), GAME_TEAM_VALUE_MIDFIELD);
 	    team_values[i][GAME_TEAM_VALUE_DEFEND] +=
-		game_get_player_contribution(player_of(tm[i], j), GAME_TEAM_VALUE_DEFEND);
+		game_get_player_contribution(player_of_idx_team(tm[i], j), GAME_TEAM_VALUE_DEFEND);
 	}
 
 	for(j=GAME_TEAM_VALUE_DEFEND;j<GAME_TEAM_VALUE_DEFEND + 3;j++)
@@ -96,6 +96,10 @@ game_get_player_contribution(const Player *pl, gint type)
 	  const_float("float_player_team_weight_forward_midfield"), 
 	  const_float("float_player_team_weight_forward_attack")}};
 
+    /*d*/
+/*     if(g_str_has_suffix(pl->team->name->str, "argate")) */
+/* 	return 80; */
+    
     return player_get_game_skill(pl, FALSE) *
 	player_weights[pl->cpos - 1][type - GAME_TEAM_VALUE_DEFEND];
 }
@@ -152,11 +156,11 @@ game_get_player(const Team *tm, gint player_type,
 	    rndom = math_rnd(0, probs[9]);
 	    
 	    if(rndom < probs[0])
-		player = player_of(tm, 1)->id;
+		player = player_of_idx_team(tm, 1)->id;
 	    else
 		for(i=1;i<10;i++)
 		    if(rndom < probs[i] && rndom > probs[i - 1])
-			player = player_of(tm, i + 1)->id;
+			player = player_of_idx_team(tm, i + 1)->id;
 	}
     }
     else
@@ -167,8 +171,8 @@ game_get_player(const Team *tm, gint player_type,
 	{
 	    if(i < 10)
 		printf("prob %.3f  ", probs[i]);
-	    printf("%d %20s health %d cskill %.2f\n", i, player_of(tm, i)->name->str,
-		   player_of(tm, i)->health, player_of(tm, i)->cskill);
+	    printf("%d %20s health %d cskill %.2f\n", i, player_of_idx_team(tm, i)->name->str,
+		   player_of_idx_team(tm, i)->health, player_of_idx_team(tm, i)->cskill);
 	}
 	return -1;
     }
@@ -212,8 +216,8 @@ game_get_penalty_taker(const Team *tm, gint last_penalty)
     GPtrArray *players = g_ptr_array_new();
 
     for(i=0;i<11;i++)
-	if(player_of(tm, i)->cskill != 0)
-	    g_ptr_array_add(players, player_of(tm, i));
+	if(player_of_idx_team(tm, i)->cskill != 0)
+	    g_ptr_array_add(players, player_of_idx_team(tm, i));
 
     g_ptr_array_sort_with_data(players, (GCompareDataFunc)player_compare_func, 
 			       GINT_TO_POINTER(PLAYER_COMPARE_ATTRIBUTE_GAME_SKILL));
@@ -361,7 +365,7 @@ game_save_team_states(void)
 	
 	for(j=0;j<11;j++)
 	    usr(stat2).live_game.team_state[i].player_ids[j] = 
-		player_of(teams[i], j)->id;
+		player_of_idx_team(teams[i], j)->id;
     }
 }
 
@@ -380,7 +384,7 @@ game_check_live_game_resume_state(void)
     for(i=0;i<2;i++)
     {
 	for(j=0;j<11;j++)
-	    if(!query_integer_is_in_array(player_of(teams[i], j)->id,
+	    if(!query_integer_is_in_array(player_of_idx_team(teams[i], j)->id,
 					  usr(stat2).live_game.team_state[i].player_ids,
 					  0, 11))
 		subs[i]++;
@@ -405,12 +409,12 @@ game_get_subs(gint team_number, gint *subs_in, gint *subs_out)
     
     for(i=0;i<11;i++)
     {
-	current_players[i] = player_of(tm, i)->id;
-	if(!query_integer_is_in_array(player_of(tm, i)->id,
+	current_players[i] = player_of_idx_team(tm, i)->id;
+	if(!query_integer_is_in_array(player_of_idx_team(tm, i)->id,
 				      usr(stat2).live_game.team_state[team_number].player_ids,
 				      0, 11))
 	{
-	    subs_in[cnt] = player_of(tm, i)->id;
+	    subs_in[cnt] = player_of_idx_team(tm, i)->id;
 	    cnt++;
 	}
     }
@@ -548,14 +552,14 @@ game_substitute_player(Team *tm, gint player_number)
 	    g_ptr_array_add(substitutes, &g_array_index(tm->players, Player, i));
 
     g_ptr_array_sort_with_data(substitutes, (GCompareDataFunc)player_compare_substitute_func,
-			       GINT_TO_POINTER(player_of(tm, player_number)->cpos));
+			       GINT_TO_POINTER(player_of_idx_team(tm, player_number)->cpos));
     adapt_structure = 
 	(math_get_place(team_find_appropriate_structure(tm), 1) + 
 	 math_get_place(team_find_appropriate_structure(tm), 2) + 
 	 math_get_place(team_find_appropriate_structure(tm), 3) != 10 ||
-	 (player_of(tm, player_number)->cpos != ((Player*)g_ptr_array_index(substitutes, 0))->pos &&
+	 (player_of_idx_team(tm, player_number)->cpos != ((Player*)g_ptr_array_index(substitutes, 0))->pos &&
 	  player_substitution_good_structure(tm->structure,
-					     player_of(tm, player_number)->cpos,
+					     player_of_idx_team(tm, player_number)->cpos,
 					     ((Player*)g_ptr_array_index(substitutes, 0))->pos)));
 
     substitute = ((Player*)g_ptr_array_index(substitutes, 0))->id;
@@ -600,8 +604,8 @@ game_find_to_substitute(const Team *tm)
 	num_def = math_get_place(current_structure, 3);
 
     for(i=0;i<11;i++)
-	if(player_is_banned(player_of(tm, i)) <= 0)
-	    g_ptr_array_add(players, player_of(tm, i));
+	if(player_is_banned(player_of_idx_team(tm, i)) <= 0)
+	    g_ptr_array_add(players, player_of_idx_team(tm, i));
 
     g_ptr_array_sort_with_data(players, (GCompareDataFunc)player_compare_func,
 			       GINT_TO_POINTER(PLAYER_COMPARE_ATTRIBUTE_GAME_SKILL));
@@ -677,7 +681,7 @@ game_substitute_player_send_off(Team *tm, gint player_number,
 
     substitutes = g_ptr_array_new();
     for(i=11;i<tm->players->len;i++)
-	g_ptr_array_add(substitutes, player_of(tm, i));
+	g_ptr_array_add(substitutes, player_of_idx_team(tm, i));
 
     if(num_forw == 0 && MAX(num_def, num_mid) > 2)
 	position = PLAYER_POS_FORWARD;
@@ -715,8 +719,8 @@ game_decrease_fitness(const Fixture *fix)
     for(i=0;i<2;i++)
     {
 	for(j=0;j<11;j++)
-	    if(player_of(fix->teams[i], j)->cskill > 0)
-		player_decrease_fitness(player_of(fix->teams[i], j));
+	    if(player_of_idx_team(fix->teams[i], j)->cskill > 0)
+		player_decrease_fitness(player_of_idx_team(fix->teams[i], j));
     }
 }
 
@@ -817,7 +821,7 @@ game_update_stats_player(gpointer live_game, gconstpointer live_game_unit)
 	{
 	    if(g_str_has_prefix(((GString*)g_ptr_array_index(
 				     stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS], i))->str,
-				player_of_id(tm[team], player)->name->str))
+				player_of_id_team(tm[team], player)->name->str))
 	    {
 		sprintf(buf, "%s %d%s",
 			((GString*)g_ptr_array_index(
@@ -830,7 +834,7 @@ game_update_stats_player(gpointer live_game, gconstpointer live_game_unit)
 	    }
 	}
     
-	sprintf(buf, "%s %d%s", player_of_id(tm[team], player)->name->str,
+	sprintf(buf, "%s %d%s", player_of_id_team(tm[team], player)->name->str,
 		minute, buf2);
 	new = g_string_new(buf);
 	g_ptr_array_add(stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS], new);
@@ -840,17 +844,17 @@ game_update_stats_player(gpointer live_game, gconstpointer live_game_unit)
 	strcpy(buf, "");
 	if(unit->event.type == LIVE_GAME_EVENT_INJURY)
 	{
-	    sprintf(buf, "%s", player_of_id(tm[team], player)->name->str);
+	    sprintf(buf, "%s", player_of_id_team(tm[team], player)->name->str);
 	    players = stats->players[team][LIVE_GAME_STAT_ARRAY_INJURED];
 	}
 	else if(unit->event.type == LIVE_GAME_EVENT_FOUL_YELLOW)
 	{
-	    sprintf(buf, "%s", player_of_id(tm[team], player2)->name->str);
+	    sprintf(buf, "%s", player_of_id_team(tm[team], player2)->name->str);
 	    players = stats->players[team][LIVE_GAME_STAT_ARRAY_YELLOWS];
 	}
 	else if(unit->event.type == LIVE_GAME_EVENT_SEND_OFF)
 	{
-	    sprintf(buf, "%s", player_of_id(tm[team], player)->name->str);
+	    sprintf(buf, "%s", player_of_id_team(tm[team], player)->name->str);
 	    players = stats->players[team][LIVE_GAME_STAT_ARRAY_REDS];
 	}
 

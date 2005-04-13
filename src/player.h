@@ -50,13 +50,10 @@ gint
 player_all_cards(const Player *pl);
 
 Player*
-player_of_ids(gint clid, gint team_id, gint id);
+player_of_idx_team(const Team *tm, gint number);
 
 Player*
-player_of(const Team *tm, gint number);
-
-Player*
-player_of_id(const Team *tm, gint id);
+player_of_id_team(const Team *tm, gint id);
 
 gint
 player_compare_func(gconstpointer a, gconstpointer b, gpointer data);
@@ -133,5 +130,10 @@ player_copy(Player *pl, Team *tm, gint insert_at);
 gchar*
 player_injury_to_char(gint injury_type);
 
+Team*
+player_id_team(gint player_id);
+
+void
+player_season_start(Player *pl);
 
 #endif

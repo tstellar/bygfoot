@@ -41,10 +41,10 @@ finance_update_user_weekly(User *user)
 
     for(i=0;i<tm->players->len;i++)
     {
-	user->money_out[1][MON_OUT_WAGE] -= player_of(tm, i)->wage;
-	user->money -= player_of(tm, i)->wage;
+	user->money_out[1][MON_OUT_WAGE] -= player_of_idx_team(tm, i)->wage;
+	user->money -= player_of_idx_team(tm, i)->wage;
 
-	if(player_of(tm, i)->health > 0)
+	if(player_of_idx_team(tm, i)->health > 0)
 	{
 	    user->money -= (gint)(finance_wage_unit(tm) * physio_factor[user->physio % 10]);
 	    user->money_out[1][MON_OUT_PHYSIO] -= 
@@ -101,7 +101,7 @@ finance_wage_unit(const Team *tm)
     gfloat sum = 0;
 
     for(i=0;i<tm->players->len;i++)
-	sum += player_of(tm, i)->wage;
+	sum += player_of_idx_team(tm, i)->wage;
 
     return sum / (gfloat)tm->players->len;
 }
@@ -115,7 +115,7 @@ finance_team_drawing_credit_loan(const Team *tm, gboolean loan)
     gfloat sum = 0;
 
     for(i=0;i<tm->players->len;i++)
-	sum += player_of(tm, i)->value;
+	sum += player_of_idx_team(tm, i)->value;
     
     sum = (sum * const_float("float_finance_credit_player_value_weight")) +
 	((gfloat)tm->stadium.capacity * 

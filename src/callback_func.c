@@ -108,7 +108,7 @@ callback_player_clicked(gint idx, GdkEventButton *event)
 	if(stat0 == STATUS_SHOW_TRANSFER_LIST)
 	{
 	    selected_row[0] = -1;	    
-	    transfer_add_remove_user_player(player_of(current_user.tm, idx));
+	    transfer_add_remove_user_player(player_of_idx_team(current_user.tm, idx));
 	}
 	else
 	{
@@ -116,6 +116,18 @@ callback_player_clicked(gint idx, GdkEventButton *event)
 	    selected_row[0] = idx;
 	}
     }
+
+    /*d*/
+/*     gint i; */
+/*     printf("\n"); */
+/*     for(i=0;i<current_user.tm->players->len;i++) */
+/* 	printf("%06d %s\n", g_array_index(current_user.tm->players, Player, i).id, */
+/* 	       g_array_index(current_user.tm->players, Player, i).name->str); */
+
+/*     for(i=0;i<current_user.tm->players->len;i++) */
+/* 	printf("%d %s %d\n", i, */
+/* 	       g_array_index(current_user.tm->players, Player, i).name->str, */
+/* 	       g_array_index(current_user.tm->players, Player, i).id); */
 
     setsav0;
 }
@@ -193,7 +205,7 @@ callback_show_tables(gint type)
 	    clid = league_cup_get_previous_clid(clid);
     }
 
-    stat1 = clid;
+    stat1 = clid;    
 
     treeview_show_table(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")), clid);
 }
@@ -268,7 +280,7 @@ callback_transfer_list_clicked(gint idx)
     }
 
     sprintf(buf, _("You are making an offer for %s. Your scout's recommendations for value and wage are preset."),
-	    player_of_id(tr->tm, tr->id)->name->str);
+	    player_of_id_team(tr->tm, tr->id)->name->str);
     stat1 = STATUS_SHOW_TRANSFER_LIST;
     stat2 = idx;
 
@@ -282,7 +294,7 @@ callback_offer_new_contract(gint idx)
 {
     gint i;
     gchar buf[SMALL];
-    Player *pl = player_of(current_user.tm, idx);
+    Player *pl = player_of_idx_team(current_user.tm, idx);
     gfloat scout_dev = math_rnd(-const_float("float_transfer_scout_deviance_wage"),
 				const_float("float_transfer_scout_deviance_wage")) *
 	(current_user.scout % 10 + 1);
@@ -402,7 +414,7 @@ void
 callback_fire_player(gint idx)
 {
     gchar buf[SMALL], buf2[SMALL];
-    Player *pl = player_of(current_user.tm, idx);
+    Player *pl = player_of_idx_team(current_user.tm, idx);
 
     stat1 = STATUS_FIRE_PLAYER;
     stat2 = idx;

@@ -16,7 +16,7 @@ enum
     TAG_END
 };
 
-gint state, feeidx, wageidx, team_clid;
+gint state, feeidx, wageidx;
 Transfer new_transfer;
 
 void
@@ -69,8 +69,7 @@ xml_loadsave_transfers_end_element    (GMarkupParseContext *context,
 	state = TAG_TRANSFERS;
 	g_array_append_val(transfer_list, new_transfer);
     }
-    else if(tag == TAG_TEAM_CLID ||
-	    tag == TAG_TEAM_ID ||
+    else if(tag == TAG_TEAM_ID ||
 	    tag == TAG_TRANSFER_PLAYER_ID ||
 	    tag == TAG_TRANSFER_TIME ||
 	    tag == TAG_TRANSFER_FEE ||
@@ -102,10 +101,8 @@ xml_loadsave_transfers_text         (GMarkupParseContext *context,
 
     int_value = (gint)g_ascii_strtod(buf, NULL);
 
-    if(state == TAG_TEAM_CLID)
-	team_clid = int_value;
-    else if(state == TAG_TEAM_ID)
-	new_transfer.tm = team_get_pointer_from_ids(team_clid, int_value);
+    if(state == TAG_TEAM_ID)
+	new_transfer.tm = team_of_id(int_value);
     else if(state == TAG_TRANSFER_PLAYER_ID)
 	new_transfer.id = int_value;
     else if(state == TAG_TRANSFER_TIME)
@@ -166,7 +163,6 @@ xml_loadsave_transfers_write(const gchar *prefix)
     {
 	fprintf(fil, "<_%d>\n", TAG_TRANSFER);
 
-	xml_write_int(fil, trans(i).tm->clid, TAG_TEAM_CLID, I1);
 	xml_write_int(fil, trans(i).tm->id, TAG_TEAM_ID, I1);
 	xml_write_int(fil, trans(i).id, TAG_TRANSFER_PLAYER_ID, I1);
 	xml_write_int(fil, trans(i).time, TAG_TRANSFER_TIME, I1);

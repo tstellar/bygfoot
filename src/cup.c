@@ -1,4 +1,5 @@
 #include "cup.h"
+#include "fixture.h"
 #include "free.h"
 #include "main.h"
 #include "maths.h"
@@ -23,7 +24,7 @@ cup_new(void)
     new.symbol = g_string_new("");
     new.sid = g_string_new("");
 
-    new.id = cup_new_id();
+    new.id = cup_new_id(FALSE);
     new.type = CUP_TYPE_NATIONAL;
     new.last_week = new.week_gap = -1;
     new.yellow_red = 1000;
@@ -36,7 +37,7 @@ cup_new(void)
     new.user_teams = g_ptr_array_new();
     new.tables = g_array_new(FALSE, FALSE, sizeof(Table));
     new.fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));
-    new.bye = g_ptr_array_new();
+    new.bye = NULL;
 
     new.next_fixture_update_week = -1;
     new.next_fixture_update_week_round = -1;
@@ -47,16 +48,18 @@ cup_new(void)
 /** Return a new numerical id for a cup.
     We browse through the existing cups and take the
     first free id.
+    @param prom_cup Whether we need a promotion games cup id.
 */
 gint
-cup_new_id(void)
+cup_new_id(gboolean prom_cup)
 {
     gint i, j;
+    gint start = (prom_cup) ? ID_PROM_CUP_START : ID_CUP_START;
 
     if(cps->len == 0)
-	return ID_CUP_START;
+	return start;
 
-    for(i=ID_CUP_START;i<ID_CUP_START+1000;i++)
+    for(i=start;i<start+1000;i++)
     {
 	for(j=0;j<cps->len;j++)
 	    if(cp(j).id == i)
@@ -164,7 +167,6 @@ cup_load_choose_teams(Cup *cup)
 	    {
 		g_array_append_val(cup->teams, g_array_index(teams, Team, permutation[j]));
 		g_array_index(cup->teams, Team, cup->teams->len - 1).clid = cup->id;
-		g_array_index(cup->teams, Team, cup->teams->len - 1).id = cup->teams->len - 1;
 
 		number_of_teams++;
 	    }
@@ -203,6 +205,11 @@ cup_load_choose_team_user(Cup *cup)
     gchar type[SMALL];
     gint number, number_of_teams = 0;
     CupChooseTeam *choose_team = &cup->choose_team_user;
+    GPtrArray *user_teams_sorted = NULL;
+    Team *table_team = NULL;
+
+    g_ptr_array_free(cup->user_teams, TRUE);
+    cup->user_teams = g_ptr_array_new();
 
     sscanf(choose_team->sid->str, "%[^0-9]%d", type, &number);
 
@@ -216,14 +223,15 @@ cup_load_choose_team_user(Cup *cup)
 	if(ligs->len < number ||
 	   lig(number - 1).teams->len < choose_team->end_idx)
 	    cup_choose_team_abort(cup, choose_team, TRUE);
-	
+
 	for(i = choose_team->start_idx - 1; i <= choose_team->end_idx - 1; i++)
 	{
-	    if(!query_is_in_international_cups(
-		   g_array_index(lig(number - 1).table.elements, TableElement, i).team))
+	    table_team = team_of_id(
+		g_array_index(lig(number - 1).table.elements, TableElement, i).team_id);
+
+	    if(!query_is_in_international_cups(table_team))
 	    {
-		g_ptr_array_add(cup->user_teams, 
-				g_array_index(lig(number - 1).table.elements, TableElement, i).team);
+		g_ptr_array_add(cup->user_teams, table_team);
 		number_of_teams++;
 	    }
 	    
@@ -271,7 +279,101 @@ cup_load_choose_team_user(Cup *cup)
 
     /** Teams from a cup: normal case. We sort the teams that
 	participated in the cup. */
+    user_teams_sorted = cup_get_teams_sorted(&cp(number - 1));
+
+    for(i = choose_team->start_idx - 1; i <= choose_team->end_idx - 1; i++)
+    {
+	if(!query_is_in_international_cups((Team*)g_ptr_array_index(user_teams_sorted, i)))
+	{
+	    g_ptr_array_add(cup->user_teams, g_ptr_array_index(user_teams_sorted, i));
+	    number_of_teams++;
+	}
+		
+	if(number_of_teams == choose_team->number_of_teams)
+	    break;
+    }
+	    
+    if(number_of_teams != choose_team->number_of_teams)
+	cup_choose_team_abort(cup, choose_team, TRUE);    
+
+    g_ptr_array_free(user_teams_sorted, TRUE);
+}
+
+/** Return a pointer array of teams ordered corresponding to
+    their success in the cup. A bit tricky because we have to
+    fetch the team pointers corresponding to their name because
+    the team pointers in the fixtures are partially invalid because
+    of promotion relegation. */
+GPtrArray*
+cup_get_teams_sorted(const Cup *cup)
+{
+    gint i, j;
+    GPtrArray *teams = g_ptr_array_new();
+    GArray *team_ids = g_array_new(FALSE, FALSE, sizeof(gint));
     
+    for(i=0;i<cup->fixtures->len;i++)
+	for(j=0;j<2;j++)
+	    if(!query_misc_integer_is_in_g_array(
+		   g_array_index(cup->fixtures, Fixture, i).team_ids[j], team_ids))
+	    {
+		g_array_append_val(team_ids, g_array_index(cup->fixtures, Fixture, i).team_ids[j]);
+		g_ptr_array_add(teams, team_of_id(g_array_index(cup->fixtures, Fixture, i).team_ids[j]));
+	    }
+
+    g_ptr_array_sort_with_data(teams, cup_compare_success, (gpointer)cup->fixtures);
+
+    g_array_free(team_ids, TRUE);
+
+    return teams;
+}
+
+/** Compare two teams in a pointer array taking into account
+    their success in a cup. */
+gint
+cup_compare_success(gconstpointer a, gconstpointer b, gpointer data)
+{
+    const GArray *fixtures = (GArray*)data;
+    const Team *team1 = *(const Team**)a;
+    const Team *team2 = *(const Team**)b;
+    const Fixture *last_fix = &g_array_index(fixtures, Fixture, fixtures->len - 1);
+    gint round_reached1 = cup_get_round_reached(team1, fixtures),
+	round_reached2 = cup_get_round_reached(team2, fixtures);
+    gint return_value = 0;
+
+    if(round_reached1 < round_reached2)
+	return_value = 1;
+    else if(round_reached1 > round_reached2)
+	return_value = -1;
+    else
+    {
+	if(round_reached1 != last_fix->round)
+	    return_value = 0;
+	else
+	{
+	    if(GPOINTER_TO_INT(fixture_winner_of(last_fix, TRUE)) ==  team1->id)
+		return_value = -1;
+	    else
+		return_value = 1;
+	}
+    }
+
+    return return_value;
+}
+
+/** Return the cup round that the team reached in the cup.
+    @param fixtures The fixtures array of the cup. */
+gint
+cup_get_round_reached(const Team *tm, const GArray *fixtures)
+{
+    gint round = -1;
+    gint i;
+
+    for(i=0;i<fixtures->len;i++)
+	if(g_array_index(fixtures, Fixture, i).team_ids[0] == tm->id ||
+	   g_array_index(fixtures, Fixture, i).team_ids[1] == tm->id)
+	    round = MAX(round, g_array_index(fixtures, Fixture, i).round);
+
+    return round;
 }
 
 /** Print an error and exit the program if there's a problem loading

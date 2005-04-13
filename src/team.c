@@ -25,7 +25,8 @@ team_new(void)
     new.name = g_string_new("");
     new.symbol = g_string_new("");
     
-    new.clid = new.id = -1;
+    new.clid = -1;
+    new.id = team_id_new;
     new.structure = team_assign_playing_structure();
     new.style = team_assign_playing_style();
     new.boost = 0;
@@ -338,14 +339,14 @@ team_get_pointers_from_choose_teams(const GArray *choose_teams)
 		{
 		    gint order[ct->end_idx - ct->start_idx + 1];
 		
-		    for(k=0;k<ct->end_idx - ct->start_idx + 1;k++)
-			order[k] = k;
+		    for(k=ct->start_idx - 1;k<ct->end_idx;k++)
+			order[k - ct->start_idx + 1] = k;
 
 		    if(ct->randomly)
-			math_generate_permutation(order, 0, ct->end_idx - ct->start_idx);
+			math_generate_permutation(order, ct->start_idx - 1, ct->end_idx);
 
 		    for(k=0;k<ct->number_of_teams;k++)
-			g_ptr_array_add(teams, &g_array_index(lig(j).teams, Team, order[k]));
+			g_ptr_array_add(teams, g_array_index(lig(j).table.elements, TableElement, order[k]).team);
 		}
 	    }
     }
@@ -354,22 +355,23 @@ team_get_pointers_from_choose_teams(const GArray *choose_teams)
 }
 
 /** Return the pointer to the team belonging to
-    the two ids.
-    @param clid The league/cup id of the team.
-    @param id The id of the team.
-    @return The pointer to the team. */
+    the id. */
 Team*
-team_get_pointer_from_ids(gint clid, gint id)
+team_of_id(gint id)
 {    
-    gint i;
-    const GArray *teams = league_cup_get_teams(clid);
-    
-    for(i=0;i<teams->len;i++)
-	if(g_array_index(teams, Team, i).id == id)
-	    return &g_array_index(teams, Team, i);
+    gint i, j;
 
-    g_warning("team_get_pointer_from_ids: team with clid %d id %d not found.",
-	      clid, id);
+    for(i=0;i<ligs->len;i++)
+	for(j=0;j<lig(i).teams->len;j++)
+	    if(g_array_index(lig(i).teams, Team, j).id == id)
+		return &g_array_index(lig(i).teams, Team, j);
+
+    for(i=0;i<cps->len;i++)
+	for(j=0;j<cp(i).teams->len;j++)
+	    if(g_array_index(cp(i).teams, Team, j).id == id)
+		return &g_array_index(cp(i).teams, Team, j);    
+
+    g_warning("team_of_id: team with id %d not found.", id);
 
     return NULL;
 }
@@ -407,15 +409,11 @@ team_get_fixture(const Team *tm, gboolean last_fixture)
 		if((g_array_index(lig(i).fixtures, Fixture, j).teams[0] == tm ||
 		    g_array_index(lig(i).fixtures, Fixture, j).teams[1] == tm))
 		{
-		    if(g_array_index(lig(i).fixtures, Fixture, j).week_number >= week &&
-		       (g_array_index(lig(i).fixtures, Fixture, j).week_round_number >= week_round ||
-			g_array_index(lig(i).fixtures, Fixture, j).week_number > week) &&
+		    if(g_array_index(lig(i).fixtures, Fixture, j).attendance == -1 &&
 		       (next_fix == NULL ||
 			query_fixture_is_earlier(&g_array_index(lig(i).fixtures, Fixture, j), next_fix)))
 			next_fix = &g_array_index(lig(i).fixtures, Fixture, j);
-		    else if(g_array_index(lig(i).fixtures, Fixture, j).week_number <= week &&
-			    (g_array_index(lig(i).fixtures, Fixture, j).week_round_number < week_round ||
-			     g_array_index(lig(i).fixtures, Fixture, j).week_number < week) &&
+		    else if(g_array_index(lig(i).fixtures, Fixture, j).attendance != -1 &&
 			    (last_fix == NULL ||
 			     query_fixture_is_later(&g_array_index(lig(i).fixtures, Fixture, j), last_fix)))
 			last_fix = &g_array_index(lig(i).fixtures, Fixture, j);
@@ -432,15 +430,11 @@ team_get_fixture(const Team *tm, gboolean last_fixture)
 		if((g_array_index(cp(i).fixtures, Fixture, j).teams[0] == tm ||
 		    g_array_index(cp(i).fixtures, Fixture, j).teams[1] == tm))
 		{
-		    if(g_array_index(cp(i).fixtures, Fixture, j).week_number >= week &&
-		       (g_array_index(cp(i).fixtures, Fixture, j).week_round_number >= week_round ||
-			g_array_index(cp(i).fixtures, Fixture, j).week_number > week) &&
+		    if(g_array_index(cp(i).fixtures, Fixture, j).attendance == -1 &&
 		       (next_fix == NULL ||
 			query_fixture_is_earlier(&g_array_index(cp(i).fixtures, Fixture, j), next_fix)))
 			next_fix = &g_array_index(cp(i).fixtures, Fixture, j);
-		    else if(g_array_index(cp(i).fixtures, Fixture, j).week_number <= week &&
-			    (g_array_index(cp(i).fixtures, Fixture, j).week_round_number < week_round ||
-			     g_array_index(cp(i).fixtures, Fixture, j).week_number < week) &&
+		    else if(g_array_index(cp(i).fixtures, Fixture, j).attendance != -1 &&
 			    (last_fix == NULL ||
 			     query_fixture_is_later(&g_array_index(cp(i).fixtures, Fixture, j), last_fix)))
 			last_fix = &g_array_index(cp(i).fixtures, Fixture, j);
@@ -479,16 +473,16 @@ team_get_average_skill(const Team *tm, gboolean cskill)
     if(!cskill)
     {
 	for(i=0;i<tm->players->len;i++)
-	    if(player_of(tm, i)->cskill != 0)
+	    if(player_of_idx_team(tm, i)->cskill != 0)
 	    {
-		sum += player_of(tm, i)->skill;
+		sum += player_of_idx_team(tm, i)->skill;
 		counter++;
 	    }
     }
     else
 	for(i=0;i<11;i++)
 	{
-	    sum += player_get_game_skill(player_of(tm, i), FALSE);
+	    sum += player_get_game_skill(player_of_idx_team(tm, i), FALSE);
 	    counter++;
 	}
 
@@ -536,8 +530,8 @@ team_find_appropriate_structure(const Team *tm)
   gint structure = 0;
 
   for(i=0;i<11;i++)
-      if(player_of(tm, i)->cskill > 0 && player_of(tm, i)->pos != 0)
-	  structure += (gint)rint(powf(10, PLAYER_POS_FORWARD - player_of(tm, i)->pos));
+      if(player_of_idx_team(tm, i)->cskill > 0 && player_of_idx_team(tm, i)->pos != 0)
+	  structure += (gint)rint(powf(10, PLAYER_POS_FORWARD - player_of_idx_team(tm, i)->pos));
 
   return structure;
 }
@@ -555,11 +549,11 @@ team_change_structure(Team *tm, gint new_structure)
 
   for(i=1;i<11;i++)
     {
-	player_of(tm, i)->cpos =
+	player_of_idx_team(tm, i)->cpos =
 	    player_get_position_from_structure(new_structure, i);
 
-	player_of(tm, i)->cskill =
-	    player_get_cskill(player_of(tm, i), player_of(tm, i)->cpos);
+	player_of_idx_team(tm, i)->cskill =
+	    player_get_cskill(player_of_idx_team(tm, i), player_of_idx_team(tm, i)->cpos);
     }
 }
 
@@ -576,11 +570,11 @@ team_rearrange(Team *tm)
 
     for(i=0;i<tm->players->len;i++)
     {
-	player_of(tm, i)->cpos = (i < 11) ?
-	    player_get_position_from_structure(tm->structure, i) : player_of(tm, i)->pos;
-	if(player_of(tm, i)->cskill > 0)
-	    player_of(tm, i)->cskill = (i < 11) ?
-		player_get_cskill(player_of(tm, i), player_of(tm, i)->cpos) : player_of(tm, i)->skill;
+	player_of_idx_team(tm, i)->cpos = (i < 11) ?
+	    player_get_position_from_structure(tm->structure, i) : player_of_idx_team(tm, i)->pos;
+	if(player_of_idx_team(tm, i)->cskill > 0)
+	    player_of_idx_team(tm, i)->cskill = (i < 11) ?
+		player_get_cskill(player_of_idx_team(tm, i), player_of_idx_team(tm, i)->cpos) : player_of_idx_team(tm, i)->skill;
     }
 }
 
@@ -663,7 +657,7 @@ team_update_cpu_corrections(Team *tm, gboolean reset_fitness)
 
     for(i=0;i<tm->players->len;i++)
     {
-	pl = player_of(tm, i);
+	pl = player_of_idx_team(tm, i);
 
 	for(j=0;j<pl->cards->len;j++)
 	    g_array_index(pl->cards, PlayerCard, j).red = 0;	
@@ -697,7 +691,7 @@ team_update_cpu_corrections(Team *tm, gboolean reset_fitness)
 	tm->structure = team_assign_playing_structure();
 	for(i=0;i<tm->players->len;i++)
 	{
-	    pl = player_of(tm, i);
+	    pl = player_of_idx_team(tm, i);
 	    pl->pos = pl->cpos = player_get_position_from_structure(tm->structure, i);
 	}
     }
@@ -717,8 +711,8 @@ team_update_cpu_subs(Team *tm)
     for(i=0;i<number_of_subs;i++)
 	game_substitute_player(tm, player_numbers[i]);
 
-    if(player_get_game_skill(player_of(tm, 0), 0) <
-       player_get_game_skill(player_of(tm, 10), 0) &&
+    if(player_get_game_skill(player_of_idx_team(tm, 0), 0) <
+       player_get_game_skill(player_of_idx_team(tm, 10), 0) &&
        math_rnd(0, 1) < const_float("float_team_replace_worse_goalie"))
 	game_substitute_player(tm, 0);
 }
@@ -752,8 +746,8 @@ team_update_cpu_new_players(Team *tm)
 
     for(i=0;i<number_of_new;i++)
     {
-	if(!query_transfer_player_is_on_list(player_of(tm, player_numbers[i])))
-	    player_replace_by_new(player_of(tm, player_numbers[i]), TRUE);
+	if(!query_transfer_player_is_on_list(player_of_idx_team(tm, player_numbers[i])))
+	    player_replace_by_new(player_of_idx_team(tm, player_numbers[i]), TRUE);
     }
 }
 
@@ -797,7 +791,7 @@ team_update_post_match(Team *tm, gint clid)
     gint i;
 
     for(i=0;i<tm->players->len;i++)
-	player_update_post_match(player_of(tm, i), clid);
+	player_update_post_match(player_of_idx_team(tm, i), clid);
 }
 
 /** Some updates each round.
@@ -851,7 +845,7 @@ team_get_sorted(GCompareDataFunc compare_function, gint type, gboolean cup)
     {
 	for(i=0;i<ligs->len;i++)
 	    for(j=0;j<lig(i).teams->len;j++)
-		g_ptr_array_add(teams, team_get_pointer_from_ids(lig(i).id, j));
+		g_ptr_array_add(teams, &g_array_index(lig(i).teams, Team, j));
     }
     else
     {
@@ -859,7 +853,7 @@ team_get_sorted(GCompareDataFunc compare_function, gint type, gboolean cup)
 	{
 	    if(cp(i).type == CUP_TYPE_INTERNATIONAL)
 		for(j=0;j<cp(i).teams->len;j++)
-		    g_ptr_array_add(teams, team_get_pointer_from_ids(cp(i).id, j));
+		    g_ptr_array_add(teams, &g_array_index(cp(i).teams, Team, j));
 	}
     }
 
@@ -940,4 +934,50 @@ team_get_average_skills(const GArray *teams)
 	sum += team_get_average_skill(&g_array_index(teams, Team, i), FALSE);
 
     return sum / teams->len;
+}
+
+/** Find out whether a team plays at a given date. */
+gboolean
+query_team_plays(const Team *tm, gint week_number, gint week_round_number)
+{
+    gint i, j;
+
+    if(week_round_number == 1)
+    {
+	for(i=0;i<ligs->len;i++)
+	    for(j=0;j<lig(i).fixtures->len;j++)
+		if(g_array_index(lig(i).fixtures, Fixture, j).week_number == week_number && 
+		   g_array_index(lig(i).fixtures, Fixture, j).week_round_number == week_round_number &&
+		   (g_array_index(lig(i).fixtures, Fixture, j).teams[0] == tm ||
+		    g_array_index(lig(i).fixtures, Fixture, j).teams[1] == tm))
+		    return TRUE;
+    }
+    else
+    {
+	for(i=0;i<cps->len;i++)
+	    for(j=0;j<cp(i).fixtures->len;j++)
+		if(g_array_index(cp(i).fixtures, Fixture, j).week_number == week_number && 
+		   g_array_index(cp(i).fixtures, Fixture, j).week_round_number == week_round_number &&
+		   (g_array_index(cp(i).fixtures, Fixture, j).teams[0] == tm ||
+		    g_array_index(cp(i).fixtures, Fixture, j).teams[1] == tm))
+		    return TRUE;
+    }
+
+    return FALSE;
+}
+
+/** Find the league team with the specified name. */
+Team*
+team_get_from_name(const gchar *name)
+{
+    gint i, j;
+
+    for(i=0;i<ligs->len;i++)
+	for(j=0;j<lig(i).teams->len;j++)
+	    if(strcmp(g_array_index(lig(i).teams, Team, j).name->str, name) == 0)
+		return &g_array_index(lig(i).teams, Team, j);
+
+    g_warning("team_get_from_name: team with name %s not found.\n", name);
+
+    return NULL;
 }

@@ -46,4 +46,22 @@ league_get_index(gint clid);
 gint
 league_cup_average_capacity(gint clid);
 
+void
+league_get_team_movements(League *league, GArray *team_movements);
+
+gint
+league_index_from_sid(const gchar *sid);
+
+void
+league_remove_team_with_id(League *league, gint id);
+
+void
+league_season_start(League *league);
+
+gboolean
+query_league_rank_in_prom_games(const League *league, gint rank);
+
+gboolean
+query_league_prom_games_begin(const League *league);
+
 #endif

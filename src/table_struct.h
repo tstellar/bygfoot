@@ -30,6 +30,7 @@ enum TableElementValues
 typedef struct
 {
     Team *team;
+    gint team_id;
     gint values[TABLE_END];
 } TableElement;
 

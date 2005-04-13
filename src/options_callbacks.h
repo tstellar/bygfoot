@@ -15,3 +15,15 @@ on_button_font_name_clicked            (GtkButton       *button,
 void
 on_button_reload_constants_clicked     (GtkButton       *button,
                                         gpointer         user_data);
+
+gboolean
+on_checkbutton_save_global_button_press_event
+                                        (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data);
+
+gboolean
+on_checkbutton_save_user_button_press_event
+                                        (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data);

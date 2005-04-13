@@ -76,6 +76,6 @@ void
 free_support_dirs(void);
 
 void
-free_fixtures_array(GArray **fixtures, gboolean reset);
+free_table(Table *table);
 
 #endif

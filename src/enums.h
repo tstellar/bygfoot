@@ -6,6 +6,8 @@ enum Counters
 {
     COUNT_AUTOSAVE = 0,
     COUNT_AUTOSAVE_FILE,
+    COUNT_TEAM_ID,
+    COUNT_PLAYER_ID,
     COUNT_END
 };
 

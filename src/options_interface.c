@@ -913,6 +913,12 @@ create_window_options (void)
   g_signal_connect ((gpointer) button_reload_constants, "clicked",
                     G_CALLBACK (on_button_reload_constants_clicked),
                     NULL);
+  g_signal_connect ((gpointer) checkbutton_save_global, "button_press_event",
+                    G_CALLBACK (on_checkbutton_save_global_button_press_event),
+                    NULL);
+  g_signal_connect ((gpointer) checkbutton_save_user, "button_press_event",
+                    G_CALLBACK (on_checkbutton_save_user_button_press_event),
+                    NULL);
   g_signal_connect ((gpointer) button_ok, "clicked",
                     G_CALLBACK (on_button_options_ok_clicked),
                     NULL);

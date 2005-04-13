@@ -2,6 +2,7 @@
 #include "file.h"
 #include "finance.h"
 #include "fixture.h"
+#include "free.h"
 #include "game_gui.h"
 #include "gui.h"
 #include "league.h"
@@ -25,13 +26,13 @@ typedef void(*WeekFunc)(void);
 /** Array of functions called when a week round
     is ended. */
 WeekFunc end_week_round_funcs[] =
-{end_week_round_autosave, end_week_round_results, end_week_round_sort_tables, 
+{end_week_round_results, end_week_round_sort_tables,
  end_week_round_update_fixtures, NULL};
 
 /** Array of functions called when a week round
     is started. */
 WeekFunc start_week_round_funcs[] =
-{start_week_round_update_user_teams, NULL};
+{start_week_round_update_user_teams , NULL};
 
 /** Array of functions called when a week
     is started. */
@@ -58,16 +59,35 @@ start_new_season(void)
 {
     gint i;
 
+    xml_name_read(opt_str("string_opt_player_names_file"), 1000);
+
     week = week_round = 1;
 
-    xml_name_read(opt_str("string_opt_player_names_file"), 1000);
+    /*todo: nullify, promotion/relegation*/
+    if(season > 1)
+	start_new_season_team_movements();
+
     start_load_cup_teams();
 
     for(i=0;i<ligs->len;i++)
+    {
+	league_season_start(&lig(i));
 	fixture_write_league_fixtures(&lig(i));
+    }
 
-    for(i=0;i<cps->len;i++)
-	fixture_write_cup_fixtures(&cp(i));
+    for(i=cps->len - 1;i >= 0;i--)
+    {
+	if(cp(i).type >= ID_PROM_CUP_START)
+	{
+	    free_cup(&cp(i));
+	    g_array_remove_index(cps, i);
+	}
+	else
+	    fixture_write_cup_fixtures(&cp(i));
+    }
+
+    for(i=0;i<users->len;i++)
+	usr(i).tm = team_of_id(usr(i).team_id);
 }
 
 /** Fill some global variables with default values at the
@@ -149,9 +169,17 @@ end_week_round(void)
 
     if(new_week)
     {
-	week++;
-	week_round = 1;
+	if(query_start_end_season_end())
+	{
+	    season++;
+	    week = 1;
 
+	    start_new_season();
+	}
+	else
+	    week++;
+
+	week_round = 1;
 	start_week();
     }
 
@@ -167,9 +195,9 @@ end_week_round_results(void)
     gfloat num_matches =
 	(gfloat)fixture_get_number_of_matches(week, week_round);
     
-    if(week_round == 1)
-    {
-	for(i=0;i<ligs->len;i++)
+    for(i=0;i<ligs->len;i++)
+	if(week_round == 1)
+	{
 	    for(j=0;j<lig(i).fixtures->len;j++)
 		if(g_array_index(lig(i).fixtures, Fixture, j).week_number == week &&
 		   g_array_index(lig(i).fixtures, Fixture, j).week_round_number == week_round &&
@@ -185,11 +213,13 @@ end_week_round_results(void)
 			    g_array_index(lig(i).fixtures, Fixture, j).teams[1]->name->str);
 		    gui_show_progress((gfloat)done / num_matches, buf2);
 		}
-    }
-    else
-    {
-	for(i=0;i<cps->len;i++)
+	}
+
+    for(i=0;i<cps->len;i++)
+	if(week_round > 1 || cp(i).id >= ID_PROM_CUP_START)
+	{
 	    for(j=0;j<cp(i).fixtures->len;j++)
+	    {
 		if(g_array_index(cp(i).fixtures, Fixture, j).week_number == week &&
 		   g_array_index(cp(i).fixtures, Fixture, j).week_round_number == week_round &&
 		   g_array_index(cp(i).fixtures, Fixture, j).attendance == -1)
@@ -204,7 +234,8 @@ end_week_round_results(void)
 			    g_array_index(cp(i).fixtures, Fixture, j).teams[1]->name->str);
 		    gui_show_progress((gfloat)done / num_matches, buf2);
 		}
-    }
+	    }
+	}
 
     gui_show_progress(-1, "");
 }
@@ -238,6 +269,15 @@ end_week_round_update_fixtures(void)
 {
     gint i;
 
+    for(i=0;i<ligs->len;i++)
+	if(strlen(lig(i).prom_rel.prom_games_dest_sid->str) > 0 &&
+	   query_league_prom_games_begin(&lig(i)))
+	{
+	    lig(i).prom_rel.prom_games_cup.id = cup_new_id(TRUE);
+	    g_array_append_val(cps, lig(i).prom_rel.prom_games_cup);
+	    fixture_write_cup_fixtures(&cp(cps->len - 1));
+	}
+
     for(i=0;i<cps->len;i++)
 	if(cp(i).next_fixture_update_week == week &&
 	   cp(i).next_fixture_update_week_round == week_round)
@@ -256,12 +296,14 @@ start_week_round(void)
 	start_func++;
     }
 
-    if(!query_user_games_this_week_round())
+    if(!query_user_games_this_week_round() &&
+       ((week_round == 1 && !query_user_games_in_week_round(week - 1, fixture_last_week_round(week - 1))) ||
+	(week_round > 1 && !query_user_games_in_week_round(week, week_round - 1))))
 	end_week_round();
     else
     {
 	cur_user = 0;
-	game_gui_show_main();    
+	game_gui_show_main();
 	
 	/*d ??*/
 /* 	if(week_round == 1) */
@@ -333,16 +375,56 @@ start_week_update_users(void)
     }
 }
 
-/** Save the game if autosave is on. */
-void
-end_week_round_autosave(void)
+/** Check whether the season has ended. */
+gboolean
+query_start_end_season_end(void)
 {
-    if(!opt_int("int_opt_autosave") ||
-       !query_user_games_this_week_round())
-	return;
+    gint i, j;
 
-    counters[COUNT_AUTOSAVE] = (counters[COUNT_AUTOSAVE] + 1) % opt_int("int_opt_autosave_interval");
+    for(i=0;i<ligs->len;i++)
+	for(j=0;j<lig(i).fixtures->len;j++)
+	    if(g_array_index(lig(i).fixtures, Fixture, j).week_number > week)
+		return FALSE;
 
-    if(counters[COUNT_AUTOSAVE] == 0)
-	load_save_autosave();
+    for(i=0;i<cps->len;i++)
+	for(j=0;j<cp(i).fixtures->len;j++)
+	    if(g_array_index(cp(i).fixtures, Fixture, j).week_number > week)
+		return FALSE;
+
+    return TRUE;
+}
+
+/** Manage promotions and relegations at the beginning of a new season. */
+void
+start_new_season_team_movements(void)
+{
+    gint i, j, k;
+    GArray *team_movements = g_array_new(FALSE, FALSE, sizeof(TeamMove));
+
+    for(i=0;i<ligs->len;i++)
+	league_get_team_movements(&lig(i), team_movements);
+
+    for(i=0;i<team_movements->len;i++)
+	g_array_append_val(lig(g_array_index(team_movements, TeamMove, i).league_idx).teams,
+			   g_array_index(team_movements, TeamMove, i).tm);
+
+    g_array_free(team_movements, TRUE);
+
+    for(i=0;i<ligs->len;i++)
+    {
+	for(j=0;j<lig(i).teams->len;j++)
+	{
+	    g_array_index(lig(i).teams, Team, j).clid = lig(i).id;
+	    for(k=0;k<g_array_index(lig(i).teams, Team, j).players->len;k++)
+		g_array_index(g_array_index(lig(i).teams, Team, j).players, Player, k).team =
+		    &g_array_index(lig(i).teams, Team, j);
+	}
+    }
+
+    for(i=cps->len - 1;i>=0;i--)
+	if(cp(i).id >= ID_PROM_CUP_START)
+	{
+	    free_cup(&cp(i));
+	    g_array_remove_index(cps, i);
+	}
 }

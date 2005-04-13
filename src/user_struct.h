@@ -55,6 +55,8 @@ typedef struct
     GString *name;
     /** The team the user manages. */
     Team *tm;
+    /** The team id (needed when the team pointer gets invalid). */
+    gint team_id;
     /** User options. */
     OptionList options;
     /** Events shown each week. */

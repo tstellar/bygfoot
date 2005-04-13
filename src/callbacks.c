@@ -146,7 +146,10 @@ on_button_new_week_clicked             (GtkButton       *button,
 {
     if(!opt_int("int_opt_confirm_unfit") ||
        !query_user_teams_have_unfit())
+    {
+	load_save_autosave();
 	callback_show_next_live_game();
+    }
     else
     {
 	stat1 = STATUS_QUERY_UNFIT;
@@ -323,12 +326,12 @@ on_menu_put_on_transfer_list_activate  (GtkMenuItem     *menuitem,
 {
     if(selected_row[0] == -1)
 	game_gui_print_message(_("You haven't selected a player."));
-    else if(query_transfer_player_is_on_list(player_of(current_user.tm, selected_row[0])))
+    else if(query_transfer_player_is_on_list(player_of_idx_team(current_user.tm, selected_row[0])))
 	game_gui_print_message(_("The player is already on the list."));
     else
     {
 	setsav0;
-	transfer_add_remove_user_player(player_of(current_user.tm, selected_row[0]));
+	transfer_add_remove_user_player(player_of_idx_team(current_user.tm, selected_row[0]));
     }
 }
 
@@ -339,12 +342,12 @@ on_menu_remove_from_transfer_list_activate (GtkMenuItem     *menuitem,
 {
     if(selected_row[0] == -1)
 	game_gui_print_message(_("You haven't selected a player."));
-    else if(!query_transfer_player_is_on_list(player_of(current_user.tm, selected_row[0])))
+    else if(!query_transfer_player_is_on_list(player_of_idx_team(current_user.tm, selected_row[0])))
 	game_gui_print_message(_("The player is not on the list."));
     else
     {
 	setsav0;
-	transfer_add_remove_user_player(player_of(current_user.tm, selected_row[0]));
+	transfer_add_remove_user_player(player_of_idx_team(current_user.tm, selected_row[0]));
     }
 }
 
@@ -373,7 +376,7 @@ on_menu_shoots_penalties_activate      (GtkMenuItem     *menuitem,
 
     if(selected_row[0] == -1)
 	game_gui_print_message(_("You haven't selected a player."));
-    else if(player_of(current_user.tm, selected_row[0])->id ==
+    else if(player_of_idx_team(current_user.tm, selected_row[0])->id ==
 	    opt_user_int("int_opt_user_penalty_shooter"))
     {
 	opt_user_set_int("int_opt_user_penalty_shooter", -1);
@@ -384,9 +387,9 @@ on_menu_shoots_penalties_activate      (GtkMenuItem     *menuitem,
     else
     {
 	sprintf(buf, "%s will shoot penalties and free kicks when he plays.",
-		player_of(current_user.tm, selected_row[0])->name->str);
+		player_of_idx_team(current_user.tm, selected_row[0])->name->str);
 	opt_user_set_int("int_opt_user_penalty_shooter",
-			 player_of(current_user.tm, selected_row[0])->id);
+			 player_of_idx_team(current_user.tm, selected_row[0])->id);
 	game_gui_print_message(buf);
 	treeview_show_user_player_list();
 	setsav0;
@@ -464,6 +467,8 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
 	    callback_show_team(SHOW_CURRENT);
 	    break;
     }
+
+    gui_set_arrows();
 
     return TRUE;
 }
@@ -680,7 +685,7 @@ on_menu_show_info_activate      (GtkMenuItem     *menuitem,
     }    
 
     stat0 = STATUS_SHOW_PLAYER_INFO;
-    treeview_show_player_info(player_of(current_user.tm, selected_row[0]));
+    treeview_show_player_info(player_of_idx_team(current_user.tm, selected_row[0]));
 
     gui_set_arrows();
 }

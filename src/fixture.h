@@ -52,8 +52,8 @@ fixture_get_cup_round_winners(const Cup *cup);
 GPtrArray*
 fixture_get_round_robin_advance(const Cup *cup, gint round);
 
-Team*
-fixture_winner_of(const Fixture *fix);
+gpointer
+fixture_winner_of(const Fixture *fix, gboolean team_id);
 
 gint
 fixture_get_free_round(gint week_number, gint clid);
@@ -117,5 +117,8 @@ fixture_get_index(const Fixture *fix);
 
 void
 fixture_sort_teams_bye(GPtrArray *teams, gint bye_len);
+
+gint
+fixture_last_week_round(gint week_number);
 
 #endif

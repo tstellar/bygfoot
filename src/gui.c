@@ -113,7 +113,8 @@ gui_set_arrows(void)
 {
     gui_set_arrow_pair(3, FALSE);
 
-    if(stat0 == STATUS_SHOW_FIXTURES)
+    if(stat0 == STATUS_SHOW_FIXTURES ||
+       stat0 == STATUS_BROWSE_TEAMS)
 	gui_set_arrow_pair(3, TRUE);
     else if(stat0 == STATUS_SHOW_PLAYER_INFO)
 	gui_set_arrow_pair(1, TRUE);

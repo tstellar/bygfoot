@@ -29,6 +29,7 @@ table_element_new(Team *team)
     TableElement new;
 
     new.team = team;
+    new.team_id = team->id;
 
     for(i=0;i<TABLE_END;i++)
 	new.values[i] = 0;

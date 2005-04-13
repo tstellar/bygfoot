@@ -1,6 +1,7 @@
 #include "callback_func.h"
 #include "finance.h"
 #include "game_gui.h"
+#include "load_save.h"
 #include "main.h"
 #include "misc2_callbacks.h"
 #include "misc2_callback_func.h"
@@ -167,6 +168,7 @@ on_button_yesno_yes_clicked            (GtkButton       *button,
 				    FALSE, FALSE);
 	    break;
 	case STATUS_QUERY_UNFIT:
+	    load_save_autosave();
 	    callback_show_next_live_game();
 	    break;
 	case STATUS_QUERY_QUIT:

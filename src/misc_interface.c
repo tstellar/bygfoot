@@ -298,9 +298,9 @@ create_window_startup (void)
   gtk_widget_show (team_selection_load);
   gtk_box_pack_start (GTK_BOX (hbox3), team_selection_load, TRUE, TRUE, 0);
   gtk_container_set_border_width (GTK_CONTAINER (team_selection_load), 2);
-  gtk_tooltips_set_tip (tooltips, team_selection_load, _("L"), NULL);
+  gtk_tooltips_set_tip (tooltips, team_selection_load, _("Ctrl-O"), NULL);
   gtk_widget_add_accelerator (team_selection_load, "clicked", accel_group,
-                              GDK_l, 0,
+                              GDK_o, GDK_CONTROL_MASK,
                               GTK_ACCEL_VISIBLE);
 
   alignment3 = gtk_alignment_new (0.5, 0.5, 0, 0);

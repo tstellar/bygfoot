@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cup>
-  <name>Promotion Games</name>
+  <name>Promotion Games FLC</name>
   <short_name>Prom. Gam.</short_name>
   <symbol>flag_en.png</symbol>
   <sid>england_prom_games2</sid>
   <type>national</type>
+  <week_gap>1</week_gap>
+  <last_week>49</last_week>
 
   <cup_rounds>
     <cup_round>
@@ -17,9 +19,10 @@
 
   <choose_teams>
     <choose_team>
+      <choose_team_sid>england2</choose_team_sid>
       <number_of_teams>4</number_of_teams>
-      <start_idx>4</start_idx>
-      <end_idx>7</end_idx>
+      <start_idx>3</start_idx>
+      <end_idx>6</end_idx>
     </choose_team>
   </choose_teams>
 

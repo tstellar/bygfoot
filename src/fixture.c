@@ -20,7 +20,7 @@ fixture_new(void)
     new.replay_number = 0;
     new.week_number = new.week_round_number = -1;
     new.teams[0] = new.teams[1] = NULL;
-    new.team_names[0] = new.team_names[1] = NULL;
+    new.team_ids[0] = new.team_ids[1] = -1;
     
     for(i=0;i<3;i++)
 	new.result[0][i] = new.result[1][i] = 0;
@@ -43,7 +43,8 @@ fixture_write_league_fixtures(League *league)
     
     teams = team_get_pointers_from_array(league->teams);
 
-    free_fixtures_array(league->fixtures, TRUE);
+    g_array_free(league->fixtures, TRUE);
+    league->fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));
 
     fixture_write_round_robin((gpointer)league, -1, teams);
 }
@@ -56,7 +57,8 @@ fixture_write_cup_fixtures(Cup *cup)
 {
     GPtrArray *teams = NULL;
 
-    free_fixtures_array(cup->fixtures, TRUE);
+    g_array_free(cup->fixtures, TRUE);
+    cup->fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));
 
     if(g_array_index(cup->rounds, CupRound, 0).
        round_robin_number_of_groups > 0)
@@ -82,7 +84,7 @@ fixture_update(Cup *cup)
     gint round = g_array_index(fixtures, Fixture, fixtures->len - 1).round;
     gint replay = g_array_index(cup->rounds, CupRound, round).replay;
     GPtrArray *teams = NULL;
-    const CupRound *new_round = &g_array_index(cup->rounds, CupRound, round + 1);
+    const CupRound *new_round = NULL;
 
     if(replay != 0)
     {
@@ -97,11 +99,13 @@ fixture_update(Cup *cup)
     teams = fixture_get_cup_round_winners(cup);
 
     if(teams->len < 2)
-    {
-	g_warning("fixture_update_cup_fixtures: found less than 2 teams for cup %s\n",
-		  cup->name->str);
 	return;
-    }
+
+    if(round + 1 > cup->rounds->len - 1)
+	g_warning("fixture_update: round index %d too high for round array (%d) in cup %s\n",
+		  round + 1, cup->rounds->len - 1, cup->name->str);
+
+    new_round = &g_array_index(cup->rounds, CupRound, round + 1);
 
     if(round == 0 && cup->bye != NULL && cup->bye->len != 0)
     {
@@ -159,7 +163,7 @@ fixture_get_cup_round_winners(const Cup *cup)
 		g_array_index(fixtures, Fixture, i).result[0][2] +
 		g_array_index(fixtures, Fixture, i).result[1][1] +
 		g_array_index(fixtures, Fixture, i).result[1][2] != 0))
-		g_ptr_array_add(array, fixture_winner_of(&g_array_index(fixtures, Fixture, i)));
+		g_ptr_array_add(array, fixture_winner_of(&g_array_index(fixtures, Fixture, i), FALSE));
 
 	return array;
     }
@@ -168,7 +172,7 @@ fixture_get_cup_round_winners(const Cup *cup)
     {
 	for(i=0;i<fixtures->len;i++)
 	    if(g_array_index(fixtures, Fixture, i).round == round)
-		g_ptr_array_add(array, fixture_winner_of(&g_array_index(fixtures, Fixture, i)));
+		g_ptr_array_add(array, fixture_winner_of(&g_array_index(fixtures, Fixture, i), FALSE));
 	
 	return array;
     }
@@ -176,7 +180,7 @@ fixture_get_cup_round_winners(const Cup *cup)
     for(i=0;i<fixtures->len;i++)
 	if(g_array_index(fixtures, Fixture, i).round == round &&
 	   g_array_index(fixtures, Fixture, i).second_leg)
-	    g_ptr_array_add(array, fixture_winner_of(&g_array_index(fixtures, Fixture, i)));
+	    g_ptr_array_add(array, fixture_winner_of(&g_array_index(fixtures, Fixture, i), FALSE));
 
     return array;
 }
@@ -217,39 +221,52 @@ fixture_get_round_robin_advance(const Cup *cup, gint round)
 
 /** Return the pointer of the team that won the encounter.
     @param fix The fixture we examine.
-    @return A team pointer. */
-Team*
-fixture_winner_of(const Fixture *fix)
+    @param team_name Whether to return a team pointer or the
+    team name of the winner.
+    @return A team pointer or a coded integer. */
+gpointer
+fixture_winner_of(const Fixture *fix, gboolean team_id)
 {
+    gint winner_idx = -1;
     const Fixture *first_leg;
     const CupRound *cupround = 
 	&g_array_index(cup_from_clid(fix->clid)->rounds, CupRound, fix->round);
 
     if(cupround->replay != 0 || !cupround->home_away)
-	return fix->teams[(math_sum_int_array(&(fix->result[0][0]), 3) <
-			   math_sum_int_array(&(fix->result[1][0]), 3))];
+	winner_idx = (math_sum_int_array(&(fix->result[0][0]), 3) <
+		      math_sum_int_array(&(fix->result[1][0]), 3));
+    else
+    {
+	first_leg = fixture_get_first_leg(fix);
 
-    first_leg = fixture_get_first_leg(fix);
-
-    /*d*/
-    printf("win_of %s %d - %d %s\n",
-	   fix->teams[0]->name->str, fix->result[0][0],
-	   fix->result[1][0],
-	   fix->teams[1]->name->str);
-    printf("win_of %s %d - %d %s\n", first_leg->teams[0]->name->str, first_leg->result[0][0],
-	   first_leg->result[1][0],
-	   first_leg->teams[1]->name->str);
-    printf("\n");
+	/*d*/
+	printf("win_of %s %d - %d %s\n",
+	       team_of_id(fix->team_ids[0])->name->str, fix->result[0][0],
+	       fix->result[1][0],
+	       team_of_id(fix->team_ids[1])->name->str);
+	printf("win_of %s %d - %d %s\n", team_of_id(first_leg->team_ids[0])->name->str,
+	       first_leg->result[0][0],
+	       first_leg->result[1][0],
+	       team_of_id(first_leg->team_ids[1])->name->str);
+	printf("\n");
     
-    if(fix->result[0][0] + first_leg->result[1][0] >
-       fix->result[1][0] + first_leg->result[0][0])
-	return fix->teams[0];
+	if(fix->result[0][0] + first_leg->result[1][0] >
+	   fix->result[1][0] + first_leg->result[0][0])
+	    winner_idx = 0;
+	else if(fix->result[0][0] + first_leg->result[1][0] <
+		fix->result[1][0] + first_leg->result[0][0])
+	    winner_idx = 1;
+	else if(fix->result[1][0] > first_leg->result[1][0])
+	    winner_idx = 1;
+	else
+	    winner_idx = (fix->result[0][1] + fix->result[0][2] <
+			  fix->result[1][1] + fix->result[1][2]);
+    }
 
-    if(fix->result[1][0] > first_leg->result[1][0])
-	return fix->teams[1];
-
-    return fix->teams[(fix->result[0][1] + fix->result[0][2] <
-		       fix->result[1][1] + fix->result[1][2])];
+    if(team_id)
+	return GINT_TO_POINTER(fix->team_ids[winner_idx]);
+    else
+	return (gpointer)fix->teams[winner_idx];
 }
 
 /** Write replay matches for the cup.
@@ -277,8 +294,6 @@ fixture_update_write_replays(Cup *cup)
 
     return_value = (g_array_index(fixtures, Fixture, fixtures->len - 1).replay_number == replay_number);
 
-    /*d*/
-    printf("retval %d\n", return_value);
     return return_value;
 }
 
@@ -300,8 +315,10 @@ fixture_write_cup_round_robin(Cup *cup, gint cup_round, GPtrArray *teams)
 
     if(teams->len % number_of_groups != 0)
     {
-	g_warning("fixture_write_cup_round_robin: number of teams not divisable by number of groups\ncup %s cup_round %d\n",
+	g_warning("fixture_write_cup_round_robin: number of teams (%d) not divisible by number of groups (%d)\ncup %s cup_round %d\n", 
+		  teams->len, number_of_groups,
 		  cup->name->str, cup_round);
+
 	main_exit_program(EXIT_FIXTURE_WRITE_ERROR, NULL);
     }
 
@@ -455,24 +472,27 @@ fixture_write_knockout_round(Cup *cup, gint cup_round, GPtrArray *teams)
     gint first_week = cup_get_first_week_of_cup_round(cup, cup_round);
     CupRound *round = &g_array_index(cup->rounds, CupRound, cup_round);
     gint bye_len = math_get_bye_len(teams->len);
+    gchar buf[SMALL];
 
     if(len % 2 != 0)
-	main_exit_program(EXIT_FIXTURE_WRITE_ERROR,
-			  "fixture_write_knockout_round: odd number of teams.\n");
+    {
+	sprintf(buf, "fixture_write_knockout_round: odd number of teams (%d) cup %s round %d\n",
+		len, cup->name->str, cup_round);
+	main_exit_program(EXIT_FIXTURE_WRITE_ERROR, buf);
+    }
 
     teams = misc_randomise_g_pointer_array(teams);
 
     if(bye_len != 0)
     {
+	free_g_ptr_array(&cup->bye);
+	cup->bye = g_ptr_array_new();
+
 	fixture_sort_teams_bye(teams, bye_len);
 	for(i=0;i<bye_len;i++)
-	{
-	    /*d*/
-/* 	    printf("bye %d %s\n", i, ((Team*)g_ptr_array_index(teams, len - bye_len + i))->name->str); */
 	    g_ptr_array_add(cup->bye, g_ptr_array_index(teams, len - bye_len + i));
-	}
     }
-    else
+    else if(cup->bye != NULL)
 	free_g_ptr_array(&cup->bye);
 
     for(i=0; i<(len - bye_len) / 2; i++)
@@ -488,9 +508,9 @@ fixture_write_knockout_round(Cup *cup, gint cup_round, GPtrArray *teams)
 			  fixture_get_free_round(first_week + cup->week_gap, cup->id), cup->id, 
 			  cup_round, 0, !round->neutral, TRUE, TRUE);
 
-    cup->next_fixture_update_week = (cup_round < cup->rounds->len - 1) ?
+    cup->next_fixture_update_week = (cup_round < cup->rounds->len - 1 || round->replay > 0) ?
 	g_array_index(cup->fixtures, Fixture, cup->fixtures->len - 1).week_number : -1;
-    cup->next_fixture_update_week_round = (cup_round < cup->rounds->len - 1) ?
+    cup->next_fixture_update_week_round = (cup_round < cup->rounds->len - 1 || round->replay > 0) ?
 	g_array_index(cup->fixtures, Fixture, cup->fixtures->len - 1).week_round_number : -1;
 }
 
@@ -521,8 +541,8 @@ fixture_write(GArray *fixtures, Team *home_team, Team *away_team, gint week_numb
     new.week_round_number = week_round_number;
     new.teams[0] = home_team;
     new.teams[1] = away_team;
-    new.team_names[0] = g_string_new(home_team->name->str);
-    new.team_names[1] = g_string_new(away_team->name->str);
+    new.team_ids[0] = home_team->id;
+    new.team_ids[1] = away_team->id;
     
     for(i=0;i<3;i++)
 	new.result[0][i] = new.result[1][i] = 0;
@@ -547,7 +567,8 @@ fixture_get_free_round(gint week_number, gint clid)
     gint i, j;
     gint max_round = 1;
 
-    if(clid < ID_CUP_START)
+    if(clid < ID_CUP_START ||
+       clid >= ID_PROM_CUP_START)
 	return 1;
 
     for(i=0;i<cps->len;i++)
@@ -672,8 +693,8 @@ fixture_get_first_leg(const Fixture *fix)
 
     for(i=0;i<cup_from_clid(fix->clid)->fixtures->len;i++)
 	if(g_array_index(cup_from_clid(fix->clid)->fixtures, Fixture, i).round == fix->round &&
-	   g_array_index(cup_from_clid(fix->clid)->fixtures, Fixture, i).teams[0] == fix->teams[1] &&
-	   g_array_index(cup_from_clid(fix->clid)->fixtures, Fixture, i).teams[1] == fix->teams[0])
+	   g_array_index(cup_from_clid(fix->clid)->fixtures, Fixture, i).team_ids[0] == fix->team_ids[1] &&
+	   g_array_index(cup_from_clid(fix->clid)->fixtures, Fixture, i).team_ids[1] == fix->team_ids[0])
 	    first_leg = &g_array_index(cup_from_clid(fix->clid)->fixtures, Fixture, i);
 
     if(first_leg == NULL)
@@ -738,22 +759,24 @@ fixture_get_number_of_matches(gint week_number, gint week_round_number)
     gint i, j;
     gint sum = 0;
 
-    if(week_round_number > 1)
-    {
-	for(i=0;i<cps->len;i++)
+    for(i=0;i<cps->len;i++)
+	if(week_round_number > 1 || cp(i).id >= ID_PROM_CUP_START)
+	{
+
 	    for(j=0;j<cp(i).fixtures->len;j++)
 		if(g_array_index(cp(i).fixtures, Fixture, j).week_number == week_number &&
 		   g_array_index(cp(i).fixtures, Fixture, j).week_round_number == week_round_number)
 		    sum++;
-    }
-    else
-    {
-	for(i=0;i<ligs->len;i++)
+	}
+
+    for(i=0;i<ligs->len;i++)
+	if(week_round_number == 1)
+	{
 	    for(j=0;j<lig(i).fixtures->len;j++)
 		if(g_array_index(lig(i).fixtures, Fixture, j).week_number == week_number &&
 		   g_array_index(lig(i).fixtures, Fixture, j).week_round_number == week_round_number)
 		    sum++;
-    }
+	}
 
     return sum;
 }
@@ -833,6 +856,7 @@ fixture_get(gint type, gint clid, gint week_number, gint week_round_number, cons
 	    new_clid = (type == SHOW_NEXT_LEAGUE) ?
 		league_cup_get_next_clid(clid):
 		league_cup_get_previous_clid(clid);
+
 	    fix = fixture_get(SHOW_CURRENT, new_clid, week, week_round, NULL);
     }
 
@@ -1036,4 +1060,21 @@ fixture_sort_teams_bye(GPtrArray *teams, gint bye_len)
 	g_ptr_array_add(teams, g_ptr_array_index(new_array, i));
 
     g_ptr_array_free(new_array, TRUE);
+}
+
+
+/** Return the last week round number of the specified week. */
+gint
+fixture_last_week_round(gint week_number)
+{
+    gint i, j;
+    gint week_round_number = 1;
+
+    for(i=0;i<cps->len;i++)
+	for(j=0;j<cp(i).fixtures->len;j++)
+	    if(g_array_index(cp(i).fixtures, Fixture, j).week_number == week_number)
+		week_round_number = MAX(week_round_number, 
+					g_array_index(cp(i).fixtures, Fixture, j).week_round_number);
+
+    return week_round_number;
 }

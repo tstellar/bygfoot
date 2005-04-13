@@ -1,4 +1,5 @@
 #include "cup.h"
+#include "fixture.h"
 #include "free.h"
 #include "game_gui.h"
 #include "league.h"
@@ -24,7 +25,7 @@ player_new(Team *tm, gfloat average_skill)
 
     new.name = 
 	g_string_new(((GString*)g_ptr_array_index(player_names, math_rndi(0, player_names->len - 1)))->str);
-    new.id = player_new_id(tm->players);
+    new.id = player_id_new;
     new.pos = player_get_position_from_structure(tm->structure, tm->players->len);
     new.cpos = new.pos;
     new.age = math_gauss_dist(const_float("float_player_age_lower"),
@@ -68,27 +69,6 @@ player_new(Team *tm, gfloat average_skill)
     new.offers = 0;
     
     return new;
-}
-
-/** Return a player id that's not yet 'occupied'.
-    @param players The player array the new player will belong to.
-    @return A new id that none of the other players has. */
-gint
-player_new_id(const GArray *players)
-{
-    gint i, j;
-
-    for(i=0;i<const_int("int_team_max_players");i++)
-    {
-	for(j=0;j<players->len;j++)
-	    if(g_array_index(players, Player, j).id == i)
-		break;
-
-	if(j == players->len)
-	    return i;
-    }
-
-    return -1;
 }
 
 /** Return the appropriate position for the player with the given number.
@@ -204,35 +184,6 @@ player_assign_wage(const Player *pl)
     return math_round_integer((gint)wage, 1);
 }
 
-/** Return the pointer to the player given by the ids.
-    @param clid The cup/league id of the team.
-    @param team_id The id of the team.
-    @param id The id of the player.
-    @return A pointer to the player or NULL if he wasn't to be found. */
-Player*
-player_of_ids(gint clid, gint team_id, gint id)
-{
-    gint i;
-    Team *tm = team_get_pointer_from_ids(clid, team_id);
-    Player *pl = NULL;
-    
-    if(tm != NULL)
-    {
-	for(i=0;i<tm->players->len;i++)
-	    if(g_array_index(tm->players, Player, i).id == id)
-	    {
-		pl = &g_array_index(tm->players, Player, i);
-		break;
-	    }		
-    }
-
-    if(pl == NULL)
-	g_warning("player_of_ids: didn't find player with ids %d and %d and %d\n",
-		  clid, team_id, id);
-
-    return pl;
-}
-
 /** Get a player's index in the players array from
     his id.
     @param tm The team.
@@ -244,7 +195,7 @@ player_id_index(const Team *tm, gint player_id)
     gint i;
 
     for(i=0;i<tm->players->len;i++)
-	if(player_of(tm, i)->id == player_id)
+	if(g_array_index(tm->players, Player, i).id == player_id)
 	    return i;
     
     g_warning("player_id_index: didn't find player with id %d of team %s\n", player_id, tm->name->str);
@@ -257,11 +208,11 @@ player_id_index(const Team *tm, gint player_id)
     @param number The player number.
     @return A pointer to the player or NULL. */
 Player*
-player_of(const Team *tm, gint number)
+player_of_idx_team(const Team *tm, gint number)
 {
     if(tm->players->len <= number)
     {
-	g_warning("player_of: Player list of team %s too short for number %d.\n",
+	g_warning("player_of_idx_team: Player list of team %s too short for number %d.\n",
 		  tm->name->str, number);
 	return NULL;
     }
@@ -275,7 +226,7 @@ player_of(const Team *tm, gint number)
     @param id The player's id.
     @return A pointer to the player or NULL. */
 Player*
-player_of_id(const Team *tm, gint id)
+player_of_id_team(const Team *tm, gint id)
 {
     gint i;
     
@@ -283,10 +234,36 @@ player_of_id(const Team *tm, gint id)
 	if(g_array_index(tm->players, Player, i).id == id)
 	    return &g_array_index(tm->players, Player, i);
     
-    g_warning("player_of_id: didn't find player with id %d of team %s\n", id, tm->name->str);
+    g_warning("player_of_id_team: didn't find player with id %d of team %s\n", id, tm->name->str);
     
     return NULL;
 }
+
+/** Return the team the player with specified id is in. */
+Team*
+player_id_team(gint player_id)
+{
+    gint i, j, k;
+
+    for(i=0;i<ligs->len;i++)
+	for(j=0;j<lig(i).teams->len;j++)
+	    for(k=0;k<g_array_index(lig(i).teams, Team, j).players->len;k++)
+		if(g_array_index(g_array_index(lig(i).teams, Team, j).players,
+				 Player, k).id == player_id)
+		    return &g_array_index(lig(i).teams, Team, j);
+
+    for(i=0;i<cps->len;i++)
+	for(j=0;j<cp(i).teams->len;j++)
+	    for(k=0;k<g_array_index(cp(i).teams, Team, j).players->len;k++)
+		if(g_array_index(g_array_index(cp(i).teams, Team, j).players,
+				 Player, k).id == player_id)
+		    return &g_array_index(cp(i).teams, Team, j);
+
+    g_warning("player_id_team: player with id %d not found.\n", player_id);
+
+    return NULL;
+}
+
 
 /** Return the number of all games or goals the player's
     participated in / scored in all cups and leagues.
@@ -455,19 +432,18 @@ player_copy(Player *pl, Team *tm, gint insert_at)
     Player new = *pl;
 
     new.team = tm;
-    new.id = player_new_id(tm->players);
     
     g_array_insert_val(tm->players, insert_at, new);
 
     if(insert_at < 11)
-	player_of(tm, insert_at)->cpos = 
+	player_of_idx_team(tm, insert_at)->cpos = 
 	    player_get_position_from_structure(tm->structure, insert_at);
     else
-	player_of(tm, insert_at)->cpos = player_of(tm, insert_at)->pos;
+	player_of_idx_team(tm, insert_at)->cpos = player_of_idx_team(tm, insert_at)->pos;
 
-    player_of(tm, insert_at)->cskill =
-	player_get_cskill(player_of(tm, insert_at), 
-			  player_of(tm, insert_at)->cpos);
+    player_of_idx_team(tm, insert_at)->cskill =
+	player_get_cskill(player_of_idx_team(tm, insert_at), 
+			  player_of_idx_team(tm, insert_at)->cpos);
 }
 
 /** Move a player from one player array to another one.
@@ -478,7 +454,7 @@ player_copy(Player *pl, Team *tm, gint insert_at)
 void
 player_move(Team *tm1, gint player_number, Team *tm2, gint insert_at)
 {
-    Player pl = *player_of(tm1, player_number);
+    Player pl = *player_of_idx_team(tm1, player_number);
 
     pl.team = tm2;
 
@@ -496,8 +472,8 @@ player_swap(Team *tm1, gint player_number1, Team *tm2, gint player_number2)
 
     if(stat0 == STATUS_LIVE_GAME_PAUSE)
     {
-	if((player_number1 < 11 && player_is_banned(player_of(tm1, player_number1))) || 
-	   (player_number2 < 11 && player_is_banned(player_of(tm1, player_number2))))
+	if((player_number1 < 11 && player_is_banned(player_of_idx_team(tm1, player_number1))) || 
+	   (player_number2 < 11 && player_is_banned(player_of_idx_team(tm1, player_number2))))
 	{
 	    game_gui_show_warning("You can't replace a banned player.");
 	    return;
@@ -506,24 +482,24 @@ player_swap(Team *tm1, gint player_number1, Team *tm2, gint player_number2)
 
     player_move(tm1, player_number1, tm2, player_number2);
     if(player_number2 < 11)
-	player_of(tm2, player_number2)->cpos = 
+	player_of_idx_team(tm2, player_number2)->cpos = 
 	    player_get_position_from_structure(tm2->structure, player_number2);
     else
-	player_of(tm2, player_number2)->cpos = player_of(tm2, player_number2)->pos;
+	player_of_idx_team(tm2, player_number2)->cpos = player_of_idx_team(tm2, player_number2)->pos;
 
-    player_of(tm2, player_number2)->cskill =
-	player_get_cskill(player_of(tm2, player_number2), player_of(tm2, player_number2)->cpos);
+    player_of_idx_team(tm2, player_number2)->cskill =
+	player_get_cskill(player_of_idx_team(tm2, player_number2), player_of_idx_team(tm2, player_number2)->cpos);
 
     player_move(tm2, player_number2 + move,
 		tm1, player_number1);    
     if(player_number1 < 11)
-	player_of(tm1, player_number1)->cpos = 
+	player_of_idx_team(tm1, player_number1)->cpos = 
 	    player_get_position_from_structure(tm1->structure, player_number1);
     else
-	player_of(tm1, player_number1)->cpos = player_of(tm1, player_number1)->pos;
+	player_of_idx_team(tm1, player_number1)->cpos = player_of_idx_team(tm1, player_number1)->pos;
 
-    player_of(tm1, player_number1)->cskill =
-	player_get_cskill(player_of(tm1, player_number1), player_of(tm1, player_number1)->cpos);
+    player_of_idx_team(tm1, player_number1)->cskill =
+	player_get_cskill(player_of_idx_team(tm1, player_number1), player_of_idx_team(tm1, player_number1)->cpos);
 }
 
 /** Return the player's cskill depending on
@@ -944,7 +920,7 @@ player_update_injury(Player *pl)
 void
 player_update_weekly(Team *tm, gint idx)
 {
-    Player *pl = player_of(tm, idx);
+    Player *pl = player_of_idx_team(tm, idx);
     
     pl->age += 0.0192;
     pl->contract -= 0.0192;
@@ -955,7 +931,7 @@ player_update_weekly(Team *tm, gint idx)
 
     player_update_skill(pl);
     if(pl->health > 0)
-	player_update_injury(pl);    
+	player_update_injury(pl);
 }
 
 /** Remove a player from a user team after the contract expired.
@@ -965,7 +941,7 @@ void
 player_remove_contract(Team *tm, gint idx)
 {
     user_event_add(user_from_team(tm), EVENT_TYPE_PLAYER_LEFT, -1, -1, NULL,
-		   player_of(tm, idx)->name->str);
+		   player_of_idx_team(tm, idx)->name->str);
     player_remove_from_team(tm, idx);
 }
 
@@ -974,7 +950,7 @@ player_remove_contract(Team *tm, gint idx)
 void
 player_remove_from_team(Team *tm, gint idx)
 {
-    free_player(player_of(tm, idx));
+    free_player(player_of_idx_team(tm, idx));
     g_array_remove_index(tm->players, idx);    
 }
 
@@ -985,8 +961,18 @@ player_remove_from_team(Team *tm, gint idx)
 void
 player_update_post_match(Player *pl, gint clid)
 {
+    gint yellow_red = league_cup_get_yellow_red(clid);
+
     if(player_card_get(pl, clid, PLAYER_VALUE_CARD_RED) > 0)
 	player_card_set(pl, clid, PLAYER_VALUE_CARD_RED, -1, TRUE);
+
+    if(player_card_get(pl, clid, PLAYER_VALUE_CARD_YELLOW) >= yellow_red)
+    {
+	player_card_set(pl, clid, PLAYER_VALUE_CARD_YELLOW, 0, FALSE);
+	
+	if(player_card_get(pl, clid, PLAYER_VALUE_CARD_RED) == 0)
+	    player_card_set(pl, clid, PLAYER_VALUE_CARD_RED, 1, FALSE);
+    }    
 }
 
 /** Replace a player by a new one in a cpu team. 
@@ -1017,9 +1003,11 @@ player_replace_by_new(Player *pl, gboolean free_player)
 void
 player_update_week_roundly(Team *tm, gint idx)
 {
-    Player *pl = player_of(tm, idx);
+    Player *pl = player_of_idx_team(tm, idx);
 
-    if(pl->health == 0)
+    if(pl->health == 0 && 
+       (week_round == 1 ||
+	(week_round > 1 && query_team_plays(tm, week, week_round))))
 	player_update_fitness(pl);
     		
     pl->cskill = (pl->health > 0 || player_is_banned(pl) > 0) ?
@@ -1075,4 +1063,21 @@ player_injury_to_char(gint injury_type)
     }
 
     return NULL;
+}
+
+/** Nullify some stuff at the beginning of the season. */
+void
+player_season_start(Player *pl)
+{
+    if(pl->games_goals->len > 0)
+    {
+	g_array_free(pl->games_goals, TRUE);
+	pl->games_goals = g_array_new(FALSE, FALSE, sizeof(PlayerGamesGoals));
+    }
+
+    if(pl->cards->len > 0)
+    {
+	g_array_free(pl->cards, TRUE);
+	pl->cards = g_array_new(FALSE, FALSE, sizeof(PlayerGamesGoals));
+    }    
 }

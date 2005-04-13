@@ -24,6 +24,7 @@
 #define TAG_PROM_REL "prom_rel"
 #define TAG_PROM_GAMES "prom_games"
 #define TAG_PROM_GAMES_DEST_SID "prom_games_dest_sid"
+#define TAG_PROM_GAMES_LOSER_SID "prom_games_loser_sid"
 #define TAG_PROM_GAMES_NUMBER_OF_ADVANCE "prom_games_number_of_advance"
 #define TAG_PROM_GAMES_CUP "cup"
 #define TAG_PROM_REL_ELEMENT "prom_rel_element"
@@ -52,6 +53,7 @@ enum XmlLeagueStates
     STATE_PROM_REL,
     STATE_PROM_GAMES,
     STATE_PROM_GAMES_DEST_SID,
+    STATE_PROM_GAMES_LOSER_SID,
     STATE_PROM_GAMES_NUMBER_OF_ADVANCE,
     STATE_PROM_GAMES_CUP,
     STATE_PROM_REL_ELEMENT,
@@ -69,8 +71,6 @@ enum XmlLeagueStates
  * The state variable used in the XML parsing functions.
  */
 gint state;
-/** The counter counting the teams. */
-gint team_cnt;
 
 /** The new league we create and append to an array. */
 League new_league;
@@ -119,6 +119,8 @@ xml_league_read_start_element (GMarkupParseContext *context,
 	state = STATE_PROM_GAMES;
     else if(strcmp(element_name, TAG_PROM_GAMES_DEST_SID) == 0)
 	state = STATE_PROM_GAMES_DEST_SID;
+    else if(strcmp(element_name, TAG_PROM_GAMES_LOSER_SID) == 0)
+	state = STATE_PROM_GAMES_LOSER_SID;
     else if(strcmp(element_name, TAG_PROM_GAMES_NUMBER_OF_ADVANCE) == 0)
 	state = STATE_PROM_GAMES_NUMBER_OF_ADVANCE;
     else if(strcmp(element_name, TAG_PROM_GAMES_CUP) == 0)
@@ -144,7 +146,6 @@ xml_league_read_start_element (GMarkupParseContext *context,
 	new_team = team_new();
 	g_string_printf(new_team.symbol, "%s", new_league.symbol->str);
 	new_team.clid = new_league.id;
-	new_team.id = team_cnt++;
 	g_array_append_val(new_league.teams, new_team);	
 	state = STATE_TEAM;
     }
@@ -182,6 +183,7 @@ xml_league_read_end_element    (GMarkupParseContext *context,
 	    strcmp(element_name, TAG_PROM_REL_ELEMENT) == 0)
 	state = STATE_PROM_REL;
     else if(strcmp(element_name, TAG_PROM_GAMES_DEST_SID) == 0 ||
+	    strcmp(element_name, TAG_PROM_GAMES_LOSER_SID) == 0 ||
 	    strcmp(element_name, TAG_PROM_GAMES_NUMBER_OF_ADVANCE) == 0 ||
 	    strcmp(element_name, TAG_PROM_GAMES_CUP) == 0)
 	state = STATE_PROM_GAMES;
@@ -242,11 +244,12 @@ xml_league_read_text         (GMarkupParseContext *context,
 	new_league.average_skill = value;
     else if(state == STATE_PROM_GAMES_DEST_SID)
 	g_string_printf(new_league.prom_rel.prom_games_dest_sid, "%s", buf);
+    else if(state == STATE_PROM_GAMES_LOSER_SID)
+	g_string_printf(new_league.prom_rel.prom_games_loser_sid, "%s", buf);
     else if(state == STATE_PROM_GAMES_NUMBER_OF_ADVANCE)
 	new_league.prom_rel.prom_games_number_of_advance = value;
     else if(state == STATE_PROM_GAMES_CUP)
     {
-	strcat(buf, ".xml");
 	temp_cups = g_array_new(FALSE, FALSE, sizeof(Cup));
 	xml_cup_read(buf, temp_cups);
 	new_league.prom_rel.prom_games_cup = g_array_index(temp_cups, Cup, 0);
@@ -322,7 +325,6 @@ xml_league_read(const gchar *league_name, GArray *leagues)
     }
 
     state = STATE_LEAGUE;
-    team_cnt = 0;
     strcpy(buf, file_name);
     g_free(file_name);
 

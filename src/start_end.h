@@ -51,4 +51,10 @@ start_week_update_users(void);
 void
 end_week_round_autosave(void);
 
+gboolean
+query_start_end_season_end(void);
+
+void
+start_new_season_team_movements(void);
+
 #endif

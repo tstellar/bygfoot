@@ -351,9 +351,9 @@ float_live_game_stadium_event_fire	1000
 
 # foul probabilities. 
 float_live_game_foul		1100
-float_live_game_foul_red_injury 200
-float_live_game_foul_red	600
-float_live_game_foul_yellow	2300
+float_live_game_foul_red_injury 180
+float_live_game_foul_red	450
+float_live_game_foul_yellow	2800
 
 # ban duration probabilities
 # should add up to 1000
@@ -733,6 +733,7 @@ string_treeview_table_promotion lightblue
 string_treeview_table_relegation lightgreen
 string_treeview_table_promgames khaki
 string_treeview_table_best_advance khaki
+string_treeview_table_cup lightblue
 
 # colour for expenses in the finances
 string_treeview_finances_expenses_fg red

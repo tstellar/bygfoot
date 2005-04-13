@@ -598,11 +598,11 @@
 	    <widget class="GtkButton" id="team_selection_load">
 	      <property name="border_width">2</property>
 	      <property name="visible">True</property>
-	      <property name="tooltip" translatable="yes">L</property>
+	      <property name="tooltip" translatable="yes">Ctrl-O</property>
 	      <property name="can_focus">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <signal name="clicked" handler="on_team_selection_load_clicked" last_modification_time="Fri, 06 Feb 2004 17:05:28 GMT"/>
-	      <accelerator key="l" modifiers="0" signal="clicked"/>
+	      <accelerator key="o" modifiers="GDK_CONTROL_MASK" signal="clicked"/>
 
 	      <child>
 		<widget class="GtkAlignment" id="alignment3">

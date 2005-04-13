@@ -30,6 +30,7 @@
 /** Starting numbers of league, cup and supercup numerical ids. */
 #define ID_LEAGUE_START 1000
 #define ID_CUP_START 2000
+#define ID_PROM_CUP_START 3000
 
 /** Convenience abbreviation. */
 #define ligs country.leagues
@@ -52,6 +53,11 @@
 #define stat4 status[4]
 #define old_stat status[5]
 
+#define player_id_new (counters[COUNT_PLAYER_ID]++)
+#define team_id_new (counters[COUNT_TEAM_ID]++)
+
+#define debug opt_int("int_opt_debug")
+
 /**
  * Exit codes.
  */
@@ -65,6 +71,7 @@ enum ExitCodes
     EXIT_CHOOSE_TEAM_ERROR, /**< There was a problem loading the choose_teams. @see cup_load_choose_teams() */
     EXIT_FIXTURE_WRITE_ERROR, /** There was an error writing the fixtures. */
     EXIT_USER_FIRED,
+    EXIT_CUP_LAST_ROUND,
     EXIT_END
 };
 

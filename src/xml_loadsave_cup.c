@@ -35,7 +35,7 @@ enum
     TAG_END
 };
 
-gint state, team_clid;
+gint state;
 gboolean in_choose_team_user, in_bye;
 Cup *new_cup;
 CupChooseTeam new_choose_team;
@@ -127,8 +127,7 @@ xml_loadsave_cup_end_element    (GMarkupParseContext *context,
 	    g_array_append_val(new_cup->choose_teams, new_choose_team);
 	}
     }
-    else if(tag == TAG_TEAM_CLID ||
-	    tag == TAG_TEAM_ID)
+    else if(tag == TAG_TEAM_ID)
 	state = (in_bye) ? TAG_CUP_BYE : TAG_CUP_USER_TEAM;
     else if(tag == TAG_CUP_CHOOSE_TEAM_NUMBER_OF_TEAMS ||
 	    tag == TAG_CUP_CHOOSE_TEAM_START_IDX ||
@@ -187,14 +186,16 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
 	new_cup->next_fixture_update_week = int_value;
     else if(state == TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK_ROUND)
 	new_cup->next_fixture_update_week_round = int_value;
-    else if(state == TAG_TEAM_CLID)
-	team_clid = int_value;
     else if(state == TAG_TEAM_ID)
     {
 	if(in_bye)
-	    g_ptr_array_add(new_cup->bye, team_get_pointer_from_ids(team_clid, int_value));
+	{
+	    if(new_cup->bye == NULL)
+		new_cup->bye = g_ptr_array_new();
+	    g_ptr_array_add(new_cup->bye, team_of_id(int_value));
+	}
 	else
-	    g_ptr_array_add(new_cup->user_teams, team_get_pointer_from_ids(team_clid, int_value));
+	    g_ptr_array_add(new_cup->user_teams, team_of_id(int_value));
     }
     else if(state == TAG_CUP_CHOOSE_TEAM_SID)
 	g_string_printf(new_choose_team.sid, "%s", buf);
@@ -305,8 +306,6 @@ xml_loadsave_cup_write(const gchar *prefix, const Cup *cup)
 	for(i=0;i<cup->user_teams->len;i++)
 	{
 	    fprintf(fil, "<_%d>\n", TAG_CUP_USER_TEAM);
-	    xml_write_int(fil, ((Team*)g_ptr_array_index(cup->user_teams, i))->clid, 
-			  TAG_TEAM_CLID, I1);
 	    xml_write_int(fil, ((Team*)g_ptr_array_index(cup->user_teams, i))->id,
 			  TAG_TEAM_ID, I1);
 	    fprintf(fil, "</_%d>\n", TAG_CUP_USER_TEAM);
@@ -320,17 +319,17 @@ xml_loadsave_cup_write(const gchar *prefix, const Cup *cup)
     for(i=0;i<cup->rounds->len;i++)
 	xml_loadsave_cup_write_round(fil,
 	    &g_array_index(cup->rounds, CupRound, i));
-    
+        
     if(cup->bye != NULL)
+    {
 	for(i=0;i<cup->bye->len;i++)
 	{
 	    fprintf(fil, "<_%d>\n", TAG_CUP_BYE);
-	    xml_write_int(fil, ((Team*)g_ptr_array_index(cup->bye, i))->clid, 
-			  TAG_TEAM_CLID, I1);
 	    xml_write_int(fil, ((Team*)g_ptr_array_index(cup->bye, i))->id,
 			  TAG_TEAM_ID, I1);
 	    fprintf(fil, "</_%d>\n", TAG_CUP_BYE);
 	}
+    }
     
     fprintf(fil, "</_%d>\n", TAG_CUP);
 

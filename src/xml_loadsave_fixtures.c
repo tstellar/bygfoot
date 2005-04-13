@@ -21,7 +21,7 @@ enum
     TAG_END
 };
 
-gint state, residx1, residx2, teamidx, team_clid;
+gint state, residx1, residx2, teamidx, nameidx;
 Fixture new_fixture;
 GArray *fixtures_array;
 
@@ -52,7 +52,7 @@ xml_loadsave_fixtures_start_element (GMarkupParseContext *context,
 	}
 
     if(state == TAG_FIXTURE)
-	residx1 = residx2 = teamidx = 0;
+	residx1 = residx2 = teamidx = nameidx = 0;
 
     if(!valid_tag)
 	g_warning("xml_loadsave_fixtures_start_element: unknown tag: %s; I'm in state %d\n",
@@ -81,7 +81,6 @@ xml_loadsave_fixtures_end_element    (GMarkupParseContext *context,
 	    tag == TAG_FIXTURE_SECOND_LEG ||
 	    tag == TAG_FIXTURE_DECISIVE ||
 	    tag == TAG_FIXTURE_ATTENDANCE ||
-	    tag == TAG_TEAM_CLID ||
 	    tag == TAG_TEAM_ID ||
 	    tag == TAG_ID ||
 	    tag == TAG_ROUND)
@@ -136,10 +135,11 @@ xml_loadsave_fixtures_text         (GMarkupParseContext *context,
 	new_fixture.attendance = int_value;
     else if(state == TAG_FIXTURE_RESULT)
 	new_fixture.result[residx1][residx2] = int_value;
-    else if(state == TAG_TEAM_CLID)
-	team_clid = int_value;
     else if(state == TAG_TEAM_ID)
-	new_fixture.teams[teamidx] = team_get_pointer_from_ids(team_clid, int_value);
+    {
+	new_fixture.teams[teamidx] = team_of_id(int_value);
+	new_fixture.team_ids[teamidx] = int_value;
+    }
 }
 
 void
@@ -217,12 +217,8 @@ xml_loadsave_fixtures_write(const gchar *filename, const GArray *fixtures)
 			  TAG_FIXTURE_RESULT, I1);
 	}
 
-	xml_write_int(fil, g_array_index(fixtures, Fixture, i).teams[0]->clid, 
-		      TAG_TEAM_CLID, I1);
 	xml_write_int(fil, g_array_index(fixtures, Fixture, i).teams[0]->id, 
 		      TAG_TEAM_ID, I1);
-	xml_write_int(fil, g_array_index(fixtures, Fixture, i).teams[1]->clid, 
-		      TAG_TEAM_CLID, I1);
 	xml_write_int(fil, g_array_index(fixtures, Fixture, i).teams[1]->id, 
 		      TAG_TEAM_ID, I1);
 
