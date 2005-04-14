@@ -31,6 +31,14 @@
 #define ID_LEAGUE_START 1000
 #define ID_CUP_START 2000
 #define ID_PROM_CUP_START 3000
+#define ID_SUPERCUP_START 4000
+
+#define player_id_new (counters[COUNT_PLAYER_ID]++)
+#define team_id_new (counters[COUNT_TEAM_ID]++)
+#define cup_id_new (counters[COUNT_CUP_ID]++)
+#define prom_cup_id_new (counters[COUNT_PROM_CUP_ID]++)
+#define supercup_id_new (counters[COUNT_SUPERCUP_ID]++)
+#define league_id_new (counters[COUNT_LEAGUE_ID]++)
 
 /** Convenience abbreviation. */
 #define ligs country.leagues
@@ -43,6 +51,16 @@
 #define cp(i) g_array_index(country.cups, Cup, i)
 
 /** Convenience abbreviation. */
+#define scps country.supercups
+/** Convenience abbreviation. */
+#define scp(i) g_array_index(country.supercups, Cup, i)
+
+/** Convenience abbreviation. */
+#define acps country.allcups
+/** Convenience abbreviation. */
+#define acp(i) ((Cup*)g_ptr_array_index(country.allcups, i))
+
+/** Convenience abbreviation. */
 #define player_name(i) ((GString*)g_ptr_array_index(player_names, i))->str;
 
 /** Convenience abbrevs. */
@@ -52,9 +70,6 @@
 #define stat3 status[3]
 #define stat4 status[4]
 #define old_stat status[5]
-
-#define player_id_new (counters[COUNT_PLAYER_ID]++)
-#define team_id_new (counters[COUNT_TEAM_ID]++)
 
 #define debug opt_int("int_opt_debug")
 
@@ -85,7 +100,10 @@ typedef struct
 	*sid; /**< Id of the country, eg 'england'. */
 
     /** Leagues and cups arrays. */
-    GArray *leagues, *cups;
+    GArray *leagues, *cups, *supercups;
+    
+    /** Pointer array holding all cups. */
+    GPtrArray *allcups;
 } Country;
 
 /** Struct used for having all the windows

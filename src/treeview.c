@@ -1489,11 +1489,6 @@ treeview_get_table_element_colours(const Table *table, gint idx, gchar *colour_f
 		    }
 		}
 
-/* 		if(strlen(league->prom_rel.prom_games_dest_sid->str) != 0 && */
-/* 		   g_array_index(league->prom_rel.prom_games_cup.choose_teams,  */
-/* 				 CupChooseTeam, 0).start_idx <= idx + 1 && */
-/* 		   idx + 1 <= g_array_index(league->prom_rel.prom_games_cup.choose_teams, */
-/* 					    CupChooseTeam, 0).end_idx) */
 		if(query_league_rank_in_prom_games(league, idx + 1))
 		    strcpy(colour_bg, const_str("string_treeview_table_promgames"));
 	    }
@@ -1986,17 +1981,18 @@ treeview_create_next_opponent(void)
 	return NULL;
     
     gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, _("Your next opponent"), -1);
-    if(!fix->home_advantage)
-	gtk_list_store_set(liststore, &iter, 1, _("Neutral ground"), -1);
-    else if(fix->teams[0] == current_user.tm)
-	gtk_list_store_set(liststore, &iter, 1, _("Home"), -1);
-    else
-	gtk_list_store_set(liststore, &iter, 1, _("Away"), -1);    
+    gtk_list_store_set(liststore, &iter, 0, _("Your next opponent"), 1,
+		       league_cup_get_name_string(fix->clid), -1);
 
     gtk_list_store_append(liststore, &iter);
     sprintf(buf, "Week %d Round %d", fix->week_number, fix->week_round_number);
-    gtk_list_store_set(liststore, &iter, 0, buf, 1, "", -1);
+    if(!fix->home_advantage)
+	strcpy(buf2, _("Neutral ground"));
+    else if(fix->teams[0] == current_user.tm)
+	strcpy(buf2, _("Home"));
+    else
+	strcpy(buf2, _("Away"));
+    gtk_list_store_set(liststore, &iter, 0, buf, 1, buf2, -1);
 
     gtk_list_store_append(liststore, &iter);
     gtk_list_store_set(liststore, &iter, 0, "", 1, "", -1);

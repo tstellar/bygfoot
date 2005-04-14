@@ -68,7 +68,7 @@ fixture_write_cup_fixtures(Cup *cup)
 	if(cup->type == CUP_TYPE_INTERNATIONAL)
 	    teams = cup_get_team_pointers(cup);
 	else
-	    teams = team_get_pointers_from_choose_teams(cup->choose_teams);
+	    teams = cup_get_choose_teams_pointers(cup);
 
 	fixture_write_knockout_round(cup, 0, teams);
     }
@@ -115,25 +115,10 @@ fixture_update(Cup *cup)
 	free_g_ptr_array(&cup->bye);
     }
 
-    /*d*/
-    printf("\n");
-    for(i=0;i<teams->len;i++)
-	printf("%d adv %s\n", i, ((Team*)g_ptr_array_index(teams, i))->name->str);
-    printf("\n");
-
     if(new_round->round_robin_number_of_groups > 0)
 	fixture_write_cup_round_robin(cup, round + 1, teams);
     else
 	fixture_write_knockout_round(cup, round + 1, teams);
-
-    for(i=0;i<cup->fixtures->len;i++)
-	if(g_array_index(cup->fixtures, Fixture, i).round == round + 1)
-	    printf("%d %d %d %25s - %-25s\n", 
-		   g_array_index(cup->fixtures, Fixture, i).week_number,
-		   g_array_index(cup->fixtures, Fixture, i).week_round_number,
-		   g_array_index(cup->fixtures, Fixture, i).clid,
-		   g_array_index(cup->fixtures, Fixture, i).teams[0]->name->str,
-		   g_array_index(cup->fixtures, Fixture, i).teams[1]->name->str);
 }
 
 /** Return the teams that advance to the next cup round.
@@ -239,17 +224,6 @@ fixture_winner_of(const Fixture *fix, gboolean team_id)
     {
 	first_leg = fixture_get_first_leg(fix);
 
-	/*d*/
-	printf("win_of %s %d - %d %s\n",
-	       team_of_id(fix->team_ids[0])->name->str, fix->result[0][0],
-	       fix->result[1][0],
-	       team_of_id(fix->team_ids[1])->name->str);
-	printf("win_of %s %d - %d %s\n", team_of_id(first_leg->team_ids[0])->name->str,
-	       first_leg->result[0][0],
-	       first_leg->result[1][0],
-	       team_of_id(first_leg->team_ids[1])->name->str);
-	printf("\n");
-    
 	if(fix->result[0][0] + first_leg->result[1][0] >
 	   fix->result[1][0] + first_leg->result[0][0])
 	    winner_idx = 0;
@@ -567,8 +541,7 @@ fixture_get_free_round(gint week_number, gint clid)
     gint i, j;
     gint max_round = 1;
 
-    if(clid < ID_CUP_START ||
-       clid >= ID_PROM_CUP_START)
+    if(clid < ID_CUP_START || query_cup_is_prom(clid))
 	return 1;
 
     for(i=0;i<cps->len;i++)
@@ -759,13 +732,12 @@ fixture_get_number_of_matches(gint week_number, gint week_round_number)
     gint i, j;
     gint sum = 0;
 
-    for(i=0;i<cps->len;i++)
-	if(week_round_number > 1 || cp(i).id >= ID_PROM_CUP_START)
+    for(i=0;i<acps->len;i++)
+	if(week_round_number > 1 || query_cup_is_prom(acp(i)->id))
 	{
-
-	    for(j=0;j<cp(i).fixtures->len;j++)
-		if(g_array_index(cp(i).fixtures, Fixture, j).week_number == week_number &&
-		   g_array_index(cp(i).fixtures, Fixture, j).week_round_number == week_round_number)
+	    for(j=0;j<acp(i)->fixtures->len;j++)
+		if(g_array_index(acp(i)->fixtures, Fixture, j).week_number == week_number &&
+		   g_array_index(acp(i)->fixtures, Fixture, j).week_round_number == week_round_number)
 		    sum++;
 	}
 
@@ -861,8 +833,8 @@ fixture_get(gint type, gint clid, gint week_number, gint week_round_number, cons
     }
 
     if(fix == NULL)
-	g_warning("fixture_get: no fixture found for type %d clid %d week %d round %d\n",
-		  type, clid, week_number, week_round_number);
+	g_warning("fixture_get: no fixture found for type %d clid %d (%s) week %d round %d\n",
+		  type, clid, league_cup_get_name_string(clid), week_number, week_round_number);
 
     return fix;
 }
@@ -1026,7 +998,9 @@ fixture_get_index(const Fixture *fix)
 	if(fix == &g_array_index(fixtures, Fixture, i))
 	    return i;
 
-    g_warning("fixture_get_index: fixture not found.\n");
+    g_warning("fixture_get_index: fixture not found (%s - %s clid %d lc %s.\n",
+	      fix->teams[0]->name->str, fix->teams[1]->name->str,
+	      fix->clid, league_cup_get_name_string(fix->clid));
 
     return -1;
 }

@@ -38,14 +38,7 @@ load_save_save_game(const gchar *filename)
 	file_my_system(buf);
     }
 
-    gui_show_progress(0, "Saving miscellaneous...");
-
-    xml_loadsave_misc_write(prefix);
-
-    gui_show_progress(
-	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
-	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	"Saving options/constants...");
+    gui_show_progress(0, "Saving options/constants...");
 
     sprintf(buf, "%s___options", prefix);
     file_save_opt_file(buf, &options);
@@ -68,6 +61,9 @@ load_save_save_game(const gchar *filename)
     for(i=0;i<cps->len;i++)
 	xml_loadsave_cup_write(prefix, &cp(i));
 
+    for(i=0;i<scps->len;i++)
+	xml_loadsave_cup_write(prefix, &scp(i));
+
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	    GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
@@ -81,6 +77,13 @@ load_save_save_game(const gchar *filename)
 	"Saving transfer list...");
 
     xml_loadsave_transfers_write(prefix);
+
+    gui_show_progress(
+	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
+	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	"Saving miscellaneous...");
+
+    xml_loadsave_misc_write(prefix);
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
@@ -110,6 +113,8 @@ load_save_load_game(const gchar* filename)
 	*dirname = g_path_get_dirname(filename);
     gchar *prefix = g_strndup(basename, strlen(basename) - strlen(const_str("string_save_suffix")));
 
+    gtk_widget_hide(window.main);
+
     if(strcmp(basename, "last_save") == 0)
     {
 	g_free(basename);
@@ -132,13 +137,6 @@ load_save_load_game(const gchar* filename)
     gui_show_progress(0, "Uncompressing savegame...");
 
     file_decompress(filename);
-
-    gui_show_progress(
-	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
-	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	"Loading miscellaneous...");
-
-    xml_loadsave_misc_read(dirname, prefix);
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
@@ -178,6 +176,13 @@ load_save_load_game(const gchar* filename)
 
     xml_load_transfers(dirname, prefix);
 
+    gui_show_progress(
+	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
+	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	"Loading miscellaneous...");
+
+    xml_loadsave_misc_read(dirname, prefix);
+
     gui_show_progress(1, "Done.");
 
     sprintf(buf, "rm -rf %s/%s___*", dirname, prefix);
@@ -192,6 +197,9 @@ load_save_load_game(const gchar* filename)
     load_save_last_save_set(filename);
 
     gui_show_progress(-1, "");
+
+    gtk_widget_show(window.main);
+
     setsav1;
 
     cur_user = 0;

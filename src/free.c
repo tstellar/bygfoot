@@ -144,6 +144,7 @@ free_country(gboolean reset)
     free_leagues_array(&ligs, reset);
 
     free_cups_array(&cps, reset);
+    free_cups_array(&scps, reset);
 }
 
 /**
@@ -189,6 +190,9 @@ free_league(League *league)
 	{&league->teams,
 	 &league->prom_rel.elements};
 
+    if(strlen(league->prom_rel.prom_games_dest_sid->str) > 0)
+	free_cup(&league->prom_rel.prom_games_cup);
+
     for(i=0;i<5;i++)
 	free_g_string(strings[i]);
 
@@ -201,6 +205,7 @@ free_league(League *league)
     free_table(&league->table);
 
     free_g_array(&league->fixtures);
+
 }
 
 /** Free a table. */
@@ -284,7 +289,8 @@ free_cups_array(GArray **cups, gboolean reset)
     }
 
     for(i=0;i<(*cups)->len;i++)
-	free_cup(&g_array_index(*cups, Cup, i));
+	if(g_array_index(*cups, Cup, i).id < ID_PROM_CUP_START)
+	    free_cup(&g_array_index(*cups, Cup, i));
 
     free_g_array(cups);
 

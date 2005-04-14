@@ -16,7 +16,7 @@
     The player's skill can deviate from this value by #CONSTANT_PLAYER_AVERAGE_SKILL_VARIANCE %
     @return A newly created player. */
 Player
-player_new(Team *tm, gfloat average_skill)
+player_new(Team *tm, gfloat average_skill, gboolean new_id)
 {
     gfloat skill_factor = 
 	math_rnd(1 - const_float("float_player_average_skill_variance"),
@@ -25,7 +25,7 @@ player_new(Team *tm, gfloat average_skill)
 
     new.name = 
 	g_string_new(((GString*)g_ptr_array_index(player_names, math_rndi(0, player_names->len - 1)))->str);
-    new.id = player_id_new;
+    new.id = (new_id) ? player_id_new : -1;
     new.pos = player_get_position_from_structure(tm->structure, tm->players->len);
     new.cpos = new.pos;
     new.age = math_gauss_dist(const_float("float_player_age_lower"),
@@ -922,8 +922,11 @@ player_update_weekly(Team *tm, gint idx)
 {
     Player *pl = player_of_idx_team(tm, idx);
     
-    pl->age += 0.0192;
-    pl->contract -= 0.0192;
+    if(debug < 50)
+    {
+	pl->age += 0.0192;
+	pl->contract -= 0.0192;
+    }
 
     /*todo: warning*/
     if(pl->contract <= 0)
@@ -983,7 +986,7 @@ player_replace_by_new(Player *pl, gboolean free_player)
 {
     Team *tm = pl->team;
     gint idx = player_id_index(tm, pl->id);
-    Player new = player_new(tm, team_get_average_skill(tm, FALSE));
+    Player new = player_new(tm, team_get_average_skill(tm, FALSE), FALSE);
     
     new.pos = pl->pos;
     new.cpos = pl->cpos;

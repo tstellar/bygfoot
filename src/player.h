@@ -23,7 +23,7 @@ enum PlayerValue
 };
 
 Player
-player_new(Team *tm, gfloat average_skill);
+player_new(Team *tm, gfloat average_skill, gboolean new_id);
 
 gint
 player_new_id(const GArray *players);

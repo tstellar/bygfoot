@@ -11,7 +11,7 @@
    @see League
 */
 League
-league_new(void)
+league_new(gboolean new_id)
 {
     League new;
 
@@ -20,7 +20,7 @@ league_new(void)
     new.short_name = g_string_new("");
     new.symbol = g_string_new("");
     
-    new.id = league_new_id();
+    new.id = (new_id) ? league_id_new : -1;
 
     new.average_skill = -1;
 
@@ -58,32 +58,6 @@ prom_rel_element_new(void)
     new.type = PROM_REL_NONE;
 
     return new;
-}
-
-/** Return a new numerical id for a league.
-    We browse through the existing leagues and take the
-    first free nid.
-*/
-gint
-league_new_id(void)
-{
-    gint i, j;
-
-    if(ligs == NULL)
-	return ID_LEAGUE_START;
-
-    for(i=ID_LEAGUE_START;i<ID_LEAGUE_START+1000;i++)
-    {
-	for(j=0;j<ligs->len;j++)
-	    if(lig(j).id == i)
-		break;
-
-	if(j == ligs->len)
-	    return i;
-    }
-
-    g_warning("league_new_id: didn't find a free numerical id.");
-    return -1;
 }
 
 /** Get the array index of the given league or cup id.
@@ -157,12 +131,12 @@ league_cup_get_next_clid(gint clid)
     }
     else
     {
-	for(i=0;i<cps->len;i++)
-	    if(cp(i).id == clid)
+	for(i=0;i<acps->len;i++)
+	    if(acp(i)->id == clid)
 		break;	
 
-	if(i != cps->len - 1)
-	    return_value = cp(i + 1).id;
+	if(i != acps->len - 1)
+	    return_value = acp(i + 1)->id;
 	else
 	    return_value = lig(0).id;
     }
@@ -186,19 +160,19 @@ league_cup_get_previous_clid(gint clid)
 
 	if(i != 0)
 	    return_value = lig(i - 1).id;
-	else if(cps->len > 0)
-	    return_value = cp(cps->len - 1).id;
+	else if(acps->len > 0)
+	    return_value = acp(acps->len - 1)->id;
 	else
 	    return_value = lig(ligs->len - 1).id;
     }
     else
     {
-	for(i=cps->len - 1;i>=0;i--)
-	    if(cp(i).id == clid)
+	for(i=acps->len - 1;i>=0;i--)
+	    if(acp(i)->id == clid)
 		break;
 
 	if(i != 0)
-	    return_value = cp(i - 1).id;
+	    return_value = acp(i - 1)->id;
 	else
 	    return_value = lig(ligs->len - 1).id;
     }
@@ -218,7 +192,7 @@ league_cup_get_next_fixture(gint clid, gint week_number, gint week_round_number)
     for(i=0;i<fixtures->len;i++)
 	if(g_array_index(fixtures, Fixture, i).week_number > week_number ||
 	   (g_array_index(fixtures, Fixture, i).week_number == week_number &&
-	    g_array_index(fixtures, Fixture, i).week_round_number > week_round_number))
+	    g_array_index(fixtures, Fixture, i).week_round_number >= week_round_number))
 	    return &g_array_index(fixtures, Fixture, i);
 
     return NULL;
@@ -331,15 +305,15 @@ league_get_team_movements(League *league, GArray *team_movements)
 	}
     }
 
-    if(strlen(league->prom_rel.prom_games_dest_sid->str) > 0)
+    if(league_has_prom_games(league))
     {
-	for(i=0;i<cps->len;i++)
-	    if(cp(i).id >= ID_PROM_CUP_START)
+	for(i=0;i<acps->len;i++)
+	    if(query_cup_is_prom(acp(i)->id))
 	    {
-		for(j=0;j<cp(i).fixtures->len;j++)
+		for(j=0;j<acp(i)->fixtures->len;j++)
 		{
-		    if(g_array_index(cp(i).fixtures, Fixture, j).teams[0]->clid == league->id ||
-		       g_array_index(cp(i).fixtures, Fixture, j).teams[1]->clid == league->id)
+		    if(g_array_index(acp(i)->fixtures, Fixture, j).teams[0]->clid == league->id ||
+		       g_array_index(acp(i)->fixtures, Fixture, j).teams[1]->clid == league->id)
 		    {
 			cp_idx = i;
 			break;
@@ -357,7 +331,7 @@ league_get_team_movements(League *league, GArray *team_movements)
 	    return;
 	}
 
-	prom_games_teams = cup_get_teams_sorted(&cp(cp_idx));
+	prom_games_teams = cup_get_teams_sorted(acp(cp_idx));
 	dest_idx = league_index_from_sid(league->prom_rel.prom_games_dest_sid->str);
 
 	for(i=0;i<league->prom_rel.prom_games_number_of_advance;i++)
@@ -419,20 +393,43 @@ query_league_rank_in_prom_games(const League *league, gint rank)
 {
     gint i, j;
 
+    /*d*/
+/*     for(i=0;i<ligs->len;i++) */
+/* 	    printf("%d les %s lig %s sid %s id %d rank %d\n", i, */
+/* 		   lig(i).name->str,  league->sid->str, */
+/* 		   lig(i).sid->str, lig(i).id, rank);getchar(); */
+
     for(i=0;i<ligs->len;i++)
-	if(strlen(lig(i).prom_rel.prom_games_dest_sid->str) > 0)
+	if(league_has_prom_games((&lig(i))))
 	{
+/* 	    printf("dest %s nam %s ctlen %d\n", */
+/* 		   lig(i).prom_rel.prom_games_dest_sid->str, */
+/* 		   lig(i).prom_rel.prom_games_cup.name->str, */
+/* 		   lig(i).prom_rel.prom_games_cup.choose_teams->len);getchar(); */
+
 	    for(j=0;j<lig(i).prom_rel.prom_games_cup.choose_teams->len;j++)
+	    {
+/* 		printf("fo %s %s\n", */
+/* 		       g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, CupChooseTeam, j).sid->str, */
+/* 		       league->sid->str); */
 		if(strcmp(g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, CupChooseTeam, j).sid->str,
 			  league->sid->str) == 0 &&
-		   ((rank >= g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, CupChooseTeam, j).start_idx &&
-		     rank <= g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, CupChooseTeam, j).end_idx && 
-		     g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, CupChooseTeam, j).randomly) ||
-		    (rank >= g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, CupChooseTeam, j).start_idx &&
-		     rank < g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, CupChooseTeam, j).start_idx + 
-		     g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, CupChooseTeam, j).number_of_teams &&
-		     !g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, CupChooseTeam, j).randomly)))
+		   ((rank >= g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams,
+					   CupChooseTeam, j).start_idx &&
+		     rank <= g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, 
+					   CupChooseTeam, j).end_idx && 
+		     g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, 
+				   CupChooseTeam, j).randomly) ||
+		    (rank >= g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, 
+					   CupChooseTeam, j).start_idx &&
+		     rank < g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, 
+					  CupChooseTeam, j).start_idx + 
+		     g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, 
+				   CupChooseTeam, j).number_of_teams &&
+		     !g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, 
+				    CupChooseTeam, j).randomly)))
 		    return TRUE;
+	    }
 	}
 
     return FALSE;

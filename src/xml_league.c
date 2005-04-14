@@ -94,7 +94,7 @@ xml_league_read_start_element (GMarkupParseContext *context,
     
     if(strcmp(element_name, TAG_LEAGUE) == 0)
     {
-	new_league = league_new();
+	new_league = league_new(TRUE);
 	state = STATE_LEAGUE;
     }
     else if(strcmp(element_name, TAG_NAME) == 0)
@@ -143,7 +143,7 @@ xml_league_read_start_element (GMarkupParseContext *context,
 	state = STATE_TEAMS;
     else if(strcmp(element_name, TAG_TEAM) == 0)
     {
-	new_team = team_new();
+	new_team = team_new(TRUE);
 	g_string_printf(new_team.symbol, "%s", new_league.symbol->str);
 	new_team.clid = new_league.id;
 	g_array_append_val(new_league.teams, new_team);	
@@ -253,6 +253,7 @@ xml_league_read_text         (GMarkupParseContext *context,
 	temp_cups = g_array_new(FALSE, FALSE, sizeof(Cup));
 	xml_cup_read(buf, temp_cups);
 	new_league.prom_rel.prom_games_cup = g_array_index(temp_cups, Cup, 0);
+	new_league.prom_rel.prom_games_cup.id = prom_cup_id_new;
 	free_g_array(&temp_cups);
     }
     else if(state == STATE_PROM_REL_ELEMENT_RANK_START)

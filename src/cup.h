@@ -4,12 +4,12 @@
 #include "bygfoot.h"
 #include "cup_struct.h"
 #include "fixture_struct.h"
+#include "league_struct.h"
+
+#define query_cup_is_prom(clid) (clid >= ID_PROM_CUP_START && clid < ID_SUPERCUP_START)
 
 Cup
-cup_new(void);
-
-gint
-cup_new_id(gboolean prom_cup);
+cup_new(gboolean new_id);
 
 CupChooseTeam
 cup_choose_team_new(void);
@@ -55,5 +55,18 @@ cup_compare_success(gconstpointer a, gconstpointer b, gpointer data);
 
 gint
 cup_get_round_reached(const Team *tm, const GArray *fixtures);
+
+GPtrArray*
+cup_get_choose_teams_pointers(Cup *cup);
+
+gboolean
+query_cup_supercup_begins(const Cup *supercup);
+
+void
+cup_get_choose_team_league_cup(const CupChooseTeam *ct, 
+			       League **league, Cup **cup);
+
+gint
+cup_get_last_week_from_first(const Cup *cup, gint first_week);
 
 #endif

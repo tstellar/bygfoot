@@ -80,7 +80,7 @@ typedef struct
     gint type;
     /** Last week (typically the week the final
 	takes place) and weeks between matchdays.
-	Default: -1. */
+	Default: -1 and 1. */
     gint last_week, week_gap;
     /** Number of yellow cards that lead to a missed match.
 	Default: 1000 (off). */

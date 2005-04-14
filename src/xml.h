@@ -60,7 +60,7 @@ void
 xml_load_cups(const gchar *dirname, const gchar *basename);
 
 void
-xml_load_cup(const gchar *dirname, const gchar *basename, const GPtrArray *dir_contents);
+xml_load_cup(Cup *cup, const gchar *dirname, const gchar *basename, const GPtrArray *dir_contents);
 
 gint
 xml_get_tag_from_name(const gchar *element_name);

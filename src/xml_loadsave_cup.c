@@ -302,14 +302,14 @@ xml_loadsave_cup_write(const gchar *prefix, const Cup *cup)
 	fprintf(fil, "<_%d>\n", TAG_CUP_CHOOSE_TEAM_USER);
 	xml_loadsave_cup_write_choose_team(fil, &cup->choose_team_user);
 	fprintf(fil, "</_%d>\n", TAG_CUP_CHOOSE_TEAM_USER);
+    }
 
-	for(i=0;i<cup->user_teams->len;i++)
-	{
-	    fprintf(fil, "<_%d>\n", TAG_CUP_USER_TEAM);
-	    xml_write_int(fil, ((Team*)g_ptr_array_index(cup->user_teams, i))->id,
-			  TAG_TEAM_ID, I1);
-	    fprintf(fil, "</_%d>\n", TAG_CUP_USER_TEAM);
-	}
+    for(i=0;i<cup->user_teams->len;i++)
+    {
+	fprintf(fil, "<_%d>\n", TAG_CUP_USER_TEAM);
+	xml_write_int(fil, ((Team*)g_ptr_array_index(cup->user_teams, i))->id,
+		      TAG_TEAM_ID, I1);
+	fprintf(fil, "</_%d>\n", TAG_CUP_USER_TEAM);
     }
 
     for(i=0;i<cup->choose_teams->len;i++)

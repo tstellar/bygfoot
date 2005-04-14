@@ -225,7 +225,7 @@ xml_loadsave_league_write(const gchar *prefix, const League *league)
     xml_write_int(fil, league->average_skill, TAG_LEAGUE_AVERAGE_SKILL, I0);
 
     fprintf(fil, "%s<_%d>\n", I0, TAG_LEAGUE_PROM_REL);
-    if(strlen(league->prom_rel.prom_games_dest_sid->str) != 0)
+    if(league_has_prom_games(league))
     {
 	xml_write_g_string(fil, league->prom_rel.prom_games_dest_sid,
 			   TAG_LEAGUE_PROM_REL_PROM_GAMES_DEST_SID, I2);
@@ -236,7 +236,7 @@ xml_loadsave_league_write(const gchar *prefix, const League *league)
 	xml_loadsave_cup_write(buf, &league->prom_rel.prom_games_cup);
     }
 
-    if(strlen(league->prom_rel.prom_games_loser_sid->str) != 0)
+    if(league_has_prom_games(league))
 	xml_write_g_string(fil, league->prom_rel.prom_games_loser_sid,
 			   TAG_LEAGUE_PROM_REL_PROM_GAMES_LOSER_SID, I2);
 

@@ -25,7 +25,7 @@ typedef struct
 } TeamMove;
 
 Team
-team_new(void);
+team_new(gboolean new_id);
 
 gint
 team_assign_playing_structure(void);
@@ -56,9 +56,6 @@ query_is_in_cup(const Team *tm, const Cup *cup);
 
 GPtrArray*
 team_get_pointers_from_array(const GArray *teams);
-
-GPtrArray*
-team_get_pointers_from_choose_teams(const GArray *choose_teams);
 
 Team*
 team_of_id(gint id);

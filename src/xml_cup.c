@@ -2,6 +2,7 @@
 #include "file.h"
 #include "main.h"
 #include "misc.h"
+#include "variables.h"
 #include "xml_cup.h"
 
 /**
@@ -105,7 +106,7 @@ xml_cup_read_start_element (GMarkupParseContext *context,
 
     if(strcmp(element_name, TAG_CUP) == 0)
     {
-	new_cup = cup_new();
+	new_cup = cup_new(FALSE);
 	state = STATE_CUP;
     }
     else if(strcmp(element_name, TAG_NAME) == 0)
@@ -267,8 +268,10 @@ xml_cup_read_text         (GMarkupParseContext *context,
 	    new_cup.type = CUP_TYPE_NATIONAL;
 	else if(strcmp(buf, TYPE_INTERNATIONAL) == 0)
 	    new_cup.type = CUP_TYPE_INTERNATIONAL;
-	else
+	else if(strcmp(buf, TYPE_SUPERCUP) == 0)
 	    new_cup.type = CUP_TYPE_SUPERCUP;	
+	else
+	    g_warning("xml_cup_read_text: unknown cup type %s\n", buf);
     }
     else if(state == STATE_LAST_WEEK)
 	new_cup.last_week = value;
@@ -349,8 +352,6 @@ xml_cup_read(const gchar *cup_name, GArray *cups)
 	g_markup_parse_context_end_parse(context, NULL);	
 	g_markup_parse_context_free(context);
 	g_free(file_contents);
-
-	g_array_append_val(cups, new_cup);
     }
     else
     {
@@ -358,12 +359,18 @@ xml_cup_read(const gchar *cup_name, GArray *cups)
 	misc_print_error(&error, TRUE);
     }
 
-    if(g_array_index(g_array_index(cups, Cup, cups->len - 1).rounds, 
-		     CupRound, g_array_index(cups, Cup, cups->len - 1).rounds->len - 1).
+    if(g_array_index(new_cup.rounds, CupRound, new_cup.rounds->len - 1).
        round_robin_number_of_groups != 0)
     {
 	sprintf(buf, "xml_cup_read: last cup round of cup %s is round robin which is forbidden.\n",
-		g_array_index(cups, Cup, cups->len - 1).name->str);
+		new_cup.name->str);
 	main_exit_program(EXIT_CUP_LAST_ROUND, buf);
     }
+
+    if(cups == cps)
+	new_cup.id = cup_id_new;
+    else if(cups == scps)
+	new_cup.id = supercup_id_new;
+
+    g_array_append_val(cups, new_cup);
 }

@@ -85,10 +85,10 @@ xml_loadsave_teams_start_element (GMarkupParseContext *context,
 	}
 
     if(tag == TAG_TEAM)
-	new_team = team_new();
+	new_team = team_new(FALSE);
     else if(tag == TAG_TEAM_PLAYER)
     {
-	new_player = player_new(&new_team, 80);
+	new_player = player_new(&new_team, 80, FALSE);
 	etalidx = 0;
     }
 

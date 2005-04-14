@@ -77,7 +77,7 @@ xml_load_league(const gchar *dirname, const gchar *basename, const GPtrArray *di
 {
     gint i;
     gchar buf[SMALL];
-    League new = league_new();
+    League new = league_new(FALSE);
     gchar *prefix = g_strndup(basename, strlen(basename) - 4);
 
     sprintf(buf, "%s/%s", dirname, basename);
@@ -100,9 +100,9 @@ xml_load_league(const gchar *dirname, const gchar *basename, const GPtrArray *di
     sprintf(buf, "%s/%s_table.xml", dirname, prefix);
     xml_loadsave_table_read(buf, &lig(ligs->len - 1).table);
 
-    if(strlen(lig(ligs->len - 1).prom_rel.prom_games_dest_sid->str) != 0)
+    if(league_has_prom_games((&lig(ligs->len - 1))))
     {
-	lig(ligs->len - 1).prom_rel.prom_games_cup = cup_new();
+	lig(ligs->len - 1).prom_rel.prom_games_cup = cup_new(FALSE);
 	sprintf(buf, "%s_promcup", prefix);
 
 	for(i=0;i<dir_contents->len;i++)
@@ -111,8 +111,9 @@ xml_load_league(const gchar *dirname, const gchar *basename, const GPtrArray *di
 	       !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_fixtures.xml") &&
 	       !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_teams.xml"))
 	    {
-		sprintf(buf, "%s/%s", dirname, ((GString*)g_ptr_array_index(dir_contents, i))->str);
-		xml_loadsave_cup_read(buf, &lig(ligs->len - 1).prom_rel.prom_games_cup);
+		xml_load_cup(&lig(ligs->len - 1).prom_rel.prom_games_cup,
+			     dirname, ((GString*)g_ptr_array_index(dir_contents, i))->str,
+			     dir_contents);
 		break;
 	    }
     }
@@ -126,52 +127,66 @@ xml_load_cups(const gchar *dirname, const gchar *basename)
     gint i;
     gchar buf[SMALL];
     GPtrArray *dir_contents = NULL;
+    Cup new_cup;
 
     sprintf(buf, "%s___cup_", basename);
     dir_contents = file_dir_get_contents(dirname, buf, ".xml");
 
     free_cups_array(&cps, TRUE);
+    free_cups_array(&scps, TRUE);
     
     for(i=0;i<dir_contents->len;i++)
     {
 	if(!query_misc_string_contains(((GString*)g_ptr_array_index(dir_contents, i))->str, "_table") &&
 	   !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_fixtures.xml") &&
 	   !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_teams.xml"))
-	    xml_load_cup(dirname, ((GString*)g_ptr_array_index(dir_contents, i))->str,
+	{
+	    new_cup = cup_new(FALSE);
+	    xml_load_cup(&new_cup, dirname, ((GString*)g_ptr_array_index(dir_contents, i))->str,
 			 dir_contents);
+	}
     }
     
     free_g_string_array(&dir_contents);
 }
 
 void
-xml_load_cup(const gchar *dirname, const gchar *basename, const GPtrArray *dir_contents)
+xml_load_cup(Cup *cup, const gchar *dirname, const gchar *basename, const GPtrArray *dir_contents)
 {
     gint i;
     gchar buf[SMALL];
-    Cup new = cup_new();
     Table new_table;
     gchar *prefix = g_strndup(basename, strlen(basename) - 4);
+    Cup *local_cup = cup;
 
     sprintf(buf, "%s/%s", dirname, basename);
-    xml_loadsave_cup_read(buf, &new);
+    xml_loadsave_cup_read(buf, cup);
 
-    g_array_append_val(cps, new);
+    if(cup->id < ID_PROM_CUP_START)
+    {
+	g_array_append_val(cps, *cup);
+	local_cup = &cp(cps->len - 1);
+    }
+    else if(cup->id >= ID_SUPERCUP_START)
+    {
+	g_array_append_val(scps, *cup);
+	local_cup = &scp(scps->len - 1);
+    }
 
     sprintf(buf, "Loading cup: %s",
-	    new.name->str);
+	    local_cup->name->str);
     gui_show_progress(
 	gtk_progress_bar_get_fraction(
 	    GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar"))), buf);
 
-    if(new.type == CUP_TYPE_INTERNATIONAL)
+    if(local_cup->type == CUP_TYPE_INTERNATIONAL)
     {
 	sprintf(buf, "%s/%s_teams.xml", dirname, prefix);
-	xml_loadsave_teams_read(buf, cp(cps->len - 1).teams);
+	xml_loadsave_teams_read(buf, local_cup->teams);
     }
 
     sprintf(buf, "%s/%s_fixtures.xml", dirname, prefix);
-    xml_loadsave_fixtures_read(buf, cp(cps->len - 1).fixtures);
+    xml_loadsave_fixtures_read(buf, local_cup->fixtures);
 
     for(i=0;i<dir_contents->len;i++)
     {
@@ -184,7 +199,7 @@ xml_load_cup(const gchar *dirname, const gchar *basename, const GPtrArray *dir_c
 	    sprintf(buf, "%s/%s", dirname, 
 		    ((GString*)g_ptr_array_index(dir_contents, i))->str);
 	    xml_loadsave_table_read(buf, &new_table);
-	    g_array_append_val(cp(cps->len - 1).tables, new_table);
+	    g_array_append_val(local_cup->tables, new_table);
 	}
     }
 

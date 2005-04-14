@@ -1,6 +1,7 @@
 #include "cup.h"
 #include "fixture.h"
 #include "free.h"
+#include "league.h"
 #include "main.h"
 #include "maths.h"
 #include "misc.h"
@@ -15,7 +16,7 @@
    @see #Cup
 */
 Cup
-cup_new(void)
+cup_new(gboolean new_id)
 {
     Cup new;
 
@@ -24,9 +25,10 @@ cup_new(void)
     new.symbol = g_string_new("");
     new.sid = g_string_new("");
 
-    new.id = cup_new_id(FALSE);
+    new.id = (new_id) ? cup_id_new : -1;
     new.type = CUP_TYPE_NATIONAL;
-    new.last_week = new.week_gap = -1;
+    new.last_week = -1;
+    new.week_gap = 1;
     new.yellow_red = 1000;
     new.skill_diff = 0;
 
@@ -43,34 +45,6 @@ cup_new(void)
     new.next_fixture_update_week_round = -1;
     
     return new;
-}
-
-/** Return a new numerical id for a cup.
-    We browse through the existing cups and take the
-    first free id.
-    @param prom_cup Whether we need a promotion games cup id.
-*/
-gint
-cup_new_id(gboolean prom_cup)
-{
-    gint i, j;
-    gint start = (prom_cup) ? ID_PROM_CUP_START : ID_CUP_START;
-
-    if(cps->len == 0)
-	return start;
-
-    for(i=start;i<start+1000;i++)
-    {
-	for(j=0;j<cps->len;j++)
-	    if(cp(j).id == i)
-		break;
-
-	if(j == cps->len)
-	    return i;
-    }
-
-    g_warning("cup_new_id: didn't find a free numerical id.");
-    return -1;
 }
 
 /** Return a CupChooseTeam with default values. */
@@ -103,6 +77,21 @@ cup_round_new(void)
     return new;
 }
 
+/** Find out whether a choose_team definition refers to a 
+    league in the country. If so, no teams get loaded for that
+    choose_team. */
+gboolean
+query_cup_choose_team_is_league(const gchar *sid)
+{
+    gint i;
+
+    for(i=0;i<ligs->len;i++)
+	if(strcmp(lig(i).sid->str, sid) == 0)
+	    return TRUE;
+
+    return FALSE;
+}
+
 /** Fill the teams array of a cup with teams according to the choose_teams of
     the cup. Only called for international cups.
     @param cup The pointer to the cup. */
@@ -126,13 +115,16 @@ cup_load_choose_teams(Cup *cup)
 
 	for(j=0;j<sids->len;j++)
 	{
-	    xml_league_read(((GString*)g_ptr_array_index(sids, j))->str, leagues);
-
-	    for(k=0; k < g_array_index(leagues, League, leagues->len - 1).teams->len; k++)
-		g_array_append_val(teams, g_array_index(
-				       g_array_index(leagues, League, leagues->len - 1).teams, Team,  k));
-
-	    g_array_free(g_array_index(leagues, League, leagues->len - 1).teams, TRUE);
+	    if(!query_cup_choose_team_is_league(((GString*)g_ptr_array_index(sids, j))->str))
+	    {
+		xml_league_read(((GString*)g_ptr_array_index(sids, j))->str, leagues);
+		    
+		for(k=0; k < g_array_index(leagues, League, leagues->len - 1).teams->len; k++)
+		    g_array_append_val(teams, g_array_index(
+					   g_array_index(leagues, League, leagues->len - 1).teams, Team,  k));
+		    
+		g_array_free(g_array_index(leagues, League, leagues->len - 1).teams, TRUE);
+	    }
 	}
 
 	g_array_free(leagues, TRUE);
@@ -141,7 +133,7 @@ cup_load_choose_teams(Cup *cup)
 	for(j=0;j<teams->len;j++)
 	    permutation[j] = j;
 
-	if(choose_team->randomly)
+	if(choose_team->randomly && teams->len > 0)
 	{
 	    if(choose_team->start_idx == -1)
 		math_generate_permutation(permutation, 0, teams->len - 1);
@@ -175,7 +167,7 @@ cup_load_choose_teams(Cup *cup)
 		break;
 	}
 
-	if(number_of_teams != choose_team->number_of_teams)
+	if(number_of_teams != choose_team->number_of_teams && teams->len > 0)
 	    cup_choose_team_abort(cup, choose_team, FALSE);
 
 	for(j=teams->len - 1; j>=0;j--)
@@ -184,15 +176,161 @@ cup_load_choose_teams(Cup *cup)
 	
 	free_g_string_array(&sids);
 	free_teams_array(&teams, FALSE);
+	
     }
 
     for(i=0;i<cup->teams->len;i++)
 	team_generate_players_stadium(&g_array_index(cup->teams, Team, i));
+}
 
-    /*d*/
-/*     printf("\n%s\n", cup->name->str); */
-/*     for(i=0;i<cup->teams->len;i++) */
-/* 	printf("%d %s\n", i, g_array_index(cup->teams, Team, i).name->str); */
+/** Write the cup or league of the chooseteam into the appropriate pointer. */
+void
+cup_get_choose_team_league_cup(const CupChooseTeam *ct, 
+			       League **league, Cup **cup)
+{
+    gint i, idx;
+    gchar trash[SMALL];
+
+    sscanf(ct->sid->str, "%[^0-9]%d", trash, &idx);
+
+    if(g_str_has_prefix(ct->sid->str, "league"))
+    {
+	*league = &lig(idx - 1);
+	*cup = NULL;
+    }
+    else if(g_str_has_prefix(ct->sid->str, "cup"))
+    {
+	*cup = &cp(idx - 1);
+	*league = NULL;
+    }
+    else
+    {
+	for(i=0;i<ligs->len;i++)
+	    if(strcmp(lig(i).sid->str, ct->sid->str) == 0)
+	    {
+		*league = &lig(i);
+		*cup = NULL;
+		break;
+	    }
+
+	for(i=0;i<cps->len;i++)
+	    if(strcmp(cp(i).sid->str, ct->sid->str) == 0)
+	    {
+		*cup = &cp(i);
+		*league = NULL;
+		break;
+	    }
+    }
+}
+
+/** Get the team pointers for the supercup. */
+GPtrArray*
+cup_get_choose_teams_pointers(Cup *cup)
+{
+    gint i, j, start, end;
+    gint number_of_teams = 0;
+    CupChooseTeam *ct = NULL;
+    GArray *team_ids = g_array_new(FALSE, FALSE, sizeof(gint));
+    GPtrArray *cup_teams_sorted = NULL;
+    GPtrArray *teams = g_ptr_array_new();
+    League *league = NULL;
+    Cup *cup_temp = NULL;
+
+    free_g_ptr_array(&cup->user_teams);
+    cup->user_teams = g_ptr_array_new();
+
+    for(i=0;i<cup->choose_teams->len;i++)
+    {	
+	number_of_teams = 0;
+
+	ct = &g_array_index(cup->choose_teams, CupChooseTeam, i);
+	cup_get_choose_team_league_cup(ct, &league, &cup_temp);
+
+	if(cup_temp == NULL)
+	{	    
+	    if(ct->number_of_teams == -1 && cup->type != CUP_TYPE_SUPERCUP)
+	    {
+		start = 0;
+		end = league->teams->len;
+	    }
+	    else
+	    {
+		start = ct->start_idx - 1;
+		end = ct->end_idx - start;
+	    }
+
+	    gint order[end];
+	    for(j=0;j<end;j++)
+		order[j] = j + start;
+	    
+	    if(ct->randomly)
+		math_generate_permutation(order, start, start + end);
+
+	    for(j = 0;j < end; j++)
+	    {
+		if(!query_misc_integer_is_in_g_array(
+		       g_array_index(league->table.elements, TableElement, order[j]).team_id,
+		       team_ids))
+		{
+		    g_ptr_array_add(teams, g_array_index(league->table.elements,
+							 TableElement, order[j]).team);
+		    g_array_append_val(team_ids, g_array_index(
+					   league->table.elements, TableElement, order[j]).team_id);
+		    number_of_teams++;
+
+		    if(number_of_teams == ct->number_of_teams ||
+		       (cup->type == CUP_TYPE_SUPERCUP && teams->len == 2))
+			break;
+		}
+	    }
+
+	    if(ct->number_of_teams != -1 &&
+	       number_of_teams != ct->number_of_teams)
+		g_warning("cup_load_choose_teams_pointers: didn't find enough teams in cup %s for chooseteam %s\n",
+			  cup->name->str, ct->sid->str);
+	}
+	else
+	{
+	    cup_teams_sorted = cup_get_teams_sorted(cup_temp);
+
+	    if(ct->number_of_teams == -1 && cup->type != CUP_TYPE_SUPERCUP)
+	    {
+		start = 0;
+		end = cup_teams_sorted->len;
+	    }
+	    else
+	    {
+		start = ct->start_idx - 1;
+		end = ct->end_idx;
+	    }
+
+	    for(j = start; j < end; j++)
+	    {
+		if(!query_misc_integer_is_in_g_array(
+		       ((Team*)g_ptr_array_index(cup_teams_sorted, j))->id, team_ids))
+		{
+		    g_ptr_array_add(teams, g_ptr_array_index(cup_teams_sorted, j));
+		    g_array_append_val(team_ids, ((Team*)g_ptr_array_index(cup_teams_sorted, j))->id);
+		    number_of_teams++;
+
+		    if(number_of_teams == ct->number_of_teams ||
+		       (cup->type == CUP_TYPE_SUPERCUP && teams->len == 2))
+			break;
+		}
+	    }
+
+	    g_ptr_array_free(cup_teams_sorted, TRUE);
+
+	    if(ct->number_of_teams != -1 &&
+	       number_of_teams != ct->number_of_teams)
+		g_warning("cup_load_choose_teams_pointers: didn't find enough teams in cup %s for chooseteam %s\n",
+			  cup->name->str, ct->sid->str);
+	}
+    }
+
+    g_array_free(team_ids, TRUE);
+
+    return teams;
 }
 
 /** Add the teams specified by the choose_team_user rule to the teams
@@ -204,27 +342,27 @@ cup_load_choose_team_user(Cup *cup)
     gint i;
     gchar type[SMALL];
     gint number, number_of_teams = 0;
-    CupChooseTeam *choose_team = &cup->choose_team_user;
+    CupChooseTeam *ct = &cup->choose_team_user;
     GPtrArray *user_teams_sorted = NULL;
     Team *table_team = NULL;
 
     g_ptr_array_free(cup->user_teams, TRUE);
     cup->user_teams = g_ptr_array_new();
 
-    sscanf(choose_team->sid->str, "%[^0-9]%d", type, &number);
+    sscanf(ct->sid->str, "%[^0-9]%d", type, &number);
 
     if(strcmp(type, "league") != 0 &&
        strcmp(type, "cup") != 0)
-	cup_choose_team_abort(cup, choose_team, TRUE);
+	cup_choose_team_abort(cup, ct, TRUE);
 	
     /** Teams from a league. */
     if(strcmp(type, "league") == 0)
     {
 	if(ligs->len < number ||
-	   lig(number - 1).teams->len < choose_team->end_idx)
-	    cup_choose_team_abort(cup, choose_team, TRUE);
+	   lig(number - 1).teams->len < ct->end_idx)
+	    cup_choose_team_abort(cup, ct, TRUE);
 
-	for(i = choose_team->start_idx - 1; i <= choose_team->end_idx - 1; i++)
+	for(i = ct->start_idx - 1; i <= ct->end_idx - 1; i++)
 	{
 	    table_team = team_of_id(
 		g_array_index(lig(number - 1).table.elements, TableElement, i).team_id);
@@ -235,12 +373,12 @@ cup_load_choose_team_user(Cup *cup)
 		number_of_teams++;
 	    }
 	    
-	    if(number_of_teams == choose_team->number_of_teams)
+	    if(number_of_teams == ct->number_of_teams)
 		break;
 	}
 
-	if(number_of_teams != choose_team->number_of_teams)
-	    cup_choose_team_abort(cup, choose_team, TRUE);
+	if(number_of_teams != ct->number_of_teams)
+	    cup_choose_team_abort(cup, ct, TRUE);
 
 	return;
     }
@@ -249,30 +387,30 @@ cup_load_choose_team_user(Cup *cup)
 	we load random teams from the first league. */
     if(season == 1)
     {
-	if(lig(0).teams->len < choose_team->number_of_teams)
-	    cup_choose_team_abort(cup, choose_team, TRUE);
+	if(lig(0).teams->len < ct->number_of_teams)
+	    cup_choose_team_abort(cup, ct, TRUE);
 
 	gint permutation[lig(0).teams->len];
 	math_generate_permutation(permutation, 0, lig(0).teams->len - 1);
 
-	for(i = choose_team->start_idx - 1; i <= choose_team->end_idx - 1; i++)
+	for(i = ct->start_idx - 1; i <= ct->end_idx - 1; i++)
 	{
 	    if(!query_is_in_international_cups(
 		   &g_array_index(lig(number - 1).teams,
-				  Team, permutation[i - choose_team->start_idx + 1])))
+				  Team, permutation[i - ct->start_idx + 1])))
 	    {
 		g_ptr_array_add(cup->user_teams,
 				(gpointer)&g_array_index(lig(number - 1).teams,
-							 Team, permutation[i - choose_team->start_idx + 1]));
+							 Team, permutation[i - ct->start_idx + 1]));
 		number_of_teams++;
 	    }
 		
-	    if(number_of_teams == choose_team->number_of_teams)
+	    if(number_of_teams == ct->number_of_teams)
 		break;
 	}
 	    
-	if(number_of_teams != choose_team->number_of_teams)
-	    cup_choose_team_abort(cup, choose_team, TRUE);
+	if(number_of_teams != ct->number_of_teams)
+	    cup_choose_team_abort(cup, ct, TRUE);
 
 	return;
     }
@@ -281,7 +419,7 @@ cup_load_choose_team_user(Cup *cup)
 	participated in the cup. */
     user_teams_sorted = cup_get_teams_sorted(&cp(number - 1));
 
-    for(i = choose_team->start_idx - 1; i <= choose_team->end_idx - 1; i++)
+    for(i = ct->start_idx - 1; i <= ct->end_idx - 1; i++)
     {
 	if(!query_is_in_international_cups((Team*)g_ptr_array_index(user_teams_sorted, i)))
 	{
@@ -289,12 +427,12 @@ cup_load_choose_team_user(Cup *cup)
 	    number_of_teams++;
 	}
 		
-	if(number_of_teams == choose_team->number_of_teams)
+	if(number_of_teams == ct->number_of_teams)
 	    break;
     }
 	    
-    if(number_of_teams != choose_team->number_of_teams)
-	cup_choose_team_abort(cup, choose_team, TRUE);    
+    if(number_of_teams != ct->number_of_teams)
+	cup_choose_team_abort(cup, ct, TRUE);
 
     g_ptr_array_free(user_teams_sorted, TRUE);
 }
@@ -413,6 +551,19 @@ cup_get_first_week_of_cup_round(const Cup *cup, gint cup_round)
     return week_number;
 }
 
+/** Calculate the last week of a cup if we only know the first week. */
+gint
+cup_get_last_week_from_first(const Cup *cup, gint first_week)
+{
+    gint i;
+    gint matchdays = 0;
+
+    for(i=0;i<cup->rounds->len;i++)
+	matchdays += cup_get_matchdays_in_cup_round(cup, i);
+
+    return first_week + (matchdays - 1) * cup->week_gap;
+}
+
 /** Return the number of matchdays for a given cup round.
     @param cup The cup we examine.
     @param cup_round The index of the cup round.
@@ -490,7 +641,17 @@ cup_from_clid(gint clid)
 	if(cp(i).id == clid)
 	    return &cp(i);
 
-    g_warning("cup_from_clid: didn't find cup with id %d\n", clid);
+    for(i=0;i<scps->len;i++)
+	if(scp(i).id == clid)
+	    return &scp(i);
+
+    for(i=0;i<ligs->len;i++)
+	if(league_has_prom_games((&lig(i))) &&
+	   lig(i).prom_rel.prom_games_cup.id == clid)
+	    return &lig(i).prom_rel.prom_games_cup;
+
+    g_warning("cup_all_from_clid: didn't find cup with id %d\n", clid);
+
     return NULL;
 }
 
@@ -528,4 +689,53 @@ cup_round_name(const Fixture *fix, gchar *buf)
 	else if(fix->replay_number > 0)
 	    strcat(buf, " -- Replay match");
     }	
+}
+
+/** Find out whether it's time to write the
+    fixtures for the supercup. */
+gboolean
+query_cup_supercup_begins(const Cup *supercup)
+{
+    gint i;
+    League *league = NULL;
+    Cup *cup = NULL;
+    gboolean proceed = FALSE;
+
+    for(i=0;i<supercup->choose_teams->len;i++)
+    {
+	cup_get_choose_team_league_cup(
+	    &g_array_index(supercup->choose_teams,
+			   CupChooseTeam, i), &league, &cup);
+	
+	if((cup == NULL && 
+	    g_array_index(league->fixtures, Fixture,
+			  league->fixtures->len - 1).week_number == week &&
+	    g_array_index(league->fixtures, Fixture,
+			  league->fixtures->len - 1).week_round_number == week_round) ||
+	   (league == NULL && 
+	    g_array_index(cup->fixtures, Fixture,
+			  cup->fixtures->len - 1).week_number == week &&
+	    g_array_index(cup->fixtures, Fixture,
+			  cup->fixtures->len - 1).week_round_number == week_round))
+	    proceed = TRUE;
+    }
+
+    if(!proceed)
+	return FALSE;
+
+    for(i=0;i<supercup->choose_teams->len;i++)
+    {
+	cup_get_choose_team_league_cup(
+	    &g_array_index(supercup->choose_teams,
+			   CupChooseTeam, i), &league, &cup);
+	if((cup == NULL &&
+	    g_array_index(league->fixtures, Fixture,
+			  league->fixtures->len - 1).attendance == -1) ||
+	   (league == NULL &&
+	    g_array_index(cup->fixtures, Fixture,
+			  cup->fixtures->len - 1).attendance == -1))
+	    return FALSE;
+    }
+
+    return TRUE;
 }

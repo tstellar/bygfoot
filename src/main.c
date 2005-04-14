@@ -22,13 +22,19 @@ main_init_variables(void)
 {
     gint i;
 
-    ligs = cps = NULL;
+    ligs = cps = scps = NULL;
+    acps = NULL;
     country.name = country.symbol = country.sid = NULL;
     transfer_list = NULL;
     player_names = NULL;
 
     for(i=0;i<COUNT_END;i++)
 	counters[i] = 0;
+
+    counters[COUNT_LEAGUE_ID] = ID_LEAGUE_START;
+    counters[COUNT_CUP_ID] = ID_CUP_START;
+    counters[COUNT_PROM_CUP_ID] = ID_PROM_CUP_START;
+    counters[COUNT_SUPERCUP_ID] = ID_SUPERCUP_START;
 
     window.main = window.startup =
 	window.live = window.warning = window.progress = window.digits =

@@ -10,14 +10,13 @@
 #define league_cup_get_name_string(clid) (clid < ID_CUP_START) ? league_from_clid(clid)->name->str : cup_from_clid(clid)->name->str
 #define league_cup_get_yellow_red(clid) (clid < ID_CUP_START) ? league_from_clid(clid)->yellow_red : cup_from_clid(clid)->yellow_red
 
+#define league_has_prom_games(league) (strlen(league->prom_rel.prom_games_dest_sid->str) > 0)
+
 League
-league_new(void);
+league_new(gboolean new_id);
 
 PromRelElement
 prom_rel_element_new(void);
-
-gint
-league_new_id(void);
 
 TableElement
 league_table_element_new(Team *team);

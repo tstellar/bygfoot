@@ -1,3 +1,4 @@
+#include "cup.h"
 #include "file.h"
 #include "misc.h"
 #include "xml.h"
@@ -13,6 +14,7 @@ enum XmlLoadSaveCountryTags
     TAG_MISC_WEEK,
     TAG_MISC_WEEK_ROUND,
     TAG_MISC_COUNTER,
+    TAG_MISC_ALLCUP,
     TAG_END
 };
 
@@ -63,6 +65,7 @@ xml_loadsave_misc_end_element    (GMarkupParseContext *context,
     if(tag == TAG_NAME ||
        tag == TAG_SYMBOL ||
        tag == TAG_SID ||
+       tag == TAG_MISC_ALLCUP ||
        tag == TAG_MISC_COUNTER ||
        tag == TAG_MISC_SEASON ||
        tag == TAG_MISC_WEEK ||
@@ -106,6 +109,8 @@ xml_loadsave_misc_text         (GMarkupParseContext *context,
 	week_round = int_value;
     else if(state == TAG_MISC_COUNTER)
 	counters[countidx] = int_value;
+    else if(state == TAG_MISC_ALLCUP)
+	g_ptr_array_add(acps, cup_from_clid(int_value));
 }
 
 
@@ -132,6 +137,9 @@ xml_loadsave_misc_read(const gchar *dirname, const gchar *basename)
 	g_warning("xml_loadsave_misc_read: error reading file %s\n", file);
 	misc_print_error(&error, TRUE);
     }
+
+    g_ptr_array_free(acps, TRUE);
+    acps = g_ptr_array_new();
 
     if(g_markup_parse_context_parse(context, file_contents, length, &error))
     {
@@ -169,6 +177,9 @@ xml_loadsave_misc_write(const gchar *prefix)
 
     for(i=0;i<COUNT_END;i++)
 	xml_write_int(fil, counters[i], TAG_MISC_COUNTER, I0);
+
+    for(i=0;i<acps->len;i++)
+	xml_write_int(fil, acp(i)->id, TAG_MISC_ALLCUP, I0);
 
     fprintf(fil, "</_%d>\n", TAG_MISC);
     fclose(fil);

@@ -11,7 +11,7 @@ bin_PROGRAMS = bygfoot
 bygfoot_SOURCES = \
 	callback_func.c callback_func.h callbacks.h cup.h finance.h fixture.h game_gui.h league.h live_game.h maths.h misc.h option.h player.h start_end.h team.h transfer.h treeview.h user.h window.h \
 	callbacks.c callbacks.h callback_func.h free.h game_gui.h gui.h load_save.h main.h option.h player.h team.h transfer.h treeview.h user.h window.h \
-	cup.c cup.h free.h main.h maths.h misc.h team.h variables.h xml_league.h \
+	cup.c cup.h fixture.h free.h league.h main.h maths.h misc.h team.h variables.h xml_league.h \
 	file.c file.h free.h main.h misc.h option.h support.h variables.h \
 	finance.c callbacks.h finance.h game_gui.h maths.h option.h player.h team.h user.h \
 	fixture.c cup.h fixture.h free.h league.h main.h maths.h misc.h table.h team.h variables.h \
@@ -47,7 +47,7 @@ bygfoot_SOURCES = \
 	user.c fixture.h free.h game_gui.h live_game.h maths.h misc.h option.h player.h team.h transfer.h treeview.h user.h window.h \
 	window.c file.h finance.h free.h game_gui.h gui.h interface.h main.h misc_interface.h misc2_interface.h option.h support.h user.h window.h \
 	xml.c cup.h file.h free.h gui.h league.h misc.h support.h table.h transfer_struct.h user.h variables.h xml.h xml_loadsave_cup.h xml_loadsave_league.h xml_loadsave_teams.h xml_loadsave_fixtures.h xml_loadsave_table.h xml_loadsave_transfers.h xml_loadsave_users.h \
-	xml_loadsave_misc.c file.h misc.h variables.h xml.h xml_loadsave_misc.h xml_loadsave_cup.h xml_loadsave_league.h \
+	xml_loadsave_misc.c cup.h file.h misc.h variables.h xml.h xml_loadsave_misc.h xml_loadsave_cup.h xml_loadsave_league.h \
 	xml_loadsave_cup.c cup.h file.h misc.h team.h xml.h xml_loadsave_cup.h xml_loadsave_fixtures.h xml_loadsave_table.h xml_loadsave_teams.h \
 	xml_loadsave_fixtures.c file.h fixture.h misc.h team.h xml.h xml_loadsave_fixtures.h \
 	xml_loadsave_league.c file.h league.h misc.h xml.h xml_loadsave_fixtures.h xml_loadsave_league.h xml_loadsave_table.h xml_loadsave_teams.h \
@@ -56,7 +56,7 @@ bygfoot_SOURCES = \
 	xml_loadsave_teams.c file.h misc.h player.h team.h xml.h xml_loadsave_teams.h \
 	xml_loadsave_transfers.c file.h misc.h team.h transfer.h xml.h xml_loadsave_transfers.h \
 	xml_loadsave_users.c file.h misc.h team.h user.h variables.h xml.h xml_loadsave_users.h \
-	xml_cup.c cup.h file.h main.h misc.h xml_cup.h \
+	xml_cup.c cup.h file.h main.h misc.h variables.h xml_cup.h \
 	xml_country.c file.h free.h misc.h variables.h xml_cup.h xml_country.h xml_league.h \
 	xml_league.c cup_struct.h file.h free.h league.h misc.h team.h table.h variables.h xml_league.h xml_cup.h \
 	xml_name.c file.h free.h maths.h misc.h variables.h xml_name.h

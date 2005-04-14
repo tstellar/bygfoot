@@ -75,13 +75,10 @@ start_new_season(void)
 	fixture_write_league_fixtures(&lig(i));
     }
 
-    for(i=cps->len - 1;i >= 0;i--)
+    for(i=acps->len - 1;i >= 0;i--)
     {
-	if(cp(i).type >= ID_PROM_CUP_START)
-	{
-	    free_cup(&cp(i));
-	    g_array_remove_index(cps, i);
-	}
+	if(acp(i)->id >= ID_PROM_CUP_START)
+	    g_ptr_array_remove_index(acps, i);
 	else
 	    fixture_write_cup_fixtures(&cp(i));
     }
@@ -160,8 +157,8 @@ end_week_round(void)
 	    break;
 	}
 
-    for(i=0;i<cps->len;i++)
-	if(query_fixture_in_week_round(cp(i).id, week, week_round))
+    for(i=0;i<acps->len;i++)
+	if(query_fixture_in_week_round(acp(i)->id, week, week_round))
 	{
 	    new_week = FALSE;
 	    break;
@@ -215,23 +212,23 @@ end_week_round_results(void)
 		}
 	}
 
-    for(i=0;i<cps->len;i++)
-	if(week_round > 1 || cp(i).id >= ID_PROM_CUP_START)
+    for(i=0;i<acps->len;i++)
+	if(week_round > 1 || query_cup_is_prom(acp(i)->id))
 	{
-	    for(j=0;j<cp(i).fixtures->len;j++)
+	    for(j=0;j<acp(i)->fixtures->len;j++)
 	    {
-		if(g_array_index(cp(i).fixtures, Fixture, j).week_number == week &&
-		   g_array_index(cp(i).fixtures, Fixture, j).week_round_number == week_round &&
-		   g_array_index(cp(i).fixtures, Fixture, j).attendance == -1)
+		if(g_array_index(acp(i)->fixtures, Fixture, j).week_number == week &&
+		   g_array_index(acp(i)->fixtures, Fixture, j).week_round_number == week_round &&
+		   g_array_index(acp(i)->fixtures, Fixture, j).attendance == -1)
 		{
-		    live_game_calculate_fixture(&g_array_index(cp(i).fixtures, Fixture, j));
+		    live_game_calculate_fixture(&g_array_index(acp(i)->fixtures, Fixture, j));
 
 		    done++;
-		    fixture_result_to_buf(&g_array_index(cp(i).fixtures, Fixture, j), buf);
+		    fixture_result_to_buf(&g_array_index(acp(i)->fixtures, Fixture, j), buf);
 		    sprintf(buf2, "%s %s %s",
-			    g_array_index(cp(i).fixtures, Fixture, j).teams[0]->name->str,
+			    g_array_index(acp(i)->fixtures, Fixture, j).teams[0]->name->str,
 			    buf,
-			    g_array_index(cp(i).fixtures, Fixture, j).teams[1]->name->str);
+			    g_array_index(acp(i)->fixtures, Fixture, j).teams[1]->name->str);
 		    gui_show_progress((gfloat)done / num_matches, buf2);
 		}
 	    }
@@ -252,15 +249,15 @@ end_week_round_sort_tables(void)
 				   (GCompareDataFunc)table_element_compare_func,
 				   GINT_TO_POINTER(lig(i).id));
 
-    for(i=0;i<cps->len;i++)
-	if(cp(i).tables !=  NULL && cp(i).tables->len != 0 && 
-	   query_fixture_in_week_round(cp(i).id, week, week_round) &&
-	   g_array_index(cp(i).fixtures, Fixture, cp(i).fixtures->len - 1).round ==
-	   g_array_index(cp(i).tables, Table, 0).round)
-	    for(j=0;j<cp(i).tables->len;j++)
-		g_array_sort_with_data(g_array_index(cp(i).tables, Table, j).elements,
+    for(i=0;i<acps->len;i++)
+	if(acp(i)->tables !=  NULL && acp(i)->tables->len != 0 && 
+	   query_fixture_in_week_round(acp(i)->id, week, week_round) &&
+	   g_array_index(acp(i)->fixtures, Fixture, acp(i)->fixtures->len - 1).round ==
+	   g_array_index(acp(i)->tables, Table, 0).round)
+	    for(j=0;j<acp(i)->tables->len;j++)
+		g_array_sort_with_data(g_array_index(acp(i)->tables, Table, j).elements,
 				       (GCompareDataFunc)table_element_compare_func,
-				       GINT_TO_POINTER(cp(i).id));
+				       GINT_TO_POINTER(acp(i)->id));
 }
 
 /** Update cup fixtures. */
@@ -269,19 +266,34 @@ end_week_round_update_fixtures(void)
 {
     gint i;
 
+    for(i=0;i<acps->len;i++)
+	if(acp(i)->next_fixture_update_week == week &&
+	   acp(i)->next_fixture_update_week_round == week_round)
+	    fixture_update(acp(i));
+
     for(i=0;i<ligs->len;i++)
-	if(strlen(lig(i).prom_rel.prom_games_dest_sid->str) > 0 &&
+	if(league_has_prom_games((&lig(i))) &&
 	   query_league_prom_games_begin(&lig(i)))
 	{
-	    lig(i).prom_rel.prom_games_cup.id = cup_new_id(TRUE);
-	    g_array_append_val(cps, lig(i).prom_rel.prom_games_cup);
-	    fixture_write_cup_fixtures(&cp(cps->len - 1));
+	    if(season == 1)
+		lig(i).prom_rel.prom_games_cup.last_week = 
+		    cup_get_last_week_from_first(&lig(i).prom_rel.prom_games_cup, week + 1);
+
+	    fixture_write_cup_fixtures(&lig(i).prom_rel.prom_games_cup);
+	    g_ptr_array_add(acps, &lig(i).prom_rel.prom_games_cup);
 	}
 
-    for(i=0;i<cps->len;i++)
-	if(cp(i).next_fixture_update_week == week &&
-	   cp(i).next_fixture_update_week_round == week_round)
-	    fixture_update(&cp(i));
+    for(i=0;i<scps->len;i++)
+    {
+	if(query_cup_supercup_begins(&scp(i)))
+	{
+	    if(season == 1)
+		scp(i).last_week = cup_get_last_week_from_first(&scp(i), week + 1);
+
+	    fixture_write_cup_fixtures(&scp(i));
+	    g_ptr_array_add(acps, &scp(i));
+	}
+    }
 }
 
 /** Start a new week round. */
@@ -296,15 +308,15 @@ start_week_round(void)
 	start_func++;
     }
 
-    if(!query_user_games_this_week_round() &&
+    if(/*d*/FALSE && !query_user_games_this_week_round() &&
        ((week_round == 1 && !query_user_games_in_week_round(week - 1, fixture_last_week_round(week - 1))) ||
 	(week_round > 1 && !query_user_games_in_week_round(week, week_round - 1))))
 	end_week_round();
     else
     {
-	cur_user = 0;
-	game_gui_show_main();
-	
+        cur_user = 0;
+        game_gui_show_main();
+
 	/*d ??*/
 /* 	if(week_round == 1) */
 	    user_event_show_next();
@@ -386,9 +398,9 @@ query_start_end_season_end(void)
 	    if(g_array_index(lig(i).fixtures, Fixture, j).week_number > week)
 		return FALSE;
 
-    for(i=0;i<cps->len;i++)
-	for(j=0;j<cp(i).fixtures->len;j++)
-	    if(g_array_index(cp(i).fixtures, Fixture, j).week_number > week)
+    for(i=0;i<acps->len;i++)
+	for(j=0;j<acp(i)->fixtures->len;j++)
+	    if(g_array_index(acp(i)->fixtures, Fixture, j).week_number > week)
 		return FALSE;
 
     return TRUE;
@@ -409,7 +421,7 @@ start_new_season_team_movements(void)
 			   g_array_index(team_movements, TeamMove, i).tm);
 
     g_array_free(team_movements, TRUE);
-
+    
     for(i=0;i<ligs->len;i++)
     {
 	for(j=0;j<lig(i).teams->len;j++)
@@ -420,11 +432,4 @@ start_new_season_team_movements(void)
 		    &g_array_index(lig(i).teams, Team, j);
 	}
     }
-
-    for(i=cps->len - 1;i>=0;i--)
-	if(cp(i).id >= ID_PROM_CUP_START)
-	{
-	    free_cup(&cp(i));
-	    g_array_remove_index(cps, i);
-	}
 }

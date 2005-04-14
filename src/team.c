@@ -18,7 +18,7 @@
    @return A new team.
 */
 Team
-team_new(void)
+team_new(gboolean new_id)
 {
     Team new;
 
@@ -26,7 +26,7 @@ team_new(void)
     new.symbol = g_string_new("");
     
     new.clid = -1;
-    new.id = team_id_new;
+    new.id = (new_id) ? team_id_new : -1;
     new.structure = team_assign_playing_structure();
     new.style = team_assign_playing_style();
     new.boost = 0;
@@ -125,7 +125,7 @@ team_generate_players_stadium(Team *tm)
 
     for(i=0;i<const_int("int_team_max_players");i++)
     {
-	new = player_new(tm, average_skill);
+	new = player_new(tm, average_skill, TRUE);
 	wages += new.wage;
 	g_array_append_val(tm->players, new);
     }
@@ -315,45 +315,6 @@ team_get_pointers_from_array(const GArray *teams)
     return team_pointers;
 }
 
-/** Return a pointer array containing the teams from
-    the leagues that are specified in the choose_teams array.
-    @param choose_teams The choose_team array.
-    @return A pointer array containing team pointers. */
-GPtrArray*
-team_get_pointers_from_choose_teams(const GArray *choose_teams)
-{
-    gint i, j, k;
-    CupChooseTeam *ct = NULL;
-    GPtrArray *teams = g_ptr_array_new();
-
-    for(i=0;i<choose_teams->len;i++)
-    {
-	ct = &g_array_index(choose_teams, CupChooseTeam, i);
-	for(j=0;j<ligs->len;j++)
-	    if(strcmp(ct->sid->str, lig(j).sid->str) == 0)
-	    {
-		if(ct->number_of_teams == -1)
-		    for(k=0;k<lig(j).teams->len;k++)
-			g_ptr_array_add(teams, &g_array_index(lig(j).teams, Team, k));
-		else
-		{
-		    gint order[ct->end_idx - ct->start_idx + 1];
-		
-		    for(k=ct->start_idx - 1;k<ct->end_idx;k++)
-			order[k - ct->start_idx + 1] = k;
-
-		    if(ct->randomly)
-			math_generate_permutation(order, ct->start_idx - 1, ct->end_idx);
-
-		    for(k=0;k<ct->number_of_teams;k++)
-			g_ptr_array_add(teams, g_array_index(lig(j).table.elements, TableElement, order[k]).team);
-		}
-	    }
-    }
-
-    return teams;
-}
-
 /** Return the pointer to the team belonging to
     the id. */
 Team*
@@ -386,7 +347,7 @@ team_get_player_pointers(const Team *tm)
     GPtrArray *players = g_ptr_array_new();
 
     for(i=0;i<tm->players->len;i++)
-	g_ptr_array_add(players, (gpointer)&g_array_index(tm->players, Player, i));
+	g_ptr_array_add(players, &g_array_index(tm->players, Player, i));
 
     return players;
 }
