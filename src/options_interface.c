@@ -88,6 +88,13 @@ create_window_options (void)
   GtkWidget *hbox6;
   GtkWidget *vbox6;
   GtkWidget *checkbutton_show_job;
+  GtkWidget *eventbox1;
+  GtkWidget *hbox10;
+  GtkWidget *label37;
+  GtkObject *spinbutton_contract_adj;
+  GtkWidget *spinbutton_contract;
+  GtkWidget *label38;
+  GtkWidget *checkbutton_show_all_leagues;
   GtkWidget *vseparator3;
   GtkWidget *vbox7;
   GtkWidget *checkbutton_swap_adapts;
@@ -437,6 +444,36 @@ create_window_options (void)
   checkbutton_show_job = gtk_check_button_new_with_mnemonic (_("Show job offers"));
   gtk_widget_show (checkbutton_show_job);
   gtk_box_pack_start (GTK_BOX (vbox6), checkbutton_show_job, FALSE, FALSE, 0);
+
+  eventbox1 = gtk_event_box_new ();
+  gtk_widget_show (eventbox1);
+  gtk_box_pack_start (GTK_BOX (vbox6), eventbox1, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, eventbox1, _("Set to 0 to switch off warning"), NULL);
+
+  hbox10 = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (hbox10);
+  gtk_container_add (GTK_CONTAINER (eventbox1), hbox10);
+
+  label37 = gtk_label_new (_("Show warning if a player contract gets below "));
+  gtk_widget_show (label37);
+  gtk_box_pack_start (GTK_BOX (hbox10), label37, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label37), GTK_JUSTIFY_LEFT);
+
+  spinbutton_contract_adj = gtk_adjustment_new (1, 0, 24, 1, 10, 10);
+  spinbutton_contract = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_contract_adj), 1, 0);
+  gtk_widget_show (spinbutton_contract);
+  gtk_box_pack_start (GTK_BOX (hbox10), spinbutton_contract, FALSE, FALSE, 0);
+  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_contract), TRUE);
+
+  label38 = gtk_label_new (_(" months"));
+  gtk_widget_show (label38);
+  gtk_box_pack_start (GTK_BOX (hbox10), label38, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (label38), GTK_JUSTIFY_LEFT);
+
+  checkbutton_show_all_leagues = gtk_check_button_new_with_mnemonic (_("Show all leagues in the fixture view"));
+  gtk_widget_show (checkbutton_show_all_leagues);
+  gtk_box_pack_start (GTK_BOX (vbox6), checkbutton_show_all_leagues, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_show_all_leagues, _("Whether in the weekly fixture view all leagues or only the user league is shown"), NULL);
 
   vseparator3 = gtk_vseparator_new ();
   gtk_widget_show (vseparator3);
@@ -981,6 +1018,12 @@ create_window_options (void)
   GLADE_HOOKUP_OBJECT (window_options, hbox6, "hbox6");
   GLADE_HOOKUP_OBJECT (window_options, vbox6, "vbox6");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_show_job, "checkbutton_show_job");
+  GLADE_HOOKUP_OBJECT (window_options, eventbox1, "eventbox1");
+  GLADE_HOOKUP_OBJECT (window_options, hbox10, "hbox10");
+  GLADE_HOOKUP_OBJECT (window_options, label37, "label37");
+  GLADE_HOOKUP_OBJECT (window_options, spinbutton_contract, "spinbutton_contract");
+  GLADE_HOOKUP_OBJECT (window_options, label38, "label38");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_show_all_leagues, "checkbutton_show_all_leagues");
   GLADE_HOOKUP_OBJECT (window_options, vseparator3, "vseparator3");
   GLADE_HOOKUP_OBJECT (window_options, vbox7, "vbox7");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_swap_adapts, "checkbutton_swap_adapts");

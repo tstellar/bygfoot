@@ -267,6 +267,15 @@ float_team_playing_structure_prob4 8500
 #   @see player_generate()
 float_team_skill_variance 750
 
+# maximum player skill changes in cpu teams at
+# the beginning of a new season in percent
+float_season_end_team_change_lower -400
+float_season_end_team_change_upper 400
+
+# additional percentage if a user was first league
+# champion
+float_season_end_user_champ_addition 100
+
 # bounds for new teams when user's been fired
 # counted in the tables relative to his team
 int_team_new_bound_upper 10

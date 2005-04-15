@@ -26,6 +26,7 @@ enum BooleanOptions
     BOOL_OPT_SHOW_JOB,
     BOOL_OPT_SWAP,
     BOOL_OPT_SHOW_OVERALL,
+    BOOL_OPT_SHOW_ALL_LEAGUES,
     BOOL_OPT_PL1_ATT_NAME,
     BOOL_OPT_PL1_ATT_CPOS,
     BOOL_OPT_PL1_ATT_POS,
@@ -129,6 +130,10 @@ option_gui_write_bool_widgets(gint **bool_options, GtkToggleButton **bool_widget
     bool_widgets[BOOL_OPT_SHOW_OVERALL] =
 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_show_overall"));
     bool_options[BOOL_OPT_SHOW_OVERALL] = opt_user_intp("int_opt_user_show_overall");
+
+    bool_widgets[BOOL_OPT_SHOW_ALL_LEAGUES] =
+	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_show_all_leagues"));
+    bool_options[BOOL_OPT_SHOW_ALL_LEAGUES] = opt_user_intp("int_opt_user_show_all_leagues");
 
     bool_widgets[BOOL_OPT_PL1_ATT_NAME] =
 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton1"));
@@ -283,6 +288,7 @@ enum SpinOptions
     SPIN_OPT_PRECISION,
     SPIN_OPT_REFRESH,
     SPIN_OPT_LIVE_SPEED,
+    SPIN_OPT_CONTRACT,
     SPIN_OPT_END
 };
 
@@ -309,6 +315,10 @@ option_gui_write_spin_widgets(gint **spin_options, GtkSpinButton **spin_widgets)
     spin_widgets[SPIN_OPT_LIVE_SPEED] =
 	GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_live_speed"));
     spin_options[SPIN_OPT_LIVE_SPEED] = opt_user_intp("int_opt_user_live_game_speed");
+
+    spin_widgets[SPIN_OPT_CONTRACT] =
+	GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_contract"));
+    spin_options[SPIN_OPT_CONTRACT] = opt_user_intp("int_opt_user_contract_limit");
 }
 
 

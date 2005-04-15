@@ -1287,7 +1287,7 @@ treeview_create_fixtures(gint clid, gint week_number, gint week_round_number)
 {
     gint i;
     GtkListStore  *liststore;
-    GPtrArray *fixtures = fixture_get_week_round_list(clid, week_number, week_round_number);
+    GPtrArray *fixtures = fixture_get_week_list_clid(clid, week_number, week_round_number);
 
     if(fixtures->len == 0)
     {
@@ -2327,6 +2327,60 @@ treeview_show_player_info(const Player *pl)
     
     treeview_set_up_player_info(treeview);
     model = treeview_create_player_info(pl);
+    gtk_tree_view_set_model(treeview, model);
+    g_object_unref(model);
+}
+
+
+GtkTreeModel*
+treeview_create_fixtures_week(gint week_number, gint week_round_number)
+{
+    gint i;
+    GPtrArray *fixtures = fixture_get_week_list(week_number, week_round_number);
+    GtkListStore *liststore = gtk_list_store_new(5,
+						 GDK_TYPE_PIXBUF,
+						 G_TYPE_STRING,
+						 G_TYPE_STRING,
+						 G_TYPE_STRING,
+						 GDK_TYPE_PIXBUF);
+    GtkTreeIter iter;
+
+    for(i=0;i<fixtures->len;i++)
+    {
+	if(((Fixture*)g_ptr_array_index(fixtures, i))->clid >= ID_CUP_START ||
+	    ((Fixture*)g_ptr_array_index(fixtures, i))->clid == current_user.tm->clid ||	   
+	   opt_user_int("int_opt_user_show_all_leagues"))
+	{
+	    if(i == 0 ||
+	       ((Fixture*)g_ptr_array_index(fixtures, i))->clid != 
+	       ((Fixture*)g_ptr_array_index(fixtures, i - 1))->clid)
+	    {
+		gtk_list_store_append(liststore, &iter);
+		gtk_list_store_set(liststore, &iter, 0, NULL, -1);
+		treeview_create_fixtures_header((Fixture*)g_ptr_array_index(fixtures, i),
+						liststore, TRUE);
+	    }
+
+	    treeview_create_fixture((Fixture*)g_ptr_array_index(fixtures, i), liststore);
+	}
+    }
+
+    g_ptr_array_free(fixtures, TRUE);
+
+    return GTK_TREE_MODEL(liststore);
+}
+
+/** Show a fixture list of all matches in the given week and round. */
+void
+treeview_show_fixtures_week(gint week_number, gint week_round_number)
+{
+    GtkTreeView *treeview = GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right"));
+    GtkTreeModel *model = NULL;
+
+    treeview_clear(treeview);
+    
+    treeview_set_up_fixtures(treeview);
+    model = treeview_create_fixtures_week(week_number, week_round_number);
     gtk_tree_view_set_model(treeview, model);
     g_object_unref(model);
 }

@@ -202,6 +202,9 @@ on_button_browse_forward_clicked       (GtkButton       *button,
 	case STATUS_SHOW_FIXTURES:
 	    callback_show_fixtures(SHOW_NEXT);
 	    break;
+	case STATUS_SHOW_FIXTURES_WEEK:
+	    callback_show_fixtures_week(SHOW_NEXT);
+	    break;
 	case STATUS_BROWSE_TEAMS:
 	    callback_show_team(SHOW_NEXT);
 	    break;
@@ -221,6 +224,9 @@ on_button_browse_back_clicked          (GtkButton       *button,
     {
 	case STATUS_SHOW_FIXTURES:
 	    callback_show_fixtures(SHOW_PREVIOUS);
+	    break;
+	case STATUS_SHOW_FIXTURES_WEEK:
+	    callback_show_fixtures_week(SHOW_PREVIOUS);
 	    break;
 	case STATUS_BROWSE_TEAMS:
 	    callback_show_team(SHOW_PREVIOUS);
@@ -292,6 +298,17 @@ on_menu_fixtures_activate              (GtkMenuItem     *menuitem,
 
     gui_set_arrows();
 }
+
+void
+on_menu_fixtures_week_activate         (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    stat0 = STATUS_SHOW_FIXTURES_WEEK;
+    callback_show_fixtures_week(SHOW_CURRENT);
+
+    gui_set_arrows();
+}
+
 
 void
 on_menu_tables_activate                (GtkMenuItem     *menuitem,

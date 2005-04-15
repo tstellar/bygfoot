@@ -217,4 +217,13 @@ treeview_iter_get_row(GtkTreeModel *model, GtkTreeIter *iter);
 void
 treeview_create_stadium_summary(GtkListStore *liststore);
 
+void
+treeview_show_fixtures_week(gint week_number, gint week_round_number);
+
+void
+treeview_show_fixtures_week(gint week_number, gint week_round_number);
+
+GtkTreeModel*
+treeview_create_fixtures_week(gint week_number, gint week_round_number);
+
 #endif

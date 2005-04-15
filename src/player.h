@@ -134,6 +134,6 @@ Team*
 player_id_team(gint player_id);
 
 void
-player_season_start(Player *pl);
+player_season_start(Player *pl, gfloat skill_change);
 
 #endif

@@ -1,5 +1,7 @@
 #include "cup.h"
 #include "league.h"
+#include "maths.h"
+#include "option.h"
 #include "player.h"
 #include "table.h"
 #include "team.h"
@@ -367,6 +369,11 @@ void
 league_season_start(League *league)
 {
     gint i, j;
+    gint idx = league_index_from_sid(league->sid->str);
+    gboolean user_champ = 
+	(team_is_user(
+	    team_of_id(g_array_index(lig(0).table.elements, TableElement, 0).team_id)) != -1);
+    gfloat team_change_factor = 0;
 
     for(i=0;i<league->table.elements->len;i++)
     {
@@ -381,8 +388,21 @@ league_season_start(League *league)
 
     /*todo: make teams better if user champion?*/
     for(i=0;i<league->teams->len;i++)
+    {
+	team_change_factor = 
+	    (team_is_user(&g_array_index(league->teams, Team, i)) == -1) *
+	    math_rnd(const_float("float_season_end_team_change_lower") +
+		     (user_champ && idx == 0) * const_float("float_season_end_user_champ_addition"),
+		     const_float("float_season_end_team_change_upper") +
+		     (user_champ && idx == 0) * const_float("float_season_end_user_champ_addition"));
+
 	for(j=0;j<g_array_index(league->teams, Team, i).players->len;j++)
-	    player_season_start(&g_array_index(g_array_index(league->teams, Team, i).players, Player, j));
+	    player_season_start(
+		&g_array_index(g_array_index(league->teams, Team, i).players, Player, j), team_change_factor);
+
+	if(team_is_user(&g_array_index(league->teams, Team, i)) == -1)
+	    team_update_cpu_structure(&g_array_index(league->teams, Team, i));
+    }
 }
 
 
@@ -393,25 +413,11 @@ query_league_rank_in_prom_games(const League *league, gint rank)
 {
     gint i, j;
 
-    /*d*/
-/*     for(i=0;i<ligs->len;i++) */
-/* 	    printf("%d les %s lig %s sid %s id %d rank %d\n", i, */
-/* 		   lig(i).name->str,  league->sid->str, */
-/* 		   lig(i).sid->str, lig(i).id, rank);getchar(); */
-
     for(i=0;i<ligs->len;i++)
 	if(league_has_prom_games((&lig(i))))
 	{
-/* 	    printf("dest %s nam %s ctlen %d\n", */
-/* 		   lig(i).prom_rel.prom_games_dest_sid->str, */
-/* 		   lig(i).prom_rel.prom_games_cup.name->str, */
-/* 		   lig(i).prom_rel.prom_games_cup.choose_teams->len);getchar(); */
-
 	    for(j=0;j<lig(i).prom_rel.prom_games_cup.choose_teams->len;j++)
 	    {
-/* 		printf("fo %s %s\n", */
-/* 		       g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, CupChooseTeam, j).sid->str, */
-/* 		       league->sid->str); */
 		if(strcmp(g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, CupChooseTeam, j).sid->str,
 			  league->sid->str) == 0 &&
 		   ((rank >= g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams,

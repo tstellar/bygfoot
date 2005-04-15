@@ -116,7 +116,8 @@ gui_set_arrows(void)
     if(stat0 == STATUS_SHOW_FIXTURES ||
        stat0 == STATUS_BROWSE_TEAMS)
 	gui_set_arrow_pair(3, TRUE);
-    else if(stat0 == STATUS_SHOW_PLAYER_INFO)
+    else if(stat0 == STATUS_SHOW_PLAYER_INFO ||
+	    stat0 == STATUS_SHOW_FIXTURES_WEEK)
 	gui_set_arrow_pair(1, TRUE);
     else if(stat0 == STATUS_SHOW_TABLES ||
 	    stat0 == STATUS_SHOW_PLAYER_LIST)

@@ -682,7 +682,7 @@ fixture_get_first_leg(const Fixture *fix)
     @param week_number The week number of the fixtures.
     @param week_round_number The week round of the fixtures. */
 GPtrArray*
-fixture_get_week_round_list(gint clid, gint week_number, gint week_round_number)
+fixture_get_week_list_clid(gint clid, gint week_number, gint week_round_number)
 {
     gint i;
     GArray *fixtures = league_cup_get_fixtures(clid);
@@ -694,6 +694,28 @@ fixture_get_week_round_list(gint clid, gint week_number, gint week_round_number)
 	    g_ptr_array_add(fixtures_array, &g_array_index(fixtures, Fixture, i));
 
     return fixtures_array;
+}
+
+/** Return an array with all fixtures in a given week. */
+GPtrArray*
+fixture_get_week_list(gint week_number, gint week_round_number)
+{
+    gint i, j;
+    GPtrArray *fixtures = g_ptr_array_new();
+
+    for(i=0;i<ligs->len;i++)
+	for(j=0;j<lig(i).fixtures->len;j++)
+	    if(g_array_index(lig(i).fixtures, Fixture, j).week_number == week_number &&
+	       g_array_index(lig(i).fixtures, Fixture, j).week_round_number == week_round_number)
+		g_ptr_array_add(fixtures, &g_array_index(lig(i).fixtures, Fixture, j));
+
+    for(i=0;i<acps->len;i++)
+	for(j=0;j<acp(i)->fixtures->len;j++)
+	    if(g_array_index(acp(i)->fixtures, Fixture, j).week_number == week_number &&
+	       g_array_index(acp(i)->fixtures, Fixture, j).week_round_number == week_round_number)
+		g_ptr_array_add(fixtures, &g_array_index(acp(i)->fixtures, Fixture, j));
+
+    return fixtures;
 }
 
 /** Print the result of the fixture into a buffer. */
@@ -1039,16 +1061,100 @@ fixture_sort_teams_bye(GPtrArray *teams, gint bye_len)
 
 /** Return the last week round number of the specified week. */
 gint
-fixture_last_week_round(gint week_number)
+fixture_get_last_week_round(gint week_number)
 {
     gint i, j;
     gint week_round_number = 1;
 
-    for(i=0;i<cps->len;i++)
-	for(j=0;j<cp(i).fixtures->len;j++)
-	    if(g_array_index(cp(i).fixtures, Fixture, j).week_number == week_number)
+    for(i=0;i<acps->len;i++)
+	for(j=0;j<acp(i)->fixtures->len;j++)
+	    if(g_array_index(acp(i)->fixtures, Fixture, j).week_number == week_number)
 		week_round_number = MAX(week_round_number, 
-					g_array_index(cp(i).fixtures, Fixture, j).week_round_number);
+					g_array_index(acp(i)->fixtures, Fixture, j).week_round_number);
 
     return week_round_number;
+}
+
+/** Get the next week and round there are fixtures from
+    the specified ones onwards and write it into the variables. */
+void
+fixture_get_next_week(gint *week_number, gint *week_round_number)
+{
+    gint i;
+    gint local_week = *week_number,
+	local_round = *week_round_number;
+    Fixture *fix = NULL;
+
+    *week_number = *week_round_number = 1000;
+
+    for(i=0;i<ligs->len;i++)
+    {
+	fix = fixture_get_next(lig(i).id, local_week, local_round);
+	if(fix->week_number > local_week && fix->week_number < *week_number)
+	{
+	    *week_number = fix->week_number;
+	    *week_round_number = 1;
+	}	    
+    }
+
+    for(i=0;i<acps->len;i++)
+    {
+	fix = fixture_get_next(acp(i)->id, local_week, local_round);
+	if((fix->week_number > local_week ||
+	   (fix->week_number == local_week && fix->week_round_number > local_round)) &&
+	   (fix->week_number < *week_number ||
+	    (fix->week_number == *week_number && fix->week_round_number < *week_round_number)))
+	{
+	    *week_number = fix->week_number;
+	    *week_round_number = fix->week_round_number;
+	}
+    }
+
+    if(*week_number == 1000)
+	*week_number = *week_round_number = 1;
+}
+
+/** Get the previous week and round there are fixtures
+    and write it into the variables. */
+void
+fixture_get_previous_week(gint *week_number, gint *week_round_number)
+{
+    gint i;
+    gint local_week = *week_number,
+	local_round = *week_round_number;
+    Fixture *fix = NULL;
+
+    *week_number = *week_round_number = -1;
+
+    for(i=0;i<ligs->len;i++)
+    {
+	fix = fixture_get_previous(lig(i).id, local_week, local_round);
+	if((fix->week_number < local_week ||
+	   (fix->week_number == local_week && fix->week_round_number < local_round)) &&
+	   (fix->week_number > *week_number ||
+	    (fix->week_number == *week_number && fix->week_round_number > *week_round_number)))
+	{
+	    *week_number = fix->week_number;
+	    *week_round_number = 1;
+	}
+    }
+
+    for(i=0;i<acps->len;i++)
+    {
+	fix = fixture_get_previous(acp(i)->id, local_week, local_round);
+	if((fix->week_number < local_week ||
+	   (fix->week_number == local_week && fix->week_round_number < local_round)) &&
+	   (fix->week_number > *week_number ||
+	    (fix->week_number == *week_number && fix->week_round_number > *week_round_number)))
+	{
+	    *week_number = fix->week_number;
+	    *week_round_number = fix->week_round_number;
+	}
+    }
+
+    if(*week_number == -1)
+    {
+	*week_number = local_week;
+	*week_round_number = local_round;
+    }
 }

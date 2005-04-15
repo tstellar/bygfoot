@@ -42,4 +42,7 @@ callback_fire_player(gint idx);
 void
 callback_show_last_match_stats(void);
 
+void
+callback_show_fixtures_week(gint type);
+
 #endif

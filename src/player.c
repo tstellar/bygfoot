@@ -920,6 +920,7 @@ player_update_injury(Player *pl)
 void
 player_update_weekly(Team *tm, gint idx)
 {
+    gchar buf[SMALL];
     Player *pl = player_of_idx_team(tm, idx);
     
     if(debug < 50)
@@ -928,7 +929,16 @@ player_update_weekly(Team *tm, gint idx)
 	pl->contract -= 0.0192;
     }
 
-    /*todo: warning*/
+    if(pl->contract * 12 <= opt_user_int("int_opt_user_contract_limit") &&
+       (pl->contract + 0.0192) * 12 > opt_user_int("int_opt_user_contract_limit"))
+    {
+	sprintf(buf, _("%s's contract expires in %.1f years."),
+		pl->name->str, pl->contract);
+
+	user_event_add(&usr(team_is_user(tm)), EVENT_TYPE_WARNING,
+		       -1, -1, NULL, buf);
+    }
+
     if(pl->contract <= 0)
 	player_remove_contract(tm, idx);
 
@@ -1068,10 +1078,14 @@ player_injury_to_char(gint injury_type)
     return NULL;
 }
 
-/** Nullify some stuff at the beginning of the season. */
+/** Nullify some stuff at the beginning of the season and change the skills
+    of cpu players.
+    @param skill_change Skill change of the player in percentage. */
 void
-player_season_start(Player *pl)
+player_season_start(Player *pl, gfloat skill_change)
 {
+    gint i;
+
     if(pl->games_goals->len > 0)
     {
 	g_array_free(pl->games_goals, TRUE);
@@ -1083,4 +1097,20 @@ player_season_start(Player *pl)
 	g_array_free(pl->cards, TRUE);
 	pl->cards = g_array_new(FALSE, FALSE, sizeof(PlayerGamesGoals));
     }    
+
+    if(skill_change != 0)
+    {
+	pl->skill *= (1 + skill_change);
+
+	pl->skill = CLAMP(pl->skill, 0, pl->talent);
+	pl->cskill = player_get_cskill(pl, pl->cpos);
+	pl->value = player_assign_value(pl);
+
+	for(i=0;i<QUALITY_END;i++)
+	    if(pl->skill > pl->etal[i])
+	    {
+		player_estimate_talent(pl);
+		break;
+	    }
+    }
 }

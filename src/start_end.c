@@ -65,15 +65,21 @@ start_new_season(void)
 
     /*todo: nullify, promotion/relegation*/
     if(season > 1)
+    {
 	start_new_season_team_movements();
 
-    start_load_cup_teams();
+	for(i=0;i<users->len;i++)
+	    usr(i).tm = team_of_id(usr(i).team_id);
+    }
 
     for(i=0;i<ligs->len;i++)
     {
-	league_season_start(&lig(i));
+	if(season > 1)
+	    league_season_start(&lig(i));
 	fixture_write_league_fixtures(&lig(i));
     }
+
+    start_load_cup_teams();
 
     for(i=acps->len - 1;i >= 0;i--)
     {
@@ -82,9 +88,6 @@ start_new_season(void)
 	else
 	    fixture_write_cup_fixtures(&cp(i));
     }
-
-    for(i=0;i<users->len;i++)
-	usr(i).tm = team_of_id(usr(i).team_id);
 }
 
 /** Fill some global variables with default values at the
@@ -309,8 +312,10 @@ start_week_round(void)
     }
 
     if(/*d*/FALSE && !query_user_games_this_week_round() &&
-       ((week_round == 1 && !query_user_games_in_week_round(week - 1, fixture_last_week_round(week - 1))) ||
-	(week_round > 1 && !query_user_games_in_week_round(week, week_round - 1))))
+       ((week_round == 1 && 
+	 !query_user_games_in_week_round(week - 1, fixture_get_last_week_round(week - 1))) ||
+	(week_round > 1 && 
+	 !query_user_games_in_week_round(week, week_round - 1))))
 	end_week_round();
     else
     {

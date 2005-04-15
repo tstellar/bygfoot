@@ -80,7 +80,7 @@ Fixture*
 fixture_get_first_leg(const Fixture *fix);
 
 GPtrArray*
-fixture_get_week_round_list(gint clid, gint week_number, gint week_round_number);
+fixture_get_week_list_clid(gint clid, gint week_number, gint week_round_number);
 
 void
 fixture_result_to_buf(const Fixture *fix, gchar *buf);
@@ -119,6 +119,15 @@ void
 fixture_sort_teams_bye(GPtrArray *teams, gint bye_len);
 
 gint
-fixture_last_week_round(gint week_number);
+fixture_get_last_week_round(gint week_number);
+
+void
+fixture_get_next_week(gint *week_number, gint *week_round_number);
+
+void
+fixture_get_previous_week(gint *week_number, gint *week_round_number);
+
+GPtrArray*
+fixture_get_week_list(gint week_number, gint week_round_number);
 
 #endif
