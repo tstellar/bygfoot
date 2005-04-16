@@ -69,4 +69,14 @@ user_event_get_index(User *user, gint type, gint value1, gint value2,
 gboolean
 query_user_teams_have_unfit(void);
 
+void
+user_history_add(User *user, gint type, gint team_id, 
+		 gint value1, gint value2, gchar *string);
+
+void
+user_history_to_string(const UserHistory *history, gchar *buf);
+
+gint
+user_history_compare(gconstpointer a, gconstpointer b);
+
 #endif

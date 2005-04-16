@@ -10,6 +10,7 @@
 #include "start_end.h"
 #include "support.h"
 #include "treeview.h"
+#include "treeview_helper.h"
 #include "user.h"
 #include "variables.h"
 #include "window.h"
@@ -65,7 +66,7 @@ misc_callback_add_player(void)
 	GTK_ENTRY(lookup_widget(window.startup, "entry_player_name"));
     const gchar *player_name = gtk_entry_get_text(entry_player_name);
     User new_user = user_new();
-    Team *tm = (Team*)treeview_get_pointer(treeview_startup, 2);
+    Team *tm = (Team*)treeview_helper_get_pointer(treeview_startup, 2);
     
     if(strlen(player_name) > 0)
 	g_string_printf(new_user.name, "%s", player_name);
@@ -81,6 +82,8 @@ misc_callback_add_player(void)
 
     new_user.tm = tm;
     new_user.team_id = tm->id;
+
+    user_history_add(&new_user, USER_HISTORY_START_GAME, tm->id, tm->clid, -1, "");
 
     g_array_append_val(users, new_user);
 
@@ -105,10 +108,10 @@ misc_callback_remove_user(GdkEventButton *event)
     GtkTreeView *treeview_startup =
 	GTK_TREE_VIEW(lookup_widget(window.startup, "treeview_startup"));
     
-    if(!treeview_select_row(treeview_users, event))
+    if(!treeview_helper_select_row(treeview_users, event))
 	return;
 
-    user_remove(treeview_get_index(treeview_users, 0) - 1, FALSE);
+    user_remove(treeview_helper_get_index(treeview_users, 0) - 1, FALSE);
     
     treeview_show_users(treeview_users);
     treeview_show_team_list(treeview_startup, FALSE, FALSE);

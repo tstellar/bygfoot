@@ -8,30 +8,6 @@
 #include "user_struct.h"
 #include "table_struct.h"
 
-gboolean
-treeview_select_row(GtkTreeView *treeview, GdkEventButton *event);
-
-GdkPixbuf*
-treeview_pixbuf_from_filename(gchar *filename);
-
-GtkCellRenderer*
-treeview_cell_renderer_text_new(void);
-
-gchar*
-treeview_live_game_icon(gint event_type);
-
-gint
-treeview_get_index(GtkTreeView *treeview, gint column);
-
-gpointer
-treeview_get_pointer(GtkTreeView *treeview, gint column);
-
-void
-treeview_clear(GtkTreeView *treeview);
-
-gint
-treeview_get_col_number_column (GtkTreeViewColumn *col);
-
 GtkTreeModel*
 treeview_create_team_selection_list(gboolean show_cup_teams,
 				    gboolean show_user_teams);
@@ -130,13 +106,6 @@ void
 treeview_table_write_header(GtkListStore *liststore, gint clid, gint number);
 
 void
-treeview_get_table_element_colours(const Table *table, gint idx, gchar *colour_fg, 
-				   gchar *colour_bg, gboolean user);
-
-gboolean
-treeview_get_table_element_colour_cups(const League *league, gint idx, gchar *colour_bg);
-
-void
 treeview_show_finances(GtkTreeView *treeview, const User* user);
 
 void
@@ -147,9 +116,6 @@ treeview_create_finances(const User* user);
 
 void
 treeview_show_player_list_team(GtkTreeView *treeview, const Team *tm, gint scout);
-
-PlayerListAttribute
-treeview_get_attributes_from_scout(gint scout);
 
 void
 treeview_show_transfer_list(GtkTreeView *treeview);
@@ -181,20 +147,8 @@ treeview_create_league_results(void);
 void
 treeview_create_next_opponent_values(GtkListStore *liststore, const Fixture *fix);
 
-gint
-treeview_team_compare(GtkTreeModel *model,
-		      GtkTreeIter *a,
-		      GtkTreeIter *b,
-		      gpointer user_data);
-
 void
 treeview_show_all_players(GArray *teams);
-
-gint
-treeview_player_compare(GtkTreeModel *model,
-			GtkTreeIter *a,
-			GtkTreeIter *b,
-			gpointer user_data);
 
 GtkTreeModel*
 treeview_create_preview(void);
@@ -211,19 +165,22 @@ treeview_set_up_player_info(GtkTreeView *treeview);
 GtkTreeModel*
 treeview_create_player_info(const Player *pl);
 
-gint
-treeview_iter_get_row(GtkTreeModel *model, GtkTreeIter *iter);
-
 void
 treeview_create_stadium_summary(GtkListStore *liststore);
 
 void
 treeview_show_fixtures_week(gint week_number, gint week_round_number);
 
-void
-treeview_show_fixtures_week(gint week_number, gint week_round_number);
-
 GtkTreeModel*
 treeview_create_fixtures_week(gint week_number, gint week_round_number);
+
+void
+treeview_show_user_history(void);
+
+void
+treeview_set_up_user_history(GtkTreeView *treeview);
+
+GtkTreeModel*
+treeview_create_user_history(void);
 
 #endif

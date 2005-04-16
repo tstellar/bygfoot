@@ -28,6 +28,8 @@ main_init_variables(void)
     transfer_list = NULL;
     player_names = NULL;
 
+    season = week = week_round = 1;
+
     for(i=0;i<COUNT_END;i++)
 	counters[i] = 0;
 

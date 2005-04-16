@@ -10,6 +10,7 @@
 #include "team.h"
 #include "transfer.h"
 #include "treeview.h"
+#include "treeview_helper.h"
 #include "user.h"
 #include "window.h"
 
@@ -179,8 +180,8 @@ on_player_list1_button_press_event     (GtkWidget       *widget,
 	return TRUE;
     }
 
-    if(treeview_select_row(GTK_TREE_VIEW(widget), event))
-	idx = treeview_get_index(GTK_TREE_VIEW(widget), 0);
+    if(treeview_helper_select_row(GTK_TREE_VIEW(widget), event))
+	idx = treeview_helper_get_index(GTK_TREE_VIEW(widget), 0);
 
     if(idx < 0 || idx - 1 == selected_row[0])
     {
@@ -461,8 +462,8 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
        GTK_SELECTION_NONE)
 	return TRUE;
 
-    if(treeview_select_row(GTK_TREE_VIEW(widget), event))
-	idx = treeview_get_index(GTK_TREE_VIEW(widget), 0);
+    if(treeview_helper_select_row(GTK_TREE_VIEW(widget), event))
+	idx = treeview_helper_get_index(GTK_TREE_VIEW(widget), 0);
     else
 	return TRUE;
 
@@ -783,4 +784,14 @@ on_menu_load_last_save_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
     load_save_load_game("last_save");
+}
+
+void
+on_menu_user_show_history_activate     (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    stat0 = STATUS_SHOW_USER_HISTORY;
+    treeview_show_user_history();
+
+    gui_set_arrows();
 }

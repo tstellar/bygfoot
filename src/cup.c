@@ -666,19 +666,11 @@ cup_round_name(const Fixture *fix, gchar *buf)
     const CupRound *cup_round = 
 	&g_array_index(cup->rounds, CupRound, fix->round);
 
-    if(cup_round->round_robin_number_of_groups > 0)
+    cup_get_round_name(cup, fix->round, buf);
+
+    if(cup_round->round_robin_number_of_groups == 0)
 	strcpy(buf, "Round robin");
-    else
-    {
-	if(fix->round == cup->rounds->len - 1)
-	    strcpy(buf, _("Final"));
-	else if(fix->round == cup->rounds->len - 2)
-	    strcpy(buf, _("Semi-final"));
-	else if(fix->round == cup->rounds->len - 3)
-	    strcpy(buf, _("Quarter-final"));
-	else
-	    sprintf(buf, _("Last %d"), (gint)rint(powf(2, cup->rounds->len - fix->round)));
-	    
+    {	    
 	if(cup_round->home_away)
 	{
 	    if(fix->second_leg)
@@ -690,6 +682,37 @@ cup_round_name(const Fixture *fix, gchar *buf)
 	    strcat(buf, " -- Replay match");
     }	
 }
+
+/** Return the cup round given by the number. */
+void
+cup_get_round_name(const Cup *cup, gint round, gchar *buf)
+{
+    const CupRound *cup_round = 
+	&g_array_index(cup->rounds, CupRound, round);
+
+    if(cup_round->round_robin_number_of_groups > 0)
+    {
+	strcpy(buf, _("Round robin"));
+	return;
+    }
+
+    switch(cup->rounds->len - round)
+    {
+	default:
+	    sprintf(buf, "Last %d", (gint)rint(powf(2, cup->rounds->len - round)));
+	    break;
+	case 1:
+	    strcpy(buf, _("Final"));
+	    break;
+	case 2:
+	    strcpy(buf, _("Semi-final"));
+	    break;
+	case 3:
+	    strcpy(buf, _("Quarter-final"));
+	    break;
+    }
+}
+
 
 /** Find out whether it's time to write the
     fixtures for the supercup. */

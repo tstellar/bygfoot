@@ -81,7 +81,7 @@ finance_update_user_weekly(User *user)
 		       _("You have to pay back your loan this week."));
     if(user->counters[COUNT_USER_POSITIVE] == 0)
 	user_event_add(user, EVENT_TYPE_WARNING, -1, -1, NULL, 
-		       _("Your bank account has to exceed your drawing credit limit next week."));
+		       _("Your bank account has to be above your drawing credit limit next week."));
 
     if((user->counters[COUNT_USER_LOAN] == -1 && user->debt != 0) ||
        (user->counters[COUNT_USER_POSITIVE] == -1 &&
@@ -89,6 +89,8 @@ finance_update_user_weekly(User *user)
     {
 	new_team = team_get_new(tm, TRUE);
 	user_event_add(user, EVENT_TYPE_FIRE_FINANCE, -1, -1, new_team, NULL);
+	user_history_add(user, USER_HISTORY_FIRE_FINANCES, tm->id,
+			 new_team->id, new_team->clid, "");
     }
 }
 

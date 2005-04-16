@@ -236,7 +236,6 @@ on_player_menu_show_info_activate      (GtkMenuItem     *menuitem,
 void
 on_menu_rearrange_team_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
-#endif
 
 void
 on_menu_load_last_save_activate        (GtkMenuItem     *menuitem,
@@ -245,3 +244,8 @@ on_menu_load_last_save_activate        (GtkMenuItem     *menuitem,
 void
 on_menu_fixtures_week_activate         (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
+
+void
+on_menu_user_show_history_activate     (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+#endif

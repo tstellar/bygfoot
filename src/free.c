@@ -53,6 +53,11 @@ free_user(User *user)
 	free_event(&g_array_index(user->events, Event, i));
 
     free_g_array(&user->events);
+    
+    for(i=0;i<user->history->len;i++)
+	g_string_free(g_array_index(user->history,
+				    UserHistory, i).value_string, TRUE);
+    free_g_array(&user->history);
 }
 
 /** Free a user event. */

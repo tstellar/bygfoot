@@ -872,6 +872,7 @@ void
 game_post_match(Fixture *fix)
 {
     gint i;
+    User *user = NULL;
 
     if(query_fixture_has_tables(fix))
 	table_update(fix);
@@ -884,6 +885,26 @@ game_post_match(Fixture *fix)
 	else
 	    team_update_post_match(fix->teams[i], fix->clid);
     }
+
+    if(fix->clid < ID_CUP_START || fixture_user_team_involved(fix) == -1)
+	return;
+
+    user = &usr(fixture_user_team_involved(fix));
+
+    if(fix->round == cup_from_clid(fix->clid)->rounds->len - 1 &&
+       fix == &g_array_index((league_cup_get_fixtures(fix->clid)), Fixture,
+			     (league_cup_get_fixtures(fix->clid))->len - 1))
+    {
+	if((Team*)fixture_winner_of(fix, FALSE) == user->tm)
+	    user_history_add(user, USER_HISTORY_WIN_FINAL, user->team_id, fix->clid, fix->round,
+			     fix->teams[fix->teams[0] != user->tm]->name->str);
+	else
+	    user_history_add(user, USER_HISTORY_LOSE_FINAL, user->team_id, fix->clid, fix->round,
+			     fix->teams[fix->teams[0] != user->tm]->name->str);
+    }
+    else
+	user_history_add(user, USER_HISTORY_REACH_CUP_ROUND, user->team_id,
+			 fix->clid, fix->round, "");
 }
 
 /** Reduce stadium capacity and safety after a stadium event.

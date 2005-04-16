@@ -10,17 +10,17 @@ bin_PROGRAMS = bygfoot
 
 bygfoot_SOURCES = \
 	callback_func.c callback_func.h callbacks.h cup.h finance.h fixture.h game_gui.h league.h live_game.h maths.h misc.h option.h player.h start_end.h team.h transfer.h treeview.h user.h window.h \
-	callbacks.c callbacks.h callback_func.h free.h game_gui.h gui.h load_save.h main.h option.h player.h team.h transfer.h treeview.h user.h window.h \
+	callbacks.c callbacks.h callback_func.h free.h game_gui.h gui.h load_save.h main.h option.h player.h team.h transfer.h treeview.h treeview_helper.h user.h window.h \
 	cup.c cup.h fixture.h free.h league.h main.h maths.h misc.h team.h variables.h xml_league.h \
 	file.c file.h free.h main.h misc.h option.h support.h variables.h \
 	finance.c callbacks.h finance.h game_gui.h maths.h option.h player.h team.h user.h \
-	fixture.c cup.h fixture.h free.h league.h main.h maths.h misc.h table.h team.h variables.h \
+	fixture.c cup.h fixture.h free.h league.h main.h maths.h misc.h option.h user.h table.h team.h variables.h \
 	free.c free.h user.h variables.h \
 	game.c cup.h finance.h fixture.h game.h game_gui.h league.h live_game.h maths.h misc.h option.h player.h table.h team.h treeview.h user.h variables.h \
 	game_gui.c file.h callbacks.h file.h game_gui.h gui.h league.h live_game.h maths.h misc.h option.h treeview.h support.h team.h user.h variables.h window.h \
 	gui.c gui.h misc.h support.h variables.h window.h \
 	interface.c callbacks.h interface.h support.h \
-	league.c cup.h league.h maths.h option.h player.h table.h team.h variables.h \
+	league.c cup.h league.h maths.h option.h player.h user.h table.h team.h variables.h \
 	live_game.c fixture.h free.h game.h game_gui.h live_game.h maths.h misc_callback_func.h option.h player.h support.h team.h treeview.h user.h variables.h window.h \
 	load_save.c callbacks.h file.h game_gui.h gui.h load_save.h option.h support.h user.h variables.h xml_loadsave_misc.h xml_loadsave_cup.h xml_loadsave_league.h xml_loadsave_transfers.h xml_loadsave_users.h xml.h \
 	main.c cup_struct.h misc_callbacks.h file.h free.h league_struct.h live_game.h main.h transfer_struct.h variables.h window.h \
@@ -42,9 +42,9 @@ bygfoot_SOURCES = \
 	table.c cup.h league.h table.h variables.h \
 	team.c cup.h fixture.h game.h game_gui.h league.h maths.h misc.h option.h player.h team.h transfer.h user.h \
 	transfer.c finance.h free.h game_gui.h maths.h option.h player.h support.h team.h transfer.h treeview.h user.h \
-	treeview.c cup.h file.h finance.h fixture.h free.h game.h league.h live_game.h maths.h misc.h player.h option.h support.h team.h transfer.h treeview.h treeview_cell.h user.h \
-	treeview_cell.c cup.h league.h misc.h option.h player.h team.h treeview.h treeview_cell.h user.h variables.h \
-	user.c fixture.h free.h game_gui.h live_game.h maths.h misc.h option.h player.h team.h transfer.h treeview.h user.h window.h \
+	treeview.c cup.h finance.h fixture.h free.h game.h league.h live_game.h maths.h misc.h player.h option.h support.h team.h transfer.h treeview.h treeview_helper.h user.h \
+	treeview_helper.c cup.h file.h fixture.h free.h league.h misc.h option.h player.h support.h team.h treeview.h treeview_helper.h user.h variables.h \
+	user.c cup.h fixture.h free.h game_gui.h league.h live_game.h maths.h misc.h option.h player.h team.h transfer.h treeview.h user.h window.h \
 	window.c file.h finance.h free.h game_gui.h gui.h interface.h main.h misc_interface.h misc2_interface.h option.h support.h user.h window.h \
 	xml.c cup.h file.h free.h gui.h league.h misc.h support.h table.h transfer_struct.h user.h variables.h xml.h xml_loadsave_cup.h xml_loadsave_league.h xml_loadsave_teams.h xml_loadsave_fixtures.h xml_loadsave_table.h xml_loadsave_transfers.h xml_loadsave_users.h \
 	xml_loadsave_misc.c cup.h file.h misc.h variables.h xml.h xml_loadsave_misc.h xml_loadsave_cup.h xml_loadsave_league.h \

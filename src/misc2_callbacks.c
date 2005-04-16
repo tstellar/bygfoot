@@ -10,6 +10,7 @@
 #include "support.h"
 #include "transfer.h"
 #include "treeview.h"
+#include "treeview_helper.h"
 #include "user.h"
 #include "window.h"
 
@@ -237,10 +238,10 @@ on_treeview_user_management_users_button_press_event
     gchar buf[SMALL];
     gint idx = -1;
 
-    if(!treeview_select_row(GTK_TREE_VIEW(widget), event))
+    if(!treeview_helper_select_row(GTK_TREE_VIEW(widget), event))
 	return TRUE;
     
-    idx = treeview_get_index(GTK_TREE_VIEW(widget), 0) - 1;
+    idx = treeview_helper_get_index(GTK_TREE_VIEW(widget), 0) - 1;
 
     if(users->len == 1)
     {

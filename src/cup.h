@@ -69,4 +69,7 @@ cup_get_choose_team_league_cup(const CupChooseTeam *ct,
 gint
 cup_get_last_week_from_first(const Cup *cup, gint first_week);
 
+void
+cup_get_round_name(const Cup *cup, gint round, gchar *buf);
+
 #endif

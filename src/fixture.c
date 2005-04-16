@@ -5,6 +5,8 @@
 #include "main.h"
 #include "maths.h"
 #include "misc.h"
+#include "option.h"
+#include "user.h"
 #include "table.h"
 #include "team.h"
 #include "variables.h"
@@ -1090,7 +1092,11 @@ fixture_get_next_week(gint *week_number, gint *week_round_number)
     for(i=0;i<ligs->len;i++)
     {
 	fix = fixture_get_next(lig(i).id, local_week, local_round);
-	if(fix->week_number > local_week && fix->week_number < *week_number)
+	if((fix->week_number > local_week ||
+	   (fix->week_number == local_week && fix->week_round_number > local_round)) &&
+	   (fix->week_number < *week_number ||
+	    (fix->week_number == *week_number && fix->week_round_number < *week_round_number)) &&
+	   (fix->clid == current_user.tm->clid || opt_user_int("int_opt_user_show_all_leagues")))
 	{
 	    *week_number = fix->week_number;
 	    *week_round_number = 1;
@@ -1132,7 +1138,8 @@ fixture_get_previous_week(gint *week_number, gint *week_round_number)
 	if((fix->week_number < local_week ||
 	   (fix->week_number == local_week && fix->week_round_number < local_round)) &&
 	   (fix->week_number > *week_number ||
-	    (fix->week_number == *week_number && fix->week_round_number > *week_round_number)))
+	    (fix->week_number == *week_number && fix->week_round_number > *week_round_number)) &&
+	   (fix->clid == current_user.tm->clid || opt_user_int("int_opt_user_show_all_leagues")))
 	{
 	    *week_number = fix->week_number;
 	    *week_round_number = 1;

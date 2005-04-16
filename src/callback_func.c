@@ -14,6 +14,7 @@
 #include "team.h"
 #include "transfer.h"
 #include "treeview.h"
+#include "treeview_helper.h"
 #include "user.h"
 #include "window.h"
 
@@ -349,7 +350,7 @@ callback_show_team(gint type)
 
     if(type == SHOW_CURRENT)
     {
-	tm = (const Team*)treeview_get_pointer(treeview_right, 2);
+	tm = (const Team*)treeview_helper_get_pointer(treeview_right, 2);
 	stat1 = team_get_index(tm);
     }
     else if(type == SHOW_NEXT)

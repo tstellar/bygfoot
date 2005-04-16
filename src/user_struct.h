@@ -61,6 +61,8 @@ typedef struct
     OptionList options;
     /** Events shown each week. */
     GArray *events;
+    /** User history. */
+    GArray *history;
     /** User counters (not changeable by the user),
 	like number of weeks until debt has to be paid back. */
     gint counters[COUNT_USER_END];
@@ -111,5 +113,39 @@ typedef struct
     GString *value_string;
 
 } Event;
+
+
+/** User-related things that get recorded. */
+enum UserHistoryType
+{
+    USER_HISTORY_START_GAME = 0,
+    USER_HISTORY_FIRE_FINANCES,
+    USER_HISTORY_FIRE_FAILURE,
+    USER_HISTORY_JOB_OFFER_ACCEPTED,
+    USER_HISTORY_END_SEASON,
+    USER_HISTORY_PROMOTED,
+    USER_HISTORY_RELEGATED,
+    USER_HISTORY_WIN_FINAL,
+    USER_HISTORY_LOSE_FINAL,
+    USER_HISTORY_REACH_CUP_ROUND,
+    USER_HISTORY_END
+};
+
+/** A structure holding an element of a user's history,
+    e.g. the event of being fired. */
+typedef struct
+{
+    /** When the event happened. */
+    gint season, week;
+    
+    /** The type (see #UserHistoryType) and team
+	of the user. */
+    gint type, team_id,
+	/** These can hold various information like
+	    team or league/cup ids. */
+	value1, value2;
+    GString *value_string;
+
+} UserHistory;
 
 #endif

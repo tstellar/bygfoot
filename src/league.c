@@ -3,6 +3,7 @@
 #include "maths.h"
 #include "option.h"
 #include "player.h"
+#include "user.h"
 #include "table.h"
 #include "team.h"
 #include "variables.h"
@@ -304,6 +305,18 @@ league_get_team_movements(League *league, GArray *team_movements)
 	    new_move.league_idx = league_index_from_sid(g_array_index(elements, PromRelElement, i).dest_sid->str);
 
 	    g_array_append_val(team_movements, new_move);
+
+	    if(team_is_user(g_array_index(league->table.elements, TableElement, j - 1).team) != -1)
+	    {
+		if(g_array_index(elements, PromRelElement, i).type == PROM_REL_PROMOTION)
+		    user_history_add(&usr(team_is_user(
+					      g_array_index(league->table.elements, TableElement, j - 1).team)),
+				     USER_HISTORY_PROMOTED, new_move.tm.id, lig(new_move.league_idx).id, -1, "");
+		else
+		    user_history_add(&usr(team_is_user(
+					      g_array_index(league->table.elements, TableElement, j - 1).team)),
+				     USER_HISTORY_RELEGATED, new_move.tm.id, lig(new_move.league_idx).id, -1, "");
+	    }
 	}
     }
 
@@ -341,6 +354,11 @@ league_get_team_movements(League *league, GArray *team_movements)
 	    new_move.tm = *((Team*)g_ptr_array_index(prom_games_teams, i));
 	    new_move.league_idx = dest_idx;
 	    g_array_append_val(team_movements, new_move);
+
+	    if(team_is_user((Team*)g_ptr_array_index(prom_games_teams, i)) != -1)
+		user_history_add(&usr(team_is_user(
+					  (Team*)g_ptr_array_index(prom_games_teams, i))),
+				 USER_HISTORY_PROMOTED, new_move.tm.id, lig(dest_idx).id, -1, "");
 	}
 
 	if(strlen(league->prom_rel.prom_games_loser_sid->str) > 0)
@@ -352,6 +370,11 @@ league_get_team_movements(League *league, GArray *team_movements)
 		new_move.tm = *((Team*)g_ptr_array_index(prom_games_teams, i));
 		new_move.league_idx = dest_idx;
 		g_array_append_val(team_movements, new_move);
+
+		if(team_is_user((Team*)g_ptr_array_index(prom_games_teams, i)) != -1)
+			user_history_add(&usr(team_is_user(
+						  (Team*)g_ptr_array_index(prom_games_teams, i))),
+					 USER_HISTORY_RELEGATED, new_move.tm.id, lig(dest_idx).id, -1, "");
 	    }
 	}
 
@@ -386,7 +409,6 @@ league_season_start(League *league)
 	    g_array_index(league->table.elements, TableElement, i).values[j] = 0;
     }
 
-    /*todo: make teams better if user champion?*/
     for(i=0;i<league->teams->len;i++)
     {
 	team_change_factor = 

@@ -1,6 +1,8 @@
+#include "cup.h"
 #include "fixture.h"
 #include "free.h"
 #include "game_gui.h"
+#include "league.h"
 #include "live_game.h"
 #include "maths.h"
 #include "misc.h"
@@ -25,6 +27,7 @@ user_new(void)
     live_game_reset(&new.live_game, NULL, FALSE);
 
     new.events = g_array_new(FALSE, FALSE, sizeof(Event)); 
+    new.history = g_array_new(FALSE, FALSE, sizeof(UserHistory)); 
     new.options.list = NULL;
     new.options.datalist = NULL;
 
@@ -80,6 +83,8 @@ user_set_up_team(User *user)
 	    }
 
     user->scout = user->physio = QUALITY_AVERAGE;
+    
+    user->tm->style = 0;
     
     user_set_up_finances(user);
     user_set_up_counters(user);
@@ -353,9 +358,9 @@ user_event_show_next(void)
 	    break;
 	case EVENT_TYPE_OVERDRAW:
 	    if(event->value1 == 1)
-		sprintf(buf, _("You have overdrawn your bank account. The team owners give you %d weeks to exceed your drawing credit limit again."), const_int("int_finance_overdraw_positive"));
+		sprintf(buf, _("You have overdrawn your bank account. The team owners give you %d weeks to get above your drawing credit limit."), const_int("int_finance_overdraw_positive"));
 	    else
-		sprintf(buf, _("You have overdrawn your bank account once again. Bear in mind that after the fourth time you get fired.\nThe team owners give you %d weeks to exceed your drawing credit limit again."), const_int("int_finance_overdraw_positive"));
+		sprintf(buf, _("You have overdrawn your bank account once again. Bear in mind that after the fourth time you get fired.\nThe team owners give you %d weeks to get above your drawing credit limit."), const_int("int_finance_overdraw_positive"));
 	    game_gui_show_warning(buf);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_REJECTED:
@@ -464,4 +469,146 @@ query_user_teams_have_unfit(void)
     }
 
     return FALSE;
+}
+
+/** Compare function for history sorting. */
+gint
+user_history_compare(gconstpointer a, gconstpointer b)
+{
+    gint return_value = 0;
+    const UserHistory *his1 = (const UserHistory*)a,
+	*his2 = (const UserHistory*)b;
+
+    if(his1->season < his2->season)
+	return_value = 1;
+    else if(his1->season > his2->season)
+	return_value = -1;
+    else if(his1->week < his2->week)
+	return_value = 1;
+    else if(his1->week > his2->week)
+	return_value = -1;
+
+    return return_value;
+}
+
+/** Add an element to the user history filled with the given values. */
+void
+user_history_add(User *user, gint type, gint team_id,
+		 gint value1, gint value2, gchar *string)
+{
+    gint i;
+    UserHistory new_history;
+    UserHistory *his = &new_history;
+    gboolean replace = FALSE;
+
+
+    if(type == USER_HISTORY_WIN_FINAL ||
+       type == USER_HISTORY_LOSE_FINAL ||
+       type == USER_HISTORY_REACH_CUP_ROUND)
+    {
+	for(i=0;i<user->history->len;i++)
+	    if((g_array_index(user->history, UserHistory, i).type == USER_HISTORY_WIN_FINAL ||
+		g_array_index(user->history, UserHistory, i).type == USER_HISTORY_LOSE_FINAL ||
+		g_array_index(user->history, UserHistory, i).type == USER_HISTORY_REACH_CUP_ROUND) &&
+	       g_array_index(user->history, UserHistory, i).season == season &&
+	       g_array_index(user->history, UserHistory, i).team_id == team_id &&
+	       g_array_index(user->history, UserHistory, i).value1 == value1)
+	    {
+		/** Same cup round. */
+		if(g_array_index(user->history, UserHistory, i).value2 == value2 &&
+		   type == USER_HISTORY_REACH_CUP_ROUND)
+		    return;
+
+		his = &g_array_index(user->history, UserHistory, i);
+		replace = TRUE;
+		break;
+	    }
+    }
+
+    his->season = season;
+    his->week = week;
+
+    /*todo: check for old cup comp */
+    his->type = type;
+    his->team_id = team_id;
+    his->value1 = value1;
+    his->value2 = value2;
+    
+    if(replace)
+    {
+	g_string_printf(his->value_string, "%s", string);
+	g_array_sort(user->history, (GCompareFunc)user_history_compare);
+    }
+    else
+    {
+	his->value_string = g_string_new(string);
+	g_array_prepend_val(user->history, *his);
+    }
+}
+
+/** Write the text corresponding to the history event
+    into the buffer. */
+void
+user_history_to_string(const UserHistory *history, gchar *buf)
+{
+    gchar buf2[SMALL];
+	    
+    switch(history->type)
+    {
+	default:
+	    g_warning("user_history_to_string: unknown history type %d.\n", history->type);
+	    strcpy(buf, "FIXME!!!");
+	case USER_HISTORY_START_GAME:
+	    sprintf(buf, "You start the game with %s in the %s.",
+		    team_of_id(history->team_id)->name->str,
+		    league_cup_get_name_string(history->value1));
+	    break;
+    	case USER_HISTORY_FIRE_FINANCES:
+	    sprintf(buf, "%s fires you because of financial mismanagement.\nYou find a new job with %s in the %s.",
+		    team_of_id(history->team_id)->name->str,
+		    team_of_id(history->value1)->name->str,
+		    league_cup_get_name_string(history->value2));
+	    break;
+    	case  USER_HISTORY_FIRE_FAILURE:
+	    sprintf(buf, "%s fires you because of unsuccessfulness.\nYou find a new job with %s in the %s.",
+		    team_of_id(history->team_id)->name->str,
+		    team_of_id(history->value1)->name->str,
+		    league_cup_get_name_string(history->value2));
+	    break;
+    	case  USER_HISTORY_JOB_OFFER_ACCEPTED:
+	    sprintf(buf, "%s offer you a job in the %s.\nYou accept the challenge and leave %s.",
+		    team_of_id(history->value1)->name->str,
+		    league_cup_get_name_string(history->value2),
+		    team_of_id(history->team_id)->name->str);
+	    break;
+    	case  USER_HISTORY_END_SEASON:
+	    sprintf(buf, "You finish the season in %s on rank %d.",
+		    league_cup_get_name_string(history->value1),
+		    history->value2);
+	    break;
+    	case  USER_HISTORY_PROMOTED:
+	    sprintf(buf, "You get promoted to the %s.",
+		    league_cup_get_name_string(history->value1));
+	    break;	    
+    	case  USER_HISTORY_RELEGATED:
+	    sprintf(buf, "You get relegated to the %s.",
+		    league_cup_get_name_string(history->value1));
+	    break;	    
+    	case  USER_HISTORY_WIN_FINAL:
+	    sprintf(buf, "You win the %s final against %s.",
+		    league_cup_get_name_string(history->value1),
+		    history->value_string->str);
+	    break;
+    	case  USER_HISTORY_LOSE_FINAL:
+	    sprintf(buf, "You lose in the %s final against %s.",
+		    league_cup_get_name_string(history->value1),
+		    history->value_string->str);
+	    break;
+    	case USER_HISTORY_REACH_CUP_ROUND:	    
+	    cup_get_round_name(cup_from_clid(history->value1), history->value2, buf2);
+	    sprintf(buf, "You reach the %s (round %d) of the %s.", buf2,
+		    history->value2 + 1,
+		    league_cup_get_name_string(history->value1));
+	    break;
+    }
 }

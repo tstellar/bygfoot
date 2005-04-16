@@ -8,6 +8,7 @@
 #include "support.h"
 #include "team.h"
 #include "treeview.h"
+#include "treeview_helper.h"
 #include "transfer.h"
 #include "user.h"
 #include "window.h"
@@ -150,7 +151,7 @@ misc2_callback_add_user(void)
 	GTK_ENTRY(lookup_widget(window.user_management, "entry_user_management"));
     const gchar *user_name = gtk_entry_get_text(entry_user_management);
     User new_user = user_new();
-    Team *tm = (Team*)treeview_get_pointer(treeview_user_management_teams, 2);
+    Team *tm = (Team*)treeview_helper_get_pointer(treeview_user_management_teams, 2);
     
     if(strlen(user_name) > 0)
 	g_string_printf(new_user.name, "%s", user_name);
@@ -159,6 +160,8 @@ misc2_callback_add_user(void)
 
     new_user.tm = tm;
     new_user.team_id = tm->id;
+
+    user_history_add(&new_user, USER_HISTORY_START_GAME, tm->id, tm->clid, -1, "");
 
     g_array_append_val(users, new_user);
 
