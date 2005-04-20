@@ -548,6 +548,12 @@ cup_get_first_week_of_cup_round(const Cup *cup, gint cup_round)
 	week_number = cup_get_first_week_of_cup_round(cup, cup_round + 1) -
 	    cup_get_matchdays_in_cup_round(cup, cup_round) * cup->week_gap;
 
+    if(week_number <= 0)
+    {
+	g_warning("cup_get_first_week_of_cup_round: first week of cup %s cup round %d is not positive (%d).\nPlease lower the week gap or set a later last week.\n", cup->name->str, cup_round, week_number);
+	main_exit_program(EXIT_FIRST_WEEK_ERROR, NULL);
+    }
+
     return week_number;
 }
 
@@ -668,19 +674,15 @@ cup_round_name(const Fixture *fix, gchar *buf)
 
     cup_get_round_name(cup, fix->round, buf);
 
-    if(cup_round->round_robin_number_of_groups == 0)
-	strcpy(buf, "Round robin");
-    {	    
-	if(cup_round->home_away)
-	{
-	    if(fix->second_leg)
-		strcat(buf, " -- Second leg");
-	    else
-		strcat(buf, " -- First leg");
-	}
-	else if(fix->replay_number > 0)
-	    strcat(buf, " -- Replay match");
-    }	
+    if(cup_round->home_away)
+    {
+	if(fix->second_leg)
+	    strcat(buf, " -- Second leg");
+	else
+	    strcat(buf, " -- First leg");
+    }
+    else if(fix->replay_number > 0)
+	strcat(buf, " -- Replay match");
 }
 
 /** Return the cup round given by the number. */

@@ -68,13 +68,14 @@ file_find_support_file                       (const gchar     *filename, gboolea
     {
       gchar *pathname = g_strdup_printf ("%s%s%s", (gchar*)elem->data,
                                          G_DIR_SEPARATOR_S, filename);
-      if (g_file_test (pathname, G_FILE_TEST_EXISTS))
+      if (g_file_test (pathname, G_FILE_TEST_EXISTS) &&
+	  !g_file_test(pathname, G_FILE_TEST_IS_DIR))
         return pathname;
-
+      
       g_free (pathname);
       elem = elem->next;
     }
-
+  
   if(warning)
       g_warning("file_find_support_file: file '%s' not found.", filename);
 
@@ -181,35 +182,64 @@ file_check_home_dir_copy_conf_files(void)
 
 /** Copy the xml definition files into the home dir. */
 void
-file_check_home_dir_copy_definition_files(void)
+file_check_home_dir_copy_definition_dir(const gchar *dirname, const gchar *basename)
 {
     gint i;
-    gchar buf[SMALL];
+    gchar buf[SMALL], buf2[SMALL];
     const gchar *home = g_get_home_dir();
-    GPtrArray *dir_contents = NULL;    
+    GPtrArray *dir_contents = NULL;
+
+    sprintf(buf, "%s/%s/%s", home, HOMEDIRNAME, basename);
+
+    if(!g_file_test(buf, G_FILE_TEST_EXISTS))
+    {
+	sprintf(buf2, "mkdir -v %s", buf);
+	file_my_system(buf2);
+    }
+
+    dir_contents = file_dir_get_contents(dirname, "", "");
+
+    for(i=0;i<dir_contents->len;i++)
+    {
+	sprintf(buf, "%s/%s/%s/%s", home, HOMEDIRNAME, basename,
+		((GString*)g_ptr_array_index(dir_contents, i))->str);
+	
+	if(g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, ".xml") &&
+	   !g_file_test(buf, G_FILE_TEST_EXISTS))
+	{
+	    
+	    sprintf(buf2, "cp -v %s/%s %s", dirname,
+		    ((GString*)g_ptr_array_index(dir_contents, i))->str,
+		    buf);
+	    file_my_system(buf2);
+
+	}
+	else
+	{
+	    sprintf(buf, "%s/%s", dirname, ((GString*)g_ptr_array_index(dir_contents, i))->str);
+
+	    if(g_file_test(buf, G_FILE_TEST_IS_DIR))
+	    {
+		sprintf(buf2, "%s/%s", basename, 
+			((GString*)g_ptr_array_index(dir_contents, i))->str);
+		file_check_home_dir_copy_definition_dir(buf, buf2);
+	    }
+	}
+    }
+    
+    free_g_string_array(&dir_contents);
+}
+
+/** Copy the xml definition files into the home dir. */
+void
+file_check_home_dir_copy_definition_files(void)
+{
     GList *elem = support_directories;
   
     while(elem != NULL)
     {	
 	if(g_str_has_suffix((gchar*)elem->data, "definitions"))
-	{
-	    dir_contents = file_dir_get_contents((gchar*)elem->data, "", ".xml");
-	    
-	    for(i=0;i<dir_contents->len;i++)
-	    {
-		sprintf(buf, "%s/%s/definitions/%s", home, HOMEDIRNAME, 
-			((GString*)g_ptr_array_index(dir_contents, i))->str);
-		if(!g_file_test(buf, G_FILE_TEST_EXISTS))
-		{
-		    sprintf(buf, "cp -v %s/%s %s/%s/definitions/%s", (gchar*)elem->data,
-			    ((GString*)g_ptr_array_index(dir_contents, i))->str,
-			    home, HOMEDIRNAME, ((GString*)g_ptr_array_index(dir_contents, i))->str);
-		    file_my_system(buf);
-		}
-	    }
-
-	    free_g_string_array(&dir_contents);
-	}
+	    file_check_home_dir_copy_definition_dir((const gchar*)elem->data, "definitions");
 
 	elem = elem->next;
     }

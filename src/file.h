@@ -47,6 +47,9 @@ file_check_home_dir_copy_conf_files(void);
 void
 file_check_home_dir_copy_definition_files(void);
 
+void
+file_check_home_dir_copy_definition_dir(const gchar *dirname, const gchar *basename);
+
 gboolean
 file_my_system(const gchar *command);
 

@@ -87,6 +87,7 @@ enum ExitCodes
     EXIT_FIXTURE_WRITE_ERROR, /** There was an error writing the fixtures. */
     EXIT_USER_FIRED,
     EXIT_CUP_LAST_ROUND,
+    EXIT_FIRST_WEEK_ERROR,
     EXIT_END
 };
 

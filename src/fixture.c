@@ -373,7 +373,7 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round, GPtrArray *teams)
 
     if(first_week < 1)
     {
-	g_warning("fixture_write_round_robin: first week is not positive: %d\n", first_week);
+	g_warning("fixture_write_round_robin: first week of %s is not positive (%d).\nPlease lower the week gap or set a later last week.\n", league_cup_get_name_string(clid), first_week);
 	main_exit_program(EXIT_FIXTURE_WRITE_ERROR, NULL);
     }
 
