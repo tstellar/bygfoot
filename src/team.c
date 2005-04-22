@@ -450,33 +450,36 @@ team_get_average_skill(const Team *tm, gboolean cskill)
     return (counter > 0) ? sum / (gfloat)counter : 0;
 }
 
-/** Return the rank of the team.
-    @param tm The team we examine. 
-    @param clid The league or cup we browse the table of. */
+/** Return the rank of the team in the league tables. */
 gint
-team_rank(const Team *tm, gint clid)
+team_get_league_rank(const Team *tm)
+{
+    gint i;
+    GArray *elements = league_from_clid(tm->clid)->table.elements;
+
+    for(i=0;i<elements->len;i++)
+	if(g_array_index(elements, TableElement, i).team == tm)
+	    return i + 1;
+    
+    g_warning("team_get_league_rank: no rank found for team %s in league %s. \n",
+	      tm->name->str, league_cup_get_name_string(tm->clid));
+    return -1;
+}
+
+/** Return the rank of the team in the round robin stage. */
+gint
+team_get_cup_rank(const Team *tm, const CupRound *cupround)
 {
     gint i, j;
-    GArray *elements = NULL;
 
-    if(clid < ID_CUP_START)
+    for(i=0;i<cupround->tables->len;i++)
     {
-	elements = league_from_clid(clid)->table.elements;
-	for(i=0;i<elements->len;i++)
-	    if(g_array_index(elements, TableElement, i).team == tm)
-		return i + 1;
-    }
-    else
-    {
-	for(i=0;i<cup_from_clid(clid)->tables->len;i++)
-	{
-	    elements = g_array_index(cup_from_clid(clid)->tables, Table, i).elements;
-	    for(j=0;j<elements->len;j++)
-		if(g_array_index(elements, TableElement, j).team == tm)
-		    return j + 1;
-	}
+	for(j=0;j<g_array_index(cupround->tables, Table, i).elements->len;j++)
+	    if(g_array_index(g_array_index(cupround->tables, Table, i).elements, TableElement, j).team == tm)
+		return j + 1;
     }
 
+    g_warning("team_get_cup_rank: no rank found for team %s. \n ", tm->name->str);
     return -1;
 }
 
@@ -780,7 +783,7 @@ team_compare_func(gconstpointer a, gconstpointer b, gpointer data)
     if(type == TEAM_COMPARE_LEAGUE_RANK)
     {
 	if(tm1->clid == tm2->clid)
-	    return_value = misc_int_compare(team_rank(tm2, tm2->clid), team_rank(tm1, tm1->clid));
+	    return_value = misc_int_compare(team_get_league_rank(tm2), team_get_league_rank(tm1));
 	else
 	    return_value = misc_int_compare(
 		league_cup_get_index_from_clid(tm2->clid),

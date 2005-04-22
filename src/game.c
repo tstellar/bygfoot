@@ -320,7 +320,7 @@ game_assign_attendance(Fixture *fix)
 		       tm[0]->stadium.capacity);
 
     if(fix->clid < ID_CUP_START && 
-       team_rank(tm[1], fix->clid) < 
+       team_get_league_rank(tm[1]) <
        (gint)rint((gfloat)league_from_clid(fix->clid)->teams->len *
 		  const_float("float_game_stadium_attendance_rank_percentage")))
 	factor *= const_float("float_game_stadium_attendance_rank_factor");

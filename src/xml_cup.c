@@ -359,14 +359,6 @@ xml_cup_read(const gchar *cup_name, GArray *cups)
 	misc_print_error(&error, TRUE);
     }
 
-    if(g_array_index(new_cup.rounds, CupRound, new_cup.rounds->len - 1).
-       round_robin_number_of_groups != 0)
-    {
-	sprintf(buf, "xml_cup_read: last cup round of cup %s is round robin which is forbidden.\n",
-		new_cup.name->str);
-	main_exit_program(EXIT_CUP_LAST_ROUND, buf);
-    }
-
     if(cups == cps)
 	new_cup.id = cup_id_new;
     else if(cups == scps)

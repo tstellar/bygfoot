@@ -153,9 +153,9 @@ xml_load_cups(const gchar *dirname, const gchar *basename)
 void
 xml_load_cup(Cup *cup, const gchar *dirname, const gchar *basename, const GPtrArray *dir_contents)
 {
-    gint i;
-    gchar buf[SMALL];
+    gint i, j;
     Table new_table;
+    gchar buf[SMALL];
     gchar *prefix = g_strndup(basename, strlen(basename) - 4);
     Cup *local_cup = cup;
 
@@ -188,20 +188,19 @@ xml_load_cup(Cup *cup, const gchar *dirname, const gchar *basename, const GPtrAr
     sprintf(buf, "%s/%s_fixtures.xml", dirname, prefix);
     xml_loadsave_fixtures_read(buf, local_cup->fixtures);
 
-    for(i=0;i<dir_contents->len;i++)
-    {
-	if(g_str_has_prefix(((GString*)g_ptr_array_index(dir_contents, i))->str,
-			    prefix) &&
-	   query_misc_string_contains(((GString*)g_ptr_array_index(dir_contents, i))->str,
-				"_table"))
+    for(i=0;i<local_cup->rounds->len;i++)
+	for(j=0;j<dir_contents->len;j++)
 	{
-	    new_table = table_new();
-	    sprintf(buf, "%s/%s", dirname, 
-		    ((GString*)g_ptr_array_index(dir_contents, i))->str);
-	    xml_loadsave_table_read(buf, &new_table);
-	    g_array_append_val(local_cup->tables, new_table);
+	    sprintf(buf, "%s_round_%02d_table", prefix, i);
+	    if(g_str_has_prefix(((GString*)g_ptr_array_index(dir_contents, j))->str,
+				buf))
+	    {
+		sprintf(buf, "%s/%s", dirname, ((GString*)g_ptr_array_index(dir_contents, j))->str);
+		new_table = table_new();
+		xml_loadsave_table_read(buf, &new_table);
+		g_array_append_val(g_array_index(local_cup->rounds, CupRound, i).tables, new_table);
+	    }
 	}
-    }
 
     g_free(prefix);
 }

@@ -66,6 +66,11 @@ start_new_season(void)
     /*todo: nullify, promotion/relegation*/
     if(season > 1)
     {
+	for(i=0;i<users->len;i++)
+	    user_history_add(&usr(i), USER_HISTORY_END_SEASON,
+			     usr(i).team_id, usr(i).tm->clid, 
+			     team_get_league_rank(usr(i).tm), "");
+
 	start_new_season_team_movements();
 
 	for(i=0;i<users->len;i++)
@@ -253,14 +258,14 @@ end_week_round_sort_tables(void)
 				   GINT_TO_POINTER(lig(i).id));
 
     for(i=0;i<acps->len;i++)
-	if(acp(i)->tables !=  NULL && acp(i)->tables->len != 0 && 
-	   query_fixture_in_week_round(acp(i)->id, week, week_round) &&
+	if(query_fixture_in_week_round(acp(i)->id, week, week_round) &&
 	   g_array_index(acp(i)->fixtures, Fixture, acp(i)->fixtures->len - 1).round ==
-	   g_array_index(acp(i)->tables, Table, 0).round)
-	    for(j=0;j<acp(i)->tables->len;j++)
-		g_array_sort_with_data(g_array_index(acp(i)->tables, Table, j).elements,
-				       (GCompareDataFunc)table_element_compare_func,
-				       GINT_TO_POINTER(acp(i)->id));
+	   cup_has_tables(acp(i)->id))
+	    for(j=0;j<cup_get_last_tables(acp(i)->id)->len;j++)
+		g_array_sort_with_data(
+		    g_array_index(cup_get_last_tables(acp(i)->id), Table, j).elements,
+		    (GCompareDataFunc)table_element_compare_func,
+		    GINT_TO_POINTER(acp(i)->id));
 }
 
 /** Update cup fixtures. */
@@ -285,7 +290,12 @@ end_week_round_update_fixtures(void)
 	    fixture_write_cup_fixtures(&lig(i).prom_rel.prom_games_cup);
 	    g_ptr_array_add(acps, &lig(i).prom_rel.prom_games_cup);
 	}
-
+	else if(week == (lig(i).teams->len - 1) * 2 && week_round == 1 &&
+		team_is_user(g_array_index(lig(i).table.elements, TableElement, 0).team) != -1)
+	    user_history_add(&usr(team_is_user(g_array_index(lig(i).table.elements, TableElement, 0).team)),
+			     USER_HISTORY_CHAMPION, g_array_index(lig(i).table.elements, TableElement, 0).team_id,
+			     lig(i).id, -1, "");
+	    
     for(i=0;i<scps->len;i++)
     {
 	if(query_cup_supercup_begins(&scp(i)))

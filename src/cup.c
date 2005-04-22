@@ -37,7 +37,6 @@ cup_new(gboolean new_id)
     new.rounds = g_array_new(FALSE, FALSE, sizeof(CupRound));
     new.teams = g_array_new(FALSE, FALSE, sizeof(Team));
     new.user_teams = g_ptr_array_new();
-    new.tables = g_array_new(FALSE, FALSE, sizeof(Table));
     new.fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));
     new.bye = NULL;
 
@@ -73,6 +72,7 @@ cup_round_new(void)
     new.round_robin_number_of_groups = 0;
     new.round_robin_number_of_advance = -1;
     new.round_robin_number_of_best_advance = 0;
+    new.tables = g_array_new(FALSE, FALSE, sizeof(Table));
 
     return new;
 }
@@ -458,7 +458,7 @@ cup_get_teams_sorted(const Cup *cup)
 		g_ptr_array_add(teams, team_of_id(g_array_index(cup->fixtures, Fixture, i).team_ids[j]));
 	    }
 
-    g_ptr_array_sort_with_data(teams, cup_compare_success, (gpointer)cup->fixtures);
+    g_ptr_array_sort_with_data(teams, cup_compare_success, (gpointer)cup);
 
     g_array_free(team_ids, TRUE);
 
@@ -470,7 +470,9 @@ cup_get_teams_sorted(const Cup *cup)
 gint
 cup_compare_success(gconstpointer a, gconstpointer b, gpointer data)
 {
-    const GArray *fixtures = (GArray*)data;
+    const Cup *cup = (const Cup*)data;
+    const CupRound *cupround = NULL;
+    const GArray *fixtures = cup->fixtures;
     const Team *team1 = *(const Team**)a;
     const Team *team2 = *(const Team**)b;
     const Fixture *last_fix = &g_array_index(fixtures, Fixture, fixtures->len - 1);
@@ -478,13 +480,20 @@ cup_compare_success(gconstpointer a, gconstpointer b, gpointer data)
 	round_reached2 = cup_get_round_reached(team2, fixtures);
     gint return_value = 0;
 
-    if(round_reached1 < round_reached2)
+    if(team1 == team2)
+	return_value = 0;
+    else if(round_reached1 < round_reached2)
 	return_value = 1;
     else if(round_reached1 > round_reached2)
 	return_value = -1;
     else
     {
-	if(round_reached1 != last_fix->round)
+	cupround = &g_array_index(cup->rounds, CupRound, round_reached1);
+	
+	if(cupround->tables->len > 0)
+	    return_value = 
+		cup_compare_success_tables(team1, team2, cup, round_reached1);
+	else if(round_reached1 != last_fix->round)
 	    return_value = 0;
 	else
 	{
@@ -493,6 +502,34 @@ cup_compare_success(gconstpointer a, gconstpointer b, gpointer data)
 	    else
 		return_value = 1;
 	}
+    }
+
+    return return_value;
+}
+
+/** Compare two teams in cup tables. */
+gint
+cup_compare_success_tables(const Team *tm1, const Team *tm2, const Cup *cup, gint round)
+{
+    gint i, j;
+    gint return_value = 0;
+    const CupRound *cupround = &g_array_index(cup->rounds, CupRound, round);
+    const TableElement *elem1 = NULL, *elem2 = NULL;
+
+    if(team_get_cup_rank(tm1, cupround) > team_get_cup_rank(tm2, cupround))
+	return_value = 1;
+    else if(team_get_cup_rank(tm1, cupround) < team_get_cup_rank(tm2, cupround))
+	return_value = -1;
+    else
+    {
+	for(i=0;i<cupround->tables->len;i++)
+	    for(j=0;j<g_array_index(cupround->tables, Table, i).elements->len;j++)
+		if(g_array_index(g_array_index(cupround->tables, Table, i).elements, TableElement, j).team == tm1)
+		    elem1 = &g_array_index(g_array_index(cupround->tables, Table, i).elements, TableElement, j);
+		else if(g_array_index(g_array_index(cupround->tables, Table, i).elements, TableElement, j).team == tm2)
+		    elem2 = &g_array_index(g_array_index(cupround->tables, Table, i).elements, TableElement, j);
+
+	return_value = table_element_compare_func(elem1, elem2, GINT_TO_POINTER(cup->id));
     }
 
     return return_value;
@@ -674,7 +711,7 @@ cup_round_name(const Fixture *fix, gchar *buf)
 
     cup_get_round_name(cup, fix->round, buf);
 
-    if(cup_round->home_away)
+    if(cup_round->home_away && cup_round->round_robin_number_of_groups == 0)
     {
 	if(fix->second_leg)
 	    strcat(buf, " -- Second leg");
@@ -763,4 +800,21 @@ query_cup_supercup_begins(const Cup *supercup)
     }
 
     return TRUE;
+}
+
+/** Find out whether the cup contains tables
+    that can be displayed. Returns -1 if false
+    and the number of the cup round with tables
+    otherwise. */
+gint
+cup_has_tables(gint clid)
+{
+    const Cup *cup = cup_from_clid(clid);
+    gint i;
+
+    for(i=cup->rounds->len - 1;  i>=0; i--)
+	if(g_array_index(cup->rounds, CupRound, i).tables->len > 0)
+	    return i;
+
+    return -1;
 }

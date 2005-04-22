@@ -427,6 +427,7 @@ void
 user_change_team(User *user, Team *tm)
 {
     gint i;
+
     user->tm = tm;
     user->team_id = tm->id;
 
@@ -528,7 +529,6 @@ user_history_add(User *user, gint type, gint team_id,
     his->season = season;
     his->week = week;
 
-    /*todo: check for old cup comp */
     his->type = type;
     his->team_id = team_id;
     his->value1 = value1;
@@ -552,7 +552,7 @@ void
 user_history_to_string(const UserHistory *history, gchar *buf)
 {
     gchar buf2[SMALL];
-	    
+
     switch(history->type)
     {
 	default:
@@ -608,6 +608,10 @@ user_history_to_string(const UserHistory *history, gchar *buf)
 	    cup_get_round_name(cup_from_clid(history->value1), history->value2, buf2);
 	    sprintf(buf, "You reach the %s (round %d) of the %s.", buf2,
 		    history->value2 + 1,
+		    league_cup_get_name_string(history->value1));
+	    break;
+    	case USER_HISTORY_CHAMPION:	    
+	    sprintf(buf, "You are champion of the %s!",
 		    league_cup_get_name_string(history->value1));
 	    break;
     }

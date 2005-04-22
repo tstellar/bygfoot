@@ -195,7 +195,7 @@ game_gui_set_main_window_header(void)
     gtk_label_set_text(label_money, buf);
 
     gui_label_set_text_from_int(label_rank, 
-				team_rank(current_user.tm, current_user.tm->clid), FALSE);
+				team_get_league_rank(current_user.tm), FALSE);
 
     gtk_label_set_text(label_team, current_user.tm->name->str);
     gtk_label_set_text(label_league, league_from_clid(current_user.tm->clid)->name->str);    
@@ -470,7 +470,7 @@ game_gui_show_job_offer(Team *team, gint type)
     gtk_label_set_text(label_text2, buf2);
     gtk_label_set_text(label_name, team->name->str);
     gtk_label_set_text(label_league, league_from_clid(team->clid)->name->str);
-    gui_label_set_text_from_int(label_rank, team_rank(team, team->clid), FALSE);
+    gui_label_set_text_from_int(label_rank, team_get_league_rank(team), FALSE);
     misc_print_grouped_int(math_round_integer(team->stadium.capacity * 
 					      math_rndi(const_int("int_initial_money_lower"),
 							const_int("int_initial_money_upper")), 2),

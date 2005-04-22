@@ -471,7 +471,7 @@ query_league_prom_games_begin(const League *league)
     gboolean proceed = FALSE;
 
     for(i=0;i<league->prom_rel.prom_games_cup.choose_teams->len;i++)
-    {
+    {	
 	for(j=0;j<ligs->len;j++)
 	    if(strcmp(lig(j).sid->str,
 		      g_array_index(league->prom_rel.prom_games_cup.choose_teams,

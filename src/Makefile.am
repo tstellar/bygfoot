@@ -48,7 +48,7 @@ bygfoot_SOURCES = \
 	window.c file.h finance.h free.h game_gui.h gui.h interface.h main.h misc_interface.h misc2_interface.h option.h support.h user.h window.h \
 	xml.c cup.h file.h free.h gui.h league.h misc.h support.h table.h transfer_struct.h user.h variables.h xml.h xml_loadsave_cup.h xml_loadsave_league.h xml_loadsave_teams.h xml_loadsave_fixtures.h xml_loadsave_table.h xml_loadsave_transfers.h xml_loadsave_users.h \
 	xml_loadsave_misc.c cup.h file.h misc.h variables.h xml.h xml_loadsave_misc.h xml_loadsave_cup.h xml_loadsave_league.h \
-	xml_loadsave_cup.c cup.h file.h misc.h team.h xml.h xml_loadsave_cup.h xml_loadsave_fixtures.h xml_loadsave_table.h xml_loadsave_teams.h \
+	xml_loadsave_cup.c cup.h file.h misc.h table.h team.h xml.h xml_loadsave_cup.h xml_loadsave_fixtures.h xml_loadsave_table.h xml_loadsave_teams.h \
 	xml_loadsave_fixtures.c file.h fixture.h misc.h team.h xml.h xml_loadsave_fixtures.h \
 	xml_loadsave_league.c file.h league.h misc.h xml.h xml_loadsave_fixtures.h xml_loadsave_league.h xml_loadsave_table.h xml_loadsave_teams.h \
 	xml_loadsave_live_game.c cup.h file.h fixture.h league.h live_game.h misc.h variables.h xml.h xml_loadsave_live_game.h \

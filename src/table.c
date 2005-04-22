@@ -94,9 +94,10 @@ table_update_get_elements(TableElement **elements, const Fixture *fix)
 	}
     }
     else
-	for(i=0;i<cup_from_clid(fix->clid)->tables->len;i++)
+	for(i=0;i<cup_get_last_tables(fix->clid)->len;i++)
 	{
-	    table = &g_array_index(cup_from_clid(fix->clid)->tables, Table, i);
+	    table = &g_array_index(cup_get_last_tables(fix->clid), Table, i);
+
 	    if(elements[0] == NULL || elements[1] == NULL)
 		for(j=0;j<table->elements->len;j++)
 		{
@@ -134,7 +135,7 @@ table_element_compare_func(gconstpointer a,
     if(clid < ID_CUP_START)
 	cup_round = -1;
     else
-	cup_round = g_array_index(cup_from_clid(clid)->tables, Table, 0).round;
+	cup_round = cup_has_tables(clid);
     
     /*todo use misc_int_compare*/
     if(element1->values[TABLE_PTS] > element2->values[TABLE_PTS])
@@ -175,7 +176,7 @@ table_element_compare_func(gconstpointer a,
 	}
 	
 	if(fix[0] == NULL || fix[1] == NULL)
-	    value = -1;
+	    value = 0;
 	else
 	{
 	    if(fix[0]->result[0][0] + fix[1]->result[1][0] >

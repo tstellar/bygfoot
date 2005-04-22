@@ -196,13 +196,13 @@ callback_show_tables(gint type)
     else if(type == SHOW_NEXT_LEAGUE)
     {
 	clid = league_cup_get_next_clid(stat1);
-	while(clid >= ID_CUP_START && cup_from_clid(clid)->tables->len == 0)
+	while(clid >= ID_CUP_START && cup_has_tables(clid) == -1)
 	    clid = league_cup_get_next_clid(clid);
     }
     else if(type == SHOW_PREVIOUS_LEAGUE)
     {
 	clid = league_cup_get_previous_clid(stat1);
-	while(clid >= ID_CUP_START && cup_from_clid(clid)->tables->len == 0)
+	while(clid >= ID_CUP_START && cup_has_tables(clid) == -1)
 	    clid = league_cup_get_previous_clid(clid);
     }
 

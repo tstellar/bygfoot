@@ -255,6 +255,8 @@ treeview_helper_get_user_history_icon(gint history_type)
 	    return const_str("string_treeview_helper_user_history_symbol_relegated");
     	case USER_HISTORY_REACH_CUP_ROUND:
 	    return const_str("string_treeview_helper_user_history_symbol_reach_cup_round");
+    	case USER_HISTORY_CHAMPION:
+	    return const_str("string_treeview_helper_user_history_symbol_champion");
     }
 
     return NULL;

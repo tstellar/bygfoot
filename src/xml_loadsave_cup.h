@@ -11,7 +11,7 @@ void
 xml_loadsave_cup_write(const gchar *prefix, const Cup *cup);
 
 void
-xml_loadsave_cup_write_round(FILE *fil, const CupRound *cup_round);
+xml_loadsave_cup_write_round(FILE *fil, const gchar *prefix, const Cup *cup, gint round);
 
 void
 xml_loadsave_cup_write_choose_team(FILE *fil, const CupChooseTeam *choose_team);

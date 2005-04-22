@@ -73,7 +73,10 @@ gint
 team_is_user(const Team *tm);
 
 gint
-team_rank(const Team *tm, gint clid);
+team_get_cup_rank(const Team *tm, const CupRound *cupround);
+
+gint
+team_get_league_rank(const Team *tm);
 
 void
 team_change_structure(Team *tm, gint new_structure);

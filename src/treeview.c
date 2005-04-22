@@ -863,7 +863,7 @@ treeview_create_fixtures_header(const Fixture *fix, GtkListStore *liststore, gbo
 void
 treeview_create_fixture(const Fixture *fix, GtkListStore *liststore)
 {
-    gint i;
+    gint i, rank;
     GtkTreeIter iter;
     GdkPixbuf *symbol[2] = {NULL, NULL};
     gchar buf_result[SMALL], buf[3][SMALL];
@@ -896,10 +896,16 @@ treeview_create_fixture(const Fixture *fix, GtkListStore *liststore)
     fixture_result_to_buf(fix, buf_result);
 
     for(i=0;i<2;i++)
-	if(team_rank(fix->teams[i], fix->clid) != -1)
+	if(query_fixture_has_tables(fix))
+	{
+	    if(fix->clid < ID_CUP_START)
+		rank = team_get_league_rank(fix->teams[i]);
+	    else
+		rank = team_get_cup_rank(fix->teams[i], cup_get_last_tables_round(fix->clid));
+
 	    sprintf(buf[i], "<span background='%s' foreground='%s'>%s [%d]</span>",
-		    colour_bg, colour_fg, fix->teams[i]->name->str,
-		    team_rank(fix->teams[i], fix->clid));
+		    colour_bg, colour_fg, fix->teams[i]->name->str, rank);
+	}
 	else if(fix->clid >= ID_CUP_START &&
 		cup_from_clid(fix->clid)->type == CUP_TYPE_NATIONAL)
 	    sprintf(buf[i], "<span background='%s' foreground='%s'>%s (%d)</span>",
@@ -1067,6 +1073,7 @@ treeview_create_single_table(GtkListStore *liststore, const Table *table, gint n
 	gtk_list_store_append(liststore, &iter);
 
 	elem = &g_array_index(table->elements, TableElement, i);
+
 	if(table->clid >= ID_CUP_START)
 	    symbol = treeview_helper_pixbuf_from_filename(elem->team->symbol->str);
 	
@@ -1105,7 +1112,6 @@ GtkTreeModel*
 treeview_create_table(gint clid)
 {
     gint i;
-    GArray *tables = NULL;
     GtkListStore *liststore = 
 	gtk_list_store_new(11,
 			   GDK_TYPE_PIXBUF,
@@ -1119,15 +1125,15 @@ treeview_create_table(gint clid)
 			   G_TYPE_STRING,
 			   G_TYPE_STRING,
 			   G_TYPE_STRING);
-    
+
     if(clid < ID_CUP_START)
 	treeview_create_single_table(liststore, 
 				     &league_from_clid(clid)->table, -1);
     else
     {
-	tables = cup_from_clid(clid)->tables;
-	for(i=0;i<tables->len;i++)
-	    treeview_create_single_table(liststore, &g_array_index(tables, Table, i), i + 1);
+	for(i=0;i<cup_get_last_tables(clid)->len;i++)
+	    treeview_create_single_table(liststore, 
+					 &g_array_index(cup_get_last_tables(clid), Table, i), i + 1);
     }
 
     return GTK_TREE_MODEL(liststore);
@@ -1543,7 +1549,7 @@ treeview_create_next_opponent(void)
     
     if(opp->clid < ID_CUP_START)
     {
-	sprintf(buf, "%d (%s)", team_rank(opp, opp->clid), league_from_clid(opp->clid)->name->str);
+	sprintf(buf, "%d (%s)", team_get_league_rank(opp), league_cup_get_name_string(opp->clid));
 	gtk_list_store_append(liststore, &iter);
 	gtk_list_store_set(liststore, &iter, 0, _("Rank"), 1, buf, -1);
     }

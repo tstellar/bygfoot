@@ -310,7 +310,7 @@ free_cups_array(GArray **cups, gboolean reset)
 void
 free_cup(Cup *cup)
 {
-    gint i;
+    gint i, j;
     GString **strings[4] =
 	{&cup->name,
 	 &cup->short_name,
@@ -322,6 +322,11 @@ free_cup(Cup *cup)
 
     for(i=0;i<4;i++)
 	free_g_string(strings[i]);
+
+    for(i=0;i<cup->rounds->len;i++)
+	if(g_array_index(cup->rounds, CupRound, i).round_robin_number_of_groups > 0)
+	    for(j=0;j<g_array_index(cup->rounds, CupRound, i).tables->len;j++)
+		free_table(&g_array_index(g_array_index(cup->rounds, CupRound, i).tables, Table, j));
 
     if(cup->choose_teams != NULL)
 	for(i=0;i<cup->choose_teams->len;i++)
@@ -337,32 +342,6 @@ free_cup(Cup *cup)
 
     free_g_ptr_array(&cup->bye);
     free_g_ptr_array(&cup->user_teams);
-
-    free_cup_tables(cup->tables, FALSE);
-}
-
-/** Free the memory occupied by the cup tables.
-    @param tables The array containing the tables. */
-void
-free_cup_tables(GArray *tables, gboolean reset)
-{
-    gint i;
-
-    if(tables == NULL)
-    {
-	if(reset)
-	    tables = g_array_new(FALSE, FALSE, sizeof(Table));
-
-	return;
-    }
-
-    for(i=0;i<tables->len;i++)
-	free_table(&g_array_index(tables, Table, i));
-
-    free_g_array(&tables);
-
-    if(reset)
-	tables = g_array_new(FALSE, FALSE, sizeof(Table));
 }
 
 /**

@@ -1,6 +1,7 @@
 #include "cup.h"
 #include "file.h"
 #include "misc.h"
+#include "table.h"
 #include "team.h"
 #include "xml.h"
 #include "xml_loadsave_cup.h"
@@ -263,12 +264,6 @@ xml_loadsave_cup_write(const gchar *prefix, const Cup *cup)
     gchar buf[SMALL];
     FILE *fil = NULL;
 
-    for(i=0;i<cup->tables->len;i++)
-    {
-	sprintf(buf, "%s___cup_%d_table_%02d.xml", prefix, cup->id, i);
-	xml_loadsave_table_write(buf, &g_array_index(cup->tables, Table, i));
-    }
-
     sprintf(buf, "%s___cup_%d_fixtures.xml", prefix, cup->id);
     xml_loadsave_fixtures_write(buf, cup->fixtures);
 
@@ -317,8 +312,7 @@ xml_loadsave_cup_write(const gchar *prefix, const Cup *cup)
 	    &g_array_index(cup->choose_teams, CupChooseTeam, i));
 	
     for(i=0;i<cup->rounds->len;i++)
-	xml_loadsave_cup_write_round(fil,
-	    &g_array_index(cup->rounds, CupRound, i));
+	xml_loadsave_cup_write_round(fil, prefix, cup, i);
         
     if(cup->bye != NULL)
     {
@@ -355,8 +349,12 @@ xml_loadsave_cup_write_choose_team(FILE *fil, const CupChooseTeam *choose_team)
 }
 
 void
-xml_loadsave_cup_write_round(FILE *fil, const CupRound *cup_round)
+xml_loadsave_cup_write_round(FILE *fil, const gchar *prefix, const Cup *cup, gint round)
 {
+    gint i;
+    gchar buf[SMALL];
+    const CupRound *cup_round = &g_array_index(cup->rounds, CupRound, round);
+
     fprintf(fil, "<_%d>\n", TAG_CUP_ROUND);
 
     xml_write_int(fil, cup_round->home_away,
@@ -373,4 +371,10 @@ xml_loadsave_cup_write_round(FILE *fil, const CupRound *cup_round)
 		  TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE, I1);
 
     fprintf(fil, "</_%d>\n", TAG_CUP_ROUND);
+
+    for(i=0;i<cup_round->tables->len;i++)
+    {
+	sprintf(buf, "%s___cup_%d_round_%02d_table_%02d.xml", prefix, cup->id, round, i);
+	xml_loadsave_table_write(buf, &g_array_index(cup_round->tables, Table, i));
+    }
 }

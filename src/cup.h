@@ -7,6 +7,8 @@
 #include "league_struct.h"
 
 #define query_cup_is_prom(clid) (clid >= ID_PROM_CUP_START && clid < ID_SUPERCUP_START)
+#define cup_get_last_tables_round(clid) &g_array_index(cup_from_clid(clid)->rounds, CupRound, cup_has_tables(clid))
+#define cup_get_last_tables(clid) g_array_index(cup_from_clid(clid)->rounds, CupRound, cup_has_tables(clid)).tables
 
 Cup
 cup_new(gboolean new_id);
@@ -47,6 +49,9 @@ cup_round_name(const Fixture *fix, gchar *buf);
 GPtrArray*
 cup_get_teams_sorted(const Cup *cup);
 
+gint
+cup_compare_success_tables(const Team *tm1, const Team *tm2, const Cup *cup, gint round);
+
 GPtrArray*
 cup_get_teams_from_names(GPtrArray *team_names);
 
@@ -71,5 +76,8 @@ cup_get_last_week_from_first(const Cup *cup, gint first_week);
 
 void
 cup_get_round_name(const Cup *cup, gint round, gchar *buf);
+
+gint
+cup_has_tables(gint clid);
 
 #endif

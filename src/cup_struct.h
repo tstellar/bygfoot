@@ -38,6 +38,8 @@ typedef struct
 	and additionally the best 3 from all the groups.
 	Default: 0. */
     gint round_robin_number_of_best_advance;
+    /** The round robin tables (in case there is a round robin). */
+    GArray *tables;
     
 } CupRound;
 
@@ -112,8 +114,6 @@ typedef struct
     GArray *teams;
     /** Pointers to the teams from the leagues that participate. */
     GPtrArray *user_teams;
-    /** An array of tables for round robin groups. */
-    GArray *tables;
     /** The fixtures of a season for the cup. */
     GArray *fixtures;
 } Cup;
