@@ -464,7 +464,7 @@ query_user_teams_have_unfit(void)
 	{
 	    for(j=0;j<11;j++)
 		if(g_array_index(usr(i).tm->players, Player, j).health != 0 ||
-		   player_is_banned(&g_array_index(usr(i).tm->players, Player, j)))
+		   player_is_banned(&g_array_index(usr(i).tm->players, Player, j)) > 0)
 		    return TRUE;
 	}
     }
