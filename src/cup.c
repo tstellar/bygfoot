@@ -31,6 +31,7 @@ cup_new(gboolean new_id)
     new.week_gap = 1;
     new.yellow_red = 1000;
     new.skill_diff = 0;
+    new.overall_teams = -1;
 
     new.choose_teams = g_array_new(FALSE, FALSE, sizeof(CupChooseTeam));
     new.choose_team_user = cup_choose_team_new();
@@ -175,8 +176,7 @@ cup_load_choose_teams(Cup *cup)
 		g_array_remove_index(teams, j);
 	
 	free_g_string_array(&sids);
-	free_teams_array(&teams, FALSE);
-	
+	free_teams_array(&teams, FALSE);	
     }
 
     for(i=0;i<cup->teams->len;i++)
@@ -622,8 +622,8 @@ cup_get_matchdays_in_cup_round(const Cup *cup, gint cup_round)
     {
 	number_of_teams = cup_round_get_number_of_teams(cup, cup_round);
 	number_of_matchdays = 
-	    2 * (number_of_teams / g_array_index(cup->rounds, CupRound, cup_round).
-		 round_robin_number_of_groups);
+	    2 * ((number_of_teams / g_array_index(cup->rounds, CupRound, cup_round).
+		  round_robin_number_of_groups) - 1);
     }
     else if(g_array_index(cup->rounds, CupRound, cup_round).home_away)
 	number_of_matchdays = 2;
@@ -643,7 +643,7 @@ cup_round_get_number_of_teams(const Cup *cup, gint cup_round)
     gint number_of_teams = -1;
 
     if(cup_round == 0)
-	number_of_teams = cup->teams->len;
+	number_of_teams = cup->overall_teams;
     else if(g_array_index(cup->rounds, CupRound, cup_round - 1).round_robin_number_of_groups > 0)
     {
 	number_of_teams = 
@@ -665,6 +665,9 @@ cup_get_team_pointers(const Cup *cup)
 {
     gint i;
     GPtrArray *teams = team_get_pointers_from_array(cup->teams);
+
+    while(teams->len + cup->user_teams->len > cup->overall_teams)
+	g_ptr_array_remove_index(teams, math_rndi(0, teams->len - 1));
 
     for(i=0;i<cup->user_teams->len;i++)
 	g_ptr_array_add(teams, g_ptr_array_index(cup->user_teams, i));

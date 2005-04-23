@@ -18,6 +18,7 @@
 #define TAG_WEEK_GAP "week_gap"
 #define TAG_YELLOW_RED "yellow_red"
 #define TAG_SKILL_DIFF "skill_diff"
+#define TAG_OVERALL_TEAMS "overall_teams"
 #define TAG_CUP_ROUNDS "cup_rounds"
 #define TAG_CUP_ROUND "cup_round"
 #define TAG_CUP_ROUND_HOME_AWAY "home_away"
@@ -50,6 +51,7 @@ enum XmlCupStates
     STATE_WEEK_GAP,
     STATE_YELLOW_RED,
     STATE_SKILL_DIFF,
+    STATE_OVERALL_TEAMS,
     STATE_CUP_ROUNDS,
     STATE_CUP_ROUND,
     STATE_CUP_ROUND_HOME_AWAY,
@@ -127,6 +129,8 @@ xml_cup_read_start_element (GMarkupParseContext *context,
 	state = STATE_YELLOW_RED;
     else if(strcmp(element_name, TAG_SKILL_DIFF) == 0)
 	state = STATE_SKILL_DIFF;
+    else if(strcmp(element_name, TAG_OVERALL_TEAMS) == 0)
+	state = STATE_OVERALL_TEAMS;
     else if(strcmp(element_name, TAG_CUP_ROUNDS) == 0)
 	state = STATE_CUP_ROUNDS;
     else if(strcmp(element_name, TAG_CUP_ROUND) == 0)
@@ -195,6 +199,7 @@ xml_cup_read_end_element    (GMarkupParseContext *context,
        strcmp(element_name, TAG_WEEK_GAP) == 0 ||
        strcmp(element_name, TAG_YELLOW_RED) == 0 ||
        strcmp(element_name, TAG_SKILL_DIFF) == 0 ||
+       strcmp(element_name, TAG_OVERALL_TEAMS) == 0 ||
        strcmp(element_name, TAG_CUP_ROUNDS) == 0 ||
        strcmp(element_name, TAG_CHOOSE_TEAMS) == 0)
 	state = STATE_CUP;
@@ -281,6 +286,8 @@ xml_cup_read_text         (GMarkupParseContext *context,
 	new_cup.yellow_red = value;
     else if(state == STATE_SKILL_DIFF)
 	new_cup.skill_diff = value;
+    else if(state == STATE_OVERALL_TEAMS)
+	new_cup.overall_teams = value;
     else if(state == STATE_CUP_ROUND_HOME_AWAY)
 	g_array_index(new_cup.rounds, CupRound, new_cup.rounds->len - 1).home_away = value;
     else if(state == STATE_CUP_ROUND_REPLAY)

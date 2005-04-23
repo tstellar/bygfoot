@@ -91,13 +91,16 @@ typedef struct
 	the league with highest average skill.
 	Default: 0. */
     gint skill_diff;
-    /** Array with rules how teams are chosen.
-	@see #CupChooseTeam */
+    /** Number of teams participating in the cup (important
+	only for international cups). */
+    gint overall_teams;
     /** The week and week_round at the beginning of which the fixtures
 	have to be updated. */
     gint next_fixture_update_week;
     gint next_fixture_update_week_round;
 
+    /** Array with rules how teams are chosen.
+	@see #CupChooseTeam */
     GArray *choose_teams;
     /** The ChooseTeam rule according to which
 	the participant from the user's league is chosen.
