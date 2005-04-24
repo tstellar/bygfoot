@@ -223,6 +223,12 @@ user_from_team(const Team *tm)
 void
 user_weekly_update_counters(User *user)
 {
+    gint rank = team_get_league_rank(user->tm);
+    gint teamslen = (league_cup_get_teams(user->tm->clid))->len;
+    gint rank_bounds[2] = {(gint)rint(const_float("float_user_success_table_bound_upper") *
+				      (gfloat)teamslen),
+			   (gint)rint(const_float("float_user_success_table_bound_lower") *
+				      (gfloat)teamslen)};
     gint *cnts = user->counters;
     gint increase_capacity;
     gfloat increase_safety;
@@ -251,6 +257,18 @@ user_weekly_update_counters(User *user)
 
 	cnts[COUNT_USER_STADIUM_SAFETY] = 
 	    MAX(cnts[COUNT_USER_STADIUM_SAFETY] - (gint)rint(increase_safety * 100), 0);
+    }
+    
+    if(rank < rank_bounds[0])
+	user->counters[COUNT_USER_SUCCESS] += (rank_bounds[0] - rank);
+    else if(rank > rank_bounds[1])
+	user->counters[COUNT_USER_SUCCESS] -= (rank - rank_bounds[1]);
+    else
+    {
+	if(user->counters[COUNT_USER_SUCCESS] > 0)
+	    user->counters[COUNT_USER_SUCCESS] -= const_int("int_user_success_mediocre_rank_change");
+	else
+	    user->counters[COUNT_USER_SUCCESS] += const_int("int_user_success_mediocre_rank_change");
     }
 }
 
@@ -524,6 +542,46 @@ user_history_add(User *user, gint type, gint team_id,
 		replace = TRUE;
 		break;
 	    }
+    }
+
+    if(type == USER_HISTORY_WIN_FINAL)
+    {
+	if(cup_from_clid(value1)->type == CUP_TYPE_INTERNATIONAL)
+	    user->counters[COUNT_USER_SUCCESS] +=
+		const_int("int_user_success_international_winner");
+	else if(cup_from_clid(value1)->type == CUP_TYPE_NATIONAL)
+	    user->counters[COUNT_USER_SUCCESS] +=
+		const_int("int_user_success_national_winner");
+    }
+    else if(type == USER_HISTORY_LOSE_FINAL)
+    {
+	if(cup_from_clid(value1)->type == CUP_TYPE_INTERNATIONAL)
+	    user->counters[COUNT_USER_SUCCESS] +=
+		const_int("int_user_success_international_final");
+	else if(cup_from_clid(value1)->type == CUP_TYPE_NATIONAL)
+	    user->counters[COUNT_USER_SUCCESS] +=
+		const_int("int_user_success_national_final");
+    }
+    else if(type == USER_HISTORY_REACH_CUP_ROUND)
+    {
+	if(value2 == cup_from_clid(value1)->rounds->len - 2)
+	{
+	    if(cup_from_clid(value1)->type == CUP_TYPE_INTERNATIONAL)
+		user->counters[COUNT_USER_SUCCESS] +=
+		    const_int("int_user_success_international_semis");
+	    else if(cup_from_clid(value1)->type == CUP_TYPE_NATIONAL)
+		user->counters[COUNT_USER_SUCCESS] +=
+		    const_int("int_user_success_national_semis");
+	}
+	else if(value2 == cup_from_clid(value1)->rounds->len - 3)
+	{
+	    if(cup_from_clid(value1)->type == CUP_TYPE_INTERNATIONAL)
+		user->counters[COUNT_USER_SUCCESS] +=
+		    const_int("int_user_success_international_quarter");
+	    else if(cup_from_clid(value1)->type == CUP_TYPE_NATIONAL)
+		user->counters[COUNT_USER_SUCCESS] +=
+		    const_int("int_user_success_national_quarter");
+	}
     }
 
     his->season = season;

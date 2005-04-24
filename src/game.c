@@ -872,7 +872,8 @@ void
 game_post_match(Fixture *fix)
 {
     gint i;
-    User *user = NULL;
+    GPtrArray *teams = NULL;
+    Cup *cup = NULL;
 
     if(query_fixture_has_tables(fix))
 	table_update(fix);
@@ -886,24 +887,30 @@ game_post_match(Fixture *fix)
 	    team_update_post_match(fix->teams[i], fix->clid);
     }
 
-    if(fix->clid < ID_CUP_START || fixture_user_team_involved(fix) == -1)
+    if(fix->clid < ID_CUP_START || 
+       (fix->clid >= ID_PROM_CUP_START && fix->clid < ID_SUPERCUP_START))
 	return;
 
-    user = &usr(fixture_user_team_involved(fix));
+    cup = cup_from_clid(fix->clid);
 
-    if(fix->round == cup_from_clid(fix->clid)->rounds->len - 1 &&
-       fix == &g_array_index((league_cup_get_fixtures(fix->clid)), Fixture,
-			     (league_cup_get_fixtures(fix->clid))->len - 1))
+    if(fix->round == cup->rounds->len - 1 &&
+       fix == &g_array_index(cup->fixtures, Fixture, cup->fixtures->len - 1))
     {
-	if((Team*)fixture_winner_of(fix, FALSE) == user->tm)
-	    user_history_add(user, USER_HISTORY_WIN_FINAL, user->team_id, fix->clid, fix->round,
-			     fix->teams[fix->teams[0] != user->tm]->name->str);
-	else
-	    user_history_add(user, USER_HISTORY_LOSE_FINAL, user->team_id, fix->clid, fix->round,
-			     fix->teams[fix->teams[0] != user->tm]->name->str);
+	teams = cup_get_teams_sorted(cup);
+	
+	if(team_is_user((Team*)g_ptr_array_index(teams, 0)) != -1)
+	    user_history_add(&usr(team_is_user((Team*)g_ptr_array_index(teams, 0))),
+			     USER_HISTORY_WIN_FINAL, ((Team*)g_ptr_array_index(teams, 0))->id,
+			     fix->clid, fix->round,((Team*)g_ptr_array_index(teams, 1))->name->str);	    
+	else if(team_is_user((Team*)g_ptr_array_index(teams, 1)) != -1)
+	    user_history_add(&usr(team_is_user((Team*)g_ptr_array_index(teams, 1))),
+			     USER_HISTORY_LOSE_FINAL, ((Team*)g_ptr_array_index(teams, 1))->id,
+			     fix->clid, fix->round,((Team*)g_ptr_array_index(teams, 0))->name->str);
+	g_ptr_array_free(teams, TRUE);
     }
-    else
-	user_history_add(user, USER_HISTORY_REACH_CUP_ROUND, user->team_id,
+    else if(fixture_user_team_involved(fix) != -1)
+	user_history_add(&usr(fixture_user_team_involved(fix)), USER_HISTORY_REACH_CUP_ROUND,
+			 usr(fixture_user_team_involved(fix)).team_id,
 			 fix->clid, fix->round, "");
 }
 

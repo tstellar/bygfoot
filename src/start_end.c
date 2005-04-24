@@ -77,13 +77,6 @@ start_new_season(void)
 	    usr(i).tm = team_of_id(usr(i).team_id);
     }
 
-    for(i=0;i<ligs->len;i++)
-    {
-	if(season > 1)
-	    league_season_start(&lig(i));
-	fixture_write_league_fixtures(&lig(i));
-    }
-
     start_load_cup_teams();
 
     for(i=acps->len - 1;i >= 0;i--)
@@ -93,6 +86,14 @@ start_new_season(void)
 	else
 	    fixture_write_cup_fixtures(&cp(i));
     }
+
+    for(i=0;i<ligs->len;i++)
+    {
+	if(season > 1)
+	    league_season_start(&lig(i));
+	fixture_write_league_fixtures(&lig(i));
+    }
+
 }
 
 /** Fill some global variables with default values at the
@@ -137,6 +138,16 @@ start_load_cup_teams(void)
     for(i=0;i<cps->len;i++)
 	if(cp(i).type == CUP_TYPE_INTERNATIONAL)
 	{
+	    free_teams_array(&cp(i).teams, TRUE);
+	    g_ptr_array_free(cp(i).user_teams, TRUE);
+	    cp(i).user_teams = g_ptr_array_new();
+	}
+
+    for(i=0;i<cps->len;i++)
+	if(cp(i).type == CUP_TYPE_INTERNATIONAL)
+	{
+	    printf("nam %s \n ", cp(i).name->str);
+
 	    cup_load_choose_teams(&cp(i));
 	    cup_load_choose_team_user(&cp(i));
 	}
@@ -349,6 +360,9 @@ start_week(void)
 	(*start_func)();
 	start_func++;
     }
+
+    /*d*/
+    printf("succ %d \n ", usr(0).counters[COUNT_USER_SUCCESS]);
 }
 
 /** Age increase etc. of players.

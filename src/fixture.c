@@ -57,10 +57,20 @@ fixture_write_league_fixtures(League *league)
 void
 fixture_write_cup_fixtures(Cup *cup)
 {
+    gint i, j;
     GPtrArray *teams = NULL;
 
     g_array_free(cup->fixtures, TRUE);
     cup->fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));
+
+    for(i=0;i<cup->rounds->len;i++)
+    {
+	for(j=0;j<g_array_index(cup->rounds, CupRound, i).tables->len;j++)
+	    free_table(&g_array_index(g_array_index(cup->rounds, CupRound, i).tables, Table, j));
+	
+	g_array_free(g_array_index(cup->rounds, CupRound, i).tables, TRUE);
+	g_array_index(cup->rounds, CupRound, i).tables = g_array_new(FALSE, FALSE, sizeof(Table));
+    }
 
     if(cup->type == CUP_TYPE_INTERNATIONAL)
 	teams = cup_get_team_pointers(cup);
@@ -298,12 +308,6 @@ fixture_write_cup_round_robin(Cup *cup, gint cup_round, GPtrArray *teams)
 	main_exit_program(EXIT_FIXTURE_WRITE_ERROR, NULL);
     }
 
-    for(i=0;i<cupround->tables->len;i++)
-	free_table(&g_array_index(cupround->tables, Table, i));
-
-    g_array_free(cupround->tables, TRUE);
-    cupround->tables = g_array_new(FALSE, FALSE, sizeof(Table));
-
     for(i=0;i<number_of_groups;i++)
     {
 	new_table.name = g_string_new(cup->name->str);
@@ -386,8 +390,11 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round, GPtrArray *teams)
     }
 
     if(len % 2 != 0)
-	main_exit_program(EXIT_FIXTURE_WRITE_ERROR,
-			  "fixture_write_round_robin: round robin for an odd number of teams is not supported.\n");
+    {
+	g_warning("fixture_write_round_robin: round robin for an odd number of teams (%d) is not supported (cup %s).\n",
+		  len, league_cup_get_name_string(clid));
+	main_exit_program(EXIT_FIXTURE_WRITE_ERROR, "");
+    }
 
     /* first half of fixtures */
     for(i=0;i<len - 1;i++)

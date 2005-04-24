@@ -126,7 +126,7 @@ table_element_compare_func(gconstpointer a,
     GArray *fixtures;
     const Fixture *fix[2] = {NULL, NULL};
 
-    if(element1->team == element2->team)
+    if(element1->team_id == element2->team_id)
 	return 0;
 
     clid = GPOINTER_TO_INT(clid_pointer);
@@ -166,11 +166,11 @@ table_element_compare_func(gconstpointer a,
 	       g_array_index(fixtures, Fixture, i).week_number <= week &&
 	       g_array_index(fixtures, Fixture, i).week_round_number <= week_round)
 	    {
-		if(g_array_index(fixtures, Fixture, i).teams[0] == element1->team &&
-		   g_array_index(fixtures, Fixture, i).teams[1] == element2->team)
+		if(g_array_index(fixtures, Fixture, i).team_ids[0] == element1->team_id &&
+		   g_array_index(fixtures, Fixture, i).team_ids[1] == element2->team_id)
 		    fix[0] = &g_array_index(fixtures, Fixture, i);
-		else if(g_array_index(fixtures, Fixture, i).teams[1] == element1->team &&
-			g_array_index(fixtures, Fixture, i).teams[0] == element2->team)
+		else if(g_array_index(fixtures, Fixture, i).team_ids[1] == element1->team_id &&
+			g_array_index(fixtures, Fixture, i).team_ids[0] == element2->team_id)
 		    fix[1] = &g_array_index(fixtures, Fixture, i);
 	    }
 	}

@@ -118,7 +118,7 @@ main (gint argc, gchar *argv[])
     stat0 = STATUS_TEAM_SELECTION;
 
     /*d*/
-    on_button_add_player_clicked(NULL, NULL);   
+/*     on_button_add_player_clicked(NULL, NULL);    */
 
     gtk_main ();
 

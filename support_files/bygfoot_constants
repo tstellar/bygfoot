@@ -193,6 +193,27 @@ float_player_max_skill 990000
 int_initial_money_lower 80
 int_initial_money_upper 110
 
+# below and above which percentages of ranks
+# in the league table the user's success counter
+# gets incremented or decremented
+float_user_success_table_bound_upper 3000
+float_user_success_table_bound_lower 7000
+
+# how many points the user loses or gains (so that
+# his success counter converges to 0) if the team
+# rank is between the above bounds
+int_user_success_mediocre_rank_change 2
+
+# success points for reaching some cup rounds
+int_user_success_international_winner 80
+int_user_success_international_final 70
+int_user_success_international_semis 60
+int_user_success_international_quarter 40
+int_user_success_national_winner 70
+int_user_success_national_final 60
+int_user_success_national_semis 50
+int_user_success_national_quarter 30
+
 # how often a user may overdraw his bank account
 int_finance_overdraw_limit 3
 # how many weeks until he's got to be positive

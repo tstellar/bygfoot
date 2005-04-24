@@ -266,7 +266,7 @@ query_is_in_international_cups(const Team *tm)
 	    if(tm == g_ptr_array_index(cp(i).user_teams, j))
 		return TRUE;
     }
-
+    
     return FALSE;
 }
 
@@ -475,7 +475,7 @@ team_get_cup_rank(const Team *tm, const CupRound *cupround)
     for(i=0;i<cupround->tables->len;i++)
     {
 	for(j=0;j<g_array_index(cupround->tables, Table, i).elements->len;j++)
-	    if(g_array_index(g_array_index(cupround->tables, Table, i).elements, TableElement, j).team == tm)
+	    if(g_array_index(g_array_index(cupround->tables, Table, i).elements, TableElement, j).team_id == tm->id)
 		return j + 1;
     }
 

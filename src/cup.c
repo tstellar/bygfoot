@@ -105,8 +105,6 @@ cup_load_choose_teams(Cup *cup)
     GArray *leagues = NULL;
     GPtrArray *sids = NULL;
 
-    free_teams_array(&cup->teams, TRUE);
-
     for(i=0;i<cup->choose_teams->len;i++)
     {
 	choose_team = &g_array_index(cup->choose_teams, CupChooseTeam, i);
@@ -524,9 +522,9 @@ cup_compare_success_tables(const Team *tm1, const Team *tm2, const Cup *cup, gin
     {
 	for(i=0;i<cupround->tables->len;i++)
 	    for(j=0;j<g_array_index(cupround->tables, Table, i).elements->len;j++)
-		if(g_array_index(g_array_index(cupround->tables, Table, i).elements, TableElement, j).team == tm1)
+		if(g_array_index(g_array_index(cupround->tables, Table, i).elements, TableElement, j).team_id == tm1->id)
 		    elem1 = &g_array_index(g_array_index(cupround->tables, Table, i).elements, TableElement, j);
-		else if(g_array_index(g_array_index(cupround->tables, Table, i).elements, TableElement, j).team == tm2)
+		else if(g_array_index(g_array_index(cupround->tables, Table, i).elements, TableElement, j).team_id == tm2->id)
 		    elem2 = &g_array_index(g_array_index(cupround->tables, Table, i).elements, TableElement, j);
 
 	return_value = table_element_compare_func(elem1, elem2, GINT_TO_POINTER(cup->id));
