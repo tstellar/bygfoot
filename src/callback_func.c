@@ -77,6 +77,14 @@ callback_player_clicked(gint idx, GdkEventButton *event)
     if(event->type != GDK_BUTTON_PRESS)
 	return;
 
+    /*d*/
+    gint i;
+    for(i=0;i<ligs->len;i++)
+	printf("%d %s %d \n ", i, lig(i).name->str, lig(i).id);
+    printf("\n");
+    for(i=0;i<cps->len;i++)
+	printf("%d %s %d \n ", i, cp(i).name->str, cp(i).id);
+
     if(event->button == 1)
     {
 	if(selected_row[0] == -1)

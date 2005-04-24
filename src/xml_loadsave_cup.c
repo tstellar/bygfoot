@@ -15,6 +15,7 @@ enum
     TAG_CUP_TYPE,
     TAG_CUP_LAST_WEEK,
     TAG_CUP_SKILL_DIFF,    
+    TAG_CUP_OVERALL_TEAMS,    
     TAG_CUP_CHOOSE_TEAM_USER,
     TAG_CUP_CHOOSE_TEAM,
     TAG_CUP_CHOOSE_TEAM_SID,
@@ -100,6 +101,7 @@ xml_loadsave_cup_end_element    (GMarkupParseContext *context,
        tag == TAG_CUP_LAST_WEEK ||
        tag == TAG_CUP_TYPE ||
        tag == TAG_CUP_SKILL_DIFF ||
+       tag == TAG_CUP_OVERALL_TEAMS ||
        tag == TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK ||
        tag == TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK_ROUND ||
        tag == TAG_CUP_USER_TEAM ||
@@ -183,6 +185,8 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
 	new_cup->last_week = int_value;
     else if(state == TAG_CUP_SKILL_DIFF)
 	new_cup->skill_diff = int_value;
+    else if(state == TAG_CUP_OVERALL_TEAMS)
+	new_cup->overall_teams = int_value;
     else if(state == TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK)
 	new_cup->next_fixture_update_week = int_value;
     else if(state == TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK_ROUND)
@@ -283,6 +287,7 @@ xml_loadsave_cup_write(const gchar *prefix, const Cup *cup)
     xml_write_int(fil, cup->week_gap, TAG_WEEK_GAP, I0);
     xml_write_int(fil, cup->yellow_red, TAG_YELLOW_RED, I0);
     xml_write_int(fil, cup->skill_diff, TAG_CUP_SKILL_DIFF, I0);
+    xml_write_int(fil, cup->overall_teams, TAG_CUP_OVERALL_TEAMS, I0);
 
     xml_write_int(fil, cup->next_fixture_update_week, 
 		  TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK, I0);

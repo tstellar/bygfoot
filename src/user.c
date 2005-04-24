@@ -259,16 +259,19 @@ user_weekly_update_counters(User *user)
 	    MAX(cnts[COUNT_USER_STADIUM_SAFETY] - (gint)rint(increase_safety * 100), 0);
     }
     
-    if(rank < rank_bounds[0])
-	user->counters[COUNT_USER_SUCCESS] += (rank_bounds[0] - rank);
-    else if(rank > rank_bounds[1])
-	user->counters[COUNT_USER_SUCCESS] -= (rank - rank_bounds[1]);
-    else
+    if(query_league_matches_in_week(league_from_clid(user->tm->clid), week))
     {
-	if(user->counters[COUNT_USER_SUCCESS] > 0)
-	    user->counters[COUNT_USER_SUCCESS] -= const_int("int_user_success_mediocre_rank_change");
+	if(rank < rank_bounds[0])
+	    user->counters[COUNT_USER_SUCCESS] += (rank_bounds[0] - rank);
+	else if(rank > rank_bounds[1])
+	    user->counters[COUNT_USER_SUCCESS] -= (rank - rank_bounds[1]);
 	else
-	    user->counters[COUNT_USER_SUCCESS] += const_int("int_user_success_mediocre_rank_change");
+	{
+	    if(user->counters[COUNT_USER_SUCCESS] > 0)
+		user->counters[COUNT_USER_SUCCESS] -= const_int("int_user_success_mediocre_rank_change");
+	    else
+		user->counters[COUNT_USER_SUCCESS] += const_int("int_user_success_mediocre_rank_change");
+	}
     }
 }
 

@@ -146,8 +146,6 @@ start_load_cup_teams(void)
     for(i=0;i<cps->len;i++)
 	if(cp(i).type == CUP_TYPE_INTERNATIONAL)
 	{
-	    printf("nam %s \n ", cp(i).name->str);
-
 	    cup_load_choose_teams(&cp(i));
 	    cup_load_choose_team_user(&cp(i));
 	}
@@ -360,9 +358,6 @@ start_week(void)
 	(*start_func)();
 	start_func++;
     }
-
-    /*d*/
-    printf("succ %d \n ", usr(0).counters[COUNT_USER_SUCCESS]);
 }
 
 /** Age increase etc. of players.

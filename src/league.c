@@ -499,3 +499,16 @@ query_league_prom_games_begin(const League *league)
     
     return TRUE;
 }
+
+/** Find out whether there are/were league matches. */
+gboolean
+query_league_matches_in_week(const League *league, gint week_number)
+{
+    gint i;
+
+    for(i=0;i<league->fixtures->len;i++)
+	if(g_array_index(league->fixtures, Fixture, i).week_number == week_number)
+	    return TRUE;
+
+    return FALSE;
+}

@@ -63,4 +63,7 @@ query_league_rank_in_prom_games(const League *league, gint rank);
 gboolean
 query_league_prom_games_begin(const League *league);
 
+gboolean
+query_league_matches_in_week(const League *league, gint week_number);
+
 #endif

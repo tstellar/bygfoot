@@ -196,7 +196,7 @@ cup_get_choose_team_league_cup(const CupChooseTeam *ct,
 	*league = &lig(idx - 1);
 	*cup = NULL;
     }
-    else if(g_str_has_prefix(ct->sid->str, "cup"))
+    else if(g_str_has_prefix(ct->sid->str, "cup") && strlen(ct->sid->str) < 6)
     {
 	*cup = &cp(idx - 1);
 	*league = NULL;
