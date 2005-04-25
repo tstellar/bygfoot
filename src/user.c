@@ -189,11 +189,11 @@ query_user_game_in_week_round(gint usr_idx, gint week_number, gint week_round_nu
     }
     else
     {
-	for(i=0;i<cps->len;i++)
-	    for(j=0;j<cp(i).fixtures->len;j++)
-		if(fixture_user_team_involved(&g_array_index(cp(i).fixtures, Fixture, j)) == usr_idx &&
-		   g_array_index(cp(i).fixtures, Fixture, j).week_number == week_number &&
-		   g_array_index(cp(i).fixtures, Fixture, j).week_round_number == week_round_number)
+	for(i=0;i<acps->len;i++)
+	    for(j=0;j<acp(i)->fixtures->len;j++)
+		if(fixture_user_team_involved(&g_array_index(acp(i)->fixtures, Fixture, j)) == usr_idx &&
+		   g_array_index(acp(i)->fixtures, Fixture, j).week_number == week_number &&
+		   g_array_index(acp(i)->fixtures, Fixture, j).week_round_number == week_round_number)
 		    return TRUE;
     }
 

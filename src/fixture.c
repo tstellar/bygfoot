@@ -565,11 +565,11 @@ fixture_get_free_round(gint week_number, gint clid)
     if(clid < ID_CUP_START || query_cup_is_prom(clid))
 	return 1;
 
-    for(i=0;i<cps->len;i++)
-	if(cp(i).id != clid)
-	    for(j=0;j<cp(i).fixtures->len;j++)
-		if(g_array_index(cp(i).fixtures, Fixture, j).week_number == week_number &&
-		   g_array_index(cp(i).fixtures, Fixture, j).week_round_number == max_round + 1)
+    for(i=0;i<acps->len;i++)
+	if(acp(i)->id != clid)
+	    for(j=0;j<acp(i)->fixtures->len;j++)
+		if(g_array_index(acp(i)->fixtures, Fixture, j).week_number == week_number &&
+		   g_array_index(acp(i)->fixtures, Fixture, j).week_round_number == max_round + 1)
 		    max_round = MAX(max_round, 
 				    g_array_index(cp(i).fixtures, Fixture, j).week_round_number);
 
@@ -923,16 +923,15 @@ fixture_get_latest(const Team *tm)
 		    g_ptr_array_add(latest, &g_array_index(lig(i).fixtures, Fixture, j));
 	}
     
-    if(query_is_in_international_cups(tm))
-	for(i=0;i<cps->len;i++)
-	{
-	    for(j=0;j<cp(i).fixtures->len;j++)
-		if(g_array_index(cp(i).fixtures, Fixture, j).attendance == -1)
-		    break;
-		else if(g_array_index(cp(i).fixtures, Fixture, j).teams[0] == tm ||
-			g_array_index(cp(i).fixtures, Fixture, j).teams[1] == tm)
-		    g_ptr_array_add(latest, &g_array_index(cp(i).fixtures, Fixture, j));
-	}
+    for(i=0;i<acps->len;i++)
+    {
+	for(j=0;j<acp(i)->fixtures->len;j++)
+	    if(g_array_index(acp(i)->fixtures, Fixture, j).attendance == -1)
+		break;
+	    else if(g_array_index(acp(i)->fixtures, Fixture, j).teams[0] == tm ||
+		    g_array_index(acp(i)->fixtures, Fixture, j).teams[1] == tm)
+		g_ptr_array_add(latest, &g_array_index(acp(i)->fixtures, Fixture, j));
+    }
 
     g_ptr_array_sort_with_data(latest, fixture_compare_func, GINT_TO_POINTER(FIXTURE_COMPARE_DATE));
 
@@ -957,16 +956,15 @@ fixture_get_coming(const Team *tm)
 		    g_ptr_array_add(coming, &g_array_index(lig(i).fixtures, Fixture, j));
 	}
     
-    if(query_is_in_international_cups(tm))
-	for(i=0;i<cps->len;i++)
-	{
-	    for(j=cp(i).fixtures->len - 1; j >= 0; j--)
-		if(g_array_index(cp(i).fixtures, Fixture, j).attendance != -1)
-		    break;
-		else if(g_array_index(cp(i).fixtures, Fixture, j).teams[0] == tm ||
-			g_array_index(cp(i).fixtures, Fixture, j).teams[1] == tm)
-		    g_ptr_array_add(coming, &g_array_index(cp(i).fixtures, Fixture, j));
-	}
+    for(i=0;i<acps->len;i++)
+    {
+	for(j=acp(i)->fixtures->len - 1; j >= 0; j--)
+	    if(g_array_index(acp(i)->fixtures, Fixture, j).attendance != -1)
+		break;
+	    else if(g_array_index(acp(i)->fixtures, Fixture, j).teams[0] == tm ||
+		    g_array_index(acp(i)->fixtures, Fixture, j).teams[1] == tm)
+		g_ptr_array_add(coming, &g_array_index(acp(i)->fixtures, Fixture, j));
+    }
 
     g_ptr_array_sort_with_data(coming, fixture_compare_func, GINT_TO_POINTER(FIXTURE_COMPARE_DATE));
 
@@ -993,16 +991,16 @@ fixture_get_matches(const Team *tm1, const Team *tm2)
 		    g_ptr_array_add(matches, &g_array_index(lig(i).fixtures, Fixture, j));
 	    }
 
-    for(i=0;i<cps->len;i++)
-	for(j=0;j<cp(i).fixtures->len;j++)
+    for(i=0;i<acps->len;i++)
+	for(j=0;j<acp(i)->fixtures->len;j++)
 	{
-	    if(g_array_index(cp(i).fixtures, Fixture, j).attendance == -1)
+	    if(g_array_index(acp(i)->fixtures, Fixture, j).attendance == -1)
 		break;
-	    else if((g_array_index(cp(i).fixtures, Fixture, j).teams[0] == tm1 &&
-		     g_array_index(cp(i).fixtures, Fixture, j).teams[1] == tm2) ||
-		    (g_array_index(cp(i).fixtures, Fixture, j).teams[0] == tm2 &&
-		     g_array_index(cp(i).fixtures, Fixture, j).teams[1] == tm1))
-		g_ptr_array_add(matches, &g_array_index(cp(i).fixtures, Fixture, j));
+	    else if((g_array_index(acp(i)->fixtures, Fixture, j).teams[0] == tm1 &&
+		     g_array_index(acp(i)->fixtures, Fixture, j).teams[1] == tm2) ||
+		    (g_array_index(acp(i)->fixtures, Fixture, j).teams[0] == tm2 &&
+		     g_array_index(acp(i)->fixtures, Fixture, j).teams[1] == tm1))
+		g_ptr_array_add(matches, &g_array_index(acp(i)->fixtures, Fixture, j));
 	}
 
     return matches;

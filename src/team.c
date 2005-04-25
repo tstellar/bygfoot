@@ -382,23 +382,23 @@ team_get_fixture(const Team *tm, gboolean last_fixture)
 	}
     }
 
-    for(i=0;i<cps->len;i++)
+    for(i=0;i<acps->len;i++)
     {
-	if(cp(i).type == CUP_TYPE_NATIONAL ||
-	   query_is_in_cup(tm, &cp(i)))
+	if(acp(i)->type == CUP_TYPE_NATIONAL ||
+	   query_is_in_cup(tm, acp(i)))
 	{
-	    for(j=0;j<cp(i).fixtures->len;j++)
-		if((g_array_index(cp(i).fixtures, Fixture, j).teams[0] == tm ||
-		    g_array_index(cp(i).fixtures, Fixture, j).teams[1] == tm))
+	    for(j=0;j<acp(i)->fixtures->len;j++)
+		if((g_array_index(acp(i)->fixtures, Fixture, j).teams[0] == tm ||
+		    g_array_index(acp(i)->fixtures, Fixture, j).teams[1] == tm))
 		{
-		    if(g_array_index(cp(i).fixtures, Fixture, j).attendance == -1 &&
+		    if(g_array_index(acp(i)->fixtures, Fixture, j).attendance == -1 &&
 		       (next_fix == NULL ||
-			query_fixture_is_earlier(&g_array_index(cp(i).fixtures, Fixture, j), next_fix)))
-			next_fix = &g_array_index(cp(i).fixtures, Fixture, j);
-		    else if(g_array_index(cp(i).fixtures, Fixture, j).attendance != -1 &&
+			query_fixture_is_earlier(&g_array_index(acp(i)->fixtures, Fixture, j), next_fix)))
+			next_fix = &g_array_index(acp(i)->fixtures, Fixture, j);
+		    else if(g_array_index(acp(i)->fixtures, Fixture, j).attendance != -1 &&
 			    (last_fix == NULL ||
-			     query_fixture_is_later(&g_array_index(cp(i).fixtures, Fixture, j), last_fix)))
-			last_fix = &g_array_index(cp(i).fixtures, Fixture, j);
+			     query_fixture_is_later(&g_array_index(acp(i)->fixtures, Fixture, j), last_fix)))
+			last_fix = &g_array_index(acp(i)->fixtures, Fixture, j);
 		}
 	}
     }
@@ -918,12 +918,12 @@ query_team_plays(const Team *tm, gint week_number, gint week_round_number)
     }
     else
     {
-	for(i=0;i<cps->len;i++)
-	    for(j=0;j<cp(i).fixtures->len;j++)
-		if(g_array_index(cp(i).fixtures, Fixture, j).week_number == week_number && 
-		   g_array_index(cp(i).fixtures, Fixture, j).week_round_number == week_round_number &&
-		   (g_array_index(cp(i).fixtures, Fixture, j).teams[0] == tm ||
-		    g_array_index(cp(i).fixtures, Fixture, j).teams[1] == tm))
+	for(i=0;i<acps->len;i++)
+	    for(j=0;j<acp(i)->fixtures->len;j++)
+		if(g_array_index(acp(i)->fixtures, Fixture, j).week_number == week_number && 
+		   g_array_index(acp(i)->fixtures, Fixture, j).week_round_number == week_round_number &&
+		   (g_array_index(acp(i)->fixtures, Fixture, j).teams[0] == tm ||
+		    g_array_index(acp(i)->fixtures, Fixture, j).teams[1] == tm))
 		    return TRUE;
     }
 

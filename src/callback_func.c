@@ -26,38 +26,33 @@ callback_show_next_live_game(void)
 
     stat0 = STATUS_SHOW_LIVE_GAME;
 
-    if(week_round == 1)
-    {
-	for(i=0;i<ligs->len;i++)
-	    for(j=0;j<lig(i).fixtures->len;j++)
-		if(g_array_index(lig(i).fixtures, Fixture, j).week_number == week &&
-		   g_array_index(lig(i).fixtures, Fixture, j).week_round_number == week_round &&
-		   fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j)) != -1 &&
-		   g_array_index(lig(i).fixtures, Fixture, j).attendance == -1 &&
-		    option_int("int_opt_user_show_live_game",
-			       &usr(fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j))).
-			       options))
-	{
-		    live_game_calculate_fixture(&g_array_index(lig(i).fixtures, Fixture, j));
-		    return;
-		}
-    }
-    else
-    {
-	for(i=0;i<cps->len;i++)
-	    for(j=0;j<cp(i).fixtures->len;j++)
-		if(g_array_index(cp(i).fixtures, Fixture, j).week_number == week &&
-		   g_array_index(cp(i).fixtures, Fixture, j).week_round_number == week_round &&
-		   fixture_user_team_involved(&g_array_index(cp(i).fixtures, Fixture, j)) != -1 &&
-		   g_array_index(cp(i).fixtures, Fixture, j).attendance == -1 &&
-		   option_int("int_opt_user_show_live_game",
-			      &usr(fixture_user_team_involved(&g_array_index(cp(i).fixtures, Fixture, j))).
-			      options))
-		{
-		    live_game_calculate_fixture(&g_array_index(cp(i).fixtures, Fixture, j));
-		    return;
-		}
-    }
+    for(i=0;i<ligs->len;i++)
+	for(j=0;j<lig(i).fixtures->len;j++)
+	    if(g_array_index(lig(i).fixtures, Fixture, j).week_number == week &&
+	       g_array_index(lig(i).fixtures, Fixture, j).week_round_number == week_round &&
+	       fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j)) != -1 &&
+	       g_array_index(lig(i).fixtures, Fixture, j).attendance == -1 &&
+	       option_int("int_opt_user_show_live_game",
+			  &usr(fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j))).
+			  options))
+	    {
+		live_game_calculate_fixture(&g_array_index(lig(i).fixtures, Fixture, j));
+		return;
+	    }
+
+    for(i=0;i<acps->len;i++)
+	for(j=0;j<acp(i)->fixtures->len;j++)
+	    if(g_array_index(acp(i)->fixtures, Fixture, j).week_number == week &&
+	       g_array_index(acp(i)->fixtures, Fixture, j).week_round_number == week_round &&
+	       fixture_user_team_involved(&g_array_index(acp(i)->fixtures, Fixture, j)) != -1 &&
+	       g_array_index(acp(i)->fixtures, Fixture, j).attendance == -1 &&
+	       option_int("int_opt_user_show_live_game",
+			  &usr(fixture_user_team_involved(&g_array_index(acp(i)->fixtures, Fixture, j))).
+			  options))
+	    {
+		live_game_calculate_fixture(&g_array_index(acp(i)->fixtures, Fixture, j));
+		return;
+	    }
 
     window_destroy(&window.live, TRUE);
 

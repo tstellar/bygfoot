@@ -82,8 +82,8 @@ league_cup_get_index_from_clid(gint clid)
 	    }
     }
     else
-	for(i=0;i<cps->len;i++)
-	    if(cp(i).id == clid)
+	for(i=0;i<acps->len;i++)
+	    if(acp(i)->id == clid)
 	    {
 		index = i;
 		break;
@@ -127,8 +127,8 @@ league_cup_get_next_clid(gint clid)
 
 	if(i != ligs->len - 1)
 	    return_value = lig(i + 1).id;
-	else if(cps->len > 0)
-	    return_value = cp(0).id;
+	else if(acps->len > 0)
+	    return_value = acp(0)->id;
 	else
 	    return_value = lig(0).id;
     }

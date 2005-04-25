@@ -211,8 +211,8 @@ cup_get_choose_team_league_cup(const CupChooseTeam *ct,
 		break;
 	    }
 
-	for(i=0;i<cps->len;i++)
-	    if(strcmp(cp(i).sid->str, ct->sid->str) == 0)
+	for(i=0;i<acps->len;i++)
+	    if(strcmp(acp(i)->sid->str, ct->sid->str) == 0)
 	    {
 		*cup = &cp(i);
 		*league = NULL;
@@ -681,6 +681,10 @@ cup_from_clid(gint clid)
 {
     gint i;
 
+    for(i=0;i<acps->len;i++)
+	if(acp(i)->id == clid)
+	    return acp(i);
+
     for(i=0;i<cps->len;i++)
 	if(cp(i).id == clid)
 	    return &cp(i);
@@ -694,7 +698,7 @@ cup_from_clid(gint clid)
 	   lig(i).prom_rel.prom_games_cup.id == clid)
 	    return &lig(i).prom_rel.prom_games_cup;
 
-    g_warning("cup_all_from_clid: didn't find cup with id %d\n", clid);
+    g_warning("cup_from_clid: didn't find cup with id %d\n", clid);
 
     return NULL;
 }
