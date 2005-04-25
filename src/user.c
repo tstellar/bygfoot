@@ -304,7 +304,7 @@ user_weekly_update_counters(User *user)
 	if(rank < rank_bounds[0])
 	    user->counters[COUNT_USER_SUCCESS] += (rank_bounds[0] - rank);
 	else if(rank > rank_bounds[1])
-	    user->counters[COUNT_USER_SUCCESS] -= (rank - rank_bounds[1])
+	    user->counters[COUNT_USER_SUCCESS] -= (rank - rank_bounds[1]);
 	else
 	{
 	    if(user->counters[COUNT_USER_SUCCESS] > 0)
