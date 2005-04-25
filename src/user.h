@@ -79,4 +79,7 @@ user_history_to_string(const UserHistory *history, gchar *buf);
 gint
 user_history_compare(gconstpointer a, gconstpointer b);
 
+void
+user_job_offer(User *user);
+
 #endif

@@ -214,6 +214,24 @@ int_user_success_national_final 60
 int_user_success_national_semis 50
 int_user_success_national_quarter 30
 
+# success points for promotion and relegation
+int_user_success_promotion 60
+int_user_success_relegation 50
+
+# points above or below which there might be a job
+# offer
+int_user_success_offer_limit 500
+
+# base probability that the counter is considered at all
+float_user_success_counter_check 2500
+
+# probability that user gets job offer or fired if he
+# is below or above the limit
+float_user_success_base_prob 5000
+
+# factor determining the growth of the probability
+float_user_success_prob_factor 54
+
 # how often a user may overdraw his bank account
 int_finance_overdraw_limit 3
 # how many weeks until he's got to be positive

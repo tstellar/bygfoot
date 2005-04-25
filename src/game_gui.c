@@ -71,6 +71,8 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
 	gtk_widget_set_sensitive(button_live_close, TRUE);
 	gtk_widget_set_sensitive(button_pause, FALSE);
 	gtk_widget_set_sensitive(button_resume, FALSE);
+
+	game_gui_set_main_window_sensitivity(FALSE);
     }
     else if(unit->event.type == LIVE_GAME_EVENT_PENALTIES)
     {
@@ -319,6 +321,10 @@ game_gui_show_main(void)
     {
 	on_menu_user_show_last_stats_activate(NULL, NULL);
 	current_user.counters[COUNT_USER_SHOW_RES] = 0;
+
+	/** Check the success counter and offer a job 
+	    (or fire player) if necessary. */
+	user_job_offer(&current_user);
     }
     else
 	treeview_show_next_opponent();
@@ -365,8 +371,11 @@ enum MainWindowInensitiveItems
     INSENSITIVE_ITEM_MENU_MANAGE_USERS,
     INSENSITIVE_ITEM_MENU_USER_SHOW_LAST,
     INSENSITIVE_ITEM_MENU_USER_SHOW_LAST_STATS,
+    INSENSITIVE_ITEM_MENU_USER_SHOW_HISTORY,
     INSENSITIVE_ITEM_MENU_FINANCES_STADIUM,
     INSENSITIVE_ITEM_MENU_HELP,
+    INSENSITIVE_ITEM_MENU_BROWSE_PLAYERS,
+    INSENSITIVE_ITEM_MENU_OFFER_CONTRACT,
     INSENSITIVE_ITEM_END
 };
 
@@ -407,10 +416,16 @@ game_gui_set_main_window_sensitivity(gboolean value)
 	lookup_widget(window.main, "menu_user_show_last_match");
     insensitive_items[INSENSITIVE_ITEM_MENU_USER_SHOW_LAST_STATS] = 
 	lookup_widget(window.main, "menu_user_show_last_stats");
+    insensitive_items[INSENSITIVE_ITEM_MENU_USER_SHOW_HISTORY] = 
+	lookup_widget(window.main, "menu_user_show_history");
     insensitive_items[INSENSITIVE_ITEM_MENU_FINANCES_STADIUM] = 
 	lookup_widget(window.main, "menu_finances_stadium");
     insensitive_items[INSENSITIVE_ITEM_MENU_HELP] = 
 	lookup_widget(window.main, "menu_help");
+    insensitive_items[INSENSITIVE_ITEM_MENU_BROWSE_PLAYERS] = 
+	lookup_widget(window.main, "menu_browse_players");
+    insensitive_items[INSENSITIVE_ITEM_MENU_OFFER_CONTRACT] = 
+	lookup_widget(window.main, "menu_offer_new_contract");
 
     for(i=0;i<INSENSITIVE_ITEM_END;i++)
 	gtk_widget_set_sensitive(insensitive_items[i], !value);
@@ -459,8 +474,7 @@ game_gui_show_job_offer(Team *team, gint type)
 		team->name->str, team->name->str);
     else if(type == STATUS_JOB_OFFER_SUCCESS)
 	sprintf(buf, _("The owners of %s are deeply impressed by your success with %s and would like to hire you. Here's some information on %s:"),
-		current_user.tm->name->str,
-		team->name->str, team->name->str);
+		team->name->str, current_user.tm->name->str, team->name->str);
     
     strcpy(buf2, _("Accept?"));
     if(type != STATUS_JOB_OFFER_SUCCESS)

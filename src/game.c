@@ -96,10 +96,6 @@ game_get_player_contribution(const Player *pl, gint type)
 	  const_float("float_player_team_weight_forward_midfield"), 
 	  const_float("float_player_team_weight_forward_attack")}};
 
-    /*d*/
-/*     if(g_str_has_suffix(pl->team->name->str, "argate")) */
-/* 	return 80; */
-    
     return player_get_game_skill(pl, FALSE) *
 	player_weights[pl->cpos - 1][type - GAME_TEAM_VALUE_DEFEND];
 }

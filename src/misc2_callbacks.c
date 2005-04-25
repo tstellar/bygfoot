@@ -37,7 +37,12 @@ void
 on_button_offer_ok_clicked             (GtkButton       *button,
                                         gpointer         user_data)
 {
+    if(stat2 == STATUS_JOB_OFFER_SUCCESS)
+	user_history_add(&current_user, USER_HISTORY_JOB_OFFER_ACCEPTED, 
+			 current_user.tm->id, ((Team*)statp)->id, ((Team*)statp)->clid, "");
+
     user_change_team(&current_user, (Team*)statp);
+
     stat0 = STATUS_MAIN;
     game_gui_show_main();
 
@@ -51,7 +56,7 @@ void
 on_button_offer_cancel_clicked         (GtkButton       *button,
                                         gpointer         user_data)
 {
-    if(stat0 != STATUS_JOB_OFFER_SUCCESS)
+    if(stat2 != STATUS_JOB_OFFER_SUCCESS)
     {
 	if(users->len == 1)
 	    main_exit_program(EXIT_USER_FIRED, NULL);

@@ -219,6 +219,46 @@ user_from_team(const Team *tm)
     return NULL;
 }
 
+/** Check the success counter of the user and offer a new job or
+    fire him if the counter says so. */
+void
+user_job_offer(User *user)
+{
+    gchar buf[SMALL];
+    Team *new_team = NULL;
+
+    if(math_rnd(0, 1) > const_float("float_user_success_counter_check") ||
+       ABS(user->counters[COUNT_USER_SUCCESS]) < (gfloat)const_int("int_user_success_offer_limit") * 0.9)
+	return;
+
+    if(user->counters[COUNT_USER_SUCCESS] < -(gfloat)const_int("int_user_success_offer_limit") * 0.9 &&
+       !user->counters[COUNT_USER_WARNING])
+    {
+	sprintf(buf, "The owners of %s are not satisfied with the recent performance of the team. There are rumours they're looking for a new manager.", user->tm->name->str);
+	user_event_add(user, EVENT_TYPE_WARNING, -1, -1, NULL, buf);
+	user->counters[COUNT_USER_WARNING] = 1;
+	return;
+    }
+
+    if(math_rnd(0, 1) < const_float("float_user_success_base_prob") * 
+       log((gfloat)ABS(user->counters[COUNT_USER_SUCCESS]) * 
+	   const_float("float_user_success_prob_factor")))
+    {
+	if(user->counters[COUNT_USER_SUCCESS] < 0)
+	{
+	    new_team = team_get_new(user->tm, TRUE);
+	    user_event_add(user, EVENT_TYPE_FIRE_FAILURE, -1, -1, new_team, NULL);
+	    user_history_add(user, USER_HISTORY_FIRE_FAILURE, user->tm->id,
+			     new_team->id, new_team->clid, "");
+	}
+	else if(option_int("int_opt_user_show_job_offers", &user->options))
+	{
+	    new_team = team_get_new(user->tm, FALSE);
+	    user_event_add(user, EVENT_TYPE_JOB_OFFER, -1, -1, new_team, NULL);
+	}
+    }
+}
+
 /** Update the counters of the users. */
 void
 user_weekly_update_counters(User *user)
@@ -264,7 +304,7 @@ user_weekly_update_counters(User *user)
 	if(rank < rank_bounds[0])
 	    user->counters[COUNT_USER_SUCCESS] += (rank_bounds[0] - rank);
 	else if(rank > rank_bounds[1])
-	    user->counters[COUNT_USER_SUCCESS] -= (rank - rank_bounds[1]);
+	    user->counters[COUNT_USER_SUCCESS] -= (rank - rank_bounds[1])
 	else
 	{
 	    if(user->counters[COUNT_USER_SUCCESS] > 0)
@@ -373,9 +413,19 @@ user_event_show_next(void)
 	    game_gui_show_warning(event->value_string->str);
 	    break;
 	case EVENT_TYPE_FIRE_FINANCE:
-	    stat0 = STATUS_JOB_OFFER_FIRE_FINANCE;
+	    stat2 = STATUS_JOB_OFFER_FIRE_FINANCE;
 	    statp = event->value_pointer;
 	    game_gui_show_job_offer((Team*)event->value_pointer, STATUS_JOB_OFFER_FIRE_FINANCE);
+	    break;
+	case EVENT_TYPE_FIRE_FAILURE:
+	    stat2 = STATUS_JOB_OFFER_FIRE_FAILURE;
+	    statp = event->value_pointer;
+	    game_gui_show_job_offer((Team*)event->value_pointer, STATUS_JOB_OFFER_FIRE_FAILURE);
+	    break;
+	case EVENT_TYPE_JOB_OFFER:
+	    stat2 = STATUS_JOB_OFFER_SUCCESS;
+	    statp = event->value_pointer;
+	    game_gui_show_job_offer((Team*)event->value_pointer, STATUS_JOB_OFFER_SUCCESS);
 	    break;
 	case EVENT_TYPE_OVERDRAW:
 	    if(event->value1 == 1)
@@ -586,6 +636,12 @@ user_history_add(User *user, gint type, gint team_id,
 		    const_int("int_user_success_national_quarter");
 	}
     }
+    else if(type == USER_HISTORY_PROMOTED)
+	user->counters[COUNT_USER_SUCCESS] += 
+	    const_int("int_user_success_promotion");
+    else if(type == USER_HISTORY_RELEGATED)
+	user->counters[COUNT_USER_SUCCESS] -= 
+	    const_int("int_user_success_relegation");
 
     his->season = season;
     his->week = week;
