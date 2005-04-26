@@ -1,6 +1,7 @@
 #include "callbacks.h"
 #include "callback_func.h"
 #include "free.h"
+#include "game.h"
 #include "game_gui.h"
 #include "gui.h"
 #include "load_save.h"
@@ -109,7 +110,8 @@ void
 on_button_back_to_main_clicked         (GtkButton       *button,
                                         gpointer         user_data)
 {
-    stat0 = STATUS_MAIN;
+    if(stat0 != STATUS_LIVE_GAME_PAUSE)
+	stat0 = STATUS_MAIN;
     gtk_notebook_set_current_page(GTK_NOTEBOOK(lookup_widget(window.main, "notebook_player")), 0);
     game_gui_show_main();
 
@@ -177,6 +179,11 @@ on_player_list1_button_press_event     (GtkWidget       *widget,
     if(event->button == 2)
     {
 	on_menu_rearrange_team_activate(NULL, NULL);
+	return TRUE;
+    }
+    else if(stat0 == STATUS_LIVE_GAME_PAUSE && event->button == 3)
+    {
+	on_menu_reset_players_activate(NULL, NULL);
 	return TRUE;
     }
 
@@ -794,4 +801,32 @@ on_menu_user_show_history_activate     (GtkMenuItem     *menuitem,
     treeview_show_user_history();
 
     gui_set_arrows();
+}
+
+void
+on_button_reset_players_clicked        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    on_menu_reset_players_activate(NULL, NULL);
+}
+
+
+void
+on_menu_reset_players_activate         (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    gint idx = -1;
+
+    if(team_is_user(usr(stat2).live_game.fix->teams[0]) == -1 ||
+       team_is_user(usr(stat2).live_game.fix->teams[1]) == -1)
+	idx  = (team_is_user(usr(stat2).live_game.fix->teams[0]) == -1);
+    else
+    {
+	if(team_is_user(usr(stat2).live_game.fix->teams[0]) == cur_user)
+	    idx = 0;
+	else
+	    idx = 1;
+    }
+    
+    game_reset_players(idx);
 }

@@ -248,4 +248,12 @@ on_menu_fixtures_week_activate         (GtkMenuItem     *menuitem,
 void
 on_menu_user_show_history_activate     (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
+void
+on_button_reset_players_clicked        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_menu_reset_players_activate         (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
 #endif

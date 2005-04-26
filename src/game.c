@@ -386,10 +386,42 @@ game_check_live_game_resume_state(void)
 		subs[i]++;
 	
 	if(subs[i] > usr(stat2).live_game.subs_left[i])
+	{
+	    game_reset_players(i);
 	    return_value = FALSE;
+	}
     }
 
     return return_value;
+}
+
+/** Undo the player swaps the user made during a live game pause. 
+    @param idx The team index in the current live game fixture. */
+void
+game_reset_players(gint idx)
+{
+    gint i;
+    Team *tm = usr(stat2).live_game.fix->teams[idx];
+    GArray *players = g_array_new(FALSE, FALSE, sizeof(Player));
+
+    for(i=0;i<11;i++)
+	g_array_append_val(players, 
+			   *player_of_id_team(tm, usr(stat2).live_game.team_state[idx].player_ids[i]));
+    
+    for(i=0;i<tm->players->len;i++)
+	if(!query_integer_is_in_array(player_of_idx_team(tm, i)->id,
+				      usr(stat2).live_game.team_state[idx].player_ids,
+				      0, 11))
+	    g_array_append_val(players, *player_of_idx_team(tm, i));
+
+    g_array_free(tm->players, TRUE);
+
+    tm->players = players;
+
+    team_change_structure(tm, team_find_appropriate_structure(tm));
+    team_rearrange(tm);
+
+    treeview_show_user_player_list();
 }
 
 /** Find pairs of substituted players after a live game pause. */

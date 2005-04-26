@@ -317,7 +317,7 @@ game_gui_show_main(void)
     game_gui_set_main_window_header();
     treeview_show_user_player_list();
 
-    if(current_user.counters[COUNT_USER_SHOW_RES])
+    if(current_user.counters[COUNT_USER_SHOW_RES] && stat0 != STATUS_LIVE_GAME_PAUSE)
     {
 	on_menu_user_show_last_stats_activate(NULL, NULL);
 	current_user.counters[COUNT_USER_SHOW_RES] = 0;
@@ -379,6 +379,13 @@ enum MainWindowInensitiveItems
     INSENSITIVE_ITEM_END
 };
 
+enum MainWindowShowItems
+{
+    SHOW_ITEM_RESET_BUTTON = 0,
+    SHOW_ITEM_RESET_MENU,
+    SHOW_ITEM_END
+};
+
 /** Set appropriate parts of the main window insensitive when
     the live game is paused or resumed.
     @param value Whether we set sensitive or insensitive. */
@@ -387,6 +394,7 @@ game_gui_set_main_window_sensitivity(gboolean value)
 {
     gint i;
     GtkWidget *insensitive_items[INSENSITIVE_ITEM_END];
+    GtkWidget *show_items[SHOW_ITEM_END];
     
     insensitive_items[INSENSITIVE_ITEM_TOOLBAR] = 
 	lookup_widget(window.main, "hbox1");
@@ -427,8 +435,20 @@ game_gui_set_main_window_sensitivity(gboolean value)
     insensitive_items[INSENSITIVE_ITEM_MENU_OFFER_CONTRACT] = 
 	lookup_widget(window.main, "menu_offer_new_contract");
 
+    show_items[SHOW_ITEM_RESET_BUTTON] =
+	lookup_widget(window.main, "button_reset_players");
+    show_items[SHOW_ITEM_RESET_MENU] =
+	lookup_widget(window.main, "menu_reset_players");
+
     for(i=0;i<INSENSITIVE_ITEM_END;i++)
 	gtk_widget_set_sensitive(insensitive_items[i], !value);
+
+    if(value)
+	for(i=0;i<SHOW_ITEM_END;i++)
+	    gtk_widget_show(show_items[i]);
+    else
+	for(i=0;i<SHOW_ITEM_END;i++)
+	    gtk_widget_hide(show_items[i]);
 
     gtk_widget_set_sensitive(window.main, value);
 }

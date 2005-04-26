@@ -85,4 +85,7 @@ game_stadium_event(Stadium *stadium, gint type);
 void
 game_get_max_values(gfloat max_values[3]);
 
+void
+game_reset_players(gint idx);
+
 #endif

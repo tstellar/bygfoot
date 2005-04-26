@@ -15,6 +15,11 @@
   <property name="resizable">True</property>
   <property name="destroy_with_parent">False</property>
   <property name="icon">bygfoot_icon.png</property>
+  <property name="decorated">True</property>
+  <property name="skip_taskbar_hint">False</property>
+  <property name="skip_pager_hint">False</property>
+  <property name="type_hint">GDK_WINDOW_TYPE_HINT_NORMAL</property>
+  <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
   <signal name="delete_event" handler="on_button_quit_clicked" last_modification_time="Fri, 06 Feb 2004 18:11:00 GMT"/>
   <signal name="destroy_event" handler="on_button_quit_clicked" last_modification_time="Fri, 06 Feb 2004 18:10:51 GMT"/>
 
@@ -64,7 +69,7 @@
 		      <accelerator key="l" modifiers="GDK_CONTROL_MASK | GDK_SHIFT_MASK" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image293">
+			<widget class="GtkImage" id="image299">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-open</property>
 			  <property name="icon_size">1</property>
@@ -96,7 +101,7 @@
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="trennlinie1">
+		    <widget class="GtkSeparatorMenuItem" id="trennlinie1">
 		      <property name="visible">True</property>
 		    </widget>
 		  </child>
@@ -132,7 +137,7 @@
 		      <accelerator key="p" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image294">
+			<widget class="GtkImage" id="image300">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-preferences</property>
 			  <property name="icon_size">1</property>
@@ -146,7 +151,7 @@
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="trennlinie7">
+		    <widget class="GtkSeparatorMenuItem" id="trennlinie7">
 		      <property name="visible">True</property>
 		    </widget>
 		  </child>
@@ -489,8 +494,17 @@
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="trennlinie11">
+		    <widget class="GtkSeparatorMenuItem" id="trennlinie11">
 		      <property name="visible">True</property>
+		    </widget>
+		  </child>
+
+		  <child>
+		    <widget class="GtkMenuItem" id="menu_reset_players">
+		      <property name="tooltip" translatable="yes">Reset player list to the formation at the beginning of the live game pause (right click on player list)</property>
+		      <property name="label" translatable="yes">Reset player list</property>
+		      <property name="use_underline">True</property>
+		      <signal name="activate" handler="on_menu_reset_players_activate" last_modification_time="Tue, 26 Apr 2005 13:16:39 GMT"/>
 		    </widget>
 		  </child>
 
@@ -515,7 +529,7 @@
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="trennlinie8">
+		    <widget class="GtkSeparatorMenuItem" id="trennlinie8">
 		      <property name="visible">True</property>
 		    </widget>
 		  </child>
@@ -597,7 +611,7 @@
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="trennlinie10">
+		    <widget class="GtkSeparatorMenuItem" id="trennlinie10">
 		      <property name="visible">True</property>
 		    </widget>
 		  </child>
@@ -644,7 +658,7 @@
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="trennlinie12">
+		    <widget class="GtkSeparatorMenuItem" id="trennlinie12">
 		      <property name="visible">True</property>
 		    </widget>
 		  </child>
@@ -660,7 +674,7 @@
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="trennlinie9">
+		    <widget class="GtkSeparatorMenuItem" id="trennlinie9">
 		      <property name="visible">True</property>
 		    </widget>
 		  </child>
@@ -674,7 +688,7 @@
 		      <accelerator key="F9" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image295">
+			<widget class="GtkImage" id="image301">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-go-forward</property>
 			  <property name="icon_size">1</property>
@@ -696,7 +710,7 @@
 		      <accelerator key="F8" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image296">
+			<widget class="GtkImage" id="image302">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-go-back</property>
 			  <property name="icon_size">1</property>
@@ -718,7 +732,7 @@
 		      <accelerator key="F12" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image297">
+			<widget class="GtkImage" id="image303">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-justify-fill</property>
 			  <property name="icon_size">1</property>
@@ -811,6 +825,7 @@
 	      <property name="tooltip" translatable="yes">Load game (Ctrl - O)</property>
 	      <property name="can_focus">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
 	      <signal name="clicked" handler="on_button_load_clicked" last_modification_time="Fri, 06 Feb 2004 10:20:08 GMT"/>
 
 	      <child>
@@ -839,6 +854,7 @@
 	      <property name="tooltip" translatable="yes">Save game (Ctrl - S)</property>
 	      <property name="can_focus">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
 	      <signal name="clicked" handler="on_button_save_clicked" last_modification_time="Fri, 06 Feb 2004 10:20:01 GMT"/>
 
 	      <child>
@@ -867,6 +883,7 @@
 	      <property name="tooltip" translatable="yes">Quit (Ctrl - Q)</property>
 	      <property name="can_focus">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
 	      <signal name="clicked" handler="on_button_quit_clicked" last_modification_time="Fri, 06 Feb 2004 17:14:19 GMT"/>
 
 	      <child>
@@ -921,6 +938,7 @@
 	      <property name="tooltip" translatable="yes">Back to main menu (Esc)</property>
 	      <property name="can_focus">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
 	      <signal name="clicked" handler="on_button_back_to_main_clicked" last_modification_time="Sun, 01 Feb 2004 18:32:31 GMT"/>
 	      <accelerator key="Escape" modifiers="0" signal="clicked"/>
 
@@ -950,6 +968,7 @@
 	      <property name="tooltip" translatable="yes">Show transferlist (T)</property>
 	      <property name="can_focus">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
 	      <signal name="clicked" handler="on_button_transfers_clicked" last_modification_time="Thu, 22 Jul 2004 11:14:11 GMT"/>
 	      <accelerator key="t" modifiers="0" signal="clicked"/>
 
@@ -978,6 +997,7 @@
 	      <property name="tooltip" translatable="yes">Show my last games and a preview of my next games (F1)</property>
 	      <property name="can_focus">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
 	      <signal name="clicked" handler="on_button_preview_clicked" last_modification_time="Wed, 04 Feb 2004 13:24:35 GMT"/>
 	      <accelerator key="F1" modifiers="0" signal="clicked"/>
 
@@ -1019,6 +1039,7 @@
 	      <property name="tooltip" translatable="yes">Begin a new week (Space)</property>
 	      <property name="can_focus">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
 	      <signal name="clicked" handler="on_button_new_week_clicked" last_modification_time="Tue, 03 Feb 2004 09:38:07 GMT"/>
 	      <accelerator key="space" modifiers="0" signal="clicked"/>
 
@@ -1047,6 +1068,7 @@
 	      <property name="tooltip" translatable="yes">Help (H)</property>
 	      <property name="can_focus">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
 	      <signal name="clicked" handler="on_button_help_clicked" last_modification_time="Wed, 11 Feb 2004 12:34:21 GMT"/>
 	      <accelerator key="h" modifiers="0" signal="clicked"/>
 
@@ -1112,6 +1134,8 @@
       <child>
 	<widget class="GtkEventBox" id="eventbox_main_info">
 	  <property name="visible">True</property>
+	  <property name="visible_window">True</property>
+	  <property name="above_child">False</property>
 
 	  <child>
 	    <widget class="GtkHBox" id="hbox18">
@@ -1289,6 +1313,8 @@
 		    <widget class="GtkEventBox" id="eventbox_style">
 		      <property name="visible">True</property>
 		      <property name="tooltip" translatable="yes">Right click and left click to change your playing style</property>
+		      <property name="visible_window">True</property>
+		      <property name="above_child">False</property>
 		      <signal name="button_press_event" handler="on_eventbox_style_button_press_event" last_modification_time="Fri, 11 Mar 2005 15:30:28 GMT"/>
 
 		      <child>
@@ -1312,6 +1338,8 @@
 		    <widget class="GtkEventBox" id="eventbox_boost">
 		      <property name="visible">True</property>
 		      <property name="tooltip" translatable="yes">Right click and left click to change boost state</property>
+		      <property name="visible_window">True</property>
+		      <property name="above_child">False</property>
 		      <signal name="button_press_event" handler="on_eventbox_boost_button_press_event" last_modification_time="Fri, 11 Mar 2005 15:30:40 GMT"/>
 
 		      <child>
@@ -1334,6 +1362,8 @@
 		  <child>
 		    <widget class="GtkEventBox" id="eventbox_team_name">
 		      <property name="visible">True</property>
+		      <property name="visible_window">True</property>
+		      <property name="above_child">False</property>
 
 		      <child>
 			<widget class="GtkLabel" id="label_team">
@@ -1389,6 +1419,8 @@
 	      <child>
 		<widget class="GtkEventBox" id="eventbox_rank">
 		  <property name="visible">True</property>
+		  <property name="visible_window">True</property>
+		  <property name="above_child">False</property>
 
 		  <child>
 		    <widget class="GtkHBox" id="hbox49">
@@ -1519,6 +1551,8 @@
 		<widget class="GtkEventBox" id="eventbox1">
 		  <property name="visible">True</property>
 		  <property name="tooltip" translatable="yes">First value: average current skill of the first 11 players. Second value: average skill of all players.</property>
+		  <property name="visible_window">True</property>
+		  <property name="above_child">False</property>
 
 		  <child>
 		    <widget class="GtkHBox" id="hbox50">
@@ -1709,6 +1743,33 @@
 		      <property name="fill">True</property>
 		    </packing>
 		  </child>
+
+		  <child>
+		    <widget class="GtkButton" id="button_reset_players">
+		      <property name="tooltip" translatable="yes">Reset player list to the formation at the beginning of the live game pause (right click on player list)</property>
+		      <property name="can_focus">True</property>
+		      <property name="relief">GTK_RELIEF_NORMAL</property>
+		      <property name="focus_on_click">True</property>
+		      <signal name="clicked" handler="on_button_reset_players_clicked" last_modification_time="Tue, 26 Apr 2005 13:12:43 GMT"/>
+
+		      <child>
+			<widget class="GtkImage" id="image298">
+			  <property name="visible">True</property>
+			  <property name="stock">gtk-undo</property>
+			  <property name="icon_size">4</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
+		    </widget>
+		    <packing>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">False</property>
+		    </packing>
+		  </child>
 		</widget>
 		<packing>
 		  <property name="shrink">True</property>
@@ -1734,6 +1795,7 @@
 			  <property name="tooltip" translatable="yes">Previous league/cup (1)</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
+			  <property name="focus_on_click">True</property>
 			  <signal name="clicked" handler="on_button_cl_back_clicked" last_modification_time="Mon, 14 Mar 2005 09:36:55 GMT"/>
 			  <accelerator key="1" modifiers="0" signal="clicked"/>
 
@@ -1762,6 +1824,7 @@
 			  <property name="tooltip" translatable="yes">Next league/cup (2)</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
+			  <property name="focus_on_click">True</property>
 			  <signal name="clicked" handler="on_button_cl_forward_clicked" last_modification_time="Mon, 14 Mar 2005 09:37:07 GMT"/>
 			  <accelerator key="2" modifiers="0" signal="clicked"/>
 
@@ -1790,6 +1853,7 @@
 			  <property name="tooltip" translatable="yes">Previous (Q)</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
+			  <property name="focus_on_click">True</property>
 			  <signal name="clicked" handler="on_button_browse_back_clicked" last_modification_time="Sun, 01 Feb 2004 12:04:37 GMT"/>
 			  <accelerator key="q" modifiers="0" signal="clicked"/>
 
@@ -1818,6 +1882,7 @@
 			  <property name="tooltip" translatable="yes">Next (W)</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
+			  <property name="focus_on_click">True</property>
 			  <signal name="clicked" handler="on_button_browse_forward_clicked" last_modification_time="Sun, 01 Feb 2004 12:04:29 GMT"/>
 			  <accelerator key="w" modifiers="0" signal="clicked"/>
 
