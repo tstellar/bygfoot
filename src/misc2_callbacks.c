@@ -80,7 +80,7 @@ on_button_warning_clicked              (GtkWidget       *widget,
 {
     window_destroy(&window.warning, FALSE);
 
-    if(stat1 == STATUS_SHOW_EVENT)
+    if(stat4 == STATUS_SHOW_EVENT)
 	user_event_show_next();
 
     return FALSE;
@@ -140,6 +140,9 @@ on_window_yesno_delete_event           (GtkWidget       *widget,
 {
     on_button_yesno_no_clicked(NULL, NULL);
 
+    if(stat4 == STATUS_SHOW_EVENT)
+	user_event_show_next();
+
     return FALSE;
 }
 
@@ -181,6 +184,9 @@ on_button_yesno_yes_clicked            (GtkButton       *button,
 	    main_exit_program(EXIT_OK, NULL);
 	    break;
     }
+
+    if(stat4 == STATUS_SHOW_EVENT)
+	user_event_show_next();
 }
 
 
@@ -189,6 +195,9 @@ on_button_yesno_no_clicked             (GtkButton       *button,
                                         gpointer         user_data)
 {
     window_destroy(&window.yesno, TRUE);
+
+    if(stat4 == STATUS_SHOW_EVENT)
+	user_event_show_next();
 }
 
 

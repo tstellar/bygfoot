@@ -395,7 +395,7 @@ user_event_show_next(void)
     if(current_user.events->len == 0)
 	return;
 
-    stat1 = STATUS_SHOW_EVENT;
+    stat4 = STATUS_SHOW_EVENT;
 
     event = &g_array_index(current_user.events, Event, 0);
 

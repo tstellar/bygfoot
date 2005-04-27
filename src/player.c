@@ -930,7 +930,8 @@ player_update_weekly(Team *tm, gint idx)
     }
 
     if(pl->contract * 12 <= opt_user_int("int_opt_user_contract_limit") &&
-       (pl->contract + 0.0192) * 12 > opt_user_int("int_opt_user_contract_limit"))
+       (pl->contract + 0.0192) * 12 > opt_user_int("int_opt_user_contract_limit") &&
+       debug < 50)
     {
 	sprintf(buf, _("%s's contract expires in %.1f years."),
 		pl->name->str, pl->contract);

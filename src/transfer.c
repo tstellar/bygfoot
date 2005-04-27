@@ -64,14 +64,12 @@ transfer_add_offers(void)
 	   trans(i).offers->len == 0 &&
 	   math_rnd(0, 1) < const_float("float_transfer_offer_prob_max") -
 	   (user_from_team(trans(i).tm)->scout % 10 * const_float("float_transfer_offer_prob_reduce")))
-	{
 	    transfer_add_offer(i, transfer_team_get_new(),
 			       (gint)rint((gfloat)player_of_id_team(trans(i).tm, trans(i).id)->value *
 					  (1 + math_rnd(
 					      scout_factor_bounds[user_from_team(trans(i).tm)->scout % 10][0],
 					      scout_factor_bounds[user_from_team(trans(i).tm)->scout % 10][1]))),
 			       -1);
-	}
 	else if(team_is_user(trans(i).tm) != -1 &&
 		trans(i).offers->len > 1)
 	{
@@ -153,13 +151,14 @@ transfer_evaluate_offers(void)
 {
     gint i, j;
     gint idx;
-    gboolean accept = FALSE;
+    gboolean accept;
 
     for(i=transfer_list->len - 1;i>=0;i--)
     {
 	if(team_is_user(trans(i).tm) == -1)
 	{
 	    idx = -1;
+	    accept = FALSE;
 	    if(trans(i).offers->len > 1)
 		g_array_sort(trans(i).offers, transfer_offer_compare_func);
 

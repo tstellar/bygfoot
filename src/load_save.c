@@ -109,17 +109,23 @@ void
 load_save_load_game(const gchar* filename)
 {
     gchar buf[SMALL];
-    gchar *basename = g_path_get_basename(filename),
-	*dirname = g_path_get_dirname(filename);
-    gchar *prefix = g_strndup(basename, strlen(basename) - strlen(const_str("string_save_suffix")));
+    gchar *fullname = (g_str_has_suffix(filename, const_str("string_save_suffix"))) ?
+	g_strdup(filename) :
+	g_strdup_printf("%s%s", filename, const_str("string_save_suffix"));
+    gchar *basename = g_path_get_basename(fullname),
+	*dirname = g_path_get_dirname(fullname);
+    gchar *prefix = (g_str_has_suffix(basename, const_str("string_save_suffix"))) ?
+	g_strndup(basename, strlen(basename) - strlen(const_str("string_save_suffix"))) :
+	g_strdup(basename);
 
     gtk_widget_hide(window.main);
 
-    if(strcmp(basename, "last_save") == 0)
+    if(strcmp(filename, "last_save") == 0)
     {
 	g_free(basename);
 	g_free(dirname);
 	g_free(prefix);
+	g_free(fullname);
 
 	basename = load_save_last_save_get();
 
@@ -136,7 +142,7 @@ load_save_load_game(const gchar* filename)
 
     gui_show_progress(0, "Uncompressing savegame...");
 
-    file_decompress(filename);
+    file_decompress(fullname);
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
@@ -188,13 +194,9 @@ load_save_load_game(const gchar* filename)
     sprintf(buf, "rm -rf %s/%s___*", dirname, prefix);
     file_my_system(buf);
 
-    g_free(basename);
-    g_free(dirname);
-    g_free(prefix);
+    g_string_printf(save_file, "%s", fullname);
 
-    g_string_printf(save_file, "%s", filename);
-
-    load_save_last_save_set(filename);
+    load_save_last_save_set(fullname);
 
     gui_show_progress(-1, "");
 
@@ -204,6 +206,11 @@ load_save_load_game(const gchar* filename)
 
     cur_user = 0;
     on_button_back_to_main_clicked(NULL, NULL);
+
+    g_free(basename);
+    g_free(dirname);
+    g_free(prefix);
+    g_free(fullname);
 }
 
 /** Store the name of the last savegame in the users home dir. */
