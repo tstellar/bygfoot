@@ -91,10 +91,6 @@ on_menu_tables_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
-on_players_activate                   (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
 on_menu_season_history_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
@@ -256,4 +252,8 @@ void
 on_menu_reset_players_activate         (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
+
+void
+on_menu_league_stats_activate          (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
 #endif

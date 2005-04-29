@@ -12,6 +12,13 @@ treeview_helper_select_row(GtkTreeView *treeview, GdkEventButton *event);
 GdkPixbuf*
 treeview_helper_pixbuf_from_filename(gchar *filename);
 
+void
+treeview_helper_unref(GObject *object);
+
+void
+treeview_helper_insert_icon(GtkListStore *ls, GtkTreeIter *iter, gint column_nr,
+			    gchar *icon_name);
+
 GtkCellRenderer*
 treeview_helper_cell_renderer_text_new(void);
 
@@ -33,6 +40,9 @@ treeview_helper_get_col_number_column (GtkTreeViewColumn *col);
 void
 treeview_helper_get_table_element_colours(const Table *table, gint idx, gchar *colour_fg, 
 				   gchar *colour_bg, gboolean user);
+
+void
+treeview_helper_set_user_colours(const Team *tm, gchar **colour_bg, gchar **colour_fg);
 
 gboolean
 treeview_helper_get_table_element_colour_cups(const League *league, gint idx, gchar *colour_bg);

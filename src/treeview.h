@@ -183,4 +183,13 @@ treeview_set_up_user_history(GtkTreeView *treeview);
 GtkTreeModel*
 treeview_create_user_history(void);
 
+void
+treeview_show_league_stats(gint clid);
+
+void
+treeview_set_up_league_stats(GtkTreeView *treeview);
+
+void
+treeview_create_league_stats(GtkListStore *liststore, const League *league);
+
 #endif

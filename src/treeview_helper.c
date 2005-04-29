@@ -288,6 +288,31 @@ treeview_helper_pixbuf_from_filename(gchar *filename)
     return symbol;
 }
 
+/** Unref an object if non-null (mostly it's a pixbuf added to a treeview).*/
+void
+treeview_helper_unref(GObject *object)
+{
+    if(object == NULL)
+	return;
+
+    g_object_unref(object);
+}
+
+
+/** Insert an icon into the liststore at the given iter and
+    column.
+    @param icon_name The filename of the icon. */
+void
+treeview_helper_insert_icon(GtkListStore *ls, GtkTreeIter *iter, gint column_nr,
+			    gchar *icon_name)
+{
+    GdkPixbuf *symbol = treeview_helper_pixbuf_from_filename(icon_name);
+
+    gtk_list_store_set(ls, iter, column_nr, symbol, -1);
+    
+    treeview_helper_unref(G_OBJECT(symbol));
+}
+
 /** Function comparing two teams in a team list treeview. */
 gint
 treeview_helper_team_compare(GtkTreeModel *model,
@@ -309,7 +334,7 @@ treeview_helper_team_compare(GtkTreeModel *model,
 	    break;
 	case TEAM_COMPARE_AV_SKILL:
 	    return_value = misc_float_compare(team_get_average_skill(tm1, FALSE),
-				      team_get_average_skill(tm2, FALSE));
+					      team_get_average_skill(tm2, FALSE));
 	    break;
     }
 
@@ -416,7 +441,7 @@ treeview_helper_get_table_element_colour_cups(const League *league, gint idx, gc
     @param user Whether to take into account user colours. */
 void
 treeview_helper_get_table_element_colours(const Table *table, gint idx, gchar *colour_fg, 
-				   gchar *colour_bg, gboolean user)
+					  gchar *colour_bg, gboolean user)
 {
     gint i;
     const TableElement *elem = &g_array_index(table->elements, TableElement, idx);
@@ -473,6 +498,28 @@ treeview_helper_get_table_element_colours(const Table *table, gint idx, gchar *c
 		strcpy(colour_bg, const_str("string_treeview_table_promotion"));
 	
 	free_g_ptr_array(&cup_advance);
+    }
+}
+
+/** Set the char pointers to the constant determining the background and foreground
+    colours of user entries in treeviews if the team is a user team. */
+void
+treeview_helper_set_user_colours(const Team *tm, gchar **colour_bg, gchar **colour_fg)
+{
+    if(tm == current_user.tm)
+    {
+	*colour_fg = const_str("string_treeview_current_user_fg");
+	*colour_bg = const_str("string_treeview_current_user_bg");
+    }
+    else if(team_is_user(tm) != -1)
+    {
+	*colour_fg = const_str("string_treeview_user_fg");
+	*colour_bg = const_str("string_treeview_user_bg");
+    }
+    else
+    {
+	*colour_fg = const_str("string_treeview_helper_color_default_foreground");
+	*colour_bg = const_str("string_treeview_helper_color_default_background");
     }
 }
 

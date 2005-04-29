@@ -38,7 +38,7 @@ create_main_window (void)
   GtkWidget *menu_new;
   GtkWidget *menu_open;
   GtkWidget *menu_load_last_save;
-  GtkWidget *image299;
+  GtkWidget *image303;
   GtkWidget *menu_save;
   GtkWidget *menu_save_as;
   GtkWidget *trennlinie1;
@@ -46,7 +46,7 @@ create_main_window (void)
   GtkWidget *menu_options;
   GtkWidget *menu_options_menu;
   GtkWidget *menu_preferences;
-  GtkWidget *image300;
+  GtkWidget *image304;
   GtkWidget *trennlinie7;
   GtkWidget *menu_job_offers;
   GtkWidget *menu_live_game;
@@ -57,7 +57,8 @@ create_main_window (void)
   GtkWidget *menu_fixtures;
   GtkWidget *menu_tables;
   GtkWidget *menu_my_league_results;
-  GtkWidget *players;
+  GtkWidget *trennlinie13;
+  GtkWidget *menu_league_stats;
   GtkWidget *menu_season_history;
   GtkWidget *menu_team;
   GtkWidget *menu_team_menu;
@@ -113,11 +114,11 @@ create_main_window (void)
   GtkWidget *menu_user_show_history;
   GtkWidget *trennlinie9;
   GtkWidget *menu_next_user;
-  GtkWidget *image301;
+  GtkWidget *image305;
   GtkWidget *menu_previous_user;
-  GtkWidget *image302;
+  GtkWidget *image306;
   GtkWidget *menu_manage_users;
-  GtkWidget *image303;
+  GtkWidget *image307;
   GtkWidget *menu_finances_stadium;
   GtkWidget *menu_finances_stadium_menu;
   GtkWidget *menu_show_finances;
@@ -249,9 +250,9 @@ create_main_window (void)
                               GDK_l, GDK_CONTROL_MASK | GDK_SHIFT_MASK,
                               GTK_ACCEL_VISIBLE);
 
-  image299 = gtk_image_new_from_stock ("gtk-open", GTK_ICON_SIZE_MENU);
-  gtk_widget_show (image299);
-  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_load_last_save), image299);
+  image303 = gtk_image_new_from_stock ("gtk-open", GTK_ICON_SIZE_MENU);
+  gtk_widget_show (image303);
+  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_load_last_save), image303);
 
   menu_save = gtk_image_menu_item_new_from_stock ("gtk-save", accel_group);
   gtk_widget_show (menu_save);
@@ -284,9 +285,9 @@ create_main_window (void)
                               GDK_p, GDK_CONTROL_MASK,
                               GTK_ACCEL_VISIBLE);
 
-  image300 = gtk_image_new_from_stock ("gtk-preferences", GTK_ICON_SIZE_MENU);
-  gtk_widget_show (image300);
-  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_preferences), image300);
+  image304 = gtk_image_new_from_stock ("gtk-preferences", GTK_ICON_SIZE_MENU);
+  gtk_widget_show (image304);
+  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_preferences), image304);
 
   trennlinie7 = gtk_separator_menu_item_new ();
   gtk_widget_show (trennlinie7);
@@ -339,9 +340,14 @@ create_main_window (void)
   gtk_widget_show (menu_my_league_results);
   gtk_container_add (GTK_CONTAINER (menu_figures_menu), menu_my_league_results);
 
-  players = gtk_menu_item_new_with_mnemonic (_("Players"));
-  gtk_widget_show (players);
-  gtk_container_add (GTK_CONTAINER (menu_figures_menu), players);
+  trennlinie13 = gtk_separator_menu_item_new ();
+  gtk_widget_show (trennlinie13);
+  gtk_container_add (GTK_CONTAINER (menu_figures_menu), trennlinie13);
+  gtk_widget_set_sensitive (trennlinie13, FALSE);
+
+  menu_league_stats = gtk_menu_item_new_with_mnemonic (_("League stats"));
+  gtk_widget_show (menu_league_stats);
+  gtk_container_add (GTK_CONTAINER (menu_figures_menu), menu_league_stats);
 
   menu_season_history = gtk_menu_item_new_with_mnemonic (_("Season history"));
   gtk_widget_show (menu_season_history);
@@ -590,9 +596,9 @@ create_main_window (void)
                               GDK_F9, 0,
                               GTK_ACCEL_VISIBLE);
 
-  image301 = gtk_image_new_from_stock ("gtk-go-forward", GTK_ICON_SIZE_MENU);
-  gtk_widget_show (image301);
-  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_next_user), image301);
+  image305 = gtk_image_new_from_stock ("gtk-go-forward", GTK_ICON_SIZE_MENU);
+  gtk_widget_show (image305);
+  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_next_user), image305);
 
   menu_previous_user = gtk_image_menu_item_new_with_mnemonic (_("Previous user"));
   gtk_widget_show (menu_previous_user);
@@ -601,9 +607,9 @@ create_main_window (void)
                               GDK_F8, 0,
                               GTK_ACCEL_VISIBLE);
 
-  image302 = gtk_image_new_from_stock ("gtk-go-back", GTK_ICON_SIZE_MENU);
-  gtk_widget_show (image302);
-  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_previous_user), image302);
+  image306 = gtk_image_new_from_stock ("gtk-go-back", GTK_ICON_SIZE_MENU);
+  gtk_widget_show (image306);
+  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_previous_user), image306);
 
   menu_manage_users = gtk_image_menu_item_new_with_mnemonic (_("Manage users"));
   gtk_widget_show (menu_manage_users);
@@ -612,9 +618,9 @@ create_main_window (void)
                               GDK_F12, 0,
                               GTK_ACCEL_VISIBLE);
 
-  image303 = gtk_image_new_from_stock ("gtk-justify-fill", GTK_ICON_SIZE_MENU);
-  gtk_widget_show (image303);
-  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_manage_users), image303);
+  image307 = gtk_image_new_from_stock ("gtk-justify-fill", GTK_ICON_SIZE_MENU);
+  gtk_widget_show (image307);
+  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_manage_users), image307);
 
   menu_finances_stadium = gtk_menu_item_new_with_mnemonic (_("FinStad"));
   gtk_widget_show (menu_finances_stadium);
@@ -1076,8 +1082,8 @@ create_main_window (void)
   g_signal_connect ((gpointer) menu_my_league_results, "activate",
                     G_CALLBACK (on_menu_my_league_results_activate),
                     NULL);
-  g_signal_connect ((gpointer) players, "activate",
-                    G_CALLBACK (on_players_activate),
+  g_signal_connect ((gpointer) menu_league_stats, "activate",
+                    G_CALLBACK (on_menu_league_stats_activate),
                     NULL);
   g_signal_connect ((gpointer) menu_season_history, "activate",
                     G_CALLBACK (on_menu_season_history_activate),
@@ -1254,7 +1260,7 @@ create_main_window (void)
   GLADE_HOOKUP_OBJECT (main_window, menu_new, "menu_new");
   GLADE_HOOKUP_OBJECT (main_window, menu_open, "menu_open");
   GLADE_HOOKUP_OBJECT (main_window, menu_load_last_save, "menu_load_last_save");
-  GLADE_HOOKUP_OBJECT (main_window, image299, "image299");
+  GLADE_HOOKUP_OBJECT (main_window, image303, "image303");
   GLADE_HOOKUP_OBJECT (main_window, menu_save, "menu_save");
   GLADE_HOOKUP_OBJECT (main_window, menu_save_as, "menu_save_as");
   GLADE_HOOKUP_OBJECT (main_window, trennlinie1, "trennlinie1");
@@ -1262,7 +1268,7 @@ create_main_window (void)
   GLADE_HOOKUP_OBJECT (main_window, menu_options, "menu_options");
   GLADE_HOOKUP_OBJECT (main_window, menu_options_menu, "menu_options_menu");
   GLADE_HOOKUP_OBJECT (main_window, menu_preferences, "menu_preferences");
-  GLADE_HOOKUP_OBJECT (main_window, image300, "image300");
+  GLADE_HOOKUP_OBJECT (main_window, image304, "image304");
   GLADE_HOOKUP_OBJECT (main_window, trennlinie7, "trennlinie7");
   GLADE_HOOKUP_OBJECT (main_window, menu_job_offers, "menu_job_offers");
   GLADE_HOOKUP_OBJECT (main_window, menu_live_game, "menu_live_game");
@@ -1273,7 +1279,8 @@ create_main_window (void)
   GLADE_HOOKUP_OBJECT (main_window, menu_fixtures, "menu_fixtures");
   GLADE_HOOKUP_OBJECT (main_window, menu_tables, "menu_tables");
   GLADE_HOOKUP_OBJECT (main_window, menu_my_league_results, "menu_my_league_results");
-  GLADE_HOOKUP_OBJECT (main_window, players, "players");
+  GLADE_HOOKUP_OBJECT (main_window, trennlinie13, "trennlinie13");
+  GLADE_HOOKUP_OBJECT (main_window, menu_league_stats, "menu_league_stats");
   GLADE_HOOKUP_OBJECT (main_window, menu_season_history, "menu_season_history");
   GLADE_HOOKUP_OBJECT (main_window, menu_team, "menu_team");
   GLADE_HOOKUP_OBJECT (main_window, menu_team_menu, "menu_team_menu");
@@ -1325,11 +1332,11 @@ create_main_window (void)
   GLADE_HOOKUP_OBJECT (main_window, menu_user_show_history, "menu_user_show_history");
   GLADE_HOOKUP_OBJECT (main_window, trennlinie9, "trennlinie9");
   GLADE_HOOKUP_OBJECT (main_window, menu_next_user, "menu_next_user");
-  GLADE_HOOKUP_OBJECT (main_window, image301, "image301");
+  GLADE_HOOKUP_OBJECT (main_window, image305, "image305");
   GLADE_HOOKUP_OBJECT (main_window, menu_previous_user, "menu_previous_user");
-  GLADE_HOOKUP_OBJECT (main_window, image302, "image302");
+  GLADE_HOOKUP_OBJECT (main_window, image306, "image306");
   GLADE_HOOKUP_OBJECT (main_window, menu_manage_users, "menu_manage_users");
-  GLADE_HOOKUP_OBJECT (main_window, image303, "image303");
+  GLADE_HOOKUP_OBJECT (main_window, image307, "image307");
   GLADE_HOOKUP_OBJECT (main_window, menu_finances_stadium, "menu_finances_stadium");
   GLADE_HOOKUP_OBJECT (main_window, menu_finances_stadium_menu, "menu_finances_stadium_menu");
   GLADE_HOOKUP_OBJECT (main_window, menu_show_finances, "menu_show_finances");

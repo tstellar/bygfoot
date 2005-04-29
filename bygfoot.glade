@@ -69,7 +69,7 @@
 		      <accelerator key="l" modifiers="GDK_CONTROL_MASK | GDK_SHIFT_MASK" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image299">
+			<widget class="GtkImage" id="image303">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-open</property>
 			  <property name="icon_size">1</property>
@@ -137,7 +137,7 @@
 		      <accelerator key="p" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image300">
+			<widget class="GtkImage" id="image304">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-preferences</property>
 			  <property name="icon_size">1</property>
@@ -239,11 +239,17 @@
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="players">
+		    <widget class="GtkSeparatorMenuItem" id="trennlinie13">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Players</property>
+		    </widget>
+		  </child>
+
+		  <child>
+		    <widget class="GtkMenuItem" id="menu_league_stats">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">League stats</property>
 		      <property name="use_underline">True</property>
-		      <signal name="activate" handler="on_players_activate" last_modification_time="Fri, 25 Mar 2005 19:10:36 GMT"/>
+		      <signal name="activate" handler="on_menu_league_stats_activate" last_modification_time="Thu, 28 Apr 2005 17:31:46 GMT"/>
 		    </widget>
 		  </child>
 
@@ -688,7 +694,7 @@
 		      <accelerator key="F9" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image301">
+			<widget class="GtkImage" id="image305">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-go-forward</property>
 			  <property name="icon_size">1</property>
@@ -710,7 +716,7 @@
 		      <accelerator key="F8" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image302">
+			<widget class="GtkImage" id="image306">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-go-back</property>
 			  <property name="icon_size">1</property>
@@ -732,7 +738,7 @@
 		      <accelerator key="F12" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image303">
+			<widget class="GtkImage" id="image307">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-justify-fill</property>
 			  <property name="icon_size">1</property>

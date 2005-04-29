@@ -12,6 +12,8 @@ enum TeamCompare
     TEAM_COMPARE_LEAGUE_RANK = 0,
     TEAM_COMPARE_UNSORTED,
     TEAM_COMPARE_AV_SKILL,
+    TEAM_COMPARE_OFFENSIVE,
+    TEAM_COMPARE_DEFENSE,
     TEAM_COMPARE_END
 };
 
@@ -137,5 +139,8 @@ query_team_plays(const Team *tm, gint week_number, gint week_round_number);
 
 Team*
 team_get_from_name(const gchar *name);
+
+gint
+team_get_table_value(const Team *tm, gint type);
 
 #endif

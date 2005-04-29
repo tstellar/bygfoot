@@ -120,6 +120,7 @@ gui_set_arrows(void)
 	    stat0 == STATUS_SHOW_FIXTURES_WEEK)
 	gui_set_arrow_pair(1, TRUE);
     else if(stat0 == STATUS_SHOW_TABLES ||
-	    stat0 == STATUS_SHOW_PLAYER_LIST)
+	    stat0 == STATUS_SHOW_PLAYER_LIST ||
+	    stat0 == STATUS_SHOW_LEAGUE_STATS)
 	gui_set_arrow_pair(0, TRUE);
 }

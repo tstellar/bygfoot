@@ -113,18 +113,6 @@ callback_player_clicked(gint idx, GdkEventButton *event)
 	}
     }
 
-    /*d*/
-/*     gint i; */
-/*     printf("\n"); */
-/*     for(i=0;i<current_user.tm->players->len;i++) */
-/* 	printf("%06d %s\n", g_array_index(current_user.tm->players, Player, i).id, */
-/* 	       g_array_index(current_user.tm->players, Player, i).name->str); */
-
-/*     for(i=0;i<current_user.tm->players->len;i++) */
-/* 	printf("%d %s %d\n", i, */
-/* 	       g_array_index(current_user.tm->players, Player, i).name->str, */
-/* 	       g_array_index(current_user.tm->players, Player, i).id); */
-
     setsav0;
 }
 
@@ -200,6 +188,8 @@ callback_show_tables(gint type)
 	while(clid >= ID_CUP_START && cup_has_tables(clid) == -1)
 	    clid = league_cup_get_previous_clid(clid);
     }
+    else
+	g_warning("callback_show_tables: unknown type %d \n", type);
 
     stat1 = clid;    
 
@@ -389,6 +379,9 @@ callback_show_player_list(gint type)
 
     switch(type)
     {
+	default:
+	    g_warning("callback_show_player_list: unknown type %d \n", type);
+	    break;
 	case SHOW_CURRENT:
 	    stat1 = current_user.tm->clid;
 	    break;
@@ -431,6 +424,9 @@ callback_show_fixtures_week(gint type)
 {
     switch(type)
     {
+	default:
+	    g_warning("callback_show_fixtures_week: unknown type %d \n", type);
+	    break;
 	case SHOW_CURRENT:
 	    if(week == 1 && week_round == 1)
 	    {
@@ -457,4 +453,32 @@ callback_show_fixtures_week(gint type)
     }
 
     treeview_show_fixtures_week(stat1, stat2);
+}
+
+/** Show a page with the information in the league stats
+    structure. */
+void
+callback_show_league_stats(gint type)
+{
+    switch(type)
+    {
+	default:
+	    g_warning("callback_show_league_stats: unknown type %d \n", type);
+	    break;
+	case SHOW_CURRENT:
+	    stat1 = current_user.tm->clid;
+	    break;
+	case SHOW_NEXT_LEAGUE:
+	    stat1 = league_cup_get_next_clid(stat1);
+	    while(stat1 >= ID_CUP_START)
+		stat1 = league_cup_get_next_clid(stat1);
+	    break;
+	case SHOW_PREVIOUS_LEAGUE:
+	    stat1 = league_cup_get_previous_clid(stat1);
+	    while(stat1 >= ID_CUP_START)
+		stat1 = league_cup_get_previous_clid(stat1);
+	    break;
+    }
+
+    treeview_show_league_stats(stat1);
 }

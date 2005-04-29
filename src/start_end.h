@@ -57,4 +57,7 @@ query_start_end_season_end(void);
 void
 start_new_season_team_movements(void);
 
+void
+end_week(void);
+
 #endif

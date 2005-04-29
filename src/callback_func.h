@@ -45,4 +45,7 @@ callback_show_last_match_stats(void);
 void
 callback_show_fixtures_week(gint type);
 
+void
+callback_show_league_stats(gint type);
+
 #endif

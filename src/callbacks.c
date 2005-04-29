@@ -264,6 +264,9 @@ on_button_cl_back_clicked              (GtkButton       *button,
 	case STATUS_SHOW_PLAYER_LIST:
 	    callback_show_player_list(SHOW_PREVIOUS_LEAGUE);
 	    break;
+	case STATUS_SHOW_LEAGUE_STATS:
+	    callback_show_league_stats(SHOW_PREVIOUS_LEAGUE);
+	    break;
     }
 }
 
@@ -285,6 +288,9 @@ on_button_cl_forward_clicked           (GtkButton       *button,
 	    break;
 	case STATUS_SHOW_PLAYER_LIST:
 	    callback_show_player_list(SHOW_NEXT_LEAGUE);
+	    break;
+	case STATUS_SHOW_LEAGUE_STATS:
+	    callback_show_league_stats(SHOW_NEXT_LEAGUE);
 	    break;
     }
 }
@@ -330,10 +336,13 @@ on_menu_tables_activate                (GtkMenuItem     *menuitem,
 
 
 void
-on_players_activate                   (GtkMenuItem     *menuitem,
-				       gpointer         user_data)
+on_menu_league_stats_activate          (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
 {
+    stat0 = STATUS_SHOW_LEAGUE_STATS;
+    callback_show_league_stats(SHOW_CURRENT);
 
+    gui_set_arrows();
 }
 
 

@@ -12,6 +12,7 @@
 #include "maths.h"
 #include "option.h"
 #include "start_end.h"
+#include "stat.h"
 #include "table.h"
 #include "team.h"
 #include "transfer.h"
@@ -40,7 +41,7 @@ WeekFunc start_week_funcs[] =
 {start_week_update_users, start_week_update_user_teams,
  start_week_update_user_finances, transfer_update, NULL};
 
-WeekFunc end_week_funcs[] = {NULL};
+WeekFunc end_week_funcs[] = {stat_update_leagues};
 
 /** Generate the teams etc. */
 void
@@ -183,6 +184,8 @@ end_week_round(void)
 
     if(new_week)
     {
+	end_week();
+
 	if(query_start_end_season_end())
 	{
 	    season++;
@@ -357,6 +360,19 @@ start_week(void)
     {
 	(*start_func)();
 	start_func++;
+    }
+}
+
+/** Finish a week. */
+void
+end_week(void)
+{
+    WeekFunc *end_func = end_week_funcs;
+
+    while(*end_func != NULL)
+    {
+	(*end_func)();
+	end_func++;
     }
 }
 

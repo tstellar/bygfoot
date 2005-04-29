@@ -193,6 +193,15 @@ float_player_max_skill 990000
 int_initial_money_lower 80
 int_initial_money_upper 110
 
+# how many teams and players there
+# are in the league statistics
+int_stat_teams_len 3
+int_stat_players_len 5
+
+# percentage of team matches a goalie has to participate
+# in to get counted in the best goalies statistics
+float_stat_goalie_percentage 4000
+
 # below and above which percentages of ranks
 # in the league table the user's success counter
 # gets incremented or decremented
@@ -725,6 +734,12 @@ string_treeview_helper_live_game_result_attributes weight='bold' size='large'
 
 # colour indicating ball possession during a live game
 string_live_game_possession_color darkblue
+
+# icons for the league stats view
+string_treeview_league_stats_off_teams style_all_atk.png
+string_treeview_league_stats_def_teams style_all_def.png
+string_treeview_league_stats_scorers scoring_chance.png
+string_treeview_league_stats_goalies save.png
 
 # default background and foreground in treeviews
 string_treeview_helper_color_default_background white

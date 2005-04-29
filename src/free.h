@@ -78,4 +78,7 @@ free_support_dirs(void);
 void
 free_table(Table *table);
 
+void
+free_league_stats(LeagueStat *stats);
+
 #endif

@@ -211,7 +211,32 @@ free_league(League *league)
 
     free_g_array(&league->fixtures);
 
+    free_league_stats(&league->stats);
 }
+
+/** Free the league stats. */
+void
+free_league_stats(LeagueStat *stats)
+{
+    gint i;
+
+    for(i=0;i<stats->teams_off->len;i++)
+	g_string_free(g_array_index(stats->teams_off, Stat, i).value_string, TRUE);
+    free_g_array(&stats->teams_off);
+
+    for(i=0;i<stats->teams_def->len;i++)
+	g_string_free(g_array_index(stats->teams_def, Stat, i).value_string, TRUE);
+    free_g_array(&stats->teams_def);
+
+    for(i=0;i<stats->player_scorers->len;i++)
+	g_string_free(g_array_index(stats->player_scorers, Stat, i).value_string, TRUE);
+    free_g_array(&stats->player_scorers);
+
+    for(i=0;i<stats->player_goalies->len;i++)
+	g_string_free(g_array_index(stats->player_goalies, Stat, i).value_string, TRUE);
+    free_g_array(&stats->player_goalies);
+}
+
 
 /** Free a table. */
 void

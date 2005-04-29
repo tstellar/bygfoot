@@ -30,66 +30,56 @@ GtkTreeModel*
 treeview_create_team_selection_list(gboolean show_cup_teams, gboolean show_user_teams)
 {
     gint i, j, cnt = 1;
-    GtkListStore  *liststore;
+    GtkListStore  *ls;
     GtkTreeIter iter;
-    GdkPixbuf *symbol = NULL;
 
-    liststore = gtk_list_store_new(5,
-				   G_TYPE_INT,
-				   GDK_TYPE_PIXBUF,
-				   G_TYPE_POINTER,
-				   G_TYPE_STRING,
-				   G_TYPE_POINTER);
+    ls = gtk_list_store_new(5,
+			    G_TYPE_INT,
+			    GDK_TYPE_PIXBUF,
+			    G_TYPE_POINTER,
+			    G_TYPE_STRING,
+			    G_TYPE_POINTER);
 
     for(i=0;i<ligs->len;i++)
     {
-	symbol = treeview_helper_pixbuf_from_filename(lig(i).symbol->str);
-
 	for(j=0;j<lig(i).teams->len;j++)
 	{
 	    if(team_is_user(&g_array_index(lig(i).teams, Team, j)) == -1)
 	    {
-		gtk_list_store_append(liststore, &iter);
-		gtk_list_store_set(liststore, &iter,
+		gtk_list_store_append(ls, &iter);
+		treeview_helper_insert_icon(ls, &iter, 1, lig(i).symbol->str);
+		gtk_list_store_set(ls, &iter,
 				   0, cnt++,
-				   1, symbol,
 				   2, (gpointer)&g_array_index(lig(i).teams, Team, j),
 				   3, lig(i).name->str,
 				   4, (gpointer)&g_array_index(lig(i).teams, Team, j),
 				   -1);
 	    }
 	}	    
-
-	if(symbol != NULL)
-	    g_object_unref(symbol);
     }
 
     if(!show_cup_teams)    
-	return GTK_TREE_MODEL(liststore);
+	return GTK_TREE_MODEL(ls);
 
     for(i=0;i<cps->len;i++)
 	if(cp(i).type == CUP_TYPE_INTERNATIONAL)
 	    for(j=0;j<cp(i).teams->len;j++)
 	    {
-		symbol = 
-		    treeview_helper_pixbuf_from_filename(g_array_index(cp(i).teams, Team, j).symbol->str);
-
-		gtk_list_store_append(liststore, &iter);
-		gtk_list_store_set(liststore, &iter,
+		gtk_list_store_append(ls, &iter);
+		treeview_helper_insert_icon(ls, &iter, 1, 
+					    g_array_index(cp(i).teams, Team, j).symbol->str);
+		gtk_list_store_set(ls, &iter,
 				   0, cnt++,
-				   1, symbol,
 				   2, (gpointer)&g_array_index(cp(i).teams, Team, j),
 				   3, cp(i).name->str,
 				   4, (gpointer)&g_array_index(cp(i).teams, Team, j),
 				   -1);
-		if(symbol != NULL)
-		    g_object_unref(symbol);
 	    }
 
-    gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(liststore), 4,
+    gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(ls), 4,
 				    treeview_helper_team_compare, GINT_TO_POINTER(TEAM_COMPARE_AV_SKILL), NULL);
 
-    return GTK_TREE_MODEL(liststore);
+    return GTK_TREE_MODEL(ls);
 }
 
 /**
@@ -193,7 +183,7 @@ GtkTreeModel*
 treeview_create_player_list(GPtrArray *players, gint *attributes, gint max, gboolean show_separator)
 {
     gint i, j;
-    GtkListStore  *liststore;
+    GtkListStore  *ls;
     GtkTreeIter iter;
     GType types[max + 1];
 
@@ -201,25 +191,25 @@ treeview_create_player_list(GPtrArray *players, gint *attributes, gint max, gboo
     for(i=0;i<max;i++)
 	types[i + 1] = G_TYPE_POINTER;
 
-    liststore = gtk_list_store_newv(max + 1, types);
+    ls = gtk_list_store_newv(max + 1, types);
 
     for(i=0;i<players->len;i++)
     {
-	gtk_list_store_append(liststore, &iter);
+	gtk_list_store_append(ls, &iter);
 	if(show_separator && i == 11)
 	{
-	    gtk_list_store_set(liststore, &iter, 0, const_int("int_treeview_helper_int_empty"), -1);
+	    gtk_list_store_set(ls, &iter, 0, const_int("int_treeview_helper_int_empty"), -1);
 	    for(j=0;j<max;j++)
-		gtk_list_store_set(liststore, &iter, j + 1, NULL, -1);
+		gtk_list_store_set(ls, &iter, j + 1, NULL, -1);
 	    
-	    gtk_list_store_append(liststore, &iter);
-	    gtk_list_store_set(liststore, &iter, 0, i + 1, -1);
+	    gtk_list_store_append(ls, &iter);
+	    gtk_list_store_set(ls, &iter, 0, i + 1, -1);
 	}
 	else
-	    gtk_list_store_set(liststore, &iter, 0, i + 1, -1);
+	    gtk_list_store_set(ls, &iter, 0, i + 1, -1);
 
 	for(j=0;j<max;j++)
-	    gtk_list_store_set(liststore, &iter, j + 1, g_ptr_array_index(players, i), -1);
+	    gtk_list_store_set(ls, &iter, j + 1, g_ptr_array_index(players, i), -1);
     }
 
     if(!show_separator)
@@ -234,11 +224,11 @@ treeview_create_player_list(GPtrArray *players, gint *attributes, gint max, gboo
 	       attributes[i] == PLAYER_LIST_ATTRIBUTE_ETAL ||
 	       attributes[i] == PLAYER_LIST_ATTRIBUTE_VALUE ||
 	       attributes[i] == PLAYER_LIST_ATTRIBUTE_WAGE)
-		gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(liststore), i + 1,
+		gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(ls), i + 1,
 						treeview_helper_player_compare, GINT_TO_POINTER(attributes[i]), NULL);
     }
     
-    return (GtkTreeModel*)liststore;
+    return (GtkTreeModel*)ls;
 }
 
 /** Set up the tree view for a player list */
@@ -385,26 +375,21 @@ treeview_show_player_list_team(GtkTreeView *treeview, const Team *tm, gint scout
 void
 treeview_live_game_show_commentary(const LiveGameUnit *unit)
 {
-    GdkPixbuf *symbol = NULL;
     GtkAdjustment *adjustment =
 	gtk_scrolled_window_get_vadjustment(
 	    GTK_SCROLLED_WINDOW(lookup_widget(window.live,
 					      "scrolledwindow9")));
-    GtkListStore *liststore =
+    GtkListStore *ls =
 	GTK_LIST_STORE(
 	    gtk_tree_view_get_model(GTK_TREE_VIEW(lookup_widget(window.live, "treeview_commentary"))));
     GtkTreeIter iter;
     gchar buf[SMALL];
 
-    symbol = 
-	treeview_helper_pixbuf_from_filename(treeview_helper_live_game_icon(unit->event.type));
     sprintf(buf, "%3d.", live_game_unit_get_minute(unit));
-    gtk_list_store_prepend(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, buf, 1, symbol,
+    gtk_list_store_prepend(ls, &iter);
+    treeview_helper_insert_icon(ls, &iter, 1, treeview_helper_live_game_icon(unit->event.type));
+    gtk_list_store_set(ls, &iter, 0, buf,
 		       2, unit->event.commentary->str, -1);
-
-    if(symbol != NULL)
-	g_object_unref(symbol);
 
     adjustment->value = adjustment->lower - adjustment->page_size;
     gtk_adjustment_value_changed(adjustment);
@@ -413,33 +398,26 @@ treeview_live_game_show_commentary(const LiveGameUnit *unit)
 /** Create the list store for the live game 
     commentary treeview.
     @param unit The unit we show.
-    @return The liststore. */
+    @return The ls. */
 GtkTreeModel*
 treeview_live_game_create_init_commentary(const LiveGameUnit *unit)
 {
-    GtkListStore  *liststore;
+    GtkListStore  *ls;
     GtkTreeIter iter;
-    GdkPixbuf *symbol = NULL;
     gchar buf[SMALL];
 
-    liststore = gtk_list_store_new(3,
-				   G_TYPE_STRING,
-				   GDK_TYPE_PIXBUF,
-				   G_TYPE_STRING);
+    ls = gtk_list_store_new(3,
+			    G_TYPE_STRING,
+			    GDK_TYPE_PIXBUF,
+			    G_TYPE_STRING);
 
     sprintf(buf, "%3d.", unit->minute);
 
-    symbol = 
-	treeview_helper_pixbuf_from_filename(treeview_helper_live_game_icon(unit->event.type));
+    gtk_list_store_append(ls, &iter);
+    treeview_helper_insert_icon(ls, &iter, 1, treeview_helper_live_game_icon(unit->event.type));
+    gtk_list_store_set(ls, &iter, 0, buf, 2, unit->event.commentary->str, -1);
 
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, buf, 1, symbol, 2,
-		       unit->event.commentary->str, -1);
-
-    if(symbol != NULL)
-	g_object_unref(symbol);
-
-    return GTK_TREE_MODEL(liststore);
+    return GTK_TREE_MODEL(ls);
 }
 
 /** Set up the commentary treeview for the live game. */
@@ -496,25 +474,25 @@ treeview_live_game_show_initial_commentary(const LiveGameUnit *unit)
     g_object_unref(model);
 }
 
-/** Fill the liststore for the live game result treeview.
+/** Fill the ls for the live game result treeview.
     @param unit The current live game unit.
-    @return The liststore we created. */
+    @return The ls we created. */
 GtkTreeModel*
 treeview_live_game_create_result(const LiveGameUnit *unit)
 {
-    GtkListStore  *liststore;
+    GtkListStore  *ls;
     GtkTreeIter iter;
 
-    liststore = gtk_list_store_new(3,
-				   G_TYPE_POINTER,
-				   G_TYPE_POINTER,
-				   G_TYPE_POINTER);
+    ls = gtk_list_store_new(3,
+			    G_TYPE_POINTER,
+			    G_TYPE_POINTER,
+			    G_TYPE_POINTER);
 
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, (gpointer)usr(stat2).live_game.fix,
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, (gpointer)usr(stat2).live_game.fix,
 		       1, (gpointer)unit, 2, (gpointer)usr(stat2).live_game.fix, -1);
 
-    return GTK_TREE_MODEL(liststore);
+    return GTK_TREE_MODEL(ls);
 }
 
 /** Set up the treeview columns for the result. */
@@ -568,18 +546,18 @@ GtkTreeModel*
 treeview_create_users(void)
 {
     gint i;
-    GtkListStore  *liststore;
+    GtkListStore  *ls;
     GtkTreeIter iter;
 
-    liststore = gtk_list_store_new(4,
-				   G_TYPE_INT,
-				   G_TYPE_STRING,
-				   G_TYPE_STRING,
-				   G_TYPE_STRING);
+    ls = gtk_list_store_new(4,
+			    G_TYPE_INT,
+			    G_TYPE_STRING,
+			    G_TYPE_STRING,
+			    G_TYPE_STRING);
     for(i=0;i<users->len;i++)
     {
-	gtk_list_store_append(liststore, &iter);
-	gtk_list_store_set(liststore, &iter, 0, i + 1,
+	gtk_list_store_append(ls, &iter);
+	gtk_list_store_set(ls, &iter, 0, i + 1,
 			   1, usr(i).name->str,
 			   2, usr(i).tm->name->str,
 			   -1);
@@ -587,18 +565,18 @@ treeview_create_users(void)
 	if(stat0 == STATUS_TEAM_SELECTION && usr(i).scout != 0)
 	{
 	    if(usr(i).scout == 1)
-		gtk_list_store_set(liststore, &iter, 3,
+		gtk_list_store_set(ls, &iter, 3,
 				   lig(0).name->str, -1);
 	    else
-		gtk_list_store_set(liststore, &iter, 3,
+		gtk_list_store_set(ls, &iter, 3,
 				   lig(ligs->len - 1).name->str, -1);
 	}
 	else
-	    gtk_list_store_set(liststore, &iter, 3,
+	    gtk_list_store_set(ls, &iter, 3,
 			       league_from_clid(usr(i).tm->clid)->name->str, -1);
     }
 
-    return GTK_TREE_MODEL(liststore);
+    return GTK_TREE_MODEL(ls);
 }
 
 /** Set up the users treeview.
@@ -654,7 +632,7 @@ treeview_create_game_stats(LiveGame *live_game)
 {
     gint i, j, k;
     LiveGameStats *stats = &live_game->stats;
-    GtkListStore  *liststore;
+    GtkListStore  *ls;
     GtkTreeIter iter;
     gchar buf[2][SMALL];
     gchar buf3[SMALL];
@@ -669,14 +647,14 @@ treeview_create_game_stats(LiveGame *live_game)
 	 _("Reds"),   
 	 _("Injuries")};
 
-    liststore = gtk_list_store_new(3,
-				   G_TYPE_STRING,
-				   G_TYPE_STRING,
-				   G_TYPE_STRING);
+    ls = gtk_list_store_new(3,
+			    G_TYPE_STRING,
+			    G_TYPE_STRING,
+			    G_TYPE_STRING);
 
     fixture_result_to_buf(live_game->fix, buf[0]);
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, live_game->fix->teams[0]->name->str,
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, live_game->fix->teams[0]->name->str,
 		       1, buf[0],
 		       2, live_game->fix->teams[1]->name->str,
 		       -1);
@@ -705,8 +683,8 @@ treeview_create_game_stats(LiveGame *live_game)
 	for(i=0;i<MAX(stats->players[0][k]->len,
 		      stats->players[1][k]->len);i++)
 	{
-	    gtk_list_store_append(liststore, &iter);
-	    gtk_list_store_set(liststore, &iter, 1, "", -1);
+	    gtk_list_store_append(ls, &iter);
+	    gtk_list_store_set(ls, &iter, 1, "", -1);
 	    for(j=0;j<2;j++)
 	    {
 		if(i < stats->players[j][k]->len)
@@ -714,7 +692,7 @@ treeview_create_game_stats(LiveGame *live_game)
 		    sprintf(buf3, "%s%s%s", buf[0],
 			    ((GString*)g_ptr_array_index(stats->players[j][k], i))->str,
 			    buf[1]);
-		    gtk_list_store_set(liststore, &iter, j * 2, buf3, -1);
+		    gtk_list_store_set(ls, &iter, j * 2, buf3, -1);
 		}
 	    }
 	}
@@ -722,15 +700,15 @@ treeview_create_game_stats(LiveGame *live_game)
 
     misc_print_grouped_int(live_game->fix->attendance, buf[0], FALSE);
     sprintf(buf[1], "Attendance\n%s", buf[0]);
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, buf[1], 1, "", 2, "", -1);
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, buf[1], 1, "", 2, "", -1);
 
     if(live_game->stadium_event != -1)
     {
-	gtk_list_store_append(liststore, &iter);
+	gtk_list_store_append(ls, &iter);
 	if(live_game->stadium_event == LIVE_GAME_EVENT_STADIUM_BREAKDOWN)
 	    sprintf(buf[0], _("<span background='%s'>There were technical problems\nin the stadium.</span>"),
-			      const_str("string_treeview_stadium_event_bg"));
+		    const_str("string_treeview_stadium_event_bg"));
 	else if(live_game->stadium_event == LIVE_GAME_EVENT_STADIUM_RIOTS)
 	    sprintf(buf[0], _("<span background='%s'>There were riots\nin the stadium.</span>"),
 		    const_str("string_treeview_stadium_event_bg"));
@@ -738,11 +716,11 @@ treeview_create_game_stats(LiveGame *live_game)
 	    sprintf(buf[0], _("<span background='%s'>There was a fire\nin the stadium.</span>"),
 		    const_str("string_treeview_stadium_event_bg"));
 
-	gtk_list_store_set(liststore, &iter, 0, buf[0], 1, "", 2, "", -1);
+	gtk_list_store_set(ls, &iter, 0, buf[0], 1, "", 2, "", -1);
     }
 
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, "", 1, "", 2, "", -1);
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, "", 1, "", 2, "", -1);
 
     for(i=0;i<LIVE_GAME_STAT_VALUE_END;i++)
     {
@@ -755,13 +733,13 @@ treeview_create_game_stats(LiveGame *live_game)
 							((gfloat)stats->values[0][i] + 
 							 (gfloat)stats->values[1][i]))));
 
-	gtk_list_store_append(liststore, &iter);
-	gtk_list_store_set(liststore, &iter, 0, buf[0],
+	gtk_list_store_append(ls, &iter);
+	gtk_list_store_set(ls, &iter, 0, buf[0],
 			   1, categories[i],
 			   2, buf[1], -1);
     }
 
-    return GTK_TREE_MODEL(liststore);
+    return GTK_TREE_MODEL(ls);
 }
 
 /** Configure a treeview to show game stats.
@@ -808,18 +786,18 @@ treeview_show_game_stats(GtkTreeView *treeview, LiveGame *live_game)
 }
 
 /** Write some general information like cup/league name,
-    week etc. into a liststore.
+    week etc. into a ls.
     @param fix A 'sample' fixture.
-    @param liststore The liststore we edit.
+    @param ls The ls we edit.
     @param blank_line Whether to draw a blank line after the header. */
 void
-treeview_create_fixtures_header(const Fixture *fix, GtkListStore *liststore, gboolean blank_line)
+treeview_create_fixtures_header(const Fixture *fix, GtkListStore *ls, gboolean blank_line)
 {
     GtkTreeIter iter;
-    GdkPixbuf *symbol = NULL;
     gchar buf[SMALL], buf2[SMALL], buf3[SMALL],
 	round_name[SMALL];
     gchar *name = NULL;
+    gchar *symbol = NULL;
 
     sprintf(buf3, _("Week %d Round %d"), fix->week_number, fix->week_round_number);
 
@@ -827,7 +805,7 @@ treeview_create_fixtures_header(const Fixture *fix, GtkListStore *liststore, gbo
     {
 	name = league_from_clid(fix->clid)->name->str;
 	strcpy(round_name, "");
-	symbol = treeview_helper_pixbuf_from_filename(league_from_clid(fix->clid)->symbol->str);
+	symbol = league_from_clid(fix->clid)->symbol->str;
     }
     else
     {
@@ -835,7 +813,7 @@ treeview_create_fixtures_header(const Fixture *fix, GtkListStore *liststore, gbo
 	cup_round_name(fix, buf);
 	sprintf(round_name, "\n%s", buf);
 	strcat(buf3, "\n");
-	symbol = treeview_helper_pixbuf_from_filename(cup_from_clid(fix->clid)->symbol->str);
+	symbol = cup_from_clid(fix->clid)->symbol->str;
     }
     
     sprintf(buf, "<span background='%s' foreground='%s'>%s%s</span>", 
@@ -846,52 +824,41 @@ treeview_create_fixtures_header(const Fixture *fix, GtkListStore *liststore, gbo
 	    const_str("string_treeview_fixture_header_bg"),
 	    const_str("string_treeview_fixture_header_fg"), buf3);
 
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, symbol, 1, buf, 2, "", 3, buf2, 4, symbol, -1);
+    gtk_list_store_append(ls, &iter);
+    treeview_helper_insert_icon(ls, &iter, 0, symbol);
+    treeview_helper_insert_icon(ls, &iter, 4, symbol);
+    gtk_list_store_set(ls, &iter, 1, buf, 2, "", 3, buf2, -1);
 
     if(blank_line)
     {
-	gtk_list_store_append(liststore, &iter);
-	gtk_list_store_set(liststore, &iter, 0, NULL, 1, "", 2, "", 3, "", 4, NULL, -1);
+	gtk_list_store_append(ls, &iter);
+	gtk_list_store_set(ls, &iter, 0, NULL, 1, "", 2, "", 3, "", 4, NULL, -1);
     }
-
-    if(symbol != NULL)
-	g_object_unref(symbol);
 }
 
-/** Display a fixture in a liststore. */
+/** Display a fixture in a ls. */
 void
-treeview_create_fixture(const Fixture *fix, GtkListStore *liststore)
+treeview_create_fixture(const Fixture *fix, GtkListStore *ls)
 {
     gint i, rank;
     GtkTreeIter iter;
-    GdkPixbuf *symbol[2] = {NULL, NULL};
+    gchar *symbol[2] = {NULL, NULL};
     gchar buf_result[SMALL], buf[3][SMALL];
     gchar *colour_fg = NULL, *colour_bg = NULL;
 
     if(fix->clid >= ID_CUP_START &&
        cup_from_clid(fix->clid)->type == CUP_TYPE_INTERNATIONAL)
 	for(i=0;i<2;i++)
-	    symbol[i] = treeview_helper_pixbuf_from_filename(fix->teams[i]->symbol->str);
+	    symbol[i] = fix->teams[i]->symbol->str;
     
     if(fixture_user_team_involved(fix) != -1)
-    {
-	if(fixture_user_team_involved(fix) == cur_user)
-	{
-	    colour_fg = const_str("string_treeview_current_user_fg");
-	    colour_bg = const_str("string_treeview_current_user_bg");
-	}
-	else
-	{
-	    colour_fg = const_str("string_treeview_user_fg");
-	    colour_bg = const_str("string_treeview_user_bg");
-	}
-    }
+	treeview_helper_set_user_colours(usr(fixture_user_team_involved(fix)).tm,
+					 &colour_bg, &colour_fg);
     else
     {
 	colour_fg = const_str("string_treeview_helper_color_default_foreground");
 	colour_bg = const_str("string_treeview_helper_color_default_background");
-    }   
+    }
 
     fixture_result_to_buf(fix, buf_result);
 
@@ -918,20 +885,18 @@ treeview_create_fixture(const Fixture *fix, GtkListStore *liststore)
     sprintf(buf[2], "<span background='%s' foreground='%s'>%s</span>",
 	    colour_bg, colour_fg, buf_result);
 
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, symbol[0],
-		       1, buf[0], 2, buf[2], 3, buf[1], 4, symbol[1], -1);
-
-    for(i=0;i<2;i++)
-	if(symbol[i] != NULL)
-	    g_object_unref(symbol[i]);
+    gtk_list_store_append(ls, &iter);
+    treeview_helper_insert_icon(ls, &iter, 0, symbol[0]);
+    treeview_helper_insert_icon(ls, &iter, 4, symbol[1]);
+    gtk_list_store_set(ls, &iter,
+		       1, buf[0], 2, buf[2], 3, buf[1], -1);
 }
 
 GtkTreeModel*
 treeview_create_fixtures(gint clid, gint week_number, gint week_round_number)
 {
     gint i;
-    GtkListStore  *liststore;
+    GtkListStore  *ls;
     GPtrArray *fixtures = fixture_get_week_list_clid(clid, week_number, week_round_number);
 
     if(fixtures->len == 0)
@@ -940,22 +905,22 @@ treeview_create_fixtures(gint clid, gint week_number, gint week_round_number)
 	return NULL;
     }
 
-    liststore = gtk_list_store_new(5,
-				   GDK_TYPE_PIXBUF,
-				   G_TYPE_STRING,
-				   G_TYPE_STRING,
-				   G_TYPE_STRING,
-				   GDK_TYPE_PIXBUF);
+    ls = gtk_list_store_new(5,
+			    GDK_TYPE_PIXBUF,
+			    G_TYPE_STRING,
+			    G_TYPE_STRING,
+			    G_TYPE_STRING,
+			    GDK_TYPE_PIXBUF);
 
     treeview_create_fixtures_header((Fixture*)g_ptr_array_index(fixtures, 0),
-				    liststore, TRUE);
+				    ls, TRUE);
 
     for(i=0;i<fixtures->len;i++)
-	treeview_create_fixture((Fixture*)g_ptr_array_index(fixtures, i), liststore);
+	treeview_create_fixture((Fixture*)g_ptr_array_index(fixtures, i), ls);
 
     g_ptr_array_free(fixtures, TRUE);
 
-    return GTK_TREE_MODEL(liststore);
+    return GTK_TREE_MODEL(ls);
 }
 
 void
@@ -1021,63 +986,58 @@ treeview_show_fixtures(GtkTreeView *treeview, gint clid,
     g_object_unref(model);
 }
 
-/** Write the header for a table into the liststore
+/** Write the header for a table into the ls
     @param clid The cup or league id.
     @param number The number of the table if we display more than one. */
 void
-treeview_table_write_header(GtkListStore *liststore, gint clid, gint number)
+treeview_table_write_header(GtkListStore *ls, gint clid, gint number)
 {
     gint i;
     gchar buf[SMALL];
-    GdkPixbuf *symbol = NULL;
+    gchar *symbol = NULL;
     GtkTreeIter iter;
 
     if(clid < ID_CUP_START)
     {
-	symbol = treeview_helper_pixbuf_from_filename(league_from_clid(clid)->symbol->str);
+	symbol = league_from_clid(clid)->symbol->str;
 	strcpy(buf, league_from_clid(clid)->name->str);
     }
     else
     {
-	symbol = treeview_helper_pixbuf_from_filename(cup_from_clid(clid)->symbol->str);
+	symbol = cup_from_clid(clid)->symbol->str;
 	sprintf(buf, _("%s Group %d"), cup_from_clid(clid)->name->str, number);
     }
 
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, symbol, 1, "", 2, buf, -1);
+    gtk_list_store_append(ls, &iter);
+    treeview_helper_insert_icon(ls, &iter, 0, symbol);
+    gtk_list_store_set(ls, &iter, 1, "", 2, buf, -1);
 
     for(i=3;i<11;i++)
-	gtk_list_store_set(liststore, &iter, i, "", -1);
-
-    if(symbol != NULL)
-	g_object_unref(symbol);
+	gtk_list_store_set(ls, &iter, i, "", -1);
 }
 
-/** Display a table in the liststore. 
+/** Display a table in the ls. 
     @param number The number of the table if we display more than one
     (cups, round robin); or -1 for leagues. */
 void
-treeview_create_single_table(GtkListStore *liststore, const Table *table, gint number)
+treeview_create_single_table(GtkListStore *ls, const Table *table, gint number)
 {
     gint i, j;
     GtkTreeIter iter;
-    GdkPixbuf *symbol = NULL;
     TableElement *elem = NULL;
     gchar buf[10][SMALL];
     gchar colour_bg[SMALL], colour_fg[SMALL];
 
-    treeview_table_write_header(liststore, table->clid, number);    
+    treeview_table_write_header(ls, table->clid, number);    
 
     for(i=0;i<table->elements->len;i++)
     {
-	gtk_list_store_append(liststore, &iter);
+	gtk_list_store_append(ls, &iter);
 
 	elem = &g_array_index(table->elements, TableElement, i);
 
 	if(table->clid >= ID_CUP_START)
-	    symbol = treeview_helper_pixbuf_from_filename(elem->team->symbol->str);
-	
-	gtk_list_store_set(liststore, &iter, 0, symbol, -1);
+	    treeview_helper_insert_icon(ls, &iter, 0, elem->team->symbol->str);
 
 	/*todo: cup choose team user */
 	treeview_helper_get_table_element_colours(table, i, colour_fg, colour_bg, FALSE);
@@ -1095,16 +1055,13 @@ treeview_create_single_table(GtkListStore *liststore, const Table *table, gint n
 		sprintf(buf[j], "%+d", elem->values[j - 2]);
 
 	for(j=0;j<10;j++)
-	    gtk_list_store_set(liststore, &iter, j + 1, buf[j], -1);
-
-	if(symbol != NULL)
-	    g_object_unref(symbol);
+	    gtk_list_store_set(ls, &iter, j + 1, buf[j], -1);
     }
 
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, NULL, -1);
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, NULL, -1);
     for(j=1;j<11;j++)
-	gtk_list_store_set(liststore, &iter, j, "", -1);
+	gtk_list_store_set(ls, &iter, j, "", -1);
 }
 
 /** Create a league table or one or more cup tables. */
@@ -1112,7 +1069,7 @@ GtkTreeModel*
 treeview_create_table(gint clid)
 {
     gint i;
-    GtkListStore *liststore = 
+    GtkListStore *ls = 
 	gtk_list_store_new(11,
 			   GDK_TYPE_PIXBUF,
 			   G_TYPE_STRING,
@@ -1127,16 +1084,16 @@ treeview_create_table(gint clid)
 			   G_TYPE_STRING);
 
     if(clid < ID_CUP_START)
-	treeview_create_single_table(liststore, 
+	treeview_create_single_table(ls, 
 				     &league_from_clid(clid)->table, -1);
     else
     {
 	for(i=0;i<cup_get_last_tables(clid)->len;i++)
-	    treeview_create_single_table(liststore, 
+	    treeview_create_single_table(ls, 
 					 &g_array_index(cup_get_last_tables(clid), Table, i), i + 1);
     }
 
-    return GTK_TREE_MODEL(liststore);
+    return GTK_TREE_MODEL(ls);
 }
 
 void
@@ -1203,23 +1160,23 @@ treeview_show_table(GtkTreeView *treeview, gint clid)
 
 /** Print some quick info about the stadium in the finances view. */
 void
-treeview_create_stadium_summary(GtkListStore *liststore)
+treeview_create_stadium_summary(GtkListStore *ls)
 {
     gchar buf[SMALL];
     GtkTreeIter iter;
 
-    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_append(ls, &iter);
     misc_print_grouped_int(current_user.tm->stadium.capacity, buf, FALSE);
-    gtk_list_store_set(liststore, &iter, 0, _("Stadium capacity"), 1, buf, 2, "", -1);
+    gtk_list_store_set(ls, &iter, 0, _("Stadium capacity"), 1, buf, 2, "", -1);
 
-    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_append(ls, &iter);
     sprintf(buf, "%.0f%%", current_user.tm->stadium.safety * 100);
-    gtk_list_store_set(liststore, &iter, 0, _("Stadium safety"), 1, buf, 2, "", -1);
+    gtk_list_store_set(ls, &iter, 0, _("Stadium safety"), 1, buf, 2, "", -1);
 
     if(current_user.counters[COUNT_USER_STADIUM_CAPACITY] + 
        current_user.counters[COUNT_USER_STADIUM_SAFETY] != 0)
     {
-	gtk_list_store_append(liststore, &iter);
+	gtk_list_store_append(ls, &iter);
 	sprintf(buf, _("Improvement in progress.\n%d seats and %d%% safety still to be done.\nExpected finish: %d weeks."),
 		current_user.counters[COUNT_USER_STADIUM_CAPACITY],
 		current_user.counters[COUNT_USER_STADIUM_SAFETY],
@@ -1228,7 +1185,7 @@ treeview_create_stadium_summary(GtkListStore *liststore)
 		    finance_get_stadium_improvement_duration(
 			(gfloat)current_user.counters[COUNT_USER_STADIUM_SAFETY] / 100, FALSE)));
 
-	gtk_list_store_set(liststore, &iter, 0, _("Stadium status"), 1, buf, 2, "", -1);
+	gtk_list_store_set(ls, &iter, 0, _("Stadium status"), 1, buf, 2, "", -1);
     }
 }
 
@@ -1251,21 +1208,21 @@ treeview_create_finances(const User* user)
 	 _("Stadium bills"),
 	 _("Compensations")};
     GtkTreeIter iter;
-    GtkListStore *liststore = 
+    GtkListStore *ls = 
 	gtk_list_store_new(3,
 			   G_TYPE_STRING,
 			   G_TYPE_STRING,
 			   G_TYPE_STRING);
 
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, _("Bi-weekly balance"), 1, "", 2, "", -1);
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, _("Bi-weekly balance"), 1, "", 2, "", -1);
 
     for(i=0;i<MON_IN_TRANSFERS;i++)
 	if(in[i] != 0)
 	{
 	    misc_print_grouped_int(in[i], buf, FALSE);
-	    gtk_list_store_append(liststore, &iter);
-	    gtk_list_store_set(liststore, &iter, 0, in_titles[i], 1, buf, 2, "", -1);
+	    gtk_list_store_append(ls, &iter);
+	    gtk_list_store_set(ls, &iter, 0, in_titles[i], 1, buf, 2, "", -1);
 	    balance += in[i];
 	}
 
@@ -1275,8 +1232,8 @@ treeview_create_finances(const User* user)
 	misc_print_grouped_int(out[MON_OUT_TRANSFERS], buf3, FALSE);
 	sprintf(buf2, "<span foreground='%s'>%s</span>",
 		const_str("string_treeview_finances_expenses_fg"), buf3);
-	gtk_list_store_append(liststore, &iter);
-	gtk_list_store_set(liststore, &iter, 0, _("Transfers"), 1, buf, 2, buf2, -1);
+	gtk_list_store_append(ls, &iter);
+	gtk_list_store_set(ls, &iter, 0, _("Transfers"), 1, buf, 2, buf2, -1);
 	balance += (in[MON_IN_TRANSFERS] + out[MON_OUT_TRANSFERS]);
     }
 
@@ -1286,36 +1243,36 @@ treeview_create_finances(const User* user)
 	    misc_print_grouped_int(out[i], buf3, FALSE);
 	    sprintf(buf, "<span foreground='%s'>%s</span>",
 		    const_str("string_treeview_finances_expenses_fg"), buf3);
-	    gtk_list_store_append(liststore, &iter);
-	    gtk_list_store_set(liststore, &iter, 0, out_titles[i], 1, "", 2, buf, -1);
+	    gtk_list_store_append(ls, &iter);
+	    gtk_list_store_set(ls, &iter, 0, out_titles[i], 1, "", 2, buf, -1);
 	    balance += out[i];
 	}    
 
     misc_print_grouped_int(balance, buf, FALSE);
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, _("Balance"), 1, "", 2, "", -1);
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, _("Balance"), 1, "", 2, "", -1);
     if(balance >= 0)
 	strcpy(buf2, buf);
     else
 	sprintf(buf2, "<span foreground='%s'>%s</span>",
 		const_str("string_treeview_finances_expenses_fg"), buf);
-    gtk_list_store_set(liststore, &iter, 1 + (balance < 0), buf2, -1);
+    gtk_list_store_set(ls, &iter, 1 + (balance < 0), buf2, -1);
 
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, "", 1, "", 2, "", -1);
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, "", 1, "", 2, "", -1);
 
     misc_print_grouped_int(user->money, buf, FALSE);
-    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_append(ls, &iter);
     if(user->money >= 0)
 	strcpy(buf2, buf);
     else
 	sprintf(buf2, "<span foreground='%s'>%s</span>",
 		const_str("string_treeview_finances_expenses_fg"), buf);
-    gtk_list_store_set(liststore, &iter, 0, _("Money"), 1, buf2, 2, "", -1);
+    gtk_list_store_set(ls, &iter, 0, _("Money"), 1, buf2, 2, "", -1);
 
     misc_print_grouped_int(finance_team_drawing_credit_loan(user->tm, FALSE), buf, FALSE);
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, _("Drawing credit"), 1, buf, 2, "", -1);
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, _("Drawing credit"), 1, buf, 2, "", -1);
     
     if(user->debt != 0)
     {
@@ -1323,16 +1280,16 @@ treeview_create_finances(const User* user)
 	sprintf(buf2, "<span foreground='%s'>%s</span>",
 		const_str("string_treeview_finances_expenses_fg"), buf);
 	sprintf(buf, _("Debt (repay in %d weeks)"), user->counters[COUNT_USER_LOAN]);
-	gtk_list_store_append(liststore, &iter);
-	gtk_list_store_set(liststore, &iter, 0, buf, 1, "", 2, buf2, -1);
+	gtk_list_store_append(ls, &iter);
+	gtk_list_store_set(ls, &iter, 0, buf, 1, "", 2, buf2, -1);
     }
 
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, "", 1, "", 2, "", -1);
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, "", 1, "", 2, "", -1);
 
-    treeview_create_stadium_summary(liststore);
+    treeview_create_stadium_summary(ls);
 
-    return GTK_TREE_MODEL(liststore);
+    return GTK_TREE_MODEL(ls);
 }
 
 void
@@ -1480,7 +1437,7 @@ treeview_create_next_opponent_results(const Team *tm, gchar *result_buf, gchar *
 
 /** Create attack, midfield and defend bars. */
 void
-treeview_create_next_opponent_values(GtkListStore *liststore, const Fixture *fix)
+treeview_create_next_opponent_values(GtkListStore *ls, const Fixture *fix)
 {
     gint i, j;
     gchar buf[SMALL], buf2[SMALL];
@@ -1509,8 +1466,8 @@ treeview_create_next_opponent_values(GtkListStore *liststore, const Fixture *fix
 	    strcat(buf, "|");
 	strcat(buf, "</span>");
 
-	gtk_list_store_append(liststore, &iter);
-	gtk_list_store_set(liststore, &iter, 0, titles[i], 1, buf, -1);
+	gtk_list_store_append(ls, &iter);
+	gtk_list_store_set(ls, &iter, 0, titles[i], 1, buf, -1);
     }
 }
 
@@ -1521,17 +1478,17 @@ treeview_create_next_opponent(void)
     const Fixture *fix = team_get_fixture(current_user.tm, FALSE);
     const Team *opp = (fix == NULL) ? NULL :
 	fix->teams[fix->teams[0] == current_user.tm];
-    GtkListStore *liststore = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_STRING);
+    GtkListStore *ls = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_STRING);
     GtkTreeIter iter;
 
     if(opp == NULL)
 	return NULL;
     
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, _("Your next opponent"), 1,
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, _("Your next opponent"), 1,
 		       league_cup_get_name_string(fix->clid), -1);
 
-    gtk_list_store_append(liststore, &iter);
+    gtk_list_store_append(ls, &iter);
     sprintf(buf, "Week %d Round %d", fix->week_number, fix->week_round_number);
     if(!fix->home_advantage)
 	strcpy(buf2, _("Neutral ground"));
@@ -1539,19 +1496,19 @@ treeview_create_next_opponent(void)
 	strcpy(buf2, _("Home"));
     else
 	strcpy(buf2, _("Away"));
-    gtk_list_store_set(liststore, &iter, 0, buf, 1, buf2, -1);
+    gtk_list_store_set(ls, &iter, 0, buf, 1, buf2, -1);
 
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, "", 1, "", -1);
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, "", 1, "", -1);
 
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, _("Team"), 1, opp->name->str, -1);
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, _("Team"), 1, opp->name->str, -1);
     
     if(opp->clid < ID_CUP_START)
     {
 	sprintf(buf, "%d (%s)", team_get_league_rank(opp), league_cup_get_name_string(opp->clid));
-	gtk_list_store_append(liststore, &iter);
-	gtk_list_store_set(liststore, &iter, 0, _("Rank"), 1, buf, -1);
+	gtk_list_store_append(ls, &iter);
+	gtk_list_store_set(ls, &iter, 0, _("Rank"), 1, buf, -1);
     }
 
     sprintf(buf, "%.1f", team_get_average_skill(opp, TRUE));
@@ -1568,30 +1525,30 @@ treeview_create_next_opponent(void)
 		team_get_average_skill(current_user.tm, TRUE));
 
     strcat(buf, buf2);
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, _("Average skill"), 1, buf, -1);
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, _("Average skill"), 1, buf, -1);
 
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, _("Playing style"), 1, 
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, _("Playing style"), 1, 
 		       team_attribute_to_char(TEAM_ATTRIBUTE_STYLE, opp->style), -1);
 
     sprintf(buf, "%d", opp->structure);
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, _("Team structure"), 1, buf, -1);
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, _("Team structure"), 1, buf, -1);
 
-    treeview_create_next_opponent_values(liststore, fix);
+    treeview_create_next_opponent_values(ls, fix);
 
     treeview_create_next_opponent_results(opp, buf, buf2);
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, _("Latest results"), 1, buf, -1);
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, _("Goals"), 1, buf2, -1);
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, _("Latest results"), 1, buf, -1);
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, _("Goals"), 1, buf2, -1);
 
     treeview_create_own_results(opp, buf);
-    gtk_list_store_append(liststore, &iter);
-    gtk_list_store_set(liststore, &iter, 0, _("Your results"), 1, buf, -1);
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, _("Your results"), 1, buf, -1);
     
-    return GTK_TREE_MODEL(liststore);
+    return GTK_TREE_MODEL(ls);
 }
 
 void
@@ -1631,8 +1588,7 @@ treeview_show_next_opponent(void)
     model = treeview_create_next_opponent();
     gtk_tree_view_set_model(treeview, model);
 
-    if(model != NULL)
-	g_object_unref(model);
+    treeview_helper_unref(G_OBJECT(model));
 }
 
 GtkTreeModel*
@@ -1644,7 +1600,7 @@ treeview_create_league_results(void)
     GPtrArray *matches = NULL;
     GArray *table_elements = 
 	league_from_clid(current_user.tm->clid)->table.elements;
-    GtkListStore *liststore = 
+    GtkListStore *ls = 
 	gtk_list_store_new(3, G_TYPE_STRING, G_TYPE_STRING,
 			   G_TYPE_STRING);
     GtkTreeIter iter;
@@ -1678,14 +1634,14 @@ treeview_create_league_results(void)
 		    const_str("string_treeview_league_results_away_bg"),
 		    const_str("string_treeview_league_results_away_fg"),
 		    buf[1]);
-	    gtk_list_store_append(liststore, &iter);
-	    gtk_list_store_set(liststore, &iter, 0, name,
+	    gtk_list_store_append(ls, &iter);
+	    gtk_list_store_set(ls, &iter, 0, name,
 			       1, buf[0], 2, away, -1);
 
 	    g_ptr_array_free(matches, TRUE);
 	}
 
-    return GTK_TREE_MODEL(liststore);
+    return GTK_TREE_MODEL(ls);
 }
 
 void
@@ -1753,7 +1709,7 @@ GtkTreeModel*
 treeview_create_preview(void)
 {
     gint i;
-    GtkListStore  *liststore;
+    GtkListStore  *ls;
     GPtrArray *fixtures = fixture_get_coming(current_user.tm);
     gint max = MIN(const_int("int_treeview_coming_matches"), fixtures->len);
     GtkTreeIter iter;
@@ -1764,26 +1720,26 @@ treeview_create_preview(void)
 	return NULL;
     }
 
-    liststore = gtk_list_store_new(5,
-				   GDK_TYPE_PIXBUF,
-				   G_TYPE_STRING,
-				   G_TYPE_STRING,
-				   G_TYPE_STRING,
-				   GDK_TYPE_PIXBUF);
+    ls = gtk_list_store_new(5,
+			    GDK_TYPE_PIXBUF,
+			    G_TYPE_STRING,
+			    G_TYPE_STRING,
+			    G_TYPE_STRING,
+			    GDK_TYPE_PIXBUF);
 
     for(i=0;i<max;i++)
     {
 	treeview_create_fixtures_header((Fixture*)g_ptr_array_index(fixtures, i),
-					liststore, FALSE);
-	treeview_create_fixture((Fixture*)g_ptr_array_index(fixtures, i), liststore);
+					ls, FALSE);
+	treeview_create_fixture((Fixture*)g_ptr_array_index(fixtures, i), ls);
 
-	gtk_list_store_append(liststore, &iter);
-	gtk_list_store_set(liststore, &iter, 0, NULL, 1, "", 2, "", 3, "", 4, NULL, -1);
+	gtk_list_store_append(ls, &iter);
+	gtk_list_store_set(ls, &iter, 0, NULL, 1, "", 2, "", 3, "", 4, NULL, -1);
     }
 	
     g_ptr_array_free(fixtures, TRUE);
 
-    return GTK_TREE_MODEL(liststore);
+    return GTK_TREE_MODEL(ls);
 }
 
 /** Show a preview of the current user's next games. */
@@ -1805,9 +1761,9 @@ GtkTreeModel*
 treeview_create_player_info(const Player *pl)
 {
     gint i;
-    GtkListStore  *liststore = gtk_list_store_new(2,
-						  G_TYPE_STRING,
-						  G_TYPE_POINTER);
+    GtkListStore  *ls = gtk_list_store_new(2,
+					   G_TYPE_STRING,
+					   G_TYPE_POINTER);
     GtkTreeIter iter;
     gchar *titles[PLAYER_INFO_ATTRIBUTE_END] =
 	{_("Name"),
@@ -1829,11 +1785,11 @@ treeview_create_player_info(const Player *pl)
 
     for(i=0;i<PLAYER_INFO_ATTRIBUTE_END;i++)
     {
-	gtk_list_store_append(liststore, &iter);
-	gtk_list_store_set(liststore, &iter, 0, titles[i], 1, pl, -1);
+	gtk_list_store_append(ls, &iter);
+	gtk_list_store_set(ls, &iter, 0, titles[i], 1, pl, -1);
     }
 
-    return GTK_TREE_MODEL(liststore);
+    return GTK_TREE_MODEL(ls);
 }
 
 void
@@ -1884,37 +1840,37 @@ treeview_create_fixtures_week(gint week_number, gint week_round_number)
 {
     gint i;
     GPtrArray *fixtures = fixture_get_week_list(week_number, week_round_number);
-    GtkListStore *liststore = gtk_list_store_new(5,
-						 GDK_TYPE_PIXBUF,
-						 G_TYPE_STRING,
-						 G_TYPE_STRING,
-						 G_TYPE_STRING,
-						 GDK_TYPE_PIXBUF);
+    GtkListStore *ls = gtk_list_store_new(5,
+					  GDK_TYPE_PIXBUF,
+					  G_TYPE_STRING,
+					  G_TYPE_STRING,
+					  G_TYPE_STRING,
+					  GDK_TYPE_PIXBUF);
     GtkTreeIter iter;
 
     for(i=0;i<fixtures->len;i++)
     {
 	if(((Fixture*)g_ptr_array_index(fixtures, i))->clid >= ID_CUP_START ||
-	    ((Fixture*)g_ptr_array_index(fixtures, i))->clid == current_user.tm->clid ||	   
+	   ((Fixture*)g_ptr_array_index(fixtures, i))->clid == current_user.tm->clid ||	   
 	   opt_user_int("int_opt_user_show_all_leagues"))
 	{
 	    if(i == 0 ||
 	       ((Fixture*)g_ptr_array_index(fixtures, i))->clid != 
 	       ((Fixture*)g_ptr_array_index(fixtures, i - 1))->clid)
 	    {
-		gtk_list_store_append(liststore, &iter);
-		gtk_list_store_set(liststore, &iter, 0, NULL, -1);
+		gtk_list_store_append(ls, &iter);
+		gtk_list_store_set(ls, &iter, 0, NULL, -1);
 		treeview_create_fixtures_header((Fixture*)g_ptr_array_index(fixtures, i),
-						liststore, TRUE);
+						ls, TRUE);
 	    }
 
-	    treeview_create_fixture((Fixture*)g_ptr_array_index(fixtures, i), liststore);
+	    treeview_create_fixture((Fixture*)g_ptr_array_index(fixtures, i), ls);
 	}
     }
 
     g_ptr_array_free(fixtures, TRUE);
 
-    return GTK_TREE_MODEL(liststore);
+    return GTK_TREE_MODEL(ls);
 }
 
 /** Show a fixture list of all matches in the given week and round. */
@@ -1937,31 +1893,27 @@ treeview_create_user_history(void)
 {
     gint i;
     gchar buf[SMALL];
-    GtkListStore *liststore = 
+    GtkListStore *ls = 
 	gtk_list_store_new(5, G_TYPE_INT, G_TYPE_INT, G_TYPE_STRING, GDK_TYPE_PIXBUF, G_TYPE_STRING);
     GtkTreeIter iter;
-    GdkPixbuf *symbol = NULL;
     
     for(i=0;i<current_user.history->len;i++)
     {
 	user_history_to_string(&g_array_index(current_user.history, UserHistory, i), buf);
-	symbol = treeview_helper_pixbuf_from_filename(
-	    treeview_helper_get_user_history_icon(
-		g_array_index(current_user.history, UserHistory, i).type));
 
-	gtk_list_store_append(liststore, &iter);
-	gtk_list_store_set(liststore, &iter,
+	gtk_list_store_append(ls, &iter);
+	treeview_helper_insert_icon(ls, &iter, 3,
+				    treeview_helper_get_user_history_icon(
+					g_array_index(current_user.history, UserHistory, i).type));
+	gtk_list_store_set(ls, &iter,
 			   0, g_array_index(current_user.history, UserHistory, i).season,
 			   1, g_array_index(current_user.history, UserHistory, i).week,
 			   2, team_of_id(g_array_index(current_user.history, UserHistory, i).team_id)->name->str,
-			   3, symbol,
 			   4, buf, -1);
 
-	if(symbol != NULL)
-	    g_object_unref(symbol);
     }
 
-    return GTK_TREE_MODEL(liststore);
+    return GTK_TREE_MODEL(ls);
 }
 
 void
@@ -1981,7 +1933,6 @@ treeview_set_up_user_history(GtkTreeView *treeview)
     {
 	col = gtk_tree_view_column_new();
 	gtk_tree_view_column_set_title(col, titles[i]);
-	gtk_tree_view_column_set_alignment(col, 0.5);
 	gtk_tree_view_append_column(treeview, col);
 	renderer = treeview_helper_cell_renderer_text_new();
 	gtk_tree_view_column_pack_start(col, renderer, TRUE);
@@ -1991,7 +1942,6 @@ treeview_set_up_user_history(GtkTreeView *treeview)
     }
 
     col = gtk_tree_view_column_new();
-    gtk_tree_view_column_set_alignment(col, 0.5);
     gtk_tree_view_append_column(treeview, col);
     renderer = gtk_cell_renderer_pixbuf_new();
     gtk_tree_view_column_pack_start(col, renderer, TRUE);
@@ -2022,4 +1972,157 @@ treeview_show_user_history(void)
     model = treeview_create_user_history();
     gtk_tree_view_set_model(treeview, model);
     g_object_unref(model);    
+}
+
+void
+treeview_create_league_stats(GtkListStore *ls, const League *league)
+{
+    gint i, j;
+    gchar buf[SMALL], buf2[SMALL], buf3[SMALL], buf4[SMALL];
+    GtkTreeIter iter;
+    GArray *teams[2] = {league->stats.teams_off, league->stats.teams_def};
+    GArray *players[2] = {league->stats.player_scorers, league->stats.player_goalies};
+    gchar *team_titles[2] = {_("Best offensive teams"),
+			    _("Best defensive teams")};
+    gchar *team_icons[2] = {const_str("string_treeview_league_stats_off_teams"),
+			    const_str("string_treeview_league_stats_def_teams")};
+    gchar *player_titles[2][2] = {{_("Best goal scorers"), _("Shot %")},
+				  {_("Best goalkeepers"), _("Save %")}};
+    gchar *player_icons[2] = {const_str("string_treeview_league_stats_scorers"),
+			      const_str("string_treeview_league_stats_goalies")};
+    gchar *colour_fg = NULL, *colour_bg = NULL;
+    
+    gtk_list_store_append(ls, &iter);
+    treeview_helper_insert_icon(ls, &iter, 0, league->symbol->str);
+    gtk_list_store_set(ls, &iter, 1, const_int("int_treeview_helper_int_empty"),
+		       2, league->name->str, 3, "", 4, "", 5, "", -1);
+
+    for(i=0;i<2;i++)
+    {
+	gtk_list_store_append(ls, &iter);
+	gtk_list_store_set(ls, &iter, 0, NULL,
+			   1, const_int("int_treeview_helper_int_empty"),
+			   2, "", 3, "", 4, "", 5, "", -1);
+	
+	gtk_list_store_append(ls, &iter);
+	treeview_helper_insert_icon(ls, &iter, 0, team_icons[i]);
+	gtk_list_store_set(ls, &iter, 1, const_int("int_treeview_helper_int_empty"),
+			   2, team_titles[i], 4, _("Goals"), -1);
+	
+	for(j=0;j<teams[i]->len;j++)
+	{
+	    sprintf(buf, "%d : %d",
+		    g_array_index(teams[i], Stat, j).value1,
+		    g_array_index(teams[i], Stat, j).value2);
+	    
+	    treeview_helper_set_user_colours(g_array_index(teams[i], Stat, j).tm,
+					     &colour_bg, &colour_fg);
+
+	    sprintf(buf2, "<span background='%s' foreground='%s'>%s</span>",
+		    colour_bg, colour_fg, g_array_index(teams[i], Stat, j).tm->name->str);
+	    
+	    gtk_list_store_append(ls, &iter);
+	    gtk_list_store_set(ls, &iter, 0, NULL, 1, j + 1,
+			       2, buf2,
+			       4, buf, 5, "", -1);
+	}
+    }
+
+    for(i=0;i<2;i++)
+    {
+	gtk_list_store_append(ls, &iter);
+	gtk_list_store_set(ls, &iter, 0, NULL,
+			   1, const_int("int_treeview_helper_int_empty"),
+			   2, "", 3, "", 4, "", 5, "", -1);
+	
+	gtk_list_store_append(ls, &iter);
+	treeview_helper_insert_icon(ls, &iter, 0, player_icons[i]);
+	gtk_list_store_set(ls, &iter, 1, const_int("int_treeview_helper_int_empty"),
+			   2, player_titles[i][0], 3, _("Go"),
+			   4, _("Go/Ga"), 5, player_titles[i][1], -1);
+
+	for(j=0;j<players[i]->len;j++)
+	{
+	    sprintf(buf, "%.1f",
+		    (gfloat)g_array_index(players[i], Stat, j).value1 /
+		    (gfloat)g_array_index(players[i], Stat, j).value2);
+	    if(i == 0)
+		sprintf(buf2, "%.1f %%",
+			100 * ((gfloat)g_array_index(players[i], Stat, j).value1 /
+			       (gfloat)g_array_index(players[i], Stat, j).value3));
+	    else
+		sprintf(buf2, "%.1f %%",
+			100 * (1 - (gfloat)g_array_index(players[i], Stat, j).value1 /
+			       (gfloat)g_array_index(players[i], Stat, j).value3));
+
+	    treeview_helper_set_user_colours(g_array_index(players[i], Stat, j).tm,
+					     &colour_bg, &colour_fg);
+	    sprintf(buf3, "<span background='%s' foreground='%s'>%s (%s)</span>",
+		    colour_bg, colour_fg,
+		    g_array_index(players[i], Stat, j).value_string->str,
+		    g_array_index(players[i], Stat, j).tm->name->str);
+	    sprintf(buf4, "%d", g_array_index(players[i], Stat, j).value1);
+
+	    gtk_list_store_append(ls, &iter);
+	    gtk_list_store_set(ls, &iter, 0, NULL, 1, j + 1,
+			       2, buf3, 3, buf4, 4, buf, 5, buf2, -1);
+	}
+    }
+}
+
+void
+treeview_set_up_league_stats(GtkTreeView *treeview)
+{
+    gint i;
+    GtkTreeViewColumn   *col;
+    GtkCellRenderer     *renderer;
+
+    gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
+				GTK_SELECTION_NONE);
+    gtk_tree_view_set_rules_hint(treeview, FALSE);
+    gtk_tree_view_set_headers_visible(treeview, FALSE);
+
+    col = gtk_tree_view_column_new();
+    gtk_tree_view_append_column(treeview, col);
+    renderer = gtk_cell_renderer_pixbuf_new();
+    gtk_tree_view_column_pack_start(col, renderer, TRUE);
+    gtk_tree_view_column_add_attribute(col, renderer,
+				       "pixbuf", 0);
+    g_object_set(renderer, "xalign", 0.5, NULL);
+
+    col = gtk_tree_view_column_new();
+    gtk_tree_view_append_column(treeview, col);
+    renderer = treeview_helper_cell_renderer_text_new();
+    gtk_tree_view_column_pack_start(col, renderer, TRUE);
+    gtk_tree_view_column_set_cell_data_func(col, renderer,
+					    treeview_helper_int_to_cell,
+					    NULL, NULL);
+    for(i=2;i<6;i++)
+    {
+	col = gtk_tree_view_column_new();
+	gtk_tree_view_append_column(treeview, col);
+	renderer = treeview_helper_cell_renderer_text_new();
+	gtk_tree_view_column_pack_start(col, renderer, TRUE);
+	gtk_tree_view_column_add_attribute(col, renderer,
+					   "markup", i);
+	if(i != 2)
+	    g_object_set(renderer, "xalign", 0.5, NULL);
+    }
+}
+
+/** Show the stats of the league with specified id. */
+void
+treeview_show_league_stats(gint clid)
+{
+    GtkTreeView *treeview = GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right"));
+    GtkListStore *model = 
+	gtk_list_store_new(6, GDK_TYPE_PIXBUF, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING,
+			   G_TYPE_STRING, G_TYPE_STRING);
+    
+    treeview_helper_clear(treeview);
+    
+    treeview_set_up_league_stats(treeview);
+    treeview_create_league_stats(model, league_from_clid(clid));
+    gtk_tree_view_set_model(treeview, GTK_TREE_MODEL(model));
+    g_object_unref(model);
 }

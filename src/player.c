@@ -309,10 +309,12 @@ player_all_cards(const Player *pl)
 gint
 player_compare_func(gconstpointer a, gconstpointer b, gpointer data)
 {
-    gint type = GPOINTER_TO_INT(data) % 100;
-    const Player *pl1 = (GPOINTER_TO_INT(data) < 100) ? 
+    gint data_int = ABS(GPOINTER_TO_INT(data));
+    gint data_int2 = GPOINTER_TO_INT(data);
+    gint type = data_int % 100;
+    const Player *pl1 = (data_int < 100) ? 
 	*(const Player**)a : (const Player*)a;
-    const Player *pl2 = (GPOINTER_TO_INT(data) < 100) ? 
+    const Player *pl2 = (data_int < 100) ? 
 	*(const Player**)b : (const Player*)b;
     gint return_value = 0;
 
@@ -335,10 +337,26 @@ player_compare_func(gconstpointer a, gconstpointer b, gpointer data)
 	    return_value = misc_int_compare(pl2->pos, pl1->pos);
 	else
 	    return_value = 0;
-/* 	    return_value =  */
-/* 		misc_float_compare(player_get_game_skill(pl1, TRUE), */
-/* 				   player_get_game_skill(pl2, TRUE)); */
     }
+    else if(type == PLAYER_COMPARE_ATTRIBUTE_LEAGUE_GOALS)
+    {
+	gint goals1 = player_games_goals_get(pl1, pl1->team->clid, PLAYER_VALUE_GOALS),
+	    games1 = player_games_goals_get(pl1, pl1->team->clid, PLAYER_VALUE_GAMES),
+	    shots1 = player_games_goals_get(pl1, pl1->team->clid, PLAYER_VALUE_SHOTS),
+	    goals2 = player_games_goals_get(pl2, pl2->team->clid, PLAYER_VALUE_GOALS),
+	    games2 = player_games_goals_get(pl2, pl2->team->clid, PLAYER_VALUE_GAMES),
+	    shots2 = player_games_goals_get(pl2, pl2->team->clid, PLAYER_VALUE_SHOTS);
+
+	if(goals1 != goals2)
+	    return_value = misc_int_compare(goals1, goals2);
+	else if(games1 != games2)
+	    return_value = misc_int_compare(games2, games1);
+	else
+	    return_value = misc_int_compare(shots2, shots1);
+    }
+    
+    if(data_int2 != 0)
+	return_value *= (data_int / data_int2);
 
     return return_value;
 }

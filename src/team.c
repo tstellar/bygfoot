@@ -769,6 +769,35 @@ team_update_user_team_week_roundly(Team *tm)
 	player_update_week_roundly(tm, i);
 }
 
+/** Return a value from the league table element going with the team.
+    @param type The type of the value. */
+gint
+team_get_table_value(const Team *tm, gint type)
+{
+    gint i;
+    const GArray *elements = NULL;
+
+    if(tm->clid >= ID_CUP_START)
+    {
+	g_warning("team_get_table_value: team is not a league team: %s \n", tm->name->str);
+	return -1;
+    }
+    
+    elements = league_from_clid(tm->clid)->table.elements;
+
+    for(i=0;i<elements->len;i++)
+	if(g_array_index(elements, TableElement, i).team_id == tm->id)
+	    break;
+
+    if(i == elements->len)
+    {
+	g_warning("team_get_table_value: table entry not found for team %s \n", tm->name->str);
+	return -1;
+    }
+
+    return g_array_index(elements, TableElement, i).values[type];
+}
+
 /** Compare function for team arrays or pointer arrays. */
 gint
 team_compare_func(gconstpointer a, gconstpointer b, gpointer data)
@@ -789,8 +818,44 @@ team_compare_func(gconstpointer a, gconstpointer b, gpointer data)
 		league_cup_get_index_from_clid(tm2->clid),
 		league_cup_get_index_from_clid(tm1->clid));
     }
+    else if(type == TEAM_COMPARE_OFFENSIVE)
+    {
+	gint gf1 = team_get_table_value(tm1, TABLE_GF),
+	    gf2 = team_get_table_value(tm2, TABLE_GF),
+	    ga1 = team_get_table_value(tm1, TABLE_GA),
+	    ga2 = team_get_table_value(tm2, TABLE_GA);
+
+	if(gf1 > gf2)
+	    return_value = -1;
+	else if(gf1 < gf2)
+	    return_value = 1;
+	else if(ga1 < ga2)
+	    return_value =  -1;
+	else if(ga1 > ga2)
+	    return_value = 1;
+	else
+	    return_value = 0;
+    }
+    else if(type == TEAM_COMPARE_DEFENSE)
+    {
+	gint gf1 = team_get_table_value(tm1, TABLE_GF),
+	    gf2 = team_get_table_value(tm2, TABLE_GF),
+	    ga1 = team_get_table_value(tm1, TABLE_GA),
+	    ga2 = team_get_table_value(tm2, TABLE_GA);
+
+	if(ga1 > ga2)
+	    return_value = 1;
+	else if(ga1 < ga2)
+	    return_value = -1;
+	else if(gf1 > gf2)
+	    return_value =  -1;
+	else if(gf1 < gf2)
+	    return_value = 1;
+	else
+	    return_value = 0;
+    }
     else if(type == TEAM_COMPARE_UNSORTED)
-	return 0;
+	return_value = 0;
 
     return return_value;
 }

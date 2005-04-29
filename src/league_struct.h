@@ -2,8 +2,9 @@
 #define LEAGUE_STRUCT_H
 
 #include "bygfoot.h"
-#include "table_struct.h"
 #include "cup_struct.h"
+#include "stat_struct.h"
+#include "table_struct.h"
 
 enum PromRelType
 {
@@ -81,6 +82,8 @@ typedef struct
     Table table;
     /** The fixtures of a season for the league. */
     GArray *fixtures;
+    /** The current league statistics. */
+    LeagueStat stats;
 } League;
 
 #endif
