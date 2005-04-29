@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+
+  <sid>france2</sid>
+  <name>League 2</name>
+  <short_name>L2</short_name>
+  <symbol>flag_fr.png</symbol>
+  <first_week>1</first_week>
+  <week_gap>1</week_gap>
+  <average_skill>7000</average_skill>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>3</rank_end>
+      <dest_sid>france1</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_rel_element>
+      <rank_start>18</rank_start>
+      <rank_end>20</rank_end>
+      <dest_sid>france3</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Amiens</team_name>
+    </team>
+    <team>
+      <team_name>Angers</team_name>
+    </team>
+    <team>
+      <team_name>Brest</team_name>
+    </team>
+    <team>
+      <team_name>Châteauroux</team_name>
+    </team>
+    <team>
+      <team_name>Clermont-Ferrand</team_name>
+    </team>
+    <team>
+      <team_name>Créteil</team_name>
+    </team>
+    <team>
+      <team_name>Dijon</team_name>
+    </team>
+    <team>
+      <team_name>Grenoble</team_name>
+    </team>
+    <team>
+      <team_name>Gueugnon</team_name>
+    </team>
+    <team>
+      <team_name>Guingamp</team_name>
+    </team>
+    <team>
+      <team_name>Laval</team_name>
+    </team>
+    <team>
+      <team_name>Le Havre</team_name>
+    </team>
+    <team>
+      <team_name>Le Mans</team_name>
+    </team>
+    <team>
+      <team_name>Lorient</team_name>
+    </team>
+    <team>
+      <team_name>Montpellier</team_name>
+    </team>
+    <team>
+      <team_name>Nancy</team_name>
+    </team>
+    <team>
+      <team_name>Niors</team_name>
+    </team>
+    <team>
+      <team_name>Reims</team_name>
+    </team>
+    <team>
+      <team_name>Sedan</team_name>
+    </team>
+    <team>
+      <team_name>Troyes</team_name>
+    </team>
+  </teams>
+
+</league>
