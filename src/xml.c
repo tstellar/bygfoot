@@ -13,6 +13,7 @@
 #include "xml_loadsave_cup.h"
 #include "xml_loadsave_fixtures.h"
 #include "xml_loadsave_league.h"
+#include "xml_loadsave_league_stat.h"
 #include "xml_loadsave_live_game.h"
 #include "xml_loadsave_table.h"
 #include "xml_loadsave_teams.h"
@@ -65,6 +66,7 @@ xml_load_leagues(const gchar *dirname, const gchar *basename)
 	if(!g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_table.xml") && 
 	   !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_fixtures.xml") &&
 	   !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_teams.xml") &&
+	   !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_stat.xml") &&
 	   !query_misc_string_contains(((GString*)g_ptr_array_index(dir_contents, i))->str, "_promcup"))
 	    xml_load_league(dirname, ((GString*)g_ptr_array_index(dir_contents, i))->str,
 			    dir_contents);
@@ -99,6 +101,9 @@ xml_load_league(const gchar *dirname, const gchar *basename, const GPtrArray *di
 
     sprintf(buf, "%s/%s_table.xml", dirname, prefix);
     xml_loadsave_table_read(buf, &lig(ligs->len - 1).table);
+
+    sprintf(buf, "%s/%s_stat.xml", dirname, prefix);
+    xml_loadsave_league_stat_read(buf, &lig(ligs->len - 1).stats);
 
     if(league_has_prom_games((&lig(ligs->len - 1))))
     {

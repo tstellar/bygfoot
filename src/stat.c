@@ -6,6 +6,21 @@
 #include "team.h"
 #include "variables.h"
 
+/** Return a newly allocated league stat with given clid. */
+LeagueStat
+stat_league_new(gint clid)
+{
+    LeagueStat new;
+
+    new.clid = clid;
+    new.teams_off = g_array_new(FALSE, FALSE, sizeof(Stat));
+    new.teams_def = g_array_new(FALSE, FALSE, sizeof(Stat));
+    new.player_scorers = g_array_new(FALSE, FALSE, sizeof(Stat));
+    new.player_goalies = g_array_new(FALSE, FALSE, sizeof(Stat));
+
+    return new;
+}
+
 /** Update the league stats. */
 void
 stat_update_leagues(void)

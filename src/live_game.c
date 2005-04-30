@@ -937,10 +937,7 @@ live_game_event_duel(void)
 		 const_float("float_live_game_score_team_exponent"));
 
     if(new.time != LIVE_GAME_UNIT_TIME_PENALTIES)
-    {
 	player_games_goals_set(attacker, match->fix->clid, PLAYER_VALUE_SHOTS, 1, TRUE);
-	player_games_goals_set(goalie, match->fix->clid, PLAYER_VALUE_SHOTS, 1, TRUE);
-    }
 
     if(rndom < scoring_prob)
     {
@@ -957,6 +954,11 @@ live_game_event_duel(void)
     else
 	new.event.type = math_gauss_disti(LIVE_GAME_EVENT_POST, LIVE_GAME_EVENT_CROSS_BAR);
 
+    if(new.time != LIVE_GAME_UNIT_TIME_PENALTIES &&
+       (new.event.type == LIVE_GAME_EVENT_SAVE ||
+	new.event.type == LIVE_GAME_EVENT_GOAL))
+	player_games_goals_set(goalie, match->fix->clid, PLAYER_VALUE_SHOTS, 1, TRUE);
+    
     g_array_append_val(unis, new);
 
     live_game_finish_unit();

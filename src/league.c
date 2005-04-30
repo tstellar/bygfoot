@@ -45,11 +45,7 @@ league_new(gboolean new_id)
     new.first_week = new.week_gap = 1;
     new.yellow_red = 1000;
 
-    new.stats.clid = new.id;
-    new.stats.teams_off = g_array_new(FALSE, FALSE, sizeof(Stat));
-    new.stats.teams_def = g_array_new(FALSE, FALSE, sizeof(Stat));
-    new.stats.player_scorers = g_array_new(FALSE, FALSE, sizeof(Stat));
-    new.stats.player_goalies = g_array_new(FALSE, FALSE, sizeof(Stat));
+    new.stats = stat_league_new(new.id);
 
     return new;
 }

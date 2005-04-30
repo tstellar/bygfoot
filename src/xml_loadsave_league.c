@@ -5,6 +5,7 @@
 #include "xml_loadsave_cup.h"
 #include "xml_loadsave_fixtures.h"
 #include "xml_loadsave_league.h"
+#include "xml_loadsave_league_stat.h"
 #include "xml_loadsave_table.h"
 #include "xml_loadsave_teams.h"
 
@@ -207,6 +208,9 @@ xml_loadsave_league_write(const gchar *prefix, const League *league)
 
     sprintf(buf, "%s___league_%d_fixtures.xml", prefix, league->id);
     xml_loadsave_fixtures_write(buf, league->fixtures);
+
+    sprintf(buf, "%s___league_%d_stat.xml", prefix, league->id);
+    xml_loadsave_league_stat_write(buf, &league->stats);
 
     sprintf(buf, "%s___league_%d.xml", prefix, league->id);
     file_my_fopen(buf, "w", &fil, TRUE);
