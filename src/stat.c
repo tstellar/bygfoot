@@ -13,7 +13,7 @@ stat_update_leagues(void)
     gint i;
 
     for(i=0;i<ligs->len;i++)
-	if(lig(i).first_week - 1 + (lig(i).teams->len - 1) * 2 * lig(i).week_gap >= week)
+	if(g_array_index(lig(i).fixtures, Fixture, lig(i).fixtures->len - 1).week_number >= week)
 	{
 	    free_league_stats(&lig(i).stats);
 	    lig(i).stats.teams_off = stat_update_league_teams(lig(i).teams, TEAM_COMPARE_OFFENSIVE);

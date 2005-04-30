@@ -107,9 +107,6 @@ start_write_variables(void)
     season = 1;
     cur_user = 0;
 
-    /*d*/
-/*     week=24; week_round = 2; */
-
     for(i=0;i<users->len;i++)
 	file_load_user_conf_file(&usr(i));
 }
@@ -150,6 +147,7 @@ start_load_cup_teams(void)
 	    cup_load_choose_teams(&cp(i));
 	    cup_load_choose_team_user(&cp(i));
 	}
+
 }
 
 /** End a week round. */

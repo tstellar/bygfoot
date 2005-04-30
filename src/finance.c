@@ -39,26 +39,27 @@ finance_update_user_weekly(User *user)
 	}
     }
 
-    for(i=0;i<tm->players->len;i++)
-    {
-	user->money_out[1][MON_OUT_WAGE] -= player_of_idx_team(tm, i)->wage;
-	user->money -= player_of_idx_team(tm, i)->wage;
-
-	if(player_of_idx_team(tm, i)->health > 0)
+    if(query_team_plays(tm, week - 1, 1))
+	for(i=0;i<tm->players->len;i++)
 	{
-	    user->money -= (gint)(finance_wage_unit(tm) * physio_factor[user->physio % 10]);
-	    user->money_out[1][MON_OUT_PHYSIO] -= 
-		(gint)(finance_wage_unit(tm) * physio_factor[user->physio % 10]);
+	    user->money_out[1][MON_OUT_WAGE] -= player_of_idx_team(tm, i)->wage;
+	    user->money -= player_of_idx_team(tm, i)->wage;
+	    
+	    if(player_of_idx_team(tm, i)->health > 0)
+	    {
+		user->money -= (gint)(finance_wage_unit(tm) * physio_factor[user->physio % 10]);
+		user->money_out[1][MON_OUT_PHYSIO] -= 
+		    (gint)(finance_wage_unit(tm) * physio_factor[user->physio % 10]);
+	    }
 	}
-    }
-
+    
     user->money_out[1][MON_OUT_SCOUT] -= (gint)(finance_wage_unit(tm) * scout_factor[user->scout % 10]);
     user->money -=  (gint)(finance_wage_unit(tm) * scout_factor[user->scout % 10]);
 
     user->debt = (gint)rint((gfloat)user->debt * (1 + const_float("float_finance_interest")));
 
     if(user->money < -finance_team_drawing_credit_loan(user->tm, FALSE) &&
-       user->counters[COUNT_USER_POSITIVE] == -1)
+       user->counters[COUNT_USER_POSITIVE] == -1 && debug < 50)
     {
 	user->counters[COUNT_USER_OVERDRAWN]++;
 	if(user->counters[COUNT_USER_OVERDRAWN] <=
@@ -76,16 +77,17 @@ finance_update_user_weekly(User *user)
     if(user->counters[COUNT_USER_LOAN] > -1)
 	user->counters[COUNT_USER_LOAN]--;
 
-    if(user->counters[COUNT_USER_LOAN] == 0)
+    if(user->counters[COUNT_USER_LOAN] == 0 && debug < 50)
 	user_event_add(user, EVENT_TYPE_WARNING, -1, -1, NULL, 
 		       _("You have to pay back your loan this week."));
-    if(user->counters[COUNT_USER_POSITIVE] == 0)
+
+    if(user->counters[COUNT_USER_POSITIVE] == 0 && debug < 50)
 	user_event_add(user, EVENT_TYPE_WARNING, -1, -1, NULL, 
 		       _("Your bank account has to be above your drawing credit limit next week."));
 
-    if((user->counters[COUNT_USER_LOAN] == -1 && user->debt != 0) ||
+    if(((user->counters[COUNT_USER_LOAN] == -1 && user->debt != 0) ||
        (user->counters[COUNT_USER_POSITIVE] == -1 &&
-	user->money < -finance_team_drawing_credit_loan(user->tm, FALSE)))
+	user->money < -finance_team_drawing_credit_loan(user->tm, FALSE))) && debug < 50)
     {
 	new_team = team_get_new(tm, TRUE);
 	user_event_add(user, EVENT_TYPE_FIRE_FINANCE, -1, -1, new_team, NULL);

@@ -351,14 +351,22 @@ callback_show_team(gint type)
     else
     {
 	if(type == SHOW_NEXT_LEAGUE)
+	{
 	    stat2 = league_cup_get_next_clid(stat2);
+	    while(stat2 >= ID_CUP_START && cup_from_clid(stat2)->teams->len == 0)
+		stat2 = league_cup_get_next_clid(stat2);
+	}
 	else
+	{
 	    stat2 = league_cup_get_previous_clid(stat2);
+	    while(stat2 >= ID_CUP_START && cup_from_clid(stat2)->teams->len == 0)
+		stat2 = league_cup_get_previous_clid(stat2);
+	}
 
 	statp = (gpointer)league_cup_get_teams(stat2);
 
 	stat1 = 0;
-	tm = &g_array_index((GArray*)statp, Team, stat1);
+	tm = &g_array_index((GArray*)statp, Team, 0);
     }
 
     stat0 = STATUS_BROWSE_TEAMS;

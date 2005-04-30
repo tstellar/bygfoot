@@ -1002,7 +1002,7 @@ player_update_post_match(Player *pl, gint clid)
     {
 	player_card_set(pl, clid, PLAYER_VALUE_CARD_YELLOW, 0, FALSE);
 	
-	if(player_card_get(pl, clid, PLAYER_VALUE_CARD_RED) == 0 && opt_int("int_opt_debug") < 50)
+	if(player_card_get(pl, clid, PLAYER_VALUE_CARD_RED) == 0 && debug < 50)
 	    player_card_set(pl, clid, PLAYER_VALUE_CARD_RED, 1, FALSE);
     }    
 }

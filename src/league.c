@@ -1,6 +1,7 @@
 #include "cup.h"
 #include "league.h"
 #include "maths.h"
+#include "misc.h"
 #include "option.h"
 #include "player.h"
 #include "stat.h"
@@ -296,7 +297,7 @@ league_remove_team_with_id(League *league, gint id)
 void
 league_get_team_movements(League *league, GArray *team_movements)
 {
-    gint i, j, cp_idx = -1;
+    gint i, j, k, cp_idx = -1;
     gint dest_idx;
     gint move_len = team_movements->len;
     TeamMove new_move;
@@ -305,11 +306,19 @@ league_get_team_movements(League *league, GArray *team_movements)
 
     for(i=0;i<elements->len;i++)
     {
+	GPtrArray *dest_sids =
+	    misc_separate_strings(g_array_index(elements, PromRelElement, i).dest_sid->str);
+	gint order[dest_sids->len];
+
+	k = 0;
+	math_generate_permutation(order, 0, dest_sids->len - 1);
+
 	for(j=g_array_index(elements, PromRelElement, i).ranks[0];
 	    j<=g_array_index(elements, PromRelElement, i).ranks[1]; j++)
 	{
 	    new_move.tm = *(g_array_index(league->table.elements, TableElement, j - 1).team);
-	    new_move.league_idx = league_index_from_sid(g_array_index(elements, PromRelElement, i).dest_sid->str);
+	    new_move.league_idx = 
+		league_index_from_sid(((GString*)g_ptr_array_index(dest_sids, order[k++ % dest_sids->len]))->str);
 
 	    g_array_append_val(team_movements, new_move);
 
@@ -325,6 +334,8 @@ league_get_team_movements(League *league, GArray *team_movements)
 				     USER_HISTORY_RELEGATED, new_move.tm.id, lig(new_move.league_idx).id, -1, "");
 	    }
 	}
+	
+	g_ptr_array_free(dest_sids, TRUE);
     }
 
     if(league_has_prom_games(league))
