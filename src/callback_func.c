@@ -114,19 +114,6 @@ callback_player_clicked(gint idx, GdkEventButton *event)
     }
 
     setsav0;
-
-    /*d*/
-    gint i;
-    printf("%s %d \n ", lig(1).name->str, lig(1).id);
-    for(i=0;i<lig(1).fixtures->len;i++)
-	if(g_array_index(lig(1).fixtures, Fixture, i).week_number == 15)
-	    printf("%s %d %d %s %d %d \n",
-		   g_array_index(lig(1).fixtures, Fixture, i).teams[0]->name->str,
-		   g_array_index(lig(1).fixtures, Fixture, i).result[0][0],
-		   g_array_index(lig(1).fixtures, Fixture, i).result[1][0],
-		   g_array_index(lig(1).fixtures, Fixture, i).teams[1]->name->str,
-		   g_array_index(lig(1).fixtures, Fixture, i).clid,
-		   query_fixture_has_tables(&g_array_index(lig(1).fixtures, Fixture, i)));
 }
 
 /** Show the last match of the current user. */
