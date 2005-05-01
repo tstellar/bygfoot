@@ -127,6 +127,11 @@ misc_callback_remove_user(GdkEventButton *event)
 void
 misc_callback_pause_live_game(void)
 {
+    if(g_array_index(usr(stat2).live_game.units, LiveGameUnit,
+		     usr(stat2).live_game.units->len - 1).event.type == 
+       LIVE_GAME_EVENT_END_MATCH)
+	return;
+
     gtk_widget_set_sensitive(lookup_widget(window.live, "button_pause"), FALSE);
     gtk_widget_set_sensitive(lookup_widget(window.live, "button_resume"), TRUE);
 

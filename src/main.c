@@ -11,6 +11,7 @@
 #include "live_game.h"
 #include "main.h"
 #include "transfer_struct.h"
+#include "stat_struct.h"
 #include "variables.h"
 #include "window.h"
 
@@ -25,7 +26,6 @@ main_init_variables(void)
     ligs = cps = scps = NULL;
     acps = NULL;
     country.name = country.symbol = country.sid = NULL;
-    transfer_list = NULL;
     player_names = NULL;
 
     season = week = week_round = 1;
@@ -48,6 +48,7 @@ main_init_variables(void)
 
     users = g_array_new(FALSE, FALSE, sizeof(User));
     transfer_list = g_array_new(FALSE, FALSE, sizeof(Transfer));
+    season_stats = g_array_new(FALSE, FALSE, sizeof(SeasonStat));
 
     save_file = g_string_new("");
 

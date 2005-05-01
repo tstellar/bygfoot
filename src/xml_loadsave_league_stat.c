@@ -124,10 +124,7 @@ xml_loadsave_league_stat_text         (GMarkupParseContext *context,
     if(state == TAG_ID)
 	lstat->clid = int_value;
     else if(state == TAG_TEAM_ID)
-    {
 	new_stat.team_id = int_value;
-	new_stat.tm = team_of_id(int_value);
-    }
     else if(state == TAG_STAT_VALUE)
     {
 	if(valueidx == 0)

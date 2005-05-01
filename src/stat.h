@@ -17,4 +17,7 @@ stat_update_leagues(void);
 void
 stat_update_league_players(League *league);
 
+void
+stat_create_season_stat(void);
+
 #endif

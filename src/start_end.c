@@ -64,7 +64,6 @@ start_new_season(void)
 
     week = week_round = 1;
 
-    /*todo: nullify, promotion/relegation*/
     if(season > 1)
     {
 	for(i=0;i<users->len;i++)
@@ -186,9 +185,11 @@ end_week_round(void)
 
 	if(query_start_end_season_end())
 	{
+	    end_season();
+
 	    season++;
 	    week = 1;
-
+	    
 	    start_new_season();
 	}
 	else
@@ -331,7 +332,7 @@ start_week_round(void)
 	start_func++;
     }
 
-    if(/*d*/FALSE && !query_user_games_this_week_round() &&
+    if(/*d*//* FALSE &&  */!query_user_games_this_week_round() &&
        ((week_round == 1 && 
 	 !query_user_games_in_week_round(week - 1, fixture_get_last_week_round(week - 1))) ||
 	(week_round > 1 && 
@@ -470,4 +471,11 @@ start_new_season_team_movements(void)
 		    &g_array_index(lig(i).teams, Team, j);
 	}
     }
+}
+
+/** End a season (store stats etc.) */
+void
+end_season(void)
+{
+    stat_create_season_stat();
 }

@@ -1,3 +1,4 @@
+#include "cup.h"
 #include "free.h"
 #include "option.h"
 #include "player.h"
@@ -75,7 +76,6 @@ stat_update_league_players(League *league)
 	for(j=0;j<maxlen;j++)
 	{
 	    pl = (Player*)g_ptr_array_index(players_sorted[i], j);
-	    new_stat.tm = pl->team;
 	    new_stat.team_id = pl->team->id;
 	    new_stat.value_string = g_string_new(pl->name->str);
 	    new_stat.value1 = 
@@ -111,10 +111,9 @@ stat_update_league_teams(const GArray *teams_array, gint compare_type)
 
     for(i=0;i<maxlen;i++)
     {
-	new_stat.tm = (Team*)g_ptr_array_index(teams, i);
 	new_stat.team_id = ((Team*)g_ptr_array_index(teams, i))->id;
-	new_stat.value1 = team_get_table_value(new_stat.tm, TABLE_GF);
-	new_stat.value2 = team_get_table_value(new_stat.tm, TABLE_GA);
+	new_stat.value1 = team_get_table_value((Team*)g_ptr_array_index(teams, i), TABLE_GF);
+	new_stat.value2 = team_get_table_value((Team*)g_ptr_array_index(teams, i), TABLE_GA);
 	new_stat.value3 = -1;
 	new_stat.value_string = g_string_new("");
 
@@ -124,4 +123,39 @@ stat_update_league_teams(const GArray *teams_array, gint compare_type)
     g_ptr_array_free(teams, TRUE);
 
     return stats;
+}
+
+/** Create a seasonstat struct at the end of a season. */
+void
+stat_create_season_stat(void)
+{
+    gint i;
+    SeasonStat new;
+    ChampStat new_champ;
+
+    new.season_number = season;
+    new.league_champs = g_array_new(FALSE, FALSE, sizeof(ChampStat));
+    new.cup_champs = g_array_new(FALSE, FALSE, sizeof(ChampStat));
+    new.league_stats = g_array_new(FALSE, FALSE, sizeof(LeagueStat));
+    
+    for(i=0;i<ligs->len;i++)
+    {
+	new_champ.cl_name = g_string_new(lig(i).name->str);
+	new_champ.team_name = 
+	    g_string_new(g_array_index(lig(i).table.elements, TableElement, 0).team->name->str);
+	g_array_append_val(new.league_champs, new_champ);
+
+	g_array_append_val(new.league_stats, lig(i).stats);
+	lig(i).stats = stat_league_new(lig(i).id);
+    }
+
+    for(i=0;i<acps->len;i++)
+	if(acp(i)->id < ID_PROM_CUP_START ||
+	   acp(i)->id >= ID_SUPERCUP_START)
+	{
+	    new_champ.cl_name = g_string_new(acp(i)->name->str);
+	    new_champ.team_name = 
+		g_string_new(cup_get_winner(acp(i))->name->str);
+	    g_array_append_val(new.cup_champs, new_champ);
+	}
 }

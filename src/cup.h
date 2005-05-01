@@ -80,4 +80,7 @@ cup_get_round_name(const Cup *cup, gint round, gchar *buf);
 gint
 cup_has_tables(gint clid);
 
+Team*
+cup_get_winner(const Cup *cup);
+
 #endif

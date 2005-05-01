@@ -3,6 +3,7 @@
 #include "live_game_struct.h"
 #include "option_struct.h"
 #include "player_struct.h"
+#include "stat_struct.h"
 #include "team_struct.h"
 #include "user_struct.h"
 
@@ -29,6 +30,10 @@ OptionList constants;
 /** The array containing players to be transfered.
     @see TransferPlayer */
 GArray *transfer_list;
+
+/** Array with season statistics (updated at the
+    end of each season. */
+GArray *season_stats;
 
 /** Some counters we use. */
 gint counters[COUNT_END];

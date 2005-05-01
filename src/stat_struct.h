@@ -5,7 +5,6 @@
     string and integer values. */
 typedef struct
 {
-    Team *tm;
     gint team_id;
     gint value1, value2, value3;
     GString *value_string;
@@ -21,5 +20,26 @@ typedef struct
     /** Best goal getters and goalies. */
     GArray *player_scorers, *player_goalies;
 } LeagueStat;
+
+/** A team name and a competition name. */
+typedef struct
+{
+    GString *team_name, 
+	*cl_name;
+} ChampStat;
+
+/** A season statistics structure. */
+typedef struct
+{
+    /** Which season */
+    gint season_number;
+
+    /** League and cup winners. */
+    GArray *league_champs;
+    GArray *cup_champs;
+    
+    /** The league stats at the end of the season. */
+    GArray *league_stats;
+} SeasonStat;
 
 #endif

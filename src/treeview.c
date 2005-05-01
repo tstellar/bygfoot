@@ -2015,11 +2015,11 @@ treeview_create_league_stats(GtkListStore *ls, const League *league)
 		    g_array_index(teams[i], Stat, j).value1,
 		    g_array_index(teams[i], Stat, j).value2);
 	    
-	    treeview_helper_set_user_colours(g_array_index(teams[i], Stat, j).tm,
+	    treeview_helper_set_user_colours(team_of_id(g_array_index(teams[i], Stat, j).team_id),
 					     &colour_bg, &colour_fg);
 
 	    sprintf(buf2, "<span background='%s' foreground='%s'>%s</span>",
-		    colour_bg, colour_fg, g_array_index(teams[i], Stat, j).tm->name->str);
+		    colour_bg, colour_fg, team_of_id(g_array_index(teams[i], Stat, j).team_id)->name->str);
 	    
 	    gtk_list_store_append(ls, &iter);
 	    gtk_list_store_set(ls, &iter, 0, NULL, 1, j + 1,
@@ -2055,12 +2055,12 @@ treeview_create_league_stats(GtkListStore *ls, const League *league)
 			100 * (1 - (gfloat)g_array_index(players[i], Stat, j).value1 /
 			       (gfloat)g_array_index(players[i], Stat, j).value3));
 
-	    treeview_helper_set_user_colours(g_array_index(players[i], Stat, j).tm,
+	    treeview_helper_set_user_colours(team_of_id(g_array_index(players[i], Stat, j).team_id),
 					     &colour_bg, &colour_fg);
 	    sprintf(buf3, "<span background='%s' foreground='%s'>%s (%s)</span>",
 		    colour_bg, colour_fg,
 		    g_array_index(players[i], Stat, j).value_string->str,
-		    g_array_index(players[i], Stat, j).tm->name->str);
+		    team_of_id(g_array_index(players[i], Stat, j).team_id)->name->str);
 	    sprintf(buf4, "%d", g_array_index(players[i], Stat, j).value1);
 
 	    gtk_list_store_append(ls, &iter);

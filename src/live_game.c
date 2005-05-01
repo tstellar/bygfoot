@@ -69,7 +69,7 @@ live_game_calculate_fixture(Fixture *fix)
     while(last_unit.event.type != LIVE_GAME_EVENT_END_MATCH &&
 	  stat0 != STATUS_LIVE_GAME_PAUSE);
 
-    if(stat0 != STATUS_LIVE_GAME_PAUSE)
+    if(last_unit.event.type == LIVE_GAME_EVENT_END_MATCH)
 	game_post_match(fix);
 }
 

@@ -16,6 +16,43 @@ free_memory(void)
     free_support_dirs();
 }
 
+/** Free the memory occupied by the season stats. */
+void
+free_season_stats(void)
+{
+    gint i, j;
+
+    for(i=0;i<season_stats->len;i++)
+    {
+	for(j=0;j<g_array_index(season_stats, SeasonStat, i).league_stats->len;j++)
+	    free_league_stats(
+		&g_array_index(g_array_index(season_stats, SeasonStat, i).league_stats,
+			       LeagueStat, j));
+
+	for(j=0;j<g_array_index(season_stats, SeasonStat, i).league_champs->len;j++)
+	{
+	    g_string_free(
+		g_array_index(
+		    g_array_index(season_stats, SeasonStat, i).league_champs, ChampStat, j).cl_name, TRUE);
+	    g_string_free(
+		g_array_index(
+		    g_array_index(season_stats, SeasonStat, i).league_champs, ChampStat, j).team_name, TRUE);
+	}
+
+	for(j=0;j<g_array_index(season_stats, SeasonStat, i).cup_champs->len;j++)
+	{
+	    g_string_free(
+		g_array_index(
+		    g_array_index(season_stats, SeasonStat, i).cup_champs, ChampStat, j).cl_name, TRUE);
+	    g_string_free(
+		g_array_index(
+		    g_array_index(season_stats, SeasonStat, i).cup_champs, ChampStat, j).team_name, TRUE);
+	}
+    }
+
+    g_array_free(season_stats, TRUE);
+}
+
 /** Free the users array. */
 void
 free_users(gboolean reset)

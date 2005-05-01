@@ -60,4 +60,7 @@ start_new_season_team_movements(void);
 void
 end_week(void);
 
+void
+end_season(void);
+
 #endif

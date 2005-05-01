@@ -823,3 +823,15 @@ cup_has_tables(gint clid)
 
     return -1;
 }
+
+/** Return the team that won the cup. */
+Team*
+cup_get_winner(const Cup *cup)
+{
+    GPtrArray *teams_sorted = cup_get_teams_sorted(cup);
+    Team *tm = (Team*)g_ptr_array_index(teams_sorted, 0);
+    
+    g_ptr_array_free(teams_sorted, TRUE);
+
+    return tm;
+}
