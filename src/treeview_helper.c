@@ -87,6 +87,9 @@ treeview_helper_get_pointer(GtkTreeView *treeview, gint column)
 void
 treeview_helper_clear(GtkTreeView *treeview)
 {
+    /*d*/
+/*     gtk_tree_store_clear(GTK_TREE_STORE(gtk_tree_view_get_model(treeview))); */
+
     gint i;
     gint number_of_columns;
     GtkTreeView *list = (treeview == NULL) ?
@@ -236,27 +239,27 @@ treeview_helper_get_user_history_icon(gint history_type)
 	    g_warning("treeview_helper_get_user_history_icon: unknown type %d.\n", history_type);
 	    return NULL;
 	case USER_HISTORY_START_GAME:
-	    return const_str("string_treeview_helper_user_history_symbol_start_game");
+	    return const_str("string_treeview_helper_user_history_symbol_start_game_icon");
     	case USER_HISTORY_FIRE_FINANCES:
-	    return const_str("string_treeview_helper_user_history_symbol_fire_finances");
+	    return const_str("string_treeview_helper_user_history_symbol_fire_finances_icon");
     	case  USER_HISTORY_FIRE_FAILURE:
-	    return const_str("string_treeview_helper_user_history_symbol_fire_failure");
+	    return const_str("string_treeview_helper_user_history_symbol_fire_failure_icon");
     	case  USER_HISTORY_JOB_OFFER_ACCEPTED:
-	    return const_str("string_treeview_helper_user_history_symbol_job_offer_accepted");
+	    return const_str("string_treeview_helper_user_history_symbol_job_offer_accepted_icon");
     	case  USER_HISTORY_END_SEASON:
-	    return const_str("string_treeview_helper_user_history_symbol_end_season");
+	    return const_str("string_treeview_helper_user_history_symbol_end_season_icon");
     	case  USER_HISTORY_WIN_FINAL:
-	    return const_str("string_treeview_helper_user_history_symbol_win_final");
+	    return const_str("string_treeview_helper_user_history_symbol_win_final_icon");
     	case  USER_HISTORY_LOSE_FINAL:
-	    return const_str("string_treeview_helper_user_history_symbol_lose_final");
+	    return const_str("string_treeview_helper_user_history_symbol_lose_final_icon");
     	case  USER_HISTORY_PROMOTED:
-	    return const_str("string_treeview_helper_user_history_symbol_promoted");
+	    return const_str("string_treeview_helper_user_history_symbol_promoted_icon");
     	case  USER_HISTORY_RELEGATED:
-	    return const_str("string_treeview_helper_user_history_symbol_relegated");
+	    return const_str("string_treeview_helper_user_history_symbol_relegated_icon");
     	case USER_HISTORY_REACH_CUP_ROUND:
-	    return const_str("string_treeview_helper_user_history_symbol_reach_cup_round");
+	    return const_str("string_treeview_helper_user_history_symbol_reach_cup_round_icon");
     	case USER_HISTORY_CHAMPION:
-	    return const_str("string_treeview_helper_user_history_symbol_champion");
+	    return const_str("string_treeview_helper_user_history_symbol_champion_icon");
     }
 
     return NULL;

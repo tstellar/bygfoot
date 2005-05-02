@@ -9,6 +9,7 @@ enum
     TAG_TABLE = TAG_START_TABLE,
     TAG_TABLE_ELEMENT,
     TAG_TABLE_ELEMENT_VALUE,
+    TAG_TABLE_ELEMENT_OLD_RANK,
     TAG_END
 };
 
@@ -68,6 +69,7 @@ xml_loadsave_table_end_element    (GMarkupParseContext *context,
 	    g_array_append_val(new_table->elements, new_element);
     }
     else if(tag == TAG_TABLE_ELEMENT_VALUE ||
+	    tag == TAG_TABLE_ELEMENT_OLD_RANK ||
 	    tag == TAG_TEAM_ID)
     {
 	state = TAG_TABLE_ELEMENT;
@@ -107,6 +109,8 @@ xml_loadsave_table_text         (GMarkupParseContext *context,
     }
     else if(state == TAG_TABLE_ELEMENT_VALUE)
 	new_element.values[valueidx] = int_value;
+    else if(state == TAG_TABLE_ELEMENT_OLD_RANK)
+	new_element.old_rank = int_value;
 }
 
 void
@@ -164,6 +168,9 @@ xml_loadsave_table_write(const gchar *filename, const Table *table)
 	
 	xml_write_int(fil, g_array_index(table->elements, TableElement, i).team->id, 
 		      TAG_TEAM_ID, I1);
+
+	xml_write_int(fil, g_array_index(table->elements, TableElement, i).old_rank, 
+		      TAG_TABLE_ELEMENT_OLD_RANK, I1);
 	
 	for(j=0;j<TABLE_END;j++)
 	    xml_write_int(fil, g_array_index(table->elements, TableElement, i).values[j], 

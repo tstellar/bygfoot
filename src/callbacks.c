@@ -220,6 +220,9 @@ on_button_browse_forward_clicked       (GtkButton       *button,
 	    selected_row[0] = (selected_row[0] + 1) % current_user.tm->players->len;
 	    on_menu_show_info_activate(NULL, NULL);
 	    break;
+	case STATUS_SHOW_SEASON_HISTORY:
+	    callback_show_season_history(SHOW_NEXT);
+	    break;
     }
 }
 
@@ -242,6 +245,9 @@ on_button_browse_back_clicked          (GtkButton       *button,
 	case STATUS_SHOW_PLAYER_INFO:
 	    selected_row[0] = (selected_row[0] == 0) ? current_user.tm->players->len - 1 : selected_row[0] - 1;
 	    on_menu_show_info_activate(NULL, NULL);
+	    break;
+	case STATUS_SHOW_SEASON_HISTORY:
+	    callback_show_season_history(SHOW_PREVIOUS);
 	    break;
     }
 }
@@ -267,6 +273,9 @@ on_button_cl_back_clicked              (GtkButton       *button,
 	case STATUS_SHOW_LEAGUE_STATS:
 	    callback_show_league_stats(SHOW_PREVIOUS_LEAGUE);
 	    break;
+	case STATUS_SHOW_SEASON_HISTORY:
+	    callback_show_season_history(SHOW_PREVIOUS_LEAGUE);
+	    break;
     }
 }
 
@@ -291,6 +300,9 @@ on_button_cl_forward_clicked           (GtkButton       *button,
 	    break;
 	case STATUS_SHOW_LEAGUE_STATS:
 	    callback_show_league_stats(SHOW_NEXT_LEAGUE);
+	    break;
+	case STATUS_SHOW_SEASON_HISTORY:
+	    callback_show_season_history(SHOW_NEXT_LEAGUE);
 	    break;
     }
 }
@@ -350,7 +362,16 @@ void
 on_menu_season_history_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    if(season == 1)
+    {
+	game_gui_print_message(_("This is your first season."));
+	return;
+    }
 
+    stat0 = STATUS_SHOW_SEASON_HISTORY;
+    callback_show_season_history(SHOW_CURRENT);
+
+    gui_set_arrows();
 }
 
 

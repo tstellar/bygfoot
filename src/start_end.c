@@ -74,7 +74,10 @@ start_new_season(void)
 	start_new_season_team_movements();
 
 	for(i=0;i<users->len;i++)
+	{
 	    usr(i).tm = team_of_id(usr(i).team_id);
+	    live_game_reset(&usr(i).live_game, NULL, TRUE);
+	}
     }
 
     start_load_cup_teams();
@@ -82,7 +85,11 @@ start_new_season(void)
     for(i=acps->len - 1;i >= 0;i--)
     {
 	if(acp(i)->id >= ID_PROM_CUP_START)
+	{
+	    g_array_free(acp(i)->fixtures, TRUE);
+	    acp(i)->fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));
 	    g_ptr_array_remove_index(acps, i);
+	}
 	else
 	    fixture_write_cup_fixtures(&cp(i));
     }
@@ -260,23 +267,34 @@ end_week_round_results(void)
 void
 end_week_round_sort_tables(void)
 {
-    gint i, j;
+    gint i, j, k;
 
     for(i=0;i<ligs->len;i++)
 	if(query_fixture_in_week_round(lig(i).id, week, week_round))
+	{
+	    for(j=0;j<lig(i).table.elements->len;j++)
+		g_array_index(lig(i).table.elements, TableElement, j).old_rank = j;
+
 	    g_array_sort_with_data(lig(i).table.elements,
 				   (GCompareDataFunc)table_element_compare_func,
 				   GINT_TO_POINTER(lig(i).id));
+	}
 
     for(i=0;i<acps->len;i++)
 	if(query_fixture_in_week_round(acp(i)->id, week, week_round) &&
 	   g_array_index(acp(i)->fixtures, Fixture, acp(i)->fixtures->len - 1).round ==
 	   cup_has_tables(acp(i)->id))
 	    for(j=0;j<cup_get_last_tables(acp(i)->id)->len;j++)
+	    {
+		for(k=0;k<g_array_index(cup_get_last_tables(acp(i)->id), Table, j).elements->len;k++)
+		    g_array_index(g_array_index(cup_get_last_tables(acp(i)->id), Table, j).elements,
+				  TableElement, k).old_rank = k;
+
 		g_array_sort_with_data(
 		    g_array_index(cup_get_last_tables(acp(i)->id), Table, j).elements,
 		    (GCompareDataFunc)table_element_compare_func,
 		    GINT_TO_POINTER(acp(i)->id));
+	    }
 }
 
 /** Update cup fixtures. */

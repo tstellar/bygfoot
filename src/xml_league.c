@@ -340,7 +340,7 @@ xml_league_read(const gchar *league_name, GArray *leagues)
 	{
 	    new_table_element = 
 		table_element_new(&g_array_index(
-				      g_array_index(leagues, League, leagues->len - 1).teams, Team, i));
+				      g_array_index(leagues, League, leagues->len - 1).teams, Team, i), i);
 	    g_array_append_val(g_array_index(leagues, League, leagues->len - 1).
 			       table.elements, new_table_element);
 	}

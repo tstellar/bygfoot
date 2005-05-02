@@ -4,6 +4,7 @@
 #include "gui.h"
 #include "league.h"
 #include "misc.h"
+#include "option.h"
 #include "support.h"
 #include "table.h"
 #include "transfer_struct.h"

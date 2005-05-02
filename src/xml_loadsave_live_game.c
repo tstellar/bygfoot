@@ -4,6 +4,7 @@
 #include "league.h"
 #include "live_game.h"
 #include "misc.h"
+#include "option.h"
 #include "variables.h"
 #include "xml.h"
 #include "xml_loadsave_live_game.h"
@@ -157,6 +158,10 @@ xml_loadsave_live_game_text         (GMarkupParseContext *context,
 	lgame->fix_clid = int_value;
     else if(state == TAG_LIVE_GAME_FIX_IDX)
     {
+	if(debug > 60)
+	    printf("int %d clid %d cup %p\n ",
+		   int_value, lgame->fix_clid,
+		   cup_from_clid(lgame->fix_clid));
 	lgame->fix_idx = int_value;
 	lgame->fix = &g_array_index(league_cup_get_fixtures(lgame->fix_clid),
 				    Fixture, int_value);

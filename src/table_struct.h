@@ -31,6 +31,9 @@ typedef struct
 {
     Team *team;
     gint team_id;
+    /** The rank of the element before the last update. 
+	Used to display an arrow if the rank changed. */
+    gint old_rank;
     gint values[TABLE_END];
 } TableElement;
 

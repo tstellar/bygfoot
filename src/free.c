@@ -18,9 +18,16 @@ free_memory(void)
 
 /** Free the memory occupied by the season stats. */
 void
-free_season_stats(void)
+free_season_stats(gboolean reset)
 {
     gint i, j;
+
+    if(season_stats == NULL)
+    {
+	if(reset)
+	    season_stats = g_array_new(FALSE, FALSE, sizeof(SeasonStat));
+	return;
+    }
 
     for(i=0;i<season_stats->len;i++)
     {
@@ -50,7 +57,10 @@ free_season_stats(void)
 	}
     }
 
-    g_array_free(season_stats, TRUE);
+    free_g_array(&season_stats);
+
+    if(reset)
+	season_stats = g_array_new(FALSE, FALSE, sizeof(SeasonStat));
 }
 
 /** Free the users array. */
@@ -428,6 +438,8 @@ free_variables(void)
     free_option_list(&constants, FALSE);
 
     free_g_string(&save_file);
+
+    free_season_stats(FALSE);
 }
 
 /**

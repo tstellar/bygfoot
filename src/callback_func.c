@@ -490,3 +490,43 @@ callback_show_league_stats(gint type)
 
     treeview_show_league_stats(stat1);
 }
+
+/** Show the appropriate season history page in the right treeview. */
+void
+callback_show_season_history(gint type)
+{
+    switch(type)
+    {
+	default:
+	    g_warning("callback_show_season_history: unknown type %d \n", type);
+	    break;
+	case SHOW_CURRENT:
+	    stat1 = -1;
+	    stat2 = season - 2;
+	    break;
+	case SHOW_NEXT_LEAGUE:
+	    if(stat1 == -1)
+		stat1 = 0;
+	    else if(stat1 == ligs->len - 1)
+		stat1 = -1;
+	    else
+		stat1++;
+	    break;
+	case SHOW_PREVIOUS_LEAGUE:
+	    if(stat1 == -1)
+		stat1 = ligs->len - 1;
+	    else if(stat1 == 0)
+		stat1 = -1;
+	    else
+		stat1--;
+	    break;
+	case SHOW_NEXT:
+	    stat2 = (stat2 + 1) % (season - 1);
+	    break;
+	case SHOW_PREVIOUS:
+	    stat2 = (stat2 == 0) ? season - 2 : stat2 - 1;
+	    break;
+    }
+    
+    treeview_show_season_history(stat1, stat2);
+}

@@ -217,9 +217,9 @@ xml_loadsave_fixtures_write(const gchar *filename, const GArray *fixtures)
 			  TAG_FIXTURE_RESULT, I1);
 	}
 
-	xml_write_int(fil, g_array_index(fixtures, Fixture, i).teams[0]->id, 
+	xml_write_int(fil, g_array_index(fixtures, Fixture, i).team_ids[0], 
 		      TAG_TEAM_ID, I1);
-	xml_write_int(fil, g_array_index(fixtures, Fixture, i).teams[1]->id, 
+	xml_write_int(fil, g_array_index(fixtures, Fixture, i).team_ids[1], 
 		      TAG_TEAM_ID, I1);
 
 	fprintf(fil, "</_%d>\n", TAG_FIXTURE);

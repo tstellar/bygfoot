@@ -82,6 +82,6 @@ void
 free_league_stats(LeagueStat *stats);
 
 void
-free_season_stats(void);
+free_season_stats(gboolean reset);
 
 #endif

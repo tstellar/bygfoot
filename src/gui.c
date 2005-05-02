@@ -114,7 +114,8 @@ gui_set_arrows(void)
     gui_set_arrow_pair(3, FALSE);
 
     if(stat0 == STATUS_SHOW_FIXTURES ||
-       stat0 == STATUS_BROWSE_TEAMS)
+       stat0 == STATUS_BROWSE_TEAMS ||
+       stat0 == STATUS_SHOW_SEASON_HISTORY)
 	gui_set_arrow_pair(3, TRUE);
     else if(stat0 == STATUS_SHOW_PLAYER_INFO ||
 	    stat0 == STATUS_SHOW_FIXTURES_WEEK)

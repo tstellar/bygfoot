@@ -383,13 +383,23 @@ treeview_live_game_show_commentary(const LiveGameUnit *unit)
 	GTK_LIST_STORE(
 	    gtk_tree_view_get_model(GTK_TREE_VIEW(lookup_widget(window.live, "treeview_commentary"))));
     GtkTreeIter iter;
-    gchar buf[SMALL];
+    gchar buf[SMALL], buf2[SMALL];
 
     sprintf(buf, "%3d.", live_game_unit_get_minute(unit));
+    if(unit->possession == 1)
+	sprintf(buf2, "<span background='%s' foreground='%s'>%s</span>",
+		const_str("string_treeview_live_game_commentary_away_bg"),
+		const_str("string_treeview_live_game_commentary_away_fg"),
+		unit->event.commentary->str);
+    else
+	sprintf(buf2, "<span background='%s' foreground='%s'>%s</span>",
+		const_str("string_treeview_helper_color_default_background"),
+		const_str("string_treeview_helper_color_default_foreground"),
+		unit->event.commentary->str);
+    
     gtk_list_store_prepend(ls, &iter);
     treeview_helper_insert_icon(ls, &iter, 1, treeview_helper_live_game_icon(unit->event.type));
-    gtk_list_store_set(ls, &iter, 0, buf,
-		       2, unit->event.commentary->str, -1);
+    gtk_list_store_set(ls, &iter, 0, buf, 2, buf2, -1);
 
     adjustment->value = adjustment->lower - adjustment->page_size;
     gtk_adjustment_value_changed(adjustment);
@@ -452,7 +462,7 @@ treeview_live_game_set_up_commentary(void)
     renderer = treeview_helper_cell_renderer_text_new();
     gtk_tree_view_column_pack_start(col, renderer, TRUE);
     gtk_tree_view_column_add_attribute(col, renderer,
-				       "text", 2);
+				       "markup", 2);
 }
 
 /** Show the first commentary of the live game    
@@ -1010,9 +1020,9 @@ treeview_table_write_header(GtkListStore *ls, gint clid, gint number)
 
     gtk_list_store_append(ls, &iter);
     treeview_helper_insert_icon(ls, &iter, 0, symbol);
-    gtk_list_store_set(ls, &iter, 1, "", 2, buf, -1);
+    gtk_list_store_set(ls, &iter, 1, "", 2, NULL, 3, buf, -1);
 
-    for(i=3;i<11;i++)
+    for(i=4;i<12;i++)
 	gtk_list_store_set(ls, &iter, i, "", -1);
 }
 
@@ -1038,6 +1048,16 @@ treeview_create_single_table(GtkListStore *ls, const Table *table, gint number)
 
 	if(table->clid >= ID_CUP_START)
 	    treeview_helper_insert_icon(ls, &iter, 0, elem->team->symbol->str);
+	
+	if(elem->old_rank > i)
+	    treeview_helper_insert_icon(ls, &iter, 2, 
+					const_str("string_treeview_table_up_icon"));
+	else if(elem->old_rank < i)
+	    treeview_helper_insert_icon(ls, &iter, 2, 
+					const_str("string_treeview_table_down_icon"));
+	else
+	    treeview_helper_insert_icon(ls, &iter, 2, 
+					const_str("string_treeview_table_stay_icon"));
 
 	/*todo: cup choose team user */
 	treeview_helper_get_table_element_colours(table, i, colour_fg, colour_bg, FALSE);
@@ -1048,19 +1068,21 @@ treeview_create_single_table(GtkListStore *ls, const Table *table, gint number)
 	sprintf(buf[1], "<span background='%s' foreground='%s'>%s</span>", 
 		colour_bg, colour_fg, elem->team->name->str);
 
+	gtk_list_store_set(ls, &iter, 1, buf[0], 3, buf[1], -1);
+
 	for(j=2;j<10;j++)
 	    if(j - 2 != TABLE_GD)
 		sprintf(buf[j], "%d", elem->values[j - 2]);
 	    else
 		sprintf(buf[j], "%+d", elem->values[j - 2]);
 
-	for(j=0;j<10;j++)
-	    gtk_list_store_set(ls, &iter, j + 1, buf[j], -1);
+	for(j=2;j<10;j++)
+	    gtk_list_store_set(ls, &iter, j + 2, buf[j], -1);
     }
 
     gtk_list_store_append(ls, &iter);
-    gtk_list_store_set(ls, &iter, 0, NULL, -1);
-    for(j=1;j<11;j++)
+    gtk_list_store_set(ls, &iter, 0, NULL, 1, "", 2, NULL, -1);
+    for(j=3;j<11;j++)
 	gtk_list_store_set(ls, &iter, j, "", -1);
 }
 
@@ -1070,9 +1092,10 @@ treeview_create_table(gint clid)
 {
     gint i;
     GtkListStore *ls = 
-	gtk_list_store_new(11,
+	gtk_list_store_new(12,
 			   GDK_TYPE_PIXBUF,
 			   G_TYPE_STRING,
+			   GDK_TYPE_PIXBUF,
 			   G_TYPE_STRING,
 			   G_TYPE_STRING,
 			   G_TYPE_STRING,
@@ -1102,10 +1125,8 @@ treeview_set_up_table(GtkTreeView *treeview)
     gint i;
     GtkTreeViewColumn   *col;
     GtkCellRenderer     *renderer;
-    gchar *titles[11] =
-	{"",
-	 "",
-	 _("Team"),
+    gchar *titles[9] =
+	{_("Team"),
 	 _("PL"),
 	 _("W"),
 	 _("D"),
@@ -1129,7 +1150,23 @@ treeview_set_up_table(GtkTreeView *treeview)
     gtk_tree_view_column_add_attribute(col, renderer,
 				       "pixbuf", 0);
 
-    for(i=1;i<11;i++)
+    col = gtk_tree_view_column_new();
+    gtk_tree_view_column_set_title(col, "");
+    gtk_tree_view_append_column(treeview, col);
+    renderer = treeview_helper_cell_renderer_text_new();
+    gtk_tree_view_column_pack_start(col, renderer, FALSE);
+    gtk_tree_view_column_add_attribute(col, renderer,
+				       "markup", 1);
+    g_object_set(renderer, "xalign", 0.5, NULL);
+
+    col = gtk_tree_view_column_new();
+    gtk_tree_view_append_column(treeview, col);
+    renderer = gtk_cell_renderer_pixbuf_new();
+    gtk_tree_view_column_pack_start(col, renderer, TRUE);
+    gtk_tree_view_column_add_attribute(col, renderer,
+				       "pixbuf", 2);
+
+    for(i=0;i<9;i++)
     {
 	col = gtk_tree_view_column_new();
 	gtk_tree_view_column_set_title(col, titles[i]);
@@ -1137,10 +1174,8 @@ treeview_set_up_table(GtkTreeView *treeview)
 	renderer = treeview_helper_cell_renderer_text_new();
 	gtk_tree_view_column_pack_start(col, renderer, FALSE);
 	gtk_tree_view_column_add_attribute(col, renderer,
-					   "markup", i);
-
-	if(i == 1)
-	    g_object_set(renderer, "xalign", 1.0, NULL);
+					   "markup", i + 3);
+	g_object_set(renderer, "xalign", 0.5 - (0.5 * (i == 0)), NULL);
     }
 }
 
@@ -1975,27 +2010,27 @@ treeview_show_user_history(void)
 }
 
 void
-treeview_create_league_stats(GtkListStore *ls, const League *league)
+treeview_create_league_stats(GtkListStore *ls, const LeagueStat *league_stat)
 {
     gint i, j;
     gchar buf[SMALL], buf2[SMALL], buf3[SMALL], buf4[SMALL];
     GtkTreeIter iter;
-    GArray *teams[2] = {league->stats.teams_off, league->stats.teams_def};
-    GArray *players[2] = {league->stats.player_scorers, league->stats.player_goalies};
+    GArray *teams[2] = {league_stat->teams_off, league_stat->teams_def};
+    GArray *players[2] = {league_stat->player_scorers, league_stat->player_goalies};
     gchar *team_titles[2] = {_("Best offensive teams"),
 			    _("Best defensive teams")};
-    gchar *team_icons[2] = {const_str("string_treeview_league_stats_off_teams"),
-			    const_str("string_treeview_league_stats_def_teams")};
+    gchar *team_icons[2] = {const_str("string_treeview_league_stats_off_teams_icon"),
+			    const_str("string_treeview_league_stats_def_teams_icon")};
     gchar *player_titles[2][2] = {{_("Best goal scorers"), _("Shot %")},
 				  {_("Best goalkeepers"), _("Save %")}};
-    gchar *player_icons[2] = {const_str("string_treeview_league_stats_scorers"),
-			      const_str("string_treeview_league_stats_goalies")};
+    gchar *player_icons[2] = {const_str("string_treeview_league_stats_scorers_icon"),
+			      const_str("string_treeview_league_stats_goalies_icon")};
     gchar *colour_fg = NULL, *colour_bg = NULL;
     
     gtk_list_store_append(ls, &iter);
-    treeview_helper_insert_icon(ls, &iter, 0, league->symbol->str);
+    treeview_helper_insert_icon(ls, &iter, 0, league_from_clid(league_stat->clid)->symbol->str);
     gtk_list_store_set(ls, &iter, 1, const_int("int_treeview_helper_int_empty"),
-		       2, league->name->str, 3, "", 4, "", 5, "", -1);
+		       2, league_from_clid(league_stat->clid)->name->str, 3, "", 4, "", 5, "", -1);
 
     for(i=0;i<2;i++)
     {
@@ -2105,7 +2140,7 @@ treeview_set_up_league_stats(GtkTreeView *treeview)
 	gtk_tree_view_column_pack_start(col, renderer, TRUE);
 	gtk_tree_view_column_add_attribute(col, renderer,
 					   "markup", i);
-	if(i != 2)
+	if(i > 3)
 	    g_object_set(renderer, "xalign", 0.5, NULL);
     }
 }
@@ -2122,7 +2157,77 @@ treeview_show_league_stats(gint clid)
     treeview_helper_clear(treeview);
     
     treeview_set_up_league_stats(treeview);
-    treeview_create_league_stats(model, league_from_clid(clid));
+    treeview_create_league_stats(model, &league_from_clid(clid)->stats);
+    gtk_tree_view_set_model(treeview, GTK_TREE_MODEL(model));
+    g_object_unref(model);
+}
+
+void
+treeview_create_season_history_champions(GtkListStore *ls, const GArray* league_champs,
+					 const GArray *cup_champs)
+{
+    gint i, j;
+    GtkTreeIter iter;
+    const GArray *champs[2] = {league_champs, cup_champs};
+    gchar *titles[2] = {_("League champions"),
+			_("Cup champions")};
+    gchar *icons[2] = {const_str("string_treeview_season_hist_league_champions_icon"),
+		       const_str("string_treeview_season_hist_cup_champions_icon")};
+    
+    for(i=0;i<2;i++)
+    {
+	gtk_list_store_append(ls, &iter);
+	treeview_helper_insert_icon(ls, &iter, 0, icons[i]);
+	gtk_list_store_set(ls, &iter, 1, const_int("int_treeview_helper_int_empty"),
+			   2, titles[i], 3, "", 4, "", 5, "", -1);
+
+	for(j=0;j<champs[i]->len;j++)
+	{
+	    gtk_list_store_append(ls, &iter);
+	    gtk_list_store_set(ls, &iter, 0, NULL, 1, const_int("int_treeview_helper_int_empty"),
+			       2, g_array_index(champs[i], ChampStat, j).cl_name->str,
+			       3, g_array_index(champs[i], ChampStat, j).team_name->str,
+			       4, "", 5, "", -1);
+	}
+
+	gtk_list_store_append(ls, &iter);
+	gtk_list_store_set(ls, &iter, 0, NULL, 
+			   1, const_int("int_treeview_helper_int_empty"),
+			   2, "", 3, "", 4, "", 5, "", -1);
+    }
+}
+
+/** Show the season history of the specified season
+    and the specified page. Page is either a page of league stats
+    (if != -1) or -1 which means we show the champions. */
+void
+treeview_show_season_history(gint page, gint season_number)
+{
+    gchar buf[SMALL];
+    GtkTreeView *treeview = GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right"));
+    GtkListStore *model = 
+	gtk_list_store_new(6, GDK_TYPE_PIXBUF, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING,
+			   G_TYPE_STRING, G_TYPE_STRING);
+    GtkTreeIter iter;
+    SeasonStat *stat = &g_array_index(season_stats, SeasonStat, season_number);
+
+    treeview_helper_clear(treeview);
+
+    treeview_set_up_league_stats(treeview);
+
+    sprintf(buf, _("Season %d"), season_number + 1);
+    gtk_list_store_append(model, &iter);
+    gtk_list_store_set(model, &iter, 0, NULL,
+		       1, const_int("int_treeview_helper_int_empty"),
+		       2, buf, -1);
+
+    if(page != -1)
+	treeview_create_league_stats(model, 
+				     &g_array_index(stat->league_stats, LeagueStat, page));
+    else
+	treeview_create_season_history_champions(model, stat->league_champs,
+						 stat->cup_champs);
+
     gtk_tree_view_set_model(treeview, GTK_TREE_MODEL(model));
     g_object_unref(model);
 }

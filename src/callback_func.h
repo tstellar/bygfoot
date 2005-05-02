@@ -48,4 +48,7 @@ callback_show_fixtures_week(gint type);
 void
 callback_show_league_stats(gint type);
 
+void
+callback_show_season_history(gint type);
+
 #endif

@@ -19,17 +19,17 @@ table_new(void)
 
 /** Return a nullified table element.
     @param team The team pointer of the element.
-    @param clid The cup/league id.
-    @param round The cup round.
+    @param old_rank The old_rank value of the element.
     @see #TableElement */
 TableElement
-table_element_new(Team *team)
+table_element_new(Team *team, gint old_rank)
 {
     gint i;
     TableElement new;
 
     new.team = team;
     new.team_id = team->id;
+    new.old_rank = old_rank;
 
     for(i=0;i<TABLE_END;i++)
 	new.values[i] = 0;

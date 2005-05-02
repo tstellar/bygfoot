@@ -9,7 +9,7 @@ Table
 table_new(void);
 
 TableElement
-table_element_new(Team *team);
+table_element_new(Team *team, gint old_rank);
 
 void
 table_update(const Fixture *fix);

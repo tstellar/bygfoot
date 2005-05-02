@@ -321,7 +321,7 @@ fixture_write_cup_round_robin(Cup *cup, gint cup_round, GPtrArray *teams)
 	{
 	    g_ptr_array_add(teams_group, g_ptr_array_index(teams, j + i * number_of_groups));
 	    new_table_element = 
-		table_element_new((Team*)g_ptr_array_index(teams, j + i * number_of_groups));
+		table_element_new((Team*)g_ptr_array_index(teams, j + i * number_of_groups), j);
 	    g_array_append_val(new_table.elements, new_table_element);
 	}
 
@@ -1035,7 +1035,11 @@ fixture_get_index(const Fixture *fix)
     const GArray *fixtures = league_cup_get_fixtures(fix->clid);
     
     for(i=0;i<fixtures->len;i++)
-	if(fix == &g_array_index(fixtures, Fixture, i))
+	if(fix->clid == g_array_index(fixtures, Fixture, i).clid && 
+	   fix->team_ids[0] == g_array_index(fixtures, Fixture, i).team_ids[0] &&
+	   fix->team_ids[1] == g_array_index(fixtures, Fixture, i).team_ids[1] &&
+	   fix->week_number == g_array_index(fixtures, Fixture, i).week_number &&
+	   fix->week_round_number == g_array_index(fixtures, Fixture, i).week_round_number)
 	    return i;
 
     g_warning("fixture_get_index: fixture not found (%s - %s clid %d lc %s.\n",

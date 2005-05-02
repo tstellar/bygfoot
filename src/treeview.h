@@ -190,6 +190,13 @@ void
 treeview_set_up_league_stats(GtkTreeView *treeview);
 
 void
-treeview_create_league_stats(GtkListStore *liststore, const League *league);
+treeview_create_league_stats(GtkListStore *ls, const LeagueStat *league_stat);
+
+void
+treeview_show_season_history(gint page, gint season_number);
+
+void
+treeview_create_season_history_champions(GtkListStore *ls, const GArray* league_champs,
+					 const GArray *cup_champs);
 
 #endif

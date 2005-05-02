@@ -125,19 +125,28 @@ stat_update_league_teams(const GArray *teams_array, gint compare_type)
     return stats;
 }
 
+/** Create a new empty season stat with specified season number. */
+SeasonStat
+stat_season_stat_new(gint season_number)
+{
+    SeasonStat new;
+
+    new.season_number = season_number;
+    new.league_champs = g_array_new(FALSE, FALSE, sizeof(ChampStat));
+    new.cup_champs = g_array_new(FALSE, FALSE, sizeof(ChampStat));
+    new.league_stats = g_array_new(FALSE, FALSE, sizeof(LeagueStat));
+
+    return new;
+}
+
 /** Create a seasonstat struct at the end of a season. */
 void
 stat_create_season_stat(void)
 {
     gint i;
-    SeasonStat new;
+    SeasonStat new = stat_season_stat_new(season);
     ChampStat new_champ;
 
-    new.season_number = season;
-    new.league_champs = g_array_new(FALSE, FALSE, sizeof(ChampStat));
-    new.cup_champs = g_array_new(FALSE, FALSE, sizeof(ChampStat));
-    new.league_stats = g_array_new(FALSE, FALSE, sizeof(LeagueStat));
-    
     for(i=0;i<ligs->len;i++)
     {
 	new_champ.cl_name = g_string_new(lig(i).name->str);
@@ -158,4 +167,6 @@ stat_create_season_stat(void)
 		g_string_new(cup_get_winner(acp(i))->name->str);
 	    g_array_append_val(new.cup_champs, new_champ);
 	}
+
+    g_array_append_val(season_stats, new);
 }
