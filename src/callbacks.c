@@ -739,7 +739,8 @@ on_menu_show_info_activate      (GtkMenuItem     *menuitem,
 	return;
     }    
 
-    stat0 = STATUS_SHOW_PLAYER_INFO;
+    if(stat0 != STATUS_LIVE_GAME_PAUSE)
+	stat0 = STATUS_SHOW_PLAYER_INFO;
     treeview_show_player_info(player_of_idx_team(current_user.tm, selected_row[0]));
 
     gui_set_arrows();

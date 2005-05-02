@@ -44,7 +44,10 @@ user_set_up_team_new_game(User *user)
     gint rndom, max, lig_idx = -1;
 
     if(user->scout == 0)
+    {
 	user_set_up_team(user);
+	user_history_add(user, USER_HISTORY_START_GAME, user->tm->id, user->tm->clid, -1, "");
+    }
     else
     {
 	if(user->scout == 1 &&
@@ -62,6 +65,8 @@ user_set_up_team_new_game(User *user)
 
 	user->tm = &g_array_index(lig(lig_idx).teams, Team, rndom);
 	user->team_id = g_array_index(lig(lig_idx).teams, Team, rndom).id;
+
+	user_history_add(user, USER_HISTORY_START_GAME, user->tm->id, user->tm->clid, -1, "");
 
 	user_set_up_team(user);
     }

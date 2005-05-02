@@ -358,7 +358,7 @@ game_gui_clear_entry_message(gpointer data)
 enum MainWindowInensitiveItems
 {
     INSENSITIVE_ITEM_TOOLBAR = 0,
-    INSENSITIVE_ITEM_PLAYER_LIST2,
+/*     INSENSITIVE_ITEM_PLAYER_LIST2, */
     INSENSITIVE_ITEM_MENU_FILE,
     INSENSITIVE_ITEM_MENU_OPTIONS,
     INSENSITIVE_ITEM_MENU_FIGURES,
@@ -398,8 +398,8 @@ game_gui_set_main_window_sensitivity(gboolean value)
     
     insensitive_items[INSENSITIVE_ITEM_TOOLBAR] = 
 	lookup_widget(window.main, "hbox1");
-    insensitive_items[INSENSITIVE_ITEM_PLAYER_LIST2] = 
-	lookup_widget(window.main, "vbox8");
+/*     insensitive_items[INSENSITIVE_ITEM_PLAYER_LIST2] =  */
+/* 	lookup_widget(window.main, "vbox8"); */
     insensitive_items[INSENSITIVE_ITEM_MENU_FILE] = 
 	lookup_widget(window.main, "menu_file");
     insensitive_items[INSENSITIVE_ITEM_MENU_OPTIONS] = 

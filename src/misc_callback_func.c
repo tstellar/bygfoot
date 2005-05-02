@@ -83,8 +83,6 @@ misc_callback_add_player(void)
     new_user.tm = tm;
     new_user.team_id = tm->id;
 
-    user_history_add(&new_user, USER_HISTORY_START_GAME, tm->id, tm->clid, -1, "");
-
     g_array_append_val(users, new_user);
 
     treeview_show_users(treeview_users);

@@ -305,6 +305,7 @@ on_window_stadium_delete_event         (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+    on_button_stadium_cancel_clicked(NULL, NULL);
 
     return TRUE;
 }

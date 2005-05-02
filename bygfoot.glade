@@ -63,13 +63,13 @@
 		  <child>
 		    <widget class="GtkImageMenuItem" id="menu_load_last_save">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Load last save</property>
+		      <property name="label" translatable="yes">_Load last save</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="on_menu_load_last_save_activate" last_modification_time="Sat, 09 Apr 2005 14:53:26 GMT"/>
 		      <accelerator key="l" modifiers="GDK_CONTROL_MASK | GDK_SHIFT_MASK" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image303">
+			<widget class="GtkImage" id="image307">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-open</property>
 			  <property name="icon_size">1</property>
@@ -122,7 +122,7 @@
 	  <child>
 	    <widget class="GtkMenuItem" id="menu_options">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Options</property>
+	      <property name="label" translatable="yes">_Options</property>
 	      <property name="use_underline">True</property>
 
 	      <child>
@@ -137,7 +137,7 @@
 		      <accelerator key="p" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image304">
+			<widget class="GtkImage" id="image308">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-preferences</property>
 			  <property name="icon_size">1</property>
@@ -193,7 +193,7 @@
 	  <child>
 	    <widget class="GtkMenuItem" id="menu_figures">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Figures</property>
+	      <property name="label" translatable="yes">F_igures</property>
 	      <property name="use_underline">True</property>
 
 	      <child>
@@ -269,7 +269,7 @@
 	  <child>
 	    <widget class="GtkMenuItem" id="menu_team">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Team</property>
+	      <property name="label" translatable="yes">_Team</property>
 	      <property name="use_underline">True</property>
 
 	      <child>
@@ -556,7 +556,7 @@
 	  <child>
 	    <widget class="GtkMenuItem" id="menu_player">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Player</property>
+	      <property name="label" translatable="yes">_Player</property>
 	      <property name="use_underline">True</property>
 
 	      <child>
@@ -638,7 +638,7 @@
 	  <child>
 	    <widget class="GtkMenuItem" id="menu_user">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">User</property>
+	      <property name="label" translatable="yes">_User</property>
 	      <property name="use_underline">True</property>
 
 	      <child>
@@ -694,7 +694,7 @@
 		      <accelerator key="F9" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image305">
+			<widget class="GtkImage" id="image309">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-go-forward</property>
 			  <property name="icon_size">1</property>
@@ -716,7 +716,7 @@
 		      <accelerator key="F8" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image306">
+			<widget class="GtkImage" id="image310">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-go-back</property>
 			  <property name="icon_size">1</property>
@@ -738,7 +738,7 @@
 		      <accelerator key="F12" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image307">
+			<widget class="GtkImage" id="image311">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-justify-fill</property>
 			  <property name="icon_size">1</property>
@@ -758,7 +758,7 @@
 	  <child>
 	    <widget class="GtkMenuItem" id="menu_finances_stadium">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">FinStad</property>
+	      <property name="label" translatable="yes">Fin_Stad</property>
 	      <property name="use_underline">True</property>
 
 	      <child>
