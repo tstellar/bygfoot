@@ -11,7 +11,7 @@ bin_PROGRAMS = bygfoot
 bygfoot_SOURCES = \
 	callback_func.c callback_func.h callbacks.h cup.h finance.h fixture.h game_gui.h league.h live_game.h maths.h misc.h option.h player.h start_end.h team.h transfer.h treeview.h user.h window.h \
 	callbacks.c callbacks.h callback_func.h free.h game.h game_gui.h gui.h load_save.h main.h option.h player.h team.h transfer.h treeview.h treeview_helper.h user.h window.h \
-	cup.c cup.h fixture.h free.h league.h main.h maths.h misc.h team.h variables.h xml_league.h \
+	cup.c cup.h fixture.h free.h league.h main.h maths.h misc.h option.h team.h variables.h xml_league.h \
 	file.c file.h free.h main.h misc.h option.h support.h variables.h \
 	finance.c callbacks.h finance.h game_gui.h maths.h option.h player.h team.h user.h \
 	fixture.c cup.h fixture.h free.h league.h main.h maths.h misc.h option.h user.h table.h team.h variables.h \
@@ -37,7 +37,7 @@ bygfoot_SOURCES = \
 	options_callbacks.c file.h options_callbacks.h options_interface.h option_gui.h support.h user.h variables.h window.h \
 	options_interface.c  options_interface.h options_callbacks.h support.h \
 	player.c cup.h fixture.h free.h game_gui.h league.h maths.h misc.h option.h player.h team.h user.h \
-	start_end.c cup.h file.h finance.h fixture.h free.h game_gui.h gui.h league.h load_save.h live_game.h main.h maths.h option.h start_end.h stat.h table.h team.h transfer.h user.h variables.h xml_name.h \
+	start_end.c cup.h file.h finance.h fixture.h free.h game_gui.h gui.h league.h load_save.h live_game.h main.h maths.h misc.h option.h start_end.h stat.h table.h team.h transfer.h user.h variables.h xml_name.h \
 	stat.c cup.h free.h option.h player.h stat.h table_struct.h team.h variables.h \
 	support.c support.h \
 	table.c cup.h league.h table.h variables.h \
@@ -59,7 +59,7 @@ bygfoot_SOURCES = \
 	xml_loadsave_teams.c file.h misc.h player.h team.h xml.h xml_loadsave_teams.h \
 	xml_loadsave_transfers.c file.h misc.h team.h transfer.h xml.h xml_loadsave_transfers.h \
 	xml_loadsave_users.c file.h misc.h team.h user.h variables.h xml.h xml_loadsave_users.h \
-	xml_cup.c cup.h file.h main.h misc.h variables.h xml_cup.h \
+	xml_cup.c cup.h file.h main.h misc.h option.h variables.h xml_cup.h \
 	xml_country.c file.h free.h misc.h variables.h xml_cup.h xml_country.h xml_league.h \
 	xml_league.c cup_struct.h file.h free.h league.h misc.h team.h table.h variables.h xml_league.h xml_cup.h \
 	xml_name.c file.h free.h maths.h misc.h variables.h xml_name.h

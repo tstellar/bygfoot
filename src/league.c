@@ -31,6 +31,7 @@ league_new(gboolean new_id)
 
     new.prom_rel.prom_games_dest_sid = g_string_new("");
     new.prom_rel.prom_games_loser_sid = g_string_new("");
+    new.prom_rel.prom_games_cup_sid = g_string_new("");
     new.prom_rel.prom_games_number_of_advance = 1;
 
     new.prom_rel.elements = g_array_new(FALSE, FALSE, sizeof(PromRelElement));
@@ -43,6 +44,7 @@ league_new(gboolean new_id)
     new.table.clid = new.id;
 
     new.first_week = new.week_gap = 1;
+    new.round_robins = 1;
     new.yellow_red = 1000;
 
     new.stats = stat_league_new(new.id);
@@ -86,8 +88,8 @@ league_cup_get_index_from_clid(gint clid)
 	    }
     }
     else
-	for(i=0;i<acps->len;i++)
-	    if(acp(i)->id == clid)
+	for(i=0;i<cps->len;i++)
+	    if(cp(i).id == clid)
 	    {
 		index = i;
 		break;
@@ -224,21 +226,6 @@ league_cup_get_previous_fixture(gint clid, gint week_number, gint week_round_num
 }
 
 
-/** Return the number of league in the leagues array. */
-gint
-league_get_index(gint clid)
-{
-    gint i;
-
-    for(i=0;i<ligs->len;i++)
-	if(lig(i).id == clid)
-	    return i;
-
-    g_warning("league_get_index: reached end of leagues array; clid is %d\n", clid);
-
-    return -1;
-}
-
 /** Return the average stadium capacity of cpu teams
     in the specified league or cup. */
 gint
@@ -293,12 +280,13 @@ league_remove_team_with_id(League *league, gint id)
 void
 league_get_team_movements(League *league, GArray *team_movements)
 {
-    gint i, j, k, cp_idx = -1;
+    gint i, j, k;
     gint dest_idx;
     gint move_len = team_movements->len;
     TeamMove new_move;
     const GArray *elements = league->prom_rel.elements;
     GPtrArray *prom_games_teams = NULL;
+    const Cup *prom_cup = NULL;
 
     for(i=0;i<elements->len;i++)
     {
@@ -336,31 +324,16 @@ league_get_team_movements(League *league, GArray *team_movements)
 
     if(league_has_prom_games(league))
     {
-	for(i=0;i<acps->len;i++)
-	    if(query_cup_is_prom(acp(i)->id))
-	    {
-		for(j=0;j<acp(i)->fixtures->len;j++)
-		{
-		    if(g_array_index(acp(i)->fixtures, Fixture, j).teams[0]->clid == league->id ||
-		       g_array_index(acp(i)->fixtures, Fixture, j).teams[1]->clid == league->id)
-		    {
-			cp_idx = i;
-			break;
-		    }
-		}
-	    
-		if(cp_idx != -1)
-		    break;
-	    }
-
-	if(cp_idx == -1)
+	prom_cup = cup_from_sid(league->prom_rel.prom_games_cup_sid->str);
+    
+	if(prom_cup == NULL)
 	{
-	    g_warning("league_get_team_movements: promotion games cup not found for league %s (dest_sid %s).\n",
-		      league->name->str, league->prom_rel.prom_games_dest_sid->str);
+	    g_warning("league_get_team_movements: promotion games cup not found for league %s (cup sid %s).\n",
+		      league->name->str, league->prom_rel.prom_games_cup_sid->str);
 	    return;
 	}
 
-	prom_games_teams = cup_get_teams_sorted(acp(cp_idx));
+	prom_games_teams = cup_get_teams_sorted(prom_cup);
 	dest_idx = league_index_from_sid(league->prom_rel.prom_games_dest_sid->str);
 
 	for(i=0;i<league->prom_rel.prom_games_number_of_advance;i++)
@@ -386,15 +359,15 @@ league_get_team_movements(League *league, GArray *team_movements)
 		g_array_append_val(team_movements, new_move);
 
 		if(team_is_user((Team*)g_ptr_array_index(prom_games_teams, i)) != -1)
-			user_history_add(&usr(team_is_user(
-						  (Team*)g_ptr_array_index(prom_games_teams, i))),
-					 USER_HISTORY_RELEGATED, new_move.tm.id, lig(dest_idx).id, -1, "");
+		    user_history_add(&usr(team_is_user(
+					      (Team*)g_ptr_array_index(prom_games_teams, i))),
+				     USER_HISTORY_RELEGATED, new_move.tm.id, lig(dest_idx).id, -1, "");
 	    }
 	}
 
 	g_ptr_array_free(prom_games_teams, TRUE);
     }
-    
+
     for(i=move_len;i<team_movements->len;i++)
 	league_remove_team_with_id(league_from_clid(g_array_index(team_movements, TeamMove, i).tm.clid),
 				   g_array_index(team_movements, TeamMove, i).tm.id);
@@ -418,6 +391,7 @@ league_season_start(League *league)
 	    &g_array_index(league->teams, Team, i);
 	g_array_index(league->table.elements, TableElement, i).team_id = 
 	    g_array_index(league->teams, Team, i).id;
+	g_array_index(league->table.elements, TableElement, i).old_rank = i;
 
 	for(j=0;j<TABLE_END;j++)
 	    g_array_index(league->table.elements, TableElement, i).values[j] = 0;
@@ -448,70 +422,35 @@ gboolean
 query_league_rank_in_prom_games(const League *league, gint rank)
 {
     gint i, j;
+    const Cup *cup = NULL;
 
     for(i=0;i<ligs->len;i++)
 	if(league_has_prom_games((&lig(i))))
 	{
-	    for(j=0;j<lig(i).prom_rel.prom_games_cup.choose_teams->len;j++)
+	    cup = cup_from_sid(lig(i).prom_rel.prom_games_cup_sid->str);
+	    for(j=0;j<cup->choose_teams->len;j++)
 	    {
-		if(strcmp(g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, CupChooseTeam, j).sid->str,
+		if(strcmp(g_array_index(cup->choose_teams, CupChooseTeam, j).sid->str,
 			  league->sid->str) == 0 &&
-		   ((rank >= g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams,
+		   ((rank >= g_array_index(cup->choose_teams,
 					   CupChooseTeam, j).start_idx &&
-		     rank <= g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, 
+		     rank <= g_array_index(cup->choose_teams, 
 					   CupChooseTeam, j).end_idx && 
-		     g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, 
+		     g_array_index(cup->choose_teams, 
 				   CupChooseTeam, j).randomly) ||
-		    (rank >= g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, 
+		    (rank >= g_array_index(cup->choose_teams, 
 					   CupChooseTeam, j).start_idx &&
-		     rank < g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, 
+		     rank < g_array_index(cup->choose_teams, 
 					  CupChooseTeam, j).start_idx + 
-		     g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, 
+		     g_array_index(cup->choose_teams, 
 				   CupChooseTeam, j).number_of_teams &&
-		     !g_array_index(lig(i).prom_rel.prom_games_cup.choose_teams, 
+		     !g_array_index(cup->choose_teams, 
 				    CupChooseTeam, j).randomly)))
 		    return TRUE;
 	    }
 	}
 
     return FALSE;
-}
-
-/** Find out whether the promotion games fixtures can be written. */
-gboolean
-query_league_prom_games_begin(const League *league)
-{
-    gint i, j;
-    gboolean proceed = FALSE;
-
-    for(i=0;i<league->prom_rel.prom_games_cup.choose_teams->len;i++)
-    {	
-	for(j=0;j<ligs->len;j++)
-	    if(strcmp(lig(j).sid->str,
-		      g_array_index(league->prom_rel.prom_games_cup.choose_teams,
-				    CupChooseTeam, i).sid->str) == 0 &&
-	       g_array_index(lig(j).fixtures, Fixture,
-			     lig(j).fixtures->len - 1).week_number == week &&
-	       g_array_index(lig(j).fixtures, Fixture,
-			     lig(j).fixtures->len - 1).week_round_number == week_round)
-		proceed =  TRUE;
-    }
-
-    if(!proceed)
-	return FALSE;
-
-    for(i=0;i<league->prom_rel.prom_games_cup.choose_teams->len;i++)
-    {
-	for(j=0;j<ligs->len;j++)
-	    if(strcmp(lig(j).sid->str,
-		      g_array_index(league->prom_rel.prom_games_cup.choose_teams,
-				    CupChooseTeam, i).sid->str) == 0 &&
-	       g_array_index(lig(j).fixtures, Fixture,
-			     lig(j).fixtures->len - 1).attendance == -1)
-		return FALSE;
-    }
-    
-    return TRUE;
 }
 
 /** Find out whether there are/were league matches. */

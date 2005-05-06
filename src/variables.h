@@ -26,6 +26,9 @@ OptionList options;
 /** Array of constants that get read from the constants
     file specified in bygfoot.conf. */
 OptionList constants;
+/** Array of constants affecting game appearance rather than
+    behaviour. */
+OptionList constants_app;
 
 /** The array containing players to be transfered.
     @see TransferPlayer */

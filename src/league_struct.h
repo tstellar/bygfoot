@@ -49,7 +49,7 @@ typedef struct
     GArray *elements;
 
     /** The cup determining how the promotion games are handled. */
-    Cup prom_games_cup;
+    GString *prom_games_cup_sid;
 } PromRel;
 
 /**
@@ -69,6 +69,9 @@ typedef struct
     gint first_week;
     /** Weeks between two matchdays. Default 1. */
     gint week_gap;
+    /** How many round robins are played. Important for
+	small leagues with 10 teams or so. Default: 1. */
+    gint round_robins;
     /** Number of yellow cards until a player gets banned. 
 	Default 1000 (which means 'off', basically). */
     gint yellow_red;

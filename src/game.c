@@ -244,7 +244,7 @@ game_initialize(Fixture *fix)
     gfloat journey_factor =
 	(fix->clid < ID_CUP_START ||
 	 (fix->clid >= ID_CUP_START && 
-	  cup_from_clid(fix->clid)->type == CUP_TYPE_NATIONAL)) ?
+	  query_cup_is_national(fix->clid))) ?
 	const_float("float_game_finance_journey_factor_national") :
 	const_float("float_game_finance_journey_factor_international");    
     gint user_idx[2] = {team_is_user(fix->teams[0]), team_is_user(fix->teams[1])};
@@ -326,7 +326,7 @@ game_assign_attendance(Fixture *fix)
 	if(cup_from_clid(fix->clid)->rounds->len - fix->round <=
 	   const_int("int_game_stadium_attendance_cup_rounds_full_house"))
 	    factor = 1;
-	else if(cup_from_clid(fix->clid)->type == CUP_TYPE_NATIONAL)
+	else if(query_cup_is_national(fix->clid))
 	    factor *= const_float("float_game_stadium_attendance_cup_national_factor");
 	else
 	    factor *= const_float("float_game_stadium_attendance_cup_international_factor");
@@ -915,8 +915,7 @@ game_post_match(Fixture *fix)
 	    team_update_post_match(fix->teams[i], fix->clid);
     }
 
-    if(fix->clid < ID_CUP_START || 
-       (fix->clid >= ID_PROM_CUP_START && fix->clid < ID_SUPERCUP_START))
+    if(fix->clid < ID_CUP_START)
 	return;
 
     cup = cup_from_clid(fix->clid);

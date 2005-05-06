@@ -78,7 +78,6 @@ xml_load_leagues(const gchar *dirname, const gchar *basename)
 void
 xml_load_league(const gchar *dirname, const gchar *basename, const GPtrArray *dir_contents)
 {
-    gint i;
     gchar buf[SMALL];
     League new = league_new(FALSE);
     gchar *prefix = g_strndup(basename, strlen(basename) - 4);
@@ -106,24 +105,6 @@ xml_load_league(const gchar *dirname, const gchar *basename, const GPtrArray *di
     sprintf(buf, "%s/%s_stat.xml", dirname, prefix);
     xml_loadsave_league_stat_read(buf, &lig(ligs->len - 1).stats);
 
-    if(league_has_prom_games((&lig(ligs->len - 1))))
-    {
-	lig(ligs->len - 1).prom_rel.prom_games_cup = cup_new(FALSE);
-	sprintf(buf, "%s_promcup", prefix);
-
-	for(i=0;i<dir_contents->len;i++)
-	    if(g_str_has_prefix(((GString*)g_ptr_array_index(dir_contents, i))->str, buf) &&
-	       !query_misc_string_contains(((GString*)g_ptr_array_index(dir_contents, i))->str, "_table") &&
-	       !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_fixtures.xml") &&
-	       !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_teams.xml"))
-	    {
-		xml_load_cup(&lig(ligs->len - 1).prom_rel.prom_games_cup,
-			     dirname, ((GString*)g_ptr_array_index(dir_contents, i))->str,
-			     dir_contents);
-		break;
-	    }
-    }
-
     g_free(prefix);
 }
 
@@ -139,7 +120,6 @@ xml_load_cups(const gchar *dirname, const gchar *basename)
     dir_contents = file_dir_get_contents(dirname, buf, ".xml");
 
     free_cups_array(&cps, TRUE);
-    free_cups_array(&scps, TRUE);
     
     for(i=0;i<dir_contents->len;i++)
     {
@@ -168,16 +148,8 @@ xml_load_cup(Cup *cup, const gchar *dirname, const gchar *basename, const GPtrAr
     sprintf(buf, "%s/%s", dirname, basename);
     xml_loadsave_cup_read(buf, cup);
 
-    if(cup->id < ID_PROM_CUP_START)
-    {
-	g_array_append_val(cps, *cup);
-	local_cup = &cp(cps->len - 1);
-    }
-    else if(cup->id >= ID_SUPERCUP_START)
-    {
-	g_array_append_val(scps, *cup);
-	local_cup = &scp(scps->len - 1);
-    }
+    g_array_append_val(cps, *cup);
+    local_cup = &cp(cps->len - 1);
 
     sprintf(buf, "Loading cup: %s",
 	    local_cup->name->str);
@@ -185,11 +157,8 @@ xml_load_cup(Cup *cup, const gchar *dirname, const gchar *basename, const GPtrAr
 	gtk_progress_bar_get_fraction(
 	    GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar"))), buf);
 
-    if(local_cup->type == CUP_TYPE_INTERNATIONAL)
-    {
-	sprintf(buf, "%s/%s_teams.xml", dirname, prefix);
-	xml_loadsave_teams_read(buf, local_cup->teams);
-    }
+    sprintf(buf, "%s/%s_teams.xml", dirname, prefix);
+    xml_loadsave_teams_read(buf, local_cup->teams);
 
     sprintf(buf, "%s/%s_fixtures.xml", dirname, prefix);
     xml_loadsave_fixtures_read(buf, local_cup->fixtures);

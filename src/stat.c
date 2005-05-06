@@ -159,14 +159,12 @@ stat_create_season_stat(void)
     }
 
     for(i=0;i<acps->len;i++)
-	if(acp(i)->id < ID_PROM_CUP_START ||
-	   acp(i)->id >= ID_SUPERCUP_START)
-	{
-	    new_champ.cl_name = g_string_new(acp(i)->name->str);
-	    new_champ.team_name = 
-		g_string_new(cup_get_winner(acp(i))->name->str);
-	    g_array_append_val(new.cup_champs, new_champ);
-	}
+    {
+	new_champ.cl_name = g_string_new(acp(i)->name->str);
+	new_champ.team_name = 
+	    g_string_new(cup_get_winner(acp(i))->name->str);
+	g_array_append_val(new.cup_champs, new_champ);
+    }
 
     g_array_append_val(season_stats, new);
 }

@@ -42,7 +42,7 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
 
     treeview_live_game_show_result(unit);
 
-    gdk_color_parse (const_str("string_live_game_possession_color"), &color);
+    gdk_color_parse (const_app("string_live_game_possession_color"), &color);
     gtk_widget_modify_bg(eventbox_poss[unit->possession], GTK_STATE_NORMAL, &color);
     gtk_widget_modify_bg(eventbox_poss[!unit->possession], GTK_STATE_NORMAL, NULL);
 
@@ -93,14 +93,14 @@ game_gui_live_game_set_hscale(const LiveGameUnit *unit, GtkHScale *hscale)
 
     if(unit->area == LIVE_GAME_UNIT_AREA_MIDFIELD)
     {
-	gdk_color_parse(const_str("string_game_gui_live_game_scale_color_midfield"), &color);
+	gdk_color_parse(const_app("string_game_gui_live_game_scale_color_midfield"), &color);
 	gtk_range_set_value(GTK_RANGE(hscale),
 			    const_float("float_game_gui_live_game_scale_range") / 2);
     }
     else if(unit->event.type == LIVE_GAME_EVENT_GOAL ||
 	    unit->event.type == LIVE_GAME_EVENT_OWN_GOAL)
     {
-	gdk_color_parse(const_str("string_game_gui_live_game_scale_color_goal"), &color);
+	gdk_color_parse(const_app("string_game_gui_live_game_scale_color_goal"), &color);
 
 	gtk_range_set_value(GTK_RANGE(hscale), 
 			    const_float("float_game_gui_live_game_scale_range") *
@@ -110,7 +110,7 @@ game_gui_live_game_set_hscale(const LiveGameUnit *unit, GtkHScale *hscale)
 	    unit->event.type == LIVE_GAME_EVENT_PENALTY ||
 	    unit->event.type == LIVE_GAME_EVENT_FREE_KICK)
     {
-	gdk_color_parse(const_str("string_game_gui_live_game_scale_color_chance"), &color);
+	gdk_color_parse(const_app("string_game_gui_live_game_scale_color_chance"), &color);
 
 	gtk_range_set_value(GTK_RANGE(hscale), 
 			    const_float("float_game_gui_live_game_scale_range") / 2 +
@@ -122,10 +122,10 @@ game_gui_live_game_set_hscale(const LiveGameUnit *unit, GtkHScale *hscale)
 	    unit->event.type == LIVE_GAME_EVENT_MISSED ||
 	    unit->event.type == LIVE_GAME_EVENT_SAVE ||
 	    unit->event.type == LIVE_GAME_EVENT_CROSS_BAR)
-	gdk_color_parse(const_str("string_game_gui_live_game_scale_color_miss"), &color);
+	gdk_color_parse(const_app("string_game_gui_live_game_scale_color_miss"), &color);
     else if(unit->area == LIVE_GAME_UNIT_AREA_ATTACK)
     {
-	gdk_color_parse(const_str("string_game_gui_live_game_scale_color_attack"), &color);	
+	gdk_color_parse(const_app("string_game_gui_live_game_scale_color_attack"), &color);	
 	gtk_range_set_value(GTK_RANGE(hscale),
 			    const_float("float_game_gui_live_game_scale_range") / 2 +
 			    (const_float("float_game_gui_live_game_scale_range") * 
@@ -134,7 +134,7 @@ game_gui_live_game_set_hscale(const LiveGameUnit *unit, GtkHScale *hscale)
     }
     else if(unit->area == LIVE_GAME_UNIT_AREA_DEFEND)
     {
-	gdk_color_parse(const_str("string_game_gui_live_game_scale_color_defend"), &color);
+	gdk_color_parse(const_app("string_game_gui_live_game_scale_color_defend"), &color);
 	gtk_range_set_value(GTK_RANGE(hscale),
 			    const_float("float_game_gui_live_game_scale_range") / 2 +
 			    (const_float("float_game_gui_live_game_scale_range") * 
@@ -248,15 +248,15 @@ game_gui_write_meters(void)
     GtkImage *image_style = GTK_IMAGE(lookup_widget(window.main, "image_style")),
 	*image_boost = GTK_IMAGE(lookup_widget(window.main, "image_boost"));
     gchar *image_style_files[5] = 
-	{file_find_support_file(const_str("string_game_gui_style_all_out_defend_icon"), TRUE),
-	 file_find_support_file(const_str("string_game_gui_style_defend_icon"), TRUE),
-	 file_find_support_file(const_str("string_game_gui_style_balanced_icon"), TRUE),
-	 file_find_support_file(const_str("string_game_gui_style_attack_icon"), TRUE),
-	 file_find_support_file(const_str("string_game_gui_style_all_out_attack_icon"), TRUE)};
+	{file_find_support_file(const_app("string_game_gui_style_all_out_defend_icon"), TRUE),
+	 file_find_support_file(const_app("string_game_gui_style_defend_icon"), TRUE),
+	 file_find_support_file(const_app("string_game_gui_style_balanced_icon"), TRUE),
+	 file_find_support_file(const_app("string_game_gui_style_attack_icon"), TRUE),
+	 file_find_support_file(const_app("string_game_gui_style_all_out_attack_icon"), TRUE)};
     gchar *image_boost_files[3] =
-	{file_find_support_file(const_str("string_game_gui_boost_anti_icon"), TRUE),
-	 file_find_support_file(const_str("string_game_gui_boost_off_icon"), TRUE),
-	 file_find_support_file(const_str("string_game_gui_boost_on_icon"), TRUE)};
+	{file_find_support_file(const_app("string_game_gui_boost_anti_icon"), TRUE),
+	 file_find_support_file(const_app("string_game_gui_boost_off_icon"), TRUE),
+	 file_find_support_file(const_app("string_game_gui_boost_on_icon"), TRUE)};
 
     gtk_image_set_from_file(image_style, image_style_files[current_user.tm->style + 2]);
     gtk_image_set_from_file(image_boost, image_boost_files[current_user.tm->boost + 1]);

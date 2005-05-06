@@ -2,6 +2,7 @@
 #include "file.h"
 #include "main.h"
 #include "misc.h"
+#include "option.h"
 #include "variables.h"
 #include "xml_cup.h"
 
@@ -13,8 +14,10 @@
 #define TAG_SHORT_NAME "short_name"
 #define TAG_SYMBOL "symbol"
 #define TAG_SID "sid"
-#define TAG_TYPE "type"
+#define TAG_GROUP "group"
+#define TAG_PROPERTY "property"
 #define TAG_LAST_WEEK "last_week"
+#define TAG_ADD_WEEK "add_week"
 #define TAG_WEEK_GAP "week_gap"
 #define TAG_YELLOW_RED "yellow_red"
 #define TAG_SKILL_DIFF "skill_diff"
@@ -34,7 +37,7 @@
 #define TAG_CHOOSE_TEAM_START_IDX "start_idx"
 #define TAG_CHOOSE_TEAM_END_IDX "end_idx"
 #define TAG_CHOOSE_TEAM_RANDOMLY "randomly"
-#define TAG_CHOOSE_TEAM_USER "choose_team_user"
+#define TAG_CHOOSE_TEAM_GENERATE "generate"
 
 /**
  * Enum with the states used in the XML parser functions.
@@ -46,8 +49,10 @@ enum XmlCupStates
     STATE_SHORT_NAME,
     STATE_SYMBOL,
     STATE_SID,
-    STATE_TYPE,
+    STATE_GROUP,
+    STATE_PROPERTY,
     STATE_LAST_WEEK,
+    STATE_ADD_WEEK,
     STATE_WEEK_GAP,
     STATE_YELLOW_RED,
     STATE_SKILL_DIFF,
@@ -67,24 +72,14 @@ enum XmlCupStates
     STATE_CHOOSE_TEAM_START_IDX,
     STATE_CHOOSE_TEAM_END_IDX,
     STATE_CHOOSE_TEAM_RANDOMLY,
-    STATE_CHOOSE_TEAM_USER,
+    STATE_CHOOSE_TEAM_GENERATE,
     STATE_END
 };
-
-/**
- * Possible values for 'type'.
- */
-#define TYPE_NATIONAL "national"
-#define TYPE_INTERNATIONAL "international"
-#define TYPE_SUPERCUP "supercup"
 
 /**
  * The state variable used in the XML parsing functions.
  */
 gint state;
-/** This tells us whether we are in a normal choose_team or
-    in the choose_team for the user's league. */
-gboolean in_choose_team_user;
 
 /** The variable we will fill and append to an array. */
 Cup new_cup;
@@ -119,10 +114,14 @@ xml_cup_read_start_element (GMarkupParseContext *context,
 	state = STATE_SYMBOL;
     else if(strcmp(element_name, TAG_SID) == 0)
 	state = STATE_SID;
-    else if(strcmp(element_name, TAG_TYPE) == 0)
-	state = STATE_TYPE;
+    else if(strcmp(element_name, TAG_GROUP) == 0)
+	state = STATE_GROUP;
     else if(strcmp(element_name, TAG_LAST_WEEK) == 0)
 	state = STATE_LAST_WEEK;
+    else if(strcmp(element_name, TAG_PROPERTY) == 0)
+	state = STATE_PROPERTY;
+    else if(strcmp(element_name, TAG_ADD_WEEK) == 0)
+	state = STATE_ADD_WEEK;
     else if(strcmp(element_name, TAG_WEEK_GAP) == 0)
 	state = STATE_WEEK_GAP;
     else if(strcmp(element_name, TAG_YELLOW_RED) == 0)
@@ -169,11 +168,8 @@ xml_cup_read_start_element (GMarkupParseContext *context,
 	state = STATE_CHOOSE_TEAM_END_IDX;
     else if(strcmp(element_name, TAG_CHOOSE_TEAM_RANDOMLY) == 0)
 	state = STATE_CHOOSE_TEAM_RANDOMLY;
-    else if(strcmp(element_name, TAG_CHOOSE_TEAM_USER) == 0)
-    {
-	state = STATE_CHOOSE_TEAM_USER;
-	in_choose_team_user = TRUE;
-    }
+    else if(strcmp(element_name, TAG_CHOOSE_TEAM_GENERATE) == 0)
+	state = STATE_CHOOSE_TEAM_GENERATE;
     else
 	g_warning("xml_cup_read_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
@@ -194,8 +190,10 @@ xml_cup_read_end_element    (GMarkupParseContext *context,
        strcmp(element_name, TAG_SHORT_NAME) == 0 ||
        strcmp(element_name, TAG_SYMBOL) == 0 ||
        strcmp(element_name, TAG_SID) == 0 ||
-       strcmp(element_name, TAG_TYPE) == 0 ||
+       strcmp(element_name, TAG_GROUP) == 0 ||
        strcmp(element_name, TAG_LAST_WEEK) == 0 ||
+       strcmp(element_name, TAG_PROPERTY) == 0 ||
+       strcmp(element_name, TAG_ADD_WEEK) == 0 ||
        strcmp(element_name, TAG_WEEK_GAP) == 0 ||
        strcmp(element_name, TAG_YELLOW_RED) == 0 ||
        strcmp(element_name, TAG_SKILL_DIFF) == 0 ||
@@ -214,24 +212,15 @@ xml_cup_read_end_element    (GMarkupParseContext *context,
 	state = STATE_CUP_ROUND;
     else if(strcmp(element_name, TAG_CHOOSE_TEAM) == 0)
 	state = STATE_CHOOSE_TEAMS;
-    else if(strcmp(element_name, TAG_CHOOSE_TEAM_USER) == 0 )
-    {
-	state = STATE_CHOOSE_TEAMS;
-	in_choose_team_user = FALSE;
-    }
     else if(strcmp(element_name, TAG_CHOOSE_TEAM_SID) == 0 ||
 	    strcmp(element_name, TAG_CHOOSE_TEAM_NUMBER_OF_TEAMS) == 0 ||
 	    strcmp(element_name, TAG_CHOOSE_TEAM_START_IDX) == 0 ||
 	    strcmp(element_name, TAG_CHOOSE_TEAM_END_IDX) == 0 ||
-	    strcmp(element_name, TAG_CHOOSE_TEAM_RANDOMLY) == 0)
-    {
-	if(in_choose_team_user)
-	    state = STATE_CHOOSE_TEAM_USER;
-	else
+	    strcmp(element_name, TAG_CHOOSE_TEAM_RANDOMLY) == 0 ||
+	    strcmp(element_name, TAG_CHOOSE_TEAM_GENERATE) == 0)
 	    state = STATE_CHOOSE_TEAM;
-    }
     else if(strcmp(element_name, TAG_CUP) != 0)
-	g_warning("xml_cup_end_start_element: unknown tag: %s; I'm in state %d\n",
+	g_warning("xml_cup_read_end_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -248,11 +237,11 @@ xml_cup_read_text         (GMarkupParseContext *context,
 			   gpointer             user_data,
 			   GError             **error)
 {
-    CupChooseTeam *choose_team = (in_choose_team_user) ? 
-	&new_cup.choose_team_user : 
+    CupChooseTeam *choose_team = 
 	&g_array_index(new_cup.choose_teams, CupChooseTeam, new_cup.choose_teams->len - 1);
     gchar buf[text_len + 1];
     gint value;
+    GString *new_property = NULL;
 
     strncpy(buf, text, text_len);
     buf[text_len] = '\0';
@@ -267,19 +256,17 @@ xml_cup_read_text         (GMarkupParseContext *context,
 	g_string_printf(new_cup.symbol, "%s", buf);
     else if(state == STATE_SID)
 	g_string_printf(new_cup.sid, "%s", buf);
-    else if(state == STATE_TYPE)
-    {
-	if(strcmp(buf, TYPE_NATIONAL) == 0)
-	    new_cup.type = CUP_TYPE_NATIONAL;
-	else if(strcmp(buf, TYPE_INTERNATIONAL) == 0)
-	    new_cup.type = CUP_TYPE_INTERNATIONAL;
-	else if(strcmp(buf, TYPE_SUPERCUP) == 0)
-	    new_cup.type = CUP_TYPE_SUPERCUP;	
-	else
-	    g_warning("xml_cup_read_text: unknown cup type %s\n", buf);
-    }
+    else if(state == STATE_GROUP)
+	new_cup.group = value;
     else if(state == STATE_LAST_WEEK)
 	new_cup.last_week = value;
+    else if(state == STATE_PROPERTY)
+    {
+	new_property = g_string_new(buf);
+	g_ptr_array_add(new_cup.properties, new_property);
+    }
+    else if(state == STATE_ADD_WEEK)
+	new_cup.add_week = value;
     else if(state == STATE_WEEK_GAP)
 	new_cup.week_gap = value;
     else if(state == STATE_YELLOW_RED)
@@ -310,6 +297,8 @@ xml_cup_read_text         (GMarkupParseContext *context,
 	choose_team->end_idx = value;
     else if(state == STATE_CHOOSE_TEAM_RANDOMLY)
 	choose_team->randomly = value;
+    else if(state == STATE_CHOOSE_TEAM_GENERATE)
+	choose_team->generate = value;
 }
 
 /**
@@ -350,7 +339,6 @@ xml_cup_read(const gchar *cup_name, GArray *cups)
     }
 
     state = STATE_CUP;
-    in_choose_team_user = FALSE;
     strcpy(buf, file_name);
     g_free(file_name);
 
@@ -366,10 +354,7 @@ xml_cup_read(const gchar *cup_name, GArray *cups)
 	misc_print_error(&error, TRUE);
     }
 
-    if(cups == cps)
-	new_cup.id = cup_id_new;
-    else if(cups == scps)
-	new_cup.id = supercup_id_new;
+    new_cup.id = cup_id_new;
 
     g_array_append_val(cups, new_cup);
 }

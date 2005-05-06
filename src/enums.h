@@ -9,8 +9,6 @@ enum Counters
     COUNT_TEAM_ID,
     COUNT_PLAYER_ID,
     COUNT_CUP_ID,
-    COUNT_PROM_CUP_ID,
-    COUNT_SUPERCUP_ID,
     COUNT_LEAGUE_ID,
     COUNT_END
 };

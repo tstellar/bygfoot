@@ -17,7 +17,6 @@
 #define TAG_LEAGUE "league"
 #define TAG_CUPS "cups"
 #define TAG_CUP "cup"
-#define TAG_SUPERCUPS "supercups"
 
 /**
  * Enum with the states used in the XML parser functions.
@@ -32,7 +31,6 @@ enum XmlCountryStates
     STATE_LEAGUE,
     STATE_CUPS,
     STATE_CUP,
-    STATE_SUPERCUPS,
     STATE_END
 };
 
@@ -40,7 +38,6 @@ enum XmlCountryStates
  * The state variable used in the XML parsing functions.
  */
 gint state;
-gboolean in_supercups;
 
 /**
  * The function called by the parser when an opening tag is read.
@@ -75,14 +72,6 @@ xml_country_read_start_element (GMarkupParseContext *context,
 	state = STATE_CUPS;
 	if(cps == NULL)
 	    cps = g_array_new(FALSE, FALSE, sizeof(Cup));
-	in_supercups = FALSE;
-    }
-    else if(strcmp(element_name, TAG_SUPERCUPS) == 0)
-    {
-	state = STATE_SUPERCUPS;
-	if(scps == NULL)
-	    scps = g_array_new(FALSE, FALSE, sizeof(Cup));
-	in_supercups = TRUE;
     }
     else if(strcmp(element_name, TAG_CUP) == 0)
 	state = STATE_CUP;
@@ -106,13 +95,12 @@ xml_country_read_end_element    (GMarkupParseContext *context,
        strcmp(element_name, TAG_SYMBOL) == 0 ||
        strcmp(element_name, TAG_SID) == 0 ||
        strcmp(element_name, TAG_LEAGUES) == 0 ||
-       strcmp(element_name, TAG_CUPS) == 0 ||
-       strcmp(element_name, TAG_SUPERCUPS) == 0)
+       strcmp(element_name, TAG_CUPS) == 0)
 	state = STATE_COUNTRY;
     else if(strcmp(element_name, TAG_LEAGUE) == 0)
 	state = STATE_LEAGUES;
     else if(strcmp(element_name, TAG_CUP) == 0)
-	state = (in_supercups) ? STATE_SUPERCUPS : STATE_CUPS;
+	state = STATE_CUPS;
 
     else if(strcmp(element_name, TAG_COUNTRY) != 0)
 	g_warning("xml_country_read_start_element: unknown tag: %s; I'm in state %d\n",
@@ -146,7 +134,7 @@ xml_country_read_text         (GMarkupParseContext *context,
     else if(state == STATE_LEAGUE)
 	xml_league_read(buf, ligs);
     else if(state == STATE_CUP)
-	xml_cup_read(buf, (in_supercups) ? scps : cps);
+	xml_cup_read(buf, cps);
 }
 
 
@@ -161,7 +149,6 @@ xml_country_read_text         (GMarkupParseContext *context,
 void
 xml_country_read(const gchar *country_name)
 {
-    gint i;
     gchar *file_name = file_find_support_file(country_name, FALSE);
     GMarkupParser parser = {xml_country_read_start_element,
 			    xml_country_read_end_element,
@@ -205,9 +192,4 @@ xml_country_read(const gchar *country_name)
 	g_critical("xml_country_read: error parsing file %s\n", buf);
 	misc_print_error(&error, TRUE);
     }
-
-    free_g_ptr_array(&acps);
-    acps = g_ptr_array_new();
-    for(i=0;i<cps->len;i++)
-	g_ptr_array_add(acps, &cp(i));
 }

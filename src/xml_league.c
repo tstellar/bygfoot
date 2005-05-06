@@ -19,6 +19,7 @@
 #define TAG_SYMBOL "symbol"
 #define TAG_FIRST_WEEK "first_week"
 #define TAG_WEEK_GAP "week_gap"
+#define TAG_ROUND_ROBINS "round_robins"
 #define TAG_YELLOW_RED "yellow_red"
 #define TAG_AVERAGE_SKILL "average_skill"
 #define TAG_PROM_REL "prom_rel"
@@ -26,7 +27,7 @@
 #define TAG_PROM_GAMES_DEST_SID "prom_games_dest_sid"
 #define TAG_PROM_GAMES_LOSER_SID "prom_games_loser_sid"
 #define TAG_PROM_GAMES_NUMBER_OF_ADVANCE "prom_games_number_of_advance"
-#define TAG_PROM_GAMES_CUP "cup"
+#define TAG_PROM_GAMES_CUP_SID "prom_games_cup_sid"
 #define TAG_PROM_REL_ELEMENT "prom_rel_element"
 #define TAG_PROM_REL_ELEMENT_RANK_START "rank_start"
 #define TAG_PROM_REL_ELEMENT_RANK_END "rank_end"
@@ -48,6 +49,7 @@ enum XmlLeagueStates
     STATE_SYMBOL,
     STATE_FIRST_WEEK,
     STATE_WEEK_GAP,
+    STATE_ROUND_ROBINS,
     STATE_YELLOW_RED,
     STATE_AVERAGE_SKILL,
     STATE_PROM_REL,
@@ -55,7 +57,7 @@ enum XmlLeagueStates
     STATE_PROM_GAMES_DEST_SID,
     STATE_PROM_GAMES_LOSER_SID,
     STATE_PROM_GAMES_NUMBER_OF_ADVANCE,
-    STATE_PROM_GAMES_CUP,
+    STATE_PROM_GAMES_CUP_SID,
     STATE_PROM_REL_ELEMENT,
     STATE_PROM_REL_ELEMENT_RANK_START,
     STATE_PROM_REL_ELEMENT_RANK_END,
@@ -109,6 +111,8 @@ xml_league_read_start_element (GMarkupParseContext *context,
 	state = STATE_FIRST_WEEK;
     else if(strcmp(element_name, TAG_WEEK_GAP) == 0)
 	state = STATE_WEEK_GAP;
+    else if(strcmp(element_name, TAG_ROUND_ROBINS) == 0)
+	state = STATE_ROUND_ROBINS;
     else if(strcmp(element_name, TAG_YELLOW_RED) == 0)
 	state = STATE_YELLOW_RED;
     else if(strcmp(element_name, TAG_AVERAGE_SKILL) == 0)
@@ -123,8 +127,8 @@ xml_league_read_start_element (GMarkupParseContext *context,
 	state = STATE_PROM_GAMES_LOSER_SID;
     else if(strcmp(element_name, TAG_PROM_GAMES_NUMBER_OF_ADVANCE) == 0)
 	state = STATE_PROM_GAMES_NUMBER_OF_ADVANCE;
-    else if(strcmp(element_name, TAG_PROM_GAMES_CUP) == 0)
-	state = STATE_PROM_GAMES_CUP;
+    else if(strcmp(element_name, TAG_PROM_GAMES_CUP_SID) == 0)
+	state = STATE_PROM_GAMES_CUP_SID;
     else if(strcmp(element_name, TAG_PROM_REL_ELEMENT) == 0)
     {
 	new_element = prom_rel_element_new();
@@ -174,6 +178,7 @@ xml_league_read_end_element    (GMarkupParseContext *context,
        strcmp(element_name, TAG_SYMBOL) == 0 ||
        strcmp(element_name, TAG_FIRST_WEEK) == 0 ||
        strcmp(element_name, TAG_WEEK_GAP) == 0 ||
+       strcmp(element_name, TAG_ROUND_ROBINS) == 0 ||
        strcmp(element_name, TAG_YELLOW_RED) == 0 ||
        strcmp(element_name, TAG_AVERAGE_SKILL) == 0 ||
        strcmp(element_name, TAG_PROM_REL) == 0 ||
@@ -185,7 +190,7 @@ xml_league_read_end_element    (GMarkupParseContext *context,
     else if(strcmp(element_name, TAG_PROM_GAMES_DEST_SID) == 0 ||
 	    strcmp(element_name, TAG_PROM_GAMES_LOSER_SID) == 0 ||
 	    strcmp(element_name, TAG_PROM_GAMES_NUMBER_OF_ADVANCE) == 0 ||
-	    strcmp(element_name, TAG_PROM_GAMES_CUP) == 0)
+	    strcmp(element_name, TAG_PROM_GAMES_CUP_SID) == 0)
 	state = STATE_PROM_GAMES;
     else if(strcmp(element_name, TAG_PROM_REL_ELEMENT_RANK_START) == 0 ||
 	    strcmp(element_name, TAG_PROM_REL_ELEMENT_RANK_END) == 0 ||
@@ -216,7 +221,6 @@ xml_league_read_text         (GMarkupParseContext *context,
 {
     gchar buf[text_len + 1];
     gint value;
-    GArray *temp_cups = NULL;
 
     strncpy(buf, text, text_len);
     buf[text_len] = '\0';
@@ -238,6 +242,8 @@ xml_league_read_text         (GMarkupParseContext *context,
 	new_league.first_week = value;
     else if(state == STATE_WEEK_GAP)
 	new_league.week_gap = value;
+    else if(state == STATE_ROUND_ROBINS)
+	new_league.round_robins = value;
     else if(state == STATE_YELLOW_RED)
 	new_league.yellow_red = value;
     else if(state == STATE_AVERAGE_SKILL)
@@ -248,14 +254,8 @@ xml_league_read_text         (GMarkupParseContext *context,
 	g_string_printf(new_league.prom_rel.prom_games_loser_sid, "%s", buf);
     else if(state == STATE_PROM_GAMES_NUMBER_OF_ADVANCE)
 	new_league.prom_rel.prom_games_number_of_advance = value;
-    else if(state == STATE_PROM_GAMES_CUP)
-    {
-	temp_cups = g_array_new(FALSE, FALSE, sizeof(Cup));
-	xml_cup_read(buf, temp_cups);
-	new_league.prom_rel.prom_games_cup = g_array_index(temp_cups, Cup, 0);
-	new_league.prom_rel.prom_games_cup.id = prom_cup_id_new;
-	free_g_array(&temp_cups);
-    }
+    else if(state == STATE_PROM_GAMES_CUP_SID)
+	g_string_printf(new_league.prom_rel.prom_games_cup_sid, "%s", buf);
     else if(state == STATE_PROM_REL_ELEMENT_RANK_START)
 	g_array_index(new_league.prom_rel.elements,
 		      PromRelElement,

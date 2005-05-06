@@ -10,6 +10,7 @@
 #include "load_save.h"
 #include "main.h"
 #include "maths.h"
+#include "misc.h"
 #include "option.h"
 #include "start_end.h"
 #include "stat.h"
@@ -79,18 +80,27 @@ start_new_season(void)
 	    live_game_reset(&usr(i).live_game, NULL, TRUE);
 	}
     }
-
-    start_load_cup_teams();
-
-    for(i=acps->len - 1;i >= 0;i--)
+    else
     {
-	if(acp(i)->id >= ID_PROM_CUP_START)
-	{
-	    g_array_free(acp(i)->fixtures, TRUE);
-	    acp(i)->fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));
+	for(i=0;i<cps->len;i++)
+	    if(cp(i).add_week == 0)
+		g_ptr_array_add(acps, &cp(i));
+    }
+		
+    for(i = acps->len - 1; i >= 0; i--)
+    {
+	g_ptr_array_free(acp(i)->team_names, TRUE);
+	acp(i)->team_names = g_ptr_array_new();
+
+	if(acp(i)->add_week != 0)
 	    g_ptr_array_remove_index(acps, i);
-	}
-	else
+    }
+
+    for(i=cps->len - 1; i >= 0; i--)
+    {
+	cup_reset(&cp(i));
+
+	if(cp(i).add_week == 0)
 	    fixture_write_cup_fixtures(&cp(i));
     }
 
@@ -100,7 +110,6 @@ start_new_season(void)
 	    league_season_start(&lig(i));
 	fixture_write_league_fixtures(&lig(i));
     }
-
 }
 
 /** Fill some global variables with default values at the
@@ -130,30 +139,6 @@ start_generate_league_teams(void)
     for(i=0;i<ligs->len;i++)
 	for(j=0;j<lig(i).teams->len;j++)
 	    team_generate_players_stadium(&g_array_index(lig(i).teams, Team, j));
-}
-
-/** Load the names from the xml files for the cups
-    and generate the teams. */
-void
-start_load_cup_teams(void)
-{
-    gint i;
-
-    for(i=0;i<cps->len;i++)
-	if(cp(i).type == CUP_TYPE_INTERNATIONAL)
-	{
-	    free_teams_array(&cp(i).teams, TRUE);
-	    g_ptr_array_free(cp(i).user_teams, TRUE);
-	    cp(i).user_teams = g_ptr_array_new();
-	}
-
-    for(i=0;i<cps->len;i++)
-	if(cp(i).type == CUP_TYPE_INTERNATIONAL)
-	{
-	    cup_load_choose_teams(&cp(i));
-	    cup_load_choose_team_user(&cp(i));
-	}
-
 }
 
 /** End a week round. */
@@ -239,7 +224,7 @@ end_week_round_results(void)
 	}
 
     for(i=0;i<acps->len;i++)
-	if(week_round > 1 || query_cup_is_prom(acp(i)->id))
+	if(week_round > 1 || query_cup_is_promotion(acp(i)->id))
 	{
 	    for(j=0;j<acp(i)->fixtures->len;j++)
 	    {
@@ -309,33 +294,19 @@ end_week_round_update_fixtures(void)
 	    fixture_update(acp(i));
 
     for(i=0;i<ligs->len;i++)
-	if(league_has_prom_games((&lig(i))) &&
-	   query_league_prom_games_begin(&lig(i)))
-	{
-	    if(season == 1)
-		lig(i).prom_rel.prom_games_cup.last_week = 
-		    cup_get_last_week_from_first(&lig(i).prom_rel.prom_games_cup, week + 1);
-
-	    fixture_write_cup_fixtures(&lig(i).prom_rel.prom_games_cup);
-	    g_ptr_array_add(acps, &lig(i).prom_rel.prom_games_cup);
-	}
-	else if(week == (lig(i).teams->len - 1) * 2 && week_round == 1 &&
-		team_is_user(g_array_index(lig(i).table.elements, TableElement, 0).team) != -1)
+	if(week == (lig(i).teams->len - 1) * 2 && week_round == 1 &&
+	   team_is_user(g_array_index(lig(i).table.elements, TableElement, 0).team) != -1)
 	    user_history_add(&usr(team_is_user(g_array_index(lig(i).table.elements, TableElement, 0).team)),
 			     USER_HISTORY_CHAMPION, g_array_index(lig(i).table.elements, TableElement, 0).team_id,
 			     lig(i).id, -1, "");
-	    
-    for(i=0;i<scps->len;i++)
-    {
-	if(query_cup_supercup_begins(&scp(i)))
-	{
-	    if(season == 1)
-		scp(i).last_week = cup_get_last_week_from_first(&scp(i), week + 1);
 
-	    fixture_write_cup_fixtures(&scp(i));
-	    g_ptr_array_add(acps, &scp(i));
+    for(i=0;i<cps->len;i++)
+	if(cp(i).add_week == 1000 && query_cup_begins(&cp(i)))
+	{
+	    cp(i).last_week = cup_get_last_week_from_first(&cp(i), week + 1);
+	    fixture_write_cup_fixtures(&cp(i));
+	    g_ptr_array_add(acps, &cp(i));
 	}
-    }
 }
 
 /** Start a new week round. */
@@ -391,6 +362,20 @@ end_week(void)
 	(*end_func)();
 	end_func++;
     }
+}
+
+/** Add the cups that begin later in the season to the acps array. */
+void
+start_week_add_cups(void)
+{
+    gint i;
+
+    for(i=0;i<cps->len;i++)
+	if(cp(i).add_week == week)
+	{
+	    fixture_write_cup_fixtures(&cp(i));
+	    g_ptr_array_add(acps, &cp(i));
+	}
 }
 
 /** Age increase etc. of players.
@@ -480,7 +465,6 @@ start_new_season_team_movements(void)
     g_array_free(team_movements, TRUE);
     
     for(i=0;i<ligs->len;i++)
-    {
 	for(j=0;j<lig(i).teams->len;j++)
 	{
 	    g_array_index(lig(i).teams, Team, j).clid = lig(i).id;
@@ -488,7 +472,6 @@ start_new_season_team_movements(void)
 		g_array_index(g_array_index(lig(i).teams, Team, j).players, Player, k).team =
 		    &g_array_index(lig(i).teams, Team, j);
 	}
-    }
 }
 
 /** End a season (store stats etc.) */

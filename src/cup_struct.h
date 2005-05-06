@@ -4,15 +4,6 @@
 #include "bygfoot.h"
 #include "table_struct.h"
 
-/** Types for cups. */
-enum CupType
-{
-    CUP_TYPE_NATIONAL = 0,
-    CUP_TYPE_INTERNATIONAL,
-    CUP_TYPE_SUPERCUP,
-    CUP_TYPE_END
-};
-
 /** Rules for a round of a cup.
     Cups consist of rounds, e.g. the final counts as
     a round or the round robin games. */
@@ -39,8 +30,7 @@ typedef struct
 	Default: 0. */
     gint round_robin_number_of_best_advance;
     /** The round robin tables (in case there is a round robin). */
-    GArray *tables;
-    
+    GArray *tables;    
 } CupRound;
 
 /**
@@ -66,6 +56,10 @@ typedef struct
 	ie. 3 random teams from the range 1-20.
 	Default: FALSE. */
     gboolean randomly;
+    /** Whether the team is generated and loaded from
+	a league file or taken from one of the country's leagues
+	or cups. Default: FALSE. */
+    gboolean generate;
 } CupChooseTeam;
 
 /** Structure representing a cup. */
@@ -77,13 +71,19 @@ typedef struct
     GString *name, *short_name, *symbol, *sid;
     /** Numerical id. */
     gint id;
-    /** The cup type. Default: CUP_TYPE_NATIONAL.
-	@see #CupType */
-    gint type;
+    /** An integer specifying which cups are mutually exclusive for
+	league teams, e.g. the same team can't participate in the UEFA Cup and
+	the Champions' League. */
+    gint group;
     /** Last week (typically the week the final
 	takes place) and weeks between matchdays.
 	Default: -1 and 1. */
     gint last_week, week_gap;
+    /** This determines when the cup gets added to the acps
+	pointer array (and becomes visible for the user). Also determines
+	when the cup fixtures for the first round get written.
+	Default: 0 (ie. the cup is visible from the first week). */
+    gint add_week;
     /** Number of yellow cards that lead to a missed match.
 	Default: 1000 (off). */
     gint yellow_red;
@@ -99,14 +99,11 @@ typedef struct
     gint next_fixture_update_week;
     gint next_fixture_update_week_round;
 
+    /** A GString pointer array of properties (like "national"). */
+    GPtrArray *properties;
     /** Array with rules how teams are chosen.
 	@see #CupChooseTeam */
     GArray *choose_teams;
-    /** The ChooseTeam rule according to which
-	the participant from the user's league is chosen.
-	This is irrelevant for national cups.
-	@see #CupChooseTeam */
-    CupChooseTeam choose_team_user;
     /** The rounds of the cup.
 	@see #CupRound*/
     GArray *rounds;
@@ -115,8 +112,9 @@ typedef struct
     /** The teams belonging to the cup. 
 	Relevant only if it's an international one. */
     GArray *teams;
-    /** Pointers to the teams from the leagues that participate. */
-    GPtrArray *user_teams;
+    /** Pointer array with the names of all the teams in the cup.
+	Also the teams from the country's leagues. */
+    GPtrArray *team_names;
     /** The fixtures of a season for the cup. */
     GArray *fixtures;
 } Cup;

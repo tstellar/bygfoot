@@ -169,61 +169,62 @@ treeview_helper_live_game_icon(gint event_type)
        event_type == LIVE_GAME_EVENT_HALF_TIME ||
        event_type == LIVE_GAME_EVENT_EXTRA_TIME ||
        event_type == LIVE_GAME_EVENT_PENALTIES)
-	return const_str("string_live_game_event_start_match_icon");
+	return const_app("string_live_game_event_start_match_icon");
     else if(event_type == LIVE_GAME_EVENT_LOST_POSSESSION)
-	return const_str("string_live_game_event_lost_possession_icon");
+	return const_app("string_live_game_event_lost_possession_icon");
     else if(event_type == LIVE_GAME_EVENT_PENALTY)
-	return const_str("string_live_game_event_penalty_icon");
+	return const_app("string_live_game_event_penalty_icon");
     else if(event_type == LIVE_GAME_EVENT_SCORING_CHANCE ||
 	    event_type == LIVE_GAME_EVENT_FREE_KICK)
-	return const_str("string_live_game_event_scoring_chance_icon");
+	return const_app("string_live_game_event_scoring_chance_icon");
     else if(event_type == LIVE_GAME_EVENT_GOAL)
-	return const_str("string_live_game_event_goal_icon");
+	return const_app("string_live_game_event_goal_icon");
     else if(event_type == LIVE_GAME_EVENT_OWN_GOAL)
-	return const_str("string_live_game_event_own_goal_icon");
-    else if(event_type == LIVE_GAME_EVENT_POST ||
-	    event_type == LIVE_GAME_EVENT_CROSS_BAR)
-	return const_str("string_live_game_event_post_icon");
+	return const_app("string_live_game_event_own_goal_icon");
+    else if(event_type == LIVE_GAME_EVENT_POST)
+	return const_app("string_live_game_event_post_icon");
+    else if(event_type == LIVE_GAME_EVENT_CROSS_BAR)
+	return const_app("string_live_game_event_cross_bar_icon");
     else if(event_type == LIVE_GAME_EVENT_SAVE)
-	return const_str("string_live_game_event_save_icon");
+	return const_app("string_live_game_event_save_icon");
     else if(event_type == LIVE_GAME_EVENT_MISSED)
-	return const_str("string_live_game_event_missed_icon");
+	return const_app("string_live_game_event_missed_icon");
     else if(event_type == LIVE_GAME_EVENT_FOUL)
-	return const_str("string_live_game_event_foul_icon");
+	return const_app("string_live_game_event_foul_icon");
     else if(event_type == LIVE_GAME_EVENT_FOUL_YELLOW)
-	return const_str("string_live_game_event_foul_yellow_icon");
+	return const_app("string_live_game_event_foul_yellow_icon");
     else if(event_type == LIVE_GAME_EVENT_SEND_OFF)
-	return const_str("string_live_game_event_send_off_icon");
+	return const_app("string_live_game_event_send_off_icon");
     else if(event_type == LIVE_GAME_EVENT_INJURY)
-	return const_str("string_live_game_event_injury_icon");
+	return const_app("string_live_game_event_injury_icon");
     else if(event_type == LIVE_GAME_EVENT_TEMP_INJURY)
-	return const_str("string_live_game_event_temp_injury_icon");
+	return const_app("string_live_game_event_temp_injury_icon");
     else if(event_type == LIVE_GAME_EVENT_STADIUM_BREAKDOWN)
-	return const_str("string_live_game_event_stadium_breakdown_icon");
+	return const_app("string_live_game_event_stadium_breakdown_icon");
     else if(event_type == LIVE_GAME_EVENT_STADIUM_FIRE)
-	return const_str("string_live_game_event_stadium_fire_icon");
+	return const_app("string_live_game_event_stadium_fire_icon");
     else if(event_type == LIVE_GAME_EVENT_STADIUM_RIOTS)
-	return const_str("string_live_game_event_stadium_riots_icon");
+	return const_app("string_live_game_event_stadium_riots_icon");
     else if(event_type == LIVE_GAME_EVENT_SUBSTITUTION)
-	return const_str("string_live_game_event_substitution_icon");
+	return const_app("string_live_game_event_substitution_icon");
     else if(event_type == LIVE_GAME_EVENT_STRUCTURE_CHANGE)
-	return const_str("string_live_game_event_structure_change_icon");
+	return const_app("string_live_game_event_structure_change_icon");
     else if(event_type == LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_DEFEND)
-	return const_str("string_game_gui_style_all_out_defend_icon");
+	return const_app("string_game_gui_style_all_out_defend_icon");
     else if(event_type == LIVE_GAME_EVENT_STYLE_CHANGE_DEFEND)
-	return const_str("string_game_gui_style_defend_icon");
+	return const_app("string_game_gui_style_defend_icon");
     else if(event_type == LIVE_GAME_EVENT_STYLE_CHANGE_BALANCED)
-	return const_str("string_game_gui_style_balanced_icon");
+	return const_app("string_game_gui_style_balanced_icon");
     else if(event_type == LIVE_GAME_EVENT_STYLE_CHANGE_ATTACK)
-	return const_str("string_game_gui_style_attack_icon");
+	return const_app("string_game_gui_style_attack_icon");
     else if(event_type == LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_ATTACK)
-	return const_str("string_game_gui_style_all_out_attack_icon");
+	return const_app("string_game_gui_style_all_out_attack_icon");
     else if(event_type == LIVE_GAME_EVENT_BOOST_CHANGE_ANTI)
-	return const_str("string_game_gui_boost_anti_icon");
+	return const_app("string_game_gui_boost_anti_icon");
     else if(event_type == LIVE_GAME_EVENT_BOOST_CHANGE_OFF)
-	return const_str("string_game_gui_boost_off_icon");
+	return const_app("string_game_gui_boost_off_icon");
     else if(event_type == LIVE_GAME_EVENT_BOOST_CHANGE_ON)
-	return const_str("string_game_gui_boost_on_icon");
+	return const_app("string_game_gui_boost_on_icon");
     else
 	return "";
 }
@@ -239,27 +240,27 @@ treeview_helper_get_user_history_icon(gint history_type)
 	    g_warning("treeview_helper_get_user_history_icon: unknown type %d.\n", history_type);
 	    return NULL;
 	case USER_HISTORY_START_GAME:
-	    return const_str("string_treeview_helper_user_history_symbol_start_game_icon");
+	    return const_app("string_treeview_helper_user_history_symbol_start_game_icon");
     	case USER_HISTORY_FIRE_FINANCES:
-	    return const_str("string_treeview_helper_user_history_symbol_fire_finances_icon");
+	    return const_app("string_treeview_helper_user_history_symbol_fire_finances_icon");
     	case  USER_HISTORY_FIRE_FAILURE:
-	    return const_str("string_treeview_helper_user_history_symbol_fire_failure_icon");
+	    return const_app("string_treeview_helper_user_history_symbol_fire_failure_icon");
     	case  USER_HISTORY_JOB_OFFER_ACCEPTED:
-	    return const_str("string_treeview_helper_user_history_symbol_job_offer_accepted_icon");
+	    return const_app("string_treeview_helper_user_history_symbol_job_offer_accepted_icon");
     	case  USER_HISTORY_END_SEASON:
-	    return const_str("string_treeview_helper_user_history_symbol_end_season_icon");
+	    return const_app("string_treeview_helper_user_history_symbol_end_season_icon");
     	case  USER_HISTORY_WIN_FINAL:
-	    return const_str("string_treeview_helper_user_history_symbol_win_final_icon");
+	    return const_app("string_treeview_helper_user_history_symbol_win_final_icon");
     	case  USER_HISTORY_LOSE_FINAL:
-	    return const_str("string_treeview_helper_user_history_symbol_lose_final_icon");
+	    return const_app("string_treeview_helper_user_history_symbol_lose_final_icon");
     	case  USER_HISTORY_PROMOTED:
-	    return const_str("string_treeview_helper_user_history_symbol_promoted_icon");
+	    return const_app("string_treeview_helper_user_history_symbol_promoted_icon");
     	case  USER_HISTORY_RELEGATED:
-	    return const_str("string_treeview_helper_user_history_symbol_relegated_icon");
+	    return const_app("string_treeview_helper_user_history_symbol_relegated_icon");
     	case USER_HISTORY_REACH_CUP_ROUND:
-	    return const_str("string_treeview_helper_user_history_symbol_reach_cup_round_icon");
+	    return const_app("string_treeview_helper_user_history_symbol_reach_cup_round_icon");
     	case USER_HISTORY_CHAMPION:
-	    return const_str("string_treeview_helper_user_history_symbol_champion_icon");
+	    return const_app("string_treeview_helper_user_history_symbol_champion_icon");
     }
 
     return NULL;
@@ -412,25 +413,26 @@ treeview_helper_player_compare(GtkTreeModel *model,
 gboolean
 treeview_helper_get_table_element_colour_cups(const League *league, gint idx, gchar *colour_bg)
 {
-    gint i;
-    gint league_idx = league_get_index(league->id) + 1;
+    gint i, j;
+    gint league_idx = league_cup_get_index_from_clid(league->id) + 1;
     gchar buf[SMALL];
 
     sprintf(buf, "league%d", league_idx);
 
     for(i=0;i<cps->len;i++)
-	if(cp(i).type == CUP_TYPE_INTERNATIONAL &&
-	   strcmp(cp(i).choose_team_user.sid->str, buf) == 0)
+	for(j=0;j<cp(i).choose_teams->len;j++)
+	if(query_cup_is_international(cp(i).id) &&
+	   strcmp(g_array_index(cp(i).choose_teams, CupChooseTeam, j).sid->str, buf) == 0)
 	{
-	    if((idx + 1 >= cp(i).choose_team_user.start_idx &&
-		idx + 1 <= cp(i).choose_team_user.end_idx && 
-		cp(i).choose_team_user.randomly) ||
-	       (idx + 1 >= cp(i).choose_team_user.start_idx &&
-		idx + 1 < cp(i).choose_team_user.start_idx + 
-		cp(i).choose_team_user.number_of_teams &&
-		!cp(i).choose_team_user.randomly))
+	    if((idx + 1 >= g_array_index(cp(i).choose_teams, CupChooseTeam, j).start_idx &&
+		idx + 1 <= g_array_index(cp(i).choose_teams, CupChooseTeam, j).end_idx && 
+		g_array_index(cp(i).choose_teams, CupChooseTeam, j).randomly) ||
+	       (idx + 1 >= g_array_index(cp(i).choose_teams, CupChooseTeam, j).start_idx &&
+		idx + 1 < g_array_index(cp(i).choose_teams, CupChooseTeam, j).start_idx + 
+		g_array_index(cp(i).choose_teams, CupChooseTeam, j).number_of_teams &&
+		!g_array_index(cp(i).choose_teams, CupChooseTeam, j).randomly))
 	    {
-		strcpy(colour_bg, const_str("string_treeview_table_cup"));
+		strcpy(colour_bg, const_app("string_treeview_table_cup"));
 		return TRUE;
 	    }
 	}
@@ -452,25 +454,25 @@ treeview_helper_get_table_element_colours(const Table *table, gint idx, gchar *c
     const League *league = NULL;
     GPtrArray *cup_advance = NULL;
     
-    strcpy(colour_fg, const_str("string_treeview_helper_color_default_foreground"));
-    strcpy(colour_bg, const_str("string_treeview_helper_color_default_background"));
+    strcpy(colour_fg, const_app("string_treeview_helper_color_default_foreground"));
+    strcpy(colour_bg, const_app("string_treeview_helper_color_default_background"));
     
     if(user && elem->team == current_user.tm)
     {
-	strcpy(colour_fg, const_str("string_treeview_current_user_fg"));
-	strcpy(colour_bg, const_str("string_treeview_current_user_bg"));
+	strcpy(colour_fg, const_app("string_treeview_current_user_fg"));
+	strcpy(colour_bg, const_app("string_treeview_current_user_bg"));
     }
     else if(user && team_is_user(elem->team) != -1)
     {
-	strcpy(colour_fg, const_str("string_treeview_user_fg"));
-	strcpy(colour_bg, const_str("string_treeview_user_bg"));
+	strcpy(colour_fg, const_app("string_treeview_user_fg"));
+	strcpy(colour_bg, const_app("string_treeview_user_bg"));
     }
     else if(table->clid < ID_CUP_START)
     {
 	league = league_from_clid(table->clid);
 
 	if(idx + 1 == 1)
-	    strcpy(colour_bg, const_str("string_treeview_table_first"));
+	    strcpy(colour_bg, const_app("string_treeview_table_first"));
 	else
 	{	    
 	    if(!treeview_helper_get_table_element_colour_cups(league, idx, colour_bg))
@@ -481,14 +483,14 @@ treeview_helper_get_table_element_colours(const Table *table, gint idx, gchar *c
 		    if(pelem->ranks[0] <= idx + 1 && idx + 1 <= pelem->ranks[1])
 		    {
 			if(pelem->type == PROM_REL_PROMOTION)
-			    strcpy(colour_bg, const_str("string_treeview_table_promotion"));
+			    strcpy(colour_bg, const_app("string_treeview_table_promotion"));
 			else if(pelem->type == PROM_REL_RELEGATION)
-			    strcpy(colour_bg, const_str("string_treeview_table_relegation"));
+			    strcpy(colour_bg, const_app("string_treeview_table_relegation"));
 		    }
 		}
 
 		if(query_league_rank_in_prom_games(league, idx + 1))
-		    strcpy(colour_bg, const_str("string_treeview_table_promgames"));
+		    strcpy(colour_bg, const_app("string_treeview_table_promgames"));
 	    }
 	}
     }
@@ -498,7 +500,7 @@ treeview_helper_get_table_element_colours(const Table *table, gint idx, gchar *c
 	    fixture_get_round_robin_advance(cup_from_clid(table->clid), table->round);
 	for(i=0;i<cup_advance->len;i++)
 	    if((Team*)g_ptr_array_index(cup_advance, i) == elem->team)
-		strcpy(colour_bg, const_str("string_treeview_table_promotion"));
+		strcpy(colour_bg, const_app("string_treeview_table_promotion"));
 	
 	free_g_ptr_array(&cup_advance);
     }
@@ -511,18 +513,18 @@ treeview_helper_set_user_colours(const Team *tm, gchar **colour_bg, gchar **colo
 {
     if(tm == current_user.tm)
     {
-	*colour_fg = const_str("string_treeview_current_user_fg");
-	*colour_bg = const_str("string_treeview_current_user_bg");
+	*colour_fg = const_app("string_treeview_current_user_fg");
+	*colour_bg = const_app("string_treeview_current_user_bg");
     }
     else if(team_is_user(tm) != -1)
     {
-	*colour_fg = const_str("string_treeview_user_fg");
-	*colour_bg = const_str("string_treeview_user_bg");
+	*colour_fg = const_app("string_treeview_user_fg");
+	*colour_bg = const_app("string_treeview_user_bg");
     }
     else
     {
-	*colour_fg = const_str("string_treeview_helper_color_default_foreground");
-	*colour_bg = const_str("string_treeview_helper_color_default_background");
+	*colour_fg = const_app("string_treeview_helper_color_default_foreground");
+	*colour_bg = const_app("string_treeview_helper_color_default_background");
     }
 }
 
@@ -616,9 +618,9 @@ treeview_helper_player_ext_info_to_cell(GtkTreeViewColumn *col,
     const Player *pl;
 
     g_object_set(renderer, "text", "", "foreground",
-		 const_str("string_treeview_helper_color_default_foreground"),
+		 const_app("string_treeview_helper_color_default_foreground"),
 		 "background",
-		 const_str("string_treeview_helper_color_default_background"), NULL);
+		 const_app("string_treeview_helper_color_default_background"), NULL);
 
     gtk_tree_model_get(model, iter, column, &pl, -1);
 
@@ -717,7 +719,7 @@ treeview_helper_player_info_banned_to_cell(GtkCellRenderer *renderer, const GArr
 
     if(strlen(buf) > 0)
 	g_object_set(renderer, "background", 
-		     const_str("string_treeview_helper_color_player_banned"), NULL);
+		     const_app("string_treeview_helper_color_player_banned"), NULL);
 }
 
 void
@@ -783,7 +785,7 @@ treeview_helper_player_info_health_to_cell(GtkCellRenderer *renderer, const Play
 	sprintf(buf, "%s (expected recovery in %d weeks)",
 		player_injury_to_char(pl->health), pl->recovery);
 	g_object_set(renderer, "background",
-		     const_str("string_treeview_helper_color_player_injury"), NULL);
+		     const_app("string_treeview_helper_color_player_injury"), NULL);
     }
     else
 	strcpy(buf, "OK");
@@ -805,9 +807,9 @@ treeview_helper_player_to_cell(GtkTreeViewColumn *col,
     const Player *pl;
 
     g_object_set(renderer, "text", "", "foreground",
-		 const_str("string_treeview_helper_color_default_foreground"),
+		 const_app("string_treeview_helper_color_default_foreground"),
 		 "background",
-		 const_str("string_treeview_helper_color_default_background"), NULL);
+		 const_app("string_treeview_helper_color_default_background"), NULL);
     strcpy(buf, "");
 
     gtk_tree_model_get(model, iter, column, &pl, -1);
@@ -895,16 +897,16 @@ treeview_helper_player_contract_to_cell(GtkCellRenderer *renderer, gchar *buf, g
 
     if(contract_time < const_float("float_treeview_helper_limit_player_contract_below3"))
 	g_object_set(renderer, "foreground", 
-		     const_str("string_treeview_helper_color_player_contract_below3"), NULL);
+		     const_app("string_treeview_helper_color_player_contract_below3"), NULL);
     else if(contract_time < const_float("float_treeview_helper_limit_player_contract_below2"))
 	g_object_set(renderer, "foreground", 
-		     const_str("string_treeview_helper_color_player_contract_below2"), NULL);
+		     const_app("string_treeview_helper_color_player_contract_below2"), NULL);
     else if(contract_time < const_float("float_treeview_helper_limit_player_contract_below1"))
 	g_object_set(renderer, "foreground", 
-		     const_str("string_treeview_helper_color_player_contract_below1"), NULL);
+		     const_app("string_treeview_helper_color_player_contract_below1"), NULL);
     else
 	g_object_set(renderer, "foreground", 
-		     const_str("string_treeview_helper_color_player_contract_normal"), NULL);
+		     const_app("string_treeview_helper_color_player_contract_normal"), NULL);
 }
 
 /** Render a cell of player yellow cards.
@@ -960,7 +962,7 @@ treeview_helper_player_status_to_cell(GtkCellRenderer *renderer, gchar *buf, con
     {
 	sprintf(buf, _("INJ(%d)"), pl->recovery);
 	g_object_set(renderer, "background", 
-		     const_str("string_treeview_helper_color_player_injury"), NULL);
+		     const_app("string_treeview_helper_color_player_injury"), NULL);
 
 	return;
     }
@@ -969,14 +971,14 @@ treeview_helper_player_status_to_cell(GtkCellRenderer *renderer, gchar *buf, con
     {
 	sprintf(buf, _("BAN(%d)"), ban);
 	g_object_set(renderer, "background",
-		     const_str("string_treeview_helper_color_player_banned"), NULL);
+		     const_app("string_treeview_helper_color_player_banned"), NULL);
     }
     else
 	strcpy(buf, _("OK"));
 
     if(ban == -1)
 	g_object_set(renderer, "background",
-		     const_str("string_treeview_helper_color_player_yellow_danger"), NULL);
+		     const_app("string_treeview_helper_color_player_yellow_danger"), NULL);
 }
 
 /** Render a cell of player games or goals.
@@ -1017,16 +1019,16 @@ treeview_helper_player_fitness_to_cell(GtkCellRenderer *renderer, gchar *buf, gf
 
     if(fitness < const_float("float_treeview_helper_limit_player_fitness_below3"))
 	g_object_set(renderer, "foreground", 
-		     const_str("string_treeview_helper_color_player_fitness_below3"), NULL);
+		     const_app("string_treeview_helper_color_player_fitness_below3"), NULL);
     else if(fitness < const_float("float_treeview_helper_limit_player_fitness_below2"))
 	g_object_set(renderer, "foreground", 
-		     const_str("string_treeview_helper_color_player_fitness_below2"), NULL);
+		     const_app("string_treeview_helper_color_player_fitness_below2"), NULL);
     else if(fitness < const_float("float_treeview_helper_limit_player_fitness_below2"))
 	g_object_set(renderer, "foreground", 
-		     const_str("string_treeview_helper_color_player_fitness_below2"), NULL);
+		     const_app("string_treeview_helper_color_player_fitness_below2"), NULL);
     else
 	g_object_set(renderer, "foreground", 
-		     const_str("string_treeview_helper_color_player_fitness_normal"), NULL);
+		     const_app("string_treeview_helper_color_player_fitness_normal"), NULL);
 }
 
 /** Render a cell of player position or cposition.
@@ -1041,30 +1043,30 @@ treeview_helper_player_pos_to_cell(GtkCellRenderer *renderer, gchar *buf, gint p
 	default:
 	    strcpy(buf, "G");
 	    g_object_set(renderer, "background", 
-			 const_str("string_treeview_helper_color_player_pos_goalie_bg"),
+			 const_app("string_treeview_helper_color_player_pos_goalie_bg"),
 			 "foreground", 
-			 const_str("string_treeview_helper_color_player_pos_goalie_fg"), NULL);
+			 const_app("string_treeview_helper_color_player_pos_goalie_fg"), NULL);
 	    break;
 	case PLAYER_POS_DEFENDER:
 	    strcpy(buf, "D");
 	    g_object_set(renderer, "background", 
-			 const_str("string_treeview_helper_color_player_pos_defender_bg"),
+			 const_app("string_treeview_helper_color_player_pos_defender_bg"),
 			 "foreground", 
-			 const_str("string_treeview_helper_color_player_pos_defender_fg"), NULL);
+			 const_app("string_treeview_helper_color_player_pos_defender_fg"), NULL);
 	    break;
 	case PLAYER_POS_MIDFIELDER:
 	    strcpy(buf, "M");
 	    g_object_set(renderer, "background", 
-			 const_str("string_treeview_helper_color_player_pos_midfielder_bg"),
+			 const_app("string_treeview_helper_color_player_pos_midfielder_bg"),
 			 "foreground", 
-			 const_str("string_treeview_helper_color_player_pos_midfielder_fg"), NULL);
+			 const_app("string_treeview_helper_color_player_pos_midfielder_fg"), NULL);
 	    break;
 	case PLAYER_POS_FORWARD:
 	    strcpy(buf, "F");
 	    g_object_set(renderer, "background", 
-			 const_str("string_treeview_helper_color_player_pos_forward_bg"),
+			 const_app("string_treeview_helper_color_player_pos_forward_bg"),
 			 "foreground", 
-			 const_str("string_treeview_helper_color_player_pos_forward_fg"), NULL);
+			 const_app("string_treeview_helper_color_player_pos_forward_fg"), NULL);
 	    break;
     }
 }
@@ -1081,14 +1083,14 @@ treeview_helper_player_cskill_to_cell(GtkCellRenderer *renderer, gchar *buf, con
 	    
     if(pl->cskill < pl->skill)
 	g_object_set(renderer, "background", 
-		     const_str("string_treeview_helper_color_player_bad_cskill_bg"),
+		     const_app("string_treeview_helper_color_player_bad_cskill_bg"),
 		     "foreground", 
-		     const_str("string_treeview_helper_color_player_bad_cskill_fg"), NULL);
+		     const_app("string_treeview_helper_color_player_bad_cskill_fg"), NULL);
     else
 	g_object_set(renderer, "background", 
-		     const_str("string_treeview_helper_color_default_background"),
+		     const_app("string_treeview_helper_color_default_background"),
 		     "foreground", 
-		     const_str("string_treeview_helper_color_default_foreground"), NULL);
+		     const_app("string_treeview_helper_color_default_foreground"), NULL);
 	
 }
 
@@ -1112,14 +1114,14 @@ treeview_helper_live_game_result(GtkTreeViewColumn *col,
     {
 	gtk_tree_model_get(model, iter, column, &fix, -1);
 	sprintf(buf, "<span %s>%s</span>", 
-		const_str("string_treeview_helper_live_game_result_attributes"),
+		const_app("string_treeview_helper_live_game_result_attributes"),
 		fix->teams[column == 2]->name->str);
     }
     else if(column == 1)
     {
 	gtk_tree_model_get(model, iter, column, &unit, -1);
 	sprintf(buf, "<span %s>%d : %d</span>", 
-		const_str("string_treeview_helper_live_game_result_attributes"),
+		const_app("string_treeview_helper_live_game_result_attributes"),
 		unit->result[0], unit->result[1]);
 
     }

@@ -16,9 +16,6 @@ void
 start_generate_league_teams(void);
 
 void
-start_load_cup_teams(void);
-
-void
 end_week_round(void);
 
 void

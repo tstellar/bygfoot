@@ -169,8 +169,6 @@ team_return_league_cup_value_int(const Team *tm, gint value_type)
 		return cp(idx).week_gap;
 	    case LEAGUE_CUP_VALUE_YELLOW_RED:
 		return cp(idx).yellow_red;
-	    case LEAGUE_CUP_VALUE_CUP_TYPE:
-		return cp(idx).type;
 	    case LEAGUE_CUP_VALUE_SKILL_DIFF:
 		return cp(idx).skill_diff;
 	    default:
@@ -248,24 +246,22 @@ team_get_league_cup_string(const Team *tm, gint value_type, gchar *buf)
     international cup. We'd like to avoid having Real Madrid
     both in the Champions' League and in the CWC.
     @param tm The team we check (by comparing names).
+    @param group The cup group the team shouldn't be in.
     @return TRUE if the team's already participating in a cup,
     FALSE otherwise. */
 gboolean
-query_is_in_international_cups(const Team *tm)
+query_team_is_in_international_cups(const Team *tm, gint group)
 {
     gint i, j;
 
-    for(i=0;i<cps->len;i++)
-    {
-	for(j=0;j<cp(i).teams->len;j++)
-	    if(cp(i).type == CUP_TYPE_INTERNATIONAL &&
-	       strcmp(tm->name->str, g_array_index(cp(i).teams, Team, j).name->str) == 0)
-		return TRUE;
+    if(group == -1)
+	return FALSE;
 
-	for(j=0;j<cp(i).user_teams->len;j++)
-	    if(tm == g_ptr_array_index(cp(i).user_teams, j))
-		return TRUE;
-    }
+    for(i=0;i<cps->len;i++)
+	if(cp(i).group == group)
+	    for(j=0;j<cp(i).team_names->len;j++)
+		if(strcmp(tm->name->str, ((GString*)g_ptr_array_index(cp(i).team_names, j))->str) == 0)
+		    return TRUE;
     
     return FALSE;
 }
@@ -279,24 +275,11 @@ query_is_in_cup(const Team *tm, const Cup *cup)
 {
     gint i;
 
-    if(tm->clid >= ID_CUP_START)
-	return (tm->clid == cup->id);
-
-    if(cup->type == CUP_TYPE_INTERNATIONAL)
-    {
-	for(i=0;i<cup->user_teams->len;i++)
-	    if(tm == g_ptr_array_index(cup->user_teams, i))
-	       return TRUE;
-
-	return FALSE;
-    }
-
-    for(i=0;i<cup->fixtures->len;i++)
-	if(tm == g_array_index(cup->fixtures, Fixture, i).teams[0] ||
-	   tm == g_array_index(cup->fixtures, Fixture, i).teams[1])
+    for(i=0;i<cup->team_names->len;i++)
+	if(strcmp(tm->name->str, ((GString*)g_ptr_array_index(cup->team_names, i))->str) == 0)
 	    return TRUE;
 
-    return FALSE;
+	return FALSE;
 }
 
 /** Return a GPtrArray containing the pointers
@@ -384,7 +367,7 @@ team_get_fixture(const Team *tm, gboolean last_fixture)
 
     for(i=0;i<acps->len;i++)
     {
-	if(acp(i)->type == CUP_TYPE_NATIONAL ||
+	if(/*d?*//* acp(i)->type == CUP_TYPE_NATIONAL || */
 	   query_is_in_cup(tm, acp(i)))
 	{
 	    for(j=0;j<acp(i)->fixtures->len;j++)
@@ -880,7 +863,7 @@ team_get_sorted(GCompareDataFunc compare_function, gint type, gboolean cup)
     {
 	for(i=0;i<cps->len;i++)
 	{
-	    if(cp(i).type == CUP_TYPE_INTERNATIONAL)
+	    if(cp(i).teams->len > 0)
 		for(j=0;j<cp(i).teams->len;j++)
 		    g_ptr_array_add(teams, &g_array_index(cp(i).teams, Team, j));
 	}

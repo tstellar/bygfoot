@@ -23,7 +23,7 @@ main_init_variables(void)
 {
     gint i;
 
-    ligs = cps = scps = NULL;
+    ligs = cps = NULL;
     acps = NULL;
     country.name = country.symbol = country.sid = NULL;
     player_names = NULL;
@@ -35,8 +35,6 @@ main_init_variables(void)
 
     counters[COUNT_LEAGUE_ID] = ID_LEAGUE_START;
     counters[COUNT_CUP_ID] = ID_CUP_START;
-    counters[COUNT_PROM_CUP_ID] = ID_PROM_CUP_START;
-    counters[COUNT_SUPERCUP_ID] = ID_SUPERCUP_START;
 
     window.main = window.startup =
 	window.live = window.warning = window.progress = window.digits =
@@ -52,8 +50,10 @@ main_init_variables(void)
 
     save_file = g_string_new("");
 
-    constants.list = options.list = NULL;
-    constants.datalist = options.datalist = NULL;
+    constants_app.list = 
+	constants.list = options.list = NULL;
+    constants_app.datalist =
+	constants.datalist = options.datalist = NULL;
 
     popups_active = 0;
     selected_row[0] = selected_row[1] = -1;

@@ -194,9 +194,10 @@ free_country(gboolean reset)
     }
 
     free_leagues_array(&ligs, reset);
-
     free_cups_array(&cps, reset);
-    free_cups_array(&scps, reset);
+    free_g_ptr_array(&acps);
+    if(reset)
+	acps = g_ptr_array_new();
 }
 
 /**
@@ -232,20 +233,18 @@ void
 free_league(League *league)
 {
     gint i;
-    GString **strings[5] = 
+    GString **strings[6] = 
 	{&league->name,
 	 &league->short_name,
 	 &league->symbol,
 	 &league->sid,
-	 &league->prom_rel.prom_games_dest_sid};
+	 &league->prom_rel.prom_games_dest_sid,
+	 &league->prom_rel.prom_games_cup_sid};
     GArray **arrays[2] = 
 	{&league->teams,
 	 &league->prom_rel.elements};
 
-    if(strlen(league->prom_rel.prom_games_dest_sid->str) > 0)
-	free_cup(&league->prom_rel.prom_games_cup);
-
-    for(i=0;i<5;i++)
+    for(i=0;i<6;i++)
 	free_g_string(strings[i]);
 
     if(league->teams != NULL)
@@ -345,8 +344,6 @@ free_player(Player *pl)
     free_g_string(&pl->name);
 
     free_g_array(&pl->cards);
-
-    /* todo: free history */
 }
 
 /**
@@ -366,8 +363,7 @@ free_cups_array(GArray **cups, gboolean reset)
     }
 
     for(i=0;i<(*cups)->len;i++)
-	if(g_array_index(*cups, Cup, i).id < ID_PROM_CUP_START)
-	    free_cup(&g_array_index(*cups, Cup, i));
+	free_cup(&g_array_index(*cups, Cup, i));
 
     free_g_array(cups);
 
@@ -403,7 +399,6 @@ free_cup(Cup *cup)
     if(cup->choose_teams != NULL)
 	for(i=0;i<cup->choose_teams->len;i++)
 	    free_cup_choose_team(&g_array_index(cup->choose_teams, CupChooseTeam, i));
-    free_cup_choose_team(&cup->choose_team_user);
 
     free_teams_array(&cup->teams, FALSE);
 
@@ -413,7 +408,8 @@ free_cup(Cup *cup)
     free_g_array(&cup->fixtures);
 
     free_g_ptr_array(&cup->bye);
-    free_g_ptr_array(&cup->user_teams);
+    free_g_ptr_array(&cup->team_names);
+    free_g_string_array(&cup->properties);
 }
 
 /**
@@ -436,6 +432,7 @@ free_variables(void)
 
     free_option_list(&options, FALSE);
     free_option_list(&constants, FALSE);
+    free_option_list(&constants_app, FALSE);
 
     free_g_string(&save_file);
 

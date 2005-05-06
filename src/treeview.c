@@ -62,7 +62,7 @@ treeview_create_team_selection_list(gboolean show_cup_teams, gboolean show_user_
 	return GTK_TREE_MODEL(ls);
 
     for(i=0;i<cps->len;i++)
-	if(cp(i).type == CUP_TYPE_INTERNATIONAL)
+	if(cp(i).teams->len > 0)
 	    for(j=0;j<cp(i).teams->len;j++)
 	    {
 		gtk_list_store_append(ls, &iter);
@@ -388,13 +388,13 @@ treeview_live_game_show_commentary(const LiveGameUnit *unit)
     sprintf(buf, "%3d.", live_game_unit_get_minute(unit));
     if(unit->possession == 1)
 	sprintf(buf2, "<span background='%s' foreground='%s'>%s</span>",
-		const_str("string_treeview_live_game_commentary_away_bg"),
-		const_str("string_treeview_live_game_commentary_away_fg"),
+		const_app("string_treeview_live_game_commentary_away_bg"),
+		const_app("string_treeview_live_game_commentary_away_fg"),
 		unit->event.commentary->str);
     else
 	sprintf(buf2, "<span background='%s' foreground='%s'>%s</span>",
-		const_str("string_treeview_helper_color_default_background"),
-		const_str("string_treeview_helper_color_default_foreground"),
+		const_app("string_treeview_helper_color_default_background"),
+		const_app("string_treeview_helper_color_default_foreground"),
 		unit->event.commentary->str);
     
     gtk_list_store_prepend(ls, &iter);
@@ -681,13 +681,13 @@ treeview_create_game_stats(LiveGame *live_game)
 	    strcpy(buf[1], "   </span>");
 	    if(k == LIVE_GAME_STAT_ARRAY_INJURED)
 		sprintf(buf[0], "<span background='%s'>   ", 
-			const_str("string_treeview_helper_color_player_injury"));
+			const_app("string_treeview_helper_color_player_injury"));
 	    else if(k == LIVE_GAME_STAT_ARRAY_REDS)
 		sprintf(buf[0], "<span background='%s'>   ", 
-			const_str("string_treeview_helper_color_player_banned"));
+			const_app("string_treeview_helper_color_player_banned"));
 	    else if(k == LIVE_GAME_STAT_ARRAY_YELLOWS)
 		sprintf(buf[0], "<span background='%s'>   ", 
-			const_str("string_treeview_helper_color_player_yellow_danger"));
+			const_app("string_treeview_helper_color_player_yellow_danger"));
 	}
 
 	for(i=0;i<MAX(stats->players[0][k]->len,
@@ -718,13 +718,13 @@ treeview_create_game_stats(LiveGame *live_game)
 	gtk_list_store_append(ls, &iter);
 	if(live_game->stadium_event == LIVE_GAME_EVENT_STADIUM_BREAKDOWN)
 	    sprintf(buf[0], _("<span background='%s'>There were technical problems\nin the stadium.</span>"),
-		    const_str("string_treeview_stadium_event_bg"));
+		    const_app("string_treeview_stadium_event_bg"));
 	else if(live_game->stadium_event == LIVE_GAME_EVENT_STADIUM_RIOTS)
 	    sprintf(buf[0], _("<span background='%s'>There were riots\nin the stadium.</span>"),
-		    const_str("string_treeview_stadium_event_bg"));
+		    const_app("string_treeview_stadium_event_bg"));
 	else
 	    sprintf(buf[0], _("<span background='%s'>There was a fire\nin the stadium.</span>"),
-		    const_str("string_treeview_stadium_event_bg"));
+		    const_app("string_treeview_stadium_event_bg"));
 
 	gtk_list_store_set(ls, &iter, 0, buf[0], 1, "", 2, "", -1);
     }
@@ -827,12 +827,12 @@ treeview_create_fixtures_header(const Fixture *fix, GtkListStore *ls, gboolean b
     }
     
     sprintf(buf, "<span background='%s' foreground='%s'>%s%s</span>", 
-	    const_str("string_treeview_fixture_header_bg"),
-	    const_str("string_treeview_fixture_header_fg"),
+	    const_app("string_treeview_fixture_header_bg"),
+	    const_app("string_treeview_fixture_header_fg"),
 	    name, round_name);
     sprintf(buf2, "<span background='%s' foreground='%s'>%s</span>",
-	    const_str("string_treeview_fixture_header_bg"),
-	    const_str("string_treeview_fixture_header_fg"), buf3);
+	    const_app("string_treeview_fixture_header_bg"),
+	    const_app("string_treeview_fixture_header_fg"), buf3);
 
     gtk_list_store_append(ls, &iter);
     treeview_helper_insert_icon(ls, &iter, 0, symbol);
@@ -857,7 +857,7 @@ treeview_create_fixture(const Fixture *fix, GtkListStore *ls)
     gchar *colour_fg = NULL, *colour_bg = NULL;
 
     if(fix->clid >= ID_CUP_START &&
-       cup_from_clid(fix->clid)->type == CUP_TYPE_INTERNATIONAL)
+       query_cup_is_international(fix->clid))
 	for(i=0;i<2;i++)
 	    symbol[i] = fix->teams[i]->symbol->str;
     
@@ -866,8 +866,8 @@ treeview_create_fixture(const Fixture *fix, GtkListStore *ls)
 					 &colour_bg, &colour_fg);
     else
     {
-	colour_fg = const_str("string_treeview_helper_color_default_foreground");
-	colour_bg = const_str("string_treeview_helper_color_default_background");
+	colour_fg = const_app("string_treeview_helper_color_default_foreground");
+	colour_bg = const_app("string_treeview_helper_color_default_background");
     }
 
     fixture_result_to_buf(fix, buf_result);
@@ -884,10 +884,10 @@ treeview_create_fixture(const Fixture *fix, GtkListStore *ls)
 		    colour_bg, colour_fg, fix->teams[i]->name->str, rank);
 	}
 	else if(fix->clid >= ID_CUP_START &&
-		cup_from_clid(fix->clid)->type == CUP_TYPE_NATIONAL)
+		query_cup_is_national(fix->clid))
 	    sprintf(buf[i], "<span background='%s' foreground='%s'>%s (%d)</span>",
 		    colour_bg, colour_fg, fix->teams[i]->name->str,
-		    league_get_index(fix->teams[i]->clid) + 1);
+		    league_cup_get_index_from_clid(fix->teams[i]->clid) + 1);
 	else
 	    sprintf(buf[i], "<span background='%s' foreground='%s'>%s</span>",
 		    colour_bg, colour_fg, fix->teams[i]->name->str);
@@ -949,7 +949,7 @@ treeview_set_up_fixtures(GtkTreeView *treeview)
     gtk_tree_view_append_column(treeview, col);
     renderer = gtk_cell_renderer_pixbuf_new();
     g_object_set(renderer, "cell-background", 
-		 const_str("string_treeview_symbol_bg"), NULL);
+		 const_app("string_treeview_symbol_bg"), NULL);
     gtk_tree_view_column_pack_start(col, renderer, TRUE);
     gtk_tree_view_column_add_attribute(col, renderer,
 				       "pixbuf", 0);
@@ -971,7 +971,7 @@ treeview_set_up_fixtures(GtkTreeView *treeview)
     gtk_tree_view_append_column(treeview, col);
     renderer = gtk_cell_renderer_pixbuf_new();
     g_object_set(renderer, "cell-background", 
-		 const_str("string_treeview_symbol_bg"), NULL);
+		 const_app("string_treeview_symbol_bg"), NULL);
     gtk_tree_view_column_pack_start(col, renderer, FALSE);
     gtk_tree_view_column_add_attribute(col, renderer,
 				       "pixbuf", 4);
@@ -1051,13 +1051,13 @@ treeview_create_single_table(GtkListStore *ls, const Table *table, gint number)
 	
 	if(elem->old_rank > i)
 	    treeview_helper_insert_icon(ls, &iter, 2, 
-					const_str("string_treeview_table_up_icon"));
+					const_app("string_treeview_table_up_icon"));
 	else if(elem->old_rank < i)
 	    treeview_helper_insert_icon(ls, &iter, 2, 
-					const_str("string_treeview_table_down_icon"));
+					const_app("string_treeview_table_down_icon"));
 	else
 	    treeview_helper_insert_icon(ls, &iter, 2, 
-					const_str("string_treeview_table_stay_icon"));
+					const_app("string_treeview_table_stay_icon"));
 
 	/*todo: cup choose team user */
 	treeview_helper_get_table_element_colours(table, i, colour_fg, colour_bg, FALSE);
@@ -1145,7 +1145,7 @@ treeview_set_up_table(GtkTreeView *treeview)
     gtk_tree_view_append_column(treeview, col);
     renderer = gtk_cell_renderer_pixbuf_new();
     g_object_set(renderer, "cell-background", 
-		 const_str("string_treeview_symbol_bg"), NULL);
+		 const_app("string_treeview_symbol_bg"), NULL);
     gtk_tree_view_column_pack_start(col, renderer, TRUE);
     gtk_tree_view_column_add_attribute(col, renderer,
 				       "pixbuf", 0);
@@ -1266,7 +1266,7 @@ treeview_create_finances(const User* user)
 	misc_print_grouped_int(in[MON_IN_TRANSFERS], buf, FALSE);
 	misc_print_grouped_int(out[MON_OUT_TRANSFERS], buf3, FALSE);
 	sprintf(buf2, "<span foreground='%s'>%s</span>",
-		const_str("string_treeview_finances_expenses_fg"), buf3);
+		const_app("string_treeview_finances_expenses_fg"), buf3);
 	gtk_list_store_append(ls, &iter);
 	gtk_list_store_set(ls, &iter, 0, _("Transfers"), 1, buf, 2, buf2, -1);
 	balance += (in[MON_IN_TRANSFERS] + out[MON_OUT_TRANSFERS]);
@@ -1277,7 +1277,7 @@ treeview_create_finances(const User* user)
 	{
 	    misc_print_grouped_int(out[i], buf3, FALSE);
 	    sprintf(buf, "<span foreground='%s'>%s</span>",
-		    const_str("string_treeview_finances_expenses_fg"), buf3);
+		    const_app("string_treeview_finances_expenses_fg"), buf3);
 	    gtk_list_store_append(ls, &iter);
 	    gtk_list_store_set(ls, &iter, 0, out_titles[i], 1, "", 2, buf, -1);
 	    balance += out[i];
@@ -1290,7 +1290,7 @@ treeview_create_finances(const User* user)
 	strcpy(buf2, buf);
     else
 	sprintf(buf2, "<span foreground='%s'>%s</span>",
-		const_str("string_treeview_finances_expenses_fg"), buf);
+		const_app("string_treeview_finances_expenses_fg"), buf);
     gtk_list_store_set(ls, &iter, 1 + (balance < 0), buf2, -1);
 
     gtk_list_store_append(ls, &iter);
@@ -1302,7 +1302,7 @@ treeview_create_finances(const User* user)
 	strcpy(buf2, buf);
     else
 	sprintf(buf2, "<span foreground='%s'>%s</span>",
-		const_str("string_treeview_finances_expenses_fg"), buf);
+		const_app("string_treeview_finances_expenses_fg"), buf);
     gtk_list_store_set(ls, &iter, 0, _("Money"), 1, buf2, 2, "", -1);
 
     misc_print_grouped_int(finance_team_drawing_credit_loan(user->tm, FALSE), buf, FALSE);
@@ -1313,7 +1313,7 @@ treeview_create_finances(const User* user)
     {
 	misc_print_grouped_int(user->debt, buf, FALSE);
 	sprintf(buf2, "<span foreground='%s'>%s</span>",
-		const_str("string_treeview_finances_expenses_fg"), buf);
+		const_app("string_treeview_finances_expenses_fg"), buf);
 	sprintf(buf, _("Debt (repay in %d weeks)"), user->counters[COUNT_USER_LOAN]);
 	gtk_list_store_append(ls, &iter);
 	gtk_list_store_set(ls, &iter, 0, buf, 1, "", 2, buf2, -1);
@@ -1495,7 +1495,7 @@ treeview_create_next_opponent_values(GtkListStore *ls, const Fixture *fix)
 	    strcat(buf2, "|");
 
 	sprintf(buf, "%s\n<span foreground='%s'>", buf2,
-		const_str("string_treeview_opponent_value_colour_fg"));
+		const_app("string_treeview_opponent_value_colour_fg"));
 	for(j=0;j<(gint)rint((gfloat)const_int("int_treeview_max_pipes") *
 			     (team_values[fix->teams[0] != current_user.tm][i] / max_values[i]));j++)
 	    strcat(buf, "|");
@@ -1519,9 +1519,16 @@ treeview_create_next_opponent(void)
     if(opp == NULL)
 	return NULL;
     
+    if(fix->clid < ID_CUP_START)
+	strcpy(buf, league_cup_get_name_string(fix->clid));
+    else
+    {
+	cup_round_name(fix, buf2);
+	sprintf(buf, "%s (%s)", league_cup_get_name_string(fix->clid), buf2);
+    }		
+
     gtk_list_store_append(ls, &iter);
-    gtk_list_store_set(ls, &iter, 0, _("Your next opponent"), 1,
-		       league_cup_get_name_string(fix->clid), -1);
+    gtk_list_store_set(ls, &iter, 0, _("Your next opponent"), 1, buf, -1);
 
     gtk_list_store_append(ls, &iter);
     sprintf(buf, "Week %d Round %d", fix->week_number, fix->week_round_number);
@@ -1550,12 +1557,12 @@ treeview_create_next_opponent(void)
     if(team_get_average_skill(opp, TRUE) >
        team_get_average_skill(current_user.tm, TRUE))
 	sprintf(buf2, " (<span foreground='%s'>%+.1f</span>)",
-		const_str("string_treeview_opponent_skill_positive_fg"),
+		const_app("string_treeview_opponent_skill_positive_fg"),
 		team_get_average_skill(opp, TRUE) -
 		team_get_average_skill(current_user.tm, TRUE));
     else
 	sprintf(buf2, " (<span foreground='%s'>%+.1f</span>)",
-		const_str("string_treeview_opponent_skill_negative_fg"),
+		const_app("string_treeview_opponent_skill_negative_fg"),
 		team_get_average_skill(opp, TRUE) -
 		team_get_average_skill(current_user.tm, TRUE));
 
@@ -1645,7 +1652,7 @@ treeview_create_league_results(void)
 	{
 	    if(team_is_user(g_array_index(table_elements, TableElement, i).team) != -1)
 		sprintf(name, "<span background='%s'>%s</span>",
-			const_str("string_treeview_user_bg"),
+			const_app("string_treeview_user_bg"),
 			g_array_index(table_elements, TableElement, i).team->name->str);
 	    else
 		strcpy(name, g_array_index(table_elements, TableElement, i).team->name->str);
@@ -1666,8 +1673,8 @@ treeview_create_league_results(void)
 			   "--:--");
 
 	    sprintf(away, "<span background='%s' foreground='%s'>%s</span>",
-		    const_str("string_treeview_league_results_away_bg"),
-		    const_str("string_treeview_league_results_away_fg"),
+		    const_app("string_treeview_league_results_away_bg"),
+		    const_app("string_treeview_league_results_away_fg"),
 		    buf[1]);
 	    gtk_list_store_append(ls, &iter);
 	    gtk_list_store_set(ls, &iter, 0, name,
@@ -2019,12 +2026,12 @@ treeview_create_league_stats(GtkListStore *ls, const LeagueStat *league_stat)
     GArray *players[2] = {league_stat->player_scorers, league_stat->player_goalies};
     gchar *team_titles[2] = {_("Best offensive teams"),
 			    _("Best defensive teams")};
-    gchar *team_icons[2] = {const_str("string_treeview_league_stats_off_teams_icon"),
-			    const_str("string_treeview_league_stats_def_teams_icon")};
+    gchar *team_icons[2] = {const_app("string_treeview_league_stats_off_teams_icon"),
+			    const_app("string_treeview_league_stats_def_teams_icon")};
     gchar *player_titles[2][2] = {{_("Best goal scorers"), _("Shot %")},
 				  {_("Best goalkeepers"), _("Save %")}};
-    gchar *player_icons[2] = {const_str("string_treeview_league_stats_scorers_icon"),
-			      const_str("string_treeview_league_stats_goalies_icon")};
+    gchar *player_icons[2] = {const_app("string_treeview_league_stats_scorers_icon"),
+			      const_app("string_treeview_league_stats_goalies_icon")};
     gchar *colour_fg = NULL, *colour_bg = NULL;
     
     gtk_list_store_append(ls, &iter);
@@ -2171,8 +2178,8 @@ treeview_create_season_history_champions(GtkListStore *ls, const GArray* league_
     const GArray *champs[2] = {league_champs, cup_champs};
     gchar *titles[2] = {_("League champions"),
 			_("Cup champions")};
-    gchar *icons[2] = {const_str("string_treeview_season_hist_league_champions_icon"),
-		       const_str("string_treeview_season_hist_cup_champions_icon")};
+    gchar *icons[2] = {const_app("string_treeview_season_hist_league_champions_icon"),
+		       const_app("string_treeview_season_hist_cup_champions_icon")};
     
     for(i=0;i<2;i++)
     {

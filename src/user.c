@@ -604,39 +604,40 @@ user_history_add(User *user, gint type, gint team_id,
 
     if(type == USER_HISTORY_WIN_FINAL)
     {
-	if(cup_from_clid(value1)->type == CUP_TYPE_INTERNATIONAL)
+	if(query_cup_is_international(value1))
 	    user->counters[COUNT_USER_SUCCESS] +=
 		const_int("int_user_success_international_winner");
-	else if(cup_from_clid(value1)->type == CUP_TYPE_NATIONAL)
+	else if(query_cup_is_national(value1))
 	    user->counters[COUNT_USER_SUCCESS] +=
 		const_int("int_user_success_national_winner");
     }
     else if(type == USER_HISTORY_LOSE_FINAL)
     {
-	if(cup_from_clid(value1)->type == CUP_TYPE_INTERNATIONAL)
+	if(query_cup_is_international(value1))
 	    user->counters[COUNT_USER_SUCCESS] +=
 		const_int("int_user_success_international_final");
-	else if(cup_from_clid(value1)->type == CUP_TYPE_NATIONAL)
+	else if(query_cup_is_national(value1))
 	    user->counters[COUNT_USER_SUCCESS] +=
+		const_int("int_user_success_national_winner");
 		const_int("int_user_success_national_final");
     }
     else if(type == USER_HISTORY_REACH_CUP_ROUND)
     {
 	if(value2 == cup_from_clid(value1)->rounds->len - 2)
 	{
-	    if(cup_from_clid(value1)->type == CUP_TYPE_INTERNATIONAL)
+	    if(query_cup_is_international(value1))
 		user->counters[COUNT_USER_SUCCESS] +=
 		    const_int("int_user_success_international_semis");
-	    else if(cup_from_clid(value1)->type == CUP_TYPE_NATIONAL)
+	    else if(query_cup_is_national(value1))
 		user->counters[COUNT_USER_SUCCESS] +=
 		    const_int("int_user_success_national_semis");
 	}
 	else if(value2 == cup_from_clid(value1)->rounds->len - 3)
 	{
-	    if(cup_from_clid(value1)->type == CUP_TYPE_INTERNATIONAL)
+	    if(query_cup_is_international(value1))
 		user->counters[COUNT_USER_SUCCESS] +=
 		    const_int("int_user_success_international_quarter");
-	    else if(cup_from_clid(value1)->type == CUP_TYPE_NATIONAL)
+	    else if(query_cup_is_national(value1))
 		user->counters[COUNT_USER_SUCCESS] +=
 		    const_int("int_user_success_national_quarter");
 	}

@@ -449,6 +449,7 @@ file_load_conf_files(void)
     g_free(conf_file);
 
     file_load_opt_file(opt_str("string_opt_constants_file"), &constants);
+    file_load_opt_file(opt_str("string_opt_appearance_file"), &constants_app);
 }
 
 /** Load a user-specific conf file.

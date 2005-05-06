@@ -36,8 +36,6 @@
 #define player_id_new (counters[COUNT_PLAYER_ID]++)
 #define team_id_new (counters[COUNT_TEAM_ID]++)
 #define cup_id_new (counters[COUNT_CUP_ID]++)
-#define prom_cup_id_new (counters[COUNT_PROM_CUP_ID]++)
-#define supercup_id_new (counters[COUNT_SUPERCUP_ID]++)
 #define league_id_new (counters[COUNT_LEAGUE_ID]++)
 
 /** Convenience abbreviation. */
@@ -49,11 +47,6 @@
 #define cps country.cups
 /** Convenience abbreviation. */
 #define cp(i) g_array_index(country.cups, Cup, i)
-
-/** Convenience abbreviation. */
-#define scps country.supercups
-/** Convenience abbreviation. */
-#define scp(i) g_array_index(country.supercups, Cup, i)
 
 /** Convenience abbreviation. */
 #define acps country.allcups
@@ -101,7 +94,7 @@ typedef struct
 	*sid; /**< Id of the country, eg 'england'. */
 
     /** Leagues and cups arrays. */
-    GArray *leagues, *cups, *supercups;
+    GArray *leagues, *cups;
     
     /** Pointer array holding all cups. */
     GPtrArray *allcups;

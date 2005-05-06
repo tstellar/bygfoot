@@ -51,7 +51,7 @@ void
 team_get_league_cup_string(const Team *tm, gint value_type, gchar *buf);
 
 gboolean
-query_is_in_international_cups(const Team *tm);
+query_team_is_in_international_cups(const Team *tm, gint group);
 
 gboolean
 query_is_in_cup(const Team *tm, const Cup *cup);
