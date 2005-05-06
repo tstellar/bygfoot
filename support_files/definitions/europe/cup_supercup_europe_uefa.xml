@@ -3,7 +3,9 @@
   <name>UEFA Supercup</name>
   <short_name>UEFA SC</short_name>
   <sid>supercup_europe_uefa</sid>
-  <type>supercup</type>
+  <add_week>1000</add_week>
+  <property>international</property>
+  <property>supercup</property>
 
   <cup_rounds>
     <cup_round>
@@ -16,12 +18,14 @@
   
   <choose_team>
   <choose_team_sid>europe_champ_league</choose_team_sid>
+  <number_of_teams>1</number_of_teams>
   <start_idx>1</start_idx>
   <end_idx>1</end_idx>
   </choose_team>
 
   <choose_team>
   <choose_team_sid>europe_cwc</choose_team_sid>
+  <number_of_teams>1</number_of_teams>
   <start_idx>1</start_idx>
   <end_idx>1</end_idx>
   </choose_team>

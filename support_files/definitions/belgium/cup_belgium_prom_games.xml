@@ -1,22 +1,25 @@
 <cup>
-	<name>eindronde 2de klasse</name>
-	<short_name>eindr. 2de kl.</short_name>
-	<symbol>flag_be.png</symbol>
-	<sid>belgium_eindronde2</sid>
-	<type>national</type>
-	<yellow_red>3</yellow_red>
-	<cup_rounds>
-		<cup_round>
-			<number_of_groups>1</number_of_groups>
-			<number_of_advance>1</number_of_advance>
-		</cup_round>
-	</cup_rounds>
-	<choose_teams>
-		<choose_team>
-			<choose_team_sid>belgium2</choose_team_sid>
-			<number_of_teams>4</number_of_teams>
-			<start_idx>2</start_idx>
-			<end_idx>5</end_idx>
-		</choose_team>
-	</choose_teams>
+  <name>eindronde 2de klasse</name>
+  <short_name>eindr. 2de kl.</short_name>
+  <symbol>flag_be.png</symbol>
+  <sid>belgium_eindronde2</sid>
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>promotion</property>
+  <yellow_red>3</yellow_red>
+
+  <cup_rounds>
+    <cup_round>
+      <number_of_groups>1</number_of_groups>
+      <number_of_advance>1</number_of_advance>
+    </cup_round>
+  </cup_rounds>
+  <choose_teams>
+    <choose_team>
+      <choose_team_sid>belgium2</choose_team_sid>
+      <number_of_teams>4</number_of_teams>
+      <start_idx>2</start_idx>
+      <end_idx>5</end_idx>
+    </choose_team>
+  </choose_teams>
 </cup>

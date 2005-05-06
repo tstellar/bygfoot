@@ -4,12 +4,14 @@
   <short_name>UEFA Cup</short_name>
   <symbol>flag_eu.png</symbol>
   <sid>europe_uefa</sid>
-  <type>international</type>
+  <group>1</group>
   <yellow_red>3</yellow_red>
   <skill_diff>250</skill_diff>
   <overall_teams>32</overall_teams>
   <last_week>44</last_week>
+  <add_week>0</add_week>
   <week_gap>4</week_gap>
+  <property>international</property>
 
   <cup_rounds>
     <cup_round>
@@ -28,14 +30,15 @@
     </cup_round>
   </cup_rounds>
 
-  <choose_team_user>
+  <choose_teams>
+
+  <choose_team>
   <choose_team_sid>league1</choose_team_sid>
   <number_of_teams>3</number_of_teams>
   <start_idx>2</start_idx>
   <end_idx>5</end_idx>
-  </choose_team_user>
+  </choose_team>
 
-  <choose_teams>
   <choose_team>
   <choose_team_sid>england1 france1 germany1_short greece1_short
   italy1_short netherlands1_short portugal1_short russia1_short
@@ -44,6 +47,9 @@
   denmark1_short</choose_team_sid>
   <number_of_teams>29</number_of_teams>
   <randomly>1</randomly>
-  </choose_team> </choose_teams>
+  <generate>1</generate>
+  </choose_team>
+
+  </choose_teams>
 
 </cup>
