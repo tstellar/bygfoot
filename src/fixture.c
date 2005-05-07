@@ -346,6 +346,8 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round, GPtrArray *teams)
     Cup *cup = NULL;
     gint len = teams->len;
     GArray *fixtures = NULL;
+    Team team_temp;
+    gboolean odd_fixtures = FALSE;
 
     teams = misc_randomise_g_pointer_array(teams);
     
@@ -372,16 +374,17 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round, GPtrArray *teams)
     first_fixture = fixtures->len;
 
     if(first_week < 1)
-    {
+    {	
 	g_warning("fixture_write_round_robin: first week of %s is not positive (%d).\nPlease lower the week gap or set a later last week.\n", league_cup_get_name_string(clid), first_week);
 	main_exit_program(EXIT_FIXTURE_WRITE_ERROR, NULL);
     }
 
     if(len % 2 != 0)
     {
-	g_warning("fixture_write_round_robin: round robin for an odd number of teams (%d) is not supported (league/cup %s).\n",
-		  len, league_cup_get_name_string(clid));
-	main_exit_program(EXIT_FIXTURE_WRITE_ERROR, "");
+	team_temp = team_new(FALSE);
+	odd_fixtures = TRUE;
+	g_ptr_array_add(teams, &team_temp);
+	len++;
     }
 
     /* first half of fixtures */
@@ -401,6 +404,16 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round, GPtrArray *teams)
 			  clid, cup_round, 0, home_advantage, FALSE, FALSE);
 
     g_ptr_array_free(teams, TRUE);
+
+    if(odd_fixtures)
+    {
+	for(i=fixtures->len - 1; i>=0; i--)
+	    if(g_array_index(fixtures, Fixture, i).team_ids[0] == -1 ||
+	       g_array_index(fixtures, Fixture, i).team_ids[1] == -1)
+		g_array_remove_index(fixtures, i);
+
+	free_team(&team_temp);
+    }
 }
 
 /** Write one matchday of round robin games.

@@ -326,6 +326,7 @@ free_team(Team *tm)
     gint i;
 
     free_g_string(&tm->name);
+    free_g_string(&tm->symbol);
 
     if(tm->players != NULL)
     {
