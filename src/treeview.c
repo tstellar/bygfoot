@@ -2238,3 +2238,28 @@ treeview_show_season_history(gint page, gint season_number)
     gtk_tree_view_set_model(treeview, GTK_TREE_MODEL(model));
     g_object_unref(model);
 }
+
+/** Create the model for the startup country files combo. 
+    @param country_list The list of country files found. */
+GtkTreeModel*
+treeview_create_country_list(const GPtrArray *country_list)
+{
+    gint i;
+    GtkListStore *ls = gtk_list_store_new(2, GDK_TYPE_PIXBUF, G_TYPE_STRING);
+    GtkTreeIter iter;
+    gchar buf[SMALL], buf2[SMALL], trash[SMALL];
+    
+    for(i=0;i<country_list->len;i++)
+    {
+	sscanf(((GString*)g_ptr_array_index(country_list, i))->str, "country_%[^.]%[.xml]",
+	       buf2, trash);
+	sprintf(buf, "flag_%s.png", buf2);
+
+	gtk_list_store_append(ls, &iter);
+	treeview_helper_insert_icon(ls, &iter, 0, buf);
+	gtk_list_store_set(ls, &iter, 1, 
+			   ((GString*)g_ptr_array_index(country_list, i))->str, -1);
+    }
+
+    return GTK_TREE_MODEL(ls);
+}

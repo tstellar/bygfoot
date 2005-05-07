@@ -31,6 +31,7 @@ cup_new(gboolean new_id)
     new.add_week = 0;
     new.last_week = -1;
     new.week_gap = 1;
+
     new.yellow_red = 1000;
     new.skill_diff = 0;
     new.overall_teams = -1;
@@ -75,7 +76,7 @@ cup_round_new(void)
     new.replay = 0;
     new.neutral = FALSE;
     new.round_robin_number_of_groups = 0;
-    new.round_robin_number_of_advance = -1;
+    new.round_robin_number_of_advance = 1;
     new.round_robin_number_of_best_advance = 0;
     new.tables = g_array_new(FALSE, FALSE, sizeof(Table));
 
@@ -137,12 +138,12 @@ cup_get_choose_team_league_cup(const CupChooseTeam *ct,
 
     sscanf(ct->sid->str, "%[^0-9]%d", trash, &idx);
 
-    if(g_str_has_prefix(ct->sid->str, "league"))
+    if(g_str_has_prefix(ct->sid->str, "LEAGUE"))
     {
 	*league = &lig(idx - 1);
 	*cup = NULL;
     }
-    else if(g_str_has_prefix(ct->sid->str, "cup") && strlen(ct->sid->str) < 6)
+    else if(g_str_has_prefix(ct->sid->str, "CUP"))
     {
 	*cup = &cp(idx - 1);
 	*league = NULL;

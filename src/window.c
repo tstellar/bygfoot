@@ -11,6 +11,8 @@
 #include "option_gui.h"
 #include "options_interface.h"
 #include "support.h"
+#include "treeview.h"
+#include "treeview_helper.h"
 #include "user.h"
 #include "window.h"
 
@@ -26,19 +28,30 @@ window_show_startup(void)
     GtkWidget *combo_country =
 	lookup_widget(window_startup, "combo_country");
     GPtrArray *country_files = NULL;
-    GList *combo_strings = NULL;
-    gint i;
+    GtkTreeModel *model = NULL;
+    GtkCellRenderer *renderer = NULL;
     
     country_files = file_get_country_files();
 
     if(country_files->len == 0)
 	main_exit_program(EXIT_NO_COUNTRY_FILES, "Didn't find any country definition files in the support directories.");
 
-    for(i=0;i<country_files->len;i++)
-	combo_strings = g_list_append(combo_strings,
-				      ((GString*)g_ptr_array_index(country_files, i))->str);
+    model = treeview_create_country_list(country_files);
+    gtk_combo_box_set_model(GTK_COMBO_BOX(combo_country), model);
+    g_object_unref(model);
 
-    gtk_combo_set_popdown_strings(GTK_COMBO(combo_country), combo_strings);
+    gtk_combo_box_entry_set_text_column(GTK_COMBO_BOX_ENTRY(combo_country), 1);
+    gtk_cell_layout_clear(GTK_CELL_LAYOUT(combo_country));
+
+    renderer = gtk_cell_renderer_pixbuf_new();
+    gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(combo_country), renderer, FALSE);
+    gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(combo_country), renderer, "pixbuf", 0, NULL);
+
+    renderer = treeview_helper_cell_renderer_text_new();
+    gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(combo_country), renderer, TRUE);
+    gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(combo_country), renderer, "text", 1, NULL);
+
+    gtk_combo_box_set_active(GTK_COMBO_BOX(combo_country), 0);
 
     free_g_string_array(&country_files);
 }

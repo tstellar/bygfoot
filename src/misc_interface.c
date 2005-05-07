@@ -40,7 +40,6 @@ create_window_startup (void)
   GtkWidget *vbox34;
   GtkWidget *label69;
   GtkWidget *combo_country;
-  GtkWidget *combo_country_entry;
   GtkWidget *hseparator11;
   GtkWidget *label4;
   GtkWidget *eventbox1;
@@ -137,17 +136,11 @@ create_window_startup (void)
   label69 = gtk_label_new (_("Choose country"));
   gtk_widget_show (label69);
   gtk_box_pack_start (GTK_BOX (vbox34), label69, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label69), GTK_JUSTIFY_LEFT);
   gtk_misc_set_padding (GTK_MISC (label69), 0, 5);
 
-  combo_country = gtk_combo_new ();
-  g_object_set_data (G_OBJECT (GTK_COMBO (combo_country)->popwin),
-                     "GladeParentKey", combo_country);
+  combo_country = gtk_combo_box_entry_new ();
   gtk_widget_show (combo_country);
-  gtk_box_pack_start (GTK_BOX (vbox34), combo_country, FALSE, FALSE, 0);
-
-  combo_country_entry = GTK_COMBO (combo_country)->entry;
-  gtk_widget_show (combo_country_entry);
+  gtk_box_pack_start (GTK_BOX (vbox34), combo_country, TRUE, TRUE, 0);
 
   hseparator11 = gtk_hseparator_new ();
   gtk_widget_show (hseparator11);
@@ -157,7 +150,6 @@ create_window_startup (void)
   label4 = gtk_label_new (_("Start in"));
   gtk_widget_show (label4);
   gtk_box_pack_start (GTK_BOX (vbox2), label4, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label4), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label4), 0.05, 0.5);
 
   eventbox1 = gtk_event_box_new ();
@@ -203,7 +195,6 @@ create_window_startup (void)
   label75 = gtk_label_new (_("Player name"));
   gtk_widget_show (label75);
   gtk_box_pack_start (GTK_BOX (hbox54), label75, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label75), GTK_JUSTIFY_LEFT);
 
   entry_player_name = gtk_entry_new ();
   gtk_widget_show (entry_player_name);
@@ -230,7 +221,6 @@ create_window_startup (void)
   label76 = gtk_label_new_with_mnemonic (_("Add player"));
   gtk_widget_show (label76);
   gtk_box_pack_start (GTK_BOX (hbox55), label76, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label76), GTK_JUSTIFY_LEFT);
 
   hseparator13 = gtk_hseparator_new ();
   gtk_widget_show (hseparator13);
@@ -266,7 +256,6 @@ create_window_startup (void)
   label74 = gtk_label_new_with_mnemonic (_("Start"));
   gtk_widget_show (label74);
   gtk_box_pack_start (GTK_BOX (hbox53), label74, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label74), GTK_JUSTIFY_LEFT);
 
   team_selection_cancel = gtk_button_new ();
   gtk_widget_show (team_selection_cancel);
@@ -292,7 +281,6 @@ create_window_startup (void)
   label2 = gtk_label_new_with_mnemonic (_("Cancel"));
   gtk_widget_show (label2);
   gtk_box_pack_start (GTK_BOX (hbox5), label2, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label2), GTK_JUSTIFY_LEFT);
 
   team_selection_load = gtk_button_new ();
   gtk_widget_show (team_selection_load);
@@ -318,7 +306,6 @@ create_window_startup (void)
   label5 = gtk_label_new_with_mnemonic (_("Load game"));
   gtk_widget_show (label5);
   gtk_box_pack_start (GTK_BOX (hbox6), label5, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label5), GTK_JUSTIFY_LEFT);
 
   button_startup_resume = gtk_button_new ();
   gtk_widget_show (button_startup_resume);
@@ -339,7 +326,6 @@ create_window_startup (void)
   label108 = gtk_label_new_with_mnemonic (_("_Resume last game"));
   gtk_widget_show (label108);
   gtk_box_pack_start (GTK_BOX (hbox68), label108, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label108), GTK_JUSTIFY_LEFT);
 
   g_signal_connect ((gpointer) window_startup, "delete_event",
                     G_CALLBACK (on_team_selection_cancel_clicked),
@@ -350,8 +336,8 @@ create_window_startup (void)
   g_signal_connect ((gpointer) treeview_startup, "row_activated",
                     G_CALLBACK (on_team_selection_tv_row_activated),
                     NULL);
-  g_signal_connect ((gpointer) combo_country_entry, "changed",
-                    G_CALLBACK (on_combo_country_entry_changed),
+  g_signal_connect ((gpointer) combo_country, "changed",
+                    G_CALLBACK (on_combo_country_changed),
                     NULL);
   g_signal_connect ((gpointer) entry_player_name, "activate",
                     G_CALLBACK (on_entry_player_name_activate),
@@ -384,7 +370,6 @@ create_window_startup (void)
   GLADE_HOOKUP_OBJECT (window_startup, vbox34, "vbox34");
   GLADE_HOOKUP_OBJECT (window_startup, label69, "label69");
   GLADE_HOOKUP_OBJECT (window_startup, combo_country, "combo_country");
-  GLADE_HOOKUP_OBJECT (window_startup, combo_country_entry, "combo_country_entry");
   GLADE_HOOKUP_OBJECT (window_startup, hseparator11, "hseparator11");
   GLADE_HOOKUP_OBJECT (window_startup, label4, "label4");
   GLADE_HOOKUP_OBJECT (window_startup, eventbox1, "eventbox1");
@@ -448,6 +433,7 @@ create_window_file_sel (void)
   gtk_container_set_border_width (GTK_CONTAINER (window_file_sel), 10);
   gtk_window_set_position (GTK_WINDOW (window_file_sel), GTK_WIN_POS_CENTER);
   gtk_window_set_modal (GTK_WINDOW (window_file_sel), TRUE);
+  gtk_window_set_type_hint (GTK_WINDOW (window_file_sel), GDK_WINDOW_TYPE_HINT_DIALOG);
 
   button_fsel_ok = GTK_FILE_SELECTION (window_file_sel)->ok_button;
   gtk_widget_show (button_fsel_ok);
@@ -499,6 +485,7 @@ create_window_font_sel (void)
   gtk_container_set_border_width (GTK_CONTAINER (window_font_sel), 5);
   gtk_window_set_position (GTK_WINDOW (window_font_sel), GTK_WIN_POS_CENTER);
   gtk_window_set_modal (GTK_WINDOW (window_font_sel), TRUE);
+  gtk_window_set_type_hint (GTK_WINDOW (window_font_sel), GDK_WINDOW_TYPE_HINT_DIALOG);
 
   button_font_sel_ok = GTK_FONT_SELECTION_DIALOG (window_font_sel)->ok_button;
   gtk_widget_show (button_font_sel_ok);
@@ -613,7 +600,6 @@ create_window_live (void)
   label78 = gtk_label_new (_("   "));
   gtk_widget_show (label78);
   gtk_container_add (GTK_CONTAINER (eventbox_poss0), label78);
-  gtk_label_set_justify (GTK_LABEL (label78), GTK_JUSTIFY_LEFT);
 
   scrolledwindow8 = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (scrolledwindow8);
@@ -633,7 +619,6 @@ create_window_live (void)
   label79 = gtk_label_new (_("   "));
   gtk_widget_show (label79);
   gtk_container_add (GTK_CONTAINER (eventbox_poss1), label79);
-  gtk_label_set_justify (GTK_LABEL (label79), GTK_JUSTIFY_LEFT);
 
   hscale_area = gtk_hscale_new (GTK_ADJUSTMENT (gtk_adjustment_new (5, 0, 10, 0, 0, 0)));
   gtk_widget_show (hscale_area);
@@ -657,7 +642,6 @@ create_window_live (void)
   label80 = gtk_label_new (_("Commentary"));
   gtk_widget_show (label80);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 0), label80);
-  gtk_label_set_justify (GTK_LABEL (label80), GTK_JUSTIFY_LEFT);
 
   scrolledwindow11 = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (scrolledwindow11);
@@ -672,7 +656,6 @@ create_window_live (void)
   label81 = gtk_label_new (_("Statistics"));
   gtk_widget_show (label81);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 1), label81);
-  gtk_label_set_justify (GTK_LABEL (label81), GTK_JUSTIFY_LEFT);
 
   hbox48 = gtk_hbox_new (FALSE, 4);
   gtk_widget_show (hbox48);
@@ -700,7 +683,6 @@ create_window_live (void)
   label72 = gtk_label_new_with_mnemonic (_("_Pause"));
   gtk_widget_show (label72);
   gtk_box_pack_start (GTK_BOX (hbox51), label72, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label72), GTK_JUSTIFY_LEFT);
 
   button_resume = gtk_button_new ();
   gtk_widget_show (button_resume);
@@ -724,7 +706,6 @@ create_window_live (void)
   label73 = gtk_label_new_with_mnemonic (_("_Resume"));
   gtk_widget_show (label73);
   gtk_box_pack_start (GTK_BOX (hbox52), label73, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label73), GTK_JUSTIFY_LEFT);
 
   button_live_close = gtk_button_new_from_stock ("gtk-close");
   gtk_widget_show (button_live_close);
@@ -864,7 +845,6 @@ create_help_window (void)
   label59 = gtk_label_new_with_mnemonic (_("Close"));
   gtk_widget_show (label59);
   gtk_box_pack_start (GTK_BOX (hbox40), label59, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label59), GTK_JUSTIFY_LEFT);
 
   g_signal_connect ((gpointer) button_help_close, "clicked",
                     G_CALLBACK (on_button_help_close_clicked),
@@ -961,7 +941,6 @@ create_window_stadium (void)
   gtk_table_attach (GTK_TABLE (table1), label106, 0, 1, 0, 1,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label106), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label106), 0, 0.5);
 
   label_stadium_status = gtk_label_new (_("label107"));
@@ -969,7 +948,6 @@ create_window_stadium (void)
   gtk_table_attach (GTK_TABLE (table1), label_stadium_status, 1, 2, 0, 1,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label_stadium_status), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label_stadium_status), 0, 0.5);
 
   label101 = gtk_label_new (_("Current capacity:"));
@@ -977,7 +955,6 @@ create_window_stadium (void)
   gtk_table_attach (GTK_TABLE (table1), label101, 0, 1, 1, 2,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label101), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label101), 0, 0.5);
 
   hbox69 = gtk_hbox_new (FALSE, 0);
@@ -989,20 +966,17 @@ create_window_stadium (void)
   label_capacity = gtk_label_new (_("label104"));
   gtk_widget_show (label_capacity);
   gtk_box_pack_start (GTK_BOX (hbox69), label_capacity, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label_capacity), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label_capacity), 0, 0.5);
 
   label102 = gtk_label_new (_(" seats"));
   gtk_widget_show (label102);
   gtk_box_pack_start (GTK_BOX (hbox69), label102, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label102), GTK_JUSTIFY_LEFT);
 
   label103 = gtk_label_new (_("Current safety:   "));
   gtk_widget_show (label103);
   gtk_table_attach (GTK_TABLE (table1), label103, 0, 1, 2, 3,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label103), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label103), 0, 0.5);
 
   progressbar_safety = gtk_progress_bar_new ();
@@ -1016,7 +990,6 @@ create_window_stadium (void)
   gtk_table_attach (GTK_TABLE (table1), label109, 0, 1, 3, 4,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label109), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label109), 0, 0.5);
 
   label_average_attendance = gtk_label_new (_("label110"));
@@ -1024,7 +997,6 @@ create_window_stadium (void)
   gtk_table_attach (GTK_TABLE (table1), label_average_attendance, 1, 2, 3, 4,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label_average_attendance), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label_average_attendance), 0, 0.5);
 
   label111 = gtk_label_new (_("Average attendance % "));
@@ -1032,7 +1004,6 @@ create_window_stadium (void)
   gtk_table_attach (GTK_TABLE (table1), label111, 0, 1, 4, 5,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label111), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label111), 0, 0.5);
 
   progressbar_average_attendance = gtk_progress_bar_new ();
@@ -1053,7 +1024,6 @@ create_window_stadium (void)
   label90 = gtk_label_new (_("Increase"));
   gtk_widget_show (label90);
   gtk_box_pack_start (GTK_BOX (vbox43), label90, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label90), GTK_JUSTIFY_LEFT);
 
   hbox61 = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (hbox61);
@@ -1066,7 +1036,6 @@ create_window_stadium (void)
   label91 = gtk_label_new (_("Capacity (seats)"));
   gtk_widget_show (label91);
   gtk_box_pack_start (GTK_BOX (vbox44), label91, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label91), GTK_JUSTIFY_LEFT);
 
   spinbutton_capacity_adj = gtk_adjustment_new (0, 0, 10000, 1, 100, 10);
   spinbutton_capacity = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_capacity_adj), 1, 0);
@@ -1081,22 +1050,18 @@ create_window_stadium (void)
   label93 = gtk_label_new (_("Costs"));
   gtk_widget_show (label93);
   gtk_box_pack_start (GTK_BOX (vbox46), label93, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label93), GTK_JUSTIFY_LEFT);
 
   label_costs_capacity = gtk_label_new (_("0"));
   gtk_widget_show (label_costs_capacity);
   gtk_box_pack_start (GTK_BOX (vbox46), label_costs_capacity, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label_costs_capacity), GTK_JUSTIFY_LEFT);
 
   label95 = gtk_label_new (_("Expected duration"));
   gtk_widget_show (label95);
   gtk_box_pack_start (GTK_BOX (vbox46), label95, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label95), GTK_JUSTIFY_LEFT);
 
   label_duration_capacity = gtk_label_new (_("0"));
   gtk_widget_show (label_duration_capacity);
   gtk_box_pack_start (GTK_BOX (vbox46), label_duration_capacity, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label_duration_capacity), GTK_JUSTIFY_LEFT);
 
   vbox45 = gtk_vbox_new (FALSE, 3);
   gtk_widget_show (vbox45);
@@ -1105,7 +1070,6 @@ create_window_stadium (void)
   label92 = gtk_label_new (_("Safety (%)"));
   gtk_widget_show (label92);
   gtk_box_pack_start (GTK_BOX (vbox45), label92, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label92), GTK_JUSTIFY_LEFT);
 
   spinbutton_safety_adj = gtk_adjustment_new (0, 0, 100, 1, 5, 10);
   spinbutton_safety = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_safety_adj), 1, 0);
@@ -1120,22 +1084,18 @@ create_window_stadium (void)
   label94 = gtk_label_new (_("Costs"));
   gtk_widget_show (label94);
   gtk_box_pack_start (GTK_BOX (vbox47), label94, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label94), GTK_JUSTIFY_LEFT);
 
   label_costs_safety = gtk_label_new (_("0"));
   gtk_widget_show (label_costs_safety);
   gtk_box_pack_start (GTK_BOX (vbox47), label_costs_safety, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label_costs_safety), GTK_JUSTIFY_LEFT);
 
   label96 = gtk_label_new (_("Expected duration"));
   gtk_widget_show (label96);
   gtk_box_pack_start (GTK_BOX (vbox47), label96, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label96), GTK_JUSTIFY_LEFT);
 
   label_duration_safety = gtk_label_new (_("0"));
   gtk_widget_show (label_duration_safety);
   gtk_box_pack_start (GTK_BOX (vbox47), label_duration_safety, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label_duration_safety), GTK_JUSTIFY_LEFT);
 
   hseparator15 = gtk_hseparator_new ();
   gtk_widget_show (hseparator15);
@@ -1165,7 +1125,6 @@ create_window_stadium (void)
   label107 = gtk_label_new_with_mnemonic (_("Improve!"));
   gtk_widget_show (label107);
   gtk_box_pack_start (GTK_BOX (hbox67), label107, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label107), GTK_JUSTIFY_LEFT);
 
   button_stadium_cancel = gtk_button_new_from_stock ("gtk-close");
   gtk_widget_show (button_stadium_cancel);

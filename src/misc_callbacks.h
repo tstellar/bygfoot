@@ -62,10 +62,6 @@ on_button_help_close_clicked           (GtkButton       *button,
                                         gpointer         user_data);
 
 void
-on_combo_country_entry_changed         (GtkEditable     *editable,
-                                        gpointer         user_data);
-
-void
 on_button_pause_clicked                (GtkButton       *button,
                                         gpointer         user_data);
 
@@ -117,9 +113,13 @@ on_spinbutton_capacity_button_press_event
 void
 on_button_startup_resume_clicked       (GtkButton       *button,
                                         gpointer         user_data);
-#endif
 
 gboolean
 on_window_stadium_delete_event         (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data);
+
+void
+on_combo_country_changed               (GtkComboBox     *combobox,
+                                        gpointer         user_data);
+#endif

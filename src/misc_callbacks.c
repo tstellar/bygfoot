@@ -185,20 +185,6 @@ on_button_help_close_clicked           (GtkButton       *button,
 
 
 void
-on_combo_country_entry_changed         (GtkEditable     *editable,
-                                        gpointer         user_data)
-{
-    GtkWidget *combo_country_entry =
-	lookup_widget(GTK_WIDGET(editable), "combo_country_entry");
-    const gchar *entry_text = gtk_entry_get_text(GTK_ENTRY(combo_country_entry));
-
-    if(strlen(entry_text) == 0)
-	return;
-
-    misc_callback_show_team_list(GTK_WIDGET(editable), entry_text);
-}
-
-void
 on_button_pause_clicked                (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -308,5 +294,19 @@ on_window_stadium_delete_event         (GtkWidget       *widget,
     on_button_stadium_cancel_clicked(NULL, NULL);
 
     return TRUE;
+}
+
+void
+on_combo_country_changed               (GtkComboBox     *combobox,
+                                        gpointer         user_data)
+{
+    GtkTreeIter iter;
+    gchar *buf = NULL;
+
+    gtk_combo_box_get_active_iter(combobox, &iter);
+    gtk_tree_model_get(gtk_combo_box_get_model(combobox), &iter, 1, &buf, -1);
+
+    misc_callback_show_team_list(GTK_WIDGET(combobox), buf);
+    g_free(buf);
 }
 

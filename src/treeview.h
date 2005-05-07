@@ -199,4 +199,7 @@ void
 treeview_create_season_history_champions(GtkListStore *ls, const GArray* league_champs,
 					 const GArray *cup_champs);
 
+GtkTreeModel*
+treeview_create_country_list(const GPtrArray *country_list);
+
 #endif
