@@ -271,7 +271,7 @@ query_team_is_in_international_cups(const Team *tm, gint group)
     @param cup The cup.
     @return TRUE or FALSE. */
 gboolean
-query_is_in_cup(const Team *tm, const Cup *cup)
+query_team_is_in_cup(const Team *tm, const Cup *cup)
 {
     gint i;
 
@@ -312,8 +312,8 @@ team_of_id(gint id)
 
     for(i=0;i<cps->len;i++)
 	for(j=0;j<cp(i).teams->len;j++)
-	    if(g_array_index(cp(i).teams, Team, j).id == id)
-		return &g_array_index(cp(i).teams, Team, j);    
+	    if(((Team*)g_ptr_array_index(cp(i).teams, j))->id == id)
+		return (Team*)g_ptr_array_index(cp(i).teams, j);
 
     g_warning("team_of_id: team with id %d not found.", id);
 
@@ -367,8 +367,8 @@ team_get_fixture(const Team *tm, gboolean last_fixture)
 
     for(i=0;i<acps->len;i++)
     {
-	if(/*d?*//* acp(i)->type == CUP_TYPE_NATIONAL || */
-	   query_is_in_cup(tm, acp(i)))
+	if(query_cup_is_national(acp(i)->id) ||
+	   query_team_is_in_cup(tm, acp(i)))
 	{
 	    for(j=0;j<acp(i)->fixtures->len;j++)
 		if((g_array_index(acp(i)->fixtures, Fixture, j).teams[0] == tm ||
@@ -850,7 +850,7 @@ team_compare_func(gconstpointer a, gconstpointer b, gpointer data)
 GPtrArray*
 team_get_sorted(GCompareDataFunc compare_function, gint type, gboolean cup)
 { 
-    gint i, j;
+    gint i, j, k;
     GPtrArray *teams = g_ptr_array_new();
 
     if(!cup)
@@ -862,11 +862,12 @@ team_get_sorted(GCompareDataFunc compare_function, gint type, gboolean cup)
     else
     {
 	for(i=0;i<cps->len;i++)
-	{
-	    if(cp(i).teams->len > 0)
-		for(j=0;j<cp(i).teams->len;j++)
-		    g_ptr_array_add(teams, &g_array_index(cp(i).teams, Team, j));
-	}
+	    for(j=0;j<cp(i).rounds->len;j++)
+	    {
+		if(g_array_index(cp(i).rounds, CupRound, j).teams->len > 0)
+		    for(k=0;k<g_array_index(cp(i).rounds, CupRound, j).teams->len;k++)
+			g_ptr_array_add(teams, &g_array_index(g_array_index(cp(i).rounds, CupRound, j).teams, Team, k));
+	    }
     }
 
     g_ptr_array_sort_with_data(teams, compare_function, GINT_TO_POINTER(type));
@@ -921,11 +922,20 @@ gint
 team_get_index(const Team *tm)
 {
     gint i;
-    GArray *teams = league_cup_get_teams(tm->clid);
+    gpointer *teams = league_cup_get_teams(tm->clid);
 
-    for(i=0;i<teams->len;i++)
-	if(&g_array_index(teams, Team, i) == tm)
-	    return i;
+    if(tm->clid < ID_CUP_START)
+    {
+	for(i=0;i<((GArray*)teams)->len;i++)
+	    if(&g_array_index((GArray*)teams, Team, i) == tm)
+		return i;
+    }
+    else
+    {
+	for(i=0;i<((GPtrArray*)teams)->len;i++)
+	    if((Team*)g_ptr_array_index((GPtrArray*)teams, i) == tm)
+		return i;
+    }
 
     g_warning("team_get_index: team %s not found.\n", tm->name->str);
 

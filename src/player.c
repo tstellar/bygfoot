@@ -254,10 +254,10 @@ player_id_team(gint player_id)
 
     for(i=0;i<cps->len;i++)
 	for(j=0;j<cp(i).teams->len;j++)
-	    for(k=0;k<g_array_index(cp(i).teams, Team, j).players->len;k++)
-		if(g_array_index(g_array_index(cp(i).teams, Team, j).players,
+	    for(k=0;k<((Team*)g_ptr_array_index(cp(i).teams, j))->players->len;k++)
+		if(g_array_index(((Team*)g_ptr_array_index(cp(i).teams, j))->players,
 				 Player, k).id == player_id)
-		    return &g_array_index(cp(i).teams, Team, j);
+		    return (Team*)g_ptr_array_index(cp(i).teams, j);
 
     g_warning("player_id_team: player with id %d not found.\n", player_id);
 

@@ -62,7 +62,7 @@ fixture_write_cup_fixtures(Cup *cup)
 {
     GPtrArray *teams = NULL;
 
-    teams = cup_get_team_pointers(cup);
+    teams = cup_get_team_pointers(cup, 0);
 
     if(g_array_index(cup->rounds, CupRound, 0).round_robin_number_of_groups > 0)
 	fixture_write_cup_round_robin(cup, 0, teams);
@@ -79,7 +79,7 @@ fixture_update(Cup *cup)
     GArray *fixtures = cup->fixtures;
     gint round = g_array_index(fixtures, Fixture, fixtures->len - 1).round;
     gint replay = g_array_index(cup->rounds, CupRound, round).replay;
-    GPtrArray *teams = NULL;
+    GPtrArray *teams = NULL, *teams_new = NULL;
     const CupRound *new_round = NULL;
 
     if(replay != 0)
@@ -103,7 +103,15 @@ fixture_update(Cup *cup)
 
     new_round = &g_array_index(cup->rounds, CupRound, round + 1);
 
-    if(round == 0 && cup->bye != NULL && cup->bye->len != 0)
+    if(new_round->choose_teams->len > 0)
+    {
+	teams_new = cup_get_team_pointers(cup, round + 1);
+	for(i=0;i<teams_new->len;i++)
+	    g_ptr_array_add(teams, g_ptr_array_index(teams_new, i));
+	g_ptr_array_free(teams_new, TRUE);
+    }
+
+    if(cup->bye != NULL && cup->bye->len != 0)
     {
 	for(i=0;i<cup->bye->len;i++)
 	    g_ptr_array_add(teams, g_ptr_array_index(cup->bye, i));
@@ -124,7 +132,7 @@ GPtrArray*
 fixture_get_cup_round_winners(const Cup *cup)
 {
     gint i;
-    GPtrArray *array;
+    GPtrArray *array = NULL;
     GArray *fixtures = cup->fixtures;
     gint round = g_array_index(fixtures, Fixture, fixtures->len - 1).round;
     const CupRound *cupround = &g_array_index(cup->rounds, CupRound, round);
@@ -288,11 +296,13 @@ fixture_write_cup_round_robin(Cup *cup, gint cup_round, GPtrArray *teams)
 
     if(teams->len % number_of_groups != 0)
     {
-	g_warning("fixture_write_cup_round_robin: number of teams (%d) not divisible by number of groups (%d)\ncup %s cup_round %d\n", 
-		  teams->len, number_of_groups,
-		  cup->name->str, cup_round);
+	cup->bye = g_ptr_array_new();
 
-	main_exit_program(EXIT_FIXTURE_WRITE_ERROR, NULL);
+	while(teams->len % number_of_groups != 0)
+	{
+	    g_ptr_array_add(cup->bye, g_ptr_array_index(teams, teams->len - 1));
+	    g_ptr_array_remove_index(teams, teams->len - 1);
+	}
     }
 
     for(i=0;i<number_of_groups;i++)
@@ -324,7 +334,6 @@ fixture_write_cup_round_robin(Cup *cup, gint cup_round, GPtrArray *teams)
 	g_array_index(cup->fixtures, Fixture, cup->fixtures->len - 1).week_number : -1;
     cup->next_fixture_update_week_round = (cup_round < cup->rounds->len - 1) ?
 	g_array_index(cup->fixtures, Fixture, cup->fixtures->len - 1).week_round_number : -1;
-
 }
 
 /** Write round robin fixtures for the teams in the array.
@@ -466,35 +475,24 @@ fixture_write_knockout_round(Cup *cup, gint cup_round, GPtrArray *teams)
     gint first_week = cup_get_first_week_of_cup_round(cup, cup_round);
     CupRound *round = &g_array_index(cup->rounds, CupRound, cup_round);
     gint bye_len = math_get_bye_len(teams->len);
-    gchar buf[SMALL];
-
-    if(len % 2 != 0)
-    {
-	sprintf(buf, "fixture_write_knockout_round: odd number of teams (%d) cup %s round %d\n",
-		len, cup->name->str, cup_round);
-	main_exit_program(EXIT_FIXTURE_WRITE_ERROR, buf);
-    }
 
     teams = misc_randomise_g_pointer_array(teams);
 
     if(bye_len != 0)
     {
-	free_g_ptr_array(&cup->bye);
 	cup->bye = g_ptr_array_new();
 
 	fixture_sort_teams_bye(teams, bye_len);
 	for(i=0;i<bye_len;i++)
 	    g_ptr_array_add(cup->bye, g_ptr_array_index(teams, len - bye_len + i));
     }
-    else if(cup->bye != NULL)
-	free_g_ptr_array(&cup->bye);
 
     for(i=0; i<(len - bye_len) / 2; i++)
 	fixture_write(cup->fixtures, (Team*)g_ptr_array_index(teams, i),
 		      (Team*)g_ptr_array_index(teams, i + (len - bye_len) / 2), first_week,
 		      fixture_get_free_round(first_week, cup->id), cup->id, cup_round, 0,
-		      !round->neutral, FALSE, (!round->home_away && round->replay == 0));/*todo: adjust
-											   round->replay */
+		      !round->neutral, FALSE, (!round->home_away && round->replay == 0));
+
     if(round->home_away)
 	for(i=0; i<(len - bye_len) / 2; i++)
 	    fixture_write(cup->fixtures, (Team*)g_ptr_array_index(teams, i + (len - bye_len) / 2),

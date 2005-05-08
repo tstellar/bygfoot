@@ -16,8 +16,7 @@ enum
     TAG_CUP_ADD_WEEK,
     TAG_CUP_PROPERTY,
     TAG_CUP_GROUP,
-    TAG_CUP_SKILL_DIFF,
-    TAG_CUP_OVERALL_TEAMS,    
+    TAG_CUP_SKILL_DIFF,    
     TAG_CUP_CHOOSE_TEAM,
     TAG_CUP_CHOOSE_TEAM_SID,
     TAG_CUP_CHOOSE_TEAM_NUMBER_OF_TEAMS,
@@ -26,13 +25,16 @@ enum
     TAG_CUP_CHOOSE_TEAM_RANDOMLY,
     TAG_CUP_CHOOSE_TEAM_GENERATE,
     TAG_CUP_ROUND,
+    TAG_CUP_ROUND_NEW_TEAMS,
+    TAG_CUP_ROUND_TEAMS_FILE,
+    TAG_CUP_ROUND_TABLE_FILE,
     TAG_CUP_ROUND_HOME_AWAY,
     TAG_CUP_ROUND_REPLAY,
     TAG_CUP_ROUND_NEUTRAL,
     TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS,
     TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE,
     TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE,
-    TAG_CUP_BYE,
+    TAG_CUP_TEAM_ID_BYE,
     TAG_CUP_TEAM_NAME,
     TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK,
     TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK_ROUND,
@@ -43,7 +45,7 @@ gint state;
 Cup *new_cup;
 CupChooseTeam new_choose_team;
 CupRound new_round;
-GString *new_team_name;
+gchar *dirname;
 
 void
 xml_loadsave_cup_start_element (GMarkupParseContext *context,
@@ -101,26 +103,21 @@ xml_loadsave_cup_end_element    (GMarkupParseContext *context,
        tag == TAG_CUP_PROPERTY ||
        tag == TAG_CUP_GROUP ||
        tag == TAG_CUP_SKILL_DIFF ||
-       tag == TAG_CUP_OVERALL_TEAMS ||
        tag == TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK ||
        tag == TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK_ROUND ||
        tag == TAG_CUP_ROUND ||
        tag == TAG_CUP_TEAM_NAME ||
-       tag == TAG_CUP_BYE)
+       tag == TAG_CUP_TEAM_ID_BYE)
     {
 	state = TAG_CUP;
 	if(tag == TAG_CUP_ROUND)
 	    g_array_append_val(new_cup->rounds, new_round);
-	else if(tag == TAG_CUP_TEAM_NAME)
-	    g_ptr_array_add(new_cup->team_names, new_team_name);
     }
     else if(tag == TAG_CUP_CHOOSE_TEAM)
     {
-	state = TAG_CUP;
-	g_array_append_val(new_cup->choose_teams, new_choose_team);
+	state = TAG_CUP_ROUND;
+	g_array_append_val(new_round.choose_teams, new_choose_team);
     }
-    else if(tag == TAG_TEAM_ID)
-	state = TAG_CUP_BYE;
     else if(tag == TAG_CUP_CHOOSE_TEAM_NUMBER_OF_TEAMS ||
 	    tag == TAG_CUP_CHOOSE_TEAM_START_IDX ||
 	    tag == TAG_CUP_CHOOSE_TEAM_END_IDX ||
@@ -129,6 +126,9 @@ xml_loadsave_cup_end_element    (GMarkupParseContext *context,
 	    tag == TAG_CUP_CHOOSE_TEAM_RANDOMLY)
 	state = TAG_CUP_CHOOSE_TEAM;
     else if(tag == TAG_CUP_ROUND_HOME_AWAY ||
+	    tag == TAG_CUP_ROUND_TEAMS_FILE ||
+	    tag == TAG_CUP_ROUND_TABLE_FILE ||
+	    tag == TAG_CUP_ROUND_NEW_TEAMS ||
 	    tag == TAG_CUP_ROUND_REPLAY ||
 	    tag == TAG_CUP_ROUND_NEUTRAL ||
 	    tag == TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS ||
@@ -147,9 +147,11 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
 			       gpointer             user_data,
 			       GError             **error)
 {
-    gchar buf[SMALL];
+    gint i;
+    gchar buf[SMALL], buf2[SMALL];
     gint int_value = -1;
-    GString *new_property = NULL;
+    GString *new_string = NULL;
+    Table new_table;
 
     strncpy(buf, text, text_len);
     buf[text_len] = '\0';
@@ -176,27 +178,24 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
 	new_cup->add_week = int_value;
     else if(state == TAG_CUP_PROPERTY)
     {
-	new_property = g_string_new(buf);
-	g_ptr_array_add(new_cup->properties, new_property);
+	new_string = g_string_new(buf);
+	g_ptr_array_add(new_cup->properties, new_string);
     }
     else if(state == TAG_CUP_GROUP)
 	new_cup->group = int_value;
     else if(state == TAG_CUP_SKILL_DIFF)
 	new_cup->skill_diff = int_value;
-    else if(state == TAG_CUP_OVERALL_TEAMS)
-	new_cup->overall_teams = int_value;
     else if(state == TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK)
 	new_cup->next_fixture_update_week = int_value;
     else if(state == TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK_ROUND)
 	new_cup->next_fixture_update_week_round = int_value;
-    else if(state == TAG_TEAM_ID)
-    {
-	if(new_cup->bye == NULL)
-	    new_cup->bye = g_ptr_array_new();
+    else if(state == TAG_CUP_TEAM_ID_BYE)
 	g_ptr_array_add(new_cup->bye, team_of_id(int_value));
-    }
     else if(state == TAG_CUP_TEAM_NAME)
-	new_team_name = g_string_new(buf);
+    {
+	new_string = g_string_new(buf);
+	g_ptr_array_add(new_cup->team_names, new_string);
+    }
     else if(state == TAG_CUP_CHOOSE_TEAM_SID)
 	g_string_printf(new_choose_team.sid, "%s", buf);
     else if(state == TAG_CUP_CHOOSE_TEAM_NUMBER_OF_TEAMS)
@@ -211,6 +210,26 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
 	new_choose_team.generate = int_value;
     else if(state == TAG_CUP_ROUND_HOME_AWAY)
 	new_round.home_away = int_value;
+    else if(state == TAG_CUP_ROUND_NEW_TEAMS)
+	new_round.new_teams = int_value;
+    else if(state == TAG_CUP_ROUND_TEAMS_FILE)
+    {
+	sprintf(buf2, "%s/%s", dirname, buf);
+	xml_loadsave_teams_read(buf2, new_round.teams);
+
+	for(i=0;i<new_round.teams->len;i++)
+	    g_ptr_array_add(new_cup->teams, 
+			    &g_array_index(new_round.teams, Team, i));
+    }
+    else if(state == TAG_CUP_ROUND_TABLE_FILE)
+    {
+	new_table = table_new();
+
+	sprintf(buf2, "%s/%s", dirname, buf);
+	xml_loadsave_table_read(buf2, &new_table);
+	
+	g_array_append_val(new_round.tables, new_table);
+    }
     else if(state == TAG_CUP_ROUND_REPLAY)
 	new_round.replay = int_value;
     else if(state == TAG_CUP_ROUND_NEUTRAL)
@@ -230,7 +249,7 @@ xml_loadsave_cup_read(const gchar *filename, Cup *cup)
 			    xml_loadsave_cup_end_element,
 			    xml_loadsave_cup_text, NULL, NULL};
     GMarkupParseContext *context;
-    gchar *file_contents;
+    gchar *file_contents = NULL;
     guint length;
     GError *error = NULL;
 
@@ -244,6 +263,7 @@ xml_loadsave_cup_read(const gchar *filename, Cup *cup)
     }
 
     new_cup = cup;
+    dirname = g_path_get_dirname(filename);
 
     if(g_markup_parse_context_parse(context, file_contents, length, &error))
     {
@@ -256,6 +276,8 @@ xml_loadsave_cup_read(const gchar *filename, Cup *cup)
 	g_warning("xml_loadsave_cup_read: error parsing file %s\n", filename);
 	misc_print_error(&error, TRUE);
     }
+
+    g_free(dirname);
 }
 
 void
@@ -285,46 +307,86 @@ xml_loadsave_cup_write(const gchar *prefix, const Cup *cup)
     xml_write_int(fil, cup->week_gap, TAG_WEEK_GAP, I0);
     xml_write_int(fil, cup->yellow_red, TAG_YELLOW_RED, I0);
     xml_write_int(fil, cup->skill_diff, TAG_CUP_SKILL_DIFF, I0);
-    xml_write_int(fil, cup->overall_teams, TAG_CUP_OVERALL_TEAMS, I0);
-
-    for(i=0;i<cup->properties->len;i++)
-	xml_write_g_string(fil, (GString*)g_ptr_array_index(cup->properties, i),
-			   TAG_CUP_PROPERTY, I0);
-
     xml_write_int(fil, cup->next_fixture_update_week, 
 		  TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK, I0);
     xml_write_int(fil, cup->next_fixture_update_week_round, 
 		  TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK_ROUND, I0);
 
-    sprintf(buf, "%s___cup_%d_teams.xml", prefix, cup->id);
-    xml_loadsave_teams_write(buf, cup->teams);
+    for(i=0;i<cup->properties->len;i++)
+	xml_write_g_string(fil, (GString*)g_ptr_array_index(cup->properties, i),
+			   TAG_CUP_PROPERTY, I0);
 
-    for(i=0;i<cup->choose_teams->len;i++)
-	xml_loadsave_cup_write_choose_team(fil,
-	    &g_array_index(cup->choose_teams, CupChooseTeam, i));
-	
     for(i=0;i<cup->rounds->len;i++)
 	xml_loadsave_cup_write_round(fil, prefix, cup, i);
         
     if(cup->bye != NULL)
-    {
 	for(i=0;i<cup->bye->len;i++)
-	{
-	    fprintf(fil, "<_%d>\n", TAG_CUP_BYE);
 	    xml_write_int(fil, ((Team*)g_ptr_array_index(cup->bye, i))->id,
-			  TAG_TEAM_ID, I1);
-	    fprintf(fil, "</_%d>\n", TAG_CUP_BYE);
-	}
-    }
+			  TAG_CUP_TEAM_ID_BYE, I1);
 
     for(i=0;i<cup->team_names->len;i++)
 	xml_write_g_string(fil, (GString*)g_ptr_array_index(cup->team_names, i),
 			   TAG_CUP_TEAM_NAME, I1);
-    
+
     fprintf(fil, "</_%d>\n", TAG_CUP);
 
     fclose(fil);
 }
+
+void
+xml_loadsave_cup_write_round(FILE *fil, const gchar *prefix, const Cup *cup, gint round)
+{
+    gint i;
+    gchar buf[SMALL];
+    const CupRound *cup_round = &g_array_index(cup->rounds, CupRound, round);
+    gchar *basename = g_path_get_basename(prefix);
+
+    fprintf(fil, "<_%d>\n", TAG_CUP_ROUND);
+
+    if(cup_round->teams->len > 0)
+    {
+	sprintf(buf, "%s___cup_%d_round_%02d_teams.xml",
+		basename, cup->id, round);
+	xml_write_string(fil, buf, TAG_CUP_ROUND_TEAMS_FILE, I1);
+
+	sprintf(buf, "%s___cup_%d_round_%02d_teams.xml",
+		prefix, cup->id, round);
+	xml_loadsave_teams_write(buf, cup_round->teams);
+    }
+
+    xml_write_int(fil, cup_round->new_teams,
+		  TAG_CUP_ROUND_NEW_TEAMS, I1);
+    xml_write_int(fil, cup_round->home_away,
+		  TAG_CUP_ROUND_HOME_AWAY, I1);
+    xml_write_int(fil, cup_round->replay,
+		  TAG_CUP_ROUND_REPLAY, I1);
+    xml_write_int(fil, cup_round->neutral,
+		  TAG_CUP_ROUND_NEUTRAL, I1);
+    xml_write_int(fil, cup_round->round_robin_number_of_groups,
+		  TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS, I1);
+    xml_write_int(fil, cup_round->round_robin_number_of_advance,
+		  TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE, I1);
+    xml_write_int(fil, cup_round->round_robin_number_of_best_advance,
+		  TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE, I1);
+
+    fprintf(fil, "</_%d>\n", TAG_CUP_ROUND);
+
+    for(i=0;i<cup_round->tables->len;i++)
+    {
+	sprintf(buf, "%s___cup_%d_round_%02d_table_%02d.xml", basename, cup->id, round, i);
+	xml_write_string(fil, buf, TAG_CUP_ROUND_TABLE_FILE, I1);
+
+	sprintf(buf, "%s___cup_%d_round_%02d_table_%02d.xml", prefix, cup->id, round, i);
+	xml_loadsave_table_write(buf, &g_array_index(cup_round->tables, Table, i));
+    }
+
+    for(i=0;i<cup_round->choose_teams->len;i++)
+	xml_loadsave_cup_write_choose_team(
+	    fil, &g_array_index(cup_round->choose_teams, CupChooseTeam, i));
+
+    g_free(basename);
+}
+
 
 void
 xml_loadsave_cup_write_choose_team(FILE *fil, const CupChooseTeam *choose_team)
@@ -344,35 +406,4 @@ xml_loadsave_cup_write_choose_team(FILE *fil, const CupChooseTeam *choose_team)
 		  TAG_CUP_CHOOSE_TEAM_GENERATE, I1);
 
     fprintf(fil, "</_%d>\n", TAG_CUP_CHOOSE_TEAM);
-}
-
-void
-xml_loadsave_cup_write_round(FILE *fil, const gchar *prefix, const Cup *cup, gint round)
-{
-    gint i;
-    gchar buf[SMALL];
-    const CupRound *cup_round = &g_array_index(cup->rounds, CupRound, round);
-
-    fprintf(fil, "<_%d>\n", TAG_CUP_ROUND);
-
-    xml_write_int(fil, cup_round->home_away,
-		  TAG_CUP_ROUND_HOME_AWAY, I1);
-    xml_write_int(fil, cup_round->replay,
-		  TAG_CUP_ROUND_REPLAY, I1);
-    xml_write_int(fil, cup_round->neutral,
-		  TAG_CUP_ROUND_NEUTRAL, I1);
-    xml_write_int(fil, cup_round->round_robin_number_of_groups,
-		  TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS, I1);
-    xml_write_int(fil, cup_round->round_robin_number_of_advance,
-		  TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE, I1);
-    xml_write_int(fil, cup_round->round_robin_number_of_best_advance,
-		  TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE, I1);
-
-    fprintf(fil, "</_%d>\n", TAG_CUP_ROUND);
-
-    for(i=0;i<cup_round->tables->len;i++)
-    {
-	sprintf(buf, "%s___cup_%d_round_%02d_table_%02d.xml", prefix, cup->id, round, i);
-	xml_loadsave_table_write(buf, &g_array_index(cup_round->tables, Table, i));
-    }
 }

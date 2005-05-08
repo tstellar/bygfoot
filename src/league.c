@@ -415,38 +415,42 @@ league_season_start(League *league)
     }
 }
 
-
 /** Find out whether the team with specified rank in the league
     would participate in promotion games were the season to end. */
 gboolean
 query_league_rank_in_prom_games(const League *league, gint rank)
 {
-    gint i, j;
+    gint i, j, k;
     const Cup *cup = NULL;
+    const CupRound *cup_round = NULL;
 
     for(i=0;i<ligs->len;i++)
 	if(league_has_prom_games((&lig(i))))
 	{
 	    cup = cup_from_sid(lig(i).prom_rel.prom_games_cup_sid->str);
-	    for(j=0;j<cup->choose_teams->len;j++)
+	    for(k=0;k<cup->rounds->len;k++)
 	    {
-		if(strcmp(g_array_index(cup->choose_teams, CupChooseTeam, j).sid->str,
-			  league->sid->str) == 0 &&
-		   ((rank >= g_array_index(cup->choose_teams,
-					   CupChooseTeam, j).start_idx &&
-		     rank <= g_array_index(cup->choose_teams, 
-					   CupChooseTeam, j).end_idx && 
-		     g_array_index(cup->choose_teams, 
-				   CupChooseTeam, j).randomly) ||
-		    (rank >= g_array_index(cup->choose_teams, 
-					   CupChooseTeam, j).start_idx &&
-		     rank < g_array_index(cup->choose_teams, 
-					  CupChooseTeam, j).start_idx + 
-		     g_array_index(cup->choose_teams, 
-				   CupChooseTeam, j).number_of_teams &&
-		     !g_array_index(cup->choose_teams, 
-				    CupChooseTeam, j).randomly)))
-		    return TRUE;
+		cup_round = &g_array_index(cup->rounds, CupRound, k);
+		for(j=0;j<cup_round->choose_teams->len;j++)
+		{
+		    if(strcmp(g_array_index(cup_round->choose_teams, CupChooseTeam, j).sid->str,
+			      league->sid->str) == 0 &&
+		       ((rank >= g_array_index(cup_round->choose_teams,
+					       CupChooseTeam, j).start_idx &&
+			 rank <= g_array_index(cup_round->choose_teams, 
+					       CupChooseTeam, j).end_idx && 
+			 g_array_index(cup_round->choose_teams, 
+				       CupChooseTeam, j).randomly) ||
+			(rank >= g_array_index(cup_round->choose_teams, 
+					       CupChooseTeam, j).start_idx &&
+			 rank < g_array_index(cup_round->choose_teams, 
+					      CupChooseTeam, j).start_idx + 
+			 g_array_index(cup_round->choose_teams, 
+				       CupChooseTeam, j).number_of_teams &&
+			 !g_array_index(cup_round->choose_teams, 
+					CupChooseTeam, j).randomly)))
+			return TRUE;
+		}
 	    }
 	}
 

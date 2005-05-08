@@ -5,7 +5,7 @@
 #include "league_struct.h"
 #include "fixture_struct.h"
 
-#define league_cup_get_teams(clid) (clid < ID_CUP_START) ? (league_from_clid(clid)->teams) : (cup_from_clid(clid)->teams)
+#define league_cup_get_teams(clid) (clid < ID_CUP_START) ? ((gpointer)(league_from_clid(clid)->teams)) : ((gpointer)(cup_from_clid(clid)->teams))
 #define league_cup_get_fixtures(clid) (clid < ID_CUP_START) ? (league_from_clid(clid)->fixtures) : (cup_from_clid(clid)->fixtures)
 #define league_cup_get_name_string(clid) (clid < ID_CUP_START) ? league_from_clid(clid)->name->str : cup_from_clid(clid)->name->str
 #define league_cup_get_yellow_red(clid) (clid < ID_CUP_START) ? (league_from_clid(clid)->yellow_red) : (cup_from_clid(clid)->yellow_red)

@@ -128,7 +128,9 @@ xml_load_cups(const gchar *dirname, const gchar *basename)
 	   !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_teams.xml"))
 	{
 	    new_cup = cup_new(FALSE);
-	    xml_load_cup(&new_cup, dirname, ((GString*)g_ptr_array_index(dir_contents, i))->str,
+	    g_array_append_val(cps, new_cup);
+	    xml_load_cup(&g_array_index(cps, Cup, cps->len - 1), dirname,
+			 ((GString*)g_ptr_array_index(dir_contents, i))->str,
 			 dir_contents);
 	}
     }
@@ -139,43 +141,20 @@ xml_load_cups(const gchar *dirname, const gchar *basename)
 void
 xml_load_cup(Cup *cup, const gchar *dirname, const gchar *basename, const GPtrArray *dir_contents)
 {
-    gint i, j;
-    Table new_table;
     gchar buf[SMALL];
     gchar *prefix = g_strndup(basename, strlen(basename) - 4);
-    Cup *local_cup = cup;
 
     sprintf(buf, "%s/%s", dirname, basename);
     xml_loadsave_cup_read(buf, cup);
 
-    g_array_append_val(cps, *cup);
-    local_cup = &cp(cps->len - 1);
-
     sprintf(buf, "Loading cup: %s",
-	    local_cup->name->str);
+	    cup->name->str);
     gui_show_progress(
 	gtk_progress_bar_get_fraction(
 	    GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar"))), buf);
 
-    sprintf(buf, "%s/%s_teams.xml", dirname, prefix);
-    xml_loadsave_teams_read(buf, local_cup->teams);
-
     sprintf(buf, "%s/%s_fixtures.xml", dirname, prefix);
-    xml_loadsave_fixtures_read(buf, local_cup->fixtures);
-
-    for(i=0;i<local_cup->rounds->len;i++)
-	for(j=0;j<dir_contents->len;j++)
-	{
-	    sprintf(buf, "%s_round_%02d_table", prefix, i);
-	    if(g_str_has_prefix(((GString*)g_ptr_array_index(dir_contents, j))->str,
-				buf))
-	    {
-		sprintf(buf, "%s/%s", dirname, ((GString*)g_ptr_array_index(dir_contents, j))->str);
-		new_table = table_new();
-		xml_loadsave_table_read(buf, &new_table);
-		g_array_append_val(g_array_index(local_cup->rounds, CupRound, i).tables, new_table);
-	    }
-	}
+    xml_loadsave_fixtures_read(buf, cup->fixtures);
 
     g_free(prefix);
 }

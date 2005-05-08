@@ -29,6 +29,15 @@ typedef struct
 	and additionally the best 3 from all the groups.
 	Default: 0. */
     gint round_robin_number_of_best_advance;
+    /** Number of new teams participating in the cup round 
+	(ie. teams that get loaded and are not advancing from a previous
+	round). */
+    gint new_teams;
+    /** The teams that got loaded for this cup round.
+	Mostly this only happens in the first round. */
+    GArray *teams;
+    /** Which new teams come into the cup (@see #CupChooseTeam) */
+    GArray *choose_teams;
     /** The round robin tables (in case there is a round robin). */
     GArray *tables;    
 } CupRound;
@@ -91,9 +100,6 @@ typedef struct
 	the league with highest average skill.
 	Default: 0. */
     gint skill_diff;
-    /** Number of teams participating in the cup (important
-	only for international cups). */
-    gint overall_teams;
     /** The week and week_round at the beginning of which the fixtures
 	have to be updated. */
     gint next_fixture_update_week;
@@ -101,17 +107,15 @@ typedef struct
 
     /** A GString pointer array of properties (like "national"). */
     GPtrArray *properties;
-    /** Array with rules how teams are chosen.
-	@see #CupChooseTeam */
-    GArray *choose_teams;
     /** The rounds of the cup.
 	@see #CupRound*/
     GArray *rounds;
     /** Pointer array containing teams that got a bye for a round of the cup. */
     GPtrArray *bye;
-    /** The teams belonging to the cup. 
+    /** The teams belonging to the cup (stored in the cup rounds,
+	these are only pointers).
 	Relevant only if it's an international one. */
-    GArray *teams;
+    GPtrArray *teams;
     /** Pointer array with the names of all the teams in the cup.
 	Also the teams from the country's leagues. */
     GPtrArray *team_names;

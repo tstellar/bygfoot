@@ -29,10 +29,10 @@ void
 cup_reset(Cup *cup);
 
 GPtrArray*
-cup_get_team_pointers(Cup *cup);
+cup_get_team_pointers(Cup *cup, gint round);
 
 void
-cup_load_choose_team_generate(Cup *cup, const CupChooseTeam *ct);
+cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam *ct);
 
 void
 cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct);

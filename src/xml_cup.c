@@ -21,9 +21,9 @@
 #define TAG_WEEK_GAP "week_gap"
 #define TAG_YELLOW_RED "yellow_red"
 #define TAG_SKILL_DIFF "skill_diff"
-#define TAG_OVERALL_TEAMS "overall_teams"
 #define TAG_CUP_ROUNDS "cup_rounds"
 #define TAG_CUP_ROUND "cup_round"
+#define TAG_CUP_ROUND_NEW_TEAMS "new_teams"
 #define TAG_CUP_ROUND_HOME_AWAY "home_away"
 #define TAG_CUP_ROUND_REPLAY "replay"
 #define TAG_CUP_ROUND_NEUTRAL "neutral"
@@ -56,9 +56,9 @@ enum XmlCupStates
     STATE_WEEK_GAP,
     STATE_YELLOW_RED,
     STATE_SKILL_DIFF,
-    STATE_OVERALL_TEAMS,
     STATE_CUP_ROUNDS,
     STATE_CUP_ROUND,
+    STATE_CUP_ROUND_NEW_TEAMS,
     STATE_CUP_ROUND_HOME_AWAY,
     STATE_CUP_ROUND_REPLAY,
     STATE_CUP_ROUND_NEUTRAL,
@@ -83,6 +83,8 @@ gint state;
 
 /** The variable we will fill and append to an array. */
 Cup new_cup;
+CupRound new_round;
+CupChooseTeam new_choose_team;
 
 /**
  * The function called by the parser when an opening tag is read.
@@ -98,9 +100,6 @@ xml_cup_read_start_element (GMarkupParseContext *context,
 			    gpointer             user_data,
 			    GError             **error)
 {
-    CupRound cp_round_new;
-    CupChooseTeam cp_choose_team_new;
-
     if(strcmp(element_name, TAG_CUP) == 0)
     {
 	new_cup = cup_new(FALSE);
@@ -128,16 +127,15 @@ xml_cup_read_start_element (GMarkupParseContext *context,
 	state = STATE_YELLOW_RED;
     else if(strcmp(element_name, TAG_SKILL_DIFF) == 0)
 	state = STATE_SKILL_DIFF;
-    else if(strcmp(element_name, TAG_OVERALL_TEAMS) == 0)
-	state = STATE_OVERALL_TEAMS;
     else if(strcmp(element_name, TAG_CUP_ROUNDS) == 0)
 	state = STATE_CUP_ROUNDS;
     else if(strcmp(element_name, TAG_CUP_ROUND) == 0)
     {
-	cp_round_new = cup_round_new();
-	g_array_append_val(new_cup.rounds, cp_round_new);
+	new_round = cup_round_new();
 	state = STATE_CUP_ROUND;
     }
+    else if(strcmp(element_name, TAG_CUP_ROUND_NEW_TEAMS) == 0)
+	state = STATE_CUP_ROUND_NEW_TEAMS;
     else if(strcmp(element_name, TAG_CUP_ROUND_HOME_AWAY) == 0)
 	state = STATE_CUP_ROUND_HOME_AWAY;
     else if(strcmp(element_name, TAG_CUP_ROUND_REPLAY) == 0)
@@ -154,8 +152,7 @@ xml_cup_read_start_element (GMarkupParseContext *context,
 	state = STATE_CHOOSE_TEAMS;
     else if(strcmp(element_name, TAG_CHOOSE_TEAM) == 0)
     {
-	cp_choose_team_new = cup_choose_team_new();
-	g_array_append_val(new_cup.choose_teams, cp_choose_team_new);
+	new_choose_team = cup_choose_team_new();
 	state = STATE_CHOOSE_TEAM;
     }
     else if(strcmp(element_name, TAG_CHOOSE_TEAM_SID) == 0)
@@ -197,21 +194,27 @@ xml_cup_read_end_element    (GMarkupParseContext *context,
        strcmp(element_name, TAG_WEEK_GAP) == 0 ||
        strcmp(element_name, TAG_YELLOW_RED) == 0 ||
        strcmp(element_name, TAG_SKILL_DIFF) == 0 ||
-       strcmp(element_name, TAG_OVERALL_TEAMS) == 0 ||
-       strcmp(element_name, TAG_CUP_ROUNDS) == 0 ||
-       strcmp(element_name, TAG_CHOOSE_TEAMS) == 0)
+       strcmp(element_name, TAG_CUP_ROUNDS) == 0)
 	state = STATE_CUP;
     else if(strcmp(element_name, TAG_CUP_ROUND) == 0)
-	state = STATE_CUP_ROUNDS;
+    {
+	state = STATE_CUP_ROUNDS;	
+	g_array_append_val(new_cup.rounds, new_round);
+    }
     else if(strcmp(element_name, TAG_CUP_ROUND_HOME_AWAY) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_REPLAY) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_NEUTRAL) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE) == 0 ||
-	    strcmp(element_name, TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE) == 0)
+	    strcmp(element_name, TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE) == 0 ||
+	    strcmp(element_name, TAG_CUP_ROUND_NEW_TEAMS) == 0 ||
+	    strcmp(element_name, TAG_CHOOSE_TEAMS) == 0)
 	state = STATE_CUP_ROUND;
     else if(strcmp(element_name, TAG_CHOOSE_TEAM) == 0)
+    {
 	state = STATE_CHOOSE_TEAMS;
+	g_array_append_val(new_round.choose_teams, new_choose_team);
+    }
     else if(strcmp(element_name, TAG_CHOOSE_TEAM_SID) == 0 ||
 	    strcmp(element_name, TAG_CHOOSE_TEAM_NUMBER_OF_TEAMS) == 0 ||
 	    strcmp(element_name, TAG_CHOOSE_TEAM_START_IDX) == 0 ||
@@ -237,8 +240,6 @@ xml_cup_read_text         (GMarkupParseContext *context,
 			   gpointer             user_data,
 			   GError             **error)
 {
-    CupChooseTeam *choose_team = 
-	&g_array_index(new_cup.choose_teams, CupChooseTeam, new_cup.choose_teams->len - 1);
     gchar buf[text_len + 1];
     gint value;
     GString *new_property = NULL;
@@ -273,32 +274,32 @@ xml_cup_read_text         (GMarkupParseContext *context,
 	new_cup.yellow_red = value;
     else if(state == STATE_SKILL_DIFF)
 	new_cup.skill_diff = value;
-    else if(state == STATE_OVERALL_TEAMS)
-	new_cup.overall_teams = value;
+    else if(state == STATE_CUP_ROUND_NEW_TEAMS)
+	new_round.new_teams = value;
     else if(state == STATE_CUP_ROUND_HOME_AWAY)
-	g_array_index(new_cup.rounds, CupRound, new_cup.rounds->len - 1).home_away = value;
+	new_round.home_away = value;
     else if(state == STATE_CUP_ROUND_REPLAY)
-	g_array_index(new_cup.rounds, CupRound, new_cup.rounds->len - 1).replay = value;
+	new_round.replay = value;
     else if(state == STATE_CUP_ROUND_NEUTRAL)
-	g_array_index(new_cup.rounds, CupRound, new_cup.rounds->len - 1).neutral = value;
+	new_round.neutral = value;
     else if(state == STATE_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS)
-	g_array_index(new_cup.rounds, CupRound, new_cup.rounds->len - 1).round_robin_number_of_groups = value;
+	new_round.round_robin_number_of_groups = value;
     else if(state == STATE_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE)
-	g_array_index(new_cup.rounds, CupRound, new_cup.rounds->len - 1).round_robin_number_of_advance = value;
+	new_round.round_robin_number_of_advance = value;
     else if(state == STATE_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE)
-	g_array_index(new_cup.rounds, CupRound, new_cup.rounds->len - 1).round_robin_number_of_best_advance = value;
+	new_round.round_robin_number_of_best_advance = value;
     else if(state == STATE_CHOOSE_TEAM_SID)
-	g_string_printf(choose_team->sid, "%s", buf);
+	g_string_printf(new_choose_team.sid, "%s", buf);
     else if(state == STATE_CHOOSE_TEAM_NUMBER_OF_TEAMS)
-	choose_team->number_of_teams = value;
+	new_choose_team.number_of_teams = value;
     else if(state == STATE_CHOOSE_TEAM_START_IDX)
-	choose_team->start_idx = value;
+	new_choose_team.start_idx = value;
     else if(state == STATE_CHOOSE_TEAM_END_IDX)
-	choose_team->end_idx = value;
+	new_choose_team.end_idx = value;
     else if(state == STATE_CHOOSE_TEAM_RANDOMLY)
-	choose_team->randomly = value;
+	new_choose_team.randomly = value;
     else if(state == STATE_CHOOSE_TEAM_GENERATE)
-	choose_team->generate = value;
+	new_choose_team.generate = value;
 }
 
 /**
@@ -355,6 +356,5 @@ xml_cup_read(const gchar *cup_name, GArray *cups)
     }
 
     new_cup.id = cup_id_new;
-
     g_array_append_val(cups, new_cup);
 }

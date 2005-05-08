@@ -413,28 +413,33 @@ treeview_helper_player_compare(GtkTreeModel *model,
 gboolean
 treeview_helper_get_table_element_colour_cups(const League *league, gint idx, gchar *colour_bg)
 {
-    gint i, j;
+    gint i, j, k;
+    const CupRound *cup_round = NULL;
     gint league_idx = league_cup_get_index_from_clid(league->id) + 1;
     gchar buf[SMALL];
 
     sprintf(buf, "league%d", league_idx);
 
     for(i=0;i<cps->len;i++)
-	for(j=0;j<cp(i).choose_teams->len;j++)
-	if(query_cup_is_international(cp(i).id) &&
-	   strcmp(g_array_index(cp(i).choose_teams, CupChooseTeam, j).sid->str, buf) == 0)
+	for(k=0;k<cp(i).rounds->len;k++)
 	{
-	    if((idx + 1 >= g_array_index(cp(i).choose_teams, CupChooseTeam, j).start_idx &&
-		idx + 1 <= g_array_index(cp(i).choose_teams, CupChooseTeam, j).end_idx && 
-		g_array_index(cp(i).choose_teams, CupChooseTeam, j).randomly) ||
-	       (idx + 1 >= g_array_index(cp(i).choose_teams, CupChooseTeam, j).start_idx &&
-		idx + 1 < g_array_index(cp(i).choose_teams, CupChooseTeam, j).start_idx + 
-		g_array_index(cp(i).choose_teams, CupChooseTeam, j).number_of_teams &&
-		!g_array_index(cp(i).choose_teams, CupChooseTeam, j).randomly))
-	    {
-		strcpy(colour_bg, const_app("string_treeview_table_cup"));
-		return TRUE;
-	    }
+	    cup_round = &g_array_index(cp(i).rounds, CupRound, k);
+	    for(j=0;j<cup_round->choose_teams->len;j++)
+		if(query_cup_is_international(cp(i).id) &&
+		   strcmp(g_array_index(cup_round->choose_teams, CupChooseTeam, j).sid->str, buf) == 0)
+		{
+		    if((idx + 1 >= g_array_index(cup_round->choose_teams, CupChooseTeam, j).start_idx &&
+			idx + 1 <= g_array_index(cup_round->choose_teams, CupChooseTeam, j).end_idx && 
+			g_array_index(cup_round->choose_teams, CupChooseTeam, j).randomly) ||
+		       (idx + 1 >= g_array_index(cup_round->choose_teams, CupChooseTeam, j).start_idx &&
+			idx + 1 < g_array_index(cup_round->choose_teams, CupChooseTeam, j).start_idx + 
+			g_array_index(cup_round->choose_teams, CupChooseTeam, j).number_of_teams &&
+			!g_array_index(cup_round->choose_teams, CupChooseTeam, j).randomly))
+		    {
+			strcpy(colour_bg, const_app("string_treeview_table_cup"));
+			return TRUE;
+		    }
+		}
 	}
 
     return FALSE;

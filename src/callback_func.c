@@ -365,21 +365,15 @@ callback_show_team(gint type)
 {
     GtkTreeView *treeview_right = GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right"));
     const Team *tm;
+    const GArray *teams = NULL;
+    const GPtrArray *teamsp = NULL;
+    gint len = -1;
 
     if(type == SHOW_CURRENT)
     {
 	tm = (const Team*)treeview_helper_get_pointer(treeview_right, 2);
 	stat1 = team_get_index(tm);
-    }
-    else if(type == SHOW_NEXT)
-    {
-	stat1 = (stat1 == ((GArray*)statp)->len - 1) ? 0 : stat1 + 1;
-	tm = &g_array_index((GArray*)statp, Team, stat1);
-    }
-    else if(type == SHOW_PREVIOUS)
-    {
-	stat1 = (stat1 == 0) ? ((GArray*)statp)->len - 1 : stat1 - 1;
-	tm = &g_array_index((GArray*)statp, Team, stat1);
+	stat2 = tm->clid;
     }
     else
     {
@@ -389,22 +383,38 @@ callback_show_team(gint type)
 	    while(stat2 >= ID_CUP_START && cup_from_clid(stat2)->teams->len == 0)
 		stat2 = league_cup_get_next_clid(stat2);
 	}
-	else
+	else if(type == SHOW_PREVIOUS_LEAGUE)
 	{
 	    stat2 = league_cup_get_previous_clid(stat2);
 	    while(stat2 >= ID_CUP_START && cup_from_clid(stat2)->teams->len == 0)
 		stat2 = league_cup_get_previous_clid(stat2);
 	}
 
-	statp = (gpointer)league_cup_get_teams(stat2);
+	if(stat2 < ID_CUP_START)
+	{
+	    teams = (GArray*)league_cup_get_teams(stat2);
+	    len = teams->len;
+	}
+	else
+	{
+	    teamsp = (GPtrArray*)league_cup_get_teams(stat2);
+	    len = teamsp->len;
+	}
 
-	stat1 = 0;
-	tm = &g_array_index((GArray*)statp, Team, 0);
+	if(type == SHOW_NEXT)
+	    stat1 = (stat1 == len - 1) ? 0 : stat1 + 1;
+	else if(type == SHOW_PREVIOUS)
+	    stat1 = (stat1 == 0) ? len - 1 : stat1 - 1;
+	else
+	    stat1 = 0;
+
+	if(stat2 < ID_CUP_START)
+	    tm = &g_array_index(teams, Team, stat1);
+	else
+	    tm = (Team*)g_ptr_array_index(teamsp, stat1);	
     }
 
     stat0 = STATUS_BROWSE_TEAMS;
-    stat2 = tm->clid;
-    statp = (gpointer)league_cup_get_teams(tm->clid);
 
     if(tm != current_user.tm)
 	treeview_show_player_list_team(treeview_right, tm, current_user.scout % 10);

@@ -385,31 +385,30 @@ free_cup(Cup *cup)
 	 &cup->short_name,
 	 &cup->symbol,
 	 &cup->sid};
-    GArray **arrays[2] = 
-	{&cup->choose_teams,
-	 &cup->rounds};
 
     for(i=0;i<4;i++)
 	free_g_string(strings[i]);
 
     for(i=0;i<cup->rounds->len;i++)
 	if(g_array_index(cup->rounds, CupRound, i).round_robin_number_of_groups > 0)
+	{
 	    for(j=0;j<g_array_index(cup->rounds, CupRound, i).tables->len;j++)
 		free_table(&g_array_index(g_array_index(cup->rounds, CupRound, i).tables, Table, j));
 
-    if(cup->choose_teams != NULL)
-	for(i=0;i<cup->choose_teams->len;i++)
-	    free_cup_choose_team(&g_array_index(cup->choose_teams, CupChooseTeam, i));
+	    for(j=0;j<g_array_index(cup->rounds, CupRound, i).choose_teams->len;j++)
+		free_cup_choose_team(
+		    &g_array_index(g_array_index(cup->rounds, CupRound, i).choose_teams, CupChooseTeam, j));
+	    
+	    free_g_array(&g_array_index(cup->rounds, CupRound, i).choose_teams);
+	    free_teams_array(&g_array_index(cup->rounds, CupRound, i).teams, FALSE);
+	}
 
-    free_teams_array(&cup->teams, FALSE);
-
-    for(i=0;i<2;i++)
-	free_g_array(arrays[i]);
-
+    free_g_array(&cup->rounds);
     free_g_array(&cup->fixtures);
 
     free_g_ptr_array(&cup->bye);
     free_g_ptr_array(&cup->team_names);
+    free_g_ptr_array(&cup->teams);
     free_g_string_array(&cup->properties);
 }
 
