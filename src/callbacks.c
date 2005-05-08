@@ -595,8 +595,9 @@ on_menu_user_show_last_match_activate  (GtkMenuItem     *menuitem,
 	return;
     }
 
-    stat0 = STATUS_SHOW_LAST_MATCH;
-    callback_show_last_match();
+    stat1 = STATUS_SHOW_LAST_MATCH;
+    stat3 = 0;
+    callback_show_last_match(TRUE);
 }
 
 

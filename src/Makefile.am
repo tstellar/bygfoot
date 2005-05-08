@@ -46,7 +46,7 @@ bygfoot_SOURCES = \
 	treeview.c cup.h finance.h fixture.h free.h game.h league.h live_game.h maths.h misc.h player.h option.h support.h team.h transfer.h treeview.h treeview_helper.h user.h \
 	treeview_helper.c cup.h file.h fixture.h free.h league.h misc.h option.h player.h support.h team.h treeview.h treeview_helper.h user.h variables.h \
 	user.c cup.h fixture.h free.h game_gui.h league.h live_game.h maths.h misc.h option.h player.h team.h transfer.h treeview.h user.h window.h \
-	window.c file.h finance.h free.h game_gui.h gui.h interface.h main.h misc_interface.h misc2_interface.h option.h support.h user.h window.h \
+	window.c file.h finance.h free.h game_gui.h gui.h interface.h main.h misc_interface.h misc2_interface.h option.h support.h treeview.h treeview_helper.h user.h window.h \
 	xml.c cup.h file.h free.h gui.h league.h misc.h option.h support.h table.h transfer_struct.h user.h variables.h xml.h xml_loadsave_cup.h xml_loadsave_league.h xml_loadsave_teams.h xml_loadsave_fixtures.h xml_loadsave_table.h xml_loadsave_transfers.h xml_loadsave_users.h \
 	xml_loadsave_misc.c cup.h file.h misc.h variables.h xml.h xml_loadsave_misc.h xml_loadsave_cup.h xml_loadsave_league.h \
 	xml_loadsave_cup.c cup.h file.h misc.h table.h team.h xml.h xml_loadsave_cup.h xml_loadsave_fixtures.h xml_loadsave_table.h xml_loadsave_teams.h \

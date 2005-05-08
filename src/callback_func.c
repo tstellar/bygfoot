@@ -116,26 +116,59 @@ callback_player_clicked(gint idx, GdkEventButton *event)
     setsav0;
 }
 
-/** Show the last match of the current user. */
+/** Show the last match of the current user. 
+    @param start Whether we start the replay from the beginning or continue it. */
 void
-callback_show_last_match(void)
+callback_show_last_match(gboolean start)
 {
     gint i;
 
-    stat2 = cur_user;
+    stat4 = -1;
 
-    window_create(WINDOW_LIVE);
+    if(start)
+    {
+	stat2 = cur_user;
 
-    current_user.live_game.fix = 
-	&g_array_index(league_cup_get_fixtures(current_user.live_game.fix_clid),
-		       Fixture, current_user.live_game.fix_idx);
+	window_create(WINDOW_LIVE);
 
-    treeview_show_game_stats(GTK_TREE_VIEW(lookup_widget(window.live, "treeview_stats")),
-			     &current_user.live_game);
-    live_game_set_match(&current_user.live_game);
+	current_user.live_game.fix = 
+	    &g_array_index(league_cup_get_fixtures(current_user.live_game.fix_clid),
+			   Fixture, current_user.live_game.fix_idx);
 
-    for(i=0;i<current_user.live_game.units->len;i++)
+	treeview_show_game_stats(GTK_TREE_VIEW(lookup_widget(window.live, "treeview_stats")),
+				 &current_user.live_game);
+	live_game_set_match(&current_user.live_game);
+    }
+    else
+    {
+	gtk_widget_set_sensitive(lookup_widget(window.live, "button_pause"), TRUE);
+	gtk_widget_set_sensitive(lookup_widget(window.live, "button_resume"), FALSE);
+    }
+
+    for(i=stat3;i<current_user.live_game.units->len;i++)
+    {
 	game_gui_live_game_show_unit(&g_array_index(current_user.live_game.units, LiveGameUnit, i));
+
+	if(stat4 == STATUS_SHOW_LAST_MATCH_PAUSE ||
+	   stat4 == STATUS_SHOW_LAST_MATCH_ABORT)
+	{
+	    stat3 = i + 1;
+	    break;
+	}
+    }
+
+    if(stat4 == STATUS_SHOW_LAST_MATCH_PAUSE)
+    {
+	gtk_widget_set_sensitive(lookup_widget(window.live, "button_pause"), FALSE);
+	gtk_widget_set_sensitive(lookup_widget(window.live, "button_resume"), TRUE);
+    }
+    else if(stat4 == STATUS_SHOW_LAST_MATCH_ABORT)
+    {
+	window_destroy(&window.live, TRUE);
+	stat1 = stat2 = stat3 = stat4 = -1;
+    }
+    else
+	stat3 = -1;
 }
 
 /** Show the last match stats of the current user. */

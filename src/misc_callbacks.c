@@ -168,11 +168,16 @@ void
 on_button_live_close_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
-    stat2 = -1;
-    if(stat0 != STATUS_SHOW_LAST_MATCH)
+    if(stat1 == STATUS_SHOW_LAST_MATCH && stat3 != -1 &&
+       stat4 != STATUS_SHOW_LAST_MATCH_PAUSE)
+	stat4 = STATUS_SHOW_LAST_MATCH_ABORT;
+    else if(stat1 != STATUS_SHOW_LAST_MATCH)
 	callback_show_next_live_game();
     else
+    {
 	window_destroy(&window.live, TRUE);
+	stat1 = stat2 = stat3 = stat4 = -1;
+    }
 }
 
 
@@ -196,7 +201,12 @@ void
 on_button_resume_clicked               (GtkButton       *button,
                                         gpointer         user_data)
 {
-    if(game_check_live_game_resume_state())
+    if(stat1 == STATUS_SHOW_LAST_MATCH)
+    {
+	callback_show_last_match(FALSE);
+	return;
+    }
+    else if(game_check_live_game_resume_state())
     {
 	gtk_widget_set_sensitive(GTK_WIDGET(button), FALSE);
 	if(g_array_index(usr(stat2).live_game.units, LiveGameUnit, 

@@ -125,6 +125,12 @@ misc_callback_remove_user(GdkEventButton *event)
 void
 misc_callback_pause_live_game(void)
 {
+    if(stat1 == STATUS_SHOW_LAST_MATCH)
+    {
+	stat4 = STATUS_SHOW_LAST_MATCH_PAUSE;
+	return;
+    }
+
     if(g_array_index(usr(stat2).live_game.units, LiveGameUnit,
 		     usr(stat2).live_game.units->len - 1).event.type == 
        LIVE_GAME_EVENT_END_MATCH)
