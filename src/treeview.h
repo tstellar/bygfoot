@@ -148,7 +148,7 @@ void
 treeview_create_next_opponent_values(GtkListStore *liststore, const Fixture *fix);
 
 void
-treeview_show_all_players(GArray *teams);
+treeview_show_all_players(gint clid);
 
 GtkTreeModel*
 treeview_create_preview(void);

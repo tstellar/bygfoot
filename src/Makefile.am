@@ -38,7 +38,7 @@ bygfoot_SOURCES = \
 	options_interface.c  options_interface.h options_callbacks.h support.h \
 	player.c cup.h fixture.h free.h game_gui.h league.h maths.h misc.h option.h player.h team.h user.h \
 	start_end.c cup.h file.h finance.h fixture.h free.h game_gui.h gui.h league.h load_save.h live_game.h main.h maths.h misc.h option.h start_end.h stat.h table.h team.h transfer.h user.h variables.h xml_name.h \
-	stat.c cup.h free.h option.h player.h stat.h table_struct.h team.h variables.h \
+	stat.c cup.h free.h league.h option.h player.h stat.h table_struct.h team.h variables.h \
 	support.c support.h \
 	table.c cup.h league.h table.h variables.h \
 	team.c cup.h fixture.h game.h game_gui.h league.h maths.h misc.h option.h player.h team.h transfer.h user.h \

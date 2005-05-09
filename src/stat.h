@@ -23,4 +23,7 @@ stat_update_league_players(League *league);
 void
 stat_create_season_stat(void);
 
+void
+stat_show_av_league_goals(void);
+
 #endif

@@ -1,5 +1,6 @@
 #include "cup.h"
 #include "free.h"
+#include "league.h"
 #include "option.h"
 #include "player.h"
 #include "stat.h"
@@ -167,4 +168,60 @@ stat_create_season_stat(void)
     }
 
     g_array_append_val(season_stats, new);
+}
+
+/** Function printing goals stats from the fixture array.
+    Used for fine-tuning the game. */
+void
+stat_show_av_goals(GArray *fixtures)
+{
+    gint i;
+    gfloat games = 0,
+	allgoals = 0,
+	homegoals = 0,
+	awaygoals = 0,
+	goaldiff = 0,
+	homewon = 0,
+	homeloss = 0,
+	draw = 0;
+
+    for(i=0;i<fixtures->len;i++)
+	if(g_array_index(fixtures, Fixture, i).attendance != -1)
+	{
+	    games++;
+	    allgoals += (g_array_index(fixtures, Fixture, i).result[0][0] +
+			 g_array_index(fixtures, Fixture, i).result[1][0]);
+	    homegoals += g_array_index(fixtures, Fixture, i).result[0][0];
+	    awaygoals += g_array_index(fixtures, Fixture, i).result[1][0];
+	    goaldiff += ABS(g_array_index(fixtures, Fixture, i).result[0][0] -
+			    g_array_index(fixtures, Fixture, i).result[1][0]);
+
+	    if(g_array_index(fixtures, Fixture, i).result[0][0] >
+	       g_array_index(fixtures, Fixture, i).result[1][0])
+		homewon++;
+	    else if(g_array_index(fixtures, Fixture, i).result[0][0] <
+		    g_array_index(fixtures, Fixture, i).result[1][0])
+		homeloss++;
+	    else
+		draw++;
+	}
+
+    printf("------------------------------------ \n");
+    printf("%s\nGoals/G HomeG/G AwayG/G Away %% GD/G \n",
+	   league_cup_get_name_string(g_array_index(fixtures, Fixture, 0).clid));
+    printf("%.2f \t %.2f \t %.2f \t %.2f \t %.2f \n", allgoals/games, homegoals/games, awaygoals/games,
+	   awaygoals / allgoals, goaldiff/games);
+    printf("Home win %%: %.2f Loss %%: %.2f Draw %%: %.2f \n",
+	   homewon / games, homeloss / games, draw / games);
+}
+
+/** Show league goals stats (debug). */
+void
+stat_show_av_league_goals(void)
+{
+    gint i;
+
+    printf("\n");printf("\n");
+    for(i=0;i<ligs->len;i++)
+	stat_show_av_goals(league_cup_get_fixtures(lig(i).id));
 }

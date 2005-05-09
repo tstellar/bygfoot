@@ -362,6 +362,9 @@ end_week(void)
 	(*end_func)();
 	end_func++;
     }
+
+    if(debug > 60)
+	stat_show_av_league_goals();
 }
 
 /** Add the cups that begin later in the season to the acps array. */

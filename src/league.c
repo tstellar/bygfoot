@@ -231,15 +231,29 @@ league_cup_get_previous_fixture(gint clid, gint week_number, gint week_round_num
 gint
 league_cup_average_capacity(gint clid)
 {
-    gint i;
+    gint i, len;
     gfloat sum = 0;
-    const GArray *teams = league_cup_get_teams(clid);
+    const GArray *teams = NULL;
+    const GPtrArray *teamsp = NULL;
 
-    for(i=0;i<teams->len;i++)
-	if(team_is_user(&g_array_index(teams, Team, i)) == -1)
-	    sum += g_array_index(teams, Team, i).stadium.capacity;
-
-    return sum / (gfloat)teams->len;
+    if(clid < ID_CUP_START)
+    {	
+	teams = (GArray*)league_cup_get_teams(clid);
+	len = teams->len;
+	for(i=0;i<teams->len;i++)
+	    if(team_is_user(&g_array_index(teams, Team, i)) == -1)
+		sum += g_array_index(teams, Team, i).stadium.capacity;
+    }
+    else
+    {
+	teamsp = (GPtrArray*)league_cup_get_teams(clid);
+	len = teamsp->len;
+	for(i=0;i<teamsp->len;i++)
+	    if(team_is_user((Team*)g_ptr_array_index(teamsp, i)) == -1)
+		sum += ((Team*)g_ptr_array_index(teamsp, i))->stadium.capacity;
+    }
+	
+    return sum / (gfloat)len;
 }
 
 /** Get the index of the league with the specified string id. */

@@ -1729,19 +1729,34 @@ treeview_show_league_results(GtkTreeView *treeview)
     g_object_unref(model);
 }
 
-/** Show a list of all players in the teams. */
+/** Show a list of all players in the teams of the cup or league. */
 void
-treeview_show_all_players(GArray *teams)
+treeview_show_all_players(gint clid)
 {
     gint i, j;
     GPtrArray *players = g_ptr_array_new();
-
-    for(i=0;i<teams->len;i++)
-	if(&g_array_index(teams, Team, i) != current_user.tm)
-	    for(j=0;j<g_array_index(teams, Team, i).players->len;j++)
-		g_ptr_array_add(players, &g_array_index(g_array_index(teams, Team, i).players,
-							Player, j));
-
+    const GArray *teams = NULL;
+    const GPtrArray *teamsp = NULL;
+    
+    if(clid < ID_CUP_START)
+    {
+	teams = (GArray*)league_cup_get_teams(clid);
+	for(i=0;i<teams->len;i++)
+	    if(&g_array_index(teams, Team, i) != current_user.tm)
+		for(j=0;j<g_array_index(teams, Team, i).players->len;j++)
+		    g_ptr_array_add(players, &g_array_index(g_array_index(teams, Team, i).players,
+							    Player, j));
+    }
+    else
+    {
+	teamsp = (GPtrArray*)league_cup_get_teams(clid);
+	for(i=0;i<teamsp->len;i++)
+	    if((Team*)g_ptr_array_index(teamsp, i) != current_user.tm)
+		for(j=0;j<((Team*)g_ptr_array_index(teamsp, i))->players->len;j++)
+		    g_ptr_array_add(players, &g_array_index(((Team*)g_ptr_array_index(teamsp, i))->players,
+							    Player, j));
+    }
+	
     treeview_show_player_list(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")),
 			      players, 
 			      treeview_helper_get_attributes_from_scout(current_user.scout), FALSE);    

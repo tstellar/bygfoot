@@ -426,8 +426,6 @@ callback_show_team(gint type)
 void
 callback_show_player_list(gint type)
 {
-    GArray *teams = NULL;
-
     switch(type)
     {
 	default:
@@ -444,9 +442,7 @@ callback_show_player_list(gint type)
 	    break;
     }
 
-    teams = league_cup_get_teams(stat1);
-
-    treeview_show_all_players(teams);
+    treeview_show_all_players(stat1);
 }
 
 /** Fire a player. */
