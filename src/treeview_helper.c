@@ -177,6 +177,8 @@ treeview_helper_live_game_icon(gint event_type)
     else if(event_type == LIVE_GAME_EVENT_SCORING_CHANCE ||
 	    event_type == LIVE_GAME_EVENT_FREE_KICK)
 	return const_app("string_live_game_event_scoring_chance_icon");
+    else if(event_type == LIVE_GAME_EVENT_HEADER)
+	return const_app("string_live_game_event_header_icon");
     else if(event_type == LIVE_GAME_EVENT_GOAL)
 	return const_app("string_live_game_event_goal_icon");
     else if(event_type == LIVE_GAME_EVENT_OWN_GOAL)

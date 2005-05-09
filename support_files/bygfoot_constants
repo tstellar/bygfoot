@@ -371,7 +371,10 @@ float_live_game_scoring_chance_team_exponent 12500
 
 # probability that it's the player in possession who
 #    has the scoring chance. 
-float_live_game_player_in_poss_shoots 5000
+float_live_game_player_in_poss_shoots 3000
+
+# prob that the scoring chance is a header
+float_live_game_scoring_chance_is_header 3000
 
 # base probability to score with a scoring chance. 
 float_live_game_score_base_prob 3000

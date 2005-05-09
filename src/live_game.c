@@ -543,6 +543,9 @@ live_game_event_scoring_chance(void)
 				    last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER], TRUE);
 	    }
 	}
+
+	if(math_rnd(0, 1) < const_float("float_live_game_scoring_chance_is_header"))
+	    last_unit.event.type = LIVE_GAME_EVENT_HEADER;
     }
 
     live_game_finish_unit();
@@ -1225,6 +1228,11 @@ live_game_generate_commentary(LiveGameUnit *unit)
 	    break;
 	case LIVE_GAME_EVENT_SCORING_CHANCE:
 	    g_string_printf(commentary, "scoring chance by %s",
+			    player_of_id_team(tm[unit->possession], 
+					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->name->str);
+	    break;
+	case LIVE_GAME_EVENT_HEADER:
+	    g_string_printf(commentary, "header by %s",
 			    player_of_id_team(tm[unit->possession], 
 					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->name->str);
 	    break;
