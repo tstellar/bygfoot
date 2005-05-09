@@ -42,8 +42,8 @@ finance_update_user_weekly(User *user)
     if(query_team_plays(tm, week - 1, 1))
 	for(i=0;i<tm->players->len;i++)
 	{
-	    user->money_out[1][MON_OUT_WAGE] -= player_of_idx_team(tm, i)->wage;
-	    user->money -= player_of_idx_team(tm, i)->wage;
+	    user->money_out[1][MON_OUT_WAGE] -= g_array_index(tm->players, Player, i).wage;
+	    user->money -= g_array_index(tm->players, Player, i).wage;
 	    
 	    if(player_of_idx_team(tm, i)->health > 0)
 	    {

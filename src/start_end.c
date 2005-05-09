@@ -42,7 +42,7 @@ WeekFunc start_week_funcs[] =
 {start_week_update_users, start_week_update_user_teams,
  start_week_update_user_finances, transfer_update, NULL};
 
-WeekFunc end_week_funcs[] = {stat_update_leagues};
+WeekFunc end_week_funcs[] = {stat_update_leagues, NULL};
 
 /** Generate the teams etc. */
 void

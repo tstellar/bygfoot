@@ -482,7 +482,7 @@ live_game_event_stadium(void)
 
     live_game_finish_unit();
 
-    if(team_is_user(tm0) != -1)
+    if(team_is_user(tm0) != -1 && debug < 50)
 	game_stadium_event(&tm0->stadium, last_unit.event.type);
 
     match->stadium_event = last_unit.event.type;
@@ -803,6 +803,13 @@ live_game_event_send_off(gint team, gint player, gboolean second_yellow)
 	player_card_set(player_of_id_team(tm[team], player), match->fix->clid, PLAYER_VALUE_CARD_RED, 
 			game_player_get_ban_duration(), FALSE);
     
+    if(team_is_user(tm[team]) != -1)
+    {
+	tm[team]->structure = team_find_appropriate_structure(tm[team]);
+	team_rearrange(tm[team]);
+	live_game_event_team_change(team, LIVE_GAME_EVENT_STRUCTURE_CHANGE);
+    }
+
     if(match->subs_left[team] > 0)
     {
 	if(show && team_is_user(tm[team]) != -1 &&
@@ -830,7 +837,7 @@ live_game_event_send_off(gint team, gint player, gboolean second_yellow)
 	    live_game_event_team_change(team, LIVE_GAME_EVENT_STRUCTURE_CHANGE);
 	}
     }
-    else
+    else if(team_is_user(tm[team]) == -1)
     {
 	tm[team]->structure = team_find_appropriate_structure(tm[team]);
 	team_rearrange(tm[team]);

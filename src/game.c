@@ -259,10 +259,13 @@ game_initialize(Fixture *fix)
 	usr(user_idx[0]).money += ticket_income;
 	usr(user_idx[0]).money_in[1][MON_IN_TICKET] += ticket_income;
 
-	fix->teams[0]->stadium.safety -= 
-	    math_rnd(const_float("float_game_stadium_safety_deterioration_lower"),
-		     const_float("float_game_stadium_safety_deterioration_upper"));
-	fix->teams[0]->stadium.safety = CLAMP(fix->teams[0]->stadium.safety, 0, 1);
+	if(debug < 50)
+	{
+	    fix->teams[0]->stadium.safety -= 
+		math_rnd(const_float("float_game_stadium_safety_deterioration_lower"),
+			 const_float("float_game_stadium_safety_deterioration_upper"));
+	    fix->teams[0]->stadium.safety = CLAMP(fix->teams[0]->stadium.safety, 0, 1);
+	}
     }
 
     for(i=0;i<2;i++)
