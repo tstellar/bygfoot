@@ -106,11 +106,17 @@ cup_reset(Cup *cup)
 
     for(i=0;i<cup->rounds->len;i++)
     {
-	for(j=0;j<g_array_index(cup->rounds, CupRound, i).tables->len;j++)
-	    free_table(&g_array_index(g_array_index(cup->rounds, CupRound, i).tables, Table, j));
-	
-	g_array_free(g_array_index(cup->rounds, CupRound, i).tables, TRUE);
-	g_array_index(cup->rounds, CupRound, i).tables = g_array_new(FALSE, FALSE, sizeof(Table));
+	if(g_array_index(cup->rounds, CupRound, i).tables->len > 0)
+	{
+	    for(j=0;j<g_array_index(cup->rounds, CupRound, i).tables->len;j++)
+		free_table(&g_array_index(g_array_index(cup->rounds, CupRound, i).tables, Table, j));	
+	 
+	    g_array_free(g_array_index(cup->rounds, CupRound, i).tables, TRUE);
+	    g_array_index(cup->rounds, CupRound, i).tables = g_array_new(FALSE, FALSE, sizeof(Table));
+	}
+
+	if(g_array_index(cup->rounds, CupRound, i).teams->len > 0)
+	    free_teams_array(&g_array_index(cup->rounds, CupRound, i).teams, TRUE);
     }
 }
 

@@ -426,6 +426,10 @@ league_season_start(League *league)
 
 	if(team_is_user(&g_array_index(league->teams, Team, i)) == -1)
 	    team_update_cpu_structure(&g_array_index(league->teams, Team, i));
+
+	g_array_index(league->teams, Team, i).stadium.average_attendance =
+	    g_array_index(league->teams, Team, i).stadium.games = 
+	    g_array_index(league->teams, Team, i).stadium.possible_attendance = 0;
     }
 }
 

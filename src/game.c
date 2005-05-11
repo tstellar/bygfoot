@@ -59,18 +59,6 @@ game_get_values(const Fixture *fix, gfloat team_values[][GAME_TEAM_VALUE_END],
 
 	team_values[i][GAME_TEAM_VALUE_DEFEND] *= (1 - style_factor);
 	team_values[i][GAME_TEAM_VALUE_ATTACK] *= (1 + style_factor);
-
-	/*d*/
-/* 	if(fixture_user_team_involved(fix) != -1) */
-/* 	{ */
-/* 	    printf("week %d %d\n", week, week_round); */
-/* 	    printf("%s attack %.1f midf %.1f defend %.1f style %d struct %d\n", */
-/* 		   tm[i]->name->str, */
-/* 		   team_values[i][GAME_TEAM_VALUE_ATTACK], */
-/* 		   team_values[i][GAME_TEAM_VALUE_MIDFIELD], */
-/* 		   team_values[i][GAME_TEAM_VALUE_DEFEND], */
-/* 		   tm[i]->style, tm[i]->structure); */
-/* 	} */
     }
 }
 
