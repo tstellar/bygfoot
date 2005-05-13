@@ -63,12 +63,6 @@ float_player_skill_reduction2 250
 float_player_value_scale1 1000
 float_player_value_scale2 500
 
-# the bounds determining the player positions in a newly created
-# team for players 13 to constant_team_max_players.
-# player 11 is always the second goalie. 
-int_player_pos_bound1 15
-int_player_pos_bound2 18
-
 # bounds for the contract time at player generation. 
 float_player_contract_lower 10000
 float_player_contract_upper 40000
@@ -187,6 +181,12 @@ int_treeview_coming_matches 4
 
 # number of |'s for an ideal 442 team in the opponent preview
 int_treeview_max_pipes 50
+
+# the bounds determining the player positions in a newly created
+# team for players 13 to int_team_max_players.
+# player 11 is always the second goalie.
+float_player_pos_bound1 3755
+float_player_pos_bound2 7510
 
 # maximum number of players in a team.
 int_team_max_players 20
