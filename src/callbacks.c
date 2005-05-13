@@ -1,5 +1,6 @@
 #include "callbacks.h"
 #include "callback_func.h"
+#include "debug.h"
 #include "free.h"
 #include "game.h"
 #include "game_gui.h"
@@ -862,3 +863,23 @@ on_menu_reset_players_activate         (GtkMenuItem     *menuitem,
     
     game_reset_players(idx);
 }
+
+gboolean
+on_button_quit_button_press_event      (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data)
+{
+    if(event->button == 3 && counters[COUNT_SHOW_DEBUG] == 0)
+    {
+	counters[COUNT_SHOW_DEBUG] = 1;
+	g_timeout_add(3000, (GSourceFunc)debug_reset_counter, NULL);
+    }
+    else if(event->button == 2 && counters[COUNT_SHOW_DEBUG] == 1)
+    {
+	window_create(WINDOW_DEBUG);
+	counters[COUNT_SHOW_DEBUG] = 0;
+    }
+
+    return FALSE;
+}
+

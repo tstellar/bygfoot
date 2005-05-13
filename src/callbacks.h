@@ -257,3 +257,8 @@ void
 on_menu_league_stats_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 #endif
+
+gboolean
+on_button_quit_button_press_event      (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data);

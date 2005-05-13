@@ -83,7 +83,6 @@ create_window_job_offer (void)
   label_text = gtk_label_new (_("label20"));
   gtk_widget_show (label_text);
   gtk_box_pack_start (GTK_BOX (vbox5), label_text, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label_text), GTK_JUSTIFY_LEFT);
   gtk_label_set_line_wrap (GTK_LABEL (label_text), TRUE);
 
   hseparator5 = gtk_hseparator_new ();
@@ -102,37 +101,31 @@ create_window_job_offer (void)
   label15 = gtk_label_new (_("Name"));
   gtk_widget_show (label15);
   gtk_box_pack_start (GTK_BOX (vbox6), label15, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label15), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label15), 2.23517e-10, 0.5);
 
   label16 = gtk_label_new (_("League"));
   gtk_widget_show (label16);
   gtk_box_pack_start (GTK_BOX (vbox6), label16, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label16), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label16), 2.23517e-10, 0.5);
 
   label17 = gtk_label_new (_("Rank"));
   gtk_widget_show (label17);
   gtk_box_pack_start (GTK_BOX (vbox6), label17, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label17), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label17), 2.23517e-10, 0.5);
 
   label18 = gtk_label_new (_("Money (approx.)"));
   gtk_widget_show (label18);
   gtk_box_pack_start (GTK_BOX (vbox6), label18, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label18), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label18), 2.23517e-10, 0.5);
 
   label19 = gtk_label_new (_("Stadium capacity"));
   gtk_widget_show (label19);
   gtk_box_pack_start (GTK_BOX (vbox6), label19, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label19), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label19), 2.23517e-10, 0.5);
 
   label14 = gtk_label_new (_("Stadium safety"));
   gtk_widget_show (label14);
   gtk_box_pack_start (GTK_BOX (vbox6), label14, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label14), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label14), 0, 0.5);
 
   vseparator3 = gtk_vseparator_new ();
@@ -147,32 +140,26 @@ create_window_job_offer (void)
   label_name = gtk_label_new (_("label21"));
   gtk_widget_show (label_name);
   gtk_box_pack_start (GTK_BOX (vbox7), label_name, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label_name), GTK_JUSTIFY_LEFT);
 
   label_league = gtk_label_new (_("label22"));
   gtk_widget_show (label_league);
   gtk_box_pack_start (GTK_BOX (vbox7), label_league, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label_league), GTK_JUSTIFY_LEFT);
 
   label_rank = gtk_label_new (_("label23"));
   gtk_widget_show (label_rank);
   gtk_box_pack_start (GTK_BOX (vbox7), label_rank, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label_rank), GTK_JUSTIFY_LEFT);
 
   label_money = gtk_label_new (_("label24"));
   gtk_widget_show (label_money);
   gtk_box_pack_start (GTK_BOX (vbox7), label_money, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label_money), GTK_JUSTIFY_LEFT);
 
   label_cap = gtk_label_new (_("label25"));
   gtk_widget_show (label_cap);
   gtk_box_pack_start (GTK_BOX (vbox7), label_cap, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label_cap), GTK_JUSTIFY_LEFT);
 
   label_saf = gtk_label_new (_("label26"));
   gtk_widget_show (label_saf);
   gtk_box_pack_start (GTK_BOX (vbox7), label_saf, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label_saf), GTK_JUSTIFY_LEFT);
 
   hseparator6 = gtk_hseparator_new ();
   gtk_widget_show (hseparator6);
@@ -182,7 +169,6 @@ create_window_job_offer (void)
   label28 = gtk_label_new (_("Player list"));
   gtk_widget_show (label28);
   gtk_box_pack_start (GTK_BOX (vbox5), label28, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label28), GTK_JUSTIFY_LEFT);
 
   hbox17 = gtk_hbox_new (FALSE, 5);
   gtk_widget_show (hbox17);
@@ -191,12 +177,10 @@ create_window_job_offer (void)
   label42 = gtk_label_new (_("Average skill:"));
   gtk_widget_show (label42);
   gtk_box_pack_start (GTK_BOX (hbox17), label42, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label42), GTK_JUSTIFY_LEFT);
 
   label_average_skill = gtk_label_new (_("label43"));
   gtk_widget_show (label_average_skill);
   gtk_box_pack_start (GTK_BOX (hbox17), label_average_skill, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label_average_skill), GTK_JUSTIFY_LEFT);
 
   scrolledwindow1 = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (scrolledwindow1);
@@ -215,7 +199,6 @@ create_window_job_offer (void)
   label_text2 = gtk_label_new (_("label27"));
   gtk_widget_show (label_text2);
   gtk_box_pack_start (GTK_BOX (vbox5), label_text2, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label_text2), GTK_JUSTIFY_LEFT);
   gtk_misc_set_padding (GTK_MISC (label_text2), 0, 5);
 
   hbox6 = gtk_hbox_new (FALSE, 0);
@@ -242,7 +225,6 @@ create_window_job_offer (void)
   label31 = gtk_label_new_with_mnemonic (_("OK"));
   gtk_widget_show (label31);
   gtk_box_pack_start (GTK_BOX (hbox9), label31, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label31), GTK_JUSTIFY_LEFT);
 
   button_cancel = gtk_button_new ();
   gtk_widget_show (button_cancel);
@@ -264,7 +246,6 @@ create_window_job_offer (void)
   label30 = gtk_label_new_with_mnemonic (_("Cancel"));
   gtk_widget_show (label30);
   gtk_box_pack_start (GTK_BOX (hbox8), label30, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label30), GTK_JUSTIFY_LEFT);
 
   g_signal_connect ((gpointer) button_ok, "clicked",
                     G_CALLBACK (on_button_offer_ok_clicked),
@@ -366,7 +347,6 @@ create_window_warning (void)
   label_warning = gtk_label_new (_("label42"));
   gtk_widget_show (label_warning);
   gtk_box_pack_start (GTK_BOX (vbox13), label_warning, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label_warning), GTK_JUSTIFY_LEFT);
   gtk_label_set_line_wrap (GTK_LABEL (label_warning), TRUE);
 
   button_warning = gtk_button_new_from_stock ("gtk-close");
@@ -430,7 +410,6 @@ create_window_digits (void)
   label_main = gtk_label_new (_("label42"));
   gtk_widget_show (label_main);
   gtk_box_pack_start (GTK_BOX (vbox14), label_main, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label_main), GTK_JUSTIFY_LEFT);
   gtk_label_set_line_wrap (GTK_LABEL (label_main), TRUE);
 
   hbox15 = gtk_hbox_new (FALSE, 0);
@@ -444,7 +423,6 @@ create_window_digits (void)
   label_1 = gtk_label_new (_("label43"));
   gtk_widget_show (label_1);
   gtk_box_pack_start (GTK_BOX (vbox15), label_1, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label_1), GTK_JUSTIFY_LEFT);
 
   spinbutton1_adj = gtk_adjustment_new (1, 0, 1e+08, 10, 1000, 10);
   spinbutton1 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton1_adj), 1, 0);
@@ -459,7 +437,6 @@ create_window_digits (void)
   label_2 = gtk_label_new (_("label44"));
   gtk_widget_show (label_2);
   gtk_box_pack_start (GTK_BOX (vbox16), label_2, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label_2), GTK_JUSTIFY_LEFT);
 
   spinbutton2_adj = gtk_adjustment_new (1, 0, 1e+08, 1, 100, 10);
   spinbutton2 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton2_adj), 1, 0);
@@ -542,7 +519,6 @@ create_window_yesno (void)
   label_yesno = gtk_label_new (_("label43"));
   gtk_widget_show (label_yesno);
   gtk_box_pack_start (GTK_BOX (vbox17), label_yesno, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label_yesno), GTK_JUSTIFY_LEFT);
   gtk_label_set_line_wrap (GTK_LABEL (label_yesno), TRUE);
 
   hbox18 = gtk_hbox_new (FALSE, 3);
@@ -625,7 +601,6 @@ create_window_contract (void)
   label_contract = gtk_label_new (_("label43"));
   gtk_widget_show (label_contract);
   gtk_box_pack_start (GTK_BOX (vbox18), label_contract, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label_contract), GTK_JUSTIFY_LEFT);
   gtk_label_set_line_wrap (GTK_LABEL (label_contract), TRUE);
 
   table1 = gtk_table_new (4, 2, FALSE);
@@ -723,7 +698,6 @@ create_window_contract (void)
   label44 = gtk_label_new_with_mnemonic (_("Make offer"));
   gtk_widget_show (label44);
   gtk_box_pack_start (GTK_BOX (hbox20), label44, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label44), GTK_JUSTIFY_LEFT);
 
   g_signal_connect ((gpointer) window_contract, "delete_event",
                     G_CALLBACK (on_window_contract_delete_event),
@@ -809,7 +783,6 @@ create_window_user_management (void)
   label47 = gtk_label_new (_("Users -- click to remove"));
   gtk_widget_show (label47);
   gtk_box_pack_start (GTK_BOX (vbox20), label47, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label47), GTK_JUSTIFY_LEFT);
 
   scrolledwindow2 = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (scrolledwindow2);
@@ -830,7 +803,6 @@ create_window_user_management (void)
   label46 = gtk_label_new (_("Available teams"));
   gtk_widget_show (label46);
   gtk_box_pack_start (GTK_BOX (vbox21), label46, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label46), GTK_JUSTIFY_LEFT);
 
   scrolledwindow3 = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (scrolledwindow3);
@@ -867,7 +839,6 @@ create_window_user_management (void)
   label45 = gtk_label_new_with_mnemonic (_("Add user"));
   gtk_widget_show (label45);
   gtk_box_pack_start (GTK_BOX (hbox22), label45, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label45), GTK_JUSTIFY_LEFT);
 
   hseparator9 = gtk_hseparator_new ();
   gtk_widget_show (hseparator9);
@@ -919,5 +890,79 @@ create_window_user_management (void)
   GLADE_HOOKUP_OBJECT (window_user_management, button_user_management_close, "button_user_management_close");
 
   return window_user_management;
+}
+
+GtkWidget*
+create_window_debug (void)
+{
+  GtkWidget *window_debug;
+  GtkWidget *vbox22;
+  GtkWidget *label48;
+  GtkWidget *hbox24;
+  GtkWidget *entry_debug;
+  GtkWidget *button_debug_apply;
+  GtkWidget *button_debug_close;
+  GtkAccelGroup *accel_group;
+
+  accel_group = gtk_accel_group_new ();
+
+  window_debug = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_container_set_border_width (GTK_CONTAINER (window_debug), 5);
+  gtk_window_set_title (GTK_WINDOW (window_debug), _("Debug"));
+  gtk_window_set_position (GTK_WINDOW (window_debug), GTK_WIN_POS_CENTER);
+
+  vbox22 = gtk_vbox_new (FALSE, 5);
+  gtk_widget_show (vbox22);
+  gtk_container_add (GTK_CONTAINER (window_debug), vbox22);
+
+  label48 = gtk_label_new (_("Bygfoot debug window. If you got here by accident, CLOSE IMMEDIATELY (otherwise your CPU will be destroyed by overheating)."));
+  gtk_widget_show (label48);
+  gtk_box_pack_start (GTK_BOX (vbox22), label48, FALSE, FALSE, 0);
+  gtk_label_set_line_wrap (GTK_LABEL (label48), TRUE);
+
+  hbox24 = gtk_hbox_new (FALSE, 3);
+  gtk_widget_show (hbox24);
+  gtk_box_pack_start (GTK_BOX (vbox22), hbox24, FALSE, FALSE, 0);
+
+  entry_debug = gtk_entry_new ();
+  gtk_widget_show (entry_debug);
+  gtk_box_pack_start (GTK_BOX (hbox24), entry_debug, TRUE, TRUE, 0);
+
+  button_debug_apply = gtk_button_new_from_stock ("gtk-apply");
+  gtk_widget_show (button_debug_apply);
+  gtk_box_pack_start (GTK_BOX (hbox24), button_debug_apply, FALSE, FALSE, 0);
+
+  button_debug_close = gtk_button_new_from_stock ("gtk-close");
+  gtk_widget_show (button_debug_close);
+  gtk_box_pack_start (GTK_BOX (vbox22), button_debug_close, FALSE, FALSE, 0);
+  gtk_widget_add_accelerator (button_debug_close, "clicked", accel_group,
+                              GDK_Escape, 0,
+                              GTK_ACCEL_VISIBLE);
+
+  g_signal_connect ((gpointer) window_debug, "delete_event",
+                    G_CALLBACK (on_window_debug_delete_event),
+                    NULL);
+  g_signal_connect ((gpointer) entry_debug, "activate",
+                    G_CALLBACK (on_entry_debug_activate),
+                    NULL);
+  g_signal_connect ((gpointer) button_debug_apply, "clicked",
+                    G_CALLBACK (on_button_debug_apply_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_debug_close, "clicked",
+                    G_CALLBACK (on_button_debug_close_activate),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (window_debug, window_debug, "window_debug");
+  GLADE_HOOKUP_OBJECT (window_debug, vbox22, "vbox22");
+  GLADE_HOOKUP_OBJECT (window_debug, label48, "label48");
+  GLADE_HOOKUP_OBJECT (window_debug, hbox24, "hbox24");
+  GLADE_HOOKUP_OBJECT (window_debug, entry_debug, "entry_debug");
+  GLADE_HOOKUP_OBJECT (window_debug, button_debug_apply, "button_debug_apply");
+  GLADE_HOOKUP_OBJECT (window_debug, button_debug_close, "button_debug_close");
+
+  gtk_window_add_accel_group (GTK_WINDOW (window_debug), accel_group);
+
+  return window_debug;
 }
 

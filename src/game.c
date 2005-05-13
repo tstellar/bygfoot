@@ -303,7 +303,8 @@ game_assign_attendance(Fixture *fix)
 	powf(tm[0]->stadium.safety, 
 	     const_float("float_game_stadium_attendance_safety_exponent"));
     gint max_att = MIN((gint)rint((gfloat)league_cup_average_capacity(tm[0]->clid) *
-				  const_float("float_game_stadium_attendance_average_exceed_factor")),
+				  const_float("float_game_stadium_attendance_average_exceed_factor") *
+				  math_rnd(0.9, 1.1)),
 		       tm[0]->stadium.capacity);
 
     if(fix->clid < ID_CUP_START && 
@@ -757,7 +758,8 @@ game_update_stats(gpointer live_game, gconstpointer live_game_unit)
 	stats->values[unit->possession][LIVE_GAME_STAT_VALUE_POSSESSION]++;
 
     if(unit->event.type == LIVE_GAME_EVENT_SCORING_CHANCE ||
-       unit->event.type == LIVE_GAME_EVENT_FREE_KICK)
+       unit->event.type == LIVE_GAME_EVENT_FREE_KICK ||
+       unit->event.type == LIVE_GAME_EVENT_HEADER)
 	stats->values[unit->possession][LIVE_GAME_STAT_VALUE_SHOTS]++;
     else if(unit->event.type == LIVE_GAME_EVENT_PENALTY)
 	stats->values[unit->possession][LIVE_GAME_STAT_VALUE_PENALTIES]++;

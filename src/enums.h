@@ -10,6 +10,7 @@ enum Counters
     COUNT_PLAYER_ID,
     COUNT_CUP_ID,
     COUNT_LEAGUE_ID,
+    COUNT_SHOW_DEBUG,
     COUNT_END
 };
 

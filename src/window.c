@@ -132,7 +132,6 @@ window_show_digits(gchar *text_main, gchar* text1, gint value1, gchar* text2, gi
 	gtk_label_set_text(label_2, text2);
     else
 	gtk_widget_hide(GTK_WIDGET(label_2)->parent);
-
 }
 
 /** Show the stadium window for the current user. */
@@ -368,6 +367,14 @@ window_create(gint window_type)
 		window.user_management = create_window_user_management();
 	    wind = window.user_management;
 	    strcpy(buf, "User management");
+	    break;
+	case WINDOW_DEBUG:
+	    if(window.wdebug != NULL)
+		g_warning("window_create: called on already existing window\n");
+	    else
+		window.wdebug = create_window_debug();
+	    wind = window.wdebug;
+	    strcpy(buf, "Bygfoot debug window");
 	    break;
     }
 

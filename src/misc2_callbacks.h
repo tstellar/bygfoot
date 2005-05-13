@@ -84,3 +84,20 @@ on_treeview_user_management_teams_row_activated
                                         GtkTreeViewColumn *column,
                                         gpointer         user_data);
 #endif
+
+gboolean
+on_window_debug_delete_event           (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data);
+
+void
+on_button_debug_apply_clicked          (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_debug_close_activate         (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_entry_debug_activate                (GtkEntry        *entry,
+                                        gpointer         user_data);

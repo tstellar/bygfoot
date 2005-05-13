@@ -69,7 +69,7 @@
 		      <accelerator key="l" modifiers="GDK_CONTROL_MASK | GDK_SHIFT_MASK" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image307">
+			<widget class="GtkImage" id="image311">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-open</property>
 			  <property name="icon_size">1</property>
@@ -137,7 +137,7 @@
 		      <accelerator key="p" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image308">
+			<widget class="GtkImage" id="image312">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-preferences</property>
 			  <property name="icon_size">1</property>
@@ -250,6 +250,7 @@
 		      <property name="label" translatable="yes">League stats</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="on_menu_league_stats_activate" last_modification_time="Thu, 28 Apr 2005 17:31:46 GMT"/>
+		      <accelerator key="s" modifiers="0" signal="activate"/>
 		    </widget>
 		  </child>
 
@@ -259,6 +260,7 @@
 		      <property name="label" translatable="yes">Season history</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="on_menu_season_history_activate" last_modification_time="Sun, 02 Jan 2005 15:39:45 GMT"/>
+		      <accelerator key="h" modifiers="0" signal="activate"/>
 		    </widget>
 		  </child>
 		</widget>
@@ -694,7 +696,7 @@
 		      <accelerator key="F9" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image309">
+			<widget class="GtkImage" id="image313">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-go-forward</property>
 			  <property name="icon_size">1</property>
@@ -716,7 +718,7 @@
 		      <accelerator key="F8" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image310">
+			<widget class="GtkImage" id="image314">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-go-back</property>
 			  <property name="icon_size">1</property>
@@ -738,7 +740,7 @@
 		      <accelerator key="F12" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image311">
+			<widget class="GtkImage" id="image315">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-justify-fill</property>
 			  <property name="icon_size">1</property>
@@ -891,6 +893,7 @@
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
 	      <signal name="clicked" handler="on_button_quit_clicked" last_modification_time="Fri, 06 Feb 2004 17:14:19 GMT"/>
+	      <signal name="button_press_event" handler="on_button_quit_button_press_event" last_modification_time="Fri, 13 May 2005 17:15:34 GMT"/>
 
 	      <child>
 		<widget class="GtkImage" id="image13">

@@ -1,4 +1,5 @@
 #include "callback_func.h"
+#include "debug.h"
 #include "finance.h"
 #include "game_gui.h"
 #include "load_save.h"
@@ -279,3 +280,47 @@ on_treeview_user_management_teams_row_activated
 {
     on_button_user_management_add_clicked(NULL, NULL);
 }
+
+gboolean
+on_window_debug_delete_event           (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data)
+{
+    on_button_debug_close_activate(NULL, NULL);
+
+    return FALSE;
+}
+
+
+void
+on_button_debug_apply_clicked          (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    GtkEntry *entry_debug =
+	GTK_ENTRY(lookup_widget(window.wdebug, "entry_debug"));
+    const gchar *entry_text = gtk_entry_get_text(entry_debug);
+    gchar buf[SMALL];
+    gint value = -1;
+
+    sscanf(entry_text, "%[^-1-9]%d", buf, &value);
+    debug_action(buf, value);
+
+    gtk_entry_set_text(entry_debug, "");
+}
+
+
+void
+on_button_debug_close_activate         (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    window_destroy(&window.wdebug, FALSE);
+}
+
+
+void
+on_entry_debug_activate                (GtkEntry        *entry,
+                                        gpointer         user_data)
+{
+    on_button_debug_apply_clicked(NULL, NULL);
+}
+

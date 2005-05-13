@@ -1032,6 +1032,10 @@ fixture_get_league_matches(const Team *tm1, const Team *tm2)
 gint
 fixture_get_index(const Fixture *fix)
 {
+    if(debug > 60)
+	printf("fixidx %d %s - %s \n", fix->clid, fix->teams[0]->name->str,
+	       fix->teams[1]->name->str);
+
     gint i;
     const GArray *fixtures = league_cup_get_fixtures(fix->clid);
     
