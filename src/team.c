@@ -123,7 +123,7 @@ team_generate_players_stadium(Team *tm)
 
     average_skill = CLAMP(average_skill, 0, const_float("float_player_max_skill"));    
 
-    for(i=0;i<const_int("int_team_max_players");i++)
+    for(i=0;i<const_int("int_team_cpu_max_players");i++)
     {
 	new = player_new(tm, average_skill, TRUE);
 	wages += new.wage;
@@ -139,13 +139,6 @@ team_generate_players_stadium(Team *tm)
     tm->stadium.capacity = 
 	math_round_integer((gint)rint((wages / (gfloat)const_int("int_team_stadium_ticket_price")) *
 				      const_float("float_team_stadium_size_wage_factor")), 2);
-
-    /*d*/
-/*     printf("%30s wag %.0f stadcap %d cap * tick %d diff %d\n", */
-/* 	   tm->name->str, wages, tm->stadium.capacity, */
-/* 	   tm->stadium.capacity * const_int("int_team_stadium_ticket_price"), */
-/* 	   math_round_integer((gint)(2 * wages) -  */
-/* 			      tm->stadium.capacity * const_int("int_team_stadium_ticket_price"), 3)); */
 }
 
 /** Return a certain value from the league or cup struct

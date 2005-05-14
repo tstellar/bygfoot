@@ -141,11 +141,20 @@ user_remove(gint idx, gboolean regenerate_team)
 	for(i=0;i<usr(idx).tm->players->len;i++)
 	    free_player(&g_array_index(usr(idx).tm->players, Player, i));
 
+	g_array_free(usr(idx).tm->players, TRUE);
+	usr(idx).tm->players = g_array_new(FALSE, FALSE, sizeof(Player));
+
 	team_generate_players_stadium(usr(idx).tm);
+	for(i=0;i<usr(idx).tm->players->len;i++)
+	    g_array_index(usr(idx).tm->players, Player, i).team = usr(idx).tm;
     }
 
     free_user(&usr(idx));
     g_array_remove_index(users, idx);
+
+    cur_user = 0;
+
+    game_gui_show_main();
 }
 
 void

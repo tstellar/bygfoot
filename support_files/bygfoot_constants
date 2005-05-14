@@ -188,8 +188,11 @@ int_treeview_max_pipes 50
 float_player_pos_bound1 3755
 float_player_pos_bound2 7510
 
-# maximum number of players in a team.
+# maximum number of players in a user team.
 int_team_max_players 20
+# maximum number of players in cpu teams. should be
+# less or equal int_team_max_players
+int_team_cpu_max_players 20
 
 # highest skill and talent a player can have.
 float_player_max_skill 990000
@@ -660,10 +663,10 @@ int_transfer_new_players_upper 4
 int_transfer_time_lower 3
 int_transfer_time_upper 5
 # percentage of players from international cup teams
-float_transfer_cup_percentage 2500
+float_transfer_cup_percentage 8000#2500
 # restrictions applying to very good players
 float_transfer_good_player_skill_bound 9000 
-float_transfer_good_player_prob 2500
+float_transfer_good_player_prob 5000
 
 # scout deviance in percent of the players' values and wages
 # these values are the deviance for the best scout; the others
