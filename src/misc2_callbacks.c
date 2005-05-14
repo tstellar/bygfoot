@@ -115,6 +115,8 @@ on_button_digits_ok_clicked            (GtkButton       *button,
 	    break;
 	case STATUS_CUSTOM_STRUCTURE:
 	    destroy_window = misc2_callback_change_structure(values[1]);
+	    if(destroy_window && stat0 == STATUS_LIVE_GAME_PAUSE)
+		gtk_widget_set_sensitive(window.main, TRUE);
 	    break;
     }
 

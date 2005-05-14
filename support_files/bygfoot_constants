@@ -661,6 +661,9 @@ int_transfer_time_lower 3
 int_transfer_time_upper 5
 # percentage of players from international cup teams
 float_transfer_cup_percentage 2500
+# restrictions applying to very good players
+float_transfer_good_player_skill_bound 9000 
+float_transfer_good_player_prob 2500
 
 # scout deviance in percent of the players' values and wages
 # these values are the deviance for the best scout; the others

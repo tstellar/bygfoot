@@ -205,7 +205,7 @@ live_game_create_start_unit(void)
     /*d*/
     new.event.commentary = g_string_new("Match's started.");
 
-    new.minute = 1;
+    new.minute = 0;
     new.time = LIVE_GAME_UNIT_TIME_FIRST_HALF;
     new.possession = math_rndi(0, 1);
     new.area = LIVE_GAME_UNIT_AREA_MIDFIELD;

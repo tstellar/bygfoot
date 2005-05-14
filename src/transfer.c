@@ -253,6 +253,11 @@ transfer_player_get_new(gboolean cup)
     {
 	tm = (Team*)g_ptr_array_index(teams, math_rndi(0, teams->len - 1));
 	pl = player_of_idx_team(tm, math_rndi(0, tm->players->len - 1));
+
+	if(pl->skill > const_float("float_player_max_skill") *
+	   const_float("float_transfer_good_player_skill_bound") &&
+	   math_rnd(0, 1) > const_float("float_transfer_good_player_prob"))
+	    pl = NULL;
     }
     
     return pl;
