@@ -91,12 +91,12 @@ player_get_position_from_structure(gint structure, gint player_number)
 	position = PLAYER_POS_GOALIE;
     else if(player_number < bound[0] ||
 	    (player_number > 10 &&
-	     player_number < (11 + (const_int("int_team_cpu_max_players") - 11) *
+	     player_number < (11 + (const_int("int_team_cpu_players") - 11) *
 			      const_float("float_player_pos_bound1"))))
 	position = PLAYER_POS_DEFENDER;
     else if(player_number < bound[1] ||
 	    (player_number > 10 &&
-	     player_number < (11 + (const_int("int_team_cpu_max_players") - 11) *
+	     player_number < (11 + (const_int("int_team_cpu_players") - 11) *
 			      const_float("float_player_pos_bound2"))))
 	position = PLAYER_POS_MIDFIELDER;
     else

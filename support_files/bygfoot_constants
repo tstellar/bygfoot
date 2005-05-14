@@ -189,10 +189,10 @@ float_player_pos_bound1 3755
 float_player_pos_bound2 7510
 
 # maximum number of players in a user team.
-int_team_max_players 20
-# maximum number of players in cpu teams. should be
+int_team_max_players 100
+# number of players in cpu teams. should be
 # less or equal int_team_max_players
-int_team_cpu_max_players 20
+int_team_cpu_players 20
 
 # highest skill and talent a player can have.
 float_player_max_skill 990000

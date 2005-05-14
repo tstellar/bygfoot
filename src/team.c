@@ -123,7 +123,7 @@ team_generate_players_stadium(Team *tm)
 
     average_skill = CLAMP(average_skill, 0, const_float("float_player_max_skill"));    
 
-    for(i=0;i<const_int("int_team_cpu_max_players");i++)
+    for(i=0;i<const_int("int_team_cpu_players");i++)
     {
 	new = player_new(tm, average_skill, TRUE);
 	wages += new.wage;
