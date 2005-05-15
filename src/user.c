@@ -154,7 +154,8 @@ user_remove(gint idx, gboolean regenerate_team)
 
     cur_user = 0;
 
-    game_gui_show_main();
+    if(window.main != NULL)
+	game_gui_show_main();
 }
 
 void
