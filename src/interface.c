@@ -983,6 +983,7 @@ create_main_window (void)
   button_cl_back = gtk_button_new ();
   gtk_widget_show (button_cl_back);
   gtk_box_pack_start (GTK_BOX (hbox_14), button_cl_back, TRUE, TRUE, 0);
+  gtk_widget_set_sensitive (button_cl_back, FALSE);
   gtk_tooltips_set_tip (tooltips, button_cl_back, _("Previous league/cup (1)"), NULL);
   gtk_widget_add_accelerator (button_cl_back, "clicked", accel_group,
                               GDK_1, 0,
@@ -995,6 +996,7 @@ create_main_window (void)
   button_cl_forward = gtk_button_new ();
   gtk_widget_show (button_cl_forward);
   gtk_box_pack_start (GTK_BOX (hbox_14), button_cl_forward, TRUE, TRUE, 0);
+  gtk_widget_set_sensitive (button_cl_forward, FALSE);
   gtk_tooltips_set_tip (tooltips, button_cl_forward, _("Next league/cup (2)"), NULL);
   gtk_widget_add_accelerator (button_cl_forward, "clicked", accel_group,
                               GDK_2, 0,
@@ -1007,6 +1009,7 @@ create_main_window (void)
   button_browse_back = gtk_button_new ();
   gtk_widget_show (button_browse_back);
   gtk_box_pack_start (GTK_BOX (hbox_14), button_browse_back, TRUE, TRUE, 0);
+  gtk_widget_set_sensitive (button_browse_back, FALSE);
   gtk_tooltips_set_tip (tooltips, button_browse_back, _("Previous (Q)"), NULL);
   gtk_widget_add_accelerator (button_browse_back, "clicked", accel_group,
                               GDK_q, 0,
@@ -1019,6 +1022,7 @@ create_main_window (void)
   button_browse_forward = gtk_button_new ();
   gtk_widget_show (button_browse_forward);
   gtk_box_pack_start (GTK_BOX (hbox_14), button_browse_forward, TRUE, TRUE, 0);
+  gtk_widget_set_sensitive (button_browse_forward, FALSE);
   gtk_tooltips_set_tip (tooltips, button_browse_forward, _("Next (W)"), NULL);
   gtk_widget_add_accelerator (button_browse_forward, "clicked", accel_group,
                               GDK_w, 0,

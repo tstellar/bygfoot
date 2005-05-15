@@ -326,3 +326,34 @@ on_entry_debug_activate                (GtkEntry        *entry,
     on_button_debug_apply_clicked(NULL, NULL);
 }
 
+
+gboolean
+on_window_job_offer_delete_event       (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data)
+{
+    on_button_offer_cancel_clicked(NULL, NULL);
+    return FALSE;
+}
+
+
+gboolean
+on_window_digits_delete_event          (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data)
+{
+    on_button_digits_cancel_clicked(NULL, NULL);
+
+    return FALSE;
+}
+
+
+gboolean
+on_window_user_management_delete_event (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data)
+{
+    on_button_user_management_close_clicked(NULL, NULL);
+    return FALSE;
+}
+

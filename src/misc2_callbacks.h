@@ -83,7 +83,6 @@ on_treeview_user_management_teams_row_activated
                                         GtkTreePath     *path,
                                         GtkTreeViewColumn *column,
                                         gpointer         user_data);
-#endif
 
 gboolean
 on_window_debug_delete_event           (GtkWidget       *widget,
@@ -101,3 +100,19 @@ on_button_debug_close_activate         (GtkButton       *button,
 void
 on_entry_debug_activate                (GtkEntry        *entry,
                                         gpointer         user_data);
+
+gboolean
+on_window_job_offer_delete_event       (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data);
+
+gboolean
+on_window_digits_delete_event          (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data);
+
+gboolean
+on_window_user_management_delete_event (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data);
+#endif
