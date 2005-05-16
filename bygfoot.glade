@@ -1003,7 +1003,7 @@
 	    <widget class="GtkButton" id="button_preview">
 	      <property name="border_width">2</property>
 	      <property name="visible">True</property>
-	      <property name="tooltip" translatable="yes">Show my last games and a preview of my next games (F1)</property>
+	      <property name="tooltip" translatable="yes">Show a preview of my next games (F1)</property>
 	      <property name="can_focus">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
@@ -1801,6 +1801,7 @@
 		      <child>
 			<widget class="GtkButton" id="button_cl_back">
 			  <property name="visible">True</property>
+			  <property name="sensitive">False</property>
 			  <property name="tooltip" translatable="yes">Previous league/cup (1)</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
@@ -1830,6 +1831,7 @@
 		      <child>
 			<widget class="GtkButton" id="button_cl_forward">
 			  <property name="visible">True</property>
+			  <property name="sensitive">False</property>
 			  <property name="tooltip" translatable="yes">Next league/cup (2)</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
@@ -1859,6 +1861,7 @@
 		      <child>
 			<widget class="GtkButton" id="button_browse_back">
 			  <property name="visible">True</property>
+			  <property name="sensitive">False</property>
 			  <property name="tooltip" translatable="yes">Previous (Q)</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
@@ -1888,6 +1891,7 @@
 		      <child>
 			<widget class="GtkButton" id="button_browse_forward">
 			  <property name="visible">True</property>
+			  <property name="sensitive">False</property>
 			  <property name="tooltip" translatable="yes">Next (W)</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>

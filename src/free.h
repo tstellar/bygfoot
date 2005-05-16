@@ -84,4 +84,7 @@ free_league_stats(LeagueStat *stats);
 void
 free_season_stats(gboolean reset);
 
+void
+free_transfer_list(void);
+
 #endif

@@ -18,6 +18,7 @@
   <property name="skip_pager_hint">False</property>
   <property name="type_hint">GDK_WINDOW_TYPE_HINT_NORMAL</property>
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
+  <signal name="delete_event" handler="on_window_job_offer_delete_event" last_modification_time="Sun, 15 May 2005 14:52:33 GMT"/>
 
   <child>
     <widget class="GtkVBox" id="vbox5">
@@ -801,6 +802,7 @@
   <property name="skip_pager_hint">False</property>
   <property name="type_hint">GDK_WINDOW_TYPE_HINT_NORMAL</property>
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
+  <signal name="delete_event" handler="on_window_digits_delete_event" last_modification_time="Sun, 15 May 2005 14:52:21 GMT"/>
 
   <child>
     <widget class="GtkVBox" id="vbox14">
@@ -1483,6 +1485,7 @@
   <property name="skip_pager_hint">False</property>
   <property name="type_hint">GDK_WINDOW_TYPE_HINT_NORMAL</property>
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
+  <signal name="delete_event" handler="on_window_user_management_delete_event" last_modification_time="Sun, 15 May 2005 14:52:50 GMT"/>
 
   <child>
     <widget class="GtkVBox" id="vbox19">
@@ -1546,6 +1549,7 @@
 			  <child>
 			    <widget class="GtkTreeView" id="treeview_user_management_users">
 			      <property name="visible">True</property>
+			      <property name="tooltip" translatable="yes">Click on a user to remove him from the game.</property>
 			      <property name="can_focus">True</property>
 			      <property name="headers_visible">True</property>
 			      <property name="rules_hint">False</property>

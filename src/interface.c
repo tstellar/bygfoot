@@ -734,7 +734,7 @@ create_main_window (void)
   gtk_widget_show (button_preview);
   gtk_box_pack_start (GTK_BOX (hbox1), button_preview, FALSE, FALSE, 0);
   gtk_container_set_border_width (GTK_CONTAINER (button_preview), 2);
-  gtk_tooltips_set_tip (tooltips, button_preview, _("Show my last games and a preview of my next games (F1)"), NULL);
+  gtk_tooltips_set_tip (tooltips, button_preview, _("Show a preview of my next games (F1)"), NULL);
   gtk_widget_add_accelerator (button_preview, "clicked", accel_group,
                               GDK_F1, 0,
                               GTK_ACCEL_VISIBLE);

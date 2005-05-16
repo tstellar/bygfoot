@@ -247,6 +247,9 @@ create_window_job_offer (void)
   gtk_widget_show (label30);
   gtk_box_pack_start (GTK_BOX (hbox8), label30, FALSE, FALSE, 0);
 
+  g_signal_connect ((gpointer) window_job_offer, "delete_event",
+                    G_CALLBACK (on_window_job_offer_delete_event),
+                    NULL);
   g_signal_connect ((gpointer) button_ok, "clicked",
                     G_CALLBACK (on_button_offer_ok_clicked),
                     NULL);
@@ -464,6 +467,9 @@ create_window_digits (void)
                               GDK_Escape, 0,
                               GTK_ACCEL_VISIBLE);
 
+  g_signal_connect ((gpointer) window_digits, "delete_event",
+                    G_CALLBACK (on_window_digits_delete_event),
+                    NULL);
   g_signal_connect ((gpointer) button_digits_ok, "clicked",
                     G_CALLBACK (on_button_digits_ok_clicked),
                     NULL);
@@ -756,6 +762,9 @@ create_window_user_management (void)
   GtkWidget *label45;
   GtkWidget *hseparator9;
   GtkWidget *button_user_management_close;
+  GtkTooltips *tooltips;
+
+  tooltips = gtk_tooltips_new ();
 
   window_user_management = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_user_management), 5);
@@ -795,6 +804,7 @@ create_window_user_management (void)
   treeview_user_management_users = gtk_tree_view_new ();
   gtk_widget_show (treeview_user_management_users);
   gtk_container_add (GTK_CONTAINER (viewport1), treeview_user_management_users);
+  gtk_tooltips_set_tip (tooltips, treeview_user_management_users, _("Click on a user to remove him from the game."), NULL);
 
   vbox21 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox21);
@@ -849,6 +859,9 @@ create_window_user_management (void)
   gtk_widget_show (button_user_management_close);
   gtk_box_pack_start (GTK_BOX (vbox19), button_user_management_close, FALSE, FALSE, 0);
 
+  g_signal_connect ((gpointer) window_user_management, "delete_event",
+                    G_CALLBACK (on_window_user_management_delete_event),
+                    NULL);
   g_signal_connect ((gpointer) treeview_user_management_users, "button_press_event",
                     G_CALLBACK (on_treeview_user_management_users_button_press_event),
                     NULL);
@@ -888,6 +901,7 @@ create_window_user_management (void)
   GLADE_HOOKUP_OBJECT (window_user_management, label45, "label45");
   GLADE_HOOKUP_OBJECT (window_user_management, hseparator9, "hseparator9");
   GLADE_HOOKUP_OBJECT (window_user_management, button_user_management_close, "button_user_management_close");
+  GLADE_HOOKUP_OBJECT_NO_REF (window_user_management, tooltips, "tooltips");
 
   return window_user_management;
 }

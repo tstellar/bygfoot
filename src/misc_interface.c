@@ -310,6 +310,7 @@ create_window_startup (void)
   button_startup_resume = gtk_button_new ();
   gtk_widget_show (button_startup_resume);
   gtk_box_pack_start (GTK_BOX (vbox2), button_startup_resume, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, button_startup_resume, _("Load the last game that was saved or loaded."), NULL);
 
   alignment21 = gtk_alignment_new (0.5, 0.5, 0, 0);
   gtk_widget_show (alignment21);
@@ -564,6 +565,9 @@ create_window_live (void)
   GtkObject *spinbutton_speed_adj;
   GtkWidget *spinbutton_speed;
   GtkAccelGroup *accel_group;
+  GtkTooltips *tooltips;
+
+  tooltips = gtk_tooltips_new ();
 
   accel_group = gtk_accel_group_new ();
 
@@ -716,6 +720,7 @@ create_window_live (void)
   spinbutton_speed = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_speed_adj), 1, 0);
   gtk_widget_show (spinbutton_speed);
   gtk_box_pack_end (GTK_BOX (hbox48), spinbutton_speed, FALSE, TRUE, 0);
+  gtk_tooltips_set_tip (tooltips, spinbutton_speed, _("Change live game speed. The lower the value the faster the live game."), NULL);
   gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_speed), TRUE);
 
   g_signal_connect ((gpointer) window_live, "delete_event",
@@ -768,6 +773,7 @@ create_window_live (void)
   GLADE_HOOKUP_OBJECT (window_live, label73, "label73");
   GLADE_HOOKUP_OBJECT (window_live, button_live_close, "button_live_close");
   GLADE_HOOKUP_OBJECT (window_live, spinbutton_speed, "spinbutton_speed");
+  GLADE_HOOKUP_OBJECT_NO_REF (window_live, tooltips, "tooltips");
 
   gtk_window_add_accel_group (GTK_WINDOW (window_live), accel_group);
 

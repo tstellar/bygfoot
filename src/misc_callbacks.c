@@ -319,4 +319,3 @@ on_combo_country_changed               (GtkComboBox     *combobox,
     misc_callback_show_team_list(GTK_WIDGET(combobox), buf);
     g_free(buf);
 }
-

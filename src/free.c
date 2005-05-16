@@ -10,10 +10,23 @@ void
 free_memory(void)
 {
     free_variables();
+    free_transfer_list();
     free_country(FALSE);
     free_users(FALSE);
     free_live_game(&live_game_temp);
     free_support_dirs();
+}
+
+/** Free the transfer list. */
+void
+free_transfer_list(void)
+{
+    gint i, j;
+
+    for(i=0;i<transfer_list->len;i++)
+	g_array_free(g_array_index(transfer_list, Transfer, i).offers, TRUE);
+    
+    free_g_array(&transfer_list);
 }
 
 /** Free the memory occupied by the season stats. */
@@ -55,6 +68,9 @@ free_season_stats(gboolean reset)
 		g_array_index(
 		    g_array_index(season_stats, SeasonStat, i).cup_champs, ChampStat, j).team_name, TRUE);
 	}
+
+	g_array_free(g_array_index(season_stats, SeasonStat, i).cup_champs, TRUE);
+	g_array_free(g_array_index(season_stats, SeasonStat, i).league_champs, TRUE);
     }
 
     free_g_array(&season_stats);
@@ -196,6 +212,7 @@ free_country(gboolean reset)
     free_leagues_array(&ligs, reset);
     free_cups_array(&cps, reset);
     free_g_ptr_array(&acps);
+
     if(reset)
 	acps = g_ptr_array_new();
 }
@@ -428,13 +445,13 @@ free_variables(void)
 {
     free_g_string_array(&player_names);
 
-    free_g_array(&transfer_list);
-
     free_option_list(&options, FALSE);
     free_option_list(&constants, FALSE);
     free_option_list(&constants_app, FALSE);
 
     free_g_string(&save_file);
+
+    g_rand_free(rand_generator);
 
     free_season_stats(FALSE);
 }
