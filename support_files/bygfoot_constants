@@ -28,8 +28,8 @@ float_stadium_improvement_max_discount_safety 2000
 float_stadium_improvement_max_discount 4000
 
 # wage unit factor for 500 seats or 5% safety
-float_stadium_improvement_wage_unit_factor_seats 150000
-float_stadium_improvement_wage_unit_factor_safety 60000
+float_stadium_improvement_wage_unit_factor_seats 250000
+float_stadium_improvement_wage_unit_factor_safety 120000
 
 # these determine how much the weekly seats and
 # safety increase can deviate from the base values 500 and 5%
@@ -82,7 +82,7 @@ int_team_stadium_ticket_price 30
 
 # factor for stadium size; this determines the income
 # of the user teams
-float_team_stadium_size_wage_factor 25000
+float_team_stadium_size_wage_factor 21000
 
 # stadium safety deterioration values (per game)
 float_game_stadium_safety_deterioration_lower 20
@@ -198,8 +198,8 @@ int_team_cpu_players 20
 float_player_max_skill 990000
 
 # determines initial money of the users
-int_initial_money_lower 80
-int_initial_money_upper 110
+int_initial_money_lower 70
+int_initial_money_upper 100
 
 # how many teams and players there
 # are in the league statistics
@@ -516,13 +516,13 @@ float_game_style_factor 750
 
 # influence of boost on player's skill.
 # these should be between 0 and 1
-float_player_boost_skill_effect 1500
+float_player_boost_skill_effect 1250
 # influence of boost on player's fitness decay.
-float_player_boost_fitness_effect 5000
+float_player_boost_fitness_effect 8000
 # influence of boost on injury probability.
-float_player_boost_injury_effect 5000
+float_player_boost_injury_effect 8000
 # influence of boost on cards probability.
-float_player_boost_card_effect 5000
+float_player_boost_card_effect 8000
 
 # influence of team boost on probability that the team in possession
 # of the ball fouls
