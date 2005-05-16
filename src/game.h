@@ -56,10 +56,10 @@ gfloat
 game_get_foul_possession_factor(gboolean boost1, gboolean boost2);
 
 gint
-game_find_to_substitute(const Team *tm);
+game_find_to_substitute(gint clid, const Team *tm);
 
 void
-game_substitute_player_send_off(Team *tm, gint player_number, 
+game_substitute_player_send_off(gint clid, Team *tm, gint player_number, 
 				gint *to_substitute, gint *substitute);
 void
 game_decrease_fitness(const Fixture *fix);

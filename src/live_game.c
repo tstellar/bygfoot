@@ -821,7 +821,8 @@ live_game_event_send_off(gint team, gint player, gboolean second_yellow)
 	    misc_callback_pause_live_game();
 	else if(tm[team]->players->len > 11)
 	{
-	    game_substitute_player_send_off(tm[team], player_id_index(tm[team], player),
+	    game_substitute_player_send_off(match->fix->clid,
+					    tm[team], player_id_index(tm[team], player),
 					    &to_substitute, &substitute);
 
 	    if(to_substitute != -1)

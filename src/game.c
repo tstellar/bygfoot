@@ -608,11 +608,12 @@ game_substitute_player(Team *tm, gint player_number)
 
 /** Find out whether we substitute a player to balance
     a team after a red card.
+    @param clid The cup/league id of the fixture.
     @param tm The team.
     @return A player index or -1 if we don't substitute.
 */
 gint
-game_find_to_substitute(const Team *tm)
+game_find_to_substitute(gint clid, const Team *tm)
 {
     gint i;
     gint position_to_substitute = -1;    
@@ -624,7 +625,7 @@ game_find_to_substitute(const Team *tm)
 	num_def = math_get_place(current_structure, 3);
 
     for(i=0;i<11;i++)
-	if(player_is_banned(player_of_idx_team(tm, i)) <= 0)
+	if(player_card_get(player_of_idx_team(tm, i), clid, PLAYER_VALUE_CARD_RED) <= 0)
 	    g_ptr_array_add(players, player_of_idx_team(tm, i));
 
     g_ptr_array_sort_with_data(players, (GCompareDataFunc)player_compare_func,
@@ -677,13 +678,14 @@ game_player_get_ban_duration(void)
 }
 
 /** Find out whether we make a sub after a send-off.
+    @param clid The id of the fixture.
     @param tm The team.
     @param player The player index.
     @param to_substitute The return location for the index of
     the player to substitute.
     @param substitute The return location for the player who comes into the game. */
 void
-game_substitute_player_send_off(Team *tm, gint player_number, 
+game_substitute_player_send_off(gint clid, Team *tm, gint player_number, 
 				gint *to_substitute, gint *substitute)
 {
     gint i;
@@ -694,7 +696,7 @@ game_substitute_player_send_off(Team *tm, gint player_number,
 	num_mid = math_get_place(current_structure, 2),
 	num_def = math_get_place(current_structure, 3);
 
-    *to_substitute = game_find_to_substitute(tm);
+    *to_substitute = game_find_to_substitute(clid, tm);
 
     if(*to_substitute == -1)
 	return;
