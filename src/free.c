@@ -1,4 +1,5 @@
 #include "free.h"
+#include "transfer_struct.h"
 #include "user.h"
 #include "variables.h"
 
@@ -21,7 +22,7 @@ free_memory(void)
 void
 free_transfer_list(void)
 {
-    gint i, j;
+    gint i;
 
     for(i=0;i<transfer_list->len;i++)
 	g_array_free(g_array_index(transfer_list, Transfer, i).offers, TRUE);
