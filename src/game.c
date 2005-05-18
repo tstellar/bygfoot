@@ -981,3 +981,29 @@ game_get_max_values(gfloat max_values[3])
 	}
     }
 }
+
+/** Find out whether there's a default penalty shooter
+    in the team.
+    @return A player id or -1. */
+gint
+game_get_default_penalty_shooter(const Team *tm)
+{
+    gint return_value = -1;
+
+    if(team_is_user(tm) != -1 &&
+       option_int("int_opt_user_penalty_shooter",
+		  &usr(team_is_user(tm)).options) != -1 &&
+       player_of_id_team(tm, 
+			 option_int("int_opt_user_penalty_shooter",
+				    &usr(team_is_user(tm)).options)) != NULL &&
+       player_id_index(tm,
+		       option_int("int_opt_user_penalty_shooter",
+				  &usr(team_is_user(tm)).options)) < 11 &&
+       player_of_id_team(tm, 
+			 option_int("int_opt_user_penalty_shooter",
+				    &usr(team_is_user(tm)).options))->cskill != 0)
+	return_value = option_int("int_opt_user_penalty_shooter",
+				  &usr(team_is_user(tm)).options);
+
+    return return_value;
+}

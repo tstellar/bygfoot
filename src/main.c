@@ -81,7 +81,8 @@ main_init(gint argc, gchar *argv[])
 
     support_directories = NULL;
 
-    file_add_support_directory_recursive(PACKAGE_DATA_DIR "/" PACKAGE "/support_files");  
+    file_add_support_directory_recursive(PACKAGE_DATA_DIR "/" PACKAGE "/support_files");
+
     sprintf(buf, "%s/%s", g_get_home_dir(), HOMEDIRNAME);
     file_add_support_directory_recursive(buf);
 

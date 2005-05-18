@@ -42,4 +42,7 @@ query_misc_string_in_array(const gchar *string, GPtrArray *array);
 gboolean
 query_misc_integer_is_in_g_array(gint item, GArray *array);
 
+void
+misc_string_replace_token(gchar *string, const gchar *token, const gchar *replacement);
+
 #endif

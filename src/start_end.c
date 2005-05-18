@@ -294,12 +294,12 @@ end_week_round_update_fixtures(void)
 	    fixture_update(acp(i));
 
     for(i=0;i<ligs->len;i++)
-	if(week == (lig(i).teams->len - 1) * 2 && week_round == 1 &&
+	if(week == g_array_index(lig(i).fixtures, Fixture, lig(i).fixtures->len - 1).week_number && week_round == 1 &&
 	   team_is_user(g_array_index(lig(i).table.elements, TableElement, 0).team) != -1)
 	    user_history_add(&usr(team_is_user(g_array_index(lig(i).table.elements, TableElement, 0).team)),
 			     USER_HISTORY_CHAMPION, g_array_index(lig(i).table.elements, TableElement, 0).team_id,
 			     lig(i).id, -1, "");
-
+    
     for(i=0;i<cps->len;i++)
 	if(cp(i).add_week == 1000 && query_cup_begins(&cp(i)))
 	{

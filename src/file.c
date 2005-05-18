@@ -160,15 +160,16 @@ void
 file_check_home_dir_copy_conf_files(void)
 {
     gint i;
-    gchar *conf_files[3] =
+    gchar *conf_files[4] =
 	{"bygfoot.conf",
 	 "bygfoot_user.conf",
-	 "bygfoot_constants"};
+	 "bygfoot_constants",
+	 "bygfoot_app"};
     const gchar *home = g_get_home_dir();
     gchar *conf_file = NULL;
     gchar buf[SMALL];
 
-    for(i=0;i<3;i++)
+    for(i=0;i<4;i++)
     {
 	sprintf(buf, "%s/%s/%s", home, HOMEDIRNAME, conf_files[i]);
 	if(!g_file_test(buf, G_FILE_TEST_EXISTS))

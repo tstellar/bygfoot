@@ -280,3 +280,35 @@ query_misc_string_in_array(const gchar *string, GPtrArray *array)
 
     return FALSE;
 }
+
+/** Replace a token in a string by another string. */
+void
+misc_string_replace_token(gchar *string, const gchar *token, const gchar *replacement)
+{
+    gint i, j;
+    gchar buf[SMALL], buf2[SMALL], rest[SMALL];
+    
+    for(i=strlen(string); i >= strlen(token); i--)
+    {
+	strcpy(buf, "");
+	strcpy(buf2, "");
+	strcpy(rest, "");
+
+	strncpy(buf, string, i);
+	buf[i] = '\0';
+
+	for(j=i;j<strlen(string);j++)
+	    rest[j - i] = string[j];
+	rest[j - i] = '\0';
+
+	if(g_str_has_suffix(buf, token))
+	{
+	    strncpy(buf2, buf, strlen(buf) - strlen(token));
+	    buf2[strlen(buf) - strlen(token)] = '\0';
+	    strcat(buf2, replacement);
+
+	    sprintf(string, "%s%s", buf2, rest);
+	    misc_string_replace_token(string, token, replacement);
+	}
+    }
+}

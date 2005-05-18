@@ -88,4 +88,7 @@ game_get_max_values(gfloat max_values[3]);
 void
 game_reset_players(gint idx);
 
+gint
+game_get_default_penalty_shooter(const Team *tm);
+
 #endif

@@ -2,6 +2,7 @@
 #include "free.h"
 #include "game.h"
 #include "game_gui.h"
+#include "lg_commentary.h"
 #include "live_game.h"
 #include "maths.h"
 #include "misc_callback_func.h"
@@ -97,9 +98,10 @@ live_game_create_unit(void)
 
     new.minute = live_game_get_minute();
     new.time = live_game_get_time(&last_unit);
-    new.event.commentary = g_string_new("dummy commentary");
-    new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
-	new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] = -1;    
+    new.event.commentary = NULL;
+    new.event.values[LIVE_GAME_EVENT_VALUE_TEAM] =
+	new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
+	new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] = -1;
     new.area = last_unit.area;
     new.result[0] = last_unit.result[0];
     new.result[1] = last_unit.result[1];
@@ -202,9 +204,7 @@ live_game_create_start_unit(void)
     new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
 	new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] = -1;
 
-    /*d*/
-    new.event.commentary = g_string_new("Match's started.");
-
+    new.event.commentary = NULL;
     new.minute = 0;
     new.time = LIVE_GAME_UNIT_TIME_FIRST_HALF;
     new.possession = math_rndi(0, 1);
@@ -352,16 +352,12 @@ live_game_event_lost_possession(void)
 			last_unit.area, 0, -1, TRUE);
 	
     if(uni(unis->len - 2).event.type == LIVE_GAME_EVENT_GENERAL)
-    {
 	last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] =
 	    uni(unis->len - 2).event.values[LIVE_GAME_EVENT_VALUE_PLAYER];
-    }
     else
-    {
 	last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] =
 	    game_get_player(tm[!last_unit.possession], 
 			    uni(unis->len - 2).area, 0, -1, FALSE);
-    }
 
     live_game_finish_unit();
 
@@ -385,7 +381,7 @@ live_game_event_injury(gint team, gint player, gboolean create_new)
     if(create_new)
     {
 	new = last_unit;
-	new.event.commentary = g_string_new("injury");
+	new.event.commentary = NULL;
 	g_array_append_val(unis, new);
 	last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
 	    player;
@@ -523,7 +519,9 @@ live_game_event_scoring_chance(void)
 		uni(unis->len - 2).event.values[LIVE_GAME_EVENT_VALUE_PLAYER];
 	else
 	{
-	    if(uni(unis->len - 2).event.values[LIVE_GAME_EVENT_VALUE_PLAYER] != -1)
+	    if(uni(unis->len - 2).event.values[LIVE_GAME_EVENT_VALUE_PLAYER] != -1 &&
+	       player_id_team(uni(unis->len - 2).event.values[LIVE_GAME_EVENT_VALUE_PLAYER]) ==
+	       tm[last_unit.possession])
 	    {
 		last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
 		    game_get_player(tm[last_unit.possession], last_unit.area, 0, 
@@ -568,10 +566,13 @@ live_game_event_penalty(void)
 	new = last_unit;
 	new.minute = -1;
 	new.event.type = LIVE_GAME_EVENT_PENALTY;
-	new.event.commentary = g_string_new("penalty");
+	new.event.commentary = NULL;
 
 	g_array_append_val(unis, new);
     }
+
+    last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] =
+	last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM] = -1;
 
     if(last_unit.time == LIVE_GAME_UNIT_TIME_PENALTIES)
     {
@@ -603,15 +604,9 @@ live_game_event_penalty(void)
 	last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM] =
 	    last_unit.possession;
 
-	if(team_is_user(tm[last_unit.possession]) != -1 &&
-	   option_int("int_opt_user_penalty_shooter",
-		      &usr(team_is_user(tm[last_unit.possession])).options) != -1 &&
-	   player_of_id_team(tm[last_unit.possession], option_int("int_opt_user_penalty_shooter",
-							     &usr(team_is_user(tm[last_unit.possession])).options)) != NULL)
-	    last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
-		option_int("int_opt_user_penalty_shooter",
-			   &usr(team_is_user(tm[last_unit.possession])).options);
-	else
+	last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] = 
+	    game_get_default_penalty_shooter(tm[last_unit.possession]);
+	if(last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] == -1)
 	    last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
 		game_get_player(tm[last_unit.possession], GAME_PLAYER_TYPE_PENALTY, -1, -1, FALSE);
     }
@@ -635,9 +630,10 @@ live_game_event_general(gboolean create_new)
 	new.minute = live_game_get_minute();
 	new.time = last_unit.time;
 	new.event.type = LIVE_GAME_EVENT_GENERAL;
-	new.event.commentary = g_string_new("general");	
+	new.event.commentary = NULL;	
 	new.result[0] = last_unit.result[0];
 	new.result[1] = last_unit.result[1];
+	new.event.values[LIVE_GAME_EVENT_VALUE_TEAM] = -1;
 
 	if(last_unit.event.type == LIVE_GAME_EVENT_GENERAL ||
 	   last_unit.event.type == LIVE_GAME_EVENT_START_MATCH ||
@@ -750,16 +746,12 @@ live_game_event_free_kick(void)
     new.event.type = LIVE_GAME_EVENT_FREE_KICK;
     new.event.values[LIVE_GAME_EVENT_VALUE_TEAM] =
 	new.possession;
-    new.event.commentary = g_string_new("freekick");
-    if(team_is_user(tm[new.possession]) != -1 &&
-       option_int("int_opt_user_penalty_shooter",
-		  &usr(team_is_user(tm[last_unit.possession])).options) != -1 &&
-       player_of_id_team(tm[new.possession], option_int("int_opt_user_penalty_shooter",
-						   &usr(team_is_user(tm[new.possession])).options)) != NULL)
-	new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
-	    option_int("int_opt_user_penalty_shooter",
-		       &usr(team_is_user(tm[new.possession])).options);
-    else
+    new.event.commentary = NULL;
+
+    new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
+	game_get_default_penalty_shooter(tm[new.possession]);
+
+    if(new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] == -1)
 	new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
 	    game_get_player(tm[new.possession], new.area, 0, -1, TRUE);
 
@@ -787,7 +779,7 @@ live_game_event_send_off(gint team, gint player, gboolean second_yellow)
     new.event.type = LIVE_GAME_EVENT_SEND_OFF;
     new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] = player;
     new.event.values[LIVE_GAME_EVENT_VALUE_TEAM] = team;
-    new.event.commentary = g_string_new("send off");
+    new.event.commentary = NULL;
 
     g_array_append_val(unis, new);
 
@@ -860,7 +852,7 @@ live_game_event_substitution(gint team_number, gint sub_in, gint sub_out)
     
     new.minute = -1;
     new.time = live_game_get_time(&last_unit);
-    new.event.commentary = g_string_new("dummy commentary");
+    new.event.commentary = NULL;
 
     new.event.type = LIVE_GAME_EVENT_SUBSTITUTION;
     new.event.values[LIVE_GAME_EVENT_VALUE_TEAM] = team_number;
@@ -890,7 +882,7 @@ live_game_event_team_change(gint team_number, gint event_type)
     
     new.minute = -1;
     new.time = live_game_get_time(&last_unit);
-    new.event.commentary = g_string_new("dummy commentary");
+    new.event.commentary = NULL;
 
     new.event.values[LIVE_GAME_EVENT_VALUE_TEAM] = team_number;
     new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
@@ -917,14 +909,15 @@ live_game_event_duel(void)
 	printf("\t\tlive_game_event_duel\n");
 
     new.minute = -1;
-    new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] = -1;
     new.event.values[LIVE_GAME_EVENT_VALUE_TEAM] = new.possession;
 
-    new.event.commentary = g_string_new("duel");
+    new.event.commentary = NULL;
 	
     attacker = player_of_id_team(tm[new.possession],
 			    new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER]);
     goalie = player_of_idx_team(tm[!new.possession], 0);
+    new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] = goalie->id;
+
     duel_factor = player_get_game_skill(attacker, FALSE) /
 	player_get_game_skill(goalie, FALSE);
 
@@ -1186,199 +1179,6 @@ live_game_unit_before(const LiveGameUnit* unit, gint gap)
     return NULL;
 }
 
-/** Generate commentary for the live game event in the unit
-    and show the unit in the live game window.
-    @param unit The unit we comment. */
-void
-live_game_generate_commentary(LiveGameUnit *unit)
-{
-    GString *commentary = unit->event.commentary;
-
-    switch(unit->event.type)
-    {
-	default:
-	    g_warning("live_game_generate_commentary: unknown event type %d\n",
-		      unit->event.type);
-	    break;
-	case LIVE_GAME_EVENT_GENERAL:
-	    if(unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER] != -1 &&
-	       unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] != -1)
-		g_string_printf(commentary, "general, %s passes to %s",
-				player_of_id_team(tm[unit->possession], 
-					     unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER2])->name->str,
-				player_of_id_team(tm[unit->possession], 
-					     unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->name->str);
-	    else if(unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER] != -1)
-		g_string_printf(commentary, "%s has the ball.",
-				player_of_id_team(tm[unit->possession], 
-					     unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->name->str);
-	    else
-		g_string_printf(commentary, "match's getting boring");
-	    break;
-	case LIVE_GAME_EVENT_START_MATCH:
-	    g_string_printf(commentary, "Match started.");
-	    break;
-	case LIVE_GAME_EVENT_HALF_TIME:
-	    g_string_printf(commentary, "Half time.");
-	    break;
-	case LIVE_GAME_EVENT_EXTRA_TIME:
-	    g_string_printf(commentary, "Extra time.");
-	    break;
-	case LIVE_GAME_EVENT_END_MATCH:
-	    g_string_printf(commentary, "Match is over!");
-	    break;
-	case LIVE_GAME_EVENT_LOST_POSSESSION:
-	    g_string_printf(commentary, "%s loses ball to %s.",
-			    player_of_id_team(tm[!unit->possession], 
-					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER2])->name->str,
-			    player_of_id_team(tm[unit->possession], 
-					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->name->str);
-	    break;
-	case LIVE_GAME_EVENT_SCORING_CHANCE:
-	    g_string_printf(commentary, "scoring chance by %s",
-			    player_of_id_team(tm[unit->possession], 
-					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->name->str);
-	    break;
-	case LIVE_GAME_EVENT_HEADER:
-	    g_string_printf(commentary, "header by %s",
-			    player_of_id_team(tm[unit->possession], 
-					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->name->str);
-	    break;
-	case LIVE_GAME_EVENT_PENALTY:
-	    g_string_printf(commentary, "%s shoots penalty",
-			    player_of_id_team(tm[unit->possession], 
-					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->name->str);
-	    break;
-	case LIVE_GAME_EVENT_FREE_KICK:
-	    g_string_printf(commentary, "%s shoots free kick",
-			    player_of_id_team(tm[unit->possession], 
-					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->name->str);
-	    break;
-	case LIVE_GAME_EVENT_GOAL:
-	    g_string_printf(commentary, "Goal!");
-	    break;
-	case LIVE_GAME_EVENT_OWN_GOAL:
-	    g_string_printf(commentary, "Oh no! %s scored an own goal!",
-			    player_of_id_team(tm[!unit->possession], 
-					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->name->str);
-	    break;
-	case LIVE_GAME_EVENT_MISSED:
-	    g_string_printf(commentary, "Missed!");
-	    break;
-	case LIVE_GAME_EVENT_SAVE:
-	    g_string_printf(commentary, "Save!");
-	    break;
-	case LIVE_GAME_EVENT_POST:
-	    g_string_printf(commentary, "Post!");
-	    break;
-	case LIVE_GAME_EVENT_CROSS_BAR:
-	    g_string_printf(commentary, "Cross bar!");
-	    break;
-	case LIVE_GAME_EVENT_FOUL:
-	    g_string_printf(commentary, "%s fouls %s.",
-			    player_of_id_team(tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]], 
-					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER2])->name->str,
-			    player_of_id_team(tm[!unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]], 
-					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->name->str);
-	    break;
-	case LIVE_GAME_EVENT_FOUL_RED:
-	    g_string_printf(commentary, "%s fouls %s; he gets a red card!",
-			    player_of_id_team(tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]], 
-					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER2])->name->str,
-			    player_of_id_team(tm[!unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]], 
-					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->name->str);
-	    break;
-	case LIVE_GAME_EVENT_FOUL_RED_INJURY:
-	    g_string_printf(commentary, "%s fouls %s; he gets a red card and %s is injured!",
-			    player_of_id_team(tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]], 
-					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER2])->name->str,
-			    player_of_id_team(tm[!unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]], 
-					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->name->str,
-			    player_of_id_team(tm[!unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]], 
-					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->name->str);
-	    break;
-	case LIVE_GAME_EVENT_FOUL_YELLOW:
-	    g_string_printf(commentary, "%s fouls %s; he gets a yellow card.",
-			    player_of_id_team(tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]], 
-					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER2])->name->str,
-			    player_of_id_team(tm[!unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]], 
-					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->name->str);
-	    break;
-	case LIVE_GAME_EVENT_SEND_OFF:
-	    g_string_printf(commentary, "%s is sent off.",
-			    player_of_id_team(tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]],
-					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->name->str);
-	    break;
-	case LIVE_GAME_EVENT_INJURY:
-	    g_string_printf(commentary, "%s is injured.",
-			    player_of_id_team(tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]], 
-					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->name->str);
-	    break;
-	case LIVE_GAME_EVENT_TEMP_INJURY:
-	    g_string_printf(commentary, "%s is injured but he can continue to play.",
-			    player_of_id_team(tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]], 
-					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->name->str);
-	    break;
-	case LIVE_GAME_EVENT_PENALTIES:
-	    g_string_printf(commentary, "Penalty shoot-out!");
-	    break;
-	case LIVE_GAME_EVENT_STADIUM_BREAKDOWN:
-	    g_string_printf(commentary, "There's a breakdown in the stadium");
-	    break;
-	case LIVE_GAME_EVENT_STADIUM_FIRE:
-	    g_string_printf(commentary, "There's a fire in the stadium.");
-	    break;
-	case LIVE_GAME_EVENT_STADIUM_RIOTS:
-	    g_string_printf(commentary, "There are riots in the stadium.");
-	    break;
-	case LIVE_GAME_EVENT_SUBSTITUTION:
-	    g_string_printf(commentary, "%s substitutes %s for %s.",
-			    tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->name->str,
-			    player_of_id_team(tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]],
-					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->name->str,
-			    player_of_id_team(tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]],
-					 unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER2])->name->str);
-	    break;
-	case LIVE_GAME_EVENT_STRUCTURE_CHANGE:
-	    g_string_printf(commentary, "%s changes structure to %d.",
-			    tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->name->str,
-			    tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->structure);
-	    break;
-	case LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_DEFEND:
-	    g_string_printf(commentary, "%s changes style to ALL OUT DEFEND.",
-			    tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->name->str);
-	    break;
-	case LIVE_GAME_EVENT_STYLE_CHANGE_DEFEND:
-	    g_string_printf(commentary, "%s changes style to DEFEND.",
-			    tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->name->str);
-	    break;
-	case LIVE_GAME_EVENT_STYLE_CHANGE_BALANCED:
-	    g_string_printf(commentary, "%s changes style to BALANCED.",
-			    tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->name->str);
-	    break;
-	case LIVE_GAME_EVENT_STYLE_CHANGE_ATTACK:
-	    g_string_printf(commentary, "%s changes style to ATTACK.",
-			    tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->name->str);
-	    break;
-	case LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_ATTACK:
-	    g_string_printf(commentary, "%s changes style to ALL OUT ATTACK.",
-			    tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->name->str);
-	    break;
-	case LIVE_GAME_EVENT_BOOST_CHANGE_ANTI:
-	    g_string_printf(commentary, "%s changes boost to ANTI.",
-			    tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->name->str);
-	    break;
-	case LIVE_GAME_EVENT_BOOST_CHANGE_OFF:
-	    g_string_printf(commentary, "%s changes boost to OFF.",
-			    tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->name->str);
-	    break;
-	case LIVE_GAME_EVENT_BOOST_CHANGE_ON:
-	    g_string_printf(commentary, "%s changes boost to ON.",
-			    tm[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->name->str);
-	    break;
-    }
-}
-
 /** Calculate which area the ball is going to be in in
     the next unit.
     @param unit The previous unit.
@@ -1445,6 +1245,12 @@ live_game_finish_unit(void)
     if(debug > 100 && fixture_user_team_involved(match->fix) != -1)
 	printf("\t\tlive_game_finish_unit\n");
 
+    if(debug > 100 && fixture_user_team_involved(match->fix) != -1)
+	printf("OOOO1 idx %d type %d poss %d team %d pl %d %d\n", unis->len - 1,
+	       unit->event.type, unit->possession, unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM],
+	       unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER],
+	       unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER2]);
+
     if(unit->minute != -1 && unit->time != LIVE_GAME_UNIT_TIME_PENALTIES &&
        fixture_user_team_involved(match->fix) != -1)
     {
@@ -1467,7 +1273,7 @@ live_game_finish_unit(void)
 					 match);
 	}
 
-	live_game_generate_commentary(unit);
+	lg_commentary_generate(unit, match->fix);
     }
 
     if(show)

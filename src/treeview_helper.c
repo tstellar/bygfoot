@@ -195,7 +195,9 @@ treeview_helper_live_game_icon(gint event_type)
 	return const_app("string_live_game_event_foul_icon");
     else if(event_type == LIVE_GAME_EVENT_FOUL_YELLOW)
 	return const_app("string_live_game_event_foul_yellow_icon");
-    else if(event_type == LIVE_GAME_EVENT_SEND_OFF)
+    else if(event_type == LIVE_GAME_EVENT_SEND_OFF ||
+	    event_type == LIVE_GAME_EVENT_FOUL_RED ||
+	    event_type == LIVE_GAME_EVENT_FOUL_RED_INJURY)
 	return const_app("string_live_game_event_send_off_icon");
     else if(event_type == LIVE_GAME_EVENT_INJURY)
 	return const_app("string_live_game_event_injury_icon");

@@ -1531,7 +1531,19 @@ treeview_create_next_opponent(void)
     gtk_list_store_set(ls, &iter, 0, _("Your next opponent"), 1, buf, -1);
 
     gtk_list_store_append(ls, &iter);
-    sprintf(buf, "Week %d Round %d", fix->week_number, fix->week_round_number);
+
+    if(fix->week_number == week && 
+       fix->week_round_number == week_round)
+	sprintf(buf, "<span foreground='%s' background='%s'>Week %d Round %d</span>",
+		const_app("string_treeview_helper_color_default_foreground"),
+		const_app("string_treeview_helper_color_default_background"),
+		fix->week_number, fix->week_round_number);
+    else
+	sprintf(buf, "<span foreground='%s' background='%s'>Week %d Round %d</span>",
+		const_app("string_treeview_opponent_match_later_fg"),
+		const_app("string_treeview_opponent_match_later_bg"),
+		fix->week_number, fix->week_round_number);	
+
     if(!fix->home_advantage)
 	strcpy(buf2, _("Neutral ground"));
     else if(fix->teams[0] == current_user.tm)

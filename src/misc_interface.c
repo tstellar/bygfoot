@@ -575,7 +575,7 @@ create_window_live (void)
   gtk_container_set_border_width (GTK_CONTAINER (window_live), 6);
   gtk_window_set_title (GTK_WINDOW (window_live), _("Live game"));
   gtk_window_set_position (GTK_WINDOW (window_live), GTK_WIN_POS_CENTER);
-  gtk_window_set_default_size (GTK_WINDOW (window_live), 450, 550);
+  gtk_window_set_default_size (GTK_WINDOW (window_live), 520, 550);
 
   vbox36 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox36);
