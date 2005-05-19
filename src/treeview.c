@@ -1613,7 +1613,7 @@ treeview_set_up_next_opponent(GtkTreeView *treeview)
     GtkCellRenderer     *renderer;
 
     gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
-				GTK_SELECTION_NONE);
+				GTK_SELECTION_SINGLE);
     gtk_tree_view_set_rules_hint(treeview, FALSE);
     gtk_tree_view_set_headers_visible(treeview, FALSE);
 

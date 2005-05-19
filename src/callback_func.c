@@ -426,6 +426,8 @@ callback_show_team(gint type)
 void
 callback_show_player_list(gint type)
 {
+    stat0 = STATUS_SHOW_PLAYER_LIST;
+
     switch(type)
     {
 	default:
@@ -568,4 +570,41 @@ callback_show_season_history(gint type)
     }
     
     treeview_show_season_history(stat1, stat2);
+}
+
+/** Show the player list of the next opponent. */
+void
+callback_show_next_opponent(void)
+{
+    const Fixture *fix = team_get_fixture(current_user.tm, FALSE);
+    const Team *opp = (fix == NULL) ? NULL :
+	fix->teams[fix->teams[0] == current_user.tm];
+    GtkTreeView *treeview_right = 
+	GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right"));
+
+    if(opp == NULL)
+	return;
+
+    stat0 = STATUS_BROWSE_TEAMS;
+    stat1 = team_get_index(opp);
+    stat2 = opp->clid;
+
+    treeview_show_player_list_team(treeview_right, opp, current_user.scout % 10);
+}
+
+/** Show the player list after the user clicked on a player in
+    the browse players mode. */
+void
+callback_show_player_team(void)
+{
+    GtkTreeView *treeview_right = 
+	GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right"));
+    const Player *pl = 
+	(const Player*)treeview_helper_get_pointer(treeview_right, 2);
+    
+    stat0 = STATUS_BROWSE_TEAMS;
+    stat1 = team_get_index(pl->team);
+    stat2 = pl->team->clid;
+
+    treeview_show_player_list_team(treeview_right, pl->team, current_user.scout % 10);    
 }

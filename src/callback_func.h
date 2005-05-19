@@ -51,4 +51,10 @@ callback_show_league_stats(gint type);
 void
 callback_show_season_history(gint type);
 
+void
+callback_show_next_opponent(void);
+
+void
+callback_show_player_team(void);
+
 #endif

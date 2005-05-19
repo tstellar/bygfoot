@@ -522,6 +522,12 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
 	case STATUS_SHOW_TEAM_LIST:
 	    callback_show_team(SHOW_CURRENT);
 	    break;
+	case STATUS_MAIN:
+	    callback_show_next_opponent();
+	    break;
+	case STATUS_SHOW_PLAYER_LIST:
+	    callback_show_player_team();
+	    break;
     }
 
     gui_set_arrows();
@@ -796,8 +802,8 @@ void
 on_menu_browse_players_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    callback_show_player_list(SHOW_CURRENT);
     stat0 = STATUS_SHOW_PLAYER_LIST;
+    callback_show_player_list(SHOW_CURRENT);
 
     gui_set_arrows();
 }
