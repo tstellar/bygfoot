@@ -122,8 +122,13 @@ on_window_stadium_delete_event         (GtkWidget       *widget,
 void
 on_combo_country_changed               (GtkComboBox     *combobox,
                                         gpointer         user_data);
-#endif
 
 void
 on_spinbutton_verbosity_value_changed  (GtkSpinButton   *spinbutton,
                                         gpointer         user_data);
+
+gboolean
+on_spinbutton_speed_button_press_event (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data);
+#endif

@@ -22,8 +22,11 @@ enum
     TAG_LIVE_GAME_UNIT_RESULT,
     TAG_LIVE_GAME_UNIT_EVENT,
     TAG_LIVE_GAME_UNIT_EVENT_TYPE,
-    TAG_LIVE_GAME_UNIT_EVENT_VALUE,
+    TAG_LIVE_GAME_UNIT_EVENT_TEAM,
+    TAG_LIVE_GAME_UNIT_EVENT_PLAYER,
+    TAG_LIVE_GAME_UNIT_EVENT_PLAYER2,
     TAG_LIVE_GAME_UNIT_EVENT_COMMENTARY,
+    TAG_LIVE_GAME_UNIT_EVENT_VERBOSITY,
     TAG_LIVE_GAME_STAT,
     TAG_LIVE_GAME_STAT_POSSESSION,
     TAG_LIVE_GAME_STAT_VALUES,
@@ -103,13 +106,12 @@ xml_loadsave_live_game_end_element    (GMarkupParseContext *context,
 	    unitidx++;
     }
     else if(tag == TAG_LIVE_GAME_UNIT_EVENT_TYPE ||
-	    tag == TAG_LIVE_GAME_UNIT_EVENT_VALUE ||
+	    tag == TAG_LIVE_GAME_UNIT_EVENT_TEAM ||
+	    tag == TAG_LIVE_GAME_UNIT_EVENT_PLAYER ||
+	    tag == TAG_LIVE_GAME_UNIT_EVENT_PLAYER2 ||
+	    tag == TAG_LIVE_GAME_UNIT_EVENT_VERBOSITY ||
 	    tag == TAG_LIVE_GAME_UNIT_EVENT_COMMENTARY)
-    {
 	state = TAG_LIVE_GAME_UNIT_EVENT;
-	if(tag == TAG_LIVE_GAME_UNIT_EVENT_VALUE)
-	    unitidx++;
-    }
     else if(tag == TAG_LIVE_GAME_STAT_POSSESSION ||
 	    tag == TAG_LIVE_GAME_STAT_PLAYERS ||
 	    tag == TAG_LIVE_GAME_STAT_VALUES)
@@ -178,10 +180,16 @@ xml_loadsave_live_game_text         (GMarkupParseContext *context,
 	new_unit.result[unitidx] = int_value;
     else if(state == TAG_LIVE_GAME_UNIT_EVENT_TYPE)
 	new_unit.event.type = int_value;
-    else if(state == TAG_LIVE_GAME_UNIT_EVENT_VALUE)
-	new_unit.event.values[unitidx] = int_value;
+    else if(state == TAG_LIVE_GAME_UNIT_EVENT_TEAM)
+	new_unit.event.team = int_value;
+    else if(state == TAG_LIVE_GAME_UNIT_EVENT_PLAYER)
+	new_unit.event.player = int_value;
+    else if(state == TAG_LIVE_GAME_UNIT_EVENT_PLAYER2)
+	new_unit.event.player2 = int_value;
     else if(state == TAG_LIVE_GAME_UNIT_EVENT_COMMENTARY)
 	new_unit.event.commentary = g_string_new(buf);
+    else if(state == TAG_LIVE_GAME_UNIT_EVENT_VERBOSITY)
+	new_unit.event.verbosity = int_value;
     else if(state == TAG_LIVE_GAME_STAT_POSSESSION)
 	lgame->stats.possession = int_value;
     else if(state == TAG_LIVE_GAME_STAT_VALUE)
@@ -260,8 +268,6 @@ xml_loadsave_live_game_write(const gchar *filename, const LiveGame *live_game)
 void
 xml_loadsave_live_game_write_unit(FILE *fil, const LiveGameUnit *unit)
 {
-    gint i;
-
     fprintf(fil, "<_%d>\n", TAG_LIVE_GAME_UNIT);
 
     xml_write_int(fil, unit->possession,
@@ -279,16 +285,21 @@ xml_loadsave_live_game_write_unit(FILE *fil, const LiveGameUnit *unit)
 
     fprintf(fil, "%s<_%d>\n", I1, TAG_LIVE_GAME_UNIT_EVENT);
 	
-    xml_write_int(fil,
-		  unit->event.type,
+    xml_write_int(fil, unit->event.type,
 		  TAG_LIVE_GAME_UNIT_EVENT_TYPE, I2);
+    xml_write_int(fil, unit->event.verbosity,
+		  TAG_LIVE_GAME_UNIT_EVENT_VERBOSITY, I2);
 
     xml_write_g_string(fil, unit->event.commentary,
 		       TAG_LIVE_GAME_UNIT_EVENT_COMMENTARY, I2);
-    for(i=0;i<LIVE_GAME_EVENT_VALUE_END;i++)
-	xml_write_int(fil, unit->event.values[i],
-		      TAG_LIVE_GAME_UNIT_EVENT_VALUE, I2);
 
+    xml_write_int(fil, unit->event.team,
+		  TAG_LIVE_GAME_UNIT_EVENT_TEAM, I2);
+    xml_write_int(fil, unit->event.player,
+		  TAG_LIVE_GAME_UNIT_EVENT_PLAYER, I2);
+    xml_write_int(fil, unit->event.player2,
+		  TAG_LIVE_GAME_UNIT_EVENT_PLAYER2, I2);
+    
     fprintf(fil, "%s</_%d>\n", I1, TAG_LIVE_GAME_UNIT_EVENT);
 
     fprintf(fil, "</_%d>\n", TAG_LIVE_GAME_UNIT);

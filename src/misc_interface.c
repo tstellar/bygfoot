@@ -773,6 +773,9 @@ create_window_live (void)
   g_signal_connect ((gpointer) spinbutton_speed, "value_changed",
                     G_CALLBACK (on_spinbutton_speed_value_changed),
                     NULL);
+  g_signal_connect ((gpointer) spinbutton_speed, "button_press_event",
+                    G_CALLBACK (on_spinbutton_speed_button_press_event),
+                    NULL);
   g_signal_connect ((gpointer) spinbutton_verbosity, "value_changed",
                     G_CALLBACK (on_spinbutton_verbosity_value_changed),
                     NULL);

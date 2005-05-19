@@ -99,9 +99,9 @@ live_game_create_unit(void)
     new.minute = live_game_get_minute();
     new.time = live_game_get_time(&last_unit);
     new.event.commentary = NULL;
-    new.event.values[LIVE_GAME_EVENT_VALUE_TEAM] =
-	new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
-	new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] = -1;
+    new.event.team =
+	new.event.player =
+	new.event.player2 = -1;
     new.area = last_unit.area;
     new.result[0] = last_unit.result[0];
     new.result[1] = last_unit.result[1];
@@ -201,8 +201,8 @@ live_game_create_start_unit(void)
 
     if(debug > 100 && fixture_user_team_involved(match->fix) != -1)
 	printf("\t\tlive_game_create_start_unit\n");
-    new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
-	new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] = -1;
+    new.event.player =
+	new.event.player2 = -1;
 
     new.event.commentary = NULL;
     new.minute = 0;
@@ -213,7 +213,7 @@ live_game_create_start_unit(void)
     new.result[0] = new.result[1] = 0;
 
     new.event.type = LIVE_GAME_EVENT_START_MATCH;
-    new.event.values[LIVE_GAME_EVENT_VALUE_TEAM] = new.possession;
+    new.event.team = new.possession;
 	    
     g_array_append_val(unis, new);
 }
@@ -275,26 +275,26 @@ live_game_event_foul(void)
        game_get_foul_possession_factor(
 	   tm[last_unit.possession]->boost, tm[!last_unit.possession]->boost))
     {	
-	foul_team = last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM] = !last_unit.possession;
+	foul_team = last_unit.event.team = !last_unit.possession;
 	if(uni(unis->len - 2).event.type == LIVE_GAME_EVENT_GENERAL)
-	    fouled_player = last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
-		uni(unis->len - 2).event.values[LIVE_GAME_EVENT_VALUE_PLAYER];
+	    fouled_player = last_unit.event.player =
+		uni(unis->len - 2).event.player;
 	else
-	    fouled_player = last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
+	    fouled_player = last_unit.event.player =
 		game_get_player(tm[last_unit.possession],
 				last_unit.area, 0, -1, FALSE);
 
-	foul_player = last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] =
+	foul_player = last_unit.event.player2 =
 	    game_get_player(tm[!last_unit.possession],
 			    last_unit.area, 0, -1, FALSE);
     }
     else
     {
-	foul_team = last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM] = last_unit.possession;
-	fouled_player = last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] = 
+	foul_team = last_unit.event.team = last_unit.possession;
+	fouled_player = last_unit.event.player = 
 	    game_get_player(tm[!last_unit.possession],
 			    last_unit.area, 0, -1, FALSE);
-	foul_player = last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] =
+	foul_player = last_unit.event.player2 =
 	    game_get_player(tm[last_unit.possession],
 				      last_unit.area, 0, -1, FALSE);
     }
@@ -347,15 +347,15 @@ live_game_event_lost_possession(void)
 {
     if(debug > 100 && fixture_user_team_involved(match->fix) != -1)
 	printf("\t\tlive_game_event_lost_possession\n");
-    last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
+    last_unit.event.player =
 	game_get_player(tm[last_unit.possession], 
 			last_unit.area, 0, -1, TRUE);
 	
     if(uni(unis->len - 2).event.type == LIVE_GAME_EVENT_GENERAL)
-	last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] =
-	    uni(unis->len - 2).event.values[LIVE_GAME_EVENT_VALUE_PLAYER];
+	last_unit.event.player2 =
+	    uni(unis->len - 2).event.player;
     else
-	last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] =
+	last_unit.event.player2 =
 	    game_get_player(tm[!last_unit.possession], 
 			    uni(unis->len - 2).area, 0, -1, FALSE);
 
@@ -383,9 +383,9 @@ live_game_event_injury(gint team, gint player, gboolean create_new)
 	new = last_unit;
 	new.event.commentary = NULL;
 	g_array_append_val(unis, new);
-	last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
+	last_unit.event.player =
 	    player;
-	last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM] =
+	last_unit.event.team =
 	    team;
     }
     else
@@ -399,11 +399,11 @@ live_game_event_injury(gint team, gint player, gboolean create_new)
 	last_unit.event.type = LIVE_GAME_EVENT_TEMP_INJURY;
 
 	if(debug < 50 ||
-	   team_is_user(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]]) == -1)
-	    player_of_id_team(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]],
-			      last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->fitness =
-		MAX(0, player_of_id_team(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]],
-					 last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->fitness -
+	   team_is_user(tm[last_unit.event.team]) == -1)
+	    player_of_id_team(tm[last_unit.event.team],
+			      last_unit.event.player)->fitness =
+		MAX(0, player_of_id_team(tm[last_unit.event.team],
+					 last_unit.event.player)->fitness -
 		    math_rnd(const_float("float_live_game_temp_injury_fitness_decrease_lower"),
 			     const_float("float_live_game_temp_injury_fitness_decrease_upper")));
     }
@@ -411,39 +411,39 @@ live_game_event_injury(gint team, gint player, gboolean create_new)
     live_game_finish_unit();
 
     if(debug >= 50 &&
-       team_is_user(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]]) != -1)
+       team_is_user(tm[last_unit.event.team]) != -1)
 	return;
 
     if(last_unit.event.type == LIVE_GAME_EVENT_INJURY)
     {
-	game_player_injury(player_of_id_team(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]],
-					last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER]));
+	game_player_injury(player_of_id_team(tm[last_unit.event.team],
+					last_unit.event.player));
 
-	if(match->subs_left[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]] > 0)
+	if(match->subs_left[last_unit.event.team] > 0)
 	{
 	    if(show && 
-	       team_is_user(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]]) != -1 && 
+	       team_is_user(tm[last_unit.event.team]) != -1 && 
 	       ((option_int("int_opt_user_pause_injury",
-			    &usr(team_is_user(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]])).options) &&
+			    &usr(team_is_user(tm[last_unit.event.team])).options) &&
 		 !option_int("int_opt_user_auto_sub",
-			     &usr(team_is_user(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]])).options)) ||
-		tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->players->len == 11))
+			     &usr(team_is_user(tm[last_unit.event.team])).options)) ||
+		tm[last_unit.event.team]->players->len == 11))
 		misc_callback_pause_live_game();
-	    else if(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->players->len > 11)
+	    else if(tm[last_unit.event.team]->players->len > 11)
 	    {
-		old_structure = tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->structure;
+		old_structure = tm[last_unit.event.team]->structure;
 		live_game_event_substitution(
-		    last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM],
+		    last_unit.event.team,
 		    game_substitute_player(
-			tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]],
-			player_id_index(tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]],
-					last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER])),
-		    last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER]);
+			tm[last_unit.event.team],
+			player_id_index(tm[last_unit.event.team],
+					last_unit.event.player)),
+		    last_unit.event.player);
 
-		match->subs_left[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]]--;
+		match->subs_left[last_unit.event.team]--;
 
-		if(old_structure != tm[last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->structure)
-		    live_game_event_team_change(last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM],
+		if(old_structure != tm[last_unit.event.team]->structure)
+		    live_game_event_team_change(last_unit.event.team,
 						LIVE_GAME_EVENT_STRUCTURE_CHANGE);
 	    }
 	}
@@ -503,42 +503,42 @@ live_game_event_scoring_chance(void)
     if(math_rnd(0, 1) < const_float("float_live_game_scoring_chance_is_own_goal"))
     {
 	last_unit.event.type = LIVE_GAME_EVENT_OWN_GOAL;
-	last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
+	last_unit.event.player =
 	    game_get_player(tm[!last_unit.possession], GAME_PLAYER_TYPE_DEFEND, 0, -1, FALSE);
-	last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM] = !last_unit.possession;
+	last_unit.event.team = !last_unit.possession;
 	match->fix->result[last_unit.possession][res_idx]++;
 	last_unit.result[last_unit.possession]++;
     }
     else
     {
-	if(uni(unis->len - 2).event.values[LIVE_GAME_EVENT_VALUE_PLAYER] != -1 &&
+	if(uni(unis->len - 2).event.player != -1 &&
 	   math_rnd(0, 1) < const_float("float_live_game_player_in_poss_shoots") &&
-	   player_id_team(uni(unis->len - 2).event.values[LIVE_GAME_EVENT_VALUE_PLAYER]) ==
+	   player_id_team(uni(unis->len - 2).event.player) ==
 	   tm[last_unit.possession])
-	    last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
-		uni(unis->len - 2).event.values[LIVE_GAME_EVENT_VALUE_PLAYER];
+	    last_unit.event.player =
+		uni(unis->len - 2).event.player;
 	else
 	{
-	    if(uni(unis->len - 2).event.values[LIVE_GAME_EVENT_VALUE_PLAYER] != -1 &&
-	       player_id_team(uni(unis->len - 2).event.values[LIVE_GAME_EVENT_VALUE_PLAYER]) ==
+	    if(uni(unis->len - 2).event.player != -1 &&
+	       player_id_team(uni(unis->len - 2).event.player) ==
 	       tm[last_unit.possession])
 	    {
-		last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
+		last_unit.event.player =
 		    game_get_player(tm[last_unit.possession], last_unit.area, 0, 
-				    uni(unis->len - 2).event.values[LIVE_GAME_EVENT_VALUE_PLAYER],
+				    uni(unis->len - 2).event.player,
 				    TRUE);
 
-		last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] =
-		    uni(unis->len - 2).event.values[LIVE_GAME_EVENT_VALUE_PLAYER];
+		last_unit.event.player2 =
+		    uni(unis->len - 2).event.player;
 	    }
 	    else
 	    {
-		last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
+		last_unit.event.player =
 		    game_get_player(tm[last_unit.possession], last_unit.area, 0, -1, TRUE);
 
-		last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] =
+		last_unit.event.player2 =
 		    game_get_player(tm[last_unit.possession], last_unit.area, 0, 
-				    last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER], TRUE);
+				    last_unit.event.player, TRUE);
 	    }
 	}
 
@@ -571,43 +571,43 @@ live_game_event_penalty(void)
 	g_array_append_val(unis, new);
     }
 
-    last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] =
-	last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM] = -1;
+    last_unit.event.player2 =
+	last_unit.event.team = -1;
 
     if(last_unit.time == LIVE_GAME_UNIT_TIME_PENALTIES)
     {
 	if(uni(unis->len - 2).event.type == LIVE_GAME_EVENT_PENALTIES)
 	{
 	    last_unit.possession = math_rndi(0, 1);
-	    last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
+	    last_unit.event.player =
 		game_get_player(tm[last_unit.possession],
 				GAME_PLAYER_TYPE_PENALTY, -1, -1, FALSE);
 	}
 	else if(uni(unis->len - 4).event.type == LIVE_GAME_EVENT_PENALTIES)
 	{
 	    last_unit.possession = !uni(unis->len - 3).possession;
-	    last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
+	    last_unit.event.player =
 		game_get_player(tm[last_unit.possession],
 				GAME_PLAYER_TYPE_PENALTY, -1, -1, FALSE);
 	}
 	else
 	{
 	    last_unit.possession = !uni(unis->len - 3).possession;
-	    last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
+	    last_unit.event.player =
 		game_get_player(tm[last_unit.possession],
 				GAME_PLAYER_TYPE_PENALTY,
-				uni(unis->len - 4).event.values[LIVE_GAME_EVENT_VALUE_PLAYER], -1, FALSE);
+				uni(unis->len - 4).event.player, -1, FALSE);
 	}
     }
     else
     {
-	last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM] =
+	last_unit.event.team =
 	    last_unit.possession;
 
-	last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] = 
+	last_unit.event.player = 
 	    game_get_default_penalty_shooter(tm[last_unit.possession]);
-	if(last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] == -1)
-	    last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
+	if(last_unit.event.player == -1)
+	    last_unit.event.player =
 		game_get_player(tm[last_unit.possession], GAME_PLAYER_TYPE_PENALTY, -1, -1, FALSE);
     }
 
@@ -633,7 +633,7 @@ live_game_event_general(gboolean create_new)
 	new.event.commentary = NULL;	
 	new.result[0] = last_unit.result[0];
 	new.result[1] = last_unit.result[1];
-	new.event.values[LIVE_GAME_EVENT_VALUE_TEAM] = -1;
+	new.event.team = -1;
 
 	if(last_unit.event.type == LIVE_GAME_EVENT_GENERAL ||
 	   last_unit.event.type == LIVE_GAME_EVENT_START_MATCH ||
@@ -697,10 +697,10 @@ live_game_event_general(gboolean create_new)
 void
 live_game_event_general_get_players(void)
 {
-    gint *pl1 = &last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER];
-    gint *pl2 = &last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2];
+    gint *pl1 = &last_unit.event.player;
+    gint *pl2 = &last_unit.event.player2;
     gint old_pl1 = 
-	uni(unis->len - 2).event.values[LIVE_GAME_EVENT_VALUE_PLAYER];
+	uni(unis->len - 2).event.player;
     gint type = uni(unis->len - 2).event.type;
 	
     if(debug > 100 && fixture_user_team_involved(match->fix) != -1)
@@ -738,21 +738,21 @@ live_game_event_free_kick(void)
 
     if(debug > 100 && fixture_user_team_involved(match->fix) != -1)
 	printf("\t\tlive_game_event_free_kick\n");
-    new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
-	new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] = -1;
+    new.event.player =
+	new.event.player2 = -1;
 
     new.minute = -1;
 
     new.event.type = LIVE_GAME_EVENT_FREE_KICK;
-    new.event.values[LIVE_GAME_EVENT_VALUE_TEAM] =
+    new.event.team =
 	new.possession;
     new.event.commentary = NULL;
 
-    new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
+    new.event.player =
 	game_get_default_penalty_shooter(tm[new.possession]);
 
-    if(new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] == -1)
-	new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
+    if(new.event.player == -1)
+	new.event.player =
 	    game_get_player(tm[new.possession], new.area, 0, -1, TRUE);
 
     g_array_append_val(unis, new);
@@ -771,14 +771,14 @@ live_game_event_send_off(gint team, gint player, gboolean second_yellow)
 
     if(debug > 100 && fixture_user_team_involved(match->fix) != -1)
 	printf("\t\tlive_game_event_send_off\n");
-    new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
-	new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] = -1;
+    new.event.player =
+	new.event.player2 = -1;
 
     new.minute = -1;
 
     new.event.type = LIVE_GAME_EVENT_SEND_OFF;
-    new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] = player;
-    new.event.values[LIVE_GAME_EVENT_VALUE_TEAM] = team;
+    new.event.player = player;
+    new.event.team = team;
     new.event.commentary = NULL;
 
     g_array_append_val(unis, new);
@@ -855,9 +855,9 @@ live_game_event_substitution(gint team_number, gint sub_in, gint sub_out)
     new.event.commentary = NULL;
 
     new.event.type = LIVE_GAME_EVENT_SUBSTITUTION;
-    new.event.values[LIVE_GAME_EVENT_VALUE_TEAM] = team_number;
-    new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] = sub_in;
-    new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] = sub_out;
+    new.event.team = team_number;
+    new.event.player = sub_in;
+    new.event.player2 = sub_out;
 
 
     if(player_of_id_team(tm[team_number], sub_in)->cskill > 0)
@@ -884,9 +884,9 @@ live_game_event_team_change(gint team_number, gint event_type)
     new.time = live_game_get_time(&last_unit);
     new.event.commentary = NULL;
 
-    new.event.values[LIVE_GAME_EVENT_VALUE_TEAM] = team_number;
-    new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] =
-	new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] = -1;    
+    new.event.team = team_number;
+    new.event.player =
+	new.event.player2 = -1;    
     new.event.type = event_type;
 
     g_array_append_val(unis, new);
@@ -909,14 +909,14 @@ live_game_event_duel(void)
 	printf("\t\tlive_game_event_duel\n");
 
     new.minute = -1;
-    new.event.values[LIVE_GAME_EVENT_VALUE_TEAM] = new.possession;
+    new.event.team = new.possession;
 
     new.event.commentary = NULL;
 	
     attacker = player_of_id_team(tm[new.possession],
-			    new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER]);
+			    new.event.player);
     goalie = player_of_idx_team(tm[!new.possession], 0);
-    new.event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] = goalie->id;
+    new.event.player2 = goalie->id;
 
     duel_factor = player_get_game_skill(attacker, FALSE) /
 	player_get_game_skill(goalie, FALSE);
@@ -984,7 +984,7 @@ query_live_game_second_yellow(gint team, gint player)
     for(i=0;i<unis->len - 1;i++)
 	if(uni(i).event.type == LIVE_GAME_EVENT_FOUL_YELLOW &&
 	   uni(i).possession != team &&
-	   uni(i).event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] == player)
+	   uni(i).event.player2 == player)
 	    return TRUE;
 
     return FALSE;
@@ -1247,9 +1247,9 @@ live_game_finish_unit(void)
 
     if(debug > 100 && fixture_user_team_involved(match->fix) != -1)
 	printf("OOOO1 idx %d type %d poss %d team %d pl %d %d\n", unis->len - 1,
-	       unit->event.type, unit->possession, unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM],
-	       unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER],
-	       unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER2]);
+	       unit->event.type, unit->possession, unit->event.team,
+	       unit->event.player,
+	       unit->event.player2);
 
     if(unit->minute != -1 && unit->time != LIVE_GAME_UNIT_TIME_PENALTIES &&
        fixture_user_team_involved(match->fix) != -1)
@@ -1283,9 +1283,9 @@ live_game_finish_unit(void)
 
     if(debug > 100 && fixture_user_team_involved(match->fix) != -1)
 	printf("OOOO idx %d type %d poss %d team %d pl %d %d\n", unis->len - 1,
-	       unit->event.type, unit->possession, unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM],
-	       unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER],
-	       unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER2]);
+	       unit->event.type, unit->possession, unit->event.team,
+	       unit->event.player,
+	       unit->event.player2);
 }
 
 /** Find a random player (influenced by fitness) who gets
@@ -1323,17 +1323,17 @@ live_game_injury_get_player(void)
 
     if(rndom < probs[0])
     {
-	last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] = 
+	last_unit.event.player = 
 	    player_of_idx_team(tm0, 0)->id;
-	last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM] = 0;
+	last_unit.event.team = 0;
     }
     else
 	for(i=1;i<22;i++)
 	    if(probs[i - 1] <= rndom && rndom < probs[i])
 	    {
-		last_unit.event.values[LIVE_GAME_EVENT_VALUE_PLAYER] = 
+		last_unit.event.player = 
 		    player_of_idx_team(tm[(i > 10)], i % 11)->id;
-		last_unit.event.values[LIVE_GAME_EVENT_VALUE_TEAM] = (i > 10);
+		last_unit.event.team = (i > 10);
 	    }
 }
 

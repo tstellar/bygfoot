@@ -55,16 +55,6 @@ enum LiveGameEventType
     LIVE_GAME_EVENT_END
 };
 
-/** Indices for the int_values in the
-    #LiveGameEvent struct. */
-enum LiveGameEventValue
-{
-    LIVE_GAME_EVENT_VALUE_TEAM = 0,
-    LIVE_GAME_EVENT_VALUE_PLAYER,
-    LIVE_GAME_EVENT_VALUE_PLAYER2,
-    LIVE_GAME_EVENT_VALUE_END
-};
-
 enum LiveGameUnitArea
 {
     LIVE_GAME_UNIT_AREA_DEFEND = 0,
@@ -137,9 +127,9 @@ typedef struct
     /** Verbosity value. The lower the more important
 	the event. */
     gint verbosity;
-    /** @see #LiveGameEventValue1
-	@see #LiveGameEventValue2 */
-    gint values[LIVE_GAME_EVENT_VALUE_END];
+    /** Information about a team and two players
+	involved in the event. */
+    gint team, player, player2;
     /** The commentary for the event. */
     GString *commentary;
 

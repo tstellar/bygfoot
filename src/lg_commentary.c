@@ -344,16 +344,16 @@ lg_commentary_set_strings(gchar *strings[][2], const LiveGameUnit *unit, const F
 	fix->teams[(unit->result[0] < unit->result[1])]->name->str;
 
     strings[LG_TOKEN_TEAM][0] = const_str("string_lg_commentary_token_team");
-    strings[LG_TOKEN_TEAM][1] = (unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM] == -1) ?
-	NULL : fix->teams[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->name->str;
+    strings[LG_TOKEN_TEAM][1] = (unit->event.team == -1) ?
+	NULL : fix->teams[unit->event.team]->name->str;
 
     strings[LG_TOKEN_PLAYER1][0] = const_str("string_lg_commentary_token_player1");
-    strings[LG_TOKEN_PLAYER1][1] = (unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER] == -1) ?
-	NULL : lg_commentary_get_player_name(unit, fix, LIVE_GAME_EVENT_VALUE_PLAYER);
+    strings[LG_TOKEN_PLAYER1][1] = (unit->event.player == -1) ?
+	NULL : lg_commentary_get_player_name(unit, fix, FALSE);
 
     strings[LG_TOKEN_PLAYER2][0] = const_str("string_lg_commentary_token_player2");
-    strings[LG_TOKEN_PLAYER2][1] = (unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER2] == -1) ?
-	NULL : lg_commentary_get_player_name(unit, fix, LIVE_GAME_EVENT_VALUE_PLAYER2);
+    strings[LG_TOKEN_PLAYER2][1] = (unit->event.player2 == -1) ?
+	NULL : lg_commentary_get_player_name(unit, fix, TRUE);
  
     strings[LG_TOKEN_ATTENDANCE][0] = const_str("string_lg_commentary_token_attendance");
     misc_print_grouped_int(fix->attendance, buf, FALSE);
@@ -374,38 +374,34 @@ lg_commentary_set_strings(gchar *strings[][2], const LiveGameUnit *unit, const F
 /** Return the name of a player involved in the unit (or NULL). 
     @param player Which player we look for. */
 gchar*
-lg_commentary_get_player_name(const LiveGameUnit *unit, const Fixture *fix, gint player)
+lg_commentary_get_player_name(const LiveGameUnit *unit, const Fixture *fix, gboolean player2)
 {
     gchar *return_value = NULL;
 
     if(unit->event.type == LIVE_GAME_EVENT_GENERAL)
-	return_value = 
+	return_value = (player2) ?
 	    player_of_id_team(fix->teams[unit->possession],
-			      unit->event.values[player])->name->str;
+			      unit->event.player2)->name->str :
+	    player_of_id_team(fix->teams[unit->possession],
+			      unit->event.player)->name->str;
     else if(unit->event.type == LIVE_GAME_EVENT_LOST_POSSESSION)
     {
-	if(player == LIVE_GAME_EVENT_VALUE_PLAYER)
-	    return_value = 
-		player_of_id_team(fix->teams[unit->possession], 
-				  unit->event.values[player])->name->str;
-	else
-	    return_value = 
-		player_of_id_team(fix->teams[!unit->possession], 
-				  unit->event.values[player])->name->str;
+	return_value = (player2) ?
+	    player_of_id_team(fix->teams[!unit->possession], 
+			      unit->event.player2)->name->str:
+	    player_of_id_team(fix->teams[unit->possession], 
+			      unit->event.player)->name->str;
     }
     else if(unit->event.type == LIVE_GAME_EVENT_SCORING_CHANCE ||
 	    unit->event.type == LIVE_GAME_EVENT_HEADER ||
 	    unit->event.type == LIVE_GAME_EVENT_PENALTY ||
 	    unit->event.type == LIVE_GAME_EVENT_FREE_KICK)
-    {
-	if(player == LIVE_GAME_EVENT_VALUE_PLAYER)
-	    return_value = 
-		player_of_id_team(fix->teams[unit->possession],
-				  unit->event.values[player])->name->str;
-	else
-	    return_value = 
-		player_of_id_team(fix->teams[unit->possession],
-				  unit->event.values[player])->name->str;
+    {	
+	return_value = (player2) ?
+	    player_of_id_team(fix->teams[unit->possession],
+			      unit->event.player2)->name->str :
+	    player_of_id_team(fix->teams[unit->possession],
+			      unit->event.player)->name->str;
     }
     else if(unit->event.type == LIVE_GAME_EVENT_GOAL ||
 	    unit->event.type == LIVE_GAME_EVENT_MISSED ||
@@ -413,40 +409,36 @@ lg_commentary_get_player_name(const LiveGameUnit *unit, const Fixture *fix, gint
 	    unit->event.type == LIVE_GAME_EVENT_POST ||
 	    unit->event.type == LIVE_GAME_EVENT_CROSS_BAR)
     {
-	if(player == LIVE_GAME_EVENT_VALUE_PLAYER)
-	    return_value = 
-		player_of_id_team(fix->teams[unit->possession], 
-				  unit->event.values[player])->name->str;
-	else
-	    return_value = 
-		player_of_id_team(fix->teams[!unit->possession], 
-				  unit->event.values[player])->name->str;
+	return_value = (player2) ?
+	    player_of_id_team(fix->teams[!unit->possession], 
+			      unit->event.player2)->name->str :
+	    player_of_id_team(fix->teams[unit->possession], 
+			      unit->event.player)->name->str;
     }
     else if(unit->event.type == LIVE_GAME_EVENT_OWN_GOAL)
 	return_value = 
 	    player_of_id_team(fix->teams[!unit->possession], 
-			      unit->event.values[player])->name->str;
+			      unit->event.player)->name->str;
     else if(unit->event.type == LIVE_GAME_EVENT_FOUL ||
 	    unit->event.type == LIVE_GAME_EVENT_FOUL_RED ||
 	    unit->event.type == LIVE_GAME_EVENT_FOUL_RED_INJURY ||
 	    unit->event.type == LIVE_GAME_EVENT_FOUL_YELLOW)
     {
-	if(player == LIVE_GAME_EVENT_VALUE_PLAYER)
-	    return_value = 
-		player_of_id_team(fix->teams[!unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]], 
-				  unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER])->name->str;
-	else
-	    return_value = 
-		player_of_id_team(fix->teams[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]], 
-				  unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER2])->name->str;
+	return_value = (player2) ? 
+	    player_of_id_team(fix->teams[unit->event.team], 
+			      unit->event.player2)->name->str :
+	    player_of_id_team(fix->teams[!unit->event.team], 
+			      unit->event.player)->name->str;
     }
     else if(unit->event.type == LIVE_GAME_EVENT_SEND_OFF ||
 	    unit->event.type == LIVE_GAME_EVENT_INJURY ||
 	    unit->event.type == LIVE_GAME_EVENT_TEMP_INJURY ||
 	    unit->event.type == LIVE_GAME_EVENT_SUBSTITUTION)
-	return_value = 
-	    player_of_id_team(fix->teams[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]],
-			      unit->event.values[player])->name->str;
+	return_value = (player2) ?
+	    player_of_id_team(fix->teams[unit->event.team],
+			      unit->event.player2)->name->str :
+	    player_of_id_team(fix->teams[unit->event.team],
+			      unit->event.player)->name->str;
     else
 	g_warning("lg_commentary_get_player_name: unknown event type %d\n",
 		  unit->event.type);
@@ -467,7 +459,7 @@ lg_commentary_get_extra_data(const LiveGameUnit *unit, const Fixture *fix)
 	    break;
 	case LIVE_GAME_EVENT_STRUCTURE_CHANGE:
 	    sprintf(buf, "%d",
-		    fix->teams[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]]->structure);
+		    fix->teams[unit->event.team]->structure);
 	    break;
 	case LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_DEFEND:
 	    strcpy(buf, "ALL OUT DEFEND");

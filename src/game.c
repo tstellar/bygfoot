@@ -767,7 +767,7 @@ game_update_stats(gpointer live_game, gconstpointer live_game_unit)
 	stats->values[unit->possession][LIVE_GAME_STAT_VALUE_PENALTIES]++;
     else if(unit->event.type == LIVE_GAME_EVENT_INJURY)
     {
-	stats->values[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]][LIVE_GAME_STAT_VALUE_INJURIES]++;
+	stats->values[unit->event.team][LIVE_GAME_STAT_VALUE_INJURIES]++;
 	game_update_stats_player(live_game, live_game_unit);
     }
     else if(unit->event.type == LIVE_GAME_EVENT_FOUL ||
@@ -775,16 +775,16 @@ game_update_stats(gpointer live_game, gconstpointer live_game_unit)
 	    unit->event.type == LIVE_GAME_EVENT_FOUL_RED ||
 	    unit->event.type == LIVE_GAME_EVENT_FOUL_RED_INJURY)
     {
-	stats->values[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]][LIVE_GAME_STAT_VALUE_FOULS]++;
+	stats->values[unit->event.team][LIVE_GAME_STAT_VALUE_FOULS]++;
 	if(unit->event.type == LIVE_GAME_EVENT_FOUL_YELLOW)
 	{
-	    stats->values[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]][LIVE_GAME_STAT_VALUE_CARDS]++;
+	    stats->values[unit->event.team][LIVE_GAME_STAT_VALUE_CARDS]++;
 	    game_update_stats_player(live_game, live_game_unit);
 	}
     }
     else if(unit->event.type == LIVE_GAME_EVENT_SEND_OFF)
     {
-	stats->values[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]][LIVE_GAME_STAT_VALUE_REDS]++;
+	stats->values[unit->event.team][LIVE_GAME_STAT_VALUE_REDS]++;
 	game_update_stats_player(live_game, live_game_unit);
     }
     else if(unit->event.type == LIVE_GAME_EVENT_GOAL ||
@@ -792,7 +792,7 @@ game_update_stats(gpointer live_game, gconstpointer live_game_unit)
     {
 	if(live_game_unit_before(unit, -1)->event.type != LIVE_GAME_EVENT_PENALTY &&
 	   unit->event.type != LIVE_GAME_EVENT_OWN_GOAL)
-	    stats->values[unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM]][LIVE_GAME_STAT_VALUE_GOALS_REGULAR]++;
+	    stats->values[unit->event.team][LIVE_GAME_STAT_VALUE_GOALS_REGULAR]++;
 	game_update_stats_player(live_game, live_game_unit);
     }
 
@@ -817,9 +817,9 @@ game_update_stats_player(gpointer live_game, gconstpointer live_game_unit)
     const LiveGameUnit *unit = (const LiveGameUnit*)live_game_unit;
     gint minute = live_game_unit_get_minute(unit), array_index = -1;
     gboolean own_goal;
-    gint team = unit->event.values[LIVE_GAME_EVENT_VALUE_TEAM],
-	player = unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER],
-	player2 = unit->event.values[LIVE_GAME_EVENT_VALUE_PLAYER2];
+    gint team = unit->event.team,
+	player = unit->event.player,
+	player2 = unit->event.player2;
     const Team *tm[2] = {((LiveGame*)live_game)->fix->teams[0], 
 			 ((LiveGame*)live_game)->fix->teams[1]};
     GString *new = NULL;
