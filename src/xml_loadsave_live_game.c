@@ -285,7 +285,7 @@ xml_loadsave_live_game_write_unit(FILE *fil, const LiveGameUnit *unit)
 
     xml_write_g_string(fil, unit->event.commentary,
 		       TAG_LIVE_GAME_UNIT_EVENT_COMMENTARY, I2);
-    for(i=0;i<MAX(LIVE_GAME_EVENT_VALUE1_END, LIVE_GAME_EVENT_VALUE2_END);i++)
+    for(i=0;i<LIVE_GAME_EVENT_VALUE_END;i++)
 	xml_write_int(fil, unit->event.values[i],
 		      TAG_LIVE_GAME_UNIT_EVENT_VALUE, I2);
 

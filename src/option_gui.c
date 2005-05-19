@@ -288,6 +288,7 @@ enum SpinOptions
     SPIN_OPT_PRECISION,
     SPIN_OPT_REFRESH,
     SPIN_OPT_LIVE_SPEED,
+    SPIN_OPT_LIVE_VERBOSITY,
     SPIN_OPT_CONTRACT,
     SPIN_OPT_END
 };
@@ -315,6 +316,10 @@ option_gui_write_spin_widgets(gint **spin_options, GtkSpinButton **spin_widgets)
     spin_widgets[SPIN_OPT_LIVE_SPEED] =
 	GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_live_speed"));
     spin_options[SPIN_OPT_LIVE_SPEED] = opt_user_intp("int_opt_user_live_game_speed");
+
+    spin_widgets[SPIN_OPT_LIVE_VERBOSITY] =
+	GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_live_verbosity"));
+    spin_options[SPIN_OPT_LIVE_VERBOSITY] = opt_user_intp("int_opt_user_live_game_verbosity");
 
     spin_widgets[SPIN_OPT_CONTRACT] =
 	GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_contract"));

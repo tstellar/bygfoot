@@ -229,6 +229,14 @@ on_spinbutton_speed_value_changed      (GtkSpinButton   *spinbutton,
 }
 
 
+void
+on_spinbutton_verbosity_value_changed  (GtkSpinButton   *spinbutton,
+                                        gpointer         user_data)
+{
+    option_set_int("int_opt_user_live_game_verbosity",
+		   &usr(stat2).options, gtk_spin_button_get_value_as_int(spinbutton));
+}
+
 
 gboolean
 on_treeview_users_button_press_event   (GtkWidget       *widget,

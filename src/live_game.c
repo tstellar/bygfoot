@@ -1274,6 +1274,8 @@ live_game_finish_unit(void)
 	}
 
 	lg_commentary_generate(unit, match->fix);
+
+	unit->event.verbosity = live_game_event_get_verbosity(unit->event.type);
     }
 
     if(show)
@@ -1419,3 +1421,64 @@ live_game_reset(LiveGame *live_game, Fixture *fix, gboolean free_variable)
     else
 	live_game->home_advantage = 0;
 }
+
+/** Determine verbosity level depending on the event type. */
+gint
+live_game_event_get_verbosity(gint event_type)
+{
+    gint return_value;
+
+    if(event_type == LIVE_GAME_EVENT_START_MATCH ||
+       event_type == LIVE_GAME_EVENT_HALF_TIME ||
+       event_type == LIVE_GAME_EVENT_EXTRA_TIME ||
+       event_type == LIVE_GAME_EVENT_END_MATCH ||
+       event_type == LIVE_GAME_EVENT_PENALTIES ||
+       event_type == LIVE_GAME_EVENT_GOAL ||
+       event_type == LIVE_GAME_EVENT_OWN_GOAL)
+	return_value = 0;
+    else if(event_type == LIVE_GAME_EVENT_PENALTY ||
+	    event_type == LIVE_GAME_EVENT_SCORING_CHANCE ||
+	    event_type == LIVE_GAME_EVENT_HEADER ||
+	    event_type == LIVE_GAME_EVENT_FREE_KICK ||
+	    event_type == LIVE_GAME_EVENT_POST ||
+	    event_type == LIVE_GAME_EVENT_MISSED ||
+	    event_type == LIVE_GAME_EVENT_CROSS_BAR ||
+	    event_type == LIVE_GAME_EVENT_SAVE)
+	return_value = 1;
+    else if(event_type == LIVE_GAME_EVENT_SEND_OFF ||
+	    event_type == LIVE_GAME_EVENT_INJURY)
+	return_value = 2;
+    else if(event_type == LIVE_GAME_EVENT_FOUL_RED ||
+	    event_type == LIVE_GAME_EVENT_FOUL_YELLOW ||
+	    event_type == LIVE_GAME_EVENT_FOUL_RED_INJURY)
+	return_value = 3;
+    else if(event_type == LIVE_GAME_EVENT_FOUL ||
+	    event_type == LIVE_GAME_EVENT_TEMP_INJURY ||
+	    event_type == LIVE_GAME_EVENT_STADIUM_RIOTS ||
+	    event_type == LIVE_GAME_EVENT_STADIUM_BREAKDOWN ||
+	    event_type == LIVE_GAME_EVENT_STADIUM_FIRE ||
+	    event_type == LIVE_GAME_EVENT_LOST_POSSESSION)
+	return_value = 4;
+    else if(event_type == LIVE_GAME_EVENT_SUBSTITUTION ||
+	    event_type == LIVE_GAME_EVENT_STRUCTURE_CHANGE ||
+	    event_type == LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_DEFEND ||
+	    event_type == LIVE_GAME_EVENT_STYLE_CHANGE_DEFEND ||
+	    event_type == LIVE_GAME_EVENT_STYLE_CHANGE_BALANCED ||
+	    event_type == LIVE_GAME_EVENT_STYLE_CHANGE_ATTACK ||
+	    event_type == LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_ATTACK ||
+	    event_type == LIVE_GAME_EVENT_BOOST_CHANGE_ANTI ||
+	    event_type == LIVE_GAME_EVENT_BOOST_CHANGE_OFF ||
+	    event_type == LIVE_GAME_EVENT_BOOST_CHANGE_ON)
+	return_value = 5;
+    else if(event_type == LIVE_GAME_EVENT_GENERAL)
+	return_value = 6;
+    else
+    {
+	g_warning("live_game_event_get_verbosity: unknown event type %d \n",
+		  event_type);
+	return_value = -1;
+    }
+
+    return return_value;
+}
+    

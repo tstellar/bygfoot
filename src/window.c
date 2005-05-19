@@ -264,6 +264,9 @@ window_create(gint window_type)
 	    gtk_spin_button_set_value(
 		GTK_SPIN_BUTTON(lookup_widget(wind, "spinbutton_speed")),
 		(gfloat)option_int("int_opt_user_live_game_speed", &usr(stat2).options));
+	    gtk_spin_button_set_value(
+		GTK_SPIN_BUTTON(lookup_widget(wind, "spinbutton_verbosity")),
+		(gfloat)option_int("int_opt_user_live_game_verbosity", &usr(stat2).options));
 	    break;
 	case WINDOW_WARNING:
 	    if(window.warning != NULL)

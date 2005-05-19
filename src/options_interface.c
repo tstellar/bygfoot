@@ -74,10 +74,13 @@ create_window_options (void)
   GtkWidget *vbox4;
   GtkWidget *checkbutton_show_live;
   GtkWidget *checkbutton_show_tendency;
-  GtkWidget *hbox5;
+  GtkWidget *table3;
   GtkWidget *label12;
+  GtkWidget *label39;
   GtkObject *spinbutton_live_speed_adj;
   GtkWidget *spinbutton_live_speed;
+  GtkObject *spinbutton_live_verbosity_adj;
+  GtkWidget *spinbutton_live_verbosity;
   GtkWidget *checkbutton_auto_sub;
   GtkWidget *vseparator2;
   GtkWidget *vbox5;
@@ -245,7 +248,6 @@ create_window_options (void)
   label6 = gtk_label_new (_("Autosave interval "));
   gtk_widget_show (label6);
   gtk_box_pack_start (GTK_BOX (hbox3), label6, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label6), GTK_JUSTIFY_LEFT);
 
   spinbutton_autosave_adj = gtk_adjustment_new (1, 1, 20, 1, 10, 10);
   spinbutton_autosave = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_autosave_adj), 1, 0);
@@ -257,7 +259,6 @@ create_window_options (void)
   label36 = gtk_label_new (_(" Autosave files "));
   gtk_widget_show (label36);
   gtk_box_pack_start (GTK_BOX (hbox3), label36, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label36), GTK_JUSTIFY_LEFT);
 
   spinbutton_autosave_files_adj = gtk_adjustment_new (1, 0, 100, 1, 10, 10);
   spinbutton_autosave_files = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_autosave_files_adj), 1, 0);
@@ -270,7 +271,6 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table1), label7, 0, 1, 1, 2,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label7), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label7), 1, 0.5);
 
   label8 = gtk_label_new (_("Player list refresh rate "));
@@ -278,7 +278,6 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table1), label8, 0, 1, 2, 3,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label8), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label8), 1, 0.5);
 
   spinbutton_precision_adj = gtk_adjustment_new (1, 0, 3, 1, 10, 10);
@@ -302,7 +301,6 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table1), label10, 0, 1, 3, 4,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label10), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label10), 1, 0.5);
 
   button_font_name = gtk_button_new ();
@@ -326,7 +324,6 @@ create_window_options (void)
   label34 = gtk_label_new_with_mnemonic (_("Font name"));
   gtk_widget_show (label34);
   gtk_box_pack_start (GTK_BOX (hbox7), label34, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label34), GTK_JUSTIFY_LEFT);
 
   entry_font_name = gtk_entry_new ();
   gtk_widget_show (entry_font_name);
@@ -365,12 +362,10 @@ create_window_options (void)
   label35 = gtk_label_new_with_mnemonic (_("Reload"));
   gtk_widget_show (label35);
   gtk_box_pack_start (GTK_BOX (hbox9), label35, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label35), GTK_JUSTIFY_LEFT);
 
   label1 = gtk_label_new (_("Global"));
   gtk_widget_show (label1);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 0), label1);
-  gtk_label_set_justify (GTK_LABEL (label1), GTK_JUSTIFY_LEFT);
 
   hbox4 = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (hbox4);
@@ -388,20 +383,42 @@ create_window_options (void)
   gtk_widget_show (checkbutton_show_tendency);
   gtk_box_pack_start (GTK_BOX (vbox4), checkbutton_show_tendency, FALSE, FALSE, 0);
 
-  hbox5 = gtk_hbox_new (FALSE, 0);
-  gtk_widget_show (hbox5);
-  gtk_box_pack_start (GTK_BOX (vbox4), hbox5, FALSE, FALSE, 0);
+  table3 = gtk_table_new (2, 2, FALSE);
+  gtk_widget_show (table3);
+  gtk_box_pack_start (GTK_BOX (vbox4), table3, FALSE, FALSE, 0);
+  gtk_table_set_col_spacings (GTK_TABLE (table3), 2);
 
-  label12 = gtk_label_new (_("Live game speed factor "));
+  label12 = gtk_label_new (_("Live game speed factor"));
   gtk_widget_show (label12);
-  gtk_box_pack_start (GTK_BOX (hbox5), label12, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label12), GTK_JUSTIFY_LEFT);
+  gtk_table_attach (GTK_TABLE (table3), label12, 0, 1, 0, 1,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (label12), 1, 0.5);
+
+  label39 = gtk_label_new (_("Live game verbosity"));
+  gtk_widget_show (label39);
+  gtk_table_attach (GTK_TABLE (table3), label39, 0, 1, 1, 2,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (label39), 1, 0.5);
 
   spinbutton_live_speed_adj = gtk_adjustment_new (0, -10, 20, 1, 10, 10);
   spinbutton_live_speed = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_live_speed_adj), 1, 0);
   gtk_widget_show (spinbutton_live_speed);
-  gtk_box_pack_start (GTK_BOX (hbox5), spinbutton_live_speed, FALSE, FALSE, 0);
+  gtk_table_attach (GTK_TABLE (table3), spinbutton_live_speed, 1, 2, 0, 1,
+                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_tooltips_set_tip (tooltips, spinbutton_live_speed, _("The lower this value the faster the live game commentary will scroll."), NULL);
   gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_live_speed), TRUE);
+
+  spinbutton_live_verbosity_adj = gtk_adjustment_new (1, 1, 7, 1, 10, 10);
+  spinbutton_live_verbosity = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_live_verbosity_adj), 1, 0);
+  gtk_widget_show (spinbutton_live_verbosity);
+  gtk_table_attach (GTK_TABLE (table3), spinbutton_live_verbosity, 1, 2, 1, 2,
+                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_tooltips_set_tip (tooltips, spinbutton_live_verbosity, _("The higher this value, the more commentary you'll see."), NULL);
+  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_live_verbosity), TRUE);
 
   checkbutton_auto_sub = gtk_check_button_new_with_mnemonic (_("Automatic substitutions"));
   gtk_widget_show (checkbutton_auto_sub);
@@ -431,7 +448,6 @@ create_window_options (void)
   label2 = gtk_label_new (_("Live game"));
   gtk_widget_show (label2);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 1), label2);
-  gtk_label_set_justify (GTK_LABEL (label2), GTK_JUSTIFY_LEFT);
 
   hbox6 = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (hbox6);
@@ -457,7 +473,6 @@ create_window_options (void)
   label37 = gtk_label_new (_("Show warning if a player contract gets below "));
   gtk_widget_show (label37);
   gtk_box_pack_start (GTK_BOX (hbox10), label37, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label37), GTK_JUSTIFY_LEFT);
 
   spinbutton_contract_adj = gtk_adjustment_new (1, 0, 24, 1, 10, 10);
   spinbutton_contract = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_contract_adj), 1, 0);
@@ -468,7 +483,6 @@ create_window_options (void)
   label38 = gtk_label_new (_(" months"));
   gtk_widget_show (label38);
   gtk_box_pack_start (GTK_BOX (hbox10), label38, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (label38), GTK_JUSTIFY_LEFT);
 
   checkbutton_show_all_leagues = gtk_check_button_new_with_mnemonic (_("Show all leagues in the fixture view"));
   gtk_widget_show (checkbutton_show_all_leagues);
@@ -495,7 +509,6 @@ create_window_options (void)
   label3 = gtk_label_new (_("Misc."));
   gtk_widget_show (label3);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 2), label3);
-  gtk_label_set_justify (GTK_LABEL (label3), GTK_JUSTIFY_LEFT);
 
   table2 = gtk_table_new (20, 3, FALSE);
   gtk_widget_show (table2);
@@ -506,7 +519,6 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table2), label13, 0, 1, 2, 3,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label13), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label13), 0, 0.5);
 
   label14 = gtk_label_new (_("CPos "));
@@ -514,7 +526,6 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table2), label14, 0, 1, 3, 4,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label14), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label14), 0, 0.5);
 
   label15 = gtk_label_new (_("Pos "));
@@ -522,7 +533,6 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table2), label15, 0, 1, 4, 5,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label15), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label15), 0, 0.5);
 
   label16 = gtk_label_new (_("CSkill "));
@@ -530,7 +540,6 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table2), label16, 0, 1, 5, 6,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label16), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label16), 0, 0.5);
 
   label17 = gtk_label_new (_("Skill "));
@@ -538,7 +547,6 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table2), label17, 0, 1, 6, 7,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label17), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label17), 0, 0.5);
 
   label18 = gtk_label_new (_("Fitness "));
@@ -546,7 +554,6 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table2), label18, 0, 1, 7, 8,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label18), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label18), 0, 0.5);
 
   label19 = gtk_label_new (_("Games "));
@@ -554,7 +561,6 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table2), label19, 0, 1, 8, 9,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label19), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label19), 0, 0.5);
 
   label20 = gtk_label_new (_("Shots "));
@@ -562,7 +568,6 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table2), label20, 0, 1, 9, 10,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label20), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label20), 0, 0.5);
 
   label21 = gtk_label_new (_("Goals "));
@@ -570,7 +575,6 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table2), label21, 0, 1, 10, 11,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label21), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label21), 0, 0.5);
 
   label22 = gtk_label_new (_("Status "));
@@ -578,7 +582,6 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table2), label22, 0, 1, 11, 12,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label22), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label22), 0, 0.5);
 
   label23 = gtk_label_new (_("Cards "));
@@ -586,7 +589,6 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table2), label23, 0, 1, 12, 13,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label23), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label23), 0, 0.5);
 
   label24 = gtk_label_new (_("Age "));
@@ -594,7 +596,6 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table2), label24, 0, 1, 13, 14,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label24), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label24), 0, 0.5);
 
   label25 = gtk_label_new (_("Etal "));
@@ -602,7 +603,6 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table2), label25, 0, 1, 14, 15,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label25), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label25), 0, 0.5);
 
   label26 = gtk_label_new (_("Value "));
@@ -610,7 +610,6 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table2), label26, 0, 1, 15, 16,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label26), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label26), 0, 0.5);
 
   label27 = gtk_label_new (_("Wage "));
@@ -618,7 +617,6 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table2), label27, 0, 1, 16, 17,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label27), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label27), 0, 0.5);
 
   label28 = gtk_label_new (_("Contract "));
@@ -626,7 +624,6 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table2), label28, 0, 1, 17, 18,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label28), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label28), 0, 0.5);
 
   label29 = gtk_label_new (_("League "));
@@ -634,7 +631,6 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table2), label29, 0, 1, 19, 20,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label29), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label29), 0, 0.5);
 
   label30 = gtk_label_new (_("Team "));
@@ -642,7 +638,6 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table2), label30, 0, 1, 18, 19,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label30), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label30), 0, 0.5);
 
   checkbutton1 = gtk_check_button_new_with_mnemonic ("");
@@ -880,7 +875,6 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table2), label31, 0, 1, 0, 1,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label31), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label31), 0, 0.5);
 
   label32 = gtk_label_new (_("List 1 "));
@@ -888,7 +882,6 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table2), label32, 1, 2, 0, 1,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label32), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label32), 0, 0.5);
 
   label33 = gtk_label_new (_("List 2"));
@@ -896,7 +889,6 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table2), label33, 2, 3, 0, 1,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_label_set_justify (GTK_LABEL (label33), GTK_JUSTIFY_LEFT);
   gtk_misc_set_alignment (GTK_MISC (label33), 0, 0.5);
 
   hseparator2 = gtk_hseparator_new ();
@@ -909,7 +901,6 @@ create_window_options (void)
   label4 = gtk_label_new (_("Player attributes shown"));
   gtk_widget_show (label4);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 3), label4);
-  gtk_label_set_justify (GTK_LABEL (label4), GTK_JUSTIFY_LEFT);
 
   hseparator1 = gtk_hseparator_new ();
   gtk_widget_show (hseparator1);
@@ -1005,9 +996,11 @@ create_window_options (void)
   GLADE_HOOKUP_OBJECT (window_options, vbox4, "vbox4");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_show_live, "checkbutton_show_live");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_show_tendency, "checkbutton_show_tendency");
-  GLADE_HOOKUP_OBJECT (window_options, hbox5, "hbox5");
+  GLADE_HOOKUP_OBJECT (window_options, table3, "table3");
   GLADE_HOOKUP_OBJECT (window_options, label12, "label12");
+  GLADE_HOOKUP_OBJECT (window_options, label39, "label39");
   GLADE_HOOKUP_OBJECT (window_options, spinbutton_live_speed, "spinbutton_live_speed");
+  GLADE_HOOKUP_OBJECT (window_options, spinbutton_live_verbosity, "spinbutton_live_verbosity");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_auto_sub, "checkbutton_auto_sub");
   GLADE_HOOKUP_OBJECT (window_options, vseparator2, "vseparator2");
   GLADE_HOOKUP_OBJECT (window_options, vbox5, "vbox5");

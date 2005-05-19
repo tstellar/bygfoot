@@ -37,7 +37,8 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
 
     if(unit->event.type == LIVE_GAME_EVENT_START_MATCH)
 	treeview_live_game_show_initial_commentary(unit);
-    else
+    else if(option_int("int_opt_user_live_game_verbosity", 
+		       &usr(stat2).options) > unit->event.verbosity)
 	treeview_live_game_show_commentary(unit);
 
     treeview_live_game_show_result(unit);
@@ -55,8 +56,10 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
     sprintf(buf, "%d.", live_game_unit_get_minute(unit));
     gtk_progress_bar_set_fraction(progress_bar, (fraction > 1) ? 1 : fraction);
     gtk_progress_bar_set_text(progress_bar, buf);
-    usleep(500500 + option_int("int_opt_user_live_game_speed",
-			       &usr(stat2).options) * 50000);
+    g_usleep(const_int("int_game_gui_live_game_speed_base") +
+	     (option_int("int_opt_user_live_game_speed", &usr(stat2).options) * 
+	      const_int("int_game_gui_live_game_speed_step")));
+
     while(gtk_events_pending())
 	gtk_main_iteration();
 

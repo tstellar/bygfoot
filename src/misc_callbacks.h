@@ -123,3 +123,7 @@ void
 on_combo_country_changed               (GtkComboBox     *combobox,
                                         gpointer         user_data);
 #endif
+
+void
+on_spinbutton_verbosity_value_changed  (GtkSpinButton   *spinbutton,
+                                        gpointer         user_data);

@@ -96,28 +96,44 @@ lg_commentary_get_commentaries(gint event_type)
 	    case LIVE_GAME_EVENT_START_MATCH:
 		g_ptr_array_add(commentaries, g_string_new(_("It's a crowd of AT here as the whistle blows")));
 		g_ptr_array_add(commentaries, g_string_new(_("We're under way")));
+		g_ptr_array_add(commentaries, g_string_new(_("The two teams are greeted by a wall of noise as they take to the pitch")));
 		g_ptr_array_add(commentaries, g_string_new(_("The crowd roars as the players run out from the tunnel to start the match")));
+		g_ptr_array_add(commentaries, g_string_new(_("A cloudless day, gives the impression this match is going to sparkle")));
+		g_ptr_array_add(commentaries, g_string_new(_("AT fans can't be wrong, this is the match we have all come to watch")));
+		g_ptr_array_add(commentaries, g_string_new(_("The referee gets the nod from the linesman and we are away")));
+		g_ptr_array_add(commentaries, g_string_new(_("The clash of the titans kicks off")));
+		g_ptr_array_add(commentaries, g_string_new(_("The referees are ready, players set, the battle begins")));
 		break;
 	    case LIVE_GAME_EVENT_HALF_TIME:
 		g_ptr_array_add(commentaries, g_string_new(_("It's half time")));
 		g_ptr_array_add(commentaries, g_string_new(_("It's a RE at half time.")));
+		g_ptr_array_add(commentaries, g_string_new(_("It's a RE at half time, TL's manager has to find something special to spur his team on.")));
 		g_ptr_array_add(commentaries, g_string_new(_("TL heads into the tunnel to await the managers scolding")));
 		g_ptr_array_add(commentaries, g_string_new(_("TW are just 45 minutes away from a stunning victory")));
+		g_ptr_array_add(commentaries, g_string_new(_("TL's manager cops a rollicking from the fans as he turns from the dugout")));
+		g_ptr_array_add(commentaries, g_string_new(_("There are two teams out there and only one of them is playing football")));
 		break;
 	    case LIVE_GAME_EVENT_EXTRA_TIME:
 		g_ptr_array_add(commentaries, g_string_new(_("After a close match the game heads into extra time")));
 		g_ptr_array_add(commentaries, g_string_new(_("It's still RE: extra time")));
 		g_ptr_array_add(commentaries, g_string_new(_("After MI minutes it's still RE: extra time")));
+		g_ptr_array_add(commentaries, g_string_new(_("Who will breakdown first, extra time it is")));
+		g_ptr_array_add(commentaries, g_string_new(_("It's down to determination and fitness now as we head into extra time")));
 		break;
 	    case LIVE_GAME_EVENT_PENALTIES:
 		g_ptr_array_add(commentaries, g_string_new(_("Who would have thought MI minutes ago it would come down to this")));
 		g_ptr_array_add(commentaries, g_string_new(_("And now we have the tense drama of a penalty shoot out")));
+		g_ptr_array_add(commentaries, g_string_new(_("Two teams, equall till now in every respect,face off in penalties")));
+		g_ptr_array_add(commentaries, g_string_new(_("The teams cant do it so now it's one on one. Striker against goalie")));
 		break;
 	    case LIVE_GAME_EVENT_END_MATCH:
 		g_ptr_array_add(commentaries, g_string_new(_("The match is over!")));
 		g_ptr_array_add(commentaries, g_string_new(_("TW are triumphant!!!")));
 		g_ptr_array_add(commentaries, g_string_new(_("The fans boo TL off the pitch")));
 		g_ptr_array_add(commentaries, g_string_new(_("After MI minutes the match ends with a RE")));
+		g_ptr_array_add(commentaries, g_string_new(_("The referee checks his watch and blows for full time")));
+		g_ptr_array_add(commentaries, g_string_new(_("Well that's that. It ends RE")));
+		g_ptr_array_add(commentaries, g_string_new(_("RE, what an astonishing result for TW")));
 		break;
 	    case LIVE_GAME_EVENT_GENERAL:
 		g_ptr_array_add(commentaries, g_string_new(_("P2 feeds the ball through to P1")));
@@ -140,13 +156,14 @@ lg_commentary_get_commentaries(gint event_type)
 		g_ptr_array_add(commentaries, g_string_new(_("P1 wins the ball with a perfectly timed challenge")));
 		g_ptr_array_add(commentaries, g_string_new(_("Bad control by P2 lets P1 steal the ball off him")));
 		g_ptr_array_add(commentaries, g_string_new(_("P1 takes the ball away from P2 with a sliding tackle")));
+		g_ptr_array_add(commentaries, g_string_new(_("Loose ball falls to P2")));
 		break;
 	    case LIVE_GAME_EVENT_SCORING_CHANCE:
 		g_ptr_array_add(commentaries, g_string_new(_("P1 charges towards goal and shoots!")));
 		g_ptr_array_add(commentaries, g_string_new(_("P1 spins and shoots")));
 		g_ptr_array_add(commentaries, g_string_new(_("Long ball from P2 finds P1 at far post")));
 		g_ptr_array_add(commentaries, g_string_new(_("P1 can't quite get it under control but his miss kick heads toward goal")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1 shoots from 22 yards looks like its going wide")));
+		g_ptr_array_add(commentaries, g_string_new(_("P1 shoots from 22 yards looks like it's going wide")));
 		g_ptr_array_add(commentaries, g_string_new(_("P1 dribbles into the box, turns inside the defence and fires")));
 		g_ptr_array_add(commentaries, g_string_new(_("P1 cuts in from the left flank and shoots")));
 		g_ptr_array_add(commentaries, g_string_new(_("P1 tries his luck from 30 yards")));
@@ -162,19 +179,22 @@ lg_commentary_get_commentaries(gint event_type)
 		g_ptr_array_add(commentaries, g_string_new(_("And the ball is smacked into the back of the net!!!")));
 		g_ptr_array_add(commentaries, g_string_new(_("P1 scores!!!")));
 		g_ptr_array_add(commentaries, g_string_new(_("And the ball flies straight past P2 and into the back of the net!!!")));
-		g_ptr_array_add(commentaries, g_string_new(_("The ball flies past P2 and its a goal!!!")));
+		g_ptr_array_add(commentaries, g_string_new(_("The ball flies past P2 and it's a goal!!!")));
 		g_ptr_array_add(commentaries, g_string_new(_("P1 wheels away in celebration after a great goal sent the fans wild")));
 		g_ptr_array_add(commentaries, g_string_new(_("P2's despairing dive can't keep P1's shot out and the ball is in the back of the net!!!")));
+		g_ptr_array_add(commentaries, g_string_new(_("The dance ignites the fans, P1 celebrates in his own special fashion")));
 		break;
 	    case LIVE_GAME_EVENT_OWN_GOAL:
 		g_ptr_array_add(commentaries, g_string_new(_("Ohh no, the ball ricocheted off P1 into the net")));
 		g_ptr_array_add(commentaries, g_string_new(_("It's a pinball in the penalty box, finally spinning off P1 across the line")));
-		g_ptr_array_add(commentaries, g_string_new(_("Oh thats a great shot and its deflected off P1 and into the back of the net")));
+		g_ptr_array_add(commentaries, g_string_new(_("Oh that's a great shot and it's deflected off P1 and into the back of the net")));
 		g_ptr_array_add(commentaries, g_string_new(_("P1 passes the ball back to his goalie, oh no the keepers missed it! It's an own goal by P1!")));
+		g_ptr_array_add(commentaries, g_string_new(_("That little missunderstanding has cost T2 a goal")));
 		break;
 	    case LIVE_GAME_EVENT_HEADER:
 		g_ptr_array_add(commentaries, g_string_new(_("P2 chips the ball towards P1 who heads the ball towards goal")));
 		g_ptr_array_add(commentaries, g_string_new(_("Diving header by P1")));
+		g_ptr_array_add(commentaries, g_string_new(_("He just floated in midair for ages then thunder heads it towards home")));
 		break;
 	    case LIVE_GAME_EVENT_MISSED:
 		g_ptr_array_add(commentaries, g_string_new(_("P1 fired wide!")));
@@ -188,10 +208,12 @@ lg_commentary_get_commentaries(gint event_type)
 	    case LIVE_GAME_EVENT_POST:
 		g_ptr_array_add(commentaries, g_string_new(_("Sweet strike by P1, hits the post")));
 		g_ptr_array_add(commentaries, g_string_new(_("And the shot glances wide off the post")));
+		g_ptr_array_add(commentaries, g_string_new(_("I'm suprised the post has managed to withstand that cracking shot")));
 		break;
 	    case LIVE_GAME_EVENT_CROSS_BAR:
 		g_ptr_array_add(commentaries, g_string_new(_("Ball dinked over P2 but hit crossbar and bounced to safety")));
 		g_ptr_array_add(commentaries, g_string_new(_("The ball smacks into the crossbar with P2 stranded")));
+		g_ptr_array_add(commentaries, g_string_new(_("P2 seemed to be everywhere at once, finally tipping the ball off the crossbar")));
 		break;
 	    case LIVE_GAME_EVENT_SAVE:
 		g_ptr_array_add(commentaries, g_string_new(_("P2's fingertips flicks it wide")));
@@ -206,6 +228,8 @@ lg_commentary_get_commentaries(gint event_type)
 	    case LIVE_GAME_EVENT_PENALTY:
 		g_ptr_array_add(commentaries, g_string_new(_("P1 steps up to take the penalty")));
 		g_ptr_array_add(commentaries, g_string_new(_("P1 has a chance to score with a penalty kick")));
+		g_ptr_array_add(commentaries, g_string_new(_("P1 has missed a penalty before but he now has a chance to redeem himself")));
+		g_ptr_array_add(commentaries, g_string_new(_("You have to bury the nerves, swallow and concentrate when your taking penalties")));
 		break;
 	    case LIVE_GAME_EVENT_FREE_KICK:
 		g_ptr_array_add(commentaries, g_string_new(_("Short free-kick from P1")));
@@ -217,7 +241,7 @@ lg_commentary_get_commentaries(gint event_type)
 		g_ptr_array_add(commentaries, g_string_new(_("Free kick whipped across the face of goal by P1")));
 		break;
 	    case LIVE_GAME_EVENT_FOUL:
-		g_ptr_array_add(commentaries, g_string_new(_("Owe nasty tackle on P1")));
+		g_ptr_array_add(commentaries, g_string_new(_("Oww, nasty tackle on P1")));
 		g_ptr_array_add(commentaries, g_string_new(_("Surely that's a sending off offence")));
 		g_ptr_array_add(commentaries, g_string_new(_("P2 knocks over P1 with a double footed lunge")));
 		g_ptr_array_add(commentaries, g_string_new(_("Crunching challenge on P1")));
@@ -246,8 +270,8 @@ lg_commentary_get_commentaries(gint event_type)
 		g_ptr_array_add(commentaries, g_string_new(_("P2 for swearing at opposition fans")));
 		break;
 	    case LIVE_GAME_EVENT_FOUL_RED_INJURY:
-		g_ptr_array_add(commentaries, g_string_new(_("And the stretcher bearers come racing on with P1 lying in agony on the turf")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1 seems to have broken something.. he'll have to be substituted")));
+		g_ptr_array_add(commentaries, g_string_new(_("P2 fouls and the stretcher bearers come racing on with P1 lying in agony on the turf")));
+		g_ptr_array_add(commentaries, g_string_new(_("Foul by P2; P1 seems to have broken something.. he might have to be substituted")));
 		break;
 	    case LIVE_GAME_EVENT_SEND_OFF:
 		g_ptr_array_add(commentaries, g_string_new(_("P1 has been sent off")));

@@ -562,8 +562,13 @@ create_window_live (void)
   GtkWidget *image57;
   GtkWidget *label73;
   GtkWidget *button_live_close;
+  GtkWidget *table2;
   GtkObject *spinbutton_speed_adj;
   GtkWidget *spinbutton_speed;
+  GtkWidget *label112;
+  GtkWidget *label113;
+  GtkObject *spinbutton_verbosity_adj;
+  GtkWidget *spinbutton_verbosity;
   GtkAccelGroup *accel_group;
   GtkTooltips *tooltips;
 
@@ -716,12 +721,42 @@ create_window_live (void)
   gtk_box_pack_start (GTK_BOX (hbox48), button_live_close, FALSE, FALSE, 0);
   gtk_widget_set_sensitive (button_live_close, FALSE);
 
+  table2 = gtk_table_new (2, 2, FALSE);
+  gtk_widget_show (table2);
+  gtk_box_pack_end (GTK_BOX (hbox48), table2, FALSE, TRUE, 0);
+  gtk_table_set_row_spacings (GTK_TABLE (table2), 1);
+  gtk_table_set_col_spacings (GTK_TABLE (table2), 3);
+
   spinbutton_speed_adj = gtk_adjustment_new (0, -10, 20, 1, 10, 10);
   spinbutton_speed = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_speed_adj), 1, 0);
   gtk_widget_show (spinbutton_speed);
-  gtk_box_pack_end (GTK_BOX (hbox48), spinbutton_speed, FALSE, TRUE, 0);
+  gtk_table_attach (GTK_TABLE (table2), spinbutton_speed, 1, 2, 1, 2,
+                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
   gtk_tooltips_set_tip (tooltips, spinbutton_speed, _("Change live game speed. The lower the value the faster the live game."), NULL);
   gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_speed), TRUE);
+
+  label112 = gtk_label_new (_("Speed"));
+  gtk_widget_show (label112);
+  gtk_table_attach (GTK_TABLE (table2), label112, 1, 2, 0, 1,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_label_set_justify (GTK_LABEL (label112), GTK_JUSTIFY_RIGHT);
+
+  label113 = gtk_label_new (_("Verbosity"));
+  gtk_widget_show (label113);
+  gtk_table_attach (GTK_TABLE (table2), label113, 0, 1, 0, 1,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  spinbutton_verbosity_adj = gtk_adjustment_new (1, 1, 7, 1, 10, 10);
+  spinbutton_verbosity = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_verbosity_adj), 1, 0);
+  gtk_widget_show (spinbutton_verbosity);
+  gtk_table_attach (GTK_TABLE (table2), spinbutton_verbosity, 0, 1, 1, 2,
+                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_tooltips_set_tip (tooltips, spinbutton_verbosity, _("Change commentary verbosity. The higher this value the more events you can see."), NULL);
+  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_verbosity), TRUE);
 
   g_signal_connect ((gpointer) window_live, "delete_event",
                     G_CALLBACK (on_live_window_delete_event),
@@ -737,6 +772,9 @@ create_window_live (void)
                     NULL);
   g_signal_connect ((gpointer) spinbutton_speed, "value_changed",
                     G_CALLBACK (on_spinbutton_speed_value_changed),
+                    NULL);
+  g_signal_connect ((gpointer) spinbutton_verbosity, "value_changed",
+                    G_CALLBACK (on_spinbutton_verbosity_value_changed),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -772,7 +810,11 @@ create_window_live (void)
   GLADE_HOOKUP_OBJECT (window_live, image57, "image57");
   GLADE_HOOKUP_OBJECT (window_live, label73, "label73");
   GLADE_HOOKUP_OBJECT (window_live, button_live_close, "button_live_close");
+  GLADE_HOOKUP_OBJECT (window_live, table2, "table2");
   GLADE_HOOKUP_OBJECT (window_live, spinbutton_speed, "spinbutton_speed");
+  GLADE_HOOKUP_OBJECT (window_live, label112, "label112");
+  GLADE_HOOKUP_OBJECT (window_live, label113, "label113");
+  GLADE_HOOKUP_OBJECT (window_live, spinbutton_verbosity, "spinbutton_verbosity");
   GLADE_HOOKUP_OBJECT_NO_REF (window_live, tooltips, "tooltips");
 
   gtk_window_add_accel_group (GTK_WINDOW (window_live), accel_group);

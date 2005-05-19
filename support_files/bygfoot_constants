@@ -289,6 +289,10 @@ float_game_gui_live_game_scale_attack	3000
 float_game_gui_live_game_scale_chance	4500
 float_game_gui_live_game_scale_range	100000
 
+# live game speed (milliseconds
+int_game_gui_live_game_speed_base	1000500
+int_game_gui_live_game_speed_step	100000
+
 # How much a player's skill can deviate from 
 # the average skill in his team.
 float_player_average_skill_variance 750

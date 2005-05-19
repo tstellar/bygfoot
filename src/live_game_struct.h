@@ -57,26 +57,13 @@ enum LiveGameEventType
 
 /** Indices for the int_values in the
     #LiveGameEvent struct. */
-enum LiveGameEventValue1
+enum LiveGameEventValue
 {
     LIVE_GAME_EVENT_VALUE_TEAM = 0,
     LIVE_GAME_EVENT_VALUE_PLAYER,
     LIVE_GAME_EVENT_VALUE_PLAYER2,
-    LIVE_GAME_EVENT_VALUE_CHANCE_CONVERTED,
-    LIVE_GAME_EVENT_VALUE1_END
+    LIVE_GAME_EVENT_VALUE_END
 };
-
-/** Indices for the int_values in
-    #LiveGameEvent struct. */
-enum LiveGameEventValue2
-{
-    LIVE_GAME_EVENT_VALUE_NEW_STRUCTURE = LIVE_GAME_EVENT_VALUE_TEAM + 1,
-    LIVE_GAME_EVENT_VALUE_OLD_STRUCTURE,
-    LIVE_GAME_EVENT_VALUE_NEW_STYLE = LIVE_GAME_EVENT_VALUE_NEW_STRUCTURE,
-    LIVE_GAME_EVENT_VALUE_OLD_STYLE,
-    LIVE_GAME_EVENT_VALUE2_END
-};
-
 
 enum LiveGameUnitArea
 {
@@ -147,9 +134,12 @@ typedef struct
 {
     /** @see #LiveGameEventType */
     gint type;
+    /** Verbosity value. The lower the more important
+	the event. */
+    gint verbosity;
     /** @see #LiveGameEventValue1
 	@see #LiveGameEventValue2 */
-    gint values[MAX(LIVE_GAME_EVENT_VALUE1_END, LIVE_GAME_EVENT_VALUE2_END)];
+    gint values[LIVE_GAME_EVENT_VALUE_END];
     /** The commentary for the event. */
     GString *commentary;
 
