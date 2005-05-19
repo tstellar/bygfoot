@@ -1850,6 +1850,7 @@ treeview_create_player_info(const Player *pl)
 	 _("Games/Goals\n"),
 	 _("Yellow cards (limit)\n"),
 	 _("Banned\n"),
+	 _("Career values"),
 	 _("New contract\noffers")};
 
     for(i=0;i<PLAYER_INFO_ATTRIBUTE_END;i++)

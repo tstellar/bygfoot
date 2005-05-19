@@ -18,6 +18,7 @@
 Player
 player_new(Team *tm, gfloat average_skill, gboolean new_id)
 {
+    gint i;
     gfloat skill_factor = 
 	math_rnd(1 - const_float("float_player_average_skill_variance"),
 		 1 + const_float("float_player_average_skill_variance"));
@@ -63,6 +64,9 @@ player_new(Team *tm, gfloat average_skill, gboolean new_id)
 		       const_float("float_player_lsu_upper"));
     new.cards = g_array_new(FALSE, FALSE, sizeof(PlayerCard));
     new.games_goals = g_array_new(FALSE, FALSE, sizeof(PlayerGamesGoals));
+
+    for(i=0;i<PLAYER_VALUE_END;i++)
+	new.career[i] = 0;
 
     new.team = tm;
     new.participation = FALSE;
@@ -783,7 +787,7 @@ player_games_goals_get(const Player *pl, gint clid, gint type)
     @param diff Whether we add the value to the old one or
     replace the old value by the new one. */
 void
-player_games_goals_set(Player *pl, gint clid, gint type, gint value, gboolean diff)
+player_games_goals_set(Player *pl, gint clid, gint type, gint value)
 {
     gint i, *games_goals_value = NULL;
     PlayerGamesGoals new;
@@ -798,10 +802,7 @@ player_games_goals_set(Player *pl, gint clid, gint type, gint value, gboolean di
 	    else if(type == PLAYER_VALUE_SHOTS)
 		games_goals_value = &g_array_index(pl->games_goals, PlayerGamesGoals, i).shots;
 
-	    if(diff)
-		*games_goals_value += value;
-	    else
-		*games_goals_value = value;
+	    *games_goals_value += value;
 
 	    if(*games_goals_value < 0)
 	    {
@@ -817,7 +818,7 @@ player_games_goals_set(Player *pl, gint clid, gint type, gint value, gboolean di
 
     g_array_append_val(pl->games_goals, new);
 
-    player_games_goals_set(pl, clid, type, value, diff);
+    player_games_goals_set(pl, clid, type, value);
 }
 
 /** Update skill and lsu of a user player.

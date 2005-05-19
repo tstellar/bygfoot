@@ -13,16 +13,6 @@ enum PlayerCompareAttrib
     PLAYER_COMPARE_ATTRIBUTE_END
 };
 
-enum PlayerValue
-{
-    PLAYER_VALUE_CARD_YELLOW = 0,
-    PLAYER_VALUE_CARD_RED, 
-    PLAYER_VALUE_GAMES,
-    PLAYER_VALUE_GOALS,
-    PLAYER_VALUE_SHOTS,
-    PLAYER_VALUE_END
-};
-
 Player
 player_new(Team *tm, gfloat average_skill, gboolean new_id);
 
@@ -93,7 +83,7 @@ void
 player_card_set(Player *pl, gint clid, gint card_type, gint value, gboolean diff);
 
 void
-player_games_goals_set(Player *pl, gint clid, gint type, gint value, gboolean diff);
+player_games_goals_set(Player *pl, gint clid, gint type, gint value);
 
 gint
 player_games_goals_get(const Player *pl, gint clid, gint type);

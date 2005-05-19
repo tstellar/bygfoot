@@ -87,9 +87,6 @@ treeview_helper_get_pointer(GtkTreeView *treeview, gint column)
 void
 treeview_helper_clear(GtkTreeView *treeview)
 {
-    /*d*/
-/*     gtk_tree_store_clear(GTK_TREE_STORE(gtk_tree_view_get_model(treeview))); */
-
     gint i;
     gint number_of_columns;
     GtkTreeView *list = (treeview == NULL) ?
@@ -698,6 +695,9 @@ treeview_helper_player_ext_info_to_cell(GtkTreeViewColumn *col,
 	case PLAYER_INFO_ATTRIBUTE_BANNED:
 	    treeview_helper_player_info_banned_to_cell(renderer, pl->cards);
 	    break;
+	case PLAYER_INFO_ATTRIBUTE_CAREER:
+	    treeview_helper_player_info_career_to_cell(renderer, pl);
+	    break;
 	case PLAYER_INFO_ATTRIBUTE_OFFERS:
 	    if(pl->offers > 0)
 		g_object_set(renderer, "text", _("Player doesn't negotiate anymore"), NULL);
@@ -705,6 +705,52 @@ treeview_helper_player_ext_info_to_cell(GtkTreeViewColumn *col,
 		g_object_set(renderer, "text", _("Player accepts new offers"), NULL);
 	    break;
     }
+}
+
+void
+treeview_helper_player_info_career_to_cell(GtkCellRenderer *renderer, const Player *pl)
+{
+    gint i;
+    gfloat goals_game = 0,
+	shot_perc = 0;
+    gchar *titles[PLAYER_VALUE_END] =
+	{_("Games"),
+	 _("Goals"),
+	 _("Shots"),
+	 _("Yellows"),
+	 _("Reds")};
+    gchar buf[SMALL], buf2[SMALL], format[SMALL];
+
+    strcpy(buf, "");
+    for(i=0;i<PLAYER_VALUE_END;i++)
+    {
+	sprintf(buf2, "%s %d ", titles[i], pl->career[i]);
+	strcat(buf, buf2);
+    }
+
+    if(pl->career[PLAYER_VALUE_GAMES] > 0)
+	goals_game = (gfloat)pl->career[PLAYER_VALUE_GOALS] /
+	    (gfloat)pl->career[PLAYER_VALUE_GAMES];
+
+    if(pl->pos == PLAYER_POS_GOALIE)
+    {
+	strcpy(format, "\nGoals/Game %.1f Save %% %.1f");
+	if(pl->career[PLAYER_VALUE_SHOTS] > 0)
+	    shot_perc = 100 - ((gfloat)pl->career[PLAYER_VALUE_GOALS] * 100 /
+			       (gfloat)pl->career[PLAYER_VALUE_SHOTS]);
+    }
+    else
+    {
+	strcpy(format, "\nGoals/Game %.1f Shot %% %.1f");
+	if(pl->career[PLAYER_VALUE_SHOTS] > 0)
+	    shot_perc = (gfloat)pl->career[PLAYER_VALUE_GOALS] * 100 /
+		(gfloat)pl->career[PLAYER_VALUE_SHOTS];
+    }
+
+    sprintf(buf2, format, goals_game, shot_perc);    
+    strcat(buf, buf2);
+
+    g_object_set(renderer, "text", buf, NULL);
 }
 
 void

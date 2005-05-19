@@ -64,6 +64,18 @@ enum PlayerInjury
     PLAYER_INJURY_END
 };
 
+/** Enum for different player data. */
+enum PlayerValue
+{
+    PLAYER_VALUE_GAMES = 0,
+    PLAYER_VALUE_GOALS,
+    PLAYER_VALUE_SHOTS,
+    PLAYER_VALUE_CARD_YELLOW,
+    PLAYER_VALUE_CARD_RED, 
+    PLAYER_VALUE_END
+};
+
+
 /**
    Representation of a player.
    @see #PlayerAttributes
@@ -102,6 +114,9 @@ typedef struct
     /** Array of cards; one item per league and cup.
 	@see PlayerCard*/
     GArray *cards;
+
+    /** Career goals, games etc. */
+    gint career[PLAYER_VALUE_END];
 
     /** Pointer to the player's team. */
     Team *team;
@@ -148,6 +163,7 @@ enum PlayerInfoAttributeValue
     PLAYER_INFO_ATTRIBUTE_GAMES_GOALS,
     PLAYER_INFO_ATTRIBUTE_YELLOW_CARDS,
     PLAYER_INFO_ATTRIBUTE_BANNED,
+    PLAYER_INFO_ATTRIBUTE_CAREER,
     PLAYER_INFO_ATTRIBUTE_OFFERS,
     PLAYER_INFO_ATTRIBUTE_END
 };

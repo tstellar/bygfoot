@@ -323,8 +323,11 @@ live_game_event_foul(void)
 	    live_game_event_injury(!foul_team, fouled_player, TRUE);
     }
     else if(type == LIVE_GAME_EVENT_FOUL_YELLOW)
+    {
 	player_card_set(player_of_id_team(tm[foul_team], foul_player),
 			match->fix->clid, PLAYER_VALUE_CARD_YELLOW, 1, TRUE);
+	player_of_id_team(tm[foul_team], foul_player)->career[PLAYER_VALUE_CARD_YELLOW]++;
+    }
 
     if(last_unit.area == LIVE_GAME_UNIT_AREA_ATTACK && foul_team !=
        last_unit.possession)
@@ -794,6 +797,8 @@ live_game_event_send_off(gint team, gint player, gboolean second_yellow)
     else
 	player_card_set(player_of_id_team(tm[team], player), match->fix->clid, PLAYER_VALUE_CARD_RED, 
 			game_player_get_ban_duration(), FALSE);
+
+    player_of_id_team(tm[team], player)->career[PLAYER_VALUE_CARD_RED]++;
     
     if(team_is_user(tm[team]) != -1)
     {
@@ -863,7 +868,8 @@ live_game_event_substitution(gint team_number, gint sub_in, gint sub_out)
     if(player_of_id_team(tm[team_number], sub_in)->cskill > 0)
     {
 	player_games_goals_set(player_of_id_team(tm[team_number], sub_in),
-			       match->fix->clid, PLAYER_VALUE_GAMES, 1, TRUE);
+			       match->fix->clid, PLAYER_VALUE_GAMES, 1);
+	player_of_id_team(tm[team_number], sub_in)->career[PLAYER_VALUE_GAMES]++;
 	player_of_id_team(tm[team_number], sub_in)->participation = TRUE;
     }
 
@@ -941,7 +947,10 @@ live_game_event_duel(void)
 		 const_float("float_live_game_score_team_exponent"));
 
     if(new.time != LIVE_GAME_UNIT_TIME_PENALTIES)
-	player_games_goals_set(attacker, match->fix->clid, PLAYER_VALUE_SHOTS, 1, TRUE);
+    {
+	player_games_goals_set(attacker, match->fix->clid, PLAYER_VALUE_SHOTS, 1);
+	attacker->career[PLAYER_VALUE_SHOTS]++;
+    }
 
     if(rndom < scoring_prob)
     {
@@ -951,8 +960,10 @@ live_game_event_duel(void)
 
 	if(new.time != LIVE_GAME_UNIT_TIME_PENALTIES)
 	{
-	    player_games_goals_set(attacker, match->fix->clid, PLAYER_VALUE_GOALS, 1, TRUE);
-	    player_games_goals_set(goalie, match->fix->clid, PLAYER_VALUE_GOALS, 1, TRUE);
+	    player_games_goals_set(attacker, match->fix->clid, PLAYER_VALUE_GOALS, 1);
+	    player_games_goals_set(goalie, match->fix->clid, PLAYER_VALUE_GOALS, 1);
+	    attacker->career[PLAYER_VALUE_GOALS]++;
+	    goalie->career[PLAYER_VALUE_GOALS]++;
 	}
     }
     else
@@ -961,7 +972,10 @@ live_game_event_duel(void)
     if(new.time != LIVE_GAME_UNIT_TIME_PENALTIES &&
        (new.event.type == LIVE_GAME_EVENT_SAVE ||
 	new.event.type == LIVE_GAME_EVENT_GOAL))
-	player_games_goals_set(goalie, match->fix->clid, PLAYER_VALUE_SHOTS, 1, TRUE);
+    {
+	player_games_goals_set(goalie, match->fix->clid, PLAYER_VALUE_SHOTS, 1);
+	goalie->career[PLAYER_VALUE_SHOTS]++;
+    }
     
     g_array_append_val(unis, new);
 

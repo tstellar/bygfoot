@@ -132,6 +132,9 @@ treeview_helper_player_info_yellow_to_cell(GtkCellRenderer *renderer, const GArr
 void
 treeview_helper_player_info_banned_to_cell(GtkCellRenderer *renderer, const GArray *cards);
 
+void
+treeview_helper_player_info_career_to_cell(GtkCellRenderer *renderer, const Player *pl);
+
 gchar*
 treeview_helper_get_user_history_icon(gint history_type);
 

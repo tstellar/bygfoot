@@ -48,10 +48,11 @@ enum
     TAG_TEAM_PLAYER_CARD_CLID,
     TAG_TEAM_PLAYER_CARD_YELLOW,
     TAG_TEAM_PLAYER_CARD_RED,
+    TAG_TEAM_PLAYER_CAREER,
     TAG_END
 };
 
-gint state, etalidx;
+gint state, etalidx, careeridx;
 GArray *teams_array;
 Team new_team;
 Player new_player;
@@ -89,7 +90,7 @@ xml_loadsave_teams_start_element (GMarkupParseContext *context,
     else if(tag == TAG_TEAM_PLAYER)
     {
 	new_player = player_new(&new_team, 80, FALSE);
-	etalidx = 0;
+	etalidx = careeridx = 0;
     }
 
     if(!valid_tag)
@@ -150,11 +151,14 @@ xml_loadsave_teams_end_element    (GMarkupParseContext *context,
 	    tag == TAG_TEAM_PLAYER_CONTRACT ||
 	    tag == TAG_TEAM_PLAYER_PARTICIPATION ||
 	    tag == TAG_TEAM_PLAYER_GAMES_GOAL ||
+	    tag == TAG_TEAM_PLAYER_CAREER ||
 	    tag == TAG_TEAM_PLAYER_CARD)
     {
 	state = TAG_TEAM_PLAYER;
 	if(tag == TAG_TEAM_PLAYER_ETAL)
 	    etalidx++;
+	else if(tag == TAG_TEAM_PLAYER_CAREER)
+	    careeridx++;
 	else if(tag == TAG_TEAM_PLAYER_CARD)
 	    g_array_append_val(new_player.cards, new_card);
 	else if(tag == TAG_TEAM_PLAYER_GAMES_GOAL)
@@ -267,6 +271,8 @@ xml_loadsave_teams_text         (GMarkupParseContext *context,
 	new_card.yellow = int_value;
     else if(state == TAG_TEAM_PLAYER_CARD_RED)
 	new_card.red = int_value;
+    else if(state == TAG_TEAM_PLAYER_CAREER)
+	new_player.career[careeridx] = int_value;
 }
 
 void
@@ -389,6 +395,9 @@ xml_loadsave_teams_write_player(FILE *fil, const Player *pl)
     for(i=0;i<4;i++)
 	xml_write_float(fil, pl->etal[i], TAG_TEAM_PLAYER_ETAL, I3);
     
+    for(i=0;i<PLAYER_VALUE_END;i++)
+	xml_write_int(fil, pl->career[i], TAG_TEAM_PLAYER_CAREER, I2);
+
     for(i=0;i<pl->games_goals->len;i++)
     {
 	fprintf(fil, "%s<_%d>\n", I2, TAG_TEAM_PLAYER_GAMES_GOAL);
@@ -417,7 +426,7 @@ xml_loadsave_teams_write_player(FILE *fil, const Player *pl)
 		      TAG_TEAM_PLAYER_CARD_RED, I3);
 	
 	fprintf(fil, "%s</_%d>\n", I2, TAG_TEAM_PLAYER_CARD);
-    }
+    }    
 
     fprintf(fil, "%s</_%d>\n", I1, TAG_TEAM_PLAYER);
 }

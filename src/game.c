@@ -263,8 +263,11 @@ game_initialize(Fixture *fix)
 	    if(j < 11)
 	    {
 		if(g_array_index(fix->teams[i]->players, Player, j).cskill > 0)
+		{
 		    player_games_goals_set(&g_array_index(fix->teams[i]->players, Player, j), fix->clid,
-					   PLAYER_VALUE_GAMES, 1, TRUE);
+					   PLAYER_VALUE_GAMES, 1);
+		    g_array_index(fix->teams[i]->players, Player, j).career[PLAYER_VALUE_GAMES]++;
+		}
 		
 		g_array_index(fix->teams[i]->players, Player, j).participation = TRUE;
 	    }
