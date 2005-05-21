@@ -1059,7 +1059,6 @@ treeview_create_single_table(GtkListStore *ls, const Table *table, gint number)
 	    treeview_helper_insert_icon(ls, &iter, 2, 
 					const_app("string_treeview_table_stay_icon"));
 
-	/*todo: cup choose team user */
 	treeview_helper_get_table_element_colours(table, i, colour_fg, colour_bg, FALSE);
 	sprintf(buf[0], "<span background='%s' foreground='%s'>%d</span>",
 		colour_bg, colour_fg, i + 1);

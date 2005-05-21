@@ -224,24 +224,21 @@ end_week_round_results(void)
 	}
 
     for(i=0;i<acps->len;i++)
-	if(week_round > 1 || query_cup_is_promotion(acp(i)->id))
+	for(j=0;j<acp(i)->fixtures->len;j++)
 	{
-	    for(j=0;j<acp(i)->fixtures->len;j++)
+	    if(g_array_index(acp(i)->fixtures, Fixture, j).week_number == week &&
+	       g_array_index(acp(i)->fixtures, Fixture, j).week_round_number == week_round &&
+	       g_array_index(acp(i)->fixtures, Fixture, j).attendance == -1)
 	    {
-		if(g_array_index(acp(i)->fixtures, Fixture, j).week_number == week &&
-		   g_array_index(acp(i)->fixtures, Fixture, j).week_round_number == week_round &&
-		   g_array_index(acp(i)->fixtures, Fixture, j).attendance == -1)
-		{
-		    live_game_calculate_fixture(&g_array_index(acp(i)->fixtures, Fixture, j));
+		live_game_calculate_fixture(&g_array_index(acp(i)->fixtures, Fixture, j));
 
-		    done++;
-		    fixture_result_to_buf(&g_array_index(acp(i)->fixtures, Fixture, j), buf);
-		    sprintf(buf2, "%s %s %s",
-			    g_array_index(acp(i)->fixtures, Fixture, j).teams[0]->name->str,
-			    buf,
-			    g_array_index(acp(i)->fixtures, Fixture, j).teams[1]->name->str);
-		    gui_show_progress((gfloat)done / num_matches, buf2);
-		}
+		done++;
+		fixture_result_to_buf(&g_array_index(acp(i)->fixtures, Fixture, j), buf);
+		sprintf(buf2, "%s %s %s",
+			g_array_index(acp(i)->fixtures, Fixture, j).teams[0]->name->str,
+			buf,
+			g_array_index(acp(i)->fixtures, Fixture, j).teams[1]->name->str);
+		gui_show_progress((gfloat)done / num_matches, buf2);
 	    }
 	}
 
@@ -321,7 +318,9 @@ start_week_round(void)
 	start_func++;
     }
 
-    if(/*d*//* FALSE &&  */!query_user_games_this_week_round() &&
+    if(!query_start_end_season_end() &&
+	opt_int("int_opt_skip") &&
+       !query_user_games_this_week_round() &&
        ((week_round == 1 && 
 	 !query_user_games_in_week_round(week - 1, fixture_get_last_week_round(week - 1))) ||
 	(week_round > 1 && 
@@ -440,12 +439,12 @@ query_start_end_season_end(void)
 
     for(i=0;i<ligs->len;i++)
 	for(j=0;j<lig(i).fixtures->len;j++)
-	    if(g_array_index(lig(i).fixtures, Fixture, j).week_number > week)
+	    if(g_array_index(lig(i).fixtures, Fixture, j).week_number > week - 1)
 		return FALSE;
 
     for(i=0;i<acps->len;i++)
 	for(j=0;j<acp(i)->fixtures->len;j++)
-	    if(g_array_index(acp(i)->fixtures, Fixture, j).week_number > week)
+	    if(g_array_index(acp(i)->fixtures, Fixture, j).week_number > week - 1)
 		return FALSE;
 
     return TRUE;

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+
+  <sid>scotland1</sid>
+  <name>Scottish Premier League</name>
+  <short_name>SPL</short_name>
+  <symbol>flag_scotland.png</symbol>
+  <first_week>1</first_week>
+  <week_gap>1</week_gap>
+  <average_skill>8000</average_skill>
+  <round_robins>3</round_robins>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>12</rank_start>
+      <rank_end>12</rank_end>
+      <dest_sid>scotland2</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Aberdeen</team_name>
+    </team>
+    <team>
+      <team_name>C. Glasgow</team_name>
+    </team>
+    <team>
+      <team_name>Glasgow R.</team_name>
+    </team>
+    <team>
+      <team_name>Dundee</team_name>
+    </team>
+    <team>
+      <team_name>Dundee U.</team_name>
+    </team>
+    <team>
+      <team_name>Dunfermline</team_name>
+    </team>
+    <team>
+      <team_name>Edinburgh HM</team_name>
+    </team>
+    <team>
+      <team_name>Edinburgh H.</team_name>
+    </team>
+    <team>
+      <team_name>Inverness</team_name>
+    </team>
+    <team>
+      <team_name>Kilmarnock</team_name>
+    </team>
+    <team>
+      <team_name>Livingston</team_name>
+    </team>
+    <team>
+      <team_name>Motherwell </team_name>
+    </team>
+  </teams>
+
+</league>

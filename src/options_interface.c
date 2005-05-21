@@ -39,6 +39,7 @@ create_window_options (void)
   GtkWidget *checkbutton_save_overwrite;
   GtkWidget *checkbutton_maximize;
   GtkWidget *checkbutton_pref_mess;
+  GtkWidget *checkbutton_skip;
   GtkWidget *vseparator1;
   GtkWidget *table1;
   GtkWidget *checkbutton_autosave;
@@ -223,6 +224,11 @@ create_window_options (void)
   checkbutton_pref_mess = gtk_check_button_new_with_mnemonic (_("Prefer messages"));
   gtk_widget_show (checkbutton_pref_mess);
   gtk_box_pack_start (GTK_BOX (vbox3), checkbutton_pref_mess, FALSE, FALSE, 0);
+
+  checkbutton_skip = gtk_check_button_new_with_mnemonic (_("Skip weeks without user matches"));
+  gtk_widget_show (checkbutton_skip);
+  gtk_box_pack_start (GTK_BOX (vbox3), checkbutton_skip, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_skip, _("If checked, weeks without user teams playing are calculated automatically (without the user having to press 'New week')"), NULL);
 
   vseparator1 = gtk_vseparator_new ();
   gtk_widget_show (vseparator1);
@@ -965,6 +971,7 @@ create_window_options (void)
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_save_overwrite, "checkbutton_save_overwrite");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_maximize, "checkbutton_maximize");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_pref_mess, "checkbutton_pref_mess");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_skip, "checkbutton_skip");
   GLADE_HOOKUP_OBJECT (window_options, vseparator1, "vseparator1");
   GLADE_HOOKUP_OBJECT (window_options, table1, "table1");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_autosave, "checkbutton_autosave");

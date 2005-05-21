@@ -310,7 +310,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 	    
 	    if(number_of_teams != ct->number_of_teams)
 	    {
-		g_warning("cup_load_choose_team: not enough teams found in league 0 for chooseteam %s (%d; required: %d) in cup %s (group %d)\n",
+		g_warning("cup_load_choose_team (*): not enough teams found in league 0 for chooseteam %s (%d; required: %d) in cup %s (group %d)\n",
 			  ct->sid->str, number_of_teams, ct->number_of_teams, cup->name->str, cup->group);
 		main_exit_program(EXIT_CHOOSE_TEAM_ERROR, NULL);
 	    }
@@ -820,4 +820,17 @@ query_cup_begins(const Cup *cup)
     }
 
     return TRUE;    
+}
+
+/** Return the number of international cups in the country. */
+gint
+cup_count_international(void)
+{
+    gint i, return_value = 0;
+
+    for(i=0;i<cps->len;i++)
+	if(query_cup_is_international(cp(i).id))
+	    return_value++;
+
+    return return_value;
 }

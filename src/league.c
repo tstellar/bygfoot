@@ -44,7 +44,7 @@ league_new(gboolean new_id)
     new.table.clid = new.id;
 
     new.first_week = new.week_gap = 1;
-    new.round_robins = 1;
+    new.round_robins = 2;
     new.yellow_red = 1000;
 
     new.stats = stat_league_new(new.id);

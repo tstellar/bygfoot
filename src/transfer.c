@@ -1,3 +1,4 @@
+#include "cup.h"
 #include "finance.h"
 #include "free.h"
 #include "game_gui.h"
@@ -235,7 +236,7 @@ transfer_add_new_players(void)
     for(i=0;i<number_of_new;i++)
 	transfer_add_player(transfer_player_get_new(
 				(math_rnd(0, 1) < const_float("float_transfer_cup_percentage") &&
-				 cps->len > 0)),
+				 cup_count_international() > 0)),
 			    math_rndi(const_int("int_transfer_time_lower"),
 				      const_int("int_transfer_time_upper")));
 }

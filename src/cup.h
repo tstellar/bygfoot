@@ -92,4 +92,7 @@ cup_has_tables(gint clid);
 Team*
 cup_get_winner(const Cup *cup);
 
+gint
+cup_count_international(void);
+
 #endif

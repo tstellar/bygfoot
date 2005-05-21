@@ -419,7 +419,7 @@ treeview_helper_get_table_element_colour_cups(const League *league, gint idx, gc
     gint league_idx = league_cup_get_index_from_clid(league->id) + 1;
     gchar buf[SMALL];
 
-    sprintf(buf, "league%d", league_idx);
+    sprintf(buf, "LEAGUE%d", league_idx);
 
     for(i=0;i<cps->len;i++)
 	for(k=0;k<cp(i).rounds->len;k++)
