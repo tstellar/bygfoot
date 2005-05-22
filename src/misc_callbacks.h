@@ -58,10 +58,6 @@ on_button_live_close_clicked           (GtkButton       *button,
                                         gpointer         user_data);
 
 void
-on_button_help_close_clicked           (GtkButton       *button,
-                                        gpointer         user_data);
-
-void
 on_button_pause_clicked                (GtkButton       *button,
                                         gpointer         user_data);
 

@@ -57,10 +57,6 @@ void
 on_button_new_week_clicked             (GtkButton       *button,
                                         gpointer         user_data);
 
-void
-on_button_help_clicked                 (GtkButton       *button,
-                                        gpointer         user_data);
-
 gboolean
 on_player_list2_button_press_event      (GtkWidget       *widget,
 					 GdkEventButton  *event,
@@ -261,4 +257,12 @@ on_menu_league_stats_activate          (GtkMenuItem     *menuitem,
 gboolean
 on_button_quit_button_press_event      (GtkWidget       *widget,
                                         GdkEventButton  *event,
+                                        gpointer         user_data);
+
+void
+on_menu_help_activate                  (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_menu_contributors_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data);

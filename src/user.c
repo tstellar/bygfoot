@@ -710,7 +710,7 @@ user_history_to_string(const UserHistory *history, gchar *buf)
 		    team_of_id(history->team_id)->name->str);
 	    break;
     	case  USER_HISTORY_END_SEASON:
-	    sprintf(buf, "You finish the season in %s on rank %d.",
+	    sprintf(buf, "You finish the season in the %s on rank %d.",
 		    league_cup_get_name_string(history->value1),
 		    history->value2);
 	    break;

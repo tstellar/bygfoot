@@ -119,6 +119,7 @@ typedef struct
 	*contract,
 	*menu_player,
 	*user_management,
-	*wdebug;
+	*wdebug,
+	*help;
 } Windows;
 #endif

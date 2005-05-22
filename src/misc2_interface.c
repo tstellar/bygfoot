@@ -980,3 +980,145 @@ create_window_debug (void)
   return window_debug;
 }
 
+GtkWidget*
+create_window_help (void)
+{
+  GtkWidget *window_help;
+  GtkWidget *vbox23;
+  GtkWidget *notebook1;
+  GtkWidget *vbox24;
+  GtkWidget *image12;
+  GtkWidget *label_about;
+  GtkWidget *label49;
+  GtkWidget *scrolledwindow4;
+  GtkWidget *treeview_contributors;
+  GtkWidget *label50;
+  GtkWidget *vbox25;
+  GtkWidget *image13;
+  GtkWidget *label_help_text1;
+  GtkWidget *label_help_text2;
+  GtkWidget *label51;
+  GtkWidget *button_help_close;
+  GtkAccelGroup *accel_group;
+  GtkTooltips *tooltips;
+
+  tooltips = gtk_tooltips_new ();
+
+  accel_group = gtk_accel_group_new ();
+
+  window_help = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_container_set_border_width (GTK_CONTAINER (window_help), 5);
+  gtk_window_set_title (GTK_WINDOW (window_help), _("window1"));
+  gtk_window_set_position (GTK_WINDOW (window_help), GTK_WIN_POS_CENTER);
+  gtk_window_set_modal (GTK_WINDOW (window_help), TRUE);
+  gtk_window_set_default_size (GTK_WINDOW (window_help), 400, 400);
+
+  vbox23 = gtk_vbox_new (FALSE, 3);
+  gtk_widget_show (vbox23);
+  gtk_container_add (GTK_CONTAINER (window_help), vbox23);
+
+  notebook1 = gtk_notebook_new ();
+  gtk_widget_show (notebook1);
+  gtk_box_pack_start (GTK_BOX (vbox23), notebook1, TRUE, TRUE, 0);
+
+  vbox24 = gtk_vbox_new (FALSE, 5);
+  gtk_widget_show (vbox24);
+  gtk_container_add (GTK_CONTAINER (notebook1), vbox24);
+  gtk_notebook_set_tab_label_packing (GTK_NOTEBOOK (notebook1), vbox24,
+                                      FALSE, FALSE, GTK_PACK_START);
+
+  image12 = create_pixmap (window_help, "bygfoot_icon.png");
+  gtk_widget_show (image12);
+  gtk_box_pack_start (GTK_BOX (vbox24), image12, FALSE, FALSE, 0);
+  gtk_misc_set_padding (GTK_MISC (image12), 0, 5);
+
+  label_about = gtk_label_new ("");
+  gtk_widget_show (label_about);
+  gtk_box_pack_start (GTK_BOX (vbox24), label_about, FALSE, FALSE, 0);
+  GTK_WIDGET_SET_FLAGS (label_about, GTK_CAN_FOCUS);
+  gtk_label_set_justify (GTK_LABEL (label_about), GTK_JUSTIFY_CENTER);
+  gtk_label_set_selectable (GTK_LABEL (label_about), TRUE);
+
+  label49 = gtk_label_new (_("About"));
+  gtk_widget_show (label49);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 0), label49);
+
+  scrolledwindow4 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrolledwindow4);
+  gtk_container_add (GTK_CONTAINER (notebook1), scrolledwindow4);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow4), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow4), GTK_SHADOW_IN);
+
+  treeview_contributors = gtk_tree_view_new ();
+  gtk_widget_show (treeview_contributors);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow4), treeview_contributors);
+
+  label50 = gtk_label_new (_("Contributors"));
+  gtk_widget_show (label50);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 1), label50);
+
+  vbox25 = gtk_vbox_new (FALSE, 3);
+  gtk_widget_show (vbox25);
+  gtk_container_add (GTK_CONTAINER (notebook1), vbox25);
+  gtk_notebook_set_tab_label_packing (GTK_NOTEBOOK (notebook1), vbox25,
+                                      FALSE, FALSE, GTK_PACK_START);
+
+  image13 = gtk_image_new_from_stock ("gtk-help", GTK_ICON_SIZE_DIALOG);
+  gtk_widget_show (image13);
+  gtk_box_pack_start (GTK_BOX (vbox25), image13, FALSE, FALSE, 0);
+
+  label_help_text1 = gtk_label_new ("");
+  gtk_widget_show (label_help_text1);
+  gtk_box_pack_start (GTK_BOX (vbox25), label_help_text1, FALSE, FALSE, 0);
+  gtk_label_set_line_wrap (GTK_LABEL (label_help_text1), TRUE);
+
+  label_help_text2 = gtk_label_new ("");
+  gtk_widget_show (label_help_text2);
+  gtk_box_pack_start (GTK_BOX (vbox25), label_help_text2, FALSE, FALSE, 0);
+  GTK_WIDGET_SET_FLAGS (label_help_text2, GTK_CAN_FOCUS);
+  gtk_label_set_line_wrap (GTK_LABEL (label_help_text2), TRUE);
+  gtk_label_set_selectable (GTK_LABEL (label_help_text2), TRUE);
+
+  label51 = gtk_label_new (_("Help"));
+  gtk_widget_show (label51);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 2), label51);
+
+  button_help_close = gtk_button_new_from_stock ("gtk-close");
+  gtk_widget_show (button_help_close);
+  gtk_box_pack_start (GTK_BOX (vbox23), button_help_close, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, button_help_close, _("Esc"), NULL);
+  gtk_widget_add_accelerator (button_help_close, "clicked", accel_group,
+                              GDK_Escape, 0,
+                              GTK_ACCEL_VISIBLE);
+
+  g_signal_connect ((gpointer) window_help, "delete_event",
+                    G_CALLBACK (on_window_help_delete_event),
+                    NULL);
+  g_signal_connect ((gpointer) button_help_close, "clicked",
+                    G_CALLBACK (on_button_help_close_clicked),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (window_help, window_help, "window_help");
+  GLADE_HOOKUP_OBJECT (window_help, vbox23, "vbox23");
+  GLADE_HOOKUP_OBJECT (window_help, notebook1, "notebook1");
+  GLADE_HOOKUP_OBJECT (window_help, vbox24, "vbox24");
+  GLADE_HOOKUP_OBJECT (window_help, image12, "image12");
+  GLADE_HOOKUP_OBJECT (window_help, label_about, "label_about");
+  GLADE_HOOKUP_OBJECT (window_help, label49, "label49");
+  GLADE_HOOKUP_OBJECT (window_help, scrolledwindow4, "scrolledwindow4");
+  GLADE_HOOKUP_OBJECT (window_help, treeview_contributors, "treeview_contributors");
+  GLADE_HOOKUP_OBJECT (window_help, label50, "label50");
+  GLADE_HOOKUP_OBJECT (window_help, vbox25, "vbox25");
+  GLADE_HOOKUP_OBJECT (window_help, image13, "image13");
+  GLADE_HOOKUP_OBJECT (window_help, label_help_text1, "label_help_text1");
+  GLADE_HOOKUP_OBJECT (window_help, label_help_text2, "label_help_text2");
+  GLADE_HOOKUP_OBJECT (window_help, label51, "label51");
+  GLADE_HOOKUP_OBJECT (window_help, button_help_close, "button_help_close");
+  GLADE_HOOKUP_OBJECT_NO_REF (window_help, tooltips, "tooltips");
+
+  gtk_window_add_accel_group (GTK_WINDOW (window_help), accel_group);
+
+  return window_help;
+}
+

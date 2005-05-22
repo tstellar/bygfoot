@@ -575,3 +575,33 @@ game_gui_read_check_items(GtkWidget *widget)
 
     game_gui_print_message(buf);
 }
+
+/** Set the appropriate text into the labels in the help window. 
+    @param help_list The stuff loaded from the bygfoot_help file. */
+void
+game_gui_set_help_labels(const OptionList *help_list)
+{
+    gint i;
+    GtkLabel *label_help_text1 = GTK_LABEL(lookup_widget(window.help, "label_help_text1")),
+	*label_help_text2 = GTK_LABEL(lookup_widget(window.help, "label_help_text2"));
+    GString *text = g_string_new("");
+
+    for(i=0;i<help_list->list->len;i++)
+    {
+	if(g_str_has_prefix(g_array_index(help_list->list, Option, i).name->str,
+			    "string_help_text1"))
+	    gtk_label_set_text(label_help_text1, 
+			       g_array_index(help_list->list, Option, i).string_value->str);
+	else if(g_str_has_prefix(g_array_index(help_list->list, Option, i).name->str,
+				 "string_help_desc"))
+	    g_string_append_printf(text, "\n%s\n",
+				   g_array_index(help_list->list, Option, i).string_value->str);
+	else if(g_str_has_prefix(g_array_index(help_list->list, Option, i).name->str,
+				 "string_help_url"))
+	    g_string_append_printf(text, "%s\n",
+				   g_array_index(help_list->list, Option, i).string_value->str);
+    }
+
+    gtk_label_set_text(label_help_text2, text->str);
+    g_string_free(text, TRUE);
+}

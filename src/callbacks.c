@@ -83,11 +83,29 @@ on_menu_quit_activate                  (GtkMenuItem     *menuitem,
 }
 
 
+
+
+void
+on_menu_help_activate                  (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    window_show_help(2);
+}
+
+
+void
+on_menu_contributors_activate          (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    window_show_help(1);
+}
+
+
 void
 on_menu_about_activate                 (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-
+    window_show_help(0);
 }
 
 
@@ -159,14 +177,6 @@ on_button_new_week_clicked             (GtkButton       *button,
 	stat1 = STATUS_QUERY_UNFIT;
 	window_show_yesno(_("There are injured or banned players in one of the user teams. Continue?"));
     }
-}
-
-
-void
-on_button_help_clicked                 (GtkButton       *button,
-                                        gpointer         user_data)
-{
-
 }
 
 
@@ -888,4 +898,3 @@ on_button_quit_button_press_event      (GtkWidget       *widget,
 
     return FALSE;
 }
-

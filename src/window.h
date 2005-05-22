@@ -22,8 +22,12 @@ enum Windows
     WINDOW_CONTRACT,
     WINDOW_USER_MANAGEMENT,
     WINDOW_DEBUG,
+    WINDOW_HELP,
     WINDOW_END
 };
+
+void
+window_show_help(gint page);
 
 void
 window_show_startup(void);

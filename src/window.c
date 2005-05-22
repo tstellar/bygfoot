@@ -16,6 +16,40 @@
 #include "user.h"
 #include "window.h"
 
+/** Show the help/about window. 
+    @param page Which notebook page to display. */
+void
+window_show_help(gint page)
+{
+    gchar buf[SMALL];
+    gchar *help_file = file_find_support_file("bygfoot_help", TRUE);
+    OptionList help_list;
+
+    if(help_file == NULL)
+    {
+	game_gui_show_warning("Didn't find file 'bygfoot_help'.");
+	return;
+    }
+
+    help_list.list = NULL;
+    help_list.datalist = NULL;
+    file_load_opt_file(help_file, &help_list);
+
+    window_create(WINDOW_HELP);
+
+    sprintf(buf, "Bygfoot Football Manager\n%s\n(c) 2005 Győző Both (gyboth@bygfoot.com)\nhttp://bygfoot.sourceforge.net", VERS);
+    gtk_label_set_text(GTK_LABEL(lookup_widget(window.help, "label_about")), buf);
+
+    treeview_show_contributors(&help_list);
+
+    game_gui_set_help_labels(&help_list);
+
+    gtk_notebook_set_current_page(GTK_NOTEBOOK(lookup_widget(window.help, "notebook1")), page);
+
+    g_free(help_file);
+    free_option_list(&help_list, FALSE);
+}
+
 /**
    Show the country selection window. All files with prefix
    'country_' from $HOME/.bygfoot/definitions are appended to a combo box.
@@ -378,6 +412,13 @@ window_create(gint window_type)
 		window.wdebug = create_window_debug();
 	    wind = window.wdebug;
 	    strcpy(buf, "Bygfoot debug window");
+	    break;
+	case WINDOW_HELP:
+	    if(window.help != NULL)
+		g_warning("window_create: called on already existing window\n");
+	    else
+		window.help = create_window_help();
+	    wind = window.help;
 	    break;
     }
 

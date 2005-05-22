@@ -115,4 +115,13 @@ gboolean
 on_window_user_management_delete_event (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data);
+
+gboolean
+on_window_help_delete_event            (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data);
+
+void
+on_button_help_close_clicked           (GtkButton       *button,
+                                        gpointer         user_data);
 #endif

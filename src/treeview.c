@@ -2290,3 +2290,52 @@ treeview_create_country_list(const GPtrArray *country_list)
 
     return GTK_TREE_MODEL(ls);
 }
+
+/** Show the list of contributors in the help window.*/
+void
+treeview_show_contributors(const OptionList *help_list)
+{
+    GtkTreeView *treeview = GTK_TREE_VIEW(lookup_widget(window.help, "treeview_contributors"));
+    GtkListStore *ls = gtk_list_store_new(1, G_TYPE_STRING);
+    GtkTreeIter iter;
+    GtkTreeViewColumn   *col;
+    GtkCellRenderer     *renderer;
+    gint i;
+    gchar buf[SMALL];
+
+    gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
+				GTK_SELECTION_NONE);
+    gtk_tree_view_set_rules_hint(treeview, FALSE);
+    gtk_tree_view_set_headers_visible(treeview, FALSE);
+
+    col = gtk_tree_view_column_new();
+    gtk_tree_view_append_column(treeview, col);
+    renderer = treeview_helper_cell_renderer_text_new();
+    gtk_tree_view_column_pack_start(col, renderer, TRUE);
+    gtk_tree_view_column_add_attribute(col, renderer,
+				       "markup", 0);
+
+    for(i=0;i<help_list->list->len;i++)
+    {
+	gtk_list_store_append(ls, &iter);
+	
+	if(g_str_has_prefix(g_array_index(help_list->list, Option, i).name->str,
+			    "string_contrib_title"))
+	{
+	    sprintf(buf, "\n<span %s>%s</span>", 
+		    const_app("string_help_window_title_attribute"),
+		    g_array_index(help_list->list, Option, i).string_value->str);
+	    gtk_list_store_set(ls, &iter, 0, buf, -1);
+	}
+	else if(g_str_has_prefix(g_array_index(help_list->list, Option, i).name->str,
+				 "string_contrib_"))
+	{
+	    strcpy(buf, g_array_index(help_list->list, Option, i).string_value->str);
+	    gtk_list_store_set(ls, &iter, 0, buf, -1);
+	}
+
+    }
+
+    gtk_tree_view_set_model(treeview, GTK_TREE_MODEL(ls));
+    g_object_unref(ls);
+}

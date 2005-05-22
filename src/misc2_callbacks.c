@@ -15,7 +15,6 @@
 #include "user.h"
 #include "window.h"
 
-
 gboolean
 on_button_cancel_clicked               (GtkWidget       *widget,
                                         GdkEvent        *event,
@@ -357,3 +356,21 @@ on_window_user_management_delete_event (GtkWidget       *widget,
     return FALSE;
 }
 
+
+gboolean
+on_window_help_delete_event            (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data)
+{
+    on_button_help_close_clicked(NULL, NULL);
+
+    return FALSE;
+}
+
+
+void
+on_button_help_close_clicked           (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    window_destroy(&window.help, FALSE);
+}

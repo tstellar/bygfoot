@@ -359,8 +359,8 @@ file_get_next_opt_line(FILE *fil, gchar *opt_name, gchar *opt_value)
 
     if(buf[0] != '#' && strlen(buf) != 0)
     {
-	if(strlen(buf) > 100)
-	    g_warning("\n the text file I'm reading contains a line longer than 100 chars.\n\n");
+	if(strlen(buf) > 1000)
+	    g_warning("\n the text file I'm reading contains a line longer than 1000 chars.\n\n");
 
 	for(i=0;i<strlen(buf);i++)
 	    if(buf[i] == '#')
