@@ -734,14 +734,14 @@ treeview_helper_player_info_career_to_cell(GtkCellRenderer *renderer, const Play
 
     if(pl->pos == PLAYER_POS_GOALIE)
     {
-	strcpy(format, "\nGoals/Game %.1f Save %% %.1f");
+	strcpy(format, _("\nGoals/Game %.1f Save %% %.1f"));
 	if(pl->career[PLAYER_VALUE_SHOTS] > 0)
 	    shot_perc = 100 - ((gfloat)pl->career[PLAYER_VALUE_GOALS] * 100 /
 			       (gfloat)pl->career[PLAYER_VALUE_SHOTS]);
     }
     else
     {
-	strcpy(format, "\nGoals/Game %.1f Shot %% %.1f");
+	strcpy(format, _("\nGoals/Game %.1f Shot %% %.1f"));
 	if(pl->career[PLAYER_VALUE_SHOTS] > 0)
 	    shot_perc = (gfloat)pl->career[PLAYER_VALUE_GOALS] * 100 /
 		(gfloat)pl->career[PLAYER_VALUE_SHOTS];
@@ -764,7 +764,7 @@ treeview_helper_player_info_banned_to_cell(GtkCellRenderer *renderer, const GArr
     for(i=0;i<cards->len;i++)
 	if(g_array_index(cards, PlayerCard, i).red > 0)
 	{
-	    sprintf(buf2, "%s: %d weeks\n",
+	    sprintf(buf2, _("%s: %d weeks\n"),
 		    league_cup_get_name_string(g_array_index(cards, PlayerCard, i).clid),
 		    g_array_index(cards, PlayerCard, i).red);
 	    strcat(buf, buf2);
@@ -799,7 +799,7 @@ treeview_helper_player_info_yellow_to_cell(GtkCellRenderer *renderer, const GArr
 			g_array_index(cards, PlayerCard, i).yellow, yellow_red);
 	    }
 	    else
-		sprintf(buf2, "%s: %d (no limit)\n",
+		sprintf(buf2, _("%s: %d (no limit)\n"),
 			league_cup_get_name_string(g_array_index(cards, PlayerCard, i).clid),
 			g_array_index(cards, PlayerCard, i).yellow);
 	    
@@ -1096,28 +1096,28 @@ treeview_helper_player_pos_to_cell(GtkCellRenderer *renderer, gchar *buf, gint p
     switch(pos)
     {
 	default:
-	    strcpy(buf, "G");
+	    strcpy(buf, _("G"));
 	    g_object_set(renderer, "background", 
 			 const_app("string_treeview_helper_color_player_pos_goalie_bg"),
 			 "foreground", 
 			 const_app("string_treeview_helper_color_player_pos_goalie_fg"), NULL);
 	    break;
 	case PLAYER_POS_DEFENDER:
-	    strcpy(buf, "D");
+	    strcpy(buf, _("D"));
 	    g_object_set(renderer, "background", 
 			 const_app("string_treeview_helper_color_player_pos_defender_bg"),
 			 "foreground", 
 			 const_app("string_treeview_helper_color_player_pos_defender_fg"), NULL);
 	    break;
 	case PLAYER_POS_MIDFIELDER:
-	    strcpy(buf, "M");
+	    strcpy(buf, _("M"));
 	    g_object_set(renderer, "background", 
 			 const_app("string_treeview_helper_color_player_pos_midfielder_bg"),
 			 "foreground", 
 			 const_app("string_treeview_helper_color_player_pos_midfielder_fg"), NULL);
 	    break;
 	case PLAYER_POS_FORWARD:
-	    strcpy(buf, "F");
+	    strcpy(buf, _("F"));
 	    g_object_set(renderer, "background", 
 			 const_app("string_treeview_helper_color_player_pos_forward_bg"),
 			 "foreground", 

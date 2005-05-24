@@ -479,7 +479,7 @@ fixture_write_knockout_round(Cup *cup, gint cup_round, GPtrArray *teams)
     gint i, len = teams->len;
     gint first_week = cup_get_first_week_of_cup_round(cup, cup_round);
     CupRound *round = &g_array_index(cup->rounds, CupRound, cup_round);
-    gint bye_len = math_get_bye_len(teams->len);
+    gint bye_len = math_get_bye_len(len);
 
     teams = misc_randomise_g_pointer_array(teams);
 
@@ -487,19 +487,25 @@ fixture_write_knockout_round(Cup *cup, gint cup_round, GPtrArray *teams)
     {
 	cup->bye = g_ptr_array_new();
 
-	fixture_sort_teams_bye(teams, bye_len);
+	g_ptr_array_sort_with_data(teams, team_compare_func, GINT_TO_POINTER(TEAM_COMPARE_LEAGUE_LAYER));
+	
 	for(i=0;i<bye_len;i++)
-	    g_ptr_array_add(cup->bye, g_ptr_array_index(teams, len - bye_len + i));
+	{
+	    g_ptr_array_add(cup->bye, g_ptr_array_index(teams, 0));
+	    g_ptr_array_remove_index(teams, 0);
+	}
+
+	teams = misc_randomise_g_pointer_array(teams);
     }
 
-    for(i=0; i<(len - bye_len) / 2; i++)
+    for(i=0; i<teams->len / 2; i++)
 	fixture_write(cup->fixtures, (Team*)g_ptr_array_index(teams, i),
 		      (Team*)g_ptr_array_index(teams, i + (len - bye_len) / 2), first_week,
 		      fixture_get_free_round(first_week, cup->id), cup->id, cup_round, 0,
 		      !round->neutral, FALSE, (!round->home_away && round->replay == 0));
 
     if(round->home_away)
-	for(i=0; i<(len - bye_len) / 2; i++)
+	for(i=0; i<teams->len / 2; i++)
 	    fixture_write(cup->fixtures, (Team*)g_ptr_array_index(teams, i + (len - bye_len) / 2),
 			  (Team*)g_ptr_array_index(teams, i), first_week + cup->week_gap,
 			  fixture_get_free_round(first_week + cup->week_gap, cup->id), cup->id, 

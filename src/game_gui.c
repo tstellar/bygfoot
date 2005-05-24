@@ -461,9 +461,13 @@ game_gui_set_main_window_sensitivity(gboolean value)
 void
 game_gui_show_warning(gchar *text)
 {
-    window_create(WINDOW_WARNING);
-
-    gtk_label_set_text(GTK_LABEL(lookup_widget(window.warning, "label_warning")), text);    
+    if(opt_int("int_opt_prefer_messages"))
+	game_gui_print_message(text);
+    else
+    {
+	window_create(WINDOW_WARNING);	
+	gtk_label_set_text(GTK_LABEL(lookup_widget(window.warning, "label_warning")), text);    
+    }
 }
 
 /** Show the job offer window.
@@ -579,28 +583,19 @@ game_gui_read_check_items(GtkWidget *widget)
 /** Set the appropriate text into the labels in the help window. 
     @param help_list The stuff loaded from the bygfoot_help file. */
 void
-game_gui_set_help_labels(const OptionList *help_list)
+game_gui_set_help_labels(void)
 {
-    gint i;
     GtkLabel *label_help_text1 = GTK_LABEL(lookup_widget(window.help, "label_help_text1")),
 	*label_help_text2 = GTK_LABEL(lookup_widget(window.help, "label_help_text2"));
     GString *text = g_string_new("");
 
-    for(i=0;i<help_list->list->len;i++)
-    {
-	if(g_str_has_prefix(g_array_index(help_list->list, Option, i).name->str,
-			    "string_help_text1"))
-	    gtk_label_set_text(label_help_text1, 
-			       g_array_index(help_list->list, Option, i).string_value->str);
-	else if(g_str_has_prefix(g_array_index(help_list->list, Option, i).name->str,
-				 "string_help_desc"))
-	    g_string_append_printf(text, "\n%s\n",
-				   g_array_index(help_list->list, Option, i).string_value->str);
-	else if(g_str_has_prefix(g_array_index(help_list->list, Option, i).name->str,
-				 "string_help_url"))
-	    g_string_append_printf(text, "%s\n",
-				   g_array_index(help_list->list, Option, i).string_value->str);
-    }
+    gtk_label_set_text(label_help_text1, 
+		       _("Bygfoot is a very intuitive and simple game, so there isn't a full-grown documentation. However, if you have trouble, there are a few places to go.\n"));
+
+    g_string_append_printf(text, _("At the Bygfoot forums you can report bugs, ask for help and discuss the game (you don't have to register):\n"));
+    g_string_append_printf(text, "http://bygfoot.sourceforge.net/forum\n");
+    g_string_append_printf(text, _("\nIf you feel you've found out something about the game that has to be shared, you can add it to the Bygfoot Wiki:\n"));
+    g_string_append_printf(text, "http://mec-symonds.eng.monash.edu.au/cgi-bin/twiki/view/Bygfoot/WebHome");
 
     gtk_label_set_text(label_help_text2, text->str);
     g_string_free(text, TRUE);

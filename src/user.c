@@ -244,7 +244,7 @@ user_job_offer(User *user)
     if(user->counters[COUNT_USER_SUCCESS] < -(gfloat)const_int("int_user_success_offer_limit") * 0.9 &&
        !user->counters[COUNT_USER_WARNING])
     {
-	sprintf(buf, "The owners of %s are not satisfied with the recent performance of the team. There are rumours they're looking for a new manager.", user->tm->name->str);
+	sprintf(buf, _("The owners of %s are not satisfied with the recent performance of the team. There are rumours they're looking for a new manager."), user->tm->name->str);
 	user_event_add(user, EVENT_TYPE_WARNING, -1, -1, NULL, buf);
 	user->counters[COUNT_USER_WARNING] = 1;
 	return;
@@ -470,9 +470,9 @@ user_event_show_next(void)
 				       player_of_id_team(event->user->tm, trans(temp_int).id)->value), buf3, FALSE);
 	    if(transoff(temp_int, 0).fee - 
 	       player_of_id_team(event->user->tm, trans(temp_int).id)->value > 0)
-		strcat(buf3, " more");
+		strcat(buf3, _(" more"));
 	    else
-		strcat(buf3, " less");
+		strcat(buf3, _(" less"));
 
 	    sprintf(buf, _("%s would like to buy %s. They offer %s for him, which is %s than the player's value. Do you accept?"), transoff(temp_int, 0).tm->name->str,
 		    player_of_id_team(event->user->tm, trans(temp_int).id)->name->str,
@@ -687,59 +687,59 @@ user_history_to_string(const UserHistory *history, gchar *buf)
 	    g_warning("user_history_to_string: unknown history type %d.\n", history->type);
 	    strcpy(buf, "FIXME!!!");
 	case USER_HISTORY_START_GAME:
-	    sprintf(buf, "You start the game with %s in the %s.",
+	    sprintf(buf, _("You start the game with %s in the %s."),
 		    team_of_id(history->team_id)->name->str,
 		    league_cup_get_name_string(history->value1));
 	    break;
     	case USER_HISTORY_FIRE_FINANCES:
-	    sprintf(buf, "%s fires you because of financial mismanagement.\nYou find a new job with %s in the %s.",
+	    sprintf(buf, _("%s fires you because of financial mismanagement.\nYou find a new job with %s in the %s."),
 		    team_of_id(history->team_id)->name->str,
 		    team_of_id(history->value1)->name->str,
 		    league_cup_get_name_string(history->value2));
 	    break;
     	case  USER_HISTORY_FIRE_FAILURE:
-	    sprintf(buf, "%s fires you because of unsuccessfulness.\nYou find a new job with %s in the %s.",
+	    sprintf(buf, _("%s fires you because of unsuccessfulness.\nYou find a new job with %s in the %s."),
 		    team_of_id(history->team_id)->name->str,
 		    team_of_id(history->value1)->name->str,
 		    league_cup_get_name_string(history->value2));
 	    break;
     	case  USER_HISTORY_JOB_OFFER_ACCEPTED:
-	    sprintf(buf, "%s offer you a job in the %s.\nYou accept the challenge and leave %s.",
+	    sprintf(buf, _("%s offer you a job in the %s.\nYou accept the challenge and leave %s."),
 		    team_of_id(history->value1)->name->str,
 		    league_cup_get_name_string(history->value2),
 		    team_of_id(history->team_id)->name->str);
 	    break;
     	case  USER_HISTORY_END_SEASON:
-	    sprintf(buf, "You finish the season in the %s on rank %d.",
+	    sprintf(buf, _("You finish the season in the %s on rank %d."),
 		    league_cup_get_name_string(history->value1),
 		    history->value2);
 	    break;
     	case  USER_HISTORY_PROMOTED:
-	    sprintf(buf, "You get promoted to the %s.",
+	    sprintf(buf, _("You get promoted to the %s."),
 		    league_cup_get_name_string(history->value1));
 	    break;	    
     	case  USER_HISTORY_RELEGATED:
-	    sprintf(buf, "You get relegated to the %s.",
+	    sprintf(buf, _("You get relegated to the %s."),
 		    league_cup_get_name_string(history->value1));
 	    break;	    
     	case  USER_HISTORY_WIN_FINAL:
-	    sprintf(buf, "You win the %s final against %s.",
+	    sprintf(buf, _("You win the %s final against %s."),
 		    league_cup_get_name_string(history->value1),
 		    history->value_string->str);
 	    break;
     	case  USER_HISTORY_LOSE_FINAL:
-	    sprintf(buf, "You lose in the %s final against %s.",
+	    sprintf(buf, _("You lose in the %s final against %s."),
 		    league_cup_get_name_string(history->value1),
 		    history->value_string->str);
 	    break;
     	case USER_HISTORY_REACH_CUP_ROUND:	    
 	    cup_get_round_name(cup_from_clid(history->value1), history->value2, buf2);
-	    sprintf(buf, "You reach the %s (round %d) of the %s.", buf2,
+	    sprintf(buf, _("You reach the %s (round %d) of the %s."), buf2,
 		    history->value2 + 1,
 		    league_cup_get_name_string(history->value1));
 	    break;
     	case USER_HISTORY_CHAMPION:	    
-	    sprintf(buf, "You are champion of the %s!",
+	    sprintf(buf, _("You are champion of the %s!"),
 		    league_cup_get_name_string(history->value1));
 	    break;
     }

@@ -37,12 +37,12 @@ window_show_help(gint page)
 
     window_create(WINDOW_HELP);
 
-    sprintf(buf, "Bygfoot Football Manager\n%s\n(c) 2005 Győző Both (gyboth@bygfoot.com)\nhttp://bygfoot.sourceforge.net", VERS);
-    gtk_label_set_text(GTK_LABEL(lookup_widget(window.help, "label_about")), buf);
+    sprintf(buf, "<span %s>Bygfoot Football Manager %s</span>\n(c) 2005 Győző Both (gyboth@bygfoot.com)\nhttp://bygfoot.sourceforge.net", const_app("string_help_window_program_name_attribute"), VERS);
+    gtk_label_set_markup(GTK_LABEL(lookup_widget(window.help, "label_about")), buf);
 
     treeview_show_contributors(&help_list);
 
-    game_gui_set_help_labels(&help_list);
+    game_gui_set_help_labels();
 
     gtk_notebook_set_current_page(GTK_NOTEBOOK(lookup_widget(window.help, "notebook1")), page);
 

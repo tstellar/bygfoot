@@ -236,8 +236,8 @@ lg_commentary_get_commentaries(gint event_type)
 		g_ptr_array_add(commentaries, g_string_new(_("P1 drives free kick low and hard")));
 		g_ptr_array_add(commentaries, g_string_new(_("P1 takes free-kick quickly and curls around wall")));
 		g_ptr_array_add(commentaries, g_string_new(_("P1 curls the free kick over the wall")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1 plays the ball out wide")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1 hits a long ball up the pitch")));
+		g_ptr_array_add(commentaries, g_string_new(_("Free kick: P1 plays the ball out wide")));
+		g_ptr_array_add(commentaries, g_string_new(_("Free kick: P1 hits a long ball up the pitch")));
 		g_ptr_array_add(commentaries, g_string_new(_("Free kick whipped across the face of goal by P1")));
 		break;
 	    case LIVE_GAME_EVENT_FOUL:

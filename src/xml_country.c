@@ -158,6 +158,7 @@ xml_country_read(const gchar *country_name)
     gint length;
     GError *error = NULL;
     gchar buf[SMALL];
+    gint i;
 
     context = 
 	g_markup_parse_context_new(&parser, 0, NULL, NULL);
@@ -192,4 +193,8 @@ xml_country_read(const gchar *country_name)
 	g_critical("xml_country_read: error parsing file %s\n", buf);
 	misc_print_error(&error, TRUE);
     }
+
+    for(i=0;i<ligs->len;i++)
+	if(lig(i).layer == -1)
+	    lig(i).layer = i + 1;
 }

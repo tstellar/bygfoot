@@ -59,6 +59,6 @@ void
 game_gui_read_check_items(GtkWidget *widget);
 
 void
-game_gui_set_help_labels(const OptionList *help_list);
+game_gui_set_help_labels(void);
 
 #endif

@@ -182,7 +182,6 @@ create_window_options (void)
 
   window_options = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_options), 5);
-  gtk_window_set_title (GTK_WINDOW (window_options), _("window1"));
   gtk_window_set_position (GTK_WINDOW (window_options), GTK_WIN_POS_CENTER);
 
   vbox1 = gtk_vbox_new (FALSE, 2);
@@ -216,14 +215,17 @@ create_window_options (void)
   checkbutton_save_overwrite = gtk_check_button_new_with_mnemonic (_("Save overwrites"));
   gtk_widget_show (checkbutton_save_overwrite);
   gtk_box_pack_start (GTK_BOX (vbox3), checkbutton_save_overwrite, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_save_overwrite, _("Whether 'Save' overwrites the current save file or pops up a 'Save as' window"), NULL);
 
   checkbutton_maximize = gtk_check_button_new_with_mnemonic (_("Maximize main window"));
   gtk_widget_show (checkbutton_maximize);
   gtk_box_pack_start (GTK_BOX (vbox3), checkbutton_maximize, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_maximize, _("Whether game starts with a maximized main window (doesn't work with all window managers)"), NULL);
 
   checkbutton_pref_mess = gtk_check_button_new_with_mnemonic (_("Prefer messages"));
   gtk_widget_show (checkbutton_pref_mess);
   gtk_box_pack_start (GTK_BOX (vbox3), checkbutton_pref_mess, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_pref_mess, _("Whether to show warnings and such in the message area in the main window when possible"), NULL);
 
   checkbutton_skip = gtk_check_button_new_with_mnemonic (_("Skip weeks without user matches"));
   gtk_widget_show (checkbutton_skip);
@@ -244,6 +246,7 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table1), checkbutton_autosave, 0, 1, 0, 1,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_autosave, _("Whether to automatically save the game regularly"), NULL);
 
   hbox3 = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (hbox3);
@@ -292,6 +295,7 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table1), spinbutton_precision, 1, 2, 1, 2,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
+  gtk_tooltips_set_tip (tooltips, spinbutton_precision, _("How many digits after the comma there are for skill etc."), NULL);
   gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_precision), TRUE);
 
   spinbutton_refresh_adj = gtk_adjustment_new (1, 1, 100, 1, 10, 10);
@@ -300,6 +304,7 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table1), spinbutton_refresh, 1, 2, 2, 3,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
+  gtk_tooltips_set_tip (tooltips, spinbutton_refresh, _("How often the player list gets refreshed during a live game (in live game minutes)"), NULL);
   gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_refresh), TRUE);
 
   label10 = gtk_label_new (_("Constants file "));
@@ -314,6 +319,7 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table1), button_font_name, 0, 1, 4, 5,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
+  gtk_tooltips_set_tip (tooltips, button_font_name, _("Font used in treeviews"), NULL);
 
   alignment1 = gtk_alignment_new (0.5, 0.5, 0, 0);
   gtk_widget_show (alignment1);
@@ -336,6 +342,7 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table1), entry_font_name, 1, 2, 4, 5,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
+  gtk_tooltips_set_tip (tooltips, entry_font_name, _("Font used in treeviews"), NULL);
 
   hbox8 = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (hbox8);
@@ -429,6 +436,7 @@ create_window_options (void)
   checkbutton_auto_sub = gtk_check_button_new_with_mnemonic (_("Automatic substitutions"));
   gtk_widget_show (checkbutton_auto_sub);
   gtk_box_pack_start (GTK_BOX (vbox4), checkbutton_auto_sub, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_auto_sub, _("Whether the subs (e.g. for injured players) are made by the CPU. This is automatically done if the live game is off."), NULL);
 
   vseparator2 = gtk_vseparator_new ();
   gtk_widget_show (vseparator2);
@@ -442,14 +450,17 @@ create_window_options (void)
   checkbutton_pause_injury = gtk_check_button_new_with_mnemonic (_("Pause when injury"));
   gtk_widget_show (checkbutton_pause_injury);
   gtk_box_pack_start (GTK_BOX (vbox5), checkbutton_pause_injury, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_pause_injury, _("Whether the live game pauses when a user player is injured"), NULL);
 
   checkbutton_pause_red = gtk_check_button_new_with_mnemonic (_("Pause when red card"));
   gtk_widget_show (checkbutton_pause_red);
   gtk_box_pack_start (GTK_BOX (vbox5), checkbutton_pause_red, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_pause_red, _("Whether the live game pauses when a user player is sent off"), NULL);
 
   checkbutton_pause_break = gtk_check_button_new_with_mnemonic (_("Pause when break"));
   gtk_widget_show (checkbutton_pause_break);
   gtk_box_pack_start (GTK_BOX (vbox5), checkbutton_pause_break, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_pause_break, _("Whether the live game pauses at half time and extra time"), NULL);
 
   label2 = gtk_label_new (_("Live game"));
   gtk_widget_show (label2);
@@ -466,6 +477,7 @@ create_window_options (void)
   checkbutton_show_job = gtk_check_button_new_with_mnemonic (_("Show job offers"));
   gtk_widget_show (checkbutton_show_job);
   gtk_box_pack_start (GTK_BOX (vbox6), checkbutton_show_job, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_show_job, _("Whether to show job offers when a user is successful"), NULL);
 
   eventbox1 = gtk_event_box_new ();
   gtk_widget_show (eventbox1);
@@ -507,10 +519,12 @@ create_window_options (void)
   checkbutton_swap_adapts = gtk_check_button_new_with_mnemonic (_("Swap adapts structure"));
   gtk_widget_show (checkbutton_swap_adapts);
   gtk_box_pack_start (GTK_BOX (vbox7), checkbutton_swap_adapts, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_swap_adapts, _("Whether swapping two players automatically adapts the team structure to the player positions"), NULL);
 
   checkbutton_show_overall = gtk_check_button_new_with_mnemonic (_("Show overall games/goals"));
   gtk_widget_show (checkbutton_show_overall);
   gtk_box_pack_start (GTK_BOX (vbox7), checkbutton_show_overall, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_show_overall, _("Whether to show the player games/goals value in all competitions"), NULL);
 
   label3 = gtk_label_new (_("Misc."));
   gtk_widget_show (label3);
@@ -604,7 +618,7 @@ create_window_options (void)
                     (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (label24), 0, 0.5);
 
-  label25 = gtk_label_new (_("Etal "));
+  label25 = gtk_label_new (_("ETal "));
   gtk_widget_show (label25);
   gtk_table_attach (GTK_TABLE (table2), label25, 0, 1, 14, 15,
                     (GtkAttachOptions) (GTK_FILL),
@@ -924,10 +938,12 @@ create_window_options (void)
   checkbutton_save_global = gtk_check_button_new_with_mnemonic (_("Save global settings to file"));
   gtk_widget_show (checkbutton_save_global);
   gtk_box_pack_start (GTK_BOX (vbox2), checkbutton_save_global, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_save_global, _("Whether to save the global settings to file (so that they get loaded next time you start a new game)"), NULL);
 
   checkbutton_save_user = gtk_check_button_new_with_mnemonic (_("Save user settings to file"));
   gtk_widget_show (checkbutton_save_user);
   gtk_box_pack_start (GTK_BOX (vbox2), checkbutton_save_user, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_save_user, _("Whether to save the user settings to file (so that they get loaded next time this user starts a new game)"), NULL);
 
   button_ok = gtk_button_new_from_stock ("gtk-apply");
   gtk_widget_show (button_ok);

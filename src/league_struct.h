@@ -65,6 +65,9 @@ typedef struct
     PromRel prom_rel;
     /** Numerical id, as opposed to the string id 'sid'. */
     gint id;
+    /** Layer of the league; this specifies which leagues are
+	parallel. */
+    gint layer;
     /** The first week games are played. Default 1. */
     gint first_week;
     /** Weeks between two matchdays. Default 1. */

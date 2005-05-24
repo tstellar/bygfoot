@@ -17,6 +17,7 @@
 #define TAG_SHORT_NAME "short_name"
 #define TAG_SID "sid"
 #define TAG_SYMBOL "symbol"
+#define TAG_LAYER "layer"
 #define TAG_FIRST_WEEK "first_week"
 #define TAG_WEEK_GAP "week_gap"
 #define TAG_ROUND_ROBINS "round_robins"
@@ -47,6 +48,7 @@ enum XmlLeagueStates
     STATE_NAME,
     STATE_SHORT_NAME,
     STATE_SYMBOL,
+    STATE_LAYER,
     STATE_FIRST_WEEK,
     STATE_WEEK_GAP,
     STATE_ROUND_ROBINS,
@@ -109,6 +111,8 @@ xml_league_read_start_element (GMarkupParseContext *context,
 	state = STATE_SYMBOL;
     else if(strcmp(element_name, TAG_FIRST_WEEK) == 0)
 	state = STATE_FIRST_WEEK;
+    else if(strcmp(element_name, TAG_LAYER) == 0)
+	state = STATE_LAYER;
     else if(strcmp(element_name, TAG_WEEK_GAP) == 0)
 	state = STATE_WEEK_GAP;
     else if(strcmp(element_name, TAG_ROUND_ROBINS) == 0)
@@ -176,6 +180,7 @@ xml_league_read_end_element    (GMarkupParseContext *context,
        strcmp(element_name, TAG_SHORT_NAME) == 0 ||
        strcmp(element_name, TAG_SID) == 0 ||
        strcmp(element_name, TAG_SYMBOL) == 0 ||
+       strcmp(element_name, TAG_LAYER) == 0 ||
        strcmp(element_name, TAG_FIRST_WEEK) == 0 ||
        strcmp(element_name, TAG_WEEK_GAP) == 0 ||
        strcmp(element_name, TAG_ROUND_ROBINS) == 0 ||
@@ -238,6 +243,8 @@ xml_league_read_text         (GMarkupParseContext *context,
 	g_string_printf(new_league.sid, "%s", buf);
     else if(state == STATE_SYMBOL)
 	g_string_printf(new_league.symbol, "%s", buf);
+    else if(state == STATE_LAYER)
+	new_league.layer = value;
     else if(state == STATE_FIRST_WEEK)
 	new_league.first_week = value;
     else if(state == STATE_WEEK_GAP)

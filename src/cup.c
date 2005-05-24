@@ -223,6 +223,7 @@ void
 cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 {
     gint i, j, start, end;
+    gint debug_num = teams->len;
     gint number_of_teams = 0;
     GPtrArray *cup_teams_sorted = NULL;
     League *league = NULL;
@@ -355,6 +356,10 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 	    }
 	}
     }
+
+    if(debug > 80)
+	for(i=debug_num;i<teams->len;i++)
+	    printf("%d %s \n", i, ((Team*)g_ptr_array_index(teams, i))->name->str);
 }
 
 /** Load the teams specified in the chooseteam from a non-country league. */

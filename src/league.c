@@ -26,6 +26,7 @@ league_new(gboolean new_id)
     new.symbol = g_string_new("");
     
     new.id = (new_id) ? league_id_new : -1;
+    new.layer = -1;
 
     new.average_skill = 7000;
 

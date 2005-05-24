@@ -12,6 +12,7 @@
 enum
 {
     TAG_LEAGUE = TAG_START_LEAGUE,
+    TAG_LEAGUE_LAYER,
     TAG_LEAGUE_FIRST_WEEK,
     TAG_LEAGUE_ROUND_ROBINS,
     TAG_LEAGUE_AVERAGE_SKILL,
@@ -79,6 +80,7 @@ xml_loadsave_league_end_element    (GMarkupParseContext *context,
     gint tag = xml_get_tag_from_name(element_name);
     
     if(tag == TAG_LEAGUE_FIRST_WEEK ||
+       tag == TAG_LEAGUE_LAYER ||
        tag == TAG_LEAGUE_AVERAGE_SKILL ||
        tag == TAG_LEAGUE_ROUND_ROBINS ||
        tag == TAG_NAME ||
@@ -140,6 +142,8 @@ xml_loadsave_league_text         (GMarkupParseContext *context,
 	g_string_printf(new_league->sid, "%s", buf);
     else if(state == TAG_ID)
 	new_league->id = int_value;
+    else if(state == TAG_LEAGUE_LAYER)
+	new_league->layer = int_value;
     else if(state == TAG_LEAGUE_FIRST_WEEK)
 	new_league->first_week = int_value;
     else if(state == TAG_LEAGUE_ROUND_ROBINS)
@@ -231,6 +235,7 @@ xml_loadsave_league_write(const gchar *prefix, const League *league)
     xml_write_g_string(fil, league->symbol, TAG_SYMBOL, I0);
 
     xml_write_int(fil, league->id, TAG_ID, I0);
+    xml_write_int(fil, league->layer, TAG_LEAGUE_LAYER, I0);
     xml_write_int(fil, league->first_week, TAG_LEAGUE_FIRST_WEEK, I0);
     xml_write_int(fil, league->round_robins, TAG_LEAGUE_ROUND_ROBINS, I0);
     xml_write_int(fil, league->week_gap, TAG_WEEK_GAP, I0);

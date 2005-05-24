@@ -65,10 +65,6 @@ create_window_job_offer (void)
   GtkWidget *image5;
   GtkWidget *label31;
   GtkWidget *button_cancel;
-  GtkWidget *alignment4;
-  GtkWidget *hbox8;
-  GtkWidget *image4;
-  GtkWidget *label30;
 
   window_job_offer = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_job_offer), 6);
@@ -80,7 +76,7 @@ create_window_job_offer (void)
   gtk_widget_show (vbox5);
   gtk_container_add (GTK_CONTAINER (window_job_offer), vbox5);
 
-  label_text = gtk_label_new (_("label20"));
+  label_text = gtk_label_new ("");
   gtk_widget_show (label_text);
   gtk_box_pack_start (GTK_BOX (vbox5), label_text, FALSE, FALSE, 0);
   gtk_label_set_line_wrap (GTK_LABEL (label_text), TRUE);
@@ -137,27 +133,27 @@ create_window_job_offer (void)
   gtk_widget_show (vbox7);
   gtk_box_pack_start (GTK_BOX (hbox5), vbox7, TRUE, TRUE, 0);
 
-  label_name = gtk_label_new (_("label21"));
+  label_name = gtk_label_new ("");
   gtk_widget_show (label_name);
   gtk_box_pack_start (GTK_BOX (vbox7), label_name, FALSE, FALSE, 0);
 
-  label_league = gtk_label_new (_("label22"));
+  label_league = gtk_label_new ("");
   gtk_widget_show (label_league);
   gtk_box_pack_start (GTK_BOX (vbox7), label_league, FALSE, FALSE, 0);
 
-  label_rank = gtk_label_new (_("label23"));
+  label_rank = gtk_label_new ("");
   gtk_widget_show (label_rank);
   gtk_box_pack_start (GTK_BOX (vbox7), label_rank, FALSE, FALSE, 0);
 
-  label_money = gtk_label_new (_("label24"));
+  label_money = gtk_label_new ("");
   gtk_widget_show (label_money);
   gtk_box_pack_start (GTK_BOX (vbox7), label_money, FALSE, FALSE, 0);
 
-  label_cap = gtk_label_new (_("label25"));
+  label_cap = gtk_label_new ("");
   gtk_widget_show (label_cap);
   gtk_box_pack_start (GTK_BOX (vbox7), label_cap, FALSE, FALSE, 0);
 
-  label_saf = gtk_label_new (_("label26"));
+  label_saf = gtk_label_new ("");
   gtk_widget_show (label_saf);
   gtk_box_pack_start (GTK_BOX (vbox7), label_saf, FALSE, FALSE, 0);
 
@@ -178,7 +174,7 @@ create_window_job_offer (void)
   gtk_widget_show (label42);
   gtk_box_pack_start (GTK_BOX (hbox17), label42, FALSE, FALSE, 0);
 
-  label_average_skill = gtk_label_new (_("label43"));
+  label_average_skill = gtk_label_new ("");
   gtk_widget_show (label_average_skill);
   gtk_box_pack_start (GTK_BOX (hbox17), label_average_skill, FALSE, FALSE, 0);
 
@@ -196,7 +192,7 @@ create_window_job_offer (void)
   gtk_box_pack_start (GTK_BOX (vbox5), hseparator7, FALSE, TRUE, 0);
   gtk_widget_set_size_request (hseparator7, 1, 10);
 
-  label_text2 = gtk_label_new (_("label27"));
+  label_text2 = gtk_label_new ("");
   gtk_widget_show (label_text2);
   gtk_box_pack_start (GTK_BOX (vbox5), label_text2, FALSE, FALSE, 0);
   gtk_misc_set_padding (GTK_MISC (label_text2), 0, 5);
@@ -226,26 +222,10 @@ create_window_job_offer (void)
   gtk_widget_show (label31);
   gtk_box_pack_start (GTK_BOX (hbox9), label31, FALSE, FALSE, 0);
 
-  button_cancel = gtk_button_new ();
+  button_cancel = gtk_button_new_from_stock ("gtk-cancel");
   gtk_widget_show (button_cancel);
   gtk_box_pack_start (GTK_BOX (hbox6), button_cancel, TRUE, TRUE, 0);
   gtk_container_set_border_width (GTK_CONTAINER (button_cancel), 2);
-
-  alignment4 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment4);
-  gtk_container_add (GTK_CONTAINER (button_cancel), alignment4);
-
-  hbox8 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox8);
-  gtk_container_add (GTK_CONTAINER (alignment4), hbox8);
-
-  image4 = gtk_image_new_from_stock ("gtk-cancel", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image4);
-  gtk_box_pack_start (GTK_BOX (hbox8), image4, FALSE, FALSE, 0);
-
-  label30 = gtk_label_new_with_mnemonic (_("Cancel"));
-  gtk_widget_show (label30);
-  gtk_box_pack_start (GTK_BOX (hbox8), label30, FALSE, FALSE, 0);
 
   g_signal_connect ((gpointer) window_job_offer, "delete_event",
                     G_CALLBACK (on_window_job_offer_delete_event),
@@ -294,10 +274,6 @@ create_window_job_offer (void)
   GLADE_HOOKUP_OBJECT (window_job_offer, image5, "image5");
   GLADE_HOOKUP_OBJECT (window_job_offer, label31, "label31");
   GLADE_HOOKUP_OBJECT (window_job_offer, button_cancel, "button_cancel");
-  GLADE_HOOKUP_OBJECT (window_job_offer, alignment4, "alignment4");
-  GLADE_HOOKUP_OBJECT (window_job_offer, hbox8, "hbox8");
-  GLADE_HOOKUP_OBJECT (window_job_offer, image4, "image4");
-  GLADE_HOOKUP_OBJECT (window_job_offer, label30, "label30");
 
   return window_job_offer;
 }
@@ -309,7 +285,6 @@ create_window_progress (void)
   GtkWidget *progressbar;
 
   window_progress = gtk_window_new (GTK_WINDOW_POPUP);
-  gtk_window_set_title (GTK_WINDOW (window_progress), _("window1"));
   gtk_window_set_position (GTK_WINDOW (window_progress), GTK_WIN_POS_CENTER);
   gtk_window_set_modal (GTK_WINDOW (window_progress), TRUE);
 
@@ -335,7 +310,6 @@ create_window_warning (void)
 
   window_warning = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_warning), 10);
-  gtk_window_set_title (GTK_WINDOW (window_warning), _("window1"));
   gtk_window_set_position (GTK_WINDOW (window_warning), GTK_WIN_POS_CENTER);
   gtk_window_set_modal (GTK_WINDOW (window_warning), TRUE);
 
@@ -347,7 +321,7 @@ create_window_warning (void)
   gtk_widget_show (image7);
   gtk_box_pack_start (GTK_BOX (vbox13), image7, FALSE, TRUE, 0);
 
-  label_warning = gtk_label_new (_("label42"));
+  label_warning = gtk_label_new ("");
   gtk_widget_show (label_warning);
   gtk_box_pack_start (GTK_BOX (vbox13), label_warning, FALSE, FALSE, 0);
   gtk_label_set_line_wrap (GTK_LABEL (label_warning), TRUE);
@@ -403,14 +377,13 @@ create_window_digits (void)
 
   window_digits = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_digits), 5);
-  gtk_window_set_title (GTK_WINDOW (window_digits), _("window1"));
   gtk_window_set_position (GTK_WINDOW (window_digits), GTK_WIN_POS_CENTER);
 
   vbox14 = gtk_vbox_new (FALSE, 10);
   gtk_widget_show (vbox14);
   gtk_container_add (GTK_CONTAINER (window_digits), vbox14);
 
-  label_main = gtk_label_new (_("label42"));
+  label_main = gtk_label_new ("");
   gtk_widget_show (label_main);
   gtk_box_pack_start (GTK_BOX (vbox14), label_main, FALSE, FALSE, 0);
   gtk_label_set_line_wrap (GTK_LABEL (label_main), TRUE);
@@ -423,7 +396,7 @@ create_window_digits (void)
   gtk_widget_show (vbox15);
   gtk_box_pack_start (GTK_BOX (hbox15), vbox15, TRUE, TRUE, 0);
 
-  label_1 = gtk_label_new (_("label43"));
+  label_1 = gtk_label_new ("");
   gtk_widget_show (label_1);
   gtk_box_pack_start (GTK_BOX (vbox15), label_1, FALSE, FALSE, 0);
 
@@ -437,7 +410,7 @@ create_window_digits (void)
   gtk_widget_show (vbox16);
   gtk_box_pack_start (GTK_BOX (hbox15), vbox16, TRUE, TRUE, 0);
 
-  label_2 = gtk_label_new (_("label44"));
+  label_2 = gtk_label_new ("");
   gtk_widget_show (label_2);
   gtk_box_pack_start (GTK_BOX (vbox16), label_2, FALSE, FALSE, 0);
 
@@ -511,7 +484,6 @@ create_window_yesno (void)
 
   window_yesno = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_yesno), 5);
-  gtk_window_set_title (GTK_WINDOW (window_yesno), _("window1"));
   gtk_window_set_position (GTK_WINDOW (window_yesno), GTK_WIN_POS_CENTER);
 
   vbox17 = gtk_vbox_new (FALSE, 5);
@@ -522,7 +494,7 @@ create_window_yesno (void)
   gtk_widget_show (image8);
   gtk_box_pack_start (GTK_BOX (vbox17), image8, FALSE, FALSE, 0);
 
-  label_yesno = gtk_label_new (_("label43"));
+  label_yesno = gtk_label_new ("");
   gtk_widget_show (label_yesno);
   gtk_box_pack_start (GTK_BOX (vbox17), label_yesno, FALSE, FALSE, 0);
   gtk_label_set_line_wrap (GTK_LABEL (label_yesno), TRUE);
@@ -592,7 +564,6 @@ create_window_contract (void)
 
   window_contract = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_contract), 5);
-  gtk_window_set_title (GTK_WINDOW (window_contract), _("window1"));
   gtk_window_set_position (GTK_WINDOW (window_contract), GTK_WIN_POS_CENTER);
   gtk_window_set_modal (GTK_WINDOW (window_contract), TRUE);
 
@@ -604,7 +575,7 @@ create_window_contract (void)
   gtk_widget_show (image9);
   gtk_box_pack_start (GTK_BOX (vbox18), image9, FALSE, FALSE, 0);
 
-  label_contract = gtk_label_new (_("label43"));
+  label_contract = gtk_label_new ("");
   gtk_widget_show (label_contract);
   gtk_box_pack_start (GTK_BOX (vbox18), label_contract, FALSE, FALSE, 0);
   gtk_label_set_line_wrap (GTK_LABEL (label_contract), TRUE);
@@ -768,7 +739,6 @@ create_window_user_management (void)
 
   window_user_management = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_user_management), 5);
-  gtk_window_set_title (GTK_WINDOW (window_user_management), _("window1"));
   gtk_window_set_position (GTK_WINDOW (window_user_management), GTK_WIN_POS_CENTER);
   gtk_window_set_default_size (GTK_WINDOW (window_user_management), 600, 550);
 
@@ -1008,7 +978,6 @@ create_window_help (void)
 
   window_help = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_help), 5);
-  gtk_window_set_title (GTK_WINDOW (window_help), _("window1"));
   gtk_window_set_position (GTK_WINDOW (window_help), GTK_WIN_POS_CENTER);
   gtk_window_set_modal (GTK_WINDOW (window_help), TRUE);
   gtk_window_set_default_size (GTK_WINDOW (window_help), 400, 400);
@@ -1036,6 +1005,7 @@ create_window_help (void)
   gtk_widget_show (label_about);
   gtk_box_pack_start (GTK_BOX (vbox24), label_about, FALSE, FALSE, 0);
   GTK_WIDGET_SET_FLAGS (label_about, GTK_CAN_FOCUS);
+  gtk_label_set_use_markup (GTK_LABEL (label_about), TRUE);
   gtk_label_set_justify (GTK_LABEL (label_about), GTK_JUSTIFY_CENTER);
   gtk_label_set_selectable (GTK_LABEL (label_about), TRUE);
 

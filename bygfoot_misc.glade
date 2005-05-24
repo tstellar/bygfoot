@@ -45,7 +45,7 @@
 	      <child>
 		<widget class="GtkTreeView" id="treeview_users">
 		  <property name="visible">True</property>
-		  <property name="tooltip" translatable="yes">Click on a player to remove him</property>
+		  <property name="tooltip" translatable="yes">Click on a user to remove him.</property>
 		  <property name="can_focus">True</property>
 		  <property name="headers_visible">True</property>
 		  <property name="rules_hint">False</property>
@@ -191,80 +191,71 @@
       </child>
 
       <child>
-	<widget class="GtkEventBox" id="eventbox1">
+	<widget class="GtkHBox" id="hbox2">
 	  <property name="visible">True</property>
-	  <property name="tooltip" translatable="yes">Play normal league games and cups</property>
-	  <property name="visible_window">True</property>
-	  <property name="above_child">False</property>
+	  <property name="homogeneous">False</property>
+	  <property name="spacing">0</property>
 
 	  <child>
-	    <widget class="GtkHBox" id="hbox2">
+	    <widget class="GtkRadioButton" id="team_selection_radio1">
+	      <property name="border_width">3</property>
 	      <property name="visible">True</property>
-	      <property name="homogeneous">False</property>
-	      <property name="spacing">0</property>
-
-	      <child>
-		<widget class="GtkRadioButton" id="team_selection_radio1">
-		  <property name="border_width">3</property>
-		  <property name="visible">True</property>
-		  <property name="can_focus">True</property>
-		  <property name="label" translatable="yes">Top league</property>
-		  <property name="use_underline">True</property>
-		  <property name="relief">GTK_RELIEF_NORMAL</property>
-		  <property name="focus_on_click">True</property>
-		  <property name="active">False</property>
-		  <property name="inconsistent">False</property>
-		  <property name="draw_indicator">True</property>
-		</widget>
-		<packing>
-		  <property name="padding">0</property>
-		  <property name="expand">False</property>
-		  <property name="fill">False</property>
-		</packing>
-	      </child>
-
-	      <child>
-		<widget class="GtkRadioButton" id="team_selection_radio2">
-		  <property name="border_width">3</property>
-		  <property name="visible">True</property>
-		  <property name="can_focus">True</property>
-		  <property name="label" translatable="yes">Current league</property>
-		  <property name="use_underline">True</property>
-		  <property name="relief">GTK_RELIEF_NORMAL</property>
-		  <property name="focus_on_click">True</property>
-		  <property name="active">True</property>
-		  <property name="inconsistent">False</property>
-		  <property name="draw_indicator">True</property>
-		  <property name="group">team_selection_radio1</property>
-		</widget>
-		<packing>
-		  <property name="padding">0</property>
-		  <property name="expand">False</property>
-		  <property name="fill">False</property>
-		</packing>
-	      </child>
-
-	      <child>
-		<widget class="GtkRadioButton" id="team_selection_radio3">
-		  <property name="border_width">3</property>
-		  <property name="visible">True</property>
-		  <property name="can_focus">True</property>
-		  <property name="label" translatable="yes">Bottom league</property>
-		  <property name="use_underline">True</property>
-		  <property name="relief">GTK_RELIEF_NORMAL</property>
-		  <property name="focus_on_click">True</property>
-		  <property name="active">False</property>
-		  <property name="inconsistent">False</property>
-		  <property name="draw_indicator">True</property>
-		  <property name="group">team_selection_radio1</property>
-		</widget>
-		<packing>
-		  <property name="padding">0</property>
-		  <property name="expand">False</property>
-		  <property name="fill">False</property>
-		</packing>
-	      </child>
+	      <property name="can_focus">True</property>
+	      <property name="label" translatable="yes">Top league</property>
+	      <property name="use_underline">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
+	      <property name="active">False</property>
+	      <property name="inconsistent">False</property>
+	      <property name="draw_indicator">True</property>
 	    </widget>
+	    <packing>
+	      <property name="padding">0</property>
+	      <property name="expand">False</property>
+	      <property name="fill">False</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkRadioButton" id="team_selection_radio2">
+	      <property name="border_width">3</property>
+	      <property name="visible">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label" translatable="yes">Current league</property>
+	      <property name="use_underline">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
+	      <property name="active">True</property>
+	      <property name="inconsistent">False</property>
+	      <property name="draw_indicator">True</property>
+	      <property name="group">team_selection_radio1</property>
+	    </widget>
+	    <packing>
+	      <property name="padding">0</property>
+	      <property name="expand">False</property>
+	      <property name="fill">False</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkRadioButton" id="team_selection_radio3">
+	      <property name="border_width">3</property>
+	      <property name="visible">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label" translatable="yes">Bottom league</property>
+	      <property name="use_underline">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
+	      <property name="active">False</property>
+	      <property name="inconsistent">False</property>
+	      <property name="draw_indicator">True</property>
+	      <property name="group">team_selection_radio1</property>
+	    </widget>
+	    <packing>
+	      <property name="padding">0</property>
+	      <property name="expand">False</property>
+	      <property name="fill">False</property>
+	    </packing>
 	  </child>
 	</widget>
 	<packing>
@@ -381,7 +372,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label76">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Add player</property>
+			  <property name="label" translatable="yes">Add user</property>
 			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -521,70 +512,12 @@
 	      <property name="visible">True</property>
 	      <property name="tooltip" translatable="yes">Esc</property>
 	      <property name="can_focus">True</property>
+	      <property name="label">gtk-cancel</property>
+	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
 	      <signal name="clicked" handler="on_team_selection_cancel_clicked" last_modification_time="Wed, 12 May 2004 15:44:37 GMT"/>
 	      <accelerator key="Escape" modifiers="0" signal="clicked"/>
-
-	      <child>
-		<widget class="GtkAlignment" id="alignment2">
-		  <property name="visible">True</property>
-		  <property name="xalign">0.5</property>
-		  <property name="yalign">0.5</property>
-		  <property name="xscale">0</property>
-		  <property name="yscale">0</property>
-		  <property name="top_padding">0</property>
-		  <property name="bottom_padding">0</property>
-		  <property name="left_padding">0</property>
-		  <property name="right_padding">0</property>
-
-		  <child>
-		    <widget class="GtkHBox" id="hbox5">
-		      <property name="visible">True</property>
-		      <property name="homogeneous">False</property>
-		      <property name="spacing">2</property>
-
-		      <child>
-			<widget class="GtkImage" id="image3">
-			  <property name="visible">True</property>
-			  <property name="stock">gtk-cancel</property>
-			  <property name="icon_size">4</property>
-			  <property name="xalign">0.5</property>
-			  <property name="yalign">0.5</property>
-			  <property name="xpad">0</property>
-			  <property name="ypad">0</property>
-			</widget>
-			<packing>
-			  <property name="padding">0</property>
-			  <property name="expand">False</property>
-			  <property name="fill">False</property>
-			</packing>
-		      </child>
-
-		      <child>
-			<widget class="GtkLabel" id="label2">
-			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Cancel</property>
-			  <property name="use_underline">True</property>
-			  <property name="use_markup">False</property>
-			  <property name="justify">GTK_JUSTIFY_LEFT</property>
-			  <property name="wrap">False</property>
-			  <property name="selectable">False</property>
-			  <property name="xalign">0.5</property>
-			  <property name="yalign">0.5</property>
-			  <property name="xpad">0</property>
-			  <property name="ypad">0</property>
-			</widget>
-			<packing>
-			  <property name="padding">0</property>
-			  <property name="expand">False</property>
-			  <property name="fill">False</property>
-			</packing>
-		      </child>
-		    </widget>
-		  </child>
-		</widget>
-	      </child>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -700,7 +633,7 @@
 	      <property name="right_padding">0</property>
 
 	      <child>
-		<widget class="GtkHBox" id="hbox68">
+		<widget class="GtkHBox" id="hbox70">
 		  <property name="visible">True</property>
 		  <property name="homogeneous">False</property>
 		  <property name="spacing">2</property>
@@ -708,7 +641,7 @@
 		  <child>
 		    <widget class="GtkImage" id="image61">
 		      <property name="visible">True</property>
-		      <property name="stock">gtk-jump-to</property>
+		      <property name="stock">gtk-revert-to-saved</property>
 		      <property name="icon_size">4</property>
 		      <property name="xalign">0.5</property>
 		      <property name="yalign">0.5</property>
@@ -723,7 +656,7 @@
 		  </child>
 
 		  <child>
-		    <widget class="GtkLabel" id="label108">
+		    <widget class="GtkLabel" id="label114">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">_Resume last game</property>
 		      <property name="use_underline">True</property>
@@ -1452,7 +1385,7 @@
 <widget class="GtkWindow" id="window_stadium">
   <property name="border_width">5</property>
   <property name="visible">True</property>
-  <property name="title" translatable="yes">window1</property>
+  <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_CENTER</property>
   <property name="modal">False</property>
@@ -1483,7 +1416,7 @@
 	  <child>
 	    <widget class="GtkLabel" id="label106">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Status:               </property>
+	      <property name="label" translatable="yes">Status:</property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1507,7 +1440,7 @@
 	  <child>
 	    <widget class="GtkLabel" id="label_stadium_status">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">label107</property>
+	      <property name="label" translatable="yes"></property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1531,7 +1464,7 @@
 	  <child>
 	    <widget class="GtkLabel" id="label101">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Current capacity:</property>
+	      <property name="label" translatable="yes">Current capacity</property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1561,7 +1494,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label_capacity">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">label104</property>
+		  <property name="label" translatable="yes"></property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1613,7 +1546,7 @@
 	  <child>
 	    <widget class="GtkLabel" id="label103">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Current safety:   </property>
+	      <property name="label" translatable="yes">Current safety</property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1654,7 +1587,7 @@
 	  <child>
 	    <widget class="GtkLabel" id="label109">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Average attendance </property>
+	      <property name="label" translatable="yes">Average attendance</property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1678,7 +1611,7 @@
 	  <child>
 	    <widget class="GtkLabel" id="label_average_attendance">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">label110</property>
+	      <property name="label" translatable="yes"></property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1702,7 +1635,7 @@
 	  <child>
 	    <widget class="GtkLabel" id="label111">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Average attendance % </property>
+	      <property name="label" translatable="yes">Average attendance %</property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>

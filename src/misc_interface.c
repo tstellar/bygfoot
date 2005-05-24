@@ -42,7 +42,6 @@ create_window_startup (void)
   GtkWidget *combo_country;
   GtkWidget *hseparator11;
   GtkWidget *label4;
-  GtkWidget *eventbox1;
   GtkWidget *hbox2;
   GtkWidget *team_selection_radio1;
   GSList *team_selection_radio1_group = NULL;
@@ -65,10 +64,6 @@ create_window_startup (void)
   GtkWidget *image58;
   GtkWidget *label74;
   GtkWidget *team_selection_cancel;
-  GtkWidget *alignment2;
-  GtkWidget *hbox5;
-  GtkWidget *image3;
-  GtkWidget *label2;
   GtkWidget *team_selection_load;
   GtkWidget *alignment3;
   GtkWidget *hbox6;
@@ -76,9 +71,9 @@ create_window_startup (void)
   GtkWidget *label5;
   GtkWidget *button_startup_resume;
   GtkWidget *alignment21;
-  GtkWidget *hbox68;
+  GtkWidget *hbox70;
   GtkWidget *image61;
-  GtkWidget *label108;
+  GtkWidget *label114;
   GtkAccelGroup *accel_group;
   GtkTooltips *tooltips;
 
@@ -109,7 +104,7 @@ create_window_startup (void)
   treeview_users = gtk_tree_view_new ();
   gtk_widget_show (treeview_users);
   gtk_container_add (GTK_CONTAINER (scrolledwindow10), treeview_users);
-  gtk_tooltips_set_tip (tooltips, treeview_users, _("Click on a player to remove him"), NULL);
+  gtk_tooltips_set_tip (tooltips, treeview_users, _("Click on a user to remove him."), NULL);
 
   scrolledwindow1 = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (scrolledwindow1);
@@ -152,14 +147,9 @@ create_window_startup (void)
   gtk_box_pack_start (GTK_BOX (vbox2), label4, FALSE, FALSE, 0);
   gtk_misc_set_alignment (GTK_MISC (label4), 0.05, 0.5);
 
-  eventbox1 = gtk_event_box_new ();
-  gtk_widget_show (eventbox1);
-  gtk_box_pack_start (GTK_BOX (vbox2), eventbox1, FALSE, TRUE, 5);
-  gtk_tooltips_set_tip (tooltips, eventbox1, _("Play normal league games and cups"), NULL);
-
   hbox2 = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (hbox2);
-  gtk_container_add (GTK_CONTAINER (eventbox1), hbox2);
+  gtk_box_pack_start (GTK_BOX (vbox2), hbox2, FALSE, TRUE, 5);
 
   team_selection_radio1 = gtk_radio_button_new_with_mnemonic (NULL, _("Top league"));
   gtk_widget_show (team_selection_radio1);
@@ -218,7 +208,7 @@ create_window_startup (void)
   gtk_widget_show (image59);
   gtk_box_pack_start (GTK_BOX (hbox55), image59, FALSE, FALSE, 0);
 
-  label76 = gtk_label_new_with_mnemonic (_("Add player"));
+  label76 = gtk_label_new_with_mnemonic (_("Add user"));
   gtk_widget_show (label76);
   gtk_box_pack_start (GTK_BOX (hbox55), label76, FALSE, FALSE, 0);
 
@@ -257,7 +247,7 @@ create_window_startup (void)
   gtk_widget_show (label74);
   gtk_box_pack_start (GTK_BOX (hbox53), label74, FALSE, FALSE, 0);
 
-  team_selection_cancel = gtk_button_new ();
+  team_selection_cancel = gtk_button_new_from_stock ("gtk-cancel");
   gtk_widget_show (team_selection_cancel);
   gtk_box_pack_start (GTK_BOX (hbox3), team_selection_cancel, TRUE, TRUE, 0);
   gtk_container_set_border_width (GTK_CONTAINER (team_selection_cancel), 2);
@@ -265,22 +255,6 @@ create_window_startup (void)
   gtk_widget_add_accelerator (team_selection_cancel, "clicked", accel_group,
                               GDK_Escape, 0,
                               GTK_ACCEL_VISIBLE);
-
-  alignment2 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment2);
-  gtk_container_add (GTK_CONTAINER (team_selection_cancel), alignment2);
-
-  hbox5 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox5);
-  gtk_container_add (GTK_CONTAINER (alignment2), hbox5);
-
-  image3 = gtk_image_new_from_stock ("gtk-cancel", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image3);
-  gtk_box_pack_start (GTK_BOX (hbox5), image3, FALSE, FALSE, 0);
-
-  label2 = gtk_label_new_with_mnemonic (_("Cancel"));
-  gtk_widget_show (label2);
-  gtk_box_pack_start (GTK_BOX (hbox5), label2, FALSE, FALSE, 0);
 
   team_selection_load = gtk_button_new ();
   gtk_widget_show (team_selection_load);
@@ -316,17 +290,17 @@ create_window_startup (void)
   gtk_widget_show (alignment21);
   gtk_container_add (GTK_CONTAINER (button_startup_resume), alignment21);
 
-  hbox68 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox68);
-  gtk_container_add (GTK_CONTAINER (alignment21), hbox68);
+  hbox70 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox70);
+  gtk_container_add (GTK_CONTAINER (alignment21), hbox70);
 
-  image61 = gtk_image_new_from_stock ("gtk-jump-to", GTK_ICON_SIZE_BUTTON);
+  image61 = gtk_image_new_from_stock ("gtk-revert-to-saved", GTK_ICON_SIZE_BUTTON);
   gtk_widget_show (image61);
-  gtk_box_pack_start (GTK_BOX (hbox68), image61, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox70), image61, FALSE, FALSE, 0);
 
-  label108 = gtk_label_new_with_mnemonic (_("_Resume last game"));
-  gtk_widget_show (label108);
-  gtk_box_pack_start (GTK_BOX (hbox68), label108, FALSE, FALSE, 0);
+  label114 = gtk_label_new_with_mnemonic (_("_Resume last game"));
+  gtk_widget_show (label114);
+  gtk_box_pack_start (GTK_BOX (hbox70), label114, FALSE, FALSE, 0);
 
   g_signal_connect ((gpointer) window_startup, "delete_event",
                     G_CALLBACK (on_team_selection_cancel_clicked),
@@ -373,7 +347,6 @@ create_window_startup (void)
   GLADE_HOOKUP_OBJECT (window_startup, combo_country, "combo_country");
   GLADE_HOOKUP_OBJECT (window_startup, hseparator11, "hseparator11");
   GLADE_HOOKUP_OBJECT (window_startup, label4, "label4");
-  GLADE_HOOKUP_OBJECT (window_startup, eventbox1, "eventbox1");
   GLADE_HOOKUP_OBJECT (window_startup, hbox2, "hbox2");
   GLADE_HOOKUP_OBJECT (window_startup, team_selection_radio1, "team_selection_radio1");
   GLADE_HOOKUP_OBJECT (window_startup, team_selection_radio2, "team_selection_radio2");
@@ -395,10 +368,6 @@ create_window_startup (void)
   GLADE_HOOKUP_OBJECT (window_startup, image58, "image58");
   GLADE_HOOKUP_OBJECT (window_startup, label74, "label74");
   GLADE_HOOKUP_OBJECT (window_startup, team_selection_cancel, "team_selection_cancel");
-  GLADE_HOOKUP_OBJECT (window_startup, alignment2, "alignment2");
-  GLADE_HOOKUP_OBJECT (window_startup, hbox5, "hbox5");
-  GLADE_HOOKUP_OBJECT (window_startup, image3, "image3");
-  GLADE_HOOKUP_OBJECT (window_startup, label2, "label2");
   GLADE_HOOKUP_OBJECT (window_startup, team_selection_load, "team_selection_load");
   GLADE_HOOKUP_OBJECT (window_startup, alignment3, "alignment3");
   GLADE_HOOKUP_OBJECT (window_startup, hbox6, "hbox6");
@@ -406,9 +375,9 @@ create_window_startup (void)
   GLADE_HOOKUP_OBJECT (window_startup, label5, "label5");
   GLADE_HOOKUP_OBJECT (window_startup, button_startup_resume, "button_startup_resume");
   GLADE_HOOKUP_OBJECT (window_startup, alignment21, "alignment21");
-  GLADE_HOOKUP_OBJECT (window_startup, hbox68, "hbox68");
+  GLADE_HOOKUP_OBJECT (window_startup, hbox70, "hbox70");
   GLADE_HOOKUP_OBJECT (window_startup, image61, "image61");
-  GLADE_HOOKUP_OBJECT (window_startup, label108, "label108");
+  GLADE_HOOKUP_OBJECT (window_startup, label114, "label114");
   GLADE_HOOKUP_OBJECT_NO_REF (window_startup, tooltips, "tooltips");
 
   gtk_widget_grab_focus (treeview_startup);
@@ -881,7 +850,6 @@ create_window_stadium (void)
 
   window_stadium = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_stadium), 5);
-  gtk_window_set_title (GTK_WINDOW (window_stadium), _("window1"));
   gtk_window_set_position (GTK_WINDOW (window_stadium), GTK_WIN_POS_CENTER);
 
   vbox39 = gtk_vbox_new (FALSE, 5);
@@ -894,21 +862,21 @@ create_window_stadium (void)
   gtk_table_set_row_spacings (GTK_TABLE (table1), 3);
   gtk_table_set_col_spacings (GTK_TABLE (table1), 3);
 
-  label106 = gtk_label_new (_("Status:               "));
+  label106 = gtk_label_new (_("Status:"));
   gtk_widget_show (label106);
   gtk_table_attach (GTK_TABLE (table1), label106, 0, 1, 0, 1,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (label106), 0, 0.5);
 
-  label_stadium_status = gtk_label_new (_("label107"));
+  label_stadium_status = gtk_label_new ("");
   gtk_widget_show (label_stadium_status);
   gtk_table_attach (GTK_TABLE (table1), label_stadium_status, 1, 2, 0, 1,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (label_stadium_status), 0, 0.5);
 
-  label101 = gtk_label_new (_("Current capacity:"));
+  label101 = gtk_label_new (_("Current capacity"));
   gtk_widget_show (label101);
   gtk_table_attach (GTK_TABLE (table1), label101, 0, 1, 1, 2,
                     (GtkAttachOptions) (GTK_FILL),
@@ -921,7 +889,7 @@ create_window_stadium (void)
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (GTK_FILL), 0, 0);
 
-  label_capacity = gtk_label_new (_("label104"));
+  label_capacity = gtk_label_new ("");
   gtk_widget_show (label_capacity);
   gtk_box_pack_start (GTK_BOX (hbox69), label_capacity, FALSE, FALSE, 0);
   gtk_misc_set_alignment (GTK_MISC (label_capacity), 0, 0.5);
@@ -930,7 +898,7 @@ create_window_stadium (void)
   gtk_widget_show (label102);
   gtk_box_pack_start (GTK_BOX (hbox69), label102, FALSE, FALSE, 0);
 
-  label103 = gtk_label_new (_("Current safety:   "));
+  label103 = gtk_label_new (_("Current safety"));
   gtk_widget_show (label103);
   gtk_table_attach (GTK_TABLE (table1), label103, 0, 1, 2, 3,
                     (GtkAttachOptions) (GTK_FILL),
@@ -943,21 +911,21 @@ create_window_stadium (void)
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
 
-  label109 = gtk_label_new (_("Average attendance "));
+  label109 = gtk_label_new (_("Average attendance"));
   gtk_widget_show (label109);
   gtk_table_attach (GTK_TABLE (table1), label109, 0, 1, 3, 4,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (label109), 0, 0.5);
 
-  label_average_attendance = gtk_label_new (_("label110"));
+  label_average_attendance = gtk_label_new ("");
   gtk_widget_show (label_average_attendance);
   gtk_table_attach (GTK_TABLE (table1), label_average_attendance, 1, 2, 3, 4,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (label_average_attendance), 0, 0.5);
 
-  label111 = gtk_label_new (_("Average attendance % "));
+  label111 = gtk_label_new (_("Average attendance %"));
   gtk_widget_show (label111);
   gtk_table_attach (GTK_TABLE (table1), label111, 0, 1, 4, 5,
                     (GtkAttachOptions) (GTK_FILL),
