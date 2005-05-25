@@ -15,6 +15,7 @@
 #define query_cup_is_national(clid) query_cup_has_property(clid, "national")
 #define query_cup_is_supercup(clid) query_cup_has_property(clid, "supercup")
 #define query_cup_is_promotion(clid) query_cup_has_property(clid, "promotion")
+#define query_cup_hide(clid) query_cup_has_property(clid, "hide")
 
 Cup
 cup_new(gboolean new_id);

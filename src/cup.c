@@ -168,11 +168,11 @@ cup_get_choose_team_league_cup(const CupChooseTeam *ct,
 		break;
 	    }
 
-	for(i=0;i<acps->len;i++)
+	for(i=0;i<cps->len;i++)
 	{
-	    if(strcmp(acp(i)->sid->str, ct->sid->str) == 0)
+	    if(strcmp(cp(i).sid->str, ct->sid->str) == 0)
 	    {
-		*cup = acp(i);
+		*cup = &cp(i);
 		*league = NULL;
 		break;
 	    }
@@ -250,7 +250,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 		order[j] = j + start;
 
 	    if(ct->randomly)
-		math_generate_permutation(order, start, start + end);
+		math_generate_permutation(order, start, start + end - 1);
 
 	    for(j = 0; j < end; j++)
 	    {

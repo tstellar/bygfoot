@@ -43,7 +43,7 @@ WeekFunc start_week_funcs[] =
  start_week_update_user_teams, start_week_update_user_finances,
  transfer_update, NULL};
 
-WeekFunc end_week_funcs[] = {stat_update_leagues, NULL};
+WeekFunc end_week_funcs[] = {stat_update_leagues, end_week_hide_cups, NULL};
 
 /** Generate the teams etc. */
 void
@@ -365,6 +365,19 @@ end_week(void)
 
     if(debug > 60)
 	stat_show_av_league_goals();
+}
+
+/** Hide some not-so-important cups that
+    are already finished. */
+void
+end_week_hide_cups(void)
+{
+    gint i;
+
+    for(i=acps->len - 1; i >= 0; i--)
+	if(query_cup_hide(acp(i)->id) &&
+	   g_array_index(acp(i)->fixtures, Fixture, acp(i)->fixtures->len - 1).attendance > 0)
+	    g_ptr_array_remove_index(acps, i);
 }
 
 /** Add the cups that begin later in the season to the acps array. */
