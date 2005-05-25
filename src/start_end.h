@@ -60,4 +60,7 @@ end_week(void);
 void
 end_season(void);
 
+void
+start_week_add_cups(void);
+
 #endif

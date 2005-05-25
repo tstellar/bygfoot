@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Copa do Brasil</name>
+  <short_name>Copa BR</short_name>
+  <symbol>flag_brazil.png</symbol>
+  <sid>brazil_copa_do_brasil</sid>
+  <yellow_red>3</yellow_red>
+  <last_week>38</last_week>
+  <week_gap>3</week_gap>
+  <property>national</property>
+
+  <cup_rounds>
+    <cup_round>
+
+      <choose_teams>
+	<choose_team>
+	  <choose_team_sid>brazil1</choose_team_sid>
+	</choose_team>
+	<choose_team>
+	  <choose_team_sid>brazil2</choose_team_sid>
+	</choose_team>
+	<choose_team>
+	  <choose_team_sid>brazil3</choose_team_sid>
+	  <number_of_teams>5</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>5</end_idx>
+	</choose_team>
+	<choose_team>
+	  <choose_team_sid>brazil4</choose_team_sid>
+	  <number_of_teams>5</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>5</end_idx>
+	</choose_team>
+	<choose_team>
+	  <choose_team_sid>brazil5</choose_team_sid>
+	  <number_of_teams>5</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>5</end_idx>
+	</choose_team>
+	<choose_team>
+	  <choose_team_sid>brazil6</choose_team_sid>
+	  <number_of_teams>5</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>5</end_idx>
+	</choose_team>
+      </choose_teams>
+
+    </cup_round>
+    <cup_round>
+    </cup_round>
+    <cup_round>
+    </cup_round>
+    <cup_round>
+    </cup_round>
+    <cup_round>
+    </cup_round>
+    <cup_round>
+    </cup_round>
+  </cup_rounds>
+
+</cup>

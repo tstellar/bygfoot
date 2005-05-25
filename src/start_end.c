@@ -39,8 +39,9 @@ WeekFunc start_week_round_funcs[] =
 /** Array of functions called when a week
     is started. */
 WeekFunc start_week_funcs[] = 
-{start_week_update_users, start_week_update_user_teams,
- start_week_update_user_finances, transfer_update, NULL};
+{start_week_add_cups, start_week_update_users,
+ start_week_update_user_teams, start_week_update_user_finances,
+ transfer_update, NULL};
 
 WeekFunc end_week_funcs[] = {stat_update_leagues, NULL};
 

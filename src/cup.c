@@ -172,7 +172,7 @@ cup_get_choose_team_league_cup(const CupChooseTeam *ct,
 	{
 	    if(strcmp(acp(i)->sid->str, ct->sid->str) == 0)
 	    {
-		*cup = &cp(i);
+		*cup = acp(i);
 		*league = NULL;
 		break;
 	    }
@@ -623,9 +623,13 @@ cup_get_matchdays_in_cup_round(const Cup *cup, gint cup_round)
        round_robin_number_of_groups > 0)
     {
 	number_of_teams = cup_round_get_number_of_teams(cup, cup_round);
-	number_of_matchdays = 
+	number_of_matchdays = ((number_of_teams / g_array_index(cup->rounds, CupRound, cup_round).
+				round_robin_number_of_groups) % 2 == 0) ?
 	    2 * ((number_of_teams / g_array_index(cup->rounds, CupRound, cup_round).
-		  round_robin_number_of_groups) - 1);
+		  round_robin_number_of_groups) - 1) :
+	    2 * ((number_of_teams / g_array_index(cup->rounds, CupRound, cup_round).
+		  round_robin_number_of_groups));
+	    
     }
     else if(g_array_index(cup->rounds, CupRound, cup_round).home_away)
 	number_of_matchdays = 2;

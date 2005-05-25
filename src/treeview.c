@@ -1000,22 +1000,26 @@ treeview_show_fixtures(GtkTreeView *treeview, gint clid,
     @param clid The cup or league id.
     @param number The number of the table if we display more than one. */
 void
-treeview_table_write_header(GtkListStore *ls, gint clid, gint number)
+treeview_table_write_header(GtkListStore *ls, const Table *table, gint number)
 {
     gint i;
     gchar buf[SMALL];
     gchar *symbol = NULL;
     GtkTreeIter iter;
 
-    if(clid < ID_CUP_START)
+    if(table->clid < ID_CUP_START)
     {
-	symbol = league_from_clid(clid)->symbol->str;
-	strcpy(buf, league_from_clid(clid)->name->str);
+	symbol = league_from_clid(table->clid)->symbol->str;
+	strcpy(buf, league_from_clid(table->clid)->name->str);
     }
     else
     {
-	symbol = cup_from_clid(clid)->symbol->str;
-	sprintf(buf, _("%s Group %d"), cup_from_clid(clid)->name->str, number);
+	symbol = cup_from_clid(table->clid)->symbol->str;
+	if(g_array_index(cup_from_clid(table->clid)->rounds, CupRound,
+			 table->round).tables->len > 1)			 
+	    sprintf(buf, _("%s Group %d"), cup_from_clid(table->clid)->name->str, number);
+	else
+	    sprintf(buf, _("%s"), cup_from_clid(table->clid)->name->str);
     }
 
     gtk_list_store_append(ls, &iter);
@@ -1038,7 +1042,7 @@ treeview_create_single_table(GtkListStore *ls, const Table *table, gint number)
     gchar buf[10][SMALL];
     gchar colour_bg[SMALL], colour_fg[SMALL];
 
-    treeview_table_write_header(ls, table->clid, number);    
+    treeview_table_write_header(ls, table, number);
 
     for(i=0;i<table->elements->len;i++)
     {

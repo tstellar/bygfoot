@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Quadrangular Série C1</name>
+  <short_name>Quad. C1</short_name>
+  <symbol>flag_brazil.png</symbol>
+  <sid>brazil_prom_games3</sid>
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>promotion</property>
+
+  <cup_rounds>
+    <cup_round>
+
+      <choose_teams>
+	<choose_team>
+	  <choose_team_sid>brazil3</choose_team_sid>
+	  <number_of_teams>4</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>4</end_idx>
+	</choose_team>
+      </choose_teams>
+
+    </cup_round>
+    <cup_round>
+    </cup_round>
+  </cup_rounds>
+</cup>

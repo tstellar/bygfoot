@@ -103,7 +103,7 @@ void
 treeview_create_single_table(GtkListStore *liststore, const Table *table, gint number);
 
 void
-treeview_table_write_header(GtkListStore *liststore, gint clid, gint number);
+treeview_table_write_header(GtkListStore *ls, const Table *table, gint number);
 
 void
 treeview_show_finances(GtkTreeView *treeview, const User* user);
