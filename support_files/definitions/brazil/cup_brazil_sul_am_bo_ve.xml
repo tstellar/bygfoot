@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<cup>
+  <name>Copa Sul-Americana Bolivia Venezuela</name>
+  <short_name>CSA Ar</short_name>
+  <sid>brazil_sul_am_bo_ve</sid>
+  <yellow_red>2</yellow_red>
+  <skill_diff>500</skill_diff>
+  <last_week>15</last_week>
+  <week_gap>1</week_gap>
+  <property>international</property>
+
+  <cup_rounds>
+
+    <cup_round>
+      <number_of_groups>1</number_of_groups>
+      <number_of_advance>2</number_of_advance>
+      <new_teams>4</new_teams>
+
+      <choose_teams>
+	<choose_team>
+	  <choose_team_sid>bolivia1_short</choose_team_sid>
+	  <number_of_teams>2</number_of_teams>
+	  <randomly>1</randomly>
+	  <generate>1</generate>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>venezuela1_short</choose_team_sid>
+	  <number_of_teams>2</number_of_teams>
+	  <randomly>1</randomly>
+	  <generate>1</generate>
+	</choose_team>
+      </choose_teams> 
+    </cup_round>
+
+  </cup_rounds>
+
+</cup>

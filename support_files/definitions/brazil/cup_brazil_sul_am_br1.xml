@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<cup>
+  <name>Copa Sul-Americana Brasil 1</name>
+  <short_name>CSA Br 1</short_name>
+  <sid>brazil_sul_am_br1</sid>
+  <yellow_red>2</yellow_red>
+  <group>1005</group>
+  <last_week>15</last_week>
+  <week_gap>2</week_gap>
+  <property>international</property>
+
+  <cup_rounds>
+
+    <cup_round>
+      <number_of_groups>1</number_of_groups>
+      <number_of_advance>1</number_of_advance>
+      <new_teams>3</new_teams>
+
+      <choose_teams>  
+	<choose_team>
+	  <choose_team_sid>brazil1</choose_team_sid>
+	  <number_of_teams>3</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>12</end_idx>
+	  <randomly>1</randomly>
+	</choose_team>
+      </choose_teams> 
+    </cup_round>
+
+  </cup_rounds>
+
+</cup>
