@@ -398,7 +398,7 @@ void
 user_event_show_next(void)
 {    
     Event *event = NULL;
-    gchar buf[BIG],
+    gchar buf[SMALL],
 	buf2[SMALL], buf3[SMALL];
     gint temp_int = -1;
 
@@ -444,8 +444,30 @@ user_event_show_next(void)
 		sprintf(buf, _("You have overdrawn your bank account once again. Bear in mind that after the fourth time you get fired.\nThe team owners give you %d weeks to get above your drawing credit limit."), const_int("int_finance_overdraw_positive"));
 	    game_gui_show_warning(buf);
 	    break;
-	case EVENT_TYPE_TRANSFER_OFFER_REJECTED:
-	    sprintf(buf, _("The owners of %s have rejected your offer for %s. Either the fee or the wage you suggested was too low, apparently."), ((Team*)event->value_pointer)->name->str, event->value_string->str);
+	case EVENT_TYPE_TRANSFER_OFFER_REJECTED_BETTER_OFFER:
+	    misc_print_grouped_int(event->value1, buf2, FALSE);
+	    misc_print_grouped_int(event->value2, buf3, FALSE);	    
+	    sprintf(buf, _("The owners of %s have rejected your offer (%s / %s) for %s. There was a better offer for the player than yours."), ((Team*)event->value_pointer)->name->str, buf2, buf3, event->value_string->str);
+	    game_gui_show_warning(buf);
+	    break;
+	case EVENT_TYPE_TRANSFER_OFFER_REJECTED_FEE_WAGE:
+	    misc_print_grouped_int(event->value1, buf2, FALSE);
+	    misc_print_grouped_int(event->value2, buf3, FALSE);	    
+	    sprintf(buf, _("The owners of %s have rejected your offer (%s / %s) for %s. Neither the fee nor the wage you offered were acceptable, they say."), ((Team*)event->value_pointer)->name->str, buf2, buf3, event->value_string->str);
+	    game_gui_show_warning(buf);
+	    break;
+	case EVENT_TYPE_TRANSFER_OFFER_REJECTED_FEE:
+	    misc_print_grouped_int(event->value1, buf2, FALSE);
+	    misc_print_grouped_int(event->value2, buf3, FALSE);	    
+	    sprintf(buf, _("The owners of %s have rejected your offer (%s / %s) for %s. The team owners weren't satisfied with the fee you offered."), ((Team*)event->value_pointer)->name->str, buf2, buf3, event->value_string->str);
+	    game_gui_show_warning(buf);
+	    break;
+	case EVENT_TYPE_TRANSFER_OFFER_REJECTED_WAGE:
+	    misc_print_grouped_int(event->value1, buf2, FALSE);
+	    misc_print_grouped_int(event->value2, buf3, FALSE);	    
+	    sprintf(buf, _("%s of %s has rejected your offer (%s / %s). He wasn't satisfied with the wage you offered."),
+		    event->value_string->str,
+		    ((Team*)event->value_pointer)->name->str, buf2, buf3);
 	    game_gui_show_warning(buf);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_MONEY:
@@ -480,11 +502,6 @@ user_event_show_next(void)
 	    stat1 = STATUS_TRANSFER_OFFER;
 	    stat2 = temp_int;
 	    window_show_yesno(buf);
-	    break;
-	case EVENT_TYPE_TRANSFER_OFFER_OUTBID:
-	    sprintf(buf, _("There was a higher bid for %s than yours."),
-		    event->value_string->str);
-	    game_gui_show_warning(buf);
 	    break;
 	case EVENT_TYPE_PLAYER_CAREER_STOP:
 	    sprintf(buf, _("%s's injury was so severe that he can't play football on a professional level anymore. He leaves your team."), player_of_id_team(event->user->tm, event->value1)->name->str);

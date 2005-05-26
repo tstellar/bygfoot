@@ -91,7 +91,8 @@ transfer_add_offers(void)
 	    for(j=trans(i).offers->len - 1; j >= 1; j--)
 	    {
 		user_event_add(user_from_team(transoff(i, j).tm),
-			       EVENT_TYPE_TRANSFER_OFFER_OUTBID, -1, -1,
+			       EVENT_TYPE_TRANSFER_OFFER_REJECTED_BETTER_OFFER, 
+			       transoff(i, j).fee, transoff(i, j).wage,
 			       trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name->str);
 		user_event_remove(user_from_team(trans(i).tm),
 				  user_event_get_index(user_from_team(trans(i).tm), 
@@ -179,13 +180,25 @@ transfer_evaluate_offers(void)
 	    {
 		for(j=idx + 1;j<trans(i).offers->len;j++)
 		    user_event_add(user_from_team(transoff(i, j).tm),
-				   EVENT_TYPE_TRANSFER_OFFER_REJECTED, -1, -1,
+				   EVENT_TYPE_TRANSFER_OFFER_REJECTED_BETTER_OFFER, 
+				   transoff(i, j).fee, transoff(i, j).wage,
 				   trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name->str);
 
-		if(player_of_id_team(trans(i).tm, trans(i).id)->value > transoff(i, idx).fee ||
+		if(player_of_id_team(trans(i).tm, trans(i).id)->value > transoff(i, idx).fee &&
 		   player_of_id_team(trans(i).tm, trans(i).id)->wage > transoff(i, idx).wage)
 		    user_event_add(user_from_team(transoff(i, idx).tm),
-				   EVENT_TYPE_TRANSFER_OFFER_REJECTED, -1, -1,
+				   EVENT_TYPE_TRANSFER_OFFER_REJECTED_FEE_WAGE, 
+				   transoff(i, idx).fee, transoff(i, idx).wage,
+				   trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name->str);
+		else if(player_of_id_team(trans(i).tm, trans(i).id)->value > transoff(i, idx).fee)
+		    user_event_add(user_from_team(transoff(i, idx).tm),
+				   EVENT_TYPE_TRANSFER_OFFER_REJECTED_FEE, 
+				   transoff(i, idx).fee, transoff(i, idx).wage,
+				   trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name->str);
+		else if(player_of_id_team(trans(i).tm, trans(i).id)->wage > transoff(i, idx).wage)
+		    user_event_add(user_from_team(transoff(i, idx).tm),
+				   EVENT_TYPE_TRANSFER_OFFER_REJECTED_WAGE,
+				   transoff(i, idx).fee, transoff(i, idx).wage,
 				   trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name->str);
 		else if(transoff(i, idx).fee > BUDGET(user_get_index(user_from_team(transoff(i, idx).tm))))
 		    user_event_add(user_from_team(transoff(i, idx).tm),
