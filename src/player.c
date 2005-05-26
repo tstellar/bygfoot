@@ -494,13 +494,15 @@ player_move(Team *tm1, gint player_number, Team *tm2, gint insert_at)
 void
 player_swap(Team *tm1, gint player_number1, Team *tm2, gint player_number2)
 {
+    gint clid = -1;
     gint move = (tm1 == tm2 && player_number1 < player_number2) ? 
 	-1 : 1;
 
     if(stat0 == STATUS_LIVE_GAME_PAUSE)
     {
-	if((player_number1 < 11 && player_is_banned(player_of_idx_team(tm1, player_number1)) > 0) || 
-	   (player_number2 < 11 && player_is_banned(player_of_idx_team(tm1, player_number2)) > 0))
+	clid = usr(stat2).live_game.fix->clid;
+	if((player_number1 < 11 && player_is_banned(player_of_idx_team(tm1, player_number1))) ||
+	   (player_number2 < 11 && player_is_banned(player_of_idx_team(tm2, player_number2))))
 	{
 	    game_gui_show_warning("You can't replace a banned player.");
 	    return;

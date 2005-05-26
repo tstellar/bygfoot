@@ -338,6 +338,13 @@ team_get_fixture(const Team *tm, gboolean last_fixture)
     Fixture *next_fix = NULL,
 	*last_fix = NULL;    
 
+    if(!last_fixture && 
+       (stat0 == STATUS_LIVE_GAME_PAUSE ||
+	stat0 == STATUS_SHOW_LIVE_GAME) &&
+       (tm == ((LiveGame*)statp)->fix->teams[0] ||
+	tm == ((LiveGame*)statp)->fix->teams[1]))
+	return ((LiveGame*)statp)->fix;
+    
     for(i=0;i<ligs->len;i++)
     {
 	if(lig(i).id == tm->clid)

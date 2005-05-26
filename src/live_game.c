@@ -45,6 +45,7 @@ live_game_calculate_fixture(Fixture *fix)
 			   &usr(fixture_user_team_involved(fix)).options));
 
 	stat2 = fixture_user_team_involved(fix);
+	statp = match;
 
 	if(show && window.live == NULL)
 	    window.live = window_create(WINDOW_LIVE);
@@ -553,6 +554,8 @@ live_game_event_scoring_chance(void)
 
     if(last_unit.event.type != LIVE_GAME_EVENT_OWN_GOAL)
 	live_game_event_duel();
+    else
+	live_game_event_general(TRUE);
 }
 
 /** Calculate a penalty event. */

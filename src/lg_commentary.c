@@ -189,7 +189,7 @@ lg_commentary_get_commentaries(gint event_type)
 		g_ptr_array_add(commentaries, g_string_new(_("It's a pinball in the penalty box, finally spinning off P1 across the line")));
 		g_ptr_array_add(commentaries, g_string_new(_("Oh that's a great shot and it's deflected off P1 and into the back of the net")));
 		g_ptr_array_add(commentaries, g_string_new(_("P1 passes the ball back to his goalie, oh no the keepers missed it! It's an own goal by P1!")));
-		g_ptr_array_add(commentaries, g_string_new(_("That little missunderstanding has cost T2 a goal")));
+		g_ptr_array_add(commentaries, g_string_new(_("That little missunderstanding has cost TT a goal")));
 		break;
 	    case LIVE_GAME_EVENT_HEADER:
 		g_ptr_array_add(commentaries, g_string_new(_("P2 chips the ball towards P1 who heads the ball towards goal")));
@@ -271,7 +271,7 @@ lg_commentary_get_commentaries(gint event_type)
 		break;
 	    case LIVE_GAME_EVENT_FOUL_RED_INJURY:
 		g_ptr_array_add(commentaries, g_string_new(_("P2 fouls and the stretcher bearers come racing on with P1 lying in agony on the turf")));
-		g_ptr_array_add(commentaries, g_string_new(_("Foul by P2; P1 seems to have broken something.. he might have to be substituted")));
+		g_ptr_array_add(commentaries, g_string_new(_("Foul by P2; P1 seems to be injured... he might have to be substituted")));
 		break;
 	    case LIVE_GAME_EVENT_SEND_OFF:
 		g_ptr_array_add(commentaries, g_string_new(_("P1 has been sent off")));

@@ -628,7 +628,7 @@ game_find_to_substitute(gint clid, const Team *tm)
 	num_def = math_get_place(current_structure, 3);
 
     for(i=0;i<11;i++)
-	if(player_card_get(player_of_idx_team(tm, i), clid, PLAYER_VALUE_CARD_RED) <= 0)
+	if(!player_is_banned(player_of_idx_team(tm, i)))
 	    g_ptr_array_add(players, player_of_idx_team(tm, i));
 
     g_ptr_array_sort_with_data(players, (GCompareDataFunc)player_compare_func,
