@@ -261,12 +261,12 @@ on_treeview_user_management_users_button_press_event
 
     if(users->len == 1)
     {
-	game_gui_show_warning("You can't play Bygfoot without users!");
+	game_gui_show_warning(_("You can't play Bygfoot without users!"));
 	return TRUE;
     }
 
     stat2 = idx;
-    sprintf(buf, "Remove user %s from the game?", usr(idx).name->str);
+    sprintf(buf, _("Remove user %s from the game?"), usr(idx).name->str);
     window_show_yesno(buf);
     
     return FALSE;

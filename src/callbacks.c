@@ -452,7 +452,7 @@ on_menu_shoots_penalties_activate      (GtkMenuItem     *menuitem,
     }
     else
     {
-	sprintf(buf, "%s will shoot penalties and free kicks when he plays.",
+	sprintf(buf, _("%s will shoot penalties and free kicks when he plays."),
 		player_of_idx_team(current_user.tm, selected_row[0])->name->str);
 	opt_user_set_int("int_opt_user_penalty_shooter",
 			 player_of_idx_team(current_user.tm, selected_row[0])->id);
@@ -608,7 +608,7 @@ on_menu_user_show_last_match_activate  (GtkMenuItem     *menuitem,
 {
     if(current_user.live_game.units->len == 0)
     {
-	game_gui_show_warning("No match to show.");
+	game_gui_show_warning(_("No match stored."));
 	return;
     }
 
@@ -624,7 +624,7 @@ on_menu_user_show_last_stats_activate  (GtkMenuItem     *menuitem,
 {
     if(current_user.live_game.units->len == 0)
     {
-	game_gui_show_warning("No match to show.");
+	game_gui_show_warning(_("No match stored."));
 	return;
     }
 

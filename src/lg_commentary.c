@@ -156,7 +156,7 @@ lg_commentary_get_commentaries(gint event_type)
 		g_ptr_array_add(commentaries, g_string_new(_("P1 wins the ball with a perfectly timed challenge")));
 		g_ptr_array_add(commentaries, g_string_new(_("Bad control by P2 lets P1 steal the ball off him")));
 		g_ptr_array_add(commentaries, g_string_new(_("P1 takes the ball away from P2 with a sliding tackle")));
-		g_ptr_array_add(commentaries, g_string_new(_("Loose ball falls to P2")));
+		g_ptr_array_add(commentaries, g_string_new(_("Loose ball falls to P1")));
 		break;
 	    case LIVE_GAME_EVENT_SCORING_CHANCE:
 		g_ptr_array_add(commentaries, g_string_new(_("P1 charges towards goal and shoots!")));

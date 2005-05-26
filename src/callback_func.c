@@ -338,7 +338,7 @@ callback_offer_new_contract(gint idx)
 
     window_create(WINDOW_CONTRACT);
 
-    sprintf(buf, "You are negotiating with %s about a new contract. Pay attention to what you're doing; if you don't come to terms with him within %d offers, he's going to leave your team after his current contract expires (unless you sell him).\nYour scout's recommendations are preset:", pl->name->str,
+    sprintf(buf, _("You are negotiating with %s about a new contract. Pay attention to what you're doing; if you don't come to terms with him within %d offers, he's going to leave your team after his current contract expires (unless you sell him).\nYour scout's recommendations are preset:"), pl->name->str,
 	    const_int("int_contract_max_offers"));
     gtk_label_set_text(GTK_LABEL(lookup_widget(window.contract, "label_contract")), buf);
 

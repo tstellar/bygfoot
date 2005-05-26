@@ -709,7 +709,7 @@ treeview_create_game_stats(LiveGame *live_game)
     }
 
     misc_print_grouped_int(live_game->fix->attendance, buf[0], FALSE);
-    sprintf(buf[1], "Attendance\n%s", buf[0]);
+    sprintf(buf[1], _("Attendance\n%s"), buf[0]);
     gtk_list_store_append(ls, &iter);
     gtk_list_store_set(ls, &iter, 0, buf[1], 1, "", 2, "", -1);
 
@@ -1132,7 +1132,7 @@ treeview_set_up_table(GtkTreeView *treeview)
 	{_("Team"),
 	 _("PL"),
 	 _("W"),
-	 _("D"),
+	 _("Dw"),
 	 _("L"),
 	 _("GF"),
 	 _("GA"),
@@ -1415,7 +1415,7 @@ treeview_create_own_results(const Team *tm, gchar *buf)
 		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] != current_user.tm],
 		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm]);
 	else
-	    sprintf(buf2, _("D %d : %d"),
+	    sprintf(buf2, _("Dw %d : %d"),
 		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] != current_user.tm],
 		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm]);
 	
@@ -1461,7 +1461,7 @@ treeview_create_next_opponent_results(const Team *tm, gchar *result_buf, gchar *
 				g_ptr_array_index(latest_fixtures, i))->
 			       result[(((Fixture*)g_ptr_array_index(latest_fixtures, i))->teams[0] == tm)], 2);
 	if(res[0] == res[1])
-	    strcat(result_buf, _("D "));
+	    strcat(result_buf, _("Dw "));
 	else if(res[(((Fixture*)g_ptr_array_index(latest_fixtures, i))->teams[0] == tm)] >
 		res[(((Fixture*)g_ptr_array_index(latest_fixtures, i))->teams[0] != tm)])
 	    strcat(result_buf, _("L "));
@@ -1537,12 +1537,12 @@ treeview_create_next_opponent(void)
 
     if(fix->week_number == week && 
        fix->week_round_number == week_round)
-	sprintf(buf, "<span foreground='%s' background='%s'>Week %d Round %d</span>",
+	sprintf(buf, _("<span foreground='%s' background='%s'>Week %d Round %d</span>"),
 		const_app("string_treeview_helper_color_default_foreground"),
 		const_app("string_treeview_helper_color_default_background"),
 		fix->week_number, fix->week_round_number);
     else
-	sprintf(buf, "<span foreground='%s' background='%s'>Week %d Round %d</span>",
+	sprintf(buf, _("<span foreground='%s' background='%s'>Week %d Round %d</span>"),
 		const_app("string_treeview_opponent_match_later_fg"),
 		const_app("string_treeview_opponent_match_later_bg"),
 		fix->week_number, fix->week_round_number);	
@@ -1995,7 +1995,7 @@ treeview_set_up_user_history(GtkTreeView *treeview)
     gint i;
     GtkTreeViewColumn   *col;
     GtkCellRenderer     *renderer;
-    gchar *titles[3] ={"Sea", "Week", "Team"};
+    gchar *titles[3] ={_("Sea"), _("Week"), _("Team")};
 
     gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
 				GTK_SELECTION_NONE);

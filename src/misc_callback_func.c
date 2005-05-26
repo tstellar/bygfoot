@@ -201,7 +201,7 @@ misc_callback_improve_stadium(void)
     if(value_safety + current_user.counters[COUNT_USER_STADIUM_SAFETY]
        > 101 - current_user.tm->stadium.safety * 100)
     {
-	game_gui_show_warning("Safety improvement too high, reset to highest possible value.");
+	game_gui_show_warning(_("Safety improvement too high, reset to highest possible value."));
 	value_safety = (gint)rint(100 - current_user.tm->stadium.safety * 100) -
 	    current_user.counters[COUNT_USER_STADIUM_SAFETY];
     }
