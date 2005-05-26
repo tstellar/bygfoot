@@ -577,7 +577,8 @@ fixture_get_free_round(gint week_number, gint clid)
 
     for(i=0;i<acps->len;i++)
     {
-	if(acp(i)->id != clid)
+	if(acp(i)->id != clid && 
+	   (acp(i)->group == -1 || acp(i)->group != cup_from_clid(clid)->group))
 	    for(j=0;j<acp(i)->fixtures->len;j++)
 		if(g_array_index(acp(i)->fixtures, Fixture, j).week_number == week_number &&
 		   g_array_index(acp(i)->fixtures, Fixture, j).week_round_number == max_round + 1)

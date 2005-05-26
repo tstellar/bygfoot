@@ -24,8 +24,6 @@ callback_show_next_live_game(void)
 {
     gint i, j;
 
-    stat0 = STATUS_SHOW_LIVE_GAME;
-
     for(i=0;i<ligs->len;i++)
 	for(j=0;j<lig(i).fixtures->len;j++)
 	    if(g_array_index(lig(i).fixtures, Fixture, j).week_number == week &&

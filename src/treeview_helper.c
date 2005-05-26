@@ -427,7 +427,8 @@ treeview_helper_get_table_element_colour_cups(const League *league, gint idx, gc
 	    cup_round = &g_array_index(cp(i).rounds, CupRound, k);
 	    for(j=0;j<cup_round->choose_teams->len;j++)
 		if(query_cup_is_international(cp(i).id) &&
-		   strcmp(g_array_index(cup_round->choose_teams, CupChooseTeam, j).sid->str, buf) == 0)
+		   (strcmp(g_array_index(cup_round->choose_teams, CupChooseTeam, j).sid->str, buf) == 0 ||
+		    strcmp(g_array_index(cup_round->choose_teams, CupChooseTeam, j).sid->str, league->sid->str) == 0))
 		{
 		    if((idx + 1 >= g_array_index(cup_round->choose_teams, CupChooseTeam, j).start_idx &&
 			idx + 1 <= g_array_index(cup_round->choose_teams, CupChooseTeam, j).end_idx && 

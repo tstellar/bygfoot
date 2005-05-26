@@ -1019,7 +1019,7 @@ treeview_table_write_header(GtkListStore *ls, const Table *table, gint number)
 			 table->round).tables->len > 1)			 
 	    sprintf(buf, _("%s Group %d"), cup_from_clid(table->clid)->name->str, number);
 	else
-	    sprintf(buf, _("%s"), cup_from_clid(table->clid)->name->str);
+	    sprintf(buf, "%s", cup_from_clid(table->clid)->name->str);
     }
 
     gtk_list_store_append(ls, &iter);
