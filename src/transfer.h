@@ -15,7 +15,7 @@ void
 transfer_update(void);
 
 void
-transfer_add_offers(void);
+transfer_add_cpu_offers(void);
 
 void
 transfer_evaluate_offers(void);
@@ -58,5 +58,11 @@ transfer_get_index(const Team *tm, gint id);
 
 void
 transfer_add_remove_user_player(Player *pl);
+
+void
+transfer_offers_notify(Transfer *trans);
+
+const TransferOffer*
+transfer_player_has_offer(const Player *pl);
 
 #endif

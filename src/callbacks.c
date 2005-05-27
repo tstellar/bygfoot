@@ -518,8 +518,10 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
     switch(stat0)
     {
 	case STATUS_SHOW_TRANSFER_LIST:
-	    if(event->button == 1 || trans(idx - 1).tm == current_user.tm)
-		callback_transfer_list_clicked(idx - 1);
+	    if(trans(idx - 1).tm == current_user.tm ||
+	       trans(idx - 1).locked ||
+	       event->button == 1)
+		callback_transfer_list_clicked(event->button, idx - 1);
 	    else if(event->button == 3)
 	    {
 		if(transfer_remove_offer(idx - 1, current_user.tm))

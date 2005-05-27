@@ -25,7 +25,7 @@ void
 callback_get_loan(void);
 
 void
-callback_transfer_list_clicked(gint idx);
+callback_transfer_list_clicked(gint button, gint idx);
 
 void
 callback_offer_new_contract(gint idx);

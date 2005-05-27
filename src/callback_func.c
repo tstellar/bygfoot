@@ -274,19 +274,63 @@ callback_pay_loan(void)
     window_show_digits(buf, _("Payback"), max_payback, NULL, 0);
 }
 
-/** Handle a click on the transfer list. 
+/** Manage a click on a player of the current team on the
+    transfer list.
+    @param button The mouse button number.
     @param idx The index of the selected player in the transfer list. */
 void
-callback_transfer_list_clicked(gint idx)
+callback_transfer_list_user(gint button, gint idx)
 {
-    gchar buf[SMALL];
-    Transfer *tr = &trans(idx);
+    gchar buf[SMALL],
+	buf2[SMALL], buf3[SMALL];
 
-    if(tr->tm == current_user.tm)
+    if(button == 3)
     {
 	transfer_remove_player(idx);
 	on_button_transfers_clicked(NULL, NULL);
 	setsav0;
+    }
+    else if(button == 1)
+    {
+	if(trans(idx).offers->len == 0)
+	    game_gui_print_message("There are no offers for the player.");
+	else
+	{
+	    misc_print_grouped_int(transoff(idx, 0).fee, buf2, FALSE);
+	    misc_print_grouped_int(ABS(transoff(idx, 0).fee -
+				       player_of_id_team(current_user.tm,
+							 trans(idx).id)->value), buf3, FALSE);
+	    if(transoff(idx, 0).fee -
+	       player_of_id_team(current_user.tm, trans(idx).id)->value > 0)
+		strcat(buf3, _(" more"));
+	    else
+		strcat(buf3, _(" less"));
+		
+	    sprintf(buf, _("%s would like to buy %s. They offer %s for him, which is %s than the player's value. Do you accept?"), transoff(idx, 0).tm->name->str,
+		    player_of_id_team(current_user.tm, trans(idx).id)->name->str,
+		    buf2, buf3);
+	    stat1 = STATUS_TRANSFER_OFFER_USER;
+	    stat2 = idx;
+	    window_show_yesno(buf);
+	}
+    }
+}
+
+/** Handle a click on a cpu player for which the offer 
+    got accepted. */
+void
+callback_transfer_list_cpu(gint button, gint idx)
+{
+    gchar buf[SMALL], buf2[SMALL], buf3[SMALL];
+
+    if(button == 2)
+	return;
+
+    if(button == 3)
+    {
+	g_array_remove_index(trans(idx).offers, 0);
+	trans(idx).locked = FALSE;
+	game_gui_print_message(_("Your offer has been removed."));
 	return;
     }
     
@@ -296,6 +340,45 @@ callback_transfer_list_clicked(gint idx)
 	return;
     }
 
+    misc_print_grouped_int(transoff(idx, 0).fee, buf2, FALSE);
+    misc_print_grouped_int(transoff(idx, 0).wage, buf3, FALSE);
+
+    sprintf(buf, _("You offered a transfer fee of %s and a wage of %s for %s. The owners and the player are satisfied with your offer. Do you still want to buy the player?"), 
+	    buf2, buf3, player_of_id_team(trans(idx).tm, trans(idx).id)->name->str);
+    stat1 = STATUS_TRANSFER_OFFER_CPU;
+    stat2 = idx;
+    window_show_yesno(buf);
+}
+
+/** Handle a click on the transfer list. 
+    @param button The mouse button number.
+    @param idx The index of the selected player in the transfer list. */
+void
+callback_transfer_list_clicked(gint button, gint idx)
+{
+    gchar buf[SMALL];
+    Transfer *tr = &trans(idx);
+
+    if(tr->tm == current_user.tm)
+    {
+	callback_transfer_list_user(button, idx);
+	return;
+    }
+    else if(tr->locked)
+    {
+	if(transoff(idx, 0).tm == current_user.tm)
+	{
+	    if(team_is_user(tr->tm) != -1)
+		game_gui_print_message(_("The team owners are considering your offer currently."));
+	    else
+		callback_transfer_list_cpu(button, idx);
+	}
+	else
+	    game_gui_print_message(_("The player is locked (the team owners are considering an offer currently)."));
+
+	return;
+    }
+    
     sprintf(buf, _("You are making an offer for %s. Your scout's recommendations for value and wage are preset."),
 	    player_of_id_team(tr->tm, tr->id)->name->str);
     stat1 = STATUS_SHOW_TRANSFER_LIST;

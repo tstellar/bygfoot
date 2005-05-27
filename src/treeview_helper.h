@@ -93,6 +93,9 @@ treeview_helper_player_ext_info_to_cell(GtkTreeViewColumn *col,
 				      gpointer           user_data);
 
 void
+treeview_helper_player_name_to_cell(GtkCellRenderer *renderer, gchar *buf, const Player *pl);
+
+void
 treeview_helper_player_contract_to_cell(GtkCellRenderer *renderer, gchar *buf, gfloat contract_time);
 
 void

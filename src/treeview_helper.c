@@ -8,6 +8,7 @@
 #include "player.h"
 #include "support.h"
 #include "team.h"
+#include "transfer.h"
 #include "treeview.h"
 #include "treeview_helper.h"
 #include "user.h"
@@ -879,10 +880,7 @@ treeview_helper_player_to_cell(GtkTreeViewColumn *col,
 	    g_warning("treeview_helper_player_to_cell: unknown attribute %d.\n", attribute);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_NAME:
-	    strcpy(buf, pl->name->str);
-	    if(pl->team == current_user.tm &&
-	       opt_user_int("int_opt_user_penalty_shooter") == pl->id)
-		strcat(buf, _(" (P)"));
+	    treeview_helper_player_name_to_cell(renderer, buf, pl);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_CPOS:
 	    treeview_helper_player_pos_to_cell(renderer, buf, pl->cpos);
@@ -939,6 +937,38 @@ treeview_helper_player_to_cell(GtkTreeViewColumn *col,
     }
 
     g_object_set(renderer, "text", buf, NULL);
+}
+
+/** Render a cell of a player name. */
+void
+treeview_helper_player_name_to_cell(GtkCellRenderer *renderer, gchar *buf, const Player *pl)
+{
+    const TransferOffer *off = transfer_player_has_offer(pl);
+    const gchar *colour_fg = const_app("string_treeview_helper_color_default_foreground"),
+	*colour_bg = const_app("string_treeview_helper_color_default_background");
+
+    strcpy(buf, pl->name->str);
+    if(pl->team == current_user.tm &&
+       opt_user_int("int_opt_user_penalty_shooter") == pl->id)
+	strcat(buf, _(" (P)"));
+
+    
+    if(off != NULL)
+    {
+	if(pl->team == current_user.tm)
+	{
+	    colour_bg = const_app("string_treeview_helper_color_transfer_offer_user_bg");
+	    colour_fg = const_app("string_treeview_helper_color_transfer_offer_user_fg");
+	}
+	else if(off->tm == current_user.tm)
+	{
+	    colour_bg = const_app("string_treeview_helper_color_transfer_offer_cpu_bg");
+	    colour_fg = const_app("string_treeview_helper_color_transfer_offer_cpu_fg");
+	}
+    }
+       
+    g_object_set(renderer, "background", colour_bg, NULL);
+    g_object_set(renderer, "foreground", colour_fg, NULL);
 }
 
 /** Render a cell of a player contract.

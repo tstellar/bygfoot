@@ -64,6 +64,27 @@ misc2_callback_transfer_user_player(void)
     game_gui_set_main_window_header();
 }
 
+/** Transfer a cpu player to a user team. */
+void
+misc2_callback_transfer_cpu_player(void)
+{
+    player_copy(player_of_id_team(trans(stat2).tm, trans(stat2).id),
+		current_user.tm, current_user.tm->players->len);
+    player_of_idx_team(current_user.tm, current_user.tm->players->len - 1)->contract =
+	(gfloat)math_rndi(const_int("int_transfer_contract_lower"),
+			  const_int("int_transfer_contract_upper"));
+    player_of_idx_team(current_user.tm, current_user.tm->players->len - 1)->wage =
+	transoff(stat2, 0).wage;
+    user_from_team(current_user.tm)->money -= transoff(stat2, 0).fee;
+    user_from_team(current_user.tm)->money_out[1][MON_OUT_TRANSFERS] -=
+	transoff(stat2, 0).fee;
+    player_replace_by_new(player_of_id_team(trans(stat2).tm, trans(stat2).id), FALSE);
+    transfer_remove_player(stat2);
+
+    treeview_show_user_player_list();
+    game_gui_set_main_window_header();
+}
+
 /** Change the user team's structure to a value he's specified. */
 gboolean
 misc2_callback_change_structure(gint structure)

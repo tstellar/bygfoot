@@ -4,6 +4,9 @@
 #include "bygfoot.h"
 
 void
+misc2_callback_transfer_cpu_player(void);
+
+void
 misc2_callback_transfer_user_player(void);
 
 gboolean

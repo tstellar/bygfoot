@@ -160,8 +160,11 @@ on_button_yesno_yes_clicked            (GtkButton       *button,
 	default:
 	    g_warning("on_button_yesno_yes_clicked: unknown status %d\n", stat1);
 	    break;
-	case STATUS_TRANSFER_OFFER:
+	case STATUS_TRANSFER_OFFER_USER:
 	    misc2_callback_transfer_user_player();
+	    break;
+	case STATUS_TRANSFER_OFFER_CPU:
+	    misc2_callback_transfer_cpu_player();
 	    break;
 	case STATUS_FIRE_PLAYER:
 	    player_remove_from_team(current_user.tm, stat2);
