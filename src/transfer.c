@@ -29,9 +29,11 @@ transfer_update(void)
 
     for(i=transfer_list->len - 1;i>=0;i--)
     {
-	trans(i).locked = FALSE;
 	for(j=trans(i).offers->len - 1;j>=0;j--)
-	    g_array_remove_index(trans(i).offers, j);
+	    if(trans(i).locked || team_is_user(transoff(i, j).tm) == -1)
+		g_array_remove_index(trans(i).offers, j);
+
+	trans(i).locked = FALSE;
     }
 
     transfer_add_new_players();
