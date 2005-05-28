@@ -817,6 +817,7 @@
 		  <property name="snap_to_ticks">False</property>
 		  <property name="wrap">False</property>
 		  <property name="adjustment">1 0 1e+08 10 1000 10</property>
+		  <signal name="activate" handler="on_spinbutton1_activate" last_modification_time="Sat, 28 May 2005 07:51:46 GMT"/>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -870,6 +871,7 @@
 		  <property name="snap_to_ticks">False</property>
 		  <property name="wrap">False</property>
 		  <property name="adjustment">1 0 1e+08 1 100 10</property>
+		  <signal name="activate" handler="on_spinbutton2_activate" last_modification_time="Sat, 28 May 2005 07:51:56 GMT"/>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -901,14 +903,12 @@
 	  <child>
 	    <widget class="GtkButton" id="button_digits_ok">
 	      <property name="visible">True</property>
-	      <property name="tooltip" translatable="yes">Return</property>
 	      <property name="can_focus">True</property>
 	      <property name="label">gtk-ok</property>
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
 	      <signal name="clicked" handler="on_button_digits_ok_clicked" last_modification_time="Thu, 17 Mar 2005 08:06:17 GMT"/>
-	      <accelerator key="Return" modifiers="0" signal="clicked"/>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>

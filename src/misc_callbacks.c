@@ -193,6 +193,9 @@ void
 on_button_resume_clicked               (GtkButton       *button,
                                         gpointer         user_data)
 {
+    GtkWidget *button_pause = 
+	lookup_widget(window.live, "button_pause");
+
     if(stat1 == STATUS_SHOW_LAST_MATCH)
     {
 	callback_show_last_match(FALSE);
@@ -204,7 +207,10 @@ on_button_resume_clicked               (GtkButton       *button,
 	if(g_array_index(usr(stat2).live_game.units, LiveGameUnit, 
 			 usr(stat2).live_game.units->len - 1).event.type != 
 	   LIVE_GAME_EVENT_PENALTIES)
-	    gtk_widget_set_sensitive(lookup_widget(window.live, "button_pause"), TRUE);
+	{
+	    gtk_widget_set_sensitive(button_pause, TRUE);
+	    gtk_widget_grab_focus(button_pause);
+	}
 	game_gui_set_main_window_sensitivity(FALSE);
 	live_game_resume();
     }

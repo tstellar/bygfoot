@@ -68,12 +68,14 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
 	gtk_widget_set_sensitive(button_live_close, (stat1 == STATUS_SHOW_LAST_MATCH));
 	gtk_widget_set_sensitive(button_pause, TRUE);
 	gtk_widget_set_sensitive(button_resume, FALSE);
+	gtk_widget_grab_focus(button_pause);
     }
     else if(unit->event.type == LIVE_GAME_EVENT_END_MATCH)
     {
 	gtk_widget_set_sensitive(button_live_close, TRUE);
 	gtk_widget_set_sensitive(button_pause, FALSE);
 	gtk_widget_set_sensitive(button_resume, FALSE);
+	gtk_widget_grab_focus(button_live_close);
 
 	game_gui_set_main_window_sensitivity(FALSE);
     }

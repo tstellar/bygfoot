@@ -331,6 +331,25 @@ query_transfer_player_is_on_list(const Player *pl)
     return FALSE;
 }
 
+/** Check whether there is an offer by the current
+    user for the player. */
+gboolean
+query_transfer_current_team_offer(const Player *pl)
+{
+    gint i, j;
+
+    for(i=0;i<transfer_list->len;i++)
+	if(trans(i).tm == pl->team &&
+	   trans(i).id == pl->id)
+	{
+	    for(j=0;j<trans(i).offers->len;j++)
+		if(transoff(i, j).tm == current_user.tm)
+		    return TRUE;
+	}
+
+    return FALSE;
+}
+
 /** Find out whether a player is on the list
     and there are offers to buy him. */
 const TransferOffer*

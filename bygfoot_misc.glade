@@ -1093,6 +1093,7 @@
 	  <child>
 	    <widget class="GtkButton" id="button_pause">
 	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">Esc / Return / Space</property>
 	      <property name="can_focus">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
@@ -1169,11 +1170,11 @@
 	  <child>
 	    <widget class="GtkButton" id="button_resume">
 	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">Return / Space</property>
 	      <property name="can_focus">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
 	      <signal name="clicked" handler="on_button_resume_clicked" last_modification_time="Sat, 08 Jan 2005 11:22:05 GMT"/>
-	      <accelerator key="Return" modifiers="0" signal="clicked"/>
 
 	      <child>
 		<widget class="GtkAlignment" id="alignment17">
@@ -1246,6 +1247,7 @@
 	    <widget class="GtkButton" id="button_live_close">
 	      <property name="visible">True</property>
 	      <property name="sensitive">False</property>
+	      <property name="tooltip" translatable="yes">Return / Space</property>
 	      <property name="can_focus">True</property>
 	      <property name="label">gtk-close</property>
 	      <property name="use_stock">True</property>

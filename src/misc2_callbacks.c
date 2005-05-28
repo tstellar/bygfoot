@@ -377,3 +377,21 @@ on_button_help_close_clicked           (GtkButton       *button,
 {
     window_destroy(&window.help, FALSE);
 }
+
+void
+on_spinbutton1_activate                (GtkEntry        *entry,
+                                        gpointer         user_data)
+{
+    gtk_spin_button_update(GTK_SPIN_BUTTON(lookup_widget(window.digits, "spinbutton1")));
+    on_button_digits_ok_clicked(NULL, NULL);
+}
+
+
+void
+on_spinbutton2_activate                (GtkEntry        *entry,
+                                        gpointer         user_data)
+{
+    gtk_spin_button_update(GTK_SPIN_BUTTON(lookup_widget(window.digits, "spinbutton2")));
+    on_button_digits_ok_clicked(NULL, NULL);
+}
+

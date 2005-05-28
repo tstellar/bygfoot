@@ -65,4 +65,7 @@ transfer_offers_notify(Transfer *trans);
 const TransferOffer*
 transfer_player_has_offer(const Player *pl);
 
+gboolean
+query_transfer_current_team_offer(const Player *pl);
+
 #endif

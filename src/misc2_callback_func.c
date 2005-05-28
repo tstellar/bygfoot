@@ -1,3 +1,4 @@
+#include "callbacks.h"
 #include "file.h"
 #include "finance.h"
 #include "game_gui.h"
@@ -62,6 +63,7 @@ misc2_callback_transfer_user_player(void)
 
     treeview_show_user_player_list();
     game_gui_set_main_window_header();
+    on_button_transfers_clicked(NULL, NULL);    
 }
 
 /** Transfer a cpu player to a user team. */
@@ -83,6 +85,7 @@ misc2_callback_transfer_cpu_player(void)
 
     treeview_show_user_player_list();
     game_gui_set_main_window_header();
+    on_button_transfers_clicked(NULL, NULL);
 }
 
 /** Change the user team's structure to a value he's specified. */

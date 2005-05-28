@@ -125,6 +125,9 @@ misc_callback_remove_user(GdkEventButton *event)
 void
 misc_callback_pause_live_game(void)
 {
+    GtkWidget *button_resume = 
+	lookup_widget(window.live, "button_resume");
+
     if(stat1 == STATUS_SHOW_LAST_MATCH)
     {
 	stat4 = STATUS_SHOW_LAST_MATCH_PAUSE;
@@ -137,7 +140,8 @@ misc_callback_pause_live_game(void)
 	return;
 
     gtk_widget_set_sensitive(lookup_widget(window.live, "button_pause"), FALSE);
-    gtk_widget_set_sensitive(lookup_widget(window.live, "button_resume"), TRUE);
+    gtk_widget_set_sensitive(button_resume, TRUE);
+    gtk_widget_grab_focus(button_resume);
 
     game_gui_set_main_window_sensitivity(TRUE);
     game_save_team_states();

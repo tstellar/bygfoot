@@ -642,6 +642,7 @@ create_window_live (void)
   button_pause = gtk_button_new ();
   gtk_widget_show (button_pause);
   gtk_box_pack_start (GTK_BOX (hbox48), button_pause, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, button_pause, _("Esc / Return / Space"), NULL);
   gtk_widget_add_accelerator (button_pause, "clicked", accel_group,
                               GDK_Escape, 0,
                               GTK_ACCEL_VISIBLE);
@@ -665,9 +666,7 @@ create_window_live (void)
   button_resume = gtk_button_new ();
   gtk_widget_show (button_resume);
   gtk_box_pack_start (GTK_BOX (hbox48), button_resume, FALSE, FALSE, 0);
-  gtk_widget_add_accelerator (button_resume, "clicked", accel_group,
-                              GDK_Return, 0,
-                              GTK_ACCEL_VISIBLE);
+  gtk_tooltips_set_tip (tooltips, button_resume, _("Return / Space"), NULL);
 
   alignment17 = gtk_alignment_new (0.5, 0.5, 0, 0);
   gtk_widget_show (alignment17);
@@ -689,6 +688,7 @@ create_window_live (void)
   gtk_widget_show (button_live_close);
   gtk_box_pack_start (GTK_BOX (hbox48), button_live_close, FALSE, FALSE, 0);
   gtk_widget_set_sensitive (button_live_close, FALSE);
+  gtk_tooltips_set_tip (tooltips, button_live_close, _("Return / Space"), NULL);
 
   table2 = gtk_table_new (2, 2, FALSE);
   gtk_widget_show (table2);

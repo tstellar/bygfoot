@@ -427,10 +427,6 @@ create_window_digits (void)
   button_digits_ok = gtk_button_new_from_stock ("gtk-ok");
   gtk_widget_show (button_digits_ok);
   gtk_box_pack_start (GTK_BOX (hbox16), button_digits_ok, TRUE, TRUE, 0);
-  gtk_tooltips_set_tip (tooltips, button_digits_ok, _("Return"), NULL);
-  gtk_widget_add_accelerator (button_digits_ok, "clicked", accel_group,
-                              GDK_Return, 0,
-                              GTK_ACCEL_VISIBLE);
 
   button_digits_cancel = gtk_button_new_from_stock ("gtk-cancel");
   gtk_widget_show (button_digits_cancel);
@@ -442,6 +438,12 @@ create_window_digits (void)
 
   g_signal_connect ((gpointer) window_digits, "delete_event",
                     G_CALLBACK (on_window_digits_delete_event),
+                    NULL);
+  g_signal_connect ((gpointer) spinbutton1, "activate",
+                    G_CALLBACK (on_spinbutton1_activate),
+                    NULL);
+  g_signal_connect ((gpointer) spinbutton2, "activate",
+                    G_CALLBACK (on_spinbutton2_activate),
                     NULL);
   g_signal_connect ((gpointer) button_digits_ok, "clicked",
                     G_CALLBACK (on_button_digits_ok_clicked),

@@ -125,3 +125,11 @@ void
 on_button_help_close_clicked           (GtkButton       *button,
                                         gpointer         user_data);
 #endif
+
+void
+on_spinbutton1_activate                (GtkEntry        *entry,
+                                        gpointer         user_data);
+
+void
+on_spinbutton2_activate                (GtkEntry        *entry,
+                                        gpointer         user_data);
