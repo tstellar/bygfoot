@@ -97,6 +97,9 @@ start_new_season(void)
 	    g_ptr_array_remove_index(acps, i);
     }
 
+    for(i=0;i<ligs->len;i++)
+	fixture_write_league_fixtures(&lig(i));
+
     for(i=cps->len - 1; i >= 0; i--)
     {
 	cup_reset(&cp(i));
@@ -105,12 +108,9 @@ start_new_season(void)
 	    fixture_write_cup_fixtures(&cp(i));
     }
 
-    for(i=0;i<ligs->len;i++)
-    {
-	if(season > 1)
+    if(season > 1)
+	for(i=0;i<ligs->len;i++)
 	    league_season_start(&lig(i));
-	fixture_write_league_fixtures(&lig(i));
-    }
 }
 
 /** Fill some global variables with default values at the
