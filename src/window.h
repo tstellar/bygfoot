@@ -56,4 +56,7 @@ window_show_options(void);
 void
 window_show_menu_player(GdkEvent *event);
 
+void
+window_live_set_spinbuttons(void);
+
 #endif

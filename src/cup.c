@@ -804,10 +804,11 @@ query_cup_begins(const Cup *cup)
 	    g_array_index(league->fixtures, Fixture,
 			  league->fixtures->len - 1).week_round_number == week_round) ||
 	   (league == NULL && 
-	    g_array_index(cup_temp->fixtures, Fixture,
-			  cup_temp->fixtures->len - 1).week_number == week &&
-	    g_array_index(cup_temp->fixtures, Fixture,
-			  cup_temp->fixtures->len - 1).week_round_number == week_round))
+	    (cup_temp->fixtures->len > 0 &&
+	     g_array_index(cup_temp->fixtures, Fixture,
+			   cup_temp->fixtures->len - 1).week_number == week &&
+	     g_array_index(cup_temp->fixtures, Fixture,
+			   cup_temp->fixtures->len - 1).week_round_number == week_round)))
 	    proceed = TRUE;
     }
 
@@ -823,8 +824,9 @@ query_cup_begins(const Cup *cup)
 	    g_array_index(league->fixtures, Fixture,
 			  league->fixtures->len - 1).attendance == -1) ||
 	   (league == NULL &&
-	    g_array_index(cup_temp->fixtures, Fixture,
-			  cup_temp->fixtures->len - 1).attendance == -1))
+	    (cup_temp->fixtures->len > 0 && 
+	     g_array_index(cup_temp->fixtures, Fixture,
+			   cup_temp->fixtures->len - 1).attendance == -1)))
 	    return FALSE;
     }
 
@@ -842,4 +844,23 @@ cup_count_international(void)
 	    return_value++;
 
     return return_value;
+}
+
+/** Find out whether the cup has a highlight property
+    and return the highlight colour. */
+gchar*
+cup_get_highlight_colour(const Cup *cup)
+{
+    gint i;
+    gchar buf[SMALL];
+
+    for(i=0;i<cup->properties->len;i++)
+	if(g_str_has_prefix(((GString*)g_ptr_array_index(cup->properties, i))->str, "highlight"))
+	{
+	    sprintf(buf, "string_cup_%s",
+		    ((GString*)g_ptr_array_index(cup->properties, i))->str);
+	    return const_app(buf);
+	}
+
+    return NULL;
 }

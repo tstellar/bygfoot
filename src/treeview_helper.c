@@ -413,38 +413,43 @@ treeview_helper_player_compare(GtkTreeModel *model,
     table would participate in an international cup and set the
     colours accordingly. */
 gboolean
-treeview_helper_get_table_element_colour_cups(const League *league, gint idx, gchar *colour_bg)
+treeview_helper_get_table_element_colour_cups(const League *league, gint idx, gchar **colour_bg)
 {
     gint i, j, k;
     const CupRound *cup_round = NULL;
     gint league_idx = league_cup_get_index_from_clid(league->id) + 1;
     gchar buf[SMALL];
+    gchar *cup_highlight_colour = NULL;
 
     sprintf(buf, "LEAGUE%d", league_idx);
 
     for(i=0;i<cps->len;i++)
-	for(k=0;k<cp(i).rounds->len;k++)
-	{
-	    cup_round = &g_array_index(cp(i).rounds, CupRound, k);
-	    for(j=0;j<cup_round->choose_teams->len;j++)
-		if(query_cup_is_international(cp(i).id) &&
-		   (strcmp(g_array_index(cup_round->choose_teams, CupChooseTeam, j).sid->str, buf) == 0 ||
-		    strcmp(g_array_index(cup_round->choose_teams, CupChooseTeam, j).sid->str, league->sid->str) == 0))
-		{
-		    if((idx + 1 >= g_array_index(cup_round->choose_teams, CupChooseTeam, j).start_idx &&
-			idx + 1 <= g_array_index(cup_round->choose_teams, CupChooseTeam, j).end_idx && 
-			g_array_index(cup_round->choose_teams, CupChooseTeam, j).randomly) ||
-		       (idx + 1 >= g_array_index(cup_round->choose_teams, CupChooseTeam, j).start_idx &&
-			idx + 1 < g_array_index(cup_round->choose_teams, CupChooseTeam, j).start_idx + 
-			g_array_index(cup_round->choose_teams, CupChooseTeam, j).number_of_teams &&
-			!g_array_index(cup_round->choose_teams, CupChooseTeam, j).randomly))
-		    {
-			strcpy(colour_bg, const_app("string_treeview_table_cup"));
-			return TRUE;
-		    }
-		}
-	}
+    {
+	cup_highlight_colour = cup_get_highlight_colour(&cp(i));
 
+	if(cup_highlight_colour != NULL)
+	    for(k=0;k<cp(i).rounds->len;k++)
+	    {
+		cup_round = &g_array_index(cp(i).rounds, CupRound, k);
+		for(j=0;j<cup_round->choose_teams->len;j++)
+		    if(strcmp(g_array_index(cup_round->choose_teams, CupChooseTeam, j).sid->str, buf) == 0 ||
+		       strcmp(g_array_index(cup_round->choose_teams, CupChooseTeam, j).sid->str, league->sid->str) == 0)
+		    {
+			if((idx + 1 >= g_array_index(cup_round->choose_teams, CupChooseTeam, j).start_idx &&
+			    idx + 1 <= g_array_index(cup_round->choose_teams, CupChooseTeam, j).end_idx && 
+			    g_array_index(cup_round->choose_teams, CupChooseTeam, j).randomly) ||
+			   (idx + 1 >= g_array_index(cup_round->choose_teams, CupChooseTeam, j).start_idx &&
+			    idx + 1 < g_array_index(cup_round->choose_teams, CupChooseTeam, j).start_idx + 
+			    g_array_index(cup_round->choose_teams, CupChooseTeam, j).number_of_teams &&
+			    !g_array_index(cup_round->choose_teams, CupChooseTeam, j).randomly))
+			{			    			    
+			    *colour_bg = cup_highlight_colour;
+			    return TRUE;
+			}
+		    }
+	    }
+    }
+    
     return FALSE;
 }
 
@@ -453,8 +458,8 @@ treeview_helper_get_table_element_colour_cups(const League *league, gint idx, gc
     @param idx The index of the element we're looking at.
     @param user Whether to take into account user colours. */
 void
-treeview_helper_get_table_element_colours(const Table *table, gint idx, gchar *colour_fg, 
-					  gchar *colour_bg, gboolean user)
+treeview_helper_get_table_element_colours(const Table *table, gint idx, gchar **colour_fg, 
+					  gchar **colour_bg, gboolean user)
 {
     gint i;
     const TableElement *elem = &g_array_index(table->elements, TableElement, idx);
@@ -462,25 +467,25 @@ treeview_helper_get_table_element_colours(const Table *table, gint idx, gchar *c
     const League *league = NULL;
     GPtrArray *cup_advance = NULL;
     
-    strcpy(colour_fg, const_app("string_treeview_helper_color_default_foreground"));
-    strcpy(colour_bg, const_app("string_treeview_helper_color_default_background"));
+    *colour_fg = const_app("string_treeview_helper_color_default_foreground");
+    *colour_bg = const_app("string_treeview_helper_color_default_background");
     
     if(user && elem->team == current_user.tm)
     {
-	strcpy(colour_fg, const_app("string_treeview_current_user_fg"));
-	strcpy(colour_bg, const_app("string_treeview_current_user_bg"));
+	*colour_fg = const_app("string_treeview_current_user_fg");
+	*colour_bg = const_app("string_treeview_current_user_bg");
     }
     else if(user && team_is_user(elem->team) != -1)
     {
-	strcpy(colour_fg, const_app("string_treeview_user_fg"));
-	strcpy(colour_bg, const_app("string_treeview_user_bg"));
+	*colour_fg = const_app("string_treeview_user_fg");
+	*colour_bg = const_app("string_treeview_user_bg");
     }
     else if(table->clid < ID_CUP_START)
     {
 	league = league_from_clid(table->clid);
 
 	if(idx + 1 == 1)
-	    strcpy(colour_bg, const_app("string_treeview_table_first"));
+	    *colour_bg = const_app("string_treeview_table_first");
 	else
 	{	    
 	    if(!treeview_helper_get_table_element_colour_cups(league, idx, colour_bg))
@@ -491,14 +496,11 @@ treeview_helper_get_table_element_colours(const Table *table, gint idx, gchar *c
 		    if(pelem->ranks[0] <= idx + 1 && idx + 1 <= pelem->ranks[1])
 		    {
 			if(pelem->type == PROM_REL_PROMOTION)
-			    strcpy(colour_bg, const_app("string_treeview_table_promotion"));
+			    *colour_bg = const_app("string_treeview_table_promotion");
 			else if(pelem->type == PROM_REL_RELEGATION)
-			    strcpy(colour_bg, const_app("string_treeview_table_relegation"));
+			    *colour_bg = const_app("string_treeview_table_relegation");
 		    }
 		}
-
-		if(query_league_rank_in_prom_games(league, idx + 1))
-		    strcpy(colour_bg, const_app("string_treeview_table_promgames"));
 	    }
 	}
     }
@@ -508,7 +510,7 @@ treeview_helper_get_table_element_colours(const Table *table, gint idx, gchar *c
 	    fixture_get_round_robin_advance(cup_from_clid(table->clid), table->round);
 	for(i=0;i<cup_advance->len;i++)
 	    if((Team*)g_ptr_array_index(cup_advance, i) == elem->team)
-		strcpy(colour_bg, const_app("string_treeview_table_promotion"));
+		*colour_bg = const_app("string_treeview_table_promotion");
 	
 	free_g_ptr_array(&cup_advance);
     }

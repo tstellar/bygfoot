@@ -570,10 +570,23 @@ gint
 fixture_get_free_round(gint week_number, gint clid)
 {
     gint i, j;
-    gint max_round = 1;
+    gint max_round = 0;
 
-    if(clid < ID_CUP_START || query_cup_is_promotion(clid))
+    if(clid < ID_CUP_START)
 	return 1;
+
+    for(i=0;i<ligs->len;i++)
+    {
+	for(j=0;j<lig(i).fixtures->len;j++)
+	    if(g_array_index(lig(i).fixtures, Fixture, j).week_number == week_number)
+	    {
+		max_round = 1;
+		break;
+	    }
+
+	if(max_round == 1)
+	    break;
+    }
 
     for(i=0;i<acps->len;i++)
     {

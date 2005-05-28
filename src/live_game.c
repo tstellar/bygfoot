@@ -1,3 +1,4 @@
+#include "callbacks.h"
 #include "fixture.h"
 #include "free.h"
 #include "game.h"
@@ -47,8 +48,16 @@ live_game_calculate_fixture(Fixture *fix)
 	stat2 = fixture_user_team_involved(fix);
 	statp = match;
 
-	if(show && window.live == NULL)
-	    window.live = window_create(WINDOW_LIVE);
+	if(show)
+	{
+	    cur_user = stat2;
+	    on_button_back_to_main_clicked(NULL, NULL);
+
+	    if(window.live == NULL)
+		window.live = window_create(WINDOW_LIVE);
+	    else
+		window_live_set_spinbuttons();
+	}
 
 	live_game_reset(match, fix, TRUE);
 	game_initialize(fix);

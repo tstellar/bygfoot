@@ -332,9 +332,7 @@ start_week_round(void)
         cur_user = 0;
         game_gui_show_main();
 
-	/*d ??*/
-/* 	if(week_round == 1) */
-	    user_event_show_next();
+	user_event_show_next();
     }
 }
 

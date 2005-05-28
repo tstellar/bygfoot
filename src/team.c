@@ -966,26 +966,21 @@ query_team_plays(const Team *tm, gint week_number, gint week_round_number)
 {
     gint i, j;
 
-    if(week_round_number == 1)
-    {
-	for(i=0;i<ligs->len;i++)
-	    for(j=0;j<lig(i).fixtures->len;j++)
-		if(g_array_index(lig(i).fixtures, Fixture, j).week_number == week_number && 
-		   g_array_index(lig(i).fixtures, Fixture, j).week_round_number == week_round_number &&
-		   (g_array_index(lig(i).fixtures, Fixture, j).teams[0] == tm ||
-		    g_array_index(lig(i).fixtures, Fixture, j).teams[1] == tm))
-		    return TRUE;
-    }
-    else
-    {
-	for(i=0;i<acps->len;i++)
-	    for(j=0;j<acp(i)->fixtures->len;j++)
-		if(g_array_index(acp(i)->fixtures, Fixture, j).week_number == week_number && 
-		   g_array_index(acp(i)->fixtures, Fixture, j).week_round_number == week_round_number &&
-		   (g_array_index(acp(i)->fixtures, Fixture, j).teams[0] == tm ||
-		    g_array_index(acp(i)->fixtures, Fixture, j).teams[1] == tm))
-		    return TRUE;
-    }
+    for(i=0;i<ligs->len;i++)
+	for(j=0;j<lig(i).fixtures->len;j++)
+	    if(g_array_index(lig(i).fixtures, Fixture, j).week_number == week_number && 
+	       g_array_index(lig(i).fixtures, Fixture, j).week_round_number == week_round_number &&
+	       (g_array_index(lig(i).fixtures, Fixture, j).teams[0] == tm ||
+		g_array_index(lig(i).fixtures, Fixture, j).teams[1] == tm))
+		return TRUE;
+
+    for(i=0;i<acps->len;i++)
+	for(j=0;j<acp(i)->fixtures->len;j++)
+	    if(g_array_index(acp(i)->fixtures, Fixture, j).week_number == week_number && 
+	       g_array_index(acp(i)->fixtures, Fixture, j).week_round_number == week_round_number &&
+	       (g_array_index(acp(i)->fixtures, Fixture, j).teams[0] == tm ||
+		g_array_index(acp(i)->fixtures, Fixture, j).teams[1] == tm))
+		return TRUE;
 
     return FALSE;
 }

@@ -242,6 +242,19 @@ window_show_yesno(gchar *text)
     gtk_label_set_text(GTK_LABEL(lookup_widget(window.yesno, "label_yesno")), text);
 }
 
+/** Set the spinbuttons in the live window
+    to the correct values. */
+void
+window_live_set_spinbuttons(void)
+{
+    gtk_spin_button_set_value(
+	GTK_SPIN_BUTTON(lookup_widget(window.live, "spinbutton_speed")),
+	(gfloat)option_int("int_opt_user_live_game_speed", &usr(stat2).options));
+    gtk_spin_button_set_value(
+	GTK_SPIN_BUTTON(lookup_widget(window.live, "spinbutton_verbosity")),
+	(gfloat)option_int("int_opt_user_live_game_verbosity", &usr(stat2).options));
+}
+
 /** Create and show a window. Which one depends on the argument.
     @param window_type An integer telling us which window to
     create.
@@ -295,12 +308,7 @@ window_create(gint window_type)
 	    }
 	    strcpy(buf, "Bygfoot Live game");
 	    wind = window.live;
-	    gtk_spin_button_set_value(
-		GTK_SPIN_BUTTON(lookup_widget(wind, "spinbutton_speed")),
-		(gfloat)option_int("int_opt_user_live_game_speed", &usr(stat2).options));
-	    gtk_spin_button_set_value(
-		GTK_SPIN_BUTTON(lookup_widget(wind, "spinbutton_verbosity")),
-		(gfloat)option_int("int_opt_user_live_game_verbosity", &usr(stat2).options));
+	    window_live_set_spinbuttons();
 	    break;
 	case WINDOW_WARNING:
 	    if(window.warning != NULL)

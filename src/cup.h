@@ -14,7 +14,6 @@
 #define query_cup_is_international(clid) query_cup_has_property(clid, "international")
 #define query_cup_is_national(clid) query_cup_has_property(clid, "national")
 #define query_cup_is_supercup(clid) query_cup_has_property(clid, "supercup")
-#define query_cup_is_promotion(clid) query_cup_has_property(clid, "promotion")
 #define query_cup_hide(clid) query_cup_has_property(clid, "hide")
 
 Cup
@@ -95,5 +94,8 @@ cup_get_winner(const Cup *cup);
 
 gint
 cup_count_international(void);
+
+gchar*
+cup_get_highlight_colour(const Cup *cup);
 
 #endif
