@@ -32,6 +32,22 @@ debug_action(const gchar *text, gint value)
 	current_user.money += value;
 	sprintf(message, "Money changed by %d.", value);
     }
+    else if(g_str_has_prefix(text, "suc"))
+    {
+	current_user.counters[COUNT_USER_SUCCESS] += value;
+	sprintf(message, "Success counter changed by %d.", value);
+    }
+    else if(g_str_has_prefix(text, "help"))
+    {
+	printf("Debug options:\n"
+	       "deb \t set debug value\n"
+	       "cap \t change stadium capacity\n"
+	       "saf \t change stadium safety\n"
+	       "mon \t change money\n"
+	       "suc \t change success counter\n"
+	       "help \t display this help\n");
+	strcpy(message, "");
+    }
 
     game_gui_print_message(message);
 }

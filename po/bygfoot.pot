@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-05-27 20:41+0200\n"
+"POT-Creation-Date: 2005-05-28 11:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -179,8 +179,25 @@ msgstr ""
 msgid "No match stored."
 msgstr ""
 
+#: src/cup.c:717
+msgid " -- Second leg"
+msgstr ""
+
+#: src/cup.c:719
+msgid " -- First leg"
+msgstr ""
+
+#: src/cup.c:722
+msgid " -- Replay match"
+msgstr ""
+
 #: src/cup.c:734
 msgid "Round robin"
+msgstr ""
+
+#: src/cup.c:741
+#, c-format
+msgid "Last %d"
 msgstr ""
 
 #: src/cup.c:744
@@ -217,11 +234,11 @@ msgstr ""
 msgid "You have %d weeks to pay back the rest of your loan."
 msgstr ""
 
-#: src/game_gui.c:311
+#: src/game_gui.c:313
 msgid "Next week you'll fire him and hire a new one."
 msgstr ""
 
-#: src/game_gui.c:497
+#: src/game_gui.c:499
 #, c-format
 msgid ""
 "The team owners have fired you because of financial mismanagement. Luckily, "
@@ -229,7 +246,7 @@ msgid ""
 "some information on %s:"
 msgstr ""
 
-#: src/game_gui.c:500
+#: src/game_gui.c:502
 #, c-format
 msgid ""
 "The team owners have fired you because of unsuccessfulness. Luckily, the "
@@ -237,49 +254,49 @@ msgid ""
 "information on %s:"
 msgstr ""
 
-#: src/game_gui.c:503
+#: src/game_gui.c:505
 #, c-format
 msgid ""
 "The owners of %s are deeply impressed by your success with %s and would like "
 "to hire you. Here's some information on %s:"
 msgstr ""
 
-#: src/game_gui.c:506
+#: src/game_gui.c:508
 msgid "Accept?"
 msgstr ""
 
-#: src/game_gui.c:508
+#: src/game_gui.c:510
 msgid " (NOTE: If you don't, the game is over for you.)"
 msgstr ""
 
-#: src/game_gui.c:559
+#: src/game_gui.c:561
 #, c-format
 msgid "Job offers set to %s."
 msgstr ""
 
-#: src/game_gui.c:566
+#: src/game_gui.c:568
 #, c-format
 msgid "Live game set to %s."
 msgstr ""
 
-#: src/game_gui.c:573
+#: src/game_gui.c:575
 #, c-format
 msgid "Overwrite set to %s."
 msgstr ""
 
-#: src/game_gui.c:593
+#: src/game_gui.c:595
 msgid ""
 "Bygfoot is a very intuitive and simple game, so there isn't a full-grown "
 "documentation. However, if you have trouble, there are a few places to go.\n"
 msgstr ""
 
-#: src/game_gui.c:595
+#: src/game_gui.c:597
 msgid ""
 "At the Bygfoot forums you can report bugs, ask for help and discuss the game "
 "(you don't have to register):\n"
 msgstr ""
 
-#: src/game_gui.c:597
+#: src/game_gui.c:599
 msgid ""
 "\n"
 "If you feel you've found out something about the game that has to be shared, "
@@ -514,15 +531,15 @@ msgstr ""
 msgid "_Help"
 msgstr ""
 
-#: src/interface.c:662 src/misc2_interface.c:1012
+#: src/interface.c:662 src/misc2_interface.c:1014
 msgid "About"
 msgstr ""
 
-#: src/interface.c:670 src/misc2_interface.c:1026
+#: src/interface.c:670 src/misc2_interface.c:1028
 msgid "Contributors"
 msgstr ""
 
-#: src/interface.c:678 src/misc2_interface.c:1052
+#: src/interface.c:678 src/misc2_interface.c:1054
 msgid "Help"
 msgstr ""
 
@@ -1296,32 +1313,32 @@ msgstr ""
 msgid "TT has changed their structure to EX"
 msgstr ""
 
-#: src/misc2_callback_func.c:44
+#: src/misc2_callback_func.c:45
 #, c-format
 msgid "%s couldn't afford to buy %s or his roster was full."
 msgstr ""
 
-#: src/misc2_callback_func.c:48
+#: src/misc2_callback_func.c:49
 #, c-format
 msgid "You didn't have enough money to buy %s or your roster was full."
 msgstr ""
 
-#: src/misc2_callback_func.c:97
+#: src/misc2_callback_func.c:100
 #, c-format
 msgid "The structure value %d is invalid."
 msgstr ""
 
-#: src/misc2_callback_func.c:137
+#: src/misc2_callback_func.c:140
 #, c-format
 msgid "%s accepts your offer."
 msgstr ""
 
-#: src/misc2_callback_func.c:146
+#: src/misc2_callback_func.c:149
 #, c-format
 msgid "%s rejects your offer. You may still make %d offers."
 msgstr ""
 
-#: src/misc2_callback_func.c:153
+#: src/misc2_callback_func.c:156
 #, c-format
 msgid ""
 "%s rejects your offer and won't negotiate with you anymore. You should sell "
@@ -1383,72 +1400,67 @@ msgstr ""
 msgid "Average skill:"
 msgstr ""
 
-#: src/misc2_interface.c:221 src/player.c:1068 src/treeview_helper.c:1063
+#: src/misc2_interface.c:221 src/player.c:1068 src/treeview_helper.c:1067
 msgid "OK"
 msgstr ""
 
-#: src/misc2_interface.c:430 src/misc_interface.c:411
-#: src/misc_interface.c:1034
-msgid "Return"
-msgstr ""
-
-#: src/misc2_interface.c:438 src/misc2_interface.c:1059
+#: src/misc2_interface.c:434 src/misc2_interface.c:1061
 #: src/misc_interface.c:254 src/misc_interface.c:419 src/misc_interface.c:1058
 #: src/options_interface.c:955
 msgid "Esc"
 msgstr ""
 
-#: src/misc2_interface.c:588
+#: src/misc2_interface.c:590
 msgid "1 year"
 msgstr ""
 
-#: src/misc2_interface.c:596
+#: src/misc2_interface.c:598
 msgid "3 years"
 msgstr ""
 
-#: src/misc2_interface.c:604
+#: src/misc2_interface.c:606
 msgid "4 years"
 msgstr ""
 
-#: src/misc2_interface.c:612
+#: src/misc2_interface.c:614
 msgid "2 years"
 msgstr ""
 
-#: src/misc2_interface.c:675
+#: src/misc2_interface.c:677
 msgid "Make offer"
 msgstr ""
 
-#: src/misc2_interface.c:762
+#: src/misc2_interface.c:764
 msgid "Users -- click to remove"
 msgstr ""
 
-#: src/misc2_interface.c:777
+#: src/misc2_interface.c:779
 msgid "Click on a user to remove him from the game."
 msgstr ""
 
-#: src/misc2_interface.c:783
+#: src/misc2_interface.c:785
 msgid "Available teams"
 msgstr ""
 
-#: src/misc2_interface.c:819 src/misc_interface.c:211
+#: src/misc2_interface.c:821 src/misc_interface.c:211
 msgid "Add user"
 msgstr ""
 
-#: src/misc2_interface.c:895
+#: src/misc2_interface.c:897
 msgid "Debug"
 msgstr ""
 
-#: src/misc2_interface.c:902
+#: src/misc2_interface.c:904
 msgid ""
 "Bygfoot debug window. If you got here by accident, CLOSE IMMEDIATELY "
 "(otherwise your CPU will be destroyed by overheating)."
 msgstr ""
 
-#: src/misc_callback_func.c:204
+#: src/misc_callback_func.c:208
 msgid "Safety improvement too high, reset to highest possible value."
 msgstr ""
 
-#: src/misc_callback_func.c:214
+#: src/misc_callback_func.c:218
 msgid "You don't have the money."
 msgstr ""
 
@@ -1508,6 +1520,10 @@ msgstr ""
 msgid "Choose file"
 msgstr ""
 
+#: src/misc_interface.c:411 src/misc_interface.c:1034
+msgid "Return"
+msgstr ""
+
 #: src/misc_interface.c:454
 msgid "Select font"
 msgstr ""
@@ -1524,11 +1540,19 @@ msgstr ""
 msgid "Statistics"
 msgstr ""
 
-#: src/misc_interface.c:661
+#: src/misc_interface.c:645
+msgid "Esc / Return / Space"
+msgstr ""
+
+#: src/misc_interface.c:662
 msgid "_Pause"
 msgstr ""
 
-#: src/misc_interface.c:684
+#: src/misc_interface.c:669 src/misc_interface.c:691
+msgid "Return / Space"
+msgstr ""
+
+#: src/misc_interface.c:683
 msgid "_Resume"
 msgstr ""
 
@@ -2042,7 +2066,7 @@ msgstr ""
 msgid "ON"
 msgstr ""
 
-#: src/transfer.c:416
+#: src/transfer.c:437
 #, c-format
 msgid "%s has been added to the transfer list for %d weeks."
 msgstr ""
@@ -2515,29 +2539,29 @@ msgstr ""
 msgid " (P)"
 msgstr ""
 
-#: src/treeview_helper.c:1049
+#: src/treeview_helper.c:1053
 #, c-format
 msgid "INJ(%d)"
 msgstr ""
 
-#: src/treeview_helper.c:1058
+#: src/treeview_helper.c:1062
 #, c-format
 msgid "BAN(%d)"
 msgstr ""
 
-#: src/treeview_helper.c:1130
+#: src/treeview_helper.c:1134
 msgid "G"
 msgstr ""
 
-#: src/treeview_helper.c:1137
+#: src/treeview_helper.c:1141
 msgid "D"
 msgstr ""
 
-#: src/treeview_helper.c:1144
+#: src/treeview_helper.c:1148
 msgid "M"
 msgstr ""
 
-#: src/treeview_helper.c:1151
+#: src/treeview_helper.c:1155
 msgid "F"
 msgstr ""
 

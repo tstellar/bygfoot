@@ -337,7 +337,7 @@ league_get_team_movements(League *league, GArray *team_movements)
 	g_ptr_array_free(dest_sids, TRUE);
     }
 
-    if(league_has_prom_games(league))
+    if(query_league_has_prom_games(league))
     {
 	prom_cup = cup_from_sid(league->prom_rel.prom_games_cup_sid->str);
     
@@ -444,7 +444,7 @@ query_league_rank_in_prom_games(const League *league, gint rank)
     const CupRound *cup_round = NULL;
 
     for(i=0;i<ligs->len;i++)
-	if(league_has_prom_games((&lig(i))))
+	if(query_league_has_prom_games((&lig(i))))
 	{
 	    cup = cup_from_sid(lig(i).prom_rel.prom_games_cup_sid->str);
 	    for(k=0;k<cup->rounds->len;k++)

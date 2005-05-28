@@ -714,12 +714,12 @@ cup_round_name(const Fixture *fix, gchar *buf)
     if(cup_round->home_away && cup_round->round_robin_number_of_groups == 0)
     {
 	if(fix->second_leg)
-	    strcat(buf, " -- Second leg");
+	    strcat(buf, _(" -- Second leg"));
 	else
-	    strcat(buf, " -- First leg");
+	    strcat(buf, _(" -- First leg"));
     }
     else if(fix->replay_number > 0)
-	strcat(buf, " -- Replay match");
+	strcat(buf, _(" -- Replay match"));
 }
 
 /** Return the cup round given by the number. */
@@ -738,7 +738,7 @@ cup_get_round_name(const Cup *cup, gint round, gchar *buf)
     switch(cup->rounds->len - round)
     {
 	default:
-	    sprintf(buf, "Last %d", (gint)rint(powf(2, cup->rounds->len - round)));
+	    sprintf(buf, _("Last %d"), (gint)rint(powf(2, cup->rounds->len - round)));
 	    break;
 	case 1:
 	    strcpy(buf, _("Final"));
