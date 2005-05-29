@@ -289,6 +289,7 @@ fixture_write_cup_round_robin(Cup *cup, gint cup_round, GPtrArray *teams)
     gint i, j;
     CupRound *cupround = &g_array_index(cup->rounds, CupRound, cup_round);
     gint number_of_groups = cupround->round_robin_number_of_groups;
+    gint teams_per_group = -1;
     GPtrArray *teams_group = NULL;
     Table new_table;
     TableElement new_table_element;
@@ -306,6 +307,8 @@ fixture_write_cup_round_robin(Cup *cup, gint cup_round, GPtrArray *teams)
 	}
     }
 
+    teams_per_group = teams->len / number_of_groups;    
+
     for(i=0;i<number_of_groups;i++)
     {
 	new_table.name = g_string_new(cup->name->str);
@@ -315,18 +318,17 @@ fixture_write_cup_round_robin(Cup *cup, gint cup_round, GPtrArray *teams)
     
 	teams_group = g_ptr_array_new();
 
-	for(j=0;j<teams->len / number_of_groups;j++)
+	for(j=0;j<teams_per_group;j++)
 	{
-	    g_ptr_array_add(teams_group, g_ptr_array_index(teams, j + i * number_of_groups));
+	    g_ptr_array_add(teams_group, g_ptr_array_index(teams, j + i * teams_per_group));
 	    new_table_element = 
-		table_element_new((Team*)g_ptr_array_index(teams, j + i * number_of_groups), j);
+		table_element_new((Team*)g_ptr_array_index(teams, j + i * teams_per_group), j);
 	    g_array_append_val(new_table.elements, new_table_element);
 	}
 
 	g_array_append_val(cupround->tables, new_table);
 
 	fixture_write_round_robin((gpointer)cup, cup_round, teams_group, !cupround->home_away);
-
     }
 
     g_ptr_array_free(teams, TRUE);

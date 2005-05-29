@@ -254,6 +254,13 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 
 	    for(j = 0; j < end; j++)
 	    {
+		if(debug > 80)
+		    printf("team %s isinint %d numteams %d\n",
+			   team_of_id(g_array_index(league->table.elements, TableElement, order[j]).team_id)->name->str,
+			   query_team_is_in_international_cups(
+			       team_of_id(g_array_index(league->table.elements, TableElement, order[j]).team_id), cup->group),
+			   number_of_teams);
+
 		if(!query_team_is_in_international_cups(
 		       team_of_id(g_array_index(league->table.elements, TableElement, order[j]).team_id), cup->group))
 		{

@@ -254,7 +254,12 @@ query_team_is_in_international_cups(const Team *tm, gint group)
 	if(cp(i).group == group)
 	    for(j=0;j<cp(i).team_names->len;j++)
 		if(strcmp(tm->name->str, ((GString*)g_ptr_array_index(cp(i).team_names, j))->str) == 0)
+		{
+		    if(debug > 90)
+			printf("team %s group %d found in %s \n", tm->name->str,
+			       group, cp(i).name->str);
 		    return TRUE;
+		}
     
     return FALSE;
 }
