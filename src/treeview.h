@@ -130,12 +130,6 @@ GtkTreeModel*
 treeview_create_next_opponent(void);
 
 void
-treeview_create_next_opponent_results(const Team *tm, gchar *result_buf, gchar *goals_buf);
-
-void
-treeview_create_own_results(const Team *tm, gchar *buf);
-
-void
 treeview_show_league_results(GtkTreeView *treeview);
 
 void

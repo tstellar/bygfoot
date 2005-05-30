@@ -1005,3 +1005,117 @@ team_get_from_name(const gchar *name)
 
     return NULL;
 }
+
+/** Show the results of the user team against the specified team. 
+    @param buf The buffer to fill with the results.
+    @param sort Whether to sort the results according to home/away. */
+void
+team_write_own_results(const Team *tm, gchar *buf, gboolean sort)
+{
+    gint i, res[2];
+    gchar buf2[SMALL], buf3[SMALL], buf4[SMALL], neutral[SMALL];
+    gint place;
+    GPtrArray *matches = fixture_get_matches(current_user.tm, tm);        
+
+    strcpy(buf4, "");
+    strcpy(neutral, "");
+
+    for(i=0;i<matches->len;i++)
+    {
+	res[0] = math_sum_int_array(((Fixture*)g_ptr_array_index(matches, i))->result[0], 2);
+	res[1] = math_sum_int_array(((Fixture*)g_ptr_array_index(matches, i))->result[1], 2);
+	
+	if(res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] != current_user.tm] >
+	   res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm])
+	    sprintf(buf2, _("W  %d : %d"), 
+		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] != current_user.tm],
+		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm]);
+	else if(res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] != current_user.tm] <
+		res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm])
+	    sprintf(buf2, _("L  %d : %d"), 
+		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] != current_user.tm],
+		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm]);
+	else
+	    sprintf(buf2, _("Dw %d : %d"),
+		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] != current_user.tm],
+		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm]);
+	
+	if(((Fixture*)g_ptr_array_index(matches, i))->home_advantage)
+	{
+	    
+	    if(((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm)
+	    {
+		sprintf(buf3, _("%s (H) "), buf2);
+		place = 0;
+	    }
+	    else
+	    {
+		sprintf(buf3, _("<span background='%s' foreground='%s'>%s (A)</span> "), 
+			const_app("string_treeview_live_game_commentary_away_bg"),
+			const_app("string_treeview_live_game_commentary_away_fg"),
+			buf2);
+		place = 1;
+	    }
+	}
+	else
+	{
+	    sprintf(buf3, _("%s (N) "), buf2);
+	    place = -1;
+	}
+
+	if(!sort || place == 1)
+	    strcat(buf4, buf3);
+	else
+	{
+	    if(place == 0)
+	    {
+		strcpy(buf2, buf4);
+		sprintf(buf4, "%s%s", buf3, buf2);
+	    }
+	    else if(place == -1)
+		strcat(neutral, buf3);
+	}
+    }
+
+    sprintf(buf, "%s%s", buf4, neutral);
+
+    g_ptr_array_free(matches, TRUE);
+}
+
+/** Show a row of WDWWLL type results and the goals for and against.
+    @param tm The team we find the results for.
+    @param buf The buffer we print the results into. */
+void
+team_write_results(const Team *tm, gchar *result_buf, gchar *goals_buf)
+{
+    gint i;
+    GPtrArray *latest_fixtures = fixture_get_latest(tm);
+    gint res[2], goals[2] = {0, 0};
+    gint end_idx = latest_fixtures->len - const_int("int_treeview_latest_results");
+
+    strcpy(result_buf, "");
+    end_idx = MAX(0, end_idx);
+    for(i=latest_fixtures->len - 1;i>=end_idx;i--)
+    {
+	res[0] = math_sum_int_array(((Fixture*)g_ptr_array_index(latest_fixtures, i))->result[0], 3);
+	res[1] = math_sum_int_array(((Fixture*)g_ptr_array_index(latest_fixtures, i))->result[1], 3);
+	goals[0] += 
+	    math_sum_int_array(((Fixture*)
+				g_ptr_array_index(latest_fixtures, i))->
+			       result[(((Fixture*)g_ptr_array_index(latest_fixtures, i))->teams[0] != tm)], 2);
+	goals[1] += 
+	    math_sum_int_array(((Fixture*)
+				g_ptr_array_index(latest_fixtures, i))->
+			       result[(((Fixture*)g_ptr_array_index(latest_fixtures, i))->teams[0] == tm)], 2);
+	if(res[0] == res[1])
+	    strcat(result_buf, _("Dw "));
+	else if(res[(((Fixture*)g_ptr_array_index(latest_fixtures, i))->teams[0] == tm)] >
+		res[(((Fixture*)g_ptr_array_index(latest_fixtures, i))->teams[0] != tm)])
+	    strcat(result_buf, _("L  "));
+	else
+	    strcat(result_buf, _("W  "));
+    }
+
+    sprintf(goals_buf, "%d : %d", goals[0], goals[1]);
+    g_ptr_array_free(latest_fixtures, TRUE);
+}

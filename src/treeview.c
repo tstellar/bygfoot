@@ -1389,90 +1389,6 @@ treeview_show_transfer_list(GtkTreeView *treeview)
 			      treeview_helper_get_attributes_from_scout(current_user.scout), FALSE);
 }
 
-/** Show the results of the user team against the specified team. */
-void
-treeview_create_own_results(const Team *tm, gchar *buf)
-{
-    gint i, res[2];
-    gchar buf2[SMALL];
-    GPtrArray *matches = fixture_get_matches(current_user.tm, tm);        
-
-    strcpy(buf, "");
-
-    for(i=0;i<matches->len;i++)
-    {
-	res[0] = math_sum_int_array(((Fixture*)g_ptr_array_index(matches, i))->result[0], 2);
-	res[1] = math_sum_int_array(((Fixture*)g_ptr_array_index(matches, i))->result[1], 2);
-	
-	if(res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] != current_user.tm] >
-	   res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm])
-	    sprintf(buf2, _("W %d : %d"), 
-		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] != current_user.tm],
-		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm]);
-	else if(res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] != current_user.tm] <
-		res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm])
-	    sprintf(buf2, _("L %d : %d"), 
-		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] != current_user.tm],
-		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm]);
-	else
-	    sprintf(buf2, _("Dw %d : %d"),
-		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] != current_user.tm],
-		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm]);
-	
-	if(((Fixture*)g_ptr_array_index(matches, i))->home_advantage)
-	{
-	    if(((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm)
-		strcat(buf2, _(" (H) "));
-	    else
-		strcat(buf2, _(" (A) "));
-	}
-	else
-	    strcat(buf2, _(" (N) "));
-
-	strcat(buf, buf2);
-    }
-
-    g_ptr_array_free(matches, TRUE);
-}
-
-/** Show a row of WDWWLL type results and the goals for and against.
-    @param tm The team we find the results for.
-    @param buf The buffer we print the results into. */
-void
-treeview_create_next_opponent_results(const Team *tm, gchar *result_buf, gchar *goals_buf)
-{
-    gint i;
-    GPtrArray *latest_fixtures = fixture_get_latest(tm);
-    gint res[2], goals[2] = {0, 0};
-    gint end_idx = latest_fixtures->len - const_int("int_treeview_latest_results");
-
-    strcpy(result_buf, "");
-    end_idx = MAX(0, end_idx);
-    for(i=latest_fixtures->len - 1;i>=end_idx;i--)
-    {
-	res[0] = math_sum_int_array(((Fixture*)g_ptr_array_index(latest_fixtures, i))->result[0], 3);
-	res[1] = math_sum_int_array(((Fixture*)g_ptr_array_index(latest_fixtures, i))->result[1], 3);
-	goals[0] += 
-	    math_sum_int_array(((Fixture*)
-				g_ptr_array_index(latest_fixtures, i))->
-			       result[(((Fixture*)g_ptr_array_index(latest_fixtures, i))->teams[0] != tm)], 2);
-	goals[1] += 
-	    math_sum_int_array(((Fixture*)
-				g_ptr_array_index(latest_fixtures, i))->
-			       result[(((Fixture*)g_ptr_array_index(latest_fixtures, i))->teams[0] == tm)], 2);
-	if(res[0] == res[1])
-	    strcat(result_buf, _("Dw "));
-	else if(res[(((Fixture*)g_ptr_array_index(latest_fixtures, i))->teams[0] == tm)] >
-		res[(((Fixture*)g_ptr_array_index(latest_fixtures, i))->teams[0] != tm)])
-	    strcat(result_buf, _("L "));
-	else
-	    strcat(result_buf, _("W "));
-    }
-
-    sprintf(goals_buf, "%d : %d", goals[0], goals[1]);
-    g_ptr_array_free(latest_fixtures, TRUE);
-}
-
 /** Create attack, midfield and defend bars. */
 void
 treeview_create_next_opponent_values(GtkListStore *ls, const Fixture *fix)
@@ -1595,13 +1511,13 @@ treeview_create_next_opponent(void)
 
     treeview_create_next_opponent_values(ls, fix);
 
-    treeview_create_next_opponent_results(opp, buf, buf2);
+    team_write_results(opp, buf, buf2);
     gtk_list_store_append(ls, &iter);
     gtk_list_store_set(ls, &iter, 0, _("Latest results"), 1, buf, -1);
     gtk_list_store_append(ls, &iter);
     gtk_list_store_set(ls, &iter, 0, _("Goals"), 1, buf2, -1);
 
-    treeview_create_own_results(opp, buf);
+    team_write_own_results(opp, buf, FALSE);
     gtk_list_store_append(ls, &iter);
     gtk_list_store_set(ls, &iter, 0, _("Your results"), 1, buf, -1);
     
@@ -1651,10 +1567,8 @@ treeview_show_next_opponent(void)
 GtkTreeModel*
 treeview_create_league_results(void)
 {
-    gint i, j;
-    gchar buf[2][SMALL],
-	name[SMALL], away[SMALL];
-    GPtrArray *matches = NULL;
+    gint i;
+    gchar name[SMALL], results[SMALL];
     GArray *table_elements = 
 	league_from_clid(current_user.tm->clid)->table.elements;
     GtkListStore *ls = 
@@ -1672,30 +1586,12 @@ treeview_create_league_results(void)
 	    else
 		strcpy(name, g_array_index(table_elements, TableElement, i).team->name->str);
 
-	    matches = fixture_get_league_matches(current_user.tm,
-						 g_array_index(table_elements, TableElement, i).team);
+	    team_write_own_results(g_array_index(table_elements, TableElement, i).team,
+				   results, TRUE);
 
-	    for(j=0;j<2;j++)
-		if(((Fixture*)g_ptr_array_index(matches, j))->attendance != -1)
-		    sprintf(buf[(((Fixture*)g_ptr_array_index(matches, j))->teams[0] != current_user.tm)],
-			    "%d - %d",
-			    ((Fixture*)g_ptr_array_index(matches, j))->result
-			    [(((Fixture*)g_ptr_array_index(matches, j))->teams[0] != current_user.tm)][0],
-			    ((Fixture*)g_ptr_array_index(matches, j))->result
-			    [(((Fixture*)g_ptr_array_index(matches, j))->teams[0] == current_user.tm)][0]);
-		else
-		    strcpy(buf[(((Fixture*)g_ptr_array_index(matches, j))->teams[0] != current_user.tm)],
-			   "--:--");
-
-	    sprintf(away, "<span background='%s' foreground='%s'>%s</span>",
-		    const_app("string_treeview_league_results_away_bg"),
-		    const_app("string_treeview_league_results_away_fg"),
-		    buf[1]);
 	    gtk_list_store_append(ls, &iter);
 	    gtk_list_store_set(ls, &iter, 0, name,
-			       1, buf[0], 2, away, -1);
-
-	    g_ptr_array_free(matches, TRUE);
+			       1, results, -1);
 	}
 
     return GTK_TREE_MODEL(ls);
@@ -1705,10 +1601,9 @@ void
 treeview_set_up_league_results(GtkTreeView *treeview)
 {
     gint i;
-    gchar *titles[3] =
+    gchar *titles[2] =
 	{_("Team"),
-	 _("Home"),
-	 _("Away")};
+	 _("Results")};
     GtkTreeViewColumn   *col;
     GtkCellRenderer     *renderer;
 
@@ -1717,7 +1612,7 @@ treeview_set_up_league_results(GtkTreeView *treeview)
     gtk_tree_view_set_rules_hint(treeview, TRUE);
     gtk_tree_view_set_headers_visible(treeview, TRUE);
 
-    for(i=0;i<3;i++)
+    for(i=0;i<2;i++)
     {
 	col = gtk_tree_view_column_new();
 	gtk_tree_view_column_set_title(col, titles[i]);

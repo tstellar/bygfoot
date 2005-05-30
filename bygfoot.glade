@@ -69,7 +69,7 @@
 		      <accelerator key="l" modifiers="GDK_CONTROL_MASK | GDK_SHIFT_MASK" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image353">
+			<widget class="GtkImage" id="image360">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-revert-to-saved</property>
 			  <property name="icon_size">1</property>
@@ -137,7 +137,7 @@
 		      <accelerator key="p" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image354">
+			<widget class="GtkImage" id="image361">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-preferences</property>
 			  <property name="icon_size">1</property>
@@ -235,6 +235,7 @@
 		      <property name="label" translatable="yes">My league results</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="on_menu_my_league_results_activate" last_modification_time="Sun, 02 Jan 2005 15:55:13 GMT"/>
+		      <accelerator key="F6" modifiers="0" signal="activate"/>
 		    </widget>
 		  </child>
 
@@ -696,7 +697,7 @@
 		      <accelerator key="F9" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image355">
+			<widget class="GtkImage" id="image362">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-go-forward</property>
 			  <property name="icon_size">1</property>
@@ -718,7 +719,7 @@
 		      <accelerator key="F8" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image356">
+			<widget class="GtkImage" id="image363">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-go-back</property>
 			  <property name="icon_size">1</property>
@@ -740,7 +741,7 @@
 		      <accelerator key="F12" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image357">
+			<widget class="GtkImage" id="image364">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-justify-fill</property>
 			  <property name="icon_size">1</property>
@@ -807,7 +808,7 @@
 		      <signal name="activate" handler="on_menu_about_activate" last_modification_time="Sun, 18 Jan 2004 15:58:22 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image358">
+			<widget class="GtkImage" id="image365">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-dialog-info</property>
 			  <property name="icon_size">1</property>
@@ -828,7 +829,7 @@
 		      <signal name="activate" handler="on_menu_contributors_activate" last_modification_time="Sun, 22 May 2005 06:42:11 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image359">
+			<widget class="GtkImage" id="image366">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-add</property>
 			  <property name="icon_size">1</property>
@@ -849,7 +850,7 @@
 		      <signal name="activate" handler="on_menu_help_activate" last_modification_time="Sun, 22 May 2005 06:42:11 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image360">
+			<widget class="GtkImage" id="image367">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-help</property>
 			  <property name="icon_size">1</property>

@@ -144,4 +144,10 @@ team_get_from_name(const gchar *name);
 gint
 team_get_table_value(const Team *tm, gint type);
 
+void
+team_write_results(const Team *tm, gchar *result_buf, gchar *goals_buf);
+
+void
+team_write_own_results(const Team *tm, gchar *buf, gboolean sort);
+
 #endif
