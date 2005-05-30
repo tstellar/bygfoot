@@ -33,6 +33,9 @@ typedef struct
 	(ie. teams that get loaded and are not advancing from a previous
 	round). */
     gint new_teams;
+    /** The number of byes to be awarded for this cup round.
+        The default is enough to bring the next round to a power of two. */
+    gint byes;
     /** The teams that got loaded for this cup round.
 	Mostly this only happens in the first round. */
     GArray *teams;

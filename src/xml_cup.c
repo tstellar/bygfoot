@@ -24,6 +24,7 @@
 #define TAG_CUP_ROUNDS "cup_rounds"
 #define TAG_CUP_ROUND "cup_round"
 #define TAG_CUP_ROUND_NEW_TEAMS "new_teams"
+#define TAG_CUP_ROUND_BYES "byes"
 #define TAG_CUP_ROUND_HOME_AWAY "home_away"
 #define TAG_CUP_ROUND_REPLAY "replay"
 #define TAG_CUP_ROUND_NEUTRAL "neutral"
@@ -59,6 +60,7 @@ enum XmlCupStates
     STATE_CUP_ROUNDS,
     STATE_CUP_ROUND,
     STATE_CUP_ROUND_NEW_TEAMS,
+    STATE_CUP_ROUND_BYES,
     STATE_CUP_ROUND_HOME_AWAY,
     STATE_CUP_ROUND_REPLAY,
     STATE_CUP_ROUND_NEUTRAL,
@@ -136,6 +138,8 @@ xml_cup_read_start_element (GMarkupParseContext *context,
     }
     else if(strcmp(element_name, TAG_CUP_ROUND_NEW_TEAMS) == 0)
 	state = STATE_CUP_ROUND_NEW_TEAMS;
+    else if(strcmp(element_name, TAG_CUP_ROUND_BYES) == 0)
+	state = STATE_CUP_ROUND_BYES;
     else if(strcmp(element_name, TAG_CUP_ROUND_HOME_AWAY) == 0)
 	state = STATE_CUP_ROUND_HOME_AWAY;
     else if(strcmp(element_name, TAG_CUP_ROUND_REPLAY) == 0)
@@ -208,6 +212,7 @@ xml_cup_read_end_element    (GMarkupParseContext *context,
 	    strcmp(element_name, TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_NEW_TEAMS) == 0 ||
+	    strcmp(element_name, TAG_CUP_ROUND_BYES) == 0 ||
 	    strcmp(element_name, TAG_CHOOSE_TEAMS) == 0)
 	state = STATE_CUP_ROUND;
     else if(strcmp(element_name, TAG_CHOOSE_TEAM) == 0)
@@ -276,6 +281,8 @@ xml_cup_read_text         (GMarkupParseContext *context,
 	new_cup.skill_diff = value;
     else if(state == STATE_CUP_ROUND_NEW_TEAMS)
 	new_round.new_teams = value;
+    else if(state == STATE_CUP_ROUND_BYES)
+	new_round.byes = value;
     else if(state == STATE_CUP_ROUND_HOME_AWAY)
 	new_round.home_away = value;
     else if(state == STATE_CUP_ROUND_REPLAY)

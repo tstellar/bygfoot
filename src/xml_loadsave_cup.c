@@ -26,6 +26,7 @@ enum
     TAG_CUP_CHOOSE_TEAM_GENERATE,
     TAG_CUP_ROUND,
     TAG_CUP_ROUND_NEW_TEAMS,
+    TAG_CUP_ROUND_BYES,
     TAG_CUP_ROUND_TEAMS_FILE,
     TAG_CUP_ROUND_TABLE_FILE,
     TAG_CUP_ROUND_HOME_AWAY,
@@ -129,6 +130,7 @@ xml_loadsave_cup_end_element    (GMarkupParseContext *context,
 	    tag == TAG_CUP_ROUND_TEAMS_FILE ||
 	    tag == TAG_CUP_ROUND_TABLE_FILE ||
 	    tag == TAG_CUP_ROUND_NEW_TEAMS ||
+	    tag == TAG_CUP_ROUND_BYES ||
 	    tag == TAG_CUP_ROUND_REPLAY ||
 	    tag == TAG_CUP_ROUND_NEUTRAL ||
 	    tag == TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS ||
@@ -212,6 +214,8 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
 	new_round.home_away = int_value;
     else if(state == TAG_CUP_ROUND_NEW_TEAMS)
 	new_round.new_teams = int_value;
+    else if(state == TAG_CUP_ROUND_BYES)
+	new_round.byes = int_value;
     else if(state == TAG_CUP_ROUND_TEAMS_FILE)
     {
 	sprintf(buf2, "%s/%s", dirname, buf);
@@ -356,6 +360,8 @@ xml_loadsave_cup_write_round(FILE *fil, const gchar *prefix, const Cup *cup, gin
 
     xml_write_int(fil, cup_round->new_teams,
 		  TAG_CUP_ROUND_NEW_TEAMS, I1);
+    xml_write_int(fil, cup_round->byes,
+		  TAG_CUP_ROUND_BYES, I1);
     xml_write_int(fil, cup_round->home_away,
 		  TAG_CUP_ROUND_HOME_AWAY, I1);
     xml_write_int(fil, cup_round->replay,

@@ -481,7 +481,8 @@ fixture_write_knockout_round(Cup *cup, gint cup_round, GPtrArray *teams)
     gint i, len = teams->len;
     gint first_week = cup_get_first_week_of_cup_round(cup, cup_round);
     CupRound *round = &g_array_index(cup->rounds, CupRound, cup_round);
-    gint bye_len = math_get_bye_len(len);
+    gint bye_len = (round->byes == -1) ?
+	math_get_bye_len(len) : round->byes;
 
     teams = misc_randomise_g_pointer_array(teams);
 

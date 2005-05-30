@@ -71,6 +71,7 @@ cup_round_new(void)
     CupRound new;
 
     new.new_teams = 0;
+    new.byes = -1;
     new.home_away = TRUE;
     new.replay = 0;
     new.neutral = FALSE;
