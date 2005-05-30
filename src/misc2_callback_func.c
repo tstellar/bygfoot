@@ -24,7 +24,7 @@ misc2_callback_transfer_user_player(void)
     if(team_is_user(new_team) != -1)
     {
 	if(new_team->players->len < const_int("int_team_max_players") &&
-	   BUDGET(user_get_index(user_from_team(new_team))) > transoff(stat2, 0).fee)
+	   BUDGET(user_get_index(user_from_team(new_team))) >= transoff(stat2, 0).fee)
 	{
 	    current_user.money += transoff(stat2, 0).fee;
 	    current_user.money_in[1][MON_IN_TRANSFERS] += transoff(stat2, 0).fee;
@@ -72,6 +72,13 @@ misc2_callback_transfer_user_player(void)
 void
 misc2_callback_transfer_cpu_player(void)
 {
+    if(current_user.tm->players->len > const_int("int_team_max_players") ||
+       BUDGET(cur_user) < transoff(stat2, 0).fee)
+    {
+	game_gui_show_warning(_("Your player roster is full or you don't enough money."));
+	return;
+    }	
+
     player_copy(player_of_id_team(trans(stat2).tm, trans(stat2).id),
 		current_user.tm, current_user.tm->players->len);
     player_of_idx_team(current_user.tm, current_user.tm->players->len - 1)->contract =
