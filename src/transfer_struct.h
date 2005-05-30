@@ -18,8 +18,6 @@ typedef struct
     gint fee[QUALITY_END], wage[QUALITY_END];
     /** Offers for the player. */
     GArray *offers;
-    /** This is true if an accepted offer is pending. */
-    gboolean locked;
 } Transfer;
 
 typedef struct
@@ -28,7 +26,8 @@ typedef struct
     Team *tm;
     /** Transfer fee and wage offer. */
     gint fee, wage;
-
+    /** Whether the offer got accepted. */
+    gboolean accepted;
 } TransferOffer;
 
 #endif

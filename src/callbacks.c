@@ -166,16 +166,23 @@ void
 on_button_new_week_clicked             (GtkButton       *button,
                                         gpointer         user_data)
 {
-    if(!opt_int("int_opt_confirm_unfit") ||
-       !query_user_teams_have_unfit())
+    if(transfer_offers_pending())
+	game_gui_show_warning(_("You still have some transfer business to manage."));
+    else if(query_user_no_turn())
     {
-	load_save_autosave();
-	callback_show_next_live_game();
+	stat1 = STATUS_QUERY_USER_NO_TURN;
+	window_show_yesno(_("At least one user didn't take his turn this week. Continue?"));
     }
-    else
+    else if(opt_int("int_opt_confirm_unfit") &&
+	    query_user_teams_have_unfit())
     {
 	stat1 = STATUS_QUERY_UNFIT;
 	window_show_yesno(_("There are injured or banned players in one of the user teams. Continue?"));
+    }
+    else
+    {
+	load_save_autosave();
+	callback_show_next_live_game();
     }
 }
 
@@ -519,7 +526,7 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
     {
 	case STATUS_SHOW_TRANSFER_LIST:
 	    if(trans(idx - 1).tm == current_user.tm ||
-	       trans(idx - 1).locked ||
+	       (trans(idx - 1).offers->len > 0 && transoff(idx - 1, 0).accepted) ||
 	       event->button == 1)
 		callback_transfer_list_clicked(event->button, idx - 1);
 	    else if(event->button == 3)
@@ -551,8 +558,13 @@ void
 on_menu_next_user_activate             (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    cur_user = (cur_user + 1) % users->len;
+    if(transfer_offers_pending())
+    {
+	game_gui_show_warning(_("You still have some transfer business to manage."));
+	return;
+    }
 
+    cur_user = (cur_user + 1) % users->len;
     user_event_show_next();
 
     on_button_back_to_main_clicked(NULL, NULL);
@@ -563,8 +575,13 @@ void
 on_menu_previous_user_activate         (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    cur_user = (cur_user == 0) ? users->len - 1 : cur_user - 1;
+    if(transfer_offers_pending())
+    {
+	game_gui_show_warning(_("You still have some transfer business to manage."));
+	return;
+    }
 
+    cur_user = (cur_user == 0) ? users->len - 1 : cur_user - 1;
     user_event_show_next();
 
     on_button_back_to_main_clicked(NULL, NULL);

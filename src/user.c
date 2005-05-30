@@ -765,3 +765,17 @@ user_history_to_string(const UserHistory *history, gchar *buf)
 	    break;
     }
 }
+
+/** Find out whether there's a user who
+    didn't have his turn before a new week round begins. */
+gboolean
+query_user_no_turn(void)
+{
+    gint i;
+
+    for(i=0;i<users->len;i++)
+	if(!usr(i).counters[COUNT_USER_TOOK_TURN])
+	    return TRUE;
+
+    return FALSE;
+}

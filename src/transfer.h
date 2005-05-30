@@ -60,12 +60,15 @@ void
 transfer_add_remove_user_player(Player *pl);
 
 void
-transfer_offers_notify(Transfer *trans);
+transfer_offers_notify(Transfer *trans, gboolean sort);
 
 const TransferOffer*
 transfer_player_has_offer(const Player *pl);
 
 gboolean
 query_transfer_current_team_offer(const Player *pl);
+
+gboolean
+transfer_offers_pending(void);
 
 #endif

@@ -134,7 +134,8 @@ window_show_menu_player(GdkEvent *event)
 /** Show the digits window with the labels and values set 
     according to the arguments. */
 void
-window_show_digits(gchar *text_main, gchar* text1, gint value1, gchar* text2, gint value2)
+window_show_digits(const gchar *text_main, const gchar* text1, gint value1, 
+		   const gchar* text2, gint value2)
 {
     GtkLabel *label_main, *label_1, *label_2;
     GtkSpinButton *spinbutton1, *spinbutton2;
@@ -232,14 +233,21 @@ window_show(gpointer window)
 }
 
 /** Show the window where the user can select between yes and no.
-    @param text The text shown in the window.
-    @param checkbutton Whether to show the checkbutton. */
+    @param text The text shown in the window. */
 void
-window_show_yesno(gchar *text)
+window_show_yesno(const gchar *text)
 {
     window_create(WINDOW_YESNO);
-
     gtk_label_set_text(GTK_LABEL(lookup_widget(window.yesno, "label_yesno")), text);
+}
+
+/** Show the transfer dialog (yes/no/later).
+    @param text The text to put into the label. */
+void
+window_show_transfer_dialog(const gchar *text)
+{
+    window_create(WINDOW_TRANSFER_DIALOG);
+    gtk_label_set_text(GTK_LABEL(lookup_widget(window.transfer_dialog, "label_transfer_dialog")), text);
 }
 
 /** Set the spinbuttons in the live window
@@ -427,6 +435,14 @@ window_create(gint window_type)
 	    else
 		window.help = create_window_help();
 	    wind = window.help;
+	    break;
+	case WINDOW_TRANSFER_DIALOG:
+	    if(window.transfer_dialog != NULL)
+		g_warning("window_create: called on already existing window\n");
+	    else
+		window.transfer_dialog = create_window_transfer_dialog();
+	    wind = window.transfer_dialog;
+	    strcpy(buf, "Transfer offer");
 	    break;
     }
 

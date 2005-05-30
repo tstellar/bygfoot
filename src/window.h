@@ -23,6 +23,7 @@ enum Windows
     WINDOW_USER_MANAGEMENT,
     WINDOW_DEBUG,
     WINDOW_HELP,
+    WINDOW_TRANSFER_DIALOG,
     WINDOW_END
 };
 
@@ -39,7 +40,8 @@ void
 window_destroy(GtkWidget **wind, gboolean count_popups);
 
 void
-window_show_digits(gchar *text_main, gchar* text1, gint value1, gchar* text2, gint value2);
+window_show_digits(const gchar *text_main, const gchar* text1,
+		   gint value1, const gchar* text2, gint value2);
 
 void
 window_show_file_sel(void);
@@ -48,7 +50,7 @@ void
 window_show_stadium(void);
 
 void
-window_show_yesno(gchar *text);
+window_show_yesno(const gchar *text);
 
 void
 window_show_options(void);
@@ -58,5 +60,8 @@ window_show_menu_player(GdkEvent *event);
 
 void
 window_live_set_spinbuttons(void);
+
+void
+window_show_transfer_dialog(const gchar *text);
 
 #endif

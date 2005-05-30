@@ -45,6 +45,7 @@ enum CounterValue
     COUNT_USER_STADIUM_CAPACITY, /**< Counter for building stadium seats. */
     COUNT_USER_STADIUM_SAFETY, /**< Counter for increasing stadium safety. */
     COUNT_USER_SHOW_RES, /**< Whether the latest result is shown when the main window gets refreshed. */
+    COUNT_USER_TOOK_TURN, /**< Whether the user took his turn in a week round. */
     COUNT_USER_END
 };
 

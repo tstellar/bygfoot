@@ -11,3 +11,4 @@ GtkWidget* create_window_contract (void);
 GtkWidget* create_window_user_management (void);
 GtkWidget* create_window_debug (void);
 GtkWidget* create_window_help (void);
+GtkWidget* create_window_transfer_dialog (void);

@@ -1,3 +1,4 @@
+#include "callbacks.h"
 #include "callback_func.h"
 #include "debug.h"
 #include "finance.h"
@@ -160,12 +161,6 @@ on_button_yesno_yes_clicked            (GtkButton       *button,
 	default:
 	    g_warning("on_button_yesno_yes_clicked: unknown status %d\n", stat1);
 	    break;
-	case STATUS_TRANSFER_OFFER_USER:
-	    misc2_callback_transfer_user_player();
-	    break;
-	case STATUS_TRANSFER_OFFER_CPU:
-	    misc2_callback_transfer_cpu_player();
-	    break;
 	case STATUS_FIRE_PLAYER:
 	    player_remove_from_team(current_user.tm, stat2);
 	    current_user.money -= stat3;
@@ -187,6 +182,10 @@ on_button_yesno_yes_clicked            (GtkButton       *button,
 	    break;
 	case STATUS_QUERY_QUIT:
 	    main_exit_program(EXIT_OK, NULL);
+	    break;
+	case STATUS_QUERY_USER_NO_TURN:
+	    load_save_autosave();
+	    callback_show_next_live_game();
 	    break;
     }
 
@@ -393,5 +392,52 @@ on_spinbutton2_activate                (GtkEntry        *entry,
 {
     gtk_spin_button_update(GTK_SPIN_BUTTON(lookup_widget(window.digits, "spinbutton2")));
     on_button_digits_ok_clicked(NULL, NULL);
+}
+
+
+gboolean
+on_window_transfer_dialog_delete_event (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data)
+{
+    on_button_transfer_later_clicked(NULL, NULL);
+    return FALSE;
+}
+
+
+void
+on_button_transfer_yes_clicked         (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    if(stat1 == STATUS_TRANSFER_OFFER_USER)
+	misc2_callback_transfer_user_player();
+    else if(STATUS_TRANSFER_OFFER_CPU)
+	misc2_callback_transfer_cpu_player();
+
+    window_destroy(&window.transfer_dialog, FALSE);
+}
+
+
+void
+on_button_transfer_no_clicked          (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    g_array_remove_index(trans(stat2).offers, 0);
+    if(trans(stat2).offers->len > 0)
+	transfer_offers_notify(&trans(stat2), FALSE);
+
+    treeview_show_user_player_list();
+    game_gui_set_main_window_header();
+    on_button_transfers_clicked(NULL, NULL);
+
+    window_destroy(&window.transfer_dialog, FALSE);
+}
+
+
+void
+on_button_transfer_later_clicked       (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    window_destroy(&window.transfer_dialog, FALSE);
 }
 

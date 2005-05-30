@@ -24,6 +24,9 @@ callback_show_next_live_game(void)
 {
     gint i, j;
 
+    for(i=0;i<users->len;i++)
+	usr(i).counters[COUNT_USER_TOOK_TURN] = 0;
+
     for(i=0;i<ligs->len;i++)
 	for(j=0;j<lig(i).fixtures->len;j++)
 	    if(g_array_index(lig(i).fixtures, Fixture, j).week_number == week &&
@@ -293,7 +296,10 @@ callback_transfer_list_user(gint button, gint idx)
     else if(button == 1)
     {
 	if(trans(idx).offers->len == 0)
-	    game_gui_print_message("There are no offers for the player.");
+	    game_gui_print_message(_("There are no offers for the player."));
+	else if(trans(idx).offers->len > 0 &&
+		!transoff(idx, 0).accepted)
+	    game_gui_print_message(_("There are some offers for the player which you will see next week."));
 	else
 	{
 	    misc_print_grouped_int(transoff(idx, 0).fee, buf2, FALSE);
@@ -311,7 +317,7 @@ callback_transfer_list_user(gint button, gint idx)
 		    buf2, buf3);
 	    stat1 = STATUS_TRANSFER_OFFER_USER;
 	    stat2 = idx;
-	    window_show_yesno(buf);
+	    window_show_transfer_dialog(buf);
 	}
     }
 }
@@ -329,8 +335,11 @@ callback_transfer_list_cpu(gint button, gint idx)
     if(button == 3)
     {
 	g_array_remove_index(trans(idx).offers, 0);
-	trans(idx).locked = FALSE;
+	if(trans(idx).offers->len > 0)
+	    transfer_offers_notify(&trans(idx), FALSE);
+
 	game_gui_print_message(_("Your offer has been removed."));
+	on_button_transfers_clicked(NULL, NULL);
 	return;
     }
     
@@ -347,7 +356,7 @@ callback_transfer_list_cpu(gint button, gint idx)
 	    buf2, buf3, player_of_id_team(trans(idx).tm, trans(idx).id)->name->str);
     stat1 = STATUS_TRANSFER_OFFER_CPU;
     stat2 = idx;
-    window_show_yesno(buf);
+    window_show_transfer_dialog(buf);
 }
 
 /** Handle a click on the transfer list. 
@@ -364,12 +373,17 @@ callback_transfer_list_clicked(gint button, gint idx)
 	callback_transfer_list_user(button, idx);
 	return;
     }
-    else if(tr->locked)
+    else if(tr->offers->len > 0 &&
+	    transoff(idx, 0).accepted)
     {
 	if(transoff(idx, 0).tm == current_user.tm)
 	{
 	    if(team_is_user(tr->tm) != -1)
-		game_gui_print_message(_("The team owners are considering your offer currently."));
+	    {
+		sprintf(buf, _("User %s didn't consider your offer yet."),
+			user_from_team(tr->tm)->name->str);
+		game_gui_print_message(buf);
+	    }
 	    else
 		callback_transfer_list_cpu(button, idx);
 	}

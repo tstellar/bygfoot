@@ -3,6 +3,7 @@
 #include "free.h"
 #include "game_gui.h"
 #include "maths.h"
+#include "misc.h"
 #include "option.h"
 #include "player.h"
 #include "support.h"
@@ -28,13 +29,9 @@ transfer_update(void)
     }
 
     for(i=transfer_list->len - 1;i>=0;i--)
-    {
 	for(j=trans(i).offers->len - 1;j>=0;j--)
-	    if(trans(i).locked || team_is_user(transoff(i, j).tm) == -1)
+	    if(transoff(i, j).accepted || team_is_user(transoff(i, j).tm) == -1)
 		g_array_remove_index(trans(i).offers, j);
-
-	trans(i).locked = FALSE;
-    }
 
     transfer_add_new_players();
     transfer_add_cpu_offers();
@@ -110,82 +107,37 @@ transfer_offer_compare_func(gconstpointer a, gconstpointer b)
 	*tr2 = (const TransferOffer*)b;    
     gint return_value;
 
-    if(tr1->fee > tr2->fee)
-	return_value = -1;
-    else if(tr2->fee > tr1->fee)
-	return_value = 1;
-    else if(tr1->wage > tr2->wage)
-	return_value = -1;
-    else if(tr2->wage > tr1->wage)
-	return_value = 1;
-    else
-	return_value = 0;
+    return_value = (tr1->fee != tr2->fee) ?
+	misc_int_compare(tr1->fee, tr2->fee) :
+	misc_int_compare(tr1->wage, tr2->wage);
 
     return return_value;
 }
 
-/** Send notification events about rejected transfer offers for
+/** Send notification events about accepted transfer offers for
     user players. */
 void
-transfer_offers_notify(Transfer *tr)
+transfer_offers_notify(Transfer *tr, gboolean sort)
 {
-    gint i;
-    gboolean valid_offer = FALSE;
     TransferOffer *off = NULL;
 
-    g_array_sort(tr->offers, transfer_offer_compare_func);
+    if(sort)
+	g_array_sort(tr->offers, transfer_offer_compare_func);
     off = &g_array_index(tr->offers, TransferOffer, 0);
 
-    for(i=tr->offers->len - 1; i >= 1; i--)
-    {
-	if(team_is_user(g_array_index(tr->offers, TransferOffer, i).tm) != -1)
-	    user_event_add(user_from_team(g_array_index(tr->offers, TransferOffer, i).tm),
-			   EVENT_TYPE_TRANSFER_OFFER_REJECTED_BETTER_OFFER, 
-			   g_array_index(tr->offers, TransferOffer, i).fee,
-			   g_array_index(tr->offers, TransferOffer, i).wage,
-			   tr->tm, player_of_id_team(tr->tm, tr->id)->name->str);
-
-	g_array_remove_index(tr->offers, i);
-    }
+    off->accepted = TRUE;
 
     if(team_is_user(tr->tm) != -1)
-    {
 	user_event_add(user_from_team(tr->tm), EVENT_TYPE_TRANSFER_OFFER_USER,
 		       -1, -1, NULL, player_of_id_team(tr->tm, tr->id)->name->str);
-	valid_offer = TRUE;
-	tr->locked = TRUE;
-    }
-    else if(player_of_id_team(tr->tm, tr->id)->value > off->fee &&
-	    player_of_id_team(tr->tm, tr->id)->wage > off->wage)
-	user_event_add(user_from_team(off->tm),
-		       EVENT_TYPE_TRANSFER_OFFER_REJECTED_FEE_WAGE, 
-		       off->fee, off->wage,
-		       tr->tm, player_of_id_team(tr->tm, tr->id)->name->str);
-    else if(player_of_id_team(tr->tm, tr->id)->value > off->fee)
-	user_event_add(user_from_team(off->tm),
-		       EVENT_TYPE_TRANSFER_OFFER_REJECTED_FEE,
-		       off->fee, off->wage,
-		       tr->tm, player_of_id_team(tr->tm, tr->id)->name->str);
-    else if(player_of_id_team(tr->tm, tr->id)->wage > off->wage)
-	user_event_add(user_from_team(off->tm),
-		       EVENT_TYPE_TRANSFER_OFFER_REJECTED_WAGE,
-		       off->fee, off->wage,
-		       tr->tm, player_of_id_team(tr->tm, tr->id)->name->str);
-    else if(off->tm->players->len >= const_int("int_team_max_players"))
-	user_event_add(user_from_team(off->tm),
-		       EVENT_TYPE_TRANSFER_OFFER_ROSTER, -1, -1,
-		       tr->tm, player_of_id_team(tr->tm, tr->id)->name->str);
+
     else
-    {
 	user_event_add(user_from_team(off->tm),
 		       EVENT_TYPE_TRANSFER_OFFER_CPU, -1, -1,
 		       NULL, player_of_id_team(tr->tm, tr->id)->name->str);
-	valid_offer = TRUE;
-	tr->locked = TRUE;
-    }
 
-    if(!valid_offer)
-	g_array_remove_index(tr->offers, 0);
+    if(!sort)
+	user_event_show_next();
 }
 
 /** Move players to the users' teams if their offer
@@ -198,18 +150,40 @@ transfer_evaluate_offers(void)
     for(i=transfer_list->len - 1;i>=0;i--)
 	if(trans(i).offers->len > 0)
 	{
-	    for(j=trans(i).offers->len - 1;j >= 0; j--)
-		if(team_is_user(transoff(i, j).tm) != -1 &&
-		   transoff(i, j).fee > BUDGET(team_is_user(transoff(i, j).tm)))
+	    if(team_is_user(trans(i).tm) == -1)
+	    {
+		for(j=trans(i).offers->len - 1; j >= 0; j--)
 		{
-		    user_event_add(user_from_team(transoff(i, j).tm),
-				   EVENT_TYPE_TRANSFER_OFFER_MONEY, -1, -1,
-				   trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name->str);
-		    g_array_remove_index(trans(i).offers, j);
+		    if(player_of_id_team(trans(i).tm, trans(i).id)->value > transoff(i, j).fee &&
+		       player_of_id_team(trans(i).tm, trans(i).id)->wage > transoff(i, j).wage)
+		    {
+			user_event_add(user_from_team(transoff(i, j).tm),
+				       EVENT_TYPE_TRANSFER_OFFER_REJECTED_FEE_WAGE, 
+				       transoff(i, j).fee, transoff(i, j).wage,
+				       trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name->str);
+			g_array_remove_index(trans(i).offers, j);
+		    }
+		    else if(player_of_id_team(trans(i).tm, trans(i).id)->value > transoff(i, j).fee)
+		    {
+			user_event_add(user_from_team(transoff(i, j).tm),
+				       EVENT_TYPE_TRANSFER_OFFER_REJECTED_FEE,
+				       transoff(i, j).fee, transoff(i, j).wage,
+				       trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name->str);
+			g_array_remove_index(trans(i).offers, j);
+		    }
+		    else if(player_of_id_team(trans(i).tm, trans(i).id)->wage > transoff(i, j).wage)
+		    {
+			user_event_add(user_from_team(transoff(i, j).tm),
+				       EVENT_TYPE_TRANSFER_OFFER_REJECTED_WAGE,
+				       transoff(i, j).fee, transoff(i, j).wage,
+				       trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name->str);
+			g_array_remove_index(trans(i).offers, j);
+		    }
 		}
+	    }
 
 	    if(trans(i).offers->len > 0)
-		transfer_offers_notify(&trans(i));
+		transfer_offers_notify(&trans(i), TRUE);
 	}
 }
 
@@ -267,7 +241,6 @@ transfer_add_player(Player *pl, gint time)
     new.id = pl->id;
     new.time = time;
     new.offers = g_array_new(FALSE, FALSE, sizeof(TransferOffer));
-    new.locked = FALSE;
 
     for(i=0;i<4;i++)
     {
@@ -360,7 +333,8 @@ transfer_player_has_offer(const Player *pl)
     for(i=0;i<transfer_list->len;i++)
 	if(trans(i).tm == pl->team &&
 	   trans(i).id == pl->id &&
-	   trans(i).locked)
+	   trans(i).offers->len > 0 &&
+	   transoff(i, 0).accepted)
 	    return &transoff(i, 0);
 
     return NULL;
@@ -374,10 +348,6 @@ transfer_add_offer(gint idx, Team *tm, gint fee, gint wage)
     gint i;
     TransferOffer new;
 
-    new.tm = tm;
-    new.fee = fee;
-    new.wage = wage;
-
     for(i=0;i<trans(idx).offers->len;i++)
 	if(transoff(idx, i).tm == tm)
 	{
@@ -385,6 +355,11 @@ transfer_add_offer(gint idx, Team *tm, gint fee, gint wage)
 	    transoff(idx, i).wage = wage;
 	    return TRUE;
 	}
+
+    new.tm = tm;
+    new.fee = fee;
+    new.wage = wage;
+    new.accepted = FALSE;
 
     g_array_append_val(trans(idx).offers, new);
 
@@ -444,4 +419,25 @@ transfer_add_remove_user_player(Player *pl)
 	transfer_remove_player_ptr(pl);
 
     treeview_show_transfer_list(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")));
+}
+
+/** Find out whether the current user has to do
+    some transfer business before a user change or
+    a new week. */
+gboolean
+transfer_offers_pending(void)
+{
+    gint i;
+
+    for(i=0;i<transfer_list->len;i++)
+	if((trans(i).tm == current_user.tm &&
+	    trans(i).offers->len > 0 &&
+	    transoff(i, 0).accepted) ||
+	   (team_is_user(trans(i).tm) == -1 &&
+	    trans(i).offers->len > 0 &&
+	    transoff(i, 0).tm == current_user.tm &&
+	    transoff(i, 0).accepted))
+	    return TRUE;
+
+    return FALSE;
 }

@@ -1094,3 +1094,116 @@ create_window_help (void)
   return window_help;
 }
 
+GtkWidget*
+create_window_transfer_dialog (void)
+{
+  GtkWidget *window_transfer_dialog;
+  GtkWidget *vbox26;
+  GtkWidget *image14;
+  GtkWidget *label_transfer_dialog;
+  GtkWidget *hbox25;
+  GtkWidget *button_transfer_yes;
+  GtkWidget *button_transfer_no;
+  GtkWidget *button_transfer_later;
+  GtkWidget *alignment8;
+  GtkWidget *hbox26;
+  GtkWidget *image15;
+  GtkWidget *label53;
+  GtkAccelGroup *accel_group;
+  GtkTooltips *tooltips;
+
+  tooltips = gtk_tooltips_new ();
+
+  accel_group = gtk_accel_group_new ();
+
+  window_transfer_dialog = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_container_set_border_width (GTK_CONTAINER (window_transfer_dialog), 5);
+  gtk_window_set_position (GTK_WINDOW (window_transfer_dialog), GTK_WIN_POS_CENTER);
+  gtk_window_set_modal (GTK_WINDOW (window_transfer_dialog), TRUE);
+
+  vbox26 = gtk_vbox_new (FALSE, 5);
+  gtk_widget_show (vbox26);
+  gtk_container_add (GTK_CONTAINER (window_transfer_dialog), vbox26);
+
+  image14 = gtk_image_new_from_stock ("gtk-dialog-question", GTK_ICON_SIZE_DIALOG);
+  gtk_widget_show (image14);
+  gtk_box_pack_start (GTK_BOX (vbox26), image14, FALSE, TRUE, 0);
+
+  label_transfer_dialog = gtk_label_new ("");
+  gtk_widget_show (label_transfer_dialog);
+  gtk_box_pack_start (GTK_BOX (vbox26), label_transfer_dialog, FALSE, FALSE, 0);
+  gtk_label_set_line_wrap (GTK_LABEL (label_transfer_dialog), TRUE);
+
+  hbox25 = gtk_hbox_new (FALSE, 3);
+  gtk_widget_show (hbox25);
+  gtk_box_pack_start (GTK_BOX (vbox26), hbox25, FALSE, FALSE, 0);
+
+  button_transfer_yes = gtk_button_new_from_stock ("gtk-yes");
+  gtk_widget_show (button_transfer_yes);
+  gtk_box_pack_start (GTK_BOX (hbox25), button_transfer_yes, TRUE, TRUE, 0);
+  gtk_tooltips_set_tip (tooltips, button_transfer_yes, _("Return"), NULL);
+  gtk_widget_add_accelerator (button_transfer_yes, "clicked", accel_group,
+                              GDK_Return, 0,
+                              GTK_ACCEL_VISIBLE);
+
+  button_transfer_no = gtk_button_new_from_stock ("gtk-no");
+  gtk_widget_show (button_transfer_no);
+  gtk_box_pack_start (GTK_BOX (hbox25), button_transfer_no, TRUE, TRUE, 0);
+
+  button_transfer_later = gtk_button_new ();
+  gtk_widget_show (button_transfer_later);
+  gtk_box_pack_start (GTK_BOX (hbox25), button_transfer_later, TRUE, TRUE, 0);
+  gtk_tooltips_set_tip (tooltips, button_transfer_later, _("Esc"), NULL);
+  gtk_widget_add_accelerator (button_transfer_later, "clicked", accel_group,
+                              GDK_Escape, 0,
+                              GTK_ACCEL_VISIBLE);
+
+  alignment8 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment8);
+  gtk_container_add (GTK_CONTAINER (button_transfer_later), alignment8);
+
+  hbox26 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox26);
+  gtk_container_add (GTK_CONTAINER (alignment8), hbox26);
+
+  image15 = gtk_image_new_from_stock ("gtk-go-forward", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image15);
+  gtk_box_pack_start (GTK_BOX (hbox26), image15, FALSE, FALSE, 0);
+
+  label53 = gtk_label_new_with_mnemonic (_("Decide later"));
+  gtk_widget_show (label53);
+  gtk_box_pack_start (GTK_BOX (hbox26), label53, FALSE, FALSE, 0);
+
+  g_signal_connect ((gpointer) window_transfer_dialog, "delete_event",
+                    G_CALLBACK (on_window_transfer_dialog_delete_event),
+                    NULL);
+  g_signal_connect ((gpointer) button_transfer_yes, "clicked",
+                    G_CALLBACK (on_button_transfer_yes_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_transfer_no, "clicked",
+                    G_CALLBACK (on_button_transfer_no_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_transfer_later, "clicked",
+                    G_CALLBACK (on_button_transfer_later_clicked),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (window_transfer_dialog, window_transfer_dialog, "window_transfer_dialog");
+  GLADE_HOOKUP_OBJECT (window_transfer_dialog, vbox26, "vbox26");
+  GLADE_HOOKUP_OBJECT (window_transfer_dialog, image14, "image14");
+  GLADE_HOOKUP_OBJECT (window_transfer_dialog, label_transfer_dialog, "label_transfer_dialog");
+  GLADE_HOOKUP_OBJECT (window_transfer_dialog, hbox25, "hbox25");
+  GLADE_HOOKUP_OBJECT (window_transfer_dialog, button_transfer_yes, "button_transfer_yes");
+  GLADE_HOOKUP_OBJECT (window_transfer_dialog, button_transfer_no, "button_transfer_no");
+  GLADE_HOOKUP_OBJECT (window_transfer_dialog, button_transfer_later, "button_transfer_later");
+  GLADE_HOOKUP_OBJECT (window_transfer_dialog, alignment8, "alignment8");
+  GLADE_HOOKUP_OBJECT (window_transfer_dialog, hbox26, "hbox26");
+  GLADE_HOOKUP_OBJECT (window_transfer_dialog, image15, "image15");
+  GLADE_HOOKUP_OBJECT (window_transfer_dialog, label53, "label53");
+  GLADE_HOOKUP_OBJECT_NO_REF (window_transfer_dialog, tooltips, "tooltips");
+
+  gtk_window_add_accel_group (GTK_WINDOW (window_transfer_dialog), accel_group);
+
+  return window_transfer_dialog;
+}
+

@@ -963,14 +963,19 @@ treeview_helper_player_name_to_cell(GtkCellRenderer *renderer, gchar *buf, const
 	}
 	else if(off->tm == current_user.tm)
 	{
-	    colour_bg = const_app("string_treeview_helper_color_transfer_offer_locked_cpu_bg");
-	    colour_fg = const_app("string_treeview_helper_color_transfer_offer_locked_cpu_fg");
+	    colour_bg = const_app("string_treeview_helper_color_transfer_offer_accepted_current_bg");
+	    colour_fg = const_app("string_treeview_helper_color_transfer_offer_accepted_current_fg");
+	}
+	else
+	{
+	    colour_bg = const_app("string_treeview_helper_color_transfer_offer_accepted_other_bg");
+	    colour_fg = const_app("string_treeview_helper_color_transfer_offer_accepted_other_fg");
 	}
     }
     else if(query_transfer_current_team_offer(pl))
     {
-	    colour_bg = const_app("string_treeview_helper_color_transfer_offer_cpu_bg");
-	    colour_fg = const_app("string_treeview_helper_color_transfer_offer_cpu_fg");
+	    colour_bg = const_app("string_treeview_helper_color_transfer_offer_bg");
+	    colour_fg = const_app("string_treeview_helper_color_transfer_offer_fg");
     }
        
     g_object_set(renderer, "background", colour_bg, NULL);

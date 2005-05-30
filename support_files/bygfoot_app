@@ -28,16 +28,22 @@ string_treeview_helper_color_default_foreground			black
 string_treeview_helper_color_transfer_offer_user_fg		white
 string_treeview_helper_color_transfer_offer_user_bg		darkgreen
 
-# colours for cpu players on the list that have
-# a valid (locked) offer
-string_treeview_helper_color_transfer_offer_locked_cpu_fg	white
-string_treeview_helper_color_transfer_offer_locked_cpu_bg	darkorange
+# colours for players on the list that have
+# an accepted offer by the current user
+string_treeview_helper_color_transfer_offer_accepted_current_fg		white
+string_treeview_helper_color_transfer_offer_accepted_current_bg		darkorange
+
+# colours for players on the list that have
+# an accepted offer by another user
+string_treeview_helper_color_transfer_offer_accepted_other_fg		white
+string_treeview_helper_color_transfer_offer_accepted_other_bg		darkred
 
 # colours for cpu players for which the user just 
 # placed an offer
-string_treeview_helper_color_transfer_offer_cpu_fg		black
-string_treeview_helper_color_transfer_offer_cpu_bg		lightblue
+string_treeview_helper_color_transfer_offer_fg				black
+string_treeview_helper_color_transfer_offer_bg				lightblue
 
+# player attribute colours
 string_treeview_helper_color_player_pos_goalie_bg		black
 string_treeview_helper_color_player_pos_goalie_fg		white
 string_treeview_helper_color_player_pos_defender_bg		darkgreen

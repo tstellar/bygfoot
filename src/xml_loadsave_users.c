@@ -28,12 +28,18 @@ enum
     TAG_USER_HISTORY_VALUE1,
     TAG_USER_HISTORY_VALUE2,
     TAG_USER_HISTORY_VALUE_STRING,
+    TAG_USER_EVENT,
+    TAG_USER_EVENT_TYPE,
+    TAG_USER_EVENT_VALUE1,
+    TAG_USER_EVENT_VALUE2,
+    TAG_USER_EVENT_VALUE_STRING,
     TAG_END
 };
 
 gint state, idx_mon_in, idx_mon_out, idx;
 User new_user;
 UserHistory new_history;
+Event new_event;
 
 void
 xml_loadsave_users_start_element (GMarkupParseContext *context,
@@ -98,7 +104,8 @@ xml_loadsave_users_end_element    (GMarkupParseContext *context,
 	    tag == TAG_USER_PHYSIO ||
 	    tag == TAG_NAME ||
 	    tag == TAG_TEAM_ID ||
-	    tag == TAG_USER_HISTORY)
+	    tag == TAG_USER_HISTORY ||
+	    tag == TAG_USER_EVENT)
     {
 	state = TAG_USER;
 	if(tag == TAG_USER_COUNTER)
@@ -109,6 +116,8 @@ xml_loadsave_users_end_element    (GMarkupParseContext *context,
 	    idx_mon_in++;
 	else if(tag == TAG_USER_HISTORY)
 	    g_array_append_val(new_user.history, new_history);
+	else if(tag == TAG_USER_EVENT)
+	    g_array_append_val(new_user.events, new_event);
     }
     else if(tag == TAG_USER_MONEY_OUT)
     {
@@ -128,6 +137,11 @@ xml_loadsave_users_end_element    (GMarkupParseContext *context,
 	    tag == TAG_USER_HISTORY_VALUE2 ||
 	    tag == TAG_USER_HISTORY_VALUE_STRING)
 	state = TAG_USER_HISTORY;
+    else if(tag == TAG_USER_EVENT_TYPE ||
+	    tag == TAG_USER_EVENT_VALUE1 ||
+	    tag == TAG_USER_EVENT_VALUE2 ||
+	    tag == TAG_USER_EVENT_VALUE_STRING)
+	state = TAG_USER_EVENT;
     else if(tag != TAG_USERS)
 	g_warning("xml_loadsave_users_end_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
@@ -183,6 +197,14 @@ xml_loadsave_users_text         (GMarkupParseContext *context,
 	new_history.value2 = int_value;
     else if(state == TAG_USER_HISTORY_VALUE_STRING)
 	new_history.value_string = g_string_new(buf);
+    else if(state == TAG_USER_EVENT_TYPE)
+	new_event.type = int_value;
+    else if(state == TAG_USER_EVENT_VALUE1)
+	new_event.value1 = int_value;
+    else if(state == TAG_USER_EVENT_VALUE2)
+	new_event.value2 = int_value;
+    else if(state == TAG_USER_EVENT_VALUE_STRING)
+	new_event.value_string = g_string_new(buf);    
 }
 
 void
@@ -292,6 +314,22 @@ xml_loadsave_users_write(const gchar *prefix)
 			       TAG_USER_HISTORY_VALUE_STRING, I2);
 
 	    fprintf(fil, "%s</_%d>\n", I1, TAG_USER_HISTORY);
+	}
+
+	for(j=0;j<usr(i).events->len;j++)
+	{
+	    fprintf(fil, "%s<_%d>\n", I1, TAG_USER_EVENT);
+
+	    xml_write_int(fil, g_array_index(usr(i).events, Event, j).type,
+			  TAG_USER_EVENT_TYPE, I2);
+	    xml_write_int(fil, g_array_index(usr(i).events, Event, j).value1,
+			  TAG_USER_EVENT_VALUE1, I2);
+	    xml_write_int(fil, g_array_index(usr(i).events, Event, j).value2,
+			  TAG_USER_EVENT_VALUE2, I2);
+	    xml_write_g_string(fil, g_array_index(usr(i).events, Event, j).value_string,
+			       TAG_USER_EVENT_VALUE_STRING, I2);
+
+	    fprintf(fil, "%s</_%d>\n", I1, TAG_USER_EVENT);
 	}
 
 	fprintf(fil, "</_%d>\n", TAG_USER);

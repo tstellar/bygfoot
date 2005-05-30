@@ -124,7 +124,6 @@ on_window_help_delete_event            (GtkWidget       *widget,
 void
 on_button_help_close_clicked           (GtkButton       *button,
                                         gpointer         user_data);
-#endif
 
 void
 on_spinbutton1_activate                (GtkEntry        *entry,
@@ -133,3 +132,21 @@ on_spinbutton1_activate                (GtkEntry        *entry,
 void
 on_spinbutton2_activate                (GtkEntry        *entry,
                                         gpointer         user_data);
+
+gboolean
+on_window_transfer_dialog_delete_event (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data);
+
+void
+on_button_transfer_yes_clicked         (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_transfer_no_clicked          (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_transfer_later_clicked       (GtkButton       *button,
+                                        gpointer         user_data);
+#endif

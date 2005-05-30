@@ -82,4 +82,7 @@ user_history_compare(gconstpointer a, gconstpointer b);
 void
 user_job_offer(User *user);
 
+gboolean
+query_user_no_turn(void);
+
 #endif

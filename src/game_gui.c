@@ -182,15 +182,18 @@ game_gui_get_radio_items(GtkWidget **style, GtkWidget **scout,
 void
 game_gui_set_main_window_header(void)
 {
+    gint i;
     gchar buf[SMALL];
-    GtkLabel *label_user= GTK_LABEL(lookup_widget(window.main, "label_user"));
-    GtkLabel *label_season= GTK_LABEL(lookup_widget(window.main, "label_season"));
-    GtkLabel *label_week= GTK_LABEL(lookup_widget(window.main, "label_week"));
-    GtkLabel *label_round= GTK_LABEL(lookup_widget(window.main, "label_round"));
-    GtkLabel *label_team= GTK_LABEL(lookup_widget(window.main, "label_team"));
-    GtkLabel *label_league= GTK_LABEL(lookup_widget(window.main, "label_league"));
-    GtkLabel *label_rank= GTK_LABEL(lookup_widget(window.main, "label_rank"));
-    GtkLabel *label_money= GTK_LABEL(lookup_widget(window.main, "label_money"));
+    GtkLabel *label_user= GTK_LABEL(lookup_widget(window.main, "label_user")),
+	*label_season= GTK_LABEL(lookup_widget(window.main, "label_season")),
+	*label_week= GTK_LABEL(lookup_widget(window.main, "label_week")),
+	*label_round= GTK_LABEL(lookup_widget(window.main, "label_round")),
+	*label_team= GTK_LABEL(lookup_widget(window.main, "label_team")),
+	*label_league= GTK_LABEL(lookup_widget(window.main, "label_league")),
+	*label_rank= GTK_LABEL(lookup_widget(window.main, "label_rank")),
+	*label_money= GTK_LABEL(lookup_widget(window.main, "label_money"));
+    GtkWidget *menu_users[2] = {lookup_widget(window.main, "menu_next_user"),
+				lookup_widget(window.main, "menu_previous_user")};
 
     gtk_label_set_text(label_user, current_user.name->str);
     gui_label_set_text_from_int(label_season, season, FALSE);
@@ -206,6 +209,9 @@ game_gui_set_main_window_header(void)
 
     gtk_label_set_text(label_team, current_user.tm->name->str);
     gtk_label_set_text(label_league, league_from_clid(current_user.tm->clid)->name->str);    
+
+    for(i=0;i<2;i++)
+	gtk_widget_set_sensitive(menu_users[i], (users->len > 1));
 
     game_gui_write_av_skills();
 
@@ -322,6 +328,8 @@ game_gui_show_main(void)
     game_gui_set_main_window_header();
     treeview_show_user_player_list();
 
+    current_user.counters[COUNT_USER_TOOK_TURN] = 1;
+
     if(current_user.counters[COUNT_USER_SHOW_RES] && stat0 != STATUS_LIVE_GAME_PAUSE)
     {
 	on_menu_user_show_last_stats_activate(NULL, NULL);
@@ -363,7 +371,6 @@ game_gui_clear_entry_message(gpointer data)
 enum MainWindowInensitiveItems
 {
     INSENSITIVE_ITEM_TOOLBAR = 0,
-/*     INSENSITIVE_ITEM_PLAYER_LIST2, */
     INSENSITIVE_ITEM_MENU_FILE,
     INSENSITIVE_ITEM_MENU_OPTIONS,
     INSENSITIVE_ITEM_MENU_FIGURES,
@@ -403,8 +410,6 @@ game_gui_set_main_window_sensitivity(gboolean value)
     
     insensitive_items[INSENSITIVE_ITEM_TOOLBAR] = 
 	lookup_widget(window.main, "hbox1");
-/*     insensitive_items[INSENSITIVE_ITEM_PLAYER_LIST2] =  */
-/* 	lookup_widget(window.main, "vbox8"); */
     insensitive_items[INSENSITIVE_ITEM_MENU_FILE] = 
 	lookup_widget(window.main, "menu_file");
     insensitive_items[INSENSITIVE_ITEM_MENU_OPTIONS] = 

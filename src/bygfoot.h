@@ -120,6 +120,7 @@ typedef struct
 	*menu_player,
 	*user_management,
 	*wdebug,
-	*help;
+	*help,
+	*transfer_dialog;
 } Windows;
 #endif
