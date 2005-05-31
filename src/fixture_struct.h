@@ -10,6 +10,8 @@ typedef struct
 {
     /** The cup or league the fixture belongs to. */
     gint clid;
+    /** The unique id of the fixture. */
+    gint id;
     /** The round (in a cup) the fixture belongs to. */
     gint round;    
     /** The replay number (ie. how often the match was repeated because of a draw). */

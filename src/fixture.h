@@ -12,8 +12,8 @@ enum FixtureCompare
     FIXTURE_COMPARE_END
 };
 
-Fixture
-fixture_new(void);
+/** Check whether the team with given id participates in the fixture. */
+#define query_fixture_team_involved(fix, team_id) (fix->team_ids[0] == team_id || fix->team_ids[1] == team_id)
 
 void
 fixture_write_league_fixtures(League *league);
@@ -29,7 +29,7 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round, GPtrArray *teams,
 
 void
 fixture_write_round_robin_matchday(GArray *fixtures, gint cup_round, GPtrArray *teams,
-				   gint special, gint week_number, gint week_round_number,
+				   gint special, gint week_number,
 				   gint clid, gboolean home_advantage);
 
 void
@@ -56,7 +56,8 @@ gpointer
 fixture_winner_of(const Fixture *fix, gboolean team_id);
 
 gint
-fixture_get_free_round(gint week_number, gint clid);
+fixture_get_free_round(gint week_number, const GPtrArray *teams, 
+		       gint team_id1, gint team_id2);
 
 gboolean
 query_fixture_is_earlier(const Fixture *fix1, const Fixture *fix2);
@@ -112,8 +113,8 @@ fixture_get_league_matches(const Team *tm1, const Team *tm2);
 GPtrArray*
 fixture_get_coming(const Team *tm);
 
-gint
-fixture_get_index(const Fixture *fix);
+Fixture*
+fixture_from_id(gint id);
 
 void
 fixture_sort_teams_bye(GPtrArray *teams, gint bye_len);

@@ -171,9 +171,9 @@ typedef struct
 {
     /** The fixture that belongs to the game. */
     Fixture *fix;
-    /** Integers determining the fixture (needed because fixture pointers
+    /** Integer determining the fixture (needed because fixture pointers
 	can change when new fixtures are added to the fixtures array). */
-    gint fix_clid, fix_idx;
+    gint fix_id;
     /** Substitutions left for the teams. */
     gint subs_left[2];
     /** The team that started the game, 0 or 1. */

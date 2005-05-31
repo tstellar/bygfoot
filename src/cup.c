@@ -727,7 +727,7 @@ cup_round_name(const Fixture *fix, gchar *buf)
 	    strcat(buf, _(" -- First leg"));
     }
     else if(fix->replay_number > 0)
-	strcat(buf, _(" -- Replay match"));
+	strcat(buf, _(" -- Replay matches"));
 }
 
 /** Return the cup round given by the number. */

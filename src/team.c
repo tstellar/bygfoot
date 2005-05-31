@@ -355,8 +355,7 @@ team_get_fixture(const Team *tm, gboolean last_fixture)
 	if(lig(i).id == tm->clid)
 	{
 	    for(j=0;j<lig(i).fixtures->len;j++)
-		if((g_array_index(lig(i).fixtures, Fixture, j).teams[0] == tm ||
-		    g_array_index(lig(i).fixtures, Fixture, j).teams[1] == tm))
+		if(query_fixture_team_involved((&g_array_index(lig(i).fixtures, Fixture, j)), tm->id))
 		{
 		    if(g_array_index(lig(i).fixtures, Fixture, j).attendance == -1 &&
 		       (next_fix == NULL ||
@@ -376,8 +375,7 @@ team_get_fixture(const Team *tm, gboolean last_fixture)
 	   query_team_is_in_cup(tm, acp(i)))
 	{
 	    for(j=0;j<acp(i)->fixtures->len;j++)
-		if((g_array_index(acp(i)->fixtures, Fixture, j).teams[0] == tm ||
-		    g_array_index(acp(i)->fixtures, Fixture, j).teams[1] == tm))
+		if(query_fixture_team_involved((&g_array_index(acp(i)->fixtures, Fixture, j)), tm->id))
 		{
 		    if(g_array_index(acp(i)->fixtures, Fixture, j).attendance == -1 &&
 		       (next_fix == NULL ||
@@ -1118,4 +1116,17 @@ team_write_results(const Team *tm, gchar *result_buf, gchar *goals_buf)
 
     sprintf(goals_buf, "%d : %d", goals[0], goals[1]);
     g_ptr_array_free(latest_fixtures, TRUE);
+}
+
+/** Find out whether the team is in the given pointer array. */
+gboolean
+query_team_is_in_teams_array(const Team *tm, const GPtrArray *teams)
+{
+    gint i;
+
+    for(i=0;i<teams->len;i++)
+	if((Team*)g_ptr_array_index(teams, i) == tm)
+	    return TRUE;
+
+    return FALSE;
 }

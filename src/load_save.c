@@ -71,8 +71,6 @@ load_save_save_game(const gchar *filename)
     for(i=0;i<cps->len;i++)
 	xml_loadsave_cup_write(prefix, &cp(i));
 
-    /*todo: acps*/
-
     if(debug > 60)
 	printf("load_save_save users \n");
 

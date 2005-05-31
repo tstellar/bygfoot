@@ -133,8 +133,7 @@ callback_show_last_match(gboolean start)
 	window_create(WINDOW_LIVE);
 
 	current_user.live_game.fix = 
-	    &g_array_index(league_cup_get_fixtures(current_user.live_game.fix_clid),
-			   Fixture, current_user.live_game.fix_idx);
+	    fixture_from_id(current_user.live_game.fix_id);
 
 	treeview_show_game_stats(GTK_TREE_VIEW(lookup_widget(window.live, "treeview_stats")),
 				 &current_user.live_game);
@@ -177,11 +176,49 @@ void
 callback_show_last_match_stats(void)
 {
     current_user.live_game.fix = 
-	&g_array_index(league_cup_get_fixtures(current_user.live_game.fix_clid),
-		       Fixture, current_user.live_game.fix_idx);
+	fixture_from_id(current_user.live_game.fix_id);
     
     treeview_show_game_stats(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")),
 			     &current_user.live_game);
+}
+
+/** Show fixtures by week and round (as opposed to
+    competition-wise).
+    @param type Whether to show current, next or previous weeks. */
+void
+callback_show_fixtures_week(gint type)
+{
+    switch(type)
+    {
+	default:
+	    g_warning("callback_show_fixtures_week: unknown type %d \n", type);
+	    break;
+	case SHOW_CURRENT:
+	    if(week == 1 && week_round == 1)
+	    {
+		stat1 = week;
+		stat2 = week_round;
+	    }
+	    else if(week_round == 1)
+	    {
+		stat1 = week - 1;
+		stat2 = fixture_get_last_week_round(week - 1);
+	    }
+	    else
+	    {
+		stat1 = week;
+		stat2 = week_round - 1;
+	    }
+	    break;
+	case SHOW_NEXT:
+	    fixture_get_next_week(&stat1, &stat2);
+	    break;
+	case SHOW_PREVIOUS:
+	    fixture_get_previous_week(&stat1, &stat2);
+	    break;
+    }
+
+    treeview_show_fixtures_week(stat1, stat2);
 }
 
 /** Show some fixtures.
@@ -558,45 +595,6 @@ callback_fire_player(gint idx)
     sprintf(buf, _("You want to fire %s. Since his contract expires in %.1f years, he demands a compensation of %s. Do you accept?"), pl->name->str, pl->contract, buf2);
 
     window_show_yesno(buf);
-}
-
-/** Show fixtures by week and round (as opposed to
-    competition-wise).
-    @param type Whether to show current, next or previous weeks. */
-void
-callback_show_fixtures_week(gint type)
-{
-    switch(type)
-    {
-	default:
-	    g_warning("callback_show_fixtures_week: unknown type %d \n", type);
-	    break;
-	case SHOW_CURRENT:
-	    if(week == 1 && week_round == 1)
-	    {
-		stat1 = week;
-		stat2 = week_round;
-	    }
-	    else if(week_round == 1)
-	    {
-		stat1 = week - 1;
-		stat2 = fixture_get_last_week_round(week - 1);
-	    }
-	    else
-	    {
-		stat1 = week;
-		stat2 = week_round - 1;
-	    }
-	    break;
-	case SHOW_NEXT:
-	    fixture_get_next_week(&stat1, &stat2);
-	    break;
-	case SHOW_PREVIOUS:
-	    fixture_get_previous_week(&stat1, &stat2);
-	    break;
-    }
-
-    treeview_show_fixtures_week(stat1, stat2);
 }
 
 /** Show a page with the information in the league stats

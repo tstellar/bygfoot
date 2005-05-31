@@ -9,8 +9,8 @@ enum
 {
     TAG_FIXTURES = TAG_START_FIXTURES,
     TAG_FIXTURE,
-    TAG_FIXTURE_ROUND,
     TAG_FIXTURE_REPLAY_NUMBER,
+    TAG_FIXTURE_ID,
     TAG_FIXTURE_WEEK_NUMBER,
     TAG_FIXTURE_WEEK_ROUND_NUMBER,
     TAG_FIXTURE_RESULT,
@@ -72,8 +72,8 @@ xml_loadsave_fixtures_end_element    (GMarkupParseContext *context,
 	state = TAG_FIXTURES;
 	g_array_append_val(fixtures_array, new_fixture);
     }
-    else if(tag == TAG_FIXTURE_ROUND ||
-	    tag == TAG_FIXTURE_REPLAY_NUMBER ||
+    else if(tag == TAG_FIXTURE_REPLAY_NUMBER ||
+	    tag == TAG_FIXTURE_ID ||
 	    tag == TAG_FIXTURE_WEEK_NUMBER ||
 	    tag == TAG_FIXTURE_WEEK_ROUND_NUMBER ||
 	    tag == TAG_FIXTURE_RESULT ||
@@ -121,6 +121,8 @@ xml_loadsave_fixtures_text         (GMarkupParseContext *context,
 	new_fixture.round = int_value;
     else if(state == TAG_FIXTURE_REPLAY_NUMBER)
 	new_fixture.replay_number = int_value;
+    else if(state == TAG_FIXTURE_ID)
+	new_fixture.id = int_value;
     else if(state == TAG_FIXTURE_WEEK_NUMBER)
 	new_fixture.week_number = int_value;
     else if(state == TAG_FIXTURE_WEEK_ROUND_NUMBER)
@@ -194,6 +196,8 @@ xml_loadsave_fixtures_write(const gchar *filename, const GArray *fixtures)
 	xml_write_int(fil, g_array_index(fixtures, Fixture, i).round, TAG_ROUND, I1);
 	xml_write_int(fil, g_array_index(fixtures, Fixture, i).replay_number, 
 		      TAG_FIXTURE_REPLAY_NUMBER, I1);
+	xml_write_int(fil, g_array_index(fixtures, Fixture, i).id, 
+		      TAG_FIXTURE_ID, I1);
 	xml_write_int(fil, g_array_index(fixtures, Fixture, i).week_number, 
 		      TAG_FIXTURE_WEEK_NUMBER, I1);
 	xml_write_int(fil, g_array_index(fixtures, Fixture, i).week_round_number,

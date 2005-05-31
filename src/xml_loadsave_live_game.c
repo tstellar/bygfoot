@@ -12,8 +12,7 @@
 enum
 {
     TAG_LIVE_GAME = TAG_START_LIVE_GAME,
-    TAG_LIVE_GAME_FIX_CLID,
-    TAG_LIVE_GAME_FIX_IDX,
+    TAG_LIVE_GAME_FIX_ID,
     TAG_LIVE_GAME_UNIT,
     TAG_LIVE_GAME_UNIT_POSSESSION,
     TAG_LIVE_GAME_UNIT_AREA,
@@ -38,8 +37,7 @@ enum
 };
 
 gint state, unitidx,
-    statvalidx, statvalidx2, statplidx, statplidx2,
-    fix_clid;
+    statvalidx, statvalidx2, statplidx, statplidx2;
 LiveGameUnit new_unit;
 LiveGame *lgame;
 
@@ -85,8 +83,7 @@ xml_loadsave_live_game_end_element    (GMarkupParseContext *context,
 {
     gint tag = xml_get_tag_from_name(element_name);
     
-    if(tag == TAG_LIVE_GAME_FIX_IDX ||
-       tag == TAG_LIVE_GAME_FIX_CLID ||
+    if(tag == TAG_LIVE_GAME_FIX_ID ||
        tag == TAG_LIVE_GAME_UNIT ||
        tag == TAG_LIVE_GAME_STAT)
     {
@@ -156,17 +153,10 @@ xml_loadsave_live_game_text         (GMarkupParseContext *context,
 
     int_value = (gint)g_ascii_strtod(buf, NULL);
 
-    if(state == TAG_LIVE_GAME_FIX_CLID)
-	lgame->fix_clid = int_value;
-    else if(state == TAG_LIVE_GAME_FIX_IDX)
+    if(state == TAG_LIVE_GAME_FIX_ID)
     {
-	if(debug > 60)
-	    printf("int %d clid %d cup %p\n ",
-		   int_value, lgame->fix_clid,
-		   cup_from_clid(lgame->fix_clid));
-	lgame->fix_idx = int_value;
-	lgame->fix = &g_array_index(league_cup_get_fixtures(lgame->fix_clid),
-				    Fixture, int_value);
+	lgame->fix_id = int_value;
+	lgame->fix = fixture_from_id(int_value);
     }
     else if(state == TAG_LIVE_GAME_UNIT_POSSESSION)
 	new_unit.possession = int_value;
@@ -248,10 +238,7 @@ xml_loadsave_live_game_write(const gchar *filename, const LiveGame *live_game)
     fprintf(fil, "<_%d>\n", TAG_LIVE_GAME);
 
     if(live_game->fix != NULL)
-    {
-	xml_write_int(fil, live_game->fix->clid, TAG_LIVE_GAME_FIX_CLID, I0);
-	xml_write_int(fil, fixture_get_index(live_game->fix), TAG_LIVE_GAME_FIX_IDX, I0);
-    }
+	xml_write_int(fil, live_game->fix->id, TAG_LIVE_GAME_FIX_ID, I0);
 
     for(i=0;i<live_game->units->len;i++)
 	xml_loadsave_live_game_write_unit(fil,
