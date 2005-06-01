@@ -2,6 +2,7 @@
 #define XML_NAME_H
 
 #include "bygfoot.h"
+#include "name_struct.h"
 
 void
 xml_name_read_start_element (GMarkupParseContext *context,
@@ -25,6 +26,6 @@ xml_name_read_text         (GMarkupParseContext *context,
 			    GError             **error);
 
 void
-xml_name_read(const gchar *names_file, gint number_of_names);
+xml_name_read(const gchar *sid, NameList *namelist);
 
 #endif

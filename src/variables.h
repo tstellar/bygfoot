@@ -50,8 +50,8 @@ gpointer statp;
 /** The currently selected rows in the treeviews. */
 gint selected_row[2];
 
-/** An array of player names that we keep in memory. */
-GPtrArray *player_names;
+/** An array of name lists. */
+GArray *name_lists;
 
 /** The struct containing the window pointers. */
 Windows window;

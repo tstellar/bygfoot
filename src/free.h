@@ -5,6 +5,7 @@
 #include "cup_struct.h"
 #include "league_struct.h"
 #include "live_game_struct.h"
+#include "name_struct.h"
 #include "player_struct.h"
 #include "team_struct.h"
 #include "user_struct.h"
@@ -86,5 +87,11 @@ free_season_stats(gboolean reset);
 
 void
 free_transfer_list(void);
+
+void
+free_name_list(NameList *namelist, gboolean reset);
+
+void
+free_names(gboolean reset);
 
 #endif

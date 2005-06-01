@@ -34,12 +34,13 @@ bygfoot_SOURCES = \
 	misc2_callbacks.c callbacks.h callback_func.h debug.h finance.h game_gui.h load_save.h main.h misc2_callbacks.h misc2_callback_func.h misc2_interface.h player.h support.h transfer.h treeview.h user.h window.h \
 	misc2_callback_func.c callbacks.h file.h finance.h game_gui.h maths.h misc2_callback_func.h option.h player.h support.h team.h treeview.h transfer.h user.h window.h \
 	misc2_interface.c  misc2_interface.h misc2_callbacks.h support.h \
+	name.c name.h option.h variables.h xml_name.h \
 	option.c option.h variables.h \
 	option_gui.c file.h game_gui.h callbacks.h option_gui.h option.h support.h user.h variables.h \
 	options_callbacks.c file.h options_callbacks.h options_interface.h option_gui.h support.h user.h variables.h window.h \
 	options_interface.c  options_interface.h options_callbacks.h support.h \
-	player.c cup.h fixture.h free.h game_gui.h league.h maths.h misc.h option.h player.h team.h user.h \
-	start_end.c cup.h file.h finance.h fixture.h free.h game_gui.h gui.h league.h load_save.h live_game.h main.h maths.h misc.h option.h start_end.h stat.h table.h team.h transfer.h user.h variables.h xml_name.h \
+	player.c cup.h fixture.h free.h game_gui.h league.h maths.h misc.h name.h option.h player.h team.h user.h \
+	start_end.c cup.h file.h finance.h fixture.h free.h game_gui.h gui.h league.h load_save.h live_game.h main.h maths.h misc.h name.h option.h start_end.h stat.h table.h team.h transfer.h user.h variables.h xml_name.h \
 	stat.c cup.h free.h league.h option.h player.h stat.h table_struct.h team.h variables.h \
 	support.c support.h \
 	table.c cup.h league.h table.h variables.h \

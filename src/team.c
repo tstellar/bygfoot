@@ -23,6 +23,7 @@ team_new(gboolean new_id)
     Team new;
 
     new.name = g_string_new("");
+    new.names_file = g_string_new("");
     new.symbol = g_string_new("");
     
     new.clid = -1;

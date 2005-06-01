@@ -1,26 +1,26 @@
 #include "file.h"
 #include "free.h"
-#include "maths.h"
 #include "misc.h"
+#include "name.h"
 #include "variables.h"
 #include "xml_name.h"
 
-#define TAG_NAMES "player_names"
-#define TAG_PLAYER_NAME "player_name"
-#define TAG_PLAYER_NAME_NAME "name"
+#define TAG_NAMES "names"
+#define TAG_LAST_NAME "last_name"
+#define TAG_FIRST_NAME "first_name"
 
 enum XmlNameStates
 {
     STATE_NAMES = 0,
-    STATE_PLAYER_NAME,
-    STATE_PLAYER_NAME_NAME,
+    STATE_LAST_NAME,
+    STATE_FIRST_NAME,
     STATE_END
 };
 
 /** Keep track of the state.  */
 gint state;
-GPtrArray *temp_array;
-GString *new_name;
+/** The name list we read into. */
+NameList *nlist;
 
 /** @see xml_league_read_start_element */
 void
@@ -33,13 +33,10 @@ xml_name_read_start_element (GMarkupParseContext *context,
 {
     if(strcmp(element_name, TAG_NAMES) == 0)
 	state = STATE_NAMES;
-    else if(strcmp(element_name, TAG_PLAYER_NAME) == 0)
-    {
-	new_name = g_string_new("");
-	state = STATE_PLAYER_NAME;
-    }
-    else if(strcmp(element_name, TAG_PLAYER_NAME_NAME) == 0)
-	state = STATE_PLAYER_NAME_NAME;
+    else if(strcmp(element_name, TAG_FIRST_NAME) == 0)
+	state = STATE_FIRST_NAME;
+    else if(strcmp(element_name, TAG_LAST_NAME) == 0)
+	state = STATE_LAST_NAME;
     else
 	g_warning("xml_name_read_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
@@ -52,10 +49,9 @@ xml_name_read_end_element    (GMarkupParseContext *context,
 			      gpointer             user_data,
 			      GError             **error)
 {
-    if(strcmp(element_name, TAG_PLAYER_NAME) == 0)
+    if(strcmp(element_name, TAG_FIRST_NAME) == 0 ||
+       strcmp(element_name, TAG_LAST_NAME) == 0)
        state = STATE_NAMES;
-    else if(strcmp(element_name, TAG_PLAYER_NAME_NAME) == 0)
-	state = STATE_PLAYER_NAME;
     else if(strcmp(element_name, TAG_NAMES) != 0)
 	g_warning("xml_name_end_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
@@ -70,28 +66,27 @@ xml_name_read_text         (GMarkupParseContext *context,
 			    GError             **error)
 {
     gchar buf[text_len + 1];
+    GString *new_name = NULL;
 
     strncpy(buf, text, text_len);
     buf[text_len] = '\0';
 
-    if(state == STATE_PLAYER_NAME_NAME)
-    {
-	g_string_printf(new_name, "%s", buf);
-	g_ptr_array_add(temp_array, (gpointer)new_name);
-    }
+    new_name = g_string_new(buf);
+
+    if(state == STATE_FIRST_NAME)
+	g_ptr_array_add(nlist->first_names, new_name);
+    else if(state == STATE_LAST_NAME)
+	g_ptr_array_add(nlist->last_names, new_name);
 }
 
-/** Fill the player names array with names from the
-    player names file. Randomize the order and keep only
-    'number_of_names' of them. 
-    @param names_file The file the names are read from.
-    @param number_of_names Number of player names we keep in memory. 
-    If this is -1, we keep all of them. */
+/** Fill the name list with names from the
+    given names file.
+    @param sid The sid of the names file we read.
+    @param namelist The name list we fill. */
 void
-xml_name_read(const gchar *names_file, gint number_of_names)
+xml_name_read(const gchar *sid, NameList *namelist)
 {
-    gint i;
-    gchar *file_name = file_find_support_file(names_file, FALSE);
+    gchar *file_name = NULL;
     GMarkupParser parser = {xml_name_read_start_element,
 			    xml_name_read_end_element,
 			    xml_name_read_text, NULL, NULL};
@@ -100,6 +95,9 @@ xml_name_read(const gchar *names_file, gint number_of_names)
     gint length;
     GError *error = NULL;
     gchar buf[SMALL];
+
+    sprintf(buf, "player_names_%s.xml", sid);
+    file_name = file_find_support_file(buf, TRUE);
 
     context = 
 	g_markup_parse_context_new(&parser, 0, NULL, NULL);
@@ -110,12 +108,11 @@ xml_name_read(const gchar *names_file, gint number_of_names)
 	misc_print_error(&error, FALSE);
 	return;
     }
-    
-    state = STATE_NAMES;
-    strcpy(buf, file_name);
-    g_free(file_name);
-    free_g_string_array(&player_names);
-    temp_array = g_ptr_array_new();
+
+    free_name_list(namelist, TRUE);
+    g_string_assign(namelist->sid, sid);
+
+    nlist = namelist;
 
     if(g_markup_parse_context_parse(context, file_contents, length, &error))
     {
@@ -129,21 +126,5 @@ xml_name_read(const gchar *names_file, gint number_of_names)
 	misc_print_error(&error, TRUE);
     }
 
-    if(number_of_names == -1)
-    {
-	player_names = temp_array;
-	return;
-    }
-
-    gint int_array[temp_array->len];
-    math_generate_permutation(int_array, 0, temp_array->len - 1);
-    player_names = g_ptr_array_new();
-    
-    for(i=0;i<number_of_names;i++)
-    {
-	new_name = g_string_new(((GString*)g_ptr_array_index(temp_array, int_array[i]))->str);
-	g_ptr_array_add(player_names, (gpointer)new_name);
-    }
-    
-    free_g_string_array(&temp_array);
+    g_free(file_name);
 }

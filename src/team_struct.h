@@ -46,9 +46,11 @@ typedef struct
     @see Player */
 typedef struct
 {
-    GString *name;
-    GString *symbol;
-    
+    GString *name, *symbol;
+    /** File the team takes the 
+	player names from. */
+    GString *names_file;
+
     gint clid, /**< Numerical id of the league or cup the team belongs to. */
 	id, /**< Id of the team. */
 	structure, /**< Playing structure. @see team_assign_playing_structure() */

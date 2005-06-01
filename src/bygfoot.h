@@ -54,16 +54,13 @@
 /** Convenience abbreviation. */
 #define acp(i) ((Cup*)g_ptr_array_index(country.allcups, i))
 
-/** Convenience abbreviation. */
-#define player_name(i) ((GString*)g_ptr_array_index(player_names, i))->str;
-
 /** Convenience abbrevs. */
 #define stat0 status[0]
 #define stat1 status[1]
 #define stat2 status[2]
 #define stat3 status[3]
 #define stat4 status[4]
-#define old_stat status[5]
+#define stat5 status[5]
 
 #define debug opt_int("int_opt_debug")
 

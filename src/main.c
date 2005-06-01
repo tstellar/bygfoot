@@ -10,6 +10,7 @@
 #include "free.h"
 #include "live_game.h"
 #include "main.h"
+#include "name_struct.h"
 #include "transfer_struct.h"
 #include "stat_struct.h"
 #include "variables.h"
@@ -26,7 +27,6 @@ main_init_variables(void)
     ligs = cps = NULL;
     acps = NULL;
     country.name = country.symbol = country.sid = NULL;
-    player_names = NULL;
 
     season = week = week_round = 1;
 
@@ -47,6 +47,7 @@ main_init_variables(void)
     users = g_array_new(FALSE, FALSE, sizeof(User));
     transfer_list = g_array_new(FALSE, FALSE, sizeof(Transfer));
     season_stats = g_array_new(FALSE, FALSE, sizeof(SeasonStat));
+    name_lists = g_array_new(FALSE, FALSE, sizeof(NameList));
 
     save_file = g_string_new("");
 

@@ -11,6 +11,7 @@ void
 free_memory(void)
 {
     free_variables();
+    free_names(FALSE);
     free_transfer_list();
     free_country(FALSE);
     free_users(FALSE);
@@ -444,8 +445,6 @@ free_cup_choose_team(CupChooseTeam *cup_choose_team)
 void
 free_variables(void)
 {
-    free_g_string_array(&player_names);
-
     free_option_list(&options, FALSE);
     free_option_list(&constants, FALSE);
     free_option_list(&constants_app, FALSE);
@@ -531,4 +530,55 @@ free_support_dirs(void)
 
   g_list_free(support_directories);
   support_directories = NULL;
+}
+
+/** Free a list of names. */
+void
+free_name_list(NameList *namelist, gboolean reset)
+{
+    if(namelist->sid == NULL)
+    {
+	if(reset)
+	{
+	    namelist->sid = g_string_new("");
+	    namelist->first_names = g_ptr_array_new();
+	    namelist->last_names = g_ptr_array_new();
+	}
+
+	return;
+    }
+
+    free_g_string(&namelist->sid);
+    free_g_ptr_array(&namelist->first_names);
+    free_g_ptr_array(&namelist->last_names);
+
+    if(reset)
+    {
+	namelist->sid = g_string_new("");
+	namelist->first_names = g_ptr_array_new();
+	namelist->last_names = g_ptr_array_new();
+    }
+}
+
+/** Free the array with the name lists. */
+void
+free_names(gboolean reset)
+{
+    gint i;
+
+    if(name_lists == NULL)
+    {
+	if(reset)
+	    name_lists = g_array_new(FALSE, FALSE, sizeof(NameList));
+
+	return;
+    }
+
+    for(i=0;i<name_lists->len;i++)
+	free_name_list(&g_array_index(name_lists, NameList, i), FALSE);
+
+    free_g_array(&name_lists);
+
+    if(reset)
+	name_lists = g_array_new(FALSE, FALSE, sizeof(NameList));
 }

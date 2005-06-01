@@ -5,6 +5,7 @@
 #include "league.h"
 #include "maths.h"
 #include "misc.h"
+#include "name.h"
 #include "option.h"
 #include "player.h"
 #include "team.h"
@@ -24,8 +25,8 @@ player_new(Team *tm, gfloat average_skill, gboolean new_id)
 		 1 + const_float("float_player_average_skill_variance"));
     Player new;
 
-    new.name = 
-	g_string_new(((GString*)g_ptr_array_index(player_names, math_rndi(0, player_names->len - 1)))->str);
+    new.name = name_get(tm->names_file->str);
+
     new.id = (new_id) ? player_id_new : -1;
     new.pos = player_get_position_from_structure(tm->structure, tm->players->len);
     new.cpos = new.pos;
@@ -1140,4 +1141,37 @@ player_season_start(Player *pl, gfloat skill_change)
 		break;
 	    }
     }
+}
+
+/** Return the last name of a player. */
+gchar*
+player_get_last_name(const gchar *name)
+{
+    gint i;
+    gchar buf[SMALL];
+    gchar *rev_name = NULL;
+    const gchar *temp;
+
+    if(!g_utf8_validate(name, -1, NULL))
+    {
+	g_warning("player_get_last_name: invalid utf8-string: %s \n", name);
+	return NULL;
+    }
+
+    temp = name;
+    for(i=0;i<g_utf8_strlen(name, -1);i++)
+    {
+	temp = g_utf8_next_char(temp);
+	if(g_unichar_isspace(g_utf8_get_char(temp)))
+	   break;
+    }
+    
+    rev_name = g_utf8_strreverse(name, -1);
+
+    g_utf8_strncpy(buf, rev_name, g_utf8_strlen(name, -1) - i - 2);
+    g_free(rev_name);
+
+    rev_name = g_utf8_strreverse(buf, -1);
+
+    return rev_name;
 }

@@ -127,4 +127,7 @@ player_id_team(gint player_id);
 void
 player_season_start(Player *pl, gfloat skill_change);
 
+gchar*
+player_get_last_name(const gchar *name);
+
 #endif

@@ -716,3 +716,16 @@ float_contract_scale_factor 300
 
 # max. number of offers when a new contract is negotiated
 int_contract_max_offers 3
+
+# ratio we'd like to have between the number
+# of first and last names in a player name list
+# (ie. #first names /#last names)
+float_name_first_last_ratio 5000
+
+# maximum number of possibilities we want to have
+# in a shortened name list (ie. #first * #last)
+int_name_max_product 2000
+
+# probability that a name is chosen from a random
+# list instead of the specified one
+float_name_random_list_prob 2000

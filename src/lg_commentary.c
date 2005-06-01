@@ -380,17 +380,17 @@ lg_commentary_get_player_name(const LiveGameUnit *unit, const Fixture *fix, gboo
 
     if(unit->event.type == LIVE_GAME_EVENT_GENERAL)
 	return_value = (player2) ?
-	    player_of_id_team(fix->teams[unit->possession],
-			      unit->event.player2)->name->str :
-	    player_of_id_team(fix->teams[unit->possession],
-			      unit->event.player)->name->str;
+	    player_get_last_name(player_of_id_team(fix->teams[unit->possession],
+						   unit->event.player2)->name->str) :
+	    player_get_last_name(player_of_id_team(fix->teams[unit->possession],
+						   unit->event.player)->name->str);
     else if(unit->event.type == LIVE_GAME_EVENT_LOST_POSSESSION)
     {
 	return_value = (player2) ?
-	    player_of_id_team(fix->teams[!unit->possession], 
-			      unit->event.player2)->name->str:
-	    player_of_id_team(fix->teams[unit->possession], 
-			      unit->event.player)->name->str;
+	    player_get_last_name(player_of_id_team(fix->teams[!unit->possession], 
+						   unit->event.player2)->name->str):
+	    player_get_last_name(player_of_id_team(fix->teams[unit->possession], 
+						   unit->event.player)->name->str);
     }
     else if(unit->event.type == LIVE_GAME_EVENT_SCORING_CHANCE ||
 	    unit->event.type == LIVE_GAME_EVENT_HEADER ||
@@ -398,10 +398,10 @@ lg_commentary_get_player_name(const LiveGameUnit *unit, const Fixture *fix, gboo
 	    unit->event.type == LIVE_GAME_EVENT_FREE_KICK)
     {	
 	return_value = (player2) ?
-	    player_of_id_team(fix->teams[unit->possession],
-			      unit->event.player2)->name->str :
-	    player_of_id_team(fix->teams[unit->possession],
-			      unit->event.player)->name->str;
+	    player_get_last_name(player_of_id_team(fix->teams[unit->possession],
+						   unit->event.player2)->name->str) :
+	    player_get_last_name(player_of_id_team(fix->teams[unit->possession],
+						   unit->event.player)->name->str);
     }
     else if(unit->event.type == LIVE_GAME_EVENT_GOAL ||
 	    unit->event.type == LIVE_GAME_EVENT_MISSED ||
@@ -410,35 +410,35 @@ lg_commentary_get_player_name(const LiveGameUnit *unit, const Fixture *fix, gboo
 	    unit->event.type == LIVE_GAME_EVENT_CROSS_BAR)
     {
 	return_value = (player2) ?
-	    player_of_id_team(fix->teams[!unit->possession], 
-			      unit->event.player2)->name->str :
-	    player_of_id_team(fix->teams[unit->possession], 
-			      unit->event.player)->name->str;
+	    player_get_last_name(player_of_id_team(fix->teams[!unit->possession], 
+						   unit->event.player2)->name->str) :
+	    player_get_last_name(player_of_id_team(fix->teams[unit->possession], 
+						   unit->event.player)->name->str);
     }
     else if(unit->event.type == LIVE_GAME_EVENT_OWN_GOAL)
 	return_value = 
-	    player_of_id_team(fix->teams[!unit->possession], 
-			      unit->event.player)->name->str;
+	    player_get_last_name(player_of_id_team(fix->teams[!unit->possession], 
+						   unit->event.player)->name->str);
     else if(unit->event.type == LIVE_GAME_EVENT_FOUL ||
 	    unit->event.type == LIVE_GAME_EVENT_FOUL_RED ||
 	    unit->event.type == LIVE_GAME_EVENT_FOUL_RED_INJURY ||
 	    unit->event.type == LIVE_GAME_EVENT_FOUL_YELLOW)
     {
 	return_value = (player2) ? 
-	    player_of_id_team(fix->teams[unit->event.team], 
-			      unit->event.player2)->name->str :
-	    player_of_id_team(fix->teams[!unit->event.team], 
-			      unit->event.player)->name->str;
+	    player_get_last_name(player_of_id_team(fix->teams[unit->event.team], 
+						   unit->event.player2)->name->str) :
+	    player_get_last_name(player_of_id_team(fix->teams[!unit->event.team], 
+						   unit->event.player)->name->str);
     }
     else if(unit->event.type == LIVE_GAME_EVENT_SEND_OFF ||
 	    unit->event.type == LIVE_GAME_EVENT_INJURY ||
 	    unit->event.type == LIVE_GAME_EVENT_TEMP_INJURY ||
 	    unit->event.type == LIVE_GAME_EVENT_SUBSTITUTION)
 	return_value = (player2) ?
-	    player_of_id_team(fix->teams[unit->event.team],
-			      unit->event.player2)->name->str :
-	    player_of_id_team(fix->teams[unit->event.team],
-			      unit->event.player)->name->str;
+	    player_get_last_name(player_of_id_team(fix->teams[unit->event.team],
+						   unit->event.player2)->name->str) :
+	    player_get_last_name(player_of_id_team(fix->teams[unit->event.team],
+						   unit->event.player)->name->str);
     else
 	g_warning("lg_commentary_get_player_name: unknown event type %d\n",
 		  unit->event.type);

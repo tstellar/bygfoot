@@ -84,6 +84,7 @@ xml_loadsave_league_end_element    (GMarkupParseContext *context,
        tag == TAG_LEAGUE_AVERAGE_SKILL ||
        tag == TAG_LEAGUE_ROUND_ROBINS ||
        tag == TAG_NAME ||
+       tag == TAG_NAMES_FILE ||
        tag == TAG_SHORT_NAME ||
        tag == TAG_SYMBOL ||
        tag == TAG_SID ||
@@ -136,6 +137,8 @@ xml_loadsave_league_text         (GMarkupParseContext *context,
 	g_string_printf(new_league->name, "%s", buf);
     else if(state == TAG_SHORT_NAME)
 	g_string_printf(new_league->short_name, "%s", buf);
+    else if(state == TAG_NAMES_FILE)
+	g_string_printf(new_league->names_file, "%s", buf);
     else if(state == TAG_SYMBOL)
 	g_string_printf(new_league->symbol, "%s", buf);
     else if(state == TAG_SID)
@@ -231,6 +234,7 @@ xml_loadsave_league_write(const gchar *prefix, const League *league)
 
     xml_write_g_string(fil, league->name, TAG_NAME, I0);
     xml_write_g_string(fil, league->short_name, TAG_SHORT_NAME, I0);
+    xml_write_g_string(fil, league->names_file, TAG_NAMES_FILE, I0);
     xml_write_g_string(fil, league->sid, TAG_SID, I0);
     xml_write_g_string(fil, league->symbol, TAG_SYMBOL, I0);
 

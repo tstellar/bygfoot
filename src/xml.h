@@ -26,6 +26,7 @@ enum XmlTags
     TAG_WEEK_GAP,
     TAG_YELLOW_RED,
     TAG_TEAM_ID,
+    TAG_NAMES_FILE,
     TAG_ROUND
 };
 

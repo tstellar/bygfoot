@@ -21,6 +21,7 @@ league_new(gboolean new_id)
     League new;
 
     new.name = g_string_new("");
+    new.names_file = g_string_new(opt_str("string_opt_player_names_file"));
     new.sid = g_string_new("");
     new.short_name = g_string_new("");
     new.symbol = g_string_new("");

@@ -40,7 +40,7 @@ misc_callback_start_game(void)
 
     start_new_game();
 
-    for(i=0;i<users->len;i++)	
+    for(i=0;i<users->len;i++)
 	user_set_up_team_new_game(&usr(i));
 
     window_destroy(&window.startup, TRUE);
@@ -237,6 +237,5 @@ misc_callback_startup_load(const gchar *filename)
 {
     window_destroy(&window.startup, TRUE);
     window_create(WINDOW_MAIN);
-    xml_name_read(opt_str("string_opt_player_names_file"), 1000);
     load_save_load_game(filename);
 }

@@ -11,6 +11,7 @@
 #include "main.h"
 #include "maths.h"
 #include "misc.h"
+#include "name.h"
 #include "option.h"
 #include "start_end.h"
 #include "stat.h"
@@ -49,11 +50,9 @@ WeekFunc end_week_funcs[] = {stat_update_leagues, end_week_hide_cups, NULL};
 void
 start_new_game(void)
 {
-    xml_name_read(opt_str("string_opt_player_names_file"), -1);
     start_write_variables();
     start_generate_league_teams();
     start_new_season();
-    xml_name_read(opt_str("string_opt_player_names_file"), 1000);
 }
 
 /** Make new fixtures, nullify things etc. */
@@ -61,8 +60,6 @@ void
 start_new_season(void)
 {
     gint i;
-
-    xml_name_read(opt_str("string_opt_player_names_file"), 1000);
 
     week = week_round = 1;
 
@@ -100,6 +97,8 @@ start_new_season(void)
     for(i=0;i<ligs->len;i++)
 	fixture_write_league_fixtures(&lig(i));
 
+    free_names(TRUE);
+    stat5 = STATUS_GENERATE_TEAMS;
     for(i=cps->len - 1; i >= 0; i--)
     {
 	cup_reset(&cp(i));
@@ -107,10 +106,14 @@ start_new_season(void)
 	if(cp(i).add_week == 0)
 	    fixture_write_cup_fixtures(&cp(i));
     }
+    stat5 = -1;
 
     if(season > 1)
 	for(i=0;i<ligs->len;i++)
 	    league_season_start(&lig(i));
+
+    for(i=0;i<name_lists->len;i++)
+	name_shorten_list(&nli(i));
 }
 
 /** Fill some global variables with default values at the
@@ -133,6 +136,8 @@ start_generate_league_teams(void)
 {
     gint i, j;    
 
+    stat5 = STATUS_GENERATE_TEAMS;
+
     if(ligs->len == 0)
 	main_exit_program(EXIT_NO_LEAGUES,
 			  "start_generate_league_teams: no leagues found. there must be at least one league in the game.\n");
@@ -140,6 +145,8 @@ start_generate_league_teams(void)
     for(i=0;i<ligs->len;i++)
 	for(j=0;j<lig(i).teams->len;j++)
 	    team_generate_players_stadium(&g_array_index(lig(i).teams, Team, j));
+
+    stat5 = -1;
 }
 
 /** End a week round. */
