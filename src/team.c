@@ -1049,7 +1049,7 @@ team_write_own_results(const Team *tm, gchar *buf, gboolean sort)
 	    }
 	    else
 	    {
-		sprintf(buf3, _("<span background='%s' foreground='%s'>%s (A)</span> "), 
+		sprintf(buf3, _("<span background='%s' foreground='%s'>%s (A) </span> "), 
 			const_app("string_treeview_live_game_commentary_away_bg"),
 			const_app("string_treeview_live_game_commentary_away_fg"),
 			buf2);
