@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-02 08:59+0200\n"
-"PO-Revision-Date: 2005-05-28 11:44+0200\n"
+"POT-Creation-Date: 2005-06-02 09:08+0200\n"
+"PO-Revision-Date: 2005-06-02 09:03+0200\n"
 "Last-Translator:  Gyz Both <gyboth@bygfoot.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -64,9 +64,8 @@ msgid " -- First leg"
 msgstr " -- Hinspiel"
 
 #: src/cup.c:730
-#, fuzzy
 msgid " -- Replay matches"
-msgstr " -- Wiederholungsspiel"
+msgstr " -- Wiederholungsspiele"
 
 #: src/cup.c:725
 msgid " -- Second leg"
@@ -109,14 +108,14 @@ msgid " seats"
 msgstr " Plätze"
 
 #: src/team.c:1047
-#, fuzzy, c-format
+#, c-format
 msgid "%s (H) "
-msgstr " (H) "
+msgstr "%s (H) "
 
 #: src/team.c:1061
-#, fuzzy, c-format
+#, c-format
 msgid "%s (N) "
-msgstr " (N) "
+msgstr "%s (N) "
 
 #: src/treeview.c:1020
 #, c-format
@@ -265,9 +264,9 @@ msgid "4 years"
 msgstr "4 Jahre"
 
 #: src/team.c:1052
-#, fuzzy, c-format
+#, c-format
 msgid "<span background='%s' foreground='%s'>%s (A)</span> "
-msgstr "<span foreground='%s' background='%s'>Woche %d Runde %d</span>"
+msgstr "<span foreground='%s' background='%s'>%s (A)</span>"
 
 #: src/treeview.c:726
 #, c-format
@@ -416,7 +415,7 @@ msgstr "Anti"
 
 #: src/callbacks.c:174
 msgid "At least one user didn't take his turn this week. Continue?"
-msgstr ""
+msgstr "Mindestens ein Benutzer ist noch nicht drangewesen. Fortfahren?"
 
 #: src/game_gui.c:602
 msgid ""
@@ -771,7 +770,7 @@ msgstr "Debug"
 
 #: src/misc2_interface.c:1173
 msgid "Decide later"
-msgstr ""
+msgstr "Später entscheiden"
 
 #: src/interface.c:388 src/treeview.c:1401
 msgid "Defend"
@@ -1181,12 +1180,11 @@ msgid "L"
 msgstr "V"
 
 #: src/team.c:1113
-#, fuzzy
 msgid "L  "
 msgstr "V "
 
 #: src/team.c:1034
-#, fuzzy, c-format
+#, c-format
 msgid "L  %d : %d"
 msgstr "V %d : %d"
 
@@ -1224,6 +1222,11 @@ msgstr "Liga-Statistiken"
 msgid "Left click to make an offer. Right click to remove offer."
 msgstr ""
 "Linksklick um ein Angebot abzugeben. Rechtsklick um Angebot zu annullieren."
+
+#: src/callbacks.c:726
+msgid ""
+"Left-click: get loan; Right-click: pay back; Middle click: stadium window."
+msgstr ""
 
 #: src/options_interface.c:900
 msgid "List 1 "
@@ -1903,9 +1906,8 @@ msgstr ""
 "(Rechtsklick auf die Spielerliste)"
 
 #: src/treeview.c:1606
-#, fuzzy
 msgid "Results"
-msgstr "Deine Ergebnisse"
+msgstr "Ergebnisse"
 
 #: src/misc2_interface.c:1144 src/misc_interface.c:411
 #: src/misc_interface.c:1034
@@ -2238,6 +2240,10 @@ msgid ""
 "The crowd roars as the players run out from the tunnel to start the match"
 msgstr "Die Menge begrüßt die Mannschaften mit rauschendem Applaus"
 
+#: src/callbacks.c:81
+msgid "The current game state is unsaved and will be lost. Continue?"
+msgstr ""
+
 #: src/lg_commentary.c:185
 msgid "The dance ignites the fans, P1 celebrates in his own special fashion"
 msgstr "P1 feiert in der ihm eigenen Art ein exzellentes Tor"
@@ -2395,13 +2401,14 @@ msgstr ""
 "Fortfahren?"
 
 #: src/callback_func.c:336
-#, fuzzy
 msgid "There are no offers for the player."
-msgstr "Du hast kein Angebot für den Spieler abgegeben."
+msgstr "Es liegen keine Angebote für den Spieler vor."
 
 #: src/callback_func.c:339
 msgid "There are some offers for the player which you will see next week."
 msgstr ""
+"Es gibt einige Angebote für den Spieler; du wirst sie nächste Woche auf dem "
+"Tisch haben."
 
 #: src/lg_commentary.c:114
 msgid "There are two teams out there and only one of them is playing football"
@@ -2440,9 +2447,9 @@ msgid "Two teams, equall till now in every respect,face off in penalties"
 msgstr "Zwei Mannschaften waren gleichwertig, jetzt geht's ins Penaltyschießen"
 
 #: src/callback_func.c:420
-#, fuzzy, c-format
+#, c-format
 msgid "User %s didn't consider your offer yet."
-msgstr "Die Besitzer verhandeln gerade dein Angebot."
+msgstr "Der Benutzer %s hat dein Angebot noch nicht angesehen."
 
 #: src/misc2_interface.c:764
 msgid "Users -- click to remove"
@@ -2469,12 +2476,11 @@ msgid "W"
 msgstr "G"
 
 #: src/team.c:1115
-#, fuzzy
 msgid "W  "
 msgstr "G "
 
 #: src/team.c:1029
-#, fuzzy, c-format
+#, c-format
 msgid "W  %d : %d"
 msgstr "G %d : %d"
 
@@ -2800,7 +2806,7 @@ msgstr "Du beginnst das Spiel mit %s in der %s."
 
 #: src/callbacks.c:170 src/callbacks.c:563 src/callbacks.c:580
 msgid "You still have some transfer business to manage."
-msgstr ""
+msgstr "Du hast noch Transferangelegenheiten zu erledigen."
 
 #: src/callback_func.c:595
 #, c-format
@@ -2846,9 +2852,8 @@ msgid "Your offer will be considered next week."
 msgstr "Dein Angebot wird nächste Woche verhandelt."
 
 #: src/misc2_callback_func.c:78
-#, fuzzy
 msgid "Your player roster is full or you don't enough money."
-msgstr "Deine Mannschaft ist voll. Du konntest %s nicht von %s kaufen."
+msgstr "Deine Mannschaft ist voll oder du hast nicht genügend Geld."
 
 #: src/treeview.c:1522
 msgid "Your results"

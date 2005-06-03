@@ -78,7 +78,7 @@ on_menu_quit_activate                  (GtkMenuItem     *menuitem,
     else
     {
 	stat1 = STATUS_QUERY_QUIT;
-	window_show_yesno("The current game state is unsaved and will be lost. Continue?");
+	window_show_yesno(_("The current game state is unsaved and will be lost. Continue?"));
     }
 }
 
@@ -723,7 +723,7 @@ on_menu_show_finances_activate         (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
     stat0 = STATUS_SHOW_FINANCES;
-    game_gui_print_message("Left-click: get loan; Right-click: pay back; Middle click: stadium window.");
+    game_gui_print_message(_("Left-click: get loan; Right-click: pay back; Middle click: stadium window."));
     treeview_show_finances(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")),
 			   &current_user);
 

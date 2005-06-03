@@ -306,7 +306,9 @@ end_week_round_update_fixtures(void)
 			     lig(i).id, -1, "");
     
     for(i=0;i<cps->len;i++)
-	if(cp(i).add_week == 1000 && query_cup_begins(&cp(i)))
+	if(cp(i).add_week == 1000 && 
+	   cp(i).fixtures->len == 0 &&
+	   query_cup_begins(&cp(i)))
 	{
 	    cp(i).last_week = cup_get_last_week_from_first(&cp(i), week + 1);
 	    fixture_write_cup_fixtures(&cp(i));

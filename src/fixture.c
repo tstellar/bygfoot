@@ -1072,7 +1072,7 @@ fixture_from_id(gint id)
 		return &g_array_index(lig(i).fixtures, Fixture, j);
 
     for(i=0;i<cps->len;i++)
-	for(j=0;j<lig(i).fixtures->len;j++)
+	for(j=0;j<cp(i).fixtures->len;j++)
 	    if(g_array_index(cp(i).fixtures, Fixture, j).id == id)
 		return &g_array_index(cp(i).fixtures, Fixture, j);
 

@@ -16,7 +16,7 @@ enum
     TAG_CUP_ADD_WEEK,
     TAG_CUP_PROPERTY,
     TAG_CUP_GROUP,
-    TAG_CUP_SKILL_DIFF,    
+    TAG_CUP_SKILL_DIFF,
     TAG_CUP_CHOOSE_TEAM,
     TAG_CUP_CHOOSE_TEAM_SID,
     TAG_CUP_CHOOSE_TEAM_NUMBER_OF_TEAMS,
@@ -375,8 +375,6 @@ xml_loadsave_cup_write_round(FILE *fil, const gchar *prefix, const Cup *cup, gin
     xml_write_int(fil, cup_round->round_robin_number_of_best_advance,
 		  TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE, I1);
 
-    fprintf(fil, "</_%d>\n", TAG_CUP_ROUND);
-
     for(i=0;i<cup_round->tables->len;i++)
     {
 	sprintf(buf, "%s___cup_%d_round_%02d_table_%02d.xml", basename, cup->id, round, i);
@@ -390,6 +388,8 @@ xml_loadsave_cup_write_round(FILE *fil, const gchar *prefix, const Cup *cup, gin
 	xml_loadsave_cup_write_choose_team(
 	    fil, &g_array_index(cup_round->choose_teams, CupChooseTeam, i));
 
+    fprintf(fil, "</_%d>\n", TAG_CUP_ROUND);
+
     g_free(basename);
 }
 
@@ -397,19 +397,19 @@ xml_loadsave_cup_write_round(FILE *fil, const gchar *prefix, const Cup *cup, gin
 void
 xml_loadsave_cup_write_choose_team(FILE *fil, const CupChooseTeam *choose_team)
 {
-    fprintf(fil, "<_%d>\n", TAG_CUP_CHOOSE_TEAM);
+    fprintf(fil, "%s<_%d>\n", I1, TAG_CUP_CHOOSE_TEAM);
     
-    xml_write_g_string(fil, choose_team->sid, TAG_CUP_CHOOSE_TEAM_SID, I1);
+    xml_write_g_string(fil, choose_team->sid, TAG_CUP_CHOOSE_TEAM_SID, I2);
     xml_write_int(fil, choose_team->number_of_teams, 
-		  TAG_CUP_CHOOSE_TEAM_NUMBER_OF_TEAMS, I1);
+		  TAG_CUP_CHOOSE_TEAM_NUMBER_OF_TEAMS, I2);
     xml_write_int(fil, choose_team->start_idx, 
-		  TAG_CUP_CHOOSE_TEAM_START_IDX, I1);
+		  TAG_CUP_CHOOSE_TEAM_START_IDX, I2);
     xml_write_int(fil, choose_team->end_idx, 
-		  TAG_CUP_CHOOSE_TEAM_END_IDX, I1);
+		  TAG_CUP_CHOOSE_TEAM_END_IDX, I2);
     xml_write_int(fil, choose_team->randomly, 
-		  TAG_CUP_CHOOSE_TEAM_RANDOMLY, I1);
+		  TAG_CUP_CHOOSE_TEAM_RANDOMLY, I2);
     xml_write_int(fil, choose_team->generate, 
-		  TAG_CUP_CHOOSE_TEAM_GENERATE, I1);
+		  TAG_CUP_CHOOSE_TEAM_GENERATE, I2);
 
-    fprintf(fil, "</_%d>\n", TAG_CUP_CHOOSE_TEAM);
+    fprintf(fil, "%s</_%d>\n", I1, TAG_CUP_CHOOSE_TEAM);
 }

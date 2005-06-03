@@ -801,44 +801,47 @@ query_cup_begins(const Cup *cup)
     const CupRound *cup_round = &g_array_index(cup->rounds, CupRound, 0);
 
     for(i=0;i<cup_round->choose_teams->len;i++)
-    {
-	cup_get_choose_team_league_cup(
-	    &g_array_index(cup_round->choose_teams,
-			   CupChooseTeam, i), &league, &cup_temp);
+	if(!g_array_index(cup_round->choose_teams,CupChooseTeam, i).generate)
+	{
+	    
+	    cup_get_choose_team_league_cup(
+		&g_array_index(cup_round->choose_teams,
+			       CupChooseTeam, i), &league, &cup_temp);
 
-	if((cup_temp == NULL && 
-	    g_array_index(league->fixtures, Fixture,
-			  league->fixtures->len - 1).week_number == week &&
-	    g_array_index(league->fixtures, Fixture,
-			  league->fixtures->len - 1).week_round_number == week_round) ||
-	   (league == NULL && 
-	    (cup_temp->fixtures->len > 0 &&
-	     g_array_index(cup_temp->fixtures, Fixture,
-			   cup_temp->fixtures->len - 1).week_number == week &&
-	     g_array_index(cup_temp->fixtures, Fixture,
-			   cup_temp->fixtures->len - 1).week_round_number == week_round)))
-	    proceed = TRUE;
-    }
-
+	    if((cup_temp == NULL && 
+		g_array_index(league->fixtures, Fixture,
+			      league->fixtures->len - 1).week_number == week &&
+		g_array_index(league->fixtures, Fixture,
+			      league->fixtures->len - 1).week_round_number == week_round) ||
+	       (league == NULL && 
+		(cup_temp->fixtures->len > 0 &&
+		 g_array_index(cup_temp->fixtures, Fixture,
+			       cup_temp->fixtures->len - 1).week_number == week &&
+		 g_array_index(cup_temp->fixtures, Fixture,
+			       cup_temp->fixtures->len - 1).week_round_number == week_round)))
+		proceed = TRUE;
+	}
+    
     if(!proceed)
 	return FALSE;
 
     for(i=0;i<cup_round->choose_teams->len;i++)
-    {
-	cup_get_choose_team_league_cup(
-	    &g_array_index(cup_round->choose_teams,
-			   CupChooseTeam, i), &league, &cup_temp);
-	if((cup_temp == NULL &&
-	    g_array_index(league->fixtures, Fixture,
-			  league->fixtures->len - 1).attendance == -1) ||
-	   (league == NULL &&
-	    (cup_temp->fixtures->len > 0 && 
-	     g_array_index(cup_temp->fixtures, Fixture,
-			   cup_temp->fixtures->len - 1).attendance == -1)))
-	    return FALSE;
-    }
+	if(!g_array_index(cup_round->choose_teams,CupChooseTeam, i).generate)
+	{
+	    cup_get_choose_team_league_cup(
+		&g_array_index(cup_round->choose_teams,
+			       CupChooseTeam, i), &league, &cup_temp);
+	    if((cup_temp == NULL &&
+		g_array_index(league->fixtures, Fixture,
+			      league->fixtures->len - 1).attendance == -1) ||
+	       (league == NULL &&
+		(cup_temp->fixtures->len > 0 && 
+		 g_array_index(cup_temp->fixtures, Fixture,
+			       cup_temp->fixtures->len - 1).attendance == -1)))
+		return FALSE;
+	}
 
-    return TRUE;    
+    return TRUE;
 }
 
 /** Return the number of international cups in the country. */

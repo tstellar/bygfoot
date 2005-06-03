@@ -13,7 +13,6 @@
 
 #define query_cup_is_international(clid) query_cup_has_property(clid, "international")
 #define query_cup_is_national(clid) query_cup_has_property(clid, "national")
-#define query_cup_is_supercup(clid) query_cup_has_property(clid, "supercup")
 #define query_cup_hide(clid) query_cup_has_property(clid, "hide")
 
 Cup

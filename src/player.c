@@ -25,7 +25,8 @@ player_new(Team *tm, gfloat average_skill, gboolean new_id)
 		 1 + const_float("float_player_average_skill_variance"));
     Player new;
 
-    new.name = name_get(tm->names_file->str);
+    new.name = (new_id) ? 
+	name_get(tm->names_file->str) : g_string_new("");
 
     new.id = (new_id) ? player_id_new : -1;
     new.pos = player_get_position_from_structure(tm->structure, tm->players->len);
