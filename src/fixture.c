@@ -396,8 +396,8 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round, GPtrArray *teams,
 	/* second half of fixtures */
 	for(i = 0; i < len - 1; i++)
 	{
-	    week_round_number = 
-		fixture_get_free_round(first_week + (len - 1 + i) * week_gap, teams, -1, -1);
+	    week_round_number = (cup_round == -1) ?
+		1 : fixture_get_free_round(first_week + (len - 1 + i) * week_gap, teams, -1, -1);
 
 	    for(j = 0; j < len / 2; j++)
 		fixture_write(fixtures, g_array_index(fixtures, Fixture, first_fixture + i * (len / 2) + j).teams[1],
@@ -439,8 +439,8 @@ fixture_write_round_robin_matchday(GArray *fixtures, gint cup_round, GPtrArray *
     gint i;
     gint len = teams->len / 2;
     gpointer home[len], away[len];
-    gint week_round_number =
-	fixture_get_free_round(week_number, teams, -1, -1);
+    gint week_round_number = (cup_round == -1) ?
+	1 : fixture_get_free_round(week_number, teams, -1, -1);
 
 
     home[0] = g_ptr_array_index(teams, len * 2 - 1);
@@ -582,6 +582,8 @@ fixture_get_free_round(gint week_number, const GPtrArray *teams, gint team_id1, 
     for(i=0;i<ligs->len;i++)
 	for(j=0;j<lig(i).fixtures->len;j++)
 	    if(g_array_index(lig(i).fixtures, Fixture, j).week_number == week_number &&
+	       (stat5 != STATUS_GENERATE_TEAMS ||
+		g_array_index(lig(i).fixtures, Fixture, j).attendance == -1) &&
 	       ((teams == NULL &&
 		(query_fixture_team_involved((&g_array_index(lig(i).fixtures, Fixture, j)), team_id1) ||
 		 query_fixture_team_involved((&g_array_index(lig(i).fixtures, Fixture, j)), team_id2))) || 
@@ -594,6 +596,8 @@ fixture_get_free_round(gint week_number, const GPtrArray *teams, gint team_id1, 
     for(i=0;i<acps->len;i++)
 	for(j=0;j<acp(i)->fixtures->len;j++)
 	    if(g_array_index(acp(i)->fixtures, Fixture, j).week_number == week_number &&
+	       (stat5 != STATUS_GENERATE_TEAMS ||
+		g_array_index(acp(i)->fixtures, Fixture, j).attendance == -1) &&
 	       ((teams == NULL &&
 		(query_fixture_team_involved((&g_array_index(acp(i)->fixtures, Fixture, j)), team_id1) ||
 		 query_fixture_team_involved((&g_array_index(acp(i)->fixtures, Fixture, j)), team_id2))) || 
