@@ -116,11 +116,11 @@ team_generate_players_stadium(Team *tm)
     if(tm->clid < ID_CUP_START)
 	average_skill = 
 	    const_float("float_player_max_skill") * skill_factor *
-	    ((gfloat)team_return_league_cup_value_int(tm, LEAGUE_CUP_VALUE_AVERAGE_SKILL) / 10000);
+	    (((gfloat)league_from_clid(tm->clid)->average_skill) / 10000);
     else
 	average_skill = 
 	    skill_factor * team_get_average_skills(lig(0).teams) *
-	    (1 + (gfloat)team_return_league_cup_value_int(tm, LEAGUE_CUP_VALUE_SKILL_DIFF) / 10000);
+	    (1 + ((gfloat)cup_from_clid(tm->clid)->skill_diff / 10000));
 
     average_skill = CLAMP(average_skill, 0, const_float("float_player_max_skill"));    
 
@@ -140,100 +140,6 @@ team_generate_players_stadium(Team *tm)
     tm->stadium.capacity = 
 	math_round_integer((gint)rint((wages / (gfloat)const_int("int_team_stadium_ticket_price")) *
 				      const_float("float_team_stadium_size_wage_factor")), 2);
-}
-
-/** Return a certain value from the league or cup struct
-    the team belongs to.
-    @param tm The team we examine.
-    @param value_type This tells us which value to return. 
-    @see #LeagueCupValue */
-gint
-team_return_league_cup_value_int(const Team *tm, gint value_type)
-{
-    gint idx = league_cup_get_index_from_clid(tm->clid);
-
-    if(tm->clid >= ID_CUP_START)
-	switch(value_type)
-	{
-	    case LEAGUE_CUP_VALUE_ID:
-		return cp(idx).id;
-	    case LEAGUE_CUP_VALUE_LAST_WEEK:
-		return cp(idx).last_week;
-	    case LEAGUE_CUP_VALUE_WEEK_GAP:
-		return cp(idx).week_gap;
-	    case LEAGUE_CUP_VALUE_YELLOW_RED:
-		return cp(idx).yellow_red;
-	    case LEAGUE_CUP_VALUE_SKILL_DIFF:
-		return cp(idx).skill_diff;
-	    default:
-		g_warning("team_return_league_cup_value_int: unknown value_type for cups: %d\n", 
-			  value_type);
-		return -1;
-	}
-
-    switch(value_type)
-    {
-	case LEAGUE_CUP_VALUE_ID:
-	    return lig(idx).id;
-	case LEAGUE_CUP_VALUE_FIRST_WEEK:
-	    return lig(idx).first_week;
-	case LEAGUE_CUP_VALUE_WEEK_GAP:
-	    return lig(idx).week_gap;
-	case LEAGUE_CUP_VALUE_YELLOW_RED:
-	    return lig(idx).yellow_red;
-	case LEAGUE_CUP_VALUE_AVERAGE_SKILL:
-	    return lig(idx).average_skill;
-	default:
-	    g_warning("team_return_league_cup_value_int: unknown value_type for leagues: %d\n",
-		      value_type);
-	    return -1;
-    }
-
-    return -1;
-}
-
-/** Print name or short name or such of the team's league or cup
-    into a string.
-    @param tm The pointer to the team.
-    @param value_type Determines which value we want; @see #LeagueCupValue
-    @param buf The buffer we print the string into. */
-void
-team_get_league_cup_string(const Team *tm, gint value_type, gchar *buf)
-{
-    gint idx = league_cup_get_index_from_clid(tm->clid);
-
-    if(tm->clid < ID_CUP_START)
-	switch(value_type)
-	{
-	    default:
-		sprintf(buf, "%s", lig(idx).name->str);
-		break;
-	    case LEAGUE_CUP_VALUE_SHORT_NAME:
-		sprintf(buf, "%s", lig(idx).short_name->str);
-		break;
-	    case LEAGUE_CUP_VALUE_SID:
-		sprintf(buf, "%s", lig(idx).sid->str);
-		break;
-	    case LEAGUE_CUP_VALUE_SYMBOL:
-		sprintf(buf, "%s", lig(idx).symbol->str);
-		break;
-	}
-    else
-	switch(value_type)
-	{
-	    default:
-		sprintf(buf, "%s", cp(idx).name->str);
-		break;
-	    case LEAGUE_CUP_VALUE_SHORT_NAME:
-		sprintf(buf, "%s", cp(idx).short_name->str);
-		break;
-	    case LEAGUE_CUP_VALUE_SID:
-		sprintf(buf, "%s", cp(idx).sid->str);
-		break;
-	    case LEAGUE_CUP_VALUE_SYMBOL:
-		sprintf(buf, "%s", cp(idx).symbol->str);
-		break;
-	}
 }
 
 /** Check whether the team is already part of an
@@ -341,8 +247,7 @@ Fixture*
 team_get_fixture(const Team *tm, gboolean last_fixture)
 {
     gint i, j;
-    Fixture *next_fix = NULL,
-	*last_fix = NULL;    
+    Fixture *fix = NULL;
 
     if(!last_fixture && 
        (stat0 == STATUS_LIVE_GAME_PAUSE ||
@@ -351,46 +256,84 @@ team_get_fixture(const Team *tm, gboolean last_fixture)
 	tm == ((LiveGame*)statp)->fix->teams[1]))
 	return ((LiveGame*)statp)->fix;
     
-    for(i=0;i<ligs->len;i++)
+    if(!last_fixture)
     {
-	if(lig(i).id == tm->clid)
+	for(i=0;i<ligs->len;i++)
 	{
-	    for(j=0;j<lig(i).fixtures->len;j++)
-		if(query_fixture_team_involved((&g_array_index(lig(i).fixtures, Fixture, j)), tm->id))
-		{
+	    if(lig(i).id == tm->clid)
+	    {
+		for(j=0;j<lig(i).fixtures->len;j++)
 		    if(g_array_index(lig(i).fixtures, Fixture, j).attendance == -1 &&
-		       (next_fix == NULL ||
-			query_fixture_is_earlier(&g_array_index(lig(i).fixtures, Fixture, j), next_fix)))
-			next_fix = &g_array_index(lig(i).fixtures, Fixture, j);
-		    else if(g_array_index(lig(i).fixtures, Fixture, j).attendance != -1 &&
-			    (last_fix == NULL ||
-			     query_fixture_is_later(&g_array_index(lig(i).fixtures, Fixture, j), last_fix)))
-			last_fix = &g_array_index(lig(i).fixtures, Fixture, j);
-		}
-	}
-    }
+		       query_fixture_team_involved((&g_array_index(lig(i).fixtures, Fixture, j)), tm->id))
+		    {
+			fix = &g_array_index(lig(i).fixtures, Fixture, j);
+			break;
+		    }
 
-    for(i=0;i<acps->len;i++)
-    {
-	if(query_cup_is_national(acp(i)->id) ||
-	   query_team_is_in_cup(tm, acp(i)))
-	{
-	    for(j=0;j<acp(i)->fixtures->len;j++)
-		if(query_fixture_team_involved((&g_array_index(acp(i)->fixtures, Fixture, j)), tm->id))
+		break;
+	    }
+	}
+
+	for(i=0;i<acps->len;i++)
+	    if(fix == NULL ||
+	       fix->week_number != week ||
+	       fix->week_round_number != week_round)
+	    {
+		if(query_cup_is_national(acp(i)->id) ||
+		   query_team_is_in_cup(tm, acp(i)))
 		{
-		    if(g_array_index(acp(i)->fixtures, Fixture, j).attendance == -1 &&
-		       (next_fix == NULL ||
-			query_fixture_is_earlier(&g_array_index(acp(i)->fixtures, Fixture, j), next_fix)))
-			next_fix = &g_array_index(acp(i)->fixtures, Fixture, j);
-		    else if(g_array_index(acp(i)->fixtures, Fixture, j).attendance != -1 &&
-			    (last_fix == NULL ||
-			     query_fixture_is_later(&g_array_index(acp(i)->fixtures, Fixture, j), last_fix)))
-			last_fix = &g_array_index(acp(i)->fixtures, Fixture, j);
+		    for(j=0;j<acp(i)->fixtures->len;j++)
+			if(g_array_index(acp(i)->fixtures, Fixture, j).attendance == -1 &&
+			   query_fixture_team_involved((&g_array_index(acp(i)->fixtures, Fixture, j)), tm->id) &&
+			   (fix == NULL ||
+			    query_fixture_is_earlier(&g_array_index(acp(i)->fixtures, Fixture, j), fix)))
+			{
+			    fix = &g_array_index(acp(i)->fixtures, Fixture, j);
+			    break;
+			}
 		}
+	    }
+    }
+    else
+    {
+	for(i=0;i<ligs->len;i++)
+	{
+	    if(lig(i).id == tm->clid)
+	    {
+		for(j=lig(i).fixtures->len - 1;j>=0;j--)
+		    if(g_array_index(lig(i).fixtures, Fixture, j).attendance != -1 &&
+		       query_fixture_team_involved((&g_array_index(lig(i).fixtures, Fixture, j)), tm->id))
+		    {
+			fix = &g_array_index(lig(i).fixtures, Fixture, j);
+			break;
+		    }
+		
+		break;
+	    }
 	}
+
+	for(i=0;i<acps->len;i++)
+	    if(fix == NULL ||
+	       fix->week_number != week ||
+	       fix->week_round_number != week_round - 1)
+	    {
+		if(query_cup_is_national(acp(i)->id) ||
+		   query_team_is_in_cup(tm, acp(i)))
+		{
+		    for(j=acp(i)->fixtures->len - 1;j>=0;j--)
+			if(g_array_index(acp(i)->fixtures, Fixture, j).attendance != -1 &&
+			   query_fixture_team_involved((&g_array_index(acp(i)->fixtures, Fixture, j)), tm->id) &&
+			   (fix == NULL ||
+			    query_fixture_is_later(&g_array_index(acp(i)->fixtures, Fixture, j), fix)))
+			{
+			    fix = &g_array_index(acp(i)->fixtures, Fixture, j);
+			    break;
+			}
+		}
+	    }
     }
 
-    return (last_fixture) ? last_fix : next_fix;
+    return fix;
 }
 
 /** Check whether the team is a user-managed team.
@@ -504,7 +447,8 @@ team_change_structure(Team *tm, gint new_structure)
 	    player_get_position_from_structure(new_structure, i);
 
 	player_of_idx_team(tm, i)->cskill =
-	    player_get_cskill(player_of_idx_team(tm, i), player_of_idx_team(tm, i)->cpos);
+	    player_get_cskill(player_of_idx_team(tm, i), 
+			      player_of_idx_team(tm, i)->cpos, FALSE);
     }
 }
 
@@ -525,7 +469,8 @@ team_rearrange(Team *tm)
 	    player_get_position_from_structure(tm->structure, i) : player_of_idx_team(tm, i)->pos;
 	if(player_of_idx_team(tm, i)->cskill > 0)
 	    player_of_idx_team(tm, i)->cskill = (i < 11) ?
-		player_get_cskill(player_of_idx_team(tm, i), player_of_idx_team(tm, i)->cpos) : player_of_idx_team(tm, i)->skill;
+		player_get_cskill(player_of_idx_team(tm, i), 
+				  player_of_idx_team(tm, i)->cpos, TRUE) : player_of_idx_team(tm, i)->skill;
     }
 }
 
@@ -616,7 +561,7 @@ team_update_cpu_corrections(Team *tm, gboolean reset_fitness)
 	if(pl->cskill == 0)
 	{
 	    pl->health = pl->recovery = 0;
-	    pl->cskill = player_get_cskill(pl, pl->cpos);
+	    pl->cskill = player_get_cskill(pl, pl->cpos, FALSE);
 
 	    pl->fitness = math_rnd(const_float("float_player_fitness_lower"),
 				   const_float("float_player_fitness_upper"));
@@ -625,7 +570,7 @@ team_update_cpu_corrections(Team *tm, gboolean reset_fitness)
 	if(pl->pos != pl->cpos)
 	{
 	    pl->pos = pl->cpos;
-	    pl->cskill = player_get_cskill(pl, pl->cpos);
+	    pl->cskill = player_get_cskill(pl, pl->cpos, FALSE);
 	}
 
 	if(reset_fitness)

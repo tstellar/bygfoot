@@ -59,7 +59,7 @@ void
 player_swap(Team *tm1, gint player_number1, Team *tm2, gint player_number2);
 
 gfloat
-player_get_cskill(const Player *pl, gint position);
+player_get_cskill(const Player *pl, gint position, gboolean check_health);
 
 gint
 player_is_banned(const Player *pl);
@@ -121,8 +121,8 @@ player_copy(Player *pl, Team *tm, gint insert_at);
 gchar*
 player_injury_to_char(gint injury_type);
 
-Team*
-player_id_team(gint player_id);
+gboolean
+query_player_id_in_team(gint player_id, const Team *tm);
 
 void
 player_season_start(Player *pl, gfloat skill_change);

@@ -45,12 +45,6 @@ query_is_my_team(const Team *tm);
 void
 team_generate_players_stadium(Team *tm);
 
-gint
-team_return_league_cup_value_int(const Team *tm, gint value_type);
-
-void
-team_get_league_cup_string(const Team *tm, gint value_type, gchar *buf);
-
 gboolean
 query_team_is_in_international_cups(const Team *tm, gint group);
 

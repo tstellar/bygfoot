@@ -725,7 +725,8 @@ game_substitute_player_send_off(gint clid, Team *tm, gint player_number,
 
     substitutes = g_ptr_array_new();
     for(i=11;i<tm->players->len;i++)
-	g_ptr_array_add(substitutes, player_of_idx_team(tm, i));
+	if(g_array_index(tm->players, Player, i).cskill > 0)
+	    g_ptr_array_add(substitutes, player_of_idx_team(tm, i));
 
     if(num_forw == 0 && MAX(num_def, num_mid) > 2)
 	position = PLAYER_POS_FORWARD;

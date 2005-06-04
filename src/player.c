@@ -250,29 +250,17 @@ player_of_id_team(const Team *tm, gint id)
     return NULL;
 }
 
-/** Return the team the player with specified id is in. */
-Team*
-player_id_team(gint player_id)
+/** Find out whether the given player id is in the team. */
+gboolean
+query_player_id_in_team(gint player_id, const Team *tm)
 {
-    gint i, j, k;
+    gint i;
 
-    for(i=0;i<ligs->len;i++)
-	for(j=0;j<lig(i).teams->len;j++)
-	    for(k=0;k<g_array_index(lig(i).teams, Team, j).players->len;k++)
-		if(g_array_index(g_array_index(lig(i).teams, Team, j).players,
-				 Player, k).id == player_id)
-		    return &g_array_index(lig(i).teams, Team, j);
+    for(i=0;i<tm->players->len;i++)
+	if(g_array_index(tm->players, Player, i).id == player_id)
+	    return TRUE;
 
-    for(i=0;i<cps->len;i++)
-	for(j=0;j<cp(i).teams->len;j++)
-	    for(k=0;k<((Team*)g_ptr_array_index(cp(i).teams, j))->players->len;k++)
-		if(g_array_index(((Team*)g_ptr_array_index(cp(i).teams, j))->players,
-				 Player, k).id == player_id)
-		    return (Team*)g_ptr_array_index(cp(i).teams, j);
-
-    g_warning("player_id_team: player with id %d not found.\n", player_id);
-
-    return NULL;
+    return FALSE;
 }
 
 
@@ -385,9 +373,9 @@ player_compare_substitute_func(gconstpointer a, gconstpointer b, gpointer data)
     const Player *pl1 = *(const Player**)a;
     const Player *pl2 = *(const Player**)b;
     gint position = GPOINTER_TO_INT(data);
-    gfloat skill_for_pos1 = player_get_cskill(pl1, position) * 
+    gfloat skill_for_pos1 = player_get_cskill(pl1, position, FALSE) * 
 	powf(pl1->fitness, const_float("float_player_fitness_exponent")),
-	skill_for_pos2 = player_get_cskill(pl2, position) * 
+	skill_for_pos2 = player_get_cskill(pl2, position, FALSE) * 
 	powf(pl2->fitness, const_float("float_player_fitness_exponent"));
     gfloat game_skill1 = player_get_game_skill(pl1, FALSE),
 	game_skill2 = player_get_game_skill(pl2, FALSE);
@@ -472,7 +460,7 @@ player_copy(Player *pl, Team *tm, gint insert_at)
 
     player_of_idx_team(tm, insert_at)->cskill =
 	player_get_cskill(player_of_idx_team(tm, insert_at), 
-			  player_of_idx_team(tm, insert_at)->cpos);
+			  player_of_idx_team(tm, insert_at)->cpos, TRUE);
 }
 
 /** Move a player from one player array to another one.
@@ -519,7 +507,8 @@ player_swap(Team *tm1, gint player_number1, Team *tm2, gint player_number2)
 	player_of_idx_team(tm2, player_number2)->cpos = player_of_idx_team(tm2, player_number2)->pos;
 
     player_of_idx_team(tm2, player_number2)->cskill =
-	player_get_cskill(player_of_idx_team(tm2, player_number2), player_of_idx_team(tm2, player_number2)->cpos);
+	player_get_cskill(player_of_idx_team(tm2, player_number2), 
+			  player_of_idx_team(tm2, player_number2)->cpos, TRUE);
 
     player_move(tm2, player_number2 + move,
 		tm1, player_number1);    
@@ -530,21 +519,24 @@ player_swap(Team *tm1, gint player_number1, Team *tm2, gint player_number2)
 	player_of_idx_team(tm1, player_number1)->cpos = player_of_idx_team(tm1, player_number1)->pos;
 
     player_of_idx_team(tm1, player_number1)->cskill =
-	player_get_cskill(player_of_idx_team(tm1, player_number1), player_of_idx_team(tm1, player_number1)->cpos);
+	player_get_cskill(player_of_idx_team(tm1, player_number1), 
+			  player_of_idx_team(tm1, player_number1)->cpos, TRUE);
 }
 
 /** Return the player's cskill depending on
     whether he's on his normal position or not.
     @param pl The player we examine.
     @param position The position we's like to put the player.
+    @param check_health Whether to check for injury and ban (profiling reasons).
     @return A new cskill. */
 gfloat
-player_get_cskill(const Player *pl, gint position)
+player_get_cskill(const Player *pl, gint position, gboolean check_health)
 {
     gfloat cskill_factor;
 
-    if(pl->health != PLAYER_INJURY_NONE ||
-       player_is_banned(pl) > 0)
+    if(check_health &&
+       (pl->health != PLAYER_INJURY_NONE ||
+	player_is_banned(pl) > 0))
 	return 0;
 
     if(pl->pos != position)
@@ -888,7 +880,7 @@ player_update_skill(Player *pl)
 	pl->skill += math_rnd(increase_decrease[3][0], increase_decrease[3][1]);
 
     pl->skill = CLAMP(pl->skill, 0, pl->talent);
-    pl->cskill = player_get_cskill(pl, pl->cpos);
+    pl->cskill = player_get_cskill(pl, pl->cpos, TRUE);
     pl->value = player_assign_value(pl);
 
     for(i=0;i<QUALITY_END;i++)
@@ -1054,7 +1046,7 @@ player_update_week_roundly(Team *tm, gint idx)
 	player_update_fitness(pl);
     		
     pl->cskill = (pl->health > 0 || player_is_banned(pl) > 0) ?
-	0 : player_get_cskill(pl, pl->cpos);    
+	0 : player_get_cskill(pl, pl->cpos, TRUE);    
 }
 
 /** Return injury descriptions.  */
@@ -1133,7 +1125,7 @@ player_season_start(Player *pl, gfloat skill_change)
 	pl->skill *= (1 + skill_change);
 
 	pl->skill = CLAMP(pl->skill, 0, pl->talent);
-	pl->cskill = player_get_cskill(pl, pl->cpos);
+	pl->cskill = player_get_cskill(pl, pl->cpos, TRUE);
 	pl->value = player_assign_value(pl);
 
 	for(i=0;i<QUALITY_END;i++)

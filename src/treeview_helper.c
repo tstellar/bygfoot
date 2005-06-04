@@ -934,7 +934,7 @@ treeview_helper_player_to_cell(GtkTreeViewColumn *col,
 	    sprintf(buf, "%s", pl->team->name->str);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_LEAGUE_CUP:
-	    team_get_league_cup_string(pl->team, LEAGUE_CUP_VALUE_NAME, buf);
+	    strcpy(buf, league_cup_get_name_string(pl->team->clid));
 	    break;
     }
 

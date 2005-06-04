@@ -526,15 +526,15 @@ live_game_event_scoring_chance(void)
     {
 	if(uni(unis->len - 2).event.player != -1 &&
 	   math_rnd(0, 1) < const_float("float_live_game_player_in_poss_shoots") &&
-	   player_id_team(uni(unis->len - 2).event.player) ==
-	   tm[last_unit.possession])
+	   query_player_id_in_team(uni(unis->len - 2).event.player,
+			     tm[last_unit.possession]))
 	    last_unit.event.player =
 		uni(unis->len - 2).event.player;
 	else
 	{
 	    if(uni(unis->len - 2).event.player != -1 &&
-	       player_id_team(uni(unis->len - 2).event.player) ==
-	       tm[last_unit.possession])
+	       query_player_id_in_team(uni(unis->len - 2).event.player,
+				 tm[last_unit.possession]))
 	    {
 		last_unit.event.player =
 		    game_get_player(tm[last_unit.possession], last_unit.area, 0, 
@@ -739,7 +739,7 @@ live_game_event_general_get_players(void)
     }
     else
     {
-	*pl2 = (player_id_team(old_pl1) == tm[last_unit.possession]) ? old_pl1 : -1;
+	*pl2 = query_player_id_in_team(old_pl1, tm[last_unit.possession]) ? old_pl1 : -1;
 	*pl1 = game_get_player(tm[last_unit.possession],
 			       last_unit.area, 0, *pl2, TRUE);
     }
