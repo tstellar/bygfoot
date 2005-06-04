@@ -157,6 +157,9 @@ end_week_round(void)
     gboolean new_week = TRUE;
     WeekFunc *end_func = end_week_round_funcs;
 
+    if(debug > 100)
+	printf("End w %d r %d \n", week, week_round);
+
     while(*end_func != NULL)
     {
 	(*end_func)();
@@ -212,24 +215,23 @@ end_week_round_results(void)
 	(gfloat)fixture_get_number_of_matches(week, week_round);
     
     for(i=0;i<ligs->len;i++)
-	if(week_round == 1)
-	{
-	    for(j=0;j<lig(i).fixtures->len;j++)
-		if(g_array_index(lig(i).fixtures, Fixture, j).week_number == week &&
-		   g_array_index(lig(i).fixtures, Fixture, j).week_round_number == week_round &&
-		   g_array_index(lig(i).fixtures, Fixture, j).attendance == -1)
-		{
-		    live_game_calculate_fixture(&g_array_index(lig(i).fixtures, Fixture, j));
+	for(j=0;j<lig(i).fixtures->len;j++)
+	    if(g_array_index(lig(i).fixtures, Fixture, j).week_number == week &&
+	       g_array_index(lig(i).fixtures, Fixture, j).week_round_number == week_round &&
+	       g_array_index(lig(i).fixtures, Fixture, j).attendance == -1)
+	    {
+		live_game_calculate_fixture(&g_array_index(lig(i).fixtures, Fixture, j));
 
-		    done++;
-		    fixture_result_to_buf(&g_array_index(lig(i).fixtures, Fixture, j), buf);
-		    sprintf(buf2, "%s %s %s",
-			    g_array_index(lig(i).fixtures, Fixture, j).teams[0]->name->str,
-			    buf,
-			    g_array_index(lig(i).fixtures, Fixture, j).teams[1]->name->str);
-		    gui_show_progress((gfloat)done / num_matches, buf2);
-		}
-	}
+		done++;
+		fixture_result_to_buf(&g_array_index(lig(i).fixtures, Fixture, j), buf);
+		sprintf(buf2, "%s %s %s",
+			g_array_index(lig(i).fixtures, Fixture, j).teams[0]->name->str,
+			buf,
+			g_array_index(lig(i).fixtures, Fixture, j).teams[1]->name->str);
+		gui_show_progress((gfloat)done / num_matches, buf2);
+		if(debug > 120)
+		    printf("%s \n", buf2);
+	    }
 
     for(i=0;i<acps->len;i++)
 	for(j=0;j<acp(i)->fixtures->len;j++)
@@ -247,6 +249,8 @@ end_week_round_results(void)
 			buf,
 			g_array_index(acp(i)->fixtures, Fixture, j).teams[1]->name->str);
 		gui_show_progress((gfloat)done / num_matches, buf2);
+		if(debug > 120)
+		    printf("%s \n", buf2);
 	    }
 	}
 
@@ -322,6 +326,9 @@ start_week_round(void)
 {
     WeekFunc *start_func = start_week_round_funcs;
 
+    if(debug > 100)
+	printf("Start w %d r %d \n", week, week_round);
+
     while(*start_func != NULL)
     {
 	(*start_func)();
@@ -370,7 +377,7 @@ end_week(void)
 	end_func++;
     }
 
-    if(debug > 60)
+    if(debug > 150)
 	stat_show_av_league_goals();
 }
 

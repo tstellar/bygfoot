@@ -568,10 +568,12 @@ fixture_write(GArray *fixtures, Team *home_team, Team *away_team, gint week_numb
 }
 
 /** Return the round of the week which doesn't contain
-    any matches yet except for matches of the cup with the given
-    id.
+    any matches yet featuring teams from the team list or
+    with the given ids.
     @param week_number The week we examine.
-    @param clid The id of the cup we search a free round for.
+    @param teams The participating in the round or NULL.
+    @param team_id1, team_id1 Ids of the teams (if the team list is NULL) playing
+    against each other.
     @return A round number. If the clid belongs to a league this is always 1. */
 gint
 fixture_get_free_round(gint week_number, const GPtrArray *teams, gint team_id1, gint team_id2)

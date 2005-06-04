@@ -238,7 +238,11 @@ game_initialize(Fixture *fix)
     gint user_idx[2] = {team_is_user(fix->teams[0]), team_is_user(fix->teams[1])};
     gint ticket_income = 0;
 
-    game_assign_attendance(fix);
+    if(fix->home_advantage)
+	game_assign_attendance(fix);
+    else
+	game_assign_attendance_neutral(fix);
+
     ticket_income = 
 	fix->attendance * const_int("int_team_stadium_ticket_price");
 
@@ -334,6 +338,21 @@ game_assign_attendance(Fixture *fix)
 		   (gfloat)(tm[0]->stadium.games + 1));
     tm[0]->stadium.possible_attendance += tm[0]->stadium.capacity;
     tm[0]->stadium.games++;
+}
+
+/** Assign attendance for a match on neutral ground. */
+void
+game_assign_attendance_neutral(Fixture *fix)
+{
+    const GPtrArray *teamsp = 
+	(GPtrArray*)league_cup_get_teams(fix->clid);
+    gfloat av_att = (query_cup_is_international(fix->clid) && teamsp->len > 0) ?
+	(gfloat)league_cup_average_capacity(fix->clid) :
+	(gfloat)league_cup_average_capacity(lig(0).id);
+
+    fix->attendance = (gint)rint(av_att * 
+				 math_rnd(const_float("float_game_stadium_attendance_neutral_lower"),
+					  const_float("float_game_stadium_attendance_neutral_upper")));
 }
 
 /** Save the team states in the current live game

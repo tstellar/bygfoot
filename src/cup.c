@@ -204,11 +204,12 @@ cup_get_team_pointers(Cup *cup, gint round)
 
     for(i=0;i<cup_round->teams->len;i++)
     {
-	team_generate_players_stadium(&g_array_index(cup_round->teams, Team, i));
-	g_ptr_array_add(cup->teams, &g_array_index(cup_round->teams, Team, i));
-
 	if(teams->len < cup_round->new_teams)
+	{
+	    team_generate_players_stadium(&g_array_index(cup_round->teams, Team, i));
+	    g_ptr_array_add(cup->teams, &g_array_index(cup_round->teams, Team, i));	    
 	    g_ptr_array_add(teams, &g_array_index(cup_round->teams, Team, i));
+	}
     }
 
     if(debug > 70)

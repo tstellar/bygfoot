@@ -118,6 +118,13 @@ float_game_stadium_attendance_safety_exponent 5000
 # the average stadium size in the league
 float_game_stadium_attendance_average_exceed_factor 20000
 
+# upper and lower percentages for attendance on neutral
+# ground (compared to the average capacity of cup teams
+# in international cups and average capacity of league 1
+# teams in national cups)
+float_game_stadium_attendance_neutral_lower 9000
+float_game_stadium_attendance_neutral_upper 14500
+
 # reduce (in percentage) of capacity for different
 # stadium events
 float_game_stadium_safety_reduce_breakdown_lower 300

@@ -1026,7 +1026,8 @@ player_replace_by_new(Player *pl, gboolean free_player)
     Team *tm = pl->team;
     gint idx = player_id_index(tm, pl->id);
     Player new = player_new(tm, team_get_average_skill(tm, FALSE), FALSE);
-    
+        
+    new.name = name_get(pl->team->names_file->str);
     new.pos = pl->pos;
     new.cpos = pl->cpos;
     new.id = pl->id;

@@ -80,6 +80,9 @@ void
 game_assign_attendance(Fixture *fix);
 
 void
+game_assign_attendance_neutral(Fixture *fix);
+
+void
 game_stadium_event(Stadium *stadium, gint type);
 
 void
