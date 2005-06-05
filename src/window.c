@@ -4,6 +4,8 @@
 #include "game_gui.h"
 #include "gui.h"
 #include "interface.h"
+#include "league.h"
+#include "live_game.h"
 #include "main.h"
 #include "misc_interface.h"
 #include "misc2_interface.h"
@@ -314,7 +316,7 @@ window_create(gint window_type)
 		popups_active++;
 		window.live = create_window_live();
 	    }
-	    strcpy(buf, "Bygfoot Live game");
+	    strcpy(buf, league_cup_get_name_string(((LiveGame*)statp)->fix->clid));
 	    wind = window.live;
 	    window_live_set_spinbuttons();
 	    break;

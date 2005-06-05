@@ -2,6 +2,7 @@
 #define LEAGUE_H
 
 #include "bygfoot.h"
+#include "cup.h"
 #include "league_struct.h"
 #include "fixture_struct.h"
 

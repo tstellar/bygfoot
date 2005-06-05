@@ -1,5 +1,3 @@
-#include <unistd.h>
-
 #include "callbacks.h"
 #include "file.h"
 #include "game_gui.h"

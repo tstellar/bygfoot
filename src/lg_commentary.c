@@ -93,6 +93,85 @@ lg_commentary_get_commentaries(gint event_type)
 	    default:
 		g_warning("lg_commentary_get_commentaries: unknown event type %d. \n", event_type);
 		break;
+	    case LIVE_GAME_EVENT_GENERAL:
+		g_ptr_array_add(commentaries, g_string_new(_("P2 feeds the ball through to P1")));
+		g_ptr_array_add(commentaries, g_string_new(_("P2 threads a great ball to P1 ")));
+		g_ptr_array_add(commentaries, g_string_new(_("Lovely pass from P2 releases P1")));
+		g_ptr_array_add(commentaries, g_string_new(_("Long floating pass from P2 finds P1")));
+		g_ptr_array_add(commentaries, g_string_new(_("Good passing move across the pitch and down the right")));
+		g_ptr_array_add(commentaries, g_string_new(_("Quick passing move down the left")));
+		g_ptr_array_add(commentaries, g_string_new(_("P2 cross controlled by P1 who slips past his man")));
+		g_ptr_array_add(commentaries, g_string_new(_("Another decent move down the wing")));
+		g_ptr_array_add(commentaries, g_string_new(_("P1 latches onto P2's pass")));
+		g_ptr_array_add(commentaries, g_string_new(_("P2 needles ball through players and finds P1")));
+		g_ptr_array_add(commentaries, g_string_new(_("P2 controls it with his chest and passes to P1")));
+		g_ptr_array_add(commentaries, g_string_new(_("P2 heads the ball towards P1")));
+		g_ptr_array_add(commentaries, g_string_new(_("P1 twisting and turning again")));
+		g_ptr_array_add(commentaries, g_string_new(_("P1 rips through the midfield")));
+		g_ptr_array_add(commentaries, g_string_new(_("P1 spins past his marker")));
+		break;
+	    case LIVE_GAME_EVENT_LOST_POSSESSION:
+		g_ptr_array_add(commentaries, g_string_new(_("P1 wins the ball with a perfectly timed challenge")));
+		g_ptr_array_add(commentaries, g_string_new(_("Bad control by P2 lets P1 steal the ball off him")));
+		g_ptr_array_add(commentaries, g_string_new(_("P1 takes the ball away from P2 with a sliding tackle")));
+		g_ptr_array_add(commentaries, g_string_new(_("Loose ball falls to P1")));
+		break;
+	    case LIVE_GAME_EVENT_FOUL:
+		g_ptr_array_add(commentaries, g_string_new(_("Oww, nasty tackle on P1")));
+		g_ptr_array_add(commentaries, g_string_new(_("Surely that's a sending off offence")));
+		g_ptr_array_add(commentaries, g_string_new(_("P2 knocks over P1 with a double footed lunge")));
+		g_ptr_array_add(commentaries, g_string_new(_("Crunching challenge on P1")));
+		g_ptr_array_add(commentaries, g_string_new(_("P1 gets his legs taken away from him by P2")));
+		g_ptr_array_add(commentaries, g_string_new(_("Slicing challenge by P2 on P1")));
+		g_ptr_array_add(commentaries, g_string_new(_("Vicious tackle from P2 leaves P1 lying on the floor in agony")));
+		g_ptr_array_add(commentaries, g_string_new(_("Ouch that's got to hurt")));
+		g_ptr_array_add(commentaries, g_string_new(_("Extremely high boot from P2 sends P1 to the ground")));
+		break;
+	    case LIVE_GAME_EVENT_SCORING_CHANCE:
+		g_ptr_array_add(commentaries, g_string_new(_("P1 charges towards goal and shoots!")));
+		g_ptr_array_add(commentaries, g_string_new(_("P1 spins and shoots")));
+		g_ptr_array_add(commentaries, g_string_new(_("Long ball from P2 finds P1 at far post")));
+		g_ptr_array_add(commentaries, g_string_new(_("P1 can't quite get it under control but his miss kick heads toward goal")));
+		g_ptr_array_add(commentaries, g_string_new(_("P1 shoots from 22 yards looks like it's going wide")));
+		g_ptr_array_add(commentaries, g_string_new(_("P1 dribbles into the box, turns inside the defence and fires")));
+		g_ptr_array_add(commentaries, g_string_new(_("P1 cuts in from the left flank and shoots")));
+		g_ptr_array_add(commentaries, g_string_new(_("P1 tries his luck from 30 yards")));
+		g_ptr_array_add(commentaries, g_string_new(_("P1 arrows shot towards top left corner")));
+		g_ptr_array_add(commentaries, g_string_new(_("P1 shoots from close range")));
+		g_ptr_array_add(commentaries, g_string_new(_("Great ball from P2 sends P1 one on one with the goalkeeper")));
+		g_ptr_array_add(commentaries, g_string_new(_("P1's overhead kick heads towards the top right hand corner")));
+		g_ptr_array_add(commentaries, g_string_new(_("P1 spins past two defenders, wrong foots the keeper and back heels the ball towards goal")));
+		g_ptr_array_add(commentaries, g_string_new(_("P2 lays the ball off to P1 who sends a rocket of a shot towards goal")));
+		break;
+	    case LIVE_GAME_EVENT_GOAL:
+		g_ptr_array_add(commentaries, g_string_new(_("Goal!!!")));
+		g_ptr_array_add(commentaries, g_string_new(_("And the ball is smacked into the back of the net!!!")));
+		g_ptr_array_add(commentaries, g_string_new(_("P1 scores!!!")));
+		g_ptr_array_add(commentaries, g_string_new(_("And the ball flies straight past P2 and into the back of the net!!!")));
+		g_ptr_array_add(commentaries, g_string_new(_("The ball flies past P2 and it's a goal!!!")));
+		g_ptr_array_add(commentaries, g_string_new(_("P1 wheels away in celebration after a great goal sent the fans wild")));
+		g_ptr_array_add(commentaries, g_string_new(_("P2's despairing dive can't keep P1's shot out and the ball is in the back of the net!!!")));
+		g_ptr_array_add(commentaries, g_string_new(_("The dance ignites the fans, P1 celebrates in his own special fashion")));
+		break;
+	    case LIVE_GAME_EVENT_MISSED:
+		g_ptr_array_add(commentaries, g_string_new(_("P1 fired wide!")));
+		g_ptr_array_add(commentaries, g_string_new(_("P1 should have squared the ball went alone and lashed wide")));
+		g_ptr_array_add(commentaries, g_string_new(_("Defender clears")));
+		g_ptr_array_add(commentaries, g_string_new(_("P1 curls ball over")));
+		g_ptr_array_add(commentaries, g_string_new(_("Defender back to block just as it seemed to open up")));
+		g_ptr_array_add(commentaries, g_string_new(_("P1 smacks into row Z")));
+		g_ptr_array_add(commentaries, g_string_new(_("And the shot creeps just past the post")));
+		break;
+	    case LIVE_GAME_EVENT_SAVE:
+		g_ptr_array_add(commentaries, g_string_new(_("P2's fingertips flicks it wide")));
+		g_ptr_array_add(commentaries, g_string_new(_("P2 forced to tip P1's shot over the crossbar")));
+		g_ptr_array_add(commentaries, g_string_new(_("Great pace shown by P1 to get to the ball first but P2 produced superb block tackle")));
+		g_ptr_array_add(commentaries, g_string_new(_("Low shot taken well to his left by P2")));
+		g_ptr_array_add(commentaries, g_string_new(_("P2 makes a superb reflex save to tip wide")));
+		g_ptr_array_add(commentaries, g_string_new(_("P2 runs at P1 and blocks shot with ankle")));
+		g_ptr_array_add(commentaries, g_string_new(_("Easy save for the goalkeeper")));
+		g_ptr_array_add(commentaries, g_string_new(_("Caught well by P2")));
+		break;
 	    case LIVE_GAME_EVENT_START_MATCH:
 		g_ptr_array_add(commentaries, g_string_new(_("It's a crowd of AT here as the whistle blows")));
 		g_ptr_array_add(commentaries, g_string_new(_("We're under way")));
@@ -135,55 +214,6 @@ lg_commentary_get_commentaries(gint event_type)
 		g_ptr_array_add(commentaries, g_string_new(_("Well that's that. It ends RE")));
 		g_ptr_array_add(commentaries, g_string_new(_("RE, what an astonishing result for TW")));
 		break;
-	    case LIVE_GAME_EVENT_GENERAL:
-		g_ptr_array_add(commentaries, g_string_new(_("P2 feeds the ball through to P1")));
-		g_ptr_array_add(commentaries, g_string_new(_("P2 threads a great ball to P1 ")));
-		g_ptr_array_add(commentaries, g_string_new(_("Lovely pass from P2 releases P1")));
-		g_ptr_array_add(commentaries, g_string_new(_("Long floating pass from P2 finds P1")));
-		g_ptr_array_add(commentaries, g_string_new(_("Good passing move across the pitch and down the right")));
-		g_ptr_array_add(commentaries, g_string_new(_("Quick passing move down the left")));
-		g_ptr_array_add(commentaries, g_string_new(_("P2 cross controlled by P1 who slips past his man")));
-		g_ptr_array_add(commentaries, g_string_new(_("Another decent move down the wing")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1 latches onto P2's pass")));
-		g_ptr_array_add(commentaries, g_string_new(_("P2 needles ball through players and finds P1")));
-		g_ptr_array_add(commentaries, g_string_new(_("P2 controls it with his chest and passes to P1")));
-		g_ptr_array_add(commentaries, g_string_new(_("P2 heads the ball towards P1")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1 twisting and turning again")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1 rips through the midfield")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1 spins past his marker")));
-		break;
-	    case LIVE_GAME_EVENT_LOST_POSSESSION:
-		g_ptr_array_add(commentaries, g_string_new(_("P1 wins the ball with a perfectly timed challenge")));
-		g_ptr_array_add(commentaries, g_string_new(_("Bad control by P2 lets P1 steal the ball off him")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1 takes the ball away from P2 with a sliding tackle")));
-		g_ptr_array_add(commentaries, g_string_new(_("Loose ball falls to P1")));
-		break;
-	    case LIVE_GAME_EVENT_SCORING_CHANCE:
-		g_ptr_array_add(commentaries, g_string_new(_("P1 charges towards goal and shoots!")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1 spins and shoots")));
-		g_ptr_array_add(commentaries, g_string_new(_("Long ball from P2 finds P1 at far post")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1 can't quite get it under control but his miss kick heads toward goal")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1 shoots from 22 yards looks like it's going wide")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1 dribbles into the box, turns inside the defence and fires")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1 cuts in from the left flank and shoots")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1 tries his luck from 30 yards")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1 arrows shot towards top left corner")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1 shoots from close range")));
-		g_ptr_array_add(commentaries, g_string_new(_("Great ball from P2 sends P1 one on one with the goalkeeper")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1's overhead kick heads towards the top right hand corner")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1 spins past two defenders, wrong foots the keeper and back heels the ball towards goal")));
-		g_ptr_array_add(commentaries, g_string_new(_("P2 lays the ball off to P1 who sends a rocket of a shot towards goal")));
-		break;
-	    case LIVE_GAME_EVENT_GOAL:
-		g_ptr_array_add(commentaries, g_string_new(_("Goal!!!")));
-		g_ptr_array_add(commentaries, g_string_new(_("And the ball is smacked into the back of the net!!!")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1 scores!!!")));
-		g_ptr_array_add(commentaries, g_string_new(_("And the ball flies straight past P2 and into the back of the net!!!")));
-		g_ptr_array_add(commentaries, g_string_new(_("The ball flies past P2 and it's a goal!!!")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1 wheels away in celebration after a great goal sent the fans wild")));
-		g_ptr_array_add(commentaries, g_string_new(_("P2's despairing dive can't keep P1's shot out and the ball is in the back of the net!!!")));
-		g_ptr_array_add(commentaries, g_string_new(_("The dance ignites the fans, P1 celebrates in his own special fashion")));
-		break;
 	    case LIVE_GAME_EVENT_OWN_GOAL:
 		g_ptr_array_add(commentaries, g_string_new(_("Ohh no, the ball ricocheted off P1 into the net")));
 		g_ptr_array_add(commentaries, g_string_new(_("It's a pinball in the penalty box, finally spinning off P1 across the line")));
@@ -196,15 +226,6 @@ lg_commentary_get_commentaries(gint event_type)
 		g_ptr_array_add(commentaries, g_string_new(_("Diving header by P1")));
 		g_ptr_array_add(commentaries, g_string_new(_("He just floated in midair for ages then thunder heads it towards home")));
 		break;
-	    case LIVE_GAME_EVENT_MISSED:
-		g_ptr_array_add(commentaries, g_string_new(_("P1 fired wide!")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1 should have squared the ball went alone and lashed wide")));
-		g_ptr_array_add(commentaries, g_string_new(_("Defender clears")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1 curls ball over")));
-		g_ptr_array_add(commentaries, g_string_new(_("Defender back to block just as it seemed to open up")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1 smacks into row Z")));
-		g_ptr_array_add(commentaries, g_string_new(_("And the shot creeps just past the post")));
-		break;
 	    case LIVE_GAME_EVENT_POST:
 		g_ptr_array_add(commentaries, g_string_new(_("Sweet strike by P1, hits the post")));
 		g_ptr_array_add(commentaries, g_string_new(_("And the shot glances wide off the post")));
@@ -214,16 +235,6 @@ lg_commentary_get_commentaries(gint event_type)
 		g_ptr_array_add(commentaries, g_string_new(_("Ball dinked over P2 but hit crossbar and bounced to safety")));
 		g_ptr_array_add(commentaries, g_string_new(_("The ball smacks into the crossbar with P2 stranded")));
 		g_ptr_array_add(commentaries, g_string_new(_("P2 seemed to be everywhere at once, finally tipping the ball off the crossbar")));
-		break;
-	    case LIVE_GAME_EVENT_SAVE:
-		g_ptr_array_add(commentaries, g_string_new(_("P2's fingertips flicks it wide")));
-		g_ptr_array_add(commentaries, g_string_new(_("P2 forced to tip P1's shot over the crossbar")));
-		g_ptr_array_add(commentaries, g_string_new(_("Great pace shown by P1 to get to the ball first but P2 produced superb block tackle")));
-		g_ptr_array_add(commentaries, g_string_new(_("Low shot taken well to his left by P2")));
-		g_ptr_array_add(commentaries, g_string_new(_("P2 makes a superb reflex save to tip wide")));
-		g_ptr_array_add(commentaries, g_string_new(_("P2 runs at P1 and blocks shot with ankle")));
-		g_ptr_array_add(commentaries, g_string_new(_("Easy save for the goalkeeper")));
-		g_ptr_array_add(commentaries, g_string_new(_("Caught well by P2")));
 		break;
 	    case LIVE_GAME_EVENT_PENALTY:
 		g_ptr_array_add(commentaries, g_string_new(_("P1 steps up to take the penalty")));
@@ -239,17 +250,6 @@ lg_commentary_get_commentaries(gint event_type)
 		g_ptr_array_add(commentaries, g_string_new(_("Free kick: P1 plays the ball out wide")));
 		g_ptr_array_add(commentaries, g_string_new(_("Free kick: P1 hits a long ball up the pitch")));
 		g_ptr_array_add(commentaries, g_string_new(_("Free kick whipped across the face of goal by P1")));
-		break;
-	    case LIVE_GAME_EVENT_FOUL:
-		g_ptr_array_add(commentaries, g_string_new(_("Oww, nasty tackle on P1")));
-		g_ptr_array_add(commentaries, g_string_new(_("Surely that's a sending off offence")));
-		g_ptr_array_add(commentaries, g_string_new(_("P2 knocks over P1 with a double footed lunge")));
-		g_ptr_array_add(commentaries, g_string_new(_("Crunching challenge on P1")));
-		g_ptr_array_add(commentaries, g_string_new(_("P1 gets his legs taken away from him by P2")));
-		g_ptr_array_add(commentaries, g_string_new(_("Slicing challenge by P2 on P1")));
-		g_ptr_array_add(commentaries, g_string_new(_("Vicious tackle from P2 leaves P1 lying on the floor in agony")));
-		g_ptr_array_add(commentaries, g_string_new(_("Ouch that's got to hurt")));
-		g_ptr_array_add(commentaries, g_string_new(_("Extremely high boot from P2 sends P1 to the ground")));
 		break;
 	    case LIVE_GAME_EVENT_FOUL_YELLOW:
 		g_ptr_array_add(commentaries, g_string_new(_("P2 for dangerous slide tackle on P1")));

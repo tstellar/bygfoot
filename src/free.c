@@ -1,5 +1,5 @@
 #include "free.h"
-#include "transfer_struct.h"
+#include "transfer.h"
 #include "user.h"
 #include "variables.h"
 

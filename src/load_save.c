@@ -11,8 +11,8 @@
 #include "xml_loadsave_cup.h"
 #include "xml_loadsave_league.h"
 #include "xml_loadsave_season_stats.h"
-#include "xml_loadsave_users.h"
 #include "xml_loadsave_transfers.h"
+#include "xml_loadsave_users.h"
 #include "xml.h"
 
 #define PROGRESS_MAX 8

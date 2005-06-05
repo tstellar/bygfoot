@@ -1,9 +1,3 @@
-#ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif
-
-#include <gtk/gtk.h>
-
 #include "file.h"
 #include "options_callbacks.h"
 #include "options_interface.h"

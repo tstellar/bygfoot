@@ -48,6 +48,8 @@ live_game_calculate_fixture(Fixture *fix)
 	stat2 = fixture_user_team_involved(fix);
 	statp = match;
 
+	live_game_reset(match, fix, TRUE);
+
 	if(show)
 	{
 	    cur_user = stat2;
@@ -59,7 +61,6 @@ live_game_calculate_fixture(Fixture *fix)
 		window_live_set_spinbuttons();
 	}
 
-	live_game_reset(match, fix, TRUE);
 	game_initialize(fix);
     }
     else

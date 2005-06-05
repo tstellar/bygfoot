@@ -1,6 +1,6 @@
 #include "file.h"
-#include "stat.h"
 #include "misc.h"
+#include "stat.h"
 #include "team.h"
 #include "xml.h"
 #include "xml_loadsave_league_stat.h"

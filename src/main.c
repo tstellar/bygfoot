@@ -11,8 +11,8 @@
 #include "live_game.h"
 #include "main.h"
 #include "name_struct.h"
-#include "transfer_struct.h"
 #include "stat_struct.h"
+#include "transfer_struct.h"
 #include "variables.h"
 #include "window.h"
 
