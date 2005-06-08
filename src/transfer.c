@@ -200,7 +200,7 @@ transfer_add_new_players(void)
     for(i=0;i<number_of_new;i++)
 	transfer_add_player(transfer_player_get_new(
 				(math_rnd(0, 1) < const_float("float_transfer_cup_percentage") &&
-				 cup_count_international() > 0)),
+				 query_cup_transfer())),
 			    math_rndi(const_int("int_transfer_time_lower"),
 				      const_int("int_transfer_time_upper")));
 }
@@ -263,7 +263,8 @@ transfer_get_deadline(void)
     gint length = 0;
 
     for(i=0;i<ligs->len;i++)
-	length = MAX(length, (lig(i).teams->len - 1) * 2);
+	length = MAX(length, 
+		     g_array_index(lig(i).fixtures, Fixture, lig(i).fixtures->len - 1).week_number);
 
     return (gint)rint((gfloat)length * const_float("float_transfer_deadline_percentage"));
 }

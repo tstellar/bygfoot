@@ -139,7 +139,7 @@ query_cup_choose_team_is_league(const gchar *sid)
 /** Write the cup or league of the chooseteam into the appropriate pointer. */
 void
 cup_get_choose_team_league_cup(const CupChooseTeam *ct, 
-			       League **league, Cup **cup)
+			       const League **league, const Cup **cup)
 {
     gint i, idx;
     gchar trash[SMALL];
@@ -228,8 +228,8 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
     gint debug_num = teams->len;
     gint number_of_teams = 0;
     GPtrArray *cup_teams_sorted = NULL;
-    League *league = NULL;
-    Cup *cup_temp = NULL;
+    const League *league = NULL;
+    const Cup *cup_temp = NULL;
 
     if(debug > 60)
 	printf("cup_load_choose_team: %s, %s \n", cup->name->str,
@@ -631,14 +631,10 @@ cup_get_matchdays_in_cup_round(const Cup *cup, gint cup_round)
     if(g_array_index(cup->rounds, CupRound, cup_round).
        round_robin_number_of_groups > 0)
     {
-	number_of_teams = cup_round_get_number_of_teams(cup, cup_round);
-	number_of_matchdays = ((number_of_teams / g_array_index(cup->rounds, CupRound, cup_round).
-				round_robin_number_of_groups) % 2 == 0) ?
-	    2 * ((number_of_teams / g_array_index(cup->rounds, CupRound, cup_round).
-		  round_robin_number_of_groups) - 1) :
-	    2 * ((number_of_teams / g_array_index(cup->rounds, CupRound, cup_round).
-		  round_robin_number_of_groups));
-	    
+	number_of_teams = cup_round_robin_get_number_of_teams(cup, cup_round);
+	number_of_matchdays = (number_of_teams  % 2 == 0) ?
+	    2 * (number_of_teams  - 1) :
+	    2 * number_of_teams;	
     }
     else if(g_array_index(cup->rounds, CupRound, cup_round).home_away)
 	number_of_matchdays = 2;
@@ -648,31 +644,69 @@ cup_get_matchdays_in_cup_round(const Cup *cup, gint cup_round)
     return number_of_matchdays;
 }
 
-/** Return the number of teams playing in the given cup round.
+/** Return the number of teams playing in a group of 
+    the given cup round with round robin.
     @param cup The cup we examine.
     @param cup_round The index of the cup round.
-    @return The number teams. */
+    @return The number teams in one group. */
 gint
-cup_round_get_number_of_teams(const Cup *cup, gint round)
+cup_round_robin_get_number_of_teams(const Cup *cup, gint round)
 {
     const CupRound *cup_round = &g_array_index(cup->rounds, CupRound, round);
-    gint number_of_teams = -1;
+    gint number_of_teams = 0;
 
     if(round == 0)
-	number_of_teams = cup_round->new_teams;
+	number_of_teams = cup_round_get_new_teams(cup_round);
     else if(g_array_index(cup->rounds, CupRound, round - 1).round_robin_number_of_groups > 0)
     {
 	number_of_teams = 
 	    (g_array_index(cup->rounds, CupRound, round - 1).round_robin_number_of_groups *
 	     g_array_index(cup->rounds, CupRound, round - 1).round_robin_number_of_advance) +
 	    g_array_index(cup->rounds, CupRound, round - 1).round_robin_number_of_best_advance +
-	    cup_round->new_teams;
+	    cup_round_get_new_teams(cup_round);
     }
-    else
-	number_of_teams = (cup_round_get_number_of_teams(cup, round - 1) / 2) +
-	    cup_round->new_teams;
 
-    return number_of_teams;
+    while(number_of_teams % cup_round->round_robin_number_of_groups != 0)
+	number_of_teams--;
+
+    return number_of_teams / cup_round->round_robin_number_of_groups;
+}
+
+/** Return the number of new teams that come into the
+    cup in the given cup round. */
+gint
+cup_round_get_new_teams(const CupRound *cup_round)
+{
+    gint i, new_teams = 0;
+    const Cup *cup_temp = NULL;
+    const League *league = NULL;
+    GPtrArray *teams_sorted = NULL;
+
+    if(cup_round->new_teams != 0)
+	new_teams = cup_round->new_teams;
+    else
+    {
+	for(i=0;i<cup_round->choose_teams->len;i++)
+	{
+	    if(g_array_index(cup_round->choose_teams, CupChooseTeam, i).number_of_teams != -1)
+		new_teams += g_array_index(cup_round->choose_teams, CupChooseTeam, i).number_of_teams;
+	    else
+	    {
+		cup_get_choose_team_league_cup(&g_array_index(cup_round->choose_teams, CupChooseTeam, i),
+					       &league, &cup_temp);
+		if(cup_temp == NULL)
+		    new_teams += league->teams->len;
+		else
+		{
+		    teams_sorted = cup_get_teams_sorted(cup_temp);
+		    new_teams += teams_sorted->len;
+		    g_ptr_array_free(teams_sorted, TRUE);
+		}
+	    }
+	}
+    }
+
+    return new_teams;
 }
 
 /** Return the cup pointer belonging to the id.
@@ -796,8 +830,8 @@ gboolean
 query_cup_begins(const Cup *cup)
 {
     gint i;
-    League *league = NULL;
-    Cup *cup_temp = NULL;
+    const League *league = NULL;
+    const Cup *cup_temp = NULL;
     gboolean proceed = FALSE;
     const CupRound *cup_round = &g_array_index(cup->rounds, CupRound, 0);
 
@@ -846,16 +880,16 @@ query_cup_begins(const Cup *cup)
 }
 
 /** Return the number of international cups in the country. */
-gint
-cup_count_international(void)
+gboolean
+query_cup_transfer(void)
 {
-    gint i, return_value = 0;
+    gint i;
 
-    for(i=0;i<cps->len;i++)
-	if(query_cup_is_international(cp(i).id))
-	    return_value++;
+    for(i=0;i<acps->len;i++)
+	if(acp(i)->teams->len > 0)
+	    return TRUE;
 
-    return return_value;
+    return FALSE;
 }
 
 /** Find out whether the cup has a highlight property

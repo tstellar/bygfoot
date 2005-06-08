@@ -43,7 +43,10 @@ gint
 cup_get_matchdays_in_cup_round(const Cup *cup, gint cup_round);
 
 gint
-cup_round_get_number_of_teams(const Cup *cup, gint cup_round);
+cup_round_robin_get_number_of_teams(const Cup *cup, gint round);
+
+gint
+cup_round_get_new_teams(const CupRound *cup_round);
 
 Cup*
 cup_from_clid(gint clid);
@@ -77,7 +80,7 @@ query_cup_begins(const Cup *cup);
 
 void
 cup_get_choose_team_league_cup(const CupChooseTeam *ct, 
-			       League **league, Cup **cup);
+			       const League **league, const Cup **cup);
 
 gint
 cup_get_last_week_from_first(const Cup *cup, gint first_week);
@@ -91,8 +94,8 @@ cup_has_tables(gint clid);
 Team*
 cup_get_winner(const Cup *cup);
 
-gint
-cup_count_international(void);
+gboolean
+query_cup_transfer(void);
 
 gchar*
 cup_get_highlight_colour(const Cup *cup);

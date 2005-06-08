@@ -814,11 +814,8 @@ team_get_sorted(GCompareDataFunc compare_function, gint type, gboolean cup)
     {
 	for(i=0;i<cps->len;i++)
 	    for(j=0;j<cp(i).rounds->len;j++)
-	    {
-		if(g_array_index(cp(i).rounds, CupRound, j).teams->len > 0)
-		    for(k=0;k<g_array_index(cp(i).rounds, CupRound, j).teams->len;k++)
-			g_ptr_array_add(teams, &g_array_index(g_array_index(cp(i).rounds, CupRound, j).teams, Team, k));
-	    }
+		for(k=0;k<g_array_index(cp(i).rounds, CupRound, j).teams->len;k++)
+		    g_ptr_array_add(teams, &g_array_index(g_array_index(cp(i).rounds, CupRound, j).teams, Team, k));
     }
 
     g_ptr_array_sort_with_data(teams, compare_function, GINT_TO_POINTER(type));

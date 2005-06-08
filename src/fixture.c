@@ -69,8 +69,8 @@ fixture_update(Cup *cup)
     
     teams = fixture_get_cup_round_winners(cup);
 
-    if(teams->len < 2)
-	return;
+    if(round == cup->rounds->len - 1 && teams->len < 2)
+        return;
 
     if(round + 1 > cup->rounds->len - 1)
 	g_warning("fixture_update: round index %d too high for round array (%d) in cup %s\n",
@@ -85,7 +85,10 @@ fixture_update(Cup *cup)
 	    g_ptr_array_add(teams, g_ptr_array_index(teams_new, i));
 	g_ptr_array_free(teams_new, TRUE);
     }
-
+    
+    if(teams->len < 2)
+	return;
+    
     if(cup->bye != NULL && cup->bye->len != 0)
     {
 	for(i=0;i<cup->bye->len;i++)
