@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-02 18:19+0200\n"
+"POT-Creation-Date: 2005-06-08 19:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -205,36 +205,36 @@ msgid ""
 "Left-click: get loan; Right-click: pay back; Middle click: stadium window."
 msgstr ""
 
-#: src/cup.c:725
+#: src/cup.c:760
 msgid " -- Second leg"
 msgstr ""
 
-#: src/cup.c:727
+#: src/cup.c:762
 msgid " -- First leg"
 msgstr ""
 
-#: src/cup.c:730
+#: src/cup.c:765
 msgid " -- Replay matches"
 msgstr ""
 
-#: src/cup.c:742
+#: src/cup.c:777
 msgid "Round robin"
 msgstr ""
 
-#: src/cup.c:749
+#: src/cup.c:784
 #, c-format
 msgid "Last %d"
 msgstr ""
 
-#: src/cup.c:752
+#: src/cup.c:787
 msgid "Final"
 msgstr ""
 
-#: src/cup.c:755
+#: src/cup.c:790
 msgid "Semi-final"
 msgstr ""
 
-#: src/cup.c:758
+#: src/cup.c:793
 msgid "Quarter-final"
 msgstr ""
 
@@ -260,11 +260,11 @@ msgstr ""
 msgid "You have %d weeks to pay back the rest of your loan."
 msgstr ""
 
-#: src/game_gui.c:319
+#: src/game_gui.c:317
 msgid "Next week you'll fire him and hire a new one."
 msgstr ""
 
-#: src/game_gui.c:504
+#: src/game_gui.c:502
 #, c-format
 msgid ""
 "The team owners have fired you because of financial mismanagement. Luckily, "
@@ -272,7 +272,7 @@ msgid ""
 "some information on %s:"
 msgstr ""
 
-#: src/game_gui.c:507
+#: src/game_gui.c:505
 #, c-format
 msgid ""
 "The team owners have fired you because of unsuccessfulness. Luckily, the "
@@ -280,391 +280,391 @@ msgid ""
 "information on %s:"
 msgstr ""
 
-#: src/game_gui.c:510
+#: src/game_gui.c:508
 #, c-format
 msgid ""
 "The owners of %s are deeply impressed by your success with %s and would like "
 "to hire you. Here's some information on %s:"
 msgstr ""
 
-#: src/game_gui.c:513
+#: src/game_gui.c:511
 msgid "Accept?"
 msgstr ""
 
-#: src/game_gui.c:515
+#: src/game_gui.c:513
 msgid " (NOTE: If you don't, the game is over for you.)"
 msgstr ""
 
-#: src/game_gui.c:566
+#: src/game_gui.c:564
 #, c-format
 msgid "Job offers set to %s."
 msgstr ""
 
-#: src/game_gui.c:573
+#: src/game_gui.c:571
 #, c-format
 msgid "Live game set to %s."
 msgstr ""
 
-#: src/game_gui.c:580
+#: src/game_gui.c:578
 #, c-format
 msgid "Overwrite set to %s."
 msgstr ""
 
-#: src/game_gui.c:600
+#: src/game_gui.c:598
 msgid ""
 "Bygfoot is a very intuitive and simple game, so there isn't a full-grown "
 "documentation. However, if you have trouble, there are a few places to go.\n"
 msgstr ""
 
-#: src/game_gui.c:602
+#: src/game_gui.c:600
 msgid ""
 "At the Bygfoot forums you can report bugs, ask for help and discuss the game "
 "(you don't have to register):\n"
 msgstr ""
 
-#: src/game_gui.c:604
+#: src/game_gui.c:602
 msgid ""
 "\n"
 "If you feel you've found out something about the game that has to be shared, "
 "you can add it to the Bygfoot Wiki:\n"
 msgstr ""
 
-#: src/interface.c:234
+#: src/interface.c:251
 msgid "_File"
 msgstr ""
 
-#: src/interface.c:249
+#: src/interface.c:266
 msgid "L_oad last save"
 msgstr ""
 
-#: src/interface.c:277
+#: src/interface.c:294
 msgid "_Options"
 msgstr ""
 
-#: src/interface.c:284
+#: src/interface.c:301
 msgid "Preferences"
 msgstr ""
 
-#: src/interface.c:300
+#: src/interface.c:317
 msgid "Job offers"
 msgstr ""
 
-#: src/interface.c:305 src/misc_interface.c:550 src/options_interface.c:465
+#: src/interface.c:322 src/misc_interface.c:550 src/options_interface.c:465
 msgid "Live game"
 msgstr ""
 
-#: src/interface.c:309
+#: src/interface.c:326
 msgid "Overwrite"
 msgstr ""
 
-#: src/interface.c:314
+#: src/interface.c:331
 msgid "F_igures"
 msgstr ""
 
-#: src/interface.c:321
+#: src/interface.c:338
 msgid "Fixtures (week)"
 msgstr ""
 
-#: src/interface.c:328
+#: src/interface.c:349
 msgid "Fixtures (competitions)"
 msgstr ""
 
-#: src/interface.c:335
+#: src/interface.c:360
 msgid "Tables"
 msgstr ""
 
-#: src/interface.c:342
+#: src/interface.c:371
 msgid "My league results"
 msgstr ""
 
-#: src/interface.c:354
+#: src/interface.c:387
 msgid "League stats"
 msgstr ""
 
-#: src/interface.c:361
+#: src/interface.c:394
 msgid "Season history"
 msgstr ""
 
-#: src/interface.c:368
+#: src/interface.c:405
 msgid "_Team"
 msgstr ""
 
-#: src/interface.c:375 src/treeview.c:1505
+#: src/interface.c:412 src/treeview.c:1505
 msgid "Playing style"
 msgstr ""
 
-#: src/interface.c:382
+#: src/interface.c:423
 msgid "All Out Defend"
 msgstr ""
 
-#: src/interface.c:388 src/treeview.c:1401
+#: src/interface.c:429 src/treeview.c:1401
 msgid "Defend"
 msgstr ""
 
-#: src/interface.c:394
+#: src/interface.c:435
 msgid "Balanced"
 msgstr ""
 
-#: src/interface.c:400 src/treeview.c:1403
+#: src/interface.c:441 src/treeview.c:1403
 msgid "Attack"
 msgstr ""
 
-#: src/interface.c:406
+#: src/interface.c:447
 msgid "All Out Attack"
 msgstr ""
 
-#: src/interface.c:412 src/treeview.c:1243
+#: src/interface.c:453 src/treeview.c:1243
 msgid "Scout"
 msgstr ""
 
-#: src/interface.c:419 src/interface.c:450
+#: src/interface.c:460 src/interface.c:491
 msgid "Best"
 msgstr ""
 
-#: src/interface.c:425 src/interface.c:456
+#: src/interface.c:466 src/interface.c:497
 msgid "Good"
 msgstr ""
 
-#: src/interface.c:431 src/interface.c:462
+#: src/interface.c:472 src/interface.c:503
 msgid "Average"
 msgstr ""
 
-#: src/interface.c:437 src/interface.c:468
+#: src/interface.c:478 src/interface.c:509
 msgid "Bad"
 msgstr ""
 
-#: src/interface.c:443 src/treeview.c:1242
+#: src/interface.c:484 src/treeview.c:1242
 msgid "Physio"
 msgstr ""
 
-#: src/interface.c:474
+#: src/interface.c:515
 msgid "Boost"
 msgstr ""
 
-#: src/interface.c:481
+#: src/interface.c:526
 msgid "On"
 msgstr ""
 
-#: src/interface.c:487
+#: src/interface.c:532
 msgid "Off"
 msgstr ""
 
-#: src/interface.c:493
+#: src/interface.c:538
 msgid "Anti"
 msgstr ""
 
-#: src/interface.c:504
+#: src/interface.c:549
 msgid "Reset player list"
 msgstr ""
 
-#: src/interface.c:506 src/interface.c:982
+#: src/interface.c:551 src/interface.c:1070
 msgid ""
 "Reset player list to the formation at the beginning of the live game pause "
 "(right click on player list)"
 msgstr ""
 
-#: src/interface.c:508
+#: src/interface.c:557
 msgid "Enter custom structure"
 msgstr ""
 
-#: src/interface.c:512
+#: src/interface.c:565
 msgid "Rearrange team"
 msgstr ""
 
-#: src/interface.c:515
+#: src/interface.c:568
 msgid ""
 "Try to put the startup players onto their favoured positions and sort the "
 "substitutes (Ctrl-R or middle click)"
 msgstr ""
 
-#: src/interface.c:525
+#: src/interface.c:582
 msgid "Browse teams"
 msgstr ""
 
-#: src/interface.c:529
+#: src/interface.c:586
 msgid "_Player"
 msgstr ""
 
-#: src/interface.c:536 src/interface.c:1476
+#: src/interface.c:593 src/interface.c:1581
 msgid "Show info"
 msgstr ""
 
-#: src/interface.c:540 src/interface.c:1480
+#: src/interface.c:601 src/interface.c:1585
 msgid "Put on transfer list"
 msgstr ""
 
-#: src/interface.c:544 src/interface.c:1484
+#: src/interface.c:609 src/interface.c:1589
 msgid "Remove from transfer list"
 msgstr ""
 
-#: src/interface.c:548 src/interface.c:1488
+#: src/interface.c:617 src/interface.c:1593
 msgid "Offer new contract"
 msgstr ""
 
-#: src/interface.c:552 src/interface.c:1492
+#: src/interface.c:621 src/interface.c:1597
 msgid "Fire"
 msgstr ""
 
-#: src/interface.c:556 src/interface.c:1496
+#: src/interface.c:629 src/interface.c:1601
 msgid "Shoots penalties"
 msgstr ""
 
-#: src/interface.c:565
+#: src/interface.c:642
 msgid "Browse players"
 msgstr ""
 
-#: src/interface.c:569
+#: src/interface.c:646
 msgid "_User"
 msgstr ""
 
-#: src/interface.c:576
+#: src/interface.c:653
 msgid "Show last match"
 msgstr ""
 
-#: src/interface.c:580
+#: src/interface.c:660
 msgid "Show last match stats"
 msgstr ""
 
-#: src/interface.c:592
+#: src/interface.c:672
 msgid "Show history"
 msgstr ""
 
-#: src/interface.c:604
+#: src/interface.c:684
 msgid "Next user"
 msgstr ""
 
-#: src/interface.c:615
+#: src/interface.c:695
 msgid "Previous user"
 msgstr ""
 
-#: src/interface.c:626
+#: src/interface.c:706
 msgid "Manage users"
 msgstr ""
 
-#: src/interface.c:637
+#: src/interface.c:717
 msgid "Fin_Stad"
 msgstr ""
 
-#: src/interface.c:644
+#: src/interface.c:724
 msgid "Show finances"
 msgstr ""
 
-#: src/interface.c:651
+#: src/interface.c:735
 msgid "Show stadium"
 msgstr ""
 
-#: src/interface.c:658
+#: src/interface.c:746
 msgid "_Help"
 msgstr ""
 
-#: src/interface.c:665 src/misc2_interface.c:1014
+#: src/interface.c:753 src/misc2_interface.c:1014
 msgid "About"
 msgstr ""
 
-#: src/interface.c:673 src/misc2_interface.c:1028
+#: src/interface.c:761 src/misc2_interface.c:1028
 msgid "Contributors"
 msgstr ""
 
-#: src/interface.c:681 src/misc2_interface.c:1054
+#: src/interface.c:769 src/misc2_interface.c:1054
 msgid "Help"
 msgstr ""
 
-#: src/interface.c:697
+#: src/interface.c:785
 msgid "Load game (Ctrl - O)"
 msgstr ""
 
-#: src/interface.c:707
+#: src/interface.c:795
 msgid "Save game (Ctrl - S)"
 msgstr ""
 
-#: src/interface.c:717
+#: src/interface.c:805
 msgid "Quit (Ctrl - Q)"
 msgstr ""
 
-#: src/interface.c:737
+#: src/interface.c:825
 msgid "Back to main menu (Esc)"
 msgstr ""
 
-#: src/interface.c:750
+#: src/interface.c:838
 msgid "Show transferlist (T)"
 msgstr ""
 
-#: src/interface.c:763
+#: src/interface.c:851
 msgid "Show a preview of my next games (F1)"
 msgstr ""
 
-#: src/interface.c:781
+#: src/interface.c:869
 msgid "Begin a new week (Space)"
 msgstr ""
 
-#: src/interface.c:812
+#: src/interface.c:900
 msgid " Season "
 msgstr ""
 
-#: src/interface.c:817 src/interface.c:826 src/interface.c:834
-#: src/interface.c:894
+#: src/interface.c:905 src/interface.c:914 src/interface.c:922
+#: src/interface.c:982
 msgid "1"
 msgstr ""
 
-#: src/interface.c:821
+#: src/interface.c:909
 msgid " Week "
 msgstr ""
 
-#: src/interface.c:830
+#: src/interface.c:918
 msgid " Round "
 msgstr ""
 
-#: src/interface.c:850
+#: src/interface.c:938
 msgid "Right click and left click to change your playing style"
 msgstr ""
 
-#: src/interface.c:860
+#: src/interface.c:948
 msgid "Right click and left click to change boost state"
 msgstr ""
 
-#: src/interface.c:889
+#: src/interface.c:977
 msgid "Rank "
 msgstr ""
 
-#: src/interface.c:903
+#: src/interface.c:991
 msgid "Money "
 msgstr ""
 
-#: src/interface.c:908
+#: src/interface.c:996
 msgid "2000"
 msgstr ""
 
-#: src/interface.c:920
+#: src/interface.c:1008
 msgid ""
 "First value: average current skill of the first 11 players. Second value: "
 "average skill of all players."
 msgstr ""
 
-#: src/interface.c:926
+#: src/interface.c:1014
 msgid "Av. skills:  "
 msgstr ""
 
-#: src/interface.c:968
+#: src/interface.c:1056
 msgid "Player list 1"
 msgstr ""
 
-#: src/interface.c:976
+#: src/interface.c:1064
 msgid "Player list 2"
 msgstr ""
 
-#: src/interface.c:1000
+#: src/interface.c:1088
 msgid "Previous league/cup (1)"
 msgstr ""
 
-#: src/interface.c:1013
+#: src/interface.c:1101
 msgid "Next league/cup (2)"
 msgstr ""
 
-#: src/interface.c:1026
+#: src/interface.c:1114
 msgid "Previous (Q)"
 msgstr ""
 
-#: src/interface.c:1039
+#: src/interface.c:1127
 msgid "Next (W)"
 msgstr ""
 
@@ -677,509 +677,509 @@ msgid "TT has changed their boost to EX"
 msgstr ""
 
 #: src/lg_commentary.c:97
-msgid "It's a crowd of AT here as the whistle blows"
-msgstr ""
-
-#: src/lg_commentary.c:98
-msgid "We're under way"
-msgstr ""
-
-#: src/lg_commentary.c:99
-msgid "The two teams are greeted by a wall of noise as they take to the pitch"
-msgstr ""
-
-#: src/lg_commentary.c:100
-msgid ""
-"The crowd roars as the players run out from the tunnel to start the match"
-msgstr ""
-
-#: src/lg_commentary.c:101
-msgid "A cloudless day, gives the impression this match is going to sparkle"
-msgstr ""
-
-#: src/lg_commentary.c:102
-msgid "AT fans can't be wrong, this is the match we have all come to watch"
-msgstr ""
-
-#: src/lg_commentary.c:103
-msgid "The referee gets the nod from the linesman and we are away"
-msgstr ""
-
-#: src/lg_commentary.c:104
-msgid "The clash of the titans kicks off"
-msgstr ""
-
-#: src/lg_commentary.c:105
-msgid "The referees are ready, players set, the battle begins"
-msgstr ""
-
-#: src/lg_commentary.c:108
-msgid "It's half time"
-msgstr ""
-
-#: src/lg_commentary.c:109
-msgid "It's a RE at half time."
-msgstr ""
-
-#: src/lg_commentary.c:110
-msgid ""
-"It's a RE at half time, TL's manager has to find something special to spur "
-"his team on."
-msgstr ""
-
-#: src/lg_commentary.c:111
-msgid "TL heads into the tunnel to await the managers scolding"
-msgstr ""
-
-#: src/lg_commentary.c:112
-msgid "TW are just 45 minutes away from a stunning victory"
-msgstr ""
-
-#: src/lg_commentary.c:113
-msgid ""
-"TL's manager cops a rollicking from the fans as he turns from the dugout"
-msgstr ""
-
-#: src/lg_commentary.c:114
-msgid "There are two teams out there and only one of them is playing football"
-msgstr ""
-
-#: src/lg_commentary.c:117
-msgid "After a close match the game heads into extra time"
-msgstr ""
-
-#: src/lg_commentary.c:118
-msgid "It's still RE: extra time"
-msgstr ""
-
-#: src/lg_commentary.c:119
-msgid "After MI minutes it's still RE: extra time"
-msgstr ""
-
-#: src/lg_commentary.c:120
-msgid "Who will breakdown first, extra time it is"
-msgstr ""
-
-#: src/lg_commentary.c:121
-msgid "It's down to determination and fitness now as we head into extra time"
-msgstr ""
-
-#: src/lg_commentary.c:124
-msgid "Who would have thought MI minutes ago it would come down to this"
-msgstr ""
-
-#: src/lg_commentary.c:125
-msgid "And now we have the tense drama of a penalty shoot out"
-msgstr ""
-
-#: src/lg_commentary.c:126
-msgid "Two teams, equall till now in every respect,face off in penalties"
-msgstr ""
-
-#: src/lg_commentary.c:127
-msgid "The teams cant do it so now it's one on one. Striker against goalie"
-msgstr ""
-
-#: src/lg_commentary.c:130
-msgid "The match is over!"
-msgstr ""
-
-#: src/lg_commentary.c:131
-msgid "TW are triumphant!!!"
-msgstr ""
-
-#: src/lg_commentary.c:132
-msgid "The fans boo TL off the pitch"
-msgstr ""
-
-#: src/lg_commentary.c:133
-msgid "After MI minutes the match ends with a RE"
-msgstr ""
-
-#: src/lg_commentary.c:134
-msgid "The referee checks his watch and blows for full time"
-msgstr ""
-
-#: src/lg_commentary.c:135
-msgid "Well that's that. It ends RE"
-msgstr ""
-
-#: src/lg_commentary.c:136
-msgid "RE, what an astonishing result for TW"
-msgstr ""
-
-#: src/lg_commentary.c:139
 msgid "P2 feeds the ball through to P1"
 msgstr ""
 
-#: src/lg_commentary.c:140
+#: src/lg_commentary.c:98
 msgid "P2 threads a great ball to P1 "
 msgstr ""
 
-#: src/lg_commentary.c:141
+#: src/lg_commentary.c:99
 msgid "Lovely pass from P2 releases P1"
 msgstr ""
 
-#: src/lg_commentary.c:142
+#: src/lg_commentary.c:100
 msgid "Long floating pass from P2 finds P1"
 msgstr ""
 
-#: src/lg_commentary.c:143
+#: src/lg_commentary.c:101
 msgid "Good passing move across the pitch and down the right"
 msgstr ""
 
-#: src/lg_commentary.c:144
+#: src/lg_commentary.c:102
 msgid "Quick passing move down the left"
 msgstr ""
 
-#: src/lg_commentary.c:145
+#: src/lg_commentary.c:103
 msgid "P2 cross controlled by P1 who slips past his man"
 msgstr ""
 
-#: src/lg_commentary.c:146
+#: src/lg_commentary.c:104
 msgid "Another decent move down the wing"
 msgstr ""
 
-#: src/lg_commentary.c:147
+#: src/lg_commentary.c:105
 msgid "P1 latches onto P2's pass"
 msgstr ""
 
-#: src/lg_commentary.c:148
+#: src/lg_commentary.c:106
 msgid "P2 needles ball through players and finds P1"
 msgstr ""
 
-#: src/lg_commentary.c:149
+#: src/lg_commentary.c:107
 msgid "P2 controls it with his chest and passes to P1"
 msgstr ""
 
-#: src/lg_commentary.c:150
+#: src/lg_commentary.c:108
 msgid "P2 heads the ball towards P1"
 msgstr ""
 
-#: src/lg_commentary.c:151
+#: src/lg_commentary.c:109
 msgid "P1 twisting and turning again"
 msgstr ""
 
-#: src/lg_commentary.c:152
+#: src/lg_commentary.c:110
 msgid "P1 rips through the midfield"
 msgstr ""
 
-#: src/lg_commentary.c:153
+#: src/lg_commentary.c:111
 msgid "P1 spins past his marker"
 msgstr ""
 
-#: src/lg_commentary.c:156
+#: src/lg_commentary.c:114
 msgid "P1 wins the ball with a perfectly timed challenge"
 msgstr ""
 
-#: src/lg_commentary.c:157
+#: src/lg_commentary.c:115
 msgid "Bad control by P2 lets P1 steal the ball off him"
 msgstr ""
 
-#: src/lg_commentary.c:158
+#: src/lg_commentary.c:116
 msgid "P1 takes the ball away from P2 with a sliding tackle"
 msgstr ""
 
-#: src/lg_commentary.c:159
+#: src/lg_commentary.c:117
 msgid "Loose ball falls to P1"
 msgstr ""
 
-#: src/lg_commentary.c:162
+#: src/lg_commentary.c:120
+msgid "Oww, nasty tackle on P1"
+msgstr ""
+
+#: src/lg_commentary.c:121
+msgid "Surely that's a sending off offence"
+msgstr ""
+
+#: src/lg_commentary.c:122
+msgid "P2 knocks over P1 with a double footed lunge"
+msgstr ""
+
+#: src/lg_commentary.c:123
+msgid "Crunching challenge on P1"
+msgstr ""
+
+#: src/lg_commentary.c:124
+msgid "P1 gets his legs taken away from him by P2"
+msgstr ""
+
+#: src/lg_commentary.c:125
+msgid "Slicing challenge by P2 on P1"
+msgstr ""
+
+#: src/lg_commentary.c:126
+msgid "Vicious tackle from P2 leaves P1 lying on the floor in agony"
+msgstr ""
+
+#: src/lg_commentary.c:127
+msgid "Ouch that's got to hurt"
+msgstr ""
+
+#: src/lg_commentary.c:128
+msgid "Extremely high boot from P2 sends P1 to the ground"
+msgstr ""
+
+#: src/lg_commentary.c:131
 msgid "P1 charges towards goal and shoots!"
 msgstr ""
 
-#: src/lg_commentary.c:163
+#: src/lg_commentary.c:132
 msgid "P1 spins and shoots"
 msgstr ""
 
-#: src/lg_commentary.c:164
+#: src/lg_commentary.c:133
 msgid "Long ball from P2 finds P1 at far post"
 msgstr ""
 
-#: src/lg_commentary.c:165
+#: src/lg_commentary.c:134
 msgid "P1 can't quite get it under control but his miss kick heads toward goal"
 msgstr ""
 
-#: src/lg_commentary.c:166
+#: src/lg_commentary.c:135
 msgid "P1 shoots from 22 yards looks like it's going wide"
 msgstr ""
 
-#: src/lg_commentary.c:167
+#: src/lg_commentary.c:136
 msgid "P1 dribbles into the box, turns inside the defence and fires"
 msgstr ""
 
-#: src/lg_commentary.c:168
+#: src/lg_commentary.c:137
 msgid "P1 cuts in from the left flank and shoots"
 msgstr ""
 
-#: src/lg_commentary.c:169
+#: src/lg_commentary.c:138
 msgid "P1 tries his luck from 30 yards"
 msgstr ""
 
-#: src/lg_commentary.c:170
+#: src/lg_commentary.c:139
 msgid "P1 arrows shot towards top left corner"
 msgstr ""
 
-#: src/lg_commentary.c:171
+#: src/lg_commentary.c:140
 msgid "P1 shoots from close range"
 msgstr ""
 
-#: src/lg_commentary.c:172
+#: src/lg_commentary.c:141
 msgid "Great ball from P2 sends P1 one on one with the goalkeeper"
 msgstr ""
 
-#: src/lg_commentary.c:173
+#: src/lg_commentary.c:142
 msgid "P1's overhead kick heads towards the top right hand corner"
 msgstr ""
 
-#: src/lg_commentary.c:174
+#: src/lg_commentary.c:143
 msgid ""
 "P1 spins past two defenders, wrong foots the keeper and back heels the ball "
 "towards goal"
 msgstr ""
 
-#: src/lg_commentary.c:175
+#: src/lg_commentary.c:144
 msgid "P2 lays the ball off to P1 who sends a rocket of a shot towards goal"
 msgstr ""
 
-#: src/lg_commentary.c:178
+#: src/lg_commentary.c:147
 msgid "Goal!!!"
 msgstr ""
 
-#: src/lg_commentary.c:179
+#: src/lg_commentary.c:148
 msgid "And the ball is smacked into the back of the net!!!"
 msgstr ""
 
-#: src/lg_commentary.c:180
+#: src/lg_commentary.c:149
 msgid "P1 scores!!!"
 msgstr ""
 
-#: src/lg_commentary.c:181
+#: src/lg_commentary.c:150
 msgid "And the ball flies straight past P2 and into the back of the net!!!"
 msgstr ""
 
-#: src/lg_commentary.c:182
+#: src/lg_commentary.c:151
 msgid "The ball flies past P2 and it's a goal!!!"
 msgstr ""
 
-#: src/lg_commentary.c:183
+#: src/lg_commentary.c:152
 msgid "P1 wheels away in celebration after a great goal sent the fans wild"
 msgstr ""
 
-#: src/lg_commentary.c:184
+#: src/lg_commentary.c:153
 msgid ""
 "P2's despairing dive can't keep P1's shot out and the ball is in the back of "
 "the net!!!"
 msgstr ""
 
-#: src/lg_commentary.c:185
+#: src/lg_commentary.c:154
 msgid "The dance ignites the fans, P1 celebrates in his own special fashion"
 msgstr ""
 
-#: src/lg_commentary.c:188
-msgid "Ohh no, the ball ricocheted off P1 into the net"
-msgstr ""
-
-#: src/lg_commentary.c:189
-msgid ""
-"It's a pinball in the penalty box, finally spinning off P1 across the line"
-msgstr ""
-
-#: src/lg_commentary.c:190
-msgid ""
-"Oh that's a great shot and it's deflected off P1 and into the back of the net"
-msgstr ""
-
-#: src/lg_commentary.c:191
-msgid ""
-"P1 passes the ball back to his goalie, oh no the keepers missed it! It's an "
-"own goal by P1!"
-msgstr ""
-
-#: src/lg_commentary.c:192
-msgid "That little missunderstanding has cost TT a goal"
-msgstr ""
-
-#: src/lg_commentary.c:195
-msgid "P2 chips the ball towards P1 who heads the ball towards goal"
-msgstr ""
-
-#: src/lg_commentary.c:196
-msgid "Diving header by P1"
-msgstr ""
-
-#: src/lg_commentary.c:197
-msgid "He just floated in midair for ages then thunder heads it towards home"
-msgstr ""
-
-#: src/lg_commentary.c:200
+#: src/lg_commentary.c:157
 msgid "P1 fired wide!"
 msgstr ""
 
-#: src/lg_commentary.c:201
+#: src/lg_commentary.c:158
 msgid "P1 should have squared the ball went alone and lashed wide"
 msgstr ""
 
-#: src/lg_commentary.c:202
+#: src/lg_commentary.c:159
 msgid "Defender clears"
 msgstr ""
 
-#: src/lg_commentary.c:203
+#: src/lg_commentary.c:160
 msgid "P1 curls ball over"
 msgstr ""
 
-#: src/lg_commentary.c:204
+#: src/lg_commentary.c:161
 msgid "Defender back to block just as it seemed to open up"
 msgstr ""
 
-#: src/lg_commentary.c:205
+#: src/lg_commentary.c:162
 msgid "P1 smacks into row Z"
 msgstr ""
 
-#: src/lg_commentary.c:206
+#: src/lg_commentary.c:163
 msgid "And the shot creeps just past the post"
 msgstr ""
 
-#: src/lg_commentary.c:209
-msgid "Sweet strike by P1, hits the post"
-msgstr ""
-
-#: src/lg_commentary.c:210
-msgid "And the shot glances wide off the post"
-msgstr ""
-
-#: src/lg_commentary.c:211
-msgid "I'm suprised the post has managed to withstand that cracking shot"
-msgstr ""
-
-#: src/lg_commentary.c:214
-msgid "Ball dinked over P2 but hit crossbar and bounced to safety"
-msgstr ""
-
-#: src/lg_commentary.c:215
-msgid "The ball smacks into the crossbar with P2 stranded"
-msgstr ""
-
-#: src/lg_commentary.c:216
-msgid ""
-"P2 seemed to be everywhere at once, finally tipping the ball off the crossbar"
-msgstr ""
-
-#: src/lg_commentary.c:219
+#: src/lg_commentary.c:166
 msgid "P2's fingertips flicks it wide"
 msgstr ""
 
-#: src/lg_commentary.c:220
+#: src/lg_commentary.c:167
 msgid "P2 forced to tip P1's shot over the crossbar"
 msgstr ""
 
-#: src/lg_commentary.c:221
+#: src/lg_commentary.c:168
 msgid ""
 "Great pace shown by P1 to get to the ball first but P2 produced superb block "
 "tackle"
 msgstr ""
 
-#: src/lg_commentary.c:222
+#: src/lg_commentary.c:169
 msgid "Low shot taken well to his left by P2"
 msgstr ""
 
-#: src/lg_commentary.c:223
+#: src/lg_commentary.c:170
 msgid "P2 makes a superb reflex save to tip wide"
 msgstr ""
 
-#: src/lg_commentary.c:224
+#: src/lg_commentary.c:171
 msgid "P2 runs at P1 and blocks shot with ankle"
 msgstr ""
 
-#: src/lg_commentary.c:225
+#: src/lg_commentary.c:172
 msgid "Easy save for the goalkeeper"
 msgstr ""
 
-#: src/lg_commentary.c:226
+#: src/lg_commentary.c:173
 msgid "Caught well by P2"
 msgstr ""
 
-#: src/lg_commentary.c:229
-msgid "P1 steps up to take the penalty"
+#: src/lg_commentary.c:176
+msgid "It's a crowd of AT here as the whistle blows"
+msgstr ""
+
+#: src/lg_commentary.c:177
+msgid "We're under way"
+msgstr ""
+
+#: src/lg_commentary.c:178
+msgid "The two teams are greeted by a wall of noise as they take to the pitch"
+msgstr ""
+
+#: src/lg_commentary.c:179
+msgid ""
+"The crowd roars as the players run out from the tunnel to start the match"
+msgstr ""
+
+#: src/lg_commentary.c:180
+msgid "A cloudless day, gives the impression this match is going to sparkle"
+msgstr ""
+
+#: src/lg_commentary.c:181
+msgid "AT fans can't be wrong, this is the match we have all come to watch"
+msgstr ""
+
+#: src/lg_commentary.c:182
+msgid "The referee gets the nod from the linesman and we are away"
+msgstr ""
+
+#: src/lg_commentary.c:183
+msgid "The clash of the titans kicks off"
+msgstr ""
+
+#: src/lg_commentary.c:184
+msgid "The referees are ready, players set, the battle begins"
+msgstr ""
+
+#: src/lg_commentary.c:187
+msgid "It's half time"
+msgstr ""
+
+#: src/lg_commentary.c:188
+msgid "It's a RE at half time."
+msgstr ""
+
+#: src/lg_commentary.c:189
+msgid ""
+"It's a RE at half time, TL's manager has to find something special to spur "
+"his team on."
+msgstr ""
+
+#: src/lg_commentary.c:190
+msgid "TL heads into the tunnel to await the managers scolding"
+msgstr ""
+
+#: src/lg_commentary.c:191
+msgid "TW are just 45 minutes away from a stunning victory"
+msgstr ""
+
+#: src/lg_commentary.c:192
+msgid ""
+"TL's manager cops a rollicking from the fans as he turns from the dugout"
+msgstr ""
+
+#: src/lg_commentary.c:193
+msgid "There are two teams out there and only one of them is playing football"
+msgstr ""
+
+#: src/lg_commentary.c:196
+msgid "After a close match the game heads into extra time"
+msgstr ""
+
+#: src/lg_commentary.c:197
+msgid "It's still RE: extra time"
+msgstr ""
+
+#: src/lg_commentary.c:198
+msgid "After MI minutes it's still RE: extra time"
+msgstr ""
+
+#: src/lg_commentary.c:199
+msgid "Who will breakdown first, extra time it is"
+msgstr ""
+
+#: src/lg_commentary.c:200
+msgid "It's down to determination and fitness now as we head into extra time"
+msgstr ""
+
+#: src/lg_commentary.c:203
+msgid "Who would have thought MI minutes ago it would come down to this"
+msgstr ""
+
+#: src/lg_commentary.c:204
+msgid "And now we have the tense drama of a penalty shoot out"
+msgstr ""
+
+#: src/lg_commentary.c:205
+msgid "Two teams, equall till now in every respect,face off in penalties"
+msgstr ""
+
+#: src/lg_commentary.c:206
+msgid "The teams cant do it so now it's one on one. Striker against goalie"
+msgstr ""
+
+#: src/lg_commentary.c:209
+msgid "The match is over!"
+msgstr ""
+
+#: src/lg_commentary.c:210
+msgid "TW are triumphant!!!"
+msgstr ""
+
+#: src/lg_commentary.c:211
+msgid "The fans boo TL off the pitch"
+msgstr ""
+
+#: src/lg_commentary.c:212
+msgid "After MI minutes the match ends with a RE"
+msgstr ""
+
+#: src/lg_commentary.c:213
+msgid "The referee checks his watch and blows for full time"
+msgstr ""
+
+#: src/lg_commentary.c:214
+msgid "Well that's that. It ends RE"
+msgstr ""
+
+#: src/lg_commentary.c:215
+msgid "RE, what an astonishing result for TW"
+msgstr ""
+
+#: src/lg_commentary.c:218
+msgid "Ohh no, the ball ricocheted off P1 into the net"
+msgstr ""
+
+#: src/lg_commentary.c:219
+msgid ""
+"It's a pinball in the penalty box, finally spinning off P1 across the line"
+msgstr ""
+
+#: src/lg_commentary.c:220
+msgid ""
+"Oh that's a great shot and it's deflected off P1 and into the back of the net"
+msgstr ""
+
+#: src/lg_commentary.c:221
+msgid ""
+"P1 passes the ball back to his goalie, oh no the keepers missed it! It's an "
+"own goal by P1!"
+msgstr ""
+
+#: src/lg_commentary.c:222
+msgid "That little missunderstanding has cost TT a goal"
+msgstr ""
+
+#: src/lg_commentary.c:225
+msgid "P2 chips the ball towards P1 who heads the ball towards goal"
+msgstr ""
+
+#: src/lg_commentary.c:226
+msgid "Diving header by P1"
+msgstr ""
+
+#: src/lg_commentary.c:227
+msgid "He just floated in midair for ages then thunder heads it towards home"
 msgstr ""
 
 #: src/lg_commentary.c:230
-msgid "P1 has a chance to score with a penalty kick"
+msgid "Sweet strike by P1, hits the post"
 msgstr ""
 
 #: src/lg_commentary.c:231
+msgid "And the shot glances wide off the post"
+msgstr ""
+
+#: src/lg_commentary.c:232
+msgid "I'm suprised the post has managed to withstand that cracking shot"
+msgstr ""
+
+#: src/lg_commentary.c:235
+msgid "Ball dinked over P2 but hit crossbar and bounced to safety"
+msgstr ""
+
+#: src/lg_commentary.c:236
+msgid "The ball smacks into the crossbar with P2 stranded"
+msgstr ""
+
+#: src/lg_commentary.c:237
+msgid ""
+"P2 seemed to be everywhere at once, finally tipping the ball off the crossbar"
+msgstr ""
+
+#: src/lg_commentary.c:240
+msgid "P1 steps up to take the penalty"
+msgstr ""
+
+#: src/lg_commentary.c:241
+msgid "P1 has a chance to score with a penalty kick"
+msgstr ""
+
+#: src/lg_commentary.c:242
 msgid ""
 "P1 has missed a penalty before but he now has a chance to redeem himself"
 msgstr ""
 
-#: src/lg_commentary.c:232
+#: src/lg_commentary.c:243
 msgid ""
 "You have to bury the nerves, swallow and concentrate when your taking "
 "penalties"
 msgstr ""
 
-#: src/lg_commentary.c:235
+#: src/lg_commentary.c:246
 msgid "Short free-kick from P1"
 msgstr ""
 
-#: src/lg_commentary.c:236
+#: src/lg_commentary.c:247
 msgid "P1 drives free kick low and hard"
 msgstr ""
 
-#: src/lg_commentary.c:237
+#: src/lg_commentary.c:248
 msgid "P1 takes free-kick quickly and curls around wall"
 msgstr ""
 
-#: src/lg_commentary.c:238
+#: src/lg_commentary.c:249
 msgid "P1 curls the free kick over the wall"
 msgstr ""
 
-#: src/lg_commentary.c:239
+#: src/lg_commentary.c:250
 msgid "Free kick: P1 plays the ball out wide"
 msgstr ""
 
-#: src/lg_commentary.c:240
+#: src/lg_commentary.c:251
 msgid "Free kick: P1 hits a long ball up the pitch"
 msgstr ""
 
-#: src/lg_commentary.c:241
-msgid "Free kick whipped across the face of goal by P1"
-msgstr ""
-
-#: src/lg_commentary.c:244
-msgid "Oww, nasty tackle on P1"
-msgstr ""
-
-#: src/lg_commentary.c:245
-msgid "Surely that's a sending off offence"
-msgstr ""
-
-#: src/lg_commentary.c:246
-msgid "P2 knocks over P1 with a double footed lunge"
-msgstr ""
-
-#: src/lg_commentary.c:247
-msgid "Crunching challenge on P1"
-msgstr ""
-
-#: src/lg_commentary.c:248
-msgid "P1 gets his legs taken away from him by P2"
-msgstr ""
-
-#: src/lg_commentary.c:249
-msgid "Slicing challenge by P2 on P1"
-msgstr ""
-
-#: src/lg_commentary.c:250
-msgid "Vicious tackle from P2 leaves P1 lying on the floor in agony"
-msgstr ""
-
-#: src/lg_commentary.c:251
-msgid "Ouch that's got to hurt"
-msgstr ""
-
 #: src/lg_commentary.c:252
-msgid "Extremely high boot from P2 sends P1 to the ground"
+msgid "Free kick whipped across the face of goal by P1"
 msgstr ""
 
 #: src/lg_commentary.c:255
@@ -1392,7 +1392,7 @@ msgstr ""
 msgid "Remove user %s from the game?"
 msgstr ""
 
-#: src/misc2_interface.c:71 src/window.c:368
+#: src/misc2_interface.c:71 src/window.c:370
 msgid "Job offer"
 msgstr ""
 
@@ -1430,7 +1430,7 @@ msgstr ""
 msgid "Average skill:"
 msgstr ""
 
-#: src/misc2_interface.c:221 src/player.c:1069 src/treeview_helper.c:1074
+#: src/misc2_interface.c:221 src/player.c:1063 src/treeview_helper.c:1074
 msgid "OK"
 msgstr ""
 
@@ -2016,52 +2016,52 @@ msgid ""
 "this user starts a new game)"
 msgstr ""
 
-#: src/player.c:963
+#: src/player.c:956
 #, c-format
 msgid "%s's contract expires in %.1f years."
 msgstr ""
 
-#: src/player.c:1072
+#: src/player.c:1066
 msgid "Concussion"
 msgstr ""
 
-#: src/player.c:1075
+#: src/player.c:1069
 msgid "Pulled muscle"
 msgstr ""
 
-#: src/player.c:1078
+#: src/player.c:1072
 msgid "Hamstring"
 msgstr ""
 
-#: src/player.c:1081
+#: src/player.c:1075
 msgid "Groin injury"
 msgstr ""
 
-#: src/player.c:1084
+#: src/player.c:1078
 msgid "Fractured ankle"
 msgstr ""
 
-#: src/player.c:1087
+#: src/player.c:1081
 msgid "Broken rib"
 msgstr ""
 
-#: src/player.c:1090
+#: src/player.c:1084
 msgid "Broken leg"
 msgstr ""
 
-#: src/player.c:1093
+#: src/player.c:1087
 msgid "Broken ankle"
 msgstr ""
 
-#: src/player.c:1096
+#: src/player.c:1090
 msgid "Broken arm"
 msgstr ""
 
-#: src/player.c:1099
+#: src/player.c:1093
 msgid "Broken shoulder"
 msgstr ""
 
-#: src/player.c:1102
+#: src/player.c:1096
 msgid "Torn crucial ligament"
 msgstr ""
 
@@ -2070,81 +2070,81 @@ msgstr ""
 msgid "Couldn't find pixmap file: %s"
 msgstr ""
 
-#: src/team.c:547
+#: src/team.c:492
 msgid "ALL OUT DEFEND"
 msgstr ""
 
-#: src/team.c:549
+#: src/team.c:494
 msgid "DEFEND"
 msgstr ""
 
-#: src/team.c:551
+#: src/team.c:496
 msgid "BALANCED"
 msgstr ""
 
-#: src/team.c:553
+#: src/team.c:498
 msgid "ATTACK"
 msgstr ""
 
-#: src/team.c:555
+#: src/team.c:500
 msgid "ALL OUT ATTACK"
 msgstr ""
 
-#: src/team.c:562
+#: src/team.c:507
 msgid "ANTI"
 msgstr ""
 
-#: src/team.c:564
+#: src/team.c:509
 msgid "OFF"
 msgstr ""
 
-#: src/team.c:566
+#: src/team.c:511
 msgid "ON"
 msgstr ""
 
-#: src/team.c:1029
+#: src/team.c:971
 #, c-format
 msgid "W  %d : %d"
 msgstr ""
 
-#: src/team.c:1034
+#: src/team.c:976
 #, c-format
 msgid "L  %d : %d"
 msgstr ""
 
-#: src/team.c:1038
+#: src/team.c:980
 #, c-format
 msgid "Dw %d : %d"
 msgstr ""
 
-#: src/team.c:1047
+#: src/team.c:989
 #, c-format
 msgid "%s (H) "
 msgstr ""
 
-#: src/team.c:1052
+#: src/team.c:994
 #, c-format
-msgid "<span background='%s' foreground='%s'>%s (A)</span> "
+msgid "<span background='%s' foreground='%s'>%s (A) </span> "
 msgstr ""
 
-#: src/team.c:1061
+#: src/team.c:1003
 #, c-format
 msgid "%s (N) "
 msgstr ""
 
-#: src/team.c:1110
+#: src/team.c:1052
 msgid "Dw "
 msgstr ""
 
-#: src/team.c:1113
+#: src/team.c:1055
 msgid "L  "
 msgstr ""
 
-#: src/team.c:1115
+#: src/team.c:1057
 msgid "W  "
 msgstr ""
 
-#: src/transfer.c:412
+#: src/transfer.c:413
 #, c-format
 msgid "%s has been added to the transfer list for %d weeks."
 msgstr ""
@@ -2321,7 +2321,7 @@ msgstr ""
 msgid "PTS"
 msgstr ""
 
-#: src/treeview.c:1218 src/window.c:214
+#: src/treeview.c:1218 src/window.c:216
 #, c-format
 msgid ""
 "Improvement in progress.\n"
@@ -2757,14 +2757,14 @@ msgstr ""
 msgid "You are champion of the %s!"
 msgstr ""
 
-#: src/window.c:224
+#: src/window.c:226
 msgid "No improvements currently in progress."
 msgstr ""
 
-#: src/window.c:346
+#: src/window.c:348
 msgid "Numbers..."
 msgstr ""
 
-#: src/window.c:357
+#: src/window.c:359
 msgid "Your stadium"
 msgstr ""
