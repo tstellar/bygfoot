@@ -42,11 +42,7 @@ create_window_startup (void)
   GtkWidget *combo_country;
   GtkWidget *hseparator11;
   GtkWidget *label4;
-  GtkWidget *hbox2;
-  GtkWidget *team_selection_radio1;
-  GSList *team_selection_radio1_group = NULL;
-  GtkWidget *team_selection_radio2;
-  GtkWidget *team_selection_radio3;
+  GtkWidget *comboboxentry_start_league;
   GtkWidget *hseparator12;
   GtkWidget *hbox54;
   GtkWidget *label75;
@@ -145,33 +141,10 @@ create_window_startup (void)
   label4 = gtk_label_new (_("Start in"));
   gtk_widget_show (label4);
   gtk_box_pack_start (GTK_BOX (vbox2), label4, FALSE, FALSE, 0);
-  gtk_misc_set_alignment (GTK_MISC (label4), 0.05, 0.5);
 
-  hbox2 = gtk_hbox_new (FALSE, 0);
-  gtk_widget_show (hbox2);
-  gtk_box_pack_start (GTK_BOX (vbox2), hbox2, FALSE, TRUE, 5);
-
-  team_selection_radio1 = gtk_radio_button_new_with_mnemonic (NULL, _("Top league"));
-  gtk_widget_show (team_selection_radio1);
-  gtk_box_pack_start (GTK_BOX (hbox2), team_selection_radio1, FALSE, FALSE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (team_selection_radio1), 3);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (team_selection_radio1), team_selection_radio1_group);
-  team_selection_radio1_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (team_selection_radio1));
-
-  team_selection_radio2 = gtk_radio_button_new_with_mnemonic (NULL, _("Current league"));
-  gtk_widget_show (team_selection_radio2);
-  gtk_box_pack_start (GTK_BOX (hbox2), team_selection_radio2, FALSE, FALSE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (team_selection_radio2), 3);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (team_selection_radio2), team_selection_radio1_group);
-  team_selection_radio1_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (team_selection_radio2));
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (team_selection_radio2), TRUE);
-
-  team_selection_radio3 = gtk_radio_button_new_with_mnemonic (NULL, _("Bottom league"));
-  gtk_widget_show (team_selection_radio3);
-  gtk_box_pack_start (GTK_BOX (hbox2), team_selection_radio3, FALSE, FALSE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (team_selection_radio3), 3);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (team_selection_radio3), team_selection_radio1_group);
-  team_selection_radio1_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (team_selection_radio3));
+  comboboxentry_start_league = gtk_combo_box_entry_new ();
+  gtk_widget_show (comboboxentry_start_league);
+  gtk_box_pack_start (GTK_BOX (vbox2), comboboxentry_start_league, FALSE, FALSE, 0);
 
   hseparator12 = gtk_hseparator_new ();
   gtk_widget_show (hseparator12);
@@ -182,7 +155,7 @@ create_window_startup (void)
   gtk_widget_show (hbox54);
   gtk_box_pack_start (GTK_BOX (vbox2), hbox54, FALSE, TRUE, 0);
 
-  label75 = gtk_label_new (_("Player name"));
+  label75 = gtk_label_new (_("Username"));
   gtk_widget_show (label75);
   gtk_box_pack_start (GTK_BOX (hbox54), label75, FALSE, FALSE, 0);
 
@@ -347,10 +320,7 @@ create_window_startup (void)
   GLADE_HOOKUP_OBJECT (window_startup, combo_country, "combo_country");
   GLADE_HOOKUP_OBJECT (window_startup, hseparator11, "hseparator11");
   GLADE_HOOKUP_OBJECT (window_startup, label4, "label4");
-  GLADE_HOOKUP_OBJECT (window_startup, hbox2, "hbox2");
-  GLADE_HOOKUP_OBJECT (window_startup, team_selection_radio1, "team_selection_radio1");
-  GLADE_HOOKUP_OBJECT (window_startup, team_selection_radio2, "team_selection_radio2");
-  GLADE_HOOKUP_OBJECT (window_startup, team_selection_radio3, "team_selection_radio3");
+  GLADE_HOOKUP_OBJECT (window_startup, comboboxentry_start_league, "comboboxentry_start_league");
   GLADE_HOOKUP_OBJECT (window_startup, hseparator12, "hseparator12");
   GLADE_HOOKUP_OBJECT (window_startup, hbox54, "hbox54");
   GLADE_HOOKUP_OBJECT (window_startup, label75, "label75");

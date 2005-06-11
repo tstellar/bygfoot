@@ -360,49 +360,58 @@ treeview_helper_player_compare(GtkTreeModel *model,
 
     gtk_tree_model_get(model, a, 4, &pl1, -1);
     gtk_tree_model_get(model, b, 4, &pl2, -1);
-
-    switch(type)
+    
+    if(pl1 == NULL && pl2 == NULL)
+	return_value = 0;
+    else if(pl1 == NULL)
+	return_value = 1;
+    else if(pl2 == NULL)
+	return_value = -1;
+    else
     {
-	default:
-	    g_warning("treeview_player_compare: unknown type %d.\n", type);
-	    break;
-	case PLAYER_LIST_ATTRIBUTE_POS:
-	    return_value = misc_int_compare(pl1->pos, pl2->pos);
-	    break;
-	case PLAYER_LIST_ATTRIBUTE_GOALS:
-	    if(pl1->pos == 0 && pl2->pos == 0)
-		return_value = misc_int_compare(player_games_goals_get(pl2, pl2->team->clid, PLAYER_VALUE_GOALS),
-						player_games_goals_get(pl1, pl1->team->clid, PLAYER_VALUE_GOALS));
-	    else if(pl1->pos == 0 || pl2->pos == 0)
-		return_value = (pl1->pos == 0) ? 1 : -1;
-	    else
-		return_value = misc_int_compare(player_games_goals_get(pl1, pl1->team->clid, PLAYER_VALUE_GOALS),
-						player_games_goals_get(pl2, pl2->team->clid, PLAYER_VALUE_GOALS));
-	    break;
-	case PLAYER_LIST_ATTRIBUTE_SHOTS:
-	    return_value = misc_int_compare(player_games_goals_get(pl1, pl1->team->clid, PLAYER_VALUE_SHOTS),
-					    player_games_goals_get(pl2, pl2->team->clid, PLAYER_VALUE_SHOTS));
-	    break;
-	case PLAYER_LIST_ATTRIBUTE_GAMES:
-	    return_value = misc_int_compare(player_games_goals_get(pl1, pl1->team->clid, PLAYER_VALUE_GAMES),
-					    player_games_goals_get(pl2, pl2->team->clid, PLAYER_VALUE_GAMES));
-	    break;
-	case PLAYER_LIST_ATTRIBUTE_SKILL:
-	    return_value = misc_float_compare(pl1->skill, pl2->skill);
-	    break;
-	case PLAYER_LIST_ATTRIBUTE_AGE:
-	    return_value = misc_float_compare(pl1->age, pl2->age);
-	    break;
-	case PLAYER_LIST_ATTRIBUTE_ETAL:
-	    return_value = misc_float_compare(pl1->etal[current_user.scout % 10], 
-					      pl2->etal[current_user.scout % 10]);
-	    break;
-	case PLAYER_LIST_ATTRIBUTE_VALUE:
-	    return_value = misc_int_compare(pl1->value, pl2->value);
-	    break;
-	case PLAYER_LIST_ATTRIBUTE_WAGE:
-	    return_value = misc_int_compare(pl1->wage, pl2->wage);
-	    break;
+	switch(type)
+	{
+	    default:
+		g_warning("treeview_player_compare: unknown type %d.\n", type);
+		break;
+	    case PLAYER_LIST_ATTRIBUTE_POS:
+		return_value = misc_int_compare(pl1->pos, pl2->pos);
+		break;
+	    case PLAYER_LIST_ATTRIBUTE_GOALS:
+		if(pl1->pos == 0 && pl2->pos == 0)
+		    return_value = misc_int_compare(player_games_goals_get(pl2, pl2->team->clid, PLAYER_VALUE_GOALS),
+						    player_games_goals_get(pl1, pl1->team->clid, PLAYER_VALUE_GOALS));
+		else if(pl1->pos == 0 || pl2->pos == 0)
+		    return_value = (pl1->pos == 0) ? 1 : -1;
+		else
+		    return_value = misc_int_compare(player_games_goals_get(pl1, pl1->team->clid, PLAYER_VALUE_GOALS),
+						    player_games_goals_get(pl2, pl2->team->clid, PLAYER_VALUE_GOALS));
+		break;
+	    case PLAYER_LIST_ATTRIBUTE_SHOTS:
+		return_value = misc_int_compare(player_games_goals_get(pl1, pl1->team->clid, PLAYER_VALUE_SHOTS),
+						player_games_goals_get(pl2, pl2->team->clid, PLAYER_VALUE_SHOTS));
+		break;
+	    case PLAYER_LIST_ATTRIBUTE_GAMES:
+		return_value = misc_int_compare(player_games_goals_get(pl1, pl1->team->clid, PLAYER_VALUE_GAMES),
+						player_games_goals_get(pl2, pl2->team->clid, PLAYER_VALUE_GAMES));
+		break;
+	    case PLAYER_LIST_ATTRIBUTE_SKILL:
+		return_value = misc_float_compare(pl1->skill, pl2->skill);
+		break;
+	    case PLAYER_LIST_ATTRIBUTE_AGE:
+		return_value = misc_float_compare(pl1->age, pl2->age);
+		break;
+	    case PLAYER_LIST_ATTRIBUTE_ETAL:
+		return_value = misc_float_compare(pl1->etal[current_user.scout % 10], 
+						  pl2->etal[current_user.scout % 10]);
+		break;
+	    case PLAYER_LIST_ATTRIBUTE_VALUE:
+		return_value = misc_int_compare(pl1->value, pl2->value);
+		break;
+	    case PLAYER_LIST_ATTRIBUTE_WAGE:
+		return_value = misc_int_compare(pl1->wage, pl2->wage);
+		break;
+	}
     }
 
     return return_value;

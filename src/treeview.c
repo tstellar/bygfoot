@@ -180,7 +180,8 @@ treeview_show_team_list(GtkTreeView *treeview, gboolean show_cup_teams,
     @param max The size of the attribute array.
     @param separator Whether we draw a blank line after the 11th player. */
 GtkTreeModel*
-treeview_create_player_list(GPtrArray *players, gint *attributes, gint max, gboolean show_separator)
+treeview_create_player_list(GPtrArray *players, gint *attributes, gint max, 
+			    gboolean show_separator, gboolean sortable)
 {
     gint i, j;
     GtkListStore  *ls;
@@ -212,7 +213,7 @@ treeview_create_player_list(GPtrArray *players, gint *attributes, gint max, gboo
 	    gtk_list_store_set(ls, &iter, j + 1, g_ptr_array_index(players, i), -1);
     }
 
-    if(!show_separator)
+    if(sortable)
     {
 	for(i=0;i<max;i++)
 	    if(attributes[i] == PLAYER_LIST_ATTRIBUTE_POS ||
@@ -234,7 +235,7 @@ treeview_create_player_list(GPtrArray *players, gint *attributes, gint max, gboo
 /** Set up the tree view for a player list */
 void
 treeview_set_up_player_list (GtkTreeView *treeview, gint *attributes, gint max,
-			     gboolean show_separator)
+			     gboolean show_separator, gboolean sortable)
 {
     gint i;
     GtkTreeViewColumn   *col;
@@ -294,7 +295,7 @@ treeview_set_up_player_list (GtkTreeView *treeview, gint *attributes, gint max,
 			 NULL);
 	}
 	
-	if(!show_separator && 
+	if(sortable && 
 	   (attributes[i] == PLAYER_LIST_ATTRIBUTE_POS ||
 	    attributes[i] == PLAYER_LIST_ATTRIBUTE_SKILL ||
 	    attributes[i] == PLAYER_LIST_ATTRIBUTE_GOALS ||
@@ -323,6 +324,7 @@ treeview_show_player_list(GtkTreeView *treeview, GPtrArray *players, PlayerListA
     gint columns = math_sum_int_array(attribute.on_off, PLAYER_LIST_ATTRIBUTE_END);
     gint attributes[columns];
     GtkTreeModel *model = NULL;
+    gboolean sortable = (treeview != GTK_TREE_VIEW(lookup_widget(window.main, "player_list1")));
     
     treeview_helper_clear(treeview);
 
@@ -330,9 +332,9 @@ treeview_show_player_list(GtkTreeView *treeview, GPtrArray *players, PlayerListA
 	if(attribute.on_off[i])
 	    attributes[cnt++] = i;
 
-    treeview_set_up_player_list(treeview, attributes, columns, show_separator);
+    treeview_set_up_player_list(treeview, attributes, columns, show_separator, sortable);
 
-    model = treeview_create_player_list(players, attributes, columns, show_separator);
+    model = treeview_create_player_list(players, attributes, columns, show_separator, sortable);
 
     gtk_tree_view_set_model(treeview, model);
     g_object_unref(model);
@@ -572,14 +574,14 @@ treeview_create_users(void)
 			   2, usr(i).tm->name->str,
 			   -1);
 
-	if(stat0 == STATUS_TEAM_SELECTION && usr(i).scout != 0)
+	if(stat0 == STATUS_TEAM_SELECTION)
 	{
-	    if(usr(i).scout == 1)
+	    if(usr(i).scout == -1)
 		gtk_list_store_set(ls, &iter, 3,
-				   lig(0).name->str, -1);
+				   league_from_clid(usr(i).tm->clid)->name->str, -1);
 	    else
 		gtk_list_store_set(ls, &iter, 3,
-				   lig(ligs->len - 1).name->str, -1);
+				   lig(usr(i).scout).name->str, -1);
 	}
 	else
 	    gtk_list_store_set(ls, &iter, 3,
@@ -2237,4 +2239,52 @@ treeview_show_contributors(const OptionList *help_list)
 
     gtk_tree_view_set_model(treeview, GTK_TREE_MODEL(ls));
     g_object_unref(ls);
+}
+
+GtkTreeModel*
+treeview_create_league_list(void)
+{
+    gint i;
+    GtkListStore *ls = gtk_list_store_new(2, G_TYPE_INT, G_TYPE_STRING);
+    GtkTreeIter iter;
+
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, 0, 1, _("Current league"), -1);
+
+    for(i=0;i<ligs->len;i++)
+    {
+	gtk_list_store_append(ls, &iter);
+	gtk_list_store_set(ls, &iter, 0, i + 1, 1, lig(i).name->str, -1);
+    }
+
+    return GTK_TREE_MODEL(ls);
+}
+
+/** Show the league list in the combo box
+    in the startup window. */
+void
+treeview_show_leagues_combo(void)
+{
+    GtkTreeModel *model = treeview_create_league_list();
+    GtkComboBox *combo_leagues =
+	GTK_COMBO_BOX(lookup_widget(window.startup, "comboboxentry_start_league"));
+    GtkCellRenderer *renderer = NULL;
+    
+    gtk_combo_box_set_model(combo_leagues, model);
+    g_object_unref(model);
+
+    if(gtk_combo_box_entry_get_text_column(GTK_COMBO_BOX_ENTRY(combo_leagues)) == -1)
+	gtk_combo_box_entry_set_text_column(GTK_COMBO_BOX_ENTRY(combo_leagues), 1);
+
+    gtk_cell_layout_clear(GTK_CELL_LAYOUT(combo_leagues));
+
+    renderer = treeview_helper_cell_renderer_text_new();
+    gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(combo_leagues), renderer, FALSE);
+    gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(combo_leagues), renderer, "text", 0, NULL);
+
+    renderer = treeview_helper_cell_renderer_text_new();
+    gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(combo_leagues), renderer, TRUE);
+    gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(combo_leagues), renderer, "text", 1, NULL);
+
+    gtk_combo_box_set_active(GTK_COMBO_BOX(combo_leagues), 0);
 }

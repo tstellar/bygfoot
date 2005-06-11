@@ -20,10 +20,12 @@ treeview_show_team_list(GtkTreeView *treeview, gboolean show_cup_teams,
 			gboolean show_user_teams);
 
 GtkTreeModel*
-treeview_create_player_list(GPtrArray *players, gint *attributes, gint max, gboolean show_separator);
+treeview_create_player_list(GPtrArray *players, gint *attributes, gint max, 
+			    gboolean show_separator, gboolean sortable);
 
 void
-treeview_set_up_player_list (GtkTreeView *treeview, gint *attributes, gint max, gboolean show_separator);
+treeview_set_up_player_list (GtkTreeView *treeview, gint *attributes, gint max,
+			     gboolean show_separator, gboolean sortable);
 
 void
 treeview_show_player_list(GtkTreeView *treeview, GPtrArray *players, PlayerListAttribute attribute,
@@ -198,5 +200,11 @@ treeview_create_country_list(const GPtrArray *country_list);
 
 void
 treeview_show_contributors(const OptionList *help_list);
+
+GtkTreeModel*
+treeview_create_league_list(void);
+
+void
+treeview_show_leagues_combo(void);
 
 #endif

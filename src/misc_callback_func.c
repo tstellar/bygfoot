@@ -28,6 +28,8 @@ misc_callback_show_team_list(GtkWidget *widget, const gchar *country_file)
     xml_country_read(country_file);
 
     treeview_show_team_list(GTK_TREE_VIEW(treeview_startup), FALSE, FALSE);
+
+    treeview_show_leagues_combo();
 }
 
 /** Start a new game after users and teams are selected. */
@@ -54,40 +56,37 @@ misc_callback_start_game(void)
 void
 misc_callback_add_player(void)
 {
-    GtkToggleButton *team_selection_radio1 =
-	GTK_TOGGLE_BUTTON(lookup_widget(window.startup, "team_selection_radio1"));
-    GtkToggleButton *team_selection_radio2 =
-	GTK_TOGGLE_BUTTON(lookup_widget(window.startup, "team_selection_radio2"));
     GtkTreeView *treeview_users =
 	GTK_TREE_VIEW(lookup_widget(window.startup, "treeview_users"));
     GtkTreeView *treeview_startup =
 	GTK_TREE_VIEW(lookup_widget(window.startup, "treeview_startup"));
     GtkEntry *entry_player_name = 
-	GTK_ENTRY(lookup_widget(window.startup, "entry_player_name"));
+	GTK_ENTRY(lookup_widget(window.startup, "entry_player_name"));    
+    GtkComboBox *combo_leagues =
+	GTK_COMBO_BOX(lookup_widget(window.startup, "comboboxentry_start_league"));
     const gchar *player_name = gtk_entry_get_text(entry_player_name);
     User new_user = user_new();
     Team *tm = (Team*)treeview_helper_get_pointer(treeview_startup, 2);
+    gint start_league = 
+	gtk_combo_box_get_active(combo_leagues);
     
     if(strlen(player_name) > 0)
 	g_string_printf(new_user.name, "%s", player_name);
     
     gtk_entry_set_text(entry_player_name, "");
-
-    if(gtk_toggle_button_get_active(team_selection_radio1))
-	new_user.scout = 1;
-    else if(gtk_toggle_button_get_active(team_selection_radio2))
-	new_user.scout = 0;
-    else
-	new_user.scout = -1;
-
+    
     new_user.tm = tm;
     new_user.team_id = tm->id;
 
+    new_user.scout = (start_league == 0 || tm->clid == lig(start_league - 1).id) ? -1 : start_league - 1;
+    
     g_array_append_val(users, new_user);
 
     treeview_show_users(treeview_users);
 
     treeview_show_team_list(treeview_startup, FALSE, FALSE);
+
+    gtk_combo_box_set_active(GTK_COMBO_BOX(combo_leagues), 0);
 
     if(users->len == 1)
     {

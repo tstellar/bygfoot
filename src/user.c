@@ -41,30 +41,26 @@ void
 user_set_up_team_new_game(User *user)
 {
     gchar buf[SMALL];
-    gint rndom, max, lig_idx = -1;
+    gint rndom;
 
-    if(user->scout == 0)
+    if(user->scout == -1)
     {
 	user_set_up_team(user);
 	user_history_add(user, USER_HISTORY_START_GAME, user->tm->id, user->tm->clid, -1, "");
     }
     else
     {
-	if(user->scout == 1 &&
-	   lig(0).id != user->tm->clid)
-	    lig_idx = 0;
-	else if(lig(ligs->len - 1).id != user->tm->clid)
-	    lig_idx = ligs->len - 1;
-
-	max = lig(lig_idx).teams->len - 1;
-	rndom = math_rndi(0, max);
-	sprintf(buf, "%s", g_array_index(lig(lig_idx).teams, Team, rndom).name->str);
-	g_string_printf(g_array_index(lig(lig_idx).teams, Team, rndom).name, "%s",
+	rndom = math_rndi(0, lig(user->scout).teams->len - 1);
+	while(team_is_user(&g_array_index(lig(user->scout).teams, Team, rndom)) != -1)
+	    rndom = math_rndi(0, lig(user->scout).teams->len - 1);
+      
+	sprintf(buf, "%s", g_array_index(lig(user->scout).teams, Team, rndom).name->str);
+	g_string_printf(g_array_index(lig(user->scout).teams, Team, rndom).name, "%s",
 			user->tm->name->str);
 	g_string_printf(user->tm->name, "%s", buf);
 
-	user->tm = &g_array_index(lig(lig_idx).teams, Team, rndom);
-	user->team_id = g_array_index(lig(lig_idx).teams, Team, rndom).id;
+	user->tm = &g_array_index(lig(user->scout).teams, Team, rndom);
+	user->team_id = g_array_index(lig(user->scout).teams, Team, rndom).id;
 
 	user_history_add(user, USER_HISTORY_START_GAME, user->tm->id, user->tm->clid, -1, "");
 
