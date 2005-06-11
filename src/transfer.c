@@ -39,7 +39,7 @@ transfer_update(void)
 
     for(i=transfer_list->len - 1;i>=0;i--)
     {
-	if(team_is_user(trans(i).tm) == -1 ||
+	if(team_is_user(trans(i).tm) == -1 &&
 	   trans(i).offers->len == 0)
 	{
 	    trans(i).time--;

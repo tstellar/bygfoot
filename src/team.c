@@ -801,7 +801,7 @@ team_compare_func(gconstpointer a, gconstpointer b, gpointer data)
 GPtrArray*
 team_get_sorted(GCompareDataFunc compare_function, gint type, gboolean cup)
 { 
-    gint i, j, k;
+    gint i, j;
     GPtrArray *teams = g_ptr_array_new();
 
     if(!cup)
@@ -812,10 +812,9 @@ team_get_sorted(GCompareDataFunc compare_function, gint type, gboolean cup)
     }
     else
     {
-	for(i=0;i<cps->len;i++)
-	    for(j=0;j<cp(i).rounds->len;j++)
-		for(k=0;k<g_array_index(cp(i).rounds, CupRound, j).teams->len;k++)
-		    g_ptr_array_add(teams, &g_array_index(g_array_index(cp(i).rounds, CupRound, j).teams, Team, k));
+	for(i=0;i<acps->len;i++)
+	    for(j=0;j<acp(i)->teams->len;j++)
+		g_ptr_array_add(teams, g_ptr_array_index(acp(i)->teams, j));
     }
 
     g_ptr_array_sort_with_data(teams, compare_function, GINT_TO_POINTER(type));
