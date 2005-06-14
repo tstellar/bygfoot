@@ -2245,16 +2245,16 @@ GtkTreeModel*
 treeview_create_league_list(void)
 {
     gint i;
-    GtkListStore *ls = gtk_list_store_new(2, G_TYPE_INT, G_TYPE_STRING);
+    GtkListStore *ls = gtk_list_store_new(1, G_TYPE_STRING);
     GtkTreeIter iter;
 
     gtk_list_store_append(ls, &iter);
-    gtk_list_store_set(ls, &iter, 0, 0, 1, _("Current league"), -1);
+    gtk_list_store_set(ls, &iter, 0, _("Current league"), -1);
 
     for(i=0;i<ligs->len;i++)
     {
 	gtk_list_store_append(ls, &iter);
-	gtk_list_store_set(ls, &iter, 0, i + 1, 1, lig(i).name->str, -1);
+	gtk_list_store_set(ls, &iter, 0, lig(i).name->str, -1);
     }
 
     return GTK_TREE_MODEL(ls);
@@ -2274,17 +2274,13 @@ treeview_show_leagues_combo(void)
     g_object_unref(model);
 
     if(gtk_combo_box_entry_get_text_column(GTK_COMBO_BOX_ENTRY(combo_leagues)) == -1)
-	gtk_combo_box_entry_set_text_column(GTK_COMBO_BOX_ENTRY(combo_leagues), 1);
+	gtk_combo_box_entry_set_text_column(GTK_COMBO_BOX_ENTRY(combo_leagues), 0);
 
     gtk_cell_layout_clear(GTK_CELL_LAYOUT(combo_leagues));
 
     renderer = treeview_helper_cell_renderer_text_new();
     gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(combo_leagues), renderer, FALSE);
     gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(combo_leagues), renderer, "text", 0, NULL);
-
-    renderer = treeview_helper_cell_renderer_text_new();
-    gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(combo_leagues), renderer, TRUE);
-    gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(combo_leagues), renderer, "text", 1, NULL);
 
     gtk_combo_box_set_active(GTK_COMBO_BOX(combo_leagues), 0);
 }

@@ -152,17 +152,6 @@ on_button_transfers_clicked            (GtkButton       *button,
 
 
 void
-on_button_preview_clicked              (GtkButton       *button,
-                                        gpointer         user_data)
-{
-    stat0 = STATUS_SHOW_PREVIEW;
-    treeview_show_preview();
-
-    gui_set_arrows();
-}
-
-
-void
 on_button_new_week_clicked             (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -653,6 +642,19 @@ on_menu_user_show_last_stats_activate  (GtkMenuItem     *menuitem,
     gui_set_arrows();
 }
 
+
+void
+on_menu_user_show_coming_matches_activate
+                                        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    stat0 = STATUS_SHOW_PREVIEW;
+    treeview_show_preview();
+
+    gui_set_arrows();
+}
+
+
 gboolean
 on_eventbox_style_button_press_event   (GtkWidget       *widget,
                                         GdkEventButton  *event,
@@ -917,3 +919,4 @@ on_button_quit_button_press_event      (GtkWidget       *widget,
 
     return FALSE;
 }
+

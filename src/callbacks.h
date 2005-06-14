@@ -50,10 +50,6 @@ on_button_transfers_clicked            (GtkButton       *button,
                                         gpointer         user_data);
 
 void
-on_button_preview_clicked              (GtkButton       *button,
-                                        gpointer         user_data);
-
-void
 on_button_new_week_clicked             (GtkButton       *button,
                                         gpointer         user_data);
 
@@ -265,4 +261,9 @@ on_menu_help_activate                  (GtkMenuItem     *menuitem,
 
 void
 on_menu_contributors_activate          (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_menu_user_show_coming_matches_activate
+                                        (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
