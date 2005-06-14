@@ -113,7 +113,7 @@ typedef struct
 	*yesno,
 	*options,
 	*font_sel,
-	*file_sel,
+	*file_chooser,
 	*contract,
 	*menu_player,
 	*user_management,

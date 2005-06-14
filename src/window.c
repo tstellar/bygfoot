@@ -6,7 +6,9 @@
 #include "interface.h"
 #include "league.h"
 #include "live_game.h"
+#include "load_save.h"
 #include "main.h"
+#include "misc_callback_func.h"
 #include "misc_interface.h"
 #include "misc2_interface.h"
 #include "option.h"
@@ -98,17 +100,41 @@ window_show_file_sel(void)
 {
     gchar buf[SMALL];
     const gchar *home = g_get_home_dir();
+    gchar *filename = NULL;
 
-    window_create(WINDOW_FILE_SEL);
+    window_create(WINDOW_FILE_CHOOSER);
+
+    if(stat1 == STATUS_SAVE_GAME)
+	gtk_file_chooser_set_action(GTK_FILE_CHOOSER(window.file_chooser),
+				    GTK_FILE_CHOOSER_ACTION_SAVE);
+    else
+	gtk_file_chooser_set_action(GTK_FILE_CHOOSER(window.file_chooser),
+				    GTK_FILE_CHOOSER_ACTION_OPEN);
 
     if(strlen(save_file->str) > 0)
-	gtk_file_selection_set_filename(GTK_FILE_SELECTION(window.file_sel),
-					save_file->str);
+	gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(window.file_chooser),
+				      save_file->str);
     else
     {
-	sprintf(buf, "%s/%s/saves/", home, HOMEDIRNAME);
-	gtk_file_selection_set_filename(GTK_FILE_SELECTION(window.file_sel), buf);
+	sprintf(buf, "%s/%s/saves/.", home, HOMEDIRNAME);
+	gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(window.file_chooser), buf);
     }
+
+    if(gtk_dialog_run(GTK_DIALOG(window.file_chooser)) == GTK_RESPONSE_OK)
+    {
+	filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(window.file_chooser));
+
+	if(stat1 == STATUS_LOAD_GAME)
+	    load_save_load_game(filename);
+	else if(stat1 == STATUS_LOAD_GAME_TEAM_SELECTION)
+	    misc_callback_startup_load(filename);
+	else if(stat1 == STATUS_SAVE_GAME)
+	    load_save_save_game(filename);
+
+	g_free(filename);
+    }
+
+    window_destroy(&window.file_chooser, FALSE);
 }
 
 /**  Show the options window. */
@@ -400,13 +426,12 @@ window_create(gint window_type)
 	    wind = window.font_sel;
 	    strcpy(buf, "Select font");
 	    break;
-	case WINDOW_FILE_SEL:
-	    if(window.file_sel != NULL)
+	case WINDOW_FILE_CHOOSER:
+	    if(window.file_chooser != NULL)
 		g_warning("window_create: called on already existing window\n");
 	    else
-		window.file_sel = create_window_file_sel();
-	    wind = window.file_sel;
-	    strcpy(buf, "Select file");
+		window.file_chooser = create_window_file_chooser();
+	    wind = window.file_chooser;
 	    break;
 	case WINDOW_CONTRACT:
 	    if(window.contract != NULL)
@@ -449,7 +474,8 @@ window_create(gint window_type)
 	    break;
     }
 
-    gtk_window_set_title(GTK_WINDOW(wind), buf);
+    if(window_type != WINDOW_FILE_CHOOSER)
+	gtk_window_set_title(GTK_WINDOW(wind), buf);
 
     if(window_type != WINDOW_PROGRESS)
 	g_timeout_add(20, (GSourceFunc)window_show, (gpointer)wind);

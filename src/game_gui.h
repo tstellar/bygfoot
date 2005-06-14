@@ -5,8 +5,8 @@
 #include "live_game_struct.h"
 #include "option_struct.h"
 
-#define setsav1 gtk_widget_set_sensitive(lookup_widget(window.main, "button_save"), FALSE)
-#define setsav0 gtk_widget_set_sensitive(lookup_widget(window.main, "button_save"), TRUE)
+#define setsav1 gtk_widget_set_sensitive(lookup_widget(window.main, "button_save"), FALSE);gtk_widget_set_sensitive(lookup_widget(window.main, "menu_save"), FALSE)
+#define setsav0 gtk_widget_set_sensitive(lookup_widget(window.main, "button_save"), TRUE);gtk_widget_set_sensitive(lookup_widget(window.main, "menu_save"), TRUE)
 #define getsav GTK_WIDGET_SENSITIVE(lookup_widget(window.main, "button_save"))
 
 void

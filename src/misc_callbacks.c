@@ -64,43 +64,6 @@ on_team_selection_load_clicked         (GtkButton       *button,
 
 
 gboolean
-on_fsel_window_delete_event            (GtkWidget       *widget,
-                                        GdkEvent        *event,
-                                        gpointer         user_data)
-{
-    on_button_fsel_cancel_clicked(NULL, NULL);
-
-    return FALSE;
-}
-
-
-void
-on_button_fsel_ok_clicked              (GtkButton       *button,
-                                        gpointer         user_data)
-{
-    const gchar *filename = 
-	gtk_file_selection_get_filename(GTK_FILE_SELECTION(window.file_sel));
-
-    if(stat1 == STATUS_SAVE_GAME)
-	load_save_save_game(filename);
-    else if(stat1 == STATUS_LOAD_GAME)
-	load_save_load_game(filename);
-    else if(stat1 == STATUS_LOAD_GAME_TEAM_SELECTION)
-	misc_callback_startup_load(filename);
-
-    window_destroy(&window.file_sel, FALSE);
-}
-
-
-void
-on_button_fsel_cancel_clicked          (GtkButton       *button,
-                                        gpointer         user_data)
-{
-    window_destroy(&window.file_sel, FALSE);
-}
-
-
-gboolean
 on_button_font_sel_cancel_clicked      (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)

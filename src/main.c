@@ -41,7 +41,8 @@ main_init_variables(void)
     window.main = window.startup =
 	window.live = window.warning = window.progress = window.digits =
 	window.stadium = window.job_offer = window.yesno = 
-	window.options = window.font_sel = window.file_sel = window.contract = 
+	window.options = window.font_sel =
+	window.file_chooser = window.contract = 
 	window.menu_player = window.user_management = NULL;
     
     live_game_reset(&live_game_temp, NULL, FALSE);

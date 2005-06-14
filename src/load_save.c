@@ -149,7 +149,7 @@ load_save_load_game(const gchar* filename)
 
     gtk_widget_hide(window.main);
 
-    if(strcmp(filename, "last_save") == 0)
+    if(g_str_has_suffix(filename, "last_save"))
     {
 	g_free(basename);
 	g_free(dirname);

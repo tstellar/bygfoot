@@ -23,19 +23,6 @@ on_team_selection_load_clicked         (GtkButton       *button,
                                         gpointer         user_data);
 
 gboolean
-on_fsel_window_delete_event            (GtkWidget       *widget,
-                                        GdkEvent        *event,
-                                        gpointer         user_data);
-
-void
-on_button_fsel_ok_clicked              (GtkButton       *button,
-                                        gpointer         user_data);
-
-void
-on_button_fsel_cancel_clicked          (GtkButton       *button,
-                                        gpointer         user_data);
-
-gboolean
 on_button_font_sel_cancel_clicked      (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data);
