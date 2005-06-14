@@ -207,4 +207,7 @@ treeview_create_league_list(void);
 void
 treeview_show_leagues_combo(void);
 
+void
+treeview_show_language_combo(void);
+
 #endif

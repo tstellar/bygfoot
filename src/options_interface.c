@@ -42,7 +42,6 @@ create_window_options (void)
   GtkWidget *checkbutton_skip;
   GtkWidget *vseparator1;
   GtkWidget *table1;
-  GtkWidget *checkbutton_autosave;
   GtkWidget *hbox3;
   GtkWidget *label6;
   GtkObject *spinbutton_autosave_adj;
@@ -52,17 +51,12 @@ create_window_options (void)
   GtkWidget *spinbutton_autosave_files;
   GtkWidget *label7;
   GtkWidget *label8;
-  GtkObject *spinbutton_precision_adj;
-  GtkWidget *spinbutton_precision;
-  GtkObject *spinbutton_refresh_adj;
-  GtkWidget *spinbutton_refresh;
   GtkWidget *label10;
   GtkWidget *button_font_name;
   GtkWidget *alignment1;
   GtkWidget *hbox7;
   GtkWidget *image1;
   GtkWidget *label34;
-  GtkWidget *entry_font_name;
   GtkWidget *hbox8;
   GtkWidget *entry_constants_file;
   GtkWidget *button_reload_constants;
@@ -70,6 +64,15 @@ create_window_options (void)
   GtkWidget *hbox9;
   GtkWidget *image2;
   GtkWidget *label35;
+  GtkWidget *label40;
+  GtkWidget *checkbutton_autosave;
+  GtkObject *spinbutton_precision_adj;
+  GtkWidget *spinbutton_precision;
+  GtkObject *spinbutton_refresh_adj;
+  GtkWidget *spinbutton_refresh;
+  GtkWidget *entry_font_name;
+  GtkWidget *eventbox2;
+  GtkWidget *comboboxentry_languages;
   GtkWidget *label1;
   GtkWidget *hbox4;
   GtkWidget *vbox4;
@@ -237,16 +240,11 @@ create_window_options (void)
   gtk_box_pack_start (GTK_BOX (hbox2), vseparator1, FALSE, FALSE, 0);
   gtk_widget_set_size_request (vseparator1, 10, 1);
 
-  table1 = gtk_table_new (5, 2, FALSE);
+  table1 = gtk_table_new (6, 2, FALSE);
   gtk_widget_show (table1);
-  gtk_box_pack_start (GTK_BOX (hbox2), table1, TRUE, TRUE, 0);
-
-  checkbutton_autosave = gtk_check_button_new_with_mnemonic (_("Autosave"));
-  gtk_widget_show (checkbutton_autosave);
-  gtk_table_attach (GTK_TABLE (table1), checkbutton_autosave, 0, 1, 0, 1,
-                    (GtkAttachOptions) (GTK_FILL),
-                    (GtkAttachOptions) (0), 0, 0);
-  gtk_tooltips_set_tip (tooltips, checkbutton_autosave, _("Whether to automatically save the game regularly"), NULL);
+  gtk_box_pack_start (GTK_BOX (hbox2), table1, FALSE, FALSE, 0);
+  gtk_table_set_row_spacings (GTK_TABLE (table1), 1);
+  gtk_table_set_col_spacings (GTK_TABLE (table1), 5);
 
   hbox3 = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (hbox3);
@@ -261,7 +259,7 @@ create_window_options (void)
   spinbutton_autosave_adj = gtk_adjustment_new (1, 1, 20, 1, 10, 10);
   spinbutton_autosave = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_autosave_adj), 1, 0);
   gtk_widget_show (spinbutton_autosave);
-  gtk_box_pack_start (GTK_BOX (hbox3), spinbutton_autosave, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox3), spinbutton_autosave, FALSE, TRUE, 0);
   gtk_tooltips_set_tip (tooltips, spinbutton_autosave, _("How often the game is saved automatically"), NULL);
   gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_autosave), TRUE);
 
@@ -275,39 +273,21 @@ create_window_options (void)
   gtk_box_pack_start (GTK_BOX (hbox3), spinbutton_autosave_files, TRUE, TRUE, 0);
   gtk_tooltips_set_tip (tooltips, spinbutton_autosave_files, _("How many files the autosave uses"), NULL);
 
-  label7 = gtk_label_new (_("Player attribute precision "));
+  label7 = gtk_label_new (_("Player attribute precision"));
   gtk_widget_show (label7);
   gtk_table_attach (GTK_TABLE (table1), label7, 0, 1, 1, 2,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (label7), 1, 0.5);
 
-  label8 = gtk_label_new (_("Player list refresh rate "));
+  label8 = gtk_label_new (_("Player list refresh rate"));
   gtk_widget_show (label8);
   gtk_table_attach (GTK_TABLE (table1), label8, 0, 1, 2, 3,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (label8), 1, 0.5);
 
-  spinbutton_precision_adj = gtk_adjustment_new (1, 0, 3, 1, 10, 10);
-  spinbutton_precision = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_precision_adj), 1, 0);
-  gtk_widget_show (spinbutton_precision);
-  gtk_table_attach (GTK_TABLE (table1), spinbutton_precision, 1, 2, 1, 2,
-                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
-                    (GtkAttachOptions) (0), 0, 0);
-  gtk_tooltips_set_tip (tooltips, spinbutton_precision, _("How many digits after the comma there are for skill etc."), NULL);
-  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_precision), TRUE);
-
-  spinbutton_refresh_adj = gtk_adjustment_new (1, 1, 100, 1, 10, 10);
-  spinbutton_refresh = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_refresh_adj), 1, 0);
-  gtk_widget_show (spinbutton_refresh);
-  gtk_table_attach (GTK_TABLE (table1), spinbutton_refresh, 1, 2, 2, 3,
-                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
-                    (GtkAttachOptions) (0), 0, 0);
-  gtk_tooltips_set_tip (tooltips, spinbutton_refresh, _("How often the player list gets refreshed during a live game (in live game minutes)"), NULL);
-  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_refresh), TRUE);
-
-  label10 = gtk_label_new (_("Constants file "));
+  label10 = gtk_label_new (_("Constants file"));
   gtk_widget_show (label10);
   gtk_table_attach (GTK_TABLE (table1), label10, 0, 1, 3, 4,
                     (GtkAttachOptions) (GTK_FILL),
@@ -337,13 +317,6 @@ create_window_options (void)
   gtk_widget_show (label34);
   gtk_box_pack_start (GTK_BOX (hbox7), label34, FALSE, FALSE, 0);
 
-  entry_font_name = gtk_entry_new ();
-  gtk_widget_show (entry_font_name);
-  gtk_table_attach (GTK_TABLE (table1), entry_font_name, 1, 2, 4, 5,
-                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
-                    (GtkAttachOptions) (0), 0, 0);
-  gtk_tooltips_set_tip (tooltips, entry_font_name, _("Font used in treeviews"), NULL);
-
   hbox8 = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (hbox8);
   gtk_table_attach (GTK_TABLE (table1), hbox8, 1, 2, 3, 4,
@@ -352,7 +325,7 @@ create_window_options (void)
 
   entry_constants_file = gtk_entry_new ();
   gtk_widget_show (entry_constants_file);
-  gtk_box_pack_start (GTK_BOX (hbox8), entry_constants_file, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox8), entry_constants_file, FALSE, TRUE, 0);
   gtk_tooltips_set_tip (tooltips, entry_constants_file, _("File containing settings which determine a lot of aspects of the game behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."), NULL);
 
   button_reload_constants = gtk_button_new ();
@@ -375,6 +348,56 @@ create_window_options (void)
   label35 = gtk_label_new_with_mnemonic (_("Reload"));
   gtk_widget_show (label35);
   gtk_box_pack_start (GTK_BOX (hbox9), label35, FALSE, FALSE, 0);
+
+  label40 = gtk_label_new (_("Language"));
+  gtk_widget_show (label40);
+  gtk_table_attach (GTK_TABLE (table1), label40, 0, 1, 5, 6,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (label40), 1, 0.5);
+
+  checkbutton_autosave = gtk_check_button_new_with_mnemonic (_("Autosave"));
+  gtk_widget_show (checkbutton_autosave);
+  gtk_table_attach (GTK_TABLE (table1), checkbutton_autosave, 0, 1, 0, 1,
+                    (GtkAttachOptions) (0),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_autosave, _("Whether to automatically save the game regularly"), NULL);
+
+  spinbutton_precision_adj = gtk_adjustment_new (1, 0, 3, 1, 10, 10);
+  spinbutton_precision = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_precision_adj), 1, 0);
+  gtk_widget_show (spinbutton_precision);
+  gtk_table_attach (GTK_TABLE (table1), spinbutton_precision, 1, 2, 1, 2,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_tooltips_set_tip (tooltips, spinbutton_precision, _("How many digits after the comma there are for skill etc."), NULL);
+  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_precision), TRUE);
+
+  spinbutton_refresh_adj = gtk_adjustment_new (1, 1, 100, 1, 10, 10);
+  spinbutton_refresh = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_refresh_adj), 1, 0);
+  gtk_widget_show (spinbutton_refresh);
+  gtk_table_attach (GTK_TABLE (table1), spinbutton_refresh, 1, 2, 2, 3,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_tooltips_set_tip (tooltips, spinbutton_refresh, _("How often the player list gets refreshed during a live game (in live game minutes)"), NULL);
+  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_refresh), TRUE);
+
+  entry_font_name = gtk_entry_new ();
+  gtk_widget_show (entry_font_name);
+  gtk_table_attach (GTK_TABLE (table1), entry_font_name, 1, 2, 4, 5,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_tooltips_set_tip (tooltips, entry_font_name, _("Font used in treeviews"), NULL);
+
+  eventbox2 = gtk_event_box_new ();
+  gtk_widget_show (eventbox2);
+  gtk_table_attach (GTK_TABLE (table1), eventbox2, 1, 2, 5, 6,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (GTK_FILL), 0, 0);
+  gtk_tooltips_set_tip (tooltips, eventbox2, _("Setting the language only works for installed packages (not for the binary package)"), NULL);
+
+  comboboxentry_languages = gtk_combo_box_entry_new ();
+  gtk_widget_show (comboboxentry_languages);
+  gtk_container_add (GTK_CONTAINER (eventbox2), comboboxentry_languages);
 
   label1 = gtk_label_new (_("Global"));
   gtk_widget_show (label1);
@@ -419,7 +442,7 @@ create_window_options (void)
   spinbutton_live_speed = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_live_speed_adj), 1, 0);
   gtk_widget_show (spinbutton_live_speed);
   gtk_table_attach (GTK_TABLE (table3), spinbutton_live_speed, 1, 2, 0, 1,
-                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_tooltips_set_tip (tooltips, spinbutton_live_speed, _("The lower this value the faster the live game commentary will scroll."), NULL);
   gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_live_speed), TRUE);
@@ -428,7 +451,7 @@ create_window_options (void)
   spinbutton_live_verbosity = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_live_verbosity_adj), 1, 0);
   gtk_widget_show (spinbutton_live_verbosity);
   gtk_table_attach (GTK_TABLE (table3), spinbutton_live_verbosity, 1, 2, 1, 2,
-                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_tooltips_set_tip (tooltips, spinbutton_live_verbosity, _("The higher this value, the more commentary you'll see."), NULL);
   gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_live_verbosity), TRUE);
@@ -990,7 +1013,6 @@ create_window_options (void)
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_skip, "checkbutton_skip");
   GLADE_HOOKUP_OBJECT (window_options, vseparator1, "vseparator1");
   GLADE_HOOKUP_OBJECT (window_options, table1, "table1");
-  GLADE_HOOKUP_OBJECT (window_options, checkbutton_autosave, "checkbutton_autosave");
   GLADE_HOOKUP_OBJECT (window_options, hbox3, "hbox3");
   GLADE_HOOKUP_OBJECT (window_options, label6, "label6");
   GLADE_HOOKUP_OBJECT (window_options, spinbutton_autosave, "spinbutton_autosave");
@@ -998,15 +1020,12 @@ create_window_options (void)
   GLADE_HOOKUP_OBJECT (window_options, spinbutton_autosave_files, "spinbutton_autosave_files");
   GLADE_HOOKUP_OBJECT (window_options, label7, "label7");
   GLADE_HOOKUP_OBJECT (window_options, label8, "label8");
-  GLADE_HOOKUP_OBJECT (window_options, spinbutton_precision, "spinbutton_precision");
-  GLADE_HOOKUP_OBJECT (window_options, spinbutton_refresh, "spinbutton_refresh");
   GLADE_HOOKUP_OBJECT (window_options, label10, "label10");
   GLADE_HOOKUP_OBJECT (window_options, button_font_name, "button_font_name");
   GLADE_HOOKUP_OBJECT (window_options, alignment1, "alignment1");
   GLADE_HOOKUP_OBJECT (window_options, hbox7, "hbox7");
   GLADE_HOOKUP_OBJECT (window_options, image1, "image1");
   GLADE_HOOKUP_OBJECT (window_options, label34, "label34");
-  GLADE_HOOKUP_OBJECT (window_options, entry_font_name, "entry_font_name");
   GLADE_HOOKUP_OBJECT (window_options, hbox8, "hbox8");
   GLADE_HOOKUP_OBJECT (window_options, entry_constants_file, "entry_constants_file");
   GLADE_HOOKUP_OBJECT (window_options, button_reload_constants, "button_reload_constants");
@@ -1014,6 +1033,13 @@ create_window_options (void)
   GLADE_HOOKUP_OBJECT (window_options, hbox9, "hbox9");
   GLADE_HOOKUP_OBJECT (window_options, image2, "image2");
   GLADE_HOOKUP_OBJECT (window_options, label35, "label35");
+  GLADE_HOOKUP_OBJECT (window_options, label40, "label40");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_autosave, "checkbutton_autosave");
+  GLADE_HOOKUP_OBJECT (window_options, spinbutton_precision, "spinbutton_precision");
+  GLADE_HOOKUP_OBJECT (window_options, spinbutton_refresh, "spinbutton_refresh");
+  GLADE_HOOKUP_OBJECT (window_options, entry_font_name, "entry_font_name");
+  GLADE_HOOKUP_OBJECT (window_options, eventbox2, "eventbox2");
+  GLADE_HOOKUP_OBJECT (window_options, comboboxentry_languages, "comboboxentry_languages");
   GLADE_HOOKUP_OBJECT (window_options, label1, "label1");
   GLADE_HOOKUP_OBJECT (window_options, hbox4, "hbox4");
   GLADE_HOOKUP_OBJECT (window_options, vbox4, "vbox4");

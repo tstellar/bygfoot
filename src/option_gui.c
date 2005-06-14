@@ -1,9 +1,11 @@
 #include "callbacks.h"
 #include "file.h"
 #include "game_gui.h"
+#include "language.h"
 #include "option.h"
 #include "option_gui.h"
 #include "support.h"
+#include "treeview.h"
 #include "user.h"
 #include "variables.h"
 
@@ -368,6 +370,8 @@ option_gui_set_up_window(void)
     GtkEntry *entry_widgets[ENTRY_OPT_END];
     GString *entry_options[ENTRY_OPT_END];
 
+    treeview_show_language_combo();
+
     option_gui_write_bool_widgets(bool_options, bool_widgets);
     option_gui_write_spin_widgets(spin_options, spin_widgets);
     option_gui_write_entry_widgets(entry_options, entry_widgets);
@@ -388,14 +392,16 @@ void
 option_gui_write_options(void)
 {
     gint i;
+    gint language_index = 
+	gtk_combo_box_get_active(GTK_COMBO_BOX(lookup_widget(window.options, "comboboxentry_languages")));
     GtkToggleButton *bool_widgets[BOOL_OPT_END];
     gint *bool_options[BOOL_OPT_END];
-
     GtkSpinButton *spin_widgets[SPIN_OPT_END];
     gint *spin_options[SPIN_OPT_END];
-
     GtkEntry *entry_widgets[ENTRY_OPT_END];
     GString *entry_options[ENTRY_OPT_END];
+
+    language_set(language_index);
 
     option_gui_write_bool_widgets(bool_options, bool_widgets);
     option_gui_write_spin_widgets(spin_options, spin_widgets);

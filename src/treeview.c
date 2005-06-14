@@ -3,6 +3,7 @@
 #include "fixture.h"
 #include "free.h"
 #include "game.h"
+#include "language.h"
 #include "league.h"
 #include "live_game.h"
 #include "maths.h"
@@ -2283,4 +2284,60 @@ treeview_show_leagues_combo(void)
     gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(combo_leagues), renderer, "text", 0, NULL);
 
     gtk_combo_box_set_active(GTK_COMBO_BOX(combo_leagues), 0);
+}
+
+GtkTreeModel*
+treeview_create_language_list(void)
+{
+    gint i;
+    GtkListStore *ls = gtk_list_store_new(2, GDK_TYPE_PIXBUF, G_TYPE_STRING);
+    GtkTreeIter iter;
+    GPtrArray *names = 
+	misc_separate_strings(const_str("string_language_names"));
+    GPtrArray *symbols = 
+	misc_separate_strings(const_str("string_language_symbols"));
+
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, NULL, 1, _("System"), -1);
+
+    for(i=0;i<names->len;i++)
+    {
+	gtk_list_store_append(ls, &iter);
+	treeview_helper_insert_icon(ls, &iter, 0, ((GString*)g_ptr_array_index(symbols, i))->str);
+	gtk_list_store_set(ls, &iter, 1, 
+			   ((GString*)g_ptr_array_index(names, i))->str, -1);
+    }
+
+    free_g_string_array(&names);
+    free_g_string_array(&symbols);
+
+    return GTK_TREE_MODEL(ls);
+}
+
+/** Show the list of available languages. */
+void
+treeview_show_language_combo(void)
+{
+    GtkTreeModel *model = treeview_create_language_list();
+    GtkComboBox *combo_languages =
+	GTK_COMBO_BOX(lookup_widget(window.options, "comboboxentry_languages"));
+    GtkCellRenderer *renderer = NULL;
+    gint idx = language_get_current_index();
+
+    gtk_combo_box_set_model(combo_languages, model);
+    g_object_unref(model);
+
+    gtk_combo_box_entry_set_text_column(GTK_COMBO_BOX_ENTRY(combo_languages), 1);
+
+    gtk_cell_layout_clear(GTK_CELL_LAYOUT(combo_languages));
+
+    renderer = gtk_cell_renderer_pixbuf_new();
+    gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(combo_languages), renderer, FALSE);
+    gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(combo_languages), renderer, "pixbuf", 0, NULL);
+
+    renderer = treeview_helper_cell_renderer_text_new();
+    gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(combo_languages), renderer, FALSE);
+    gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(combo_languages), renderer, "text", 1, NULL);
+
+    gtk_combo_box_set_active(GTK_COMBO_BOX(combo_languages), idx + 1);
 }

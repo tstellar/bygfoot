@@ -291,7 +291,8 @@ window_create(gint window_type)
 	    {
 		window.main = create_main_window();
 		wind = window.main;
-		game_gui_print_message("Welcome to Bygfoot "VERS);
+		sprintf(buf, _("Welcome to Bygfoot %s"), VERS);
+		game_gui_print_message(buf);
 	    }
 	    else
 		wind = window.main;

@@ -72,7 +72,7 @@ callback_player_clicked(gint idx, GdkEventButton *event)
     /* Only accept single-clicks right now. */
     if(event->type != GDK_BUTTON_PRESS)
 	return;
-
+    
     if(event->button == 1)
     {
 	if(selected_row[0] == -1)

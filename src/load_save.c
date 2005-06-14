@@ -42,7 +42,7 @@ load_save_save_game(const gchar *filename)
     if(debug > 60)
 	printf("load_save_save options/constants \n");
 
-    gui_show_progress(0, "Saving options/constants...");
+    gui_show_progress(0, _("Saving options/constants..."));
 
     sprintf(buf, "%s___options", prefix);
     file_save_opt_file(buf, &options);
@@ -55,7 +55,7 @@ load_save_save_game(const gchar *filename)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	"Saving leagues...");
+	_("Saving leagues..."));
 
     for(i=0;i<ligs->len;i++)
 	xml_loadsave_league_write(prefix, &lig(i));
@@ -66,7 +66,7 @@ load_save_save_game(const gchar *filename)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	    GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	"Saving cups...");
+	_("Saving cups..."));
 
     for(i=0;i<cps->len;i++)
 	xml_loadsave_cup_write(prefix, &cp(i));
@@ -77,7 +77,7 @@ load_save_save_game(const gchar *filename)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	    GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	"Saving users...");
+	_("Saving users..."));
 
     xml_loadsave_users_write(prefix);
 
@@ -87,7 +87,7 @@ load_save_save_game(const gchar *filename)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	    GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	"Saving transfer list...");
+	_("Saving transfer list..."));
 
     xml_loadsave_transfers_write(prefix);
 
@@ -97,7 +97,7 @@ load_save_save_game(const gchar *filename)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	"Saving season stats...");
+	_("Saving season stats..."));
 
     xml_loadsave_season_stats_write(prefix);
 
@@ -107,14 +107,14 @@ load_save_save_game(const gchar *filename)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	"Saving miscellaneous...");
+	_("Saving miscellaneous..."));
 
     xml_loadsave_misc_write(prefix);
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	    GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	"Compressing savegame...");
+	_("Compressing savegame..."));
 
     sprintf(buf, "%s___", prefix);
     file_compress_files(fullname, buf);
@@ -122,7 +122,7 @@ load_save_save_game(const gchar *filename)
     if(debug > 60)
 	printf("load_save_save done \n");
 
-    gui_show_progress(1, "Done.");
+    gui_show_progress(1, _("Done."));
 
     load_save_last_save_set(fullname);
 
@@ -169,7 +169,7 @@ load_save_load_game(const gchar* filename)
 	return;
     }
 
-    gui_show_progress(0, "Uncompressing savegame...");
+    gui_show_progress(0, _("Uncompressing savegame..."));
 
     file_decompress(fullname);
 
@@ -179,7 +179,7 @@ load_save_load_game(const gchar* filename)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	"Loading options/constants...");
+	_("Loading options/constants..."));
 
     sprintf(buf, "%s___options", prefix);
     file_load_opt_file(buf, &options);
@@ -192,7 +192,7 @@ load_save_load_game(const gchar* filename)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	"Loading leagues...");
+	_("Loading leagues..."));
 
     xml_load_leagues(dirname, prefix);
 
@@ -202,7 +202,7 @@ load_save_load_game(const gchar* filename)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	"Loading cups...");
+	_("Loading cups..."));
 
     xml_load_cups(dirname, prefix);
 
@@ -212,7 +212,7 @@ load_save_load_game(const gchar* filename)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	"Loading users...");
+	_("Loading users..."));
 
     xml_load_users(dirname, prefix);
 
@@ -222,7 +222,7 @@ load_save_load_game(const gchar* filename)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	"Loading transfer list...");
+	_("Loading transfer list..."));
 
     xml_load_transfers(dirname, prefix);
 
@@ -232,7 +232,7 @@ load_save_load_game(const gchar* filename)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	"Loading season stats...");
+	_("Loading season stats..."));
 
     xml_loadsave_season_stats_read(dirname, prefix);
 
@@ -242,14 +242,14 @@ load_save_load_game(const gchar* filename)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	"Loading miscellaneous...");
+	_("Loading miscellaneous..."));
 
     xml_loadsave_misc_read(dirname, prefix);
 
     if(debug > 60)
 	printf("load_save_load done \n");
 
-    gui_show_progress(1, "Done.");
+    gui_show_progress(1, _("Done."));
 
     sprintf(buf, "rm -rf %s/%s___*", dirname, prefix);
     file_my_system(buf);

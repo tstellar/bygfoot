@@ -5,12 +5,14 @@
 
 #include <time.h>
 
-#include "misc_callbacks.h"
 #include "file.h"
 #include "free.h"
+#include "language.h"
 #include "live_game.h"
 #include "main.h"
+#include "misc_callbacks.h"
 #include "name_struct.h"
+#include "option.h"
 #include "stat_struct.h"
 #include "transfer_struct.h"
 #include "variables.h"
@@ -62,6 +64,8 @@ main_init_variables(void)
     timeout_id = -1;
 
     file_load_conf_files();
+
+    language_set(language_get_code_index(opt_str("string_opt_language_code")) + 1);
 }
 
 /**
@@ -119,9 +123,6 @@ main (gint argc, gchar *argv[])
 
     window_show_startup();
     stat0 = STATUS_TEAM_SELECTION;
-
-    /*d*/
-/*     on_button_add_player_clicked(NULL, NULL);    */
 
     gtk_main ();
 
