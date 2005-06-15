@@ -142,12 +142,17 @@ void
 on_button_transfers_clicked            (GtkButton       *button,
                                         gpointer         user_data)
 {
-    stat0 = STATUS_SHOW_TRANSFER_LIST;
-    game_gui_print_message(_("Left click to make an offer. Right click to remove offer."));
-    treeview_show_transfer_list(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")));
-    gtk_notebook_set_current_page(GTK_NOTEBOOK(lookup_widget(window.main, "notebook_player")), 1);
-
-    gui_set_arrows();
+    if(week < transfer_get_deadline())
+    {
+	stat0 = STATUS_SHOW_TRANSFER_LIST;
+	game_gui_print_message(_("Left click to make an offer. Right click to remove offer."));
+	treeview_show_transfer_list(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")));
+	gtk_notebook_set_current_page(GTK_NOTEBOOK(lookup_widget(window.main, "notebook_player")), 1);
+	
+	gui_set_arrows();
+    }
+    else
+	game_gui_print_message(_("The transfer deadline is over."));
 }
 
 

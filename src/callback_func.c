@@ -104,7 +104,7 @@ callback_player_clicked(gint idx, GdkEventButton *event)
     {
 	if(stat0 == STATUS_SHOW_TRANSFER_LIST)
 	{
-	    selected_row[0] = -1;	    
+	    selected_row[0] = -1;
 	    transfer_add_remove_user_player(player_of_idx_team(current_user.tm, idx));
 	}
 	else
