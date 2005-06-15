@@ -134,7 +134,7 @@ load_save_save_game(const gchar *filename)
 }
 
 /** Load the game from the specified file. */
-void
+gboolean
 load_save_load_game(const gchar* filename)
 {
     gchar buf[SMALL];
@@ -146,8 +146,6 @@ load_save_load_game(const gchar* filename)
     gchar *prefix = (g_str_has_suffix(basename, const_str("string_save_suffix"))) ?
 	g_strndup(basename, strlen(basename) - strlen(const_str("string_save_suffix"))) :
 	g_strdup(basename);
-
-    gtk_widget_hide(window.main);
 
     if(g_str_has_suffix(filename, "last_save"))
     {
@@ -162,12 +160,17 @@ load_save_load_game(const gchar* filename)
 	{
 	    load_save_load_game(basename);
 	    g_free(basename);
+	    return TRUE;
 	}
 	else
-	    g_warning("load_save_load_game: last save file not found.\n");
-
-	return;
+	{
+	    game_gui_show_warning(_("Last save file not found."));
+	    return FALSE;
+	}
     }
+
+    if(window.main != NULL)
+	gtk_widget_hide(window.main);
 
     gui_show_progress(0, _("Uncompressing savegame..."));
 
@@ -260,17 +263,15 @@ load_save_load_game(const gchar* filename)
 
     gui_show_progress(-1, "");
 
-    gtk_widget_show(window.main);
-
-    setsav1;
-
-    cur_user = 0;
-    on_button_back_to_main_clicked(NULL, NULL);
+    if(window.main != NULL)
+	gtk_widget_show(window.main);
 
     g_free(basename);
     g_free(dirname);
     g_free(prefix);
     g_free(fullname);
+
+    return TRUE;
 }
 
 /** Store the name of the last savegame in the users home dir. */

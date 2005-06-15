@@ -79,6 +79,7 @@ enum ExitCodes
     EXIT_USER_FIRED, /**< Single user was fired and didn't accept the new offer. */
     EXIT_FIRST_WEEK_ERROR, /**< First week of cup was negative. */
     EXIT_OPTION_NOT_FOUND, /**< An option couldn't be found. */
+    EXIT_POINTER_NOT_FOUND, /**< We didn't find a pointer needed. */
     EXIT_END
 };
 

@@ -3,6 +3,7 @@
 #include "free.h"
 #include "game_gui.h"
 #include "league.h"
+#include "main.h"
 #include "maths.h"
 #include "misc.h"
 #include "name.h"
@@ -225,6 +226,9 @@ player_of_idx_team(const Team *tm, gint number)
     {
 	g_warning("player_of_idx_team: Player list of team %s too short for number %d.\n",
 		  tm->name->str, number);
+
+	main_exit_program(EXIT_POINTER_NOT_FOUND, "");
+
 	return NULL;
     }
 
@@ -247,6 +251,8 @@ player_of_id_team(const Team *tm, gint id)
     
     g_warning("player_of_id_team: didn't find player with id %d of team %s\n", id, tm->name->str);
     
+    main_exit_program(EXIT_POINTER_NOT_FOUND, "");
+
     return NULL;
 }
 
@@ -1057,7 +1063,7 @@ player_injury_to_char(gint injury_type)
     {
 	default:
 	    g_warning("player_injury_to_char: unknown type %d\n", injury_type);
-	    return NULL;
+	    return "";
 	    break;
 	case PLAYER_INJURY_NONE:
 	    return _("OK");
@@ -1149,7 +1155,7 @@ player_get_last_name(const gchar *name)
     if(!g_utf8_validate(name, -1, NULL))
     {
 	g_warning("player_get_last_name: invalid utf8-string: %s \n", name);
-	return NULL;
+	return "";
     }
 
     temp = name;

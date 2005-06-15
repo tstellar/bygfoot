@@ -1087,6 +1087,8 @@ fixture_from_id(gint id)
 
     g_warning("fixture_from_id: fixture with id %d found \n", id);
 
+    main_exit_program(EXIT_POINTER_NOT_FOUND, "");
+
     return NULL;
 }
 

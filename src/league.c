@@ -1,5 +1,6 @@
 #include "cup.h"
 #include "league.h"
+#include "main.h"
 #include "maths.h"
 #include "misc.h"
 #include "option.h"
@@ -116,6 +117,9 @@ league_from_clid(gint clid)
 	    return &lig(i);
 
     g_warning("league_from_clid: didn't find league with id %d\n", clid);
+
+    main_exit_program(EXIT_POINTER_NOT_FOUND, "");
+
     return NULL;
 }
 

@@ -5,6 +5,7 @@
 #include "game_gui.h"
 #include "lg_commentary.h"
 #include "live_game.h"
+#include "main.h"
 #include "maths.h"
 #include "misc_callback_func.h"
 #include "option.h"
@@ -1202,6 +1203,8 @@ live_game_unit_before(const LiveGameUnit* unit, gint gap)
 		    g_warning("live_game_unit_before: no unit found for gap %d\n", gap);
 	    }
     }
+
+    main_exit_program(EXIT_POINTER_NOT_FOUND, "");
 
     return NULL;
 }

@@ -3,6 +3,7 @@
 #include "game.h"
 #include "game_gui.h"
 #include "league.h"
+#include "main.h"
 #include "maths.h"
 #include "misc.h"
 #include "option.h"
@@ -221,6 +222,8 @@ team_of_id(gint id)
 		return (Team*)g_ptr_array_index(cp(i).teams, j);
 
     g_warning("team_of_id: team with id %d not found.", id);
+
+    main_exit_program(EXIT_POINTER_NOT_FOUND, "");
 
     return NULL;
 }
@@ -928,22 +931,6 @@ query_team_plays(const Team *tm, gint week_number, gint week_round_number)
 		return TRUE;
 
     return FALSE;
-}
-
-/** Find the league team with the specified name. */
-Team*
-team_get_from_name(const gchar *name)
-{
-    gint i, j;
-
-    for(i=0;i<ligs->len;i++)
-	for(j=0;j<lig(i).teams->len;j++)
-	    if(strcmp(g_array_index(lig(i).teams, Team, j).name->str, name) == 0)
-		return &g_array_index(lig(i).teams, Team, j);
-
-    g_warning("team_get_from_name: team with name %s not found.\n", name);
-
-    return NULL;
 }
 
 /** Show the results of the user team against the specified team. 

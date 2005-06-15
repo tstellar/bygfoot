@@ -132,9 +132,6 @@ team_get_average_skills(const GArray *teams);
 gboolean
 query_team_plays(const Team *tm, gint week_number, gint week_round_number);
 
-Team*
-team_get_from_name(const gchar *name);
-
 gint
 team_get_table_value(const Team *tm, gint type);
 

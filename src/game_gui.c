@@ -469,7 +469,8 @@ game_gui_set_main_window_sensitivity(gboolean value)
 void
 game_gui_show_warning(gchar *text)
 {
-    if(opt_int("int_opt_prefer_messages"))
+    if(opt_int("int_opt_prefer_messages") &&
+       window.main != NULL)
 	game_gui_print_message(text);
     else
     {

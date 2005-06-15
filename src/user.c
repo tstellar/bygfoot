@@ -4,6 +4,7 @@
 #include "game_gui.h"
 #include "league.h"
 #include "live_game.h"
+#include "main.h"
 #include "maths.h"
 #include "misc.h"
 #include "option.h"
@@ -221,6 +222,8 @@ user_from_team(const Team *tm)
 
     g_warning("User going with team %s not found.\n",
 	      tm->name->str);
+
+    main_exit_program(EXIT_POINTER_NOT_FOUND, "");
 
     return NULL;
 }

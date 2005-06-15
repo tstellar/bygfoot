@@ -6,7 +6,7 @@
 void
 load_save_save_game(const gchar* filename);
 
-void
+gboolean
 load_save_load_game(const gchar* filename);
 
 void

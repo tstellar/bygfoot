@@ -23,8 +23,8 @@ bygfoot_SOURCES = \
 	interface.c callbacks.h interface.h support.h \
 	language.c callbacks.h free.h language.h misc.h option.h variables.h window.h \
 	lg_commentary.c free.h lg_commentary.h live_game.h misc.h option.h player.h variables.h \
-	league.c cup.h league.h maths.h misc.h option.h player.h stat.h table.h team.h user.h variables.h \
-	live_game.c callbacks.h fixture.h free.h game.h game_gui.h lg_commentary.h live_game.h league.h maths.h misc_callback_func.h option.h player.h support.h team.h treeview.h user.h variables.h window.h \
+	league.c cup.h league.h main.h maths.h misc.h option.h player.h stat.h table.h team.h user.h variables.h \
+	live_game.c callbacks.h fixture.h free.h game.h game_gui.h lg_commentary.h live_game.h league.h main.h maths.h misc_callback_func.h option.h player.h support.h team.h treeview.h user.h variables.h window.h \
 	load_save.c callbacks.h file.h game_gui.h gui.h load_save.h option.h support.h user.h variables.h xml_loadsave_misc.h xml_loadsave_cup.h xml_loadsave_league.h xml_loadsave_season_stats.h xml_loadsave_transfers.h xml_loadsave_users.h xml.h \
 	main.c misc_callbacks.h file.h free.h language.h live_game.h main.h name_struct.h option.h stat_struct.h transfer_struct.h variables.h window.h \
 	maths.c maths.h misc.h variables.h \
@@ -40,17 +40,17 @@ bygfoot_SOURCES = \
 	option_gui.c callbacks.h file.h language.h game_gui.h option_gui.h option.h support.h treeview.h user.h variables.h \
 	options_callbacks.c file.h options_callbacks.h options_interface.h option_gui.h support.h user.h variables.h window.h \
 	options_interface.c  options_interface.h options_callbacks.h support.h \
-	player.c cup.h fixture.h free.h game_gui.h league.h maths.h misc.h name.h option.h player.h team.h user.h \
+	player.c cup.h fixture.h free.h game_gui.h league.h main.h maths.h misc.h name.h option.h player.h team.h user.h \
 	start_end.c cup.h file.h finance.h fixture.h free.h game_gui.h gui.h league.h load_save.h live_game.h main.h maths.h misc.h name.h option.h start_end.h stat.h table.h team.h transfer.h user.h variables.h xml_name.h \
 	stat.c cup.h free.h league.h option.h player.h stat.h table_struct.h team.h variables.h \
 	support.c support.h \
 	table.c cup.h league.h table.h variables.h \
-	team.c cup.h fixture.h game.h game_gui.h league.h maths.h misc.h option.h player.h team.h transfer.h user.h \
+	team.c cup.h fixture.h game.h game_gui.h league.h main.h maths.h misc.h option.h player.h team.h transfer.h user.h \
 	transfer.c cup.h finance.h free.h game_gui.h maths.h misc.h option.h player.h support.h team.h transfer.h treeview.h user.h \
 	treeview.c cup.h finance.h fixture.h free.h game.h language.h league.h live_game.h maths.h misc.h player.h option.h support.h team.h transfer.h treeview.h treeview_helper.h user.h \
 	treeview_helper.c cup.h file.h fixture.h free.h league.h misc.h option.h player.h support.h team.h transfer.h treeview.h treeview_helper.h user.h variables.h \
-	user.c cup.h fixture.h free.h game_gui.h league.h live_game.h maths.h misc.h option.h player.h team.h transfer.h treeview.h user.h window.h \
-	window.c file.h finance.h free.h game_gui.h gui.h interface.h league.h live_game.h main.h misc_interface.h misc2_interface.h option.h option_gui.h support.h transfer.h treeview.h treeview_helper.h user.h window.h \
+	user.c cup.h fixture.h free.h game_gui.h league.h live_game.h main.h maths.h misc.h option.h player.h team.h transfer.h treeview.h user.h window.h \
+	window.c callbacks.h file.h finance.h free.h game_gui.h gui.h interface.h league.h live_game.h main.h misc_interface.h misc2_interface.h option.h option_gui.h support.h transfer.h treeview.h treeview_helper.h user.h window.h \
 	xml.c cup.h file.h free.h gui.h league.h misc.h option.h support.h table.h transfer_struct.h user.h variables.h xml.h xml_loadsave_cup.h xml_loadsave_fixtures.h xml_loadsave_league.h xml_loadsave_league_stat.h xml_loadsave_live_game.h xml_loadsave_table.h xml_loadsave_teams.h xml_loadsave_transfers.h xml_loadsave_users.h \
 	xml_loadsave_cup.c cup.h file.h misc.h table.h team.h xml.h xml_loadsave_cup.h xml_loadsave_fixtures.h xml_loadsave_table.h xml_loadsave_teams.h \
 	xml_loadsave_fixtures.c file.h fixture.h misc.h team.h xml.h xml_loadsave_fixtures.h \

@@ -1,3 +1,4 @@
+#include "callbacks.h"
 #include "file.h"
 #include "finance.h"
 #include "free.h"
@@ -131,6 +132,14 @@ window_show_file_sel(void)
 	    misc_callback_startup_load(filename);
 	else if(stat1 == STATUS_SAVE_GAME)
 	    load_save_save_game(filename);
+
+	if(stat1 == STATUS_LOAD_GAME ||
+	   stat1 == STATUS_LOAD_GAME_TEAM_SELECTION)
+	{
+	    cur_user = 0;
+	    on_button_back_to_main_clicked(NULL, NULL);
+	    setsav1;
+	}
 
 	g_free(filename);
     }

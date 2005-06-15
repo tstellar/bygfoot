@@ -723,6 +723,8 @@ cup_from_clid(gint clid)
 
     g_warning("cup_from_clid: didn't find cup with id %d\n", clid);
 
+    main_exit_program(EXIT_POINTER_NOT_FOUND, "");
+
     return NULL;
 }
 
@@ -737,6 +739,8 @@ cup_from_sid(const gchar *sid)
 	    return &cp(i);
 
     g_warning("cup_from_sid: didn't find cup with sid %s \n", sid);
+
+    main_exit_program(EXIT_POINTER_NOT_FOUND, "");
 
     return NULL;
 }

@@ -865,7 +865,12 @@ void
 on_menu_load_last_save_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    load_save_load_game("last_save");
+    if(load_save_load_game("last_save"))
+    {
+	cur_user = 0;
+	on_button_back_to_main_clicked(NULL, NULL);
+	setsav1;
+    }
 }
 
 void
