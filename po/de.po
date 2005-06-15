@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-14 22:00+0200\n"
+"POT-Creation-Date: 2005-06-15 10:54+0200\n"
 "PO-Revision-Date: 2005-06-14 17:23+0200\n"
 "Last-Translator:  Gyz Both <gyboth@bygfoot.com>\n"
 "Language-Team: \n"
@@ -37,7 +37,7 @@ msgstr ""
 "\n"
 "Tore/Spiel %.1f Schüsse %% %.1f"
 
-#: src/game_gui.c:602
+#: src/game_gui.c:605
 msgid ""
 "\n"
 "If you feel you've found out something about the game that has to be shared, "
@@ -51,7 +51,7 @@ msgstr ""
 msgid "   "
 msgstr "   "
 
-#: src/game_gui.c:513
+#: src/game_gui.c:516
 msgid " (NOTE: If you don't, the game is over for you.)"
 msgstr "(BEMERKUNG: Wenn Du ablehnst, ist das Spiel vorbei für Dich.)"
 
@@ -91,7 +91,7 @@ msgstr " Saison "
 msgid " Week "
 msgstr " Woche "
 
-#: src/callback_func.c:350
+#: src/callback_func.c:351
 msgid " less"
 msgstr " weniger"
 
@@ -99,7 +99,7 @@ msgstr " weniger"
 msgid " months"
 msgstr " Monaten"
 
-#: src/callback_func.c:348
+#: src/callback_func.c:349
 msgid " more"
 msgstr " mehr"
 
@@ -122,7 +122,7 @@ msgstr "%s (N) "
 msgid "%s Group %d"
 msgstr "%s Gruppe %d"
 
-#: src/misc2_callback_func.c:149
+#: src/misc2_callback_func.c:152
 #, c-format
 msgid "%s accepts your offer."
 msgstr "%s akzeptiert Dein Angebot."
@@ -180,7 +180,7 @@ msgstr ""
 "%s bieten dir einen neuen Job in der %s.\n"
 "Du nimmst die Herausforderung an und verlässt %s."
 
-#: src/misc2_callback_func.c:165
+#: src/misc2_callback_func.c:168
 #, c-format
 msgid ""
 "%s rejects your offer and won't negotiate with you anymore. You should sell "
@@ -190,7 +190,7 @@ msgstr ""
 "ihn verkaufen, bevor sein Vertrag ausläuft (andernfalls wird er Deine "
 "Mannschaft einfach verlassen)."
 
-#: src/misc2_callback_func.c:158
+#: src/misc2_callback_func.c:161
 #, c-format
 msgid "%s rejects your offer. You may still make %d offers."
 msgstr "%s lehnt Dein Angebot ab. Du kannst noch %d Angebote abgeben."
@@ -200,7 +200,7 @@ msgstr "%s lehnt Dein Angebot ab. Du kannst noch %d Angebote abgeben."
 msgid "%s will shoot penalties and free kicks when he plays."
 msgstr "%s wird Elfmeter und Freistöße schießen wenn er spielt."
 
-#: src/callback_func.c:352
+#: src/callback_func.c:353
 #, c-format
 msgid ""
 "%s would like to buy %s. They offer %s for him, which is %s than the "
@@ -345,7 +345,7 @@ msgstr "ANGRIFF"
 msgid "About"
 msgstr "Über"
 
-#: src/game_gui.c:511
+#: src/game_gui.c:514
 msgid "Accept?"
 msgstr "Einverstanden?"
 
@@ -417,7 +417,7 @@ msgstr "Anti"
 msgid "At least one user didn't take his turn this week. Continue?"
 msgstr "Mindestens ein Benutzer ist noch nicht drangewesen. Fortfahren?"
 
-#: src/game_gui.c:600
+#: src/game_gui.c:603
 msgid ""
 "At the Bygfoot forums you can report bugs, ask for help and discuss the game "
 "(you don't have to register):\n"
@@ -599,7 +599,7 @@ msgstr ""
 "Bygfoot Debug-Fenster. Wenn Du zufällig hierhergekommen bist, SCHLIESSE "
 "SOFORT (ansonsten wird Dein Prozessor durch Überhitzen zerstört)."
 
-#: src/game_gui.c:598
+#: src/game_gui.c:601
 msgid ""
 "Bygfoot is a very intuitive and simple game, so there isn't a full-grown "
 "documentation. However, if you have trouble, there are a few places to go.\n"
@@ -859,7 +859,7 @@ msgstr "A"
 msgid "F_igures"
 msgstr "Z_ahlen"
 
-#: src/callback_func.c:438
+#: src/callback_func.c:439
 msgid "Fee"
 msgstr "Ablösesumme"
 
@@ -879,7 +879,7 @@ msgstr "Fin_Stad"
 msgid "Final"
 msgstr "Endspiel"
 
-#: src/interface.c:650 src/interface.c:1646
+#: src/interface.c:650 src/interface.c:1643
 msgid "Fire"
 msgstr "Feuern"
 
@@ -1153,7 +1153,7 @@ msgstr "Halbzeit."
 msgid "It's still RE: extra time"
 msgstr "Es steht immer noch RE: Verlängerung"
 
-#: src/misc2_interface.c:71 src/window.c:397
+#: src/misc2_interface.c:71 src/window.c:398
 msgid "Job offer"
 msgstr "Jobangebot"
 
@@ -1161,7 +1161,7 @@ msgstr "Jobangebot"
 msgid "Job offers"
 msgstr "Jobangebote"
 
-#: src/game_gui.c:564
+#: src/game_gui.c:567
 #, c-format
 msgid "Job offers set to %s."
 msgstr "Jobangebote %."
@@ -1241,7 +1241,7 @@ msgstr "Liste 2"
 msgid "Live game"
 msgstr "Livespiel"
 
-#: src/game_gui.c:571
+#: src/game_gui.c:574
 #, c-format
 msgid "Live game set to %s."
 msgstr "Livespiel %s."
@@ -1266,7 +1266,7 @@ msgstr "Lade Spielstand (Strg-O)"
 msgid "Load the last game that was saved or loaded."
 msgstr "Lade den Spielstand, der als letztes gespeichert oder geladen wurde."
 
-#: src/callback_func.c:288
+#: src/callback_func.c:289
 msgid "Loan"
 msgstr "Kredit"
 
@@ -1375,7 +1375,7 @@ msgstr "Zur Zeit keine Verbesserungen im Gange."
 msgid "No match stored."
 msgstr "Kein Spiel gespeichert."
 
-#: src/window.c:375
+#: src/window.c:376
 msgid "Numbers..."
 msgstr "Zahlen..."
 
@@ -1395,7 +1395,7 @@ msgstr "EIN"
 msgid "Off"
 msgstr "Aus"
 
-#: src/interface.c:642 src/interface.c:1642
+#: src/interface.c:642 src/interface.c:1639
 msgid "Offer new contract"
 msgstr "Biete neuen Vertrag"
 
@@ -1420,7 +1420,7 @@ msgstr "Aua, das war schmerzhaft"
 msgid "Overwrite"
 msgstr "Überschreiben"
 
-#: src/game_gui.c:578
+#: src/game_gui.c:581
 #, c-format
 msgid "Overwrite set to %s."
 msgstr "Überschreiben %s."
@@ -1741,7 +1741,7 @@ msgstr "Unterbrechung bei Verletzung"
 msgid "Pause when red card"
 msgstr "Unterbrechung bei roter Karte"
 
-#: src/callback_func.c:314
+#: src/callback_func.c:315
 msgid "Payback"
 msgstr "Rückzahlung"
 
@@ -1837,7 +1837,7 @@ msgstr "Preisgeld"
 msgid "Pulled muscle"
 msgstr "Muskelfaserriss"
 
-#: src/interface.c:626 src/interface.c:1634
+#: src/interface.c:626 src/interface.c:1631
 msgid "Put on transfer list"
 msgstr "Setze auf Transferliste"
 
@@ -1881,11 +1881,11 @@ msgstr "Neu laden"
 msgid "Reload the constants file"
 msgstr "Lade die Konstanten-Datei neu"
 
-#: src/interface.c:634 src/interface.c:1638
+#: src/interface.c:634 src/interface.c:1635
 msgid "Remove from transfer list"
 msgstr "Entferne von Transferliste"
 
-#: src/misc2_callbacks.c:271
+#: src/misc2_callbacks.c:273
 #, c-format
 msgid "Remove user %s from the game?"
 msgstr "Entferne Benutzer %s aus dem Spiel?"
@@ -2000,7 +2000,7 @@ msgstr ""
 msgid "Sh"
 msgstr "Schü"
 
-#: src/interface.c:658 src/interface.c:1650
+#: src/interface.c:658 src/interface.c:1647
 msgid "Shoots penalties"
 msgstr "Schießt Elfer"
 
@@ -2036,7 +2036,7 @@ msgstr "Zeige Finanzen"
 msgid "Show history"
 msgstr "Zeige Historie"
 
-#: src/interface.c:618 src/interface.c:1630
+#: src/interface.c:618 src/interface.c:1627
 msgid "Show info"
 msgstr "Zeige Info"
 
@@ -2235,7 +2235,7 @@ msgstr "Der Ball ist unerreichbar für P2, Tor!!"
 msgid "The ball smacks into the crossbar with P2 stranded"
 msgstr "P2 ist ohne Chance, aber der Ball trifft nur die Latte"
 
-#: src/callback_func.c:280
+#: src/callback_func.c:281
 msgid "The bank doesn't grant you more money."
 msgstr "Die Bank gewährt keinen weiteren Kredit."
 
@@ -2281,7 +2281,7 @@ msgstr "Je niedriger dieser Wert, desto schneller läuft das Spiel ab."
 msgid "The match is over!"
 msgstr "Das Spiel ist aus!"
 
-#: src/game_gui.c:508
+#: src/game_gui.c:511
 #, c-format
 msgid ""
 "The owners of %s are deeply impressed by your success with %s and would like "
@@ -2334,7 +2334,7 @@ msgstr "Die Hooligans toben"
 msgid "The player is already on the list."
 msgstr "Der Spieler ist bereits auf der Liste."
 
-#: src/callback_func.c:428
+#: src/callback_func.c:429
 msgid ""
 "The player is locked (the team owners are considering an offer currently)."
 msgstr ""
@@ -2344,7 +2344,7 @@ msgstr ""
 msgid "The player is not on the list."
 msgstr "Der Spieler ist nicht auf der Liste."
 
-#: src/callback_func.c:461
+#: src/callback_func.c:462
 msgid "The player won't negotiate with you anymore."
 msgstr "Der Spieler verhandelt nicht mehr."
 
@@ -2367,12 +2367,12 @@ msgid ""
 msgstr ""
 "Die Ordner müssen eine Schlägerei zwischen den Fans unter Kontrolle bekommen"
 
-#: src/misc2_callback_func.c:109
+#: src/misc2_callback_func.c:112
 #, c-format
 msgid "The structure value %d is invalid."
 msgstr "Der Wert %d ist ungültig."
 
-#: src/game_gui.c:502
+#: src/game_gui.c:505
 #, c-format
 msgid ""
 "The team owners have fired you because of financial mismanagement. Luckily, "
@@ -2383,7 +2383,7 @@ msgstr ""
 "Zum Glück haben die Verantwortlichen von %s von Deiner Entlassung gehört und "
 "bieten Dir einen Vertrag an. Hier sind einige Daten zu %s:"
 
-#: src/game_gui.c:505
+#: src/game_gui.c:508
 #, c-format
 msgid ""
 "The team owners have fired you because of unsuccessfulness. Luckily, the "
@@ -2409,11 +2409,11 @@ msgstr ""
 "Es gibt verletzte oder gesperrte Spieler in einer der Benutzermannschaften "
 "Fortfahren?"
 
-#: src/callback_func.c:336
+#: src/callback_func.c:337
 msgid "There are no offers for the player."
 msgstr "Es liegen keine Angebote für den Spieler vor."
 
-#: src/callback_func.c:339
+#: src/callback_func.c:340
 msgid "There are some offers for the player which you will see next week."
 msgstr ""
 "Es gibt einige Angebote für den Spieler; du wirst sie nächste Woche auf dem "
@@ -2451,7 +2451,7 @@ msgstr ""
 msgid "Two teams, equall till now in every respect,face off in penalties"
 msgstr "Zwei Mannschaften waren gleichwertig, jetzt geht's ins Penaltyschießen"
 
-#: src/callback_func.c:420
+#: src/callback_func.c:421
 #, c-format
 msgid "User %s didn't consider your offer yet."
 msgstr "Der Benutzer %s hat dein Angebot noch nicht angesehen."
@@ -2493,7 +2493,7 @@ msgstr "G "
 msgid "W  %d : %d"
 msgstr "G %d : %d"
 
-#: src/callback_func.c:439 src/treeview.c:259 src/treeview.c:1749
+#: src/callback_func.c:440 src/treeview.c:259 src/treeview.c:1749
 msgid "Wage"
 msgstr "Gehalt"
 
@@ -2658,7 +2658,7 @@ msgstr "Du bist Meister der %s!"
 msgid "You are free from debt."
 msgstr "Du bist schuldenfrei."
 
-#: src/callback_func.c:433
+#: src/callback_func.c:434
 #, c-format
 msgid ""
 "You are making an offer for %s. Your scout's recommendations for value and "
@@ -2667,7 +2667,7 @@ msgstr ""
 "Du bietest für %s. Die Empfehlungen Deines Spielerbeobachters sind "
 "voreingestellt."
 
-#: src/callback_func.c:475
+#: src/callback_func.c:476
 #, c-format
 msgid ""
 "You are negotiating with %s about a new contract. Pay attention to what "
@@ -2682,27 +2682,27 @@ msgstr ""
 "verkaufst ihn).\n"
 "Die Empfehlungen deines Spielerbeobachters sind voreingestellt:"
 
-#: src/callback_func.c:300
+#: src/callback_func.c:301
 msgid "You are not indebted."
 msgstr "Du hast keine Schulden."
 
-#: src/callback_func.c:312
+#: src/callback_func.c:313
 #, c-format
 msgid "You can pay back at most %s"
 msgstr "Du kannst höchstens %s zurückzahlen."
 
-#: src/callback_func.c:286
+#: src/callback_func.c:287
 #, c-format
 msgid "You can take out at most %s."
 msgstr "Du kannst höchstens %s leihen."
 
-#: src/callback_func.c:456
+#: src/callback_func.c:457
 msgid "You can't offer a new contract if the old one is still above 2 years."
 msgstr ""
 "Du kannst keinen neuen Vertrag aushandeln wenn die Laufzeit des alten "
 "Vertrages über 2 Jahre beträgt."
 
-#: src/misc2_callbacks.c:266
+#: src/misc2_callbacks.c:268
 msgid "You can't play Bygfoot without users!"
 msgstr "Du kannst Bygfoot nicht ohne Benutzer spielen!"
 
@@ -2718,7 +2718,7 @@ msgstr ""
 "Du hattest nicht genügend Geld um %s zu kaufen, oder Deine Mannschaft kann "
 "keine neuen Spieler mehr aufnehmen."
 
-#: src/callback_func.c:306
+#: src/callback_func.c:307
 msgid "You don't have enough money to pay back."
 msgstr "Du hast nicht genügend Geld um zurückzuzahlen."
 
@@ -2798,7 +2798,7 @@ msgstr "Du hast keinen Spieler ausgewählt."
 msgid "You lose in the %s final against %s."
 msgstr "Du verlierst das %s-Finale gegen %.s"
 
-#: src/callback_func.c:392
+#: src/callback_func.c:393
 #, c-format
 msgid ""
 "You offered a transfer fee of %s and a wage of %s for %s. The owners and the "
@@ -2822,7 +2822,7 @@ msgstr "Du beginnst das Spiel mit %s in der %s."
 msgid "You still have some transfer business to manage."
 msgstr "Du hast noch Transferangelegenheiten zu erledigen."
 
-#: src/callback_func.c:595
+#: src/callback_func.c:596
 #, c-format
 msgid ""
 "You want to fire %s. Since his contract expires in %.1f years, he demands a "
@@ -2853,7 +2853,7 @@ msgstr ""
 "Dein Angebot für %s wurde akzeptiert. Wenn Du ihn immer noch kaufen willst, "
 "gehe zur Transferliste und rechts-klicke auf den Spieler."
 
-#: src/callback_func.c:378 src/callbacks.c:524
+#: src/callback_func.c:379 src/callbacks.c:524
 msgid "Your offer has been removed."
 msgstr "Dein Angebot wurde annulliert."
 
@@ -2873,7 +2873,7 @@ msgstr "Deine Mannschaft ist voll oder du hast nicht genügend Geld."
 msgid "Your results"
 msgstr "Deine Ergebnisse"
 
-#: src/callback_func.c:385
+#: src/callback_func.c:386
 msgid "Your roster is already full. You can't buy more players."
 msgstr "Es ist kein Platz mehr in Deiner Mannschaft für neue Spieler."
 
@@ -2882,7 +2882,7 @@ msgstr "Es ist kein Platz mehr in Deiner Mannschaft für neue Spieler."
 msgid "Your roster is full. You couldn't buy %s from %s."
 msgstr "Deine Mannschaft ist voll. Du konntest %s nicht von %s kaufen."
 
-#: src/window.c:386
+#: src/window.c:387
 msgid "Your stadium"
 msgstr "Dein Stadion"
 

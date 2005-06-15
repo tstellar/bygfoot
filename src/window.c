@@ -317,8 +317,9 @@ window_create(gint window_type)
 	    {
 		window.main = create_main_window();
 		wind = window.main;
-		sprintf(buf, _("Bygfoot Football Manager %s"), VERS);
+		sprintf(buf, _("Welcome to Bygfoot %s"), VERS);
 		game_gui_print_message(buf);
+		sprintf(buf, "Bygfoot Football Manager %s", VERS);
 	    }
 	    else
 		wind = window.main;
