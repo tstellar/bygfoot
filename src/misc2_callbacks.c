@@ -134,6 +134,8 @@ on_button_digits_cancel_clicked        (GtkButton       *button,
                                         gpointer         user_data)
 {
     window_destroy(&window.digits, TRUE);
+    if(stat0 == STATUS_LIVE_GAME_PAUSE)
+	gtk_widget_set_sensitive(window.main, TRUE);
 }
 
 gboolean

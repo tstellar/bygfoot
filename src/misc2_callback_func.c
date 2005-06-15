@@ -102,9 +102,12 @@ gboolean
 misc2_callback_change_structure(gint structure)
 {
     gchar buf[SMALL];
+    gint poss_struct = team_find_appropriate_structure(current_user.tm);
 
     if(math_get_place(structure, 1) + math_get_place(structure, 2) + 
-       math_get_place(structure, 3) != 10)
+       math_get_place(structure, 3) != 
+       math_get_place(poss_struct, 1) + math_get_place(poss_struct, 2) + 
+       math_get_place(poss_struct, 3))
     {
 	sprintf(buf, _("The structure value %d is invalid."), structure);
 	game_gui_show_warning(buf);

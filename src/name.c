@@ -29,7 +29,7 @@ name_get(const gchar *names_file)
 
     if(new.sid == NULL)
     {
-	g_warning("name_get_new: names file with sid %s not found, taking general names file.\n",
+	g_warning("name_get_new: names file with sid '%s' not found, taking general names file.\n",
 		  names_file);
 	return name_get(opt_str("string_opt_player_names_file"));
     }

@@ -9,6 +9,7 @@ enum
 {
     TAG_TEAMS = TAG_START_TEAMS,
     TAG_TEAM,
+    TAG_TEAM_NAMES_FILE,
     TAG_TEAM_STRUCTURE,
     TAG_TEAM_STYLE,
     TAG_TEAM_BOOST,
@@ -113,6 +114,7 @@ xml_loadsave_teams_end_element    (GMarkupParseContext *context,
     }
     else if(tag == TAG_NAME ||
 	    tag == TAG_SYMBOL ||
+	    tag == TAG_TEAM_NAMES_FILE ||
 	    tag == TAG_TEAM_ID ||
 	    tag == TAG_TEAM_CLID ||
 	    tag == TAG_TEAM_STRUCTURE ||
@@ -199,6 +201,8 @@ xml_loadsave_teams_text         (GMarkupParseContext *context,
 	g_string_printf(new_team.name, "%s", buf);
     else if(state == TAG_SYMBOL)
 	g_string_printf(new_team.symbol, "%s", buf);
+    else if(state == TAG_TEAM_NAMES_FILE)
+	g_string_printf(new_team.names_file, buf);
     else if(state == TAG_TEAM_CLID)
 	new_team.clid = int_value;
     else if(state == TAG_TEAM_ID)
@@ -342,6 +346,7 @@ xml_loadsave_teams_write_team(FILE *fil, const Team* team)
 
     xml_write_g_string(fil, team->name, TAG_NAME, I1);
     xml_write_g_string(fil, team->symbol, TAG_SYMBOL, I1);
+    xml_write_g_string(fil, team->names_file, TAG_TEAM_NAMES_FILE, I1);
     
     xml_write_int(fil, team->clid, TAG_TEAM_CLID, I1);
     xml_write_int(fil, team->id, TAG_TEAM_ID, I1);

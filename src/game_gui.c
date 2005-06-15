@@ -381,6 +381,7 @@ enum MainWindowInensitiveItems
     INSENSITIVE_ITEM_MENU_MANAGE_USERS,
     INSENSITIVE_ITEM_MENU_USER_SHOW_LAST,
     INSENSITIVE_ITEM_MENU_USER_SHOW_LAST_STATS,
+    INSENSITIVE_ITEM_MENU_USER_SHOW_COMING,
     INSENSITIVE_ITEM_MENU_USER_SHOW_HISTORY,
     INSENSITIVE_ITEM_MENU_FINANCES_STADIUM,
     INSENSITIVE_ITEM_MENU_HELP,
@@ -432,6 +433,8 @@ game_gui_set_main_window_sensitivity(gboolean value)
 	lookup_widget(window.main, "menu_user_show_last_match");
     insensitive_items[INSENSITIVE_ITEM_MENU_USER_SHOW_LAST_STATS] = 
 	lookup_widget(window.main, "menu_user_show_last_stats");
+    insensitive_items[INSENSITIVE_ITEM_MENU_USER_SHOW_COMING] = 
+	lookup_widget(window.main, "menu_user_show_coming_matches");
     insensitive_items[INSENSITIVE_ITEM_MENU_USER_SHOW_HISTORY] = 
 	lookup_widget(window.main, "menu_user_show_history");
     insensitive_items[INSENSITIVE_ITEM_MENU_FINANCES_STADIUM] = 

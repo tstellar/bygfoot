@@ -23,7 +23,7 @@ on_button_quit_clicked                 (GtkWidget       *widget,
 {
     on_menu_quit_activate(NULL, NULL);
 
-    return FALSE;
+    return TRUE;
 }
 
 

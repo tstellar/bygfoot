@@ -129,6 +129,7 @@ callback_show_last_match(gboolean start)
     if(start)
     {
 	stat2 = cur_user;
+	statp = &current_user.live_game;
 
 	window_create(WINDOW_LIVE);
 

@@ -448,7 +448,7 @@ team_change_structure(Team *tm, gint new_structure)
 
 	player_of_idx_team(tm, i)->cskill =
 	    player_get_cskill(player_of_idx_team(tm, i), 
-			      player_of_idx_team(tm, i)->cpos, FALSE);
+			      player_of_idx_team(tm, i)->cpos, TRUE);
     }
 }
 
