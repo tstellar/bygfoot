@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <league>
 
-  <sid>france5</sid>
-  <name>CFA2</name>
-  <short_name>CFA2</short_name>
+  <sid>france4c</sid>
+  <name>CFA1 Groupe C</name>
+  <short_name>CFA1 C</short_name>
   <symbol>flag_france.png</symbol>
   <first_week>1</first_week>
   <week_gap>1</week_gap>
-  <average_skill>4000</average_skill>
+  <average_skill>5000</average_skill>
   <names_file>france</names_file>
+  <layer>4</layer>
 
   <prom_rel>
     <prom_rel_element>
       <rank_start>1</rank_start>
-      <rank_end>3</rank_end>
-      <dest_sid>france4</dest_sid>
+      <rank_end>1</rank_end>
+      <dest_sid>france3</dest_sid>
       <prom_rel_type>promotion</prom_rel_type>
     </prom_rel_element>
   </prom_rel>
@@ -39,7 +40,7 @@
       <team_name>Gap</team_name>
     </team>
     <team>
-      <team_name>L'Île-Rousse</team_name>
+      <team_name>L'Ile-Rousse</team_name>
     </team>
     <team>
       <team_name>Le Pontet</team_name>
@@ -57,28 +58,22 @@
       <team_name>Toulon</team_name>
     </team>
     <team>
-      <team_name>Angoulême</team_name>
+      <team_name>Bastia B</team_name>
     </team>
     <team>
-      <team_name>Aurillac</team_name>
+      <team_name>Marseille B</team_name>
     </team>
     <team>
-      <team_name>Brive</team_name>
+      <team_name>Monaco B</team_name>
     </team>
     <team>
-      <team_name>Orléans</team_name>
+      <team_name>Montpellier B</team_name>
     </team>
     <team>
-      <team_name>Poitiers</team_name>
+      <team_name>Nice B</team_name>
     </team>
     <team>
-      <team_name>Poissy</team_name>
-    </team>
-    <team>
-      <team_name>Pontivy</team_name>
-    </team>
-    <team>
-      <team_name>Vannes</team_name>
+      <team_name>Toulouse B</team_name>
     </team>
   </teams>
 
