@@ -80,6 +80,7 @@ enum ExitCodes
     EXIT_FIRST_WEEK_ERROR, /**< First week of cup was negative. */
     EXIT_OPTION_NOT_FOUND, /**< An option couldn't be found. */
     EXIT_POINTER_NOT_FOUND, /**< We didn't find a pointer needed. */
+    EXIT_INT_NOT_FOUND, /**< We didn't find an integer value (mostly indices). */
     EXIT_END
 };
 

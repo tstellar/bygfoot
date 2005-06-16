@@ -396,6 +396,9 @@ team_get_league_rank(const Team *tm)
     
     g_warning("team_get_league_rank: no rank found for team %s in league %s. \n",
 	      tm->name->str, league_cup_get_name_string(tm->clid));
+
+    main_exit_program(EXIT_INT_NOT_FOUND, "");
+
     return -1;
 }
 
@@ -413,6 +416,9 @@ team_get_cup_rank(const Team *tm, const CupRound *cupround)
     }
 
     g_warning("team_get_cup_rank: no rank found for team %s. \n ", tm->name->str);
+
+    main_exit_program(EXIT_INT_NOT_FOUND, "");
+
     return -1;
 }
 
@@ -715,6 +721,9 @@ team_get_table_value(const Team *tm, gint type)
     if(tm->clid >= ID_CUP_START)
     {
 	g_warning("team_get_table_value: team is not a league team: %s \n", tm->name->str);
+
+	main_exit_program(EXIT_INT_NOT_FOUND, "");
+
 	return -1;
     }
     
@@ -727,6 +736,9 @@ team_get_table_value(const Team *tm, gint type)
     if(i == elements->len)
     {
 	g_warning("team_get_table_value: table entry not found for team %s \n", tm->name->str);
+
+	main_exit_program(EXIT_INT_NOT_FOUND, "");
+
 	return -1;
     }
 
@@ -888,6 +900,8 @@ team_get_index(const Team *tm)
     }
 
     g_warning("team_get_index: team %s not found.\n", tm->name->str);
+
+    main_exit_program(EXIT_INT_NOT_FOUND, "");
 
     return -1;
 }

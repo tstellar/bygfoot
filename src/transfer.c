@@ -2,6 +2,7 @@
 #include "finance.h"
 #include "free.h"
 #include "game_gui.h"
+#include "main.h"
 #include "maths.h"
 #include "misc.h"
 #include "option.h"
@@ -378,8 +379,8 @@ transfer_get_index(const Team *tm, gint id)
 	if(trans(i).tm == tm && trans(i).id == id)
 	    return i;
 
-    g_warning("transfer_get_index: didn't find transfer.\n");
-
+    main_exit_program(EXIT_INT_NOT_FOUND,
+		      "transfer_get_index: didn't find transfer.");
     return -1;
 }
 

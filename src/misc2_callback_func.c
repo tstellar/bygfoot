@@ -24,7 +24,7 @@ misc2_callback_transfer_user_player(void)
     if(team_is_user(new_team) != -1)
     {
 	if(new_team->players->len < const_int("int_team_max_players") &&
-	   BUDGET(user_get_index(user_from_team(new_team))) >= transoff(stat2, 0).fee)
+	   BUDGET(team_is_user(new_team)) >= transoff(stat2, 0).fee)
 	{
 	    current_user.money += transoff(stat2, 0).fee;
 	    current_user.money_in[1][MON_IN_TRANSFERS] += transoff(stat2, 0).fee;

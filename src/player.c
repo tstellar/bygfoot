@@ -212,6 +212,8 @@ player_id_index(const Team *tm, gint player_id)
     
     g_warning("player_id_index: didn't find player with id %d of team %s\n", player_id, tm->name->str);
     
+    main_exit_program(EXIT_INT_NOT_FOUND, "");
+
     return -1;
 }
 

@@ -59,13 +59,6 @@ user_change_team(User *user, Team *tm);
 void
 user_set_up_counters(User *user);
 
-gint
-user_get_index(User *user);
-
-gint
-user_event_get_index(User *user, gint type, gint value1, gint value2, 
-		     gpointer value_pointer, gchar *value_string);
-
 gboolean
 query_user_teams_have_unfit(void);
 

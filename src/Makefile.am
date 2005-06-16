@@ -17,7 +17,7 @@ bygfoot_SOURCES = \
 	finance.c callbacks.h finance.h game_gui.h maths.h option.h player.h team.h user.h \
 	fixture.c cup.h fixture.h free.h league.h main.h maths.h misc.h option.h user.h table.h team.h variables.h \
 	free.c free.h transfer.h user.h variables.h \
-	game.c cup.h finance.h fixture.h game.h game_gui.h league.h live_game.h maths.h misc.h option.h player.h table.h team.h treeview.h user.h variables.h \
+	game.c cup.h finance.h fixture.h game.h game_gui.h league.h live_game.h main.h maths.h misc.h option.h player.h table.h team.h treeview.h user.h variables.h \
 	game_gui.c callbacks.h file.h game_gui.h gui.h league.h live_game.h maths.h misc.h option.h treeview.h support.h team.h user.h variables.h window.h \
 	gui.c gui.h misc.h support.h variables.h window.h \
 	interface.c callbacks.h interface.h support.h \
@@ -46,7 +46,7 @@ bygfoot_SOURCES = \
 	support.c support.h \
 	table.c cup.h league.h table.h variables.h \
 	team.c cup.h fixture.h game.h game_gui.h league.h main.h maths.h misc.h option.h player.h team.h transfer.h user.h \
-	transfer.c cup.h finance.h free.h game_gui.h maths.h misc.h option.h player.h support.h team.h transfer.h treeview.h user.h \
+	transfer.c cup.h finance.h free.h game_gui.h main.h maths.h misc.h option.h player.h support.h team.h transfer.h treeview.h user.h \
 	treeview.c cup.h finance.h fixture.h free.h game.h language.h league.h live_game.h maths.h misc.h player.h option.h support.h team.h transfer.h treeview.h treeview_helper.h user.h \
 	treeview_helper.c cup.h file.h fixture.h free.h league.h misc.h option.h player.h support.h team.h transfer.h treeview.h treeview_helper.h user.h variables.h \
 	user.c cup.h fixture.h free.h game_gui.h league.h live_game.h main.h maths.h misc.h option.h player.h team.h transfer.h treeview.h user.h window.h \

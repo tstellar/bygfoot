@@ -370,28 +370,6 @@ user_event_remove(User *user, gint idx)
     g_array_remove_index(user->events, idx);
 }
 
-/** Find the event index going with the values. */
-gint
-user_event_get_index(User *user, gint type, gint value1, gint value2, 
-		     gpointer value_pointer, gchar *value_string)
-{
-    gint i;
-
-    for(i=0;i<user->events->len;i++)
-	if(g_array_index(user->events, Event, i).type == type &&
-	   g_array_index(user->events, Event, i).value1 == value1 &&
-	   g_array_index(user->events, Event, i).value2 == value2 &&
-	   g_array_index(user->events, Event, i).value_pointer == value_pointer &&
-	   ((gpointer)g_array_index(user->events, Event, i).value_string == (gpointer)value_string ||
-	    strcmp(g_array_index(user->events, Event, i).value_string->str, value_string) == 0))
-	    return i;
-
-    g_warning("user_event_get_index: didn't find index.");
-
-    return -1;
-}
-		     
-
 /** Show the next event for the current user. */
 void
 user_event_show_next(void)
@@ -535,21 +513,6 @@ user_change_team(User *user, Team *tm)
     user_set_up_team(user);
     for(i=user->events->len - 1; i >= 0; i--)
 	user_event_remove(user, i);    
-}
-
-/** Return the index of the user in the users array. */
-gint
-user_get_index(User *user)
-{ 
-    gint i;
-
-    for(i=0;i<users->len;i++)
-	if(&usr(i) == user)
-	    return i;
-
-    g_warning("user_get_index: user not found.\n");
-    
-    return -1;
 }
 
 /** Check whether one of the user teams has an unfit player

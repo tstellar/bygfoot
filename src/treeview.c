@@ -2018,13 +2018,13 @@ treeview_create_league_stats(GtkListStore *ls, const LeagueStat *league_stat)
 		    (gfloat)g_array_index(players[i], Stat, j).value1 /
 		    (gfloat)g_array_index(players[i], Stat, j).value2);
 	    if(i == 0)
-		sprintf(buf2, "%.1f %%",
+		sprintf(buf2, "%.1f %%", (g_array_index(players[i], Stat, j).value3 > 0) ?
 			100 * ((gfloat)g_array_index(players[i], Stat, j).value1 /
-			       (gfloat)g_array_index(players[i], Stat, j).value3));
+			       (gfloat)g_array_index(players[i], Stat, j).value3) : 0);
 	    else
-		sprintf(buf2, "%.1f %%",
+		sprintf(buf2, "%.1f %%", (g_array_index(players[i], Stat, j).value3 > 0) ?
 			100 * (1 - (gfloat)g_array_index(players[i], Stat, j).value1 /
-			       (gfloat)g_array_index(players[i], Stat, j).value3));
+			       (gfloat)g_array_index(players[i], Stat, j).value3) : 0);
 
 	    treeview_helper_set_user_colours(team_of_id(g_array_index(players[i], Stat, j).team_id),
 					     &colour_bg, &colour_fg);

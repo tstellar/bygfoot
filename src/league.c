@@ -274,6 +274,8 @@ league_index_from_sid(const gchar *sid)
 
     g_warning("league_index_from_sid: no index found for sid '%s'.\n", sid);
 
+    main_exit_program(EXIT_INT_NOT_FOUND, "");
+
     return -1;
 }
 

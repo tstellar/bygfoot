@@ -5,6 +5,7 @@
 #include "game_gui.h"
 #include "league.h"
 #include "live_game.h"
+#include "main.h"
 #include "maths.h"
 #include "misc.h"
 #include "option.h"
@@ -158,6 +159,8 @@ game_get_player(const Team *tm, gint player_type,
 	    printf("%d %20s health %d cskill %.2f\n", i, player_of_idx_team(tm, i)->name->str,
 		   player_of_idx_team(tm, i)->health, player_of_idx_team(tm, i)->cskill);
 	}
+
+	main_exit_program(EXIT_INT_NOT_FOUND, "");
 	return -1;
     }
 
