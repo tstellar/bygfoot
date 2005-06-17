@@ -1,5 +1,6 @@
 #include "cup.h"
 #include "league.h"
+#include "misc.h"
 #include "table.h"
 #include "variables.h"
 
@@ -138,26 +139,16 @@ table_element_compare_func(gconstpointer a,
 	cup_round = cup_has_tables(clid);
     
     /*todo use misc_int_compare*/
-    if(element1->values[TABLE_PTS] > element2->values[TABLE_PTS])
-	value = -1;
-
-    else if(element1->values[TABLE_PTS] < element2->values[TABLE_PTS])
-	value = 1;
-    
-    else if(element1->values[TABLE_GF] - element1->values[TABLE_GA] >
+    if(element1->values[TABLE_PTS] != element2->values[TABLE_PTS])
+	value = misc_int_compare(element1->values[TABLE_PTS],
+				 element2->values[TABLE_PTS]);
+    else if(element1->values[TABLE_GF] - element1->values[TABLE_GA] !=
 	    element2->values[TABLE_GF] - element2->values[TABLE_GA])
-	value = -1;
-
-    else if(element1->values[TABLE_GF] - element1->values[TABLE_GA] <
-	    element2->values[TABLE_GF] - element2->values[TABLE_GA])
-	value = 1;
-
-    else if(element1->values[TABLE_GA] > element2->values[TABLE_GA])
-	value = -1;
-
-    else if(element1->values[TABLE_GA] < element2->values[TABLE_GA])
-	value = 1;
-
+	value = misc_int_compare(element1->values[TABLE_GF] - element1->values[TABLE_GA],
+				 element2->values[TABLE_GF] - element2->values[TABLE_GA]);
+    else if(element1->values[TABLE_GA] != element2->values[TABLE_GA])
+	value = misc_int_compare(element1->values[TABLE_GA],
+				 element2->values[TABLE_GA]);
     else
     {
 	for(i=0;i<fixtures->len;i++)

@@ -1,6 +1,6 @@
 #include "cup.h"
-#include "fixture.h"
 #include "free.h"
+#include "fixture.h"
 #include "league.h"
 #include "main.h"
 #include "maths.h"
