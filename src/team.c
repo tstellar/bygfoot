@@ -86,22 +86,6 @@ team_assign_playing_structure(void)
   return 343;
 }
 
-/** Return a stadium struct with default values. */
-Stadium
-team_stadium_new(void)
-{
-    Stadium new;
-
-    new.capacity = -1;
-    new.safety = 0;
-
-    new.average_attendance = 
-	new.possible_attendance = 
-	new.games = 0;
-
-    return new;
-}
-
 /* Fill the players array of the team and the stadium.
    @param tm The team that gets filled. */
 void
@@ -223,7 +207,7 @@ team_of_id(gint id)
 
     g_warning("team_of_id: team with id %d not found.", id);
 
-    main_exit_program(EXIT_POINTER_NOT_FOUND, "");
+    main_exit_program(EXIT_POINTER_NOT_FOUND, NULL);
 
     return NULL;
 }
@@ -397,7 +381,7 @@ team_get_league_rank(const Team *tm)
     g_warning("team_get_league_rank: no rank found for team %s in league %s. \n",
 	      tm->name->str, league_cup_get_name_string(tm->clid));
 
-    main_exit_program(EXIT_INT_NOT_FOUND, "");
+    main_exit_program(EXIT_INT_NOT_FOUND, NULL);
 
     return -1;
 }
@@ -417,7 +401,7 @@ team_get_cup_rank(const Team *tm, const CupRound *cupround)
 
     g_warning("team_get_cup_rank: no rank found for team %s. \n ", tm->name->str);
 
-    main_exit_program(EXIT_INT_NOT_FOUND, "");
+    main_exit_program(EXIT_INT_NOT_FOUND, NULL);
 
     return -1;
 }
@@ -493,6 +477,7 @@ team_attribute_to_char(gint attribute, gint value)
     {
 	default:
 	    g_warning("team_attribute_to_char: unknown attribute %d\n", attribute);
+	    main_exit_program(EXIT_INT_NOT_FOUND, NULL);
 	    break;
 	case TEAM_ATTRIBUTE_STYLE:
 	    switch(value)
@@ -722,7 +707,7 @@ team_get_table_value(const Team *tm, gint type)
     {
 	g_warning("team_get_table_value: team is not a league team: %s \n", tm->name->str);
 
-	main_exit_program(EXIT_INT_NOT_FOUND, "");
+	main_exit_program(EXIT_INT_NOT_FOUND, NULL);
 
 	return -1;
     }
@@ -737,7 +722,7 @@ team_get_table_value(const Team *tm, gint type)
     {
 	g_warning("team_get_table_value: table entry not found for team %s \n", tm->name->str);
 
-	main_exit_program(EXIT_INT_NOT_FOUND, "");
+	main_exit_program(EXIT_INT_NOT_FOUND, NULL);
 
 	return -1;
     }
@@ -901,7 +886,7 @@ team_get_index(const Team *tm)
 
     g_warning("team_get_index: team %s not found.\n", tm->name->str);
 
-    main_exit_program(EXIT_INT_NOT_FOUND, "");
+    main_exit_program(EXIT_INT_NOT_FOUND, NULL);
 
     return -1;
 }

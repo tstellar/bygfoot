@@ -50,9 +50,6 @@ void
 free_cup(Cup *cup);
 
 void
-free_cup_tables(GArray *tables, gboolean reset);
-
-void
 free_cup_choose_team(CupChooseTeam *cup_choose_team);
 
 void

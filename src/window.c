@@ -329,6 +329,7 @@ window_create(gint window_type)
     {
 	default:
 	    g_warning("window_create: unknown window type %d\n", window_type);
+	    main_exit_program(EXIT_INT_NOT_FOUND, NULL);
 	    break;
 	case WINDOW_MAIN:
 	    if(window.main == NULL)

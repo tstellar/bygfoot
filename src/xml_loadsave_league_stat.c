@@ -88,8 +88,12 @@ xml_loadsave_league_stat_end_element    (GMarkupParseContext *context,
 	else if(in_state == TAG_STAT_PLAYER_GOALIES)
 	    stat_array = lstat->player_goalies;
 	else
+	{
 	    g_warning("xml_loadsave_league_stat_end_element: unknown in_state %d \n", 
 		      in_state);
+	    return;
+	}
+
 	g_array_append_val(stat_array, new_stat);
     }
     else if(tag == TAG_STAT_VALUE_STRING ||

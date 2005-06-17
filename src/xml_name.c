@@ -105,7 +105,7 @@ xml_name_read(const gchar *sid, NameList *namelist)
     if(!g_file_get_contents(file_name, &file_contents, &length, &error))
     {
 	g_warning("xml_name_read: error reading file %s\n", file_name);
-	misc_print_error(&error, FALSE);
+	misc_print_error(&error, TRUE);
 	return;
     }
 

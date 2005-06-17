@@ -23,9 +23,6 @@ file_save_opt_file(const gchar *filename, OptionList *optionlist);
 GPtrArray*
 file_dir_get_contents(const gchar *dir_name, const gchar *prefix, const gchar *suffix);
 
-void
-file_get_player_names(gint number_of_names);
-
 gboolean
 file_my_fopen(const gchar *filename, gchar *bits, FILE **fil, gboolean abort_program);
 

@@ -89,7 +89,7 @@ treeview_create_team_selection_list(gboolean show_cup_teams, gboolean show_user_
    @param treeview The treeview that gets configured.
 */
 void
-treeview_set_up_team_selection_treeview (GtkTreeView *treeview)
+treeview_set_up_team_selection_treeview(GtkTreeView *treeview)
 {
     GtkTreeViewColumn   *col;
     GtkCellRenderer     *renderer;
@@ -235,8 +235,8 @@ treeview_create_player_list(GPtrArray *players, gint *attributes, gint max,
 
 /** Set up the tree view for a player list */
 void
-treeview_set_up_player_list (GtkTreeView *treeview, gint *attributes, gint max,
-			     gboolean show_separator, gboolean sortable)
+treeview_set_up_player_list(GtkTreeView *treeview, gint *attributes, gint max,
+			    gboolean show_separator, gboolean sortable)
 {
     gint i;
     GtkTreeViewColumn   *col;

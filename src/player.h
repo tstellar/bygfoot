@@ -17,9 +17,6 @@ Player
 player_new(Team *tm, gfloat average_skill, gboolean new_id);
 
 gint
-player_new_id(const GArray *players);
-
-gint
 player_get_position_from_structure(gint structure, gint player_number);
 
 gfloat

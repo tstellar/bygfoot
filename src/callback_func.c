@@ -193,6 +193,7 @@ callback_show_fixtures_week(gint type)
     {
 	default:
 	    g_warning("callback_show_fixtures_week: unknown type %d \n", type);
+	    return;
 	    break;
 	case SHOW_CURRENT:
 	    if(week == 1 && week_round == 1)
@@ -261,7 +262,10 @@ callback_show_tables(gint type)
 	    clid = league_cup_get_previous_clid(clid);
     }
     else
+    {
 	g_warning("callback_show_tables: unknown type %d \n", type);
+	return;
+    }
 
     stat1 = clid;    
 
@@ -565,6 +569,7 @@ callback_show_player_list(gint type)
     {
 	default:
 	    g_warning("callback_show_player_list: unknown type %d \n", type);
+	    return;
 	    break;
 	case SHOW_CURRENT:
 	    stat1 = current_user.tm->clid;
@@ -607,6 +612,7 @@ callback_show_league_stats(gint type)
     {
 	default:
 	    g_warning("callback_show_league_stats: unknown type %d \n", type);
+	    return;
 	    break;
 	case SHOW_CURRENT:
 	    stat1 = current_user.tm->clid;
@@ -634,6 +640,7 @@ callback_show_season_history(gint type)
     {
 	default:
 	    g_warning("callback_show_season_history: unknown type %d \n", type);
+	    return;
 	    break;
 	case SHOW_CURRENT:
 	    stat1 = -1;

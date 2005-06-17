@@ -22,7 +22,7 @@ bygfoot_SOURCES = \
 	gui.c gui.h misc.h support.h variables.h window.h \
 	interface.c callbacks.h interface.h support.h \
 	language.c callbacks.h free.h language.h misc.h option.h variables.h window.h \
-	lg_commentary.c free.h lg_commentary.h live_game.h misc.h option.h player.h variables.h \
+	lg_commentary.c free.h lg_commentary.h live_game.h main.h  misc.h option.h player.h variables.h \
 	league.c cup.h league.h main.h maths.h misc.h option.h player.h stat.h table.h team.h user.h variables.h \
 	live_game.c callbacks.h fixture.h free.h game.h game_gui.h lg_commentary.h live_game.h league.h main.h maths.h misc_callback_func.h option.h player.h support.h team.h treeview.h user.h variables.h window.h \
 	load_save.c callbacks.h file.h game_gui.h gui.h load_save.h option.h support.h user.h variables.h xml_loadsave_misc.h xml_loadsave_cup.h xml_loadsave_league.h xml_loadsave_season_stats.h xml_loadsave_transfers.h xml_loadsave_users.h xml.h \

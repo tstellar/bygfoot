@@ -130,7 +130,10 @@ game_get_player(const Team *tm, gint player_type,
     else if(player_type == GAME_PLAYER_TYPE_PENALTY)
 	return game_get_penalty_taker(tm, last_penalty);
     else
+    {
 	g_warning("game_get_player: unknown player type %d\n", player_type);
+	main_exit_program(EXIT_INT_NOT_FOUND, NULL);
+    }
 
     game_get_player_probs(tm->players, probs, weights, skills);
 
@@ -160,7 +163,7 @@ game_get_player(const Team *tm, gint player_type,
 		   player_of_idx_team(tm, i)->health, player_of_idx_team(tm, i)->cskill);
 	}
 
-	main_exit_program(EXIT_INT_NOT_FOUND, "");
+	main_exit_program(EXIT_INT_NOT_FOUND, NULL);
 	return -1;
     }
 

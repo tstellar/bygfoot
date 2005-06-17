@@ -17,7 +17,7 @@ option_string(const gchar *name, OptionList *optionlist)
     else
 	return ((Option*)element)->string_value->str;
 
-    main_exit_program(EXIT_OPTION_NOT_FOUND, "");
+    main_exit_program(EXIT_OPTION_NOT_FOUND, NULL);
 
     return NULL;
 }
@@ -33,7 +33,7 @@ option_string_pointer(const gchar *name, OptionList *optionlist)
     else
 	return ((Option*)element)->string_value;
 
-    main_exit_program(EXIT_OPTION_NOT_FOUND, "");
+    main_exit_program(EXIT_OPTION_NOT_FOUND, NULL);
 
     return NULL;
 }
@@ -53,7 +53,7 @@ option_int(const gchar *name, OptionList *optionlist)
     else
 	return ((Option*)element)->value;
 
-    main_exit_program(EXIT_OPTION_NOT_FOUND, "");
+    main_exit_program(EXIT_OPTION_NOT_FOUND, NULL);
 
     return -1;
 }
@@ -69,7 +69,7 @@ option_int_pointer(const gchar *name, OptionList *optionlist)
     else
 	return &((Option*)element)->value;
 
-    main_exit_program(EXIT_OPTION_NOT_FOUND, "");
+    main_exit_program(EXIT_OPTION_NOT_FOUND, NULL);
 
     return NULL;
 }
@@ -89,7 +89,7 @@ option_float(const gchar *name, OptionList *optionlist)
     else
 	return (gfloat)((Option*)element)->value / 10000;
 
-    main_exit_program(EXIT_OPTION_NOT_FOUND, "");
+    main_exit_program(EXIT_OPTION_NOT_FOUND, NULL);
 
     return -1;
 }

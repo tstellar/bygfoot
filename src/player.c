@@ -212,7 +212,7 @@ player_id_index(const Team *tm, gint player_id)
     
     g_warning("player_id_index: didn't find player with id %d of team %s\n", player_id, tm->name->str);
     
-    main_exit_program(EXIT_INT_NOT_FOUND, "");
+    main_exit_program(EXIT_INT_NOT_FOUND, NULL);
 
     return -1;
 }
@@ -229,7 +229,7 @@ player_of_idx_team(const Team *tm, gint number)
 	g_warning("player_of_idx_team: Player list of team %s too short for number %d.\n",
 		  tm->name->str, number);
 
-	main_exit_program(EXIT_POINTER_NOT_FOUND, "");
+	main_exit_program(EXIT_POINTER_NOT_FOUND, NULL);
 
 	return NULL;
     }
@@ -253,7 +253,7 @@ player_of_id_team(const Team *tm, gint id)
     
     g_warning("player_of_id_team: didn't find player with id %d of team %s\n", id, tm->name->str);
     
-    main_exit_program(EXIT_POINTER_NOT_FOUND, "");
+    main_exit_program(EXIT_POINTER_NOT_FOUND, NULL);
 
     return NULL;
 }
@@ -777,7 +777,10 @@ player_games_goals_get(const Player *pl, gint clid, gint type)
 	    else if(type == PLAYER_VALUE_SHOTS)
 		return_value = g_array_index(pl->games_goals, PlayerGamesGoals, i).shots;
 	    else
+	    {
 		g_warning("player_games_goals_get: unknown type %d.\n", type);
+		main_exit_program(EXIT_INT_NOT_FOUND, NULL);
+	    }
 	}
 
     return return_value;

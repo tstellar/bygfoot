@@ -172,7 +172,7 @@ xml_country_read(const gchar *country_name)
     if(!g_file_get_contents(file_name, &file_contents, &length, &error))
     {
 	g_warning("xml_country_read: error reading file %s\n", file_name);
-	misc_print_error(&error, FALSE);
+	misc_print_error(&error, TRUE);
 	return;
     }
 

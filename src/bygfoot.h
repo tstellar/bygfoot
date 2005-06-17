@@ -81,6 +81,8 @@ enum ExitCodes
     EXIT_OPTION_NOT_FOUND, /**< An option couldn't be found. */
     EXIT_POINTER_NOT_FOUND, /**< We didn't find a pointer needed. */
     EXIT_INT_NOT_FOUND, /**< We didn't find an integer value (mostly indices). */
+    EXIT_NO_SUPPORT_DIR, /**< No support directory found. */
+    EXIT_CUP_ROUND_ERROR, /**< Too few cup rounds. */
     EXIT_END
 };
 

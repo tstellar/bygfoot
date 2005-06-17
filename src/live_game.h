@@ -65,9 +65,6 @@ void
 live_game_event_send_off(gint team, gint player, gboolean second_yellow);
 
 void
-live_game_generate_commentary(LiveGameUnit *unit);
-
-void
 live_game_event_duel(void);
 
 gboolean
@@ -78,9 +75,6 @@ live_game_reset(LiveGame *live_game, Fixture *fix, gboolean free_variable);
 
 gint
 live_game_unit_get_minute(const LiveGameUnit *unit);
-
-void
-live_game_create_stats(void);
 
 gint
 live_game_get_area(const LiveGameUnit *unit);

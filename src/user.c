@@ -223,7 +223,7 @@ user_from_team(const Team *tm)
     g_warning("User going with team %s not found.\n",
 	      tm->name->str);
 
-    main_exit_program(EXIT_POINTER_NOT_FOUND, "");
+    main_exit_program(EXIT_POINTER_NOT_FOUND, NULL);
 
     return NULL;
 }
@@ -466,24 +466,6 @@ user_event_show_next(void)
 		    event->value_string->str, ((Team*)event->value_pointer)->name->str);
 	    game_gui_show_warning(buf);
 	    break;
-/* 	case EVENT_TYPE_TRANSFER_OFFER: */
-/* 	    temp_int = transfer_get_index(event->user->tm, event->value1); */
-/* 	    misc_print_grouped_int(transoff(temp_int, 0).fee, buf2, FALSE); */
-/* 	    misc_print_grouped_int(ABS(transoff(temp_int, 0).fee -  */
-/* 				       player_of_id_team(event->user->tm, trans(temp_int).id)->value), buf3, FALSE); */
-/* 	    if(transoff(temp_int, 0).fee -  */
-/* 	       player_of_id_team(event->user->tm, trans(temp_int).id)->value > 0) */
-/* 		strcat(buf3, _(" more")); */
-/* 	    else */
-/* 		strcat(buf3, _(" less")); */
-
-/* 	    sprintf(buf, _("%s would like to buy %s. They offer %s for him, which is %s than the player's value. Do you accept?"), transoff(temp_int, 0).tm->name->str, */
-/* 		    player_of_id_team(event->user->tm, trans(temp_int).id)->name->str, */
-/* 		    buf2, buf3); */
-/* 	    stat1 = STATUS_TRANSFER_OFFER; */
-/* 	    stat2 = temp_int; */
-/* 	    window_show_yesno(buf); */
-/* 	    break; */
 	case EVENT_TYPE_PLAYER_CAREER_STOP:
 	    sprintf(buf, _("%s's injury was so severe that he can't play football on a professional level anymore. He leaves your team."), player_of_id_team(event->user->tm, event->value1)->name->str);
 	    if(event->user->tm->players->len < 12)

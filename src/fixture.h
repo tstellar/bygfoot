@@ -108,16 +108,10 @@ GPtrArray*
 fixture_get_matches(const Team *tm1, const Team *tm2);
 
 GPtrArray*
-fixture_get_league_matches(const Team *tm1, const Team *tm2);
-
-GPtrArray*
 fixture_get_coming(const Team *tm);
 
 Fixture*
 fixture_from_id(gint id);
-
-void
-fixture_sort_teams_bye(GPtrArray *teams, gint bye_len);
 
 gint
 fixture_get_last_week_round(gint week_number);

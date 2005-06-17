@@ -1,6 +1,7 @@
 #include "free.h"
 #include "lg_commentary.h"
 #include "live_game.h"
+#include "main.h"
 #include "misc.h"
 #include "option.h"
 #include "player.h"
@@ -440,8 +441,11 @@ lg_commentary_get_player_name(const LiveGameUnit *unit, const Fixture *fix, gboo
 	    player_get_last_name(player_of_id_team(fix->teams[unit->event.team],
 						   unit->event.player)->name->str);
     else
+    {
 	g_warning("lg_commentary_get_player_name: unknown event type %d\n",
 		  unit->event.type);
+	main_exit_program(EXIT_INT_NOT_FOUND, NULL);
+    }
 
     return return_value;
 }

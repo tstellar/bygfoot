@@ -491,7 +491,8 @@ file_get_first_support_dir(void)
 	elem = elem->next;
     }
 
-    g_warning("file_get_first_support_dir: no primary support dir found.");
+    main_exit_program(EXIT_NO_SUPPORT_DIR,
+		      "file_get_first_support_dir: no primary support dir found.");
 
     return NULL;
 }

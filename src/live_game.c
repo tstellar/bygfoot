@@ -699,8 +699,11 @@ live_game_event_general(gboolean create_new)
 	    new.area = LIVE_GAME_UNIT_AREA_MIDFIELD;
 	}
 	else
+	{
 	    g_warning("live_game_event_general: unknown event type: %d\n",
 		      last_unit.event.type);
+	    main_exit_program(EXIT_INT_NOT_FOUND, NULL);
+	}
 	
 	g_array_append_val(unis, new);
     }
@@ -1164,7 +1167,8 @@ live_game_unit_get_minute(const LiveGameUnit *unit)
 	    break;
 
     if(i == -1)
-	g_warning("live_game_unit_get_minute: reached end of unis array.\n");
+	main_exit_program(EXIT_INT_NOT_FOUND,
+			  "live_game_unit_get_minute: reached end of units array.");
     else
 	for(j=i;j>=0;j--)
 	    if(uni(j).minute != -1)
@@ -1204,7 +1208,7 @@ live_game_unit_before(const LiveGameUnit* unit, gint gap)
 	    }
     }
 
-    main_exit_program(EXIT_POINTER_NOT_FOUND, "");
+    main_exit_program(EXIT_POINTER_NOT_FOUND, NULL);
 
     return NULL;
 }
@@ -1455,7 +1459,7 @@ live_game_reset(LiveGame *live_game, Fixture *fix, gboolean free_variable)
 gint
 live_game_event_get_verbosity(gint event_type)
 {
-    gint return_value;
+    gint return_value = -1;
 
     if(event_type == LIVE_GAME_EVENT_START_MATCH ||
        event_type == LIVE_GAME_EVENT_HALF_TIME ||
@@ -1505,7 +1509,7 @@ live_game_event_get_verbosity(gint event_type)
     {
 	g_warning("live_game_event_get_verbosity: unknown event type %d \n",
 		  event_type);
-	return_value = -1;
+	main_exit_program(EXIT_INT_NOT_FOUND, NULL);
     }
 
     return return_value;

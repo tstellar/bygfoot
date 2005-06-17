@@ -99,7 +99,10 @@ league_cup_get_index_from_clid(gint clid)
 	    }
 
     if(index == -1)
+    {
 	g_warning("league_cup_get_index_from_clid: couldn't find league or cup with id %d\n", clid);
+	main_exit_program(EXIT_POINTER_NOT_FOUND, NULL);
+    }
 
     return index;
 }
@@ -118,7 +121,7 @@ league_from_clid(gint clid)
 
     g_warning("league_from_clid: didn't find league with id %d\n", clid);
 
-    main_exit_program(EXIT_POINTER_NOT_FOUND, "");
+    main_exit_program(EXIT_POINTER_NOT_FOUND, NULL);
 
     return NULL;
 }
@@ -274,7 +277,7 @@ league_index_from_sid(const gchar *sid)
 
     g_warning("league_index_from_sid: no index found for sid '%s'.\n", sid);
 
-    main_exit_program(EXIT_INT_NOT_FOUND, "");
+    main_exit_program(EXIT_INT_NOT_FOUND, NULL);
 
     return -1;
 }

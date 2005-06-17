@@ -3,9 +3,6 @@
 
 #include "bygfoot.h"
 
-GPtrArray*
-xml_country_get_team_names(const gchar *country_name);
-
 void
 xml_country_read_start_element (GMarkupParseContext *context,
 				const gchar         *element_name,

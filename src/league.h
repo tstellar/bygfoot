@@ -19,9 +19,6 @@ league_new(gboolean new_id);
 PromRelElement
 prom_rel_element_new(void);
 
-TableElement
-league_table_element_new(Team *team);
-
 gint
 league_cup_get_index_from_clid(gint clid);
 
@@ -39,9 +36,6 @@ league_cup_get_next_fixture(gint clid, gint week_number, gint week_round_number)
 
 Fixture*
 league_cup_get_previous_fixture(gint clid, gint week_number, gint week_round_number);
-
-gint
-league_get_index(gint clid);
 
 gint
 league_cup_average_capacity(gint clid);

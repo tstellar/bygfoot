@@ -62,7 +62,6 @@ treeview_helper_get_index(GtkTreeView *treeview, gint column)
     @param column The column we'd like to get the content of.
     @return The pointer in the given column of the selected row.
 */
-/*d*/
 gpointer
 treeview_helper_get_pointer(GtkTreeView *treeview, gint column)
 {
@@ -580,10 +579,10 @@ treeview_helper_get_attributes_from_scout(gint scout)
     @see The GTK reference. */
 void
 treeview_helper_team_selection(GtkTreeViewColumn *col,
-			     GtkCellRenderer   *renderer,
-			     GtkTreeModel      *model,
-			     GtkTreeIter       *iter,
-			     gpointer           user_data)
+			       GtkCellRenderer   *renderer,
+			       GtkTreeModel      *model,
+			       GtkTreeIter       *iter,
+			       gpointer           user_data)
 {
     gchar buf[SMALL];
     gint column = treeview_helper_get_col_number_column(col);

@@ -36,9 +36,6 @@ team_assign_playing_structure(void);
 gint
 team_assign_playing_style(void);
 
-Stadium
-team_stadium_new(void);
-
 gboolean
 query_is_my_team(const Team *tm);
 

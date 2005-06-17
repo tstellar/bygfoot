@@ -10,9 +10,6 @@ gint
 language_get_code_index(const gchar *code);
 
 void
-language_get_code_name(const gchar *string, gboolean to_name, gchar *buf);
-
-void
 language_set(gint index);
 
 #endif

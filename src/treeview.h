@@ -41,9 +41,6 @@ void
 treeview_live_game_show_initial_commentary(const LiveGameUnit *unit);
 
 void
-treeview_live_game_show_teams(void);
-
-void
 treeview_live_game_set_up_commentary(void);
 
 GtkTreeModel*

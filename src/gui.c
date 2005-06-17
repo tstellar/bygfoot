@@ -30,28 +30,6 @@ gui_label_set_text_from_int(GtkLabel *label, gint number, gboolean append)
     gtk_label_set_text(label, buf2);
 }
 
-/* Set into or append an integer into a label.
-   @param label The label.
-   @param number The number.
-   @param append Whether or not to append.
-   @param precision Float precision to use. */
-void
-gui_label_set_text_from_float(GtkLabel *label, gfloat number,
-			      gboolean append, gint precision)
-{
-    const gchar *current_text = gtk_label_get_text(label);
-    gchar buf[SMALL];
-    
-    strcpy(buf, "");
-
-    if(!append)
-	sprintf(buf, "%.*f", precision, number);
-    else
-	sprintf(buf, "%s%.*f", current_text, precision, number);
-
-    gtk_label_set_text(label, buf);
-}
-
 /* Show a window with a progress bar.
    @param value The value of the progress bar. If set to 1
    or < 0 the progress bar window gets destroyed.

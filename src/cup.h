@@ -63,17 +63,11 @@ cup_get_teams_sorted(const Cup *cup);
 gint
 cup_compare_success_tables(const Team *tm1, const Team *tm2, const Cup *cup, gint round);
 
-GPtrArray*
-cup_get_teams_from_names(GPtrArray *team_names);
-
 gint
 cup_compare_success(gconstpointer a, gconstpointer b, gpointer data);
 
 gint
 cup_get_round_reached(const Team *tm, const GArray *fixtures);
-
-GPtrArray*
-cup_get_choose_teams_pointers(Cup *cup);
 
 gboolean
 query_cup_begins(const Cup *cup);

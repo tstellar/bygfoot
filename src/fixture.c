@@ -73,8 +73,11 @@ fixture_update(Cup *cup)
         return;
 
     if(round + 1 > cup->rounds->len - 1)
+    {
 	g_warning("fixture_update: round index %d too high for round array (%d) in cup %s\n",
 		  round + 1, cup->rounds->len - 1, cup->name->str);
+	main_exit_program(EXIT_CUP_ROUND_ERROR, NULL);
+    }
 
     new_round = &g_array_index(cup->rounds, CupRound, round + 1);
 
@@ -1048,27 +1051,6 @@ fixture_get_matches(const Team *tm1, const Team *tm2)
     return matches;
 }
 
-/** Return the matches the teams play in their league. */
-GPtrArray*
-fixture_get_league_matches(const Team *tm1, const Team *tm2)
-{
-    gint i, j;
-    GPtrArray *matches = g_ptr_array_new();
-
-    for(i=0;i<ligs->len;i++)
-	if(lig(i).id == tm1->clid)
-	    for(j=0;j<lig(i).fixtures->len;j++)
-	    {
-		if((g_array_index(lig(i).fixtures, Fixture, j).teams[0] == tm1 &&
-		    g_array_index(lig(i).fixtures, Fixture, j).teams[1] == tm2) ||
-		   (g_array_index(lig(i).fixtures, Fixture, j).teams[0] == tm2 &&
-		    g_array_index(lig(i).fixtures, Fixture, j).teams[1] == tm1))
-		    g_ptr_array_add(matches, &g_array_index(lig(i).fixtures, Fixture, j));
-	    }
-
-    return matches;
-}
-
 /** Return the fixture going with the id. */
 Fixture*
 fixture_from_id(gint id)
@@ -1087,42 +1069,10 @@ fixture_from_id(gint id)
 
     g_warning("fixture_from_id: fixture with id %d found \n", id);
 
-    main_exit_program(EXIT_POINTER_NOT_FOUND, "");
+    main_exit_program(EXIT_POINTER_NOT_FOUND, NULL);
 
     return NULL;
 }
-
-/** Move teams from upper leagues to the beginning of the 
-    array so that they get the bye. 
-    @param teams The randomised array of teams.
-    @param bye_len The number of teams that get a bye.
-    @return A new array. */
-void
-fixture_sort_teams_bye(GPtrArray *teams, gint bye_len)
-{
-    gint i, j, moved = 0;
-    GPtrArray *new_array = g_ptr_array_new();
-
-    for(i=0;i<ligs->len;i++)
-	for(j=teams->len - 1; j >= 0; j--)
-	    if(((Team*)g_ptr_array_index(teams, j))->clid == lig(i).id && moved < bye_len)
-	    {
-		g_ptr_array_add(new_array, g_ptr_array_index(teams, j));
-		g_ptr_array_remove_index(teams, j);
-		moved++;
-	    }
-	    else if(moved == bye_len)
-	    {
-		break;
-		break;
-	    }
-
-    for(i=0;i<new_array->len;i++)
-	g_ptr_array_add(teams, g_ptr_array_index(new_array, i));
-
-    g_ptr_array_free(new_array, TRUE);
-}
-
 
 /** Return the last week round number of the specified week. */
 gint
