@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>FAW Premier Cup</name>
+  <short_name>Prem Cup</short_name>
+  <symbol>flag_wales.png</symbol>
+  <sid>wales_premier</sid>
+  <last_week>36</last_week>
+  <week_gap>6</week_gap>
+  <property>international</property>
+  <group>101</group>
+  <skill_diff>2000</skill_diff>
+
+  <cup_rounds>
+    <cup_round>
+      <home_away>0</home_away>
+      <byes>0</byes>
+      <choose_teams>
+	<choose_team>
+	  <choose_team_sid>CUP1</choose_team_sid>
+          <number_of_teams>1</number_of_teams>
+          <start_idx>1</start_idx>
+          <end_idx>1</end_idx>
+	</choose_team>
+	<choose_team>
+	  <choose_team_sid>LEAGUE1</choose_team_sid>
+          <number_of_teams>9</number_of_teams>
+          <start_idx>1</start_idx>
+          <end_idx>10</end_idx>
+	</choose_team>
+      </choose_teams>
+    </cup_round>
+    <cup_round>
+      <home_away>0</home_away>
+      <new_teams>3</new_teams>
+      <choose_teams>
+        <choose_team>
+          <choose_team_sid>wales_english</choose_team_sid>
+          <number_of_teams>3</number_of_teams>
+          <randomly>1</randomly>
+          <generate>1</generate>
+        </choose_team>
+      </choose_teams>
+    </cup_round>
+    <cup_round>
+      <home_away>0</home_away>
+    </cup_round>
+    <cup_round>
+      <home_away>0</home_away>
+      <neutral>1</neutral>
+    </cup_round>
+  </cup_rounds>
+</cup>

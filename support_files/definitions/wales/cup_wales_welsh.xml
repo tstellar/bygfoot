@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Welsh Cup</name>
+  <short_name>Welsh Cup</short_name>
+  <symbol>flag_wales.png</symbol>
+  <sid>wales_welsh</sid>
+  <last_week>34</last_week>
+  <week_gap>6</week_gap>
+  <property>national</property>
+
+  <cup_rounds>
+    <cup_round>
+      <home_away>0</home_away>
+      <choose_teams>
+        <choose_team>
+          <choose_team_sid>wales1</choose_team_sid>
+        </choose_team>
+        <choose_team>
+          <choose_team_sid>wales2a</choose_team_sid>
+        </choose_team>
+        <choose_team>
+          <choose_team_sid>wales2b</choose_team_sid>
+        </choose_team>
+      </choose_teams>
+    </cup_round>
+    <cup_round>
+      <home_away>0</home_away>
+    </cup_round>
+    <cup_round>
+      <home_away>0</home_away>
+    </cup_round>
+    <cup_round>
+      <home_away>0</home_away>
+    </cup_round>
+    <cup_round>
+      <home_away>0</home_away>
+      <neutral>1</neutral>
+    </cup_round>
+    <cup_round>
+      <home_away>0</home_away>
+      <neutral>1</neutral>
+    </cup_round>
+  </cup_rounds>
+</cup>
