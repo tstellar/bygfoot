@@ -790,9 +790,9 @@ fixture_result_to_buf(const Fixture *fix, gchar *buf)
 	sprintf(local_buf, "%d - %d", math_sum_int_array(fix->result[0], 3),
 		math_sum_int_array(fix->result[1], 3));
 	if(fix->result[0][2] + fix->result[1][2] != 0)
-	    strcat(local_buf, " p.");
+	    strcat(local_buf, _(" p."));
 	else if(fix->result[0][1] + fix->result[1][1] != 0)
-	    strcat(local_buf, " e.t.");
+	    strcat(local_buf, _(" e.t."));
 
 	if(fix->second_leg)
 	    sprintf(buf, "%s (%d - %d)", local_buf,

@@ -9,7 +9,7 @@
 
 # commands to compress and uncompress save files
 string_save_compress_command zip -q
-string_save_uncompress_command unzip -qq
+string_save_uncompress_command unzip -qq -o
 
 # suffix of compressed files
 string_save_suffix .zip
