@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-17 18:21+0200\n"
+"POT-Creation-Date: 2005-06-18 12:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1351,6 +1351,78 @@ msgstr ""
 msgid "TT has changed their structure to EX"
 msgstr ""
 
+#: src/load_save.c:45
+msgid "Saving options/constants..."
+msgstr ""
+
+#: src/load_save.c:58
+msgid "Saving leagues..."
+msgstr ""
+
+#: src/load_save.c:69
+msgid "Saving cups..."
+msgstr ""
+
+#: src/load_save.c:80
+msgid "Saving users..."
+msgstr ""
+
+#: src/load_save.c:90
+msgid "Saving transfer list..."
+msgstr ""
+
+#: src/load_save.c:100
+msgid "Saving season stats..."
+msgstr ""
+
+#: src/load_save.c:110
+msgid "Saving miscellaneous..."
+msgstr ""
+
+#: src/load_save.c:117
+msgid "Compressing savegame..."
+msgstr ""
+
+#: src/load_save.c:125 src/load_save.c:255
+msgid "Done."
+msgstr ""
+
+#: src/load_save.c:167
+msgid "Last save file not found."
+msgstr ""
+
+#: src/load_save.c:175
+msgid "Uncompressing savegame..."
+msgstr ""
+
+#: src/load_save.c:185
+msgid "Loading options/constants..."
+msgstr ""
+
+#: src/load_save.c:198
+msgid "Loading leagues..."
+msgstr ""
+
+#: src/load_save.c:208
+msgid "Loading cups..."
+msgstr ""
+
+#: src/load_save.c:218
+msgid "Loading users..."
+msgstr ""
+
+#: src/load_save.c:228
+msgid "Loading transfer list..."
+msgstr ""
+
+#: src/load_save.c:238
+msgid "Loading season stats..."
+msgstr ""
+
+#: src/load_save.c:248
+msgid "Loading miscellaneous..."
+msgstr ""
+
 #: src/misc2_callback_func.c:45
 #, c-format
 msgid "%s couldn't afford to buy %s or his roster was full."
@@ -2592,6 +2664,11 @@ msgstr ""
 #: src/treeview_helper.c:814
 #, c-format
 msgid "%s: %d (no limit)\n"
+msgstr ""
+
+#: src/treeview_helper.c:852
+#, c-format
+msgid "%s (expected recovery in %d weeks)"
 msgstr ""
 
 #: src/treeview_helper.c:963

@@ -849,7 +849,7 @@ treeview_helper_player_info_health_to_cell(GtkCellRenderer *renderer, const Play
 
     if(pl->health != 0)
     {
-	sprintf(buf, "%s (expected recovery in %d weeks)",
+	sprintf(buf, _("%s (expected recovery in %d weeks)"),
 		player_injury_to_char(pl->health), pl->recovery);
 	g_object_set(renderer, "background",
 		     const_app("string_treeview_helper_color_player_injury"), NULL);
