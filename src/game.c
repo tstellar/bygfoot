@@ -861,11 +861,11 @@ game_update_stats_player(gpointer live_game, gconstpointer live_game_unit)
 	array_index = (own_goal) ? !team : team;
 
 	if(live_game_unit_before(unit, -1)->event.type == LIVE_GAME_EVENT_PENALTY)
-	    strcpy(buf2, " (P)");
+	    strcpy(buf2, _(" (P)"));
 	else if(live_game_unit_before(unit, -1)->event.type == LIVE_GAME_EVENT_FREE_KICK)
-	    strcpy(buf2, " (FK)");
+	    strcpy(buf2, _(" (FK)"));
 	else if(unit->event.type == LIVE_GAME_EVENT_OWN_GOAL)
-	    strcpy(buf2, " (OG)");
+	    strcpy(buf2, _(" (OG)"));
 	else 
 	    strcpy(buf2, "");
 

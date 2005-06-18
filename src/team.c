@@ -525,11 +525,11 @@ team_change_attribute_with_message(Team *tm, gint attribute, gint new_value)
 	    break;
 	case TEAM_ATTRIBUTE_STYLE:
 	    current_user.tm->style = new_value;
-	    sprintf(buf, "Team style changed to %s.", team_attribute_to_char(attribute, new_value));
+	    sprintf(buf, _("Team style changed to %s."), team_attribute_to_char(attribute, new_value));
 	    break;
 	case TEAM_ATTRIBUTE_BOOST:
 	    current_user.tm->boost = new_value;
-	    sprintf(buf, "Boost changed to %s.", team_attribute_to_char(attribute, new_value));
+	    sprintf(buf, _("Boost changed to %s."), team_attribute_to_char(attribute, new_value));
 	    break;
     }
 

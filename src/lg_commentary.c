@@ -466,28 +466,28 @@ lg_commentary_get_extra_data(const LiveGameUnit *unit, const Fixture *fix)
 		    fix->teams[unit->event.team]->structure);
 	    break;
 	case LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_DEFEND:
-	    strcpy(buf, "ALL OUT DEFEND");
+	    strcpy(buf, _("ALL OUT DEFEND"));
 	    break;
 	case LIVE_GAME_EVENT_STYLE_CHANGE_DEFEND:
-	    strcpy(buf, "DEFEND");
+	    strcpy(buf, _("DEFEND"));
 	    break;
 	case LIVE_GAME_EVENT_STYLE_CHANGE_BALANCED:
-	    strcpy(buf, "BALANCED");
+	    strcpy(buf, _("BALANCED"));
 	    break;
 	case LIVE_GAME_EVENT_STYLE_CHANGE_ATTACK:
-	    strcpy(buf, "ATTACK");
+	    strcpy(buf, _("ATTACK"));
 	    break;
 	case LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_ATTACK:
-	    strcpy(buf, "ALL OUT ATTACK");
+	    strcpy(buf, _("ALL OUT ATTACK"));
 	    break;
 	case LIVE_GAME_EVENT_BOOST_CHANGE_ANTI:
-	    strcpy(buf, "ANTI");
+	    strcpy(buf, _("ANTI"));
 	    break;
 	case LIVE_GAME_EVENT_BOOST_CHANGE_OFF:
-	    strcpy(buf, "OFF");
+	    strcpy(buf, _("OFF"));
 	    break;
 	case LIVE_GAME_EVENT_BOOST_CHANGE_ON:
-	    strcpy(buf, "ON");
+	    strcpy(buf, _("ON"));
 	    break;
     }
 

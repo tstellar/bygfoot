@@ -178,7 +178,7 @@ on_button_resume_clicked               (GtkButton       *button,
 	live_game_resume();
     }
     else
-	game_gui_show_warning("There were too many substitutions. Only 3 per game are allowed. Player list reset.");
+	game_gui_show_warning(_("There were too many substitutions. Only 3 per game are allowed. Player list reset."));
 }
 
 void

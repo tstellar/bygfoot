@@ -502,7 +502,7 @@ player_swap(Team *tm1, gint player_number1, Team *tm2, gint player_number2)
 	if((player_number1 < 11 && player_is_banned(player_of_idx_team(tm1, player_number1)) > 0) ||
 	   (player_number2 < 11 && player_is_banned(player_of_idx_team(tm2, player_number2)) > 0))
 	{
-	    game_gui_show_warning("You can't replace a banned player.");
+	    game_gui_show_warning(_("You can't replace a banned player."));
 	    return;
 	}
     }

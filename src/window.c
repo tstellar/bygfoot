@@ -33,7 +33,7 @@ window_show_help(gint page)
 
     if(help_file == NULL)
     {
-	game_gui_show_warning("Didn't find file 'bygfoot_help'.");
+	game_gui_show_warning(_("Didn't find file 'bygfoot_help'."));
 	return;
     }
 
@@ -373,7 +373,7 @@ window_create(gint window_type)
 	    else
 		window.warning = create_window_warning();
 	    wind = window.warning;
-	    strcpy(buf, "Erm...");
+	    strcpy(buf, _("Erm..."));
 	    break;
 	case WINDOW_PROGRESS:
 	    if(window.progress != NULL)
@@ -436,7 +436,7 @@ window_create(gint window_type)
 		window.options = create_window_options();
 	    }
 	    wind = window.options;
-	    strcpy(buf, "Options");
+	    strcpy(buf, _("Options"));
 	    break;
 	case WINDOW_FONT_SEL:
 	    if(window.font_sel != NULL)
@@ -444,7 +444,7 @@ window_create(gint window_type)
 	    else
 		window.font_sel = create_window_font_sel();
 	    wind = window.font_sel;
-	    strcpy(buf, "Select font");
+	    strcpy(buf, _("Select font"));
 	    break;
 	case WINDOW_FILE_CHOOSER:
 	    if(window.file_chooser != NULL)
@@ -459,7 +459,7 @@ window_create(gint window_type)
 	    else
 		window.contract = create_window_contract();
 	    wind = window.contract;
-	    strcpy(buf, "Contract offer");
+	    strcpy(buf, _("Contract offer"));
 	    break;
 	case WINDOW_USER_MANAGEMENT:
 	    if(window.user_management != NULL)
@@ -467,7 +467,7 @@ window_create(gint window_type)
 	    else
 		window.user_management = create_window_user_management();
 	    wind = window.user_management;
-	    strcpy(buf, "User management");
+	    strcpy(buf, _("User management"));
 	    break;
 	case WINDOW_DEBUG:
 	    if(window.wdebug != NULL)
@@ -490,7 +490,7 @@ window_create(gint window_type)
 	    else
 		window.transfer_dialog = create_window_transfer_dialog();
 	    wind = window.transfer_dialog;
-	    strcpy(buf, "Transfer offer");
+	    strcpy(buf, _("Transfer offer"));
 	    break;
     }
 

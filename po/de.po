@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-17 18:25+0200\n"
-"PO-Revision-Date: 2005-06-17 15:15+0200\n"
+"POT-Creation-Date: 2005-06-18 16:37+0200\n"
+"PO-Revision-Date: 2005-06-18 16:42+0200\n"
 "Last-Translator:  Gyz Both <gyboth@bygfoot.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -51,11 +51,19 @@ msgstr ""
 msgid "   "
 msgstr "   "
 
+#: src/game.c:866
+msgid " (FK)"
+msgstr " (FS)"
+
 #: src/game_gui.c:517
 msgid " (NOTE: If you don't, the game is over for you.)"
 msgstr "(BEMERKUNG: Wenn Du ablehnst, ist das Spiel vorbei für Dich.)"
 
-#: src/treeview_helper.c:963
+#: src/game.c:868
+msgid " (OG)"
+msgstr " (ET)"
+
+#: src/game.c:864 src/treeview_helper.c:963
 msgid " (P)"
 msgstr " (E)"
 
@@ -124,6 +132,11 @@ msgstr "%s (H) "
 #, c-format
 msgid "%s (N) "
 msgstr "%s (N) "
+
+#: src/treeview_helper.c:852
+#, c-format
+msgid "%s (expected recovery in %d weeks)"
+msgstr "%s (erwartete Genesung in %d Wochen)"
 
 #: src/treeview.c:1023
 #, c-format
@@ -328,15 +341,15 @@ msgid ""
 msgstr ""
 "Ein Lautsprecher hat Feuer gefangen, die Flammen verschlingen das Stadion"
 
-#: src/team.c:494
+#: src/lg_commentary.c:481 src/team.c:494
 msgid "ALL OUT ATTACK"
 msgstr "BRECHSTANGE"
 
-#: src/team.c:486
+#: src/lg_commentary.c:469 src/team.c:486
 msgid "ALL OUT DEFEND"
 msgstr "BETONVERTEIDIGUNG"
 
-#: src/team.c:501
+#: src/lg_commentary.c:484 src/team.c:501
 msgid "ANTI"
 msgstr "ANTI"
 
@@ -345,7 +358,7 @@ msgid "AT fans can't be wrong, this is the match we have all come to watch"
 msgstr ""
 "AT Fans können nicht irren, dies ist das Spiel, das wir alle sehen wollen"
 
-#: src/team.c:492
+#: src/lg_commentary.c:478 src/team.c:492
 msgid "ATTACK"
 msgstr "ANGRIFF"
 
@@ -502,7 +515,7 @@ msgstr "Auswärts"
 msgid "Away fans have set fire to the north stand"
 msgstr "Die Auswärtsfans haben Sitze entzündet"
 
-#: src/team.c:490
+#: src/lg_commentary.c:475 src/team.c:490
 msgid "BALANCED"
 msgstr "AUSGEGLICHEN"
 
@@ -570,6 +583,11 @@ msgstr "Zweiwöchige Bilanz"
 #: src/interface.c:536
 msgid "Boost"
 msgstr "Boost"
+
+#: src/team.c:532
+#, c-format
+msgid "Boost changed to %s."
+msgstr "Boost auf %s gesetzt."
 
 #: src/player.c:1098
 msgid "Broken ankle"
@@ -686,6 +704,10 @@ msgstr "Kommentar"
 msgid "Compensations"
 msgstr "Abfindungen"
 
+#: src/load_save.c:117
+msgid "Compressing savegame..."
+msgstr "Komprimiere Datei"
+
 #: src/player.c:1077
 msgid "Concussion"
 msgstr "Gehirnerschütterung"
@@ -709,6 +731,10 @@ msgstr "Vertrag"
 #: src/options_interface.c:665
 msgid "Contract "
 msgstr "Vertrag "
+
+#: src/window.c:462
+msgid "Contract offer"
+msgstr "Vertragsangebot "
 
 #: src/interface.c:814 src/misc2_interface.c:1028
 msgid "Contributors"
@@ -759,7 +785,7 @@ msgstr "Aktuelle Fähigkeit"
 msgid "D"
 msgstr "V"
 
-#: src/team.c:488
+#: src/lg_commentary.c:472 src/team.c:488
 msgid "DEFEND"
 msgstr "VERTEIDIGEN"
 
@@ -788,9 +814,17 @@ msgstr "Ein Verteidiger klärt in letzter Minute"
 msgid "Defender clears"
 msgstr "Ein Verteidiger klärt"
 
+#: src/window.c:36
+msgid "Didn't find file 'bygfoot_help'."
+msgstr "Konnte Datei 'bygfoot_help' nicht finden."
+
 #: src/lg_commentary.c:227
 msgid "Diving header by P1"
 msgstr "Flugkopfball von P1"
+
+#: src/load_save.c:125 src/load_save.c:255
+msgid "Done."
+msgstr "Fertig."
 
 #: src/treeview.c:1316
 msgid "Drawing credit"
@@ -824,6 +858,10 @@ msgstr "Spielsystem eingeben. Die Ziffern müssen sich zu 10 aufsummieren."
 #: src/interface.c:578
 msgid "Enter custom structure"
 msgstr "Eigenes Spielsystem eingeben"
+
+#: src/window.c:376
+msgid "Erm..."
+msgstr "Äh..."
 
 #: src/misc2_interface.c:434 src/misc2_interface.c:1061
 #: src/misc2_interface.c:1156 src/misc_interface.c:227
@@ -875,9 +913,7 @@ msgstr "Ablösesumme"
 msgid ""
 "File containing settings which determine a lot of aspects of the game "
 "behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
-msgstr ""
-"Datei mit Einstellugen, die viele Aspekte des Spielverhaltens bestimmen. "
-"NICHT ÄNDERN ES SEI DENN DU WEISST GENAU WAS DU TUST."
+msgstr "Datei mit Einstellungen, die viele Aspekte des Spielverhaltens bestimmen. NICHT ÄNDERN ES SEI DENN DU WEISST GENAU WAS DU TUST."
 
 #: src/interface.c:770
 msgid "Fin_Stad"
@@ -1204,6 +1240,10 @@ msgstr "Sprache"
 msgid "Last %d"
 msgstr "Letzte %d"
 
+#: src/load_save.c:167
+msgid "Last save file not found."
+msgstr "Letzte Spielstandsdatei nicht gefunden."
+
 #: src/treeview.c:1519
 msgid "Latest results"
 msgstr "Letzte Ergebnisse"
@@ -1273,6 +1313,44 @@ msgstr "Lade Spielstand (Strg-O)"
 #: src/misc_interface.c:260
 msgid "Load the last game that was saved or loaded."
 msgstr "Lade den Spielstand, der als letztes gespeichert oder geladen wurde."
+
+#: src/xml.c:150
+#, c-format
+msgid "Loading cup: %s"
+msgstr "Lade Pokal: %s"
+
+#: src/load_save.c:208
+msgid "Loading cups..."
+msgstr "Lade Pokale..."
+
+#: src/xml.c:90
+#, c-format
+msgid "Loading league: %s"
+msgstr "Lade Liga: %s"
+
+#: src/load_save.c:198
+msgid "Loading leagues..."
+msgstr "Lade Ligen..."
+
+#: src/load_save.c:248
+msgid "Loading miscellaneous..."
+msgstr "Lade Diverses..."
+
+#: src/load_save.c:185
+msgid "Loading options/constants..."
+msgstr "Lade Optionen/Konstanten..."
+
+#: src/load_save.c:238
+msgid "Loading season stats..."
+msgstr "Lade Saisonstatistiken..."
+
+#: src/load_save.c:228
+msgid "Loading transfer list..."
+msgstr "Lade Transferliste..."
+
+#: src/load_save.c:218
+msgid "Loading users..."
+msgstr "Lade Benutzer..."
 
 #: src/callback_func.c:293
 msgid "Loan"
@@ -1387,7 +1465,7 @@ msgstr "Kein Spiel gespeichert."
 msgid "Numbers..."
 msgstr "Zahlen..."
 
-#: src/team.c:503
+#: src/lg_commentary.c:487 src/team.c:503
 msgid "OFF"
 msgstr "AUS"
 
@@ -1395,7 +1473,7 @@ msgstr "AUS"
 msgid "OK"
 msgstr "OK"
 
-#: src/team.c:505
+#: src/lg_commentary.c:490 src/team.c:505
 msgid "ON"
 msgstr "EIN"
 
@@ -1419,6 +1497,10 @@ msgstr "Oh nein, der Ball springt gegen P1 und ins Netz"
 #: src/interface.c:547
 msgid "On"
 msgstr "Ein"
+
+#: src/window.c:439
+msgid "Options"
+msgstr "Einstellungen"
 
 #: src/lg_commentary.c:128
 msgid "Ouch that's got to hurt"
@@ -1967,6 +2049,34 @@ msgstr "Speichern überschreibt"
 msgid "Save user settings to file"
 msgstr "Speichere Benutzereinstellugen in Datei"
 
+#: src/load_save.c:69
+msgid "Saving cups..."
+msgstr "Speichere Pokale..."
+
+#: src/load_save.c:58
+msgid "Saving leagues..."
+msgstr "Speichere Ligen..."
+
+#: src/load_save.c:110
+msgid "Saving miscellaneous..."
+msgstr "Speichere Diverses..."
+
+#: src/load_save.c:45
+msgid "Saving options/constants..."
+msgstr "Speichere Optionen/Konstanten..."
+
+#: src/load_save.c:100
+msgid "Saving season stats..."
+msgstr "Speichere Saisonstatistiken..."
+
+#: src/load_save.c:90
+msgid "Saving transfer list..."
+msgstr "Speichere Transferliste..."
+
+#: src/load_save.c:80
+msgid "Saving users..."
+msgstr "Speichere Benutzer..."
+
 #: src/interface.c:466 src/treeview.c:1246
 msgid "Scout"
 msgstr "Spielerbeobachter"
@@ -1984,7 +2094,7 @@ msgstr "Saison %d"
 msgid "Season history"
 msgstr "Saisonhistorie"
 
-#: src/misc_interface.c:368
+#: src/misc_interface.c:368 src/window.c:447
 msgid "Select font"
 msgstr "Schriftart auswählen"
 
@@ -2231,6 +2341,11 @@ msgstr "Mannschaft "
 msgid "Team structure"
 msgstr "Spielsystem"
 
+#: src/team.c:528
+#, c-format
+msgid "Team style changed to %s."
+msgstr "Spielstil verändert zu %s."
+
 #: src/lg_commentary.c:223
 msgid "That little missunderstanding has cost TT a goal"
 msgstr "Dieses Mißverständnis wurde mit einem Tor bezahlt"
@@ -2435,6 +2550,12 @@ msgstr ""
 msgid "There are two teams out there and only one of them is playing football"
 msgstr "Da draußen sind zwei Mannschaften, aber nur eine spielt Fußball"
 
+#: src/misc_callbacks.c:181
+msgid ""
+"There were too many substitutions. Only 3 per game are allowed. Player list "
+"reset."
+msgstr "Es gab zuviele Auswechslungen. Pro Spiel sind nur 3 erlaubt. Spielerliste zurückgesetzt."
+
 #: src/callbacks.c:379
 msgid "This is your first season."
 msgstr "Dies ist Deine erste Saison."
@@ -2446,6 +2567,10 @@ msgstr "Kartenverkauf"
 #: src/player.c:1107
 msgid "Torn crucial ligament"
 msgstr "Kreuzbandriss"
+
+#: src/window.c:493
+msgid "Transfer offer"
+msgstr "Transferangebot"
 
 #: src/treeview.c:1277
 msgid "Transfers"
@@ -2463,10 +2588,18 @@ msgstr ""
 msgid "Two teams, equall till now in every respect,face off in penalties"
 msgstr "Zwei Mannschaften waren gleichwertig, jetzt geht's ins Penaltyschießen"
 
+#: src/load_save.c:175
+msgid "Uncompressing savegame..."
+msgstr "Entpacke Datei..."
+
 #: src/callback_func.c:425
 #, c-format
 msgid "User %s didn't consider your offer yet."
 msgstr "Der Benutzer %s hat dein Angebot noch nicht angesehen."
+
+#: src/window.c:470
+msgid "User management"
+msgstr "Benutzerverwaltung"
 
 #: src/misc_interface.c:158
 msgid "Username"
@@ -2717,6 +2850,10 @@ msgstr ""
 #: src/misc2_callbacks.c:268
 msgid "You can't play Bygfoot without users!"
 msgstr "Du kannst Bygfoot nicht ohne Benutzer spielen!"
+
+#: src/player.c:505
+msgid "You can't replace a banned player."
+msgstr "Du kannst keinen gesperrten Spieler auswechseln."
 
 #: src/user.c:460
 #, c-format

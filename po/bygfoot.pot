@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-18 12:58+0200\n"
+"POT-Creation-Date: 2005-06-18 16:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -270,6 +270,18 @@ msgstr ""
 
 #: src/fixture.c:798
 msgid " e.t."
+msgstr ""
+
+#: src/game.c:864 src/treeview_helper.c:963
+msgid " (P)"
+msgstr ""
+
+#: src/game.c:866
+msgid " (FK)"
+msgstr ""
+
+#: src/game.c:868
+msgid " (OG)"
 msgstr ""
 
 #: src/game_gui.c:317
@@ -1351,6 +1363,38 @@ msgstr ""
 msgid "TT has changed their structure to EX"
 msgstr ""
 
+#: src/lg_commentary.c:469 src/team.c:486
+msgid "ALL OUT DEFEND"
+msgstr ""
+
+#: src/lg_commentary.c:472 src/team.c:488
+msgid "DEFEND"
+msgstr ""
+
+#: src/lg_commentary.c:475 src/team.c:490
+msgid "BALANCED"
+msgstr ""
+
+#: src/lg_commentary.c:478 src/team.c:492
+msgid "ATTACK"
+msgstr ""
+
+#: src/lg_commentary.c:481 src/team.c:494
+msgid "ALL OUT ATTACK"
+msgstr ""
+
+#: src/lg_commentary.c:484 src/team.c:501
+msgid "ANTI"
+msgstr ""
+
+#: src/lg_commentary.c:487 src/team.c:503
+msgid "OFF"
+msgstr ""
+
+#: src/lg_commentary.c:490 src/team.c:505
+msgid "ON"
+msgstr ""
+
 #: src/load_save.c:45
 msgid "Saving options/constants..."
 msgstr ""
@@ -1586,6 +1630,12 @@ msgstr ""
 msgid "You don't have the money."
 msgstr ""
 
+#: src/misc_callbacks.c:181
+msgid ""
+"There were too many substitutions. Only 3 per game are allowed. Player list "
+"reset."
+msgstr ""
+
 #: src/misc_interface.c:103
 msgid "Click on a user to remove him."
 msgstr ""
@@ -1626,7 +1676,7 @@ msgstr ""
 msgid "_Resume last game"
 msgstr ""
 
-#: src/misc_interface.c:368
+#: src/misc_interface.c:368 src/window.c:447
 msgid "Select font"
 msgstr ""
 
@@ -2096,6 +2146,10 @@ msgid ""
 "this user starts a new game)"
 msgstr ""
 
+#: src/player.c:505
+msgid "You can't replace a banned player."
+msgstr ""
+
 #: src/player.c:967
 #, c-format
 msgid "%s's contract expires in %.1f years."
@@ -2150,36 +2204,14 @@ msgstr ""
 msgid "Couldn't find pixmap file: %s"
 msgstr ""
 
-#: src/team.c:486
-msgid "ALL OUT DEFEND"
+#: src/team.c:528
+#, c-format
+msgid "Team style changed to %s."
 msgstr ""
 
-#: src/team.c:488
-msgid "DEFEND"
-msgstr ""
-
-#: src/team.c:490
-msgid "BALANCED"
-msgstr ""
-
-#: src/team.c:492
-msgid "ATTACK"
-msgstr ""
-
-#: src/team.c:494
-msgid "ALL OUT ATTACK"
-msgstr ""
-
-#: src/team.c:501
-msgid "ANTI"
-msgstr ""
-
-#: src/team.c:503
-msgid "OFF"
-msgstr ""
-
-#: src/team.c:505
-msgid "ON"
+#: src/team.c:532
+#, c-format
+msgid "Boost changed to %s."
 msgstr ""
 
 #: src/team.c:956
@@ -2671,10 +2703,6 @@ msgstr ""
 msgid "%s (expected recovery in %d weeks)"
 msgstr ""
 
-#: src/treeview_helper.c:963
-msgid " (P)"
-msgstr ""
-
 #: src/treeview_helper.c:1068
 #, c-format
 msgid "INJ(%d)"
@@ -2850,6 +2878,10 @@ msgstr ""
 msgid "You are champion of the %s!"
 msgstr ""
 
+#: src/window.c:36
+msgid "Didn't find file 'bygfoot_help'."
+msgstr ""
+
 #: src/window.c:270
 msgid "No improvements currently in progress."
 msgstr ""
@@ -2859,10 +2891,40 @@ msgstr ""
 msgid "Welcome to Bygfoot %s"
 msgstr ""
 
+#: src/window.c:376
+msgid "Erm..."
+msgstr ""
+
 #: src/window.c:395
 msgid "Numbers..."
 msgstr ""
 
 #: src/window.c:406
 msgid "Your stadium"
+msgstr ""
+
+#: src/window.c:439
+msgid "Options"
+msgstr ""
+
+#: src/window.c:462
+msgid "Contract offer"
+msgstr ""
+
+#: src/window.c:470
+msgid "User management"
+msgstr ""
+
+#: src/window.c:493
+msgid "Transfer offer"
+msgstr ""
+
+#: src/xml.c:90
+#, c-format
+msgid "Loading league: %s"
+msgstr ""
+
+#: src/xml.c:150
+#, c-format
+msgid "Loading cup: %s"
 msgstr ""
