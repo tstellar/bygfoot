@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-18 16:43+0200\n"
+"POT-Creation-Date: 2005-06-19 13:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,7 +51,9 @@ msgid "There are no offers for the player."
 msgstr ""
 
 #: src/callback_func.c:344
-msgid "There are some offers for the player which you will see next week."
+msgid ""
+"There are some offers for the player which you rejected or will see next "
+"week."
 msgstr ""
 
 #: src/callback_func.c:353
@@ -84,40 +86,48 @@ msgid ""
 "player are satisfied with your offer. Do you still want to buy the player?"
 msgstr ""
 
-#: src/callback_func.c:425
+#: src/callback_func.c:426
 #, c-format
 msgid "User %s didn't consider your offer yet."
 msgstr ""
 
-#: src/callback_func.c:433
+#: src/callback_func.c:434
 msgid ""
 "The player is locked (the team owners are considering an offer currently)."
 msgstr ""
 
-#: src/callback_func.c:438
+#: src/callback_func.c:447
 #, c-format
 msgid ""
-"You are making an offer for %s. Your scout's recommendations for value and "
+"You are making an offer for %s. Your scout's recommendations for fee and "
 "wage are preset."
 msgstr ""
 
-#: src/callback_func.c:443
+#: src/callback_func.c:450 src/callback_func.c:458
 msgid "Fee"
 msgstr ""
 
-#: src/callback_func.c:444 src/treeview.c:259 src/treeview.c:1749
+#: src/callback_func.c:451 src/callback_func.c:458 src/treeview.c:259
+#: src/treeview.c:1749
 msgid "Wage"
 msgstr ""
 
-#: src/callback_func.c:461
+#: src/callback_func.c:455
+#, c-format
+msgid ""
+"You are making an offer for %s again. Your previous values for fee and wage "
+"are preset."
+msgstr ""
+
+#: src/callback_func.c:476
 msgid "You can't offer a new contract if the old one is still above 2 years."
 msgstr ""
 
-#: src/callback_func.c:466
+#: src/callback_func.c:481
 msgid "The player won't negotiate with you anymore."
 msgstr ""
 
-#: src/callback_func.c:480
+#: src/callback_func.c:495
 #, c-format
 msgid ""
 "You are negotiating with %s about a new contract. Pay attention to what "
@@ -127,7 +137,7 @@ msgid ""
 "Your scout's recommendations are preset:"
 msgstr ""
 
-#: src/callback_func.c:601
+#: src/callback_func.c:616
 #, c-format
 msgid ""
 "You want to fire %s. Since his contract expires in %.1f years, he demands a "
@@ -1467,36 +1477,36 @@ msgstr ""
 msgid "Loading miscellaneous..."
 msgstr ""
 
-#: src/misc2_callback_func.c:45
+#: src/misc2_callback_func.c:47
 #, c-format
 msgid "%s couldn't afford to buy %s or his roster was full."
 msgstr ""
 
-#: src/misc2_callback_func.c:49
+#: src/misc2_callback_func.c:51
 #, c-format
 msgid "You didn't have enough money to buy %s or your roster was full."
 msgstr ""
 
-#: src/misc2_callback_func.c:78
+#: src/misc2_callback_func.c:81
 msgid "Your player roster is full or you don't enough money."
 msgstr ""
 
-#: src/misc2_callback_func.c:112
+#: src/misc2_callback_func.c:115
 #, c-format
 msgid "The structure value %d is invalid."
 msgstr ""
 
-#: src/misc2_callback_func.c:152
+#: src/misc2_callback_func.c:155
 #, c-format
 msgid "%s accepts your offer."
 msgstr ""
 
-#: src/misc2_callback_func.c:161
+#: src/misc2_callback_func.c:164
 #, c-format
 msgid "%s rejects your offer. You may still make %d offers."
 msgstr ""
 
-#: src/misc2_callback_func.c:168
+#: src/misc2_callback_func.c:171
 #, c-format
 msgid ""
 "%s rejects your offer and won't negotiate with you anymore. You should sell "
@@ -2256,7 +2266,7 @@ msgstr ""
 msgid "W  "
 msgstr ""
 
-#: src/transfer.c:414
+#: src/transfer.c:434
 #, c-format
 msgid "%s has been added to the transfer list for %d weeks."
 msgstr ""

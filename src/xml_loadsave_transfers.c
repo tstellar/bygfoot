@@ -17,7 +17,7 @@ enum
     TAG_TRANSFER_OFFER_TEAM_ID,
     TAG_TRANSFER_OFFER_FEE,
     TAG_TRANSFER_OFFER_WAGE,
-    TAG_TRANSFER_OFFER_ACCEPTED,
+    TAG_TRANSFER_OFFER_STATUS,
     TAG_END
 };
 
@@ -92,7 +92,7 @@ xml_loadsave_transfers_end_element    (GMarkupParseContext *context,
     }	    
     else if(tag == TAG_TRANSFER_OFFER_WAGE ||
 	    tag == TAG_TRANSFER_OFFER_FEE ||
-	    tag == TAG_TRANSFER_OFFER_ACCEPTED ||
+	    tag == TAG_TRANSFER_OFFER_STATUS ||
 	    tag == TAG_TRANSFER_OFFER_TEAM_ID)
 	state = TAG_TRANSFER_OFFER;
     else if(tag != TAG_TRANSFERS)
@@ -129,8 +129,8 @@ xml_loadsave_transfers_text         (GMarkupParseContext *context,
 	new_offer.tm = team_of_id(int_value);
     else if(state == TAG_TRANSFER_OFFER_WAGE)
 	new_offer.wage = int_value;
-    else if(state == TAG_TRANSFER_OFFER_ACCEPTED)
-	new_offer.accepted = int_value;
+    else if(state == TAG_TRANSFER_OFFER_STATUS)
+	new_offer.status = int_value;
     else if(state == TAG_TRANSFER_OFFER_FEE)
 	new_offer.fee = int_value;
 }
@@ -203,8 +203,8 @@ xml_loadsave_transfers_write(const gchar *prefix)
 			  TAG_TRANSFER_OFFER_TEAM_ID, I2);
 	    xml_write_int(fil, transoff(i, j).wage,
 			  TAG_TRANSFER_OFFER_WAGE, I2);
-	    xml_write_int(fil, transoff(i, j).accepted,
-			  TAG_TRANSFER_OFFER_ACCEPTED, I2);
+	    xml_write_int(fil, transoff(i, j).status,
+			  TAG_TRANSFER_OFFER_STATUS, I2);
 	    xml_write_int(fil, transoff(i, j).fee, 
 			  TAG_TRANSFER_OFFER_FEE, I2);
 

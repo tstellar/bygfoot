@@ -31,8 +31,11 @@ transfer_update(void)
 
     for(i=transfer_list->len - 1;i>=0;i--)
 	for(j=trans(i).offers->len - 1;j>=0;j--)
-	    if(transoff(i, j).accepted || team_is_user(transoff(i, j).tm) == -1)
+	    if(transoff(i, j).status == TRANSFER_OFFER_REJECTED2 ||
+	       team_is_user(transoff(i, j).tm) == -1)
 		g_array_remove_index(trans(i).offers, j);
+	    else if(transoff(i, j).status == TRANSFER_OFFER_REJECTED)
+		transoff(i, j).status = TRANSFER_OFFER_REJECTED2;
 
     transfer_add_new_players();
     transfer_add_cpu_offers();
@@ -108,10 +111,18 @@ transfer_offer_compare_func(gconstpointer a, gconstpointer b)
 	*tr2 = (const TransferOffer*)b;    
     gint return_value;
 
-    return_value = (tr1->fee != tr2->fee) ?
-	misc_int_compare(tr1->fee, tr2->fee) :
-	misc_int_compare(tr1->wage, tr2->wage);
-
+    if(tr1->status >= TRANSFER_OFFER_REJECTED &&
+       tr2->status >= TRANSFER_OFFER_REJECTED)
+	return_value = 0;
+    else if(tr1->status >= TRANSFER_OFFER_REJECTED)
+	return_value = 1;
+    else if(tr2->status >= TRANSFER_OFFER_REJECTED)
+	return_value = -1;
+    else
+	return_value = (tr1->fee != tr2->fee) ?
+	    misc_int_compare(tr1->fee, tr2->fee) :
+	    misc_int_compare(tr1->wage, tr2->wage);
+    
     return return_value;
 }
 
@@ -126,7 +137,7 @@ transfer_offers_notify(Transfer *tr, gboolean sort)
 	g_array_sort(tr->offers, transfer_offer_compare_func);
     off = &g_array_index(tr->offers, TransferOffer, 0);
 
-    off->accepted = TRUE;
+    off->status = TRANSFER_OFFER_ACCEPTED;
 
     if(team_is_user(tr->tm) != -1)
 	user_event_add(user_from_team(tr->tm), EVENT_TYPE_TRANSFER_OFFER_USER,
@@ -147,6 +158,7 @@ void
 transfer_evaluate_offers(void)
 {
     gint i, j;
+    gboolean notify = FALSE;
 
     for(i=transfer_list->len - 1;i>=0;i--)
 	if(trans(i).offers->len > 0)
@@ -155,35 +167,42 @@ transfer_evaluate_offers(void)
 	    {
 		for(j=trans(i).offers->len - 1; j >= 0; j--)
 		{
-		    if(player_of_id_team(trans(i).tm, trans(i).id)->value > transoff(i, j).fee &&
-		       player_of_id_team(trans(i).tm, trans(i).id)->wage > transoff(i, j).wage)
+		    if(transoff(i, j).status != TRANSFER_OFFER_REJECTED2)
 		    {
-			user_event_add(user_from_team(transoff(i, j).tm),
-				       EVENT_TYPE_TRANSFER_OFFER_REJECTED_FEE_WAGE, 
-				       transoff(i, j).fee, transoff(i, j).wage,
-				       trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name->str);
-			g_array_remove_index(trans(i).offers, j);
-		    }
-		    else if(player_of_id_team(trans(i).tm, trans(i).id)->value > transoff(i, j).fee)
-		    {
-			user_event_add(user_from_team(transoff(i, j).tm),
-				       EVENT_TYPE_TRANSFER_OFFER_REJECTED_FEE,
-				       transoff(i, j).fee, transoff(i, j).wage,
-				       trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name->str);
-			g_array_remove_index(trans(i).offers, j);
-		    }
-		    else if(player_of_id_team(trans(i).tm, trans(i).id)->wage > transoff(i, j).wage)
-		    {
-			user_event_add(user_from_team(transoff(i, j).tm),
-				       EVENT_TYPE_TRANSFER_OFFER_REJECTED_WAGE,
-				       transoff(i, j).fee, transoff(i, j).wage,
-				       trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name->str);
-			g_array_remove_index(trans(i).offers, j);
+			if(player_of_id_team(trans(i).tm, trans(i).id)->value > transoff(i, j).fee &&
+			   player_of_id_team(trans(i).tm, trans(i).id)->wage > transoff(i, j).wage)
+			{
+			    user_event_add(user_from_team(transoff(i, j).tm),
+					   EVENT_TYPE_TRANSFER_OFFER_REJECTED_FEE_WAGE, 
+					   transoff(i, j).fee, transoff(i, j).wage,
+					   trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name->str);
+			    transoff(i, j).status = TRANSFER_OFFER_REJECTED;
+			}
+			else if(player_of_id_team(trans(i).tm, trans(i).id)->value > transoff(i, j).fee)
+			{
+			    user_event_add(user_from_team(transoff(i, j).tm),
+					   EVENT_TYPE_TRANSFER_OFFER_REJECTED_FEE,
+					   transoff(i, j).fee, transoff(i, j).wage,
+					   trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name->str);
+			    transoff(i, j).status = TRANSFER_OFFER_REJECTED;
+			}
+			else if(player_of_id_team(trans(i).tm, trans(i).id)->wage > transoff(i, j).wage)
+			{
+			    user_event_add(user_from_team(transoff(i, j).tm),
+					   EVENT_TYPE_TRANSFER_OFFER_REJECTED_WAGE,
+					   transoff(i, j).fee, transoff(i, j).wage,
+					   trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name->str);
+			    transoff(i, j).status = TRANSFER_OFFER_REJECTED;
+			}
+			else
+			    notify = TRUE;
 		    }
 		}
 	    }
+	    else
+		notify = TRUE;
 
-	    if(trans(i).offers->len > 0)
+	    if(notify)
 		transfer_offers_notify(&trans(i), TRUE);
 	}
 }
@@ -336,7 +355,7 @@ transfer_player_has_offer(const Player *pl)
 	if(trans(i).tm == pl->team &&
 	   trans(i).id == pl->id &&
 	   trans(i).offers->len > 0 &&
-	   transoff(i, 0).accepted)
+	   transoff(i, 0).status == TRANSFER_OFFER_ACCEPTED)
 	    return &transoff(i, 0);
 
     return NULL;
@@ -355,13 +374,14 @@ transfer_add_offer(gint idx, Team *tm, gint fee, gint wage)
 	{
 	    transoff(idx, i).fee = fee;
 	    transoff(idx, i).wage = wage;
+	    transoff(idx, i).status = TRANSFER_OFFER_NOT_CONSIDERED;
 	    return TRUE;
 	}
 
     new.tm = tm;
     new.fee = fee;
     new.wage = wage;
-    new.accepted = FALSE;
+    new.status = TRANSFER_OFFER_NOT_CONSIDERED;
 
     g_array_append_val(trans(idx).offers, new);
 
@@ -434,12 +454,27 @@ transfer_offers_pending(void)
     for(i=0;i<transfer_list->len;i++)
 	if((trans(i).tm == current_user.tm &&
 	    trans(i).offers->len > 0 &&
-	    transoff(i, 0).accepted) ||
+	    transoff(i, 0).status == TRANSFER_OFFER_ACCEPTED) ||
 	   (team_is_user(trans(i).tm) == -1 &&
 	    trans(i).offers->len > 0 &&
 	    transoff(i, 0).tm == current_user.tm &&
-	    transoff(i, 0).accepted))
+	    transoff(i, 0).status == TRANSFER_OFFER_ACCEPTED))
 	    return TRUE;
 
     return FALSE;
+}
+
+/** Find out whether the team has already made an offer for the player
+    and set the fee and wage accordingly. */
+void
+transfer_get_previous_offer(const Transfer *tr, const Team *tm, gint *fee, gint *wage)
+{
+    gint i;
+
+    for(i=0;i<tr->offers->len;i++)
+	if(g_array_index(tr->offers, TransferOffer, i).tm == tm)
+	{
+	    *fee = g_array_index(tr->offers, TransferOffer, i).fee;
+	    *wage = g_array_index(tr->offers, TransferOffer, i).wage;
+	}
 }

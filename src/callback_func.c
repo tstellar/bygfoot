@@ -340,8 +340,8 @@ callback_transfer_list_user(gint button, gint idx)
 	if(trans(idx).offers->len == 0)
 	    game_gui_print_message(_("There are no offers for the player."));
 	else if(trans(idx).offers->len > 0 &&
-		!transoff(idx, 0).accepted)
-	    game_gui_print_message(_("There are some offers for the player which you will see next week."));
+		transoff(idx, 0).status != TRANSFER_OFFER_ACCEPTED)
+	    game_gui_print_message(_("There are some offers for the player which you rejected or will see next week."));
 	else
 	{
 	    misc_print_grouped_int(transoff(idx, 0).fee, buf2, FALSE);
@@ -409,6 +409,7 @@ callback_transfer_list_clicked(gint button, gint idx)
 {
     gchar buf[SMALL];
     Transfer *tr = &trans(idx);
+    gint old_fee, old_wage = -1;
 
     if(tr->tm == current_user.tm)
     {
@@ -416,7 +417,7 @@ callback_transfer_list_clicked(gint button, gint idx)
 	return;
     }
     else if(tr->offers->len > 0 &&
-	    transoff(idx, 0).accepted)
+	    transoff(idx, 0).status == TRANSFER_OFFER_ACCEPTED)
     {
 	if(transoff(idx, 0).tm == current_user.tm)
 	{
@@ -435,13 +436,27 @@ callback_transfer_list_clicked(gint button, gint idx)
 	return;
     }
     
-    sprintf(buf, _("You are making an offer for %s. Your scout's recommendations for value and wage are preset."),
-	    player_of_id_team(tr->tm, tr->id)->name->str);
     stat1 = STATUS_SHOW_TRANSFER_LIST;
     stat2 = idx;
+    
+    if(tr->offers->len > 0)
+	transfer_get_previous_offer(tr, current_user.tm, &old_fee, &old_wage);
 
-    window_show_digits(buf, _("Fee"), tr->fee[current_user.scout % 10],
-		       _("Wage"), tr->wage[current_user.scout % 10]);
+    if(old_wage == -1)
+    {
+	sprintf(buf, _("You are making an offer for %s. Your scout's recommendations for fee and wage are preset."),
+		player_of_id_team(tr->tm, tr->id)->name->str);
+	
+	window_show_digits(buf, _("Fee"), tr->fee[current_user.scout % 10],
+			   _("Wage"), tr->wage[current_user.scout % 10]);
+    }
+    else
+    {
+	sprintf(buf, _("You are making an offer for %s again. Your previous values for fee and wage are preset."),
+		player_of_id_team(tr->tm, tr->id)->name->str);
+	
+	window_show_digits(buf, _("Fee"), old_fee, _("Wage"), old_wage);
+    }
 }
 
 /** Show the contract window for the player with the specified index. */

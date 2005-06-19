@@ -424,8 +424,16 @@ void
 on_button_transfer_no_clicked          (GtkButton       *button,
                                         gpointer         user_data)
 {
-    g_array_remove_index(trans(stat2).offers, 0);
-    if(trans(stat2).offers->len > 0)
+    gint len = 1;
+
+    transoff(stat2, 0).status = TRANSFER_OFFER_REJECTED;
+    if(transoff(stat2, 0).tm == current_user.tm)
+    {
+	g_array_remove_index(trans(stat2).offers, 0);
+	len = 0;
+    }
+
+    if(trans(stat2).offers->len > len)
 	transfer_offers_notify(&trans(stat2), FALSE);
 
     treeview_show_user_player_list();

@@ -52,8 +52,9 @@ misc2_callback_transfer_user_player(void)
 		    player_of_id_team(trans(stat2).tm, trans(stat2).id)->name->str);
 	    user_event_add(user_from_team(new_team), EVENT_TYPE_WARNING, -1, -1, NULL, buf);
 	    g_array_remove_index(trans(stat2).offers, 0);
-	    if(trans(stat2).offers->len > 0)
-		transoff(stat2, 0).accepted = TRUE;
+	    if(trans(stat2).offers->len > 0 && 
+	       transoff(stat2, 0).status == TRANSFER_OFFER_NOT_CONSIDERED)
+		transoff(stat2, 0).status = TRANSFER_OFFER_ACCEPTED;
 	}
     }
     else

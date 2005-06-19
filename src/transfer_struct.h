@@ -26,8 +26,17 @@ typedef struct
     Team *tm;
     /** Transfer fee and wage offer. */
     gint fee, wage;
-    /** Whether the offer got accepted. */
-    gboolean accepted;
+    /** Whether the offer got accepted or rejected etc. */
+    gint status;
 } TransferOffer;
+
+enum TransferOfferStatus
+{
+    TRANSFER_OFFER_NOT_CONSIDERED = 0,
+    TRANSFER_OFFER_ACCEPTED,
+    TRANSFER_OFFER_REJECTED,
+    TRANSFER_OFFER_REJECTED2,
+    TRANSFER_OFFER_END
+};
 
 #endif

@@ -71,4 +71,7 @@ query_transfer_current_team_offer(const Player *pl);
 gboolean
 transfer_offers_pending(void);
 
+void
+transfer_get_previous_offer(const Transfer *tr, const Team *tm, gint *fee, gint *wage);
+
 #endif
