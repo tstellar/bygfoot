@@ -36,6 +36,8 @@ misc2_callback_transfer_user_player(void)
 	    player_of_idx_team(new_team, new_team->players->len - 1)->contract = 
 		(gfloat)math_rndi(const_int("int_transfer_contract_lower"),
 				  const_int("int_transfer_contract_upper"));
+	    player_of_idx_team(new_team, new_team->players->len - 1)->wage = 
+		transoff(stat2, 0).wage;
 	    g_array_remove_index(current_user.tm->players, 
 				 player_id_index(current_user.tm, trans(stat2).id));
 	    transfer_remove_player(stat2);
