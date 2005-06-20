@@ -115,3 +115,37 @@ on_spinbutton_speed_button_press_event (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data);
 #endif
+
+void
+on_button_sponsors_clicked             (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_treeview_sponsors_row_activated     (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data);
+
+gboolean
+on_window_sponsors_delete_event        (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data);
+
+gboolean
+on_window_sponsors_delete_event        (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data);
+
+void
+on_treeview_sponsors_row_activated     (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data);
+
+void
+on_button_sponsors_clicked             (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_sponsors_wait_clicked        (GtkButton       *button,
+                                        gpointer         user_data);

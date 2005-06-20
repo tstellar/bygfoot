@@ -277,9 +277,9 @@ game_initialize(Fixture *fix)
 		    player_games_goals_set(&g_array_index(fix->teams[i]->players, Player, j), fix->clid,
 					   PLAYER_VALUE_GAMES, 1);
 		    g_array_index(fix->teams[i]->players, Player, j).career[PLAYER_VALUE_GAMES]++;
-		}
 		
-		g_array_index(fix->teams[i]->players, Player, j).participation = TRUE;
+		    g_array_index(fix->teams[i]->players, Player, j).participation = TRUE;
+		}
 	    }
 	}
 

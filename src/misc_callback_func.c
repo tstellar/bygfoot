@@ -48,7 +48,7 @@ misc_callback_start_game(void)
     window_destroy(&window.startup, TRUE);
 
     window_create(WINDOW_MAIN);
-    
+
     game_gui_show_main();
 }
 
@@ -244,4 +244,26 @@ misc_callback_startup_load(const gchar *filename)
     }
     else
 	gtk_widget_show(window.startup);
+}
+
+
+/** The user has chosen a new sponsor. */
+void
+misc_callback_new_sponsor(void)
+{
+    GtkTreeView *treeview = GTK_TREE_VIEW(lookup_widget(window.sponsors, "treeview_sponsors"));
+    GtkTreeModel *model;
+    GtkTreeIter iter;
+    gchar *name;
+    gint contract, benefit;
+
+    gtk_tree_selection_get_selected(GTK_TREE_SELECTION(gtk_tree_view_get_selection(treeview)),
+				    &model, &iter);
+    gtk_tree_model_get(model, &iter, 0, &name, 1, &contract, 2, &benefit, -1);
+
+    g_string_printf(current_user.sponsor.name, name);
+    current_user.sponsor.contract = contract * 4;
+    current_user.sponsor.benefit = benefit;
+
+    current_user.counters[COUNT_USER_NEW_SPONSOR] = 0;
 }

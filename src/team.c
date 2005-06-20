@@ -112,12 +112,14 @@ team_generate_players_stadium(Team *tm)
     for(i=0;i<const_int("int_team_cpu_players");i++)
     {
 	new = player_new(tm, average_skill, TRUE);
-	wages += new.wage;
 	g_array_append_val(tm->players, new);
+
+	if(i > 2)
+	    wages += new.wage;
     }
 
     tm->stadium.average_attendance = tm->stadium.possible_attendance =
-	tm->stadium.games = 0;    
+	tm->stadium.games = 0;
     tm->stadium.safety = 
 	math_rnd(const_float("float_team_stadium_safety_lower"),
 		 const_float("float_team_stadium_safety_upper"));

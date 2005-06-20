@@ -39,6 +39,21 @@ finance_update_user_weekly(User *user)
 	}
     }
 
+    user->money += user->sponsor.benefit;
+    user->money_in[1][MON_IN_SPONSOR] += user->sponsor.benefit;
+    user->sponsor.contract = MAX(user->sponsor.contract - 1, 0);
+
+    if(user->counters[COUNT_USER_NEW_SPONSOR] > 1)
+	user->counters[COUNT_USER_NEW_SPONSOR]--;
+    else if(user->sponsor.contract == 4 && 
+	    math_rnd(0, 1) < ((1 - const_float("float_sponsor_continue_prob")) / 
+			      (2 * (gfloat)const_int("int_user_success_offer_limit")) *
+			      user->counters[COUNT_USER_SUCCESS]) +
+	    (1 - (1 - const_float("float_sponsor_continue_prob")) / 2))
+	user->counters[COUNT_USER_NEW_SPONSOR] = -1;
+    else if(user->sponsor.contract == 0)
+	user->counters[COUNT_USER_NEW_SPONSOR] = 1;
+
     if(query_team_plays(tm, week - 1, 1))
 	for(i=0;i<tm->players->len;i++)
 	{

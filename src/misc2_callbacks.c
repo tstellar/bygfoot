@@ -246,6 +246,7 @@ on_button_user_management_close_clicked
                                         gpointer         user_data)
 {
     window_destroy(&window.user_management, FALSE);
+    on_button_back_to_main_clicked(NULL, NULL);
 }
 
 

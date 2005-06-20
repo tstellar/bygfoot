@@ -21,4 +21,7 @@ name_get(const gchar *names_file);
 GString*
 name_get_from_list(const NameList *namelist);
 
+NameList*
+name_get_list_from_sid(const gchar *sid);
+
 #endif

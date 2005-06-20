@@ -33,6 +33,9 @@ enum
     TAG_USER_EVENT_VALUE1,
     TAG_USER_EVENT_VALUE2,
     TAG_USER_EVENT_VALUE_STRING,
+    TAG_USER_SPONSOR_NAME,
+    TAG_USER_SPONSOR_CONTRACT,
+    TAG_USER_SPONSOR_BENEFIT,
     TAG_END
 };
 
@@ -102,6 +105,9 @@ xml_loadsave_users_end_element    (GMarkupParseContext *context,
 	    tag == TAG_USER_MONEY_OUTS ||
 	    tag == TAG_USER_SCOUT ||
 	    tag == TAG_USER_PHYSIO ||
+	    tag == TAG_USER_SPONSOR_NAME ||
+	    tag == TAG_USER_SPONSOR_CONTRACT ||
+	    tag == TAG_USER_SPONSOR_BENEFIT ||
 	    tag == TAG_NAME ||
 	    tag == TAG_TEAM_ID ||
 	    tag == TAG_USER_HISTORY ||
@@ -177,6 +183,12 @@ xml_loadsave_users_text         (GMarkupParseContext *context,
 	new_user.scout = int_value;
     else if(state == TAG_USER_PHYSIO)
 	new_user.physio = int_value;
+    else if(state == TAG_USER_SPONSOR_NAME)
+	g_string_printf(new_user.sponsor.name, buf);
+    else if(state == TAG_USER_SPONSOR_CONTRACT)
+	new_user.sponsor.contract = int_value;
+    else if(state == TAG_USER_SPONSOR_BENEFIT)
+	new_user.sponsor.benefit = int_value;
     else if(state == TAG_USER_COUNTER)
 	new_user.counters[idx] = int_value;
     else if(state == TAG_USER_MONEY_IN)
@@ -274,6 +286,10 @@ xml_loadsave_users_write(const gchar *prefix)
 	xml_write_int(fil, usr(i).debt, TAG_USER_DEBT, I1);
 	xml_write_int(fil, usr(i).scout, TAG_USER_SCOUT, I1);
 	xml_write_int(fil, usr(i).physio, TAG_USER_PHYSIO, I1);
+
+	xml_write_g_string(fil, usr(i).sponsor.name, TAG_USER_SPONSOR_NAME, I1);
+	xml_write_int(fil, usr(i).sponsor.contract, TAG_USER_SPONSOR_CONTRACT, I1);
+	xml_write_int(fil, usr(i).sponsor.benefit, TAG_USER_SPONSOR_BENEFIT, I1);
 
 	for(j=0;j<COUNT_USER_END;j++)
 	    xml_write_int(fil, usr(i).counters[j], TAG_USER_COUNTER, I1);

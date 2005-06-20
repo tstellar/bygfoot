@@ -6,6 +6,7 @@
 #include "live_game.h"
 #include "load_save.h"
 #include "main.h"
+#include "maths.h"
 #include "misc_callback_func.h"
 #include "misc_callbacks.h"
 #include "option.h"
@@ -313,3 +314,51 @@ on_spinbutton_speed_button_press_event (GtkWidget       *widget,
     return FALSE;
 }
 
+
+void
+on_button_sponsors_clicked             (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    misc_callback_new_sponsor();
+
+    window_destroy(&window.sponsors, FALSE);
+}
+
+
+void
+on_treeview_sponsors_row_activated     (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data)
+{
+    on_button_sponsors_clicked(NULL, NULL);
+}
+
+
+gboolean
+on_window_sponsors_delete_event        (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data)
+{
+
+    return TRUE;
+}
+
+void
+on_button_sponsors_wait_clicked        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    if(stat1 != STATUS_SPONSOR_CONTINUE)
+    {
+	g_string_printf(current_user.sponsor.name, _("None"));
+	current_user.sponsor.contract = 0;
+	current_user.sponsor.benefit = 0;
+	current_user.counters[COUNT_USER_NEW_SPONSOR] = 
+	    math_rndi(const_int("int_sponsor_without_weeks_lower"),
+		      const_int("int_sponsor_without_weeks_upper"));
+    }
+    else
+	current_user.counters[COUNT_USER_NEW_SPONSOR] = 0;
+
+    window_destroy(&window.sponsors, FALSE);
+}

@@ -13,7 +13,8 @@ enum MonIn
 {
     MON_IN_PRIZE = 0,
     MON_IN_TICKET,
-    MON_IN_TRANSFERS,
+    MON_IN_SPONSOR,
+    MON_IN_TRANSFERS,    
     MON_IN_END
 };
 
@@ -46,8 +47,51 @@ enum CounterValue
     COUNT_USER_STADIUM_SAFETY, /**< Counter for increasing stadium safety. */
     COUNT_USER_SHOW_RES, /**< Whether the latest result is shown when the main window gets refreshed. */
     COUNT_USER_TOOK_TURN, /**< Whether the user took his turn in a week round. */
+    COUNT_USER_NEW_SPONSOR, /**< A new sponsor offer has to be shown. */
     COUNT_USER_END
 };
+
+/** User-related things that get recorded. */
+enum UserHistoryType
+{
+    USER_HISTORY_START_GAME = 0,
+    USER_HISTORY_FIRE_FINANCES,
+    USER_HISTORY_FIRE_FAILURE,
+    USER_HISTORY_JOB_OFFER_ACCEPTED,
+    USER_HISTORY_END_SEASON,
+    USER_HISTORY_PROMOTED,
+    USER_HISTORY_RELEGATED,
+    USER_HISTORY_WIN_FINAL,
+    USER_HISTORY_LOSE_FINAL,
+    USER_HISTORY_REACH_CUP_ROUND,
+    USER_HISTORY_CHAMPION,
+    USER_HISTORY_END
+};
+
+/** A structure holding an element of a user's history,
+    e.g. the event of being fired. */
+typedef struct
+{
+    /** When the event happened. */
+    gint season, week;
+    
+    /** The type (see #UserHistoryType) and team
+	of the user. */
+    gint type, team_id,
+	/** These can hold various information like
+	    team or league/cup ids. */
+	value1, value2;
+    GString *value_string;
+
+} UserHistory;
+
+/** A user sponsor. */
+typedef struct
+{
+    GString *name;
+    gint benefit; /**< Money per week. */
+    gint contract; /**< Contract length in weeks. */
+} UserSponsor;
 
 /** A structure representing a human player. */
 typedef struct
@@ -77,6 +121,8 @@ typedef struct
     gint scout, physio;
     /** The variable for the latest user live game. @see #Game */
     LiveGame live_game;
+
+    UserSponsor sponsor;
 } User;
 
 enum EventType
@@ -117,39 +163,5 @@ typedef struct
 
 } Event;
 
-
-/** User-related things that get recorded. */
-enum UserHistoryType
-{
-    USER_HISTORY_START_GAME = 0,
-    USER_HISTORY_FIRE_FINANCES,
-    USER_HISTORY_FIRE_FAILURE,
-    USER_HISTORY_JOB_OFFER_ACCEPTED,
-    USER_HISTORY_END_SEASON,
-    USER_HISTORY_PROMOTED,
-    USER_HISTORY_RELEGATED,
-    USER_HISTORY_WIN_FINAL,
-    USER_HISTORY_LOSE_FINAL,
-    USER_HISTORY_REACH_CUP_ROUND,
-    USER_HISTORY_CHAMPION,
-    USER_HISTORY_END
-};
-
-/** A structure holding an element of a user's history,
-    e.g. the event of being fired. */
-typedef struct
-{
-    /** When the event happened. */
-    gint season, week;
-    
-    /** The type (see #UserHistoryType) and team
-	of the user. */
-    gint type, team_id,
-	/** These can hold various information like
-	    team or league/cup ids. */
-	value1, value2;
-    GString *value_string;
-
-} UserHistory;
 
 #endif

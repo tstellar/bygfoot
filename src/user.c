@@ -1,4 +1,5 @@
 #include "cup.h"
+#include "finance.h"
 #include "fixture.h"
 #include "free.h"
 #include "game_gui.h"
@@ -7,8 +8,10 @@
 #include "main.h"
 #include "maths.h"
 #include "misc.h"
+#include "name.h"
 #include "option.h"
 #include "player.h"
+#include "support.h"
 #include "team.h"
 #include "transfer.h"
 #include "treeview.h"
@@ -31,6 +34,9 @@ user_new(void)
     new.history = g_array_new(FALSE, FALSE, sizeof(UserHistory)); 
     new.options.list = NULL;
     new.options.datalist = NULL;
+
+    new.sponsor.name = g_string_new("");
+    new.sponsor.contract = new.sponsor.benefit = -1;
 
     return new;
 }
@@ -67,6 +73,8 @@ user_set_up_team_new_game(User *user)
 
 	user_set_up_team(user);
     }
+
+    user->counters[COUNT_USER_NEW_SPONSOR] = 1;
 }
 
 /** Set up finances, remove some players etc. for a new user team.
@@ -722,4 +730,130 @@ query_user_no_turn(void)
 	    return TRUE;
 
     return FALSE;
+}
+
+/** Get a random sponsor for the user. */
+UserSponsor
+user_get_sponsor(const User *user)
+{
+    UserSponsor new;
+    gint suc_factor = (current_user.counters[COUNT_USER_SUCCESS] < 0) ? -1 : 1;
+    gchar *names[18] =
+	{_(" Systems"),
+	 _(" Communications"),
+	 _(" Holdings"),
+	 _(" Industries"),
+	 _(" Company"),
+	 _(" Telecommunications"),
+	 _(" Labs"),
+	 _(" Technologies"),
+	 _(" Chemicals"),
+	 _(" Energy"),
+	 _(" Bank"),
+	 _(" Products"),
+	 _(" Software"),
+	 _(" Scientific"),
+	 _(" Financial"),
+	 _(" Petroleum"),
+	 _(" Restaurants"),
+	 _(" Data Systems")};
+    gchar *short_names[7] =
+	{_(" Ltd."),
+	 _(" Assoc."),
+	 _(" Co."),
+	 _(" Ent."),
+	 _(" &amp; Co."),
+	 _(" Corp."),
+	 _(" Group")};
+    gchar *name_add[3] =
+	{_(" &amp; Sons"),
+	 _(" &amp; Daughters"),
+	 _(" Bros.")};
+   
+    new.name = g_string_new(name_get_random_last_name(name_get_list_from_sid(user->tm->names_file->str)));    
+    if(math_rnd(0, 1) < 0.2)
+	g_string_append(new.name, name_add[math_rndi(0, 2)]);    
+    g_string_append(new.name, names[math_rndi(0, 17)]);
+    if(math_rnd(0, 1) < 0.7)
+	g_string_append(new.name, short_names[math_rndi(0, 6)]);
+
+    new.contract = 4 * math_rndi(9, 36);
+    new.benefit = (gint)rint((((const_float("float_sponsor_wage_percentage_upper") -
+			       const_float("float_sponsor_wage_percentage_lower")) /
+			      (2 * (gfloat)const_int("int_user_success_offer_limit"))) *
+			     (gfloat)current_user.counters[COUNT_USER_SUCCESS]
+			     + ((const_float("float_sponsor_wage_percentage_upper") -
+				 const_float("float_sponsor_wage_percentage_lower")) / 2)) *
+			     (1 + suc_factor * 
+			      ((gfloat)new.contract / 52 - 1) * const_float("float_sponsor_contract_length_factor")) *
+			     (finance_wage_unit(current_user.tm) * current_user.tm->players->len));
+    new.benefit = math_round_integer(new.benefit, 2);
+
+    return new;
+}
+
+/** Show a list of sponsors for the user to choose from. */
+void
+user_show_sponsors(void)
+{
+    gint i, num_offers;
+    GArray *sponsors = g_array_new(FALSE, FALSE, sizeof(UserSponsor));
+    UserSponsor sponsor;
+
+    if(ABS(current_user.counters[COUNT_USER_SUCCESS]) >= 
+       const_int("int_user_success_offer_limit"))
+	num_offers = (current_user.counters[COUNT_USER_SUCCESS] < 0) ?
+	    const_int("int_sponsor_offers_lower") :
+	    const_int("int_sponsor_offers_upper");
+    else
+	num_offers = (gint)rint(((gfloat)(const_int("int_sponsor_offers_upper") -
+					  const_int("int_sponsor_offers_lower")) /
+				 (2 * (gfloat)const_int("int_user_success_offer_limit"))) *
+				(gfloat)current_user.counters[COUNT_USER_SUCCESS]
+				+ ((gfloat)(const_int("int_sponsor_offers_upper") -
+					    const_int("int_sponsor_offers_lower")) / 2) + 1);
+
+    num_offers += math_rndi(-1, 1);
+    if(num_offers <= 0)
+	num_offers = 1;
+
+    for(i=0;i<num_offers;i++)
+    {
+	sponsor = user_get_sponsor(&current_user);
+	g_array_append_val(sponsors, sponsor);
+    }
+    
+    window_create(WINDOW_SPONSORS);
+
+    treeview_show_sponsors(sponsors);
+
+    for(i=0;i<num_offers;i++)
+	g_string_free(g_array_index(sponsors, UserSponsor, i).name, TRUE);
+    g_array_free(sponsors, TRUE);
+}
+
+/** The current sponsor offers to continue. */
+void
+user_show_sponsor_continue(void)
+{
+    GArray *sponsors = g_array_new(FALSE, FALSE, sizeof(UserSponsor));
+    UserSponsor sponsor;
+
+    sponsor = user_get_sponsor(&current_user);
+
+    g_string_printf(sponsor.name, current_user.sponsor.name->str);
+    
+    g_array_append_val(sponsors, sponsor);
+
+    window_create(WINDOW_SPONSORS);
+
+    gtk_label_set_text(GTK_LABEL(lookup_widget(window.sponsors, "label_sponsors")),
+		       _("Your current sponsor is satisfied with your results and would like to renew the contract."));
+
+    treeview_show_sponsors(sponsors);
+
+    g_string_free(g_array_index(sponsors, UserSponsor, 0).name, TRUE);
+    g_array_free(sponsors, TRUE);
+
+    stat1 = STATUS_SPONSOR_CONTINUE;
 }

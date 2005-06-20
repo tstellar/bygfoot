@@ -79,11 +79,11 @@ float_team_stadium_safety_upper 10000
 # ticket price; this determines together with
 # the player wages the size of the stadium at
 # generation
-int_team_stadium_ticket_price 30
+int_team_stadium_ticket_price 25
 
 # factor for stadium size; this determines the income
 # of the user teams
-float_team_stadium_size_wage_factor 21000
+float_team_stadium_size_wage_factor 18000
 
 # stadium safety deterioration values (per game)
 float_game_stadium_safety_deterioration_lower 20
@@ -741,3 +741,27 @@ float_name_random_list_prob 2000
 string_language_names English Deutsch Nederlands
 string_language_codes C de_DE nl_NL
 string_language_symbols flag_england.png flag_germany.png flag_nl.png
+
+# lower and upper limits of which percentage
+# of the player wages a sponsor pays; the actual
+# value depends on the team's success
+float_sponsor_wage_percentage_lower 2000
+float_sponsor_wage_percentage_upper 7000
+
+# percentage difference between shorter and longer
+# contracts. whether this counts positively or negatively
+# depends on whether the success counter is positive or negative
+float_sponsor_contract_length_factor 1200
+
+# lower and upper limits for number of sponsor offers
+int_sponsor_offers_lower 1
+int_sponsor_offers_upper 5
+
+# limits for weeks without sponsor
+int_sponsor_without_weeks_lower 3
+int_sponsor_without_weeks_upper 6
+
+# probability that the current sponsor wants
+# to continue engagement if the team is completely
+# unsuccessful
+float_sponsor_continue_prob 1000

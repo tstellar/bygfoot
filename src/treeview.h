@@ -207,4 +207,13 @@ treeview_show_leagues_combo(void);
 void
 treeview_show_language_combo(void);
 
+GtkTreeModel*
+treeview_create_sponsors(const GArray *sponsors);
+
+void
+treeview_set_up_sponsors(GtkTreeView *treeview);
+
+void
+treeview_show_sponsors(const GArray *sponsors);
+
 #endif

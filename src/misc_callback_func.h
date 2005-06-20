@@ -27,4 +27,7 @@ misc_callback_update_stadium_window(gboolean capacity);
 void
 misc_callback_startup_load(const gchar *filename);
 
+void
+misc_callback_new_sponsor(void);
+
 #endif

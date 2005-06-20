@@ -123,6 +123,7 @@ typedef struct
 	*user_management,
 	*wdebug,
 	*help,
-	*transfer_dialog;
+	*transfer_dialog,
+	*sponsors;
 } Windows;
 #endif

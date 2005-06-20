@@ -18,24 +18,28 @@ debug_action(const gchar *text, gint value)
     else if(g_str_has_prefix(text, "cap"))
     {
 	current_user.tm->stadium.capacity += value;
-	sprintf(message, "Stadium capacity changed by %d.", value);
+	sprintf(message, "Stadium capacity changed by %d. New: %d.", value,
+		current_user.tm->stadium.capacity);
     }
     else if(g_str_has_prefix(text, "saf"))
     {
 	current_user.tm->stadium.safety += ((gfloat)value / 100);
 	current_user.tm->stadium.safety = 
 	    CLAMP(current_user.tm->stadium.safety, 0, 1);
-	sprintf(message, "Stadium safety changed by %d.", value);
+	sprintf(message, "Stadium safety changed by %d. New: %.2f", value,
+		current_user.tm->stadium.safety);
     }
     else if(g_str_has_prefix(text, "mon"))
     {
 	current_user.money += value;
-	sprintf(message, "Money changed by %d.", value);
+	sprintf(message, "Money changed by %d. New: %d.", value,
+		current_user.money);
     }
     else if(g_str_has_prefix(text, "suc"))
     {
 	current_user.counters[COUNT_USER_SUCCESS] += value;
-	sprintf(message, "Success counter changed by %d.", value);
+	sprintf(message, "Success counter changed by %d. New: %d.", value,
+		current_user.counters[COUNT_USER_SUCCESS]);
     }
     else if(g_str_has_prefix(text, "help"))
     {

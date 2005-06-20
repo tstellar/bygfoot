@@ -80,7 +80,8 @@ window_show_startup(void)
     gtk_combo_box_set_model(GTK_COMBO_BOX(combo_country), model);
     g_object_unref(model);
 
-    gtk_combo_box_entry_set_text_column(GTK_COMBO_BOX_ENTRY(combo_country), 1);
+    if(gtk_combo_box_entry_get_text_column(GTK_COMBO_BOX_ENTRY(combo_country)) == -1)
+	gtk_combo_box_entry_set_text_column(GTK_COMBO_BOX_ENTRY(combo_country), 1);
     gtk_cell_layout_clear(GTK_CELL_LAYOUT(combo_country));
 
     renderer = gtk_cell_renderer_pixbuf_new();
@@ -103,6 +104,7 @@ window_show_file_sel(void)
     gchar buf[SMALL];
     const gchar *home = g_get_home_dir();
     gchar *filename = NULL;
+    GtkFileFilter *filter;
 
     window_create(WINDOW_FILE_CHOOSER);
 
@@ -112,6 +114,17 @@ window_show_file_sel(void)
     else
 	gtk_file_chooser_set_action(GTK_FILE_CHOOSER(window.file_chooser),
 				    GTK_FILE_CHOOSER_ACTION_OPEN);
+
+    filter = gtk_file_filter_new();
+    gtk_file_filter_set_name(filter, _("Bygfoot Save Files"));
+    gtk_file_filter_add_pattern(filter, "*.zip");
+    gtk_file_filter_add_pattern(filter, "last_save");
+    gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(window.file_chooser), filter);
+
+    filter = gtk_file_filter_new ();
+    gtk_file_filter_set_name(filter, _("All Files"));
+    gtk_file_filter_add_pattern(filter, "*");
+    gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(window.file_chooser), filter);
 
     if(strlen(save_file->str) > 0)
 	gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(window.file_chooser),
@@ -491,6 +504,14 @@ window_create(gint window_type)
 		window.transfer_dialog = create_window_transfer_dialog();
 	    wind = window.transfer_dialog;
 	    strcpy(buf, _("Transfer offer"));
+	    break;
+	case WINDOW_SPONSORS:
+	    if(window.sponsors != NULL)
+		g_warning("window_create: called on already existing window\n");
+	    else
+		window.sponsors = create_window_sponsors();
+	    wind = window.sponsors;
+	    strcpy(buf, _("Sponsorship offers"));
 	    break;
     }
 

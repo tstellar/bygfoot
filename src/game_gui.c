@@ -339,6 +339,11 @@ game_gui_show_main(void)
     }
     else
 	treeview_show_next_opponent();
+
+    if(current_user.counters[COUNT_USER_NEW_SPONSOR] == 1)
+	user_show_sponsors();
+    else if(current_user.counters[COUNT_USER_NEW_SPONSOR] == -1)
+	user_show_sponsor_continue();
 }
 
 /** Print a message into the main window entry. */

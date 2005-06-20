@@ -1090,3 +1090,132 @@ create_window_file_chooser (void)
   return window_file_chooser;
 }
 
+GtkWidget*
+create_window_sponsors (void)
+{
+  GtkWidget *window_sponsors;
+  GtkWidget *vbox48;
+  GtkWidget *label_sponsors;
+  GtkWidget *scrolledwindow12;
+  GtkWidget *treeview_sponsors;
+  GtkWidget *hbox71;
+  GtkWidget *button_sponsors;
+  GtkWidget *alignment23;
+  GtkWidget *hbox73;
+  GtkWidget *image63;
+  GtkWidget *label117;
+  GtkWidget *button_sponsors_wait;
+  GtkWidget *alignment22;
+  GtkWidget *hbox72;
+  GtkWidget *image62;
+  GtkWidget *label116;
+  GtkTooltips *tooltips;
+
+  tooltips = gtk_tooltips_new ();
+
+  window_sponsors = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_container_set_border_width (GTK_CONTAINER (window_sponsors), 5);
+  gtk_window_set_title (GTK_WINDOW (window_sponsors), _("window1"));
+  gtk_window_set_position (GTK_WINDOW (window_sponsors), GTK_WIN_POS_CENTER);
+  gtk_window_set_modal (GTK_WINDOW (window_sponsors), TRUE);
+  gtk_window_set_default_size (GTK_WINDOW (window_sponsors), 450, 350);
+
+  vbox48 = gtk_vbox_new (FALSE, 3);
+  gtk_widget_show (vbox48);
+  gtk_container_add (GTK_CONTAINER (window_sponsors), vbox48);
+
+  label_sponsors = gtk_label_new (_("There are a few companies interested in sponsoring your team. Please select one:"));
+  gtk_widget_show (label_sponsors);
+  gtk_box_pack_start (GTK_BOX (vbox48), label_sponsors, FALSE, FALSE, 0);
+  gtk_label_set_line_wrap (GTK_LABEL (label_sponsors), TRUE);
+
+  scrolledwindow12 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrolledwindow12);
+  gtk_box_pack_start (GTK_BOX (vbox48), scrolledwindow12, TRUE, TRUE, 0);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow12), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow12), GTK_SHADOW_IN);
+
+  treeview_sponsors = gtk_tree_view_new ();
+  gtk_widget_show (treeview_sponsors);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow12), treeview_sponsors);
+
+  hbox71 = gtk_hbox_new (FALSE, 3);
+  gtk_widget_show (hbox71);
+  gtk_box_pack_start (GTK_BOX (vbox48), hbox71, FALSE, FALSE, 0);
+
+  button_sponsors = gtk_button_new ();
+  gtk_widget_show (button_sponsors);
+  gtk_box_pack_start (GTK_BOX (hbox71), button_sponsors, TRUE, TRUE, 0);
+
+  alignment23 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment23);
+  gtk_container_add (GTK_CONTAINER (button_sponsors), alignment23);
+
+  hbox73 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox73);
+  gtk_container_add (GTK_CONTAINER (alignment23), hbox73);
+
+  image63 = gtk_image_new_from_stock ("gtk-apply", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image63);
+  gtk_box_pack_start (GTK_BOX (hbox73), image63, FALSE, FALSE, 0);
+
+  label117 = gtk_label_new_with_mnemonic (_("Accept"));
+  gtk_widget_show (label117);
+  gtk_box_pack_start (GTK_BOX (hbox73), label117, FALSE, FALSE, 0);
+
+  button_sponsors_wait = gtk_button_new ();
+  gtk_widget_show (button_sponsors_wait);
+  gtk_box_pack_start (GTK_BOX (hbox71), button_sponsors_wait, TRUE, TRUE, 0);
+  gtk_tooltips_set_tip (tooltips, button_sponsors_wait, _("If you don't like any of the sponsors, you can go a few weeks without sponsor and wait for new offers."), NULL);
+
+  alignment22 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment22);
+  gtk_container_add (GTK_CONTAINER (button_sponsors_wait), alignment22);
+
+  hbox72 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox72);
+  gtk_container_add (GTK_CONTAINER (alignment22), hbox72);
+
+  image62 = gtk_image_new_from_stock ("gtk-go-forward", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image62);
+  gtk_box_pack_start (GTK_BOX (hbox72), image62, FALSE, FALSE, 0);
+
+  label116 = gtk_label_new_with_mnemonic (_("Reject for now"));
+  gtk_widget_show (label116);
+  gtk_box_pack_start (GTK_BOX (hbox72), label116, FALSE, FALSE, 0);
+
+  g_signal_connect ((gpointer) window_sponsors, "delete_event",
+                    G_CALLBACK (on_window_sponsors_delete_event),
+                    NULL);
+  g_signal_connect ((gpointer) treeview_sponsors, "row_activated",
+                    G_CALLBACK (on_treeview_sponsors_row_activated),
+                    NULL);
+  g_signal_connect ((gpointer) button_sponsors, "clicked",
+                    G_CALLBACK (on_button_sponsors_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_sponsors_wait, "clicked",
+                    G_CALLBACK (on_button_sponsors_wait_clicked),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (window_sponsors, window_sponsors, "window_sponsors");
+  GLADE_HOOKUP_OBJECT (window_sponsors, vbox48, "vbox48");
+  GLADE_HOOKUP_OBJECT (window_sponsors, label_sponsors, "label_sponsors");
+  GLADE_HOOKUP_OBJECT (window_sponsors, scrolledwindow12, "scrolledwindow12");
+  GLADE_HOOKUP_OBJECT (window_sponsors, treeview_sponsors, "treeview_sponsors");
+  GLADE_HOOKUP_OBJECT (window_sponsors, hbox71, "hbox71");
+  GLADE_HOOKUP_OBJECT (window_sponsors, button_sponsors, "button_sponsors");
+  GLADE_HOOKUP_OBJECT (window_sponsors, alignment23, "alignment23");
+  GLADE_HOOKUP_OBJECT (window_sponsors, hbox73, "hbox73");
+  GLADE_HOOKUP_OBJECT (window_sponsors, image63, "image63");
+  GLADE_HOOKUP_OBJECT (window_sponsors, label117, "label117");
+  GLADE_HOOKUP_OBJECT (window_sponsors, button_sponsors_wait, "button_sponsors_wait");
+  GLADE_HOOKUP_OBJECT (window_sponsors, alignment22, "alignment22");
+  GLADE_HOOKUP_OBJECT (window_sponsors, hbox72, "hbox72");
+  GLADE_HOOKUP_OBJECT (window_sponsors, image62, "image62");
+  GLADE_HOOKUP_OBJECT (window_sponsors, label116, "label116");
+  GLADE_HOOKUP_OBJECT_NO_REF (window_sponsors, tooltips, "tooltips");
+
+  return window_sponsors;
+}
+

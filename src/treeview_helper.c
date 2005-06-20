@@ -1233,3 +1233,18 @@ treeview_helper_live_game_result(GtkTreeViewColumn *col,
 
     g_object_set(renderer, "markup", buf, NULL);
 }
+
+gint
+treeview_helper_int_compare(GtkTreeModel *model,
+			    GtkTreeIter *a,
+			    GtkTreeIter *b,
+			    gpointer user_data)
+{
+    gint column = GPOINTER_TO_INT(user_data);
+    gint value1, value2;
+
+    gtk_tree_model_get(model, a, column, &value1, -1);
+    gtk_tree_model_get(model, b, column, &value2, -1);
+
+    return misc_int_compare(value1, value2);
+}

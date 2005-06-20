@@ -141,4 +141,10 @@ treeview_helper_player_info_career_to_cell(GtkCellRenderer *renderer, const Play
 gchar*
 treeview_helper_get_user_history_icon(gint history_type);
 
+gint
+treeview_helper_int_compare(GtkTreeModel *model,
+			    GtkTreeIter *a,
+			    GtkTreeIter *b,
+			    gpointer user_data);
+
 #endif

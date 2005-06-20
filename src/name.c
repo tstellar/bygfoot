@@ -1,3 +1,4 @@
+#include "main.h"
 #include "name.h"
 #include "option.h"
 #include "variables.h"
@@ -80,4 +81,35 @@ name_shorten_list(NameList *namelist)
 	    g_ptr_array_remove_index_fast(namelist->last_names, idx);
 	}
     }
+}
+
+/** Find the namelist with the given sid. */
+NameList*
+name_get_list_from_sid(const gchar *sid)
+{
+    gint i;
+    NameList new;
+
+    for(i=0;i<name_lists->len;i++)
+	if(strcmp(sid, nli(i).sid->str) == 0)
+	    return &nli(i);
+
+    new.sid = NULL;
+    new.first_names = new.last_names = NULL;
+
+    xml_name_read(sid, &new);
+
+    if(new.sid == NULL)
+    {
+	g_warning("name_get_list_from_sid: namelist with sid %s not found", sid);
+	main_exit_program(EXIT_POINTER_NOT_FOUND, NULL);
+    }
+    else
+    {
+	name_shorten_list(&new);
+	g_array_append_val(name_lists, new);
+	return &nli(name_lists->len - 1);
+    }
+
+    return NULL;
 }

@@ -78,4 +78,14 @@ user_job_offer(User *user);
 gboolean
 query_user_no_turn(void);
 
+void
+user_show_sponsors(void);
+
+UserSponsor
+user_get_sponsor(const User *user);
+
+void
+user_show_sponsor_continue(void);
+
+
 #endif

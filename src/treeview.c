@@ -162,6 +162,7 @@ treeview_show_team_list(GtkTreeView *treeview, gboolean show_cup_teams,
     GtkTreeModel *team_list = 
 	treeview_create_team_selection_list(show_cup_teams, show_user_teams);
     GtkTreeSelection *selection;
+    GtkTreePath *path = gtk_tree_path_new_from_string("0");
      
     treeview_helper_clear(treeview);
 
@@ -170,9 +171,9 @@ treeview_show_team_list(GtkTreeView *treeview, gboolean show_cup_teams,
     gtk_tree_view_set_model(treeview, team_list);
     
     selection = gtk_tree_view_get_selection(treeview);
-    gtk_tree_selection_select_path(selection,
-				   gtk_tree_path_new_from_string("0"));
+    gtk_tree_selection_select_path(selection, path);
     g_object_unref(team_list);
+    gtk_tree_path_free(path);
 }
 
 /** Create the list store for a player list. 
@@ -1239,7 +1240,8 @@ treeview_create_finances(const User* user)
 	*out = user->money_out[0];
     gchar *in_titles[MON_IN_TRANSFERS] =
 	{_("Prize money"),
-	 _("Ticket income")};
+	 _("Ticket income"),
+	 _("Sponsorship")};
     gchar *out_titles[MON_OUT_TRANSFERS] =
 	{_("Wages"),
 	 _("Physio"),
@@ -1324,6 +1326,18 @@ treeview_create_finances(const User* user)
 	gtk_list_store_append(ls, &iter);
 	gtk_list_store_set(ls, &iter, 0, buf, 1, "", 2, buf2, -1);
     }
+
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, "", 1, "", 2, "", -1);
+
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, _("Sponsor"), 1, user->sponsor.name->str,
+		       2, "", -1);
+
+    misc_print_grouped_int(user->sponsor.benefit, buf, FALSE);
+    sprintf(buf2, _("%.1f months / %s"), ((gfloat)user->sponsor.contract) / 4, buf);
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, _("Contract / Money"), 1, buf2, 2, "", -1);
 
     gtk_list_store_append(ls, &iter);
     gtk_list_store_set(ls, &iter, 0, "", 1, "", 2, "", -1);
@@ -2340,4 +2354,81 @@ treeview_show_language_combo(void)
     gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(combo_languages), renderer, "text", 1, NULL);
 
     gtk_combo_box_set_active(GTK_COMBO_BOX(combo_languages), idx + 1);
+}
+
+GtkTreeModel*
+treeview_create_sponsors(const GArray *sponsors)
+{
+    gint i;
+    GtkListStore *ls = gtk_list_store_new(3, G_TYPE_STRING, G_TYPE_INT, 
+					  G_TYPE_INT);
+    GtkTreeIter iter;
+
+    for(i=0;i<sponsors->len;i++)
+    {
+	gtk_list_store_append(ls, &iter);
+	gtk_list_store_set(ls, &iter, 
+			   0, g_array_index(sponsors, UserSponsor, i).name->str,
+			   1, g_array_index(sponsors, UserSponsor, i).contract / 4,
+			   2, g_array_index(sponsors, UserSponsor, i).benefit,
+			   -1);
+    }
+
+    for(i=1;i<3;i++)
+	gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(ls), i,
+					treeview_helper_int_compare, GINT_TO_POINTER(i), NULL);
+
+    return GTK_TREE_MODEL(ls);
+}
+
+void
+treeview_set_up_sponsors(GtkTreeView *treeview)
+{
+    gint i;
+    GtkTreeViewColumn   *col;
+    GtkCellRenderer     *renderer;
+    gchar *titles[3] = 
+	{_("Company"),
+	 _("Contract length\n(Months)"),
+	 _("Money / week")};
+    
+    gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
+				GTK_SELECTION_BROWSE);
+    gtk_tree_view_set_rules_hint(treeview, TRUE);
+    gtk_tree_view_set_headers_visible(treeview, TRUE);
+
+    for(i=0;i<3;i++)
+    {
+	col = gtk_tree_view_column_new();
+	gtk_tree_view_column_set_title(col, titles[i]);
+	gtk_tree_view_append_column(treeview, col);	
+	renderer = treeview_helper_cell_renderer_text_new();
+	gtk_tree_view_column_pack_start(col, renderer, TRUE);
+	gtk_tree_view_column_add_attribute(col, renderer,
+					   "markup", i);
+
+	if(i > 0)
+	{
+	    g_object_set(renderer, "xalign", 0.5, NULL);
+	    gtk_tree_view_column_set_sort_column_id(col, i);
+	}
+    }
+}
+
+/** Show a list of sponsor offers. */
+void
+treeview_show_sponsors(const GArray *sponsors)
+{
+    GtkTreeView *treeview = GTK_TREE_VIEW(lookup_widget(window.sponsors,
+							"treeview_sponsors"));
+    GtkTreeModel *model = treeview_create_sponsors(sponsors);
+    GtkTreePath *path = gtk_tree_path_new_from_string("0");
+
+    treeview_helper_clear(treeview);
+    
+    treeview_set_up_sponsors(treeview);
+    gtk_tree_view_set_model(treeview, GTK_TREE_MODEL(model));
+    gtk_tree_selection_select_path(gtk_tree_view_get_selection(treeview), path);
+    g_object_unref(model);
+    gtk_tree_path_free(path);
 }
