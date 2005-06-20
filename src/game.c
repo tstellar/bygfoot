@@ -337,7 +337,9 @@ game_assign_attendance(Fixture *fix)
 	    factor *= const_float("float_game_stadium_attendance_cup_international_factor");
     }
 
-    fix->attendance = MIN((gint)rint((gfloat)tm[0]->stadium.capacity * factor), max_att);
+    factor = MIN(factor, 1);
+    fix->attendance = MIN(MIN((gint)rint((gfloat)tm[0]->stadium.capacity * factor),
+			      max_att * factor), max_att);
 
     tm[0]->stadium.average_attendance = 
 	(gint)rint((gfloat)(tm[0]->stadium.average_attendance * tm[0]->stadium.games + fix->attendance) /

@@ -281,7 +281,9 @@ query_misc_string_in_array(const gchar *string, GPtrArray *array)
     return FALSE;
 }
 
-/** Replace a token in a string by another string. */
+/** Replace a token in a string by another string. 
+    The replacement should NOT CONTAIN THE TOKEN otherwise
+    we end up in an infinite loop. */
 void
 misc_string_replace_token(gchar *string, const gchar *token, const gchar *replacement)
 {

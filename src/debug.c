@@ -1,6 +1,7 @@
 #include "debug.h"
 #include "game_gui.h"
 #include "option.h"
+#include "support.h"
 #include "user.h"
 #include "variables.h"
 
@@ -54,6 +55,7 @@ debug_action(const gchar *text, gint value)
     }
 
     game_gui_print_message(message);
+    setsav0;
 }
 
 gboolean

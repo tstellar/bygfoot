@@ -184,7 +184,10 @@ xml_loadsave_users_text         (GMarkupParseContext *context,
     else if(state == TAG_USER_PHYSIO)
 	new_user.physio = int_value;
     else if(state == TAG_USER_SPONSOR_NAME)
+    {
+	misc_string_replace_token(buf, "AND", "&amp;");
 	g_string_printf(new_user.sponsor.name, buf);
+    }
     else if(state == TAG_USER_SPONSOR_CONTRACT)
 	new_user.sponsor.contract = int_value;
     else if(state == TAG_USER_SPONSOR_BENEFIT)
@@ -287,7 +290,9 @@ xml_loadsave_users_write(const gchar *prefix)
 	xml_write_int(fil, usr(i).scout, TAG_USER_SCOUT, I1);
 	xml_write_int(fil, usr(i).physio, TAG_USER_PHYSIO, I1);
 
-	xml_write_g_string(fil, usr(i).sponsor.name, TAG_USER_SPONSOR_NAME, I1);
+	strcpy(buf, usr(i).sponsor.name->str);
+	misc_string_replace_token(buf, "&amp;", "AND");
+	xml_write_string(fil, buf, TAG_USER_SPONSOR_NAME, I1);
 	xml_write_int(fil, usr(i).sponsor.contract, TAG_USER_SPONSOR_CONTRACT, I1);
 	xml_write_int(fil, usr(i).sponsor.benefit, TAG_USER_SPONSOR_BENEFIT, I1);
 
