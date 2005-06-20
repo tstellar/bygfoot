@@ -205,7 +205,6 @@ misc2_callback_add_user(void)
     g_array_append_val(users, new_user);
 
     user_set_up_team(&usr(users->len - 1));
-    usr(users->len - 1).counters[COUNT_USER_NEW_SPONSOR] = 1;
 
     file_load_user_conf_file(&usr(users->len - 1));
 

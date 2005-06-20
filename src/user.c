@@ -73,8 +73,6 @@ user_set_up_team_new_game(User *user)
 
 	user_set_up_team(user);
     }
-
-    user->counters[COUNT_USER_NEW_SPONSOR] = 1;
 }
 
 /** Set up finances, remove some players etc. for a new user team.
@@ -98,6 +96,8 @@ user_set_up_team(User *user)
     
     user_set_up_finances(user);
     user_set_up_counters(user);
+
+    user->counters[COUNT_USER_NEW_SPONSOR] = 1;
 }
 
 
@@ -496,11 +496,17 @@ void
 user_change_team(User *user, Team *tm)
 {
     gint i;
+    UserSponsor sponsor;
 
     user->tm = tm;
     user->team_id = tm->id;
 
     user_set_up_team(user);
+
+    user->counters[COUNT_USER_NEW_SPONSOR] = 0;
+    g_string_free(user->sponsor.name, TRUE);
+    user->sponsor = user_get_sponsor(&current_user);    
+
     for(i=user->events->len - 1; i >= 0; i--)
 	user_event_remove(user, i);    
 }
