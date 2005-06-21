@@ -141,4 +141,13 @@ team_write_own_results(const Team *tm, gchar *buf, gboolean sort);
 gboolean
 query_team_is_in_teams_array(const Team *tm, const GPtrArray *teams);
 
+gchar*
+team_has_def_file(const Team *tm);
+
+void
+team_complete_def(Team *tm, gfloat average_skill);
+
+void
+team_complete_def_sort(Team *tm);
+
 #endif

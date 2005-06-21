@@ -87,7 +87,7 @@ file_find_support_file                       (const gchar     *filename, gboolea
 gboolean
 file_my_system(const gchar *command)
 {
-    if(system(command) == -1)
+    if(system(command) != 0)
     {
 	g_warning("file_my_system: system returned -1 when executing '%s'.", command);
 	return FALSE;

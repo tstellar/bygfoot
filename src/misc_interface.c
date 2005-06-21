@@ -53,6 +53,12 @@ create_window_startup (void)
   GtkWidget *image59;
   GtkWidget *label76;
   GtkWidget *hseparator13;
+  GtkWidget *hbox74;
+  GtkWidget *radiobutton_team_def_load;
+  GSList *radiobutton_team_def_load_group = NULL;
+  GtkWidget *radiobutton_team_def_names;
+  GtkWidget *radiobutton_team_def_dont;
+  GtkWidget *hseparator16;
   GtkWidget *hbox3;
   GtkWidget *team_selection_ok;
   GtkWidget *alignment18;
@@ -118,7 +124,7 @@ create_window_startup (void)
   hseparator10 = gtk_hseparator_new ();
   gtk_widget_show (hseparator10);
   gtk_box_pack_start (GTK_BOX (vbox2), hseparator10, FALSE, FALSE, 0);
-  gtk_widget_set_size_request (hseparator10, 1, 10);
+  gtk_widget_set_size_request (hseparator10, 1, 5);
 
   vbox34 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox34);
@@ -136,7 +142,7 @@ create_window_startup (void)
   hseparator11 = gtk_hseparator_new ();
   gtk_widget_show (hseparator11);
   gtk_box_pack_start (GTK_BOX (vbox2), hseparator11, FALSE, FALSE, 0);
-  gtk_widget_set_size_request (hseparator11, 1, 10);
+  gtk_widget_set_size_request (hseparator11, 1, 5);
 
   label4 = gtk_label_new (_("Start in"));
   gtk_widget_show (label4);
@@ -149,7 +155,7 @@ create_window_startup (void)
   hseparator12 = gtk_hseparator_new ();
   gtk_widget_show (hseparator12);
   gtk_box_pack_start (GTK_BOX (vbox2), hseparator12, FALSE, FALSE, 0);
-  gtk_widget_set_size_request (hseparator12, 1, 10);
+  gtk_widget_set_size_request (hseparator12, 1, 5);
 
   hbox54 = gtk_hbox_new (FALSE, 5);
   gtk_widget_show (hbox54);
@@ -189,6 +195,36 @@ create_window_startup (void)
   gtk_widget_show (hseparator13);
   gtk_box_pack_start (GTK_BOX (vbox2), hseparator13, FALSE, TRUE, 0);
   gtk_widget_set_size_request (hseparator13, 1, 10);
+
+  hbox74 = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (hbox74);
+  gtk_box_pack_start (GTK_BOX (vbox2), hbox74, FALSE, FALSE, 0);
+
+  radiobutton_team_def_load = gtk_radio_button_new_with_mnemonic (NULL, _("Load team definitions"));
+  gtk_widget_show (radiobutton_team_def_load);
+  gtk_box_pack_start (GTK_BOX (hbox74), radiobutton_team_def_load, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, radiobutton_team_def_load, _("Load teams from definition files (note that the official Bygfoot package doesn't contain team definition files, you have to get them from the homepage or via the bygfoot-update script)"), NULL);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton_team_def_load), radiobutton_team_def_load_group);
+  radiobutton_team_def_load_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton_team_def_load));
+
+  radiobutton_team_def_names = gtk_radio_button_new_with_mnemonic (NULL, _("Only names"));
+  gtk_widget_show (radiobutton_team_def_names);
+  gtk_box_pack_start (GTK_BOX (hbox74), radiobutton_team_def_names, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, radiobutton_team_def_names, _("Load only the player names in the definition files"), NULL);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton_team_def_names), radiobutton_team_def_load_group);
+  radiobutton_team_def_load_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton_team_def_names));
+
+  radiobutton_team_def_dont = gtk_radio_button_new_with_mnemonic (NULL, _("Don't load definitions"));
+  gtk_widget_show (radiobutton_team_def_dont);
+  gtk_box_pack_start (GTK_BOX (hbox74), radiobutton_team_def_dont, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, radiobutton_team_def_dont, _("Don't load team definitions at all"), NULL);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton_team_def_dont), radiobutton_team_def_load_group);
+  radiobutton_team_def_load_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton_team_def_dont));
+
+  hseparator16 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator16);
+  gtk_box_pack_start (GTK_BOX (vbox2), hseparator16, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (hseparator16, 1, 5);
 
   hbox3 = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (hbox3);
@@ -256,7 +292,7 @@ create_window_startup (void)
 
   button_startup_resume = gtk_button_new ();
   gtk_widget_show (button_startup_resume);
-  gtk_box_pack_start (GTK_BOX (vbox2), button_startup_resume, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox3), button_startup_resume, FALSE, FALSE, 0);
   gtk_tooltips_set_tip (tooltips, button_startup_resume, _("Load the last game that was saved or loaded."), NULL);
 
   alignment21 = gtk_alignment_new (0.5, 0.5, 0, 0);
@@ -331,6 +367,11 @@ create_window_startup (void)
   GLADE_HOOKUP_OBJECT (window_startup, image59, "image59");
   GLADE_HOOKUP_OBJECT (window_startup, label76, "label76");
   GLADE_HOOKUP_OBJECT (window_startup, hseparator13, "hseparator13");
+  GLADE_HOOKUP_OBJECT (window_startup, hbox74, "hbox74");
+  GLADE_HOOKUP_OBJECT (window_startup, radiobutton_team_def_load, "radiobutton_team_def_load");
+  GLADE_HOOKUP_OBJECT (window_startup, radiobutton_team_def_names, "radiobutton_team_def_names");
+  GLADE_HOOKUP_OBJECT (window_startup, radiobutton_team_def_dont, "radiobutton_team_def_dont");
+  GLADE_HOOKUP_OBJECT (window_startup, hseparator16, "hseparator16");
   GLADE_HOOKUP_OBJECT (window_startup, hbox3, "hbox3");
   GLADE_HOOKUP_OBJECT (window_startup, team_selection_ok, "team_selection_ok");
   GLADE_HOOKUP_OBJECT (window_startup, alignment18, "alignment18");
@@ -713,6 +754,7 @@ create_window_stadium (void)
 {
   GtkWidget *window_stadium;
   GtkWidget *vbox39;
+  GtkWidget *label_stadium_name;
   GtkWidget *table1;
   GtkWidget *label106;
   GtkWidget *label_stadium_status;
@@ -769,6 +811,10 @@ create_window_stadium (void)
   vbox39 = gtk_vbox_new (FALSE, 5);
   gtk_widget_show (vbox39);
   gtk_container_add (GTK_CONTAINER (window_stadium), vbox39);
+
+  label_stadium_name = gtk_label_new ("");
+  gtk_widget_show (label_stadium_name);
+  gtk_box_pack_start (GTK_BOX (vbox39), label_stadium_name, FALSE, FALSE, 0);
 
   table1 = gtk_table_new (5, 2, FALSE);
   gtk_widget_show (table1);
@@ -999,6 +1045,7 @@ create_window_stadium (void)
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (window_stadium, window_stadium, "window_stadium");
   GLADE_HOOKUP_OBJECT (window_stadium, vbox39, "vbox39");
+  GLADE_HOOKUP_OBJECT (window_stadium, label_stadium_name, "label_stadium_name");
   GLADE_HOOKUP_OBJECT (window_stadium, table1, "table1");
   GLADE_HOOKUP_OBJECT (window_stadium, label106, "label106");
   GLADE_HOOKUP_OBJECT (window_stadium, label_stadium_status, "label_stadium_status");
@@ -1115,7 +1162,6 @@ create_window_sponsors (void)
 
   window_sponsors = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_sponsors), 5);
-  gtk_window_set_title (GTK_WINDOW (window_sponsors), _("window1"));
   gtk_window_set_position (GTK_WINDOW (window_sponsors), GTK_WIN_POS_CENTER);
   gtk_window_set_modal (GTK_WINDOW (window_sponsors), TRUE);
   gtk_window_set_default_size (GTK_WINDOW (window_sponsors), 450, 350);

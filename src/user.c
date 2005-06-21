@@ -84,11 +84,15 @@ user_set_up_team(User *user)
 
     for(i=PLAYER_POS_DEFENDER; i<=PLAYER_POS_FORWARD; i++)
 	for(j=user->tm->players->len - 1; j > 10; j--)
-	    if(g_array_index(user->tm->players, Player, j).pos == i)
+	    if(g_array_index(user->tm->players, Player, j).pos == i &&
+	       g_array_index(user->tm->players, Player, j).recovery != 1)
 	    {
 		player_remove_from_team(user->tm, j);
 		break;
 	    }
+
+    for(i=0;i<user->tm->players->len;i++)
+	g_array_index(user->tm->players, Player, i).recovery = 0;
 
     user->scout = user->physio = QUALITY_AVERAGE;
     
@@ -496,7 +500,6 @@ void
 user_change_team(User *user, Team *tm)
 {
     gint i;
-    UserSponsor sponsor;
 
     user->tm = tm;
     user->team_id = tm->id;

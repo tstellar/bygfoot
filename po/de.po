@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-20 14:42+0200\n"
-"PO-Revision-Date: 2005-06-18 16:42+0200\n"
+"POT-Creation-Date: 2005-06-20 19:08+0200\n"
+"PO-Revision-Date: 2005-06-20 19:08+0200\n"
 "Last-Translator:  Gyz Both <gyboth@bygfoot.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -51,19 +51,19 @@ msgstr ""
 msgid "   "
 msgstr "   "
 
-#: src/user.c:765
-msgid " &amp; Co."
-msgstr ""
-
 #: src/user.c:770
+msgid " &amp; Co."
+msgstr " &amp; Co."
+
+#: src/user.c:775
 msgid " &amp; Daughters"
-msgstr ""
+msgstr " &amp; Töchter"
 
-#: src/user.c:769
+#: src/user.c:774
 msgid " &amp; Sons"
-msgstr ""
+msgstr "&amp; Söhne"
 
-#: src/game.c:866
+#: src/game.c:868
 msgid " (FK)"
 msgstr " (FS)"
 
@@ -71,11 +71,11 @@ msgstr " (FS)"
 msgid " (NOTE: If you don't, the game is over for you.)"
 msgstr "(BEMERKUNG: Wenn Du ablehnst, ist das Spiel vorbei für Dich.)"
 
-#: src/game.c:868
+#: src/game.c:870
 msgid " (OG)"
 msgstr " (ET)"
 
-#: src/game.c:864 src/treeview_helper.c:963
+#: src/game.c:866 src/treeview_helper.c:963
 msgid " (P)"
 msgstr " (E)"
 
@@ -91,132 +91,121 @@ msgstr " -- Wiederholungsspiele"
 msgid " -- Second leg"
 msgstr " -- Rückspiel"
 
-#: src/user.c:762
+#: src/user.c:767
 msgid " Assoc."
-msgstr ""
+msgstr " Holding"
 
 #: src/options_interface.c:266
 msgid " Autosave files "
 msgstr "Dateien für Auto-Speichern"
 
-#: src/user.c:752
-#, fuzzy
+#: src/user.c:757
 msgid " Bank"
-msgstr "Rang"
+msgstr " Bank"
 
-#: src/user.c:771
+#: src/user.c:776
 msgid " Bros."
-msgstr ""
+msgstr " Gebr."
 
-#: src/user.c:750
+#: src/user.c:755
 msgid " Chemicals"
-msgstr ""
+msgstr " Chemie"
 
-#: src/user.c:763
+#: src/user.c:768
 msgid " Co."
-msgstr ""
+msgstr " Ges."
 
-#: src/user.c:743
-#, fuzzy
+#: src/user.c:748
 msgid " Communications"
-msgstr "Abfindungen"
-
-#: src/user.c:746
-msgid " Company"
-msgstr ""
-
-#: src/user.c:766
-#, fuzzy
-msgid " Corp."
-msgstr " i.E."
-
-#: src/user.c:759
-#, fuzzy
-msgid " Data Systems"
-msgstr "System"
+msgstr " Kommunikation"
 
 #: src/user.c:751
-msgid " Energy"
-msgstr ""
+msgid " Company"
+msgstr " Gesellschaft"
+
+#: src/user.c:771
+msgid " Corp."
+msgstr " AG"
 
 #: src/user.c:764
-#, fuzzy
-msgid " Ent."
-msgstr "Ereignis"
+msgid " Data Systems"
+msgstr " Datensysteme"
 
 #: src/user.c:756
-#, fuzzy
+msgid " Energy"
+msgstr " Energie"
+
+#: src/user.c:769
+msgid " Ent."
+msgstr " Ges."
+
+#: src/user.c:761
 msgid " Financial"
-msgstr "Endspiel"
+msgstr " Finanzen"
 
 #: src/user.c:481
 msgid " Fortunately he's got a cousin who can help your team out."
 msgstr "Glücklicherweise hat er einen Cousin, der einspringen kann."
 
-#: src/user.c:767
-#, fuzzy
+#: src/user.c:772
 msgid " Group"
-msgstr "%s Gruppe %d"
+msgstr " Gruppe"
 
-#: src/user.c:744
+#: src/user.c:749
 msgid " Holdings"
-msgstr ""
+msgstr " Logistik"
 
-#: src/user.c:745
-#, fuzzy
+#: src/user.c:750
 msgid " Industries"
-msgstr "Verletzungen"
-
-#: src/user.c:748
-msgid " Labs"
-msgstr ""
-
-#: src/user.c:761
-#, fuzzy
-msgid " Ltd."
-msgstr " n.V."
-
-#: src/user.c:757
-msgid " Petroleum"
-msgstr ""
+msgstr " Pharma"
 
 #: src/user.c:753
-msgid " Products"
-msgstr ""
+msgid " Labs"
+msgstr " Labore"
+
+#: src/user.c:766
+msgid " Ltd."
+msgstr " GmbH"
+
+#: src/user.c:762
+msgid " Petroleum"
+msgstr " Petroleum"
 
 #: src/user.c:758
-#, fuzzy
+msgid " Products"
+msgstr " Produkte"
+
+#: src/user.c:763
 msgid " Restaurants"
-msgstr "Return"
+msgstr " Gaststätten"
 
 #: src/interface.c:958
 msgid " Round "
 msgstr " Runde "
 
-#: src/user.c:755
+#: src/user.c:760
 msgid " Scientific"
-msgstr ""
+msgstr " Scientific"
 
 #: src/interface.c:940
 msgid " Season "
 msgstr " Saison "
 
-#: src/user.c:754
+#: src/user.c:759
 msgid " Software"
-msgstr ""
-
-#: src/user.c:742
-#, fuzzy
-msgid " Systems"
-msgstr "System"
-
-#: src/user.c:749
-msgid " Technologies"
-msgstr ""
+msgstr " Software"
 
 #: src/user.c:747
+msgid " Systems"
+msgstr " Systeme"
+
+#: src/user.c:754
+msgid " Technologies"
+msgstr " Technologien"
+
+#: src/user.c:752
 msgid " Telecommunications"
-msgstr ""
+msgstr " Telekommunikation"
 
 #: src/interface.c:949
 msgid " Week "
@@ -247,9 +236,9 @@ msgid " seats"
 msgstr " Plätze"
 
 #: src/treeview.c:1338
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f months / %s"
-msgstr " Monaten"
+msgstr "%.1f Monate / %s"
 
 #: src/team.c:976
 #, c-format
@@ -283,7 +272,7 @@ msgstr ""
 "%s konnte sich %s nicht leisten, oder er hatte keinen Platz mehr in der "
 "Mannschaft."
 
-#: src/user.c:668
+#: src/user.c:673
 #, c-format
 msgid ""
 "%s fires you because of financial mismanagement.\n"
@@ -292,7 +281,7 @@ msgstr ""
 "%s feuert Dich wegen wirtschaftlicher Unfähigkeit.\n"
 "Du bekommst eine neue Arbeit mit %s in der %s."
 
-#: src/user.c:674
+#: src/user.c:679
 #, c-format
 msgid ""
 "%s fires you because of unsuccessfulness.\n"
@@ -320,7 +309,7 @@ msgstr ""
 "%s von %s hat dein Angebot (%s / %s) abgelehnt. Er war mit dem angebotenen "
 "Gehalt unzufrieden."
 
-#: src/user.c:680
+#: src/user.c:685
 #, c-format
 msgid ""
 "%s offer you a job in the %s.\n"
@@ -494,10 +483,9 @@ msgstr "ANGRIFF"
 msgid "About"
 msgstr "Über"
 
-#: src/misc_interface.c:1162
-#, fuzzy
+#: src/misc_interface.c:1161
 msgid "Accept"
-msgstr "Einverstanden?"
+msgstr "Annehmen"
 
 #: src/game_gui.c:520
 msgid "Accept?"
@@ -529,7 +517,7 @@ msgstr "Alter "
 
 #: src/window.c:125
 msgid "All Files"
-msgstr ""
+msgstr "Alle Dateien"
 
 #: src/interface.c:460
 msgid "All Out Attack"
@@ -756,7 +744,7 @@ msgstr "Mannschaften durchstöbern"
 
 #: src/window.c:119
 msgid "Bygfoot Save Files"
-msgstr ""
+msgstr "Bygfoot Save-Dateien"
 
 #: src/misc2_interface.c:904
 msgid ""
@@ -842,9 +830,8 @@ msgid "Commentary"
 msgstr "Kommentar"
 
 #: src/treeview.c:2391
-#, fuzzy
 msgid "Company"
-msgstr "Abfindungen"
+msgstr "Firma"
 
 #: src/treeview.c:1252
 msgid "Compensations"
@@ -879,15 +866,16 @@ msgid "Contract "
 msgstr "Vertrag "
 
 #: src/treeview.c:1340
-#, fuzzy
 msgid "Contract / Money"
-msgstr "Vertragsangebot "
+msgstr "Vertrag / Zahlungen"
 
 #: src/treeview.c:2392
 msgid ""
 "Contract length\n"
 "(Months)"
 msgstr ""
+"Vertragslaufzeit\n"
+"(Monate)"
 
 #: src/window.c:475
 msgid "Contract offer"
@@ -1296,11 +1284,13 @@ msgstr ""
 "Wenn ausgewählt, Wochen ohne Benutzermannschaftenbeteiligung werden "
 "automatisch berechnet (ohne dass man auf 'Neue Woche' klicken muss)"
 
-#: src/misc_interface.c:1169
+#: src/misc_interface.c:1168
 msgid ""
 "If you don't like any of the sponsors, you can go a few weeks without "
 "sponsor and wait for new offers."
 msgstr ""
+"Wenn Du keinen der Angebote schätzt, kannst Du einige Wochen ohne Sponsor "
+"bleiben und auf neue Angebote warten."
 
 #: src/misc_interface.c:965
 msgid "Improve!"
@@ -1578,9 +1568,8 @@ msgid "Money (approx.)"
 msgstr "Kontostand (ungefähr)"
 
 #: src/treeview.c:2393
-#, fuzzy
 msgid "Money / week"
-msgstr "Kontostand "
+msgstr "Zahlung / Woche"
 
 #: src/interface.c:380
 msgid "My league results"
@@ -1632,9 +1621,8 @@ msgid "No match stored."
 msgstr "Kein Spiel gespeichert."
 
 #: src/misc_callbacks.c:353
-#, fuzzy
 msgid "None"
-msgstr "Kontostand"
+msgstr "Kein"
 
 #: src/window.c:408
 msgid "Numbers..."
@@ -2138,10 +2126,9 @@ msgstr "Sortiere Mannschaft"
 msgid "Reds"
 msgstr "Rote K."
 
-#: src/misc_interface.c:1183
-#, fuzzy
+#: src/misc_interface.c:1182
 msgid "Reject for now"
-msgstr "Schriftart auswählen"
+msgstr "Erstmal überlegen"
 
 #: src/options_interface.c:348
 msgid "Reload"
@@ -2404,16 +2391,15 @@ msgstr "Geschwindigkeit"
 
 #: src/treeview.c:1334
 msgid "Sponsor"
-msgstr ""
+msgstr "Sponsor"
 
 #: src/treeview.c:1244
 msgid "Sponsorship"
-msgstr ""
+msgstr "Sponsor"
 
 #: src/window.c:514
-#, fuzzy
 msgid "Sponsorship offers"
-msgstr "Zeige Jobangebote"
+msgstr "Sponsorenangebote"
 
 #: src/treeview.c:1251
 msgid "Stadium bills"
@@ -2723,11 +2709,13 @@ msgstr "Die Transferfrist ist vorbei."
 msgid "The two teams are greeted by a wall of noise as they take to the pitch"
 msgstr "Die Mannschaften werden durch eine ohrenbetäubende Lärmkulisse begrüßt"
 
-#: src/misc_interface.c:1127
+#: src/misc_interface.c:1126
 msgid ""
 "There are a few companies interested in sponsoring your team. Please select "
 "one:"
 msgstr ""
+"Es gibt einige Firmen, die Sponsor Deines Teams werden möchten. Bitte "
+"auswählen:"
 
 #: src/callbacks.c:174
 msgid "There are injured or banned players in one of the user teams. Continue?"
@@ -2740,13 +2728,12 @@ msgid "There are no offers for the player."
 msgstr "Es liegen keine Angebote für den Spieler vor."
 
 #: src/callback_func.c:344
-#, fuzzy
 msgid ""
 "There are some offers for the player which you rejected or will see next "
 "week."
 msgstr ""
-"Es gibt einige Angebote für den Spieler; du wirst sie nächste Woche auf dem "
-"Tisch haben."
+"Es gibt einige Angebote für den Spieler; du hast sie abgelehnt oder wirst "
+"sie nächste Woche auf dem Tisch haben."
 
 #: src/lg_commentary.c:194
 msgid "There are two teams out there and only one of them is playing football"
@@ -2999,7 +2986,7 @@ msgstr "Gelbe Karten (Obergrenze)\n"
 msgid "Yellows"
 msgstr "Gelbe K."
 
-#: src/user.c:715
+#: src/user.c:720
 #, c-format
 msgid "You are champion of the %s!"
 msgstr "Du bist Meister der %s!"
@@ -3009,16 +2996,14 @@ msgid "You are free from debt."
 msgstr "Du bist schuldenfrei."
 
 #: src/callback_func.c:455
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "You are making an offer for %s again. Your previous values for fee and wage "
 "are preset."
-msgstr ""
-"Du bietest für %s. Die Empfehlungen Deines Spielerbeobachters sind "
-"voreingestellt."
+msgstr "Du bietest erneut für %s. Dein vorheriges Angebot ist voreingestellt."
 
 #: src/callback_func.c:447
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "You are making an offer for %s. Your scout's recommendations for fee and "
 "wage are preset."
@@ -3089,17 +3074,17 @@ msgstr "Du hast nicht genügend Geld um zurückzuzahlen."
 msgid "You don't have the money."
 msgstr "Du hast nicht genügend Geld."
 
-#: src/user.c:686
+#: src/user.c:691
 #, c-format
 msgid "You finish the season in the %s on rank %d."
 msgstr "Du beendest die Saison in der %s auf Rang %d."
 
-#: src/user.c:691
+#: src/user.c:696
 #, c-format
 msgid "You get promoted to the %s."
 msgstr "Du steigst in die %s auf."
 
-#: src/user.c:695
+#: src/user.c:700
 #, c-format
 msgid "You get relegated to the %s."
 msgstr "Du steigst in die %s ab."
@@ -3156,7 +3141,7 @@ msgstr "Du hast kein Angebot für den Spieler abgegeben."
 msgid "You haven't selected a player."
 msgstr "Du hast keinen Spieler ausgewählt."
 
-#: src/user.c:704
+#: src/user.c:709
 #, c-format
 msgid "You lose in the %s final against %s."
 msgstr "Du verlierst das %s-Finale gegen %.s"
@@ -3171,12 +3156,12 @@ msgstr ""
 "Besitzer und der Spieler sind zufrieden mit Deinem Angebot. Willst Du den "
 "Spieler nun kaufen?"
 
-#: src/user.c:710
+#: src/user.c:715
 #, c-format
 msgid "You reach the %s (round %d) of the %s."
 msgstr "Du erreichst das %s (Runde %d) des %s."
 
-#: src/user.c:663
+#: src/user.c:668
 #, c-format
 msgid "You start the game with %s in the %s."
 msgstr "Du beginnst das Spiel mit %s in der %s."
@@ -3194,7 +3179,7 @@ msgstr ""
 "Du willst %s feuern. Da sein Vertrag in %.1f Jahren ausläuft, verlangt er %s "
 "Abfindung. Einverstanden?"
 
-#: src/user.c:699
+#: src/user.c:704
 #, c-format
 msgid "You win the %s final against %s."
 msgstr "Du gewinnst das %s Finale gegen %s."
@@ -3203,11 +3188,13 @@ msgstr "Du gewinnst das %s Finale gegen %s."
 msgid "Your bank account has to be above your drawing credit limit next week."
 msgstr "Dein Konto muss nächste Woche Deinen Dispokredit übersteigen."
 
-#: src/user.c:851
+#: src/user.c:856
 msgid ""
 "Your current sponsor is satisfied with your results and would like to renew "
 "the contract."
 msgstr ""
+"Dein gegenwärtiger Sponsor ist zufrieden mit Deinen Ergebnissen und würde "
+"die Zusammenarbeit gerne fortsetzen."
 
 #: src/treeview.c:1467
 msgid "Your next opponent"
@@ -3294,10 +3281,6 @@ msgstr "_Mannschaft"
 #: src/interface.c:679
 msgid "_User"
 msgstr "_Benutzer"
-
-#: src/misc_interface.c:1118
-msgid "window1"
-msgstr ""
 
 #~ msgid " (A) "
 #~ msgstr " (A) "

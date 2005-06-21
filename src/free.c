@@ -345,8 +345,11 @@ free_team(Team *tm)
 {
     gint i;
 
+    free_g_string(&tm->stadium.name);
     free_g_string(&tm->name);
+    free_g_string(&tm->names_file);
     free_g_string(&tm->symbol);
+    free_g_string(&tm->def_file);
 
     if(tm->players != NULL)
     {
@@ -365,6 +368,7 @@ free_player(Player *pl)
     free_g_string(&pl->name);
 
     free_g_array(&pl->cards);
+    free_g_array(&pl->games_goals);
 }
 
 /**

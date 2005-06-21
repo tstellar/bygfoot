@@ -235,7 +235,8 @@ window_show_stadium(void)
     gchar buf[SMALL];
     const Team *tm = current_user.tm;
     GtkLabel *label_capacity,
-	*label_stadium_status, *label_average_attendance;
+	*label_stadium_status, *label_average_attendance,
+	*label_name;
     GtkProgressBar *progressbar_safety,
 	*progressbar_average_attendance;
     gfloat average_attendance_perc = 0;
@@ -245,6 +246,7 @@ window_show_stadium(void)
     label_capacity = GTK_LABEL(lookup_widget(window.stadium, "label_capacity"));
     label_stadium_status = GTK_LABEL(lookup_widget(window.stadium, "label_stadium_status"));
     label_average_attendance = GTK_LABEL(lookup_widget(window.stadium, "label_average_attendance"));
+    label_name = GTK_LABEL(lookup_widget(window.stadium, "label_stadium_name"));
     
     progressbar_safety = GTK_PROGRESS_BAR(lookup_widget(window.stadium, "progressbar_safety"));
     progressbar_average_attendance = GTK_PROGRESS_BAR(lookup_widget(window.stadium, "progressbar_average_attendance"));
@@ -252,6 +254,8 @@ window_show_stadium(void)
     gui_label_set_text_from_int(label_capacity, tm->stadium.capacity, FALSE);
     gui_label_set_text_from_int(label_average_attendance, tm->stadium.average_attendance, FALSE);
     
+    if(tm->stadium.name != NULL)
+	gtk_label_set_text(label_name, tm->stadium.name->str);
 
     if(tm->stadium.games > 0)
 	average_attendance_perc =

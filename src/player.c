@@ -78,6 +78,64 @@ player_new(Team *tm, gfloat average_skill, gboolean new_id)
     return new;
 }
 
+/** Complete the player structure (some values have been read
+    from a team def file). */
+void
+player_complete_def(Player *pl, gfloat average_skill)
+{
+    gint i;
+    gfloat skill_factor = 
+	math_rnd(1 - const_float("float_player_average_skill_variance"),
+		 1 + const_float("float_player_average_skill_variance"));
+
+    pl->peak_age = math_rnd(const_float("float_player_peak_age_lower") +
+			    (pl->pos == PLAYER_POS_GOALIE) * 
+			    const_float("float_player_peak_age_goalie_addition"),
+			    const_float("float_player_peak_age_upper") +
+			    (pl->pos == PLAYER_POS_GOALIE) * 
+		 const_float("float_player_peak_age_goalie_addition"));
+
+    if(opt_int("int_opt_load_defs") == 2)
+    {
+	pl->age = math_gauss_dist(const_float("float_player_age_lower"),
+				  const_float("float_player_age_upper"));
+
+	pl->skill = CLAMP(average_skill * skill_factor, 0, 
+			  const_float("float_player_max_skill"));
+	pl->talent = player_new_talent(pl->skill);
+
+	if(pl->peak_age - pl->age > const_float("float_player_peak_age_diff_younger1") ||
+	   pl->peak_age - pl->age < const_float("float_player_peak_age_diff_older1"))
+	    pl->skill = pl->skill * (1 - const_float("float_player_skill_reduction1"));
+	else if(pl->peak_age - pl->age > const_float("float_player_peak_age_diff_younger2") ||
+		pl->peak_age - pl->age < const_float("float_player_peak_age_diff_peak_older"))
+	    pl->skill = pl->skill * (1 - const_float("float_player_skill_reduction2"));
+    }
+
+    pl->cpos = pl->pos;
+    player_estimate_talent(pl);
+
+    pl->cskill = pl->skill;
+    pl->fitness = math_rnd(const_float("float_player_fitness_lower"),
+			   const_float("float_player_fitness_upper"));
+
+    pl->health = pl->recovery = 0;
+    pl->value = player_assign_value(pl);
+    pl->wage = player_assign_wage(pl);
+    pl->contract = math_rnd(const_float("float_player_contract_lower"),
+			    const_float("float_player_contract_upper"));
+    pl->lsu = math_rnd(const_float("float_player_lsu_lower"),
+		       const_float("float_player_lsu_upper"));
+    pl->cards = g_array_new(FALSE, FALSE, sizeof(PlayerCard));
+    pl->games_goals = g_array_new(FALSE, FALSE, sizeof(PlayerGamesGoals));
+
+    for(i=0;i<PLAYER_VALUE_END;i++)
+	pl->career[i] = 0;
+
+    pl->participation = FALSE;
+    pl->offers = 0;
+}
+
 /** Return the appropriate position for the player with the given number.
     The position depends on the team structure if the player number is < 11
     and on some constants otherwise.

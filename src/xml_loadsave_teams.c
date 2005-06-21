@@ -15,6 +15,7 @@ enum
     TAG_TEAM_BOOST,
     TAG_TEAM_CLID,
     TAG_TEAM_STADIUM,
+    TAG_TEAM_STADIUM_NAME,
     TAG_TEAM_STADIUM_CAPACITY,
     TAG_TEAM_STADIUM_AVERAGE_ATTENDANCE,
     TAG_TEAM_STADIUM_POSSIBLE_ATTENDANCE,
@@ -127,7 +128,8 @@ xml_loadsave_teams_end_element    (GMarkupParseContext *context,
 	if(tag == TAG_TEAM_PLAYER)
 	    g_array_append_val(new_team.players, new_player);
     }
-    else if(tag == TAG_TEAM_STADIUM_CAPACITY ||
+    else if(tag == TAG_TEAM_STADIUM_NAME ||
+	    tag == TAG_TEAM_STADIUM_CAPACITY ||
 	    tag == TAG_TEAM_STADIUM_AVERAGE_ATTENDANCE || 
 	    tag == TAG_TEAM_STADIUM_POSSIBLE_ATTENDANCE ||
 	    tag == TAG_TEAM_STADIUM_GAMES ||
@@ -213,6 +215,8 @@ xml_loadsave_teams_text         (GMarkupParseContext *context,
 	new_team.style = int_value;
     else if(state == TAG_TEAM_BOOST)
 	new_team.boost = int_value;
+    else if(state == TAG_TEAM_STADIUM_NAME)
+	new_team.stadium.name = g_string_new(buf);
     else if(state == TAG_TEAM_STADIUM_CAPACITY)
 	new_team.stadium.capacity = int_value;
     else if(state == TAG_TEAM_STADIUM_AVERAGE_ATTENDANCE)
@@ -355,6 +359,9 @@ xml_loadsave_teams_write_team(FILE *fil, const Team* team)
     xml_write_int(fil, team->boost, TAG_TEAM_BOOST, I1);
     
     fprintf(fil, "%s<_%d>\n", I1, TAG_TEAM_STADIUM);
+
+    if(team->stadium.name != NULL)
+	xml_write_g_string(fil, team->stadium.name, TAG_TEAM_STADIUM_NAME, I2);
 
     xml_write_int(fil, team->stadium.capacity, TAG_TEAM_STADIUM_CAPACITY, I2);
     xml_write_int(fil, team->stadium.average_attendance, TAG_TEAM_STADIUM_AVERAGE_ATTENDANCE, I2);

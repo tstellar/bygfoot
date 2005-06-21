@@ -37,8 +37,19 @@ void
 misc_callback_start_game(void)
 {
     gint i;
+    GtkToggleButton *radio_load = 
+	GTK_TOGGLE_BUTTON(lookup_widget(window.startup, "radiobutton_team_def_load"));
+    GtkToggleButton *radio_names = 
+	GTK_TOGGLE_BUTTON(lookup_widget(window.startup, "radiobutton_team_def_names"));	
 
     stat0 = STATUS_MAIN;
+
+    if(gtk_toggle_button_get_active(radio_load))
+	opt_set_int("int_opt_load_defs", 1);
+    else if(gtk_toggle_button_get_active(radio_names))
+	opt_set_int("int_opt_load_defs", 2);
+    else
+	opt_set_int("int_opt_load_defs", 0);
 
     start_new_game();
 

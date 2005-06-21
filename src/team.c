@@ -1,4 +1,5 @@
 #include "cup.h"
+#include "file.h"
 #include "fixture.h"
 #include "game.h"
 #include "game_gui.h"
@@ -11,6 +12,7 @@
 #include "team.h"
 #include "transfer.h"
 #include "user.h"
+#include "xml_team.h"
 
 /**
    Generate a team with default values, e.g. 
@@ -26,6 +28,8 @@ team_new(gboolean new_id)
     new.name = g_string_new("");
     new.names_file = g_string_new("");
     new.symbol = g_string_new("");
+    new.def_file = NULL;
+    new.stadium.name = NULL;
     
     new.clid = -1;
     new.id = (new_id) ? team_id_new : -1;
@@ -95,8 +99,14 @@ team_generate_players_stadium(Team *tm)
     gfloat skill_factor = math_rnd(1 - const_float("float_team_skill_variance"),
 				   1 + const_float("float_team_skill_variance"));
     Player new;
-    gfloat average_skill;
-    gfloat wages = 0;
+    gfloat wages = 0, average_skill;
+    gchar *def_file = team_has_def_file(tm);
+
+    tm->stadium.average_attendance = tm->stadium.possible_attendance =
+	tm->stadium.games = 0;
+    tm->stadium.safety = 
+	math_rnd(const_float("float_team_stadium_safety_lower"),
+		 const_float("float_team_stadium_safety_upper"));
 
     if(tm->clid < ID_CUP_START)
 	average_skill = 
@@ -106,23 +116,25 @@ team_generate_players_stadium(Team *tm)
 	average_skill = 
 	    skill_factor * team_get_average_skills(lig(0).teams) *
 	    (1 + ((gfloat)cup_from_clid(tm->clid)->skill_diff / 10000));
+	
+    average_skill = CLAMP(average_skill, 0, const_float("float_player_max_skill"));
 
-    average_skill = CLAMP(average_skill, 0, const_float("float_player_max_skill"));    
-
-    for(i=0;i<const_int("int_team_cpu_players");i++)
+    if(def_file == NULL)
     {
-	new = player_new(tm, average_skill, TRUE);
-	g_array_append_val(tm->players, new);
-
-	if(i > 2)
-	    wages += new.wage;
+	for(i=0;i<const_int("int_team_cpu_players");i++)
+	{
+	    new = player_new(tm, average_skill, TRUE);
+	    g_array_append_val(tm->players, new);
+	}
+    }
+    else
+    {
+	xml_team_read(tm, def_file);
+	g_free(def_file);
     }
 
-    tm->stadium.average_attendance = tm->stadium.possible_attendance =
-	tm->stadium.games = 0;
-    tm->stadium.safety = 
-	math_rnd(const_float("float_team_stadium_safety_lower"),
-		 const_float("float_team_stadium_safety_upper"));
+    for(i=0;i<const_int("int_team_cpu_players") - 2;i++)
+	wages += g_array_index(tm->players, Player, i).wage;
 
     tm->stadium.capacity = 
 	math_round_integer((gint)rint((wages / (gfloat)const_int("int_team_stadium_ticket_price")) *
@@ -1059,4 +1071,164 @@ query_team_is_in_teams_array(const Team *tm, const GPtrArray *teams)
 	    return TRUE;
 
     return FALSE;
+}
+
+/** Check whether we find a definition file for the
+    given team. */
+gchar*
+team_has_def_file(const Team *tm)
+{
+    gchar *return_value = NULL;
+    gchar buf[SMALL];
+
+    if(tm->def_file != NULL && opt_int("int_opt_load_defs") != 0)
+    {
+	sprintf(buf, "team_%s.xml", tm->def_file->str);
+	return_value = file_find_support_file(buf, FALSE);
+    }
+
+    return return_value;
+}
+
+/** Complete the definition of the team (add players,
+    calculate wages etc. Called after reading a team def file. */
+void
+team_complete_def(Team *tm, gfloat average_skill)
+{
+    gint i, new_pos, pos_sum;
+    gint positions[4] = {0, 0, 0, 0};
+    Player new_player;
+    gint add = const_int("int_team_cpu_players") - tm->players->len;
+    gboolean is_user = (team_is_user(tm) != -1);
+
+    for(i=0;i<tm->players->len;i++)
+    {
+	player_complete_def(&g_array_index(tm->players, Player, i), average_skill);
+	positions[g_array_index(tm->players, Player, i).pos]++;
+
+	/** This is so we don't remove loaded players
+	    from the team at startup. */
+	if(is_user)
+	    g_array_index(tm->players, Player, i).recovery = 1;
+    }
+
+    for(i=0;i<add;i++)
+    {
+	pos_sum = math_sum_int_array(positions, 4);
+	new_player = player_new(tm, average_skill, TRUE);
+	
+	if(positions[0] < 2)
+	    new_pos = 0;
+	else if((gfloat)positions[1] / (gfloat)pos_sum <
+		const_float("float_player_pos_bound1"))
+	    new_pos = 1;
+	else if((gfloat)positions[2] / (gfloat)pos_sum <
+		const_float("float_player_pos_bound1"))
+	    new_pos = 2;
+	else
+	    new_pos = 3;
+
+	new_player.pos = new_player.cpos = new_pos;
+	positions[new_pos]++;
+
+	g_array_append_val(tm->players, new_player);
+    }
+
+    team_complete_def_sort(tm);
+}
+
+/** Sort the players in the team according to the team structure
+    and the player positions. */
+void
+team_complete_def_sort(Team *tm)
+{
+    gint i, j;
+    gint positions[4] = {0, 0, 0, 0};
+    gint structure[4] = {1, 
+			 math_get_place(tm->structure, 3),
+			 math_get_place(tm->structure, 2),
+			 math_get_place(tm->structure, 1)};
+    Player player_tmp, player_tmp2;
+    gchar buf[SMALL];
+    
+    for(i=0;i<11;i++)
+	positions[g_array_index(tm->players, Player, i).pos]++;
+
+    for(i=0;i<4;i++)
+    {
+	while(positions[i] > structure[i])
+	{
+	    for(j=0;j<11;j++)
+		if(g_array_index(tm->players, Player, j).pos == i)
+		{
+		    player_tmp = g_array_index(tm->players, Player, j);
+		    g_array_remove_index(tm->players, j);
+		    break;
+		}
+
+	    for(j=10;j<tm->players->len;j++)
+	    {
+		if(g_array_index(tm->players, Player, j).pos != i)
+		{
+		    player_tmp2 = g_array_index(tm->players, Player, j);
+		    g_array_remove_index(tm->players, j);
+		    break;
+		}
+	    }
+
+	    if(j == tm->players->len)
+	    {
+		sprintf(buf, "team_complete_def_sort (1): cannot sort according to structure %d (team %s).",
+			tm->structure, tm->name->str);
+		main_exit_program(EXIT_DEF_SORT, buf);
+	    }
+	    
+	    positions[i]--;
+	    positions[player_tmp2.pos]++;
+
+	    g_array_append_val(tm->players, player_tmp);
+	    g_array_prepend_val(tm->players, player_tmp2);	    
+	}
+
+	while(positions[i] < structure[i])
+	{
+	    for(j=0;j<11;j++)
+		if(g_array_index(tm->players, Player, j).pos > i)
+		{
+		    player_tmp = g_array_index(tm->players, Player, j);
+		    g_array_remove_index(tm->players, j);
+		    break;
+		}
+
+	    if(j == 11)
+	    {
+		sprintf(buf, "team_complete_def_sort (2): cannot sort according to structure %d (team %s).",
+			tm->structure, tm->name->str);
+		main_exit_program(EXIT_DEF_SORT, buf);
+	    }
+
+	    for(j=10;j<tm->players->len;j++)
+		if(g_array_index(tm->players, Player, j).pos == i)
+		{
+		    player_tmp2 = g_array_index(tm->players, Player, j);
+		    g_array_remove_index(tm->players, j);
+		    break;
+		}
+
+	    if(j == tm->players->len)
+	    {
+		sprintf(buf, "team_complete_def_sort (3): cannot sort according to structure %d (team %s).",
+			tm->structure, tm->name->str);
+		main_exit_program(EXIT_DEF_SORT, buf);
+	    }
+	    
+	    positions[i]++;
+	    positions[player_tmp.pos]--;
+
+	    g_array_append_val(tm->players, player_tmp);
+	    g_array_prepend_val(tm->players, player_tmp2);
+	}
+    }
+
+    team_rearrange(tm);
 }

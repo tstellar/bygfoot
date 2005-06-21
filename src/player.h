@@ -127,4 +127,7 @@ player_season_start(Player *pl, gfloat skill_change);
 gchar*
 player_get_last_name(const gchar *name);
 
+void
+player_complete_def(Player *pl, gfloat average_skill);
+
 #endif

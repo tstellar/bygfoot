@@ -38,6 +38,7 @@
 #define TAG_TEAMS "teams"
 #define TAG_TEAM "team"
 #define TAG_TEAM_NAME "team_name"
+#define TAG_TEAM_DEF_FILE "def_file"
 
 /**
  * Enum with the states used in the XML parser functions.
@@ -70,6 +71,7 @@ enum XmlLeagueStates
     STATE_TEAMS,
     STATE_TEAM,
     STATE_TEAM_NAME,
+    STATE_TEAM_DEF_FILE,
     STATE_END
 };
 
@@ -164,6 +166,8 @@ xml_league_read_start_element (GMarkupParseContext *context,
     }
     else if(strcmp(element_name, TAG_TEAM_NAME) == 0)
 	state = STATE_TEAM_NAME;
+    else if(strcmp(element_name, TAG_TEAM_DEF_FILE) == 0)
+	state = STATE_TEAM_DEF_FILE;
     else
 	g_warning("xml_league_read_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
@@ -210,7 +214,8 @@ xml_league_read_end_element    (GMarkupParseContext *context,
 	state = STATE_PROM_REL_ELEMENT;
     else if(strcmp(element_name, TAG_TEAM) == 0)
 	state = STATE_TEAMS;
-    else if(strcmp(element_name, TAG_TEAM_NAME) == 0)
+    else if(strcmp(element_name, TAG_TEAM_NAME) == 0 ||
+	    strcmp(element_name, TAG_TEAM_DEF_FILE) == 0)
 	state = STATE_TEAM;
     else if(strcmp(element_name, TAG_LEAGUE) != 0)
 	g_warning("xml_league_end_start_element: unknown tag: %s; I'm in state %d\n",
@@ -297,6 +302,9 @@ xml_league_read_text         (GMarkupParseContext *context,
     else if(state == STATE_TEAM_NAME)
 	g_string_printf(g_array_index(new_league.teams, Team,
 				      new_league.teams->len - 1).name, "%s", buf);
+    else if(state == STATE_TEAM_DEF_FILE)
+	g_array_index(new_league.teams, Team, new_league.teams->len - 1).def_file = 
+	    g_string_new(buf);
 }
 
 /**

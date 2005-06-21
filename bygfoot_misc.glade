@@ -100,7 +100,7 @@
       <child>
 	<widget class="GtkHSeparator" id="hseparator10">
 	  <property name="width_request">1</property>
-	  <property name="height_request">10</property>
+	  <property name="height_request">5</property>
 	  <property name="visible">True</property>
 	</widget>
 	<packing>
@@ -159,7 +159,7 @@
       <child>
 	<widget class="GtkHSeparator" id="hseparator11">
 	  <property name="width_request">1</property>
-	  <property name="height_request">10</property>
+	  <property name="height_request">5</property>
 	  <property name="visible">True</property>
 	</widget>
 	<packing>
@@ -204,7 +204,7 @@
       <child>
 	<widget class="GtkHSeparator" id="hseparator12">
 	  <property name="width_request">1</property>
-	  <property name="height_request">10</property>
+	  <property name="height_request">5</property>
 	  <property name="visible">True</property>
 	</widget>
 	<packing>
@@ -354,6 +354,94 @@
 	  <property name="padding">0</property>
 	  <property name="expand">False</property>
 	  <property name="fill">True</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkHBox" id="hbox74">
+	  <property name="visible">True</property>
+	  <property name="homogeneous">False</property>
+	  <property name="spacing">0</property>
+
+	  <child>
+	    <widget class="GtkRadioButton" id="radiobutton_team_def_load">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">Load teams from definition files (note that the official Bygfoot package doesn't contain team definition files, you have to get them from the homepage or via the bygfoot-update script)</property>
+	      <property name="can_focus">True</property>
+	      <property name="label" translatable="yes">Load team definitions</property>
+	      <property name="use_underline">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
+	      <property name="active">False</property>
+	      <property name="inconsistent">False</property>
+	      <property name="draw_indicator">True</property>
+	    </widget>
+	    <packing>
+	      <property name="padding">0</property>
+	      <property name="expand">False</property>
+	      <property name="fill">False</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkRadioButton" id="radiobutton_team_def_names">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">Load only the player names in the definition files</property>
+	      <property name="can_focus">True</property>
+	      <property name="label" translatable="yes">Only names</property>
+	      <property name="use_underline">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
+	      <property name="active">False</property>
+	      <property name="inconsistent">False</property>
+	      <property name="draw_indicator">True</property>
+	      <property name="group">radiobutton_team_def_load</property>
+	    </widget>
+	    <packing>
+	      <property name="padding">0</property>
+	      <property name="expand">False</property>
+	      <property name="fill">False</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkRadioButton" id="radiobutton_team_def_dont">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">Don't load team definitions at all</property>
+	      <property name="can_focus">True</property>
+	      <property name="label" translatable="yes">Don't load definitions</property>
+	      <property name="use_underline">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
+	      <property name="active">False</property>
+	      <property name="inconsistent">False</property>
+	      <property name="draw_indicator">True</property>
+	      <property name="group">radiobutton_team_def_load</property>
+	    </widget>
+	    <packing>
+	      <property name="padding">0</property>
+	      <property name="expand">False</property>
+	      <property name="fill">False</property>
+	    </packing>
+	  </child>
+	</widget>
+	<packing>
+	  <property name="padding">0</property>
+	  <property name="expand">False</property>
+	  <property name="fill">False</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkHSeparator" id="hseparator16">
+	  <property name="width_request">1</property>
+	  <property name="height_request">5</property>
+	  <property name="visible">True</property>
+	</widget>
+	<packing>
+	  <property name="padding">0</property>
+	  <property name="expand">False</property>
+	  <property name="fill">False</property>
 	</packing>
       </child>
 
@@ -539,87 +627,87 @@
 	      <property name="fill">True</property>
 	    </packing>
 	  </child>
-	</widget>
-	<packing>
-	  <property name="padding">0</property>
-	  <property name="expand">False</property>
-	  <property name="fill">True</property>
-	</packing>
-      </child>
-
-      <child>
-	<widget class="GtkButton" id="button_startup_resume">
-	  <property name="visible">True</property>
-	  <property name="tooltip" translatable="yes">Load the last game that was saved or loaded.</property>
-	  <property name="can_focus">True</property>
-	  <property name="relief">GTK_RELIEF_NORMAL</property>
-	  <property name="focus_on_click">True</property>
-	  <signal name="clicked" handler="on_button_startup_resume_clicked" last_modification_time="Wed, 06 Apr 2005 10:52:45 GMT"/>
 
 	  <child>
-	    <widget class="GtkAlignment" id="alignment21">
+	    <widget class="GtkButton" id="button_startup_resume">
 	      <property name="visible">True</property>
-	      <property name="xalign">0.5</property>
-	      <property name="yalign">0.5</property>
-	      <property name="xscale">0</property>
-	      <property name="yscale">0</property>
-	      <property name="top_padding">0</property>
-	      <property name="bottom_padding">0</property>
-	      <property name="left_padding">0</property>
-	      <property name="right_padding">0</property>
+	      <property name="tooltip" translatable="yes">Load the last game that was saved or loaded.</property>
+	      <property name="can_focus">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
+	      <signal name="clicked" handler="on_button_startup_resume_clicked" last_modification_time="Wed, 06 Apr 2005 10:52:45 GMT"/>
 
 	      <child>
-		<widget class="GtkHBox" id="hbox70">
+		<widget class="GtkAlignment" id="alignment21">
 		  <property name="visible">True</property>
-		  <property name="homogeneous">False</property>
-		  <property name="spacing">2</property>
+		  <property name="xalign">0.5</property>
+		  <property name="yalign">0.5</property>
+		  <property name="xscale">0</property>
+		  <property name="yscale">0</property>
+		  <property name="top_padding">0</property>
+		  <property name="bottom_padding">0</property>
+		  <property name="left_padding">0</property>
+		  <property name="right_padding">0</property>
 
 		  <child>
-		    <widget class="GtkImage" id="image61">
+		    <widget class="GtkHBox" id="hbox70">
 		      <property name="visible">True</property>
-		      <property name="stock">gtk-revert-to-saved</property>
-		      <property name="icon_size">4</property>
-		      <property name="xalign">0.5</property>
-		      <property name="yalign">0.5</property>
-		      <property name="xpad">0</property>
-		      <property name="ypad">0</property>
-		    </widget>
-		    <packing>
-		      <property name="padding">0</property>
-		      <property name="expand">False</property>
-		      <property name="fill">False</property>
-		    </packing>
-		  </child>
+		      <property name="homogeneous">False</property>
+		      <property name="spacing">2</property>
 
-		  <child>
-		    <widget class="GtkLabel" id="label114">
-		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">_Resume last game</property>
-		      <property name="use_underline">True</property>
-		      <property name="use_markup">False</property>
-		      <property name="justify">GTK_JUSTIFY_LEFT</property>
-		      <property name="wrap">False</property>
-		      <property name="selectable">False</property>
-		      <property name="xalign">0.5</property>
-		      <property name="yalign">0.5</property>
-		      <property name="xpad">0</property>
-		      <property name="ypad">0</property>
+		      <child>
+			<widget class="GtkImage" id="image61">
+			  <property name="visible">True</property>
+			  <property name="stock">gtk-revert-to-saved</property>
+			  <property name="icon_size">4</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+			<packing>
+			  <property name="padding">0</property>
+			  <property name="expand">False</property>
+			  <property name="fill">False</property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkLabel" id="label114">
+			  <property name="visible">True</property>
+			  <property name="label" translatable="yes">_Resume last game</property>
+			  <property name="use_underline">True</property>
+			  <property name="use_markup">False</property>
+			  <property name="justify">GTK_JUSTIFY_LEFT</property>
+			  <property name="wrap">False</property>
+			  <property name="selectable">False</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+			<packing>
+			  <property name="padding">0</property>
+			  <property name="expand">False</property>
+			  <property name="fill">False</property>
+			</packing>
+		      </child>
 		    </widget>
-		    <packing>
-		      <property name="padding">0</property>
-		      <property name="expand">False</property>
-		      <property name="fill">False</property>
-		    </packing>
 		  </child>
 		</widget>
 	      </child>
 	    </widget>
+	    <packing>
+	      <property name="padding">0</property>
+	      <property name="expand">False</property>
+	      <property name="fill">False</property>
+	    </packing>
 	  </child>
 	</widget>
 	<packing>
 	  <property name="padding">0</property>
 	  <property name="expand">False</property>
-	  <property name="fill">False</property>
+	  <property name="fill">True</property>
 	</packing>
       </child>
     </widget>
@@ -1297,6 +1385,27 @@
       <property name="visible">True</property>
       <property name="homogeneous">False</property>
       <property name="spacing">5</property>
+
+      <child>
+	<widget class="GtkLabel" id="label_stadium_name">
+	  <property name="visible">True</property>
+	  <property name="label" translatable="yes"></property>
+	  <property name="use_underline">False</property>
+	  <property name="use_markup">False</property>
+	  <property name="justify">GTK_JUSTIFY_LEFT</property>
+	  <property name="wrap">False</property>
+	  <property name="selectable">False</property>
+	  <property name="xalign">0.5</property>
+	  <property name="yalign">0.5</property>
+	  <property name="xpad">0</property>
+	  <property name="ypad">0</property>
+	</widget>
+	<packing>
+	  <property name="padding">0</property>
+	  <property name="expand">False</property>
+	  <property name="fill">False</property>
+	</packing>
+      </child>
 
       <child>
 	<widget class="GtkTable" id="table1">
@@ -2122,7 +2231,7 @@
 <widget class="GtkWindow" id="window_sponsors">
   <property name="border_width">5</property>
   <property name="visible">True</property>
-  <property name="title" translatable="yes">window1</property>
+  <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_CENTER</property>
   <property name="modal">True</property>

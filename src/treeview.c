@@ -1207,6 +1207,13 @@ treeview_create_stadium_summary(GtkListStore *ls)
     gchar buf[SMALL];
     GtkTreeIter iter;
 
+    if(current_user.tm->stadium.name != NULL)
+    {
+	gtk_list_store_append(ls, &iter);
+	gtk_list_store_set(ls, &iter, 0, _("Stadium"), 
+			   1, current_user.tm->stadium.name->str, 2, "", -1);
+    }
+
     gtk_list_store_append(ls, &iter);
     misc_print_grouped_int(current_user.tm->stadium.capacity, buf, FALSE);
     gtk_list_store_set(ls, &iter, 0, _("Stadium capacity"), 1, buf, 2, "", -1);

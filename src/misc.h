@@ -45,4 +45,7 @@ query_misc_integer_is_in_g_array(gint item, GArray *array);
 void
 misc_string_replace_token(gchar *string, const gchar *token, const gchar *replacement);
 
+gfloat
+misc_get_age_from_birth(gint birth_year, gint birth_month);
+
 #endif

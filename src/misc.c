@@ -1,3 +1,5 @@
+#include <time.h>
+
 #include "main.h"
 #include "maths.h"
 #include "misc.h"
@@ -313,4 +315,18 @@ misc_string_replace_token(gchar *string, const gchar *token, const gchar *replac
 	    misc_string_replace_token(string, token, replacement);
 	}
     }
+}
+
+/** Get a float representation of someone's age
+    based on his birth year and month. */
+gfloat
+misc_get_age_from_birth(gint birth_year, gint birth_month)
+{
+    GDate *current_date = g_date_new();
+    GDate *birth_date = g_date_new();
+
+    g_date_set_time(current_date, time(NULL));
+    g_date_set_dmy(birth_date, 15, birth_month, birth_year);
+
+    return (gfloat)g_date_days_between(birth_date, current_date) / 365.25;
 }

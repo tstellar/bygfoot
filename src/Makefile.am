@@ -12,7 +12,7 @@ bygfoot_SOURCES = \
 	callback_func.c callback_func.h callbacks.h cup.h finance.h fixture.h game_gui.h league.h live_game.h maths.h misc.h option.h player.h start_end.h team.h transfer.h treeview.h treeview_helper.h user.h window.h \
 	callbacks.c callback_func.h callbacks.h debug.h free.h game_gui.h game.h gui.h load_save.h main.h option.h player.h team.h transfer.h treeview.h treeview_helper.h user.h window.h \
 	cup.c cup.h fixture.h free.h league.h main.h maths.h misc.h option.h table.h team.h variables.h xml_league.h \
-	debug.c debug.h game_gui.h option.h user.h variables.h \
+	debug.c debug.h game_gui.h option.h support.h user.h variables.h \
 	file.c file.h free.h main.h misc.h option.h support.h variables.h \
 	finance.c callbacks.h finance.h game_gui.h maths.h option.h player.h team.h user.h \
 	fixture.c cup.h fixture.h free.h league.h main.h maths.h misc.h option.h table.h team.h user.h variables.h \
@@ -45,7 +45,7 @@ bygfoot_SOURCES = \
 	stat.c cup.h free.h league.h option.h player.h stat.h table_struct.h team.h variables.h \
 	support.c support.h \
 	table.c cup.h league.h misc.h table.h variables.h \
-	team.c cup.h fixture.h game_gui.h game.h league.h main.h maths.h misc.h option.h player.h team.h transfer.h user.h \
+	team.c cup.h file.h fixture.h game_gui.h game.h league.h main.h maths.h misc.h option.h player.h team.h transfer.h user.h xml_team.h \
 	transfer.c cup.h finance.h free.h game_gui.h main.h maths.h misc.h option.h player.h support.h team.h transfer.h treeview.h user.h \
 	treeview.c cup.h finance.h fixture.h free.h game.h language.h league.h live_game.h maths.h misc.h option.h player.h support.h team.h transfer.h treeview.h treeview_helper.h user.h \
 	treeview_helper.c cup.h file.h fixture.h free.h league.h misc.h option.h player.h support.h team.h transfer.h treeview.h treeview_helper.h user.h variables.h \
@@ -66,7 +66,8 @@ bygfoot_SOURCES = \
 	xml_cup.c cup.h file.h main.h misc.h option.h variables.h xml_cup.h \
 	xml_country.c file.h free.h misc.h variables.h xml_country.h xml_cup.h xml_league.h \
 	xml_league.c cup_struct.h file.h free.h league.h misc.h table.h team.h variables.h xml_cup.h xml_league.h \
-	xml_name.c file.h free.h misc.h name.h variables.h xml_name.h 
+	xml_name.c file.h free.h misc.h name.h variables.h xml_name.h \
+	xml_team.c file.h free.h main.h misc.h option.h player.h team.h variables.h xml_team.h 
 
 bygfoot_LDADD = @PACKAGE_LIBS@ $(INTLLIBS)
 

@@ -16,7 +16,7 @@
 /**
  * Program version number.
  */
-#define VERS "1.9.0"
+#define VERS "1.9.1"
 
 /** Home dir name */
 #define HOMEDIRNAME ".bygfoot-1.9"
@@ -83,6 +83,8 @@ enum ExitCodes
     EXIT_INT_NOT_FOUND, /**< We didn't find an integer value (mostly indices). */
     EXIT_NO_SUPPORT_DIR, /**< No support directory found. */
     EXIT_CUP_ROUND_ERROR, /**< Too few cup rounds. */
+    EXIT_LOAD_TEAM_DEF, /**< Error loading a team definition file. */
+    EXIT_DEF_SORT, /**< Error sorting a team after loading the definition. */
     EXIT_END
 };
 
