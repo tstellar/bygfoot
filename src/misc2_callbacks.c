@@ -308,7 +308,7 @@ on_button_debug_apply_clicked          (GtkButton       *button,
     gchar buf[SMALL];
     gint value = -1;
 
-    sscanf(entry_text, "%[^-1-9]%d", buf, &value);
+    sscanf(entry_text, "%[^-0-9]%d", buf, &value);
     debug_action(buf, value);
 
     gtk_entry_set_text(entry_debug, "");

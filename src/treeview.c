@@ -1254,9 +1254,8 @@ treeview_create_finances(const User* user)
 	 _("Physio"),
 	 _("Scout"),
 	 _("Journey costs"),
-	 _("Stadium improvements"),
-	 _("Stadium bills"),
 	 _("Compensations")};
+
     GtkTreeIter iter;
     GtkListStore *ls = 
 	gtk_list_store_new(3,
@@ -1275,17 +1274,6 @@ treeview_create_finances(const User* user)
 	    gtk_list_store_set(ls, &iter, 0, in_titles[i], 1, buf, 2, "", -1);
 	    balance += in[i];
 	}
-
-    if(in[MON_IN_TRANSFERS] != 0 || out[MON_OUT_TRANSFERS] != 0)
-    {
-	misc_print_grouped_int(in[MON_IN_TRANSFERS], buf, FALSE);
-	misc_print_grouped_int(out[MON_OUT_TRANSFERS], buf3, FALSE);
-	sprintf(buf2, "<span foreground='%s'>%s</span>",
-		const_app("string_treeview_finances_expenses_fg"), buf3);
-	gtk_list_store_append(ls, &iter);
-	gtk_list_store_set(ls, &iter, 0, _("Transfers"), 1, buf, 2, buf2, -1);
-	balance += (in[MON_IN_TRANSFERS] + out[MON_OUT_TRANSFERS]);
-    }
 
     for(i=0;i<MON_OUT_TRANSFERS;i++)
 	if(out[i] != 0)
@@ -1307,6 +1295,29 @@ treeview_create_finances(const User* user)
 	sprintf(buf2, "<span foreground='%s'>%s</span>",
 		const_app("string_treeview_finances_expenses_fg"), buf);
     gtk_list_store_set(ls, &iter, 1 + (balance < 0), buf2, -1);
+
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, "", 1, "", 2, "", -1);
+
+    if(in[MON_IN_TRANSFERS] != 0 || out[MON_OUT_TRANSFERS] != 0)
+    {
+	misc_print_grouped_int(in[MON_IN_TRANSFERS], buf, FALSE);
+	misc_print_grouped_int(out[MON_OUT_TRANSFERS], buf3, FALSE);
+	sprintf(buf2, "<span foreground='%s'>%s</span>",
+		const_app("string_treeview_finances_expenses_fg"), buf3);
+	gtk_list_store_append(ls, &iter);
+	gtk_list_store_set(ls, &iter, 0, _("Transfers"), 1, buf, 2, buf2, -1);
+    }
+
+    if(out[MON_OUT_STADIUM_IMPROVEMENT] + out[MON_OUT_STADIUM_BILLS] != 0)
+    {
+	misc_print_grouped_int(out[MON_OUT_STADIUM_IMPROVEMENT] + out[MON_OUT_STADIUM_BILLS], 
+			       buf, FALSE);
+	sprintf(buf2, "<span foreground='%s'>%s</span>",
+		const_app("string_treeview_finances_expenses_fg"), buf);
+	gtk_list_store_append(ls, &iter);
+	gtk_list_store_set(ls, &iter, 0, _("Stadium expenses"), 1, "", 2, buf2, -1);
+    }
 
     gtk_list_store_append(ls, &iter);
     gtk_list_store_set(ls, &iter, 0, "", 1, "", 2, "", -1);

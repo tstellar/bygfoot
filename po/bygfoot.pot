@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-22 17:04+0200\n"
+"POT-Creation-Date: 2005-06-22 18:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -108,7 +108,7 @@ msgid "Fee"
 msgstr ""
 
 #: src/callback_func.c:451 src/callback_func.c:458 src/treeview.c:260
-#: src/treeview.c:1770
+#: src/treeview.c:1781
 msgid "Wage"
 msgstr ""
 
@@ -423,7 +423,7 @@ msgstr ""
 msgid "_Team"
 msgstr ""
 
-#: src/interface.c:425 src/treeview.c:1529
+#: src/interface.c:425 src/treeview.c:1540
 msgid "Playing style"
 msgstr ""
 
@@ -431,7 +431,7 @@ msgstr ""
 msgid "All Out Defend"
 msgstr ""
 
-#: src/interface.c:442 src/treeview.c:1425
+#: src/interface.c:442 src/treeview.c:1436
 msgid "Defend"
 msgstr ""
 
@@ -439,7 +439,7 @@ msgstr ""
 msgid "Balanced"
 msgstr ""
 
-#: src/interface.c:454 src/treeview.c:1427
+#: src/interface.c:454 src/treeview.c:1438
 msgid "Attack"
 msgstr ""
 
@@ -1535,7 +1535,7 @@ msgid "Job offer"
 msgstr ""
 
 #: src/misc2_interface.c:97 src/treeview.c:246 src/treeview.c:606
-#: src/treeview.c:1760
+#: src/treeview.c:1771
 msgid "Name"
 msgstr ""
 
@@ -1544,7 +1544,7 @@ msgstr ""
 msgid "League"
 msgstr ""
 
-#: src/misc2_interface.c:107 src/treeview.c:1508
+#: src/misc2_interface.c:107 src/treeview.c:1519
 msgid "Rank"
 msgstr ""
 
@@ -2323,8 +2323,8 @@ msgid "%s has been added to the transfer list for %d weeks."
 msgstr ""
 
 #: src/treeview.c:121 src/treeview.c:262 src/treeview.c:607
-#: src/treeview.c:1136 src/treeview.c:1502 src/treeview.c:1629
-#: src/treeview.c:1917
+#: src/treeview.c:1136 src/treeview.c:1513 src/treeview.c:1640
+#: src/treeview.c:1928
 msgid "Team"
 msgstr ""
 
@@ -2360,7 +2360,7 @@ msgstr ""
 msgid "Sh"
 msgstr ""
 
-#: src/treeview.c:254 src/treeview.c:2033
+#: src/treeview.c:254 src/treeview.c:2044
 msgid "Go"
 msgstr ""
 
@@ -2372,7 +2372,7 @@ msgstr ""
 msgid "YC"
 msgstr ""
 
-#: src/treeview.c:257 src/treeview.c:1767
+#: src/treeview.c:257 src/treeview.c:1778
 msgid "Age"
 msgstr ""
 
@@ -2380,11 +2380,11 @@ msgstr ""
 msgid "Etal"
 msgstr ""
 
-#: src/treeview.c:259 src/treeview.c:1769
+#: src/treeview.c:259 src/treeview.c:1780
 msgid "Value"
 msgstr ""
 
-#: src/treeview.c:261 src/treeview.c:1771
+#: src/treeview.c:261 src/treeview.c:1782
 msgid "Contract"
 msgstr ""
 
@@ -2396,7 +2396,7 @@ msgstr ""
 msgid "Shots"
 msgstr ""
 
-#: src/treeview.c:656 src/treeview.c:1981
+#: src/treeview.c:656 src/treeview.c:1992
 msgid "Shot %"
 msgstr ""
 
@@ -2531,230 +2531,226 @@ msgid "Journey costs"
 msgstr ""
 
 #: src/treeview.c:1257
-msgid "Stadium improvements"
-msgstr ""
-
-#: src/treeview.c:1258
-msgid "Stadium bills"
-msgstr ""
-
-#: src/treeview.c:1259
 msgid "Compensations"
 msgstr ""
 
-#: src/treeview.c:1268
+#: src/treeview.c:1267
 msgid "Bi-weekly balance"
 msgstr ""
 
-#: src/treeview.c:1286
-msgid "Transfers"
-msgstr ""
-
-#: src/treeview.c:1303
+#: src/treeview.c:1291
 msgid "Balance"
 msgstr ""
 
-#: src/treeview.c:1321
-msgid "Money"
+#: src/treeview.c:1309
+msgid "Transfers"
 msgstr ""
 
-#: src/treeview.c:1325
-msgid "Drawing credit"
+#: src/treeview.c:1319
+msgid "Stadium expenses"
 msgstr ""
 
 #: src/treeview.c:1332
+msgid "Money"
+msgstr ""
+
+#: src/treeview.c:1336
+msgid "Drawing credit"
+msgstr ""
+
+#: src/treeview.c:1343
 #, c-format
 msgid "Debt (repay in %d weeks)"
 msgstr ""
 
-#: src/treeview.c:1341
+#: src/treeview.c:1352
 msgid "Sponsor"
 msgstr ""
 
-#: src/treeview.c:1345
+#: src/treeview.c:1356
 #, c-format
 msgid "%.1f months / %s"
 msgstr ""
 
-#: src/treeview.c:1347
+#: src/treeview.c:1358
 msgid "Contract / Money"
 msgstr ""
 
-#: src/treeview.c:1365
+#: src/treeview.c:1376
 msgid "Income"
 msgstr ""
 
-#: src/treeview.c:1366
+#: src/treeview.c:1377
 msgid "Expenses"
 msgstr ""
 
-#: src/treeview.c:1426
+#: src/treeview.c:1437
 msgid "Midfield"
 msgstr ""
 
-#: src/treeview.c:1474
+#: src/treeview.c:1485
 msgid "Your next opponent"
 msgstr ""
 
-#: src/treeview.c:1480 src/treeview.c:1485
+#: src/treeview.c:1491 src/treeview.c:1496
 #, c-format
 msgid "<span foreground='%s' background='%s'>Week %d Round %d</span>"
 msgstr ""
 
-#: src/treeview.c:1491
+#: src/treeview.c:1502
 msgid "Neutral ground"
 msgstr ""
 
-#: src/treeview.c:1493
+#: src/treeview.c:1504
 msgid "Home"
 msgstr ""
 
-#: src/treeview.c:1495
+#: src/treeview.c:1506
 msgid "Away"
 msgstr ""
 
-#: src/treeview.c:1526
+#: src/treeview.c:1537
 msgid "Average skill"
 msgstr ""
 
-#: src/treeview.c:1534
+#: src/treeview.c:1545
 msgid "Team structure"
 msgstr ""
 
-#: src/treeview.c:1540
+#: src/treeview.c:1551
 msgid "Latest results"
 msgstr ""
 
-#: src/treeview.c:1542 src/treeview.c:2002 src/treeview_helper.c:730
+#: src/treeview.c:1553 src/treeview.c:2013 src/treeview_helper.c:730
 msgid "Goals"
 msgstr ""
 
-#: src/treeview.c:1546
+#: src/treeview.c:1557
 msgid "Your results"
 msgstr ""
 
-#: src/treeview.c:1630
+#: src/treeview.c:1641
 msgid "Results"
 msgstr ""
 
-#: src/treeview.c:1761
+#: src/treeview.c:1772
 msgid "Position"
 msgstr ""
 
-#: src/treeview.c:1762
+#: src/treeview.c:1773
 msgid "Current position"
 msgstr ""
 
-#: src/treeview.c:1763
+#: src/treeview.c:1774
 msgid "Skill"
 msgstr ""
 
-#: src/treeview.c:1764
+#: src/treeview.c:1775
 msgid "Current skill"
 msgstr ""
 
-#: src/treeview.c:1765
+#: src/treeview.c:1776
 msgid "Fitness"
 msgstr ""
 
-#: src/treeview.c:1766
+#: src/treeview.c:1777
 msgid "Estimated talent"
 msgstr ""
 
-#: src/treeview.c:1768
+#: src/treeview.c:1779
 msgid "Health"
 msgstr ""
 
-#: src/treeview.c:1772
+#: src/treeview.c:1783
 msgid "Games/Goals\n"
 msgstr ""
 
-#: src/treeview.c:1773
+#: src/treeview.c:1784
 msgid "Yellow cards (limit)\n"
 msgstr ""
 
-#: src/treeview.c:1774
+#: src/treeview.c:1785
 msgid "Banned\n"
 msgstr ""
 
-#: src/treeview.c:1775
+#: src/treeview.c:1786
 msgid "Career values"
 msgstr ""
 
-#: src/treeview.c:1776
+#: src/treeview.c:1787
 msgid ""
 "New contract\n"
 "offers"
 msgstr ""
 
-#: src/treeview.c:1917
+#: src/treeview.c:1928
 msgid "Sea"
 msgstr ""
 
-#: src/treeview.c:1917
+#: src/treeview.c:1928
 msgid "Week"
 msgstr ""
 
-#: src/treeview.c:1945
+#: src/treeview.c:1956
 msgid "Event"
 msgstr ""
 
-#: src/treeview.c:1977
+#: src/treeview.c:1988
 msgid "Best offensive teams"
 msgstr ""
 
-#: src/treeview.c:1978
+#: src/treeview.c:1989
 msgid "Best defensive teams"
 msgstr ""
 
-#: src/treeview.c:1981
+#: src/treeview.c:1992
 msgid "Best goal scorers"
 msgstr ""
 
-#: src/treeview.c:1982
+#: src/treeview.c:1993
 msgid "Best goalkeepers"
 msgstr ""
 
-#: src/treeview.c:1982
+#: src/treeview.c:1993
 msgid "Save %"
 msgstr ""
 
-#: src/treeview.c:2034
+#: src/treeview.c:2045
 msgid "Go/Ga"
 msgstr ""
 
-#: src/treeview.c:2129
+#: src/treeview.c:2140
 msgid "League champions"
 msgstr ""
 
-#: src/treeview.c:2130
+#: src/treeview.c:2141
 msgid "Cup champions"
 msgstr ""
 
-#: src/treeview.c:2175
+#: src/treeview.c:2186
 #, c-format
 msgid "Season %d"
 msgstr ""
 
-#: src/treeview.c:2274
+#: src/treeview.c:2285
 msgid "Current league"
 msgstr ""
 
-#: src/treeview.c:2322
+#: src/treeview.c:2333
 msgid "System"
 msgstr ""
 
-#: src/treeview.c:2398
+#: src/treeview.c:2409
 msgid "Company"
 msgstr ""
 
-#: src/treeview.c:2399
+#: src/treeview.c:2410
 msgid ""
 "Contract length\n"
 "(Months)"
 msgstr ""
 
-#: src/treeview.c:2400
+#: src/treeview.c:2411
 msgid "Money / week"
 msgstr ""
 
