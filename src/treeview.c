@@ -48,7 +48,7 @@ treeview_create_team_selection_list(gboolean show_cup_teams, gboolean show_user_
 	    if(team_is_user(&g_array_index(lig(i).teams, Team, j)) == -1)
 	    {
 		gtk_list_store_append(ls, &iter);
-		treeview_helper_insert_icon(ls, &iter, 1, lig(i).symbol->str);
+		treeview_helper_insert_icon(ls, &iter, 1, g_array_index(lig(i).teams, Team, j).symbol->str);
 		gtk_list_store_set(ls, &iter,
 				   0, cnt++,
 				   2, (gpointer)&g_array_index(lig(i).teams, Team, j),

@@ -256,6 +256,8 @@ window_show_stadium(void)
     
     if(tm->stadium.name != NULL)
 	gtk_label_set_text(label_name, tm->stadium.name->str);
+    else
+	gtk_widget_hide(GTK_WIDGET(label_name));
 
     if(tm->stadium.games > 0)
 	average_attendance_perc =

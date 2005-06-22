@@ -24,7 +24,7 @@ typedef struct
 {
     Team tm; /**< The team we move. */
     gint league_idx; /** The index of the league that the team gets moved to. */
-
+    gint prom_rel_type;
 } TeamMove;
 
 Team

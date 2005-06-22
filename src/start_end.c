@@ -489,9 +489,13 @@ start_new_season_team_movements(void)
 	league_get_team_movements(&lig(i), team_movements);
 
     for(i=0;i<team_movements->len;i++)
-	g_array_append_val(lig(g_array_index(team_movements, TeamMove, i).league_idx).teams,
-			   g_array_index(team_movements, TeamMove, i).tm);
-
+	if(g_array_index(team_movements, TeamMove, i).prom_rel_type != PROM_REL_RELEGATION)
+	    g_array_append_val(lig(g_array_index(team_movements, TeamMove, i).league_idx).teams,
+				g_array_index(team_movements, TeamMove, i).tm);
+	else
+	    g_array_prepend_val(lig(g_array_index(team_movements, TeamMove, i).league_idx).teams,
+				g_array_index(team_movements, TeamMove, i).tm);
+    
     g_array_free(team_movements, TRUE);
     
     for(i=0;i<ligs->len;i++)

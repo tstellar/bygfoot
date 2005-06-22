@@ -328,6 +328,7 @@ league_get_team_movements(League *league, GArray *team_movements)
 	    new_move.tm = *(g_array_index(league->table.elements, TableElement, j - 1).team);
 	    new_move.league_idx = 
 		league_index_from_sid(((GString*)g_ptr_array_index(dest_sids, order[k++ % dest_sids->len]))->str);
+	    new_move.prom_rel_type = g_array_index(elements, PromRelElement, i).type;
 
 	    g_array_append_val(team_movements, new_move);
 
@@ -365,6 +366,7 @@ league_get_team_movements(League *league, GArray *team_movements)
 	{
 	    new_move.tm = *((Team*)g_ptr_array_index(prom_games_teams, i));
 	    new_move.league_idx = dest_idx;
+	    new_move.prom_rel_type = PROM_REL_PROMOTION;
 	    g_array_append_val(team_movements, new_move);
 
 	    if(team_is_user((Team*)g_ptr_array_index(prom_games_teams, i)) != -1)
@@ -376,6 +378,7 @@ league_get_team_movements(League *league, GArray *team_movements)
 	if(strlen(league->prom_rel.prom_games_loser_sid->str) > 0)
 	{
 	    dest_idx = league_index_from_sid(league->prom_rel.prom_games_loser_sid->str);
+	    new_move.prom_rel_type = PROM_REL_RELEGATION;
 
 	    for(i=league->prom_rel.prom_games_number_of_advance;i<prom_games_teams->len;i++)
 	    {
