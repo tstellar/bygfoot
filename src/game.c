@@ -252,7 +252,7 @@ game_initialize(Fixture *fix)
     ticket_income = 
 	fix->attendance * const_int("int_team_stadium_ticket_price");
 
-    if(user_idx[0] != -1 && fix->home_advantage)
+    if(!country.supernational && user_idx[0] != -1 && fix->home_advantage)
     {
 	usr(user_idx[0]).money += ticket_income;
 	usr(user_idx[0]).money_in[1][MON_IN_TICKET] += ticket_income;

@@ -199,8 +199,16 @@ game_gui_set_main_window_header(void)
     gui_label_set_text_from_int(label_round, week_round, FALSE);
     gui_label_set_text_from_int(label_rank, week_round, FALSE);
 
-    misc_print_grouped_int(current_user.money, buf, FALSE);
-    gtk_label_set_text(label_money, buf);
+    if(!country.supernational)
+    {
+	misc_print_grouped_int(current_user.money, buf, FALSE);
+	gtk_label_set_text(label_money, buf);
+    }
+    else
+    {
+	gtk_widget_hide(GTK_WIDGET(label_money));
+	gtk_widget_hide(GTK_WIDGET(lookup_widget(window.main, "label34")));
+    }
 
     gui_label_set_text_from_int(label_rank, 
 				team_get_league_rank(current_user.tm), FALSE);

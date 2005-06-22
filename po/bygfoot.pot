@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-22 18:03+0200\n"
+"POT-Creation-Date: 2005-06-22 19:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,7 +71,7 @@ msgid ""
 "player's value. Do you accept?"
 msgstr ""
 
-#: src/callback_func.c:383 src/callbacks.c:529
+#: src/callback_func.c:383 src/callbacks.c:533
 msgid "Your offer has been removed."
 msgstr ""
 
@@ -148,75 +148,91 @@ msgstr ""
 msgid "The current game state is unsaved and will be lost. Continue?"
 msgstr ""
 
-#: src/callbacks.c:148
+#: src/callbacks.c:146 src/callbacks.c:397
+msgid "Transfers are disabled in this country definition."
+msgstr ""
+
+#: src/callbacks.c:150
 msgid "Left click to make an offer. Right click to remove offer."
 msgstr ""
 
-#: src/callbacks.c:155
+#: src/callbacks.c:157
 msgid "The transfer deadline is over."
 msgstr ""
 
-#: src/callbacks.c:164 src/callbacks.c:557 src/callbacks.c:574
+#: src/callbacks.c:166 src/callbacks.c:561 src/callbacks.c:578
 msgid "You still have some transfer business to manage."
 msgstr ""
 
-#: src/callbacks.c:168
+#: src/callbacks.c:170
 msgid "At least one user didn't take his turn this week. Continue?"
 msgstr ""
 
-#: src/callbacks.c:174
+#: src/callbacks.c:176
 msgid "There are injured or banned players in one of the user teams. Continue?"
 msgstr ""
 
-#: src/callbacks.c:379
+#: src/callbacks.c:381
 msgid "This is your first season."
 msgstr ""
 
-#: src/callbacks.c:395 src/callbacks.c:411 src/callbacks.c:427
-#: src/callbacks.c:445 src/callbacks.c:766 src/callbacks.c:782
+#: src/callbacks.c:399 src/callbacks.c:415 src/callbacks.c:431
+#: src/callbacks.c:449 src/callbacks.c:788 src/callbacks.c:804
 msgid "You haven't selected a player."
 msgstr ""
 
-#: src/callbacks.c:397
+#: src/callbacks.c:401
 msgid "The player is already on the list."
 msgstr ""
 
-#: src/callbacks.c:413
+#: src/callbacks.c:417
 msgid "The player is not on the list."
 msgstr ""
 
-#: src/callbacks.c:429
+#: src/callbacks.c:433
 msgid "Your team can't have less than 11 players."
 msgstr ""
 
-#: src/callbacks.c:450
+#: src/callbacks.c:454
 msgid "Penalty/free kick shooter deselected."
 msgstr ""
 
-#: src/callbacks.c:456
+#: src/callbacks.c:460
 #, c-format
 msgid "%s will shoot penalties and free kicks when he plays."
 msgstr ""
 
-#: src/callbacks.c:531
+#: src/callbacks.c:535
 msgid "You haven't made an offer for the player."
 msgstr ""
 
-#: src/callbacks.c:590
+#: src/callbacks.c:594
 msgid "Enter a structure. The digits must sum up to 10."
 msgstr ""
 
-#: src/callbacks.c:591
+#: src/callbacks.c:595
 msgid "Structure"
 msgstr ""
 
-#: src/callbacks.c:624 src/callbacks.c:640
+#: src/callbacks.c:628 src/callbacks.c:644
 msgid "No match stored."
 msgstr ""
 
-#: src/callbacks.c:733
+#: src/callbacks.c:738
+msgid "Finances are disabled in this country definition."
+msgstr ""
+
+#: src/callbacks.c:743
 msgid ""
 "Left-click: get loan; Right-click: pay back; Middle click: stadium window."
+msgstr ""
+
+#: src/callbacks.c:757
+msgid "Stadium management is disabled in this country definition."
+msgstr ""
+
+#: src/callbacks.c:782
+msgid "Contracts are disabled in this country definition."
 msgstr ""
 
 #: src/cup.c:765
@@ -252,24 +268,24 @@ msgstr ""
 msgid "Quarter-final"
 msgstr ""
 
-#: src/finance.c:97
+#: src/finance.c:100
 msgid "You have to pay back your loan this week."
 msgstr ""
 
-#: src/finance.c:101
+#: src/finance.c:104
 msgid "Your bank account has to be above your drawing credit limit next week."
 msgstr ""
 
-#: src/finance.c:164
+#: src/finance.c:167
 #, c-format
 msgid "You have %d weeks to pay back your loan."
 msgstr ""
 
-#: src/finance.c:187
+#: src/finance.c:190
 msgid "You are free from debt."
 msgstr ""
 
-#: src/finance.c:194
+#: src/finance.c:197
 #, c-format
 msgid "You have %d weeks to pay back the rest of your loan."
 msgstr ""
@@ -294,11 +310,11 @@ msgstr ""
 msgid " (OG)"
 msgstr ""
 
-#: src/game_gui.c:317
+#: src/game_gui.c:325
 msgid "Next week you'll fire him and hire a new one."
 msgstr ""
 
-#: src/game_gui.c:511
+#: src/game_gui.c:519
 #, c-format
 msgid ""
 "The team owners have fired you because of financial mismanagement. Luckily, "
@@ -306,7 +322,7 @@ msgid ""
 "some information on %s:"
 msgstr ""
 
-#: src/game_gui.c:514
+#: src/game_gui.c:522
 #, c-format
 msgid ""
 "The team owners have fired you because of unsuccessfulness. Luckily, the "
@@ -314,49 +330,49 @@ msgid ""
 "information on %s:"
 msgstr ""
 
-#: src/game_gui.c:517
+#: src/game_gui.c:525
 #, c-format
 msgid ""
 "The owners of %s are deeply impressed by your success with %s and would like "
 "to hire you. Here's some information on %s:"
 msgstr ""
 
-#: src/game_gui.c:520
+#: src/game_gui.c:528
 msgid "Accept?"
 msgstr ""
 
-#: src/game_gui.c:522
+#: src/game_gui.c:530
 msgid " (NOTE: If you don't, the game is over for you.)"
 msgstr ""
 
-#: src/game_gui.c:573
+#: src/game_gui.c:581
 #, c-format
 msgid "Job offers set to %s."
 msgstr ""
 
-#: src/game_gui.c:580
+#: src/game_gui.c:588
 #, c-format
 msgid "Live game set to %s."
 msgstr ""
 
-#: src/game_gui.c:587
+#: src/game_gui.c:595
 #, c-format
 msgid "Overwrite set to %s."
 msgstr ""
 
-#: src/game_gui.c:607
+#: src/game_gui.c:615
 msgid ""
 "Bygfoot is a very intuitive and simple game, so there isn't a full-grown "
 "documentation. However, if you have trouble, there are a few places to go.\n"
 msgstr ""
 
-#: src/game_gui.c:609
+#: src/game_gui.c:617
 msgid ""
 "At the Bygfoot forums you can report bugs, ask for help and discuss the game "
 "(you don't have to register):\n"
 msgstr ""
 
-#: src/game_gui.c:611
+#: src/game_gui.c:619
 msgid ""
 "\n"
 "If you feel you've found out something about the game that has to be shared, "
@@ -1568,7 +1584,7 @@ msgstr ""
 msgid "Average skill:"
 msgstr ""
 
-#: src/misc2_interface.c:221 src/player.c:1134 src/treeview_helper.c:1082
+#: src/misc2_interface.c:221 src/player.c:1136 src/treeview_helper.c:1082
 msgid "OK"
 msgstr ""
 
@@ -2211,52 +2227,52 @@ msgstr ""
 msgid "You can't replace a banned player."
 msgstr ""
 
-#: src/player.c:1027
+#: src/player.c:1029
 #, c-format
 msgid "%s's contract expires in %.1f years."
 msgstr ""
 
-#: src/player.c:1137
+#: src/player.c:1139
 msgid "Concussion"
 msgstr ""
 
-#: src/player.c:1140
+#: src/player.c:1142
 msgid "Pulled muscle"
 msgstr ""
 
-#: src/player.c:1143
+#: src/player.c:1145
 msgid "Hamstring"
 msgstr ""
 
-#: src/player.c:1146
+#: src/player.c:1148
 msgid "Groin injury"
 msgstr ""
 
-#: src/player.c:1149
+#: src/player.c:1151
 msgid "Fractured ankle"
 msgstr ""
 
-#: src/player.c:1152
+#: src/player.c:1154
 msgid "Broken rib"
 msgstr ""
 
-#: src/player.c:1155
+#: src/player.c:1157
 msgid "Broken leg"
 msgstr ""
 
-#: src/player.c:1158
+#: src/player.c:1160
 msgid "Broken ankle"
 msgstr ""
 
-#: src/player.c:1161
+#: src/player.c:1163
 msgid "Broken arm"
 msgstr ""
 
-#: src/player.c:1164
+#: src/player.c:1166
 msgid "Broken shoulder"
 msgstr ""
 
-#: src/player.c:1167
+#: src/player.c:1169
 msgid "Torn crucial ligament"
 msgstr ""
 
@@ -2317,7 +2333,7 @@ msgstr ""
 msgid "W  "
 msgstr ""
 
-#: src/transfer.c:434
+#: src/transfer.c:435
 #, c-format
 msgid "%s has been added to the transfer list for %d weeks."
 msgstr ""

@@ -13,6 +13,7 @@
 #define TAG_NAME "name"
 #define TAG_SYMBOL "symbol"
 #define TAG_SID "sid"
+#define TAG_SUPERNATIONAL "supernational"
 #define TAG_LEAGUES "leagues"
 #define TAG_LEAGUE "league"
 #define TAG_CUPS "cups"
@@ -27,6 +28,7 @@ enum XmlCountryStates
     STATE_NAME,
     STATE_SYMBOL,
     STATE_SID,
+    STATE_SUPERNATIONAL,
     STATE_LEAGUES,
     STATE_LEAGUE,
     STATE_CUPS,
@@ -59,6 +61,8 @@ xml_country_read_start_element (GMarkupParseContext *context,
 	state = STATE_SYMBOL;
     else if(strcmp(element_name, TAG_SID) == 0)
 	state = STATE_SID;
+    else if(strcmp(element_name, TAG_SUPERNATIONAL) == 0)
+	state = STATE_SUPERNATIONAL;
     else if(strcmp(element_name, TAG_LEAGUES) == 0)
     {
 	state = STATE_LEAGUES;
@@ -94,6 +98,7 @@ xml_country_read_end_element    (GMarkupParseContext *context,
     if(strcmp(element_name, TAG_NAME) == 0 ||
        strcmp(element_name, TAG_SYMBOL) == 0 ||
        strcmp(element_name, TAG_SID) == 0 ||
+       strcmp(element_name, TAG_SUPERNATIONAL) == 0 ||
        strcmp(element_name, TAG_LEAGUES) == 0 ||
        strcmp(element_name, TAG_CUPS) == 0)
 	state = STATE_COUNTRY;
@@ -121,9 +126,12 @@ xml_country_read_text         (GMarkupParseContext *context,
 			       GError             **error)
 {
     gchar buf[text_len + 1];
+    gint int_value;
 
     strncpy(buf, text, text_len);
     buf[text_len] = '\0';
+
+    int_value = (gint)g_ascii_strtod(buf, NULL);
 
     if(state == STATE_NAME)
 	country.name = g_string_new(buf);
@@ -131,6 +139,8 @@ xml_country_read_text         (GMarkupParseContext *context,
 	country.symbol = g_string_new(buf);
     else if(state == STATE_SID)
 	country.sid = g_string_new(buf);
+    else if(state == STATE_SUPERNATIONAL)
+	country.supernational = int_value;
     else if(state == STATE_LEAGUE)
 	xml_league_read(buf, ligs);
     else if(state == STATE_CUP)

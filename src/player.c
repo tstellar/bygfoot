@@ -1017,12 +1017,14 @@ player_update_weekly(Team *tm, gint idx)
     if(debug < 50)
     {
 	pl->age += 0.0192;
-	pl->contract -= 0.0192;
+
+	if(!country.supernational)
+	    pl->contract -= 0.0192;
     }
 
-    if(pl->contract * 12 <= opt_user_int("int_opt_user_contract_limit") &&
-       (pl->contract + 0.0192) * 12 > opt_user_int("int_opt_user_contract_limit") &&
-       debug < 50)
+    if(!country.supernational && debug < 50 &&
+       pl->contract * 12 <= opt_user_int("int_opt_user_contract_limit") &&
+       (pl->contract + 0.0192) * 12 > opt_user_int("int_opt_user_contract_limit"))
     {
 	sprintf(buf, _("%s's contract expires in %.1f years."),
 		pl->name->str, pl->contract);

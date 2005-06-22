@@ -142,7 +142,9 @@ void
 on_button_transfers_clicked            (GtkButton       *button,
                                         gpointer         user_data)
 {
-    if(week < transfer_get_deadline())
+    if(country.supernational)
+	game_gui_print_message(_("Transfers are disabled in this country definition."));
+    else if(week < transfer_get_deadline())
     {
 	stat0 = STATUS_SHOW_TRANSFER_LIST;
 	game_gui_print_message(_("Left click to make an offer. Right click to remove offer."));
@@ -391,7 +393,9 @@ void
 on_menu_put_on_transfer_list_activate  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    if(selected_row[0] == -1)
+    if(country.supernational)
+	game_gui_print_message(_("Transfers are disabled in this country definition."));
+    else if(selected_row[0] == -1)
 	game_gui_print_message(_("You haven't selected a player."));
     else if(query_transfer_player_is_on_list(player_of_idx_team(current_user.tm, selected_row[0])))
 	game_gui_print_message(_("The player is already on the list."));
@@ -729,6 +733,12 @@ void
 on_menu_show_finances_activate         (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    if(country.supernational)
+    {
+	game_gui_print_message(_("Finances are disabled in this country definition."));
+	return;
+    }
+
     stat0 = STATUS_SHOW_FINANCES;
     game_gui_print_message(_("Left-click: get loan; Right-click: pay back; Middle click: stadium window."));
     treeview_show_finances(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")),
@@ -742,6 +752,12 @@ void
 on_menu_show_stadium_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    if(country.supernational)
+    {
+	game_gui_print_message(_("Stadium management is disabled in this country definition."));
+	return;
+    }
+
     window_show_stadium();
 }
 
@@ -761,6 +777,12 @@ void
 on_menu_offer_new_contract_activate    (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    if(country.supernational)
+    {
+	game_gui_print_message(_("Contracts are disabled in this country definition."));
+	return;
+    }
+
     if(selected_row[0] == -1)
     {
 	game_gui_print_message(_("You haven't selected a player."));

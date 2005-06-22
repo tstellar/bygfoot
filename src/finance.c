@@ -25,6 +25,9 @@ finance_update_user_weekly(User *user)
 	 const_float("float_finance_scout_factor3"),
 	 const_float("float_finance_scout_factor4")};
 
+    if(country.supernational)
+	return;
+
     if(week % 2 == 1)
     {
 	for(i=0;i<MON_OUT_END;i++)

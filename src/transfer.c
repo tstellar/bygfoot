@@ -19,7 +19,8 @@ transfer_update(void)
 {
     gint i, j;
 
-    if(week > transfer_get_deadline())
+    if(week > transfer_get_deadline() ||
+	country.supernational)
 	return;
 
     if(week == transfer_get_deadline())

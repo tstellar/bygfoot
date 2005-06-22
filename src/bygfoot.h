@@ -102,6 +102,10 @@ typedef struct
     
     /** Pointer array holding all cups. */
     GPtrArray *allcups;
+
+    /** Whether we have a supernational cup
+	(which leads to disabling transfers, finances and stadium). */
+    gboolean supernational;
 } Country;
 
 /** Struct used for having all the windows

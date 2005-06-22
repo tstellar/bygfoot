@@ -29,6 +29,7 @@ main_init_variables(void)
     ligs = cps = NULL;
     acps = NULL;
     country.name = country.symbol = country.sid = NULL;
+    country.supernational = FALSE;
 
     season = week = week_round = 1;
 
