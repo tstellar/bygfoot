@@ -29,8 +29,7 @@ main_init_variables(void)
     ligs = cps = NULL;
     acps = NULL;
     country.name = country.symbol = country.sid = NULL;
-    country.supernational = FALSE;
-
+    
     season = week = week_round = 1;
 
     for(i=0;i<COUNT_END;i++)
@@ -68,6 +67,14 @@ main_init_variables(void)
     file_load_conf_files();
 
     language_set(language_get_code_index(opt_str("string_opt_language_code")) + 1);
+
+    /** Some of these (or all) are disabled (set to 1) in supernational
+	country defs. */
+    option_add(&options, "int_opt_disable_finances", 0, NULL);
+    option_add(&options, "int_opt_disable_transfers", 0, NULL);
+    option_add(&options, "int_opt_disable_stadium", 0, NULL);
+    option_add(&options, "int_opt_disable_contracts", 0, NULL);
+    option_add(&options, "int_opt_disable_boost_on", 0, NULL);
 }
 
 /**

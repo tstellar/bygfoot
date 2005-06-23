@@ -65,4 +65,7 @@ window_live_set_spinbuttons(void);
 void
 window_show_transfer_dialog(const gchar *text);
 
+void
+window_show_news(void);
+
 #endif

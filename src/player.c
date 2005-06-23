@@ -10,6 +10,7 @@
 #include "option.h"
 #include "player.h"
 #include "team.h"
+#include "transfer.h"
 #include "user.h"
 
 /** Create and return a new player.
@@ -477,13 +478,6 @@ player_compare_substitute_func(gconstpointer a, gconstpointer b, gpointer data)
 	return_value = 
 	    misc_float_compare(skill_for_pos1, skill_for_pos2);
 
-/*     printf("%s %d %s %d   %d\n", pl1->name->str, pl1->pos, pl2->name->str,  */
-/* 	   pl2->pos, return_value); */
-/*     printf("\t gaski %.1f %.1f skipos %.1f %.1f struc %d %d\n", */
-/* 	   (gfloat)game_skill1 / 10000, (gfloat)game_skill2 / 10000, */
-/* 	   (gfloat)skill_for_pos1 / 10000, (gfloat)skill_for_pos2 / 10000, */
-/* 	   good_structure1, good_structure2); */
-	   	   
     return return_value;
 }
 
@@ -1018,11 +1012,11 @@ player_update_weekly(Team *tm, gint idx)
     {
 	pl->age += 0.0192;
 
-	if(!country.supernational)
+	if(!opt_int("int_opt_disable_contracts"))
 	    pl->contract -= 0.0192;
     }
 
-    if(!country.supernational && debug < 50 &&
+    if(!opt_int("int_opt_disable_contracts") && debug < 50 &&
        pl->contract * 12 <= opt_user_int("int_opt_user_contract_limit") &&
        (pl->contract + 0.0192) * 12 > opt_user_int("int_opt_user_contract_limit"))
     {
@@ -1057,6 +1051,7 @@ player_remove_contract(Team *tm, gint idx)
 void
 player_remove_from_team(Team *tm, gint idx)
 {
+    transfer_remove_player_ptr(player_of_idx_team(tm, idx));
     free_player(player_of_idx_team(tm, idx));
     g_array_remove_index(tm->players, idx);    
 }

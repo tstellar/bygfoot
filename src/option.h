@@ -54,4 +54,7 @@ option_set_string(const gchar *name, OptionList *optionlist, const gchar *new_va
 void
 option_set_int(const gchar *name, OptionList *optionlist, gint new_value);
 
+void
+option_add(OptionList *optionlist, const gchar *name, gint int_value, const gchar *string_value);
+
 #endif

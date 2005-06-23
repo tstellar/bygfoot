@@ -15,7 +15,6 @@ enum XmlLoadSaveCountryTags
     TAG_MISC_WEEK_ROUND,
     TAG_MISC_COUNTER,
     TAG_MISC_ALLCUP,
-    TAG_MISC_SUPERNATIONAL,
     TAG_END
 };
 
@@ -67,7 +66,6 @@ xml_loadsave_misc_end_element    (GMarkupParseContext *context,
        tag == TAG_SYMBOL ||
        tag == TAG_SID ||
        tag == TAG_MISC_ALLCUP ||
-       tag == TAG_MISC_SUPERNATIONAL ||
        tag == TAG_MISC_COUNTER ||
        tag == TAG_MISC_SEASON ||
        tag == TAG_MISC_WEEK ||
@@ -113,8 +111,6 @@ xml_loadsave_misc_text         (GMarkupParseContext *context,
 	counters[countidx] = int_value;
     else if(state == TAG_MISC_ALLCUP)
 	g_ptr_array_add(acps, cup_from_clid(int_value));
-    else if(state == TAG_MISC_SUPERNATIONAL)
-	country.supernational = int_value;
 }
 
 
@@ -175,7 +171,6 @@ xml_loadsave_misc_write(const gchar *prefix)
     xml_write_g_string(fil, country.name, TAG_NAME, I0);
     xml_write_g_string(fil, country.symbol, TAG_SYMBOL, I0);
     xml_write_g_string(fil, country.sid, TAG_SID, I0);
-    xml_write_int(fil, country.supernational, TAG_MISC_SUPERNATIONAL, I0);
     xml_write_int(fil, season, TAG_MISC_SEASON, I0);
     xml_write_int(fil, week, TAG_MISC_WEEK, I0);
     xml_write_int(fil, week_round, TAG_MISC_WEEK_ROUND, I0);

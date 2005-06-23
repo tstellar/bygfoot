@@ -20,7 +20,7 @@ transfer_update(void)
     gint i, j;
 
     if(week > transfer_get_deadline() ||
-	country.supernational)
+       opt_int("int_opt_disable_transfers"))
 	return;
 
     if(week == transfer_get_deadline())

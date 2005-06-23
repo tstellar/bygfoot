@@ -22,6 +22,23 @@
 #include "user.h"
 #include "window.h"
 
+/** Show the window with the news. */
+void
+window_show_news(void)
+{
+    GtkNotebook *nb = NULL;
+
+    window_create(WINDOW_HELP);
+
+    nb = GTK_NOTEBOOK(lookup_widget(window.help, "notebook1"));
+
+    gtk_notebook_remove_page(nb, 0);
+    gtk_notebook_remove_page(nb, -1);
+
+    gtk_label_set_text(GTK_LABEL(lookup_widget(window.help, "label_contributors")),
+		       _("News"));
+}
+
 /** Show the help/about window. 
     @param page Which notebook page to display. */
 void

@@ -2359,8 +2359,8 @@ treeview_show_language_combo(void)
     gtk_combo_box_set_model(combo_languages, model);
     g_object_unref(model);
 
-    gtk_combo_box_entry_set_text_column(GTK_COMBO_BOX_ENTRY(combo_languages), 1);
-
+    if(gtk_combo_box_entry_get_text_column(GTK_COMBO_BOX_ENTRY(combo_languages)) == -1)
+	gtk_combo_box_entry_set_text_column(GTK_COMBO_BOX_ENTRY(combo_languages), 1); 
     gtk_cell_layout_clear(GTK_CELL_LAYOUT(combo_languages));
 
     renderer = gtk_cell_renderer_pixbuf_new();

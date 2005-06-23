@@ -107,10 +107,12 @@ start_new_season(void)
 	fixture_write_league_fixtures(&lig(i));
 
     for(i=cps->len - 1; i >= 0; i--)
-	if(cp(i).add_week == 0)
+	if(cp(i).add_week >= 0)
 	{
 	    cup_reset(&cp(i));
-	    fixture_write_cup_fixtures(&cp(i));
+	    
+	    if(cp(i).add_week == 0)
+		fixture_write_cup_fixtures(&cp(i));
 	}
 	else if(cp(i).add_week == -1)
 	{

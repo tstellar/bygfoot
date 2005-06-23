@@ -199,7 +199,7 @@ game_gui_set_main_window_header(void)
     gui_label_set_text_from_int(label_round, week_round, FALSE);
     gui_label_set_text_from_int(label_rank, week_round, FALSE);
 
-    if(!country.supernational)
+    if(!opt_int("int_opt_disable_finances"))
     {
 	misc_print_grouped_int(current_user.money, buf, FALSE);
 	gtk_label_set_text(label_money, buf);
@@ -300,7 +300,15 @@ game_gui_read_radio_items(GtkWidget *widget)
 
     for(i=0;i<3;i++)
 	if(widget == boost[i])
+	{
 	    current_user.tm->boost = i - 1;
+
+	    if(current_user.tm->boost == 1 && opt_int("int_opt_disable_boost_on"))
+	    {
+		current_user.tm->boost = 0;
+		game_gui_print_message(_("Boost ON is disabled in this country definition."));
+	    }
+	}
 
     for(i=0;i<5;i++)
 	if(widget == style[i])
@@ -323,6 +331,9 @@ game_gui_read_radio_items(GtkWidget *widget)
     if(old_scout != current_user.scout ||
        old_physio != current_user.physio)
 	game_gui_print_message(_("Next week you'll fire him and hire a new one."));
+
+    game_gui_write_meters();
+    game_gui_write_radio_items();
 
     treeview_show_next_opponent();
 }

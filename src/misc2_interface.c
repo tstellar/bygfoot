@@ -483,6 +483,12 @@ create_window_yesno (void)
   GtkWidget *hbox18;
   GtkWidget *button_yesno_yes;
   GtkWidget *button_yesno_no;
+  GtkAccelGroup *accel_group;
+  GtkTooltips *tooltips;
+
+  tooltips = gtk_tooltips_new ();
+
+  accel_group = gtk_accel_group_new ();
 
   window_yesno = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_yesno), 5);
@@ -512,6 +518,10 @@ create_window_yesno (void)
   button_yesno_no = gtk_button_new_from_stock ("gtk-no");
   gtk_widget_show (button_yesno_no);
   gtk_box_pack_start (GTK_BOX (hbox18), button_yesno_no, TRUE, TRUE, 0);
+  gtk_tooltips_set_tip (tooltips, button_yesno_no, _("Esc"), NULL);
+  gtk_widget_add_accelerator (button_yesno_no, "clicked", accel_group,
+                              GDK_Escape, 0,
+                              GTK_ACCEL_VISIBLE);
 
   g_signal_connect ((gpointer) window_yesno, "delete_event",
                     G_CALLBACK (on_window_yesno_delete_event),
@@ -531,6 +541,9 @@ create_window_yesno (void)
   GLADE_HOOKUP_OBJECT (window_yesno, hbox18, "hbox18");
   GLADE_HOOKUP_OBJECT (window_yesno, button_yesno_yes, "button_yesno_yes");
   GLADE_HOOKUP_OBJECT (window_yesno, button_yesno_no, "button_yesno_no");
+  GLADE_HOOKUP_OBJECT_NO_REF (window_yesno, tooltips, "tooltips");
+
+  gtk_window_add_accel_group (GTK_WINDOW (window_yesno), accel_group);
 
   return window_yesno;
 }
@@ -964,7 +977,7 @@ create_window_help (void)
   GtkWidget *label49;
   GtkWidget *scrolledwindow4;
   GtkWidget *treeview_contributors;
-  GtkWidget *label50;
+  GtkWidget *label_contributors;
   GtkWidget *vbox25;
   GtkWidget *image13;
   GtkWidget *label_help_text1;
@@ -1025,9 +1038,9 @@ create_window_help (void)
   gtk_widget_show (treeview_contributors);
   gtk_container_add (GTK_CONTAINER (scrolledwindow4), treeview_contributors);
 
-  label50 = gtk_label_new (_("Contributors"));
-  gtk_widget_show (label50);
-  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 1), label50);
+  label_contributors = gtk_label_new (_("Contributors"));
+  gtk_widget_show (label_contributors);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 1), label_contributors);
 
   vbox25 = gtk_vbox_new (FALSE, 3);
   gtk_widget_show (vbox25);
@@ -1080,7 +1093,7 @@ create_window_help (void)
   GLADE_HOOKUP_OBJECT (window_help, label49, "label49");
   GLADE_HOOKUP_OBJECT (window_help, scrolledwindow4, "scrolledwindow4");
   GLADE_HOOKUP_OBJECT (window_help, treeview_contributors, "treeview_contributors");
-  GLADE_HOOKUP_OBJECT (window_help, label50, "label50");
+  GLADE_HOOKUP_OBJECT (window_help, label_contributors, "label_contributors");
   GLADE_HOOKUP_OBJECT (window_help, vbox25, "vbox25");
   GLADE_HOOKUP_OBJECT (window_help, image13, "image13");
   GLADE_HOOKUP_OBJECT (window_help, label_help_text1, "label_help_text1");

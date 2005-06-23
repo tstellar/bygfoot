@@ -10,7 +10,6 @@
 #endif
 
 #include <gtk/gtk.h>
-
 #include "gettext_macros.h"
 
 /**
@@ -70,6 +69,7 @@
 enum ExitCodes
 {
     EXIT_OK = 0, /**< Normal exit. */
+    EXIT_GENERAL, /**< A general, multi-purpose exit code. */
     EXIT_NO_COUNTRY_FILES, /**< Exit when no country files have been found. */
     EXIT_FILE_OPEN_FAILED, /**< A file could not be opened. */
     EXIT_PRINT_ERROR, /**< Exit when the print_error function is called on a set error.*/
@@ -102,10 +102,6 @@ typedef struct
     
     /** Pointer array holding all cups. */
     GPtrArray *allcups;
-
-    /** Whether we have a supernational cup
-	(which leads to disabling transfers, finances and stadium). */
-    gboolean supernational;
 } Country;
 
 /** Struct used for having all the windows

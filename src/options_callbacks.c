@@ -83,10 +83,10 @@ on_checkbutton_save_global_button_press_event
 	g_free(conf_file);
 
 	option_gui_set_up_window();
+	return TRUE;
     }
 
-    
-    return TRUE;
+    return FALSE;
 }
 
 
@@ -101,8 +101,9 @@ on_checkbutton_save_user_button_press_event
     {
 	file_load_user_conf_file(&current_user);
 	option_gui_set_up_window();
+	return TRUE;
     }
 
-    return TRUE;
+    return FALSE;
 }
 

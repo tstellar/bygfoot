@@ -123,3 +123,29 @@ option_set_int(const gchar *name, OptionList *optionlist, gint new_value)
     else
 	((Option*)element)->value = new_value;
 }
+
+
+/** Add an option to the optionlist with the given values. */
+void
+option_add(OptionList *optionlist, const gchar *name, gint int_value, const gchar *string_value)
+{
+    gint i;
+    Option new;
+    gpointer element = g_datalist_get_data(&optionlist->datalist, name);
+    
+    if(element != NULL)
+    {
+	g_warning("Option named '%s' already contained in optionlist.", name);
+	main_exit_program(EXIT_GENERAL, NULL);
+    }
+
+    new.name = g_string_new(name);
+    new.value = int_value;
+    new.string_value = (string_value == NULL) ? NULL : g_string_new(string_value);
+
+    g_array_append_val(optionlist->list, new);
+
+    for(i=0;i<optionlist->list->len;i++)
+	g_datalist_set_data(&optionlist->datalist, g_array_index(optionlist->list, Option, i).name->str,
+			    &g_array_index(optionlist->list, Option, i));
+}

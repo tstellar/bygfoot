@@ -142,7 +142,7 @@ void
 on_button_transfers_clicked            (GtkButton       *button,
                                         gpointer         user_data)
 {
-    if(country.supernational)
+    if(opt_int("int_opt_disable_transfers"))
 	game_gui_print_message(_("Transfers are disabled in this country definition."));
     else if(week < transfer_get_deadline())
     {
@@ -393,7 +393,7 @@ void
 on_menu_put_on_transfer_list_activate  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    if(country.supernational)
+    if(opt_int("int_opt_disable_transfers"))
 	game_gui_print_message(_("Transfers are disabled in this country definition."));
     else if(selected_row[0] == -1)
 	game_gui_print_message(_("You haven't selected a player."));
@@ -716,7 +716,13 @@ on_eventbox_boost_button_press_event   (GtkWidget       *widget,
     else
 	return FALSE;
 
-    team_change_attribute_with_message(current_user.tm, TEAM_ATTRIBUTE_BOOST, new_boost);
+    if(new_boost == 1 && opt_int("int_opt_disable_boost_on"))
+    {
+	new_boost = 0;
+	game_gui_print_message(_("Boost ON is disabled in this country definition."));
+    }
+    else
+	team_change_attribute_with_message(current_user.tm, TEAM_ATTRIBUTE_BOOST, new_boost);
 
     game_gui_write_meters();
     game_gui_write_radio_items();
@@ -733,7 +739,7 @@ void
 on_menu_show_finances_activate         (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    if(country.supernational)
+    if(opt_int("int_opt_disable_finances"))
     {
 	game_gui_print_message(_("Finances are disabled in this country definition."));
 	return;
@@ -752,7 +758,7 @@ void
 on_menu_show_stadium_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    if(country.supernational)
+    if(opt_int("int_opt_disable_stadium"))
     {
 	game_gui_print_message(_("Stadium management is disabled in this country definition."));
 	return;
@@ -777,7 +783,7 @@ void
 on_menu_offer_new_contract_activate    (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    if(country.supernational)
+    if(opt_int("int_opt_disable_contracts"))
     {
 	game_gui_print_message(_("Contracts are disabled in this country definition."));
 	return;

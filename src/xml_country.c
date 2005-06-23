@@ -1,6 +1,7 @@
 #include "file.h"
 #include "free.h"
 #include "misc.h"
+#include "option.h"
 #include "variables.h"
 #include "xml_cup.h"
 #include "xml_country.h"
@@ -140,7 +141,13 @@ xml_country_read_text         (GMarkupParseContext *context,
     else if(state == STATE_SID)
 	country.sid = g_string_new(buf);
     else if(state == STATE_SUPERNATIONAL)
-	country.supernational = int_value;
+    {
+	opt_set_int("int_opt_disable_finances", 1);
+	opt_set_int("int_opt_disable_transfers", 1);
+	opt_set_int("int_opt_disable_stadium", 1);
+	opt_set_int("int_opt_disable_contracts", 1);
+	opt_set_int("int_opt_disable_boost_on", 1);
+    }
     else if(state == STATE_LEAGUE)
 	xml_league_read(buf, ligs);
     else if(state == STATE_CUP)
@@ -191,7 +198,12 @@ xml_country_read(const gchar *country_name)
     g_free(file_name);
 
     free_country(TRUE);
-    country.supernational = FALSE;
+
+    opt_set_int("int_opt_disable_finances", 0);
+    opt_set_int("int_opt_disable_transfers", 0);
+    opt_set_int("int_opt_disable_stadium", 0);
+    opt_set_int("int_opt_disable_contracts", 0);
+    opt_set_int("int_opt_disable_boost_on", 0);
 
     if(g_markup_parse_context_parse(context, file_contents, length, &error))
     {

@@ -101,7 +101,7 @@ user_set_up_team(User *user)
     user_set_up_finances(user);
     user_set_up_counters(user);
 
-    user->counters[COUNT_USER_NEW_SPONSOR] = (country.supernational) ? -5 : 1;
+    user->counters[COUNT_USER_NEW_SPONSOR] = (opt_int("int_opt_disable_finances")) ? -5 : 1;
 }
 
 
