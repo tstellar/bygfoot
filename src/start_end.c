@@ -59,9 +59,27 @@ start_new_game(void)
 void
 start_new_season(void)
 {
-    gint i;
+    gint i, j;
 
     week = week_round = 1;
+    free_names(TRUE);
+    stat5 = STATUS_GENERATE_TEAMS;
+
+    for(i = acps->len - 1; i >= 0; i--)
+    {
+	g_ptr_array_free(acp(i)->team_names, TRUE);
+	acp(i)->team_names = g_ptr_array_new();
+
+	if(acp(i)->add_week > 0)
+	    g_ptr_array_remove_index(acps, i);
+    }
+
+    for(i=cps->len - 1; i >= 0; i--)
+	if(cp(i).add_week == -1)
+	{
+	    cup_reset(&cp(i));
+	    fixture_write_cup_fixtures(&cp(i));
+	}
 
     if(season > 1)
     {
@@ -81,31 +99,30 @@ start_new_season(void)
     else
     {
 	for(i=0;i<cps->len;i++)
-	    if(cp(i).add_week == 0)
+	    if(cp(i).add_week <= 0)
 		g_ptr_array_add(acps, &cp(i));
     }
 		
-    for(i = acps->len - 1; i >= 0; i--)
-    {
-	g_ptr_array_free(acp(i)->team_names, TRUE);
-	acp(i)->team_names = g_ptr_array_new();
-
-	if(acp(i)->add_week != 0)
-	    g_ptr_array_remove_index(acps, i);
-    }
-
     for(i=0;i<ligs->len;i++)
 	fixture_write_league_fixtures(&lig(i));
 
-    free_names(TRUE);
-    stat5 = STATUS_GENERATE_TEAMS;
     for(i=cps->len - 1; i >= 0; i--)
-    {
-	cup_reset(&cp(i));
-
 	if(cp(i).add_week == 0)
+	{
+	    cup_reset(&cp(i));
 	    fixture_write_cup_fixtures(&cp(i));
-    }
+	}
+	else if(cp(i).add_week == -1)
+	{
+	    for(j=0;j<cp(i).fixtures->len;j++)
+	    {
+		g_array_index(cp(i).fixtures, Fixture, j).teams[0] =
+		    team_of_id(g_array_index(cp(i).fixtures, Fixture, j).team_ids[0]);
+		g_array_index(cp(i).fixtures, Fixture, j).teams[1] =
+		    team_of_id(g_array_index(cp(i).fixtures, Fixture, j).team_ids[1]);
+	    }
+	}
+    
     stat5 = -1;
 
     for(i=0;i<name_lists->len;i++)
