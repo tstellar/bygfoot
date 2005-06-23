@@ -191,6 +191,7 @@ xml_country_read(const gchar *country_name)
     g_free(file_name);
 
     free_country(TRUE);
+    country.supernational = FALSE;
 
     if(g_markup_parse_context_parse(context, file_contents, length, &error))
     {

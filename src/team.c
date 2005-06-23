@@ -346,7 +346,7 @@ team_is_user(const Team *tm)
     gint i;
 
     for(i=0;i<users->len;i++)
-	if(usr(i).tm == tm)
+	if(usr(i).team_id == tm->id)
 	    return i;
 
     return -1;
@@ -389,7 +389,7 @@ team_get_league_rank(const Team *tm)
     GArray *elements = league_from_clid(tm->clid)->table.elements;
 
     for(i=0;i<elements->len;i++)
-	if(g_array_index(elements, TableElement, i).team == tm)
+	if(g_array_index(elements, TableElement, i).team_id == tm->id)
 	    return i + 1;
     
     g_warning("team_get_league_rank: no rank found for team %s in league %s. \n",

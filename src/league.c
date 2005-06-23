@@ -396,6 +396,9 @@ league_get_team_movements(League *league, GArray *team_movements)
 	g_ptr_array_free(prom_games_teams, TRUE);
     }
 
+    g_array_sort_with_data(league->teams, team_compare_func,
+			   GINT_TO_POINTER(TEAM_COMPARE_LEAGUE_RANK + 100));
+
     for(i=move_len;i<team_movements->len;i++)
 	league_remove_team_with_id(league_from_clid(g_array_index(team_movements, TeamMove, i).tm.clid),
 				   g_array_index(team_movements, TeamMove, i).tm.id);

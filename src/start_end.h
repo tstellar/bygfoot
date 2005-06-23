@@ -52,7 +52,7 @@ gboolean
 query_start_end_season_end(void);
 
 void
-start_new_season_team_movements(void);
+start_new_season_league_changes(void);
 
 void
 end_week(void);

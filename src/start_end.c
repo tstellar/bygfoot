@@ -70,7 +70,7 @@ start_new_season(void)
 			     usr(i).team_id, usr(i).tm->clid, 
 			     team_get_league_rank(usr(i).tm), "");
 
-	start_new_season_team_movements();
+	start_new_season_league_changes();
 
 	for(i=0;i<users->len;i++)
 	{
@@ -107,10 +107,6 @@ start_new_season(void)
 	    fixture_write_cup_fixtures(&cp(i));
     }
     stat5 = -1;
-
-    if(season > 1)
-	for(i=0;i<ligs->len;i++)
-	    league_season_start(&lig(i));
 
     for(i=0;i<name_lists->len;i++)
 	name_shorten_list(&nli(i));
@@ -480,7 +476,7 @@ query_start_end_season_end(void)
 
 /** Manage promotions and relegations at the beginning of a new season. */
 void
-start_new_season_team_movements(void)
+start_new_season_league_changes(void)
 {
     gint i, j, k;
     GArray *team_movements = g_array_new(FALSE, FALSE, sizeof(TeamMove));
@@ -488,17 +484,20 @@ start_new_season_team_movements(void)
     for(i=0;i<ligs->len;i++)
 	league_get_team_movements(&lig(i), team_movements);
 
-    for(i=0;i<team_movements->len;i++)
-	if(g_array_index(team_movements, TeamMove, i).prom_rel_type != PROM_REL_RELEGATION)
-	    g_array_append_val(lig(g_array_index(team_movements, TeamMove, i).league_idx).teams,
-				g_array_index(team_movements, TeamMove, i).tm);
-	else
+    for(i = team_movements->len - 1; i >= 0; i--)
+	if(g_array_index(team_movements, TeamMove, i).prom_rel_type == PROM_REL_RELEGATION)
 	    g_array_prepend_val(lig(g_array_index(team_movements, TeamMove, i).league_idx).teams,
 				g_array_index(team_movements, TeamMove, i).tm);
+    
+    for(i=1;i<team_movements->len;i++)
+	if(g_array_index(team_movements, TeamMove, i).prom_rel_type != PROM_REL_RELEGATION)
+	    g_array_append_val(lig(g_array_index(team_movements, TeamMove, i).league_idx).teams,
+			       g_array_index(team_movements, TeamMove, i).tm);
     
     g_array_free(team_movements, TRUE);
     
     for(i=0;i<ligs->len;i++)
+    {
 	for(j=0;j<lig(i).teams->len;j++)
 	{
 	    g_array_index(lig(i).teams, Team, j).clid = lig(i).id;
@@ -506,6 +505,9 @@ start_new_season_team_movements(void)
 		g_array_index(g_array_index(lig(i).teams, Team, j).players, Player, k).team =
 		    &g_array_index(lig(i).teams, Team, j);
 	}
+
+	league_season_start(&lig(i));
+    }
 }
 
 /** End a season (store stats etc.) */
