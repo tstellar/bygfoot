@@ -40,7 +40,7 @@ bygfoot_SOURCES = \
 	option_gui.c callbacks.h file.h game_gui.h language.h option_gui.h option.h support.h treeview.h user.h variables.h \
 	options_callbacks.c file.h option_gui.h options_callbacks.h options_interface.h support.h user.h variables.h window.h \
 	options_interface.c options_callbacks.h options_interface.h support.h \
-	player.c cup.h fixture.h free.h game_gui.h league.h main.h maths.h misc.h name.h option.h player.h team.h user.h \
+	player.c cup.h fixture.h free.h game_gui.h league.h main.h maths.h misc.h name.h option.h player.h team.h transfer.h user.h \
 	start_end.c cup.h file.h finance.h fixture.h free.h game_gui.h gui.h league.h live_game.h load_save.h main.h maths.h misc.h name.h option.h start_end.h stat.h table.h team.h transfer.h user.h variables.h xml_name.h \
 	stat.c cup.h free.h league.h option.h player.h stat.h table_struct.h team.h variables.h \
 	support.c support.h \
@@ -64,7 +64,7 @@ bygfoot_SOURCES = \
 	xml_loadsave_transfers.c file.h misc.h team.h transfer.h xml.h xml_loadsave_transfers.h \
 	xml_loadsave_users.c file.h misc.h team.h user.h variables.h xml.h xml_loadsave_live_game.h xml_loadsave_users.h \
 	xml_cup.c cup.h file.h main.h misc.h option.h variables.h xml_cup.h \
-	xml_country.c file.h free.h misc.h variables.h xml_country.h xml_cup.h xml_league.h \
+	xml_country.c file.h free.h misc.h option.h variables.h xml_country.h xml_cup.h xml_league.h \
 	xml_league.c cup_struct.h file.h free.h league.h misc.h table.h team.h variables.h xml_cup.h xml_league.h \
 	xml_name.c file.h free.h misc.h name.h variables.h xml_name.h \
 	xml_team.c file.h free.h main.h misc.h option.h player.h team.h variables.h xml_team.h 
