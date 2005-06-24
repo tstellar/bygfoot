@@ -63,7 +63,6 @@ misc2_callback_transfer_user_player(void)
 	current_user.money_in[1][MON_IN_TRANSFERS] += transoff(stat2, 0).fee;
 	player_remove_from_team(current_user.tm, 
 				player_id_index(current_user.tm, trans(stat2).id));
-	transfer_remove_player(stat2);
     }
 
     treeview_show_user_player_list();
