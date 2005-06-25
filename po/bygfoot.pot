@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-23 23:58+0200\n"
+"POT-Creation-Date: 2005-06-25 16:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -239,36 +239,36 @@ msgstr ""
 msgid "Contracts are disabled in this country definition."
 msgstr ""
 
-#: src/cup.c:765
+#: src/cup.c:790
 msgid " -- Second leg"
 msgstr ""
 
-#: src/cup.c:767
+#: src/cup.c:792
 msgid " -- First leg"
 msgstr ""
 
-#: src/cup.c:770
+#: src/cup.c:795
 msgid " -- Replay matches"
 msgstr ""
 
-#: src/cup.c:782
+#: src/cup.c:807
 msgid "Round robin"
 msgstr ""
 
-#: src/cup.c:789
+#: src/cup.c:814
 #, c-format
 msgid "Last %d"
 msgstr ""
 
-#: src/cup.c:792
+#: src/cup.c:817
 msgid "Final"
 msgstr ""
 
-#: src/cup.c:795
+#: src/cup.c:820
 msgid "Semi-final"
 msgstr ""
 
-#: src/cup.c:798
+#: src/cup.c:823
 msgid "Quarter-final"
 msgstr ""
 
@@ -1507,26 +1507,26 @@ msgstr ""
 msgid "You didn't have enough money to buy %s or your roster was full."
 msgstr ""
 
-#: src/misc2_callback_func.c:81
+#: src/misc2_callback_func.c:80
 msgid "Your player roster is full or you don't enough money."
 msgstr ""
 
-#: src/misc2_callback_func.c:115
+#: src/misc2_callback_func.c:114
 #, c-format
 msgid "The structure value %d is invalid."
 msgstr ""
 
-#: src/misc2_callback_func.c:155
+#: src/misc2_callback_func.c:154
 #, c-format
 msgid "%s accepts your offer."
 msgstr ""
 
-#: src/misc2_callback_func.c:164
+#: src/misc2_callback_func.c:163
 #, c-format
 msgid "%s rejects your offer. You may still make %d offers."
 msgstr ""
 
-#: src/misc2_callback_func.c:171
+#: src/misc2_callback_func.c:170
 #, c-format
 msgid ""
 "%s rejects your offer and won't negotiate with you anymore. You should sell "
@@ -3104,9 +3104,10 @@ msgid " Bros."
 msgstr ""
 
 #: src/user.c:860
+#, c-format
 msgid ""
 "Your current sponsor is satisfied with your results and would like to renew "
-"the contract."
+"the contract. Currently they're paying you %d a week."
 msgstr ""
 
 #: src/window.c:39

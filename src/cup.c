@@ -504,7 +504,6 @@ cup_compare_success(gconstpointer a, gconstpointer b, gpointer data)
     const GArray *fixtures = cup->fixtures;
     const Team *team1 = *(const Team**)a;
     const Team *team2 = *(const Team**)b;
-    const Fixture *last_fix = &g_array_index(fixtures, Fixture, fixtures->len - 1);
     gint round_reached1 = cup_get_round_reached(team1, fixtures),
 	round_reached2 = cup_get_round_reached(team2, fixtures);
     gint return_value = 0;
@@ -522,19 +521,45 @@ cup_compare_success(gconstpointer a, gconstpointer b, gpointer data)
 	if(cupround->tables->len > 0)
 	    return_value = 
 		cup_compare_success_tables(team1, team2, cup, round_reached1);
-	else if(round_reached1 != last_fix->round)
-	    return_value = 0;
 	else
-	{
-	    if(GPOINTER_TO_INT(fixture_winner_of(last_fix, TRUE)) ==  team1->id)
-		return_value = -1;
-	    else
-		return_value = 1;
-	}
+	    return_value = cup_compare_success_knockout(team1, team2, cup->fixtures);
     }
 
     return return_value;
 }
+
+/** Compare two teams that reached the same knockout round. */
+gint
+cup_compare_success_knockout(const Team *tm1, const Team *tm2, const GArray *fixtures)
+{
+    gint i;
+    gint winner1 = -1, winner2 = -1;
+    gint return_value = 0;
+
+    for(i=fixtures->len - 1; i>=0; i--)
+    {
+	if(winner1 == -1 &&
+	   query_fixture_team_involved((&g_array_index(fixtures, Fixture, i)), tm1->id))
+	    winner1 = GPOINTER_TO_INT(
+		fixture_winner_of(&g_array_index(fixtures, Fixture, i), TRUE));
+
+	if(winner2 == -1 &&
+	   query_fixture_team_involved((&g_array_index(fixtures, Fixture, i)), tm2->id))
+	    winner2 = GPOINTER_TO_INT(
+		fixture_winner_of(&g_array_index(fixtures, Fixture, i), TRUE));
+	
+	if(winner1 != -1 && winner2 != -1)
+	    break;
+    }
+
+    if(winner1 == tm1->id && winner2 != tm2->id)
+	return_value = -1;
+    else if(winner1 != tm1->id && winner2 == tm2->id)
+	return_value = 1;
+
+    return return_value;
+}
+
 
 /** Compare two teams in cup tables. */
 gint

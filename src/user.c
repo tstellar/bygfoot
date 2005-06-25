@@ -847,6 +847,7 @@ user_show_sponsor_continue(void)
 {
     GArray *sponsors = g_array_new(FALSE, FALSE, sizeof(UserSponsor));
     UserSponsor sponsor;
+    gchar buf[SMALL];
 
     sponsor = user_get_sponsor(&current_user);
 
@@ -856,8 +857,8 @@ user_show_sponsor_continue(void)
 
     window_create(WINDOW_SPONSORS);
 
-    gtk_label_set_text(GTK_LABEL(lookup_widget(window.sponsors, "label_sponsors")),
-		       _("Your current sponsor is satisfied with your results and would like to renew the contract."));
+    sprintf(buf, _("Your current sponsor is satisfied with your results and would like to renew the contract. Currently they're paying you %d a week."), current_user.sponsor.benefit);
+    gtk_label_set_text(GTK_LABEL(lookup_widget(window.sponsors, "label_sponsors")), buf);
 
     treeview_show_sponsors(sponsors);
 

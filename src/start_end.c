@@ -503,6 +503,10 @@ start_new_season_league_changes(void)
     for(i=0;i<ligs->len;i++)
 	league_get_team_movements(&lig(i), team_movements);
 
+    for(i=0;i<team_movements->len;i++)
+	league_remove_team_with_id(league_from_clid(g_array_index(team_movements, TeamMove, i).tm.clid),
+				   g_array_index(team_movements, TeamMove, i).tm.id);
+
     for(i = team_movements->len - 1; i >= 0; i--)
 	if(g_array_index(team_movements, TeamMove, i).prom_rel_type == PROM_REL_RELEGATION)
 	    g_array_prepend_val(lig(g_array_index(team_movements, TeamMove, i).league_idx).teams,

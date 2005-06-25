@@ -67,6 +67,9 @@ gint
 cup_compare_success(gconstpointer a, gconstpointer b, gpointer data);
 
 gint
+cup_compare_success_knockout(const Team *tm1, const Team *tm2, const GArray *fixtures);
+
+gint
 cup_get_round_reached(const Team *tm, const GArray *fixtures);
 
 gboolean

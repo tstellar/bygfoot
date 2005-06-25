@@ -1,4 +1,5 @@
 #include "cup.h"
+#include "free.h"
 #include "league.h"
 #include "main.h"
 #include "maths.h"
@@ -300,22 +301,20 @@ league_remove_team_with_id(League *league, gint id)
 	      id, league->name->str);
 }
 
-/** Add the teams to promote/relegate from the league to the array
-    and remove them from the leagues. */
+
+/** Add the teams to promote/relegate (from the prom_rel elements)
+    from the league to the array. */
 void
-league_get_team_movements(League *league, GArray *team_movements)
+league_get_team_movements_prom_rel(const League *league, GArray *team_movements)
 {
     gint i, j, k;
-    gint dest_idx;
-    gint move_len = team_movements->len;
     TeamMove new_move;
     const GArray *elements = league->prom_rel.elements;
-    GPtrArray *prom_games_teams = NULL;
-    const Cup *prom_cup = NULL;
+    GPtrArray *dest_sids = NULL;
 
     for(i=0;i<elements->len;i++)
     {
-	GPtrArray *dest_sids =
+	dest_sids =
 	    misc_separate_strings(g_array_index(elements, PromRelElement, i).dest_sid->str);
 	gint order[dest_sids->len];
 
@@ -345,8 +344,65 @@ league_get_team_movements(League *league, GArray *team_movements)
 	    }
 	}
 	
-	g_ptr_array_free(dest_sids, TRUE);
+	free_g_string_array(&dest_sids);
     }
+}
+
+
+/** Add the team movements from the promotion games
+    to the array. */
+void
+league_get_team_movements_prom_games(const League *league, GArray *team_movements,
+				     const GPtrArray *prom_games_teams, gboolean up)
+{
+    gint i, k;
+    TeamMove new_move;
+    GPtrArray *dest_sids = (up) ?
+	misc_separate_strings(league->prom_rel.prom_games_dest_sid->str) :
+	misc_separate_strings(league->prom_rel.prom_games_loser_sid->str);
+    gint order[dest_sids->len];
+    gint start_idx = 0, 
+	end_idx = league->prom_rel.prom_games_number_of_advance;
+    gint prom_type = PROM_REL_PROMOTION,
+	user_his_type = USER_HISTORY_PROMOTED;
+
+    if(!up)
+    {
+	start_idx = league->prom_rel.prom_games_number_of_advance;
+	end_idx = prom_games_teams->len;
+	prom_type = PROM_REL_RELEGATION;
+	user_his_type = USER_HISTORY_RELEGATED;
+    }
+
+    k = 0;
+    math_generate_permutation(order, 0, dest_sids->len - 1);
+
+    for(i=start_idx;i<end_idx;i++)
+    {	    
+	new_move.tm = *((Team*)g_ptr_array_index(prom_games_teams, i));
+	new_move.league_idx = 
+	    league_index_from_sid(((GString*)g_ptr_array_index(dest_sids, order[k++ % dest_sids->len]))->str);
+	new_move.prom_rel_type = prom_type;
+	g_array_append_val(team_movements, new_move);
+	
+	if(team_is_user((Team*)g_ptr_array_index(prom_games_teams, i)) != -1)
+	    user_history_add(&usr(team_is_user((Team*)g_ptr_array_index(prom_games_teams, i))),
+			     user_his_type, new_move.tm.id, lig(new_move.league_idx).id, -1, "");
+    }
+    
+    free_g_string_array(&dest_sids);
+}
+
+
+/** Add the teams to promote/relegate from the league to the array
+    and remove them from the leagues. */
+void
+league_get_team_movements(League *league, GArray *team_movements)
+{
+    GPtrArray *prom_games_teams = NULL;
+    const Cup *prom_cup = NULL;
+
+    league_get_team_movements_prom_rel(league, team_movements);
 
     if(query_league_has_prom_games(league))
     {
@@ -360,48 +416,18 @@ league_get_team_movements(League *league, GArray *team_movements)
 	}
 
 	prom_games_teams = cup_get_teams_sorted(prom_cup);
-	dest_idx = league_index_from_sid(league->prom_rel.prom_games_dest_sid->str);
 
-	for(i=0;i<league->prom_rel.prom_games_number_of_advance;i++)
-	{
-	    new_move.tm = *((Team*)g_ptr_array_index(prom_games_teams, i));
-	    new_move.league_idx = dest_idx;
-	    new_move.prom_rel_type = PROM_REL_PROMOTION;
-	    g_array_append_val(team_movements, new_move);
-
-	    if(team_is_user((Team*)g_ptr_array_index(prom_games_teams, i)) != -1)
-		user_history_add(&usr(team_is_user(
-					  (Team*)g_ptr_array_index(prom_games_teams, i))),
-				 USER_HISTORY_PROMOTED, new_move.tm.id, lig(dest_idx).id, -1, "");
-	}
+	league_get_team_movements_prom_games(league, team_movements, prom_games_teams, TRUE);
 
 	if(strlen(league->prom_rel.prom_games_loser_sid->str) > 0)
-	{
-	    dest_idx = league_index_from_sid(league->prom_rel.prom_games_loser_sid->str);
-	    new_move.prom_rel_type = PROM_REL_RELEGATION;
-
-	    for(i=league->prom_rel.prom_games_number_of_advance;i<prom_games_teams->len;i++)
-	    {
-		new_move.tm = *((Team*)g_ptr_array_index(prom_games_teams, i));
-		new_move.league_idx = dest_idx;
-		g_array_append_val(team_movements, new_move);
-
-		if(team_is_user((Team*)g_ptr_array_index(prom_games_teams, i)) != -1)
-		    user_history_add(&usr(team_is_user(
-					      (Team*)g_ptr_array_index(prom_games_teams, i))),
-				     USER_HISTORY_RELEGATED, new_move.tm.id, lig(dest_idx).id, -1, "");
-	    }
-	}
-
+	    league_get_team_movements_prom_games(league, team_movements, 
+						 prom_games_teams, FALSE);
+	
 	g_ptr_array_free(prom_games_teams, TRUE);
     }
 
     g_array_sort_with_data(league->teams, team_compare_func,
 			   GINT_TO_POINTER(TEAM_COMPARE_LEAGUE_RANK + 100));
-
-    for(i=move_len;i<team_movements->len;i++)
-	league_remove_team_with_id(league_from_clid(g_array_index(team_movements, TeamMove, i).tm.clid),
-				   g_array_index(team_movements, TeamMove, i).tm.id);
 }
 
 

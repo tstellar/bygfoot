@@ -61,4 +61,11 @@ query_league_prom_games_begin(const League *league);
 gboolean
 query_league_matches_in_week(const League *league, gint week_number);
 
+void
+league_get_team_movements_prom_rel(const League *league, GArray *team_movements);
+
+void
+league_get_team_movements_prom_games(const League *league, GArray *team_movements,
+				     const GPtrArray *prom_games_teams, gboolean up);
+
 #endif
