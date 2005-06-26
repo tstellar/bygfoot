@@ -512,10 +512,13 @@ team_attribute_to_char(gint attribute, gint value)
 	    switch(value)
 	    {
 		case -1:
+		    /* Boost value. */
 		    return _("ANTI");
 		case 0:
+		    /* Boost value. */
 		    return _("OFF");
 		case 1:
+		    /* Boost value. */
 		    return _("ON");
 	    }
 	    break;
@@ -967,15 +970,18 @@ team_write_own_results(const Team *tm, gchar *buf, gboolean sort)
 	
 	if(res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] != current_user.tm] >
 	   res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm])
+	    /* a won match */
 	    sprintf(buf2, _("W  %d : %d"), 
 		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] != current_user.tm],
 		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm]);
 	else if(res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] != current_user.tm] <
 		res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm])
+	    /* a lost match */
 	    sprintf(buf2, _("L  %d : %d"), 
 		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] != current_user.tm],
 		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm]);
 	else
+	    /* a drawn match */
 	    sprintf(buf2, _("Dw %d : %d"),
 		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] != current_user.tm],
 		    res[((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm]);
@@ -985,11 +991,13 @@ team_write_own_results(const Team *tm, gchar *buf, gboolean sort)
 	    
 	    if(((Fixture*)g_ptr_array_index(matches, i))->teams[0] == current_user.tm)
 	    {
+		/* a match at home */
 		sprintf(buf3, _("%s (H) "), buf2);
 		place = 0;
 	    }
 	    else
 	    {
+		/* a match away */
 		sprintf(buf3, _("<span background='%s' foreground='%s'>%s (A) </span> "), 
 			const_app("string_treeview_live_game_commentary_away_bg"),
 			const_app("string_treeview_live_game_commentary_away_fg"),
@@ -999,6 +1007,7 @@ team_write_own_results(const Team *tm, gchar *buf, gboolean sort)
 	}
 	else
 	{
+	    /* a match on neutral ground */
 	    sprintf(buf3, _("%s (N) "), buf2);
 	    place = -1;
 	}
@@ -1048,11 +1057,14 @@ team_write_results(const Team *tm, gchar *result_buf, gchar *goals_buf)
 				g_ptr_array_index(latest_fixtures, i))->
 			       result[(((Fixture*)g_ptr_array_index(latest_fixtures, i))->teams[0] == tm)], 2);
 	if(res[0] == res[1])
+	    /* draw */
 	    strcat(result_buf, _("Dw "));
 	else if(res[(((Fixture*)g_ptr_array_index(latest_fixtures, i))->teams[0] == tm)] >
 		res[(((Fixture*)g_ptr_array_index(latest_fixtures, i))->teams[0] != tm)])
+	    /* lost */
 	    strcat(result_buf, _("L  "));
 	else
+	    /* won */
 	    strcat(result_buf, _("W  "));
     }
 

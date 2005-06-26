@@ -350,20 +350,20 @@ int_team_new_bound_upper 10
 int_team_new_bound_lower 20
 
 # tokens in the live game commentary
-string_lg_commentary_token_team_home		TH
-string_lg_commentary_token_team_away		TA
-string_lg_commentary_token_team_in_poss		TP
-string_lg_commentary_token_team_not_in_poss	TN
-string_lg_commentary_token_team_losing		TL
-string_lg_commentary_token_team_winning		TW
-string_lg_commentary_token_team			TT
-string_lg_commentary_token_player1		P1
-string_lg_commentary_token_player2		P2
-string_lg_commentary_token_attendance		AT
-string_lg_commentary_token_result		RE
-string_lg_commentary_token_minute		MI
-string_lg_commentary_token_extra		EX
-
+string_lg_commentary_token_team_home		_TH_
+string_lg_commentary_token_team_away		_TA_
+string_lg_commentary_token_team_in_poss		_TP_
+string_lg_commentary_token_team_not_in_poss	_TN_
+string_lg_commentary_token_team_losing		_TL_
+string_lg_commentary_token_team_winning		_TW_
+string_lg_commentary_token_team			_TT_
+string_lg_commentary_token_player1		_P1_
+string_lg_commentary_token_player2		_P2_
+string_lg_commentary_token_attendance		_AT_
+string_lg_commentary_token_result		_RE_
+string_lg_commentary_token_minute		_MI_
+string_lg_commentary_token_extra		_EX_
+_
 # base probability that the ball gets from defending area
 # to midfield area.
 float_live_game_area_def_mid 5000

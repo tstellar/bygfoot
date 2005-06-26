@@ -252,7 +252,7 @@ game_initialize(Fixture *fix)
     ticket_income = 
 	fix->attendance * const_int("int_team_stadium_ticket_price");
 
-    if(!opt_int("int_opt_disable_finances") && user_idx[0] != -1 && fix->home_advantage)
+    if(!sett_int("int_opt_disable_finances") && user_idx[0] != -1 && fix->home_advantage)
     {
 	usr(user_idx[0]).money += ticket_income;
 	usr(user_idx[0]).money_in[1][MON_IN_TICKET] += ticket_income;
@@ -863,8 +863,10 @@ game_update_stats_player(gpointer live_game, gconstpointer live_game_unit)
 	array_index = (own_goal) ? !team : team;
 
 	if(live_game_unit_before(unit, -1)->event.type == LIVE_GAME_EVENT_PENALTY)
+	    /* A goal scored with penalty. */
 	    strcpy(buf2, _(" (P)"));
 	else if(live_game_unit_before(unit, -1)->event.type == LIVE_GAME_EVENT_FREE_KICK)
+	    /* A goal scored with a free kick. */
 	    strcpy(buf2, _(" (FK)"));
 	else if(unit->event.type == LIVE_GAME_EVENT_OWN_GOAL)
 	    strcpy(buf2, _(" (OG)"));

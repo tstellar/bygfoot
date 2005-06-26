@@ -134,8 +134,8 @@ treeview_set_up_team_selection_treeview(GtkTreeView *treeview)
     gtk_tree_view_column_add_attribute(col, renderer,
 				       "text", 3);
 
-    /* Average skill */
     col = gtk_tree_view_column_new();
+    /* Average skill */
     gtk_tree_view_column_set_title(col, _("Av.Sk."));
     gtk_tree_view_column_set_sort_column_id(col, 4);
     gtk_tree_view_append_column(treeview, col);
@@ -244,17 +244,28 @@ treeview_set_up_player_list(GtkTreeView *treeview, gint *attributes, gint max,
     GtkCellRenderer     *renderer;
     gchar *titles[PLAYER_LIST_ATTRIBUTE_END] =
 	{_("Name"),
+	 /* Current position of a player. */
 	 _("CPos"),
+	 /* Position of a player. */
 	 _("Pos"),
+	 /* Current skill of a player. */
 	 _("CSk"),
+	 /* Skill of a player. */
 	 _("Sk"),
+	 /* Fitness of a player. */
 	 _("Fit"),
+	 /* Games of a player. */
 	 _("Ga"),
+	 /* Shots of a player. */
 	 _("Sh"),
+	 /* Goals of a player. */
 	 _("Go"),
+	 /* Status of a player. */
 	 _("Status"),
+	 /* Yellow cards of a player. */
 	 _("YC"),
 	 _("Age"),
+	 /* Estimated talent of a player. */
 	 _("Etal"),
 	 _("Value"),
 	 _("Wage"),
@@ -651,6 +662,7 @@ treeview_create_game_stats(LiveGame *live_game)
     gchar buf[2][SMALL];
     gchar buf3[SMALL];
     gchar *categories[LIVE_GAME_STAT_VALUE_END] =
+	/* 'Normal' goals, ie. no penalties or free kicks. */
 	{_("Goals (regular)"),
 	 _("Shots"),   
 	 _("Shot %"),   
@@ -1021,6 +1033,7 @@ treeview_table_write_header(GtkListStore *ls, const Table *table, gint number)
 	symbol = cup_from_clid(table->clid)->symbol->str;
 	if(g_array_index(cup_from_clid(table->clid)->rounds, CupRound,
 			 table->round).tables->len > 1)			 
+	    /*  A group of a round robin stage of a cup. */
 	    sprintf(buf, _("%s Group %d"), cup_from_clid(table->clid)->name->str, number);
 	else
 	    sprintf(buf, "%s", cup_from_clid(table->clid)->name->str);
@@ -1134,13 +1147,21 @@ treeview_set_up_table(GtkTreeView *treeview)
     GtkCellRenderer     *renderer;
     gchar *titles[9] =
 	{_("Team"),
+	 /* Games played (a number). */
 	 _("PL"),
+	 /* Games won. */
 	 _("W"),
+	 /* Games drawn. */
 	 _("Dw"),
+	 /* Games lost. */
 	 _("L"),
+	 /* Goals for. */
 	 _("GF"),
+	 /* Goals against. */
 	 _("GA"),
+	 /* Goal difference. */
 	 _("GD"),
+	 /* Points. */
 	 _("PTS")};
 
     gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
@@ -1254,6 +1275,7 @@ treeview_create_finances(const User* user)
 	 _("Physio"),
 	 _("Scout"),
 	 _("Journey costs"),
+	 /* Money paid to players a user fired. */
 	 _("Compensations")};
 
     GtkTreeIter iter;
@@ -1264,6 +1286,7 @@ treeview_create_finances(const User* user)
 			   G_TYPE_STRING);
 
     gtk_list_store_append(ls, &iter);
+    /* Finances balance. */
     gtk_list_store_set(ls, &iter, 0, _("Bi-weekly balance"), 1, "", 2, "", -1);
 
     for(i=0;i<MON_IN_TRANSFERS;i++)
@@ -1288,6 +1311,7 @@ treeview_create_finances(const User* user)
 
     misc_print_grouped_int(balance, buf, FALSE);
     gtk_list_store_append(ls, &iter);
+    /* Finances balance. */
     gtk_list_store_set(ls, &iter, 0, _("Balance"), 1, "", 2, "", -1);
     if(balance >= 0)
 	strcpy(buf2, buf);
@@ -1353,6 +1377,7 @@ treeview_create_finances(const User* user)
 		       2, "", -1);
 
     misc_print_grouped_int(user->sponsor.benefit, buf, FALSE);
+    /* Contract time and money a sponsor pays. */
     sprintf(buf2, _("%.1f months / %s"), ((gfloat)user->sponsor.contract) / 4, buf);
     gtk_list_store_append(ls, &iter);
     gtk_list_store_set(ls, &iter, 0, _("Contract / Money"), 1, buf2, 2, "", -1);
@@ -1553,7 +1578,8 @@ treeview_create_next_opponent(void)
     gtk_list_store_set(ls, &iter, 0, _("Goals"), 1, buf2, -1);
 
     team_write_own_results(opp, buf, FALSE);
-    gtk_list_store_append(ls, &iter);
+    gtk_list_store_append(ls, &iter);    
+    /* The user's results against a specific team. */
     gtk_list_store_set(ls, &iter, 0, _("Your results"), 1, buf, -1);
     
     return GTK_TREE_MODEL(ls);
@@ -1781,6 +1807,8 @@ treeview_create_player_info(const Player *pl)
 	 _("Wage"),
 	 _("Contract"),
 	 _("Games/Goals\n"),
+	 /* 'Limit' is the number of yellow cards until a player gets
+	  banned automatically for a match. */
 	 _("Yellow cards (limit)\n"),
 	 _("Banned\n"),
 	 _("Career values"),
@@ -1925,7 +1953,9 @@ treeview_set_up_user_history(GtkTreeView *treeview)
     gint i;
     GtkTreeViewColumn   *col;
     GtkCellRenderer     *renderer;
-    gchar *titles[3] ={_("Sea"), _("Week"), _("Team")};
+    /* Season. */
+    gchar *titles[3] ={_("Sea"), 
+		       _("Week"), _("Team")};
 
     gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
 				GTK_SELECTION_NONE);
@@ -1990,7 +2020,9 @@ treeview_create_league_stats(GtkListStore *ls, const LeagueStat *league_stat)
     gchar *team_icons[2] = {const_app("string_treeview_league_stats_off_teams_icon"),
 			    const_app("string_treeview_league_stats_def_teams_icon")};
     gchar *player_titles[2][2] = {{_("Best goal scorers"), _("Shot %")},
-				  {_("Best goalkeepers"), _("Save %")}};
+				  {_("Best goalkeepers"),
+				   /* % of saves for goalies (#goals / #shots) */
+				   _("Save %")}};
     gchar *player_icons[2] = {const_app("string_treeview_league_stats_scorers_icon"),
 			      const_app("string_treeview_league_stats_goalies_icon")};
     gchar *colour_fg = NULL, *colour_bg = NULL;
@@ -2041,7 +2073,9 @@ treeview_create_league_stats(GtkListStore *ls, const LeagueStat *league_stat)
 	gtk_list_store_append(ls, &iter);
 	treeview_helper_insert_icon(ls, &iter, 0, player_icons[i]);
 	gtk_list_store_set(ls, &iter, 1, const_int("int_treeview_helper_int_empty"),
+			   /* Goals. */
 			   2, player_titles[i][0], 3, _("Go"),
+			   /* Goals per game. */
 			   4, _("Go/Ga"), 5, player_titles[i][1], -1);
 
 	for(j=0;j<players[i]->len;j++)
@@ -2330,6 +2364,7 @@ treeview_create_language_list(void)
 	misc_separate_strings(const_str("string_language_symbols"));
 
     gtk_list_store_append(ls, &iter);
+    /* Language is system-set (not user chosen). */
     gtk_list_store_set(ls, &iter, 0, NULL, 1, _("System"), -1);
 
     for(i=0;i<names->len;i++)

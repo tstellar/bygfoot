@@ -450,9 +450,15 @@ free_cup_choose_team(CupChooseTeam *cup_choose_team)
 void
 free_variables(void)
 {
+    gint i;
+
     free_option_list(&options, FALSE);
+    free_option_list(&settings, FALSE);
     free_option_list(&constants, FALSE);
     free_option_list(&constants_app, FALSE);
+
+    for(i=0;i<LIVE_GAME_EVENT_END;i++)
+	free_g_string_array(&lg_commentary[i]);
 
     free_g_string(&save_file);
 

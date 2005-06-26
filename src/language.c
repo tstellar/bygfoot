@@ -3,6 +3,7 @@
 #include "callbacks.h"
 #include "free.h"
 #include "language.h"
+#include "lg_commentary.h"
 #include "misc.h"
 #include "option.h"
 #include "variables.h"
@@ -30,10 +31,12 @@ language_set(gint index)
 	if(window.main != NULL)
 	{
 	    window_destroy(&window.main, FALSE);
-	    window_create(WINDOW_MAIN);	
+	    window_create(WINDOW_MAIN);
 	    on_button_back_to_main_clicked(NULL, NULL);
 	}
     }
+
+    lg_commentary_load_commentary_file_from_option();
 
     free_g_string_array(&codes);
 }

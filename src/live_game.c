@@ -674,7 +674,7 @@ live_game_event_general(gboolean create_new)
 	}
 	else if(last_unit.event.type == LIVE_GAME_EVENT_GOAL ||
 		last_unit.event.type == LIVE_GAME_EVENT_OWN_GOAL ||
-		last_unit.event.type == LIVE_GAME_EVENT_MISSED ||
+		last_unit.event.type == LIVE_GAME_EVENT_MISS ||
 		last_unit.event.type == LIVE_GAME_EVENT_SAVE ||
 		last_unit.event.type == LIVE_GAME_EVENT_POST ||
 		last_unit.event.type == LIVE_GAME_EVENT_CROSS_BAR)
@@ -1474,7 +1474,7 @@ live_game_event_get_verbosity(gint event_type)
 	    event_type == LIVE_GAME_EVENT_HEADER ||
 	    event_type == LIVE_GAME_EVENT_FREE_KICK ||
 	    event_type == LIVE_GAME_EVENT_POST ||
-	    event_type == LIVE_GAME_EVENT_MISSED ||
+	    event_type == LIVE_GAME_EVENT_MISS ||
 	    event_type == LIVE_GAME_EVENT_CROSS_BAR ||
 	    event_type == LIVE_GAME_EVENT_SAVE)
 	return_value = 1;

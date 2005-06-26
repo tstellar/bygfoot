@@ -1012,11 +1012,11 @@ player_update_weekly(Team *tm, gint idx)
     {
 	pl->age += 0.0192;
 
-	if(!opt_int("int_opt_disable_contracts"))
+	if(!sett_int("int_opt_disable_contracts"))
 	    pl->contract -= 0.0192;
     }
 
-    if(!opt_int("int_opt_disable_contracts") && debug < 50 &&
+    if(!sett_int("int_opt_disable_contracts") && debug < 50 &&
        pl->contract * 12 <= opt_user_int("int_opt_user_contract_limit") &&
        (pl->contract + 0.0192) * 12 > opt_user_int("int_opt_user_contract_limit"))
     {

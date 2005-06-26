@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-25 16:06+0200\n"
+"POT-Creation-Date: 2005-06-26 13:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -107,8 +107,8 @@ msgstr ""
 msgid "Fee"
 msgstr ""
 
-#: src/callback_func.c:451 src/callback_func.c:458 src/treeview.c:260
-#: src/treeview.c:1781
+#: src/callback_func.c:451 src/callback_func.c:458 src/treeview.c:271
+#: src/treeview.c:1807
 msgid "Wage"
 msgstr ""
 
@@ -255,20 +255,21 @@ msgstr ""
 msgid "Round robin"
 msgstr ""
 
-#: src/cup.c:814
+#. A cup stage, e.g. Last 32 when there are only 32 teams left.
+#: src/cup.c:815
 #, c-format
 msgid "Last %d"
 msgstr ""
 
-#: src/cup.c:817
+#: src/cup.c:818
 msgid "Final"
 msgstr ""
 
-#: src/cup.c:820
+#: src/cup.c:821
 msgid "Semi-final"
 msgstr ""
 
-#: src/cup.c:823
+#: src/cup.c:824
 msgid "Quarter-final"
 msgstr ""
 
@@ -294,23 +295,28 @@ msgstr ""
 msgid "You have %d weeks to pay back the rest of your loan."
 msgstr ""
 
-#: src/fixture.c:796
+#. Game was decided in penalty shoot-out.
+#: src/fixture.c:797
 msgid " p."
 msgstr ""
 
-#: src/fixture.c:798
+#. Game was decided in extra time.
+#: src/fixture.c:800
 msgid " e.t."
 msgstr ""
 
-#: src/game.c:866 src/treeview_helper.c:963
+#. A goal scored with penalty.
+#. Penalty shooter.
+#: src/game.c:867 src/treeview_helper.c:967
 msgid " (P)"
 msgstr ""
 
-#: src/game.c:868
+#. A goal scored with a free kick.
+#: src/game.c:870
 msgid " (FK)"
 msgstr ""
 
-#: src/game.c:870
+#: src/game.c:872
 msgid " (OG)"
 msgstr ""
 
@@ -443,7 +449,7 @@ msgstr ""
 msgid "_Team"
 msgstr ""
 
-#: src/interface.c:425 src/treeview.c:1540
+#: src/interface.c:425 src/treeview.c:1565
 msgid "Playing style"
 msgstr ""
 
@@ -451,7 +457,7 @@ msgstr ""
 msgid "All Out Defend"
 msgstr ""
 
-#: src/interface.c:442 src/treeview.c:1436
+#: src/interface.c:442 src/treeview.c:1461
 msgid "Defend"
 msgstr ""
 
@@ -459,7 +465,7 @@ msgstr ""
 msgid "Balanced"
 msgstr ""
 
-#: src/interface.c:454 src/treeview.c:1438
+#: src/interface.c:454 src/treeview.c:1463
 msgid "Attack"
 msgstr ""
 
@@ -467,7 +473,7 @@ msgstr ""
 msgid "All Out Attack"
 msgstr ""
 
-#: src/interface.c:466 src/treeview.c:1255
+#: src/interface.c:466 src/treeview.c:1276
 msgid "Scout"
 msgstr ""
 
@@ -487,7 +493,7 @@ msgstr ""
 msgid "Bad"
 msgstr ""
 
-#: src/interface.c:501 src/treeview.c:1254
+#: src/interface.c:501 src/treeview.c:1275
 msgid "Physio"
 msgstr ""
 
@@ -722,778 +728,110 @@ msgstr ""
 msgid "Next (W)"
 msgstr ""
 
-#: src/lg_commentary.c:85
-msgid "TT has changed their style to EX"
-msgstr ""
-
-#: src/lg_commentary.c:89
-msgid "TT has changed their boost to EX"
-msgstr ""
-
-#: src/lg_commentary.c:98
-msgid "P2 feeds the ball through to P1"
-msgstr ""
-
-#: src/lg_commentary.c:99
-msgid "P2 threads a great ball to P1 "
-msgstr ""
-
-#: src/lg_commentary.c:100
-msgid "Lovely pass from P2 releases P1"
-msgstr ""
-
-#: src/lg_commentary.c:101
-msgid "Long floating pass from P2 finds P1"
-msgstr ""
-
-#: src/lg_commentary.c:102
-msgid "Good passing move across the pitch and down the right"
-msgstr ""
-
-#: src/lg_commentary.c:103
-msgid "Quick passing move down the left"
-msgstr ""
-
-#: src/lg_commentary.c:104
-msgid "P2 cross controlled by P1 who slips past his man"
-msgstr ""
-
-#: src/lg_commentary.c:105
-msgid "Another decent move down the wing"
-msgstr ""
-
-#: src/lg_commentary.c:106
-msgid "P1 latches onto P2's pass"
-msgstr ""
-
-#: src/lg_commentary.c:107
-msgid "P2 needles ball through players and finds P1"
-msgstr ""
-
-#: src/lg_commentary.c:108
-msgid "P2 controls it with his chest and passes to P1"
-msgstr ""
-
-#: src/lg_commentary.c:109
-msgid "P2 heads the ball towards P1"
-msgstr ""
-
-#: src/lg_commentary.c:110
-msgid "P1 twisting and turning again"
-msgstr ""
-
-#: src/lg_commentary.c:111
-msgid "P1 rips through the midfield"
-msgstr ""
-
-#: src/lg_commentary.c:112
-msgid "P1 spins past his marker"
-msgstr ""
-
-#: src/lg_commentary.c:115
-msgid "P1 wins the ball with a perfectly timed challenge"
-msgstr ""
-
-#: src/lg_commentary.c:116
-msgid "Bad control by P2 lets P1 steal the ball off him"
-msgstr ""
-
-#: src/lg_commentary.c:117
-msgid "P1 takes the ball away from P2 with a sliding tackle"
-msgstr ""
-
-#: src/lg_commentary.c:118
-msgid "Loose ball falls to P1"
-msgstr ""
-
-#: src/lg_commentary.c:121
-msgid "Oww, nasty tackle on P1"
-msgstr ""
-
-#: src/lg_commentary.c:122
-msgid "Surely that's a sending off offence"
-msgstr ""
-
-#: src/lg_commentary.c:123
-msgid "P2 knocks over P1 with a double footed lunge"
-msgstr ""
-
-#: src/lg_commentary.c:124
-msgid "Crunching challenge on P1"
-msgstr ""
-
-#: src/lg_commentary.c:125
-msgid "P1 gets his legs taken away from him by P2"
-msgstr ""
-
-#: src/lg_commentary.c:126
-msgid "Slicing challenge by P2 on P1"
-msgstr ""
-
-#: src/lg_commentary.c:127
-msgid "Vicious tackle from P2 leaves P1 lying on the floor in agony"
-msgstr ""
-
-#: src/lg_commentary.c:128
-msgid "Ouch that's got to hurt"
-msgstr ""
-
-#: src/lg_commentary.c:129
-msgid "Extremely high boot from P2 sends P1 to the ground"
-msgstr ""
-
-#: src/lg_commentary.c:132
-msgid "P1 charges towards goal and shoots!"
-msgstr ""
-
-#: src/lg_commentary.c:133
-msgid "P1 spins and shoots"
-msgstr ""
-
-#: src/lg_commentary.c:134
-msgid "Long ball from P2 finds P1 at far post"
-msgstr ""
-
-#: src/lg_commentary.c:135
-msgid "P1 can't quite get it under control but his miss kick heads toward goal"
-msgstr ""
-
-#: src/lg_commentary.c:136
-msgid "P1 shoots from 22 yards looks like it's going wide"
-msgstr ""
-
-#: src/lg_commentary.c:137
-msgid "P1 dribbles into the box, turns inside the defence and fires"
-msgstr ""
-
-#: src/lg_commentary.c:138
-msgid "P1 cuts in from the left flank and shoots"
-msgstr ""
-
-#: src/lg_commentary.c:139
-msgid "P1 tries his luck from 30 yards"
-msgstr ""
-
-#: src/lg_commentary.c:140
-msgid "P1 arrows shot towards top left corner"
-msgstr ""
-
-#: src/lg_commentary.c:141
-msgid "P1 shoots from close range"
-msgstr ""
-
-#: src/lg_commentary.c:142
-msgid "Great ball from P2 sends P1 one on one with the goalkeeper"
-msgstr ""
-
-#: src/lg_commentary.c:143
-msgid "P1's overhead kick heads towards the top right hand corner"
-msgstr ""
-
-#: src/lg_commentary.c:144
-msgid ""
-"P1 spins past two defenders, wrong foots the keeper and back heels the ball "
-"towards goal"
-msgstr ""
-
-#: src/lg_commentary.c:145
-msgid "P2 lays the ball off to P1 who sends a rocket of a shot towards goal"
-msgstr ""
-
-#: src/lg_commentary.c:148
-msgid "Goal!!!"
-msgstr ""
-
-#: src/lg_commentary.c:149
-msgid "And the ball is smacked into the back of the net!!!"
-msgstr ""
-
-#: src/lg_commentary.c:150
-msgid "P1 scores!!!"
-msgstr ""
-
-#: src/lg_commentary.c:151
-msgid "And the ball flies straight past P2 and into the back of the net!!!"
-msgstr ""
-
-#: src/lg_commentary.c:152
-msgid "The ball flies past P2 and it's a goal!!!"
-msgstr ""
-
-#: src/lg_commentary.c:153
-msgid "P1 wheels away in celebration after a great goal sent the fans wild"
-msgstr ""
-
-#: src/lg_commentary.c:154
-msgid ""
-"P2's despairing dive can't keep P1's shot out and the ball is in the back of "
-"the net!!!"
-msgstr ""
-
-#: src/lg_commentary.c:155
-msgid "The dance ignites the fans, P1 celebrates in his own special fashion"
-msgstr ""
-
-#: src/lg_commentary.c:158
-msgid "P1 fired wide!"
-msgstr ""
-
-#: src/lg_commentary.c:159
-msgid "P1 should have squared the ball went alone and lashed wide"
-msgstr ""
-
-#: src/lg_commentary.c:160
-msgid "Defender clears"
-msgstr ""
-
-#: src/lg_commentary.c:161
-msgid "P1 curls ball over"
-msgstr ""
-
-#: src/lg_commentary.c:162
-msgid "Defender back to block just as it seemed to open up"
-msgstr ""
-
-#: src/lg_commentary.c:163
-msgid "P1 smacks into row Z"
-msgstr ""
-
-#: src/lg_commentary.c:164
-msgid "And the shot creeps just past the post"
-msgstr ""
-
-#: src/lg_commentary.c:167
-msgid "P2's fingertips flicks it wide"
-msgstr ""
-
-#: src/lg_commentary.c:168
-msgid "P2 forced to tip P1's shot over the crossbar"
-msgstr ""
-
-#: src/lg_commentary.c:169
-msgid ""
-"Great pace shown by P1 to get to the ball first but P2 produced superb block "
-"tackle"
-msgstr ""
-
-#: src/lg_commentary.c:170
-msgid "Low shot taken well to his left by P2"
-msgstr ""
-
-#: src/lg_commentary.c:171
-msgid "P2 makes a superb reflex save to tip wide"
-msgstr ""
-
-#: src/lg_commentary.c:172
-msgid "P2 runs at P1 and blocks shot with ankle"
-msgstr ""
-
-#: src/lg_commentary.c:173
-msgid "Easy save for the goalkeeper"
-msgstr ""
-
-#: src/lg_commentary.c:174
-msgid "Caught well by P2"
-msgstr ""
-
-#: src/lg_commentary.c:177
-msgid "It's a crowd of AT here as the whistle blows"
-msgstr ""
-
-#: src/lg_commentary.c:178
-msgid "We're under way"
-msgstr ""
-
-#: src/lg_commentary.c:179
-msgid "The two teams are greeted by a wall of noise as they take to the pitch"
-msgstr ""
-
-#: src/lg_commentary.c:180
-msgid ""
-"The crowd roars as the players run out from the tunnel to start the match"
-msgstr ""
-
-#: src/lg_commentary.c:181
-msgid "A cloudless day, gives the impression this match is going to sparkle"
-msgstr ""
-
-#: src/lg_commentary.c:182
-msgid "AT fans can't be wrong, this is the match we have all come to watch"
-msgstr ""
-
-#: src/lg_commentary.c:183
-msgid "The referee gets the nod from the linesman and we are away"
-msgstr ""
-
-#: src/lg_commentary.c:184
-msgid "The clash of the titans kicks off"
-msgstr ""
-
-#: src/lg_commentary.c:185
-msgid "The referees are ready, players set, the battle begins"
-msgstr ""
-
-#: src/lg_commentary.c:188
-msgid "It's half time"
-msgstr ""
-
-#: src/lg_commentary.c:189
-msgid "It's a RE at half time."
-msgstr ""
-
-#: src/lg_commentary.c:190
-msgid ""
-"It's a RE at half time, TL's manager has to find something special to spur "
-"his team on."
-msgstr ""
-
-#: src/lg_commentary.c:191
-msgid "TL heads into the tunnel to await the managers scolding"
-msgstr ""
-
-#: src/lg_commentary.c:192
-msgid "TW are just 45 minutes away from a stunning victory"
-msgstr ""
-
-#: src/lg_commentary.c:193
-msgid ""
-"TL's manager cops a rollicking from the fans as he turns from the dugout"
-msgstr ""
-
-#: src/lg_commentary.c:194
-msgid "There are two teams out there and only one of them is playing football"
-msgstr ""
-
-#: src/lg_commentary.c:197
-msgid "After a close match the game heads into extra time"
-msgstr ""
-
-#: src/lg_commentary.c:198
-msgid "It's still RE: extra time"
-msgstr ""
-
-#: src/lg_commentary.c:199
-msgid "After MI minutes it's still RE: extra time"
-msgstr ""
-
-#: src/lg_commentary.c:200
-msgid "Who will breakdown first, extra time it is"
-msgstr ""
-
-#: src/lg_commentary.c:201
-msgid "It's down to determination and fitness now as we head into extra time"
-msgstr ""
-
-#: src/lg_commentary.c:204
-msgid "Who would have thought MI minutes ago it would come down to this"
-msgstr ""
-
-#: src/lg_commentary.c:205
-msgid "And now we have the tense drama of a penalty shoot out"
-msgstr ""
-
-#: src/lg_commentary.c:206
-msgid "Two teams, equall till now in every respect,face off in penalties"
-msgstr ""
-
-#: src/lg_commentary.c:207
-msgid "The teams cant do it so now it's one on one. Striker against goalie"
-msgstr ""
-
-#: src/lg_commentary.c:210
-msgid "The match is over!"
-msgstr ""
-
-#: src/lg_commentary.c:211
-msgid "TW are triumphant!!!"
-msgstr ""
-
-#: src/lg_commentary.c:212
-msgid "The fans boo TL off the pitch"
-msgstr ""
-
-#: src/lg_commentary.c:213
-msgid "After MI minutes the match ends with a RE"
-msgstr ""
-
-#: src/lg_commentary.c:214
-msgid "The referee checks his watch and blows for full time"
-msgstr ""
-
-#: src/lg_commentary.c:215
-msgid "Well that's that. It ends RE"
-msgstr ""
-
-#: src/lg_commentary.c:216
-msgid "RE, what an astonishing result for TW"
-msgstr ""
-
-#: src/lg_commentary.c:219
-msgid "Ohh no, the ball ricocheted off P1 into the net"
-msgstr ""
-
-#: src/lg_commentary.c:220
-msgid ""
-"It's a pinball in the penalty box, finally spinning off P1 across the line"
-msgstr ""
-
-#: src/lg_commentary.c:221
-msgid ""
-"Oh that's a great shot and it's deflected off P1 and into the back of the net"
-msgstr ""
-
-#: src/lg_commentary.c:222
-msgid ""
-"P1 passes the ball back to his goalie, oh no the keepers missed it! It's an "
-"own goal by P1!"
-msgstr ""
-
-#: src/lg_commentary.c:223
-msgid "That little missunderstanding has cost TT a goal"
-msgstr ""
-
-#: src/lg_commentary.c:226
-msgid "P2 chips the ball towards P1 who heads the ball towards goal"
-msgstr ""
-
-#: src/lg_commentary.c:227
-msgid "Diving header by P1"
-msgstr ""
-
-#: src/lg_commentary.c:228
-msgid "He just floated in midair for ages then thunder heads it towards home"
-msgstr ""
-
-#: src/lg_commentary.c:231
-msgid "Sweet strike by P1, hits the post"
-msgstr ""
-
-#: src/lg_commentary.c:232
-msgid "And the shot glances wide off the post"
-msgstr ""
-
-#: src/lg_commentary.c:233
-msgid "I'm suprised the post has managed to withstand that cracking shot"
-msgstr ""
-
-#: src/lg_commentary.c:236
-msgid "Ball dinked over P2 but hit crossbar and bounced to safety"
-msgstr ""
-
-#: src/lg_commentary.c:237
-msgid "The ball smacks into the crossbar with P2 stranded"
-msgstr ""
-
-#: src/lg_commentary.c:238
-msgid ""
-"P2 seemed to be everywhere at once, finally tipping the ball off the crossbar"
-msgstr ""
-
-#: src/lg_commentary.c:241
-msgid "P1 steps up to take the penalty"
-msgstr ""
-
-#: src/lg_commentary.c:242
-msgid "P1 has a chance to score with a penalty kick"
-msgstr ""
-
-#: src/lg_commentary.c:243
-msgid ""
-"P1 has missed a penalty before but he now has a chance to redeem himself"
-msgstr ""
-
-#: src/lg_commentary.c:244
-msgid ""
-"You have to bury the nerves, swallow and concentrate when your taking "
-"penalties"
-msgstr ""
-
-#: src/lg_commentary.c:247
-msgid "Short free-kick from P1"
-msgstr ""
-
-#: src/lg_commentary.c:248
-msgid "P1 drives free kick low and hard"
-msgstr ""
-
-#: src/lg_commentary.c:249
-msgid "P1 takes free-kick quickly and curls around wall"
-msgstr ""
-
-#: src/lg_commentary.c:250
-msgid "P1 curls the free kick over the wall"
-msgstr ""
-
-#: src/lg_commentary.c:251
-msgid "Free kick: P1 plays the ball out wide"
-msgstr ""
-
-#: src/lg_commentary.c:252
-msgid "Free kick: P1 hits a long ball up the pitch"
-msgstr ""
-
-#: src/lg_commentary.c:253
-msgid "Free kick whipped across the face of goal by P1"
-msgstr ""
-
-#: src/lg_commentary.c:256
-msgid "P2 for dangerous slide tackle on P1"
-msgstr ""
-
-#: src/lg_commentary.c:257
-msgid "P2 for foul on P1"
-msgstr ""
-
-#: src/lg_commentary.c:258
-msgid "P2 for kicking ball away "
-msgstr ""
-
-#: src/lg_commentary.c:259
-msgid "P2 for time wasting"
-msgstr ""
-
-#: src/lg_commentary.c:260
-msgid "P2 for handball"
-msgstr ""
-
-#: src/lg_commentary.c:261
-msgid "P2 for stopping P1 taking a quick free-kick"
-msgstr ""
-
-#: src/lg_commentary.c:262
-msgid "P2 is booked for repeated dissent"
-msgstr ""
-
-#: src/lg_commentary.c:265
-msgid "P2 is reprimanded for high kicking"
-msgstr ""
-
-#: src/lg_commentary.c:266
-msgid "P2 is given his marching orders for contempt"
-msgstr ""
-
-#: src/lg_commentary.c:267
-msgid "P2 for malicious showing of studs"
-msgstr ""
-
-#: src/lg_commentary.c:268
-msgid "P2 for intentional handball"
-msgstr ""
-
-#: src/lg_commentary.c:269
-msgid "P2 is sent off for stopping a clear goal scoring opportunity"
-msgstr ""
-
-#: src/lg_commentary.c:270
-msgid "P2 has been red carded for punching P1"
-msgstr ""
-
-#: src/lg_commentary.c:271
-msgid "P2 for swearing at opposition fans"
-msgstr ""
-
-#: src/lg_commentary.c:274
-msgid ""
-"P2 fouls and the stretcher bearers come racing on with P1 lying in agony on "
-"the turf"
-msgstr ""
-
-#: src/lg_commentary.c:275
-msgid "Foul by P2; P1 seems to be injured... he might have to be substituted"
-msgstr ""
-
-#: src/lg_commentary.c:278
-msgid "P1 has been sent off"
-msgstr ""
-
-#: src/lg_commentary.c:281
-msgid "P1 will have to go off after what seems an ankle injury"
-msgstr ""
-
-#: src/lg_commentary.c:282
-msgid "P1 looks like he's badly injured"
-msgstr ""
-
-#: src/lg_commentary.c:285
-msgid "P1 has pulled a muscle but should be able to continue"
-msgstr ""
-
-#: src/lg_commentary.c:286
-msgid "P1 has picked up a slight knock"
-msgstr ""
-
-#: src/lg_commentary.c:287
-msgid ""
-"P1 has a large cut above his left eye but it has been patched up and he will "
-"be able to continue "
-msgstr ""
-
-#: src/lg_commentary.c:290
-msgid "TH is undergoing stadium problems"
-msgstr ""
-
-#: src/lg_commentary.c:291
-msgid "The floodlights have just gone out"
-msgstr ""
-
-#: src/lg_commentary.c:294
-msgid "The peasants are revolting"
-msgstr ""
-
-#: src/lg_commentary.c:295
-msgid "And the fans are throwing flares onto the pitch"
-msgstr ""
-
-#: src/lg_commentary.c:296
-msgid ""
-"The riot police have moved in to stop fighting between sets of oppostion "
-"supporters"
-msgstr ""
-
-#: src/lg_commentary.c:297
-msgid ""
-"A fan has managed to get onto the pitch and has begun to attack the referee"
-msgstr ""
-
-#: src/lg_commentary.c:298
-msgid "The fans pour onto the pitch in a full scale pitch invasion"
-msgstr ""
-
-#: src/lg_commentary.c:301
-msgid "Fire consumes TT's stadium"
-msgstr ""
-
-#: src/lg_commentary.c:302
-msgid "Away fans have set fire to the north stand"
-msgstr ""
-
-#: src/lg_commentary.c:303
-msgid "A flare chucked onto the touchline has started a massive blaze"
-msgstr ""
-
-#: src/lg_commentary.c:304
-msgid ""
-"A speaker has gone up in flames and the blaze spreading around the entire "
-"stadium"
-msgstr ""
-
-#: src/lg_commentary.c:307
-msgid "TT make a substitution, P1 comes on to replace P2"
-msgstr ""
-
-#: src/lg_commentary.c:308
-msgid "P2 goes off to applause from the fans, P1 replaces him"
-msgstr ""
-
-#: src/lg_commentary.c:309
-msgid "P2 is booed off the pitch as he is replaced by P1"
-msgstr ""
-
-#: src/lg_commentary.c:312
-msgid "TT has changed their structure to EX"
-msgstr ""
-
-#: src/lg_commentary.c:469 src/team.c:500
+#: src/lg_commentary.c:237 src/team.c:500
 msgid "ALL OUT DEFEND"
 msgstr ""
 
-#: src/lg_commentary.c:472 src/team.c:502
+#: src/lg_commentary.c:240 src/team.c:502
 msgid "DEFEND"
 msgstr ""
 
-#: src/lg_commentary.c:475 src/team.c:504
+#: src/lg_commentary.c:243 src/team.c:504
 msgid "BALANCED"
 msgstr ""
 
-#: src/lg_commentary.c:478 src/team.c:506
+#: src/lg_commentary.c:246 src/team.c:506
 msgid "ATTACK"
 msgstr ""
 
-#: src/lg_commentary.c:481 src/team.c:508
+#: src/lg_commentary.c:249 src/team.c:508
 msgid "ALL OUT ATTACK"
 msgstr ""
 
-#: src/lg_commentary.c:484 src/team.c:515
+#. Boost value.
+#: src/lg_commentary.c:252 src/team.c:516
 msgid "ANTI"
 msgstr ""
 
-#: src/lg_commentary.c:487 src/team.c:517
+#. Boost value.
+#: src/lg_commentary.c:255 src/team.c:519
 msgid "OFF"
 msgstr ""
 
-#: src/lg_commentary.c:490 src/team.c:519
+#. Boost value.
+#: src/lg_commentary.c:258 src/team.c:522
 msgid "ON"
 msgstr ""
 
-#: src/load_save.c:45
+#: src/load_save.c:46
 msgid "Saving options/constants..."
 msgstr ""
 
-#: src/load_save.c:58
+#: src/load_save.c:59
 msgid "Saving leagues..."
 msgstr ""
 
-#: src/load_save.c:69
+#: src/load_save.c:70
 msgid "Saving cups..."
 msgstr ""
 
-#: src/load_save.c:80
+#: src/load_save.c:81
 msgid "Saving users..."
 msgstr ""
 
-#: src/load_save.c:90
+#: src/load_save.c:91
 msgid "Saving transfer list..."
 msgstr ""
 
-#: src/load_save.c:100
+#: src/load_save.c:101
 msgid "Saving season stats..."
 msgstr ""
 
-#: src/load_save.c:110
+#: src/load_save.c:111
 msgid "Saving miscellaneous..."
 msgstr ""
 
-#: src/load_save.c:117
+#: src/load_save.c:118
 msgid "Compressing savegame..."
 msgstr ""
 
-#: src/load_save.c:125 src/load_save.c:255
+#: src/load_save.c:126 src/load_save.c:257
 msgid "Done."
 msgstr ""
 
-#: src/load_save.c:167
+#: src/load_save.c:168
 msgid "Last save file not found."
 msgstr ""
 
-#: src/load_save.c:175
+#: src/load_save.c:176
 msgid "Uncompressing savegame..."
 msgstr ""
 
-#: src/load_save.c:185
+#: src/load_save.c:186
 msgid "Loading options/constants..."
 msgstr ""
 
-#: src/load_save.c:198
+#: src/load_save.c:200
 msgid "Loading leagues..."
 msgstr ""
 
-#: src/load_save.c:208
+#: src/load_save.c:210
 msgid "Loading cups..."
 msgstr ""
 
-#: src/load_save.c:218
+#: src/load_save.c:220
 msgid "Loading users..."
 msgstr ""
 
-#: src/load_save.c:228
+#: src/load_save.c:230
 msgid "Loading transfer list..."
 msgstr ""
 
-#: src/load_save.c:238
+#: src/load_save.c:240
 msgid "Loading season stats..."
 msgstr ""
 
-#: src/load_save.c:248
+#: src/load_save.c:250
 msgid "Loading miscellaneous..."
 msgstr ""
 
@@ -1554,17 +892,17 @@ msgstr ""
 msgid "Job offer"
 msgstr ""
 
-#: src/misc2_interface.c:97 src/treeview.c:246 src/treeview.c:606
-#: src/treeview.c:1771
+#: src/misc2_interface.c:97 src/treeview.c:246 src/treeview.c:617
+#: src/treeview.c:1797
 msgid "Name"
 msgstr ""
 
-#: src/misc2_interface.c:102 src/treeview.c:130 src/treeview.c:263
-#: src/treeview.c:608
+#: src/misc2_interface.c:102 src/treeview.c:130 src/treeview.c:274
+#: src/treeview.c:619
 msgid "League"
 msgstr ""
 
-#: src/misc2_interface.c:107 src/treeview.c:1519
+#: src/misc2_interface.c:107 src/treeview.c:1544
 msgid "Rank"
 msgstr ""
 
@@ -1572,11 +910,11 @@ msgstr ""
 msgid "Money (approx.)"
 msgstr ""
 
-#: src/misc2_interface.c:117 src/treeview.c:1219
+#: src/misc2_interface.c:117 src/treeview.c:1240
 msgid "Stadium capacity"
 msgstr ""
 
-#: src/misc2_interface.c:122 src/treeview.c:1223
+#: src/misc2_interface.c:122 src/treeview.c:1244
 msgid "Stadium safety"
 msgstr ""
 
@@ -1588,7 +926,8 @@ msgstr ""
 msgid "Average skill:"
 msgstr ""
 
-#: src/misc2_interface.c:221 src/player.c:1131 src/treeview_helper.c:1082
+#. Player status: ok.
+#: src/misc2_interface.c:221 src/player.c:1131 src/treeview_helper.c:1089
 msgid "OK"
 msgstr ""
 
@@ -2286,55 +1625,64 @@ msgstr ""
 msgid "Couldn't find pixmap file: %s"
 msgstr ""
 
-#: src/team.c:542
+#: src/team.c:545
 #, c-format
 msgid "Team style changed to %s."
 msgstr ""
 
-#: src/team.c:546
+#: src/team.c:549
 #, c-format
 msgid "Boost changed to %s."
 msgstr ""
 
-#: src/team.c:970
+#. a won match
+#: src/team.c:974
 #, c-format
 msgid "W  %d : %d"
 msgstr ""
 
-#: src/team.c:975
+#. a lost match
+#: src/team.c:980
 #, c-format
 msgid "L  %d : %d"
 msgstr ""
 
-#: src/team.c:979
+#. a drawn match
+#: src/team.c:985
 #, c-format
 msgid "Dw %d : %d"
 msgstr ""
 
-#: src/team.c:988
+#. a match at home
+#: src/team.c:995
 #, c-format
 msgid "%s (H) "
 msgstr ""
 
-#: src/team.c:993
+#. a match away
+#: src/team.c:1001
 #, c-format
 msgid "<span background='%s' foreground='%s'>%s (A) </span> "
 msgstr ""
 
-#: src/team.c:1002
+#. a match on neutral ground
+#: src/team.c:1011
 #, c-format
 msgid "%s (N) "
 msgstr ""
 
-#: src/team.c:1051
+#. draw
+#: src/team.c:1061
 msgid "Dw "
 msgstr ""
 
-#: src/team.c:1054
+#. lost
+#: src/team.c:1065
 msgid "L  "
 msgstr ""
 
-#: src/team.c:1056
+#. won
+#: src/team.c:1068
 msgid "W  "
 msgstr ""
 
@@ -2343,183 +1691,206 @@ msgstr ""
 msgid "%s has been added to the transfer list for %d weeks."
 msgstr ""
 
-#: src/treeview.c:121 src/treeview.c:262 src/treeview.c:607
-#: src/treeview.c:1136 src/treeview.c:1513 src/treeview.c:1640
-#: src/treeview.c:1928
+#: src/treeview.c:121 src/treeview.c:273 src/treeview.c:618
+#: src/treeview.c:1149 src/treeview.c:1538 src/treeview.c:1666
+#: src/treeview.c:1958
 msgid "Team"
 msgstr ""
 
+#. Average skill
 #: src/treeview.c:139
 msgid "Av.Sk."
 msgstr ""
 
-#: src/treeview.c:247
+#. Current position of a player.
+#: src/treeview.c:248
 msgid "CPos"
 msgstr ""
 
-#: src/treeview.c:248
+#. Position of a player.
+#: src/treeview.c:250
 msgid "Pos"
 msgstr ""
 
-#: src/treeview.c:249
+#. Current skill of a player.
+#: src/treeview.c:252
 msgid "CSk"
 msgstr ""
 
-#: src/treeview.c:250
+#. Skill of a player.
+#: src/treeview.c:254
 msgid "Sk"
 msgstr ""
 
-#: src/treeview.c:251
+#. Fitness of a player.
+#: src/treeview.c:256
 msgid "Fit"
 msgstr ""
 
-#: src/treeview.c:252
+#. Games of a player.
+#: src/treeview.c:258
 msgid "Ga"
 msgstr ""
 
-#: src/treeview.c:253
+#. Shots of a player.
+#: src/treeview.c:260
 msgid "Sh"
 msgstr ""
 
-#: src/treeview.c:254 src/treeview.c:2044
+#. Goals of a player.
+#. Goals.
+#: src/treeview.c:262 src/treeview.c:2077
 msgid "Go"
 msgstr ""
 
-#: src/treeview.c:255
+#. Status of a player.
+#: src/treeview.c:264
 msgid "Status"
 msgstr ""
 
-#: src/treeview.c:256
+#. Yellow cards of a player.
+#: src/treeview.c:266
 msgid "YC"
 msgstr ""
 
-#: src/treeview.c:257 src/treeview.c:1778
+#: src/treeview.c:267 src/treeview.c:1804
 msgid "Age"
 msgstr ""
 
-#: src/treeview.c:258
+#. Estimated talent of a player.
+#: src/treeview.c:269
 msgid "Etal"
 msgstr ""
 
-#: src/treeview.c:259 src/treeview.c:1780
+#: src/treeview.c:270 src/treeview.c:1806
 msgid "Value"
 msgstr ""
 
-#: src/treeview.c:261 src/treeview.c:1782
+#: src/treeview.c:272 src/treeview.c:1808
 msgid "Contract"
 msgstr ""
 
-#: src/treeview.c:654
+#. 'Normal' goals, ie. no penalties or free kicks.
+#: src/treeview.c:666
 msgid "Goals (regular)"
 msgstr ""
 
-#: src/treeview.c:655 src/treeview_helper.c:731
+#: src/treeview.c:667 src/treeview_helper.c:731
 msgid "Shots"
 msgstr ""
 
-#: src/treeview.c:656 src/treeview.c:1992
+#: src/treeview.c:668 src/treeview.c:2022
 msgid "Shot %"
 msgstr ""
 
-#: src/treeview.c:657
+#: src/treeview.c:669
 msgid "Possession"
 msgstr ""
 
-#: src/treeview.c:658
+#: src/treeview.c:670
 msgid "Penalties"
 msgstr ""
 
-#: src/treeview.c:659
+#: src/treeview.c:671
 msgid "Fouls"
 msgstr ""
 
-#: src/treeview.c:660 src/treeview_helper.c:732
+#: src/treeview.c:672 src/treeview_helper.c:732
 msgid "Yellows"
 msgstr ""
 
-#: src/treeview.c:661 src/treeview_helper.c:733
+#: src/treeview.c:673 src/treeview_helper.c:733
 msgid "Reds"
 msgstr ""
 
-#: src/treeview.c:662
+#: src/treeview.c:674
 msgid "Injuries"
 msgstr ""
 
-#: src/treeview.c:716
+#: src/treeview.c:728
 #, c-format
 msgid ""
 "Attendance\n"
 "%s"
 msgstr ""
 
-#: src/treeview.c:724
+#: src/treeview.c:736
 #, c-format
 msgid ""
 "<span background='%s'>There were technical problems\n"
 "in the stadium.</span>"
 msgstr ""
 
-#: src/treeview.c:727
+#: src/treeview.c:739
 #, c-format
 msgid ""
 "<span background='%s'>There were riots\n"
 "in the stadium.</span>"
 msgstr ""
 
-#: src/treeview.c:730
+#: src/treeview.c:742
 #, c-format
 msgid ""
 "<span background='%s'>There was a fire\n"
 "in the stadium.</span>"
 msgstr ""
 
-#: src/treeview.c:816
+#: src/treeview.c:828
 #, c-format
 msgid "Week %d Round %d"
 msgstr ""
 
-#: src/treeview.c:1024
+#. A group of a round robin stage of a cup.
+#: src/treeview.c:1037
 #, c-format
 msgid "%s Group %d"
 msgstr ""
 
-#: src/treeview.c:1137
+#. Games played (a number).
+#: src/treeview.c:1151
 msgid "PL"
 msgstr ""
 
-#: src/treeview.c:1138
+#. Games won.
+#: src/treeview.c:1153
 msgid "W"
 msgstr ""
 
-#: src/treeview.c:1139
+#. Games drawn.
+#: src/treeview.c:1155
 msgid "Dw"
 msgstr ""
 
-#: src/treeview.c:1140
+#. Games lost.
+#: src/treeview.c:1157
 msgid "L"
 msgstr ""
 
-#: src/treeview.c:1141
+#. Goals for.
+#: src/treeview.c:1159
 msgid "GF"
 msgstr ""
 
-#: src/treeview.c:1142
+#. Goals against.
+#: src/treeview.c:1161
 msgid "GA"
 msgstr ""
 
-#: src/treeview.c:1143
+#. Goal difference.
+#: src/treeview.c:1163
 msgid "GD"
 msgstr ""
 
-#: src/treeview.c:1144
+#. Points.
+#: src/treeview.c:1165
 msgid "PTS"
 msgstr ""
 
-#: src/treeview.c:1213
+#: src/treeview.c:1234
 msgid "Stadium"
 msgstr ""
 
-#: src/treeview.c:1229 src/window.c:296
+#: src/treeview.c:1250 src/window.c:296
 #, c-format
 msgid ""
 "Improvement in progress.\n"
@@ -2527,251 +1898,262 @@ msgid ""
 "Expected finish: %d weeks."
 msgstr ""
 
-#: src/treeview.c:1237
+#: src/treeview.c:1258
 msgid "Stadium status"
 msgstr ""
 
-#: src/treeview.c:1249
+#: src/treeview.c:1270
 msgid "Prize money"
 msgstr ""
 
-#: src/treeview.c:1250
+#: src/treeview.c:1271
 msgid "Ticket income"
 msgstr ""
 
-#: src/treeview.c:1251
+#: src/treeview.c:1272
 msgid "Sponsorship"
 msgstr ""
 
-#: src/treeview.c:1253
+#: src/treeview.c:1274
 msgid "Wages"
 msgstr ""
 
-#: src/treeview.c:1256
+#: src/treeview.c:1277
 msgid "Journey costs"
 msgstr ""
 
-#: src/treeview.c:1257
+#. Money paid to players a user fired.
+#: src/treeview.c:1279
 msgid "Compensations"
 msgstr ""
 
-#: src/treeview.c:1267
+#. Finances balance.
+#: src/treeview.c:1290
 msgid "Bi-weekly balance"
 msgstr ""
 
-#: src/treeview.c:1291
+#. Finances balance.
+#: src/treeview.c:1315
 msgid "Balance"
 msgstr ""
 
-#: src/treeview.c:1309
+#: src/treeview.c:1333
 msgid "Transfers"
 msgstr ""
 
-#: src/treeview.c:1319
+#: src/treeview.c:1343
 msgid "Stadium expenses"
 msgstr ""
 
-#: src/treeview.c:1332
+#: src/treeview.c:1356
 msgid "Money"
 msgstr ""
 
-#: src/treeview.c:1336
+#: src/treeview.c:1360
 msgid "Drawing credit"
 msgstr ""
 
-#: src/treeview.c:1343
+#: src/treeview.c:1367
 #, c-format
 msgid "Debt (repay in %d weeks)"
 msgstr ""
 
-#: src/treeview.c:1352
+#: src/treeview.c:1376
 msgid "Sponsor"
 msgstr ""
 
-#: src/treeview.c:1356
+#. Contract time and money a sponsor pays.
+#: src/treeview.c:1381
 #, c-format
 msgid "%.1f months / %s"
 msgstr ""
 
-#: src/treeview.c:1358
+#: src/treeview.c:1383
 msgid "Contract / Money"
 msgstr ""
 
-#: src/treeview.c:1376
+#: src/treeview.c:1401
 msgid "Income"
 msgstr ""
 
-#: src/treeview.c:1377
+#: src/treeview.c:1402
 msgid "Expenses"
 msgstr ""
 
-#: src/treeview.c:1437
+#: src/treeview.c:1462
 msgid "Midfield"
 msgstr ""
 
-#: src/treeview.c:1485
+#: src/treeview.c:1510
 msgid "Your next opponent"
 msgstr ""
 
-#: src/treeview.c:1491 src/treeview.c:1496
+#: src/treeview.c:1516 src/treeview.c:1521
 #, c-format
 msgid "<span foreground='%s' background='%s'>Week %d Round %d</span>"
 msgstr ""
 
-#: src/treeview.c:1502
+#: src/treeview.c:1527
 msgid "Neutral ground"
 msgstr ""
 
-#: src/treeview.c:1504
+#: src/treeview.c:1529
 msgid "Home"
 msgstr ""
 
-#: src/treeview.c:1506
+#: src/treeview.c:1531
 msgid "Away"
 msgstr ""
 
-#: src/treeview.c:1537
+#: src/treeview.c:1562
 msgid "Average skill"
 msgstr ""
 
-#: src/treeview.c:1545
+#: src/treeview.c:1570
 msgid "Team structure"
 msgstr ""
 
-#: src/treeview.c:1551
+#: src/treeview.c:1576
 msgid "Latest results"
 msgstr ""
 
-#: src/treeview.c:1553 src/treeview.c:2013 src/treeview_helper.c:730
+#: src/treeview.c:1578 src/treeview.c:2045 src/treeview_helper.c:730
 msgid "Goals"
 msgstr ""
 
-#: src/treeview.c:1557
+#. The user's results against a specific team.
+#: src/treeview.c:1583
 msgid "Your results"
 msgstr ""
 
-#: src/treeview.c:1641
+#: src/treeview.c:1667
 msgid "Results"
 msgstr ""
 
-#: src/treeview.c:1772
+#: src/treeview.c:1798
 msgid "Position"
 msgstr ""
 
-#: src/treeview.c:1773
+#: src/treeview.c:1799
 msgid "Current position"
 msgstr ""
 
-#: src/treeview.c:1774
+#: src/treeview.c:1800
 msgid "Skill"
 msgstr ""
 
-#: src/treeview.c:1775
+#: src/treeview.c:1801
 msgid "Current skill"
 msgstr ""
 
-#: src/treeview.c:1776
+#: src/treeview.c:1802
 msgid "Fitness"
 msgstr ""
 
-#: src/treeview.c:1777
+#: src/treeview.c:1803
 msgid "Estimated talent"
 msgstr ""
 
-#: src/treeview.c:1779
+#: src/treeview.c:1805
 msgid "Health"
 msgstr ""
 
-#: src/treeview.c:1783
+#: src/treeview.c:1809
 msgid "Games/Goals\n"
 msgstr ""
 
-#: src/treeview.c:1784
+#. 'Limit' is the number of yellow cards until a player gets
+#. banned automatically for a match.
+#: src/treeview.c:1812
 msgid "Yellow cards (limit)\n"
 msgstr ""
 
-#: src/treeview.c:1785
+#: src/treeview.c:1813
 msgid "Banned\n"
 msgstr ""
 
-#: src/treeview.c:1786
+#: src/treeview.c:1814
 msgid "Career values"
 msgstr ""
 
-#: src/treeview.c:1787
+#: src/treeview.c:1815
 msgid ""
 "New contract\n"
 "offers"
 msgstr ""
 
-#: src/treeview.c:1928
+#. Season.
+#: src/treeview.c:1957
 msgid "Sea"
 msgstr ""
 
-#: src/treeview.c:1928
+#: src/treeview.c:1958
 msgid "Week"
 msgstr ""
 
-#: src/treeview.c:1956
+#: src/treeview.c:1986
 msgid "Event"
 msgstr ""
 
-#: src/treeview.c:1988
+#: src/treeview.c:2018
 msgid "Best offensive teams"
 msgstr ""
 
-#: src/treeview.c:1989
+#: src/treeview.c:2019
 msgid "Best defensive teams"
 msgstr ""
 
-#: src/treeview.c:1992
+#: src/treeview.c:2022
 msgid "Best goal scorers"
 msgstr ""
 
-#: src/treeview.c:1993
+#: src/treeview.c:2023
 msgid "Best goalkeepers"
 msgstr ""
 
-#: src/treeview.c:1993
+#. % of saves for goalies (#goals / #shots)
+#: src/treeview.c:2025
 msgid "Save %"
 msgstr ""
 
-#: src/treeview.c:2045
+#. Goals per game.
+#: src/treeview.c:2079
 msgid "Go/Ga"
 msgstr ""
 
-#: src/treeview.c:2140
+#: src/treeview.c:2174
 msgid "League champions"
 msgstr ""
 
-#: src/treeview.c:2141
+#: src/treeview.c:2175
 msgid "Cup champions"
 msgstr ""
 
-#: src/treeview.c:2186
+#: src/treeview.c:2220
 #, c-format
 msgid "Season %d"
 msgstr ""
 
-#: src/treeview.c:2285
+#: src/treeview.c:2319
 msgid "Current league"
 msgstr ""
 
-#: src/treeview.c:2333
+#. Language is system-set (not user chosen).
+#: src/treeview.c:2368
 msgid "System"
 msgstr ""
 
-#: src/treeview.c:2409
+#: src/treeview.c:2444
 msgid "Company"
 msgstr ""
 
-#: src/treeview.c:2410
+#: src/treeview.c:2445
 msgid ""
 "Contract length\n"
 "(Months)"
 msgstr ""
 
-#: src/treeview.c:2411
+#: src/treeview.c:2446
 msgid "Money / week"
 msgstr ""
 
@@ -2801,44 +2183,53 @@ msgid ""
 "Goals/Game %.1f Shot %% %.1f"
 msgstr ""
 
-#: src/treeview_helper.c:779
+#. Ban info of a player in the format: 'Cup/league name: Number of weeks banned'
+#: src/treeview_helper.c:780
 #, c-format
 msgid "%s: %d weeks\n"
 msgstr ""
 
-#: src/treeview_helper.c:814
+#. Yellow cards of a player in a cup/league. No limit means there isn't a limit
+#. after which the player gets banned for a match automatically.
+#: src/treeview_helper.c:817
 #, c-format
 msgid "%s: %d (no limit)\n"
 msgstr ""
 
-#: src/treeview_helper.c:852
+#: src/treeview_helper.c:855
 #, c-format
 msgid "%s (expected recovery in %d weeks)"
 msgstr ""
 
-#: src/treeview_helper.c:1068
+#. Injury info.
+#: src/treeview_helper.c:1073
 #, c-format
 msgid "INJ(%d)"
 msgstr ""
 
-#: src/treeview_helper.c:1077
+#. Red card info (how long the player is banned).
+#: src/treeview_helper.c:1083
 #, c-format
 msgid "BAN(%d)"
 msgstr ""
 
-#: src/treeview_helper.c:1149
+#. Goalie
+#: src/treeview_helper.c:1157
 msgid "G"
 msgstr ""
 
-#: src/treeview_helper.c:1156
+#. Defender
+#: src/treeview_helper.c:1165
 msgid "D"
 msgstr ""
 
-#: src/treeview_helper.c:1163
+#. Midfielder
+#: src/treeview_helper.c:1173
 msgid "M"
 msgstr ""
 
-#: src/treeview_helper.c:1170
+#. Forward
+#: src/treeview_helper.c:1181
 msgid "F"
 msgstr ""
 
@@ -2902,208 +2293,250 @@ msgid ""
 "weren't satisfied with the fee you offered."
 msgstr ""
 
-#: src/user.c:466
+#. A player from a team has rejected a transfer offer.
+#: src/user.c:467
 #, c-format
 msgid ""
 "%s of %s has rejected your offer (%s / %s). He wasn't satisfied with the "
 "wage you offered."
 msgstr ""
 
-#: src/user.c:472
+#. Buy a player from a team.
+#: src/user.c:474
 #, c-format
 msgid "You didn't have enough money to buy %s from %s."
 msgstr ""
 
-#: src/user.c:477
+#. Buy a player from a team.
+#: src/user.c:480
 #, c-format
 msgid "Your roster is full. You couldn't buy %s from %s."
 msgstr ""
 
-#: src/user.c:482
+#: src/user.c:485
 #, c-format
 msgid ""
 "%s's injury was so severe that he can't play football on a professional "
 "level anymore. He leaves your team."
 msgstr ""
 
-#: src/user.c:485
+#: src/user.c:488
 msgid " Fortunately he's got a cousin who can help your team out."
 msgstr ""
 
-#: src/user.c:672
+#. Buy a team in a league.
+#: src/user.c:676
 #, c-format
 msgid "You start the game with %s in the %s."
 msgstr ""
 
-#: src/user.c:677
+#. Team fires, team in a league.
+#: src/user.c:682
 #, c-format
 msgid ""
 "%s fires you because of financial mismanagement.\n"
 "You find a new job with %s in the %s."
 msgstr ""
 
-#: src/user.c:683
+#. Team fires, team in a league.
+#: src/user.c:689
 #, c-format
 msgid ""
 "%s fires you because of unsuccessfulness.\n"
 "You find a new job with %s in the %s."
 msgstr ""
 
-#: src/user.c:689
+#. Team in a league. Leave team.
+#: src/user.c:696
 #, c-format
 msgid ""
 "%s offer you a job in the %s.\n"
 "You accept the challenge and leave %s."
 msgstr ""
 
-#: src/user.c:695
+#. League name.
+#: src/user.c:703
 #, c-format
 msgid "You finish the season in the %s on rank %d."
 msgstr ""
 
-#: src/user.c:700
+#. League name.
+#: src/user.c:709
 #, c-format
 msgid "You get promoted to the %s."
 msgstr ""
 
-#: src/user.c:704
+#. League name.
+#: src/user.c:714
 #, c-format
 msgid "You get relegated to the %s."
 msgstr ""
 
-#: src/user.c:708
+#. Cup name, team name.
+#: src/user.c:719
 #, c-format
 msgid "You win the %s final against %s."
 msgstr ""
 
-#: src/user.c:713
+#. Cup name, team name.
+#: src/user.c:725
 #, c-format
 msgid "You lose in the %s final against %s."
 msgstr ""
 
-#: src/user.c:719
+#. Cup round name (e.g. Last 32), number, cup name.
+#: src/user.c:732
 #, c-format
 msgid "You reach the %s (round %d) of the %s."
 msgstr ""
 
-#: src/user.c:724
+#. League name.
+#: src/user.c:738
 #, c-format
 msgid "You are champion of the %s!"
 msgstr ""
 
-#: src/user.c:751
+#. Company name.
+#: src/user.c:766
 msgid " Systems"
 msgstr ""
 
-#: src/user.c:752
+#. Company name.
+#: src/user.c:768
 msgid " Communications"
 msgstr ""
 
-#: src/user.c:753
+#. Company name.
+#: src/user.c:770
 msgid " Holdings"
 msgstr ""
 
-#: src/user.c:754
+#. Company name.
+#: src/user.c:772
 msgid " Industries"
 msgstr ""
 
-#: src/user.c:755
+#. Company name.
+#: src/user.c:774
 msgid " Company"
 msgstr ""
 
-#: src/user.c:756
+#. Company name.
+#: src/user.c:776
 msgid " Telecommunications"
 msgstr ""
 
-#: src/user.c:757
+#. Company name.
+#: src/user.c:778
 msgid " Labs"
 msgstr ""
 
-#: src/user.c:758
+#. Company name.
+#: src/user.c:780
 msgid " Technologies"
 msgstr ""
 
-#: src/user.c:759
+#. Company name.
+#: src/user.c:782
 msgid " Chemicals"
 msgstr ""
 
-#: src/user.c:760
+#. Company name.
+#: src/user.c:784
 msgid " Energy"
 msgstr ""
 
-#: src/user.c:761
+#. Company name.
+#: src/user.c:786
 msgid " Bank"
 msgstr ""
 
-#: src/user.c:762
+#. Company name.
+#: src/user.c:788
 msgid " Products"
 msgstr ""
 
-#: src/user.c:763
+#. Company name.
+#: src/user.c:790
 msgid " Software"
 msgstr ""
 
-#: src/user.c:764
+#. Company name.
+#: src/user.c:792
 msgid " Scientific"
 msgstr ""
 
-#: src/user.c:765
+#. Company name.
+#: src/user.c:794
 msgid " Financial"
 msgstr ""
 
-#: src/user.c:766
+#. Company name.
+#: src/user.c:796
 msgid " Petroleum"
 msgstr ""
 
-#: src/user.c:767
+#. Company name.
+#: src/user.c:798
 msgid " Restaurants"
 msgstr ""
 
-#: src/user.c:768
+#. Company name.
+#: src/user.c:800
 msgid " Data Systems"
 msgstr ""
 
-#: src/user.c:770
+#. Company short name, leading to things like 'Marshall Data Systems Ltd.'
+#: src/user.c:803
 msgid " Ltd."
 msgstr ""
 
-#: src/user.c:771
+#. Company short name.
+#: src/user.c:805
 msgid " Assoc."
 msgstr ""
 
-#: src/user.c:772
+#. Company short name.
+#: src/user.c:807
 msgid " Co."
 msgstr ""
 
-#: src/user.c:773
+#. Company short name.
+#: src/user.c:809
 msgid " Ent."
 msgstr ""
 
-#: src/user.c:774
+#. Company short name. Copy the '&amp;'.
+#: src/user.c:811
 msgid " &amp; Co."
 msgstr ""
 
-#: src/user.c:775
+#. Company short name.
+#: src/user.c:813
 msgid " Corp."
 msgstr ""
 
-#: src/user.c:776
+#. Company short name.
+#: src/user.c:815
 msgid " Group"
 msgstr ""
 
-#: src/user.c:778
+#. Company addition, leading to 'Marshall & Sons Petroleum Co.'. Copy the '&amp;'.
+#: src/user.c:818
 msgid " &amp; Sons"
 msgstr ""
 
-#: src/user.c:779
+#. Company addition. Copy the '&amp;'.
+#: src/user.c:820
 msgid " &amp; Daughters"
 msgstr ""
 
-#: src/user.c:780
+#. Company addition.
+#: src/user.c:822
 msgid " Bros."
 msgstr ""
 
-#: src/user.c:860
+#: src/user.c:902
 #, c-format
 msgid ""
 "Your current sponsor is satisfied with your results and would like to renew "

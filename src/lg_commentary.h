@@ -33,14 +33,16 @@ lg_commentary_set_strings(gchar *strings[][2], const LiveGameUnit *unit, const F
 void
 lg_commentary_generate(LiveGameUnit *unit, const Fixture *fix);
 
-GPtrArray*
-lg_commentary_get_commentaries(gint event_type);
-
 gchar*
 lg_commentary_get_extra_data(const LiveGameUnit *unit, const Fixture *fix);
 
 gboolean
 lg_commentary_replace_tokens(const gchar *string, gchar *strings[][2], gchar *dest);
 
-#endif
+void
+lg_commentary_load_commentary_file_from_option(void);
 
+void
+lg_commentary_load_commentary_file(const gchar *commentary_file, gboolean abort);
+
+#endif

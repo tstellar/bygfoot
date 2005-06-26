@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-23 22:48+0200\n"
-"PO-Revision-Date: 2005-06-20 19:08+0200\n"
+"POT-Creation-Date: 2005-06-26 13:34+0200\n"
+"PO-Revision-Date: 2005-06-25 23:15+0200\n"
 "Last-Translator:  Gyz Both <gyboth@bygfoot.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr ""
 "\n"
 "Tore/Spiel %.1f Schüsse %% %.1f"
 
-#: src/game_gui.c:619
+#: src/game_gui.c:630
 msgid ""
 "\n"
 "If you feel you've found out something about the game that has to be shared, "
@@ -51,47 +51,54 @@ msgstr ""
 msgid "   "
 msgstr "   "
 
-#: src/user.c:774
+#. Company short name. Copy the '&amp;'.
+#: src/user.c:811
 msgid " &amp; Co."
 msgstr " &amp; Co."
 
-#: src/user.c:779
+#. Company addition. Copy the '&amp;'.
+#: src/user.c:820
 msgid " &amp; Daughters"
 msgstr " &amp; Töchter"
 
-#: src/user.c:778
+#. Company addition, leading to 'Marshall & Sons Petroleum Co.'. Copy the '&amp;'.
+#: src/user.c:818
 msgid " &amp; Sons"
 msgstr "&amp; Söhne"
 
-#: src/game.c:868
+#. A goal scored with a free kick.
+#: src/game.c:870
 msgid " (FK)"
 msgstr " (FS)"
 
-#: src/game_gui.c:530
+#: src/game_gui.c:541
 msgid " (NOTE: If you don't, the game is over for you.)"
 msgstr "(BEMERKUNG: Wenn Du ablehnst, ist das Spiel vorbei für Dich.)"
 
-#: src/game.c:870
+#: src/game.c:872
 msgid " (OG)"
 msgstr " (ET)"
 
-#: src/game.c:866 src/treeview_helper.c:963
+#. A goal scored with penalty.
+#. Penalty shooter.
+#: src/game.c:867 src/treeview_helper.c:967
 msgid " (P)"
 msgstr " (E)"
 
-#: src/cup.c:767
+#: src/cup.c:792
 msgid " -- First leg"
 msgstr " -- Hinspiel"
 
-#: src/cup.c:770
+#: src/cup.c:795
 msgid " -- Replay matches"
 msgstr " -- Wiederholungsspiele"
 
-#: src/cup.c:765
+#: src/cup.c:790
 msgid " -- Second leg"
 msgstr " -- Rückspiel"
 
-#: src/user.c:771
+#. Company short name.
+#: src/user.c:805
 msgid " Assoc."
 msgstr " Holding"
 
@@ -99,83 +106,102 @@ msgstr " Holding"
 msgid " Autosave files "
 msgstr "Dateien für Auto-Speichern"
 
-#: src/user.c:761
+#. Company name.
+#: src/user.c:786
 msgid " Bank"
 msgstr " Bank"
 
-#: src/user.c:780
+#. Company addition.
+#: src/user.c:822
 msgid " Bros."
 msgstr " Gebr."
 
-#: src/user.c:759
+#. Company name.
+#: src/user.c:782
 msgid " Chemicals"
 msgstr " Chemie"
 
-#: src/user.c:772
+#. Company short name.
+#: src/user.c:807
 msgid " Co."
 msgstr " Ges."
 
-#: src/user.c:752
+#. Company name.
+#: src/user.c:768
 msgid " Communications"
 msgstr " Kommunikation"
 
-#: src/user.c:755
+#. Company name.
+#: src/user.c:774
 msgid " Company"
 msgstr " Gesellschaft"
 
-#: src/user.c:775
+#. Company short name.
+#: src/user.c:813
 msgid " Corp."
 msgstr " AG"
 
-#: src/user.c:768
+#. Company name.
+#: src/user.c:800
 msgid " Data Systems"
 msgstr " Datensysteme"
 
-#: src/user.c:760
+#. Company name.
+#: src/user.c:784
 msgid " Energy"
 msgstr " Energie"
 
-#: src/user.c:773
+#. Company short name.
+#: src/user.c:809
 msgid " Ent."
 msgstr " Ges."
 
-#: src/user.c:765
+#. Company name.
+#: src/user.c:794
 msgid " Financial"
 msgstr " Finanzen"
 
-#: src/user.c:485
+#: src/user.c:488
 msgid " Fortunately he's got a cousin who can help your team out."
 msgstr "Glücklicherweise hat er einen Cousin, der einspringen kann."
 
-#: src/user.c:776
+#. Company short name.
+#: src/user.c:815
 msgid " Group"
 msgstr " Gruppe"
 
-#: src/user.c:753
+#. Company name.
+#: src/user.c:770
 msgid " Holdings"
 msgstr " Logistik"
 
-#: src/user.c:754
+#. Company name.
+#: src/user.c:772
 msgid " Industries"
 msgstr " Pharma"
 
-#: src/user.c:757
+#. Company name.
+#: src/user.c:778
 msgid " Labs"
 msgstr " Labore"
 
-#: src/user.c:770
+#. Company short name, leading to things like 'Marshall Data Systems Ltd.'
+#: src/user.c:803
 msgid " Ltd."
 msgstr " GmbH"
 
-#: src/user.c:766
+#. Company name.
+#: src/user.c:796
 msgid " Petroleum"
 msgstr " Petroleum"
 
-#: src/user.c:762
+#. Company name.
+#: src/user.c:788
 msgid " Products"
 msgstr " Produkte"
 
-#: src/user.c:767
+#. Company name.
+#: src/user.c:798
 msgid " Restaurants"
 msgstr " Gaststätten"
 
@@ -183,7 +209,8 @@ msgstr " Gaststätten"
 msgid " Round "
 msgstr " Runde "
 
-#: src/user.c:764
+#. Company name.
+#: src/user.c:792
 msgid " Scientific"
 msgstr " Scientific"
 
@@ -191,19 +218,23 @@ msgstr " Scientific"
 msgid " Season "
 msgstr " Saison "
 
-#: src/user.c:763
+#. Company name.
+#: src/user.c:790
 msgid " Software"
 msgstr " Software"
 
-#: src/user.c:751
+#. Company name.
+#: src/user.c:766
 msgid " Systems"
 msgstr " Systeme"
 
-#: src/user.c:758
+#. Company name.
+#: src/user.c:780
 msgid " Technologies"
 msgstr " Technologien"
 
-#: src/user.c:756
+#. Company name.
+#: src/user.c:776
 msgid " Telecommunications"
 msgstr " Telekommunikation"
 
@@ -211,7 +242,8 @@ msgstr " Telekommunikation"
 msgid " Week "
 msgstr " Woche "
 
-#: src/fixture.c:798
+#. Game was decided in extra time.
+#: src/fixture.c:800
 msgid " e.t."
 msgstr " n.V."
 
@@ -227,7 +259,8 @@ msgstr " Monaten"
 msgid " more"
 msgstr " mehr"
 
-#: src/fixture.c:796
+#. Game was decided in penalty shoot-out.
+#: src/fixture.c:797
 msgid " p."
 msgstr " i.E."
 
@@ -235,32 +268,36 @@ msgstr " i.E."
 msgid " seats"
 msgstr " Plätze"
 
-#: src/treeview.c:1356
+#. Contract time and money a sponsor pays.
+#: src/treeview.c:1381
 #, c-format
 msgid "%.1f months / %s"
 msgstr "%.1f Monate / %s"
 
-#: src/team.c:988
+#. a match at home
+#: src/team.c:995
 #, c-format
 msgid "%s (H) "
 msgstr "%s (H) "
 
-#: src/team.c:1002
+#. a match on neutral ground
+#: src/team.c:1011
 #, c-format
 msgid "%s (N) "
 msgstr "%s (N) "
 
-#: src/treeview_helper.c:852
+#: src/treeview_helper.c:855
 #, c-format
 msgid "%s (expected recovery in %d weeks)"
 msgstr "%s (erwartete Genesung in %d Wochen)"
 
-#: src/treeview.c:1024
+#. A group of a round robin stage of a cup.
+#: src/treeview.c:1037
 #, c-format
 msgid "%s Group %d"
 msgstr "%s Gruppe %d"
 
-#: src/misc2_callback_func.c:155
+#: src/misc2_callback_func.c:154
 #, c-format
 msgid "%s accepts your offer."
 msgstr "%s akzeptiert Dein Angebot."
@@ -272,7 +309,8 @@ msgstr ""
 "%s konnte sich %s nicht leisten, oder er hatte keinen Platz mehr in der "
 "Mannschaft."
 
-#: src/user.c:677
+#. Team fires, team in a league.
+#: src/user.c:682
 #, c-format
 msgid ""
 "%s fires you because of financial mismanagement.\n"
@@ -281,7 +319,8 @@ msgstr ""
 "%s feuert Dich wegen wirtschaftlicher Unfähigkeit.\n"
 "Du bekommst eine neue Arbeit mit %s in der %s."
 
-#: src/user.c:683
+#. Team fires, team in a league.
+#: src/user.c:689
 #, c-format
 msgid ""
 "%s fires you because of unsuccessfulness.\n"
@@ -300,7 +339,8 @@ msgstr "%s wurde für %d Wochen auf die Transferliste gesetzt."
 msgid "%s has left your team because his contract expired."
 msgstr "%s hat Deine Mannschaft verlassen, da sein Vertrag auslief."
 
-#: src/user.c:466
+#. A player from a team has rejected a transfer offer.
+#: src/user.c:467
 #, c-format
 msgid ""
 "%s of %s has rejected your offer (%s / %s). He wasn't satisfied with the "
@@ -309,7 +349,8 @@ msgstr ""
 "%s von %s hat dein Angebot (%s / %s) abgelehnt. Er war mit dem angebotenen "
 "Gehalt unzufrieden."
 
-#: src/user.c:689
+#. Team in a league. Leave team.
+#: src/user.c:696
 #, c-format
 msgid ""
 "%s offer you a job in the %s.\n"
@@ -318,7 +359,7 @@ msgstr ""
 "%s bieten dir einen neuen Job in der %s.\n"
 "Du nimmst die Herausforderung an und verlässt %s."
 
-#: src/misc2_callback_func.c:171
+#: src/misc2_callback_func.c:170
 #, c-format
 msgid ""
 "%s rejects your offer and won't negotiate with you anymore. You should sell "
@@ -328,7 +369,7 @@ msgstr ""
 "ihn verkaufen, bevor sein Vertrag ausläuft (andernfalls wird er Deine "
 "Mannschaft einfach verlassen)."
 
-#: src/misc2_callback_func.c:164
+#: src/misc2_callback_func.c:163
 #, c-format
 msgid "%s rejects your offer. You may still make %d offers."
 msgstr "%s lehnt Dein Angebot ab. Du kannst noch %d Angebote abgeben."
@@ -347,12 +388,12 @@ msgstr ""
 "%s möchte %s kaufen. Sie bieten %s, was %s ist als der Wert des Spielers. "
 "Nimmst Du an?"
 
-#: src/player.c:1029
+#: src/player.c:1023
 #, c-format
 msgid "%s's contract expires in %.1f years."
 msgstr "%ss Vertrag läuft in %.1f Jahren aus."
 
-#: src/user.c:482
+#: src/user.c:485
 #, c-format
 msgid ""
 "%s's injury was so severe that he can't play football on a professional "
@@ -361,12 +402,15 @@ msgstr ""
 "%ss Verletzung war so schwerwiegend, dass er nicht mehr Profi-Fußball "
 "spielen kann. Er verlässt Deine Mannschaft."
 
-#: src/treeview_helper.c:814
+#. Yellow cards of a player in a cup/league. No limit means there isn't a limit
+#. after which the player gets banned for a match automatically.
+#: src/treeview_helper.c:817
 #, c-format
 msgid "%s: %d (no limit)\n"
 msgstr "%s: %d (keine Obergrenze)\n"
 
-#: src/treeview_helper.c:779
+#. Ban info of a player in the format: 'Cup/league name: Number of weeks banned'
+#: src/treeview_helper.c:780
 #, c-format
 msgid "%s: %d weeks\n"
 msgstr "%s: %d Wochen\n"
@@ -401,12 +445,13 @@ msgstr "3 Jahre"
 msgid "4 years"
 msgstr "4 Jahre"
 
-#: src/team.c:993
+#. a match away
+#: src/team.c:1001
 #, c-format
 msgid "<span background='%s' foreground='%s'>%s (A) </span> "
 msgstr "<span background='%s' foreground='%s'>%s (A) </span>"
 
-#: src/treeview.c:730
+#: src/treeview.c:742
 #, c-format
 msgid ""
 "<span background='%s'>There was a fire\n"
@@ -415,7 +460,7 @@ msgstr ""
 "<span background='%s'>Es gab ein Feuer\n"
 "im Stadion.</span>"
 
-#: src/treeview.c:727
+#: src/treeview.c:739
 #, c-format
 msgid ""
 "<span background='%s'>There were riots\n"
@@ -424,7 +469,7 @@ msgstr ""
 "<span background='%s'>Es gab Ausschreitungen\n"
 "im Stadion</span>"
 
-#: src/treeview.c:724
+#: src/treeview.c:736
 #, c-format
 msgid ""
 "<span background='%s'>There were technical problems\n"
@@ -433,49 +478,25 @@ msgstr ""
 "<span background='%s'>Es gab technische Probleme\n"
 "im Stadion.</span>"
 
-#: src/treeview.c:1491 src/treeview.c:1496
+#: src/treeview.c:1516 src/treeview.c:1521
 #, c-format
 msgid "<span foreground='%s' background='%s'>Week %d Round %d</span>"
 msgstr "<span foreground='%s' background='%s'>Woche %d Runde %d</span>"
 
-#: src/lg_commentary.c:181
-msgid "A cloudless day, gives the impression this match is going to sparkle"
-msgstr "Ein wolkenloser Himmel verheißt ein spannedes Spiel"
-
-#: src/lg_commentary.c:297
-msgid ""
-"A fan has managed to get onto the pitch and has begun to attack the referee"
-msgstr "Ein Fan ist aufs Spielfeld gelangt und greift den Schiedsrichter an"
-
-#: src/lg_commentary.c:303
-msgid "A flare chucked onto the touchline has started a massive blaze"
-msgstr "Eine Leuchtrakete hat einen Teil der Sitze entzündet"
-
-#: src/lg_commentary.c:304
-msgid ""
-"A speaker has gone up in flames and the blaze spreading around the entire "
-"stadium"
-msgstr ""
-"Ein Lautsprecher hat Feuer gefangen, die Flammen verschlingen das Stadion"
-
-#: src/lg_commentary.c:481 src/team.c:508
+#: src/lg_commentary.c:249 src/team.c:508
 msgid "ALL OUT ATTACK"
 msgstr "BRECHSTANGE"
 
-#: src/lg_commentary.c:469 src/team.c:500
+#: src/lg_commentary.c:237 src/team.c:500
 msgid "ALL OUT DEFEND"
 msgstr "BETONVERTEIDIGUNG"
 
-#: src/lg_commentary.c:484 src/team.c:515
+#. Boost value.
+#: src/lg_commentary.c:252 src/team.c:516
 msgid "ANTI"
 msgstr "ANTI"
 
-#: src/lg_commentary.c:182
-msgid "AT fans can't be wrong, this is the match we have all come to watch"
-msgstr ""
-"AT Fans können nicht irren, dies ist das Spiel, das wir alle sehen wollen"
-
-#: src/lg_commentary.c:478 src/team.c:506
+#: src/lg_commentary.c:246 src/team.c:506
 msgid "ATTACK"
 msgstr "ANGRIFF"
 
@@ -487,7 +508,7 @@ msgstr "Über"
 msgid "Accept"
 msgstr "Annehmen"
 
-#: src/game_gui.c:528
+#: src/game_gui.c:539
 msgid "Accept?"
 msgstr "Einverstanden?"
 
@@ -495,19 +516,7 @@ msgstr "Einverstanden?"
 msgid "Add user"
 msgstr "Benutzer hinzufügen"
 
-#: src/lg_commentary.c:199
-msgid "After MI minutes it's still RE: extra time"
-msgstr "Nach MI Minuten steht's RE: Verlängerung"
-
-#: src/lg_commentary.c:213
-msgid "After MI minutes the match ends with a RE"
-msgstr "Nach MI Minuten ended das Spiel mit einem RE"
-
-#: src/lg_commentary.c:197
-msgid "After a close match the game heads into extra time"
-msgstr "Nach einem engen Spiel beginnt die Verlängerung"
-
-#: src/treeview.c:257 src/treeview.c:1778
+#: src/treeview.c:267 src/treeview.c:1804
 msgid "Age"
 msgstr "Alter"
 
@@ -527,34 +536,6 @@ msgstr "Brechstange"
 msgid "All Out Defend"
 msgstr "Betonverteidigung"
 
-#: src/lg_commentary.c:205
-msgid "And now we have the tense drama of a penalty shoot out"
-msgstr "Und nun kommt das spannende Drama eines Elfmeterschießens"
-
-#: src/lg_commentary.c:151
-msgid "And the ball flies straight past P2 and into the back of the net!!!"
-msgstr "Und der Ball fliegt an P2 vorbei und zappelt im Netz!!!"
-
-#: src/lg_commentary.c:149
-msgid "And the ball is smacked into the back of the net!!!"
-msgstr "Und der Ball ist im Tor!!!"
-
-#: src/lg_commentary.c:295
-msgid "And the fans are throwing flares onto the pitch"
-msgstr "Und die Fans schießen Leuchtraketen aufs Feld"
-
-#: src/lg_commentary.c:164
-msgid "And the shot creeps just past the post"
-msgstr "Und der Schuss kriecht Zentimeter am Pfosten vorbei"
-
-#: src/lg_commentary.c:232
-msgid "And the shot glances wide off the post"
-msgstr "Und der Schuss knallt gegen den Pfosten"
-
-#: src/lg_commentary.c:105
-msgid "Another decent move down the wing"
-msgstr "Ein weiterer Flankenlauf"
-
 #: src/interface.c:559
 msgid "Anti"
 msgstr "Anti"
@@ -563,7 +544,7 @@ msgstr "Anti"
 msgid "At least one user didn't take his turn this week. Continue?"
 msgstr "Mindestens ein Benutzer ist noch nicht drangewesen. Fortfahren?"
 
-#: src/game_gui.c:617
+#: src/game_gui.c:628
 msgid ""
 "At the Bygfoot forums you can report bugs, ask for help and discuss the game "
 "(you don't have to register):\n"
@@ -571,11 +552,11 @@ msgstr ""
 "In den Bygfoot-Foren kannst Du Fehler melden, nach Hilfe fragen und über das "
 "Spiel diskutieren (Du musst Dich dazu nicht anmelden):\n"
 
-#: src/interface.c:454 src/treeview.c:1438
+#: src/interface.c:454 src/treeview.c:1463
 msgid "Attack"
 msgstr "Angriff"
 
-#: src/treeview.c:716
+#: src/treeview.c:728
 #, c-format
 msgid ""
 "Attendance\n"
@@ -604,6 +585,7 @@ msgstr "Intervall für Auto-Speichern"
 msgid "Av. skills:  "
 msgstr "Durchschn. Fäh."
 
+#. Average skill
 #: src/treeview.c:139
 msgid "Av.Sk."
 msgstr "Du.Fäh."
@@ -624,7 +606,7 @@ msgstr "Zuschauerschnitt"
 msgid "Average attendance %"
 msgstr "Zuschauerschnitt %"
 
-#: src/treeview.c:1537
+#: src/treeview.c:1562
 msgid "Average skill"
 msgstr "Durchschnittl. Fähigkeit"
 
@@ -632,19 +614,16 @@ msgstr "Durchschnittl. Fähigkeit"
 msgid "Average skill:"
 msgstr "Durchschnittl. Fähigkeit:"
 
-#: src/treeview.c:1506
+#: src/treeview.c:1531
 msgid "Away"
 msgstr "Auswärts"
 
-#: src/lg_commentary.c:302
-msgid "Away fans have set fire to the north stand"
-msgstr "Die Auswärtsfans haben Sitze entzündet"
-
-#: src/lg_commentary.c:475 src/team.c:504
+#: src/lg_commentary.c:243 src/team.c:504
 msgid "BALANCED"
 msgstr "AUSGEGLICHEN"
 
-#: src/treeview_helper.c:1077
+#. Red card info (how long the player is banned).
+#: src/treeview_helper.c:1083
 #, c-format
 msgid "BAN(%d)"
 msgstr "SP(%d)"
@@ -657,11 +636,8 @@ msgstr "Zurück zum Hauptmenü (Esc)"
 msgid "Bad"
 msgstr "Mies"
 
-#: src/lg_commentary.c:116
-msgid "Bad control by P2 lets P1 steal the ball off him"
-msgstr "P2 kontrolliert den Ball schlecht, P1 kann ihn erobern"
-
-#: src/treeview.c:1291
+#. Finances balance.
+#: src/treeview.c:1315
 msgid "Balance"
 msgstr "Bilanz"
 
@@ -669,11 +645,7 @@ msgstr "Bilanz"
 msgid "Balanced"
 msgstr "Ausgeglichen"
 
-#: src/lg_commentary.c:236
-msgid "Ball dinked over P2 but hit crossbar and bounced to safety"
-msgstr "Der Ball zirkelt über P2, trifft aber nur die Latte"
-
-#: src/treeview.c:1785
+#: src/treeview.c:1813
 msgid "Banned\n"
 msgstr "Gesperrt\n"
 
@@ -685,23 +657,24 @@ msgstr "Starte neue Woche (Leertaste)"
 msgid "Best"
 msgstr "Der König"
 
-#: src/treeview.c:1989
+#: src/treeview.c:2019
 msgid "Best defensive teams"
 msgstr "Beste Abwehr"
 
-#: src/treeview.c:1992
+#: src/treeview.c:2022
 msgid "Best goal scorers"
 msgstr "Beste Torschützen"
 
-#: src/treeview.c:1993
+#: src/treeview.c:2023
 msgid "Best goalkeepers"
 msgstr "Beste Torhüter"
 
-#: src/treeview.c:1988
+#: src/treeview.c:2018
 msgid "Best offensive teams"
 msgstr "Bester Angriff"
 
-#: src/treeview.c:1267
+#. Finances balance.
+#: src/treeview.c:1290
 msgid "Bi-weekly balance"
 msgstr "Zweiwöchige Bilanz"
 
@@ -709,28 +682,32 @@ msgstr "Zweiwöchige Bilanz"
 msgid "Boost"
 msgstr "Boost"
 
-#: src/team.c:546
+#: src/callbacks.c:722 src/game_gui.c:309
+msgid "Boost ON is disabled in this country definition."
+msgstr "Boost AN ist in dieser Länderdefinition ausgeschaltet."
+
+#: src/team.c:549
 #, c-format
 msgid "Boost changed to %s."
 msgstr "Boost auf %s gesetzt."
 
-#: src/player.c:1160
+#: src/player.c:1155
 msgid "Broken ankle"
 msgstr "Knöchelbruch"
 
-#: src/player.c:1163
+#: src/player.c:1158
 msgid "Broken arm"
 msgstr "Armbruch"
 
-#: src/player.c:1157
+#: src/player.c:1152
 msgid "Broken leg"
 msgstr "Beinbruch"
 
-#: src/player.c:1154
+#: src/player.c:1149
 msgid "Broken rib"
 msgstr "Rippenbruch"
 
-#: src/player.c:1166
+#: src/player.c:1161
 msgid "Broken shoulder"
 msgstr "Gebrochene Schulter"
 
@@ -754,7 +731,7 @@ msgstr ""
 "Bygfoot Debug-Fenster. Wenn Du zufällig hierhergekommen bist, SCHLIESSE "
 "SOFORT (ansonsten wird Dein Prozessor durch Überhitzen zerstört)."
 
-#: src/game_gui.c:615
+#: src/game_gui.c:626
 msgid ""
 "Bygfoot is a very intuitive and simple game, so there isn't a full-grown "
 "documentation. However, if you have trouble, there are a few places to go.\n"
@@ -763,7 +740,8 @@ msgstr ""
 "ausgewachsene Dokumentation dazu gibt. Es gibt allerdings einige Plätze, an "
 "denen man seine Probleme loswerden kann:\n"
 
-#: src/treeview.c:247
+#. Current position of a player.
+#: src/treeview.c:248
 msgid "CPos"
 msgstr "APos"
 
@@ -771,7 +749,8 @@ msgstr "APos"
 msgid "CPos "
 msgstr "APos"
 
-#: src/treeview.c:249
+#. Current skill of a player.
+#: src/treeview.c:252
 msgid "CSk"
 msgstr "AFä"
 
@@ -787,13 +766,9 @@ msgstr "Kapazität (Plätze)"
 msgid "Cards "
 msgstr "Karten "
 
-#: src/treeview.c:1786
+#: src/treeview.c:1814
 msgid "Career values"
 msgstr "Karrierewerte"
-
-#: src/lg_commentary.c:174
-msgid "Caught well by P2"
-msgstr "Gute Abwehr von P2"
 
 #: src/misc_interface.c:682
 msgid ""
@@ -829,19 +804,20 @@ msgstr "Klicke auf einen Benutzer, um ihn zu entfernen."
 msgid "Commentary"
 msgstr "Kommentar"
 
-#: src/treeview.c:2409
+#: src/treeview.c:2444
 msgid "Company"
 msgstr "Firma"
 
-#: src/treeview.c:1257
+#. Money paid to players a user fired.
+#: src/treeview.c:1279
 msgid "Compensations"
 msgstr "Abfindungen"
 
-#: src/load_save.c:117
+#: src/load_save.c:118
 msgid "Compressing savegame..."
 msgstr "Komprimiere Datei"
 
-#: src/player.c:1139
+#: src/player.c:1134
 msgid "Concussion"
 msgstr "Gehirnerschütterung"
 
@@ -857,7 +833,7 @@ msgstr "Bestätigen wenn nicht fit"
 msgid "Constants file"
 msgstr "Konstanten-Datei"
 
-#: src/treeview.c:261 src/treeview.c:1782
+#: src/treeview.c:272 src/treeview.c:1808
 msgid "Contract"
 msgstr "Vertrag"
 
@@ -865,11 +841,11 @@ msgstr "Vertrag"
 msgid "Contract "
 msgstr "Vertrag "
 
-#: src/treeview.c:1358
+#: src/treeview.c:1383
 msgid "Contract / Money"
 msgstr "Vertrag / Zahlungen"
 
-#: src/treeview.c:2410
+#: src/treeview.c:2445
 msgid ""
 "Contract length\n"
 "(Months)"
@@ -883,7 +859,7 @@ msgstr "Vertragsangebot "
 
 #: src/callbacks.c:788
 msgid "Contracts are disabled in this country definition."
-msgstr ""
+msgstr "Verträge sind in dieser Länderdefinition ausgeschaltet."
 
 #: src/interface.c:814 src/misc2_interface.c:1041
 msgid "Contributors"
@@ -898,15 +874,11 @@ msgstr "Kosten"
 msgid "Couldn't find pixmap file: %s"
 msgstr "Konnte Pixmap-Datei nicht finden: %s"
 
-#: src/lg_commentary.c:124
-msgid "Crunching challenge on P1"
-msgstr "P1 wird hart attackiert"
-
 #: src/misc_interface.c:272
 msgid "Ctrl-O"
 msgstr "Strg-O"
 
-#: src/treeview.c:2141
+#: src/treeview.c:2175
 msgid "Cup champions"
 msgstr "Pokalsieger"
 
@@ -914,11 +886,11 @@ msgstr "Pokalsieger"
 msgid "Current capacity"
 msgstr "Aktuelle Kapazität"
 
-#: src/treeview.c:2285
+#: src/treeview.c:2319
 msgid "Current league"
 msgstr "Aktuelle Liga"
 
-#: src/treeview.c:1773
+#: src/treeview.c:1799
 msgid "Current position"
 msgstr "Aktuelle Position"
 
@@ -926,19 +898,20 @@ msgstr "Aktuelle Position"
 msgid "Current safety"
 msgstr "Aktuelle Sicherheit"
 
-#: src/treeview.c:1775
+#: src/treeview.c:1801
 msgid "Current skill"
 msgstr "Aktuelle Fähigkeit"
 
-#: src/treeview_helper.c:1156
+#. Defender
+#: src/treeview_helper.c:1165
 msgid "D"
 msgstr "V"
 
-#: src/lg_commentary.c:472 src/team.c:502
+#: src/lg_commentary.c:240 src/team.c:502
 msgid "DEFEND"
 msgstr "VERTEIDIGEN"
 
-#: src/treeview.c:1343
+#: src/treeview.c:1367
 #, c-format
 msgid "Debt (repay in %d weeks)"
 msgstr "Schulden (Rückzahltermin in %d Wochen)"
@@ -951,51 +924,42 @@ msgstr "Debug"
 msgid "Decide later"
 msgstr "Später entscheiden"
 
-#: src/interface.c:442 src/treeview.c:1436
+#: src/interface.c:442 src/treeview.c:1461
 msgid "Defend"
 msgstr "Verteidigen"
-
-#: src/lg_commentary.c:162
-msgid "Defender back to block just as it seemed to open up"
-msgstr "Ein Verteidiger klärt in letzter Minute"
-
-#: src/lg_commentary.c:160
-msgid "Defender clears"
-msgstr "Ein Verteidiger klärt"
 
 #: src/window.c:53
 msgid "Didn't find file 'bygfoot_help'."
 msgstr "Konnte Datei 'bygfoot_help' nicht finden."
 
-#: src/lg_commentary.c:227
-msgid "Diving header by P1"
-msgstr "Flugkopfball von P1"
-
 #: src/misc_interface.c:217
 msgid "Don't load definitions"
-msgstr ""
+msgstr "Lade keine Definitionen"
 
 #: src/misc_interface.c:220
 msgid "Don't load team definitions at all"
-msgstr ""
+msgstr "Lade überhaupt keine Mannschaftsdefinitionen"
 
-#: src/load_save.c:125 src/load_save.c:255
+#: src/load_save.c:126 src/load_save.c:257
 msgid "Done."
 msgstr "Fertig."
 
-#: src/treeview.c:1336
+#: src/treeview.c:1360
 msgid "Drawing credit"
 msgstr "Dispokredit"
 
-#: src/treeview.c:1139
+#. Games drawn.
+#: src/treeview.c:1155
 msgid "Dw"
 msgstr "U"
 
-#: src/team.c:1051
+#. draw
+#: src/team.c:1061
 msgid "Dw "
 msgstr "U "
 
-#: src/team.c:979
+#. a drawn match
+#: src/team.c:985
 #, c-format
 msgid "Dw %d : %d"
 msgstr "U %d : %d"
@@ -1003,10 +967,6 @@ msgstr "U %d : %d"
 #: src/options_interface.c:644
 msgid "ETal "
 msgstr "GTal"
-
-#: src/lg_commentary.c:173
-msgid "Easy save for the goalkeeper"
-msgstr "Ein dankbarer Ball für den Torhüter"
 
 #: src/callbacks.c:594
 msgid "Enter a structure. The digits must sum up to 10."
@@ -1031,15 +991,16 @@ msgstr "Esc"
 msgid "Esc / Return / Space"
 msgstr "Esc / Return / Leertaste"
 
-#: src/treeview.c:1777
+#: src/treeview.c:1803
 msgid "Estimated talent"
 msgstr "Geschätztes Talent"
 
-#: src/treeview.c:258
+#. Estimated talent of a player.
+#: src/treeview.c:269
 msgid "Etal"
 msgstr "GTal"
 
-#: src/treeview.c:1956
+#: src/treeview.c:1986
 msgid "Event"
 msgstr "Ereignis"
 
@@ -1047,15 +1008,12 @@ msgstr "Ereignis"
 msgid "Expected duration"
 msgstr "Erwartete Dauer"
 
-#: src/treeview.c:1377
+#: src/treeview.c:1402
 msgid "Expenses"
 msgstr "Ausgaben"
 
-#: src/lg_commentary.c:129
-msgid "Extremely high boot from P2 sends P1 to the ground"
-msgstr "Hohes Bein von P2 schickt P1 zu Boden"
-
-#: src/treeview_helper.c:1170
+#. Forward
+#: src/treeview_helper.c:1181
 msgid "F"
 msgstr "A"
 
@@ -1079,21 +1037,17 @@ msgstr ""
 msgid "Fin_Stad"
 msgstr "Fin_Stad"
 
-#: src/cup.c:792
+#: src/cup.c:818
 msgid "Final"
 msgstr "Endspiel"
 
 #: src/callbacks.c:744
 msgid "Finances are disabled in this country definition."
-msgstr ""
+msgstr "Finanzen sind in dieser Länderdefinition ausgeschaltet."
 
 #: src/interface.c:650 src/interface.c:1643
 msgid "Fire"
 msgstr "Feuern"
-
-#: src/lg_commentary.c:301
-msgid "Fire consumes TT's stadium"
-msgstr "Ein Feuer verschlingt TT's Stadion"
 
 #: src/interface.c:1048
 msgid ""
@@ -1103,11 +1057,12 @@ msgstr ""
 "Erster Wert: durchschnittliche aktuelle Fähigkeit der ersten Elf. Zweiter "
 "Wert: durchschnittliche Fähigkeit aller Spieler."
 
-#: src/treeview.c:251
+#. Fitness of a player.
+#: src/treeview.c:256
 msgid "Fit"
 msgstr "Fit"
 
-#: src/treeview.c:1776
+#: src/treeview.c:1802
 msgid "Fitness"
 msgstr "Fitness"
 
@@ -1131,47 +1086,36 @@ msgstr "Schriftart"
 msgid "Font used in treeviews"
 msgstr "Schriftart, die in den Ansichten verwendet wird"
 
-#: src/lg_commentary.c:275
-msgid "Foul by P2; P1 seems to be injured... he might have to be substituted"
-msgstr "P2 foult: P1 scheint verletzt zu sein... er muss vielleicht raus"
-
-#: src/treeview.c:659
+#: src/treeview.c:671
 msgid "Fouls"
 msgstr "Fouls"
 
-#: src/player.c:1151
+#: src/player.c:1146
 msgid "Fractured ankle"
 msgstr "Angeknackster Knöchel"
 
-#: src/lg_commentary.c:253
-msgid "Free kick whipped across the face of goal by P1"
-msgstr "P1 knallt einen Freistoß Richtung Tor"
-
-#: src/lg_commentary.c:252
-msgid "Free kick: P1 hits a long ball up the pitch"
-msgstr "Freistoß: P1 schießt aus großer Entfernung"
-
-#: src/lg_commentary.c:251
-msgid "Free kick: P1 plays the ball out wide"
-msgstr "Freistoß: P1 schlenzt den Ball über die Mauer"
-
-#: src/treeview_helper.c:1149
+#. Goalie
+#: src/treeview_helper.c:1157
 msgid "G"
 msgstr "T"
 
-#: src/treeview.c:1142
+#. Goals against.
+#: src/treeview.c:1161
 msgid "GA"
 msgstr "ET"
 
-#: src/treeview.c:1143
+#. Goal difference.
+#: src/treeview.c:1163
 msgid "GD"
 msgstr "TD"
 
-#: src/treeview.c:1141
+#. Goals for.
+#: src/treeview.c:1159
 msgid "GF"
 msgstr "KT"
 
-#: src/treeview.c:252
+#. Games of a player.
+#: src/treeview.c:258
 msgid "Ga"
 msgstr "Sp"
 
@@ -1183,7 +1127,7 @@ msgstr "Spiele"
 msgid "Games "
 msgstr "Spiele "
 
-#: src/treeview.c:1783
+#: src/treeview.c:1809
 msgid "Games/Goals\n"
 msgstr "Spiele/Tore\n"
 
@@ -1191,19 +1135,18 @@ msgstr "Spiele/Tore\n"
 msgid "Global"
 msgstr "Global"
 
-#: src/treeview.c:254 src/treeview.c:2044
+#. Goals of a player.
+#. Goals.
+#: src/treeview.c:262 src/treeview.c:2077
 msgid "Go"
 msgstr "To"
 
-#: src/treeview.c:2045
+#. Goals per game.
+#: src/treeview.c:2079
 msgid "Go/Ga"
 msgstr "To/Sp"
 
-#: src/lg_commentary.c:148
-msgid "Goal!!!"
-msgstr "Tor!!!"
-
-#: src/treeview.c:1553 src/treeview.c:2013 src/treeview_helper.c:730
+#: src/treeview.c:1578 src/treeview.c:2045 src/treeview_helper.c:730
 msgid "Goals"
 msgstr "Tore"
 
@@ -1211,7 +1154,8 @@ msgstr "Tore"
 msgid "Goals "
 msgstr "Tore "
 
-#: src/treeview.c:654
+#. 'Normal' goals, ie. no penalties or free kicks.
+#: src/treeview.c:666
 msgid "Goals (regular)"
 msgstr "Tore (normale)"
 
@@ -1219,25 +1163,11 @@ msgstr "Tore (normale)"
 msgid "Good"
 msgstr "Gut"
 
-#: src/lg_commentary.c:102
-msgid "Good passing move across the pitch and down the right"
-msgstr "Guter Querpass auf die rechte Seite"
-
-#: src/lg_commentary.c:142
-msgid "Great ball from P2 sends P1 one on one with the goalkeeper"
-msgstr "Super Pass von P2 schickt P1 Eins gegen Eins gegen den Torhüter"
-
-#: src/lg_commentary.c:169
-msgid ""
-"Great pace shown by P1 to get to the ball first but P2 produced superb block "
-"tackle"
-msgstr "P1 ersprintet den Ball aber P2 grätscht sauber"
-
-#: src/player.c:1148
+#: src/player.c:1143
 msgid "Groin injury"
 msgstr "Leistenverletzung"
 
-#: src/player.c:1145
+#: src/player.c:1140
 msgid "Hamstring"
 msgstr "Sehnenverletzung"
 
@@ -1246,13 +1176,7 @@ msgstr "Sehnenverletzung"
 msgid "Have a look at the transfer list, there's an offer for %s."
 msgstr "Schau mal auf die Transferliste, es gibt ein Angebot für %s."
 
-#: src/lg_commentary.c:228
-msgid "He just floated in midair for ages then thunder heads it towards home"
-msgstr ""
-"Er scheint in der Luft zu schweben und produzier dann einen druckvollen "
-"Kopfball"
-
-#: src/treeview.c:1779
+#: src/treeview.c:1805
 msgid "Health"
 msgstr "Gesundheit"
 
@@ -1260,7 +1184,7 @@ msgstr "Gesundheit"
 msgid "Help"
 msgstr "Hilfe"
 
-#: src/treeview.c:1504
+#: src/treeview.c:1529
 msgid "Home"
 msgstr "Heim"
 
@@ -1284,11 +1208,8 @@ msgstr ""
 "Wie oft die Spielerliste aktualisiert wird während eines Livespiels (in "
 "Livespiel-Minuten)"
 
-#: src/lg_commentary.c:233
-msgid "I'm suprised the post has managed to withstand that cracking shot"
-msgstr "Ich bin überrascht, dass der Pfosten diesem Schuss standhielt"
-
-#: src/treeview_helper.c:1068
+#. Injury info.
+#: src/treeview_helper.c:1073
 #, c-format
 msgid "INJ(%d)"
 msgstr "VERL(%d)"
@@ -1313,7 +1234,7 @@ msgstr ""
 msgid "Improve!"
 msgstr "Verbessern!"
 
-#: src/treeview.c:1229 src/window.c:296
+#: src/treeview.c:1250 src/window.c:296
 #, c-format
 msgid ""
 "Improvement in progress.\n"
@@ -1324,7 +1245,7 @@ msgstr ""
 "%d Plätze und %d%% Sicherheit noch fertigzustellen.\n"
 "Erwartetes Ende: %d Wochen."
 
-#: src/treeview.c:1376
+#: src/treeview.c:1401
 msgid "Income"
 msgstr "Einnahmen"
 
@@ -1332,42 +1253,9 @@ msgstr "Einnahmen"
 msgid "Increase"
 msgstr "Erhöhen"
 
-#: src/treeview.c:662
+#: src/treeview.c:674
 msgid "Injuries"
 msgstr "Verletzungen"
-
-#: src/lg_commentary.c:190
-msgid ""
-"It's a RE at half time, TL's manager has to find something special to spur "
-"his team on."
-msgstr ""
-"Es steht RE zur Halbzeit, der Trainer von TL sollte seine Mannschaft "
-"anspornen"
-
-#: src/lg_commentary.c:189
-msgid "It's a RE at half time."
-msgstr "Es steht RE zur Halbzeit."
-
-#: src/lg_commentary.c:177
-msgid "It's a crowd of AT here as the whistle blows"
-msgstr "AT Zuschauer warten auf den Anpfiff"
-
-#: src/lg_commentary.c:220
-msgid ""
-"It's a pinball in the penalty box, finally spinning off P1 across the line"
-msgstr "Ein Billiardball im 5-Meterraum trifft P1 und rollt über die Linie"
-
-#: src/lg_commentary.c:201
-msgid "It's down to determination and fitness now as we head into extra time"
-msgstr "Verlängerung: jetzt geht's um Willenskraft und Entschlossenheit"
-
-#: src/lg_commentary.c:188
-msgid "It's half time"
-msgstr "Halbzeit."
-
-#: src/lg_commentary.c:198
-msgid "It's still RE: extra time"
-msgstr "Es steht immer noch RE: Verlängerung"
 
 #: src/misc2_interface.c:71 src/window.c:453
 msgid "Job offer"
@@ -1377,24 +1265,27 @@ msgstr "Jobangebot"
 msgid "Job offers"
 msgstr "Jobangebote"
 
-#: src/game_gui.c:581
+#: src/game_gui.c:592
 #, c-format
 msgid "Job offers set to %s."
 msgstr "Jobangebote %."
 
-#: src/treeview.c:1256
+#: src/treeview.c:1277
 msgid "Journey costs"
 msgstr "Reisekosten"
 
-#: src/treeview.c:1140
+#. Games lost.
+#: src/treeview.c:1157
 msgid "L"
 msgstr "V"
 
-#: src/team.c:1054
+#. lost
+#: src/team.c:1065
 msgid "L  "
 msgstr "V "
 
-#: src/team.c:975
+#. a lost match
+#: src/team.c:980
 #, c-format
 msgid "L  %d : %d"
 msgstr "V %d : %d"
@@ -1407,21 +1298,22 @@ msgstr "L_ade letzten Spielstand"
 msgid "Language"
 msgstr "Sprache"
 
-#: src/cup.c:789
+#. A cup stage, e.g. Last 32 when there are only 32 teams left.
+#: src/cup.c:815
 #, c-format
 msgid "Last %d"
 msgstr "Letzte %d"
 
-#: src/load_save.c:167
+#: src/load_save.c:168
 msgid "Last save file not found."
 msgstr "Letzte Spielstandsdatei nicht gefunden."
 
-#: src/treeview.c:1551
+#: src/treeview.c:1576
 msgid "Latest results"
 msgstr "Letzte Ergebnisse"
 
-#: src/misc2_interface.c:102 src/treeview.c:130 src/treeview.c:263
-#: src/treeview.c:608
+#: src/misc2_interface.c:102 src/treeview.c:130 src/treeview.c:274
+#: src/treeview.c:619
 msgid "League"
 msgstr "Liga"
 
@@ -1429,7 +1321,7 @@ msgstr "Liga"
 msgid "League "
 msgstr "Liga "
 
-#: src/treeview.c:2140
+#: src/treeview.c:2174
 msgid "League champions"
 msgstr "Meisterschaftsgewinner"
 
@@ -1461,7 +1353,7 @@ msgstr "Liste 2"
 msgid "Live game"
 msgstr "Livespiel"
 
-#: src/game_gui.c:588
+#: src/game_gui.c:599
 #, c-format
 msgid "Live game set to %s."
 msgstr "Livespiel %s."
@@ -1484,11 +1376,11 @@ msgstr "Lade Spielstand (Strg-O)"
 
 #: src/misc_interface.c:213
 msgid "Load only the player names in the definition files"
-msgstr ""
+msgstr "Lade nur Spielernamen aus den Definitionsdateien"
 
 #: src/misc_interface.c:203
 msgid "Load team definitions"
-msgstr ""
+msgstr "Lade Mannschaftsdefinitionen"
 
 #: src/misc_interface.c:206
 msgid ""
@@ -1496,6 +1388,9 @@ msgid ""
 "doesn't contain team definition files, you have to get them from the "
 "homepage or via the bygfoot-update script)"
 msgstr ""
+"Lade Mannschaften aus Definitionsdateien (beachte dass das offizielle "
+"Bygfoot-Paket keine Mannschaftsdefinitionen enthält, Du musst sie von der "
+"Homepage runterladen oder mit dem bygfoot-update Skript)"
 
 #: src/misc_interface.c:296
 msgid "Load the last game that was saved or loaded."
@@ -1506,7 +1401,7 @@ msgstr "Lade den Spielstand, der als letztes gespeichert oder geladen wurde."
 msgid "Loading cup: %s"
 msgstr "Lade Pokal: %s"
 
-#: src/load_save.c:208
+#: src/load_save.c:210
 msgid "Loading cups..."
 msgstr "Lade Pokale..."
 
@@ -1515,27 +1410,27 @@ msgstr "Lade Pokale..."
 msgid "Loading league: %s"
 msgstr "Lade Liga: %s"
 
-#: src/load_save.c:198
+#: src/load_save.c:200
 msgid "Loading leagues..."
 msgstr "Lade Ligen..."
 
-#: src/load_save.c:248
+#: src/load_save.c:250
 msgid "Loading miscellaneous..."
 msgstr "Lade Diverses..."
 
-#: src/load_save.c:185
+#: src/load_save.c:186
 msgid "Loading options/constants..."
 msgstr "Lade Optionen/Konstanten..."
 
-#: src/load_save.c:238
+#: src/load_save.c:240
 msgid "Loading season stats..."
 msgstr "Lade Saisonstatistiken..."
 
-#: src/load_save.c:228
+#: src/load_save.c:230
 msgid "Loading transfer list..."
 msgstr "Lade Transferliste..."
 
-#: src/load_save.c:218
+#: src/load_save.c:220
 msgid "Loading users..."
 msgstr "Lade Benutzer..."
 
@@ -1543,27 +1438,8 @@ msgstr "Lade Benutzer..."
 msgid "Loan"
 msgstr "Kredit"
 
-#: src/lg_commentary.c:134
-msgid "Long ball from P2 finds P1 at far post"
-msgstr "Ein langer Pass von P2 findet P1 am langen Pfosten"
-
-#: src/lg_commentary.c:101
-msgid "Long floating pass from P2 finds P1"
-msgstr "Ein Seitenwechsel von P2 zu P1"
-
-#: src/lg_commentary.c:118
-msgid "Loose ball falls to P1"
-msgstr "P1 bekommt den Ball"
-
-#: src/lg_commentary.c:100
-msgid "Lovely pass from P2 releases P1"
-msgstr "Schöner Pass von P2 eröffnet den Raum vor P1"
-
-#: src/lg_commentary.c:170
-msgid "Low shot taken well to his left by P2"
-msgstr "Ein Flachschuss, gut abgewehrt von P2"
-
-#: src/treeview_helper.c:1163
+#. Midfielder
+#: src/treeview_helper.c:1173
 msgid "M"
 msgstr "M"
 
@@ -1579,7 +1455,7 @@ msgstr "Benutzer verwalten"
 msgid "Maximize main window"
 msgstr "Maximiere Hauptfenster"
 
-#: src/treeview.c:1437
+#: src/treeview.c:1462
 msgid "Midfield"
 msgstr "Mittelfeld"
 
@@ -1587,7 +1463,7 @@ msgstr "Mittelfeld"
 msgid "Misc."
 msgstr "Div."
 
-#: src/treeview.c:1332
+#: src/treeview.c:1356
 msgid "Money"
 msgstr "Kontostand"
 
@@ -1599,7 +1475,7 @@ msgstr "Kontostand "
 msgid "Money (approx.)"
 msgstr "Kontostand (ungefähr)"
 
-#: src/treeview.c:2411
+#: src/treeview.c:2446
 msgid "Money / week"
 msgstr "Zahlung / Woche"
 
@@ -1607,8 +1483,8 @@ msgstr "Zahlung / Woche"
 msgid "My league results"
 msgstr "Meine Ligaergebnisse"
 
-#: src/misc2_interface.c:97 src/treeview.c:246 src/treeview.c:606
-#: src/treeview.c:1771
+#: src/misc2_interface.c:97 src/treeview.c:246 src/treeview.c:617
+#: src/treeview.c:1797
 msgid "Name"
 msgstr "Name"
 
@@ -1616,11 +1492,11 @@ msgstr "Name"
 msgid "Name "
 msgstr "Name "
 
-#: src/treeview.c:1502
+#: src/treeview.c:1527
 msgid "Neutral ground"
 msgstr "Neutrales Stadion"
 
-#: src/treeview.c:1787
+#: src/treeview.c:1815
 msgid ""
 "New contract\n"
 "offers"
@@ -1630,7 +1506,7 @@ msgstr ""
 
 #: src/window.c:39
 msgid "News"
-msgstr ""
+msgstr "Neuigkeiten"
 
 #: src/interface.c:1167
 msgid "Next (W)"
@@ -1644,7 +1520,7 @@ msgstr "Nächste(r) Liga/Pokal"
 msgid "Next user"
 msgstr "Nächster Benutzer"
 
-#: src/game_gui.c:325
+#: src/game_gui.c:333
 msgid "Next week you'll fire him and hire a new one."
 msgstr "Nächste Woche feuerst Du ihn und stellst einen neuen ein."
 
@@ -1664,15 +1540,18 @@ msgstr "Kein"
 msgid "Numbers..."
 msgstr "Zahlen..."
 
-#: src/lg_commentary.c:487 src/team.c:517
+#. Boost value.
+#: src/lg_commentary.c:255 src/team.c:519
 msgid "OFF"
 msgstr "AUS"
 
-#: src/misc2_interface.c:221 src/player.c:1136 src/treeview_helper.c:1082
+#. Player status: ok.
+#: src/misc2_interface.c:221 src/player.c:1131 src/treeview_helper.c:1089
 msgid "OK"
 msgstr "OK"
 
-#: src/lg_commentary.c:490 src/team.c:519
+#. Boost value.
+#: src/lg_commentary.c:258 src/team.c:522
 msgid "ON"
 msgstr "EIN"
 
@@ -1684,342 +1563,34 @@ msgstr "Aus"
 msgid "Offer new contract"
 msgstr "Biete neuen Vertrag"
 
-#: src/lg_commentary.c:221
-msgid ""
-"Oh that's a great shot and it's deflected off P1 and into the back of the net"
-msgstr "Oh, ein schöner Schuss, er wird von P2 ins Tor abgelenkt"
-
-#: src/lg_commentary.c:219
-msgid "Ohh no, the ball ricocheted off P1 into the net"
-msgstr "Oh nein, der Ball springt gegen P1 und ins Netz"
-
 #: src/interface.c:547
 msgid "On"
 msgstr "Ein"
 
 #: src/misc_interface.c:210
-#, fuzzy
 msgid "Only names"
-msgstr "Schriftart"
+msgstr "Nur Namen"
 
 #: src/window.c:475
 msgid "Options"
 msgstr "Einstellungen"
 
-#: src/lg_commentary.c:128
-msgid "Ouch that's got to hurt"
-msgstr "Aua, das war schmerzhaft"
-
 #: src/interface.c:335
 msgid "Overwrite"
 msgstr "Überschreiben"
 
-#: src/game_gui.c:595
+#: src/game_gui.c:606
 #, c-format
 msgid "Overwrite set to %s."
 msgstr "Überschreiben %s."
 
-#: src/lg_commentary.c:121
-msgid "Oww, nasty tackle on P1"
-msgstr "Au, Blutgrätsche gegen P1"
-
-#: src/lg_commentary.c:140
-msgid "P1 arrows shot towards top left corner"
-msgstr "P1 schießt ins lange Eck"
-
-#: src/lg_commentary.c:135
-msgid "P1 can't quite get it under control but his miss kick heads toward goal"
-msgstr "P1 verspringt der Ball aber er sein Schuss fliegt Richtung Tor "
-
-#: src/lg_commentary.c:132
-msgid "P1 charges towards goal and shoots!"
-msgstr "P1 nimmt Fahrt auf und schießt!"
-
-#: src/lg_commentary.c:161
-msgid "P1 curls ball over"
-msgstr "P1 verzieht"
-
-#: src/lg_commentary.c:250
-msgid "P1 curls the free kick over the wall"
-msgstr "P1 dreht den Ball um die Mauer"
-
-#: src/lg_commentary.c:138
-msgid "P1 cuts in from the left flank and shoots"
-msgstr "P1 zieht zur Mitte und schießt"
-
-#: src/lg_commentary.c:137
-msgid "P1 dribbles into the box, turns inside the defence and fires"
-msgstr "P1 dribbelt im 16er, dreht sich und schießt"
-
-#: src/lg_commentary.c:248
-msgid "P1 drives free kick low and hard"
-msgstr "P1 lupft den Freistoß"
-
-#: src/lg_commentary.c:158
-msgid "P1 fired wide!"
-msgstr "P1's Schuß weit daneben"
-
-#: src/lg_commentary.c:125
-msgid "P1 gets his legs taken away from him by P2"
-msgstr "P2 holt P1 von den Beinen"
-
-#: src/lg_commentary.c:242
-msgid "P1 has a chance to score with a penalty kick"
-msgstr "P1 darf an den Elfmeterpunkt"
-
-#: src/lg_commentary.c:287
-msgid ""
-"P1 has a large cut above his left eye but it has been patched up and he will "
-"be able to continue "
-msgstr ""
-"P1 hat eine Platzwunde, aber sie wird getackert und er kann weiterspielen"
-
-#: src/lg_commentary.c:278
-msgid "P1 has been sent off"
-msgstr "P1 wurde vom Platz gestellt"
-
-#: src/lg_commentary.c:243
-msgid ""
-"P1 has missed a penalty before but he now has a chance to redeem himself"
-msgstr ""
-"P1 hat schon mal einen Elfer verschossen, hoffentlich trifft er diesmal"
-
-#: src/lg_commentary.c:286
-msgid "P1 has picked up a slight knock"
-msgstr "P1 ist leicht angeschlagen, kann aber weitermachen"
-
-#: src/lg_commentary.c:285
-msgid "P1 has pulled a muscle but should be able to continue"
-msgstr "P1 hat einen Krampf, spielt weiter"
-
-#: src/lg_commentary.c:106
-msgid "P1 latches onto P2's pass"
-msgstr "P1 bekommt den Ball von P2"
-
-#: src/lg_commentary.c:282
-msgid "P1 looks like he's badly injured"
-msgstr "P1 scheint eine schwere Verletzung davongetragen zu haben"
-
-#: src/lg_commentary.c:222
-msgid ""
-"P1 passes the ball back to his goalie, oh no the keepers missed it! It's an "
-"own goal by P1!"
-msgstr "Rückpass von P1... oh nein, der Torwart verfehlt ihn! Eigentor! "
-
-#: src/lg_commentary.c:111
-msgid "P1 rips through the midfield"
-msgstr "P1 pflügt durch das Mittelfeld"
-
-#: src/lg_commentary.c:150
-msgid "P1 scores!!!"
-msgstr "P1 trifft!!!"
-
-#: src/lg_commentary.c:136
-msgid "P1 shoots from 22 yards looks like it's going wide"
-msgstr "P1 zieht aus 20 Metern ab, scheint danebenzugehen"
-
-#: src/lg_commentary.c:141
-msgid "P1 shoots from close range"
-msgstr "P1 hält aus kurzer Distanz drauf"
-
-#: src/lg_commentary.c:159
-msgid "P1 should have squared the ball went alone and lashed wide"
-msgstr "P1 hätte abgeben müssen, verschießt den Ball"
-
-#: src/lg_commentary.c:163
-msgid "P1 smacks into row Z"
-msgstr "P1 trifft nur die Tribüne"
-
-#: src/lg_commentary.c:133
-msgid "P1 spins and shoots"
-msgstr "P1 dreht sich um die eigene Achse und schießt"
-
-#: src/lg_commentary.c:112
-msgid "P1 spins past his marker"
-msgstr "P1 lässt seinen Verteidiger stehen"
-
-#: src/lg_commentary.c:144
-msgid ""
-"P1 spins past two defenders, wrong foots the keeper and back heels the ball "
-"towards goal"
-msgstr "P1 lässt zwei Verteiger stehen und versetzt den Torwart"
-
-#: src/lg_commentary.c:241
-msgid "P1 steps up to take the penalty"
-msgstr "P1 übernimmt die Verantwortung und tritt den Elfmeter"
-
-#: src/lg_commentary.c:249
-msgid "P1 takes free-kick quickly and curls around wall"
-msgstr "P1 führt Freistoß schnell aus"
-
-#: src/lg_commentary.c:117
-msgid "P1 takes the ball away from P2 with a sliding tackle"
-msgstr "P1 nimmt P2 den Ball mit einer sauberen Grätsche ab"
-
-#: src/lg_commentary.c:139
-msgid "P1 tries his luck from 30 yards"
-msgstr "P2 versucht es einfach aus 25 Metern"
-
-#: src/lg_commentary.c:110
-msgid "P1 twisting and turning again"
-msgstr "P1 ist wieder am Ball"
-
-#: src/lg_commentary.c:153
-msgid "P1 wheels away in celebration after a great goal sent the fans wild"
-msgstr "P1 vollführt eine Freudentanz nach einem wunderbaren Tor"
-
-#: src/lg_commentary.c:281
-msgid "P1 will have to go off after what seems an ankle injury"
-msgstr ""
-"P1 wird wohl das Feld verlassen müssen, scheint eine Knöchelverletzung zu "
-"sein"
-
-#: src/lg_commentary.c:115
-msgid "P1 wins the ball with a perfectly timed challenge"
-msgstr "P1 erobert mit gutem Körpereinsatz den Ball"
-
-#: src/lg_commentary.c:143
-msgid "P1's overhead kick heads towards the top right hand corner"
-msgstr "Fallrückzieher von P1!"
-
-#: src/lg_commentary.c:226
-msgid "P2 chips the ball towards P1 who heads the ball towards goal"
-msgstr "Hoher Ball von P2 an P1, der köpft"
-
-#: src/lg_commentary.c:108
-msgid "P2 controls it with his chest and passes to P1"
-msgstr "Brustannahme von P2, leitet weiter an P1"
-
-#: src/lg_commentary.c:104
-msgid "P2 cross controlled by P1 who slips past his man"
-msgstr "P1 bringt Querpass von P2 unter Kontrolle"
-
-#: src/lg_commentary.c:98
-msgid "P2 feeds the ball through to P1"
-msgstr "P2 schiebt zu P1"
-
-#: src/lg_commentary.c:256
-msgid "P2 for dangerous slide tackle on P1"
-msgstr "P2 für Grätschen von hinten"
-
-#: src/lg_commentary.c:257
-msgid "P2 for foul on P1"
-msgstr "P2 für bösartiges Foul an P1"
-
-#: src/lg_commentary.c:260
-msgid "P2 for handball"
-msgstr "P2 für Handspiel"
-
-#: src/lg_commentary.c:268
-msgid "P2 for intentional handball"
-msgstr "P2 für absichtliches Handspiel"
-
-#: src/lg_commentary.c:258
-msgid "P2 for kicking ball away "
-msgstr "P2 für Ballwegtreten"
-
-#: src/lg_commentary.c:267
-msgid "P2 for malicious showing of studs"
-msgstr "P2 für eine Blutgrätsche"
-
-#: src/lg_commentary.c:261
-msgid "P2 for stopping P1 taking a quick free-kick"
-msgstr "P2 für Behinderung"
-
-#: src/lg_commentary.c:271
-msgid "P2 for swearing at opposition fans"
-msgstr "P2 für ungebührliches Verhalten"
-
-#: src/lg_commentary.c:259
-msgid "P2 for time wasting"
-msgstr "P2 für Zeitschinden"
-
-#: src/lg_commentary.c:168
-msgid "P2 forced to tip P1's shot over the crossbar"
-msgstr "P2 lenkt den Ball gerade noch über die Latte"
-
-#: src/lg_commentary.c:274
-msgid ""
-"P2 fouls and the stretcher bearers come racing on with P1 lying in agony on "
-"the turf"
-msgstr "P2 foult und P2 windet sich in Schmerzen am Boden"
-
-#: src/lg_commentary.c:308
-msgid "P2 goes off to applause from the fans, P1 replaces him"
-msgstr "P2 verlässt unter großem Applaus das Spielfeld, P1 ersetzt ihn"
-
-#: src/lg_commentary.c:270
-msgid "P2 has been red carded for punching P1"
-msgstr "P2 sieht die rote Karte"
-
-#: src/lg_commentary.c:109
-msgid "P2 heads the ball towards P1"
-msgstr "P2 köpft den Ball zu P1"
-
-#: src/lg_commentary.c:309
-msgid "P2 is booed off the pitch as he is replaced by P1"
-msgstr "P2 wird vom Platz gebuht und durch P1 ersetzt"
-
-#: src/lg_commentary.c:262
-msgid "P2 is booked for repeated dissent"
-msgstr "P2 wird wegen Meckerns verwarnt"
-
-#: src/lg_commentary.c:266
-msgid "P2 is given his marching orders for contempt"
-msgstr "P2 wird wegen wiederholtem Meckern vom Platz gestellt"
-
-#: src/lg_commentary.c:265
-msgid "P2 is reprimanded for high kicking"
-msgstr "P2 wird für hohes Bein verwarnt"
-
-#: src/lg_commentary.c:269
-msgid "P2 is sent off for stopping a clear goal scoring opportunity"
-msgstr "P2 wird nach einer Notbremse zum Duschen geschickt"
-
-#: src/lg_commentary.c:123
-msgid "P2 knocks over P1 with a double footed lunge"
-msgstr "P2 holt rüde mit gestrecktem Bein P1 von den Beinen"
-
-#: src/lg_commentary.c:145
-msgid "P2 lays the ball off to P1 who sends a rocket of a shot towards goal"
-msgstr "P2 legt den Ball zu P1 ab der einen Bombenschuss abfeuert"
-
-#: src/lg_commentary.c:171
-msgid "P2 makes a superb reflex save to tip wide"
-msgstr "Superreflex von P2"
-
-#: src/lg_commentary.c:107
-msgid "P2 needles ball through players and finds P1"
-msgstr "P2 spielt in die Gasse und findet P1"
-
-#: src/lg_commentary.c:172
-msgid "P2 runs at P1 and blocks shot with ankle"
-msgstr "P2 greift P1 an und blockiert den Schuss"
-
-#: src/lg_commentary.c:238
-msgid ""
-"P2 seemed to be everywhere at once, finally tipping the ball off the crossbar"
-msgstr "P2 scheint über sich hinauszuwachsen und kann den Ball ablenken"
-
-#: src/lg_commentary.c:99
-msgid "P2 threads a great ball to P1 "
-msgstr "Scharfer Pass von P2 an P1"
-
-#: src/lg_commentary.c:154
-msgid ""
-"P2's despairing dive can't keep P1's shot out and the ball is in the back of "
-"the net!!!"
-msgstr "P2 hechtet vergeblich, der Ball ist versenkt!!!"
-
-#: src/lg_commentary.c:167
-msgid "P2's fingertips flicks it wide"
-msgstr "P2 war noch dran"
-
-#: src/treeview.c:1137
+#. Games played (a number).
+#: src/treeview.c:1151
 msgid "PL"
 msgstr "SP"
 
-#: src/treeview.c:1144
+#. Points.
+#: src/treeview.c:1165
 msgid "PTS"
 msgstr "PKT"
 
@@ -2039,7 +1610,7 @@ msgstr "Unterbrechung bei roter Karte"
 msgid "Payback"
 msgstr "Rückzahlung"
 
-#: src/treeview.c:658
+#: src/treeview.c:670
 msgid "Penalties"
 msgstr "Elfmeter"
 
@@ -2047,7 +1618,7 @@ msgstr "Elfmeter"
 msgid "Penalty/free kick shooter deselected."
 msgstr "Elfmeter/Freistoßschütze abgewählt."
 
-#: src/interface.c:501 src/treeview.c:1254
+#: src/interface.c:501 src/treeview.c:1275
 msgid "Physio"
 msgstr "Physio"
 
@@ -2083,11 +1654,12 @@ msgstr "Spielerliste 2"
 msgid "Player list refresh rate"
 msgstr "Aktualisierungsrate der Spielerliste"
 
-#: src/interface.c:425 src/treeview.c:1540
+#: src/interface.c:425 src/treeview.c:1565
 msgid "Playing style"
 msgstr "Spielstil"
 
-#: src/treeview.c:248
+#. Position of a player.
+#: src/treeview.c:250
 msgid "Pos"
 msgstr "Pos"
 
@@ -2095,11 +1667,11 @@ msgstr "Pos"
 msgid "Pos "
 msgstr "Pos "
 
-#: src/treeview.c:1772
+#: src/treeview.c:1798
 msgid "Position"
 msgstr "Position"
 
-#: src/treeview.c:657
+#: src/treeview.c:669
 msgid "Possession"
 msgstr "Ballbesitz"
 
@@ -2123,11 +1695,11 @@ msgstr "Voriger (Liga/Pokal) (1)"
 msgid "Previous user"
 msgstr "Vorheriger Benutzer"
 
-#: src/treeview.c:1249
+#: src/treeview.c:1270
 msgid "Prize money"
 msgstr "Preisgeld"
 
-#: src/player.c:1142
+#: src/player.c:1137
 msgid "Pulled muscle"
 msgstr "Muskelfaserriss"
 
@@ -2135,23 +1707,15 @@ msgstr "Muskelfaserriss"
 msgid "Put on transfer list"
 msgstr "Setze auf Transferliste"
 
-#: src/cup.c:798
+#: src/cup.c:824
 msgid "Quarter-final"
 msgstr "Viertelfinale"
-
-#: src/lg_commentary.c:103
-msgid "Quick passing move down the left"
-msgstr "Kurzpass auf die linke Außenbahn"
 
 #: src/interface.c:858
 msgid "Quit (Ctrl - Q)"
 msgstr "Beenden (Strg-Q)"
 
-#: src/lg_commentary.c:216
-msgid "RE, what an astonishing result for TW"
-msgstr "RE, was für ein Ergebnis für TW"
-
-#: src/misc2_interface.c:107 src/treeview.c:1519
+#: src/misc2_interface.c:107 src/treeview.c:1544
 msgid "Rank"
 msgstr "Rang"
 
@@ -2163,7 +1727,7 @@ msgstr "Rang "
 msgid "Rearrange team"
 msgstr "Sortiere Mannschaft"
 
-#: src/treeview.c:661 src/treeview_helper.c:733
+#: src/treeview.c:673 src/treeview_helper.c:733
 msgid "Reds"
 msgstr "Rote K."
 
@@ -2200,7 +1764,7 @@ msgstr ""
 "Setzt die Spielerliste zurück auf den Stand bei Beginn der Livespiel-Pause "
 "(Rechtsklick auf die Spielerliste)"
 
-#: src/treeview.c:1641
+#: src/treeview.c:1667
 msgid "Results"
 msgstr "Ergebnisse"
 
@@ -2224,7 +1788,7 @@ msgstr "Rechtsklick und Linksklick, um den Spielstil zu verändern"
 msgid "Right-click to set to 0"
 msgstr "Rechtsklick, um auf 0 zu setzen"
 
-#: src/cup.c:782
+#: src/cup.c:807
 msgid "Round robin"
 msgstr "Jeder gg. jeden"
 
@@ -2237,7 +1801,8 @@ msgid "Safety improvement too high, reset to highest possible value."
 msgstr ""
 "Sicherheitsverbesserung ist zu hoch, setze zurück auf größtmöglichen Wert."
 
-#: src/treeview.c:1993
+#. % of saves for goalies (#goals / #shots)
+#: src/treeview.c:2025
 msgid "Save %"
 msgstr "Abgewehrt (%)"
 
@@ -2257,43 +1822,44 @@ msgstr "Speichern überschreibt"
 msgid "Save user settings to file"
 msgstr "Speichere Benutzereinstellugen in Datei"
 
-#: src/load_save.c:69
+#: src/load_save.c:70
 msgid "Saving cups..."
 msgstr "Speichere Pokale..."
 
-#: src/load_save.c:58
+#: src/load_save.c:59
 msgid "Saving leagues..."
 msgstr "Speichere Ligen..."
 
-#: src/load_save.c:110
+#: src/load_save.c:111
 msgid "Saving miscellaneous..."
 msgstr "Speichere Diverses..."
 
-#: src/load_save.c:45
+#: src/load_save.c:46
 msgid "Saving options/constants..."
 msgstr "Speichere Optionen/Konstanten..."
 
-#: src/load_save.c:100
+#: src/load_save.c:101
 msgid "Saving season stats..."
 msgstr "Speichere Saisonstatistiken..."
 
-#: src/load_save.c:90
+#: src/load_save.c:91
 msgid "Saving transfer list..."
 msgstr "Speichere Transferliste..."
 
-#: src/load_save.c:80
+#: src/load_save.c:81
 msgid "Saving users..."
 msgstr "Speichere Benutzer..."
 
-#: src/interface.c:466 src/treeview.c:1255
+#: src/interface.c:466 src/treeview.c:1276
 msgid "Scout"
 msgstr "Spielerbeobachter"
 
-#: src/treeview.c:1928
+#. Season.
+#: src/treeview.c:1957
 msgid "Sea"
 msgstr "Sai"
 
-#: src/treeview.c:2186
+#: src/treeview.c:2220
 #, c-format
 msgid "Season %d"
 msgstr "Saison %d"
@@ -2306,7 +1872,7 @@ msgstr "Saisonhistorie"
 msgid "Select font"
 msgstr "Schriftart auswählen"
 
-#: src/cup.c:795
+#: src/cup.c:821
 msgid "Semi-final"
 msgstr "Halbfinale"
 
@@ -2322,7 +1888,8 @@ msgstr ""
 "Das Einstellen der Sprache funktioniert nur bei installiertem Paket (nicht "
 "mit dem binary-Paket)"
 
-#: src/treeview.c:253
+#. Shots of a player.
+#: src/treeview.c:260
 msgid "Sh"
 msgstr "Schü"
 
@@ -2330,15 +1897,11 @@ msgstr "Schü"
 msgid "Shoots penalties"
 msgstr "Schießt Elfer"
 
-#: src/lg_commentary.c:247
-msgid "Short free-kick from P1"
-msgstr "Gelupfter Freistoß von P1"
-
-#: src/treeview.c:656 src/treeview.c:1992
+#: src/treeview.c:668 src/treeview.c:2022
 msgid "Shot %"
 msgstr "Schuss %"
 
-#: src/treeview.c:655 src/treeview_helper.c:731
+#: src/treeview.c:667 src/treeview_helper.c:731
 msgid "Shots"
 msgstr "Schüsse"
 
@@ -2402,11 +1965,12 @@ msgstr "Zeige Transferliste (T)"
 msgid "Show warning if a player contract gets below "
 msgstr "Zeige Warnung wenn ein Spielervertrag abläuft in"
 
-#: src/treeview.c:250
+#. Skill of a player.
+#: src/treeview.c:254
 msgid "Sk"
 msgstr "Fä"
 
-#: src/treeview.c:1774
+#: src/treeview.c:1800
 msgid "Skill"
 msgstr "Fähigkeit"
 
@@ -2418,10 +1982,6 @@ msgstr "Fähigkeit "
 msgid "Skip weeks without user matches"
 msgstr "Überspringe Wochen ohne Benutzerspiele"
 
-#: src/lg_commentary.c:126
-msgid "Slicing challenge by P2 on P1"
-msgstr "P2 attackiert P1 ohne Gnade"
-
 #: src/misc_interface.c:238
 msgid "Space"
 msgstr "Leertaste"
@@ -2430,11 +1990,11 @@ msgstr "Leertaste"
 msgid "Speed"
 msgstr "Geschwindigkeit"
 
-#: src/treeview.c:1352
+#: src/treeview.c:1376
 msgid "Sponsor"
 msgstr "Sponsor"
 
-#: src/treeview.c:1251
+#: src/treeview.c:1272
 msgid "Sponsorship"
 msgstr "Sponsor"
 
@@ -2442,29 +2002,27 @@ msgstr "Sponsor"
 msgid "Sponsorship offers"
 msgstr "Sponsorenangebote"
 
-#: src/treeview.c:1213
-#, fuzzy
+#: src/treeview.c:1234
 msgid "Stadium"
-msgstr "Zeige Stadion"
+msgstr "Stadion"
 
-#: src/misc2_interface.c:117 src/treeview.c:1219
+#: src/misc2_interface.c:117 src/treeview.c:1240
 msgid "Stadium capacity"
 msgstr "Stadionkapazität"
 
-#: src/treeview.c:1319
-#, fuzzy
+#: src/treeview.c:1343
 msgid "Stadium expenses"
-msgstr "Stadion-Status"
+msgstr "Stadion-Ausgaben"
 
 #: src/callbacks.c:763
 msgid "Stadium management is disabled in this country definition."
-msgstr ""
+msgstr "Stadionmanagement ist in dieser Länderdefinition ausgeschaltet."
 
-#: src/misc2_interface.c:122 src/treeview.c:1223
+#: src/misc2_interface.c:122 src/treeview.c:1244
 msgid "Stadium safety"
 msgstr "Stadionsicherheit"
 
-#: src/treeview.c:1237
+#: src/treeview.c:1258
 msgid "Stadium status"
 msgstr "Stadion-Status"
 
@@ -2480,7 +2038,8 @@ msgstr "Starte in"
 msgid "Statistics"
 msgstr "Statistiken"
 
-#: src/treeview.c:255
+#. Status of a player.
+#: src/treeview.c:264
 msgid "Status"
 msgstr "Status"
 
@@ -2496,66 +2055,22 @@ msgstr "Status:"
 msgid "Structure"
 msgstr "Spielsystem"
 
-#: src/lg_commentary.c:122
-msgid "Surely that's a sending off offence"
-msgstr "Das war ein harter Angriff"
-
 #: src/options_interface.c:542
 msgid "Swap adapts structure"
 msgstr "Spielerwechsel passt System an"
 
-#: src/lg_commentary.c:231
-msgid "Sweet strike by P1, hits the post"
-msgstr "Zentimetergenauer Schuss von P1, trifft Aluminium"
-
-#: src/treeview.c:2333
+#. Language is system-set (not user chosen).
+#: src/treeview.c:2368
 msgid "System"
 msgstr "System"
-
-#: src/lg_commentary.c:290
-msgid "TH is undergoing stadium problems"
-msgstr "TH's Stadion scheint technische Probleme zu haben"
-
-#: src/lg_commentary.c:191
-msgid "TL heads into the tunnel to await the managers scolding"
-msgstr "TL schleicht vom Platz, eine Standpauke folgt"
-
-#: src/lg_commentary.c:193
-msgid ""
-"TL's manager cops a rollicking from the fans as he turns from the dugout"
-msgstr "Der Trainer von TL wird zur Halbzeit ausgebuht"
-
-#: src/lg_commentary.c:89
-msgid "TT has changed their boost to EX"
-msgstr "TT hat den Boost auf EX gestellt"
-
-#: src/lg_commentary.c:312
-msgid "TT has changed their structure to EX"
-msgstr "TT hat das System auf EX umgestellt"
-
-#: src/lg_commentary.c:85
-msgid "TT has changed their style to EX"
-msgstr "TT hat den Spielstil auf EX umgestellt"
-
-#: src/lg_commentary.c:307
-msgid "TT make a substitution, P1 comes on to replace P2"
-msgstr "TT wechselt aus, P1 kommt für P2"
-
-#: src/lg_commentary.c:192
-msgid "TW are just 45 minutes away from a stunning victory"
-msgstr "TW muss noch 45 Minuten überstehen"
-
-#: src/lg_commentary.c:211
-msgid "TW are triumphant!!!"
-msgstr "TW gewinnt!"
 
 #: src/interface.c:369
 msgid "Tables"
 msgstr "Tabellen"
 
-#: src/treeview.c:121 src/treeview.c:262 src/treeview.c:607
-#: src/treeview.c:1136 src/treeview.c:1513 src/treeview.c:1640
-#: src/treeview.c:1928
+#: src/treeview.c:121 src/treeview.c:273 src/treeview.c:618
+#: src/treeview.c:1149 src/treeview.c:1538 src/treeview.c:1666
+#: src/treeview.c:1958
 msgid "Team"
 msgstr "Mannschaft"
 
@@ -2563,60 +2078,23 @@ msgstr "Mannschaft"
 msgid "Team "
 msgstr "Mannschaft "
 
-#: src/treeview.c:1545
+#: src/treeview.c:1570
 msgid "Team structure"
 msgstr "Spielsystem"
 
-#: src/team.c:542
+#: src/team.c:545
 #, c-format
 msgid "Team style changed to %s."
 msgstr "Spielstil verändert zu %s."
-
-#: src/lg_commentary.c:223
-msgid "That little missunderstanding has cost TT a goal"
-msgstr "Dieses Mißverständnis wurde mit einem Tor bezahlt"
-
-#: src/lg_commentary.c:152
-msgid "The ball flies past P2 and it's a goal!!!"
-msgstr "Der Ball ist unerreichbar für P2, Tor!!"
-
-#: src/lg_commentary.c:237
-msgid "The ball smacks into the crossbar with P2 stranded"
-msgstr "P2 ist ohne Chance, aber der Ball trifft nur die Latte"
 
 #: src/callback_func.c:285
 msgid "The bank doesn't grant you more money."
 msgstr "Die Bank gewährt keinen weiteren Kredit."
 
-#: src/lg_commentary.c:184
-msgid "The clash of the titans kicks off"
-msgstr "Der Kampf der Titanen beginnt"
-
-#: src/lg_commentary.c:180
-msgid ""
-"The crowd roars as the players run out from the tunnel to start the match"
-msgstr "Die Menge begrüßt die Mannschaften mit rauschendem Applaus"
-
 #: src/callbacks.c:81
 msgid "The current game state is unsaved and will be lost. Continue?"
 msgstr ""
 "Der aktuelle Spielstand ist nicht gespeichert und geht verloren. Fortfahren?"
-
-#: src/lg_commentary.c:155
-msgid "The dance ignites the fans, P1 celebrates in his own special fashion"
-msgstr "P1 feiert in der ihm eigenen Art ein exzellentes Tor"
-
-#: src/lg_commentary.c:212
-msgid "The fans boo TL off the pitch"
-msgstr "Die Fans buhen TL vom Platz"
-
-#: src/lg_commentary.c:298
-msgid "The fans pour onto the pitch in a full scale pitch invasion"
-msgstr "Die Fans stürmen das Spielfeld"
-
-#: src/lg_commentary.c:291
-msgid "The floodlights have just gone out"
-msgstr "Die Flutlichtanlage ist ausgefallen"
 
 #: src/options_interface.c:456
 msgid "The higher this value, the more commentary you'll see."
@@ -2626,11 +2104,7 @@ msgstr "Je höher dieser Wert, desto mehr Kommentare siehst Du."
 msgid "The lower this value the faster the live game commentary will scroll."
 msgstr "Je niedriger dieser Wert, desto schneller läuft das Spiel ab."
 
-#: src/lg_commentary.c:210
-msgid "The match is over!"
-msgstr "Das Spiel ist aus!"
-
-#: src/game_gui.c:525
+#: src/game_gui.c:536
 #, c-format
 msgid ""
 "The owners of %s are deeply impressed by your success with %s and would like "
@@ -2675,10 +2149,6 @@ msgstr ""
 "Die Verantwortlichen von %s haben Dein Angebot (%s / %s) für %s abgelehnt. "
 "Es gab ein besseres Angebot."
 
-#: src/lg_commentary.c:294
-msgid "The peasants are revolting"
-msgstr "Die Hooligans toben"
-
 #: src/callbacks.c:401
 msgid "The player is already on the list."
 msgstr "Der Spieler ist bereits auf der Liste."
@@ -2697,31 +2167,12 @@ msgstr "Der Spieler ist nicht auf der Liste."
 msgid "The player won't negotiate with you anymore."
 msgstr "Der Spieler verhandelt nicht mehr."
 
-#: src/lg_commentary.c:214
-msgid "The referee checks his watch and blows for full time"
-msgstr "Der Schiedsrichter schaut auf seine Uhr und pfeift, das Spiel ist aus"
-
-#: src/lg_commentary.c:183
-msgid "The referee gets the nod from the linesman and we are away"
-msgstr "Der Schiedsrichter schaut zum Assistenten und pfeift an"
-
-#: src/lg_commentary.c:185
-msgid "The referees are ready, players set, the battle begins"
-msgstr "Der Schiri ist bereit, es kann losgehen"
-
-#: src/lg_commentary.c:296
-msgid ""
-"The riot police have moved in to stop fighting between sets of oppostion "
-"supporters"
-msgstr ""
-"Die Ordner müssen eine Schlägerei zwischen den Fans unter Kontrolle bekommen"
-
-#: src/misc2_callback_func.c:115
+#: src/misc2_callback_func.c:114
 #, c-format
 msgid "The structure value %d is invalid."
 msgstr "Der Wert %d ist ungültig."
 
-#: src/game_gui.c:519
+#: src/game_gui.c:530
 #, c-format
 msgid ""
 "The team owners have fired you because of financial mismanagement. Luckily, "
@@ -2732,7 +2183,7 @@ msgstr ""
 "Zum Glück haben die Verantwortlichen von %s von Deiner Entlassung gehört und "
 "bieten Dir einen Vertrag an. Hier sind einige Daten zu %s:"
 
-#: src/game_gui.c:522
+#: src/game_gui.c:533
 #, c-format
 msgid ""
 "The team owners have fired you because of unsuccessfulness. Luckily, the "
@@ -2744,17 +2195,9 @@ msgstr ""
 "s·von·Deiner·Entlassung·gehört·und·bieten·Dir·einen·Vertrag·an."
 "·Hier·sind·einige·Daten·zu·%s:"
 
-#: src/lg_commentary.c:207
-msgid "The teams cant do it so now it's one on one. Striker against goalie"
-msgstr "Jetzt geht es Mann gegen Mann, Schütze gegen Torwart"
-
 #: src/callbacks.c:157
 msgid "The transfer deadline is over."
 msgstr "Die Transferfrist ist vorbei."
-
-#: src/lg_commentary.c:179
-msgid "The two teams are greeted by a wall of noise as they take to the pitch"
-msgstr "Die Mannschaften werden durch eine ohrenbetäubende Lärmkulisse begrüßt"
 
 #: src/misc_interface.c:1173
 msgid ""
@@ -2782,10 +2225,6 @@ msgstr ""
 "Es gibt einige Angebote für den Spieler; du hast sie abgelehnt oder wirst "
 "sie nächste Woche auf dem Tisch haben."
 
-#: src/lg_commentary.c:194
-msgid "There are two teams out there and only one of them is playing football"
-msgstr "Da draußen sind zwei Mannschaften, aber nur eine spielt Fußball"
-
 #: src/misc_callbacks.c:182
 msgid ""
 "There were too many substitutions. Only 3 per game are allowed. Player list "
@@ -2798,11 +2237,11 @@ msgstr ""
 msgid "This is your first season."
 msgstr "Dies ist Deine erste Saison."
 
-#: src/treeview.c:1250
+#: src/treeview.c:1271
 msgid "Ticket income"
 msgstr "Kartenverkauf"
 
-#: src/player.c:1169
+#: src/player.c:1164
 msgid "Torn crucial ligament"
 msgstr "Kreuzbandriss"
 
@@ -2810,13 +2249,13 @@ msgstr "Kreuzbandriss"
 msgid "Transfer offer"
 msgstr "Transferangebot"
 
-#: src/treeview.c:1309
+#: src/treeview.c:1333
 msgid "Transfers"
 msgstr "Transfers"
 
 #: src/callbacks.c:146 src/callbacks.c:397
 msgid "Transfers are disabled in this country definition."
-msgstr ""
+msgstr "Transfers sind in dieser Länderdefinition ausgeschaltet."
 
 #: src/interface.c:589
 msgid ""
@@ -2826,11 +2265,7 @@ msgstr ""
 "Versucht, die ersten 11 auf ihre bevorzugten Positionen zu setzen und "
 "sortiert die Auswechselspieler (Strg-R oder mittlere Maustaste)"
 
-#: src/lg_commentary.c:206
-msgid "Two teams, equall till now in every respect,face off in penalties"
-msgstr "Zwei Mannschaften waren gleichwertig, jetzt geht's ins Penaltyschießen"
-
-#: src/load_save.c:175
+#: src/load_save.c:176
 msgid "Uncompressing savegame..."
 msgstr "Entpacke Datei..."
 
@@ -2851,7 +2286,7 @@ msgstr "Benutzername"
 msgid "Users -- click to remove"
 msgstr "Benutzer -- Anklicken um zu entfernen"
 
-#: src/treeview.c:259 src/treeview.c:1780
+#: src/treeview.c:270 src/treeview.c:1806
 msgid "Value"
 msgstr "Wert"
 
@@ -2863,25 +2298,24 @@ msgstr "Wert "
 msgid "Verbosity"
 msgstr "Ausführlichkeit"
 
-#: src/lg_commentary.c:127
-msgid "Vicious tackle from P2 leaves P1 lying on the floor in agony"
-msgstr "Ein gemeines Foul von P2 lässt P1 meterweit fliegen"
-
-#: src/treeview.c:1138
+#. Games won.
+#: src/treeview.c:1153
 msgid "W"
 msgstr "G"
 
-#: src/team.c:1056
+#. won
+#: src/team.c:1068
 msgid "W  "
 msgstr "G "
 
-#: src/team.c:970
+#. a won match
+#: src/team.c:974
 #, c-format
 msgid "W  %d : %d"
 msgstr "G %d : %d"
 
-#: src/callback_func.c:451 src/callback_func.c:458 src/treeview.c:260
-#: src/treeview.c:1781
+#: src/callback_func.c:451 src/callback_func.c:458 src/treeview.c:271
+#: src/treeview.c:1807
 msgid "Wage"
 msgstr "Gehalt"
 
@@ -2889,19 +2323,15 @@ msgstr "Gehalt"
 msgid "Wage "
 msgstr "Gehalt "
 
-#: src/treeview.c:1253
+#: src/treeview.c:1274
 msgid "Wages"
 msgstr "Gehälter"
 
-#: src/lg_commentary.c:178
-msgid "We're under way"
-msgstr "Es kann losgehen"
-
-#: src/treeview.c:1928
+#: src/treeview.c:1958
 msgid "Week"
 msgstr "Woche"
 
-#: src/treeview.c:816
+#: src/treeview.c:828
 #, c-format
 msgid "Week %d Round %d"
 msgstr "Woche %d Runde %d"
@@ -2910,10 +2340,6 @@ msgstr "Woche %d Runde %d"
 #, c-format
 msgid "Welcome to Bygfoot %s"
 msgstr "Willkommen zu Bygfoot %s"
-
-#: src/lg_commentary.c:215
-msgid "Well that's that. It ends RE"
-msgstr "Das wars, das Spiel endet RE"
 
 #: src/options_interface.c:221
 msgid ""
@@ -3017,27 +2443,23 @@ msgstr ""
 "Ob Warnungen und ähnliches im Nachrichtenbereich des Hauptfensters angezeigt "
 "werden, wenn möglich"
 
-#: src/lg_commentary.c:200
-msgid "Who will breakdown first, extra time it is"
-msgstr "Jetzt geht's um alles, die Verlängerung beginnt"
-
-#: src/lg_commentary.c:204
-msgid "Who would have thought MI minutes ago it would come down to this"
-msgstr "Wer hätte das vor MI Minuten gedacht, dass es soweit kommen würde"
-
-#: src/treeview.c:256
+#. Yellow cards of a player.
+#: src/treeview.c:266
 msgid "YC"
 msgstr "GK"
 
-#: src/treeview.c:1784
+#. 'Limit' is the number of yellow cards until a player gets
+#. banned automatically for a match.
+#: src/treeview.c:1812
 msgid "Yellow cards (limit)\n"
 msgstr "Gelbe Karten (Obergrenze)\n"
 
-#: src/treeview.c:660 src/treeview_helper.c:732
+#: src/treeview.c:672 src/treeview_helper.c:732
 msgid "Yellows"
 msgstr "Gelbe K."
 
-#: src/user.c:724
+#. League name.
+#: src/user.c:738
 #, c-format
 msgid "You are champion of the %s!"
 msgstr "Du bist Meister der %s!"
@@ -3101,11 +2523,12 @@ msgstr ""
 msgid "You can't play Bygfoot without users!"
 msgstr "Du kannst Bygfoot nicht ohne Benutzer spielen!"
 
-#: src/player.c:565
+#: src/player.c:559
 msgid "You can't replace a banned player."
 msgstr "Du kannst keinen gesperrten Spieler auswechseln."
 
-#: src/user.c:472
+#. Buy a player from a team.
+#: src/user.c:474
 #, c-format
 msgid "You didn't have enough money to buy %s from %s."
 msgstr "Du hattest nicht genügend Geld, um %s von %s zu kaufen."
@@ -3125,17 +2548,20 @@ msgstr "Du hast nicht genügend Geld um zurückzuzahlen."
 msgid "You don't have the money."
 msgstr "Du hast nicht genügend Geld."
 
-#: src/user.c:695
+#. League name.
+#: src/user.c:703
 #, c-format
 msgid "You finish the season in the %s on rank %d."
 msgstr "Du beendest die Saison in der %s auf Rang %d."
 
-#: src/user.c:700
+#. League name.
+#: src/user.c:709
 #, c-format
 msgid "You get promoted to the %s."
 msgstr "Du steigst in die %s auf."
 
-#: src/user.c:704
+#. League name.
+#: src/user.c:714
 #, c-format
 msgid "You get relegated to the %s."
 msgstr "Du steigst in die %s ab."
@@ -3171,14 +2597,6 @@ msgstr ""
 "Du hast Dein Konto überzogen. Die Verantwortlichen geben Dir %d Wochen, um "
 "Deine Dispokreditgrenze zu erreichen."
 
-#: src/lg_commentary.c:244
-msgid ""
-"You have to bury the nerves, swallow and concentrate when your taking "
-"penalties"
-msgstr ""
-"Man muss die Nerven unter Kontrolle bekommen wenn man eine Chance im "
-"Elferschießen haben will"
-
 #: src/finance.c:100
 msgid "You have to pay back your loan this week."
 msgstr "Du musst Deinen Kredit diese Woche zurückzahlen."
@@ -3192,7 +2610,8 @@ msgstr "Du hast kein Angebot für den Spieler abgegeben."
 msgid "You haven't selected a player."
 msgstr "Du hast keinen Spieler ausgewählt."
 
-#: src/user.c:713
+#. Cup name, team name.
+#: src/user.c:725
 #, c-format
 msgid "You lose in the %s final against %s."
 msgstr "Du verlierst das %s-Finale gegen %.s"
@@ -3207,12 +2626,14 @@ msgstr ""
 "Besitzer und der Spieler sind zufrieden mit Deinem Angebot. Willst Du den "
 "Spieler nun kaufen?"
 
-#: src/user.c:719
+#. Cup round name (e.g. Last 32), number, cup name.
+#: src/user.c:732
 #, c-format
 msgid "You reach the %s (round %d) of the %s."
 msgstr "Du erreichst das %s (Runde %d) des %s."
 
-#: src/user.c:672
+#. Buy a team in a league.
+#: src/user.c:676
 #, c-format
 msgid "You start the game with %s in the %s."
 msgstr "Du beginnst das Spiel mit %s in der %s."
@@ -3230,7 +2651,8 @@ msgstr ""
 "Du willst %s feuern. Da sein Vertrag in %.1f Jahren ausläuft, verlangt er %s "
 "Abfindung. Einverstanden?"
 
-#: src/user.c:708
+#. Cup name, team name.
+#: src/user.c:719
 #, c-format
 msgid "You win the %s final against %s."
 msgstr "Du gewinnst das %s Finale gegen %s."
@@ -3239,15 +2661,16 @@ msgstr "Du gewinnst das %s Finale gegen %s."
 msgid "Your bank account has to be above your drawing credit limit next week."
 msgstr "Dein Konto muss nächste Woche Deinen Dispokredit übersteigen."
 
-#: src/user.c:860
+#: src/user.c:902
+#, c-format
 msgid ""
 "Your current sponsor is satisfied with your results and would like to renew "
-"the contract."
+"the contract. Currently they're paying you %d a week."
 msgstr ""
 "Dein gegenwärtiger Sponsor ist zufrieden mit Deinen Ergebnissen und würde "
-"die Zusammenarbeit gerne fortsetzen."
+"die Zusammenarbeit gerne fortsetzen. Er zahlt zur Zeit %d wöchentlich."
 
-#: src/treeview.c:1485
+#: src/treeview.c:1510
 msgid "Your next opponent"
 msgstr "Dein nächster Gegner"
 
@@ -3272,11 +2695,12 @@ msgstr "Dein Angebot wurde aktualisiert."
 msgid "Your offer will be considered next week."
 msgstr "Dein Angebot wird nächste Woche verhandelt."
 
-#: src/misc2_callback_func.c:81
+#: src/misc2_callback_func.c:80
 msgid "Your player roster is full or you don't enough money."
 msgstr "Deine Mannschaft ist voll oder du hast nicht genügend Geld."
 
-#: src/treeview.c:1557
+#. The user's results against a specific team.
+#: src/treeview.c:1583
 msgid "Your results"
 msgstr "Deine Ergebnisse"
 
@@ -3284,7 +2708,8 @@ msgstr "Deine Ergebnisse"
 msgid "Your roster is already full. You can't buy more players."
 msgstr "Es ist kein Platz mehr in Deiner Mannschaft für neue Spieler."
 
-#: src/user.c:477
+#. Buy a player from a team.
+#: src/user.c:480
 #, c-format
 msgid "Your roster is full. You couldn't buy %s from %s."
 msgstr "Deine Mannschaft ist voll. Du konntest %s nicht von %s kaufen."
@@ -3336,15 +2761,428 @@ msgstr "_Benutzer"
 #~ msgid " (A) "
 #~ msgstr " (A) "
 
+#~ msgid "A cloudless day, gives the impression this match is going to sparkle"
+#~ msgstr "Ein wolkenloser Himmel verheißt ein spannedes Spiel"
+
+#~ msgid ""
+#~ "A fan has managed to get onto the pitch and has begun to attack the "
+#~ "referee"
+#~ msgstr "Ein Fan ist aufs Spielfeld gelangt und greift den Schiedsrichter an"
+
+#~ msgid "A flare chucked onto the touchline has started a massive blaze"
+#~ msgstr "Eine Leuchtrakete hat einen Teil der Sitze entzündet"
+
+#~ msgid ""
+#~ "A speaker has gone up in flames and the blaze spreading around the entire "
+#~ "stadium"
+#~ msgstr ""
+#~ "Ein Lautsprecher hat Feuer gefangen, die Flammen verschlingen das Stadion"
+
+#~ msgid "AT fans can't be wrong, this is the match we have all come to watch"
+#~ msgstr ""
+#~ "AT Fans können nicht irren, dies ist das Spiel, das wir alle sehen wollen"
+
+#~ msgid "After MI minutes it's still RE: extra time"
+#~ msgstr "Nach MI Minuten steht's RE: Verlängerung"
+
+#~ msgid "After MI minutes the match ends with a RE"
+#~ msgstr "Nach MI Minuten ended das Spiel mit einem RE"
+
+#~ msgid "After a close match the game heads into extra time"
+#~ msgstr "Nach einem engen Spiel beginnt die Verlängerung"
+
+#~ msgid "And now we have the tense drama of a penalty shoot out"
+#~ msgstr "Und nun kommt das spannende Drama eines Elfmeterschießens"
+
+#~ msgid "And the ball flies straight past P2 and into the back of the net!!!"
+#~ msgstr "Und der Ball fliegt an P2 vorbei und zappelt im Netz!!!"
+
+#~ msgid "And the ball is smacked into the back of the net!!!"
+#~ msgstr "Und der Ball ist im Tor!!!"
+
+#~ msgid "And the fans are throwing flares onto the pitch"
+#~ msgstr "Und die Fans schießen Leuchtraketen aufs Feld"
+
+#~ msgid "And the shot creeps just past the post"
+#~ msgstr "Und der Schuss kriecht Zentimeter am Pfosten vorbei"
+
+#~ msgid "And the shot glances wide off the post"
+#~ msgstr "Und der Schuss knallt gegen den Pfosten"
+
+#~ msgid "Another decent move down the wing"
+#~ msgstr "Ein weiterer Flankenlauf"
+
+#~ msgid "Away fans have set fire to the north stand"
+#~ msgstr "Die Auswärtsfans haben Sitze entzündet"
+
+#~ msgid "Bad control by P2 lets P1 steal the ball off him"
+#~ msgstr "P2 kontrolliert den Ball schlecht, P1 kann ihn erobern"
+
+#~ msgid "Ball dinked over P2 but hit crossbar and bounced to safety"
+#~ msgstr "Der Ball zirkelt über P2, trifft aber nur die Latte"
+
 #~ msgid "Bottom league"
 #~ msgstr "Letzte Liga"
+
+#~ msgid "Caught well by P2"
+#~ msgstr "Gute Abwehr von P2"
 
 #~ msgid "Congratulations! The owners of %s have accepted your offer for %s!"
 #~ msgstr ""
 #~ "Glückwunsch! Die Besitzer von %s haben Dein Angebot für %s angenommen!"
 
+#~ msgid "Crunching challenge on P1"
+#~ msgstr "P1 wird hart attackiert"
+
+#~ msgid "Defender back to block just as it seemed to open up"
+#~ msgstr "Ein Verteidiger klärt in letzter Minute"
+
+#~ msgid "Defender clears"
+#~ msgstr "Ein Verteidiger klärt"
+
+#~ msgid "Diving header by P1"
+#~ msgstr "Flugkopfball von P1"
+
+#~ msgid "Easy save for the goalkeeper"
+#~ msgstr "Ein dankbarer Ball für den Torhüter"
+
+#~ msgid "Extremely high boot from P2 sends P1 to the ground"
+#~ msgstr "Hohes Bein von P2 schickt P1 zu Boden"
+
+#~ msgid "Fire consumes TT's stadium"
+#~ msgstr "Ein Feuer verschlingt TT's Stadion"
+
+#~ msgid ""
+#~ "Foul by P2; P1 seems to be injured... he might have to be substituted"
+#~ msgstr "P2 foult: P1 scheint verletzt zu sein... er muss vielleicht raus"
+
+#~ msgid "Free kick whipped across the face of goal by P1"
+#~ msgstr "P1 knallt einen Freistoß Richtung Tor"
+
+#~ msgid "Free kick: P1 hits a long ball up the pitch"
+#~ msgstr "Freistoß: P1 schießt aus großer Entfernung"
+
+#~ msgid "Free kick: P1 plays the ball out wide"
+#~ msgstr "Freistoß: P1 schlenzt den Ball über die Mauer"
+
+#~ msgid "Goal!!!"
+#~ msgstr "Tor!!!"
+
+#~ msgid "Good passing move across the pitch and down the right"
+#~ msgstr "Guter Querpass auf die rechte Seite"
+
+#~ msgid "Great ball from P2 sends P1 one on one with the goalkeeper"
+#~ msgstr "Super Pass von P2 schickt P1 Eins gegen Eins gegen den Torhüter"
+
+#~ msgid ""
+#~ "Great pace shown by P1 to get to the ball first but P2 produced superb "
+#~ "block tackle"
+#~ msgstr "P1 ersprintet den Ball aber P2 grätscht sauber"
+
+#~ msgid ""
+#~ "He just floated in midair for ages then thunder heads it towards home"
+#~ msgstr ""
+#~ "Er scheint in der Luft zu schweben und produzier dann einen druckvollen "
+#~ "Kopfball"
+
+#~ msgid "I'm suprised the post has managed to withstand that cracking shot"
+#~ msgstr "Ich bin überrascht, dass der Pfosten diesem Schuss standhielt"
+
+#~ msgid ""
+#~ "It's a RE at half time, TL's manager has to find something special to "
+#~ "spur his team on."
+#~ msgstr ""
+#~ "Es steht RE zur Halbzeit, der Trainer von TL sollte seine Mannschaft "
+#~ "anspornen"
+
+#~ msgid "It's a RE at half time."
+#~ msgstr "Es steht RE zur Halbzeit."
+
+#~ msgid "It's a crowd of AT here as the whistle blows"
+#~ msgstr "AT Zuschauer warten auf den Anpfiff"
+
+#~ msgid ""
+#~ "It's a pinball in the penalty box, finally spinning off P1 across the line"
+#~ msgstr "Ein Billiardball im 5-Meterraum trifft P1 und rollt über die Linie"
+
+#~ msgid ""
+#~ "It's down to determination and fitness now as we head into extra time"
+#~ msgstr "Verlängerung: jetzt geht's um Willenskraft und Entschlossenheit"
+
+#~ msgid "It's half time"
+#~ msgstr "Halbzeit."
+
+#~ msgid "It's still RE: extra time"
+#~ msgstr "Es steht immer noch RE: Verlängerung"
+
+#~ msgid "Long ball from P2 finds P1 at far post"
+#~ msgstr "Ein langer Pass von P2 findet P1 am langen Pfosten"
+
+#~ msgid "Long floating pass from P2 finds P1"
+#~ msgstr "Ein Seitenwechsel von P2 zu P1"
+
+#~ msgid "Loose ball falls to P1"
+#~ msgstr "P1 bekommt den Ball"
+
+#~ msgid "Lovely pass from P2 releases P1"
+#~ msgstr "Schöner Pass von P2 eröffnet den Raum vor P1"
+
+#~ msgid "Low shot taken well to his left by P2"
+#~ msgstr "Ein Flachschuss, gut abgewehrt von P2"
+
+#~ msgid ""
+#~ "Oh that's a great shot and it's deflected off P1 and into the back of the "
+#~ "net"
+#~ msgstr "Oh, ein schöner Schuss, er wird von P2 ins Tor abgelenkt"
+
+#~ msgid "Ohh no, the ball ricocheted off P1 into the net"
+#~ msgstr "Oh nein, der Ball springt gegen P1 und ins Netz"
+
+#~ msgid "Ouch that's got to hurt"
+#~ msgstr "Aua, das war schmerzhaft"
+
+#~ msgid "Oww, nasty tackle on P1"
+#~ msgstr "Au, Blutgrätsche gegen P1"
+
+#~ msgid "P1 arrows shot towards top left corner"
+#~ msgstr "P1 schießt ins lange Eck"
+
+#~ msgid ""
+#~ "P1 can't quite get it under control but his miss kick heads toward goal"
+#~ msgstr "P1 verspringt der Ball aber er sein Schuss fliegt Richtung Tor "
+
+#~ msgid "P1 charges towards goal and shoots!"
+#~ msgstr "P1 nimmt Fahrt auf und schießt!"
+
+#~ msgid "P1 curls ball over"
+#~ msgstr "P1 verzieht"
+
+#~ msgid "P1 curls the free kick over the wall"
+#~ msgstr "P1 dreht den Ball um die Mauer"
+
+#~ msgid "P1 cuts in from the left flank and shoots"
+#~ msgstr "P1 zieht zur Mitte und schießt"
+
+#~ msgid "P1 dribbles into the box, turns inside the defence and fires"
+#~ msgstr "P1 dribbelt im 16er, dreht sich und schießt"
+
+#~ msgid "P1 drives free kick low and hard"
+#~ msgstr "P1 lupft den Freistoß"
+
+#~ msgid "P1 fired wide!"
+#~ msgstr "P1's Schuß weit daneben"
+
+#~ msgid "P1 gets his legs taken away from him by P2"
+#~ msgstr "P2 holt P1 von den Beinen"
+
+#~ msgid "P1 has a chance to score with a penalty kick"
+#~ msgstr "P1 darf an den Elfmeterpunkt"
+
+#~ msgid ""
+#~ "P1 has a large cut above his left eye but it has been patched up and he "
+#~ "will be able to continue "
+#~ msgstr ""
+#~ "P1 hat eine Platzwunde, aber sie wird getackert und er kann weiterspielen"
+
+#~ msgid "P1 has been sent off"
+#~ msgstr "P1 wurde vom Platz gestellt"
+
+#~ msgid ""
+#~ "P1 has missed a penalty before but he now has a chance to redeem himself"
+#~ msgstr ""
+#~ "P1 hat schon mal einen Elfer verschossen, hoffentlich trifft er diesmal"
+
+#~ msgid "P1 has picked up a slight knock"
+#~ msgstr "P1 ist leicht angeschlagen, kann aber weitermachen"
+
+#~ msgid "P1 has pulled a muscle but should be able to continue"
+#~ msgstr "P1 hat einen Krampf, spielt weiter"
+
+#~ msgid "P1 latches onto P2's pass"
+#~ msgstr "P1 bekommt den Ball von P2"
+
+#~ msgid "P1 looks like he's badly injured"
+#~ msgstr "P1 scheint eine schwere Verletzung davongetragen zu haben"
+
+#~ msgid ""
+#~ "P1 passes the ball back to his goalie, oh no the keepers missed it! It's "
+#~ "an own goal by P1!"
+#~ msgstr "Rückpass von P1... oh nein, der Torwart verfehlt ihn! Eigentor! "
+
+#~ msgid "P1 rips through the midfield"
+#~ msgstr "P1 pflügt durch das Mittelfeld"
+
+#~ msgid "P1 scores!!!"
+#~ msgstr "P1 trifft!!!"
+
+#~ msgid "P1 shoots from 22 yards looks like it's going wide"
+#~ msgstr "P1 zieht aus 20 Metern ab, scheint danebenzugehen"
+
+#~ msgid "P1 shoots from close range"
+#~ msgstr "P1 hält aus kurzer Distanz drauf"
+
+#~ msgid "P1 should have squared the ball went alone and lashed wide"
+#~ msgstr "P1 hätte abgeben müssen, verschießt den Ball"
+
+#~ msgid "P1 smacks into row Z"
+#~ msgstr "P1 trifft nur die Tribüne"
+
+#~ msgid "P1 spins and shoots"
+#~ msgstr "P1 dreht sich um die eigene Achse und schießt"
+
+#~ msgid "P1 spins past his marker"
+#~ msgstr "P1 lässt seinen Verteidiger stehen"
+
+#~ msgid ""
+#~ "P1 spins past two defenders, wrong foots the keeper and back heels the "
+#~ "ball towards goal"
+#~ msgstr "P1 lässt zwei Verteiger stehen und versetzt den Torwart"
+
+#~ msgid "P1 steps up to take the penalty"
+#~ msgstr "P1 übernimmt die Verantwortung und tritt den Elfmeter"
+
+#~ msgid "P1 takes free-kick quickly and curls around wall"
+#~ msgstr "P1 führt Freistoß schnell aus"
+
+#~ msgid "P1 takes the ball away from P2 with a sliding tackle"
+#~ msgstr "P1 nimmt P2 den Ball mit einer sauberen Grätsche ab"
+
+#~ msgid "P1 tries his luck from 30 yards"
+#~ msgstr "P2 versucht es einfach aus 25 Metern"
+
+#~ msgid "P1 twisting and turning again"
+#~ msgstr "P1 ist wieder am Ball"
+
+#~ msgid "P1 wheels away in celebration after a great goal sent the fans wild"
+#~ msgstr "P1 vollführt eine Freudentanz nach einem wunderbaren Tor"
+
+#~ msgid "P1 will have to go off after what seems an ankle injury"
+#~ msgstr ""
+#~ "P1 wird wohl das Feld verlassen müssen, scheint eine Knöchelverletzung zu "
+#~ "sein"
+
+#~ msgid "P1 wins the ball with a perfectly timed challenge"
+#~ msgstr "P1 erobert mit gutem Körpereinsatz den Ball"
+
+#~ msgid "P1's overhead kick heads towards the top right hand corner"
+#~ msgstr "Fallrückzieher von P1!"
+
+#~ msgid "P2 chips the ball towards P1 who heads the ball towards goal"
+#~ msgstr "Hoher Ball von P2 an P1, der köpft"
+
+#~ msgid "P2 controls it with his chest and passes to P1"
+#~ msgstr "Brustannahme von P2, leitet weiter an P1"
+
+#~ msgid "P2 cross controlled by P1 who slips past his man"
+#~ msgstr "P1 bringt Querpass von P2 unter Kontrolle"
+
+#~ msgid "P2 feeds the ball through to P1"
+#~ msgstr "P2 schiebt zu P1"
+
+#~ msgid "P2 for dangerous slide tackle on P1"
+#~ msgstr "P2 für Grätschen von hinten"
+
+#~ msgid "P2 for foul on P1"
+#~ msgstr "P2 für bösartiges Foul an P1"
+
+#~ msgid "P2 for handball"
+#~ msgstr "P2 für Handspiel"
+
+#~ msgid "P2 for intentional handball"
+#~ msgstr "P2 für absichtliches Handspiel"
+
+#~ msgid "P2 for kicking ball away "
+#~ msgstr "P2 für Ballwegtreten"
+
+#~ msgid "P2 for malicious showing of studs"
+#~ msgstr "P2 für eine Blutgrätsche"
+
+#~ msgid "P2 for stopping P1 taking a quick free-kick"
+#~ msgstr "P2 für Behinderung"
+
+#~ msgid "P2 for swearing at opposition fans"
+#~ msgstr "P2 für ungebührliches Verhalten"
+
+#~ msgid "P2 for time wasting"
+#~ msgstr "P2 für Zeitschinden"
+
+#~ msgid "P2 forced to tip P1's shot over the crossbar"
+#~ msgstr "P2 lenkt den Ball gerade noch über die Latte"
+
+#~ msgid ""
+#~ "P2 fouls and the stretcher bearers come racing on with P1 lying in agony "
+#~ "on the turf"
+#~ msgstr "P2 foult und P2 windet sich in Schmerzen am Boden"
+
+#~ msgid "P2 goes off to applause from the fans, P1 replaces him"
+#~ msgstr "P2 verlässt unter großem Applaus das Spielfeld, P1 ersetzt ihn"
+
+#~ msgid "P2 has been red carded for punching P1"
+#~ msgstr "P2 sieht die rote Karte"
+
+#~ msgid "P2 heads the ball towards P1"
+#~ msgstr "P2 köpft den Ball zu P1"
+
+#~ msgid "P2 is booed off the pitch as he is replaced by P1"
+#~ msgstr "P2 wird vom Platz gebuht und durch P1 ersetzt"
+
+#~ msgid "P2 is booked for repeated dissent"
+#~ msgstr "P2 wird wegen Meckerns verwarnt"
+
+#~ msgid "P2 is given his marching orders for contempt"
+#~ msgstr "P2 wird wegen wiederholtem Meckern vom Platz gestellt"
+
+#~ msgid "P2 is reprimanded for high kicking"
+#~ msgstr "P2 wird für hohes Bein verwarnt"
+
+#~ msgid "P2 is sent off for stopping a clear goal scoring opportunity"
+#~ msgstr "P2 wird nach einer Notbremse zum Duschen geschickt"
+
+#~ msgid "P2 knocks over P1 with a double footed lunge"
+#~ msgstr "P2 holt rüde mit gestrecktem Bein P1 von den Beinen"
+
+#~ msgid "P2 lays the ball off to P1 who sends a rocket of a shot towards goal"
+#~ msgstr "P2 legt den Ball zu P1 ab der einen Bombenschuss abfeuert"
+
+#~ msgid "P2 makes a superb reflex save to tip wide"
+#~ msgstr "Superreflex von P2"
+
+#~ msgid "P2 needles ball through players and finds P1"
+#~ msgstr "P2 spielt in die Gasse und findet P1"
+
+#~ msgid "P2 runs at P1 and blocks shot with ankle"
+#~ msgstr "P2 greift P1 an und blockiert den Schuss"
+
+#~ msgid ""
+#~ "P2 seemed to be everywhere at once, finally tipping the ball off the "
+#~ "crossbar"
+#~ msgstr "P2 scheint über sich hinauszuwachsen und kann den Ball ablenken"
+
+#~ msgid "P2 threads a great ball to P1 "
+#~ msgstr "Scharfer Pass von P2 an P1"
+
+#~ msgid ""
+#~ "P2's despairing dive can't keep P1's shot out and the ball is in the back "
+#~ "of the net!!!"
+#~ msgstr "P2 hechtet vergeblich, der Ball ist versenkt!!!"
+
+#~ msgid "P2's fingertips flicks it wide"
+#~ msgstr "P2 war noch dran"
+
+#~ msgid "Quick passing move down the left"
+#~ msgstr "Kurzpass auf die linke Außenbahn"
+
+#~ msgid "RE, what an astonishing result for TW"
+#~ msgstr "RE, was für ein Ergebnis für TW"
+
+#~ msgid "Short free-kick from P1"
+#~ msgstr "Gelupfter Freistoß von P1"
+
 #~ msgid "Show a preview of my next games (F1)"
 #~ msgstr "Zeige meine nächsten Spiele"
+
+#~ msgid "Slicing challenge by P2 on P1"
+#~ msgstr "P2 attackiert P1 ohne Gnade"
 
 #~ msgid "Stadium bills"
 #~ msgstr "Stadionrechnungen"
@@ -3352,5 +3190,128 @@ msgstr "_Benutzer"
 #~ msgid "Stadium improvements"
 #~ msgstr "Stadionverbesserungen"
 
+#~ msgid "Surely that's a sending off offence"
+#~ msgstr "Das war ein harter Angriff"
+
+#~ msgid "Sweet strike by P1, hits the post"
+#~ msgstr "Zentimetergenauer Schuss von P1, trifft Aluminium"
+
+#~ msgid "TH is undergoing stadium problems"
+#~ msgstr "TH's Stadion scheint technische Probleme zu haben"
+
+#~ msgid "TL heads into the tunnel to await the managers scolding"
+#~ msgstr "TL schleicht vom Platz, eine Standpauke folgt"
+
+#~ msgid ""
+#~ "TL's manager cops a rollicking from the fans as he turns from the dugout"
+#~ msgstr "Der Trainer von TL wird zur Halbzeit ausgebuht"
+
+#~ msgid "TT has changed their boost to EX"
+#~ msgstr "TT hat den Boost auf EX gestellt"
+
+#~ msgid "TT has changed their structure to EX"
+#~ msgstr "TT hat das System auf EX umgestellt"
+
+#~ msgid "TT has changed their style to EX"
+#~ msgstr "TT hat den Spielstil auf EX umgestellt"
+
+#~ msgid "TT make a substitution, P1 comes on to replace P2"
+#~ msgstr "TT wechselt aus, P1 kommt für P2"
+
+#~ msgid "TW are just 45 minutes away from a stunning victory"
+#~ msgstr "TW muss noch 45 Minuten überstehen"
+
+#~ msgid "TW are triumphant!!!"
+#~ msgstr "TW gewinnt!"
+
+#~ msgid "That little missunderstanding has cost TT a goal"
+#~ msgstr "Dieses Mißverständnis wurde mit einem Tor bezahlt"
+
+#~ msgid "The ball flies past P2 and it's a goal!!!"
+#~ msgstr "Der Ball ist unerreichbar für P2, Tor!!"
+
+#~ msgid "The ball smacks into the crossbar with P2 stranded"
+#~ msgstr "P2 ist ohne Chance, aber der Ball trifft nur die Latte"
+
+#~ msgid "The clash of the titans kicks off"
+#~ msgstr "Der Kampf der Titanen beginnt"
+
+#~ msgid ""
+#~ "The crowd roars as the players run out from the tunnel to start the match"
+#~ msgstr "Die Menge begrüßt die Mannschaften mit rauschendem Applaus"
+
+#~ msgid "The dance ignites the fans, P1 celebrates in his own special fashion"
+#~ msgstr "P1 feiert in der ihm eigenen Art ein exzellentes Tor"
+
+#~ msgid "The fans boo TL off the pitch"
+#~ msgstr "Die Fans buhen TL vom Platz"
+
+#~ msgid "The fans pour onto the pitch in a full scale pitch invasion"
+#~ msgstr "Die Fans stürmen das Spielfeld"
+
+#~ msgid "The floodlights have just gone out"
+#~ msgstr "Die Flutlichtanlage ist ausgefallen"
+
+#~ msgid "The match is over!"
+#~ msgstr "Das Spiel ist aus!"
+
+#~ msgid "The peasants are revolting"
+#~ msgstr "Die Hooligans toben"
+
+#~ msgid "The referee checks his watch and blows for full time"
+#~ msgstr ""
+#~ "Der Schiedsrichter schaut auf seine Uhr und pfeift, das Spiel ist aus"
+
+#~ msgid "The referee gets the nod from the linesman and we are away"
+#~ msgstr "Der Schiedsrichter schaut zum Assistenten und pfeift an"
+
+#~ msgid "The referees are ready, players set, the battle begins"
+#~ msgstr "Der Schiri ist bereit, es kann losgehen"
+
+#~ msgid ""
+#~ "The riot police have moved in to stop fighting between sets of oppostion "
+#~ "supporters"
+#~ msgstr ""
+#~ "Die Ordner müssen eine Schlägerei zwischen den Fans unter Kontrolle "
+#~ "bekommen"
+
+#~ msgid "The teams cant do it so now it's one on one. Striker against goalie"
+#~ msgstr "Jetzt geht es Mann gegen Mann, Schütze gegen Torwart"
+
+#~ msgid ""
+#~ "The two teams are greeted by a wall of noise as they take to the pitch"
+#~ msgstr ""
+#~ "Die Mannschaften werden durch eine ohrenbetäubende Lärmkulisse begrüßt"
+
+#~ msgid ""
+#~ "There are two teams out there and only one of them is playing football"
+#~ msgstr "Da draußen sind zwei Mannschaften, aber nur eine spielt Fußball"
+
 #~ msgid "Top league"
 #~ msgstr "Höchste Spielklasse"
+
+#~ msgid "Two teams, equall till now in every respect,face off in penalties"
+#~ msgstr ""
+#~ "Zwei Mannschaften waren gleichwertig, jetzt geht's ins Penaltyschießen"
+
+#~ msgid "Vicious tackle from P2 leaves P1 lying on the floor in agony"
+#~ msgstr "Ein gemeines Foul von P2 lässt P1 meterweit fliegen"
+
+#~ msgid "We're under way"
+#~ msgstr "Es kann losgehen"
+
+#~ msgid "Well that's that. It ends RE"
+#~ msgstr "Das wars, das Spiel endet RE"
+
+#~ msgid "Who will breakdown first, extra time it is"
+#~ msgstr "Jetzt geht's um alles, die Verlängerung beginnt"
+
+#~ msgid "Who would have thought MI minutes ago it would come down to this"
+#~ msgstr "Wer hätte das vor MI Minuten gedacht, dass es soweit kommen würde"
+
+#~ msgid ""
+#~ "You have to bury the nerves, swallow and concentrate when your taking "
+#~ "penalties"
+#~ msgstr ""
+#~ "Man muss die Nerven unter Kontrolle bekommen wenn man eine Chance im "
+#~ "Elferschießen haben will"

@@ -186,8 +186,8 @@ treeview_helper_live_game_icon(gint event_type)
 	return const_app("string_live_game_event_cross_bar_icon");
     else if(event_type == LIVE_GAME_EVENT_SAVE)
 	return const_app("string_live_game_event_save_icon");
-    else if(event_type == LIVE_GAME_EVENT_MISSED)
-	return const_app("string_live_game_event_missed_icon");
+    else if(event_type == LIVE_GAME_EVENT_MISS)
+	return const_app("string_live_game_event_miss_icon");
     else if(event_type == LIVE_GAME_EVENT_FOUL)
 	return const_app("string_live_game_event_foul_icon");
     else if(event_type == LIVE_GAME_EVENT_FOUL_YELLOW)
@@ -776,6 +776,7 @@ treeview_helper_player_info_banned_to_cell(GtkCellRenderer *renderer, const GArr
     for(i=0;i<cards->len;i++)
 	if(g_array_index(cards, PlayerCard, i).red > 0)
 	{
+	    /* Ban info of a player in the format: 'Cup/league name: Number of weeks banned' */
 	    sprintf(buf2, _("%s: %d weeks\n"),
 		    league_cup_get_name_string(g_array_index(cards, PlayerCard, i).clid),
 		    g_array_index(cards, PlayerCard, i).red);
@@ -811,6 +812,8 @@ treeview_helper_player_info_yellow_to_cell(GtkCellRenderer *renderer, const GArr
 			g_array_index(cards, PlayerCard, i).yellow, yellow_red);
 	    }
 	    else
+		/* Yellow cards of a player in a cup/league. No limit means there isn't a limit
+		   after which the player gets banned for a match automatically. */
 		sprintf(buf2, _("%s: %d (no limit)\n"),
 			league_cup_get_name_string(g_array_index(cards, PlayerCard, i).clid),
 			g_array_index(cards, PlayerCard, i).yellow);
@@ -960,6 +963,7 @@ treeview_helper_player_name_to_cell(GtkCellRenderer *renderer, gchar *buf, const
     strcpy(buf, pl->name->str);
     if(pl->team == current_user.tm &&
        opt_user_int("int_opt_user_penalty_shooter") == pl->id)
+	/* Penalty shooter. */
 	strcat(buf, _(" (P)"));
     
     if(off != NULL)
@@ -1065,6 +1069,7 @@ treeview_helper_player_status_to_cell(GtkCellRenderer *renderer, gchar *buf, con
 
     if(pl->health != PLAYER_INJURY_NONE)
     {
+	/* Injury info. */
 	sprintf(buf, _("INJ(%d)"), pl->recovery);
 	g_object_set(renderer, "background", 
 		     const_app("string_treeview_helper_color_player_injury"), NULL);
@@ -1074,11 +1079,13 @@ treeview_helper_player_status_to_cell(GtkCellRenderer *renderer, gchar *buf, con
 
     if(ban > 0)
     {
+	/* Red card info (how long the player is banned). */
 	sprintf(buf, _("BAN(%d)"), ban);
 	g_object_set(renderer, "background",
 		     const_app("string_treeview_helper_color_player_banned"), NULL);
     }
     else
+	/* Player status: ok. */
 	strcpy(buf, _("OK"));
 
     if(ban == -1)
@@ -1146,6 +1153,7 @@ treeview_helper_player_pos_to_cell(GtkCellRenderer *renderer, gchar *buf, gint p
     switch(pos)
     {
 	default:
+	    /* Goalie */
 	    strcpy(buf, _("G"));
 	    g_object_set(renderer, "background", 
 			 const_app("string_treeview_helper_color_player_pos_goalie_bg"),
@@ -1153,6 +1161,7 @@ treeview_helper_player_pos_to_cell(GtkCellRenderer *renderer, gchar *buf, gint p
 			 const_app("string_treeview_helper_color_player_pos_goalie_fg"), NULL);
 	    break;
 	case PLAYER_POS_DEFENDER:
+	    /* Defender */
 	    strcpy(buf, _("D"));
 	    g_object_set(renderer, "background", 
 			 const_app("string_treeview_helper_color_player_pos_defender_bg"),
@@ -1160,6 +1169,7 @@ treeview_helper_player_pos_to_cell(GtkCellRenderer *renderer, gchar *buf, gint p
 			 const_app("string_treeview_helper_color_player_pos_defender_fg"), NULL);
 	    break;
 	case PLAYER_POS_MIDFIELDER:
+	    /* Midfielder */
 	    strcpy(buf, _("M"));
 	    g_object_set(renderer, "background", 
 			 const_app("string_treeview_helper_color_player_pos_midfielder_bg"),
@@ -1167,6 +1177,7 @@ treeview_helper_player_pos_to_cell(GtkCellRenderer *renderer, gchar *buf, gint p
 			 const_app("string_treeview_helper_color_player_pos_midfielder_fg"), NULL);
 	    break;
 	case PLAYER_POS_FORWARD:
+	    /* Forward */
 	    strcpy(buf, _("F"));
 	    g_object_set(renderer, "background", 
 			 const_app("string_treeview_helper_color_player_pos_forward_bg"),

@@ -54,9 +54,9 @@ main_init_variables(void)
 
     save_file = g_string_new("");
 
-    constants_app.list = 
+    constants_app.list = settings.list =
 	constants.list = options.list = NULL;
-    constants_app.datalist =
+    constants_app.datalist = settings.datalist =
 	constants.datalist = options.datalist = NULL;
 
     popups_active = 0;
@@ -64,17 +64,20 @@ main_init_variables(void)
 
     timeout_id = -1;
 
+    for(i=0;i<LIVE_GAME_EVENT_END;i++)
+	lg_commentary[i] = g_ptr_array_new();
+
     file_load_conf_files();
 
     language_set(language_get_code_index(opt_str("string_opt_language_code")) + 1);
 
     /** Some of these (or all) are disabled (set to 1) in supernational
 	country defs. */
-    option_add(&options, "int_opt_disable_finances", 0, NULL);
-    option_add(&options, "int_opt_disable_transfers", 0, NULL);
-    option_add(&options, "int_opt_disable_stadium", 0, NULL);
-    option_add(&options, "int_opt_disable_contracts", 0, NULL);
-    option_add(&options, "int_opt_disable_boost_on", 0, NULL);
+    option_add(&settings, "int_opt_disable_finances", 0, NULL);
+    option_add(&settings, "int_opt_disable_transfers", 0, NULL);
+    option_add(&settings, "int_opt_disable_stadium", 0, NULL);
+    option_add(&settings, "int_opt_disable_contracts", 0, NULL);
+    option_add(&settings, "int_opt_disable_boost_on", 0, NULL);
 }
 
 /**

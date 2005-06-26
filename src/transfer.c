@@ -20,7 +20,7 @@ transfer_update(void)
     gint i, j;
 
     if(week > transfer_get_deadline() ||
-       opt_int("int_opt_disable_transfers"))
+       sett_int("int_opt_disable_transfers"))
 	return;
 
     if(week == transfer_get_deadline())

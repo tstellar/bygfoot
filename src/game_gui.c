@@ -122,7 +122,7 @@ game_gui_live_game_set_hscale(const LiveGameUnit *unit, GtkHScale *hscale)
 			     ((unit->possession == 0) ? 1 : -1)));
     }
     else if(unit->event.type == LIVE_GAME_EVENT_POST ||
-	    unit->event.type == LIVE_GAME_EVENT_MISSED ||
+	    unit->event.type == LIVE_GAME_EVENT_MISS ||
 	    unit->event.type == LIVE_GAME_EVENT_SAVE ||
 	    unit->event.type == LIVE_GAME_EVENT_CROSS_BAR)
 	gdk_color_parse(const_app("string_game_gui_live_game_scale_color_miss"), &color);
@@ -199,7 +199,7 @@ game_gui_set_main_window_header(void)
     gui_label_set_text_from_int(label_round, week_round, FALSE);
     gui_label_set_text_from_int(label_rank, week_round, FALSE);
 
-    if(!opt_int("int_opt_disable_finances"))
+    if(!sett_int("int_opt_disable_finances"))
     {
 	misc_print_grouped_int(current_user.money, buf, FALSE);
 	gtk_label_set_text(label_money, buf);
@@ -303,7 +303,7 @@ game_gui_read_radio_items(GtkWidget *widget)
 	{
 	    current_user.tm->boost = i - 1;
 
-	    if(current_user.tm->boost == 1 && opt_int("int_opt_disable_boost_on"))
+	    if(current_user.tm->boost == 1 && sett_int("int_opt_disable_boost_on"))
 	    {
 		current_user.tm->boost = 0;
 		game_gui_print_message(_("Boost ON is disabled in this country definition."));

@@ -811,6 +811,7 @@ cup_get_round_name(const Cup *cup, gint round, gchar *buf)
     switch(cup->rounds->len - round)
     {
 	default:
+	    /* A cup stage, e.g. Last 32 when there are only 32 teams left. */
 	    sprintf(buf, _("Last %d"), (gint)rint(powf(2, cup->rounds->len - round)));
 	    break;
 	case 1:

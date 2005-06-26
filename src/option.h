@@ -33,6 +33,9 @@
 #define const_int(name) option_int(name, &constants)
 #define const_float(name) option_float(name, &constants)
 
+#define sett_int(name) option_int(name, &settings)
+#define sett_set_int(name, value) option_set_int(name, &settings, value)
+
 gfloat
 option_float(const gchar *name, OptionList *optionlist);
 

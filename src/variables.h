@@ -29,6 +29,11 @@ OptionList constants;
 /** Array of constants affecting game appearance rather than
     behaviour. */
 OptionList constants_app;
+/** Array with internal settings. */
+OptionList settings;
+
+/** The array containing the live game commentary strings. */
+GPtrArray *lg_commentary[LIVE_GAME_EVENT_END];
 
 /** The array containing players to be transfered.
     @see TransferPlayer */

@@ -101,7 +101,7 @@ user_set_up_team(User *user)
     user_set_up_finances(user);
     user_set_up_counters(user);
 
-    user->counters[COUNT_USER_NEW_SPONSOR] = (opt_int("int_opt_disable_finances")) ? -5 : 1;
+    user->counters[COUNT_USER_NEW_SPONSOR] = (sett_int("int_opt_disable_finances")) ? -5 : 1;
 }
 
 
@@ -463,17 +463,20 @@ user_event_show_next(void)
 	case EVENT_TYPE_TRANSFER_OFFER_REJECTED_WAGE:
 	    misc_print_grouped_int(event->value1, buf2, FALSE);
 	    misc_print_grouped_int(event->value2, buf3, FALSE);	    
+	    /* A player from a team has rejected a transfer offer. */
 	    sprintf(buf, _("%s of %s has rejected your offer (%s / %s). He wasn't satisfied with the wage you offered."),
 		    event->value_string->str,
 		    ((Team*)event->value_pointer)->name->str, buf2, buf3);
 	    game_gui_show_warning(buf);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_MONEY:
+	    /* Buy a player from a team. */
 	    sprintf(buf, _("You didn't have enough money to buy %s from %s."),
 		    event->value_string->str, ((Team*)event->value_pointer)->name->str);
 	    game_gui_show_warning(buf);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_ROSTER:
+	    /* Buy a player from a team. */
 	    sprintf(buf, _("Your roster is full. You couldn't buy %s from %s."),
 		    event->value_string->str, ((Team*)event->value_pointer)->name->str);
 	    game_gui_show_warning(buf);
@@ -669,58 +672,69 @@ user_history_to_string(const UserHistory *history, gchar *buf)
 	    g_warning("user_history_to_string: unknown history type %d.\n", history->type);
 	    strcpy(buf, "FIXME!!!");
 	case USER_HISTORY_START_GAME:
+	    /* Buy a team in a league. */
 	    sprintf(buf, _("You start the game with %s in the %s."),
 		    team_of_id(history->team_id)->name->str,
 		    league_cup_get_name_string(history->value1));
 	    break;
     	case USER_HISTORY_FIRE_FINANCES:
+	    /* Team fires, team in a league. */
 	    sprintf(buf, _("%s fires you because of financial mismanagement.\nYou find a new job with %s in the %s."),
 		    team_of_id(history->team_id)->name->str,
 		    team_of_id(history->value1)->name->str,
 		    league_cup_get_name_string(history->value2));
 	    break;
     	case  USER_HISTORY_FIRE_FAILURE:
+	    /* Team fires, team in a league. */
 	    sprintf(buf, _("%s fires you because of unsuccessfulness.\nYou find a new job with %s in the %s."),
 		    team_of_id(history->team_id)->name->str,
 		    team_of_id(history->value1)->name->str,
 		    league_cup_get_name_string(history->value2));
 	    break;
     	case  USER_HISTORY_JOB_OFFER_ACCEPTED:
+	    /* Team in a league. Leave team. */
 	    sprintf(buf, _("%s offer you a job in the %s.\nYou accept the challenge and leave %s."),
 		    team_of_id(history->value1)->name->str,
 		    league_cup_get_name_string(history->value2),
 		    team_of_id(history->team_id)->name->str);
 	    break;
     	case  USER_HISTORY_END_SEASON:
+	    /* League name. */
 	    sprintf(buf, _("You finish the season in the %s on rank %d."),
 		    league_cup_get_name_string(history->value1),
 		    history->value2);
 	    break;
     	case  USER_HISTORY_PROMOTED:
+	    /* League name. */
 	    sprintf(buf, _("You get promoted to the %s."),
 		    league_cup_get_name_string(history->value1));
 	    break;	    
     	case  USER_HISTORY_RELEGATED:
+	    /* League name. */
 	    sprintf(buf, _("You get relegated to the %s."),
 		    league_cup_get_name_string(history->value1));
 	    break;	    
     	case  USER_HISTORY_WIN_FINAL:
+	    /* Cup name, team name. */
 	    sprintf(buf, _("You win the %s final against %s."),
 		    league_cup_get_name_string(history->value1),
 		    history->value_string->str);
 	    break;
     	case  USER_HISTORY_LOSE_FINAL:
+	    /* Cup name, team name. */
 	    sprintf(buf, _("You lose in the %s final against %s."),
 		    league_cup_get_name_string(history->value1),
 		    history->value_string->str);
 	    break;
     	case USER_HISTORY_REACH_CUP_ROUND:	    
 	    cup_get_round_name(cup_from_clid(history->value1), history->value2, buf2);
+	    /* Cup round name (e.g. Last 32), number, cup name. */
 	    sprintf(buf, _("You reach the %s (round %d) of the %s."), buf2,
 		    history->value2 + 1,
 		    league_cup_get_name_string(history->value1));
 	    break;
     	case USER_HISTORY_CHAMPION:	    
+	    /* League name. */
 	    sprintf(buf, _("You are champion of the %s!"),
 		    league_cup_get_name_string(history->value1));
 	    break;
@@ -748,35 +762,63 @@ user_get_sponsor(const User *user)
     UserSponsor new;
     gint suc_factor = (current_user.counters[COUNT_USER_SUCCESS] < 0) ? -1 : 1;
     gchar *names[18] =
+	/* Company name. */
 	{_(" Systems"),
+	 /* Company name. */
 	 _(" Communications"),
+	 /* Company name. */
 	 _(" Holdings"),
+	 /* Company name. */
 	 _(" Industries"),
+	 /* Company name. */
 	 _(" Company"),
+	 /* Company name. */
 	 _(" Telecommunications"),
+	 /* Company name. */
 	 _(" Labs"),
+	 /* Company name. */
 	 _(" Technologies"),
+	 /* Company name. */
 	 _(" Chemicals"),
+	 /* Company name. */
 	 _(" Energy"),
+	 /* Company name. */
 	 _(" Bank"),
+	 /* Company name. */
 	 _(" Products"),
+	 /* Company name. */
 	 _(" Software"),
+	 /* Company name. */
 	 _(" Scientific"),
+	 /* Company name. */
 	 _(" Financial"),
+	 /* Company name. */
 	 _(" Petroleum"),
+	 /* Company name. */
 	 _(" Restaurants"),
+	 /* Company name. */
 	 _(" Data Systems")};
     gchar *short_names[7] =
+	/* Company short name, leading to things like 'Marshall Data Systems Ltd.' */
 	{_(" Ltd."),
+	 /* Company short name. */
 	 _(" Assoc."),
+	 /* Company short name. */
 	 _(" Co."),
+	 /* Company short name. */
 	 _(" Ent."),
+	 /* Company short name. Copy the '&amp;'. */
 	 _(" &amp; Co."),
+	 /* Company short name. */
 	 _(" Corp."),
+	 /* Company short name. */
 	 _(" Group")};
     gchar *name_add[3] =
+	/* Company addition, leading to 'Marshall & Sons Petroleum Co.'. Copy the '&amp;'. */
 	{_(" &amp; Sons"),
+	 /* Company addition. Copy the '&amp;'. */
 	 _(" &amp; Daughters"),
+	/* Company addition. */
 	 _(" Bros.")};
    
     new.name = g_string_new(name_get_random_last_name(name_get_list_from_sid(user->tm->names_file->str)));    

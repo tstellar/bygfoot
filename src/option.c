@@ -131,7 +131,10 @@ option_add(OptionList *optionlist, const gchar *name, gint int_value, const gcha
 {
     gint i;
     Option new;
-    gpointer element = g_datalist_get_data(&optionlist->datalist, name);
+    gpointer element = NULL;
+
+    if(optionlist->list != NULL)
+	g_datalist_get_data(&optionlist->datalist, name);
     
     if(element != NULL)
     {
@@ -143,8 +146,14 @@ option_add(OptionList *optionlist, const gchar *name, gint int_value, const gcha
     new.value = int_value;
     new.string_value = (string_value == NULL) ? NULL : g_string_new(string_value);
 
-    g_array_append_val(optionlist->list, new);
+    if(optionlist->list == NULL)
+    {
+	optionlist->list = g_array_new(FALSE, FALSE, sizeof(Option));
+	g_datalist_init(&optionlist->datalist);
+    }
 
+    g_array_append_val(optionlist->list, new);
+    
     for(i=0;i<optionlist->list->len;i++)
 	g_datalist_set_data(&optionlist->datalist, g_array_index(optionlist->list, Option, i).name->str,
 			    &g_array_index(optionlist->list, Option, i));
