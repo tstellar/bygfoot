@@ -21,16 +21,6 @@
 #include "xml_loadsave_transfers.h"
 #include "xml_loadsave_users.h"
 
-gint
-xml_get_tag_from_name(const gchar *element_name)
-{
-    gchar buf[SMALL];
-
-    misc_truncate_string(element_name, buf, -1);
-
-    return (gint)g_ascii_strtod(buf, NULL);
-}
-
 void
 xml_load_users(const gchar *dirname, const gchar *basename)
 {

@@ -55,9 +55,9 @@ main_init_variables(void)
     save_file = g_string_new("");
 
     constants_app.list = settings.list =
-	constants.list = options.list = NULL;
+	constants.list = options.list = lg_tokens.list = NULL;
     constants_app.datalist = settings.datalist =
-	constants.datalist = options.datalist = NULL;
+	constants.datalist = options.datalist = lg_tokens.datalist = NULL;
 
     popups_active = 0;
     selected_row[0] = selected_row[1] = -1;

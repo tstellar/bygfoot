@@ -20,24 +20,29 @@ enum LGTokens
     LG_TOKEN_PLAYER2,
     LG_TOKEN_RESULT,
     LG_TOKEN_MINUTE,
+    LG_TOKEN_GOALS_HOME,
+    LG_TOKEN_GOALS_AWAY,
+    LG_TOKEN_GOAL_DIFF,
     LG_TOKEN_EXTRA,
     LG_TOKEN_END
 };
 
+#define lg_token(name) option_string(name, &lg_tokens)
+
 gchar*
 lg_commentary_get_player_name(const LiveGameUnit *unit, const Fixture *fix, gint player);
 
+gboolean
+lg_commentary_replace_tokens(const gchar *string, const GPtrArray *strings, gchar *dest);
+
 void
-lg_commentary_set_strings(gchar *strings[][2], const LiveGameUnit *unit, const Fixture *fix);
+lg_commentary_set_strings(GPtrArray *strings, const LiveGameUnit *unit, const Fixture *fix);
 
 void
 lg_commentary_generate(LiveGameUnit *unit, const Fixture *fix);
 
 gchar*
 lg_commentary_get_extra_data(const LiveGameUnit *unit, const Fixture *fix);
-
-gboolean
-lg_commentary_replace_tokens(const gchar *string, gchar *strings[][2], gchar *dest);
 
 void
 lg_commentary_load_commentary_file_from_option(void);

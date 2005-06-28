@@ -50,6 +50,8 @@ enum XmlTags
 
 #define xml_write_float(fil, value, tag, indent) fprintf(fil, "%s<_%d>%d</_%d>\n", indent, tag, (gint)rint(value * 10000), tag)
 
+#define xml_get_tag_from_name(name) (gint)g_ascii_strtod(name + 1, NULL)
+
 void
 xml_load_users(const gchar *dirname, const gchar *basename);
 
@@ -64,9 +66,6 @@ xml_load_cups(const gchar *dirname, const gchar *basename);
 
 void
 xml_load_cup(Cup *cup, const gchar *dirname, const gchar *basename, const GPtrArray *dir_contents);
-
-gint
-xml_get_tag_from_name(const gchar *element_name);
 
 void
 xml_load_transfers(const gchar *dirname, const gchar *basename);

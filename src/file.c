@@ -451,6 +451,7 @@ file_load_conf_files(void)
 
     file_load_opt_file(opt_str("string_opt_constants_file"), &constants);
     file_load_opt_file(opt_str("string_opt_appearance_file"), &constants_app);
+    file_load_opt_file("bygfoot_lg_tokens", &lg_tokens);
 }
 
 /** Load a user-specific conf file.

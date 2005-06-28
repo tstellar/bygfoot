@@ -45,7 +45,28 @@ query_misc_integer_is_in_g_array(gint item, GArray *array);
 void
 misc_string_replace_token(gchar *string, const gchar *token, const gchar *replacement);
 
+void
+misc_replace_sums(gchar *string);
+
 gfloat
 misc_get_age_from_birth(gint birth_year, gint birth_month);
+
+const gchar*
+misc_skip_spaces(const gchar* s);
+
+const gchar*
+misc_parse_value(const gchar *s, gint *value);
+
+const gchar*
+misc_parse_expression(const gchar *s, gboolean *result);
+
+const gchar*
+misc_parse_comparison(const gchar *s, gboolean *result);
+
+const gchar*
+misc_parse_and(const gchar *s, gboolean *result);
+
+const gchar*
+misc_parse(const gchar *s, gboolean *result);
 
 #endif

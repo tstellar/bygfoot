@@ -17,13 +17,13 @@
 void
 lg_commentary_generate(LiveGameUnit *unit, const Fixture *fix)
 {
-    gchar *strings[LG_TOKEN_END][2];
     gchar buf[SMALL];
     GPtrArray **commentaries = NULL;
+    GPtrArray *strings = g_ptr_array_new();
     gint i;
 
     lg_commentary_set_strings(strings, unit, fix);
-    
+
     if(unit->event.type == LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_DEFEND ||
        unit->event.type == LIVE_GAME_EVENT_STYLE_CHANGE_DEFEND ||
        unit->event.type == LIVE_GAME_EVENT_STYLE_CHANGE_BALANCED ||
@@ -55,8 +55,10 @@ lg_commentary_generate(LiveGameUnit *unit, const Fixture *fix)
 
     unit->event.commentary = g_string_new(buf);
 
-    for(i=LG_TOKEN_ATTENDANCE;i<LG_TOKEN_END;i++)
-	g_free(strings[i][1]);
+    for(i=0;i<lg_tokens.list->len;i++)
+	g_free(g_ptr_array_index(strings, i));
+
+    g_ptr_array_free(strings, TRUE);
 }
 
 /** Try to replace all special tokens in the string and write the result to dest.
@@ -65,79 +67,167 @@ lg_commentary_generate(LiveGameUnit *unit, const Fixture *fix)
     @param dest The destination string.
     @return TRUE if we could replace all tokens, FALSE otherwise. */
 gboolean
-lg_commentary_replace_tokens(const gchar *string, gchar *strings[][2], gchar *dest)
+lg_commentary_replace_tokens(const gchar *string, const GPtrArray *strings, gchar *dest)
 {
     gint i;
+    gboolean condition;
+    gchar buf[SMALL];
+    const gchar *buf2 = NULL;
+    
+    strcpy(buf, string);
 
-    strcpy(dest, string);
-
-    for(i=0;i<LG_TOKEN_END;i++)
+    for(i=0;i<lg_tokens.list->len;i++)
     {
-	if(query_misc_string_contains(dest, strings[i][0]))
+	if(query_misc_string_contains(buf, g_array_index(lg_tokens.list, Option, i).string_value->str))
 	{
-	    if(strings[i][1] == NULL)
+	    if(g_ptr_array_index(strings, i) == NULL)
 		return FALSE;
 	    else
-		misc_string_replace_token(dest, strings[i][0], strings[i][1]);
+		misc_string_replace_token(buf, 
+					  g_array_index(lg_tokens.list, Option, i).string_value->str,
+					  (gchar*)g_ptr_array_index(strings, i));
 	}
     }
+
+    misc_replace_sums(buf);
+
+    if(buf[0] == '#')
+    {
+	buf2 = misc_parse(buf + 1, &condition);
+	strcpy(dest, buf2);
+
+	return condition;
+    }
+    else
+	strcpy(dest, buf);
+
+    
 
     return TRUE;
 }
 
 /** Get the strings corresponding to the commentary tokens. */
 void
-lg_commentary_set_strings(gchar *strings[][2], const LiveGameUnit *unit, const Fixture *fix)
+lg_commentary_set_strings(GPtrArray *strings, const LiveGameUnit *unit, const Fixture *fix)
 {
+    gint i, tmp_int = 1;
     gchar buf[SMALL];
 
-    strings[LG_TOKEN_TEAM_HOME][0] = const_str("string_lg_commentary_token_team_home");
-    strings[LG_TOKEN_TEAM_HOME][1] = fix->teams[0]->name->str;
-
-    strings[LG_TOKEN_TEAM_AWAY][0] = const_str("string_lg_commentary_token_team_away");
-    strings[LG_TOKEN_TEAM_AWAY][1] = fix->teams[1]->name->str;
-
-    strings[LG_TOKEN_TEAM_IN_POSS][0] = const_str("string_lg_commentary_token_team_in_poss");
-    strings[LG_TOKEN_TEAM_IN_POSS][1] = fix->teams[unit->possession]->name->str;
-
-
-    strings[LG_TOKEN_TEAM_NOT_IN_POSS][0] = const_str("string_lg_commentary_token_team_not_in_poss");
-    strings[LG_TOKEN_TEAM_NOT_IN_POSS][1] = fix->teams[!unit->possession]->name->str;
-
-    strings[LG_TOKEN_TEAM_LOSING][0] = const_str("string_lg_commentary_token_team_losing");
-    strings[LG_TOKEN_TEAM_LOSING][1] = (unit->result[0] == unit->result[1]) ? NULL :
-	fix->teams[(unit->result[0] > unit->result[1])]->name->str;
-	
-    strings[LG_TOKEN_TEAM_WINNING][0] = const_str("string_lg_commentary_token_team_winning");
-    strings[LG_TOKEN_TEAM_WINNING][1] = (unit->result[0] == unit->result[1]) ? NULL :
-	fix->teams[(unit->result[0] < unit->result[1])]->name->str;
-
-    strings[LG_TOKEN_TEAM][0] = const_str("string_lg_commentary_token_team");
-    strings[LG_TOKEN_TEAM][1] = (unit->event.team == -1) ?
-	NULL : fix->teams[unit->event.team]->name->str;
-
-    strings[LG_TOKEN_PLAYER1][0] = const_str("string_lg_commentary_token_player1");
-    strings[LG_TOKEN_PLAYER1][1] = (unit->event.player == -1) ?
-	NULL : lg_commentary_get_player_name(unit, fix, FALSE);
-
-    strings[LG_TOKEN_PLAYER2][0] = const_str("string_lg_commentary_token_player2");
-    strings[LG_TOKEN_PLAYER2][1] = (unit->event.player2 == -1) ?
-	NULL : lg_commentary_get_player_name(unit, fix, TRUE);
- 
-    strings[LG_TOKEN_ATTENDANCE][0] = const_str("string_lg_commentary_token_attendance");
-    misc_print_grouped_int(fix->attendance, buf, FALSE);
-    strings[LG_TOKEN_ATTENDANCE][1] = g_strdup(buf);
-    
-    strings[LG_TOKEN_RESULT][0] = const_str("string_lg_commentary_token_result");
-    sprintf(buf, "%d : %d", unit->result[0], unit->result[1]);
-    strings[LG_TOKEN_RESULT][1] = g_strdup(buf);
-
-    strings[LG_TOKEN_MINUTE][0] = const_str("string_lg_commentary_token_minute");
-    sprintf(buf, "%d", live_game_unit_get_minute(unit));
-    strings[LG_TOKEN_MINUTE][1] = g_strdup(buf);
-
-    strings[LG_TOKEN_EXTRA][0] = const_str("string_lg_commentary_token_extra");
-    strings[LG_TOKEN_EXTRA][1] = lg_commentary_get_extra_data(unit, fix);
+    for(i=0;i<lg_tokens.list->len;i++)
+    {
+	if(strcmp(g_array_index(lg_tokens.list, Option, i).string_value->str,
+		  lg_token("string_lg_commentary_token_team_home")) == 0)
+	    g_ptr_array_add(strings, g_strdup(fix->teams[0]->name->str));
+	else if(strcmp(g_array_index(lg_tokens.list, Option, i).string_value->str,
+		       lg_token("string_lg_commentary_token_team_away")) == 0)
+	    g_ptr_array_add(strings, g_strdup(fix->teams[1]->name->str));
+	else if(strcmp(g_array_index(lg_tokens.list, Option, i).string_value->str,
+		       lg_token("string_lg_commentary_token_team_in_poss")) == 0)
+	    g_ptr_array_add(strings, g_strdup(fix->teams[unit->possession]->name->str));
+	else if(strcmp(g_array_index(lg_tokens.list, Option, i).string_value->str,
+		       lg_token("string_lg_commentary_token_team_not_in_poss")) == 0)
+	    g_ptr_array_add(strings, g_strdup(fix->teams[!unit->possession]->name->str));
+	else if(strcmp(g_array_index(lg_tokens.list, Option, i).string_value->str,
+		       lg_token("string_lg_commentary_token_team_losing")) == 0)
+	{
+	    if(unit->result[0] == unit->result[1])
+		g_ptr_array_add(strings, NULL);
+	    else
+		g_ptr_array_add(strings, g_strdup(fix->teams[(unit->result[0] > unit->result[1])]->name->str));
+	}
+	else if(strcmp(g_array_index(lg_tokens.list, Option, i).string_value->str,
+		       lg_token("string_lg_commentary_token_team_winning")) == 0)
+	{
+	    if(unit->result[0] == unit->result[1])
+		g_ptr_array_add(strings, NULL);
+	    else
+		g_ptr_array_add(strings, g_strdup(fix->teams[(unit->result[0] < unit->result[1])]->name->str));
+	}
+	else if(strcmp(g_array_index(lg_tokens.list, Option, i).string_value->str,
+		       lg_token("string_lg_commentary_token_team")) == 0)
+	{
+	    if(unit->event.team == -1)
+		g_ptr_array_add(strings, NULL);
+	    else
+		g_ptr_array_add(strings, g_strdup(fix->teams[unit->event.team]->name->str));
+	}
+	else if(strcmp(g_array_index(lg_tokens.list, Option, i).string_value->str,
+		       lg_token("string_lg_commentary_token_player1")) == 0)
+	    g_ptr_array_add(strings, lg_commentary_get_player_name(unit, fix, FALSE));
+	else if(strcmp(g_array_index(lg_tokens.list, Option, i).string_value->str,
+		       lg_token("string_lg_commentary_token_player2")) == 0)
+	    g_ptr_array_add(strings, lg_commentary_get_player_name(unit, fix, TRUE));
+	else if(strcmp(g_array_index(lg_tokens.list, Option, i).string_value->str,
+		       lg_token("string_lg_commentary_token_attendance")) == 0)
+	{
+	    misc_print_grouped_int(fix->attendance, buf, FALSE);
+	    g_ptr_array_add(strings, g_strdup(buf));
+	}
+	else if(strcmp(g_array_index(lg_tokens.list, Option, i).string_value->str,
+		       lg_token("string_lg_commentary_token_time")) == 0)
+	{
+	    sprintf(buf, "%d", unit->time);
+	    g_ptr_array_add(strings, g_strdup(buf));
+	}
+	else if(strcmp(g_array_index(lg_tokens.list, Option, i).string_value->str,
+		       lg_token("string_lg_commentary_token_minute")) == 0)
+	{
+	    sprintf(buf, "%d", live_game_unit_get_minute(unit));
+	    g_ptr_array_add(strings, g_strdup(buf));
+	}
+	else if(strcmp(g_array_index(lg_tokens.list, Option, i).string_value->str,
+		       lg_token("string_lg_commentary_token_minute_remaining")) == 0)
+	{
+	    if(unit->time == LIVE_GAME_UNIT_TIME_EXTRA_TIME)
+		tmp_int = 120 - live_game_unit_get_minute(unit);
+	    else if(unit->time == LIVE_GAME_UNIT_TIME_SECOND_HALF)
+		tmp_int = 90 - live_game_unit_get_minute(unit);
+	    else if(unit->time == LIVE_GAME_UNIT_TIME_FIRST_HALF)
+		tmp_int = 45 - live_game_unit_get_minute(unit);
+	    
+	    if(unit->time == LIVE_GAME_UNIT_TIME_PENALTIES ||
+	       tmp_int <= 0)
+		g_ptr_array_add(strings, NULL);
+	    else
+	    {
+		sprintf(buf, "%d", tmp_int);
+		g_ptr_array_add(strings, g_strdup(buf));
+	    }
+	}
+	else if(strcmp(g_array_index(lg_tokens.list, Option, i).string_value->str,
+		       lg_token("string_lg_commentary_token_result")) == 0)
+	{
+	    sprintf(buf, "%d : %d", unit->result[0], unit->result[1]);
+	    g_ptr_array_add(strings, g_strdup(buf));
+	}
+	else if(strcmp(g_array_index(lg_tokens.list, Option, i).string_value->str,
+		       lg_token("string_lg_commentary_token_goals_home")) == 0)
+	{
+	    sprintf(buf, "%d", unit->result[0]);
+	    g_ptr_array_add(strings, g_strdup(buf));
+	}
+	else if(strcmp(g_array_index(lg_tokens.list, Option, i).string_value->str,
+		       lg_token("string_lg_commentary_token_goals_away")) == 0)
+	{
+	    sprintf(buf, "%d", unit->result[1]);
+	    g_ptr_array_add(strings, g_strdup(buf));
+	}
+	else if(strcmp(g_array_index(lg_tokens.list, Option, i).string_value->str,
+		       lg_token("string_lg_commentary_token_goal_diff")) == 0)
+	{
+	    sprintf(buf, "%d", ABS(unit->result[0] - unit->result[1]));
+	    g_ptr_array_add(strings, strdup(buf));
+	}
+	else if(strcmp(g_array_index(lg_tokens.list, Option, i).string_value->str,
+		       lg_token("string_lg_commentary_token_extra")) == 0)
+	    g_ptr_array_add(strings, lg_commentary_get_extra_data(unit, fix));
+	else
+	{
+	    g_warning("lg_commentary_set_strings: no rule found for token %s.", 
+		      g_array_index(lg_tokens.list, Option, i).string_value->str);
+	    main_exit_program(EXIT_GENERAL, NULL);
+	}
+    }
 }
 
 /** Return the name of a player involved in the unit (or NULL). 
@@ -146,6 +236,10 @@ gchar*
 lg_commentary_get_player_name(const LiveGameUnit *unit, const Fixture *fix, gboolean player2)
 {
     gchar *return_value = NULL;
+
+    if((player2 && unit->event.player2 == -1) ||
+       (!player2 && unit->event.player == -1))
+	return NULL;
 
     if(unit->event.type == LIVE_GAME_EVENT_GENERAL)
 	return_value = (player2) ?

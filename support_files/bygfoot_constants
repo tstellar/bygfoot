@@ -16,6 +16,8 @@ string_save_suffix .zip
 
 # number of seconds until messages disappear
 int_game_gui_message_duration 5
+# number of seconds to delay for delayed messages
+int_game_gui_message_delay 3
 
 # base values for stadium improvement: 500 seats and 5%
 int_stadium_improvement_base_seats 500
@@ -349,21 +351,6 @@ float_season_end_user_champ_addition 100
 int_team_new_bound_upper 10
 int_team_new_bound_lower 20
 
-# tokens in the live game commentary
-string_lg_commentary_token_team_home		_TH_
-string_lg_commentary_token_team_away		_TA_
-string_lg_commentary_token_team_in_poss		_TP_
-string_lg_commentary_token_team_not_in_poss	_TN_
-string_lg_commentary_token_team_losing		_TL_
-string_lg_commentary_token_team_winning		_TW_
-string_lg_commentary_token_team			_TT_
-string_lg_commentary_token_player1		_P1_
-string_lg_commentary_token_player2		_P2_
-string_lg_commentary_token_attendance		_AT_
-string_lg_commentary_token_result		_RE_
-string_lg_commentary_token_minute		_MI_
-string_lg_commentary_token_extra		_EX_
-_
 # base probability that the ball gets from defending area
 # to midfield area.
 float_live_game_area_def_mid 5000

@@ -142,12 +142,17 @@ void
 on_button_transfers_clicked            (GtkButton       *button,
                                         gpointer         user_data)
 {
+    gchar buf[SMALL];
+
     if(sett_int("int_opt_disable_transfers"))
 	game_gui_print_message(_("Transfers are disabled in this country definition."));
     else if(week < transfer_get_deadline())
     {
 	stat0 = STATUS_SHOW_TRANSFER_LIST;
 	game_gui_print_message(_("Left click to make an offer. Right click to remove offer."));
+	sprintf(buf, _("Transfer deadline is Week %d"), transfer_get_deadline());
+	printf("buf %s \n", buf);
+	game_gui_print_message_with_delay(buf);
 	treeview_show_transfer_list(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")));
 	gtk_notebook_set_current_page(GTK_NOTEBOOK(lookup_widget(window.main, "notebook_player")), 1);
 	

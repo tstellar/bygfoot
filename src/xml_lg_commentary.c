@@ -53,6 +53,7 @@ enum XmlLgCommentaryStates
 };
 
 gint state, commentary_idx;
+gchar condition[SMALL];
 
 /**
  * The function called by the parser when an opening tag is read.
@@ -73,7 +74,13 @@ xml_lg_commentary_read_start_element (GMarkupParseContext *context,
     else if(strcmp(element_name, TAG_EVENT_NAME) == 0)
 	state = STATE_EVENT_NAME;
     else if(strcmp(element_name, TAG_EVENT_COMMENTARY) == 0)
+    {
 	state = STATE_EVENT_COMMENTARY;
+	if(attribute_names[0] != NULL)
+	    sprintf(condition, "#%s", attribute_values[0]);
+	else
+	    strcpy(condition, "");
+    }
     else if(strcmp(element_name, TAG_LG_COMMENTARY) != 0)
 	g_warning("xml_lg_commentary_read_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
@@ -114,13 +121,10 @@ xml_lg_commentary_read_text         (GMarkupParseContext *context,
 				     GError             **error)
 {
     gchar buf[text_len + 1];
-    gint int_value;
     GString *commentary = NULL;
 
     strncpy(buf, text, text_len);
     buf[text_len] = '\0';
-
-    int_value = (gint)g_ascii_strtod(buf, NULL);
 
     if(state == STATE_EVENT_NAME)
     {
@@ -191,7 +195,8 @@ xml_lg_commentary_read_text         (GMarkupParseContext *context,
     }
     else if(state == STATE_EVENT_COMMENTARY)
     {
-	commentary = g_string_new(buf);
+	commentary = g_string_new("");
+	g_string_printf(commentary, "%s%s", condition, buf);
 	g_ptr_array_add(lg_commentary[commentary_idx], commentary);
     }
 }

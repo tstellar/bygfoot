@@ -25,8 +25,11 @@ void
 game_gui_get_radio_items(GtkWidget **style, GtkWidget **scout,
 			 GtkWidget **physio, GtkWidget **boost);
 
-void
+gboolean
 game_gui_print_message(gchar *text);
+
+void
+game_gui_print_message_with_delay(gchar *text);
 
 void
 game_gui_read_radio_items(GtkWidget *widget);

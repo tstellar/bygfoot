@@ -456,6 +456,7 @@ free_variables(void)
     free_option_list(&settings, FALSE);
     free_option_list(&constants, FALSE);
     free_option_list(&constants_app, FALSE);
+    free_option_list(&lg_tokens, FALSE);
 
     for(i=0;i<LIVE_GAME_EVENT_END;i++)
 	free_g_string_array(&lg_commentary[i]);

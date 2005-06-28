@@ -221,33 +221,11 @@ misc_float_compare(gfloat first, gfloat second)
     return 0;
 }
 
-/** Remove some of the first or last characters from src and copy
-    the rest to dest; no error-checking is done. */
-void
-misc_truncate_string(const gchar *src, gchar *dest, gint number_of_chars)
-{
-    gint i;
-    gint num = ABS(number_of_chars);
-    
-    if(number_of_chars >= 0)
-    {
-	strncpy(dest, src, strlen(src) - num);
-	dest[strlen(src) - num] = '\0';
-	return;
-    }
-
-    for(i=0;i<strlen(src);i++)
-	if(i >= num)
-	    dest[i - num] = src[i];
-    
-    dest[i - num] = '\0';
-}
-
 /** Find out whether the first string contains the second string. */
 gboolean
 query_misc_string_contains(const gchar *string, const gchar *text)
 {
-    gint i, j;
+    gint i;
     gint lens = strlen(string),
 	lent = strlen(text);
 
@@ -258,14 +236,8 @@ query_misc_string_contains(const gchar *string, const gchar *text)
 	return (strcmp(text, string) == 0);
 
     for(i=0;i<lens - lent + 1;i++)
-    {
-	for(j=0;j<lent;j++)
-	    if(string[i + j] != text[j])
-		break;
-	
-	if(j == lent)
+	if(g_str_has_prefix(string + i, text))
 	    return TRUE;
-    }
 
     return FALSE;
 }
@@ -289,33 +261,48 @@ query_misc_string_in_array(const gchar *string, GPtrArray *array)
 void
 misc_string_replace_token(gchar *string, const gchar *token, const gchar *replacement)
 {
-    gint i, j;
-    gchar buf[SMALL], buf2[SMALL], rest[SMALL];
-    
-    for(i=strlen(string); i >= strlen(token); i--)
+    gint i;
+    gchar buf[SMALL], buf2[SMALL];
+
+    if(strlen(string) < strlen(token))
+	return;
+
+    for(i=0;i<strlen(string) - strlen(token) + 1;i++)
     {
-	strcpy(buf, "");
-	strcpy(buf2, "");
-	strcpy(rest, "");
-
-	strncpy(buf, string, i);
-	buf[i] = '\0';
-
-	for(j=i;j<strlen(string);j++)
-	    rest[j - i] = string[j];
-	rest[j - i] = '\0';
-
-	if(g_str_has_suffix(buf, token))
+	if(g_str_has_prefix(string + i, token))
 	{
-	    strncpy(buf2, buf, strlen(buf) - strlen(token));
-	    buf2[strlen(buf) - strlen(token)] = '\0';
-	    strcat(buf2, replacement);
-
-	    sprintf(string, "%s%s", buf2, rest);
+	    strcpy(buf2, string + i + strlen(token));
+	    strncpy(buf, string, i);
+	    buf[i] = '\0';
+	    sprintf(string, "%s%s%s", buf, replacement, buf2);
 	    misc_string_replace_token(string, token, replacement);
+	    return;
 	}
     }
 }
+
+/** Replace sums of the form [1 + 2 - 3] in the string. */
+void
+misc_replace_sums(gchar *string)
+{
+    gint i, result = -1;
+    gchar buf[SMALL], buf2[SMALL];
+    const gchar *buf_return = NULL;    
+
+    strcpy(buf, string);
+
+    for(i=0;i<strlen(buf);i++)
+	if(buf[i] == '[')
+	{
+	    strncpy(buf2, buf, i);
+	    buf2[i] = '\0';
+	    buf_return = misc_parse_expression(buf + i + 1, &result);
+	    sprintf(string, "%s%d%s", buf2, result, buf_return + 1);
+	    
+	    misc_replace_sums(string);
+	}
+}
+
 
 /** Get a float representation of someone's age
     based on his birth year and month. */
@@ -330,3 +317,127 @@ misc_get_age_from_birth(gint birth_year, gint birth_month)
 
     return (gfloat)g_date_days_between(birth_date, current_date) / 365.25;
 }
+
+/* skip spaces */
+const gchar*
+misc_skip_spaces(const gchar* s)
+{
+   while (g_ascii_isspace(*s)) s++;
+   return s;
+}
+
+/* read number, skip all leading and trailing spaces */
+const gchar*
+misc_parse_value(const gchar *s, gint *value)
+{
+   s = misc_skip_spaces(s);
+   *value = 0;
+   while (g_ascii_isdigit(*s)) {
+      *value = *value * 10 + (*s - '0');
+      s++;
+   }
+   return s;
+}
+
+/* parse numeric expression (supports + and -) */
+const gchar*
+misc_parse_expression(const gchar *s, gboolean *result)
+{
+   gint value = 0;
+   s = misc_parse_value(s, &value);
+   *result = value;
+   gint loop = 1;
+   while (loop) {
+      s = misc_skip_spaces(s);
+      switch(*s) {
+      case '+': 
+            s = misc_parse_value(s+1, &value);
+	    *result += value;
+	    break;
+      case '-': 
+    	    s = misc_parse_value(s+1, &value);
+	    *result -= value;
+	    break;
+      default:
+            loop = 0;
+     }
+   }
+   return s;
+}
+
+/* parse comparison (supports '<', '>' and '=') */
+const gchar*
+misc_parse_comparison(const gchar *s, gboolean *result)
+{
+   gint value = 0;
+   s = misc_parse_expression(s, result);
+   s = misc_skip_spaces(s);
+   switch(*s) {
+      case '<':
+            if (*(s+1) == '=')
+	    {
+	       s = misc_parse_expression(s+2, &value);
+	       *result = *result <= value;
+	    }
+	    else 
+	    {
+               s = misc_parse_expression(s+1, &value);
+	       *result = *result < value;
+	    }
+	    break;
+       case '=':
+	       s = misc_parse_expression(s+1, &value);
+	       *result = *result == value;
+	   break;
+       case '>': 
+	   if (*(s+1) == '=')
+	   {
+	       s = misc_parse_expression(s+2, &value);
+	       *result = *result >= value;
+	    }
+	    else 
+	    {
+               s = misc_parse_expression(s+1, &value);
+	       *result = *result > value;
+	    }
+	    break;
+       case '!':
+	   if(*(s + 1) == '=')
+	   {
+               s = misc_parse_expression(s+2, &value);
+	       *result = *result != value;
+	   }
+	   break;
+   }
+   return s;
+}
+
+const gchar*
+misc_parse_and(const gchar *s, gboolean *result)
+{
+   gint value = 0;
+   s = misc_parse_comparison(s, result);
+   s = misc_skip_spaces(s);
+   while (*s == 'a' && *(s+1) == 'n' && *(s+2) == 'd') {
+      s = misc_parse_comparison(s + 3, &value);
+      *result = *result && value;
+      s = misc_skip_spaces(s);
+   }
+
+   return s;
+}
+
+const gchar*
+misc_parse(const gchar *s, gboolean *result)
+{
+   gint value = 0;
+   s = misc_parse_and(s, result);
+   s = misc_skip_spaces(s);
+   while (*s == 'o' && *(s+1) == 'r') {
+       s = misc_parse_and(s + 2, &value);
+       *result = *result || value;
+       s = misc_skip_spaces(s);
+   }
+   return s;
+}
+

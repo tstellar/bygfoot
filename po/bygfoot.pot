@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-26 13:39+0200\n"
+"POT-Creation-Date: 2005-06-28 04:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,7 +71,7 @@ msgid ""
 "player's value. Do you accept?"
 msgstr ""
 
-#: src/callback_func.c:383 src/callbacks.c:533
+#: src/callback_func.c:383 src/callbacks.c:538
 msgid "Your offer has been removed."
 msgstr ""
 
@@ -148,94 +148,99 @@ msgstr ""
 msgid "The current game state is unsaved and will be lost. Continue?"
 msgstr ""
 
-#: src/callbacks.c:146 src/callbacks.c:397
+#: src/callbacks.c:148 src/callbacks.c:402
 msgid "Transfers are disabled in this country definition."
 msgstr ""
 
-#: src/callbacks.c:150
+#: src/callbacks.c:152
 msgid "Left click to make an offer. Right click to remove offer."
 msgstr ""
 
-#: src/callbacks.c:157
+#: src/callbacks.c:153
+#, c-format
+msgid "Transfer deadline is Week %d"
+msgstr ""
+
+#: src/callbacks.c:162
 msgid "The transfer deadline is over."
 msgstr ""
 
-#: src/callbacks.c:166 src/callbacks.c:561 src/callbacks.c:578
+#: src/callbacks.c:171 src/callbacks.c:566 src/callbacks.c:583
 msgid "You still have some transfer business to manage."
 msgstr ""
 
-#: src/callbacks.c:170
+#: src/callbacks.c:175
 msgid "At least one user didn't take his turn this week. Continue?"
 msgstr ""
 
-#: src/callbacks.c:176
+#: src/callbacks.c:181
 msgid "There are injured or banned players in one of the user teams. Continue?"
 msgstr ""
 
-#: src/callbacks.c:381
+#: src/callbacks.c:386
 msgid "This is your first season."
 msgstr ""
 
-#: src/callbacks.c:399 src/callbacks.c:415 src/callbacks.c:431
-#: src/callbacks.c:449 src/callbacks.c:794 src/callbacks.c:810
+#: src/callbacks.c:404 src/callbacks.c:420 src/callbacks.c:436
+#: src/callbacks.c:454 src/callbacks.c:799 src/callbacks.c:815
 msgid "You haven't selected a player."
 msgstr ""
 
-#: src/callbacks.c:401
+#: src/callbacks.c:406
 msgid "The player is already on the list."
 msgstr ""
 
-#: src/callbacks.c:417
+#: src/callbacks.c:422
 msgid "The player is not on the list."
 msgstr ""
 
-#: src/callbacks.c:433
+#: src/callbacks.c:438
 msgid "Your team can't have less than 11 players."
 msgstr ""
 
-#: src/callbacks.c:454
+#: src/callbacks.c:459
 msgid "Penalty/free kick shooter deselected."
 msgstr ""
 
-#: src/callbacks.c:460
+#: src/callbacks.c:465
 #, c-format
 msgid "%s will shoot penalties and free kicks when he plays."
 msgstr ""
 
-#: src/callbacks.c:535
+#: src/callbacks.c:540
 msgid "You haven't made an offer for the player."
 msgstr ""
 
-#: src/callbacks.c:594
+#: src/callbacks.c:599
 msgid "Enter a structure. The digits must sum up to 10."
 msgstr ""
 
-#: src/callbacks.c:595
+#: src/callbacks.c:600
 msgid "Structure"
 msgstr ""
 
-#: src/callbacks.c:628 src/callbacks.c:644
+#: src/callbacks.c:633 src/callbacks.c:649
 msgid "No match stored."
 msgstr ""
 
-#: src/callbacks.c:722 src/game_gui.c:309
+#: src/callbacks.c:727 src/game_gui.c:309
 msgid "Boost ON is disabled in this country definition."
 msgstr ""
 
-#: src/callbacks.c:744
+#: src/callbacks.c:749
 msgid "Finances are disabled in this country definition."
 msgstr ""
 
-#: src/callbacks.c:749
+#: src/callbacks.c:754
 msgid ""
 "Left-click: get loan; Right-click: pay back; Middle click: stadium window."
 msgstr ""
 
-#: src/callbacks.c:763
+#: src/callbacks.c:768
 msgid "Stadium management is disabled in this country definition."
 msgstr ""
 
-#: src/callbacks.c:788
+#: src/callbacks.c:793
 msgid "Contracts are disabled in this country definition."
 msgstr ""
 
@@ -324,7 +329,7 @@ msgstr ""
 msgid "Next week you'll fire him and hire a new one."
 msgstr ""
 
-#: src/game_gui.c:530
+#: src/game_gui.c:548
 #, c-format
 msgid ""
 "The team owners have fired you because of financial mismanagement. Luckily, "
@@ -332,7 +337,7 @@ msgid ""
 "some information on %s:"
 msgstr ""
 
-#: src/game_gui.c:533
+#: src/game_gui.c:551
 #, c-format
 msgid ""
 "The team owners have fired you because of unsuccessfulness. Luckily, the "
@@ -340,49 +345,49 @@ msgid ""
 "information on %s:"
 msgstr ""
 
-#: src/game_gui.c:536
+#: src/game_gui.c:554
 #, c-format
 msgid ""
 "The owners of %s are deeply impressed by your success with %s and would like "
 "to hire you. Here's some information on %s:"
 msgstr ""
 
-#: src/game_gui.c:539
+#: src/game_gui.c:557
 msgid "Accept?"
 msgstr ""
 
-#: src/game_gui.c:541
+#: src/game_gui.c:559
 msgid " (NOTE: If you don't, the game is over for you.)"
 msgstr ""
 
-#: src/game_gui.c:592
+#: src/game_gui.c:610
 #, c-format
 msgid "Job offers set to %s."
 msgstr ""
 
-#: src/game_gui.c:599
+#: src/game_gui.c:617
 #, c-format
 msgid "Live game set to %s."
 msgstr ""
 
-#: src/game_gui.c:606
+#: src/game_gui.c:624
 #, c-format
 msgid "Overwrite set to %s."
 msgstr ""
 
-#: src/game_gui.c:626
+#: src/game_gui.c:644
 msgid ""
 "Bygfoot is a very intuitive and simple game, so there isn't a full-grown "
 "documentation. However, if you have trouble, there are a few places to go.\n"
 msgstr ""
 
-#: src/game_gui.c:628
+#: src/game_gui.c:646
 msgid ""
 "At the Bygfoot forums you can report bugs, ask for help and discuss the game "
 "(you don't have to register):\n"
 msgstr ""
 
-#: src/game_gui.c:630
+#: src/game_gui.c:648
 msgid ""
 "\n"
 "If you feel you've found out something about the game that has to be shared, "
@@ -728,38 +733,38 @@ msgstr ""
 msgid "Next (W)"
 msgstr ""
 
-#: src/lg_commentary.c:237 src/team.c:500
+#: src/lg_commentary.c:331 src/team.c:500
 msgid "ALL OUT DEFEND"
 msgstr ""
 
-#: src/lg_commentary.c:240 src/team.c:502
+#: src/lg_commentary.c:334 src/team.c:502
 msgid "DEFEND"
 msgstr ""
 
-#: src/lg_commentary.c:243 src/team.c:504
+#: src/lg_commentary.c:337 src/team.c:504
 msgid "BALANCED"
 msgstr ""
 
-#: src/lg_commentary.c:246 src/team.c:506
+#: src/lg_commentary.c:340 src/team.c:506
 msgid "ATTACK"
 msgstr ""
 
-#: src/lg_commentary.c:249 src/team.c:508
+#: src/lg_commentary.c:343 src/team.c:508
 msgid "ALL OUT ATTACK"
 msgstr ""
 
 #. Boost value.
-#: src/lg_commentary.c:252 src/team.c:516
+#: src/lg_commentary.c:346 src/team.c:516
 msgid "ANTI"
 msgstr ""
 
 #. Boost value.
-#: src/lg_commentary.c:255 src/team.c:519
+#: src/lg_commentary.c:349 src/team.c:519
 msgid "OFF"
 msgstr ""
 
 #. Boost value.
-#: src/lg_commentary.c:258 src/team.c:522
+#: src/lg_commentary.c:352 src/team.c:522
 msgid "ON"
 msgstr ""
 
@@ -767,71 +772,71 @@ msgstr ""
 msgid "Saving options/constants..."
 msgstr ""
 
-#: src/load_save.c:59
+#: src/load_save.c:61
 msgid "Saving leagues..."
 msgstr ""
 
-#: src/load_save.c:70
+#: src/load_save.c:72
 msgid "Saving cups..."
 msgstr ""
 
-#: src/load_save.c:81
+#: src/load_save.c:83
 msgid "Saving users..."
 msgstr ""
 
-#: src/load_save.c:91
+#: src/load_save.c:93
 msgid "Saving transfer list..."
 msgstr ""
 
-#: src/load_save.c:101
+#: src/load_save.c:103
 msgid "Saving season stats..."
 msgstr ""
 
-#: src/load_save.c:111
+#: src/load_save.c:113
 msgid "Saving miscellaneous..."
 msgstr ""
 
-#: src/load_save.c:118
+#: src/load_save.c:120
 msgid "Compressing savegame..."
 msgstr ""
 
-#: src/load_save.c:126 src/load_save.c:257
+#: src/load_save.c:128 src/load_save.c:261
 msgid "Done."
 msgstr ""
 
-#: src/load_save.c:168
+#: src/load_save.c:170
 msgid "Last save file not found."
 msgstr ""
 
-#: src/load_save.c:176
+#: src/load_save.c:178
 msgid "Uncompressing savegame..."
 msgstr ""
 
-#: src/load_save.c:186
+#: src/load_save.c:188
 msgid "Loading options/constants..."
 msgstr ""
 
-#: src/load_save.c:200
+#: src/load_save.c:204
 msgid "Loading leagues..."
 msgstr ""
 
-#: src/load_save.c:210
+#: src/load_save.c:214
 msgid "Loading cups..."
 msgstr ""
 
-#: src/load_save.c:220
+#: src/load_save.c:224
 msgid "Loading users..."
 msgstr ""
 
-#: src/load_save.c:230
+#: src/load_save.c:234
 msgid "Loading transfer list..."
 msgstr ""
 
-#: src/load_save.c:240
+#: src/load_save.c:244
 msgid "Loading season stats..."
 msgstr ""
 
-#: src/load_save.c:250
+#: src/load_save.c:254
 msgid "Loading miscellaneous..."
 msgstr ""
 
@@ -2600,12 +2605,12 @@ msgstr ""
 msgid "Sponsorship offers"
 msgstr ""
 
-#: src/xml.c:90
+#: src/xml.c:80
 #, c-format
 msgid "Loading league: %s"
 msgstr ""
 
-#: src/xml.c:150
+#: src/xml.c:140
 #, c-format
 msgid "Loading cup: %s"
 msgstr ""

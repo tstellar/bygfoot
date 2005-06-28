@@ -282,7 +282,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 	if(ct->number_of_teams != -1 &&
 	   number_of_teams != ct->number_of_teams)
 	{
-	    g_warning("cup_load_choose_team (+): not enough teams (that don't participate in international cups yet) found in chooseteam %s for cup %s (%d specified, %d found) cup group %d.\n ",
+	    g_warning("cup_load_choose_team (1): not enough teams (that don't participate in international cups yet) found in chooseteam %s for cup %s (%d specified, %d found) cup group %d.\n ",
 		      ct->sid->str, cup->name->str, ct->number_of_teams, number_of_teams, cup->group);
 	    main_exit_program(EXIT_CHOOSE_TEAM_ERROR, NULL);
 	}
@@ -321,7 +321,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 	    
 	    if(number_of_teams != ct->number_of_teams)
 	    {
-		g_warning("cup_load_choose_team (*): not enough teams found in league 0 for chooseteam %s (%d; required: %d) in cup %s (group %d)\n",
+		g_warning("cup_load_choose_team (2): not enough teams found in league 0 for chooseteam %s (%d; required: %d) in cup %s (group %d)\n",
 			  ct->sid->str, number_of_teams, ct->number_of_teams, cup->name->str, cup->group);
 		main_exit_program(EXIT_CHOOSE_TEAM_ERROR, NULL);
 	    }
@@ -360,7 +360,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 	    if(ct->number_of_teams != -1 &&
 	       number_of_teams != ct->number_of_teams)
 	    {
-		g_warning("cup_load_choose_team(*): not enough teams (that don't participate in international cups yet) found in chooseteam %s for cup %s (%d specified, %d found) cup group %d.\n ",
+		g_warning("cup_load_choose_team(3): not enough teams (that don't participate in international cups yet) found in chooseteam %s for cup %s (%d specified, %d found) cup group %d.\n ",
 			  ct->sid->str, cup->name->str, ct->number_of_teams, number_of_teams, cup->group);
 		main_exit_program(EXIT_CHOOSE_TEAM_ERROR, NULL);
 	    }

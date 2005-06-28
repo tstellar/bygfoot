@@ -366,16 +366,34 @@ game_gui_show_main(void)
 }
 
 /** Print a message into the main window entry. */
-void
+gboolean
 game_gui_print_message(gchar *text)
 {
-    gtk_entry_set_text(GTK_ENTRY(lookup_widget(window.main, "entry_message")), text);
-
+    if(g_str_has_prefix(text, "___"))
+    {
+	gtk_entry_set_text(GTK_ENTRY(lookup_widget(window.main, "entry_message")), text + 3);
+	g_free(text);
+    }
+    else
+	gtk_entry_set_text(GTK_ENTRY(lookup_widget(window.main, "entry_message")), text);
+    
     if(timeout_id != -1)
 	g_source_remove(timeout_id);
 
     timeout_id = g_timeout_add(const_int("int_game_gui_message_duration") * 1000,
 			       (GSourceFunc)game_gui_clear_entry_message, NULL);
+
+    return FALSE;
+}
+
+/** Print a message after some seconds of delay. */
+void
+game_gui_print_message_with_delay(gchar *text)
+{
+    gchar *local_text = g_strdup_printf("___%s", text);
+
+    g_timeout_add(const_int("int_game_gui_message_delay") * 1000,
+		  (GSourceFunc)game_gui_print_message, local_text);
 }
 
 /** Function that gets called from time to time. */

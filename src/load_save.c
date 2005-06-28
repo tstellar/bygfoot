@@ -49,6 +49,8 @@ load_save_save_game(const gchar *filename)
     file_save_opt_file(buf, &options);
     sprintf(buf, "%s___constants", prefix);
     file_save_opt_file(buf, &constants);
+    sprintf(buf, "%s___settings", prefix);
+    file_save_opt_file(buf, &settings);
 
     if(debug > 60)
 	printf("load_save_save leagues \n");
@@ -189,6 +191,8 @@ load_save_load_game(const gchar* filename)
     file_load_opt_file(buf, &options);
     sprintf(buf, "%s___constants", prefix);
     file_load_opt_file(buf, &constants);
+    sprintf(buf, "%s___settings", prefix);
+    file_load_opt_file(buf, &settings);
     language_set(language_get_code_index(opt_str("string_opt_language_code")) + 1);
 
     if(debug > 60)
