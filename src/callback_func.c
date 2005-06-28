@@ -435,7 +435,13 @@ callback_transfer_list_clicked(gint button, gint idx)
 
 	return;
     }
-    
+
+    if (week >= transfer_get_deadline()-1)
+    {
+	game_gui_print_message(_("You can't make an offer so close to the transfer deadline."));
+	return;
+    }
+
     stat1 = STATUS_SHOW_TRANSFER_LIST;
     stat2 = idx;
     
