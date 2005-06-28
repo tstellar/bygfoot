@@ -108,10 +108,17 @@ on_button_digits_ok_clicked            (GtkButton       *button,
 	    finance_pay_loan(values[0]);
 	    break;
 	case STATUS_SHOW_TRANSFER_LIST:
-	    if(transfer_add_offer(stat2, current_user.tm, values[0], values[1]))
-		game_gui_print_message(_("Your offer has been updated."));
+	    if (week < transfer_get_deadline()-1)
+	    {
+		if(transfer_add_offer(stat2, current_user.tm, values[0], values[1]))
+		    game_gui_print_message(_("Your offer has been updated."));
+		else
+		    game_gui_print_message(_("Your offer will be considered next week."));
+	    }
 	    else
-		game_gui_print_message(_("Your offer will be considered next week."));
+	    {
+		game_gui_print_message(_("You can't make an offer after the transfer deadline."));
+	    }
 	    break;
 	case STATUS_CUSTOM_STRUCTURE:
 	    destroy_window = misc2_callback_change_structure(values[1]);
