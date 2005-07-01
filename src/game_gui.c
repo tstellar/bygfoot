@@ -201,7 +201,7 @@ game_gui_set_main_window_header(void)
 
     if(!sett_int("int_opt_disable_finances"))
     {
-	misc_print_grouped_int(current_user.money, buf, FALSE);
+	misc_print_grouped_int(current_user.money, buf);
 	gtk_label_set_text(label_money, buf);
     }
     else
@@ -566,9 +566,9 @@ game_gui_show_job_offer(Team *team, gint type)
     misc_print_grouped_int(math_round_integer(team->stadium.capacity * 
 					      math_rndi(const_int("int_initial_money_lower"),
 							const_int("int_initial_money_upper")), 2),
-			   buf, FALSE);
+			   buf);
     gtk_label_set_text(label_money, buf);
-    misc_print_grouped_int(team->stadium.capacity, buf, FALSE);
+    misc_print_grouped_int(team->stadium.capacity, buf);
     gtk_label_set_text(label_cap, buf);
     gui_label_set_text_from_int(label_saf, (gint)rint(team->stadium.safety * 100), FALSE);
 

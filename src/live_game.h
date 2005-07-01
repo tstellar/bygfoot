@@ -7,6 +7,12 @@
 void
 live_game_calculate_fixture(Fixture *fix);
 
+void
+live_game_initialize(Fixture *fix);
+
+void
+live_game_post_match(void);
+
 gboolean
 query_live_game_event_is_break(gint minute, gint time);
 

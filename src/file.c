@@ -160,16 +160,14 @@ void
 file_check_home_dir_copy_conf_files(void)
 {
     gint i;
-    gchar *conf_files[4] =
+    gchar *conf_files[2] =
 	{"bygfoot.conf",
-	 "bygfoot_user.conf",
-	 "bygfoot_constants",
-	 "bygfoot_app"};
+	 "bygfoot_user.conf"};
     const gchar *home = g_get_home_dir();
     gchar *conf_file = NULL;
     gchar buf[SMALL];
 
-    for(i=0;i<4;i++)
+    for(i=0;i<2;i++)
     {
 	sprintf(buf, "%s/%s/%s", home, HOMEDIRNAME, conf_files[i]);
 	if(!g_file_test(buf, G_FILE_TEST_EXISTS))
@@ -444,6 +442,7 @@ file_load_opt_file(const gchar *filename, OptionList *optionlist)
 void
 file_load_conf_files(void)
 {
+    gint i;
     gchar *conf_file = file_find_support_file("bygfoot.conf", TRUE);
 
     file_load_opt_file(conf_file, &options);
@@ -452,6 +451,9 @@ file_load_conf_files(void)
     file_load_opt_file(opt_str("string_opt_constants_file"), &constants);
     file_load_opt_file(opt_str("string_opt_appearance_file"), &constants_app);
     file_load_opt_file("bygfoot_lg_tokens", &lg_tokens);
+
+    for(i=0;i<lg_tokens.list->len;i++)
+	g_array_index(lg_tokens.list, Option, i).value = i;
 }
 
 /** Load a user-specific conf file.

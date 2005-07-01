@@ -18,7 +18,7 @@ gui_label_set_text_from_int(GtkLabel *label, gint number, gboolean append)
     strcpy(buf2, "");
 
     if(number > 1000)
-	misc_print_grouped_int(number, buf, FALSE);
+	misc_print_grouped_int(number, buf);
     else
 	sprintf(buf, "%d", number);
 

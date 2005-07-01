@@ -10,6 +10,9 @@
 #define TAG_EVENT_NAME "name"
 #define TAG_EVENT_COMMENTARY "commentary"
 
+#define ATT_NAME_CONDITION "cond"
+#define ATT_NAME_PRIORITY "pri"
+
 #define EVENT_NAME_GENERAL "general"
 #define EVENT_NAME_START_MATCH "start_match"
 #define EVENT_NAME_HALF_TIME "half_time"
@@ -52,8 +55,8 @@ enum XmlLgCommentaryStates
     STATE_END
 };
 
-gint state, commentary_idx;
-gchar condition[SMALL];
+gint state, commentary_idx, priority;
+GString *condition;
 
 /**
  * The function called by the parser when an opening tag is read.
@@ -69,6 +72,8 @@ xml_lg_commentary_read_start_element (GMarkupParseContext *context,
 				      gpointer             user_data,
 				      GError             **error)
 {
+    gint atidx = 0;
+
     if(strcmp(element_name, TAG_EVENT) == 0)
 	state = STATE_EVENT;
     else if(strcmp(element_name, TAG_EVENT_NAME) == 0)
@@ -76,10 +81,20 @@ xml_lg_commentary_read_start_element (GMarkupParseContext *context,
     else if(strcmp(element_name, TAG_EVENT_COMMENTARY) == 0)
     {
 	state = STATE_EVENT_COMMENTARY;
-	if(attribute_names[0] != NULL)
-	    sprintf(condition, "#%s", attribute_values[0]);
-	else
-	    strcpy(condition, "");
+
+	condition = NULL;
+	priority = 1;
+	
+	while(attribute_names[atidx] != NULL)
+	{
+	    if(strcmp(attribute_names[atidx], ATT_NAME_CONDITION) == 0)
+		condition = g_string_new(attribute_values[atidx]);
+	    else if(strcmp(attribute_names[atidx], ATT_NAME_PRIORITY) == 0)
+		priority = (gint)g_ascii_strtod(attribute_values[atidx], NULL);
+
+	    atidx++;
+	}
+
     }
     else if(strcmp(element_name, TAG_LG_COMMENTARY) != 0)
 	g_warning("xml_lg_commentary_read_start_element: unknown tag: %s; I'm in state %d\n",
@@ -121,7 +136,7 @@ xml_lg_commentary_read_text         (GMarkupParseContext *context,
 				     GError             **error)
 {
     gchar buf[text_len + 1];
-    GString *commentary = NULL;
+    LGCommentary commentary;
 
     strncpy(buf, text, text_len);
     buf[text_len] = '\0';
@@ -195,9 +210,10 @@ xml_lg_commentary_read_text         (GMarkupParseContext *context,
     }
     else if(state == STATE_EVENT_COMMENTARY)
     {
-	commentary = g_string_new("");
-	g_string_printf(commentary, "%s%s", condition, buf);
-	g_ptr_array_add(lg_commentary[commentary_idx], commentary);
+	commentary.text = g_string_new(buf);
+	commentary.condition = condition;
+	commentary.priority = MAX(1, priority);
+	g_array_append_val(lg_commentary[commentary_idx], commentary);
     }
 }
 
@@ -219,7 +235,6 @@ xml_lg_commentary_read(const gchar *commentary_file)
     gchar *file_contents;
     gint length;
     GError *error = NULL;
-    gint i;
 
     context = 
 	g_markup_parse_context_new(&parser, 0, NULL, NULL);
@@ -237,11 +252,7 @@ xml_lg_commentary_read(const gchar *commentary_file)
 	return;
     }
 
-    for(i=0;i<LIVE_GAME_EVENT_END;i++)
-    {
-	free_g_string_array(&lg_commentary[i]);
-	lg_commentary[i] = g_ptr_array_new();
-    }
+    free_lg_commentary(TRUE);
 
     if(g_markup_parse_context_parse(context, file_contents, length, &error))
     {

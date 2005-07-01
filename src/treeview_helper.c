@@ -933,10 +933,10 @@ treeview_helper_player_to_cell(GtkTreeViewColumn *col,
 		    pl->etal[current_user.scout % 10]);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_VALUE:
-	    misc_print_grouped_int(pl->value, buf, FALSE);
+	    misc_print_grouped_int(pl->value, buf);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_WAGE:
-	    misc_print_grouped_int(pl->wage, buf, FALSE);
+	    misc_print_grouped_int(pl->wage, buf);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_CONTRACT:
 	    treeview_helper_player_contract_to_cell(renderer, buf, pl->contract);

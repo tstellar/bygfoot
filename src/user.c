@@ -443,26 +443,26 @@ user_event_show_next(void)
 	    game_gui_show_warning(buf);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_REJECTED_BETTER_OFFER:
-	    misc_print_grouped_int(event->value1, buf2, FALSE);
-	    misc_print_grouped_int(event->value2, buf3, FALSE);	    
+	    misc_print_grouped_int(event->value1, buf2);
+	    misc_print_grouped_int(event->value2, buf3);	    
 	    sprintf(buf, _("The owners of %s have rejected your offer (%s / %s) for %s. There was a better offer for the player than yours."), ((Team*)event->value_pointer)->name->str, buf2, buf3, event->value_string->str);
 	    game_gui_show_warning(buf);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_REJECTED_FEE_WAGE:
-	    misc_print_grouped_int(event->value1, buf2, FALSE);
-	    misc_print_grouped_int(event->value2, buf3, FALSE);	    
+	    misc_print_grouped_int(event->value1, buf2);
+	    misc_print_grouped_int(event->value2, buf3);	    
 	    sprintf(buf, _("The owners of %s have rejected your offer (%s / %s) for %s. Neither the fee nor the wage you offered were acceptable, they say."), ((Team*)event->value_pointer)->name->str, buf2, buf3, event->value_string->str);
 	    game_gui_show_warning(buf);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_REJECTED_FEE:
-	    misc_print_grouped_int(event->value1, buf2, FALSE);
-	    misc_print_grouped_int(event->value2, buf3, FALSE);	    
+	    misc_print_grouped_int(event->value1, buf2);
+	    misc_print_grouped_int(event->value2, buf3);	    
 	    sprintf(buf, _("The owners of %s have rejected your offer (%s / %s) for %s. The team owners weren't satisfied with the fee you offered."), ((Team*)event->value_pointer)->name->str, buf2, buf3, event->value_string->str);
 	    game_gui_show_warning(buf);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_REJECTED_WAGE:
-	    misc_print_grouped_int(event->value1, buf2, FALSE);
-	    misc_print_grouped_int(event->value2, buf3, FALSE);	    
+	    misc_print_grouped_int(event->value1, buf2);
+	    misc_print_grouped_int(event->value2, buf3);	    
 	    /* A player from a team has rejected a transfer offer. */
 	    sprintf(buf, _("%s of %s has rejected your offer (%s / %s). He wasn't satisfied with the wage you offered."),
 		    event->value_string->str,

@@ -7,6 +7,7 @@
 #include "live_game.h"
 #include "main.h"
 #include "maths.h"
+#include "misc.h"
 #include "misc_callback_func.h"
 #include "option.h"
 #include "player.h"
@@ -39,31 +40,7 @@ void
 live_game_calculate_fixture(Fixture *fix)
 {
     if(stat0 != STATUS_LIVE_GAME_PAUSE)
-    {
-	match = (fixture_user_team_involved(fix) != -1) ? 
-	    &usr(fixture_user_team_involved(fix)).live_game : &live_game_temp;
-	show = (fixture_user_team_involved(fix) != -1 && 
-		option_int("int_opt_user_show_live_game", 
-			   &usr(fixture_user_team_involved(fix)).options));
-
-	stat2 = fixture_user_team_involved(fix);
-	statp = match;
-
-	live_game_reset(match, fix, TRUE);
-
-	if(show)
-	{
-	    cur_user = stat2;
-	    on_button_back_to_main_clicked(NULL, NULL);
-
-	    if(window.live == NULL)
-		window.live = window_create(WINDOW_LIVE);
-	    else
-		window_live_set_spinbuttons();
-	}
-
-	game_initialize(fix);
-    }
+	live_game_initialize(fix);
     else
 	stat0 = STATUS_SHOW_LIVE_GAME;
 
@@ -83,7 +60,44 @@ live_game_calculate_fixture(Fixture *fix)
 	  stat0 != STATUS_LIVE_GAME_PAUSE);
 
     if(last_unit.event.type == LIVE_GAME_EVENT_END_MATCH)
+    {
+	if(fixture_user_team_involved(match->fix) != -1)
+	    lg_commentary_post_match();
 	game_post_match(fix);
+    }
+}
+
+/** Initialize a few things at the beginning of a live game. */
+void
+live_game_initialize(Fixture *fix)
+{
+    match = (fixture_user_team_involved(fix) != -1) ? 
+	&usr(fixture_user_team_involved(fix)).live_game : &live_game_temp;
+    show = (fixture_user_team_involved(fix) != -1 && 
+	    option_int("int_opt_user_show_live_game", 
+		       &usr(fixture_user_team_involved(fix)).options));
+
+    stat2 = fixture_user_team_involved(fix);
+    statp = match;
+
+    live_game_reset(match, fix, TRUE);
+
+    if(show)
+    {
+	cur_user = stat2;
+	on_button_back_to_main_clicked(NULL, NULL);
+
+	if(window.live == NULL)
+	    window.live = window_create(WINDOW_LIVE);
+	else
+	    window_live_set_spinbuttons();
+
+    }
+
+    game_initialize(fix);
+    
+    if(fixture_user_team_involved(match->fix) != -1)
+	lg_commentary_initialize(fix);
 }
 
 /** Create a game unit for the live game.
@@ -216,8 +230,8 @@ live_game_create_start_unit(void)
     new.event.player =
 	new.event.player2 = -1;
 
-    new.event.commentary = NULL;
     new.minute = 0;
+    new.event.commentary = NULL;
     new.time = LIVE_GAME_UNIT_TIME_FIRST_HALF;
     new.possession = math_rndi(0, 1);
     new.area = LIVE_GAME_UNIT_AREA_MIDFIELD;
@@ -272,9 +286,7 @@ live_game_evaluate_unit(LiveGameUnit *unit)
 		  type);
 }
 
-/** Calculate a foul event.
-    @param general Whether to create a general event after
-    showing this one. @see live_game_event_general() */
+/** Calculate a foul event. */
 void
 live_game_event_foul(void)
 {
@@ -581,9 +593,9 @@ live_game_event_penalty(void)
     if(last_unit.time != LIVE_GAME_UNIT_TIME_PENALTIES)
     {
 	new = last_unit;
+	new.event.commentary = NULL;
 	new.minute = -1;
 	new.event.type = LIVE_GAME_EVENT_PENALTY;
-	new.event.commentary = NULL;
 
 	g_array_append_val(unis, new);
     }
@@ -646,8 +658,8 @@ live_game_event_general(gboolean create_new)
     {
 	new.minute = live_game_get_minute();
 	new.time = last_unit.time;
+	new.event.commentary = NULL;
 	new.event.type = LIVE_GAME_EVENT_GENERAL;
-	new.event.commentary = NULL;	
 	new.result[0] = last_unit.result[0];
 	new.result[1] = last_unit.result[1];
 	new.event.team = -1;
@@ -874,13 +886,12 @@ live_game_event_substitution(gint team_number, gint sub_in, gint sub_out)
     
     new.minute = -1;
     new.time = live_game_get_time(&last_unit);
-    new.event.commentary = NULL;
 
     new.event.type = LIVE_GAME_EVENT_SUBSTITUTION;
     new.event.team = team_number;
     new.event.player = sub_in;
     new.event.player2 = sub_out;
-
+    new.event.commentary = NULL;
 
     if(player_of_id_team(tm[team_number], sub_in)->cskill > 0)
     {
@@ -905,12 +916,12 @@ live_game_event_team_change(gint team_number, gint event_type)
     
     new.minute = -1;
     new.time = live_game_get_time(&last_unit);
-    new.event.commentary = NULL;
 
     new.event.team = team_number;
     new.event.player =
 	new.event.player2 = -1;    
     new.event.type = event_type;
+    new.event.commentary = NULL;
 
     g_array_append_val(unis, new);
     
@@ -933,7 +944,6 @@ live_game_event_duel(void)
 
     new.minute = -1;
     new.event.team = new.possession;
-
     new.event.commentary = NULL;
 	
     attacker = player_of_id_team(tm[new.possession],
@@ -1307,7 +1317,7 @@ live_game_finish_unit(void)
 					 match);
 	}
 
-	lg_commentary_generate(unit, match->fix);
+	lg_commentary_generate(match, unit);
 
 	unit->event.verbosity = live_game_event_get_verbosity(unit->event.type);
     }
@@ -1514,4 +1524,3 @@ live_game_event_get_verbosity(gint event_type)
 
     return return_value;
 }
-    

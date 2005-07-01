@@ -8,6 +8,7 @@
 #include "file.h"
 #include "free.h"
 #include "language.h"
+#include "lg_commentary_struct.h"
 #include "live_game.h"
 #include "main.h"
 #include "misc_callbacks.h"
@@ -65,7 +66,7 @@ main_init_variables(void)
     timeout_id = -1;
 
     for(i=0;i<LIVE_GAME_EVENT_END;i++)
-	lg_commentary[i] = g_ptr_array_new();
+	lg_commentary[i] = g_array_new(FALSE, FALSE, sizeof(LGCommentary));
 
     file_load_conf_files();
 

@@ -724,7 +724,7 @@ treeview_create_game_stats(LiveGame *live_game)
 	}
     }
 
-    misc_print_grouped_int(live_game->fix->attendance, buf[0], FALSE);
+    misc_print_grouped_int(live_game->fix->attendance, buf[0]);
     sprintf(buf[1], _("Attendance\n%s"), buf[0]);
     gtk_list_store_append(ls, &iter);
     gtk_list_store_set(ls, &iter, 0, buf[1], 1, "", 2, "", -1);
@@ -1236,7 +1236,7 @@ treeview_create_stadium_summary(GtkListStore *ls)
     }
 
     gtk_list_store_append(ls, &iter);
-    misc_print_grouped_int(current_user.tm->stadium.capacity, buf, FALSE);
+    misc_print_grouped_int(current_user.tm->stadium.capacity, buf);
     gtk_list_store_set(ls, &iter, 0, _("Stadium capacity"), 1, buf, 2, "", -1);
 
     gtk_list_store_append(ls, &iter);
@@ -1292,7 +1292,7 @@ treeview_create_finances(const User* user)
     for(i=0;i<MON_IN_TRANSFERS;i++)
 	if(in[i] != 0)
 	{
-	    misc_print_grouped_int(in[i], buf, FALSE);
+	    misc_print_grouped_int(in[i], buf);
 	    gtk_list_store_append(ls, &iter);
 	    gtk_list_store_set(ls, &iter, 0, in_titles[i], 1, buf, 2, "", -1);
 	    balance += in[i];
@@ -1301,7 +1301,7 @@ treeview_create_finances(const User* user)
     for(i=0;i<MON_OUT_TRANSFERS;i++)
 	if(out[i] != 0)
 	{
-	    misc_print_grouped_int(out[i], buf3, FALSE);
+	    misc_print_grouped_int(out[i], buf3);
 	    sprintf(buf, "<span foreground='%s'>%s</span>",
 		    const_app("string_treeview_finances_expenses_fg"), buf3);
 	    gtk_list_store_append(ls, &iter);
@@ -1309,7 +1309,7 @@ treeview_create_finances(const User* user)
 	    balance += out[i];
 	}    
 
-    misc_print_grouped_int(balance, buf, FALSE);
+    misc_print_grouped_int(balance, buf);
     gtk_list_store_append(ls, &iter);
     /* Finances balance. */
     gtk_list_store_set(ls, &iter, 0, _("Balance"), 1, "", 2, "", -1);
@@ -1325,8 +1325,8 @@ treeview_create_finances(const User* user)
 
     if(in[MON_IN_TRANSFERS] != 0 || out[MON_OUT_TRANSFERS] != 0)
     {
-	misc_print_grouped_int(in[MON_IN_TRANSFERS], buf, FALSE);
-	misc_print_grouped_int(out[MON_OUT_TRANSFERS], buf3, FALSE);
+	misc_print_grouped_int(in[MON_IN_TRANSFERS], buf);
+	misc_print_grouped_int(out[MON_OUT_TRANSFERS], buf3);
 	sprintf(buf2, "<span foreground='%s'>%s</span>",
 		const_app("string_treeview_finances_expenses_fg"), buf3);
 	gtk_list_store_append(ls, &iter);
@@ -1336,7 +1336,7 @@ treeview_create_finances(const User* user)
     if(out[MON_OUT_STADIUM_IMPROVEMENT] + out[MON_OUT_STADIUM_BILLS] != 0)
     {
 	misc_print_grouped_int(out[MON_OUT_STADIUM_IMPROVEMENT] + out[MON_OUT_STADIUM_BILLS], 
-			       buf, FALSE);
+			       buf);
 	sprintf(buf2, "<span foreground='%s'>%s</span>",
 		const_app("string_treeview_finances_expenses_fg"), buf);
 	gtk_list_store_append(ls, &iter);
@@ -1346,7 +1346,7 @@ treeview_create_finances(const User* user)
     gtk_list_store_append(ls, &iter);
     gtk_list_store_set(ls, &iter, 0, "", 1, "", 2, "", -1);
 
-    misc_print_grouped_int(user->money, buf, FALSE);
+    misc_print_grouped_int(user->money, buf);
     gtk_list_store_append(ls, &iter);
     if(user->money >= 0)
 	strcpy(buf2, buf);
@@ -1355,13 +1355,13 @@ treeview_create_finances(const User* user)
 		const_app("string_treeview_finances_expenses_fg"), buf);
     gtk_list_store_set(ls, &iter, 0, _("Money"), 1, buf2, 2, "", -1);
 
-    misc_print_grouped_int(finance_team_drawing_credit_loan(user->tm, FALSE), buf, FALSE);
+    misc_print_grouped_int(finance_team_drawing_credit_loan(user->tm, FALSE), buf);
     gtk_list_store_append(ls, &iter);
     gtk_list_store_set(ls, &iter, 0, _("Drawing credit"), 1, buf, 2, "", -1);
     
     if(user->debt != 0)
     {
-	misc_print_grouped_int(user->debt, buf, FALSE);
+	misc_print_grouped_int(user->debt, buf);
 	sprintf(buf2, "<span foreground='%s'>%s</span>",
 		const_app("string_treeview_finances_expenses_fg"), buf);
 	sprintf(buf, _("Debt (repay in %d weeks)"), user->counters[COUNT_USER_LOAN]);
@@ -1376,7 +1376,7 @@ treeview_create_finances(const User* user)
     gtk_list_store_set(ls, &iter, 0, _("Sponsor"), 1, user->sponsor.name->str,
 		       2, "", -1);
 
-    misc_print_grouped_int(user->sponsor.benefit, buf, FALSE);
+    misc_print_grouped_int(user->sponsor.benefit, buf);
     /* Contract time and money a sponsor pays. */
     sprintf(buf2, _("%.1f months / %s"), ((gfloat)user->sponsor.contract) / 4, buf);
     gtk_list_store_append(ls, &iter);

@@ -121,10 +121,9 @@ misc_randomise_g_pointer_array(GPtrArray *array)
 /** Print a thousands-grouped output of 'number' into 'buf',
     like 2 234 345 instead of 2234345.
     @param number The number to print. 
-    @buf The buffer to hold the number.
-    @append Whether to overwrite the buffer or append. */
+    @buf The buffer to hold the number. */
 void
-misc_print_grouped_int(gint number, gchar *buf, gboolean append)
+misc_print_grouped_int(gint number, gchar *buf)
 {
     gint i;
     gchar buf2[SMALL];
@@ -132,8 +131,7 @@ misc_print_grouped_int(gint number, gchar *buf, gboolean append)
     gfloat copy = (gfloat)(abs(number));
     gint number2 = abs(number);
 
-    if(!append)
-      strcpy(buf, "");
+    strcpy(buf, "");
 
     while(copy >= 1)
     {
@@ -341,7 +339,7 @@ misc_parse_value(const gchar *s, gint *value)
 
 /* parse numeric expression (supports + and -) */
 const gchar*
-misc_parse_expression(const gchar *s, gboolean *result)
+misc_parse_expression(const gchar *s, gint *result)
 {
    gint value = 0;
    s = misc_parse_value(s, &value);
@@ -367,7 +365,7 @@ misc_parse_expression(const gchar *s, gboolean *result)
 
 /* parse comparison (supports '<', '>' and '=') */
 const gchar*
-misc_parse_comparison(const gchar *s, gboolean *result)
+misc_parse_comparison(const gchar *s, gint *result)
 {
    gint value = 0;
    s = misc_parse_expression(s, result);
@@ -413,7 +411,7 @@ misc_parse_comparison(const gchar *s, gboolean *result)
 }
 
 const gchar*
-misc_parse_and(const gchar *s, gboolean *result)
+misc_parse_and(const gchar *s, gint *result)
 {
    gint value = 0;
    s = misc_parse_comparison(s, result);
@@ -428,7 +426,7 @@ misc_parse_and(const gchar *s, gboolean *result)
 }
 
 const gchar*
-misc_parse(const gchar *s, gboolean *result)
+misc_parse(const gchar *s, gint *result)
 {
    gint value = 0;
    s = misc_parse_and(s, result);
@@ -440,4 +438,3 @@ misc_parse(const gchar *s, gboolean *result)
    }
    return s;
 }
-

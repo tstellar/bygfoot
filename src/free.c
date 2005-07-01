@@ -1,4 +1,5 @@
 #include "free.h"
+#include "lg_commentary_struct.h"
 #include "transfer.h"
 #include "user.h"
 #include "variables.h"
@@ -16,6 +17,7 @@ free_memory(void)
     free_country(FALSE);
     free_users(FALSE);
     free_live_game(&live_game_temp);
+    free_lg_commentary(FALSE);
     free_support_dirs();
 }
 
@@ -450,7 +452,7 @@ free_cup_choose_team(CupChooseTeam *cup_choose_team)
 void
 free_variables(void)
 {
-    gint i;
+    gint i, j;
 
     free_option_list(&options, FALSE);
     free_option_list(&settings, FALSE);
@@ -458,14 +460,34 @@ free_variables(void)
     free_option_list(&constants_app, FALSE);
     free_option_list(&lg_tokens, FALSE);
 
-    for(i=0;i<LIVE_GAME_EVENT_END;i++)
-	free_g_string_array(&lg_commentary[i]);
-
     free_g_string(&save_file);
 
     g_rand_free(rand_generator);
 
     free_season_stats(FALSE);
+}
+
+/** Free the list with live game commentary text. */
+void
+free_lg_commentary(gboolean reset)
+{
+    gint i, j;
+
+    for(i=0;i<LIVE_GAME_EVENT_END;i++)
+	if(lg_commentary[i] != NULL)
+	{
+	    for(j=0;j<lg_commentary[i]->len;j++)
+	    {
+		free_g_string(&g_array_index(lg_commentary[i], LGCommentary, j).text);
+		free_g_string(&g_array_index(lg_commentary[i], LGCommentary, j).condition);
+	    }
+
+	    free_g_array(&lg_commentary[i]);
+	}
+
+    if(reset)
+	for(i=0;i<LIVE_GAME_EVENT_END;i++)
+	    lg_commentary[i] = g_array_new(FALSE, FALSE, sizeof(LGCommentary));
 }
 
 /**

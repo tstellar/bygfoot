@@ -35,7 +35,7 @@ OptionList settings;
 OptionList lg_tokens;
 
 /** The array containing the live game commentary strings. */
-GPtrArray *lg_commentary[LIVE_GAME_EVENT_END];
+GArray *lg_commentary[LIVE_GAME_EVENT_END];
 
 /** The array containing players to be transfered.
     @see TransferPlayer */

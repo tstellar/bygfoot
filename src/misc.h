@@ -3,6 +3,8 @@
 
 #include "bygfoot.h"
 
+#define misc_int_to_char(number) g_strdup_printf("%d", number)
+
 void
 misc_print_error(GError **error, gboolean abort_program);
 
@@ -19,7 +21,7 @@ GPtrArray*
 misc_randomise_g_pointer_array(GPtrArray *array);
 
 void
-misc_print_grouped_int(gint number, gchar *buf, gboolean append);
+misc_print_grouped_int(gint number, gchar *buf);
 
 gboolean
 query_integer_is_in_array(gint item, gint *array, gint min, gint max);
@@ -58,15 +60,15 @@ const gchar*
 misc_parse_value(const gchar *s, gint *value);
 
 const gchar*
-misc_parse_expression(const gchar *s, gboolean *result);
+misc_parse_expression(const gchar *s, gint *result);
 
 const gchar*
-misc_parse_comparison(const gchar *s, gboolean *result);
+misc_parse_comparison(const gchar *s, gint *result);
 
 const gchar*
-misc_parse_and(const gchar *s, gboolean *result);
+misc_parse_and(const gchar *s, gint *result);
 
 const gchar*
-misc_parse(const gchar *s, gboolean *result);
+misc_parse(const gchar *s, gint *result);
 
 #endif

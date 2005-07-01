@@ -287,7 +287,7 @@ callback_get_loan(void)
     }
 
     stat1 = STATUS_GET_LOAN;
-    misc_print_grouped_int(max_loan, buf2, FALSE);
+    misc_print_grouped_int(max_loan, buf2);
     sprintf(buf, _("You can take out at most %s."), buf2);
 
     window_show_digits(buf, _("Loan"), max_loan, NULL, 0);
@@ -313,7 +313,7 @@ callback_pay_loan(void)
     }
 
     stat1 = STATUS_PAY_LOAN;
-    misc_print_grouped_int(max_payback, buf2, FALSE);
+    misc_print_grouped_int(max_payback, buf2);
     sprintf(buf, _("You can pay back at most %s"), buf2);
 
     window_show_digits(buf, _("Payback"), max_payback, NULL, 0);
@@ -344,10 +344,10 @@ callback_transfer_list_user(gint button, gint idx)
 	    game_gui_print_message(_("There are some offers for the player which you rejected or will see next week."));
 	else
 	{
-	    misc_print_grouped_int(transoff(idx, 0).fee, buf2, FALSE);
+	    misc_print_grouped_int(transoff(idx, 0).fee, buf2);
 	    misc_print_grouped_int(ABS(transoff(idx, 0).fee -
 				       player_of_id_team(current_user.tm,
-							 trans(idx).id)->value), buf3, FALSE);
+							 trans(idx).id)->value), buf3);
 	    if(transoff(idx, 0).fee -
 	       player_of_id_team(current_user.tm, trans(idx).id)->value > 0)
 		strcat(buf3, _(" more"));
@@ -391,8 +391,8 @@ callback_transfer_list_cpu(gint button, gint idx)
 	return;
     }
 
-    misc_print_grouped_int(transoff(idx, 0).fee, buf2, FALSE);
-    misc_print_grouped_int(transoff(idx, 0).wage, buf3, FALSE);
+    misc_print_grouped_int(transoff(idx, 0).fee, buf2);
+    misc_print_grouped_int(transoff(idx, 0).wage, buf3);
 
     sprintf(buf, _("You offered a transfer fee of %s and a wage of %s for %s. The owners and the player are satisfied with your offer. Do you still want to buy the player?"), 
 	    buf2, buf3, player_of_id_team(trans(idx).tm, trans(idx).id)->name->str);
@@ -435,13 +435,7 @@ callback_transfer_list_clicked(gint button, gint idx)
 
 	return;
     }
-
-    if (week >= transfer_get_deadline()-1)
-    {
-	game_gui_print_message(_("You can't make an offer so close to the transfer deadline."));
-	return;
-    }
-
+    
     stat1 = STATUS_SHOW_TRANSFER_LIST;
     stat2 = idx;
     
@@ -617,7 +611,7 @@ callback_fire_player(gint idx)
     stat2 = idx;
     stat3 = (gint)rint(pl->wage * const_float("float_player_fire_wage_factor") * pl->contract);
 
-    misc_print_grouped_int(stat3, buf2, FALSE);
+    misc_print_grouped_int(stat3, buf2);
 
     sprintf(buf, _("You want to fire %s. Since his contract expires in %.1f years, he demands a compensation of %s. Do you accept?"), pl->name->str, pl->contract, buf2);
 

@@ -65,6 +65,9 @@ void
 free_live_game(LiveGame *match);
 
 void
+free_lg_commentary(gboolean reset);
+
+void
 free_option_list(OptionList *optionlist, gboolean reset);
 
 void
