@@ -2,25 +2,67 @@
 # tokens for the live game commentary
 ##################
 
+#todo minutes total, avskills
+
 # see
 # http://bygfoot.sourceforge.net/doc/1.9/definitions_howto.html
 
 # tokens in the live game commentary
-string_lg_commentary_token_team_home		_TH_
-string_lg_commentary_token_team_away		_TA_
-string_lg_commentary_token_team_in_poss		_TP_
-string_lg_commentary_token_team_not_in_poss	_TN_
-string_lg_commentary_token_team_losing		_TL_
-string_lg_commentary_token_team_winning		_TW_
-string_lg_commentary_token_team			_TT_
-string_lg_commentary_token_player1		_P1_
-string_lg_commentary_token_player2		_P2_
+
+# general
+string_lg_commentary_token_league_cup_name	_LEAGUECUPNAME_
+string_lg_commentary_token_cup_round_name	_CUPROUNDNAME_
 string_lg_commentary_token_attendance		_AT_
 string_lg_commentary_token_result		_RE_
 string_lg_commentary_token_time			_TIME_
 string_lg_commentary_token_minute		_MI_
 string_lg_commentary_token_minute_remaining	_MR_
-string_lg_commentary_token_goals_home		_GH_
-string_lg_commentary_token_goals_away		_GA_
+string_lg_commentary_token_minute_total		_MT_
+string_lg_commentary_token_yellow_limit		_YELLOWLIMIT_
+string_lg_commentary_token_goals0		_GOALS0_
+string_lg_commentary_token_goals1		_GOALS1_
 string_lg_commentary_token_goal_diff		_GD_
+string_lg_commentary_token_possession		_POSS_
+string_lg_commentary_token_no_possession	_NPOSS_
+
+# misc
 string_lg_commentary_token_extra		_EX_
+
+# team
+string_lg_commentary_token_team_home		_T0_
+string_lg_commentary_token_team_away		_T1_
+string_lg_commentary_token_team_layer0		_TLAYER0_
+string_lg_commentary_token_team_layer1		_TLAYER1_
+string_lg_commentary_token_team_avskill0	_TAVSKILL0_
+string_lg_commentary_token_team_avskill1	_TAVSKILL1_
+string_lg_commentary_token_team_avskilldiff	_TAVSKILLDIFF_
+string_lg_commentary_token_team_losing		_TL_
+string_lg_commentary_token_team_winning		_TW_
+string_lg_commentary_token_team			_TT_
+
+# player
+string_lg_commentary_token_player0		_P0_
+string_lg_commentary_token_player1		_P1_
+string_lg_commentary_token_player_goals0	_PLGOALS0_
+string_lg_commentary_token_player_goals_all0	_PLGOALSALL0_
+string_lg_commentary_token_player_goals1	_PLGOALS1_
+string_lg_commentary_token_player_goals_all1	_PLGOALSALL1_
+string_lg_commentary_token_player_yellows	_PLYELLOWS_
+
+# stat tokens
+string_lg_commentary_token_stat_shots0		_SHOTS0_
+string_lg_commentary_token_stat_shots1		_SHOTS1_
+string_lg_commentary_token_stat_shot_per0	_SHOTPER0_
+string_lg_commentary_token_stat_shot_per1	_SHOTPER1_
+string_lg_commentary_token_stat_poss0		_POSS0_
+string_lg_commentary_token_stat_poss1		_POSS1_
+string_lg_commentary_token_stat_pen0		_PEN0_
+string_lg_commentary_token_stat_pen1		_PEN1_
+string_lg_commentary_token_stat_fouls0		_FOULS0_
+string_lg_commentary_token_stat_fouls1		_FOULS1_
+string_lg_commentary_token_stat_yellows0	_YELLOWS0_
+string_lg_commentary_token_stat_yellows1	_YELLOWS1_
+string_lg_commentary_token_stat_reds0		_REDS0_
+string_lg_commentary_token_stat_reds1		_REDS1_
+string_lg_commentary_token_stat_injs0		_INJS0_
+string_lg_commentary_token_stat_injs1		_INJS1_
