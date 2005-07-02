@@ -111,21 +111,21 @@ game_get_player(const Team *tm, gint player_type,
     /*todo move to constants file?*/
     if(player_type == GAME_PLAYER_TYPE_ATTACK)
     {
-	weights[0] = 0.25;
-	weights[1] = 0.5;
-	weights[2] = 1;
+	weights[0] = const_float("float_game_player_weight_attack_def");
+	weights[1] = const_float("float_game_player_weight_attack_mid");
+	weights[2] = const_float("float_game_player_weight_attack_fwd");
     }
     else if(player_type == GAME_PLAYER_TYPE_MIDFIELD)
     {
-	weights[0] = 0.5;
-	weights[1] = 1;
-	weights[2] = 0.5;
+	weights[0] = const_float("float_game_player_weight_midfield_def");
+	weights[1] = const_float("float_game_player_weight_midfield_mid");
+	weights[2] = const_float("float_game_player_weight_midfield_fwd");
     }
     else if(player_type == GAME_PLAYER_TYPE_DEFEND)
     {
-	weights[0] = 1;
-	weights[1] = 0.5;
-	weights[2] = 0.25;
+	weights[0] = const_float("float_game_player_weight_defend_def");
+	weights[1] = const_float("float_game_player_weight_defend_mid");
+	weights[2] = const_float("float_game_player_weight_defend_fwd");
     }
     else if(player_type == GAME_PLAYER_TYPE_PENALTY)
 	return game_get_penalty_taker(tm, last_penalty);

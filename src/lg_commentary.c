@@ -242,24 +242,18 @@ lg_commentary_replace_tokens(gchar *commentary_text)
 gboolean
 lg_commentary_parse_condition(const gchar *condition)
 {
-    gint i;
     gboolean return_value = FALSE;
     gchar buf[SMALL];
     
     strcpy(buf, condition);
 
-    for(i=0;i<lg_tokens.list->len;i++)
-    {
-	if(query_misc_string_contains(buf, g_array_index(lg_tokens.list, Option, i).string_value->str))
-	{
-	    if(token_rep[i] == NULL)
-		return FALSE;
-	    else
-		misc_string_replace_token(buf, 
-					  g_array_index(lg_tokens.list, Option, i).string_value->str,
-					  token_rep[i]);
-	}
-    }
+    if(!lg_commentary_replace_tokens(buf))
+	return FALSE;
+    
+    lg_commentary_replace_expressions(buf);
+
+    if(!lg_commentary_replace_tokens(buf))
+	return FALSE;
 
     misc_parse(buf, &return_value);
 

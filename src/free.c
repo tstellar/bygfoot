@@ -452,8 +452,6 @@ free_cup_choose_team(CupChooseTeam *cup_choose_team)
 void
 free_variables(void)
 {
-    gint i, j;
-
     free_option_list(&options, FALSE);
     free_option_list(&settings, FALSE);
     free_option_list(&constants, FALSE);

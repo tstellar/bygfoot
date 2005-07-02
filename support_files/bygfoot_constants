@@ -141,6 +141,21 @@ float_game_stadium_safety_reduce_fire_upper	  1500
 # capacity reduction; the bigger the higher the reduction
 float_game_stadium_capacity_reduce_factor 15000
 
+# position weights determining what kind of player
+# gets picked in the live game for an event (depending
+# on the area the live game is in
+float_game_player_weight_attack_def	2500
+float_game_player_weight_attack_mid	4000
+float_game_player_weight_attack_fwd	12000
+
+float_game_player_weight_midfield_def	5000
+float_game_player_weight_midfield_mid	10000
+float_game_player_weight_midfield_fwd	5000
+
+float_game_player_weight_defend_def	10000
+float_game_player_weight_defend_mid	5000
+float_game_player_weight_defend_fwd	2500
+
 # lsu addition for injured players who are older
 # than their peak age
 float_player_lsu_injured_old 15000
