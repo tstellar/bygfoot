@@ -383,12 +383,36 @@ misc_parse_comparison(const gchar *s, gint *result)
 	       *result = *result < value;
 	    }
 	    break;
+      case 'L':
+            if (*(s+1) == 'E')
+	    {
+	       s = misc_parse_expression(s+2, &value);
+	       *result = *result <= value;
+	    }
+	    else 
+	    {
+               s = misc_parse_expression(s+1, &value);
+	       *result = *result < value;
+	    }
+	    break;
        case '=':
 	       s = misc_parse_expression(s+1, &value);
 	       *result = *result == value;
 	   break;
        case '>': 
 	   if (*(s+1) == '=')
+	   {
+	       s = misc_parse_expression(s+2, &value);
+	       *result = *result >= value;
+	    }
+	    else 
+	    {
+               s = misc_parse_expression(s+1, &value);
+	       *result = *result > value;
+	    }
+	    break;
+       case 'G': 
+	   if (*(s+1) == 'E')
 	   {
 	       s = misc_parse_expression(s+2, &value);
 	       *result = *result >= value;

@@ -159,11 +159,13 @@ void
 transfer_evaluate_offers(void)
 {
     gint i, j;
-    gboolean notify = FALSE;
+    gboolean notify;
 
     for(i=transfer_list->len - 1;i>=0;i--)
 	if(trans(i).offers->len > 0)
 	{
+	    notify = FALSE;
+
 	    if(team_is_user(trans(i).tm) == -1)
 	    {
 		for(j=trans(i).offers->len - 1; j >= 0; j--)

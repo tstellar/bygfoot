@@ -412,11 +412,15 @@ lg_commentary_set_team_tokens(const LiveGameUnit *unit, const Fixture *fix)
 	    g_strdup(fix->teams[(unit->result[0] > unit->result[1])]->name->str);
 	token_rep[option_int("string_lg_commentary_token_team_winning", &lg_tokens)] = 
 	    g_strdup(fix->teams[(unit->result[0] < unit->result[1])]->name->str);
+	token_rep[option_int("string_lg_commentary_token_team_losingn", &lg_tokens)] = 
+	    misc_int_to_char((unit->result[0] > unit->result[1]));
+	token_rep[option_int("string_lg_commentary_token_team_winningn", &lg_tokens)] = 
+	    misc_int_to_char((unit->result[0] < unit->result[1]));
     }
 
     if(unit->event.team != -1)
 	token_rep[option_int("string_lg_commentary_token_team", &lg_tokens)] = 
-	    g_strdup(fix->teams[unit->event.team]->name->str);
+	    misc_int_to_char(unit->event.team);
 }
 
 /** Set the player tokens. */
