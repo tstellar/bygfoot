@@ -1,4 +1,5 @@
 <lg_commentary>
+
   <event>
     <name>general</name>
     <commentary>_P1_ spielt in die Gasse und findet _P0_</commentary>
@@ -9,6 +10,8 @@
     <commentary>_P0_ bringt Querpass von _P1_ unter Kontrolle</commentary>
     <commentary>_P1_ schiebt zu _P0_</commentary>
     <commentary>_P0_ ist wieder am Ball</commentary>
+    <commentary>_P0_ hat den Ball</commentary>
+    <commentary>_P0_ ist unterwegs</commentary>
     <commentary>_P0_ lässt seinen Verteidiger stehen</commentary>
     <commentary>_P0_ pflügt durch das Mittelfeld</commentary>
     <commentary>_P0_ bekommt den Ball von _P1_</commentary>
@@ -18,106 +21,95 @@
     <commentary>Schöner Pass von _P1_ eröffnet den Raum vor _P0_</commentary>
     <commentary>Guter Querpass auf die rechte Seite</commentary>
     <commentary>Ein weiterer Flankenlauf</commentary>
+    <commentary cond="_MI_ > 18 and _POSS0_ > 58 or _POSS1_ > 58 and _GOALS[_POSS1_ > _POSS0_]_ = 0">_T[_POSS1_ G _POSS0_]_ beherrscht das Spiel, zeigt aber bislang brotlose Kunst</commentary>
+    <commentary cond="_MI_ > 18 and _POSS0_ > 58 or _POSS1_ > 58 and _GOALS[_POSS1_ > _POSS0_]_ > _GOALS[_POSS1_ L _POSS0_]_">_T[_POSS1_ > _POSS0_]_ beherrscht das Spiel klar</commentary>
+    <commentary cond="_MI_ > 18 and _POSS0_ > 58 or _POSS1_ > 58 and _GOALS[_POSS1_ > _POSS0_]_ = 0">_T[_POSS1_ G _POSS0_]_ ist eindeutig unterlegen, das _RE_ ist schmeichelhaft</commentary>
+    <commentary cond="_MI_ > 18 and _POSS0_ > 58 or _POSS1_ > 58 and _GOALS[_POSS1_ > _POSS0_]_ > _GOALS[_POSS1_ L _POSS0_]_ and _GD_ < 3">_T[_POSS1_ L _POSS0_]_ kann mit dem _RE_ noch zufrieden sein</commentary>
+    <commentary cond="_MT_ + _MI_ > 100 and _TIME_ = 1 and _MR_ < 15">Die Verlängerung ist greifbar nahe</commentary>
+    <commentary cond="_GD_ > 0 and _GD_ < 3 and _MT_ < 20">_TL_ sollte sich jetzt langsam mal anstrengen </commentary>
+    <commentary cond="_GD_ > 0 and _GD_ < 3 and _MT_ < 20">_TL_ sollte einen Zahn zulegen</commentary>
+    <commentary cond="_GD_ > 0 and _GD_ < 3 and _MT_ < 20">_TL_ sollte einen höheren Gang einlegen</commentary>
+    <commentary cond="_GD_ > 0 and _GD_ < 3 and _MT_ < 20">Es ist noch nicht alles verloren für _TL_ </commentary>
+    <commentary cond="_GD_ > 0 and _GD_ < 3 and _MT_ < 15">Es gilt jetzt die letzten _MT_ Minuten zu überstehen für _TW_</commentary>
+    <commentary cond="_GD_ > 0 and _GD_ < 3 and _MT_ < 15">_TW_ kämpft jetzt um jeden Meter</commentary>
+    <commentary cond="_GD_ > 0 and _MT_ < 15">Das müsste der Sieg sein für _TW_</commentary>
+    <commentary cond="_GD_ > 0 and _MT_ < 15">_TW_ wird sich die Butter wohl nicht mehr vom Brot nehmen lassen</commentary>
+    <commentary cond="_GD_ > 0 and _GD_ < 3 and _MT_ < 15">_TW_ ist _MT_ Minuten vom Sieg entfernt</commentary>
+    <commentary cond="_GD_ > 0 and _SHOTS_TLN__ > _SHOTS_TWN__">_TL_ sollte an seiner Chancenverwertung arbeiten</commentary>
+    <commentary cond="_REDS0_ + _REDS1_ > 2 or _FOULS0_ + _FOULS1_ > 12">Ein ungewöhnlich hartes Spiel heute</commentary>
+    <commentary cond="_GD_ > 1 and _MT_ < 30">Das scheint eine klare Angelegenheit für _TW_ zu werden</commentary>
+    <commentary cond="_GD_ > 1 and _MT_ < 30">_TL_ bekommt keinen Stich</commentary>
+    <commentary cond="_GD_ > 1 and _MT_ < 30">_TL_ wird das Spiel wohl nicht mehr wenden können</commentary>
+    <commentary cond="_GD_ > 1 and _MT_ < 30">_TW_ sollte das nach Hause schaukeln können</commentary>
+    <commentary cond="_GD_ = 1 and _MT_ < 20">Knappe Führung für _TW_, noch _MT_ Minuten zu spielen</commentary>
+    <commentary cond="_GD_ > 1 and _MT_ < 20">Das sollte der Sieg sein für _TW_</commentary>
+    <commentary cond="_GD_ > 2">_TW_ beherrscht _TL_ nach Belieben</commentary>
+    <commentary cond="_GD_ > 2">Keine Chance für _TL_ in diesem Spiel</commentary>
+    <commentary cond="_GD_ > 2 and _MT_ < 30">Das wird wohl nix mehr für_TL_</commentary>
+    <commentary cond="_G0_ + _G1_ > 2 and _MI_ < 20">Das könnte ein sehr torreiches Spiel werden heute</commentary>
+    <commentary cond="_GD_ = 1 and _MT_ < 10">_TL_ kann den Ausgleich noch schaffen</commentary>
+    <commentary cond="_REDS0_ = _REDS1_ and _TAVSKILLDIFF_ > 7 and _G[_TAVSKILL1_ > _TAVSKILL0_]_ < _G[_TAVSKILL1_ < _TAVSKILL0_]_">Was für eine Überraschung, das vermeintlich unterlegene Team führt</commentary>
+    <commentary cond="_REDS0_ = _REDS1_ and _TAVSKILLDIFF_ > 5 and _G[_TAVSKILL1_ > _TAVSKILL0_]_ > _G[_TAVSKILL1_ < _TAVSKILL0_]_">Der Favorit führt; so ein Spielverlauf war zu erwarten</commentary>
+    <commentary cond="_G0_ + _G1_ = 0 and _MI_ > 40 and _MI_ < 60">Nach _MI_ Minuten ist immer noch kein Tor gefallen</commentary>
+    <commentary cond="_G0_ + _G1_ = 0 and _MI_ > 70">Was für ein enttäuschendes Spiel, immer noch _RE_</commentary>
+    <commentary cond="_REDS0_ = _REDS1_ and _TAVSKILLDIFF_ > 7 and _G[_TAVSKILL1_ > _TAVSKILL0_]_ < _G[_TAVSKILL1_ < _TAVSKILL0_]_ and _MT_ < 15">_TW_ ist nur noch _MT_ Minuten von einer faustdicken Überraschung entfernt</commentary>
+    <commentary cond="_G0_ + _G1_ = 0 and _MT_ < 10">Also wirklich, wollen uns die beiden Teams wirklich mit einem _RE_ abspeisen?</commentary>
+    <commentary cond="_G0_ + _G1_ = 0 and _MT_ < 15">Jetzt sollte aber wirklich mal ein Tor her</commentary>
+    <commentary cond="_G0_ + _G1_ = 0 and _MT_ < 5">Nein, bitte nicht wieder so ein _RE_</commentary>
   </event>
+
   <event>
     <name>goal</name>
     <commentary>Und der Ball fliegt an _P1_ vorbei und zappelt im Netz!!!</commentary>
     <commentary>Tor!!!</commentary>
-    <commentary cond="_GD_ > 3">Das wird langsam ein Debakel für _TL_</commentary>
     <commentary>Und der Ball ist im Tor!!!</commentary>
     <commentary>_P0_ trifft!!!</commentary>
     <commentary>Oh, ein schöner Schuss, er wird von _P1_ ins Tor abgelenkt</commentary>
     <commentary>_P1_ hechtet vergeblich, der Ball ist versenkt!!!</commentary>
     <commentary>Der Ball ist unerreichbar für _P1_, Tor!!</commentary>
     <commentary>_P0_ feiert in der ihm eigenen Art ein exzellentes Tor</commentary>
-    <commentary>_P0_ vollführt eine Freudentanz nach einem wunderbaren Tor</commentary>
+    <commentary>_P0_ vollführt einen Freudentanz nach einem wunderbaren Tor</commentary>
+    <commentary cond="_TIME_ = 3">Sicher verwandelt</commentary>
+    <commentary pri="5" cond="_GD_ > 3 and _TLAYER_TLN__ = _TLAYER_TWN__ and _TIME_ != 3">Das wird langsam ein Debakel für _TL_</commentary>
+    <commentary pri="5" cond="_GD_ > 1 and _TLAYER_TLN__ < _TLAYER_TWN__ and _TIME_ != 3">Das wird langsam ein Debakel für _TL_</commentary>
+    <commentary pri="5" cond="_GD_ > 3 and _TLAYER_TLN__ <= _TLAYER_TWN__ and _TIME_ != 3">Jetzt wird _TL_ aber auseinandergenommen, _RE_</commentary>
+    <commentary pri="5" cond="_GD_ > 3 and _TLAYER_TLN__ <= _TLAYER_TWN__ and _TIME_ != 3">_TW_ ist nicht aufzuhalten heute, schon gar nicht durch _TL_</commentary>
+    <commentary pri="5" cond="_GD_ = 0 and _TIME_ != 3">Das ist der Ausgleich!</commentary>
+    <commentary pri="5" cond="_GD_ = 0 and _SHOTS_TT__ < _SHOTS[1 - _TT_]_ and _TIME_ != 3">Ein etwas glücklicher Ausgleich für _T_TT__</commentary>
+    <commentary pri="5" cond="_GD_ = 1 and _TT_ = _TWN_">_TW_ führt jetzt _RE_!</commentary>
+    <commentary pri="5" cond="_GD_ = 1 and _TT_ = _TWN_">_TW_ geht in Führung!</commentary>
+    <commentary pri="5" cond="_GD_ = 1 and _TT_ = _TWN_ and _TIME_ != 3">Das ist der Führungstreffer!</commentary>
+    <commentary pri="5" cond="_GD_ = 1 and _TT_ = _TWN_ and _MT_ < 15 and _TIME_ != 3">_TW_ geht in Führung; _TL_ hat noch _MT_ Minuten Zeit um ein Unentschieden zu schaffen</commentary>
+    <commentary pri="5" cond="_GD_ = 1 and _TT_ = _TLN_ and _TIME_ != 3">Das ist der Anschlusstreffer!</commentary>
+    <commentary pri="5" cond="_GD_ > 2 and _TT_ = _TLN_ and _GOALS_TT__ = 1 and _TIME_ != 3">Ein Ehrentreffer für _TL_!</commentary>
+    <commentary pri="10" cond="_PLGOALS0_ > 10 and _TIME_ != 3">_P0_ erzielt sein _PLGOALS0_-tes Tor!</commentary>
+    <commentary pri="10" cond="_PLGOALS0_ > 10 and _TIME_ != 3">Schon _PLGOALS0_ Tore für _P0_ in der _LEAGUECUPNAME_!</commentary>
+    <commentary pri="10" cond="_PLGOALS0_ > 15 and _TIME_ != 3">Kaum zu fassen, _PLGOALS0_-tes Tor für _P0_!</commentary>
+    <commentary pri="10" cond="_PLGOALS0_ > 10 and _TIME_ != 3">Ein Torjäger wie er im Buche steht, _PLGOALS0_-tes Tor für _P0_!</commentary>
+    <commentary pri="5" cond="_GOALS[1 - _TT_]_ > 2 and _TIME_ != 3">Zum _GOALS[1 - _TT_]_-ten Mal muss _P1_ hinter sich greifen!</commentary>
   </event>
-  <event>
-    <name>header</name>
-    <commentary>Hoher Ball von _P1_ an _P0_, der köpft</commentary>
-    <commentary>Flugkopfball von _P0_</commentary>
-    <commentary>Er scheint in der Luft zu schweben und produzier dann einen druckvollen Kopfball</commentary>
-  </event>
-  <event>
-    <name>start_match</name>
-<!--     <commentary>Ein wolkenloser Himmel verheißt ein spannedes Spiel</commentary> -->
-<!--     <commentary>Die Mannschaften werden durch eine ohrenbetäubende Lärmkulisse begrüßt</commentary> -->
-<!--     <commentary>Der Kampf der Titanen beginnt</commentary> -->
-<!--     <commentary>Die Menge begrüßt die Mannschaften mit rauschendem Applaus</commentary> -->
-<!--     <commentary>_AT_ Zuschauer warten auf den Anpfiff</commentary> -->
-<!--     <commentary>Der Schiedsrichter schaut zum Assistenten und pfeift an</commentary> -->
-<!--     <commentary>Der Schiri ist bereit, es kann losgehen</commentary> -->
-<!--     <commentary>Es kann losgehen</commentary> -->
-<!--     <commentary>_AT_ Fans können nicht irren, dies ist das Spiel, das wir alle sehen wollen</commentary> -->
-    <commentary>Es kann losgehen av _TAVSKILL0_ av _TAVSKILL1_ dif _TAVSKILLDIFF_</commentary>
-  </event>
-  <event>
-    <name>stadium_riots</name>
-    <commentary>Die Fans stürmen das Spielfeld</commentary>
-    <commentary>Die Hooligans toben</commentary>
-    <commentary>Ein Fan ist aufs Spielfeld gelangt und greift den Schiedsrichter an</commentary>
-    <commentary>Und die Fans schießen Leuchtraketen aufs Feld</commentary>
-    <commentary>Die Ordner müssen eine Schlägerei zwischen den Fans unter Kontrolle bekommen</commentary>
-  </event>
-  <event>
-    <name>stadium_fire</name>
-    <commentary>Eine Leuchtrakete hat einen Teil der Sitze entzündet</commentary>
-    <commentary>Die Auswärtsfans haben Sitze entzündet</commentary>
-    <commentary>Ein Feuer verschlingt _TT_'s Stadion</commentary>
-  </event>
-  <event>
-    <name>stadium_breakdown</name>
-    <commentary>_TH_'s Stadion scheint technische Probleme zu haben</commentary>
-    <commentary>Die Flutlichtanlage ist ausgefallen</commentary>
-  </event>
-  <event>
-    <name>extra_time</name>
-    <commentary>Nach _MI_ Minuten steht's _RE_: Verlängerung</commentary>
-    <commentary>Nach einem engen Spiel beginnt die Verlängerung</commentary>
-    <commentary>Verlängerung: jetzt geht's um Willenskraft und Entschlossenheit</commentary>
-    <commentary>Es steht immer noch _RE_: Verlängerung</commentary>
-    <commentary>Jetzt geht's um alles, die Verlängerung beginnt</commentary>
-  </event>
-  <event>
-    <name>end_match</name>
-    <commentary>_TL_ schleicht vom Platz, eine Standpauke folgt</commentary>
-    <commentary>Das Spiel ist aus!</commentary>
-    <commentary>_TW_ gewinnt!</commentary>
-    <commentary>Nach _MI_ Minuten ended das Spiel mit einem _RE_</commentary>
-    <commentary>Die Fans buhen _TL_ vom Platz</commentary>
-    <commentary>Das wars, das Spiel endet _RE_</commentary>
-    <commentary>Der Schiedsrichter schaut auf seine Uhr und pfeift, das Spiel ist aus</commentary>
-    <commentary>_RE_, was für ein Ergebnis für _TW_</commentary>
-  </event>
-  <event>
-    <name>half_time</name>
-    <commentary>_TW_ muss noch 45 Minuten überstehen</commentary>
-    <commentary>Der Trainer von _TL_ wird zur Halbzeit ausgebuht</commentary>
-    <commentary>Da draußen sind zwei Mannschaften, aber nur eine spielt Fußball</commentary>
-    <commentary>Halbzeit.</commentary>
-    <commentary>Es steht _RE_ zur Halbzeit, der Trainer von _TL_ sollte seine Mannschaft anspornen</commentary>
-    <commentary>Es steht _RE_ zur Halbzeit.</commentary>
-    <commentary>Es steht _RE_ zur Halbzeit.</commentary>
-  </event>
-  <event>
-    <name>penalties</name>
-    <commentary>Jetzt geht es Mann gegen Mann, Schütze gegen Torwart</commentary>
-    <commentary>Zwei Mannschaften waren gleichwertig, jetzt geht's ins Penaltyschießen</commentary>
-    <commentary>Wer hätte das vor _MI_ Minuten gedacht, dass es soweit kommen würde</commentary>
-    <commentary>Man muss die Nerven unter Kontrolle bekommen wenn man eine Chance im Elfmeterschießen haben will</commentary>
-    <commentary>Und nun kommt das spannende Drama eines Elfmeterschießens</commentary>
-  </event>
+
   <event>
     <name>post</name>
     <commentary>Ich bin überrascht, dass der Pfosten diesem Schuss standhielt</commentary>
     <commentary>Und der Schuss knallt gegen den Pfosten</commentary>
+    <commentary>_P0_ trifft nur Aluminium</commentary>
+    <commentary>_P1_ lenkt den Ball an den Pfosten</commentary>
+    <commentary>_P0_ trifft nur den rechten Pfosten</commentary>
+    <commentary>_P0_ trifft nur den linken Pfosten</commentary>
+    <commentary>Pfosten!</commentary>
+    <commentary>Innenpfosten!</commentary>
   </event>
+
   <event>
     <name>cross_bar</name>
     <commentary>Der Ball zirkelt über _P1_, trifft aber nur die Latte</commentary>
     <commentary>Zentimetergenauer Schuss von _P0_, trifft Aluminium</commentary>
     <commentary>_P1_ ist ohne Chance, aber der Ball trifft nur die Latte</commentary>
+    <commentary>Übergenauer Schuss von _P0_, er trifft die Latte</commentary>
+    <commentary>Latte!</commentary>
   </event>
+
   <event>
     <name>save</name>
     <commentary>Superreflex von _P1_</commentary>
@@ -127,7 +119,164 @@
     <commentary>_P1_ lenkt den Ball gerade noch über die Latte</commentary>
     <commentary>Gute Abwehr von _P1_</commentary>
     <commentary>Ein dankbarer Ball für den Torhüter</commentary>
+    <commentary>_P1_ ist ein Fels in der Brandung</commentary>
+    <commentary  cond="_SHOTS_POSS__ > 7 and _TIME_ != 3">_P1_ pariert; er hat bereits _SHOTS_POSS__ Schüsse auf seinen Kasten bekommen</commentary>
+    <commentary>_P1_ hält den Ball fest</commentary>
+    <commentary>_P1_ hat ihn sicher</commentary>
+    <commentary cond="_TIME_ = 3">_P1_ hält den Elfer!</commentary>
+    <commentary cond="_TIME_ = 3">_P1_ ist ein Elfmeterkiller</commentary>
   </event>
+
+  <event>
+    <name>miss</name>
+    <commentary cond="_TIME_ != 3">Ein Verteidiger klärt in letzter Minute</commentary>
+    <commentary cond="_TIME_ != 3">_P1_ greift _P0_ an und blockiert den Schuss</commentary>
+    <commentary>Und der Schuss kriecht Zentimeter am Pfosten vorbei</commentary>
+    <commentary cond="_TIME_ != 3">Ein Verteidiger klärt</commentary>
+    <commentary cond="_TIME_ != 3">_P0_ hätte abgeben müssen, verschießt den Ball</commentary>
+    <commentary>_P0_ trifft nur die Tribüne</commentary>
+    <commentary>_P0_ verzieht</commentary>
+    <commentary>Vorbei!</commentary>
+    <commentary>Daneben!</commentary>
+    <commentary>Drüber!</commentary>
+    <commentary>_P0_'s Schuß weit daneben</commentary>
+  </event>
+
+  <event>
+    <name>header</name>
+    <commentary>Hoher Ball von _P1_ an _P0_, der köpft</commentary>
+    <commentary>Flugkopfball von _P0_</commentary>
+    <commentary>Kopfball von _P0_</commentary>
+    <commentary>Er scheint in der Luft zu schweben und produzier dann einen druckvollen Kopfball</commentary>
+  </event>
+  <event>
+    <name>start_match</name>
+    <commentary>Ein wolkenloser Himmel verheißt ein spannedes Spiel</commentary>
+    <commentary>Die Mannschaften werden durch eine ohrenbetäubende Lärmkulisse begrüßt</commentary>
+    <commentary>Der Kampf der Titanen beginnt</commentary>
+    <commentary>Die Menge begrüßt die Mannschaften mit rauschendem Applaus</commentary>
+    <commentary>_AT_ Zuschauer warten auf den Anpfiff</commentary>
+    <commentary>Der Schiedsrichter schaut zum Assistenten und pfeift an</commentary>
+    <commentary>Der Schiri ist bereit, es kann losgehen</commentary>
+    <commentary>Es kann losgehen</commentary>
+    <commentary>_AT_ Fans können nicht irren, dies ist das Spiel, das wir alle sehen wollen</commentary>
+    <commentary>_AT_ Zuschauer wollen dieses _LEAGUECUPNAME_-Spiel sehen</commentary>    
+    <commentary>Willkommen zum _LEAGUECUPNAME_-_CUPROUNDNAME_; es geht gleich los.</commentary>
+    <commentary pri="5"  cond="_TLAYER0_ != _TLAYER1_">Der Papierform nach sollte das eine leichte Aufgabe für _T[_TLAYER1_ L _TLAYER0_]_ werden.</commentary>
+    <commentary pri="5" cond="_TAVSKILLDIFF_ > 7">Es wäre eine große Überraschung, sollte _T[_TAVSKILL1_ G _TAVSKILL0_]_ hier verlieren</commentary>
+    <commentary pri="5" cond="_TAVSKILLDIFF_ > 7">Für _T[_TAVSKILL1_ G _TAVSKILL0_]_ sollte das ein Spaziergang werden, sie sind _TAVSKILLDIFF_ Punkte besser.</commentary>
+    <commentary pri="5" cond="_TAVSKILLDIFF_ < 2">Es verspricht ein spannendes Spiel zu werden heute</commentary>
+    <commentary pri="5" cond="_TAVSKILLDIFF_ < 2">Die Mannschaften sind nahezu gleichwertig: wer wird gewinnen?</commentary>
+    <commentary pri="5" cond="_TAVSKILLDIFF_ < 2">Bei dieser Paarung riskiere ich lieber keine Prognose</commentary>
+  </event>
+
+  <event>
+    <name>stadium_riots</name>
+    <commentary>Die Fans stürmen das Spielfeld</commentary>
+    <commentary>Die Hooligans toben</commentary>
+    <commentary>Ein Fan ist aufs Spielfeld gelangt und greift den Schiedsrichter an</commentary>
+    <commentary>Und die Fans schießen Leuchtraketen aufs Feld</commentary>
+    <commentary>Die Ordner müssen eine Schlägerei zwischen den Fans unter Kontrolle bekommen</commentary>
+  </event>
+
+  <event>
+    <name>stadium_fire</name>
+    <commentary>Eine Leuchtrakete hat einen Teil der Sitze entzündet</commentary>
+    <commentary>Die Auswärtsfans haben Sitze entzündet</commentary>
+    <commentary>Ein Feuer verschlingt _T_TT__'s Stadion</commentary>
+  </event>
+
+  <event>
+    <name>stadium_breakdown</name>
+    <commentary>_TH_'s Stadion scheint technische Probleme zu haben</commentary>
+    <commentary>Die Flutlichtanlage ist ausgefallen</commentary>
+    <commentary>Oje, ein Rasenstück muss ersetzt werden</commentary>
+  </event>
+
+  <event>
+    <name>extra_time</name>
+    <commentary>Nach _MI_ Minuten steht's _RE_: Verlängerung</commentary>
+    <commentary>Nach einem engen Spiel beginnt die Verlängerung</commentary>
+    <commentary>Verlängerung: jetzt geht's um Willenskraft und Entschlossenheit</commentary>
+    <commentary>Es steht immer noch _RE_: Verlängerung</commentary>
+    <commentary>Jetzt geht's um alles, die Verlängerung beginnt</commentary>
+    <commentary pri="5" cond="_G0_ + _GA_ > 4">Nach torreichen _MI_ Minuten steht noch kein Sieger fest</commentary>
+    <commentary pri="5" cond="_G0_ + _GA_ < 3">Nach einem schwachen Spiel erwartet uns die Verlängerung</commentary>
+    <commentary pri="5" cond="_POSS0_ > 58 or _POSS1_ > 58">Trotz _POSS[_POSS1_ G _POSS0_]_% Ballbesitz konnte _T[_POSS1_ G _POSS0_]_ das Spiel nicht in _MI_ Minuten klarmachen</commentary>
+    <commentary pri="5" cond="_SHOTS0_ != _SHOTS1_">Trotz _SHOTS[_SHOTS1_ G _SHOTS0_]_ Schüssen konnte _T[_SHOTS1_ G _SHOTS0_]_ den Sack heute nicht zumachen</commentary>
+    <commentary pri="5" cond="_TLAYER0_ != _TLAYER1_">So eine Überraschung, jetzt kommt's zur Verlängerung</commentary>
+    <commentary pri="5" cond="_TLAYER0_ != _TLAYER1_">Auf eine Verlängerung hätte wirklich keiner gewettet vor _MI_ Minuten</commentary>
+    <commentary pri="5" cond="_TLAYER0_ != _TLAYER1_">Also eine Verlängerung hätte sich _T[_TLAYER1_ L _TLAYER0_]_ bestimmt nicht träumen lassen</commentary>
+  </event>
+
+  <event>
+    <name>end_match</name>
+    <commentary>_TL_ schleicht vom Platz, eine Standpauke folgt</commentary>
+    <commentary>Das Spiel ist aus!</commentary>
+    <commentary>_TW_ gewinnt!</commentary>
+    <commentary>Nach _MI_ Minuten ended das Spiel mit einem _RE_</commentary>
+    <commentary cond="_TLAYER_TLN__ <= _TLAYER_TWN__">Die Fans buhen _TL_ vom Platz</commentary>
+    <commentary>Das wars, das Spiel endet _RE_</commentary>
+    <commentary>Der Schiedsrichter schaut auf seine Uhr und pfeift, das Spiel ist aus</commentary>
+    <commentary>_RE_, was für ein Ergebnis für _TW_</commentary>
+    <commentary pri="5" cond="_TLAYER_TWN__ < _TLAYER_TLN__">Ein Pflichtsieg für _TW_</commentary>
+    <commentary pri="5" cond="_TLAYER_TWN__ < _TLAYER_TLN__">Ein erwarteter Erfolg für _TW_</commentary>
+    <commentary pri="5" cond="_TLAYER_TWN__ < _TLAYER_TLN__">_TW__ gewinnt gegen die tapfer kämpfenden _TL_</commentary>
+    <commentary pri="5" cond="_TLAYER_TWN__ < _TLAYER_TLN__">Das Spiel ist aus, _TL__ konnte die Überraschung nicht schaffen</commentary>
+    <commentary pri="10" cond="_TLAYER_TWN__ > _TLAYER_TLN__">_TW__ gewinnt, eine Riesenüberraschung</commentary>
+    <commentary pri="10" cond="_TLAYER_TWN__ > _TLAYER_TLN__">Das gibt's nicht, _TW__ schlägt _TL_</commentary>
+    <commentary pri="10" cond="_TLAYER_TWN__ > _TLAYER_TLN__">_TL_ hat sich auf die Knochen blamiert heute</commentary>
+    <commentary pri="10" cond="_TLAYER_TWN__ > _TLAYER_TLN__">Der Schiri pfeift ab, die Sensation ist perfekt</commentary>
+    <commentary pri="5" cond="_REDS0_ = _REDS1_ and _TAVSKILLDIFF_ > 5 and _TWN_ = [_TAVSKILL1_ > _TAVSKILL0_]">_TW_ gewinnt erwartungsgemäß</commentary>
+    <commentary pri="5" cond="_REDS0_ = _REDS1_ and _TAVSKILLDIFF_ > 5 and _TWN_ = [_TAVSKILL1_ > _TAVSKILL0_]">Ein Sieg für _TW_; die Mannschaft mit der höheren Qualität setzte sich durch </commentary>
+    <commentary pri="5" cond="_REDS0_ = _REDS1_ and _TAVSKILLDIFF_ > 5 and _TWN_ = [_TAVSKILL1_ > _TAVSKILL0_]">_TW_ gewinnt erwartungsgemäß</commentary>
+    <commentary pri="10" cond="_GD_ > 3 and _TLAYER_TWN__ >= _TLAYER_TLN__">Oje, was für eine Blamage für _TL_</commentary>
+    <commentary pri="5" cond="_GD_ = 1">Ein knapper Sieg für _TW_</commentary>
+    <commentary cond="_GD_ > 1">Ein letztlich ungefährdeter Sieg für _TW_</commentary>
+    <commentary pri="10" cond="_POSS0_ > 56 or _POSS1_ > 56 and _TWN_ = [_POSS1_ > _POSS0_]">Mit _POSS[_POSS1_ G _POSS0_]_% Ballbesitz hat _TW_ dieses Spiel beherrscht und gewinnt verdient</commentary>
+    <commentary pri="10" cond="_POSS0_ > 56 or _POSS1_ > 56 and _TLN_ = [_POSS1_ > _POSS0_]">_POSS[_POSS1_ G _POSS0_]_% Ballbesitz haben _TL_ nicht geholfen, sie verlieren _RE_</commentary>
+    <commentary pri="5" cond="_SHOTS0_ != _SHOTS1_ and _TWN_ = [_SHOTS1_ > _SHOTS0_]">_TW_ hat sich einfach mehr Chancen herausgearbeitet heute</commentary>
+    <commentary pri="5" cond="_SHOTS0_ != _SHOTS1_ and _TLN_ = [_SHOTS1_ > _SHOTS0_]">_TL_ hatte mehr Chancen, aber die Abschlussschwäche hat einen Sieg verhindert</commentary>
+    <commentary pri="5" cond="_GOALS1_ > _GOALS0_">Ein schöner Auswärtssieg für _TW_</commentary>
+    <commentary pri="5" cond="_GOALS1_ < _GOALS0_">_TW_ gewinnt das Heimspiel</commentary>
+    <commentary pri="5" cond="_GOALS1_ < _GOALS0_">Ein Heimsieg für _TW_</commentary>
+    <commentary pri="5" cond="_GOALS1_ > _GOALS0_">_TW_ gewinnt auswärts</commentary>
+    <commentary pri="5" cond="_GOALS1_ < _GOALS0_">_TL_ verliert das Auswärtsspiel</commentary>
+  </event>
+
+  <event>
+    <name>half_time</name>
+    <commentary>Zur Halbzeit steht's _RE_ in diesem _LEAGUECUPNAME_-Spiel</commentary>
+    <commentary>_TW_ muss noch 45 Minuten überstehen</commentary>
+    <commentary>_TL_ hat noch _MT_ Minuten Zeit, das Spiel zu wenden</commentary>
+    <commentary>Der Trainer von _TL_ wird zur Halbzeit ausgebuht</commentary>
+    <commentary>Da draußen sind zwei Mannschaften, aber nur eine spielt Fußball</commentary>
+    <commentary>Halbzeit.</commentary>
+    <commentary>Es steht _RE_ zur Halbzeit, der Trainer von _TL_ sollte seine Mannschaft anspornen</commentary>
+    <commentary>Es steht _RE_ zur Halbzeit.</commentary>
+    <commentary cond="_TLAYER_TWN__ > _TLAYER_TLN__">Eine Überraschung bahnt sich an, _TW_ führt zur Halbzeit</commentary>
+    <commentary cond="_GD_ > 2">_TL_ wurde regelrecht auseinandergenommen in der ersten Hälfte</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 1">In der zweiten Hälfte können schon ein paar Törchen mehr kommen</commentary>
+    <commentary cond="_GD_ = 0 and _GOALS1_ > 0">Ein enges Spiel in der ersten Hälfte</commentary>
+    <commentary cond="_SHOTS0_ > _SHOTS1_ + 3 or _SHOTS1_ > _SHOTS0_ + 3 and _TWN_ = [_SHOTS1_ > _SHOTS0_]">_TW_ beherrscht das Spiel und führt verdient _RE_ zur Halbzeit</commentary>
+    <commentary cond="_SHOTS0_ > _SHOTS1_ + 3 or _SHOTS1_ > _SHOTS0_ + 3 and _GD_ = 0">_T[_SHOTS1_ > _SHOTS0_]_ beherrscht das Spiel, kann aber nur ein _RE_ vorweisen bislang</commentary>
+    <commentary cond="_SHOTS0_ > _SHOTS1_ + 3 or _SHOTS1_ > _SHOTS0_ + 3 and _TWN_ = [_SHOTS1_ < _SHOTS0_]">_T[_SHOTS1_ > _SHOTS0_]_ beherrscht das Spiel, aber _TW_ nutzt seine Chancen einfach besser</commentary>
+    <commentary cond="_POSS0_ > 58 or _POSS1_ > 58 and _GD_ = 0">_T[_POSS1_ G _POSS0_]_ beherrscht das Spiel mit _POSS[_POSS1_ > _POSS0_]_ % Ballbesitz, dennoch steht es _RE_</commentary>
+    <commentary cond="_POSS0_ > 58 or _POSS1_ > 58 and [_POSS1_ > _POSS0_] = _TWN_ ">_TW_ beherrscht das Spiel klar und führt _RE_</commentary>
+    <commentary cond="_POSS0_ > 58 or _POSS1_ > 58 and [_POSS1_ > _POSS0_] = _TLN_ ">_TL_ hat nur _POSS[_POSS1_ L _POSS0_]_ % Ballbesitz, führt aber _RE_ zur Halbzeit</commentary>
+  </event>
+
+  <event>
+    <name>penalties</name>
+    <commentary>Jetzt geht es Mann gegen Mann, Schütze gegen Torwart</commentary>
+    <commentary cond="_GD_ = 0">Zwei Mannschaften waren gleichwertig, jetzt geht's ins Penaltyschießen</commentary>
+    <commentary cond="_GD_ != 0">_TW_ konnte das Ergebnis des Hinspiels wettmachen, jetzt geht's ins Elfmeterschießen</commentary>
+    <commentary>Wer hätte das vor _MI_ Minuten gedacht, dass es soweit kommen würde</commentary>
+    <commentary>Man muss die Nerven unter Kontrolle bekommen wenn man eine Chance im Elfmeterschießen haben will</commentary>
+    <commentary>Und nun kommt das spannende Drama eines Elfmeterschießens</commentary>
+    <commentary>Es kommt zum Elfmeterschießen in diesem _LEAGUECUPNAME_-Spiel</commentary>
+  </event>
+
   <event>
     <name>foul</name>
     <commentary>_P0_ wird hart attackiert</commentary>
@@ -138,13 +287,44 @@
     <commentary>_P1_ holt rüde mit gestrecktem Bein _P0_ von den Beinen</commentary>
     <commentary>Ein gemeines Foul von _P1_ lässt _P0_ meterweit fliegen</commentary>
     <commentary>_P1_ attackiert _P0_ ohne Gnade</commentary>
-    <commentary>Das war ein harter Angriff</commentary>
+    <commentary>Das war ein harter Angriff gegen _P0_</commentary>
+    <commentary pri="5" cond="_MI_ < 45 and _FOULS_TT__ > 3">Foul gegen _P0_, bereits das _FOULS_TT__-te von _T_TT__</commentary>
+    <commentary pri="5" cond="_MI_ > 45 and _FOULS_TT__ > 5">_P0_ wird gelegt, bereits das _FOULS_TT__-te Foul von _T_TT__</commentary>
   </event>
+
   <event>
     <name>foul_red_injury</name>
-    <commentary>_P1_ foult und _P1_ windet sich in Schmerzen am Boden</commentary>
+    <commentary>_P1_ foult und _P0_ windet sich in Schmerzen am Boden</commentary>
     <commentary>_P1_ foult: _P0_ scheint verletzt zu sein... er muss vielleicht raus</commentary>
+    <commentary>_P1_ trifft nur noch den Knöchel von _P0_, der Ball war längst weg</commentary>
+    <commentary cond="_REDS1_ + _REDS0_ = 0">Böses Foul von _P1_, _T_TT__ spielt ab jetzt in Unterzahl</commentary>
+    <commentary cond="_REDS0_ = _REDS1_">Dieses fiese Foul von _P1_ stellt die Spielerverhältnisse wieder her</commentary>
+    <commentary>_P0_ ist verletzt nach einer gemeinen Attacke von _P1_</commentary>
   </event>
+
+  <event>
+    <name>foul_yellow</name>
+    <commentary>_P1_ für Grätschen von hinten</commentary>
+    <commentary>_P1_ für bösartiges Foul an _P0_</commentary>
+    <commentary>_P1_ für Handspiel</commentary>
+    <commentary>_P1_ für ungebührliches Verhalten</commentary>
+    <commentary>_P1_ wird für hohes Bein verwarnt</commentary>
+    <commentary>_P1_ für Ballwegtreten</commentary>
+    <commentary cond="_MT_ < 15">_P1_ für Zeitschinden</commentary>
+    <commentary>_P1_ für Behinderung</commentary>
+    <commentary>_P1_ wird wegen Meckerns verwarnt</commentary>
+  </event>
+
+  <event>
+    <name>foul_red</name>
+    <commentary>_P1_ für eine Blutgrätsche</commentary>
+    <commentary>_P1_ für absichtliches Handspiel</commentary>
+    <commentary>_P1_ sieht die rote Karte wegen Schiedsrichterbeleidigung</commentary>
+    <commentary>_P1_ wird wegen wiederholtem Meckern vom Platz gestellt</commentary>
+    <commentary>_P1_ wird nach einer Notbremse zum Duschen geschickt</commentary>
+    <commentary cond="_REDS1_ + _REDS0_ > 1">_P1_ sieht Rot... ein wirklich foullastiges Spiel</commentary>
+  </event>
+
   <event>
     <name>free_kick</name>
     <commentary>_P0_ knallt einen Freistoß Richtung Tor</commentary>
@@ -186,17 +366,6 @@
     <commentary>_P0_ nimmt Fahrt auf und schießt!</commentary>
   </event>
   <event>
-    <name>miss</name>
-    <commentary>Ein Verteidiger klärt in letzter Minute</commentary>
-    <commentary>_P1_ greift _P0_ an und blockiert den Schuss</commentary>
-    <commentary>Und der Schuss kriecht Zentimeter am Pfosten vorbei</commentary>
-    <commentary>Ein Verteidiger klärt</commentary>
-    <commentary>_P0_ hätte abgeben müssen, verschießt den Ball</commentary>
-    <commentary>_P0_ trifft nur die Tribüne</commentary>
-    <commentary>_P0_ verzieht</commentary>
-    <commentary>_P0_'s Schuß weit daneben</commentary>
-  </event>
-  <event>
     <name>temp_injury</name>
     <commentary>_P0_ ist leicht angeschlagen, kann aber weitermachen</commentary>
     <commentary>_P0_ hat eine Platzwunde, aber sie wird getackert und er kann weiterspielen</commentary>
@@ -216,43 +385,26 @@
   <event>
     <name>substitution</name>
     <commentary>_P1_ verlässt unter großem Applaus das Spielfeld, _P0_ ersetzt ihn</commentary>
-    <commentary>_TT_ wechselt aus, _P0_ kommt für _P1_</commentary>
+    <commentary>_T_TT__ wechselt aus, _P0_ kommt für _P1_</commentary>
     <commentary>_P1_ wird vom Platz gebuht und durch _P0_ ersetzt</commentary>
-  </event>
-  <event>
-    <name>foul_yellow</name>
-    <commentary>_P1_ für Grätschen von hinten</commentary>
-    <commentary>_P1_ für bösartiges Foul an _P0_</commentary>
-    <commentary>_P1_ für Handspiel</commentary>
-    <commentary>_P1_ für ungebührliches Verhalten</commentary>
-    <commentary>_P1_ wird für hohes Bein verwarnt</commentary>
-    <commentary>_P1_ für Ballwegtreten</commentary>
-    <commentary>_P1_ für Zeitschinden</commentary>
-    <commentary>_P1_ für Behinderung</commentary>
-    <commentary>_P1_ wird wegen Meckerns verwarnt</commentary>
-  </event>
-  <event>
-    <name>foul_red</name>
-    <commentary>_P1_ für eine Blutgrätsche</commentary>
-    <commentary>_P1_ für absichtliches Handspiel</commentary>
-    <commentary>_P1_ sieht die rote Karte</commentary>
-    <commentary>_P1_ wird wegen wiederholtem Meckern vom Platz gestellt</commentary>
-    <commentary>_P1_ wird nach einer Notbremse zum Duschen geschickt</commentary>
   </event>
   <event>
     <name>send_off</name>
     <commentary>_P0_ wurde vom Platz gestellt</commentary>
+    <commentary>_P0_ wird vorzeitig zum Duschen geschickt</commentary>
+    <commentary>Der Referee schickt _P0_ zum Duschen</commentary>
+    <commentary>Das Spiel ist vorbei für _P0_</commentary>
   </event>
   <event>
     <name>boost_change</name>
-    <commentary>_TT_ hat den Boost auf _EX_ gestellt</commentary>
+    <commentary>_T_TT__ hat den Boost auf _EX_ gestellt</commentary>
   </event>
   <event>
     <name>structure_change</name>
-    <commentary>_TT_ hat das System auf _EX_ umgestellt</commentary>
+    <commentary>_T_TT__ hat das System auf _EX_ umgestellt</commentary>
   </event>
   <event>
     <name>style_change</name>
-    <commentary>_TT_ hat den Spielstil auf _EX_ umgestellt</commentary>
+    <commentary>_T_TT__ hat den Spielstil auf _EX_ umgestellt</commentary>
   </event>
 </lg_commentary>
