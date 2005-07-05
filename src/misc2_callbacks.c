@@ -214,11 +214,22 @@ on_button_contract_offer_clicked       (GtkButton       *button,
     misc2_callback_contract_offer();
 }
 
+void
+on_button_contract_cancel_clicked      (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    window_destroy(&window.contract, FALSE);
+}
+
+
 gboolean
 on_window_contract_delete_event        (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+
+    if(GTK_WIDGET_IS_SENSITIVE(lookup_widget(window.contract, "button_contract_cancel")))
+	window_destroy(&window.contract, FALSE);    
 
     return TRUE;
 }
@@ -451,4 +462,3 @@ on_button_transfer_later_clicked       (GtkButton       *button,
 {
     window_destroy(&window.transfer_dialog, FALSE);
 }
-

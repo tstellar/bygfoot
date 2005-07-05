@@ -213,6 +213,7 @@ xml_lg_commentary_read_text         (GMarkupParseContext *context,
 	commentary.text = g_string_new(buf);
 	commentary.condition = condition;
 	commentary.priority = MAX(1, priority);
+	commentary.id = lg_commentary_id_new;
 	g_array_append_val(lg_commentary[commentary_idx], commentary);
     }
 }

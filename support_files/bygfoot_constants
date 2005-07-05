@@ -767,3 +767,7 @@ int_sponsor_without_weeks_upper 6
 # to continue engagement if the team is completely
 # unsuccessful
 float_sponsor_continue_prob 1000
+
+# how many live game units we check backwards to avoid
+# having the same commentary text too often
+int_lg_commentary_check_backwards 12

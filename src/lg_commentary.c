@@ -17,65 +17,8 @@
 
 /** The replacement strings for the live game commentary tokens. */
 gchar **token_rep;
-
-/** Allocate memory for the token array and fill some tokens
-    at the beginning of the live game that don't change later. */
-void
-lg_commentary_initialize(const Fixture *fix)
-{
-    gint i;
-    gchar buf[SMALL];
-
-    token_rep = (gchar**)g_malloc(sizeof(gchar*) * lg_tokens.list->len);
-
-    for(i=0;i<lg_tokens.list->len;i++)
-	token_rep[i] = NULL;
-	
-    token_rep[option_int("string_lg_commentary_token_team_home", &lg_tokens)] = 
-	g_strdup(fix->teams[0]->name->str);
-    token_rep[option_int("string_lg_commentary_token_team_away", &lg_tokens)] = 
-	g_strdup(fix->teams[1]->name->str);
-
-    if(fix->teams[0]->clid < ID_CUP_START)
-	token_rep[option_int("string_lg_commentary_token_team_layer0", &lg_tokens)] = 
-	    misc_int_to_char(league_from_clid(fix->teams[0]->clid)->layer);
-    if(fix->teams[1]->clid < ID_CUP_START)
-	token_rep[option_int("string_lg_commentary_token_team_layer1", &lg_tokens)] = 
-	    misc_int_to_char(league_from_clid(fix->teams[1]->clid)->layer);
-	
-    token_rep[option_int("string_lg_commentary_token_league_cup_name", &lg_tokens)] = 
-	g_strdup(league_cup_get_name_string(fix->clid));
-
-    if(fix->clid >= ID_CUP_START)
-    {
-	cup_get_round_name(cup_from_clid(fix->clid), fix->round, buf);
-	token_rep[option_int("string_lg_commentary_token_cup_round_name", &lg_tokens)] = 
-	    g_strdup(buf);
-    }
-
-    misc_print_grouped_int(fix->attendance, buf);
-    token_rep[option_int("string_lg_commentary_token_attendance", &lg_tokens)] =
-	g_strdup(buf);
-
-    token_rep[option_int("string_lg_commentary_token_yellow_limit", &lg_tokens)] = 
-	misc_int_to_char(league_cup_get_yellow_red(fix->clid));
-}
-
-/** Free the memory occupied by the tokens array and the permanent tokens. */
-void
-lg_commentary_post_match(void)
-{
-    g_free(token_rep[option_int("string_lg_commentary_token_team_home", &lg_tokens)]);
-    g_free(token_rep[option_int("string_lg_commentary_token_team_away", &lg_tokens)]);
-    g_free(token_rep[option_int("string_lg_commentary_token_attendance", &lg_tokens)]);
-    g_free(token_rep[option_int("string_lg_commentary_token_league_cup_name", &lg_tokens)]);
-    g_free(token_rep[option_int("string_lg_commentary_token_cup_round_name", &lg_tokens)]);
-    g_free(token_rep[option_int("string_lg_commentary_token_yellow_limit", &lg_tokens)]);
-    g_free(token_rep[option_int("string_lg_commentary_token_team_layer0", &lg_tokens)]);
-    g_free(token_rep[option_int("string_lg_commentary_token_team_layer1", &lg_tokens)]);
-
-    g_free(token_rep);
-}
+/** Whether there was a commentary repetition rejection. */
+gboolean repetition;
 
 /** Generate commentary for the live game event in the unit.
     @param unit The unit we comment.
@@ -108,10 +51,18 @@ lg_commentary_generate(const LiveGame *live_game, LiveGameUnit *unit)
     gint order[(*commentaries)->len];
     lg_commentary_get_order(*commentaries, order);
 
+    repetition = FALSE;
+
     for(i=0;i<(*commentaries)->len;i++)
-    {
 	if(lg_commentary_check_commentary(&g_array_index(*commentaries, LGCommentary, order[i]), buf))
 	    break;
+
+    if(i == (*commentaries)->len)
+    {
+	repetition = TRUE;
+	for(i=0;i<(*commentaries)->len;i++)
+	    if(lg_commentary_check_commentary(&g_array_index(*commentaries, LGCommentary, order[i]), buf))
+		break;
     }
 
     if(i == (*commentaries)->len)
@@ -122,6 +73,8 @@ lg_commentary_generate(const LiveGame *live_game, LiveGameUnit *unit)
     }
 
     unit->event.commentary = g_string_new(buf);
+    unit->event.commentary_id = (i == (*commentaries)->len) ? 
+	-1 : g_array_index(*commentaries, LGCommentary, order[i]).id;
 
     for(i=0;i<lg_tokens.list->len;i++)
 	if(i != option_int("string_lg_commentary_token_team_home", &lg_tokens) &&
@@ -143,20 +96,38 @@ lg_commentary_generate(const LiveGame *live_game, LiveGameUnit *unit)
 gboolean
 lg_commentary_check_commentary(const LGCommentary *commentary, gchar *dest)
 {
-    if(commentary->condition != NULL &&
-       !lg_commentary_parse_condition(commentary->condition->str))
+    if((commentary->condition != NULL &&
+	!lg_commentary_parse_condition(commentary->condition->str)) ||
+       (repetition == FALSE && query_lg_commentary_is_repetition(commentary->id)))
 	return FALSE;
 
     strcpy(dest, commentary->text->str);
     
     if(lg_commentary_replace_tokens(dest))
-    {
-	lg_commentary_replace_expressions(dest);
-
 	if(lg_commentary_replace_tokens(dest))
-	    return TRUE;
-    }
+	{
+	    lg_commentary_replace_expressions(dest);
+	    
+	    if(lg_commentary_replace_tokens(dest))
+		return TRUE;
+	}
     
+    return FALSE;
+}
+
+/** Check whether a commentary with given id has been used in the last
+    few commentaries. Return TRUE if so and FALSE otherwise. */
+gboolean
+query_lg_commentary_is_repetition(gint id)
+{
+    const GArray *units = ((LiveGame*)statp)->units;
+    gint units_min = units->len - const_int("int_lg_commentary_check_backwards") - 1;
+    gint i, min = MAX(units_min, 0);
+
+    for(i=units->len - 2; i>= min; i--)
+	if(g_array_index(units, LiveGameUnit, i).event.commentary_id == id)
+	    return TRUE;
+
     return FALSE;
 }
 
@@ -188,7 +159,9 @@ lg_commentary_replace_expressions(gchar *commentary_text)
 
 		    if(query_misc_string_contains(buf2, "<") ||
 		       query_misc_string_contains(buf2, ">") ||
-		       query_misc_string_contains(buf2, "="))
+		       query_misc_string_contains(buf2, "=") ||
+		       query_misc_string_contains(buf2, " G ") ||
+		       query_misc_string_contains(buf2, " L "))
 			misc_parse(buf2, &value);
 		    else
 			misc_parse_expression(buf2, &value);
@@ -312,7 +285,9 @@ lg_commentary_set_stats_tokens(const LiveGameStats *stats)
     token_rep[option_int("string_lg_commentary_token_stat_shot_per0", &lg_tokens)] =
 	misc_int_to_char(stats->values[0][LIVE_GAME_STAT_VALUE_SHOT_PERCENTAGE]);
     token_rep[option_int("string_lg_commentary_token_stat_poss0", &lg_tokens)] =
-	misc_int_to_char(stats->values[0][LIVE_GAME_STAT_VALUE_POSSESSION]);
+	misc_int_to_char((gint)rint(100 * ((gfloat)stats->values[0][LIVE_GAME_STAT_VALUE_POSSESSION] /
+					   ((gfloat)stats->values[0][LIVE_GAME_STAT_VALUE_POSSESSION] + 
+					    (gfloat)stats->values[1][LIVE_GAME_STAT_VALUE_POSSESSION]))));
     token_rep[option_int("string_lg_commentary_token_stat_pen0", &lg_tokens)] =
 	misc_int_to_char(stats->values[0][LIVE_GAME_STAT_VALUE_PENALTIES]);
     token_rep[option_int("string_lg_commentary_token_stat_fouls0", &lg_tokens)] =
@@ -329,7 +304,9 @@ lg_commentary_set_stats_tokens(const LiveGameStats *stats)
     token_rep[option_int("string_lg_commentary_token_stat_shot_per1", &lg_tokens)] =
 	misc_int_to_char(stats->values[1][LIVE_GAME_STAT_VALUE_SHOT_PERCENTAGE]);
     token_rep[option_int("string_lg_commentary_token_stat_poss1", &lg_tokens)] =
-	misc_int_to_char(stats->values[1][LIVE_GAME_STAT_VALUE_POSSESSION]);
+	misc_int_to_char((gint)rint(100 * ((gfloat)stats->values[1][LIVE_GAME_STAT_VALUE_POSSESSION] /
+					   ((gfloat)stats->values[0][LIVE_GAME_STAT_VALUE_POSSESSION] + 
+					    (gfloat)stats->values[1][LIVE_GAME_STAT_VALUE_POSSESSION]))));
     token_rep[option_int("string_lg_commentary_token_stat_pen1", &lg_tokens)] =
 	misc_int_to_char(stats->values[1][LIVE_GAME_STAT_VALUE_PENALTIES]);
     token_rep[option_int("string_lg_commentary_token_stat_fouls1", &lg_tokens)] =
@@ -545,6 +522,65 @@ lg_commentary_get_extra_data(const LiveGameUnit *unit, const Fixture *fix)
     }
 
     return g_strdup(buf);
+}
+
+/** Allocate memory for the token array and fill some tokens
+    at the beginning of the live game that don't change later. */
+void
+lg_commentary_initialize(const Fixture *fix)
+{
+    gint i;
+    gchar buf[SMALL];
+
+    token_rep = (gchar**)g_malloc(sizeof(gchar*) * lg_tokens.list->len);
+
+    for(i=0;i<lg_tokens.list->len;i++)
+	token_rep[i] = NULL;
+	
+    token_rep[option_int("string_lg_commentary_token_team_home", &lg_tokens)] = 
+	g_strdup(fix->teams[0]->name->str);
+    token_rep[option_int("string_lg_commentary_token_team_away", &lg_tokens)] = 
+	g_strdup(fix->teams[1]->name->str);
+
+    if(fix->teams[0]->clid < ID_CUP_START)
+	token_rep[option_int("string_lg_commentary_token_team_layer0", &lg_tokens)] = 
+	    misc_int_to_char(league_from_clid(fix->teams[0]->clid)->layer);
+    if(fix->teams[1]->clid < ID_CUP_START)
+	token_rep[option_int("string_lg_commentary_token_team_layer1", &lg_tokens)] = 
+	    misc_int_to_char(league_from_clid(fix->teams[1]->clid)->layer);
+	
+    token_rep[option_int("string_lg_commentary_token_league_cup_name", &lg_tokens)] = 
+	g_strdup(league_cup_get_name_string(fix->clid));
+
+    if(fix->clid >= ID_CUP_START)
+    {
+	cup_get_round_name(cup_from_clid(fix->clid), fix->round, buf);
+	token_rep[option_int("string_lg_commentary_token_cup_round_name", &lg_tokens)] = 
+	    g_strdup(buf);
+    }
+
+    misc_print_grouped_int(fix->attendance, buf);
+    token_rep[option_int("string_lg_commentary_token_attendance", &lg_tokens)] =
+	g_strdup(buf);
+
+    token_rep[option_int("string_lg_commentary_token_yellow_limit", &lg_tokens)] = 
+	misc_int_to_char(league_cup_get_yellow_red(fix->clid));
+}
+
+/** Free the memory occupied by the tokens array and the permanent tokens. */
+void
+lg_commentary_post_match(void)
+{
+    g_free(token_rep[option_int("string_lg_commentary_token_team_home", &lg_tokens)]);
+    g_free(token_rep[option_int("string_lg_commentary_token_team_away", &lg_tokens)]);
+    g_free(token_rep[option_int("string_lg_commentary_token_attendance", &lg_tokens)]);
+    g_free(token_rep[option_int("string_lg_commentary_token_league_cup_name", &lg_tokens)]);
+    g_free(token_rep[option_int("string_lg_commentary_token_cup_round_name", &lg_tokens)]);
+    g_free(token_rep[option_int("string_lg_commentary_token_yellow_limit", &lg_tokens)]);
+    g_free(token_rep[option_int("string_lg_commentary_token_team_layer0", &lg_tokens)]);
+    g_free(token_rep[option_int("string_lg_commentary_token_team_layer1", &lg_tokens)]);
+
+    g_free(token_rep);
 }
 
 /** Load the appropriate commentary file by evaluating

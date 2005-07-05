@@ -21,10 +21,11 @@
     <commentary>Schöner Pass von _P1_ eröffnet den Raum vor _P0_</commentary>
     <commentary>Guter Querpass auf die rechte Seite</commentary>
     <commentary>Ein weiterer Flankenlauf</commentary>
-    <commentary cond="_MI_ > 18 and _POSS0_ > 58 or _POSS1_ > 58 and _GOALS[_POSS1_ > _POSS0_]_ = 0">_T[_POSS1_ G _POSS0_]_ beherrscht das Spiel, zeigt aber bislang brotlose Kunst</commentary>
-    <commentary cond="_MI_ > 18 and _POSS0_ > 58 or _POSS1_ > 58 and _GOALS[_POSS1_ > _POSS0_]_ > _GOALS[_POSS1_ L _POSS0_]_">_T[_POSS1_ > _POSS0_]_ beherrscht das Spiel klar</commentary>
-    <commentary cond="_MI_ > 18 and _POSS0_ > 58 or _POSS1_ > 58 and _GOALS[_POSS1_ > _POSS0_]_ = 0">_T[_POSS1_ G _POSS0_]_ ist eindeutig unterlegen, das _RE_ ist schmeichelhaft</commentary>
-    <commentary cond="_MI_ > 18 and _POSS0_ > 58 or _POSS1_ > 58 and _GOALS[_POSS1_ > _POSS0_]_ > _GOALS[_POSS1_ L _POSS0_]_ and _GD_ < 3">_T[_POSS1_ L _POSS0_]_ kann mit dem _RE_ noch zufrieden sein</commentary>
+    <commentary cond="_MI_ > 18 and _POSS[_POSS1_ > _POSS0_]_ > 58 and _GOALS[_POSS1_ > _POSS0_]_ = 0">_T[_POSS1_ G _POSS0_]_ beherrscht das Spiel, zeigt aber bislang brotlose Kunst</commentary>
+    <commentary cond="_MI_ > 18 and _POSS[_POSS1_ > _POSS0_]_ > 58 and _GOALS[_POSS1_ > _POSS0_]_ > _GOALS[_POSS1_ L _POSS0_]_">_T[_POSS1_ G _POSS0_]_ beherrscht das Spiel klar</commentary>
+    <commentary cond="_MI_ > 18 and _POSS[_POSS1_ > _POSS0_]_ > 58 and _GOALS[_POSS1_ > _POSS0_]_ > _GOALS[_POSS1_ L _POSS0_]_">_T[_POSS1_ G _POSS0_]_ ist überlegen</commentary>
+    <commentary cond="_MI_ > 18 and _POSS[_POSS1_ > _POSS0_]_ > 58 and _GD_ < 2">_T[_POSS1_ L _POSS0_]_ ist eindeutig unterlegen, das _RE_ ist schmeichelhaft</commentary>
+    <commentary cond="_MI_ > 18 and _POSS[_POSS1_ > _POSS0_]_ > 58 and _GOALS[_POSS1_ > _POSS0_]_ > _GOALS[_POSS1_ L _POSS0_]_ and _GD_ < 3">_T[_POSS1_ L _POSS0_]_ kann mit dem _RE_ noch zufrieden sein</commentary>
     <commentary cond="_MT_ + _MI_ > 100 and _TIME_ = 1 and _MR_ < 15">Die Verlängerung ist greifbar nahe</commentary>
     <commentary cond="_GD_ > 0 and _GD_ < 3 and _MT_ < 20">_TL_ sollte sich jetzt langsam mal anstrengen </commentary>
     <commentary cond="_GD_ > 0 and _GD_ < 3 and _MT_ < 20">_TL_ sollte einen Zahn zulegen</commentary>
@@ -46,16 +47,18 @@
     <commentary cond="_GD_ > 2">_TW_ beherrscht _TL_ nach Belieben</commentary>
     <commentary cond="_GD_ > 2">Keine Chance für _TL_ in diesem Spiel</commentary>
     <commentary cond="_GD_ > 2 and _MT_ < 30">Das wird wohl nix mehr für_TL_</commentary>
-    <commentary cond="_G0_ + _G1_ > 2 and _MI_ < 20">Das könnte ein sehr torreiches Spiel werden heute</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ > 2 and _MI_ < 20">Das könnte ein sehr torreiches Spiel werden heute</commentary>
     <commentary cond="_GD_ = 1 and _MT_ < 10">_TL_ kann den Ausgleich noch schaffen</commentary>
     <commentary cond="_REDS0_ = _REDS1_ and _TAVSKILLDIFF_ > 7 and _G[_TAVSKILL1_ > _TAVSKILL0_]_ < _G[_TAVSKILL1_ < _TAVSKILL0_]_">Was für eine Überraschung, das vermeintlich unterlegene Team führt</commentary>
     <commentary cond="_REDS0_ = _REDS1_ and _TAVSKILLDIFF_ > 5 and _G[_TAVSKILL1_ > _TAVSKILL0_]_ > _G[_TAVSKILL1_ < _TAVSKILL0_]_">Der Favorit führt; so ein Spielverlauf war zu erwarten</commentary>
-    <commentary cond="_G0_ + _G1_ = 0 and _MI_ > 40 and _MI_ < 60">Nach _MI_ Minuten ist immer noch kein Tor gefallen</commentary>
-    <commentary cond="_G0_ + _G1_ = 0 and _MI_ > 70">Was für ein enttäuschendes Spiel, immer noch _RE_</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 0 and _MI_ > 40 and _MI_ < 60">Nach _MI_ Minuten ist immer noch kein Tor gefallen</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 0 and _MI_ > 70">Was für ein enttäuschendes Spiel, immer noch _RE_</commentary>
     <commentary cond="_REDS0_ = _REDS1_ and _TAVSKILLDIFF_ > 7 and _G[_TAVSKILL1_ > _TAVSKILL0_]_ < _G[_TAVSKILL1_ < _TAVSKILL0_]_ and _MT_ < 15">_TW_ ist nur noch _MT_ Minuten von einer faustdicken Überraschung entfernt</commentary>
-    <commentary cond="_G0_ + _G1_ = 0 and _MT_ < 10">Also wirklich, wollen uns die beiden Teams wirklich mit einem _RE_ abspeisen?</commentary>
-    <commentary cond="_G0_ + _G1_ = 0 and _MT_ < 15">Jetzt sollte aber wirklich mal ein Tor her</commentary>
-    <commentary cond="_G0_ + _G1_ = 0 and _MT_ < 5">Nein, bitte nicht wieder so ein _RE_</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 0 and _MT_ < 10">Also wirklich, wollen uns die beiden Teams wirklich mit einem _RE_ abspeisen?</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 0 and _MT_ < 15">Jetzt sollte aber wirklich mal ein Tor her</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 0 and _MT_ < 5">Nein, bitte nicht wieder so ein _RE_</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 0 and _MT_ < 30">_MI_ Minuten gespielt und immer noch _RE_</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 0 and _MT_ < 50">Ein mageres _RE_ nach _MI_ Minuten</commentary>
   </event>
 
   <event>
@@ -200,8 +203,8 @@
     <commentary>Verlängerung: jetzt geht's um Willenskraft und Entschlossenheit</commentary>
     <commentary>Es steht immer noch _RE_: Verlängerung</commentary>
     <commentary>Jetzt geht's um alles, die Verlängerung beginnt</commentary>
-    <commentary pri="5" cond="_G0_ + _GA_ > 4">Nach torreichen _MI_ Minuten steht noch kein Sieger fest</commentary>
-    <commentary pri="5" cond="_G0_ + _GA_ < 3">Nach einem schwachen Spiel erwartet uns die Verlängerung</commentary>
+    <commentary pri="5" cond="_GOALS0_ + _GA_ > 4">Nach torreichen _MI_ Minuten steht noch kein Sieger fest</commentary>
+    <commentary pri="5" cond="_GOALS0_ + _GA_ < 3">Nach einem schwachen Spiel erwartet uns die Verlängerung</commentary>
     <commentary pri="5" cond="_POSS0_ > 58 or _POSS1_ > 58">Trotz _POSS[_POSS1_ G _POSS0_]_% Ballbesitz konnte _T[_POSS1_ G _POSS0_]_ das Spiel nicht in _MI_ Minuten klarmachen</commentary>
     <commentary pri="5" cond="_SHOTS0_ != _SHOTS1_">Trotz _SHOTS[_SHOTS1_ G _SHOTS0_]_ Schüssen konnte _T[_SHOTS1_ G _SHOTS0_]_ den Sack heute nicht zumachen</commentary>
     <commentary pri="5" cond="_TLAYER0_ != _TLAYER1_">So eine Überraschung, jetzt kommt's zur Verlängerung</commentary>
@@ -232,9 +235,10 @@
     <commentary pri="5" cond="_REDS0_ = _REDS1_ and _TAVSKILLDIFF_ > 5 and _TWN_ = [_TAVSKILL1_ > _TAVSKILL0_]">_TW_ gewinnt erwartungsgemäß</commentary>
     <commentary pri="10" cond="_GD_ > 3 and _TLAYER_TWN__ >= _TLAYER_TLN__">Oje, was für eine Blamage für _TL_</commentary>
     <commentary pri="5" cond="_GD_ = 1">Ein knapper Sieg für _TW_</commentary>
+    <commentary pri="5" cond="_GD_ = 1">Das Spiel endet mit einem hauchdünnen _RE_</commentary>
     <commentary cond="_GD_ > 1">Ein letztlich ungefährdeter Sieg für _TW_</commentary>
-    <commentary pri="10" cond="_POSS0_ > 56 or _POSS1_ > 56 and _TWN_ = [_POSS1_ > _POSS0_]">Mit _POSS[_POSS1_ G _POSS0_]_% Ballbesitz hat _TW_ dieses Spiel beherrscht und gewinnt verdient</commentary>
-    <commentary pri="10" cond="_POSS0_ > 56 or _POSS1_ > 56 and _TLN_ = [_POSS1_ > _POSS0_]">_POSS[_POSS1_ G _POSS0_]_% Ballbesitz haben _TL_ nicht geholfen, sie verlieren _RE_</commentary>
+    <commentary pri="10" cond="_POSS[_POSS1_ > _POSS0_]_ > 56 and _TWN_ = [_POSS1_ > _POSS0_]">Mit _POSS[_POSS1_ G _POSS0_]_% Ballbesitz hat _TW_ dieses Spiel beherrscht und gewinnt verdient</commentary>
+    <commentary pri="10" cond="_POSS[_POSS1_ > _POSS0_]_ and _TLN_ = [_POSS1_ > _POSS0_]">_POSS[_POSS1_ G _POSS0_]_% Ballbesitz haben _TL_ nicht geholfen, sie verlieren _RE_</commentary>
     <commentary pri="5" cond="_SHOTS0_ != _SHOTS1_ and _TWN_ = [_SHOTS1_ > _SHOTS0_]">_TW_ hat sich einfach mehr Chancen herausgearbeitet heute</commentary>
     <commentary pri="5" cond="_SHOTS0_ != _SHOTS1_ and _TLN_ = [_SHOTS1_ > _SHOTS0_]">_TL_ hatte mehr Chancen, aber die Abschlussschwäche hat einen Sieg verhindert</commentary>
     <commentary pri="5" cond="_GOALS1_ > _GOALS0_">Ein schöner Auswärtssieg für _TW_</commentary>
@@ -242,6 +246,10 @@
     <commentary pri="5" cond="_GOALS1_ < _GOALS0_">Ein Heimsieg für _TW_</commentary>
     <commentary pri="5" cond="_GOALS1_ > _GOALS0_">_TW_ gewinnt auswärts</commentary>
     <commentary pri="5" cond="_GOALS1_ < _GOALS0_">_TL_ verliert das Auswärtsspiel</commentary>
+    <commentary pri="10" cond="_GOALS0_ + _GOALS1_ = 0">_RE_, wie ärgerlich</commentary>
+    <commentary pri="10" cond="_GOALS0_ + _GOALS1_ = 0">Nach so einem _RE_ will man am liebsten sein Geld zurück</commentary>
+    <commentary pri="10" cond="_GOALS0_ + _GOALS1_ = 0">Das Spiel endet mit einem mageren _RE_ </commentary>
+    <commentary pri="10" cond="_GOALS0_ + _GOALS1_ = 0">Die Zuschauer sind eher unzufrieden mit dem _RE_</commentary>
   </event>
 
   <event>
@@ -258,12 +266,12 @@
     <commentary cond="_GD_ > 2">_TL_ wurde regelrecht auseinandergenommen in der ersten Hälfte</commentary>
     <commentary cond="_GOALS0_ + _GOALS1_ = 1">In der zweiten Hälfte können schon ein paar Törchen mehr kommen</commentary>
     <commentary cond="_GD_ = 0 and _GOALS1_ > 0">Ein enges Spiel in der ersten Hälfte</commentary>
-    <commentary cond="_SHOTS0_ > _SHOTS1_ + 3 or _SHOTS1_ > _SHOTS0_ + 3 and _TWN_ = [_SHOTS1_ > _SHOTS0_]">_TW_ beherrscht das Spiel und führt verdient _RE_ zur Halbzeit</commentary>
-    <commentary cond="_SHOTS0_ > _SHOTS1_ + 3 or _SHOTS1_ > _SHOTS0_ + 3 and _GD_ = 0">_T[_SHOTS1_ > _SHOTS0_]_ beherrscht das Spiel, kann aber nur ein _RE_ vorweisen bislang</commentary>
-    <commentary cond="_SHOTS0_ > _SHOTS1_ + 3 or _SHOTS1_ > _SHOTS0_ + 3 and _TWN_ = [_SHOTS1_ < _SHOTS0_]">_T[_SHOTS1_ > _SHOTS0_]_ beherrscht das Spiel, aber _TW_ nutzt seine Chancen einfach besser</commentary>
-    <commentary cond="_POSS0_ > 58 or _POSS1_ > 58 and _GD_ = 0">_T[_POSS1_ G _POSS0_]_ beherrscht das Spiel mit _POSS[_POSS1_ > _POSS0_]_ % Ballbesitz, dennoch steht es _RE_</commentary>
-    <commentary cond="_POSS0_ > 58 or _POSS1_ > 58 and [_POSS1_ > _POSS0_] = _TWN_ ">_TW_ beherrscht das Spiel klar und führt _RE_</commentary>
-    <commentary cond="_POSS0_ > 58 or _POSS1_ > 58 and [_POSS1_ > _POSS0_] = _TLN_ ">_TL_ hat nur _POSS[_POSS1_ L _POSS0_]_ % Ballbesitz, führt aber _RE_ zur Halbzeit</commentary>
+    <commentary cond="_SHOTS[_SHOTS1_ > _SHOTS0_]_ > _SHOTS[_SHOTS1_ < _SHOTS0_]_ + 3 and _TWN_ = [_SHOTS1_ > _SHOTS0_]">_TW_ beherrscht das Spiel und führt verdient _RE_ zur Halbzeit</commentary>
+    <commentary cond="_SHOTS[_SHOTS1_ > _SHOTS0_]_ > _SHOTS[_SHOTS1_ < _SHOTS0_]_ + 3 and _GD_ = 0">_T[_SHOTS1_ > _SHOTS0_]_ beherrscht das Spiel, kann aber nur ein _RE_ vorweisen bislang</commentary>
+    <commentary cond="_SHOTS[_SHOTS1_ > _SHOTS0_]_ > _SHOTS[_SHOTS1_ < _SHOTS0_]_ + 3 and _TWN_ = [_SHOTS1_ < _SHOTS0_]">_T[_SHOTS1_ > _SHOTS0_]_ beherrscht das Spiel, aber _TW_ nutzt seine Chancen einfach besser</commentary>
+    <commentary cond="_POSS[_POSS1_ > _POSS0_]_ > 58 and _GD_ = 0">_T[_POSS1_ G _POSS0_]_ beherrscht das Spiel mit _POSS[_POSS1_ > _POSS0_]_ % Ballbesitz, dennoch steht es _RE_</commentary>
+    <commentary cond="_POSS[_POSS1_ > _POSS0_]_ > 58 and [_POSS1_ > _POSS0_] = _TWN_ ">_TW_ beherrscht das Spiel klar und führt _RE_</commentary>
+    <commentary cond="_POSS[_POSS1_ > _POSS0_]_ > 58 and [_POSS1_ > _POSS0_] = _TLN_ ">_TW_ hat nur _POSS[_POSS1_ L _POSS0_]_ % Ballbesitz, führt aber _RE_ zur Halbzeit</commentary>
   </event>
 
   <event>
@@ -335,25 +343,38 @@
     <commentary>Freistoß: _P0_ schießt aus großer Entfernung</commentary>
     <commentary>Freistoß: _P0_ schlenzt den Ball über die Mauer</commentary>
   </event>
+
   <event>
     <name>lost_possession</name>
-    <commentary>_P1_ ersprintet den Ball aber _P0_ grätscht sauber</commentary>
+    <commentary>_P1_ ersprintet den Ball, aber _P0_ grätscht sauber</commentary>
     <commentary>_P0_ nimmt _P1_ den Ball mit einer sauberen Grätsche ab</commentary>
     <commentary>_P1_ kontrolliert den Ball schlecht, _P0_ kann ihn erobern</commentary>
     <commentary>_P0_ erobert mit gutem Körpereinsatz den Ball</commentary>
+    <commentary>_P0_ erobert den Ball</commentary>
+    <commentary>_P1_ rutscht der Ball über den Spann, _P0_ bekommt ihn</commentary>
+    <commentary>_P1_ springt der Ball weg</commentary>
+    <commentary>_P1_ stoppt den Ball unsauber, er landet bei _P0_</commentary>
   </event>
+
   <event>
     <name>own_goal</name>
     <commentary>Rückpass von _P0_... oh nein, der Torwart verfehlt ihn! Eigentor!</commentary>
     <commentary>Dieses Mißverständnis wurde mit einem Tor bezahlt</commentary>
     <commentary>Oh nein, der Ball springt gegen _P0_ und ins Netz</commentary>
+    <commentary>Eigentor durch _P0_, es steht damit _RE_</commentary>
     <commentary>Ein Billiardball im 5-Meterraum trifft _P0_ und rollt über die Linie</commentary>
+    <commentary cond="_GOALS[1 - _TT_]_ = _GOALS_TT__ - 1">Eigentor! _T[1 - _TT_]_ geht in Führung!</commentary>
+    <commentary cond="_GOALS[1 - _TT_]_ = _GOALS_TT__ + 1">Durch ein Eigentor von _P0_ geht _T[1 - _TT_]_ in Führung!</commentary>
+    <commentary cond="_GOALS[1 - _TT_]_ = _GOALS_TT__ - 1">_P0_ schießt ein Eigentor, _T[1 - _TT_]_ ist wieder dran!</commentary>
+    <commentary cond="_GOALS[1 - _TT_]_ < _GOALS_TT__ - 1">_P0_ schießt ein Eigentor, aber ob das _T[1 - _TT_]_ noch hilft?</commentary>
+    <commentary cond="_GD_ = 0">Das Eigentor von _P0_ bringt _T[1 - _TT_]_ den Ausgleich</commentary>
   </event>
+
   <event>
     <name>scoring_chance</name>
     <commentary>_P0_ schießt ins lange Eck</commentary>
     <commentary>_P0_ lässt zwei Verteiger stehen und versetzt den Torwart</commentary>
-    <commentary>_P0_ verspringt der Ball aber er sein Schuss fliegt Richtung Tor </commentary>
+    <commentary>_P0_ verspringt der Ball aber, sein Schuss fliegt Richtung Tor </commentary>
     <commentary>_P0_ zieht zur Mitte und schießt</commentary>
     <commentary>_P1_ versucht es einfach aus 25 Metern</commentary>
     <commentary>_P0_ dribbelt im 16er, dreht sich und schießt</commentary>
@@ -364,47 +385,84 @@
     <commentary>_P0_ dreht sich um die eigene Achse und schießt</commentary>
     <commentary>Fallrückzieher von _P0_!</commentary>
     <commentary>_P0_ nimmt Fahrt auf und schießt!</commentary>
+    <commentary cond="_GD_ = 0">_P0_ hat die Chance zum Führungstreffer</commentary>
+    <commentary cond="_GD_ > 0 and _GD_ < 3 and _TT_ = _TWN_">_P0_ kann die Führung ausbauen</commentary>
+    <commentary cond="_GD_ > 0 and _TT_ = _TWN_">_P0_ kann auf [_GOALS_TT__ + 1] : _GOALS[1 - _TT_]_ erhöhen</commentary>
+    <commentary cond="_GD_ = 1 and _TT_ = _TLN_">_P0_ hat den Ausgleich auf dem Fuß</commentary>
+    <commentary cond="_GD_ = 2 and _TT_ = _TLN_">_P0_ kann den Anschlusstreffer erzielen</commentary>
+    <commentary cond="_MT_ < 5">_P0_ hat vielleicht die letzte Chance des Spiels</commentary>
   </event>
+
   <event>
     <name>temp_injury</name>
     <commentary>_P0_ ist leicht angeschlagen, kann aber weitermachen</commentary>
     <commentary>_P0_ hat eine Platzwunde, aber sie wird getackert und er kann weiterspielen</commentary>
     <commentary>_P0_ hat einen Krampf, spielt weiter</commentary>
+    <commentary>Leichte Blessur bei _P0_</commentary>
+    <commentary>_P0_ humpelt etwas, macht aber weiter</commentary>
+    <commentary>_P0_ hält sich den Rücken, aber nach einer kurzen Pause spielt er weiter</commentary>
   </event>
+
   <event>
     <name>injury</name>
     <commentary>_P0_ scheint eine schwere Verletzung davongetragen zu haben</commentary>
+    <commentary>_P0_ ist verletzt</commentary>
+    <commentary>_P0_ muss ausgewechselt werden</commentary>
+    <commentary>_P0_ kann nicht weiterspielen, muss raus</commentary>
+    <commentary>_P0_ muss mit einer Verletzung raus</commentary>
     <commentary>_P0_ wird wohl das Feld verlassen müssen, scheint eine Knöchelverletzung zu sein</commentary>
   </event>
+
   <event>
     <name>penalty</name>
     <commentary>_P0_ hat schon mal einen Elfer verschossen, hoffentlich trifft er diesmal</commentary>
     <commentary>_P0_ darf an den Elfmeterpunkt</commentary>
+    <commentary>_P0_ schießt den Elfer</commentary>
+    <commentary>_P0_ versucht sich aus 11 Metern</commentary>
+    <commentary>_P0_ schnappt sich den Ball und schießt den Elfer</commentary>
     <commentary>_P0_ übernimmt die Verantwortung und tritt den Elfmeter</commentary>
   </event>
+
   <event>
     <name>substitution</name>
     <commentary>_P1_ verlässt unter großem Applaus das Spielfeld, _P0_ ersetzt ihn</commentary>
     <commentary>_T_TT__ wechselt aus, _P0_ kommt für _P1_</commentary>
-    <commentary>_P1_ wird vom Platz gebuht und durch _P0_ ersetzt</commentary>
+    <commentary>_P0_ ersetzt _P1_</commentary>
+    <commentary>_P0_ kommt für _P1_</commentary>
+    <commentary>_P1_ geht raus, _P0_ darf ran</commentary>
+    <commentary cond="_GOALS_TT__ = 0 and _INJ_TT__ = 0">_P1_ wird vom Platz gebuht und durch _P0_ ersetzt</commentary>
   </event>
+
   <event>
     <name>send_off</name>
     <commentary>_P0_ wurde vom Platz gestellt</commentary>
     <commentary>_P0_ wird vorzeitig zum Duschen geschickt</commentary>
     <commentary>Der Referee schickt _P0_ zum Duschen</commentary>
     <commentary>Das Spiel ist vorbei für _P0_</commentary>
+    <commentary>Das reicht dem Referee, _P0_ muss raus</commentary>
+    <commentary>_P0_ muss vom Platz</commentary>
   </event>
+
   <event>
     <name>boost_change</name>
     <commentary>_T_TT__ hat den Boost auf _EX_ gestellt</commentary>
+    <commentary>_T_TT__ versucht es mit Boost _EX_</commentary>
+    <commentary>Boost ist jetzt _EX_ für _T_TT__</commentary>
   </event>
+
   <event>
     <name>structure_change</name>
     <commentary>_T_TT__ hat das System auf _EX_ umgestellt</commentary>
+    <commentary>_T_TT__ stellt um auf _EX_</commentary>
+    <commentary>_T_TT__ spielt ab sofort _EX_</commentary>
   </event>
+
   <event>
     <name>style_change</name>
     <commentary>_T_TT__ hat den Spielstil auf _EX_ umgestellt</commentary>
+    <commentary>_T_TT__s  Stil ist _EX_ jetzt</commentary>
+    <commentary>_T_TT__s  stellt auf _EX_ um</commentary>
+    <commentary>_T_TT__s  probiert es mit _EX_</commentary>
   </event>
+
 </lg_commentary>

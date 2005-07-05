@@ -16,6 +16,9 @@ gboolean
 lg_commentary_check_commentary(const LGCommentary *commentary, gchar *dest);
 
 gboolean
+query_lg_commentary_is_repetition(gint id);
+
+gboolean
 lg_commentary_replace_tokens(gchar *commentary_text);
 
 void

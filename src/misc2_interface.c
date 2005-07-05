@@ -576,6 +576,7 @@ create_window_contract (void)
   GtkWidget *hbox20;
   GtkWidget *image10;
   GtkWidget *label44;
+  GtkWidget *button_contract_cancel;
 
   window_contract = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_contract), 5);
@@ -691,11 +692,18 @@ create_window_contract (void)
   gtk_widget_show (label44);
   gtk_box_pack_start (GTK_BOX (hbox20), label44, FALSE, FALSE, 0);
 
+  button_contract_cancel = gtk_button_new_from_stock ("gtk-cancel");
+  gtk_widget_show (button_contract_cancel);
+  gtk_box_pack_start (GTK_BOX (hbox19), button_contract_cancel, FALSE, FALSE, 0);
+
   g_signal_connect ((gpointer) window_contract, "delete_event",
                     G_CALLBACK (on_window_contract_delete_event),
                     NULL);
   g_signal_connect ((gpointer) button_contract_offer, "clicked",
                     G_CALLBACK (on_button_contract_offer_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_contract_cancel, "clicked",
+                    G_CALLBACK (on_button_contract_cancel_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -719,6 +727,7 @@ create_window_contract (void)
   GLADE_HOOKUP_OBJECT (window_contract, hbox20, "hbox20");
   GLADE_HOOKUP_OBJECT (window_contract, image10, "image10");
   GLADE_HOOKUP_OBJECT (window_contract, label44, "label44");
+  GLADE_HOOKUP_OBJECT (window_contract, button_contract_cancel, "button_contract_cancel");
 
   return window_contract;
 }

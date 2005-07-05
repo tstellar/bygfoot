@@ -37,6 +37,7 @@
 #define cup_id_new (counters[COUNT_CUP_ID]++)
 #define league_id_new (counters[COUNT_LEAGUE_ID]++)
 #define fixture_id_new (counters[COUNT_FIX_ID]++)
+#define lg_commentary_id_new (counters[COUNT_LG_COMM_ID]++)
 
 /** Convenience abbreviation. */
 #define ligs country.leagues

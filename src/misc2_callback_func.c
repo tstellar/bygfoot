@@ -134,6 +134,8 @@ misc2_callback_contract_offer(void)
     gint value = 0;
     Player *pl = (Player*)statp;
 
+    gtk_widget_set_sensitive(lookup_widget(window.contract, "button_contract_cancel"), FALSE);
+
     for(i=0;i<4;i++)
     {
 	sprintf(buf, "radiobutton_contract%d", i + 1);

@@ -15,6 +15,9 @@ typedef struct
 	The higher the priority the higher the
 	probability that the commentary gets picked. */
     gint priority;
+    /** An id to keep track of already used commentaries in the
+	live game (so as not to use the same one too frequently). */
+    gint id;
 } LGCommentary;
 
 #endif

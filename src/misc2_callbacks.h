@@ -150,3 +150,7 @@ void
 on_button_transfer_later_clicked       (GtkButton       *button,
                                         gpointer         user_data);
 #endif
+
+void
+on_button_contract_cancel_clicked      (GtkButton       *button,
+                                        gpointer         user_data);

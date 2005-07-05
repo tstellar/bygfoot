@@ -162,12 +162,14 @@ cup_get_choose_team_league_cup(const CupChooseTeam *ct,
     else
     {
 	for(i=0;i<ligs->len;i++)
+	{
 	    if(strcmp(lig(i).sid->str, ct->sid->str) == 0)
 	    {
 		*league = &lig(i);
 		*cup = NULL;
 		break;
 	    }
+	}
 
 	for(i=0;i<cps->len;i++)
 	{
@@ -178,6 +180,13 @@ cup_get_choose_team_league_cup(const CupChooseTeam *ct,
 		break;
 	    }
 	}
+    }
+
+    if(*league == NULL && *cup == NULL)
+    {
+	g_warning("cup_get_choose_team_league_cup: no league nor cup found for chooseteam %s",
+		  ct->sid->str);
+	main_exit_program(EXIT_CHOOSE_TEAM_ERROR, NULL);
     }
 }
 

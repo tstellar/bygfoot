@@ -492,7 +492,7 @@ callback_offer_new_contract(gint idx)
 
     window_create(WINDOW_CONTRACT);
 
-    sprintf(buf, _("You are negotiating with %s about a new contract. Pay attention to what you're doing; if you don't come to terms with him within %d offers, he's going to leave your team after his current contract expires (unless you sell him).\nYour scout's recommendations are preset:"), pl->name->str,
+    sprintf(buf, _("You are negotiating with %s about a new contract. Pay attention to what you're doing; if you don't come to terms with him within %d offers, he's going to leave your team after his current contract expires (unless you sell him). You may only abort BEFORE making the first offer.\nYour scout's recommendations are preset:"), pl->name->str,
 	    const_int("int_contract_max_offers"));
     gtk_label_set_text(GTK_LABEL(lookup_widget(window.contract, "label_contract")), buf);
 
@@ -591,9 +591,13 @@ callback_show_player_list(gint type)
 	    break;
 	case SHOW_NEXT_LEAGUE:
 	    stat1 = league_cup_get_next_clid(stat1);
+	    while(stat1 >= ID_CUP_START && cup_from_clid(stat1)->teams->len == 0)
+		stat1 = league_cup_get_next_clid(stat1);
 	    break;
 	case SHOW_PREVIOUS_LEAGUE:
 	    stat1 = league_cup_get_previous_clid(stat1);
+	    while(stat1 >= ID_CUP_START && cup_from_clid(stat1)->teams->len == 0)
+		stat1 = league_cup_get_previous_clid(stat1);
 	    break;
     }
 

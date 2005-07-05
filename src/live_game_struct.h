@@ -132,7 +132,8 @@ typedef struct
     gint team, player, player2;
     /** The commentary for the event. */
     GString *commentary;
-
+    /** Id of the commentary. */
+    gint commentary_id;
 } LiveGameEvent;
 
 /** A struct representing a fraction of a live game. */

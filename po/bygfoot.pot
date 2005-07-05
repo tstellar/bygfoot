@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-03 12:53+0200\n"
+"POT-Creation-Date: 2005-07-05 20:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -133,11 +133,11 @@ msgid ""
 "You are negotiating with %s about a new contract. Pay attention to what "
 "you're doing; if you don't come to terms with him within %d offers, he's "
 "going to leave your team after his current contract expires (unless you sell "
-"him).\n"
+"him). You may only abort BEFORE making the first offer.\n"
 "Your scout's recommendations are preset:"
 msgstr ""
 
-#: src/callback_func.c:616
+#: src/callback_func.c:620
 #, c-format
 msgid ""
 "You want to fire %s. Since his contract expires in %.1f years, he demands a "
@@ -244,37 +244,37 @@ msgstr ""
 msgid "Contracts are disabled in this country definition."
 msgstr ""
 
-#: src/cup.c:790
+#: src/cup.c:799
 msgid " -- Second leg"
 msgstr ""
 
-#: src/cup.c:792
+#: src/cup.c:801
 msgid " -- First leg"
 msgstr ""
 
-#: src/cup.c:795
+#: src/cup.c:804
 msgid " -- Replay matches"
 msgstr ""
 
-#: src/cup.c:807
+#: src/cup.c:816
 msgid "Round robin"
 msgstr ""
 
 #. A cup stage, e.g. Last 32 when there are only 32 teams left.
-#: src/cup.c:815
+#: src/cup.c:824
 #, c-format
 msgid "Last %d"
 msgstr ""
 
-#: src/cup.c:818
+#: src/cup.c:827
 msgid "Final"
 msgstr ""
 
-#: src/cup.c:821
+#: src/cup.c:830
 msgid "Semi-final"
 msgstr ""
 
-#: src/cup.c:824
+#: src/cup.c:833
 msgid "Quarter-final"
 msgstr ""
 
@@ -626,15 +626,15 @@ msgstr ""
 msgid "_Help"
 msgstr ""
 
-#: src/interface.c:806 src/misc2_interface.c:1027
+#: src/interface.c:806 src/misc2_interface.c:1036
 msgid "About"
 msgstr ""
 
-#: src/interface.c:814 src/misc2_interface.c:1041
+#: src/interface.c:814 src/misc2_interface.c:1050
 msgid "Contributors"
 msgstr ""
 
-#: src/interface.c:822 src/misc2_interface.c:1067
+#: src/interface.c:822 src/misc2_interface.c:1076
 msgid "Help"
 msgstr ""
 
@@ -733,38 +733,38 @@ msgstr ""
 msgid "Next (W)"
 msgstr ""
 
-#: src/lg_commentary.c:522 src/team.c:500
+#: src/lg_commentary.c:499 src/team.c:500
 msgid "ALL OUT DEFEND"
 msgstr ""
 
-#: src/lg_commentary.c:525 src/team.c:502
+#: src/lg_commentary.c:502 src/team.c:502
 msgid "DEFEND"
 msgstr ""
 
-#: src/lg_commentary.c:528 src/team.c:504
+#: src/lg_commentary.c:505 src/team.c:504
 msgid "BALANCED"
 msgstr ""
 
-#: src/lg_commentary.c:531 src/team.c:506
+#: src/lg_commentary.c:508 src/team.c:506
 msgid "ATTACK"
 msgstr ""
 
-#: src/lg_commentary.c:534 src/team.c:508
+#: src/lg_commentary.c:511 src/team.c:508
 msgid "ALL OUT ATTACK"
 msgstr ""
 
 #. Boost value.
-#: src/lg_commentary.c:537 src/team.c:516
+#: src/lg_commentary.c:514 src/team.c:516
 msgid "ANTI"
 msgstr ""
 
 #. Boost value.
-#: src/lg_commentary.c:540 src/team.c:519
+#: src/lg_commentary.c:517 src/team.c:519
 msgid "OFF"
 msgstr ""
 
 #. Boost value.
-#: src/lg_commentary.c:543 src/team.c:522
+#: src/lg_commentary.c:520 src/team.c:522
 msgid "ON"
 msgstr ""
 
@@ -859,17 +859,17 @@ msgstr ""
 msgid "The structure value %d is invalid."
 msgstr ""
 
-#: src/misc2_callback_func.c:154
+#: src/misc2_callback_func.c:156
 #, c-format
 msgid "%s accepts your offer."
 msgstr ""
 
-#: src/misc2_callback_func.c:163
+#: src/misc2_callback_func.c:165
 #, c-format
 msgid "%s rejects your offer. You may still make %d offers."
 msgstr ""
 
-#: src/misc2_callback_func.c:170
+#: src/misc2_callback_func.c:172
 #, c-format
 msgid ""
 "%s rejects your offer and won't negotiate with you anymore. You should sell "
@@ -884,11 +884,11 @@ msgstr ""
 msgid "Your offer will be considered next week."
 msgstr ""
 
-#: src/misc2_callbacks.c:269
+#: src/misc2_callbacks.c:280
 msgid "You can't play Bygfoot without users!"
 msgstr ""
 
-#: src/misc2_callbacks.c:274
+#: src/misc2_callbacks.c:285
 #, c-format
 msgid "Remove user %s from the game?"
 msgstr ""
@@ -937,63 +937,63 @@ msgid "OK"
 msgstr ""
 
 #: src/misc2_interface.c:434 src/misc2_interface.c:521
-#: src/misc2_interface.c:1074 src/misc2_interface.c:1169
+#: src/misc2_interface.c:1083 src/misc2_interface.c:1178
 #: src/misc_interface.c:263 src/misc_interface.c:1018
 #: src/options_interface.c:978
 msgid "Esc"
 msgstr ""
 
-#: src/misc2_interface.c:603
+#: src/misc2_interface.c:604
 msgid "1 year"
 msgstr ""
 
-#: src/misc2_interface.c:611
+#: src/misc2_interface.c:612
 msgid "3 years"
 msgstr ""
 
-#: src/misc2_interface.c:619
+#: src/misc2_interface.c:620
 msgid "4 years"
 msgstr ""
 
-#: src/misc2_interface.c:627
+#: src/misc2_interface.c:628
 msgid "2 years"
 msgstr ""
 
-#: src/misc2_interface.c:690
+#: src/misc2_interface.c:691
 msgid "Make offer"
 msgstr ""
 
-#: src/misc2_interface.c:777
+#: src/misc2_interface.c:786
 msgid "Users -- click to remove"
 msgstr ""
 
-#: src/misc2_interface.c:792
+#: src/misc2_interface.c:801
 msgid "Click on a user to remove him from the game."
 msgstr ""
 
-#: src/misc2_interface.c:798
+#: src/misc2_interface.c:807
 msgid "Available teams"
 msgstr ""
 
-#: src/misc2_interface.c:834 src/misc_interface.c:190
+#: src/misc2_interface.c:843 src/misc_interface.c:190
 msgid "Add user"
 msgstr ""
 
-#: src/misc2_interface.c:910
+#: src/misc2_interface.c:919
 msgid "Debug"
 msgstr ""
 
-#: src/misc2_interface.c:917
+#: src/misc2_interface.c:926
 msgid ""
 "Bygfoot debug window. If you got here by accident, CLOSE IMMEDIATELY "
 "(otherwise your CPU will be destroyed by overheating)."
 msgstr ""
 
-#: src/misc2_interface.c:1157 src/misc_interface.c:994
+#: src/misc2_interface.c:1166 src/misc_interface.c:994
 msgid "Return"
 msgstr ""
 
-#: src/misc2_interface.c:1186
+#: src/misc2_interface.c:1195
 msgid "Decide later"
 msgstr ""
 
