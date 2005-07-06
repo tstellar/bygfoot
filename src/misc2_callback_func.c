@@ -96,7 +96,11 @@ misc2_callback_transfer_cpu_player(void)
 
     treeview_show_user_player_list();
     game_gui_set_main_window_header();
-    on_button_transfers_clicked(NULL, NULL);
+
+    if(week < transfer_get_deadline() || transfer_list->len > 0 )
+	on_button_transfers_clicked(NULL, NULL);
+    else
+	on_button_back_to_main_clicked(NULL, NULL);
 }
 
 /** Change the user team's structure to a value he's specified. */

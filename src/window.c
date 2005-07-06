@@ -197,14 +197,6 @@ window_show_menu_player(GdkEvent *event)
 
     gtk_menu_popup(GTK_MENU(window.menu_player), NULL, NULL, NULL, NULL, 
 		   ((GdkEventButton*)event)->button, gdk_event_get_time(event));
-
-    if(week >= transfer_get_deadline())
-    {
-	gtk_widget_set_sensitive(lookup_widget(window.menu_player,
-					       "player_menu_put_on_transfer_list"), FALSE);
-	gtk_widget_set_sensitive(lookup_widget(window.menu_player,
-					       "player_menu_remove_from_transfer_list"), FALSE);
-    }
 }
 
 /** Show the digits window with the labels and values set 

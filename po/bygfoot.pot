@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-05 20:34+0200\n"
+"POT-Creation-Date: 2005-07-06 17:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,38 +96,42 @@ msgid ""
 "The player is locked (the team owners are considering an offer currently)."
 msgstr ""
 
-#: src/callback_func.c:447
+#: src/callback_func.c:441 src/callbacks.c:161 src/transfer.c:457
+msgid "The transfer deadline is over."
+msgstr ""
+
+#: src/callback_func.c:453
 #, c-format
 msgid ""
 "You are making an offer for %s. Your scout's recommendations for fee and "
 "wage are preset."
 msgstr ""
 
-#: src/callback_func.c:450 src/callback_func.c:458
+#: src/callback_func.c:456 src/callback_func.c:464
 msgid "Fee"
 msgstr ""
 
-#: src/callback_func.c:451 src/callback_func.c:458 src/treeview.c:271
+#: src/callback_func.c:457 src/callback_func.c:464 src/treeview.c:271
 #: src/treeview.c:1807
 msgid "Wage"
 msgstr ""
 
-#: src/callback_func.c:455
+#: src/callback_func.c:461
 #, c-format
 msgid ""
 "You are making an offer for %s again. Your previous values for fee and wage "
 "are preset."
 msgstr ""
 
-#: src/callback_func.c:476
+#: src/callback_func.c:482
 msgid "You can't offer a new contract if the old one is still above 2 years."
 msgstr ""
 
-#: src/callback_func.c:481
+#: src/callback_func.c:487
 msgid "The player won't negotiate with you anymore."
 msgstr ""
 
-#: src/callback_func.c:495
+#: src/callback_func.c:501
 #, c-format
 msgid ""
 "You are negotiating with %s about a new contract. Pay attention to what "
@@ -137,7 +141,7 @@ msgid ""
 "Your scout's recommendations are preset:"
 msgstr ""
 
-#: src/callback_func.c:620
+#: src/callback_func.c:626
 #, c-format
 msgid ""
 "You want to fire %s. Since his contract expires in %.1f years, he demands a "
@@ -159,10 +163,6 @@ msgstr ""
 #: src/callbacks.c:153
 #, c-format
 msgid "Transfer deadline is Week %d"
-msgstr ""
-
-#: src/callbacks.c:161
-msgid "The transfer deadline is over."
 msgstr ""
 
 #: src/callbacks.c:170 src/callbacks.c:565 src/callbacks.c:582
@@ -854,22 +854,22 @@ msgstr ""
 msgid "Your player roster is full or you don't enough money."
 msgstr ""
 
-#: src/misc2_callback_func.c:114
+#: src/misc2_callback_func.c:118
 #, c-format
 msgid "The structure value %d is invalid."
 msgstr ""
 
-#: src/misc2_callback_func.c:156
+#: src/misc2_callback_func.c:160
 #, c-format
 msgid "%s accepts your offer."
 msgstr ""
 
-#: src/misc2_callback_func.c:165
+#: src/misc2_callback_func.c:169
 #, c-format
 msgid "%s rejects your offer. You may still make %d offers."
 msgstr ""
 
-#: src/misc2_callback_func.c:172
+#: src/misc2_callback_func.c:176
 #, c-format
 msgid ""
 "%s rejects your offer and won't negotiate with you anymore. You should sell "
@@ -893,7 +893,7 @@ msgstr ""
 msgid "Remove user %s from the game?"
 msgstr ""
 
-#: src/misc2_interface.c:71 src/window.c:453
+#: src/misc2_interface.c:71 src/window.c:445
 msgid "Job offer"
 msgstr ""
 
@@ -1082,7 +1082,7 @@ msgstr ""
 msgid "_Resume last game"
 msgstr ""
 
-#: src/misc_interface.c:409 src/window.c:483
+#: src/misc_interface.c:409 src/window.c:475
 msgid "Select font"
 msgstr ""
 
@@ -1691,7 +1691,7 @@ msgstr ""
 msgid "W  "
 msgstr ""
 
-#: src/transfer.c:437
+#: src/transfer.c:450
 #, c-format
 msgid "%s has been added to the transfer list for %d weeks."
 msgstr ""
@@ -1895,7 +1895,7 @@ msgstr ""
 msgid "Stadium"
 msgstr ""
 
-#: src/treeview.c:1250 src/window.c:296
+#: src/treeview.c:1250 src/window.c:288
 #, c-format
 msgid ""
 "Improvement in progress.\n"
@@ -2564,44 +2564,44 @@ msgstr ""
 msgid "All Files"
 msgstr ""
 
-#: src/window.c:306
+#: src/window.c:298
 msgid "No improvements currently in progress."
 msgstr ""
 
-#: src/window.c:375
+#: src/window.c:367
 #, c-format
 msgid "Welcome to Bygfoot %s"
 msgstr ""
 
-#: src/window.c:412
+#: src/window.c:404
 msgid "Erm..."
 msgstr ""
 
-#: src/window.c:431
+#: src/window.c:423
 msgid "Numbers..."
 msgstr ""
 
-#: src/window.c:442
+#: src/window.c:434
 msgid "Your stadium"
 msgstr ""
 
-#: src/window.c:475
+#: src/window.c:467
 msgid "Options"
 msgstr ""
 
-#: src/window.c:498
+#: src/window.c:490
 msgid "Contract offer"
 msgstr ""
 
-#: src/window.c:506
+#: src/window.c:498
 msgid "User management"
 msgstr ""
 
-#: src/window.c:529
+#: src/window.c:521
 msgid "Transfer offer"
 msgstr ""
 
-#: src/window.c:537
+#: src/window.c:529
 msgid "Sponsorship offers"
 msgstr ""
 

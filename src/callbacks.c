@@ -146,7 +146,7 @@ on_button_transfers_clicked            (GtkButton       *button,
 
     if(sett_int("int_opt_disable_transfers"))
 	game_gui_print_message(_("Transfers are disabled in this country definition."));
-    else if(week < transfer_get_deadline())
+    else if(week < transfer_get_deadline() || transfer_list->len > 0)
     {
 	stat0 = STATUS_SHOW_TRANSFER_LIST;
 	game_gui_print_message(_("Left click to make an offer. Right click to remove offer."));

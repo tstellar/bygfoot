@@ -436,6 +436,12 @@ callback_transfer_list_clicked(gint button, gint idx)
 	return;
     }
     
+    if(week >= transfer_get_deadline())
+    {
+	game_gui_print_message(_("The transfer deadline is over."));
+	return;
+    }
+    
     stat1 = STATUS_SHOW_TRANSFER_LIST;
     stat2 = idx;
     

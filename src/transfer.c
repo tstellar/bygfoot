@@ -1,3 +1,4 @@
+#include "callbacks.h"
 #include "cup.h"
 #include "finance.h"
 #include "free.h"
@@ -19,15 +20,19 @@ transfer_update(void)
 {
     gint i, j;
 
-    if(week > transfer_get_deadline() ||
-       sett_int("int_opt_disable_transfers"))
+    if((week > transfer_get_deadline() ||
+       sett_int("int_opt_disable_transfers")) &&
+       transfer_list->len == 0)
 	return;
 
-    if(week == transfer_get_deadline())
+    if(week >= transfer_get_deadline())
     {
 	for(i=transfer_list->len - 1;i>=0;i--)
-	    transfer_remove_player(i);
-	return;
+	    if(trans(i).offers->len == 0)
+		transfer_remove_player(i);
+
+	if(transfer_list->len == 0)
+	    return;
     }
 
     for(i=transfer_list->len - 1;i>=0;i--)
@@ -38,8 +43,12 @@ transfer_update(void)
 	    else if(transoff(i, j).status == TRANSFER_OFFER_REJECTED)
 		transoff(i, j).status = TRANSFER_OFFER_REJECTED2;
 
-    transfer_add_new_players();
-    transfer_add_cpu_offers();
+    if(week < transfer_get_deadline())
+    {
+	transfer_add_new_players();
+	transfer_add_cpu_offers();
+    }
+
     transfer_evaluate_offers();
 
     for(i=transfer_list->len - 1;i>=0;i--)
@@ -207,6 +216,8 @@ transfer_evaluate_offers(void)
 
 	    if(notify)
 		transfer_offers_notify(&trans(i), TRUE);
+	    else if(week >= transfer_get_deadline())
+		transfer_remove_player(i);
 	}
 }
 
@@ -431,19 +442,28 @@ transfer_add_remove_user_player(Player *pl)
 
     if(!query_transfer_player_is_on_list(pl))
     {
-	transfer_add_player(pl,
-			    (gint)rint(((gfloat)const_int("int_transfer_time_lower") +
-					(gfloat)const_int("int_transfer_time_upper")) / 2));
-	sprintf(buf, _("%s has been added to the transfer list for %d weeks."),
+	if(week < transfer_get_deadline())
+	{
+	    transfer_add_player(pl,
+				(gint)rint(((gfloat)const_int("int_transfer_time_lower") +
+					    (gfloat)const_int("int_transfer_time_upper")) / 2));
+	    sprintf(buf, _("%s has been added to the transfer list for %d weeks."),
 		pl->name->str, 
-		(gint)rint(((gfloat)const_int("int_transfer_time_lower") +
-			    (gfloat)const_int("int_transfer_time_upper")) / 2));
+		    (gint)rint(((gfloat)const_int("int_transfer_time_lower") +
+				(gfloat)const_int("int_transfer_time_upper")) / 2));
+	}
+	else
+	{
+	    game_gui_print_message(_("The transfer deadline is over."));
+	    return;
+	}
+
 	game_gui_print_message(buf);
     }
     else
 	transfer_remove_player_ptr(pl);
 
-    treeview_show_transfer_list(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")));
+    on_button_transfers_clicked(NULL, NULL);
 }
 
 /** Find out whether the current user has to do
