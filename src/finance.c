@@ -24,6 +24,11 @@ finance_update_user_weekly(User *user)
 	 const_float("float_finance_scout_factor2"),
 	 const_float("float_finance_scout_factor3"),
 	 const_float("float_finance_scout_factor4")};
+    gfloat yc_factor[4] =
+	{const_float("float_finance_yc_factor1"),
+	 const_float("float_finance_yc_factor2"),
+	 const_float("float_finance_yc_factor3"),
+	 const_float("float_finance_yc_factor4")};
 
     if(sett_int("int_opt_disable_finances"))
 	return;
@@ -46,6 +51,11 @@ finance_update_user_weekly(User *user)
     user->money_in[1][MON_IN_SPONSOR] += user->sponsor.benefit;
     user->sponsor.contract = MAX(user->sponsor.contract - 1, 0);
 
+    user->money -= (gint)rint((gfloat)user->sponsor.benefit * 
+			      (gfloat)user->youth_academy.percentage / 100);
+    user->money_out[1][MON_OUT_YA] -= (gint)rint((gfloat)user->sponsor.benefit * 
+						 (gfloat)user->youth_academy.percentage / 100);
+    
     if(user->counters[COUNT_USER_NEW_SPONSOR] > 1)
 	user->counters[COUNT_USER_NEW_SPONSOR]--;
     else if(user->sponsor.contract == 4 && 
@@ -73,6 +83,12 @@ finance_update_user_weekly(User *user)
     
     user->money_out[1][MON_OUT_SCOUT] -= (gint)(finance_wage_unit(tm) * scout_factor[user->scout % 10]);
     user->money -=  (gint)(finance_wage_unit(tm) * scout_factor[user->scout % 10]);
+
+    if(user->youth_academy.players->len > 0)
+    {
+	user->money_out[1][MON_OUT_YC] -= (gint)(finance_wage_unit(tm) * yc_factor[user->youth_academy.coach % 10]);
+	user->money -=  (gint)(finance_wage_unit(tm) * yc_factor[user->youth_academy.coach % 10]);
+    }
 
     user->debt = (gint)rint((gfloat)user->debt * (1 + const_float("float_finance_interest")));
 
@@ -155,8 +171,6 @@ finance_team_drawing_credit_loan(const Team *tm, gboolean loan)
 void
 finance_get_loan(gint value)
 {
-    gchar buf[SMALL];
-
     current_user.money += value;
     current_user.debt -= value;
 
@@ -164,11 +178,10 @@ finance_get_loan(gint value)
 	const_int("int_finance_payback_weeks") : 
 	current_user.counters[COUNT_USER_LOAN];    
 
-    sprintf(buf, _("You have %d weeks to pay back your loan."),
-	    current_user.counters[COUNT_USER_LOAN]); 
+    game_gui_print_message(_("You have %d weeks to pay back your loan."),
+			   current_user.counters[COUNT_USER_LOAN]); 
 
     on_menu_show_finances_activate(NULL, NULL);
-    game_gui_print_message(buf);
 }
 
 
@@ -177,7 +190,6 @@ finance_get_loan(gint value)
 void
 finance_pay_loan(gint value)
 {
-    gchar buf[SMALL];
     gint add = (gint)rint((gfloat)value / (gfloat)(-current_user.debt) * 
 			  (gfloat)const_int("int_finance_payback_weeks"));    
 
@@ -187,19 +199,18 @@ finance_pay_loan(gint value)
     if(current_user.debt == 0)
     {
 	current_user.counters[COUNT_USER_LOAN] = -1;
-	strcpy(buf, _("You are free from debt."));
+	game_gui_print_message(_("You are free from debt."));
     }
     else
     {
 	current_user.counters[COUNT_USER_LOAN] = 
 	    MIN(current_user.counters[COUNT_USER_LOAN] + add,
 		const_int("int_finance_payback_weeks"));
-	sprintf(buf, _("You have %d weeks to pay back the rest of your loan."),
-		current_user.counters[COUNT_USER_LOAN]);
+	game_gui_print_message(_("You have %d weeks to pay back the rest of your loan."),
+			       current_user.counters[COUNT_USER_LOAN]);
     }
 
     on_menu_show_finances_activate(NULL, NULL);
-    game_gui_print_message(buf);
 }
 
 /** Return the cost of a stadium improvement.

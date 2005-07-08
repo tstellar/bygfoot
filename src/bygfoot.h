@@ -124,6 +124,7 @@ typedef struct
 	*file_chooser,
 	*contract,
 	*menu_player,
+	*menu_youth,
 	*user_management,
 	*wdebug,
 	*help,

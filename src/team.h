@@ -54,9 +54,6 @@ team_get_pointers_from_array(const GArray *teams);
 Team*
 team_of_id(gint id);
 
-GPtrArray*
-team_get_player_pointers(const Team *tm);
-
 Fixture*
 team_get_fixture(const Team *tm, gboolean last_fixture);
 

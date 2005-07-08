@@ -60,6 +60,9 @@ void
 window_show_menu_player(GdkEvent *event);
 
 void
+window_show_menu_youth(GdkEvent *event);
+
+void
 window_live_set_spinbuttons(void);
 
 void

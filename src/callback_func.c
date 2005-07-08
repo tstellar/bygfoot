@@ -75,13 +75,13 @@ callback_player_clicked(gint idx, GdkEventButton *event)
 
     if(event->button == 1)
     {
-	if(selected_row[0] == -1)
+	if(selected_row == -1)
 	{
-	    selected_row[0] = idx;
+	    selected_row = idx;
 	    return;
 	}
 
-	player_swap(current_user.tm, selected_row[0],
+	player_swap(current_user.tm, selected_row,
 		    current_user.tm, idx);
 	if(opt_user_int("int_opt_user_swap_adapts") == 1 &&
 	   current_user.tm->structure !=
@@ -94,7 +94,7 @@ callback_player_clicked(gint idx, GdkEventButton *event)
 
 	game_gui_write_av_skills();
 
-	selected_row[0] = -1;
+	selected_row = -1;
 
 	treeview_show_user_player_list();
 	if(stat0 == STATUS_MAIN)
@@ -104,13 +104,18 @@ callback_player_clicked(gint idx, GdkEventButton *event)
     {
 	if(stat0 == STATUS_SHOW_TRANSFER_LIST)
 	{
-	    selected_row[0] = -1;
+	    selected_row = -1;
 	    transfer_add_remove_user_player(player_of_idx_team(current_user.tm, idx));
+	}
+	else if(stat0 == STATUS_SHOW_YA)
+	{
+	    selected_row = idx;
+	    on_menu_move_to_youth_academy_activate(NULL, NULL);
 	}
 	else
 	{
+	    selected_row = idx;
 	    window_show_menu_player((GdkEvent*)event);
-	    selected_row[0] = idx;
 	}
     }
 
@@ -423,9 +428,8 @@ callback_transfer_list_clicked(gint button, gint idx)
 	{
 	    if(team_is_user(tr->tm) != -1)
 	    {
-		sprintf(buf, _("User %s didn't consider your offer yet."),
+		game_gui_print_message(_("User %s didn't consider your offer yet."),
 			user_from_team(tr->tm)->name->str);
-		game_gui_print_message(buf);
 	    }
 	    else
 		callback_transfer_list_cpu(button, idx);
@@ -733,4 +737,30 @@ callback_show_player_team(void)
     stat2 = pl->team->clid;
 
     treeview_show_player_list_team(treeview_right, pl->team, current_user.scout % 10);    
+}
+
+/** Show the youth players of the current user. */
+void
+callback_show_youth_academy(void)
+{
+    gint i;
+    PlayerListAttribute attributes;
+
+    for(i=0;i<PLAYER_LIST_ATTRIBUTE_END;i++)
+	attributes.on_off[i] = 0;
+
+    attributes.on_off[PLAYER_LIST_ATTRIBUTE_NAME] =
+	attributes.on_off[PLAYER_LIST_ATTRIBUTE_POS] =
+	attributes.on_off[PLAYER_LIST_ATTRIBUTE_SKILL] =
+	attributes.on_off[PLAYER_LIST_ATTRIBUTE_FITNESS] =
+	attributes.on_off[PLAYER_LIST_ATTRIBUTE_STATUS] =
+	attributes.on_off[PLAYER_LIST_ATTRIBUTE_AGE] =
+	attributes.on_off[PLAYER_LIST_ATTRIBUTE_ETAL] = 1;
+
+    if(stat0 != STATUS_SHOW_YA)
+	game_gui_print_message(_("Right click to move players to and from the youth academy; left click for context menu."));
+
+    treeview_show_player_list(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")),
+			      player_get_pointers_from_array(current_user.youth_academy.players),
+			      attributes, FALSE);
 }

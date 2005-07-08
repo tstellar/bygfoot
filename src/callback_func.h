@@ -57,4 +57,7 @@ callback_show_next_opponent(void);
 void
 callback_show_player_team(void);
 
+void
+callback_show_youth_academy(void);
+
 #endif

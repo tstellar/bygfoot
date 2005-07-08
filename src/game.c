@@ -257,6 +257,13 @@ game_initialize(Fixture *fix)
 	usr(user_idx[0]).money += ticket_income;
 	usr(user_idx[0]).money_in[1][MON_IN_TICKET] += ticket_income;
 
+	usr(user_idx[0]).money -= 
+	    (gint)rint((gfloat)ticket_income *
+		       (gfloat)usr(user_idx[0]).youth_academy.percentage / 100);
+	usr(user_idx[0]).money_out[1][MON_OUT_YA] -= 
+	    (gint)rint((gfloat)ticket_income *
+		       (gfloat)usr(user_idx[0]).youth_academy.percentage / 100);
+
 	if(debug < 50)
 	{
 	    fix->teams[0]->stadium.safety -= 
@@ -279,6 +286,10 @@ game_initialize(Fixture *fix)
 		    g_array_index(fix->teams[i]->players, Player, j).career[PLAYER_VALUE_GAMES]++;
 		
 		    g_array_index(fix->teams[i]->players, Player, j).participation = TRUE;
+
+		    if(query_player_is_youth((&g_array_index(fix->teams[i]->players, Player, j))))
+			g_array_index(fix->teams[i]->players, Player, j).lsu +=
+			    const_float("float_youth_lsu_addition_match");
 		}
 	    }
 	}
@@ -629,7 +640,7 @@ game_substitute_player(Team *tm, gint player_number)
     {
 	game_gui_write_av_skills();
 	
-	selected_row[0] = -1;	
+	selected_row = -1;	
 	treeview_show_user_player_list();
     }
 
@@ -757,7 +768,7 @@ game_substitute_player_send_off(gint clid, Team *tm, gint player_number,
     {
 	game_gui_write_av_skills();
 	
-	selected_row[0] = -1;	
+	selected_row = -1;	
 	treeview_show_user_player_list();
     }
 }

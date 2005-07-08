@@ -248,7 +248,6 @@ on_menu_reset_players_activate         (GtkMenuItem     *menuitem,
 void
 on_menu_league_stats_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
-#endif
 
 gboolean
 on_button_quit_button_press_event      (GtkWidget       *widget,
@@ -265,5 +264,32 @@ on_menu_contributors_activate          (GtkMenuItem     *menuitem,
 
 void
 on_menu_user_show_coming_matches_activate
+                                        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_menu_show_youth_academy_activate    (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_menu_set_investment_activate        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+#endif
+
+void
+on_menu_move_to_youth_academy_activate (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_player_menu_move_to_youth_academy_activate
+                                        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_menu_youth_move_to_team_activate    (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_menu_youth_kick_out_of_academy_activate
                                         (GtkMenuItem     *menuitem,
                                         gpointer         user_data);

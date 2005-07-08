@@ -7,6 +7,7 @@
 #include "option_struct.h"
 #include "player_struct.h"
 #include "team_struct.h"
+#include "youth_academy_struct.h"
 
 /** Indices for the money_in array. */
 enum MonIn
@@ -24,6 +25,8 @@ enum MonOut
     MON_OUT_WAGE = 0,
     MON_OUT_PHYSIO,
     MON_OUT_SCOUT,
+    MON_OUT_YC,
+    MON_OUT_YA,
     MON_OUT_JOURNEY,
     MON_OUT_COMPENSATIONS,
     MON_OUT_TRANSFERS,
@@ -121,8 +124,10 @@ typedef struct
     gint scout, physio;
     /** The variable for the latest user live game. @see #Game */
     LiveGame live_game;
-
+    /** Sponsor of the user. */
     UserSponsor sponsor;
+    /** Youth academy of the user. */
+    YouthAcademy youth_academy;
 } User;
 
 enum EventType

@@ -438,8 +438,6 @@ transfer_remove_offer(gint idx, const Team *tm)
 void
 transfer_add_remove_user_player(Player *pl)
 {
-    gchar buf[SMALL];
-
     if(!query_transfer_player_is_on_list(pl))
     {
 	if(week < transfer_get_deadline())
@@ -447,18 +445,16 @@ transfer_add_remove_user_player(Player *pl)
 	    transfer_add_player(pl,
 				(gint)rint(((gfloat)const_int("int_transfer_time_lower") +
 					    (gfloat)const_int("int_transfer_time_upper")) / 2));
-	    sprintf(buf, _("%s has been added to the transfer list for %d weeks."),
-		pl->name->str, 
-		    (gint)rint(((gfloat)const_int("int_transfer_time_lower") +
-				(gfloat)const_int("int_transfer_time_upper")) / 2));
+	    game_gui_print_message(_("%s has been added to the transfer list for %d weeks."),
+				   pl->name->str, 
+				   (gint)rint(((gfloat)const_int("int_transfer_time_lower") +
+					       (gfloat)const_int("int_transfer_time_upper")) / 2));
 	}
 	else
 	{
 	    game_gui_print_message(_("The transfer deadline is over."));
 	    return;
 	}
-
-	game_gui_print_message(buf);
     }
     else
 	transfer_remove_player_ptr(pl);

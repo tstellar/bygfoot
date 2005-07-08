@@ -153,7 +153,8 @@ game_gui_live_game_set_hscale(const LiveGameUnit *unit, GtkHScale *hscale)
 /** Look up the widgets in the main window. */
 void
 game_gui_get_radio_items(GtkWidget **style, GtkWidget **scout,
-			 GtkWidget **physio, GtkWidget **boost)
+			 GtkWidget **physio, GtkWidget **boost,
+			 GtkWidget **yc)
 {
     style[0] = lookup_widget(window.main, "menu_all_out_defend");
     style[1] = lookup_widget(window.main, "menu_defend");
@@ -174,6 +175,11 @@ game_gui_get_radio_items(GtkWidget **style, GtkWidget **scout,
     boost[0] = lookup_widget(window.main, "menu_boost_anti");
     boost[1] = lookup_widget(window.main, "menu_boost_off");
     boost[2] = lookup_widget(window.main, "menu_boost_on");
+
+    yc[0] = lookup_widget(window.main, "menu_yc_best");
+    yc[1] = lookup_widget(window.main, "menu_yc_good");
+    yc[2] = lookup_widget(window.main, "menu_yc_average");
+    yc[3] = lookup_widget(window.main, "menu_yc_bad");
 }
 
 /** Set information like season, user, week etc. into the appropriate labels. */
@@ -247,14 +253,16 @@ game_gui_write_av_skills(void)
 void
 game_gui_write_radio_items(void)
 {
-    GtkWidget *style[5], *scout[4], *physio[4], *boost[3];
+    GtkWidget *style[5], *scout[4], *physio[4], 
+	*boost[3], *yc[4];
 
-    game_gui_get_radio_items(style, scout, physio, boost);
+    game_gui_get_radio_items(style, scout, physio, boost, yc);
 
     gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(style[current_user.tm->style + 2]), TRUE);
     gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(scout[current_user.scout % 10]), TRUE);
     gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(physio[current_user.physio % 10]), TRUE);
     gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(boost[current_user.tm->boost + 1]), TRUE);
+    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(yc[current_user.youth_academy.coach % 10]), TRUE);
 }
 
 /** Set the appropriate images for the style and boost meters. */
@@ -291,12 +299,13 @@ void
 game_gui_read_radio_items(GtkWidget *widget)
 {
     gint i;
-    GtkWidget *boost[3];
+    GtkWidget *boost[3], *yc[4];
     GtkWidget *style[5], *scout[4], *physio[4];
     gint old_scout = current_user.scout,
-	old_physio = current_user.physio;
+	old_physio = current_user.physio,
+	old_yc = current_user.youth_academy.coach;
 
-    game_gui_get_radio_items(style, scout, physio, boost);
+    game_gui_get_radio_items(style, scout, physio, boost, yc);
 
     for(i=0;i<3;i++)
 	if(widget == boost[i])
@@ -321,6 +330,10 @@ game_gui_read_radio_items(GtkWidget *widget)
     for(i=0;i<4;i++)
 	if(widget == physio[i])
 	    current_user.physio = 100 + i * 10 + old_physio % 10;
+
+    for(i=0;i<4;i++)
+	if(widget == yc[i])
+	    current_user.youth_academy.coach = 100 + i * 10 + old_yc % 10;
     
     if(math_get_place(current_user.scout, 2) == old_scout % 10)
 	current_user.scout = old_scout % 10;
@@ -328,8 +341,12 @@ game_gui_read_radio_items(GtkWidget *widget)
     if(math_get_place(current_user.physio, 2) == old_physio % 10)
 	current_user.physio = old_physio % 10;
 
+    if(math_get_place(current_user.youth_academy.coach, 2) == old_yc % 10)
+	current_user.youth_academy.coach = old_yc % 10;
+
     if(old_scout != current_user.scout ||
-       old_physio != current_user.physio)
+       old_physio != current_user.physio ||
+       old_yc != current_user.youth_academy.coach)
 	game_gui_print_message(_("Next week you'll fire him and hire a new one."));
 
     game_gui_write_meters();
@@ -365,14 +382,22 @@ game_gui_show_main(void)
 	user_show_sponsor_continue();
 }
 
-/** Print a message into the main window entry. */
+
+/** Print a message in the message area. */
 gboolean
-game_gui_print_message(gchar *text)
+game_gui_print_message(gchar *format, ...)
 {
+    gchar text[SMALL];
+    va_list args;
+     
+    va_start (args, format);
+    g_vsprintf(text, format, args);
+    va_end (args);
+
     if(g_str_has_prefix(text, "___"))
     {
 	gtk_entry_set_text(GTK_ENTRY(lookup_widget(window.main, "entry_message")), text + 3);
-	g_free(text);
+	g_free(format);
     }
     else
 	gtk_entry_set_text(GTK_ENTRY(lookup_widget(window.main, "entry_message")), text);
@@ -388,9 +413,17 @@ game_gui_print_message(gchar *text)
 
 /** Print a message after some seconds of delay. */
 void
-game_gui_print_message_with_delay(gchar *text)
+game_gui_print_message_with_delay(const gchar *format, ...)
 {
-    gchar *local_text = g_strdup_printf("___%s", text);
+    gchar text[SMALL];
+    gchar *local_text = NULL;
+    va_list args;
+     
+    va_start (args, format);
+    g_vsprintf(text, format, args);
+    va_end (args);
+
+    local_text = g_strdup_printf("___%s", text);
 
     g_timeout_add(const_int("int_game_gui_message_delay") * 1000,
 		  (GSourceFunc)game_gui_print_message, local_text);
@@ -509,15 +542,22 @@ game_gui_set_main_window_sensitivity(gboolean value)
 /** Show a window with a warning.
     @param text The text to show in the window. */
 void
-game_gui_show_warning(gchar *text)
+game_gui_show_warning(const gchar *format, ...)
 {
+    gchar text[SMALL];
+    va_list args;
+     
+    va_start (args, format);
+    g_vsprintf(text, format, args);
+    va_end (args);
+
     if(opt_int("int_opt_prefer_messages") &&
        window.main != NULL)
 	game_gui_print_message(text);
     else
     {
-	window_create(WINDOW_WARNING);	
-	gtk_label_set_text(GTK_LABEL(lookup_widget(window.warning, "label_warning")), text);    
+	window_create(WINDOW_WARNING);
+	gtk_label_set_text(GTK_LABEL(lookup_widget(window.warning, "label_warning")), text);
     }
 }
 
@@ -598,7 +638,6 @@ game_gui_write_check_items(void)
 void
 game_gui_read_check_items(GtkWidget *widget)
 {
-    gchar buf[SMALL];
     GtkWidget *menu_job_offers = 
 	lookup_widget(window.main, "menu_job_offers"),
 	*menu_live_game = lookup_widget(window.main, "menu_live_game"),
@@ -607,28 +646,26 @@ game_gui_read_check_items(GtkWidget *widget)
     if(widget == menu_job_offers)
     {
 	opt_user_set_int("int_opt_user_show_job_offers", !opt_user_int("int_opt_user_show_job_offers"));
-	sprintf(buf, _("Job offers set to %s."),
-		team_attribute_to_char(TEAM_ATTRIBUTE_BOOST, 
-				       opt_user_int("int_opt_user_show_job_offers")));
+	game_gui_print_message(_("Job offers set to %s."),
+			       team_attribute_to_char(TEAM_ATTRIBUTE_BOOST, 
+						      opt_user_int("int_opt_user_show_job_offers")));
     }
     else if(widget == menu_live_game)
     {
 	opt_user_set_int("int_opt_user_show_live_game", !opt_user_int("int_opt_user_show_live_game"));
-	sprintf(buf, _("Live game set to %s."),
-		team_attribute_to_char(TEAM_ATTRIBUTE_BOOST, 
-				       opt_user_int("int_opt_user_show_live_game")));
+	game_gui_print_message(_("Live game set to %s."),
+			       team_attribute_to_char(TEAM_ATTRIBUTE_BOOST, 
+						      opt_user_int("int_opt_user_show_live_game")));
     }
     else if(widget == menu_overwrite)
     {
 	opt_set_int("int_opt_save_will_overwrite", !opt_int("int_opt_save_will_overwrite"));
-	sprintf(buf, _("Overwrite set to %s."),
-		team_attribute_to_char(TEAM_ATTRIBUTE_BOOST, 
-				       opt_int("int_opt_save_will_overwrite")));
+	game_gui_print_message(_("Overwrite set to %s."),
+			       team_attribute_to_char(TEAM_ATTRIBUTE_BOOST, 
+						      opt_int("int_opt_save_will_overwrite")));
     }
     else
 	g_warning("game_gui_read_check_items: unknown widget.");
-
-    game_gui_print_message(buf);
 }
 
 /** Set the appropriate text into the labels in the help window. 

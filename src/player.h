@@ -13,6 +13,8 @@ enum PlayerCompareAttrib
     PLAYER_COMPARE_ATTRIBUTE_END
 };
 
+#define query_player_is_youth(pl) (pl->age <= const_float("float_player_age_lower"))
+
 Player
 player_new(Team *tm, gfloat average_skill, gboolean new_id);
 
@@ -86,10 +88,10 @@ gint
 player_games_goals_get(const Player *pl, gint clid, gint type);
 
 void
-player_update_weekly(Team *tm, gint idx);
+player_update_weekly(Player *pl);
 
 void
-player_remove_contract(Team *tm, gint idx);
+player_remove_contract(Player *pl);
 
 void
 player_update_skill(Player *pl);
@@ -129,5 +131,14 @@ player_get_last_name(const gchar *name);
 
 void
 player_complete_def(Player *pl, gfloat average_skill);
+
+GPtrArray*
+player_get_pointers_from_array(const GArray *players);
+
+void
+player_move_to_ya(gint idx);
+
+void
+player_move_from_ya(gint idx);
 
 #endif

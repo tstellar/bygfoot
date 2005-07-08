@@ -59,6 +59,9 @@ void
 free_g_string_array(GPtrArray **array);
 
 void
+free_player_array(GArray **players);
+
+void
 free_player(Player *pl);
 
 void

@@ -19,7 +19,6 @@ void
 misc2_callback_transfer_user_player(void)
 {
     Team *new_team = transoff(stat2, 0).tm;
-    gchar buf[SMALL];
 
     if(team_is_user(new_team) != -1)
     {
@@ -44,13 +43,12 @@ misc2_callback_transfer_user_player(void)
 	}
 	else
 	{
-	    sprintf(buf, _("%s couldn't afford to buy %s or his roster was full."),
-		    user_from_team(new_team)->name->str, 
-		    player_of_id_team(trans(stat2).tm, trans(stat2).id)->name->str);
-	    game_gui_show_warning(buf);
-	    sprintf(buf, _("You didn't have enough money to buy %s or your roster was full."),
-		    player_of_id_team(trans(stat2).tm, trans(stat2).id)->name->str);
-	    user_event_add(user_from_team(new_team), EVENT_TYPE_WARNING, -1, -1, NULL, buf);
+	    game_gui_show_warning(_("%s couldn't afford to buy %s or his roster was full."),
+				  user_from_team(new_team)->name->str, 
+				  player_of_id_team(trans(stat2).tm, trans(stat2).id)->name->str);
+	    user_event_add(user_from_team(new_team), EVENT_TYPE_WARNING, -1, -1, NULL, 
+			   _("You didn't have enough money to buy %s or your roster was full."),
+			   player_of_id_team(trans(stat2).tm, trans(stat2).id)->name->str);
 	    g_array_remove_index(trans(stat2).offers, 0);
 	    if(trans(stat2).offers->len > 0 && 
 	       transoff(stat2, 0).status == TRANSFER_OFFER_NOT_CONSIDERED)
@@ -107,7 +105,6 @@ misc2_callback_transfer_cpu_player(void)
 gboolean
 misc2_callback_change_structure(gint structure)
 {
-    gchar buf[SMALL];
     gint poss_struct = team_find_appropriate_structure(current_user.tm);
 
     if(math_get_place(structure, 1) + math_get_place(structure, 2) + 
@@ -115,8 +112,7 @@ misc2_callback_change_structure(gint structure)
        math_get_place(poss_struct, 1) + math_get_place(poss_struct, 2) + 
        math_get_place(poss_struct, 3))
     {
-	sprintf(buf, _("The structure value %d is invalid."), structure);
-	game_gui_show_warning(buf);
+	game_gui_show_warning(_("The structure value %d is invalid."), structure);
 	return FALSE;
     }
 
@@ -157,25 +153,20 @@ misc2_callback_contract_offer(void)
 	    {
 		pl->contract += (i + 1);
 		pl->wage = value;
-		sprintf(buf, _("%s accepts your offer."), pl->name->str);
-		game_gui_show_warning(buf);
+		game_gui_show_warning(_("%s accepts your offer."), pl->name->str);
 		window_destroy(&window.contract, FALSE);
 	    }
 	    else
 	    {
 		pl->offers++;
 		if(pl->offers < const_int("int_contract_max_offers"))
-		{
-		    sprintf(buf, _("%s rejects your offer. You may still make %d offers."), 
-			    pl->name->str, 
-			    const_int("int_contract_max_offers") - pl->offers);
-		    game_gui_show_warning(buf);
-		}
+		    game_gui_show_warning(_("%s rejects your offer. You may still make %d offers."), 
+					  pl->name->str, 
+					  const_int("int_contract_max_offers") - pl->offers);
 		else
 		{
-		    sprintf(buf, _("%s rejects your offer and won't negotiate with you anymore. You should sell him before his contract expires (he'll simply leave your team otherwise)."), 
-			    pl->name->str);
-		    game_gui_show_warning(buf);
+		    game_gui_show_warning(_("%s rejects your offer and won't negotiate with you anymore. You should sell him before his contract expires (he'll simply leave your team otherwise)."), 
+					  pl->name->str);
 		    window_destroy(&window.contract, FALSE);
 		}
 	    }

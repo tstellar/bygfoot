@@ -17,6 +17,7 @@
 #include "treeview.h"
 #include "user.h"
 #include "window.h"
+#include "youth_academy.h"
 
 /** Create a new user with default values. */
 User
@@ -100,6 +101,8 @@ user_set_up_team(User *user)
     
     user_set_up_finances(user);
     user_set_up_counters(user);
+
+    user->youth_academy = youth_academy_new(user->tm);
 
     user->counters[COUNT_USER_NEW_SPONSOR] = (sett_int("int_opt_disable_finances")) ? -5 : 1;
 }
@@ -245,7 +248,6 @@ user_from_team(const Team *tm)
 void
 user_job_offer(User *user)
 {
-    gchar buf[SMALL];
     Team *new_team = NULL;
 
     if(math_rnd(0, 1) > const_float("float_user_success_counter_check") ||
@@ -255,8 +257,8 @@ user_job_offer(User *user)
     if(user->counters[COUNT_USER_SUCCESS] < -(gfloat)const_int("int_user_success_offer_limit") * 0.9 &&
        !user->counters[COUNT_USER_WARNING])
     {
-	sprintf(buf, _("The owners of %s are not satisfied with the recent performance of the team. There are rumours they're looking for a new manager."), user->tm->name->str);
-	user_event_add(user, EVENT_TYPE_WARNING, -1, -1, NULL, buf);
+	user_event_add(user, EVENT_TYPE_WARNING, -1, -1, NULL,
+		       _("The owners of %s are not satisfied with the recent performance of the team. There are rumours they're looking for a new manager."), user->tm->name->str);
 	user->counters[COUNT_USER_WARNING] = 1;
 	return;
     }
@@ -354,18 +356,25 @@ user_event_new(void)
 /** Add an event with the specified values to the event array of the user. */
 void
 user_event_add(User *user, gint type, gint value1, gint value2, 
-	       gpointer value_pointer, gchar *value_string)
+	       gpointer value_pointer, gchar *format, ...)
 {
     Event new = user_event_new();
-
+    gchar text[SMALL];
+    va_list args;
+     
     new.user = user;
     new.type = type;
     new.value1 = value1;
     new.value2 = value2;
     new.value_pointer = value_pointer;
     
-    if(value_string != NULL)
-	new.value_string = g_string_new(value_string);
+    if(format != NULL)
+    {
+	va_start (args, format);
+	g_vsprintf(text, format, args);
+	va_end (args);
+	new.value_string = g_string_new(text);
+    }
     else
 	new.value_string = NULL;    
 
@@ -403,9 +412,8 @@ user_event_show_next(void)
 	    g_warning("user_event_show_next: unknown event type %d\n", event->type);
 	    break;
 	case EVENT_TYPE_PLAYER_LEFT:
-	    sprintf(buf, _("%s has left your team because his contract expired."),
+	    game_gui_show_warning(_("%s has left your team because his contract expired."),
 		    event->value_string->str);
-	    game_gui_show_warning(buf);
 	    break;
 	case EVENT_TYPE_WARNING:
 	    game_gui_show_warning(event->value_string->str);
@@ -427,59 +435,50 @@ user_event_show_next(void)
 	    break;
 	case EVENT_TYPE_OVERDRAW:
 	    if(event->value1 == 1)
-		sprintf(buf, _("You have overdrawn your bank account. The team owners give you %d weeks to get above your drawing credit limit."), const_int("int_finance_overdraw_positive"));
+		game_gui_show_warning(_("You have overdrawn your bank account. The team owners give you %d weeks to get above your drawing credit limit."), const_int("int_finance_overdraw_positive"));
 	    else
-		sprintf(buf, _("You have overdrawn your bank account once again. Bear in mind that after the fourth time you get fired.\nThe team owners give you %d weeks to get above your drawing credit limit."), const_int("int_finance_overdraw_positive"));
-	    game_gui_show_warning(buf);
+		game_gui_show_warning(_("You have overdrawn your bank account once again. Bear in mind that after the fourth time you get fired.\nThe team owners give you %d weeks to get above your drawing credit limit."), const_int("int_finance_overdraw_positive"));
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_USER:
-	    sprintf(buf, _("Have a look at the transfer list, there's an offer for %s."),
+	    game_gui_show_warning(_("Have a look at the transfer list, there's an offer for %s."),
 		    event->value_string->str);
-	    game_gui_show_warning(buf);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_CPU:
-	    sprintf(buf, _("Your offer for %s has been accepted. If you still want to buy him, go to the transfer list and left click on the player."),
+	    game_gui_show_warning(_("Your offer for %s has been accepted. If you still want to buy him, go to the transfer list and left click on the player."),
 		    event->value_string->str);
-	    game_gui_show_warning(buf);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_REJECTED_BETTER_OFFER:
 	    misc_print_grouped_int(event->value1, buf2);
 	    misc_print_grouped_int(event->value2, buf3);	    
-	    sprintf(buf, _("The owners of %s have rejected your offer (%s / %s) for %s. There was a better offer for the player than yours."), ((Team*)event->value_pointer)->name->str, buf2, buf3, event->value_string->str);
-	    game_gui_show_warning(buf);
+	    game_gui_show_warning(_("The owners of %s have rejected your offer (%s / %s) for %s. There was a better offer for the player than yours."), ((Team*)event->value_pointer)->name->str, buf2, buf3, event->value_string->str);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_REJECTED_FEE_WAGE:
 	    misc_print_grouped_int(event->value1, buf2);
 	    misc_print_grouped_int(event->value2, buf3);	    
-	    sprintf(buf, _("The owners of %s have rejected your offer (%s / %s) for %s. Neither the fee nor the wage you offered were acceptable, they say."), ((Team*)event->value_pointer)->name->str, buf2, buf3, event->value_string->str);
-	    game_gui_show_warning(buf);
+	    game_gui_show_warning(_("The owners of %s have rejected your offer (%s / %s) for %s. Neither the fee nor the wage you offered were acceptable, they say."), ((Team*)event->value_pointer)->name->str, buf2, buf3, event->value_string->str);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_REJECTED_FEE:
 	    misc_print_grouped_int(event->value1, buf2);
 	    misc_print_grouped_int(event->value2, buf3);	    
-	    sprintf(buf, _("The owners of %s have rejected your offer (%s / %s) for %s. The team owners weren't satisfied with the fee you offered."), ((Team*)event->value_pointer)->name->str, buf2, buf3, event->value_string->str);
-	    game_gui_show_warning(buf);
+	    game_gui_show_warning(_("The owners of %s have rejected your offer (%s / %s) for %s. The team owners weren't satisfied with the fee you offered."), ((Team*)event->value_pointer)->name->str, buf2, buf3, event->value_string->str);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_REJECTED_WAGE:
 	    misc_print_grouped_int(event->value1, buf2);
 	    misc_print_grouped_int(event->value2, buf3);	    
 	    /* A player from a team has rejected a transfer offer. */
-	    sprintf(buf, _("%s of %s has rejected your offer (%s / %s). He wasn't satisfied with the wage you offered."),
+	    game_gui_show_warning(_("%s of %s has rejected your offer (%s / %s). He wasn't satisfied with the wage you offered."),
 		    event->value_string->str,
 		    ((Team*)event->value_pointer)->name->str, buf2, buf3);
-	    game_gui_show_warning(buf);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_MONEY:
 	    /* Buy a player from a team. */
-	    sprintf(buf, _("You didn't have enough money to buy %s from %s."),
+	    game_gui_show_warning(_("You didn't have enough money to buy %s from %s."),
 		    event->value_string->str, ((Team*)event->value_pointer)->name->str);
-	    game_gui_show_warning(buf);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_ROSTER:
 	    /* Buy a player from a team. */
-	    sprintf(buf, _("Your roster is full. You couldn't buy %s from %s."),
+	    game_gui_show_warning(_("Your roster is full. You couldn't buy %s from %s."),
 		    event->value_string->str, ((Team*)event->value_pointer)->name->str);
-	    game_gui_show_warning(buf);
 	    break;
 	case EVENT_TYPE_PLAYER_CAREER_STOP:
 	    sprintf(buf, _("%s's injury was so severe that he can't play football on a professional level anymore. He leaves your team."), player_of_id_team(event->user->tm, event->value1)->name->str);

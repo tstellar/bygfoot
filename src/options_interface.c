@@ -94,6 +94,7 @@ create_window_options (void)
   GtkWidget *label2;
   GtkWidget *hbox6;
   GtkWidget *vbox6;
+  GtkWidget *checkbutton_conf_youth;
   GtkWidget *checkbutton_show_job;
   GtkWidget *eventbox1;
   GtkWidget *hbox10;
@@ -496,6 +497,11 @@ create_window_options (void)
   vbox6 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox6);
   gtk_box_pack_start (GTK_BOX (hbox6), vbox6, TRUE, TRUE, 0);
+
+  checkbutton_conf_youth = gtk_check_button_new_with_mnemonic (_("Confirm removing youths"));
+  gtk_widget_show (checkbutton_conf_youth);
+  gtk_box_pack_start (GTK_BOX (vbox6), checkbutton_conf_youth, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_conf_youth, _("Whether a confirmation popup is shown when you kick out a youth from your academy"), NULL);
 
   checkbutton_show_job = gtk_check_button_new_with_mnemonic (_("Show job offers"));
   gtk_widget_show (checkbutton_show_job);
@@ -1059,6 +1065,7 @@ create_window_options (void)
   GLADE_HOOKUP_OBJECT (window_options, label2, "label2");
   GLADE_HOOKUP_OBJECT (window_options, hbox6, "hbox6");
   GLADE_HOOKUP_OBJECT (window_options, vbox6, "vbox6");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_conf_youth, "checkbutton_conf_youth");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_show_job, "checkbutton_show_job");
   GLADE_HOOKUP_OBJECT (window_options, eventbox1, "eventbox1");
   GLADE_HOOKUP_OBJECT (window_options, hbox10, "hbox10");

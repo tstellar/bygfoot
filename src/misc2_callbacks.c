@@ -2,6 +2,7 @@
 #include "callback_func.h"
 #include "debug.h"
 #include "finance.h"
+#include "free.h"
 #include "game_gui.h"
 #include "load_save.h"
 #include "main.h"
@@ -118,6 +119,9 @@ on_button_digits_ok_clicked            (GtkButton       *button,
 	    if(destroy_window && stat0 == STATUS_LIVE_GAME_PAUSE)
 		gtk_widget_set_sensitive(window.main, TRUE);
 	    break;
+	case STATUS_SET_YA_PERCENTAGE:
+	    current_user.youth_academy.percentage = values[1];
+	    break;
     }
 
     if(destroy_window)
@@ -188,6 +192,12 @@ on_button_yesno_yes_clicked            (GtkButton       *button,
 	case STATUS_QUERY_USER_NO_TURN:
 	    load_save_autosave();
 	    callback_show_next_live_game();
+	    break;
+	case STATUS_QUERY_KICK_YOUTH:
+	    free_player(&g_array_index(current_user.youth_academy.players, Player, selected_row));
+	    g_array_remove_index(current_user.youth_academy.players, selected_row);
+	    on_menu_show_youth_academy_activate(NULL, NULL);
+	    selected_row = -1;
 	    break;
     }
 

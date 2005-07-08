@@ -914,13 +914,21 @@ player_update_skill(Player *pl)
 	  const_float("float_player_skill_devel_else_upper")}};
     gfloat diff;
 
-    if(pl->age > pl->peak_age)
-	pl->lsu += (pl->health == 0) ? 1 : const_float("float_player_lsu_injured_old");
-    else if(pl->health == 0 &&
-	    ((gfloat)player_games_goals_get(pl, pl->team->clid, PLAYER_VALUE_GAMES) / (gfloat)week >=
-	     const_float("float_player_lsu_games_percentage") || 
-	     math_rnd(0, 1) <= const_float("float_player_lsu_increase_prob")))
-	pl->lsu++;
+    if(!query_player_is_youth(pl))
+    {
+	if(pl->age > pl->peak_age)
+	    pl->lsu += (pl->health == 0) ? 1 : const_float("float_player_lsu_injured_old");
+	else if(pl->health == 0 &&
+		((gfloat)player_games_goals_get(pl, pl->team->clid, PLAYER_VALUE_GAMES) / (gfloat)week >=
+		 const_float("float_player_lsu_games_percentage") || 
+		 math_rnd(0, 1) <= const_float("float_player_lsu_increase_prob")))
+	    pl->lsu++;
+    }
+    else
+	pl->lsu += (pl->health != 0) ? 0 :
+	    const_float("float_youth_academy_lsu_addition_best") -
+	    (user_from_team(pl->team)->youth_academy.av_coach *
+	     const_float("float_youth_academy_lsu_penalty"));
 
     if(pl->lsu < const_float("float_player_lsu_update_limit") ||
        math_rnd(0, 1) < powf(const_float("float_player_lsu_update_base_prob"),
@@ -935,14 +943,19 @@ player_update_skill(Player *pl)
 	if(diff > age_limits[i])
 	    break;
 
-    if(i < 3)
-	pl->skill += (pl->talent - pl->skill) * math_rnd(factor_limits[i][0], factor_limits[i][1]);
-    else if(i < 5)
-	pl->skill += math_rnd(increase_decrease[0][0], increase_decrease[0][1]);
-    else if(i < 7)
-	pl->skill += math_rnd(increase_decrease[i - 4][0], increase_decrease[i - 4][1]);
+    if(!query_player_is_youth(pl))
+    {
+	if(i < 3)
+	    pl->skill += (pl->talent - pl->skill) * math_rnd(factor_limits[i][0], factor_limits[i][1]);
+	else if(i < 5)
+	    pl->skill += math_rnd(increase_decrease[0][0], increase_decrease[0][1]);
+	else if(i < 7)
+	    pl->skill += math_rnd(increase_decrease[i - 4][0], increase_decrease[i - 4][1]);
+	else
+	    pl->skill += math_rnd(increase_decrease[3][0], increase_decrease[3][1]);
+    }
     else
-	pl->skill += math_rnd(increase_decrease[3][0], increase_decrease[3][1]);
+	pl->skill /= const_float("float_youth_academy_skill_reduce_factor");
 
     pl->skill = CLAMP(pl->skill, 0, pl->talent);
     pl->cskill = player_get_cskill(pl, pl->cpos, TRUE);
@@ -999,36 +1012,28 @@ player_update_injury(Player *pl)
     }
 }
 
-/** Update players in user teams (age, skill, fitness etc.)
-    @param tm The team of the player.
-    @param idx The index in the players array. */
+/** Update a player in a user team (age, skill etc.). */
 void
-player_update_weekly(Team *tm, gint idx)
+player_update_weekly(Player *pl)
 {
-    gchar buf[SMALL];
-    Player *pl = player_of_idx_team(tm, idx);
-    
     if(debug < 50)
     {
 	pl->age += 0.0192;
 
-	if(!sett_int("int_opt_disable_contracts"))
+	if(!sett_int("int_opt_disable_contracts") &&
+	   pl->age > const_float("float_player_age_lower"))
 	    pl->contract -= 0.0192;
     }
 
     if(!sett_int("int_opt_disable_contracts") && debug < 50 &&
        pl->contract * 12 <= opt_user_int("int_opt_user_contract_limit") &&
        (pl->contract + 0.0192) * 12 > opt_user_int("int_opt_user_contract_limit"))
-    {
-	sprintf(buf, _("%s's contract expires in %.1f years."),
-		pl->name->str, pl->contract);
-
-	user_event_add(&usr(team_is_user(tm)), EVENT_TYPE_WARNING,
-		       -1, -1, NULL, buf);
-    }
+	user_event_add(user_from_team(pl->team), EVENT_TYPE_WARNING,
+		       -1, -1, NULL, _("%s's contract expires in %.1f years."),
+		       pl->name->str, pl->contract);
 
     if(pl->contract <= 0)
-	player_remove_contract(tm, idx);
+	player_remove_contract(pl);
 
     player_update_skill(pl);
     if(pl->health > 0)
@@ -1039,11 +1044,11 @@ player_update_weekly(Team *tm, gint idx)
     @param tm The user team.
     @param idx The player index. */
 void
-player_remove_contract(Team *tm, gint idx)
+player_remove_contract(Player *pl)
 {
-    user_event_add(user_from_team(tm), EVENT_TYPE_PLAYER_LEFT, -1, -1, NULL,
-		   player_of_idx_team(tm, idx)->name->str);
-    player_remove_from_team(tm, idx);
+    user_event_add(user_from_team(pl->team), EVENT_TYPE_PLAYER_LEFT, -1, -1, NULL,
+		   pl->name->str);
+    player_remove_from_team(pl->team, player_id_index(pl->team, pl->id));
 }
 
 /** Remove a player from a team.
@@ -1236,4 +1241,47 @@ player_get_last_name(const gchar *name)
     rev_name = g_utf8_strreverse(buf, -1);
 
     return rev_name;
+}
+
+/** Create a pointer array with pointers to the players
+    and return it. */
+GPtrArray*
+player_get_pointers_from_array(const GArray *players_array)
+{
+    gint i;
+    GPtrArray *players = g_ptr_array_new();
+
+    for(i=0;i<players_array->len;i++)
+	g_ptr_array_add(players, &g_array_index(players_array, Player, i));
+
+    return players;
+}
+
+
+/** Move a player from the team to the youth academy. */
+void
+player_move_to_ya(gint idx)
+{
+    Player *pl = player_of_idx_team(current_user.tm, idx);
+    Player player = *pl;
+
+    if(query_transfer_player_is_on_list(pl))
+	transfer_remove_player_ptr(pl);
+
+    player.cskill = player.skill;
+    player.cpos = player.pos;
+
+    g_array_remove_index(current_user.tm->players, idx);
+    g_array_append_val(current_user.youth_academy.players, player);
+}
+
+/** Move a player from the youth academy to the team. */
+void
+player_move_from_ya(gint idx)
+{
+    Player *pl = &g_array_index(current_user.youth_academy.players, Player, idx);
+    Player player = *pl;
+
+    g_array_remove_index(current_user.youth_academy.players, idx);
+    g_array_append_val(current_user.tm->players, player);
 }

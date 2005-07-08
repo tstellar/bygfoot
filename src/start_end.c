@@ -21,6 +21,7 @@
 #include "user.h"
 #include "variables.h"
 #include "xml_name.h"
+#include "youth_academy.h"
 
 /** Prototype of a function called at the start or
     end of a week round. */
@@ -42,7 +43,7 @@ WeekFunc start_week_round_funcs[] =
 WeekFunc start_week_funcs[] = 
 {start_week_add_cups, start_week_update_users,
  start_week_update_user_teams, start_week_update_user_finances,
- transfer_update, NULL};
+ youth_academy_update_weekly, transfer_update, NULL};
 
 WeekFunc end_week_funcs[] = {stat_update_leagues, end_week_hide_cups, NULL};
 
@@ -93,6 +94,11 @@ start_new_season(void)
 	for(i=0;i<users->len;i++)
 	{
 	    usr(i).tm = team_of_id(usr(i).team_id);
+
+	    usr(i).youth_academy.tm = usr(i).tm;
+	    for(j=0;j<usr(i).youth_academy.players->len;j++)
+		g_array_index(usr(i).youth_academy.players, Player, j).team = usr(i).tm;
+
 	    live_game_reset(&usr(i).live_game, NULL, TRUE);
 	}
     }
@@ -469,6 +475,9 @@ start_week_update_users(void)
 	
 	if(usr(i).physio >= 100)
 	    usr(i).physio = math_get_place(usr(i).physio, 2);
+
+	if(usr(i).youth_academy.coach >= 100)
+	    usr(i).youth_academy.coach = math_get_place(usr(i).youth_academy.coach, 2);
 
 	user_weekly_update_counters(&usr(i));
     }

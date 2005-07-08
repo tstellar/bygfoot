@@ -1,6 +1,9 @@
 #ifndef GAME_GUI_H
 #define GAME_GUI_H
 
+#include <stdarg.h>
+#include <glib/gprintf.h>
+
 #include "bygfoot.h"
 #include "live_game_struct.h"
 #include "option_struct.h"
@@ -22,14 +25,21 @@ void
 game_gui_show_main(void);
 
 void
-game_gui_get_radio_items(GtkWidget **style, GtkWidget **scout,
-			 GtkWidget **physio, GtkWidget **boost);
+game_gui_show_warning(const gchar *format, ...)
+__attribute__ ((format (printf, 1, 2)));
 
 gboolean
-game_gui_print_message(gchar *text);
+game_gui_print_message(gchar *format, ...)
+__attribute__ ((format (printf, 1, 2)));
 
 void
-game_gui_print_message_with_delay(gchar *text);
+game_gui_print_message_with_delay(const gchar *format, ...)
+__attribute__ ((format (printf, 1, 2)));
+
+void
+game_gui_get_radio_items(GtkWidget **style, GtkWidget **scout,
+			 GtkWidget **physio, GtkWidget **boost,
+			 GtkWidget **yc);
 
 void
 game_gui_read_radio_items(GtkWidget *widget);
@@ -45,9 +55,6 @@ game_gui_set_main_window_sensitivity(gboolean value);
 
 void
 game_gui_write_av_skills(void);
-
-void
-game_gui_show_warning(gchar *text);
 
 void
 game_gui_write_meters(void);

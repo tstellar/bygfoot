@@ -142,16 +142,13 @@ void
 on_button_transfers_clicked            (GtkButton       *button,
                                         gpointer         user_data)
 {
-    gchar buf[SMALL];
-
     if(sett_int("int_opt_disable_transfers"))
 	game_gui_print_message(_("Transfers are disabled in this country definition."));
     else if(week < transfer_get_deadline() || transfer_list->len > 0)
     {
 	stat0 = STATUS_SHOW_TRANSFER_LIST;
 	game_gui_print_message(_("Left click to make an offer. Right click to remove offer."));
-	sprintf(buf, _("Transfer deadline is Week %d"), transfer_get_deadline());
-	game_gui_print_message_with_delay(buf);
+	game_gui_print_message_with_delay(_("Transfer deadline is Week %d"), transfer_get_deadline());
 	treeview_show_transfer_list(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")));
 	gtk_notebook_set_current_page(GTK_NOTEBOOK(lookup_widget(window.main, "notebook_player")), 1);
 	
@@ -208,9 +205,9 @@ on_player_list1_button_press_event     (GtkWidget       *widget,
     if(treeview_helper_select_row(GTK_TREE_VIEW(widget), event))
 	idx = treeview_helper_get_index(GTK_TREE_VIEW(widget), 0);
 
-    if(idx < 0 || idx - 1 == selected_row[0])
+    if(idx < 0 || idx - 1 == selected_row)
     {
-	selected_row[0] = -1;
+	selected_row = -1;
 	return FALSE;
     }
 
@@ -235,7 +232,7 @@ on_button_browse_forward_clicked       (GtkButton       *button,
 	    callback_show_team(SHOW_NEXT);
 	    break;
 	case STATUS_SHOW_PLAYER_INFO:
-	    selected_row[0] = (selected_row[0] + 1) % current_user.tm->players->len;
+	    selected_row = (selected_row + 1) % current_user.tm->players->len;
 	    on_menu_show_info_activate(NULL, NULL);
 	    break;
 	case STATUS_SHOW_SEASON_HISTORY:
@@ -261,7 +258,7 @@ on_button_browse_back_clicked          (GtkButton       *button,
 	    callback_show_team(SHOW_PREVIOUS);
 	    break;
 	case STATUS_SHOW_PLAYER_INFO:
-	    selected_row[0] = (selected_row[0] == 0) ? current_user.tm->players->len - 1 : selected_row[0] - 1;
+	    selected_row = (selected_row == 0) ? current_user.tm->players->len - 1 : selected_row - 1;
 	    on_menu_show_info_activate(NULL, NULL);
 	    break;
 	case STATUS_SHOW_SEASON_HISTORY:
@@ -399,14 +396,14 @@ on_menu_put_on_transfer_list_activate  (GtkMenuItem     *menuitem,
 {
     if(sett_int("int_opt_disable_transfers"))
 	game_gui_print_message(_("Transfers are disabled in this country definition."));
-    else if(selected_row[0] == -1)
+    else if(selected_row == -1)
 	game_gui_print_message(_("You haven't selected a player."));
-    else if(query_transfer_player_is_on_list(player_of_idx_team(current_user.tm, selected_row[0])))
+    else if(query_transfer_player_is_on_list(player_of_idx_team(current_user.tm, selected_row)))
 	game_gui_print_message(_("The player is already on the list."));
     else
     {
 	setsav0;
-	transfer_add_remove_user_player(player_of_idx_team(current_user.tm, selected_row[0]));
+	transfer_add_remove_user_player(player_of_idx_team(current_user.tm, selected_row));
     }
 }
 
@@ -415,14 +412,14 @@ void
 on_menu_remove_from_transfer_list_activate (GtkMenuItem     *menuitem,
 					    gpointer         user_data)
 {
-    if(selected_row[0] == -1)
+    if(selected_row == -1)
 	game_gui_print_message(_("You haven't selected a player."));
-    else if(!query_transfer_player_is_on_list(player_of_idx_team(current_user.tm, selected_row[0])))
+    else if(!query_transfer_player_is_on_list(player_of_idx_team(current_user.tm, selected_row)))
 	game_gui_print_message(_("The player is not on the list."));
     else
     {
 	setsav0;
-	transfer_add_remove_user_player(player_of_idx_team(current_user.tm, selected_row[0]));
+	transfer_add_remove_user_player(player_of_idx_team(current_user.tm, selected_row));
     }
 }
 
@@ -431,14 +428,14 @@ void
 on_menu_fire_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    if(selected_row[0] == -1)
+    if(selected_row == -1)
 	game_gui_print_message(_("You haven't selected a player."));
     else if(current_user.tm->players->len == 11)
 	game_gui_show_warning(_("Your team can't have less than 11 players."));
     else
     {
-	callback_fire_player(selected_row[0]);
-	selected_row[0] = -1;
+	callback_fire_player(selected_row);
+	selected_row = -1;
     }
 }
 
@@ -447,11 +444,9 @@ void
 on_menu_shoots_penalties_activate      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    gchar buf[SMALL];
-
-    if(selected_row[0] == -1)
+    if(selected_row == -1)
 	game_gui_print_message(_("You haven't selected a player."));
-    else if(player_of_idx_team(current_user.tm, selected_row[0])->id ==
+    else if(player_of_idx_team(current_user.tm, selected_row)->id ==
 	    opt_user_int("int_opt_user_penalty_shooter"))
     {
 	opt_user_set_int("int_opt_user_penalty_shooter", -1);
@@ -461,15 +456,45 @@ on_menu_shoots_penalties_activate      (GtkMenuItem     *menuitem,
     }
     else
     {
-	sprintf(buf, _("%s will shoot penalties and free kicks when he plays."),
-		player_of_idx_team(current_user.tm, selected_row[0])->name->str);
+	game_gui_print_message(_("%s will shoot penalties and free kicks when he plays."),
+			       player_of_idx_team(current_user.tm, selected_row)->name->str);
 	opt_user_set_int("int_opt_user_penalty_shooter",
-			 player_of_idx_team(current_user.tm, selected_row[0])->id);
-	game_gui_print_message(buf);
+			 player_of_idx_team(current_user.tm, selected_row)->id);
 	treeview_show_user_player_list();
 	setsav0;
     }
 }
+
+
+void
+on_menu_move_to_youth_academy_activate (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    Player *pl;
+
+    if(selected_row == -1)
+	game_gui_print_message(_("You haven't selected a player."));
+    else
+    {
+	pl = player_of_idx_team(current_user.tm, selected_row);
+
+	if(pl->age > const_float("float_player_age_lower"))
+	    game_gui_print_message(_("The player is too old for the youth academy."));
+	else if(current_user.tm->players->len <= 11)
+	    game_gui_print_message(_("You can't move the player, there are too few players in your team."));
+	else if(current_user.youth_academy.players->len ==
+		const_int("int_youth_academy_max_youths"))
+	    game_gui_print_message(_("There is no room in your youth academy."));
+	else
+	{
+	    player_move_to_ya(selected_row);
+	    treeview_show_user_player_list();
+	    on_menu_show_youth_academy_activate(NULL, NULL);
+	    selected_row = -1;
+	}
+    }
+}
+
 
 void
 on_menu_my_league_results_activate     (GtkMenuItem     *menuitem,
@@ -548,6 +573,13 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
 	    break;
 	case STATUS_SHOW_PLAYER_LIST:
 	    callback_show_player_team();
+	    break;
+	case STATUS_SHOW_YA:
+	    selected_row = idx - 1;
+	    if(event->button == 3)
+		on_menu_youth_move_to_team_activate(NULL, NULL);
+	    else
+		window_show_menu_youth((GdkEvent*)event);
 	    break;
     }
 
@@ -793,13 +825,13 @@ on_menu_offer_new_contract_activate    (GtkMenuItem     *menuitem,
 	return;
     }
 
-    if(selected_row[0] == -1)
+    if(selected_row == -1)
     {
 	game_gui_print_message(_("You haven't selected a player."));
 	return;
     }
 
-    callback_offer_new_contract(selected_row[0]);
+    callback_offer_new_contract(selected_row);
 
     setsav0;
 }
@@ -809,7 +841,7 @@ void
 on_menu_show_info_activate      (GtkMenuItem     *menuitem,
 				 gpointer         user_data)
 {
-    if(selected_row[0] == -1)
+    if(selected_row == -1)
     {
 	game_gui_print_message(_("You haven't selected a player."));
 	return;
@@ -817,7 +849,7 @@ on_menu_show_info_activate      (GtkMenuItem     *menuitem,
 
     if(stat0 != STATUS_LIVE_GAME_PAUSE)
 	stat0 = STATUS_SHOW_PLAYER_INFO;
-    treeview_show_player_info(player_of_idx_team(current_user.tm, selected_row[0]));
+    treeview_show_player_info(player_of_idx_team(current_user.tm, selected_row));
 
     gui_set_arrows();
 }
@@ -865,6 +897,15 @@ on_player_menu_shoots_penalties_activate
 {
     on_menu_shoots_penalties_activate(NULL, NULL);
 }
+
+void
+on_player_menu_move_to_youth_academy_activate
+                                        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    on_menu_move_to_youth_academy_activate(NULL, NULL);
+}
+
 
 void
 on_menu_browse_players_activate        (GtkMenuItem     *menuitem,
@@ -962,3 +1003,56 @@ on_button_quit_button_press_event      (GtkWidget       *widget,
     return FALSE;
 }
 
+
+void
+on_menu_show_youth_academy_activate    (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    callback_show_youth_academy();
+    stat0 = STATUS_SHOW_YA;
+}
+
+void
+on_menu_set_investment_activate        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    stat1 = STATUS_SET_YA_PERCENTAGE;
+    window_show_digits(_("Set the percentage of your income you want to devote to your youth academy."),
+		       NULL, -1, "%", current_user.youth_academy.percentage);
+}
+
+void
+on_menu_youth_move_to_team_activate    (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    if(current_user.tm->players->len == const_int("int_team_max_players"))
+	game_gui_print_message(_("You can't have more than %d players in the team."),
+			       const_int("int_team_max_players"));
+    else
+    {
+	player_move_from_ya(selected_row);
+	treeview_show_user_player_list();
+	on_menu_show_youth_academy_activate(NULL, NULL);
+	selected_row = -1;
+    }
+}
+
+
+void
+on_menu_youth_kick_out_of_academy_activate
+                                        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    if(opt_user_int("int_opt_user_confirm_youth"))
+    {
+	stat1 = STATUS_QUERY_KICK_YOUTH;
+	window_show_yesno(_("Do you really want to kick the poor boy out of your academy?"));
+    }
+    else
+    {
+	free_player(&g_array_index(current_user.youth_academy.players, Player, selected_row));
+	g_array_remove_index(current_user.youth_academy.players, selected_row);
+	on_menu_show_youth_academy_activate(NULL, NULL);
+	selected_row = -1;
+    }
+}

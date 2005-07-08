@@ -368,7 +368,7 @@ treeview_show_user_player_list(void)
 
     for(i=0;i<2;i++)
     {
-	players = team_get_player_pointers(current_user.tm);
+	players = player_get_pointers_from_array(current_user.tm->players);
 	user_set_player_list_attributes(&current_user, &attribute, i + 1);
 	treeview_show_player_list(GTK_TREE_VIEW(treeview[i]), players, attribute, TRUE);
     }
@@ -379,7 +379,7 @@ treeview_show_user_player_list(void)
 void
 treeview_show_player_list_team(GtkTreeView *treeview, const Team *tm, gint scout)
 {
-    GPtrArray *players = team_get_player_pointers(tm);
+    GPtrArray *players = player_get_pointers_from_array(tm->players);
 
     treeview_show_player_list(treeview, players, 
 			      treeview_helper_get_attributes_from_scout(scout), TRUE);
@@ -1274,6 +1274,8 @@ treeview_create_finances(const User* user)
 	{_("Wages"),
 	 _("Physio"),
 	 _("Scout"),
+	 _("Youth coach"),
+	 _("Youth academy"),
 	 _("Journey costs"),
 	 /* Money paid to players a user fired. */
 	 _("Compensations")};
@@ -1381,6 +1383,13 @@ treeview_create_finances(const User* user)
     sprintf(buf2, _("%.1f months / %s"), ((gfloat)user->sponsor.contract) / 4, buf);
     gtk_list_store_append(ls, &iter);
     gtk_list_store_set(ls, &iter, 0, _("Contract / Money"), 1, buf2, 2, "", -1);
+
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, "", 1, "", 2, "", -1);
+
+    sprintf(buf, "%d%%", user->youth_academy.percentage);
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, _("Youth acad. invest."), 1, buf, 2, "", -1);
 
     gtk_list_store_append(ls, &iter);
     gtk_list_store_set(ls, &iter, 0, "", 1, "", 2, "", -1);

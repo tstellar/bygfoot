@@ -14,7 +14,6 @@
 enum BooleanOptions
 {
     BOOL_OPT_CONF_QUIT = 0,
-    BOOL_OPT_CONF_UNFIT,
     BOOL_OPT_SAVE_OVERWRITE,
     BOOL_OPT_MAXIMIZE,
     BOOL_OPT_PREFER_MESS,
@@ -26,6 +25,8 @@ enum BooleanOptions
     BOOL_OPT_PAUSE_RED,
     BOOL_OPT_PAUSE_BREAK,
     BOOL_OPT_AUTO_SUB,
+    BOOL_OPT_CONF_UNFIT,
+    BOOL_OPT_CONF_YOUTH,
     BOOL_OPT_SHOW_JOB,
     BOOL_OPT_SWAP,
     BOOL_OPT_SHOW_OVERALL,
@@ -125,6 +126,10 @@ option_gui_write_bool_widgets(gint **bool_options, GtkToggleButton **bool_widget
     bool_widgets[BOOL_OPT_AUTO_SUB] =
 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_auto_sub"));
     bool_options[BOOL_OPT_AUTO_SUB] = opt_user_intp("int_opt_user_auto_sub");
+
+    bool_widgets[BOOL_OPT_CONF_YOUTH] =
+	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_conf_youth"));
+    bool_options[BOOL_OPT_CONF_YOUTH] = opt_user_intp("int_opt_user_confirm_youth");
 
     bool_widgets[BOOL_OPT_SHOW_JOB] =
 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_show_job"));

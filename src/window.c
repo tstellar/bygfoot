@@ -199,6 +199,19 @@ window_show_menu_player(GdkEvent *event)
 		   ((GdkEventButton*)event)->button, gdk_event_get_time(event));
 }
 
+/** Show the youth academy context menu, triggered by 'event'. */
+void
+window_show_menu_youth(GdkEvent *event)
+{
+    if(window.menu_youth != NULL)
+	window_destroy(&window.menu_youth, FALSE);
+
+    window.menu_youth = create_menu_youth();
+
+    gtk_menu_popup(GTK_MENU(window.menu_youth), NULL, NULL, NULL, NULL, 
+		   ((GdkEventButton*)event)->button, gdk_event_get_time(event));
+}
+
 /** Show the digits window with the labels and values set 
     according to the arguments. */
 void
@@ -217,9 +230,12 @@ window_show_digits(const gchar *text_main, const gchar* text1, gint value1,
     spinbutton1 = GTK_SPIN_BUTTON(lookup_widget(window.digits, "spinbutton1"));
     spinbutton2 = GTK_SPIN_BUTTON(lookup_widget(window.digits, "spinbutton2"));
 
-    if(stat0 == STATUS_GET_LOAN ||
-       stat0 == STATUS_PAY_LOAN)
+    if(stat1 == STATUS_GET_LOAN ||
+       stat1 == STATUS_PAY_LOAN)
 	gtk_spin_button_set_range(spinbutton1, (gdouble)1, (gdouble)value1);
+    else if(stat1 == STATUS_SET_YA_PERCENTAGE)
+	gtk_spin_button_set_range(spinbutton2, (gdouble)0,
+				  (gdouble)const_int("int_youth_academy_max_percentage"));
 
     gtk_spin_button_set_value(spinbutton1, (gdouble)value1);
     gtk_spin_button_set_value(spinbutton2, (gdouble)value2);
@@ -364,8 +380,7 @@ window_create(gint window_type)
 	    {
 		window.main = create_main_window();
 		wind = window.main;
-		sprintf(buf, _("Welcome to Bygfoot %s"), VERS);
-		game_gui_print_message(buf);
+		game_gui_print_message(_("Welcome to Bygfoot %s"), VERS);
 		sprintf(buf, "Bygfoot Football Manager %s", VERS);
 	    }
 	    else

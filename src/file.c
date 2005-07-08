@@ -426,7 +426,6 @@ file_load_opt_file(const gchar *filename, OptionList *optionlist)
 	    new.string_value = NULL;
 	    sscanf(opt_value, "%d", &new.value);
 	}
-
 	g_array_append_val(optionlist->list, new);
     }
 

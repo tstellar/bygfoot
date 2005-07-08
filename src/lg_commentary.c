@@ -96,23 +96,27 @@ lg_commentary_generate(const LiveGame *live_game, LiveGameUnit *unit)
 gboolean
 lg_commentary_check_commentary(const LGCommentary *commentary, gchar *dest)
 {
-    if((commentary->condition != NULL &&
+    gchar buf[SMALL];
+
+    if(strlen(commentary->text->str) == 0 ||
+       (commentary->condition != NULL &&
 	!lg_commentary_parse_condition(commentary->condition->str)) ||
        (repetition == FALSE && query_lg_commentary_is_repetition(commentary->id)))
 	return FALSE;
 
     strcpy(dest, commentary->text->str);
     
-    if(lg_commentary_replace_tokens(dest))
-	if(lg_commentary_replace_tokens(dest))
-	{
-	    lg_commentary_replace_expressions(dest);
-	    
-	    if(lg_commentary_replace_tokens(dest))
-		return TRUE;
-	}
-    
-    return FALSE;
+    do
+    {
+	strcpy(buf, dest);
+	if(!lg_commentary_replace_tokens(dest))
+	    return FALSE;
+
+	lg_commentary_replace_expressions(dest);
+    }
+    while(strcmp(buf, dest) != 0);
+
+    return TRUE;
 }
 
 /** Check whether a commentary with given id has been used in the last
@@ -216,17 +220,19 @@ gboolean
 lg_commentary_parse_condition(const gchar *condition)
 {
     gboolean return_value = FALSE;
-    gchar buf[SMALL];
+    gchar buf[SMALL], buf2[SMALL];
     
     strcpy(buf, condition);
 
-    if(!lg_commentary_replace_tokens(buf))
-	return FALSE;
-    
-    lg_commentary_replace_expressions(buf);
+    do
+    {
+	strcpy(buf2, buf);
+	if(!lg_commentary_replace_tokens(buf))
+	    return FALSE;
 
-    if(!lg_commentary_replace_tokens(buf))
-	return FALSE;
+	lg_commentary_replace_expressions(buf);
+    }
+    while(strcmp(buf2, buf) != 0);
 
     misc_parse(buf, &return_value);
 

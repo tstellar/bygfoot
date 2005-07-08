@@ -45,7 +45,8 @@ user_event_new(void);
 
 void
 user_event_add(User *user, gint type, gint value1, gint value2, 
-	       gpointer pointer_value, gchar *string_value);
+	       gpointer value_pointer, gchar *format, ...)
+__attribute__ ((format (printf, 6, 7)));
 
 void
 user_event_remove(User *user, gint idx);

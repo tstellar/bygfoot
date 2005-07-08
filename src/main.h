@@ -10,6 +10,7 @@ void
 main_init_variables(void);
 
 void
-main_exit_program(gint exit_code, gchar *exit_message);
+main_exit_program(gint exit_code, gchar *exit_message)
+__attribute__ ((noreturn));
 
 #endif

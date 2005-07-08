@@ -226,21 +226,6 @@ team_of_id(gint id)
     return NULL;
 }
 
-/** Return the players of the team in a pointer array.
-    @param tm The team we examine.
-    @return The players of the team in an array. */
-GPtrArray*
-team_get_player_pointers(const Team *tm)
-{
-    gint i;
-    GPtrArray *players = g_ptr_array_new();
-
-    for(i=0;i<tm->players->len;i++)
-	g_ptr_array_add(players, &g_array_index(tm->players, Player, i));
-
-    return players;
-}
-
 /** Return a pointer to the next or last fixture the team participates in.
     @param tm The team we examine.
     @return The pointer to the fixture or NULL if none is found. */
@@ -533,8 +518,6 @@ team_attribute_to_char(gint attribute, gint value)
 void
 team_change_attribute_with_message(Team *tm, gint attribute, gint new_value)
 {
-    gchar buf[SMALL];
-
     switch(attribute)
     {
 	default:
@@ -542,15 +525,13 @@ team_change_attribute_with_message(Team *tm, gint attribute, gint new_value)
 	    break;
 	case TEAM_ATTRIBUTE_STYLE:
 	    current_user.tm->style = new_value;
-	    sprintf(buf, _("Team style changed to %s."), team_attribute_to_char(attribute, new_value));
+	    game_gui_print_message(_("Team style changed to %s."), team_attribute_to_char(attribute, new_value));
 	    break;
 	case TEAM_ATTRIBUTE_BOOST:
 	    current_user.tm->boost = new_value;
-	    sprintf(buf, _("Boost changed to %s."), team_attribute_to_char(attribute, new_value));
+	    game_gui_print_message(_("Boost changed to %s."), team_attribute_to_char(attribute, new_value));
 	    break;
     }
-
-    game_gui_print_message(buf);
 }
 
 /** Make cpu players healthy etc.
@@ -686,7 +667,7 @@ team_update_user_team_weekly(Team *tm)
     gint i;
 
     for(i=tm->players->len - 1;i>=0;i--)
-	player_update_weekly(tm, i);
+	player_update_weekly(&g_array_index(tm->players, Player, i));
 }
 
 /** Regenerate player fitness etc. after a match. 

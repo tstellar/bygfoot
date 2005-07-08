@@ -61,7 +61,7 @@ main_init_variables(void)
 	constants.datalist = options.datalist = lg_tokens.datalist = NULL;
 
     popups_active = 0;
-    selected_row[0] = selected_row[1] = -1;
+    selected_row = -1;
 
     timeout_id = -1;
 

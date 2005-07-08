@@ -54,8 +54,8 @@ gint status[6];
 /** A pointer we store temporary stuff in. */
 gpointer statp;
 
-/** The currently selected rows in the treeviews. */
-gint selected_row[2];
+/** The currently selected row in the treeview. */
+gint selected_row;
 
 /** An array of name lists. */
 GArray *name_lists;

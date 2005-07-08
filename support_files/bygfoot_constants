@@ -291,6 +291,12 @@ float_finance_physio_factor2 5000
 float_finance_physio_factor3 4000
 float_finance_physio_factor4 3000
 
+# wage factor for youth coach
+float_finance_yc_factor1 35000
+float_finance_yc_factor2 25000
+float_finance_yc_factor3 18000
+float_finance_yc_factor4 10000
+
 # interest rate
 float_finance_interest 200
 
@@ -771,3 +777,66 @@ float_sponsor_continue_prob 1000
 # how many live game units we check backwards to avoid
 # having the same commentary text too often
 int_lg_commentary_check_backwards 12
+
+# default percentage for youth academy
+int_youth_academy_default_percentage 5
+
+# upper and lower bounds for number of youths
+# in the academy
+int_youth_academy_youths_lower 1
+int_youth_academy_youths_upper 2
+
+# upper and lower values for the counter determining
+# when a new youth appears (in weeks)
+float_youth_academy_youth_counter_lower 350000
+float_youth_academy_youth_counter_upper 450000
+
+# upper and lower values for youth ages
+float_youth_academy_age_lower 155000
+float_youth_academy_age_upper 175000
+
+# skill reduce factor (exponent is
+# peak_age - age)
+float_youth_academy_skill_reduce_factor 9800
+
+# weight of the coach for the average skill
+# between 0 and 1
+float_youth_academy_coach_weight 2500
+
+# upper and lower factor values for average skill
+# (actual value depends on coach and percentage)
+float_youth_academy_skill_factor_lower 8000
+float_youth_academy_skill_factor_upper 12000
+
+# youth skill variance (to have random
+# skills, not always the same)
+float_youth_academy_skill_variance 1000
+
+# maximum percentage the user can devote to the youth academy
+int_youth_academy_max_percentage 25
+
+# Last skill update addition when the user's average
+# youth coach was BEST
+float_youth_academy_lsu_addition_best 13000
+
+# how much we substract from the above value when the
+# coach was worse
+float_youth_academy_lsu_penalty 2000
+
+# how much the average youth coach and
+# investment percentage weighs; the higher
+# the slower the change of the value when
+# the user changes the coach (e.g. BAD -> BEST)
+# or the percentage (e.g. 5% -> 20%)
+float_youth_academy_average_weight 25000
+
+# new youth counter decrease if the average percentage
+# is approx. 0
+float_youth_academy_counter_decrease_min 10000
+
+# additional lsu change if a youth plays a match
+float_youth_lsu_addition_match 10000
+
+# how many youths there may be at most in the YA
+int_youth_academy_max_youths 10
+

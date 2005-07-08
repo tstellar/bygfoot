@@ -126,6 +126,8 @@ free_user(User *user)
 	g_string_free(g_array_index(user->history,
 				    UserHistory, i).value_string, TRUE);
     free_g_array(&user->history);
+
+    free_player_array(&user->youth_academy.players);
 }
 
 /** Free a user event. */
@@ -345,20 +347,27 @@ free_teams_array(GArray **teams, gboolean reset)
 void
 free_team(Team *tm)
 {
-    gint i;
-
     free_g_string(&tm->stadium.name);
     free_g_string(&tm->name);
     free_g_string(&tm->names_file);
     free_g_string(&tm->symbol);
     free_g_string(&tm->def_file);
 
-    if(tm->players != NULL)
-    {
-	for(i=0;i<tm->players->len;i++)
-	    free_player(&g_array_index(tm->players, Player, i));
+    free_player_array(&tm->players);
+}
 
-	free_g_array(&tm->players);
+/** Free an array containing players. */
+void
+free_player_array(GArray **players)
+{
+    gint i;
+
+    if(*players != NULL)
+    {
+	for(i=0;i<(*players)->len;i++)
+	    free_player(&g_array_index((*players), Player, i));
+
+	free_g_array(players);
     }
 }
 
