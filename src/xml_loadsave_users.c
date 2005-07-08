@@ -5,6 +5,7 @@
 #include "variables.h"
 #include "xml.h"
 #include "xml_loadsave_live_game.h"
+#include "xml_loadsave_players.h"
 #include "xml_loadsave_users.h"
 
 enum
@@ -36,6 +37,11 @@ enum
     TAG_USER_SPONSOR_NAME,
     TAG_USER_SPONSOR_CONTRACT,
     TAG_USER_SPONSOR_BENEFIT,
+    TAG_USER_YA_COACH,
+    TAG_USER_YA_PERCENTAGE,
+    TAG_USER_YA_AV_COACH,
+    TAG_USER_YA_AV_PERCENTAGE,
+    TAG_USER_YA_COUNTER,
     TAG_END
 };
 
@@ -70,10 +76,21 @@ xml_loadsave_users_start_element (GMarkupParseContext *context,
 	    valid_tag = TRUE;
 	}
 
-    if(state == TAG_USER)
+    if(tag == TAG_USER)
     {
 	new_user = user_new();
 	idx = idx_mon_out = idx_mon_in = 0;
+    }
+
+    if(tag >= TAG_START_PLAYERS && tag <= TAG_END_PLAYERS)
+    {
+	state = TAG_START_PLAYERS;
+	valid_tag = TRUE;
+
+	if(tag == TAG_START_PLAYERS)
+	    new_user.youth_academy.players = g_array_new(FALSE, FALSE, sizeof(Player));
+
+	xml_loadsave_players_start_element(tag, new_user.tm);
     }
 
     if(state == TAG_USER_MONEY_OUTS ||
@@ -87,9 +104,9 @@ xml_loadsave_users_start_element (GMarkupParseContext *context,
 
 void
 xml_loadsave_users_end_element    (GMarkupParseContext *context,
-				     const gchar         *element_name,
-				     gpointer             user_data,
-				     GError             **error)
+				   const gchar         *element_name,
+				   gpointer             user_data,
+				   GError             **error)
 {
     gint tag = xml_get_tag_from_name(element_name);
     
@@ -111,7 +128,12 @@ xml_loadsave_users_end_element    (GMarkupParseContext *context,
 	    tag == TAG_NAME ||
 	    tag == TAG_TEAM_ID ||
 	    tag == TAG_USER_HISTORY ||
-	    tag == TAG_USER_EVENT)
+	    tag == TAG_USER_EVENT ||
+	    tag == TAG_USER_YA_COACH ||
+	    tag == TAG_USER_YA_PERCENTAGE ||
+	    tag == TAG_USER_YA_AV_COACH ||
+	    tag == TAG_USER_YA_AV_PERCENTAGE ||
+	    tag == TAG_USER_YA_COUNTER)
     {
 	state = TAG_USER;
 	if(tag == TAG_USER_COUNTER)
@@ -148,6 +170,12 @@ xml_loadsave_users_end_element    (GMarkupParseContext *context,
 	    tag == TAG_USER_EVENT_VALUE2 ||
 	    tag == TAG_USER_EVENT_VALUE_STRING)
 	state = TAG_USER_EVENT;
+    else if(tag >= TAG_START_PLAYERS && tag <= TAG_END_PLAYERS)
+    {
+	xml_loadsave_players_end_element(tag, new_user.youth_academy.players);
+	if(tag == TAG_START_PLAYERS)
+	    state = TAG_USER;
+    }
     else if(tag != TAG_USERS)
 	g_warning("xml_loadsave_users_end_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
@@ -155,18 +183,20 @@ xml_loadsave_users_end_element    (GMarkupParseContext *context,
 
 void
 xml_loadsave_users_text         (GMarkupParseContext *context,
-				   const gchar         *text,
-				   gsize                text_len,  
-				   gpointer             user_data,
-				   GError             **error)
+				 const gchar         *text,
+				 gsize                text_len,  
+				 gpointer             user_data,
+				 GError             **error)
 {
     gchar buf[SMALL];
     gint int_value = -1;
+    gfloat float_value = -1;
 
     strncpy(buf, text, text_len);
     buf[text_len] = '\0';
 
     int_value = (gint)g_ascii_strtod(buf, NULL);
+    float_value = (gfloat)g_ascii_strtod(text, NULL) / 10000;
 
     if(state == TAG_NAME)
 	g_string_printf(new_user.name, "%s", buf);
@@ -220,6 +250,18 @@ xml_loadsave_users_text         (GMarkupParseContext *context,
 	new_event.value2 = int_value;
     else if(state == TAG_USER_EVENT_VALUE_STRING)
 	new_event.value_string = g_string_new(buf);    
+    else if(state == TAG_USER_YA_COACH)
+	new_user.youth_academy.coach = int_value;
+    else if(state == TAG_USER_YA_PERCENTAGE)
+	new_user.youth_academy.percentage = int_value;
+    else if(state == TAG_USER_YA_AV_COACH)
+	new_user.youth_academy.av_coach = float_value;
+    else if(state == TAG_USER_YA_AV_PERCENTAGE)
+	new_user.youth_academy.av_percentage = float_value;
+    else if(state == TAG_USER_YA_COUNTER)
+	new_user.youth_academy.counter_youth = float_value;
+    else if(state >= TAG_START_PLAYERS && state <= TAG_END_PLAYERS)
+	xml_loadsave_players_text(buf);
 }
 
 void
@@ -352,6 +394,14 @@ xml_loadsave_users_write(const gchar *prefix)
 
 	    fprintf(fil, "%s</_%d>\n", I1, TAG_USER_EVENT);
 	}
+
+	xml_write_int(fil, usr(i).youth_academy.coach, TAG_USER_YA_COACH, I1);
+	xml_write_int(fil, usr(i).youth_academy.percentage, TAG_USER_YA_PERCENTAGE, I1);
+	xml_write_float(fil, usr(i).youth_academy.av_coach, TAG_USER_YA_AV_COACH, I1);
+	xml_write_float(fil, usr(i).youth_academy.av_percentage, TAG_USER_YA_AV_PERCENTAGE, I1);
+	xml_write_float(fil, usr(i).youth_academy.counter_youth, TAG_USER_YA_COUNTER, I1);
+
+	xml_loadsave_players_write(fil, usr(i).youth_academy.players);
 
 	fprintf(fil, "</_%d>\n", TAG_USER);
     }

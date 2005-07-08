@@ -39,9 +39,11 @@ enum XmlTags
 #define TAG_START_TABLE 6000
 #define TAG_START_USERS 7000
 #define TAG_START_LIVE_GAME 8000
-#define TAG_START_TRANSFERS 9000
+#define TAG_START_PLAYERS 9000
+#define TAG_END_PLAYERS 9900
 #define TAG_START_LEAGUE_STAT 10000
 #define TAG_START_SEASON_STATS 11000
+#define TAG_START_TRANSFERS 20000
 
 #define xml_write_string(fil, string, tag, indent) fprintf(fil, "%s<_%d>%s</_%d>\n", indent, tag, string, tag)
 #define xml_write_g_string(fil, gstring, tag, indent) xml_write_string(fil, (gstring)->str, tag, indent)

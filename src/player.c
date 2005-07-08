@@ -1016,14 +1016,12 @@ player_update_injury(Player *pl)
 void
 player_update_weekly(Player *pl)
 {
-    if(debug < 50)
-    {
-	pl->age += 0.0192;
+    pl->age += 0.0192;
 
+    if(debug < 50)
 	if(!sett_int("int_opt_disable_contracts") &&
 	   pl->age > const_float("float_player_age_lower"))
 	    pl->contract -= 0.0192;
-    }
 
     if(!sett_int("int_opt_disable_contracts") && debug < 50 &&
        pl->contract * 12 <= opt_user_int("int_opt_user_contract_limit") &&

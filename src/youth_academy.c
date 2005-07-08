@@ -181,9 +181,5 @@ youth_academy_update_weekly(void)
 				   _("A new youth wanted to registered at your youth academy but there was no room for him."));
 	    }
 	}
-
-	/*d*/
-	printf("we %d co %.1f pe %.1f count %.1f \n",
-	       week, ya->av_coach, ya->av_percentage, ya->counter_youth);
     }
 }
