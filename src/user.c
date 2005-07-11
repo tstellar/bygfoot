@@ -39,6 +39,8 @@ user_new(void)
     new.sponsor.name = g_string_new("");
     new.sponsor.contract = new.sponsor.benefit = -1;
 
+    new.youth_academy.players = NULL;
+
     return new;
 }
 

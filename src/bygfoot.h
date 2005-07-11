@@ -18,7 +18,7 @@
 #define VERS "1.9.1"
 
 /** Home dir name */
-#define HOMEDIRNAME ".bygfoot-1.9"
+#define HOMEDIRNAME ".bygfoot-cvs"
 
 /**
  * Convenience macros, used for string sizes (typically buf[SMALL]).
