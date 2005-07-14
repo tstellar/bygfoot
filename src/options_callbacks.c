@@ -107,3 +107,14 @@ on_checkbutton_save_user_button_press_event
     return FALSE;
 }
 
+
+gboolean
+on_window_options_delete_event         (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data)
+{
+    on_button_options_cancel_clicked(NULL, NULL);
+
+    return TRUE;
+}
+

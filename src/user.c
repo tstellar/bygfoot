@@ -40,6 +40,8 @@ user_new(void)
     new.sponsor.contract = new.sponsor.benefit = -1;
 
     new.youth_academy.players = NULL;
+    new.youth_academy.pos_pref = PLAYER_POS_ANY;
+    new.youth_academy.coach = QUALITY_AVERAGE;
 
     return new;
 }

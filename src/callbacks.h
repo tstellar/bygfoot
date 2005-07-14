@@ -274,7 +274,6 @@ on_menu_show_youth_academy_activate    (GtkMenuItem     *menuitem,
 void
 on_menu_set_investment_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
-#endif
 
 void
 on_menu_move_to_youth_academy_activate (GtkMenuItem     *menuitem,
@@ -293,3 +292,4 @@ void
 on_menu_youth_kick_out_of_academy_activate
                                         (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
+#endif

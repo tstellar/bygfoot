@@ -39,7 +39,7 @@ __attribute__ ((format (printf, 1, 2)));
 void
 game_gui_get_radio_items(GtkWidget **style, GtkWidget **scout,
 			 GtkWidget **physio, GtkWidget **boost,
-			 GtkWidget **yc);
+			 GtkWidget **yc, GtkWidget **ya_pos_pref);
 
 void
 game_gui_read_radio_items(GtkWidget *widget);

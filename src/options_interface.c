@@ -986,6 +986,9 @@ create_window_options (void)
                               GDK_Escape, 0,
                               GTK_ACCEL_VISIBLE);
 
+  g_signal_connect ((gpointer) window_options, "delete_event",
+                    G_CALLBACK (on_window_options_delete_event),
+                    NULL);
   g_signal_connect ((gpointer) button_font_name, "clicked",
                     G_CALLBACK (on_button_font_name_clicked),
                     NULL);

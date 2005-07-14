@@ -154,7 +154,7 @@ game_gui_live_game_set_hscale(const LiveGameUnit *unit, GtkHScale *hscale)
 void
 game_gui_get_radio_items(GtkWidget **style, GtkWidget **scout,
 			 GtkWidget **physio, GtkWidget **boost,
-			 GtkWidget **yc)
+			 GtkWidget **yc, GtkWidget **ya_pos_pref)
 {
     style[0] = lookup_widget(window.main, "menu_all_out_defend");
     style[1] = lookup_widget(window.main, "menu_defend");
@@ -180,6 +180,12 @@ game_gui_get_radio_items(GtkWidget **style, GtkWidget **scout,
     yc[1] = lookup_widget(window.main, "menu_yc_good");
     yc[2] = lookup_widget(window.main, "menu_yc_average");
     yc[3] = lookup_widget(window.main, "menu_yc_bad");
+
+    ya_pos_pref[0] = lookup_widget(window.main, "menu_recruit0");
+    ya_pos_pref[1] = lookup_widget(window.main, "menu_recruit1");
+    ya_pos_pref[2] = lookup_widget(window.main, "menu_recruit2");
+    ya_pos_pref[3] = lookup_widget(window.main, "menu_recruit3");
+    ya_pos_pref[4] = lookup_widget(window.main, "menu_recruit4");
 }
 
 /** Set information like season, user, week etc. into the appropriate labels. */
@@ -248,23 +254,6 @@ game_gui_write_av_skills(void)
     gtk_label_set_text(label_av_skills, buf);
 }
 
-/** Activate the appropriate radio items for
-    playing style etc. according to the user settings. */
-void
-game_gui_write_radio_items(void)
-{
-    GtkWidget *style[5], *scout[4], *physio[4], 
-	*boost[3], *yc[4];
-
-    game_gui_get_radio_items(style, scout, physio, boost, yc);
-
-    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(style[current_user.tm->style + 2]), TRUE);
-    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(scout[current_user.scout % 10]), TRUE);
-    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(physio[current_user.physio % 10]), TRUE);
-    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(boost[current_user.tm->boost + 1]), TRUE);
-    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(yc[current_user.youth_academy.coach % 10]), TRUE);
-}
-
 /** Set the appropriate images for the style and boost meters. */
 void
 game_gui_write_meters(void)
@@ -292,6 +281,25 @@ game_gui_write_meters(void)
 	g_free(image_boost_files[i]);
 }
 
+/** Activate the appropriate radio items for
+    playing style etc. according to the user settings. */
+void
+game_gui_write_radio_items(void)
+{
+    GtkWidget *style[5], *scout[4], *physio[4], 
+	*boost[3], *yc[4], *ya_pos_pref[5];
+
+    game_gui_get_radio_items(style, scout, physio, boost, yc, ya_pos_pref);
+
+    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(style[current_user.tm->style + 2]), TRUE);
+    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(scout[current_user.scout % 10]), TRUE);
+    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(physio[current_user.physio % 10]), TRUE);
+    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(boost[current_user.tm->boost + 1]), TRUE);
+    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(yc[current_user.youth_academy.coach % 10]), TRUE);
+    gtk_check_menu_item_set_active(
+	GTK_CHECK_MENU_ITEM(ya_pos_pref[current_user.youth_academy.pos_pref]), TRUE);
+}
+
 /** Set playing style etc. variables according to
     the items.
     @param widget The widget that received a click. */
@@ -299,13 +307,13 @@ void
 game_gui_read_radio_items(GtkWidget *widget)
 {
     gint i;
-    GtkWidget *boost[3], *yc[4];
+    GtkWidget *boost[3], *yc[4], *ya_pos_pref[5];
     GtkWidget *style[5], *scout[4], *physio[4];
     gint old_scout = current_user.scout,
 	old_physio = current_user.physio,
 	old_yc = current_user.youth_academy.coach;
 
-    game_gui_get_radio_items(style, scout, physio, boost, yc);
+    game_gui_get_radio_items(style, scout, physio, boost, yc, ya_pos_pref);
 
     for(i=0;i<3;i++)
 	if(widget == boost[i])
@@ -335,6 +343,10 @@ game_gui_read_radio_items(GtkWidget *widget)
 	if(widget == yc[i])
 	    current_user.youth_academy.coach = 100 + i * 10 + old_yc % 10;
     
+    for(i=0;i<5;i++)
+	if(widget == ya_pos_pref[i])
+	    current_user.youth_academy.pos_pref = i;
+
     if(math_get_place(current_user.scout, 2) == old_scout % 10)
 	current_user.scout = old_scout % 10;
 

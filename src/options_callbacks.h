@@ -1,5 +1,8 @@
 #include <gtk/gtk.h>
 
+#ifndef OPTIONS_CALLBACKS_H
+#define OPTIONS_CALLBACKS_H
+
 void
 on_button_options_ok_clicked           (GtkButton       *button,
                                         gpointer         user_data);
@@ -27,3 +30,9 @@ on_checkbutton_save_user_button_press_event
                                         (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data);
+
+gboolean
+on_window_options_delete_event         (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data);
+#endif

@@ -9,6 +9,8 @@ typedef struct
 {
     /** Pointer to the team the academy belongs to. */
     Team *tm;
+    /** Position preference of the user. */
+    gint pos_pref;
     /** Coach quality, like scout or physio. */
     gint coach;
     /** Percentage of income the user devotes to the youth

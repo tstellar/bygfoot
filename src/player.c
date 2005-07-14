@@ -179,6 +179,7 @@ player_new_talent(gfloat skill)
 {
     gfloat talent = math_gauss_dist(2 * skill - const_float("float_player_max_skill"),
 				    const_float("float_player_max_skill"));
+
     if(talent < skill)
 	talent = 2 * skill - talent;
 

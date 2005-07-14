@@ -204,6 +204,7 @@ xml_loadsave_users_text         (GMarkupParseContext *context,
     {
 	new_user.tm = team_of_id(int_value);
 	new_user.team_id = int_value;
+	new_user.youth_academy.tm = new_user.tm;
     }
     else if(state == TAG_USER_MONEY)
 	new_user.money = int_value;

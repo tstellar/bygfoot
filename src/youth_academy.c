@@ -20,6 +20,7 @@ youth_academy_new(Team *tm)
     new_academy.tm = tm;
     new_academy.coach = 
 	new_academy.av_coach = QUALITY_AVERAGE;
+    new_academy.pos_pref = PLAYER_POS_ANY;
     new_academy.percentage = 
 	new_academy.av_percentage = const_int("int_youth_academy_default_percentage");
 
@@ -36,11 +37,17 @@ youth_academy_new(Team *tm)
 /** Add a new player to the academy based on the
     average skill value of the user team, the average percentage
     the user paid for the academy for a period of time and the
-    average youth couch quality. */
+    average youth coach quality. */
 void
 youth_academy_add_new_player(YouthAcademy *youth_academy)
 {
-    gint i;
+    gint i;    
+    gfloat pos_probs[4] = 
+	{const_float("float_youth_academy_pos_goalie"),
+	 const_float("float_youth_academy_pos_defender"),
+	 const_float("float_youth_academy_pos_midfielder"),
+	 const_float("float_youth_academy_pos_forward")};
+    gfloat rndom;
     gfloat av_skill = team_get_average_skill(youth_academy->tm, FALSE);
     gfloat percentage_coach_skill_factor;
     Player new;
@@ -48,7 +55,24 @@ youth_academy_add_new_player(YouthAcademy *youth_academy)
     new.name = name_get(youth_academy->tm->names_file->str);
 
     new.id = player_id_new;
-    new.pos = math_rndi(PLAYER_POS_GOALIE, PLAYER_POS_FORWARD);
+
+    for(i=0;i<4;i++)
+    {
+	if(i == youth_academy->pos_pref)
+	    pos_probs[i] += (const_float("float_youth_academy_coach_search_addition") *
+			     (gfloat)(QUALITY_END - youth_academy->coach));
+	if(i > 0)
+	    pos_probs[i] += pos_probs[i - 1];
+    }
+
+    rndom = math_rnd(0, pos_probs[3]);
+    for(i=0;i<4;i++)
+	if(rndom <= pos_probs[i])
+	{
+	    new.pos = i;
+	    break;
+	}
+
     new.cpos = new.pos;
     new.age = math_rnd(const_float("float_youth_academy_age_lower"),
 		       const_float("float_youth_academy_age_upper"));
@@ -78,6 +102,8 @@ youth_academy_add_new_player(YouthAcademy *youth_academy)
     new.skill = math_gauss_dist(
 	percentage_coach_skill_factor * av_skill * (1 - const_float("float_youth_academy_skill_variance")),
 	percentage_coach_skill_factor * av_skill * (1 + const_float("float_youth_academy_skill_variance")));
+
+    new.skill = CLAMP(new.skill, 0, const_float("float_player_max_skill"));
 
     new.talent = player_new_talent(new.skill);
     player_estimate_talent(&new);
