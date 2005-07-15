@@ -135,7 +135,7 @@ on_player_list1_button_press_event     (GtkWidget       *widget,
                                         gpointer         user_data);
 
 gboolean
-on_menu_team_button_press_event        (GtkWidget       *widget,
+on_menu_team_button_release_event        (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data);
 

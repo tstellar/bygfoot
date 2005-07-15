@@ -1328,86 +1328,86 @@ create_main_window (void)
   g_signal_connect ((gpointer) menu_season_history, "activate",
                     G_CALLBACK (on_menu_season_history_activate),
                     NULL);
-  g_signal_connect ((gpointer) menu_all_out_defend, "button_press_event",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_all_out_defend, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
-  g_signal_connect ((gpointer) menu_defend, "button_press_event",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_defend, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
-  g_signal_connect ((gpointer) menu_balanced, "button_press_event",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_balanced, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
-  g_signal_connect ((gpointer) menu_attack, "button_press_event",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_attack, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
-  g_signal_connect ((gpointer) menu_all_out_attack, "button_press_event",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_all_out_attack, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
-  g_signal_connect ((gpointer) menu_scout_best, "button_press_event",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_scout_best, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
-  g_signal_connect ((gpointer) menu_scout_good, "button_press_event",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_scout_good, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
-  g_signal_connect ((gpointer) menu_scout_average, "button_press_event",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_scout_average, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
-  g_signal_connect ((gpointer) menu_scout_bad, "button_press_event",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_scout_bad, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
-  g_signal_connect ((gpointer) menu_physio_best, "button_press_event",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_physio_best, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
-  g_signal_connect ((gpointer) menu_physio_good, "button_press_event",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_physio_good, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
-  g_signal_connect ((gpointer) menu_physio_average, "button_press_event",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_physio_average, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
-  g_signal_connect ((gpointer) menu_physio_bad, "button_press_event",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_physio_bad, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
   g_signal_connect ((gpointer) menu_show_youth_academy, "activate",
                     G_CALLBACK (on_menu_show_youth_academy_activate),
                     NULL);
-  g_signal_connect ((gpointer) menu_yc_best, "activate",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_yc_best, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
-  g_signal_connect ((gpointer) menu_yc_good, "activate",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_yc_good, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
-  g_signal_connect ((gpointer) menu_yc_average, "activate",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_yc_average, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
-  g_signal_connect ((gpointer) menu_yc_bad, "activate",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_yc_bad, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
-  g_signal_connect ((gpointer) menu_recruit0, "button_press_event",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_recruit0, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
-  g_signal_connect ((gpointer) menu_recruit1, "button_press_event",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_recruit1, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
-  g_signal_connect ((gpointer) menu_recruit2, "button_press_event",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_recruit2, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
-  g_signal_connect ((gpointer) menu_recruit3, "button_press_event",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_recruit3, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
-  g_signal_connect ((gpointer) menu_recruit4, "button_press_event",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_recruit4, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
   g_signal_connect ((gpointer) menu_set_investment, "activate",
                     G_CALLBACK (on_menu_set_investment_activate),
                     NULL);
-  g_signal_connect ((gpointer) menu_boost_on, "button_press_event",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_boost_on, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
-  g_signal_connect ((gpointer) menu_boost_off, "button_press_event",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_boost_off, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
-  g_signal_connect ((gpointer) menu_boost_anti, "button_press_event",
-                    G_CALLBACK (on_menu_team_button_press_event),
+  g_signal_connect ((gpointer) menu_boost_anti, "button_release_event",
+                    G_CALLBACK (on_menu_team_button_release_event),
                     NULL);
   g_signal_connect ((gpointer) menu_reset_players, "activate",
                     G_CALLBACK (on_menu_reset_players_activate),

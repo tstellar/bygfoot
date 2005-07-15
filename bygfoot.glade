@@ -369,7 +369,7 @@
 			      <property name="label" translatable="yes">All Out Defend</property>
 			      <property name="use_underline">True</property>
 			      <property name="active">False</property>
-			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:16:56 GMT"/>
+			      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Mon, 28 Feb 2005 08:16:56 GMT"/>
 			    </widget>
 			  </child>
 
@@ -380,7 +380,7 @@
 			      <property name="use_underline">True</property>
 			      <property name="active">False</property>
 			      <property name="group">menu_all_out_defend</property>
-			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:17:07 GMT"/>
+			      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Mon, 28 Feb 2005 08:17:07 GMT"/>
 			    </widget>
 			  </child>
 
@@ -391,7 +391,7 @@
 			      <property name="use_underline">True</property>
 			      <property name="active">True</property>
 			      <property name="group">menu_all_out_defend</property>
-			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:17:14 GMT"/>
+			      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Mon, 28 Feb 2005 08:17:14 GMT"/>
 			    </widget>
 			  </child>
 
@@ -402,7 +402,7 @@
 			      <property name="use_underline">True</property>
 			      <property name="active">False</property>
 			      <property name="group">menu_all_out_defend</property>
-			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:17:20 GMT"/>
+			      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Mon, 28 Feb 2005 08:17:20 GMT"/>
 			    </widget>
 			  </child>
 
@@ -413,7 +413,7 @@
 			      <property name="use_underline">True</property>
 			      <property name="active">False</property>
 			      <property name="group">menu_all_out_defend</property>
-			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:17:26 GMT"/>
+			      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Mon, 28 Feb 2005 08:17:26 GMT"/>
 			    </widget>
 			  </child>
 			</widget>
@@ -447,7 +447,7 @@
 			      <property name="label" translatable="yes">Best</property>
 			      <property name="use_underline">True</property>
 			      <property name="active">False</property>
-			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:15:47 GMT"/>
+			      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Mon, 28 Feb 2005 08:15:47 GMT"/>
 			    </widget>
 			  </child>
 
@@ -458,7 +458,7 @@
 			      <property name="use_underline">True</property>
 			      <property name="active">False</property>
 			      <property name="group">menu_scout_best</property>
-			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:15:35 GMT"/>
+			      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Mon, 28 Feb 2005 08:15:35 GMT"/>
 			    </widget>
 			  </child>
 
@@ -469,7 +469,7 @@
 			      <property name="use_underline">True</property>
 			      <property name="active">True</property>
 			      <property name="group">menu_scout_best</property>
-			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:15:54 GMT"/>
+			      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Mon, 28 Feb 2005 08:15:54 GMT"/>
 			    </widget>
 			  </child>
 
@@ -480,7 +480,7 @@
 			      <property name="use_underline">True</property>
 			      <property name="active">False</property>
 			      <property name="group">menu_scout_best</property>
-			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:15:59 GMT"/>
+			      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Mon, 28 Feb 2005 08:15:59 GMT"/>
 			    </widget>
 			  </child>
 			</widget>
@@ -514,7 +514,7 @@
 			      <property name="label" translatable="yes">Best</property>
 			      <property name="use_underline">True</property>
 			      <property name="active">False</property>
-			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:16:14 GMT"/>
+			      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Mon, 28 Feb 2005 08:16:14 GMT"/>
 			    </widget>
 			  </child>
 
@@ -525,7 +525,7 @@
 			      <property name="use_underline">True</property>
 			      <property name="active">False</property>
 			      <property name="group">menu_physio_best</property>
-			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:16:21 GMT"/>
+			      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Mon, 28 Feb 2005 08:16:21 GMT"/>
 			    </widget>
 			  </child>
 
@@ -536,7 +536,7 @@
 			      <property name="use_underline">True</property>
 			      <property name="active">True</property>
 			      <property name="group">menu_physio_best</property>
-			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:16:28 GMT"/>
+			      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Mon, 28 Feb 2005 08:16:28 GMT"/>
 			    </widget>
 			  </child>
 
@@ -547,7 +547,7 @@
 			      <property name="use_underline">True</property>
 			      <property name="active">False</property>
 			      <property name="group">menu_physio_best</property>
-			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Mon, 28 Feb 2005 08:16:34 GMT"/>
+			      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Mon, 28 Feb 2005 08:16:34 GMT"/>
 			    </widget>
 			  </child>
 			</widget>
@@ -589,7 +589,7 @@
 				      <property name="label" translatable="yes">Best</property>
 				      <property name="use_underline">True</property>
 				      <property name="active">False</property>
-				      <signal name="activate" handler="on_menu_team_button_press_event" last_modification_time="Thu, 07 Jul 2005 14:50:03 GMT"/>
+				      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Thu, 07 Jul 2005 14:50:03 GMT"/>
 				    </widget>
 				  </child>
 
@@ -600,7 +600,7 @@
 				      <property name="use_underline">True</property>
 				      <property name="active">False</property>
 				      <property name="group">menu_yc_best</property>
-				      <signal name="activate" handler="on_menu_team_button_press_event" last_modification_time="Thu, 07 Jul 2005 14:50:03 GMT"/>
+				      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Thu, 07 Jul 2005 14:50:03 GMT"/>
 				    </widget>
 				  </child>
 
@@ -611,7 +611,7 @@
 				      <property name="use_underline">True</property>
 				      <property name="active">True</property>
 				      <property name="group">menu_yc_best</property>
-				      <signal name="activate" handler="on_menu_team_button_press_event" last_modification_time="Thu, 07 Jul 2005 14:50:03 GMT"/>
+				      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Thu, 07 Jul 2005 14:50:03 GMT"/>
 				    </widget>
 				  </child>
 
@@ -622,7 +622,7 @@
 				      <property name="use_underline">True</property>
 				      <property name="active">False</property>
 				      <property name="group">menu_yc_best</property>
-				      <signal name="activate" handler="on_menu_team_button_press_event" last_modification_time="Thu, 07 Jul 2005 14:50:03 GMT"/>
+				      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Thu, 07 Jul 2005 14:50:03 GMT"/>
 				    </widget>
 				  </child>
 				</widget>
@@ -645,7 +645,7 @@
 				      <property name="label" translatable="yes">Goalies</property>
 				      <property name="use_underline">True</property>
 				      <property name="active">False</property>
-				      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Thu, 14 Jul 2005 07:26:30 GMT"/>
+				      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Thu, 14 Jul 2005 07:26:30 GMT"/>
 				    </widget>
 				  </child>
 
@@ -656,7 +656,7 @@
 				      <property name="use_underline">True</property>
 				      <property name="active">False</property>
 				      <property name="group">menu_recruit0</property>
-				      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Thu, 14 Jul 2005 07:29:19 GMT"/>
+				      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Thu, 14 Jul 2005 07:29:19 GMT"/>
 				    </widget>
 				  </child>
 
@@ -667,7 +667,7 @@
 				      <property name="use_underline">True</property>
 				      <property name="active">False</property>
 				      <property name="group">menu_recruit0</property>
-				      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Thu, 14 Jul 2005 07:29:14 GMT"/>
+				      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Thu, 14 Jul 2005 07:29:14 GMT"/>
 				    </widget>
 				  </child>
 
@@ -678,7 +678,7 @@
 				      <property name="use_underline">True</property>
 				      <property name="active">False</property>
 				      <property name="group">menu_recruit0</property>
-				      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Thu, 14 Jul 2005 07:29:09 GMT"/>
+				      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Thu, 14 Jul 2005 07:29:09 GMT"/>
 				    </widget>
 				  </child>
 
@@ -689,7 +689,7 @@
 				      <property name="use_underline">True</property>
 				      <property name="active">True</property>
 				      <property name="group">menu_recruit0</property>
-				      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Thu, 14 Jul 2005 07:29:03 GMT"/>
+				      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Thu, 14 Jul 2005 07:29:03 GMT"/>
 				    </widget>
 				  </child>
 				</widget>
@@ -737,7 +737,7 @@
 			      <property name="label" translatable="yes">On</property>
 			      <property name="use_underline">True</property>
 			      <property name="active">False</property>
-			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Tue, 08 Mar 2005 16:37:57 GMT"/>
+			      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Tue, 08 Mar 2005 16:37:57 GMT"/>
 			    </widget>
 			  </child>
 
@@ -748,7 +748,7 @@
 			      <property name="use_underline">True</property>
 			      <property name="active">True</property>
 			      <property name="group">menu_boost_on</property>
-			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Tue, 08 Mar 2005 16:37:48 GMT"/>
+			      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Tue, 08 Mar 2005 16:37:48 GMT"/>
 			    </widget>
 			  </child>
 
@@ -759,7 +759,7 @@
 			      <property name="use_underline">True</property>
 			      <property name="active">False</property>
 			      <property name="group">menu_boost_on</property>
-			      <signal name="button_press_event" handler="on_menu_team_button_press_event" last_modification_time="Tue, 08 Mar 2005 17:01:43 GMT"/>
+			      <signal name="button_release_event" handler="on_menu_team_button_release_event" last_modification_time="Tue, 08 Mar 2005 17:01:43 GMT"/>
 			    </widget>
 			  </child>
 			</widget>

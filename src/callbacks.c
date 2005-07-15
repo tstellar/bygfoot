@@ -633,9 +633,9 @@ on_menu_custom_structure_activate      (GtkMenuItem     *menuitem,
 
 
 gboolean
-on_menu_team_button_press_event        (GtkWidget       *widget,
-                                        GdkEventButton  *event,
-                                        gpointer         user_data)
+on_menu_team_button_release_event        (GtkWidget       *widget,
+					  GdkEventButton  *event,
+					  gpointer         user_data)
 {
     game_gui_read_radio_items(widget);
     setsav0;
