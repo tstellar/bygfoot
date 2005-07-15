@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-26 13:34+0200\n"
-"PO-Revision-Date: 2005-06-25 23:15+0200\n"
+"POT-Creation-Date: 2005-07-15 09:45+0200\n"
+"PO-Revision-Date: 2005-07-15 09:46+0200\n"
 "Last-Translator:  Gyz Both <gyboth@bygfoot.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr ""
 "\n"
 "Tore/Spiel %.1f Schüsse %% %.1f"
 
-#: src/game_gui.c:630
+#: src/game_gui.c:697
 msgid ""
 "\n"
 "If you feel you've found out something about the game that has to be shared, "
@@ -47,198 +47,194 @@ msgstr ""
 "Wenn Du glaubst, etwas über das Spiel herausgefunden zu haben, das unbedingt "
 "mitgeteilt werden muss, kannst Du's in der Bygfoot Wiki loswerden:\n"
 
-#: src/misc_interface.c:533 src/misc_interface.c:552
-msgid "   "
-msgstr "   "
-
 #. Company short name. Copy the '&amp;'.
-#: src/user.c:811
+#: src/user.c:814
 msgid " &amp; Co."
 msgstr " &amp; Co."
 
 #. Company addition. Copy the '&amp;'.
-#: src/user.c:820
+#: src/user.c:823
 msgid " &amp; Daughters"
 msgstr " &amp; Töchter"
 
 #. Company addition, leading to 'Marshall & Sons Petroleum Co.'. Copy the '&amp;'.
-#: src/user.c:818
+#: src/user.c:821
 msgid " &amp; Sons"
 msgstr "&amp; Söhne"
 
 #. A goal scored with a free kick.
-#: src/game.c:870
+#: src/game.c:881
 msgid " (FK)"
 msgstr " (FS)"
 
-#: src/game_gui.c:541
+#: src/game_gui.c:611
 msgid " (NOTE: If you don't, the game is over for you.)"
 msgstr "(BEMERKUNG: Wenn Du ablehnst, ist das Spiel vorbei für Dich.)"
 
-#: src/game.c:872
+#: src/game.c:883
 msgid " (OG)"
 msgstr " (ET)"
 
 #. A goal scored with penalty.
 #. Penalty shooter.
-#: src/game.c:867 src/treeview_helper.c:967
+#: src/game.c:878 src/treeview_helper.c:967
 msgid " (P)"
 msgstr " (E)"
 
-#: src/cup.c:792
+#: src/cup.c:801
 msgid " -- First leg"
 msgstr " -- Hinspiel"
 
-#: src/cup.c:795
+#: src/cup.c:804
 msgid " -- Replay matches"
 msgstr " -- Wiederholungsspiele"
 
-#: src/cup.c:790
+#: src/cup.c:799
 msgid " -- Second leg"
 msgstr " -- Rückspiel"
 
 #. Company short name.
-#: src/user.c:805
+#: src/user.c:808
 msgid " Assoc."
 msgstr " Holding"
 
-#: src/options_interface.c:266
+#: src/options_interface.c:267
 msgid " Autosave files "
 msgstr "Dateien für Auto-Speichern"
 
 #. Company name.
-#: src/user.c:786
+#: src/user.c:789
 msgid " Bank"
 msgstr " Bank"
 
 #. Company addition.
-#: src/user.c:822
+#: src/user.c:825
 msgid " Bros."
 msgstr " Gebr."
 
 #. Company name.
-#: src/user.c:782
+#: src/user.c:785
 msgid " Chemicals"
 msgstr " Chemie"
 
 #. Company short name.
-#: src/user.c:807
+#: src/user.c:810
 msgid " Co."
 msgstr " Ges."
 
 #. Company name.
-#: src/user.c:768
+#: src/user.c:771
 msgid " Communications"
 msgstr " Kommunikation"
 
 #. Company name.
-#: src/user.c:774
+#: src/user.c:777
 msgid " Company"
 msgstr " Gesellschaft"
 
 #. Company short name.
-#: src/user.c:813
+#: src/user.c:816
 msgid " Corp."
 msgstr " AG"
 
 #. Company name.
-#: src/user.c:800
+#: src/user.c:803
 msgid " Data Systems"
 msgstr " Datensysteme"
 
 #. Company name.
-#: src/user.c:784
+#: src/user.c:787
 msgid " Energy"
 msgstr " Energie"
 
 #. Company short name.
-#: src/user.c:809
+#: src/user.c:812
 msgid " Ent."
 msgstr " Ges."
 
 #. Company name.
-#: src/user.c:794
+#: src/user.c:797
 msgid " Financial"
 msgstr " Finanzen"
 
-#: src/user.c:488
+#: src/user.c:491
 msgid " Fortunately he's got a cousin who can help your team out."
 msgstr "Glücklicherweise hat er einen Cousin, der einspringen kann."
 
 #. Company short name.
-#: src/user.c:815
+#: src/user.c:818
 msgid " Group"
 msgstr " Gruppe"
 
 #. Company name.
-#: src/user.c:770
+#: src/user.c:773
 msgid " Holdings"
 msgstr " Logistik"
 
 #. Company name.
-#: src/user.c:772
+#: src/user.c:775
 msgid " Industries"
 msgstr " Pharma"
 
 #. Company name.
-#: src/user.c:778
+#: src/user.c:781
 msgid " Labs"
 msgstr " Labore"
 
 #. Company short name, leading to things like 'Marshall Data Systems Ltd.'
-#: src/user.c:803
+#: src/user.c:806
 msgid " Ltd."
 msgstr " GmbH"
 
 #. Company name.
-#: src/user.c:796
+#: src/user.c:799
 msgid " Petroleum"
 msgstr " Petroleum"
 
 #. Company name.
-#: src/user.c:788
+#: src/user.c:791
 msgid " Products"
 msgstr " Produkte"
 
 #. Company name.
-#: src/user.c:798
+#: src/user.c:801
 msgid " Restaurants"
 msgstr " Gaststätten"
 
-#: src/interface.c:958
+#: src/interface.c:1069
 msgid " Round "
 msgstr " Runde "
 
 #. Company name.
-#: src/user.c:792
+#: src/user.c:795
 msgid " Scientific"
 msgstr " Scientific"
 
-#: src/interface.c:940
+#: src/interface.c:1051
 msgid " Season "
 msgstr " Saison "
 
 #. Company name.
-#: src/user.c:790
+#: src/user.c:793
 msgid " Software"
 msgstr " Software"
 
 #. Company name.
-#: src/user.c:766
+#: src/user.c:769
 msgid " Systems"
 msgstr " Systeme"
 
 #. Company name.
-#: src/user.c:780
+#: src/user.c:783
 msgid " Technologies"
 msgstr " Technologien"
 
 #. Company name.
-#: src/user.c:776
+#: src/user.c:779
 msgid " Telecommunications"
 msgstr " Telekommunikation"
 
-#: src/interface.c:949
+#: src/interface.c:1060
 msgid " Week "
 msgstr " Woche "
 
@@ -247,15 +243,15 @@ msgstr " Woche "
 msgid " e.t."
 msgstr " n.V."
 
-#: src/callback_func.c:355
+#: src/callback_func.c:360
 msgid " less"
 msgstr " weniger"
 
-#: src/options_interface.c:524
+#: src/options_interface.c:530
 msgid " months"
 msgstr " Monaten"
 
-#: src/callback_func.c:353
+#: src/callback_func.c:358
 msgid " more"
 msgstr " mehr"
 
@@ -264,24 +260,24 @@ msgstr " mehr"
 msgid " p."
 msgstr " i.E."
 
-#: src/misc_interface.c:857
+#: src/misc_interface.c:859
 msgid " seats"
 msgstr " Plätze"
 
 #. Contract time and money a sponsor pays.
-#: src/treeview.c:1381
+#: src/treeview.c:1383
 #, c-format
 msgid "%.1f months / %s"
 msgstr "%.1f Monate / %s"
 
 #. a match at home
-#: src/team.c:995
+#: src/team.c:976
 #, c-format
 msgid "%s (H) "
 msgstr "%s (H) "
 
 #. a match on neutral ground
-#: src/team.c:1011
+#: src/team.c:992
 #, c-format
 msgid "%s (N) "
 msgstr "%s (N) "
@@ -297,12 +293,12 @@ msgstr "%s (erwartete Genesung in %d Wochen)"
 msgid "%s Group %d"
 msgstr "%s Gruppe %d"
 
-#: src/misc2_callback_func.c:154
+#: src/misc2_callback_func.c:156
 #, c-format
 msgid "%s accepts your offer."
 msgstr "%s akzeptiert Dein Angebot."
 
-#: src/misc2_callback_func.c:47
+#: src/misc2_callback_func.c:46
 #, c-format
 msgid "%s couldn't afford to buy %s or his roster was full."
 msgstr ""
@@ -310,7 +306,7 @@ msgstr ""
 "Mannschaft."
 
 #. Team fires, team in a league.
-#: src/user.c:682
+#: src/user.c:685
 #, c-format
 msgid ""
 "%s fires you because of financial mismanagement.\n"
@@ -320,7 +316,7 @@ msgstr ""
 "Du bekommst eine neue Arbeit mit %s in der %s."
 
 #. Team fires, team in a league.
-#: src/user.c:689
+#: src/user.c:692
 #, c-format
 msgid ""
 "%s fires you because of unsuccessfulness.\n"
@@ -329,18 +325,18 @@ msgstr ""
 "%s feuert Dich wegen Erfolglosigkeit.\n"
 "Du bekommst eine neue Arbeit mit %s in der %s."
 
-#: src/transfer.c:435
+#: src/transfer.c:448
 #, c-format
 msgid "%s has been added to the transfer list for %d weeks."
 msgstr "%s wurde für %d Wochen auf die Transferliste gesetzt."
 
-#: src/user.c:406
+#: src/user.c:419
 #, c-format
 msgid "%s has left your team because his contract expired."
 msgstr "%s hat Deine Mannschaft verlassen, da sein Vertrag auslief."
 
 #. A player from a team has rejected a transfer offer.
-#: src/user.c:467
+#: src/user.c:473
 #, c-format
 msgid ""
 "%s of %s has rejected your offer (%s / %s). He wasn't satisfied with the "
@@ -350,7 +346,7 @@ msgstr ""
 "Gehalt unzufrieden."
 
 #. Team in a league. Leave team.
-#: src/user.c:696
+#: src/user.c:699
 #, c-format
 msgid ""
 "%s offer you a job in the %s.\n"
@@ -359,7 +355,7 @@ msgstr ""
 "%s bieten dir einen neuen Job in der %s.\n"
 "Du nimmst die Herausforderung an und verlässt %s."
 
-#: src/misc2_callback_func.c:170
+#: src/misc2_callback_func.c:168
 #, c-format
 msgid ""
 "%s rejects your offer and won't negotiate with you anymore. You should sell "
@@ -374,12 +370,12 @@ msgstr ""
 msgid "%s rejects your offer. You may still make %d offers."
 msgstr "%s lehnt Dein Angebot ab. Du kannst noch %d Angebote abgeben."
 
-#: src/callbacks.c:460
+#: src/callbacks.c:459
 #, c-format
 msgid "%s will shoot penalties and free kicks when he plays."
 msgstr "%s wird Elfmeter und Freistöße schießen wenn er spielt."
 
-#: src/callback_func.c:357
+#: src/callback_func.c:362
 #, c-format
 msgid ""
 "%s would like to buy %s. They offer %s for him, which is %s than the "
@@ -388,12 +384,12 @@ msgstr ""
 "%s möchte %s kaufen. Sie bieten %s, was %s ist als der Wert des Spielers. "
 "Nimmst Du an?"
 
-#: src/player.c:1023
+#: src/player.c:1031
 #, c-format
 msgid "%s's contract expires in %.1f years."
 msgstr "%ss Vertrag läuft in %.1f Jahren aus."
 
-#: src/user.c:485
+#: src/user.c:488
 #, c-format
 msgid ""
 "%s's injury was so severe that he can't play football on a professional "
@@ -415,38 +411,29 @@ msgstr "%s: %d (keine Obergrenze)\n"
 msgid "%s: %d weeks\n"
 msgstr "%s: %d Wochen\n"
 
-#: src/misc_interface.c:940 src/misc_interface.c:948 src/misc_interface.c:974
-#: src/misc_interface.c:982
+#: src/misc_interface.c:942 src/misc_interface.c:950 src/misc_interface.c:976
+#: src/misc_interface.c:984
 msgid "0"
 msgstr "0"
 
-#: src/interface.c:945 src/interface.c:954 src/interface.c:962
-#: src/interface.c:1022
-msgid "1"
-msgstr "1"
-
-#: src/misc2_interface.c:603
+#: src/misc2_interface.c:604
 msgid "1 year"
 msgstr "1 Jahr"
 
-#: src/misc2_interface.c:627
+#: src/misc2_interface.c:628
 msgid "2 years"
 msgstr "2 Jahre"
 
-#: src/interface.c:1036
-msgid "2000"
-msgstr "2000"
-
-#: src/misc2_interface.c:611
+#: src/misc2_interface.c:612
 msgid "3 years"
 msgstr "3 Jahre"
 
-#: src/misc2_interface.c:619
+#: src/misc2_interface.c:620
 msgid "4 years"
 msgstr "4 Jahre"
 
 #. a match away
-#: src/team.c:1001
+#: src/team.c:982
 #, c-format
 msgid "<span background='%s' foreground='%s'>%s (A) </span> "
 msgstr "<span background='%s' foreground='%s'>%s (A) </span>"
@@ -478,49 +465,49 @@ msgstr ""
 "<span background='%s'>Es gab technische Probleme\n"
 "im Stadion.</span>"
 
-#: src/treeview.c:1516 src/treeview.c:1521
+#: src/treeview.c:1525 src/treeview.c:1530
 #, c-format
 msgid "<span foreground='%s' background='%s'>Week %d Round %d</span>"
 msgstr "<span foreground='%s' background='%s'>Woche %d Runde %d</span>"
 
-#: src/lg_commentary.c:249 src/team.c:508
+#: src/lg_commentary.c:516 src/team.c:493
 msgid "ALL OUT ATTACK"
 msgstr "BRECHSTANGE"
 
-#: src/lg_commentary.c:237 src/team.c:500
+#: src/lg_commentary.c:504 src/team.c:485
 msgid "ALL OUT DEFEND"
 msgstr "BETONVERTEIDIGUNG"
 
 #. Boost value.
-#: src/lg_commentary.c:252 src/team.c:516
+#: src/lg_commentary.c:519 src/team.c:501
 msgid "ANTI"
 msgstr "ANTI"
 
-#: src/lg_commentary.c:246 src/team.c:506
+#: src/lg_commentary.c:513 src/team.c:491
 msgid "ATTACK"
 msgstr "ANGRIFF"
 
-#: src/interface.c:806 src/misc2_interface.c:1027
+#: src/interface.c:917 src/misc2_interface.c:1036
 msgid "About"
 msgstr "Über"
 
-#: src/misc_interface.c:1208
+#: src/misc_interface.c:1210
 msgid "Accept"
 msgstr "Annehmen"
 
-#: src/game_gui.c:539
+#: src/game_gui.c:609
 msgid "Accept?"
 msgstr "Einverstanden?"
 
-#: src/misc2_interface.c:834 src/misc_interface.c:190
+#: src/misc2_interface.c:843 src/misc_interface.c:190
 msgid "Add user"
 msgstr "Benutzer hinzufügen"
 
-#: src/treeview.c:267 src/treeview.c:1804
+#: src/treeview.c:267 src/treeview.c:1813
 msgid "Age"
 msgstr "Alter"
 
-#: src/options_interface.c:637
+#: src/options_interface.c:643
 msgid "Age "
 msgstr "Alter "
 
@@ -528,23 +515,27 @@ msgstr "Alter "
 msgid "All Files"
 msgstr "Alle Dateien"
 
-#: src/interface.c:460
+#: src/interface.c:480
 msgid "All Out Attack"
 msgstr "Brechstange"
 
-#: src/interface.c:436
+#: src/interface.c:456
 msgid "All Out Defend"
 msgstr "Betonverteidigung"
 
-#: src/interface.c:559
+#: src/interface.c:666
 msgid "Anti"
 msgstr "Anti"
 
-#: src/callbacks.c:170
+#: src/interface.c:632
+msgid "Any"
+msgstr "Egal"
+
+#: src/callbacks.c:171
 msgid "At least one user didn't take his turn this week. Continue?"
 msgstr "Mindestens ein Benutzer ist noch nicht drangewesen. Fortfahren?"
 
-#: src/game_gui.c:628
+#: src/game_gui.c:695
 msgid ""
 "At the Bygfoot forums you can report bugs, ask for help and discuss the game "
 "(you don't have to register):\n"
@@ -552,7 +543,7 @@ msgstr ""
 "In den Bygfoot-Foren kannst Du Fehler melden, nach Hilfe fragen und über das "
 "Spiel diskutieren (Du musst Dich dazu nicht anmelden):\n"
 
-#: src/interface.c:454 src/treeview.c:1463
+#: src/interface.c:474 src/treeview.c:1472
 msgid "Attack"
 msgstr "Angriff"
 
@@ -565,23 +556,23 @@ msgstr ""
 "Zuschauer\n"
 "%s"
 
-#: src/options_interface.c:916
+#: src/options_interface.c:922
 msgid "Attribute "
 msgstr "Eigenschaft"
 
-#: src/options_interface.c:459
+#: src/options_interface.c:460
 msgid "Automatic substitutions"
 msgstr "Autoauswechslungen"
 
-#: src/options_interface.c:359
+#: src/options_interface.c:360
 msgid "Autosave"
 msgstr "Auto-Speichern"
 
-#: src/options_interface.c:255
+#: src/options_interface.c:256
 msgid "Autosave interval "
 msgstr "Intervall für Auto-Speichern"
 
-#: src/interface.c:1054
+#: src/interface.c:1165
 msgid "Av. skills:  "
 msgstr "Durchschn. Fäh."
 
@@ -590,23 +581,23 @@ msgstr "Durchschn. Fäh."
 msgid "Av.Sk."
 msgstr "Du.Fäh."
 
-#: src/misc2_interface.c:798
+#: src/misc2_interface.c:807
 msgid "Available teams"
 msgstr "Verfügbare Mannschaften"
 
-#: src/interface.c:489 src/interface.c:524
+#: src/interface.c:509 src/interface.c:544 src/interface.c:589
 msgid "Average"
 msgstr "Durchschnitt"
 
-#: src/misc_interface.c:874
+#: src/misc_interface.c:876
 msgid "Average attendance"
 msgstr "Zuschauerschnitt"
 
-#: src/misc_interface.c:888
+#: src/misc_interface.c:890
 msgid "Average attendance %"
 msgstr "Zuschauerschnitt %"
 
-#: src/treeview.c:1562
+#: src/treeview.c:1571
 msgid "Average skill"
 msgstr "Durchschnittl. Fähigkeit"
 
@@ -614,11 +605,11 @@ msgstr "Durchschnittl. Fähigkeit"
 msgid "Average skill:"
 msgstr "Durchschnittl. Fähigkeit:"
 
-#: src/treeview.c:1531
+#: src/treeview.c:1540
 msgid "Away"
 msgstr "Auswärts"
 
-#: src/lg_commentary.c:243 src/team.c:504
+#: src/lg_commentary.c:510 src/team.c:489
 msgid "BALANCED"
 msgstr "AUSGEGLICHEN"
 
@@ -628,94 +619,94 @@ msgstr "AUSGEGLICHEN"
 msgid "BAN(%d)"
 msgstr "SP(%d)"
 
-#: src/interface.c:878
+#: src/interface.c:989
 msgid "Back to main menu (Esc)"
 msgstr "Zurück zum Hauptmenü (Esc)"
 
-#: src/interface.c:495 src/interface.c:530
+#: src/interface.c:515 src/interface.c:550 src/interface.c:595
 msgid "Bad"
 msgstr "Mies"
 
 #. Finances balance.
-#: src/treeview.c:1315
+#: src/treeview.c:1317
 msgid "Balance"
 msgstr "Bilanz"
 
-#: src/interface.c:448
+#: src/interface.c:468
 msgid "Balanced"
 msgstr "Ausgeglichen"
 
-#: src/treeview.c:1813
+#: src/treeview.c:1822
 msgid "Banned\n"
 msgstr "Gesperrt\n"
 
-#: src/interface.c:909
+#: src/interface.c:1020
 msgid "Begin a new week (Space)"
 msgstr "Starte neue Woche (Leertaste)"
 
-#: src/interface.c:477 src/interface.c:512
+#: src/interface.c:497 src/interface.c:532 src/interface.c:577
 msgid "Best"
 msgstr "Der König"
 
-#: src/treeview.c:2019
+#: src/treeview.c:2028
 msgid "Best defensive teams"
 msgstr "Beste Abwehr"
 
-#: src/treeview.c:2022
+#: src/treeview.c:2031
 msgid "Best goal scorers"
 msgstr "Beste Torschützen"
 
-#: src/treeview.c:2023
+#: src/treeview.c:2032
 msgid "Best goalkeepers"
 msgstr "Beste Torhüter"
 
-#: src/treeview.c:2018
+#: src/treeview.c:2027
 msgid "Best offensive teams"
 msgstr "Bester Angriff"
 
 #. Finances balance.
-#: src/treeview.c:1290
+#: src/treeview.c:1292
 msgid "Bi-weekly balance"
 msgstr "Zweiwöchige Bilanz"
 
-#: src/interface.c:536
+#: src/interface.c:643
 msgid "Boost"
 msgstr "Boost"
 
-#: src/callbacks.c:722 src/game_gui.c:309
+#: src/callbacks.c:758 src/game_gui.c:326
 msgid "Boost ON is disabled in this country definition."
 msgstr "Boost AN ist in dieser Länderdefinition ausgeschaltet."
 
-#: src/team.c:549
+#: src/team.c:532
 #, c-format
 msgid "Boost changed to %s."
 msgstr "Boost auf %s gesetzt."
 
-#: src/player.c:1155
+#: src/player.c:1159
 msgid "Broken ankle"
 msgstr "Knöchelbruch"
 
-#: src/player.c:1158
+#: src/player.c:1162
 msgid "Broken arm"
 msgstr "Armbruch"
 
-#: src/player.c:1152
+#: src/player.c:1156
 msgid "Broken leg"
 msgstr "Beinbruch"
 
-#: src/player.c:1149
+#: src/player.c:1153
 msgid "Broken rib"
 msgstr "Rippenbruch"
 
-#: src/player.c:1161
+#: src/player.c:1165
 msgid "Broken shoulder"
 msgstr "Gebrochene Schulter"
 
-#: src/interface.c:671
+#: src/interface.c:782
 msgid "Browse players"
 msgstr "Spieler durchstöbern"
 
-#: src/interface.c:603
+#: src/interface.c:710
 msgid "Browse teams"
 msgstr "Mannschaften durchstöbern"
 
@@ -723,7 +714,7 @@ msgstr "Mannschaften durchstöbern"
 msgid "Bygfoot Save Files"
 msgstr "Bygfoot Save-Dateien"
 
-#: src/misc2_interface.c:917
+#: src/misc2_interface.c:926
 msgid ""
 "Bygfoot debug window. If you got here by accident, CLOSE IMMEDIATELY "
 "(otherwise your CPU will be destroyed by overheating)."
@@ -731,7 +722,7 @@ msgstr ""
 "Bygfoot Debug-Fenster. Wenn Du zufällig hierhergekommen bist, SCHLIESSE "
 "SOFORT (ansonsten wird Dein Prozessor durch Überhitzen zerstört)."
 
-#: src/game_gui.c:626
+#: src/game_gui.c:693
 msgid ""
 "Bygfoot is a very intuitive and simple game, so there isn't a full-grown "
 "documentation. However, if you have trouble, there are a few places to go.\n"
@@ -745,7 +736,7 @@ msgstr ""
 msgid "CPos"
 msgstr "APos"
 
-#: src/options_interface.c:567
+#: src/options_interface.c:573
 msgid "CPos "
 msgstr "APos"
 
@@ -754,23 +745,23 @@ msgstr "APos"
 msgid "CSk"
 msgstr "AFä"
 
-#: src/options_interface.c:581
+#: src/options_interface.c:587
 msgid "CSkill "
 msgstr "AFÄhig "
 
-#: src/misc_interface.c:922
+#: src/misc_interface.c:924
 msgid "Capacity (seats)"
 msgstr "Kapazität (Plätze)"
 
-#: src/options_interface.c:630
+#: src/options_interface.c:636
 msgid "Cards "
 msgstr "Karten "
 
-#: src/treeview.c:1814
+#: src/treeview.c:1823
 msgid "Career values"
 msgstr "Karrierewerte"
 
-#: src/misc_interface.c:682
+#: src/misc_interface.c:684
 msgid ""
 "Change commentary verbosity. The higher this value the more events you can "
 "see."
@@ -778,7 +769,7 @@ msgstr ""
 "Ausführlichkeit des Kommentars ändern. Je höher der Wert, desto mehr "
 "Kommentare kannst Du sehen."
 
-#: src/misc_interface.c:660
+#: src/misc_interface.c:662
 msgid "Change live game speed. The lower the value the faster the live game."
 msgstr ""
 "Geschwindigkeit des Livespiels ändern. Je niedriger der Wert, desto "
@@ -788,11 +779,11 @@ msgstr ""
 msgid "Choose country"
 msgstr "Wähle Land"
 
-#: src/misc_interface.c:1105
+#: src/misc_interface.c:1107
 msgid "Choose file"
 msgstr "Datei auswählen"
 
-#: src/misc2_interface.c:792
+#: src/misc2_interface.c:801
 msgid "Click on a user to remove him from the game."
 msgstr "Klicke auf einen Benutzer, um ihn aus dem Spiel zu entfernen."
 
@@ -800,52 +791,56 @@ msgstr "Klicke auf einen Benutzer, um ihn aus dem Spiel zu entfernen."
 msgid "Click on a user to remove him."
 msgstr "Klicke auf einen Benutzer, um ihn zu entfernen."
 
-#: src/misc_interface.c:575
+#: src/misc_interface.c:577
 msgid "Commentary"
 msgstr "Kommentar"
 
-#: src/treeview.c:2444
+#: src/treeview.c:2453
 msgid "Company"
 msgstr "Firma"
 
 #. Money paid to players a user fired.
-#: src/treeview.c:1279
+#: src/treeview.c:1281
 msgid "Compensations"
 msgstr "Abfindungen"
 
-#: src/load_save.c:118
+#: src/load_save.c:120
 msgid "Compressing savegame..."
 msgstr "Komprimiere Datei"
 
-#: src/player.c:1134
+#: src/player.c:1138
 msgid "Concussion"
 msgstr "Gehirnerschütterung"
 
-#: src/options_interface.c:208
+#: src/options_interface.c:209
 msgid "Confirm quit when not saved"
 msgstr "Schließen bestätigen wenn nicht gespeichert"
 
-#: src/options_interface.c:213
+#: src/options_interface.c:501
+msgid "Confirm removing youths"
+msgstr "Bestätige Rauswurf von Nachwuchsspielern"
+
+#: src/options_interface.c:214
 msgid "Confirm when unfit"
 msgstr "Bestätigen wenn nicht fit"
 
-#: src/options_interface.c:290
+#: src/options_interface.c:291
 msgid "Constants file"
 msgstr "Konstanten-Datei"
 
-#: src/treeview.c:272 src/treeview.c:1808
+#: src/treeview.c:272 src/treeview.c:1817
 msgid "Contract"
 msgstr "Vertrag"
 
-#: src/options_interface.c:665
+#: src/options_interface.c:671
 msgid "Contract "
 msgstr "Vertrag "
 
-#: src/treeview.c:1383
+#: src/treeview.c:1385
 msgid "Contract / Money"
 msgstr "Vertrag / Zahlungen"
 
-#: src/treeview.c:2445
+#: src/treeview.c:2454
 msgid ""
 "Contract length\n"
 "(Months)"
@@ -853,19 +848,19 @@ msgstr ""
 "Vertragslaufzeit\n"
 "(Monate)"
 
-#: src/window.c:498
+#: src/window.c:505
 msgid "Contract offer"
 msgstr "Vertragsangebot "
 
-#: src/callbacks.c:788
+#: src/callbacks.c:824
 msgid "Contracts are disabled in this country definition."
 msgstr "Verträge sind in dieser Länderdefinition ausgeschaltet."
 
-#: src/interface.c:814 src/misc2_interface.c:1041
+#: src/interface.c:925 src/misc2_interface.c:1050
 msgid "Contributors"
 msgstr "Mitwirkende"
 
-#: src/misc_interface.c:936 src/misc_interface.c:970
+#: src/misc_interface.c:938 src/misc_interface.c:972
 msgid "Costs"
 msgstr "Kosten"
 
@@ -878,27 +873,27 @@ msgstr "Konnte Pixmap-Datei nicht finden: %s"
 msgid "Ctrl-O"
 msgstr "Strg-O"
 
-#: src/treeview.c:2175
+#: src/treeview.c:2184
 msgid "Cup champions"
 msgstr "Pokalsieger"
 
-#: src/misc_interface.c:839
+#: src/misc_interface.c:841
 msgid "Current capacity"
 msgstr "Aktuelle Kapazität"
 
-#: src/treeview.c:2319
+#: src/treeview.c:2328
 msgid "Current league"
 msgstr "Aktuelle Liga"
 
-#: src/treeview.c:1799
+#: src/treeview.c:1808
 msgid "Current position"
 msgstr "Aktuelle Position"
 
-#: src/misc_interface.c:861
+#: src/misc_interface.c:863
 msgid "Current safety"
 msgstr "Aktuelle Sicherheit"
 
-#: src/treeview.c:1801
+#: src/treeview.c:1810
 msgid "Current skill"
 msgstr "Aktuelle Fähigkeit"
 
@@ -907,30 +902,39 @@ msgstr "Aktuelle Fähigkeit"
 msgid "D"
 msgstr "V"
 
-#: src/lg_commentary.c:240 src/team.c:502
+#: src/lg_commentary.c:507 src/team.c:487
 msgid "DEFEND"
 msgstr "VERTEIDIGEN"
 
-#: src/treeview.c:1367
+#: src/treeview.c:1369
 #, c-format
 msgid "Debt (repay in %d weeks)"
 msgstr "Schulden (Rückzahltermin in %d Wochen)"
 
-#: src/misc2_interface.c:910
+#: src/misc2_interface.c:919
 msgid "Debug"
 msgstr "Debug"
 
-#: src/misc2_interface.c:1186
+#: src/misc2_interface.c:1195
 msgid "Decide later"
 msgstr "Später entscheiden"
 
-#: src/interface.c:442 src/treeview.c:1461
+#: src/interface.c:462 src/treeview.c:1470
 msgid "Defend"
 msgstr "Verteidigen"
+
+#: src/interface.c:614
+msgid "Defenders"
+msgstr "Verteidiger"
 
 #: src/window.c:53
 msgid "Didn't find file 'bygfoot_help'."
 msgstr "Konnte Datei 'bygfoot_help' nicht finden."
+
+#: src/callbacks.c:1049
+msgid "Do you really want to kick the poor boy out of your academy?"
+msgstr ""
+"Willst du den armen Jungen wirklich aus der Nachwuchsmannschaft werfen?"
 
 #: src/misc_interface.c:217
 msgid "Don't load definitions"
@@ -940,11 +944,11 @@ msgstr "Lade keine Definitionen"
 msgid "Don't load team definitions at all"
 msgstr "Lade überhaupt keine Mannschaftsdefinitionen"
 
-#: src/load_save.c:126 src/load_save.c:257
+#: src/load_save.c:128 src/load_save.c:261
 msgid "Done."
 msgstr "Fertig."
 
-#: src/treeview.c:1360
+#: src/treeview.c:1362
 msgid "Drawing credit"
 msgstr "Dispokredit"
 
@@ -954,44 +958,44 @@ msgid "Dw"
 msgstr "U"
 
 #. draw
-#: src/team.c:1061
+#: src/team.c:1042
 msgid "Dw "
 msgstr "U "
 
 #. a drawn match
-#: src/team.c:985
+#: src/team.c:966
 #, c-format
 msgid "Dw %d : %d"
 msgstr "U %d : %d"
 
-#: src/options_interface.c:644
+#: src/options_interface.c:650
 msgid "ETal "
 msgstr "GTal"
 
-#: src/callbacks.c:594
+#: src/callbacks.c:630
 msgid "Enter a structure. The digits must sum up to 10."
 msgstr "Spielsystem eingeben. Die Ziffern müssen sich zu 10 aufsummieren."
 
-#: src/interface.c:578
+#: src/interface.c:685
 msgid "Enter custom structure"
 msgstr "Eigenes Spielsystem eingeben"
 
-#: src/window.c:412
+#: src/window.c:419
 msgid "Erm..."
 msgstr "Äh..."
 
 #: src/misc2_interface.c:434 src/misc2_interface.c:521
-#: src/misc2_interface.c:1074 src/misc2_interface.c:1169
-#: src/misc_interface.c:263 src/misc_interface.c:1018
-#: src/options_interface.c:978
+#: src/misc2_interface.c:1083 src/misc2_interface.c:1178
+#: src/misc_interface.c:263 src/misc_interface.c:1020
+#: src/options_interface.c:984
 msgid "Esc"
 msgstr "Esc"
 
-#: src/misc_interface.c:600
+#: src/misc_interface.c:602
 msgid "Esc / Return / Space"
 msgstr "Esc / Return / Leertaste"
 
-#: src/treeview.c:1803
+#: src/treeview.c:1812
 msgid "Estimated talent"
 msgstr "Geschätztes Talent"
 
@@ -1000,15 +1004,15 @@ msgstr "Geschätztes Talent"
 msgid "Etal"
 msgstr "GTal"
 
-#: src/treeview.c:1986
+#: src/treeview.c:1995
 msgid "Event"
 msgstr "Ereignis"
 
-#: src/misc_interface.c:944 src/misc_interface.c:978
+#: src/misc_interface.c:946 src/misc_interface.c:980
 msgid "Expected duration"
 msgstr "Erwartete Dauer"
 
-#: src/treeview.c:1402
+#: src/treeview.c:1411
 msgid "Expenses"
 msgstr "Ausgaben"
 
@@ -1017,15 +1021,15 @@ msgstr "Ausgaben"
 msgid "F"
 msgstr "A"
 
-#: src/interface.c:340
+#: src/interface.c:360
 msgid "F_igures"
 msgstr "Z_ahlen"
 
-#: src/callback_func.c:450 src/callback_func.c:458
+#: src/callback_func.c:460 src/callback_func.c:468
 msgid "Fee"
 msgstr "Ablösesumme"
 
-#: src/options_interface.c:329
+#: src/options_interface.c:330
 msgid ""
 "File containing settings which determine a lot of aspects of the game "
 "behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
@@ -1033,23 +1037,23 @@ msgstr ""
 "Datei mit Einstellungen, die viele Aspekte des Spielverhaltens bestimmen. "
 "NICHT ÄNDERN ES SEI DENN DU WEISST GENAU WAS DU TUST."
 
-#: src/interface.c:770
+#: src/interface.c:881
 msgid "Fin_Stad"
 msgstr "Fin_Stad"
 
-#: src/cup.c:818
+#: src/cup.c:827
 msgid "Final"
 msgstr "Endspiel"
 
-#: src/callbacks.c:744
+#: src/callbacks.c:780
 msgid "Finances are disabled in this country definition."
 msgstr "Finanzen sind in dieser Länderdefinition ausgeschaltet."
 
-#: src/interface.c:650 src/interface.c:1643
+#: src/interface.c:757 src/interface.c:1809
 msgid "Fire"
 msgstr "Feuern"
 
-#: src/interface.c:1048
+#: src/interface.c:1159
 msgid ""
 "First value: average current skill of the first 11 players. Second value: "
 "average skill of all players."
@@ -1062,35 +1066,39 @@ msgstr ""
 msgid "Fit"
 msgstr "Fit"
 
-#: src/treeview.c:1802
+#: src/treeview.c:1811
 msgid "Fitness"
 msgstr "Fitness"
 
-#: src/options_interface.c:595
+#: src/options_interface.c:601
 msgid "Fitness "
 msgstr "Fitness "
 
-#: src/interface.c:358
+#: src/interface.c:378
 msgid "Fixtures (competitions)"
 msgstr "Spielplan (Wettbewerbe)"
 
-#: src/interface.c:347
+#: src/interface.c:367
 msgid "Fixtures (week)"
 msgstr "Spielplan (wöchentlich)"
 
-#: src/options_interface.c:316
+#: src/options_interface.c:317
 msgid "Font name"
 msgstr "Schriftart"
 
-#: src/options_interface.c:302 src/options_interface.c:389
+#: src/options_interface.c:303 src/options_interface.c:390
 msgid "Font used in treeviews"
 msgstr "Schriftart, die in den Ansichten verwendet wird"
+
+#: src/interface.c:626
+msgid "Forwards"
+msgstr "Angreifer"
 
 #: src/treeview.c:671
 msgid "Fouls"
 msgstr "Fouls"
 
-#: src/player.c:1146
+#: src/player.c:1150
 msgid "Fractured ankle"
 msgstr "Angeknackster Knöchel"
 
@@ -1123,34 +1131,38 @@ msgstr "Sp"
 msgid "Games"
 msgstr "Spiele"
 
-#: src/options_interface.c:602
+#: src/options_interface.c:608
 msgid "Games "
 msgstr "Spiele "
 
-#: src/treeview.c:1809
+#: src/treeview.c:1818
 msgid "Games/Goals\n"
 msgstr "Spiele/Tore\n"
 
-#: src/options_interface.c:402
+#: src/options_interface.c:403
 msgid "Global"
 msgstr "Global"
 
 #. Goals of a player.
 #. Goals.
-#: src/treeview.c:262 src/treeview.c:2077
+#: src/treeview.c:262 src/treeview.c:2086
 msgid "Go"
 msgstr "To"
 
 #. Goals per game.
-#: src/treeview.c:2079
+#: src/treeview.c:2088
 msgid "Go/Ga"
 msgstr "To/Sp"
 
-#: src/treeview.c:1578 src/treeview.c:2045 src/treeview_helper.c:730
+#: src/interface.c:608
+msgid "Goalies"
+msgstr "Torhüter"
+
+#: src/treeview.c:1587 src/treeview.c:2054 src/treeview_helper.c:730
 msgid "Goals"
 msgstr "Tore"
 
-#: src/options_interface.c:616
+#: src/options_interface.c:622
 msgid "Goals "
 msgstr "Tore "
 
@@ -1159,48 +1171,48 @@ msgstr "Tore "
 msgid "Goals (regular)"
 msgstr "Tore (normale)"
 
-#: src/interface.c:483 src/interface.c:518
+#: src/interface.c:503 src/interface.c:538 src/interface.c:583
 msgid "Good"
 msgstr "Gut"
 
-#: src/player.c:1143
+#: src/player.c:1147
 msgid "Groin injury"
 msgstr "Leistenverletzung"
 
-#: src/player.c:1140
+#: src/player.c:1144
 msgid "Hamstring"
 msgstr "Sehnenverletzung"
 
-#: src/user.c:436
+#: src/user.c:447
 #, c-format
 msgid "Have a look at the transfer list, there's an offer for %s."
 msgstr "Schau mal auf die Transferliste, es gibt ein Angebot für %s."
 
-#: src/treeview.c:1805
+#: src/treeview.c:1814
 msgid "Health"
 msgstr "Gesundheit"
 
-#: src/interface.c:822 src/misc2_interface.c:1067
+#: src/interface.c:933 src/misc2_interface.c:1076
 msgid "Help"
 msgstr "Hilfe"
 
-#: src/treeview.c:1529
+#: src/treeview.c:1538
 msgid "Home"
 msgstr "Heim"
 
-#: src/options_interface.c:372
+#: src/options_interface.c:373
 msgid "How many digits after the comma there are for skill etc."
 msgstr "Wie viele Nachkommastellen gezeigt werden bei Fähigkeitswerten etc."
 
-#: src/options_interface.c:274
+#: src/options_interface.c:275
 msgid "How many files the autosave uses"
 msgstr "Wie viele Dateien das Auto-Speichern benutzt"
 
-#: src/options_interface.c:263
+#: src/options_interface.c:264
 msgid "How often the game is saved automatically"
 msgstr "Wie oft das Spiel automatisch gespeichert wird"
 
-#: src/options_interface.c:381
+#: src/options_interface.c:382
 msgid ""
 "How often the player list gets refreshed during a live game (in live game "
 "minutes)"
@@ -1214,7 +1226,7 @@ msgstr ""
 msgid "INJ(%d)"
 msgstr "VERL(%d)"
 
-#: src/options_interface.c:236
+#: src/options_interface.c:237
 msgid ""
 "If checked, weeks without user teams playing are calculated automatically "
 "(without the user having to press 'New week')"
@@ -1222,7 +1234,7 @@ msgstr ""
 "Wenn ausgewählt, Wochen ohne Benutzermannschaftenbeteiligung werden "
 "automatisch berechnet (ohne dass man auf 'Neue Woche' klicken muss)"
 
-#: src/misc_interface.c:1215
+#: src/misc_interface.c:1217
 msgid ""
 "If you don't like any of the sponsors, you can go a few weeks without "
 "sponsor and wait for new offers."
@@ -1230,11 +1242,11 @@ msgstr ""
 "Wenn Du keinen der Angebote schätzt, kannst Du einige Wochen ohne Sponsor "
 "bleiben und auf neue Angebote warten."
 
-#: src/misc_interface.c:1011
+#: src/misc_interface.c:1013
 msgid "Improve!"
 msgstr "Verbessern!"
 
-#: src/treeview.c:1250 src/window.c:296
+#: src/treeview.c:1250 src/window.c:304
 #, c-format
 msgid ""
 "Improvement in progress.\n"
@@ -1245,11 +1257,11 @@ msgstr ""
 "%d Plätze und %d%% Sicherheit noch fertigzustellen.\n"
 "Erwartetes Ende: %d Wochen."
 
-#: src/treeview.c:1401
+#: src/treeview.c:1410
 msgid "Income"
 msgstr "Einnahmen"
 
-#: src/misc_interface.c:910
+#: src/misc_interface.c:912
 msgid "Increase"
 msgstr "Erhöhen"
 
@@ -1257,22 +1269,26 @@ msgstr "Erhöhen"
 msgid "Injuries"
 msgstr "Verletzungen"
 
-#: src/misc2_interface.c:71 src/window.c:453
+#: src/misc2_interface.c:71 src/window.c:460
 msgid "Job offer"
 msgstr "Jobangebot"
 
-#: src/interface.c:326
+#: src/interface.c:346
 msgid "Job offers"
 msgstr "Jobangebote"
 
-#: src/game_gui.c:592
+#: src/game_gui.c:661
 #, c-format
 msgid "Job offers set to %s."
 msgstr "Jobangebote %."
 
-#: src/treeview.c:1277
+#: src/treeview.c:1279
 msgid "Journey costs"
 msgstr "Reisekosten"
+
+#: src/interface.c:1875
+msgid "Kick out of academy"
+msgstr "Rauswerfen"
 
 #. Games lost.
 #: src/treeview.c:1157
@@ -1280,35 +1296,35 @@ msgid "L"
 msgstr "V"
 
 #. lost
-#: src/team.c:1065
+#: src/team.c:1046
 msgid "L  "
 msgstr "V "
 
 #. a lost match
-#: src/team.c:980
+#: src/team.c:961
 #, c-format
 msgid "L  %d : %d"
 msgstr "V %d : %d"
 
-#: src/interface.c:275
+#: src/interface.c:295
 msgid "L_oad last save"
 msgstr "L_ade letzten Spielstand"
 
-#: src/options_interface.c:352
+#: src/options_interface.c:353
 msgid "Language"
 msgstr "Sprache"
 
 #. A cup stage, e.g. Last 32 when there are only 32 teams left.
-#: src/cup.c:815
+#: src/cup.c:824
 #, c-format
 msgid "Last %d"
 msgstr "Letzte %d"
 
-#: src/load_save.c:168
+#: src/load_save.c:170
 msgid "Last save file not found."
 msgstr "Letzte Spielstandsdatei nicht gefunden."
 
-#: src/treeview.c:1576
+#: src/treeview.c:1585
 msgid "Latest results"
 msgstr "Letzte Ergebnisse"
 
@@ -1317,15 +1333,15 @@ msgstr "Letzte Ergebnisse"
 msgid "League"
 msgstr "Liga"
 
-#: src/options_interface.c:672
+#: src/options_interface.c:678
 msgid "League "
 msgstr "Liga "
 
-#: src/treeview.c:2174
+#: src/treeview.c:2183
 msgid "League champions"
 msgstr "Meisterschaftsgewinner"
 
-#: src/interface.c:396
+#: src/interface.c:416
 msgid "League stats"
 msgstr "Liga-Statistiken"
 
@@ -1334,35 +1350,35 @@ msgid "Left click to make an offer. Right click to remove offer."
 msgstr ""
 "Linksklick um ein Angebot abzugeben. Rechtsklick um Angebot zu annullieren."
 
-#: src/callbacks.c:749
+#: src/callbacks.c:785
 msgid ""
 "Left-click: get loan; Right-click: pay back; Middle click: stadium window."
 msgstr ""
 "Linksklick: Kredit aufnehmen; Rechtsklick: Kredit zurückzahlen; mittlere "
 "Maustaste: Stadionfenster."
 
-#: src/options_interface.c:923
+#: src/options_interface.c:929
 msgid "List 1 "
 msgstr "Liste 1"
 
-#: src/options_interface.c:930
+#: src/options_interface.c:936
 msgid "List 2"
 msgstr "Liste 2"
 
-#: src/interface.c:331 src/misc_interface.c:505 src/options_interface.c:488
+#: src/interface.c:351 src/misc_interface.c:505 src/options_interface.c:489
 msgid "Live game"
 msgstr "Livespiel"
 
-#: src/game_gui.c:599
+#: src/game_gui.c:668
 #, c-format
 msgid "Live game set to %s."
 msgstr "Livespiel %s."
 
-#: src/options_interface.c:427
+#: src/options_interface.c:428
 msgid "Live game speed factor"
 msgstr "Livespiel Geschwindigkeitsfaktor"
 
-#: src/options_interface.c:434
+#: src/options_interface.c:435
 msgid "Live game verbosity"
 msgstr "Livespiel Ausführlichkeit"
 
@@ -1370,7 +1386,7 @@ msgstr "Livespiel Ausführlichkeit"
 msgid "Load game"
 msgstr "Lade Spielstand"
 
-#: src/interface.c:838
+#: src/interface.c:949
 msgid "Load game (Ctrl - O)"
 msgstr "Lade Spielstand (Strg-O)"
 
@@ -1396,45 +1412,45 @@ msgstr ""
 msgid "Load the last game that was saved or loaded."
 msgstr "Lade den Spielstand, der als letztes gespeichert oder geladen wurde."
 
-#: src/xml.c:150
+#: src/xml.c:140
 #, c-format
 msgid "Loading cup: %s"
 msgstr "Lade Pokal: %s"
 
-#: src/load_save.c:210
+#: src/load_save.c:214
 msgid "Loading cups..."
 msgstr "Lade Pokale..."
 
-#: src/xml.c:90
+#: src/xml.c:80
 #, c-format
 msgid "Loading league: %s"
 msgstr "Lade Liga: %s"
 
-#: src/load_save.c:200
+#: src/load_save.c:204
 msgid "Loading leagues..."
 msgstr "Lade Ligen..."
 
-#: src/load_save.c:250
+#: src/load_save.c:254
 msgid "Loading miscellaneous..."
 msgstr "Lade Diverses..."
 
-#: src/load_save.c:186
+#: src/load_save.c:188
 msgid "Loading options/constants..."
 msgstr "Lade Optionen/Konstanten..."
 
-#: src/load_save.c:240
+#: src/load_save.c:244
 msgid "Loading season stats..."
 msgstr "Lade Saisonstatistiken..."
 
-#: src/load_save.c:230
+#: src/load_save.c:234
 msgid "Loading transfer list..."
 msgstr "Lade Transferliste..."
 
-#: src/load_save.c:220
+#: src/load_save.c:224
 msgid "Loading users..."
 msgstr "Lade Benutzer..."
 
-#: src/callback_func.c:293
+#: src/callback_func.c:298
 msgid "Loan"
 msgstr "Kredit"
 
@@ -1443,31 +1459,35 @@ msgstr "Kredit"
 msgid "M"
 msgstr "M"
 
-#: src/misc2_interface.c:690
+#: src/misc2_interface.c:691
 msgid "Make offer"
 msgstr "Angebot abgeben"
 
-#: src/interface.c:759
+#: src/interface.c:870
 msgid "Manage users"
 msgstr "Benutzer verwalten"
 
-#: src/options_interface.c:223
+#: src/options_interface.c:224
 msgid "Maximize main window"
 msgstr "Maximiere Hauptfenster"
 
-#: src/treeview.c:1462
+#: src/treeview.c:1471
 msgid "Midfield"
 msgstr "Mittelfeld"
 
-#: src/options_interface.c:552
+#: src/interface.c:620
+msgid "Midfielders"
+msgstr "Mittelfeldspieler"
+
+#: src/options_interface.c:558
 msgid "Misc."
 msgstr "Div."
 
-#: src/treeview.c:1356
+#: src/treeview.c:1358
 msgid "Money"
 msgstr "Kontostand"
 
-#: src/interface.c:1031
+#: src/interface.c:1142
 msgid "Money "
 msgstr "Kontostand "
 
@@ -1475,28 +1495,36 @@ msgstr "Kontostand "
 msgid "Money (approx.)"
 msgstr "Kontostand (ungefähr)"
 
-#: src/treeview.c:2446
+#: src/treeview.c:2455
 msgid "Money / week"
 msgstr "Zahlung / Woche"
 
-#: src/interface.c:380
+#: src/interface.c:1867
+msgid "Move to team"
+msgstr "In die Profi-Mannschaft aufnehmen"
+
+#: src/interface.c:773 src/interface.c:1817
+msgid "Move to youth academy"
+msgstr "In die Nachwuchsmannschaft aufnehmen"
+
+#: src/interface.c:400
 msgid "My league results"
 msgstr "Meine Ligaergebnisse"
 
 #: src/misc2_interface.c:97 src/treeview.c:246 src/treeview.c:617
-#: src/treeview.c:1797
+#: src/treeview.c:1806
 msgid "Name"
 msgstr "Name"
 
-#: src/options_interface.c:560
+#: src/options_interface.c:566
 msgid "Name "
 msgstr "Name "
 
-#: src/treeview.c:1527
+#: src/treeview.c:1536
 msgid "Neutral ground"
 msgstr "Neutrales Stadion"
 
-#: src/treeview.c:1815
+#: src/treeview.c:1824
 msgid ""
 "New contract\n"
 "offers"
@@ -1508,27 +1536,27 @@ msgstr ""
 msgid "News"
 msgstr "Neuigkeiten"
 
-#: src/interface.c:1167
+#: src/interface.c:1278
 msgid "Next (W)"
 msgstr "Nächster (W)"
 
-#: src/interface.c:1141
+#: src/interface.c:1252
 msgid "Next league/cup (2)"
 msgstr "Nächste(r) Liga/Pokal"
 
-#: src/interface.c:737
+#: src/interface.c:848
 msgid "Next user"
 msgstr "Nächster Benutzer"
 
-#: src/game_gui.c:333
+#: src/game_gui.c:362
 msgid "Next week you'll fire him and hire a new one."
 msgstr "Nächste Woche feuerst Du ihn und stellst einen neuen ein."
 
-#: src/window.c:306
+#: src/window.c:314
 msgid "No improvements currently in progress."
 msgstr "Zur Zeit keine Verbesserungen im Gange."
 
-#: src/callbacks.c:628 src/callbacks.c:644
+#: src/callbacks.c:664 src/callbacks.c:680
 msgid "No match stored."
 msgstr "Kein Spiel gespeichert."
 
@@ -1536,34 +1564,34 @@ msgstr "Kein Spiel gespeichert."
 msgid "None"
 msgstr "Kein"
 
-#: src/window.c:431
+#: src/window.c:438
 msgid "Numbers..."
 msgstr "Zahlen..."
 
 #. Boost value.
-#: src/lg_commentary.c:255 src/team.c:519
+#: src/lg_commentary.c:522 src/team.c:504
 msgid "OFF"
 msgstr "AUS"
 
 #. Player status: ok.
-#: src/misc2_interface.c:221 src/player.c:1131 src/treeview_helper.c:1089
+#: src/misc2_interface.c:221 src/player.c:1135 src/treeview_helper.c:1089
 msgid "OK"
 msgstr "OK"
 
 #. Boost value.
-#: src/lg_commentary.c:258 src/team.c:522
+#: src/lg_commentary.c:525 src/team.c:507
 msgid "ON"
 msgstr "EIN"
 
-#: src/interface.c:553
+#: src/interface.c:660
 msgid "Off"
 msgstr "Aus"
 
-#: src/interface.c:642 src/interface.c:1639
+#: src/interface.c:749 src/interface.c:1805
 msgid "Offer new contract"
 msgstr "Biete neuen Vertrag"
 
-#: src/interface.c:547
+#: src/interface.c:654
 msgid "On"
 msgstr "Ein"
 
@@ -1571,15 +1599,15 @@ msgstr "Ein"
 msgid "Only names"
 msgstr "Nur Namen"
 
-#: src/window.c:475
+#: src/window.c:482
 msgid "Options"
 msgstr "Einstellungen"
 
-#: src/interface.c:335
+#: src/interface.c:355
 msgid "Overwrite"
 msgstr "Überschreiben"
 
-#: src/game_gui.c:606
+#: src/game_gui.c:675
 #, c-format
 msgid "Overwrite set to %s."
 msgstr "Überschreiben %s."
@@ -1594,19 +1622,19 @@ msgstr "SP"
 msgid "PTS"
 msgstr "PKT"
 
-#: src/options_interface.c:483
+#: src/options_interface.c:484
 msgid "Pause when break"
 msgstr "Unterbrechung bei Pause"
 
-#: src/options_interface.c:473
+#: src/options_interface.c:474
 msgid "Pause when injury"
 msgstr "Unterbrechung bei Verletzung"
 
-#: src/options_interface.c:478
+#: src/options_interface.c:479
 msgid "Pause when red card"
 msgstr "Unterbrechung bei roter Karte"
 
-#: src/callback_func.c:319
+#: src/callback_func.c:324
 msgid "Payback"
 msgstr "Rückzahlung"
 
@@ -1614,11 +1642,11 @@ msgstr "Rückzahlung"
 msgid "Penalties"
 msgstr "Elfmeter"
 
-#: src/callbacks.c:454
+#: src/callbacks.c:453
 msgid "Penalty/free kick shooter deselected."
 msgstr "Elfmeter/Freistoßschütze abgewählt."
 
-#: src/interface.c:501 src/treeview.c:1275
+#: src/interface.c:521 src/treeview.c:1275
 msgid "Physio"
 msgstr "Physio"
 
@@ -1626,11 +1654,11 @@ msgstr "Physio"
 msgid "Player accepts new offers"
 msgstr "Spieler akzeptiert neue Vertragsangebote"
 
-#: src/options_interface.c:276
+#: src/options_interface.c:277
 msgid "Player attribute precision"
 msgstr "Spielereigenschaftspräzision"
 
-#: src/options_interface.c:944
+#: src/options_interface.c:950
 msgid "Player attributes shown"
 msgstr "Sichtbare Spielereigenschaften"
 
@@ -1642,19 +1670,19 @@ msgstr "Spieler verhandelt nicht mehr"
 msgid "Player list"
 msgstr "Spielerliste"
 
-#: src/interface.c:1096
+#: src/interface.c:1207
 msgid "Player list 1"
 msgstr "Spielerliste 1"
 
-#: src/interface.c:1104
+#: src/interface.c:1215
 msgid "Player list 2"
 msgstr "Spielerliste 2"
 
-#: src/options_interface.c:283
+#: src/options_interface.c:284
 msgid "Player list refresh rate"
 msgstr "Aktualisierungsrate der Spielerliste"
 
-#: src/interface.c:425 src/treeview.c:1565
+#: src/interface.c:445 src/treeview.c:1574
 msgid "Playing style"
 msgstr "Spielstil"
 
@@ -1663,11 +1691,11 @@ msgstr "Spielstil"
 msgid "Pos"
 msgstr "Pos"
 
-#: src/options_interface.c:574
+#: src/options_interface.c:580
 msgid "Pos "
 msgstr "Pos "
 
-#: src/treeview.c:1798
+#: src/treeview.c:1807
 msgid "Position"
 msgstr "Position"
 
@@ -1675,23 +1703,23 @@ msgstr "Position"
 msgid "Possession"
 msgstr "Ballbesitz"
 
-#: src/options_interface.c:228
+#: src/options_interface.c:229
 msgid "Prefer messages"
 msgstr "Bevorzuge Nachrichten"
 
-#: src/interface.c:310
+#: src/interface.c:330
 msgid "Preferences"
 msgstr "Einstellugen"
 
-#: src/interface.c:1154
+#: src/interface.c:1265
 msgid "Previous (Q)"
 msgstr "Voriger (Q)"
 
-#: src/interface.c:1128
+#: src/interface.c:1239
 msgid "Previous league/cup (1)"
 msgstr "Voriger (Liga/Pokal) (1)"
 
-#: src/interface.c:748
+#: src/interface.c:859
 msgid "Previous user"
 msgstr "Vorheriger Benutzer"
 
@@ -1699,64 +1727,68 @@ msgstr "Vorheriger Benutzer"
 msgid "Prize money"
 msgstr "Preisgeld"
 
-#: src/player.c:1137
+#: src/player.c:1141
 msgid "Pulled muscle"
 msgstr "Muskelfaserriss"
 
-#: src/interface.c:626 src/interface.c:1631
+#: src/interface.c:733 src/interface.c:1797
 msgid "Put on transfer list"
 msgstr "Setze auf Transferliste"
 
-#: src/cup.c:824
+#: src/cup.c:833
 msgid "Quarter-final"
 msgstr "Viertelfinale"
 
-#: src/interface.c:858
+#: src/interface.c:969
 msgid "Quit (Ctrl - Q)"
 msgstr "Beenden (Strg-Q)"
 
-#: src/misc2_interface.c:107 src/treeview.c:1544
+#: src/misc2_interface.c:107 src/treeview.c:1553
 msgid "Rank"
 msgstr "Rang"
 
-#: src/interface.c:1017
+#: src/interface.c:1128
 msgid "Rank "
 msgstr "Rang "
 
-#: src/interface.c:586
+#: src/interface.c:693
 msgid "Rearrange team"
 msgstr "Sortiere Mannschaft"
+
+#: src/interface.c:601
+msgid "Recruiting preference"
+msgstr "Anwerbepräferenz"
 
 #: src/treeview.c:673 src/treeview_helper.c:733
 msgid "Reds"
 msgstr "Rote K."
 
-#: src/misc_interface.c:1229
+#: src/misc_interface.c:1231
 msgid "Reject for now"
 msgstr "Erstmal überlegen"
 
-#: src/options_interface.c:348
+#: src/options_interface.c:349
 msgid "Reload"
 msgstr "Neu laden"
 
-#: src/options_interface.c:334
+#: src/options_interface.c:335
 msgid "Reload the constants file"
 msgstr "Lade die Konstanten-Datei neu"
 
-#: src/interface.c:634 src/interface.c:1635
+#: src/interface.c:741 src/interface.c:1801
 msgid "Remove from transfer list"
 msgstr "Entferne von Transferliste"
 
-#: src/misc2_callbacks.c:274
+#: src/misc2_callbacks.c:295
 #, c-format
 msgid "Remove user %s from the game?"
 msgstr "Entferne Benutzer %s aus dem Spiel?"
 
-#: src/interface.c:570
+#: src/interface.c:677
 msgid "Reset player list"
 msgstr "Spielerliste zurücksetzen"
 
-#: src/interface.c:572 src/interface.c:1110
+#: src/interface.c:679 src/interface.c:1221
 msgid ""
 "Reset player list to the formation at the beginning of the live game pause "
 "(right click on player list)"
@@ -1764,35 +1796,43 @@ msgstr ""
 "Setzt die Spielerliste zurück auf den Stand bei Beginn der Livespiel-Pause "
 "(Rechtsklick auf die Spielerliste)"
 
-#: src/treeview.c:1667
+#: src/treeview.c:1676
 msgid "Results"
 msgstr "Ergebnisse"
 
-#: src/misc2_interface.c:1157 src/misc_interface.c:994
+#: src/misc2_interface.c:1166 src/misc_interface.c:996
 msgid "Return"
 msgstr "Return"
 
-#: src/misc_interface.c:624 src/misc_interface.c:646
+#: src/misc_interface.c:626 src/misc_interface.c:648
 msgid "Return / Space"
 msgstr "Return / Leertaste"
 
-#: src/interface.c:988
+#: src/interface.c:1099
 msgid "Right click and left click to change boost state"
 msgstr "Rechtsklick und Linksklick um den Boost zu verändern"
 
-#: src/interface.c:978
+#: src/interface.c:1089
 msgid "Right click and left click to change your playing style"
 msgstr "Rechtsklick und Linksklick, um den Spielstil zu verändern"
 
-#: src/misc_interface.c:930 src/misc_interface.c:964
+#: src/callback_func.c:761
+msgid ""
+"Right click to move players to and from the youth academy; left click for "
+"context menu."
+msgstr ""
+"Rechtsklick, um Spieler zwischen den Mannschaften zu bewegen; Linksklick für "
+"Kontextmenü."
+
+#: src/misc_interface.c:932 src/misc_interface.c:966
 msgid "Right-click to set to 0"
 msgstr "Rechtsklick, um auf 0 zu setzen"
 
-#: src/cup.c:807
+#: src/cup.c:816
 msgid "Round robin"
 msgstr "Jeder gg. jeden"
 
-#: src/misc_interface.c:956
+#: src/misc_interface.c:958
 msgid "Safety (%)"
 msgstr "Sicherheit (%)"
 
@@ -1802,35 +1842,35 @@ msgstr ""
 "Sicherheitsverbesserung ist zu hoch, setze zurück auf größtmöglichen Wert."
 
 #. % of saves for goalies (#goals / #shots)
-#: src/treeview.c:2025
+#: src/treeview.c:2034
 msgid "Save %"
 msgstr "Abgewehrt (%)"
 
-#: src/interface.c:848
+#: src/interface.c:959
 msgid "Save game (Ctrl - S)"
 msgstr "Speichern (Strg-S)"
 
-#: src/options_interface.c:961
+#: src/options_interface.c:967
 msgid "Save global settings to file"
 msgstr "Speichere globale Einstellungen in Datei"
 
-#: src/options_interface.c:218
+#: src/options_interface.c:219
 msgid "Save overwrites"
 msgstr "Speichern überschreibt"
 
-#: src/options_interface.c:966
+#: src/options_interface.c:972
 msgid "Save user settings to file"
 msgstr "Speichere Benutzereinstellugen in Datei"
 
-#: src/load_save.c:70
+#: src/load_save.c:72
 msgid "Saving cups..."
 msgstr "Speichere Pokale..."
 
-#: src/load_save.c:59
+#: src/load_save.c:61
 msgid "Saving leagues..."
 msgstr "Speichere Ligen..."
 
-#: src/load_save.c:111
+#: src/load_save.c:113
 msgid "Saving miscellaneous..."
 msgstr "Speichere Diverses..."
 
@@ -1838,49 +1878,60 @@ msgstr "Speichere Diverses..."
 msgid "Saving options/constants..."
 msgstr "Speichere Optionen/Konstanten..."
 
-#: src/load_save.c:101
+#: src/load_save.c:103
 msgid "Saving season stats..."
 msgstr "Speichere Saisonstatistiken..."
 
-#: src/load_save.c:91
+#: src/load_save.c:93
 msgid "Saving transfer list..."
 msgstr "Speichere Transferliste..."
 
-#: src/load_save.c:81
+#: src/load_save.c:83
 msgid "Saving users..."
 msgstr "Speichere Benutzer..."
 
-#: src/interface.c:466 src/treeview.c:1276
+#: src/interface.c:486 src/treeview.c:1276
 msgid "Scout"
 msgstr "Spielerbeobachter"
 
 #. Season.
-#: src/treeview.c:1957
+#: src/treeview.c:1966
 msgid "Sea"
 msgstr "Sai"
 
-#: src/treeview.c:2220
+#: src/treeview.c:2229
 #, c-format
 msgid "Season %d"
 msgstr "Saison %d"
 
-#: src/interface.c:407
+#: src/interface.c:427
 msgid "Season history"
 msgstr "Saisonhistorie"
 
-#: src/misc_interface.c:409 src/window.c:483
+#: src/misc_interface.c:409 src/window.c:490
 msgid "Select font"
 msgstr "Schriftart auswählen"
 
-#: src/cup.c:821
+#: src/cup.c:830
 msgid "Semi-final"
 msgstr "Halbfinale"
 
-#: src/options_interface.c:508
+#: src/interface.c:638
+msgid "Set investment"
+msgstr "Förderung"
+
+#: src/callbacks.c:1020 src/interface.c:641
+msgid ""
+"Set the percentage of your income you want to devote to your youth academy."
+msgstr ""
+"Setze den Prozentsatz Deines Einkommens fest, der der Nachwuchsarbeit zugute "
+"kommt."
+
+#: src/options_interface.c:514
 msgid "Set to 0 to switch off warning"
 msgstr "Setze auf 0 um die Warnung auszuschalten"
 
-#: src/options_interface.c:396
+#: src/options_interface.c:397
 msgid ""
 "Setting the language only works for installed packages (not for the binary "
 "package)"
@@ -1893,11 +1944,11 @@ msgstr ""
 msgid "Sh"
 msgstr "Schü"
 
-#: src/interface.c:658 src/interface.c:1647
+#: src/interface.c:765 src/interface.c:1813
 msgid "Shoots penalties"
 msgstr "Schießt Elfer"
 
-#: src/treeview.c:668 src/treeview.c:2022
+#: src/treeview.c:668 src/treeview.c:2031
 msgid "Shot %"
 msgstr "Schuss %"
 
@@ -1905,80 +1956,84 @@ msgstr "Schuss %"
 msgid "Shots"
 msgstr "Schüsse"
 
-#: src/options_interface.c:609
+#: src/options_interface.c:615
 msgid "Shots "
 msgstr "Schüsse"
 
-#: src/options_interface.c:528
+#: src/options_interface.c:534
 msgid "Show all leagues in the fixture view"
 msgstr "Zeige alle Ligen im Spielplan"
 
-#: src/interface.c:708
+#: src/interface.c:819
 msgid "Show coming matches"
 msgstr "Zeige die nächsten Spiele"
 
-#: src/interface.c:777
+#: src/interface.c:888
 msgid "Show finances"
 msgstr "Zeige Finanzen"
 
-#: src/interface.c:721
+#: src/interface.c:832
 msgid "Show history"
 msgstr "Zeige Historie"
 
-#: src/interface.c:618 src/interface.c:1627
+#: src/interface.c:725 src/interface.c:1793
 msgid "Show info"
 msgstr "Zeige Info"
 
-#: src/options_interface.c:500
+#: src/options_interface.c:506
 msgid "Show job offers"
 msgstr "Zeige Jobangebote"
 
-#: src/interface.c:686
+#: src/interface.c:797
 msgid "Show last match"
 msgstr "Zeige letzes Spiel"
 
-#: src/interface.c:697
+#: src/interface.c:808
 msgid "Show last match stats"
 msgstr "Zeige Statistiken d. letzten Spiels"
 
-#: src/options_interface.c:414
+#: src/options_interface.c:415
 msgid "Show live game"
 msgstr "Zeige Livespiel"
 
-#: src/options_interface.c:547
+#: src/options_interface.c:553
 msgid "Show overall games/goals"
 msgstr "Zeige alle Spiele/Tore"
 
-#: src/interface.c:788
+#: src/interface.c:899
 msgid "Show stadium"
 msgstr "Zeige Stadion"
 
-#: src/options_interface.c:418
+#: src/options_interface.c:419
 msgid "Show tendency bar"
 msgstr "Zeige Tendenzbalken"
 
-#: src/interface.c:891
+#: src/interface.c:1002
 msgid "Show transferlist (T)"
 msgstr "Zeige Transferliste (T)"
 
-#: src/options_interface.c:514
+#: src/options_interface.c:520
 msgid "Show warning if a player contract gets below "
 msgstr "Zeige Warnung wenn ein Spielervertrag abläuft in"
+
+#: src/interface.c:563
+msgid "Show youth academy"
+msgstr "Zeige Nachwuchsmannschaft"
 
 #. Skill of a player.
 #: src/treeview.c:254
 msgid "Sk"
 msgstr "Fä"
 
-#: src/treeview.c:1800
+#: src/treeview.c:1809
 msgid "Skill"
 msgstr "Fähigkeit"
 
-#: src/options_interface.c:588
+#: src/options_interface.c:594
 msgid "Skill "
 msgstr "Fähigkeit "
 
-#: src/options_interface.c:233
+#: src/options_interface.c:234
 msgid "Skip weeks without user matches"
 msgstr "Überspringe Wochen ohne Benutzerspiele"
 
@@ -1986,11 +2041,11 @@ msgstr "Überspringe Wochen ohne Benutzerspiele"
 msgid "Space"
 msgstr "Leertaste"
 
-#: src/misc_interface.c:663
+#: src/misc_interface.c:665
 msgid "Speed"
 msgstr "Geschwindigkeit"
 
-#: src/treeview.c:1376
+#: src/treeview.c:1378
 msgid "Sponsor"
 msgstr "Sponsor"
 
@@ -1998,7 +2053,7 @@ msgstr "Sponsor"
 msgid "Sponsorship"
 msgstr "Sponsor"
 
-#: src/window.c:537
+#: src/window.c:544
 msgid "Sponsorship offers"
 msgstr "Sponsorenangebote"
 
@@ -2010,11 +2065,11 @@ msgstr "Stadion"
 msgid "Stadium capacity"
 msgstr "Stadionkapazität"
 
-#: src/treeview.c:1343
+#: src/treeview.c:1345
 msgid "Stadium expenses"
 msgstr "Stadion-Ausgaben"
 
-#: src/callbacks.c:763
+#: src/callbacks.c:799
 msgid "Stadium management is disabled in this country definition."
 msgstr "Stadionmanagement ist in dieser Länderdefinition ausgeschaltet."
 
@@ -2034,7 +2089,7 @@ msgstr "Los!"
 msgid "Start in"
 msgstr "Starte in"
 
-#: src/misc_interface.c:589
+#: src/misc_interface.c:591
 msgid "Statistics"
 msgstr "Statistiken"
 
@@ -2043,51 +2098,51 @@ msgstr "Statistiken"
 msgid "Status"
 msgstr "Status"
 
-#: src/options_interface.c:623
+#: src/options_interface.c:629
 msgid "Status "
 msgstr "Status "
 
-#: src/misc_interface.c:825
+#: src/misc_interface.c:827
 msgid "Status:"
 msgstr "Status:"
 
-#: src/callbacks.c:595
+#: src/callbacks.c:631
 msgid "Structure"
 msgstr "Spielsystem"
 
-#: src/options_interface.c:542
+#: src/options_interface.c:548
 msgid "Swap adapts structure"
 msgstr "Spielerwechsel passt System an"
 
 #. Language is system-set (not user chosen).
-#: src/treeview.c:2368
+#: src/treeview.c:2377
 msgid "System"
 msgstr "System"
 
-#: src/interface.c:369
+#: src/interface.c:389
 msgid "Tables"
 msgstr "Tabellen"
 
 #: src/treeview.c:121 src/treeview.c:273 src/treeview.c:618
-#: src/treeview.c:1149 src/treeview.c:1538 src/treeview.c:1666
-#: src/treeview.c:1958
+#: src/treeview.c:1149 src/treeview.c:1547 src/treeview.c:1675
+#: src/treeview.c:1967
 msgid "Team"
 msgstr "Mannschaft"
 
-#: src/options_interface.c:679
+#: src/options_interface.c:685
 msgid "Team "
 msgstr "Mannschaft "
 
-#: src/treeview.c:1570
+#: src/treeview.c:1579
 msgid "Team structure"
 msgstr "Spielsystem"
 
-#: src/team.c:545
+#: src/team.c:528
 #, c-format
 msgid "Team style changed to %s."
 msgstr "Spielstil verändert zu %s."
 
-#: src/callback_func.c:285
+#: src/callback_func.c:290
 msgid "The bank doesn't grant you more money."
 msgstr "Die Bank gewährt keinen weiteren Kredit."
 
@@ -2096,15 +2151,15 @@ msgid "The current game state is unsaved and will be lost. Continue?"
 msgstr ""
 "Der aktuelle Spielstand ist nicht gespeichert und geht verloren. Fortfahren?"
 
-#: src/options_interface.c:456
+#: src/options_interface.c:457
 msgid "The higher this value, the more commentary you'll see."
 msgstr "Je höher dieser Wert, desto mehr Kommentare siehst Du."
 
-#: src/options_interface.c:447
+#: src/options_interface.c:448
 msgid "The lower this value the faster the live game commentary will scroll."
 msgstr "Je niedriger dieser Wert, desto schneller läuft das Spiel ab."
 
-#: src/game_gui.c:536
+#: src/game_gui.c:606
 #, c-format
 msgid ""
 "The owners of %s are deeply impressed by your success with %s and would like "
@@ -2113,7 +2168,7 @@ msgstr ""
 "Die Vereinsführung von %s ist zutiefst von Deinen Erfolgen mit %s "
 "beeindruckt und würde Dich gerne verpflichten. Hier sind einige Daten zu %s:"
 
-#: src/user.c:258
+#: src/user.c:265
 #, c-format
 msgid ""
 "The owners of %s are not satisfied with the recent performance of the team. "
@@ -2122,7 +2177,7 @@ msgstr ""
 "Das Management von %s ist unzufrieden mit den letzten Leistungen der "
 "Mannschaft. Es gibt Gerüchte, wonach ein neuer Trainer gesucht wird."
 
-#: src/user.c:454
+#: src/user.c:462
 #, c-format
 msgid ""
 "The owners of %s have rejected your offer (%s / %s) for %s. Neither the fee "
@@ -2131,7 +2186,7 @@ msgstr ""
 "Die Verantwortlichen von %s haben Dein Angebot (%s / %s) für %s abgelehnt. "
 "Weder die Ablösesumme, noch das Gehalt war akzeptabel, sagen sie."
 
-#: src/user.c:460
+#: src/user.c:467
 #, c-format
 msgid ""
 "The owners of %s have rejected your offer (%s / %s) for %s. The team owners "
@@ -2140,7 +2195,7 @@ msgstr ""
 "Die Verantwortlichen von %s haben Dein Angebot (%s / %s) für %s abgelehnt. "
 "Sie waren mit der Ablösesumme unzufrieden."
 
-#: src/user.c:448
+#: src/user.c:457
 #, c-format
 msgid ""
 "The owners of %s have rejected your offer (%s / %s) for %s. There was a "
@@ -2149,30 +2204,34 @@ msgstr ""
 "Die Verantwortlichen von %s haben Dein Angebot (%s / %s) für %s abgelehnt. "
 "Es gab ein besseres Angebot."
 
-#: src/callbacks.c:401
+#: src/callbacks.c:402
 msgid "The player is already on the list."
 msgstr "Der Spieler ist bereits auf der Liste."
 
-#: src/callback_func.c:434
+#: src/callback_func.c:438
 msgid ""
 "The player is locked (the team owners are considering an offer currently)."
 msgstr ""
 "Keine Angebote möglich (die Besitzer verhandeln gerade ein anderes Angebot)."
 
-#: src/callbacks.c:417
+#: src/callbacks.c:418
 msgid "The player is not on the list."
 msgstr "Der Spieler ist nicht auf der Liste."
 
-#: src/callback_func.c:481
+#: src/callbacks.c:482
+msgid "The player is too old for the youth academy."
+msgstr "Der Spieler ist zu alt für die Nachwuchsmannschaft."
+
+#: src/callback_func.c:491
 msgid "The player won't negotiate with you anymore."
 msgstr "Der Spieler verhandelt nicht mehr."
 
-#: src/misc2_callback_func.c:114
+#: src/misc2_callback_func.c:115
 #, c-format
 msgid "The structure value %d is invalid."
 msgstr "Der Wert %d ist ungültig."
 
-#: src/game_gui.c:530
+#: src/game_gui.c:600
 #, c-format
 msgid ""
 "The team owners have fired you because of financial mismanagement. Luckily, "
@@ -2183,7 +2242,7 @@ msgstr ""
 "Zum Glück haben die Verantwortlichen von %s von Deiner Entlassung gehört und "
 "bieten Dir einen Vertrag an. Hier sind einige Daten zu %s:"
 
-#: src/game_gui.c:533
+#: src/game_gui.c:603
 #, c-format
 msgid ""
 "The team owners have fired you because of unsuccessfulness. Luckily, the "
@@ -2195,11 +2254,11 @@ msgstr ""
 "s·von·Deiner·Entlassung·gehört·und·bieten·Dir·einen·Vertrag·an."
 "·Hier·sind·einige·Daten·zu·%s:"
 
-#: src/callbacks.c:157
+#: src/callback_func.c:445 src/callbacks.c:158 src/transfer.c:455
 msgid "The transfer deadline is over."
 msgstr "Die Transferfrist ist vorbei."
 
-#: src/misc_interface.c:1173
+#: src/misc_interface.c:1175
 msgid ""
 "There are a few companies interested in sponsoring your team. Please select "
 "one:"
@@ -2207,23 +2266,27 @@ msgstr ""
 "Es gibt einige Firmen, die Sponsor Deines Teams werden möchten. Bitte "
 "auswählen:"
 
-#: src/callbacks.c:176
+#: src/callbacks.c:177
 msgid "There are injured or banned players in one of the user teams. Continue?"
 msgstr ""
 "Es gibt verletzte oder gesperrte Spieler in einer der Benutzermannschaften "
 "Fortfahren?"
 
-#: src/callback_func.c:341
+#: src/callback_func.c:346
 msgid "There are no offers for the player."
 msgstr "Es liegen keine Angebote für den Spieler vor."
 
-#: src/callback_func.c:344
+#: src/callback_func.c:349
 msgid ""
 "There are some offers for the player which you rejected or will see next "
 "week."
 msgstr ""
 "Es gibt einige Angebote für den Spieler; du hast sie abgelehnt oder wirst "
 "sie nächste Woche auf dem Tisch haben."
+
+#: src/callbacks.c:487
+msgid "There is no room in your youth academy."
+msgstr "Es gibt keinen Platz in der Nachwuchsmannschaft."
 
 #: src/misc_callbacks.c:182
 msgid ""
@@ -2233,7 +2296,7 @@ msgstr ""
 "Es gab zuviele Auswechslungen. Pro Spiel sind nur 3 erlaubt. Spielerliste "
 "zurückgesetzt."
 
-#: src/callbacks.c:381
+#: src/callbacks.c:382
 msgid "This is your first season."
 msgstr "Dies ist Deine erste Saison."
 
@@ -2241,23 +2304,28 @@ msgstr "Dies ist Deine erste Saison."
 msgid "Ticket income"
 msgstr "Kartenverkauf"
 
-#: src/player.c:1164
+#: src/player.c:1168
 msgid "Torn crucial ligament"
 msgstr "Kreuzbandriss"
 
-#: src/window.c:529
+#: src/callbacks.c:151
+#, c-format
+msgid "Transfer deadline is Week %d"
+msgstr "Die Transferfrist läuft in Woche %d ab."
+
+#: src/window.c:536
 msgid "Transfer offer"
 msgstr "Transferangebot"
 
-#: src/treeview.c:1333
+#: src/treeview.c:1335
 msgid "Transfers"
 msgstr "Transfers"
 
-#: src/callbacks.c:146 src/callbacks.c:397
+#: src/callbacks.c:146 src/callbacks.c:398
 msgid "Transfers are disabled in this country definition."
 msgstr "Transfers sind in dieser Länderdefinition ausgeschaltet."
 
-#: src/interface.c:589
+#: src/interface.c:696
 msgid ""
 "Try to put the startup players onto their favoured positions and sort the "
 "substitutes (Ctrl-R or middle click)"
@@ -2265,16 +2333,16 @@ msgstr ""
 "Versucht, die ersten 11 auf ihre bevorzugten Positionen zu setzen und "
 "sortiert die Auswechselspieler (Strg-R oder mittlere Maustaste)"
 
-#: src/load_save.c:176
+#: src/load_save.c:178
 msgid "Uncompressing savegame..."
 msgstr "Entpacke Datei..."
 
-#: src/callback_func.c:426
+#: src/callback_func.c:431
 #, c-format
 msgid "User %s didn't consider your offer yet."
 msgstr "Der Benutzer %s hat dein Angebot noch nicht angesehen."
 
-#: src/window.c:506
+#: src/window.c:513
 msgid "User management"
 msgstr "Benutzerverwaltung"
 
@@ -2282,19 +2350,19 @@ msgstr "Benutzerverwaltung"
 msgid "Username"
 msgstr "Benutzername"
 
-#: src/misc2_interface.c:777
+#: src/misc2_interface.c:786
 msgid "Users -- click to remove"
 msgstr "Benutzer -- Anklicken um zu entfernen"
 
-#: src/treeview.c:270 src/treeview.c:1806
+#: src/treeview.c:270 src/treeview.c:1815
 msgid "Value"
 msgstr "Wert"
 
-#: src/options_interface.c:651
+#: src/options_interface.c:657
 msgid "Value "
 msgstr "Wert "
 
-#: src/misc_interface.c:670
+#: src/misc_interface.c:672
 msgid "Verbosity"
 msgstr "Ausführlichkeit"
 
@@ -2304,22 +2372,22 @@ msgid "W"
 msgstr "G"
 
 #. won
-#: src/team.c:1068
+#: src/team.c:1049
 msgid "W  "
 msgstr "G "
 
 #. a won match
-#: src/team.c:974
+#: src/team.c:955
 #, c-format
 msgid "W  %d : %d"
 msgstr "G %d : %d"
 
-#: src/callback_func.c:451 src/callback_func.c:458 src/treeview.c:271
-#: src/treeview.c:1807
+#: src/callback_func.c:461 src/callback_func.c:468 src/treeview.c:271
+#: src/treeview.c:1816
 msgid "Wage"
 msgstr "Gehalt"
 
-#: src/options_interface.c:658
+#: src/options_interface.c:664
 msgid "Wage "
 msgstr "Gehalt "
 
@@ -2327,7 +2395,7 @@ msgstr "Gehalt "
 msgid "Wages"
 msgstr "Gehälter"
 
-#: src/treeview.c:1958
+#: src/treeview.c:1967
 msgid "Week"
 msgstr "Woche"
 
@@ -2336,19 +2404,27 @@ msgstr "Woche"
 msgid "Week %d Round %d"
 msgstr "Woche %d Runde %d"
 
-#: src/window.c:375
+#: src/window.c:383
 #, c-format
 msgid "Welcome to Bygfoot %s"
 msgstr "Willkommen zu Bygfoot %s"
 
-#: src/options_interface.c:221
+#: src/options_interface.c:222
 msgid ""
 "Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
 msgstr ""
 "Ob 'Speichern' die aktuelle Speicherdatei überschreibt oder ein 'Speichern "
 "unter'-Fenster anzeigt"
 
-#: src/options_interface.c:226
+#: src/options_interface.c:504
+msgid ""
+"Whether a confirmation popup is shown when you kick out a youth from your "
+"academy"
+msgstr ""
+"Ob ein Bestätigungsfenster gezeigt wird, wenn Du einen Nachwuchsspieler aus "
+"der Nachwuchsmannschaft wirfst"
+
+#: src/options_interface.c:227
 msgid ""
 "Whether game starts with a maximized main window (doesn't work with all "
 "window managers)"
@@ -2356,13 +2432,13 @@ msgstr ""
 "Ob das Hauptfenster in maximiertem Zustand erscheint (klappt nicht mit allen "
 "Fenstermanagern)"
 
-#: src/options_interface.c:531
+#: src/options_interface.c:537
 msgid ""
 "Whether in the weekly fixture view all leagues or only the user league is "
 "shown"
 msgstr "Ob im Wochenspielplan alle Ligen erscheinen oder nur die Benutzerliga"
 
-#: src/options_interface.c:545
+#: src/options_interface.c:551
 msgid ""
 "Whether swapping two players automatically adapts the team structure to the "
 "player positions"
@@ -2370,20 +2446,20 @@ msgstr ""
 "Ob das Vertauschen zweier Spieler automatisch das Spielsystem an die "
 "Spielerpositionen anpasst"
 
-#: src/options_interface.c:486
+#: src/options_interface.c:487
 msgid "Whether the live game pauses at half time and extra time"
 msgstr "Ob das Livespiel bei Halbzeit und Verlängerung pausiert"
 
-#: src/options_interface.c:476
+#: src/options_interface.c:477
 msgid "Whether the live game pauses when a user player is injured"
 msgstr "Ob das Livespiel pausiert wenn ein Benutzerspieler verletzt ist"
 
-#: src/options_interface.c:481
+#: src/options_interface.c:482
 msgid "Whether the live game pauses when a user player is sent off"
 msgstr ""
 "Ob das Livespiel pausiert wenn ein Benutzerspieler vom Platz gestellt wird"
 
-#: src/options_interface.c:462
+#: src/options_interface.c:463
 msgid ""
 "Whether the subs (e.g. for injured players) are made by the CPU. This is "
 "automatically done if the live game is off."
@@ -2391,11 +2467,11 @@ msgstr ""
 "Ob Auswechslungen (etwa verletzter Spieler) vom Computer vorgenommen werden. "
 "Dies wird automatisch eingeschaltet, wenn das Livespiel abgestellt ist."
 
-#: src/options_interface.c:364
+#: src/options_interface.c:365
 msgid "Whether to automatically save the game regularly"
 msgstr "Ob das Spiel regelmäßig automatisch gespeichert wird"
 
-#: src/options_interface.c:964
+#: src/options_interface.c:970
 msgid ""
 "Whether to save the global settings to file (so that they get loaded next "
 "time you start a new game)"
@@ -2403,7 +2479,7 @@ msgstr ""
 "Ob die globalen Einstellungen in die Datei geschrieben werden (so dass sie "
 "beim nächsten Mal, wenn Du ein neues Spiel beginnst, geladen werden)"
 
-#: src/options_interface.c:969
+#: src/options_interface.c:975
 msgid ""
 "Whether to save the user settings to file (so that they get loaded next time "
 "this user starts a new game)"
@@ -2411,7 +2487,7 @@ msgstr ""
 "Ob die Benutzereinstellungen in die Datei geschrieben werden (so dass sie "
 "geladen werden, wenn dieser Benutzer nächstes Mal ein neues Spiel beginnt)"
 
-#: src/options_interface.c:216
+#: src/options_interface.c:217
 msgid ""
 "Whether to show a confirmation popup if a user team has an injured or banned "
 "player in the startup formation"
@@ -2419,7 +2495,7 @@ msgstr ""
 "Ob ein Bestätigungsfenster gezeigt wird, wenn eine Benutzermannschaft einen "
 "verletzten oder gesperrten Spieler unter den ersten 11 hat"
 
-#: src/options_interface.c:211
+#: src/options_interface.c:212
 msgid ""
 "Whether to show a confirmation popup when you press quit and the game state "
 "is not saved"
@@ -2427,15 +2503,15 @@ msgstr ""
 "Ob ein Bestätigungsfenster gezeigt wird, wenn auf Beenden geklickt wird und "
 "der Spielstand nicht gespeichert wird"
 
-#: src/options_interface.c:503
+#: src/options_interface.c:509
 msgid "Whether to show job offers when a user is successful"
 msgstr "Ob Jobangebote kommen wenn ein Benutzer erfolgreich ist"
 
-#: src/options_interface.c:550
+#: src/options_interface.c:556
 msgid "Whether to show the player games/goals value in all competitions"
 msgstr "Ob die Spiele/Tore der Spieler aus allen Wettbewerben angezeigt werden"
 
-#: src/options_interface.c:231
+#: src/options_interface.c:232
 msgid ""
 "Whether to show warnings and such in the message area in the main window "
 "when possible"
@@ -2450,7 +2526,7 @@ msgstr "GK"
 
 #. 'Limit' is the number of yellow cards until a player gets
 #. banned automatically for a match.
-#: src/treeview.c:1812
+#: src/treeview.c:1821
 msgid "Yellow cards (limit)\n"
 msgstr "Gelbe Karten (Obergrenze)\n"
 
@@ -2459,23 +2535,23 @@ msgid "Yellows"
 msgstr "Gelbe K."
 
 #. League name.
-#: src/user.c:738
+#: src/user.c:741
 #, c-format
 msgid "You are champion of the %s!"
 msgstr "Du bist Meister der %s!"
 
-#: src/finance.c:190
+#: src/finance.c:202
 msgid "You are free from debt."
 msgstr "Du bist schuldenfrei."
 
-#: src/callback_func.c:455
+#: src/callback_func.c:465
 #, c-format
 msgid ""
 "You are making an offer for %s again. Your previous values for fee and wage "
 "are preset."
 msgstr "Du bietest erneut für %s. Dein vorheriges Angebot ist voreingestellt."
 
-#: src/callback_func.c:447
+#: src/callback_func.c:457
 #, c-format
 msgid ""
 "You are making an offer for %s. Your scout's recommendations for fee and "
@@ -2484,63 +2560,72 @@ msgstr ""
 "Du bietest für %s. Die Empfehlungen Deines Spielerbeobachters sind "
 "voreingestellt."
 
-#: src/callback_func.c:495
+#: src/callback_func.c:505
 #, c-format
 msgid ""
 "You are negotiating with %s about a new contract. Pay attention to what "
 "you're doing; if you don't come to terms with him within %d offers, he's "
 "going to leave your team after his current contract expires (unless you sell "
-"him).\n"
+"him). You may only abort BEFORE making the first offer.\n"
 "Your scout's recommendations are preset:"
 msgstr ""
 "Du verhandelst mit %s über einen neuen Vertrag. Sei bei der Sache: wenn Du "
 "Dich nicht innerhalb von %d Verhandlungsrunden mit ihm einig wirst, wird er "
 "deine Mannschaft nach Ablaufen seines Vertrags verlassen (es sei denn Du "
-"verkaufst ihn).\n"
+"verkaufst ihn). Du darfst nur VOR Deinem ersten Angebot abbrechen.\n"
 "Die Empfehlungen deines Spielerbeobachters sind voreingestellt:"
 
-#: src/callback_func.c:305
+#: src/callback_func.c:310
 msgid "You are not indebted."
 msgstr "Du hast keine Schulden."
 
-#: src/callback_func.c:317
+#: src/callback_func.c:322
 #, c-format
 msgid "You can pay back at most %s"
 msgstr "Du kannst höchstens %s zurückzahlen."
 
-#: src/callback_func.c:291
+#: src/callback_func.c:296
 #, c-format
 msgid "You can take out at most %s."
 msgstr "Du kannst höchstens %s leihen."
 
-#: src/callback_func.c:476
+#: src/callbacks.c:1029
+#, c-format
+msgid "You can't have more than %d players in the team."
+msgstr "Du kannst nicht mehr als %d Spieler in der Mannschaft haben."
+
+#: src/callbacks.c:484
+msgid "You can't move the player, there are too few players in your team."
+msgstr "Du kannst den Spieler nicht bewegen, es sind zu wenige Spieler in der Mannschaft."
+
+#: src/callback_func.c:486
 msgid "You can't offer a new contract if the old one is still above 2 years."
 msgstr ""
 "Du kannst keinen neuen Vertrag aushandeln wenn die Laufzeit des alten "
 "Vertrages über 2 Jahre beträgt."
 
-#: src/misc2_callbacks.c:269
+#: src/misc2_callbacks.c:290
 msgid "You can't play Bygfoot without users!"
 msgstr "Du kannst Bygfoot nicht ohne Benutzer spielen!"
 
-#: src/player.c:559
+#: src/player.c:560
 msgid "You can't replace a banned player."
 msgstr "Du kannst keinen gesperrten Spieler auswechseln."
 
 #. Buy a player from a team.
-#: src/user.c:474
+#: src/user.c:479
 #, c-format
 msgid "You didn't have enough money to buy %s from %s."
 msgstr "Du hattest nicht genügend Geld, um %s von %s zu kaufen."
 
-#: src/misc2_callback_func.c:51
+#: src/misc2_callback_func.c:50
 #, c-format
 msgid "You didn't have enough money to buy %s or your roster was full."
 msgstr ""
 "Du hattest nicht genügend Geld um %s zu kaufen, oder Deine Mannschaft kann "
 "keine neuen Spieler mehr aufnehmen."
 
-#: src/callback_func.c:311
+#: src/callback_func.c:316
 msgid "You don't have enough money to pay back."
 msgstr "Du hast nicht genügend Geld um zurückzuzahlen."
 
@@ -2549,34 +2634,34 @@ msgid "You don't have the money."
 msgstr "Du hast nicht genügend Geld."
 
 #. League name.
-#: src/user.c:703
+#: src/user.c:706
 #, c-format
 msgid "You finish the season in the %s on rank %d."
 msgstr "Du beendest die Saison in der %s auf Rang %d."
 
 #. League name.
-#: src/user.c:709
+#: src/user.c:712
 #, c-format
 msgid "You get promoted to the %s."
 msgstr "Du steigst in die %s auf."
 
 #. League name.
-#: src/user.c:714
+#: src/user.c:717
 #, c-format
 msgid "You get relegated to the %s."
 msgstr "Du steigst in die %s ab."
 
-#: src/finance.c:197
+#: src/finance.c:209
 #, c-format
 msgid "You have %d weeks to pay back the rest of your loan."
 msgstr "Du hast %d Wochen, um den restlichen Kredit zurückzuzahlen."
 
-#: src/finance.c:167
+#: src/finance.c:181
 #, c-format
 msgid "You have %d weeks to pay back your loan."
 msgstr "Du hast noch %d Wochen, um Deinen Kredit zurückzuzahlen."
 
-#: src/user.c:432
+#: src/user.c:444
 #, c-format
 msgid ""
 "You have overdrawn your bank account once again. Bear in mind that after the "
@@ -2588,7 +2673,7 @@ msgstr ""
 "Die Verantwortlichen geben Dir %d Wochen, um wieder Deine Dispokreditgrenze "
 "zu erreichen."
 
-#: src/user.c:430
+#: src/user.c:442
 #, c-format
 msgid ""
 "You have overdrawn your bank account. The team owners give you %d weeks to "
@@ -2597,26 +2682,27 @@ msgstr ""
 "Du hast Dein Konto überzogen. Die Verantwortlichen geben Dir %d Wochen, um "
 "Deine Dispokreditgrenze zu erreichen."
 
-#: src/finance.c:100
+#: src/finance.c:116
 msgid "You have to pay back your loan this week."
 msgstr "Du musst Deinen Kredit diese Woche zurückzahlen."
 
-#: src/callbacks.c:535
+#: src/callbacks.c:564
 msgid "You haven't made an offer for the player."
 msgstr "Du hast kein Angebot für den Spieler abgegeben."
 
-#: src/callbacks.c:399 src/callbacks.c:415 src/callbacks.c:431
-#: src/callbacks.c:449 src/callbacks.c:794 src/callbacks.c:810
+#: src/callbacks.c:400 src/callbacks.c:416 src/callbacks.c:432
+#: src/callbacks.c:448 src/callbacks.c:476 src/callbacks.c:830
+#: src/callbacks.c:846
 msgid "You haven't selected a player."
 msgstr "Du hast keinen Spieler ausgewählt."
 
 #. Cup name, team name.
-#: src/user.c:725
+#: src/user.c:728
 #, c-format
 msgid "You lose in the %s final against %s."
 msgstr "Du verlierst das %s-Finale gegen %.s"
 
-#: src/callback_func.c:397
+#: src/callback_func.c:402
 #, c-format
 msgid ""
 "You offered a transfer fee of %s and a wage of %s for %s. The owners and the "
@@ -2627,22 +2713,22 @@ msgstr ""
 "Spieler nun kaufen?"
 
 #. Cup round name (e.g. Last 32), number, cup name.
-#: src/user.c:732
+#: src/user.c:735
 #, c-format
 msgid "You reach the %s (round %d) of the %s."
 msgstr "Du erreichst das %s (Runde %d) des %s."
 
 #. Buy a team in a league.
-#: src/user.c:676
+#: src/user.c:679
 #, c-format
 msgid "You start the game with %s in the %s."
 msgstr "Du beginnst das Spiel mit %s in der %s."
 
-#: src/callbacks.c:166 src/callbacks.c:561 src/callbacks.c:578
+#: src/callbacks.c:167 src/callbacks.c:597 src/callbacks.c:614
 msgid "You still have some transfer business to manage."
 msgstr "Du hast noch Transferangelegenheiten zu erledigen."
 
-#: src/callback_func.c:616
+#: src/callback_func.c:630
 #, c-format
 msgid ""
 "You want to fire %s. Since his contract expires in %.1f years, he demands a "
@@ -2652,16 +2738,16 @@ msgstr ""
 "Abfindung. Einverstanden?"
 
 #. Cup name, team name.
-#: src/user.c:719
+#: src/user.c:722
 #, c-format
 msgid "You win the %s final against %s."
 msgstr "Du gewinnst das %s Finale gegen %s."
 
-#: src/finance.c:104
+#: src/finance.c:120
 msgid "Your bank account has to be above your drawing credit limit next week."
 msgstr "Dein Konto muss nächste Woche Deinen Dispokredit übersteigen."
 
-#: src/user.c:902
+#: src/user.c:905
 #, c-format
 msgid ""
 "Your current sponsor is satisfied with your results and would like to renew "
@@ -2670,11 +2756,11 @@ msgstr ""
 "Dein gegenwärtiger Sponsor ist zufrieden mit Deinen Ergebnissen und würde "
 "die Zusammenarbeit gerne fortsetzen. Er zahlt zur Zeit %d wöchentlich."
 
-#: src/treeview.c:1510
+#: src/treeview.c:1519
 msgid "Your next opponent"
 msgstr "Dein nächster Gegner"
 
-#: src/user.c:441
+#: src/user.c:451
 #, c-format
 msgid ""
 "Your offer for %s has been accepted. If you still want to buy him, go to the "
@@ -2683,66 +2769,78 @@ msgstr ""
 "Dein Angebot für %s wurde akzeptiert. Wenn Du ihn immer noch kaufen willst, "
 "gehe zur Transferliste und rechts-klicke auf den Spieler."
 
-#: src/callback_func.c:383 src/callbacks.c:533
+#: src/callback_func.c:388 src/callbacks.c:562
 msgid "Your offer has been removed."
 msgstr "Dein Angebot wurde annulliert."
 
-#: src/misc2_callbacks.c:112
+#: src/misc2_callbacks.c:113
 msgid "Your offer has been updated."
 msgstr "Dein Angebot wurde aktualisiert."
 
-#: src/misc2_callbacks.c:114
+#: src/misc2_callbacks.c:115
 msgid "Your offer will be considered next week."
 msgstr "Dein Angebot wird nächste Woche verhandelt."
 
-#: src/misc2_callback_func.c:80
+#: src/misc2_callback_func.c:78
 msgid "Your player roster is full or you don't enough money."
 msgstr "Deine Mannschaft ist voll oder du hast nicht genügend Geld."
 
 #. The user's results against a specific team.
-#: src/treeview.c:1583
+#: src/treeview.c:1592
 msgid "Your results"
 msgstr "Deine Ergebnisse"
 
-#: src/callback_func.c:390
+#: src/callback_func.c:395
 msgid "Your roster is already full. You can't buy more players."
 msgstr "Es ist kein Platz mehr in Deiner Mannschaft für neue Spieler."
 
 #. Buy a player from a team.
-#: src/user.c:480
+#: src/user.c:484
 #, c-format
 msgid "Your roster is full. You couldn't buy %s from %s."
 msgstr "Deine Mannschaft ist voll. Du konntest %s nicht von %s kaufen."
 
-#: src/window.c:442
+#: src/window.c:449
 msgid "Your stadium"
 msgstr "Dein Stadion"
 
-#: src/callbacks.c:433
+#: src/callbacks.c:434
 msgid "Your team can't have less than 11 players."
 msgstr "Deine Mannschaft kann nicht weniger als 11 Spieler haben."
 
-#: src/interface.c:260
+#: src/treeview.c:1392
+msgid "Youth acad. invest."
+msgstr "Nachwuchsförderung"
+
+#: src/interface.c:556 src/treeview.c:1278
+msgid "Youth academy"
+msgstr "Nachwuchsmannschaft"
+
+#: src/interface.c:570 src/treeview.c:1277
+msgid "Youth coach"
+msgstr "Nachwuchstrainer"
+
+#: src/interface.c:280
 msgid "_File"
 msgstr "_Datei"
 
-#: src/interface.c:799
+#: src/interface.c:910
 msgid "_Help"
 msgstr "_Hilfe"
 
-#: src/interface.c:303
+#: src/interface.c:323
 msgid "_Options"
 msgstr "_Einstellugen"
 
-#: src/misc_interface.c:617
+#: src/misc_interface.c:619
 msgid "_Pause"
 msgstr "_Unterbrechen"
 
-#: src/interface.c:611
+#: src/interface.c:718
 msgid "_Player"
 msgstr "S_pieler"
 
-#: src/misc_interface.c:638
+#: src/misc_interface.c:640
 msgid "_Resume"
 msgstr "_Weiter"
 
@@ -2750,16 +2848,25 @@ msgstr "_Weiter"
 msgid "_Resume last game"
 msgstr "_Letzten Spielstand laden"
 
-#: src/interface.c:418
+#: src/interface.c:438
 msgid "_Team"
 msgstr "_Mannschaft"
 
-#: src/interface.c:679
+#: src/interface.c:790
 msgid "_User"
 msgstr "_Benutzer"
 
+#~ msgid "   "
+#~ msgstr "   "
+
 #~ msgid " (A) "
 #~ msgstr " (A) "
+
+#~ msgid "1"
+#~ msgstr "1"
+
+#~ msgid "2000"
+#~ msgstr "2000"
 
 #~ msgid "A cloudless day, gives the impression this match is going to sparkle"
 #~ msgstr "Ein wolkenloser Himmel verheißt ein spannedes Spiel"

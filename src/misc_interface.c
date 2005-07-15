@@ -530,9 +530,10 @@ create_window_live (void)
   gtk_widget_show (eventbox_poss0);
   gtk_box_pack_start (GTK_BOX (hbox57), eventbox_poss0, FALSE, TRUE, 0);
 
-  label78 = gtk_label_new (_("   "));
+  label78 = gtk_label_new ("");
   gtk_widget_show (label78);
   gtk_container_add (GTK_CONTAINER (eventbox_poss0), label78);
+  gtk_misc_set_padding (GTK_MISC (label78), 5, 0);
 
   scrolledwindow8 = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (scrolledwindow8);
@@ -549,9 +550,10 @@ create_window_live (void)
   gtk_widget_show (eventbox_poss1);
   gtk_box_pack_start (GTK_BOX (hbox57), eventbox_poss1, FALSE, TRUE, 0);
 
-  label79 = gtk_label_new (_("   "));
+  label79 = gtk_label_new ("");
   gtk_widget_show (label79);
   gtk_container_add (GTK_CONTAINER (eventbox_poss1), label79);
+  gtk_misc_set_padding (GTK_MISC (label79), 5, 0);
 
   hscale_area = gtk_hscale_new (GTK_ADJUSTMENT (gtk_adjustment_new (5, 0, 10, 0, 0, 0)));
   gtk_widget_show (hscale_area);

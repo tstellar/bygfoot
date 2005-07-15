@@ -40,6 +40,26 @@ debug_action(const gchar *text, gint value)
 	game_gui_print_message("Success counter changed by %d. New: %d.", value,
 		current_user.counters[COUNT_USER_SUCCESS]);
     }
+    else if(g_str_has_prefix(text, "scout"))
+    {
+	current_user.scout = value;
+	game_gui_print_message("Scout changed to %d.", value);
+    }
+    else if(g_str_has_prefix(text, "phys"))
+    {
+	current_user.physio = value;
+	game_gui_print_message("Physio changed to %d.", value);
+    }
+    else if(g_str_has_prefix(text, "yc"))
+    {
+	current_user.youth_academy.coach = value;
+	game_gui_print_message("Youth coach changed to %d.", value);
+    }
+    else if(g_str_has_prefix(text, "pospref"))
+    {
+	current_user.youth_academy.pos_pref = value;
+	game_gui_print_message("Recruiting pref changed to %d.", value);
+    }
     else if(g_str_has_prefix(text, "help"))
     {
 	printf("Debug options:\n"
@@ -48,6 +68,10 @@ debug_action(const gchar *text, gint value)
 	       "saf \t change stadium safety\n"
 	       "mon \t change money\n"
 	       "suc \t change success counter\n"
+	       "scout \t change scout\n"
+	       "physio \t change physio\n"
+	       "youth coach \t change youth coach\n"
+	       "pospref \t change recruiting pref\n"
 	       "help \t display this help\n");
     }
 

@@ -239,7 +239,6 @@ lg_commentary_parse_condition(const gchar *condition)
     return return_value;
 }
 
-
 /** Write a random order of indices into the integer array
     (only depending on the priority values of the commentaries). 
     I don't like this implementation of ordering the commentaries
