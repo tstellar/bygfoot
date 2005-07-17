@@ -94,23 +94,31 @@ main_init(gint argc, gchar *argv[])
     gchar buf[SMALL];
     gchar *pwd = g_get_current_dir();
 
+#ifdef G_OS_WIN32
+    os_is_unix = FALSE;
+#else
+    os_is_unix = TRUE;
+#endif
+
     /* initialize the random nr generator */
     rand_generator = g_rand_new();
 
     support_directories = NULL;
 
+#ifdef G_OS_UNIX
     file_add_support_directory_recursive(PACKAGE_DATA_DIR "/" PACKAGE "/support_files");
+#endif
 
-    sprintf(buf, "%s/%s", g_get_home_dir(), HOMEDIRNAME);
+    sprintf(buf, "%s%s%s", g_get_home_dir(), G_DIR_SEPARATOR_S, HOMEDIRNAME);
     file_add_support_directory_recursive(buf);
 
-    sprintf(buf, "%s/support_files", pwd);
+    sprintf(buf, "%s%ssupport_files", pwd, G_DIR_SEPARATOR_S);
     g_free(pwd);
     file_add_support_directory_recursive(buf);
     
-    file_check_home_dir();
-
     main_init_variables();
+
+    file_check_home_dir();
 }
 
 /**

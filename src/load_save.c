@@ -36,7 +36,8 @@ load_save_save_game(const gchar *filename)
     if(g_file_test(fullname, G_FILE_TEST_EXISTS))
     {
 	/*todo: replace with g_remove*/
-	sprintf(buf, "rm -rf %s", fullname);
+	sprintf(buf, "%s %s", const_str("string_fs_remove_file_command"),
+		fullname);
 	file_my_system(buf);
     }
 
@@ -260,7 +261,8 @@ load_save_load_game(const gchar* filename)
 
     gui_show_progress(1, _("Done."));
 
-    sprintf(buf, "rm -rf %s/%s___*", dirname, prefix);
+    sprintf(buf, "%s %s%s%s___*", const_str("string_fs_remove_file_command"),
+	    dirname, G_DIR_SEPARATOR_S, prefix);
     file_my_system(buf);
 
     g_string_printf(save_file, "%s", fullname);
@@ -288,7 +290,8 @@ load_save_last_save_set(const gchar *filename)
     const gchar *home = g_get_home_dir();
     FILE *fil = NULL;
 
-    sprintf(buf, "%s/%s/saves/last_save", home, HOMEDIRNAME);
+    sprintf(buf, "%s%s%s%ssaves%slast_save", home, G_DIR_SEPARATOR_S,
+	    HOMEDIRNAME, G_DIR_SEPARATOR_S, G_DIR_SEPARATOR_S);
 
     if(!file_my_fopen(buf, "w", &fil, FALSE))
 	return;
@@ -305,13 +308,17 @@ load_save_last_save_get(void)
     gchar buf[SMALL];
     const gchar *home = g_get_home_dir();
     FILE *fil = NULL;
+    gint i = 0, c;
 
-    sprintf(buf, "%s/%s/saves/last_save", home, HOMEDIRNAME);
+    sprintf(buf, "%s%s%s%ssaves%slast_save", home, G_DIR_SEPARATOR_S,
+	    HOMEDIRNAME, G_DIR_SEPARATOR_S,  G_DIR_SEPARATOR_S);
 
     if(!file_my_fopen(buf, "r", &fil, FALSE))
 	return NULL;
 
-    fscanf(fil, "%s", buf);
+    while ((c = (gchar)fgetc(fil)) != EOF)
+	buf[i++] = (gchar)c;
+    buf[i] = 0;    
 
     fclose(fil);
 
@@ -335,7 +342,8 @@ load_save_autosave(void)
     if(counters[COUNT_AUTOSAVE] != 0)
 	return;
 
-    sprintf(buf, "%s/%s/saves/autosave%02d.zip", home, HOMEDIRNAME,
+    sprintf(buf, "%s%s%s%ssaves%sautosave%02d.zip", home, G_DIR_SEPARATOR_S,
+	    HOMEDIRNAME, G_DIR_SEPARATOR_S, G_DIR_SEPARATOR_S,
 	    counters[COUNT_AUTOSAVE_FILE]);
 
     if(!file_my_fopen(buf, "w", &fil, FALSE))

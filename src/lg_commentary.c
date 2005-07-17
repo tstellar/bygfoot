@@ -594,15 +594,19 @@ void
 lg_commentary_load_commentary_file_from_option(void)
 {
     gchar buf[SMALL], commentary_file[SMALL];
-    gchar *cur_locale = setlocale(LC_MESSAGES, NULL);
+    gchar *cur_locale = NULL;
 
-    if(strcmp(opt_str("string_opt_language_code"), "") == 0)
+#ifdef G_OS_UNIX
+    cur_locale = setlocale(LC_MESSAGES, NULL);
+#endif
+
+    if(strcmp(opt_str("string_opt_language_code"), "C") == 0)
+	strcpy(buf, "en");
+    else if(strcmp(opt_str("string_opt_language_code"), "") == 0 && cur_locale != NULL)
     {
 	strncpy(buf, cur_locale, 2);
 	buf[2] = '\0';
     }
-    else if(strcmp(opt_str("string_opt_language_code"), "C") == 0)
-	strcpy(buf, "en");
     else
     {
 	strncpy(buf, opt_str("string_opt_language_code"), 2);

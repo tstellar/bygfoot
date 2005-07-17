@@ -16,6 +16,11 @@ language_set(gint index)
     gchar buf[SMALL];
     GPtrArray *codes = 
 	misc_separate_strings(const_str("string_language_codes"));
+    gint lc = LC_ALL;
+
+#ifdef G_OS_UNIX
+    lc = LC_MESSAGES;
+#endif
     
     if(index > 0)
 	strcpy(buf, ((GString*)g_ptr_array_index(codes, index - 1))->str);
@@ -25,7 +30,7 @@ language_set(gint index)
     if(strcmp(buf, opt_str("string_opt_language_code")) != 0 ||
        window.main == NULL)
     {
-	setlocale(LC_MESSAGES, buf);
+	setlocale(lc, buf);
 	opt_set_str("string_opt_language_code", buf);
 
 	if(window.main != NULL)

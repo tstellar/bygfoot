@@ -7,9 +7,17 @@
 #### float constants get divided by 10000 and loaded as floats
 #### so we write 5000 if we'd like to have 0.5
 
-# commands to compress and uncompress save files
-string_save_compress_command zip -q
-string_save_uncompress_command unzip -qq -o
+# commands for unix filesystem interaction
+string_fs_compress_command_unix zip -q
+string_fs_uncompress_command_unix unzip -qq -o
+string_fs_copy_file_command_unix cp
+string_fs_remove_file_command_unix rm -rf
+
+# commands for win32 filesystem interaction
+string_fs_compress_command_win32 zip -q
+string_fs_uncompress_command_win32 unzip -qq -o
+string_fs_copy_file_command_win32 copy
+string_fs_remove_file_command_win32 erase
 
 # suffix of compressed files
 string_save_suffix .zip

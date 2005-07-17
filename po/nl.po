@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bygfoot 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-19 10:22+0200\n"
+"POT-Creation-Date: 2005-07-17 13:52+0200\n"
 "PO-Revision-Date: 2005-06-19 10:11+0200\n"
 "Last-Translator: Vincent van Adrighem <adrighem@gnome.org>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
@@ -35,7 +35,7 @@ msgstr ""
 "\n"
 "Goals/Match %.1f Schoten %%%.1f"
 
-#: src/game_gui.c:606
+#: src/game_gui.c:697
 msgid ""
 "\n"
 "If you feel you've found out something about the game that has to be shared, "
@@ -45,113 +45,275 @@ msgstr ""
 "Als je iets gevonden hebt in het spel dat moet gedeeld worden, kan je het op "
 "de Bygfoot Wiki zetten:\n"
 
-#: src/misc_interface.c:492 src/misc_interface.c:511
-msgid "   "
-msgstr "   "
+#. Company short name. Copy the '&amp;'.
+#: src/user.c:814
+msgid " &amp; Co."
+msgstr ""
 
-#: src/game.c:866
+#. Company addition. Copy the '&amp;'.
+#: src/user.c:823
+msgid " &amp; Daughters"
+msgstr ""
+
+#. Company addition, leading to 'Marshall & Sons Petroleum Co.'. Copy the '&amp;'.
+#: src/user.c:821
+msgid " &amp; Sons"
+msgstr ""
+
+#. A goal scored with a free kick.
+#: src/game.c:881
 msgid " (FK)"
 msgstr " (VT)"
 
-#: src/game_gui.c:517
+#: src/game_gui.c:611
 msgid " (NOTE: If you don't, the game is over for you.)"
 msgstr " (NOOT: Als je het niet aanneemt is het spel over voor jou.)"
 
-#: src/game.c:868
+#: src/game.c:883
 msgid " (OG)"
 msgstr " (OG)"
 
-#: src/game.c:864 src/treeview_helper.c:963
+#. A goal scored with penalty.
+#. Penalty shooter.
+#: src/game.c:878 src/treeview_helper.c:967
 msgid " (P)"
 msgstr " (P)"
 
-#: src/cup.c:767
+#: src/cup.c:801
 msgid " -- First leg"
 msgstr " --  Heenmatch"
 
-#: src/cup.c:770
+#: src/cup.c:804
 msgid " -- Replay matches"
 msgstr " -- Replay matchen"
 
-#: src/cup.c:765
+#: src/cup.c:799
 msgid " -- Second leg"
 msgstr " -- Terugmatch"
 
-#: src/options_interface.c:266
+#. Company short name.
+#: src/user.c:808
+msgid " Assoc."
+msgstr ""
+
+#: src/options_interface.c:267
 msgid " Autosave files "
 msgstr " Auto-opslaan bestanden "
 
-#: src/user.c:473
+#. Company name.
+#: src/user.c:789
+#, fuzzy
+msgid " Bank"
+msgstr "Plaats"
+
+#. Company addition.
+#: src/user.c:825
+msgid " Bros."
+msgstr ""
+
+#. Company name.
+#: src/user.c:785
+msgid " Chemicals"
+msgstr ""
+
+#. Company short name.
+#: src/user.c:810
+msgid " Co."
+msgstr ""
+
+#. Company name.
+#: src/user.c:771
+#, fuzzy
+msgid " Communications"
+msgstr "Ontslagvergoedingen"
+
+#. Company name.
+#: src/user.c:777
+msgid " Company"
+msgstr ""
+
+#. Company short name.
+#: src/user.c:816
+#, fuzzy
+msgid " Corp."
+msgstr " P."
+
+#. Company name.
+#: src/user.c:803
+#, fuzzy
+msgid " Data Systems"
+msgstr "Systeem"
+
+#. Company name.
+#: src/user.c:787
+msgid " Energy"
+msgstr ""
+
+#. Company short name.
+#: src/user.c:812
+#, fuzzy
+msgid " Ent."
+msgstr "Gebeurtenis"
+
+#. Company name.
+#: src/user.c:797
+#, fuzzy
+msgid " Financial"
+msgstr "Finale"
+
+#: src/user.c:491
 msgid " Fortunately he's got a cousin who can help your team out."
 msgstr " Gelukkig heeft hij een neef die je team kan helpen."
 
-#: src/interface.c:958
+#. Company short name.
+#: src/user.c:818
+#, fuzzy
+msgid " Group"
+msgstr "%s Groep %d"
+
+#. Company name.
+#: src/user.c:773
+msgid " Holdings"
+msgstr ""
+
+#. Company name.
+#: src/user.c:775
+#, fuzzy
+msgid " Industries"
+msgstr "Blessures"
+
+#. Company name.
+#: src/user.c:781
+msgid " Labs"
+msgstr ""
+
+#. Company short name, leading to things like 'Marshall Data Systems Ltd.'
+#: src/user.c:806
+#, fuzzy
+msgid " Ltd."
+msgstr " n.v."
+
+#. Company name.
+#: src/user.c:799
+msgid " Petroleum"
+msgstr ""
+
+#. Company name.
+#: src/user.c:791
+msgid " Products"
+msgstr ""
+
+#. Company name.
+#: src/user.c:801
+#, fuzzy
+msgid " Restaurants"
+msgstr "Doorgaan"
+
+#: src/interface.c:1050
 msgid " Round "
 msgstr " Ronde "
 
-#: src/interface.c:940
+#. Company name.
+#: src/user.c:795
+msgid " Scientific"
+msgstr ""
+
+#: src/interface.c:1032
 msgid " Season "
 msgstr " Seizoen "
 
-#: src/interface.c:949
+#. Company name.
+#: src/user.c:793
+msgid " Software"
+msgstr ""
+
+#. Company name.
+#: src/user.c:769
+#, fuzzy
+msgid " Systems"
+msgstr "Systeem"
+
+#. Company name.
+#: src/user.c:783
+msgid " Technologies"
+msgstr ""
+
+#. Company name.
+#: src/user.c:779
+msgid " Telecommunications"
+msgstr ""
+
+#: src/interface.c:1041
 msgid " Week "
 msgstr " Week "
 
-#: src/fixture.c:798
+#. Game was decided in extra time.
+#: src/fixture.c:800
 msgid " e.t."
 msgstr " n.v."
 
-#: src/callback_func.c:355
+#: src/callback_func.c:360
 msgid " less"
 msgstr " minder"
 
-#: src/options_interface.c:524
+#: src/options_interface.c:530
 msgid " months"
 msgstr " maanden"
 
-#: src/callback_func.c:353
+#: src/callback_func.c:358
 msgid " more"
 msgstr " meer"
 
-#: src/fixture.c:796
+#. Game was decided in penalty shoot-out.
+#: src/fixture.c:797
 msgid " p."
 msgstr " P."
 
-#: src/misc_interface.c:811
+#: src/misc_interface.c:859
 msgid " seats"
 msgstr " stoelen"
 
-#: src/team.c:974
+#. Contract time and money a sponsor pays.
+#: src/treeview.c:1383
+#, fuzzy, c-format
+msgid "%.1f months / %s"
+msgstr " maanden"
+
+#. a match at home
+#: src/team.c:976
 #, c-format
 msgid "%s (H) "
 msgstr "%s (T) "
 
-#: src/team.c:988
+#. a match on neutral ground
+#: src/team.c:992
 #, c-format
 msgid "%s (N) "
 msgstr "%s (N) "
 
-#: src/treeview_helper.c:852
+#: src/treeview_helper.c:855
 #, c-format
 msgid "%s (expected recovery in %d weeks)"
 msgstr "%s (verwachte terugkeer binnen %d weken)"
 
-#: src/treeview.c:1023
+#. A group of a round robin stage of a cup.
+#: src/treeview.c:1037
 #, c-format
 msgid "%s Group %d"
 msgstr "%s Groep %d"
 
-#: src/misc2_callback_func.c:154
+#: src/misc2_callback_func.c:156
 #, c-format
 msgid "%s accepts your offer."
 msgstr "%s accepteert uw aanbod."
 
-#: src/misc2_callback_func.c:47
+#: src/misc2_callback_func.c:46
 #, c-format
 msgid "%s couldn't afford to buy %s or his roster was full."
 msgstr "%s had niet genoeg geld om %s te kopen of was zijn team vol."
 
-#: src/user.c:660
+#. Team fires, team in a league.
+#: src/user.c:685
 #, c-format
 msgid ""
 "%s fires you because of financial mismanagement.\n"
@@ -160,7 +322,8 @@ msgstr ""
 "%s ontslaat je wegens financieel mismanagement.\n"
 "Je vindt een nieuwe job met %s in de %s."
 
-#: src/user.c:666
+#. Team fires, team in a league.
+#: src/user.c:692
 #, c-format
 msgid ""
 "%s fires you because of unsuccessfulness.\n"
@@ -169,17 +332,18 @@ msgstr ""
 "%s ontslaat je wegens onsuccesvolheid.\n"
 "Je vindt een nieuwe job met %s in de %s."
 
-#: src/transfer.c:414
+#: src/transfer.c:448
 #, c-format
 msgid "%s has been added to the transfer list for %d weeks."
 msgstr "%s werd op de transferlijst gezet voor %d weken."
 
-#: src/user.c:394
+#: src/user.c:419
 #, c-format
 msgid "%s has left your team because his contract expired."
 msgstr "%s heeft je team verlaten omdat zijn contract verlopen is."
 
-#: src/user.c:454
+#. A player from a team has rejected a transfer offer.
+#: src/user.c:473
 #, c-format
 msgid ""
 "%s of %s has rejected your offer (%s / %s). He wasn't satisfied with the "
@@ -188,7 +352,8 @@ msgstr ""
 "%s van %s heeft uw aanbieding (%s / %s) afgeslagen. Hij was niet tevreden "
 "met het loon dat je hem aanbood."
 
-#: src/user.c:672
+#. Team in a league. Leave team.
+#: src/user.c:699
 #, c-format
 msgid ""
 "%s offer you a job in the %s.\n"
@@ -197,7 +362,7 @@ msgstr ""
 "%s bieden je een job aan in de %s.\n"
 "Je neemt de uitdaging aan en verlaat %s."
 
-#: src/misc2_callback_func.c:170
+#: src/misc2_callback_func.c:168
 #, c-format
 msgid ""
 "%s rejects your offer and won't negotiate with you anymore. You should sell "
@@ -211,12 +376,12 @@ msgstr ""
 msgid "%s rejects your offer. You may still make %d offers."
 msgstr "%s wijst je bod af. Je mag nog %d aanbiedingen doen."
 
-#: src/callbacks.c:456
+#: src/callbacks.c:459
 #, c-format
 msgid "%s will shoot penalties and free kicks when he plays."
 msgstr "%s zal de penalties en de vrije schoppen schieten waneer hij speelt."
 
-#: src/callback_func.c:357
+#: src/callback_func.c:362
 #, c-format
 msgid ""
 "%s would like to buy %s. They offer %s for him, which is %s than the "
@@ -225,12 +390,12 @@ msgstr ""
 "%s wilt %s kopen. Ze bieden %s voor hem, wat %s is dan de waarde van de "
 "speler. Accepteren?"
 
-#: src/player.c:967
+#: src/player.c:1031
 #, c-format
 msgid "%s's contract expires in %.1f years."
 msgstr "%ss contract loopt af binnen %.1f jaren."
 
-#: src/user.c:470
+#: src/user.c:488
 #, c-format
 msgid ""
 "%s's injury was so severe that he can't play football on a professional "
@@ -239,52 +404,47 @@ msgstr ""
 "%ss blessure was zo erg dat hij geen voetbal meer kan spelen op "
 "proffesioneel niveau. Hij verlaat je team."
 
-#: src/treeview_helper.c:814
+#. Yellow cards of a player in a cup/league. No limit means there isn't a limit
+#. after which the player gets banned for a match automatically.
+#: src/treeview_helper.c:817
 #, c-format
 msgid "%s: %d (no limit)\n"
 msgstr "%s: %d (geen limiet)\n"
 
-#: src/treeview_helper.c:779
+#. Ban info of a player in the format: 'Cup/league name: Number of weeks banned'
+#: src/treeview_helper.c:780
 #, c-format
 msgid "%s: %d weeks\n"
 msgstr "%s: %d weken\n"
 
-#: src/misc_interface.c:894 src/misc_interface.c:902 src/misc_interface.c:928
-#: src/misc_interface.c:936
+#: src/misc_interface.c:942 src/misc_interface.c:950 src/misc_interface.c:976
+#: src/misc_interface.c:984
 msgid "0"
 msgstr "0"
 
-#: src/interface.c:945 src/interface.c:954 src/interface.c:962
-#: src/interface.c:1022
-msgid "1"
-msgstr "1"
-
-#: src/misc2_interface.c:590
+#: src/misc2_interface.c:604
 msgid "1 year"
 msgstr "1 jaar"
 
-#: src/misc2_interface.c:614
+#: src/misc2_interface.c:628
 msgid "2 years"
 msgstr "2 jaar"
 
-#: src/interface.c:1036
-msgid "2000"
-msgstr "2000"
-
-#: src/misc2_interface.c:598
+#: src/misc2_interface.c:612
 msgid "3 years"
 msgstr "3 jaar"
 
-#: src/misc2_interface.c:606
+#: src/misc2_interface.c:620
 msgid "4 years"
 msgstr "4 jaar"
 
-#: src/team.c:979
+#. a match away
+#: src/team.c:982
 #, c-format
 msgid "<span background='%s' foreground='%s'>%s (A) </span> "
 msgstr "<span background='%s' foreground='%s'>%s (U)</span>"
 
-#: src/treeview.c:729
+#: src/treeview.c:742
 #, c-format
 msgid ""
 "<span background='%s'>There was a fire\n"
@@ -293,7 +453,7 @@ msgstr ""
 "<span background='%s'>Er was brand\n"
 "in het stadion</span>"
 
-#: src/treeview.c:726
+#: src/treeview.c:739
 #, c-format
 msgid ""
 "<span background='%s'>There were riots\n"
@@ -302,7 +462,7 @@ msgstr ""
 "<span background='%s'>Er waren rellen in\n"
 "het stadion.</span>"
 
-#: src/treeview.c:723
+#: src/treeview.c:736
 #, c-format
 msgid ""
 "<span background='%s'>There were technical problems\n"
@@ -311,133 +471,78 @@ msgstr ""
 "<span background='%s'>Er waren technische problemen\n"
 "in uw stadion.</span>"
 
-#: src/treeview.c:1459 src/treeview.c:1464
+#: src/treeview.c:1525 src/treeview.c:1530
 #, c-format
 msgid "<span foreground='%s' background='%s'>Week %d Round %d</span>"
 msgstr "<span foreground='%s' background='%s'>Week %d Ronde %d</span>"
 
-#: src/lg_commentary.c:181
-msgid "A cloudless day, gives the impression this match is going to sparkle"
-msgstr "Een wolkenloze dag, geeft de indruk dat de match gaat sprankelen"
-
-#: src/lg_commentary.c:297
-msgid ""
-"A fan has managed to get onto the pitch and has begun to attack the referee"
-msgstr ""
-"Een fan is er een in geslaagt om op het veld te komen en valt de "
-"scheidsrechter aan"
-
-#: src/lg_commentary.c:303
-msgid "A flare chucked onto the touchline has started a massive blaze"
-msgstr "Een vuurpijl veroorzaakt brand in het stadion"
-
-#: src/lg_commentary.c:304
-msgid ""
-"A speaker has gone up in flames and the blaze spreading around the entire "
-"stadium"
-msgstr ""
-"Een luidspreker gaat op in vlammen en het vuur verspreid zich over heel het "
-"stadion"
-
-#: src/lg_commentary.c:481 src/team.c:494
+#: src/lg_commentary.c:516 src/team.c:493
 msgid "ALL OUT ATTACK"
 msgstr "SUPERAANVALLEND"
 
-#: src/lg_commentary.c:469 src/team.c:486
+#: src/lg_commentary.c:504 src/team.c:485
 msgid "ALL OUT DEFEND"
 msgstr "SUPERVERDEDIGEND"
 
-#: src/lg_commentary.c:484 src/team.c:501
+#. Boost value.
+#: src/lg_commentary.c:519 src/team.c:501
 msgid "ANTI"
 msgstr "ANTI"
 
-#: src/lg_commentary.c:182
-msgid "AT fans can't be wrong, this is the match we have all come to watch"
-msgstr ""
-"met AT fans kunnen we niet verkeerd zijn, dit is de match waarvoor we met "
-"zijn allen zijn gekomen"
-
-#: src/lg_commentary.c:478 src/team.c:492
+#: src/lg_commentary.c:513 src/team.c:491
 msgid "ATTACK"
 msgstr "AANVALLEND"
 
-#: src/interface.c:806 src/misc2_interface.c:1014
+#: src/interface.c:898 src/misc2_interface.c:1036
 msgid "About"
 msgstr "Over"
 
-#: src/game_gui.c:515
+#: src/misc_interface.c:1210
+#, fuzzy
+msgid "Accept"
+msgstr "Accepteren?"
+
+#: src/game_gui.c:609
 msgid "Accept?"
 msgstr "Accepteren?"
 
-#: src/misc2_interface.c:821 src/misc_interface.c:184
+#: src/misc2_interface.c:843 src/misc_interface.c:190
 msgid "Add user"
 msgstr "Voeg gebruiker toe"
 
-#: src/lg_commentary.c:199
-msgid "After MI minutes it's still RE: extra time"
-msgstr "Na MI minuten is het nog altijd RE: verlengingen"
-
-#: src/lg_commentary.c:213
-msgid "After MI minutes the match ends with a RE"
-msgstr "Na MI minuten eindigd de match op RE"
-
-#: src/lg_commentary.c:197
-msgid "After a close match the game heads into extra time"
-msgstr "Na een gesloten match zijn er verlengingen"
-
-#: src/treeview.c:256 src/treeview.c:1746
+#: src/treeview.c:267 src/treeview.c:1813
 msgid "Age"
 msgstr "Leeftijd"
 
-#: src/options_interface.c:637
+#: src/options_interface.c:643
 msgid "Age "
 msgstr "Leeftijd "
 
-#: src/interface.c:460
+#: src/window.c:142
+msgid "All Files"
+msgstr ""
+
+#: src/interface.c:477
 msgid "All Out Attack"
 msgstr "Superaanvallend"
 
-#: src/interface.c:436
+#: src/interface.c:456
 msgid "All Out Defend"
 msgstr "Super verdedigend"
 
-#: src/lg_commentary.c:205
-msgid "And now we have the tense drama of a penalty shoot out"
-msgstr "En nu het gespannen drama van penalty's"
-
-#: src/lg_commentary.c:151
-msgid "And the ball flies straight past P2 and into the back of the net!!!"
-msgstr "En de bal vliegt naast P2 tegen de netten!!!"
-
-#: src/lg_commentary.c:149
-msgid "And the ball is smacked into the back of the net!!!"
-msgstr "En de bal is tegen de achterkant van het net!!!"
-
-#: src/lg_commentary.c:295
-msgid "And the fans are throwing flares onto the pitch"
-msgstr "De fans gooien brandende pijlen op het veld"
-
-#: src/lg_commentary.c:164
-msgid "And the shot creeps just past the post"
-msgstr "Goal!!! Neee, aan de verkeerde kant van de paal"
-
-#: src/lg_commentary.c:232
-msgid "And the shot glances wide off the post"
-msgstr "En het schot botst ver terug van de paal"
-
-#: src/lg_commentary.c:105
-msgid "Another decent move down the wing"
-msgstr "Een andere fantastische beweging op de flank"
-
-#: src/interface.c:559
+#: src/interface.c:648
 msgid "Anti"
 msgstr "Anti"
 
-#: src/callbacks.c:168
+#: src/interface.c:615
+msgid "Any"
+msgstr ""
+
+#: src/callbacks.c:171
 msgid "At least one user didn't take his turn this week. Continue?"
 msgstr "Ten minste een speler heeft deze week niet gespeeld. Doorgaan?"
 
-#: src/game_gui.c:604
+#: src/game_gui.c:695
 msgid ""
 "At the Bygfoot forums you can report bugs, ask for help and discuss the game "
 "(you don't have to register):\n"
@@ -445,11 +550,11 @@ msgstr ""
 "Op het Bygfoot forum kan je bugs rapporteren, vragen voor hulp en over het "
 "spel discussiëren. (Je hoeft niet te registeren):\n"
 
-#: src/interface.c:454 src/treeview.c:1406
+#: src/interface.c:472 src/treeview.c:1472
 msgid "Attack"
 msgstr "Aanvallend"
 
-#: src/treeview.c:715
+#: src/treeview.c:728
 #, c-format
 msgid ""
 "Attendance\n"
@@ -458,47 +563,48 @@ msgstr ""
 "Opkomst\n"
 "%s"
 
-#: src/options_interface.c:916
+#: src/options_interface.c:922
 msgid "Attribute "
 msgstr "Attributen "
 
-#: src/options_interface.c:459
+#: src/options_interface.c:460
 msgid "Automatic substitutions"
 msgstr "Automatische vervangingen"
 
-#: src/options_interface.c:359
+#: src/options_interface.c:360
 msgid "Autosave"
 msgstr "Auto-opslaan"
 
-#: src/options_interface.c:255
+#: src/options_interface.c:256
 msgid "Autosave interval "
 msgstr "Auto-opslaan interval "
 
-#: src/interface.c:1054
+#: src/interface.c:1146
 msgid "Av. skills:  "
 msgstr "gem. kwaliteiten:  "
 
+#. Average skill
 #: src/treeview.c:139
 msgid "Av.Sk."
 msgstr "Gem.Kwal."
 
-#: src/misc2_interface.c:785
+#: src/misc2_interface.c:807
 msgid "Available teams"
 msgstr "Beschikbare teams"
 
-#: src/interface.c:489 src/interface.c:524
+#: src/interface.c:503 src/interface.c:535 src/interface.c:577
 msgid "Average"
 msgstr "gemiddelde"
 
-#: src/misc_interface.c:828
+#: src/misc_interface.c:876
 msgid "Average attendance"
 msgstr "Gemiddelde opkomst"
 
-#: src/misc_interface.c:842
+#: src/misc_interface.c:890
 msgid "Average attendance %"
 msgstr "Gemiddelde opkomst %"
 
-#: src/treeview.c:1505
+#: src/treeview.c:1571
 msgid "Average skill"
 msgstr "Gemiddelde kwaliteiten"
 
@@ -506,119 +612,116 @@ msgstr "Gemiddelde kwaliteiten"
 msgid "Average skill:"
 msgstr "Gem. kwaliteiten:"
 
-#: src/treeview.c:1474
+#: src/treeview.c:1540
 msgid "Away"
 msgstr "Uit"
 
-#: src/lg_commentary.c:302
-msgid "Away fans have set fire to the north stand"
-msgstr ""
-"De bezoekende fans hebben de noordelijke kant van het stadion in brand "
-"gestoken"
-
-#: src/lg_commentary.c:475 src/team.c:490
+#: src/lg_commentary.c:510 src/team.c:489
 msgid "BALANCED"
 msgstr "GEBALANCEERD"
 
-#: src/treeview_helper.c:1077
+#. Red card info (how long the player is banned).
+#: src/treeview_helper.c:1083
 #, c-format
 msgid "BAN(%d)"
 msgstr "BAN(%d)"
 
-#: src/interface.c:878
+#: src/interface.c:970
 msgid "Back to main menu (Esc)"
 msgstr "Terug naar het hoofdmenu (Esc)"
 
-#: src/interface.c:495 src/interface.c:530
+#: src/interface.c:509 src/interface.c:541 src/interface.c:583
 msgid "Bad"
 msgstr "Slecht"
 
-#: src/lg_commentary.c:116
-msgid "Bad control by P2 lets P1 steal the ball off him"
-msgstr "Slechte controle van P2 en P1 neemt de bal mee"
-
-#: src/treeview.c:1294
+#. Finances balance.
+#: src/treeview.c:1317
 msgid "Balance"
 msgstr "Balans"
 
-#: src/interface.c:448
+#: src/interface.c:466
 msgid "Balanced"
 msgstr "Gebalanceerd"
 
-#: src/lg_commentary.c:236
-msgid "Ball dinked over P2 but hit crossbar and bounced to safety"
-msgstr "De bal gaat over P2, maar raakt de deklat en botst weg"
-
-#: src/treeview.c:1753
+#: src/treeview.c:1822
 msgid "Banned\n"
 msgstr "Geschorst\n"
 
-#: src/interface.c:909
+#: src/interface.c:1001
 msgid "Begin a new week (Space)"
 msgstr "Begin een nieuwe week (Spatie)"
 
-#: src/interface.c:477 src/interface.c:512
+#: src/interface.c:493 src/interface.c:525 src/interface.c:567
 msgid "Best"
 msgstr "Best"
 
-#: src/treeview.c:1957
+#: src/treeview.c:2028
 msgid "Best defensive teams"
 msgstr "Beste defensieve teams"
 
-#: src/treeview.c:1960
+#: src/treeview.c:2031
 msgid "Best goal scorers"
 msgstr "Topscorestand"
 
-#: src/treeview.c:1961
+#: src/treeview.c:2032
 msgid "Best goalkeepers"
 msgstr "Beste keepers"
 
-#: src/treeview.c:1956
+#: src/treeview.c:2027
 msgid "Best offensive teams"
 msgstr "Beste offensieve teams"
 
-#: src/treeview.c:1259
+#. Finances balance.
+#: src/treeview.c:1292
 msgid "Bi-weekly balance"
 msgstr "Twee-wekelijkse balans"
 
-#: src/interface.c:536
+#: src/interface.c:626
 msgid "Boost"
 msgstr "Extra motivatie"
+
+#: src/callbacks.c:758 src/game_gui.c:326
+msgid "Boost ON is disabled in this country definition."
+msgstr ""
 
 #: src/team.c:532
 #, c-format
 msgid "Boost changed to %s."
 msgstr "Extra motivatie is veranderd naar %s."
 
-#: src/player.c:1098
+#: src/player.c:1159
 msgid "Broken ankle"
 msgstr "Gebroken enkel"
 
-#: src/player.c:1101
+#: src/player.c:1162
 msgid "Broken arm"
 msgstr "Gebroken arm"
 
-#: src/player.c:1095
+#: src/player.c:1156
 msgid "Broken leg"
 msgstr "Gebroken been"
 
-#: src/player.c:1092
+#: src/player.c:1153
 msgid "Broken rib"
 msgstr "Gebroken rib"
 
-#: src/player.c:1104
+#: src/player.c:1165
 msgid "Broken shoulder"
 msgstr "Gebroken schouder"
 
-#: src/interface.c:671
+#: src/interface.c:763
 msgid "Browse players"
 msgstr "Bekijk spelers"
 
-#: src/interface.c:603
+#: src/interface.c:691
 msgid "Browse teams"
 msgstr "Bekijk teams"
 
-#: src/misc2_interface.c:904
+#: src/window.c:136
+msgid "Bygfoot Save Files"
+msgstr ""
+
+#: src/misc2_interface.c:926
 msgid ""
 "Bygfoot debug window. If you got here by accident, CLOSE IMMEDIATELY "
 "(otherwise your CPU will be destroyed by overheating)."
@@ -627,7 +730,7 @@ msgstr ""
 "SLUIT ONMIDDELLIJK (anders zal je processor vernietigd worden door "
 "oververhitting)."
 
-#: src/game_gui.c:602
+#: src/game_gui.c:693
 msgid ""
 "Bygfoot is a very intuitive and simple game, so there isn't a full-grown "
 "documentation. However, if you have trouble, there are a few places to go.\n"
@@ -636,39 +739,37 @@ msgstr ""
 "Maar als je problemen hebt zijn er een paar plaatsen waar je uitleg kunt "
 "krijgen.\n"
 
-#: src/treeview.c:246
+#. Current position of a player.
+#: src/treeview.c:248
 msgid "CPos"
 msgstr "HPos"
 
-#: src/options_interface.c:567
+#: src/options_interface.c:573
 msgid "CPos "
 msgstr "HPos "
 
-#: src/treeview.c:248
+#. Current skill of a player.
+#: src/treeview.c:252
 msgid "CSk"
 msgstr "Hkw"
 
-#: src/options_interface.c:581
+#: src/options_interface.c:587
 msgid "CSkill "
 msgstr "HKwal "
 
-#: src/misc_interface.c:876
+#: src/misc_interface.c:924
 msgid "Capacity (seats)"
 msgstr "Capaciteit (stoelen)"
 
-#: src/options_interface.c:630
+#: src/options_interface.c:636
 msgid "Cards "
 msgstr "Kaarten "
 
-#: src/treeview.c:1754
+#: src/treeview.c:1823
 msgid "Career values"
 msgstr "Carrièrewaarden"
 
-#: src/lg_commentary.c:174
-msgid "Caught well by P2"
-msgstr "Goed gepakt van P2"
-
-#: src/misc_interface.c:641
+#: src/misc_interface.c:684
 msgid ""
 "Change commentary verbosity. The higher this value the more events you can "
 "see."
@@ -676,72 +777,98 @@ msgstr ""
 "Verander de hoeveelheid commentaar. Als je deze waarde verhoogd kan je meer "
 "gebeurtenissen zien."
 
-#: src/misc_interface.c:619
+#: src/misc_interface.c:662
 msgid "Change live game speed. The lower the value the faster the live game."
 msgstr ""
 "Verander live match snelheid. Hoe lager de waarde, hoe sneller de live match."
 
-#: src/misc_interface.c:127
+#: src/misc_interface.c:133
 msgid "Choose country"
 msgstr "Kies een land"
 
-#: src/misc_interface.c:1058
+#: src/misc_interface.c:1107
 msgid "Choose file"
 msgstr "Kies een bestand"
 
-#: src/misc2_interface.c:779
+#: src/misc2_interface.c:801
 msgid "Click on a user to remove him from the game."
 msgstr "Klik op een gebruiker om hem uit het spel te verwijderen."
 
-#: src/misc_interface.c:103
+#: src/misc_interface.c:109
 msgid "Click on a user to remove him."
 msgstr "Klik op een gebruiker om hem te verwijderen."
 
-#: src/misc_interface.c:534
+#: src/misc_interface.c:577
 msgid "Commentary"
 msgstr "Comentaar"
 
-#: src/treeview.c:1250
+#: src/treeview.c:2453
+#, fuzzy
+msgid "Company"
+msgstr "Ontslagvergoedingen"
+
+#. Money paid to players a user fired.
+#: src/treeview.c:1281
 msgid "Compensations"
 msgstr "Ontslagvergoedingen"
 
-#: src/load_save.c:117
+#: src/load_save.c:121
 msgid "Compressing savegame..."
 msgstr "Comprimeren van opgeslagen spel..."
 
-#: src/player.c:1077
+#: src/player.c:1138
 msgid "Concussion"
 msgstr "Hoofdblessure"
 
-#: src/options_interface.c:208
+#: src/options_interface.c:209
 msgid "Confirm quit when not saved"
 msgstr "Vraag afsluiten wanneer niet opgeslagen"
 
-#: src/options_interface.c:213
+#: src/options_interface.c:501
+#, fuzzy
+msgid "Confirm removing youths"
+msgstr "Vraag wanneer onfit"
+
+#: src/options_interface.c:214
 msgid "Confirm when unfit"
 msgstr "Vraag wanneer onfit"
 
-#: src/options_interface.c:290
+#: src/options_interface.c:291
 msgid "Constants file"
 msgstr "Constanten bestand"
 
-#: src/treeview.c:260 src/treeview.c:1750
+#: src/treeview.c:272 src/treeview.c:1817
 msgid "Contract"
 msgstr "Contract"
 
-#: src/options_interface.c:665
+#: src/options_interface.c:671
 msgid "Contract "
 msgstr "Contract "
 
-#: src/window.c:462
+#: src/treeview.c:1385
+#, fuzzy
+msgid "Contract / Money"
+msgstr "Contract aanbod"
+
+#: src/treeview.c:2454
+msgid ""
+"Contract length\n"
+"(Months)"
+msgstr ""
+
+#: src/window.c:505
 msgid "Contract offer"
 msgstr "Contract aanbod"
 
-#: src/interface.c:814 src/misc2_interface.c:1028
+#: src/callbacks.c:824
+msgid "Contracts are disabled in this country definition."
+msgstr ""
+
+#: src/interface.c:906 src/misc2_interface.c:1050
 msgid "Contributors"
 msgstr "Makers"
 
-#: src/misc_interface.c:890 src/misc_interface.c:924
+#: src/misc_interface.c:938 src/misc_interface.c:972
 msgid "Costs"
 msgstr "Kosten"
 
@@ -750,167 +877,167 @@ msgstr "Kosten"
 msgid "Couldn't find pixmap file: %s"
 msgstr "Kan de tekening %s niet vinden"
 
-#: src/lg_commentary.c:124
-msgid "Crunching challenge on P1"
-msgstr "Vliegende tackle op P1"
-
-#: src/misc_interface.c:236
+#: src/misc_interface.c:272
 msgid "Ctrl-O"
 msgstr "Ctrl-O"
 
-#: src/treeview.c:2109
+#: src/treeview.c:2184
 msgid "Cup champions"
 msgstr "Bekerwinnaar"
 
-#: src/misc_interface.c:793
+#: src/misc_interface.c:841
 msgid "Current capacity"
 msgstr "Huidige capaciteit"
 
-#: src/treeview.c:2253
+#: src/treeview.c:2328
 msgid "Current league"
 msgstr "Huidige klasse"
 
-#: src/treeview.c:1741
+#: src/treeview.c:1808
 msgid "Current position"
 msgstr "Huidige postitie"
 
-#: src/misc_interface.c:815
+#: src/misc_interface.c:863
 msgid "Current safety"
 msgstr "Huidige veiligheid"
 
-#: src/treeview.c:1743
+#: src/treeview.c:1810
 msgid "Current skill"
 msgstr "Huidige kwaliteit"
 
-#: src/treeview_helper.c:1156
+#. Defender
+#: src/treeview_helper.c:1165
 msgid "D"
 msgstr "V"
 
-#: src/lg_commentary.c:472 src/team.c:488
+#: src/lg_commentary.c:507 src/team.c:487
 msgid "DEFEND"
 msgstr "VERDEDIGEND"
 
-#: src/treeview.c:1323
+#: src/treeview.c:1369
 #, c-format
 msgid "Debt (repay in %d weeks)"
 msgstr "Lening (betaal terug in %d weken)"
 
-#: src/misc2_interface.c:897
+#: src/misc2_interface.c:919
 msgid "Debug"
 msgstr "Debug"
 
-#: src/misc2_interface.c:1173
+#: src/misc2_interface.c:1195
 msgid "Decide later"
 msgstr "Wordt later beslist"
 
-#: src/interface.c:442 src/treeview.c:1404
+#: src/interface.c:461 src/treeview.c:1470
 msgid "Defend"
 msgstr "Verdedigend"
 
-#: src/lg_commentary.c:162
-msgid "Defender back to block just as it seemed to open up"
-msgstr "Een verdediger komt terug en blokt het schot"
+#: src/interface.c:600
+#, fuzzy
+msgid "Defenders"
+msgstr "Verdedigend"
 
-#: src/lg_commentary.c:160
-msgid "Defender clears"
-msgstr "Een verdediger ontzet"
-
-#: src/window.c:36
+#: src/window.c:53
 msgid "Didn't find file 'bygfoot_help'."
 msgstr "Kan bestand 'bygfoot_help' niet vinden."
 
-#: src/lg_commentary.c:227
-msgid "Diving header by P1"
-msgstr "Duikende kopbal van P1"
+#: src/callbacks.c:1049
+msgid "Do you really want to kick the poor boy out of your academy?"
+msgstr ""
 
-#: src/load_save.c:125 src/load_save.c:255
+#: src/misc_interface.c:217
+msgid "Don't load definitions"
+msgstr ""
+
+#: src/misc_interface.c:220
+msgid "Don't load team definitions at all"
+msgstr ""
+
+#: src/load_save.c:129 src/load_save.c:262
 msgid "Done."
 msgstr "Klaar."
 
-#: src/treeview.c:1316
+#: src/treeview.c:1362
 msgid "Drawing credit"
 msgstr "Krediet opening"
 
-#: src/treeview.c:1138
+#. Games drawn.
+#: src/treeview.c:1155
 msgid "Dw"
 msgstr "Dw"
 
-#: src/team.c:1037
+#. draw
+#: src/team.c:1042
 msgid "Dw "
 msgstr "Dw "
 
-#: src/team.c:965
+#. a drawn match
+#: src/team.c:966
 #, c-format
 msgid "Dw %d : %d"
 msgstr "Dw %d - %d"
 
-#: src/options_interface.c:644
+#: src/options_interface.c:650
 msgid "ETal "
 msgstr "HTal "
 
-#: src/lg_commentary.c:173
-msgid "Easy save for the goalkeeper"
-msgstr "Gemakelijke bal voor de keeper"
-
-#: src/callbacks.c:590
+#: src/callbacks.c:630
 msgid "Enter a structure. The digits must sum up to 10."
 msgstr "Typ uw structuur. De som van de cijfers moet 10 zijn."
 
-#: src/interface.c:578
+#: src/interface.c:666
 msgid "Enter custom structure"
 msgstr "Vul een eigen structuur in"
 
-#: src/window.c:376
+#: src/window.c:419
 msgid "Erm..."
 msgstr "Erm..."
 
-#: src/misc2_interface.c:434 src/misc2_interface.c:1061
-#: src/misc2_interface.c:1156 src/misc_interface.c:227
-#: src/misc_interface.c:972 src/options_interface.c:978
+#: src/misc2_interface.c:434 src/misc2_interface.c:521
+#: src/misc2_interface.c:1083 src/misc2_interface.c:1178
+#: src/misc_interface.c:263 src/misc_interface.c:1020
+#: src/options_interface.c:984
 msgid "Esc"
 msgstr "Esc"
 
-#: src/misc_interface.c:559
+#: src/misc_interface.c:602
 msgid "Esc / Return / Space"
 msgstr "Esc / Enter / Spatie"
 
-#: src/treeview.c:1745
+#: src/treeview.c:1812
 msgid "Estimated talent"
 msgstr "Talent"
 
-#: src/treeview.c:257
+#. Estimated talent of a player.
+#: src/treeview.c:269
 msgid "Etal"
 msgstr "HTal"
 
-#: src/treeview.c:1924
+#: src/treeview.c:1995
 msgid "Event"
 msgstr "Gebeurtenis"
 
-#: src/misc_interface.c:898 src/misc_interface.c:932
+#: src/misc_interface.c:946 src/misc_interface.c:980
 msgid "Expected duration"
 msgstr "Verwachte duur"
 
-#: src/treeview.c:1345
+#: src/treeview.c:1411
 msgid "Expenses"
 msgstr "Uitgaven"
 
-#: src/lg_commentary.c:129
-msgid "Extremely high boot from P2 sends P1 to the ground"
-msgstr "Een achterbakse tackle van P2 velt P1"
-
-#: src/treeview_helper.c:1170
+#. Forward
+#: src/treeview_helper.c:1181
 msgid "F"
 msgstr "A"
 
-#: src/interface.c:340
+#: src/interface.c:360
 msgid "F_igures"
 msgstr "Stat_istieken"
 
-#: src/callback_func.c:443
+#: src/callback_func.c:460 src/callback_func.c:468
 msgid "Fee"
 msgstr "Transfersom"
 
-#: src/options_interface.c:329
+#: src/options_interface.c:330
 msgid ""
 "File containing settings which determine a lot of aspects of the game "
 "behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
@@ -918,23 +1045,23 @@ msgstr ""
 "Bestand dat instellingen van het spel bevatten. VERANDER DIT NIET TENZIJ JE "
 "ECHT WEET WAT JE AAN HET DOEN BENT."
 
-#: src/interface.c:770
+#: src/interface.c:862
 msgid "Fin_Stad"
 msgstr "_Financiën"
 
-#: src/cup.c:792
+#: src/cup.c:827
 msgid "Final"
 msgstr "Finale"
 
-#: src/interface.c:650 src/interface.c:1643
+#: src/callbacks.c:780
+msgid "Finances are disabled in this country definition."
+msgstr ""
+
+#: src/interface.c:738 src/interface.c:1790
 msgid "Fire"
 msgstr "Ontslaan"
 
-#: src/lg_commentary.c:301
-msgid "Fire consumes TT's stadium"
-msgstr "Er word vuur gebruikt in het stadion van TT"
-
-#: src/interface.c:1048
+#: src/interface.c:1140
 msgid ""
 "First value: average current skill of the first 11 players. Second value: "
 "average skill of all players."
@@ -942,75 +1069,69 @@ msgstr ""
 "Eerste getal: gemiddelde van de huidige kwaliteiten van de eerste 11 spelers."
 "Tweede getal: gemiddelde kwaliteiten van alle spelers"
 
-#: src/treeview.c:250
+#. Fitness of a player.
+#: src/treeview.c:256
 msgid "Fit"
 msgstr "Fit"
 
-#: src/treeview.c:1744
+#: src/treeview.c:1811
 msgid "Fitness"
 msgstr "Fitheid"
 
-#: src/options_interface.c:595
+#: src/options_interface.c:601
 msgid "Fitness "
 msgstr "Fitheid "
 
-#: src/interface.c:358
+#: src/interface.c:378
 msgid "Fixtures (competitions)"
 msgstr "Matchen (competities)"
 
-#: src/interface.c:347
+#: src/interface.c:367
 msgid "Fixtures (week)"
 msgstr "Matchen (week)"
 
-#: src/options_interface.c:316
+#: src/options_interface.c:317
 msgid "Font name"
 msgstr "Naam van het lettertype"
 
-#: src/options_interface.c:302 src/options_interface.c:389
+#: src/options_interface.c:303 src/options_interface.c:390
 msgid "Font used in treeviews"
 msgstr "Lettertype gebruikt in lijsten"
 
-#: src/lg_commentary.c:275
-msgid "Foul by P2; P1 seems to be injured... he might have to be substituted"
-msgstr "Fout van P2; P1 lijkt geblesseerd... hij moet gewisseld worden"
+#: src/interface.c:610
+msgid "Forwards"
+msgstr ""
 
-#: src/treeview.c:658
+#: src/treeview.c:671
 msgid "Fouls"
 msgstr "Fouten"
 
-#: src/player.c:1089
+#: src/player.c:1150
 msgid "Fractured ankle"
 msgstr "Gebroken enkel"
 
-#: src/lg_commentary.c:253
-msgid "Free kick whipped across the face of goal by P1"
-msgstr "P1 neemt een vrije schop"
-
-#: src/lg_commentary.c:252
-msgid "Free kick: P1 hits a long ball up the pitch"
-msgstr "Vrije schop: P1 schiet een lange bal naar de kleine rechthoek"
-
-#: src/lg_commentary.c:251
-msgid "Free kick: P1 plays the ball out wide"
-msgstr "Vrije schop: P1 tapt de bal ver"
-
-#: src/treeview_helper.c:1149
+#. Goalie
+#: src/treeview_helper.c:1157
 msgid "G"
 msgstr "K"
 
-#: src/treeview.c:1141
+#. Goals against.
+#: src/treeview.c:1161
 msgid "GA"
 msgstr "GT"
 
-#: src/treeview.c:1142
+#. Goal difference.
+#: src/treeview.c:1163
 msgid "GD"
 msgstr "GB"
 
-#: src/treeview.c:1140
+#. Goals for.
+#: src/treeview.c:1159
 msgid "GF"
 msgstr "GV"
 
-#: src/treeview.c:251
+#. Games of a player.
+#: src/treeview.c:258
 msgid "Ga"
 msgstr "Ma"
 
@@ -1018,102 +1139,89 @@ msgstr "Ma"
 msgid "Games"
 msgstr "Matchen"
 
-#: src/options_interface.c:602
+#: src/options_interface.c:608
 msgid "Games "
 msgstr "Matchen "
 
-#: src/treeview.c:1751
+#: src/treeview.c:1818
 msgid "Games/Goals\n"
 msgstr "Matchen/Goals\n"
 
-#: src/options_interface.c:402
+#: src/options_interface.c:403
 msgid "Global"
 msgstr "Globaal"
 
-#: src/treeview.c:253 src/treeview.c:2012
+#. Goals of a player.
+#. Goals.
+#: src/treeview.c:262 src/treeview.c:2086
 msgid "Go"
 msgstr "Go"
 
-#: src/treeview.c:2013
+#. Goals per game.
+#: src/treeview.c:2088
 msgid "Go/Ga"
 msgstr "Go/Ma"
 
-#: src/lg_commentary.c:148
-msgid "Goal!!!"
-msgstr "Goal!!!"
+#: src/interface.c:595
+#, fuzzy
+msgid "Goalies"
+msgstr "Goals"
 
-#: src/treeview.c:1521 src/treeview.c:1981 src/treeview_helper.c:730
+#: src/treeview.c:1587 src/treeview.c:2054 src/treeview_helper.c:730
 msgid "Goals"
 msgstr "Goals"
 
-#: src/options_interface.c:616
+#: src/options_interface.c:622
 msgid "Goals "
 msgstr "Goals "
 
-#: src/treeview.c:653
+#. 'Normal' goals, ie. no penalties or free kicks.
+#: src/treeview.c:666
 msgid "Goals (regular)"
 msgstr "Goals (regulier)"
 
-#: src/interface.c:483 src/interface.c:518
+#: src/interface.c:498 src/interface.c:530 src/interface.c:572
 msgid "Good"
 msgstr "Goed"
 
-#: src/lg_commentary.c:102
-msgid "Good passing move across the pitch and down the right"
-msgstr "Goede passeerbeweging op de rechterflank"
-
-#: src/lg_commentary.c:142
-msgid "Great ball from P2 sends P1 one on one with the goalkeeper"
-msgstr "Splijtende pas van P2 zend P1 een tegen een met de keeper"
-
-#: src/lg_commentary.c:169
-msgid ""
-"Great pace shown by P1 to get to the ball first but P2 produced superb block "
-"tackle"
-msgstr "Mooie actie van P1, maar P2 blokt het schot met een tackle"
-
-#: src/player.c:1086
+#: src/player.c:1147
 msgid "Groin injury"
 msgstr "liesblessure"
 
-#: src/player.c:1083
+#: src/player.c:1144
 msgid "Hamstring"
 msgstr "Hamstringblessure"
 
-#: src/user.c:424
+#: src/user.c:447
 #, c-format
 msgid "Have a look at the transfer list, there's an offer for %s."
 msgstr "Kijk eens op de transferlijst, er is een bod gedaan op %s."
 
-#: src/lg_commentary.c:228
-msgid "He just floated in midair for ages then thunder heads it towards home"
-msgstr "De bal blijft hangen... Een fantastische kopbal van P1"
-
-#: src/treeview.c:1747
+#: src/treeview.c:1814
 msgid "Health"
 msgstr "Gezondheid"
 
-#: src/interface.c:822 src/misc2_interface.c:1054
+#: src/interface.c:914 src/misc2_interface.c:1076
 msgid "Help"
 msgstr "Help"
 
-#: src/treeview.c:1472
+#: src/treeview.c:1538
 msgid "Home"
 msgstr "Thuis"
 
-#: src/options_interface.c:372
+#: src/options_interface.c:373
 msgid "How many digits after the comma there are for skill etc."
 msgstr "Hoe veel cijfers achter de komma er zijn voor kwaliteiten, ..."
 
-#: src/options_interface.c:274
+#: src/options_interface.c:275
 msgid "How many files the autosave uses"
 msgstr "Hoeveel auto-opslaan bestanden er gemaakt worden"
 
-#: src/options_interface.c:263
+#: src/options_interface.c:264
 msgid "How often the game is saved automatically"
 msgstr "Hoe vaak het spel is automatisch wordt opgeslagen"
 
-#: src/options_interface.c:381
+#: src/options_interface.c:382
 msgid ""
 "How often the player list gets refreshed during a live game (in live game "
 "minutes)"
@@ -1121,16 +1229,13 @@ msgstr ""
 "Hoe vaak de spelerslijst wordt herladen tijdens een live match (in live "
 "match minuten)"
 
-#: src/lg_commentary.c:233
-msgid "I'm suprised the post has managed to withstand that cracking shot"
-msgstr "Ik ben verrast dat de paal niet gebroken is, zo'n hard schot was het"
-
-#: src/treeview_helper.c:1068
+#. Injury info.
+#: src/treeview_helper.c:1073
 #, c-format
 msgid "INJ(%d)"
 msgstr "BLE(%d)"
 
-#: src/options_interface.c:236
+#: src/options_interface.c:237
 msgid ""
 "If checked, weeks without user teams playing are calculated automatically "
 "(without the user having to press 'New week')"
@@ -1138,11 +1243,17 @@ msgstr ""
 "Als dit aangevinkt wordt, worden de weken zonder matchen van een gebruiker "
 "automatisch berekent (zonder dat de gebruiker 'nieuwe week' moet drukken)"
 
-#: src/misc_interface.c:965
+#: src/misc_interface.c:1217
+msgid ""
+"If you don't like any of the sponsors, you can go a few weeks without "
+"sponsor and wait for new offers."
+msgstr ""
+
+#: src/misc_interface.c:1013
 msgid "Improve!"
 msgstr "Verbeter!"
 
-#: src/treeview.c:1221 src/window.c:260
+#: src/treeview.c:1250 src/window.c:304
 #, c-format
 msgid ""
 "Improvement in progress.\n"
@@ -1153,262 +1264,236 @@ msgstr ""
 "%d stoeltjes en %d%% veiligheid nog te doen.\n"
 "Verwacht einde: %d weken."
 
-#: src/treeview.c:1344
+#: src/treeview.c:1410
 msgid "Income"
 msgstr "Inkomsten"
 
-#: src/misc_interface.c:864
+#: src/misc_interface.c:912
 msgid "Increase"
 msgstr "Verhoog"
 
-#: src/treeview.c:661
+#: src/treeview.c:674
 msgid "Injuries"
 msgstr "Blessures"
 
-#: src/lg_commentary.c:190
-msgid ""
-"It's a RE at half time, TL's manager has to find something special to spur "
-"his team on."
-msgstr ""
-"Het is RE aan de rust, TL's manager moet iets speciaal vinden om zijn team "
-"te motiveren."
-
-#: src/lg_commentary.c:189
-msgid "It's a RE at half time."
-msgstr "Het is RE bij de rust."
-
-#: src/lg_commentary.c:177
-msgid "It's a crowd of AT here as the whistle blows"
-msgstr "Er zitten AT supporters in het stadion als de scheidsrechter fluit"
-
-#: src/lg_commentary.c:220
-msgid ""
-"It's a pinball in the penalty box, finally spinning off P1 across the line"
-msgstr ""
-"Het is een flipperkast in de 16 meter, uiteindelijk werkt P1 hem over zijn "
-"eigen doellijn."
-
-#: src/lg_commentary.c:201
-msgid "It's down to determination and fitness now as we head into extra time"
-msgstr "Het gaat nu over vastberadenheid en fitheid we verlengingen krijgen"
-
-#: src/lg_commentary.c:188
-msgid "It's half time"
-msgstr "Het is rust"
-
-#: src/lg_commentary.c:198
-msgid "It's still RE: extra time"
-msgstr "Het is nog steeds RE: verlengingen"
-
-#: src/misc2_interface.c:71 src/window.c:417
+#: src/misc2_interface.c:71 src/window.c:460
 msgid "Job offer"
 msgstr "Aanbieding"
 
-#: src/interface.c:326
+#: src/interface.c:346
 msgid "Job offers"
 msgstr "Aanbiedingen"
 
-#: src/game_gui.c:568
+#: src/game_gui.c:661
 #, c-format
 msgid "Job offers set to %s."
 msgstr "Job aanbiedingen %s"
 
-#: src/treeview.c:1247
+#: src/treeview.c:1279
 msgid "Journey costs"
 msgstr "Reis kosten"
 
-#: src/treeview.c:1139
+#: src/interface.c:1856
+msgid "Kick out of academy"
+msgstr ""
+
+#. Games lost.
+#: src/treeview.c:1157
 msgid "L"
 msgstr "L"
 
-#: src/team.c:1040
+#. lost
+#: src/team.c:1046
 msgid "L  "
 msgstr "V  "
 
+#. a lost match
 #: src/team.c:961
 #, c-format
 msgid "L  %d : %d"
 msgstr "V  %d - %d"
 
-#: src/interface.c:275
+#: src/interface.c:295
 msgid "L_oad last save"
 msgstr "L_aad laatste opgeslagen spel"
 
-#: src/options_interface.c:352
+#: src/options_interface.c:353
 msgid "Language"
 msgstr "Taal"
 
-#: src/cup.c:789
+#. A cup stage, e.g. Last 32 when there are only 32 teams left.
+#: src/cup.c:824
 #, c-format
 msgid "Last %d"
 msgstr "Laatste %d"
 
-#: src/load_save.c:167
+#: src/load_save.c:171
 msgid "Last save file not found."
 msgstr "Bestand 'Last save' niet gevonden"
 
-#: src/treeview.c:1519
+#: src/treeview.c:1585
 msgid "Latest results"
 msgstr "Laatste resultaten"
 
-#: src/misc2_interface.c:102 src/treeview.c:130 src/treeview.c:262
-#: src/treeview.c:607
+#: src/misc2_interface.c:102 src/treeview.c:130 src/treeview.c:274
+#: src/treeview.c:619
 msgid "League"
 msgstr "Klasse"
 
-#: src/options_interface.c:672
+#: src/options_interface.c:678
 msgid "League "
 msgstr "Competitie "
 
-#: src/treeview.c:2108
+#: src/treeview.c:2183
 msgid "League champions"
 msgstr "Kampioen"
 
-#: src/interface.c:396
+#: src/interface.c:416
 msgid "League stats"
 msgstr "Competitiestatistieken"
 
-#: src/callbacks.c:148
+#: src/callbacks.c:150
 msgid "Left click to make an offer. Right click to remove offer."
 msgstr ""
 "Klik met de linkermuisknop om een aanbieding te doen. Klik met de "
 "rechtermuisknop om de aanbieding te verwijderen."
 
-#: src/callbacks.c:733
+#: src/callbacks.c:785
 msgid ""
 "Left-click: get loan; Right-click: pay back; Middle click: stadium window."
 msgstr ""
 "Linkermuisknop: lenen; Middelstemuisknop: stadion venster; Rechtermuisknop: "
 "lening terugbetalen"
 
-#: src/options_interface.c:923
+#: src/options_interface.c:929
 msgid "List 1 "
 msgstr "Lijst 1 "
 
-#: src/options_interface.c:930
+#: src/options_interface.c:936
 msgid "List 2"
 msgstr "Lijst 2"
 
-#: src/interface.c:331 src/misc_interface.c:464 src/options_interface.c:488
+#: src/interface.c:351 src/misc_interface.c:505 src/options_interface.c:489
 msgid "Live game"
 msgstr "Live match"
 
-#: src/game_gui.c:575
+#: src/game_gui.c:668
 #, c-format
 msgid "Live game set to %s."
 msgstr "Live match %s."
 
-#: src/options_interface.c:427
+#: src/options_interface.c:428
 msgid "Live game speed factor"
 msgstr "live match snelheids factor"
 
-#: src/options_interface.c:434
+#: src/options_interface.c:435
 msgid "Live game verbosity"
 msgstr "Hoeveelheid commentaar in live match"
 
-#: src/misc_interface.c:253
+#: src/misc_interface.c:289
 msgid "Load game"
 msgstr "Laad spel"
 
-#: src/interface.c:838
+#: src/interface.c:930
 msgid "Load game (Ctrl - O)"
 msgstr "Laad spel (Ctrl+O)"
 
-#: src/misc_interface.c:260
+#: src/misc_interface.c:213
+msgid "Load only the player names in the definition files"
+msgstr ""
+
+#: src/misc_interface.c:203
+msgid "Load team definitions"
+msgstr ""
+
+#: src/misc_interface.c:206
+msgid ""
+"Load teams from definition files (note that the official Bygfoot package "
+"doesn't contain team definition files, you have to get them from the "
+"homepage or via the bygfoot-update script)"
+msgstr ""
+
+#: src/misc_interface.c:296
 msgid "Load the last game that was saved or loaded."
 msgstr "Laad het spel dat het laatste was opgeslagen of geladen."
 
-#: src/xml.c:150
+#: src/xml.c:140
 #, c-format
 msgid "Loading cup: %s"
 msgstr "Laden Beker: %s"
 
-#: src/load_save.c:208
+#: src/load_save.c:215
 msgid "Loading cups..."
 msgstr "Laden bekers"
 
-#: src/xml.c:90
+#: src/xml.c:80
 #, c-format
 msgid "Loading league: %s"
 msgstr "Laden klasse: %s"
 
-#: src/load_save.c:198
+#: src/load_save.c:205
 msgid "Loading leagues..."
 msgstr "Laden klasses"
 
-#: src/load_save.c:248
+#: src/load_save.c:255
 msgid "Loading miscellaneous..."
 msgstr "Laden rest"
 
-#: src/load_save.c:185
+#: src/load_save.c:189
 msgid "Loading options/constants..."
 msgstr "Laden opties/constanten..."
 
-#: src/load_save.c:238
+#: src/load_save.c:245
 msgid "Loading season stats..."
 msgstr "Laden competitiestatestieken"
 
-#: src/load_save.c:228
+#: src/load_save.c:235
 msgid "Loading transfer list..."
 msgstr "Laden transferlijst..."
 
-#: src/load_save.c:218
+#: src/load_save.c:225
 msgid "Loading users..."
 msgstr "Laden gebruikers..."
 
-#: src/callback_func.c:293
+#: src/callback_func.c:298
 msgid "Loan"
 msgstr "Lening"
 
-#: src/lg_commentary.c:134
-msgid "Long ball from P2 finds P1 at far post"
-msgstr "Lange bal van P2 vindt P1 aan de tweede paal"
-
-#: src/lg_commentary.c:101
-msgid "Long floating pass from P2 finds P1"
-msgstr "Lange bal van P2 naar P1"
-
-#: src/lg_commentary.c:118
-msgid "Loose ball falls to P1"
-msgstr "Verloren bal valt voor de voeten van P1"
-
-#: src/lg_commentary.c:100
-msgid "Lovely pass from P2 releases P1"
-msgstr "Fantastische pas van P2 speelt P1 vrij"
-
-#: src/lg_commentary.c:170
-msgid "Low shot taken well to his left by P2"
-msgstr "P2 pakt het lage schot van P1"
-
-#: src/treeview_helper.c:1163
+#. Midfielder
+#: src/treeview_helper.c:1173
 msgid "M"
 msgstr "M"
 
-#: src/misc2_interface.c:677
+#: src/misc2_interface.c:691
 msgid "Make offer"
 msgstr "Maak aanbod"
 
-#: src/interface.c:759
+#: src/interface.c:851
 msgid "Manage users"
 msgstr "Pas gebruikers aan"
 
-#: src/options_interface.c:223
+#: src/options_interface.c:224
 msgid "Maximize main window"
 msgstr "Maximaliseer hoofdvenster"
 
-#: src/treeview.c:1405
+#: src/treeview.c:1471
 msgid "Midfield"
 msgstr "Middenveld"
 
-#: src/options_interface.c:552
+#: src/interface.c:605
+#, fuzzy
+msgid "Midfielders"
+msgstr "Middenveld"
+
+#: src/options_interface.c:558
 msgid "Misc."
 msgstr "Andere"
 
-#: src/treeview.c:1312
+#: src/treeview.c:1358
 msgid "Money"
 msgstr "Geld"
 
-#: src/interface.c:1031
+#: src/interface.c:1123
 msgid "Money "
 msgstr "Geld"
 
@@ -1416,24 +1501,37 @@ msgstr "Geld"
 msgid "Money (approx.)"
 msgstr "Geld (ongeveer)"
 
-#: src/interface.c:380
+#: src/treeview.c:2455
+#, fuzzy
+msgid "Money / week"
+msgstr "Geld"
+
+#: src/interface.c:1848
+msgid "Move to team"
+msgstr ""
+
+#: src/interface.c:754 src/interface.c:1798
+msgid "Move to youth academy"
+msgstr ""
+
+#: src/interface.c:400
 msgid "My league results"
 msgstr "Mijn competitieresultaten"
 
-#: src/misc2_interface.c:97 src/treeview.c:245 src/treeview.c:605
-#: src/treeview.c:1739
+#: src/misc2_interface.c:97 src/treeview.c:246 src/treeview.c:617
+#: src/treeview.c:1806
 msgid "Name"
 msgstr "Naam"
 
-#: src/options_interface.c:560
+#: src/options_interface.c:566
 msgid "Name "
 msgstr "Naam "
 
-#: src/treeview.c:1470
+#: src/treeview.c:1536
 msgid "Neutral ground"
 msgstr "Neutraal stadion"
 
-#: src/treeview.c:1755
+#: src/treeview.c:1824
 msgid ""
 "New contract\n"
 "offers"
@@ -1441,421 +1539,123 @@ msgstr ""
 "Nieuwe contract\n"
 "aanbiedingen"
 
-#: src/interface.c:1167
+#: src/window.c:39
+msgid "News"
+msgstr ""
+
+#: src/interface.c:1259
 msgid "Next (W)"
 msgstr "Volgende"
 
-#: src/interface.c:1141
+#: src/interface.c:1233
 msgid "Next league/cup (2)"
 msgstr "Volgende competitie/beker (2)"
 
-#: src/interface.c:737
+#: src/interface.c:829
 msgid "Next user"
 msgstr "Volgende gebruiker"
 
-#: src/game_gui.c:317
+#: src/game_gui.c:362
 msgid "Next week you'll fire him and hire a new one."
 msgstr "De volgende week zal je hem verkopen en een nieuwe aannemen."
 
-#: src/window.c:270
+#: src/window.c:314
 msgid "No improvements currently in progress."
 msgstr "Geen verbeteringen bezig."
 
-#: src/callbacks.c:624 src/callbacks.c:640
+#: src/callbacks.c:664 src/callbacks.c:680
 msgid "No match stored."
 msgstr "Er is geen match in aantocht."
 
-#: src/window.c:395
+#: src/misc_callbacks.c:353
+#, fuzzy
+msgid "None"
+msgstr "Geld"
+
+#: src/window.c:438
 msgid "Numbers..."
 msgstr "Nummers..."
 
-#: src/lg_commentary.c:487 src/team.c:503
+#. Boost value.
+#: src/lg_commentary.c:522 src/team.c:504
 msgid "OFF"
 msgstr "AF"
 
-#: src/misc2_interface.c:221 src/player.c:1074 src/treeview_helper.c:1082
+#. Player status: ok.
+#: src/misc2_interface.c:221 src/player.c:1135 src/treeview_helper.c:1089
 msgid "OK"
 msgstr "OK"
 
-#: src/lg_commentary.c:490 src/team.c:505
+#. Boost value.
+#: src/lg_commentary.c:525 src/team.c:507
 msgid "ON"
 msgstr "AAN"
 
-#: src/interface.c:553
+#: src/interface.c:642
 msgid "Off"
 msgstr "Af"
 
-#: src/interface.c:642 src/interface.c:1639
+#: src/interface.c:730 src/interface.c:1786
 msgid "Offer new contract"
 msgstr "Bied nieuw contract aan"
 
-#: src/lg_commentary.c:221
-msgid ""
-"Oh that's a great shot and it's deflected off P1 and into the back of the net"
-msgstr "De bal vliegt in eigen goal, een own goal van P1"
-
-#: src/lg_commentary.c:219
-msgid "Ohh no, the ball ricocheted off P1 into the net"
-msgstr "Oh nee, de bal ketst af op P1 en vliegt in de goal"
-
-#: src/interface.c:547
+#: src/interface.c:637
 msgid "On"
 msgstr "Aan"
 
-#: src/window.c:439
+#: src/misc_interface.c:210
+#, fuzzy
+msgid "Only names"
+msgstr "Naam van het lettertype"
+
+#: src/window.c:482
 msgid "Options"
 msgstr "Opties"
 
-#: src/lg_commentary.c:128
-msgid "Ouch that's got to hurt"
-msgstr "Ouch, dat doet pijn"
-
-#: src/interface.c:335
+#: src/interface.c:355
 msgid "Overwrite"
 msgstr "Overschrijf"
 
-#: src/game_gui.c:582
+#: src/game_gui.c:675
 #, c-format
 msgid "Overwrite set to %s."
 msgstr "Overschrijven %s."
 
-#: src/lg_commentary.c:121
-msgid "Oww, nasty tackle on P1"
-msgstr "Oww, gemene tackle op P1"
-
-#: src/lg_commentary.c:140
-msgid "P1 arrows shot towards top left corner"
-msgstr "een strak schot van P1 naar de linkerbovenhoek"
-
-#: src/lg_commentary.c:135
-msgid "P1 can't quite get it under control but his miss kick heads toward goal"
-msgstr "P1 kan de bal niet controleren maar zijn misschot vliegt naar doel"
-
-#: src/lg_commentary.c:132
-msgid "P1 charges towards goal and shoots!"
-msgstr "P1 gaat naar doel en schiet!"
-
-#: src/lg_commentary.c:161
-msgid "P1 curls ball over"
-msgstr "P1 krult de bal over de goal"
-
-#: src/lg_commentary.c:250
-msgid "P1 curls the free kick over the wall"
-msgstr "P1 krult de bal over de muur"
-
-#: src/lg_commentary.c:138
-msgid "P1 cuts in from the left flank and shoots"
-msgstr "P1 snijdt binnen vanop de linkerflank en schiet"
-
-#: src/lg_commentary.c:137
-msgid "P1 dribbles into the box, turns inside the defence and fires"
-msgstr ""
-"P1 dribbelt in de kleine rechthoek, draat weg van de verdedigers en schiet"
-
-#: src/lg_commentary.c:248
-msgid "P1 drives free kick low and hard"
-msgstr "P1 schiet de vrije schop laag en hard"
-
-#: src/lg_commentary.c:158
-msgid "P1 fired wide!"
-msgstr "P1 schiet naast!"
-
-#: src/lg_commentary.c:125
-msgid "P1 gets his legs taken away from him by P2"
-msgstr "P2 haalt P1's benen weg"
-
-#: src/lg_commentary.c:242
-msgid "P1 has a chance to score with a penalty kick"
-msgstr "P1 heeft nu de kans op de goal met een penalty"
-
-#: src/lg_commentary.c:287
-msgid ""
-"P1 has a large cut above his left eye but it has been patched up and he will "
-"be able to continue "
-msgstr ""
-"P1 heeft een gat boven zijn linker oog maar het is herstelt en hij kan "
-"verder spelen"
-
-#: src/lg_commentary.c:278
-msgid "P1 has been sent off"
-msgstr "P1 mag gaan douchen"
-
-#: src/lg_commentary.c:243
-msgid ""
-"P1 has missed a penalty before but he now has a chance to redeem himself"
-msgstr ""
-"P1 heeft hiervoor al een penalty gemist, maar hij heeft nu nog een kans"
-
-#: src/lg_commentary.c:286
-msgid "P1 has picked up a slight knock"
-msgstr "P1 heeft een lichte blessure"
-
-#: src/lg_commentary.c:285
-msgid "P1 has pulled a muscle but should be able to continue"
-msgstr "P1 heeft een verrokken spier maar kan blijven spelen"
-
-#: src/lg_commentary.c:106
-msgid "P1 latches onto P2's pass"
-msgstr "P1 neemt de bal over van P2"
-
-#: src/lg_commentary.c:282
-msgid "P1 looks like he's badly injured"
-msgstr "Het lijkt erop dat P1 een erge blessure heeft"
-
-#: src/lg_commentary.c:222
-msgid ""
-"P1 passes the ball back to his goalie, oh no the keepers missed it! It's an "
-"own goal by P1!"
-msgstr ""
-"P1 past terug op zijn keeper, oh nee de keeper mist de bal! Het is een own "
-"goal van P1!"
-
-#: src/lg_commentary.c:111
-msgid "P1 rips through the midfield"
-msgstr "P1 scheurt door het middenveld"
-
-#: src/lg_commentary.c:150
-msgid "P1 scores!!!"
-msgstr "P1 scoort"
-
-#: src/lg_commentary.c:136
-msgid "P1 shoots from 22 yards looks like it's going wide"
-msgstr "P1 schiet van net buiten de grote rechthoek"
-
-#: src/lg_commentary.c:141
-msgid "P1 shoots from close range"
-msgstr "P1 schiet van dichtbij"
-
-#: src/lg_commentary.c:159
-msgid "P1 should have squared the ball went alone and lashed wide"
-msgstr ""
-"P1 zou gepast moeten hebben, maar hij ging alleen door en schoot ver naast"
-
-#: src/lg_commentary.c:163
-msgid "P1 smacks into row Z"
-msgstr "P1 schiet de bal in vak Z"
-
-#: src/lg_commentary.c:133
-msgid "P1 spins and shoots"
-msgstr "P1 draait en schiet"
-
-#: src/lg_commentary.c:112
-msgid "P1 spins past his marker"
-msgstr "P1 gaat voorbij zijn man"
-
-#: src/lg_commentary.c:144
-msgid ""
-"P1 spins past two defenders, wrong foots the keeper and back heels the ball "
-"towards goal"
-msgstr ""
-"P1 gaat voorbij twee verdeigers, zet de keeper op het verkeerde been en "
-"schiet de bal met een hakje naar doel"
-
-#: src/lg_commentary.c:241
-msgid "P1 steps up to take the penalty"
-msgstr "P1 gaat de penalty trappen"
-
-#: src/lg_commentary.c:249
-msgid "P1 takes free-kick quickly and curls around wall"
-msgstr "P1 krult de bal mooi naast de muur"
-
-#: src/lg_commentary.c:117
-msgid "P1 takes the ball away from P2 with a sliding tackle"
-msgstr "P1 pakt de bal af van P2 met een tackle"
-
-#: src/lg_commentary.c:139
-msgid "P1 tries his luck from 30 yards"
-msgstr "P1 probeert zijn geluk vanop 30 meter"
-
-#: src/lg_commentary.c:110
-msgid "P1 twisting and turning again"
-msgstr "P1 draait zich vrij"
-
-#: src/lg_commentary.c:153
-msgid "P1 wheels away in celebration after a great goal sent the fans wild"
-msgstr "P1 viert zijn doelpunt uitbundig en de fans worden wild"
-
-#: src/lg_commentary.c:281
-msgid "P1 will have to go off after what seems an ankle injury"
-msgstr "P1 moet eraf, het lijkt erop dat hij een enkelblessure heeft"
-
-#: src/lg_commentary.c:115
-msgid "P1 wins the ball with a perfectly timed challenge"
-msgstr "P1 pakt juist op het goede moment met een beweging uit"
-
-#: src/lg_commentary.c:143
-msgid "P1's overhead kick heads towards the top right hand corner"
-msgstr "P1's omhaal gaat naar de rechterbovenhoek"
-
-#: src/lg_commentary.c:226
-msgid "P2 chips the ball towards P1 who heads the ball towards goal"
-msgstr "P2 lobt naar P1 die de bal naar de goal kopt"
-
-#: src/lg_commentary.c:108
-msgid "P2 controls it with his chest and passes to P1"
-msgstr "P2 controleerd de bal met de borst en past naar P1"
-
-#: src/lg_commentary.c:104
-msgid "P2 cross controlled by P1 who slips past his man"
-msgstr "P2 past naar P1 die voorbij zijn man gaat"
-
-#: src/lg_commentary.c:98
-msgid "P2 feeds the ball through to P1"
-msgstr "P2 geeft de bal aan P1"
-
-#: src/lg_commentary.c:256
-msgid "P2 for dangerous slide tackle on P1"
-msgstr "Kaart voor P2 voor een gevaarlijkt tackle op P1"
-
-#: src/lg_commentary.c:257
-msgid "P2 for foul on P1"
-msgstr "Kaart voor P2 voor de fout op P1"
-
-#: src/lg_commentary.c:260
-msgid "P2 for handball"
-msgstr "Kaart voor hands van P2"
-
-#: src/lg_commentary.c:268
-msgid "P2 for intentional handball"
-msgstr "Kaart voor opzettelijk handspel van P2"
-
-#: src/lg_commentary.c:258
-msgid "P2 for kicking ball away "
-msgstr "Kaart voor P2 omdat P2 de bal weg schoot"
-
-#: src/lg_commentary.c:267
-msgid "P2 for malicious showing of studs"
-msgstr "Kaart voor P2 omdat hij op P1 schopte"
-
-#: src/lg_commentary.c:261
-msgid "P2 for stopping P1 taking a quick free-kick"
-msgstr "Kaart voor P2 omdat hij voorkomt dat P1 een snelle vrije schop neemt"
-
-#: src/lg_commentary.c:271
-msgid "P2 for swearing at opposition fans"
-msgstr "Kaart omdat P2 de fans van de tegenstander opzweepte"
-
-#: src/lg_commentary.c:259
-msgid "P2 for time wasting"
-msgstr "Kaart voor P2 omdat hij tijd verspilde"
-
-#: src/lg_commentary.c:168
-msgid "P2 forced to tip P1's shot over the crossbar"
-msgstr "P2 duwt het schot van P1 over de deklat"
-
-#: src/lg_commentary.c:274
-msgid ""
-"P2 fouls and the stretcher bearers come racing on with P1 lying in agony on "
-"the turf"
-msgstr ""
-"P2 maakt een fout op P1 en de mannen met de draagberry moeten hem komen halen"
-
-#: src/lg_commentary.c:308
-msgid "P2 goes off to applause from the fans, P1 replaces him"
-msgstr "P2 krijgt een applaus"
-
-#: src/lg_commentary.c:270
-msgid "P2 has been red carded for punching P1"
-msgstr "Duw van P2 op P1: rode kaart"
-
-#: src/lg_commentary.c:109
-msgid "P2 heads the ball towards P1"
-msgstr "P2 kopt de bal naar P1"
-
-#: src/lg_commentary.c:309
-msgid "P2 is booed off the pitch as he is replaced by P1"
-msgstr "P2 word van het veld gefloten als hij vervangen word door P1"
-
-#: src/lg_commentary.c:262
-msgid "P2 is booked for repeated dissent"
-msgstr "Kaart voor P2 voor herhalende fouten"
-
-#: src/lg_commentary.c:266
-msgid "P2 is given his marching orders for contempt"
-msgstr "Kaart voor P2 omdat hij protesteerde"
-
-#: src/lg_commentary.c:265
-msgid "P2 is reprimanded for high kicking"
-msgstr "Kaart voor de vliegende tackle van P2"
-
-#: src/lg_commentary.c:269
-msgid "P2 is sent off for stopping a clear goal scoring opportunity"
-msgstr ""
-"Rode kaart voor P2 omdat hij een speler tackelde die alleen op goal afging"
-
-#: src/lg_commentary.c:123
-msgid "P2 knocks over P1 with a double footed lunge"
-msgstr "P2 velt P1 met bijde voeten vooruit"
-
-#: src/lg_commentary.c:145
-msgid "P2 lays the ball off to P1 who sends a rocket of a shot towards goal"
-msgstr "P2 legt de bal af naar P1 en die zendt een raket naar doel"
-
-#: src/lg_commentary.c:171
-msgid "P2 makes a superb reflex save to tip wide"
-msgstr "Prachtige reflex van P2"
-
-#: src/lg_commentary.c:107
-msgid "P2 needles ball through players and finds P1"
-msgstr "P2 verstuurt een naadloze bal door een bos van benen en vindt P1"
-
-#: src/lg_commentary.c:172
-msgid "P2 runs at P1 and blocks shot with ankle"
-msgstr "P2 verkleint de hoek en blokt het schot van P1"
-
-#: src/lg_commentary.c:238
-msgid ""
-"P2 seemed to be everywhere at once, finally tipping the ball off the crossbar"
-msgstr ""
-"P2 lijkt weg overal te zijn, uiteindelijk duwt hij de bal tegen de deklat"
-
-#: src/lg_commentary.c:99
-msgid "P2 threads a great ball to P1 "
-msgstr "P2 verstuurt een goede pas naar P1"
-
-#: src/lg_commentary.c:154
-msgid ""
-"P2's despairing dive can't keep P1's shot out and the ball is in the back of "
-"the net!!!"
-msgstr "P2's fantastiche duik kan P1 niet van een goal houden!!!"
-
-#: src/lg_commentary.c:167
-msgid "P2's fingertips flicks it wide"
-msgstr "P2's vingertoppen duwen de bal weg"
-
-#: src/treeview.c:1136
+#. Games played (a number).
+#: src/treeview.c:1151
 msgid "PL"
 msgstr "PL"
 
-#: src/treeview.c:1143
+#. Points.
+#: src/treeview.c:1165
 msgid "PTS"
 msgstr "PTN"
 
-#: src/options_interface.c:483
+#: src/options_interface.c:484
 msgid "Pause when break"
 msgstr "Pauzeer bij rust"
 
-#: src/options_interface.c:473
+#: src/options_interface.c:474
 msgid "Pause when injury"
 msgstr "Pauzeer bij blessure"
 
-#: src/options_interface.c:478
+#: src/options_interface.c:479
 msgid "Pause when red card"
 msgstr "Pauzeer bij rode kaart"
 
-#: src/callback_func.c:319
+#: src/callback_func.c:324
 msgid "Payback"
 msgstr "Terugbetalen"
 
-#: src/treeview.c:657
+#: src/treeview.c:670
 msgid "Penalties"
 msgstr "Penalties"
 
-#: src/callbacks.c:450
+#: src/callbacks.c:453
 msgid "Penalty/free kick shooter deselected."
 msgstr "Penalty/vrije schop schieter gedeselecteerd."
 
-#: src/interface.c:501 src/treeview.c:1245
+#: src/interface.c:514 src/treeview.c:1275
 msgid "Physio"
 msgstr "Kine"
 
@@ -1863,11 +1663,11 @@ msgstr "Kine"
 msgid "Player accepts new offers"
 msgstr "speler accepteert nieuwe aanbiedingen"
 
-#: src/options_interface.c:276
+#: src/options_interface.c:277
 msgid "Player attribute precision"
 msgstr "Nauwkeurigheid van spelersattributen"
 
-#: src/options_interface.c:944
+#: src/options_interface.c:950
 msgid "Player attributes shown"
 msgstr "Spelers attributen getoont"
 
@@ -1879,124 +1679,126 @@ msgstr "Speler onderhandelt niet meer met u"
 msgid "Player list"
 msgstr "Spelerlijst"
 
-#: src/interface.c:1096
+#: src/interface.c:1188
 msgid "Player list 1"
 msgstr "Spelerlijst 1"
 
-#: src/interface.c:1104
+#: src/interface.c:1196
 msgid "Player list 2"
 msgstr "Spelerlijst 2"
 
-#: src/options_interface.c:283
+#: src/options_interface.c:284
 msgid "Player list refresh rate"
 msgstr "Spelerslijst herlaad interval"
 
-#: src/interface.c:425 src/treeview.c:1508
+#: src/interface.c:445 src/treeview.c:1574
 msgid "Playing style"
 msgstr "Speelstijl"
 
-#: src/treeview.c:247
+#. Position of a player.
+#: src/treeview.c:250
 msgid "Pos"
 msgstr "Pos"
 
-#: src/options_interface.c:574
+#: src/options_interface.c:580
 msgid "Pos "
 msgstr "Pos "
 
-#: src/treeview.c:1740
+#: src/treeview.c:1807
 msgid "Position"
 msgstr "Postietie"
 
-#: src/treeview.c:656
+#: src/treeview.c:669
 msgid "Possession"
 msgstr "Balbezit"
 
-#: src/options_interface.c:228
+#: src/options_interface.c:229
 msgid "Prefer messages"
 msgstr "Verkies berichten"
 
-#: src/interface.c:310
+#: src/interface.c:330
 msgid "Preferences"
 msgstr "Voorkeuren"
 
-#: src/interface.c:1154
+#: src/interface.c:1246
 msgid "Previous (Q)"
 msgstr "Vorige (Q)"
 
-#: src/interface.c:1128
+#: src/interface.c:1220
 msgid "Previous league/cup (1)"
 msgstr "Vorige competitie/beker (1)"
 
-#: src/interface.c:748
+#: src/interface.c:840
 msgid "Previous user"
 msgstr "Vorige gebruiker"
 
-#: src/treeview.c:1241
+#: src/treeview.c:1270
 msgid "Prize money"
 msgstr "Prijzengeld"
 
-#: src/player.c:1080
+#: src/player.c:1141
 msgid "Pulled muscle"
 msgstr "Verrokken spier"
 
-#: src/interface.c:626 src/interface.c:1631
+#: src/interface.c:714 src/interface.c:1778
 msgid "Put on transfer list"
 msgstr "Zet speler op de transfelijst"
 
-#: src/cup.c:798
+#: src/cup.c:833
 msgid "Quarter-final"
 msgstr "Kwart-finale"
 
-#: src/lg_commentary.c:103
-msgid "Quick passing move down the left"
-msgstr "Snelle passeerbeweging op links"
-
-#: src/interface.c:858
+#: src/interface.c:950
 msgid "Quit (Ctrl - Q)"
 msgstr "Afsluiten (Ctrl+Q)"
 
-#: src/lg_commentary.c:216
-msgid "RE, what an astonishing result for TW"
-msgstr "RE, wat een goed resultaat voor TW"
-
-#: src/misc2_interface.c:107 src/treeview.c:1487
+#: src/misc2_interface.c:107 src/treeview.c:1553
 msgid "Rank"
 msgstr "Plaats"
 
-#: src/interface.c:1017
+#: src/interface.c:1109
 msgid "Rank "
 msgstr "Plaats"
 
-#: src/interface.c:586
+#: src/interface.c:674
 msgid "Rearrange team"
 msgstr "Herschik team"
 
-#: src/treeview.c:660 src/treeview_helper.c:733
+#: src/interface.c:588
+msgid "Recruiting preference"
+msgstr ""
+
+#: src/treeview.c:673 src/treeview_helper.c:733
 msgid "Reds"
 msgstr "Rode kaarten"
 
-#: src/options_interface.c:348
+#: src/misc_interface.c:1231
+#, fuzzy
+msgid "Reject for now"
+msgstr "Selecteer "
+
+#: src/options_interface.c:349
 msgid "Reload"
 msgstr "Herlaad"
 
-#: src/options_interface.c:334
+#: src/options_interface.c:335
 msgid "Reload the constants file"
 msgstr "Herlaad de constanten bestand"
 
-#: src/interface.c:634 src/interface.c:1635
+#: src/interface.c:722 src/interface.c:1782
 msgid "Remove from transfer list"
 msgstr "Verwijder speler van de transferlijst"
 
-#: src/misc2_callbacks.c:273
+#: src/misc2_callbacks.c:295
 #, c-format
 msgid "Remove user %s from the game?"
 msgstr "Wilt u gebruiker %s van het spel verwijderen?"
 
-#: src/interface.c:570
+#: src/interface.c:658
 msgid "Reset player list"
 msgstr "Herstel spelerlijst"
 
-#: src/interface.c:572 src/interface.c:1110
+#: src/interface.c:660 src/interface.c:1202
 msgid ""
 "Reset player list to the formation at the beginning of the live game pause "
 "(right click on player list)"
@@ -2004,121 +1806,138 @@ msgstr ""
 "Herstel de spelerlijst naar de formatie aan het begin van de live match "
 "pauze (rechtermuisknop drukken op de spelerslijst)"
 
-#: src/treeview.c:1609
+#: src/treeview.c:1676
 msgid "Results"
 msgstr "Resultaten"
 
-#: src/misc2_interface.c:1144 src/misc_interface.c:948
+#: src/misc2_interface.c:1166 src/misc_interface.c:996
 msgid "Return"
 msgstr "Doorgaan"
 
-#: src/misc_interface.c:583 src/misc_interface.c:605
+#: src/misc_interface.c:626 src/misc_interface.c:648
 msgid "Return / Space"
 msgstr "Enter / Spatie"
 
-#: src/interface.c:988
+#: src/interface.c:1080
 msgid "Right click and left click to change boost state"
 msgstr "Rechter- en linkermuisknop om extra motivatiestatus te veranderen"
 
-#: src/interface.c:978
+#: src/interface.c:1070
 msgid "Right click and left click to change your playing style"
 msgstr "Klik met rechter- en linkermuisknop om uw speelstijl te veranderen"
 
-#: src/misc_interface.c:884 src/misc_interface.c:918
+#: src/callback_func.c:761
+msgid ""
+"Right click to move players to and from the youth academy; left click for "
+"context menu."
+msgstr ""
+
+#: src/misc_interface.c:932 src/misc_interface.c:966
 msgid "Right-click to set to 0"
 msgstr "Klik met de rechtermuisknop om op 0 te zetten"
 
-#: src/cup.c:782
+#: src/cup.c:816
 msgid "Round robin"
 msgstr "Groepsfaze"
 
-#: src/misc_interface.c:910
+#: src/misc_interface.c:958
 msgid "Safety (%)"
 msgstr "Veiligheid (%)"
 
-#: src/misc_callback_func.c:207
+#: src/misc_callback_func.c:218
 msgid "Safety improvement too high, reset to highest possible value."
 msgstr ""
 "Veiligheid verbetering te hoog, herstel tot de hoogst mogelijke waarde."
 
-#: src/treeview.c:1961
+#. % of saves for goalies (#goals / #shots)
+#: src/treeview.c:2034
 msgid "Save %"
 msgstr "Gered %"
 
-#: src/interface.c:848
+#: src/interface.c:940
 msgid "Save game (Ctrl - S)"
 msgstr "Opslaan (Ctrl+S)"
 
-#: src/options_interface.c:961
+#: src/options_interface.c:967
 msgid "Save global settings to file"
 msgstr "Sla instellingen op"
 
-#: src/options_interface.c:218
+#: src/options_interface.c:219
 msgid "Save overwrites"
 msgstr "Opslaan overschrijven"
 
-#: src/options_interface.c:966
+#: src/options_interface.c:972
 msgid "Save user settings to file"
 msgstr "Sla gebruikersinstellingen op"
 
-#: src/load_save.c:69
+#: src/load_save.c:73
 msgid "Saving cups..."
 msgstr "Opslaan bekers..."
 
-#: src/load_save.c:58
+#: src/load_save.c:62
 msgid "Saving leagues..."
 msgstr "Opslaan klasses..."
 
-#: src/load_save.c:110
+#: src/load_save.c:114
 msgid "Saving miscellaneous..."
 msgstr "Opslaan rest..."
 
-#: src/load_save.c:45
+#: src/load_save.c:47
 msgid "Saving options/constants..."
 msgstr "Opslaan opties/constanten..."
 
-#: src/load_save.c:100
+#: src/load_save.c:104
 msgid "Saving season stats..."
 msgstr "Opslaan competitiestatestieken"
 
-#: src/load_save.c:90
+#: src/load_save.c:94
 msgid "Saving transfer list..."
 msgstr "Opslaan transferlijst..."
 
-#: src/load_save.c:80
+#: src/load_save.c:84
 msgid "Saving users..."
 msgstr "Opslaan gebruikers"
 
-#: src/interface.c:466 src/treeview.c:1246
+#: src/interface.c:482 src/treeview.c:1276
 msgid "Scout"
 msgstr "Scout"
 
-#: src/treeview.c:1896
+#. Season.
+#: src/treeview.c:1966
 msgid "Sea"
 msgstr "Sei"
 
-#: src/treeview.c:2154
+#: src/treeview.c:2229
 #, c-format
 msgid "Season %d"
 msgstr "Seizoen %d"
 
-#: src/interface.c:407
+#: src/interface.c:427
 msgid "Season history"
 msgstr "Seizoen geschiedenis"
 
-#: src/misc_interface.c:368 src/window.c:447
+#: src/misc_interface.c:409 src/window.c:490
 msgid "Select font"
 msgstr "Selecteer "
 
-#: src/cup.c:795
+#: src/cup.c:830
 msgid "Semi-final"
 msgstr "Halve-finale"
 
-#: src/options_interface.c:508
+#: src/interface.c:621
+msgid "Set investment"
+msgstr ""
+
+#: src/callbacks.c:1020 src/interface.c:624
+msgid ""
+"Set the percentage of your income you want to devote to your youth academy."
+msgstr ""
+
+#: src/options_interface.c:514
 msgid "Set to 0 to switch off warning"
 msgstr "Zet op 0 om de waarschuwing af te zetten"
 
-#: src/options_interface.c:396
+#: src/options_interface.c:397
 msgid ""
 "Setting the language only works for installed packages (not for the binary "
 "package)"
@@ -2126,233 +1945,206 @@ msgstr ""
 "De taal instellingen werken alleen voor geinstaleerde paketten (niet voor "
 "het binary paket)"
 
-#: src/treeview.c:252
+#. Shots of a player.
+#: src/treeview.c:260
 msgid "Sh"
 msgstr "Sch"
 
-#: src/interface.c:658 src/interface.c:1647
+#: src/interface.c:746 src/interface.c:1794
 msgid "Shoots penalties"
 msgstr "Schiet penalty's"
 
-#: src/lg_commentary.c:247
-msgid "Short free-kick from P1"
-msgstr "Korte vrije schop van P1"
-
-#: src/treeview.c:655 src/treeview.c:1960
+#: src/treeview.c:668 src/treeview.c:2031
 msgid "Shot %"
 msgstr "Schoten %"
 
-#: src/treeview.c:654 src/treeview_helper.c:731
+#: src/treeview.c:667 src/treeview_helper.c:731
 msgid "Shots"
 msgstr "Schoten"
 
-#: src/options_interface.c:609
+#: src/options_interface.c:615
 msgid "Shots "
 msgstr "Schoten "
 
-#: src/options_interface.c:528
+#: src/options_interface.c:534
 msgid "Show all leagues in the fixture view"
 msgstr "Toon alle competities in het 'matchen' venster"
 
-#: src/interface.c:708
+#: src/interface.c:800
 msgid "Show coming matches"
 msgstr "Toon de komende matchen"
 
-#: src/interface.c:777
+#: src/interface.c:869
 msgid "Show finances"
 msgstr "Toon financiën"
 
-#: src/interface.c:721
+#: src/interface.c:813
 msgid "Show history"
 msgstr "Toon geschiedenis"
 
-#: src/interface.c:618 src/interface.c:1627
+#: src/interface.c:706 src/interface.c:1774
 msgid "Show info"
 msgstr "Toon informatie"
 
-#: src/options_interface.c:500
+#: src/options_interface.c:506
 msgid "Show job offers"
 msgstr "Toon de job aanbiedingen"
 
-#: src/interface.c:686
+#: src/interface.c:778
 msgid "Show last match"
 msgstr "Toon laatste match"
 
-#: src/interface.c:697
+#: src/interface.c:789
 msgid "Show last match stats"
 msgstr "Toon laatste match statistieken"
 
-#: src/options_interface.c:414
+#: src/options_interface.c:415
 msgid "Show live game"
 msgstr "Toon live match"
 
-#: src/options_interface.c:547
+#: src/options_interface.c:553
 msgid "Show overall games/goals"
 msgstr "Toon matchen/goals"
 
-#: src/interface.c:788
+#: src/interface.c:880
 msgid "Show stadium"
 msgstr "Toon stadion"
 
-#: src/options_interface.c:418
+#: src/options_interface.c:419
 msgid "Show tendency bar"
 msgstr "Toon spelverloopbalk"
 
-#: src/interface.c:891
+#: src/interface.c:983
 msgid "Show transferlist (T)"
 msgstr "Toon de transferlijst (T)"
 
-#: src/options_interface.c:514
+#: src/options_interface.c:520
 msgid "Show warning if a player contract gets below "
 msgstr ""
 "Toon een waarschuwing wanneer het spelerscontract minder lang duurt dan "
 
-#: src/treeview.c:249
+#: src/interface.c:553
+#, fuzzy
+msgid "Show youth academy"
+msgstr "Toon stadion"
+
+#. Skill of a player.
+#: src/treeview.c:254
 msgid "Sk"
 msgstr "Kw"
 
-#: src/treeview.c:1742
+#: src/treeview.c:1809
 msgid "Skill"
 msgstr "Kwaliteiten"
 
-#: src/options_interface.c:588
+#: src/options_interface.c:594
 msgid "Skill "
 msgstr "Kwal "
 
-#: src/options_interface.c:233
+#: src/options_interface.c:234
 msgid "Skip weeks without user matches"
 msgstr "Sla weken zonder gebruikersmatchen over"
 
-#: src/lg_commentary.c:126
-msgid "Slicing challenge by P2 on P1"
-msgstr "Tackle van P2 op P1"
-
-#: src/misc_interface.c:202
+#: src/misc_interface.c:238
 msgid "Space"
 msgstr "Spatie"
 
-#: src/misc_interface.c:622
+#: src/misc_interface.c:665
 msgid "Speed"
 msgstr "Snelheid"
 
-#: src/treeview.c:1249
-msgid "Stadium bills"
-msgstr "Stadion facturen"
+#: src/treeview.c:1378
+msgid "Sponsor"
+msgstr ""
 
-#: src/misc2_interface.c:117 src/treeview.c:1211
+#: src/treeview.c:1272
+msgid "Sponsorship"
+msgstr ""
+
+#: src/window.c:544
+#, fuzzy
+msgid "Sponsorship offers"
+msgstr "Toon de job aanbiedingen"
+
+#: src/treeview.c:1234
+#, fuzzy
+msgid "Stadium"
+msgstr "Toon stadion"
+
+#: src/misc2_interface.c:117 src/treeview.c:1240
 msgid "Stadium capacity"
 msgstr "Stadioncapaciteit"
 
-#: src/treeview.c:1248
-msgid "Stadium improvements"
-msgstr "Stadion verbeteringen"
+#: src/treeview.c:1345
+#, fuzzy
+msgid "Stadium expenses"
+msgstr "Stadion status"
 
-#: src/misc2_interface.c:122 src/treeview.c:1215
+#: src/callbacks.c:799
+msgid "Stadium management is disabled in this country definition."
+msgstr ""
+
+#: src/misc2_interface.c:122 src/treeview.c:1244
 msgid "Stadium safety"
 msgstr "Veiligheid stadion"
 
-#: src/treeview.c:1229
+#: src/treeview.c:1258
 msgid "Stadium status"
 msgstr "Stadion status"
 
-#: src/misc_interface.c:219
+#: src/misc_interface.c:255
 msgid "Start"
 msgstr "Start"
 
-#: src/misc_interface.c:141
+#: src/misc_interface.c:147
 msgid "Start in"
 msgstr "Start in"
 
-#: src/misc_interface.c:548
+#: src/misc_interface.c:591
 msgid "Statistics"
 msgstr "Statestieken"
 
-#: src/treeview.c:254
+#. Status of a player.
+#: src/treeview.c:264
 msgid "Status"
 msgstr "Status"
 
-#: src/options_interface.c:623
+#: src/options_interface.c:629
 msgid "Status "
 msgstr "Status "
 
-#: src/misc_interface.c:779
+#: src/misc_interface.c:827
 msgid "Status:"
 msgstr "Status:"
 
-#: src/callbacks.c:591
+#: src/callbacks.c:631
 msgid "Structure"
 msgstr "Structuur"
 
-#: src/lg_commentary.c:122
-msgid "Surely that's a sending off offence"
-msgstr "Dat zou rood moeten zijn"
-
-#: src/options_interface.c:542
+#: src/options_interface.c:548
 msgid "Swap adapts structure"
 msgstr "Verwisseling verandert struktuur"
 
-#: src/lg_commentary.c:231
-msgid "Sweet strike by P1, hits the post"
-msgstr "Het prachtige schot van P1 gaat op de paal"
-
-#: src/treeview.c:2301
+#. Language is system-set (not user chosen).
+#: src/treeview.c:2377
 msgid "System"
 msgstr "Systeem"
 
-#: src/lg_commentary.c:290
-msgid "TH is undergoing stadium problems"
-msgstr "TH heeft stadionproblemen"
-
-#: src/lg_commentary.c:191
-msgid "TL heads into the tunnel to await the managers scolding"
-msgstr "TL gaat de tunnel binnen om uitgescholden te worden door de manager"
-
-#: src/lg_commentary.c:193
-msgid ""
-"TL's manager cops a rollicking from the fans as he turns from the dugout"
-msgstr ""
-"TL's manger krijgt boegeroep van de fans als hij uit de dug-out naar de "
-"spelerstunnel gaat"
-
-#: src/lg_commentary.c:89
-msgid "TT has changed their boost to EX"
-msgstr "TT heeft zijn extra motivatie veranderd naar EX"
-
-#: src/lg_commentary.c:312
-msgid "TT has changed their structure to EX"
-msgstr "TT veranderd zijn struktuur in EX"
-
-#: src/lg_commentary.c:85
-msgid "TT has changed their style to EX"
-msgstr "TT heeft zijn stijl veranderd naar EX"
-
-#: src/lg_commentary.c:307
-msgid "TT make a substitution, P1 comes on to replace P2"
-msgstr "TT wisseld P1 voor P2"
-
-#: src/lg_commentary.c:192
-msgid "TW are just 45 minutes away from a stunning victory"
-msgstr "TW is 45 minuten verwijderd van de overwinning"
-
-#: src/lg_commentary.c:211
-msgid "TW are triumphant!!!"
-msgstr "TW is gewonnen!!!"
-
-#: src/interface.c:369
+#: src/interface.c:389
 msgid "Tables"
 msgstr "Klassementen"
 
-#: src/treeview.c:121 src/treeview.c:261 src/treeview.c:606
-#: src/treeview.c:1135 src/treeview.c:1481 src/treeview.c:1608
-#: src/treeview.c:1896
+#: src/treeview.c:121 src/treeview.c:273 src/treeview.c:618
+#: src/treeview.c:1149 src/treeview.c:1547 src/treeview.c:1675
+#: src/treeview.c:1967
 msgid "Team"
 msgstr "Team"
 
-#: src/options_interface.c:679
+#: src/options_interface.c:685
 msgid "Team "
 msgstr "Team "
 
-#: src/treeview.c:1513
+#: src/treeview.c:1579
 msgid "Team structure"
 msgstr "Team struktuur"
 
@@ -2361,67 +2153,25 @@ msgstr "Team struktuur"
 msgid "Team style changed to %s."
 msgstr "Speelstijl veranderd naar %s."
 
-#: src/lg_commentary.c:223
-msgid "That little missunderstanding has cost TT a goal"
-msgstr "Dat kleine misverstand kost TT een goal"
-
-#: src/lg_commentary.c:152
-msgid "The ball flies past P2 and it's a goal!!!"
-msgstr "De bal vliegt naast P2 in doel!!!"
-
-#: src/lg_commentary.c:237
-msgid "The ball smacks into the crossbar with P2 stranded"
-msgstr "P2 verslagen, maar de bal vliegt tegen de deklat"
-
-#: src/callback_func.c:285
+#: src/callback_func.c:290
 msgid "The bank doesn't grant you more money."
 msgstr "De bank leent u geen geld meer uit."
-
-#: src/lg_commentary.c:184
-msgid "The clash of the titans kicks off"
-msgstr "De clash der titanen begint"
-
-#: src/lg_commentary.c:180
-msgid ""
-"The crowd roars as the players run out from the tunnel to start the match"
-msgstr ""
-"Het publiek schreeuwt als de spelers uit de spelerstunnel komen gelopen"
 
 #: src/callbacks.c:81
 msgid "The current game state is unsaved and will be lost. Continue?"
 msgstr "Het huidige spel is niet opgeslagen en zal verloren zijn. Doorgaan?"
 
-#: src/lg_commentary.c:155
-msgid "The dance ignites the fans, P1 celebrates in his own special fashion"
-msgstr "De salto van P1 doet de fans juichen"
-
-#: src/lg_commentary.c:212
-msgid "The fans boo TL off the pitch"
-msgstr "De fans fluiten TL uit"
-
-#: src/lg_commentary.c:298
-msgid "The fans pour onto the pitch in a full scale pitch invasion"
-msgstr "De fans lopen het veld op"
-
-#: src/lg_commentary.c:291
-msgid "The floodlights have just gone out"
-msgstr "De elentriciteit is uitgevallen"
-
-#: src/options_interface.c:456
+#: src/options_interface.c:457
 msgid "The higher this value, the more commentary you'll see."
 msgstr "Wanneer dit getal hoger is zal je meer commentaar zien."
 
-#: src/options_interface.c:447
+#: src/options_interface.c:448
 msgid "The lower this value the faster the live game commentary will scroll."
 msgstr ""
 "Wanneer deze waarde lager is zal het commentaar in een live match sneller "
 "gaan."
 
-#: src/lg_commentary.c:210
-msgid "The match is over!"
-msgstr "De match is afgelopen!"
-
-#: src/game_gui.c:512
+#: src/game_gui.c:606
 #, c-format
 msgid ""
 "The owners of %s are deeply impressed by your success with %s and would like "
@@ -2430,7 +2180,7 @@ msgstr ""
 "De eigenaars van %s zijn zeer gecharmeerd door uw succes bij %s en willen u "
 "als manager. Hier is een beetje informatie over %s:"
 
-#: src/user.c:246
+#: src/user.c:265
 #, c-format
 msgid ""
 "The owners of %s are not satisfied with the recent performance of the team. "
@@ -2439,7 +2189,7 @@ msgstr ""
 "De eigenaars van %s zijn niet tevreden met de laatste gebeurtenissen rond "
 "het team. Er zijn geruchten dat ze een nieuwe coach zoeken."
 
-#: src/user.c:442
+#: src/user.c:462
 #, c-format
 msgid ""
 "The owners of %s have rejected your offer (%s / %s) for %s. Neither the fee "
@@ -2448,7 +2198,7 @@ msgstr ""
 "De eigenaars van %s hebben je aanbieding (%s / %s) voor %s afgeslagen. De "
 "transfersom en het loon waren te laag, zeggen ze."
 
-#: src/user.c:448
+#: src/user.c:467
 #, c-format
 msgid ""
 "The owners of %s have rejected your offer (%s / %s) for %s. The team owners "
@@ -2457,7 +2207,7 @@ msgstr ""
 "de eigenaars van %s hebben je aanbieding (%s / %s) voor %s afgeslagen. De "
 "eigenaars waren niet tevreden met de tranfersom."
 
-#: src/user.c:436
+#: src/user.c:457
 #, c-format
 msgid ""
 "The owners of %s have rejected your offer (%s / %s) for %s. There was a "
@@ -2466,53 +2216,36 @@ msgstr ""
 "De eigenaars van %s hebben je aanbieding afgeslagen (%s / %s) voor %s. er "
 "was een betere aanbieding voor de speler dan die van jou."
 
-#: src/lg_commentary.c:294
-msgid "The peasants are revolting"
-msgstr "De supporters breken uit"
-
-#: src/callbacks.c:397
+#: src/callbacks.c:402
 msgid "The player is already on the list."
 msgstr "De speler staat al op de transferlijst."
 
-#: src/callback_func.c:433
+#: src/callback_func.c:438
 msgid ""
 "The player is locked (the team owners are considering an offer currently)."
 msgstr ""
 "De speler is geblockeerd (de teameigenaars zijn momenteel aan het "
 "onderhandelen voor een offer)."
 
-#: src/callbacks.c:413
+#: src/callbacks.c:418
 msgid "The player is not on the list."
 msgstr "De speler staat niet op de transferlijst"
 
-#: src/callback_func.c:466
+#: src/callbacks.c:482
+#, fuzzy
+msgid "The player is too old for the youth academy."
+msgstr "De speler staat niet op de transferlijst"
+
+#: src/callback_func.c:491
 msgid "The player won't negotiate with you anymore."
 msgstr "De speler wil geen contract meer"
 
-#: src/lg_commentary.c:214
-msgid "The referee checks his watch and blows for full time"
-msgstr "De scheidsrechter kijkt op de klok en fluit af"
-
-#: src/lg_commentary.c:183
-msgid "The referee gets the nod from the linesman and we are away"
-msgstr "De scheidsrechter krijgt een knik van de lijnrechter en we zijn weg"
-
-#: src/lg_commentary.c:185
-msgid "The referees are ready, players set, the battle begins"
-msgstr "De scheidsrechters zijn klaar, de spelers staan goed, de strijd begint"
-
-#: src/lg_commentary.c:296
-msgid ""
-"The riot police have moved in to stop fighting between sets of oppostion "
-"supporters"
-msgstr "De politie komt in actie om de supporters uit elkaar te houden"
-
-#: src/misc2_callback_func.c:114
+#: src/misc2_callback_func.c:115
 #, c-format
 msgid "The structure value %d is invalid."
 msgstr "De struktuurwaarde %d is ongeldig."
 
-#: src/game_gui.c:506
+#: src/game_gui.c:600
 #, c-format
 msgid ""
 "The team owners have fired you because of financial mismanagement. Luckily, "
@@ -2523,7 +2256,7 @@ msgstr ""
 "management. Gelukkig hebben de eigenaars van %s van uw ontslag gehoord en "
 "bieden u een job aan. Hier is wat informatie over %s:"
 
-#: src/game_gui.c:509
+#: src/game_gui.c:603
 #, c-format
 msgid ""
 "The team owners have fired you because of unsuccessfulness. Luckily, the "
@@ -2534,40 +2267,39 @@ msgstr ""
 "hebben de eigenaars van %s van uw ontslag gehoord en bieden u een nieuwe job "
 "aan. Hier is een beetje informatie over %s:"
 
-#: src/lg_commentary.c:207
-msgid "The teams cant do it so now it's one on one. Striker against goalie"
-msgstr ""
-"De teams kunnen het niet binnen de reuliere speeltijd doen dus worden er "
-"penalty's geschoten."
-
-#: src/callbacks.c:155
+#: src/callback_func.c:445 src/callbacks.c:158 src/transfer.c:455
 msgid "The transfer deadline is over."
 msgstr "De transfermarkt is gesloten."
 
-#: src/lg_commentary.c:179
-msgid "The two teams are greeted by a wall of noise as they take to the pitch"
-msgstr "De twee teams gaan onder luid applaus het veld op"
+#: src/misc_interface.c:1175
+msgid ""
+"There are a few companies interested in sponsoring your team. Please select "
+"one:"
+msgstr ""
 
-#: src/callbacks.c:174
+#: src/callbacks.c:177
 msgid "There are injured or banned players in one of the user teams. Continue?"
 msgstr ""
 "Er zijn geblesserde of geschorste spelers in een team van een speler. "
 "Doorgaan?"
 
-#: src/callback_func.c:341
+#: src/callback_func.c:346
 msgid "There are no offers for the player."
 msgstr "Er zijn geen aanbieding gedaan op deze speler."
 
-#: src/callback_func.c:344
-msgid "There are some offers for the player which you will see next week."
+#: src/callback_func.c:349
+#, fuzzy
+msgid ""
+"There are some offers for the player which you rejected or will see next "
+"week."
 msgstr ""
 "Er zijn een aantal offer voor spelers die je de volgende week zal zien."
 
-#: src/lg_commentary.c:194
-msgid "There are two teams out there and only one of them is playing football"
-msgstr "Er spelen twee teams maar alleen een van hen speelt voetbal"
+#: src/callbacks.c:487
+msgid "There is no room in your youth academy."
+msgstr ""
 
-#: src/misc_callbacks.c:181
+#: src/misc_callbacks.c:182
 msgid ""
 "There were too many substitutions. Only 3 per game are allowed. Player list "
 "reset."
@@ -2575,27 +2307,36 @@ msgstr ""
 "Er zijn te veel spelers gewisseld. Er zijn maar 3 wissels toegestaan. De "
 "wissels zijn ongedaan gemaakt."
 
-#: src/callbacks.c:379
+#: src/callbacks.c:382
 msgid "This is your first season."
 msgstr "Dit is uw eerste seizoen."
 
-#: src/treeview.c:1242
+#: src/treeview.c:1271
 msgid "Ticket income"
 msgstr "Recette"
 
-#: src/player.c:1107
+#: src/player.c:1168
 msgid "Torn crucial ligament"
 msgstr "Belangrijk ligament beschadigd"
 
-#: src/window.c:493
+#: src/callbacks.c:151
+#, fuzzy, c-format
+msgid "Transfer deadline is Week %d"
+msgstr "De transfermarkt is gesloten."
+
+#: src/window.c:536
 msgid "Transfer offer"
 msgstr "Transfer aanbod"
 
-#: src/treeview.c:1277
+#: src/treeview.c:1335
 msgid "Transfers"
 msgstr "Transfers"
 
-#: src/interface.c:589
+#: src/callbacks.c:146 src/callbacks.c:398
+msgid "Transfers are disabled in this country definition."
+msgstr ""
+
+#: src/interface.c:677
 msgid ""
 "Try to put the startup players onto their favoured positions and sort the "
 "substitutes (Ctrl-R or middle click)"
@@ -2603,102 +2344,99 @@ msgstr ""
 "Probeer de spelende spelers op hun favoriete plaatsen te zetten en sorteer "
 "de vervangers (Ctrl-R of middelste muisknop)"
 
-#: src/lg_commentary.c:206
-msgid "Two teams, equall till now in every respect,face off in penalties"
-msgstr "Twee teams, gelijk tot nu, moeten penaly's trappen"
-
-#: src/load_save.c:175
+#: src/load_save.c:179
 msgid "Uncompressing savegame..."
 msgstr "uitpakken van opgeslagen spel..."
 
-#: src/callback_func.c:425
+#: src/callback_func.c:431
 #, c-format
 msgid "User %s didn't consider your offer yet."
 msgstr "Gebruiker %s heeft je offer nog niet bekeken."
 
-#: src/window.c:470
+#: src/window.c:513
 msgid "User management"
 msgstr "Gebruikers beheren"
 
-#: src/misc_interface.c:158
+#: src/misc_interface.c:164
 msgid "Username"
 msgstr "Naam van gebruiker"
 
-#: src/misc2_interface.c:764
+#: src/misc2_interface.c:786
 msgid "Users -- click to remove"
 msgstr "Gebruikers -- klik om te verwijderen"
 
-#: src/treeview.c:258 src/treeview.c:1748
+#: src/treeview.c:270 src/treeview.c:1815
 msgid "Value"
 msgstr "Waarde"
 
-#: src/options_interface.c:651
+#: src/options_interface.c:657
 msgid "Value "
 msgstr "Waarde "
 
-#: src/misc_interface.c:629
+#: src/misc_interface.c:672
 msgid "Verbosity"
 msgstr "Hoeveelheid Comentaar"
 
-#: src/lg_commentary.c:127
-msgid "Vicious tackle from P2 leaves P1 lying on the floor in agony"
-msgstr "Gemene tackle van P2 legt P1 op de grond"
-
-#: src/treeview.c:1137
+#. Games won.
+#: src/treeview.c:1153
 msgid "W"
 msgstr "W"
 
-#: src/team.c:1042
+#. won
+#: src/team.c:1049
 msgid "W  "
 msgstr "W  "
 
-#: src/team.c:956
+#. a won match
+#: src/team.c:955
 #, c-format
 msgid "W  %d : %d"
 msgstr "W  %d - %d"
 
-#: src/callback_func.c:444 src/treeview.c:259 src/treeview.c:1749
+#: src/callback_func.c:461 src/callback_func.c:468 src/treeview.c:271
+#: src/treeview.c:1816
 msgid "Wage"
 msgstr "loon"
 
-#: src/options_interface.c:658
+#: src/options_interface.c:664
 msgid "Wage "
 msgstr "Loon "
 
-#: src/treeview.c:1244
+#: src/treeview.c:1274
 msgid "Wages"
 msgstr "Lonen"
 
-#: src/lg_commentary.c:178
-msgid "We're under way"
-msgstr "We beginnen eraan"
-
-#: src/treeview.c:1896
+#: src/treeview.c:1967
 msgid "Week"
 msgstr "Week"
 
-#: src/treeview.c:815
+#: src/treeview.c:828
 #, c-format
 msgid "Week %d Round %d"
 msgstr "Week %d Ronde %d"
 
-#: src/window.c:339
+#: src/window.c:383
 #, c-format
 msgid "Welcome to Bygfoot %s"
 msgstr "Wekom in Bygfoot %s"
 
-#: src/lg_commentary.c:215
-msgid "Well that's that. It ends RE"
-msgstr "Wel dat is het dan. Het eindigd op RE"
-
-#: src/options_interface.c:221
+#: src/options_interface.c:222
 msgid ""
 "Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
 msgstr ""
 "Of 'opslaan' het huidige opgeslagen spel moet overschrijfven of een 'opslaan "
 "als' venster toont"
 
-#: src/options_interface.c:226
+#: src/options_interface.c:504
+#, fuzzy
+msgid ""
+"Whether a confirmation popup is shown when you kick out a youth from your "
+"academy"
+msgstr ""
+"Of er een bevestigingsdialoog moet getoont worden wanneer je afsluit maar "
+"niet opgeslagen hebt"
+
+#: src/options_interface.c:227
 msgid ""
 "Whether game starts with a maximized main window (doesn't work with all "
 "window managers)"
@@ -2706,7 +2444,7 @@ msgstr ""
 "Of het spel moet starten met een gemaximaliseerd hoofdvenster (werkt niet "
 "met alle window managers)"
 
-#: src/options_interface.c:531
+#: src/options_interface.c:537
 msgid ""
 "Whether in the weekly fixture view all leagues or only the user league is "
 "shown"
@@ -2714,7 +2452,7 @@ msgstr ""
 "Of in het wekelijke overzicht van de matchen alle klasses moeten getoont "
 "worden"
 
-#: src/options_interface.c:545
+#: src/options_interface.c:551
 msgid ""
 "Whether swapping two players automatically adapts the team structure to the "
 "player positions"
@@ -2722,23 +2460,23 @@ msgstr ""
 "Of het verwisselen van twee spelers de team struktuur aanpast aan de "
 "spelersposities"
 
-#: src/options_interface.c:486
+#: src/options_interface.c:487
 msgid "Whether the live game pauses at half time and extra time"
 msgstr ""
 "Of de live match moet gepauzeerd worden bij de rust en voor verlangingen"
 
-#: src/options_interface.c:476
+#: src/options_interface.c:477
 msgid "Whether the live game pauses when a user player is injured"
 msgstr ""
 "Of de live match moet gepauseerd worden wanneer een speler geblesserd is"
 
-#: src/options_interface.c:481
+#: src/options_interface.c:482
 msgid "Whether the live game pauses when a user player is sent off"
 msgstr ""
 "Of de live match moet gepauzeerd worden wanneer een speler van een gebruiker "
 "van het veld gezonden wordt"
 
-#: src/options_interface.c:462
+#: src/options_interface.c:463
 msgid ""
 "Whether the subs (e.g. for injured players) are made by the CPU. This is "
 "automatically done if the live game is off."
@@ -2746,11 +2484,11 @@ msgstr ""
 "Of de vervangingen (bv. voor geblesseerde spelers) gemaakt worden door de "
 "computer. Dit wordt automatisch gedaan wanneer de live match af staat."
 
-#: src/options_interface.c:364
+#: src/options_interface.c:365
 msgid "Whether to automatically save the game regularly"
 msgstr "Of het spel regelmatig automatisch opgeslagen wordt"
 
-#: src/options_interface.c:964
+#: src/options_interface.c:970
 msgid ""
 "Whether to save the global settings to file (so that they get loaded next "
 "time you start a new game)"
@@ -2758,7 +2496,7 @@ msgstr ""
 "Of de instellingen moeten opgeslagen worden in een bestand (zodat ze geladen "
 "worden de volgende keer dat je een nieuw spel start)"
 
-#: src/options_interface.c:969
+#: src/options_interface.c:975
 msgid ""
 "Whether to save the user settings to file (so that they get loaded next time "
 "this user starts a new game)"
@@ -2766,7 +2504,7 @@ msgstr ""
 "Of de gebruikersinstellingen opgeslagen moeten worden in een bestan (zodat "
 "ze worden herladen de volgende keer dat deze gebruiker een nieuw spel start)"
 
-#: src/options_interface.c:216
+#: src/options_interface.c:217
 msgid ""
 "Whether to show a confirmation popup if a user team has an injured or banned "
 "player in the startup formation"
@@ -2774,7 +2512,7 @@ msgstr ""
 "Of er een bevestigingsvenster moet getoont worden als een team van een "
 "gebruiker geblesseerde of geschorste spelers heeft"
 
-#: src/options_interface.c:211
+#: src/options_interface.c:212
 msgid ""
 "Whether to show a confirmation popup when you press quit and the game state "
 "is not saved"
@@ -2782,69 +2520,74 @@ msgstr ""
 "Of er een bevestigingsdialoog moet getoont worden wanneer je afsluit maar "
 "niet opgeslagen hebt"
 
-#: src/options_interface.c:503
+#: src/options_interface.c:509
 msgid "Whether to show job offers when a user is successful"
 msgstr ""
 "Of er jobaanbiedingen moeten getoont worden wanneer een gebruiker succesvol "
 "is"
 
-#: src/options_interface.c:550
+#: src/options_interface.c:556
 msgid "Whether to show the player games/goals value in all competitions"
 msgstr ""
 "Of de spelers matchen/goals waarden in alle competities moeten getoont worden"
 
-#: src/options_interface.c:231
+#: src/options_interface.c:232
 msgid ""
 "Whether to show warnings and such in the message area in the main window "
 "when possible"
 msgstr ""
 "Of het spel waarschuwingen moet tonen in het berichten vak wanneer mogelijk"
 
-#: src/lg_commentary.c:200
-msgid "Who will breakdown first, extra time it is"
-msgstr "Wie zal het eerst toegeven, er worden verlengingen gespeeld"
-
-#: src/lg_commentary.c:204
-msgid "Who would have thought MI minutes ago it would come down to this"
-msgstr "Wie had MI minuten geleden gedacht dat het tot dit herleid zou worden"
-
-#: src/treeview.c:255
+#. Yellow cards of a player.
+#: src/treeview.c:266
 msgid "YC"
 msgstr "GK"
 
-#: src/treeview.c:1752
+#. 'Limit' is the number of yellow cards until a player gets
+#. banned automatically for a match.
+#: src/treeview.c:1821
 msgid "Yellow cards (limit)\n"
 msgstr "Gele kaarten (limiet)\n"
 
-#: src/treeview.c:659 src/treeview_helper.c:732
+#: src/treeview.c:672 src/treeview_helper.c:732
 msgid "Yellows"
 msgstr "Gele kaarten"
 
-#: src/user.c:707
+#. League name.
+#: src/user.c:741
 #, c-format
 msgid "You are champion of the %s!"
 msgstr "Je bent kampioen van de %s!"
 
-#: src/finance.c:172
+#: src/finance.c:202
 msgid "You are free from debt."
 msgstr "Je hebt geen schulden."
 
-#: src/callback_func.c:438
-#, c-format
+#: src/callback_func.c:465
+#, fuzzy, c-format
 msgid ""
-"You are making an offer for %s. Your scout's recommendations for value and "
+"You are making an offer for %s again. Your previous values for fee and wage "
+"are preset."
+msgstr ""
+"Je bent bezig met een aanbod te doen op %s. De prijs en het loon dat is "
+"aanbevolen door uw scout zijn ingevult"
+
+#: src/callback_func.c:457
+#, fuzzy, c-format
+msgid ""
+"You are making an offer for %s. Your scout's recommendations for fee and "
 "wage are preset."
 msgstr ""
 "Je bent bezig met een aanbod te doen op %s. De prijs en het loon dat is "
 "aanbevolen door uw scout zijn ingevult"
 
-#: src/callback_func.c:480
-#, c-format
+#: src/callback_func.c:505
+#, fuzzy, c-format
 msgid ""
 "You are negotiating with %s about a new contract. Pay attention to what "
 "you're doing; if you don't come to terms with him within %d offers, he's "
 "going to leave your team after his current contract expires (unless you sell "
-"him).\n"
+"him). You may only abort BEFORE making the first offer.\n"
 "Your scout's recommendations are preset:"
 msgstr ""
 "Je bent met %s aan het onderhandelen voor een nieuw contract. Denk na voor "
@@ -2853,76 +2596,89 @@ msgstr ""
 "tot dat je hem verkoopt).\n"
 "Het loon dat wordt aanbevolen door uw scout is ingevult:"
 
-#: src/callback_func.c:305
+#: src/callback_func.c:310
 msgid "You are not indebted."
 msgstr "Je hebt geen schulden"
 
-#: src/callback_func.c:317
+#: src/callback_func.c:322
 #, c-format
 msgid "You can pay back at most %s"
 msgstr "Je kan maximaal %s terugbetalen"
 
-#: src/callback_func.c:291
+#: src/callback_func.c:296
 #, c-format
 msgid "You can take out at most %s."
 msgstr "Je kan maximaal %s lenen."
 
-#: src/callback_func.c:461
+#: src/callbacks.c:1029
+#, fuzzy, c-format
+msgid "You can't have more than %d players in the team."
+msgstr "Je team kan niet minder dan 11 spelers hebben."
+
+#: src/callbacks.c:484
+msgid "You can't move the player, there are too few players in your team."
+msgstr ""
+
+#: src/callback_func.c:486
 msgid "You can't offer a new contract if the old one is still above 2 years."
 msgstr "Je kan geen nieuw contract aanbieden. Het oude is nog boven de 2 jaar."
 
-#: src/misc2_callbacks.c:268
+#: src/misc2_callbacks.c:290
 msgid "You can't play Bygfoot without users!"
 msgstr "Je kan Bygfoot niet spelen zonder gebruikers!"
 
-#: src/player.c:505
+#: src/player.c:560
 msgid "You can't replace a banned player."
 msgstr "Je kan een geschorste speler niet wisselen."
 
-#: src/user.c:460
+#. Buy a player from a team.
+#: src/user.c:479
 #, c-format
 msgid "You didn't have enough money to buy %s from %s."
 msgstr "Je hebt niet genoeg geld om %s van %s te kopen."
 
-#: src/misc2_callback_func.c:51
+#: src/misc2_callback_func.c:50
 #, c-format
 msgid "You didn't have enough money to buy %s or your roster was full."
 msgstr "Je had niet genoeg geld om %s te kopen of uw team was vol."
 
-#: src/callback_func.c:311
+#: src/callback_func.c:316
 msgid "You don't have enough money to pay back."
 msgstr "Je hebt niet genoeg geld om dit bedrag terug te betalen."
 
-#: src/misc_callback_func.c:217
+#: src/misc_callback_func.c:228
 msgid "You don't have the money."
 msgstr "Je hebt niet genoeg geld."
 
-#: src/user.c:678
+#. League name.
+#: src/user.c:706
 #, c-format
 msgid "You finish the season in the %s on rank %d."
 msgstr "Je eindigt het seizoen met %s op plaats %d."
 
-#: src/user.c:683
+#. League name.
+#: src/user.c:712
 #, c-format
 msgid "You get promoted to the %s."
 msgstr "Je promoveert naar de %s."
 
-#: src/user.c:687
+#. League name.
+#: src/user.c:717
 #, c-format
 msgid "You get relegated to the %s."
 msgstr "Je degradeert naar de %s."
 
-#: src/finance.c:179
+#: src/finance.c:209
 #, c-format
 msgid "You have %d weeks to pay back the rest of your loan."
 msgstr "Je hebt nog %s weken om de rest van je lening terug te betalen."
 
-#: src/finance.c:149
+#: src/finance.c:181
 #, c-format
 msgid "You have %d weeks to pay back your loan."
 msgstr "Je hebt nog %s weken om je lening terug te betalen."
 
-#: src/user.c:420
+#: src/user.c:444
 #, c-format
 msgid ""
 "You have overdrawn your bank account once again. Bear in mind that after the "
@@ -2933,7 +2689,7 @@ msgstr ""
 "de vierde keer ontslagen wordt.\n"
 "De team eigenaars geven je %d om terug boven uw kredietopening te raken."
 
-#: src/user.c:418
+#: src/user.c:442
 #, c-format
 msgid ""
 "You have overdrawn your bank account. The team owners give you %d weeks to "
@@ -2942,32 +2698,27 @@ msgstr ""
 "Je zit te ver negatief op uw bankrekening. De team eigenaars geven je %d "
 "weken om boven uw kredietopening te raken."
 
-#: src/lg_commentary.c:244
-msgid ""
-"You have to bury the nerves, swallow and concentrate when your taking "
-"penalties"
-msgstr ""
-"Je moet zenuwen controleren en je concentreren wanneer je een penalty neemt"
-
-#: src/finance.c:82
+#: src/finance.c:116
 msgid "You have to pay back your loan this week."
 msgstr "Je moet je lening deze week terugbetalen."
 
-#: src/callbacks.c:531
+#: src/callbacks.c:564
 msgid "You haven't made an offer for the player."
 msgstr "Je hebt geen aanbieding gedaan op deze speler."
 
-#: src/callbacks.c:395 src/callbacks.c:411 src/callbacks.c:427
-#: src/callbacks.c:445 src/callbacks.c:766 src/callbacks.c:782
+#: src/callbacks.c:400 src/callbacks.c:416 src/callbacks.c:432
+#: src/callbacks.c:448 src/callbacks.c:476 src/callbacks.c:830
+#: src/callbacks.c:846
 msgid "You haven't selected a player."
 msgstr "Je hebt geen speler geselecteerd."
 
-#: src/user.c:696
+#. Cup name, team name.
+#: src/user.c:728
 #, c-format
 msgid "You lose in the %s final against %s."
 msgstr "Je verliest de %s finale tegen %s."
 
-#: src/callback_func.c:397
+#: src/callback_func.c:402
 #, c-format
 msgid ""
 "You offered a transfer fee of %s and a wage of %s for %s. The owners and the "
@@ -2977,21 +2728,23 @@ msgstr ""
 "de spelers zijn akkoord met die aanbieding. Wil je deze speler nog steeds "
 "kopen?"
 
-#: src/user.c:702
+#. Cup round name (e.g. Last 32), number, cup name.
+#: src/user.c:735
 #, c-format
 msgid "You reach the %s (round %d) of the %s."
 msgstr "Je bereikt de %s (ronde %d) van de %s."
 
-#: src/user.c:655
+#. Buy a team in a league.
+#: src/user.c:679
 #, c-format
 msgid "You start the game with %s in the %s."
 msgstr "Je start het spel met %s in de %s."
 
-#: src/callbacks.c:164 src/callbacks.c:557 src/callbacks.c:574
+#: src/callbacks.c:167 src/callbacks.c:597 src/callbacks.c:614
 msgid "You still have some transfer business to manage."
 msgstr "Je moet nog wat zaken op de transferlijst regelen."
 
-#: src/callback_func.c:601
+#: src/callback_func.c:630
 #, c-format
 msgid ""
 "You want to fire %s. Since his contract expires in %.1f years, he demands a "
@@ -3000,20 +2753,28 @@ msgstr ""
 "Je wilt %s ontslaan. Zijn contract zal afgelopen binnen %.1f jaar, hij wil "
 "een vergoedingvan %s. Wil je de speler ontslaan?"
 
-#: src/user.c:691
+#. Cup name, team name.
+#: src/user.c:722
 #, c-format
 msgid "You win the %s final against %s."
 msgstr "Je wint de %s finale tegen %s."
 
-#: src/finance.c:86
+#: src/finance.c:120
 msgid "Your bank account has to be above your drawing credit limit next week."
 msgstr "Je bankrekening moet volgende week boven de kredietopening zijn."
 
-#: src/treeview.c:1453
+#: src/user.c:905
+#, c-format
+msgid ""
+"Your current sponsor is satisfied with your results and would like to renew "
+"the contract. Currently they're paying you %d a week."
+msgstr ""
+
+#: src/treeview.c:1519
 msgid "Your next opponent"
 msgstr "Uw volgende tegenstander"
 
-#: src/user.c:429
+#: src/user.c:451
 #, c-format
 msgid ""
 "Your offer for %s has been accepted. If you still want to buy him, go to the "
@@ -3022,91 +2783,675 @@ msgstr ""
 "Uw bod voor %s is aangenomen. Als je hem nog steeds wilt kopen, ga dan naar "
 "de transferlijst en klik met de linkermuisknop op de speler"
 
-#: src/callback_func.c:383 src/callbacks.c:529
+#: src/callback_func.c:388 src/callbacks.c:562
 msgid "Your offer has been removed."
 msgstr "Uw aanbieding is verwijderd."
 
-#: src/misc2_callbacks.c:112
+#: src/misc2_callbacks.c:113
 msgid "Your offer has been updated."
 msgstr "Uw aanbod is veranderd."
 
-#: src/misc2_callbacks.c:114
+#: src/misc2_callbacks.c:115
 msgid "Your offer will be considered next week."
 msgstr "Er zal volgende week over uw aanbod gesproken worden."
 
-#: src/misc2_callback_func.c:80
+#: src/misc2_callback_func.c:78
 msgid "Your player roster is full or you don't enough money."
 msgstr "Je kan niet meer spelers hebben. Je hebt niet genoeg geld."
 
-#: src/treeview.c:1525
+#. The user's results against a specific team.
+#: src/treeview.c:1592
 msgid "Your results"
 msgstr "Uw resultaat"
 
-#: src/callback_func.c:390
+#: src/callback_func.c:395
 msgid "Your roster is already full. You can't buy more players."
 msgstr ""
 "Je hebt geen plaats meer in je team. Je kan geen spelers meer bijkopen."
 
-#: src/user.c:465
+#. Buy a player from a team.
+#: src/user.c:484
 #, c-format
 msgid "Your roster is full. You couldn't buy %s from %s."
 msgstr "Je kan niet meer spelers hebben. Je kan %s van %s niet kopen."
 
-#: src/window.c:406
+#: src/window.c:449
 msgid "Your stadium"
 msgstr "Uw stadion"
 
-#: src/callbacks.c:429
+#: src/callbacks.c:434
 msgid "Your team can't have less than 11 players."
 msgstr "Je team kan niet minder dan 11 spelers hebben."
 
-#: src/interface.c:260
+#: src/treeview.c:1392
+msgid "Youth acad. invest."
+msgstr ""
+
+#: src/interface.c:546 src/treeview.c:1278
+msgid "Youth academy"
+msgstr ""
+
+#: src/interface.c:560 src/treeview.c:1277
+msgid "Youth coach"
+msgstr ""
+
+#: src/interface.c:280
 msgid "_File"
 msgstr "_Bestand"
 
-#: src/interface.c:799
+#: src/interface.c:891
 msgid "_Help"
 msgstr "_Help"
 
-#: src/interface.c:303
+#: src/interface.c:323
 msgid "_Options"
 msgstr "_Opties"
 
-#: src/misc_interface.c:576
+#: src/misc_interface.c:619
 msgid "_Pause"
 msgstr "_Pauze"
 
-#: src/interface.c:611
+#: src/interface.c:699
 msgid "_Player"
 msgstr "S_peler"
 
-#: src/misc_interface.c:597
+#: src/misc_interface.c:640
 msgid "_Resume"
 msgstr "Speel ve_rder"
 
-#: src/misc_interface.c:274
+#: src/misc_interface.c:310
 msgid "_Resume last game"
 msgstr "Speel ve_rder met het vorige spel"
 
-#: src/interface.c:418
+#: src/interface.c:438
 msgid "_Team"
 msgstr "_Team"
 
-#: src/interface.c:679
+#: src/interface.c:771
 msgid "_User"
 msgstr "Gebr_uiker"
+
+#~ msgid "   "
+#~ msgstr "   "
 
 #~ msgid " (A) "
 #~ msgstr " (U) "
 
+#~ msgid "1"
+#~ msgstr "1"
+
+#~ msgid "2000"
+#~ msgstr "2000"
+
+#~ msgid "A cloudless day, gives the impression this match is going to sparkle"
+#~ msgstr "Een wolkenloze dag, geeft de indruk dat de match gaat sprankelen"
+
+#~ msgid ""
+#~ "A fan has managed to get onto the pitch and has begun to attack the "
+#~ "referee"
+#~ msgstr ""
+#~ "Een fan is er een in geslaagt om op het veld te komen en valt de "
+#~ "scheidsrechter aan"
+
+#~ msgid "A flare chucked onto the touchline has started a massive blaze"
+#~ msgstr "Een vuurpijl veroorzaakt brand in het stadion"
+
+#~ msgid ""
+#~ "A speaker has gone up in flames and the blaze spreading around the entire "
+#~ "stadium"
+#~ msgstr ""
+#~ "Een luidspreker gaat op in vlammen en het vuur verspreid zich over heel "
+#~ "het stadion"
+
+#~ msgid "AT fans can't be wrong, this is the match we have all come to watch"
+#~ msgstr ""
+#~ "met AT fans kunnen we niet verkeerd zijn, dit is de match waarvoor we met "
+#~ "zijn allen zijn gekomen"
+
+#~ msgid "After MI minutes it's still RE: extra time"
+#~ msgstr "Na MI minuten is het nog altijd RE: verlengingen"
+
+#~ msgid "After MI minutes the match ends with a RE"
+#~ msgstr "Na MI minuten eindigd de match op RE"
+
+#~ msgid "After a close match the game heads into extra time"
+#~ msgstr "Na een gesloten match zijn er verlengingen"
+
+#~ msgid "And now we have the tense drama of a penalty shoot out"
+#~ msgstr "En nu het gespannen drama van penalty's"
+
+#~ msgid "And the ball flies straight past P2 and into the back of the net!!!"
+#~ msgstr "En de bal vliegt naast P2 tegen de netten!!!"
+
+#~ msgid "And the ball is smacked into the back of the net!!!"
+#~ msgstr "En de bal is tegen de achterkant van het net!!!"
+
+#~ msgid "And the fans are throwing flares onto the pitch"
+#~ msgstr "De fans gooien brandende pijlen op het veld"
+
+#~ msgid "And the shot creeps just past the post"
+#~ msgstr "Goal!!! Neee, aan de verkeerde kant van de paal"
+
+#~ msgid "And the shot glances wide off the post"
+#~ msgstr "En het schot botst ver terug van de paal"
+
+#~ msgid "Another decent move down the wing"
+#~ msgstr "Een andere fantastische beweging op de flank"
+
+#~ msgid "Away fans have set fire to the north stand"
+#~ msgstr ""
+#~ "De bezoekende fans hebben de noordelijke kant van het stadion in brand "
+#~ "gestoken"
+
+#~ msgid "Bad control by P2 lets P1 steal the ball off him"
+#~ msgstr "Slechte controle van P2 en P1 neemt de bal mee"
+
+#~ msgid "Ball dinked over P2 but hit crossbar and bounced to safety"
+#~ msgstr "De bal gaat over P2, maar raakt de deklat en botst weg"
+
 #~ msgid "Bottom league"
 #~ msgstr "laagste klasse"
+
+#~ msgid "Caught well by P2"
+#~ msgstr "Goed gepakt van P2"
 
 #~ msgid "Congratulations! The owners of %s have accepted your offer for %s!"
 #~ msgstr "Proficiat! De eigenaars van %s hebben uw aanbod voor %s aangenomen!"
 
+#~ msgid "Crunching challenge on P1"
+#~ msgstr "Vliegende tackle op P1"
+
+#~ msgid "Defender back to block just as it seemed to open up"
+#~ msgstr "Een verdediger komt terug en blokt het schot"
+
+#~ msgid "Defender clears"
+#~ msgstr "Een verdediger ontzet"
+
+#~ msgid "Diving header by P1"
+#~ msgstr "Duikende kopbal van P1"
+
+#~ msgid "Easy save for the goalkeeper"
+#~ msgstr "Gemakelijke bal voor de keeper"
+
+#~ msgid "Extremely high boot from P2 sends P1 to the ground"
+#~ msgstr "Een achterbakse tackle van P2 velt P1"
+
+#~ msgid "Fire consumes TT's stadium"
+#~ msgstr "Er word vuur gebruikt in het stadion van TT"
+
+#~ msgid ""
+#~ "Foul by P2; P1 seems to be injured... he might have to be substituted"
+#~ msgstr "Fout van P2; P1 lijkt geblesseerd... hij moet gewisseld worden"
+
+#~ msgid "Free kick whipped across the face of goal by P1"
+#~ msgstr "P1 neemt een vrije schop"
+
+#~ msgid "Free kick: P1 hits a long ball up the pitch"
+#~ msgstr "Vrije schop: P1 schiet een lange bal naar de kleine rechthoek"
+
+#~ msgid "Free kick: P1 plays the ball out wide"
+#~ msgstr "Vrije schop: P1 tapt de bal ver"
+
+#~ msgid "Goal!!!"
+#~ msgstr "Goal!!!"
+
+#~ msgid "Good passing move across the pitch and down the right"
+#~ msgstr "Goede passeerbeweging op de rechterflank"
+
+#~ msgid "Great ball from P2 sends P1 one on one with the goalkeeper"
+#~ msgstr "Splijtende pas van P2 zend P1 een tegen een met de keeper"
+
+#~ msgid ""
+#~ "Great pace shown by P1 to get to the ball first but P2 produced superb "
+#~ "block tackle"
+#~ msgstr "Mooie actie van P1, maar P2 blokt het schot met een tackle"
+
+#~ msgid ""
+#~ "He just floated in midair for ages then thunder heads it towards home"
+#~ msgstr "De bal blijft hangen... Een fantastische kopbal van P1"
+
+#~ msgid "I'm suprised the post has managed to withstand that cracking shot"
+#~ msgstr ""
+#~ "Ik ben verrast dat de paal niet gebroken is, zo'n hard schot was het"
+
+#~ msgid ""
+#~ "It's a RE at half time, TL's manager has to find something special to "
+#~ "spur his team on."
+#~ msgstr ""
+#~ "Het is RE aan de rust, TL's manager moet iets speciaal vinden om zijn "
+#~ "team te motiveren."
+
+#~ msgid "It's a RE at half time."
+#~ msgstr "Het is RE bij de rust."
+
+#~ msgid "It's a crowd of AT here as the whistle blows"
+#~ msgstr "Er zitten AT supporters in het stadion als de scheidsrechter fluit"
+
+#~ msgid ""
+#~ "It's a pinball in the penalty box, finally spinning off P1 across the line"
+#~ msgstr ""
+#~ "Het is een flipperkast in de 16 meter, uiteindelijk werkt P1 hem over "
+#~ "zijn eigen doellijn."
+
+#~ msgid ""
+#~ "It's down to determination and fitness now as we head into extra time"
+#~ msgstr "Het gaat nu over vastberadenheid en fitheid we verlengingen krijgen"
+
+#~ msgid "It's half time"
+#~ msgstr "Het is rust"
+
+#~ msgid "It's still RE: extra time"
+#~ msgstr "Het is nog steeds RE: verlengingen"
+
+#~ msgid "Long ball from P2 finds P1 at far post"
+#~ msgstr "Lange bal van P2 vindt P1 aan de tweede paal"
+
+#~ msgid "Long floating pass from P2 finds P1"
+#~ msgstr "Lange bal van P2 naar P1"
+
+#~ msgid "Loose ball falls to P1"
+#~ msgstr "Verloren bal valt voor de voeten van P1"
+
+#~ msgid "Lovely pass from P2 releases P1"
+#~ msgstr "Fantastische pas van P2 speelt P1 vrij"
+
+#~ msgid "Low shot taken well to his left by P2"
+#~ msgstr "P2 pakt het lage schot van P1"
+
+#~ msgid ""
+#~ "Oh that's a great shot and it's deflected off P1 and into the back of the "
+#~ "net"
+#~ msgstr "De bal vliegt in eigen goal, een own goal van P1"
+
+#~ msgid "Ohh no, the ball ricocheted off P1 into the net"
+#~ msgstr "Oh nee, de bal ketst af op P1 en vliegt in de goal"
+
+#~ msgid "Ouch that's got to hurt"
+#~ msgstr "Ouch, dat doet pijn"
+
+#~ msgid "Oww, nasty tackle on P1"
+#~ msgstr "Oww, gemene tackle op P1"
+
+#~ msgid "P1 arrows shot towards top left corner"
+#~ msgstr "een strak schot van P1 naar de linkerbovenhoek"
+
+#~ msgid ""
+#~ "P1 can't quite get it under control but his miss kick heads toward goal"
+#~ msgstr "P1 kan de bal niet controleren maar zijn misschot vliegt naar doel"
+
+#~ msgid "P1 charges towards goal and shoots!"
+#~ msgstr "P1 gaat naar doel en schiet!"
+
+#~ msgid "P1 curls ball over"
+#~ msgstr "P1 krult de bal over de goal"
+
+#~ msgid "P1 curls the free kick over the wall"
+#~ msgstr "P1 krult de bal over de muur"
+
+#~ msgid "P1 cuts in from the left flank and shoots"
+#~ msgstr "P1 snijdt binnen vanop de linkerflank en schiet"
+
+#~ msgid "P1 dribbles into the box, turns inside the defence and fires"
+#~ msgstr ""
+#~ "P1 dribbelt in de kleine rechthoek, draat weg van de verdedigers en schiet"
+
+#~ msgid "P1 drives free kick low and hard"
+#~ msgstr "P1 schiet de vrije schop laag en hard"
+
+#~ msgid "P1 fired wide!"
+#~ msgstr "P1 schiet naast!"
+
+#~ msgid "P1 gets his legs taken away from him by P2"
+#~ msgstr "P2 haalt P1's benen weg"
+
+#~ msgid "P1 has a chance to score with a penalty kick"
+#~ msgstr "P1 heeft nu de kans op de goal met een penalty"
+
+#~ msgid ""
+#~ "P1 has a large cut above his left eye but it has been patched up and he "
+#~ "will be able to continue "
+#~ msgstr ""
+#~ "P1 heeft een gat boven zijn linker oog maar het is herstelt en hij kan "
+#~ "verder spelen"
+
+#~ msgid "P1 has been sent off"
+#~ msgstr "P1 mag gaan douchen"
+
+#~ msgid ""
+#~ "P1 has missed a penalty before but he now has a chance to redeem himself"
+#~ msgstr ""
+#~ "P1 heeft hiervoor al een penalty gemist, maar hij heeft nu nog een kans"
+
+#~ msgid "P1 has picked up a slight knock"
+#~ msgstr "P1 heeft een lichte blessure"
+
+#~ msgid "P1 has pulled a muscle but should be able to continue"
+#~ msgstr "P1 heeft een verrokken spier maar kan blijven spelen"
+
+#~ msgid "P1 latches onto P2's pass"
+#~ msgstr "P1 neemt de bal over van P2"
+
+#~ msgid "P1 looks like he's badly injured"
+#~ msgstr "Het lijkt erop dat P1 een erge blessure heeft"
+
+#~ msgid ""
+#~ "P1 passes the ball back to his goalie, oh no the keepers missed it! It's "
+#~ "an own goal by P1!"
+#~ msgstr ""
+#~ "P1 past terug op zijn keeper, oh nee de keeper mist de bal! Het is een "
+#~ "own goal van P1!"
+
+#~ msgid "P1 rips through the midfield"
+#~ msgstr "P1 scheurt door het middenveld"
+
+#~ msgid "P1 scores!!!"
+#~ msgstr "P1 scoort"
+
+#~ msgid "P1 shoots from 22 yards looks like it's going wide"
+#~ msgstr "P1 schiet van net buiten de grote rechthoek"
+
+#~ msgid "P1 shoots from close range"
+#~ msgstr "P1 schiet van dichtbij"
+
+#~ msgid "P1 should have squared the ball went alone and lashed wide"
+#~ msgstr ""
+#~ "P1 zou gepast moeten hebben, maar hij ging alleen door en schoot ver naast"
+
+#~ msgid "P1 smacks into row Z"
+#~ msgstr "P1 schiet de bal in vak Z"
+
+#~ msgid "P1 spins and shoots"
+#~ msgstr "P1 draait en schiet"
+
+#~ msgid "P1 spins past his marker"
+#~ msgstr "P1 gaat voorbij zijn man"
+
+#~ msgid ""
+#~ "P1 spins past two defenders, wrong foots the keeper and back heels the "
+#~ "ball towards goal"
+#~ msgstr ""
+#~ "P1 gaat voorbij twee verdeigers, zet de keeper op het verkeerde been en "
+#~ "schiet de bal met een hakje naar doel"
+
+#~ msgid "P1 steps up to take the penalty"
+#~ msgstr "P1 gaat de penalty trappen"
+
+#~ msgid "P1 takes free-kick quickly and curls around wall"
+#~ msgstr "P1 krult de bal mooi naast de muur"
+
+#~ msgid "P1 takes the ball away from P2 with a sliding tackle"
+#~ msgstr "P1 pakt de bal af van P2 met een tackle"
+
+#~ msgid "P1 tries his luck from 30 yards"
+#~ msgstr "P1 probeert zijn geluk vanop 30 meter"
+
+#~ msgid "P1 twisting and turning again"
+#~ msgstr "P1 draait zich vrij"
+
+#~ msgid "P1 wheels away in celebration after a great goal sent the fans wild"
+#~ msgstr "P1 viert zijn doelpunt uitbundig en de fans worden wild"
+
+#~ msgid "P1 will have to go off after what seems an ankle injury"
+#~ msgstr "P1 moet eraf, het lijkt erop dat hij een enkelblessure heeft"
+
+#~ msgid "P1 wins the ball with a perfectly timed challenge"
+#~ msgstr "P1 pakt juist op het goede moment met een beweging uit"
+
+#~ msgid "P1's overhead kick heads towards the top right hand corner"
+#~ msgstr "P1's omhaal gaat naar de rechterbovenhoek"
+
+#~ msgid "P2 chips the ball towards P1 who heads the ball towards goal"
+#~ msgstr "P2 lobt naar P1 die de bal naar de goal kopt"
+
+#~ msgid "P2 controls it with his chest and passes to P1"
+#~ msgstr "P2 controleerd de bal met de borst en past naar P1"
+
+#~ msgid "P2 cross controlled by P1 who slips past his man"
+#~ msgstr "P2 past naar P1 die voorbij zijn man gaat"
+
+#~ msgid "P2 feeds the ball through to P1"
+#~ msgstr "P2 geeft de bal aan P1"
+
+#~ msgid "P2 for dangerous slide tackle on P1"
+#~ msgstr "Kaart voor P2 voor een gevaarlijkt tackle op P1"
+
+#~ msgid "P2 for foul on P1"
+#~ msgstr "Kaart voor P2 voor de fout op P1"
+
+#~ msgid "P2 for handball"
+#~ msgstr "Kaart voor hands van P2"
+
+#~ msgid "P2 for intentional handball"
+#~ msgstr "Kaart voor opzettelijk handspel van P2"
+
+#~ msgid "P2 for kicking ball away "
+#~ msgstr "Kaart voor P2 omdat P2 de bal weg schoot"
+
+#~ msgid "P2 for malicious showing of studs"
+#~ msgstr "Kaart voor P2 omdat hij op P1 schopte"
+
+#~ msgid "P2 for stopping P1 taking a quick free-kick"
+#~ msgstr ""
+#~ "Kaart voor P2 omdat hij voorkomt dat P1 een snelle vrije schop neemt"
+
+#~ msgid "P2 for swearing at opposition fans"
+#~ msgstr "Kaart omdat P2 de fans van de tegenstander opzweepte"
+
+#~ msgid "P2 for time wasting"
+#~ msgstr "Kaart voor P2 omdat hij tijd verspilde"
+
+#~ msgid "P2 forced to tip P1's shot over the crossbar"
+#~ msgstr "P2 duwt het schot van P1 over de deklat"
+
+#~ msgid ""
+#~ "P2 fouls and the stretcher bearers come racing on with P1 lying in agony "
+#~ "on the turf"
+#~ msgstr ""
+#~ "P2 maakt een fout op P1 en de mannen met de draagberry moeten hem komen "
+#~ "halen"
+
+#~ msgid "P2 goes off to applause from the fans, P1 replaces him"
+#~ msgstr "P2 krijgt een applaus"
+
+#~ msgid "P2 has been red carded for punching P1"
+#~ msgstr "Duw van P2 op P1: rode kaart"
+
+#~ msgid "P2 heads the ball towards P1"
+#~ msgstr "P2 kopt de bal naar P1"
+
+#~ msgid "P2 is booed off the pitch as he is replaced by P1"
+#~ msgstr "P2 word van het veld gefloten als hij vervangen word door P1"
+
+#~ msgid "P2 is booked for repeated dissent"
+#~ msgstr "Kaart voor P2 voor herhalende fouten"
+
+#~ msgid "P2 is given his marching orders for contempt"
+#~ msgstr "Kaart voor P2 omdat hij protesteerde"
+
+#~ msgid "P2 is reprimanded for high kicking"
+#~ msgstr "Kaart voor de vliegende tackle van P2"
+
+#~ msgid "P2 is sent off for stopping a clear goal scoring opportunity"
+#~ msgstr ""
+#~ "Rode kaart voor P2 omdat hij een speler tackelde die alleen op goal afging"
+
+#~ msgid "P2 knocks over P1 with a double footed lunge"
+#~ msgstr "P2 velt P1 met bijde voeten vooruit"
+
+#~ msgid "P2 lays the ball off to P1 who sends a rocket of a shot towards goal"
+#~ msgstr "P2 legt de bal af naar P1 en die zendt een raket naar doel"
+
+#~ msgid "P2 makes a superb reflex save to tip wide"
+#~ msgstr "Prachtige reflex van P2"
+
+#~ msgid "P2 needles ball through players and finds P1"
+#~ msgstr "P2 verstuurt een naadloze bal door een bos van benen en vindt P1"
+
+#~ msgid "P2 runs at P1 and blocks shot with ankle"
+#~ msgstr "P2 verkleint de hoek en blokt het schot van P1"
+
+#~ msgid ""
+#~ "P2 seemed to be everywhere at once, finally tipping the ball off the "
+#~ "crossbar"
+#~ msgstr ""
+#~ "P2 lijkt weg overal te zijn, uiteindelijk duwt hij de bal tegen de deklat"
+
+#~ msgid "P2 threads a great ball to P1 "
+#~ msgstr "P2 verstuurt een goede pas naar P1"
+
+#~ msgid ""
+#~ "P2's despairing dive can't keep P1's shot out and the ball is in the back "
+#~ "of the net!!!"
+#~ msgstr "P2's fantastiche duik kan P1 niet van een goal houden!!!"
+
+#~ msgid "P2's fingertips flicks it wide"
+#~ msgstr "P2's vingertoppen duwen de bal weg"
+
+#~ msgid "Quick passing move down the left"
+#~ msgstr "Snelle passeerbeweging op links"
+
+#~ msgid "RE, what an astonishing result for TW"
+#~ msgstr "RE, wat een goed resultaat voor TW"
+
+#~ msgid "Short free-kick from P1"
+#~ msgstr "Korte vrije schop van P1"
+
 #~ msgid "Show a preview of my next games (F1)"
 #~ msgstr "Toon een voorbeschouwing van mijn volgende matchen (F1)"
 
+#~ msgid "Slicing challenge by P2 on P1"
+#~ msgstr "Tackle van P2 op P1"
+
+#~ msgid "Stadium bills"
+#~ msgstr "Stadion facturen"
+
+#~ msgid "Stadium improvements"
+#~ msgstr "Stadion verbeteringen"
+
+#~ msgid "Surely that's a sending off offence"
+#~ msgstr "Dat zou rood moeten zijn"
+
+#~ msgid "Sweet strike by P1, hits the post"
+#~ msgstr "Het prachtige schot van P1 gaat op de paal"
+
+#~ msgid "TH is undergoing stadium problems"
+#~ msgstr "TH heeft stadionproblemen"
+
+#~ msgid "TL heads into the tunnel to await the managers scolding"
+#~ msgstr "TL gaat de tunnel binnen om uitgescholden te worden door de manager"
+
+#~ msgid ""
+#~ "TL's manager cops a rollicking from the fans as he turns from the dugout"
+#~ msgstr ""
+#~ "TL's manger krijgt boegeroep van de fans als hij uit de dug-out naar de "
+#~ "spelerstunnel gaat"
+
+#~ msgid "TT has changed their boost to EX"
+#~ msgstr "TT heeft zijn extra motivatie veranderd naar EX"
+
+#~ msgid "TT has changed their structure to EX"
+#~ msgstr "TT veranderd zijn struktuur in EX"
+
+#~ msgid "TT has changed their style to EX"
+#~ msgstr "TT heeft zijn stijl veranderd naar EX"
+
+#~ msgid "TT make a substitution, P1 comes on to replace P2"
+#~ msgstr "TT wisseld P1 voor P2"
+
+#~ msgid "TW are just 45 minutes away from a stunning victory"
+#~ msgstr "TW is 45 minuten verwijderd van de overwinning"
+
+#~ msgid "TW are triumphant!!!"
+#~ msgstr "TW is gewonnen!!!"
+
+#~ msgid "That little missunderstanding has cost TT a goal"
+#~ msgstr "Dat kleine misverstand kost TT een goal"
+
+#~ msgid "The ball flies past P2 and it's a goal!!!"
+#~ msgstr "De bal vliegt naast P2 in doel!!!"
+
+#~ msgid "The ball smacks into the crossbar with P2 stranded"
+#~ msgstr "P2 verslagen, maar de bal vliegt tegen de deklat"
+
+#~ msgid "The clash of the titans kicks off"
+#~ msgstr "De clash der titanen begint"
+
+#~ msgid ""
+#~ "The crowd roars as the players run out from the tunnel to start the match"
+#~ msgstr ""
+#~ "Het publiek schreeuwt als de spelers uit de spelerstunnel komen gelopen"
+
+#~ msgid "The dance ignites the fans, P1 celebrates in his own special fashion"
+#~ msgstr "De salto van P1 doet de fans juichen"
+
+#~ msgid "The fans boo TL off the pitch"
+#~ msgstr "De fans fluiten TL uit"
+
+#~ msgid "The fans pour onto the pitch in a full scale pitch invasion"
+#~ msgstr "De fans lopen het veld op"
+
+#~ msgid "The floodlights have just gone out"
+#~ msgstr "De elentriciteit is uitgevallen"
+
+#~ msgid "The match is over!"
+#~ msgstr "De match is afgelopen!"
+
+#~ msgid "The peasants are revolting"
+#~ msgstr "De supporters breken uit"
+
+#~ msgid "The referee checks his watch and blows for full time"
+#~ msgstr "De scheidsrechter kijkt op de klok en fluit af"
+
+#~ msgid "The referee gets the nod from the linesman and we are away"
+#~ msgstr "De scheidsrechter krijgt een knik van de lijnrechter en we zijn weg"
+
+#~ msgid "The referees are ready, players set, the battle begins"
+#~ msgstr ""
+#~ "De scheidsrechters zijn klaar, de spelers staan goed, de strijd begint"
+
+#~ msgid ""
+#~ "The riot police have moved in to stop fighting between sets of oppostion "
+#~ "supporters"
+#~ msgstr "De politie komt in actie om de supporters uit elkaar te houden"
+
+#~ msgid "The teams cant do it so now it's one on one. Striker against goalie"
+#~ msgstr ""
+#~ "De teams kunnen het niet binnen de reuliere speeltijd doen dus worden er "
+#~ "penalty's geschoten."
+
+#~ msgid ""
+#~ "The two teams are greeted by a wall of noise as they take to the pitch"
+#~ msgstr "De twee teams gaan onder luid applaus het veld op"
+
+#~ msgid ""
+#~ "There are two teams out there and only one of them is playing football"
+#~ msgstr "Er spelen twee teams maar alleen een van hen speelt voetbal"
+
 #~ msgid "Top league"
 #~ msgstr "1ste klasse"
+
+#~ msgid "Two teams, equall till now in every respect,face off in penalties"
+#~ msgstr "Twee teams, gelijk tot nu, moeten penaly's trappen"
+
+#~ msgid "Vicious tackle from P2 leaves P1 lying on the floor in agony"
+#~ msgstr "Gemene tackle van P2 legt P1 op de grond"
+
+#~ msgid "We're under way"
+#~ msgstr "We beginnen eraan"
+
+#~ msgid "Well that's that. It ends RE"
+#~ msgstr "Wel dat is het dan. Het eindigd op RE"
+
+#~ msgid "Who will breakdown first, extra time it is"
+#~ msgstr "Wie zal het eerst toegeven, er worden verlengingen gespeeld"
+
+#~ msgid "Who would have thought MI minutes ago it would come down to this"
+#~ msgstr ""
+#~ "Wie had MI minuten geleden gedacht dat het tot dit herleid zou worden"
+
+#~ msgid ""
+#~ "You have to bury the nerves, swallow and concentrate when your taking "
+#~ "penalties"
+#~ msgstr ""
+#~ "Je moet zenuwen controleren en je concentreren wanneer je een penalty "
+#~ "neemt"

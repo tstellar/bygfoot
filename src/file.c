@@ -1,3 +1,6 @@
+#include <sys/stat.h>
+#include <sys/types.h>
+
 #include "file.h"
 #include "free.h"
 #include "main.h"
@@ -139,18 +142,18 @@ file_check_home_dir_create_dirs(void)
     gint i;
     gchar *dirs[3] =
 	{HOMEDIRNAME,
-	 HOMEDIRNAME"/definitions",
-	 HOMEDIRNAME"/saves"};
+	 HOMEDIRNAME G_DIR_SEPARATOR_S "definitions",
+	 HOMEDIRNAME G_DIR_SEPARATOR_S "saves"};
     const gchar *home = g_get_home_dir();
     gchar buf[SMALL];
 
     for(i=0;i<3;i++)
     {
-	sprintf(buf, "%s/%s", home, dirs[i]);
+	sprintf(buf, "%s%s%s", home, G_DIR_SEPARATOR_S, dirs[i]);
 	if(!g_file_test(buf, G_FILE_TEST_EXISTS))
 	{
-	    sprintf(buf, "mkdir -v %s/%s", home, dirs[i]);
-	    file_my_system(buf);
+	    sprintf(buf, "%s%s%s", home, G_DIR_SEPARATOR_S, dirs[i]);
+	    mkdir(buf, (S_IRUSR | S_IWUSR | S_IXUSR));
 	}
     }
 }
@@ -169,11 +172,14 @@ file_check_home_dir_copy_conf_files(void)
 
     for(i=0;i<2;i++)
     {
-	sprintf(buf, "%s/%s/%s", home, HOMEDIRNAME, conf_files[i]);
+	sprintf(buf, "%s%s%s%s%s", home, G_DIR_SEPARATOR_S, 
+		HOMEDIRNAME, G_DIR_SEPARATOR_S, conf_files[i]);
 	if(!g_file_test(buf, G_FILE_TEST_EXISTS))
 	{
 	    conf_file = file_find_support_file(conf_files[i], TRUE);
-	    sprintf(buf, "cp -v %s %s/%s/%s", conf_file, home, HOMEDIRNAME, conf_files[i]);
+	    sprintf(buf, "%s %s %s%s%s%s%s", const_str("string_fs_copy_file_command"),
+		    conf_file, home, G_DIR_SEPARATOR_S,
+		    HOMEDIRNAME, G_DIR_SEPARATOR_S, conf_files[i]);
 	    file_my_system(buf);
 	}
     }
@@ -188,26 +194,26 @@ file_check_home_dir_copy_definition_dir(const gchar *dirname, const gchar *basen
     const gchar *home = g_get_home_dir();
     GPtrArray *dir_contents = NULL;
 
-    sprintf(buf, "%s/%s/%s", home, HOMEDIRNAME, basename);
+    sprintf(buf, "%s%s%s%s%s", home, G_DIR_SEPARATOR_S,
+	    HOMEDIRNAME, G_DIR_SEPARATOR_S, basename);
 
     if(!g_file_test(buf, G_FILE_TEST_EXISTS))
-    {
-	sprintf(buf2, "mkdir -v %s", buf);
-	file_my_system(buf2);
-    }
+	mkdir(buf, (S_IRUSR | S_IWUSR | S_IXUSR));
 
     dir_contents = file_dir_get_contents(dirname, "", "");
 
     for(i=0;i<dir_contents->len;i++)
     {
-	sprintf(buf, "%s/%s/%s/%s", home, HOMEDIRNAME, basename,
+	sprintf(buf, "%s%s%s%s%s%s%s", home, G_DIR_SEPARATOR_S,
+		HOMEDIRNAME, G_DIR_SEPARATOR_S, basename, G_DIR_SEPARATOR_S,
 		((GString*)g_ptr_array_index(dir_contents, i))->str);
 	
 	if(g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, ".xml") &&
 	   !g_file_test(buf, G_FILE_TEST_EXISTS))
 	{
 	    
-	    sprintf(buf2, "cp -v %s/%s %s", dirname,
+	    sprintf(buf2, "%s %s%s%s %s", const_str("string_fs_copy_file_command"),
+		    dirname, G_DIR_SEPARATOR_S,
 		    ((GString*)g_ptr_array_index(dir_contents, i))->str,
 		    buf);
 	    file_my_system(buf2);
@@ -215,11 +221,12 @@ file_check_home_dir_copy_definition_dir(const gchar *dirname, const gchar *basen
 	}
 	else
 	{
-	    sprintf(buf, "%s/%s", dirname, ((GString*)g_ptr_array_index(dir_contents, i))->str);
+	    sprintf(buf, "%s%s%s", dirname, G_DIR_SEPARATOR_S,
+		    ((GString*)g_ptr_array_index(dir_contents, i))->str);
 
 	    if(g_file_test(buf, G_FILE_TEST_IS_DIR))
 	    {
-		sprintf(buf2, "%s/%s", basename, 
+		sprintf(buf2, "%s%s%s", basename, G_DIR_SEPARATOR_S,
 			((GString*)g_ptr_array_index(dir_contents, i))->str);
 		file_check_home_dir_copy_definition_dir(buf, buf2);
 	    }
@@ -415,7 +422,7 @@ file_load_opt_file(const gchar *filename, OptionList *optionlist)
 
     while(file_get_next_opt_line(fil, opt_name, opt_value))
     {
-	new.name = g_string_new(opt_name);	
+	new.name = g_string_new(opt_name);
 	if(g_str_has_prefix(opt_name, "string_"))
 	{
 	    new.string_value = g_string_new(opt_value);
@@ -427,6 +434,16 @@ file_load_opt_file(const gchar *filename, OptionList *optionlist)
 	    sscanf(opt_value, "%d", &new.value);
 	}
 	g_array_append_val(optionlist->list, new);
+
+	if((g_str_has_suffix(new.name->str, "_unix") && os_is_unix) ||
+	   (g_str_has_suffix(new.name->str, "_win32") && !os_is_unix))
+	{
+	    strcpy(opt_name, new.name->str);
+	    opt_name[strlen(new.name->str) - 5] = '\0';
+	    new.name = g_string_new(opt_name);
+	    new.string_value = g_string_new(opt_value);
+	    g_array_append_val(optionlist->list, new);
+	}
     }
 
     for(i=0;i<optionlist->list->len;i++)
@@ -512,8 +529,8 @@ file_compress_files(const gchar *destfile, const gchar *prefix)
 	*pwd = g_get_current_dir();
     GPtrArray *files = file_dir_get_contents(dirname, basename, "");
 
-    sprintf(buf, "cd 1> /dev/null %s; %s %s", dirname,
-	    const_str("string_save_compress_command"), zipbasename);
+    sprintf(buf, "cd %s; %s %s", dirname,
+	    const_str("string_fs_compress_command"), zipbasename);
 
     for(i=0;i<files->len;i++)
     {
@@ -523,7 +540,8 @@ file_compress_files(const gchar *destfile, const gchar *prefix)
 
     file_my_system(buf);
 
-    sprintf(buf, "cd %s; rm -rf %s/%s*", pwd, dirname, basename);
+    sprintf(buf, "cd %s; %s %s%s%s*", pwd, const_str("string_fs_remove_file_command"),
+	    dirname, G_DIR_SEPARATOR_S, basename);
     file_my_system(buf);
 
     free_g_string_array(&files);
@@ -542,8 +560,8 @@ file_decompress(const gchar *filename)
     gchar *dirname = g_path_get_dirname(filename),
 	*basename = g_path_get_basename(filename);
 
-    sprintf(buf, "cd %s 1> /dev/null; %s %s", dirname,
-	    const_str("string_save_uncompress_command"), basename);
+    sprintf(buf, "cd %s; %s %s", dirname,
+	    const_str("string_fs_uncompress_command"), basename);
 
     file_my_system(buf);
 
