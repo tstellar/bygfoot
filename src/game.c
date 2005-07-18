@@ -183,14 +183,14 @@ game_get_player_probs(GArray *players, gfloat *probs, gfloat *weights, gboolean 
     gint i;
 
     probs[0] = (skills) ? player_get_game_skill(&g_array_index(players, Player, 1), FALSE) *
-	weights[g_array_index(players, Player, 1).pos - 1] :
-	weights[g_array_index(players, Player, 1).pos - 1] *
+	weights[g_array_index(players, Player, 1).cpos - 1] :
+	weights[g_array_index(players, Player, 1).cpos - 1] *
 	(g_array_index(players, Player, 1).cskill != 0);
     for(i=1;i<10;i++)
 	probs[i] = probs[i - 1] + 
 	    ((skills) ? player_get_game_skill(&g_array_index(players, Player, i + 1), FALSE) *
-	     weights[g_array_index(players, Player, i + 1).pos - 1] :
-	     weights[g_array_index(players, Player, i + 1).pos - 1] *
+	     weights[g_array_index(players, Player, i + 1).cpos - 1] :
+	     weights[g_array_index(players, Player, i + 1).cpos - 1] *
 	     (g_array_index(players, Player, i + 1).cskill != 0));
 }
 
