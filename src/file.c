@@ -529,10 +529,15 @@ file_compress_files(const gchar *destfile, const gchar *prefix)
     chdir(dirname);
     
     if (os_is_unix)
-        sprintf(buf, "%s %s", const_str("string_fs_compress_command"), zipbasename);
+        sprintf(buf, "%s %s %s", 
+		const_str("string_fs_compress_command"), 
+		const_str("string_fs_compress_switches"),
+		zipbasename);
     else
-        sprintf(buf, "%s%s%s %s", pwd, G_DIR_SEPARATOR_S, 
-		const_str("string_fs_compress_command"), zipbasename);
+        sprintf(buf, "\"%s%s%s\" %s %s", pwd, G_DIR_SEPARATOR_S, 
+		const_str("string_fs_compress_command"),
+		const_str("string_fs_compress_switches"),
+		zipbasename);
 
     for(i=0;i<files->len;i++)
     {
@@ -567,10 +572,15 @@ file_decompress(const gchar *filename)
     chdir(dirname);
 	
     if (os_is_unix)
-	sprintf(buf, "%s %s", const_str("string_fs_uncompress_command"), basename);
+	sprintf(buf, "%s %s %s", 
+		const_str("string_fs_uncompress_command"), 
+		const_str("string_fs_uncompress_switches"),
+		basename);
     else
-	sprintf(buf, "%s%s%s %s", pwd, G_DIR_SEPARATOR_S,
-		const_str("string_fs_uncompress_command"), basename);
+	sprintf(buf, "\"%s%s%s\" %s %s", pwd, G_DIR_SEPARATOR_S,
+		const_str("string_fs_uncompress_command"), 
+		const_str("string_fs_uncompress_switches"), 
+		basename);
 
     file_my_system(buf);
 

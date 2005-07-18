@@ -8,14 +8,18 @@
 #### so we write 5000 if we'd like to have 0.5
 
 # commands for unix filesystem interaction
-string_fs_compress_command_unix zip -q
-string_fs_uncompress_command_unix unzip -qq -o
+string_fs_compress_command_unix zip
+string_fs_compress_switches_unix -q
+string_fs_uncompress_command_unix unzip
+string_fs_uncompress_switches_unix -qq -o
 string_fs_copy_file_command_unix cp
-string_fs_remove_file_command_unix rm -rf
+string_fs_remove_file_command_unix rm
 
 # commands for win32 filesystem interaction
-string_fs_compress_command_win32 7za a -tzip 
-string_fs_uncompress_command_win32 7za e -y
+string_fs_compress_command_win32 7za
+string_fs_compress_switches_win32 a -tzip 
+string_fs_uncompress_command_win32 7za
+string_fs_uncompress_switches_win32 e -y
 string_fs_copy_file_command_win32 copy
 string_fs_remove_file_command_win32 erase
 
