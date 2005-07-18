@@ -3,10 +3,10 @@
 # Michal Rudolf <mrudolf@kdewebdev.org>, 2005.
 msgid ""
 msgstr ""
-"Project-Id-Version: pl\n"
+"Project-Id-Version: bygfoot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-17 13:52+0200\n"
-"PO-Revision-Date: 2005-07-15 10:38+0200\n"
+"POT-Creation-Date: 2005-07-18 18:14+0200\n"
+"PO-Revision-Date: 2005-07-17 23:28+0200\n"
 "Last-Translator: Michal Rudolf <mrudolf@kdewebdev.org>\n"
 "Language-Team: Polish <kdei18n-pl-devel@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -734,7 +734,7 @@ msgstr "APz"
 
 #: src/options_interface.c:573
 msgid "CPos "
-msgstr "APz "
+msgstr "AP "
 
 #. Current skill of a player.
 #: src/treeview.c:252
@@ -799,7 +799,7 @@ msgstr "Firma"
 msgid "Compensations"
 msgstr "Wyrównanie"
 
-#: src/load_save.c:121
+#: src/load_save.c:117
 msgid "Compressing savegame..."
 msgstr "Kompresowanie zapisu gry..."
 
@@ -840,7 +840,7 @@ msgid ""
 "Contract length\n"
 "(Months)"
 msgstr ""
-"Długość kontraktu\n"
+"Czas\n"
 "(miesiące)"
 
 #: src/window.c:505
@@ -938,7 +938,7 @@ msgstr "Nie wczytuj definicji"
 msgid "Don't load team definitions at all"
 msgstr "Nie wczytuj definicji drużyn"
 
-#: src/load_save.c:129 src/load_save.c:262
+#: src/load_save.c:125 src/load_save.c:258
 msgid "Done."
 msgstr "Gotowe."
 
@@ -1312,7 +1312,7 @@ msgstr "Język"
 msgid "Last %d"
 msgstr "Ostatnie %d"
 
-#: src/load_save.c:171
+#: src/load_save.c:167
 msgid "Last save file not found."
 msgstr "Nie znaleziono ostatnio zapisywanego pliku."
 
@@ -1408,7 +1408,7 @@ msgstr "Wczytaj ostatnio zapisaną lub wczytywaną grę."
 msgid "Loading cup: %s"
 msgstr "Wczytywanie pucharu: %s"
 
-#: src/load_save.c:215
+#: src/load_save.c:211
 msgid "Loading cups..."
 msgstr "Wczytywanie pucharów..."
 
@@ -1417,27 +1417,27 @@ msgstr "Wczytywanie pucharów..."
 msgid "Loading league: %s"
 msgstr "Wczytywanie ligi: %s"
 
-#: src/load_save.c:205
+#: src/load_save.c:201
 msgid "Loading leagues..."
 msgstr "Wczytywanie lig..."
 
-#: src/load_save.c:255
+#: src/load_save.c:251
 msgid "Loading miscellaneous..."
 msgstr "Wczytywanie pozostałych danych..."
 
-#: src/load_save.c:189
+#: src/load_save.c:185
 msgid "Loading options/constants..."
 msgstr "Wczytywanie ustawień/stałych..."
 
-#: src/load_save.c:245
+#: src/load_save.c:241
 msgid "Loading season stats..."
 msgstr "Wczytywanie statystyk sezonu..."
 
-#: src/load_save.c:235
+#: src/load_save.c:231
 msgid "Loading transfer list..."
 msgstr "Wczytywanie listy transferowej..."
 
-#: src/load_save.c:225
+#: src/load_save.c:221
 msgid "Loading users..."
 msgstr "Wczytywanie użytkowników..."
 
@@ -1505,7 +1505,7 @@ msgstr "Moje wyniki ligowe"
 #: src/misc2_interface.c:97 src/treeview.c:246 src/treeview.c:617
 #: src/treeview.c:1806
 msgid "Name"
-msgstr "Nazwa"
+msgstr "Zawodnik"
 
 #: src/options_interface.c:566
 msgid "Name "
@@ -1853,31 +1853,31 @@ msgstr "Nadpisywanie przy zapisie"
 msgid "Save user settings to file"
 msgstr "Zapisz ustawienia użytkownika"
 
-#: src/load_save.c:73
+#: src/load_save.c:69
 msgid "Saving cups..."
 msgstr "Zapisywanie pucharów..."
 
-#: src/load_save.c:62
+#: src/load_save.c:58
 msgid "Saving leagues..."
 msgstr "Zapisywanie lig..."
 
-#: src/load_save.c:114
+#: src/load_save.c:110
 msgid "Saving miscellaneous..."
 msgstr "Zapisywanie pozostałych danych..."
 
-#: src/load_save.c:47
+#: src/load_save.c:43
 msgid "Saving options/constants..."
 msgstr "Zapisywanie opcji/stałych..."
 
-#: src/load_save.c:104
+#: src/load_save.c:100
 msgid "Saving season stats..."
 msgstr "Zapisywanie statystyk sezonu..."
 
-#: src/load_save.c:94
+#: src/load_save.c:90
 msgid "Saving transfer list..."
 msgstr "Zapisywanie listy transferowej..."
 
-#: src/load_save.c:84
+#: src/load_save.c:80
 msgid "Saving users..."
 msgstr "Zapisywanie użytkowników..."
 
@@ -2318,7 +2318,7 @@ msgstr ""
 "Próbuje ustawić graczy podstawowego składu na ich oryginalnych pozycjach i "
 "sortuje rezerwowych (Ctrl - R lub środkowy przycisk)"
 
-#: src/load_save.c:179
+#: src/load_save.c:175
 msgid "Uncompressing savegame..."
 msgstr "Rozpakowywanie zapisu gry..."
 
@@ -2806,7 +2806,7 @@ msgstr "Szkółka młodzików"
 
 #: src/interface.c:546 src/treeview.c:1278
 msgid "Youth academy"
-msgstr "Szkółkass młodzików"
+msgstr "Szkółka młodzików"
 
 #: src/interface.c:560 src/treeview.c:1277
 msgid "Youth coach"
@@ -2847,17 +2847,3 @@ msgstr "_Drużyna"
 #: src/interface.c:771
 msgid "_User"
 msgstr "_Użytkownik"
-
-#~ msgid "   "
-#~ msgstr "   "
-
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "2000"
-#~ msgstr "2000"
-
-#~ msgid ""
-#~ "Set the percentage of your income you want to spend on the youth academy"
-#~ msgstr ""
-#~ "Wybierz procent dochodów, jaki chcesz przeznaczyć na szkółkę młodzików"

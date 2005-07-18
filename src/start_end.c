@@ -335,6 +335,7 @@ end_week_round_update_fixtures(void)
 	   cp(i).fixtures->len == 0 &&
 	   query_cup_begins(&cp(i)))
 	{
+	    printf("cup %s\n", cp(i).name->str);
 	    cp(i).last_week = cup_get_last_week_from_first(&cp(i), week + 1);
 	    fixture_write_cup_fixtures(&cp(i));
 	    g_ptr_array_add(acps, &cp(i));

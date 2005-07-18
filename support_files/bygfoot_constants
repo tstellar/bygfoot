@@ -14,8 +14,8 @@ string_fs_copy_file_command_unix cp
 string_fs_remove_file_command_unix rm -rf
 
 # commands for win32 filesystem interaction
-string_fs_compress_command_win32 zip -q
-string_fs_uncompress_command_win32 unzip -qq -o
+string_fs_compress_command_win32 7za a -tzip 
+string_fs_uncompress_command_win32 7za e -y
 string_fs_copy_file_command_win32 copy
 string_fs_remove_file_command_win32 erase
 

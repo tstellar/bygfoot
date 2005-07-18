@@ -5,6 +5,12 @@
 #include "player_struct.h"
 #include "user_struct.h"
 
+#ifdef G_OS_UNIX
+#define file_mkdir(dirname) mkdir(dirname, (S_IRUSR | S_IWUSR | S_IXUSR))
+#else
+#define file_mkdir(dirname) mkdir(dirname)
+#endif
+
 void
 file_add_support_directory_recursive                   (const gchar     *directory);
 
@@ -61,5 +67,11 @@ file_decompress(const gchar *filename);
 
 GPtrArray*
 file_get_name_files(void);
+
+void
+file_remove_files(const gchar *files);
+
+void
+file_copy_file(const gchar *source_file, const gchar *dest_file);
 
 #endif

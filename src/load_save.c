@@ -34,12 +34,8 @@ load_save_save_game(const gchar *filename)
     g_string_printf(save_file, "%s", fullname);
 
     if(g_file_test(fullname, G_FILE_TEST_EXISTS))
-    {
 	/*todo: replace with g_remove*/
-	sprintf(buf, "%s %s", const_str("string_fs_remove_file_command"),
-		fullname);
-	file_my_system(buf);
-    }
+	file_remove_files(fullname);
 
     if(debug > 60)
 	printf("load_save_save options/constants \n");
@@ -69,7 +65,7 @@ load_save_save_game(const gchar *filename)
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
-	    GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
 	_("Saving cups..."));
 
     for(i=0;i<cps->len;i++)
@@ -80,7 +76,7 @@ load_save_save_game(const gchar *filename)
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
-	    GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
 	_("Saving users..."));
 
     xml_loadsave_users_write(prefix);
@@ -90,7 +86,7 @@ load_save_save_game(const gchar *filename)
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
-	    GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
 	_("Saving transfer list..."));
 
     xml_loadsave_transfers_write(prefix);
@@ -117,7 +113,7 @@ load_save_save_game(const gchar *filename)
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
-	    GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
 	_("Compressing savegame..."));
 
     sprintf(buf, "%s___", prefix);
@@ -261,9 +257,8 @@ load_save_load_game(const gchar* filename)
 
     gui_show_progress(1, _("Done."));
 
-    sprintf(buf, "%s %s%s%s___*", const_str("string_fs_remove_file_command"),
-	    dirname, G_DIR_SEPARATOR_S, prefix);
-    file_my_system(buf);
+    sprintf(buf, "%s%s%s___*", dirname, G_DIR_SEPARATOR_S, prefix);
+    file_remove_files(buf);
 
     g_string_printf(save_file, "%s", fullname);
 
