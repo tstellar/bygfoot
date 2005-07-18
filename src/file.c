@@ -598,8 +598,6 @@ file_copy_file(const gchar *source_file, const gchar *dest_file)
 {
     gchar buf[SMALL];
 
-    printf("copy %s -> %s\n", source_file, dest_file);
-
     if(os_is_unix)
 	sprintf(buf, "%s %s %s", const_str("string_fs_copy_file_command"),
 		source_file, dest_file);
