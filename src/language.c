@@ -1,5 +1,6 @@
 #include <locale.h>
 
+
 #include "callbacks.h"
 #include "free.h"
 #include "language.h"
@@ -13,15 +14,11 @@
 void
 language_set(gint index)
 {
-    gchar buf[SMALL];
+    gchar buf[SMALL], buf2[SMALL];
+    gchar *pwd = g_get_current_dir();
     GPtrArray *codes = 
 	misc_separate_strings(const_str("string_language_codes"));
-    gint lc = LC_ALL;
 
-#ifdef G_OS_UNIX
-    lc = LC_MESSAGES;
-#endif
-    
     if(index > 0)
 	strcpy(buf, ((GString*)g_ptr_array_index(codes, index - 1))->str);
     else
@@ -30,8 +27,24 @@ language_set(gint index)
     if(strcmp(buf, opt_str("string_opt_language_code")) != 0 ||
        window.main == NULL)
     {
-	setlocale(lc, buf);
+#ifdef ENABLE_NLS
+	sprintf(buf2, "%s%slocale", pwd, G_DIR_SEPARATOR_S);
+	g_free(pwd);
+	if(g_file_test(buf2, G_FILE_TEST_EXISTS))
+	{
+	    bindtextdomain (GETTEXT_PACKAGE, buf2);
+	    bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+	    textdomain (GETTEXT_PACKAGE);
+	}
+#endif
+
+	g_setenv ("LANGUAGE", buf, TRUE);
 	opt_set_str("string_opt_language_code", buf);
+
+	{
+	    extern int  _nl_msg_cat_cntr;
+	    ++_nl_msg_cat_cntr;
+	}
 
 	if(window.main != NULL)
 	{

@@ -608,10 +608,7 @@ lg_commentary_load_commentary_file_from_option(void)
 	buf[2] = '\0';
     }
     else
-    {
-	strncpy(buf, opt_str("string_opt_language_code"), 2);
-	buf[2] = '\0';
-    }
+	strcpy(buf, opt_str("string_opt_language_code"));
 
     sprintf(commentary_file, "lg_commentary_%s.xml", buf);
 

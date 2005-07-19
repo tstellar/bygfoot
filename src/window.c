@@ -148,7 +148,11 @@ window_show_file_sel(void)
 				      save_file->str);
     else
     {
-	sprintf(buf, "%s/%s/saves/.", home, HOMEDIRNAME);
+	if(os_is_unix)
+	    sprintf(buf, "%s%s%s%ssaves%s.", home, G_DIR_SEPARATOR_S, 
+		    HOMEDIRNAME, G_DIR_SEPARATOR_S, G_DIR_SEPARATOR_S);
+	else
+	    sprintf(buf, ".%ssaves%s", G_DIR_SEPARATOR_S, G_DIR_SEPARATOR_S);
 	gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(window.file_chooser), buf);
     }
 

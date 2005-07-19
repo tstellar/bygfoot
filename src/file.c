@@ -148,14 +148,20 @@ file_check_home_dir_create_dirs(void)
     const gchar *home = g_get_home_dir();
     gchar buf[SMALL];
 
-    for(i=0;i<3;i++)
+    if(os_is_unix)
     {
-	sprintf(buf, "%s%s%s", home, G_DIR_SEPARATOR_S, dirs[i]);
-	if(!g_file_test(buf, G_FILE_TEST_EXISTS))
+	for(i=0;i<3;i++)
 	{
 	    sprintf(buf, "%s%s%s", home, G_DIR_SEPARATOR_S, dirs[i]);
-	    file_mkdir(buf);
+	    if(!g_file_test(buf, G_FILE_TEST_EXISTS))
+		file_mkdir(buf);
 	}
+    }
+    else
+    {
+	sprintf(buf, ".%ssaves", G_DIR_SEPARATOR_S);
+	if(!g_file_test(buf, G_FILE_TEST_EXISTS))
+	    file_mkdir(buf);    
     }
 }
 
@@ -178,8 +184,6 @@ file_check_home_dir_copy_conf_files(void)
 	if(!g_file_test(buf, G_FILE_TEST_EXISTS))
 	{
 	    conf_file = file_find_support_file(conf_files[i], TRUE);	    
-	    sprintf(buf, "%s%s%s%s%s",home, G_DIR_SEPARATOR_S,
-		    HOMEDIRNAME, G_DIR_SEPARATOR_S, conf_files[i]);
 	    file_copy_file(conf_file, buf);
 	}
     }
@@ -253,8 +257,12 @@ void
 file_check_home_dir(void)
 {
     file_check_home_dir_create_dirs();
-    file_check_home_dir_copy_conf_files();
-    file_check_home_dir_copy_definition_files();
+
+    if(os_is_unix)
+    {
+	file_check_home_dir_copy_conf_files();
+	file_check_home_dir_copy_definition_files();
+    }
 }
 
 /**

@@ -417,7 +417,12 @@ team_find_appropriate_structure(const Team *tm)
 
   for(i=0;i<11;i++)
       if(player_of_idx_team(tm, i)->cskill > 0 && player_of_idx_team(tm, i)->cpos != 0)
-	  structure += (gint)rint(powf(10, PLAYER_POS_FORWARD - player_of_idx_team(tm, i)->cpos));
+      {
+	  if(player_of_idx_team(tm, i)->pos != 0)
+	      structure += (gint)rint(powf(10, PLAYER_POS_FORWARD - player_of_idx_team(tm, i)->pos));
+	  else
+	      structure += (gint)rint(powf(10, PLAYER_POS_FORWARD - player_of_idx_team(tm, i)->cpos));
+      }
 
   return structure;
 }

@@ -100,22 +100,21 @@ main_init(gint argc, gchar *argv[])
     os_is_unix = TRUE;
 #endif
 
-    /* initialize the random nr generator */
-    rand_generator = g_rand_new();
-
     support_directories = NULL;
 
 #ifdef G_OS_UNIX
     file_add_support_directory_recursive(PACKAGE_DATA_DIR "/" PACKAGE "/support_files");
-#endif
-
     sprintf(buf, "%s%s%s", g_get_home_dir(), G_DIR_SEPARATOR_S, HOMEDIRNAME);
     file_add_support_directory_recursive(buf);
+#endif
 
     sprintf(buf, "%s%ssupport_files", pwd, G_DIR_SEPARATOR_S);
     g_free(pwd);
     file_add_support_directory_recursive(buf);
     
+    /* initialize the random nr generator */
+    rand_generator = g_rand_new();
+
     main_init_variables();
 
     file_check_home_dir();
