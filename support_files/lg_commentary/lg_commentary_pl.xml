@@ -2,87 +2,129 @@
   <event>
     <name>general</name>
     <commentary>_P1_ i _P0_ rozgrywają piłkę między sobą</commentary>
-    <commentary>_P1_ i _P0_ rozpoczynają akcję</commentary>
-    <commentary>_P0_ rozgląda się, komu podać</commentary>
-    <commentary>Długę piłkę przejmuje _P0_</commentary>
-    <commentary>_P0_ opanowuje długie podanie</commentary>
-    <commentary>Przerzucenie piłki na lewą stronę</commentary>
-    <commentary>Dobre rozciągnięcie gry</commentary>
-    <commentary>Podanie na skrzydło</commentary>
+    <commentary>_P1_ i _P0_ wyprowadzają akcję</commentary>
+    <commentary>_P1_, po prawej stronie boiska _P0_</commentary>
+    <commentary>_P1_, jest tam _P0_</commentary>
     <commentary>_P1_ podał trochę za mocno, ale _P0_ sobie poradził</commentary>
     <commentary>_P1_ przerzuca piłkę na drugą stronę boiska, ma ją teraz _P0_</commentary>
     <commentary>_P1_ zostawia piłkę, przejmuje ją _P0_</commentary>
     <commentary>_P1_ biegnie z piłką, _P0_ wychodzi na pozycję</commentary>
+    <commentary>_P0_ rozgląda się, komu podać</commentary>
+    <commentary>_P0_ opanowuje podanie</commentary>
     <commentary>_P0_ biegnie z piłką</commentary>
+    <commentary>_P0_ przedziera się lewą stroną boiska</commentary>
     <commentary>_P0_ opanowuje piłkę</commentary>
     <commentary>_P0_ próbuje podać do przodu</commentary>
+    <commentary>_P0_ próbuje minąć rywala</commentary>
+    <commentary>_P0_ usiłuje wyprowadzić akcję</commentary>
+    <commentary>Długą piłkę przejmuje _P0_</commentary>
+    <commentary>Przerzut na drugą stronę, gdzie wychodzi na pozycję _P0_</commentary>
+    <commentary>Przy piłce _P0_</commentary>
+    <commentary>Przerzucenie piłki na lewą stronę</commentary>
+    <commentary>Przerzut piłki na prawą stronę boiska</commentary>
+    <commentary>Dobre rozciągnięcie gry</commentary>
+    <commentary>Podanie na skrzydło</commentary>
+    <commentary>_T_TT__ rozgrywa piłkę</commentary>
     <commentary cond="_MI_ > 20">Trwa walka w środku pola</commentary>
-    <commentary cond="_TT_ = _TLN_">_P0_ próbuje zmobilizować kolegów do walki</commentary>
-    <commentary cond="_POS0_ > 70">_P0_ Zdecydowana przewaga gospodarzy</commentary>
-    <commentary cond="_GD_ > 0 and _MT_ < 25">_TW_ _MT_ minut dzieli od zwycięstwa w meczu</commentary>
-    <commentary cond="_GD_ = 1 and _MT_ < 4">_TL_ ma jeszcze _MT_ minut na wyrównanie</commentary>
-    <commentary cond="_GD_ = 1 and _MT_ < 20">_TL_ ma jeszcze _MT_ minut na wyrównanie</commentary> 
+    <commentary cond="_TT_ = _TLN_ and _MT_ < 30">_P0_ próbuje jeszcze zmobilizować kolegów do walki</commentary>
+    <commentary cond="_POS0_ > 70">Zdecydowana przewaga gospodarzy</commentary>
+    <commentary cond="_GD_ > 0 and _MT_ < 25">_TW_ _MT_ min. dzieli od zwycięstwa w meczu</commentary>
+    <commentary cond="_GD_ = 1 and _MT_ < 40">_TL_ ma jeszcze _MT_ min. na wyrównanie</commentary>
+    <commentary cond="_GD_ = 1 and _TWN_ = 1 and _MT_ < 40">Jeszcze _MT_ min. nadziei gospodarzy na wyrównanie</commentary> 
     <commentary cond="_GD_ > 1 and _MT_ < 15">_TW_ nie da sobie chyba wydrzeć zwycięstwa</commentary>
     <commentary cond="_GD_ > 2">Mecz jest już chyba rozstrzygnięty</commentary>
-    <commentary cond="_MI_ > 50 and _MT_ < 4">_TW_ _MT_ minut od zwycięstwa w meczu</commentary>
-    <commentary cond="_MI_ > 20 and _POSS[_POSS1_ > _POSS0_]_ > 58 and _GOALS[_POSS1_ > _POSS0_]_ = 0">_T[_POSS1_ G _POSS0_]_ mimo dużej przewagi nadal nie może strzelić bramki</commentary>
-    <commentary cond="_GOALS0_ + _GOALS1_ = 0 and _MT_ < 30">Nadal bez bramek w meczu _T0_-_T1_</commentary>
+    <commentary cond="_MT_ < 45 and _MT_ > 4">_TW_ _MT_ min. dzieli od zwycięstwa w meczu</commentary>
+    <commentary cond="_MI_ > 20 and _POSS[_POSS1_ > _POSS0_]_ > 65 and _GOALS[_POSS1_ > _POSS0_]_ = 0">_T[_POSS1_ G _POSS0_]_ mimo dużej przewagi nadal nie może strzelić bramki</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 0 and _MI_ > 30">Nadal bez bramek w meczu _T0_-_T1_</commentary>
+    <commentary cond="_SHOTS0_ + _SHOTS1_ = 0 and _MI_ > 12">Już _MI_ min. za nami, a żadna z drużyn nie oddała jeszcze strzału na bramkę</commentary>
   </event>
   <event>
     <name>lost_possession</name>
     <commentary>_P0_ przejmuje piłkę</commentary>
     <commentary>_P1_ nie opanowuje piłki, przejmuje ją _P0_</commentary>
+    <commentary>_P0_ jest szybszy niż _P1_</commentary>
+    <commentary>_P1_ fatalnie podaje i do piłki dochodzi _P0_</commentary>
+    <commentary>_P1_ podaje prosto pod nogi rywala</commentary>
     <commentary>_P0_ wybija piłkę wślizgiem</commentary>
     <commentary>_P0_ dopada bezpańskiej piłki</commentary>
     <commentary>_P1_ za daleko wypuszcza sobie piłkę, dobiega do niej _P0_</commentary>
-    <commentary>_P0_ traci piłkę</commentary>
+    <commentary>_P1_ traci piłkę</commentary>
+    <commentary>_P0_ odbiera piłkę rywalowi</commentary>
+    <commentary>Pojedynek _P1_ - _P0_ wygrywa _P0_</commentary>
+    <commentary>_P1_ rozpoczyna akcję</commentary>
     <commentary>_P1_ biegnie do piłki, ale _P0_ jest szybszy</commentary>
-    <commentary cond="_MI > 60">_P1_ jest już wyraźnie zmęczony i niedokładnie przyjmuje piłkę</commentary>
+    <commentary cond="_MI_ > 60">_P1_ jest już wyraźnie zmęczony i niedokładnie przyjmuje piłkę</commentary>
   </event>
   <event>
     <name>foul</name>
-    <commentary>_P0_ brutalnie faulowany</commentary>
-    <commentary>Brutany faul przerywa akcję</commentary>
+    <commentary>_P1_ fauluje</commentary>
+    <commentary>_P0_ faulowany</commentary>
+    <commentary>Brutalny faul przerywa akcję</commentary>
+    <commentary>_P1_ trafił w kostkę rywala, zamiast w piłkę</commentary>
     <commentary>_P0_ pada na trawę po faulu</commentary>
     <commentary>_P0_ powoli podnosi się po brutalnym wejściu przeciwnika</commentary>
+    <commentary>Sędzia uznał, że faulował _P1_</commentary>
     <commentary>_P1_ nieprzepisowo atakuje przeciwnika</commentary>
     <commentary>Sędzia odgwizduje faul, poszkodowany _P0_</commentary>
     <commentary>_P0_ leży na ziemi po starciu z przeciwnikiem</commentary>
-    <commentary pri="3" cond="_FOULS_TT__ > 6">_T_TT__ gra dzisiaj brutalnie - to już _FOULS_TT__ faul</commentary>
+    <commentary pri="2" cond="_FOULS_TT__ > 6">_T_TT__ gra dzisiaj brutalnie - to już _FOULS_TT__ faul</commentary>
+    <commentary cond="_TT_ = 0">Gwizdy na trybunach, kibice uważają, że _P1_ nie faulował</commentary>
   </event>
   <event>
     <name>scoring_chance</name>
-    <commentary>_P0_ decyduje się na strzał</commentary>
-    <commentary>_P0_ próbuje strzelać z daleka</commentary>
-    <commentary>_P1_ podaje do przodu, _P0_ jest pod bramką!</commentary>
-    <commentary>_P0_ składa się do strzału</commentary>
-    <commentary>_P0_ drybluje w polu karnym</commentary>
-    <commentary>_P0_ omija obrońcę i strzela</commentary>
-    <commentary>_P0_ strzela z ostrego kąta</commentary>
-    <commentary>_P0_ strzela z linii pola karnego</commentary>
+    <commentary>Nie pilnowany _P0_ na polu karnym!</commentary>
+    <commentary>Nie wiadomo, czy _P0_ chciał dośrodkować, czy strzelać</commentary>
+    <commentary>Próbuje strzelać _P0_</commentary>
     <commentary>_P0_ biegnie z piłką w kierunku bramki</commentary>
-    <commentary>_P0_ strzela z najbliższej odległości!</commentary>
-    <commentary>_P1_ znakomicie dośrodkowuje, _P0_ będzie sam na sam z bramkarzem!</commentary>
-    <commentary>_P0_ uderza piłkę głową</commentary>
+    <commentary>_P0_ decyduje się na strzał</commentary>
+    <commentary>_P0_ drybluje w polu karnym</commentary>
+    <commentary>_P0_ mija obrońcę i strzela</commentary>
     <commentary>_P0_ mija obrońcę w pełnym biegu</commentary>
+    <commentary>_P0_ mija obrońców i wpada w pole karne!</commentary>
+    <commentary>_P0_ na czystej pozycji!</commentary>
+    <commentary>_P1_ podaje do przodu, _P0_ jest pod bramką!</commentary>
+    <commentary>_P0_ próbuje strzelać z daleka</commentary>
+    <commentary>_P0_ przed szansą!</commentary>
+    <commentary>_P0_ składa się do strzału</commentary>
+    <commentary>_P0_ strzela z ostrego kąta</commentary>
+    <commentary>_P0_ strzela z najbliższej odległości!</commentary>
+    <commentary>_P0_ strzela z linii pola karnego</commentary>
+    <commentary>_P0_ uderza piłkę głową</commentary>
+    <commentary>_P1_ znakomicie dośrodkowuje, _P0_ będzie sam na sam z bramkarzem!</commentary>
+    <commentary>_P0_, wyśmienita okazja dla zespołu _T_TT__!</commentary>
     <commentary>_P1_ wrzuca piłkę w pole karne, dopada do niej _P0_</commentary>
+    <commentary cond="_TT_ = 1">Zamieszanie pod bramką gospodarzy!</commentary>
+    <commentary cond="_TT_ = 0">Zamieszanie pod bramką gości!</commentary>
     <commentary pri="4" cond="_TT_ = _TLN_ and _GD_ = 1">_P0_ ma szanse na wyrównanie!</commentary>
     <commentary pri="4" cond="_GD_ = 0">_P0_ przed szansą na zdobycie prowadzenia!</commentary>
+    <commentary pri="2" cond="_TT_ = 1">Kibice gospodarzy zamarli!</commentary>
+    <commentary pri="2" cond="_GOALS_TT__ > _GOALS[1 - _TT_]_">_P0_ przed szansą na powiększenie prowadzenia!</commentary>
   </event>
   <event>
     <name>goal</name>
-    <commentary>Gol!!!</commentary>
+    <commentary pri="2">Bramka!!!</commentary>
+    <commentary pri="3">Gol!!!</commentary>
     <commentary>Piłka wpada do bramki!!! _P0_ strzelcem bramki</commentary>
     <commentary>_P0_ zdobywa bramkę!!!</commentary>
-    <commentary>_P1_ nie sięga piłki, która wpada do siatki!!!</commentary>
-    <commentary>_P0_ i _RE_!!!</commentary>
     <commentary>_P0_ podnosi ręce do góry po wspaniałej bramce!!!</commentary>
+    <commentary>_P0_ i _RE_!!!</commentary>
+    <commentary>_P1_ nie sięga piłki, która wpada do siatki!!!</commentary>
+    <commentary>_P1_ przepuszcza piłkę pod nogami i _RE_!!!</commentary>
     <commentary>_P1_ nie ma szans!!!</commentary>
+    <commentary>_P1_ spóźnił się z interwencją i jest bramka!!!</commentary>
+    <commentary>_P1_ popełnia błąd i _T_TT__ zdobywa bramkę!!!</commentary>
+    <commentary cond="_PLGOALSALL0_ > 4">_P0_ nie marnuje takich okazji!!!</commentary>
+    <commentary cond="_PLGOALSALL0_ > 2">_P0_ zdobywa swoją kolejną bramkę w tych rozgrywkach!!!</commentary>
+    <commentary cond="_TT_ = _TWN_ and _GD_ > 1">_P0_ podwyższa na _RE_!!!</commentary>
     <commentary cond="_TT_ = 0">Radość na trybunach, _P0_ zdobywa bramkę!!!</commentary>
+    <commentary cond="_GD = 1 and _TT_ = _TWN_">_P0_ i _T_TT__ obejmuje prowadzenie!!!</commentary>
     <commentary cond="_TT_ = 0 and _GOALS0_ >= _GOALS1_">Owacje na trybunach, _P0_ strzela gola!!!</commentary>
-    <commentary cond="_GD_ = 0" pri="2">_P0_ zdobywa wyrównującą bramkę!!!</commentary>
+    <commentary pri="2" cond="_GD_ = 0">Remis!!!</commentary>
+    <commentary pri="3" cond="_GD_ = 0">_P0_ zdobywa wyrównującą bramkę!!!</commentary>
+    <commentary pri="5" cond="_GD_ > 1 and _GOALS_TT__ = 1">_T_TT_ zdobywa honorową bramkę!</commentary>
     <commentary>_P0_ zdobywa swoją _PLGOALSALL0_ bramkę w tym sezonie!!!</commentary>
-    <commentary cond="_GD_ = 0 and _MT_ < 5" pri="7">Wyrównanie w ostatnich minutach meczu!!!</commentary>
+    <commentary pri="5" cond="_GD_ = 0 and _MT_ < 10">A więc jednak remis!!!</commentary>
+    <commentary pri="7" cond="_GD_ = 0 and _MT_ < 5">Wyrównanie w ostatnich minutach meczu!!!</commentary>
   </event>
   <event>
     <name>miss</name>
@@ -95,22 +137,36 @@
     <commentary>Strzał przelatuje tuż obok słupka</commentary>
     <commentary>Niecelny strzał</commentary>
     <commentary>Nie ma bramki!</commentary>
+    <commentary>Piłka poszybowała wysoko nad poprzeczką</commentary>
+    <commentary>Piłka przelatuje nad bramką</commentary>
+    <commentary>Zabrakło kilkudziesięciu centymetrów!</commentary>
     <commentary>Jakim cudem to nie wpadło do bramki?!</commentary>
-    <commentary>Ależ okazję zmarnował _P0_</commentary>
+    <commentary>Ależ okazję zmarnował _P0_!</commentary>
     <commentary cond="_TT_ = _TLN_ and _GD_ = 1">_P0_ miał znakomitą okazję na wyrównanie</commentary>
+    <commentary cond="_TT_ = 0">Jęk zawodu na trybunach</commentary>
   </event>
   <event>
     <name>save</name>
     <commentary>_P1_ wybija piłkę na rzut rożny</commentary>
+    <commentary>_P1_ wybija piłkę czubkami palców!</commentary>
     <commentary>_P1_ z trudem broni</commentary>
     <commentary>_P1_ łapie piłkę</commentary>
+    <commentary>_P1_ bez problemu łapie piłkę</commentary>
+    <commentary>_P1_ nie ma problemów z obroną</commentary>
     <commentary>_P1_ znakomicie broni</commentary>
     <commentary>_P1_ cudem łapie piłkę</commentary>
     <commentary>_P1_ łatwo broni</commentary>
+    <commentary>_P1_ był na miejscu</commentary>
+    <commentary>Broni _P1_</commentary>
+    <commentary>Nie ma problemów _P1_</commentary>
+    <commentary>Pewnie interweniuje _P1_</commentary>
+    <commentary>Jak ten _P1_ to złapał?</commentary>
+    <commentary>Bardzo dobrze broni _P1_</commentary>
     <commentary>Bramkarz broni</commentary>
     <commentary>Bramkarz łapie piłkę</commentary>
     <commentary>_P0_ łatwo powstrzymany przez bramkarza</commentary>
-  </event>
+    <commentary>Za słaby strzał, _P1_ nie ma problemów z obroną</commentary>
+</event>
   <event>
     <name>start_match</name>
     <commentary>_AT_ osób na stadionie na meczu</commentary>
@@ -153,16 +209,22 @@
   </event>
   <event>
     <name>end_match</name>
-    <commentary>Koniec meczu!</commentary>
-    <commentary>Sędzia patrzy na zegarek i odgwizduje koniec meczu</commentary>
-    <commentary>Koniec!</commentary>
-    <commentary>Po _MI_ minutach mecz kończy się rezultatem _RE_</commentary>
-    <commentary>Gwizdek sędziego kończy mecz</commentary>
     <commentary>Koniec meczu: _RE_</commentary>
+    <commentary pri="2">Koniec: _T0_ : _T1_ : _RE_</commentary>
+    <commentary pri="2">Koniec meczu: _T0_ : _T1_ : _RE_</commentary>
+    <commentary pri="2">Koniec meczu! _TW_ wygrywa _GOALS_TWN__:_GOALS_TLN__</commentary>
+    <commentary pri="2">Koniec: spotkanie _T0_ - _T1_ kończy się wynikiem _RE_</commentary>
+    <commentary>Po _MI_ minutach mecz kończy się rezultatem _RE_</commentary>
+    <commentary>I gwizdek sędziego kończy mecz!</commentary>
+    <commentary>Sędzia patrzy na zegarek i odgwizduje koniec meczu</commentary>
+    <commentary>Ostatni gwizdek sędziego, _RE_!</commentary>
+    <commentary>Koniec!</commentary>
     <commentary>_RE_, _TW_ zwycięża</commentary>
-    <commentary pri="4" cond="_TAVSKILL_TWN__ + 5 < _TAVSKILL_TLN__">_TW_ odnosi sensacyjne zwycięstwo!</commentary>
-    <commentary pri="5" cond="_TLAYER_TWN__ < _TLAYER_TLN__">Sensacja! Kto mógł się spodziewać, że _TW_ pokona faworyta?!</commentary>
-    <commentary pri="3" cond="_SHOTS0_ != _SHOTS1_ and _TWN_ = [_SHOTS0_ > _SHOTS1_]">Drużyna _TW_ miała mniej okazji, ale potrafiła je wykorzystać</commentary>
+    <commentary pri="2" cond="_GD_ = 0">Koniec meczu! Remis</commentary>
+    <commentary cond="_GD_ > 1">_TW_ odnosi zdecydowane zwycięstwo</commentary>
+    <commentary pri="8" cond="_TAVSKILL_TWN__ + 5 < _TAVSKILL_TLN__">_TW_ odnosi sensacyjne zwycięstwo!</commentary>
+    <commentary pri="10" cond="_TLAYER_TWN__ > _TLAYER_TLN__">Sensacja! Kto mógł się spodziewać, że _TW_ pokona faworyta?!</commentary>
+    <commentary pri="2" cond="_SHOTS0_ != _SHOTS1_ and _TWN_ = [_SHOTS0_ > _SHOTS1_]">Drużyna _TW_ miała mniej okazji, ale potrafiła je wykorzystać</commentary>
     <commentary pri="5" cond="_GOALS0_ + _GOALS1_ = 0">Niestety, nie zobaczyliśmy bramek w tym meczu</commentary>
   </event>
   <event>
@@ -176,13 +238,28 @@
   <event>
     <name>header</name>
     <commentary>_P1_ wrzuca piłkę na pole karne, _P0_ główkuje</commentary>
+    <commentary>_P1_ w pole karne, _P0_ skacze do piłki!</commentary>
     <commentary>_P0_ skacze do piłki</commentary>
     <commentary>_P0_ trafia piłkę głową</commentary>
-    <commentary>_P0_ główkuje</commentary>    
+    <commentary>_P0_ główkuje</commentary>
+    <commentary>Zamieszanie pod bramką, _P0_ skacze do piłki</commentary>
+  </event>
+  <event>
+    <name>start_match</name>
+    <commentary>_AT_ osób na stadionie na meczu</commentary>
+    <commentary>Mecz rozpoczęty!</commentary>
+    <commentary>Gospodarze powitani owacją kibiców</commentary>
+    <commentary>_AT_ kibiców śledzi spotkanie na stadionie</commentary>
+    <commentary>Sędzia odgwizduje początek meczu</commentary>
+    <commentary>Drużyny wybiegają na boisko</commentary>
+    <commentary>Zaczynamy!</commentary>
+    <commentary>Po konsultacji z liniowymi sędzia główny rozpoczyna mecz</commentary>
+    <commentary cond="_TAVSKILLDIFF_ > 6" pri="3">_T[_TAVSKILL1_ > _TAVSKILL0_]_ jest zdecydowanym faworytem tego meczu</commentary>
+    <commentary cond="_TAVSKILLDIFF_ > 6" pri="3">_T[_TAVSKILL0_ > _TAVSKILL1_]_ zmierzy się dziś ze znacznie silniejszym przeciwnikiem</commentary>
   </event>
   <event>
     <name>post</name>
-    <commentary>_P0_ trafia w słupek</commentary>
+    <commentary>_P0_ trafia w słupek!</commentary>
     <commentary>Słupek!</commentary>
     <commentary>Piłka uderza w słupek!</commentary>
   </event>
@@ -191,17 +268,19 @@
     <commentary>Piłka trafia w poprzeczkę i wraca na boisko</commentary>
     <commentary>Poprzeczka!</commentary>
     <commentary>_P1_ wybija piłkę, która odbija się od poprzeczki i wychodzi za boisko</commentary>
+    <commentary>Spojenie słupka i poprzeczki!</commentary>
   </event>
   <event>
     <name>penalty</name>
     <commentary>Rzut karny!</commentary>
     <commentary>_P0_ będzie wykonywał rzut karny!</commentary>
     <commentary>Sędzia pokazuje na jedenasty metr!</commentary>
+    <commentary>Sędzia nie ma wątpliwości - karny!</commentary>
     <commentary>Będzie rzut karny!</commentary>
   </event>
   <event>
     <name>free_kick</name>
-    <commentary>Krótko rozegrany rzut rożny</commentary>
+    <commentary>Krótko rozegrany rzut wolny</commentary>
     <commentary>_P0_ rozpoczyna z rzutu wolnego</commentary>
     <commentary>Rzut wolny: _P0_ trafia w mur</commentary>
     <commentary>Rzut wolny: _P0_ przerzuca piłkę nad murem</commentary>
@@ -214,10 +293,14 @@
     <commentary>_P1_ ukarany żółtą kartką</commentary>
     <commentary>_P1_ za dyskusję z sędzią</commentary>
     <commentary>_P1_ za faul</commentary>
+    <commentary>_P1_ za złośliwy faul</commentary>
+    <commentary>_P1_ za symulowanie faulu</commentary>
+    <commentary>_P1_ za próbę wymuszenia rzutu karnego</commentary>
     <commentary>_P1_ za to zagranie ukarany żółtą kartką</commentary>
     <commentary>_P1_ za ostre wejście</commentary>
     <commentary>_P1_ za nieprzepisowe zagranie</commentary>
     <commentary>_P1_ za niesportowe zachowanie</commentary>
+    <commentary>_P1_ za złapanie rywala za koszulkę</commentary>
     <commentary>_P1_ otrzymuje _PLYELLOWS_ żółtą kartkę w tych rozgrywkach</commentary>
     <commentary pri="10" cond="_PLYELLOWS_ = _YELLOWLIMIT_">_P1_ nie zagra w następnym spotkaniu</commentary>
     <commentary cond="_MT_ < 15">_P1_ za opóźnianie gry</commentary>
@@ -226,7 +309,10 @@
   <event>
     <name>foul_red</name>
     <commentary>_P1_ za brutalny faul</commentary>
+    <commentary>_P1_ za złośliwy faul</commentary>
     <commentary>_P1_ za uderzenie przeciwnika</commentary>
+    <commentary>_P1_ za podcięcie rywala</commentary>
+    <commentary>_P1_ za oplucie rywala</commentary>
     <commentary>_P1_ za celowe zagranie ręką</commentary>
     <commentary>_P1_ za atak z tyłu na nogi przeciwnika</commentary>
     <commentary>_P1_ za faul na przeciwniku wychodzącym na czystą pozycję</commentary>
@@ -237,23 +323,32 @@
     <name>foul_red_injury</name>
     <commentary>_P1_ bezpardonowo podcina zawodnika przy piłce; _P0_ pada na murawę</commentary>
     <commentary>_P1_ brutalnie fauluje; _P0_ leży na boisku</commentary>
+    <commentary>_P0_ zwija się z bólu, a _P1_ za chwilę zobaczy czerwoną kartkę</commentary>
   </event>
   <event>
     <name>send_off</name>
     <commentary>_P0_ został wyrzucony z boiska</commentary>
+    <commentary>_P0_ opuści boisko z czerwoną kartką</commentary>
+    <commentary>_P0_ zobaczył czerwoną kartkę</commentary>
+    <commentary>_T_TT__ będzie grać w osłabieniu, _P0_ został wyrzucony z boiska</commentary>
   </event>
   <event>
     <name>injury</name>
     <commentary>_P0_ musi opuścić boisko</commentary>
     <commentary>_P0_ odniósł poważną kontuzję</commentary>
     <commentary>_P0_ znoszony z boiska na noszach</commentary>
-    <commentary>_P0_ nie będzie w stanie kontynuować gry</commentary>    
+    <commentary>_P0_ nie będzie w stanie kontynuować gry</commentary>
+    <commentary>_P0_ nie podnosi się po faulu</commentary>
+    <commentary>Potrzebna będzie zmiana, _P0_ leży na boisku</commentary>
   </event>
   <event>
     <name>temp_injury</name>
     <commentary>_P0_ nadciągnął mięsień</commentary>
+    <commentary>_P0_ chyba odniósł jakąś kontuzję</commentary>
+    <commentary>_P0_ ucierpiał w starciu z rywalem</commentary>
     <commentary>_P0_ opatrywany przez lekarza</commentary>
     <commentary>_P0_ lekko utyka</commentary>
+    <commentary>_P0_ odniósł kontuzję, ale chyba zmiana nie jest konieczna</commentary>
     <commentary>Wygląda, że _P0_ jest lekko kontuzjowany</commentary>
   </event>
   <event>
@@ -282,6 +377,7 @@
     <commentary>_P1_ schodzi z boiska, zastąpi go _P0_</commentary>
     <commentary>_P1_ opuszcza boisko, w jego miejsce wchodzi _P0_</commentary>
     <commentary>Schodzi _P1_, wchodzi _P0_</commentary>
+    <commentary cond="_MT_ < 10 and _GOALS_TT__ > _GOALS[1 - _TT_]_">Zmiana na zyskanie czasu: wchodzi _P1_, schodzi z niego _P0_</commentary>
   </event>
   <event>
     <name>structure_change</name>
