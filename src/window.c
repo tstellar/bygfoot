@@ -148,12 +148,16 @@ window_show_file_sel(void)
 				      save_file->str);
     else
     {
-	if(os_is_unix)
-	    sprintf(buf, "%s%s%s%ssaves%s.", home, G_DIR_SEPARATOR_S, 
-		    HOMEDIRNAME, G_DIR_SEPARATOR_S, G_DIR_SEPARATOR_S);
-	else
-	    sprintf(buf, ".%ssaves%s", G_DIR_SEPARATOR_S, G_DIR_SEPARATOR_S);
-	gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(window.file_chooser), buf);
+        if(os_is_unix)
+            sprintf(buf, "%s%s%s%ssaves%s", home, G_DIR_SEPARATOR_S, 
+            HOMEDIRNAME, G_DIR_SEPARATOR_S, G_DIR_SEPARATOR_S);
+        else
+        {
+            gchar *pwd = g_get_current_dir();
+            sprintf(buf, "%s%ssaves%s", pwd, G_DIR_SEPARATOR_S, G_DIR_SEPARATOR_S);
+            g_free(pwd);
+         }
+	     gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(window.file_chooser), buf);
     }
 
     if(gtk_dialog_run(GTK_DIALOG(window.file_chooser)) == GTK_RESPONSE_OK)

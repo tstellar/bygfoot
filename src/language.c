@@ -10,6 +10,10 @@
 #include "variables.h"
 #include "window.h"
 
+#ifndef G_OS_UNIX
+extern int _nl_msg_cat_cntr=0;
+#endif
+
 /** Set the game language to the specified one. */
 void
 language_set(gint index)
