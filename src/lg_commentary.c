@@ -135,6 +135,42 @@ query_lg_commentary_is_repetition(gint id)
     return FALSE;
 }
 
+
+
+/** Choose one of strings separated with '|' */
+void lg_commentary_choose_random(gchar* s)
+{
+   const gchar STR_SEP = '|';
+   gint i = 0;
+   gint count = 1;
+   const gchar* start;
+   
+   for (i = 0; s[i]; i++)
+      count += (s[i] == STR_SEP);
+
+   if (count == 1)
+      return;
+      
+   count = math_rndi(0, count-1) + 1;
+   start = s;
+   for (i = 0; s[i]; i++)
+      if (s[i] == STR_SEP)
+      {
+         count--;
+	 if (count == 1)
+	    start = s + i + 1;
+	 else if (!count)
+	 {
+	    s[i] = '\0';
+	    break;
+         }
+      }
+   strcpy(s, start);
+}
+
+
+
+
 /** Replace simple arithmetic expressions like "1 + 2"
     and comparisons like "3 < 4" with the appropriate result. */
 void
@@ -160,17 +196,21 @@ lg_commentary_replace_expressions(gchar *commentary_text)
 		{
 		    strncpy(buf2, buf + i + 1, j - i - 1);
 		    buf2[j - i - 1] = '\0';
+		    if (query_misc_string_contains(buf2, "|"))
+		      lg_commentary_choose_random(buf2);
 
-		    if(query_misc_string_contains(buf2, "<") ||
-		       query_misc_string_contains(buf2, ">") ||
-		       query_misc_string_contains(buf2, "=") ||
-		       query_misc_string_contains(buf2, " G ") ||
-		       query_misc_string_contains(buf2, " L "))
-			misc_parse(buf2, &value);
-		    else
-			misc_parse_expression(buf2, &value);
-
-		    sprintf(buf2, "%d", value);
+		    else 
+		    {
+		      if(query_misc_string_contains(buf2, "<") ||
+		         query_misc_string_contains(buf2, ">") ||
+   		         query_misc_string_contains(buf2, "=") ||
+		         query_misc_string_contains(buf2, " G ") ||
+		         query_misc_string_contains(buf2, " L "))
+			    misc_parse(buf2, &value);
+		       else
+		  	  misc_parse_expression(buf2, &value);
+  		       sprintf(buf2, "%d", value);
+		    }
 		    strcat(commentary_text, buf2);
 		    value = -1;
 
