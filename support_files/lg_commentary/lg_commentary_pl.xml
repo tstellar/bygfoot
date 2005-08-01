@@ -22,7 +22,7 @@
     <commentary>Podanie na [lewe |prawe |drugie ||]skrzydło</commentary>
     <commentary>_T_TT__ rozgrywa piłkę</commentary>
     <commentary cond="_MI_ > 20">Trwa walka w środku pola</commentary>
-    <commentary cond="_TT_ = _TLN_ and _MT_ < 30">_P0_ próbuje jeszcze zmobilizować kolegów do walki</commentary>
+    <commentary cond="_TT_ = _TLN_ and _MT_ < 40">_P0_ próbuje jeszcze zmobilizować kolegów do walki</commentary>
     <commentary cond="_POS0_ > 70">Zdecydowana przewaga gospodarzy</commentary>
     <commentary cond="_GD_ > 0 and _MT_ < 25">_TW_ _MT_ min. od zwycięstwa w meczu</commentary>
     <commentary cond="_GD_ = 1 and _MT_ < 40">_TL_ ma jeszcze _MT_ min. na wyrównanie</commentary>
@@ -102,10 +102,11 @@
     <commentary cond="_TT_ = 0 and _GOALS0_ >= _GOALS1_">Owacje na trybunach, _P0_ strzela gola!!!</commentary>
     <commentary pri="2" cond="_GD_ = 0">Remis!!!</commentary>
     <commentary pri="3" cond="_GD_ = 0">_P0_ zdobywa wyrównującą bramkę!!!</commentary>
-    <commentary pri="5" cond="_GD_ > 1 and _GOALS_TT__ = 1">_T_TT_ zdobywa honorową bramkę!</commentary>
+    <commentary pri="5" cond="_GD_ > 1 and _GOALS_TT__ = 1">_T_TT__ zdobywa honorową bramkę!</commentary>
     <commentary>_P0_ zdobywa swoją _PLGOALSALL0_ bramkę w tym sezonie!!!</commentary>
     <commentary pri="5" cond="_GD_ = 0 and _MT_ < 10">A więc jednak remis!!!</commentary>
     <commentary pri="7" cond="_GD_ = 0 and _MT_ < 5">Wyrównanie w ostatnich minutach meczu!!!</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 1 and _MI_ > 60">Wreszcie bramka!!!</commentary>
   </event>
   <event>
     <name>miss</name>
