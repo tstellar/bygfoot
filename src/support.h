@@ -8,10 +8,19 @@
 
 #include <gtk/gtk.h>
 
+#ifndef G_OS_UNIX
+  #define ENABLE_NLS 
+#endif
+
 /*
  * Standard gettext macros.
  */
 #ifdef ENABLE_NLS
+#  ifndef G_OS_UNIX
+#    define PACKAGE "bygfoot"
+#    define GETTEXT_PACKAGE "bygfoot"
+#    define PACKAGE_LOCALE_DIR "./locale"
+#  endif
 #  include <libintl.h>
 #  undef _
 #  define _(String) dgettext (PACKAGE, String)

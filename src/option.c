@@ -13,7 +13,7 @@ option_string(const gchar *name, OptionList *optionlist)
     gpointer element = g_datalist_get_data(&optionlist->datalist, name);
     
     if(element == NULL)
-	g_warning("option_string: option named %s not found\n", name);
+	g_warning("option_string: option named %s not found\nMaybe you should delete the .bygfoot directory from your home dir", name);
     else
 	return ((Option*)element)->string_value->str;
 
@@ -29,7 +29,7 @@ option_string_pointer(const gchar *name, OptionList *optionlist)
     gpointer element = g_datalist_get_data(&optionlist->datalist, name);
     
     if(element == NULL)
-	g_warning("option_string: option named %s not found\n", name);
+	g_warning("option_string: option named %s not found\nMaybe you should delete the .bygfoot directory from your home dir", name);
     else
 	return ((Option*)element)->string_value;
 
@@ -49,7 +49,7 @@ option_int(const gchar *name, OptionList *optionlist)
     gpointer element = g_datalist_get_data(&optionlist->datalist, name);
     
     if(element == NULL)
-	g_warning("option_int: option named %s not found\n", name);
+	g_warning("option_int: option named %s not found\nMaybe you should delete the .bygfoot directory from your home dir", name);
     else
 	return ((Option*)element)->value;
 
@@ -65,7 +65,7 @@ option_int_pointer(const gchar *name, OptionList *optionlist)
     gpointer element = g_datalist_get_data(&optionlist->datalist, name);
     
     if(element == NULL)
-	g_warning("option_int: option named %s not found\n", name);
+	g_warning("option_int: option named %s not found\nMaybe you should delete the .bygfoot directory from your home dir", name);
     else
 	return &((Option*)element)->value;
 
@@ -85,7 +85,7 @@ option_float(const gchar *name, OptionList *optionlist)
     gpointer element = g_datalist_get_data(&optionlist->datalist, name);
     
     if(element == NULL)
-	g_warning("option_float: option named %s not found\n", name);
+	g_warning("option_float: option named %s not found\nMaybe you should delete the .bygfoot directory from your home dir", name);
     else
 	return (gfloat)((Option*)element)->value / 10000;
 
@@ -104,7 +104,7 @@ option_set_string(const gchar *name, OptionList *optionlist, const gchar *new_va
     gpointer element = g_datalist_get_data(&optionlist->datalist, name);
     
     if(element == NULL)
-	g_warning("option_set_string: option named %s not found\n", name);
+	g_warning("option_set_string: option named %s not found\nMaybe you should delete the .bygfoot directory from your home dir", name);
     else
 	g_string_printf(((Option*)element)->string_value, "%s", new_value);
 }
@@ -119,7 +119,7 @@ option_set_int(const gchar *name, OptionList *optionlist, gint new_value)
     gpointer element = g_datalist_get_data(&optionlist->datalist, name);
     
     if(element == NULL)
-	g_warning("option_set_int: option named %s not found\n", name);
+	g_warning("option_set_int: option named %s not found\nMaybe you should delete the .bygfoot directory from your home dir", name);
     else
 	((Option*)element)->value = new_value;
 }

@@ -19,8 +19,6 @@
 #include "options_interface.h"
 #include "support.h"
 
-#include "gettext_macros.h"
-
 #define GLADE_HOOKUP_OBJECT(component,widget,name) \
   g_object_set_data_full (G_OBJECT (component), name, \
     gtk_widget_ref (widget), (GDestroyNotify) gtk_widget_unref)

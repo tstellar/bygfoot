@@ -645,6 +645,7 @@ treeview_helper_player_ext_info_to_cell(GtkTreeViewColumn *col,
     if(pl == NULL)
 	return;
 
+    printf("%s att %d\n", pl->name->str, row_idx);
     switch(row_idx)
     {
 	default:
@@ -776,6 +777,7 @@ treeview_helper_player_info_banned_to_cell(GtkCellRenderer *renderer, const GArr
     for(i=0;i<cards->len;i++)
 	if(g_array_index(cards, PlayerCard, i).red > 0)
 	{
+	    printf("cl %d\n", g_array_index(cards, PlayerCard, i).clid);
 	    /* Ban info of a player in the format: 'Cup/league name: Number of weeks banned' */
 	    sprintf(buf2, _("%s: %d weeks\n"),
 		    league_cup_get_name_string(g_array_index(cards, PlayerCard, i).clid),

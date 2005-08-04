@@ -211,14 +211,18 @@ cup_get_team_pointers(Cup *cup, gint round)
 	    cup_load_choose_team(cup, teams, 
 				 &g_array_index(cup_round->choose_teams, CupChooseTeam, i));
 
-    for(i=0;i<cup_round->teams->len;i++)
-    {
-	if(teams->len < cup_round->new_teams)
-	{
-	    team_generate_players_stadium(&g_array_index(cup_round->teams, Team, i));
-	    g_ptr_array_add(cup->teams, &g_array_index(cup_round->teams, Team, i));	    
-	    g_ptr_array_add(teams, &g_array_index(cup_round->teams, Team, i));
+    if(cup_round->teams->len > 0)
+	while(teams->len + cup_round->teams->len > cup_round->new_teams)
+	{		
+	    free_team(&g_array_index(cup_round->teams, Team, cup_round->teams->len - 1));
+	    g_array_remove_index(cup_round->teams, cup_round->teams->len - 1);
 	}
+
+    for(i=0;i<cup_round->teams->len;i++)
+    {	
+	team_generate_players_stadium(&g_array_index(cup_round->teams, Team, i));
+	g_ptr_array_add(cup->teams, &g_array_index(cup_round->teams, Team, i));	    
+	g_ptr_array_add(teams, &g_array_index(cup_round->teams, Team, i));
     }
 
     if(debug > 70)
@@ -268,9 +272,12 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 	    {
 		if(debug > 80)
 		    printf("team %s isinint %d numteams %d\n",
-			   team_of_id(g_array_index(league->table.elements, TableElement, order[j]).team_id)->name->str,
+			   team_of_id(g_array_index(league->table.elements, 
+						    TableElement, order[j]).team_id)->name->str,
 			   query_team_is_in_international_cups(
-			       team_of_id(g_array_index(league->table.elements, TableElement, order[j]).team_id), cup->group),
+			       team_of_id(g_array_index(league->table.elements, 
+							TableElement, order[j]).team_id),
+			       cup->group),
 			   number_of_teams);
 
 		if(!query_team_is_in_international_cups(

@@ -152,6 +152,7 @@ misc2_callback_contract_offer(void)
 					 powf(-1, (pl->age > pl->peak_age))))))
 	    {
 		pl->contract += (i + 1);
+		pl->offers = 0;
 		pl->wage = value;
 		game_gui_show_warning(_("%s accepts your offer."), pl->name->str);
 		window_destroy(&window.contract, FALSE);

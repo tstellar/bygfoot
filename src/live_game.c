@@ -328,7 +328,12 @@ live_game_event_foul(void)
     else if(rndom < const_float("float_live_game_foul_red"))
 	type = LIVE_GAME_EVENT_FOUL_RED;
     else if(rndom < const_float("float_live_game_foul_yellow"))
+    {
 	type = LIVE_GAME_EVENT_FOUL_YELLOW;
+	player_card_set(player_of_id_team(tm[foul_team], foul_player),
+			match->fix->clid, PLAYER_VALUE_CARD_YELLOW, 1, TRUE);
+	player_of_id_team(tm[foul_team], foul_player)->career[PLAYER_VALUE_CARD_YELLOW]++;
+    }
     else
 	type = LIVE_GAME_EVENT_FOUL;
 
@@ -345,12 +350,6 @@ live_game_event_foul(void)
 				 query_live_game_second_yellow(foul_team, foul_player));
 	if(type == LIVE_GAME_EVENT_FOUL_RED_INJURY)
 	    live_game_event_injury(!foul_team, fouled_player, TRUE);
-    }
-    else if(type == LIVE_GAME_EVENT_FOUL_YELLOW)
-    {
-	player_card_set(player_of_id_team(tm[foul_team], foul_player),
-			match->fix->clid, PLAYER_VALUE_CARD_YELLOW, 1, TRUE);
-	player_of_id_team(tm[foul_team], foul_player)->career[PLAYER_VALUE_CARD_YELLOW]++;
     }
 
     if(last_unit.area == LIVE_GAME_UNIT_AREA_ATTACK && foul_team !=
