@@ -3,6 +3,7 @@
 #include "free.h"
 #include "game.h"
 #include "game_gui.h"
+#include "league.h"
 #include "lg_commentary.h"
 #include "live_game.h"
 #include "main.h"
@@ -90,8 +91,9 @@ live_game_initialize(Fixture *fix)
 	if(window.live == NULL)
 	    window.live = window_create(WINDOW_LIVE);
 	else
+	    gtk_window_set_title(GTK_WINDOW(window.live),
+		league_cup_get_name_string(((LiveGame*)statp)->fix->clid));
 	    window_live_set_spinbuttons();
-
     }
 
     game_initialize(fix);
