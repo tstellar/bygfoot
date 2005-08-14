@@ -23,8 +23,10 @@ enum TeamCompare
 typedef struct
 {
     Team tm; /**< The team we move. */
-    gint league_idx; /** The index of the league that the team gets moved to. */
-    gint prom_rel_type;
+    GArray *dest_idcs;   /**< Array of possible destination indices. */
+    gint prom_rel_type; /**< Promotion or relegation */
+    gboolean dest_assigned; /**< Whether a destination league for the team
+			       is already assigned. */
 } TeamMove;
 
 Team

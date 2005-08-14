@@ -306,133 +306,6 @@ league_remove_team_with_id(League *league, gint id)
 }
 
 
-/** Add the teams to promote/relegate (from the prom_rel elements)
-    from the league to the array. */
-void
-league_get_team_movements_prom_rel(const League *league, GArray *team_movements)
-{
-    gint i, j, k;
-    TeamMove new_move;
-    const GArray *elements = league->prom_rel.elements;
-    GPtrArray *dest_sids = NULL;
-
-    for(i=0;i<elements->len;i++)
-    {
-	dest_sids =
-	    misc_separate_strings(g_array_index(elements, PromRelElement, i).dest_sid->str);
-	gint order[dest_sids->len];
-
-	k = 0;
-	math_generate_permutation(order, 0, dest_sids->len - 1);
-
-	for(j=g_array_index(elements, PromRelElement, i).ranks[0];
-	    j<=g_array_index(elements, PromRelElement, i).ranks[1]; j++)
-	{
-	    new_move.tm = *(g_array_index(league->table.elements, TableElement, j - 1).team);
-	    new_move.league_idx = 
-		league_index_from_sid(((GString*)g_ptr_array_index(dest_sids, order[k++ % dest_sids->len]))->str);
-	    new_move.prom_rel_type = g_array_index(elements, PromRelElement, i).type;
-
-	    g_array_append_val(team_movements, new_move);
-
-	    if(team_is_user(g_array_index(league->table.elements, TableElement, j - 1).team) != -1)
-	    {
-		if(g_array_index(elements, PromRelElement, i).type == PROM_REL_PROMOTION)
-		    user_history_add(&usr(team_is_user(
-					      g_array_index(league->table.elements, TableElement, j - 1).team)),
-				     USER_HISTORY_PROMOTED, new_move.tm.id, lig(new_move.league_idx).id, -1, "");
-		else
-		    user_history_add(&usr(team_is_user(
-					      g_array_index(league->table.elements, TableElement, j - 1).team)),
-				     USER_HISTORY_RELEGATED, new_move.tm.id, lig(new_move.league_idx).id, -1, "");
-	    }
-	}
-	
-	free_g_string_array(&dest_sids);
-    }
-}
-
-
-/** Add the team movements from the promotion games
-    to the array. */
-void
-league_get_team_movements_prom_games(const League *league, GArray *team_movements,
-				     const GPtrArray *prom_games_teams, gboolean up)
-{
-    gint i, k;
-    TeamMove new_move;
-    GPtrArray *dest_sids = (up) ?
-	misc_separate_strings(league->prom_rel.prom_games_dest_sid->str) :
-	misc_separate_strings(league->prom_rel.prom_games_loser_sid->str);
-    gint order[dest_sids->len];
-    gint start_idx = 0, 
-	end_idx = league->prom_rel.prom_games_number_of_advance;
-    gint prom_type = PROM_REL_PROMOTION,
-	user_his_type = USER_HISTORY_PROMOTED;
-
-    if(!up)
-    {
-	start_idx = league->prom_rel.prom_games_number_of_advance;
-	end_idx = prom_games_teams->len;
-	prom_type = PROM_REL_RELEGATION;
-	user_his_type = USER_HISTORY_RELEGATED;
-    }
-
-    k = 0;
-    math_generate_permutation(order, 0, dest_sids->len - 1);
-
-    for(i=start_idx;i<end_idx;i++)
-    {	    
-	new_move.tm = *((Team*)g_ptr_array_index(prom_games_teams, i));
-	new_move.league_idx = 
-	    league_index_from_sid(((GString*)g_ptr_array_index(dest_sids, order[k++ % dest_sids->len]))->str);
-	new_move.prom_rel_type = prom_type;
-	g_array_append_val(team_movements, new_move);
-	
-	if(team_is_user((Team*)g_ptr_array_index(prom_games_teams, i)) != -1)
-	    user_history_add(&usr(team_is_user((Team*)g_ptr_array_index(prom_games_teams, i))),
-			     user_his_type, new_move.tm.id, lig(new_move.league_idx).id, -1, "");
-    }
-    
-    free_g_string_array(&dest_sids);
-}
-
-
-/** Add the teams to promote/relegate from the league to the array
-    and remove them from the leagues. */
-void
-league_get_team_movements(League *league, GArray *team_movements)
-{
-    GPtrArray *prom_games_teams = NULL;
-    const Cup *prom_cup = NULL;
-
-    league_get_team_movements_prom_rel(league, team_movements);
-
-    if(query_league_has_prom_games(league))
-    {
-	prom_cup = cup_from_sid(league->prom_rel.prom_games_cup_sid->str);
-    
-	if(prom_cup == NULL)
-	{
-	    g_warning("league_get_team_movements: promotion games cup not found for league %s (cup sid %s).\n",
-		      league->name->str, league->prom_rel.prom_games_cup_sid->str);
-	    return;
-	}
-
-	prom_games_teams = cup_get_teams_sorted(prom_cup);
-
-	league_get_team_movements_prom_games(league, team_movements, prom_games_teams, TRUE);
-
-	if(strlen(league->prom_rel.prom_games_loser_sid->str) > 0)
-	    league_get_team_movements_prom_games(league, team_movements, 
-						 prom_games_teams, FALSE);
-	
-	g_ptr_array_free(prom_games_teams, TRUE);
-    }
-
-    g_array_sort_with_data(league->teams, team_compare_func,
-			   GINT_TO_POINTER(TEAM_COMPARE_LEAGUE_RANK + 100));
-}
 
 
 /** Nullify league stuff at the beginning of a season. */
@@ -533,4 +406,323 @@ query_league_matches_in_week(const League *league, gint week_number)
 	    return TRUE;
 
     return FALSE;
+}
+
+/** Add the teams to promote/relegate (from the prom_rel elements)
+    from the league to the array. */
+void
+league_get_team_movements_prom_rel(const League *league, GArray *team_movements)
+{
+    gint i, j, k, tmp;
+    TeamMove new_move;
+    const GArray *elements = league->prom_rel.elements;
+    GArray *dest_idcs = NULL;
+    GPtrArray *dest_sids = NULL;
+
+    for(i=0;i<elements->len;i++)
+    {
+	for(j=g_array_index(elements, PromRelElement, i).ranks[0];
+	    j<=g_array_index(elements, PromRelElement, i).ranks[1]; j++)
+	{
+	    dest_sids = misc_separate_strings(
+		g_array_index(elements, PromRelElement, i).dest_sid->str);
+	    dest_idcs = g_array_new(FALSE, FALSE, sizeof(gint));
+
+	    for(k=0;k<dest_sids->len;k++)
+	    {
+		tmp = league_index_from_sid(((GString*)g_ptr_array_index(dest_sids, k))->str);
+		g_array_append_val(dest_idcs, tmp);
+	    }
+	    free_g_string_array(&dest_sids);
+	    
+	    new_move.tm = *(g_array_index(league->table.elements, TableElement, j - 1).team);
+	    new_move.prom_rel_type = g_array_index(elements, PromRelElement, i).type;
+	    new_move.dest_idcs = dest_idcs;
+	    new_move.dest_assigned = FALSE;
+	    g_array_append_val(team_movements, new_move);
+	}
+    }
+}
+
+
+/** Add the team movements from the promotion games
+    to the array. */
+void
+league_get_team_movements_prom_games(const League *league, GArray *team_movements,
+				     const GPtrArray *prom_games_teams, gboolean up)
+{
+    gint i, j;
+    TeamMove new_move;
+    GPtrArray *dest_sids = (up) ?
+	misc_separate_strings(league->prom_rel.prom_games_dest_sid->str) :
+	misc_separate_strings(league->prom_rel.prom_games_loser_sid->str);
+    GArray *dest_idcs = NULL;
+    gint dest_idcs_int[dest_sids->len];
+    gint start_idx = 0, 
+	end_idx = league->prom_rel.prom_games_number_of_advance;
+    gint prom_type = PROM_REL_PROMOTION;
+
+    if(!up)
+    {
+	start_idx = league->prom_rel.prom_games_number_of_advance;
+	end_idx = prom_games_teams->len;
+	prom_type = PROM_REL_RELEGATION;
+    }
+
+    for(i=0;i<dest_sids->len;i++)
+	dest_idcs_int[i] = 
+	    league_index_from_sid(((GString*)g_ptr_array_index(dest_sids, i))->str);
+
+    for(i=start_idx;i<end_idx;i++)
+    {	    
+	dest_idcs = g_array_new(FALSE, FALSE, sizeof(gint));
+	for(j=0;j<dest_sids->len;j++)
+	    g_array_append_val(dest_idcs, dest_idcs_int[j]);
+
+	new_move.tm = *((Team*)g_ptr_array_index(prom_games_teams, i));
+	new_move.prom_rel_type = prom_type;
+	new_move.dest_idcs = dest_idcs;
+	new_move.dest_assigned = FALSE;
+	g_array_append_val(team_movements, new_move);
+    }
+
+    free_g_string_array(&dest_sids);
+}
+
+
+/** Add the teams to promote/relegate from the league to the array
+    and remove them from the leagues. */
+void
+league_get_team_movements(League *league, GArray *team_movements)
+{
+    GPtrArray *prom_games_teams = NULL;
+    const Cup *prom_cup = NULL;
+
+    league_get_team_movements_prom_rel(league, team_movements);
+
+    if(query_league_has_prom_games(league))
+    {
+	prom_cup = cup_from_sid(league->prom_rel.prom_games_cup_sid->str);
+    
+	if(prom_cup == NULL)
+	{
+	    g_warning("league_get_team_movements: promotion games cup not found for league %s (cup sid %s).\n",
+		      league->name->str, league->prom_rel.prom_games_cup_sid->str);
+	    return;
+	}
+
+	prom_games_teams = cup_get_teams_sorted(prom_cup);
+
+	league_get_team_movements_prom_games(league, team_movements, prom_games_teams, TRUE);
+
+	if(strlen(league->prom_rel.prom_games_loser_sid->str) > 0)
+	    league_get_team_movements_prom_games(league, team_movements, 
+						 prom_games_teams, FALSE);
+	
+	g_ptr_array_free(prom_games_teams, TRUE);
+    }
+
+    g_array_sort_with_data(league->teams, team_compare_func,
+			   GINT_TO_POINTER(TEAM_COMPARE_LEAGUE_RANK + 100));
+}
+
+/** Find out whether there are unassigned TeamMoves in the array. */
+gboolean
+query_league_team_movements_unassigned(const GArray *team_movements)
+{
+    gint i;
+
+    for(i=0;i<team_movements->len;i++)
+	if(!g_array_index(team_movements, TeamMove, i).dest_assigned)
+	    return TRUE;
+
+    return FALSE;
+}
+
+/** Find out whether there are unassigned team moves with a single
+    destination value. */
+gboolean
+query_league_team_movements_unassigned_single(const GArray *team_movements)
+{
+    gint i;
+
+    for(i=0;i<team_movements->len;i++)
+	if(!g_array_index(team_movements, TeamMove, i).dest_assigned &&
+	   g_array_index(team_movements, TeamMove, i).dest_idcs->len == 1)
+	    return TRUE;
+
+    return FALSE;
+}
+
+/** Print out the movements to the console (debug function). */
+void
+league_team_movements_print(const GArray *team_movements, 
+			    const gint *league_size, const gint *league_cur_size)
+{
+    gint i, j;
+    const TeamMove *tmove = NULL;
+
+    printf("%-25s Dest \t\t Possible\n\n", "Team");
+    for(i=0;i<team_movements->len;i++)
+    {
+	tmove = &g_array_index(team_movements, TeamMove, i);
+	if(tmove->dest_assigned)
+	    printf("%-25s (%d) %s \t\t", tmove->tm.name->str,
+		   league_from_clid(tmove->tm.clid)->layer,
+		   lig(g_array_index(tmove->dest_idcs, gint, 0)).name->str);
+	else
+	    printf("%-25s (%d) UNASSIGNED \t\t", tmove->tm.name->str,
+		   league_from_clid(tmove->tm.clid)->layer);
+	for(j=0;j<tmove->dest_idcs->len;j++)
+	    printf("%d ", g_array_index(tmove->dest_idcs, gint, j));
+	printf("\n");
+    }
+
+    printf("%-20s Size Cursize\n", "League");
+    for(i=0;i<ligs->len;i++)
+	printf("%-20s %d %d\n", lig(i).name->str, league_size[i],
+	       league_cur_size[i]);
+}
+
+/** Compare two leagues when doing promotion/relegation. The league
+    that has fewer teams is preferred. */
+gint
+league_team_movements_compare_dest_idcs(gconstpointer a, gconstpointer b, 
+					gpointer data)
+{
+    gint league_idx1 = *(gint*)a,
+	league_idx2 = *(gint*)b;
+    const gint *league_cur_size = (const gint*)data;
+
+    if(league_cur_size[league_idx1] < league_cur_size[league_idx2])
+	return -1;
+    else if(league_cur_size[league_idx1] > league_cur_size[league_idx2])
+	return 1;
+
+    return 0;
+}
+
+/** Assign a random destination for the team move with given index
+    and remove the destination from all other unassigned moves if
+    the dest league is full. */
+void
+league_team_movements_assign_dest(GArray *team_movements, gint idx,
+				  const gint *league_size, gint *league_cur_size)
+{
+    gint i, j, dest_idx;
+    TeamMove *tmove = &g_array_index(team_movements, TeamMove, idx);
+
+    if(debug > 60)
+	printf("league_team_movements_assign_dest %s\n", tmove->tm.name->str);
+
+    if(tmove->dest_idcs->len == 1)
+	dest_idx = g_array_index(tmove->dest_idcs, gint, 0);
+    else
+    {
+	g_array_sort_with_data(tmove->dest_idcs,
+			       (GCompareDataFunc)league_team_movements_compare_dest_idcs,
+			       (gpointer)league_cur_size);
+	dest_idx = g_array_index(tmove->dest_idcs, gint, 0);
+    }
+
+    league_cur_size[dest_idx]++;
+
+    if(league_cur_size[dest_idx] > league_size[dest_idx])
+    {
+	g_warning("league_team_movements_assign_dest: no room in league %s for team %s.",
+		  lig(dest_idx).name->str, tmove->tm.name->str);
+	main_exit_program(EXIT_PROM_REL, NULL);
+    }
+
+    tmove->dest_assigned = TRUE;
+
+    if(debug > 60)
+	g_print("%s  %d -> %d\n", tmove->tm.name->str,
+		league_from_clid(tmove->tm.clid)->layer,
+		league_from_clid(lig(dest_idx).id)->layer);
+
+    if(league_cur_size[dest_idx] == league_size[dest_idx])
+	for(i=0;i<team_movements->len;i++)
+	{
+	    if(!g_array_index(team_movements, TeamMove, i).dest_assigned)
+	    {
+		tmove = &g_array_index(team_movements, TeamMove, i);
+		for(j=tmove->dest_idcs->len - 1; j>= 0; j--)
+		    if(g_array_index(tmove->dest_idcs, gint, j) == dest_idx)
+			g_array_remove_index(tmove->dest_idcs, j);
+
+		if(tmove->dest_idcs->len == 0)
+		{
+		    g_warning("league_team_movements_assign_dest: no destinations left for team %s.",
+			      tmove->tm.name->str);
+		    main_exit_program(EXIT_PROM_REL, NULL);
+		}
+	    }
+	}
+
+    if(team_is_user(&tmove->tm) != -1)
+    {
+	if(tmove->prom_rel_type == PROM_REL_PROMOTION)
+	    user_history_add(&usr(team_is_user(&tmove->tm)),
+			     USER_HISTORY_PROMOTED, tmove->tm.id,
+			     lig(g_array_index(tmove->dest_idcs, gint, 0)).id, -1, "");
+	else
+	    user_history_add(&usr(team_is_user(&tmove->tm)),
+			     USER_HISTORY_RELEGATED, tmove->tm.id,
+			     lig(g_array_index(tmove->dest_idcs, gint, 0)).id, -1, "");
+    }
+}
+
+/** Assign all unassigned TeamMoves in the array that only have one
+    destination value.
+    @param league_size The size of all leagues (i.e. how many teams they
+    should contain after promotion/relegation is finished).
+    @param league_cur_size The current size of all leagues (taking into
+    account the assigned team moves). */
+void
+league_team_movements_prune(GArray *team_movements, const gint *league_size,
+			    gint *league_cur_size)
+{
+    gint i;
+
+    if(debug > 60)
+	printf("league_team_movements_prune\n");
+
+    while(query_league_team_movements_unassigned_single(team_movements))
+    {
+	for(i=0;i<team_movements->len;i++)
+	    if(!g_array_index(team_movements, TeamMove, i).dest_assigned &&
+	       g_array_index(team_movements, TeamMove, i).dest_idcs->len == 1)
+		league_team_movements_assign_dest(team_movements, i, 
+						  league_size, league_cur_size);
+    }
+}
+
+/** Try to assign destinations for the team movements based on the
+    array of possible destinations.
+    @param league_size The size of all leagues (i.e. how many teams they
+    should contain after promotion/relegation is finished). */
+void
+league_team_movements_destinations(GArray *team_movements, const gint *league_size)
+{
+    gint i;
+    gint league_cur_size[ligs->len];
+
+    if(debug > 60)
+	printf("league_team_movements_destinations\n");
+
+    for(i=0;i<ligs->len;i++)
+	league_cur_size[i] = lig(i).teams->len;
+
+    if(debug > 65)
+	league_team_movements_print(team_movements, league_size, league_cur_size);
+
+    while(query_league_team_movements_unassigned(team_movements))
+    {
+	league_team_movements_prune(team_movements, league_size, league_cur_size);
+	for(i=0;i<team_movements->len;i++)
+	    if(!g_array_index(team_movements, TeamMove, i).dest_assigned)
+		league_team_movements_assign_dest(team_movements, i, 
+						  league_size, league_cur_size);
+    }
 }

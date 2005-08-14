@@ -87,6 +87,7 @@ enum ExitCodes
     EXIT_CUP_ROUND_ERROR, /**< Too few cup rounds. */
     EXIT_LOAD_TEAM_DEF, /**< Error loading a team definition file. */
     EXIT_DEF_SORT, /**< Error sorting a team after loading the definition. */
+    EXIT_PROM_REL, /**< Error when executing the promotion/relegation stuff. */
     EXIT_END
 };
 

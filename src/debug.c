@@ -1,3 +1,4 @@
+#include "callbacks.h"
 #include "debug.h"
 #include "game_gui.h"
 #include "option.h"
@@ -60,6 +61,11 @@ debug_action(const gchar *text, gint value)
 	current_user.youth_academy.pos_pref = value;
 	game_gui_print_message("Recruiting pref changed to %d.", value);
     }
+    else if(g_str_has_prefix(text, "goto"))
+    {
+	while(week < value)
+	    on_button_new_week_clicked(NULL, NULL);
+    }
     else if(g_str_has_prefix(text, "help"))
     {
 	printf("Debug options:\n"
@@ -72,6 +78,8 @@ debug_action(const gchar *text, gint value)
 	       "physio \t change physio\n"
 	       "youth coach \t change youth coach\n"
 	       "pospref \t change recruiting pref\n"
+	       "goto \t Press 'new week' automatically until\n"
+	       "     \t the appropriate week is reached\n"
 	       "help \t display this help\n");
     }
 

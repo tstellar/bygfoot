@@ -40,10 +40,13 @@ gint
 cup_get_first_week_of_cup_round(const Cup *cup, gint cup_round);
 
 gint
-cup_get_matchdays_in_cup_round(const Cup *cup, gint cup_round);
+cup_get_matchdays_in_cup_round(const Cup *cup, gint round);
 
 gint
-cup_round_robin_get_number_of_teams(const Cup *cup, gint round);
+cup_round_get_number_of_teams(const Cup *cup, gint round);
+
+gint
+cup_round_get_byes(const Cup *cup, gint round);
 
 gint
 cup_round_get_new_teams(const CupRound *cup_round);

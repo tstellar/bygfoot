@@ -38,14 +38,12 @@ load_save_save_game(const gchar *filename)
 	file_remove_files(fullname);
 
     if(debug > 60)
-	printf("load_save_save options/constants \n");
+	printf("load_save_save options\n");
 
-    gui_show_progress(0, _("Saving options/constants..."));
+    gui_show_progress(0, _("Saving options..."));
 
     sprintf(buf, "%s___options", prefix);
     file_save_opt_file(buf, &options);
-    sprintf(buf, "%s___constants", prefix);
-    file_save_opt_file(buf, &constants);
     sprintf(buf, "%s___settings", prefix);
     file_save_opt_file(buf, &settings);
 
@@ -177,17 +175,15 @@ load_save_load_game(const gchar* filename)
     file_decompress(fullname);
 
     if(debug > 60)
-	printf("load_save_load options/constants \n");
+	printf("load_save_load options\n");
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	_("Loading options/constants..."));
+	_("Loading options..."));
 
     sprintf(buf, "%s___options", prefix);
     file_load_opt_file(buf, &options);
-    sprintf(buf, "%s___constants", prefix);
-    file_load_opt_file(buf, &constants);
     sprintf(buf, "%s___settings", prefix);
     file_load_opt_file(buf, &settings);
     language_set(language_get_code_index(opt_str("string_opt_language_code")) + 1);

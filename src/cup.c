@@ -665,20 +665,22 @@ cup_get_last_week_from_first(const Cup *cup, gint first_week)
     @param cup_round The index of the cup round.
     @return The number of matchdays, mostly 1 or 2. */
 gint
-cup_get_matchdays_in_cup_round(const Cup *cup, gint cup_round)
+cup_get_matchdays_in_cup_round(const Cup *cup, gint round)
 {
+    const CupRound *cup_round = &g_array_index(cup->rounds, CupRound, round);    
     gint number_of_teams = -1;
     gint number_of_matchdays = -1;
     
-    if(g_array_index(cup->rounds, CupRound, cup_round).
-       round_robin_number_of_groups > 0)
+    if(cup_round->round_robin_number_of_groups > 0)
     {
-	number_of_teams = cup_round_robin_get_number_of_teams(cup, cup_round);
+	number_of_teams = (cup_round_get_number_of_teams(cup, round) -
+			   cup_round_get_byes(cup, round)) /
+	    cup_round->round_robin_number_of_groups;
 	number_of_matchdays = (number_of_teams  % 2 == 0) ?
 	    2 * (number_of_teams  - 1) :
-	    2 * number_of_teams;	
+	    2 * number_of_teams;
     }
-    else if(g_array_index(cup->rounds, CupRound, cup_round).home_away)
+    else if(g_array_index(cup->rounds, CupRound, round).home_away)
 	number_of_matchdays = 2;
     else
 	number_of_matchdays = 1;
@@ -686,13 +688,13 @@ cup_get_matchdays_in_cup_round(const Cup *cup, gint cup_round)
     return number_of_matchdays;
 }
 
-/** Return the number of teams playing in a group of 
-    the given cup round with round robin.
+/** Return the number of teams playing in
+    the given cup round.
     @param cup The cup we examine.
     @param cup_round The index of the cup round.
-    @return The number teams in one group. */
+    @return The number teams in the round. */
 gint
-cup_round_robin_get_number_of_teams(const Cup *cup, gint round)
+cup_round_get_number_of_teams(const Cup *cup, gint round)
 {
     const CupRound *cup_round = &g_array_index(cup->rounds, CupRound, round);
     gint number_of_teams = 0;
@@ -705,13 +707,44 @@ cup_round_robin_get_number_of_teams(const Cup *cup, gint round)
 	    (g_array_index(cup->rounds, CupRound, round - 1).round_robin_number_of_groups *
 	     g_array_index(cup->rounds, CupRound, round - 1).round_robin_number_of_advance) +
 	    g_array_index(cup->rounds, CupRound, round - 1).round_robin_number_of_best_advance +
-	    cup_round_get_new_teams(cup_round);
+	    cup_round_get_new_teams(cup_round) + cup_round_get_byes(cup, round - 1);
     }
+    else
+	number_of_teams = cup_round_get_number_of_teams(cup, round - 1) / 2 +
+	    cup_round_get_new_teams(cup_round) + cup_round_get_byes(cup, round - 1);
 
-    while(number_of_teams % cup_round->round_robin_number_of_groups != 0)
-	number_of_teams--;
+    return number_of_teams;
+}
 
-    return number_of_teams / cup_round->round_robin_number_of_groups;
+/** Get the number of byes in the given cup round. */
+gint
+cup_round_get_byes(const Cup *cup, gint round)
+{
+    const CupRound *cup_round = &g_array_index(cup->rounds, CupRound, round);
+    gint number_of_byes = 0, new_teams = 0;
+
+    if(cup_round->byes != -1)
+	number_of_byes = cup_round->byes;
+    else
+    {
+	if(round == 0)
+	    new_teams = cup_round_get_new_teams(cup_round);
+	else
+	    new_teams = cup_round_get_number_of_teams(cup, round);
+
+	if(cup_round->round_robin_number_of_groups == 0)
+	    number_of_byes = math_get_bye_len(new_teams);
+	else
+	{
+	    while(new_teams % cup_round->round_robin_number_of_groups != 0)
+	    {
+		new_teams--;
+		number_of_byes++;
+	    }
+	}
+    }    
+
+    return number_of_byes;
 }
 
 /** Return the number of new teams that come into the

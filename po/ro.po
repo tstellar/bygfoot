@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot 0.9.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-19 17:51+0200\n"
+"POT-Creation-Date: 2005-08-14 21:00+0200\n"
 "PO-Revision-Date: 2005-07-17 15:26+0300\n"
 "Last-Translator: Spoială Cristian <scristian@gmail.com>\n"
 "Language-Team: Romanian\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/treeview_helper.c:749
+#: src/treeview_helper.c:750
 #, c-format
 msgid ""
 "\n"
@@ -24,7 +24,7 @@ msgstr ""
 "\n"
 "Goluri/Joc %.1f Salvări %% %.1f"
 
-#: src/treeview_helper.c:756
+#: src/treeview_helper.c:757
 #, c-format
 msgid ""
 "\n"
@@ -72,20 +72,19 @@ msgid " (OG)"
 msgstr " (OG)"
 
 #. A goal scored with penalty.
-#. Penalty shooter.
-#: src/game.c:878 src/treeview_helper.c:967
+#: src/game.c:878 src/treeview_helper.c:969
 msgid " (P)"
 msgstr " (P)"
 
-#: src/cup.c:801
+#: src/cup.c:841
 msgid " -- First leg"
 msgstr " -- Tur"
 
-#: src/cup.c:804
+#: src/cup.c:844
 msgid " -- Replay matches"
 msgstr " -- Reluare meciuri"
 
-#: src/cup.c:799
+#: src/cup.c:839
 msgid " -- Second leg"
 msgstr " -- Retur"
 
@@ -278,7 +277,7 @@ msgstr "%s (H) "
 msgid "%s (N) "
 msgstr "%s (N) "
 
-#: src/treeview_helper.c:855
+#: src/treeview_helper.c:857
 #, c-format
 msgid "%s (expected recovery in %d weeks)"
 msgstr "%s (revenire prognozată în %d săptămâni)"
@@ -289,7 +288,7 @@ msgstr "%s (revenire prognozată în %d săptămâni)"
 msgid "%s Group %d"
 msgstr "%s Grup %d"
 
-#: src/misc2_callback_func.c:156
+#: src/misc2_callback_func.c:157
 #, c-format
 msgid "%s accepts your offer."
 msgstr "%s a acceptat oferta dumneavoastră."
@@ -349,7 +348,7 @@ msgstr ""
 "%s va făcut o ofertă pentru a lucru cu %s \n"
 "Acceptaţi oferta şi să părăsiţi %s."
 
-#: src/misc2_callback_func.c:168
+#: src/misc2_callback_func.c:169
 #, c-format
 msgid ""
 "%s rejects your offer and won't negotiate with you anymore. You should sell "
@@ -359,7 +358,7 @@ msgstr ""
 "trebui să îl vindeţi înainte să îi expire contractul (aftfel el va echipa de "
 "la echipă)."
 
-#: src/misc2_callback_func.c:163
+#: src/misc2_callback_func.c:164
 #, c-format
 msgid "%s rejects your offer. You may still make %d offers."
 msgstr "%s va refuzat oferta. Mai puteţi face %d oferte."
@@ -394,13 +393,13 @@ msgstr ""
 
 #. Yellow cards of a player in a cup/league. No limit means there isn't a limit
 #. after which the player gets banned for a match automatically.
-#: src/treeview_helper.c:817
+#: src/treeview_helper.c:819
 #, c-format
 msgid "%s: %d (no limit)\n"
 msgstr "%s: %d (fără limită)\n"
 
 #. Ban info of a player in the format: 'Cup/league name: Number of weeks banned'
-#: src/treeview_helper.c:780
+#: src/treeview_helper.c:782
 #, c-format
 msgid "%s: %d weeks\n"
 msgstr "%s: %d săptămâni\n"
@@ -464,20 +463,20 @@ msgstr ""
 msgid "<span foreground='%s' background='%s'>Week %d Round %d</span>"
 msgstr "<span foreground='%s' background='%s'>Săptămâna %d Runda %d</span>"
 
-#: src/lg_commentary.c:516 src/team.c:498
+#: src/lg_commentary.c:556 src/team.c:498
 msgid "ALL OUT ATTACK"
 msgstr "TOŢI ÎN ATAC"
 
-#: src/lg_commentary.c:504 src/team.c:490
+#: src/lg_commentary.c:544 src/team.c:490
 msgid "ALL OUT DEFEND"
 msgstr "TOŢI ÎN APĂRARE"
 
 #. Boost value.
-#: src/lg_commentary.c:519 src/team.c:506
+#: src/lg_commentary.c:559 src/team.c:506
 msgid "ANTI"
 msgstr "ANTI"
 
-#: src/lg_commentary.c:513 src/team.c:496
+#: src/lg_commentary.c:553 src/team.c:496
 msgid "ATTACK"
 msgstr "ATAC"
 
@@ -604,12 +603,12 @@ msgstr "Abilităţi medii:"
 msgid "Away"
 msgstr "Deplasare"
 
-#: src/lg_commentary.c:510 src/team.c:494
+#: src/lg_commentary.c:550 src/team.c:494
 msgid "BALANCED"
 msgstr "ECHILIBRAT"
 
 #. Red card info (how long the player is banned).
-#: src/treeview_helper.c:1083
+#: src/treeview_helper.c:1085
 #, c-format
 msgid "BAN(%d)"
 msgstr "BAN(%d)"
@@ -799,7 +798,7 @@ msgstr "Companie"
 msgid "Compensations"
 msgstr "Compensări"
 
-#: src/load_save.c:117
+#: src/load_save.c:115
 msgid "Compressing savegame..."
 msgstr "Se compresează salvarea jocului..."
 
@@ -843,7 +842,7 @@ msgstr ""
 "Durata contractului\n"
 "(Luni)"
 
-#: src/window.c:509
+#: src/window.c:514
 msgid "Contract offer"
 msgstr "Ofertă de contract"
 
@@ -859,7 +858,7 @@ msgstr "Contribuitori"
 msgid "Costs"
 msgstr "Costuri"
 
-#: src/support.c:90 src/support.c:114
+#: src/support.c:92 src/support.c:116
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "Nu s-a putut găsi fişierul imagine: %s"
@@ -893,11 +892,11 @@ msgid "Current skill"
 msgstr "Abilitatea curentă"
 
 #. Defender
-#: src/treeview_helper.c:1165
+#: src/treeview_helper.c:1167
 msgid "D"
 msgstr "D"
 
-#: src/lg_commentary.c:507 src/team.c:492
+#: src/lg_commentary.c:547 src/team.c:492
 msgid "DEFEND"
 msgstr "Apărare"
 
@@ -939,7 +938,7 @@ msgstr "Nu încărca definiţiile."
 msgid "Don't load team definitions at all"
 msgstr "Nu încărca deloc definiţiile."
 
-#: src/load_save.c:125 src/load_save.c:258
+#: src/load_save.c:123 src/load_save.c:254
 msgid "Done."
 msgstr "Făcut."
 
@@ -975,7 +974,7 @@ msgstr "Introduceţi o structură. Aceste cifre trebuie să fie până la 10."
 msgid "Enter custom structure"
 msgstr "Introduceţi o structură custom"
 
-#: src/window.c:423
+#: src/window.c:428
 msgid "Erm..."
 msgstr "Hmm..."
 
@@ -1012,7 +1011,7 @@ msgid "Expenses"
 msgstr "Cheltuieli"
 
 #. Forward
-#: src/treeview_helper.c:1181
+#: src/treeview_helper.c:1183
 msgid "F"
 msgstr "F"
 
@@ -1036,7 +1035,7 @@ msgstr ""
 msgid "Fin_Stad"
 msgstr "Fin_Stad"
 
-#: src/cup.c:827
+#: src/cup.c:867
 msgid "Final"
 msgstr "finala"
 
@@ -1098,7 +1097,7 @@ msgid "Fractured ankle"
 msgstr "Gleznă fracturată"
 
 #. Goalie
-#: src/treeview_helper.c:1157
+#: src/treeview_helper.c:1159
 msgid "G"
 msgstr "G"
 
@@ -1122,7 +1121,7 @@ msgstr "GP"
 msgid "Ga"
 msgstr "Jo"
 
-#: src/treeview_helper.c:729
+#: src/treeview_helper.c:730
 msgid "Games"
 msgstr "Jocuri"
 
@@ -1139,7 +1138,6 @@ msgid "Global"
 msgstr "Global"
 
 #. Goals of a player.
-#. Goals.
 #: src/treeview.c:262 src/treeview.c:2086
 msgid "Go"
 msgstr "Go"
@@ -1153,7 +1151,7 @@ msgstr "Go/Jo"
 msgid "Goalies"
 msgstr "Goluri"
 
-#: src/treeview.c:1587 src/treeview.c:2054 src/treeview_helper.c:730
+#: src/treeview.c:1587 src/treeview.c:2054 src/treeview_helper.c:731
 msgid "Goals"
 msgstr "Goluri"
 
@@ -1216,7 +1214,7 @@ msgstr ""
 "( minute în meciul în direct)"
 
 #. Injury info.
-#: src/treeview_helper.c:1073
+#: src/treeview_helper.c:1075
 #, c-format
 msgid "INJ(%d)"
 msgstr "ACC(%d)"
@@ -1241,7 +1239,7 @@ msgstr ""
 msgid "Improve!"
 msgstr "Îmbunătăţeşte!"
 
-#: src/treeview.c:1250 src/window.c:308
+#: src/treeview.c:1250 src/window.c:313
 #, c-format
 msgid ""
 "Improvement in progress.\n"
@@ -1264,7 +1262,7 @@ msgstr "Măreşte"
 msgid "Injuries"
 msgstr "Accidentări"
 
-#: src/misc2_interface.c:71 src/window.c:464
+#: src/misc2_interface.c:71 src/window.c:469
 msgid "Job offer"
 msgstr "Ofertă de lucru"
 
@@ -1310,12 +1308,12 @@ msgid "Language"
 msgstr "Limbă"
 
 #. A cup stage, e.g. Last 32 when there are only 32 teams left.
-#: src/cup.c:824
+#: src/cup.c:864
 #, c-format
 msgid "Last %d"
 msgstr "Ultimii %d"
 
-#: src/load_save.c:167
+#: src/load_save.c:165
 msgid "Last save file not found."
 msgstr "Ultimul fişierul salvat nu s-a găsit."
 
@@ -1410,7 +1408,7 @@ msgstr "Încarcă ultimul joc care a fost încărcat sau salvat."
 msgid "Loading cup: %s"
 msgstr "Se încarcă cupa: %s"
 
-#: src/load_save.c:211
+#: src/load_save.c:207
 msgid "Loading cups..."
 msgstr "Se încarcă cupele..."
 
@@ -1419,27 +1417,28 @@ msgstr "Se încarcă cupele..."
 msgid "Loading league: %s"
 msgstr "Se încarcă liga: %s"
 
-#: src/load_save.c:201
+#: src/load_save.c:197
 msgid "Loading leagues..."
 msgstr "Se încarcă ligile..."
 
-#: src/load_save.c:251
+#: src/load_save.c:247
 msgid "Loading miscellaneous..."
 msgstr "Se încarcă restul..."
 
-#: src/load_save.c:185
-msgid "Loading options/constants..."
-msgstr "Se încarcă opţiunile/constantele..."
+#: src/load_save.c:183
+#, fuzzy
+msgid "Loading options..."
+msgstr "Se încarcă cupele..."
 
-#: src/load_save.c:241
+#: src/load_save.c:237
 msgid "Loading season stats..."
 msgstr "Se încarcă statisticile pentru sezon..."
 
-#: src/load_save.c:231
+#: src/load_save.c:227
 msgid "Loading transfer list..."
 msgstr "Se încarcă lista de transferuri..."
 
-#: src/load_save.c:221
+#: src/load_save.c:217
 msgid "Loading users..."
 msgstr "Se încarcă utilizatorii..."
 
@@ -1448,7 +1447,7 @@ msgid "Loan"
 msgstr "Împrumut"
 
 #. Midfielder
-#: src/treeview_helper.c:1173
+#: src/treeview_helper.c:1175
 msgid "M"
 msgstr "M"
 
@@ -1545,7 +1544,7 @@ msgstr "Următorul utilizator"
 msgid "Next week you'll fire him and hire a new one."
 msgstr "Săptămână viitoare îl veţi concedia şi angaja unul nou."
 
-#: src/window.c:318
+#: src/window.c:323
 msgid "No improvements currently in progress."
 msgstr "Nu sunt îmbunătăţiri în progres."
 
@@ -1557,22 +1556,22 @@ msgstr "Nici un meci memorat."
 msgid "None"
 msgstr "Nici unul"
 
-#: src/window.c:442
+#: src/window.c:447
 msgid "Numbers..."
 msgstr "Numere..."
 
 #. Boost value.
-#: src/lg_commentary.c:522 src/team.c:509
+#: src/lg_commentary.c:562 src/team.c:509
 msgid "OFF"
 msgstr "OFF"
 
 #. Player status: ok.
-#: src/misc2_interface.c:221 src/player.c:1135 src/treeview_helper.c:1089
+#: src/misc2_interface.c:221 src/player.c:1135 src/treeview_helper.c:1091
 msgid "OK"
 msgstr "OK"
 
 #. Boost value.
-#: src/lg_commentary.c:525 src/team.c:512
+#: src/lg_commentary.c:565 src/team.c:512
 msgid "ON"
 msgstr "ON"
 
@@ -1592,7 +1591,7 @@ msgstr "On"
 msgid "Only names"
 msgstr "Numai numele"
 
-#: src/window.c:486
+#: src/window.c:491
 msgid "Options"
 msgstr "Opţiuni"
 
@@ -1643,7 +1642,7 @@ msgstr "Executant de penaltyuri/lovituri libere deselectat."
 msgid "Physio"
 msgstr "Fizic"
 
-#: src/treeview_helper.c:717
+#: src/treeview_helper.c:718
 msgid "Player accepts new offers"
 msgstr "Jucătorul acceptă noua ofertă"
 
@@ -1655,7 +1654,7 @@ msgstr "Precizia la atributele jucătorilor"
 msgid "Player attributes shown"
 msgstr "Arată atributele jucătorilor"
 
-#: src/treeview_helper.c:715
+#: src/treeview_helper.c:716
 msgid "Player doesn't negotiate anymore"
 msgstr "Jucătorul nu mai negociază"
 
@@ -1728,7 +1727,7 @@ msgstr "Întindere musculară"
 msgid "Put on transfer list"
 msgstr "Adaugă-l pe lista de transferuri"
 
-#: src/cup.c:833
+#: src/cup.c:873
 msgid "Quarter-final"
 msgstr "Sferturi de finală"
 
@@ -1752,7 +1751,7 @@ msgstr "Rearanjează echipa"
 msgid "Recruiting preference"
 msgstr "Preferinţele de recrutare"
 
-#: src/treeview.c:673 src/treeview_helper.c:733
+#: src/treeview.c:673 src/treeview_helper.c:734
 msgid "Reds"
 msgstr "Roşii"
 
@@ -1821,7 +1820,7 @@ msgstr ""
 msgid "Right-click to set to 0"
 msgstr "Click dreapta pentru a seta la 0"
 
-#: src/cup.c:816
+#: src/cup.c:856
 msgid "Round robin"
 msgstr "Round robin"
 
@@ -1856,31 +1855,32 @@ msgstr "Salvarea rescrie"
 msgid "Save user settings to file"
 msgstr "Salvează setările utilizatorului într-un fişier"
 
-#: src/load_save.c:69
+#: src/load_save.c:67
 msgid "Saving cups..."
 msgstr "Se salvează cupele..."
 
-#: src/load_save.c:58
+#: src/load_save.c:56
 msgid "Saving leagues..."
 msgstr "Se salvează ligile..."
 
-#: src/load_save.c:110
+#: src/load_save.c:108
 msgid "Saving miscellaneous..."
 msgstr "Se salvează restul..."
 
 #: src/load_save.c:43
-msgid "Saving options/constants..."
-msgstr "Se salvează opţiunile/constantele..."
+#, fuzzy
+msgid "Saving options..."
+msgstr "Se salvează cupele..."
 
-#: src/load_save.c:100
+#: src/load_save.c:98
 msgid "Saving season stats..."
 msgstr "Se salvează statisticele sezonului..."
 
-#: src/load_save.c:90
+#: src/load_save.c:88
 msgid "Saving transfer list..."
 msgstr "Se salvează lista de transferuri..."
 
-#: src/load_save.c:80
+#: src/load_save.c:78
 msgid "Saving users..."
 msgstr "Se salvează utilizatorii..."
 
@@ -1902,11 +1902,11 @@ msgstr "Sezon %d"
 msgid "Season history"
 msgstr "Istoricul sesiunii"
 
-#: src/misc_interface.c:409 src/window.c:494
+#: src/misc_interface.c:409 src/window.c:499
 msgid "Select font"
 msgstr "Selectaţi font"
 
-#: src/cup.c:830
+#: src/cup.c:870
 msgid "Semi-final"
 msgstr "Semi-finala"
 
@@ -1945,7 +1945,7 @@ msgstr "Şutează la penalty"
 msgid "Shot %"
 msgstr "Şut %"
 
-#: src/treeview.c:667 src/treeview_helper.c:731
+#: src/treeview.c:667 src/treeview_helper.c:732
 msgid "Shots"
 msgstr "Şuturi"
 
@@ -2046,7 +2046,7 @@ msgstr "Sponsor"
 msgid "Sponsorship"
 msgstr "Sponsorizare"
 
-#: src/window.c:548
+#: src/window.c:553
 msgid "Sponsorship offers"
 msgstr "Oferte de sponsorizări"
 
@@ -2298,7 +2298,7 @@ msgstr "Ligamente fracturate"
 msgid "Transfer deadline is Week %d"
 msgstr "Perioada de transferuri se termină în %d săptămâni"
 
-#: src/window.c:540
+#: src/window.c:545
 msgid "Transfer offer"
 msgstr "Ofertă de transfer"
 
@@ -2318,7 +2318,7 @@ msgstr ""
 "Încearcă să pună jucătorii din echipa de start pe poziţia preferată şi să "
 "sortează rezervele (Ctrl-R sau click cu butonul mijloc de maus)"
 
-#: src/load_save.c:175
+#: src/load_save.c:173
 msgid "Uncompressing savegame..."
 msgstr "Se decompresează salvarea jocului..."
 
@@ -2327,7 +2327,7 @@ msgstr "Se decompresează salvarea jocului..."
 msgid "User %s didn't consider your offer yet."
 msgstr "Utilizatorul %s încă nu a luat în considerare oferta dumneavoastră."
 
-#: src/window.c:517
+#: src/window.c:522
 msgid "User management"
 msgstr "Managementul utilizatorilor"
 
@@ -2389,7 +2389,7 @@ msgstr "Săptămână"
 msgid "Week %d Round %d"
 msgstr "Săptămâna %d Runda %d"
 
-#: src/window.c:387
+#: src/window.c:392
 #, c-format
 msgid "Welcome to Bygfoot %s"
 msgstr "Bine aţi venit în Bygfoot %s"
@@ -2514,7 +2514,7 @@ msgstr "CG"
 msgid "Yellow cards (limit)\n"
 msgstr "Cartonaşe galbene (limita)\n"
 
-#: src/treeview.c:672 src/treeview_helper.c:732
+#: src/treeview.c:672 src/treeview_helper.c:733
 msgid "Yellows"
 msgstr "Cartonaşe"
 
@@ -2781,7 +2781,7 @@ msgstr "Lotul de jucători este deja plin. Nu mai puteţi cumpăra jucători noi
 msgid "Your roster is full. You couldn't buy %s from %s."
 msgstr "Lotul de jucători este plin. Nu aţi putut cumpăra pe %s de la %s."
 
-#: src/window.c:453
+#: src/window.c:458
 msgid "Your stadium"
 msgstr "Stadionul tău"
 
@@ -2836,3 +2836,9 @@ msgstr "_Echipa"
 #: src/interface.c:771
 msgid "_User"
 msgstr "_Utilizator"
+
+#~ msgid "Loading options/constants..."
+#~ msgstr "Se încarcă opţiunile/constantele..."
+
+#~ msgid "Saving options/constants..."
+#~ msgstr "Se salvează opţiunile/constantele..."

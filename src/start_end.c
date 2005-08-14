@@ -335,7 +335,6 @@ end_week_round_update_fixtures(void)
 	   cp(i).fixtures->len == 0 &&
 	   query_cup_begins(&cp(i)))
 	{
-	    printf("cup %s\n", cp(i).name->str);
 	    cp(i).last_week = cup_get_last_week_from_first(&cp(i), week + 1);
 	    fixture_write_cup_fixtures(&cp(i));
 	    g_ptr_array_add(acps, &cp(i));
@@ -508,25 +507,38 @@ void
 start_new_season_league_changes(void)
 {
     gint i, j, k;
+    gint league_size[ligs->len];
     GArray *team_movements = g_array_new(FALSE, FALSE, sizeof(TeamMove));
 
     for(i=0;i<ligs->len;i++)
 	league_get_team_movements(&lig(i), team_movements);
 
+    for(i=0;i<ligs->len;i++)
+	league_size[i] = lig(i).teams->len;
+
     for(i=0;i<team_movements->len;i++)
-	league_remove_team_with_id(league_from_clid(g_array_index(team_movements, TeamMove, i).tm.clid),
-				   g_array_index(team_movements, TeamMove, i).tm.id);
+	league_remove_team_with_id(
+	    league_from_clid(g_array_index(team_movements, TeamMove, i).tm.clid),
+	    g_array_index(team_movements, TeamMove, i).tm.id);
+
+    league_team_movements_destinations(team_movements, league_size);
 
     for(i = team_movements->len - 1; i >= 0; i--)
 	if(g_array_index(team_movements, TeamMove, i).prom_rel_type == PROM_REL_RELEGATION)
-	    g_array_prepend_val(lig(g_array_index(team_movements, TeamMove, i).league_idx).teams,
-				g_array_index(team_movements, TeamMove, i).tm);
+	    g_array_prepend_val(
+		lig(g_array_index(
+			g_array_index(team_movements, TeamMove, i).dest_idcs, gint, 0)).teams,
+		g_array_index(team_movements, TeamMove, i).tm);
     
     for(i=1;i<team_movements->len;i++)
 	if(g_array_index(team_movements, TeamMove, i).prom_rel_type != PROM_REL_RELEGATION)
-	    g_array_append_val(lig(g_array_index(team_movements, TeamMove, i).league_idx).teams,
-			       g_array_index(team_movements, TeamMove, i).tm);
+	    g_array_append_val(
+		lig(g_array_index(
+			g_array_index(team_movements, TeamMove, i).dest_idcs, gint, 0)).teams,
+		g_array_index(team_movements, TeamMove, i).tm);
     
+    for(i=0;i<team_movements->len;i++)
+	g_array_free(g_array_index(team_movements, TeamMove, i).dest_idcs, TRUE);
     g_array_free(team_movements, TRUE);
     
     for(i=0;i<ligs->len;i++)
@@ -542,6 +554,7 @@ start_new_season_league_changes(void)
 	league_season_start(&lig(i));
     }
 }
+
 
 /** End a season (store stats etc.) */
 void

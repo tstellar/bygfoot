@@ -68,4 +68,29 @@ void
 league_get_team_movements_prom_games(const League *league, GArray *team_movements,
 				     const GPtrArray *prom_games_teams, gboolean up);
 
+void
+league_team_movements_destinations(GArray *team_movements, const gint *league_size);
+
+void
+league_team_movements_prune(GArray *team_movements, const gint *league_size,
+			    gint *league_cur_size);
+
+void
+league_team_movements_assign_dest(GArray *team_movements, gint idx,
+				  const gint *league_size, gint *league_cur_size);
+
+gboolean
+query_league_team_movements_unassigned_single(const GArray *team_movements);
+
+gboolean
+query_league_team_movements_unassigned(const GArray *team_movements);
+
+void
+league_team_movements_print(const GArray *team_movements, 
+			    const gint *league_size, const gint *league_cur_size);
+
+gint
+league_team_movements_compare_dest_idcs(gconstpointer a, gconstpointer b, 
+					gpointer data);
+
 #endif
