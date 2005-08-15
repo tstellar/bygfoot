@@ -436,6 +436,7 @@ free_cup(Cup *cup)
 	    
 	    free_g_array(&g_array_index(cup->rounds, CupRound, i).choose_teams);
 	    free_teams_array(&g_array_index(cup->rounds, CupRound, i).teams, FALSE);
+	    g_ptr_array_free(g_array_index(cup->rounds, CupRound, i).team_ptrs, TRUE);
 	}
 
     free_g_array(&cup->rounds);

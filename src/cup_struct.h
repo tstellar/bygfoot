@@ -39,6 +39,10 @@ typedef struct
     /** The teams that got loaded for this cup round.
 	Mostly this only happens in the first round. */
     GArray *teams;
+    /** Pointers to all teams loaded in the cup round; these
+	teams get passed to the fixture generation function
+	together with the teams advancing from the previous round. */
+    GPtrArray *team_ptrs;
     /** Which new teams come into the cup (@see #CupChooseTeam) */
     GArray *choose_teams;
     /** The round robin tables (in case there is a round robin). */

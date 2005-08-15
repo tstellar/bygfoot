@@ -81,6 +81,7 @@ cup_round_new(void)
     new.tables = g_array_new(FALSE, FALSE, sizeof(Table));
     new.choose_teams = g_array_new(FALSE, FALSE, sizeof(CupChooseTeam));
     new.teams = g_array_new(FALSE, FALSE, sizeof(Team));
+    new.team_ptrs = g_ptr_array_new();
 
     return new;
 }
@@ -110,14 +111,19 @@ cup_reset(Cup *cup)
 	if(g_array_index(cup->rounds, CupRound, i).tables->len > 0)
 	{
 	    for(j=0;j<g_array_index(cup->rounds, CupRound, i).tables->len;j++)
-		free_table(&g_array_index(g_array_index(cup->rounds, CupRound, i).tables, Table, j));	
+		free_table(&g_array_index(
+			       g_array_index(cup->rounds, CupRound, i).tables, Table, j));	
 	 
 	    g_array_free(g_array_index(cup->rounds, CupRound, i).tables, TRUE);
-	    g_array_index(cup->rounds, CupRound, i).tables = g_array_new(FALSE, FALSE, sizeof(Table));
+	    g_array_index(cup->rounds, CupRound, i).tables = 
+		g_array_new(FALSE, FALSE, sizeof(Table));
 	}
 
 	if(g_array_index(cup->rounds, CupRound, i).teams->len > 0)
 	    free_teams_array(&g_array_index(cup->rounds, CupRound, i).teams, TRUE);
+
+	g_ptr_array_free(g_array_index(cup->rounds, CupRound, i).team_ptrs, TRUE);
+	g_array_index(cup->rounds, CupRound, i).team_ptrs = g_ptr_array_new();
     }
 }
 
@@ -190,18 +196,22 @@ cup_get_choose_team_league_cup(const CupChooseTeam *ct,
     }
 }
 
-/** Return the pointers to the teams participating in the 
-    cup. If necessary, teams are generated and stored in the teams
-    array of the cup. */
-GPtrArray*
+/** Load the pointers to the teams participating in the 
+    cup round. If necessary, teams are generated and stored in the teams
+    array of the cup round. */
+void
 cup_get_team_pointers(Cup *cup, gint round)
 {
     gint i;
-    GPtrArray *teams = g_ptr_array_new();
     CupRound *cup_round = &g_array_index(cup->rounds, CupRound, round);
+    GPtrArray *teams = cup_round->team_ptrs;
 
     if(debug > 60)
 	printf("cup_get_team_pointers %s \n", cup->name->str);
+
+    if(teams->len > 0)
+	g_warning("cup_get_team_pointers: round %d in cup %s has non-empty team pointers array.",
+		  round, cup->name->str);
 
     for(i=0;i<cup_round->choose_teams->len;i++)
 	if(g_array_index(cup_round->choose_teams, CupChooseTeam, i).generate)
@@ -228,8 +238,6 @@ cup_get_team_pointers(Cup *cup, gint round)
     if(debug > 70)
 	for(i=0;i<teams->len;i++)
 	    printf("%d %s \n", i, ((Team*)g_ptr_array_index(teams, i))->name->str);
-
-    return teams;
 }
 
 /** Get the pointers to the teams (already generated, in one of the leagues or cups)

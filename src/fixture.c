@@ -40,14 +40,17 @@ fixture_write_league_fixtures(League *league)
 void
 fixture_write_cup_fixtures(Cup *cup)
 {
-    GPtrArray *teams = NULL;
+    gint i;
 
-    teams = cup_get_team_pointers(cup, 0);
+    for(i=0;i<cup->rounds->len;i++)
+	cup_get_team_pointers(cup, i);
 
     if(g_array_index(cup->rounds, CupRound, 0).round_robin_number_of_groups > 0)
-	fixture_write_cup_round_robin(cup, 0, teams);
+	fixture_write_cup_round_robin(cup, 0, 
+				      g_array_index(cup->rounds, CupRound, 0).team_ptrs);
     else
-	fixture_write_knockout_round(cup, 0, teams);
+	fixture_write_knockout_round(cup, 0, 
+				     g_array_index(cup->rounds, CupRound, 0).team_ptrs);
 }
 
 /** Update the fixtures for the given cup. 
@@ -59,7 +62,7 @@ fixture_update(Cup *cup)
     GArray *fixtures = cup->fixtures;
     gint round = g_array_index(fixtures, Fixture, fixtures->len - 1).round;
     gint replay = g_array_index(cup->rounds, CupRound, round).replay;
-    GPtrArray *teams = NULL, *teams_new = NULL;
+    GPtrArray *teams = NULL;
     const CupRound *new_round = NULL;
 
     if(replay != 0 && 
@@ -70,27 +73,29 @@ fixture_update(Cup *cup)
     teams = fixture_get_cup_round_winners(cup);
 
     if(round == cup->rounds->len - 1 && teams->len < 2)
+    {
+	g_ptr_array_free(teams, TRUE);
         return;
+    }
 
     if(round + 1 > cup->rounds->len - 1)
     {
 	g_warning("fixture_update: round index %d too high for round array (%d) in cup %s\n",
 		  round + 1, cup->rounds->len - 1, cup->name->str);
+	g_ptr_array_free(teams, TRUE);
 	main_exit_program(EXIT_CUP_ROUND_ERROR, NULL);
     }
 
     new_round = &g_array_index(cup->rounds, CupRound, round + 1);
 
-    if(new_round->choose_teams->len > 0)
-    {
-	teams_new = cup_get_team_pointers(cup, round + 1);
-	for(i=0;i<teams_new->len;i++)
-	    g_ptr_array_add(teams, g_ptr_array_index(teams_new, i));
-	g_ptr_array_free(teams_new, TRUE);
-    }
+    for(i=0;i<new_round->team_ptrs->len;i++)
+	g_ptr_array_add(teams, g_ptr_array_index(new_round->team_ptrs, i));
     
     if(teams->len < 2)
+    {
+	g_ptr_array_free(teams, TRUE);
 	return;
+    }
     
     if(cup->bye != NULL && cup->bye->len != 0)
     {

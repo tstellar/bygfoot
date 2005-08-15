@@ -27,7 +27,7 @@ cup_round_new(void);
 void
 cup_reset(Cup *cup);
 
-GPtrArray*
+void
 cup_get_team_pointers(Cup *cup, gint round);
 
 void
