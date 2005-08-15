@@ -18,17 +18,6 @@ enum TeamCompare
     TEAM_COMPARE_END
 };
 
-/** A struct needed when managing promotions
-    and relegations. */
-typedef struct
-{
-    Team tm; /**< The team we move. */
-    GArray *dest_idcs;   /**< Array of possible destination indices. */
-    gint prom_rel_type; /**< Promotion or relegation */
-    gboolean dest_assigned; /**< Whether a destination league for the team
-			       is already assigned. */
-} TeamMove;
-
 Team
 team_new(gboolean new_id);
 

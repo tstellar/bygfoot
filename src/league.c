@@ -413,7 +413,7 @@ query_league_matches_in_week(const League *league, gint week_number)
 void
 league_get_team_movements_prom_rel(const League *league, GArray *team_movements)
 {
-    gint i, j, k, tmp;
+    gint i, j, k;
     TeamMove new_move;
     const GArray *elements = league->prom_rel.elements;
     GArray *dest_idcs = NULL;
@@ -421,19 +421,23 @@ league_get_team_movements_prom_rel(const League *league, GArray *team_movements)
 
     for(i=0;i<elements->len;i++)
     {
+	dest_sids = misc_separate_strings(
+	    g_array_index(elements, PromRelElement, i).dest_sid->str);
+	gint dest_idcs_int[dest_sids->len];
+	gint dest_idcs_order[dest_sids->len];
+
+	for(j=0;j<dest_sids->len;j++)
+	    dest_idcs_int[j] = 
+		league_index_from_sid(((GString*)g_ptr_array_index(dest_sids, j))->str);
+
 	for(j=g_array_index(elements, PromRelElement, i).ranks[0];
 	    j<=g_array_index(elements, PromRelElement, i).ranks[1]; j++)
 	{
-	    dest_sids = misc_separate_strings(
-		g_array_index(elements, PromRelElement, i).dest_sid->str);
 	    dest_idcs = g_array_new(FALSE, FALSE, sizeof(gint));
+	    math_generate_permutation(dest_idcs_order, 0, dest_sids->len - 1);
 
-	    for(k=0;k<dest_sids->len;k++)
-	    {
-		tmp = league_index_from_sid(((GString*)g_ptr_array_index(dest_sids, k))->str);
-		g_array_append_val(dest_idcs, tmp);
-	    }
-	    free_g_string_array(&dest_sids);
+	    for(k=0;k<dest_sids->len;k++)		
+		g_array_append_val(dest_idcs, dest_idcs_int[dest_idcs_order[k]]);
 	    
 	    new_move.tm = *(g_array_index(league->table.elements, TableElement, j - 1).team);
 	    new_move.prom_rel_type = g_array_index(elements, PromRelElement, i).type;
@@ -441,6 +445,8 @@ league_get_team_movements_prom_rel(const League *league, GArray *team_movements)
 	    new_move.dest_assigned = FALSE;
 	    g_array_append_val(team_movements, new_move);
 	}
+
+	free_g_string_array(&dest_sids);
     }
 }
 
@@ -458,6 +464,7 @@ league_get_team_movements_prom_games(const League *league, GArray *team_movement
 	misc_separate_strings(league->prom_rel.prom_games_loser_sid->str);
     GArray *dest_idcs = NULL;
     gint dest_idcs_int[dest_sids->len];
+    gint dest_idcs_order[dest_sids->len];
     gint start_idx = 0, 
 	end_idx = league->prom_rel.prom_games_number_of_advance;
     gint prom_type = PROM_REL_PROMOTION;
@@ -476,8 +483,9 @@ league_get_team_movements_prom_games(const League *league, GArray *team_movement
     for(i=start_idx;i<end_idx;i++)
     {	    
 	dest_idcs = g_array_new(FALSE, FALSE, sizeof(gint));
+	math_generate_permutation(dest_idcs_order, 0, dest_sids->len - 1);
 	for(j=0;j<dest_sids->len;j++)
-	    g_array_append_val(dest_idcs, dest_idcs_int[j]);
+	    g_array_append_val(dest_idcs, dest_idcs_int[dest_idcs_order[j]]);
 
 	new_move.tm = *((Team*)g_ptr_array_index(prom_games_teams, i));
 	new_move.prom_rel_type = prom_type;
@@ -725,4 +733,7 @@ league_team_movements_destinations(GArray *team_movements, const gint *league_si
 		league_team_movements_assign_dest(team_movements, i, 
 						  league_size, league_cur_size);
     }
+
+    if(debug > 65)
+	league_team_movements_print(team_movements, league_size, league_cur_size);
 }

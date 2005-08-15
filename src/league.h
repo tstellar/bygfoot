@@ -13,6 +13,18 @@
 
 #define query_league_has_prom_games(league) (strlen(league->prom_rel.prom_games_dest_sid->str) > 0)
 
+/** A struct needed when managing promotions
+    and relegations. */
+typedef struct
+{
+    Team tm; /**< The team we move. */
+    GArray *dest_idcs;   /**< Array of possible destination indices. */
+    gint prom_rel_type; /**< Promotion or relegation */
+    gboolean dest_assigned; /**< Whether a destination league for the team
+			       is already assigned. */
+} TeamMove;
+
+
 League
 league_new(gboolean new_id);
 
