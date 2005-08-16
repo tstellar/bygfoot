@@ -47,10 +47,12 @@ fixture_write_cup_fixtures(Cup *cup)
 
     if(g_array_index(cup->rounds, CupRound, 0).round_robin_number_of_groups > 0)
 	fixture_write_cup_round_robin(cup, 0, 
-				      g_array_index(cup->rounds, CupRound, 0).team_ptrs);
+				      misc_copy_ptr_array(
+					  g_array_index(cup->rounds, CupRound, 0).team_ptrs));
     else
 	fixture_write_knockout_round(cup, 0, 
-				     g_array_index(cup->rounds, CupRound, 0).team_ptrs);
+				     misc_copy_ptr_array(
+					 g_array_index(cup->rounds, CupRound, 0).team_ptrs));
 }
 
 /** Update the fixtures for the given cup. 

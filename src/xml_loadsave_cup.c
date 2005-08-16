@@ -28,6 +28,7 @@ enum
     TAG_CUP_ROUND_NEW_TEAMS,
     TAG_CUP_ROUND_BYES,
     TAG_CUP_ROUND_TEAMS_FILE,
+    TAG_CUP_ROUND_TEAM_PTR_ID,
     TAG_CUP_ROUND_TABLE_FILE,
     TAG_CUP_ROUND_HOME_AWAY,
     TAG_CUP_ROUND_REPLAY,
@@ -128,6 +129,7 @@ xml_loadsave_cup_end_element    (GMarkupParseContext *context,
 	state = TAG_CUP_CHOOSE_TEAM;
     else if(tag == TAG_CUP_ROUND_HOME_AWAY ||
 	    tag == TAG_CUP_ROUND_TEAMS_FILE ||
+	    tag == TAG_CUP_ROUND_TEAM_PTR_ID ||
 	    tag == TAG_CUP_ROUND_TABLE_FILE ||
 	    tag == TAG_CUP_ROUND_NEW_TEAMS ||
 	    tag == TAG_CUP_ROUND_BYES ||
@@ -225,6 +227,8 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
 	    g_ptr_array_add(new_cup->teams, 
 			    &g_array_index(new_round.teams, Team, i));
     }
+    else if(state == TAG_CUP_ROUND_TEAM_PTR_ID)
+	g_ptr_array_add(new_round.team_ptrs, team_of_id(int_value));
     else if(state == TAG_CUP_ROUND_TABLE_FILE)
     {
 	new_table = table_new();
@@ -388,6 +392,10 @@ xml_loadsave_cup_write_round(FILE *fil, const gchar *prefix, const Cup *cup, gin
 	xml_loadsave_cup_write_choose_team(
 	    fil, &g_array_index(cup_round->choose_teams, CupChooseTeam, i));
 
+    for(i=0;i<cup_round->team_ptrs->len;i++)
+	xml_write_int(fil, ((Team*)g_ptr_array_index(cup_round->team_ptrs, i))->id,
+		      TAG_CUP_ROUND_TEAM_PTR_ID, I1);
+    
     fprintf(fil, "</_%d>\n", TAG_CUP_ROUND);
 
     g_free(basename);

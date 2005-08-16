@@ -462,3 +462,21 @@ misc_parse(const gchar *s, gint *result)
    }
    return s;
 }
+
+/** Return a freshly allocated copy of the array. */
+GPtrArray*
+misc_copy_ptr_array(const GPtrArray *array)
+{
+    gint i;
+    GPtrArray *copy = NULL;
+
+    if(array != NULL)
+	copy = g_ptr_array_new();
+    else
+	return NULL;
+
+    for(i=0;i<array->len;i++)
+	g_ptr_array_add(copy, g_ptr_array_index(array, i));
+
+    return copy;
+}

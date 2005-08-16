@@ -237,7 +237,7 @@ cup_get_team_pointers(Cup *cup, gint round)
 
     if(debug > 70)
 	for(i=0;i<teams->len;i++)
-	    printf("%d %s \n", i, ((Team*)g_ptr_array_index(teams, i))->name->str);
+	    printf("cup_get_team_pointers: %d %s \n", i, ((Team*)g_ptr_array_index(teams, i))->name->str);
 }
 
 /** Get the pointers to the teams (already generated, in one of the leagues or cups)
@@ -393,7 +393,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 
     if(debug > 80)
 	for(i=debug_num;i<teams->len;i++)
-	    printf("%d %s \n", i, ((Team*)g_ptr_array_index(teams, i))->name->str);
+	    printf("cup_load_choose_team: %d %s \n", i, ((Team*)g_ptr_array_index(teams, i))->name->str);
 }
 
 /** Load the teams specified in the chooseteam from a non-country league. */
