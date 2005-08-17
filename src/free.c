@@ -186,6 +186,7 @@ free_live_game(LiveGame *match)
 
     for(i=0;i<2;i++)
     {
+	free_g_string(&match->team_names[i]);
 	for(j=0;j<LIVE_GAME_STAT_ARRAY_END;j++)
 	{
 	    for(k=0;k<match->stats.players[i][j]->len;k++)

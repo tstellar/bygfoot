@@ -509,13 +509,15 @@ treeview_live_game_create_result(const LiveGameUnit *unit)
     GtkTreeIter iter;
 
     ls = gtk_list_store_new(3,
+			    G_TYPE_STRING,
 			    G_TYPE_POINTER,
-			    G_TYPE_POINTER,
-			    G_TYPE_POINTER);
+			    G_TYPE_STRING);
 
     gtk_list_store_append(ls, &iter);
-    gtk_list_store_set(ls, &iter, 0, (gpointer)usr(stat2).live_game.fix,
-		       1, (gpointer)unit, 2, (gpointer)usr(stat2).live_game.fix, -1);
+    gtk_list_store_set(ls, &iter, 
+		       0, ((LiveGame*)statp)->team_names[0]->str,
+		       1, (gpointer)unit, 
+		       2, ((LiveGame*)statp)->team_names[1]->str, -1);
 
     return GTK_TREE_MODEL(ls);
 }

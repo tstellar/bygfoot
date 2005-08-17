@@ -138,9 +138,6 @@ callback_show_last_match(gboolean start)
 
 	window_create(WINDOW_LIVE);
 
-	current_user.live_game.fix = 
-	    fixture_from_id(current_user.live_game.fix_id);
-
 	treeview_show_game_stats(GTK_TREE_VIEW(lookup_widget(window.live, "treeview_stats")),
 				 &current_user.live_game);
 	live_game_set_match(&current_user.live_game);

@@ -175,6 +175,9 @@ typedef struct
     /** Integer determining the fixture (needed because fixture pointers
 	can change when new fixtures are added to the fixtures array). */
     gint fix_id;
+    /** The names of the teams stored for later use (when the fixture
+	already got freed). */
+    GString *team_names[2];
     /** Substitutions left for the teams. */
     gint subs_left[2];
     /** The team that started the game, 0 or 1. */

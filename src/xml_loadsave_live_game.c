@@ -13,6 +13,7 @@ enum
 {
     TAG_LIVE_GAME = TAG_START_LIVE_GAME,
     TAG_LIVE_GAME_FIX_ID,
+    TAG_LIVE_GAME_TEAM_NAME,
     TAG_LIVE_GAME_UNIT,
     TAG_LIVE_GAME_UNIT_POSSESSION,
     TAG_LIVE_GAME_UNIT_AREA,
@@ -37,7 +38,8 @@ enum
 };
 
 gint state, unitidx,
-    statvalidx, statvalidx2, statplidx, statplidx2;
+    statvalidx, statvalidx2, statplidx, statplidx2,
+    team_name_idx;
 LiveGameUnit new_unit;
 LiveGame *lgame;
 
@@ -61,7 +63,8 @@ xml_loadsave_live_game_start_element (GMarkupParseContext *context,
 	}
 
     if(tag == TAG_LIVE_GAME)
-	statvalidx = statplidx = 0;
+	statvalidx = statplidx = 
+	    team_name_idx = 0;
     else if(tag == TAG_LIVE_GAME_UNIT ||
 	    tag == TAG_LIVE_GAME_UNIT_EVENT)
 	unitidx = 0;
@@ -84,12 +87,15 @@ xml_loadsave_live_game_end_element    (GMarkupParseContext *context,
     gint tag = xml_get_tag_from_name(element_name);
     
     if(tag == TAG_LIVE_GAME_FIX_ID ||
+       tag == TAG_LIVE_GAME_TEAM_NAME ||
        tag == TAG_LIVE_GAME_UNIT ||
        tag == TAG_LIVE_GAME_STAT)
     {
 	state = TAG_LIVE_GAME;
 	if(tag == TAG_LIVE_GAME_UNIT)
 	    g_array_append_val(lgame->units, new_unit);
+	else if(tag == TAG_LIVE_GAME_TEAM_NAME)
+	    team_name_idx++;
     }
     else if(tag == TAG_LIVE_GAME_UNIT_POSSESSION ||
 	    tag == TAG_LIVE_GAME_UNIT_AREA ||
@@ -158,6 +164,8 @@ xml_loadsave_live_game_text         (GMarkupParseContext *context,
 	lgame->fix_id = int_value;
 	lgame->fix = fixture_from_id(int_value);
     }
+    else if(state == TAG_LIVE_GAME_TEAM_NAME)
+	lgame->team_names[team_name_idx] = g_string_new(buf);
     else if(state == TAG_LIVE_GAME_UNIT_POSSESSION)
 	new_unit.possession = int_value;
     else if(state == TAG_LIVE_GAME_UNIT_AREA)
@@ -239,6 +247,10 @@ xml_loadsave_live_game_write(const gchar *filename, const LiveGame *live_game)
 
     if(live_game->fix != NULL)
 	xml_write_int(fil, live_game->fix->id, TAG_LIVE_GAME_FIX_ID, I0);
+
+    for(i=0;i<2;i++)
+	xml_write_g_string(fil, live_game->team_names[i], 
+			   TAG_LIVE_GAME_TEAM_NAME, I0);
 
     for(i=0;i<live_game->units->len;i++)
 	xml_loadsave_live_game_write_unit(fil,

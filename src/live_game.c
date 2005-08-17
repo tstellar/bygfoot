@@ -1455,7 +1455,18 @@ live_game_reset(LiveGame *live_game, Fixture *fix, gboolean free_variable)
 	    live_game->stats.values[1][i] = 0;
 
     live_game->fix = fix;
-    live_game->fix_id = (fix != NULL) ? fix->id : -1;
+    if(fix != NULL)
+    {
+	live_game->fix_id = fix->id;
+	live_game->team_names[0] = g_string_new(fix->teams[0]->name->str);
+	live_game->team_names[1] = g_string_new(fix->teams[1]->name->str);
+    }
+    else
+    {
+	live_game->fix_id = -1;
+	live_game->team_names[0] = 
+	    live_game->team_names[1] = NULL;
+    }
 
     live_game->subs_left[0] = live_game->subs_left[1] = 3;
     live_game->stadium_event = -1;

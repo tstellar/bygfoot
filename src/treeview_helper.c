@@ -1223,17 +1223,17 @@ treeview_helper_live_game_result(GtkTreeViewColumn *col,
     
     gint column = treeview_helper_get_col_number_column(col);
     gchar  buf[SMALL];    
-    Fixture *fix = NULL;
+    gchar *team_name = NULL;
     LiveGameUnit *unit = NULL;
 
     strcpy(buf, "");
 
     if(column == 0 || column == 2)
     {
-	gtk_tree_model_get(model, iter, column, &fix, -1);
+	gtk_tree_model_get(model, iter, column, &team_name, -1);
 	sprintf(buf, "<span %s>%s</span>", 
 		const_app("string_treeview_helper_live_game_result_attributes"),
-		fix->teams[column == 2]->name->str);
+		team_name);
     }
     else if(column == 1)
     {

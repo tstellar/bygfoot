@@ -165,6 +165,7 @@ void lg_commentary_choose_random(gchar* s)
 	    break;
          }
       }
+
    strcpy(s, start);
 }
 
@@ -198,7 +199,6 @@ lg_commentary_replace_expressions(gchar *commentary_text)
 		    buf2[j - i - 1] = '\0';
 		    if (query_misc_string_contains(buf2, "|"))
 		      lg_commentary_choose_random(buf2);
-
 		    else 
 		    {
 		      if(query_misc_string_contains(buf2, "<") ||
