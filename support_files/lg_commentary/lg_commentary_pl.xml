@@ -35,6 +35,7 @@
   </event>
   <event>
     <name>lost_possession</name>
+    <commentary>Nie zdążył do piłki _P1_</commentary>
     <commentary>_P0_ przejmuje piłkę</commentary>
     <commentary>_P1_ nie opanowuje piłki, przejmuje ją _P0_</commentary>
     <commentary>_P0_ jest szybszy niż _P1_</commentary>
@@ -64,7 +65,7 @@
     <commentary pri="3">_P0_ [próbuje strzelać|strzela|będzie strzelał] z [daleka|dystansu|linii pola karnego|20 metrów]</commentary>
     <commentary>_P0_ przed szansą!</commentary>
     <commentary>_P0_ składa się do strzału</commentary>
-    <commentary>_P0_ strzela z [ostrego kąta|najbliższej odległości!]</commentary>
+    <commentary>_P0_ strzela [po ziemi|z ostrego kąta|z najbliższej odległości!]</commentary>
     <commentary>_P1_ [świetnie|znakomicie|dobrze] dośrodkowuje, _P0_ będzie sam na sam z bramkarzem!</commentary>
     <commentary>_P0_, [wyśmienita|dobra|znakomita] okazja dla [drużyny|zespołu] _T_TT__!</commentary>
     <commentary>_P1_ wrzuca piłkę w pole karne, dopada do niej _P0_</commentary>
@@ -78,18 +79,18 @@
   <event>
     <name>header</name>
     <commentary pri="2">_P1_ [wrzuca piłkę na pole karne|w pole karne], _P0_ [główkuje|skacze do piłki!]</commentary>
-    <commentary pri="2">_P0_ [skacze do piłki!|trafia piłkę głową!|główkuje!]</commentary>
-    <commentary>Zamieszanie pod bramką, _P0_ skacze do piłki</commentary>
+    <commentary pri="2">[Zamieszanie pod bramką, |]_P0_ [skacze do piłki!|trafia piłkę głową!|główkuje!]</commentary>
   </event>
   <event>
     <name>goal</name>
     <commentary pri="2">Bramka!!!</commentary>
     <commentary pri="3">Gol!!!</commentary>
-    <commentary>Piłka wpada do bramki!!! _P0_ strzelcem bramki</commentary>
+    <commentary>Piłka wpada do [bramki|siatki]!!!</commentary>
     <commentary>_P0_ zdobywa bramkę!!!</commentary>
     <commentary>_P0_ podnosi ręce do góry po wspaniałej bramce!!!</commentary>
     <commentary>_P0_ i _RE_!!!</commentary>
-    <commentary>_P1_ nie sięga piłki, która wpada do siatki!!!</commentary>
+    <commentary>I _P1_ może tylko wyjąć piłkę z bramki!!!</commentary>
+    <commentary>_P1_ nie sięga piłki, która wpada do [bramki|siatki]!!!</commentary>
     <commentary>_P1_ przepuszcza piłkę pod nogami i _RE_!!!</commentary>
     <commentary>_P1_ nie ma szans!!!</commentary>
     <commentary>_P1_ spóźnił się z interwencją i jest bramka!!!</commentary>
@@ -97,15 +98,16 @@
     <commentary cond="_PLGOALSALL0_ > 4">_P0_ nie marnuje takich okazji!!!</commentary>
     <commentary cond="_PLGOALSALL0_ > 2">_P0_ zdobywa swoją kolejną bramkę w tych rozgrywkach!!!</commentary>
     <commentary cond="_TT_ = _TWN_ and _GD_ > 1">_P0_ podwyższa na _RE_!!!</commentary>
-    <commentary cond="_TT_ = 0">Radość na trybunach, _P0_ zdobywa bramkę!!!</commentary>
+    <commentary cond="_TT_ = 0">Radość [na trybunach|kibiców gospodarzy], _P0_ zdobywa bramkę!!!</commentary>
     <commentary cond="_GD = 1 and _TT_ = _TWN_">_P0_ i _T_TT__ obejmuje prowadzenie!!!</commentary>
     <commentary cond="_TT_ = 0 and _GOALS0_ >= _GOALS1_">Owacje na trybunach, _P0_ strzela gola!!!</commentary>
     <commentary pri="2" cond="_GD_ = 0">Remis!!!</commentary>
     <commentary pri="3" cond="_GD_ = 0">_P0_ zdobywa wyrównującą bramkę!!!</commentary>
+    <commentary pri="5" cond="_GD_ = 1 and _TT_ = _TLN_">_T_TT__ zdobywa kontaktową bramkę!!!</commentary>
     <commentary pri="5" cond="_GD_ > 1 and _GOALS_TT__ = 1">_T_TT__ zdobywa honorową bramkę!</commentary>
     <commentary>_P0_ zdobywa swoją _PLGOALSALL0_ bramkę w tym sezonie!!!</commentary>
     <commentary pri="5" cond="_GD_ = 0 and _MT_ < 10">A więc jednak remis!!!</commentary>
-    <commentary pri="7" cond="_GD_ = 0 and _MT_ < 5">Wyrównanie w ostatnich minutach meczu!!!</commentary>
+    <commentary pri="10" cond="_GD_ = 0 and _MT_ < 5">Wyrównanie w ostatnich minutach meczu!!!</commentary>
     <commentary cond="_GOALS0_ + _GOALS1_ = 1 and _MI_ > 60">Wreszcie bramka!!!</commentary>
   </event>
   <event>
@@ -120,7 +122,7 @@
     <commentary>Niecelny strzał</commentary>
     <commentary>Nie ma [bramki|gola]!</commentary>
     <commentary>Piłka [poszybowała|przelatuje] [metr |tuż |wysoko |]nad poprzeczką</commentary>
-    <commentary>Zabrakło [kilkudziesięciu|tylko|kilku] centymetrów!</commentary>
+    <commentary>[Zabrakło|Brakowało] [kilkudziesięciu|tylko|kilku] centymetrów!</commentary>
     <commentary>[Jakim cudem|Jak to możliwe, że] to nie wpadło do bramki?!</commentary>
     <commentary>[Ależ|Cóż za|Co za|Ale] [wyborną |cudowną | znakomitą |świetną |][okazję|szansę|sytuację] [zmarnował|miał] _P0_!</commentary>
     <commentary cond="_TT_ = _TLN_ and _GD_ = 1">_P0_ miał [świetną|znakomitą|wymarzoną] okazję [do wyrównania|na wyrównanie]</commentary>
@@ -143,19 +145,16 @@
   </event>
   <event>
     <name>save</name>
-    <commentary>_P1_ wybija piłkę na [rzut rożny|aut|róg]</commentary>
-    <commentary>_P1_ wybija piłkę czubkami palców!</commentary>
-    <commentary pri="6">_P1_ [łatwo|bez trudu|bez problemów|znakomicie|cudem|z trudem|ledwie] [łapie|chwyta|wybija] piłkę</commentary>
+    <commentary pri="3">_P1_ wybija piłkę [czubkami palców|na rzut rożny|na aut|na róg]</commentary>
+    <commentary pri="6">[_P1_|_P1_|_P1_|Bramkarz] [łatwo|bez trudu|bez problemów|znakomicie|cudem|z trudem] [łapie piłkę|chwyta piłę|wybija piłkę|broni]</commentary>
     <commentary pri="4">_P1_ nie ma [żadnych |dużych |specjalnych ||][problemów|kłopotów] z obroną</commentary>
-    <commentary pri="2">_P1_ [łatwo |znakomicie |świetnie |dobrze |bardzo dobrze |]broni</commentary>
+    <commentary pri="2">[_P1_|_P1_|Bramkarz] [łatwo |znakomicie |świetnie |dobrze |bardzo dobrze |]broni</commentary>
     <commentary>_P1_ był na miejscu</commentary>
-    <commentary>Broni _P1_</commentary>
+    <commentary pri="2">[Łatwo|Znakomicie|Świetnie|Dobrze|Bardzo dobrze] broni _P1_</commentary>
     <commentary>Nie ma problemów _P1_</commentary>
-    <commentary>Pewnie interweniuje _P1_</commentary>
+    <commentary>[Pewnie|Dobrze] interweniuje _P1_</commentary>
     <commentary>Jak ten _P1_ to złapał?</commentary>
-    <commentary>Bardzo dobrze broni _P1_</commentary>
     <commentary>Bramkarz broni</commentary>
-    <commentary>Bramkarz łapie piłkę</commentary>
     <commentary>_P0_ łatwo powstrzymany przez bramkarza</commentary>
     <commentary>Za słaby strzał, _P1_ nie ma problemów z obroną</commentary>
   </event>
@@ -266,13 +265,14 @@
   </event>
   <event>
     <name>half_time</name>
-    <commentary>Koniec pierwszej połowy</commentary>
+    <commentary pri="3">Koniec pierwszej połowy</commentary>
+    <commentary pri="2" cond="_TWN_ = _T[_TAVSKILL0_ > _TAVSKILL1_]_">[Do przerwy|Po pierwszej połowie] [niespodziewanie|nieoczekiwanie] prowadzi _TW_</commentary>
     <commentary>Po pierwszej połowie _RE_</commentary>
     <commentary cond="_GOALS0_ + _GOALS1_ = 0">Bez bramek do przerwy</commentary>
     <commentary>_RE_ do przerwy</commentary>
     <commentary>_TL_ przegrywa do przerwy</commentary>
     <commentary>_TW_ prowadzi po pierwszych 45 minutach</commentary>
-    <commentary>_TW_ na razie wyraźnie przeważa</commentary>
+    <commentary cond="_GD_ > 0">_TW_ na razie wyraźnie przeważa</commentary>
     <commentary cond="_POSS[_POSS1_ > _POSS0_]_ > 58 and _GD_ = 0">_T[_POSS1_ G _POSS0_]_ wyraźnie przeważa, ale nie może zdobyć prowadzenia</commentary>
   </event>
   <event>
@@ -317,18 +317,18 @@
   </event>
   <event>
     <name>stadium_riots</name>
-    <commentary>Kibice wszczęli burdę</commentary>
-    <commentary>Kibice wbiegają na murawę</commentary>
-    <commentary>Na boisko lecą petardy</commentary>
-    <commentary>Butelka leci w kierunku sędziego</commentary>
-    <commentary>Kibice obu drużyn zaczynają bić się między sobą</commentary>
+    <commentary>Kibice wszczęli burdę!</commentary>
+    <commentary>Kibice wbiegają na murawę!</commentary>
+    <commentary>Na boisko lecą petardy!</commentary>
+    <commentary>Butelka leci w kierunku sędziego!</commentary>
+    <commentary>Kibice obu drużyn zaczynają bić się między sobą!</commentary>
   </event>
   <event>
     <name>stadium_fire</name>
     <commentary>Na stadionie wybuchł pożar!</commentary>
-    <commentary>Kibice gości podpalili trybunę północną</commentary>
-    <commentary>Na trybunach wybuchają płomienie</commentary>
-    <commentary>Dym unosi się nad stadionem</commentary>
+    <commentary>Kibice gości podpalili trybunę północną!</commentary>
+    <commentary>Na trybunach wybuchają płomienie!</commentary>
+    <commentary>Dym unosi się nad stadionem!</commentary>
   </event>
   <event>
     <name>substitution</name>
