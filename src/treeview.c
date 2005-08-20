@@ -507,16 +507,18 @@ treeview_live_game_create_result(const LiveGameUnit *unit)
 {
     GtkListStore  *ls;
     GtkTreeIter iter;
+    gchar buf[SMALL];
 
     ls = gtk_list_store_new(3,
 			    G_TYPE_STRING,
-			    G_TYPE_POINTER,
+			    G_TYPE_STRING,
 			    G_TYPE_STRING);
 
+    live_game_unit_result_to_buf(unit, buf, FALSE);
     gtk_list_store_append(ls, &iter);
     gtk_list_store_set(ls, &iter, 
 		       0, ((LiveGame*)statp)->team_names[0]->str,
-		       1, (gpointer)unit, 
+		       1, buf, 
 		       2, ((LiveGame*)statp)->team_names[1]->str, -1);
 
     return GTK_TREE_MODEL(ls);

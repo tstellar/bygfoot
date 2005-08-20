@@ -20,7 +20,8 @@
 #include "window.h"
 
 /** The live game we calculate. */
-LiveGame *match;
+#define match ((LiveGame*)statp)
+
 /** Whether the events are actually shown or not. */
 gboolean show;
 
@@ -72,14 +73,13 @@ live_game_calculate_fixture(Fixture *fix)
 void
 live_game_initialize(Fixture *fix)
 {
-    match = (fixture_user_team_involved(fix) != -1) ? 
+    statp= (fixture_user_team_involved(fix) != -1) ? 
 	&usr(fixture_user_team_involved(fix)).live_game : &live_game_temp;
     show = (fixture_user_team_involved(fix) != -1 && 
 	    option_int("int_opt_user_show_live_game", 
 		       &usr(fixture_user_team_involved(fix)).options));
 
     stat2 = fixture_user_team_involved(fix);
-    statp = match;
 
     live_game_reset(match, fix, TRUE);
 
@@ -1392,7 +1392,7 @@ live_game_resume(void)
     gint subs_in[3],
 	subs_out[3];
 
-    match = &usr(stat2).live_game;
+    statp = &usr(stat2).live_game;
 
     for(i=0;i<2;i++)
     {
@@ -1421,14 +1421,6 @@ live_game_resume(void)
     live_game_calculate_fixture(usr(stat2).live_game.fix);
 }
 
-
-/** Set the match variable to the live game.
-    @param live_game The live game 'match' will point to. */
-void
-live_game_set_match(LiveGame *live_game)
-{
-    match = live_game;
-}
 
 /** Reset the live game variable before we begin a new live game.
     @param live_game The pointer to the live game.
@@ -1537,4 +1529,22 @@ live_game_event_get_verbosity(gint event_type)
     }
 
     return return_value;
+}
+
+/** Write a result like '2:3 e.t.' into the buffer.
+    @param swap Whether to swap the scores. */
+void
+live_game_unit_result_to_buf(const LiveGameUnit *unit, gchar *buf, gboolean swap)
+{
+    gint idx = (swap) ? 1 : 0;
+
+    if(unit->time == LIVE_GAME_UNIT_TIME_PENALTIES)
+	sprintf(buf, _("%d : %d p."), unit->result[idx],
+		unit->result[!idx]);
+    else if(unit->time == LIVE_GAME_UNIT_TIME_EXTRA_TIME)
+	sprintf(buf, _("%d : %d e.t."), unit->result[idx],
+		unit->result[!idx]);
+    else
+	sprintf(buf, _("%d : %d"), unit->result[idx],
+		unit->result[!idx]);
 }

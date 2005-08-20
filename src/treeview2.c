@@ -1,0 +1,107 @@
+#include "live_game.h"
+#include "support.h"
+#include "treeview2.h"
+#include "treeview_helper.h"
+#include "user.h"
+
+void
+treeview2_create_mmatches(GtkListStore *ls)
+{
+    gint i;
+    GtkTreeIter iter;
+    gchar result[SMALL];
+
+    for(i=0;i<current_user.mmatches->len;i++)
+    {
+	live_game_unit_result_to_buf(
+	    &g_array_index(
+		g_array_index(current_user.mmatches, MemMatch, i).lg.units,
+		LiveGameUnit, 
+		g_array_index(current_user.mmatches, MemMatch, i).lg.units->len - 1), result,
+	    (g_array_index(current_user.mmatches, MemMatch, i).user_team == 1));
+	gtk_list_store_append(ls, &iter);
+	gtk_list_store_set(ls, &iter, 0, i + 1,
+			   1, &g_array_index(current_user.mmatches, MemMatch, i),
+			   2, &g_array_index(current_user.mmatches, MemMatch, i),
+			   3, result, 
+			   4, g_array_index(current_user.mmatches, MemMatch, i).
+			   competition_name->str, 
+			   5, g_array_index(current_user.mmatches, MemMatch, i).
+			   country_name->str,
+			   6, _("REPLAY"), 7, _("REMOVE"), -1);
+    }
+}
+
+void
+treeview2_set_up_mmatches(GtkTreeView *treeview)
+{
+    gint i;
+    GtkTreeViewColumn   *col;
+    GtkCellRenderer     *renderer;
+    gchar *titles[8] =
+	{"",
+	 _("Your team"),
+	 _("Opponent"),
+	 _("Result"),
+	 _("Competition"),
+	 _("Country"),
+	 "",
+	 ""};
+
+    gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
+				GTK_SELECTION_NONE);
+    gtk_tree_view_set_headers_visible(treeview, TRUE);
+
+    col = gtk_tree_view_column_new();
+    gtk_tree_view_append_column(treeview, col);
+    renderer = treeview_helper_cell_renderer_text_new();
+    gtk_tree_view_column_pack_start(col, renderer, TRUE);
+    gtk_tree_view_column_add_attribute(col, renderer,
+				       "text", 0);
+    g_object_set(renderer, "xalign", 0.5, NULL);
+
+    for(i=1;i<3;i++)
+    {
+	col = gtk_tree_view_column_new();
+	gtk_tree_view_column_set_title(col, titles[i]);
+	gtk_tree_view_append_column(treeview, col);
+	renderer = treeview_helper_cell_renderer_text_new();
+	gtk_tree_view_column_pack_start(col, renderer, TRUE);
+	gtk_tree_view_column_set_cell_data_func(col, renderer,
+						treeview_helper_mm_teams,
+						NULL, NULL);
+    }
+
+    for(i=3;i<8;i++)
+    {
+	col = gtk_tree_view_column_new();
+	gtk_tree_view_column_set_title(col, titles[i]);
+	gtk_tree_view_append_column(treeview, col);
+	renderer = treeview_helper_cell_renderer_text_new();
+	gtk_tree_view_column_pack_start(col, renderer, TRUE);
+	gtk_tree_view_column_add_attribute(col, renderer,
+					   "text", i);
+	if(i != 4 && i != 5)
+	    g_object_set(renderer, "xalign", 0.5, NULL);
+    }
+}
+
+/** Show the list of memorable matches of a user. */
+void
+treeview2_show_mmatches(void)
+{
+    GtkTreeView *treeview = 
+	GTK_TREE_VIEW(lookup_widget(window.mmatches, "treeview_mmatches"));
+    GtkListStore *model = 
+	gtk_list_store_new(8, G_TYPE_INT, G_TYPE_POINTER, G_TYPE_POINTER,
+			   G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, 
+			   G_TYPE_STRING, G_TYPE_STRING);
+    
+    treeview_helper_clear(treeview);
+    
+    treeview2_set_up_mmatches(treeview);
+
+    treeview2_create_mmatches(model);
+    gtk_tree_view_set_model(treeview, GTK_TREE_MODEL(model));
+    g_object_unref(model);
+}

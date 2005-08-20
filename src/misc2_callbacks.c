@@ -13,6 +13,7 @@
 #include "support.h"
 #include "transfer.h"
 #include "treeview.h"
+#include "treeview2.h"
 #include "treeview_helper.h"
 #include "user.h"
 #include "window.h"
@@ -472,3 +473,122 @@ on_button_transfer_later_clicked       (GtkButton       *button,
 {
     window_destroy(&window.transfer_dialog, FALSE);
 }
+
+gboolean
+on_window_mmatches_delete_event        (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data)
+{
+    on_button_mm_reload_close_clicked(NULL, NULL);
+
+    return TRUE;
+}
+
+
+gboolean
+on_treeview_mmatches_button_press_event (GtkWidget       *widget,
+					 GdkEventButton  *event,
+					 gpointer         user_data)
+{
+    GtkTreePath *path = NULL;
+    GtkTreeViewColumn *col = NULL;
+    gint col_num = -1, mmidx = -1;
+    
+    if(!gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(widget),
+				      event->x, event->y,
+				      &path, &col, NULL, NULL))
+	return TRUE;
+
+    col_num = treeview_helper_get_col_number_column(col);
+    mmidx = gtk_tree_path_get_indices(path)[0];
+
+    gtk_tree_path_free(path);
+
+    if(col_num == -1 || mmidx == -1)
+    {
+	g_warning("on_treeview_mmatches_button_press_event: column or row not valid\n");
+	return TRUE;
+    }
+
+    if(col_num == 6)
+    {
+	stat1 = STATUS_SHOW_LAST_MATCH;
+	stat3 = 0;
+	callback_show_last_match(TRUE, 
+				 &g_array_index(current_user.mmatches, MemMatch, mmidx).lg);
+    }
+    else if(col_num == 7)
+    {
+	gtk_widget_hide(widget);
+	free_g_string(&g_array_index(current_user.mmatches, MemMatch, mmidx).competition_name);
+	free_g_string(&g_array_index(current_user.mmatches, MemMatch, mmidx).country_name);
+	free_live_game(&g_array_index(current_user.mmatches, MemMatch, mmidx).lg);
+	g_array_remove_index(current_user.mmatches, mmidx);
+	treeview2_show_mmatches();
+	gtk_widget_show(widget);
+    }
+
+    return TRUE;
+}
+
+
+void
+on_button_mm_save_close_clicked        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    const gchar *filename = 
+	gtk_entry_get_text(GTK_ENTRY(lookup_widget(window.mmatches, "entry_mm_file")));
+
+    user_mm_set_filename(filename);
+    user_mm_save_file();
+    
+    window_destroy(&window.mmatches, TRUE);
+}
+
+
+void
+on_button_mm_add_clicked               (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    if(current_user.live_game.units->len == 0)
+    {
+	game_gui_show_warning(_("No match stored."));
+	return;
+    }
+
+    user_mm_add_last_match(FALSE, FALSE);
+    treeview2_show_mmatches();
+}
+
+
+void
+on_button_mm_file_clicked              (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    stat5 = STATUS_SELECT_MM_FILE_LOAD;
+    window_show_file_sel();
+}
+
+
+void
+on_button_mm_reload_clicked            (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    GtkWidget *treeview = lookup_widget(window.mmatches, "treeview_mmatches");
+    const gchar *filename = 
+	gtk_entry_get_text(GTK_ENTRY(lookup_widget(window.mmatches, "entry_mm_file")));
+    
+    gtk_widget_hide(treeview);
+    user_mm_load_file(filename);
+    treeview2_show_mmatches();
+    gtk_widget_show(treeview);
+}
+
+void
+on_button_mm_reload_close_clicked      (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    on_button_mm_reload_clicked(NULL, NULL);
+    on_button_mm_save_close_clicked(NULL, NULL);
+}
+

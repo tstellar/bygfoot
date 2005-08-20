@@ -97,4 +97,7 @@ free_name_list(NameList *namelist, gboolean reset);
 void
 free_names(gboolean reset);
 
+void
+free_user_mmatches(User *user, gboolean reset);
+
 #endif

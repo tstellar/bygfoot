@@ -3,6 +3,7 @@
 
 #include "bygfoot.h"
 #include "maths.h"
+#include "cup_struct.h"
 
 /** Indentations for xml files. */
 #define I0 ""

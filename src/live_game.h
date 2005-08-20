@@ -112,4 +112,7 @@ live_game_set_match(LiveGame *live_game);
 gint
 live_game_event_get_verbosity(gint event_type);
 
+void
+live_game_unit_result_to_buf(const LiveGameUnit *unit, gchar *buf, gboolean swap);
+
 #endif

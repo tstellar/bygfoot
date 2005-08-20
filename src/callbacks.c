@@ -44,7 +44,7 @@ void
 on_menu_open_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    stat1 = STATUS_LOAD_GAME;
+    stat5 = STATUS_LOAD_GAME;
     window_show_file_sel();
 }
 
@@ -65,7 +65,7 @@ void
 on_menu_save_as_activate               (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    stat1 = STATUS_SAVE_GAME;
+    stat5 = STATUS_SAVE_GAME;
     window_show_file_sel();
 }
 
@@ -667,7 +667,7 @@ on_menu_user_show_last_match_activate  (GtkMenuItem     *menuitem,
 
     stat1 = STATUS_SHOW_LAST_MATCH;
     stat3 = 0;
-    callback_show_last_match(TRUE);
+    callback_show_last_match(TRUE, &current_user.live_game);
 }
 
 
@@ -1055,4 +1055,37 @@ on_menu_youth_kick_out_of_academy_activate
 	on_menu_show_youth_academy_activate(NULL, NULL);
 	selected_row = -1;
     }
+}
+
+void
+on_mm_add_last_match_activate          (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    if(current_user.live_game.units->len == 0)
+    {
+	game_gui_show_warning(_("No match stored."));
+	return;
+    }
+
+    if(strlen(current_user.mmatches_file->str) == 0)
+    {
+	stat5 = STATUS_SELECT_MM_FILE_ADD;
+	window_show_file_sel();
+    }
+    else
+	user_mm_add_last_match(FALSE, TRUE);
+}
+
+
+void
+on_mm_manage_matches_activate          (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    if(strlen(current_user.mmatches_file->str) == 0)
+    {
+	stat5 = STATUS_SELECT_MM_FILE_LOAD;
+	window_show_file_sel();
+    }
+    else
+	window_show_mmatches();
 }

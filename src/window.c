@@ -18,6 +18,7 @@
 #include "support.h"
 #include "transfer.h"
 #include "treeview.h"
+#include "treeview2.h"
 #include "treeview_helper.h"
 #include "user.h"
 #include "window.h"
@@ -122,10 +123,13 @@ window_show_file_sel(void)
     const gchar *home = g_get_home_dir();
     gchar *filename = NULL;
     GtkFileFilter *filter;
+    gboolean mm_file_exists = FALSE;
 
     window_create(WINDOW_FILE_CHOOSER);
 
-    if(stat1 == STATUS_SAVE_GAME)
+    if(stat5 == STATUS_SAVE_GAME || 
+       stat5 == STATUS_SELECT_MM_FILE_LOAD ||
+       stat5 == STATUS_SELECT_MM_FILE_ADD)
 	gtk_file_chooser_set_action(GTK_FILE_CHOOSER(window.file_chooser),
 				    GTK_FILE_CHOOSER_ACTION_SAVE);
     else
@@ -133,9 +137,18 @@ window_show_file_sel(void)
 				    GTK_FILE_CHOOSER_ACTION_OPEN);
 
     filter = gtk_file_filter_new();
-    gtk_file_filter_set_name(filter, _("Bygfoot Save Files"));
-    gtk_file_filter_add_pattern(filter, "*.zip");
-    gtk_file_filter_add_pattern(filter, "last_save");
+    if(stat5 != STATUS_SELECT_MM_FILE_ADD &&
+       stat5 != STATUS_SELECT_MM_FILE_LOAD)
+    {
+	gtk_file_filter_set_name(filter, _("Bygfoot Save Files"));
+	gtk_file_filter_add_pattern(filter, "*.zip");
+	gtk_file_filter_add_pattern(filter, "last_save");
+    }
+    else
+    {
+	gtk_file_filter_set_name(filter, _("Bygfoot Memorable Matches"));
+	gtk_file_filter_add_pattern(filter, "*.bmm.zip");
+    }
     gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(window.file_chooser), filter);
 
     filter = gtk_file_filter_new ();
@@ -143,9 +156,13 @@ window_show_file_sel(void)
     gtk_file_filter_add_pattern(filter, "*");
     gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(window.file_chooser), filter);
 
-    if(strlen(save_file->str) > 0)
+    if((stat5 != STATUS_SELECT_MM_FILE_LOAD &&
+	stat5 != STATUS_SELECT_MM_FILE_ADD && strlen(save_file->str) > 0) ||
+       strlen(current_user.mmatches_file->str) > 0)
 	gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(window.file_chooser),
-				      save_file->str);
+				      (stat5 != STATUS_SELECT_MM_FILE_ADD && 
+				       stat5 != STATUS_SELECT_MM_FILE_LOAD) ? 
+				      save_file->str : current_user.mmatches_file->str);
     else
     {
         if(os_is_unix)
@@ -165,15 +182,37 @@ window_show_file_sel(void)
     {
 	filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(window.file_chooser));
 
-	if(stat1 == STATUS_LOAD_GAME)
+	if(stat5 == STATUS_LOAD_GAME)
 	    load_save_load_game(filename);
-	else if(stat1 == STATUS_LOAD_GAME_TEAM_SELECTION)
+	else if(stat5 == STATUS_LOAD_GAME_TEAM_SELECTION)
 	    misc_callback_startup_load(filename);
-	else if(stat1 == STATUS_SAVE_GAME)
+	else if(stat5 == STATUS_SAVE_GAME)
 	    load_save_save_game(filename);
+	else if(stat5 == STATUS_SELECT_MM_FILE_LOAD)
+	{
+	    mm_file_exists = g_file_test(filename, G_FILE_TEST_EXISTS);
+	    if((mm_file_exists && g_str_has_suffix(filename, ".bmm.zip")) ||
+	       !mm_file_exists)
+	    {
+		if(mm_file_exists)
+		    user_mm_load_file(filename);
+		else
+		    user_mm_set_filename(filename);
+		window_show_mmatches();
+	    }
+	    else
+		game_gui_show_warning("Not a valid Bygfoot Memorable Matches filename.");
+	}
+	else if(stat5 == STATUS_SELECT_MM_FILE_ADD)
+	{
+	    user_mm_set_filename(filename);
+	    mm_file_exists = g_file_test(current_user.mmatches_file->str,
+					 G_FILE_TEST_EXISTS);
+	    user_mm_add_last_match(mm_file_exists, TRUE);
+	}
 
-	if(stat1 == STATUS_LOAD_GAME ||
-	   stat1 == STATUS_LOAD_GAME_TEAM_SELECTION)
+	if(stat5 == STATUS_LOAD_GAME ||
+	   stat5 == STATUS_LOAD_GAME_TEAM_SELECTION)
 	{
 	    cur_user = 0;
 	    on_button_back_to_main_clicked(NULL, NULL);
@@ -184,6 +223,18 @@ window_show_file_sel(void)
     }
 
     window_destroy(&window.file_chooser, FALSE);
+}
+
+/** Show window with memorable matches list. */
+void
+window_show_mmatches(void)
+{
+    if(window.mmatches == NULL)
+	window_create(WINDOW_MMATCHES);
+    treeview2_show_mmatches();
+
+    gtk_entry_set_text(GTK_ENTRY(lookup_widget(window.mmatches, "entry_mm_file")),
+		       current_user.mmatches_file->str);
 }
 
 /**  Show the options window. */
@@ -551,6 +602,17 @@ window_create(gint window_type)
 		window.sponsors = create_window_sponsors();
 	    wind = window.sponsors;
 	    strcpy(buf, _("Sponsorship offers"));
+	    break;
+	case WINDOW_MMATCHES:
+	    if(window.mmatches != NULL)
+		g_warning("window_create: called on already existing window\n");
+	    else
+	    {
+		window.mmatches = create_window_mmatches();
+		popups_active++;
+	    }
+	    wind = window.mmatches;
+	    strcpy(buf, _("Memorable matches"));
 	    break;
     }
 

@@ -25,6 +25,7 @@ enum Windows
     WINDOW_HELP,
     WINDOW_TRANSFER_DIALOG,
     WINDOW_SPONSORS,
+    WINDOW_MMATCHES,
     WINDOW_END
 };
 
@@ -70,5 +71,8 @@ window_show_transfer_dialog(const gchar *text);
 
 void
 window_show_news(void);
+
+void
+window_show_mmatches(void);
 
 #endif

@@ -3,6 +3,11 @@
 
 #include "bygfoot.h"
 
+#include "league_struct.h"
+#include "player_struct.h"
+#include "table_struct.h"
+#include "team_struct.h"
+
 gint
 treeview_helper_iter_get_row(GtkTreeModel *model, GtkTreeIter *iter);
 
@@ -146,5 +151,12 @@ treeview_helper_int_compare(GtkTreeModel *model,
 			    GtkTreeIter *a,
 			    GtkTreeIter *b,
 			    gpointer user_data);
+
+void
+treeview_helper_mm_teams(GtkTreeViewColumn *col,
+			 GtkCellRenderer   *renderer,
+			 GtkTreeModel      *model,
+			 GtkTreeIter       *iter,
+			 gpointer           user_data);
 
 #endif

@@ -125,7 +125,7 @@ callback_player_clicked(gint idx, GdkEventButton *event)
 /** Show the last match of the current user. 
     @param start Whether we start the replay from the beginning or continue it. */
 void
-callback_show_last_match(gboolean start)
+callback_show_last_match(gboolean start, LiveGame *lg)
 {
     gint i;
 
@@ -134,13 +134,11 @@ callback_show_last_match(gboolean start)
     if(start)
     {
 	stat2 = cur_user;
-	statp = &current_user.live_game;
+	statp = lg;
 
 	window_create(WINDOW_LIVE);
 
-	treeview_show_game_stats(GTK_TREE_VIEW(lookup_widget(window.live, "treeview_stats")),
-				 &current_user.live_game);
-	live_game_set_match(&current_user.live_game);
+	treeview_show_game_stats(GTK_TREE_VIEW(lookup_widget(window.live, "treeview_stats")), lg);
     }
     else
     {
@@ -148,9 +146,9 @@ callback_show_last_match(gboolean start)
 	gtk_widget_set_sensitive(lookup_widget(window.live, "button_resume"), FALSE);
     }
 
-    for(i=stat3;i<current_user.live_game.units->len;i++)
+    for(i=stat3;i<lg->units->len;i++)
     {
-	game_gui_live_game_show_unit(&g_array_index(current_user.live_game.units, LiveGameUnit, i));
+	game_gui_live_game_show_unit(&g_array_index(lg->units, LiveGameUnit, i));
 
 	if(stat4 == STATUS_SHOW_LAST_MATCH_PAUSE ||
 	   stat4 == STATUS_SHOW_LAST_MATCH_ABORT)
@@ -269,7 +267,7 @@ callback_show_tables(gint type)
 	return;
     }
 
-    stat1 = clid;    
+    stat1 = clid;
 
     treeview_show_table(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")), clid);
 }

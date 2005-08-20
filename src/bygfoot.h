@@ -130,6 +130,7 @@ typedef struct
 	*wdebug,
 	*help,
 	*transfer_dialog,
-	*sponsors;
+	*sponsors,
+	*mmatches;
 } Windows;
 #endif

@@ -44,7 +44,8 @@ main_init_variables(void)
 	window.stadium = window.job_offer = window.yesno = 
 	window.options = window.font_sel =
 	window.file_chooser = window.contract = 
-	window.menu_player = window.user_management = NULL;
+	window.menu_player = window.user_management = 
+	window.mmatches = NULL;
     
     live_game_reset(&live_game_temp, NULL, FALSE);
 

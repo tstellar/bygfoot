@@ -88,5 +88,16 @@ user_get_sponsor(const User *user);
 void
 user_show_sponsor_continue(void);
 
+void
+user_mm_set_filename(const gchar *filename);
+
+void
+user_mm_save_file(void);
+
+void
+user_mm_add_last_match(gboolean load_file, gboolean save_file);
+
+void
+user_mm_load_file(const gchar *filename);
 
 #endif

@@ -1,4 +1,5 @@
 #include "cup.h"
+#include "file.h"
 #include "finance.h"
 #include "fixture.h"
 #include "free.h"
@@ -17,6 +18,7 @@
 #include "treeview.h"
 #include "user.h"
 #include "window.h"
+#include "xml_mmatches.h"
 #include "youth_academy.h"
 
 /** Create a new user with default values. */
@@ -42,6 +44,9 @@ user_new(void)
     new.youth_academy.players = NULL;
     new.youth_academy.pos_pref = PLAYER_POS_ANY;
     new.youth_academy.coach = QUALITY_AVERAGE;
+
+    new.mmatches_file = g_string_new("");
+    new.mmatches = g_array_new(FALSE, FALSE, sizeof(MemMatch));
 
     return new;
 }
@@ -911,4 +916,105 @@ user_show_sponsor_continue(void)
     g_array_free(sponsors, TRUE);
 
     stat1 = STATUS_SPONSOR_CONTINUE;
+}
+
+/** Load a MM file. */
+void
+user_mm_load_file(const gchar *filename)
+{
+    gchar prefix[SMALL], filename_local[SMALL],
+	matches_file[SMALL];
+    
+    strcpy(filename_local, filename);
+    strncpy(prefix, filename_local, strlen(filename_local) - 8);
+    prefix[strlen(filename_local) - 8] = '\0';
+
+    sprintf(matches_file, "%s___mmatches", prefix);
+
+    file_decompress(filename_local);
+    xml_mmatches_read(matches_file);
+
+    strcat(prefix, "___*");
+    file_remove_files(prefix);
+
+    g_string_printf(current_user.mmatches_file, "%s", filename_local);
+}
+
+/** Add the last match to the MM file.
+    @param load_file Whether to load the matches from the file first.
+    @param save_file Whether to save the MM array
+    to file afterwards. */
+void
+user_mm_add_last_match(gboolean load_file, gboolean save_file)
+{
+    MemMatch new;
+    const Fixture *fix = current_user.live_game.fix;
+    gchar buf[SMALL];
+
+    if(fix->clid < ID_CUP_START)
+	new.competition_name = g_string_new(league_cup_get_name_string(fix->clid));
+    else
+    {
+	cup_round_name(fix, buf);
+	new.competition_name = g_string_new("");
+	g_string_printf(new.competition_name, "%s %s", 
+			league_cup_get_name_string(fix->clid), buf);
+    }
+
+    new.country_name = g_string_new(country.name->str);
+    new.neutral = !(fix->home_advantage);
+    new.user_team = (fix->team_ids[0] != current_user.team_id);
+    new.lg = current_user.live_game;
+    
+    /** This will tell the free function NOT
+	to free the user live game. */
+    current_user.live_game.started_game = -1;
+
+    if(load_file)
+	user_mm_load_file(current_user.mmatches_file->str);
+
+    g_array_append_val(current_user.mmatches, new);
+    game_gui_print_message("Memorable match added.");
+
+    if(save_file)
+	user_mm_save_file();
+}
+
+/** Save an MM file. */
+void
+user_mm_save_file(void)
+{
+    gchar prefix[SMALL];
+
+    strncpy(prefix, current_user.mmatches_file->str,
+	    strlen(current_user.mmatches_file->str) - 8);
+    prefix[strlen(current_user.mmatches_file->str) - 8] = '\0';
+
+    strcat(prefix, "___");
+
+    xml_mmatches_write(prefix);
+
+    file_compress_files(current_user.mmatches_file->str, prefix);
+}
+
+/** Set an appropriate filename for the memorable
+    matches file. */
+void
+user_mm_set_filename(const gchar *filename)
+{
+    gchar buf[SMALL];
+
+    if(g_str_has_suffix(filename, ".bmm.zip"))
+    {
+	g_string_printf(current_user.mmatches_file, "%s", filename);
+	return;
+    }
+
+    strcpy(buf, filename);
+
+    while(g_str_has_suffix(buf, ".bmm") ||
+	  g_str_has_suffix(buf, ".zip"))
+	buf[strlen(buf) - 4] = '\0';
+
+    g_string_printf(current_user.mmatches_file, "%s.bmm.zip", buf);
 }

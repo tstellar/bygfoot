@@ -671,10 +671,8 @@ query_fixture_is_draw(const Fixture *fix)
 
     first_leg = fixture_get_first_leg(fix);
 
-    return (fix->result[0][0] + first_leg->result[1][0] ==
-	    fix->result[1][0] + first_leg->result[0][0] &&
-	    fix->result[0][0] == first_leg->result[0][0] &&
-	    fix->result[0][1] == fix->result[1][1]);
+    return (fix->result[0][0] == first_leg->result[0][0] &&
+	    fix->result[1][0] + first_leg->result[1][0]);
 }
 
 /** Check whether a user's team participates.

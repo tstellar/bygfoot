@@ -149,8 +149,39 @@ on_button_transfer_no_clicked          (GtkButton       *button,
 void
 on_button_transfer_later_clicked       (GtkButton       *button,
                                         gpointer         user_data);
-#endif
 
 void
 on_button_contract_cancel_clicked      (GtkButton       *button,
                                         gpointer         user_data);
+
+gboolean
+on_window_mmatches_delete_event        (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data);
+
+gboolean
+on_treeview_mmatches_button_press_event
+                                        (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data);
+
+void
+on_button_mm_save_close_clicked        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_mm_add_clicked               (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_mm_file_clicked              (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_mm_reload_clicked            (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_mm_reload_close_clicked      (GtkButton       *button,
+                                        gpointer         user_data);
+#endif

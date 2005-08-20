@@ -162,7 +162,7 @@ on_button_resume_clicked               (GtkButton       *button,
 
     if(stat1 == STATUS_SHOW_LAST_MATCH)
     {
-	callback_show_last_match(FALSE);
+	callback_show_last_match(FALSE, &current_user.live_game);
 	return;
     }
     else if(game_check_live_game_resume_state())

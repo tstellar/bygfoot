@@ -1215,34 +1215,21 @@ treeview_helper_player_cskill_to_cell(GtkCellRenderer *renderer, gchar *buf, con
 /** Render the result (team names and goals) in the live game view. */
 void
 treeview_helper_live_game_result(GtkTreeViewColumn *col,
-			       GtkCellRenderer   *renderer,
-			       GtkTreeModel      *model,
-			       GtkTreeIter       *iter,
-			       gpointer           user_data)
-{
-    
+				 GtkCellRenderer   *renderer,
+				 GtkTreeModel      *model,
+				 GtkTreeIter       *iter,
+				 gpointer           user_data)
+{    
     gint column = treeview_helper_get_col_number_column(col);
-    gchar  buf[SMALL];    
-    gchar *team_name = NULL;
-    LiveGameUnit *unit = NULL;
+    gchar  buf[SMALL];
+    gchar *data = NULL;
 
     strcpy(buf, "");
 
-    if(column == 0 || column == 2)
-    {
-	gtk_tree_model_get(model, iter, column, &team_name, -1);
-	sprintf(buf, "<span %s>%s</span>", 
-		const_app("string_treeview_helper_live_game_result_attributes"),
-		team_name);
-    }
-    else if(column == 1)
-    {
-	gtk_tree_model_get(model, iter, column, &unit, -1);
-	sprintf(buf, "<span %s>%d : %d</span>", 
-		const_app("string_treeview_helper_live_game_result_attributes"),
-		unit->result[0], unit->result[1]);
-
-    }
+    gtk_tree_model_get(model, iter, column, &data, -1);
+    sprintf(buf, "<span %s>%s</span>", 
+	    const_app("string_treeview_helper_live_game_result_attributes"),
+	    data);
 
     g_object_set(renderer, "markup", buf, NULL);
 }
@@ -1260,4 +1247,31 @@ treeview_helper_int_compare(GtkTreeModel *model,
     gtk_tree_model_get(model, b, column, &value2, -1);
 
     return misc_int_compare(value1, value2);
+}
+
+void
+treeview_helper_mm_teams(GtkTreeViewColumn *col,
+			 GtkCellRenderer   *renderer,
+			 GtkTreeModel      *model,
+			 GtkTreeIter       *iter,
+			 gpointer           user_data)
+{
+    gint column = treeview_helper_get_col_number_column(col);
+    const MemMatch *mm = NULL;
+
+    gtk_tree_model_get(model, iter, column, &mm, -1);
+    
+    if(column == 1)
+	g_object_set(renderer, "text", mm->lg.team_names[mm->user_team]->str, NULL);
+    else
+	g_object_set(renderer, "text", mm->lg.team_names[!mm->user_team]->str, NULL);
+
+    if(!mm->neutral && 
+       ((column == 1 && mm->user_team == 1) ||
+	(column == 2 && mm->user_team == 0)))
+	g_object_set(renderer, "background",
+		     const_app("string_treeview_live_game_commentary_away_bg"), NULL);
+    else
+	g_object_set(renderer, "background",
+		     const_app("string_treeview_helper_color_default_background"), NULL);
 }

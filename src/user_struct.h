@@ -71,6 +71,23 @@ enum UserHistoryType
     USER_HISTORY_END
 };
 
+/** A memorable match (a recording of a live game) of a user. */
+typedef struct
+{
+    /** Name of the country the user was playing with. */
+    GString *country_name;
+    /** The name of the competition, including
+	the cup round name. */
+    GString *competition_name;
+    /** Whether the match was on neutral ground. Only
+	relevant for MM list display. */
+    gboolean neutral;
+    /** 0 or 1, indicating which team was the user's. */
+    gint user_team;
+    /** The recording. */
+    LiveGame lg;
+} MemMatch;
+
 /** A structure holding an element of a user's history,
     e.g. the event of being fired. */
 typedef struct
@@ -128,6 +145,10 @@ typedef struct
     UserSponsor sponsor;
     /** Youth academy of the user. */
     YouthAcademy youth_academy;
+    /** The currently used MM file. */
+    GString *mmatches_file;
+    /** The array of MMs. */
+    GArray *mmatches;
 } User;
 
 enum EventType
