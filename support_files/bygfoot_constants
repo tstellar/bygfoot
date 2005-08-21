@@ -336,6 +336,9 @@ float_game_gui_live_game_scale_range	100000
 int_game_gui_live_game_speed_base	1000500
 int_game_gui_live_game_speed_step	100000
 
+# factor changing the speed when penalties
+float_game_gui_live_game_speed_penalties_factor 20000
+
 # How much a player's skill can deviate from 
 # the average skill in his team.
 float_player_average_skill_variance 750

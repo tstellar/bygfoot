@@ -2,7 +2,7 @@
 #define XML_MMATCHES_H
 
 void
-xml_mmatches_write(const gchar *prefix);
+xml_mmatches_write(const gchar *prefix, const GArray *mmatches);
 
 void
 xml_mmatches_start_element (GMarkupParseContext *context,
@@ -26,6 +26,6 @@ xml_mmatches_text         (GMarkupParseContext *context,
 			   GError             **error);
 
 void
-xml_mmatches_read(const gchar *filename);
+xml_mmatches_read(const gchar *filename, GArray *mmatches);
 
 #endif

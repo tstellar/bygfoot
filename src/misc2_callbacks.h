@@ -184,4 +184,8 @@ on_button_mm_reload_clicked            (GtkButton       *button,
 void
 on_button_mm_reload_close_clicked      (GtkButton       *button,
                                         gpointer         user_data);
+
+void
+on_button_mm_import_clicked            (GtkButton       *button,
+                                        gpointer         user_data);
 #endif

@@ -138,9 +138,9 @@
 	  </child>
 
 	  <child>
-	    <widget class="GtkComboBoxEntry" id="combo_country">
+	    <widget class="GtkComboBox" id="combo_country">
 	      <property name="visible">True</property>
-	      <signal name="changed" handler="on_combo_country_changed" last_modification_time="Sat, 07 May 2005 14:00:34 GMT"/>
+	      <signal name="changed" handler="on_combo_country_changed" last_modification_time="Sun, 21 Aug 2005 14:08:15 GMT"/>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -250,7 +250,7 @@
 	      <property name="max_length">12</property>
 	      <property name="text" translatable="yes"></property>
 	      <property name="has_frame">True</property>
-	      <property name="invisible_char" translatable="yes">*</property>
+	      <property name="invisible_char">*</property>
 	      <property name="activates_default">False</property>
 	      <property name="width_chars">12</property>
 	      <signal name="activate" handler="on_entry_player_name_activate" last_modification_time="Sat, 26 Feb 2005 10:40:03 GMT"/>
@@ -784,7 +784,7 @@
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_CENTER</property>
   <property name="modal">False</property>
-  <property name="default_width">520</property>
+  <property name="default_width">620</property>
   <property name="default_height">550</property>
   <property name="resizable">True</property>
   <property name="destroy_with_parent">False</property>
@@ -806,7 +806,7 @@
 	  <property name="visible">True</property>
 	  <property name="orientation">GTK_PROGRESS_LEFT_TO_RIGHT</property>
 	  <property name="fraction">0</property>
-	  <property name="pulse_step">0.1</property>
+	  <property name="pulse_step">0.10000000149</property>
 	</widget>
 	<packing>
 	  <property name="padding">0</property>
@@ -1575,7 +1575,7 @@
 	      <property name="visible">True</property>
 	      <property name="orientation">GTK_PROGRESS_LEFT_TO_RIGHT</property>
 	      <property name="fraction">0</property>
-	      <property name="pulse_step">0.1</property>
+	      <property name="pulse_step">0.10000000149</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">1</property>
@@ -1664,7 +1664,7 @@
 	      <property name="visible">True</property>
 	      <property name="orientation">GTK_PROGRESS_LEFT_TO_RIGHT</property>
 	      <property name="fraction">0</property>
-	      <property name="pulse_step">0.1</property>
+	      <property name="pulse_step">0.10000000149</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">1</property>

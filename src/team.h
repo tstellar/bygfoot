@@ -124,7 +124,7 @@ void
 team_write_results(const Team *tm, gchar *result_buf, gchar *goals_buf);
 
 void
-team_write_own_results(const Team *tm, gchar *buf, gboolean sort);
+team_write_own_results(const Team *tm, gchar *buf, gboolean sort, gboolean cup_matches);
 
 gboolean
 query_team_is_in_teams_array(const Team *tm, const GPtrArray *teams);

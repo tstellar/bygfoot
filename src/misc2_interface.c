@@ -1245,11 +1245,17 @@ create_window_mmatches (void)
   GtkWidget *label58;
   GtkWidget *scrolledwindow5;
   GtkWidget *treeview_mmatches;
+  GtkWidget *hbox36;
   GtkWidget *button_mm_add;
   GtkWidget *alignment12;
   GtkWidget *hbox32;
   GtkWidget *image19;
   GtkWidget *label59;
+  GtkWidget *button_mm_import;
+  GtkWidget *alignment15;
+  GtkWidget *hbox37;
+  GtkWidget *image22;
+  GtkWidget *label62;
   GtkWidget *hbox34;
   GtkWidget *button_mm_save_close;
   GtkWidget *alignment13;
@@ -1322,9 +1328,13 @@ create_window_mmatches (void)
   gtk_container_add (GTK_CONTAINER (scrolledwindow5), treeview_mmatches);
   gtk_tree_view_set_enable_search (GTK_TREE_VIEW (treeview_mmatches), FALSE);
 
+  hbox36 = gtk_hbox_new (FALSE, 3);
+  gtk_widget_show (hbox36);
+  gtk_box_pack_start (GTK_BOX (vbox27), hbox36, FALSE, FALSE, 0);
+
   button_mm_add = gtk_button_new ();
   gtk_widget_show (button_mm_add);
-  gtk_box_pack_start (GTK_BOX (vbox27), button_mm_add, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox36), button_mm_add, TRUE, TRUE, 0);
   gtk_tooltips_set_tip (tooltips, button_mm_add, _("Add last match to the list; you still have to save to file if you want to store the match permanently"), NULL);
 
   alignment12 = gtk_alignment_new (0.5, 0.5, 0, 0);
@@ -1342,6 +1352,27 @@ create_window_mmatches (void)
   label59 = gtk_label_new_with_mnemonic (_("Add last match"));
   gtk_widget_show (label59);
   gtk_box_pack_start (GTK_BOX (hbox32), label59, FALSE, FALSE, 0);
+
+  button_mm_import = gtk_button_new ();
+  gtk_widget_show (button_mm_import);
+  gtk_box_pack_start (GTK_BOX (hbox36), button_mm_import, TRUE, TRUE, 0);
+  gtk_tooltips_set_tip (tooltips, button_mm_import, _("Import the matches from a memorable matches file"), NULL);
+
+  alignment15 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment15);
+  gtk_container_add (GTK_CONTAINER (button_mm_import), alignment15);
+
+  hbox37 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox37);
+  gtk_container_add (GTK_CONTAINER (alignment15), hbox37);
+
+  image22 = gtk_image_new_from_stock ("gtk-paste", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image22);
+  gtk_box_pack_start (GTK_BOX (hbox37), image22, FALSE, FALSE, 0);
+
+  label62 = gtk_label_new_with_mnemonic (_("Import file"));
+  gtk_widget_show (label62);
+  gtk_box_pack_start (GTK_BOX (hbox37), label62, FALSE, FALSE, 0);
 
   hbox34 = gtk_hbox_new (FALSE, 3);
   gtk_widget_show (hbox34);
@@ -1404,6 +1435,9 @@ create_window_mmatches (void)
   g_signal_connect ((gpointer) button_mm_add, "clicked",
                     G_CALLBACK (on_button_mm_add_clicked),
                     NULL);
+  g_signal_connect ((gpointer) button_mm_import, "clicked",
+                    G_CALLBACK (on_button_mm_import_clicked),
+                    NULL);
   g_signal_connect ((gpointer) button_mm_save_close, "clicked",
                     G_CALLBACK (on_button_mm_save_close_clicked),
                     NULL);
@@ -1425,11 +1459,17 @@ create_window_mmatches (void)
   GLADE_HOOKUP_OBJECT (window_mmatches, label58, "label58");
   GLADE_HOOKUP_OBJECT (window_mmatches, scrolledwindow5, "scrolledwindow5");
   GLADE_HOOKUP_OBJECT (window_mmatches, treeview_mmatches, "treeview_mmatches");
+  GLADE_HOOKUP_OBJECT (window_mmatches, hbox36, "hbox36");
   GLADE_HOOKUP_OBJECT (window_mmatches, button_mm_add, "button_mm_add");
   GLADE_HOOKUP_OBJECT (window_mmatches, alignment12, "alignment12");
   GLADE_HOOKUP_OBJECT (window_mmatches, hbox32, "hbox32");
   GLADE_HOOKUP_OBJECT (window_mmatches, image19, "image19");
   GLADE_HOOKUP_OBJECT (window_mmatches, label59, "label59");
+  GLADE_HOOKUP_OBJECT (window_mmatches, button_mm_import, "button_mm_import");
+  GLADE_HOOKUP_OBJECT (window_mmatches, alignment15, "alignment15");
+  GLADE_HOOKUP_OBJECT (window_mmatches, hbox37, "hbox37");
+  GLADE_HOOKUP_OBJECT (window_mmatches, image22, "image22");
+  GLADE_HOOKUP_OBJECT (window_mmatches, label62, "label62");
   GLADE_HOOKUP_OBJECT (window_mmatches, hbox34, "hbox34");
   GLADE_HOOKUP_OBJECT (window_mmatches, button_mm_save_close, "button_mm_save_close");
   GLADE_HOOKUP_OBJECT (window_mmatches, alignment13, "alignment13");

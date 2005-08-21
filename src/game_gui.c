@@ -15,12 +15,13 @@
 #include "window.h"
 
 /** Show the live game in the live game window.
-    @param unit The current unit we show.
-    @param sleep_factor The factor determining the live game speed. */
+    @param unit The current unit we show. */
 void
 game_gui_live_game_show_unit(const LiveGameUnit *unit)
 {
     gchar buf[SMALL];
+    gfloat sleep_factor = (unit->time == 3) ? 
+	const_float("float_game_gui_live_game_speed_penalties_factor") : 1;
     gfloat fraction = (gfloat)live_game_unit_get_minute(unit) / 90;
     GtkProgressBar *progress_bar =
 	GTK_PROGRESS_BAR(lookup_widget(window.live, "progressbar_live"));
@@ -54,9 +55,10 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
     sprintf(buf, "%d.", live_game_unit_get_minute(unit));
     gtk_progress_bar_set_fraction(progress_bar, (fraction > 1) ? 1 : fraction);
     gtk_progress_bar_set_text(progress_bar, buf);
-    g_usleep(const_int("int_game_gui_live_game_speed_base") +
-	     (option_int("int_opt_user_live_game_speed", &usr(stat2).options) * 
-	      const_int("int_game_gui_live_game_speed_step")));
+    g_usleep((gint)rint(sleep_factor * 
+			(gfloat)(const_int("int_game_gui_live_game_speed_base") +
+				 (option_int("int_opt_user_live_game_speed", &usr(stat2).options) * 
+				  const_int("int_game_gui_live_game_speed_step")))));
 
     while(gtk_events_pending())
 	gtk_main_iteration();

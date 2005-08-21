@@ -1590,7 +1590,7 @@ treeview_create_next_opponent(void)
     gtk_list_store_append(ls, &iter);
     gtk_list_store_set(ls, &iter, 0, _("Goals"), 1, buf2, -1);
 
-    team_write_own_results(opp, buf, FALSE);
+    team_write_own_results(opp, buf, FALSE, TRUE);
     gtk_list_store_append(ls, &iter);    
     /* The user's results against a specific team. */
     gtk_list_store_set(ls, &iter, 0, _("Your results"), 1, buf, -1);
@@ -1661,7 +1661,7 @@ treeview_create_league_results(void)
 		strcpy(name, g_array_index(table_elements, TableElement, i).team->name->str);
 
 	    team_write_own_results(g_array_index(table_elements, TableElement, i).team,
-				   results, TRUE);
+				   results, TRUE, FALSE);
 
 	    gtk_list_store_append(ls, &iter);
 	    gtk_list_store_set(ls, &iter, 0, name,
@@ -2352,9 +2352,6 @@ treeview_show_leagues_combo(void)
     
     gtk_combo_box_set_model(combo_leagues, model);
     g_object_unref(model);
-
-    if(gtk_combo_box_entry_get_text_column(GTK_COMBO_BOX_ENTRY(combo_leagues)) == -1)
-	gtk_combo_box_entry_set_text_column(GTK_COMBO_BOX_ENTRY(combo_leagues), 0);
 
     gtk_cell_layout_clear(GTK_CELL_LAYOUT(combo_leagues));
 

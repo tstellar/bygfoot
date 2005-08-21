@@ -89,15 +89,21 @@ void
 user_show_sponsor_continue(void);
 
 void
-user_mm_set_filename(const gchar *filename);
+user_mm_set_filename(const gchar *filename, gchar *dest);
 
 void
-user_mm_save_file(void);
+user_mm_save_file(const gchar *filename, const GArray *mmatches);
 
 void
 user_mm_add_last_match(gboolean load_file, gboolean save_file);
 
 void
-user_mm_load_file(const gchar *filename);
+user_mm_import_file(const gchar *filename);
+
+void
+user_mm_load_file(const gchar *filename, GArray *mmatches);
+
+void
+user_mm_export_file(const gchar *filename);
 
 #endif

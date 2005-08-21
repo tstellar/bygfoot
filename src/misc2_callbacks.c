@@ -510,14 +510,14 @@ on_treeview_mmatches_button_press_event (GtkWidget       *widget,
 	return TRUE;
     }
 
-    if(col_num == 6)
+    if(col_num == TREEVIEW_MMATCH_COL_REPLAY)
     {
 	stat1 = STATUS_SHOW_LAST_MATCH;
 	stat3 = 0;
 	callback_show_last_match(TRUE, 
 				 &g_array_index(current_user.mmatches, MemMatch, mmidx).lg);
     }
-    else if(col_num == 7)
+    else if(col_num == TREEVIEW_MMATCH_COL_REMOVE)
     {
 	gtk_widget_hide(widget);
 	free_g_string(&g_array_index(current_user.mmatches, MemMatch, mmidx).competition_name);
@@ -527,7 +527,13 @@ on_treeview_mmatches_button_press_event (GtkWidget       *widget,
 	treeview2_show_mmatches();
 	gtk_widget_show(widget);
     }
-
+    else if(col_num == TREEVIEW_MMATCH_COL_EXPORT)
+    {
+	stat5 = STATUS_SELECT_MM_FILE_EXPORT;
+	stat4 = mmidx;
+	window_show_file_sel();
+    }
+    
     return TRUE;
 }
 
@@ -539,8 +545,9 @@ on_button_mm_save_close_clicked        (GtkButton       *button,
     const gchar *filename = 
 	gtk_entry_get_text(GTK_ENTRY(lookup_widget(window.mmatches, "entry_mm_file")));
 
-    user_mm_set_filename(filename);
-    user_mm_save_file();
+    user_mm_set_filename(filename, NULL);
+    user_mm_save_file(current_user.mmatches_file->str,
+		      current_user.mmatches);
     
     window_destroy(&window.mmatches, TRUE);
 }
@@ -579,7 +586,7 @@ on_button_mm_reload_clicked            (GtkButton       *button,
 	gtk_entry_get_text(GTK_ENTRY(lookup_widget(window.mmatches, "entry_mm_file")));
     
     gtk_widget_hide(treeview);
-    user_mm_load_file(filename);
+    user_mm_load_file(filename, NULL);
     treeview2_show_mmatches();
     gtk_widget_show(treeview);
 }
@@ -590,5 +597,13 @@ on_button_mm_reload_close_clicked      (GtkButton       *button,
 {
     on_button_mm_reload_clicked(NULL, NULL);
     on_button_mm_save_close_clicked(NULL, NULL);
+}
+
+void
+on_button_mm_import_clicked            (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    stat5 = STATUS_SELECT_MM_FILE_IMPORT;
+    window_show_file_sel();
 }
 

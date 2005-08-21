@@ -98,8 +98,6 @@ window_show_startup(void)
     gtk_combo_box_set_model(GTK_COMBO_BOX(combo_country), model);
     g_object_unref(model);
 
-    if(gtk_combo_box_entry_get_text_column(GTK_COMBO_BOX_ENTRY(combo_country)) == -1)
-	gtk_combo_box_entry_set_text_column(GTK_COMBO_BOX_ENTRY(combo_country), 1);
     gtk_cell_layout_clear(GTK_CELL_LAYOUT(combo_country));
 
     renderer = gtk_cell_renderer_pixbuf_new();
@@ -129,7 +127,9 @@ window_show_file_sel(void)
 
     if(stat5 == STATUS_SAVE_GAME || 
        stat5 == STATUS_SELECT_MM_FILE_LOAD ||
-       stat5 == STATUS_SELECT_MM_FILE_ADD)
+       stat5 == STATUS_SELECT_MM_FILE_ADD ||
+       stat5 == STATUS_SELECT_MM_FILE_IMPORT ||
+       stat5 == STATUS_SELECT_MM_FILE_EXPORT)
 	gtk_file_chooser_set_action(GTK_FILE_CHOOSER(window.file_chooser),
 				    GTK_FILE_CHOOSER_ACTION_SAVE);
     else
@@ -138,7 +138,9 @@ window_show_file_sel(void)
 
     filter = gtk_file_filter_new();
     if(stat5 != STATUS_SELECT_MM_FILE_ADD &&
-       stat5 != STATUS_SELECT_MM_FILE_LOAD)
+       stat5 != STATUS_SELECT_MM_FILE_LOAD &&
+       stat5 != STATUS_SELECT_MM_FILE_IMPORT &&
+       stat5 != STATUS_SELECT_MM_FILE_EXPORT)
     {
 	gtk_file_filter_set_name(filter, _("Bygfoot Save Files"));
 	gtk_file_filter_add_pattern(filter, "*.zip");
@@ -157,7 +159,10 @@ window_show_file_sel(void)
     gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(window.file_chooser), filter);
 
     if((stat5 != STATUS_SELECT_MM_FILE_LOAD &&
-	stat5 != STATUS_SELECT_MM_FILE_ADD && strlen(save_file->str) > 0) ||
+	stat5 != STATUS_SELECT_MM_FILE_ADD && 
+	stat5 != STATUS_SELECT_MM_FILE_IMPORT &&
+	stat5 != STATUS_SELECT_MM_FILE_EXPORT &&
+	strlen(save_file->str) > 0) ||
        strlen(current_user.mmatches_file->str) > 0)
 	gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(window.file_chooser),
 				      (stat5 != STATUS_SELECT_MM_FILE_ADD && 
@@ -195,9 +200,9 @@ window_show_file_sel(void)
 	       !mm_file_exists)
 	    {
 		if(mm_file_exists)
-		    user_mm_load_file(filename);
+		    user_mm_load_file(filename, NULL);
 		else
-		    user_mm_set_filename(filename);
+		    user_mm_set_filename(filename, NULL);
 		window_show_mmatches();
 	    }
 	    else
@@ -205,11 +210,18 @@ window_show_file_sel(void)
 	}
 	else if(stat5 == STATUS_SELECT_MM_FILE_ADD)
 	{
-	    user_mm_set_filename(filename);
+	    user_mm_set_filename(filename, NULL);
 	    mm_file_exists = g_file_test(current_user.mmatches_file->str,
 					 G_FILE_TEST_EXISTS);
 	    user_mm_add_last_match(mm_file_exists, TRUE);
 	}
+	else if(stat5 == STATUS_SELECT_MM_FILE_IMPORT)
+	{
+	    user_mm_import_file(filename);
+	    window_show_mmatches();
+	}
+	else if(stat5 == STATUS_SELECT_MM_FILE_EXPORT)
+	    user_mm_export_file(filename);
 
 	if(stat5 == STATUS_LOAD_GAME ||
 	   stat5 == STATUS_LOAD_GAME_TEAM_SELECTION)

@@ -98,6 +98,6 @@ void
 free_names(gboolean reset);
 
 void
-free_user_mmatches(User *user, gboolean reset);
+free_mmatches(GArray **mmatches, gboolean reset);
 
 #endif

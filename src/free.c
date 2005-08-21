@@ -114,6 +114,7 @@ free_user(User *user)
 
     free_g_string(&user->name);
     free_g_string(&user->sponsor.name);
+    free_g_string(&user->mmatches_file);
     free_live_game(&user->live_game);
     free_option_list(&user->options, FALSE);
 
@@ -126,7 +127,7 @@ free_user(User *user)
 				    UserHistory, i).value_string, TRUE);
     free_g_array(&user->history);
 
-    free_user_mmatches(user, FALSE);
+    free_mmatches(&user->mmatches, FALSE);
 
     free_player_array(&user->youth_academy.players);
 }
@@ -134,32 +135,27 @@ free_user(User *user)
 /** Free the memorable matches array of the user and the memorable matches
     file name . */
 void
-free_user_mmatches(User *user, gboolean reset)
+free_mmatches(GArray **mmatches, gboolean reset)
 {
     gint i;
 
-    free_g_string(&user->mmatches_file);
-
-    if(reset)
-	user->mmatches_file = g_string_new("");
-
-    if(user->mmatches == NULL)
+    if(*mmatches == NULL)
     {
 	if(reset)
-	    user->mmatches = g_array_new(FALSE, FALSE, sizeof(MemMatch));
+	    *mmatches = g_array_new(FALSE, FALSE, sizeof(MemMatch));
 	return;
     }
 
-    for(i=0;i<user->mmatches->len;i++)
+    for(i=0;i<(*mmatches)->len;i++)
     {
-	free_g_string(&g_array_index(user->mmatches, MemMatch, i).competition_name);
-	free_g_string(&g_array_index(user->mmatches, MemMatch, i).country_name);
-	free_live_game(&g_array_index(user->mmatches, MemMatch, i).lg);
+	free_g_string(&g_array_index(*mmatches, MemMatch, i).competition_name);
+	free_g_string(&g_array_index(*mmatches, MemMatch, i).country_name);
+	free_live_game(&g_array_index(*mmatches, MemMatch, i).lg);
     }
-    free_g_array(&user->mmatches);
+    free_g_array(mmatches);
 
     if(reset)
-	user->mmatches = g_array_new(FALSE, FALSE, sizeof(MemMatch));
+	*mmatches = g_array_new(FALSE, FALSE, sizeof(MemMatch));
 }
 
 /** Free a user event. */

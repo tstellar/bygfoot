@@ -3,6 +3,14 @@
 
 #include "bygfoot.h"
 
+enum
+{
+    TREEVIEW_MMATCH_COL_REPLAY = 6,
+    TREEVIEW_MMATCH_COL_REMOVE,
+    TREEVIEW_MMATCH_COL_EXPORT,
+    TREEVIEW_MMATCH_COL_END
+};
+
 void
 treeview2_create_mmatches(GtkListStore *ls);
 

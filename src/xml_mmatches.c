@@ -25,6 +25,7 @@ enum
 gint state;
 MemMatch new_match;
 gchar *dirname;
+GArray *mm_array;
 
 void
 xml_mmatches_start_element (GMarkupParseContext *context,
@@ -61,7 +62,7 @@ xml_mmatches_end_element    (GMarkupParseContext *context,
     if(tag == TAG_MMATCH)
     {
 	state = TAG_MMATCHES;
-	g_array_append_val(current_user.mmatches, new_match);
+	g_array_append_val(mm_array, new_match);
     }
     else if(tag == TAG_MMATCHES_COMP_NAME ||
 	    tag == TAG_MMATCHES_COUNTRY_NAME ||
@@ -106,7 +107,7 @@ xml_mmatches_text         (GMarkupParseContext *context,
 }
 
 void
-xml_mmatches_read(const gchar *filename)
+xml_mmatches_read(const gchar *filename, GArray *mmatches)
 {
     GMarkupParser parser = {xml_mmatches_start_element,
 			    xml_mmatches_end_element,
@@ -126,7 +127,7 @@ xml_mmatches_read(const gchar *filename)
     }
 
     dirname = g_path_get_dirname(filename);
-    free_user_mmatches(&current_user, TRUE);
+    mm_array = mmatches;
 
     if(g_markup_parse_context_parse(context, file_contents, length, &error))
     {
@@ -145,7 +146,7 @@ xml_mmatches_read(const gchar *filename)
 /** Write the current user's MMs to file. 
     @param prefix The prefix of the file (w/o ".bmm.zip"). */
 void
-xml_mmatches_write(const gchar *prefix)
+xml_mmatches_write(const gchar *prefix, const GArray *mmatches)
 {
     FILE *fil;
     gint i;
@@ -158,28 +159,28 @@ xml_mmatches_write(const gchar *prefix)
 
     fprintf(fil, "<_%d>\n", TAG_MMATCHES);
 
-    for(i=0;i<current_user.mmatches->len;i++)
+    for(i=0;i<mmatches->len;i++)
     {
 	fprintf(fil, "<_%d>\n", TAG_MMATCH);
 
 	xml_write_g_string(fil, 
-			   g_array_index(current_user.mmatches, MemMatch, i).competition_name,
+			   g_array_index(mmatches, MemMatch, i).competition_name,
 			   TAG_MMATCHES_COMP_NAME, I1);
 	xml_write_g_string(fil, 
-			   g_array_index(current_user.mmatches, MemMatch, i).country_name,
+			   g_array_index(mmatches, MemMatch, i).country_name,
 			   TAG_MMATCHES_COUNTRY_NAME, I1);
 	xml_write_int(fil, 
-		      g_array_index(current_user.mmatches, MemMatch, i).neutral,
+		      g_array_index(mmatches, MemMatch, i).neutral,
 		      TAG_MMATCHES_NEUTRAL, I1);
 	xml_write_int(fil, 
-		      g_array_index(current_user.mmatches, MemMatch, i).user_team,
+		      g_array_index(mmatches, MemMatch, i).user_team,
 		      TAG_MMATCHES_USER_TEAM, I1);
 	
 	sprintf(buf, "%slg%03d", basename, i);
 	xml_write_string(fil, buf, TAG_MMATCHES_LG_FILE, I1);
 	sprintf(buf, "%slg%03d", prefix, i);
 	xml_loadsave_live_game_write(buf, 
-				     &g_array_index(current_user.mmatches, MemMatch, i).lg);
+				     &g_array_index(mmatches, MemMatch, i).lg);
 
 	fprintf(fil, "</_%d>\n", TAG_MMATCH);
     }

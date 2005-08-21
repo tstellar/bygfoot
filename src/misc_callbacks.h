@@ -114,7 +114,6 @@ gboolean
 on_spinbutton_speed_button_press_event (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data);
-#endif
 
 void
 on_button_sponsors_clicked             (GtkButton       *button,
@@ -149,3 +148,4 @@ on_button_sponsors_clicked             (GtkButton       *button,
 void
 on_button_sponsors_wait_clicked        (GtkButton       *button,
                                         gpointer         user_data);
+#endif

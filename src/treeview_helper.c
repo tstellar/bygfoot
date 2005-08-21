@@ -10,6 +10,7 @@
 #include "team.h"
 #include "transfer.h"
 #include "treeview.h"
+#include "treeview2.h"
 #include "treeview_helper.h"
 #include "user.h"
 #include "variables.h"
@@ -645,7 +646,6 @@ treeview_helper_player_ext_info_to_cell(GtkTreeViewColumn *col,
     if(pl == NULL)
 	return;
 
-    printf("%s att %d\n", pl->name->str, row_idx);
     switch(row_idx)
     {
 	default:
@@ -777,7 +777,6 @@ treeview_helper_player_info_banned_to_cell(GtkCellRenderer *renderer, const GArr
     for(i=0;i<cards->len;i++)
 	if(g_array_index(cards, PlayerCard, i).red > 0)
 	{
-	    printf("cl %d\n", g_array_index(cards, PlayerCard, i).clid);
 	    /* Ban info of a player in the format: 'Cup/league name: Number of weeks banned' */
 	    sprintf(buf2, _("%s: %d weeks\n"),
 		    league_cup_get_name_string(g_array_index(cards, PlayerCard, i).clid),
@@ -1258,20 +1257,53 @@ treeview_helper_mm_teams(GtkTreeViewColumn *col,
 {
     gint column = treeview_helper_get_col_number_column(col);
     const MemMatch *mm = NULL;
+    const gchar *text = NULL;
 
-    gtk_tree_model_get(model, iter, column, &mm, -1);
+    g_object_set(renderer, "background",
+		 const_app("string_treeview_helper_color_default_background"), NULL);
+    g_object_set(renderer, "foreground",
+		 const_app("string_treeview_helper_color_default_foreground"), NULL);
+
+    if(column == 1 || column == 2)
+    {
+	gtk_tree_model_get(model, iter, column, &mm, -1);
+	if(column == 1)
+	    g_object_set(renderer, "text", mm->lg.team_names[mm->user_team]->str, NULL);
+	else
+	    g_object_set(renderer, "text", mm->lg.team_names[!mm->user_team]->str, NULL);
+    }
+    else if(column >= TREEVIEW_MMATCH_COL_REPLAY)
+    {
+	gtk_tree_model_get(model, iter, column, &text, -1);
+	g_object_set(renderer, "text", text, NULL);
+    }
     
-    if(column == 1)
-	g_object_set(renderer, "text", mm->lg.team_names[mm->user_team]->str, NULL);
-    else
-	g_object_set(renderer, "text", mm->lg.team_names[!mm->user_team]->str, NULL);
-
-    if(!mm->neutral && 
-       ((column == 1 && mm->user_team == 1) ||
-	(column == 2 && mm->user_team == 0)))
+    if(((column == 1 && mm->user_team == 1) ||
+	(column == 2 && mm->user_team == 0)) &&
+       !mm->neutral)
+    {
 	g_object_set(renderer, "background",
 		     const_app("string_treeview_live_game_commentary_away_bg"), NULL);
-    else
+    }
+    else if(column == TREEVIEW_MMATCH_COL_REPLAY)
+    {
 	g_object_set(renderer, "background",
-		     const_app("string_treeview_helper_color_default_background"), NULL);
+		     const_app("string_treeview_helper_mmatches_replay_bg"), NULL);
+	g_object_set(renderer, "foreground",
+		     const_app("string_treeview_helper_mmatches_replay_fg"), NULL);
+    }
+    else if(column == TREEVIEW_MMATCH_COL_REMOVE)
+    {
+	g_object_set(renderer, "background",
+		     const_app("string_treeview_helper_mmatches_remove_bg"), NULL);
+	g_object_set(renderer, "foreground",
+		     const_app("string_treeview_helper_mmatches_remove_fg"), NULL);
+    }
+    else if(column == TREEVIEW_MMATCH_COL_EXPORT)
+    {
+	g_object_set(renderer, "background",
+		     const_app("string_treeview_helper_mmatches_export_bg"), NULL);
+	g_object_set(renderer, "foreground",
+		     const_app("string_treeview_helper_mmatches_export_fg"), NULL);
+    }
 }

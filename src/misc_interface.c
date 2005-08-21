@@ -135,7 +135,7 @@ create_window_startup (void)
   gtk_box_pack_start (GTK_BOX (vbox34), label69, FALSE, FALSE, 0);
   gtk_misc_set_padding (GTK_MISC (label69), 0, 5);
 
-  combo_country = gtk_combo_box_entry_new ();
+  combo_country = gtk_combo_box_new ();
   gtk_widget_show (combo_country);
   gtk_box_pack_start (GTK_BOX (vbox34), combo_country, TRUE, TRUE, 0);
 
@@ -148,7 +148,7 @@ create_window_startup (void)
   gtk_widget_show (label4);
   gtk_box_pack_start (GTK_BOX (vbox2), label4, FALSE, FALSE, 0);
 
-  comboboxentry_start_league = gtk_combo_box_entry_new ();
+  comboboxentry_start_league = gtk_combo_box_entry_new_text ();
   gtk_widget_show (comboboxentry_start_league);
   gtk_box_pack_start (GTK_BOX (vbox2), comboboxentry_start_league, FALSE, FALSE, 0);
 
@@ -504,7 +504,7 @@ create_window_live (void)
   gtk_container_set_border_width (GTK_CONTAINER (window_live), 6);
   gtk_window_set_title (GTK_WINDOW (window_live), _("Live game"));
   gtk_window_set_position (GTK_WINDOW (window_live), GTK_WIN_POS_CENTER);
-  gtk_window_set_default_size (GTK_WINDOW (window_live), 520, 550);
+  gtk_window_set_default_size (GTK_WINDOW (window_live), 620, 550);
 
   vbox36 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox36);

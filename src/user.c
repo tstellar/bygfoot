@@ -920,10 +920,12 @@ user_show_sponsor_continue(void)
 
 /** Load a MM file. */
 void
-user_mm_load_file(const gchar *filename)
+user_mm_load_file(const gchar *filename, GArray *mmatches)
 {
     gchar prefix[SMALL], filename_local[SMALL],
 	matches_file[SMALL];
+    GArray *mm_array = (mmatches == NULL) ?
+	current_user.mmatches : mmatches;
     
     strcpy(filename_local, filename);
     strncpy(prefix, filename_local, strlen(filename_local) - 8);
@@ -932,12 +934,17 @@ user_mm_load_file(const gchar *filename)
     sprintf(matches_file, "%s___mmatches", prefix);
 
     file_decompress(filename_local);
-    xml_mmatches_read(matches_file);
+    
+    if(mmatches == NULL)
+	free_mmatches(&mm_array, TRUE);
+
+    xml_mmatches_read(matches_file, mm_array);
 
     strcat(prefix, "___*");
     file_remove_files(prefix);
 
-    g_string_printf(current_user.mmatches_file, "%s", filename_local);
+    if(mmatches == NULL)
+	g_string_printf(current_user.mmatches_file, "%s", filename_local);
 }
 
 /** Add the last match to the MM file.
@@ -970,43 +977,49 @@ user_mm_add_last_match(gboolean load_file, gboolean save_file)
 	to free the user live game. */
     current_user.live_game.started_game = -1;
 
+    current_user.live_game.units = 
+	g_array_new(FALSE, FALSE, sizeof(LiveGameUnit));
+
     if(load_file)
-	user_mm_load_file(current_user.mmatches_file->str);
+	user_mm_load_file(current_user.mmatches_file->str, NULL);
 
     g_array_append_val(current_user.mmatches, new);
     game_gui_print_message("Memorable match added.");
 
     if(save_file)
-	user_mm_save_file();
+	user_mm_save_file(current_user.mmatches_file->str,
+			  current_user.mmatches);
 }
 
 /** Save an MM file. */
 void
-user_mm_save_file(void)
+user_mm_save_file(const gchar *filename, const GArray *mmatches)
 {
     gchar prefix[SMALL];
 
-    strncpy(prefix, current_user.mmatches_file->str,
-	    strlen(current_user.mmatches_file->str) - 8);
-    prefix[strlen(current_user.mmatches_file->str) - 8] = '\0';
+    strncpy(prefix, filename, strlen(filename) - 8);
+    prefix[strlen(filename) - 8] = '\0';
 
     strcat(prefix, "___");
 
-    xml_mmatches_write(prefix);
+    xml_mmatches_write(prefix, mmatches);
 
-    file_compress_files(current_user.mmatches_file->str, prefix);
+    file_compress_files(filename, prefix);
 }
 
 /** Set an appropriate filename for the memorable
     matches file. */
 void
-user_mm_set_filename(const gchar *filename)
+user_mm_set_filename(const gchar *filename, gchar *dest)
 {
     gchar buf[SMALL];
 
     if(g_str_has_suffix(filename, ".bmm.zip"))
     {
-	g_string_printf(current_user.mmatches_file, "%s", filename);
+	if(dest == NULL)
+	    g_string_printf(current_user.mmatches_file, "%s", filename);
+	else
+	    strcpy(dest, filename);
 	return;
     }
 
@@ -1016,5 +1029,39 @@ user_mm_set_filename(const gchar *filename)
 	  g_str_has_suffix(buf, ".zip"))
 	buf[strlen(buf) - 4] = '\0';
 
-    g_string_printf(current_user.mmatches_file, "%s.bmm.zip", buf);
+    if(dest == NULL)
+	g_string_printf(current_user.mmatches_file, "%s.bmm.zip", buf);
+    else
+	sprintf(dest, "%s.bmm.zip", buf);
+}
+
+/** Import an MM file into the user's MMs. */
+void
+user_mm_import_file(const gchar *filename)
+{
+    GArray *mm_array = g_array_new(FALSE, FALSE, sizeof(MemMatch));
+    gint i;
+
+    user_mm_load_file(filename, mm_array);
+
+    for(i=0;i<mm_array->len;i++)
+	g_array_append_val(current_user.mmatches, g_array_index(mm_array, MemMatch, i));
+
+    g_array_free(mm_array, TRUE);
+}
+
+/** Export a match to a file. */
+void
+user_mm_export_file(const gchar *filename)
+{
+    gchar buf[SMALL];
+    GArray *mmatches = g_array_new(FALSE, FALSE, sizeof(MemMatch));
+
+    user_mm_set_filename(filename, buf);
+
+    g_array_append_val(mmatches, g_array_index(current_user.mmatches, MemMatch, stat4));
+
+    user_mm_save_file(buf, mmatches);
+
+    g_array_free(mmatches, TRUE);
 }

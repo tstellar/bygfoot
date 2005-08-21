@@ -27,8 +27,12 @@ treeview2_create_mmatches(GtkListStore *ls)
 			   4, g_array_index(current_user.mmatches, MemMatch, i).
 			   competition_name->str, 
 			   5, g_array_index(current_user.mmatches, MemMatch, i).
-			   country_name->str,
-			   6, _("REPLAY"), 7, _("REMOVE"), -1);
+			   country_name->str, -1);
+	gtk_list_store_set(ls, &iter, 
+			   TREEVIEW_MMATCH_COL_REPLAY, _("REPLAY"), 
+			   TREEVIEW_MMATCH_COL_REMOVE, _("REMOVE"),
+			   TREEVIEW_MMATCH_COL_EXPORT, _("EXPORT"),
+			   -1);
     }
 }
 
@@ -38,15 +42,13 @@ treeview2_set_up_mmatches(GtkTreeView *treeview)
     gint i;
     GtkTreeViewColumn   *col;
     GtkCellRenderer     *renderer;
-    gchar *titles[8] =
+    gchar *titles[6] =
 	{"",
 	 _("Your team"),
 	 _("Opponent"),
 	 _("Result"),
 	 _("Competition"),
-	 _("Country"),
-	 "",
-	 ""};
+	 _("Country")};
 
     gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
 				GTK_SELECTION_NONE);
@@ -72,17 +74,26 @@ treeview2_set_up_mmatches(GtkTreeView *treeview)
 						NULL, NULL);
     }
 
-    for(i=3;i<8;i++)
+    for(i=3;i<TREEVIEW_MMATCH_COL_END;i++)
     {
 	col = gtk_tree_view_column_new();
-	gtk_tree_view_column_set_title(col, titles[i]);
 	gtk_tree_view_append_column(treeview, col);
 	renderer = treeview_helper_cell_renderer_text_new();
-	gtk_tree_view_column_pack_start(col, renderer, TRUE);
-	gtk_tree_view_column_add_attribute(col, renderer,
-					   "text", i);
-	if(i != 4 && i != 5)
+	gtk_tree_view_column_pack_start(col, renderer, FALSE);
+
+	if(i < TREEVIEW_MMATCH_COL_REPLAY)
+	{
+	    gtk_tree_view_column_set_title(col, titles[i]);
+	    gtk_tree_view_column_add_attribute(col, renderer,
+					       "text", i);
+	}
+	else
+	{
+	    gtk_tree_view_column_set_cell_data_func(col, renderer,
+						    treeview_helper_mm_teams,
+						    NULL, NULL);
 	    g_object_set(renderer, "xalign", 0.5, NULL);
+	}
     }
 }
 
@@ -93,9 +104,9 @@ treeview2_show_mmatches(void)
     GtkTreeView *treeview = 
 	GTK_TREE_VIEW(lookup_widget(window.mmatches, "treeview_mmatches"));
     GtkListStore *model = 
-	gtk_list_store_new(8, G_TYPE_INT, G_TYPE_POINTER, G_TYPE_POINTER,
+	gtk_list_store_new(9, G_TYPE_INT, G_TYPE_POINTER, G_TYPE_POINTER,
 			   G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, 
-			   G_TYPE_STRING, G_TYPE_STRING);
+			   G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
     
     treeview_helper_clear(treeview);
     
