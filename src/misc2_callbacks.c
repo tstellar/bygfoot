@@ -510,29 +510,7 @@ on_treeview_mmatches_button_press_event (GtkWidget       *widget,
 	return TRUE;
     }
 
-    if(col_num == TREEVIEW_MMATCH_COL_REPLAY)
-    {
-	stat1 = STATUS_SHOW_LAST_MATCH;
-	stat3 = 0;
-	callback_show_last_match(TRUE, 
-				 &g_array_index(current_user.mmatches, MemMatch, mmidx).lg);
-    }
-    else if(col_num == TREEVIEW_MMATCH_COL_REMOVE)
-    {
-	gtk_widget_hide(widget);
-	free_g_string(&g_array_index(current_user.mmatches, MemMatch, mmidx).competition_name);
-	free_g_string(&g_array_index(current_user.mmatches, MemMatch, mmidx).country_name);
-	free_live_game(&g_array_index(current_user.mmatches, MemMatch, mmidx).lg);
-	g_array_remove_index(current_user.mmatches, mmidx);
-	treeview2_show_mmatches();
-	gtk_widget_show(widget);
-    }
-    else if(col_num == TREEVIEW_MMATCH_COL_EXPORT)
-    {
-	stat5 = STATUS_SELECT_MM_FILE_EXPORT;
-	stat4 = mmidx;
-	window_show_file_sel();
-    }
+    misc2_callback_mmatches_button_press(widget, mmidx, col_num);
     
     return TRUE;
 }

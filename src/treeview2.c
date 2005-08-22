@@ -1,4 +1,5 @@
 #include "live_game.h"
+#include "option.h"
 #include "support.h"
 #include "treeview2.h"
 #include "treeview_helper.h"
@@ -34,6 +35,10 @@ treeview2_create_mmatches(GtkListStore *ls)
 			   TREEVIEW_MMATCH_COL_EXPORT, _("EXPORT"),
 			   -1);
     }
+
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, const_int("int_treeview_helper_int_empty"),
+		       1, NULL, -1);
 }
 
 void
@@ -58,9 +63,9 @@ treeview2_set_up_mmatches(GtkTreeView *treeview)
     gtk_tree_view_append_column(treeview, col);
     renderer = treeview_helper_cell_renderer_text_new();
     gtk_tree_view_column_pack_start(col, renderer, TRUE);
-    gtk_tree_view_column_add_attribute(col, renderer,
-				       "text", 0);
-    g_object_set(renderer, "xalign", 0.5, NULL);
+    gtk_tree_view_column_set_cell_data_func(col, renderer,
+					    treeview_helper_int_to_cell,
+					    NULL, NULL);
 
     for(i=1;i<3;i++)
     {

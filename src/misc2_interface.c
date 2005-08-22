@@ -1243,19 +1243,13 @@ create_window_mmatches (void)
   GtkWidget *hbox31;
   GtkWidget *image18;
   GtkWidget *label58;
-  GtkWidget *scrolledwindow5;
-  GtkWidget *treeview_mmatches;
-  GtkWidget *hbox36;
-  GtkWidget *button_mm_add;
-  GtkWidget *alignment12;
-  GtkWidget *hbox32;
-  GtkWidget *image19;
-  GtkWidget *label59;
   GtkWidget *button_mm_import;
   GtkWidget *alignment15;
   GtkWidget *hbox37;
   GtkWidget *image22;
   GtkWidget *label62;
+  GtkWidget *scrolledwindow5;
+  GtkWidget *treeview_mmatches;
   GtkWidget *hbox34;
   GtkWidget *button_mm_save_close;
   GtkWidget *alignment13;
@@ -1274,7 +1268,7 @@ create_window_mmatches (void)
   window_mmatches = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_mmatches), 5);
   gtk_window_set_position (GTK_WINDOW (window_mmatches), GTK_WIN_POS_CENTER);
-  gtk_window_set_default_size (GTK_WINDOW (window_mmatches), 550, 500);
+  gtk_window_set_default_size (GTK_WINDOW (window_mmatches), 600, 500);
 
   vbox27 = gtk_vbox_new (FALSE, 3);
   gtk_widget_show (vbox27);
@@ -1318,44 +1312,9 @@ create_window_mmatches (void)
   gtk_widget_show (label58);
   gtk_box_pack_start (GTK_BOX (hbox31), label58, FALSE, FALSE, 0);
 
-  scrolledwindow5 = gtk_scrolled_window_new (NULL, NULL);
-  gtk_widget_show (scrolledwindow5);
-  gtk_box_pack_start (GTK_BOX (vbox27), scrolledwindow5, TRUE, TRUE, 0);
-  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow5), GTK_SHADOW_IN);
-
-  treeview_mmatches = gtk_tree_view_new ();
-  gtk_widget_show (treeview_mmatches);
-  gtk_container_add (GTK_CONTAINER (scrolledwindow5), treeview_mmatches);
-  gtk_tree_view_set_enable_search (GTK_TREE_VIEW (treeview_mmatches), FALSE);
-
-  hbox36 = gtk_hbox_new (FALSE, 3);
-  gtk_widget_show (hbox36);
-  gtk_box_pack_start (GTK_BOX (vbox27), hbox36, FALSE, FALSE, 0);
-
-  button_mm_add = gtk_button_new ();
-  gtk_widget_show (button_mm_add);
-  gtk_box_pack_start (GTK_BOX (hbox36), button_mm_add, TRUE, TRUE, 0);
-  gtk_tooltips_set_tip (tooltips, button_mm_add, _("Add last match to the list; you still have to save to file if you want to store the match permanently"), NULL);
-
-  alignment12 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment12);
-  gtk_container_add (GTK_CONTAINER (button_mm_add), alignment12);
-
-  hbox32 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox32);
-  gtk_container_add (GTK_CONTAINER (alignment12), hbox32);
-
-  image19 = gtk_image_new_from_stock ("gtk-add", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image19);
-  gtk_box_pack_start (GTK_BOX (hbox32), image19, FALSE, FALSE, 0);
-
-  label59 = gtk_label_new_with_mnemonic (_("Add last match"));
-  gtk_widget_show (label59);
-  gtk_box_pack_start (GTK_BOX (hbox32), label59, FALSE, FALSE, 0);
-
   button_mm_import = gtk_button_new ();
   gtk_widget_show (button_mm_import);
-  gtk_box_pack_start (GTK_BOX (hbox36), button_mm_import, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox27), button_mm_import, FALSE, FALSE, 0);
   gtk_tooltips_set_tip (tooltips, button_mm_import, _("Import the matches from a memorable matches file"), NULL);
 
   alignment15 = gtk_alignment_new (0.5, 0.5, 0, 0);
@@ -1373,6 +1332,17 @@ create_window_mmatches (void)
   label62 = gtk_label_new_with_mnemonic (_("Import file"));
   gtk_widget_show (label62);
   gtk_box_pack_start (GTK_BOX (hbox37), label62, FALSE, FALSE, 0);
+
+  scrolledwindow5 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrolledwindow5);
+  gtk_box_pack_start (GTK_BOX (vbox27), scrolledwindow5, TRUE, TRUE, 0);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow5), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow5), GTK_SHADOW_IN);
+
+  treeview_mmatches = gtk_tree_view_new ();
+  gtk_widget_show (treeview_mmatches);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow5), treeview_mmatches);
+  gtk_tree_view_set_enable_search (GTK_TREE_VIEW (treeview_mmatches), FALSE);
 
   hbox34 = gtk_hbox_new (FALSE, 3);
   gtk_widget_show (hbox34);
@@ -1429,14 +1399,11 @@ create_window_mmatches (void)
   g_signal_connect ((gpointer) button_mm_reload, "clicked",
                     G_CALLBACK (on_button_mm_reload_clicked),
                     NULL);
-  g_signal_connect ((gpointer) treeview_mmatches, "button_press_event",
-                    G_CALLBACK (on_treeview_mmatches_button_press_event),
-                    NULL);
-  g_signal_connect ((gpointer) button_mm_add, "clicked",
-                    G_CALLBACK (on_button_mm_add_clicked),
-                    NULL);
   g_signal_connect ((gpointer) button_mm_import, "clicked",
                     G_CALLBACK (on_button_mm_import_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) treeview_mmatches, "button_press_event",
+                    G_CALLBACK (on_treeview_mmatches_button_press_event),
                     NULL);
   g_signal_connect ((gpointer) button_mm_save_close, "clicked",
                     G_CALLBACK (on_button_mm_save_close_clicked),
@@ -1457,19 +1424,13 @@ create_window_mmatches (void)
   GLADE_HOOKUP_OBJECT (window_mmatches, hbox31, "hbox31");
   GLADE_HOOKUP_OBJECT (window_mmatches, image18, "image18");
   GLADE_HOOKUP_OBJECT (window_mmatches, label58, "label58");
-  GLADE_HOOKUP_OBJECT (window_mmatches, scrolledwindow5, "scrolledwindow5");
-  GLADE_HOOKUP_OBJECT (window_mmatches, treeview_mmatches, "treeview_mmatches");
-  GLADE_HOOKUP_OBJECT (window_mmatches, hbox36, "hbox36");
-  GLADE_HOOKUP_OBJECT (window_mmatches, button_mm_add, "button_mm_add");
-  GLADE_HOOKUP_OBJECT (window_mmatches, alignment12, "alignment12");
-  GLADE_HOOKUP_OBJECT (window_mmatches, hbox32, "hbox32");
-  GLADE_HOOKUP_OBJECT (window_mmatches, image19, "image19");
-  GLADE_HOOKUP_OBJECT (window_mmatches, label59, "label59");
   GLADE_HOOKUP_OBJECT (window_mmatches, button_mm_import, "button_mm_import");
   GLADE_HOOKUP_OBJECT (window_mmatches, alignment15, "alignment15");
   GLADE_HOOKUP_OBJECT (window_mmatches, hbox37, "hbox37");
   GLADE_HOOKUP_OBJECT (window_mmatches, image22, "image22");
   GLADE_HOOKUP_OBJECT (window_mmatches, label62, "label62");
+  GLADE_HOOKUP_OBJECT (window_mmatches, scrolledwindow5, "scrolledwindow5");
+  GLADE_HOOKUP_OBJECT (window_mmatches, treeview_mmatches, "treeview_mmatches");
   GLADE_HOOKUP_OBJECT (window_mmatches, hbox34, "hbox34");
   GLADE_HOOKUP_OBJECT (window_mmatches, button_mm_save_close, "button_mm_save_close");
   GLADE_HOOKUP_OBJECT (window_mmatches, alignment13, "alignment13");

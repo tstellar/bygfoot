@@ -1,6 +1,8 @@
 #include "callbacks.h"
+#include "callback_func.h"
 #include "file.h"
 #include "finance.h"
+#include "free.h"
 #include "game_gui.h"
 #include "maths.h"
 #include "misc2_callback_func.h"
@@ -9,6 +11,7 @@
 #include "support.h"
 #include "team.h"
 #include "treeview.h"
+#include "treeview2.h"
 #include "treeview_helper.h"
 #include "transfer.h"
 #include "user.h"
@@ -209,4 +212,50 @@ misc2_callback_add_user(void)
     treeview_show_team_list(treeview_user_management_teams, FALSE, FALSE);
 
     setsav0;
+}
+
+/** Handle a click in the MM window treeview.
+ @param widget The treeview widget.
+ @param row_num The row that's been clicked on.
+ @param col_num The column number. */
+void
+misc2_callback_mmatches_button_press(GtkWidget *widget, gint row_num, gint col_num)
+{    
+    if(row_num < current_user.mmatches->len)
+    {
+	if(col_num == TREEVIEW_MMATCH_COL_REPLAY)
+	{
+	    stat1 = STATUS_SHOW_LAST_MATCH;
+	    stat3 = 0;
+	    callback_show_last_match(TRUE, 
+				     &g_array_index(current_user.mmatches, MemMatch, row_num).lg);
+	}
+	else if(col_num == TREEVIEW_MMATCH_COL_REMOVE)
+	{
+	    gtk_widget_hide(widget);
+	    free_g_string(&g_array_index(current_user.mmatches, MemMatch, row_num).competition_name);
+	    free_g_string(&g_array_index(current_user.mmatches, MemMatch, row_num).country_name);
+	    free_live_game(&g_array_index(current_user.mmatches, MemMatch, row_num).lg);
+	    g_array_remove_index(current_user.mmatches, row_num);
+	    treeview2_show_mmatches();
+	    gtk_widget_show(widget);
+	}
+	else if(col_num == TREEVIEW_MMATCH_COL_EXPORT)
+	{
+	    stat5 = STATUS_SELECT_MM_FILE_EXPORT;
+	    stat4 = row_num;
+	    window_show_file_sel();
+	}
+    }
+    else if(row_num == current_user.mmatches->len && col_num == 1)
+    {
+	if(current_user.live_game.units->len == 0)
+	{
+	    game_gui_show_warning(_("No match stored."));
+	    return;
+	}
+
+	user_mm_add_last_match(FALSE, FALSE);
+	treeview2_show_mmatches();
+    }
 }

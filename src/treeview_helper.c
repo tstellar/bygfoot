@@ -1263,14 +1263,32 @@ treeview_helper_mm_teams(GtkTreeViewColumn *col,
 		 const_app("string_treeview_helper_color_default_background"), NULL);
     g_object_set(renderer, "foreground",
 		 const_app("string_treeview_helper_color_default_foreground"), NULL);
+    g_object_set(renderer, "text", "", NULL);
 
     if(column == 1 || column == 2)
     {
 	gtk_tree_model_get(model, iter, column, &mm, -1);
-	if(column == 1)
-	    g_object_set(renderer, "text", mm->lg.team_names[mm->user_team]->str, NULL);
-	else
-	    g_object_set(renderer, "text", mm->lg.team_names[!mm->user_team]->str, NULL);
+	if(mm != NULL)
+	{
+	    if(column == 1)
+		g_object_set(renderer, "text", mm->lg.team_names[mm->user_team]->str, NULL);
+	    else
+		g_object_set(renderer, "text", mm->lg.team_names[!mm->user_team]->str, NULL);
+
+	    if(!mm->neutral &&
+	       ((column == 1 && mm->user_team == 1) ||
+		(column == 2 && mm->user_team == 0)))
+		g_object_set(renderer, "background",
+			     const_app("string_treeview_live_game_commentary_away_bg"), NULL);
+	}
+	else if(column == 1)
+	{
+	    g_object_set(renderer, "text", _("ADD LAST MATCH"), NULL);
+	    g_object_set(renderer, "background", 
+			 const_app("string_treeview_helper_mmatches_add_bg"), NULL);
+	    g_object_set(renderer, "foreground", 
+			 const_app("string_treeview_helper_mmatches_add_fg"), NULL);
+	}
     }
     else if(column >= TREEVIEW_MMATCH_COL_REPLAY)
     {
@@ -1278,32 +1296,30 @@ treeview_helper_mm_teams(GtkTreeViewColumn *col,
 	g_object_set(renderer, "text", text, NULL);
     }
     
-    if(((column == 1 && mm->user_team == 1) ||
-	(column == 2 && mm->user_team == 0)) &&
-       !mm->neutral)
+    gtk_tree_model_get(model, iter, 1, &mm, -1);
+
+    if(mm != NULL)
     {
-	g_object_set(renderer, "background",
-		     const_app("string_treeview_live_game_commentary_away_bg"), NULL);
-    }
-    else if(column == TREEVIEW_MMATCH_COL_REPLAY)
-    {
-	g_object_set(renderer, "background",
-		     const_app("string_treeview_helper_mmatches_replay_bg"), NULL);
-	g_object_set(renderer, "foreground",
-		     const_app("string_treeview_helper_mmatches_replay_fg"), NULL);
-    }
-    else if(column == TREEVIEW_MMATCH_COL_REMOVE)
-    {
-	g_object_set(renderer, "background",
-		     const_app("string_treeview_helper_mmatches_remove_bg"), NULL);
-	g_object_set(renderer, "foreground",
-		     const_app("string_treeview_helper_mmatches_remove_fg"), NULL);
-    }
-    else if(column == TREEVIEW_MMATCH_COL_EXPORT)
-    {
-	g_object_set(renderer, "background",
-		     const_app("string_treeview_helper_mmatches_export_bg"), NULL);
-	g_object_set(renderer, "foreground",
-		     const_app("string_treeview_helper_mmatches_export_fg"), NULL);
+	if(column == TREEVIEW_MMATCH_COL_REPLAY)
+	{
+	    g_object_set(renderer, "background",
+			 const_app("string_treeview_helper_mmatches_replay_bg"), NULL);
+	    g_object_set(renderer, "foreground",
+			 const_app("string_treeview_helper_mmatches_replay_fg"), NULL);
+	}
+	else if(column == TREEVIEW_MMATCH_COL_REMOVE)
+	{
+	    g_object_set(renderer, "background",
+			 const_app("string_treeview_helper_mmatches_remove_bg"), NULL);
+	    g_object_set(renderer, "foreground",
+			 const_app("string_treeview_helper_mmatches_remove_fg"), NULL);
+	}
+	else if(column == TREEVIEW_MMATCH_COL_EXPORT)
+	{
+	    g_object_set(renderer, "background",
+			 const_app("string_treeview_helper_mmatches_export_bg"), NULL);
+	    g_object_set(renderer, "foreground",
+			 const_app("string_treeview_helper_mmatches_export_fg"), NULL);
+	}
     }
 }

@@ -18,5 +18,8 @@ misc2_callback_contract_offer(void);
 void
 misc2_callback_add_user(void);
 
+void
+misc2_callback_mmatches_button_press(GtkWidget *widget, gint row_num, gint col_num);
+
 #endif
 
