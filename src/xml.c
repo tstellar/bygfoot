@@ -58,7 +58,7 @@ xml_load_leagues(const gchar *dirname, const gchar *basename)
 	   !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_fixtures.xml") &&
 	   !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_teams.xml") &&
 	   !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_stat.xml") &&
-	   !query_misc_string_contains(((GString*)g_ptr_array_index(dir_contents, i))->str, "_promcup"))
+	   !g_strrstr(((GString*)g_ptr_array_index(dir_contents, i))->str, "_promcup"))
 	    xml_load_league(dirname, ((GString*)g_ptr_array_index(dir_contents, i))->str,
 			    dir_contents);
     
@@ -116,7 +116,7 @@ xml_load_cups(const gchar *dirname, const gchar *basename)
     
     for(i=0;i<dir_contents->len;i++)
     {
-	if(!query_misc_string_contains(((GString*)g_ptr_array_index(dir_contents, i))->str, "_table") &&
+	if(!g_strrstr(((GString*)g_ptr_array_index(dir_contents, i))->str, "_table") &&
 	   !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_fixtures.xml") &&
 	   !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_teams.xml"))
 	{

@@ -197,15 +197,15 @@ lg_commentary_replace_expressions(gchar *commentary_text)
 		{
 		    strncpy(buf2, buf + i + 1, j - i - 1);
 		    buf2[j - i - 1] = '\0';
-		    if (query_misc_string_contains(buf2, "|"))
-		      lg_commentary_choose_random(buf2);
+		    if (g_strrstr(buf2, "|"))
+			lg_commentary_choose_random(buf2);
 		    else 
 		    {
-		      if(query_misc_string_contains(buf2, "<") ||
-		         query_misc_string_contains(buf2, ">") ||
-   		         query_misc_string_contains(buf2, "=") ||
-		         query_misc_string_contains(buf2, " G ") ||
-		         query_misc_string_contains(buf2, " L "))
+		      if(g_strrstr(buf2, "<") ||
+		         g_strrstr(buf2, ">") ||
+   		         g_strrstr(buf2, "=") ||
+		         g_strrstr(buf2, " G ") ||
+		         g_strrstr(buf2, " L "))
 			    misc_parse(buf2, &value);
 		       else
 		  	  misc_parse_expression(buf2, &value);
@@ -240,8 +240,8 @@ lg_commentary_replace_tokens(gchar *commentary_text)
 
     for(i=0;i<lg_tokens.list->len;i++)
     {
-	if(query_misc_string_contains(commentary_text,
-				      g_array_index(lg_tokens.list, Option, i).string_value->str))
+	if(g_strrstr(commentary_text,
+		     g_array_index(lg_tokens.list, Option, i).string_value->str))
 	{
 	    if(token_rep[i] == NULL)
 		return FALSE;

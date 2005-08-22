@@ -219,27 +219,6 @@ misc_float_compare(gfloat first, gfloat second)
     return 0;
 }
 
-/** Find out whether the first string contains the second string. */
-gboolean
-query_misc_string_contains(const gchar *string, const gchar *text)
-{
-    gint i;
-    gint lens = strlen(string),
-	lent = strlen(text);
-
-    if(lent > lens)
-	return FALSE;
-       
-    if(lent == lens)
-	return (strcmp(text, string) == 0);
-
-    for(i=0;i<lens - lent + 1;i++)
-	if(g_str_has_prefix(string + i, text))
-	    return TRUE;
-
-    return FALSE;
-}
-
 /** Check whether the string is in the GString array. */
 gboolean
 query_misc_string_in_array(const gchar *string, GPtrArray *array)
@@ -259,23 +238,21 @@ query_misc_string_in_array(const gchar *string, GPtrArray *array)
 void
 misc_string_replace_token(gchar *string, const gchar *token, const gchar *replacement)
 {
-    gint i;
     gchar buf[SMALL], buf2[SMALL];
+    gchar *occurrence = NULL;
 
     if(strlen(string) < strlen(token))
 	return;
 
-    for(i=0;i<strlen(string) - strlen(token) + 1;i++)
+    occurrence = g_strrstr(string, token);
+
+    if(occurrence != NULL)
     {
-	if(g_str_has_prefix(string + i, token))
-	{
-	    strcpy(buf2, string + i + strlen(token));
-	    strncpy(buf, string, i);
-	    buf[i] = '\0';
-	    sprintf(string, "%s%s%s", buf, replacement, buf2);
-	    misc_string_replace_token(string, token, replacement);
-	    return;
-	}
+	strncpy(buf, string, strlen(string) - strlen(occurrence));
+	buf[strlen(string) - strlen(occurrence)] = '\0';
+	strcpy(buf2, occurrence + strlen(token));
+	sprintf(string, "%s%s%s", buf, replacement, buf2);
+	misc_string_replace_token(string, token, replacement);
     }
 }
 

@@ -1539,12 +1539,14 @@ live_game_unit_result_to_buf(const LiveGameUnit *unit, gchar *buf, gboolean swap
     gint idx = (swap) ? 1 : 0;
 
     if(unit->time == LIVE_GAME_UNIT_TIME_PENALTIES)
+	/* A result after penalties. */
 	sprintf(buf, _("%d : %d p."), unit->result[idx],
 		unit->result[!idx]);
     else if(unit->time == LIVE_GAME_UNIT_TIME_EXTRA_TIME)
+	/* A result after extra time. */
 	sprintf(buf, _("%d : %d e.t."), unit->result[idx],
 		unit->result[!idx]);
     else
-	sprintf(buf, _("%d : %d"), unit->result[idx],
+	sprintf(buf, "%d : %d", unit->result[idx],
 		unit->result[!idx]);
 }
