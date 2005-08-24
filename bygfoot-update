@@ -3,14 +3,14 @@
 ####################################################
 # Bygfoot Football Manager                         #
 # AUTHOR: Gyozo Both (gyboth@bygfoot.com)          #
-# http://www.bygfoot.com                           #
+# http://bygfoot.sourceforge.net                   #
 ####################################################
 
 # Skript that updates src packages of the Bygfoot Football Manager
 # using wget to retrieve patches from the homepage
 
 # version number
-version="0.13"
+version="1.9.1"
 # the bygfoot release version the script is shipped with
 relversion=VERSION
 # the current release version on the server
@@ -62,8 +62,8 @@ cvs_version1=bygfoot-unstable
 cvs_version2=bygfoot2-unstable
 cvs_version=
 
-# SourceForge.Net username (for cvs checkout)
-cvs_user=
+# whether we use zenity
+use_zenity=
 
 # The file we redirect dialog output to
 input_file=$PWD/bygfoot-update-dialog.tmp
@@ -85,6 +85,9 @@ check=1
 # whether we just fetch the latest version number from
 # the server
 get_version=0
+
+# SourceForge.Net username (for cvs checkout)
+cvs_user=
 
 # whether we show the log file before terminating
 # if so, the file doesn't get deleted by cleanup()
@@ -110,8 +113,7 @@ Usage: bygfoot-update [OPTIONS]
 Note: You can call bygfoot-update without any options.
 
 MAIN OPTIONS:
--c|--country-files         Download country files with official team names
-                           and team definitions file
+-c|--country-files         Download some official team names of well known teams
 -n|--new-package           Download the latest complete package
 -u|--update                Update your Bygfoot source package using patches
 -b|--cvs                   Get CVS version
@@ -125,6 +127,8 @@ Global:
                            show its contents instead.
 -t|--temp-dir DIR          Set temp directory to DIR
 -v|--version               Print version information and exit
+-Z|--no-zenity             Don't use zenity even if the version installed
+                           is usable
 
 Relevant for source update mode:
 -a|--apply-all             Apply all new patches without prompting
@@ -133,8 +137,8 @@ Relevant for source update mode:
 -R|--no-recompile          Don't recompile after updating
 
 Relevant for country files mode:
--C|--country-dir DIR       Set destination directory for the
-                           country files and def file to DIR
+-C|--country-dir DIR       Set the directory that contains the definitions
+                           directory
 
 Relevant for package download mode:
 -f|--format FORMAT         Set package format to FORMAT:
@@ -178,9 +182,14 @@ function my_echo()
 # show log file before exiting if the option is set
 function my_exit()
 {
+
     if [ $show_log -eq 1 ]; then
 	if [ -r $log_file ]; then
-	    dialog --title "Bygfoot Online Update" --textbox $log_file 22 75
+	    if [ $use_zenity -eq 1 ]; then
+		my_zenity --title="Bygfoot Online Update Log" --text-info --filename=$log_file
+	    else
+		dialog --title "Bygfoot Online Update" --textbox $log_file 22 75
+	    fi
 	else
 	    echo "** WARNING: log file $log_file not readable."
 	fi
@@ -193,10 +202,10 @@ function my_exit()
 # parse arguments
 function parse_args()
 {
-    TEMP=`getopt -o aAbcB:C:f:hlnNp:rRt:T:uU:vV --long apply-all,\
+    TEMP=`getopt -o aAbcB:C:f:hlnNp:rRt:T:uU:vVZ --long apply-all,\
 auto,branch:,country-files,country-dir:,cvs,format:,help,new-package,no-check,\
 package-dir:,recompile,no-recompile,show-log,temp-dir:,type:,update,username:\
-version,get-version -- $*`
+version,get-version,no-zenity -- $*`
 
     if [ $? != 0 ]; then
 	my_echo "** b-u: There was an error parsing the arguments."
@@ -228,6 +237,7 @@ version,get-version -- $*`
 	    -U|--username) cvs_user=$2; shift 2 ;;
 	    -v|--version) print_version; exit $EXITOK ;;
 	    -V|--get-version) mode=$mode_pack; get_version=1; shift ;;
+	    -Z|--no-zenity) use_zenity=0; shift ;;
 	    --) shift; break ;;
 	esac
     done
@@ -237,12 +247,14 @@ version,get-version -- $*`
 function cleanup()
 {
     my_echo
-    my_echo "** b-u: Removing dialog output file $input_file."
+    my_echo "** b-u: Removing output file $input_file."
     rm -rfv $input_file 2>> $log_file | tee -a $log_file
 
-    if [ ! -z $tmpdir -a $mode -neq $mode_pack ];then
-	my_echo "** b-u: Cleaning up in the temp directory."
-	rm -rfv  2>> $log_file | tee -a $log_file
+    if [ ! -z $tmpdir ]; then
+	if [ $mode -ne $mode_pack ]; then
+	    my_echo "** b-u: Cleaning up in the temp directory."
+	    rm -rfv  2>> $log_file | tee -a $log_file
+	fi
     fi
 
     if [ $show_log -eq 0 ]; then
@@ -258,6 +270,43 @@ function my_wget()
 	my_echo
 	my_echo "** b-u: wget failure."
 	my_exit $EXITWGETFAIL
+    fi
+}
+
+# wrapper for zenity
+function my_zenity()
+{
+    zenity "$@" 1> $input_file
+    exitval=$?
+
+    if [ $exitval -eq 255 ]; then
+	my_echo "** b-u: zenity error."
+	read a
+    elif [ $exitval -eq 1 ]; then
+	my_echo "** b-u: User abort."
+	my_exit $EXITUSR
+    fi
+}
+
+# check for high enough version of zenity
+function check_zenity()
+{
+    my_echo -n "** b-u: checking for zenity..."
+    if ! which zenity &> /dev/null; then
+	my_echo " not installed. I'm going to use dialog."
+    else
+	zenver=$(zenity --version)
+	zenver1=$(echo $zenver |sed "s/\([0-9]*\).\([0-9]*\).\([0-9]*\)/\1/g")
+	zenver2=$(echo $zenver |sed "s/\([0-9]*\).\([0-9]*\).\([0-9]*\)/\2/g")
+	zenver3=$(echo $zenver |sed "s/\([0-9]*\).\([0-9]*\).\([0-9]*\)/\3/g")
+
+	if [ $zenver1 -ge 2 -a $zenver2 -ge 9 -a $zenver3 -ge 0 ]; then
+	    my_echo " $zenver1.$zenver2.$zenver3 found."
+	    use_zenity=1
+	else
+	    my_echo " $zenver1.$zenver2.$zenver3 not good enough. I'm going to use dialog."
+	    use_zenity=0
+	fi
     fi
 }
 
@@ -281,6 +330,10 @@ function check_progs()
 	    read a
 	fi
     done
+
+    if [ -z $use_zenity ]; then
+	check_zenity
+    fi
 }
 
 function read_input()
@@ -288,7 +341,7 @@ function read_input()
     if [ $? -eq 1 ];then
 	my_echo "** b-u: User abort."
 	my_exit $EXITUSR
-    fi
+    fi    
 
     if [ -r $input_file ]; then
 	tempvar=$(cat $input_file)
@@ -304,19 +357,27 @@ function read_input()
 function get_country_files()
 {
     my_echo
-    my_echo "** b-u: Fetching country files with official team names and"
-    my_echo "** b-u: team definitions file."
+    my_echo "** b-u: Fetching official team names and"
+    my_echo "** b-u: team definitions files."
 
     pushd $countrydir &>/dev/null
 
-    my_wget http://bygfoot.sourceforge.net/revisions/bygfoot-countries.tar.bz2
+    my_wget http://bygfoot.sourceforge.net/revisions/official_names
 
-    for i in country_* teams; do
-	mv -vf $i $i.old 2>> $log_file | tee -a $log_file
-    done
+    while read -d : oldname && read newname 
+      do
+      if [ "$oldname" == "League" ]; then
+	  DIRNAME=$newname
+	  my_echo "Patching $DIRNAME..."
+      else
+	  oldname="${oldname## }"
+	  newname="${newname%% }"
+	  sed -i -e "s/>$oldname</>$newname</" definitions/$DIRNAME/league*.xml
+      fi
+      
+    done < official_names
 
-    tar xfjv bygfoot-countries.tar.bz2 2>> $log_file | tee -a $log_file
-    rm -vf bygfoot-countries.tar.bz2 2>> $log_file | tee -a $log_file
+    rm -vf official_names 2>> $log_file | tee -a $log_file
 
     popd
 
@@ -331,8 +392,14 @@ function get_paths()
     if [ $mode -eq $mode_src ]; then
 	if [ -z $packdir ]; then
 	    if [ $auto -eq 0 ]; then
-		dialog --title "Bygfoot Online Update" \
-		    --inputbox "Source package directory" 22 80 $PWD 2> $input_file
+		if [ $use_zenity -eq 1 ]; then
+		    my_zenity --title="Select source package directory" \
+			--file-selection --directory
+		else
+		    dialog --title "Bygfoot Online Update" \
+			--inputbox "Source package directory" 22 80 $PWD 2> $input_file
+		fi
+
 		read_input
 
 		pushd $tempvar; packdir=$PWD; popd
@@ -349,8 +416,15 @@ function get_paths()
     if [ $mode -ne $mode_country ]; then
 	if [ -z $tmpdir ]; then
 	    if [ $auto -eq 0 ]; then
-		dialog --title "Bygfoot Online Update" --inputbox "Temporary directory\n(you need read/write permissions there)" \
-		    22 80 /tmp 2> $input_file
+		if [ $use_zenity -eq 1 ]; then
+		    my_zenity --title="Select temporary directory" \
+			--file-selection --directory
+		else
+		    dialog --title "Bygfoot Online Update" \
+			--inputbox "Temporary directory\n(you need read/write permissions there)" \
+			22 80 /tmp 2> $input_file
+		fi
+
 		read_input
 
 		if [ ! -z $tempvar ]; then
@@ -371,8 +445,15 @@ function get_paths()
     if [ $mode -eq $mode_country ]; then
 	if [ -z $countrydir ]; then
 	    if [ $auto -eq 0 ]; then
-		dialog --title "Bygfoot Online Update" --inputbox "Country files destination directory\n(default destination recommmended)" \
-		    22 80 $HOME/.bygfoot/text_files 2> $input_file
+		if [ $use_zenity -eq 1 ]; then
+		    my_zenity --title="Definitions dir ($HOME/.bygfoot-1.9 should be ok; right click to show hidden)" \
+			--file-selection --directory
+		else
+		    dialog --title "Bygfoot Online Update" \
+			--inputbox "Directory containing definitions directory\n(default destination should be ok)" \
+			22 80 $HOME/.bygfoot-1.9/ 2> $input_file
+		fi
+
 		read_input
 
 		if [ ! -z $tempvar ]; then
@@ -395,11 +476,17 @@ function get_rev_type()
 {
     echo
     if [ ! -e $packdir/revision_number ]; then
-	dialog --title "Bygfoot Online Update" --msgbox \
+	if [ $use_zenity -eq 1 ]; then
+	    my_zenity --title="Bygfoot Online Update" --error \
+		--error-text="I couldn't find the file containing your current revision number and type ($packdir/revision_number)."
+	else
+	    dialog --title "Bygfoot Online Update" --msgbox \
 "I couldn't find the file containing your current revision number and type ($packdir/revision_number).\nFailure." \
-	    22 80 2> $input_file
-	    read_input
-	    my_exit $EXITNOREV
+		22 80 2> $input_file
+	fi
+
+	read_input
+	my_exit $EXITNOREV
     fi
 
     type=$(cat $packdir/revision_number | sed s/[0-9]*//g)   
@@ -442,19 +529,31 @@ function get_revision()
     cd $newrevdir
     tar xfjv ../revision_$type$newrevnr.tar.bz2 2>> $log_file | tee -a $log_file
     
-    dialog --title "Bygfoot Online Update" --textbox README 22 75
+    if [ $use_zenity -eq 1 ]; then
+	my_zenity --title="Patch README" --text-info --filename=README
+    else
+	dialog --title "Bygfoot Online Update" --textbox README 22 75
+    fi
 
     if [ $apply_all -eq 0 ]; then
-	
-	dialog --title "Bygfoot Online Update" --menu \
+	if [ $use_zenity -eq 1 ]; then
+	    my_zenity --title="Bygfoot Online Update" --list \
+		--list-text="Apply patch? (You can't apply newer ones if you don't apply this one because they depend on each other." \
+		--radiolist --column "" --column "" --column "" \
+		TRUE 1 Yes \
+		FALSE 2 No \
+		FALSE 3 All
+	else
+	    dialog --title "Bygfoot Online Update" --menu \
 "Apply patch?\n(You can't apply newer ones if you don't apply this one because they depend on each other.)" \
-	    22 80 10 \
-	    1 Yes \
-	    2 No \
-	    3 All 2> $input_file
+		22 80 10 \
+		1 Yes \
+		2 No \
+		3 All 2> $input_file
+	fi
 
-	    read_input
-	
+	read_input
+
 	if [ ! -z $tempvar ]; then
 	    if [ $tempvar -eq 3 ]; then
 		apply_all=1
@@ -500,12 +599,20 @@ function update_end()
     my_echo
     
     if [ $found -ge 1 ]; then
-
-	dialog --title "Bygfoot Online Update" --msgbox "$found new revisions found.\nYour new revision number should be $[revnr + found].\nHave a look at the files README, ChangeLog and ReleaseNotes to see the changes that were made." 2> $input_file
+	if [ $use_zenity -eq 1 ]; then
+	    my_zenity --title="Bygfoot Online Update" --info \
+		--info-text="$found new revisions found. Your new revision number should be $[revnr + found]. Have a look at the files README, ChangeLog and ReleaseNotes to see the changes that were made."
+	else
+	    dialog --title "Bygfoot Online Update" --msgbox "$found new revisions found.\nYour new revision number should be $[revnr + found].\nHave a look at the files README, ChangeLog and ReleaseNotes to see the changes that were made." 2> $input_file
+	fi
 
 	if [ $recompile -eq 0 -a $auto -eq 0 ]; then
-	    dialog --title "Bygfoot Online Update" --yesno "Would you like me to execute 'configure && make' ?" 22 80 2> $input_file
-	    
+	    if [ $use_zenity -eq 1 ]; then
+		my_zenity --title="Bygfoot Online Update" --question --question-text="Would you like me to execute 'configure &amp;&amp; make' ?"
+	    else
+		dialog --title "Bygfoot Online Update" --yesno "Would you like me to execute 'configure && make' ?" 22 80 2> $input_file
+	    fi
+
 	    read_input
 	fi
 
@@ -515,7 +622,12 @@ function update_end()
 	fi
 	
     else
-	dialog --title "Bygfoot Online Update" --msgbox "No new revisions found.\nYour package seems to be up-to-date." 22 80 2> $input_file
+	if [ $use_zenity -eq 1 ]; then	    
+	    my_zenity --title="Bygfoot Online Update" --info \
+		--info-text="No new revisions found.\nYour package seems to be up-to-date."
+	else
+	    dialog --title "Bygfoot Online Update" --msgbox "No new revisions found.\nYour package seems to be up-to-date." 22 80 2> $input_file
+	fi
     fi
 
     my_echo
@@ -562,11 +674,18 @@ function get_type()
     fi
 
     if [ $auto -ne 1 ];then
-	
-	dialog --title "Bygfoot Online Update" --menu "Specify package type" \
-	    22 80 10 \
-	    1 "Stable" \
-	    2 "Unstable" 2> $input_file
+	if [ $use_zenity -eq 1 ]; then
+	    my_zenity --title="Bygfoot Online Update" --list \
+		--list-text="Specify package type:" \
+		--radiolist --column "" --column "" --column "" \
+		TRUE 1 Stable \
+		FALSE 2 Unstable
+	else
+	    dialog --title "Bygfoot Online Update" --menu "Specify package type" \
+		22 80 10 \
+		1 "Stable" \
+		2 "Unstable" 2> $input_file
+	fi
 
 	read_input
 
@@ -585,14 +704,25 @@ function get_format()
 {
     if [ -z $format ]; then
 	if [ $auto -ne 1 -a $get_version -ne 1 ]; then
-
-	    dialog --title "Bygfoot Online Update" --menu "Specify package format" \
-		22 80 10 \
-		1 "RPM" \
-		2 "Binary" \
-		3 "Source" \
-		4 "Debian" \
-		5 "Source RPM" 2> $input_file
+	    if [ $use_zenity -eq 1 ]; then
+		my_zenity --title="Bygfoot Online Update" --list \
+		    --list-text="Specify package type:" \
+		    --radiolist --column "" --column "" --column "" \
+		    TRUE 1 "RPM" \
+		    FALSE 2 "Binary" \
+		    FALSE 3 "Source" \
+		    FALSE 4 "Debian" \
+		    FALSE 5 "Source RPM"
+	    else
+		
+		dialog --title "Bygfoot Online Update" --menu "Specify package format" \
+		    22 80 10 \
+		    1 "RPM" \
+		    2 "Binary" \
+		    3 "Source" \
+		    4 "Debian" \
+		    5 "Source RPM" 2> $input_file
+	    fi
 	    
 	    read_input
 	    
@@ -612,6 +742,7 @@ function get_format()
 	fi
     fi
 
+    # todo
     if [ "$type" = "$type_unstable" -a "$format" = "$format_deb" ]; then
 	dialog --title "Bygfoot Online Update" --msgbox \
 "There are no unstable packages for Debian. Sorry.\nFailure." 22 80 2> $input_file
@@ -640,7 +771,13 @@ function get_latest_version()
 	return
     fi
 
-    dialog --title "Bygfoot Online Update" --yesno "Latest $type version is $packversion.\nYour version (as far as i know) is $relversion.\nDo you want me to download the package?" 22 80 2> $input_file
+    if [ $use_zenity -eq 1 ]; then
+	my_zenity --title="Bygfoot Online Update" --question \
+	    --question-text="Latest $type version is $packversion. Your version (as far as i know) is $relversion. Do you want me to download the package?"
+    else
+	dialog --title "Bygfoot Online Update" \
+	    --yesno "Latest $type version is $packversion.\nYour version (as far as i know) is $relversion.\nDo you want me to download the package?" 22 80 2> $input_file
+    fi
 
     read_input
 }
@@ -662,8 +799,15 @@ function get_new_package()
 
     my_wget http://bygfoot.sourceforge.net/packages/$type/$file
 
-    dialog --title "Bygfoot Online Update" --msgbox "You can find the package $file\nin the directory $PWD." \
-	22 80 2> $input_file
+    if [ $use_zenity -eq 1 ]; then
+	my_zenity --title="Bygfoot Online Update" --info \
+	    --info-text="You can find the package $file in the directory $PWD."
+    else
+	dialog --title "Bygfoot Online Update" \
+	    --msgbox "You can find the package $file\nin the directory $PWD." \
+	    22 80 2> $input_file
+    fi
+
     my_echo "** b-u: Done."
     
     my_exit $EXITOK
@@ -692,11 +836,21 @@ function get_mode()
 	return
     fi
 
-    dialog --title "Bygfoot Online Update" --menu "Main Menu" 22 80 10 \
-	1 " Update your Bygfoot source package using patches" \
-	2 " Download the latest Bygfoot release" \
-	3 " Get country file package with official team names" \
-	4 " Get CVS version (2+ MB 'cause it's not compressed)" 2> $input_file
+    if [ $use_zenity -eq 1 ]; then
+	my_zenity --title="Bygfoot Online Update" --list \
+	    --list-text="Main Menu" \
+	    --radiolist --column "" --column "" --column "" \
+	    TRUE 1 "Update your Bygfoot source package using patches" \
+	    FALSE 2 "Download the latest Bygfoot release" \
+	    FALSE 3 "Get official team names and team definitions" \
+	    FALSE 4 "Get CVS version (2+ MB 'cause it's not compressed)"
+    else
+	dialog --title "Bygfoot Online Update" --menu "Main Menu" 22 80 10 \
+	    1 " Update your Bygfoot source package using patches" \
+	    2 " Download the latest Bygfoot release" \
+	    3 " Get official team names and team definitions" \
+	    4 " Get CVS version (2+ MB 'cause it's not compressed)" 2> $input_file
+    fi
 
     read_input
 
@@ -719,9 +873,17 @@ function get_mode()
 function get_cvs()
 {
     if [ -z $cvs_version ];then
-	dialog --title "Bygfoot Online Update" --menu "Specify CVS version" 22 80 10 \
-	    1 " 1.8 branch" \
-	    2 " 1.9 branch" 2> $input_file
+	if [ $use_zenity -eq 1 ]; then
+	    my_zenity --title="Bygfoot Online Update" --list \
+		--list-text="Specify CVS version" \
+		--radiolist --column "" --column "" --column "" \
+		FALSE 1 " 1.8 branch" \
+		TRUE 2 " 1.9 branch"
+	else
+	    dialog --title "Bygfoot Online Update" --menu "Specify CVS version" 22 80 10 \
+		1 " 1.8 branch" \
+		2 " 1.9 branch" 2> $input_file
+	fi
 
 	read_input
 
@@ -733,7 +895,12 @@ function get_cvs()
     fi
 
     if [ -z $cvs_user ];then
-	dialog --title "Bygfoot Online Update" --inputbox "If you'd like to check out as a developer, enter your\nSourceForge.net username. Press RETURN to download anonymously." 22 80 2> $input_file
+	if [ $use_zenity -eq 1 ]; then
+	    my_zenity --title="Bygfoot Online Update" --entry \
+		--text="If you'd like to check out as a developer, enter your SourceForge.net username. Leave empty to check out anonymously."
+	else
+	    dialog --title "Bygfoot Online Update" --inputbox "If you'd like to check out as a developer, enter your\nSourceForge.net username. Press RETURN to download anonymously." 22 80 2> $input_file
+	fi
 
 	read_input
 
@@ -754,8 +921,13 @@ function get_cvs()
     $cvs_command checkout $cvs_version 2>> $log_file | tee -a $log_file
 
     if [ $recompile -eq 0 -a $auto -eq 0 ]; then
-	dialog --title "Bygfoot Online Update" \
-	    --yesno "Would you like me to execute 'autogen.sh && make' ?" 22 80 2> $input_file
+	if [ $use_zenity -eq 1 ]; then
+	    my_zenity --title="Bygfoot Online Update" --question \
+		--question-text="Would you like me to execute 'autogen.sh &amp;&amp; make' ?"
+	else
+	    dialog --title "Bygfoot Online Update" \
+		--yesno "Would you like me to execute 'autogen.sh && make' ?" 22 80 2> $input_file
+	fi
 	
 	read_input
     fi
