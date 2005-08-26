@@ -135,7 +135,7 @@ create_window_startup (void)
   gtk_box_pack_start (GTK_BOX (vbox34), label69, FALSE, FALSE, 0);
   gtk_misc_set_padding (GTK_MISC (label69), 0, 5);
 
-  combo_country = gtk_combo_box_new ();
+  combo_country = gtk_combo_box_new_text ();
   gtk_widget_show (combo_country);
   gtk_box_pack_start (GTK_BOX (vbox34), combo_country, TRUE, TRUE, 0);
 

@@ -94,10 +94,6 @@ window_show_startup(void)
     if(country_files->len == 0)
 	main_exit_program(EXIT_NO_COUNTRY_FILES, "Didn't find any country definition files in the support directories.");
 
-    model = treeview_create_country_list(country_files);
-    gtk_combo_box_set_model(GTK_COMBO_BOX(combo_country), model);
-    g_object_unref(model);
-
     gtk_cell_layout_clear(GTK_CELL_LAYOUT(combo_country));
 
     renderer = gtk_cell_renderer_pixbuf_new();
@@ -107,6 +103,10 @@ window_show_startup(void)
     renderer = treeview_helper_cell_renderer_text_new();
     gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(combo_country), renderer, TRUE);
     gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(combo_country), renderer, "text", 1, NULL);
+
+    model = treeview_create_country_list(country_files);
+    gtk_combo_box_set_model(GTK_COMBO_BOX(combo_country), model);
+    g_object_unref(model);
 
     gtk_combo_box_set_active(GTK_COMBO_BOX(combo_country), 0);
 
@@ -125,11 +125,8 @@ window_show_file_sel(void)
 
     window_create(WINDOW_FILE_CHOOSER);
 
-    if(stat5 == STATUS_SAVE_GAME || 
-       stat5 == STATUS_SELECT_MM_FILE_LOAD ||
-       stat5 == STATUS_SELECT_MM_FILE_ADD ||
-       stat5 == STATUS_SELECT_MM_FILE_IMPORT ||
-       stat5 == STATUS_SELECT_MM_FILE_EXPORT)
+    if(stat5 != STATUS_LOAD_GAME &&
+       stat5 != STATUS_LOAD_GAME_TEAM_SELECTION)
 	gtk_file_chooser_set_action(GTK_FILE_CHOOSER(window.file_chooser),
 				    GTK_FILE_CHOOSER_ACTION_SAVE);
     else
@@ -137,10 +134,9 @@ window_show_file_sel(void)
 				    GTK_FILE_CHOOSER_ACTION_OPEN);
 
     filter = gtk_file_filter_new();
-    if(stat5 != STATUS_SELECT_MM_FILE_ADD &&
-       stat5 != STATUS_SELECT_MM_FILE_LOAD &&
-       stat5 != STATUS_SELECT_MM_FILE_IMPORT &&
-       stat5 != STATUS_SELECT_MM_FILE_EXPORT)
+    if(stat5 == STATUS_SAVE_GAME || 
+       stat5 == STATUS_LOAD_GAME ||
+       stat5 == STATUS_LOAD_GAME_TEAM_SELECTION)
     {
 	gtk_file_filter_set_name(filter, _("Bygfoot Save Files"));
 	gtk_file_filter_add_pattern(filter, "*.zip");
@@ -158,16 +154,15 @@ window_show_file_sel(void)
     gtk_file_filter_add_pattern(filter, "*");
     gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(window.file_chooser), filter);
 
-    if((stat5 != STATUS_SELECT_MM_FILE_LOAD &&
-	stat5 != STATUS_SELECT_MM_FILE_ADD && 
-	stat5 != STATUS_SELECT_MM_FILE_IMPORT &&
-	stat5 != STATUS_SELECT_MM_FILE_EXPORT &&
-	strlen(save_file->str) > 0) ||
-       strlen(current_user.mmatches_file->str) > 0)
+    if((stat5 == STATUS_SAVE_GAME || 
+	stat5 == STATUS_LOAD_GAME ||
+	stat5 == STATUS_LOAD_GAME_TEAM_SELECTION) &&
+       strlen(save_file->str) > 0)
 	gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(window.file_chooser),
-				      (stat5 != STATUS_SELECT_MM_FILE_ADD && 
-				       stat5 != STATUS_SELECT_MM_FILE_LOAD) ? 
-				      save_file->str : current_user.mmatches_file->str);
+				      save_file->str);
+    else if(strlen(current_user.mmatches_file->str) > 0)
+	gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(window.file_chooser),
+				      current_user.mmatches_file->str);
     else
     {
         if(os_is_unix)
