@@ -56,9 +56,9 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
     gtk_progress_bar_set_fraction(progress_bar, (fraction > 1) ? 1 : fraction);
     gtk_progress_bar_set_text(progress_bar, buf);
     g_usleep((gint)rint(sleep_factor * 
-			(gfloat)(const_int("int_game_gui_live_game_speed_base") +
+			(gfloat)(const_int("int_game_gui_live_game_speed_max") +
 				 (option_int("int_opt_user_live_game_speed", &usr(stat2).options) * 
-				  const_int("int_game_gui_live_game_speed_step")))));
+				  const_int("int_game_gui_live_game_speed_grad")))));
 
     while(gtk_events_pending())
 	gtk_main_iteration();

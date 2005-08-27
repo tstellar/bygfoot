@@ -297,12 +297,12 @@ on_spinbutton_speed_button_press_event (GtkWidget       *widget,
 {
     if(event->button == 3)
     {
-	if(option_int("int_opt_user_live_game_speed", &usr(stat2).options) == -10)
+	if(option_int("int_opt_user_live_game_speed", &usr(stat2).options) == 0)
+	    option_set_int("int_opt_user_live_game_speed", &usr(stat2).options, 30);
+	else if(option_int("int_opt_user_live_game_speed", &usr(stat2).options) == 30)
 	    option_set_int("int_opt_user_live_game_speed", &usr(stat2).options, 20);
-	else if(option_int("int_opt_user_live_game_speed", &usr(stat2).options) == 20)
-	    option_set_int("int_opt_user_live_game_speed", &usr(stat2).options, 0);
 	else
-	    option_set_int("int_opt_user_live_game_speed", &usr(stat2).options, -10);
+	    option_set_int("int_opt_user_live_game_speed", &usr(stat2).options, 0);
 
 	gtk_spin_button_set_value(
 	    GTK_SPIN_BUTTON(lookup_widget(window.live, "spinbutton_speed")),

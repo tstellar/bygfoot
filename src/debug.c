@@ -66,6 +66,12 @@ debug_action(const gchar *text, gint value)
 	while(week < value)
 	    on_button_new_week_clicked(NULL, NULL);
     }
+    else if(g_str_has_prefix(text, "testcom") ||
+	    g_str_has_prefix(text, "tc"))
+    {
+	stat5 = -value;
+	game_gui_print_message("Commentary type displayed: %d.", value);
+    }
     else if(g_str_has_prefix(text, "help"))
     {
 	printf("Debug options:\n"
@@ -80,6 +86,9 @@ debug_action(const gchar *text, gint value)
 	       "pospref \t change recruiting pref\n"
 	       "goto \t Press 'new week' automatically until\n"
 	       "     \t the appropriate week is reached\n"
+	       "testcom|tc \t Test a specific live game commentary.\n"
+	       "           \t Find the numbers in live_game_struct.h (LiveGameEventType)\n"
+	       "           \t Use 'goto' afterwards.\n"
 	       "help \t display this help\n");
     }
 

@@ -653,7 +653,7 @@ create_window_live (void)
   gtk_table_set_row_spacings (GTK_TABLE (table2), 1);
   gtk_table_set_col_spacings (GTK_TABLE (table2), 3);
 
-  spinbutton_speed_adj = gtk_adjustment_new (0, -10, 20, 1, 10, 10);
+  spinbutton_speed_adj = gtk_adjustment_new (0, 0, 30, 1, 10, 10);
   spinbutton_speed = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_speed_adj), 1, 0);
   gtk_widget_show (spinbutton_speed);
   gtk_table_attach (GTK_TABLE (table2), spinbutton_speed, 1, 2, 1, 2,
