@@ -63,7 +63,7 @@ live_game_calculate_fixture(Fixture *fix)
 
     if(last_unit.event.type == LIVE_GAME_EVENT_END_MATCH)
     {
-	if(fixture_user_team_involved(match->fix) != -1 || stat5 < 0)
+	if(fixture_user_team_involved(match->fix) != -1 || stat5 < -1000)
 	    lg_commentary_post_match();
 	game_post_match(fix);
     }
@@ -98,7 +98,7 @@ live_game_initialize(Fixture *fix)
 
     game_initialize(fix);
     
-    if(fixture_user_team_involved(match->fix) != -1 || stat5 < 0)
+    if(fixture_user_team_involved(match->fix) != -1 || stat5 < -1000)
 	lg_commentary_initialize(fix);
 }
 
@@ -1310,7 +1310,7 @@ live_game_finish_unit(void)
 	    treeview_show_user_player_list();
     }
 
-    if(fixture_user_team_involved(match->fix) != -1 || stat5 < 0)
+    if(fixture_user_team_involved(match->fix) != -1 || stat5 < -1000)
     {
 	if(unit->time != LIVE_GAME_UNIT_TIME_PENALTIES)
 	{
@@ -1322,7 +1322,7 @@ live_game_finish_unit(void)
 
 	lg_commentary_generate(match, unit);
 
-	if(stat5 == -unit->event.type)
+	if(-stat5 - 1000 == unit->event.type)
 	{
 	    printf("type %d com **%s**", unit->event.type, unit->event.commentary->str);
 	    if(g_strrstr(unit->event.commentary->str, "[") ||

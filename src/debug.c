@@ -69,7 +69,7 @@ debug_action(const gchar *text, gint value)
     else if(g_str_has_prefix(text, "testcom") ||
 	    g_str_has_prefix(text, "tc"))
     {
-	stat5 = -value;
+	stat5 = -value - 1000;
 	game_gui_print_message("Commentary type displayed: %d.", value);
     }
     else if(g_str_has_prefix(text, "help"))
