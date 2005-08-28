@@ -181,6 +181,9 @@ lg_commentary_replace_expressions(gchar *commentary_text)
     gint value = -1;
     gchar buf[SMALL], buf2[SMALL];
 
+    if(!g_strrstr(commentary_text, "["))
+	return;
+
     strcpy(buf, commentary_text);
     strcpy(commentary_text, "");
 
@@ -205,7 +208,9 @@ lg_commentary_replace_expressions(gchar *commentary_text)
 		         g_strrstr(buf2, ">") ||
    		         g_strrstr(buf2, "=") ||
 		         g_strrstr(buf2, " G ") ||
-		         g_strrstr(buf2, " L "))
+		         g_strrstr(buf2, " L ") ||
+		         g_strrstr(buf2, " GE ") ||
+		         g_strrstr(buf2, " LE "))
 			    misc_parse(buf2, &value);
 		       else
 		  	  misc_parse_expression(buf2, &value);

@@ -1331,7 +1331,9 @@ live_game_finish_unit(void)
 	       g_strrstr(unit->event.commentary->str, ">") ||
 	       g_strrstr(unit->event.commentary->str, "=") ||
 	       g_strrstr(unit->event.commentary->str, " G ") ||
-	       g_strrstr(unit->event.commentary->str, " L "))
+	       g_strrstr(unit->event.commentary->str, " L ") ||
+	       g_strrstr(unit->event.commentary->str, " GE ") ||
+	       g_strrstr(unit->event.commentary->str, " LE "))
 		printf(" ERROR?\n");
 	    else
 		printf("\n");

@@ -984,7 +984,7 @@ user_mm_add_last_match(gboolean load_file, gboolean save_file)
 	user_mm_load_file(current_user.mmatches_file->str, NULL);
 
     g_array_append_val(current_user.mmatches, new);
-    game_gui_print_message("Memorable match added.");
+    game_gui_print_message(_("Memorable match added."));
 
     if(save_file)
 	user_mm_save_file(current_user.mmatches_file->str,

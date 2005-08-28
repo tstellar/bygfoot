@@ -201,7 +201,7 @@ window_show_file_sel(void)
 		window_show_mmatches();
 	    }
 	    else
-		game_gui_show_warning("Not a valid Bygfoot Memorable Matches filename.");
+		game_gui_show_warning(_("Not a valid Bygfoot Memorable Matches filename."));
 	}
 	else if(stat5 == STATUS_SELECT_MM_FILE_ADD)
 	{
