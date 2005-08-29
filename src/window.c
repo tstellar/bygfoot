@@ -412,9 +412,16 @@ window_show_transfer_dialog(const gchar *text)
 void
 window_live_set_spinbuttons(void)
 {
-    gtk_spin_button_set_value(
-	GTK_SPIN_BUTTON(lookup_widget(window.live, "spinbutton_speed")),
-	(gfloat)option_int("int_opt_user_live_game_speed", &usr(stat2).options));
+    GtkSpinButton *sb_speed = 
+	GTK_SPIN_BUTTON(lookup_widget(window.live, "spinbutton_speed"));
+
+    gtk_spin_button_set_range(sb_speed, 0, 
+			      -rint((gfloat)(const_int("int_game_gui_live_game_speed_max") - 10) /
+				    (gfloat)(const_int("int_game_gui_live_game_speed_grad"))));
+    
+    gtk_spin_button_set_value(sb_speed,
+			      (gfloat)option_int("int_opt_user_live_game_speed", 
+						 &usr(stat2).options));
     gtk_spin_button_set_value(
 	GTK_SPIN_BUTTON(lookup_widget(window.live, "spinbutton_verbosity")),
 	(gfloat)option_int("int_opt_user_live_game_verbosity", &usr(stat2).options));

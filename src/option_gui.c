@@ -329,6 +329,10 @@ option_gui_write_spin_widgets(gint **spin_options, GtkSpinButton **spin_widgets)
 	GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_live_speed"));
     spin_options[SPIN_OPT_LIVE_SPEED] = opt_user_intp("int_opt_user_live_game_speed");
 
+    gtk_spin_button_set_range(GTK_SPIN_BUTTON(spin_widgets[SPIN_OPT_LIVE_SPEED]), 0,
+			      -rint((gfloat)(const_int("int_game_gui_live_game_speed_max") - 10) /
+				   (gfloat)(const_int("int_game_gui_live_game_speed_grad"))));
+
     spin_widgets[SPIN_OPT_LIVE_VERBOSITY] =
 	GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_live_verbosity"));
     spin_options[SPIN_OPT_LIVE_VERBOSITY] = opt_user_intp("int_opt_user_live_game_verbosity");
