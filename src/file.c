@@ -593,6 +593,10 @@ file_decompress(const gchar *filename)
     file_my_system(buf);
 
     g_free(dirname);
+    g_free(basename);
+
+    chdir(pwd);
+    g_free(pwd);
 }
 
 /** Execute the appropriate remove command with 'files'

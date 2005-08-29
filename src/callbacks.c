@@ -33,7 +33,7 @@ on_menu_new_activate                   (GtkMenuItem     *menuitem,
 {
     window_destroy(&window.main, FALSE);
     free_memory();
-
+    
     main_init(-1, NULL);
     window_show_startup();
     stat0 = STATUS_TEAM_SELECTION;
