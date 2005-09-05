@@ -181,17 +181,21 @@ lg_commentary_replace_expressions(gchar *commentary_text)
     gint value = -1;
     gchar buf[SMALL], buf2[SMALL];
 
+    if(debug > 100)
+	printf("lg_commentary_replace_expressions: #%s#\n",
+	       commentary_text);
+
     if(!g_strrstr(commentary_text, "["))
 	return;
 
     strcpy(buf, commentary_text);
     strcpy(commentary_text, "");
 
-    for(i=0;i<strlen(buf);i++)
+    for(i=strlen(buf) - 1; i>=0; i--)
 	if(buf[i] == '[')
 	{
-	    strncpy(buf2, buf + last_idx, i - last_idx);
-	    buf2[i - last_idx] = '\0';
+	    strncpy(buf2, buf, i);
+	    buf2[i] = '\0';
 	    strcat(commentary_text, buf2);
 
 	    for(j=i + 1;j<strlen(buf);j++)
@@ -220,9 +224,12 @@ lg_commentary_replace_expressions(gchar *commentary_text)
 		    value = -1;
 
 		    last_idx = j + 1;
+
 		    break;
 		}
 	    }
+
+	    break;
 	}
 
     if(last_idx < strlen(buf))
