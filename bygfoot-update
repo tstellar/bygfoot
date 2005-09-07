@@ -353,22 +353,99 @@ function read_input()
     my_echo
 }
 
+# get team definitions
+function get_team_defs()
+{
+    if [ ! -d definitions/teams ]; then
+	mkdir definitions/teams
+    fi
+
+    pushd definitions/teams &> /dev/null
+
+    rm -vf team_defs 2>> $log_file | tee -a $log_file
+    my_wget http://bygfoot.sourceforge.net/revisions/team_defs
+
+    while read key value; do 
+	if [ ! -z $key ]; then
+	    if [ $key = "end_section" ]; then		
+		file_name=$(echo $uri | sed "s/.*\(team_.*bz2\)/\1/g" | sed "s/\.bz2//g")
+		def_name=$(echo $file_name | sed "s/team_//g" | sed "s/\..*//g")
+
+		if [ -e $file_name.xml ]; then
+		    mv $file_name.xml $file_name.xml.old
+		fi
+		if [ -e $file_name.png ]; then
+		    mv $file_name.png $file_name.png.old
+		fi
+				
+		my_wget $uri
+		tar xfj $file_name.bz2
+# 		echo "+++ uri +$uri+ file +$file_name+"
+		
+# 		echo
+# 		echo "uri $uri file $file_name nam +$team_name1+ +$team_name2+ cou $country def $def_name"
+# 		echo
+# 		read a
+
+		if [ -d ../$country ]; then
+		    pushd ../$country &> /dev/null
+		    for league in league*xml; do
+			for team in "$team_name1" "$team_name2"; do
+			    if grep "<team_name>$team</team_name>" $league &> /dev/null; then
+				cp -f $league $league.bak
+				my_echo "   + Adding $team to $league..."
+				perl -0777 -pe "s+(team_name\>$team\</team_name\>)[\n\t ]*\<def_file\>[^\<]*\</def_file\>[\n\t ]*+\1\n+g" $league.bak | perl -0777 -pe "s+(\<team_name\>$team\</team_name\>)+\1\n\t\<def_file\>$def_name\</def_file>+g" > $league
+			    fi
+			done
+		    done
+		    popd &> /dev/null
+		else
+		    my_echo "Country directory $country not found."
+		fi
+
+		team_name1=
+		team_name2=
+		uri=
+		country=
+	    else
+		case $key in
+		    uri) uri=$value ;;
+		    team_name1) team_name1="$value" ;;
+		    team_name2) team_name2="$value" ;;
+		    country) country=$value ;;
+		esac
+	    fi
+	fi
+    done < team_defs
+
+    rm -vf team_defs 2>> $log_file | tee -a $log_file
+    popd &> /dev/null
+}
+
 # get country files with official team names
 function get_country_files()
 {
+    if [ $use_zenity -eq 1 ]; then
+	my_zenity --title="Bygfoot Online Update" --info \
+	    --info-text="If you use the binary version of Bygfoot, the team names and definitions won't work unless you remove the 'support_files/definitons' directory from the Bygfoot directory (containing the executable)."
+    else
+	dialog --title "Bygfoot Online Update" --msgbox "If you use the binary version of Bygfoot, the team names and definitions won't work unless you remove the 'support_files/definitons' directory from the Bygfoot directory (containing the executable)." \
+	    22 80 2> $input_file
+    fi
+
     my_echo
     my_echo "** b-u: Fetching official team names and"
     my_echo "** b-u: team definitions files."
 
     pushd $countrydir &>/dev/null
-
-    my_wget http://bygfoot.sourceforge.net/revisions/official_names
+    
+     my_wget http://bygfoot.sourceforge.net/revisions/official_names
 
     while read -d : oldname && read newname 
       do
       if [ "$oldname" == "League" ]; then
 	  DIRNAME=$newname
-	  my_echo "Patching $DIRNAME..."
+	  my_echo "   + Adding official names to $DIRNAME..."
       else
 	  oldname="${oldname## }"
 	  newname="${newname%% }"
@@ -379,7 +456,9 @@ function get_country_files()
 
     rm -vf official_names 2>> $log_file | tee -a $log_file
 
-    popd
+    get_team_defs
+
+    popd &> /dev/null
 
     my_echo "** b-u: done."
     my_exit $EXITCOUNTRY
@@ -402,7 +481,7 @@ function get_paths()
 
 		read_input
 
-		pushd $tempvar; packdir=$PWD; popd
+		pushd $tempvar &> /dev/null; packdir=$PWD; popd &> /dev/null
 	    else
 		packdir=$PWD
 	    fi
@@ -457,7 +536,7 @@ function get_paths()
 		read_input
 
 		if [ ! -z $tempvar ]; then
-		    pushd $tempvar; countrydir=$PWD; popd
+		    pushd $tempvar &> /dev/null; countrydir=$PWD; popd &> /dev/null
 		else
 		    countrydir=$HOME/.bygfoot/text_files
 		fi

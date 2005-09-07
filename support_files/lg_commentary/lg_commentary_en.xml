@@ -1,8 +1,8 @@
 <lg_commentary>
   <event>
     <name>general</name>
-    <commentary>_P1_ feeds a [wonderfull|super|great|brilliant] ball through to _P0_</commentary>
-    <commentary>Delightfull little [ball|pass] finds _P0_</commentary>
+    <commentary>_P1_ feeds a [wonderful|super|great|brilliant] ball through to _P0_</commentary>
+    <commentary>Delightful little [ball|pass] finds _P0_</commentary>
     <commentary>Flick on from _P1_ waits for the one two</commentary>
     <commentary>Neat dummy run and pass</commentary>
     <commentary>Great footwork, great pass</commentary>
@@ -34,7 +34,8 @@
     <commentary>Bad control by _P1_ lets _P0_ steal the ball off him</commentary>
     <commentary>_P0_ [steals|takes] the ball away from _P1_ with a sliding tackle</commentary>
     <commentary>Loose ball falls to _P0_</commentary>
-    <commentary>Crunching tackle, _P0_ [comes away with|wins] the ball</commentary>    <commentary>_P1_ is left stranded as _P0_ takes the ball</commentary>
+    <commentary>Crunching tackle, _P0_ [comes away with|wins] the ball</commentary>
+    <commentary>_P1_ is left stranded as _P0_ takes the ball</commentary>
     <commentary>_P0_ makes a great interception</commentary>
     <commentary>Not _P1_'s greatest pass as _P0_ intercepts</commentary>
   </event>
@@ -123,6 +124,8 @@
     <commentary>A real let off there for _T1_</commentary>
     <commentary>An Audacious attempt, worthy but not payment</commentary>
     <commentary>There was no gold at the end of that rainbow run</commentary>
+    <commentary>The ball pinballs around the penalty area but finds no way in</commentary>
+    <commentary>That went everywhere except into the net</commentary>
   </event>
   <event>
     <name>save</name>
@@ -135,6 +138,8 @@
     <commentary>_P1_ [sprints towards|runs at|lunges at] _P0_ and blocks the shot with his [ankle|body|head|torso|leg|boot]</commentary>
     <commentary>[Great|Brilliant|Sensational|Easy] save by the [keeper|goalie|goalkeeper]</commentary>
     <commentary>[Saved|Caught|Stopped|Gathered] well by _P1_</commentary>
+    <commentary>ohh [he|the goalie|the keeper|_P1_] anticipated _P0_'s every move and produced a fine save</commentary>
+    <commentary>That was in by all accounts, but they forgot to tell _P1_, who some how saved the day</commentary>
   </event>
   <event>
     <name>start_match</name>
@@ -147,28 +152,36 @@
     <commentary>The referee gets the nod from the linesman and we are away</commentary>
 	 <commentary>The [battle|struggle|fight|war|combat] begins</commentary>
     <commentary>The referees are ready, players set, the whistle blows</commentary>
-<!--
     <commentary cond="_TAVSKILLDIFF_ <= 4">The teams are well matched. We are in for [a real|an end to end] [tug of war|battle].</commentary>
     <commentary cond="_TAVSKILLDIFF_ >=8">There's a huge gulf in the skill level. This should be a walk over for _T[_TAVSKILL0_ GE _TAVSKILL1_]_</commentary>
     <commentary cond="_TAVSKILLDIFF_ >=4">_T[_TAVSKILL0_ LE _TAVSKILL1_]_ come into the game as underdogs.</commentary>
     <commentary cond="_TAVSKILLDIFF_ >=8">_T[_TAVSKILL0_ GE _TAVSKILL1_]_ start the game as sure favourites.</commentary>
-    -->
-    <commentary cond="_TAVSKILLDIFF_ <= 1 and [_TAVSKILL0_ + _TAVSKILL1_] >=85">COND The clash of the [gladiators|titans] [begins|kicks off]</commentary>
+    <commentary cond="_TAVSKILLDIFF_ <= 1 and [_TAVSKILL0_ + _TAVSKILL1_] >=85">The clash of the [gladiators|titans] [begins|kicks off]</commentary>
   </event>
   <event>
     <name>half_time</name>
     <commentary>It's half time</commentary>
-<!--     <commentary>It's a _RE_ at half time.</commentary> -->
-<!--     <commentary>It's a _RE_ at half time, _TL_'s manager has to find something special to spur his team on.</commentary> -->
-<!--     <commentary>_TL_ heads into the tunnel to await the managers scolding</commentary> -->
-<!--     <commentary>_TW_ are just 45 minutes away from a stunning victory</commentary> -->
-<!--     <commentary>Games like this make managers._TL_ need inspiration from the top.</commentary>    <commentary>The dropped heads tell the story.It's been no picnic here for _TL_.</commentary> -->
-<!--     <commentary>_TL_'s manager cops a rollicking from the fans as he leaves the dugout</commentary> -->
-<!--     <commentary>So far _TW_ and their manager have done everything right.</commentary> -->
-<!--     <commentary cond="_POSS0_ >= 70 or _POSS1_ >= 70">_T[_POSS1_ GE 70]_ is dominating the match</commentary> -->
-<!-- 	 <commentary cond="_GOALS0_ + _GOALS1_ >= 6">Its raining goals.[_GOALS0_ + _GOALS1_] So far and its only the first half!</commentary> -->
+    <commentary>It's a _RE_ at half time.</commentary>
+    <commentary>It's a _RE_ at half time, _TL_'s manager has to find something special to spur his team on.</commentary>
+    <commentary>_TL_ heads into the tunnel to await the managers scolding</commentary>
+    <commentary>_TW_ are just 45 minutes away from a stunning victory</commentary>
+    <commentary>Games like this make managers. _TL_ need inspiration from the top.</commentary>    <commentary>The dropped heads tell the story. It's been no picnic here for _TL_.</commentary>
+    <commentary>_TL_'s manager cops a rollicking from the fans as he leaves the dugout</commentary>
+    <commentary>So far _TW_ and their manager have done everything right.</commentary>
+    <commentary cond="_POSS0_ >= 70 or _POSS1_ >= 70">_T[_POSS1_ GE 70]_ is dominating the match</commentary>
+    <commentary cond="_POSS0_ >= 60 or _POSS1_ >= 60">_T[_POSS1_ GE 60]_ have had the [lions share|better] of possession this half</commentary>
+    <commentary cond="_POSS0_ > 50 and _GOALS1_ > _GOALS0_">_T0_ may have had more possession but _T1_ have utilised theirs better</commentary>
+    <commentary cond="_POSS1_ > 50 and _GOALS0_ > _GOALS1_">_T1_ may have had more possession but _T0_ have utilised theirs better</commentary>
+    <commentary cond="_POSS0_ >= 75 or _POSS1_ >= 75">_T[_POSS1_ GE 75]_ seems to be the only team out there</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ < 1 and _SHOTS0_ + _SHOTS1_ > 6">Sure its a low scoring game but we've had plenty of shots</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ < 1 and _SHOTS0_ + _SHOTS1_ > 4">_T[_SHOTS0_ GE _SHOTS1_]_ Have had plenty of chances to [finish|seal] this game</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ < 2 and _SHOTS0_ + _SHOTS1_ > 3">_T[_SHOTS0_ GE _SHOTS1_]_ Have had _SHOTS[_SHOTS0_ GE _SHOTS1_]_ chances to [finish|seal|clinch] this game</commentary>
+	 <commentary cond="_GOALS0_ + _GOALS1_ >= 6">Its raining goals.[_GOALS0_ + _GOALS1_] So far and its only the first half!</commentary>
     <commentary cond="_FOULS0_ - _FOULS1_ >= 4 or _FOULS1_ - _FOULS0_ >=4">There are two teams out there but only [_T[_FOULS0_ GE _FOULS1_]_|one of them] is playing football</commentary>
-<!--     <commentary cond="_FOULS0_ + _FOULS1_ >= 8">It's a blood bath out there not a football match.</commentary> -->
+    <commentary cond="_FOULS0_ + _FOULS1_ >= 8">It's a blood bath out there not a football match.</commentary>
+    <commentary cond="_FOULS0_ + _FOULS1_ >= 8">[So many|[_FOULS0_ + _FOULS1_]] fouls. The refs gonna need new office supplies!</commentary>
+    <commentary cond="_FOULS0_ + _FOULS1_ >= 8">[So many|[_FOULS0_ + _FOULS1_]] fouls. The refs gonna need a new [book|pencil]!</commentary>
+    <commentary cond="_PEN0_ + _PEN1_ > 1">[_PEN0_ + _PEN1_] penalties already</commentary>
   </event>
   <event>
     <name>extra_time</name>
@@ -184,6 +197,7 @@
     <commentary>And now we have the tense drama of a penalty shoot out</commentary>
     <commentary>Two teams, equal till now in every respect,face off in penalties</commentary>
     <commentary>The teams cant do it so now it's one on one. Striker against goalie</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ < 1">No goals so far but now we will see some as we head to penalties</commentary>
   </event>
   <event>
     <name>end_match</name>
@@ -197,8 +211,8 @@
     <commentary cond="_GOALS0_ + _GOALS1_ >= 6">Wow, a match to remember. [_GOALS0_ + _GOALS1_] action packed goals!</commentary>
     <commentary cond="_GD_ >= 4">_TL_ were slaughtered by _GD_ goals.</commentary>
     <commentary cond="_GD_ >= 2">_TW_ will be sipping champagne tonight.</commentary>
-    <commentary cond="[_TLAYER0_ - _TLAYER1_]> 1 or [_TLAYER1_ - _TLAYER0_] >1 and _TLAYER_TWN__ > _TLAYER_TLN__">COND What [a great victory|an amazing win] for _TW_</commentary>
-    <commentary cond="_GD_ > 3 and _TLAYER[_GOALS1_ > _GOALS0_]_ >= _TLAYER[_GOALS1_ < _GOALS0_]_">COND _TL_ were up against a giant and the _RE_ scoreline, shows it</commentary>
+    <commentary cond="[_TLAYER0_ - _TLAYER1_]> 1 or [_TLAYER1_ - _TLAYER0_] >1 and _TLAYER_TWN__ > _TLAYER_TLN__">What [a great victory|an amazing win] for _TW_</commentary>
+    <commentary cond="_GD_ > 3 and _TLAYER[_GOALS1_ > _GOALS0_]_ >= _TLAYER[_GOALS1_ < _GOALS0_]_">_TL_ were up against a giant and the _RE_ scoreline, shows it</commentary>
   </event>
   <event>
     <name>own_goal</name>
@@ -212,7 +226,10 @@
     <name>header</name>
     <commentary>_P1_ chips the ball towards _P0_ who heads the ball towards goal</commentary>
     <commentary>Diving header by _P0_</commentary>
-    <commentary>He just floated in midair for ages then thunder heads it towards home</commentary>
+    <commentary>He just floated in midair for ages, then thunder heads it towards home</commentary>
+    <commentary>That's come off the back of _P0_'s head!</commentary>
+    <commentary>[Glancing|Powerful|Flicking|Angled] header towards the net from _P0_</commentary>
+    <commentary>_P0_'s head finds the end of the long cross</commentary>
   </event>
   <event>
     <name>post</name>
@@ -232,6 +249,7 @@
     <commentary>_P0_ has a chance to score with a penalty kick</commentary>
     <commentary>_P0_ has missed a penalty before but he now has a chance to redeem himself</commentary>
     <commentary>You have to bury the nerves, swallow and concentrate when your taking penalties</commentary>
+    <commentary cond="_PEN_POSS__ > 0">_T_POSS__ looks like they are playing for penalties.</commentary>
   </event>
   <event>
     <name>free_kick</name>
