@@ -12,7 +12,7 @@
 # version number
 version="1.9.1"
 # the bygfoot release version the script is shipped with
-relversion=VERSION
+relversion=UNKNOWN_VERSION
 # the current release version on the server
 packversion=
 
@@ -25,7 +25,6 @@ EXITWGETFAIL=4
 EXITUSR=6
 EXITNEWSCRIPT=7
 EXITCOUNTRY=8
-EXITPACKFORMAT=9
 EXITDEBIAN=10
 
 # variables
@@ -50,13 +49,6 @@ newrevnr=
 found=0
 # the arguments for the script
 args="$*"
-# the package format the user wants to download
-format_rpm=.i586.rpm
-format_bin=-binary.tar.bz2
-format_src=.tar.bz2
-format_srpm=.src.rpm
-format_deb=-1_i386.deb
-format=
 # which cvs version to get
 cvs_version1=bygfoot-unstable
 cvs_version2=bygfoot2-unstable
@@ -82,9 +74,6 @@ recompile=0
 # whether we check for auxiliary programs and
 # newer update script versions
 check=1
-# whether we just fetch the latest version number from
-# the server
-get_version=0
 
 # SourceForge.Net username (for cvs checkout)
 cvs_user=
@@ -141,16 +130,10 @@ Relevant for country files mode:
                            directory
 
 Relevant for package download mode:
--f|--format FORMAT         Set package format to FORMAT:
-                           'src', 'rpm', 'srpm', 'bin' or 'deb.
-                           Note that 'deb' isn't allowed for unstable
-                           packages.
 -t|--temp-dir DIR          Set download destination directory
                            to DIR (same as temp directory)
 -T|--type TYPE             Download latest TYPE package, TYPE
                            being either 'stable' or 'unstable'.
--V|--get-version           Fetch version number of the latest
-                           release from the server and exit.
 
 Relevant for CVS mode:
 -B|--branch BRANCH         Which CVS branch to get; currently 1 or 2
@@ -202,10 +185,10 @@ function my_exit()
 # parse arguments
 function parse_args()
 {
-    TEMP=`getopt -o aAbcB:C:f:hlnNp:rRt:T:uU:vVZ --long apply-all,\
-auto,branch:,country-files,country-dir:,cvs,format:,help,new-package,no-check,\
+    TEMP=`getopt -o aAbcB:C:hlnNp:rRt:T:uU:vZ --long apply-all,\
+auto,branch:,country-files,country-dir:,cvs,,help,new-package,no-check,\
 package-dir:,recompile,no-recompile,show-log,temp-dir:,type:,update,username:\
-version,get-version,no-zenity -- $*`
+version,no-zenity -- $*`
 
     if [ $? != 0 ]; then
 	my_echo "** b-u: There was an error parsing the arguments."
@@ -223,7 +206,6 @@ version,get-version,no-zenity -- $*`
 	    -B|--branch) set_branch $2; shift 2 ;;
 	    -c|--country-files) mode=$mode_country; shift ;;
 	    -C|--country-dir) pushd $2 &> /dev/null; countrydir=$PWD; popd &> /dev/null; shift 2 ;;
-	    -f|--format) set_format $2; shift 2 ;;
 	    -h|--help) print_help; exit $EXITOK ;;
 	    -l|--show-log) show_log=1; shift ;;
 	    -n|--new-package) mode=$mode_pack; shift ;;
@@ -236,7 +218,6 @@ version,get-version,no-zenity -- $*`
 	    -u|--update) mode=$mode_src; shift ;;
 	    -U|--username) cvs_user=$2; shift 2 ;;
 	    -v|--version) print_version; exit $EXITOK ;;
-	    -V|--get-version) mode=$mode_pack; get_version=1; shift ;;
 	    -Z|--no-zenity) use_zenity=0; shift ;;
 	    --) shift; break ;;
 	esac
@@ -394,7 +375,7 @@ function get_team_defs()
 			    if grep "<team_name>$team</team_name>" $league &> /dev/null; then
 				cp -f $league $league.bak
 				my_echo "   + Adding $team to $league..."
-				perl -0777 -pe "s+(team_name\>$team\</team_name\>)[\n\t ]*\<def_file\>[^\<]*\</def_file\>[\n\t ]*+\1\n+g" $league.bak | perl -0777 -pe "s+(\<team_name\>$team\</team_name\>)+\1\n\t\<def_file\>$def_name\</def_file>+g" > $league
+				perl -0777 -pe "s+(team_name\>$team\</team_name\>)[\n\t ]*\<def_file\>[^\<]*\</def_file\>[\n\t ]*+\1\n+g" $league.bak | perl -0777 -pe "s+([\t ]*)(\<team_name\>$team\</team_name\>)+\1\2\n\1\<def_file\>$def_name\</def_file>+g" > $league
 			    fi
 			done
 		    done
@@ -715,26 +696,6 @@ function update_end()
     my_exit $EXITOK
 }
 
-# set package format from a command line option
-function set_format()
-{
-    if [ $1 = "rpm" ]; then
-	format=$format_rpm
-    elif [ $1 = "srpm" ]; then
-	format=$format_srpm
-    elif [ $1 = "src" ]; then
-	format=$format_src
-    elif [ $1 = "bin" ]; then
-	format=$format_bin
-    elif [ $1 = "deb" ]; then
-	format=$format_deb
-    else
-	my_echo "** b-u: Unrecognized package format: $1"
-	my_echo "** b-u: Failure."
-	my_exit $EXITPACKFORMAT
-    fi
-}
-
 # set cvs branch from command line option
 function set_branch()
 {
@@ -778,112 +739,66 @@ function get_type()
     fi
 }
 
-# get package format the user wants to download
-function get_format()
+function get_latest_versions()
 {
-    if [ -z $format ]; then
-	if [ $auto -ne 1 -a $get_version -ne 1 ]; then
-	    if [ $use_zenity -eq 1 ]; then
-		my_zenity --title="Bygfoot Online Update" --list \
-		    --list-text="Specify package type:" \
-		    --radiolist --column "" --column "" --column "" \
-		    TRUE 1 "RPM" \
-		    FALSE 2 "Binary" \
-		    FALSE 3 "Source" \
-		    FALSE 4 "Debian" \
-		    FALSE 5 "Source RPM"
-	    else
-		
-		dialog --title "Bygfoot Online Update" --menu "Specify package format" \
-		    22 80 10 \
-		    1 "RPM" \
-		    2 "Binary" \
-		    3 "Source" \
-		    4 "Debian" \
-		    5 "Source RPM" 2> $input_file
-	    fi
-	    
-	    read_input
-	    
-	    if [ $tempvar -eq 2 ]; then
-		format=$format_bin
-	    elif [ $tempvar -eq 3 ]; then
-		format=$format_src
-	    elif [ $tempvar -eq 4 ]; then
-		format=$format_deb
-	    elif [ $tempvar -eq 5 ]; then
-		format=$format_srpm
-	    else
-		format=$format_rpm
-	    fi
-	else
-	    format=$format_rpm
-	fi
-    fi
-
-    # todo
-    if [ "$type" = "$type_unstable" -a "$format" = "$format_deb" ]; then
-	dialog --title "Bygfoot Online Update" --msgbox \
-"There are no unstable packages for Debian. Sorry.\nFailure." 22 80 2> $input_file
-	my_exit $EXITDEBIAN
-    fi
-}
-
-function get_latest_version()
-{
-    my_echo
-    my_echo "** b-u: Fetching version number of the latest $type release."
-
     pushd $tmpdir &> /dev/null
     rm -rfv bygfoot-update 2>> $log_file | tee -a $log_file
     mkdir bygfoot-update
     cd bygfoot-update
-    my_wget http://bygfoot.sourceforge.net/packages/$type/version
+    my_wget http://bygfoot.sourceforge.net/packages/$type/versions
 
-    packversion=$(cat version)
-
-    if [ $get_version -eq 1 ]; then
-	my_exit $EXITOK
-    fi
+    packlist=`cat versions`
 
     if [ $auto -eq 1 ]; then
 	return
     fi
 
-    if [ $use_zenity -eq 1 ]; then
-	my_zenity --title="Bygfoot Online Update" --question \
-	    --question-text="Latest $type version is $packversion. Your version (as far as i know) is $relversion. Do you want me to download the package?"
-    else
-	dialog --title "Bygfoot Online Update" \
-	    --yesno "Latest $type version is $packversion.\nYour version (as far as i know) is $relversion.\nDo you want me to download the package?" 22 80 2> $input_file
-    fi
+    if [ $use_zenity -eq 1 ]; then	
+	zencmd="zenity --title=Bygfoot_Online_Update --list --list-text=Select_package.Your_version_is_$relversion(as_far_as_I_know). --radiolist --print-column 2"
 
-    read_input
+	zencmd="$zencmd --column - --column - --column Package"
+
+	cnt=1
+	for package in $packlist; do
+	    if [ $cnt -eq 1 ]; then
+		zencmd="$zencmd TRUE $cnt $package"
+	    else 
+		zencmd="$zencmd FALSE $cnt $package"
+	    fi
+	    cnt=$[cnt + 1];
+	done
+
+	selected_package=$($zencmd)
+
+	if [ $? -eq 1 ];then
+	    my_echo "** b-u: User abort."
+	    my_exit $EXITUSR
+	fi    
+	
+    else
+	dialcmd="dialog --title Bygfoot_Online_Update --menu Select_package.Your_version_is_$relversion(as_far_as_I_know). 22 80 10"
+
+	for package in $packlist; do
+	    dialcmd="$dialcmd $package -"
+	done
+
+	$dialcmd 2> $input_file
+
+	read_input
+	selected_package=$tempvar
+    fi
 }
 
 function get_new_package()
 {
-    local separator=-
-    local file=
-
-    if [ $format = $format_rpm -o $format = $format_srpm ]; then
-	packversion=$(echo $packversion | sed s/'\([0-9]*\.[0-9]*\)\(\.\)\([0-9]*\)'/'\1-\3'/g)
-    fi
-    
-    if [ $format = $format_deb ]; then
-	separator=_
-    fi
-
-    file=bygfoot$separator$packversion$format
-
-    my_wget http://bygfoot.sourceforge.net/packages/$type/$file
+    my_wget http://bygfoot.sourceforge.net/packages/$type/$selected_package
 
     if [ $use_zenity -eq 1 ]; then
 	my_zenity --title="Bygfoot Online Update" --info \
-	    --info-text="You can find the package $file in the directory $PWD."
+	    --info-text="You can find the package $selected_package in the directory $PWD."
     else
 	dialog --title "Bygfoot Online Update" \
-	    --msgbox "You can find the package $file\nin the directory $PWD." \
+	    --msgbox "You can find the package $selected_package\nin the directory $PWD." \
 	    22 80 2> $input_file
     fi
 
@@ -897,9 +812,7 @@ function get_package()
 {
     get_type
 
-    get_format
-    
-    get_latest_version
+    get_latest_versions
 
     get_new_package
 }

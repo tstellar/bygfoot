@@ -34,7 +34,7 @@ void
 team_generate_players_stadium(Team *tm);
 
 gboolean
-query_team_is_in_international_cups(const Team *tm, gint group);
+query_team_is_in_cups(const Team *tm, gint group);
 
 gboolean
 query_team_is_in_cup(const Team *tm, const Cup *cup);

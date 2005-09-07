@@ -282,13 +282,13 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 		    printf("team %s isinint %d numteams %d\n",
 			   team_of_id(g_array_index(league->table.elements, 
 						    TableElement, order[j]).team_id)->name->str,
-			   query_team_is_in_international_cups(
+			   query_team_is_in_cups(
 			       team_of_id(g_array_index(league->table.elements, 
 							TableElement, order[j]).team_id),
 			       cup->group),
 			   number_of_teams);
 
-		if(!query_team_is_in_international_cups(
+		if(!query_team_is_in_cups(
 		       team_of_id(g_array_index(league->table.elements, TableElement, order[j]).team_id), cup->group))
 		{
 		    g_ptr_array_add(teams, 
@@ -327,7 +327,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 
 	    for(i = ct->start_idx - 1; i <= ct->end_idx - 1; i++)
 	    {
-		if(!query_team_is_in_international_cups(
+		if(!query_team_is_in_cups(
 		       &g_array_index(lig(0).teams,
 				      Team, permutation[i - ct->start_idx + 1]), cup->group))
 		{
@@ -367,7 +367,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 
 	    for(j = start; j < end; j++)
 	    {
-		if(!query_team_is_in_international_cups(
+		if(!query_team_is_in_cups(
 		       (Team*)g_ptr_array_index(cup_teams_sorted, j), cup->group))
 		{
 		    g_ptr_array_add(teams, g_ptr_array_index(cup_teams_sorted, j));
@@ -460,7 +460,7 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
 
     for(j = 0; j < end_idx; j++)
     {
-	if(!query_team_is_in_international_cups(&g_array_index(teams_local, Team, permutation[j]), cup->group))
+	if(!query_team_is_in_cups(&g_array_index(teams_local, Team, permutation[j]), cup->group))
 	{
 	    g_array_append_val(cup_round->teams, g_array_index(teams_local, Team, permutation[j]));
 	    g_array_index(cup_round->teams, Team, cup_round->teams->len - 1).clid = cup->id;

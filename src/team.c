@@ -149,7 +149,7 @@ team_generate_players_stadium(Team *tm)
     @return TRUE if the team's already participating in a cup,
     FALSE otherwise. */
 gboolean
-query_team_is_in_international_cups(const Team *tm, gint group)
+query_team_is_in_cups(const Team *tm, gint group)
 {
     gint i, j;
 
