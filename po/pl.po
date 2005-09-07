@@ -3,18 +3,17 @@
 # Michal Rudolf <mrudolf@kdewebdev.org>, 2005.
 msgid ""
 msgstr ""
-"Project-Id-Version: bygfoot\n"
+"Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-09-05 21:03+0200\n"
-"PO-Revision-Date: 2005-07-17 23:28+0200\n"
+"PO-Revision-Date: 2005-09-07 11:56+0200\n"
 "Last-Translator: Michal Rudolf <mrudolf@kdewebdev.org>\n"
 "Language-Team: Polish <kdei18n-pl-devel@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.10.1\n"
-"Plural-Forms:  nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%"
-"100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms:  nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: src/treeview_helper.c:750
 #, c-format
@@ -269,15 +268,15 @@ msgstr "%.1f miesięcy / %s"
 
 #. A result after extra time.
 #: src/live_game.c:1564
-#, fuzzy, c-format
+#, c-format
 msgid "%d : %d e.t."
-msgstr "R %d : %d"
+msgstr "%d : %d (dogr.)"
 
 #. A result after penalties.
 #: src/live_game.c:1560
-#, fuzzy, c-format
+#, c-format
 msgid "%d : %d p."
-msgstr "R %d : %d"
+msgstr "%d : %d (k)"
 
 #. a match at home
 #: src/team.c:983
@@ -478,19 +477,18 @@ msgid "<span foreground='%s' background='%s'>Week %d Round %d</span>"
 msgstr "<span foreground='%s' background='%s'>Tydzień %d Kolejka %d</span>"
 
 #: src/youth_academy.c:203
-#, fuzzy
 msgid "A new youth registered at your youth academy."
-msgstr "Brak miejsc w Twojej szkole młodzików."
+msgstr "Do szkółki przyjęto nowego zawodnika."
 
 #: src/youth_academy.c:207
 msgid ""
 "A new youth wanted to registered at your youth academy but there was no room "
 "for him."
-msgstr ""
+msgstr "Nowy zawodnik zgłosił się do szkółki, ale brakuje wolnych miejsc."
 
 #: src/treeview_helper.c:1286
 msgid "ADD LAST MATCH"
-msgstr ""
+msgstr "DODAJ OSTATNI MECZ"
 
 #: src/lg_commentary.c:568 src/team.c:498
 msgid "ALL OUT ATTACK"
@@ -522,13 +520,12 @@ msgid "Accept?"
 msgstr "Przyjmujesz?"
 
 #: src/interface.c:848
-#, fuzzy
 msgid "Add last match"
-msgstr "Relacja z poprzedniego meczu"
+msgstr "Dodaj ostatni mecz"
 
 #: src/interface.c:851
 msgid "Add last recorded match to the current memorable matches file."
-msgstr ""
+msgstr "Dodaj ostatni mecz do listy zapamiętanych meczów"
 
 #: src/misc2_interface.c:843 src/misc_interface.c:190
 msgid "Add user"
@@ -744,9 +741,8 @@ msgid "Browse teams"
 msgstr "Przeglądaj drużyny"
 
 #: src/window.c:147
-#, fuzzy
 msgid "Bygfoot Memorable Matches"
-msgstr "Pliki Bygfoot"
+msgstr "Mecze Bygfoot"
 
 #: src/window.c:141
 msgid "Bygfoot Save Files"
@@ -808,8 +804,7 @@ msgstr ""
 
 #: src/misc_interface.c:662
 msgid "Change live game speed. The lower the value the faster the live game."
-msgstr ""
-"Zmienia szybkość relacji na żywo. Im niższa wartość, tym szybsza relacja."
+msgstr "Zmienia szybkość relacji na żywo. Im niższa wartość, tym szybsza relacja."
 
 #: src/misc_interface.c:133
 msgid "Choose country"
@@ -841,9 +836,8 @@ msgid "Compensations"
 msgstr "Wyrównanie"
 
 #: src/treeview2.c:55
-#, fuzzy
 msgid "Competition"
-msgstr "Wyrównanie"
+msgstr "Zawody"
 
 #: src/load_save.c:115
 msgid "Compressing savegame..."
@@ -911,9 +905,8 @@ msgid "Couldn't find pixmap file: %s"
 msgstr "Nie można znaleźć pliku z obrazkiem: %s"
 
 #: src/treeview2.c:56
-#, fuzzy
 msgid "Country"
-msgstr "Komentarz"
+msgstr "Kraj"
 
 #: src/misc_interface.c:272
 msgid "Ctrl-O"
@@ -928,9 +921,8 @@ msgid "Current capacity"
 msgstr "Aktualna wielkość"
 
 #: src/misc2_interface.c:1281
-#, fuzzy
 msgid "Current file"
-msgstr "Aktualny poziom"
+msgstr "Aktualny plik"
 
 #: src/treeview.c:2332
 msgid "Current league"
@@ -1024,7 +1016,7 @@ msgstr "Tal "
 
 #: src/treeview2.c:35
 msgid "EXPORT"
-msgstr ""
+msgstr "EKSPORT"
 
 #: src/callbacks.c:630
 msgid "Enter a structure. The digits must sum up to 10."
@@ -1295,13 +1287,12 @@ msgstr ""
 "sponsora i czekać na nowe oferty."
 
 #: src/misc2_interface.c:1332
-#, fuzzy
 msgid "Import file"
-msgstr "Aktualny poziom"
+msgstr "Importuj plik"
 
 #: src/misc2_interface.c:1318
 msgid "Import the matches from a memorable matches file"
-msgstr ""
+msgstr "Importuj mecze z pliku z meczami"
 
 #: src/misc_interface.c:1013
 msgid "Improve!"
@@ -1413,8 +1404,7 @@ msgstr ""
 "ofertę."
 
 #: src/callbacks.c:785
-msgid ""
-"Left-click: get loan; Right-click: pay back; Middle click: stadium window."
+msgid "Left-click: get loan; Right-click: pay back; Middle click: stadium window."
 msgstr "Lwy przycisk: pożyczka, prawy: spłata, środkowy: stadion."
 
 #: src/options_interface.c:929
@@ -1495,9 +1485,8 @@ msgid "Loading miscellaneous..."
 msgstr "Wczytywanie pozostałych danych..."
 
 #: src/load_save.c:183
-#, fuzzy
 msgid "Loading options..."
-msgstr "Wczytywanie pucharów..."
+msgstr "Wczytywanie ustawień..."
 
 #: src/load_save.c:237
 msgid "Loading season stats..."
@@ -1525,9 +1514,8 @@ msgid "Make offer"
 msgstr "Złóż ofertę"
 
 #: src/interface.c:860
-#, fuzzy
 msgid "Manage matches"
-msgstr "Zarządzaj użytkownikami"
+msgstr "Zarządzaj meczami"
 
 #: src/interface.c:915
 msgid "Manage users"
@@ -1538,13 +1526,12 @@ msgid "Maximize main window"
 msgstr "Maksymalizuj główne okno"
 
 #: src/user.c:987
-#, fuzzy
 msgid "Memorable match added."
-msgstr "Pliki Bygfoot"
+msgstr "Dodano mecz."
 
 #: src/interface.c:841 src/window.c:629
 msgid "Memorable matches"
-msgstr ""
+msgstr "Zapamiętane mecze"
 
 #: src/treeview.c:1475
 msgid "Midfield"
@@ -1641,9 +1628,8 @@ msgid "None"
 msgstr "Brak"
 
 #: src/window.c:204
-#, fuzzy
 msgid "Not a valid Bygfoot Memorable Matches filename."
-msgstr "Pliki Bygfoot"
+msgstr "To nie jest poprawna nazwa pliku z meczami."
 
 #: src/window.c:512
 msgid "Numbers..."
@@ -1682,11 +1668,11 @@ msgstr "Tylko nazwiska"
 
 #: src/misc2_interface.c:1292
 msgid "Open a memorable matches file"
-msgstr ""
+msgstr "Otwórz plik z meczami"
 
 #: src/treeview2.c:53
 msgid "Opponent"
-msgstr ""
+msgstr "Przeciwnik"
 
 #: src/window.c:556
 msgid "Options"
@@ -1834,11 +1820,11 @@ msgstr "Zakończ (Ctrl - Q)"
 
 #: src/treeview2.c:34
 msgid "REMOVE"
-msgstr ""
+msgstr "USUŃ"
 
 #: src/treeview2.c:33
 msgid "REPLAY"
-msgstr ""
+msgstr "POKAŻ"
 
 #: src/misc2_interface.c:107 src/treeview.c:1557
 msgid "Rank"
@@ -1870,16 +1856,15 @@ msgstr "Wczytaj ponownie"
 
 #: src/misc2_interface.c:1389
 msgid "Reload and close"
-msgstr ""
+msgstr "Wczytaj ponownie i zamknij"
 
 #: src/misc2_interface.c:1297
-#, fuzzy
 msgid "Reload matches from file"
-msgstr "Ponownie odczytaj plik stałych"
+msgstr "Ponownie odczytaj mecze z pliku"
 
 #: src/misc2_interface.c:1375
 msgid "Reload matches from file and close"
-msgstr ""
+msgstr "Wczytaj mecze z pliku i zamknij"
 
 #: src/options_interface.c:335
 msgid "Reload the constants file"
@@ -1896,7 +1881,7 @@ msgstr "Usunąć użytkownika %s z gry?"
 
 #: src/interface.c:863
 msgid "Replay, delete or add memorable matches."
-msgstr ""
+msgstr "Oglądanie, usuwanie i dodawanie meczów."
 
 #: src/interface.c:688
 msgid "Reset player list"
@@ -1911,9 +1896,8 @@ msgstr ""
 "przyciskiem na liście graczy)"
 
 #: src/treeview2.c:54
-#, fuzzy
 msgid "Result"
-msgstr "Wyniki"
+msgstr "Wynik"
 
 #: src/treeview.c:1680
 msgid "Results"
@@ -1957,8 +1941,7 @@ msgstr "Bezpieczeństwo (%)"
 
 #: src/misc_callback_func.c:218
 msgid "Safety improvement too high, reset to highest possible value."
-msgstr ""
-"Zbyt wysoka wartość bezpieczeństwa, wybrano maksymalną dopuszczalną wartość."
+msgstr "Zbyt wysoka wartość bezpieczeństwa, wybrano maksymalną dopuszczalną wartość."
 
 #. % of saves for goalies (#goals / #shots)
 #: src/treeview.c:2038
@@ -1967,11 +1950,11 @@ msgstr "Obrona %"
 
 #: src/misc2_interface.c:1368
 msgid "Save and close"
-msgstr ""
+msgstr "Zapisz i zamknij"
 
 #: src/misc2_interface.c:1354
 msgid "Save changes to file and close"
-msgstr ""
+msgstr "Zapisz zmiany do pliku i zamknij"
 
 #: src/interface.c:1004
 msgid "Save game (Ctrl - S)"
@@ -2002,9 +1985,8 @@ msgid "Saving miscellaneous..."
 msgstr "Zapisywanie pozostałych danych..."
 
 #: src/load_save.c:43
-#, fuzzy
 msgid "Saving options..."
-msgstr "Zapisywanie pucharów..."
+msgstr "Zapisywanie ustawień..."
 
 #: src/load_save.c:98
 msgid "Saving season stats..."
@@ -2049,8 +2031,7 @@ msgid "Set investment"
 msgstr "Finansowanie"
 
 #: src/callbacks.c:1020 src/interface.c:652
-msgid ""
-"Set the percentage of your income you want to devote to your youth academy."
+msgid "Set the percentage of your income you want to devote to your youth academy."
 msgstr "Podaj procent dochodów, jaki chcesz przeznaczyć na szkółkę młodzików."
 
 #: src/options_interface.c:514
@@ -2061,8 +2042,7 @@ msgstr "Ustawienie na 0 wyłącza ostrzeżenie"
 msgid ""
 "Setting the language only works for installed packages (not for the binary "
 "package)"
-msgstr ""
-"Ustawianie języka działa tylko w instalowanych pakietach (nie w binarnych)."
+msgstr "Ustawianie języka działa tylko w instalowanych pakietach (nie w binarnych)."
 
 #. Shots of a player.
 #: src/treeview.c:260
@@ -2335,8 +2315,7 @@ msgid "The player is already on the list."
 msgstr "Zawodnik jest już na liście."
 
 #: src/callback_func.c:433
-msgid ""
-"The player is locked (the team owners are considering an offer currently)."
+msgid "The player is locked (the team owners are considering an offer currently)."
 msgstr "Zawodnik jest aktualnie zablokowany (właściciele rozważają ofertę)."
 
 #: src/callbacks.c:418
@@ -2532,8 +2511,7 @@ msgid "Welcome to Bygfoot %s"
 msgstr "Witamy w programie Bygfoot %s"
 
 #: src/options_interface.c:222
-msgid ""
-"Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
+msgid "Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
 msgstr ""
 "Określa, czy 'Zapisz' nadpisuje aktualny plik, czy też wyświetla okno wyboru "
 "pliku"
@@ -2636,15 +2614,13 @@ msgstr "Określa, czy wyświetlać oferty pracy, gdy użytkownik odnosi sukcesy"
 
 #: src/options_interface.c:556
 msgid "Whether to show the player games/goals value in all competitions"
-msgstr ""
-"Określa, czy wyświetlać łączną liczbę spotkań/bramek we wszystkich zawodach."
+msgstr "Określa, czy wyświetlać łączną liczbę spotkań/bramek we wszystkich zawodach."
 
 #: src/options_interface.c:232
 msgid ""
 "Whether to show warnings and such in the message area in the main window "
 "when possible"
-msgstr ""
-"Określa, czy wyświetlać ostrzeżenia i inne komunikaty w polu wiadomości."
+msgstr "Określa, czy wyświetlać ostrzeżenia i inne komunikaty w polu wiadomości."
 
 #. Yellow cards of a player.
 #: src/treeview.c:266
@@ -2934,9 +2910,8 @@ msgid "Your stadium"
 msgstr "Twój stadion"
 
 #: src/treeview2.c:52
-#, fuzzy
 msgid "Your team"
-msgstr "Twój stadion"
+msgstr "Twoja drużyna"
 
 #: src/callbacks.c:434
 msgid "Your team can't have less than 11 players."
@@ -2947,7 +2922,7 @@ msgstr "Twoja drużyna nie może mieć mniej niż 11 zawodników."
 msgid ""
 "Youth %s thought he's old enough for a real contract and left your youth "
 "academy."
-msgstr ""
+msgstr "Młodzik %s uznał, że jest wystarczająco dorosły, by dostać prawdziwy kontrakt i opuścił Twoją szkółkę."
 
 #: src/youth_academy.c:168
 #, c-format
@@ -2955,7 +2930,7 @@ msgid ""
 "Youth %s will be too old for the youth academy soon. Move him to your team "
 "or kick him out of the academy. Otherwise he'll probably look for another "
 "team to play in."
-msgstr ""
+msgstr "Młodzik %s niebawem będzie za stary dla Twojej szkółki. Przenieś go do drużyny, jeśli nie chcesz, by opuścił Twoją szkółkę."
 
 #: src/treeview.c:1396
 msgid "Youth acad. invest."
@@ -3010,3 +2985,4 @@ msgstr "_Użytkownik"
 
 #~ msgid "Saving options/constants..."
 #~ msgstr "Zapisywanie opcji/stałych..."
+
