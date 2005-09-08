@@ -24,12 +24,12 @@ load_save_save_game(const gchar *filename)
 {
     gint i;
     gchar buf[SMALL];
-    gchar *prefix = (g_str_has_suffix(filename, const_str("string_save_suffix"))) ?
-	g_strndup(filename, strlen(filename) - strlen(const_str("string_save_suffix"))) :
+    gchar *prefix = (g_str_has_suffix(filename, const_str("string_fs_save_suffix"))) ?
+	g_strndup(filename, strlen(filename) - strlen(const_str("string_fs_save_suffix"))) :
 	g_strdup(filename);
-    gchar *fullname = (g_str_has_suffix(filename, const_str("string_save_suffix"))) ?
+    gchar *fullname = (g_str_has_suffix(filename, const_str("string_fs_save_suffix"))) ?
 	g_strdup(filename) :
-	g_strdup_printf("%s%s", filename, const_str("string_save_suffix"));
+	g_strdup_printf("%s%s", filename, const_str("string_fs_save_suffix"));
 
     g_string_printf(save_file, "%s", fullname);
 
@@ -136,13 +136,13 @@ gboolean
 load_save_load_game(const gchar* filename)
 {
     gchar buf[SMALL];
-    gchar *fullname = (g_str_has_suffix(filename, const_str("string_save_suffix"))) ?
+    gchar *fullname = (g_str_has_suffix(filename, const_str("string_fs_save_suffix"))) ?
 	g_strdup(filename) :
-	g_strdup_printf("%s%s", filename, const_str("string_save_suffix"));
+	g_strdup_printf("%s%s", filename, const_str("string_fs_save_suffix"));
     gchar *basename = g_path_get_basename(fullname),
 	*dirname = g_path_get_dirname(fullname);
-    gchar *prefix = (g_str_has_suffix(basename, const_str("string_save_suffix"))) ?
-	g_strndup(basename, strlen(basename) - strlen(const_str("string_save_suffix"))) :
+    gchar *prefix = (g_str_has_suffix(basename, const_str("string_fs_save_suffix"))) ?
+	g_strndup(basename, strlen(basename) - strlen(const_str("string_fs_save_suffix"))) :
 	g_strdup(basename);
 
     if(g_str_has_suffix(filename, "last_save"))
@@ -182,9 +182,9 @@ load_save_load_game(const gchar* filename)
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
 	_("Loading options..."));
 
-    sprintf(buf, "%s___options", prefix);
+    sprintf(buf, "%s%s%s___options", dirname, G_DIR_SEPARATOR_S, prefix);
     file_load_opt_file(buf, &options);
-    sprintf(buf, "%s___settings", prefix);
+    sprintf(buf, "%s%s%s___settings", dirname, G_DIR_SEPARATOR_S, prefix);
     file_load_opt_file(buf, &settings);
     language_set(language_get_code_index(opt_str("string_opt_language_code")) + 1);
 
@@ -281,8 +281,16 @@ load_save_last_save_set(const gchar *filename)
     const gchar *home = g_get_home_dir();
     FILE *fil = NULL;
 
-    sprintf(buf, "%s%s%s%ssaves%slast_save", home, G_DIR_SEPARATOR_S,
-	    HOMEDIRNAME, G_DIR_SEPARATOR_S, G_DIR_SEPARATOR_S);
+    if(os_is_unix)
+	sprintf(buf, "%s%s%s%ssaves%slast_save", home, G_DIR_SEPARATOR_S,
+		HOMEDIRNAME, G_DIR_SEPARATOR_S, G_DIR_SEPARATOR_S);
+    else
+    {
+	gchar *pwd = g_get_current_dir();
+	sprintf(buf, "%s%ssaves%slast_save", pwd, G_DIR_SEPARATOR_S,
+		G_DIR_SEPARATOR_S);
+	g_free(pwd);
+    }
 
     if(!file_my_fopen(buf, "w", &fil, FALSE))
 	return;
@@ -301,8 +309,16 @@ load_save_last_save_get(void)
     FILE *fil = NULL;
     gint i = 0, c;
 
-    sprintf(buf, "%s%s%s%ssaves%slast_save", home, G_DIR_SEPARATOR_S,
-	    HOMEDIRNAME, G_DIR_SEPARATOR_S,  G_DIR_SEPARATOR_S);
+    if(os_is_unix)
+	sprintf(buf, "%s%s%s%ssaves%slast_save", home, G_DIR_SEPARATOR_S,
+		HOMEDIRNAME, G_DIR_SEPARATOR_S,  G_DIR_SEPARATOR_S);
+    else
+    {
+	gchar *pwd = g_get_current_dir();
+	sprintf(buf, "%s%ssaves%slast_save", pwd, G_DIR_SEPARATOR_S,
+		G_DIR_SEPARATOR_S);
+	g_free(pwd);
+    }
 
     if(!file_my_fopen(buf, "r", &fil, FALSE))
 	return NULL;
