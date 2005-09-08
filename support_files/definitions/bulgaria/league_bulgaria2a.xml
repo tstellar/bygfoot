@@ -1,0 +1,79 @@
+<league>
+  <sid>bulgaria2a</sid>
+  <name>Източна "Б" футболна група</name>
+  <short_name>И."Б" група</short_name>
+  <symbol>flag_bulgaria.png</symbol>
+  <first_week>1</first_week>
+  <week_gap>1</week_gap>
+  <average_skill>7200</average_skill>
+  <yellow_red>3</yellow_red>
+  <layer>2</layer>
+<!--   <names_file>bulgaria</names_file> -->
+  
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>1</rank_end>
+      <dest_sid>bulgaria1</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+    
+    <prom_rel_element>
+      <rank_start>13</rank_start>
+      <rank_end>14</rank_end>
+      <dest_sid>bulgaria3a bulgaria3b</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_games>
+      <prom_games_dest_sid>bulgaria1</prom_games_dest_sid>
+      <prom_games_cup_sid>bulgaria_prom_games2</prom_games_cup_sid>
+      <prom_games_loser_sid>bulgaria2a bulgaria2b</prom_games_loser_sid>
+    </prom_games>
+  </prom_rel>
+  
+  <teams>
+    <team>
+      <team_name>Спарта (Варна)</team_name>
+    </team>
+    <team>
+      <team_name>Загоре (Нова Загора)</team_name>
+    </team>
+    <team>
+      <team_name>Несебър</team_name>
+    </team>
+    <team>
+      <team_name>Хасково</team_name>
+    </team>
+    <team>
+      <team_name>Раднево</team_name>
+    </team>
+    <team>
+      <team_name>Поморие</team_name>
+    </team>
+    <team>
+      <team_name>Маричане (Пловдив)</team_name>
+    </team>
+    <team>
+      <team_name>Сливен</team_name>
+    </team>
+    <team>
+      <team_name>Гръмотевица (Търговище)</team_name>
+    </team>
+    <team>
+      <team_name>Спарта (Пловдив)</team_name>
+    </team>
+    <team>
+      <team_name>Данау (Русе)</team_name>
+    </team>
+    <team>
+      <team_name>Каварна</team_name>
+    </team>
+    <team>
+      <team_name>Добруджанци (Добрич)</team_name>
+    </team>
+    <team>
+      <team_name>Шумен</team_name>
+    </team>
+  </teams>
+</league>
