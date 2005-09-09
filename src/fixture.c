@@ -219,18 +219,20 @@ fixture_winner_of(const Fixture *fix, gboolean team_id)
     else
     {
 	first_leg = fixture_get_first_leg(fix);
-
-	if(fix->result[0][0] + first_leg->result[1][0] >
-	   fix->result[1][0] + first_leg->result[0][0])
-	    winner_idx = 0;
-	else if(fix->result[0][0] + first_leg->result[1][0] <
-		fix->result[1][0] + first_leg->result[0][0])
-	    winner_idx = 1;
-	else if(fix->result[1][0] > first_leg->result[1][0])
-	    winner_idx = 1;
+	
+	if(fix->result[0][2] + fix->result[1][2] != 0)
+	    winner_idx = (fix->result[0][2] < fix->result[1][2]);
+	else if(fix->result[0][0] + fix->result[0][1] +
+		 first_leg->result[1][0] + first_leg->result[1][1] !=
+		 fix->result[1][0] + fix->result[1][1] +
+		first_leg->result[0][0] + first_leg->result[0][1])
+	    winner_idx = (fix->result[0][0] + fix->result[0][1] +
+			  first_leg->result[1][0] + first_leg->result[1][1] <
+			  fix->result[1][0] + fix->result[1][1] +
+			  first_leg->result[0][0] + first_leg->result[0][1]);
 	else
-	    winner_idx = (fix->result[0][1] + fix->result[0][2] <
-			  fix->result[1][1] + fix->result[1][2]);
+	    winner_idx = (fix->result[1][0] + fix->result[1][1] >
+			  first_leg->result[1][0] + first_leg->result[1][1]);
     }
 
     if(team_id)
@@ -671,8 +673,9 @@ query_fixture_is_draw(const Fixture *fix)
 
     first_leg = fixture_get_first_leg(fix);
 
-    return (fix->result[0][0] == first_leg->result[0][0] &&
-	    fix->result[1][0] + first_leg->result[1][0]);
+    return (fix->result[0][1] + fix->result[1][1] == 0 &&
+	    fix->result[0][0] == first_leg->result[0][0] &&
+	    fix->result[1][0] == first_leg->result[1][0]);
 }
 
 /** Check whether a user's team participates.
