@@ -522,8 +522,6 @@ lg_commentary_set_player_tokens(const LiveGameUnit *unit, const Fixture *fix)
 	    misc_int_to_char(player_games_goals_get(pl1, fix->clid, PLAYER_VALUE_GOALS));
 	token_rep[option_int("string_lg_commentary_token_player_goals_all0", &lg_tokens)] = 
 	    misc_int_to_char(player_all_games_goals(pl1, PLAYER_VALUE_GOALS));
-	token_rep[option_int("string_lg_commentary_token_player_yellows", &lg_tokens)] = 
-	    misc_int_to_char(player_card_get(pl1, fix->clid, PLAYER_VALUE_CARD_YELLOW));
     }
 
     if(pl2 != NULL)
@@ -534,6 +532,8 @@ lg_commentary_set_player_tokens(const LiveGameUnit *unit, const Fixture *fix)
 	    misc_int_to_char(player_games_goals_get(pl2, fix->clid, PLAYER_VALUE_GOALS));
 	token_rep[option_int("string_lg_commentary_token_player_goals_all1", &lg_tokens)] = 
 	    misc_int_to_char(player_all_games_goals(pl2, PLAYER_VALUE_GOALS));
+	token_rep[option_int("string_lg_commentary_token_player_yellows", &lg_tokens)] = 
+	    misc_int_to_char(player_card_get(pl2, fix->clid, PLAYER_VALUE_CARD_YELLOW));
     }
 }
 
