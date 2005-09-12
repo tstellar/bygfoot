@@ -2397,15 +2397,10 @@ treeview_show_language_combo(void)
 {
     GtkTreeModel *model = treeview_create_language_list();
     GtkComboBox *combo_languages =
-	GTK_COMBO_BOX(lookup_widget(window.options, "comboboxentry_languages"));
+	GTK_COMBO_BOX(lookup_widget(window.options, "combobox_languages"));
     GtkCellRenderer *renderer = NULL;
     gint idx = language_get_current_index();
 
-    gtk_combo_box_set_model(combo_languages, model);
-    g_object_unref(model);
-
-    if(gtk_combo_box_entry_get_text_column(GTK_COMBO_BOX_ENTRY(combo_languages)) == -1)
-	gtk_combo_box_entry_set_text_column(GTK_COMBO_BOX_ENTRY(combo_languages), 1); 
     gtk_cell_layout_clear(GTK_CELL_LAYOUT(combo_languages));
 
     renderer = gtk_cell_renderer_pixbuf_new();
@@ -2415,6 +2410,9 @@ treeview_show_language_combo(void)
     renderer = treeview_helper_cell_renderer_text_new();
     gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(combo_languages), renderer, FALSE);
     gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(combo_languages), renderer, "text", 1, NULL);
+
+    gtk_combo_box_set_model(combo_languages, model);
+    g_object_unref(model);
 
     gtk_combo_box_set_active(GTK_COMBO_BOX(combo_languages), idx + 1);
 }

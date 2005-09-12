@@ -10,7 +10,7 @@
 # using wget to retrieve patches from the homepage
 
 # version number
-version="1.9.1"
+version="1.9.1.1"
 # the bygfoot release version the script is shipped with
 relversion=UNKNOWN_VERSION
 # the current release version on the server
@@ -337,16 +337,16 @@ function read_input()
 # get team definitions
 function get_team_defs()
 {
-    if [ ! -d definitions/teams ]; then
-	mkdir definitions/teams
+    if [ ! -d teams ]; then
+	mkdir teams
     fi
 
-    pushd definitions/teams &> /dev/null
+    pushd teams &> /dev/null
 
     rm -vf team_defs 2>> $log_file | tee -a $log_file
     my_wget http://bygfoot.sourceforge.net/revisions/team_defs
 
-    while read key value; do 
+    while read key value; do
 	if [ ! -z $key ]; then
 	    if [ $key = "end_section" ]; then		
 		file_name=$(echo $uri | sed "s/.*\(team_.*bz2\)/\1/g" | sed "s/\.bz2//g")
@@ -361,12 +361,6 @@ function get_team_defs()
 				
 		my_wget $uri
 		tar xfj $file_name.bz2
-# 		echo "+++ uri +$uri+ file +$file_name+"
-		
-# 		echo
-# 		echo "uri $uri file $file_name nam +$team_name1+ +$team_name2+ cou $country def $def_name"
-# 		echo
-# 		read a
 
 		if [ -d ../$country ]; then
 		    pushd ../$country &> /dev/null
@@ -406,21 +400,13 @@ function get_team_defs()
 # get country files with official team names
 function get_country_files()
 {
-    if [ $use_zenity -eq 1 ]; then
-	my_zenity --title="Bygfoot Online Update" --info \
-	    --info-text="If you use the binary version of Bygfoot, the team names and definitions won't work unless you remove the 'support_files/definitons' directory from the Bygfoot directory (containing the executable)."
-    else
-	dialog --title "Bygfoot Online Update" --msgbox "If you use the binary version of Bygfoot, the team names and definitions won't work unless you remove the 'support_files/definitons' directory from the Bygfoot directory (containing the executable)." \
-	    22 80 2> $input_file
-    fi
-
     my_echo
     my_echo "** b-u: Fetching official team names and"
     my_echo "** b-u: team definitions files."
 
     pushd $countrydir &>/dev/null
     
-     my_wget http://bygfoot.sourceforge.net/revisions/official_names
+    my_wget http://bygfoot.sourceforge.net/revisions/official_names
 
     while read -d : oldname && read newname 
       do
@@ -430,7 +416,7 @@ function get_country_files()
       else
 	  oldname="${oldname## }"
 	  newname="${newname%% }"
-	  sed -i -e "s/>$oldname</>$newname</" definitions/$DIRNAME/league*.xml
+	  sed -i -e "s/>$oldname</>$newname</" $DIRNAME/league*.xml
       fi
       
     done < official_names
@@ -503,15 +489,23 @@ function get_paths()
     fi
 
     if [ $mode -eq $mode_country ]; then
+	if [ $use_zenity -eq 1 ]; then
+	    my_zenity --title="Bygfoot Online Update" --info \
+		--info-text="If you use the binary version of Bygfoot, you should specify './support_files/definitions' as country dir. If you use an installed version, you should specify '$HOME/.bygfoot-X/definitions' (X being the version number you use)."
+	else
+	    dialog --title "Bygfoot Online Update" --msgbox "If you use the binary version of Bygfoot, you should specify './support_files/definitons' as country dir. If you use an installed version, you should specify '$HOME/.bygfoot-X/definitions' (X being the version number you use)." \
+		22 80 2> $input_file
+	fi
+
 	if [ -z $countrydir ]; then
 	    if [ $auto -eq 0 ]; then
 		if [ $use_zenity -eq 1 ]; then
-		    my_zenity --title="Definitions dir ($HOME/.bygfoot-1.9 should be ok; right click to show hidden)" \
+		    my_zenity --title="Definitions dir (right click to show hidden)" \
 			--file-selection --directory
 		else
 		    dialog --title "Bygfoot Online Update" \
-			--inputbox "Directory containing definitions directory\n(default destination should be ok)" \
-			22 80 $HOME/.bygfoot-1.9/ 2> $input_file
+			--inputbox "Directory containing definitions directory" \
+			22 80 $HOME/.bygfoot-1.9/definitions 2> $input_file
 		fi
 
 		read_input
@@ -519,10 +513,10 @@ function get_paths()
 		if [ ! -z $tempvar ]; then
 		    pushd $tempvar &> /dev/null; countrydir=$PWD; popd &> /dev/null
 		else
-		    countrydir=$HOME/.bygfoot/text_files
+		    countrydir=$HOME/.bygfoot-1.9/definitions
 		fi
 	    else
-		countrydir=$HOME/.bygfoot/text_files
+		countrydir=$HOME/.bygfoot-1.9/definitions
 	    fi
 	    my_echo
 	    my_echo "** b-u: Country dir set to"
@@ -572,14 +566,14 @@ function apply_rev()
 	$newrevdir/postpatch 2>> $log_file | tee -a $log_file
     fi
 
-    cd $tmpdir/bygfoot-update
+    cd $tmpdir/bygfoot-update-tmp
 }
 
 # fetch a revision archive from the homepage and
 # patch the src package
 function get_revision()
 {
-    local newrevdir=$tmpdir/bygfoot-update/revision_$type$newrevnr
+    local newrevdir=$tmpdir/bygfoot-update-tmp/revision_$type$newrevnr
 
     my_echo
     my_echo "** b-u: Retrieving revision_$type$newrevnr.tar.bz2."
@@ -634,9 +628,9 @@ function get_revs()
     my_echo
     cd $tmpdir
     my_echo "** b-u: Cleaning up old update directories and creating a new one..."
-    rm -rfv bygfoot-update 2>> $log_file | tee -a $log_file
-    mkdir -v bygfoot-update 2>> $log_file | tee -a $log_file
-    cd bygfoot-update
+    rm -rfv bygfoot-update-tmp 2>> $log_file | tee -a $log_file
+    mkdir -v bygfoot-update-tmp 2>> $log_file | tee -a $log_file
+    cd bygfoot-update-tmp
     my_echo
     my_echo "** b-u: Fetching revision list..."
     my_wget http://bygfoot.sourceforge.net/revisions/$type/revisions_$type
@@ -742,9 +736,9 @@ function get_type()
 function get_latest_versions()
 {
     pushd $tmpdir &> /dev/null
-    rm -rfv bygfoot-update 2>> $log_file | tee -a $log_file
-    mkdir bygfoot-update
-    cd bygfoot-update
+    rm -rfv bygfoot-update-tmp 2>> $log_file | tee -a $log_file
+    mkdir -v bygfoot-update-tmp
+    cd bygfoot-update-tmp
     my_wget http://bygfoot.sourceforge.net/packages/$type/versions
 
     packlist=`cat versions`

@@ -72,7 +72,7 @@ create_window_options (void)
   GtkWidget *spinbutton_refresh;
   GtkWidget *entry_font_name;
   GtkWidget *eventbox2;
-  GtkWidget *comboboxentry_languages;
+  GtkWidget *combobox_languages;
   GtkWidget *label1;
   GtkWidget *hbox4;
   GtkWidget *vbox4;
@@ -394,11 +394,11 @@ create_window_options (void)
   gtk_table_attach (GTK_TABLE (table1), eventbox2, 1, 2, 5, 6,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (GTK_FILL), 0, 0);
-  gtk_tooltips_set_tip (tooltips, eventbox2, _("Setting the language only works for installed packages (not for the binary package)"), NULL);
+  gtk_tooltips_set_tip (tooltips, eventbox2, _("Choose game language (might not work in Windows versions)"), NULL);
 
-  comboboxentry_languages = gtk_combo_box_entry_new ();
-  gtk_widget_show (comboboxentry_languages);
-  gtk_container_add (GTK_CONTAINER (eventbox2), comboboxentry_languages);
+  combobox_languages = gtk_combo_box_new_text ();
+  gtk_widget_show (combobox_languages);
+  gtk_container_add (GTK_CONTAINER (eventbox2), combobox_languages);
 
   label1 = gtk_label_new (_("Global"));
   gtk_widget_show (label1);
@@ -1048,7 +1048,7 @@ create_window_options (void)
   GLADE_HOOKUP_OBJECT (window_options, spinbutton_refresh, "spinbutton_refresh");
   GLADE_HOOKUP_OBJECT (window_options, entry_font_name, "entry_font_name");
   GLADE_HOOKUP_OBJECT (window_options, eventbox2, "eventbox2");
-  GLADE_HOOKUP_OBJECT (window_options, comboboxentry_languages, "comboboxentry_languages");
+  GLADE_HOOKUP_OBJECT (window_options, combobox_languages, "combobox_languages");
   GLADE_HOOKUP_OBJECT (window_options, label1, "label1");
   GLADE_HOOKUP_OBJECT (window_options, hbox4, "hbox4");
   GLADE_HOOKUP_OBJECT (window_options, vbox4, "vbox4");

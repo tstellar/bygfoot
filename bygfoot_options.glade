@@ -460,7 +460,7 @@
 			  <property name="max_length">0</property>
 			  <property name="text" translatable="yes"></property>
 			  <property name="has_frame">True</property>
-			  <property name="invisible_char" translatable="yes">*</property>
+			  <property name="invisible_char">*</property>
 			  <property name="activates_default">False</property>
 			</widget>
 			<packing>
@@ -659,7 +659,7 @@
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char" translatable="yes">*</property>
+		      <property name="invisible_char">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -675,12 +675,12 @@
 		  <child>
 		    <widget class="GtkEventBox" id="eventbox2">
 		      <property name="visible">True</property>
-		      <property name="tooltip" translatable="yes">Setting the language only works for installed packages (not for the binary package)</property>
+		      <property name="tooltip" translatable="yes">Choose game language (might not work in Windows versions)</property>
 		      <property name="visible_window">True</property>
 		      <property name="above_child">False</property>
 
 		      <child>
-			<widget class="GtkComboBoxEntry" id="comboboxentry_languages">
+			<widget class="GtkComboBox" id="combobox_languages">
 			  <property name="visible">True</property>
 			</widget>
 		      </child>

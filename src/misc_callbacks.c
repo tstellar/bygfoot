@@ -59,7 +59,7 @@ void
 on_team_selection_load_clicked         (GtkButton       *button,
                                         gpointer         user_data)
 {
-    stat1 = STATUS_LOAD_GAME_TEAM_SELECTION;
+    stat5 = STATUS_LOAD_GAME_TEAM_SELECTION;
     window_show_file_sel();
 }
 

@@ -402,7 +402,7 @@ option_gui_write_options(void)
 {
     gint i;
     gint language_index = 
-	gtk_combo_box_get_active(GTK_COMBO_BOX(lookup_widget(window.options, "comboboxentry_languages")));
+	gtk_combo_box_get_active(GTK_COMBO_BOX(lookup_widget(window.options, "combobox_languages")));
     GtkToggleButton *bool_widgets[BOOL_OPT_END];
     gint *bool_options[BOOL_OPT_END];
     GtkSpinButton *spin_widgets[SPIN_OPT_END];
