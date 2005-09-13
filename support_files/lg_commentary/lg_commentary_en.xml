@@ -6,7 +6,6 @@
     <commentary>Flick on from _P1_ waits for the one two</commentary>
     <commentary>Neat dummy run and pass</commentary>
     <commentary>Great footwork, great pass</commentary>
-    <commentary>Terrific skills on display</commentary>
     <commentary>_P1_ drops the ball at _P0_'s feet</commentary>
     <commentary>Lofted pass from _P1_ finds its mark</commentary>
     <commentary>_T0_ are on the attack</commentary>
@@ -27,6 +26,10 @@
     <commentary>_P0_ twisting desperately to loose his man</commentary>
 	 <commentary>_P0_ rips [up|through] the [centre|midfield]</commentary>
     <commentary>_P0_ [looses|spins past] his [man|marker]</commentary>
+    <commentary cond="_SHOTS0_ < 2">They need to [get the ball up front more|create more chances]</commentary>
+    <commentary cond="_MI_>20 and _GOALS0_ + _GOALS1_ < 1 and _SHOTS0_ + _SHOTS1_ < 8">Only [_SHOTS0_ + _SHOTS1_] shot/s,neither side are really trying</commentary>
+    <commentary cond="_SHOTS0_ + _SHOTS1_ > 4">Terrific skills on display</commentary>
+    <commentary cond="_FOULS0_ + _FOULS1_ >= 1">[So many|[_FOULS0_ + _FOULS1_]] fouls. The refs gonna need a new [pee for his whistle|book|pencil]!</commentary>
   </event>
   <event>
     <name>lost_possession</name>
@@ -112,7 +115,7 @@
     <commentary>And the [ball|shot] creeps just past the post</commentary>
     <commentary>That was never really going in.</commentary>
     <commentary>Ohh what a chance lost!</commentary>
-    <commentary>Lost opportunities like that can could _T0_ match.</commentary>
+    <commentary>Lost opportunities like that can cost _T0_ the match.</commentary>
     <commentary>It looked so promising for _P0_ then.</commentary>
     <commentary>He'd done all the hard work but couldn't finish it off</commentary>
     <commentary>So near yet so far</commentary>
@@ -169,18 +172,22 @@
     <commentary>_TL_'s manager cops a rollicking from the fans as he leaves the dugout</commentary>
     <commentary>So far _TW_ and their manager have done everything right.</commentary>
     <commentary cond="_POSS0_ >= 70 or _POSS1_ >= 70">_T[_POSS1_ GE 70]_ is dominating the match</commentary>
-    <commentary cond="_POSS0_ >= 60 or _POSS1_ >= 60">_T[_POSS1_ GE 60]_ have had the [lions share|better] of possession this half</commentary>
+    <commentary cond="_POSS0_ >= 60 or _POSS1_ >= 60">_T[_POSS1_ GE 60]_ have had the [luxury of most|lions share|better] of possession this half</commentary>
     <commentary cond="_POSS0_ > 50 and _GOALS1_ > _GOALS0_">_T0_ may have had more possession but _T1_ have utilised theirs better</commentary>
     <commentary cond="_POSS1_ > 50 and _GOALS0_ > _GOALS1_">_T1_ may have had more possession but _T0_ have utilised theirs better</commentary>
     <commentary cond="_POSS0_ >= 75 or _POSS1_ >= 75">_T[_POSS1_ GE 75]_ seems to be the only team out there</commentary>
-    <commentary cond="_GOALS0_ + _GOALS1_ < 1 and _SHOTS0_ + _SHOTS1_ > 6">Sure its a low scoring game but we've had plenty of shots</commentary>
-    <commentary cond="_GOALS0_ + _GOALS1_ < 1 and _SHOTS0_ + _SHOTS1_ > 4">_T[_SHOTS0_ GE _SHOTS1_]_ Have had plenty of chances to [finish|seal] this game</commentary>
-    <commentary cond="_GOALS0_ + _GOALS1_ < 2 and _SHOTS0_ + _SHOTS1_ > 3">_T[_SHOTS0_ GE _SHOTS1_]_ Have had _SHOTS[_SHOTS0_ GE _SHOTS1_]_ chances to [finish|seal|clinch] this game</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 0 ">Well the [banks are closed|tide is out|lolly bag remains empty], [no goals this half|no one has managed to break the wall]</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 1 and _SHOTS0_ + _SHOTS1_ < 2">At this stage 1 up [might not be |might just be] enough</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 1 and _SHOTS0_ + _SHOTS1_ > 2">With the number of shots so far, 1 up might not be enough</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ < 2 and _SHOTS0_ + _SHOTS1_ > 8">Sure its a low scoring game but we've had plenty of shots</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ < 1 and _SHOTS0_ + _SHOTS1_ > 4">_T[_SHOTS0_ LE _SHOTS1_]_ Have had plenty of chances to [finish|seal] this game</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ < 2 and _SHOTS0_ + _SHOTS1_ > 3">_T[_SHOTS0_ LE _SHOTS1_]_ Have had _SHOTS[_SHOTS0_ LE _SHOTS1_]_ chances to [finish|seal|clinch] this game</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 0 and _SHOTS0_ + _SHOTS1_ < 2">No bickies in the barrel yet and [it looks like the baker is on strike|to be honest no one is baking]</commentary>
 	 <commentary cond="_GOALS0_ + _GOALS1_ >= 6">Its raining goals.[_GOALS0_ + _GOALS1_] So far and its only the first half!</commentary>
     <commentary cond="_FOULS0_ - _FOULS1_ >= 4 or _FOULS1_ - _FOULS0_ >=4">There are two teams out there but only [_T[_FOULS0_ GE _FOULS1_]_|one of them] is playing football</commentary>
     <commentary cond="_FOULS0_ + _FOULS1_ >= 8">It's a blood bath out there not a football match.</commentary>
     <commentary cond="_FOULS0_ + _FOULS1_ >= 8">[So many|[_FOULS0_ + _FOULS1_]] fouls. The refs gonna need new office supplies!</commentary>
-    <commentary cond="_FOULS0_ + _FOULS1_ >= 8">[So many|[_FOULS0_ + _FOULS1_]] fouls. The refs gonna need a new [book|pencil]!</commentary>
+    <commentary cond="_FOULS0_ + _FOULS1_ >= 8">[So many|[_FOULS0_ + _FOULS1_]] fouls. The refs gonna need a new [pee for his whistle|book|pencil]!</commentary>
     <commentary cond="_PEN0_ + _PEN1_ > 1">[_PEN0_ + _PEN1_] penalties already</commentary>
   </event>
   <event>
@@ -196,7 +203,7 @@
     <commentary>Who would have thought _MI_ minutes ago it would come down to this</commentary>
     <commentary>And now we have the tense drama of a penalty shoot out</commentary>
     <commentary>Two teams, equal till now in every respect,face off in penalties</commentary>
-    <commentary>The teams cant do it so now it's one on one. Striker against goalie</commentary>
+    <commentary>The teams can't do it, so now it's one on one. Striker against goalie</commentary>
     <commentary cond="_GOALS0_ + _GOALS1_ < 1">No goals so far but now we will see some as we head to penalties</commentary>
   </event>
   <event>
