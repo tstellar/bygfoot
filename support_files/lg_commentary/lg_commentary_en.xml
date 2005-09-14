@@ -99,7 +99,7 @@
 	 <commentary>The ball [lies|is] in the back of the net!!!</commentary>
     <commentary>Celebrations abound, they wont forget that [goal|strike|shot] in hurry</commentary>
 	 <commentary>_P0_'s dance ignites the fans. He celebrates in his [well known|own] special fashion</commentary>
-    <commentary>Goal! Dipping ball from _P0_ stuns [the keeper|_P1_|_T1_]</commentary>
+    <commentary>Goal! Dipping ball from _P0_ stuns [the keeper|_P1_|_T_NPOSS__]</commentary>
     <commentary>Outstanding Goal!</commentary>
     <commentary>_T_POSS__ have it pay dirt. What a Goal!</commentary>
     <commentary>Lady luck is smiling on _T_POSS__ now</commentary>
@@ -126,7 +126,7 @@
     <commentary>_T_POSS__ Have squandered [a great|their] chance there.</commentary>
     <commentary>Great run great delivery but no reward</commentary>
     <commentary>Lady luck has turned her back on [_P0_|_T_POSS__]</commentary>
-    <commentary>A real let off there for _T1_</commentary>
+    <commentary>A real let off there for _T_NPOSS__</commentary>
     <commentary>An Audacious attempt, worthy but not payment</commentary>
     <commentary>There was no gold at the end of that rainbow run</commentary>
     <commentary>The ball pinballs around the penalty area but finds no way in</commentary>
@@ -174,7 +174,7 @@
     <commentary>Games like this make managers. _TL_ need inspiration from the top.</commentary>    <commentary>The dropped heads tell the story. It's been no picnic here for _TL_.</commentary>
     <commentary>_TL_'s manager cops a rollicking from the fans as he leaves the dugout</commentary>
     <commentary>So far _TW_ and their manager have done everything right.</commentary>
-    <commentary cond="_POSS0_ >= 70 or _POSS1_ >= 70">_T[_POSS1_ GE 70]_ is dominating the match</commentary>
+    <commentary cond="_POSS0_ >= 70 or _POSS1_ >= 70">_T[_POSS1_ GE 70]_ is dominating the posession</commentary>
     <commentary cond="_POSS0_ >= 60 or _POSS1_ >= 60">_T[_POSS1_ GE 60]_ have had the [luxury of most|lions share|better] of possession this half</commentary>
     <commentary cond="_POSS0_ > 50 and _GOALS1_ > _GOALS0_">_T0_ may have had more possession but _T1_ have utilised theirs better</commentary>
     <commentary cond="_POSS1_ > 50 and _GOALS0_ > _GOALS1_">_T1_ may have had more possession but _T0_ have utilised theirs better</commentary>
@@ -218,6 +218,7 @@
     <commentary>The referee checks his watch and blows for full time</commentary>
     <commentary>Well that's that. It ends _RE_</commentary>
     <commentary>_RE_, what an astonishing result for _TW_</commentary>
+    <commentary>_TW_'s manager will be delighted with that result</commentary>
     <commentary cond="_GD_ = 0 "> A draw then. Still a point is a point.</commentary>
     <commentary cond="_GD_ > 0 ">Well that's that. It ends _RE_ in _TW_'s favour</commentary>
     <commentary cond="_GOALS0_ + _GOALS1_ >= 6">Wow, a match to remember. [_GOALS0_ + _GOALS1_] action packed goals!</commentary>
@@ -301,6 +302,7 @@
   <event>
     <name>send_off</name>
     <commentary>_P0_ has been sent off</commentary>
+    <commentary>_P0_ is sent off. _T_POSS__ is now down a man</commentary>
   </event>
   <event>
     <name>injury</name>
