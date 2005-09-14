@@ -83,7 +83,7 @@ typedef struct
 	Default 1000 (which means 'off', basically). */
     gint yellow_red;
     /** Average skill for the first season. Default: -1. */
-    gint average_skill;
+    gint average_talent;
     /** Array of teams in the league.
 	@see Team */
     GArray *teams;

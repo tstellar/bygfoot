@@ -103,6 +103,8 @@ typedef struct
 	lsu, /**< Last skill update. Number of weeks since the player skill was last updated. */
 	age, /**< Age in years. */
 	peak_age, /**< Age at which the player reaches his peak ability. */
+	peak_region, /**< Region around the peak age during which the player's
+			ability is at the peak (in years). */
 	contract; /**< The years until the player's contract expires. */
 
     /** Whether the player participated in the team's last match. */

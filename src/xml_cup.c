@@ -20,7 +20,7 @@
 #define TAG_ADD_WEEK "add_week"
 #define TAG_WEEK_GAP "week_gap"
 #define TAG_YELLOW_RED "yellow_red"
-#define TAG_SKILL_DIFF "skill_diff"
+#define TAG_TALENT_DIFF "talent_diff"
 #define TAG_CUP_ROUNDS "cup_rounds"
 #define TAG_CUP_ROUND "cup_round"
 #define TAG_CUP_ROUND_NEW_TEAMS "new_teams"
@@ -56,7 +56,7 @@ enum XmlCupStates
     STATE_ADD_WEEK,
     STATE_WEEK_GAP,
     STATE_YELLOW_RED,
-    STATE_SKILL_DIFF,
+    STATE_TALENT_DIFF,
     STATE_CUP_ROUNDS,
     STATE_CUP_ROUND,
     STATE_CUP_ROUND_NEW_TEAMS,
@@ -127,8 +127,8 @@ xml_cup_read_start_element (GMarkupParseContext *context,
 	state = STATE_WEEK_GAP;
     else if(strcmp(element_name, TAG_YELLOW_RED) == 0)
 	state = STATE_YELLOW_RED;
-    else if(strcmp(element_name, TAG_SKILL_DIFF) == 0)
-	state = STATE_SKILL_DIFF;
+    else if(strcmp(element_name, TAG_TALENT_DIFF) == 0)
+	state = STATE_TALENT_DIFF;
     else if(strcmp(element_name, TAG_CUP_ROUNDS) == 0)
 	state = STATE_CUP_ROUNDS;
     else if(strcmp(element_name, TAG_CUP_ROUND) == 0)
@@ -197,7 +197,7 @@ xml_cup_read_end_element    (GMarkupParseContext *context,
        strcmp(element_name, TAG_ADD_WEEK) == 0 ||
        strcmp(element_name, TAG_WEEK_GAP) == 0 ||
        strcmp(element_name, TAG_YELLOW_RED) == 0 ||
-       strcmp(element_name, TAG_SKILL_DIFF) == 0 ||
+       strcmp(element_name, TAG_TALENT_DIFF) == 0 ||
        strcmp(element_name, TAG_CUP_ROUNDS) == 0)
 	state = STATE_CUP;
     else if(strcmp(element_name, TAG_CUP_ROUND) == 0)
@@ -277,8 +277,8 @@ xml_cup_read_text         (GMarkupParseContext *context,
 	new_cup.week_gap = value;
     else if(state == STATE_YELLOW_RED)
 	new_cup.yellow_red = value;
-    else if(state == STATE_SKILL_DIFF)
-	new_cup.skill_diff = value;
+    else if(state == STATE_TALENT_DIFF)
+	new_cup.talent_diff = value;
     else if(state == STATE_CUP_ROUND_NEW_TEAMS)
 	new_round.new_teams = value;
     else if(state == STATE_CUP_ROUND_BYES)

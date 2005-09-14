@@ -24,6 +24,7 @@ enum
     TAG_PLAYER_LSU,
     TAG_PLAYER_AGE,
     TAG_PLAYER_PEAK_AGE,
+    TAG_PLAYER_PEAK_REGION,
     TAG_PLAYER_CONTRACT,
     TAG_PLAYER_PARTICIPATION,
     TAG_PLAYER_GAMES_GOAL,
@@ -90,6 +91,7 @@ xml_loadsave_players_end_element(gint tag, GArray *players)
 	    tag == TAG_PLAYER_LSU ||
 	    tag == TAG_PLAYER_AGE ||
 	    tag == TAG_PLAYER_PEAK_AGE ||
+	    tag == TAG_PLAYER_PEAK_REGION ||
 	    tag == TAG_PLAYER_CONTRACT ||
 	    tag == TAG_PLAYER_PARTICIPATION ||
 	    tag == TAG_PLAYER_GAMES_GOAL ||
@@ -163,6 +165,8 @@ xml_loadsave_players_text(gchar *text)
 	new_player.age = float_value;
     else if(state == TAG_PLAYER_PEAK_AGE)
 	new_player.peak_age = float_value;
+    else if(state == TAG_PLAYER_PEAK_REGION)
+	new_player.peak_region = float_value;
     else if(state == TAG_PLAYER_CONTRACT)
 	new_player.contract = float_value;
     else if(state == TAG_PLAYER_ETAL)
@@ -223,6 +227,7 @@ xml_loadsave_players_write_player(FILE *fil, const Player *pl)
     xml_write_float(fil, pl->lsu, TAG_PLAYER_LSU, I2);
     xml_write_float(fil, pl->age, TAG_PLAYER_AGE, I2);
     xml_write_float(fil, pl->peak_age, TAG_PLAYER_PEAK_AGE, I2);
+    xml_write_float(fil, pl->peak_region, TAG_PLAYER_PEAK_REGION, I2);
     xml_write_float(fil, pl->contract, TAG_PLAYER_CONTRACT, I2);
 
     for(i=0;i<4;i++)

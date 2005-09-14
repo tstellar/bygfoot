@@ -33,7 +33,7 @@ cup_new(gboolean new_id)
     new.week_gap = 1;
 
     new.yellow_red = 1000;
-    new.skill_diff = 0;
+    new.talent_diff = 0;
 
     new.rounds = g_array_new(FALSE, FALSE, sizeof(CupRound));
     new.teams = g_ptr_array_new();

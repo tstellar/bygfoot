@@ -106,7 +106,7 @@ typedef struct
     /** Difference of the average skill for the cup teams compared to
 	the league with highest average skill.
 	Default: 0. */
-    gint skill_diff;
+    gint talent_diff;
     /** The week and week_round at the beginning of which the fixtures
 	have to be updated. */
     gint next_fixture_update_week;

@@ -87,7 +87,7 @@ option_float(const gchar *name, OptionList *optionlist)
     if(element == NULL)
 	g_warning("option_float: option named %s not found\nMaybe you should delete the .bygfoot directory from your home dir", name);
     else
-	return (gfloat)((Option*)element)->value / 10000;
+	return (gfloat)((Option*)element)->value / 100000;
 
     main_exit_program(EXIT_OPTION_NOT_FOUND, NULL);
 

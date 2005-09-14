@@ -99,7 +99,7 @@ team_generate_players_stadium(Team *tm)
     gfloat skill_factor = math_rnd(1 - const_float("float_team_skill_variance"),
 				   1 + const_float("float_team_skill_variance"));
     Player new;
-    gfloat wages = 0, average_skill;
+    gfloat wages = 0, average_talent;
     gchar *def_file = team_has_def_file(tm);
 
     tm->stadium.average_attendance = tm->stadium.possible_attendance =
@@ -109,21 +109,21 @@ team_generate_players_stadium(Team *tm)
 		 const_float("float_team_stadium_safety_upper"));
 
     if(tm->clid < ID_CUP_START)
-	average_skill = 
+	average_talent = 
 	    const_float("float_player_max_skill") * skill_factor *
-	    (((gfloat)league_from_clid(tm->clid)->average_skill) / 10000);
+	    (((gfloat)league_from_clid(tm->clid)->average_talent) / 10000);
     else
-	average_skill = 
-	    skill_factor * team_get_average_skills(lig(0).teams) *
-	    (1 + ((gfloat)cup_from_clid(tm->clid)->skill_diff / 10000));
+	average_talent = 
+	    skill_factor * team_get_average_talents(lig(0).teams) *
+	    (1 + ((gfloat)cup_from_clid(tm->clid)->talent_diff / 10000));
 	
-    average_skill = CLAMP(average_skill, 0, const_float("float_player_max_skill"));
+    average_talent = CLAMP(average_talent, 0, const_float("float_player_max_skill"));
 
     if(def_file == NULL)
     {
 	for(i=0;i<const_int("int_team_cpu_players");i++)
 	{
-	    new = player_new(tm, average_skill, TRUE);
+	    new = player_new(tm, average_talent, TRUE);
 	    g_array_append_val(tm->players, new);
 	}
     }
@@ -894,20 +894,25 @@ team_get_index(const Team *tm)
     return -1;
 }
 
-/** Return the average of the average skills of the teams in the array. */
+/** Return the average of the average talents of the teams in the array. */
 gfloat
-team_get_average_skills(const GArray *teams)
+team_get_average_talents(const GArray *teams)
 {
-    gint i;
+    gint i, j, cnt = 0;
     gfloat sum = 0;
 
     if(teams->len == 0)
 	return 0;
 
     for(i=0;i<teams->len;i++)
-	sum += team_get_average_skill(&g_array_index(teams, Team, i), FALSE);
+	for(j=0;j<g_array_index(teams, Team, i).players->len;j++)
+	{
+	    sum += g_array_index(g_array_index(teams, Team, i).players,
+				 Player, j).talent;
+	    cnt++;
+	}
 
-    return sum / teams->len;
+    return sum / (gfloat)cnt;
 }
 
 /** Find out whether a team plays at a given date. */
@@ -1093,7 +1098,7 @@ team_has_def_file(const Team *tm)
 /** Complete the definition of the team (add players,
     calculate wages etc. Called after reading a team def file. */
 void
-team_complete_def(Team *tm, gfloat average_skill)
+team_complete_def(Team *tm, gfloat average_talent)
 {
     gint i, new_pos, pos_sum;
     gint positions[4] = {0, 0, 0, 0};
@@ -1103,7 +1108,7 @@ team_complete_def(Team *tm, gfloat average_skill)
 
     for(i=0;i<tm->players->len;i++)
     {
-	player_complete_def(&g_array_index(tm->players, Player, i), average_skill);
+	player_complete_def(&g_array_index(tm->players, Player, i), average_talent);
 	positions[g_array_index(tm->players, Player, i).pos]++;
 
 	/** This is so we don't remove loaded players
@@ -1115,7 +1120,7 @@ team_complete_def(Team *tm, gfloat average_skill)
     for(i=0;i<add;i++)
     {
 	pos_sum = math_sum_int_array(positions, 4);
-	new_player = player_new(tm, average_skill, TRUE);
+	new_player = player_new(tm, average_talent, TRUE);
 	
 	if(positions[0] < 2)
 	    new_pos = 0;

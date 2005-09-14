@@ -15,16 +15,15 @@
 
 /** Create and return a new player.
     @param tm The team the player will belong to.
-    @param average_skill The average skill of the team. 
-    The player's skill can deviate from this value by #CONSTANT_PLAYER_AVERAGE_SKILL_VARIANCE %
+    @param average_talent The average talent of the team. 
     @return A newly created player. */
 Player
-player_new(Team *tm, gfloat average_skill, gboolean new_id)
+player_new(Team *tm, gfloat average_talent, gboolean new_id)
 {
     gint i;
     gfloat skill_factor = 
-	math_rnd(1 - const_float("float_player_average_skill_variance"),
-		 1 + const_float("float_player_average_skill_variance"));
+	math_rnd(1 - const_float("float_player_average_talent_variance"),
+		 1 + const_float("float_player_average_talent_variance"));
     Player new;
 
     new.name = (new_id) ? 
@@ -43,19 +42,16 @@ player_new(Team *tm, gfloat average_skill, gboolean new_id)
 		 (new.pos == PLAYER_POS_GOALIE) * 
 		 const_float("float_player_peak_age_goalie_addition"));
 
-    new.skill = CLAMP(average_skill * skill_factor, 0, 
-		      const_float("float_player_max_skill"));
-    new.talent = player_new_talent(new.skill);
-    player_estimate_talent(&new);
+    new.peak_region = 
+	math_gauss_dist(const_float("float_player_peak_region_lower"),
+			const_float("float_player_peak_region_upper"));
 
-    if(new.peak_age - new.age > const_float("float_player_peak_age_diff_younger1") ||
-       new.peak_age - new.age < const_float("float_player_peak_age_diff_older1"))
-	new.skill = new.skill * (1 - const_float("float_player_skill_reduction1"));
-    else if(new.peak_age - new.age > const_float("float_player_peak_age_diff_younger2") ||
-	    new.peak_age - new.age < const_float("float_player_peak_age_diff_peak_older"))
-	new.skill = new.skill * (1 - const_float("float_player_skill_reduction2"));
+    new.talent = CLAMP(average_talent * skill_factor, 0, 
+		       const_float("float_player_max_skill"));
 
+    new.skill = player_skill_from_talent(&new);
     new.cskill = new.skill;
+    player_estimate_talent(&new);
 
     new.fitness = math_rnd(const_float("float_player_fitness_lower"),
 			   const_float("float_player_fitness_upper"));
@@ -82,12 +78,12 @@ player_new(Team *tm, gfloat average_skill, gboolean new_id)
 /** Complete the player structure (some values have been read
     from a team def file). */
 void
-player_complete_def(Player *pl, gfloat average_skill)
+player_complete_def(Player *pl, gfloat average_talent)
 {
     gint i;
     gfloat skill_factor = 
-	math_rnd(1 - const_float("float_player_average_skill_variance"),
-		 1 + const_float("float_player_average_skill_variance"));
+	math_rnd(1 - const_float("float_player_average_talent_variance"),
+		 1 + const_float("float_player_average_talent_variance"));
 
     pl->peak_age = math_rnd(const_float("float_player_peak_age_lower") +
 			    (pl->pos == PLAYER_POS_GOALIE) * 
@@ -100,17 +96,21 @@ player_complete_def(Player *pl, gfloat average_skill)
     {
 	pl->age = math_gauss_dist(const_float("float_player_age_lower"),
 				  const_float("float_player_age_upper"));
+	pl->peak_age =
+	    math_rnd(const_float("float_player_peak_age_lower") +
+		     (pl->pos == PLAYER_POS_GOALIE) * 
+		     const_float("float_player_peak_age_goalie_addition"),
+		     const_float("float_player_peak_age_upper") +
+		     (pl->pos == PLAYER_POS_GOALIE) * 
+		     const_float("float_player_peak_age_goalie_addition"));
 
-	pl->skill = CLAMP(average_skill * skill_factor, 0, 
-			  const_float("float_player_max_skill"));
-	pl->talent = player_new_talent(pl->skill);
+	pl->peak_region = 
+	    math_gauss_dist(const_float("float_player_peak_region_lower"),
+			    const_float("float_player_peak_region_upper"));
 
-	if(pl->peak_age - pl->age > const_float("float_player_peak_age_diff_younger1") ||
-	   pl->peak_age - pl->age < const_float("float_player_peak_age_diff_older1"))
-	    pl->skill = pl->skill * (1 - const_float("float_player_skill_reduction1"));
-	else if(pl->peak_age - pl->age > const_float("float_player_peak_age_diff_younger2") ||
-		pl->peak_age - pl->age < const_float("float_player_peak_age_diff_peak_older"))
-	    pl->skill = pl->skill * (1 - const_float("float_player_skill_reduction2"));
+	pl->talent = CLAMP(average_talent * skill_factor, 0, 
+			   const_float("float_player_max_skill"));
+	pl->skill = player_skill_from_talent(pl);
     }
 
     pl->cpos = pl->pos;
@@ -171,6 +171,42 @@ player_get_position_from_structure(gint structure, gint player_number)
     return position;
 }
 
+/** Calculate a player's skill depending on his age
+    and talent. */
+gfloat
+player_skill_from_talent(const Player *pl)
+{
+    gfloat skill = pl->talent, cur_age = pl->peak_age;
+
+    if(pl->age < pl->peak_age)
+    {
+	while(cur_age > pl->age)
+	{
+	    cur_age -= ((const_float("float_player_lsu_update_limit") + 2) * 0.0192);
+	    if(pl->peak_age - cur_age > pl->peak_region)
+		skill *= (1 - ((pl->peak_age - cur_age) * 
+			       const_float("float_player_skill_update_younger_factor") +
+			       const_float("float_player_skill_update_younger_add")));
+	}
+    }
+    else
+    {
+	while(cur_age < pl->age)
+	{
+	    cur_age += ((const_float("float_player_lsu_update_limit") + 2) * 0.0192);
+	    if(cur_age - pl->peak_age > pl->peak_region)
+		skill *= (1 - ((cur_age - pl->peak_age) * 
+			       const_float("float_player_skill_update_older_factor") +
+			       const_float("float_player_skill_update_older_add")));
+	}
+    }
+
+    if(skill > pl->talent)
+	skill = pl->talent;
+    
+    return skill;
+}
+
 /** Calculate the talent value of the player based on his skill.
     @param skill The player's skill.
     @return The new talent value. */
@@ -219,25 +255,20 @@ player_estimate_talent(Player *pl)
 gint
 player_assign_value(const Player *pl)
 {
-    gint value;
-    gfloat diff = pl->peak_age - pl->age;
+    gfloat value;
 
-    value = (gint)powf((const_float("float_player_value_skill_weight") * pl->skill +
-			(1 - const_float("float_player_value_skill_weight")) * pl->talent * 0.7),
-		       const_float("float_player_value_power"));
+    value = powf((const_float("float_player_value_skill_weight") * pl->skill +
+		  (1 - const_float("float_player_value_skill_weight")) * 
+		  pl->talent * 0.7), const_float("float_player_value_power"));
     
-    if(diff > const_float("float_player_peak_age_diff_older1"))
-	value = (gint)rint((gfloat)value * (1 - const_float("float_player_value_scale1")));
-    else if(diff > const_float("float_player_peak_age_diff_peak_older"))
-	value = (gint)rint((gfloat)value * (1 - const_float("float_player_value_scale2")));
-    else if(diff < const_float("float_player_peak_age_diff_younger1"))
-	value = (gint)rint((gfloat)value * (1 + const_float("float_player_value_scale1")));
-    else if(diff < const_float("float_player_peak_age_diff_younger2"))
-	value = (gint)rint((gfloat)value * (1 + const_float("float_player_value_scale2")));
+    if(pl->peak_age > pl->age)
+	value *= (1 + const_float("float_player_value_younger_factor") *
+		  (pl->peak_age - pl->age));
+    else
+	value *= (1 - const_float("float_player_value_older_factor") *
+		  (pl->age - pl->peak_age));
 
-    value = math_round_integer(value, 2);
-
-    return value;
+    return math_round_integer((gint)rint(value), 2);
 }
 
 /** Assign a wage to a player. The wage depends mainly on
@@ -668,35 +699,28 @@ player_get_game_skill(const Player *pl, gboolean skill)
 void
 player_decrease_fitness(Player *pl)
 {
-    gint i;
-    gint age_limits[7] = {const_float("float_player_peak_age_diff_younger1"),
-			  const_float("float_player_peak_age_diff_younger2"),
-			  const_float("float_player_peak_age_diff_younger3"),
-			  const_float("float_player_peak_age_diff_peak_younger"),
-			  const_float("float_player_peak_age_diff_peak_older"),
-			  const_float("float_player_peak_age_diff_older1"),
-			  const_float("float_player_peak_age_diff_older2")};
-    gfloat reduce[8] =
-	{const_float("float_player_fitness_decrease_younger1"),
-	 const_float("float_player_fitness_decrease_younger2"),
-	 const_float("float_player_fitness_decrease_younger3"),
-	 const_float("float_player_fitness_decrease_peak_younger"),
-	 const_float("float_player_fitness_decrease_peak_older"),
-	 const_float("float_player_fitness_decrease_older1"),
-	 const_float("float_player_fitness_decrease_older2"),
-	 const_float("float_player_fitness_decrease_else")};
+    gfloat goalie_factor = 
+	1 - const_float("float_player_fitness_decrease_factor_goalie") *
+	(pl->cpos == 0);
+    gfloat boost_factor = 
+	1 + (gfloat)pl->team->boost * 
+	const_float("float_player_boost_fitness_effect");
 
-    gfloat diff = pl->peak_age - pl->age;
-    gfloat reduction;
+    if(pl->age < pl->peak_age - pl->peak_region)
+	pl->fitness -= (((pl->peak_age - pl->peak_region - pl->age) *
+			 const_float("float_player_fitness_decrease_younger_factor") +
+			 const_float("float_player_fitness_decrease_add")) *
+			goalie_factor * boost_factor);
+    else if(pl->age > pl->peak_age + pl->peak_region)
+	pl->fitness -= (((pl->age - pl->peak_age - pl->peak_region) *
+			 const_float("float_player_fitness_decrease_older_factor") +
+			 const_float("float_player_fitness_decrease_add")) *
+			goalie_factor * boost_factor);
+    else
+	pl->fitness -= (const_float("float_player_fitness_decrease_add") *
+			goalie_factor * boost_factor);
 
-    for(i=0;i<7;i++)
-	if(diff > age_limits[i])
-	    break;
-
-    reduction = reduce[i] * (1 + (gfloat)pl->team->boost * const_float("float_player_boost_fitness_effect")) *
-	(1 - (pl->cpos == 0) * const_float("float_player_fitness_decrease_factor_goalie"));
-    
-    pl->fitness = MAX(0, pl->fitness - reduction);
+    pl->fitness = MAX(0, pl->fitness);
 }
 
 
@@ -708,26 +732,9 @@ player_decrease_fitness(Player *pl)
 void
 player_update_fitness(Player *pl)
 {
-    gint i;
-    gint age_limits[7] = {const_float("float_player_peak_age_diff_younger1"),
-			  const_float("float_player_peak_age_diff_younger2"),
-			  const_float("float_player_peak_age_diff_younger3"),
-			  const_float("float_player_peak_age_diff_peak_younger"),
-			  const_float("float_player_peak_age_diff_peak_older"),
-			  const_float("float_player_peak_age_diff_older1"),
-			  const_float("float_player_peak_age_diff_older2")};
-    gfloat increase_base[8] =
-	{const_float("float_player_fitness_increase_younger1"),
-	 const_float("float_player_fitness_increase_younger2"),
-	 const_float("float_player_fitness_increase_younger3"),
-	 const_float("float_player_fitness_increase_peak_younger"),
-	 const_float("float_player_fitness_increase_peak_older"),
-	 const_float("float_player_fitness_increase_older1"),
-	 const_float("float_player_fitness_increase_older2"),
-	 const_float("float_player_fitness_increase_else")};
-
-    gfloat diff = pl->peak_age - pl->age;
-    gfloat increase = -1;
+    gfloat variance = 
+	math_rnd(1 - const_float("float_player_fitness_increase_variance"),
+		 1 + const_float("float_player_fitness_increase_variance"));
 
     if(pl->participation)
     {
@@ -735,14 +742,20 @@ player_update_fitness(Player *pl)
 	return;
     }
 
-    for(i=0;i<7;i++)
-	if(diff > age_limits[i])
-	    break;
+    if(pl->age < pl->peak_age - pl->peak_region)
+	pl->fitness += (((pl->peak_age - pl->peak_region - pl->age) *
+			 const_float("float_player_fitness_increase_younger_factor") +
+			 const_float("float_player_fitness_increase_add")) *
+			variance);
+    else if(pl->age > pl->peak_age + pl->peak_region)
+	pl->fitness += (((pl->age - pl->peak_age - pl->peak_region) *
+			 const_float("float_player_fitness_increase_older_factor") +
+			 const_float("float_player_fitness_increase_add")) *
+			variance);
+    else
+	pl->fitness += (const_float("float_player_fitness_increase_add") * variance);
 
-    increase = math_rnd(increase_base[i] - const_float("float_player_fitness_increase_variance"),
-			increase_base[i] + const_float("float_player_fitness_increase_variance"));
-
-    pl->fitness = MIN(pl->fitness + increase, 1);
+    pl->fitness = MIN(pl->fitness, 1);
 }
 
 /** Return the number of yellow cards of a player
@@ -889,31 +902,6 @@ void
 player_update_skill(Player *pl)
 {
     gint i;
-    gint age_limits[7] =
-	{const_float("float_player_peak_age_diff_younger1"),
-	 const_float("float_player_peak_age_diff_younger2"),
-	 const_float("float_player_peak_age_diff_younger3"),
-	 const_float("float_player_peak_age_diff_peak_younger"),
-	 const_float("float_player_peak_age_diff_peak_older"),
-	 const_float("float_player_peak_age_diff_older1"),
-	 const_float("float_player_peak_age_diff_older2")};
-    gfloat factor_limits[3][2] =
-	{{const_float("float_player_skill_devel_younger1_lower"),
-	  const_float("float_player_skill_devel_younger1_upper")},
-	 {const_float("float_player_skill_devel_younger2_lower"),
-	  const_float("float_player_skill_devel_younger2_upper")},
-	 {const_float("float_player_skill_devel_younger3_lower"),
-	  const_float("float_player_skill_devel_younger3_upper")}};
-    gint increase_decrease[4][2] =
-	{{const_float("float_player_skill_devel_peak_lower"),
-	  const_float("float_player_skill_devel_peak_upper")},
-	 {const_float("float_player_skill_devel_older1_lower"),
-	  const_float("float_player_skill_devel_older1_upper")},
-	 {const_float("float_player_skill_devel_older2_lower"),
-	  const_float("float_player_skill_devel_older2_upper")},
-	 {const_float("float_player_skill_devel_else_lower"),
-	  const_float("float_player_skill_devel_else_upper")}};
-    gfloat diff;
 
     if(!query_player_is_youth(pl))
     {
@@ -938,25 +926,17 @@ player_update_skill(Player *pl)
 	
     pl->lsu = 0;
 
-    diff = pl->peak_age - pl->age;
-
-    for(i=0;i<7;i++)
-	if(diff > age_limits[i])
-	    break;
-
-    if(!query_player_is_youth(pl))
-    {
-	if(i < 3)
-	    pl->skill += (pl->talent - pl->skill) * math_rnd(factor_limits[i][0], factor_limits[i][1]);
-	else if(i < 5)
-	    pl->skill += math_rnd(increase_decrease[0][0], increase_decrease[0][1]);
-	else if(i < 7)
-	    pl->skill += math_rnd(increase_decrease[i - 4][0], increase_decrease[i - 4][1]);
-	else
-	    pl->skill += math_rnd(increase_decrease[3][0], increase_decrease[3][1]);
-    }
+    if(pl->age < pl->peak_age - pl->peak_region)
+	pl->skill *= (1 + ((pl->peak_age - pl->age) * 
+			   const_float("float_player_skill_update_younger_factor") +
+			   const_float("float_player_skill_update_younger_add")));
+    else if(pl->age > pl->peak_age + pl->peak_region)
+	pl->skill *= (1 - ((pl->age - pl->peak_age) * 
+			   const_float("float_player_skill_update_older_factor") +
+			   const_float("float_player_skill_update_older_add")));
     else
-	pl->skill /= const_float("float_youth_academy_skill_reduce_factor");
+	pl->skill *= math_rnd(1 - const_float("float_player_skill_update_peak"),
+			      1 + const_float("float_player_skill_update_peak"));
 
     pl->skill = CLAMP(pl->skill, 0, pl->talent);
     pl->cskill = player_get_cskill(pl, pl->cpos, TRUE);

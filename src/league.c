@@ -31,7 +31,7 @@ league_new(gboolean new_id)
     new.id = (new_id) ? league_id_new : -1;
     new.layer = -1;
 
-    new.average_skill = 7000;
+    new.average_talent = 0;
 
     new.prom_rel.prom_games_dest_sid = g_string_new("");
     new.prom_rel.prom_games_loser_sid = g_string_new("");

@@ -22,6 +22,9 @@ gint
 player_get_position_from_structure(gint structure, gint player_number);
 
 gfloat
+player_skill_from_talent(const Player *pl);
+
+gfloat
 player_new_talent(gfloat skill);
 
 void
