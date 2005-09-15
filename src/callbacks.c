@@ -149,7 +149,6 @@ on_button_transfers_clicked            (GtkButton       *button,
 	stat0 = STATUS_SHOW_TRANSFER_LIST;
 	game_gui_print_message(_("Left click to make an offer. Right click to remove offer."));
 	game_gui_print_message_with_delay(_("Transfer deadline is Week %d"), transfer_get_deadline());
-	getchar();
 	treeview_show_transfer_list(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")));
 	gtk_notebook_set_current_page(GTK_NOTEBOOK(lookup_widget(window.main, "notebook_player")), 1);
 	
