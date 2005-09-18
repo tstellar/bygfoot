@@ -402,22 +402,6 @@ transfer_add_offer(gint idx, Team *tm, gint fee, gint wage)
     return FALSE;
 }
 
-/** Return the index of the transfer containing the player going with
-    the team and the id. */
-gint
-transfer_get_index(const Team *tm, gint id)
-{
-    gint i;
-
-    for(i=0;i<transfer_list->len;i++)
-	if(trans(i).tm == tm && trans(i).id == id)
-	    return i;
-
-    main_exit_program(EXIT_INT_NOT_FOUND,
-		      "transfer_get_index: didn't find transfer.");
-    return -1;
-}
-
 /** Remove any offers from the team for the given transfer player. */
 gboolean
 transfer_remove_offer(gint idx, const Team *tm)

@@ -767,22 +767,18 @@ float_youth_academy_youth_counter_upper 2500000
 float_youth_academy_age_lower 1550000
 float_youth_academy_age_upper 1750000
 
-# skill reduce factor (exponent is
-# peak_age - age)
-float_youth_academy_skill_reduce_factor 98800
-
-# weight of the coach for the average skill
+# weight of the coach for the average talent
 # between 0 and 1
 float_youth_academy_coach_weight 25000
 
-# upper and lower factor values for average skill
+# upper and lower factor values for average talent
 # (actual value depends on coach and percentage)
-float_youth_academy_skill_factor_lower 67000
-float_youth_academy_skill_factor_upper 105000
+float_youth_academy_talent_factor_lower 67000
+float_youth_academy_talent_factor_upper 105000
 
-# youth skill variance (to have random
-# skills, not always the same)
-float_youth_academy_skill_variance 15000
+# youth talent variance (to have random
+# talents, not always the same)
+float_youth_academy_talent_variance 15000
 
 # probabilities for the different positions
 # cumulative listing, adding up to 1
@@ -822,3 +818,56 @@ float_youth_lsu_addition_match 150000
 
 # how many youths there may be at most in the YA
 int_youth_academy_max_youths 10
+
+# influence of various events on the streak
+# probabililty
+float_player_streak_add_startup		5000
+float_player_streak_add_no_startup	-3000
+float_player_streak_add_sub_in		3000
+float_player_streak_add_sub_out		-2000
+float_player_streak_add_goal		12000
+float_player_streak_add_own_goal	-15000
+float_player_streak_add_assist		5000
+float_player_streak_add_win		4000
+float_player_streak_add_loss		-4000
+float_player_streak_add_goalie_save	2000
+float_player_streak_add_goalie_goal	-3000
+float_player_streak_add_goalie_clean	6000
+float_player_streak_add_injury		-18000
+float_player_streak_add_sendoff		-12000
+
+# influence of the streak on player values
+# in percent
+float_player_streak_influence_skill			7000
+float_player_streak_influence_fitness_decrease		-20000
+float_player_streak_influence_fitness_increase		20000
+
+# how many weeks there mustn't be an new streak
+int_player_streak_count_lower  3
+int_player_streak_count_upper  6
+
+# parameters (linear function) that determine how
+# fast the streak count decreases depending on the
+# current streak prob
+float_player_streak_count_decrease_factor	75000
+float_player_streak_count_decrease_add		100000
+
+# upper and lower bounds for streak lock length
+# (ie. how many weeks a player may not go on a new
+# streak)
+int_player_streak_lock_length_lower	3
+int_player_streak_lock_length_upper	6
+
+# upper and lower bounds for streak length
+float_player_streak_length_lower 150000
+float_player_streak_length_upper 400000
+
+# the two values determining the probability
+# that a player goes on a streak
+# maximum probabililty (when the player's streak_prob
+# is 1 or -1)
+float_player_streak_prob_max	40000
+
+# probability at streak_prob=0 (this is >0 because
+# the streak_prob is between -1 and 1, not 0 and 1)
+float_player_streak_prob_zero	5000

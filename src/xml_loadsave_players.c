@@ -37,6 +37,9 @@ enum
     TAG_PLAYER_CARD_YELLOW,
     TAG_PLAYER_CARD_RED,
     TAG_PLAYER_CAREER,
+    TAG_PLAYER_STREAK,
+    TAG_PLAYER_STREAK_COUNT,
+    TAG_PLAYER_STREAK_PROB,
     TAG_END
 };
 
@@ -96,7 +99,10 @@ xml_loadsave_players_end_element(gint tag, GArray *players)
 	    tag == TAG_PLAYER_PARTICIPATION ||
 	    tag == TAG_PLAYER_GAMES_GOAL ||
 	    tag == TAG_PLAYER_CAREER ||
-	    tag == TAG_PLAYER_CARD)
+	    tag == TAG_PLAYER_CARD ||
+	    tag == TAG_PLAYER_STREAK ||
+	    tag == TAG_PLAYER_STREAK_COUNT ||
+	    tag == TAG_PLAYER_STREAK_PROB)
     {
 	state = TAG_PLAYER;
 	if(tag == TAG_PLAYER_ETAL)
@@ -187,6 +193,12 @@ xml_loadsave_players_text(gchar *text)
 	new_card.red = int_value;
     else if(state == TAG_PLAYER_CAREER)
 	new_player.career[careeridx] = int_value;
+    else if(state == TAG_PLAYER_STREAK)
+	new_player.streak = int_value;
+    else if(state == TAG_PLAYER_STREAK_COUNT)
+	new_player.streak_count = float_value;
+    else if(state == TAG_PLAYER_STREAK_PROB)
+	new_player.streak_prob = float_value;
 }
 
 void
@@ -235,6 +247,10 @@ xml_loadsave_players_write_player(FILE *fil, const Player *pl)
     
     for(i=0;i<PLAYER_VALUE_END;i++)
 	xml_write_int(fil, pl->career[i], TAG_PLAYER_CAREER, I2);
+
+    xml_write_int(fil, pl->streak, TAG_PLAYER_STREAK, I2);
+    xml_write_float(fil, pl->streak_count, TAG_PLAYER_STREAK_COUNT, I2);
+    xml_write_float(fil, pl->streak_prob, TAG_PLAYER_STREAK_PROB, I2);
 
     for(i=0;i<pl->games_goals->len;i++)
     {

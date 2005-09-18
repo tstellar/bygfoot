@@ -10,9 +10,6 @@ live_game_calculate_fixture(Fixture *fix);
 void
 live_game_initialize(Fixture *fix);
 
-void
-live_game_post_match(void);
-
 gboolean
 query_live_game_event_is_break(gint minute, gint time);
 
@@ -105,9 +102,6 @@ live_game_finish_unit(void);
 
 LiveGameUnit*
 live_game_unit_before(const LiveGameUnit* unit, gint gap);
-
-void
-live_game_set_match(LiveGame *live_game);
 
 gint
 live_game_event_get_verbosity(gint event_type);

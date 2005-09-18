@@ -24,21 +24,21 @@
 #include "window.h"
 
 /** Show the window with the news. */
-void
-window_show_news(void)
-{
-    GtkNotebook *nb = NULL;
+/* void */
+/* window_show_news(void) */
+/* { */
+/*     GtkNotebook *nb = NULL; */
 
-    window_create(WINDOW_HELP);
+/*     window_create(WINDOW_HELP); */
 
-    nb = GTK_NOTEBOOK(lookup_widget(window.help, "notebook1"));
+/*     nb = GTK_NOTEBOOK(lookup_widget(window.help, "notebook1")); */
 
-    gtk_notebook_remove_page(nb, 0);
-    gtk_notebook_remove_page(nb, -1);
+/*     gtk_notebook_remove_page(nb, 0); */
+/*     gtk_notebook_remove_page(nb, -1); */
 
-    gtk_label_set_text(GTK_LABEL(lookup_widget(window.help, "label_contributors")),
-		       _("News"));
-}
+/*     gtk_label_set_text(GTK_LABEL(lookup_widget(window.help, "label_contributors")), */
+/* 		       _("News")); */
+/* } */
 
 /** Show the help/about window. 
     @param page Which notebook page to display. */
@@ -166,16 +166,17 @@ window_show_file_sel(void)
     else
     {
         if(os_is_unix)
-            sprintf(buf, "%s%s%s%ssaves%s", home, G_DIR_SEPARATOR_S, 
-		    HOMEDIRNAME, G_DIR_SEPARATOR_S, G_DIR_SEPARATOR_S);
+            sprintf(buf, "%s%s%s%ssaves", home, G_DIR_SEPARATOR_S, 
+		    HOMEDIRNAME, G_DIR_SEPARATOR_S);
         else
         {
             gchar *pwd = g_get_current_dir();
-            sprintf(buf, "%s%ssaves%s", pwd, G_DIR_SEPARATOR_S, G_DIR_SEPARATOR_S);
+            sprintf(buf, "%s%ssaves", pwd, G_DIR_SEPARATOR_S);
             g_free(pwd);
 	}
 
-	gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(window.file_chooser), buf);
+	gtk_file_chooser_set_current_folder(
+	    GTK_FILE_CHOOSER(window.file_chooser), buf);
     }
 
     if(gtk_dialog_run(GTK_DIALOG(window.file_chooser)) == GTK_RESPONSE_OK)
@@ -414,17 +415,92 @@ window_live_set_spinbuttons(void)
 {
     GtkSpinButton *sb_speed = 
 	GTK_SPIN_BUTTON(lookup_widget(window.live, "spinbutton_speed"));
-
-    gtk_spin_button_set_range(sb_speed, 0, 
-			      -rint((gfloat)(const_int("int_game_gui_live_game_speed_max") - 10) /
-				    (gfloat)(const_int("int_game_gui_live_game_speed_grad"))));
+    gfloat user_option = (gfloat)option_int("int_opt_user_live_game_speed", 
+					    &usr(stat2).options);
     
-    gtk_spin_button_set_value(sb_speed,
-			      (gfloat)option_int("int_opt_user_live_game_speed", 
-						 &usr(stat2).options));
+    gtk_spin_button_set_range(
+	sb_speed, 0, -rint((gfloat)(const_int("int_game_gui_live_game_speed_max") - 10) /
+			   (gfloat)(const_int("int_game_gui_live_game_speed_grad"))));
+    
+    gtk_spin_button_set_value(sb_speed, user_option);
+    
     gtk_spin_button_set_value(
 	GTK_SPIN_BUTTON(lookup_widget(window.live, "spinbutton_verbosity")),
 	(gfloat)option_int("int_opt_user_live_game_verbosity", &usr(stat2).options));
+}
+
+/** Save main window size and position into a file.*/
+void
+window_main_save_geometry(void)
+{
+    gchar filename[SMALL];
+    const gchar *home = g_get_home_dir();
+    gchar *pwd = g_get_current_dir();
+    FILE *fil = NULL;
+    gint width, height, pos_x, pos_y, paned_pos;
+    
+    if(os_is_unix)
+	sprintf(filename, "%s%s%s%swindow_settings",
+		home, G_DIR_SEPARATOR_S, HOMEDIRNAME, G_DIR_SEPARATOR_S);
+    else
+	sprintf(filename, "%s%swindow_settings",
+		pwd, G_DIR_SEPARATOR_S);
+
+    g_free(pwd);
+
+    if(window.main != NULL && file_my_fopen(filename, "w", &fil, FALSE))
+    {
+	gtk_window_get_size(GTK_WINDOW(window.main), &width, &height);
+	gtk_window_get_position(GTK_WINDOW(window.main), &pos_x, &pos_y);
+	paned_pos = gtk_paned_get_position(
+	    GTK_PANED(lookup_widget(window.main, "hpaned2")));
+
+	fprintf(fil, "int_window_settings_width\t%d\n", width);
+	fprintf(fil, "int_window_settings_height\t%d\n", height);
+	fprintf(fil, "int_window_settings_pos_x\t%d\n", pos_x);
+	fprintf(fil, "int_window_settings_pos_y\t%d\n", pos_y);
+	fprintf(fil, "int_window_settings_paned_pos\t%d\n", paned_pos);
+    
+	fclose(fil);
+    }
+}
+
+/** Set the main window geometry according to the file
+    settings. */
+void
+window_main_load_geometry(void)
+{
+    gchar filename[SMALL];
+    const gchar *home = g_get_home_dir();
+    gchar *pwd = g_get_current_dir();
+    OptionList optionlist;
+    
+    if(os_is_unix)
+	sprintf(filename, "%s%s%s%swindow_settings",
+		home, G_DIR_SEPARATOR_S, HOMEDIRNAME, G_DIR_SEPARATOR_S);
+    else
+	sprintf(filename, "%s%swindow_settings",
+		pwd, G_DIR_SEPARATOR_S);
+
+    g_free(pwd);
+
+    if(g_file_test(filename, G_FILE_TEST_EXISTS))
+    {
+	optionlist.list = NULL;
+	optionlist.datalist = NULL;
+	file_load_opt_file(filename, &optionlist);
+
+	gtk_window_resize(GTK_WINDOW(window.main),
+			  option_int("int_window_settings_width", &optionlist),
+			  option_int("int_window_settings_height", &optionlist));
+	gtk_window_move(GTK_WINDOW(window.main),
+			option_int("int_window_settings_pos_x", &optionlist),
+			option_int("int_window_settings_pos_y", &optionlist));
+	gtk_paned_set_position(GTK_PANED(lookup_widget(window.main, "hpaned2")),
+			       option_int("int_window_settings_paned_pos", &optionlist));
+
+	free_option_list(&optionlist, FALSE);
+    }
 }
 
 /** Create and show a window. Which one depends on the argument.
@@ -454,6 +530,7 @@ window_create(gint window_type)
 	    {
 		window.main = create_main_window();
 		wind = window.main;
+		window_main_load_geometry();
 		game_gui_print_message(_("Welcome to Bygfoot %s"), VERS);
 		sprintf(buf, "Bygfoot Football Manager %s", VERS);
 	    }

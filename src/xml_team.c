@@ -15,7 +15,7 @@
 #define TAG_TEAM_NAME "team_name"
 #define TAG_STADIUM_NAME "stadium_name"
 #define TAG_SYMBOL "symbol"
-#define TAG_AVERAGE_SKILL "average_skill"
+#define TAG_AVERAGE_TALENT "average_talent"
 #define TAG_FORMATION "formation"
 #define TAG_NAMES_FILE "names_file"
 #define TAG_PLAYER "player"
@@ -32,7 +32,7 @@ enum XmlTeamStates
     STATE_TEAM_NAME,
     STATE_STADIUM_NAME,
     STATE_SYMBOL,
-    STATE_AVERAGE_SKILL,
+    STATE_AVERAGE_TALENT,
     STATE_FORMATION,
     STATE_NAMES_FILE,
     STATE_PLAYER,
@@ -47,7 +47,7 @@ enum XmlTeamStates
 
 gint state, birth_year;
 Player new_player;
-gfloat average_skill;
+gfloat average_talent;
 Team *team;
 const gchar *d_file;
 
@@ -67,8 +67,8 @@ xml_team_read_start_element (GMarkupParseContext *context,
 	state = STATE_STADIUM_NAME;
     else if(strcmp(element_name, TAG_SYMBOL) == 0)
 	state = STATE_SYMBOL;
-    else if(strcmp(element_name, TAG_AVERAGE_SKILL) == 0)
-	state = STATE_AVERAGE_SKILL;
+    else if(strcmp(element_name, TAG_AVERAGE_TALENT) == 0)
+	state = STATE_AVERAGE_TALENT;
     else if(strcmp(element_name, TAG_FORMATION) == 0)
 	state = STATE_FORMATION;
     else if(strcmp(element_name, TAG_NAMES_FILE) == 0)
@@ -76,7 +76,7 @@ xml_team_read_start_element (GMarkupParseContext *context,
     else if(strcmp(element_name, TAG_PLAYER) == 0)
     {
 	state = STATE_PLAYER;
-	new_player = player_new(team, average_skill, TRUE);
+	new_player = player_new(team, average_talent, TRUE);
     }
     else if(strcmp(element_name, TAG_PLAYER_NAME) == 0)
 	state = STATE_PLAYER_NAME;
@@ -111,7 +111,7 @@ xml_team_read_end_element    (GMarkupParseContext *context,
     if(strcmp(element_name, TAG_TEAM_NAME) == 0 ||
        strcmp(element_name, TAG_STADIUM_NAME) == 0 ||
        strcmp(element_name, TAG_SYMBOL) == 0 ||
-       strcmp(element_name, TAG_AVERAGE_SKILL) == 0 ||
+       strcmp(element_name, TAG_AVERAGE_TALENT) == 0 ||
        strcmp(element_name, TAG_FORMATION) == 0 ||
        strcmp(element_name, TAG_NAMES_FILE) == 0 ||
        strcmp(element_name, TAG_PLAYER) == 0)
@@ -172,8 +172,8 @@ xml_team_read_text         (GMarkupParseContext *context,
     }
     else if(state == STATE_SYMBOL)
 	g_string_printf(team->symbol, "%s", buf);
-    else if(state == STATE_AVERAGE_SKILL && opt_int("int_opt_load_defs") == 1)
-	average_skill = int_value;
+    else if(state == STATE_AVERAGE_TALENT && opt_int("int_opt_load_defs") == 1)
+	average_talent = int_value;
     else if(state == STATE_FORMATION)
 	team->structure = int_value;
     else if(state == STATE_PLAYER_NAME)
@@ -229,6 +229,6 @@ xml_team_read(Team *tm, const gchar *def_file)
 	misc_print_error(&error, TRUE);
     }
 
-    team_complete_def(tm, ((gfloat)average_skill / 10000) * 
+    team_complete_def(tm, ((gfloat)average_talent / 10000) * 
 		      const_float("float_player_max_skill"));
 }

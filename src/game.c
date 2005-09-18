@@ -86,7 +86,8 @@ game_get_player_contribution(const Player *pl, gint type)
 	  const_float("float_player_team_weight_forward_attack")}};
 
     return player_get_game_skill(pl, FALSE) *
-	player_weights[pl->cpos - 1][type - GAME_TEAM_VALUE_DEFEND];
+	player_weights[pl->cpos - 1][type - GAME_TEAM_VALUE_DEFEND] *
+	(1 + (gfloat)pl->streak * const_float("float_player_streak_influence_skill"));
 }
 
 /** Return a random attacking or defending player
@@ -108,7 +109,6 @@ game_get_player(const Team *tm, gint player_type,
     gfloat probs[10];
     gfloat rndom;
 
-    /*todo move to constants file?*/
     if(player_type == GAME_PLAYER_TYPE_ATTACK)
     {
 	weights[0] = const_float("float_game_player_weight_attack_def");
@@ -182,16 +182,27 @@ game_get_player_probs(GArray *players, gfloat *probs, gfloat *weights, gboolean 
 {
     gint i;
 
-    probs[0] = (skills) ? player_get_game_skill(&g_array_index(players, Player, 1), FALSE) *
+    probs[0] = (skills) ? 
+	player_get_game_skill(&g_array_index(players, Player, 1), FALSE) *
 	weights[g_array_index(players, Player, 1).cpos - 1] :
 	weights[g_array_index(players, Player, 1).cpos - 1] *
 	(g_array_index(players, Player, 1).cskill != 0);
+
+    probs[0] *= (1 + (gfloat)g_array_index(players, Player, 1).streak *
+		 const_float("float_player_streak_influence_skill"));
+		 
+
     for(i=1;i<10;i++)
+    {
 	probs[i] = probs[i - 1] + 
-	    ((skills) ? player_get_game_skill(&g_array_index(players, Player, i + 1), FALSE) *
+	    ((skills) ? 
+	     player_get_game_skill(&g_array_index(players, Player, i + 1), FALSE) *
 	     weights[g_array_index(players, Player, i + 1).cpos - 1] :
 	     weights[g_array_index(players, Player, i + 1).cpos - 1] *
 	     (g_array_index(players, Player, i + 1).cskill != 0));
+	probs[i] *= (1 + (gfloat)g_array_index(players, Player, i + 1).streak *
+		     const_float("float_player_streak_influence_skill"));
+    }
 }
 
 /** Return the player who's shooting the following penalty
@@ -281,17 +292,29 @@ game_initialize(Fixture *fix)
 	    {
 		if(g_array_index(fix->teams[i]->players, Player, j).cskill > 0)
 		{
-		    player_games_goals_set(&g_array_index(fix->teams[i]->players, Player, j), fix->clid,
+		    player_games_goals_set(&g_array_index(fix->teams[i]->players,
+							  Player, j), fix->clid,
 					   PLAYER_VALUE_GAMES, 1);
-		    g_array_index(fix->teams[i]->players, Player, j).career[PLAYER_VALUE_GAMES]++;
+		    g_array_index(fix->teams[i]->players, Player, j).
+			career[PLAYER_VALUE_GAMES]++;
 		
-		    g_array_index(fix->teams[i]->players, Player, j).participation = TRUE;
+		    g_array_index(fix->teams[i]->players, Player, j).
+			participation = TRUE;
 
-		    if(query_player_is_youth((&g_array_index(fix->teams[i]->players, Player, j))))
+		    if(query_player_is_youth((&g_array_index(fix->teams[i]->players,
+							     Player, j))))
 			g_array_index(fix->teams[i]->players, Player, j).lsu +=
 			    const_float("float_youth_lsu_addition_match");
+
+		    player_streak_add_to_prob(
+			&g_array_index(fix->teams[i]->players, Player, j),
+			const_float("float_player_streak_add_startup"));
 		}
 	    }
+	    else
+		player_streak_add_to_prob(
+		    &g_array_index(fix->teams[i]->players, Player, j),
+		    const_float("float_player_streak_add_no_startup"));
 	}
 
 	if(user_idx[i] != -1)
@@ -573,8 +596,17 @@ game_player_injury(Player *pl)
 	}
 
     if(pl->health == PLAYER_INJURY_CAREER_STOP && team_is_user(pl->team) != -1)
-	user_event_add(&usr(team_is_user(pl->team)), EVENT_TYPE_PLAYER_CAREER_STOP, pl->id, -1,
+	user_event_add(&usr(team_is_user(pl->team)), 
+		       EVENT_TYPE_PLAYER_CAREER_STOP, pl->id, -1,
 		       NULL, NULL);
+
+    player_streak_add_to_prob(
+	pl, const_float("float_player_streak_add_injury"));
+    if(pl->streak == PLAYER_STREAK_HOT)
+    {
+	pl->streak = PLAYER_STREAK_NONE;
+	player_streak_reset_count(pl);
+    }
 }
 
 /** Return a factor influencing who's fouled whom
@@ -603,30 +635,38 @@ game_get_foul_possession_factor(gint boost1, gint boost2)
 gint
 game_substitute_player(Team *tm, gint player_number)
 {
-    gint i;
+    gint i, substitute = -1;
     GPtrArray *substitutes = g_ptr_array_new();
     gboolean adapt_structure;
-    gint substitute = -1;
 
     for(i=11;i<tm->players->len;i++)
 	if(g_array_index(tm->players, Player, i).cskill > 0)
 	    g_ptr_array_add(substitutes, &g_array_index(tm->players, Player, i));
 
-    g_ptr_array_sort_with_data(substitutes, (GCompareDataFunc)player_compare_substitute_func,
-			       GINT_TO_POINTER(player_of_idx_team(tm, player_number)->cpos));
+    g_ptr_array_sort_with_data(substitutes, 
+			       (GCompareDataFunc)player_compare_substitute_func,
+			       GINT_TO_POINTER(player_of_idx_team(tm, 
+								  player_number)->cpos));
     adapt_structure = 
 	(math_get_place(team_find_appropriate_structure(tm), 1) + 
 	 math_get_place(team_find_appropriate_structure(tm), 2) + 
 	 math_get_place(team_find_appropriate_structure(tm), 3) != 10 ||
-	 (player_of_idx_team(tm, player_number)->cpos != ((Player*)g_ptr_array_index(substitutes, 0))->pos &&
+	 (player_of_idx_team(tm, player_number)->cpos != 
+	  ((Player*)g_ptr_array_index(substitutes, 0))->pos &&
 	  player_substitution_good_structure(tm->structure,
 					     player_of_idx_team(tm, player_number)->cpos,
 					     ((Player*)g_ptr_array_index(substitutes, 0))->pos)));
 
     substitute = ((Player*)g_ptr_array_index(substitutes, 0))->id;
 
-    player_swap(tm, player_number,
-		tm, player_id_index(tm, ((Player*)g_ptr_array_index(substitutes, 0))->id));
+    player_streak_add_to_prob(
+	&g_array_index(tm->players, Player, player_number),
+	const_float("float_player_streak_add_sub_out"));
+
+    player_streak_add_to_prob((Player*)g_ptr_array_index(substitutes, 0),
+			      const_float("float_player_streak_add_sub_in"));
+
+    player_swap(tm, player_number, tm, player_id_index(tm, substitute));
 
     g_ptr_array_free(substitutes, TRUE);
 
@@ -942,6 +982,12 @@ game_post_match(Fixture *fix)
     GPtrArray *teams = NULL;
     Cup *cup = NULL;
 
+    if((debug > 100 && fixture_user_team_involved(fix) != -1) ||
+       debug > 130)
+	printf("game_post_match: %s - %s\n", 
+	       fix->teams[0]->name->str,
+	       fix->teams[1]->name->str);
+
     if(query_fixture_has_tables(fix))
 	table_update(fix);
     
@@ -951,7 +997,7 @@ game_post_match(Fixture *fix)
 	    team_update_cpu_team(fix->teams[i],
 				 (fixture_user_team_involved(fix) != -1));
 	else
-	    team_update_post_match(fix->teams[i], fix->clid);
+	    team_update_post_match(fix->teams[i], fix);
     }
 
     if(fix->clid < ID_CUP_START)

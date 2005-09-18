@@ -203,15 +203,26 @@ fixture_get_round_robin_advance(const Cup *cup, gint round)
 /** Return the pointer of the team that won the encounter.
     @param fix The fixture we examine.
     @param team_name Whether to return a team pointer or the
-    team name of the winner.
+    team id of the winner.
     @return A team pointer or a coded integer. */
 gpointer
 fixture_winner_of(const Fixture *fix, gboolean team_id)
 {
     gint winner_idx = -1;
-    const Fixture *first_leg;
-    const CupRound *cupround = 
-	&g_array_index(cup_from_clid(fix->clid)->rounds, CupRound, fix->round);
+    const Fixture *first_leg = NULL;
+    const CupRound *cupround = NULL;
+
+    if(fix->clid < ID_CUP_START)
+    {
+	winner_idx = (fix->result[0][0] < fix->result[1][0]);
+	if(team_id)
+	    return GINT_TO_POINTER(fix->team_ids[winner_idx]);
+	else
+	    return (gpointer)fix->teams[winner_idx];
+    }
+
+    cupround = &g_array_index(cup_from_clid(fix->clid)->rounds, 
+			      CupRound, fix->round);
 
     if(cupround->replay != 0 || !cupround->home_away)
 	winner_idx = (math_sum_int_array(&(fix->result[0][0]), 3) <

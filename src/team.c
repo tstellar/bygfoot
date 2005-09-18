@@ -366,6 +366,21 @@ team_get_average_skill(const Team *tm, gboolean cskill)
     return (counter > 0) ? sum / (gfloat)counter : 0;
 }
 
+/** Return the overall average talent of the team's players.
+    @param tm The team we examine. */
+gfloat
+team_get_average_talent(const Team *tm)
+{
+    gint i;
+    gfloat sum = 0;
+
+    for(i=0;i<tm->players->len;i++)
+	sum += player_of_idx_team(tm, i)->talent;
+
+    return (tm->players->len > 0) ? sum / (gfloat)tm->players->len : 0;
+}
+
+
 /** Return the rank of the team in the league tables. */
 gint
 team_get_league_rank(const Team *tm)
@@ -679,12 +694,12 @@ team_update_user_team_weekly(Team *tm)
     @param tm The user team we examine.
     @param clid The fixture clid. */
 void
-team_update_post_match(Team *tm, gint clid)
+team_update_post_match(Team *tm, const Fixture *fix)
 {
     gint i;
 
     for(i=0;i<tm->players->len;i++)
-	player_update_post_match(player_of_idx_team(tm, i), clid);
+	player_update_post_match(player_of_idx_team(tm, i), fix);
 }
 
 /** Some updates each round.

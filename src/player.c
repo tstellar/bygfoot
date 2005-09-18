@@ -72,6 +72,9 @@ player_new(Team *tm, gfloat average_talent, gboolean new_id)
     new.participation = FALSE;
     new.offers = 0;
     
+    new.streak = PLAYER_STREAK_NONE;
+    new.streak_count = new.streak_prob = 0;
+
     return new;
 }
 
@@ -205,21 +208,6 @@ player_skill_from_talent(const Player *pl)
 	skill = pl->talent;
     
     return skill;
-}
-
-/** Calculate the talent value of the player based on his skill.
-    @param skill The player's skill.
-    @return The new talent value. */
-gfloat
-player_new_talent(gfloat skill)
-{
-    gfloat talent = math_gauss_dist(2 * skill - const_float("float_player_max_skill"),
-				    const_float("float_player_max_skill"));
-
-    if(talent < skill)
-	talent = 2 * skill - talent;
-
-    return talent;
 }
 
 /** Estimate a player's talent.
@@ -705,20 +693,22 @@ player_decrease_fitness(Player *pl)
     gfloat boost_factor = 
 	1 + (gfloat)pl->team->boost * 
 	const_float("float_player_boost_fitness_effect");
+    gfloat streak_factor = 1 + (gfloat)pl->streak * 
+	const_float("float_player_streak_influence_fitness_decrease");
 
     if(pl->age < pl->peak_age - pl->peak_region)
 	pl->fitness -= (((pl->peak_age - pl->peak_region - pl->age) *
 			 const_float("float_player_fitness_decrease_younger_factor") +
 			 const_float("float_player_fitness_decrease_add")) *
-			goalie_factor * boost_factor);
+			goalie_factor * boost_factor * streak_factor);
     else if(pl->age > pl->peak_age + pl->peak_region)
 	pl->fitness -= (((pl->age - pl->peak_age - pl->peak_region) *
 			 const_float("float_player_fitness_decrease_older_factor") +
 			 const_float("float_player_fitness_decrease_add")) *
-			goalie_factor * boost_factor);
+			goalie_factor * boost_factor * streak_factor);
     else
 	pl->fitness -= (const_float("float_player_fitness_decrease_add") *
-			goalie_factor * boost_factor);
+			goalie_factor * boost_factor * streak_factor);
 
     pl->fitness = MAX(0, pl->fitness);
 }
@@ -735,6 +725,8 @@ player_update_fitness(Player *pl)
     gfloat variance = 
 	math_rnd(1 - const_float("float_player_fitness_increase_variance"),
 		 1 + const_float("float_player_fitness_increase_variance"));
+    gfloat streak_factor = 
+	1 + (pl->streak * const_float("float_player_streak_influence_fitness_increase"));
 
     if(pl->participation)
     {
@@ -746,14 +738,15 @@ player_update_fitness(Player *pl)
 	pl->fitness += (((pl->peak_age - pl->peak_region - pl->age) *
 			 const_float("float_player_fitness_increase_younger_factor") +
 			 const_float("float_player_fitness_increase_add")) *
-			variance);
+			variance * streak_factor);
     else if(pl->age > pl->peak_age + pl->peak_region)
 	pl->fitness += (((pl->age - pl->peak_age - pl->peak_region) *
 			 const_float("float_player_fitness_increase_older_factor") +
 			 const_float("float_player_fitness_increase_add")) *
-			variance);
+			variance * streak_factor);
     else
-	pl->fitness += (const_float("float_player_fitness_increase_add") * variance);
+	pl->fitness += (const_float("float_player_fitness_increase_add") * 
+			variance * streak_factor);
 
     pl->fitness = MIN(pl->fitness, 1);
 }
@@ -993,6 +986,96 @@ player_update_injury(Player *pl)
     }
 }
 
+/** Weekly test whether a player goes on a hot/cold
+    streak; if he's on a streak, decrease the streak counter. */
+void
+player_update_streak(Player *pl)
+{
+    gfloat streak_type, streak_prob, 
+	streak_length, decrease_factor = 0;
+    gfloat streak_prob_factor = 
+	const_float("float_player_streak_prob_max") - 
+	const_float("float_player_streak_prob_zero"),
+	streak_prob_add = const_float("float_player_streak_prob_zero");
+
+    /*d*/
+    if(debug > 0)
+	printf("upd %-25s streak %d count %.1f prob %.3f\n",
+	       pl->name->str, pl->streak, pl->streak_count, pl->streak_prob);
+    
+    /** Player streak is locked. */
+    if(pl->streak_count < 0)
+    {
+	pl->streak_count++;
+	
+	if(pl->streak_count >= 0)
+	    pl->streak_count = 0;
+
+	return;
+    }
+    else if(pl->streak_count > 0)
+    {
+	if(pl->streak == PLAYER_STREAK_HOT)
+	    decrease_factor = -1;
+	else if(pl->streak == PLAYER_STREAK_COLD)
+	    decrease_factor = 1;
+	else
+	    g_warning("player_update_streak: streak count is positive (%.1f) but player %s is not on a streak!\n", pl->streak_count, pl->name->str);
+
+	pl->streak_count -= 
+	    (pl->streak_prob * decrease_factor *
+	     const_float("float_player_streak_count_decrease_factor") +
+	     const_float("float_player_streak_count_decrease_add"));
+    
+	/** Streak is over. */
+	if(pl->streak_count <= 0)
+	{
+	    pl->streak = PLAYER_STREAK_NONE;
+	    player_streak_reset_count(pl);
+	}
+	
+	return;
+    }
+
+    if(query_player_is_in_ya(pl))
+	return;
+
+    /** Now let's find out whether there's a new streak. */
+    streak_type = math_rnd(-1, 1);
+    streak_prob = math_rnd(0, 1);
+    streak_length = math_rnd(const_float("float_player_streak_length_lower"),
+			     const_float("float_player_streak_length_upper"));
+
+    if(streak_type < pl->streak_prob &&
+       ((pl->streak_prob > 0 &&  
+	 streak_prob < streak_prob_factor * pl->streak_prob + streak_prob_add) ||
+	(pl->streak_prob <= 0 && 
+	 streak_prob < streak_prob_add * pl->streak_prob + streak_prob_add)))
+    {
+	pl->streak = PLAYER_STREAK_HOT;
+	pl->streak_count = streak_length;
+	
+	/*d*/
+	if(debug > 0)
+	    printf("**** %s HOT length %.1f prob %.2f\n",
+		   pl->name->str, pl->streak_count, pl->streak_prob);
+    }
+    else if(streak_type > pl->streak_prob &&
+	    ((pl->streak_prob > 0 &&  
+	      streak_prob < -streak_prob_add * pl->streak_prob + streak_prob_add) ||
+	     (pl->streak_prob <= 0 && 
+	      streak_prob < -streak_prob_factor * pl->streak_prob + streak_prob_add)))
+    {
+	pl->streak = PLAYER_STREAK_COLD;
+	pl->streak_count = streak_length;
+
+	/*d*/
+	if(debug > 0)
+	    printf("**** %s COLD length %.1f prob %.2f\n",
+		   pl->name->str, pl->streak_count, pl->streak_prob);
+    }
+}
+
 /** Update a player in a user team (age, skill etc.). */
 void
 player_update_weekly(Player *pl)
@@ -1015,8 +1098,11 @@ player_update_weekly(Player *pl)
 	player_remove_contract(pl);
 
     player_update_skill(pl);
+
     if(pl->health > 0)
 	player_update_injury(pl);
+    else
+	player_update_streak(pl);
 }
 
 /** Remove a player from a user team after the contract expired.
@@ -1045,20 +1131,40 @@ player_remove_from_team(Team *tm, gint idx)
     @param pl The player we update.
     @param clid The fixture clid. */
 void
-player_update_post_match(Player *pl, gint clid)
+player_update_post_match(Player *pl, const Fixture *fix)
 {
-    gint yellow_red = league_cup_get_yellow_red(clid);
+    gint yellow_red = league_cup_get_yellow_red(fix->clid);
+    gint winner = -1;
 
-    if(player_card_get(pl, clid, PLAYER_VALUE_CARD_RED) > 0)
-	player_card_set(pl, clid, PLAYER_VALUE_CARD_RED, -1, TRUE);
+    if(player_card_get(pl, fix->clid, PLAYER_VALUE_CARD_RED) > 0)
+	player_card_set(pl, fix->clid, PLAYER_VALUE_CARD_RED, -1, TRUE);
 
-    if(player_card_get(pl, clid, PLAYER_VALUE_CARD_YELLOW) >= yellow_red)
+    if(player_card_get(pl, fix->clid, PLAYER_VALUE_CARD_YELLOW) >= yellow_red)
     {
-	player_card_set(pl, clid, PLAYER_VALUE_CARD_YELLOW, 0, FALSE);
+	player_card_set(pl, fix->clid, PLAYER_VALUE_CARD_YELLOW, 0, FALSE);
 	
-	if(player_card_get(pl, clid, PLAYER_VALUE_CARD_RED) == 0 && debug < 50)
-	    player_card_set(pl, clid, PLAYER_VALUE_CARD_RED, 1, FALSE);
-    }    
+	if(player_card_get(pl, fix->clid, PLAYER_VALUE_CARD_RED) == 0 && debug < 50)
+	    player_card_set(pl, fix->clid, PLAYER_VALUE_CARD_RED, 1, FALSE);
+    }
+
+    if(pl->cpos == PLAYER_POS_GOALIE &&
+       ((fix->result[0][0] == 0 && fix->teams[1] == pl->team) ||
+	(fix->result[1][0] == 0 && fix->teams[0] == pl->team)))
+	player_streak_add_to_prob(
+	    pl, const_float("float_player_streak_add_goalie_clean"));
+
+    /** No streak change if we had a draw. */
+    if(!fix->decisive && fix->result[0][0] == fix->result[1][0])
+       return;
+
+    winner = GPOINTER_TO_INT(fixture_winner_of(fix, TRUE));
+
+    if(winner == pl->team->id)
+	player_streak_add_to_prob(
+	    pl, const_float("float_player_streak_add_win"));
+    else
+	player_streak_add_to_prob(
+	    pl, const_float("float_player_streak_add_loss"));
 }
 
 /** Replace a player by a new one in a cpu team. 
@@ -1263,4 +1369,35 @@ player_move_from_ya(gint idx)
 
     g_array_remove_index(current_user.youth_academy.players, idx);
     g_array_append_val(current_user.tm->players, player);
+}
+
+/** Wrapper for the streak probability addition operation
+    so that it always stays between -1 and 1. */
+void
+player_streak_add_to_prob(Player *pl, gfloat add)
+{
+    /** No streaks for CPU players (yet). */
+    if(team_is_user(pl->team) == -1)
+	return;
+
+    pl->streak_prob += add;
+    pl->streak_prob = CLAMP(pl->streak_prob, -1, 1);
+    /*d*/
+    if(debug > 0)
+	printf("addto %-25s st %d cnt %.1f pro %.3f\n",
+	       pl->name->str, pl->streak, pl->streak_count,
+	       pl->streak_prob);
+}
+
+/** Find out whether a player is in the youth academy. */
+gboolean
+query_player_is_in_ya(const Player *pl)
+{
+    gint i;
+
+    for(i=0;i<pl->team->players->len;i++)
+	if(pl == &g_array_index(pl->team->players, Player, i))
+	    return FALSE;
+
+    return TRUE;
 }

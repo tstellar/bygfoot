@@ -48,8 +48,8 @@ youth_academy_add_new_player(YouthAcademy *youth_academy)
 	 const_float("float_youth_academy_pos_midfielder"),
 	 const_float("float_youth_academy_pos_forward")};
     gfloat rndom;
-    gfloat av_skill = team_get_average_skill(youth_academy->tm, FALSE);
-    gfloat percentage_coach_skill_factor;
+    gfloat av_talent = team_get_average_talent(youth_academy->tm);
+    gfloat percentage_coach_talent_factor;
     Player new;
 
     new.name = name_get(youth_academy->tm->names_file->str);
@@ -84,35 +84,33 @@ youth_academy_add_new_player(YouthAcademy *youth_academy)
 		 (new.pos == PLAYER_POS_GOALIE) * 
 		 const_float("float_player_peak_age_goalie_addition"));
 
-    /* Argument for the skill factor function, depending on average coach and
+    /* Argument for the talent factor function, depending on average coach and
 	percentage values (weighted). */
-    percentage_coach_skill_factor = (4 - youth_academy->av_coach) * 
+    percentage_coach_talent_factor = (4 - youth_academy->av_coach) * 
 	(gfloat)const_int("int_youth_academy_max_percentage") * 
-	const_float("float_youth_academy_coach_weight") * 0.25 + youth_academy->av_percentage;
+	const_float("float_youth_academy_coach_weight") * 0.25 + 
+	youth_academy->av_percentage;
 
-    /* Applying the skill factor funtion leading to a factor between
-       float_youth_academy_skill_factor_lower and _upper */
-    percentage_coach_skill_factor = 
-	((const_float("float_youth_academy_skill_factor_upper") -
-	  const_float("float_youth_academy_skill_factor_lower")) /
+    /* Applying the talent factor funtion leading to a factor between
+       float_youth_academy_talent_factor_lower and _upper */
+    percentage_coach_talent_factor = 
+	((const_float("float_youth_academy_talent_factor_upper") -
+	  const_float("float_youth_academy_talent_factor_lower")) /
 	 ((gfloat)const_int("int_youth_academy_max_percentage") * 
 	  (1 + const_float("float_youth_academy_coach_weight")))) *
-	percentage_coach_skill_factor + const_float("float_youth_academy_skill_factor_lower");
+	percentage_coach_talent_factor + 
+	const_float("float_youth_academy_talent_factor_lower");
 
-    new.skill = math_gauss_dist(
-	percentage_coach_skill_factor * av_skill * (1 - const_float("float_youth_academy_skill_variance")),
-	percentage_coach_skill_factor * av_skill * (1 + const_float("float_youth_academy_skill_variance")));
+    new.talent = math_gauss_dist(
+	percentage_coach_talent_factor * av_talent * 
+	(1 - const_float("float_youth_academy_talent_variance")),
+	percentage_coach_talent_factor * av_talent * 
+	(1 + const_float("float_youth_academy_talent_variance")));
 
-    new.skill = CLAMP(new.skill, 0, const_float("float_player_max_skill"));
-
-    new.talent = player_new_talent(new.skill);
-    player_estimate_talent(&new);
-
-    /* Reduce skill depending on age. */
-    new.skill *= powf(const_float("float_youth_academy_skill_reduce_factor"),
-		      new.peak_age - new.age);
-    new.skill = CLAMP(new.skill, 0, const_float("float_player_max_skill"));
+    new.talent = CLAMP(new.talent, 0, const_float("float_player_max_skill"));
+    new.skill = player_skill_from_talent(&new);
     new.cskill = new.skill;
+    player_estimate_talent(&new);
 
     new.fitness = math_rnd(const_float("float_player_fitness_lower"),
 			   const_float("float_player_fitness_upper"));
@@ -132,6 +130,9 @@ youth_academy_add_new_player(YouthAcademy *youth_academy)
     new.team = youth_academy->tm;
     new.participation = FALSE;
     new.offers = 0;
+
+    new.streak = PLAYER_STREAK_NONE;
+    new.streak_count = new.streak_prob = 0;
     
     g_array_append_val(youth_academy->players, new);
 }

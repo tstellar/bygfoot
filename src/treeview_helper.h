@@ -107,7 +107,11 @@ void
 treeview_helper_player_cards_to_cell(gchar *buf, const Player *pl);
 
 void
-treeview_helper_player_status_to_cell(GtkCellRenderer *renderer, gchar *buf, const Player *pl);
+treeview_helper_player_status_to_cell(GtkTreeViewColumn *col,
+				      GtkCellRenderer   *renderer,
+				      GtkTreeModel      *model,
+				      GtkTreeIter       *iter,
+				      gpointer           user_data);
 
 void
 treeview_helper_player_games_goals_to_cell(gchar *buf, const Player *pl, gint type);
@@ -142,6 +146,10 @@ treeview_helper_player_info_banned_to_cell(GtkCellRenderer *renderer, const GArr
 
 void
 treeview_helper_player_info_career_to_cell(GtkCellRenderer *renderer, const Player *pl);
+
+void
+treeview_helper_player_info_streak_to_cell(GtkCellRenderer *renderer, gint streak);
+
 
 gchar*
 treeview_helper_get_user_history_icon(gint history_type);

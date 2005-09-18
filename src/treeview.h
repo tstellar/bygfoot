@@ -21,7 +21,7 @@ treeview_show_team_list(GtkTreeView *treeview, gboolean show_cup_teams,
 
 GtkTreeModel*
 treeview_create_player_list(GPtrArray *players, gint *attributes, gint max, 
-			    gboolean show_separator, gboolean sortable);
+			    gboolean show_separator, gboolean sortable, gboolean status);
 
 void
 treeview_set_up_player_list (GtkTreeView *treeview, gint *attributes, gint max,

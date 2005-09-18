@@ -439,7 +439,7 @@ create_window_options (void)
                     (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (label39), 1, 0.5);
 
-  spinbutton_live_speed_adj = gtk_adjustment_new (0, -10, 20, 1, 10, 10);
+  spinbutton_live_speed_adj = gtk_adjustment_new (0, 0, 40, 1, 10, 10);
   spinbutton_live_speed = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_live_speed_adj), 1, 0);
   gtk_widget_show (spinbutton_live_speed);
   gtk_table_attach (GTK_TABLE (table3), spinbutton_live_speed, 1, 2, 0, 1,

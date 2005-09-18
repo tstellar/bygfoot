@@ -708,6 +708,9 @@ treeview_helper_player_ext_info_to_cell(GtkTreeViewColumn *col,
 	case PLAYER_INFO_ATTRIBUTE_BANNED:
 	    treeview_helper_player_info_banned_to_cell(renderer, pl->cards);
 	    break;
+	case PLAYER_INFO_ATTRIBUTE_STREAK:
+	    treeview_helper_player_info_streak_to_cell(renderer, pl->streak);
+	    break;
 	case PLAYER_INFO_ATTRIBUTE_CAREER:
 	    treeview_helper_player_info_career_to_cell(renderer, pl);
 	    break;
@@ -777,7 +780,8 @@ treeview_helper_player_info_banned_to_cell(GtkCellRenderer *renderer, const GArr
     for(i=0;i<cards->len;i++)
 	if(g_array_index(cards, PlayerCard, i).red > 0)
 	{
-	    /* Ban info of a player in the format: 'Cup/league name: Number of weeks banned' */
+	    /* Ban info of a player in the format:
+	       'Cup/league name: Number of weeks banned' */
 	    sprintf(buf2, _("%s: %d weeks\n"),
 		    league_cup_get_name_string(g_array_index(cards, PlayerCard, i).clid),
 		    g_array_index(cards, PlayerCard, i).red);
@@ -847,6 +851,15 @@ treeview_helper_player_info_games_goals_to_cell(GtkCellRenderer *renderer, const
 }
 
 void
+treeview_helper_player_info_streak_to_cell(GtkCellRenderer *renderer, gint streak)
+{
+    if(streak == PLAYER_STREAK_HOT)
+	g_object_set(renderer, "text", _("The player is on a hot streak"), NULL);
+    else if(streak == PLAYER_STREAK_COLD)
+	g_object_set(renderer, "text", _("The player is on a cold streak"), NULL);
+}
+
+void
 treeview_helper_player_info_health_to_cell(GtkCellRenderer *renderer, const Player *pl)
 {
     gchar buf[SMALL];
@@ -867,10 +880,10 @@ treeview_helper_player_info_health_to_cell(GtkCellRenderer *renderer, const Play
 /** Render a player list cell. */
 void
 treeview_helper_player_to_cell(GtkTreeViewColumn *col,
-			     GtkCellRenderer   *renderer,
-			     GtkTreeModel      *model,
-			     GtkTreeIter       *iter,
-			     gpointer           user_data)
+			       GtkCellRenderer   *renderer,
+			       GtkTreeModel      *model,
+			       GtkTreeIter       *iter,
+			       gpointer           user_data)
 {
     gint column = treeview_helper_get_col_number_column(col);
     gint attribute = GPOINTER_TO_INT(user_data);
@@ -921,7 +934,8 @@ treeview_helper_player_to_cell(GtkTreeViewColumn *col,
 	    treeview_helper_player_games_goals_to_cell(buf, pl, PLAYER_VALUE_SHOTS);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_STATUS:
-	    treeview_helper_player_status_to_cell(renderer, buf, pl);
+	    treeview_helper_player_status_to_cell(NULL, renderer, 
+						  NULL, NULL, (gpointer)pl);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_CARDS:
 	    treeview_helper_player_cards_to_cell(buf, pl);
@@ -950,7 +964,8 @@ treeview_helper_player_to_cell(GtkTreeViewColumn *col,
 	    break;
     }
 
-    g_object_set(renderer, "text", buf, NULL);
+    if(attribute != PLAYER_LIST_ATTRIBUTE_STATUS)
+	g_object_set(renderer, "text", buf, NULL);
 }
 
 /** Render a cell of a player name. */
@@ -1064,34 +1079,95 @@ treeview_helper_player_cards_to_cell(gchar *buf, const Player *pl)
     @param buf The string the cell will contain.
     @param pl The pointer to the player. */
 void
-treeview_helper_player_status_to_cell(GtkCellRenderer *renderer, gchar *buf, const Player *pl)
+treeview_helper_player_status_to_cell(GtkTreeViewColumn *col,
+				      GtkCellRenderer   *renderer,
+				      GtkTreeModel      *model,
+				      GtkTreeIter       *iter,
+				      gpointer           user_data)
 {
-    gint ban = player_is_banned(pl);
+    const Player *pl = NULL;
+    gchar buf[SMALL];
+    gint ban = 0, column = -1;
+    GdkPixbuf *symbol = NULL;
+    gboolean render_icon = (user_data == NULL);
 
-    if(pl->health != PLAYER_INJURY_NONE)
+    if(render_icon)
     {
-	/* Injury info. */
-	sprintf(buf, _("INJ(%d)"), pl->recovery);
-	g_object_set(renderer, "background", 
-		     const_app("string_treeview_helper_color_player_injury"), NULL);
+	column = treeview_helper_get_col_number_column(col);
+	gtk_tree_model_get(model, iter, column, &pl, -1);
+    }
+    else
+	pl = (const Player*)user_data;	
 
+    if(pl == NULL)
+    {
+	if(render_icon)
+	    g_object_set(renderer, "pixbuf", NULL, NULL);
 	return;
     }
 
-    if(ban > 0)
+    ban = player_is_banned(pl);
+    
+    if(pl->health != PLAYER_INJURY_NONE)
+    {
+	/* Injury info. */
+	if(!render_icon)
+	{
+	    sprintf(buf, _("INJ(%d)"), pl->recovery);
+	    g_object_set(renderer, "background",
+			 const_app("string_treeview_helper_color_player_injury"), NULL);
+	}
+	else
+	    symbol =
+		treeview_helper_pixbuf_from_filename(
+		    const_app("string_treeview_helper_player_status_injury"));
+    }
+    else if(ban > 0)
     {
 	/* Red card info (how long the player is banned). */
-	sprintf(buf, _("BAN(%d)"), ban);
-	g_object_set(renderer, "background",
-		     const_app("string_treeview_helper_color_player_banned"), NULL);
+	if(!render_icon)
+	{
+	    sprintf(buf, _("BAN(%d)"), ban);
+	    g_object_set(renderer, "background",
+			 const_app("string_treeview_helper_color_player_banned"), NULL);
+	}
+	else
+	    symbol =
+		treeview_helper_pixbuf_from_filename(
+		    const_app("string_treeview_helper_player_status_ban"));
     }
     else
-	/* Player status: ok. */
-	strcpy(buf, _("OK"));
+    {
+	if(!render_icon)
+	    strcpy(buf, "OK");
+	else
+	{
+	    if(ban == -1)
+		symbol =
+		    treeview_helper_pixbuf_from_filename(
+			const_app("string_treeview_helper_player_status_yellow_danger"));
+	    else if(pl->streak == PLAYER_STREAK_HOT)
+		symbol =
+		    treeview_helper_pixbuf_from_filename(
+			const_app("string_treeview_helper_player_status_hot_streak"));
+	    else if(pl->streak == PLAYER_STREAK_COLD)
+		symbol =
+		    treeview_helper_pixbuf_from_filename(
+			const_app("string_treeview_helper_player_status_cold_streak"));
+	    else
+		symbol =
+		    treeview_helper_pixbuf_from_filename(
+			const_app("string_treeview_helper_player_status_ok"));
+	}
+    }    
 
-    if(ban == -1)
-	g_object_set(renderer, "background",
-		     const_app("string_treeview_helper_color_player_yellow_danger"), NULL);
+    if(render_icon)
+    {
+	g_object_set(renderer, "pixbuf", symbol, NULL);
+	treeview_helper_unref(G_OBJECT(symbol));
+    }
+    else
+	g_object_set(renderer, "text", buf, NULL);
 }
 
 /** Render a cell of player games or goals.

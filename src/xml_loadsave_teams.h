@@ -35,7 +35,4 @@ xml_loadsave_teams_write(const gchar *filename, const GArray *teams);
 void
 xml_loadsave_teams_write_team(FILE *fil, const Team* team);
 
-void
-xml_loadsave_teams_write_player(FILE *fil, const Player *pl);
-
 #endif

@@ -75,4 +75,10 @@ window_show_news(void);
 void
 window_show_mmatches(void);
 
+void
+window_main_save_geometry(void);
+
+void
+window_main_load_geometry(void);
+
 #endif

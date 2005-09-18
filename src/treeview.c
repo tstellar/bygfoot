@@ -180,29 +180,32 @@ treeview_show_team_list(GtkTreeView *treeview, gboolean show_cup_teams,
     @param players The array containing the players.
     @param attributes An array containing the attributes we show.
     @param max The size of the attribute array.
-    @param separator Whether we draw a blank line after the 11th player. */
+    @param separator Whether we draw a blank line after the 11th player.
+    @param status Whether player status is shown (takes two columns). */
 GtkTreeModel*
 treeview_create_player_list(GPtrArray *players, gint *attributes, gint max, 
-			    gboolean show_separator, gboolean sortable)
+			    gboolean show_separator, gboolean sortable, gboolean status)
 {
     gint i, j;
     GtkListStore  *ls;
     GtkTreeIter iter;
-    GType types[max + 1];
+    GType types[max + 1 + status];
 
     types[0] = G_TYPE_INT;
-    for(i=0;i<max;i++)
+    for(i=0;i<max + status;i++)
 	types[i + 1] = G_TYPE_POINTER;
 
-    ls = gtk_list_store_newv(max + 1, types);
+    ls = gtk_list_store_newv(max + 1 + status, types);
 
     for(i=0;i<players->len;i++)
     {
 	gtk_list_store_append(ls, &iter);
 	if(show_separator && i == 11)
 	{
-	    gtk_list_store_set(ls, &iter, 0, const_int("int_treeview_helper_int_empty"), -1);
-	    for(j=0;j<max;j++)
+	    gtk_list_store_set(ls, &iter, 0, 
+			       const_int("int_treeview_helper_int_empty"), -1);
+
+	    for(j=0;j<max + status;j++)
 		gtk_list_store_set(ls, &iter, j + 1, NULL, -1);
 	    
 	    gtk_list_store_append(ls, &iter);
@@ -211,7 +214,7 @@ treeview_create_player_list(GPtrArray *players, gint *attributes, gint max,
 	else
 	    gtk_list_store_set(ls, &iter, 0, i + 1, -1);
 
-	for(j=0;j<max;j++)
+	for(j=0;j<max + status;j++)
 	    gtk_list_store_set(ls, &iter, j + 1, g_ptr_array_index(players, i), -1);
     }
 
@@ -227,8 +230,10 @@ treeview_create_player_list(GPtrArray *players, gint *attributes, gint max,
 	       attributes[i] == PLAYER_LIST_ATTRIBUTE_ETAL ||
 	       attributes[i] == PLAYER_LIST_ATTRIBUTE_VALUE ||
 	       attributes[i] == PLAYER_LIST_ATTRIBUTE_WAGE)
-		gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(ls), i + 1,
-						treeview_helper_player_compare, GINT_TO_POINTER(attributes[i]), NULL);
+		gtk_tree_sortable_set_sort_func(
+		    GTK_TREE_SORTABLE(ls), 
+		    i + 1 + (status && attributes[i] > PLAYER_LIST_ATTRIBUTE_STATUS),
+		    treeview_helper_player_compare, GINT_TO_POINTER(attributes[i]), NULL);
     }
     
     return (GtkTreeModel*)ls;
@@ -239,7 +244,7 @@ void
 treeview_set_up_player_list(GtkTreeView *treeview, gint *attributes, gint max,
 			    gboolean show_separator, gboolean sortable)
 {
-    gint i;
+    gint i, cnt = 1;
     GtkTreeViewColumn   *col;
     GtkCellRenderer     *renderer;
     gchar *titles[PLAYER_LIST_ATTRIBUTE_END] =
@@ -318,7 +323,26 @@ treeview_set_up_player_list(GtkTreeView *treeview, gint *attributes, gint max,
 	    attributes[i] == PLAYER_LIST_ATTRIBUTE_ETAL ||
 	    attributes[i] == PLAYER_LIST_ATTRIBUTE_VALUE ||
 	    attributes[i] == PLAYER_LIST_ATTRIBUTE_WAGE))
-	    gtk_tree_view_column_set_sort_column_id(col, i + 1);	    
+	    gtk_tree_view_column_set_sort_column_id(col, cnt);
+
+	cnt++;
+
+	if(attributes[i] == PLAYER_LIST_ATTRIBUTE_STATUS)
+	{
+	    col = gtk_tree_view_column_new();
+	    gtk_tree_view_append_column(treeview, col);
+	    renderer = gtk_cell_renderer_pixbuf_new();
+	    gtk_tree_view_column_pack_start(col, renderer, TRUE);
+	    gtk_tree_view_column_set_cell_data_func(
+		col, renderer, treeview_helper_player_status_to_cell,
+		NULL, NULL);
+
+	    gtk_tree_view_column_set_alignment(col, 0.5);
+	    g_object_set(renderer, "xalign", 0.5,
+			 NULL);
+
+	    cnt++;
+	}
     }
 }
 
@@ -330,24 +354,31 @@ treeview_set_up_player_list(GtkTreeView *treeview, gint *attributes, gint max,
     @param attrib The #PlayerListAttribute that determines which attributes to show.
     @param show_separator Whether we draw a blank line after the 11th player. */
 void
-treeview_show_player_list(GtkTreeView *treeview, GPtrArray *players, PlayerListAttribute attribute,
+treeview_show_player_list(GtkTreeView *treeview, GPtrArray *players, 
+			  PlayerListAttribute attribute,
 			  gboolean show_separator)
 {
     gint i, cnt = 0;
     gint columns = math_sum_int_array(attribute.on_off, PLAYER_LIST_ATTRIBUTE_END);
     gint attributes[columns];
     GtkTreeModel *model = NULL;
-    gboolean sortable = (treeview != GTK_TREE_VIEW(lookup_widget(window.main, "player_list1")));
+    gboolean sortable = 
+	(treeview != GTK_TREE_VIEW(lookup_widget(window.main, "player_list1")));
     
     treeview_helper_clear(treeview);
 
     for(i=0;i<PLAYER_LIST_ATTRIBUTE_END;i++)
+    {
 	if(attribute.on_off[i])
 	    attributes[cnt++] = i;
+    }
 
     treeview_set_up_player_list(treeview, attributes, columns, show_separator, sortable);
 
-    model = treeview_create_player_list(players, attributes, columns, show_separator, sortable);
+    model = treeview_create_player_list(players, attributes, 
+					columns, show_separator, 
+					sortable, 
+					attribute.on_off[PLAYER_LIST_ATTRIBUTE_STATUS]);
 
     gtk_tree_view_set_model(treeview, model);
     g_object_unref(model);
@@ -1824,6 +1855,8 @@ treeview_create_player_info(const Player *pl)
 	  banned automatically for a match. */
 	 _("Yellow cards (limit)\n"),
 	 _("Banned\n"),
+	 /* Hot streak or cold streak of a player. */
+	 _("Streak"),
 	 _("Career values"),
 	 _("New contract\noffers")};
 

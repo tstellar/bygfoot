@@ -32,9 +32,6 @@ misc_int_compare(gint first, gint second);
 gint
 misc_float_compare(gfloat first, gfloat second);
 
-void
-misc_truncate_string(const gchar *src, gchar *dest, gint number_of_chars);
-
 gboolean
 query_misc_string_contains(const gchar *string, const gchar *text);
 

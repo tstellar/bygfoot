@@ -309,6 +309,8 @@ enum SpinOptions
 void
 option_gui_write_spin_widgets(gint **spin_options, GtkSpinButton **spin_widgets)
 {
+    gint speed_val = 0;
+
     spin_widgets[SPIN_OPT_AUTOSAVE] =
 	GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_autosave"));
     spin_options[SPIN_OPT_AUTOSAVE] = opt_intp("int_opt_autosave_interval");
@@ -329,9 +331,15 @@ option_gui_write_spin_widgets(gint **spin_options, GtkSpinButton **spin_widgets)
 	GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_live_speed"));
     spin_options[SPIN_OPT_LIVE_SPEED] = opt_user_intp("int_opt_user_live_game_speed");
 
-    gtk_spin_button_set_range(GTK_SPIN_BUTTON(spin_widgets[SPIN_OPT_LIVE_SPEED]), 0,
-			      -rint((gfloat)(const_int("int_game_gui_live_game_speed_max") - 10) /
-				   (gfloat)(const_int("int_game_gui_live_game_speed_grad"))));
+    /** Note the spinbutton value so that it doesn't get lost
+	when setting the range. */    
+    speed_val = gtk_spin_button_get_value_as_int(spin_widgets[SPIN_OPT_LIVE_SPEED]);
+    gtk_spin_button_set_range(
+	spin_widgets[SPIN_OPT_LIVE_SPEED], 0,
+	-rint((gfloat)(const_int("int_game_gui_live_game_speed_max") - 10) /
+	      (gfloat)(const_int("int_game_gui_live_game_speed_grad"))));
+    gtk_spin_button_set_value(spin_widgets[SPIN_OPT_LIVE_SPEED],
+			      (gfloat)speed_val);
 
     spin_widgets[SPIN_OPT_LIVE_VERBOSITY] =
 	GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_live_verbosity"));
@@ -409,12 +417,13 @@ option_gui_write_options(void)
     gint *spin_options[SPIN_OPT_END];
     GtkEntry *entry_widgets[ENTRY_OPT_END];
     GString *entry_options[ENTRY_OPT_END];
-
+    
     language_set(language_index);
 
     option_gui_write_bool_widgets(bool_options, bool_widgets);
     option_gui_write_spin_widgets(spin_options, spin_widgets);
     option_gui_write_entry_widgets(entry_options, entry_widgets);
+    
 
     for(i=0;i<BOOL_OPT_END;i++)
 	*(bool_options[i]) = gtk_toggle_button_get_active(bool_widgets[i]);

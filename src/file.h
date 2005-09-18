@@ -65,9 +65,6 @@ file_compress_files(const gchar *destfile, const gchar *prefix);
 void
 file_decompress(const gchar *filename);
 
-GPtrArray*
-file_get_name_files(void);
-
 void
 file_remove_files(const gchar *files);
 

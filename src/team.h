@@ -51,6 +51,9 @@ team_get_fixture(const Team *tm, gboolean last_fixture);
 gfloat
 team_get_average_skill(const Team *tm, gboolean cskill);
 
+gfloat
+team_get_average_talent(const Team *tm);
+
 gint
 team_is_user(const Team *tm);
 
@@ -82,7 +85,7 @@ void
 team_update_cpu_team(Team *tm, gboolean reset_fitness);
 
 void
-team_update_post_match(Team *tm, gint clid);
+team_update_post_match(Team *tm, const Fixture *fix);
 
 void
 team_update_cpu_corrections(Team *tm, gboolean reset_fitness);

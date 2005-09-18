@@ -2,6 +2,8 @@
 #define PLAYER_H
 
 #include "bygfoot.h"
+#include "fixture_struct.h"
+#include "maths.h"
 #include "player_struct.h"
 #include "team_struct.h"
 
@@ -15,6 +17,9 @@ enum PlayerCompareAttrib
 
 #define query_player_is_youth(pl) (pl->age <= const_float("float_player_age_lower"))
 
+/** Reset the streak counter. */
+#define player_streak_reset_count(pl) pl->streak_count = -math_rnd((gfloat)const_int("int_player_streak_lock_length_lower"), (gfloat)const_int("int_player_streak_lock_length_upper"))
+
 Player
 player_new(Team *tm, gfloat average_skill, gboolean new_id);
 
@@ -23,9 +28,6 @@ player_get_position_from_structure(gint structure, gint player_number);
 
 gfloat
 player_skill_from_talent(const Player *pl);
-
-gfloat
-player_new_talent(gfloat skill);
 
 void
 player_estimate_talent(Player *pl);
@@ -103,7 +105,7 @@ void
 player_update_fitness(Player *pl);
 
 void
-player_update_post_match(Player *pl, gint clid);
+player_update_post_match(Player *pl, const Fixture *fix);
 
 void
 player_replace_by_new(Player *pl, gboolean free_player);
@@ -143,5 +145,14 @@ player_move_to_ya(gint idx);
 
 void
 player_move_from_ya(gint idx);
+
+void
+player_streak_add_to_prob(Player *pl, gfloat add);
+
+void
+player_update_streak(Player *pl);
+
+gboolean
+query_player_is_in_ya(const Player *pl);
 
 #endif
