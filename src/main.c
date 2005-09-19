@@ -80,6 +80,7 @@ main_init_variables(void)
     option_add(&settings, "int_opt_disable_stadium", 0, NULL);
     option_add(&settings, "int_opt_disable_contracts", 0, NULL);
     option_add(&settings, "int_opt_disable_boost_on", 0, NULL);
+    option_add(&settings, "int_opt_disable_ya", 0, NULL);
 }
 
 /**

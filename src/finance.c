@@ -30,9 +30,6 @@ finance_update_user_weekly(User *user)
 	 const_float("float_finance_yc_factor3"),
 	 const_float("float_finance_yc_factor4")};
 
-    if(sett_int("int_opt_disable_finances"))
-	return;
-
     if(week % 2 == 1)
     {
 	for(i=0;i<MON_OUT_END;i++)

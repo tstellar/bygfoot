@@ -24,8 +24,9 @@ youth_academy_new(Team *tm)
     new_academy.percentage = 
 	new_academy.av_percentage = const_int("int_youth_academy_default_percentage");
 
-    new_academy.counter_youth = math_rnd(const_float("float_youth_academy_youth_counter_lower"),
-					 const_float("float_youth_academy_youth_counter_upper"));
+    new_academy.counter_youth = 
+	math_rnd(const_float("float_youth_academy_youth_counter_lower"),
+		 const_float("float_youth_academy_youth_counter_upper"));
     new_academy.players = g_array_new(FALSE, FALSE, sizeof(Player));
 
     for(i=0;i<num_of_youths;i++)

@@ -293,11 +293,16 @@ game_gui_write_radio_items(void)
 
     game_gui_get_radio_items(style, scout, physio, boost, yc, ya_pos_pref);
 
-    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(style[current_user.tm->style + 2]), TRUE);
-    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(scout[current_user.scout % 10]), TRUE);
-    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(physio[current_user.physio % 10]), TRUE);
-    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(boost[current_user.tm->boost + 1]), TRUE);
-    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(yc[current_user.youth_academy.coach % 10]), TRUE);
+    gtk_check_menu_item_set_active(
+	GTK_CHECK_MENU_ITEM(style[current_user.tm->style + 2]), TRUE);
+    gtk_check_menu_item_set_active(
+	GTK_CHECK_MENU_ITEM(scout[current_user.scout % 10]), TRUE);
+    gtk_check_menu_item_set_active(
+	GTK_CHECK_MENU_ITEM(physio[current_user.physio % 10]), TRUE);
+    gtk_check_menu_item_set_active(
+	GTK_CHECK_MENU_ITEM(boost[current_user.tm->boost + 1]), TRUE);
+    gtk_check_menu_item_set_active(
+	GTK_CHECK_MENU_ITEM(yc[current_user.youth_academy.coach % 10]), TRUE);
     gtk_check_menu_item_set_active(
 	GTK_CHECK_MENU_ITEM(ya_pos_pref[current_user.youth_academy.pos_pref]), TRUE);
 }
@@ -333,21 +338,33 @@ game_gui_read_radio_items(GtkWidget *widget)
 	if(widget == style[i])
 	    current_user.tm->style = i - 2;
     
-    for(i=0;i<4;i++)
-	if(widget == scout[i])
-	    current_user.scout = 100 + i * 10 + old_scout % 10;
+    if(!sett_int("int_opt_disable_transfers"))
+    {
+	for(i=0;i<4;i++)
+	    if(widget == scout[i])
+		current_user.scout = 100 + i * 10 + old_scout % 10;
+    }
 
-    for(i=0;i<4;i++)
-	if(widget == physio[i])
-	    current_user.physio = 100 + i * 10 + old_physio % 10;
+    if(!sett_int("int_opt_disable_transfers"))
+    {
+	for(i=0;i<4;i++)
+	    if(widget == physio[i])
+		current_user.physio = 100 + i * 10 + old_physio % 10;
+    }
 
-    for(i=0;i<4;i++)
-	if(widget == yc[i])
-	    current_user.youth_academy.coach = 100 + i * 10 + old_yc % 10;
+    if(!sett_int("int_opt_disable_ya"))
+    {
+	for(i=0;i<4;i++)
+	    if(widget == yc[i])
+		current_user.youth_academy.coach = 100 + i * 10 + old_yc % 10;
+    }
     
-    for(i=0;i<5;i++)
-	if(widget == ya_pos_pref[i])
-	    current_user.youth_academy.pos_pref = i;
+    if(!sett_int("int_opt_disable_ya"))
+    {
+	for(i=0;i<5;i++)
+	    if(widget == ya_pos_pref[i])
+		current_user.youth_academy.pos_pref = i;
+    }
 
     if(math_get_place(current_user.scout, 2) == old_scout % 10)
 	current_user.scout = old_scout % 10;
@@ -410,7 +427,8 @@ game_gui_print_message(gchar *format, ...)
 
     if(g_str_has_prefix(text, "___"))
     {
-	gtk_entry_set_text(GTK_ENTRY(lookup_widget(window.main, "entry_message")), text + 3);
+	gtk_entry_set_text(GTK_ENTRY(lookup_widget(window.main, "entry_message")), 
+			   text + 3);
 	g_free(format);
     }
     else
@@ -596,7 +614,8 @@ game_gui_show_job_offer(Team *team, gint type)
     label_money = GTK_LABEL(lookup_widget(window.job_offer, "label_money"));
     label_cap = GTK_LABEL(lookup_widget(window.job_offer, "label_cap"));
     label_saf = GTK_LABEL(lookup_widget(window.job_offer, "label_saf"));
-    label_average_skill = GTK_LABEL(lookup_widget(window.job_offer, "label_average_skill"));
+    label_average_skill = 
+	GTK_LABEL(lookup_widget(window.job_offer, "label_average_skill"));
 
     if(type == STATUS_JOB_OFFER_FIRE_FINANCE)
 	sprintf(buf, _("The team owners have fired you because of financial mismanagement. Luckily, the owners of %s have heard of your dismissal and offer you a job. Here's some information on %s:"),
@@ -640,12 +659,17 @@ game_gui_write_check_items(void)
 {
     GtkCheckMenuItem *menu_job_offers = 
 	GTK_CHECK_MENU_ITEM(lookup_widget(window.main, "menu_job_offers")),
-	*menu_live_game = GTK_CHECK_MENU_ITEM(lookup_widget(window.main, "menu_live_game")),
-	*menu_overwrite = GTK_CHECK_MENU_ITEM(lookup_widget(window.main, "menu_overwrite"));
+	*menu_live_game = 
+	GTK_CHECK_MENU_ITEM(lookup_widget(window.main, "menu_live_game")),
+	*menu_overwrite = 
+	GTK_CHECK_MENU_ITEM(lookup_widget(window.main, "menu_overwrite"));
 
-    gtk_check_menu_item_set_active(menu_job_offers, opt_user_int("int_opt_user_show_job_offers"));
-    gtk_check_menu_item_set_active(menu_live_game, opt_user_int("int_opt_user_show_live_game"));
-    gtk_check_menu_item_set_active(menu_overwrite, opt_int("int_opt_save_will_overwrite"));
+    gtk_check_menu_item_set_active(menu_job_offers,
+				   opt_user_int("int_opt_user_show_job_offers"));
+    gtk_check_menu_item_set_active(menu_live_game,
+				   opt_user_int("int_opt_user_show_live_game"));
+    gtk_check_menu_item_set_active(menu_overwrite,
+				   opt_int("int_opt_save_will_overwrite"));
 }
 
 /** Change the options according to the check menu widgets. */
@@ -659,24 +683,30 @@ game_gui_read_check_items(GtkWidget *widget)
 
     if(widget == menu_job_offers)
     {
-	opt_user_set_int("int_opt_user_show_job_offers", !opt_user_int("int_opt_user_show_job_offers"));
+	opt_user_set_int("int_opt_user_show_job_offers", 
+			 !opt_user_int("int_opt_user_show_job_offers"));
 	game_gui_print_message(_("Job offers set to %s."),
-			       team_attribute_to_char(TEAM_ATTRIBUTE_BOOST, 
-						      opt_user_int("int_opt_user_show_job_offers")));
+			       team_attribute_to_char(
+				   TEAM_ATTRIBUTE_BOOST, 
+				   opt_user_int("int_opt_user_show_job_offers")));
     }
     else if(widget == menu_live_game)
     {
-	opt_user_set_int("int_opt_user_show_live_game", !opt_user_int("int_opt_user_show_live_game"));
+	opt_user_set_int("int_opt_user_show_live_game", 
+			 !opt_user_int("int_opt_user_show_live_game"));
 	game_gui_print_message(_("Live game set to %s."),
-			       team_attribute_to_char(TEAM_ATTRIBUTE_BOOST, 
-						      opt_user_int("int_opt_user_show_live_game")));
+			       team_attribute_to_char(
+				   TEAM_ATTRIBUTE_BOOST, 
+				   opt_user_int("int_opt_user_show_live_game")));
     }
     else if(widget == menu_overwrite)
     {
-	opt_set_int("int_opt_save_will_overwrite", !opt_int("int_opt_save_will_overwrite"));
+	opt_set_int("int_opt_save_will_overwrite", 
+		    !opt_int("int_opt_save_will_overwrite"));
 	game_gui_print_message(_("Overwrite set to %s."),
-			       team_attribute_to_char(TEAM_ATTRIBUTE_BOOST, 
-						      opt_int("int_opt_save_will_overwrite")));
+			       team_attribute_to_char(
+				   TEAM_ATTRIBUTE_BOOST, 
+				   opt_int("int_opt_save_will_overwrite")));
     }
     else
 	g_warning("game_gui_read_check_items: unknown widget.");
@@ -687,7 +717,8 @@ game_gui_read_check_items(GtkWidget *widget)
 void
 game_gui_set_help_labels(void)
 {
-    GtkLabel *label_help_text1 = GTK_LABEL(lookup_widget(window.help, "label_help_text1")),
+    GtkLabel *label_help_text1 = 
+	GTK_LABEL(lookup_widget(window.help, "label_help_text1")),
 	*label_help_text2 = GTK_LABEL(lookup_widget(window.help, "label_help_text2"));
     GString *text = g_string_new("");
 

@@ -430,6 +430,14 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
     }
 
     g_array_free(leagues, TRUE);
+    free_g_string_array(&sids);
+
+    /** No teams found. */
+    if(teams_local->len == 0)
+    {
+	free_teams_array(&teams_local, FALSE);
+	return;
+    }
     
     gint permutation[teams_local->len];
     for(j=0;j<teams_local->len;j++)
@@ -455,6 +463,7 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
 	g_warning("cup_load_choose_team_generate: not enough teams (%d) in chooseteam %s in cup %s (%d are specified) \n",
 		  teams_local->len, ct->sid->str, cup->name->str, end_idx);
 	
+	free_teams_array(&teams_local, FALSE);
 	main_exit_program(EXIT_CHOOSE_TEAM_ERROR, NULL);
     }
 
@@ -486,7 +495,6 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
 	if(query_team_is_in_cup(&g_array_index(teams_local, Team, j), cup))
 	    g_array_remove_index(teams_local, j);
 	
-    free_g_string_array(&sids);
     free_teams_array(&teams_local, FALSE);
 }
 

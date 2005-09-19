@@ -147,6 +147,7 @@ xml_country_read_text         (GMarkupParseContext *context,
 	sett_set_int("int_opt_disable_stadium", 1);
 	sett_set_int("int_opt_disable_contracts", 1);
 	sett_set_int("int_opt_disable_boost_on", 1);
+	sett_set_int("int_opt_disable_ya", 1);
     }
     else if(state == STATE_LEAGUE)
 	xml_league_read(buf, ligs);

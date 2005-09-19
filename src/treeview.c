@@ -1499,10 +1499,11 @@ treeview_create_next_opponent_values(GtkListStore *ls, const Fixture *fix)
 {
     gint i, j;
     gchar buf[SMALL], buf2[SMALL];
-    gfloat max_values[3],
+    gfloat max_values[4],
 	team_values[2][GAME_TEAM_VALUE_END];
-    gchar *titles[3] =
-	{_("Defend"),
+    gchar *titles[4] =
+	{_("Goalie"),
+	 _("Defend"),
 	 _("Midfield"),
 	 _("Attack")};
     GtkTreeIter iter;
@@ -1510,7 +1511,7 @@ treeview_create_next_opponent_values(GtkListStore *ls, const Fixture *fix)
     game_get_values(fix, team_values, 0);
     game_get_max_values(max_values);
 
-    for(i=0;i<3;i++)
+    for(i=0;i<4;i++)
     {
 	strcpy(buf2, "");
 	for(j=0;j<(gint)rint((gfloat)const_int("int_treeview_max_pipes") *

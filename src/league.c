@@ -52,6 +52,8 @@ league_new(gboolean new_id)
     new.yellow_red = 1000;
 
     new.stats = stat_league_new(new.id);
+    
+    new.active = TRUE;
 
     return new;
 }
@@ -142,11 +144,21 @@ league_cup_get_next_clid(gint clid)
 		break;
 
 	if(i != ligs->len - 1)
-	    return_value = lig(i + 1).id;
+	{
+	    if(lig(i + 1).active)
+		return_value = lig(i + 1).id;
+	    else
+		return_value = league_cup_get_next_clid(lig(i + 1).id);
+	}
 	else if(acps->len > 0)
 	    return_value = acp(0)->id;
 	else
-	    return_value = lig(0).id;
+	{
+	    if(lig(0).active)
+		return_value = lig(0).id;
+	    else
+		return_value = league_cup_get_next_clid(lig(0).id);
+	}
     }
     else
     {
@@ -157,7 +169,12 @@ league_cup_get_next_clid(gint clid)
 	if(i != acps->len - 1)
 	    return_value = acp(i + 1)->id;
 	else
-	    return_value = lig(0).id;
+	{
+	    if(lig(0).active)
+		return_value = lig(0).id;
+	    else
+		return_value = league_cup_get_next_clid(lig(0).id);
+	}
     }
 
     return return_value;
@@ -178,11 +195,21 @@ league_cup_get_previous_clid(gint clid)
 		break;
 
 	if(i != 0)
-	    return_value = lig(i - 1).id;
+	{
+	    if(lig(i - 1).active)
+		return_value = lig(i - 1).id;
+	    else
+		return_value = league_cup_get_previous_clid(lig(i - 1).id);
+	}
 	else if(acps->len > 0)
 	    return_value = acp(acps->len - 1)->id;
 	else
-	    return_value = lig(ligs->len - 1).id;
+	{
+	    if(lig(ligs->len - 1).active)
+		return_value = lig(ligs->len - 1).id;
+	    else
+		return_value = league_cup_get_previous_clid(lig(ligs->len - 1).id);
+	}
     }
     else
     {
@@ -193,7 +220,12 @@ league_cup_get_previous_clid(gint clid)
 	if(i != 0)
 	    return_value = acp(i - 1)->id;
 	else
-	    return_value = lig(ligs->len - 1).id;
+	{
+	    if(lig(ligs->len - 1).active)
+		return_value = lig(ligs->len - 1).id;
+	    else
+		return_value = league_cup_get_previous_clid(lig(ligs->len - 1).id);
+	}
     }
 
     return return_value;

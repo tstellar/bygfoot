@@ -102,10 +102,10 @@ enum LiveGameStatArray
     @see game_get_values() */
 enum GameTeamValue
 {
-    GAME_TEAM_VALUE_DEFEND = 0,
+    GAME_TEAM_VALUE_GOALIE = 0,
+    GAME_TEAM_VALUE_DEFEND,
     GAME_TEAM_VALUE_MIDFIELD,
     GAME_TEAM_VALUE_ATTACK,
-    GAME_TEAM_VALUE_GOALIE,
     GAME_TEAM_VALUE_END
 };
 

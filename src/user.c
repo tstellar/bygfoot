@@ -86,7 +86,7 @@ user_set_up_team_new_game(User *user)
 }
 
 /** Set up finances, remove some players etc. for a new user team.
-    @param user The user whose team we set up. */
+    @par am user The user whose team we set up. */
 void
 user_set_up_team(User *user)
 {
@@ -105,15 +105,20 @@ user_set_up_team(User *user)
 	g_array_index(user->tm->players, Player, i).recovery = 0;
 
     user->scout = user->physio = QUALITY_AVERAGE;
+
+    if(sett_int("int_opt_disable_transfers"))
+	user->physio = QUALITY_GOOD;
     
     user->tm->style = 0;
     
     user_set_up_finances(user);
     user_set_up_counters(user);
 
-    user->youth_academy = youth_academy_new(user->tm);
+    if(!sett_int("int_opt_disable_ya"))
+	user->youth_academy = youth_academy_new(user->tm);
 
-    user->counters[COUNT_USER_NEW_SPONSOR] = (sett_int("int_opt_disable_finances")) ? -5 : 1;
+    user->counters[COUNT_USER_NEW_SPONSOR] = 
+	(sett_int("int_opt_disable_finances")) ? -5 : 1;
 }
 
 

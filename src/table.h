@@ -22,5 +22,8 @@ table_element_compare_func(gconstpointer a,
 			   gconstpointer b,
 			   gpointer clid_round);
 
+gboolean
+query_tables_in_country(void);
+
 #endif
 

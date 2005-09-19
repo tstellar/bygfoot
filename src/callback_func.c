@@ -259,26 +259,28 @@ callback_show_tables(gint type)
     if(type == SHOW_CURRENT)
 	clid = current_user.tm->clid;
     else if(type == SHOW_NEXT_LEAGUE)
-    {
 	clid = league_cup_get_next_clid(stat1);
-	while(clid >= ID_CUP_START && cup_has_tables(clid) == -1)
-	    clid = league_cup_get_next_clid(clid);
-    }
     else if(type == SHOW_PREVIOUS_LEAGUE)
-    {
 	clid = league_cup_get_previous_clid(stat1);
-	while(clid >= ID_CUP_START && cup_has_tables(clid) == -1)
-	    clid = league_cup_get_previous_clid(clid);
-    }
     else
     {
 	g_warning("callback_show_tables: unknown type %d \n", type);
 	return;
     }
 
+    while((clid < ID_CUP_START && !league_from_clid(clid)->active) ||
+	  (clid >= ID_CUP_START && cup_has_tables(clid) == -1))
+    {
+	if(type == SHOW_PREVIOUS_LEAGUE)
+	    clid = league_cup_get_previous_clid(clid);
+	else
+	    clid = league_cup_get_next_clid(clid);
+    }
+
     stat1 = clid;
 
-    treeview_show_table(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")), clid);
+    treeview_show_table(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")), 
+			clid);
 }
 
 /** Open the digits window to get a loan. */

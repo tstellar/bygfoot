@@ -185,3 +185,21 @@ table_element_compare_func(gconstpointer a,
     
     return value;
 }
+
+/** Find out if there are active leagues (which automatically
+    have tables then) or cups with tables in the country. */
+gboolean
+query_tables_in_country(void)
+{
+    gint i;
+
+    for(i=0;i<ligs->len;i++)
+	if(lig(i).active)
+	    return TRUE;
+
+    for(i=0;i<cps->len;i++)
+	if(cup_has_tables(cp(i).id) != -1)
+	    return TRUE;
+
+    return FALSE;
+}

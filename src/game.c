@@ -1053,7 +1053,7 @@ game_stadium_event(Stadium *stadium, gint type)
 /** Return the maximum possible values for defence, midfield and attack. 
     Used in the opponent preview. */
 void
-game_get_max_values(gfloat max_values[3])
+game_get_max_values(gfloat max_values[4])
 {
     gint i, j;
     Player pl;
@@ -1061,7 +1061,9 @@ game_get_max_values(gfloat max_values[3])
     pl.skill = pl.cskill = const_float("float_player_max_skill");
     pl.fitness = 1;
 
-    for(i=0;i<3;i++)
+    max_values[0] = const_float("float_player_max_skill");
+
+    for(i=1;i<4;i++)
     {
 	max_values[i] = 0;
 	for(j=1;j<11;j++)

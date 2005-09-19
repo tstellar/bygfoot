@@ -297,8 +297,10 @@ transfer_get_deadline(void)
     gint length = 0;
 
     for(i=0;i<ligs->len;i++)
-	length = MAX(length, 
-		     g_array_index(lig(i).fixtures, Fixture, lig(i).fixtures->len - 1).week_number);
+	if(lig(i).active)
+	    length = 
+		MAX(length, g_array_index(
+			lig(i).fixtures, Fixture, lig(i).fixtures->len - 1).week_number);
 
     return (gint)rint((gfloat)length * const_float("float_transfer_deadline_percentage"));
 }

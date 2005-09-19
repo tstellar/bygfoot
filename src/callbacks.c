@@ -9,6 +9,7 @@
 #include "main.h"
 #include "option.h"
 #include "player.h"
+#include "table.h"
 #include "team.h"
 #include "transfer.h"
 #include "treeview.h"
@@ -276,7 +277,7 @@ on_button_cl_back_clicked              (GtkButton       *button,
 	case STATUS_SHOW_FIXTURES:
 	    callback_show_fixtures(SHOW_PREVIOUS_LEAGUE);
 	    break;
-	case STATUS_SHOW_TABLES:
+	case STATUS_SHOW_TABLES:	    
 	    callback_show_tables(SHOW_PREVIOUS_LEAGUE);
 	    break;
 	case STATUS_BROWSE_TEAMS:
@@ -355,6 +356,14 @@ void
 on_menu_tables_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    /* No tables in this country? */
+    if(!query_tables_in_country())
+    {
+	game_gui_print_message(
+	    _("There are no leagues or cups with tables in this country definition."));
+	return;
+    }
+
     stat0 = STATUS_SHOW_TABLES;
     callback_show_tables(SHOW_CURRENT);
 
@@ -471,6 +480,13 @@ on_menu_move_to_youth_academy_activate (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
     Player *pl;
+
+    if(sett_int("int_opt_disable_ya"))
+    {
+	game_gui_print_message(
+	    _("Youth academy is disabled in this country definition."));
+	return;
+    }
 
     if(selected_row == -1)
 	game_gui_print_message(_("You haven't selected a player."));
@@ -796,7 +812,8 @@ on_menu_show_stadium_activate          (GtkMenuItem     *menuitem,
 {
     if(sett_int("int_opt_disable_stadium"))
     {
-	game_gui_print_message(_("Stadium management is disabled in this country definition."));
+	game_gui_print_message(
+	    _("Stadium management is disabled in this country definition."));
 	return;
     }
 
@@ -1008,6 +1025,13 @@ void
 on_menu_show_youth_academy_activate    (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    if(sett_int("int_opt_disable_ya"))
+    {
+	game_gui_print_message(
+	    _("Youth academy is disabled in this country definition."));
+	return;
+    }
+
     callback_show_youth_academy();
     stat0 = STATUS_SHOW_YA;
 }
@@ -1016,15 +1040,30 @@ void
 on_menu_set_investment_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    if(sett_int("int_opt_disable_ya"))
+    {
+	game_gui_print_message(
+	    _("Youth academy is disabled in this country definition."));
+	return;
+    }
+
     stat1 = STATUS_SET_YA_PERCENTAGE;
-    window_show_digits(_("Set the percentage of your income you want to devote to your youth academy."),
-		       NULL, -1, "%", current_user.youth_academy.percentage);
+    window_show_digits(
+	_("Set the percentage of your income you want to devote to your youth academy."),
+	NULL, -1, "%", current_user.youth_academy.percentage);
 }
 
 void
 on_menu_youth_move_to_team_activate    (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    if(sett_int("int_opt_disable_ya"))
+    {
+	game_gui_print_message(
+	    _("Youth academy is disabled in this country definition."));
+	return;
+    }
+
     if(current_user.tm->players->len == const_int("int_team_max_players"))
 	game_gui_print_message(_("You can't have more than %d players in the team."),
 			       const_int("int_team_max_players"));

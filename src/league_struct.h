@@ -94,6 +94,9 @@ typedef struct
     GArray *fixtures;
     /** The current league statistics. */
     LeagueStat stats;
+    /** Whether the league is only a container for teams
+	or really a league with fixtures and all. */
+    gboolean active;
 } League;
 
 #endif

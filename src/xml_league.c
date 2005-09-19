@@ -24,6 +24,7 @@
 #define TAG_YELLOW_RED "yellow_red"
 #define TAG_AVERAGE_TALENT "average_talent"
 #define TAG_NAMES_FILE "names_file"
+#define TAG_ACTIVE "active"
 #define TAG_PROM_REL "prom_rel"
 #define TAG_PROM_GAMES "prom_games"
 #define TAG_PROM_GAMES_DEST_SID "prom_games_dest_sid"
@@ -57,6 +58,7 @@ enum XmlLeagueStates
     STATE_YELLOW_RED,
     STATE_AVERAGE_TALENT,
     STATE_NAMES_FILE,
+    STATE_ACTIVE,
     STATE_PROM_REL,
     STATE_PROM_GAMES,
     STATE_PROM_GAMES_DEST_SID,
@@ -127,6 +129,8 @@ xml_league_read_start_element (GMarkupParseContext *context,
 	state = STATE_AVERAGE_TALENT;
     else if(strcmp(element_name, TAG_NAMES_FILE) == 0)
 	state = STATE_NAMES_FILE;
+    else if(strcmp(element_name, TAG_ACTIVE) == 0)
+	state = STATE_ACTIVE;
     else if(strcmp(element_name, TAG_PROM_REL) == 0)
 	state = STATE_PROM_REL;
     else if(strcmp(element_name, TAG_PROM_GAMES) == 0)
@@ -196,6 +200,7 @@ xml_league_read_end_element    (GMarkupParseContext *context,
        strcmp(element_name, TAG_YELLOW_RED) == 0 ||
        strcmp(element_name, TAG_AVERAGE_TALENT) == 0 ||
        strcmp(element_name, TAG_NAMES_FILE) == 0 ||
+       strcmp(element_name, TAG_ACTIVE) == 0 ||
        strcmp(element_name, TAG_PROM_REL) == 0 ||
        strcmp(element_name, TAG_TEAMS) == 0)
 	state = STATE_LEAGUE;
@@ -268,6 +273,8 @@ xml_league_read_text         (GMarkupParseContext *context,
 	new_league.average_talent = value;
     else if(state == STATE_NAMES_FILE)
 	g_string_printf(new_league.names_file, "%s", buf);
+    else if(state == STATE_ACTIVE)
+	new_league.active = value;
     else if(state == STATE_PROM_GAMES_DEST_SID)
 	g_string_printf(new_league.prom_rel.prom_games_dest_sid, "%s", buf);
     else if(state == STATE_PROM_GAMES_LOSER_SID)

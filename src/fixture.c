@@ -903,7 +903,8 @@ fixture_get_previous(gint clid, gint week_number, gint week_round_number)
     @param tm A team pointer (for the case SHOW_TEAM).
     @return A fixture pointer or NULL. */
 Fixture*
-fixture_get(gint type, gint clid, gint week_number, gint week_round_number, const Team *tm)
+fixture_get(gint type, gint clid, gint week_number, 
+	    gint week_round_number, const Team *tm)
 {
     Fixture *fix = NULL;
     gint new_clid = -1;
@@ -1124,18 +1125,22 @@ fixture_get_next_week(gint *week_number, gint *week_round_number)
     *week_number = *week_round_number = 1000;
 
     for(i=0;i<ligs->len;i++)
-    {
-	fix = fixture_get_next(lig(i).id, local_week, local_round);
-	if((fix->week_number > local_week ||
-	   (fix->week_number == local_week && fix->week_round_number > local_round)) &&
-	   (fix->week_number < *week_number ||
-	    (fix->week_number == *week_number && fix->week_round_number < *week_round_number)) &&
-	   (fix->clid == current_user.tm->clid || opt_user_int("int_opt_user_show_all_leagues")))
+	if(lig(i).active)
 	{
-	    *week_number = fix->week_number;
-	    *week_round_number = 1;
-	}	    
-    }
+	    fix = fixture_get_next(lig(i).id, local_week, local_round);
+	    if((fix->week_number > local_week ||
+		(fix->week_number == local_week && 
+		 fix->week_round_number > local_round)) &&
+	       (fix->week_number < *week_number ||
+		(fix->week_number == *week_number && 
+		 fix->week_round_number < *week_round_number)) &&
+	       (fix->clid == current_user.tm->clid || 
+		opt_user_int("int_opt_user_show_all_leagues")))
+	    {
+		*week_number = fix->week_number;
+		*week_round_number = 1;
+	    }	    
+	}
 
     for(i=0;i<acps->len;i++)
     {
@@ -1167,18 +1172,22 @@ fixture_get_previous_week(gint *week_number, gint *week_round_number)
     *week_number = *week_round_number = -1;
 
     for(i=0;i<ligs->len;i++)
-    {
-	fix = fixture_get_previous(lig(i).id, local_week, local_round);
-	if((fix->week_number < local_week ||
-	   (fix->week_number == local_week && fix->week_round_number < local_round)) &&
-	   (fix->week_number > *week_number ||
-	    (fix->week_number == *week_number && fix->week_round_number > *week_round_number)) &&
-	   (fix->clid == current_user.tm->clid || opt_user_int("int_opt_user_show_all_leagues")))
+	if(lig(i).active)
 	{
-	    *week_number = fix->week_number;
-	    *week_round_number = 1;
+	    fix = fixture_get_previous(lig(i).id, local_week, local_round);
+	    if((fix->week_number < local_week ||
+		(fix->week_number == local_week && 
+		 fix->week_round_number < local_round)) &&
+	       (fix->week_number > *week_number ||
+		(fix->week_number == *week_number && 
+		 fix->week_round_number > *week_round_number)) &&
+	       (fix->clid == current_user.tm->clid || 
+		opt_user_int("int_opt_user_show_all_leagues")))
+	    {
+		*week_number = fix->week_number;
+		*week_round_number = 1;
+	    }
 	}
-    }
 
     for(i=0;i<acps->len;i++)
     {

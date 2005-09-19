@@ -110,7 +110,8 @@ start_new_season(void)
     }
 		
     for(i=0;i<ligs->len;i++)
-	fixture_write_league_fixtures(&lig(i));
+	if(lig(i).active)
+	    fixture_write_league_fixtures(&lig(i));
 
     for(i=cps->len - 1; i >= 0; i--)
 	if(cp(i).add_week >= 0)
@@ -324,7 +325,9 @@ end_week_round_update_fixtures(void)
 	    fixture_update(acp(i));
 
     for(i=0;i<ligs->len;i++)
-	if(week == g_array_index(lig(i).fixtures, Fixture, lig(i).fixtures->len - 1).week_number && week_round == 1 &&
+	if(lig(i).active && week == g_array_index(
+	       lig(i).fixtures, Fixture, lig(i).fixtures->len - 1).week_number && 
+	   week_round == 1 &&
 	   team_is_user(g_array_index(lig(i).table.elements, TableElement, 0).team) != -1)
 	    user_history_add(&usr(team_is_user(g_array_index(lig(i).table.elements, TableElement, 0).team)),
 			     USER_HISTORY_CHAMPION, g_array_index(lig(i).table.elements, TableElement, 0).team_id,
@@ -457,6 +460,9 @@ void
 start_week_update_user_finances(void)
 {
     gint i;
+
+    if(sett_int("int_opt_disable_finances"))
+	return;
 
     for(i=0;i<users->len;i++)
 	finance_update_user_weekly(&usr(i));
