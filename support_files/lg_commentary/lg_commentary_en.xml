@@ -11,7 +11,8 @@
     <commentary>_T_POSS__ are on the attack</commentary>
     <commentary>_T_NPOSS__ are on the [defense|backfoot]</commentary>
     <commentary>Outstanding cross finds _P0_</commentary>
-    <commentary></commentary>
+    <commentary>Now _T_POSS__ can mount a challange through _P0_</commentary>
+    <commentary>Ball in by _P1_ [finds|taken by] _P0_</commentary>
     <commentary>_P1_ [threads|needles] a great ball to _P0_ </commentary>
     <commentary>[Lovely|Superb|Long|Excellent] pass from _P1_ releases _P0_</commentary>
     <commentary>[Long|Short|Exquisite] floating pass from _P1_ finds _P0_</commentary>
@@ -28,20 +29,27 @@
 	 <commentary>_P0_ rips [up|through] the [centre|midfield]</commentary>
     <commentary>_P0_ [looses|spins past] his [man|marker]</commentary>
     <commentary cond="_MI_>20 and _SHOTS_POSS__ < 2">_T_POSS__ need to [get the ball up front more|create more chances]</commentary>
-    <commentary cond="_MI_>20 and _GOALS0_ + _GOALS1_ < 1 and _SHOTS0_ + _SHOTS1_ < 8">Only [_SHOTS0_ + _SHOTS1_] shot/s, [its a battle in the midfield|neither side are really trying]</commentary>
+    <commentary cond="_MI_>20 and _GOALS0_ + _GOALS1_ < 1  and _SHOTS0_ + _SHOTS1_ > 1 and _SHOTS0_ + _SHOTS1_ < 8">Only [_SHOTS0_ + _SHOTS1_] shots, [its a battle in the midfield|neither side are really trying]</commentary>
+    <commentary cond="_MI_>20 and _GOALS0_ + _GOALS1_ < 1 and _SHOTS0_ + _SHOTS1_ = 1">Only 1 shot, [its a battle in the midfield|neither side are really trying]</commentary>
+    <commentary cond="_MI_<20 and _SHOTS0_ + _SHOTS1_ > 2">_MI_ minutes on the clock, chances here from both teams already</commentary>
     <commentary cond="_SHOTS0_ + _SHOTS1_ > 4">Terrific skills on display</commentary>
     <commentary cond="_MI_ > 75">We enter the dying moments of normal time</commentary>
-    <commentary cond="_FOULS0_ + _FOULS1_ >= 5">[So many|[_FOULS0_ + _FOULS1_]] fouls. The refs gonna need a new [pee for his whistle|book|pencil]!</commentary>
+    <commentary cond="_FOULS0_ + _FOULS1_ >= 7">[So many|[_FOULS0_ + _FOULS1_]] fouls. The refs gonna need a new [pee for his whistle|book|pencil]!</commentary>
+    <commentary cond="_MI_>85">Sure it aint over till that fat lady sings but she's warming up right now</commentary>
   </event>
   <event>
     <name>lost_possession</name>
+    <commentary>Slide tackle by _P0_ was worthy of a topflight baseball homer.</commentary>
+	 <commentary>Heavy ball uncontrolled by _P1_</commentary>
     <commentary>_P0_ wins the ball with a perfectly timed challenge</commentary>
+    <commentary>Plenty of turnovers here as _T_NPOSS__ give it away</commentary>
     <commentary>Bad control by _P1_ lets _P0_ steal the ball off him</commentary>
     <commentary>_P0_ [steals|takes] the ball away from _P1_ with a sliding tackle</commentary>
     <commentary>Loose ball falls to _P0_</commentary>
     <commentary>Crunching tackle, _P0_ [comes away with|wins] the ball</commentary>
     <commentary>_P1_ is left stranded as _P0_ takes the ball</commentary>
     <commentary>_P0_ makes a great interception</commentary>
+    <commentary>_P0_ gate crashes _P1_'s party and comes away with the prize</commentary>
     <commentary>Not _P1_'s greatest pass as _P0_ intercepts</commentary>
   </event>
   <event>
@@ -63,6 +71,8 @@
   </event>
   <event>
     <name>scoring_chance</name>
+    <commentary>_P0_ infiltrates the defence and [hammers|cracks] it</commentary>
+    <commentary>Deep cross floats in from _P1_ gathered by _P0_ who [slots it towards goal|fires]</commentary>
     <commentary>_P0_ charges towards goal and [fires|unleashes|stabs|shoots!]</commentary>
     <commentary>_P0_ spins and shoots</commentary>
     <commentary>A blazing [shot|strike] from _P0_</commentary>
@@ -72,7 +82,7 @@
     <commentary>_P0_ [has fluffed it|can't control it|snaps a shot] and his miss kick heads [toward goal|goalward]</commentary>
     <commentary>Great first touch heads it goalwards</commentary>
     <commentary>_P0_'s takes it on the volley and [hammers|nails|plants] it towards goal</commentary>
-
+	 <commentary>_P0_ takes it on the volley from _P1_'s pass pushing goalwards</commentary>
     <commentary>_P0_ [fires|shoots|blasts it|hammers it] from 22 yards, looks like it's [drifting|curving|spinning|going wide]</commentary>
     <commentary>_P0_ [drifts|dribbles|runs|strolls|slips|sneaks] into the box, turns inside the defence and fires</commentary>
     <commentary>_P0_ [drifts|crashes|cuts] in from the [right|left] flank and [strikes|shoots|fires]</commentary>
@@ -83,6 +93,9 @@
     <commentary>_P0_'s [scissor|overhead] kick heads towards the [bottom|top] [left|right] hand corner</commentary>
     <commentary>_P0_ [waltzes|spins|drifts|rips] past two defenders, [dummies|wrong foots] the keeper and [flicks|back heels|clips] the ball [home|towards goal|goalward]</commentary>
     <commentary>_P1_ lays the ball off to _P0_ who sends a rocket towards goal</commentary>
+    <commentary>_P0_ charging in with a shot</commentary>
+    <commentary>Lay of from _P1_ sets up _T_POSS__ with a chance</commentary>
+    <commentary>_P0_ gets in behind the defence and strikes</commentary>
   </event>
   <event>
     <name>goal</name>
@@ -101,14 +114,16 @@
 	 <commentary>_P0_'s dance ignites the fans. He celebrates in his [well known|own] special fashion</commentary>
     <commentary>Goal! Dipping ball from _P0_ stuns [the keeper|_P1_|_T_NPOSS__]</commentary>
     <commentary>Outstanding Goal!</commentary>
-    <commentary>_T_POSS__ have it pay dirt. What a Goal!</commentary>
+    <commentary>_T_POSS__ have hit pay dirt. What a Goal!</commentary>
     <commentary>Lady luck is smiling on _T_POSS__ now</commentary>
-    <commentary>Goal! Lady luck obviously supports _T_POSS_</commentary>
+    <commentary>Goal! Lady luck obviously supports _T_POSS__</commentary>
     <commentary>[Curving|In swinging|Out swinging|Swerving] ball beats _P1_ to the line.Goal!</commentary>
+    <commentary cond="_POSS_POSS__ < 45">_T_POSS__ score against the run of play</commentary>
   </event>
   <event>
     <name>miss</name>
     <commentary>[He's|_P0_'s] [fired|drifted it] wide!</commentary>
+    <commentary>Wandering shot heads awall</commentary>
     <commentary>_P0_ runs and hides after that [shocking|dreadfull|calamitous|disastrous] miss</commentary>
     <commentary>[He|_P0_] should have squared the ball went alone and lashed wide</commentary>
     <commentary>[_P1_|Defender] clears</commentary>
@@ -135,7 +150,14 @@
     <commentary cond="_SHOTS_POSS__ > 3 and _GOALS_POSS__ < 1">_T_POSS__ are beginning to wonder what they have to do to score</commentary> </event>
   <event>
     <name>save</name>
+	 <commentary>Sizzleing [strike|shot|] but [the keeper|the goalie|_P1_] has asbestos gloves</commentary>
     <commentary>_P1_'s fingertips flicks it wide</commentary>
+    <commentary>There is a wall out there by the name of _P1_. What a terrific save</commentary>
+    <commentary>Catching practice for _P1_</commentary>
+    <commentary>_P1_ breaths again as the ball [finds is way|deflects] into his arms.</commentary>
+	 <commentary>_T_NPOSS__ get a let off here with a superb save by _P1_</commentary> 
+	 <commentary>_T_POSS__ denied by a [great|superb|brilliant] [save|parry] by _P1_</commentary>
+    <commentary>Easy pickings for _P1_, he collects the ball</commentary>
     <commentary>_P1_ forced to tip _P0_'s shot over the crossbar</commentary>
     <commentary>Great [speed|pace|skill] shown by _P0_ but _P1_ produced a [stunning|superb|just in time] blocking tackle</commentary>
     <commentary>Low shot taken well to his [right|left] by _P1_</commentary>
@@ -146,6 +168,7 @@
     <commentary>[Saved|Caught|Stopped|Gathered] well by _P1_</commentary>
     <commentary>ohh [he|the goalie|the keeper|_P1_] anticipated _P0_'s every move and produced a fine save</commentary>
     <commentary>That was in by all accounts, but they forgot to tell _P1_, who some how saved the day</commentary>
+    <commentary>No power in the shot from _P0_. Taken easily by _P1_</commentary>
   </event>
   <event>
     <name>start_match</name>
@@ -189,8 +212,8 @@
 	 <commentary cond="_GOALS0_ + _GOALS1_ >= 6">Its raining goals.[_GOALS0_ + _GOALS1_] So far and its only the first half!</commentary>
     <commentary cond="_FOULS0_ - _FOULS1_ >= 4 or _FOULS1_ - _FOULS0_ >=4">There are two teams out there but only [_T[_FOULS0_ GE _FOULS1_]_|one of them] is playing football</commentary>
     <commentary cond="_FOULS0_ + _FOULS1_ >= 8">It's a blood bath out there not a football match.</commentary>
-    <commentary cond="_FOULS0_ + _FOULS1_ >= 8">[So many|[_FOULS0_ + _FOULS1_]] fouls. The refs gonna need new office supplies!</commentary>
-    <commentary cond="_FOULS0_ + _FOULS1_ >= 8">[So many|[_FOULS0_ + _FOULS1_]] fouls. The refs gonna need a new [pee for his whistle|book|pencil]!</commentary>
+    <commentary cond="_FOULS0_ + _FOULS1_ >= 10">[So many|[_FOULS0_ + _FOULS1_]] fouls. The refs gonna need new office supplies!</commentary>
+    <commentary cond="_FOULS0_ + _FOULS1_ >= 10">[So many|[_FOULS0_ + _FOULS1_]] fouls. The refs gonna need a new [pee for his whistle|book|pencil]!</commentary>
     <commentary cond="_PEN0_ + _PEN1_ > 1">[_PEN0_ + _PEN1_] penalties already</commentary>
   </event>
   <event>
@@ -262,7 +285,7 @@
     <commentary>_P0_ has a chance to score with a penalty kick</commentary>
     <commentary>_P0_ can make some of _T_POSS__ worries [dissapear|go away] with this penalty</commentary>
     <commentary>You have to bury the nerves, swallow and concentrate when your taking penalties</commentary>
-    <commentary cond="_PEN_POSS__ > 0">_T_POSS__ looks like they are playing for penalties.</commentary>
+    <commentary cond="_PEN_POSS__ > 1">_T_POSS__ looks like they are playing for penalties.</commentary>
   </event>
   <event>
     <name>free_kick</name>
@@ -353,6 +376,9 @@
     <name>style_change</name>
     <commentary>_T_TT__ has changed their style to _EX_</commentary>
     <commentary>_T_TT__ change to a _EX_ style</commentary>
+    <commentary cond="_MI_>75">Last ditch effort, _T_TT__ change to  _EX_</commentary>
+    <commentary cond="_MI_>75">_MR_ minutes left, _T_TT__ try a change of tactics with an _EX_ style</commentary>
+    <commentary cond="_TIME_=1 and _MR_ >= 44">Half time style change for, _T_TT__ to _EX_</commentary>
   </event>
   <event>
     <name>boost_change</name>
