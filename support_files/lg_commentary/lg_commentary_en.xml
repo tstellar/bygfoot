@@ -1,6 +1,9 @@
 <lg_commentary>
   <event>
     <name>general</name>
+    <commentary>_P1_ passes</commentary>
+    <commentary>_P0_</commentary>
+    <commentary>_P1_ to _P0_</commentary>
     <commentary>_P1_ feeds a [wonderful|super|great|brilliant] ball through to _P0_</commentary>
     <commentary>Delightful little [ball|pass] finds _P0_</commentary>
     <commentary>Flick on from _P1_ waits for the one two</commentary>
@@ -11,7 +14,7 @@
     <commentary>_T_POSS__ are on the attack</commentary>
     <commentary>_T_NPOSS__ are on the [defense|backfoot]</commentary>
     <commentary>Outstanding cross finds _P0_</commentary>
-    <commentary>Now _T_POSS__ can mount a challange through _P0_</commentary>
+    <commentary>Now _T_POSS__ can mount a challenge through _P0_</commentary>
     <commentary>Ball in by _P1_ [finds|taken by] _P0_</commentary>
     <commentary>_P1_ [threads|needles] a great ball to _P0_ </commentary>
     <commentary>[Lovely|Superb|Long|Excellent] pass from _P1_ releases _P0_</commentary>
@@ -35,10 +38,18 @@
     <commentary cond="_SHOTS0_ + _SHOTS1_ > 4">Terrific skills on display</commentary>
     <commentary cond="_MI_ > 75">We enter the dying moments of normal time</commentary>
     <commentary cond="_FOULS0_ + _FOULS1_ >= 7">[So many|[_FOULS0_ + _FOULS1_]] fouls. The refs gonna need a new [pee for his whistle|book|pencil]!</commentary>
-    <commentary cond="_MI_>85">Sure it aint over till that fat lady sings but she's warming up right now</commentary>
+    <commentary cond="_MI_>85">Sure it ain't over till that fat lady sings but she's warming up right now</commentary>
   </event>
   <event>
     <name>lost_possession</name>
+	 <commentary>Its knocked out by _P1_. _P0_ with the throw.</commentary>
+	 <commentary>_P1_ dispossessed</commentary>
+	 <commentary>_P1_ dispossessed by _P0_</commentary>
+	 <commentary>[_P1_ gives the ball|The ball is given] away [carelessly|cheaply|too easily]</commentary>
+	 <commentary>_P1_ takes it over the line. A throw to _T_POSS__</commentary>
+	 <commentary>Wild pass by _P1_ results in a throw in for _T_POSS__</commentary>
+	 <commentary>_P0_ takes a quick throw in</commentary>
+	 <commentary>Long throw in from a_P0_</commentary>
     <commentary>Slide tackle by _P0_ was worthy of a topflight baseball homer.</commentary>
 	 <commentary>Heavy ball uncontrolled by _P1_</commentary>
     <commentary>_P0_ wins the ball with a perfectly timed challenge</commentary>
@@ -68,6 +79,14 @@
     <commentary>Don't know about _P0_ but that tackle brought tears to my eyes</commentary>
     <commentary>Extremely high boot from _P1_ sends _P0_ to the ground</commentary>
     <commentary>_P1_'s black belt in [Karate|Taikwondo|Jujitsu] came in handy then, as he floored _P0_</commentary>
+	 <commentary>_P1_ Just lost his patience and takes _P0_ to the ground.</commentary>
+	 <commentary>_P0_ takes the full brunt of _P1_'s challenge.</commentary>
+	 <commentary>_P0_ tried to absorb that tackle but its too much for the ref</commentary>
+	 <commentary>Ref played the advantage but eventually had to signal the foul on _P0_</commentary>
+	 <commentary>Frustration is setting in, when you start to see fouls like that.</commentary>
+	 <commentary>Thats whats known as a professional foul</commentary>
+	 <commentary>_P0_ tries to run off a nasty challenge</commentary>
+	 <commentary>_P1_ with a nasty tackle. Surely he wont get away with that</commentary>
   </event>
   <event>
     <name>scoring_chance</name>
@@ -124,7 +143,7 @@
     <name>miss</name>
     <commentary>[He's|_P0_'s] [fired|drifted it] wide!</commentary>
     <commentary>Wandering shot heads awall</commentary>
-    <commentary>_P0_ runs and hides after that [shocking|dreadfull|calamitous|disastrous] miss</commentary>
+    <commentary>_P0_ runs and hides after that [shocking|dreadful|calamitous|disastrous] miss</commentary>
     <commentary>[He|_P0_] should have squared the ball went alone and lashed wide</commentary>
     <commentary>[_P1_|Defender] clears</commentary>
     <commentary>_P0_ [pushes|curls] ball over</commentary>
@@ -150,7 +169,7 @@
     <commentary cond="_SHOTS_POSS__ > 3 and _GOALS_POSS__ < 1">_T_POSS__ are beginning to wonder what they have to do to score</commentary> </event>
   <event>
     <name>save</name>
-	 <commentary>Sizzleing [strike|shot|] but [the keeper|the goalie|_P1_] has asbestos gloves</commentary>
+	 <commentary>Sizzling [strike|shot|] but [the keeper|the goalie|_P1_] has asbestos gloves</commentary>
     <commentary>_P1_'s fingertips flicks it wide</commentary>
     <commentary>There is a wall out there by the name of _P1_. What a terrific save</commentary>
     <commentary>Catching practice for _P1_</commentary>
@@ -169,6 +188,7 @@
     <commentary>ohh [he|the goalie|the keeper|_P1_] anticipated _P0_'s every move and produced a fine save</commentary>
     <commentary>That was in by all accounts, but they forgot to tell _P1_, who some how saved the day</commentary>
     <commentary>No power in the shot from _P0_. Taken easily by _P1_</commentary>
+	 <commentary>[A|Thats a] regulation [stop|save] for [_P1_|the keeper]</commentary>
   </event>
   <event>
     <name>start_match</name>
@@ -192,12 +212,16 @@
     <commentary>It's half time</commentary>
     <commentary>It's a _RE_ at half time.</commentary>
     <commentary>It's a _RE_ at half time, _TL_'s manager has to find something special to spur his team on.</commentary>
-    <commentary>_TL_ heads into the tunnel to await the managers scolding</commentary>
     <commentary>_TW_ are just 45 minutes away from a stunning victory</commentary>
     <commentary>Games like this make managers. _TL_ need inspiration from the top.</commentary>    <commentary>The dropped heads tell the story. It's been no picnic here for _TL_.</commentary>
     <commentary>_TL_'s manager cops a rollicking from the fans as he leaves the dugout</commentary>
     <commentary>So far _TW_ and their manager have done everything right.</commentary>
-    <commentary cond="_POSS0_ >= 70 or _POSS1_ >= 70">_T[_POSS1_ GE 70]_ is dominating the posession</commentary>
+	 <commentary>_TL's manager is furious with his teams performance this half</commentary>
+	 <commentary>One gets the feeling the manger will read _TL_ the riot act</commentary>
+	 <commentary>_TL_ will be on the receiving end of their managers [scolding|wrath]</commentary>
+    <commentary cond="_GD_ >0">_TL_ heads into the tunnel to await the managers scolding</commentary>
+	 <commentary cond="_GD_>0">A half , _TL_ team will quickly want to forget</commentary>
+    <commentary cond="_POSS0_ >= 70 or _POSS1_ >= 70">_T[_POSS1_ GE 70]_ is dominating the possession</commentary>
     <commentary cond="_POSS0_ >= 60 or _POSS1_ >= 60">_T[_POSS1_ GE 60]_ have had the [luxury of most|lions share|better] of possession this half</commentary>
     <commentary cond="_POSS0_ > 50 and _GOALS1_ > _GOALS0_">_T0_ may have had more possession but _T1_ have utilised theirs better</commentary>
     <commentary cond="_POSS1_ > 50 and _GOALS0_ > _GOALS1_">_T1_ may have had more possession but _T0_ have utilised theirs better</commentary>
@@ -283,9 +307,15 @@
     <name>penalty</name>
     <commentary>_P0_ steps up to take the penalty</commentary>
     <commentary>_P0_ has a chance to score with a penalty kick</commentary>
-    <commentary>_P0_ can make some of _T_POSS__ worries [dissapear|go away] with this penalty</commentary>
+    <commentary>_P0_ can make some of _T_POSS__ worries [disappear|go away] with this penalty</commentary>
+	 <commentary>Can [_P0_|_T_POSS_] convert the spot kick</commentary>
     <commentary>You have to bury the nerves, swallow and concentrate when your taking penalties</commentary>
     <commentary cond="_PEN_POSS__ > 1">_T_POSS__ looks like they are playing for penalties.</commentary>
+    <commentary cond="_GD_ = 0">_T_POSS__ can sneak ahead if they convert this</commentary>
+    <commentary cond="_GD_=1 and _GOALS_POSS__ < _GOALS_NPOSS__">_P0_ can square the match with this shot</commentary>
+    <commentary cond="_MI_>85 and _GD_=1 and _GOALS_POSS__ < _GOALS_NPOSS__">_P0_ A late penalty now may force this match to a draw</commentary>
+    <commentary cond="_MI_>85 and _GD_=1 and _GOALS_POSS__ < _GOALS_NPOSS__">_T_NPOSS__ have given away an easy chance for _T_POSS__ to come back into this game</commentary>
+    <commentary cond="_MI_>85 and _GD_=1 and _GOALS_POSS__ > _GOALS_NPOSS__">_P0_ can seal up the game with a goal here</commentary>
   </event>
   <event>
     <name>free_kick</name>
@@ -386,3 +416,56 @@
     <commentary cond="_EX_ = 'ON'">_T_TT__ have gone up a gear</commentary>
   </event>
 </lg_commentary>
+<!--
+ideas
+good delivery
+brain fade
+frustrating tackle
+lost pateince 
+plenty of room
+little room
+no words to describe this
+frustration setting in
+enthusiasm 
+whipped the ball in 
+once again team has failed to score
+down he goes
+whenever they attack they look like scoring
+desperate to get a goal by half time
+leading at half time gives team a phycoligical advantage
+lethargic start
+takes up a good position
+accepts the ball from
+team needs to address the amount of room they are giving team
+player shows soem past tricks
+player/teams pride is on the line here
+stem the tide
+team/player causing all the problems
+knocks it onto player
+its all doom andn gloom
+shot forces a fine save from goalie
+thas the worse 45 mins ive seen for a long time
+points are in the bag
+they have all the possesion but havnt produced
+desperate times require desperate means
+hard day at the office
+plenty of chances out there
+linning up for th eshot
+keeper is a tough nut to crack
+dangerous ball in to the box
+teams been pulled apart this half
+lteam in deep trouble
+great first half performance
+one way traffic out there , all teams way
+oozing wiht confidance
+converts from the spot
+full credit
+passionate play
+team needed that save
+picks out player
+lack of comunication
+throws caution to the wind
+sent goalie the wrong way
+goalie alert to the danger
+goalie has been beaten ? times today
+-->
