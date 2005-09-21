@@ -203,8 +203,8 @@
     <commentary>The referees are ready, players set, the whistle blows</commentary>
     <commentary cond="_TAVSKILLDIFF_ <= 4">The teams are well matched. We are in for [a real|an end to end] [tug of war|battle].</commentary>
     <commentary cond="_TAVSKILLDIFF_ >=8">There's a huge gulf in the skill level. This should be a walk over for _T[_TAVSKILL0_ GE _TAVSKILL1_]_</commentary>
-    <commentary cond="_TAVSKILLDIFF_ >=4">_T[_TAVSKILL0_ LE _TAVSKILL1_]_ come into the game as underdogs.</commentary>
-    <commentary cond="_TAVSKILLDIFF_ >=8">_T[_TAVSKILL0_ GE _TAVSKILL1_]_ start the game as sure favourites.</commentary>
+    <commentary cond="_TAVSKILLDIFF_ >=4">_T[_TAVSKILL0_ GE _TAVSKILL1_]_ come into the game as underdogs.</commentary>
+    <commentary cond="_TAVSKILLDIFF_ >=8">_T[_TAVSKILL0_ LE _TAVSKILL1_]_ start the game as sure favourites.</commentary>
     <commentary cond="_TAVSKILLDIFF_ <= 1 and [_TAVSKILL0_ + _TAVSKILL1_] >=85">The clash of the [gladiators|titans] [begins|kicks off]</commentary>
   </event>
   <event>
@@ -216,7 +216,7 @@
     <commentary>Games like this make managers. _TL_ need inspiration from the top.</commentary>    <commentary>The dropped heads tell the story. It's been no picnic here for _TL_.</commentary>
     <commentary>_TL_'s manager cops a rollicking from the fans as he leaves the dugout</commentary>
     <commentary>So far _TW_ and their manager have done everything right.</commentary>
-	 <commentary>_TL's manager is furious with his teams performance this half</commentary>
+	 <commentary>_TL_'s manager is furious with his teams performance this half</commentary>
 	 <commentary>One gets the feeling the manger will read _TL_ the riot act</commentary>
 	 <commentary>_TL_ will be on the receiving end of their managers [scolding|wrath]</commentary>
     <commentary cond="_GD_ >0">_TL_ heads into the tunnel to await the managers scolding</commentary>
@@ -264,8 +264,8 @@
     <commentary>After _MI_ minutes the match ends with a _RE_</commentary>
     <commentary>The referee checks his watch and blows for full time</commentary>
     <commentary>Well that's that. It ends _RE_</commentary>
-    <commentary>_RE_, what an astonishing result for _TW_</commentary>
     <commentary>_TW_'s manager will be delighted with that result</commentary>
+    <commentary cond="_TAVSKILLDIFF_ >=4 and _TWN_ = _T[_TAVSKILL0_ GE _TAVSKILL1_]_"> _RE_, what an astonishing result for _TW_</commentary>
     <commentary cond="_GD_ = 0 "> A draw then. Still a point is a point.</commentary>
     <commentary cond="_GD_ > 0 ">Well that's that. It ends _RE_ in _TW_'s favour</commentary>
     <commentary cond="_GOALS0_ + _GOALS1_ >= 6">Wow, a match to remember. [_GOALS0_ + _GOALS1_] action packed goals!</commentary>
