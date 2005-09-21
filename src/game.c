@@ -1060,6 +1060,7 @@ game_get_max_values(gfloat max_values[4])
 
     pl.skill = pl.cskill = const_float("float_player_max_skill");
     pl.fitness = 1;
+    pl.streak = 0;
 
     max_values[0] = const_float("float_player_max_skill");
 
