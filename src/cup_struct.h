@@ -103,10 +103,10 @@ typedef struct
     /** Number of yellow cards that lead to a missed match.
 	Default: 1000 (off). */
     gint yellow_red;
-    /** Difference of the average skill for the cup teams compared to
-	the league with highest average skill.
+    /** Difference of the average talent for the cup teams compared to
+	the league with highest average talent.
 	Default: 0. */
-    gint talent_diff;
+    gfloat talent_diff;
     /** The week and week_round at the beginning of which the fixtures
 	have to be updated. */
     gint next_fixture_update_week;

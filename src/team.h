@@ -136,9 +136,12 @@ gchar*
 team_has_def_file(const Team *tm);
 
 void
-team_complete_def(Team *tm, gfloat average_talent);
+team_complete_def(Team *tm);
 
 void
 team_complete_def_sort(Team *tm);
+
+gint
+team_get_table_clid(const Team *tm);
 
 #endif

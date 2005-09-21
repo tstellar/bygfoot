@@ -170,34 +170,17 @@ fixture_get_cup_round_winners(const Cup *cup)
 GPtrArray*
 fixture_get_round_robin_advance(const Cup *cup, gint round)
 {
-    gint i, j;
-    GPtrArray *array = g_ptr_array_new();
     const CupRound *cupround = &g_array_index(cup->rounds, CupRound, round);
-    GArray *best_advance = g_array_new(FALSE, FALSE, sizeof(TableElement));
-    
-    for(i=0;i<cupround->tables->len;i++)
-	for(j=0;j<g_array_index(cupround->tables, Table, i).elements->len;j++)
-	{
-	    if(j < cupround->round_robin_number_of_advance)
-		g_ptr_array_add(array, g_array_index(
-				    g_array_index(cupround->tables, Table, i).elements,
-				    TableElement, j).team);
-	    else
-		g_array_append_val(best_advance,
-				   g_array_index(g_array_index(cupround->tables, Table, i).elements,
-						 TableElement, j));
-	}
-    
-    g_array_sort_with_data(best_advance,
-			   (GCompareDataFunc)table_element_compare_func,
-			   GINT_TO_POINTER(cup->id));
-    
-    for(i=0;i<cupround->round_robin_number_of_best_advance;i++)
-	g_ptr_array_add(array, g_array_index(best_advance, TableElement, i).team);
+    GPtrArray *teams = cup_get_teams_sorted(cup);
+    gint i, remove = teams->len -
+	(cupround->round_robin_number_of_groups *
+	 cupround->round_robin_number_of_advance) -
+	cupround->round_robin_number_of_best_advance;  
 
-    g_array_free(best_advance, TRUE);
+    for(i=0;i<remove;i++)
+	g_ptr_array_remove_index(teams, teams->len - 1);    
 
-    return array;
+    return teams;
 }
 
 /** Return the pointer of the team that won the encounter.

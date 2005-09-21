@@ -36,6 +36,7 @@ team_new(gboolean new_id)
     new.structure = team_assign_playing_structure();
     new.style = team_assign_playing_style();
     new.boost = 0;
+    new.average_talent = 0;
 
     new.players = g_array_new(FALSE, FALSE, sizeof(Player));
 
@@ -109,13 +110,13 @@ team_generate_players_stadium(Team *tm)
 		 const_float("float_team_stadium_safety_upper"));
 
     if(tm->clid < ID_CUP_START)
-	average_talent = 
-	    const_float("float_player_max_skill") * skill_factor *
-	    (((gfloat)league_from_clid(tm->clid)->average_talent) / 10000);
+	average_talent = (tm->average_talent == 0) ?
+	    skill_factor * league_from_clid(tm->clid)->average_talent :
+	    tm->average_talent;
     else
 	average_talent = 
 	    skill_factor * team_get_average_talents(lig(0).teams) *
-	    (1 + ((gfloat)cup_from_clid(tm->clid)->talent_diff / 10000));
+	    (1 + cup_from_clid(tm->clid)->talent_diff);
 	
     average_talent = CLAMP(average_talent, 0, const_float("float_player_max_skill"));
 
@@ -159,7 +160,8 @@ query_team_is_in_cups(const Team *tm, gint group)
     for(i=0;i<cps->len;i++)
 	if(cp(i).group == group)
 	    for(j=0;j<cp(i).team_names->len;j++)
-		if(strcmp(tm->name->str, ((GString*)g_ptr_array_index(cp(i).team_names, j))->str) == 0)
+		if(strcmp(tm->name->str, 
+			  ((GString*)g_ptr_array_index(cp(i).team_names, j))->str) == 0)
 		{
 		    if(debug > 90)
 			printf("team %s group %d found in %s \n", tm->name->str,
@@ -180,10 +182,11 @@ query_team_is_in_cup(const Team *tm, const Cup *cup)
     gint i;
 
     for(i=0;i<cup->team_names->len;i++)
-	if(strcmp(tm->name->str, ((GString*)g_ptr_array_index(cup->team_names, i))->str) == 0)
+	if(strcmp(tm->name->str, 
+		  ((GString*)g_ptr_array_index(cup->team_names, i))->str) == 0)
 	    return TRUE;
 
-	return FALSE;
+    return FALSE;
 }
 
 /** Return a GPtrArray containing the pointers
@@ -246,7 +249,7 @@ team_get_fixture(const Team *tm, gboolean last_fixture)
     {
 	for(i=0;i<ligs->len;i++)
 	{
-	    if(lig(i).id == tm->clid)
+	    if(lig(i).active && lig(i).id == tm->clid)
 	    {
 		for(j=0;j<lig(i).fixtures->len;j++)
 		    if(g_array_index(lig(i).fixtures, Fixture, j).attendance == -1 &&
@@ -284,7 +287,7 @@ team_get_fixture(const Team *tm, gboolean last_fixture)
     {
 	for(i=0;i<ligs->len;i++)
 	{
-	    if(lig(i).id == tm->clid)
+	    if(lig(i).active && lig(i).id == tm->clid)
 	    {
 		for(j=lig(i).fixtures->len - 1;j>=0;j--)
 		    if(g_array_index(lig(i).fixtures, Fixture, j).attendance != -1 &&
@@ -1113,7 +1116,7 @@ team_has_def_file(const Team *tm)
 /** Complete the definition of the team (add players,
     calculate wages etc. Called after reading a team def file. */
 void
-team_complete_def(Team *tm, gfloat average_talent)
+team_complete_def(Team *tm)
 {
     gint i, new_pos, pos_sum;
     gint positions[4] = {0, 0, 0, 0};
@@ -1123,7 +1126,8 @@ team_complete_def(Team *tm, gfloat average_talent)
 
     for(i=0;i<tm->players->len;i++)
     {
-	player_complete_def(&g_array_index(tm->players, Player, i), average_talent);
+	player_complete_def(&g_array_index(tm->players, Player, i), 
+			    tm->average_talent);
 	positions[g_array_index(tm->players, Player, i).pos]++;
 
 	/** This is so we don't remove loaded players
@@ -1135,7 +1139,7 @@ team_complete_def(Team *tm, gfloat average_talent)
     for(i=0;i<add;i++)
     {
 	pos_sum = math_sum_int_array(positions, 4);
-	new_player = player_new(tm, average_talent, TRUE);
+	new_player = player_new(tm, tm->average_talent, TRUE);
 	
 	if(positions[0] < 2)
 	    new_pos = 0;
@@ -1251,4 +1255,23 @@ team_complete_def_sort(Team *tm)
     }
 
     team_rearrange(tm);
+}
+
+/** Find out which cup or league table the team
+    belongs to. */
+gint
+team_get_table_clid(const Team *tm)
+{
+    gint i;
+
+    if(tm->clid >= ID_CUP_START ||
+       (tm->clid < ID_CUP_START && !league_from_clid(tm->clid)->active))
+    {
+	for(i = acps->len - 1; i >= 0; i--)
+	    if(cup_has_tables(acp(i)->id) != -1 && 
+	       query_team_is_in_cup(tm, acp(i)))
+		return acp(i)->id;
+    }
+
+    return tm->clid;
 }

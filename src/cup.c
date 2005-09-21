@@ -261,9 +261,15 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
     if(cup_temp == NULL)
     {	    
 	if(ct->number_of_teams == -1)
+	{
 	    for(j=0;j<league->table.elements->len;j++)
-		g_ptr_array_add(teams, 
-				team_of_id(g_array_index(league->table.elements, TableElement, j).team_id));
+	    {
+		g_ptr_array_add(
+		    teams, team_of_id(
+			g_array_index(league->table.elements, TableElement, j).team_id));
+		g_ptr_array_add(cup->team_names, team_of_id(g_array_index(league->table.elements, TableElement, j).team_id)->name);
+	    }
+	}
 	else
 	{
 	    start = ct->start_idx - 1;

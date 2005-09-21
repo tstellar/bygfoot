@@ -41,7 +41,7 @@ user_new(void)
     new.sponsor.name = g_string_new("");
     new.sponsor.contract = new.sponsor.benefit = -1;
 
-    new.youth_academy.players = NULL;
+    new.youth_academy.players = g_array_new(FALSE, FALSE, sizeof(Player));
     new.youth_academy.pos_pref = PLAYER_POS_ANY;
     new.youth_academy.coach = QUALITY_AVERAGE;
 
@@ -115,7 +115,7 @@ user_set_up_team(User *user)
     user_set_up_counters(user);
 
     if(!sett_int("int_opt_disable_ya"))
-	user->youth_academy = youth_academy_new(user->tm);
+	youth_academy_new(user);
 
     user->counters[COUNT_USER_NEW_SPONSOR] = 
 	(sett_int("int_opt_disable_finances")) ? -5 : 1;

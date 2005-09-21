@@ -154,6 +154,7 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
     gint i;
     gchar buf[SMALL], buf2[SMALL];
     gint int_value = -1;
+    gfloat float_value;
     GString *new_string = NULL;
     Table new_table;
 
@@ -161,6 +162,7 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
     buf[text_len] = '\0';
 
     int_value = (gint)g_ascii_strtod(buf, NULL);
+    float_value = (gfloat)g_ascii_strtod(buf, NULL);
 
     if(state == TAG_NAME)
 	g_string_printf(new_cup->name, "%s", buf);
@@ -188,7 +190,7 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
     else if(state == TAG_CUP_GROUP)
 	new_cup->group = int_value;
     else if(state == TAG_CUP_TALENT_DIFF)
-	new_cup->talent_diff = int_value;
+	new_cup->talent_diff = float_value;
     else if(state == TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK)
 	new_cup->next_fixture_update_week = int_value;
     else if(state == TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK_ROUND)
@@ -314,7 +316,7 @@ xml_loadsave_cup_write(const gchar *prefix, const Cup *cup)
     xml_write_int(fil, cup->group, TAG_CUP_GROUP, I0);
     xml_write_int(fil, cup->week_gap, TAG_WEEK_GAP, I0);
     xml_write_int(fil, cup->yellow_red, TAG_YELLOW_RED, I0);
-    xml_write_int(fil, cup->talent_diff, TAG_CUP_TALENT_DIFF, I0);
+    xml_write_float(fil, cup->talent_diff, TAG_CUP_TALENT_DIFF, I0);
     xml_write_int(fil, cup->next_fixture_update_week, 
 		  TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK, I0);
     xml_write_int(fil, cup->next_fixture_update_week_round, 

@@ -9,30 +9,30 @@
 
 /** Set up a youth academy taking the average skill and talent in
     the team into account. */
-YouthAcademy
-youth_academy_new(Team *tm)
+void
+youth_academy_new(User *user)
 {
     gint i;
     gint num_of_youths = math_rndi(const_int("int_youth_academy_youths_lower"),
 				   const_int("int_youth_academy_youths_upper"));
-    YouthAcademy new_academy;
 
-    new_academy.tm = tm;
-    new_academy.coach = 
-	new_academy.av_coach = QUALITY_AVERAGE;
-    new_academy.pos_pref = PLAYER_POS_ANY;
-    new_academy.percentage = 
-	new_academy.av_percentage = const_int("int_youth_academy_default_percentage");
+    user->youth_academy.tm = user->tm;
+    user->youth_academy.coach = 
+	user->youth_academy.av_coach = QUALITY_AVERAGE;
+    user->youth_academy.pos_pref = PLAYER_POS_ANY;
+    user->youth_academy.percentage = 
+	user->youth_academy.av_percentage = 
+	const_int("int_youth_academy_default_percentage");
 
-    new_academy.counter_youth = 
+    user->youth_academy.counter_youth = 
 	math_rnd(const_float("float_youth_academy_youth_counter_lower"),
 		 const_float("float_youth_academy_youth_counter_upper"));
-    new_academy.players = g_array_new(FALSE, FALSE, sizeof(Player));
+
+    free_player_array(&user->youth_academy.players);
+    user->youth_academy.players = g_array_new(FALSE, FALSE, sizeof(Player));
 
     for(i=0;i<num_of_youths;i++)
-	youth_academy_add_new_player(&new_academy);
-
-    return new_academy;
+	youth_academy_add_new_player(&user->youth_academy);
 }
 
 /** Add a new player to the academy based on the
@@ -144,6 +144,9 @@ youth_academy_update_weekly(void)
 {
     gint i, j;
     YouthAcademy *ya = NULL;
+
+    if(sett_int("int_opt_disable_ya"))
+	return;
 
     for(i=0;i<users->len;i++)
     {

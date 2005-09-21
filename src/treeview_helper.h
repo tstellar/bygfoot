@@ -43,11 +43,17 @@ gint
 treeview_helper_get_col_number_column (GtkTreeViewColumn *col);
 
 void
-treeview_helper_get_table_element_colours(const Table *table, gint idx, gchar **colour_fg, 
+treeview_helper_get_table_element_colours(const Table *table, gint idx,
+					  gchar **colour_fg, 
 					  gchar **colour_bg, gboolean user);
 
 gboolean
-treeview_helper_get_table_element_colour_cups(const League *league, gint idx, gchar **colour_bg);
+treeview_helper_get_table_element_colour_cups(const League *league,
+					      gint idx, gchar **colour_bg);
+
+gboolean
+treeview_helper_get_table_element_colour_cups_cup(const Cup *cup, 
+						  const Team *tm, gchar **colour_bg);
 
 void
 treeview_helper_set_user_colours(const Team *tm, gchar **colour_bg, gchar **colour_fg);

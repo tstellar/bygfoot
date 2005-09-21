@@ -15,7 +15,6 @@ enum
     TAG_LEAGUE_LAYER,
     TAG_LEAGUE_FIRST_WEEK,
     TAG_LEAGUE_ROUND_ROBINS,
-    TAG_LEAGUE_AVERAGE_TALENT,
     TAG_LEAGUE_ACTIVE,
     TAG_LEAGUE_PROM_REL,
     TAG_LEAGUE_PROM_REL_PROM_GAMES_DEST_SID,
@@ -82,7 +81,6 @@ xml_loadsave_league_end_element    (GMarkupParseContext *context,
     
     if(tag == TAG_LEAGUE_FIRST_WEEK ||
        tag == TAG_LEAGUE_LAYER ||
-       tag == TAG_LEAGUE_AVERAGE_TALENT ||
        tag == TAG_LEAGUE_ACTIVE ||
        tag == TAG_LEAGUE_ROUND_ROBINS ||
        tag == TAG_NAME ||
@@ -157,8 +155,6 @@ xml_loadsave_league_text         (GMarkupParseContext *context,
 	new_league->week_gap = int_value;
     else if(state == TAG_YELLOW_RED)
 	new_league->yellow_red = int_value;
-    else if(state == TAG_LEAGUE_AVERAGE_TALENT)
-	new_league->average_talent = int_value;
     else if(state == TAG_LEAGUE_ACTIVE)
 	new_league->active = int_value;
     else if(state == TAG_LEAGUE_PROM_REL_PROM_GAMES_DEST_SID)
@@ -248,7 +244,6 @@ xml_loadsave_league_write(const gchar *prefix, const League *league)
     xml_write_int(fil, league->round_robins, TAG_LEAGUE_ROUND_ROBINS, I0);
     xml_write_int(fil, league->week_gap, TAG_WEEK_GAP, I0);
     xml_write_int(fil, league->yellow_red, TAG_YELLOW_RED, I0);
-    xml_write_int(fil, league->average_talent, TAG_LEAGUE_AVERAGE_TALENT, I0);
     xml_write_int(fil, league->active, TAG_LEAGUE_ACTIVE, I0);
 
     fprintf(fil, "%s<_%d>\n", I0, TAG_LEAGUE_PROM_REL);

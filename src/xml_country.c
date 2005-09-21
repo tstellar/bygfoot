@@ -205,6 +205,7 @@ xml_country_read(const gchar *country_name)
     sett_set_int("int_opt_disable_stadium", 0);
     sett_set_int("int_opt_disable_contracts", 0);
     sett_set_int("int_opt_disable_boost_on", 0);
+    sett_set_int("int_opt_disable_ya", 0);
 
     if(g_markup_parse_context_parse(context, file_contents, length, &error))
     {

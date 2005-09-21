@@ -257,7 +257,7 @@ callback_show_tables(gint type)
     gint clid = -1;
 
     if(type == SHOW_CURRENT)
-	clid = current_user.tm->clid;
+	clid = team_get_table_clid(current_user.tm);
     else if(type == SHOW_NEXT_LEAGUE)
 	clid = league_cup_get_next_clid(stat1);
     else if(type == SHOW_PREVIOUS_LEAGUE)

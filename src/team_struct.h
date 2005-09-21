@@ -58,6 +58,9 @@ typedef struct
 	structure, /**< Playing structure. @see team_assign_playing_structure() */
 	style, /**< Playing style. @see team_assign_playing_style() */
 	boost; /**< Whether player boost or anti-boost is switched on. */
+
+    /** Average talent of the players at generation. */
+    gfloat average_talent;
     
     Stadium stadium;
     /**

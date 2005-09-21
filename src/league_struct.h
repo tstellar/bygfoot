@@ -82,8 +82,8 @@ typedef struct
     /** Number of yellow cards until a player gets banned. 
 	Default 1000 (which means 'off', basically). */
     gint yellow_red;
-    /** Average skill for the first season. Default: -1. */
-    gint average_talent;
+    /** Average talent for the first season. Default: -1. */
+    gfloat average_talent;
     /** Array of teams in the league.
 	@see Team */
     GArray *teams;

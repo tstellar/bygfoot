@@ -47,7 +47,6 @@ enum XmlTeamStates
 
 gint state, birth_year;
 Player new_player;
-gfloat average_talent;
 Team *team;
 const gchar *d_file;
 
@@ -76,7 +75,8 @@ xml_team_read_start_element (GMarkupParseContext *context,
     else if(strcmp(element_name, TAG_PLAYER) == 0)
     {
 	state = STATE_PLAYER;
-	new_player = player_new(team, average_talent, TRUE);
+	new_player = player_new(team, ((gfloat)team->average_talent / 10000) * 
+				const_float("float_player_max_skill"), TRUE);
     }
     else if(strcmp(element_name, TAG_PLAYER_NAME) == 0)
 	state = STATE_PLAYER_NAME;
@@ -157,11 +157,13 @@ xml_team_read_text         (GMarkupParseContext *context,
 {
     gchar buf[text_len + 1];
     gint int_value;
+    gfloat float_value;
 
     strncpy(buf, text, text_len);
     buf[text_len] = '\0';
 
     int_value = (gint)g_ascii_strtod(buf, NULL);
+    float_value = (gfloat)g_ascii_strtod(buf, NULL);
 
     if(state == STATE_TEAM_NAME)
 	g_string_printf(team->name, "%s", buf);
@@ -173,9 +175,12 @@ xml_team_read_text         (GMarkupParseContext *context,
     else if(state == STATE_SYMBOL)
 	g_string_printf(team->symbol, "%s", buf);
     else if(state == STATE_AVERAGE_TALENT && opt_int("int_opt_load_defs") == 1)
-	average_talent = int_value;
+	team->average_talent = 
+	    (float_value / 10000) * const_float("float_player_max_skill");
     else if(state == STATE_FORMATION)
 	team->structure = int_value;
+    else if(state == STATE_NAMES_FILE)
+	g_string_printf(team->names_file, "%s", buf);
     else if(state == STATE_PLAYER_NAME)
 	g_string_printf(new_player.name, "%s", buf);
     else if(state == STATE_PLAYER_BIRTH_YEAR && opt_int("int_opt_load_defs") == 1)
@@ -229,6 +234,5 @@ xml_team_read(Team *tm, const gchar *def_file)
 	misc_print_error(&error, TRUE);
     }
 
-    team_complete_def(tm, ((gfloat)average_talent / 10000) * 
-		      const_float("float_player_max_skill"));
+    team_complete_def(team);
 }

@@ -3,6 +3,7 @@
 #include "free.h"
 #include "league.h"
 #include "misc.h"
+#include "option.h"
 #include "team.h"
 #include "table.h"
 #include "variables.h"
@@ -39,6 +40,9 @@
 #define TAG_TEAMS "teams"
 #define TAG_TEAM "team"
 #define TAG_TEAM_NAME "team_name"
+#define TAG_TEAM_SYMBOL "team_symbol"
+#define TAG_TEAM_NAMES_FILE "team_names_file"
+#define TAG_TEAM_AVERAGE_TALENT "team_average_talent"
 #define TAG_TEAM_DEF_FILE "def_file"
 
 /**
@@ -73,6 +77,9 @@ enum XmlLeagueStates
     STATE_TEAMS,
     STATE_TEAM,
     STATE_TEAM_NAME,
+    STATE_TEAM_SYMBOL,
+    STATE_TEAM_NAMES_FILE,
+    STATE_TEAM_AVERAGE_TALENT,
     STATE_TEAM_DEF_FILE,
     STATE_END
 };
@@ -170,6 +177,12 @@ xml_league_read_start_element (GMarkupParseContext *context,
     }
     else if(strcmp(element_name, TAG_TEAM_NAME) == 0)
 	state = STATE_TEAM_NAME;
+    else if(strcmp(element_name, TAG_TEAM_SYMBOL) == 0)
+	state = STATE_TEAM_SYMBOL;
+    else if(strcmp(element_name, TAG_TEAM_NAMES_FILE) == 0)
+	state = STATE_TEAM_NAMES_FILE;
+    else if(strcmp(element_name, TAG_TEAM_AVERAGE_TALENT) == 0)
+	state = STATE_TEAM_AVERAGE_TALENT;
     else if(strcmp(element_name, TAG_TEAM_DEF_FILE) == 0)
 	state = STATE_TEAM_DEF_FILE;
     else
@@ -220,7 +233,10 @@ xml_league_read_end_element    (GMarkupParseContext *context,
     else if(strcmp(element_name, TAG_TEAM) == 0)
 	state = STATE_TEAMS;
     else if(strcmp(element_name, TAG_TEAM_NAME) == 0 ||
-	    strcmp(element_name, TAG_TEAM_DEF_FILE) == 0)
+	    strcmp(element_name, TAG_TEAM_DEF_FILE) == 0 ||
+	    strcmp(element_name, TAG_TEAM_AVERAGE_TALENT) == 0 ||
+	    strcmp(element_name, TAG_TEAM_SYMBOL) == 0 ||
+	    strcmp(element_name, TAG_TEAM_NAMES_FILE) == 0)
 	state = STATE_TEAM;
     else if(strcmp(element_name, TAG_LEAGUE) != 0)
 	g_warning("xml_league_end_start_element: unknown tag: %s; I'm in state %d\n",
@@ -241,12 +257,14 @@ xml_league_read_text         (GMarkupParseContext *context,
 			       GError             **error)
 {
     gchar buf[text_len + 1];
-    gint value;
+    gint int_value;
+    gfloat float_value;
 
     strncpy(buf, text, text_len);
     buf[text_len] = '\0';
 
-    value = (gint)g_ascii_strtod(buf, NULL);
+    int_value = (gint)g_ascii_strtod(buf, NULL);
+    float_value = (gfloat)g_ascii_strtod(buf, NULL);
 
     if(state == STATE_NAME)
     {
@@ -260,37 +278,38 @@ xml_league_read_text         (GMarkupParseContext *context,
     else if(state == STATE_SYMBOL)
 	g_string_printf(new_league.symbol, "%s", buf);
     else if(state == STATE_LAYER)
-	new_league.layer = value;
+	new_league.layer = int_value;
     else if(state == STATE_FIRST_WEEK)
-	new_league.first_week = value;
+	new_league.first_week = int_value;
     else if(state == STATE_WEEK_GAP)
-	new_league.week_gap = value;
+	new_league.week_gap = int_value;
     else if(state == STATE_ROUND_ROBINS)
-	new_league.round_robins = value;
+	new_league.round_robins = int_value;
     else if(state == STATE_YELLOW_RED)
-	new_league.yellow_red = value;
+	new_league.yellow_red = int_value;
     else if(state == STATE_AVERAGE_TALENT)
-	new_league.average_talent = value;
+	new_league.average_talent = 
+	    (float_value / 10000) * const_float("float_player_max_skill");
     else if(state == STATE_NAMES_FILE)
 	g_string_printf(new_league.names_file, "%s", buf);
     else if(state == STATE_ACTIVE)
-	new_league.active = value;
+	new_league.active = int_value;
     else if(state == STATE_PROM_GAMES_DEST_SID)
 	g_string_printf(new_league.prom_rel.prom_games_dest_sid, "%s", buf);
     else if(state == STATE_PROM_GAMES_LOSER_SID)
 	g_string_printf(new_league.prom_rel.prom_games_loser_sid, "%s", buf);
     else if(state == STATE_PROM_GAMES_NUMBER_OF_ADVANCE)
-	new_league.prom_rel.prom_games_number_of_advance = value;
+	new_league.prom_rel.prom_games_number_of_advance = int_value;
     else if(state == STATE_PROM_GAMES_CUP_SID)
 	g_string_printf(new_league.prom_rel.prom_games_cup_sid, "%s", buf);
     else if(state == STATE_PROM_REL_ELEMENT_RANK_START)
 	g_array_index(new_league.prom_rel.elements,
 		      PromRelElement,
-		      new_league.prom_rel.elements->len - 1).ranks[0] = value;
+		      new_league.prom_rel.elements->len - 1).ranks[0] = int_value;
     else if(state == STATE_PROM_REL_ELEMENT_RANK_END)
 	g_array_index(new_league.prom_rel.elements,
 		      PromRelElement,
-		      new_league.prom_rel.elements->len - 1).ranks[1] = value;
+		      new_league.prom_rel.elements->len - 1).ranks[1] = int_value;
     else if(state == STATE_PROM_REL_ELEMENT_DEST_SID)
 	g_string_printf(g_array_index(new_league.prom_rel.elements,
 				      PromRelElement,
@@ -309,6 +328,16 @@ xml_league_read_text         (GMarkupParseContext *context,
     else if(state == STATE_TEAM_NAME)
 	g_string_printf(g_array_index(new_league.teams, Team,
 				      new_league.teams->len - 1).name, "%s", buf);
+    else if(state == STATE_TEAM_SYMBOL)
+	g_string_printf(g_array_index(new_league.teams, Team,
+				      new_league.teams->len - 1).symbol, "%s", buf);
+    else if(state == STATE_TEAM_NAMES_FILE)
+	g_string_printf(g_array_index(new_league.teams, Team,
+				      new_league.teams->len - 1).names_file, "%s", buf);
+    else if(state == STATE_TEAM_AVERAGE_TALENT)
+	g_array_index(new_league.teams, Team,
+		      new_league.teams->len - 1).average_talent = 
+	    (float_value / 10000) * const_float("float_player_max_skill");
     else if(state == STATE_TEAM_DEF_FILE)
 	g_array_index(new_league.teams, Team, new_league.teams->len - 1).def_file = 
 	    g_string_new(buf);
@@ -369,8 +398,10 @@ xml_league_read(const gchar *league_name, GArray *leagues)
 	for(i=0;i<g_array_index(leagues, League, leagues->len - 1).teams->len;i++)
 	{
 	    new_table_element = 
-		table_element_new(&g_array_index(
-				      g_array_index(leagues, League, leagues->len - 1).teams, Team, i), i);
+		table_element_new(
+		    &g_array_index(
+			g_array_index(
+			    leagues, League, leagues->len - 1).teams, Team, i), i);
 	    g_array_append_val(g_array_index(leagues, League, leagues->len - 1).
 			       table.elements, new_table_element);
 	}

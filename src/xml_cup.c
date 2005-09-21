@@ -246,13 +246,15 @@ xml_cup_read_text         (GMarkupParseContext *context,
 			   GError             **error)
 {
     gchar buf[text_len + 1];
-    gint value;
+    gint int_value;
+    gfloat float_value;
     GString *new_property = NULL;
 
     strncpy(buf, text, text_len);
     buf[text_len] = '\0';
 
-    value = (gint)g_ascii_strtod(buf, NULL);
+    int_value = (gint)g_ascii_strtod(buf, NULL);
+    float_value = (gfloat)g_ascii_strtod(buf, NULL);
 
     if(state == STATE_NAME)
 	g_string_printf(new_cup.name, "%s", buf);
@@ -263,50 +265,51 @@ xml_cup_read_text         (GMarkupParseContext *context,
     else if(state == STATE_SID)
 	g_string_printf(new_cup.sid, "%s", buf);
     else if(state == STATE_GROUP)
-	new_cup.group = value;
+	new_cup.group = int_value;
     else if(state == STATE_LAST_WEEK)
-	new_cup.last_week = value;
+	new_cup.last_week = int_value;
     else if(state == STATE_PROPERTY)
     {
 	new_property = g_string_new(buf);
 	g_ptr_array_add(new_cup.properties, new_property);
     }
     else if(state == STATE_ADD_WEEK)
-	new_cup.add_week = value;
+	new_cup.add_week = int_value;
     else if(state == STATE_WEEK_GAP)
-	new_cup.week_gap = value;
+	new_cup.week_gap = int_value;
     else if(state == STATE_YELLOW_RED)
-	new_cup.yellow_red = value;
+	new_cup.yellow_red = int_value;
     else if(state == STATE_TALENT_DIFF)
-	new_cup.talent_diff = value;
+	new_cup.talent_diff = 
+	    (float_value / 10000) * const_float("float_player_max_skill");
     else if(state == STATE_CUP_ROUND_NEW_TEAMS)
-	new_round.new_teams = value;
+	new_round.new_teams = int_value;
     else if(state == STATE_CUP_ROUND_BYES)
-	new_round.byes = value;
+	new_round.byes = int_value;
     else if(state == STATE_CUP_ROUND_HOME_AWAY)
-	new_round.home_away = value;
+	new_round.home_away = int_value;
     else if(state == STATE_CUP_ROUND_REPLAY)
-	new_round.replay = value;
+	new_round.replay = int_value;
     else if(state == STATE_CUP_ROUND_NEUTRAL)
-	new_round.neutral = value;
+	new_round.neutral = int_value;
     else if(state == STATE_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS)
-	new_round.round_robin_number_of_groups = value;
+	new_round.round_robin_number_of_groups = int_value;
     else if(state == STATE_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE)
-	new_round.round_robin_number_of_advance = value;
+	new_round.round_robin_number_of_advance = int_value;
     else if(state == STATE_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE)
-	new_round.round_robin_number_of_best_advance = value;
+	new_round.round_robin_number_of_best_advance = int_value;
     else if(state == STATE_CHOOSE_TEAM_SID)
 	g_string_printf(new_choose_team.sid, "%s", buf);
     else if(state == STATE_CHOOSE_TEAM_NUMBER_OF_TEAMS)
-	new_choose_team.number_of_teams = value;
+	new_choose_team.number_of_teams = int_value;
     else if(state == STATE_CHOOSE_TEAM_START_IDX)
-	new_choose_team.start_idx = value;
+	new_choose_team.start_idx = int_value;
     else if(state == STATE_CHOOSE_TEAM_END_IDX)
-	new_choose_team.end_idx = value;
+	new_choose_team.end_idx = int_value;
     else if(state == STATE_CHOOSE_TEAM_RANDOMLY)
-	new_choose_team.randomly = value;
+	new_choose_team.randomly = int_value;
     else if(state == STATE_CHOOSE_TEAM_GENERATE)
-	new_choose_team.generate = value;
+	new_choose_team.generate = int_value;
 }
 
 /**

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<cup>
+  <name>Qualification Playoff Asia</name>
+  <short_name>QAsiaPlayoff</short_name>
+  <sid>wc06_asia_playoff</sid>
+  <yellow_red>3</yellow_red>
+  <add_week>1000</add_week>
+  <week_gap>1</week_gap>
+  <property>international</property>
+  <property>highlight2</property>
+
+  <cup_rounds>
+
+    <cup_round>
+      <new_teams>2</new_teams>
+
+      <choose_teams>  
+	<choose_team>
+	  <choose_team_sid>wc06_asia</choose_team_sid>
+	  <number_of_teams>2</number_of_teams>
+	  <start_idx>5</start_idx>
+	  <end_idx>6</end_idx>
+        </choose_team>
+      </choose_teams>  
+
+    </cup_round>
+
+  </cup_rounds>
+
+</cup>

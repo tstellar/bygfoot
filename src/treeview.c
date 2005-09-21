@@ -929,7 +929,8 @@ treeview_create_fixture(const Fixture *fix, GtkListStore *ls)
 	    if(fix->clid < ID_CUP_START)
 		rank = team_get_league_rank(fix->teams[i]);
 	    else
-		rank = team_get_cup_rank(fix->teams[i], cup_get_last_tables_round(fix->clid));
+		rank = team_get_cup_rank(fix->teams[i], 
+					 cup_get_last_tables_round(fix->clid));
 
 	    sprintf(buf[i], "<span background='%s' foreground='%s'>%s [%d]</span>",
 		    colour_bg, colour_fg, fix->teams[i]->name->str, rank);
@@ -1115,7 +1116,8 @@ treeview_create_single_table(GtkListStore *ls, const Table *table, gint number)
 	    treeview_helper_insert_icon(ls, &iter, 2, 
 					const_app("string_treeview_table_stay_icon"));
 
-	treeview_helper_get_table_element_colours(table, i, &colour_fg, &colour_bg, FALSE);
+	treeview_helper_get_table_element_colours(table, i, 
+						  &colour_fg, &colour_bg, FALSE);
 	sprintf(buf[0], "<span background='%s' foreground='%s'>%d</span>",
 		colour_bg, colour_fg, i + 1);
 
