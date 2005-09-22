@@ -194,7 +194,7 @@ game_gui_get_radio_items(GtkWidget **style, GtkWidget **scout,
 void
 game_gui_set_main_window_header(void)
 {
-    gint i;
+    gint i, rank;
     gchar buf[SMALL];
     GtkLabel *label_user= GTK_LABEL(lookup_widget(window.main, "label_user")),
 	*label_season= GTK_LABEL(lookup_widget(window.main, "label_season")),
@@ -224,11 +224,18 @@ game_gui_set_main_window_header(void)
 	gtk_widget_hide(GTK_WIDGET(lookup_widget(window.main, "label34")));
     }
 
-    gui_label_set_text_from_int(label_rank, 
-				team_get_league_rank(current_user.tm), FALSE);
+    rank = team_get_league_rank(current_user.tm);
+    if(rank != 0)
+	gui_label_set_text_from_int(label_rank, rank, FALSE);
+    else
+    {
+	gtk_widget_hide(GTK_WIDGET(label_rank));
+	gtk_widget_hide(lookup_widget(window.main, "label29"));
+    }
 
     gtk_label_set_text(label_team, current_user.tm->name->str);
-    gtk_label_set_text(label_league, league_from_clid(current_user.tm->clid)->name->str);    
+    gtk_label_set_text(label_league, 
+		       league_from_clid(current_user.tm->clid)->name->str);
 
     for(i=0;i<2;i++)
 	gtk_widget_set_sensitive(menu_users[i], (users->len > 1));

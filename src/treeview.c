@@ -930,7 +930,7 @@ treeview_create_fixture(const Fixture *fix, GtkListStore *ls)
 		rank = team_get_league_rank(fix->teams[i]);
 	    else
 		rank = team_get_cup_rank(fix->teams[i], 
-					 cup_get_last_tables_round(fix->clid));
+					 cup_get_last_tables_round(fix->clid), TRUE);
 
 	    sprintf(buf[i], "<span background='%s' foreground='%s'>%s [%d]</span>",
 		    colour_bg, colour_fg, fix->teams[i]->name->str, rank);

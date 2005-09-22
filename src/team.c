@@ -388,8 +388,23 @@ team_get_average_talent(const Team *tm)
 gint
 team_get_league_rank(const Team *tm)
 {
-    gint i;
-    GArray *elements = league_from_clid(tm->clid)->table.elements;
+    gint i, clid = team_get_table_clid(tm), rank = 0;
+    GArray *elements = NULL;
+    
+    if(clid < ID_CUP_START)
+    {
+	if(!league_from_clid(clid)->active)
+	    return 0;
+
+	elements = league_from_clid(tm->clid)->table.elements;
+    }
+    else
+    {
+	rank = team_get_cup_rank(
+	    tm, &g_array_index(cup_from_clid(clid)->rounds, CupRound,
+			       cup_has_tables(clid)), FALSE);
+	return (rank == -1) ? 0 : rank;
+    }
 
     for(i=0;i<elements->len;i++)
 	if(g_array_index(elements, TableElement, i).team_id == tm->id)
@@ -403,9 +418,10 @@ team_get_league_rank(const Team *tm)
     return -1;
 }
 
-/** Return the rank of the team in the round robin stage. */
+/** Return the rank of the team in the round robin stage.
+    @param abort Whether to exit if no corresponding entry can be found. */
 gint
-team_get_cup_rank(const Team *tm, const CupRound *cupround)
+team_get_cup_rank(const Team *tm, const CupRound *cupround, gboolean abort)
 {
     gint i, j;
 
@@ -416,9 +432,12 @@ team_get_cup_rank(const Team *tm, const CupRound *cupround)
 		return j + 1;
     }
 
-    g_warning("team_get_cup_rank: no rank found for team %s. \n ", tm->name->str);
-
-    main_exit_program(EXIT_INT_NOT_FOUND, NULL);
+    if(abort)
+    {
+	g_warning("team_get_cup_rank: no rank found for team %s. \n ", tm->name->str);
+	
+	main_exit_program(EXIT_INT_NOT_FOUND, NULL);
+    }
 
     return -1;
 }

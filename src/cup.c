@@ -608,9 +608,11 @@ cup_compare_success_tables(const Team *tm1, const Team *tm2, const Cup *cup, gin
     const CupRound *cupround = &g_array_index(cup->rounds, CupRound, round);
     const TableElement *elem1 = NULL, *elem2 = NULL;
 
-    if(team_get_cup_rank(tm1, cupround) > team_get_cup_rank(tm2, cupround))
+    if(team_get_cup_rank(tm1, cupround, TRUE) > 
+       team_get_cup_rank(tm2, cupround, TRUE))
 	return_value = 1;
-    else if(team_get_cup_rank(tm1, cupround) < team_get_cup_rank(tm2, cupround))
+    else if(team_get_cup_rank(tm1, cupround, TRUE) < 
+	    team_get_cup_rank(tm2, cupround, TRUE))
 	return_value = -1;
     else
     {
@@ -785,12 +787,16 @@ cup_round_get_new_teams(const CupRound *cup_round)
     {
 	for(i=0;i<cup_round->choose_teams->len;i++)
 	{
-	    if(g_array_index(cup_round->choose_teams, CupChooseTeam, i).number_of_teams != -1)
-		new_teams += g_array_index(cup_round->choose_teams, CupChooseTeam, i).number_of_teams;
+	    if(g_array_index(cup_round->choose_teams, CupChooseTeam, i).
+	       number_of_teams != -1)
+		new_teams += 
+		    g_array_index(cup_round->choose_teams, CupChooseTeam, i).
+		    number_of_teams;
 	    else
 	    {
-		cup_get_choose_team_league_cup(&g_array_index(cup_round->choose_teams, CupChooseTeam, i),
-					       &league, &cup_temp);
+		cup_get_choose_team_league_cup(
+		    &g_array_index(cup_round->choose_teams, CupChooseTeam, i),
+		    &league, &cup_temp);
 		if(cup_temp == NULL)
 		    new_teams += league->teams->len;
 		else

@@ -58,7 +58,7 @@ gint
 team_is_user(const Team *tm);
 
 gint
-team_get_cup_rank(const Team *tm, const CupRound *cupround);
+team_get_cup_rank(const Team *tm, const CupRound *cupround, gboolean abort);
 
 gint
 team_get_league_rank(const Team *tm);

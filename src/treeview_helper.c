@@ -583,16 +583,20 @@ treeview_helper_get_table_element_colours(const Table *table, gint idx,
     }
     else
     {
-	if(!treeview_helper_get_table_element_colour_cups_cup(
-	       cup_from_clid(table->clid), elem->team, colour_bg))
-	{
-	    cup_advance = 
-		fixture_get_round_robin_advance(cup_from_clid(table->clid), table->round);
-	    for(i=0;i<cup_advance->len;i++)
-		if((Team*)g_ptr_array_index(cup_advance, i) == elem->team)
-		    *colour_bg = const_app("string_treeview_table_promotion");	
-	    free_g_ptr_array(&cup_advance);
-	}
+	cup_advance = 
+	    fixture_get_round_robin_advance(cup_from_clid(table->clid), table->round);
+	for(i=0;i<cup_advance->len;i++)
+	    if((Team*)g_ptr_array_index(cup_advance, i) == elem->team)
+	    {
+		*colour_bg = const_app("string_treeview_table_promotion");	
+		free_g_ptr_array(&cup_advance);
+		return;
+	    }
+
+	free_g_ptr_array(&cup_advance);
+
+	treeview_helper_get_table_element_colour_cups_cup(
+	    cup_from_clid(table->clid), elem->team, colour_bg);
     }
 }
 

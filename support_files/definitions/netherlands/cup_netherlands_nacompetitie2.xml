@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Nacompetitie Groep 1</name>
+  <short_name>nacompetitie</short_name>
+  <symbol>flag_netherlands.png</symbol>
+  <sid>netherlands_nacompetitie2</sid>
+  <yellow_red>3</yellow_red>  
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>highlight2</property>
+
+  <cup_rounds>
+    <cup_round>
+    <home_away>0</home_away>
+    <number_of_groups>1</number_of_groups>
+    <number_of_advance>1</number_of_advance>
+      <choose_teams>
+	<choose_team>
+	  <choose_team_sid>netherlands1</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <start_idx>16</start_idx>
+	  <end_idx>17</end_idx>
+	</choose_team>
+	<choose_team>
+	  <choose_team_sid>netherlands2</choose_team_sid>
+	  <number_of_teams>3</number_of_teams>
+	  <start_idx>2</start_idx>
+	  <end_idx>4</end_idx>
+	</choose_team>
+     </choose_teams>
+    </cup_round>
+  </cup_rounds>
+
+
+</cup>
+
