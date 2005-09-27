@@ -831,6 +831,9 @@ team_compare_func(gconstpointer a, gconstpointer b, gpointer data)
     }
     else if(type == TEAM_COMPARE_UNSORTED)
 	return_value = 0;
+    else if(type == TEAM_COMPARE_AV_SKILL)
+	return_value = misc_float_compare(team_get_average_skill(tm1, FALSE),
+					  team_get_average_skill(tm2, FALSE));
 
     return return_value;
 }

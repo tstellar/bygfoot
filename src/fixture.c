@@ -292,30 +292,49 @@ fixture_write_cup_round_robin(Cup *cup, gint cup_round, GPtrArray *teams)
     }
 
     if(cupround->randomise_teams)
-	teams = misc_randomise_g_pointer_array(teams);
+	g_ptr_array_sort_with_data(teams, (GCompareDataFunc)team_compare_func,
+			       GINT_TO_POINTER(TEAM_COMPARE_AV_SKILL));
 
-    cnt = 0;
     for(i=0;i<number_of_groups;i++)
     {
 	table_group[i].name = g_string_new(cup->name->str);
 	table_group[i].clid = cup->id;
 	table_group[i].round = cup_round;
-	table_group[i].elements = g_array_new(FALSE, FALSE, sizeof(TableElement));
-    
+	table_group[i].elements = g_array_new(FALSE, FALSE, sizeof(TableElement));    
 	teams_group[i] = g_ptr_array_new();
-
-	for(j=0;j<team_num + (i < plus_div);j++)
+    }
+    
+    cnt = 0;
+    if(!cupround->randomise_teams)
+    {
+	for(i=0;i<number_of_groups;i++)
+	    for(j=0;j<team_num + (i < plus_div);j++)
+	    {
+		g_ptr_array_add(teams_group[i],
+				g_ptr_array_index(teams, cnt));
+		new_table_element = 
+		    table_element_new((Team*)g_ptr_array_index(teams, cnt), table_group[i].elements->len);
+		g_array_append_val(table_group[i].elements, new_table_element);
+		cnt++;
+	    }	
+    }
+    else
+    {
+	for(i=0;i<teams->len;i++)
 	{
-	    g_ptr_array_add(teams_group[i],
-			    g_ptr_array_index(teams, cnt));
+	    g_ptr_array_add(teams_group[cnt],
+			    g_ptr_array_index(teams, i));
 	    new_table_element = 
-		table_element_new((Team*)g_ptr_array_index(teams, cnt), table_group[i].elements->len);
-	    g_array_append_val(table_group[i].elements, new_table_element);
-	    cnt++;
+		table_element_new((Team*)g_ptr_array_index(teams, i), table_group[cnt].elements->len);
+	    g_array_append_val(table_group[cnt].elements, new_table_element);
+	    cnt = (cnt + 1) % number_of_groups;
 	}
+    }
 
+    for(i=0;i<number_of_groups;i++)
+    {
 	g_array_append_val(cupround->tables, table_group[i]);
-	fixture_write_round_robin((gpointer)cup, cup_round, teams_group[i], !cupround->home_away);
+	fixture_write_round_robin((gpointer)cup, cup_round, teams_group[i], !cupround->home_away);	
     }
 
     g_ptr_array_free(teams, TRUE);
