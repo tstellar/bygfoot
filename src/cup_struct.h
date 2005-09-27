@@ -18,6 +18,9 @@ typedef struct
     /** Whether the matches are on neutral ground.       
 	Default: FALSE. */
     gboolean neutral;
+    /** Whether the teams array gets randomised before writing the fixtures.
+	Default: TRUE. FALSE makes only sense in the first cup round. */
+    gboolean randomise_teams;
     /** How many round robin groups there are. 
 	Default: 0 (ie. no round robin). */
     gint round_robin_number_of_groups;

@@ -999,9 +999,9 @@ player_update_streak(Player *pl)
 	streak_prob_add = const_float("float_player_streak_prob_zero");
 
     /*d*/
-    if(debug > 0)
-	printf("upd %-25s streak %d count %.1f prob %.3f\n",
-	       pl->name->str, pl->streak, pl->streak_count, pl->streak_prob);
+/*     if(debug > 0) */
+/* 	printf("upd %-25s streak %d count %.1f prob %.3f\n", */
+/* 	       pl->name->str, pl->streak, pl->streak_count, pl->streak_prob); */
     
     /** Player streak is locked. */
     if(pl->streak_count < 0)
@@ -1056,9 +1056,9 @@ player_update_streak(Player *pl)
 	pl->streak_count = streak_length;
 	
 	/*d*/
-	if(debug > 0)
-	    printf("**** %s HOT length %.1f prob %.2f\n",
-		   pl->name->str, pl->streak_count, pl->streak_prob);
+/* 	if(debug > 0) */
+/* 	    printf("**** %s HOT length %.1f prob %.2f\n", */
+/* 		   pl->name->str, pl->streak_count, pl->streak_prob); */
     }
     else if(streak_type > pl->streak_prob &&
 	    ((pl->streak_prob > 0 &&  
@@ -1070,9 +1070,9 @@ player_update_streak(Player *pl)
 	pl->streak_count = streak_length;
 
 	/*d*/
-	if(debug > 0)
-	    printf("**** %s COLD length %.1f prob %.2f\n",
-		   pl->name->str, pl->streak_count, pl->streak_prob);
+/* 	if(debug > 0) */
+/* 	    printf("**** %s COLD length %.1f prob %.2f\n", */
+/* 		   pl->name->str, pl->streak_count, pl->streak_prob); */
     }
 }
 
@@ -1383,10 +1383,10 @@ player_streak_add_to_prob(Player *pl, gfloat add)
     pl->streak_prob += add;
     pl->streak_prob = CLAMP(pl->streak_prob, -1, 1);
     /*d*/
-    if(debug > 0)
-	printf("addto %-25s st %d cnt %.1f pro %.3f\n",
-	       pl->name->str, pl->streak, pl->streak_count,
-	       pl->streak_prob);
+/*     if(debug > 0) */
+/* 	printf("addto %-25s st %d cnt %.1f pro %.3f\n", */
+/* 	       pl->name->str, pl->streak, pl->streak_count, */
+/* 	       pl->streak_prob); */
 }
 
 /** Find out whether a player is in the youth academy. */

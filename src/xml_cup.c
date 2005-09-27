@@ -28,6 +28,7 @@
 #define TAG_CUP_ROUND_HOME_AWAY "home_away"
 #define TAG_CUP_ROUND_REPLAY "replay"
 #define TAG_CUP_ROUND_NEUTRAL "neutral"
+#define TAG_CUP_ROUND_RANDOMISE_TEAMS "randomise_teams"
 #define TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS "number_of_groups"
 #define TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE "number_of_advance"
 #define TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE "number_of_best_advance"
@@ -64,6 +65,7 @@ enum XmlCupStates
     STATE_CUP_ROUND_HOME_AWAY,
     STATE_CUP_ROUND_REPLAY,
     STATE_CUP_ROUND_NEUTRAL,
+    STATE_CUP_ROUND_RANDOMISE_TEAMS,
     STATE_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS,
     STATE_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE,
     STATE_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE,
@@ -146,6 +148,8 @@ xml_cup_read_start_element (GMarkupParseContext *context,
 	state = STATE_CUP_ROUND_REPLAY;
     else if(strcmp(element_name, TAG_CUP_ROUND_NEUTRAL) == 0)
 	state = STATE_CUP_ROUND_NEUTRAL;
+    else if(strcmp(element_name, TAG_CUP_ROUND_RANDOMISE_TEAMS) == 0)
+	state = STATE_CUP_ROUND_RANDOMISE_TEAMS;
     else if(strcmp(element_name, TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS) == 0)
 	state = STATE_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS;
     else if(strcmp(element_name, TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE) == 0)
@@ -208,6 +212,7 @@ xml_cup_read_end_element    (GMarkupParseContext *context,
     else if(strcmp(element_name, TAG_CUP_ROUND_HOME_AWAY) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_REPLAY) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_NEUTRAL) == 0 ||
+	    strcmp(element_name, TAG_CUP_ROUND_RANDOMISE_TEAMS) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE) == 0 ||
@@ -292,6 +297,8 @@ xml_cup_read_text         (GMarkupParseContext *context,
 	new_round.replay = int_value;
     else if(state == STATE_CUP_ROUND_NEUTRAL)
 	new_round.neutral = int_value;
+    else if(state == STATE_CUP_ROUND_RANDOMISE_TEAMS)
+	new_round.randomise_teams = int_value;
     else if(state == STATE_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS)
 	new_round.round_robin_number_of_groups = int_value;
     else if(state == STATE_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE)

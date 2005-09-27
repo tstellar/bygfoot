@@ -75,8 +75,9 @@ cup_round_new(void)
     new.home_away = TRUE;
     new.replay = 0;
     new.neutral = FALSE;
+    new.randomise_teams = TRUE;
     new.round_robin_number_of_groups = 0;
-    new.round_robin_number_of_advance = 1;
+    new.round_robin_number_of_advance = 0;
     new.round_robin_number_of_best_advance = 0;
     new.tables = g_array_new(FALSE, FALSE, sizeof(Table));
     new.choose_teams = g_array_new(FALSE, FALSE, sizeof(CupChooseTeam));
@@ -697,12 +698,16 @@ cup_get_matchdays_in_cup_round(const Cup *cup, gint round)
     
     if(cup_round->round_robin_number_of_groups > 0)
     {
-	number_of_teams = (cup_round_get_number_of_teams(cup, round) -
-			   cup_round_get_byes(cup, round)) /
-	    cup_round->round_robin_number_of_groups;
-	number_of_matchdays = (number_of_teams  % 2 == 0) ?
-	    2 * (number_of_teams  - 1) :
-	    2 * number_of_teams;
+	number_of_teams = cup_round_get_number_of_teams(cup, round);
+	
+	if(number_of_teams % cup_round->round_robin_number_of_groups == 0)
+	    number_of_matchdays = 
+		((number_of_teams / cup_round->round_robin_number_of_groups) - 1) * 2;
+	else
+	    number_of_matchdays =
+		((number_of_teams - 
+		  (number_of_teams % cup_round->round_robin_number_of_groups)) /
+		 cup_round->round_robin_number_of_groups) * 2;
     }
     else if(g_array_index(cup->rounds, CupRound, round).home_away)
 	number_of_matchdays = 2;
@@ -756,17 +761,20 @@ cup_round_get_byes(const Cup *cup, gint round)
 	else
 	    new_teams = cup_round_get_number_of_teams(cup, round);
 
-	if(cup_round->round_robin_number_of_groups == 0)
-	    number_of_byes = math_get_bye_len(new_teams);
-	else
-	{
-	    while(new_teams % cup_round->round_robin_number_of_groups != 0)
-	    {
-		new_teams--;
-		number_of_byes++;
-	    }
-	}
-    }    
+	number_of_byes = (cup_round->round_robin_number_of_groups == 0) ?
+	    math_get_bye_len(new_teams) : 0;
+
+/* 	if(cup_round->round_robin_number_of_groups == 0) */
+/* 	    number_of_byes = math_get_bye_len(new_teams); */
+/* 	else */
+/* 	{ */
+/* 	    while(new_teams % cup_round->round_robin_number_of_groups != 0) */
+/* 	    { */
+/* 		new_teams--; */
+/* 		number_of_byes++; */
+/* 	    } */
+/* 	} */
+    }
 
     return number_of_byes;
 }
@@ -952,10 +960,11 @@ query_cup_begins(const Cup *cup)
 			       CupChooseTeam, i), &league, &cup_temp);
 
 	    if((cup_temp == NULL && 
-		g_array_index(league->fixtures, Fixture,
-			      league->fixtures->len - 1).week_number == week &&
-		g_array_index(league->fixtures, Fixture,
-			      league->fixtures->len - 1).week_round_number == week_round) ||
+		(!league->active || 
+		 (g_array_index(league->fixtures, Fixture,
+				league->fixtures->len - 1).week_number == week &&
+		  g_array_index(league->fixtures, Fixture,
+				league->fixtures->len - 1).week_round_number == week_round))) ||
 	       (league == NULL && 
 		(cup_temp->fixtures->len > 0 &&
 		 g_array_index(cup_temp->fixtures, Fixture,
@@ -975,8 +984,9 @@ query_cup_begins(const Cup *cup)
 		&g_array_index(cup_round->choose_teams,
 			       CupChooseTeam, i), &league, &cup_temp);
 	    if((cup_temp == NULL &&
-		g_array_index(league->fixtures, Fixture,
-			      league->fixtures->len - 1).attendance == -1) ||
+		(league->active &&
+		 g_array_index(league->fixtures, Fixture,
+			       league->fixtures->len - 1).attendance == -1)) ||
 	       (league == NULL &&
 		(cup_temp->fixtures->len == 0 || 
 		 (cup_temp->fixtures->len > 0 && 

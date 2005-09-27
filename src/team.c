@@ -119,6 +119,7 @@ team_generate_players_stadium(Team *tm)
 	    (1 + cup_from_clid(tm->clid)->talent_diff);
 	
     average_talent = CLAMP(average_talent, 0, const_float("float_player_max_skill"));
+    tm->average_talent = average_talent;
 
     if(def_file == NULL)
     {

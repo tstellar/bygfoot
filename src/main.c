@@ -162,10 +162,7 @@ void
 main_exit_program(gint exit_code, gchar *exit_message)
 {
     if(gtk_main_level() > 0)
-    {
-	window_main_save_geometry();
 	gtk_main_quit();
-    }
 
     free_memory();
     

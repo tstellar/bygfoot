@@ -292,7 +292,6 @@ void
 on_menu_youth_kick_out_of_academy_activate
                                         (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
-#endif
 
 void
 on_mm_add_last_match_activate          (GtkMenuItem     *menuitem,
@@ -301,3 +300,8 @@ on_mm_add_last_match_activate          (GtkMenuItem     *menuitem,
 void
 on_mm_manage_matches_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
+
+void
+on_menu_save_window_geometry_activate  (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+#endif

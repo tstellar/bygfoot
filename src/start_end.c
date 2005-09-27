@@ -334,6 +334,7 @@ end_week_round_update_fixtures(void)
 			     lig(i).id, -1, "");
     
     for(i=0;i<cps->len;i++)
+    {
 	if(cp(i).add_week == 1000 && 
 	   cp(i).fixtures->len == 0 &&
 	   query_cup_begins(&cp(i)))
@@ -342,6 +343,7 @@ end_week_round_update_fixtures(void)
 	    fixture_write_cup_fixtures(&cp(i));
 	    g_ptr_array_add(acps, &cp(i));
 	}
+    }
 }
 
 /** Start a new week round. */

@@ -25,13 +25,13 @@ callback_show_next_live_game(void)
     gint i, j;
 
     /*d*/
-    if(debug > 0)
-	for(i=0;i<current_user.tm->players->len;i++)
-	    printf("wee %-25s st %d cnt %f pro %.3f\n",
-		   g_array_index(current_user.tm->players, Player, i).name->str,
-		   g_array_index(current_user.tm->players, Player, i).streak,
-		   g_array_index(current_user.tm->players, Player, i).streak_count,
-		   g_array_index(current_user.tm->players, Player, i).streak_prob);
+/*     if(debug > 0) */
+/* 	for(i=0;i<current_user.tm->players->len;i++) */
+/* 	    printf("wee %-25s st %d cnt %f pro %.3f\n", */
+/* 		   g_array_index(current_user.tm->players, Player, i).name->str, */
+/* 		   g_array_index(current_user.tm->players, Player, i).streak, */
+/* 		   g_array_index(current_user.tm->players, Player, i).streak_count, */
+/* 		   g_array_index(current_user.tm->players, Player, i).streak_prob); */
     
     for(i=0;i<users->len;i++)
 	usr(i).counters[COUNT_USER_TOOK_TURN] = 0;

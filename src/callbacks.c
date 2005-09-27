@@ -1128,3 +1128,11 @@ on_mm_manage_matches_activate          (GtkMenuItem     *menuitem,
     else
 	window_show_mmatches();
 }
+
+void
+on_menu_save_window_geometry_activate  (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    window_main_save_geometry();
+}
+
