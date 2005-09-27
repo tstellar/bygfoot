@@ -8,19 +8,19 @@
     <commentary>_P1_ przerzuca piłkę na [lewą stronę|prawą stronę|drugą stronę|środek boiska], ma ją teraz _P0_</commentary>
     <commentary>_P1_ zostawia piłkę, przejmuje ją _P0_</commentary>
     <commentary>_P1_ biegnie z piłką, _P0_ wychodzi na pozycję</commentary>
-    <commentary>_P0_ rozgląda się, komu podać</commentary>
+    <commentary>_P0_ [rozgląda się, komu podać|próbuje podać|szuka szansy na podanie]</commentary>
     <commentary>_P0_ opanowuje podanie</commentary>
     <commentary>_P0_ biegnie z piłką</commentary>
     <commentary>_P0_ przedziera się [lewą stroną|prawą stroną|środkiem] boiska</commentary>
     <commentary>_P0_ opanowuje piłkę</commentary>
     <commentary pri="4">_P0_ [próbuje|usiłuje|stara się] [podać do przodu|minąć rywala|wyprowadzić akcję]</commentary>
     <commentary>Długą piłkę przejmuje _P0_</commentary>
-    <commentary>Przerzut na drugą stronę, gdzie wychodzi na pozycję _P0_</commentary>
+    <commentary>Przerzut na [lewą|prawą|drugą] stronę, gdzie wychodzi na pozycję _P0_</commentary>
     <commentary>Przy piłce _P0_</commentary>
     <commentary>[Przerzucenie|Przerzut] piłki na [drugą|lewą|prawą] stronę[| boiska]</commentary>
     <commentary>[Dobre|Ciekawe|Bardzo dobre] rozciągnięcie gry</commentary>
     <commentary>Podanie na [lewe |prawe |drugie ||]skrzydło</commentary>
-    <commentary>_T_TT__ rozgrywa piłkę</commentary>
+    <commentary>_T_TT__ [rozgrywa piłkę|atakuje]</commentary>
     <commentary cond="_MI_ > 20">Trwa walka w środku pola</commentary>
     <commentary cond="_TT_ = _TLN_ and _MT_ < 40">_P0_ próbuje jeszcze zmobilizować kolegów do walki</commentary>
     <commentary cond="_POS0_ > 70">Zdecydowana przewaga gospodarzy</commentary>
@@ -130,11 +130,13 @@
   </event>
   <event>
     <name>penalty</name>
-    <commentary>Rzut karny!</commentary>
-    <commentary>_P0_ będzie wykonywał rzut karny!</commentary>
-    <commentary>Sędzia pokazuje na [jedenasty metr|rzut karny]!</commentary>
-    <commentary>Sędzia nie ma wątpliwości - karny!</commentary>
-    <commentary>Będzie rzut karny!</commentary>
+    <commentary cond="_TIME_ != 3">Rzut karny!</commentary>
+    <commentary cond="_TIME_ != 3">_P0_ będzie wykonywał rzut karny!</commentary>
+    <commentary cond="_TIME_ != 3">Sędzia pokazuje na [jedenasty metr|rzut karny]!</commentary>
+    <commentary cond="_TIME_ != 3">Sędzia nie ma wątpliwości - karny!</commentary>
+    <commentary cond="_TIME_ != 3">Będzie rzut karny!</commentary>
+    <commentary pri="3" cond="_TIME_ = 3">_P0_ [będzie strzelał|będzie wykonywał następny rzut karny|podchodzi do piłki|ustawia piłkę|ustawia piłkę na jedenastym metrze]</commentary>
+    <commentary cond="_TIME_ = 3">_P0_ i _P1_ stają naprzeciw siebie</commentary>
   </event>
   <event>
     <name>free_kick</name>
