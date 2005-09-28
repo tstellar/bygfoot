@@ -408,10 +408,10 @@ window_show_transfer_dialog(const gchar *text)
     gtk_label_set_text(GTK_LABEL(lookup_widget(window.transfer_dialog, "label_transfer_dialog")), text);
 }
 
-/** Set the spinbuttons in the live window
-    to the correct values. */
+/** Set up the spinbuttons and boost/style images in the
+    live window. */
 void
-window_live_set_spinbuttons(void)
+window_live_set_up(void)
 {
     GtkSpinButton *sb_speed = 
 	GTK_SPIN_BUTTON(lookup_widget(window.live, "spinbutton_speed"));
@@ -427,6 +427,10 @@ window_live_set_spinbuttons(void)
     gtk_spin_button_set_value(
 	GTK_SPIN_BUTTON(lookup_widget(window.live, "spinbutton_verbosity")),
 	(gfloat)option_int("int_opt_user_live_game_verbosity", &usr(stat2).options));
+
+    game_gui_write_meters(GTK_IMAGE(lookup_widget(window.live, "image_lg_style")),
+			  GTK_IMAGE(lookup_widget(window.live, "image_lg_boost")),
+			  usr(stat2).tm);
 }
 
 /** Save main window size and position into a file.*/
@@ -559,7 +563,7 @@ window_create(gint window_type)
 	    }
 	    strcpy(buf, league_cup_get_name_string(((LiveGame*)statp)->fix->clid));
 	    wind = window.live;
-	    window_live_set_spinbuttons();
+	    window_live_set_up();
 	    break;
 	case WINDOW_WARNING:
 	    if(window.warning != NULL)

@@ -370,23 +370,78 @@ on_button_sponsors_wait_clicked        (GtkButton       *button,
 }
 
 gboolean
-on_eventbox_lg_style_button_press_event
-                                        (GtkWidget       *widget,
-                                        GdkEventButton  *event,
-                                        gpointer         user_data)
+on_eventbox_lg_style_button_press_event (GtkWidget       *widget,
+					 GdkEventButton  *event,
+					 gpointer         user_data)
 {
+    gint new_style = -1;
+
+    if(event->type != GDK_BUTTON_PRESS)
+	return FALSE;
+
+    if(event->button == 3)
+	new_style = (usr(stat2).tm->style != 2) ?
+	    usr(stat2).tm->style + 1 : -2;
+    else if(event->button == 1)
+	new_style = (usr(stat2).tm->style != -2) ?
+	    usr(stat2).tm->style - 1 : 2;
+    else
+	return FALSE;
+
+    game_save_team_states();
+    usr(stat2).tm->style = new_style;
+
+    game_gui_write_meters(GTK_IMAGE(lookup_widget(window.live, "image_lg_style")),
+			  GTK_IMAGE(lookup_widget(window.live, "image_lg_boost")),
+			  usr(stat2).tm);
+    if(&current_user == &usr(stat2))
+	game_gui_write_meters(GTK_IMAGE(lookup_widget(window.main, "image_style")),
+			      GTK_IMAGE(lookup_widget(window.main, "image_boost")),
+			      current_user.tm);
+    
+    stat0 = STATUS_LIVE_GAME_CHANGE;
 
     return FALSE;
 }
 
 
 gboolean
-on_eventbox_lg_boost_button_press_event
-                                        (GtkWidget       *widget,
-                                        GdkEventButton  *event,
-                                        gpointer         user_data)
+on_eventbox_lg_boost_button_press_event (GtkWidget       *widget,
+					 GdkEventButton  *event,
+					 gpointer         user_data)
 {
+    gint new_boost = -1;
+
+    if(event->type != GDK_BUTTON_PRESS)
+	return FALSE;
+
+    if(event->button == 3)
+	new_boost = (usr(stat2).tm->boost != 1) ?
+	    usr(stat2).tm->boost + 1 : -1;
+    else if(event->button == 1)
+	new_boost = (usr(stat2).tm->boost != -1) ?
+	    usr(stat2).tm->boost - 1 : 1;
+    else
+	return FALSE;
+
+    if(new_boost == 1 && sett_int("int_opt_disable_boost_on"))
+    {
+	game_gui_show_warning(_("Boost ON is disabled in this country definition."));
+	return FALSE;
+    }
+
+    game_save_team_states();
+    usr(stat2).tm->boost = new_boost;
+
+    game_gui_write_meters(GTK_IMAGE(lookup_widget(window.live, "image_lg_style")),
+			  GTK_IMAGE(lookup_widget(window.live, "image_lg_boost")),
+			  usr(stat2).tm);
+    if(&current_user == &usr(stat2))
+	game_gui_write_meters(GTK_IMAGE(lookup_widget(window.main, "image_style")),
+			      GTK_IMAGE(lookup_widget(window.main, "image_boost")),
+			      current_user.tm);
     
+    stat0 = STATUS_LIVE_GAME_CHANGE;
+
     return FALSE;
 }
-

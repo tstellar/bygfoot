@@ -57,7 +57,7 @@ void
 game_gui_write_av_skills(void);
 
 void
-game_gui_write_meters(void);
+game_gui_write_meters(GtkImage *image_style, GtkImage *image_boost, const Team *tm);
 
 void
 game_gui_show_job_offer(Team *team, gint type);

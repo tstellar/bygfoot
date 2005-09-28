@@ -41,7 +41,8 @@ gboolean show;
 void
 live_game_calculate_fixture(Fixture *fix)
 {
-    if(stat0 != STATUS_LIVE_GAME_PAUSE)
+    if(stat0 != STATUS_LIVE_GAME_PAUSE && 
+       stat0 != STATUS_LIVE_GAME_CHANGE)
 	live_game_initialize(fix);
     else
 	stat0 = STATUS_SHOW_LIVE_GAME;
@@ -60,7 +61,8 @@ live_game_calculate_fixture(Fixture *fix)
 	live_game_evaluate_unit(&last_unit);
     }
     while(last_unit.event.type != LIVE_GAME_EVENT_END_MATCH &&
-	  stat0 != STATUS_LIVE_GAME_PAUSE);
+	  stat0 != STATUS_LIVE_GAME_PAUSE &&
+	  stat0 != STATUS_LIVE_GAME_CHANGE);
 
     if(last_unit.event.type == LIVE_GAME_EVENT_END_MATCH)
     {
@@ -68,6 +70,8 @@ live_game_calculate_fixture(Fixture *fix)
 	    lg_commentary_post_match();
 	game_post_match(fix);
     }
+    else if(stat0 == STATUS_LIVE_GAME_CHANGE)
+	live_game_resume();
 }
 
 /** Initialize a few things at the beginning of a live game. */
@@ -94,7 +98,7 @@ live_game_initialize(Fixture *fix)
 	else
 	    gtk_window_set_title(GTK_WINDOW(window.live),
 				 league_cup_get_name_string(((LiveGame*)statp)->fix->clid));
-	window_live_set_spinbuttons();
+	window_live_set_up();
     }
 
     game_initialize(fix);

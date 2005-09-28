@@ -495,9 +495,9 @@ create_window_live (void)
   GtkWidget *spinbutton_verbosity;
   GtkWidget *vseparator1;
   GtkWidget *eventbox_lg_boost;
-  GtkWidget *image65;
+  GtkWidget *image_lg_boost;
   GtkWidget *eventbox_lg_style;
-  GtkWidget *image64;
+  GtkWidget *image_lg_style;
   GtkAccelGroup *accel_group;
   GtkTooltips *tooltips;
 
@@ -697,20 +697,20 @@ create_window_live (void)
   eventbox_lg_boost = gtk_event_box_new ();
   gtk_widget_show (eventbox_lg_boost);
   gtk_box_pack_end (GTK_BOX (hbox48), eventbox_lg_boost, FALSE, FALSE, 0);
-  gtk_tooltips_set_tip (tooltips, eventbox_lg_boost, _("Left- and right click to change boost"), NULL);
+  gtk_tooltips_set_tip (tooltips, eventbox_lg_boost, _("Right click and left click to change boost state"), NULL);
 
-  image65 = create_pixmap (window_live, "boost_off.png");
-  gtk_widget_show (image65);
-  gtk_container_add (GTK_CONTAINER (eventbox_lg_boost), image65);
+  image_lg_boost = create_pixmap (window_live, "boost_off.png");
+  gtk_widget_show (image_lg_boost);
+  gtk_container_add (GTK_CONTAINER (eventbox_lg_boost), image_lg_boost);
 
   eventbox_lg_style = gtk_event_box_new ();
   gtk_widget_show (eventbox_lg_style);
   gtk_box_pack_end (GTK_BOX (hbox48), eventbox_lg_style, FALSE, FALSE, 0);
-  gtk_tooltips_set_tip (tooltips, eventbox_lg_style, _("Left- and right click to change style"), NULL);
+  gtk_tooltips_set_tip (tooltips, eventbox_lg_style, _("Right click and left click to change your playing style"), NULL);
 
-  image64 = create_pixmap (window_live, "style_bal.png");
-  gtk_widget_show (image64);
-  gtk_container_add (GTK_CONTAINER (eventbox_lg_style), image64);
+  image_lg_style = create_pixmap (window_live, "style_bal.png");
+  gtk_widget_show (image_lg_style);
+  gtk_container_add (GTK_CONTAINER (eventbox_lg_style), image_lg_style);
 
   g_signal_connect ((gpointer) window_live, "delete_event",
                     G_CALLBACK (on_live_window_delete_event),
@@ -780,9 +780,9 @@ create_window_live (void)
   GLADE_HOOKUP_OBJECT (window_live, spinbutton_verbosity, "spinbutton_verbosity");
   GLADE_HOOKUP_OBJECT (window_live, vseparator1, "vseparator1");
   GLADE_HOOKUP_OBJECT (window_live, eventbox_lg_boost, "eventbox_lg_boost");
-  GLADE_HOOKUP_OBJECT (window_live, image65, "image65");
+  GLADE_HOOKUP_OBJECT (window_live, image_lg_boost, "image_lg_boost");
   GLADE_HOOKUP_OBJECT (window_live, eventbox_lg_style, "eventbox_lg_style");
-  GLADE_HOOKUP_OBJECT (window_live, image64, "image64");
+  GLADE_HOOKUP_OBJECT (window_live, image_lg_style, "image_lg_style");
   GLADE_HOOKUP_OBJECT_NO_REF (window_live, tooltips, "tooltips");
 
   gtk_window_add_accel_group (GTK_WINDOW (window_live), accel_group);

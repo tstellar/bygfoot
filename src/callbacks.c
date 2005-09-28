@@ -744,7 +744,9 @@ on_eventbox_style_button_press_event   (GtkWidget       *widget,
 
     team_change_attribute_with_message(current_user.tm, TEAM_ATTRIBUTE_STYLE, new_style);
 
-    game_gui_write_meters();
+    game_gui_write_meters(GTK_IMAGE(lookup_widget(window.main, "image_style")),
+			  GTK_IMAGE(lookup_widget(window.main, "image_boost")),
+			  current_user.tm);
     game_gui_write_radio_items();
     
     if(stat0 == STATUS_MAIN)
@@ -776,14 +778,13 @@ on_eventbox_boost_button_press_event   (GtkWidget       *widget,
 	return FALSE;
 
     if(new_boost == 1 && sett_int("int_opt_disable_boost_on"))
-    {
-	new_boost = 0;
 	game_gui_print_message(_("Boost ON is disabled in this country definition."));
-    }
     else
 	team_change_attribute_with_message(current_user.tm, TEAM_ATTRIBUTE_BOOST, new_boost);
 
-    game_gui_write_meters();
+    game_gui_write_meters(GTK_IMAGE(lookup_widget(window.main, "image_style")),
+			  GTK_IMAGE(lookup_widget(window.main, "image_boost")),
+			  current_user.tm);
     game_gui_write_radio_items();
 
     if(stat0 == STATUS_MAIN)

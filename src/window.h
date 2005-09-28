@@ -64,7 +64,7 @@ void
 window_show_menu_youth(GdkEvent *event);
 
 void
-window_live_set_spinbuttons(void);
+window_live_set_up(void);
 
 void
 window_show_transfer_dialog(const gchar *text);

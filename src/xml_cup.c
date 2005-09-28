@@ -29,9 +29,9 @@
 #define TAG_CUP_ROUND_REPLAY "replay"
 #define TAG_CUP_ROUND_NEUTRAL "neutral"
 #define TAG_CUP_ROUND_RANDOMISE_TEAMS "randomise_teams"
-#define TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS "number_of_groups"
-#define TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE "number_of_advance"
-#define TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE "number_of_best_advance"
+#define TAG_CUP_ROUND_NUMBER_OF_GROUPS "number_of_groups"
+#define TAG_CUP_ROUND_NUMBER_OF_ADVANCE "number_of_advance"
+#define TAG_CUP_ROUND_NUMBER_OF_BEST_ADVANCE "number_of_best_advance"
 #define TAG_CHOOSE_TEAMS "choose_teams"
 #define TAG_CHOOSE_TEAM "choose_team"
 #define TAG_CHOOSE_TEAM_SID "choose_team_sid"
@@ -66,9 +66,9 @@ enum XmlCupStates
     STATE_CUP_ROUND_REPLAY,
     STATE_CUP_ROUND_NEUTRAL,
     STATE_CUP_ROUND_RANDOMISE_TEAMS,
-    STATE_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS,
-    STATE_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE,
-    STATE_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE,
+    STATE_CUP_ROUND_NUMBER_OF_GROUPS,
+    STATE_CUP_ROUND_NUMBER_OF_ADVANCE,
+    STATE_CUP_ROUND_NUMBER_OF_BEST_ADVANCE,
     STATE_CHOOSE_TEAMS,
     STATE_CHOOSE_TEAM,
     STATE_CHOOSE_TEAM_SID,
@@ -150,12 +150,12 @@ xml_cup_read_start_element (GMarkupParseContext *context,
 	state = STATE_CUP_ROUND_NEUTRAL;
     else if(strcmp(element_name, TAG_CUP_ROUND_RANDOMISE_TEAMS) == 0)
 	state = STATE_CUP_ROUND_RANDOMISE_TEAMS;
-    else if(strcmp(element_name, TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS) == 0)
-	state = STATE_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS;
-    else if(strcmp(element_name, TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE) == 0)
-	state = STATE_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE;
-    else if(strcmp(element_name, TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE) == 0)
-	state = STATE_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE;
+    else if(strcmp(element_name, TAG_CUP_ROUND_NUMBER_OF_GROUPS) == 0)
+	state = STATE_CUP_ROUND_NUMBER_OF_GROUPS;
+    else if(strcmp(element_name, TAG_CUP_ROUND_NUMBER_OF_ADVANCE) == 0)
+	state = STATE_CUP_ROUND_NUMBER_OF_ADVANCE;
+    else if(strcmp(element_name, TAG_CUP_ROUND_NUMBER_OF_BEST_ADVANCE) == 0)
+	state = STATE_CUP_ROUND_NUMBER_OF_BEST_ADVANCE;
     else if(strcmp(element_name, TAG_CHOOSE_TEAMS) == 0)
 	state = STATE_CHOOSE_TEAMS;
     else if(strcmp(element_name, TAG_CHOOSE_TEAM) == 0)
@@ -213,9 +213,9 @@ xml_cup_read_end_element    (GMarkupParseContext *context,
 	    strcmp(element_name, TAG_CUP_ROUND_REPLAY) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_NEUTRAL) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_RANDOMISE_TEAMS) == 0 ||
-	    strcmp(element_name, TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS) == 0 ||
-	    strcmp(element_name, TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE) == 0 ||
-	    strcmp(element_name, TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE) == 0 ||
+	    strcmp(element_name, TAG_CUP_ROUND_NUMBER_OF_GROUPS) == 0 ||
+	    strcmp(element_name, TAG_CUP_ROUND_NUMBER_OF_ADVANCE) == 0 ||
+	    strcmp(element_name, TAG_CUP_ROUND_NUMBER_OF_BEST_ADVANCE) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_NEW_TEAMS) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_BYES) == 0 ||
 	    strcmp(element_name, TAG_CHOOSE_TEAMS) == 0)
@@ -299,11 +299,11 @@ xml_cup_read_text         (GMarkupParseContext *context,
 	new_round.neutral = int_value;
     else if(state == STATE_CUP_ROUND_RANDOMISE_TEAMS)
 	new_round.randomise_teams = int_value;
-    else if(state == STATE_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS)
+    else if(state == STATE_CUP_ROUND_NUMBER_OF_GROUPS)
 	new_round.round_robin_number_of_groups = int_value;
-    else if(state == STATE_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE)
+    else if(state == STATE_CUP_ROUND_NUMBER_OF_ADVANCE)
 	new_round.round_robin_number_of_advance = int_value;
-    else if(state == STATE_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE)
+    else if(state == STATE_CUP_ROUND_NUMBER_OF_BEST_ADVANCE)
 	new_round.round_robin_number_of_best_advance = int_value;
     else if(state == STATE_CHOOSE_TEAM_SID)
 	g_string_printf(new_choose_team.sid, "%s", buf);
