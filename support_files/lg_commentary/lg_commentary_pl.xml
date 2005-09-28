@@ -5,30 +5,29 @@
     <commentary>_P1_, po [drugiej|prawej|lewej] stronie boiska _P0_</commentary>
     <commentary>_P1_, jest [tam|na pozycji|z przodu|obok] _P0_</commentary>
     <commentary>_P1_ podał [odrobinę ||trochę |troszkę ][niedokładnie|za słabo|za mocno], ale _P0_ [dał sobie radę|opanował piłkę|doszedł do podania|sobie poradził]</commentary>
-    <commentary>_P1_ przerzuca piłkę na [lewą stronę|prawą stronę|drugą stronę|środek boiska], ma ją teraz _P0_</commentary>
+    <commentary>_P1_ przerzuca piłkę na [lewą stronę|prawą stronę|drugą stronę|środek boiska], [ma ją teraz|gdzie czeka|gdzie jest|jest tam] _P0_</commentary>
     <commentary>_P1_ zostawia piłkę, przejmuje ją _P0_</commentary>
     <commentary>_P1_ biegnie z piłką, _P0_ wychodzi na pozycję</commentary>
-    <commentary>_P0_ [rozgląda się, komu podać|próbuje podać|szuka szansy na podanie]</commentary>
-    <commentary>_P0_ opanowuje podanie</commentary>
+    <commentary>_P0_ [rozgląda się|patrzy], [komu podać|do kogo podać|gdzie są partnerzy]</commentary>
+    <commentary>_P0_ [opanowuje|przyjmuje] [podanie|piłkę]</commentary>
     <commentary>_P0_ biegnie z piłką</commentary>
     <commentary>_P0_ przedziera się [lewą stroną|prawą stroną|środkiem] boiska</commentary>
-    <commentary>_P0_ opanowuje piłkę</commentary>
     <commentary pri="4">_P0_ [próbuje|usiłuje|stara się] [podać do przodu|minąć rywala|wyprowadzić akcję]</commentary>
     <commentary>Długą piłkę przejmuje _P0_</commentary>
-    <commentary>Przerzut na [lewą|prawą|drugą] stronę, gdzie wychodzi na pozycję _P0_</commentary>
+    <commentary>Przerzut na drugą stronę, gdzie wychodzi na pozycję _P0_</commentary>
     <commentary>Przy piłce _P0_</commentary>
     <commentary>[Przerzucenie|Przerzut] piłki na [drugą|lewą|prawą] stronę[| boiska]</commentary>
-    <commentary>[Dobre|Ciekawe|Bardzo dobre] rozciągnięcie gry</commentary>
+    <commentary>[Znakomite|Dobre|Ciekawe|Bardzo dobre] rozciągnięcie gry</commentary>
     <commentary>Podanie na [lewe |prawe |drugie ||]skrzydło</commentary>
-    <commentary>_T_TT__ [rozgrywa piłkę|atakuje]</commentary>
+    <commentary>_T_TT__ rozgrywa piłkę</commentary>
     <commentary cond="_MI_ > 20">Trwa walka w środku pola</commentary>
-    <commentary cond="_TT_ = _TLN_ and _MT_ < 40">_P0_ próbuje jeszcze zmobilizować kolegów do walki</commentary>
-    <commentary cond="_POS0_ > 70">Zdecydowana przewaga gospodarzy</commentary>
+    <commentary cond="_TT_ = _TLN_ and _MT_ < 40">_P0_ próbuje jeszcze [zmobilizować|poderwać|zachęcić] kolegów do walki</commentary>
+    <commentary cond="_POS0_ > 60 and _MI_ > 20">Zdecydowana przewaga gospodarzy</commentary>
     <commentary cond="_GD_ > 0 and _MT_ < 25">_TW_ _MT_ min. od zwycięstwa w meczu</commentary>
     <commentary cond="_GD_ = 1 and _MT_ < 40">_TL_ ma jeszcze _MT_ min. na wyrównanie</commentary>
     <commentary cond="_GD_ = 1 and _TWN_ = 1 and _MT_ < 40">Jeszcze _MT_ min. nadziei gospodarzy na wyrównanie</commentary> 
     <commentary cond="_GD_ > 1 and _MT_ < 15">_TW_ nie da sobie chyba [wydrzeć|odebrać] zwycięstwa[| w tym meczu]</commentary>
-    <commentary cond="_GD_ > 2">Mecz jest już [chyba|zapewne|prawdopodobnie] rozstrzygnięty</commentary>
+    <commentary cond="_GD_ > 2 and MT < 20">Mecz jest już [chyba|zapewne|prawdopodobnie] rozstrzygnięty</commentary>
     <commentary cond="_MI_ > 20 and _POSS[_POSS1_ > _POSS0_]_ > 65 and _GOALS[_POSS1_ > _POSS0_]_ = 0">_T[_POSS1_ G _POSS0_]_ mimo dużej przewagi nadal nie może strzelić bramki</commentary>
     <commentary cond="_GOALS0_ + _GOALS1_ = 0 and _MI_ > 30">Nadal [bez|nie ma|nie zobaczyliśmy] bramek w meczu _T0_-_T1_</commentary>
     <commentary cond="_SHOTS0_ + _SHOTS1_ = 0 and _MI_ > 12">Już _MI_ min. za nami, a żadna z drużyn nie oddała jeszcze strzału na bramkę</commentary>
@@ -36,14 +35,14 @@
   <event>
     <name>lost_possession</name>
     <commentary>Nie zdążył do piłki _P1_</commentary>
-    <commentary>_P0_ przejmuje piłkę</commentary>
+    <commentary>_P0_ [przejmuje|zabiera|odbiera] piłkę</commentary>
     <commentary>_P1_ nie opanowuje piłki, przejmuje ją _P0_</commentary>
     <commentary>_P0_ jest szybszy niż _P1_</commentary>
     <commentary>_P1_ [źle|niedokładnie|fatalnie] podaje i do piłki dochodzi _P0_</commentary>
     <commentary>_P1_ podaje prosto pod nogi rywala</commentary>
-    <commentary>_P0_ wybija piłkę wślizgiem</commentary>
-    <commentary>_P0_ dopada bezpańskiej piłki</commentary>
-    <commentary>_P1_ za daleko wypuszcza sobie piłkę, dobiega do niej _P0_</commentary>
+    <commentary>_P0_ wybija piłkę[| wślizgiem]</commentary>
+    <commentary>_P0_ dopada [bezpańskiej |]piłki</commentary>
+    <commentary>_P1_ [za daleko|zbyt mocno] wypuszcza sobie piłkę, [dobiega do niej|pierwszy jest przy niej] _P0_</commentary>
     <commentary>_P1_ traci piłkę</commentary>
     <commentary>_P0_ odbiera piłkę rywalowi</commentary>
     <commentary>Pojedynek _P1_ - _P0_ wygrywa _P0_</commentary>
@@ -130,13 +129,14 @@
   </event>
   <event>
     <name>penalty</name>
-    <commentary cond="_TIME_ != 3">Rzut karny!</commentary>
-    <commentary cond="_TIME_ != 3">_P0_ będzie wykonywał rzut karny!</commentary>
-    <commentary cond="_TIME_ != 3">Sędzia pokazuje na [jedenasty metr|rzut karny]!</commentary>
-    <commentary cond="_TIME_ != 3">Sędzia nie ma wątpliwości - karny!</commentary>
-    <commentary cond="_TIME_ != 3">Będzie rzut karny!</commentary>
-    <commentary pri="3" cond="_TIME_ = 3">_P0_ [będzie strzelał|będzie wykonywał następny rzut karny|podchodzi do piłki|ustawia piłkę|ustawia piłkę na jedenastym metrze]</commentary>
-    <commentary cond="_TIME_ = 3">_P0_ i _P1_ stają naprzeciw siebie</commentary>
+    <commentary>Rzut karny!</commentary>
+    <commentary cond="_TIME_ != 4">_P0_ będzie wykonywał rzut karny!</commentary>
+    <commentary cond="_TIME_ != 4">Sędzia pokazuje na [jedenasty metr|rzut karny]!</commentary>
+    <commentary cond="_TIME_ != 4">Sędzia nie ma wątpliwości - karny!</commentary>
+    <commentary cond="_TIME_ != 4">Będzie rzut karny!</commentary>
+    <commentary cond="_TIME_ = 4">_P0_ [podchodzi do piłki|podchodzi do linii pola karnego|ustawia piłkę na jedenastym metrze]</commentary>
+    <commentary cond="_TIME_ = 4">_P0_ będzie [strzelał|strzelać|wykonywał] [następny|kolejny|ten] rzut karny</commentary>
+    <commentary cond="_TIME_ = 4">_P0_ [przed szansą na zdobycie prowadzenia]</commentary>
   </event>
   <event>
     <name>free_kick</name>
@@ -151,14 +151,13 @@
     <commentary pri="6">[_P1_|_P1_|_P1_|Bramkarz] [łatwo|bez trudu|bez problemów|znakomicie|cudem|z trudem] [łapie piłkę|chwyta piłę|wybija piłkę|broni]</commentary>
     <commentary pri="4">_P1_ nie ma [żadnych |dużych |specjalnych ||][problemów|kłopotów] z obroną</commentary>
     <commentary pri="2">[_P1_|_P1_|Bramkarz] [łatwo |znakomicie |świetnie |dobrze |bardzo dobrze |]broni</commentary>
-    <commentary>_P1_ był na miejscu</commentary>
+    <commentary>_P1_ [był|jest] na miejscu</commentary>
     <commentary pri="2">[Łatwo|Znakomicie|Świetnie|Dobrze|Bardzo dobrze] broni _P1_</commentary>
     <commentary>Nie ma problemów _P1_</commentary>
     <commentary>[Pewnie|Dobrze] interweniuje _P1_</commentary>
-    <commentary>Jak ten _P1_ to złapał?</commentary>
-    <commentary>Bramkarz broni</commentary>
+    <commentary>[Jak ten|Jakim cudem] _P1_ to złapał?</commentary>
     <commentary>_P0_ łatwo powstrzymany przez bramkarza</commentary>
-    <commentary>Za słaby strzał, _P1_ nie ma problemów z obroną</commentary>
+    <commentary>[Za słaby strzał|Niedokładny strzał|Strzał w światło bramki], _P1_ nie ma problemów z obroną</commentary>
   </event>
   <event>
     <name>own_goal</name>
@@ -186,11 +185,11 @@
     <commentary>_P1_ fauluje</commentary>
     <commentary>_P0_ faulowany</commentary>
     <commentary>Brutalny faul przerywa akcję</commentary>
-    <commentary>_P1_ trafił w kostkę rywala, zamiast w piłkę</commentary>
+    <commentary>_P1_ trafił w [kostkę|nogę|łydkę] rywala, zamiast w piłkę</commentary>
     <commentary>_P0_ pada na trawę po faulu</commentary>
     <commentary>_P0_ powoli podnosi się po brutalnym wejściu przeciwnika</commentary>
     <commentary>Sędzia uznał, że faulował _P1_</commentary>
-    <commentary>_P1_ nieprzepisowo atakuje przeciwnika</commentary>
+    <commentary>_P1_ [nieprzepisowo|niezgodnie z przepisami] atakuje przeciwnika</commentary>
     <commentary>Sędzia odgwizduje faul, poszkodowany _P0_</commentary>
     <commentary>_P0_ leży na ziemi po starciu z przeciwnikiem</commentary>
     <commentary pri="2" cond="_FOULS_TT__ > 6">_T_TT__ gra dzisiaj brutalnie - to już _FOULS_TT__ faul</commentary>
@@ -200,15 +199,12 @@
     <name>foul_yellow</name>
     <commentary>_P1_ za [kłótnię|dyskusję] z sędzią</commentary>
     <commentary>_P1_ za [złośliwy|niebezpieczny] faul</commentary>
-    <commentary>_P1_ za symulowanie faulu</commentary>
+    <commentary>_P1_ za [symulowanie faulu|zbyt ostre wejście|za nieprzepisowe zagranie|niesportowe zachowanie]</commentary>
     <commentary>_P1_ za próbę wymuszenia rzutu [karnego|wolnego]</commentary>
-    <commentary>_P1_ za zbyt ostre wejście</commentary>
-    <commentary>_P1_ za nieprzepisowe zagranie</commentary>
-    <commentary>_P1_ za niesportowe zachowanie</commentary>
     <commentary>_P1_ za złapanie rywala za [koszulkę|spodenki]</commentary>
     <commentary>_P1_ otrzymuje _PLYELLOWS_ żółtą kartkę w tych rozgrywkach</commentary>
     <commentary pri="10" cond="_PLYELLOWS_ = _YELLOWLIMIT_">_P1_ nie zagra w następnym spotkaniu</commentary>
-    <commentary pri="4" cond="_MT_ < 15">_P1_ za [opóźnianie gry|grę na czas]</commentary>
+    <commentary pri="4" cond="_MT_ < 15">_P1_ za [opóźnianie gry|grę na czas|wybicie piłki po gwizdku sędziego]</commentary>
   </event>
   <event>
     <name>foul_red</name>
@@ -218,7 +214,7 @@
     <commentary>_P1_ za atak z tyłu na nogi przeciwnika</commentary>
     <commentary>_P1_ za faul na przeciwniku wychodzącym na czystą pozycję</commentary>
     <commentary>_P1_ za [atak na|uderzenie] sędziego</commentary>
-    <commentary>_P1_ za faul po gwizdku sędziego</commentary>
+    <commentary>_P1_ za faul [po gwizdku sędziego|bez piłki]</commentary>
   </event>
   <event>
     <name>foul_red_injury</name>
@@ -267,8 +263,9 @@
   </event>
   <event>
     <name>half_time</name>
-    <commentary pri="3">Koniec pierwszej połowy</commentary>
-    <commentary pri="2" cond="_TWN_ = _T[_TAVSKILL0_ > _TAVSKILL1_]_">[Do przerwy|Po pierwszej połowie] [niespodziewanie|nieoczekiwanie] prowadzi _TW_</commentary>
+    <commentary pri="2">Koniec pierwszej połowy</commentary>
+    <commentary pri="4" cond="_TWN_ = 0 and _TAVSKILL0_ < _TAVSKILL1_ - 3">[Do przerwy|Po pierwszej połowie] [niespodziewanie|nieoczekiwanie] prowadzi _TW_</commentary>
+    <commentary pri="4" cond="_TWN_ = 1 and _TAVSKILL1_ < _TAVSKILL0_ - 3">[Do przerwy|Po pierwszej połowie] [niespodziewanie|nieoczekiwanie] prowadzą goście</commentary>
     <commentary>Po pierwszej połowie _RE_</commentary>
     <commentary cond="_GOALS0_ + _GOALS1_ = 0">Bez bramek do przerwy</commentary>
     <commentary>_RE_ do przerwy</commentary>
@@ -305,10 +302,12 @@
     <commentary>Ostatni gwizdek sędziego, _RE_!</commentary>
     <commentary>Koniec!</commentary>
     <commentary>_RE_, _TW_ zwycięża</commentary>
-    <commentary pri="2" cond="_GD_ = 0">Koniec meczu! Remis</commentary>
+    <commentary cond="_GD_ = 0 and _TAVSKILLDIFF_ <= 3">Remis w meczu dwóch równorzędnych drużyn</commentary>
     <commentary cond="_GD_ > 1">_TW_ odnosi zdecydowane zwycięstwo</commentary>
-    <commentary pri="8" cond="_TAVSKILL_TWN__ + 5 < _TAVSKILL_TLN__">_TW_ odnosi sensacyjne zwycięstwo!</commentary>
-    <commentary pri="10" cond="_TLAYER_TWN__ > _TLAYER_TLN__">Sensacja! Kto mógł się spodziewać, że _TW_ pokona faworyta?!</commentary>
+    <commentary pri="2" cond="_GD_ = 0">Koniec meczu! Remis</commentary>
+    <commentary pri="5" cond="_TAVSKILL0_ > _TAVSKILL1_ and _TLN_ = 0">Kibice gospodarzy żegnają swoją drużynę gwizdami</commentary>
+    <commentary pri="8" cond="_TAVSKILL_TWN__ + 3 < _TAVSKILL_TLN__">_TW_ odnosi [niespodziewane|nieoczekiwane|zaskakujące] zwycięstwo!</commentary>
+    <commentary pri="6" cond="_TAVSKILL_TWN__ + 5 < _TAVSKILL_TLN__">_TW_ [odnosi sensacyjne zwycięstwo|nieoczekiwanie pokonuje faworyta]!</commentary>
     <commentary pri="2" cond="_SHOTS0_ != _SHOTS1_ and _TWN_ = [_SHOTS0_ > _SHOTS1_]">Drużyna _TW_ miała mniej okazji, ale potrafiła je wykorzystać</commentary>
    <commentary pri="5" cond="_GOALS0_ + _GOALS1_ = 0">Niestety, nie zobaczyliśmy bramek w tym meczu</commentary>
   </event>
