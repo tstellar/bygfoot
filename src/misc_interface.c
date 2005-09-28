@@ -493,6 +493,11 @@ create_window_live (void)
   GtkWidget *label113;
   GtkObject *spinbutton_verbosity_adj;
   GtkWidget *spinbutton_verbosity;
+  GtkWidget *vseparator1;
+  GtkWidget *eventbox_lg_boost;
+  GtkWidget *image65;
+  GtkWidget *eventbox_lg_style;
+  GtkWidget *image64;
   GtkAccelGroup *accel_group;
   GtkTooltips *tooltips;
 
@@ -684,6 +689,29 @@ create_window_live (void)
   gtk_tooltips_set_tip (tooltips, spinbutton_verbosity, _("Change commentary verbosity. The higher this value the more events you can see."), NULL);
   gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_verbosity), TRUE);
 
+  vseparator1 = gtk_vseparator_new ();
+  gtk_widget_show (vseparator1);
+  gtk_box_pack_end (GTK_BOX (hbox48), vseparator1, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (vseparator1, 10, 1);
+
+  eventbox_lg_boost = gtk_event_box_new ();
+  gtk_widget_show (eventbox_lg_boost);
+  gtk_box_pack_end (GTK_BOX (hbox48), eventbox_lg_boost, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, eventbox_lg_boost, _("Left- and right click to change boost"), NULL);
+
+  image65 = create_pixmap (window_live, "boost_off.png");
+  gtk_widget_show (image65);
+  gtk_container_add (GTK_CONTAINER (eventbox_lg_boost), image65);
+
+  eventbox_lg_style = gtk_event_box_new ();
+  gtk_widget_show (eventbox_lg_style);
+  gtk_box_pack_end (GTK_BOX (hbox48), eventbox_lg_style, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, eventbox_lg_style, _("Left- and right click to change style"), NULL);
+
+  image64 = create_pixmap (window_live, "style_bal.png");
+  gtk_widget_show (image64);
+  gtk_container_add (GTK_CONTAINER (eventbox_lg_style), image64);
+
   g_signal_connect ((gpointer) window_live, "delete_event",
                     G_CALLBACK (on_live_window_delete_event),
                     NULL);
@@ -704,6 +732,12 @@ create_window_live (void)
                     NULL);
   g_signal_connect ((gpointer) spinbutton_verbosity, "value_changed",
                     G_CALLBACK (on_spinbutton_verbosity_value_changed),
+                    NULL);
+  g_signal_connect ((gpointer) eventbox_lg_boost, "button_press_event",
+                    G_CALLBACK (on_eventbox_lg_boost_button_press_event),
+                    NULL);
+  g_signal_connect ((gpointer) eventbox_lg_style, "button_press_event",
+                    G_CALLBACK (on_eventbox_lg_style_button_press_event),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -744,6 +778,11 @@ create_window_live (void)
   GLADE_HOOKUP_OBJECT (window_live, label112, "label112");
   GLADE_HOOKUP_OBJECT (window_live, label113, "label113");
   GLADE_HOOKUP_OBJECT (window_live, spinbutton_verbosity, "spinbutton_verbosity");
+  GLADE_HOOKUP_OBJECT (window_live, vseparator1, "vseparator1");
+  GLADE_HOOKUP_OBJECT (window_live, eventbox_lg_boost, "eventbox_lg_boost");
+  GLADE_HOOKUP_OBJECT (window_live, image65, "image65");
+  GLADE_HOOKUP_OBJECT (window_live, eventbox_lg_style, "eventbox_lg_style");
+  GLADE_HOOKUP_OBJECT (window_live, image64, "image64");
   GLADE_HOOKUP_OBJECT_NO_REF (window_live, tooltips, "tooltips");
 
   gtk_window_add_accel_group (GTK_WINDOW (window_live), accel_group);

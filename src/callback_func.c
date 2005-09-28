@@ -651,6 +651,9 @@ callback_show_league_stats(gint type)
 	    break;
 	case SHOW_CURRENT:
 	    stat1 = current_user.tm->clid;
+	    while(stat1 >= ID_CUP_START ||
+		  !league_from_clid(stat1)->active)
+		stat1 = league_cup_get_next_clid(stat1);
 	    break;
 	case SHOW_NEXT_LEAGUE:
 	    stat1 = league_cup_get_next_clid(stat1);

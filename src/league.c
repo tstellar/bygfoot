@@ -769,3 +769,16 @@ league_team_movements_destinations(GArray *team_movements, const gint *league_si
     if(debug > 65)
 	league_team_movements_print(team_movements, league_size, league_cur_size);
 }
+
+/** Find out whether there are any active leagues in the country. */
+gboolean
+query_leagues_active_in_country(void)
+{
+    gint i;
+
+    for(i=0;i<ligs->len;i++)
+	if(lig(i).active)
+	    return TRUE;
+
+    return FALSE;
+}

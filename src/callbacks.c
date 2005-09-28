@@ -5,6 +5,7 @@
 #include "game.h"
 #include "game_gui.h"
 #include "gui.h"
+#include "league.h"
 #include "load_save.h"
 #include "main.h"
 #include "option.h"
@@ -295,7 +296,6 @@ on_button_cl_back_clicked              (GtkButton       *button,
     }
 }
 
-
 void
 on_button_cl_forward_clicked           (GtkButton       *button,
                                         gpointer         user_data)
@@ -375,6 +375,13 @@ void
 on_menu_league_stats_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    if(!query_leagues_active_in_country())
+    {
+	game_gui_print_message(
+	    _("There are no leagues in this country definition (only cups)."));
+	return;	
+    }
+
     stat0 = STATUS_SHOW_LEAGUE_STATS;
     callback_show_league_stats(SHOW_CURRENT);
 

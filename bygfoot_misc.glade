@@ -1353,6 +1353,74 @@
 	      <property name="pack_type">GTK_PACK_END</property>
 	    </packing>
 	  </child>
+
+	  <child>
+	    <widget class="GtkVSeparator" id="vseparator1">
+	      <property name="width_request">10</property>
+	      <property name="height_request">1</property>
+	      <property name="visible">True</property>
+	    </widget>
+	    <packing>
+	      <property name="padding">0</property>
+	      <property name="expand">False</property>
+	      <property name="fill">False</property>
+	      <property name="pack_type">GTK_PACK_END</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkEventBox" id="eventbox_lg_boost">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">Left- and right click to change boost</property>
+	      <property name="visible_window">True</property>
+	      <property name="above_child">False</property>
+	      <signal name="button_press_event" handler="on_eventbox_lg_boost_button_press_event" last_modification_time="Tue, 27 Sep 2005 17:51:44 GMT"/>
+
+	      <child>
+		<widget class="GtkImage" id="image65">
+		  <property name="visible">True</property>
+		  <property name="pixbuf">boost_off.png</property>
+		  <property name="xalign">0.5</property>
+		  <property name="yalign">0.5</property>
+		  <property name="xpad">0</property>
+		  <property name="ypad">0</property>
+		</widget>
+	      </child>
+	    </widget>
+	    <packing>
+	      <property name="padding">0</property>
+	      <property name="expand">False</property>
+	      <property name="fill">False</property>
+	      <property name="pack_type">GTK_PACK_END</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkEventBox" id="eventbox_lg_style">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">Left- and right click to change style</property>
+	      <property name="visible_window">True</property>
+	      <property name="above_child">False</property>
+	      <signal name="button_press_event" handler="on_eventbox_lg_style_button_press_event" last_modification_time="Tue, 27 Sep 2005 16:43:34 GMT"/>
+
+	      <child>
+		<widget class="GtkImage" id="image64">
+		  <property name="visible">True</property>
+		  <property name="pixbuf">style_bal.png</property>
+		  <property name="xalign">0.5</property>
+		  <property name="yalign">0.5</property>
+		  <property name="xpad">0</property>
+		  <property name="ypad">0</property>
+		</widget>
+	      </child>
+	    </widget>
+	    <packing>
+	      <property name="padding">0</property>
+	      <property name="expand">False</property>
+	      <property name="fill">False</property>
+	      <property name="pack_type">GTK_PACK_END</property>
+	    </packing>
+	  </child>
 	</widget>
 	<packing>
 	  <property name="padding">5</property>

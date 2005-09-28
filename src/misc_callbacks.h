@@ -149,3 +149,15 @@ void
 on_button_sponsors_wait_clicked        (GtkButton       *button,
                                         gpointer         user_data);
 #endif
+
+gboolean
+on_eventbox_lg_style_button_press_event
+                                        (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data);
+
+gboolean
+on_eventbox_lg_boost_button_press_event
+                                        (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data);

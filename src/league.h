@@ -105,4 +105,7 @@ gint
 league_team_movements_compare_dest_idcs(gconstpointer a, gconstpointer b, 
 					gpointer data);
 
+gboolean
+query_leagues_active_in_country(void);
+
 #endif
