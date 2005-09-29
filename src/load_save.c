@@ -8,6 +8,7 @@
 #include "support.h"
 #include "user.h"
 #include "variables.h"
+#include "window.h"
 #include "xml_loadsave_misc.h"
 #include "xml_loadsave_cup.h"
 #include "xml_loadsave_league.h"
@@ -131,9 +132,10 @@ load_save_save_game(const gchar *filename)
     setsav1;
 }
 
-/** Load the game from the specified file. */
+/** Load the game from the specified file.
+    @param create_main_window Whether to create and show the main window. */
 gboolean
-load_save_load_game(const gchar* filename)
+load_save_load_game(const gchar* filename, gboolean create_main_window)
 {
     gchar buf[SMALL];
     gchar *fullname = (g_str_has_suffix(filename, const_str("string_fs_save_suffix"))) ?
@@ -156,7 +158,7 @@ load_save_load_game(const gchar* filename)
 
 	if(basename != NULL)
 	{
-	    load_save_load_game(basename);
+	    load_save_load_game(basename, create_main_window);
 	    g_free(basename);
 	    return TRUE;
 	}
@@ -262,7 +264,12 @@ load_save_load_game(const gchar* filename)
 
     gui_show_progress(-1, "");
 
-    if(window.main != NULL)
+    if(create_main_window)
+    {
+	window_create(WINDOW_MAIN);
+	on_button_back_to_main_clicked(NULL, NULL);
+    }
+    else if(window.main != NULL)
 	gtk_widget_show(window.main);
 
     g_free(basename);
@@ -359,4 +366,49 @@ load_save_autosave(void)
     load_save_save_game(buf);
 
     counters[COUNT_AUTOSAVE_FILE] = (counters[COUNT_AUTOSAVE_FILE] + 1) % opt_int("int_opt_autosave_files");
+}
+
+/** Try to load a savegame given on the command line. */
+gboolean
+load_game_from_command_line(const gchar *filename)
+{
+    gchar *fullname = NULL,
+	*support_file_name = NULL;
+
+    if(strcmp(filename, "last_save") == 0)
+	return load_save_load_game(filename, TRUE);
+
+    fullname = (g_str_has_suffix(filename, const_str("string_fs_save_suffix"))) ?
+	g_strdup(filename) :
+	g_strdup_printf("%s%s", filename, const_str("string_fs_save_suffix"));
+
+    if(g_file_test(fullname, G_FILE_TEST_EXISTS))
+    {
+	if(load_save_load_game(fullname, TRUE))
+	{
+	    g_free(fullname);
+	    return TRUE;
+	}
+	else
+	    return FALSE;
+    }
+
+    support_file_name = file_find_support_file(fullname, FALSE);
+
+    if(g_file_test(support_file_name, G_FILE_TEST_EXISTS))
+    {
+	if(load_save_load_game(support_file_name, TRUE))
+	{
+	    g_free(fullname);
+	    g_free(support_file_name);
+	    return TRUE;
+	}
+	else
+	    return FALSE;
+    }
+    
+    g_warning("Could not find file %s.\n", fullname);
+    g_free(fullname);
+
+    return FALSE;
 }

@@ -9,7 +9,7 @@ INCLUDES = \
 bin_PROGRAMS = bygfoot
 
 bygfoot_SOURCES = \
-	callback_func.c callback_func.h callbacks.h cup.h finance.h fixture.h game_gui.h league.h live_game.h maths.h misc.h option.h player.h start_end.h team.h transfer.h treeview.h treeview_helper.h user.h window.h \
+	callback_func.c callback_func.h callbacks.h cup.h finance.h fixture.h game_gui.h gui.h league.h live_game.h maths.h misc.h option.h player.h start_end.h team.h transfer.h treeview.h treeview_helper.h user.h window.h \
 	callbacks.c callback_func.h callbacks.h debug.h free.h game_gui.h game.h gui.h league.h load_save.h main.h option.h player.h table.h team.h transfer.h treeview.h treeview_helper.h user.h window.h \
 	cup.c cup.h fixture.h free.h league.h main.h maths.h misc.h option.h table.h team.h variables.h xml_league.h \
 	debug.c callbacks.h debug.h game_gui.h option.h support.h user.h variables.h \
@@ -26,7 +26,7 @@ bygfoot_SOURCES = \
 	league.c cup.h free.h league.h main.h maths.h misc.h option.h player.h stat.h table.h team.h user.h variables.h \
 	live_game.c callbacks.h fixture.h free.h game_gui.h game.h league.h lg_commentary.h live_game.h main.h maths.h misc_callback_func.h misc.h option.h player.h support.h team.h treeview.h user.h variables.h window.h \
 	load_save.c callbacks.h file.h game_gui.h gui.h language.h load_save.h option.h support.h user.h variables.h xml.h xml_loadsave_cup.h xml_loadsave_league.h xml_loadsave_misc.h xml_loadsave_season_stats.h xml_loadsave_transfers.h xml_loadsave_users.h \
-	main.c file.h free.h language.h lg_commentary_struct.h live_game.h main.h misc_callbacks.h name_struct.h option.h stat_struct.h transfer_struct.h variables.h window.h \
+	main.c file.h free.h language.h lg_commentary_struct.h live_game.h main.h misc_callbacks.h misc.h name_struct.h option.h stat_struct.h transfer_struct.h variables.h window.h \
 	maths.c maths.h misc.h variables.h \
 	misc.c main.h maths.h misc.h \
 	misc_callbacks.c callback_func.h callbacks.h game_gui.h game.h gui.h live_game.h load_save.h main.h maths.h misc_callback_func.h misc_callbacks.h option.h user.h variables.h window.h xml_country.h \

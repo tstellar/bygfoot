@@ -71,10 +71,15 @@ language_get_code_index(const gchar *code)
     gint i, return_value = -1;
     GPtrArray *codes = 
 	misc_separate_strings(const_str("string_language_codes"));
+    gchar local_code[SMALL];
+
+    strcpy(local_code, code);
+
+    if(strcmp(code, "en") == 0)
+	strcpy(local_code, "C");
     
     for(i=0;i<codes->len;i++)
-	if(strcmp(opt_str("string_opt_language_code"),
-		  ((GString*)g_ptr_array_index(codes, i))->str) == 0)
+	if(strcmp(local_code, ((GString*)g_ptr_array_index(codes, i))->str) == 0)
 	{
 	    return_value = i;
 	    break;

@@ -127,7 +127,8 @@ option_set_int(const gchar *name, OptionList *optionlist, gint new_value)
 
 /** Add an option to the optionlist with the given values. */
 void
-option_add(OptionList *optionlist, const gchar *name, gint int_value, const gchar *string_value)
+option_add(OptionList *optionlist, const gchar *name, 
+	   gint int_value, const gchar *string_value)
 {
     gint i;
     Option new;
@@ -155,6 +156,7 @@ option_add(OptionList *optionlist, const gchar *name, gint int_value, const gcha
     g_array_append_val(optionlist->list, new);
     
     for(i=0;i<optionlist->list->len;i++)
-	g_datalist_set_data(&optionlist->datalist, g_array_index(optionlist->list, Option, i).name->str,
+	g_datalist_set_data(&optionlist->datalist, 
+			    g_array_index(optionlist->list, Option, i).name->str,
 			    &g_array_index(optionlist->list, Option, i));
 }

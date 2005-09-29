@@ -36,7 +36,7 @@ on_menu_new_activate                   (GtkMenuItem     *menuitem,
     window_destroy(&window.main, FALSE);
     free_memory();
     
-    main_init(-1, NULL);
+    main_init(NULL, NULL);
     window_show_startup();
     stat0 = STATUS_TEAM_SELECTION;
 }
@@ -963,7 +963,7 @@ void
 on_menu_load_last_save_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    if(load_save_load_game("last_save"))
+    if(load_save_load_game("last_save", FALSE))
     {
 	cur_user = 0;
 	on_button_back_to_main_clicked(NULL, NULL);

@@ -10,7 +10,9 @@
 #include "language.h"
 #include "lg_commentary_struct.h"
 #include "live_game.h"
+#include "load_save.h"
 #include "main.h"
+#include "misc.h"
 #include "misc_callbacks.h"
 #include "name_struct.h"
 #include "option.h"
@@ -18,6 +20,51 @@
 #include "transfer_struct.h"
 #include "variables.h"
 #include "window.h"
+
+
+/** Parse the command line arguments given by the user. */
+void
+main_parse_cl_arguments(gint *argc, gchar ***argv)
+{
+    gchar *support_dir = NULL, *lang = NULL;
+    gint deb_level = -1;
+    GError *error = NULL;
+    GOptionContext *context = NULL;
+    GOptionEntry entries[] =
+	{{ "support-dir", 's', 0, G_OPTION_ARG_STRING, &support_dir, 
+	   "Specify additional support directory (takes priority over default ones)", "DIR" },
+
+	 { "debug-level", 'd', 0, G_OPTION_ARG_INT, &deb_level, "Debug level to use", "N" },
+
+	 { "lang", 'l', 0, G_OPTION_ARG_STRING, &lang, "Language to use (a code like 'de')", "CODE" },
+
+	 {NULL}};
+
+    if(argc == NULL || argv == NULL)
+	return;
+
+    context = g_option_context_new("- a simple and addictive GTK2 football manager");
+    g_option_context_add_main_entries(context, entries, GETTEXT_PACKAGE);
+    g_option_context_add_group(context, gtk_get_option_group (TRUE));
+    g_option_context_parse(context, argc, argv, &error);
+    g_option_context_free(context);
+
+    misc_print_error(&error, TRUE);
+
+    if(support_dir != NULL)
+    {
+	gchar *fullpath = g_path_get_dirname(support_dir);
+	file_add_support_directory_recursive(fullpath);
+	g_free(fullpath);
+	g_free(support_dir);
+    }
+
+    if(deb_level != -1)
+	opt_set_int("int_opt_debug", deb_level);
+
+    if(lang != NULL)
+	language_set(language_get_code_index(lang) + 1);
+}
 
 /**
    Initialize some global variables. Most of them get nullified.
@@ -27,9 +74,12 @@ main_init_variables(void)
 {
     gint i;
 
-    ligs = cps = NULL;
-    acps = NULL;
-    country.name = country.symbol = country.sid = NULL;
+    ligs = g_array_new(FALSE, FALSE, sizeof(League));
+    cps = g_array_new(FALSE, FALSE, sizeof(Cup));;
+    acps = g_ptr_array_new();
+    country.name = g_string_new("");
+    country.symbol = g_string_new("");
+    country.sid = g_string_new("");;
     
     season = week = week_round = 1;
 
@@ -91,7 +141,7 @@ main_init_variables(void)
    @param argv Command line arguments array.
 */
 void
-main_init(gint argc, gchar *argv[])
+main_init(gint *argc, gchar ***argv)
 {
     gchar buf[SMALL];
     gchar *pwd = g_get_current_dir();
@@ -120,6 +170,8 @@ main_init(gint argc, gchar *argv[])
     main_init_variables();
 
     file_check_home_dir();
+    
+    main_parse_cl_arguments(argc, argv);
 }
 
 /**
@@ -141,10 +193,14 @@ main (gint argc, gchar *argv[])
     gtk_set_locale ();
     gtk_init (&argc, &argv);
   
-    main_init(argc, argv);
+    main_init(&argc, &argv);
 
-    window_show_startup();
-    stat0 = STATUS_TEAM_SELECTION;
+    if(argc == 1 ||
+       (argc > 1 && !load_game_from_command_line(argv[1])))
+    {
+	window_show_startup();
+	stat0 = STATUS_TEAM_SELECTION;
+    }
 
     gtk_main ();
 

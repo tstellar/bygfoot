@@ -248,12 +248,8 @@ misc_callback_startup_load(const gchar *filename)
 {
     gtk_widget_hide(window.startup);
 
-    if(load_save_load_game(filename))
-    {
+    if(load_save_load_game(filename, TRUE))
 	window_destroy(&window.startup, TRUE);
-	window_create(WINDOW_MAIN);
-	on_button_back_to_main_clicked(NULL, NULL);
-    }
     else
 	gtk_widget_show(window.startup);
 }

@@ -184,7 +184,7 @@ window_show_file_sel(void)
 	filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(window.file_chooser));
 
 	if(stat5 == STATUS_LOAD_GAME)
-	    load_save_load_game(filename);
+	    load_save_load_game(filename, FALSE);
 	else if(stat5 == STATUS_LOAD_GAME_TEAM_SELECTION)
 	    misc_callback_startup_load(filename);
 	else if(stat5 == STATUS_SAVE_GAME)
