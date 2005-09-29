@@ -4,6 +4,7 @@
 #include "finance.h"
 #include "fixture.h"
 #include "game_gui.h"
+#include "gui.h"
 #include "league.h"
 #include "live_game.h"
 #include "maths.h"
@@ -146,6 +147,8 @@ callback_show_last_match(gboolean start, LiveGame *lg)
 	statp = lg;
 
 	window_create(WINDOW_LIVE);
+
+	gui_set_sensitive_lg_meters(FALSE);
 
 	treeview_show_game_stats(GTK_TREE_VIEW(lookup_widget(window.live, "treeview_stats")), lg);
     }

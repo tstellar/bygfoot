@@ -126,7 +126,8 @@ void
 treeview_helper_player_fitness_to_cell(GtkCellRenderer *renderer, gchar *buf, gfloat fitness);
 
 void
-treeview_helper_player_pos_to_cell(GtkCellRenderer *renderer, gchar *buf, gint pos);
+treeview_helper_player_pos_to_cell(GtkCellRenderer *renderer, gchar *buf, 
+				   const Player *pl, gint type);
 
 void
 treeview_helper_live_game_result(GtkTreeViewColumn *col,

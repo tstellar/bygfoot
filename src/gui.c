@@ -103,3 +103,14 @@ gui_set_arrows(void)
 	    stat0 == STATUS_SHOW_LEAGUE_STATS)
 	gui_set_arrow_pair(0, TRUE);
 }
+
+/** Set the sensitivity of the live game window meters and their
+    eventboxes. */
+void
+gui_set_sensitive_lg_meters(gboolean state)
+{
+    gtk_widget_set_sensitive(lookup_widget(window.live, "image_lg_style"), state);
+    gtk_widget_set_sensitive(lookup_widget(window.live, "eventbox_lg_style"), state);
+    gtk_widget_set_sensitive(lookup_widget(window.live, "image_lg_boost"), state);
+    gtk_widget_set_sensitive(lookup_widget(window.live, "eventbox_lg_boost"), state);    
+}

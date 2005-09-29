@@ -15,4 +15,7 @@ gui_set_arrow_pair(gint pair, gboolean state);
 void
 gui_set_arrows(void);
 
+void
+gui_set_sensitive_lg_meters(gboolean state);
+
 #endif

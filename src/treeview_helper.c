@@ -985,10 +985,12 @@ treeview_helper_player_to_cell(GtkTreeViewColumn *col,
 	    treeview_helper_player_name_to_cell(renderer, buf, pl);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_CPOS:
-	    treeview_helper_player_pos_to_cell(renderer, buf, pl->cpos);
+	    treeview_helper_player_pos_to_cell(renderer, buf, pl, 
+					       PLAYER_LIST_ATTRIBUTE_CPOS);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_POS:
-	    treeview_helper_player_pos_to_cell(renderer, buf, pl->pos);
+	    treeview_helper_player_pos_to_cell(renderer, buf, pl,
+					       PLAYER_LIST_ATTRIBUTE_POS);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_CSKILL:
 	    treeview_helper_player_cskill_to_cell(renderer, buf, pl);
@@ -1300,8 +1302,12 @@ treeview_helper_player_fitness_to_cell(GtkCellRenderer *renderer, gchar *buf, gf
     @param buf The string the cell will contain.
     @param pos The position of the player. */
 void
-treeview_helper_player_pos_to_cell(GtkCellRenderer *renderer, gchar *buf, gint pos)
+treeview_helper_player_pos_to_cell(GtkCellRenderer *renderer, gchar *buf, 
+				   const Player *pl, gint type)
 {
+    gint pos = (type == PLAYER_LIST_ATTRIBUTE_POS) ?
+	pl->pos : pl->cpos;
+
     switch(pos)
     {
 	default:
@@ -1337,6 +1343,12 @@ treeview_helper_player_pos_to_cell(GtkCellRenderer *renderer, gchar *buf, gint p
 			 const_app("string_treeview_helper_color_player_pos_forward_fg"), NULL);
 	    break;
     }
+
+    if(pl->cskill == 0)
+	g_object_set(renderer, "background", 
+		     const_app("string_treeview_helper_color_player_pos_disabled_bg"),
+		     "foreground", 
+		     const_app("string_treeview_helper_color_player_pos_disabled_fg"), NULL);
 }
 
 /** Render a cell of player cskill.

@@ -75,6 +75,7 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
 	gtk_widget_set_sensitive(button_live_close, TRUE);
 	gtk_widget_set_sensitive(button_pause, FALSE);
 	gtk_widget_set_sensitive(button_resume, FALSE);
+	gui_set_sensitive_lg_meters(FALSE);
 	gtk_widget_grab_focus(button_live_close);
 
 	game_gui_set_main_window_sensitivity(FALSE);
