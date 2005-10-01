@@ -148,20 +148,11 @@ file_check_home_dir_create_dirs(void)
     const gchar *home = g_get_home_dir();
     gchar buf[SMALL];
 
-    if(os_is_unix)
+    for(i=0;i<3;i++)
     {
-	for(i=0;i<3;i++)
-	{
-	    sprintf(buf, "%s%s%s", home, G_DIR_SEPARATOR_S, dirs[i]);
-	    if(!g_file_test(buf, G_FILE_TEST_EXISTS))
-		file_mkdir(buf);
-	}
-    }
-    else
-    {
-	sprintf(buf, ".%ssaves", G_DIR_SEPARATOR_S);
+	sprintf(buf, "%s%s%s", home, G_DIR_SEPARATOR_S, dirs[i]);
 	if(!g_file_test(buf, G_FILE_TEST_EXISTS))
-	    file_mkdir(buf);    
+	    file_mkdir(buf);
     }
 }
 
@@ -257,12 +248,8 @@ void
 file_check_home_dir(void)
 {
     file_check_home_dir_create_dirs();
-
-    if(os_is_unix)
-    {
-	file_check_home_dir_copy_conf_files();
-	file_check_home_dir_copy_definition_files();
-    }
+    file_check_home_dir_copy_conf_files();
+    file_check_home_dir_copy_definition_files();
 }
 
 /**

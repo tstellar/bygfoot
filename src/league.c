@@ -131,9 +131,10 @@ league_from_clid(gint clid)
 
 /** Return the id of the next league (or cup if we are
     at the end of the leagues array).
-    @param clid The id of the current league or cup. */
+    @param clid The id of the current league or cup. 
+    @param count_inactive Whether inactive leagues count. */
 gint
-league_cup_get_next_clid(gint clid)
+league_cup_get_next_clid(gint clid, gboolean count_inactive)
 {
     gint i, return_value = -1;
 
@@ -145,19 +146,19 @@ league_cup_get_next_clid(gint clid)
 
 	if(i != ligs->len - 1)
 	{
-	    if(lig(i + 1).active)
+	    if(lig(i + 1).active || count_inactive)
 		return_value = lig(i + 1).id;
 	    else
-		return_value = league_cup_get_next_clid(lig(i + 1).id);
+		return_value = league_cup_get_next_clid(lig(i + 1).id, count_inactive);
 	}
 	else if(acps->len > 0)
 	    return_value = acp(0)->id;
 	else
 	{
-	    if(lig(0).active)
+	    if(lig(0).active || count_inactive)
 		return_value = lig(0).id;
 	    else
-		return_value = league_cup_get_next_clid(lig(0).id);
+		return_value = league_cup_get_next_clid(lig(0).id, count_inactive);
 	}
     }
     else
@@ -170,10 +171,10 @@ league_cup_get_next_clid(gint clid)
 	    return_value = acp(i + 1)->id;
 	else
 	{
-	    if(lig(0).active)
+	    if(lig(0).active || count_inactive)
 		return_value = lig(0).id;
 	    else
-		return_value = league_cup_get_next_clid(lig(0).id);
+		return_value = league_cup_get_next_clid(lig(0).id, count_inactive);
 	}
     }
 
@@ -182,9 +183,10 @@ league_cup_get_next_clid(gint clid)
 
 
 /** Return the id of the previous league or cup.
-    @param clid The id of the current league or cup. */
+    @param clid The id of the current league or cup.
+    @param count_inactive Whether inactive leagues count. */
 gint
-league_cup_get_previous_clid(gint clid)
+league_cup_get_previous_clid(gint clid, gboolean count_inactive)
 {
     gint i, return_value = -1;
 
@@ -196,19 +198,19 @@ league_cup_get_previous_clid(gint clid)
 
 	if(i != 0)
 	{
-	    if(lig(i - 1).active)
+	    if(lig(i - 1).active || count_inactive)
 		return_value = lig(i - 1).id;
 	    else
-		return_value = league_cup_get_previous_clid(lig(i - 1).id);
+		return_value = league_cup_get_previous_clid(lig(i - 1).id, count_inactive);
 	}
 	else if(acps->len > 0)
 	    return_value = acp(acps->len - 1)->id;
 	else
 	{
-	    if(lig(ligs->len - 1).active)
+	    if(lig(ligs->len - 1).active || count_inactive)
 		return_value = lig(ligs->len - 1).id;
 	    else
-		return_value = league_cup_get_previous_clid(lig(ligs->len - 1).id);
+		return_value = league_cup_get_previous_clid(lig(ligs->len - 1).id, count_inactive);
 	}
     }
     else
@@ -221,10 +223,10 @@ league_cup_get_previous_clid(gint clid)
 	    return_value = acp(i - 1)->id;
 	else
 	{
-	    if(lig(ligs->len - 1).active)
+	    if(lig(ligs->len - 1).active || count_inactive)
 		return_value = lig(ligs->len - 1).id;
 	    else
-		return_value = league_cup_get_previous_clid(lig(ligs->len - 1).id);
+		return_value = league_cup_get_previous_clid(lig(ligs->len - 1).id, count_inactive);
 	}
     }
 

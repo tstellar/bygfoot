@@ -262,9 +262,9 @@ callback_show_tables(gint type)
     if(type == SHOW_CURRENT)
 	clid = team_get_table_clid(current_user.tm);
     else if(type == SHOW_NEXT_LEAGUE)
-	clid = league_cup_get_next_clid(stat1);
+	clid = league_cup_get_next_clid(stat1, FALSE);
     else if(type == SHOW_PREVIOUS_LEAGUE)
-	clid = league_cup_get_previous_clid(stat1);
+	clid = league_cup_get_previous_clid(stat1, FALSE);
     else
     {
 	g_warning("callback_show_tables: unknown type %d \n", type);
@@ -275,9 +275,9 @@ callback_show_tables(gint type)
 	  (clid >= ID_CUP_START && cup_has_tables(clid) == -1))
     {
 	if(type == SHOW_PREVIOUS_LEAGUE)
-	    clid = league_cup_get_previous_clid(clid);
+	    clid = league_cup_get_previous_clid(clid, FALSE);
 	else
-	    clid = league_cup_get_next_clid(clid);
+	    clid = league_cup_get_next_clid(clid, FALSE);
     }
 
     stat1 = clid;
@@ -550,15 +550,15 @@ callback_show_team(gint type)
     {
 	if(type == SHOW_NEXT_LEAGUE)
 	{
-	    stat2 = league_cup_get_next_clid(stat2);
+	    stat2 = league_cup_get_next_clid(stat2, TRUE);
 	    while(stat2 >= ID_CUP_START && cup_from_clid(stat2)->teams->len == 0)
-		stat2 = league_cup_get_next_clid(stat2);
+		stat2 = league_cup_get_next_clid(stat2, TRUE);
 	}
 	else if(type == SHOW_PREVIOUS_LEAGUE)
 	{
-	    stat2 = league_cup_get_previous_clid(stat2);
+	    stat2 = league_cup_get_previous_clid(stat2, TRUE);
 	    while(stat2 >= ID_CUP_START && cup_from_clid(stat2)->teams->len == 0)
-		stat2 = league_cup_get_previous_clid(stat2);
+		stat2 = league_cup_get_previous_clid(stat2, TRUE);
 	}
 
 	if(stat2 < ID_CUP_START)
@@ -609,14 +609,14 @@ callback_show_player_list(gint type)
 	    stat1 = current_user.tm->clid;
 	    break;
 	case SHOW_NEXT_LEAGUE:
-	    stat1 = league_cup_get_next_clid(stat1);
+	    stat1 = league_cup_get_next_clid(stat1, TRUE);
 	    while(stat1 >= ID_CUP_START && cup_from_clid(stat1)->teams->len == 0)
-		stat1 = league_cup_get_next_clid(stat1);
+		stat1 = league_cup_get_next_clid(stat1, TRUE);
 	    break;
 	case SHOW_PREVIOUS_LEAGUE:
-	    stat1 = league_cup_get_previous_clid(stat1);
+	    stat1 = league_cup_get_previous_clid(stat1, TRUE);
 	    while(stat1 >= ID_CUP_START && cup_from_clid(stat1)->teams->len == 0)
-		stat1 = league_cup_get_previous_clid(stat1);
+		stat1 = league_cup_get_previous_clid(stat1, TRUE);
 	    break;
     }
 
@@ -656,17 +656,17 @@ callback_show_league_stats(gint type)
 	    stat1 = current_user.tm->clid;
 	    while(stat1 >= ID_CUP_START ||
 		  !league_from_clid(stat1)->active)
-		stat1 = league_cup_get_next_clid(stat1);
+		stat1 = league_cup_get_next_clid(stat1, FALSE);
 	    break;
 	case SHOW_NEXT_LEAGUE:
-	    stat1 = league_cup_get_next_clid(stat1);
+	    stat1 = league_cup_get_next_clid(stat1, FALSE);
 	    while(stat1 >= ID_CUP_START)
-		stat1 = league_cup_get_next_clid(stat1);
+		stat1 = league_cup_get_next_clid(stat1, FALSE);
 	    break;
 	case SHOW_PREVIOUS_LEAGUE:
-	    stat1 = league_cup_get_previous_clid(stat1);
+	    stat1 = league_cup_get_previous_clid(stat1, FALSE);
 	    while(stat1 >= ID_CUP_START)
-		stat1 = league_cup_get_previous_clid(stat1);
+		stat1 = league_cup_get_previous_clid(stat1, FALSE);
 	    break;
     }
 

@@ -928,8 +928,8 @@ fixture_get(gint type, gint clid, gint week_number,
 	    type == SHOW_PREVIOUS_LEAGUE)
     {
 	    new_clid = (type == SHOW_NEXT_LEAGUE) ?
-		league_cup_get_next_clid(clid):
-		league_cup_get_previous_clid(clid);
+		league_cup_get_next_clid(clid, FALSE):
+		league_cup_get_previous_clid(clid, FALSE);
 
 	    fix = fixture_get(SHOW_CURRENT, new_clid, week, week_round, NULL);
     }

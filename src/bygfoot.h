@@ -62,7 +62,7 @@
 #define stat4 status[4]
 #define stat5 status[5]
 
-#define debug opt_int("int_opt_debug")
+#define debug const_int("int_debug")
 
 /**
  * Exit codes.

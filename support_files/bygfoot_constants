@@ -4,6 +4,9 @@
 # can be found in 'bygfoot_app'.
 #########
 
+# debug level
+int_debug 0
+
 #### float constants get divided by 100000 and loaded as floats
 #### so we write 50000 if we'd like to have 0.5
 
@@ -429,10 +432,13 @@ float_live_game_player_in_poss_shoots 30000
 # prob that the scoring chance is a header
 float_live_game_scoring_chance_is_header 25000
 
+# probability that a scoring chance is an own goal. 
+float_live_game_scoring_chance_is_own_goal 1#000
+
 # base probability to score with a scoring chance. 
-float_live_game_score_base_prob 30000
+float_live_game_score_base_prob 3#0000
 # base probability to score with a free kick. 
-float_live_game_score_free_kick 5000
+float_live_game_score_free_kick 5#000
 # base probability to score with a penalty. 
 float_live_game_score_penalty 80000
 # influence of the attacker/goalie skills on the probability to score. 
@@ -548,9 +554,6 @@ float_player_injury_recovery_fitness_upper 70000
 # fitness decrease when injury is temporary
 float_live_game_temp_injury_fitness_decrease_lower 2000
 float_live_game_temp_injury_fitness_decrease_upper 8000
-
-# probability that a scoring chance is an own goal. 
-float_live_game_scoring_chance_is_own_goal 1000
 
 # probability of a free kick after a foul. 
 float_live_game_free_kick_prob 15000

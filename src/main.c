@@ -28,22 +28,25 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 {
     gchar *support_dir = NULL, *lang = NULL;
     gint deb_level = -1;
+    gboolean load_last_save = FALSE;
     GError *error = NULL;
     GOptionContext *context = NULL;
     GOptionEntry entries[] =
 	{{ "support-dir", 's', 0, G_OPTION_ARG_STRING, &support_dir, 
-	   "Specify additional support directory (takes priority over default ones)", "DIR" },
+	   _("Specify additional support directory (takes priority over default ones)"), "DIR" },
 
-	 { "debug-level", 'd', 0, G_OPTION_ARG_INT, &deb_level, "Debug level to use", "N" },
+	 { "debug-level", 'd', 0, G_OPTION_ARG_INT, &deb_level, _("Debug level to use"), "N" },
 
-	 { "lang", 'l', 0, G_OPTION_ARG_STRING, &lang, "Language to use (a code like 'de')", "CODE" },
+	 { "lang", 'L', 0, G_OPTION_ARG_STRING, &lang, _("Language to use (a code like 'de')"), "CODE" },
+
+	 { "last-save", 'l', 0, G_OPTION_ARG_NONE, &load_last_save, _("Load last savegame"), NULL },
 
 	 {NULL}};
 
     if(argc == NULL || argv == NULL)
 	return;
 
-    context = g_option_context_new("- a simple and addictive GTK2 football manager");
+    context = g_option_context_new(_("- a simple and addictive GTK2 football manager"));
     g_option_context_add_main_entries(context, entries, GETTEXT_PACKAGE);
     g_option_context_add_group(context, gtk_get_option_group (TRUE));
     g_option_context_parse(context, argc, argv, &error);
@@ -60,10 +63,16 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
     }
 
     if(deb_level != -1)
-	opt_set_int("int_opt_debug", deb_level);
+	option_set_int("int_debug", &constants, deb_level);
 
     if(lang != NULL)
 	language_set(language_get_code_index(lang) + 1);
+
+    /*todo*/
+    if(load_last_save)
+    {
+	/*add 'last_save' to arguments*/
+    }
 }
 
 /**
@@ -161,15 +170,18 @@ main_init(gint *argc, gchar ***argv)
 #endif
 
     sprintf(buf, "%s%ssupport_files", pwd, G_DIR_SEPARATOR_S);
-    g_free(pwd);
     file_add_support_directory_recursive(buf);
+    sprintf(buf, "%s%ssaves", pwd, G_DIR_SEPARATOR_S);
+    file_add_support_directory_recursive(buf);
+    g_free(pwd);
     
     /* initialize the random nr generator */
     rand_generator = g_rand_new();
 
     main_init_variables();
 
-    file_check_home_dir();
+    if(os_is_unix)
+	file_check_home_dir();
     
     main_parse_cl_arguments(argc, argv);
 }

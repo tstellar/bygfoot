@@ -627,14 +627,14 @@ live_game_event_penalty(void)
 
     if(last_unit.time == LIVE_GAME_UNIT_TIME_PENALTIES)
     {
-	if(uni(unis->len - 2).event.type == LIVE_GAME_EVENT_PENALTIES)
+	if(live_game_penalties_taken() == 1)
 	{
 	    last_unit.possession = math_rndi(0, 1);
 	    last_unit.event.player =
 		game_get_player(tm[last_unit.possession],
 				GAME_PLAYER_TYPE_PENALTY, -1, -1, FALSE);
 	}
-	else if(uni(unis->len - 4).event.type == LIVE_GAME_EVENT_PENALTIES)
+	else if(live_game_penalties_taken() == 2)
 	{
 	    last_unit.possession = !uni(unis->len - 3).possession;
 	    last_unit.event.player =
@@ -1618,4 +1618,22 @@ live_game_unit_result_to_buf(const LiveGameUnit *unit, gchar *buf, gboolean swap
     else
 	sprintf(buf, "%d : %d", unit->result[idx],
 		unit->result[!idx]);
+}
+
+/** Count the number of penalties taken during penalty shoot-out. */
+gint
+live_game_penalties_taken(void)
+{
+    gint i, penalties = 0;
+
+    for(i=unis->len - 1;i>=0;i--)
+    {
+	if(uni(i).event.type == LIVE_GAME_EVENT_PENALTIES)
+	    break;
+	else if(uni(i).time == LIVE_GAME_UNIT_TIME_PENALTIES &&
+		uni(i).event.type == LIVE_GAME_EVENT_PENALTY)
+	    penalties++;
+    }
+
+    return penalties;
 }
