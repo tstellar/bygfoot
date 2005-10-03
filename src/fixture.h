@@ -125,4 +125,7 @@ fixture_get_previous_week(gint *week_number, gint *week_round_number);
 GPtrArray*
 fixture_get_week_list(gint week_number, gint week_round_number);
 
+GPtrArray*
+fixture_get_season_results(void);
+
 #endif

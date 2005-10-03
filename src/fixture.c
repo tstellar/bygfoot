@@ -1207,3 +1207,36 @@ fixture_get_previous_week(gint *week_number, gint *week_round_number)
 	*week_round_number = local_round;
     }
 }
+
+/** Return an array with the user's fixtures in this season. */
+GPtrArray*
+fixture_get_season_results(void)
+{
+    gint i, j;
+    GPtrArray *results = g_ptr_array_new();
+    GArray *fixtures = NULL;
+    
+    if(league_from_clid(current_user.tm->clid)->active)
+    {
+	fixtures = league_from_clid(current_user.tm->clid)->fixtures;
+	for(i=0;i<fixtures->len;i++)
+	    if(query_fixture_team_involved((&g_array_index(fixtures, Fixture, i)),
+					   current_user.tm->id))
+		g_ptr_array_add(results, &g_array_index(fixtures, Fixture, i));
+    }
+
+    for(i=0;i<acps->len;i++)
+	if(query_team_is_in_cup(current_user.tm, acp(i)))
+	{
+	    fixtures = acp(i)->fixtures;
+	    for(j=0;j<fixtures->len;j++)
+		if(query_fixture_team_involved((&g_array_index(fixtures, Fixture, j)),
+					       current_user.tm->id))
+		    g_ptr_array_add(results, &g_array_index(fixtures, Fixture, j));
+	}
+
+    g_ptr_array_sort_with_data(results, fixture_compare_func,
+			       GINT_TO_POINTER(FIXTURE_COMPARE_DATE));
+
+    return results;
+}

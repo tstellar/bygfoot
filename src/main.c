@@ -21,6 +21,9 @@
 #include "variables.h"
 #include "window.h"
 
+/** Whether the last save gets loaded at startup
+    (cl switch -l). */
+gboolean load_last_save;
 
 /** Parse the command line arguments given by the user. */
 void
@@ -28,7 +31,6 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 {
     gchar *support_dir = NULL, *lang = NULL;
     gint deb_level = -1;
-    gboolean load_last_save = FALSE;
     GError *error = NULL;
     GOptionContext *context = NULL;
     GOptionEntry entries[] =
@@ -67,12 +69,6 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 
     if(lang != NULL)
 	language_set(language_get_code_index(lang) + 1);
-
-    /*todo*/
-    if(load_last_save)
-    {
-	/*add 'last_save' to arguments*/
-    }
 }
 
 /**
@@ -182,7 +178,8 @@ main_init(gint *argc, gchar ***argv)
 
     if(os_is_unix)
 	file_check_home_dir();
-    
+
+    load_last_save = FALSE;
     main_parse_cl_arguments(argc, argv);
 }
 
@@ -207,8 +204,9 @@ main (gint argc, gchar *argv[])
   
     main_init(&argc, &argv);
 
-    if(argc == 1 ||
-       (argc > 1 && !load_game_from_command_line(argv[1])))
+    if((load_last_save && !load_game_from_command_line("last_save")) ||
+       (!load_last_save && (argc == 1 ||
+			    (argc > 1 && !load_game_from_command_line(argv[1])))))
     {
 	window_show_startup();
 	stat0 = STATUS_TEAM_SELECTION;

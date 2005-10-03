@@ -14,6 +14,7 @@
 #include "team.h"
 #include "transfer.h"
 #include "treeview.h"
+#include "treeview2.h"
 #include "treeview_helper.h"
 #include "user.h"
 #include "window.h"
@@ -526,6 +527,17 @@ on_menu_my_league_results_activate     (GtkMenuItem     *menuitem,
     stat0 = STATUS_SHOW_LEAGUE_RESULTS;
     treeview_show_league_results(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")));
 
+    gui_set_arrows();
+}
+
+
+
+void
+on_menu_season_results_activate        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    stat0 = STATUS_SHOW_SEASON_RESULTS;
+    treeview2_show_season_results();
     gui_set_arrows();
 }
 
@@ -1143,4 +1155,3 @@ on_menu_save_window_geometry_activate  (GtkMenuItem     *menuitem,
 {
     window_main_save_geometry();
 }
-

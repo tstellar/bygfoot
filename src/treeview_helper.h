@@ -174,4 +174,11 @@ treeview_helper_mm_teams(GtkTreeViewColumn *col,
 			 GtkTreeIter       *iter,
 			 gpointer           user_data);
 
+void
+treeview_helper_season_results(GtkTreeViewColumn *col,
+			       GtkCellRenderer   *renderer,
+			       GtkTreeModel      *model,
+			       GtkTreeIter       *iter,
+			       gpointer           user_data);
+
 #endif

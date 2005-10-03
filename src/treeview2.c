@@ -1,3 +1,5 @@
+#include "fixture.h"
+#include "league.h"
 #include "live_game.h"
 #include "option.h"
 #include "support.h"
@@ -120,4 +122,101 @@ treeview2_show_mmatches(void)
     treeview2_create_mmatches(model);
     gtk_tree_view_set_model(treeview, GTK_TREE_MODEL(model));
     g_object_unref(model);
+}
+
+void
+treeview2_create_season_results(GtkListStore *ls)
+{
+    gint i;
+    GtkTreeIter iter;
+    GPtrArray *results = fixture_get_season_results();
+
+    for(i=0;i<results->len;i++)
+    {	
+	gtk_list_store_append(ls, &iter);
+	gtk_list_store_set(
+	    ls, &iter,
+	    0, ((Fixture*)g_ptr_array_index(results, i))->week_number,
+	    1, ((Fixture*)g_ptr_array_index(results, i))->week_round_number,
+	    2, league_cup_get_name_string(((Fixture*)g_ptr_array_index(results, i))->clid),
+	    3, g_ptr_array_index(results, i),
+	    4, g_ptr_array_index(results, i),
+	    5, g_ptr_array_index(results, i),
+	    -1);
+    }
+
+    g_ptr_array_free(results, TRUE);
+}
+
+void
+treeview2_set_up_season_results(GtkTreeView *treeview)
+{
+    gint i;
+    GtkTreeViewColumn   *col;
+    GtkCellRenderer     *renderer;
+    gchar *titles[6] =
+	/* Week */
+	{_("We"),
+	 /* Round */
+	 _("Ro"),
+	 _("Competition"),
+	 _("Opponent"),
+	 "",
+	 _("Result")};
+
+    gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
+				GTK_SELECTION_NONE);
+    gtk_tree_view_set_headers_visible(treeview, TRUE);
+
+    for(i=0;i<3;i++)
+    {
+	col = gtk_tree_view_column_new();
+	gtk_tree_view_column_set_title(col, titles[i]);
+	gtk_tree_view_append_column(treeview, col);
+	renderer = treeview_helper_cell_renderer_text_new();
+	gtk_tree_view_column_pack_start(col, renderer, TRUE);
+	gtk_tree_view_column_add_attribute(col, renderer,
+					   "text", i);
+	if(i<2)
+	{
+	    gtk_tree_view_column_set_alignment(col, 0.5);
+	    g_object_set(renderer, "xalign", 0.5, NULL);
+	}
+    }
+
+    for(i=3;i<6;i++)
+    {
+	col = gtk_tree_view_column_new();
+	gtk_tree_view_column_set_title(col, titles[i]);
+	gtk_tree_view_append_column(treeview, col);
+	renderer = treeview_helper_cell_renderer_text_new();
+	gtk_tree_view_column_pack_start(col, renderer, TRUE);
+	gtk_tree_view_column_set_cell_data_func(col, renderer,
+						treeview_helper_season_results,
+						NULL, NULL);
+	if(i == 4)
+	{
+	    gtk_tree_view_column_set_alignment(col, 0.5);
+	    g_object_set(renderer, "xalign", 0.5, NULL);
+	}
+    }
+}
+
+/** Show the user's matches for the complete season. */
+void
+treeview2_show_season_results(void)
+{
+    GtkTreeView *treeview = 
+	GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right"));
+    GtkListStore *model = 
+	gtk_list_store_new(6, G_TYPE_INT, G_TYPE_INT, G_TYPE_STRING, 
+			   G_TYPE_POINTER, G_TYPE_POINTER, G_TYPE_POINTER);
+    
+    treeview_helper_clear(treeview);
+    
+    treeview2_set_up_season_results(treeview);
+
+    treeview2_create_season_results(model);
+    gtk_tree_view_set_model(treeview, GTK_TREE_MODEL(model));
+    g_object_unref(model);    
 }

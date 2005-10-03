@@ -21,4 +21,13 @@ void
 treeview2_show_mmatches(void);
 
 
+void
+treeview2_create_season_results(GtkListStore *ls);
+
+void
+treeview2_set_up_season_results(GtkTreeView *treeview);
+
+void
+treeview2_show_season_results(void);
+
 #endif

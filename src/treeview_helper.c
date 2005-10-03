@@ -1486,3 +1486,68 @@ treeview_helper_mm_teams(GtkTreeViewColumn *col,
 	}
     }
 }
+
+void
+treeview_helper_season_results(GtkTreeViewColumn *col,
+			       GtkCellRenderer   *renderer,
+			       GtkTreeModel      *model,
+			       GtkTreeIter       *iter,
+			       gpointer           user_data)
+{
+    gint column = treeview_helper_get_col_number_column(col);
+    gchar buf[SMALL];
+    const Fixture *fix = NULL;
+    gint user_idx = -1;
+
+    gtk_tree_model_get(model, iter, column, &fix, -1);
+
+    if(fix == NULL)
+	return;
+
+    user_idx = (fix->team_ids[1] == current_user.tm->id);
+
+    if(column == 3)
+    {
+	strcpy(buf, fix->teams[!user_idx]->name->str);
+	if(user_idx == 1)
+	    g_object_set(renderer, "background",
+			 const_app("string_treeview_live_game_commentary_away_bg"), NULL);
+	else
+	    g_object_set(renderer, "background",
+			 const_app("string_treeview_helper_color_default_background"), NULL);
+    }
+    else if(column == 4)
+    {
+	if(fix->attendance == -1)
+	{
+	    strcpy(buf, "");
+	    g_object_set(renderer, "background",
+			 const_app("string_treeview_helper_color_default_background"), NULL);
+	}
+	else if(fix->result[user_idx][0] > fix->result[!user_idx][0])
+	{
+	    /* Won. */
+	    strcpy(buf, _("W"));
+	    g_object_set(renderer, "background",
+			 const_app("string_treeview_helper_season_results_win_bg"), NULL);
+	}
+	else if(fix->result[user_idx][0] < fix->result[!user_idx][0])
+	{
+	    /* Lost. */
+	    strcpy(buf, _("L"));
+	    g_object_set(renderer, "background",
+			 const_app("string_treeview_helper_season_results_loss_bg"), NULL);
+	}
+	else
+	{
+	    /* Draw. */
+	    strcpy(buf, _("Dw"));
+	    g_object_set(renderer, "background",
+			 const_app("string_treeview_helper_season_results_draw_bg"), NULL);
+	}
+    }
+    else if(column == 5)
+	fixture_result_to_buf(fix, buf);
+
+    g_object_set(renderer, "text", buf, NULL);
+}
