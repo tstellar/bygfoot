@@ -798,32 +798,40 @@ fixture_get_week_list(gint week_number, gint week_round_number)
     return fixtures;
 }
 
-/** Print the result of the fixture into a buffer. */
+/** Print the result of the fixture into a buffer.
+    @param swap Whether to swap the two teams' goals. */
 void
-fixture_result_to_buf(const Fixture *fix, gchar *buf)
+fixture_result_to_buf(const Fixture *fix, gchar *buf, gboolean swap)
 {
     gchar local_buf[SMALL];
+    gint idx0 = 0, idx1 = 1;
+
+    if(swap)
+    {
+	idx0 = 1;
+	idx1 = 0;
+    }
 
     if(fix->attendance < 0)
 	strcpy(buf, "-- : --");
     else
     {
-	sprintf(local_buf, "%d - %d", math_sum_int_array(fix->result[0], 3),
-		math_sum_int_array(fix->result[1], 3));
-	if(fix->result[0][2] + fix->result[1][2] != 0)
+	sprintf(local_buf, "%d - %d", math_sum_int_array(fix->result[idx0], 3),
+		math_sum_int_array(fix->result[idx1], 3));
+	if(fix->result[idx0][2] + fix->result[idx1][2] != 0)
 	    /* Game was decided in penalty shoot-out. */
 	    strcat(local_buf, _(" p."));
-	else if(fix->result[0][1] + fix->result[1][1] != 0)
+	else if(fix->result[idx0][1] + fix->result[idx1][1] != 0)
 	    /* Game was decided in extra time. */
 	    strcat(local_buf, _(" e.t."));
 
 	if(fix->second_leg)
 	    sprintf(buf, "%s (%d - %d)", local_buf,
-		    fixture_get_first_leg(fix)->result[1][0],
-		    fixture_get_first_leg(fix)->result[0][0]);
+		    fixture_get_first_leg(fix)->result[idx1][0],
+		    fixture_get_first_leg(fix)->result[idx0][0]);
 	else
 	    strcpy(buf, local_buf);
-    }    
+    }
 }
 
 /** Return the number of fixtures in a given week round.

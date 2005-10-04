@@ -713,7 +713,7 @@ treeview_create_game_stats(LiveGame *live_game)
 			    G_TYPE_STRING,
 			    G_TYPE_STRING);
 
-    fixture_result_to_buf(live_game->fix, buf[0]);
+    fixture_result_to_buf(live_game->fix, buf[0], FALSE);
     gtk_list_store_append(ls, &iter);
     gtk_list_store_set(ls, &iter, 0, live_game->fix->teams[0]->name->str,
 		       1, buf[0],
@@ -921,7 +921,7 @@ treeview_create_fixture(const Fixture *fix, GtkListStore *ls)
 	colour_bg = const_app("string_treeview_helper_color_default_background");
     }
 
-    fixture_result_to_buf(fix, buf_result);
+    fixture_result_to_buf(fix, buf_result, FALSE);
 
     for(i=0;i<2;i++)
 	if(query_fixture_has_tables(fix))

@@ -84,7 +84,7 @@ GPtrArray*
 fixture_get_week_list_clid(gint clid, gint week_number, gint week_round_number);
 
 void
-fixture_result_to_buf(const Fixture *fix, gchar *buf);
+fixture_result_to_buf(const Fixture *fix, gchar *buf, gboolean swap);
 
 gint
 fixture_get_number_of_matches(gint week_number, gint week_round_number);

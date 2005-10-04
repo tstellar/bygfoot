@@ -270,7 +270,10 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
 	on_button_back_to_main_clicked(NULL, NULL);
     }
     else if(window.main != NULL)
+    {
 	gtk_widget_show(window.main);
+	window_main_load_geometry();
+    }
 
     g_free(basename);
     g_free(dirname);

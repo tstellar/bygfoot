@@ -245,7 +245,7 @@ end_week_round_results(void)
 		live_game_calculate_fixture(&g_array_index(lig(i).fixtures, Fixture, j));
 
 		done++;
-		fixture_result_to_buf(&g_array_index(lig(i).fixtures, Fixture, j), buf);
+		fixture_result_to_buf(&g_array_index(lig(i).fixtures, Fixture, j), buf, FALSE);
 		sprintf(buf2, "%s %s %s",
 			g_array_index(lig(i).fixtures, Fixture, j).teams[0]->name->str,
 			buf,
@@ -265,7 +265,7 @@ end_week_round_results(void)
 		live_game_calculate_fixture(&g_array_index(acp(i)->fixtures, Fixture, j));
 
 		done++;
-		fixture_result_to_buf(&g_array_index(acp(i)->fixtures, Fixture, j), buf);
+		fixture_result_to_buf(&g_array_index(acp(i)->fixtures, Fixture, j), buf, FALSE);
 		sprintf(buf2, "%s %s %s",
 			g_array_index(acp(i)->fixtures, Fixture, j).teams[0]->name->str,
 			buf,

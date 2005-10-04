@@ -1524,14 +1524,22 @@ treeview_helper_season_results(GtkTreeViewColumn *col,
 	    g_object_set(renderer, "background",
 			 const_app("string_treeview_helper_color_default_background"), NULL);
 	}
-	else if(fix->result[user_idx][0] > fix->result[!user_idx][0])
+	else if((fix->result[0][2] + fix->result[1][2] > 0 && 
+		 fix->result[user_idx][2] > fix->result[!user_idx][2]) ||
+		(fix->result[0][2] + fix->result[1][2] == 0 && 
+		 math_sum_int_array(fix->result[user_idx], 2) >
+		 math_sum_int_array(fix->result[!user_idx], 2)))
 	{
 	    /* Won. */
 	    strcpy(buf, _("W"));
 	    g_object_set(renderer, "background",
 			 const_app("string_treeview_helper_season_results_win_bg"), NULL);
 	}
-	else if(fix->result[user_idx][0] < fix->result[!user_idx][0])
+	else if((fix->result[0][2] + fix->result[1][2] > 0 && 
+		 fix->result[user_idx][2] < fix->result[!user_idx][2]) ||
+		(fix->result[0][2] + fix->result[1][2] == 0 && 
+		 math_sum_int_array(fix->result[user_idx], 2) <
+		 math_sum_int_array(fix->result[!user_idx], 2)))
 	{
 	    /* Lost. */
 	    strcpy(buf, _("L"));
@@ -1547,7 +1555,7 @@ treeview_helper_season_results(GtkTreeViewColumn *col,
 	}
     }
     else if(column == 5)
-	fixture_result_to_buf(fix, buf);
+	fixture_result_to_buf(fix, buf, (user_idx == 1));
 
     g_object_set(renderer, "text", buf, NULL);
 }
