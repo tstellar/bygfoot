@@ -2295,14 +2295,14 @@ treeview_create_country_list(const GPtrArray *country_list)
     
     for(i=0;i<country_list->len;i++)
     {
-	sscanf(((GString*)g_ptr_array_index(country_list, i))->str, "country_%[^.]%[.xml]",
+	sscanf((gchar*)g_ptr_array_index(country_list, i), "country_%[^.]%[.xml]",
 	       buf2, trash);
 	sprintf(buf, "flag_%s.png", buf2);
 
 	gtk_list_store_append(ls, &iter);
 	treeview_helper_insert_icon(ls, &iter, 0, buf);
 	gtk_list_store_set(ls, &iter, 1, 
-			   ((GString*)g_ptr_array_index(country_list, i))->str, -1);
+			   (gchar*)g_ptr_array_index(country_list, i), -1);
     }
 
     return GTK_TREE_MODEL(ls);
@@ -2416,13 +2416,13 @@ treeview_create_language_list(void)
     for(i=0;i<names->len;i++)
     {
 	gtk_list_store_append(ls, &iter);
-	treeview_helper_insert_icon(ls, &iter, 0, ((GString*)g_ptr_array_index(symbols, i))->str);
+	treeview_helper_insert_icon(ls, &iter, 0, (gchar*)g_ptr_array_index(symbols, i));
 	gtk_list_store_set(ls, &iter, 1, 
-			   ((GString*)g_ptr_array_index(names, i))->str, -1);
+			   (gchar*)g_ptr_array_index(names, i), -1);
     }
 
-    free_g_string_array(&names);
-    free_g_string_array(&symbols);
+    free_gchar_array(&names);
+    free_gchar_array(&symbols);
 
     return GTK_TREE_MODEL(ls);
 }

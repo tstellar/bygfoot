@@ -56,7 +56,7 @@ void
 free_variables(void);
 
 void
-free_g_string_array(GPtrArray **array);
+free_gchar_array(GPtrArray **array);
 
 void
 free_player_array(GArray **players);

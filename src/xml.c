@@ -54,15 +54,15 @@ xml_load_leagues(const gchar *dirname, const gchar *basename)
     free_leagues_array(&ligs, TRUE);
     
     for(i=0;i<dir_contents->len;i++)
-	if(!g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_table.xml") && 
-	   !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_fixtures.xml") &&
-	   !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_teams.xml") &&
-	   !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_stat.xml") &&
-	   !g_strrstr(((GString*)g_ptr_array_index(dir_contents, i))->str, "_promcup"))
-	    xml_load_league(dirname, ((GString*)g_ptr_array_index(dir_contents, i))->str,
+	if(!g_str_has_suffix((gchar*)g_ptr_array_index(dir_contents, i), "_table.xml") && 
+	   !g_str_has_suffix((gchar*)g_ptr_array_index(dir_contents, i), "_fixtures.xml") &&
+	   !g_str_has_suffix((gchar*)g_ptr_array_index(dir_contents, i), "_teams.xml") &&
+	   !g_str_has_suffix((gchar*)g_ptr_array_index(dir_contents, i), "_stat.xml") &&
+	   !g_strrstr((gchar*)g_ptr_array_index(dir_contents, i), "_promcup"))
+	    xml_load_league(dirname, (gchar*)g_ptr_array_index(dir_contents, i),
 			    dir_contents);
     
-    free_g_string_array(&dir_contents);
+    free_gchar_array(&dir_contents);
 }
 
 void
@@ -116,19 +116,19 @@ xml_load_cups(const gchar *dirname, const gchar *basename)
     
     for(i=0;i<dir_contents->len;i++)
     {
-	if(!g_strrstr(((GString*)g_ptr_array_index(dir_contents, i))->str, "_table") &&
-	   !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_fixtures.xml") &&
-	   !g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, "_teams.xml"))
+	if(!g_strrstr((gchar*)g_ptr_array_index(dir_contents, i), "_table") &&
+	   !g_str_has_suffix((gchar*)g_ptr_array_index(dir_contents, i), "_fixtures.xml") &&
+	   !g_str_has_suffix((gchar*)g_ptr_array_index(dir_contents, i), "_teams.xml"))
 	{
 	    new_cup = cup_new(FALSE);
 	    g_array_append_val(cps, new_cup);
 	    xml_load_cup(&g_array_index(cps, Cup, cps->len - 1), dirname,
-			 ((GString*)g_ptr_array_index(dir_contents, i))->str,
+			 (gchar*)g_ptr_array_index(dir_contents, i),
 			 dir_contents);
 	}
     }
     
-    free_g_string_array(&dir_contents);
+    free_gchar_array(&dir_contents);
 }
 
 void

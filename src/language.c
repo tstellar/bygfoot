@@ -24,7 +24,7 @@ language_set(gint index)
 	misc_separate_strings(const_str("string_language_codes"));
 
     if(index > 0)
-	strcpy(buf, ((GString*)g_ptr_array_index(codes, index - 1))->str);
+	strcpy(buf, (gchar*)g_ptr_array_index(codes, index - 1));
     else
 	strcpy(buf, "");
 
@@ -60,7 +60,7 @@ language_set(gint index)
 
     lg_commentary_load_commentary_file_from_option();
 
-    free_g_string_array(&codes);
+    free_gchar_array(&codes);
 }
 
 /** Get the index of the given code in the codes
@@ -79,13 +79,13 @@ language_get_code_index(const gchar *code)
 	strcpy(local_code, "C");
     
     for(i=0;i<codes->len;i++)
-	if(strcmp(local_code, ((GString*)g_ptr_array_index(codes, i))->str) == 0)
+	if(strcmp(local_code, (gchar*)g_ptr_array_index(codes, i)) == 0)
 	{
 	    return_value = i;
 	    break;
 	}
 
-    free_g_string_array(&codes);
+    free_gchar_array(&codes);
 
     return return_value;
 }

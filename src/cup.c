@@ -268,7 +268,9 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 		g_ptr_array_add(
 		    teams, team_of_id(
 			g_array_index(league->table.elements, TableElement, j).team_id));
-		g_ptr_array_add(cup->team_names, team_of_id(g_array_index(league->table.elements, TableElement, j).team_id)->name);
+		g_ptr_array_add(
+		    cup->team_names, 
+		    g_strdup(team_of_id(g_array_index(league->table.elements, TableElement, j).team_id)->name->str));
 	    }
 	}
 	else
@@ -300,8 +302,9 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 		{
 		    g_ptr_array_add(teams, 
 				    team_of_id(g_array_index(league->table.elements, TableElement, order[j]).team_id));
-		    g_ptr_array_add(cup->team_names, 
-				    team_of_id(g_array_index(league->table.elements, TableElement, order[j]).team_id)->name);
+		    g_ptr_array_add(
+			cup->team_names, 
+			g_strdup(team_of_id(g_array_index(league->table.elements, TableElement, order[j]).team_id)->name->str));
 		    number_of_teams++;
 
 		    if(number_of_teams == ct->number_of_teams)
@@ -341,8 +344,8 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 		    g_ptr_array_add(teams, &g_array_index(lig(0).teams,
 							  Team, permutation[i - ct->start_idx + 1]));
 		    g_ptr_array_add(cup->team_names,
-				    g_array_index(lig(0).teams,
-						  Team, permutation[i - ct->start_idx + 1]).name);
+				    g_strdup(g_array_index(lig(0).teams,
+							   Team, permutation[i - ct->start_idx + 1]).name->str));
 		    number_of_teams++;
 		}
 		
@@ -378,7 +381,8 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 		       (Team*)g_ptr_array_index(cup_teams_sorted, j), cup->group))
 		{
 		    g_ptr_array_add(teams, g_ptr_array_index(cup_teams_sorted, j));
-		    g_ptr_array_add(cup->team_names, ((Team*)g_ptr_array_index(cup_teams_sorted, j))->name);
+		    g_ptr_array_add(cup->team_names, 
+				    g_strdup(((Team*)g_ptr_array_index(cup_teams_sorted, j))->name->str));
 		    number_of_teams++;
 
 		    if(number_of_teams == ct->number_of_teams)
@@ -423,9 +427,9 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
 
     for(j=0;j<sids->len;j++)
     {
-	if(!query_cup_choose_team_is_league(((GString*)g_ptr_array_index(sids, j))->str))
+	if(!query_cup_choose_team_is_league((gchar*)g_ptr_array_index(sids, j)))
 	{
-	    xml_league_read(((GString*)g_ptr_array_index(sids, j))->str, leagues);
+	    xml_league_read((gchar*)g_ptr_array_index(sids, j), leagues);
 		    
 	    for(k=0; k < g_array_index(leagues, League, leagues->len - 1).teams->len; k++)
 		g_array_append_val(teams_local, g_array_index(
@@ -437,7 +441,7 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
     }
 
     g_array_free(leagues, TRUE);
-    free_g_string_array(&sids);
+    free_gchar_array(&sids);
 
     /** No teams found. */
     if(teams_local->len == 0)
@@ -481,7 +485,7 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
 	    g_array_append_val(cup_round->teams, g_array_index(teams_local, Team, permutation[j]));
 	    g_array_index(cup_round->teams, Team, cup_round->teams->len - 1).clid = cup->id;
 	    g_ptr_array_add(cup->team_names, 
-				   g_array_index(cup_round->teams, Team, cup_round->teams->len - 1).name);
+			    g_strdup(g_array_index(cup_round->teams, Team, cup_round->teams->len - 1).name->str));
 
 	    number_of_teams++;
 	}
@@ -1020,10 +1024,10 @@ cup_get_highlight_colour(const Cup *cup)
     gchar buf[SMALL];
 
     for(i=0;i<cup->properties->len;i++)
-	if(g_str_has_prefix(((GString*)g_ptr_array_index(cup->properties, i))->str, "highlight"))
+	if(g_str_has_prefix((gchar*)g_ptr_array_index(cup->properties, i), "highlight"))
 	{
 	    sprintf(buf, "string_cup_%s",
-		    ((GString*)g_ptr_array_index(cup->properties, i))->str);
+		    (gchar*)g_ptr_array_index(cup->properties, i));
 	    return const_app(buf);
 	}
 

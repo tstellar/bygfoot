@@ -253,7 +253,6 @@ xml_cup_read_text         (GMarkupParseContext *context,
     gchar buf[text_len + 1];
     gint int_value;
     gfloat float_value;
-    GString *new_property = NULL;
 
     strncpy(buf, text, text_len);
     buf[text_len] = '\0';
@@ -274,10 +273,7 @@ xml_cup_read_text         (GMarkupParseContext *context,
     else if(state == STATE_LAST_WEEK)
 	new_cup.last_week = int_value;
     else if(state == STATE_PROPERTY)
-    {
-	new_property = g_string_new(buf);
-	g_ptr_array_add(new_cup.properties, new_property);
-    }
+	g_ptr_array_add(new_cup.properties, g_strdup(buf));
     else if(state == STATE_ADD_WEEK)
 	new_cup.add_week = int_value;
     else if(state == STATE_WEEK_GAP)

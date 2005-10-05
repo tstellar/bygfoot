@@ -201,31 +201,31 @@ file_check_home_dir_copy_definition_dir(const gchar *dirname, const gchar *basen
     {
 	sprintf(buf, "%s%s%s%s%s%s%s", home, G_DIR_SEPARATOR_S,
 		HOMEDIRNAME, G_DIR_SEPARATOR_S, basename, G_DIR_SEPARATOR_S,
-		((GString*)g_ptr_array_index(dir_contents, i))->str);
+		(gchar*)g_ptr_array_index(dir_contents, i));
     
-	if(g_str_has_suffix(((GString*)g_ptr_array_index(dir_contents, i))->str, ".xml") &&
+	if(g_str_has_suffix((gchar*)g_ptr_array_index(dir_contents, i), ".xml") &&
 	   !g_file_test(buf, G_FILE_TEST_EXISTS))
 	{
         
 	    sprintf(buf2, "%s%s%s", dirname, G_DIR_SEPARATOR_S,
-		    ((GString*)g_ptr_array_index(dir_contents, i))->str);
+		    (gchar*)g_ptr_array_index(dir_contents, i));
 	    file_copy_file(buf2, buf);
 	}
 	else
 	{
 	    sprintf(buf, "%s%s%s", dirname, G_DIR_SEPARATOR_S,
-		    ((GString*)g_ptr_array_index(dir_contents, i))->str);
+		    (gchar*)g_ptr_array_index(dir_contents, i));
 
 	    if(g_file_test(buf, G_FILE_TEST_IS_DIR))
 	    {
 		sprintf(buf2, "%s%s%s", basename, G_DIR_SEPARATOR_S,
-			((GString*)g_ptr_array_index(dir_contents, i))->str);
+			(gchar*)g_ptr_array_index(dir_contents, i));
 		file_check_home_dir_copy_definition_dir(buf, buf2);
 	    }
 	}
     }
     
-    free_g_string_array(&dir_contents);
+    free_gchar_array(&dir_contents);
 }
 
 /** Copy the xml definition files into the home dir. */
@@ -255,13 +255,12 @@ file_check_home_dir(void)
 /**
    Retrieve those files in the given directory
    that start with the given prefix and suffix. The file names are stored
-   in an array of GStrings.
+   in an array of strings.
    @param dir_name The full path to the directory.
    @param prefix The prefix that files must have to be included.
    @param suffix The suffix that files must have to be included.
-   @return A GPtrArray with pointers to the GStrings of the file
-   names. The GStrings and the array must be freed with free_g_string_array().
-   @see free_g_string_array()
+   @return A GPtrArray with pointers to the strings of the file
+   names. The array must be freed with free_gchar_array().
 */
 GPtrArray*
 file_dir_get_contents(const gchar *dir_name, const gchar *prefix, const gchar *suffix)
@@ -269,7 +268,6 @@ file_dir_get_contents(const gchar *dir_name, const gchar *prefix, const gchar *s
     GError *error = NULL;
     GDir *dir = g_dir_open(dir_name, 0, &error);
     GPtrArray *contents = g_ptr_array_new();
-    GString *new = NULL;
     const gchar *file = NULL;
 
     misc_print_error(&error, FALSE);
@@ -286,10 +284,8 @@ file_dir_get_contents(const gchar *dir_name, const gchar *prefix, const gchar *s
     {
 	if(g_str_has_prefix(file, prefix) &&
 	   g_str_has_suffix(file, suffix))
-	{
-	    new = g_string_new(file);
-	    g_ptr_array_add(contents, (gpointer)new);
-	}
+	    g_ptr_array_add(contents, (gpointer)g_strdup(file));
+
 	file = g_dir_read_name(dir);
     }
 
@@ -306,21 +302,18 @@ file_get_country_files(void)
     GList *elem = support_directories;
     GPtrArray *country_files = g_ptr_array_new();
     GPtrArray *dir_contents = NULL;
-    GString *new_string = NULL;
 
     while(elem != NULL)
     {
 	dir_contents = file_dir_get_contents((gchar*)elem->data, "country_", ".xml");
 
 	for(i=0;i<dir_contents->len;i++)
-	    if(!query_misc_string_in_array(((GString*)g_ptr_array_index(dir_contents, i))->str,
+	    if(!query_misc_string_in_array((gchar*)g_ptr_array_index(dir_contents, i),
 					   country_files))
-	    {
-		new_string = g_string_new(((GString*)g_ptr_array_index(dir_contents, i))->str);
-		g_ptr_array_add(country_files, new_string);
-	    }
+		g_ptr_array_add(country_files, 
+				g_strdup((gchar*)g_ptr_array_index(dir_contents, i)));
 
-	free_g_string_array(&dir_contents);
+	free_gchar_array(&dir_contents);
 
 	elem = elem->next;
     }
@@ -537,7 +530,7 @@ file_compress_files(const gchar *destfile, const gchar *prefix)
     for(i=0;i<files->len;i++)
     {
 	strcat(buf, " ");
-	strcat(buf, ((GString*)g_ptr_array_index(files, i))->str);
+	strcat(buf, (gchar*)g_ptr_array_index(files, i));
     }
 
     file_my_system(buf);
@@ -547,7 +540,7 @@ file_compress_files(const gchar *destfile, const gchar *prefix)
     sprintf(buf, "%s%s%s*", dirname, G_DIR_SEPARATOR_S, basename);
     file_remove_files(buf);
 
-    free_g_string_array(&files);
+    free_gchar_array(&files);
 
     g_free(basename);
     g_free(dirname);

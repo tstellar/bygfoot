@@ -110,7 +110,7 @@ window_show_startup(void)
 
     gtk_combo_box_set_active(GTK_COMBO_BOX(combo_country), 0);
 
-    free_g_string_array(&country_files);
+    free_gchar_array(&country_files);
 }
 
 /** Show the file selection window. */

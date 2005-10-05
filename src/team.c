@@ -162,7 +162,7 @@ query_team_is_in_cups(const Team *tm, gint group)
 	if(cp(i).group == group)
 	    for(j=0;j<cp(i).team_names->len;j++)
 		if(strcmp(tm->name->str, 
-			  ((GString*)g_ptr_array_index(cp(i).team_names, j))->str) == 0)
+			  (gchar*)g_ptr_array_index(cp(i).team_names, j)) == 0)
 		{
 		    if(debug > 90)
 			printf("team %s group %d found in %s \n", tm->name->str,
@@ -184,7 +184,7 @@ query_team_is_in_cup(const Team *tm, const Cup *cup)
 
     for(i=0;i<cup->team_names->len;i++)
 	if(strcmp(tm->name->str, 
-		  ((GString*)g_ptr_array_index(cup->team_names, i))->str) == 0)
+		  (gchar*)g_ptr_array_index(cup->team_names, i)) == 0)
 	    return TRUE;
 
     return FALSE;

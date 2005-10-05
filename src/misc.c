@@ -57,14 +57,13 @@ misc_swap_gpointer(gpointer *first, gpointer *second)
     white spaces. 
     @param string The string containing white spaces.
     @return A GPtrArray containing all the strings without white spaces that were part of the original string.
-    This array must be freed with free_g_string_array(). */
+    This array must be freed with free_gchar_array(). */
 GPtrArray*
 misc_separate_strings(gchar *string)
 {
     gint i, cnt = 0, start = 0;
     gchar buf[BIG];
     GPtrArray *string_array = g_ptr_array_new();
-    GString *new_string = NULL;
 
     for(i=0;i<strlen(string);i++)
 	if(g_ascii_isspace(string[i]))
@@ -87,10 +86,7 @@ misc_separate_strings(gchar *string)
 	    buf[cnt] = '\0';
 	    cnt = 0;
 	    if(strlen(buf) > 0)
-	    {
-		new_string = g_string_new(buf);
-		g_ptr_array_add(string_array, (gpointer)new_string);
-	    }
+		g_ptr_array_add(string_array, (gpointer)g_strdup(buf));
 	}
     }
 
@@ -219,14 +215,14 @@ misc_float_compare(gfloat first, gfloat second)
     return 0;
 }
 
-/** Check whether the string is in the GString array. */
+/** Check whether the string is in the string array. */
 gboolean
 query_misc_string_in_array(const gchar *string, GPtrArray *array)
 {
     gint i;
 
     for(i=0;i<array->len;i++)
-	if(strcmp(string, ((GString*)g_ptr_array_index(array, i))->str) == 0)
+	if(strcmp(string, (gchar*)g_ptr_array_index(array, i)) == 0)
 	    return TRUE;
 
     return FALSE;

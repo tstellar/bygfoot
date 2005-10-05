@@ -462,7 +462,7 @@ league_get_team_movements_prom_rel(const League *league, GArray *team_movements)
 
 	for(j=0;j<dest_sids->len;j++)
 	    dest_idcs_int[j] = 
-		league_index_from_sid(((GString*)g_ptr_array_index(dest_sids, j))->str);
+		league_index_from_sid((gchar*)g_ptr_array_index(dest_sids, j));
 
 	for(j=g_array_index(elements, PromRelElement, i).ranks[0];
 	    j<=g_array_index(elements, PromRelElement, i).ranks[1]; j++)
@@ -480,7 +480,7 @@ league_get_team_movements_prom_rel(const League *league, GArray *team_movements)
 	    g_array_append_val(team_movements, new_move);
 	}
 
-	free_g_string_array(&dest_sids);
+	free_gchar_array(&dest_sids);
     }
 }
 
@@ -512,7 +512,7 @@ league_get_team_movements_prom_games(const League *league, GArray *team_movement
 
     for(i=0;i<dest_sids->len;i++)
 	dest_idcs_int[i] = 
-	    league_index_from_sid(((GString*)g_ptr_array_index(dest_sids, i))->str);
+	    league_index_from_sid((gchar*)g_ptr_array_index(dest_sids, i));
 
     for(i=start_idx;i<end_idx;i++)
     {	    
@@ -528,7 +528,7 @@ league_get_team_movements_prom_games(const League *league, GArray *team_movement
 	g_array_append_val(team_movements, new_move);
     }
 
-    free_g_string_array(&dest_sids);
+    free_gchar_array(&dest_sids);
 }
 
 

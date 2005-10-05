@@ -157,7 +157,6 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
     gchar buf[SMALL], buf2[SMALL];
     gint int_value = -1;
     gfloat float_value;
-    GString *new_string = NULL;
     Table new_table;
 
     strncpy(buf, text, text_len);
@@ -185,10 +184,7 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
     else if(state == TAG_CUP_ADD_WEEK)
 	new_cup->add_week = int_value;
     else if(state == TAG_CUP_PROPERTY)
-    {
-	new_string = g_string_new(buf);
-	g_ptr_array_add(new_cup->properties, new_string);
-    }
+	g_ptr_array_add(new_cup->properties, g_strdup(buf));
     else if(state == TAG_CUP_GROUP)
 	new_cup->group = int_value;
     else if(state == TAG_CUP_TALENT_DIFF)
@@ -200,10 +196,7 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
     else if(state == TAG_CUP_TEAM_ID_BYE)
 	g_ptr_array_add(new_cup->bye, team_of_id(int_value));
     else if(state == TAG_CUP_TEAM_NAME)
-    {
-	new_string = g_string_new(buf);
-	g_ptr_array_add(new_cup->team_names, new_string);
-    }
+	g_ptr_array_add(new_cup->team_names, g_strdup(buf));
     else if(state == TAG_CUP_CHOOSE_TEAM_SID)
 	g_string_printf(new_choose_team.sid, "%s", buf);
     else if(state == TAG_CUP_CHOOSE_TEAM_NUMBER_OF_TEAMS)
@@ -327,8 +320,8 @@ xml_loadsave_cup_write(const gchar *prefix, const Cup *cup)
 		  TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK_ROUND, I0);
 
     for(i=0;i<cup->properties->len;i++)
-	xml_write_g_string(fil, (GString*)g_ptr_array_index(cup->properties, i),
-			   TAG_CUP_PROPERTY, I0);
+	xml_write_string(fil, (gchar*)g_ptr_array_index(cup->properties, i),
+			 TAG_CUP_PROPERTY, I0);
 
     for(i=0;i<cup->rounds->len;i++)
 	xml_loadsave_cup_write_round(fil, prefix, cup, i);
@@ -339,7 +332,7 @@ xml_loadsave_cup_write(const gchar *prefix, const Cup *cup)
 			  TAG_CUP_TEAM_ID_BYE, I1);
 
     for(i=0;i<cup->team_names->len;i++)
-	xml_write_g_string(fil, (GString*)g_ptr_array_index(cup->team_names, i),
+	xml_write_string(fil, (gchar*)g_ptr_array_index(cup->team_names, i),
 			   TAG_CUP_TEAM_NAME, I1);
 
     fprintf(fil, "</_%d>\n", TAG_CUP);

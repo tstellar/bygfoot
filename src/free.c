@@ -472,9 +472,9 @@ free_cup(Cup *cup)
     free_g_array(&cup->fixtures);
 
     free_g_ptr_array(&cup->bye);
-    free_g_ptr_array(&cup->team_names);
+    free_gchar_array(&cup->team_names);
     free_g_ptr_array(&cup->teams);
-    free_g_string_array(&cup->properties);
+    free_gchar_array(&cup->properties);
 }
 
 /**
@@ -532,7 +532,7 @@ free_lg_commentary(gboolean reset)
    @param array The array to be freed.
 */
 void
-free_g_string_array(GPtrArray **array)
+free_gchar_array(GPtrArray **array)
 {
     gint i;
 
@@ -540,9 +540,10 @@ free_g_string_array(GPtrArray **array)
 	return;
 
     for(i=0;i<(*array)->len;i++)
-	free_g_string((GString**)&g_ptr_array_index(*array, i));
+	g_free(g_ptr_array_index(*array, i));
 
     free_g_ptr_array(array);
+    *array = NULL;
 }
 
 /** Free a GString if it isn't NULL.
