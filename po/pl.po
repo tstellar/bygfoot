@@ -6,15 +6,14 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-09-27 18:19+0200\n"
-"PO-Revision-Date: 2005-09-07 11:56+0200\n"
+"PO-Revision-Date: 2005-10-05 19:48+0200\n"
 "Last-Translator: Michal Rudolf <mrudolf@kdewebdev.org>\n"
 "Language-Team: Polish <kdei18n-pl-devel@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.10.1\n"
-"Plural-Forms:  nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%"
-"100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms:  nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: src/treeview_helper.c:828
 #, c-format
@@ -805,8 +804,7 @@ msgstr ""
 
 #: src/misc_interface.c:662
 msgid "Change live game speed. The lower the value the faster the live game."
-msgstr ""
-"Zmienia szybkość relacji na żywo. Im niższa wartość, tym szybsza relacja."
+msgstr "Zmienia szybkość relacji na żywo. Im niższa wartość, tym szybsza relacja."
 
 #: src/misc_interface.c:133
 msgid "Choose country"
@@ -818,7 +816,7 @@ msgstr "Wybierz plik"
 
 #: src/options_interface.c:397
 msgid "Choose game language (might not work in Windows versions)"
-msgstr ""
+msgstr "Wybierz język gry (może nie działać w wersji dla Windows)"
 
 #: src/misc2_interface.c:801
 msgid "Click on a user to remove him from the game."
@@ -1207,9 +1205,8 @@ msgid "Go/Ga"
 msgstr "Bz/Bs"
 
 #: src/treeview.c:1507
-#, fuzzy
 msgid "Goalie"
-msgstr "Bramkarze"
+msgstr "Bramkarz"
 
 #: src/interface.c:637
 msgid "Goalies"
@@ -1414,8 +1411,7 @@ msgstr ""
 "ofertę."
 
 #: src/callbacks.c:801
-msgid ""
-"Left-click: get loan; Right-click: pay back; Middle click: stadium window."
+msgid "Left-click: get loan; Right-click: pay back; Middle click: stadium window."
 msgstr "Lwy przycisk: pożyczka, prawy: spłata, środkowy: stadion."
 
 #: src/options_interface.c:929
@@ -1947,8 +1943,7 @@ msgstr "Bezpieczeństwo (%)"
 
 #: src/misc_callback_func.c:218
 msgid "Safety improvement too high, reset to highest possible value."
-msgstr ""
-"Zbyt wysoka wartość bezpieczeństwa, wybrano maksymalną dopuszczalną wartość."
+msgstr "Zbyt wysoka wartość bezpieczeństwa, wybrano maksymalną dopuszczalną wartość."
 
 #. % of saves for goalies (#goals / #shots)
 #: src/treeview.c:2074
@@ -1981,11 +1976,11 @@ msgstr "Zapisz ustawienia użytkownika"
 
 #: src/interface.c:376
 msgid "Save window geometry"
-msgstr ""
+msgstr "Zapamiętaj układ okien"
 
 #: src/interface.c:379
 msgid "Save window size, position and vertical divider"
-msgstr ""
+msgstr "Zapamiętuje rozmiar i pozycje okna oraz położenie separatora"
 
 #: src/load_save.c:67
 msgid "Saving cups..."
@@ -2046,8 +2041,7 @@ msgid "Set investment"
 msgstr "Finansowanie"
 
 #: src/callbacks.c:1052 src/interface.c:670
-msgid ""
-"Set the percentage of your income you want to devote to your youth academy."
+msgid "Set the percentage of your income you want to devote to your youth academy."
 msgstr "Podaj procent dochodów, jaki chcesz przeznaczyć na szkółkę młodzików."
 
 #: src/options_interface.c:514
@@ -2223,9 +2217,8 @@ msgstr "Stan:"
 
 #. Hot streak or cold streak of a player.
 #: src/treeview.c:1862
-#, fuzzy
 msgid "Streak"
-msgstr "Sezon"
+msgstr "Passa"
 
 #: src/callbacks.c:647
 msgid "Structure"
@@ -2331,8 +2324,7 @@ msgid "The player is already on the list."
 msgstr "Zawodnik jest już na liście."
 
 #: src/callback_func.c:444
-msgid ""
-"The player is locked (the team owners are considering an offer currently)."
+msgid "The player is locked (the team owners are considering an offer currently)."
 msgstr "Zawodnik jest aktualnie zablokowany (właściciele rozważają ofertę)."
 
 #: src/callbacks.c:427
@@ -2340,14 +2332,12 @@ msgid "The player is not on the list."
 msgstr "Zawodnik nie jest na liście."
 
 #: src/treeview_helper.c:934
-#, fuzzy
 msgid "The player is on a cold streak"
-msgstr "Zawodnik nie jest na liście."
+msgstr "Zawodnik ma dobrą passę."
 
 #: src/treeview_helper.c:932
-#, fuzzy
 msgid "The player is on a hot streak"
-msgstr "Zawodnik nie jest na liście."
+msgstr "Zawodnik ma dobrą passę"
 
 #: src/callbacks.c:498
 msgid "The player is too old for the youth academy."
@@ -2403,9 +2393,8 @@ msgstr ""
 "Kontynuować?"
 
 #: src/callbacks.c:363
-#, fuzzy
 msgid "There are no leagues or cups with tables in this country definition."
-msgstr "W tej definicji kraju transfery są wyłączone."
+msgstr "W tej definicji kraju nie ma lig ani pucharów z tabelami."
 
 #: src/callback_func.c:352
 msgid "There are no offers for the player."
@@ -2543,8 +2532,7 @@ msgid "Welcome to Bygfoot %s"
 msgstr "Witamy w programie Bygfoot %s"
 
 #: src/options_interface.c:222
-msgid ""
-"Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
+msgid "Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
 msgstr ""
 "Określa, czy 'Zapisz' nadpisuje aktualny plik, czy też wyświetla okno wyboru "
 "pliku"
@@ -2647,15 +2635,13 @@ msgstr "Określa, czy wyświetlać oferty pracy, gdy użytkownik odnosi sukcesy"
 
 #: src/options_interface.c:556
 msgid "Whether to show the player games/goals value in all competitions"
-msgstr ""
-"Określa, czy wyświetlać łączną liczbę spotkań/bramek we wszystkich zawodach."
+msgstr "Określa, czy wyświetlać łączną liczbę spotkań/bramek we wszystkich zawodach."
 
 #: src/options_interface.c:232
 msgid ""
 "Whether to show warnings and such in the message area in the main window "
 "when possible"
-msgstr ""
-"Określa, czy wyświetlać ostrzeżenia i inne komunikaty w polu wiadomości."
+msgstr "Określa, czy wyświetlać ostrzeżenia i inne komunikaty w polu wiadomości."
 
 #. Yellow cards of a player.
 #: src/treeview.c:271
@@ -2981,9 +2967,8 @@ msgstr "Szkółka młodzików"
 
 #: src/callbacks.c:487 src/callbacks.c:1031 src/callbacks.c:1046
 #: src/callbacks.c:1063
-#, fuzzy
 msgid "Youth academy is disabled in this country definition."
-msgstr "Mobilizacja jest wyłączona w tej definicji kraju."
+msgstr "Szkółka młodzików jest wyłączona w tej definicji kraju."
 
 #: src/interface.c:599 src/treeview.c:1314
 msgid "Youth coach"
@@ -3040,3 +3025,4 @@ msgstr "_Użytkownik"
 #~ msgstr ""
 #~ "Ustawianie języka działa tylko w instalowanych pakietach (nie w "
 #~ "binarnych)."
+
