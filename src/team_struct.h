@@ -32,7 +32,7 @@ enum TeamAttribute
 /** The stadium of a team. */
 typedef struct
 {    
-    GString *name;
+    gchar *name;
     gint capacity, /**< How many people fit in. Default: -1 (depends on league). */
 	average_attendance, /**< How many people watched on average. Default: 0. */
 	possible_attendance, /**< How many people would've watched if every game had been
@@ -47,11 +47,11 @@ typedef struct
     @see Player */
 typedef struct
 {
-    GString *name, *symbol;
+    gchar *name, *symbol;
     /** File the team takes the 
 	player names from. */
-    GString *names_file;
-    GString *def_file;
+    gchar *names_file;
+    gchar *def_file;
 
     gint clid, /**< Numerical id of the league or cup the team belongs to. */
 	id, /**< Id of the team. */

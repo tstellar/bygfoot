@@ -82,9 +82,9 @@ main_init_variables(void)
     ligs = g_array_new(FALSE, FALSE, sizeof(League));
     cps = g_array_new(FALSE, FALSE, sizeof(Cup));;
     acps = g_ptr_array_new();
-    country.name = g_string_new("");
-    country.symbol = g_string_new("");
-    country.sid = g_string_new("");;
+    country.name = NULL;
+    country.symbol = NULL;
+    country.sid = NULL;;
     
     season = week = week_round = 1;
 
@@ -109,7 +109,7 @@ main_init_variables(void)
     season_stats = g_array_new(FALSE, FALSE, sizeof(SeasonStat));
     name_lists = g_array_new(FALSE, FALSE, sizeof(NameList));
 
-    save_file = g_string_new("");
+    save_file = NULL;
 
     constants_app.list = settings.list =
 	constants.list = options.list = lg_tokens.list = NULL;

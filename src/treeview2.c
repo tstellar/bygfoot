@@ -30,7 +30,7 @@ treeview2_create_mmatches(GtkListStore *ls)
 			   4, g_array_index(current_user.mmatches, MemMatch, i).
 			   competition_name->str, 
 			   5, g_array_index(current_user.mmatches, MemMatch, i).
-			   country_name->str, -1);
+			   country_name, -1);
 	gtk_list_store_set(ls, &iter, 
 			   TREEVIEW_MMATCH_COL_REPLAY, _("REPLAY"), 
 			   TREEVIEW_MMATCH_COL_REMOVE, _("REMOVE"),

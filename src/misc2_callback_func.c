@@ -5,6 +5,7 @@
 #include "free.h"
 #include "game_gui.h"
 #include "maths.h"
+#include "misc.h"
 #include "misc2_callback_func.h"
 #include "option.h"
 #include "player.h"
@@ -47,11 +48,11 @@ misc2_callback_transfer_user_player(void)
 	else
 	{
 	    game_gui_show_warning(_("%s couldn't afford to buy %s or his roster was full."),
-				  user_from_team(new_team)->name->str, 
-				  player_of_id_team(trans(stat2).tm, trans(stat2).id)->name->str);
+				  user_from_team(new_team)->name, 
+				  player_of_id_team(trans(stat2).tm, trans(stat2).id)->name);
 	    user_event_add(user_from_team(new_team), EVENT_TYPE_WARNING, -1, -1, NULL, 
 			   _("You didn't have enough money to buy %s or your roster was full."),
-			   player_of_id_team(trans(stat2).tm, trans(stat2).id)->name->str);
+			   player_of_id_team(trans(stat2).tm, trans(stat2).id)->name);
 	    g_array_remove_index(trans(stat2).offers, 0);
 	    if(trans(stat2).offers->len > 0 && 
 	       transoff(stat2, 0).status == TRANSFER_OFFER_NOT_CONSIDERED)
@@ -157,7 +158,7 @@ misc2_callback_contract_offer(void)
 		pl->contract += (i + 1);
 		pl->offers = 0;
 		pl->wage = value;
-		game_gui_show_warning(_("%s accepts your offer."), pl->name->str);
+		game_gui_show_warning(_("%s accepts your offer."), pl->name);
 		window_destroy(&window.contract, FALSE);
 	    }
 	    else
@@ -165,12 +166,12 @@ misc2_callback_contract_offer(void)
 		pl->offers++;
 		if(pl->offers < const_int("int_contract_max_offers"))
 		    game_gui_show_warning(_("%s rejects your offer. You may still make %d offers."), 
-					  pl->name->str, 
+					  pl->name, 
 					  const_int("int_contract_max_offers") - pl->offers);
 		else
 		{
 		    game_gui_show_warning(_("%s rejects your offer and won't negotiate with you anymore. You should sell him before his contract expires (he'll simply leave your team otherwise)."), 
-					  pl->name->str);
+					  pl->name);
 		    window_destroy(&window.contract, FALSE);
 		}
 	    }
@@ -193,7 +194,7 @@ misc2_callback_add_user(void)
     Team *tm = (Team*)treeview_helper_get_pointer(treeview_user_management_teams, 2);
     
     if(strlen(user_name) > 0)
-	g_string_printf(new_user.name, "%s", user_name);
+	misc_string_assign(&new_user.name, user_name);
     
     gtk_entry_set_text(entry_user_management, "");
 
@@ -234,7 +235,7 @@ misc2_callback_mmatches_button_press(GtkWidget *widget, gint row_num, gint col_n
 	{
 	    gtk_widget_hide(widget);
 	    free_g_string(&g_array_index(current_user.mmatches, MemMatch, row_num).competition_name);
-	    free_g_string(&g_array_index(current_user.mmatches, MemMatch, row_num).country_name);
+	    free_gchar_ptr(g_array_index(current_user.mmatches, MemMatch, row_num).country_name);
 	    free_live_game(&g_array_index(current_user.mmatches, MemMatch, row_num).lg);
 	    g_array_remove_index(current_user.mmatches, row_num);
 	    treeview2_show_mmatches();

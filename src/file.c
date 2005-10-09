@@ -381,11 +381,11 @@ file_save_opt_file(const gchar *filename, OptionList *optionlist)
     file_my_fopen(filename, "w", &fil, TRUE);
 
     for(i=0;i<optionlist->list->len;i++)
-	if(g_str_has_prefix(g_array_index(optionlist->list, Option, i).name->str, "string_"))
-	    fprintf(fil, "%s %s\n", g_array_index(optionlist->list, Option, i).name->str,
-		    g_array_index(optionlist->list, Option, i).string_value->str);
+	if(g_str_has_prefix(g_array_index(optionlist->list, Option, i).name, "string_"))
+	    fprintf(fil, "%s %s\n", g_array_index(optionlist->list, Option, i).name,
+		    g_array_index(optionlist->list, Option, i).string_value);
 	else
-	    fprintf(fil, "%s %d\n", g_array_index(optionlist->list, Option, i).name->str,
+	    fprintf(fil, "%s %d\n", g_array_index(optionlist->list, Option, i).name,
 		    g_array_index(optionlist->list, Option, i).value);
     
     fclose(fil);
@@ -407,10 +407,10 @@ file_load_opt_file(const gchar *filename, OptionList *optionlist)
 
     while(file_get_next_opt_line(fil, opt_name, opt_value))
     {
-	new.name = g_string_new(opt_name);
+	new.name = g_strdup(opt_name);
 	if(g_str_has_prefix(opt_name, "string_"))
 	{
-	    new.string_value = g_string_new(opt_value);
+	    new.string_value = g_strdup(opt_value);
 	    new.value = -1;
 	}
 	else
@@ -420,19 +420,19 @@ file_load_opt_file(const gchar *filename, OptionList *optionlist)
 	}
 	g_array_append_val(optionlist->list, new);
 
-	if((g_str_has_suffix(new.name->str, "_unix") && os_is_unix) ||
-	   (g_str_has_suffix(new.name->str, "_win32") && !os_is_unix))
+	if((g_str_has_suffix(new.name, "_unix") && os_is_unix) ||
+	   (g_str_has_suffix(new.name, "_win32") && !os_is_unix))
 	{
-	    strcpy(opt_name, new.name->str);
-	    opt_name[strlen(new.name->str) - (os_is_unix ? 5 : 6)] = '\0';
-	    new.name = g_string_new(opt_name);
-	    new.string_value = g_string_new(opt_value);
+	    strcpy(opt_name, new.name);
+	    opt_name[strlen(new.name) - (os_is_unix ? 5 : 6)] = '\0';
+	    new.name = g_strdup(opt_name);
+	    new.string_value = g_strdup(opt_value);
 	    g_array_append_val(optionlist->list, new);
 	}
     }
 
     for(i=0;i<optionlist->list->len;i++)
-	g_datalist_set_data(&optionlist->datalist, g_array_index(optionlist->list, Option, i).name->str,
+	g_datalist_set_data(&optionlist->datalist, g_array_index(optionlist->list, Option, i).name,
 			    &g_array_index(optionlist->list, Option, i));
 
     fclose(fil);
@@ -465,7 +465,7 @@ file_load_user_conf_file(User *user)
     FILE *fil = NULL;
     gchar *conf_file = NULL, buf[SMALL];
 
-    sprintf(buf, "bygfoot_%s.conf", user->name->str);
+    sprintf(buf, "bygfoot_%s.conf", user->name);
     conf_file = file_find_support_file(buf, FALSE);
 
     if(conf_file == NULL ||

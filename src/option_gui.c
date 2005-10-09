@@ -4,6 +4,7 @@
 #include "language.h"
 #include "option.h"
 #include "option_gui.h"
+#include "misc.h"
 #include "support.h"
 #include "treeview.h"
 #include "user.h"
@@ -361,7 +362,7 @@ enum EntryOptions
 
 /** Write the pointers to the options and the corresponding widgets. */
 void
-option_gui_write_entry_widgets(GString **entry_options, GtkEntry **entry_widgets)
+option_gui_write_entry_widgets(gchar ***entry_options, GtkEntry **entry_widgets)
 {
     entry_widgets[ENTRY_OPT_CONSTANTS] = 
 	GTK_ENTRY(lookup_widget(window.options, "entry_constants_file"));
@@ -385,7 +386,7 @@ option_gui_set_up_window(void)
     gint *spin_options[SPIN_OPT_END];
 
     GtkEntry *entry_widgets[ENTRY_OPT_END];
-    GString *entry_options[ENTRY_OPT_END];
+    gchar **entry_options[ENTRY_OPT_END];
 
     treeview_show_language_combo();
 
@@ -400,7 +401,7 @@ option_gui_set_up_window(void)
 	gtk_spin_button_set_value(spin_widgets[i], (gfloat)(*(spin_options[i])));
 
     for(i=0;i<ENTRY_OPT_END;i++)
-	gtk_entry_set_text(entry_widgets[i], (entry_options[i])->str);
+	gtk_entry_set_text(entry_widgets[i], *(entry_options[i]));
 }
 
 /** Read the widget states in the options window and set the
@@ -416,14 +417,13 @@ option_gui_write_options(void)
     GtkSpinButton *spin_widgets[SPIN_OPT_END];
     gint *spin_options[SPIN_OPT_END];
     GtkEntry *entry_widgets[ENTRY_OPT_END];
-    GString *entry_options[ENTRY_OPT_END];
+    gchar **entry_options[ENTRY_OPT_END];
     
     language_set(language_index);
 
     option_gui_write_bool_widgets(bool_options, bool_widgets);
     option_gui_write_spin_widgets(spin_options, spin_widgets);
-    option_gui_write_entry_widgets(entry_options, entry_widgets);
-    
+    option_gui_write_entry_widgets(entry_options, entry_widgets);    
 
     for(i=0;i<BOOL_OPT_END;i++)
 	*(bool_options[i]) = gtk_toggle_button_get_active(bool_widgets[i]);
@@ -433,7 +433,7 @@ option_gui_write_options(void)
 
     for(i=0;i<ENTRY_OPT_END;i++)
     {
-	g_string_printf(entry_options[i], "%s", gtk_entry_get_text(entry_widgets[i]));
+	misc_string_assign(entry_options[i], gtk_entry_get_text(entry_widgets[i]));
 
 	if(i == ENTRY_OPT_CONSTANTS && 
 	   strcmp(gtk_entry_get_text(entry_widgets[i]), opt_str("string_opt_constants_file")) != 0)

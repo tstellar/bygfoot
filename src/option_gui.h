@@ -10,7 +10,7 @@ void
 option_gui_write_spin_widgets(gint **spin_options, GtkSpinButton **spin_widgets);
 
 void
-option_gui_write_entry_widgets(GString **entry_options, GtkEntry **entry_widgets);
+option_gui_write_entry_widgets(gchar ***entry_options, GtkEntry **entry_widgets);
 
 void
 option_gui_set_up_window(void);

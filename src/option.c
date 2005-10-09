@@ -1,4 +1,5 @@
 #include "main.h"
+#include "misc.h"
 #include "option.h"
 #include "variables.h"
 
@@ -15,7 +16,7 @@ option_string(const gchar *name, OptionList *optionlist)
     if(element == NULL)
 	g_warning("option_string: option named %s not found\nMaybe you should delete the .bygfoot directory from your home dir", name);
     else
-	return ((Option*)element)->string_value->str;
+	return ((Option*)element)->string_value;
 
     main_exit_program(EXIT_OPTION_NOT_FOUND, NULL);
 
@@ -23,7 +24,7 @@ option_string(const gchar *name, OptionList *optionlist)
 }
 
 /** Return the GString pointer going with the option. */
-GString*
+gchar**
 option_string_pointer(const gchar *name, OptionList *optionlist)
 {
     gpointer element = g_datalist_get_data(&optionlist->datalist, name);
@@ -31,7 +32,7 @@ option_string_pointer(const gchar *name, OptionList *optionlist)
     if(element == NULL)
 	g_warning("option_string: option named %s not found\nMaybe you should delete the .bygfoot directory from your home dir", name);
     else
-	return ((Option*)element)->string_value;
+	return &((Option*)element)->string_value;
 
     main_exit_program(EXIT_OPTION_NOT_FOUND, NULL);
 
@@ -106,7 +107,7 @@ option_set_string(const gchar *name, OptionList *optionlist, const gchar *new_va
     if(element == NULL)
 	g_warning("option_set_string: option named %s not found\nMaybe you should delete the .bygfoot directory from your home dir", name);
     else
-	g_string_printf(((Option*)element)->string_value, "%s", new_value);
+	misc_string_assign(&((Option*)element)->string_value, new_value);
 }
 
 /** Change the value of an int option in the array.
@@ -143,9 +144,9 @@ option_add(OptionList *optionlist, const gchar *name,
 	main_exit_program(EXIT_GENERAL, NULL);
     }
 
-    new.name = g_string_new(name);
+    new.name = g_strdup(name);
     new.value = int_value;
-    new.string_value = (string_value == NULL) ? NULL : g_string_new(string_value);
+    new.string_value = (string_value == NULL) ? NULL : g_strdup(string_value);
 
     if(optionlist->list == NULL)
     {
@@ -157,6 +158,6 @@ option_add(OptionList *optionlist, const gchar *name,
     
     for(i=0;i<optionlist->list->len;i++)
 	g_datalist_set_data(&optionlist->datalist, 
-			    g_array_index(optionlist->list, Option, i).name->str,
+			    g_array_index(optionlist->list, Option, i).name,
 			    &g_array_index(optionlist->list, Option, i));
 }

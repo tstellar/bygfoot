@@ -91,7 +91,7 @@ enum PlayerValue
 */
 typedef struct
 {
-    GString *name;   
+    gchar *name;
     
     gint pos, /**< Position. @see #PlayerPos */
 	cpos, /**< Current position. @see #PlayerPos */

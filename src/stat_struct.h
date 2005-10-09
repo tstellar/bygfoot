@@ -7,7 +7,7 @@ typedef struct
 {
     gint team_id;
     gint value1, value2, value3;
-    GString *value_string;
+    gchar *value_string;
 } Stat;
 
 /** A structure holding some stat arrays about a league. */
@@ -24,8 +24,7 @@ typedef struct
 /** A team name and a competition name. */
 typedef struct
 {
-    GString *team_name, 
-	*cl_name;
+    gchar *team_name, *cl_name;
 } ChampStat;
 
 /** A season statistics structure. */

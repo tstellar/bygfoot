@@ -96,11 +96,11 @@ xml_loadsave_misc_text         (GMarkupParseContext *context,
     int_value = (gint)g_ascii_strtod(buf, NULL);
 
     if(state == TAG_NAME)
-	g_string_printf(country.name, "%s", buf);
+	misc_string_assign(&country.name, buf);
     else if(state == TAG_SYMBOL)
-	g_string_printf(country.symbol, "%s", buf);
+	misc_string_assign(&country.symbol, buf);
     else if(state == TAG_SID)
-	g_string_printf(country.sid, "%s", buf);
+	misc_string_assign(&country.sid, buf);
     else if(state == TAG_MISC_SEASON)
 	season = int_value;
     else if(state == TAG_MISC_WEEK)
@@ -168,9 +168,9 @@ xml_loadsave_misc_write(const gchar *prefix)
 
     fprintf(fil, "<_%d>\n", TAG_MISC);
 
-    xml_write_g_string(fil, country.name, TAG_NAME, I0);
-    xml_write_g_string(fil, country.symbol, TAG_SYMBOL, I0);
-    xml_write_g_string(fil, country.sid, TAG_SID, I0);
+    xml_write_string(fil, country.name, TAG_NAME, I0);
+    xml_write_string(fil, country.symbol, TAG_SYMBOL, I0);
+    xml_write_string(fil, country.sid, TAG_SID, I0);
     xml_write_int(fil, season, TAG_MISC_SEASON, I0);
     xml_write_int(fil, week, TAG_MISC_WEEK, I0);
     xml_write_int(fil, week_round, TAG_MISC_WEEK_ROUND, I0);

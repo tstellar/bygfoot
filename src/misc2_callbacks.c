@@ -293,7 +293,7 @@ on_treeview_user_management_users_button_press_event
     }
 
     stat2 = idx;
-    sprintf(buf, _("Remove user %s from the game?"), usr(idx).name->str);
+    sprintf(buf, _("Remove user %s from the game?"), usr(idx).name);
     window_show_yesno(buf);
     
     return FALSE;
@@ -524,7 +524,7 @@ on_button_mm_save_close_clicked        (GtkButton       *button,
 	gtk_entry_get_text(GTK_ENTRY(lookup_widget(window.mmatches, "entry_mm_file")));
 
     user_mm_set_filename(filename, NULL);
-    user_mm_save_file(current_user.mmatches_file->str,
+    user_mm_save_file(current_user.mmatches_file,
 		      current_user.mmatches);
     
     window_destroy(&window.mmatches, TRUE);

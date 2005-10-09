@@ -46,6 +46,9 @@ xml_mmatches_start_element (GMarkupParseContext *context,
 	    valid_tag = TRUE;
 	}
 
+    if(tag == TAG_MMATCH)
+	new_match.country_name = NULL;
+
     if(!valid_tag)
 	g_warning("xml_loadsave_mmatches_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
@@ -93,7 +96,7 @@ xml_mmatches_text         (GMarkupParseContext *context,
     if(state == TAG_MMATCHES_COMP_NAME)
 	new_match.competition_name = g_string_new(buf);
     else if(state == TAG_MMATCHES_COUNTRY_NAME)
-	new_match.country_name = g_string_new(buf);
+	misc_string_assign(&new_match.country_name, buf);
     else if(state == TAG_MMATCHES_NEUTRAL)
 	new_match.neutral = int_value;
     else if(state == TAG_MMATCHES_USER_TEAM)
@@ -166,9 +169,9 @@ xml_mmatches_write(const gchar *prefix, const GArray *mmatches)
 	xml_write_g_string(fil, 
 			   g_array_index(mmatches, MemMatch, i).competition_name,
 			   TAG_MMATCHES_COMP_NAME, I1);
-	xml_write_g_string(fil, 
-			   g_array_index(mmatches, MemMatch, i).country_name,
-			   TAG_MMATCHES_COUNTRY_NAME, I1);
+	xml_write_string(fil,
+			 g_array_index(mmatches, MemMatch, i).country_name,
+			 TAG_MMATCHES_COUNTRY_NAME, I1);
 	xml_write_int(fil, 
 		      g_array_index(mmatches, MemMatch, i).neutral,
 		      TAG_MMATCHES_NEUTRAL, I1);

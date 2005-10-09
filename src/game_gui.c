@@ -208,7 +208,7 @@ game_gui_set_main_window_header(void)
     GtkWidget *menu_users[2] = {lookup_widget(window.main, "menu_next_user"),
 				lookup_widget(window.main, "menu_previous_user")};
 
-    gtk_label_set_text(label_user, current_user.name->str);
+    gtk_label_set_text(label_user, current_user.name);
     gui_label_set_text_from_int(label_season, season, FALSE);
     gui_label_set_text_from_int(label_week, week, FALSE);
     gui_label_set_text_from_int(label_round, week_round, FALSE);
@@ -234,9 +234,8 @@ game_gui_set_main_window_header(void)
 	gtk_widget_hide(lookup_widget(window.main, "label29"));
     }
 
-    gtk_label_set_text(label_team, current_user.tm->name->str);
-    gtk_label_set_text(label_league, 
-		       league_from_clid(current_user.tm->clid)->name->str);
+    gtk_label_set_text(label_team, current_user.tm->name);
+    gtk_label_set_text(label_league, league_cup_get_name_string(current_user.tm->clid));
 
     for(i=0;i<2;i++)
 	gtk_widget_set_sensitive(menu_users[i], (users->len > 1));
@@ -424,9 +423,8 @@ game_gui_show_main(void)
 	user_show_sponsor_continue();
 }
 
-
 /** Print a message in the message area. */
-gboolean
+void
 game_gui_print_message(gchar *format, ...)
 {
     gchar text[SMALL];
@@ -436,20 +434,22 @@ game_gui_print_message(gchar *format, ...)
     g_vsprintf(text, format, args);
     va_end (args);
 
-    if(g_str_has_prefix(text, "___"))
-    {
-	gtk_entry_set_text(GTK_ENTRY(lookup_widget(window.main, "entry_message")), 
-			   text + 3);
-	g_free(format);
-    }
-    else
-	gtk_entry_set_text(GTK_ENTRY(lookup_widget(window.main, "entry_message")), text);
+    gtk_entry_set_text(GTK_ENTRY(lookup_widget(window.main, "entry_message")), text);
     
     if(timeout_id != -1)
 	g_source_remove(timeout_id);
 
     timeout_id = g_timeout_add(const_int("int_game_gui_message_duration") * 1000,
 			       (GSourceFunc)game_gui_clear_entry_message, NULL);
+}
+
+/** Source function for the delay printing function. */
+gboolean
+game_gui_print_message_source(gpointer data)
+{
+    game_gui_print_message((gchar*)data);
+
+    g_free(data);
 
     return FALSE;
 }
@@ -459,17 +459,18 @@ void
 game_gui_print_message_with_delay(const gchar *format, ...)
 {
     gchar text[SMALL];
-    gchar *local_text = NULL;
     va_list args;
      
     va_start (args, format);
     g_vsprintf(text, format, args);
     va_end (args);
 
-    local_text = g_strdup_printf("___%s", text);
+    if(timeout_id != -1)
+	g_source_remove(timeout_id);
 
     g_timeout_add(const_int("int_game_gui_message_delay") * 1000,
-		  (GSourceFunc)game_gui_print_message, local_text);
+		  (GSourceFunc)game_gui_print_message_source,
+		  (gpointer)g_strdup(text));
 }
 
 /** Function that gets called from time to time. */
@@ -630,13 +631,13 @@ game_gui_show_job_offer(Team *team, gint type)
 
     if(type == STATUS_JOB_OFFER_FIRE_FINANCE)
 	sprintf(buf, _("The team owners have fired you because of financial mismanagement. Luckily, the owners of %s have heard of your dismissal and offer you a job. Here's some information on %s:"),
-		team->name->str, team->name->str);
+		team->name, team->name);
     else if(type == STATUS_JOB_OFFER_FIRE_FAILURE)
 	sprintf(buf, _("The team owners have fired you because of unsuccessfulness. Luckily, the owners of %s have heard of your dismissal and offer you a job. Here's some information on %s:"),
-		team->name->str, team->name->str);
+		team->name, team->name);
     else if(type == STATUS_JOB_OFFER_SUCCESS)
 	sprintf(buf, _("The owners of %s are deeply impressed by your success with %s and would like to hire you. Here's some information on %s:"),
-		team->name->str, current_user.tm->name->str, team->name->str);
+		team->name, current_user.tm->name, team->name);
     
     strcpy(buf2, _("Accept?"));
     if(type != STATUS_JOB_OFFER_SUCCESS)
@@ -644,8 +645,8 @@ game_gui_show_job_offer(Team *team, gint type)
 
     gtk_label_set_text(label_text, buf);
     gtk_label_set_text(label_text2, buf2);
-    gtk_label_set_text(label_name, team->name->str);
-    gtk_label_set_text(label_league, league_from_clid(team->clid)->name->str);
+    gtk_label_set_text(label_name, team->name);
+    gtk_label_set_text(label_league, league_cup_get_name_string(team->clid));
     gui_label_set_text_from_int(label_rank, team_get_league_rank(team), FALSE);
     misc_print_grouped_int(math_round_integer(team->stadium.capacity * 
 					      math_rndi(const_int("int_initial_money_lower"),

@@ -53,7 +53,7 @@ youth_academy_add_new_player(YouthAcademy *youth_academy)
     gfloat percentage_coach_talent_factor;
     Player new;
 
-    new.name = name_get(youth_academy->tm->names_file->str);
+    new.name = name_get(youth_academy->tm->names_file);
 
     new.id = player_id_new;
 
@@ -170,12 +170,12 @@ youth_academy_update_weekly(void)
 	       g_array_index(ya->players, Player, j).age + 0.08 <=
 	       const_float("float_player_age_lower"))
 		user_event_add(&usr(i), EVENT_TYPE_WARNING, -1, -1, NULL, 
-			       _("Youth %s will be too old for the youth academy soon. Move him to your team or kick him out of the academy. Otherwise he'll probably look for another team to play in."), g_array_index(ya->players, Player, j).name->str);
+			       _("Youth %s will be too old for the youth academy soon. Move him to your team or kick him out of the academy. Otherwise he'll probably look for another team to play in."), g_array_index(ya->players, Player, j).name);
 	    else if(g_array_index(ya->players, Player, j).age > const_float("float_player_age_lower"))
 	    {
 		user_event_add(&usr(i), EVENT_TYPE_WARNING, -1, -1, NULL, 
 			       _("Youth %s thought he's old enough for a real contract and left your youth academy."),
-			       g_array_index(ya->players, Player, j).name->str);
+			       g_array_index(ya->players, Player, j).name);
 		free_player(&g_array_index(ya->players, Player, j));
 		g_array_remove_index(ya->players, j);
 	    }

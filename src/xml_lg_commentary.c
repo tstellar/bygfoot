@@ -56,7 +56,7 @@ enum XmlLgCommentaryStates
 };
 
 gint state, commentary_idx, priority;
-GString *condition;
+gchar *condition;
 
 /**
  * The function called by the parser when an opening tag is read.
@@ -88,7 +88,7 @@ xml_lg_commentary_read_start_element (GMarkupParseContext *context,
 	while(attribute_names[atidx] != NULL)
 	{
 	    if(strcmp(attribute_names[atidx], ATT_NAME_CONDITION) == 0)
-		condition = g_string_new(attribute_values[atidx]);
+		condition = g_strdup(attribute_values[atidx]);
 	    else if(strcmp(attribute_names[atidx], ATT_NAME_PRIORITY) == 0)
 		priority = (gint)g_ascii_strtod(attribute_values[atidx], NULL);
 
@@ -137,6 +137,9 @@ xml_lg_commentary_read_text         (GMarkupParseContext *context,
 {
     gchar buf[text_len + 1];
     LGCommentary commentary;
+
+    commentary.text = NULL;
+    commentary.condition = NULL;
 
     strncpy(buf, text, text_len);
     buf[text_len] = '\0';
@@ -210,7 +213,7 @@ xml_lg_commentary_read_text         (GMarkupParseContext *context,
     }
     else if(state == STATE_EVENT_COMMENTARY)
     {
-	commentary.text = g_string_new(buf);
+	misc_string_assign(&commentary.text, buf);
 	commentary.condition = condition;
 	commentary.priority = MAX(1, priority);
 	commentary.id = lg_commentary_id_new;

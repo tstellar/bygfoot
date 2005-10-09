@@ -22,20 +22,20 @@ league_new(gboolean new_id)
 {
     League new;
 
-    new.name = g_string_new("");
-    new.names_file = g_string_new(opt_str("string_opt_player_names_file"));
-    new.sid = g_string_new("");
-    new.short_name = g_string_new("");
-    new.symbol = g_string_new("");
+    new.name = NULL;
+    new.names_file = g_strdup(opt_str("string_opt_player_names_file"));
+    new.sid = NULL;
+    new.short_name = NULL;
+    new.symbol = NULL;
     
     new.id = (new_id) ? league_id_new : -1;
     new.layer = -1;
 
     new.average_talent = 0;
 
-    new.prom_rel.prom_games_dest_sid = g_string_new("");
-    new.prom_rel.prom_games_loser_sid = g_string_new("");
-    new.prom_rel.prom_games_cup_sid = g_string_new("");
+    new.prom_rel.prom_games_dest_sid = NULL;
+    new.prom_rel.prom_games_loser_sid = NULL;
+    new.prom_rel.prom_games_cup_sid = NULL;
     new.prom_rel.prom_games_number_of_advance = 1;
 
     new.prom_rel.elements = g_array_new(FALSE, FALSE, sizeof(PromRelElement));
@@ -69,7 +69,7 @@ prom_rel_element_new(void)
     PromRelElement new;
 
     new.ranks[0] = new.ranks[1] = 0;
-    new.dest_sid = g_string_new("");
+    new.dest_sid = NULL;
     new.type = PROM_REL_NONE;
 
     return new;
@@ -311,7 +311,7 @@ league_index_from_sid(const gchar *sid)
     gint i;
 
     for(i=0;i<ligs->len;i++)
-	if(strcmp(lig(i).sid->str, sid) == 0)
+	if(strcmp(lig(i).sid, sid) == 0)
 	    return i;
 
     g_warning("league_index_from_sid: no index found for sid '%s'.\n", sid);
@@ -336,7 +336,7 @@ league_remove_team_with_id(League *league, gint id)
 	}
 
     g_warning("league_remove_team_with_id: team with id %d in league %s not found\n",
-	      id, league->name->str);
+	      id, league->name);
 }
 
 
@@ -347,7 +347,7 @@ void
 league_season_start(League *league)
 {
     gint i, j;
-    gint idx = league_index_from_sid(league->sid->str);
+    gint idx = league_index_from_sid(league->sid);
     gboolean user_champ = 
 	(team_is_user(
 	    team_of_id(g_array_index(lig(0).table.elements, TableElement, 0).team_id)) != -1);
@@ -399,14 +399,14 @@ query_league_rank_in_prom_games(const League *league, gint rank)
     for(i=0;i<ligs->len;i++)
 	if(query_league_has_prom_games((&lig(i))))
 	{
-	    cup = cup_from_sid(lig(i).prom_rel.prom_games_cup_sid->str);
+	    cup = cup_from_sid(lig(i).prom_rel.prom_games_cup_sid);
 	    for(k=0;k<cup->rounds->len;k++)
 	    {
 		cup_round = &g_array_index(cup->rounds, CupRound, k);
 		for(j=0;j<cup_round->choose_teams->len;j++)
 		{
-		    if(strcmp(g_array_index(cup_round->choose_teams, CupChooseTeam, j).sid->str,
-			      league->sid->str) == 0 &&
+		    if(strcmp(g_array_index(cup_round->choose_teams, CupChooseTeam, j).sid,
+			      league->sid) == 0 &&
 		       ((rank >= g_array_index(cup_round->choose_teams,
 					       CupChooseTeam, j).start_idx &&
 			 rank <= g_array_index(cup_round->choose_teams, 
@@ -456,7 +456,7 @@ league_get_team_movements_prom_rel(const League *league, GArray *team_movements)
     for(i=0;i<elements->len;i++)
     {
 	dest_sids = misc_separate_strings(
-	    g_array_index(elements, PromRelElement, i).dest_sid->str);
+	    g_array_index(elements, PromRelElement, i).dest_sid);
 	gint dest_idcs_int[dest_sids->len];
 	gint dest_idcs_order[dest_sids->len];
 
@@ -494,8 +494,8 @@ league_get_team_movements_prom_games(const League *league, GArray *team_movement
     gint i, j;
     TeamMove new_move;
     GPtrArray *dest_sids = (up) ?
-	misc_separate_strings(league->prom_rel.prom_games_dest_sid->str) :
-	misc_separate_strings(league->prom_rel.prom_games_loser_sid->str);
+	misc_separate_strings(league->prom_rel.prom_games_dest_sid) :
+	misc_separate_strings(league->prom_rel.prom_games_loser_sid);
     GArray *dest_idcs = NULL;
     gint dest_idcs_int[dest_sids->len];
     gint dest_idcs_order[dest_sids->len];
@@ -544,12 +544,12 @@ league_get_team_movements(League *league, GArray *team_movements)
 
     if(query_league_has_prom_games(league))
     {
-	prom_cup = cup_from_sid(league->prom_rel.prom_games_cup_sid->str);
+	prom_cup = cup_from_sid(league->prom_rel.prom_games_cup_sid);
     
 	if(prom_cup == NULL)
 	{
 	    g_warning("league_get_team_movements: promotion games cup not found for league %s (cup sid %s).\n",
-		      league->name->str, league->prom_rel.prom_games_cup_sid->str);
+		      league->name, league->prom_rel.prom_games_cup_sid);
 	    return;
 	}
 
@@ -557,7 +557,7 @@ league_get_team_movements(League *league, GArray *team_movements)
 
 	league_get_team_movements_prom_games(league, team_movements, prom_games_teams, TRUE);
 
-	if(strlen(league->prom_rel.prom_games_loser_sid->str) > 0)
+	if(league->prom_rel.prom_games_loser_sid != NULL)
 	    league_get_team_movements_prom_games(league, team_movements, 
 						 prom_games_teams, FALSE);
 	
@@ -609,11 +609,11 @@ league_team_movements_print(const GArray *team_movements,
     {
 	tmove = &g_array_index(team_movements, TeamMove, i);
 	if(tmove->dest_assigned)
-	    printf("%-25s (%d) %s \t\t", tmove->tm.name->str,
+	    printf("%-25s (%d) %s \t\t", tmove->tm.name,
 		   league_from_clid(tmove->tm.clid)->layer,
-		   lig(g_array_index(tmove->dest_idcs, gint, 0)).name->str);
+		   lig(g_array_index(tmove->dest_idcs, gint, 0)).name);
 	else
-	    printf("%-25s (%d) UNASSIGNED \t\t", tmove->tm.name->str,
+	    printf("%-25s (%d) UNASSIGNED \t\t", tmove->tm.name,
 		   league_from_clid(tmove->tm.clid)->layer);
 	for(j=0;j<tmove->dest_idcs->len;j++)
 	    printf("%d ", g_array_index(tmove->dest_idcs, gint, j));
@@ -622,7 +622,7 @@ league_team_movements_print(const GArray *team_movements,
 
     printf("%-20s Size Cursize\n", "League");
     for(i=0;i<ligs->len;i++)
-	printf("%-20s %d %d\n", lig(i).name->str, league_size[i],
+	printf("%-20s %d %d\n", lig(i).name, league_size[i],
 	       league_cur_size[i]);
 }
 
@@ -655,7 +655,7 @@ league_team_movements_assign_dest(GArray *team_movements, gint idx,
     TeamMove *tmove = &g_array_index(team_movements, TeamMove, idx);
 
     if(debug > 60)
-	printf("league_team_movements_assign_dest %s\n", tmove->tm.name->str);
+	printf("league_team_movements_assign_dest %s\n", tmove->tm.name);
 
     if(tmove->dest_idcs->len == 1)
 	dest_idx = g_array_index(tmove->dest_idcs, gint, 0);
@@ -672,14 +672,14 @@ league_team_movements_assign_dest(GArray *team_movements, gint idx,
     if(league_cur_size[dest_idx] > league_size[dest_idx])
     {
 	g_warning("league_team_movements_assign_dest: no room in league %s for team %s.",
-		  lig(dest_idx).name->str, tmove->tm.name->str);
+		  lig(dest_idx).name, tmove->tm.name);
 	main_exit_program(EXIT_PROM_REL, NULL);
     }
 
     tmove->dest_assigned = TRUE;
 
     if(debug > 60)
-	g_print("%s  %d -> %d\n", tmove->tm.name->str,
+	g_print("%s  %d -> %d\n", tmove->tm.name,
 		league_from_clid(tmove->tm.clid)->layer,
 		league_from_clid(lig(dest_idx).id)->layer);
 
@@ -696,7 +696,7 @@ league_team_movements_assign_dest(GArray *team_movements, gint idx,
 		if(tmove->dest_idcs->len == 0)
 		{
 		    g_warning("league_team_movements_assign_dest: no destinations left for team %s.",
-			      tmove->tm.name->str);
+			      tmove->tm.name);
 		    main_exit_program(EXIT_PROM_REL, NULL);
 		}
 	    }

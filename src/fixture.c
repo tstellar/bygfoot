@@ -83,7 +83,7 @@ fixture_update(Cup *cup)
     if(round + 1 > cup->rounds->len - 1)
     {
 	g_warning("fixture_update: round index %d too high for round array (%d) in cup %s\n",
-		  round + 1, cup->rounds->len - 1, cup->name->str);
+		  round + 1, cup->rounds->len - 1, cup->name);
 	g_ptr_array_free(teams, TRUE);
 	main_exit_program(EXIT_CUP_ROUND_ERROR, NULL);
     }
@@ -287,7 +287,7 @@ fixture_write_cup_round_robin(Cup *cup, gint cup_round, GPtrArray *teams)
 
     if(teams->len < number_of_groups)
     {
-	g_warning("fixture_write_cup_round_robin: cup %s round %d: number of teams (%d) less than number of groups (%d)\n", cup->name->str, cup_round, teams->len, number_of_groups);
+	g_warning("fixture_write_cup_round_robin: cup %s round %d: number of teams (%d) less than number of groups (%d)\n", cup->name, cup_round, teams->len, number_of_groups);
 	main_exit_program(EXIT_FIXTURE_WRITE_ERROR, NULL);
     }
 
@@ -297,7 +297,8 @@ fixture_write_cup_round_robin(Cup *cup, gint cup_round, GPtrArray *teams)
 
     for(i=0;i<number_of_groups;i++)
     {
-	table_group[i].name = g_string_new(cup->name->str);
+	table_group[i].name = NULL;
+	misc_string_assign(&table_group[i].name, cup->name);
 	table_group[i].clid = cup->id;
 	table_group[i].round = cup_round;
 	table_group[i].elements = g_array_new(FALSE, FALSE, sizeof(TableElement));    
@@ -752,7 +753,7 @@ fixture_get_first_leg(const Fixture *fix)
 
     if(first_leg == NULL)
 	g_warning("fixture_get_first_leg: didn't find first leg match; cup %s round %d\n",
-		  cup_from_clid(fix->clid)->name->str, fix->round);
+		  cup_from_clid(fix->clid)->name, fix->round);
 
     return first_leg;
 }

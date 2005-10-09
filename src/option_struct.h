@@ -4,7 +4,7 @@
 /** A struct representing an option or a constant. */
 typedef struct
 {
-    GString *name, *string_value;
+    gchar *name, *string_value;
     gint value;
 } Option;
 

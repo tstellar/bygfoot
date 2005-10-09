@@ -119,9 +119,9 @@ xml_loadsave_season_stats_text         (GMarkupParseContext *context,
     if(state == TAG_SEASON_NUMBER)
 	new_season_stat.season_number = int_value;
     else if(state == TAG_CHAMP_STAT_TEAM_NAME)
-	new_champ_stat.team_name = g_string_new(buf);
+	new_champ_stat.team_name = g_strdup(buf);
     else if(state == TAG_CHAMP_STAT_CL_NAME)
-	new_champ_stat.cl_name = g_string_new(buf);
+	new_champ_stat.cl_name = g_strdup(buf);
     else if(state == TAG_LEAGUE_STAT_FILE)
     {
 	new_league_stat = stat_league_new(-1);
@@ -195,17 +195,17 @@ xml_loadsave_season_stats_write(const gchar *prefix)
 	for(j=0;j<g_array_index(season_stats, SeasonStat, i).league_champs->len;j++)
 	{
 	    fprintf(fil, "%s<_%d>\n", I2, TAG_CHAMP_STAT);
-	    xml_write_g_string(fil,
-			       g_array_index(
-				   g_array_index(
-				       season_stats, SeasonStat, i).league_champs, ChampStat, j).team_name,
-			       TAG_CHAMP_STAT_TEAM_NAME, I2);
-	    xml_write_g_string(fil,
-			       g_array_index(
-				   g_array_index(
-				       season_stats, SeasonStat, i).league_champs, ChampStat, j).cl_name,
-			       TAG_CHAMP_STAT_CL_NAME, I2);
-			       
+	    xml_write_string(fil,
+			     g_array_index(
+				 g_array_index(
+				     season_stats, SeasonStat, i).league_champs, ChampStat, j).team_name,
+			     TAG_CHAMP_STAT_TEAM_NAME, I2);
+	    xml_write_string(fil,
+			     g_array_index(
+				 g_array_index(
+				     season_stats, SeasonStat, i).league_champs, ChampStat, j).cl_name,
+			     TAG_CHAMP_STAT_CL_NAME, I2);
+	    
 	    fprintf(fil, "%s</_%d>\n", I2, TAG_CHAMP_STAT);
 	}
 	fprintf(fil, "%s</_%d>\n", I1, TAG_LEAGUE_CHAMPS);
@@ -214,14 +214,14 @@ xml_loadsave_season_stats_write(const gchar *prefix)
 	for(j=0;j<g_array_index(season_stats, SeasonStat, i).cup_champs->len;j++)
 	{
 	    fprintf(fil, "%s<_%d>\n", I2, TAG_CHAMP_STAT);
-	    xml_write_g_string(fil, g_array_index(
-				   g_array_index(
-				       season_stats, SeasonStat, i).cup_champs, ChampStat, j).team_name,
-			       TAG_CHAMP_STAT_TEAM_NAME, I2);
-	    xml_write_g_string(fil, g_array_index(
-				   g_array_index(
-				       season_stats, SeasonStat, i).cup_champs, ChampStat, j).cl_name,
-			       TAG_CHAMP_STAT_CL_NAME, I2);
+	    xml_write_string(fil, g_array_index(
+				 g_array_index(
+				     season_stats, SeasonStat, i).cup_champs, ChampStat, j).team_name,
+			     TAG_CHAMP_STAT_TEAM_NAME, I2);
+	    xml_write_string(fil, g_array_index(
+				 g_array_index(
+				     season_stats, SeasonStat, i).cup_champs, ChampStat, j).cl_name,
+			     TAG_CHAMP_STAT_CL_NAME, I2);
 			       
 	    fprintf(fil, "%s</_%d>\n", I2, TAG_CHAMP_STAT);
 	}

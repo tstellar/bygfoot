@@ -96,7 +96,7 @@ enum ExitCodes
  */
 typedef struct
 {
-    GString *name, /**< Name of the country. */
+    gchar *name, /**< Name of the country. */
 	*symbol, /**< Symbol of the country, eg a flag pixmap. */
 	*sid; /**< Id of the country, eg 'england'. */
 

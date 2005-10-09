@@ -27,7 +27,7 @@ user_new(void)
 {
     User new;
 
-    new.name = g_string_new("NONAME");
+    new.name = g_strdup("NONAME");
     new.tm = NULL;
     new.team_id = -1;
     
@@ -45,7 +45,7 @@ user_new(void)
     new.youth_academy.pos_pref = PLAYER_POS_ANY;
     new.youth_academy.coach = QUALITY_AVERAGE;
 
-    new.mmatches_file = g_string_new("");
+    new.mmatches_file = NULL;
     new.mmatches = g_array_new(FALSE, FALSE, sizeof(MemMatch));
 
     return new;
@@ -71,10 +71,10 @@ user_set_up_team_new_game(User *user)
 	while(team_is_user(&g_array_index(lig(user->scout).teams, Team, rndom)) != -1)
 	    rndom = math_rndi(0, lig(user->scout).teams->len - 1);
       
-	sprintf(buf, "%s", g_array_index(lig(user->scout).teams, Team, rndom).name->str);
-	g_string_printf(g_array_index(lig(user->scout).teams, Team, rndom).name, "%s",
-			user->tm->name->str);
-	g_string_printf(user->tm->name, "%s", buf);
+	sprintf(buf, "%s", g_array_index(lig(user->scout).teams, Team, rndom).name);
+	misc_string_assign(&g_array_index(lig(user->scout).teams, Team, rndom).name,
+			   user->tm->name);
+	misc_string_assign(&user->tm->name, buf);
 
 	user->tm = &g_array_index(lig(user->scout).teams, Team, rndom);
 	user->team_id = g_array_index(lig(user->scout).teams, Team, rndom).id;
@@ -193,7 +193,7 @@ user_set_player_list_attributes(const User *user, PlayerListAttribute *attribute
     sprintf(prefix, "int_opt_user_pl%d_att", list_number);
 
     for(i=0;i<user->options.list->len;i++)
-	if(g_str_has_prefix(g_array_index(user->options.list, Option, i).name->str, prefix))
+	if(g_str_has_prefix(g_array_index(user->options.list, Option, i).name, prefix))
 	{
 	    attribute->on_off[cnt] = g_array_index(user->options.list, Option, i).value;
 	    cnt++;
@@ -250,7 +250,7 @@ user_from_team(const Team *tm)
 	    return &usr(i);
 
     g_warning("User going with team %s not found.\n",
-	      tm->name->str);
+	      tm->name);
 
     main_exit_program(EXIT_POINTER_NOT_FOUND, NULL);
 
@@ -272,7 +272,7 @@ user_job_offer(User *user)
        !user->counters[COUNT_USER_WARNING])
     {
 	user_event_add(user, EVENT_TYPE_WARNING, -1, -1, NULL,
-		       _("The owners of %s are not satisfied with the recent performance of the team. There are rumours they're looking for a new manager."), user->tm->name->str);
+		       _("The owners of %s are not satisfied with the recent performance of the team. There are rumours they're looking for a new manager."), user->tm->name);
 	user->counters[COUNT_USER_WARNING] = 1;
 	return;
     }
@@ -387,7 +387,7 @@ user_event_add(User *user, gint type, gint value1, gint value2,
 	va_start (args, format);
 	g_vsprintf(text, format, args);
 	va_end (args);
-	new.value_string = g_string_new(text);
+	new.value_string = g_strdup(text);
     }
     else
 	new.value_string = NULL;    
@@ -427,10 +427,10 @@ user_event_show_next(void)
 	    break;
 	case EVENT_TYPE_PLAYER_LEFT:
 	    game_gui_show_warning(_("%s has left your team because his contract expired."),
-		    event->value_string->str);
+		    event->value_string);
 	    break;
 	case EVENT_TYPE_WARNING:
-	    game_gui_show_warning(event->value_string->str);
+	    game_gui_show_warning(event->value_string);
 	    break;
 	case EVENT_TYPE_FIRE_FINANCE:
 	    stat2 = STATUS_JOB_OFFER_FIRE_FINANCE;
@@ -455,47 +455,47 @@ user_event_show_next(void)
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_USER:
 	    game_gui_show_warning(_("Have a look at the transfer list, there's an offer for %s."),
-		    event->value_string->str);
+		    event->value_string);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_CPU:
 	    game_gui_show_warning(_("Your offer for %s has been accepted. If you still want to buy him, go to the transfer list and left click on the player."),
-		    event->value_string->str);
+		    event->value_string);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_REJECTED_BETTER_OFFER:
 	    misc_print_grouped_int(event->value1, buf2);
 	    misc_print_grouped_int(event->value2, buf3);	    
-	    game_gui_show_warning(_("The owners of %s have rejected your offer (%s / %s) for %s. There was a better offer for the player than yours."), ((Team*)event->value_pointer)->name->str, buf2, buf3, event->value_string->str);
+	    game_gui_show_warning(_("The owners of %s have rejected your offer (%s / %s) for %s. There was a better offer for the player than yours."), ((Team*)event->value_pointer)->name, buf2, buf3, event->value_string);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_REJECTED_FEE_WAGE:
 	    misc_print_grouped_int(event->value1, buf2);
 	    misc_print_grouped_int(event->value2, buf3);	    
-	    game_gui_show_warning(_("The owners of %s have rejected your offer (%s / %s) for %s. Neither the fee nor the wage you offered were acceptable, they say."), ((Team*)event->value_pointer)->name->str, buf2, buf3, event->value_string->str);
+	    game_gui_show_warning(_("The owners of %s have rejected your offer (%s / %s) for %s. Neither the fee nor the wage you offered were acceptable, they say."), ((Team*)event->value_pointer)->name, buf2, buf3, event->value_string);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_REJECTED_FEE:
 	    misc_print_grouped_int(event->value1, buf2);
 	    misc_print_grouped_int(event->value2, buf3);	    
-	    game_gui_show_warning(_("The owners of %s have rejected your offer (%s / %s) for %s. The team owners weren't satisfied with the fee you offered."), ((Team*)event->value_pointer)->name->str, buf2, buf3, event->value_string->str);
+	    game_gui_show_warning(_("The owners of %s have rejected your offer (%s / %s) for %s. The team owners weren't satisfied with the fee you offered."), ((Team*)event->value_pointer)->name, buf2, buf3, event->value_string);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_REJECTED_WAGE:
 	    misc_print_grouped_int(event->value1, buf2);
 	    misc_print_grouped_int(event->value2, buf3);	    
 	    /* A player from a team has rejected a transfer offer. */
 	    game_gui_show_warning(_("%s of %s has rejected your offer (%s / %s). He wasn't satisfied with the wage you offered."),
-		    event->value_string->str,
-		    ((Team*)event->value_pointer)->name->str, buf2, buf3);
+		    event->value_string,
+		    ((Team*)event->value_pointer)->name, buf2, buf3);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_MONEY:
 	    /* Buy a player from a team. */
 	    game_gui_show_warning(_("You didn't have enough money to buy %s from %s."),
-		    event->value_string->str, ((Team*)event->value_pointer)->name->str);
+		    event->value_string, ((Team*)event->value_pointer)->name);
 	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_ROSTER:
 	    /* Buy a player from a team. */
 	    game_gui_show_warning(_("Your roster is full. You couldn't buy %s from %s."),
-		    event->value_string->str, ((Team*)event->value_pointer)->name->str);
+		    event->value_string, ((Team*)event->value_pointer)->name);
 	    break;
 	case EVENT_TYPE_PLAYER_CAREER_STOP:
-	    sprintf(buf, _("%s's injury was so severe that he can't play football on a professional level anymore. He leaves your team."), player_of_id_team(event->user->tm, event->value1)->name->str);
+	    sprintf(buf, _("%s's injury was so severe that he can't play football on a professional level anymore. He leaves your team."), player_of_id_team(event->user->tm, event->value1)->name);
 	    if(event->user->tm->players->len < 12)
 	    {
 		strcat(buf, _(" Fortunately he's got a cousin who can help your team out."));
@@ -662,12 +662,12 @@ user_history_add(User *user, gint type, gint team_id,
     
     if(replace)
     {
-	g_string_printf(his->value_string, "%s", string);
+	misc_string_assign(&his->value_string, string);
 	g_array_sort(user->history, (GCompareFunc)user_history_compare);
     }
     else
     {
-	his->value_string = g_string_new(string);
+	his->value_string = g_strdup(string);
 	g_array_prepend_val(user->history, *his);
     }
 }
@@ -687,29 +687,29 @@ user_history_to_string(const UserHistory *history, gchar *buf)
 	case USER_HISTORY_START_GAME:
 	    /* Buy a team in a league. */
 	    sprintf(buf, _("You start the game with %s in the %s."),
-		    team_of_id(history->team_id)->name->str,
+		    team_of_id(history->team_id)->name,
 		    league_cup_get_name_string(history->value1));
 	    break;
     	case USER_HISTORY_FIRE_FINANCES:
 	    /* Team fires, team in a league. */
 	    sprintf(buf, _("%s fires you because of financial mismanagement.\nYou find a new job with %s in the %s."),
-		    team_of_id(history->team_id)->name->str,
-		    team_of_id(history->value1)->name->str,
+		    team_of_id(history->team_id)->name,
+		    team_of_id(history->value1)->name,
 		    league_cup_get_name_string(history->value2));
 	    break;
     	case  USER_HISTORY_FIRE_FAILURE:
 	    /* Team fires, team in a league. */
 	    sprintf(buf, _("%s fires you because of unsuccessfulness.\nYou find a new job with %s in the %s."),
-		    team_of_id(history->team_id)->name->str,
-		    team_of_id(history->value1)->name->str,
+		    team_of_id(history->team_id)->name,
+		    team_of_id(history->value1)->name,
 		    league_cup_get_name_string(history->value2));
 	    break;
     	case  USER_HISTORY_JOB_OFFER_ACCEPTED:
 	    /* Team in a league. Leave team. */
 	    sprintf(buf, _("%s offer you a job in the %s.\nYou accept the challenge and leave %s."),
-		    team_of_id(history->value1)->name->str,
+		    team_of_id(history->value1)->name,
 		    league_cup_get_name_string(history->value2),
-		    team_of_id(history->team_id)->name->str);
+		    team_of_id(history->team_id)->name);
 	    break;
     	case  USER_HISTORY_END_SEASON:
 	    /* League name. */
@@ -731,13 +731,13 @@ user_history_to_string(const UserHistory *history, gchar *buf)
 	    /* Cup name, team name. */
 	    sprintf(buf, _("You win the %s final against %s."),
 		    league_cup_get_name_string(history->value1),
-		    history->value_string->str);
+		    history->value_string);
 	    break;
     	case  USER_HISTORY_LOSE_FINAL:
 	    /* Cup name, team name. */
 	    sprintf(buf, _("You lose in the %s final against %s."),
 		    league_cup_get_name_string(history->value1),
-		    history->value_string->str);
+		    history->value_string);
 	    break;
     	case USER_HISTORY_REACH_CUP_ROUND:	    
 	    cup_get_round_name(cup_from_clid(history->value1), history->value2, buf2);
@@ -834,9 +834,9 @@ user_get_sponsor(const User *user)
 	/* Company addition. */
 	 _(" Bros.")};
    
-    new.name = g_string_new(name_get_random_last_name(name_get_list_from_sid(user->tm->names_file->str)));    
+    new.name = g_string_new(name_get_random_last_name(name_get_list_from_sid(user->tm->names_file)));
     if(math_rnd(0, 1) < 0.2)
-	g_string_append(new.name, name_add[math_rndi(0, 2)]);    
+	g_string_append(new.name, name_add[math_rndi(0, 2)]);
     g_string_append(new.name, names[math_rndi(0, 17)]);
     if(math_rnd(0, 1) < 0.7)
 	g_string_append(new.name, short_names[math_rndi(0, 6)]);
@@ -949,7 +949,7 @@ user_mm_load_file(const gchar *filename, GArray *mmatches)
     file_remove_files(prefix);
 
     if(mmatches == NULL)
-	g_string_printf(current_user.mmatches_file, "%s", filename_local);
+	misc_string_assign(&current_user.mmatches_file, filename_local);
 }
 
 /** Add the last match to the MM file.
@@ -973,7 +973,7 @@ user_mm_add_last_match(gboolean load_file, gboolean save_file)
 			league_cup_get_name_string(fix->clid), buf);
     }
 
-    new.country_name = g_string_new(country.name->str);
+    new.country_name = g_strdup(country.name);
     new.neutral = !(fix->home_advantage);
     new.user_team = (fix->team_ids[0] != current_user.team_id);
     new.lg = current_user.live_game;
@@ -986,13 +986,13 @@ user_mm_add_last_match(gboolean load_file, gboolean save_file)
 	g_array_new(FALSE, FALSE, sizeof(LiveGameUnit));
 
     if(load_file)
-	user_mm_load_file(current_user.mmatches_file->str, NULL);
+	user_mm_load_file(current_user.mmatches_file, NULL);
 
     g_array_append_val(current_user.mmatches, new);
     game_gui_print_message(_("Memorable match added."));
 
     if(save_file)
-	user_mm_save_file(current_user.mmatches_file->str,
+	user_mm_save_file(current_user.mmatches_file,
 			  current_user.mmatches);
 }
 
@@ -1022,7 +1022,7 @@ user_mm_set_filename(const gchar *filename, gchar *dest)
     if(g_str_has_suffix(filename, ".bmm.zip"))
     {
 	if(dest == NULL)
-	    g_string_printf(current_user.mmatches_file, "%s", filename);
+	    misc_string_assign(&current_user.mmatches_file, filename);
 	else
 	    strcpy(dest, filename);
 	return;
@@ -1035,7 +1035,10 @@ user_mm_set_filename(const gchar *filename, gchar *dest)
 	buf[strlen(buf) - 4] = '\0';
 
     if(dest == NULL)
-	g_string_printf(current_user.mmatches_file, "%s.bmm.zip", buf);
+    {
+	strcat(buf, ".bmm.zip");
+	misc_string_assign(&current_user.mmatches_file, buf);
+    }
     else
 	sprintf(dest, "%s.bmm.zip", buf);
 }

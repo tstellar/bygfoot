@@ -97,6 +97,11 @@ xml_loadsave_users_start_element (GMarkupParseContext *context,
        state == TAG_USER_MONEY_INS)
 	idx = 0;
 
+    if(tag == TAG_USER_HISTORY)
+	new_history.value_string = NULL;
+    else if(tag == TAG_USER_EVENT)
+	new_event.value_string = NULL;
+
     if(!valid_tag)
 	g_warning("xml_loadsave_users_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
@@ -199,7 +204,7 @@ xml_loadsave_users_text         (GMarkupParseContext *context,
     float_value = (gfloat)g_ascii_strtod(text, NULL) / 10000;
 
     if(state == TAG_NAME)
-	g_string_printf(new_user.name, "%s", buf);
+	misc_string_assign(&new_user.name, buf);
     else if(state == TAG_TEAM_ID)
     {
 	new_user.tm = team_of_id(int_value);
@@ -242,7 +247,7 @@ xml_loadsave_users_text         (GMarkupParseContext *context,
     else if(state == TAG_USER_HISTORY_VALUE2)
 	new_history.value2 = int_value;
     else if(state == TAG_USER_HISTORY_VALUE_STRING)
-	new_history.value_string = g_string_new(buf);
+	misc_string_assign(&new_history.value_string, buf);
     else if(state == TAG_USER_EVENT_TYPE)
 	new_event.type = int_value;
     else if(state == TAG_USER_EVENT_VALUE1)
@@ -250,7 +255,7 @@ xml_loadsave_users_text         (GMarkupParseContext *context,
     else if(state == TAG_USER_EVENT_VALUE2)
 	new_event.value2 = int_value;
     else if(state == TAG_USER_EVENT_VALUE_STRING)
-	new_event.value_string = g_string_new(buf);    
+	misc_string_assign(&new_event.value_string, buf);
     else if(state == TAG_USER_YA_COACH)
 	new_user.youth_academy.coach = int_value;
     else if(state == TAG_USER_YA_PERCENTAGE)
@@ -326,7 +331,7 @@ xml_loadsave_users_write(const gchar *prefix)
     {
 	fprintf(fil, "<_%d>\n", TAG_USER);
 
-	xml_write_g_string(fil, usr(i).name, TAG_NAME, I1);
+	xml_write_string(fil, usr(i).name, TAG_NAME, I1);
 	xml_write_int(fil, usr(i).team_id, TAG_TEAM_ID, I1);
 	xml_write_int(fil, usr(i).money, TAG_USER_MONEY, I1);
 	xml_write_int(fil, usr(i).debt, TAG_USER_DEBT, I1);
@@ -374,8 +379,8 @@ xml_loadsave_users_write(const gchar *prefix)
 			  TAG_USER_HISTORY_VALUE1, I2);
 	    xml_write_int(fil, g_array_index(usr(i).history, UserHistory, j).value2,
 			  TAG_USER_HISTORY_VALUE2, I2);
-	    xml_write_g_string(fil, g_array_index(usr(i).history, UserHistory, j).value_string,
-			       TAG_USER_HISTORY_VALUE_STRING, I2);
+	    xml_write_string(fil, g_array_index(usr(i).history, UserHistory, j).value_string,
+			     TAG_USER_HISTORY_VALUE_STRING, I2);
 
 	    fprintf(fil, "%s</_%d>\n", I1, TAG_USER_HISTORY);
 	}
@@ -390,7 +395,7 @@ xml_loadsave_users_write(const gchar *prefix)
 			  TAG_USER_EVENT_VALUE1, I2);
 	    xml_write_int(fil, g_array_index(usr(i).events, Event, j).value2,
 			  TAG_USER_EVENT_VALUE2, I2);
-	    xml_write_g_string(fil, g_array_index(usr(i).events, Event, j).value_string,
+	    xml_write_string(fil, g_array_index(usr(i).events, Event, j).value_string,
 			       TAG_USER_EVENT_VALUE_STRING, I2);
 
 	    fprintf(fil, "%s</_%d>\n", I1, TAG_USER_EVENT);

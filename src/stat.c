@@ -53,8 +53,7 @@ stat_update_league_players(League *league)
     Player *pl = NULL;
     gint maxlen = const_int("int_stat_players_len");
     Stat new_stat;
-    
-    
+        
     for(i=0;i<league->teams->len;i++)
 	for(j=0;j<g_array_index(league->teams, Team, i).players->len;j++)
 	{
@@ -80,7 +79,7 @@ stat_update_league_players(League *league)
 	{
 	    pl = (Player*)g_ptr_array_index(players_sorted[i], j);
 	    new_stat.team_id = pl->team->id;
-	    new_stat.value_string = g_string_new(pl->name->str);
+	    new_stat.value_string = g_strdup(pl->name);
 	    new_stat.value1 = 
 		player_games_goals_get(pl, pl->team->clid, PLAYER_VALUE_GOALS);
 	    new_stat.value2 = 
@@ -118,7 +117,7 @@ stat_update_league_teams(const GArray *teams_array, gint compare_type)
 	new_stat.value1 = team_get_table_value((Team*)g_ptr_array_index(teams, i), TABLE_GF);
 	new_stat.value2 = team_get_table_value((Team*)g_ptr_array_index(teams, i), TABLE_GA);
 	new_stat.value3 = -1;
-	new_stat.value_string = g_string_new("");
+	new_stat.value_string = NULL;
 
 	g_array_append_val(stats, new_stat);
     }
@@ -152,9 +151,9 @@ stat_create_season_stat(void)
 
     for(i=0;i<ligs->len;i++)
     {
-	new_champ.cl_name = g_string_new(lig(i).name->str);
+	new_champ.cl_name = g_strdup(lig(i).name);
 	new_champ.team_name = 
-	    g_string_new(g_array_index(lig(i).table.elements, TableElement, 0).team->name->str);
+	    g_strdup(g_array_index(lig(i).table.elements, TableElement, 0).team->name);
 	g_array_append_val(new.league_champs, new_champ);
 
 	g_array_append_val(new.league_stats, lig(i).stats);
@@ -163,9 +162,9 @@ stat_create_season_stat(void)
 
     for(i=0;i<acps->len;i++)
     {
-	new_champ.cl_name = g_string_new(acp(i)->name->str);
+	new_champ.cl_name = g_strdup(acp(i)->name);
 	new_champ.team_name = 
-	    g_string_new(cup_get_winner(acp(i))->name->str);
+	    g_strdup(cup_get_winner(acp(i))->name);
 	g_array_append_val(new.cup_champs, new_champ);
     }
 

@@ -247,9 +247,9 @@ end_week_round_results(void)
 		done++;
 		fixture_result_to_buf(&g_array_index(lig(i).fixtures, Fixture, j), buf, FALSE);
 		sprintf(buf2, "%s %s %s",
-			g_array_index(lig(i).fixtures, Fixture, j).teams[0]->name->str,
+			g_array_index(lig(i).fixtures, Fixture, j).teams[0]->name,
 			buf,
-			g_array_index(lig(i).fixtures, Fixture, j).teams[1]->name->str);
+			g_array_index(lig(i).fixtures, Fixture, j).teams[1]->name);
 		gui_show_progress((gfloat)done / num_matches, buf2);
 		if(debug > 120)
 		    printf("%s \n", buf2);
@@ -267,9 +267,9 @@ end_week_round_results(void)
 		done++;
 		fixture_result_to_buf(&g_array_index(acp(i)->fixtures, Fixture, j), buf, FALSE);
 		sprintf(buf2, "%s %s %s",
-			g_array_index(acp(i)->fixtures, Fixture, j).teams[0]->name->str,
+			g_array_index(acp(i)->fixtures, Fixture, j).teams[0]->name,
 			buf,
-			g_array_index(acp(i)->fixtures, Fixture, j).teams[1]->name->str);
+			g_array_index(acp(i)->fixtures, Fixture, j).teams[1]->name);
 		gui_show_progress((gfloat)done / num_matches, buf2);
 		if(debug > 120)
 		    printf("%s \n", buf2);

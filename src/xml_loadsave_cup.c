@@ -166,13 +166,13 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
     float_value = (gfloat)g_ascii_strtod(buf, NULL);
 
     if(state == TAG_NAME)
-	g_string_printf(new_cup->name, "%s", buf);
+	misc_string_assign(&new_cup->name, buf);
     else if(state == TAG_SHORT_NAME)
-	g_string_printf(new_cup->short_name, "%s", buf);
+	misc_string_assign(&new_cup->short_name, buf);
     else if(state == TAG_SYMBOL)
-	g_string_printf(new_cup->symbol, "%s", buf);
+	misc_string_assign(&new_cup->symbol, buf);
     else if(state == TAG_SID)
-	g_string_printf(new_cup->sid, "%s", buf);
+	misc_string_assign(&new_cup->sid, buf);
     else if(state == TAG_ID)
 	new_cup->id = int_value;
     else if(state == TAG_WEEK_GAP)
@@ -198,7 +198,7 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
     else if(state == TAG_CUP_TEAM_NAME)
 	g_ptr_array_add(new_cup->team_names, g_strdup(buf));
     else if(state == TAG_CUP_CHOOSE_TEAM_SID)
-	g_string_printf(new_choose_team.sid, "%s", buf);
+	misc_string_assign(&new_choose_team.sid, buf);
     else if(state == TAG_CUP_CHOOSE_TEAM_NUMBER_OF_TEAMS)
 	new_choose_team.number_of_teams = int_value;
     else if(state == TAG_CUP_CHOOSE_TEAM_START_IDX)
@@ -302,10 +302,10 @@ xml_loadsave_cup_write(const gchar *prefix, const Cup *cup)
 
     fprintf(fil, "<_%d>\n", TAG_CUP);
 
-    xml_write_g_string(fil, cup->name, TAG_NAME, I0);
-    xml_write_g_string(fil, cup->short_name, TAG_SHORT_NAME, I0);
-    xml_write_g_string(fil, cup->sid, TAG_SID, I0);
-    xml_write_g_string(fil, cup->symbol, TAG_SYMBOL, I0);
+    xml_write_string(fil, cup->name, TAG_NAME, I0);
+    xml_write_string(fil, cup->short_name, TAG_SHORT_NAME, I0);
+    xml_write_string(fil, cup->sid, TAG_SID, I0);
+    xml_write_string(fil, cup->symbol, TAG_SYMBOL, I0);
 
     xml_write_int(fil, cup->id, TAG_ID, I0);
     xml_write_int(fil, cup->last_week, TAG_CUP_LAST_WEEK, I0);
@@ -408,7 +408,7 @@ xml_loadsave_cup_write_choose_team(FILE *fil, const CupChooseTeam *choose_team)
 {
     fprintf(fil, "%s<_%d>\n", I1, TAG_CUP_CHOOSE_TEAM);
     
-    xml_write_g_string(fil, choose_team->sid, TAG_CUP_CHOOSE_TEAM_SID, I2);
+    xml_write_string(fil, choose_team->sid, TAG_CUP_CHOOSE_TEAM_SID, I2);
     xml_write_int(fil, choose_team->number_of_teams, 
 		  TAG_CUP_CHOOSE_TEAM_NUMBER_OF_TEAMS, I2);
     xml_write_int(fil, choose_team->start_idx, 

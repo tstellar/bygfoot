@@ -87,7 +87,7 @@ GList *support_directories;
 
 /** The name of the current save file (gets updated when a game is
     saved or loaded).  */
-GString *save_file;
+gchar *save_file;
 
 /** Whether we are using a Unix system or Windows. */
 gboolean os_is_unix;

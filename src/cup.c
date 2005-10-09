@@ -21,10 +21,10 @@ cup_new(gboolean new_id)
 {
     Cup new;
 
-    new.name = g_string_new("");
-    new.short_name = g_string_new("");
-    new.symbol = g_string_new("");
-    new.sid = g_string_new("");
+    new.name = NULL;
+    new.short_name = NULL;
+    new.symbol = NULL;
+    new.sid = NULL;
 
     new.id = (new_id) ? cup_id_new : -1;
     new.group = -1;
@@ -55,7 +55,7 @@ cup_choose_team_new(void)
 {
     CupChooseTeam new;
 
-    new.sid = g_string_new("");
+    new.sid = NULL;
     new.number_of_teams = -1;
     new.start_idx = new.end_idx = -1;
     new.randomly = FALSE;
@@ -93,7 +93,7 @@ cup_reset(Cup *cup)
 {
     gint i, j;
     
-    g_ptr_array_free(cup->team_names, TRUE);
+    free_gchar_array(&cup->team_names);
     cup->team_names = g_ptr_array_new();
 
     if(cup->teams->len > 0)
@@ -137,7 +137,7 @@ query_cup_choose_team_is_league(const gchar *sid)
     gint i;
 
     for(i=0;i<ligs->len;i++)
-	if(strcmp(lig(i).sid->str, sid) == 0)
+	if(strcmp(lig(i).sid, sid) == 0)
 	    return TRUE;
 
     return FALSE;
@@ -154,14 +154,14 @@ cup_get_choose_team_league_cup(const CupChooseTeam *ct,
     *league = NULL;
     *cup = NULL;
 
-    sscanf(ct->sid->str, "%[^0-9]%d", trash, &idx);
+    sscanf(ct->sid, "%[^0-9]%d", trash, &idx);
 
-    if(g_str_has_prefix(ct->sid->str, "LEAGUE"))
+    if(g_str_has_prefix(ct->sid, "LEAGUE"))
     {
 	*league = &lig(idx - 1);
 	*cup = NULL;
     }
-    else if(g_str_has_prefix(ct->sid->str, "CUP"))
+    else if(g_str_has_prefix(ct->sid, "CUP"))
     {
 	*cup = &cp(idx - 1);
 	*league = NULL;
@@ -170,7 +170,7 @@ cup_get_choose_team_league_cup(const CupChooseTeam *ct,
     {
 	for(i=0;i<ligs->len;i++)
 	{
-	    if(strcmp(lig(i).sid->str, ct->sid->str) == 0)
+	    if(strcmp(lig(i).sid, ct->sid) == 0)
 	    {
 		*league = &lig(i);
 		*cup = NULL;
@@ -180,7 +180,7 @@ cup_get_choose_team_league_cup(const CupChooseTeam *ct,
 
 	for(i=0;i<cps->len;i++)
 	{
-	    if(strcmp(cp(i).sid->str, ct->sid->str) == 0)
+	    if(strcmp(cp(i).sid, ct->sid) == 0)
 	    {
 		*cup = &cp(i);
 		*league = NULL;
@@ -192,7 +192,7 @@ cup_get_choose_team_league_cup(const CupChooseTeam *ct,
     if(*league == NULL && *cup == NULL)
     {
 	g_warning("cup_get_choose_team_league_cup: no league nor cup found for chooseteam %s",
-		  ct->sid->str);
+		  ct->sid);
 	main_exit_program(EXIT_CHOOSE_TEAM_ERROR, NULL);
     }
 }
@@ -208,11 +208,11 @@ cup_get_team_pointers(Cup *cup, gint round)
     GPtrArray *teams = cup_round->team_ptrs;
 
     if(debug > 60)
-	printf("cup_get_team_pointers %s \n", cup->name->str);
+	printf("cup_get_team_pointers %s \n", cup->name);
 
     if(teams->len > 0)
 	g_warning("cup_get_team_pointers: round %d in cup %s has non-empty team pointers array.",
-		  round, cup->name->str);
+		  round, cup->name);
 
     for(i=0;i<cup_round->choose_teams->len;i++)
 	if(g_array_index(cup_round->choose_teams, CupChooseTeam, i).generate)
@@ -238,7 +238,7 @@ cup_get_team_pointers(Cup *cup, gint round)
 
     if(debug > 70)
 	for(i=0;i<teams->len;i++)
-	    printf("cup_get_team_pointers: %d %s \n", i, ((Team*)g_ptr_array_index(teams, i))->name->str);
+	    printf("cup_get_team_pointers: %d %s \n", i, ((Team*)g_ptr_array_index(teams, i))->name);
 }
 
 /** Get the pointers to the teams (already generated, in one of the leagues or cups)
@@ -254,8 +254,8 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
     const Cup *cup_temp = NULL;
 
     if(debug > 60)
-	printf("cup_load_choose_team: %s, %s \n", cup->name->str,
-	       ct->sid->str);
+	printf("cup_load_choose_team: %s, %s \n", cup->name,
+	       ct->sid);
 
     cup_get_choose_team_league_cup(ct, &league, &cup_temp);
 
@@ -270,7 +270,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 			g_array_index(league->table.elements, TableElement, j).team_id));
 		g_ptr_array_add(
 		    cup->team_names, 
-		    g_strdup(team_of_id(g_array_index(league->table.elements, TableElement, j).team_id)->name->str));
+		    g_strdup(team_of_id(g_array_index(league->table.elements, TableElement, j).team_id)->name));
 	    }
 	}
 	else
@@ -290,7 +290,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 		if(debug > 80)
 		    printf("team %s isinint %d numteams %d\n",
 			   team_of_id(g_array_index(league->table.elements, 
-						    TableElement, order[j]).team_id)->name->str,
+						    TableElement, order[j]).team_id)->name,
 			   query_team_is_in_cups(
 			       team_of_id(g_array_index(league->table.elements, 
 							TableElement, order[j]).team_id),
@@ -304,7 +304,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 				    team_of_id(g_array_index(league->table.elements, TableElement, order[j]).team_id));
 		    g_ptr_array_add(
 			cup->team_names, 
-			g_strdup(team_of_id(g_array_index(league->table.elements, TableElement, order[j]).team_id)->name->str));
+			g_strdup(team_of_id(g_array_index(league->table.elements, TableElement, order[j]).team_id)->name));
 		    number_of_teams++;
 
 		    if(number_of_teams == ct->number_of_teams)
@@ -317,7 +317,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 	   number_of_teams != ct->number_of_teams)
 	{
 	    g_warning("cup_load_choose_team (1): not enough teams (that don't participate in international cups yet) found in chooseteam %s for cup %s (%d specified, %d found) cup group %d.\n ",
-		      ct->sid->str, cup->name->str, ct->number_of_teams, number_of_teams, cup->group);
+		      ct->sid, cup->name, ct->number_of_teams, number_of_teams, cup->group);
 	    main_exit_program(EXIT_CHOOSE_TEAM_ERROR, NULL);
 	}
     }
@@ -328,7 +328,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 	    if(lig(0).teams->len < ct->number_of_teams)
 	    {
 		g_warning("cup_load_choose_team: not enough teams in league 0 for chooseteam %s (%d; required: %d) in cup %s\n",
-			  ct->sid->str, lig(0).teams->len, ct->number_of_teams, cup->name->str);
+			  ct->sid, lig(0).teams->len, ct->number_of_teams, cup->name);
 		main_exit_program(EXIT_CHOOSE_TEAM_ERROR, NULL);
 	    }
 
@@ -345,7 +345,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 							  Team, permutation[i - ct->start_idx + 1]));
 		    g_ptr_array_add(cup->team_names,
 				    g_strdup(g_array_index(lig(0).teams,
-							   Team, permutation[i - ct->start_idx + 1]).name->str));
+							   Team, permutation[i - ct->start_idx + 1]).name));
 		    number_of_teams++;
 		}
 		
@@ -356,7 +356,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 	    if(number_of_teams != ct->number_of_teams)
 	    {
 		g_warning("cup_load_choose_team (2): not enough teams found in league 0 for chooseteam %s (%d; required: %d) in cup %s (group %d)\n",
-			  ct->sid->str, number_of_teams, ct->number_of_teams, cup->name->str, cup->group);
+			  ct->sid, number_of_teams, ct->number_of_teams, cup->name, cup->group);
 		main_exit_program(EXIT_CHOOSE_TEAM_ERROR, NULL);
 	    }
 	}
@@ -382,7 +382,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 		{
 		    g_ptr_array_add(teams, g_ptr_array_index(cup_teams_sorted, j));
 		    g_ptr_array_add(cup->team_names, 
-				    g_strdup(((Team*)g_ptr_array_index(cup_teams_sorted, j))->name->str));
+				    g_strdup(((Team*)g_ptr_array_index(cup_teams_sorted, j))->name));
 		    number_of_teams++;
 
 		    if(number_of_teams == ct->number_of_teams)
@@ -396,7 +396,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 	       number_of_teams != ct->number_of_teams)
 	    {
 		g_warning("cup_load_choose_team(3): not enough teams (that don't participate in international cups yet) found in chooseteam %s for cup %s (%d specified, %d found) cup group %d.\n ",
-			  ct->sid->str, cup->name->str, ct->number_of_teams, number_of_teams, cup->group);
+			  ct->sid, cup->name, ct->number_of_teams, number_of_teams, cup->group);
 		main_exit_program(EXIT_CHOOSE_TEAM_ERROR, NULL);
 	    }
 	}
@@ -404,7 +404,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 
     if(debug > 80)
 	for(i=debug_num;i<teams->len;i++)
-	    printf("cup_load_choose_team: %d %s \n", i, ((Team*)g_ptr_array_index(teams, i))->name->str);
+	    printf("cup_load_choose_team: %d %s \n", i, ((Team*)g_ptr_array_index(teams, i))->name);
 }
 
 /** Load the teams specified in the chooseteam from a non-country league. */
@@ -418,12 +418,12 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
     GPtrArray *sids = NULL;
 
     if(debug > 60)
-	printf("cup_load_choose_team_generate: %s, %s \n", cup->name->str,
-	       ct->sid->str);
+	printf("cup_load_choose_team_generate: %s, %s \n", cup->name,
+	       ct->sid);
 
     leagues = g_array_new(FALSE, FALSE, sizeof(League));
     teams_local = g_array_new(FALSE, FALSE, sizeof(Team));
-    sids = misc_separate_strings(ct->sid->str);
+    sids = misc_separate_strings(ct->sid);
 
     for(j=0;j<sids->len;j++)
     {
@@ -472,7 +472,7 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
     if(teams_local->len < end_idx)
     {
 	g_warning("cup_load_choose_team_generate: not enough teams (%d) in chooseteam %s in cup %s (%d are specified) \n",
-		  teams_local->len, ct->sid->str, cup->name->str, end_idx);
+		  teams_local->len, ct->sid, cup->name, end_idx);
 	
 	free_teams_array(&teams_local, FALSE);
 	main_exit_program(EXIT_CHOOSE_TEAM_ERROR, NULL);
@@ -485,7 +485,7 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
 	    g_array_append_val(cup_round->teams, g_array_index(teams_local, Team, permutation[j]));
 	    g_array_index(cup_round->teams, Team, cup_round->teams->len - 1).clid = cup->id;
 	    g_ptr_array_add(cup->team_names, 
-			    g_strdup(g_array_index(cup_round->teams, Team, cup_round->teams->len - 1).name->str));
+			    g_strdup(g_array_index(cup_round->teams, Team, cup_round->teams->len - 1).name));
 
 	    number_of_teams++;
 	}
@@ -498,7 +498,7 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
 	(ct->number_of_teams == -1 && number_of_teams != teams_local->len)) &&
        teams_local->len > 0)
     {
-	g_warning("cup_load_choose_team_generate: not enough teams (that don't participate in international cups yet) found in chooseteam %s for cup %s (%d specified, %d found).\n ", ct->sid->str, cup->name->str, ct->number_of_teams, number_of_teams);
+	g_warning("cup_load_choose_team_generate: not enough teams (that don't participate in international cups yet) found in chooseteam %s for cup %s (%d specified, %d found).\n ", ct->sid, cup->name, ct->number_of_teams, number_of_teams);
 	main_exit_program(EXIT_CHOOSE_TEAM_ERROR, NULL);
     }
 
@@ -669,7 +669,7 @@ cup_get_first_week_of_cup_round(const Cup *cup, gint cup_round)
 
     if(week_number <= 0)
     {
-	g_warning("cup_get_first_week_of_cup_round: first week of cup %s cup round %d is not positive (%d).\nPlease lower the week gap or set a later last week.\n", cup->name->str, cup_round, week_number);
+	g_warning("cup_get_first_week_of_cup_round: first week of cup %s cup round %d is not positive (%d).\nPlease lower the week gap or set a later last week.\n", cup->name, cup_round, week_number);
 	main_exit_program(EXIT_FIRST_WEEK_ERROR, NULL);
     }
 
@@ -850,7 +850,7 @@ cup_from_sid(const gchar *sid)
     gint i;
 
     for(i=0;i<cps->len;i++)
-	if(strcmp(cp(i).sid->str, sid) == 0)
+	if(strcmp(cp(i).sid, sid) == 0)
 	    return &cp(i);
 
     g_warning("cup_from_sid: didn't find cup with sid %s \n", sid);

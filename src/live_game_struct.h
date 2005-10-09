@@ -131,7 +131,7 @@ typedef struct
 	involved in the event. */
     gint team, player, player2;
     /** The commentary for the event. */
-    GString *commentary;
+    gchar *commentary;
     /** Id of the commentary. */
     gint commentary_id;
 } LiveGameEvent;
@@ -177,7 +177,7 @@ typedef struct
     gint fix_id;
     /** The names of the teams stored for later use (when the fixture
 	already got freed). */
-    GString *team_names[2];
+    gchar *team_names[2];
     /** Substitutions left for the teams. */
     gint subs_left[2];
     /** The team that started the game, 0 or 1. */

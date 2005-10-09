@@ -43,7 +43,7 @@ typedef struct
 */
 typedef struct
 {
-    GString *name;
+    gchar *name;
     gint clid;
     /** The cup round (or -1 if it's a league). */
     gint round;

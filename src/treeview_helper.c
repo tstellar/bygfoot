@@ -443,9 +443,9 @@ treeview_helper_get_table_element_colour_cups(const League *league,
 		cup_round = &g_array_index(cp(i).rounds, CupRound, k);
 		for(j=0;j<cup_round->choose_teams->len;j++)
 		    if(strcmp(g_array_index(cup_round->choose_teams, 
-					    CupChooseTeam, j).sid->str, buf) == 0 ||
+					    CupChooseTeam, j).sid, buf) == 0 ||
 		       strcmp(g_array_index(cup_round->choose_teams, 
-					    CupChooseTeam, j).sid->str, league->sid->str) == 0)
+					    CupChooseTeam, j).sid, league->sid) == 0)
 		    {
 			if((idx + 1 >= g_array_index(cup_round->choose_teams, 
 						     CupChooseTeam, j).start_idx &&
@@ -501,8 +501,8 @@ treeview_helper_get_table_element_colour_cups_cup(const Cup *cup,
 		cup_round = &g_array_index(cp(i).rounds, CupRound, k);
 		for(j=0;j<cup_round->choose_teams->len;j++)
 		    if(strcmp(g_array_index(
-				  cup_round->choose_teams, CupChooseTeam, j).sid->str,
-			      cup->sid->str) == 0)
+				  cup_round->choose_teams, CupChooseTeam, j).sid,
+			      cup->sid) == 0)
 		    {
 			if((idx + 1 >= g_array_index(cup_round->choose_teams, 
 						     CupChooseTeam, j).start_idx &&
@@ -667,7 +667,7 @@ treeview_helper_team_selection(GtkTreeViewColumn *col,
     gtk_tree_model_get(model, iter, column, &team_pointer, -1);
 
     if(column == 2)
-	g_object_set(renderer, "text", ((Team*)team_pointer)->name->str, NULL);
+	g_object_set(renderer, "text", ((Team*)team_pointer)->name, NULL);
     else if(column == 4)
     {
 	sprintf(buf, "%.1f", team_get_average_skill((Team*)team_pointer, FALSE));
@@ -1034,7 +1034,7 @@ treeview_helper_player_to_cell(GtkTreeViewColumn *col,
 	    treeview_helper_player_contract_to_cell(renderer, buf, pl->contract);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_TEAM:
-	    sprintf(buf, "%s", pl->team->name->str);
+	    sprintf(buf, "%s", pl->team->name);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_LEAGUE_CUP:
 	    strcpy(buf, league_cup_get_name_string(pl->team->clid));
@@ -1053,7 +1053,7 @@ treeview_helper_player_name_to_cell(GtkCellRenderer *renderer, gchar *buf, const
     const gchar *colour_fg = const_app("string_treeview_helper_color_default_foreground"),
 	*colour_bg = const_app("string_treeview_helper_color_default_background");
 
-    strcpy(buf, pl->name->str);
+    strcpy(buf, pl->name);
     if(pl->team == current_user.tm &&
        opt_user_int("int_opt_user_penalty_shooter") == pl->id)
 	/* Penalty shooter. */
@@ -1434,9 +1434,9 @@ treeview_helper_mm_teams(GtkTreeViewColumn *col,
 	if(mm != NULL)
 	{
 	    if(column == 1)
-		g_object_set(renderer, "text", mm->lg.team_names[mm->user_team]->str, NULL);
+		g_object_set(renderer, "text", mm->lg.team_names[mm->user_team], NULL);
 	    else
-		g_object_set(renderer, "text", mm->lg.team_names[!mm->user_team]->str, NULL);
+		g_object_set(renderer, "text", mm->lg.team_names[!mm->user_team], NULL);
 
 	    if(!mm->neutral &&
 	       ((column == 1 && mm->user_team == 1) ||
@@ -1508,7 +1508,7 @@ treeview_helper_season_results(GtkTreeViewColumn *col,
 
     if(column == 3)
     {
-	strcpy(buf, fix->teams[!user_idx]->name->str);
+	strcpy(buf, fix->teams[!user_idx]->name);
 	if(user_idx == 1)
 	    g_object_set(renderer, "background",
 			 const_app("string_treeview_live_game_commentary_away_bg"), NULL);

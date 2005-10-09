@@ -71,4 +71,7 @@ misc_parse(const gchar *s, gint *result);
 GPtrArray*
 misc_copy_ptr_array(const GPtrArray *array);
 
+void
+misc_string_assign(gchar **string, const gchar *contents);
+
 #endif

@@ -131,11 +131,11 @@ xml_loadsave_teams_text         (GMarkupParseContext *context,
     float_value = (gfloat)g_ascii_strtod(buf, NULL) / 10000;
 
     if(state == TAG_NAME)
-	g_string_printf(new_team.name, "%s", buf);
+	misc_string_assign(&new_team.name, buf);
     else if(state == TAG_SYMBOL)
-	g_string_printf(new_team.symbol, "%s", buf);
+	misc_string_assign(&new_team.symbol, buf);
     else if(state == TAG_TEAM_NAMES_FILE)
-	g_string_printf(new_team.names_file, buf);
+	misc_string_assign(&new_team.names_file, buf);
     else if(state == TAG_TEAM_CLID)
 	new_team.clid = int_value;
     else if(state == TAG_TEAM_ID)
@@ -147,7 +147,7 @@ xml_loadsave_teams_text         (GMarkupParseContext *context,
     else if(state == TAG_TEAM_BOOST)
 	new_team.boost = int_value;
     else if(state == TAG_TEAM_STADIUM_NAME)
-	new_team.stadium.name = g_string_new(buf);
+	misc_string_assign(&new_team.stadium.name, buf);
     else if(state == TAG_TEAM_STADIUM_CAPACITY)
 	new_team.stadium.capacity = int_value;
     else if(state == TAG_TEAM_STADIUM_AVERAGE_ATTENDANCE)
@@ -225,9 +225,9 @@ xml_loadsave_teams_write_team(FILE *fil, const Team* team)
 {
     fprintf(fil, "<_%d>\n", TAG_TEAM);
 
-    xml_write_g_string(fil, team->name, TAG_NAME, I1);
-    xml_write_g_string(fil, team->symbol, TAG_SYMBOL, I1);
-    xml_write_g_string(fil, team->names_file, TAG_TEAM_NAMES_FILE, I1);
+    xml_write_string(fil, team->name, TAG_NAME, I1);
+    xml_write_string(fil, team->symbol, TAG_SYMBOL, I1);
+    xml_write_string(fil, team->names_file, TAG_TEAM_NAMES_FILE, I1);
     
     xml_write_int(fil, team->clid, TAG_TEAM_CLID, I1);
     xml_write_int(fil, team->id, TAG_TEAM_ID, I1);
@@ -238,7 +238,7 @@ xml_loadsave_teams_write_team(FILE *fil, const Team* team)
     fprintf(fil, "%s<_%d>\n", I1, TAG_TEAM_STADIUM);
 
     if(team->stadium.name != NULL)
-	xml_write_g_string(fil, team->stadium.name, TAG_TEAM_STADIUM_NAME, I2);
+	xml_write_string(fil, team->stadium.name, TAG_TEAM_STADIUM_NAME, I2);
 
     xml_write_int(fil, team->stadium.capacity, TAG_TEAM_STADIUM_CAPACITY, I2);
     xml_write_int(fil, team->stadium.average_attendance, TAG_TEAM_STADIUM_AVERAGE_ATTENDANCE, I2);

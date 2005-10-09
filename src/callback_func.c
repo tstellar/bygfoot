@@ -368,8 +368,8 @@ callback_transfer_list_user(gint button, gint idx)
 	    else
 		strcat(buf3, _(" less"));
 		
-	    sprintf(buf, _("%s would like to buy %s. They offer %s for him, which is %s than the player's value. Do you accept?"), transoff(idx, 0).tm->name->str,
-		    player_of_id_team(current_user.tm, trans(idx).id)->name->str,
+	    sprintf(buf, _("%s would like to buy %s. They offer %s for him, which is %s than the player's value. Do you accept?"), transoff(idx, 0).tm->name,
+		    player_of_id_team(current_user.tm, trans(idx).id)->name,
 		    buf2, buf3);
 	    stat1 = STATUS_TRANSFER_OFFER_USER;
 	    stat2 = idx;
@@ -409,7 +409,7 @@ callback_transfer_list_cpu(gint button, gint idx)
     misc_print_grouped_int(transoff(idx, 0).wage, buf3);
 
     sprintf(buf, _("You offered a transfer fee of %s and a wage of %s for %s. The owners and the player are satisfied with your offer. Do you still want to buy the player?"), 
-	    buf2, buf3, player_of_id_team(trans(idx).tm, trans(idx).id)->name->str);
+	    buf2, buf3, player_of_id_team(trans(idx).tm, trans(idx).id)->name);
     stat1 = STATUS_TRANSFER_OFFER_CPU;
     stat2 = idx;
     window_show_transfer_dialog(buf);
@@ -438,7 +438,7 @@ callback_transfer_list_clicked(gint button, gint idx)
 	    if(team_is_user(tr->tm) != -1)
 	    {
 		game_gui_print_message(_("User %s didn't consider your offer yet."),
-			user_from_team(tr->tm)->name->str);
+			user_from_team(tr->tm)->name);
 	    }
 	    else
 		callback_transfer_list_cpu(button, idx);
@@ -464,7 +464,7 @@ callback_transfer_list_clicked(gint button, gint idx)
     if(old_wage == -1)
     {
 	sprintf(buf, _("You are making an offer for %s. Your scout's recommendations for fee and wage are preset."),
-		player_of_id_team(tr->tm, tr->id)->name->str);
+		player_of_id_team(tr->tm, tr->id)->name);
 	
 	window_show_digits(buf, _("Fee"), tr->fee[current_user.scout % 10],
 			   _("Wage"), tr->wage[current_user.scout % 10]);
@@ -472,7 +472,7 @@ callback_transfer_list_clicked(gint button, gint idx)
     else
     {
 	sprintf(buf, _("You are making an offer for %s again. Your previous values for fee and wage are preset."),
-		player_of_id_team(tr->tm, tr->id)->name->str);
+		player_of_id_team(tr->tm, tr->id)->name);
 	
 	window_show_digits(buf, _("Fee"), old_fee, _("Wage"), old_wage);
     }
@@ -511,7 +511,8 @@ callback_offer_new_contract(gint idx)
 
     window_create(WINDOW_CONTRACT);
 
-    sprintf(buf, _("You are negotiating with %s about a new contract. Pay attention to what you're doing; if you don't come to terms with him within %d offers, he's going to leave your team after his current contract expires (unless you sell him). You may only abort BEFORE making the first offer.\nYour scout's recommendations are preset:"), pl->name->str,
+    sprintf(buf, _("You are negotiating with %s about a new contract. Pay attention to what you're doing; if you don't come to terms with him within %d offers, he's going to leave your team after his current contract expires (unless you sell him). You may only abort BEFORE making the first offer.\nYour scout's recommendations are preset:"), 
+	    pl->name,
 	    const_int("int_contract_max_offers"));
     gtk_label_set_text(GTK_LABEL(lookup_widget(window.contract, "label_contract")), buf);
 
@@ -636,7 +637,7 @@ callback_fire_player(gint idx)
 
     misc_print_grouped_int(stat3, buf2);
 
-    sprintf(buf, _("You want to fire %s. Since his contract expires in %.1f years, he demands a compensation of %s. Do you accept?"), pl->name->str, pl->contract, buf2);
+    sprintf(buf, _("You want to fire %s. Since his contract expires in %.1f years, he demands a compensation of %s. Do you accept?"), pl->name, pl->contract, buf2);
 
     window_show_yesno(buf);
 }

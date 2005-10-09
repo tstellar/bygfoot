@@ -28,9 +28,12 @@ void
 game_gui_show_warning(const gchar *format, ...)
 __attribute__ ((format (printf, 1, 2)));
 
-gboolean
+void
 game_gui_print_message(gchar *format, ...)
 __attribute__ ((format (printf, 1, 2)));
+
+gboolean
+game_gui_print_message_source(gpointer data);
 
 void
 game_gui_print_message_with_delay(const gchar *format, ...)

@@ -25,9 +25,9 @@ team_new(gboolean new_id)
 {
     Team new;
 
-    new.name = g_string_new("");
-    new.names_file = g_string_new("");
-    new.symbol = g_string_new("");
+    new.name = NULL;
+    new.names_file = NULL;
+    new.symbol = NULL;
     new.def_file = NULL;
     new.stadium.name = NULL;
     
@@ -161,12 +161,12 @@ query_team_is_in_cups(const Team *tm, gint group)
     for(i=0;i<cps->len;i++)
 	if(cp(i).group == group)
 	    for(j=0;j<cp(i).team_names->len;j++)
-		if(strcmp(tm->name->str, 
+		if(strcmp(tm->name, 
 			  (gchar*)g_ptr_array_index(cp(i).team_names, j)) == 0)
 		{
 		    if(debug > 90)
-			printf("team %s group %d found in %s \n", tm->name->str,
-			       group, cp(i).name->str);
+			printf("team %s group %d found in %s \n", tm->name,
+			       group, cp(i).name);
 		    return TRUE;
 		}
     
@@ -183,7 +183,7 @@ query_team_is_in_cup(const Team *tm, const Cup *cup)
     gint i;
 
     for(i=0;i<cup->team_names->len;i++)
-	if(strcmp(tm->name->str, 
+	if(strcmp(tm->name, 
 		  (gchar*)g_ptr_array_index(cup->team_names, i)) == 0)
 	    return TRUE;
 
@@ -412,7 +412,7 @@ team_get_league_rank(const Team *tm)
 	    return i + 1;
     
     g_warning("team_get_league_rank: no rank found for team %s in league %s. \n",
-	      tm->name->str, league_cup_get_name_string(tm->clid));
+	      tm->name, league_cup_get_name_string(tm->clid));
 
     main_exit_program(EXIT_INT_NOT_FOUND, NULL);
 
@@ -435,7 +435,7 @@ team_get_cup_rank(const Team *tm, const CupRound *cupround, gboolean abort)
 
     if(abort)
     {
-	g_warning("team_get_cup_rank: no rank found for team %s. \n ", tm->name->str);
+	g_warning("team_get_cup_rank: no rank found for team %s. \n ", tm->name);
 	
 	main_exit_program(EXIT_INT_NOT_FOUND, NULL);
     }
@@ -746,7 +746,7 @@ team_get_table_value(const Team *tm, gint type)
 
     if(tm->clid >= ID_CUP_START)
     {
-	g_warning("team_get_table_value: team is not a league team: %s \n", tm->name->str);
+	g_warning("team_get_table_value: team is not a league team: %s \n", tm->name);
 
 	main_exit_program(EXIT_INT_NOT_FOUND, NULL);
 
@@ -761,7 +761,7 @@ team_get_table_value(const Team *tm, gint type)
 
     if(i == elements->len)
     {
-	g_warning("team_get_table_value: table entry not found for team %s \n", tm->name->str);
+	g_warning("team_get_table_value: table entry not found for team %s \n", tm->name);
 
 	main_exit_program(EXIT_INT_NOT_FOUND, NULL);
 
@@ -928,7 +928,7 @@ team_get_index(const Team *tm)
 		return i;
     }
 
-    g_warning("team_get_index: team %s not found.\n", tm->name->str);
+    g_warning("team_get_index: team %s not found.\n", tm->name);
 
     main_exit_program(EXIT_INT_NOT_FOUND, NULL);
 
@@ -1129,7 +1129,7 @@ team_has_def_file(const Team *tm)
 
     if(tm->def_file != NULL && opt_int("int_opt_load_defs") != 0)
     {
-	sprintf(buf, "team_%s.xml", tm->def_file->str);
+	sprintf(buf, "team_%s.xml", tm->def_file);
 	return_value = file_find_support_file(buf, FALSE);
     }
 
@@ -1226,7 +1226,7 @@ team_complete_def_sort(Team *tm)
 	    if(j == tm->players->len)
 	    {
 		sprintf(buf, "team_complete_def_sort (1): cannot sort according to structure %d (team %s).",
-			tm->structure, tm->name->str);
+			tm->structure, tm->name);
 		main_exit_program(EXIT_DEF_SORT, buf);
 	    }
 	    
@@ -1250,7 +1250,7 @@ team_complete_def_sort(Team *tm)
 	    if(j == 11)
 	    {
 		sprintf(buf, "team_complete_def_sort (2): cannot sort according to structure %d (team %s).",
-			tm->structure, tm->name->str);
+			tm->structure, tm->name);
 		main_exit_program(EXIT_DEF_SORT, buf);
 	    }
 
@@ -1265,7 +1265,7 @@ team_complete_def_sort(Team *tm)
 	    if(j == tm->players->len)
 	    {
 		sprintf(buf, "team_complete_def_sort (3): cannot sort according to structure %d (team %s).",
-			tm->structure, tm->name->str);
+			tm->structure, tm->name);
 		main_exit_program(EXIT_DEF_SORT, buf);
 	    }
 	    

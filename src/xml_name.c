@@ -66,17 +66,14 @@ xml_name_read_text         (GMarkupParseContext *context,
 			    GError             **error)
 {
     gchar buf[text_len + 1];
-    GString *new_name = NULL;
 
     strncpy(buf, text, text_len);
     buf[text_len] = '\0';
 
-    new_name = g_string_new(buf);
-
     if(state == STATE_FIRST_NAME)
-	g_ptr_array_add(nlist->first_names, new_name);
+	g_ptr_array_add(nlist->first_names, g_strdup(buf));
     else if(state == STATE_LAST_NAME)
-	g_ptr_array_add(nlist->last_names, new_name);
+	g_ptr_array_add(nlist->last_names, g_strdup(buf));
 }
 
 /** Fill the name list with names from the
@@ -110,7 +107,7 @@ xml_name_read(const gchar *sid, NameList *namelist)
     }
 
     free_name_list(namelist, TRUE);
-    g_string_assign(namelist->sid, sid);
+    misc_string_assign(&namelist->sid, sid);
 
     nlist = namelist;
 

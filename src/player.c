@@ -27,7 +27,7 @@ player_new(Team *tm, gfloat average_talent, gboolean new_id)
     Player new;
 
     new.name = (new_id) ? 
-	name_get(tm->names_file->str) : g_string_new("");
+	name_get(tm->names_file) : NULL;
 
     new.id = (new_id) ? player_id_new : -1;
     new.pos = player_get_position_from_structure(tm->structure, tm->players->len);
@@ -289,7 +289,7 @@ player_id_index(const Team *tm, gint player_id)
 	if(g_array_index(tm->players, Player, i).id == player_id)
 	    return i;
     
-    g_warning("player_id_index: didn't find player with id %d of team %s\n", player_id, tm->name->str);
+    g_warning("player_id_index: didn't find player with id %d of team %s\n", player_id, tm->name);
     
     main_exit_program(EXIT_INT_NOT_FOUND, NULL);
 
@@ -306,7 +306,7 @@ player_of_idx_team(const Team *tm, gint number)
     if(tm->players->len <= number)
     {
 	g_warning("player_of_idx_team: Player list of team %s too short for number %d.\n",
-		  tm->name->str, number);
+		  tm->name, number);
 
 	main_exit_program(EXIT_POINTER_NOT_FOUND, NULL);
 
@@ -330,7 +330,7 @@ player_of_id_team(const Team *tm, gint id)
 	if(g_array_index(tm->players, Player, i).id == id)
 	    return &g_array_index(tm->players, Player, i);
     
-    g_warning("player_of_id_team: didn't find player with id %d of team %s\n", id, tm->name->str);
+    g_warning("player_of_id_team: didn't find player with id %d of team %s\n", id, tm->name);
     
     main_exit_program(EXIT_POINTER_NOT_FOUND, NULL);
 
@@ -1020,7 +1020,7 @@ player_update_streak(Player *pl)
 	else if(pl->streak == PLAYER_STREAK_COLD)
 	    decrease_factor = 1;
 	else
-	    g_warning("player_update_streak: streak count is positive (%.1f) but player %s is not on a streak!\n", pl->streak_count, pl->name->str);
+	    g_warning("player_update_streak: streak count is positive (%.1f) but player %s is not on a streak!\n", pl->streak_count, pl->name);
 
 	pl->streak_count -= 
 	    (pl->streak_prob * decrease_factor *
@@ -1092,7 +1092,7 @@ player_update_weekly(Player *pl)
        (pl->contract + 0.0192) * 12 > opt_user_int("int_opt_user_contract_limit"))
 	user_event_add(user_from_team(pl->team), EVENT_TYPE_WARNING,
 		       -1, -1, NULL, _("%s's contract expires in %.1f years."),
-		       pl->name->str, pl->contract);
+		       pl->name, pl->contract);
 
     if(pl->contract <= 0)
 	player_remove_contract(pl);
@@ -1112,7 +1112,7 @@ void
 player_remove_contract(Player *pl)
 {
     user_event_add(user_from_team(pl->team), EVENT_TYPE_PLAYER_LEFT, -1, -1, NULL,
-		   pl->name->str);
+		   pl->name);
     player_remove_from_team(pl->team, player_id_index(pl->team, pl->id));
 }
 
@@ -1177,7 +1177,7 @@ player_replace_by_new(Player *pl, gboolean free_player)
     gint idx = player_id_index(tm, pl->id);
     Player new = player_new(tm, team_get_average_skill(tm, FALSE), FALSE);
         
-    new.name = name_get(pl->team->names_file->str);
+    new.name = name_get(pl->team->names_file);
     new.pos = pl->pos;
     new.cpos = pl->cpos;
     new.id = pl->id;

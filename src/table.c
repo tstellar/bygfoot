@@ -10,7 +10,7 @@ table_new(void)
 {
     Table new;
 
-    new.name = g_string_new("");
+    new.name = NULL;
     new.clid = -1;
     new.round = -1;
     new.elements = g_array_new(FALSE, FALSE, sizeof(TableElement));

@@ -20,7 +20,7 @@ enum
 
 gint state, in_state, valueidx;
 Stat new_stat;
-LeagueStat *lstat;
+LeagueStat *lig_stat;
 
 void
 xml_loadsave_league_stat_start_element (GMarkupParseContext *context,
@@ -80,13 +80,13 @@ xml_loadsave_league_stat_end_element    (GMarkupParseContext *context,
     {	
 	state = in_state;
 	if(in_state == TAG_STAT_TEAMS_OFF)
-	    stat_array = lstat->teams_off;
+	    stat_array = lig_stat->teams_off;
 	else if(in_state == TAG_STAT_TEAMS_DEF)
-	    stat_array = lstat->teams_def;
+	    stat_array = lig_stat->teams_def;
 	else if(in_state == TAG_STAT_PLAYER_SCORERS)
-	    stat_array = lstat->player_scorers;
+	    stat_array = lig_stat->player_scorers;
 	else if(in_state == TAG_STAT_PLAYER_GOALIES)
-	    stat_array = lstat->player_goalies;
+	    stat_array = lig_stat->player_goalies;
 	else
 	{
 	    g_warning("xml_loadsave_league_stat_end_element: unknown in_state %d \n", 
@@ -126,7 +126,7 @@ xml_loadsave_league_stat_text         (GMarkupParseContext *context,
     int_value = (gint)g_ascii_strtod(buf, NULL);
 
     if(state == TAG_ID)
-	lstat->clid = int_value;
+	lig_stat->clid = int_value;
     else if(state == TAG_TEAM_ID)
 	new_stat.team_id = int_value;
     else if(state == TAG_STAT_VALUE)
@@ -139,7 +139,7 @@ xml_loadsave_league_stat_text         (GMarkupParseContext *context,
 	    new_stat.value3 = int_value;
     }
     else if(state == TAG_STAT_VALUE_STRING)
-	new_stat.value_string = g_string_new(buf);
+	new_stat.value_string = g_strdup(buf);
 }
 
 void
@@ -162,7 +162,7 @@ xml_loadsave_league_stat_read(const gchar *filename, LeagueStat *league_stat)
 	misc_print_error(&error, TRUE);
     }
 
-    lstat = league_stat;
+    lig_stat = league_stat;
 
     if(g_markup_parse_context_parse(context, file_contents, length, &error))
     {
@@ -227,7 +227,7 @@ xml_loadsave_league_stat_write_stat(FILE *fil, const Stat *stat)
     xml_write_int(fil, stat->value1, TAG_STAT_VALUE, I1);
     xml_write_int(fil, stat->value2, TAG_STAT_VALUE, I1);
     xml_write_int(fil, stat->value3, TAG_STAT_VALUE, I1);
-    xml_write_g_string(fil, stat->value_string, TAG_STAT_VALUE_STRING, I1);
+    xml_write_string(fil, stat->value_string, TAG_STAT_VALUE_STRING, I1);
 
     fprintf(fil, "%s</_%d>\n", I1, TAG_STAT);
 }

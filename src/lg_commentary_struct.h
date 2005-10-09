@@ -6,10 +6,10 @@
 typedef struct
 {
     /** The commentary text (possibly containing tokens). */
-    GString *text;
+    gchar *text;
     /** A condition (if not fulfilled, the commentary doesn't get
 	shown). */
-    GString *condition;
+    gchar *condition;
     /** Priority of the commentary (compared to
 	the other ones for the same event).
 	The higher the priority the higher the

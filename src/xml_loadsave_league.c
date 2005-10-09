@@ -134,15 +134,15 @@ xml_loadsave_league_text         (GMarkupParseContext *context,
     int_value = (gint)g_ascii_strtod(buf, NULL);
 
     if(state == TAG_NAME)
-	g_string_printf(new_league->name, "%s", buf);
+	misc_string_assign(&new_league->name, buf);
     else if(state == TAG_SHORT_NAME)
-	g_string_printf(new_league->short_name, "%s", buf);
+	misc_string_assign(&new_league->short_name, buf);
     else if(state == TAG_NAMES_FILE)
-	g_string_printf(new_league->names_file, "%s", buf);
+	misc_string_assign(&new_league->names_file, buf);
     else if(state == TAG_SYMBOL)
-	g_string_printf(new_league->symbol, "%s", buf);
+	misc_string_assign(&new_league->symbol, buf);
     else if(state == TAG_SID)
-	g_string_printf(new_league->sid, "%s", buf);
+	misc_string_assign(&new_league->sid, buf);
     else if(state == TAG_ID)
 	new_league->id = int_value;
     else if(state == TAG_LEAGUE_LAYER)
@@ -158,19 +158,19 @@ xml_loadsave_league_text         (GMarkupParseContext *context,
     else if(state == TAG_LEAGUE_ACTIVE)
 	new_league->active = int_value;
     else if(state == TAG_LEAGUE_PROM_REL_PROM_GAMES_DEST_SID)
-	g_string_printf(new_league->prom_rel.prom_games_dest_sid, "%s", buf);
+	misc_string_assign(&new_league->prom_rel.prom_games_dest_sid, buf);
     else if(state == TAG_LEAGUE_PROM_REL_PROM_GAMES_CUP_SID)
-	g_string_printf(new_league->prom_rel.prom_games_cup_sid, "%s", buf);
+	misc_string_assign(&new_league->prom_rel.prom_games_cup_sid, buf);
     else if(state == TAG_LEAGUE_PROM_REL_PROM_GAMES_NUMBER_OF_ADVANCE)
 	new_league->prom_rel.prom_games_number_of_advance = int_value;
     else if(state == TAG_LEAGUE_PROM_REL_PROM_GAMES_LOSER_SID)
-	g_string_printf(new_league->prom_rel.prom_games_loser_sid, "%s", buf);
+	misc_string_assign(&new_league->prom_rel.prom_games_loser_sid, buf);
     else if(state == TAG_LEAGUE_PROM_REL_ELEMENT_RANK)
 	new_element.ranks[promrankidx] = int_value;
     else if(state == TAG_LEAGUE_PROM_REL_ELEMENT_TYPE)
 	new_element.type = int_value;
     else if(state == TAG_LEAGUE_PROM_REL_ELEMENT_DEST_SID)
-	g_string_printf(new_element.dest_sid, "%s", buf);
+	misc_string_assign(&new_element.dest_sid, buf);
 }
 
 void
@@ -232,11 +232,11 @@ xml_loadsave_league_write(const gchar *prefix, const League *league)
 
     fprintf(fil, "%s<_%d>\n", I0, TAG_LEAGUE);
 
-    xml_write_g_string(fil, league->name, TAG_NAME, I0);
-    xml_write_g_string(fil, league->short_name, TAG_SHORT_NAME, I0);
-    xml_write_g_string(fil, league->names_file, TAG_NAMES_FILE, I0);
-    xml_write_g_string(fil, league->sid, TAG_SID, I0);
-    xml_write_g_string(fil, league->symbol, TAG_SYMBOL, I0);
+    xml_write_string(fil, league->name, TAG_NAME, I0);
+    xml_write_string(fil, league->short_name, TAG_SHORT_NAME, I0);
+    xml_write_string(fil, league->names_file, TAG_NAMES_FILE, I0);
+    xml_write_string(fil, league->sid, TAG_SID, I0);
+    xml_write_string(fil, league->symbol, TAG_SYMBOL, I0);
 
     xml_write_int(fil, league->id, TAG_ID, I0);
     xml_write_int(fil, league->layer, TAG_LEAGUE_LAYER, I0);
@@ -248,13 +248,13 @@ xml_loadsave_league_write(const gchar *prefix, const League *league)
 
     fprintf(fil, "%s<_%d>\n", I0, TAG_LEAGUE_PROM_REL);
 
-    xml_write_g_string(fil, league->prom_rel.prom_games_dest_sid,
+    xml_write_string(fil, league->prom_rel.prom_games_dest_sid,
 		       TAG_LEAGUE_PROM_REL_PROM_GAMES_DEST_SID, I1);
-    xml_write_g_string(fil, league->prom_rel.prom_games_cup_sid,
+    xml_write_string(fil, league->prom_rel.prom_games_cup_sid,
 		       TAG_LEAGUE_PROM_REL_PROM_GAMES_CUP_SID, I1);
     xml_write_int(fil, league->prom_rel.prom_games_number_of_advance,
 		  TAG_LEAGUE_PROM_REL_PROM_GAMES_NUMBER_OF_ADVANCE, I1);
-    xml_write_g_string(fil, league->prom_rel.prom_games_loser_sid,
+    xml_write_string(fil, league->prom_rel.prom_games_loser_sid,
 		       TAG_LEAGUE_PROM_REL_PROM_GAMES_LOSER_SID, I1);
 
     fprintf(fil, "%s<_%d>\n", I1, TAG_LEAGUE_PROM_REL_ELEMENTS);
@@ -267,7 +267,7 @@ xml_loadsave_league_write(const gchar *prefix, const League *league)
 		      TAG_LEAGUE_PROM_REL_ELEMENT_RANK, I2);
 	xml_write_int(fil, g_array_index(league->prom_rel.elements, PromRelElement, i).type,
 		      TAG_LEAGUE_PROM_REL_ELEMENT_TYPE, I2);
-	xml_write_g_string(fil, g_array_index(league->prom_rel.elements, PromRelElement, i).dest_sid,
+	xml_write_string(fil, g_array_index(league->prom_rel.elements, PromRelElement, i).dest_sid,
 			   TAG_LEAGUE_PROM_REL_ELEMENT_DEST_SID, I2);
 	fprintf(fil, "%s</_%d>\n", I1, TAG_LEAGUE_PROM_REL_ELEMENT);
     }

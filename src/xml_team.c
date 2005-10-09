@@ -166,23 +166,23 @@ xml_team_read_text         (GMarkupParseContext *context,
     float_value = (gfloat)g_ascii_strtod(buf, NULL);
 
     if(state == STATE_TEAM_NAME)
-	g_string_printf(team->name, "%s", buf);
+	misc_string_assign(&team->name, buf);
     else if(state == STATE_STADIUM_NAME)
     {
-	free_g_string(&team->stadium.name);
-	team->stadium.name = g_string_new(buf);
+	g_free(team->stadium.name);
+	misc_string_assign(&team->stadium.name, buf);
     }
     else if(state == STATE_SYMBOL)
-	g_string_printf(team->symbol, "%s", buf);
+	misc_string_assign(&team->symbol, buf);
     else if(state == STATE_AVERAGE_TALENT && opt_int("int_opt_load_defs") == 1)
 	team->average_talent = 
 	    (float_value / 10000) * const_float("float_player_max_skill");
     else if(state == STATE_FORMATION)
 	team->structure = int_value;
     else if(state == STATE_NAMES_FILE)
-	g_string_printf(team->names_file, "%s", buf);
+	misc_string_assign(&team->names_file, buf);
     else if(state == STATE_PLAYER_NAME)
-	g_string_printf(new_player.name, "%s", buf);
+	misc_string_assign(&new_player.name, buf);
     else if(state == STATE_PLAYER_BIRTH_YEAR && opt_int("int_opt_load_defs") == 1)
 	birth_year = int_value;
     else if(state == STATE_PLAYER_BIRTH_MONTH && opt_int("int_opt_load_defs") == 1)

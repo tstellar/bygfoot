@@ -3,6 +3,7 @@
 #include "cup.h"
 #include "file.h"
 #include "fixture.h"
+#include "free.h"
 #include "league.h"
 #include "lg_commentary.h"
 #include "live_game.h"
@@ -72,7 +73,7 @@ lg_commentary_generate(const LiveGame *live_game, LiveGameUnit *unit)
 	strcpy(buf, "FIXME!");
     }
 
-    unit->event.commentary = g_string_new(buf);
+    unit->event.commentary = g_strdup(buf);
     unit->event.commentary_id = (i == (*commentaries)->len) ? 
 	-1 : g_array_index(*commentaries, LGCommentary, order[i]).id;
 
@@ -85,10 +86,7 @@ lg_commentary_generate(const LiveGame *live_game, LiveGameUnit *unit)
 	   i != option_int("string_lg_commentary_token_yellow_limit", &lg_tokens) &&
 	   i != option_int("string_lg_commentary_token_team_layer0", &lg_tokens) &&
 	   i != option_int("string_lg_commentary_token_team_layer1", &lg_tokens))
-	{
-	    g_free(token_rep[i]);
-	    token_rep[i] = NULL;
-	}
+	    free_gchar_ptr(token_rep[i]);
 }
 
 /** Check whether the commentary conditions are fulfilled and whether
@@ -98,13 +96,13 @@ lg_commentary_check_commentary(const LGCommentary *commentary, gchar *dest)
 {
     gchar buf[SMALL];
 
-    if(strlen(commentary->text->str) == 0 ||
+    if(strlen(commentary->text) == 0 ||
        (commentary->condition != NULL &&
-	!lg_commentary_parse_condition(commentary->condition->str)) ||
+	!lg_commentary_parse_condition(commentary->condition)) ||
        (repetition == FALSE && query_lg_commentary_is_repetition(commentary->id)))
 	return FALSE;
 
-    strcpy(dest, commentary->text->str);
+    strcpy(dest, commentary->text);
     
     do
     {
@@ -168,9 +166,6 @@ void lg_commentary_choose_random(gchar* s)
 
    strcpy(s, start);
 }
-
-
-
 
 /** Replace simple arithmetic expressions like "1 + 2"
     and comparisons like "3 < 4" with the appropriate result. */
@@ -253,13 +248,13 @@ lg_commentary_replace_tokens(gchar *commentary_text)
     for(i=0;i<lg_tokens.list->len;i++)
     {
 	if(g_strrstr(commentary_text,
-		     g_array_index(lg_tokens.list, Option, i).string_value->str))
+		     g_array_index(lg_tokens.list, Option, i).string_value))
 	{
 	    if(token_rep[i] == NULL)
 		return FALSE;
 	    else
 		misc_string_replace_token(commentary_text, 
-					  g_array_index(lg_tokens.list, Option, i).string_value->str,
+					  g_array_index(lg_tokens.list, Option, i).string_value,
 					  token_rep[i]);
 	}
     }
@@ -443,9 +438,9 @@ lg_commentary_set_team_tokens(const LiveGameUnit *unit, const Fixture *fix)
     if(unit->result[0] != unit->result[1])
     {
 	token_rep[option_int("string_lg_commentary_token_team_losing", &lg_tokens)] = 
-	    g_strdup(fix->teams[(unit->result[0] > unit->result[1])]->name->str);
+	    g_strdup(fix->teams[(unit->result[0] > unit->result[1])]->name);
 	token_rep[option_int("string_lg_commentary_token_team_winning", &lg_tokens)] = 
-	    g_strdup(fix->teams[(unit->result[0] < unit->result[1])]->name->str);
+	    g_strdup(fix->teams[(unit->result[0] < unit->result[1])]->name);
 	token_rep[option_int("string_lg_commentary_token_team_losingn", &lg_tokens)] = 
 	    misc_int_to_char((unit->result[0] > unit->result[1]));
 	token_rep[option_int("string_lg_commentary_token_team_winningn", &lg_tokens)] = 
@@ -517,7 +512,7 @@ lg_commentary_set_player_tokens(const LiveGameUnit *unit, const Fixture *fix)
     if(pl1 != NULL)
     {
 	token_rep[option_int("string_lg_commentary_token_player0", &lg_tokens)] = 
-	    player_get_last_name(pl1->name->str);
+	    player_get_last_name(pl1->name);
 	token_rep[option_int("string_lg_commentary_token_player_goals0", &lg_tokens)] = 
 	    misc_int_to_char(player_games_goals_get(pl1, fix->clid, PLAYER_VALUE_GOALS));
 	token_rep[option_int("string_lg_commentary_token_player_goals_all0", &lg_tokens)] = 
@@ -527,7 +522,7 @@ lg_commentary_set_player_tokens(const LiveGameUnit *unit, const Fixture *fix)
     if(pl2 != NULL)
     {
 	token_rep[option_int("string_lg_commentary_token_player1", &lg_tokens)] = 
-	    player_get_last_name(pl2->name->str);
+	    player_get_last_name(pl2->name);
 	token_rep[option_int("string_lg_commentary_token_player_goals1", &lg_tokens)] = 
 	    misc_int_to_char(player_games_goals_get(pl2, fix->clid, PLAYER_VALUE_GOALS));
 	token_rep[option_int("string_lg_commentary_token_player_goals_all1", &lg_tokens)] = 
@@ -595,9 +590,9 @@ lg_commentary_initialize(const Fixture *fix)
 	token_rep[i] = NULL;
 	
     token_rep[option_int("string_lg_commentary_token_team_home", &lg_tokens)] = 
-	g_strdup(fix->teams[0]->name->str);
+	g_strdup(fix->teams[0]->name);
     token_rep[option_int("string_lg_commentary_token_team_away", &lg_tokens)] = 
-	g_strdup(fix->teams[1]->name->str);
+	g_strdup(fix->teams[1]->name);
 
     if(fix->teams[0]->clid < ID_CUP_START)
 	token_rep[option_int("string_lg_commentary_token_team_layer0", &lg_tokens)] = 

@@ -314,26 +314,28 @@ misc_parse_value(const gchar *s, gint *value)
 const gchar*
 misc_parse_expression(const gchar *s, gint *result)
 {
-   gint value = 0;
-   s = misc_parse_value(s, &value);
-   *result = value;
-   gint loop = 1;
-   while (loop) {
-      s = misc_skip_spaces(s);
-      switch(*s) {
-      case '+': 
-            s = misc_parse_value(s+1, &value);
-	    *result += value;
-	    break;
-      case '-': 
-    	    s = misc_parse_value(s+1, &value);
-	    *result -= value;
-	    break;
-      default:
-            loop = 0;
-     }
-   }
-   return s;
+    gint value = 0,
+	loop = 1;
+
+    s = misc_parse_value(s, &value);
+    *result = value;
+
+    while (loop) {
+	s = misc_skip_spaces(s);
+	switch(*s) {
+	    case '+': 
+		s = misc_parse_value(s+1, &value);
+		*result += value;
+		break;
+	    case '-': 
+		s = misc_parse_value(s+1, &value);
+		*result -= value;
+		break;
+	    default:
+		loop = 0;
+	}
+    }
+    return s;
 }
 
 /* parse comparison (supports '<', '>' and '=') */
@@ -452,4 +454,14 @@ misc_copy_ptr_array(const GPtrArray *array)
 	g_ptr_array_add(copy, g_ptr_array_index(array, i));
 
     return copy;
+}
+
+/** Free the string if it's non-NULL and assign the contents to it. */
+void
+misc_string_assign(gchar **string, const gchar *contents)
+{
+    if(*string != NULL)
+	g_free(*string);
+
+    *string = g_strdup(contents);
 }

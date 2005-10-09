@@ -53,7 +53,7 @@ live_game_calculate_fixture(Fixture *fix)
     if((debug > 80 && fixture_user_team_involved(match->fix) != -1) ||
        debug > 130)
 	printf("\n\nlive_game_calculate_fixture\n%04d %s %s %04d\n\n",
-	       tm0->id, tm0->name->str, tm1->name->str, tm1->id);
+	       tm0->id, tm0->name, tm1->name, tm1->id);
 
     do
     {
@@ -1375,16 +1375,16 @@ live_game_finish_unit(void)
 
 	if(-stat5 - 1000 == unit->event.type)
 	{
-	    printf("type %d com **%s**", unit->event.type, unit->event.commentary->str);
-	    if(g_strrstr(unit->event.commentary->str, "[") ||
-	       g_strrstr(unit->event.commentary->str, "]") ||
-	       g_strrstr(unit->event.commentary->str, "<") ||
-	       g_strrstr(unit->event.commentary->str, ">") ||
-	       g_strrstr(unit->event.commentary->str, "=") ||
-	       g_strrstr(unit->event.commentary->str, " G ") ||
-	       g_strrstr(unit->event.commentary->str, " L ") ||
-	       g_strrstr(unit->event.commentary->str, " GE ") ||
-	       g_strrstr(unit->event.commentary->str, " LE "))
+	    printf("type %d com **%s**", unit->event.type, unit->event.commentary);
+	    if(g_strrstr(unit->event.commentary, "[") ||
+	       g_strrstr(unit->event.commentary, "]") ||
+	       g_strrstr(unit->event.commentary, "<") ||
+	       g_strrstr(unit->event.commentary, ">") ||
+	       g_strrstr(unit->event.commentary, "=") ||
+	       g_strrstr(unit->event.commentary, " G ") ||
+	       g_strrstr(unit->event.commentary, " L ") ||
+	       g_strrstr(unit->event.commentary, " GE ") ||
+	       g_strrstr(unit->event.commentary, " LE "))
 		printf(" ERROR?\n");
 	    else
 		printf("\n");
@@ -1519,8 +1519,8 @@ live_game_reset(LiveGame *live_game, Fixture *fix, gboolean free_variable)
     if(fix != NULL)
     {
 	live_game->fix_id = fix->id;
-	live_game->team_names[0] = g_string_new(fix->teams[0]->name->str);
-	live_game->team_names[1] = g_string_new(fix->teams[1]->name->str);
+	live_game->team_names[0] = g_strdup(fix->teams[0]->name);
+	live_game->team_names[1] = g_strdup(fix->teams[1]->name);
     }
     else
     {

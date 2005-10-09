@@ -48,7 +48,7 @@ option_int_pointer(const gchar *name, OptionList *optionlist);
 gchar*
 option_string(const gchar *name, OptionList *optionlist);
 
-GString*
+gchar**
 option_string_pointer(const gchar *name, OptionList *optionlist);
 
 void

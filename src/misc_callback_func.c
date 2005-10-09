@@ -5,6 +5,7 @@
 #include "gui.h"
 #include "load_save.h"
 #include "maths.h"
+#include "misc.h"
 #include "misc_callback_func.h"
 #include "option.h"
 #include "start_end.h"
@@ -82,7 +83,7 @@ misc_callback_add_player(void)
 	gtk_combo_box_get_active(combo_leagues);
     
     if(strlen(player_name) > 0)
-	g_string_printf(new_user.name, "%s", player_name);
+	misc_string_assign(&new_user.name, player_name);
     
     gtk_entry_set_text(entry_player_name, "");
     

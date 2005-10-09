@@ -157,12 +157,12 @@ window_show_file_sel(void)
     if((stat5 == STATUS_SAVE_GAME || 
 	stat5 == STATUS_LOAD_GAME ||
 	stat5 == STATUS_LOAD_GAME_TEAM_SELECTION) &&
-       strlen(save_file->str) > 0)
+       save_file != NULL)
 	gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(window.file_chooser),
-				      save_file->str);
-    else if(users->len > 0 && strlen(current_user.mmatches_file->str) > 0)
+				      save_file);
+    else if(users->len > 0 && current_user.mmatches_file != NULL)
 	gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(window.file_chooser),
-				      current_user.mmatches_file->str);
+				      current_user.mmatches_file);
     else
     {
         if(os_is_unix)
@@ -207,7 +207,7 @@ window_show_file_sel(void)
 	else if(stat5 == STATUS_SELECT_MM_FILE_ADD)
 	{
 	    user_mm_set_filename(filename, NULL);
-	    mm_file_exists = g_file_test(current_user.mmatches_file->str,
+	    mm_file_exists = g_file_test(current_user.mmatches_file,
 					 G_FILE_TEST_EXISTS);
 	    user_mm_add_last_match(mm_file_exists, TRUE);
 	}
@@ -242,7 +242,7 @@ window_show_mmatches(void)
     treeview2_show_mmatches();
 
     gtk_entry_set_text(GTK_ENTRY(lookup_widget(window.mmatches, "entry_mm_file")),
-		       current_user.mmatches_file->str);
+		       current_user.mmatches_file);
 }
 
 /**  Show the options window. */
@@ -348,7 +348,7 @@ window_show_stadium(void)
     gui_label_set_text_from_int(label_average_attendance, tm->stadium.average_attendance, FALSE);
     
     if(tm->stadium.name != NULL)
-	gtk_label_set_text(label_name, tm->stadium.name->str);
+	gtk_label_set_text(label_name, tm->stadium.name);
     else
 	gtk_widget_hide(GTK_WIDGET(label_name));
 

@@ -1,3 +1,4 @@
+#include "misc.h"
 #include "player.h"
 #include "team.h"
 #include "xml.h"
@@ -138,7 +139,7 @@ xml_loadsave_players_text(gchar *text)
     float_value = (gfloat)g_ascii_strtod(text, NULL) / 10000;
 
     if(state == TAG_PLAYER_NAME)
-	g_string_printf(new_player.name, "%s", text);
+	misc_string_assign(&new_player.name, text);
     else if(state == TAG_PLAYER_POS)
 	new_player.pos = int_value;
     else if(state == TAG_PLAYER_CPOS)
@@ -221,7 +222,7 @@ xml_loadsave_players_write_player(FILE *fil, const Player *pl)
 
     fprintf(fil, "%s<_%d>\n", I1, TAG_PLAYER);
 
-    xml_write_g_string(fil, pl->name, TAG_PLAYER_NAME, I2);
+    xml_write_string(fil, pl->name, TAG_PLAYER_NAME, I2);
     xml_write_int(fil, pl->pos, TAG_PLAYER_POS, I2);
     xml_write_int(fil, pl->cpos, TAG_PLAYER_CPOS, I2);
     xml_write_int(fil, pl->health, TAG_PLAYER_HEALTH, I2);

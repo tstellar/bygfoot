@@ -30,10 +30,10 @@ on_button_options_ok_clicked           (GtkButton       *button,
 
     if(save_user)
     {
-	if(strcmp(current_user.name->str, "NONAME") == 0)
+	if(strcmp(current_user.name, "NONAME") == 0)
 	    sprintf(buf, "%s/bygfoot_user.conf", conf_dir);
 	else
-	    sprintf(buf, "%s/bygfoot_%s.conf", conf_dir, current_user.name->str);
+	    sprintf(buf, "%s/bygfoot_%s.conf", conf_dir, current_user.name);
 
 	file_save_opt_file(buf, &current_user.options);
     }

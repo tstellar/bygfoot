@@ -78,7 +78,7 @@ xml_load_league(const gchar *dirname, const gchar *basename, const GPtrArray *di
     g_array_append_val(ligs, new);
 
     sprintf(buf, _("Loading league: %s"),
-	    new.name->str);
+	    new.name);
     gui_show_progress(
 	gtk_progress_bar_get_fraction(
 	    GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar"))), buf);
@@ -141,7 +141,7 @@ xml_load_cup(Cup *cup, const gchar *dirname, const gchar *basename, const GPtrAr
     xml_loadsave_cup_read(buf, cup);
 
     sprintf(buf, _("Loading cup: %s"),
-	    cup->name->str);
+	    cup->name);
     gui_show_progress(
 	gtk_progress_bar_get_fraction(
 	    GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar"))), buf);

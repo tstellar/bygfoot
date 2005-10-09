@@ -135,11 +135,11 @@ xml_country_read_text         (GMarkupParseContext *context,
     int_value = (gint)g_ascii_strtod(buf, NULL);
 
     if(state == STATE_NAME)
-	country.name = g_string_new(buf);
+	misc_string_assign(&country.name, buf);
     else if(state == STATE_SYMBOL)
-	country.symbol = g_string_new(buf);
+	misc_string_assign(&country.symbol, buf);
     else if(state == STATE_SID)
-	country.sid = g_string_new(buf);
+	misc_string_assign(&country.sid, buf);
     else if(state == STATE_SUPERNATIONAL)
     {
 	sett_set_int("int_opt_disable_finances", 1);

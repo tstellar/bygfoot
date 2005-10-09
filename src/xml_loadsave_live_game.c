@@ -152,7 +152,6 @@ xml_loadsave_live_game_text         (GMarkupParseContext *context,
 {
     gchar buf[SMALL];
     gint int_value = -1;
-    GString *new_string = NULL;
 
     strncpy(buf, text, text_len);
     buf[text_len] = '\0';
@@ -165,7 +164,7 @@ xml_loadsave_live_game_text         (GMarkupParseContext *context,
 	lgame->fix = fixture_from_id(int_value);
     }
     else if(state == TAG_LIVE_GAME_TEAM_NAME)
-	lgame->team_names[team_name_idx] = g_string_new(buf);
+	misc_string_assign(&lgame->team_names[team_name_idx], buf);
     else if(state == TAG_LIVE_GAME_UNIT_POSSESSION)
 	new_unit.possession = int_value;
     else if(state == TAG_LIVE_GAME_UNIT_AREA)
@@ -185,7 +184,7 @@ xml_loadsave_live_game_text         (GMarkupParseContext *context,
     else if(state == TAG_LIVE_GAME_UNIT_EVENT_PLAYER2)
 	new_unit.event.player2 = int_value;
     else if(state == TAG_LIVE_GAME_UNIT_EVENT_COMMENTARY)
-	new_unit.event.commentary = g_string_new(buf);
+	new_unit.event.commentary = g_strdup(buf);
     else if(state == TAG_LIVE_GAME_UNIT_EVENT_VERBOSITY)
 	new_unit.event.verbosity = int_value;
     else if(state == TAG_LIVE_GAME_STAT_POSSESSION)
@@ -193,11 +192,8 @@ xml_loadsave_live_game_text         (GMarkupParseContext *context,
     else if(state == TAG_LIVE_GAME_STAT_VALUE)
 	lgame->stats.values[statvalidx][statvalidx2] = int_value;
     else if(state == TAG_LIVE_GAME_STAT_PLAYER_ELEMENT)
-    {
-	new_string = g_string_new(buf);
 	g_ptr_array_add(lgame->stats.players[statplidx][statplidx2],
-			new_string);
-    }
+			g_strdup(buf));
 }
 
 void
@@ -221,6 +217,8 @@ xml_loadsave_live_game_read(const gchar *filename, LiveGame *live_game)
     }
 
     lgame = live_game;
+    lgame->team_names[0] = 
+	lgame->team_names[1] = NULL;
 
     if(g_markup_parse_context_parse(context, file_contents, length, &error))
     {
@@ -256,8 +254,8 @@ xml_loadsave_live_game_write(const gchar *filename, const LiveGame *live_game)
 		league_cup_get_name_string(live_game->fix->id));
 
 	for(i=0;i<2;i++)
-	    xml_write_g_string(fil, live_game->team_names[i], 
-			       TAG_LIVE_GAME_TEAM_NAME, I0);
+	    xml_write_string(fil, live_game->team_names[i], 
+			     TAG_LIVE_GAME_TEAM_NAME, I0);
     }
 
     for(i=0;i<live_game->units->len;i++)
@@ -297,8 +295,8 @@ xml_loadsave_live_game_write_unit(FILE *fil, const LiveGameUnit *unit)
     xml_write_int(fil, unit->event.verbosity,
 		  TAG_LIVE_GAME_UNIT_EVENT_VERBOSITY, I2);
 
-    xml_write_g_string(fil, unit->event.commentary,
-		       TAG_LIVE_GAME_UNIT_EVENT_COMMENTARY, I2);
+    xml_write_string(fil, unit->event.commentary,
+		     TAG_LIVE_GAME_UNIT_EVENT_COMMENTARY, I2);
 
     xml_write_int(fil, unit->event.team,
 		  TAG_LIVE_GAME_UNIT_EVENT_TEAM, I2);
@@ -338,9 +336,9 @@ xml_loadsave_live_game_write_stats(FILE *fil, const LiveGameStats *stats)
 	{
 	    fprintf(fil, "%s<_%d>\n", I1, TAG_LIVE_GAME_STAT_PLAYER);
 	    for(k=0;k<stats->players[i][j]->len;k++)
-		xml_write_g_string(fil, 
-				   (GString*)g_ptr_array_index(stats->players[i][j], k),
-				   TAG_LIVE_GAME_STAT_PLAYER_ELEMENT, I2);
+		xml_write_string(fil, 
+				 (gchar*)g_ptr_array_index(stats->players[i][j], k),
+				 TAG_LIVE_GAME_STAT_PLAYER_ELEMENT, I2);
 	    fprintf(fil, "%s</_%d>\n", I1, TAG_LIVE_GAME_STAT_PLAYER);
 	}
 	fprintf(fil, "%s</_%d>\n", I1, TAG_LIVE_GAME_STAT_PLAYERS);

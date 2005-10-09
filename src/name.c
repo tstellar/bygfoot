@@ -8,7 +8,7 @@
     names list. If the names list is not found, create
     it from file. If the file can't be found, either,
     make some fuss and take one from the general names. */
-GString*
+gchar*
 name_get(const gchar *names_file)
 {
     gint i;
@@ -19,7 +19,7 @@ name_get(const gchar *names_file)
 	return name_get_from_random_list();
 
     for(i=0;i<name_lists->len;i++)
-	if(strcmp(names_file, nli(i).sid->str) == 0)
+	if(strcmp(names_file, nli(i).sid) == 0)
 	    return name_get_from_list(&nli(i));
 
     /** Create new name list. */
@@ -43,9 +43,9 @@ name_get(const gchar *names_file)
     return name_get_from_list(&nli(name_lists->len - 1));
 }
 
-/** Return a newly allocated GString with a randomly
+/** Return a newly allocated string with a randomly
     picked combined name from the list. */
-GString*
+gchar*
 name_get_from_list(const NameList *namelist)
 {
     gchar buf[SMALL];
@@ -53,7 +53,7 @@ name_get_from_list(const NameList *namelist)
     sprintf(buf, "%s %s", name_get_random_first_name(namelist),
 	    name_get_random_last_name(namelist));
 
-    return g_string_new(buf);
+    return g_strdup(buf);
 }
 
 /** Shorten a name list so that it doesn't occupy
@@ -71,13 +71,13 @@ name_shorten_list(NameList *namelist)
 	   const_float("float_name_first_last_ratio"))
 	{
 	    idx = math_rndi(0, namelist->first_names->len - 1);
-	    g_string_free((GString*)g_ptr_array_index(namelist->first_names, idx), TRUE);
+	    g_free(g_ptr_array_index(namelist->first_names, idx));
 	    g_ptr_array_remove_index_fast(namelist->first_names, idx);
 	}
 	else
 	{
 	    idx = math_rndi(0, namelist->last_names->len - 1);
-	    g_string_free((GString*)g_ptr_array_index(namelist->last_names, idx), TRUE);
+	    g_free(g_ptr_array_index(namelist->last_names, idx));
 	    g_ptr_array_remove_index_fast(namelist->last_names, idx);
 	}
     }
@@ -91,7 +91,7 @@ name_get_list_from_sid(const gchar *sid)
     NameList new;
 
     for(i=0;i<name_lists->len;i++)
-	if(strcmp(sid, nli(i).sid->str) == 0)
+	if(strcmp(sid, nli(i).sid) == 0)
 	    return &nli(i);
 
     new.sid = NULL;

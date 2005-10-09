@@ -261,13 +261,13 @@ xml_cup_read_text         (GMarkupParseContext *context,
     float_value = (gfloat)g_ascii_strtod(buf, NULL);
 
     if(state == STATE_NAME)
-	g_string_printf(new_cup.name, "%s", buf);
+	misc_string_assign(&new_cup.name, buf);
     else if(state == STATE_SHORT_NAME)
-	g_string_printf(new_cup.short_name, "%s", buf);
+	misc_string_assign(&new_cup.short_name, buf);
     else if(state == STATE_SYMBOL)
-	g_string_printf(new_cup.symbol, "%s", buf);
+	misc_string_assign(&new_cup.symbol, buf);
     else if(state == STATE_SID)
-	g_string_printf(new_cup.sid, "%s", buf);
+	misc_string_assign(&new_cup.sid, buf);
     else if(state == STATE_GROUP)
 	new_cup.group = int_value;
     else if(state == STATE_LAST_WEEK)
@@ -302,7 +302,7 @@ xml_cup_read_text         (GMarkupParseContext *context,
     else if(state == STATE_CUP_ROUND_NUMBER_OF_BEST_ADVANCE)
 	new_round.round_robin_number_of_best_advance = int_value;
     else if(state == STATE_CHOOSE_TEAM_SID)
-	g_string_printf(new_choose_team.sid, "%s", buf);
+	misc_string_assign(&new_choose_team.sid, buf);
     else if(state == STATE_CHOOSE_TEAM_NUMBER_OF_TEAMS)
 	new_choose_team.number_of_teams = int_value;
     else if(state == STATE_CHOOSE_TEAM_START_IDX)

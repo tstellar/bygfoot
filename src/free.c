@@ -6,7 +6,7 @@
 
 /**
    Free all memory allocated by the program.
-   This mainly means we have to free a lot of GStrings
+   This mainly means we have to free a lot of strings
    and GArrays. */
 void
 free_memory(void)
@@ -55,22 +55,22 @@ free_season_stats(gboolean reset)
 
 	for(j=0;j<g_array_index(season_stats, SeasonStat, i).league_champs->len;j++)
 	{
-	    g_string_free(
+	    free_gchar_ptr(
 		g_array_index(
-		    g_array_index(season_stats, SeasonStat, i).league_champs, ChampStat, j).cl_name, TRUE);
-	    g_string_free(
+		    g_array_index(season_stats, SeasonStat, i).league_champs, ChampStat, j).cl_name);
+	    free_gchar_ptr(
 		g_array_index(
-		    g_array_index(season_stats, SeasonStat, i).league_champs, ChampStat, j).team_name, TRUE);
+		    g_array_index(season_stats, SeasonStat, i).league_champs, ChampStat, j).team_name);
 	}
 
 	for(j=0;j<g_array_index(season_stats, SeasonStat, i).cup_champs->len;j++)
 	{
-	    g_string_free(
+	    free_gchar_ptr(
 		g_array_index(
-		    g_array_index(season_stats, SeasonStat, i).cup_champs, ChampStat, j).cl_name, TRUE);
-	    g_string_free(
+		    g_array_index(season_stats, SeasonStat, i).cup_champs, ChampStat, j).cl_name);
+	    free_gchar_ptr(
 		g_array_index(
-		    g_array_index(season_stats, SeasonStat, i).cup_champs, ChampStat, j).team_name, TRUE);
+		    g_array_index(season_stats, SeasonStat, i).cup_champs, ChampStat, j).team_name);
 	}
 
 	g_array_free(g_array_index(season_stats, SeasonStat, i).cup_champs, TRUE);
@@ -112,9 +112,9 @@ free_user(User *user)
 {
     gint i;
 
-    free_g_string(&user->name);
+    free_gchar_ptr(user->name);
     free_g_string(&user->sponsor.name);
-    free_g_string(&user->mmatches_file);
+    free_gchar_ptr(user->mmatches_file);
     free_live_game(&user->live_game);
     free_option_list(&user->options, FALSE);
 
@@ -123,8 +123,8 @@ free_user(User *user)
     free_g_array(&user->events);
     
     for(i=0;i<user->history->len;i++)
-	g_string_free(g_array_index(user->history,
-				    UserHistory, i).value_string, TRUE);
+	free_gchar_ptr(g_array_index(user->history,
+				     UserHistory, i).value_string);
     free_g_array(&user->history);
 
     free_mmatches(&user->mmatches, FALSE);
@@ -149,7 +149,7 @@ free_mmatches(GArray **mmatches, gboolean reset)
     for(i=0;i<(*mmatches)->len;i++)
     {
 	free_g_string(&g_array_index(*mmatches, MemMatch, i).competition_name);
-	free_g_string(&g_array_index(*mmatches, MemMatch, i).country_name);
+	free_gchar_ptr(g_array_index(*mmatches, MemMatch, i).country_name);
 	free_live_game(&g_array_index(*mmatches, MemMatch, i).lg);
     }
     free_g_array(mmatches);
@@ -162,7 +162,7 @@ free_mmatches(GArray **mmatches, gboolean reset)
 void
 free_event(Event *event)
 {
-    free_g_string(&event->value_string);
+    free_gchar_ptr(event->value_string);
 }
 
 /** Free an array of options.
@@ -187,8 +187,8 @@ free_option_list(OptionList *optionlist, gboolean reset)
     
     for(i=0;i<optionlist->list->len;i++)
     {
-	free_g_string(&g_array_index(optionlist->list, Option, i).name);
-	free_g_string(&g_array_index(optionlist->list, Option, i).string_value);
+	free_gchar_ptr(g_array_index(optionlist->list, Option, i).name);
+	free_gchar_ptr(g_array_index(optionlist->list, Option, i).string_value);
     }
 
     free_g_array(&optionlist->list);
@@ -210,15 +210,15 @@ free_live_game(LiveGame *match)
 	return;
 
     for(i=0;i<match->units->len;i++)
-	free_g_string(&g_array_index(match->units, LiveGameUnit, i).event.commentary);
+	free_gchar_ptr(g_array_index(match->units, LiveGameUnit, i).event.commentary);
 
     for(i=0;i<2;i++)
     {
-	free_g_string(&match->team_names[i]);
+	free_gchar_ptr(match->team_names[i]);
 	for(j=0;j<LIVE_GAME_STAT_ARRAY_END;j++)
 	{
 	    for(k=0;k<match->stats.players[i][j]->len;k++)
-		free_g_string((GString**)&g_ptr_array_index(match->stats.players[i][j], k));
+		g_free(g_ptr_array_index(match->stats.players[i][j], k));
 	
 	    free_g_ptr_array(&match->stats.players[i][j]);
 	}
@@ -234,16 +234,9 @@ free_live_game(LiveGame *match)
 void
 free_country(gboolean reset)
 {
-    gint i;
-    GString **strings[3] = 
-	{&country.name, &country.symbol, &country.sid};
-
-    for(i=0;i<3;i++)
-    {
-	free_g_string(strings[i]);
-	if(reset)
-	    *strings[i] = g_string_new("");
-    }
+    free_gchar_ptr(country.name);
+    free_gchar_ptr(country.symbol);
+    free_gchar_ptr(country.sid);
 
     free_leagues_array(&ligs, reset);
     free_cups_array(&cps, reset);
@@ -285,27 +278,19 @@ free_leagues_array(GArray **leagues, gboolean reset)
 void
 free_league(League *league)
 {
-    gint i;
-    GString **strings[6] = 
-	{&league->name,
-	 &league->short_name,
-	 &league->symbol,
-	 &league->sid,
-	 &league->prom_rel.prom_games_dest_sid,
-	 &league->prom_rel.prom_games_cup_sid};
-    GArray **arrays[2] = 
-	{&league->teams,
-	 &league->prom_rel.elements};
-
-    for(i=0;i<6;i++)
-	free_g_string(strings[i]);
-
+    free_gchar_ptr(league->name);
+    free_gchar_ptr(league->short_name);
+    free_gchar_ptr(league->symbol);
+    free_gchar_ptr(league->sid);
+    free_gchar_ptr(league->prom_rel.prom_games_dest_sid);
+    free_gchar_ptr(league->prom_rel.prom_games_cup_sid);
+ 
     if(league->teams != NULL)
 	free_teams_array(&league->teams, FALSE);
 
-    for(i=0;i<2;i++)
-	free_g_array(arrays[i]);
-
+    free_g_array(&league->teams);
+    free_g_array(&league->prom_rel.elements);;
+    
     free_table(&league->table);
 
     free_g_array(&league->fixtures);
@@ -320,19 +305,19 @@ free_league_stats(LeagueStat *stats)
     gint i;
 
     for(i=0;i<stats->teams_off->len;i++)
-	g_string_free(g_array_index(stats->teams_off, Stat, i).value_string, TRUE);
+	free_gchar_ptr(g_array_index(stats->teams_off, Stat, i).value_string);
     free_g_array(&stats->teams_off);
 
     for(i=0;i<stats->teams_def->len;i++)
-	g_string_free(g_array_index(stats->teams_def, Stat, i).value_string, TRUE);
+	free_gchar_ptr(g_array_index(stats->teams_def, Stat, i).value_string);
     free_g_array(&stats->teams_def);
 
     for(i=0;i<stats->player_scorers->len;i++)
-	g_string_free(g_array_index(stats->player_scorers, Stat, i).value_string, TRUE);
+	free_gchar_ptr(g_array_index(stats->player_scorers, Stat, i).value_string);
     free_g_array(&stats->player_scorers);
 
     for(i=0;i<stats->player_goalies->len;i++)
-	g_string_free(g_array_index(stats->player_goalies, Stat, i).value_string, TRUE);
+	free_gchar_ptr(g_array_index(stats->player_goalies, Stat, i).value_string);
     free_g_array(&stats->player_goalies);
 }
 
@@ -341,7 +326,7 @@ free_league_stats(LeagueStat *stats)
 void
 free_table(Table *table)
 {
-    free_g_string(&table->name);
+    free_gchar_ptr(table->name);
 
     free_g_array(&table->elements);
 }
@@ -376,11 +361,11 @@ free_teams_array(GArray **teams, gboolean reset)
 void
 free_team(Team *tm)
 {
-    free_g_string(&tm->stadium.name);
-    free_g_string(&tm->name);
-    free_g_string(&tm->names_file);
-    free_g_string(&tm->symbol);
-    free_g_string(&tm->def_file);
+    free_gchar_ptr(tm->stadium.name);
+    free_gchar_ptr(tm->name);
+    free_gchar_ptr(tm->names_file);
+    free_gchar_ptr(tm->symbol);
+    free_gchar_ptr(tm->def_file);
 
     free_player_array(&tm->players);
 }
@@ -405,7 +390,7 @@ free_player_array(GArray **players)
 void
 free_player(Player *pl)
 {
-    free_g_string(&pl->name);
+    free_gchar_ptr(pl->name);
 
     free_g_array(&pl->cards);
     free_g_array(&pl->games_goals);
@@ -444,14 +429,11 @@ void
 free_cup(Cup *cup)
 {
     gint i, j;
-    GString **strings[4] =
-	{&cup->name,
-	 &cup->short_name,
-	 &cup->symbol,
-	 &cup->sid};
 
-    for(i=0;i<4;i++)
-	free_g_string(strings[i]);
+    free_gchar_ptr(cup->name);
+    free_gchar_ptr(cup->short_name);
+    free_gchar_ptr(cup->symbol);
+    free_gchar_ptr(cup->sid);
 
     for(i=0;i<cup->rounds->len;i++)
 	if(g_array_index(cup->rounds, CupRound, i).round_robin_number_of_groups > 0)
@@ -484,7 +466,7 @@ free_cup(Cup *cup)
 void
 free_cup_choose_team(CupChooseTeam *cup_choose_team)
 {
-    free_g_string(&cup_choose_team->sid);
+    free_gchar_ptr(cup_choose_team->sid);
 }
 
 /** Free some global variables (except for the country variable). */
@@ -497,7 +479,7 @@ free_variables(void)
     free_option_list(&constants_app, FALSE);
     free_option_list(&lg_tokens, FALSE);
 
-    free_g_string(&save_file);
+    free_gchar_ptr(save_file);
 
     g_rand_free(rand_generator);
 
@@ -515,8 +497,8 @@ free_lg_commentary(gboolean reset)
 	{
 	    for(j=0;j<lg_commentary[i]->len;j++)
 	    {
-		free_g_string(&g_array_index(lg_commentary[i], LGCommentary, j).text);
-		free_g_string(&g_array_index(lg_commentary[i], LGCommentary, j).condition);
+		free_gchar_ptr(g_array_index(lg_commentary[i], LGCommentary, j).text);
+		free_gchar_ptr(g_array_index(lg_commentary[i], LGCommentary, j).condition);
 	    }
 
 	    free_g_array(&lg_commentary[i]);
@@ -528,7 +510,7 @@ free_lg_commentary(gboolean reset)
 }
 
 /**
-   Free a GPtrArray containing GStrings.
+   Free a GPtrArray containing strings.
    @param array The array to be freed.
 */
 void
@@ -540,7 +522,7 @@ free_gchar_array(GPtrArray **array)
 	return;
 
     for(i=0;i<(*array)->len;i++)
-	g_free(g_ptr_array_index(*array, i));
+	free_gchar_ptr(g_ptr_array_index(*array, i));
 
     free_g_ptr_array(array);
     *array = NULL;
@@ -596,7 +578,7 @@ free_support_dirs(void)
 
   while(elem)
   {
-      g_free ((gchar*)elem->data);
+      free_gchar_ptr(elem->data);
       elem = elem->next;
   }
 
@@ -608,11 +590,13 @@ free_support_dirs(void)
 void
 free_name_list(NameList *namelist, gboolean reset)
 {
+    gint i;
+
     if(namelist->sid == NULL)
     {
 	if(reset)
 	{
-	    namelist->sid = g_string_new("");
+	    namelist->sid = NULL;
 	    namelist->first_names = g_ptr_array_new();
 	    namelist->last_names = g_ptr_array_new();
 	}
@@ -620,13 +604,19 @@ free_name_list(NameList *namelist, gboolean reset)
 	return;
     }
 
-    free_g_string(&namelist->sid);
+    free_gchar_ptr(namelist->sid);
+
+    for(i=0;i<namelist->first_names->len;i++)
+	free_gchar_ptr(g_ptr_array_index(namelist->first_names, i));
     free_g_ptr_array(&namelist->first_names);
+
+    for(i=0;i<namelist->last_names->len;i++)
+	free_gchar_ptr(g_ptr_array_index(namelist->last_names, i));
     free_g_ptr_array(&namelist->last_names);
 
     if(reset)
     {
-	namelist->sid = g_string_new("");
+	namelist->sid = NULL;
 	namelist->first_names = g_ptr_array_new();
 	namelist->last_names = g_ptr_array_new();
     }

@@ -75,7 +75,7 @@ enum UserHistoryType
 typedef struct
 {
     /** Name of the country the user was playing with. */
-    GString *country_name;
+    gchar *country_name;
     /** The name of the competition, including
 	the cup round name. */
     GString *competition_name;
@@ -101,7 +101,7 @@ typedef struct
 	/** These can hold various information like
 	    team or league/cup ids. */
 	value1, value2;
-    GString *value_string;
+    gchar *value_string;
 
 } UserHistory;
 
@@ -117,7 +117,7 @@ typedef struct
 typedef struct
 {
     /** Username. */
-    GString *name;
+    gchar *name;
     /** The team the user manages. */
     Team *tm;
     /** The team id (needed when the team pointer gets invalid). */
@@ -146,7 +146,7 @@ typedef struct
     /** Youth academy of the user. */
     YouthAcademy youth_academy;
     /** The currently used MM file. */
-    GString *mmatches_file;
+    gchar *mmatches_file;
     /** The array of MMs. */
     GArray *mmatches;
 } User;
@@ -185,8 +185,7 @@ typedef struct
     /** A pointer for different purposes. */
     gpointer value_pointer;
     /** A string for different purposes. */
-    GString *value_string;
-
+    gchar *value_string;
 } Event;
 
 

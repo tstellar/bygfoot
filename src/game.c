@@ -159,7 +159,7 @@ game_get_player(const Team *tm, gint player_type,
 	{
 	    if(i < 10)
 		printf("prob %.3f  ", probs[i]);
-	    printf("%d %20s health %d cskill %.2f\n", i, player_of_idx_team(tm, i)->name->str,
+	    printf("%d %20s health %d cskill %.2f\n", i, player_of_idx_team(tm, i)->name,
 		   player_of_idx_team(tm, i)->health, player_of_idx_team(tm, i)->cskill);
 	}
 
@@ -904,7 +904,6 @@ game_update_stats_player(gpointer live_game, gconstpointer live_game_unit)
 	player2 = unit->event.player2;
     const Team *tm[2] = {((LiveGame*)live_game)->fix->teams[0], 
 			 ((LiveGame*)live_game)->fix->teams[1]};
-    GString *new = NULL;
     GPtrArray *players = NULL;
     
     if(unit->event.type == LIVE_GAME_EVENT_GOAL ||
@@ -926,50 +925,45 @@ game_update_stats_player(gpointer live_game, gconstpointer live_game_unit)
 
 	for(i=0;i<stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS]->len;i++)
 	{
-	    if(g_str_has_prefix(((GString*)g_ptr_array_index(
-				     stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS], i))->str,
-				player_of_id_team(tm[team], player)->name->str))
+	    if(g_str_has_prefix((gchar*)g_ptr_array_index(
+				    stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS], i),
+				player_of_id_team(tm[team], player)->name))
 	    {
 		sprintf(buf, "%s %d%s",
-			((GString*)g_ptr_array_index(
-			    stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS], i))->str,
+			(gchar*)g_ptr_array_index(
+			    stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS], i),
 			minute, buf2);
-		g_string_printf(((GString*)g_ptr_array_index(
-				     stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS], i)),
-				"%s", buf);
+		misc_string_assign((gchar**)&g_ptr_array_index(
+				       stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS], i), buf);
 		return;
 	    }
 	}
     
-	sprintf(buf, "%s %d%s", player_of_id_team(tm[team], player)->name->str,
+	sprintf(buf, "%s %d%s", player_of_id_team(tm[team], player)->name,
 		minute, buf2);
-	new = g_string_new(buf);
-	g_ptr_array_add(stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS], new);
+	g_ptr_array_add(stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS], g_strdup(buf));
     }
     else
     {
 	strcpy(buf, "");
 	if(unit->event.type == LIVE_GAME_EVENT_INJURY)
 	{
-	    sprintf(buf, "%s", player_of_id_team(tm[team], player)->name->str);
+	    sprintf(buf, "%s", player_of_id_team(tm[team], player)->name);
 	    players = stats->players[team][LIVE_GAME_STAT_ARRAY_INJURED];
 	}
 	else if(unit->event.type == LIVE_GAME_EVENT_FOUL_YELLOW)
 	{
-	    sprintf(buf, "%s", player_of_id_team(tm[team], player2)->name->str);
+	    sprintf(buf, "%s", player_of_id_team(tm[team], player2)->name);
 	    players = stats->players[team][LIVE_GAME_STAT_ARRAY_YELLOWS];
 	}
 	else if(unit->event.type == LIVE_GAME_EVENT_SEND_OFF)
 	{
-	    sprintf(buf, "%s", player_of_id_team(tm[team], player)->name->str);
+	    sprintf(buf, "%s", player_of_id_team(tm[team], player)->name);
 	    players = stats->players[team][LIVE_GAME_STAT_ARRAY_REDS];
 	}
 
 	if(strlen(buf) > 0)
-	{
-	    new = g_string_new(buf);
-	    g_ptr_array_add(players, new);
-	}
+	    g_ptr_array_add(players, strdup(buf));
     }
 }
 
@@ -985,8 +979,8 @@ game_post_match(Fixture *fix)
     if((debug > 100 && fixture_user_team_involved(fix) != -1) ||
        debug > 130)
 	printf("game_post_match: %s - %s\n", 
-	       fix->teams[0]->name->str,
-	       fix->teams[1]->name->str);
+	       fix->teams[0]->name,
+	       fix->teams[1]->name);
 
     if(query_fixture_has_tables(fix))
 	table_update(fix);
@@ -1013,11 +1007,11 @@ game_post_match(Fixture *fix)
 	if(team_is_user((Team*)g_ptr_array_index(teams, 0)) != -1)
 	    user_history_add(&usr(team_is_user((Team*)g_ptr_array_index(teams, 0))),
 			     USER_HISTORY_WIN_FINAL, ((Team*)g_ptr_array_index(teams, 0))->id,
-			     fix->clid, fix->round,((Team*)g_ptr_array_index(teams, 1))->name->str);	    
+			     fix->clid, fix->round,((Team*)g_ptr_array_index(teams, 1))->name);
 	else if(team_is_user((Team*)g_ptr_array_index(teams, 1)) != -1)
 	    user_history_add(&usr(team_is_user((Team*)g_ptr_array_index(teams, 1))),
 			     USER_HISTORY_LOSE_FINAL, ((Team*)g_ptr_array_index(teams, 1))->id,
-			     fix->clid, fix->round,((Team*)g_ptr_array_index(teams, 0))->name->str);
+			     fix->clid, fix->round,((Team*)g_ptr_array_index(teams, 0))->name);
 	g_ptr_array_free(teams, TRUE);
     }
     else if(fixture_user_team_involved(fix) != -1)

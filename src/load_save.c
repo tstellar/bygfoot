@@ -4,6 +4,7 @@
 #include "game_gui.h"
 #include "language.h"
 #include "load_save.h"
+#include "misc.h"
 #include "option.h"
 #include "support.h"
 #include "user.h"
@@ -32,7 +33,7 @@ load_save_save_game(const gchar *filename)
 	g_strdup(filename) :
 	g_strdup_printf("%s%s", filename, const_str("string_fs_save_suffix"));
 
-    g_string_printf(save_file, "%s", fullname);
+    misc_string_assign(&save_file, fullname);
 
     if(g_file_test(fullname, G_FILE_TEST_EXISTS))
 	/*todo: replace with g_remove*/
@@ -258,7 +259,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     sprintf(buf, "%s%s%s___*", dirname, G_DIR_SEPARATOR_S, prefix);
     file_remove_files(buf);
 
-    g_string_printf(save_file, "%s", fullname);
+    misc_string_assign(&save_file, fullname);
 
     load_save_last_save_set(fullname);
 

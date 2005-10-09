@@ -97,7 +97,7 @@ xml_loadsave_table_text         (GMarkupParseContext *context,
     int_value = (gint)g_ascii_strtod(buf, NULL);
 
     if(state == TAG_NAME)
-	g_string_printf(new_table->name, "%s", buf);
+	misc_string_assign(&new_table->name, buf);
     else if(state == TAG_ID)
 	new_table->clid = int_value;
     else if(state == TAG_ROUND)
@@ -158,7 +158,7 @@ xml_loadsave_table_write(const gchar *filename, const Table *table)
 
     fprintf(fil, "<_%d>\n", TAG_TABLE);
     
-    xml_write_g_string(fil, table->name, TAG_NAME, I0);
+    xml_write_string(fil, table->name, TAG_NAME, I0);
     xml_write_int(fil, table->clid, TAG_ID, I0);
     xml_write_int(fil, table->round, TAG_ROUND, I0);
         

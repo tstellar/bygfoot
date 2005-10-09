@@ -22,7 +22,7 @@ enum PromRelType
 typedef struct
 {
     gint ranks[2]; /**< The range of teams; default 0 and 0 */
-    GString *dest_sid; /**< The id of the destination league. Default "" */
+    gchar *dest_sid; /**< The id of the destination league. Default "" */
     gint type; /**< Type. Promotion or relegation or none. */
 } PromRelElement;
 
@@ -35,10 +35,10 @@ typedef struct
 typedef struct
 {
     /** The id of the league the promotion games winner gets promoted to. Default "" */
-    GString *prom_games_dest_sid;
+    gchar *prom_games_dest_sid;
 
     /** The id of the league the promotion games losers get moved to. Default "" */
-    GString *prom_games_loser_sid;
+    gchar *prom_games_loser_sid;
 
     /** Number of teams that advance from the promotion games. Default: 1. */
     gint prom_games_number_of_advance;
@@ -49,7 +49,7 @@ typedef struct
     GArray *elements;
 
     /** The cup determining how the promotion games are handled. */
-    GString *prom_games_cup_sid;
+    gchar *prom_games_cup_sid;
 } PromRel;
 
 /**
@@ -60,11 +60,11 @@ typedef struct
 typedef struct
 {
     /** Default value "" */
-    GString *name, *short_name, *sid, *symbol;
+    gchar *name, *short_name, *sid, *symbol;
     /** The sid of the player names file the 
 	teams in the league take their names from.
 	Default: 'general', meaning the 'player_names_general.xml' file. */
-    GString *names_file;
+    gchar *names_file;
     /** @see PromRel */
     PromRel prom_rel;
     /** Numerical id, as opposed to the string id 'sid'. */

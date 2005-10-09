@@ -57,10 +57,10 @@ on_menu_save_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
     if(!opt_int("int_opt_save_will_overwrite") ||
-       strlen(save_file->str) == 0)
+       save_file == NULL)
 	on_menu_save_as_activate(NULL, NULL);
     else
-	load_save_save_game(save_file->str);
+	load_save_save_game(save_file);
 }
 
 
@@ -474,7 +474,7 @@ on_menu_shoots_penalties_activate      (GtkMenuItem     *menuitem,
     else
     {
 	game_gui_print_message(_("%s will shoot penalties and free kicks when he plays."),
-			       player_of_idx_team(current_user.tm, selected_row)->name->str);
+			       player_of_idx_team(current_user.tm, selected_row)->name);
 	opt_user_set_int("int_opt_user_penalty_shooter",
 			 player_of_idx_team(current_user.tm, selected_row)->id);
 	treeview_show_user_player_list();
@@ -1126,7 +1126,7 @@ on_mm_add_last_match_activate          (GtkMenuItem     *menuitem,
 	return;
     }
 
-    if(strlen(current_user.mmatches_file->str) == 0)
+    if(current_user.mmatches_file == NULL)
     {
 	stat5 = STATUS_SELECT_MM_FILE_ADD;
 	window_show_file_sel();
@@ -1140,7 +1140,7 @@ void
 on_mm_manage_matches_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    if(strlen(current_user.mmatches_file->str) == 0)
+    if(current_user.mmatches_file == NULL)
     {
 	stat5 = STATUS_SELECT_MM_FILE_LOAD;
 	window_show_file_sel();

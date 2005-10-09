@@ -61,7 +61,7 @@ typedef struct
 {
     /** The string id of the league we choose from.
 	Default: "". */
-    GString *sid;
+    gchar *sid;
     /** The number of teams chosen.
 	Default: -1 (ie. all teams are chosen). */
     gint number_of_teams;
@@ -87,7 +87,7 @@ typedef struct
     /** Name and short name of the cup, a pixmap path,
 	and the string id (e.g. england_fa or so).
 	Default: "". */
-    GString *name, *short_name, *symbol, *sid;
+    gchar *name, *short_name, *symbol, *sid;
     /** Numerical id. */
     gint id;
     /** An integer specifying which cups are mutually exclusive for
@@ -115,7 +115,7 @@ typedef struct
     gint next_fixture_update_week;
     gint next_fixture_update_week_round;
 
-    /** A GString pointer array of properties (like "national"). */
+    /** A gchar pointer array of properties (like "national"). */
     GPtrArray *properties;
     /** The rounds of the cup.
 	@see #CupRound*/
