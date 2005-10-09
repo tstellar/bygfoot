@@ -428,9 +428,7 @@ window_live_set_up(void)
 	GTK_SPIN_BUTTON(lookup_widget(window.live, "spinbutton_verbosity")),
 	(gfloat)option_int("int_opt_user_live_game_verbosity", &usr(stat2).options));
 
-    game_gui_write_meters(GTK_IMAGE(lookup_widget(window.live, "image_lg_style")),
-			  GTK_IMAGE(lookup_widget(window.live, "image_lg_boost")),
-			  usr(stat2).tm);
+    game_gui_write_meters(usr(stat2).tm);
 }
 
 /** Save main window size and position into a file.*/

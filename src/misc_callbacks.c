@@ -173,7 +173,7 @@ on_button_resume_clicked               (GtkButton       *button,
 	   LIVE_GAME_EVENT_PENALTIES)
 	{
 	    gtk_widget_set_sensitive(button_pause, TRUE);
-	    gui_set_sensitive_lg_meters(TRUE);
+/* 	    gui_set_sensitive_lg_meters(TRUE); */
 	    gtk_widget_grab_focus(button_pause);
 	}
 	game_gui_set_main_window_sensitivity(FALSE);
@@ -377,6 +377,12 @@ on_eventbox_lg_style_button_press_event (GtkWidget       *widget,
 {
     gint new_style = -1;
 
+    if(stat0 == STATUS_LIVE_GAME_PAUSE)
+    {
+	on_eventbox_style_button_press_event(NULL, event, NULL);
+	return FALSE;
+    }
+
     if(event->type != GDK_BUTTON_PRESS)
 	return FALSE;
 
@@ -392,13 +398,9 @@ on_eventbox_lg_style_button_press_event (GtkWidget       *widget,
     game_save_team_states();
     usr(stat2).tm->style = new_style;
 
-    game_gui_write_meters(GTK_IMAGE(lookup_widget(window.live, "image_lg_style")),
-			  GTK_IMAGE(lookup_widget(window.live, "image_lg_boost")),
-			  usr(stat2).tm);
+    game_gui_write_meters(usr(stat2).tm);
     if(&current_user == &usr(stat2))
-	game_gui_write_meters(GTK_IMAGE(lookup_widget(window.main, "image_style")),
-			      GTK_IMAGE(lookup_widget(window.main, "image_boost")),
-			      current_user.tm);
+	game_gui_write_meters(current_user.tm);
     
     stat0 = STATUS_LIVE_GAME_CHANGE;
 
@@ -412,6 +414,12 @@ on_eventbox_lg_boost_button_press_event (GtkWidget       *widget,
 					 gpointer         user_data)
 {
     gint new_boost = -1;
+
+    if(stat0 == STATUS_LIVE_GAME_PAUSE)
+    {
+	on_eventbox_boost_button_press_event(NULL, event, NULL);
+	return FALSE;
+    }
 
     if(event->type != GDK_BUTTON_PRESS)
 	return FALSE;
@@ -434,13 +442,9 @@ on_eventbox_lg_boost_button_press_event (GtkWidget       *widget,
     game_save_team_states();
     usr(stat2).tm->boost = new_boost;
 
-    game_gui_write_meters(GTK_IMAGE(lookup_widget(window.live, "image_lg_style")),
-			  GTK_IMAGE(lookup_widget(window.live, "image_lg_boost")),
-			  usr(stat2).tm);
+    game_gui_write_meters(usr(stat2).tm);
     if(&current_user == &usr(stat2))
-	game_gui_write_meters(GTK_IMAGE(lookup_widget(window.main, "image_style")),
-			      GTK_IMAGE(lookup_widget(window.main, "image_boost")),
-			      current_user.tm);
+	game_gui_write_meters(current_user.tm);
     
     stat0 = STATUS_LIVE_GAME_CHANGE;
 

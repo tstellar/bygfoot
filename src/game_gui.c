@@ -244,9 +244,7 @@ game_gui_set_main_window_header(void)
 
     game_gui_write_radio_items();
 
-    game_gui_write_meters(GTK_IMAGE(lookup_widget(window.main, "image_style")),
-			  GTK_IMAGE(lookup_widget(window.main, "image_boost")),
-			  current_user.tm);
+    game_gui_write_meters(current_user.tm);
 
     game_gui_write_check_items();
 }
@@ -268,9 +266,14 @@ game_gui_write_av_skills(void)
 /** Set the images for the style and boost meters to the appropriate values
     from the team settings. */
 void
-game_gui_write_meters(GtkImage *image_style, GtkImage *image_boost, const Team *tm)
+game_gui_write_meters(const Team *tm)
 {
     gint i;
+    GtkImage *image_style_main = GTK_IMAGE(lookup_widget(window.main, "image_style")),
+	*image_boost_main = GTK_IMAGE(lookup_widget(window.main, "image_boost"));
+    GtkImage *image_style_live = NULL,
+	*image_boost_live = NULL;
+
     gchar *image_style_files[5] = 
 	{file_find_support_file(const_app("string_game_gui_style_all_out_defend_icon"), TRUE),
 	 file_find_support_file(const_app("string_game_gui_style_defend_icon"), TRUE),
@@ -282,8 +285,17 @@ game_gui_write_meters(GtkImage *image_style, GtkImage *image_boost, const Team *
 	 file_find_support_file(const_app("string_game_gui_boost_off_icon"), TRUE),
 	 file_find_support_file(const_app("string_game_gui_boost_on_icon"), TRUE)};
 
-    gtk_image_set_from_file(image_style, image_style_files[tm->style + 2]);
-    gtk_image_set_from_file(image_boost, image_boost_files[tm->boost + 1]);
+    gtk_image_set_from_file(image_style_main, image_style_files[tm->style + 2]);
+    gtk_image_set_from_file(image_boost_main, image_boost_files[tm->boost + 1]);
+
+    if(window.live != NULL)
+    {
+	image_style_live = GTK_IMAGE(lookup_widget(window.live, "image_lg_style"));
+	image_boost_live = GTK_IMAGE(lookup_widget(window.live, "image_lg_boost"));
+
+	gtk_image_set_from_file(image_style_live, image_style_files[tm->style + 2]);
+	gtk_image_set_from_file(image_boost_live, image_boost_files[tm->boost + 1]);
+    }
 
     for(i=0;i<5;i++)
 	g_free(image_style_files[i]);
@@ -388,9 +400,7 @@ game_gui_read_radio_items(GtkWidget *widget)
        old_yc != current_user.youth_academy.coach)
 	game_gui_print_message(_("Next week you'll fire him and hire a new one."));
 
-    game_gui_write_meters(GTK_IMAGE(lookup_widget(window.main, "image_style")),
-			  GTK_IMAGE(lookup_widget(window.main, "image_boost")),
-			  current_user.tm);
+    game_gui_write_meters(current_user.tm);
     game_gui_write_radio_items();
 
     treeview_show_next_opponent();

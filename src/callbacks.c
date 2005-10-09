@@ -756,9 +756,7 @@ on_eventbox_style_button_press_event   (GtkWidget       *widget,
 
     team_change_attribute_with_message(current_user.tm, TEAM_ATTRIBUTE_STYLE, new_style);
 
-    game_gui_write_meters(GTK_IMAGE(lookup_widget(window.main, "image_style")),
-			  GTK_IMAGE(lookup_widget(window.main, "image_boost")),
-			  current_user.tm);
+    game_gui_write_meters(current_user.tm);
     game_gui_write_radio_items();
     
     if(stat0 == STATUS_MAIN)
@@ -794,9 +792,7 @@ on_eventbox_boost_button_press_event   (GtkWidget       *widget,
     else
 	team_change_attribute_with_message(current_user.tm, TEAM_ATTRIBUTE_BOOST, new_boost);
 
-    game_gui_write_meters(GTK_IMAGE(lookup_widget(window.main, "image_style")),
-			  GTK_IMAGE(lookup_widget(window.main, "image_boost")),
-			  current_user.tm);
+    game_gui_write_meters(current_user.tm);
     game_gui_write_radio_items();
 
     if(stat0 == STATUS_MAIN)

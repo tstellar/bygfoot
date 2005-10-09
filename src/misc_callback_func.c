@@ -152,7 +152,7 @@ misc_callback_pause_live_game(void)
 
     gtk_widget_set_sensitive(lookup_widget(window.live, "button_pause"), FALSE);
     gtk_widget_set_sensitive(button_resume, TRUE);
-    gui_set_sensitive_lg_meters(FALSE);
+/*     gui_set_sensitive_lg_meters(FALSE); */
     gtk_widget_grab_focus(button_resume);
 
     game_gui_set_main_window_sensitivity(TRUE);
