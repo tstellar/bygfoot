@@ -24,7 +24,7 @@ void
 misc_print_grouped_int(gint number, gchar *buf);
 
 gboolean
-query_integer_is_in_array(gint item, gint *array, gint min, gint max);
+query_integer_is_in_array(gint item, gint *array, gint max);
 
 gint
 misc_int_compare(gint first, gint second);

@@ -114,9 +114,15 @@ team_generate_players_stadium(Team *tm)
 	    skill_factor * league_from_clid(tm->clid)->average_talent :
 	    tm->average_talent;
     else
+    {
 	average_talent = 
 	    skill_factor * team_get_average_talents(lig(0).teams) *
 	    (1 + cup_from_clid(tm->clid)->talent_diff);
+	printf("%s av %.1f sf %.2f tea %.1f tdif %.2f\n",
+	       tm->name, average_talent, skill_factor,
+	       team_get_average_talents(lig(0).teams),
+	       cup_from_clid(tm->clid)->talent_diff);
+    }
 	
     average_talent = CLAMP(average_talent, 0, const_float("float_player_max_skill"));
     tm->average_talent = average_talent;

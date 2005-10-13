@@ -282,7 +282,7 @@ xml_cup_read_text         (GMarkupParseContext *context,
 	new_cup.yellow_red = int_value;
     else if(state == STATE_TALENT_DIFF)
 	new_cup.talent_diff = 
-	    (float_value / 10000) * const_float("float_player_max_skill");
+	    (float_value / 10000);
     else if(state == STATE_CUP_ROUND_NEW_TEAMS)
 	new_round.new_teams = int_value;
     else if(state == STATE_CUP_ROUND_BYES)

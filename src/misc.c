@@ -163,15 +163,14 @@ misc_print_grouped_int(gint number, gchar *buf)
 /** Check whether 'item' is in array 'array' between
     'min' and 'max'.
     @param array The integer list.
-    @param min The lower delimitor (inclusive).
     @param max The upper delimitor (exclusive).
     @param item The item we look for. */
 gboolean
-query_integer_is_in_array(gint item, gint *array, gint min, gint max)
+query_integer_is_in_array(gint item, gint *array, gint max)
 {
     gint i;
 
-    for(i=min;i<max;i++)
+    for(i=0;i<max;i++)
 	if(item == array[i])
 	    return TRUE;
     

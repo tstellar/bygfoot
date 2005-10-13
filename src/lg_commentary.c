@@ -317,7 +317,7 @@ lg_commentary_get_order(const GArray *commentaries, gint *order)
 	for(j=0;j<commentaries->len;j++)
 	    if(bounds[j] < permutation[i] && permutation[i] <= bounds[j + 1])
 	    {
-		if(!query_integer_is_in_array(j, order, 0, commentaries->len))
+		if(!query_integer_is_in_array(j, order, commentaries->len))
 		{
 		    order[order_idx] = j;
 		    order_idx++;

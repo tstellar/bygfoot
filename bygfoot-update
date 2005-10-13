@@ -361,6 +361,7 @@ function get_team_defs()
 				
 		my_wget $uri
 		tar xfj $file_name.bz2
+		rm -rfv $file_name.bz2 2>> $log_file | tee -a $log_file
 
 		if [ -d ../$country ]; then
 		    pushd ../$country &> /dev/null

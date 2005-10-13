@@ -516,7 +516,7 @@ player_substitution_good_structure(gint old_structure, gint old_pos, gint player
 	old_structure - (gint)rint(powf(10, PLAYER_POS_FORWARD - old_pos)) +
 	(gint)rint(powf(10, PLAYER_POS_FORWARD - player_pos));
 
-    return query_integer_is_in_array(new_structure, accepted_structures, 0, 5);
+    return query_integer_is_in_array(new_structure, accepted_structures, 5);
 }
 
 /** Copy a player into a team.

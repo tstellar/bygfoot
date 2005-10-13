@@ -438,7 +438,7 @@ game_check_live_game_resume_state(void)
 	for(j=0;j<11;j++)
 	    if(!query_integer_is_in_array(player_of_idx_team(teams[i], j)->id,
 					  usr(stat2).live_game.team_state[i].player_ids,
-					  0, 11))
+					  11))
 		subs[i]++;
 	
 	if(subs[i] > usr(stat2).live_game.subs_left[i])
@@ -467,7 +467,7 @@ game_reset_players(gint idx)
     for(i=0;i<tm->players->len;i++)
 	if(!query_integer_is_in_array(player_of_idx_team(tm, i)->id,
 				      usr(stat2).live_game.team_state[idx].player_ids,
-				      0, 11))
+				      11))
 	    g_array_append_val(players, *player_of_idx_team(tm, i));
 
     g_array_free(tm->players, TRUE);
@@ -496,7 +496,7 @@ game_get_subs(gint team_number, gint *subs_in, gint *subs_out)
 	current_players[i] = player_of_idx_team(tm, i)->id;
 	if(!query_integer_is_in_array(player_of_idx_team(tm, i)->id,
 				      usr(stat2).live_game.team_state[team_number].player_ids,
-				      0, 11))
+				      11))
 	{
 	    subs_in[cnt] = player_of_idx_team(tm, i)->id;
 	    cnt++;
@@ -506,7 +506,7 @@ game_get_subs(gint team_number, gint *subs_in, gint *subs_out)
     cnt = 0;
     for(i=0;i<11;i++)
 	if(!query_integer_is_in_array(usr(stat2).live_game.team_state[team_number].player_ids[i],
-				      current_players, 0, 11))
+				      current_players, 11))
 	{
 	    subs_out[cnt] = usr(stat2).live_game.team_state[team_number].player_ids[i];
 	    cnt++;

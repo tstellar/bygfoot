@@ -947,7 +947,8 @@ treeview_helper_player_info_health_to_cell(GtkCellRenderer *renderer, const Play
 		     const_app("string_treeview_helper_color_player_injury"), NULL);
     }
     else
-	strcpy(buf, "OK");
+	/* Player health: ok. */
+	strcpy(buf, _("OK"));
 
     g_object_set(renderer, "text", buf, NULL);
 }
@@ -1216,7 +1217,8 @@ treeview_helper_player_status_to_cell(GtkTreeViewColumn *col,
     else
     {
 	if(!render_icon)
-	    strcpy(buf, "OK");
+	    /* Player status: ok. */
+	    strcpy(buf, _("OK"));
 	else
 	{
 	    if(ban == -1)
