@@ -154,7 +154,7 @@ game_get_player(const Team *tm, gint player_type,
     else
     {
 	g_warning("game_get_player: All players injured or banned, apparently.\n");
-	printf("player list:\n");
+	printf("%s %s player list:\n", league_cup_get_name_string(tm->clid), tm->name);
 	for(i=0;i<tm->players->len;i++)
 	{
 	    if(i < 10)

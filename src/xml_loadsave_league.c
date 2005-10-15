@@ -249,13 +249,13 @@ xml_loadsave_league_write(const gchar *prefix, const League *league)
     fprintf(fil, "%s<_%d>\n", I0, TAG_LEAGUE_PROM_REL);
 
     xml_write_string(fil, league->prom_rel.prom_games_dest_sid,
-		       TAG_LEAGUE_PROM_REL_PROM_GAMES_DEST_SID, I1);
+		     TAG_LEAGUE_PROM_REL_PROM_GAMES_DEST_SID, I1);
     xml_write_string(fil, league->prom_rel.prom_games_cup_sid,
-		       TAG_LEAGUE_PROM_REL_PROM_GAMES_CUP_SID, I1);
+		     TAG_LEAGUE_PROM_REL_PROM_GAMES_CUP_SID, I1);
     xml_write_int(fil, league->prom_rel.prom_games_number_of_advance,
 		  TAG_LEAGUE_PROM_REL_PROM_GAMES_NUMBER_OF_ADVANCE, I1);
     xml_write_string(fil, league->prom_rel.prom_games_loser_sid,
-		       TAG_LEAGUE_PROM_REL_PROM_GAMES_LOSER_SID, I1);
+		     TAG_LEAGUE_PROM_REL_PROM_GAMES_LOSER_SID, I1);
 
     fprintf(fil, "%s<_%d>\n", I1, TAG_LEAGUE_PROM_REL_ELEMENTS);
     for(i=0;i<league->prom_rel.elements->len;i++)

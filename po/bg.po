@@ -422,7 +422,7 @@ msgstr "%s: %d седмици\n"
 
 #: src/main.c:51
 msgid "- a simple and addictive GTK2 football manager"
-msgstr ""
+msgstr " - прост и пристрастяващ GTK2 футболен мениджър"
 
 #: src/misc_interface.c:981 src/misc_interface.c:989 src/misc_interface.c:1015
 #: src/misc_interface.c:1023
@@ -825,7 +825,7 @@ msgstr "Избор на файл"
 
 #: src/options_interface.c:397
 msgid "Choose game language (might not work in Windows versions)"
-msgstr ""
+msgstr "Избор на език на играта (може да не работи в Windows версията)"
 
 #: src/misc2_interface.c:801
 msgid "Click on a user to remove him from the game."
@@ -1009,7 +1009,7 @@ msgstr "Готово."
 
 #: src/treeview.c:1399
 msgid "Drawing credit"
-msgstr ""
+msgstr "Кредитен лимит"
 
 #. Games drawn.
 #. Draw.
@@ -1219,9 +1219,8 @@ msgid "Go/Ga"
 msgstr "Гол/Мач"
 
 #: src/treeview.c:1507
-#, fuzzy
 msgid "Goalie"
-msgstr "Вратари"
+msgstr "Вратар"
 
 #: src/interface.c:637
 msgid "Goalies"
@@ -1393,7 +1392,7 @@ msgstr "Език"
 
 #: src/main.c:42
 msgid "Language to use (a code like 'de')"
-msgstr ""
+msgstr "Език, който да се използва (код като 'bg')"
 
 #. A cup stage, e.g. Last 32 when there are only 32 teams left.
 #: src/cup.c:904
@@ -1471,9 +1470,8 @@ msgid "Load game (Ctrl - O)"
 msgstr "Зареждане на игра (Ctrl - O)"
 
 #: src/main.c:44
-#, fuzzy
 msgid "Load last savegame"
-msgstr "Заре_ждане на последното запазване"
+msgstr "Зареждане на последното запазване"
 
 #: src/misc_interface.c:213
 msgid "Load only the player names in the definition files"
@@ -1969,7 +1967,7 @@ msgstr "Дясно натискане за настройване на 0"
 #. Round
 #: src/treeview2.c:161
 msgid "Ro"
-msgstr ""
+msgstr "Кръг"
 
 #: src/cup.c:896
 msgid "Round robin"
@@ -2020,11 +2018,11 @@ msgstr ""
 
 #: src/interface.c:378
 msgid "Save window geometry"
-msgstr ""
+msgstr "Запазване на геометрията на прозореца"
 
 #: src/interface.c:381
 msgid "Save window size, position and vertical divider"
-msgstr ""
+msgstr "Запазване на размера, позицията и вертикалния разделител на прозореца"
 
 #: src/load_save.c:69
 msgid "Saving cups..."
@@ -2073,9 +2071,8 @@ msgid "Season history"
 msgstr "История на сезона"
 
 #: src/interface.c:438
-#, fuzzy
 msgid "Season results"
-msgstr "Най-новите резултати"
+msgstr "Резултати от сезона"
 
 #: src/misc_interface.c:409 src/window.c:643
 msgid "Select font"
@@ -2204,7 +2201,7 @@ msgstr "Space"
 
 #: src/main.c:38
 msgid "Specify additional support directory (takes priority over default ones)"
-msgstr ""
+msgstr "Определяне на допълнителна поддържаща папка (има приоритет над стандартните)"
 
 #: src/misc_interface.c:670
 msgid "Speed"
@@ -2273,9 +2270,8 @@ msgstr "Статус:"
 
 #. Hot streak or cold streak of a player.
 #: src/treeview.c:1862
-#, fuzzy
 msgid "Streak"
-msgstr "Сезон"
+msgstr "Серия"
 
 #: src/callbacks.c:666
 msgid "Structure"
@@ -2391,14 +2387,12 @@ msgid "The player is not on the list."
 msgstr "Играчът не е в списъка."
 
 #: src/treeview_helper.c:934
-#, fuzzy
 msgid "The player is on a cold streak"
-msgstr "Играчът не е в списъка."
+msgstr "Играчът има лоша серия."
 
 #: src/treeview_helper.c:932
-#, fuzzy
 msgid "The player is on a hot streak"
-msgstr "Играчът не е в списъка."
+msgstr "Играчът има добра серия."
 
 #: src/callbacks.c:506
 msgid "The player is too old for the youth academy."
@@ -2454,14 +2448,12 @@ msgstr ""
 "продължите ли?"
 
 #: src/callbacks.c:382
-#, fuzzy
 msgid "There are no leagues in this country definition (only cups)."
-msgstr "Трансферите в определенията за тази игра са изключени."
+msgstr "Няма първенства в дефиницията за тази страна (само купи)."
 
 #: src/callbacks.c:364
-#, fuzzy
 msgid "There are no leagues or cups with tables in this country definition."
-msgstr "Трансферите в определенията за тази игра са изключени."
+msgstr "Няма нито първенства, нито купи с таблици в тази дефиниция за страна."
 
 #: src/callback_func.c:355
 msgid "There are no offers for the player."
@@ -2589,9 +2581,8 @@ msgstr "Заплати"
 
 #. Week
 #: src/treeview2.c:159
-#, fuzzy
 msgid "We"
-msgstr "Седмица"
+msgstr "Сед"
 
 #: src/treeview.c:2007
 msgid "Week"
@@ -2943,7 +2934,7 @@ msgstr "Печелите финала за %s срещу %s."
 
 #: src/finance.c:117
 msgid "Your bank account has to be above your drawing credit limit next week."
-msgstr ""
+msgstr "Банковата Ви сметка, трябва да е над кредитния ви лимит следващата седмица."
 
 #: src/user.c:915
 #, c-format
@@ -3040,10 +3031,8 @@ msgstr "Младежка академия"
 
 #: src/callbacks.c:495 src/callbacks.c:1047 src/callbacks.c:1062
 #: src/callbacks.c:1079
-#, fuzzy
 msgid "Youth academy is disabled in this country definition."
-msgstr ""
-"Режимът на тласъка \"Включен\" е изключен в дефиницията за тази страна."
+msgstr "Младежката академия е изключена в тази дефиниция за страна."
 
 #: src/interface.c:602 src/treeview.c:1314
 msgid "Youth coach"
@@ -3084,21 +3073,3 @@ msgstr "_Отбор"
 #: src/interface.c:813
 msgid "_User"
 msgstr "По_требител"
-
-#, fuzzy
-#~ msgid "Left- and right click to change boost"
-#~ msgstr "Дясно и ляво натискане за смяна на тласъка"
-
-#, fuzzy
-#~ msgid "Left- and right click to change style"
-#~ msgstr "Дясно и ляво натискане за смяна на тласъка"
-
-#~ msgid "News"
-#~ msgstr "Новини"
-
-#~ msgid ""
-#~ "Setting the language only works for installed packages (not for the "
-#~ "binary package)"
-#~ msgstr ""
-#~ "Настройването на езика работи само за инсталирани пакети (не за двоичния "
-#~ "пакет)"

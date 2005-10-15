@@ -152,11 +152,13 @@ xml_loadsave_live_game_text         (GMarkupParseContext *context,
 {
     gchar buf[SMALL];
     gint int_value = -1;
+    gfloat float_value = -1;
 
     strncpy(buf, text, text_len);
     buf[text_len] = '\0';
 
     int_value = (gint)g_ascii_strtod(buf, NULL);
+    float_value = g_ascii_strtod(buf, NULL) / 10000;
 
     if(state == TAG_LIVE_GAME_FIX_ID)
     {
@@ -188,7 +190,7 @@ xml_loadsave_live_game_text         (GMarkupParseContext *context,
     else if(state == TAG_LIVE_GAME_UNIT_EVENT_VERBOSITY)
 	new_unit.event.verbosity = int_value;
     else if(state == TAG_LIVE_GAME_STAT_POSSESSION)
-	lgame->stats.possession = int_value;
+	lgame->stats.possession = float_value;
     else if(state == TAG_LIVE_GAME_STAT_VALUE)
 	lgame->stats.values[statvalidx][statvalidx2] = int_value;
     else if(state == TAG_LIVE_GAME_STAT_PLAYER_ELEMENT)

@@ -7,16 +7,16 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Bygfoot 1.9.1\n"
+"Project-Id-Version: Bygfoot 1.9.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-10-13 10:47+0200\n"
-"PO-Revision-Date: 2005-09-15 10:26+0200\n"
+"PO-Revision-Date: 2005-10-13 16:38+0200\n"
 "Last-Translator: Arne en Tobe Deprez <tobedeprez@scarlet.be>\n"
 "Language-Team: Dutch <tobedeprez@scarlet.be>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);"
 
 #: src/treeview_helper.c:828
 #, c-format
@@ -422,7 +422,7 @@ msgstr "%s: %d weken\n"
 
 #: src/main.c:51
 msgid "- a simple and addictive GTK2 football manager"
-msgstr ""
+msgstr "- een simpele en verslavende GTK2 voetbal manager"
 
 #: src/misc_interface.c:981 src/misc_interface.c:989 src/misc_interface.c:1015
 #: src/misc_interface.c:1023
@@ -485,14 +485,14 @@ msgstr "<span foreground='%s' background='%s'>Week %d Ronde %d</span>"
 
 #: src/youth_academy.c:208
 msgid "A new youth registered at your youth academy."
-msgstr "Er is een niewe jeugtspeler in uw jeugt academie geregistreerd"
+msgstr "Er is een niewe jeugdspeler in uw jeugd academie geregistreerd"
 
 #: src/youth_academy.c:212
 msgid ""
 "A new youth wanted to registered at your youth academy but there was no room "
 "for him."
 msgstr ""
-"Er wou een nieuwe jeugtspeler toetreden tot uw academy, maar er was geen "
+"Er wou een nieuwe jeugdspeler toetreden tot uw academy, maar er was geen "
 "plaats voor hem."
 
 #: src/treeview_helper.c:1451
@@ -825,7 +825,7 @@ msgstr "Kies een bestand"
 
 #: src/options_interface.c:397
 msgid "Choose game language (might not work in Windows versions)"
-msgstr ""
+msgstr "Kies spel taal (misshien werkt dit niet in Windows)"
 
 #: src/misc2_interface.c:801
 msgid "Click on a user to remove him from the game."
@@ -866,7 +866,7 @@ msgstr "Vraag afsluiten wanneer niet opgeslagen"
 
 #: src/options_interface.c:501
 msgid "Confirm removing youths"
-msgstr "Vraag voor verwijderen van jeugtspelers"
+msgstr "Vraag voor verwijderen van jeugdspelers"
 
 #: src/options_interface.c:214
 msgid "Confirm when unfit"
@@ -973,7 +973,7 @@ msgstr "Debug"
 
 #: src/main.c:40
 msgid "Debug level to use"
-msgstr ""
+msgstr "Debug level"
 
 #: src/misc2_interface.c:1195
 msgid "Decide later"
@@ -1219,9 +1219,8 @@ msgid "Go/Ga"
 msgstr "Go/Ma"
 
 #: src/treeview.c:1507
-#, fuzzy
 msgid "Goalie"
-msgstr "Keepers"
+msgstr "Keeper"
 
 #: src/interface.c:637
 msgid "Goalies"
@@ -1393,7 +1392,7 @@ msgstr "Taal"
 
 #: src/main.c:42
 msgid "Language to use (a code like 'de')"
-msgstr ""
+msgstr "Te gebruiken taal (een code zoals 'de')"
 
 #. A cup stage, e.g. Last 32 when there are only 32 teams left.
 #: src/cup.c:904
@@ -1473,9 +1472,8 @@ msgid "Load game (Ctrl - O)"
 msgstr "Laad spel (Ctrl+O)"
 
 #: src/main.c:44
-#, fuzzy
 msgid "Load last savegame"
-msgstr "L_aad laatste opgeslagen spel"
+msgstr "Laad laatste opgeslagen spel"
 
 #: src/misc_interface.c:213
 msgid "Load only the player names in the definition files"
@@ -1604,7 +1602,7 @@ msgstr "Zet in team"
 
 #: src/interface.c:796 src/interface.c:1910
 msgid "Move to youth academy"
-msgstr "Zet in de jeugt academie"
+msgstr "Zet in de jeugd academie"
 
 #: src/interface.c:427
 msgid "My league results"
@@ -1959,7 +1957,7 @@ msgid ""
 "Right click to move players to and from the youth academy; left click for "
 "context menu."
 msgstr ""
-"Klik met de rechter muisknop om spelers naar en van de jeugt academie te "
+"Klik met de rechter muisknop om spelers naar en van de jeugd academie te "
 "verplaatsen; klik met de linker muisknop om het popup menu te tonen."
 
 #: src/misc_interface.c:971 src/misc_interface.c:1005
@@ -1969,7 +1967,7 @@ msgstr "Klik met de rechtermuisknop om op 0 te zetten"
 #. Round
 #: src/treeview2.c:161
 msgid "Ro"
-msgstr ""
+msgstr "Ro"
 
 #: src/cup.c:896
 msgid "Round robin"
@@ -2015,11 +2013,11 @@ msgstr "Sla gebruikersinstellingen op"
 
 #: src/interface.c:378
 msgid "Save window geometry"
-msgstr ""
+msgstr "Sla venster instellingen op"
 
 #: src/interface.c:381
 msgid "Save window size, position and vertical divider"
-msgstr ""
+msgstr "Sla de grote, de positie van het verster op."
 
 #: src/load_save.c:69
 msgid "Saving cups..."
@@ -2068,9 +2066,8 @@ msgid "Season history"
 msgstr "Seizoen geschiedenis"
 
 #: src/interface.c:438
-#, fuzzy
 msgid "Season results"
-msgstr "Laatste resultaten"
+msgstr "Seizoen resultaten"
 
 #: src/misc_interface.c:409 src/window.c:643
 msgid "Select font"
@@ -2088,7 +2085,7 @@ msgstr "Kies investering"
 msgid ""
 "Set the percentage of your income you want to devote to your youth academy."
 msgstr ""
-"Kies het pecentage van uw incomen dat je in de jeugt academie wilt "
+"Kies het pecentage van uw incomen dat je in de jeugd academie wilt "
 "investeren."
 
 #: src/options_interface.c:514
@@ -2175,7 +2172,7 @@ msgstr ""
 
 #: src/interface.c:595
 msgid "Show youth academy"
-msgstr "Toon jeugt academie"
+msgstr "Toon jeugd academie"
 
 #. Skill of a player.
 #: src/treeview.c:259
@@ -2200,7 +2197,7 @@ msgstr "Spatie"
 
 #: src/main.c:38
 msgid "Specify additional support directory (takes priority over default ones)"
-msgstr ""
+msgstr "Kies de extra bestanden map (heeft voorrang over de standaard mappen)"
 
 #: src/misc_interface.c:670
 msgid "Speed"
@@ -2269,9 +2266,8 @@ msgstr "Status:"
 
 #. Hot streak or cold streak of a player.
 #: src/treeview.c:1862
-#, fuzzy
 msgid "Streak"
-msgstr "Sei"
+msgstr "Vorm"
 
 #: src/callbacks.c:666
 msgid "Structure"
@@ -2388,18 +2384,16 @@ msgid "The player is not on the list."
 msgstr "De speler staat niet op de transferlijst"
 
 #: src/treeview_helper.c:934
-#, fuzzy
 msgid "The player is on a cold streak"
-msgstr "De speler staat niet op de transferlijst"
+msgstr "De speler is in een minder goede periode"
 
 #: src/treeview_helper.c:932
-#, fuzzy
 msgid "The player is on a hot streak"
-msgstr "De speler staat niet op de transferlijst"
+msgstr "De speler is in een goede periode"
 
 #: src/callbacks.c:506
 msgid "The player is too old for the youth academy."
-msgstr "De speler is te oud voor de jeugt academie."
+msgstr "De speler is te oud voor de jeugd academie."
 
 #: src/callback_func.c:500
 msgid "The player won't negotiate with you anymore."
@@ -2450,14 +2444,12 @@ msgstr ""
 "Doorgaan?"
 
 #: src/callbacks.c:382
-#, fuzzy
 msgid "There are no leagues in this country definition (only cups)."
-msgstr "Transfers zijn uitgeschakeld in dit land."
+msgstr "Er zijn geen competieties in dit lan (alleen bekers)"
 
 #: src/callbacks.c:364
-#, fuzzy
 msgid "There are no leagues or cups with tables in this country definition."
-msgstr "Transfers zijn uitgeschakeld in dit land."
+msgstr "Er zijn geen competieties of bekers met standen in dit land."
 
 #: src/callback_func.c:355
 msgid "There are no offers for the player."
@@ -2473,7 +2465,7 @@ msgstr ""
 
 #: src/callbacks.c:511
 msgid "There is no room in your youth academy."
-msgstr "Er is geen plaats in uw jeugt academie."
+msgstr "Er is geen plaats in uw jeugd academie."
 
 #: src/misc_callbacks.c:183
 msgid ""
@@ -2585,9 +2577,8 @@ msgstr "Lonen"
 
 #. Week
 #: src/treeview2.c:159
-#, fuzzy
 msgid "We"
-msgstr "Week"
+msgstr "We"
 
 #: src/treeview.c:2007
 msgid "Week"
@@ -2616,7 +2607,7 @@ msgid ""
 "academy"
 msgstr ""
 "Of er een bevestigingsdialoog moet getoont worden wanneer een speler uit de "
-"jeugtacademie zet"
+"jeugdacademie zet"
 
 #: src/options_interface.c:227
 msgid ""
@@ -2906,6 +2897,7 @@ msgid ""
 "You offered a transfer fee of %s and a wage of %s for %s. The owners and the "
 "player are satisfied with your offer. Do you still want to buy the player?"
 msgstr ""
+"Je hebt een transfersom van %s en een loon van %s voor %s aangebode. De eigenaars en de spelers zijn opgetogen met uw aanbod. Wil je de speler nog steeds kopen?"
 
 #. Cup round name (e.g. Last 32), number, cup name.
 #: src/user.c:745
@@ -3015,7 +3007,7 @@ msgid ""
 "academy."
 msgstr ""
 "Jeugtspeler %s dacht dat hij oud genoeg was voor een echt contract en heeft "
-"uw jeugt academie verlaten."
+"uw jeugd academie verlaten."
 
 #: src/youth_academy.c:173
 #, c-format
@@ -3038,9 +3030,8 @@ msgstr "Jeugt academie"
 
 #: src/callbacks.c:495 src/callbacks.c:1047 src/callbacks.c:1062
 #: src/callbacks.c:1079
-#, fuzzy
 msgid "Youth academy is disabled in this country definition."
-msgstr "Extra Motivatie kan niet gebruikt worden in dit land bestand."
+msgstr "De jeugdacademie kan niet gebruikt worden in dit land."
 
 #: src/interface.c:602 src/treeview.c:1314
 msgid "Youth coach"
@@ -3079,24 +3070,5 @@ msgid "_Team"
 msgstr "_Team"
 
 #: src/interface.c:813
-#, fuzzy
 msgid "_User"
 msgstr "Gebr_uiker"
-
-#, fuzzy
-#~ msgid "Left- and right click to change boost"
-#~ msgstr "Rechter- en linkermuisknop om extra motivatiestatus te veranderen"
-
-#, fuzzy
-#~ msgid "Left- and right click to change style"
-#~ msgstr "Rechter- en linkermuisknop om extra motivatiestatus te veranderen"
-
-#~ msgid "News"
-#~ msgstr "Niews"
-
-#~ msgid ""
-#~ "Setting the language only works for installed packages (not for the "
-#~ "binary package)"
-#~ msgstr ""
-#~ "De taal instellingen werken alleen voor geinstaleerde paketten (niet voor "
-#~ "het binary paket)"

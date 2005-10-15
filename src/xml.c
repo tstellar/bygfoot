@@ -167,3 +167,12 @@ xml_load_transfers(const gchar *dirname, const gchar *basename)
 
     xml_loadsave_transfers_read(buf);
 }
+
+void
+xml_write_string(FILE *fil, const gchar *string, gint tag, const gchar* indent)
+{
+    if(string == NULL)
+	return;
+
+    fprintf(fil, "%s<_%d>%s</_%d>\n", indent, tag, string, tag);
+}

@@ -49,7 +49,10 @@ xml_loadsave_league_stat_start_element (GMarkupParseContext *context,
 	}
 
     if(tag == TAG_STAT)
+    {
 	valueidx = 0;
+	new_stat.value_string = NULL;
+    }
     else if(tag == TAG_STAT_TEAMS_OFF ||
 	    tag == TAG_STAT_TEAMS_DEF ||
 	    tag == TAG_STAT_PLAYER_SCORERS ||

@@ -46,7 +46,6 @@ enum XmlTags
 #define TAG_START_SEASON_STATS 11000
 #define TAG_START_TRANSFERS 20000
 
-#define xml_write_string(fil, string, tag, indent) fprintf(fil, "%s<_%d>%s</_%d>\n", indent, tag, string, tag)
 #define xml_write_g_string(fil, gstring, tag, indent) xml_write_string(fil, (gstring)->str, tag, indent)
 
 #define xml_write_int(fil, value, tag, indent) fprintf(fil, "%s<_%d>%d</_%d>\n", indent, tag, value, tag)
@@ -54,6 +53,9 @@ enum XmlTags
 #define xml_write_float(fil, value, tag, indent) fprintf(fil, "%s<_%d>%d</_%d>\n", indent, tag, (gint)rint(value * 10000), tag)
 
 #define xml_get_tag_from_name(name) (gint)g_ascii_strtod(name + 1, NULL)
+
+void
+xml_write_string(FILE *fil, const gchar *string, gint tag, const gchar* indent);
 
 void
 xml_load_users(const gchar *dirname, const gchar *basename);
