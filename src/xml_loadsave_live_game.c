@@ -49,7 +49,7 @@ xml_loadsave_live_game_start_element (GMarkupParseContext *context,
 				      const gchar        **attribute_names,
 				      const gchar        **attribute_values,
 				      gpointer             user_data,
-				    GError             **error)
+				      GError             **error)
 {
     gint i;
     gint tag = xml_get_tag_from_name(element_name);

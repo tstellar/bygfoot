@@ -102,7 +102,4 @@ free_names(gboolean reset);
 void
 free_mmatches(GArray **mmatches, gboolean reset);
 
-void
-free_ptr(gpointer *ptr);
-
 #endif

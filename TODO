@@ -1,20 +1,6 @@
-gyözö
+Bygfoot Football Manager
+AUTHOR: Gyozo Both (gyboth@bygfoot.com)
+http://bygfoot.sourceforge.net
 
-working on: generating the fixtures at the beginning of a season.
-
-current tasks:
-implement a function 'file_check_home_dir' in file.c that checks whether
-the files and directories that should be in the user's home dir are there;
-if not, they get created/copied.
-
-list of dirs:
-$HOME/.bygfoot
-$HOME/.bygfoot/saves
-$HOME/.bygfoot/definitions
-$HOME/.bygfoot/names
-
-list of files:
-$HOME/.bygfoot/definitions/{any xml files found in the support_files/definitions directory}
-$HOME/.bygfoot/names/{any files found in the support_files/names directory}
-
-the function should get called in main_init in main.c.
+See this forum at the homepage:
+http://bygfoot.sourceforge.net/phpBB2/viewforum.php?f=3

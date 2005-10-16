@@ -4,9 +4,6 @@
 #include "user.h"
 #include "variables.h"
 
-/*d*/
-#include "league.h"
-
 /**
    Free all memory allocated by the program.
    This mainly means we have to free a lot of strings
