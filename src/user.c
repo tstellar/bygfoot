@@ -1,3 +1,26 @@
+/*
+   Bygfoot Football Manager -- a small and simple GTK2-based
+   football management game.
+
+   http://bygfoot.sourceforge.net
+
+   Copyright (C) 2005  Gyözö Both (gyboth@bygfoot.com)
+
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of the GNU General Public License
+   as published by the Free Software Foundation; either version 2
+   of the License, or (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
+
 #include "cup.h"
 #include "file.h"
 #include "finance.h"
@@ -848,8 +871,8 @@ user_get_sponsor(const User *user)
 			     (gfloat)current_user.counters[COUNT_USER_SUCCESS]
 			     + ((const_float("float_sponsor_wage_percentage_upper") -
 				 const_float("float_sponsor_wage_percentage_lower")) / 2)) *
-			     (1 + suc_factor * 
-			      ((gfloat)new.contract / 52 - 1) * const_float("float_sponsor_contract_length_factor")) *
+			     (1 + suc_factor * ((gfloat)new.contract / 52 - 1) * 
+			      const_float("float_sponsor_contract_length_factor")) *
 			     (finance_wage_unit(current_user.tm) * current_user.tm->players->len));
     new.benefit = math_round_integer(new.benefit, 2);
 

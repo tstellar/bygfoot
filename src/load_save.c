@@ -1,3 +1,26 @@
+/*
+   Bygfoot Football Manager -- a small and simple GTK2-based
+   football management game.
+
+   http://bygfoot.sourceforge.net
+
+   Copyright (C) 2005  Gyözö Both (gyboth@bygfoot.com)
+
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of the GNU General Public License
+   as published by the Free Software Foundation; either version 2
+   of the License, or (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
+
 #include "callbacks.h"
 #include "file.h"
 #include "gui.h"
@@ -360,12 +383,22 @@ load_save_autosave(void)
     if(counters[COUNT_AUTOSAVE] != 0)
 	return;
 
-    sprintf(buf, "%s%s%s%ssaves%sautosave%02d.zip", home, G_DIR_SEPARATOR_S,
-	    HOMEDIRNAME, G_DIR_SEPARATOR_S, G_DIR_SEPARATOR_S,
-	    counters[COUNT_AUTOSAVE_FILE]);
+    if(os_is_unix)
+	sprintf(buf, "%s%s%s%ssaves%sautosave%02d.zip", home, G_DIR_SEPARATOR_S,
+		HOMEDIRNAME, G_DIR_SEPARATOR_S, G_DIR_SEPARATOR_S,
+		counters[COUNT_AUTOSAVE_FILE]);
+    else
+    {
+	gchar *pwd = g_get_current_dir();
+	sprintf(buf, "%s%ssaves%sautosave%02d.zip", pwd, G_DIR_SEPARATOR_S,
+		G_DIR_SEPARATOR_S, counters[COUNT_AUTOSAVE_FILE]);
+	g_free(pwd);
+    }
 
     if(!file_my_fopen(buf, "w", &fil, FALSE))
 	return;
+
+    fclose(fil);
 
     load_save_save_game(buf);
 

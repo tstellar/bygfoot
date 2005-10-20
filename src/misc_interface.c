@@ -58,6 +58,8 @@ create_window_startup (void)
   GSList *radiobutton_team_def_load_group = NULL;
   GtkWidget *radiobutton_team_def_names;
   GtkWidget *radiobutton_team_def_dont;
+  GtkWidget *vseparator2;
+  GtkWidget *checkbutton_randomise_teams;
   GtkWidget *hseparator16;
   GtkWidget *hbox3;
   GtkWidget *team_selection_ok;
@@ -221,6 +223,16 @@ create_window_startup (void)
   gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton_team_def_dont), radiobutton_team_def_load_group);
   radiobutton_team_def_load_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton_team_def_dont));
 
+  vseparator2 = gtk_vseparator_new ();
+  gtk_widget_show (vseparator2);
+  gtk_box_pack_start (GTK_BOX (hbox74), vseparator2, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (vseparator2, 10, 1);
+
+  checkbutton_randomise_teams = gtk_check_button_new_with_mnemonic (_("Randomise teams in cups"));
+  gtk_widget_show (checkbutton_randomise_teams);
+  gtk_box_pack_start (GTK_BOX (hbox74), checkbutton_randomise_teams, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_randomise_teams, _("Randomise the order of teams in cups. This only makes sense in supernational definitions like the World Cup where the order of teams is fixed."), NULL);
+
   hseparator16 = gtk_hseparator_new ();
   gtk_widget_show (hseparator16);
   gtk_box_pack_start (GTK_BOX (vbox2), hseparator16, FALSE, FALSE, 0);
@@ -371,6 +383,8 @@ create_window_startup (void)
   GLADE_HOOKUP_OBJECT (window_startup, radiobutton_team_def_load, "radiobutton_team_def_load");
   GLADE_HOOKUP_OBJECT (window_startup, radiobutton_team_def_names, "radiobutton_team_def_names");
   GLADE_HOOKUP_OBJECT (window_startup, radiobutton_team_def_dont, "radiobutton_team_def_dont");
+  GLADE_HOOKUP_OBJECT (window_startup, vseparator2, "vseparator2");
+  GLADE_HOOKUP_OBJECT (window_startup, checkbutton_randomise_teams, "checkbutton_randomise_teams");
   GLADE_HOOKUP_OBJECT (window_startup, hseparator16, "hseparator16");
   GLADE_HOOKUP_OBJECT (window_startup, hbox3, "hbox3");
   GLADE_HOOKUP_OBJECT (window_startup, team_selection_ok, "team_selection_ok");

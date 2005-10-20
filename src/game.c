@@ -1,3 +1,26 @@
+/*
+   Bygfoot Football Manager -- a small and simple GTK2-based
+   football management game.
+
+   http://bygfoot.sourceforge.net
+
+   Copyright (C) 2005  Gyözö Both (gyboth@bygfoot.com)
+
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of the GNU General Public License
+   as published by the Free Software Foundation; either version 2
+   of the License, or (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
+
 #include "cup.h"
 #include "finance.h"
 #include "fixture.h"
@@ -832,11 +855,10 @@ game_decrease_fitness(const Fixture *fix)
     @param live_game_stats Pointer to the live game.
     @param live_game_unit The live game unit. */
 void
-game_update_stats(gpointer live_game, gconstpointer live_game_unit)
+game_update_stats(LiveGame *lg, const LiveGameUnit *unit)
 {
     gint i;
-    LiveGameStats *stats = &((LiveGame*)live_game)->stats;
-    const LiveGameUnit *unit = (const LiveGameUnit*)live_game_unit;
+    LiveGameStats *stats = &lg->stats;
     
     if(unit->minute != -1)
 	stats->values[unit->possession][LIVE_GAME_STAT_VALUE_POSSESSION]++;
@@ -850,7 +872,7 @@ game_update_stats(gpointer live_game, gconstpointer live_game_unit)
     else if(unit->event.type == LIVE_GAME_EVENT_INJURY)
     {
 	stats->values[unit->event.team][LIVE_GAME_STAT_VALUE_INJURIES]++;
-	game_update_stats_player(live_game, live_game_unit);
+	game_update_stats_player(lg, unit);
     }
     else if(unit->event.type == LIVE_GAME_EVENT_FOUL ||
 	    unit->event.type == LIVE_GAME_EVENT_FOUL_YELLOW ||
@@ -861,13 +883,13 @@ game_update_stats(gpointer live_game, gconstpointer live_game_unit)
 	if(unit->event.type == LIVE_GAME_EVENT_FOUL_YELLOW)
 	{
 	    stats->values[unit->event.team][LIVE_GAME_STAT_VALUE_CARDS]++;
-	    game_update_stats_player(live_game, live_game_unit);
+	    game_update_stats_player(lg, unit);
 	}
     }
     else if(unit->event.type == LIVE_GAME_EVENT_SEND_OFF)
     {
 	stats->values[unit->event.team][LIVE_GAME_STAT_VALUE_REDS]++;
-	game_update_stats_player(live_game, live_game_unit);
+	game_update_stats_player(lg, unit);
     }
     else if(unit->event.type == LIVE_GAME_EVENT_GOAL ||
 	    unit->event.type == LIVE_GAME_EVENT_OWN_GOAL)
@@ -875,7 +897,7 @@ game_update_stats(gpointer live_game, gconstpointer live_game_unit)
 	if(live_game_unit_before(unit, -1)->event.type != LIVE_GAME_EVENT_PENALTY &&
 	   unit->event.type != LIVE_GAME_EVENT_OWN_GOAL)
 	    stats->values[unit->event.team][LIVE_GAME_STAT_VALUE_GOALS_REGULAR]++;
-	game_update_stats_player(live_game, live_game_unit);
+	game_update_stats_player(lg, unit);
     }
 
     for(i=0;i<2;i++)
@@ -891,19 +913,18 @@ game_update_stats(gpointer live_game, gconstpointer live_game_unit)
     @param player The player id.
     @param type The type of the stat. */
 void
-game_update_stats_player(gpointer live_game, gconstpointer live_game_unit)
+game_update_stats_player(LiveGame *lg, const LiveGameUnit *unit)
 {
     gint i;
     gchar buf[SMALL], buf2[SMALL];    
-    LiveGameStats *stats = &((LiveGame*)live_game)->stats;
-    const LiveGameUnit *unit = (const LiveGameUnit*)live_game_unit;
+    LiveGameStats *stats = &lg->stats;
     gint minute = live_game_unit_get_minute(unit), array_index = -1;
     gboolean own_goal;
     gint team = unit->event.team,
 	player = unit->event.player,
 	player2 = unit->event.player2;
-    const Team *tm[2] = {((LiveGame*)live_game)->fix->teams[0], 
-			 ((LiveGame*)live_game)->fix->teams[1]};
+    const Team *tm[2] = {lg->fix->teams[0], 
+			 lg->fix->teams[1]};
     GPtrArray *players = NULL;
     
     if(unit->event.type == LIVE_GAME_EVENT_GOAL ||
@@ -1093,4 +1114,18 @@ game_get_default_penalty_shooter(const Team *tm)
 				  &usr(team_is_user(tm)).options);
 
     return return_value;
+}
+
+/** Check whether the CPU team's strategy (boost, style, subs)
+    has to be adjusted. */
+void
+game_check_cpu_strategy(LiveGame *lg)
+{
+    const LiveGameUnit *unit = 
+	&g_array_index(lg->units, LiveGameUnit, lg->units->len - 1);
+    gint minutes_remaining = 
+	live_game_get_minutes_remaining(unit);
+
+    if(unit->time == LIVE_GAME_UNIT_TIME_PENALTIES)
+	return;
 }

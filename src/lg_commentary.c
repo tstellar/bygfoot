@@ -1,3 +1,26 @@
+/*
+   Bygfoot Football Manager -- a small and simple GTK2-based
+   football management game.
+
+   http://bygfoot.sourceforge.net
+
+   Copyright (C) 2005  Gyözö Both (gyboth@bygfoot.com)
+
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of the GNU General Public License
+   as published by the Free Software Foundation; either version 2
+   of the License, or (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
+
 #include <locale.h>
 
 #include "cup.h"
@@ -389,14 +412,9 @@ lg_commentary_set_basic_tokens(const LiveGameUnit *unit, const Fixture *fix)
     token_rep[option_int("string_lg_commentary_token_minute", &lg_tokens)] = 
 	misc_int_to_char(live_game_unit_get_minute(unit));
 
-    if(unit->time == LIVE_GAME_UNIT_TIME_EXTRA_TIME)
-	tmp_int = 120 - current_min;
-    else if(unit->time == LIVE_GAME_UNIT_TIME_SECOND_HALF)
-	tmp_int = 90 - current_min;
-    else if(unit->time == LIVE_GAME_UNIT_TIME_FIRST_HALF)
-	tmp_int = 45 - current_min;
+    tmp_int = live_game_get_minutes_remaining(unit);
     
-    if(unit->time != LIVE_GAME_UNIT_TIME_PENALTIES && tmp_int > 0)
+    if(tmp_int > 0)
 	token_rep[option_int("string_lg_commentary_token_minute_remaining", &lg_tokens)] = 
 	    misc_int_to_char(tmp_int);
 

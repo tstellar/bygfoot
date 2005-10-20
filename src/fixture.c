@@ -1,3 +1,26 @@
+/*
+   Bygfoot Football Manager -- a small and simple GTK2-based
+   football management game.
+
+   http://bygfoot.sourceforge.net
+
+   Copyright (C) 2005  Gyözö Both (gyboth@bygfoot.com)
+
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of the GNU General Public License
+   as published by the Free Software Foundation; either version 2
+   of the License, or (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
+
 #include "cup.h"
 #include "fixture.h"
 #include "free.h"
@@ -291,7 +314,7 @@ fixture_write_cup_round_robin(Cup *cup, gint cup_round, GPtrArray *teams)
 	main_exit_program(EXIT_FIXTURE_WRITE_ERROR, NULL);
     }
 
-    if(cupround->randomise_teams)
+    if(cupround->randomise_teams || opt_int("int_opt_randomise_teams"))
 	g_ptr_array_sort_with_data(teams, (GCompareDataFunc)team_compare_func,
 			       GINT_TO_POINTER(TEAM_COMPARE_AV_SKILL));
 
@@ -306,7 +329,7 @@ fixture_write_cup_round_robin(Cup *cup, gint cup_round, GPtrArray *teams)
     }
     
     cnt = 0;
-    if(!cupround->randomise_teams)
+    if(!cupround->randomise_teams && !opt_int("int_opt_randomise_teams"))
     {
 	for(i=0;i<number_of_groups;i++)
 	    for(j=0;j<team_num + (i < plus_div);j++)

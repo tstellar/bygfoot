@@ -68,7 +68,7 @@
 		      <accelerator key="l" modifiers="GDK_CONTROL_MASK | GDK_SHIFT_MASK" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2026">
+			<widget class="GtkImage" id="image2107">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-revert-to-saved</property>
 			  <property name="icon_size">1</property>
@@ -136,7 +136,7 @@
 		      <accelerator key="p" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2027">
+			<widget class="GtkImage" id="image2108">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-preferences</property>
 			  <property name="icon_size">1</property>
@@ -200,7 +200,7 @@
 		      <signal name="activate" handler="on_menu_save_window_geometry_activate" last_modification_time="Tue, 27 Sep 2005 10:09:53 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2028">
+			<widget class="GtkImage" id="image2109">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-save</property>
 			  <property name="icon_size">1</property>
@@ -235,7 +235,7 @@
 		      <accelerator key="F3" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2029">
+			<widget class="GtkImage" id="image2110">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_fixtures.png</property>
 			  <property name="xalign">0.5</property>
@@ -256,7 +256,7 @@
 		      <accelerator key="F4" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2030">
+			<widget class="GtkImage" id="image2111">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_fixtures_comp.png</property>
 			  <property name="xalign">0.5</property>
@@ -277,7 +277,7 @@
 		      <accelerator key="F5" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2031">
+			<widget class="GtkImage" id="image2112">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_table.png</property>
 			  <property name="xalign">0.5</property>
@@ -298,7 +298,7 @@
 		      <accelerator key="F6" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2032">
+			<widget class="GtkImage" id="image2113">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_league_results.png</property>
 			  <property name="xalign">0.5</property>
@@ -319,9 +319,9 @@
 		      <accelerator key="s" modifiers="GDK_SHIFT_MASK" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2033">
+			<widget class="GtkImage" id="image2114">
 			  <property name="visible">True</property>
-			  <property name="pixbuf">menu_fixtures.png</property>
+			  <property name="pixbuf">menu_season_res.png</property>
 			  <property name="xalign">0.5</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
@@ -346,7 +346,7 @@
 		      <accelerator key="s" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2034">
+			<widget class="GtkImage" id="image2115">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_league_stats.png</property>
 			  <property name="xalign">0.5</property>
@@ -367,7 +367,7 @@
 		      <accelerator key="h" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2035">
+			<widget class="GtkImage" id="image2116">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_history.png</property>
 			  <property name="xalign">0.5</property>
@@ -399,7 +399,7 @@
 		      <property name="use_underline">True</property>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2036">
+			<widget class="GtkImage" id="image2117">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_style.png</property>
 			  <property name="xalign">0.5</property>
@@ -477,7 +477,7 @@
 		      <property name="use_underline">True</property>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2037">
+			<widget class="GtkImage" id="image2118">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_scout.png</property>
 			  <property name="xalign">0.5</property>
@@ -544,7 +544,7 @@
 		      <property name="use_underline">True</property>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2038">
+			<widget class="GtkImage" id="image2119">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_physio.png</property>
 			  <property name="xalign">0.5</property>
@@ -611,7 +611,7 @@
 		      <property name="use_underline">True</property>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2039">
+			<widget class="GtkImage" id="image2120">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_youth_academy.png</property>
 			  <property name="xalign">0.5</property>
@@ -778,7 +778,7 @@
 		      <property name="use_underline">True</property>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2040">
+			<widget class="GtkImage" id="image2121">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_boost.png</property>
 			  <property name="xalign">0.5</property>
@@ -841,7 +841,7 @@
 		      <signal name="activate" handler="on_menu_reset_players_activate" last_modification_time="Tue, 26 Apr 2005 13:16:39 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2041">
+			<widget class="GtkImage" id="image2122">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-undo</property>
 			  <property name="icon_size">1</property>
@@ -862,7 +862,7 @@
 		      <signal name="activate" handler="on_menu_custom_structure_activate" last_modification_time="Sat, 26 Feb 2005 12:46:30 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2042">
+			<widget class="GtkImage" id="image2123">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_structure.png</property>
 			  <property name="xalign">0.5</property>
@@ -884,7 +884,7 @@
 		      <accelerator key="r" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2043">
+			<widget class="GtkImage" id="image2124">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_rearrange.png</property>
 			  <property name="xalign">0.5</property>
@@ -910,7 +910,7 @@
 		      <signal name="activate" handler="on_menu_browse_teams_activate" last_modification_time="Mon, 03 Jan 2005 16:58:58 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2044">
+			<widget class="GtkImage" id="image2125">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_browse_tms.png</property>
 			  <property name="xalign">0.5</property>
@@ -943,7 +943,7 @@
 		      <signal name="activate" handler="on_menu_show_info_activate" last_modification_time="Sun, 02 Jan 2005 15:42:09 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2045">
+			<widget class="GtkImage" id="image2126">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_player_info.png</property>
 			  <property name="xalign">0.5</property>
@@ -963,7 +963,7 @@
 		      <signal name="activate" handler="on_menu_put_on_transfer_list_activate" last_modification_time="Sun, 02 Jan 2005 15:42:09 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2046">
+			<widget class="GtkImage" id="image2127">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_player_put_transfer.png</property>
 			  <property name="xalign">0.5</property>
@@ -983,7 +983,7 @@
 		      <signal name="activate" handler="on_menu_remove_from_transfer_list_activate" last_modification_time="Sun, 02 Jan 2005 15:42:09 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2047">
+			<widget class="GtkImage" id="image2128">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_player_remove_transfer.png</property>
 			  <property name="xalign">0.5</property>
@@ -1003,7 +1003,7 @@
 		      <signal name="activate" handler="on_menu_offer_new_contract_activate" last_modification_time="Fri, 25 Mar 2005 09:23:28 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2048">
+			<widget class="GtkImage" id="image2129">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_player_contract.png</property>
 			  <property name="xalign">0.5</property>
@@ -1023,7 +1023,7 @@
 		      <signal name="activate" handler="on_menu_fire_activate" last_modification_time="Sun, 02 Jan 2005 15:42:09 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2049">
+			<widget class="GtkImage" id="image2130">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_player_fire.png</property>
 			  <property name="xalign">0.5</property>
@@ -1043,7 +1043,7 @@
 		      <signal name="activate" handler="on_menu_shoots_penalties_activate" last_modification_time="Sun, 02 Jan 2005 15:42:09 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2050">
+			<widget class="GtkImage" id="image2131">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_player_shoots.png</property>
 			  <property name="xalign">0.5</property>
@@ -1056,11 +1056,22 @@
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="menu_move_to_youth_academy">
+		    <widget class="GtkImageMenuItem" id="menu_move_to_youth_academy">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Move to youth academy</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="on_menu_move_to_youth_academy_activate" last_modification_time="Thu, 07 Jul 2005 21:12:26 GMT"/>
+
+		      <child internal-child="image">
+			<widget class="GtkImage" id="image2132">
+			  <property name="visible">True</property>
+			  <property name="pixbuf">menu_player_move_to_ya.png</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		  </child>
 
@@ -1078,7 +1089,7 @@
 		      <signal name="activate" handler="on_menu_browse_players_activate" last_modification_time="Sat, 26 Mar 2005 09:42:31 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2051">
+			<widget class="GtkImage" id="image2133">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_player_browse.png</property>
 			  <property name="xalign">0.5</property>
@@ -1112,7 +1123,7 @@
 		      <accelerator key="v" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2052">
+			<widget class="GtkImage" id="image2134">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_last_match.png</property>
 			  <property name="xalign">0.5</property>
@@ -1133,7 +1144,7 @@
 		      <accelerator key="F2" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2053">
+			<widget class="GtkImage" id="image2135">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_match_stats.png</property>
 			  <property name="xalign">0.5</property>
@@ -1154,7 +1165,7 @@
 		      <accelerator key="F1" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2054">
+			<widget class="GtkImage" id="image2136">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-jump-to</property>
 			  <property name="icon_size">1</property>
@@ -1174,7 +1185,7 @@
 		      <property name="use_underline">True</property>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2055">
+			<widget class="GtkImage" id="image2137">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_mmatches.png</property>
 			  <property name="xalign">0.5</property>
@@ -1197,7 +1208,7 @@
 			      <accelerator key="a" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			      <child internal-child="image">
-				<widget class="GtkImage" id="image2056">
+				<widget class="GtkImage" id="image2138">
 				  <property name="visible">True</property>
 				  <property name="stock">gtk-add</property>
 				  <property name="icon_size">1</property>
@@ -1220,7 +1231,7 @@
 			      <accelerator key="m" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			      <child internal-child="image">
-				<widget class="GtkImage" id="image2057">
+				<widget class="GtkImage" id="image2139">
 				  <property name="visible">True</property>
 				  <property name="stock">gtk-preferences</property>
 				  <property name="icon_size">1</property>
@@ -1252,7 +1263,7 @@
 		      <accelerator key="h" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2058">
+			<widget class="GtkImage" id="image2140">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_history.png</property>
 			  <property name="xalign">0.5</property>
@@ -1279,7 +1290,7 @@
 		      <accelerator key="F9" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2059">
+			<widget class="GtkImage" id="image2141">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-media-forward</property>
 			  <property name="icon_size">1</property>
@@ -1301,7 +1312,7 @@
 		      <accelerator key="F8" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2060">
+			<widget class="GtkImage" id="image2142">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-go-back</property>
 			  <property name="icon_size">1</property>
@@ -1323,7 +1334,7 @@
 		      <accelerator key="F12" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2061">
+			<widget class="GtkImage" id="image2143">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-justify-fill</property>
 			  <property name="icon_size">1</property>
@@ -1358,7 +1369,7 @@
 		      <accelerator key="f" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2062">
+			<widget class="GtkImage" id="image2144">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_finances.png</property>
 			  <property name="xalign">0.5</property>
@@ -1379,7 +1390,7 @@
 		      <accelerator key="f" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2063">
+			<widget class="GtkImage" id="image2145">
 			  <property name="visible">True</property>
 			  <property name="pixbuf">menu_stadium.png</property>
 			  <property name="xalign">0.5</property>
@@ -1412,7 +1423,7 @@
 		      <signal name="activate" handler="on_menu_about_activate" last_modification_time="Sun, 18 Jan 2004 15:58:22 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2064">
+			<widget class="GtkImage" id="image2146">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-dialog-info</property>
 			  <property name="icon_size">1</property>
@@ -1433,7 +1444,7 @@
 		      <signal name="activate" handler="on_menu_contributors_activate" last_modification_time="Sun, 22 May 2005 06:42:11 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2065">
+			<widget class="GtkImage" id="image2147">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-add</property>
 			  <property name="icon_size">1</property>
@@ -1454,7 +1465,7 @@
 		      <signal name="activate" handler="on_menu_help_activate" last_modification_time="Sun, 22 May 2005 06:42:11 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image2066">
+			<widget class="GtkImage" id="image2148">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-help</property>
 			  <property name="icon_size">1</property>
@@ -2652,10 +2663,9 @@
       <signal name="activate" handler="on_menu_youth_move_to_team_activate" last_modification_time="Fri, 08 Jul 2005 08:31:16 GMT"/>
 
       <child internal-child="image">
-	<widget class="GtkImage" id="image1420">
+	<widget class="GtkImage" id="image2149">
 	  <property name="visible">True</property>
-	  <property name="stock">gtk-go-back</property>
-	  <property name="icon_size">1</property>
+	  <property name="pixbuf">menu_player_move_to_team.png</property>
 	  <property name="xalign">0.5</property>
 	  <property name="yalign">0.5</property>
 	  <property name="xpad">0</property>
@@ -2673,7 +2683,7 @@
       <signal name="activate" handler="on_menu_youth_kick_out_of_academy_activate" last_modification_time="Fri, 08 Jul 2005 08:31:16 GMT"/>
 
       <child internal-child="image">
-	<widget class="GtkImage" id="image1421">
+	<widget class="GtkImage" id="image2150">
 	  <property name="visible">True</property>
 	  <property name="stock">gtk-delete</property>
 	  <property name="icon_size">1</property>

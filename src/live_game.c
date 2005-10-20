@@ -1,3 +1,26 @@
+/*
+   Bygfoot Football Manager -- a small and simple GTK2-based
+   football management game.
+
+   http://bygfoot.sourceforge.net
+
+   Copyright (C) 2005  Gyözö Both (gyboth@bygfoot.com)
+
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of the GNU General Public License
+   as published by the Free Software Foundation; either version 2
+   of the License, or (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
+
 #include "callbacks.h"
 #include "fixture.h"
 #include "free.h"
@@ -1213,6 +1236,23 @@ live_game_get_minute(void)
 	    return uni(i).minute + 1;
 
     return -1;
+}
+
+/** Return the minutes remaining in the match. */
+gint
+live_game_get_minutes_remaining(const LiveGameUnit *unit)
+{
+    gint current_min = live_game_unit_get_minute(unit);
+    gint return_value = -1;
+    
+    if(unit->time == LIVE_GAME_UNIT_TIME_EXTRA_TIME)
+	return_value = 120 - current_min;
+    else if(unit->time == LIVE_GAME_UNIT_TIME_SECOND_HALF)
+	return_value = 90 - current_min;
+    else if(unit->time == LIVE_GAME_UNIT_TIME_FIRST_HALF)
+	return_value = 45 - current_min;
+
+    return return_value;
 }
 
 /** Return the minute of the unit (ie. look up the last unit
