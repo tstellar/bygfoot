@@ -700,6 +700,10 @@ live_game_event_general(gboolean create_new)
     if((debug > 100 && fixture_user_team_involved(match->fix) != -1) ||
        debug > 130)
 	printf("\t\tlive_game_event_general\n");
+
+/*     if(team_is_user(tm0) == -1 || team_is_user(tm1) == -1) */
+/* 	game_check_cpu_strategy(match); */
+
     if(create_new)
     {
 	new.minute = live_game_get_minute();

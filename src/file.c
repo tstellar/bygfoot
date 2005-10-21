@@ -119,7 +119,10 @@ file_my_system(const gchar *command)
 	g_warning("file_my_system: system returned -1 when executing '%s'.", command);
 
 	if(!os_is_unix)
+	{
+	    g_warning("Press RETURN to try to continue.");
 	    getchar();
+	}
 
 	return FALSE;
     }

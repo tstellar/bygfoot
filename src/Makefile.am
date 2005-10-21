@@ -25,7 +25,7 @@ bygfoot_SOURCES = \
 	lg_commentary.c cup.h file.h fixture.h free.h league.h lg_commentary.h live_game.h main.h maths.h misc.h option.h player.h team.h variables.h xml_lg_commentary.h \
 	league.c cup.h free.h league.h main.h maths.h misc.h option.h player.h stat.h table.h team.h user.h variables.h \
 	live_game.c callbacks.h fixture.h free.h game_gui.h game.h league.h lg_commentary.h live_game.h main.h maths.h misc_callback_func.h misc.h option.h player.h support.h team.h treeview.h user.h variables.h window.h \
-	load_save.c callbacks.h file.h game_gui.h gui.h language.h load_save.h misc.h option.h support.h user.h variables.h window.h xml.h xml_loadsave_cup.h xml_loadsave_league.h xml_loadsave_misc.h xml_loadsave_season_stats.h xml_loadsave_transfers.h xml_loadsave_users.h \
+	load_save.c callbacks.h file.h game_gui.h gui.h language.h load_save.h misc.h option.h support.h user.h variables.h window.h xml.h xml_loadsave_cup.h xml_loadsave_league.h xml_loadsave_leagues_cups.h xml_loadsave_misc.h xml_loadsave_season_stats.h xml_loadsave_transfers.h xml_loadsave_users.h \
 	main.c file.h free.h language.h lg_commentary_struct.h live_game.h load_save.h main.h misc_callbacks.h misc.h name_struct.h option.h stat_struct.h transfer_struct.h variables.h window.h \
 	maths.c maths.h misc.h variables.h \
 	misc.c main.h maths.h misc.h \
@@ -56,6 +56,7 @@ bygfoot_SOURCES = \
 	xml_loadsave_cup.c cup.h file.h misc.h table.h team.h xml.h xml_loadsave_cup.h xml_loadsave_fixtures.h xml_loadsave_table.h xml_loadsave_teams.h \
 	xml_loadsave_fixtures.c file.h fixture.h misc.h team.h xml.h xml_loadsave_fixtures.h \
 	xml_loadsave_league.c file.h league.h misc.h xml.h xml_loadsave_cup.h xml_loadsave_fixtures.h xml_loadsave_league.h xml_loadsave_league_stat.h xml_loadsave_table.h xml_loadsave_teams.h \
+	xml_loadsave_leagues_cups.c cup.h file.h free.h league_struct.h misc.h xml.h xml_loadsave_cup.h xml_loadsave_league.h xml_loadsave_leagues_cups.h \
 	xml_loadsave_league_stat.c file.h misc.h stat.h team.h xml.h xml_loadsave_league_stat.h \
 	xml_loadsave_live_game.c cup.h file.h fixture.h league.h live_game.h misc.h option.h variables.h xml.h xml_loadsave_live_game.h \
 	xml_loadsave_misc.c cup.h file.h misc.h variables.h xml.h xml_loadsave_cup.h xml_loadsave_league.h xml_loadsave_misc.h \

@@ -65,31 +65,7 @@ xml_load_users(const gchar *dirname, const gchar *basename)
 }
 
 void
-xml_load_leagues(const gchar *dirname, const gchar *basename)
-{
-    gint i;
-    gchar buf[SMALL];
-    GPtrArray *dir_contents = NULL;
-
-    sprintf(buf, "%s___league_", basename);
-    dir_contents = file_dir_get_contents(dirname, buf, ".xml");
-
-    free_leagues_array(&ligs, TRUE);
-    
-    for(i=0;i<dir_contents->len;i++)
-	if(!g_str_has_suffix((gchar*)g_ptr_array_index(dir_contents, i), "_table.xml") && 
-	   !g_str_has_suffix((gchar*)g_ptr_array_index(dir_contents, i), "_fixtures.xml") &&
-	   !g_str_has_suffix((gchar*)g_ptr_array_index(dir_contents, i), "_teams.xml") &&
-	   !g_str_has_suffix((gchar*)g_ptr_array_index(dir_contents, i), "_stat.xml") &&
-	   !g_strrstr((gchar*)g_ptr_array_index(dir_contents, i), "_promcup"))
-	    xml_load_league(dirname, (gchar*)g_ptr_array_index(dir_contents, i),
-			    dir_contents);
-    
-    free_gchar_array(&dir_contents);
-}
-
-void
-xml_load_league(const gchar *dirname, const gchar *basename, const GPtrArray *dir_contents)
+xml_load_league(const gchar *dirname, const gchar *basename)
 {
     gchar buf[SMALL];
     League new = league_new(FALSE);
@@ -125,37 +101,7 @@ xml_load_league(const gchar *dirname, const gchar *basename, const GPtrArray *di
 }
 
 void
-xml_load_cups(const gchar *dirname, const gchar *basename)
-{
-    gint i;
-    gchar buf[SMALL];
-    GPtrArray *dir_contents = NULL;
-    Cup new_cup;
-
-    sprintf(buf, "%s___cup_", basename);
-    dir_contents = file_dir_get_contents(dirname, buf, ".xml");
-
-    free_cups_array(&cps, TRUE);
-    
-    for(i=0;i<dir_contents->len;i++)
-    {
-	if(!g_strrstr((gchar*)g_ptr_array_index(dir_contents, i), "_table") &&
-	   !g_str_has_suffix((gchar*)g_ptr_array_index(dir_contents, i), "_fixtures.xml") &&
-	   !g_str_has_suffix((gchar*)g_ptr_array_index(dir_contents, i), "_teams.xml"))
-	{
-	    new_cup = cup_new(FALSE);
-	    g_array_append_val(cps, new_cup);
-	    xml_load_cup(&g_array_index(cps, Cup, cps->len - 1), dirname,
-			 (gchar*)g_ptr_array_index(dir_contents, i),
-			 dir_contents);
-	}
-    }
-    
-    free_gchar_array(&dir_contents);
-}
-
-void
-xml_load_cup(Cup *cup, const gchar *dirname, const gchar *basename, const GPtrArray *dir_contents)
+xml_load_cup(Cup *cup, const gchar *dirname, const gchar *basename)
 {
     gchar buf[SMALL];
     gchar *prefix = g_strndup(basename, strlen(basename) - 4);

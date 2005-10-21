@@ -257,6 +257,12 @@ main_exit_program(gint exit_code, gchar *exit_message)
     
     if(exit_message != NULL)
 	g_warning(exit_message);
+
+    if(!os_is_unix)
+    {
+	g_warning("Press RETURN. Program will exit.");
+	getchar();
+    }
     
     exit(exit_code);
 }

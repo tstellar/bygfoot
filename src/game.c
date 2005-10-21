@@ -1116,16 +1116,24 @@ game_get_default_penalty_shooter(const Team *tm)
     return return_value;
 }
 
-/** Check whether the CPU team's strategy (boost, style, subs)
-    has to be adjusted. */
-void
-game_check_cpu_strategy(LiveGame *lg)
-{
-    const LiveGameUnit *unit = 
-	&g_array_index(lg->units, LiveGameUnit, lg->units->len - 1);
-    gint minutes_remaining = 
-	live_game_get_minutes_remaining(unit);
+/* gint */
+/* game_get_cpu_goals_to_win(const Fixture *fix) */
+/* { */
+    
+/* } */
 
-    if(unit->time == LIVE_GAME_UNIT_TIME_PENALTIES)
-	return;
-}
+/* /\** Check whether the CPU team's strategy (boost, style, subs) */
+/*     has to be adjusted. *\/ */
+/* void */
+/* game_check_cpu_strategy(LiveGame *lg) */
+/* { */
+/*     const LiveGameUnit *unit =  */
+/* 	&g_array_index(lg->units, LiveGameUnit, lg->units->len - 1); */
+/*     gint minutes_remaining = -1, goals_to_win = -1; */
+
+/*     if(unit->time == LIVE_GAME_UNIT_TIME_PENALTIES) */
+/* 	return; */
+
+/*     minutes_remaining = live_game_get_minutes_remaining(unit); */
+/*     goals_to_win = game_get_cpu_goals_to_win(lg->fix); */
+/* } */

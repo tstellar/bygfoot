@@ -67,6 +67,7 @@ enum XmlTags
 #define TAG_END_PLAYERS 9900
 #define TAG_START_LEAGUE_STAT 10000
 #define TAG_START_SEASON_STATS 11000
+#define TAG_START_LEAGUES_CUPS 12000
 #define TAG_START_TRANSFERS 20000
 
 #define xml_write_g_string(fil, gstring, tag, indent) xml_write_string(fil, (gstring)->str, tag, indent)
@@ -84,16 +85,10 @@ void
 xml_load_users(const gchar *dirname, const gchar *basename);
 
 void
-xml_load_leagues(const gchar *dirname, const gchar *basename);
+xml_load_league(const gchar *dirname, const gchar *basename);
 
 void
-xml_load_league(const gchar *dirname, const gchar *basename, const GPtrArray *dir_contents);
-
-void
-xml_load_cups(const gchar *dirname, const gchar *basename);
-
-void
-xml_load_cup(Cup *cup, const gchar *dirname, const gchar *basename, const GPtrArray *dir_contents);
+xml_load_cup(Cup *cup, const gchar *dirname, const gchar *basename);
 
 void
 xml_load_transfers(const gchar *dirname, const gchar *basename);

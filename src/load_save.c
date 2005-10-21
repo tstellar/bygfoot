@@ -36,18 +36,18 @@
 #include "xml_loadsave_misc.h"
 #include "xml_loadsave_cup.h"
 #include "xml_loadsave_league.h"
+#include "xml_loadsave_leagues_cups.h"
 #include "xml_loadsave_season_stats.h"
 #include "xml_loadsave_transfers.h"
 #include "xml_loadsave_users.h"
 #include "xml.h"
 
-#define PROGRESS_MAX 8
+#define PROGRESS_MAX 7
 
 /** Save the game to the specified file. */
 void
 load_save_save_game(const gchar *filename)
 {
-    gint i;
     gchar buf[SMALL];
     gchar *prefix = (g_str_has_suffix(filename, const_str("string_fs_save_suffix"))) ?
 	g_strndup(filename, strlen(filename) - strlen(const_str("string_fs_save_suffix"))) :
@@ -73,26 +73,14 @@ load_save_save_game(const gchar *filename)
     file_save_opt_file(buf, &settings);
 
     if(debug > 60)
-	printf("load_save_save leagues \n");
+	printf("load_save_save leagues/cups \n");
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	_("Saving leagues..."));
+	_("Saving leagues and cups..."));
 
-    for(i=0;i<ligs->len;i++)
-	xml_loadsave_league_write(prefix, &lig(i));
-
-    if(debug > 60)
-	printf("load_save_save cups \n");
-
-    gui_show_progress(
-	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
-	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	_("Saving cups..."));
-
-    for(i=0;i<cps->len;i++)
-	xml_loadsave_cup_write(prefix, &cp(i));
+    xml_loadsave_leagues_cups_write(prefix);
 
     if(debug > 60)
 	printf("load_save_save users \n");
@@ -220,19 +208,9 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	_("Loading leagues..."));
+	_("Loading leagues and cups..."));
 
-    xml_load_leagues(dirname, prefix);
-
-    if(debug > 60)
-	printf("load_save_load cups \n");
-
-    gui_show_progress(
-	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
-	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	_("Loading cups..."));
-
-    xml_load_cups(dirname, prefix);
+    xml_loadsave_leagues_cups_read(dirname, prefix);
 
     if(debug > 60)
 	printf("load_save_load users \n");
