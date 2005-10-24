@@ -55,22 +55,22 @@ player_new(Team *tm, gfloat average_talent, gboolean new_id)
     new.id = (new_id) ? player_id_new : -1;
     new.pos = player_get_position_from_structure(tm->structure, tm->players->len);
     new.cpos = new.pos;
-    new.age = 30;/* math_gauss_dist(const_float("float_player_age_lower"), */
-/* 			      const_float("float_player_age_upper")); */
-    new.peak_age = 30;
-/* 	math_rnd(const_float("float_player_peak_age_lower") + */
-/* 		 (new.pos == PLAYER_POS_GOALIE) *  */
-/* 		 const_float("float_player_peak_age_goalie_addition"), */
-/* 		 const_float("float_player_peak_age_upper") + */
-/* 		 (new.pos == PLAYER_POS_GOALIE) *  */
-/* 		 const_float("float_player_peak_age_goalie_addition")); */
+    new.age = math_gauss_dist(const_float("float_player_age_lower"),
+			      const_float("float_player_age_upper"));//30;
+    new.peak_age = 
+	math_rnd(const_float("float_player_peak_age_lower") +
+		 (new.pos == PLAYER_POS_GOALIE) *
+		 const_float("float_player_peak_age_goalie_addition"),
+		 const_float("float_player_peak_age_upper") +
+		 (new.pos == PLAYER_POS_GOALIE) *
+		 const_float("float_player_peak_age_goalie_addition"));//30;
 
-new.peak_region = 2;
-/* 	math_gauss_dist(const_float("float_player_peak_region_lower"), */
-/* 			const_float("float_player_peak_region_upper")); */
+new.peak_region = 
+	math_gauss_dist(const_float("float_player_peak_region_lower"),
+			const_float("float_player_peak_region_upper"));//2;
 
-    new.talent = 85;/* CLAMP(average_talent * skill_factor, 0,  */
-/* 		       const_float("float_player_max_skill")); */
+    new.talent = CLAMP(average_talent * skill_factor, 0,
+		       const_float("float_player_max_skill"));//85;
 
     new.skill = player_skill_from_talent(&new);
     new.cskill = new.skill;
