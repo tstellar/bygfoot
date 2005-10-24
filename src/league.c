@@ -125,10 +125,9 @@ league_cup_get_index_from_clid(gint clid)
 	    }
 
     if(index == -1)
-    {
-	g_warning("league_cup_get_index_from_clid: couldn't find league or cup with id %d\n", clid);
-	main_exit_program(EXIT_POINTER_NOT_FOUND, NULL);
-    }
+	main_exit_program(EXIT_POINTER_NOT_FOUND, 
+			  "league_cup_get_index_from_clid: couldn't find league or cup with id %d\n", 
+			  clid);
 
     return index;
 }
@@ -145,9 +144,9 @@ league_from_clid(gint clid)
 	if(lig(i).id == clid)
 	    return &lig(i);
 
-    g_warning("league_from_clid: didn't find league with id %d\n", clid);
-
-    main_exit_program(EXIT_POINTER_NOT_FOUND, NULL);
+    main_exit_program(EXIT_POINTER_NOT_FOUND, 
+		      "league_from_clid: didn't find league with id %d\n", 
+		      clid);
 
     return NULL;
 }
@@ -337,9 +336,8 @@ league_index_from_sid(const gchar *sid)
 	if(strcmp(lig(i).sid, sid) == 0)
 	    return i;
 
-    g_warning("league_index_from_sid: no index found for sid '%s'.\n", sid);
-
-    main_exit_program(EXIT_INT_NOT_FOUND, NULL);
+    main_exit_program(EXIT_INT_NOT_FOUND, 
+		      "league_index_from_sid: no index found for sid '%s'.\n", sid);
 
     return -1;
 }
@@ -693,11 +691,9 @@ league_team_movements_assign_dest(GArray *team_movements, gint idx,
     league_cur_size[dest_idx]++;
 
     if(league_cur_size[dest_idx] > league_size[dest_idx])
-    {
-	g_warning("league_team_movements_assign_dest: no room in league %s for team %s.",
-		  lig(dest_idx).name, tmove->tm.name);
-	main_exit_program(EXIT_PROM_REL, NULL);
-    }
+	main_exit_program(EXIT_PROM_REL, 
+			  "league_team_movements_assign_dest: no room in league %s for team %s.",
+			  lig(dest_idx).name, tmove->tm.name);
 
     tmove->dest_assigned = TRUE;
 
@@ -717,11 +713,9 @@ league_team_movements_assign_dest(GArray *team_movements, gint idx,
 			g_array_remove_index(tmove->dest_idcs, j);
 
 		if(tmove->dest_idcs->len == 0)
-		{
-		    g_warning("league_team_movements_assign_dest: no destinations left for team %s.",
-			      tmove->tm.name);
-		    main_exit_program(EXIT_PROM_REL, NULL);
-		}
+		    main_exit_program(EXIT_PROM_REL, 
+				      "league_team_movements_assign_dest: no destinations left for team %s.",
+				      tmove->tm.name);
 	    }
 	}
 

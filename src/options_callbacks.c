@@ -47,16 +47,16 @@ on_button_options_ok_clicked           (GtkButton       *button,
 
     if(save_global)
     {
-	sprintf(buf, "%s/bygfoot.conf", conf_dir);
+	sprintf(buf, "%s%sbygfoot.conf", conf_dir, G_DIR_SEPARATOR_S);
 	file_save_opt_file(buf, &options);
     }
 
     if(save_user)
     {
 	if(strcmp(current_user.name, "NONAME") == 0)
-	    sprintf(buf, "%s/bygfoot_user.conf", conf_dir);
+	    sprintf(buf, "%s%sbygfoot_user.conf", conf_dir, G_DIR_SEPARATOR_S);
 	else
-	    sprintf(buf, "%s/bygfoot_%s.conf", conf_dir, current_user.name);
+	    sprintf(buf, "%s%sbygfoot_%s.conf", conf_dir, G_DIR_SEPARATOR_S, current_user.name);
 
 	file_save_opt_file(buf, &current_user.options);
     }

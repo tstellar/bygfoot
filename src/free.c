@@ -23,6 +23,7 @@
 
 #include "free.h"
 #include "lg_commentary_struct.h"
+#include "strategy_struct.h"
 #include "transfer.h"
 #include "user.h"
 #include "variables.h"
@@ -37,6 +38,7 @@ free_memory(void)
     free_variables();
     free_names(FALSE);
     free_transfer_list();
+    free_strategies();
     free_country(FALSE);
     free_users(FALSE);
     free_live_game(&live_game_temp);
@@ -500,7 +502,7 @@ free_variables(void)
     free_option_list(&settings, FALSE);
     free_option_list(&constants, FALSE);
     free_option_list(&constants_app, FALSE);
-    free_option_list(&lg_tokens, FALSE);
+    free_option_list(&tokens, FALSE);
 
     free_gchar_ptr(save_file);
 
@@ -666,4 +668,39 @@ free_names(gboolean reset)
 
     if(reset)
 	name_lists = g_array_new(FALSE, FALSE, sizeof(NameList));
+}
+
+/** Free the array with the CPU strategies. */
+void
+free_strategies(void)
+{
+    gint i, j;
+
+    for(i=0;i<strategies->len;i++)
+    {
+	g_free(g_array_index(strategies, Strategy, i).sid);
+	g_free(g_array_index(strategies, Strategy, i).desc);
+
+	for(j=0;j<g_array_index(strategies, Strategy, i).prematch->len;j++)
+	{
+	    g_free(
+		g_array_index(
+		    g_array_index(
+			strategies, Strategy, i).prematch, StrategyPrematch, j).condition);
+	    g_array_free(
+		g_array_index(
+		    g_array_index(strategies, Strategy, i).prematch, StrategyPrematch, j).formations, 
+		TRUE);
+	}
+	g_array_free(g_array_index(strategies, Strategy, i).prematch, TRUE);
+
+	for(j=0;j<g_array_index(strategies, Strategy, i).match_action->len;j++)
+	    g_free(
+		g_array_index(
+		    g_array_index(
+			strategies, Strategy, i).match_action, StrategyMatchAction, j).condition);
+	g_array_free(g_array_index(strategies, Strategy, i).match_action, TRUE);
+    }
+
+    g_array_free(strategies, TRUE);
 }

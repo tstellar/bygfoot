@@ -669,7 +669,12 @@ treeview_helper_get_attributes_from_scout(gint scout)
 	attribute.on_off[PLAYER_LIST_ATTRIBUTE_AGE] = TRUE;
     if(scout < 1)
 	attribute.on_off[PLAYER_LIST_ATTRIBUTE_GAMES] =
-	    attribute.on_off[PLAYER_LIST_ATTRIBUTE_GOALS] = TRUE;
+	    attribute.on_off[PLAYER_LIST_ATTRIBUTE_GOALS] = 
+	    attribute.on_off[PLAYER_LIST_ATTRIBUTE_STATUS] = 
+	    /*d*/
+	    attribute.on_off[PLAYER_LIST_ATTRIBUTE_FITNESS] = 
+	    attribute.on_off[PLAYER_LIST_ATTRIBUTE_CSKILL] = 
+	    attribute.on_off[PLAYER_LIST_ATTRIBUTE_CPOS] = TRUE;
 
     return attribute;
 }
@@ -1058,7 +1063,10 @@ treeview_helper_player_to_cell(GtkTreeViewColumn *col,
 	    treeview_helper_player_contract_to_cell(renderer, buf, pl->contract);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_TEAM:
-	    sprintf(buf, "%s", pl->team->name);
+	    if(debug < 50)
+		sprintf(buf, "%s", pl->team->name);
+	    else
+		sprintf(buf, "%s (%s)", pl->team->name, pl->team->strategy_sid);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_LEAGUE_CUP:
 	    strcpy(buf, league_cup_get_name_string(pl->team->clid));

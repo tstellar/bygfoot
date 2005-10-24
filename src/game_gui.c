@@ -176,6 +176,20 @@ game_gui_live_game_set_hscale(const LiveGameUnit *unit, GtkHScale *hscale)
     gtk_widget_modify_bg(GTK_WIDGET(hscale), GTK_STATE_NORMAL, &color);
 }
 
+/** Show the player list of the opposing team in the live game
+    window. */
+void
+game_gui_live_game_show_opponent_players(void)
+{
+    GtkTreeView *treeview = 
+	GTK_TREE_VIEW(lookup_widget(window.live, "treeview_lg_opponent"));
+    gint idx = (team_is_user(((LiveGame*)statp)->fix->teams[0]) == -1);
+    const Team *tm = ((LiveGame*)statp)->fix->teams[!idx];
+    gint scout = user_from_team(((LiveGame*)statp)->fix->teams[idx])->scout;
+
+    treeview_show_player_list_team(treeview, tm, scout);
+}
+
 /** Look up the widgets in the main window. */
 void
 game_gui_get_radio_items(GtkWidget **style, GtkWidget **scout,

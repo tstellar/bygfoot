@@ -272,10 +272,9 @@ user_from_team(const Team *tm)
 	if(usr(i).tm == tm)
 	    return &usr(i);
 
-    g_warning("User going with team %s not found.\n",
-	      tm->name);
-
-    main_exit_program(EXIT_POINTER_NOT_FOUND, NULL);
+    main_exit_program(EXIT_POINTER_NOT_FOUND, 
+		      "User going with team %s not found.\n",
+		      tm->name);
 
     return NULL;
 }

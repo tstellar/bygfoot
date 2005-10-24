@@ -111,6 +111,7 @@ enum ExitCodes
     EXIT_LOAD_TEAM_DEF, /**< Error loading a team definition file. */
     EXIT_DEF_SORT, /**< Error sorting a team after loading the definition. */
     EXIT_PROM_REL, /**< Error when executing the promotion/relegation stuff. */
+    EXIT_STRATEGY_ERROR, /**< Error related to CPU strategies. */
     EXIT_END
 };
 

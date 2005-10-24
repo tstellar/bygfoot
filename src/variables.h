@@ -54,8 +54,8 @@ OptionList constants;
 OptionList constants_app;
 /** Array with internal settings. */
 OptionList settings;
-/* Array holding live game tokens. */
-OptionList lg_tokens;
+/* Array holding string replacement tokens. */
+OptionList tokens;
 
 /** The array containing the live game commentary strings. */
 GArray *lg_commentary[LIVE_GAME_EVENT_END];
@@ -67,6 +67,9 @@ GArray *transfer_list;
 /** Array with season statistics (updated at the
     end of each season. */
 GArray *season_stats;
+
+/** Array of available CPU strategies. */
+GArray *strategies;
 
 /** Some counters we use. */
 gint counters[COUNT_END];

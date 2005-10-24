@@ -1145,8 +1145,12 @@ treeview_create_single_table(GtkListStore *ls, const Table *table, gint number)
 		colour_bg, colour_fg, i + 1);
 
 	treeview_helper_get_table_element_colours(table, i, &colour_fg, &colour_bg, TRUE);
-	sprintf(buf[1], "<span background='%s' foreground='%s'>%s</span>", 
-		colour_bg, colour_fg, elem->team->name);
+	if(debug < 50)
+	    sprintf(buf[1], "<span background='%s' foreground='%s'>%s</span>", 
+		    colour_bg, colour_fg, elem->team->name);
+	else
+	    sprintf(buf[1], "<span background='%s' foreground='%s'>%s (%s)</span>", 
+		    colour_bg, colour_fg, elem->team->name, elem->team->strategy_sid);
 
 	gtk_list_store_set(ls, &iter, 1, buf[0], 3, buf[1], -1);
 
@@ -1568,6 +1572,8 @@ treeview_create_next_opponent(void)
     if(opp == NULL)
 	return NULL;
     
+    ls = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_STRING);
+
     if(fix->clid < ID_CUP_START)
 	strcpy(buf, league_cup_get_name_string(fix->clid));
     else

@@ -55,22 +55,22 @@ player_new(Team *tm, gfloat average_talent, gboolean new_id)
     new.id = (new_id) ? player_id_new : -1;
     new.pos = player_get_position_from_structure(tm->structure, tm->players->len);
     new.cpos = new.pos;
-    new.age = math_gauss_dist(const_float("float_player_age_lower"),
-			      const_float("float_player_age_upper"));
-    new.peak_age =
-	math_rnd(const_float("float_player_peak_age_lower") +
-		 (new.pos == PLAYER_POS_GOALIE) * 
-		 const_float("float_player_peak_age_goalie_addition"),
-		 const_float("float_player_peak_age_upper") +
-		 (new.pos == PLAYER_POS_GOALIE) * 
-		 const_float("float_player_peak_age_goalie_addition"));
+    new.age = 30;/* math_gauss_dist(const_float("float_player_age_lower"), */
+/* 			      const_float("float_player_age_upper")); */
+    new.peak_age = 30;
+/* 	math_rnd(const_float("float_player_peak_age_lower") + */
+/* 		 (new.pos == PLAYER_POS_GOALIE) *  */
+/* 		 const_float("float_player_peak_age_goalie_addition"), */
+/* 		 const_float("float_player_peak_age_upper") + */
+/* 		 (new.pos == PLAYER_POS_GOALIE) *  */
+/* 		 const_float("float_player_peak_age_goalie_addition")); */
 
-    new.peak_region = 
-	math_gauss_dist(const_float("float_player_peak_region_lower"),
-			const_float("float_player_peak_region_upper"));
+new.peak_region = 2;
+/* 	math_gauss_dist(const_float("float_player_peak_region_lower"), */
+/* 			const_float("float_player_peak_region_upper")); */
 
-    new.talent = CLAMP(average_talent * skill_factor, 0, 
-		       const_float("float_player_max_skill"));
+    new.talent = 85;/* CLAMP(average_talent * skill_factor, 0,  */
+/* 		       const_float("float_player_max_skill")); */
 
     new.skill = player_skill_from_talent(&new);
     new.cskill = new.skill;
@@ -312,9 +312,9 @@ player_id_index(const Team *tm, gint player_id)
 	if(g_array_index(tm->players, Player, i).id == player_id)
 	    return i;
     
-    g_warning("player_id_index: didn't find player with id %d of team %s\n", player_id, tm->name);
-    
-    main_exit_program(EXIT_INT_NOT_FOUND, NULL);
+    main_exit_program(EXIT_INT_NOT_FOUND, 
+		      "player_id_index: didn't find player with id %d of team %s\n", 
+		      player_id, tm->name);
 
     return -1;
 }
@@ -327,14 +327,9 @@ Player*
 player_of_idx_team(const Team *tm, gint number)
 {
     if(tm->players->len <= number)
-    {
-	g_warning("player_of_idx_team: Player list of team %s too short for number %d.\n",
-		  tm->name, number);
-
-	main_exit_program(EXIT_POINTER_NOT_FOUND, NULL);
-
-	return NULL;
-    }
+	main_exit_program(EXIT_POINTER_NOT_FOUND, 
+			  "player_of_idx_team: Player list of team %s too short for number %d.\n",
+			  tm->name, number);
 
     return &g_array_index(tm->players, Player, number);
 }
@@ -353,9 +348,9 @@ player_of_id_team(const Team *tm, gint id)
 	if(g_array_index(tm->players, Player, i).id == id)
 	    return &g_array_index(tm->players, Player, i);
     
-    g_warning("player_of_id_team: didn't find player with id %d of team %s\n", id, tm->name);
-    
-    main_exit_program(EXIT_POINTER_NOT_FOUND, NULL);
+    main_exit_program(EXIT_POINTER_NOT_FOUND, 
+		      "player_of_id_team: didn't find player with id %d of team %s\n", 
+		      id, tm->name);
 
     return NULL;
 }
@@ -587,13 +582,11 @@ player_move(Team *tm1, gint player_number, Team *tm2, gint insert_at)
 void
 player_swap(Team *tm1, gint player_number1, Team *tm2, gint player_number2)
 {
-    gint clid = -1;
     gint move = (tm1 == tm2 && player_number1 < player_number2) ? 
 	-1 : 1;
 
     if(stat0 == STATUS_LIVE_GAME_PAUSE)
     {
-	clid = usr(stat2).live_game.fix->clid;
 	if((player_number1 < 11 && player_is_banned(player_of_idx_team(tm1, player_number1)) > 0 &&
 	    player_of_idx_team(tm1, player_number1)->participation) ||
 	   (player_number2 < 11 && player_is_banned(player_of_idx_team(tm2, player_number2)) > 0 &&
@@ -699,10 +692,12 @@ player_is_banned(const Player *pl)
 gfloat
 player_get_game_skill(const Player *pl, gboolean skill)
 {
-    if(skill)
-	return pl->skill * powf(pl->fitness, const_float("float_player_fitness_exponent"));
-
-    return pl->cskill * powf(pl->fitness, const_float("float_player_fitness_exponent"));
+    return (skill) ? pl->skill * 
+	powf(pl->fitness, const_float("float_player_fitness_exponent")) * 
+	(1 + (gfloat)pl->streak * const_float("float_player_streak_influence_skill")) :
+	pl->cskill * 
+	powf(pl->fitness, const_float("float_player_fitness_exponent")) * 
+	(1 + (gfloat)pl->streak * const_float("float_player_streak_influence_skill"));
 }
 
 /** Decrease a player's fitness during a match.
@@ -861,10 +856,8 @@ player_games_goals_get(const Player *pl, gint clid, gint type)
 	    else if(type == PLAYER_VALUE_SHOTS)
 		return_value = g_array_index(pl->games_goals, PlayerGamesGoals, i).shots;
 	    else
-	    {
-		g_warning("player_games_goals_get: unknown type %d.\n", type);
-		main_exit_program(EXIT_INT_NOT_FOUND, NULL);
-	    }
+		main_exit_program(EXIT_INT_NOT_FOUND, 
+				  "player_games_goals_get: unknown type %d.\n", type);
 	}
 
     return return_value;
@@ -974,7 +967,8 @@ player_update_injury(Player *pl)
 {
     gint i, j;
     gfloat rndom;
-    gint physio = user_from_team(pl->team)->physio;
+    gint physio = (query_player_is_cpu(pl)) ? 
+	QUALITY_GOOD : user_from_team(pl->team)->physio;
     gfloat injury_decrease_probs[4][3] =
 	{{const_float("float_player_injury_recovery_best0"),
 	  const_float("float_player_injury_recovery_best1"),
@@ -1084,10 +1078,18 @@ player_update_streak(Player *pl)
     }
 }
 
-/** Update a player in a user team (age, skill etc.). */
+/** Update a player in a team (age, skill etc.). */
 void
 player_update_weekly(Player *pl)
 {
+    if(pl->health > 0)
+	player_update_injury(pl);
+    else
+	player_update_streak(pl);
+
+    if(query_player_is_cpu(pl))
+	return;
+    
     pl->age += 0.0192;
 
     if(debug < 50)
@@ -1106,11 +1108,6 @@ player_update_weekly(Player *pl)
 	player_remove_contract(pl);
 
     player_update_skill(pl);
-
-    if(pl->health > 0)
-	player_update_injury(pl);
-    else
-	player_update_streak(pl);
 }
 
 /** Remove a player from a user team after the contract expired.
@@ -1135,7 +1132,7 @@ player_remove_from_team(Team *tm, gint idx)
 }
 
 /** Make some player updates after a match
-    for user players.
+    for players.
     @param pl The player we update.
     @param clid The fixture clid. */
 void
@@ -1197,10 +1194,9 @@ player_replace_by_new(Player *pl, gboolean free_player)
     g_array_insert_val(tm->players, idx, new);
 }
 
-/** Update players in user teams.
+/** Update players in teams.
     @param tm The team of the player.
     @param idx The index in the players array. */
-/*d maybe argument player pointer?*/
 void
 player_update_week_roundly(Team *tm, gint idx)
 {
@@ -1384,10 +1380,6 @@ player_move_from_ya(gint idx)
 void
 player_streak_add_to_prob(Player *pl, gfloat add)
 {
-    /** No streaks for CPU players (yet). */
-    if(team_is_user(pl->team) == -1)
-	return;
-
     pl->streak_prob += add;
     pl->streak_prob = CLAMP(pl->streak_prob, -1, 1);
 }

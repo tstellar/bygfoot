@@ -56,10 +56,10 @@ xml_load_users(const gchar *dirname, const gchar *basename)
 
     for(i=0;i<users->len;i++)
     {
-	sprintf(buf, "%s/%s___user_%02d_options", dirname, basename, i);
+	sprintf(buf, "%s%s%s___user_%02d_options", dirname, G_DIR_SEPARATOR_S, basename, i);
 	file_load_opt_file(buf, &usr(i).options);
 
-	sprintf(buf, "%s/%s___user_%02d_live_game.xml", dirname, basename, i);
+	sprintf(buf, "%s%s%s___user_%02d_live_game.xml", dirname, G_DIR_SEPARATOR_S, basename, i);
 	xml_loadsave_live_game_read(buf, &usr(i).live_game);
     }
 }
@@ -71,7 +71,7 @@ xml_load_league(const gchar *dirname, const gchar *basename)
     League new = league_new(FALSE);
     gchar *prefix = g_strndup(basename, strlen(basename) - 4);
 
-    sprintf(buf, "%s/%s", dirname, basename);
+    sprintf(buf, "%s%s%s", dirname, G_DIR_SEPARATOR_S, basename);
     xml_loadsave_league_read(buf, &new);
 
     g_array_append_val(ligs, new);
@@ -85,16 +85,16 @@ xml_load_league(const gchar *dirname, const gchar *basename)
     if(debug > 80)
 	printf("%s\n", buf);
 
-    sprintf(buf, "%s/%s_teams.xml", dirname, prefix);
+    sprintf(buf, "%s%s%s_teams.xml", dirname, G_DIR_SEPARATOR_S, prefix);
     xml_loadsave_teams_read(buf, lig(ligs->len - 1).teams);
 
-    sprintf(buf, "%s/%s_fixtures.xml", dirname, prefix);
+    sprintf(buf, "%s%s%s_fixtures.xml", dirname, G_DIR_SEPARATOR_S, prefix);
     xml_loadsave_fixtures_read(buf, lig(ligs->len - 1).fixtures);
 
-    sprintf(buf, "%s/%s_table.xml", dirname, prefix);
+    sprintf(buf, "%s%s%s_table.xml", dirname, G_DIR_SEPARATOR_S, prefix);
     xml_loadsave_table_read(buf, &lig(ligs->len - 1).table);
 
-    sprintf(buf, "%s/%s_stat.xml", dirname, prefix);
+    sprintf(buf, "%s%s%s_stat.xml", dirname, G_DIR_SEPARATOR_S, prefix);
     xml_loadsave_league_stat_read(buf, &lig(ligs->len - 1).stats);
 
     g_free(prefix);
@@ -106,7 +106,7 @@ xml_load_cup(Cup *cup, const gchar *dirname, const gchar *basename)
     gchar buf[SMALL];
     gchar *prefix = g_strndup(basename, strlen(basename) - 4);
 
-    sprintf(buf, "%s/%s", dirname, basename);
+    sprintf(buf, "%s%s%s", dirname, G_DIR_SEPARATOR_S, basename);
     xml_loadsave_cup_read(buf, cup);
 
     sprintf(buf, _("Loading cup: %s"),
@@ -118,7 +118,7 @@ xml_load_cup(Cup *cup, const gchar *dirname, const gchar *basename)
     if(debug > 80)
 	printf("%s\n", buf);
 
-    sprintf(buf, "%s/%s_fixtures.xml", dirname, prefix);
+    sprintf(buf, "%s%s%s_fixtures.xml", dirname, G_DIR_SEPARATOR_S, prefix);
     xml_loadsave_fixtures_read(buf, cup->fixtures);
 
     g_free(prefix);
@@ -129,7 +129,7 @@ xml_load_transfers(const gchar *dirname, const gchar *basename)
 {
     gchar buf[SMALL];
 
-    sprintf(buf, "%s/%s___transfer_list.xml", dirname, basename);
+    sprintf(buf, "%s%s%s___transfer_list.xml", dirname, G_DIR_SEPARATOR_S, basename);
 
     free_g_array(&transfer_list);
     transfer_list = g_array_new(FALSE, FALSE, sizeof(Transfer));

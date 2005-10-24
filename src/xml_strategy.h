@@ -21,72 +21,38 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#ifndef START_END_H
-#define START_END_H
+#ifndef XML_STRATEGY_H
+#define XML_STRATEGY_H
 
 #include "bygfoot.h"
+#include "variables.h"
 
 void
-start_new_game(void);
+xml_strategy_read_start_element (GMarkupParseContext *context,
+				 const gchar         *element_name,
+				 const gchar        **attribute_names,
+				 const gchar        **attribute_values,
+				 gpointer             user_data,
+				 GError             **error);
 
 void
-start_new_season(void);
+xml_strategy_read_end_element    (GMarkupParseContext *context,
+				  const gchar         *element_name,
+				  gpointer             user_data,
+				  GError             **error);
 
 void
-start_write_variables(void);
+xml_strategy_read_text         (GMarkupParseContext *context,
+				const gchar         *text,
+				gsize                text_len,  
+				gpointer             user_data,
+				GError             **error);
 
 void
-start_generate_league_teams(void);
+xml_strategy_read(const gchar *filename);
 
 void
-end_week_round(void);
-
-void
-end_week_round_results(void);
-
-void
-end_week_round_sort_tables(void);
-
-void
-end_week_round_update_fixtures(void);
-
-void
-start_week_round(void);
-
-void
-start_week(void);
-
-void
-start_week_update_teams(void);
-
-void
-start_week_round_update_teams(void);
-
-void
-start_week_update_user_finances(void);
-
-void
-start_week_update_users(void);
-
-void
-end_week_round_autosave(void);
-
-gboolean
-query_start_end_season_end(void);
-
-void
-start_new_season_league_changes(void);
-
-void
-end_week(void);
-
-void
-end_season(void);
-
-void
-start_week_add_cups(void);
-
-void
-end_week_hide_cups(void);
+xml_strategy_load_strategies(void);
 
 #endif
+

@@ -150,7 +150,7 @@ xml_loadsave_misc_read(const gchar *dirname, const gchar *basename)
     guint length;
     GError *error = NULL;
 
-    sprintf(file, "%s/%s___misc.xml", dirname, basename);
+    sprintf(file, "%s%s%s___misc.xml", dirname, G_DIR_SEPARATOR_S, basename);
 
     context = 
 	g_markup_parse_context_new(&parser, 0, NULL, NULL);

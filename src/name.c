@@ -123,10 +123,8 @@ name_get_list_from_sid(const gchar *sid)
     xml_name_read(sid, &new);
 
     if(new.sid == NULL)
-    {
-	g_warning("name_get_list_from_sid: namelist with sid %s not found", sid);
-	main_exit_program(EXIT_POINTER_NOT_FOUND, NULL);
-    }
+	main_exit_program(EXIT_POINTER_NOT_FOUND, 
+			  "name_get_list_from_sid: namelist with sid %s not found", sid);
     else
     {
 	name_shorten_list(&new);

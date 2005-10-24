@@ -102,7 +102,7 @@ void
 team_change_attribute_with_message(Team * tm, gint attribute, gint new_value);
 
 void
-team_update_user_team_weekly(Team *tm);
+team_update_team_weekly(Team *tm);
 
 void
 team_update_cpu_team(Team *tm, gboolean reset_fitness);
@@ -123,7 +123,7 @@ void
 team_update_cpu_new_players(Team *tm);
 
 void
-team_update_user_team_week_roundly(Team *tm);
+team_update_team_week_roundly(Team *tm);
 
 Team*
 team_get_new(const Team *tm, gboolean fire);
@@ -166,5 +166,8 @@ team_complete_def_sort(Team *tm);
 
 gint
 team_get_table_clid(const Team *tm);
+
+const Team*
+team_get_next_opponent(const Team *tm);
 
 #endif

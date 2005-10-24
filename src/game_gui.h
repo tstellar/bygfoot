@@ -42,6 +42,9 @@ void
 game_gui_live_game_set_hscale(const LiveGameUnit *unit, GtkHScale *hscale);
 
 void
+game_gui_live_game_show_opponent_players(void);
+
+void
 game_gui_set_main_window_header(void);
 
 void

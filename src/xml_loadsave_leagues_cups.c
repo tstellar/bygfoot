@@ -118,7 +118,7 @@ xml_loadsave_leagues_cups_read(const gchar *dirname, const gchar *prefix)
     guint length;
     GError *error = NULL;
 
-    sprintf(file, "%s/%s___leagues_cups.xml", dirname, prefix);
+    sprintf(file, "%s%s%s___leagues_cups.xml", dirname, G_DIR_SEPARATOR_S, prefix);
 
     context = 
 	g_markup_parse_context_new(&parser, 0, NULL, NULL);

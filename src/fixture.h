@@ -151,4 +151,7 @@ fixture_get_week_list(gint week_number, gint week_round_number);
 GPtrArray*
 fixture_get_season_results(void);
 
+gint
+fixture_get_goals_to_win(const Fixture *fix, const Team *tm);
+
 #endif

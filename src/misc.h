@@ -65,7 +65,8 @@ gboolean
 query_misc_integer_is_in_g_array(gint item, GArray *array);
 
 void
-misc_string_replace_token(gchar *string, const gchar *token, const gchar *replacement);
+misc_string_replace_token(gchar *string, const gchar *token, 
+			  const gchar *replacement);
 
 void
 misc_replace_sums(gchar *string);
@@ -96,5 +97,25 @@ misc_copy_ptr_array(const GPtrArray *array);
 
 void
 misc_string_assign(gchar **string, const gchar *contents);
+
+void
+misc_string_choose_random(gchar *string);
+
+void
+misc_string_replace_expressions(gchar *string);
+
+void
+misc_string_replace_tokens(gchar *string, GPtrArray **token_rep);
+
+gboolean
+misc_parse_condition(const gchar *condition, GPtrArray **token_rep);
+
+void
+misc_token_add(GPtrArray **token_rep, gint token_idx, 
+	       gchar *replacement);
+
+void
+misc_token_remove(GPtrArray **token_rep, gint idx);
+
 
 #endif

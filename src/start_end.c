@@ -59,13 +59,13 @@ WeekFunc end_week_round_funcs[] =
 /** Array of functions called when a week round
     is started. */
 WeekFunc start_week_round_funcs[] =
-{start_week_round_update_user_teams , NULL};
+{start_week_round_update_teams , NULL};
 
 /** Array of functions called when a week
     is started. */
 WeekFunc start_week_funcs[] = 
 {start_week_add_cups, start_week_update_users,
- start_week_update_user_teams, start_week_update_user_finances,
+ start_week_update_teams, start_week_update_user_finances,
  youth_academy_update_weekly, transfer_update, NULL};
 
 WeekFunc end_week_funcs[] = {stat_update_leagues, end_week_hide_cups, NULL};
@@ -75,6 +75,7 @@ void
 start_new_game(void)
 {
     start_write_variables();
+
     start_generate_league_teams();
     start_new_season();
 }
@@ -185,7 +186,7 @@ start_generate_league_teams(void)
 
     if(ligs->len == 0)
 	main_exit_program(EXIT_NO_LEAGUES,
-			  "start_generate_league_teams: no leagues found. there must be at least one league in the game.\n");
+			  "start_generate_league_teams: no leagues found. There must be at least one league in the game.\n");
 
     for(i=0;i<ligs->len;i++)
 	for(j=0;j<lig(i).teams->len;j++)
@@ -461,23 +462,33 @@ start_week_add_cups(void)
     CPU teams get updated at the end of their matches
     (to avoid cup teams getting updated too often). */
 void
-start_week_update_user_teams(void)
+start_week_update_teams(void)
 {
-    gint i;
+    gint i, j;
     
-    for(i=0;i<users->len;i++)
-	team_update_user_team_weekly(usr(i).tm);
+    for(i=0;i<ligs->len;i++)
+	for(j=0;j<lig(i).teams->len;j++)
+	    team_update_team_weekly(&g_array_index(lig(i).teams, Team, j));
+
+    for(i=0;i<cps->len;i++)
+	for(j=0;j<cp(i).teams->len;j++)
+	    team_update_team_weekly((Team*)g_ptr_array_index(cp(i).teams, j));
 }
 
 /** Do some things at the beginning of each new round for
     the user teams. */
 void
-start_week_round_update_user_teams(void)
+start_week_round_update_teams(void)
 {
-    gint i;
+    gint i, j;
     
-    for(i=0;i<users->len;i++)
-	team_update_user_team_week_roundly(usr(i).tm);
+    for(i=0;i<ligs->len;i++)
+	for(j=0;j<lig(i).teams->len;j++)
+	    team_update_team_week_roundly(&g_array_index(lig(i).teams, Team, j));
+
+    for(i=0;i<cps->len;i++)
+	for(j=0;j<cp(i).teams->len;j++)
+	    team_update_team_week_roundly((Team*)g_ptr_array_index(cp(i).teams, j));
 }
 
 /** Deduce wages etc. */

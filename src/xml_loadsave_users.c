@@ -305,7 +305,7 @@ xml_loadsave_users_read(const gchar *dirname, const gchar *basename)
     GError *error = NULL;
     gchar file[SMALL];
 
-    sprintf(file, "%s/%s___users.xml", dirname, basename);
+    sprintf(file, "%s%s%s___users.xml", dirname, G_DIR_SEPARATOR_S, basename);
 
     context = 
 	g_markup_parse_context_new(&parser, 0, NULL, NULL);

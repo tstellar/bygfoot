@@ -33,9 +33,8 @@ void
 main_init_variables(void);
 
 void
-main_exit_program(gint exit_code, gchar *exit_message)
-__attribute__ ((noreturn));
-
+main_exit_program(gint exit_code, gchar *format, ...)
+__attribute__ ((noreturn, format (printf, 2, 3)));
 
 void
 main_parse_cl_arguments(gint *argc, gchar ***argv);

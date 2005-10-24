@@ -148,7 +148,7 @@ xml_loadsave_season_stats_text         (GMarkupParseContext *context,
     else if(state == TAG_LEAGUE_STAT_FILE)
     {
 	new_league_stat = stat_league_new(-1);
-	sprintf(buf2, "%s/%s", dirname2, buf);
+	sprintf(buf2, "%s%s%s", dirname2, G_DIR_SEPARATOR_S, buf);
 	xml_loadsave_league_stat_read(buf2, &new_league_stat);
 	g_array_append_val(new_season_stat.league_stats, new_league_stat);
     }
@@ -169,7 +169,7 @@ xml_loadsave_season_stats_read(const gchar *dirname, const gchar *prefix)
     context = 
 	g_markup_parse_context_new(&parser, 0, NULL, NULL);
 
-    sprintf(filename, "%s/%s___season_stats.xml", dirname, prefix);
+    sprintf(filename, "%s%s%s___season_stats.xml", dirname, G_DIR_SEPARATOR_S, prefix);
 
     if(!g_file_get_contents(filename, &file_contents, &length, &error))
     {

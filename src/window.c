@@ -115,7 +115,8 @@ window_show_startup(void)
     country_files = file_get_country_files();
 
     if(country_files->len == 0)
-	main_exit_program(EXIT_NO_COUNTRY_FILES, "Didn't find any country definition files in the support directories.");
+	main_exit_program(EXIT_NO_COUNTRY_FILES, 
+			  "Didn't find any country definition files in the support directories.");
 
     gtk_cell_layout_clear(GTK_CELL_LAYOUT(combo_country));
 
@@ -547,8 +548,8 @@ window_create(gint window_type)
     switch(window_type)
     {
 	default:
-	    g_warning("window_create: unknown window type %d\n", window_type);
-	    main_exit_program(EXIT_INT_NOT_FOUND, NULL);
+	    main_exit_program(EXIT_INT_NOT_FOUND, 
+			      "window_create: unknown window type %d\n", window_type);
 	    break;
 	case WINDOW_MAIN:
 	    if(window.main == NULL)

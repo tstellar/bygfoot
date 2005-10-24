@@ -55,7 +55,6 @@ file_add_support_directory_recursive                   (const gchar     *directo
     add_pixmap_directory(directory);
     support_directories = g_list_prepend (support_directories,
 					  g_strdup (directory));
-
     while(TRUE)
     {
 	file = g_dir_read_name(newdir);
@@ -139,7 +138,6 @@ file_my_system(const gchar *command)
 gboolean
 file_my_fopen(const gchar *filename, gchar *bits, FILE **fil, gboolean abort_program)
 {
-    gchar buf[SMALL];
     gchar *support_file = file_find_support_file(filename, FALSE);
     *fil = fopen(filename, bits);
 
@@ -156,9 +154,7 @@ file_my_fopen(const gchar *filename, gchar *bits, FILE **fil, gboolean abort_pro
 	return TRUE;
     }
 
-    sprintf(buf, "Could not open file '%s' in mode '%s'.\n", filename, bits);
-
-    g_warning(buf);
+    g_warning("Could not open file '%s' in mode '%s'.\n", filename, bits);
 
     if(abort_program)
 	main_exit_program(EXIT_FILE_OPEN_FAILED, NULL);
@@ -481,10 +477,10 @@ file_load_conf_files(void)
 
     file_load_opt_file(opt_str("string_opt_constants_file"), &constants);
     file_load_opt_file(opt_str("string_opt_appearance_file"), &constants_app);
-    file_load_opt_file("bygfoot_lg_tokens", &lg_tokens);
+    file_load_opt_file("bygfoot_tokens", &tokens);
 
-    for(i=0;i<lg_tokens.list->len;i++)
-	g_array_index(lg_tokens.list, Option, i).value = i;
+    for(i=0;i<tokens.list->len;i++)
+	g_array_index(tokens.list, Option, i).value = i;
 }
 
 /** Load a user-specific conf file.

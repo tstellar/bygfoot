@@ -488,6 +488,9 @@ create_window_live (void)
   GtkWidget *scrolledwindow11;
   GtkWidget *treeview_stats;
   GtkWidget *label81;
+  GtkWidget *scrolledwindow13;
+  GtkWidget *treeview_lg_opponent;
+  GtkWidget *label118;
   GtkWidget *hbox48;
   GtkWidget *button_pause;
   GtkWidget *alignment16;
@@ -610,6 +613,19 @@ create_window_live (void)
   label81 = gtk_label_new (_("Statistics"));
   gtk_widget_show (label81);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 1), label81);
+
+  scrolledwindow13 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrolledwindow13);
+  gtk_container_add (GTK_CONTAINER (notebook1), scrolledwindow13);
+  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow13), GTK_SHADOW_IN);
+
+  treeview_lg_opponent = gtk_tree_view_new ();
+  gtk_widget_show (treeview_lg_opponent);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow13), treeview_lg_opponent);
+
+  label118 = gtk_label_new (_("Opponent player list"));
+  gtk_widget_show (label118);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 2), label118);
 
   hbox48 = gtk_hbox_new (FALSE, 4);
   gtk_widget_show (hbox48);
@@ -775,6 +791,9 @@ create_window_live (void)
   GLADE_HOOKUP_OBJECT (window_live, scrolledwindow11, "scrolledwindow11");
   GLADE_HOOKUP_OBJECT (window_live, treeview_stats, "treeview_stats");
   GLADE_HOOKUP_OBJECT (window_live, label81, "label81");
+  GLADE_HOOKUP_OBJECT (window_live, scrolledwindow13, "scrolledwindow13");
+  GLADE_HOOKUP_OBJECT (window_live, treeview_lg_opponent, "treeview_lg_opponent");
+  GLADE_HOOKUP_OBJECT (window_live, label118, "label118");
   GLADE_HOOKUP_OBJECT (window_live, hbox48, "hbox48");
   GLADE_HOOKUP_OBJECT (window_live, button_pause, "button_pause");
   GLADE_HOOKUP_OBJECT (window_live, alignment16, "alignment16");

@@ -35,6 +35,7 @@
 #include "misc_callback_func.h"
 #include "option.h"
 #include "player.h"
+#include "strategy.h"
 #include "support.h"
 #include "team.h"
 #include "treeview.h"
@@ -122,11 +123,12 @@ live_game_initialize(Fixture *fix)
 	    gtk_window_set_title(GTK_WINDOW(window.live),
 				 league_cup_get_name_string(((LiveGame*)statp)->fix->clid));
 	window_live_set_up();
+	game_gui_live_game_show_opponent_players();
     }
 
     game_initialize(fix);
     
-    if(fixture_user_team_involved(match->fix) != -1 || stat5 < -1000)
+    if(fixture_user_team_involved(fix) != -1 || stat5 < -1000)
 	lg_commentary_initialize(fix);
 }
 
@@ -503,8 +505,6 @@ live_game_event_injury(gint team, gint player, gboolean create_new)
 					last_unit.event.player)),
 		    last_unit.event.player);
 
-		match->subs_left[last_unit.event.team]--;
-
 		if(old_structure != tm[last_unit.event.team]->structure)
 		    live_game_event_team_change(last_unit.event.team,
 						LIVE_GAME_EVENT_STRUCTURE_CHANGE);
@@ -701,9 +701,6 @@ live_game_event_general(gboolean create_new)
        debug > 130)
 	printf("\t\tlive_game_event_general\n");
 
-/*     if(team_is_user(tm0) == -1 || team_is_user(tm1) == -1) */
-/* 	game_check_cpu_strategy(match); */
-
     if(create_new)
     {
 	new.minute = live_game_get_minute();
@@ -761,11 +758,9 @@ live_game_event_general(gboolean create_new)
 	    new.area = LIVE_GAME_UNIT_AREA_MIDFIELD;
 	}
 	else
-	{
-	    g_warning("live_game_event_general: unknown event type: %d\n",
-		      last_unit.event.type);
-	    main_exit_program(EXIT_INT_NOT_FOUND, NULL);
-	}
+	    main_exit_program(EXIT_INT_NOT_FOUND, 
+			      "live_game_event_general: unknown event type: %d\n",
+			      last_unit.event.type);
 	
 	g_array_append_val(unis, new);
     }
@@ -773,6 +768,13 @@ live_game_event_general(gboolean create_new)
     live_game_event_general_get_players();
 
     live_game_finish_unit();
+
+    /** First, check whether CPU strategy changes are made. */
+    if(team_is_user(tm0) == -1)
+	strategy_live_game_check(match, 0);
+
+    if(team_is_user(tm1) == -1)
+	strategy_live_game_check(match, 1);
 }
 
 /** Fill in the players values in a general unit. */
@@ -914,10 +916,7 @@ live_game_event_send_off(gint team, gint player, gboolean second_yellow)
 					    &to_substitute, &substitute);
 
 	    if(to_substitute != -1)
-	    {
 		live_game_event_substitution(team, substitute, to_substitute);
-		match->subs_left[team]--;
-	    }
 	    else
 	    {
 		tm[team]->structure = team_find_appropriate_structure(tm[team]);
@@ -957,10 +956,23 @@ live_game_event_substitution(gint team_number, gint sub_in, gint sub_out)
 
     if(player_of_id_team(tm[team_number], sub_in)->cskill > 0)
     {
+	match->subs_left[team_number]--;
+
+	player_streak_add_to_prob(
+	    player_of_id_team(tm[team_number], sub_in),
+	    const_float("float_player_streak_add_sub_out"));
+	
+	player_streak_add_to_prob(
+	    player_of_id_team(tm[team_number], sub_in),
+	    const_float("float_player_streak_add_sub_in"));	
+
 	player_games_goals_set(player_of_id_team(tm[team_number], sub_in),
 			       match->fix->clid, PLAYER_VALUE_GAMES, 1);
 	player_of_id_team(tm[team_number], sub_in)->career[PLAYER_VALUE_GAMES]++;
 	player_of_id_team(tm[team_number], sub_in)->participation = TRUE;
+
+	if(show)
+	    game_gui_live_game_show_opponent_players();
     }
 
     g_array_append_val(unis, new);
@@ -1251,10 +1263,8 @@ live_game_get_minutes_remaining(const LiveGameUnit *unit)
     
     if(unit->time == LIVE_GAME_UNIT_TIME_EXTRA_TIME)
 	return_value = 120 - current_min;
-    else if(unit->time == LIVE_GAME_UNIT_TIME_SECOND_HALF)
+    else
 	return_value = 90 - current_min;
-    else if(unit->time == LIVE_GAME_UNIT_TIME_FIRST_HALF)
-	return_value = 45 - current_min;
 
     return return_value;
 }
@@ -1393,14 +1403,13 @@ live_game_finish_unit(void)
 	       unit->event.player,
 	       unit->event.player2);
 
-    if(unit->minute != -1 && unit->time != LIVE_GAME_UNIT_TIME_PENALTIES &&
-       fixture_user_team_involved(match->fix) != -1)
+    if(unit->minute != -1 && unit->time != LIVE_GAME_UNIT_TIME_PENALTIES)
     {
-	if(debug < 50)
-	    game_decrease_fitness(match->fix);
+	game_decrease_fitness(match->fix);
 	game_get_values(match->fix, match->team_values,
 			match->home_advantage);
-	if(stat2 == cur_user && show &&
+	if(fixture_user_team_involved(match->fix) != -1 &&
+	   stat2 == cur_user && show &&
 	   unit->minute % opt_int("int_opt_live_game_player_list_refresh") == 0)
 	    treeview_show_user_player_list();
     }
@@ -1513,10 +1522,7 @@ live_game_resume(void)
 	for(j=0;j<3;j++)
 	{
 	    if(subs_in[j] != -1)
-	    {
-		usr(stat2).live_game.subs_left[i]--;
 		live_game_event_substitution(i, subs_in[j], subs_out[j]);
-	    }
 	}
 
 	if(tm[i]->structure != usr(stat2).live_game.team_state[i].structure)
@@ -1635,11 +1641,9 @@ live_game_event_get_verbosity(gint event_type)
     else if(event_type == LIVE_GAME_EVENT_GENERAL)
 	return_value = 6;
     else
-    {
-	g_warning("live_game_event_get_verbosity: unknown event type %d \n",
-		  event_type);
-	main_exit_program(EXIT_INT_NOT_FOUND, NULL);
-    }
+	main_exit_program(EXIT_INT_NOT_FOUND, 
+			  "live_game_event_get_verbosity: unknown event type %d \n",
+			  event_type);
 
     return return_value;
 }

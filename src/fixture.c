@@ -105,10 +105,10 @@ fixture_update(Cup *cup)
 
     if(round + 1 > cup->rounds->len - 1)
     {
-	g_warning("fixture_update: round index %d too high for round array (%d) in cup %s\n",
-		  round + 1, cup->rounds->len - 1, cup->name);
 	g_ptr_array_free(teams, TRUE);
-	main_exit_program(EXIT_CUP_ROUND_ERROR, NULL);
+	main_exit_program(EXIT_CUP_ROUND_ERROR, 
+			  "fixture_update: round index %d too high for round array (%d) in cup %s\n",
+			  round + 1, cup->rounds->len - 1, cup->name);
     }
 
     new_round = &g_array_index(cup->rounds, CupRound, round + 1);
@@ -309,10 +309,9 @@ fixture_write_cup_round_robin(Cup *cup, gint cup_round, GPtrArray *teams)
     TableElement new_table_element;
 
     if(teams->len < number_of_groups)
-    {
-	g_warning("fixture_write_cup_round_robin: cup %s round %d: number of teams (%d) less than number of groups (%d)\n", cup->name, cup_round, teams->len, number_of_groups);
-	main_exit_program(EXIT_FIXTURE_WRITE_ERROR, NULL);
-    }
+	main_exit_program(EXIT_FIXTURE_WRITE_ERROR, 
+			  "fixture_write_cup_round_robin: cup %s round %d: number of teams (%d) less than number of groups (%d)\n", 
+			  cup->name, cup_round, teams->len, number_of_groups);
 
     if(cupround->randomise_teams || opt_int("int_opt_randomise_teams"))
 	g_ptr_array_sort_with_data(teams, (GCompareDataFunc)team_compare_func,
@@ -421,11 +420,10 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round, GPtrArray *teams,
     first_fixture = fixtures->len;
 
     if(first_week < 1)
-    {	
-	g_warning("fixture_write_round_robin: first week of %s is not positive (%d).\nPlease lower the week gap or set a later last week.\n", league_cup_get_name_string(clid), first_week);
-	main_exit_program(EXIT_FIXTURE_WRITE_ERROR, NULL);
-    }
-
+	main_exit_program(EXIT_FIXTURE_WRITE_ERROR, 
+			  "fixture_write_round_robin: first week of %s is not positive (%d).\nPlease lower the week gap or set a later last week.\n", 
+			  league_cup_get_name_string(clid), first_week);
+    
     if(len % 2 != 0)
     {
 	team_temp = team_new(FALSE);
@@ -1120,9 +1118,8 @@ fixture_from_id(gint id)
 	    if(g_array_index(cp(i).fixtures, Fixture, j).id == id)
 		return &g_array_index(cp(i).fixtures, Fixture, j);
 
-    g_warning("fixture_from_id: fixture with id %d found \n", id);
-
-    main_exit_program(EXIT_POINTER_NOT_FOUND, NULL);
+    main_exit_program(EXIT_POINTER_NOT_FOUND, 
+		      "fixture_from_id: fixture with id %d found \n", id);
 
     return NULL;
 }
@@ -1271,4 +1268,70 @@ fixture_get_season_results(void)
 			       GINT_TO_POINTER(FIXTURE_COMPARE_DATE));
 
     return results;
+}
+
+/** Calculate how many goals the team has to score to
+    win the match (also taking into account second leg stuff). */
+gint
+fixture_get_goals_to_win(const Fixture *fix, const Team *tm)
+{
+    const Fixture *first_leg = NULL;
+    gint idx = (tm == fix->teams[1]), return_value = -100;
+    gint res[2] = {math_sum_int_array(fix->result[0], 2),
+		   math_sum_int_array(fix->result[1], 2)};
+    gint tmp;
+
+    if(!query_fixture_team_involved(fix, tm->id))
+    {
+	g_warning("fixture_get_goals_to_win: team %s doesn't participate in fixture given (%s)\n",
+		  tm->name, league_cup_get_name_string(fix->clid));
+	return -100;
+    }
+
+    if(!fix->second_leg)
+	return res[!idx] - res[idx] + 1;
+
+    first_leg = fixture_get_first_leg(fix);
+
+    if(res[0] + first_leg->result[1][0] ==
+       res[1] + first_leg->result[0][0])
+    {
+	if(idx == 0)
+	    return_value = (res[1] >= first_leg->result[1][0]) ?
+		1 : 0;
+	else
+	    return_value = (res[1] > first_leg->result[1][0]) ?
+		0 : 1;
+    }
+    else if(res[0] + first_leg->result[1][0] >
+       res[1] + first_leg->result[0][0])
+    {
+	tmp = res[1];
+	while(res[0] + first_leg->result[1][0] >
+	      res[1] + first_leg->result[0][0])
+	    res[1]++;
+
+	if(idx == 0)
+	    return_value = (res[1] >= first_leg->result[1][0]) ?
+		tmp - res[1] + 1 : tmp - res[1];
+	else
+	    return_value = (res[1] > first_leg->result[1][0]) ?
+		res[1] - tmp : res[1] - tmp + 1;
+    }
+    else
+    {
+	tmp = res[0];
+	while(res[0] + first_leg->result[1][0] <
+	      res[1] + first_leg->result[0][0])
+	    res[0]++;
+
+	if(idx == 0)
+	    return_value = (res[1] >= first_leg->result[1][0]) ?
+		res[0] - tmp + 1 : res[0] - tmp;
+	else
+	    return_value = (res[1] > first_leg->result[1][0]) ?
+		tmp - res[0] : tmp - res[0] + 1;
+    }
+
+    return return_value;
 }

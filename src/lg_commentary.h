@@ -41,15 +41,6 @@ lg_commentary_check_commentary(const LGCommentary *commentary, gchar *dest);
 gboolean
 query_lg_commentary_is_repetition(gint id);
 
-gboolean
-lg_commentary_replace_tokens(gchar *commentary_text);
-
-void
-lg_commentary_replace_expressions(gchar *commentary_text);
-
-gboolean
-lg_commentary_parse_condition(const gchar *condition);
-
 void
 lg_commentary_get_order(const GArray *commentaries, gint *order);
 

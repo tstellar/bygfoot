@@ -38,7 +38,10 @@ enum PlayerCompareAttrib
     PLAYER_COMPARE_ATTRIBUTE_END
 };
 
+/** Whether or not a player is a youth according to his age. */
 #define query_player_is_youth(pl) (pl->age <= const_float("float_player_age_lower"))
+/** Whether the player belongs to a cpu team. */
+#define query_player_is_cpu(pl) (team_is_user(pl->team) == -1)
 
 /** Reset the streak counter. */
 #define player_streak_reset_count(pl) pl->streak_count = -math_rnd((gfloat)const_int("int_player_streak_lock_length_lower"), (gfloat)const_int("int_player_streak_lock_length_upper"))

@@ -27,6 +27,7 @@
  */
 
 #include <time.h>
+#include <glib/gprintf.h>
 
 #include "file.h"
 #include "free.h"
@@ -40,9 +41,11 @@
 #include "name_struct.h"
 #include "option.h"
 #include "stat_struct.h"
+#include "strategy_struct.h"
 #include "transfer_struct.h"
 #include "variables.h"
 #include "window.h"
+#include "xml_strategy.h"
 
 /** Whether the last save gets loaded at startup
     (cl switch -l). */
@@ -131,13 +134,14 @@ main_init_variables(void)
     transfer_list = g_array_new(FALSE, FALSE, sizeof(Transfer));
     season_stats = g_array_new(FALSE, FALSE, sizeof(SeasonStat));
     name_lists = g_array_new(FALSE, FALSE, sizeof(NameList));
+    strategies = g_array_new(FALSE, FALSE, sizeof(Strategy));
 
     save_file = NULL;
 
     constants_app.list = settings.list =
-	constants.list = options.list = lg_tokens.list = NULL;
+	constants.list = options.list = tokens.list = NULL;
     constants_app.datalist = settings.datalist =
-	constants.datalist = options.datalist = lg_tokens.datalist = NULL;
+	constants.datalist = options.datalist = tokens.datalist = NULL;
 
     popups_active = 0;
     selected_row = -1;
@@ -148,6 +152,7 @@ main_init_variables(void)
 	lg_commentary[i] = g_array_new(FALSE, FALSE, sizeof(LGCommentary));
 
     file_load_conf_files();
+    xml_strategy_load_strategies();
 
     language_set(language_get_code_index(opt_str("string_opt_language_code")) + 1);
 
@@ -248,15 +253,23 @@ main (gint argc, gchar *argv[])
     @param exit_message The message we print.
     @return The exit code of the program. */
 void
-main_exit_program(gint exit_code, gchar *exit_message)
+main_exit_program(gint exit_code, gchar *format, ...)
 {
+    gchar text[SMALL];
+    va_list args;
+     
+    if(format != NULL)
+    {
+	va_start (args, format);
+	g_vsprintf(text, format, args);
+	va_end (args);
+	g_warning(text);
+    }
+
     if(gtk_main_level() > 0)
 	gtk_main_quit();
 
     free_memory();
-    
-    if(exit_message != NULL)
-	g_warning(exit_message);
 
     if(!os_is_unix)
     {

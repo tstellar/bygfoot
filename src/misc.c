@@ -26,6 +26,8 @@
 #include "main.h"
 #include "maths.h"
 #include "misc.h"
+#include "option.h"
+#include "variables.h"
 
 /**
    Print the contents of a GError (if it was set).
@@ -37,14 +39,10 @@
 void
 misc_print_error(GError **error, gboolean abort_program)
 {
-    gchar buf[SMALL];
-
     if(*error == NULL)
 	return;
     
-    sprintf(buf, "%s", (*error)->message);
-
-    g_warning("error message: %s\n", buf);
+    g_warning("error message: %s\n", (*error)->message);
     g_error_free(*error);
     *error = NULL;
 
@@ -486,4 +484,178 @@ misc_string_assign(gchar **string, const gchar *contents)
 	g_free(*string);
 
     *string = g_strdup(contents);
+}
+
+/** Choose one of strings separated with '|' */
+void
+misc_string_choose_random(gchar *string)
+{
+   const gchar STR_SEP = '|';
+   gint i = 0;
+   gint count = 1;
+   const gchar* start;
+   
+   for (i = 0; string[i]; i++)
+      count += (string[i] == STR_SEP);
+
+   if (count == 1)
+      return;
+      
+   count = math_rndi(0, count - 1) + 1;
+   start = string;
+   for (i = 0; string[i]; i++)
+      if (string[i] == STR_SEP)
+      {
+         count--;
+	 if (count == 1)
+	    start = string + i + 1;
+	 else if (!count)
+	 {
+	    string[i] = '\0';
+	    break;
+         }
+      }
+
+   strcpy(string, start);
+}
+
+/** Replace simple arithmetic expressions like "1 + 2"
+    and comparisons like "3 < 4" with the appropriate result. */
+void
+misc_string_replace_expressions(gchar *string)
+{
+    gint i, j, last_idx = 0;
+    gint value = -1;
+    gchar buf[SMALL], buf2[SMALL];
+
+    if(debug > 100)
+	printf("misc_string_replace_expressions: #%s#\n",
+	       string);
+
+    if(!g_strrstr(string, "["))
+	return;
+
+    strcpy(buf, string);
+    strcpy(string, "");
+
+    for(i=strlen(buf) - 1; i>=0; i--)
+	if(buf[i] == '[')
+	{
+	    strncpy(buf2, buf, i);
+	    buf2[i] = '\0';
+	    strcat(string, buf2);
+
+	    for(j=i + 1;j<strlen(buf);j++)
+	    {
+		if(buf[j] == ']')
+		{
+		    strncpy(buf2, buf + i + 1, j - i - 1);
+		    buf2[j - i - 1] = '\0';
+		    if (g_strrstr(buf2, "|"))
+			misc_string_choose_random(buf2);
+		    else 
+		    {
+		      if(g_strrstr(buf2, "<") ||
+		         g_strrstr(buf2, ">") ||
+   		         g_strrstr(buf2, "=") ||
+		         g_strrstr(buf2, " G ") ||
+		         g_strrstr(buf2, " L ") ||
+		         g_strrstr(buf2, " GE ") ||
+		         g_strrstr(buf2, " LE "))
+			    misc_parse(buf2, &value);
+		       else
+		  	  misc_parse_expression(buf2, &value);
+  		       sprintf(buf2, "%d", value);
+		    }
+		    strcat(string, buf2);
+		    value = -1;
+
+		    last_idx = j + 1;
+
+		    break;
+		}
+	    }
+
+	    break;
+	}
+
+    if(last_idx < strlen(buf))
+    {
+	strncpy(buf2, buf + last_idx, strlen(buf) - last_idx);
+	buf2[strlen(buf) - last_idx] = '\0';
+	strcat(string, buf2);
+    }
+}
+
+/** Try to replace all special tokens in the string and write the result to dest.
+    @param string The string containing tokens.
+    @param token_rep The arrays with the tokens and replacements.
+    @return TRUE if we could replace all tokens and the commentary condition
+    was fulfilled, FALSE otherwise. */
+void
+misc_string_replace_tokens(gchar *string, GPtrArray **token_rep)
+{
+    gint i;
+
+    for(i=0;i<token_rep[0]->len;i++)
+	if(g_strrstr(string, 
+		     (gchar*)g_ptr_array_index(token_rep[0], i)))
+	    misc_string_replace_token(string, 
+				      (gchar*)g_ptr_array_index(token_rep[0], i),
+				      (gchar*)g_ptr_array_index(token_rep[1], i));
+}
+
+/** Find out whether the conditions in the string are fulfilled. */
+gboolean
+misc_parse_condition(const gchar *condition, GPtrArray **token_rep)
+{
+    gboolean return_value = FALSE;
+    gchar buf[SMALL], buf2[SMALL];
+    
+    strcpy(buf, condition);
+
+    do
+    {
+	strcpy(buf2, buf);
+	misc_string_replace_tokens(buf, token_rep);
+	misc_string_replace_expressions(buf);
+    }
+    while(strcmp(buf2, buf) != 0);
+
+    if(g_strrstr(buf, "_") != NULL)
+	return FALSE;
+
+    misc_parse(buf, &return_value);
+
+    return return_value;
+}
+
+/** Add a replacement rule to the token array.
+    The string should be in allocated as it will
+    get freed later. */
+void
+misc_token_add(GPtrArray **token_rep, gint token_idx, 
+	       gchar *replacement)
+{
+    g_ptr_array_add(token_rep[0], 
+		    (gpointer)g_strdup(g_array_index(tokens.list, Option, token_idx).string_value));
+    g_ptr_array_add(token_rep[1], (gpointer)replacement);
+}
+
+/** Remove the replacement rule given by the index. */
+void
+misc_token_remove(GPtrArray **token_rep, gint idx)
+{
+    gint i;
+
+    for(i=token_rep[0]->len - 1; i >= 0; i--)
+	if(strcmp((gchar*)g_ptr_array_index(token_rep[0], i),
+		  g_array_index(tokens.list, Option, idx).string_value) == 0)
+	{
+	    g_free(g_ptr_array_index(token_rep[0], i));
+	    g_free(g_ptr_array_index(token_rep[1], i));
+	    
+	    g_ptr_array_remove_index_fast(token_rep[0], i);
+	    g_ptr_array_remove_index_fast(token_rep[1], i);
+	}    
 }

@@ -240,7 +240,7 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
 	new_round.byes = int_value;
     else if(state == TAG_CUP_ROUND_TEAMS_FILE)
     {
-	sprintf(buf2, "%s/%s", dirname, buf);
+	sprintf(buf2, "%s%s%s", dirname, G_DIR_SEPARATOR_S, buf);
 	xml_loadsave_teams_read(buf2, new_round.teams);
 
 	for(i=0;i<new_round.teams->len;i++)
@@ -253,7 +253,7 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
     {
 	new_table = table_new();
 
-	sprintf(buf2, "%s/%s", dirname, buf);
+	sprintf(buf2, "%s%s%s", dirname, G_DIR_SEPARATOR_S, buf);
 	xml_loadsave_table_read(buf2, &new_table);
 	
 	g_array_append_val(new_round.tables, new_table);

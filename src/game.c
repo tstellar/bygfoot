@@ -67,14 +67,15 @@ game_get_values(const Fixture *fix, gfloat team_values[][GAME_TEAM_VALUE_END],
 	    (1 + const_float("float_player_boost_skill_effect") * tm[i]->boost);
 
 	for(j=1;j<11;j++)
-	{
-	    team_values[i][GAME_TEAM_VALUE_ATTACK] +=
-		game_get_player_contribution(player_of_idx_team(tm[i], j), GAME_TEAM_VALUE_ATTACK);
-	    team_values[i][GAME_TEAM_VALUE_MIDFIELD] +=
-		game_get_player_contribution(player_of_idx_team(tm[i], j), GAME_TEAM_VALUE_MIDFIELD);
-	    team_values[i][GAME_TEAM_VALUE_DEFEND] +=
-		game_get_player_contribution(player_of_idx_team(tm[i], j), GAME_TEAM_VALUE_DEFEND);
-	}
+	    if(player_of_idx_team(tm[i], j)->cskill > 0)
+	    {
+		team_values[i][GAME_TEAM_VALUE_ATTACK] +=
+		    game_get_player_contribution(player_of_idx_team(tm[i], j), GAME_TEAM_VALUE_ATTACK);
+		team_values[i][GAME_TEAM_VALUE_MIDFIELD] +=
+		    game_get_player_contribution(player_of_idx_team(tm[i], j), GAME_TEAM_VALUE_MIDFIELD);
+		team_values[i][GAME_TEAM_VALUE_DEFEND] +=
+		    game_get_player_contribution(player_of_idx_team(tm[i], j), GAME_TEAM_VALUE_DEFEND);		
+	    }
 
 	for(j=GAME_TEAM_VALUE_DEFEND;j<GAME_TEAM_VALUE_DEFEND + 3;j++)
 	    team_values[i][j] *= 
@@ -109,8 +110,7 @@ game_get_player_contribution(const Player *pl, gint type)
 	  const_float("float_player_team_weight_forward_attack")}};
 
     return player_get_game_skill(pl, FALSE) *
-	player_weights[pl->cpos - 1][type - GAME_TEAM_VALUE_DEFEND] *
-	(1 + (gfloat)pl->streak * const_float("float_player_streak_influence_skill"));
+	player_weights[pl->cpos - 1][type - GAME_TEAM_VALUE_DEFEND];
 }
 
 /** Return a random attacking or defending player
@@ -153,10 +153,8 @@ game_get_player(const Team *tm, gint player_type,
     else if(player_type == GAME_PLAYER_TYPE_PENALTY)
 	return game_get_penalty_taker(tm, last_penalty);
     else
-    {
-	g_warning("game_get_player: unknown player type %d\n", player_type);
-	main_exit_program(EXIT_INT_NOT_FOUND, NULL);
-    }
+	main_exit_program(EXIT_INT_NOT_FOUND, 
+			  "game_get_player: unknown player type %d\n", player_type);
 
     game_get_player_probs(tm->players, probs, weights, skills);
 
@@ -682,13 +680,6 @@ game_substitute_player(Team *tm, gint player_number)
 
     substitute = ((Player*)g_ptr_array_index(substitutes, 0))->id;
 
-    player_streak_add_to_prob(
-	&g_array_index(tm->players, Player, player_number),
-	const_float("float_player_streak_add_sub_out"));
-
-    player_streak_add_to_prob((Player*)g_ptr_array_index(substitutes, 0),
-			      const_float("float_player_streak_add_sub_in"));
-
     player_swap(tm, player_number, tm, player_id_index(tm, substitute));
 
     g_ptr_array_free(substitutes, TRUE);
@@ -845,9 +836,10 @@ game_decrease_fitness(const Fixture *fix)
 
     for(i=0;i<2;i++)
     {
-	for(j=0;j<11;j++)
-	    if(player_of_idx_team(fix->teams[i], j)->cskill > 0)
-		player_decrease_fitness(player_of_idx_team(fix->teams[i], j));
+	if(debug < 50 || team_is_user(fix->teams[i]) == -1)
+	    for(j=0;j<11;j++)
+		if(player_of_idx_team(fix->teams[i], j)->cskill > 0)
+		    player_decrease_fitness(player_of_idx_team(fix->teams[i], j));
     }
 }
 
@@ -1007,13 +999,13 @@ game_post_match(Fixture *fix)
 	table_update(fix);
     
     for(i=0;i<2;i++)
-    {
-	if(team_is_user(fix->teams[i]) == -1)
-	    team_update_cpu_team(fix->teams[i],
-				 (fixture_user_team_involved(fix) != -1));
-	else
+/*     { */
+/* 	if(team_is_user(fix->teams[i]) == -1) */
+/* 	    team_update_cpu_team(fix->teams[i], */
+/* 				 (fixture_user_team_involved(fix) != -1)); */
+/* 	else */
 	    team_update_post_match(fix->teams[i], fix);
-    }
+/*     } */
 
     if(fix->clid < ID_CUP_START)
 	return;

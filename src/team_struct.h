@@ -75,6 +75,8 @@ typedef struct
 	player names from. */
     gchar *names_file;
     gchar *def_file;
+    /** The sid of the strategy if it's a CPU team. */
+    gchar *strategy_sid;
 
     gint clid, /**< Numerical id of the league or cup the team belongs to. */
 	id, /**< Id of the team. */

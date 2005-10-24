@@ -132,7 +132,7 @@ xml_country_read_end_element    (GMarkupParseContext *context,
 	state = STATE_CUPS;
 
     else if(strcmp(element_name, TAG_COUNTRY) != 0)
-	g_warning("xml_country_read_start_element: unknown tag: %s; I'm in state %d\n",
+	g_warning("xml_country_read_end_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 

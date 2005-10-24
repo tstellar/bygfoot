@@ -129,8 +129,6 @@ xml_team_read_end_element    (GMarkupParseContext *context,
 			      gpointer             user_data,
 			      GError             **error)
 {
-    gchar buf[SMALL];
-
     if(strcmp(element_name, TAG_TEAM_NAME) == 0 ||
        strcmp(element_name, TAG_STADIUM_NAME) == 0 ||
        strcmp(element_name, TAG_SYMBOL) == 0 ||
@@ -145,9 +143,9 @@ xml_team_read_end_element    (GMarkupParseContext *context,
 	    if(team->players->len == const_int("int_team_cpu_players"))
 	    {
 		free_player(&new_player);
-		sprintf(buf, "xml_team_read_end_element: too many players in team definition '%s' (only %d allowed).",
-			d_file, const_int("int_team_cpu_players"));
-		main_exit_program(EXIT_LOAD_TEAM_DEF, buf);
+		main_exit_program(EXIT_LOAD_TEAM_DEF, 
+				  "xml_team_read_end_element: too many players in team definition '%s' (only %d allowed).",
+				  d_file, const_int("int_team_cpu_players"));
 	    }
 	    else
 		g_array_append_val(team->players, new_player);
