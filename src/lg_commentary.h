@@ -30,7 +30,7 @@
 #include "live_game_struct.h"
 
 void
-lg_commentary_post_match(void);
+lg_commentary_free_tokens(void);
 
 void
 lg_commentary_initialize(const Fixture *fix);
@@ -57,7 +57,8 @@ void
 lg_commentary_set_stats_tokens(const LiveGameStats *stats);
 
 void
-lg_commentary_generate(const LiveGame *live_game, LiveGameUnit *unit);
+lg_commentary_generate(const LiveGame *live_game, LiveGameUnit *unit, 
+		       const gchar *event_name, gint ev_type);
 
 gchar*
 lg_commentary_get_extra_data(const LiveGameUnit *unit, const Fixture *fix);
@@ -67,5 +68,15 @@ lg_commentary_load_commentary_file_from_option(void);
 
 void
 lg_commentary_load_commentary_file(const gchar *commentary_file, gboolean abort);
+
+void
+lg_commentary_test_load_token_file(const gchar *token_file);
+
+void
+lg_commentary_test(const gchar *commentary_file, const gchar* token_file,
+		   const gchar *event_name, gint number_of_passes);
+
+gint
+lg_commentary_select(const GArray *commentaries, gchar *buf);
 
 #endif

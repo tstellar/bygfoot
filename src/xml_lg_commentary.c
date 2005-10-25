@@ -81,6 +81,81 @@ enum XmlLgCommentaryStates
 gint state, commentary_idx, priority;
 gchar *condition;
 
+/** Return the appropriate enum integer going with the event string. */
+gint
+xml_lg_commentary_event_name_to_int(const gchar *event_string)
+{
+    gint return_value = -1;
+
+    if(strcmp(event_string, EVENT_NAME_GENERAL) == 0)
+	return_value = LIVE_GAME_EVENT_GENERAL;
+    else if(strcmp(event_string, EVENT_NAME_START_MATCH) == 0)
+	return_value = LIVE_GAME_EVENT_START_MATCH;
+    else if(strcmp(event_string, EVENT_NAME_HALF_TIME) == 0)
+	return_value = LIVE_GAME_EVENT_HALF_TIME;
+    else if(strcmp(event_string, EVENT_NAME_EXTRA_TIME) == 0)
+	return_value = LIVE_GAME_EVENT_EXTRA_TIME;
+    else if(strcmp(event_string, EVENT_NAME_END_MATCH) == 0)
+	return_value = LIVE_GAME_EVENT_END_MATCH;
+    else if(strcmp(event_string, EVENT_NAME_LOST_POSSESSION) == 0)
+	return_value = LIVE_GAME_EVENT_LOST_POSSESSION;
+    else if(strcmp(event_string, EVENT_NAME_SCORING_CHANCE) == 0)
+	return_value = LIVE_GAME_EVENT_SCORING_CHANCE;
+    else if(strcmp(event_string, EVENT_NAME_HEADER) == 0)
+	return_value = LIVE_GAME_EVENT_HEADER;
+    else if(strcmp(event_string, EVENT_NAME_PENALTY) == 0)
+	return_value = LIVE_GAME_EVENT_PENALTY;
+    else if(strcmp(event_string, EVENT_NAME_FREE_KICK) == 0)
+	return_value = LIVE_GAME_EVENT_FREE_KICK;
+    else if(strcmp(event_string, EVENT_NAME_GOAL) == 0)
+	return_value = LIVE_GAME_EVENT_GOAL;
+    else if(strcmp(event_string, EVENT_NAME_OWN_GOAL) == 0)
+	return_value = LIVE_GAME_EVENT_OWN_GOAL;
+    else if(strcmp(event_string, EVENT_NAME_POST) == 0)
+	return_value = LIVE_GAME_EVENT_POST;
+    else if(strcmp(event_string, EVENT_NAME_MISS) == 0)
+	return_value = LIVE_GAME_EVENT_MISS;
+    else if(strcmp(event_string, EVENT_NAME_SAVE) == 0)
+	return_value = LIVE_GAME_EVENT_SAVE;
+    else if(strcmp(event_string, EVENT_NAME_CROSS_BAR) == 0)
+	return_value = LIVE_GAME_EVENT_CROSS_BAR;
+    else if(strcmp(event_string, EVENT_NAME_FOUL) == 0)
+	return_value = LIVE_GAME_EVENT_FOUL;
+    else if(strcmp(event_string, EVENT_NAME_FOUL_YELLOW) == 0)
+	return_value = LIVE_GAME_EVENT_FOUL_YELLOW;
+    else if(strcmp(event_string, EVENT_NAME_FOUL_RED) == 0)
+	return_value = LIVE_GAME_EVENT_FOUL_RED;
+    else if(strcmp(event_string, EVENT_NAME_FOUL_RED_INJURY) == 0)
+	return_value = LIVE_GAME_EVENT_FOUL_RED_INJURY;
+    else if(strcmp(event_string, EVENT_NAME_SEND_OFF) == 0)
+	return_value = LIVE_GAME_EVENT_SEND_OFF;
+    else if(strcmp(event_string, EVENT_NAME_INJURY) == 0)
+	return_value = LIVE_GAME_EVENT_INJURY;
+    else if(strcmp(event_string, EVENT_NAME_TEMP_INJURY) == 0)
+	return_value = LIVE_GAME_EVENT_TEMP_INJURY;
+    else if(strcmp(event_string, EVENT_NAME_PENALTIES) == 0)
+	return_value = LIVE_GAME_EVENT_PENALTIES;
+    else if(strcmp(event_string, EVENT_NAME_STADIUM_BREAKDOWN) == 0)
+	return_value = LIVE_GAME_EVENT_STADIUM_BREAKDOWN;
+    else if(strcmp(event_string, EVENT_NAME_STADIUM_RIOTS) == 0)
+	return_value = LIVE_GAME_EVENT_STADIUM_RIOTS;
+    else if(strcmp(event_string, EVENT_NAME_STADIUM_FIRE) == 0)
+	return_value = LIVE_GAME_EVENT_STADIUM_FIRE;
+    else if(strcmp(event_string, EVENT_NAME_SUBSTITUTION) == 0)
+	return_value = LIVE_GAME_EVENT_SUBSTITUTION;
+    else if(strcmp(event_string, EVENT_NAME_STRUCTURE_CHANGE) == 0)
+	return_value = LIVE_GAME_EVENT_STRUCTURE_CHANGE;
+    else if(strcmp(event_string, EVENT_NAME_STYLE_CHANGE) == 0)
+	return_value = LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_DEFEND;
+    else if(strcmp(event_string, EVENT_NAME_BOOST_CHANGE) == 0)
+	return_value = LIVE_GAME_EVENT_BOOST_CHANGE_ANTI;
+    else
+	g_warning("xml_lg_commentary_event_name_to_int: unknown event name %s \n", 
+		  event_string);
+
+    return return_value;
+}
+
 /**
  * The function called by the parser when an opening tag is read.
  * The state variable is changed in this function and
@@ -168,73 +243,8 @@ xml_lg_commentary_read_text         (GMarkupParseContext *context,
     buf[text_len] = '\0';
 
     if(state == STATE_EVENT_NAME)
-    {
-	if(strcmp(buf, EVENT_NAME_GENERAL) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_GENERAL;
-	else if(strcmp(buf, EVENT_NAME_START_MATCH) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_START_MATCH;
-	else if(strcmp(buf, EVENT_NAME_HALF_TIME) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_HALF_TIME;
-	else if(strcmp(buf, EVENT_NAME_EXTRA_TIME) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_EXTRA_TIME;
-	else if(strcmp(buf, EVENT_NAME_END_MATCH) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_END_MATCH;
-	else if(strcmp(buf, EVENT_NAME_LOST_POSSESSION) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_LOST_POSSESSION;
-	else if(strcmp(buf, EVENT_NAME_SCORING_CHANCE) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_SCORING_CHANCE;
-	else if(strcmp(buf, EVENT_NAME_HEADER) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_HEADER;
-	else if(strcmp(buf, EVENT_NAME_PENALTY) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_PENALTY;
-	else if(strcmp(buf, EVENT_NAME_FREE_KICK) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_FREE_KICK;
-	else if(strcmp(buf, EVENT_NAME_GOAL) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_GOAL;
-	else if(strcmp(buf, EVENT_NAME_OWN_GOAL) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_OWN_GOAL;
-	else if(strcmp(buf, EVENT_NAME_POST) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_POST;
-	else if(strcmp(buf, EVENT_NAME_MISS) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_MISS;
-	else if(strcmp(buf, EVENT_NAME_SAVE) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_SAVE;
-	else if(strcmp(buf, EVENT_NAME_CROSS_BAR) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_CROSS_BAR;
-	else if(strcmp(buf, EVENT_NAME_FOUL) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_FOUL;
-	else if(strcmp(buf, EVENT_NAME_FOUL_YELLOW) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_FOUL_YELLOW;
-	else if(strcmp(buf, EVENT_NAME_FOUL_RED) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_FOUL_RED;
-	else if(strcmp(buf, EVENT_NAME_FOUL_RED_INJURY) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_FOUL_RED_INJURY;
-	else if(strcmp(buf, EVENT_NAME_SEND_OFF) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_SEND_OFF;
-	else if(strcmp(buf, EVENT_NAME_INJURY) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_INJURY;
-	else if(strcmp(buf, EVENT_NAME_TEMP_INJURY) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_TEMP_INJURY;
-	else if(strcmp(buf, EVENT_NAME_PENALTIES) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_PENALTIES;
-	else if(strcmp(buf, EVENT_NAME_STADIUM_BREAKDOWN) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_STADIUM_BREAKDOWN;
-	else if(strcmp(buf, EVENT_NAME_STADIUM_RIOTS) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_STADIUM_RIOTS;
-	else if(strcmp(buf, EVENT_NAME_STADIUM_FIRE) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_STADIUM_FIRE;
-	else if(strcmp(buf, EVENT_NAME_SUBSTITUTION) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_SUBSTITUTION;
-	else if(strcmp(buf, EVENT_NAME_STRUCTURE_CHANGE) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_STRUCTURE_CHANGE;
-	else if(strcmp(buf, EVENT_NAME_STYLE_CHANGE) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_DEFEND;
-	else if(strcmp(buf, EVENT_NAME_BOOST_CHANGE) == 0)
-	    commentary_idx = LIVE_GAME_EVENT_BOOST_CHANGE_ANTI;
-	else
-	    g_warning("xml_lg_commentary_read_text: unknown event name %s \n", buf);
-    }
-    else if(state == STATE_EVENT_COMMENTARY)
+	commentary_idx = xml_lg_commentary_event_name_to_int(buf);
+    else if(state == STATE_EVENT_COMMENTARY && commentary_idx != -1)
     {
 	misc_string_assign(&commentary.text, buf);
 	commentary.condition = condition;

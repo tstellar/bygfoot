@@ -91,7 +91,7 @@ live_game_calculate_fixture(Fixture *fix)
     if(last_unit.event.type == LIVE_GAME_EVENT_END_MATCH)
     {
 	if(fixture_user_team_involved(match->fix) != -1 || stat5 < -1000)
-	    lg_commentary_post_match();
+	    lg_commentary_free_tokens();
 	game_post_match(fix);
     }
     else if(stat0 == STATUS_LIVE_GAME_CHANGE)
@@ -1424,7 +1424,7 @@ live_game_finish_unit(void)
 					 match);
 	}
 
-	lg_commentary_generate(match, unit);
+	lg_commentary_generate(match, unit, NULL, -1);
 
 	if(-stat5 - 1000 == unit->event.type)
 	{

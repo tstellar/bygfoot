@@ -138,16 +138,16 @@ file_my_system(const gchar *command)
 gboolean
 file_my_fopen(const gchar *filename, gchar *bits, FILE **fil, gboolean abort_program)
 {
-    gchar *support_file = file_find_support_file(filename, FALSE);
+    gchar *support_file = NULL;
+
     *fil = fopen(filename, bits);
 
     if(*fil != NULL)
-    {
-	g_free(support_file);
 	return TRUE;
-    }
 
+    support_file = file_find_support_file(filename, FALSE);
     *fil = fopen(support_file, bits);
+
     if(*fil != NULL)
     {
 	g_free(support_file);

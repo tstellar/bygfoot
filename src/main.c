@@ -32,7 +32,7 @@
 #include "file.h"
 #include "free.h"
 #include "language.h"
-#include "lg_commentary_struct.h"
+#include "lg_commentary.h"
 #include "live_game.h"
 #include "load_save.h"
 #include "main.h"
@@ -55,8 +55,11 @@ gboolean load_last_save;
 void
 main_parse_cl_arguments(gint *argc, gchar ***argv)
 {
-    gchar *support_dir = NULL, *lang = NULL;
-    gint deb_level = -1;
+    gboolean testcom = FALSE;
+    gchar *support_dir = NULL, *lang = NULL,
+	*testcom_file = NULL, *token_file = NULL, 
+	*event_name = NULL;
+    gint deb_level = -1, number_of_passes = 1;
     GError *error = NULL;
     GOptionContext *context = NULL;
     GOptionEntry entries[] =
@@ -68,6 +71,20 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 	 { "lang", 'L', 0, G_OPTION_ARG_STRING, &lang, _("Language to use (a code like 'de')"), "CODE" },
 
 	 { "last-save", 'l', 0, G_OPTION_ARG_NONE, &load_last_save, _("Load last savegame"), NULL },
+
+	 { "testcom", 't', 0, G_OPTION_ARG_NONE, &testcom, _("Test an XML commmentary file"), NULL },
+
+	 { "commentary-file", 'c', 0, G_OPTION_ARG_STRING, &testcom_file,
+	   _("Commentary file name (may be in a support dir)"), "FILE" },
+
+	 { "token-file", 'T', 0, G_OPTION_ARG_STRING, &token_file,
+	   _("File containing live game tokens"), "FILE" },
+
+	 { "event-name", 'e', 0, G_OPTION_ARG_STRING, &event_name,
+	   _("Commentary event to test; leave out to test all commentaries"), "EVENTNAME" },
+
+	 { "num-passes", 'n', 0, G_OPTION_ARG_INT, &number_of_passes,
+	   _("How many commentaries to generate per event"), "N" },
 
 	 {NULL}};
 
@@ -81,6 +98,12 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
     g_option_context_free(context);
 
     misc_print_error(&error, TRUE);
+
+    if(testcom)
+    {
+	lg_commentary_test(testcom_file, token_file, event_name, number_of_passes);
+	main_exit_program(EXIT_OK, NULL);
+    }
 
     if(support_dir != NULL)
     {

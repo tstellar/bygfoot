@@ -45,71 +45,106 @@ GPtrArray *token_rep[2];
 gboolean repetition;
 
 /** Generate commentary for the live game event in the unit.
-    @param unit The unit we comment.
-    @param fix The fixture being calculated. */
+    @param live_game The live game being calculated.
+    @param unit The live game unit we generate the commentary for.
+    @param event_type The event type we generate the commentary for (needed
+    when commentary is being tested). */
 void
-lg_commentary_generate(const LiveGame *live_game, LiveGameUnit *unit)
+lg_commentary_generate(const LiveGame *live_game, LiveGameUnit *unit, 
+		       const gchar *event_name, gint ev_type)
 {
+    gint i, event_type = -1;
+    gint commentary_idx = -1;
     gchar buf[SMALL];
-    GArray **commentaries = NULL;
-    gint i;
+    GArray *commentaries = NULL;
 
-    lg_commentary_set_basic_tokens(unit, live_game->fix);
-    lg_commentary_set_team_tokens(unit, live_game->fix);
-    lg_commentary_set_player_tokens(unit, live_game->fix);
-    lg_commentary_set_stats_tokens(&live_game->stats);
-
-    if(unit->event.type == LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_DEFEND ||
-       unit->event.type == LIVE_GAME_EVENT_STYLE_CHANGE_DEFEND ||
-       unit->event.type == LIVE_GAME_EVENT_STYLE_CHANGE_BALANCED ||
-       unit->event.type == LIVE_GAME_EVENT_STYLE_CHANGE_ATTACK ||
-       unit->event.type == LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_ATTACK)
-	commentaries = &lg_commentary[LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_DEFEND];
-    else if(unit->event.type == LIVE_GAME_EVENT_BOOST_CHANGE_ANTI ||
-	    unit->event.type == LIVE_GAME_EVENT_BOOST_CHANGE_OFF ||
-	    unit->event.type == LIVE_GAME_EVENT_BOOST_CHANGE_ON)
-	commentaries = &lg_commentary[LIVE_GAME_EVENT_BOOST_CHANGE_ANTI];
+    if(unit != NULL)
+	event_type = unit->event.type;
     else
-	commentaries = &lg_commentary[unit->event.type];
+	event_type = (event_name == NULL) ? ev_type : 
+	    xml_lg_commentary_event_name_to_int(event_name);
 
-    gint order[(*commentaries)->len];
-    lg_commentary_get_order(*commentaries, order);
+    if(event_type == -1)
+	return;
+
+    if(live_game != NULL)
+    {
+	lg_commentary_set_basic_tokens(unit, live_game->fix);
+	lg_commentary_set_team_tokens(unit, live_game->fix);
+	lg_commentary_set_player_tokens(unit, live_game->fix);
+	lg_commentary_set_stats_tokens(&live_game->stats);
+    }
+
+    if(event_type == LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_DEFEND ||
+       event_type == LIVE_GAME_EVENT_STYLE_CHANGE_DEFEND ||
+       event_type == LIVE_GAME_EVENT_STYLE_CHANGE_BALANCED ||
+       event_type == LIVE_GAME_EVENT_STYLE_CHANGE_ATTACK ||
+       event_type == LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_ATTACK)
+	commentaries = lg_commentary[LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_DEFEND];
+    else if(event_type == LIVE_GAME_EVENT_BOOST_CHANGE_ANTI ||
+	    event_type == LIVE_GAME_EVENT_BOOST_CHANGE_OFF ||
+	    event_type == LIVE_GAME_EVENT_BOOST_CHANGE_ON)
+	commentaries = lg_commentary[LIVE_GAME_EVENT_BOOST_CHANGE_ANTI];
+    else
+	commentaries = lg_commentary[event_type];
+
+    commentary_idx = lg_commentary_select(commentaries, buf);
+
+    if(commentary_idx == -1)
+	g_warning("lg_commentary_generate: didn't find fitting commentary for unit type %d \n",
+		  unit->event.type);
+
+    if(live_game != NULL)
+    {
+	unit->event.commentary = g_strdup(buf);
+	unit->event.commentary_id = (commentary_idx == -1) ? 
+	    -1 : g_array_index(commentaries, LGCommentary, commentary_idx).id;
+	
+	for(i=0;i<tokens.list->len;i++)
+	    if(i != option_int("string_token_team_home", &tokens) &&
+	       i != option_int("string_token_team_away", &tokens) &&
+	       i != option_int("string_token_attendance", &tokens) &&
+	       i != option_int("string_token_cup_round_name", &tokens) &&
+	       i != option_int("string_token_league_cup_name", &tokens) &&
+	       i != option_int("string_token_yellow_limit", &tokens) &&
+	       i != option_int("string_token_team_layer0", &tokens) &&
+	       i != option_int("string_token_team_layer1", &tokens))
+		misc_token_remove(token_rep, i);
+    }
+    else
+	printf("%s: \"%s\"\n", event_name, buf);
+}
+
+/** Select a commentary from the array depending on the tokens
+    available and write the text into the buffer. */
+gint
+lg_commentary_select(const GArray *commentaries, gchar *buf)
+{
+    gint i, order[commentaries->len];
+
+    lg_commentary_get_order(commentaries, order);
 
     repetition = FALSE;
 
-    for(i=0;i<(*commentaries)->len;i++)
-	if(lg_commentary_check_commentary(&g_array_index(*commentaries, LGCommentary, order[i]), buf))
+    for(i=0;i<commentaries->len;i++)
+	if(lg_commentary_check_commentary(&g_array_index(commentaries, LGCommentary, order[i]), buf))
 	    break;
 
-    if(i == (*commentaries)->len)
+    if(i == commentaries->len)
     {
 	repetition = TRUE;
-	for(i=0;i<(*commentaries)->len;i++)
-	    if(lg_commentary_check_commentary(&g_array_index(*commentaries, LGCommentary, order[i]), buf))
+	for(i=0;i<commentaries->len;i++)
+	    if(lg_commentary_check_commentary(&g_array_index(commentaries, LGCommentary, order[i]), buf))
 		break;
     }
 
-    if(i == (*commentaries)->len)
+    if(i == commentaries->len)
     {
-	g_warning("lg_commentary_generate: didn't find fitting commentary for unit type %d \n",
-		  unit->event.type);
 	strcpy(buf, "FIXME!");
+	return -1;
     }
 
-    unit->event.commentary = g_strdup(buf);
-    unit->event.commentary_id = (i == (*commentaries)->len) ? 
-	-1 : g_array_index(*commentaries, LGCommentary, order[i]).id;
-
-    for(i=0;i<tokens.list->len;i++)
-	if(i != option_int("string_token_team_home", &tokens) &&
-	   i != option_int("string_token_team_away", &tokens) &&
-	   i != option_int("string_token_attendance", &tokens) &&
-	   i != option_int("string_token_cup_round_name", &tokens) &&
-	   i != option_int("string_token_league_cup_name", &tokens) &&
-	   i != option_int("string_token_yellow_limit", &tokens) &&
-	   i != option_int("string_token_team_layer0", &tokens) &&
-	   i != option_int("string_token_team_layer1", &tokens))
-	    misc_token_remove(token_rep, i);
+    return order[i];
 }
 
 /** Check whether the commentary conditions are fulfilled and whether
@@ -540,7 +575,7 @@ lg_commentary_initialize(const Fixture *fix)
 
 /** Free the memory occupied by the tokens array and the permanent tokens. */
 void
-lg_commentary_post_match(void)
+lg_commentary_free_tokens(void)
 {
     gint i;
 
@@ -602,4 +637,53 @@ lg_commentary_load_commentary_file(const gchar *commentary_file, gboolean abort)
 	else
 	    lg_commentary_load_commentary_file("lg_commentary_en.xml", TRUE);
     }
+}
+
+/** Load a file with tokens for commentary testing purposes. */
+void
+lg_commentary_test_load_token_file(const gchar *token_file)
+{
+    gchar token_name[SMALL], token_value[SMALL];
+    FILE *fil = NULL;
+
+    file_my_fopen(token_file, "r", &fil, TRUE);
+
+    token_rep[0] = g_ptr_array_new();
+    token_rep[1] = g_ptr_array_new();
+
+    while(file_get_next_opt_line(fil, token_name, token_value))
+    {
+	g_ptr_array_add(token_rep[0], (gpointer)g_strdup(token_name));
+	g_ptr_array_add(token_rep[1], (gpointer)g_strdup(token_value));
+    }
+}
+
+/** Test a live game commentary file.
+    @param commentary_file the commentary file to test.
+    @param token_file the file containing the token values to use.
+    @param event_name the event to test (or 'all' to test all events).
+    @param number_of_passes how many commentaries to generate. */
+void
+lg_commentary_test(const gchar *commentary_file, const gchar* token_file,
+		   const gchar *event_name, gint number_of_passes)
+{
+    gint i, j;
+    LiveGame dummy;
+
+    lg_commentary_load_commentary_file(commentary_file, TRUE);
+
+    lg_commentary_test_load_token_file(token_file);
+
+    dummy.units = g_array_new(FALSE, FALSE, sizeof(gint));
+    statp = (gpointer)&dummy;
+
+    if(event_name == NULL)
+	for(i=0;i<LIVE_GAME_EVENT_END;i++)
+	    for(j=0;j<number_of_passes;j++)
+		lg_commentary_generate(NULL, NULL, NULL, i);
+    else
+	for(i=0;i<number_of_passes;i++)
+	    lg_commentary_generate(NULL, NULL, event_name, -1);
+
+    g_array_free(dummy.units, TRUE);
 }

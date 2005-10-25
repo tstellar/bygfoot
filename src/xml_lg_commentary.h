@@ -50,5 +50,8 @@ xml_lg_commentary_read_start_element (GMarkupParseContext *context,
 				      gpointer             user_data,
 				      GError             **error);
 
+gint
+xml_lg_commentary_event_name_to_int(const gchar *event_string);
+
 #endif
 
