@@ -112,7 +112,7 @@ lg_commentary_generate(const LiveGame *live_game, LiveGameUnit *unit,
 		misc_token_remove(token_rep, i);
     }
     else
-	printf("%s: \"%s\"\n", event_name, buf);
+	g_print("%s: \"%s\"\n", event_name, buf);
 }
 
 /** Select a commentary from the array depending on the tokens
@@ -621,12 +621,20 @@ lg_commentary_load_commentary_file_from_option(void)
 void
 lg_commentary_load_commentary_file(const gchar *commentary_file, gboolean abort)
 {
-    gchar *file_name = file_find_support_file(commentary_file, FALSE);
+    gchar *file_name = NULL;
+
+    if(g_file_test(commentary_file, G_FILE_TEST_EXISTS))
+    {
+	xml_lg_commentary_read(commentary_file);
+	return;
+    }
+    
+    file_name = file_find_support_file(commentary_file, FALSE);
 
     if(file_name != NULL)
     {
 	xml_lg_commentary_read(file_name);
-	g_free(file_name);	
+	g_free(file_name);
     }
     else
     {

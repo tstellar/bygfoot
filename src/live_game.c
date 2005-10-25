@@ -1263,8 +1263,10 @@ live_game_get_minutes_remaining(const LiveGameUnit *unit)
     
     if(unit->time == LIVE_GAME_UNIT_TIME_EXTRA_TIME)
 	return_value = 120 - current_min;
-    else
+    else if(unit->time == LIVE_GAME_UNIT_TIME_SECOND_HALF)
 	return_value = 90 - current_min;
+    else if(unit->time == LIVE_GAME_UNIT_TIME_FIRST_HALF)
+	return_value = 45 - current_min;	    
 
     return return_value;
 }

@@ -78,7 +78,7 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 	   _("Commentary file name (may be in a support dir)"), "FILE" },
 
 	 { "token-file", 'T', 0, G_OPTION_ARG_STRING, &token_file,
-	   _("File containing live game tokens"), "FILE" },
+	   _("File containing live game tokens (may be in a support dir)"), "FILE" },
 
 	 { "event-name", 'e', 0, G_OPTION_ARG_STRING, &event_name,
 	   _("Commentary event to test; leave out to test all commentaries"), "EVENTNAME" },
