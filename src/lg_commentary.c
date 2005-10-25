@@ -92,7 +92,7 @@ lg_commentary_generate(const LiveGame *live_game, LiveGameUnit *unit,
 
     if(commentary_idx == -1)
 	g_warning("lg_commentary_generate: didn't find fitting commentary for unit type %d \n",
-		  unit->event.type);
+		  event_type);
 
     if(live_game != NULL)
     {
