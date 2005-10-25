@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strategy>
+  <sid>normal1</sid>
+  <desc>442, balanced, best players play</desc>
+  <priority>1</priority>
+
+  <prematch>
+    <formation>442</formation>
+    <formation>352</formation>
+    <formation>433</formation>
+    <formation>532</formation>
+    <formation>343</formation>
+
+    <lineup min_fitness="75">best</lineup>
+    <prematch_boost>off</prematch_boost>
+    <prematch_style>balanced</prematch_style>
+  </prematch>
+
+  <prematch cond="_LAYERDIFF_ = 1 or _AVSKILLDIFF_ < -8">
+    <formation>532</formation>
+    <formation>442</formation>
+    <formation>352</formation>
+    <prematch_style>defend</prematch_style>
+  </prematch>
+
+  <prematch cond="_LAYERDIFF_ > 1 or _AVSKILLDIFF_ < -14">
+    <formation>532</formation>
+    <formation>442</formation>
+    <formation>352</formation>
+    <prematch_style>all-out-defend</prematch_style>
+  </prematch>
+
+  <prematch cond="_LAYERDIFF_ = -1">
+    <lineup min_fitness="75">fittest</lineup>
+  </prematch>
+
+  <prematch cond="_LAYERDIFF_ < -1">
+    <lineup min_fitness="75">fittest</lineup>
+    <prematch_boost>anti</prematch_boost>
+  </prematch>
+
+  <prematch cond="_GOALSTOWIN_ = 2">
+    <formation>433</formation>
+    <formation>343</formation>
+    <formation>352</formation>
+    <prematch_style>attack</prematch_style>
+  </prematch>
+
+  <prematch cond="_GOALSTOWIN_ > 2">
+    <formation>343</formation>
+    <formation>433</formation>
+    <formation>352</formation>
+    <prematch_boost>on</prematch_boost>
+    <prematch_style>all-out-attack</prematch_style>
+  </prematch>
+
+  <prematch cond="_GOALSTOWIN_ = -2">
+    <formation>532</formation>
+    <formation>442</formation>
+    <formation>352</formation>
+    <prematch_style>defend</prematch_style>
+  </prematch>
+
+  <prematch cond="_GOALSTOWIN_ < -2">
+    <formation>532</formation>
+    <formation>442</formation>
+    <formation>352</formation>
+    <prematch_style>all-out-defend</prematch_style>
+  </prematch>
+  
+<!--   <match_action cond="_SUBSLEFT_ = 2 and _MR_ > 30"> -->
+<!--     <sub> -->
+<!--       <in prop="best">forward</in> -->
+<!--       <out prop="weakest">midfielder</out> -->
+<!--     </sub> -->
+<!--     <style>attack</style> -->
+<!--     <boost>anti</boost> -->
+<!--   </match_action> -->
+
+<!--   <match_action cond="_SUBSLEFT_ = 3 and _MR_ > 43"> -->
+<!--     <sub> -->
+<!--       <in prop="fittest">midfielder</in> -->
+<!--       <out prop="weakest">defender</out> -->
+<!--     </sub> -->
+<!--     <style>defend</style> -->
+<!--     <boost>on</boost> -->
+<!--   </match_action> -->
+
+</strategy>
