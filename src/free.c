@@ -21,6 +21,7 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "bet_struct.h"
 #include "free.h"
 #include "lg_commentary_struct.h"
 #include "strategy_struct.h"
@@ -41,6 +42,7 @@ free_memory(void)
     free_strategies();
     free_country(FALSE);
     free_users(FALSE);
+    free_bets(FALSE);
     free_live_game(&live_game_temp);
     free_lg_commentary(FALSE);
     free_support_dirs();
@@ -155,6 +157,9 @@ free_user(User *user)
     free_mmatches(&user->mmatches, FALSE);
 
     free_player_array(&user->youth_academy.players);
+
+    free_g_array(&user->bets[0]);
+    free_g_array(&user->bets[1]);
 }
 
 /** Free the memorable matches array of the user and the memorable matches
@@ -239,6 +244,8 @@ free_live_game(LiveGame *match)
 
     for(i=0;i<2;i++)
     {
+	free_g_array(&match->action_ids[i]);
+	
 	free_gchar_ptr(match->team_names[i]);
 	for(j=0;j<LIVE_GAME_STAT_ARRAY_END;j++)
 	{
@@ -695,12 +702,32 @@ free_strategies(void)
 	g_array_free(g_array_index(strategies, Strategy, i).prematch, TRUE);
 
 	for(j=0;j<g_array_index(strategies, Strategy, i).match_action->len;j++)
+	{
 	    g_free(
 		g_array_index(
 		    g_array_index(
 			strategies, Strategy, i).match_action, StrategyMatchAction, j).condition);
+	    g_free(
+		g_array_index(
+		    g_array_index(
+			strategies, Strategy, i).match_action, StrategyMatchAction, j).sub_condition);
+	}
 	g_array_free(g_array_index(strategies, Strategy, i).match_action, TRUE);
     }
 
     g_array_free(strategies, TRUE);
+}
+
+/** Free the betting arrays. */
+void
+free_bets(gboolean reset)
+{
+    free_g_array(&(bets[0]));
+    free_g_array(&(bets[1]));
+
+    if(reset)
+    {
+	bets[0] = g_array_new(FALSE, FALSE, sizeof(BetMatch));
+	bets[1] = g_array_new(FALSE, FALSE, sizeof(BetMatch));
+    }
 }

@@ -24,8 +24,12 @@
 #include "callbacks.h"
 #include "debug.h"
 #include "game_gui.h"
+#include "league.h"
+#include "live_game.h"
 #include "option.h"
+#include "strategy.h"
 #include "support.h"
+#include "team.h"
 #include "user.h"
 #include "variables.h"
 
@@ -124,4 +128,43 @@ debug_reset_counter(gpointer data)
     counters[COUNT_SHOW_DEBUG] = 0;
 
     return FALSE;
+}
+
+void
+debug_calibrate_betting_odds(gint skilldiffmax, gint matches_per_skilldiff)
+{
+    gint i, skilldiff, matches;
+    Fixture *fix = &g_array_index(lig(0).fixtures, Fixture, 0);
+
+    fix->home_advantage = FALSE;
+    
+    for(skilldiff=0;skilldiff<=skilldiffmax;skilldiff++)
+    {
+	gint res[3] = {0, 0, 0};
+
+	for(matches=0;matches<matches_per_skilldiff;matches++)
+	{
+	    fix->attendance = -1;
+	    fix->result[0][0] = fix->result[1][0] = 0;
+	    for(i=0;i<fix->teams[0]->players->len;i++)
+	    {
+		strategy_repair_player(&g_array_index(fix->teams[0]->players, Player, i));
+		strategy_repair_player(&g_array_index(fix->teams[1]->players, Player, i));
+		g_array_index(fix->teams[0]->players, Player, i).skill = 90;
+		g_array_index(fix->teams[1]->players, Player, i).skill = 90 - skilldiff;
+		g_array_index(fix->teams[0]->players, Player, i).fitness = 0.9;
+		g_array_index(fix->teams[1]->players, Player, i).fitness = 0.9;
+	    }
+
+	    live_game_calculate_fixture(fix);
+	    if(fix->result[0][0] < fix->result[1][0])
+		res[2]++;
+	    else
+		res[(fix->result[0][0] == fix->result[1][0])]++;
+	}
+
+	printf("sd %3d res %3d %3d %3d prob %.2f %.2f %.2f\n", skilldiff,
+	       res[0], res[1], res[2], (gfloat)res[0] / (gfloat)matches, 
+	       (gfloat)res[1] / (gfloat)matches, (gfloat)res[2] / (gfloat)matches);
+    }
 }

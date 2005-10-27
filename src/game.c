@@ -409,7 +409,8 @@ game_assign_attendance_neutral(Fixture *fix)
 {
     const GPtrArray *teamsp = 
 	(GPtrArray*)league_cup_get_teams(fix->clid);
-    gfloat av_att = (query_cup_is_international(fix->clid) && teamsp->len > 0) ?
+    gfloat av_att = (fix->clid >= ID_CUP_START && 
+		     query_cup_is_international(fix->clid) && teamsp->len > 0) ?
 	(gfloat)league_cup_average_capacity(fix->clid) :
 	(gfloat)league_cup_average_capacity(lig(0).id);
 
@@ -664,6 +665,13 @@ game_substitute_player(Team *tm, gint player_number)
 	if(g_array_index(tm->players, Player, i).cskill > 0)
 	    g_ptr_array_add(substitutes, &g_array_index(tm->players, Player, i));
 
+    if(substitutes->len == 0)
+    {
+	g_ptr_array_free(substitutes, TRUE);
+	g_warning("game_substitute_player: no suitable substitutes found (all injured/banned?)");
+	return -1;
+    }
+
     g_ptr_array_sort_with_data(substitutes, 
 			       (GCompareDataFunc)player_compare_substitute_func,
 			       GINT_TO_POINTER(player_of_idx_team(tm, 
@@ -801,6 +809,14 @@ game_substitute_player_send_off(gint clid, Team *tm, gint player_number,
 	if(g_array_index(tm->players, Player, i).cskill > 0)
 	    g_ptr_array_add(substitutes, player_of_idx_team(tm, i));
 
+    if(substitutes->len == 0)
+    {
+	g_ptr_array_free(substitutes, TRUE);
+	g_warning("game_substitute_player_send_off: no suitable substitutes found (all injured/banned?)");
+	*to_substitute = -1;
+	return;
+    }
+	
     if(num_forw == 0 && MAX(num_def, num_mid) > 2)
 	position = PLAYER_POS_FORWARD;
     else

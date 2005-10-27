@@ -532,7 +532,7 @@ misc_string_replace_expressions(gchar *string)
 	printf("misc_string_replace_expressions: #%s#\n",
 	       string);
 
-    if(!g_strrstr(string, "["))
+    if(g_strrstr(string, "[") == NULL)
 	return;
 
     strcpy(buf, string);
@@ -605,14 +605,53 @@ misc_string_replace_tokens(gchar *string, GPtrArray **token_rep)
 				      (gchar*)g_ptr_array_index(token_rep[1], i));
 }
 
+/** Replace the portion 'paren' plus parentheses in the string. */
+void
+misc_string_replace_parenthesised(gchar *string, const gchar *paren, 
+				  const gchar *replacement)
+{
+    gchar buf[SMALL];
+
+    sprintf(buf, "(%s)", paren);
+
+    misc_string_replace_token(string, buf, replacement);
+}
+
+/** Find the innermost parenthesised portion of the string
+    and write it into the dest string. */
+void
+misc_string_get_parenthesised(const gchar *string, gchar *dest)
+{
+    const gchar *openpar = g_strrstr(string, "(");
+    const gchar *closepar = g_strstr_len(string, strlen(string), ")");
+    gint len = strlen(openpar) - strlen(closepar) - 1;
+
+    strncpy(dest, openpar + 1, len);
+    dest[len] = '\0';
+    
+    printf("getpar %s\n", dest);
+}
+
 /** Find out whether the conditions in the string are fulfilled. */
 gboolean
 misc_parse_condition(const gchar *condition, GPtrArray **token_rep)
 {
     gboolean return_value = FALSE;
     gchar buf[SMALL], buf2[SMALL];
+
+    if(condition == NULL)
+	return TRUE;
     
     strcpy(buf, condition);
+
+    while(g_strrstr(buf, "("))
+    {
+	misc_string_get_parenthesised(buf, buf2);
+	if(misc_parse_condition(buf2, token_rep))
+	    misc_string_replace_parenthesised(buf, buf2, "1 = 1");
+	else
+	    misc_string_replace_parenthesised(buf, buf2, "1 = 2");
+    }
 
     do
     {

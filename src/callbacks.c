@@ -1174,3 +1174,12 @@ on_menu_save_window_geometry_activate  (GtkMenuItem     *menuitem,
 {
     window_main_save_geometry();
 }
+
+void
+on_menu_betting_activate               (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    on_button_back_to_main_clicked(NULL, NULL);
+    window_show_bets();
+}
+

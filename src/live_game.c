@@ -438,7 +438,7 @@ void
 live_game_event_injury(gint team, gint player, gboolean create_new)
 {
     LiveGameUnit new;
-    gint old_structure = -1;
+    gint old_structure = -1, sub_in = -1;
 
     if((debug > 100 && fixture_user_team_involved(match->fix) != -1) ||
        debug > 130)
@@ -496,18 +496,20 @@ live_game_event_injury(gint team, gint player, gboolean create_new)
 		misc_callback_pause_live_game();
 	    else if(tm[last_unit.event.team]->players->len > 11)
 	    {
-		old_structure = tm[last_unit.event.team]->structure;
-		live_game_event_substitution(
-		    last_unit.event.team,
-		    game_substitute_player(
-			tm[last_unit.event.team],
-			player_id_index(tm[last_unit.event.team],
-					last_unit.event.player)),
-		    last_unit.event.player);
-
+		sub_in = game_substitute_player(tm[last_unit.event.team],
+						player_id_index(tm[last_unit.event.team],
+								last_unit.event.player));
+		if(sub_in != -1)
+		{
+		    old_structure = tm[last_unit.event.team]->structure;
+		    live_game_event_substitution(
+			last_unit.event.team, sub_in,
+			last_unit.event.player);
+		    
 		if(old_structure != tm[last_unit.event.team]->structure)
 		    live_game_event_team_change(last_unit.event.team,
 						LIVE_GAME_EVENT_STRUCTURE_CHANGE);
+		}
 	    }
 	}
     }
@@ -1400,7 +1402,8 @@ live_game_finish_unit(void)
 
     if((debug > 100 && fixture_user_team_involved(match->fix) != -1) ||
        debug > 130)
-	printf("OOOO1 idx %d type %d poss %d team %d pl %d %d\n", unis->len - 1,
+	printf("OOOO1 idx %d min %d type %d poss %d team %d pl %d %d\n", unis->len - 1,
+	       unit->minute,
 	       unit->event.type, unit->possession, unit->event.team,
 	       unit->event.player,
 	       unit->event.player2);
@@ -1556,6 +1559,8 @@ live_game_reset(LiveGame *live_game, Fixture *fix, gboolean free_variable)
 	free_live_game(live_game);
 
     live_game->units = g_array_new(FALSE, FALSE, sizeof(LiveGameUnit));
+    live_game->action_ids[0] = g_array_new(FALSE, FALSE, sizeof(gint));
+    live_game->action_ids[1] = g_array_new(FALSE, FALSE, sizeof(gint));
     
     for(i=0;i<LIVE_GAME_STAT_ARRAY_END;i++)
     {

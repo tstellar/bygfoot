@@ -112,6 +112,7 @@ enum ExitCodes
     EXIT_DEF_SORT, /**< Error sorting a team after loading the definition. */
     EXIT_PROM_REL, /**< Error when executing the promotion/relegation stuff. */
     EXIT_STRATEGY_ERROR, /**< Error related to CPU strategies. */
+    EXIT_BET_ERROR, /**< Error related to betting. */
     EXIT_END
 };
 
@@ -155,6 +156,7 @@ typedef struct
 	*help,
 	*transfer_dialog,
 	*sponsors,
-	*mmatches;
+	*mmatches,
+	*bets;
 } Windows;
 #endif

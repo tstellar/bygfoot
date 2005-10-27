@@ -21,6 +21,7 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "bet.h"
 #include "cup.h"
 #include "file.h"
 #include "fixture.h"
@@ -1392,7 +1393,8 @@ void
 treeview_helper_player_cskill_to_cell(GtkCellRenderer *renderer, gchar *buf, const Player *pl)
 {
     sprintf(buf, "%.*f", opt_int("int_opt_player_precision"),
-	    player_get_game_skill(pl, FALSE));
+	    player_get_game_skill(pl, FALSE) /
+	    (1 + (gfloat)pl->streak * const_float("float_player_streak_influence_skill")));
 	    
     if(pl->cskill < pl->skill)
 	g_object_set(renderer, "background", 
@@ -1589,6 +1591,49 @@ treeview_helper_season_results(GtkTreeViewColumn *col,
     }
     else if(column == 5)
 	fixture_result_to_buf(fix, buf, (user_idx == 1));
+
+    g_object_set(renderer, "text", buf, NULL);
+}
+
+void
+treeview_helper_bet_odds(GtkTreeViewColumn *col,
+			 GtkCellRenderer   *renderer,
+			 GtkTreeModel      *model,
+			 GtkTreeIter       *iter,
+			 gpointer           user_data)
+{
+    gint column = treeview_helper_get_col_number_column(col);
+    gchar buf[SMALL];
+    const BetMatch *bet = NULL;
+    const BetUser *bet_user = NULL;
+
+    gtk_tree_model_get(model, iter, column, &bet, -1);
+
+    g_object_set(renderer, "background",
+		 const_app("string_treeview_helper_color_default_background"), 
+		 "foreground",
+		 const_app("string_treeview_helper_color_default_foreground"), 
+		 "text", "", NULL);
+
+    if(bet == NULL)
+	return;
+
+    strcpy(buf, "");
+    bet_user = bet_is_user(bet);
+
+    if(bet->fix->attendance == -1)
+	sprintf(buf, "%.2f", bet->odds[column - 1]);
+    else if(column == 2)
+	sprintf(buf, "%d - %d", bet->fix->result[0][0],
+		bet->fix->result[1][0]);
+    
+    if(bet->fix->attendance == -1 &&
+       bet_user != NULL &&
+       bet_user->outcome == column - 1)
+	g_object_set(renderer, "background",
+		     const_app("string_treeview_helper_color_user_bet_bg"), 
+		     "foreground",
+		     const_app("string_treeview_helper_color_user_bet_fg"), NULL);
 
     g_object_set(renderer, "text", buf, NULL);
 }

@@ -204,4 +204,11 @@ treeview_helper_season_results(GtkTreeViewColumn *col,
 			       GtkTreeIter       *iter,
 			       gpointer           user_data);
 
+void
+treeview_helper_bet_odds(GtkTreeViewColumn *col,
+			 GtkCellRenderer   *renderer,
+			 GtkTreeModel      *model,
+			 GtkTreeIter       *iter,
+			 gpointer           user_data);
+
 #endif

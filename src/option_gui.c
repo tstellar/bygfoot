@@ -55,6 +55,9 @@ enum BooleanOptions
     BOOL_OPT_SWAP,
     BOOL_OPT_SHOW_OVERALL,
     BOOL_OPT_SHOW_ALL_LEAGUES,
+    BOOL_OPT_BET_SHOW_ALL_LEAGUES,
+    BOOL_OPT_BET_SHOW_CUPS,
+    BOOL_OPT_BET_SHOW_MY_RECENT,
     BOOL_OPT_PL1_ATT_NAME,
     BOOL_OPT_PL1_ATT_CPOS,
     BOOL_OPT_PL1_ATT_POS,
@@ -170,6 +173,18 @@ option_gui_write_bool_widgets(gint **bool_options, GtkToggleButton **bool_widget
     bool_widgets[BOOL_OPT_SHOW_ALL_LEAGUES] =
 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_show_all_leagues"));
     bool_options[BOOL_OPT_SHOW_ALL_LEAGUES] = opt_user_intp("int_opt_user_show_all_leagues");
+
+    bool_widgets[BOOL_OPT_BET_SHOW_ALL_LEAGUES] =
+	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_bet_show_all_leagues"));
+    bool_options[BOOL_OPT_BET_SHOW_ALL_LEAGUES] = opt_user_intp("int_opt_user_bet_show_all_leagues");
+
+    bool_widgets[BOOL_OPT_BET_SHOW_CUPS] =
+	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_bet_show_cups"));
+    bool_options[BOOL_OPT_BET_SHOW_CUPS] = opt_user_intp("int_opt_user_bet_show_cups");
+
+    bool_widgets[BOOL_OPT_BET_SHOW_MY_RECENT] =
+	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_bet_show_only_recent"));
+    bool_options[BOOL_OPT_BET_SHOW_MY_RECENT] = opt_user_intp("int_opt_user_bet_show_my_recent");
 
     bool_widgets[BOOL_OPT_PL1_ATT_NAME] =
 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton1"));

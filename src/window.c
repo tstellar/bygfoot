@@ -35,6 +35,7 @@
 #include "misc_callback_func.h"
 #include "misc_interface.h"
 #include "misc2_interface.h"
+#include "misc3_interface.h"
 #include "option.h"
 #include "option_gui.h"
 #include "options_interface.h"
@@ -62,6 +63,25 @@
 /*     gtk_label_set_text(GTK_LABEL(lookup_widget(window.help, "label_contributors")), */
 /* 		       _("News")); */
 /* } */
+
+/** Show the betting window. */
+void
+window_show_bets(void)
+{
+    window_create(WINDOW_BETS);
+
+    gtk_toggle_button_set_active(
+	GTK_TOGGLE_BUTTON(lookup_widget(window.bets, "checkbutton_bet_all_leagues")),
+	opt_user_int("int_opt_user_bet_show_all_leagues"));
+    gtk_toggle_button_set_active(
+	GTK_TOGGLE_BUTTON(lookup_widget(window.bets, "checkbutton_bet_cups")),
+	opt_user_int("int_opt_user_bet_show_cups"));
+    gtk_toggle_button_set_active(
+	GTK_TOGGLE_BUTTON(lookup_widget(window.bets, "checkbutton_bet_user_recent")),
+	opt_user_int("int_opt_user_bet_show_my_recent"));
+
+    treeview2_show_bets();
+}
 
 /** Show the help/about window. 
     @param page Which notebook page to display. */
@@ -607,10 +627,8 @@ window_create(gint window_type)
 	    if(window.digits != NULL)
 		g_warning("window_create: called on already existing window\n");
 	    else
-	    {
-		popups_active++;
 		window.digits = create_window_digits();
-	    }
+
 	    wind = window.digits;
 	    strcpy(buf, _("Numbers..."));
 	    break;
@@ -730,6 +748,14 @@ window_create(gint window_type)
 	    }
 	    wind = window.mmatches;
 	    strcpy(buf, _("Memorable matches"));
+	    break;
+	case WINDOW_BETS:
+	    if(window.bets != NULL)
+		g_warning("window_create: called on already existing window\n");
+	    else
+		window.bets = create_window_bets();
+	    wind = window.bets;
+	    strcpy(buf, _("Betting"));
 	    break;
     }
 

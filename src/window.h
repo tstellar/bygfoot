@@ -49,6 +49,7 @@ enum Windows
     WINDOW_TRANSFER_DIALOG,
     WINDOW_SPONSORS,
     WINDOW_MMATCHES,
+    WINDOW_BETS,
     WINDOW_END
 };
 
@@ -103,5 +104,8 @@ window_main_save_geometry(void);
 
 void
 window_main_load_geometry(void);
+
+void
+window_show_bets(void);
 
 #endif

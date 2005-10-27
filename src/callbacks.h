@@ -332,3 +332,7 @@ void
 on_menu_season_results_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 #endif
+
+void
+on_menu_betting_activate               (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);

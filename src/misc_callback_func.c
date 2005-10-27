@@ -22,11 +22,14 @@
 */
 
 #include "callbacks.h"
+#include "debug.h"
 #include "finance.h"
+#include "free.h"
 #include "game.h"
 #include "game_gui.h"
 #include "gui.h"
 #include "load_save.h"
+#include "main.h"
 #include "maths.h"
 #include "misc.h"
 #include "misc_callback_func.h"
@@ -84,15 +87,24 @@ misc_callback_start_game(void)
 	opt_set_int("int_opt_load_defs", 0);
 
     start_new_game();
-
-    for(i=0;i<users->len;i++)
-	user_set_up_team_new_game(&usr(i));
-
     window_destroy(&window.startup, TRUE);
 
-    window_create(WINDOW_MAIN);
-
-    game_gui_show_main();
+    if(!opt_int("int_opt_calodds"))
+    {
+	for(i=0;i<users->len;i++)
+	    user_set_up_team_new_game(&usr(i));
+	
+	window_create(WINDOW_MAIN);
+	
+	game_gui_show_main();
+    }
+    else
+    {
+	free_users(TRUE);
+	debug_calibrate_betting_odds(opt_int("int_opt_calodds_skilldiffmax"),
+				     opt_int("int_opt_calodds_matches"));
+	main_exit_program(EXIT_OK, NULL);
+    }
 }
 
 /** Add a user to the users array. */

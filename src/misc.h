@@ -27,6 +27,7 @@
 #include "bygfoot.h"
 
 #define misc_int_to_char(number) g_strdup_printf("%d", number)
+#define query_misc_string_contains(haystack, needle) (g_strstr_len(haystack, strlen(haystack), needle) != NULL)
 
 void
 misc_print_error(GError **error, gboolean abort_program);
@@ -54,9 +55,6 @@ misc_int_compare(gint first, gint second);
 
 gint
 misc_float_compare(gfloat first, gfloat second);
-
-gboolean
-query_misc_string_contains(const gchar *string, const gchar *text);
 
 gboolean
 query_misc_string_in_array(const gchar *string, GPtrArray *array);
@@ -117,5 +115,11 @@ misc_token_add(GPtrArray **token_rep, gint token_idx,
 void
 misc_token_remove(GPtrArray **token_rep, gint idx);
 
+void
+misc_string_get_parenthesised(const gchar *string, gchar *dest);
+
+void
+misc_string_replace_parenthesised(gchar *string, const gchar *paren, 
+				  const gchar *replacement);
 
 #endif

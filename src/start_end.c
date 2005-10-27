@@ -21,6 +21,7 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "bet.h"
 #include "cup.h"
 #include "file.h"
 #include "finance.h"
@@ -59,7 +60,7 @@ WeekFunc end_week_round_funcs[] =
 /** Array of functions called when a week round
     is started. */
 WeekFunc start_week_round_funcs[] =
-{start_week_round_update_teams , NULL};
+{start_week_round_update_teams, bet_update, NULL};
 
 /** Array of functions called when a week
     is started. */
@@ -160,6 +161,9 @@ start_new_season(void)
 
     for(i=0;i<name_lists->len;i++)
 	name_shorten_list(&nli(i));
+
+    if(season == 1)
+	bet_update();
 }
 
 /** Fill some global variables with default values at the

@@ -1333,7 +1333,8 @@ treeview_create_finances(const User* user)
     gchar *in_titles[MON_IN_TRANSFERS] =
 	{_("Prize money"),
 	 _("Ticket income"),
-	 _("Sponsorship")};
+	 _("Sponsorship"),
+	 _("Betting")};
     gchar *out_titles[MON_OUT_TRANSFERS] =
 	{_("Wages"),
 	 _("Physio"),
@@ -1342,7 +1343,8 @@ treeview_create_finances(const User* user)
 	 _("Youth academy"),
 	 _("Journey costs"),
 	 /* Money paid to players a user fired. */
-	 _("Compensations")};
+	 _("Compensations"),
+	 _("Betting")};
 
     GtkTreeIter iter;
     GtkListStore *ls = 

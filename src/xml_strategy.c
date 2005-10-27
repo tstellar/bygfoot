@@ -89,7 +89,7 @@ enum
     STATE_STRATEGY_MATCH_ACTION_SUB_OUT_POS,
 };
 
-gint state;
+gint state, action_id;
 
 #define curstrat g_array_index(strategies, Strategy, strategies->len - 1)
 #define curprematch g_array_index(curstrat.prematch, StrategyPrematch, curstrat.prematch->len - 1)
@@ -127,7 +127,8 @@ xml_strategy_read_start_element (GMarkupParseContext *context,
 
 	while(attribute_names[atidx] != NULL)
 	{
-	    if(strcmp(attribute_names[atidx], ATT_NAME_COND) == 0)
+	    if(strcmp(attribute_names[atidx], ATT_NAME_COND) == 0 &&
+		new_prematch.condition == NULL)
 		new_prematch.condition = 
 		    g_strdup(attribute_values[atidx]);
 	    else
@@ -166,15 +167,18 @@ xml_strategy_read_start_element (GMarkupParseContext *context,
 	StrategyMatchAction new_match_action;
 
 	state = STATE_STRATEGY_MATCH_ACTION;
+	new_match_action.sub_condition = NULL;
 	
 	new_match_action.condition = NULL;
 	new_match_action.boost = 
 	    new_match_action.style = -100;
 	new_match_action.sub_in_pos = -1;
+	new_match_action.id = action_id++;
 
 	while(attribute_names[atidx] != NULL)
 	{
-	    if(strcmp(attribute_names[atidx], ATT_NAME_COND) == 0)
+	    if(strcmp(attribute_names[atidx], ATT_NAME_COND) == 0 &&
+	       new_match_action.condition == NULL)
 		new_match_action.condition = 
 		    g_strdup(attribute_values[atidx]);
 	    else
@@ -191,7 +195,22 @@ xml_strategy_read_start_element (GMarkupParseContext *context,
     else if(strcmp(element_name, TAG_STRATEGY_MATCH_ACTION_STYLE) == 0)
 	state = STATE_STRATEGY_MATCH_ACTION_STYLE;
     else if(strcmp(element_name, TAG_STRATEGY_MATCH_ACTION_SUB) == 0)
+    {
 	state = STATE_STRATEGY_MATCH_ACTION_SUB;
+
+	while(attribute_names[atidx] != NULL)
+	{
+	    if(strcmp(attribute_names[atidx], ATT_NAME_COND) == 0 &&
+	       curmatchaction.sub_condition == NULL)
+		curmatchaction.sub_condition = 
+		    g_strdup(attribute_values[atidx]);
+	    else
+		g_warning("xml_strategy_read_start_element: unknown attribute %s\n",
+			  attribute_names[atidx]);
+
+	    atidx++;
+	}
+    }
     else if(strcmp(element_name, TAG_STRATEGY_MATCH_ACTION_SUB_IN_POS) == 0)
     {
 	state = STATE_STRATEGY_MATCH_ACTION_SUB_IN_POS;
@@ -389,33 +408,51 @@ xml_strategy_read_text         (GMarkupParseContext *context,
 	    g_warning(
 		"xml_strategy_read_text: unknown boost type %s\n", buf);
     }
-    else if(state == STATE_STRATEGY_MATCH_ACTION_SUB_IN_POS)
+    else if(state == STATE_STRATEGY_MATCH_ACTION_SUB_IN_POS ||
+	    state == STATE_STRATEGY_MATCH_ACTION_SUB_OUT_POS)
     {
-	if(strcmp(buf, POS_NAME_GOALIE) == 0)
-	    curmatchaction.sub_in_pos = 0;
-	else if(strcmp(buf, POS_NAME_DEFENDER) == 0)
-	    curmatchaction.sub_in_pos = 1;
-	else if(strcmp(buf, POS_NAME_MIDFIELDER) == 0)
-	    curmatchaction.sub_in_pos = 2;
-	else if(strcmp(buf, POS_NAME_FORWARD) == 0)
-	    curmatchaction.sub_in_pos = 3;
+	GPtrArray *positions = misc_separate_strings(buf);
+	gint i, *pos;
+
+	if(state == STATE_STRATEGY_MATCH_ACTION_SUB_IN_POS)
+	{
+	    if(positions->len > 1)
+	    {
+		free_gchar_array(&positions);
+		main_exit_program(EXIT_STRATEGY_ERROR, 
+				  "xml_strategy_read_text: too many sub_in positions: %s\n",
+				  buf);
+	    }
+
+	    pos = &curmatchaction.sub_in_pos;
+	}
 	else
-	    g_warning(
-		"xml_strategy_read_text: unknown position %s\n", buf);
-    }
-    else if(state == STATE_STRATEGY_MATCH_ACTION_SUB_OUT_POS)
-    {
-	if(strcmp(buf, POS_NAME_GOALIE) == 0)
-	    curmatchaction.sub_out_pos = 0;
-	else if(strcmp(buf, POS_NAME_DEFENDER) == 0)
-	    curmatchaction.sub_out_pos = 1;
-	else if(strcmp(buf, POS_NAME_MIDFIELDER) == 0)
-	    curmatchaction.sub_out_pos = 2;
-	else if(strcmp(buf, POS_NAME_FORWARD) == 0)
-	    curmatchaction.sub_out_pos = 3;
-	else
-	    g_warning(
-		"xml_strategy_read_text: unknown position %s\n", buf);
+	    pos = &curmatchaction.sub_out_pos;
+
+	*pos = 9;
+	
+	for(i=0;i<positions->len;i++)
+	    if(strcmp((gchar*)g_ptr_array_index(positions, i), 
+		      POS_NAME_GOALIE) == 0)
+		*pos *= 10;
+	    else if(strcmp((gchar*)g_ptr_array_index(positions, i), 
+			   POS_NAME_DEFENDER) == 0)
+		*pos = (*pos * 10) + 1;
+	    else if(strcmp((gchar*)g_ptr_array_index(positions, i),
+			   POS_NAME_MIDFIELDER) == 0)
+		*pos = (*pos * 10) + 2;
+	    else if(strcmp((gchar*)g_ptr_array_index(positions, i), 
+			   POS_NAME_FORWARD) == 0)
+		*pos = (*pos * 10) + 3;
+	    else
+		g_warning(
+		    "xml_strategy_read_text: unknown position %s\n", 
+		    (gchar*)g_ptr_array_index(positions, i));
+
+	if(*pos < 100)
+	    *pos = *pos % 10;
+
+	free_gchar_array(&positions);
     }
 }
 
@@ -450,6 +487,8 @@ xml_strategy_read(const gchar *filename)
     new_strat.match_action = g_array_new(FALSE, FALSE, sizeof(StrategyMatchAction));
 
     g_array_append_val(strategies, new_strat);
+
+    action_id = 0;
 
     if(g_markup_parse_context_parse(context, file_contents, length, &error))
     {

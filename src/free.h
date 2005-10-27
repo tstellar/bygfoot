@@ -128,4 +128,7 @@ free_mmatches(GArray **mmatches, gboolean reset);
 void
 free_strategies(void);
 
+void
+free_bets(gboolean reset);
+
 #endif

@@ -53,4 +53,13 @@ treeview2_set_up_season_results(GtkTreeView *treeview);
 void
 treeview2_show_season_results(void);
 
+void
+treeview2_create_bets(GtkListStore *ls);
+
+void
+treeview2_set_up_bets(GtkTreeView *treeview);
+
+void
+treeview2_show_bets(void);
+
 #endif

@@ -21,7 +21,9 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "bet_struct.h"
 #include "file.h"
+#include "fixture.h"
 #include "misc.h"
 #include "team.h"
 #include "user.h"
@@ -65,13 +67,19 @@ enum
     TAG_USER_YA_AV_COACH,
     TAG_USER_YA_AV_PERCENTAGE,
     TAG_USER_YA_COUNTER,
+    TAG_USER_BET0,
+    TAG_USER_BET1,
+    TAG_USER_BET_WAGER,
+    TAG_USER_BET_OUTCOME,
+    TAG_USER_BET_FIX_ID,
     TAG_END
 };
 
-gint state, idx_mon_in, idx_mon_out, idx;
+gint state, idx_mon_in, idx_mon_out, idx, idx_bet;
 User new_user;
 UserHistory new_history;
 Event new_event;
+BetUser new_bet;
 
 void
 xml_loadsave_users_start_element (GMarkupParseContext *context,
@@ -120,6 +128,10 @@ xml_loadsave_users_start_element (GMarkupParseContext *context,
        state == TAG_USER_MONEY_INS)
 	idx = 0;
 
+    if(state == TAG_USER_BET0 ||
+       state == TAG_USER_BET1)
+	idx_bet = (state == TAG_USER_BET1);
+
     if(tag == TAG_USER_HISTORY)
 	new_history.value_string = NULL;
     else if(tag == TAG_USER_EVENT)
@@ -161,7 +173,9 @@ xml_loadsave_users_end_element    (GMarkupParseContext *context,
 	    tag == TAG_USER_YA_PERCENTAGE ||
 	    tag == TAG_USER_YA_AV_COACH ||
 	    tag == TAG_USER_YA_AV_PERCENTAGE ||
-	    tag == TAG_USER_YA_COUNTER)
+	    tag == TAG_USER_YA_COUNTER ||
+	    tag == TAG_USER_BET0 ||
+	    tag == TAG_USER_BET1)
     {
 	state = TAG_USER;
 	if(tag == TAG_USER_COUNTER)
@@ -174,6 +188,9 @@ xml_loadsave_users_end_element    (GMarkupParseContext *context,
 	    g_array_append_val(new_user.history, new_history);
 	else if(tag == TAG_USER_EVENT)
 	    g_array_append_val(new_user.events, new_event);
+	else if(tag == TAG_USER_BET0 ||
+		tag == TAG_USER_BET1)
+	    g_array_append_val(new_user.bets[idx_bet], new_bet);
     }
     else if(tag == TAG_USER_MONEY_OUT)
     {
@@ -198,6 +215,10 @@ xml_loadsave_users_end_element    (GMarkupParseContext *context,
 	    tag == TAG_USER_EVENT_VALUE2 ||
 	    tag == TAG_USER_EVENT_VALUE_STRING)
 	state = TAG_USER_EVENT;
+    else if(tag == TAG_USER_BET_FIX_ID ||
+	    tag == TAG_USER_BET_WAGER ||
+	    tag == TAG_USER_BET_OUTCOME)
+	state = (idx_bet == 0) ? TAG_USER_BET0 : TAG_USER_BET1;
     else if(tag >= TAG_START_PLAYERS && tag <= TAG_END_PLAYERS)
     {
 	xml_loadsave_players_end_element(tag, new_user.youth_academy.players);
@@ -289,6 +310,12 @@ xml_loadsave_users_text         (GMarkupParseContext *context,
 	new_user.youth_academy.av_percentage = float_value;
     else if(state == TAG_USER_YA_COUNTER)
 	new_user.youth_academy.counter_youth = float_value;
+    else if(state == TAG_USER_BET_WAGER)
+	new_bet.wager = int_value;
+    else if(state == TAG_USER_BET_OUTCOME)
+	new_bet.outcome = int_value;
+    else if(state == TAG_USER_BET_FIX_ID)
+	new_bet.fix = fixture_from_id(int_value);
     else if(state >= TAG_START_PLAYERS && state <= TAG_END_PLAYERS)
 	xml_loadsave_players_text(buf);
 }
@@ -367,6 +394,10 @@ xml_loadsave_users_write(const gchar *prefix)
 	xml_write_int(fil, usr(i).sponsor.contract, TAG_USER_SPONSOR_CONTRACT, I1);
 	xml_write_int(fil, usr(i).sponsor.benefit, TAG_USER_SPONSOR_BENEFIT, I1);
 
+	xml_user_write_history(fil, usr(i).history);
+	xml_user_write_events(fil, usr(i).events);
+	xml_user_write_bets(fil, usr(i).bets);
+
 	for(j=0;j<COUNT_USER_END;j++)
 	    xml_write_int(fil, usr(i).counters[j], TAG_USER_COUNTER, I1);
 
@@ -386,44 +417,6 @@ xml_loadsave_users_write(const gchar *prefix)
 	    fprintf(fil, "%s</_%d>\n", I1, TAG_USER_MONEY_OUTS);
 	}
 
-	for(j=0;j<usr(i).history->len;j++)
-	{
-	    fprintf(fil, "%s<_%d>\n", I1, TAG_USER_HISTORY);
-
-	    xml_write_int(fil, g_array_index(usr(i).history, UserHistory, j).season,
-			  TAG_USER_HISTORY_SEASON, I2);
-	    xml_write_int(fil, g_array_index(usr(i).history, UserHistory, j).week,
-			  TAG_USER_HISTORY_WEEK, I2);
-	    xml_write_int(fil, g_array_index(usr(i).history, UserHistory, j).type,
-			  TAG_USER_HISTORY_TYPE, I2);
-	    xml_write_int(fil, g_array_index(usr(i).history, UserHistory, j).team_id,
-			  TAG_USER_HISTORY_TEAM_ID, I2);
-	    xml_write_int(fil, g_array_index(usr(i).history, UserHistory, j).value1,
-			  TAG_USER_HISTORY_VALUE1, I2);
-	    xml_write_int(fil, g_array_index(usr(i).history, UserHistory, j).value2,
-			  TAG_USER_HISTORY_VALUE2, I2);
-	    xml_write_string(fil, g_array_index(usr(i).history, UserHistory, j).value_string,
-			     TAG_USER_HISTORY_VALUE_STRING, I2);
-
-	    fprintf(fil, "%s</_%d>\n", I1, TAG_USER_HISTORY);
-	}
-
-	for(j=0;j<usr(i).events->len;j++)
-	{
-	    fprintf(fil, "%s<_%d>\n", I1, TAG_USER_EVENT);
-
-	    xml_write_int(fil, g_array_index(usr(i).events, Event, j).type,
-			  TAG_USER_EVENT_TYPE, I2);
-	    xml_write_int(fil, g_array_index(usr(i).events, Event, j).value1,
-			  TAG_USER_EVENT_VALUE1, I2);
-	    xml_write_int(fil, g_array_index(usr(i).events, Event, j).value2,
-			  TAG_USER_EVENT_VALUE2, I2);
-	    xml_write_string(fil, g_array_index(usr(i).events, Event, j).value_string,
-			       TAG_USER_EVENT_VALUE_STRING, I2);
-
-	    fprintf(fil, "%s</_%d>\n", I1, TAG_USER_EVENT);
-	}
-
 	xml_write_int(fil, usr(i).youth_academy.coach, TAG_USER_YA_COACH, I1);
 	xml_write_int(fil, usr(i).youth_academy.percentage, TAG_USER_YA_PERCENTAGE, I1);
 	xml_write_float(fil, usr(i).youth_academy.av_coach, TAG_USER_YA_AV_COACH, I1);
@@ -438,4 +431,78 @@ xml_loadsave_users_write(const gchar *prefix)
     fprintf(fil, "</_%d>\n", TAG_USERS);
 
     fclose(fil);
+}
+
+/** Write the history of a user into the file. */
+void
+xml_user_write_history(FILE *fil, const GArray *history)
+{
+    gint i;
+
+    for(i=0;i<history->len;i++)
+    {
+	fprintf(fil, "%s<_%d>\n", I1, TAG_USER_HISTORY);
+
+	xml_write_int(fil, g_array_index(history, UserHistory, i).season,
+		      TAG_USER_HISTORY_SEASON, I2);
+	xml_write_int(fil, g_array_index(history, UserHistory, i).week,
+		      TAG_USER_HISTORY_WEEK, I2);
+	xml_write_int(fil, g_array_index(history, UserHistory, i).type,
+		      TAG_USER_HISTORY_TYPE, I2);
+	xml_write_int(fil, g_array_index(history, UserHistory, i).team_id,
+		      TAG_USER_HISTORY_TEAM_ID, I2);
+	xml_write_int(fil, g_array_index(history, UserHistory, i).value1,
+		      TAG_USER_HISTORY_VALUE1, I2);
+	xml_write_int(fil, g_array_index(history, UserHistory, i).value2,
+		      TAG_USER_HISTORY_VALUE2, I2);
+	xml_write_string(fil, g_array_index(history, UserHistory, i).value_string,
+			 TAG_USER_HISTORY_VALUE_STRING, I2);
+
+	fprintf(fil, "%s</_%d>\n", I1, TAG_USER_HISTORY);
+    }
+}
+
+/** Write the events of a user into the file. */
+void
+xml_user_write_events(FILE *fil, const GArray *events)
+{
+    gint i;
+
+    for(i=0;i<events->len;i++)
+    {
+	fprintf(fil, "%s<_%d>\n", I1, TAG_USER_EVENT);
+
+	xml_write_int(fil, g_array_index(events, Event, i).type,
+		      TAG_USER_EVENT_TYPE, I2);
+	xml_write_int(fil, g_array_index(events, Event, i).value1,
+		      TAG_USER_EVENT_VALUE1, I2);
+	xml_write_int(fil, g_array_index(events, Event, i).value2,
+		      TAG_USER_EVENT_VALUE2, I2);
+	xml_write_string(fil, g_array_index(events, Event, i).value_string,
+			 TAG_USER_EVENT_VALUE_STRING, I2);
+	
+	fprintf(fil, "%s</_%d>\n", I1, TAG_USER_EVENT);
+    }
+}
+
+/** Write the bets of a user into the file. */
+void
+xml_user_write_bets(FILE *fil, GArray **bets)
+{
+    gint i, j;
+
+    for(i=0;i<2;i++)
+	for(j=0;j<bets[i]->len;j++)
+	{
+	    fprintf(fil, "%s<_%d>\n", I1, 
+		    (i == 0) ? TAG_USER_BET0 : TAG_USER_BET1);
+	    xml_write_int(fil, g_array_index(bets[i], BetUser, j).wager,
+			  TAG_USER_BET_WAGER, I2);
+	    xml_write_int(fil, g_array_index(bets[i], BetUser, j).outcome,
+			  TAG_USER_BET_OUTCOME, I2);
+	    xml_write_int(fil, g_array_index(bets[i], BetUser, j).fix->id,
+			  TAG_USER_BET_FIX_ID, I2);
+	    fprintf(fil, "%s</_%d>\n", I1, 
+		    (i == 0) ? TAG_USER_BET0 : TAG_USER_BET1);
+	}
 }

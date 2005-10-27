@@ -71,6 +71,9 @@ GArray *season_stats;
 /** Array of available CPU strategies. */
 GArray *strategies;
 
+/** Array of current and recent bets. */
+GArray *bets[2];
+
 /** Some counters we use. */
 gint counters[COUNT_END];
 
@@ -103,6 +106,7 @@ gint cur_user;
 gint timeout_id;
 
 GRand *rand_generator;
+
 /**
    The list of directories the file_find_support_file() function
    searches for support files (e.g. pixmaps or text files).

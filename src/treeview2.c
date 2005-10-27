@@ -21,11 +21,14 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "bet.h"
 #include "fixture.h"
 #include "league.h"
 #include "live_game.h"
+#include "misc.h"
 #include "option.h"
 #include "support.h"
+#include "team.h"
 #include "treeview2.h"
 #include "treeview_helper.h"
 #include "user.h"
@@ -242,4 +245,182 @@ treeview2_show_season_results(void)
     treeview2_create_season_results(model);
     gtk_tree_view_set_model(treeview, GTK_TREE_MODEL(model));
     g_object_unref(model);    
+}
+
+void
+treeview2_create_bets(GtkListStore *ls)
+{
+    gint i, j, k, rank;
+    GtkTreeIter iter;
+    gchar buf[SMALL], buf2[SMALL],
+	team_names[2][SMALL];
+    const BetMatch *bet = NULL;
+    const BetUser *bet_user = NULL;
+    
+    for(k=1;k>=0;k--)
+    {
+	if(bets[k]->len > 0)
+	{
+	    gtk_list_store_append(ls, &iter);
+	    gtk_list_store_set(ls, &iter, 
+			       0, (k == 1) ?
+			       _("<span background='lightgrey' size='large' weight='bold'>Current bets</span>") :
+			       _("<span background='lightgrey' size='large' weight='bold'>Recent bets</span>"),
+			       1, NULL, 2, NULL, 3, NULL, 4, "", 5, "", -1);
+	}
+
+	for(i=0;i<bets[k]->len;i++)
+	{
+	    if(g_array_index(bets[k], BetMatch, i).fix->clid ==
+	       current_user.tm->clid ||
+	       (g_array_index(bets[k], BetMatch, i).fix->clid >= ID_CUP_START &&
+		opt_user_int("int_opt_user_bet_show_cups")) ||
+	       (g_array_index(bets[k], BetMatch, i).fix->clid < ID_CUP_START &&
+		opt_user_int("int_opt_user_bet_show_all_leagues")))
+	    {
+		bet = &g_array_index(bets[k], BetMatch, i);
+		bet_user = bet_is_user(bet);
+		strcpy(buf, "");
+
+		if(k == 1 || (k == 0 && 
+		   (bet_user != NULL ||
+		    !opt_user_int("int_opt_user_bet_show_my_recent"))))
+		{
+		    if(i == 0 || bet->fix->clid != 
+		       g_array_index(bets[k], BetMatch, i - 1).fix->clid)
+		    {
+			if(i > 0)
+			{
+			    gtk_list_store_append(ls, &iter);
+			    gtk_list_store_set(ls, &iter, 0, "", 
+					       1, NULL, 2, NULL, 3, NULL, 4, "", 5, "", -1);
+			}
+	    
+			gtk_list_store_append(ls, &iter);
+			gtk_list_store_set(ls, &iter, 
+					   0, league_cup_get_name_string(bet->fix->clid),
+					   1, NULL, 2, NULL, 3, NULL, 4, "", 5, "", -1);
+		    }
+	
+		    if(bet_user != NULL)
+		    {
+			misc_print_grouped_int(bet_user->wager, buf2);
+	    
+			if(bet_user->wager > 0)
+			    strcpy(buf, buf2);
+			else
+			    sprintf(buf, "<span foreground='%s'>%s</span>",
+				    const_app("string_treeview_finances_expenses_fg"), buf2);
+		    }
+
+		    for(j=0;j<2;j++)
+			if(query_fixture_has_tables(bet->fix))
+			{
+			    if(bet->fix->clid < ID_CUP_START)
+				rank = team_get_league_rank(bet->fix->teams[j]);
+			    else
+				rank = team_get_cup_rank(bet->fix->teams[j], 
+							 cup_get_last_tables_round(bet->fix->clid), TRUE);
+
+			    sprintf(team_names[j], "%s [%d]",
+				    bet->fix->teams[j]->name, rank);
+			}
+			else if(bet->fix->clid >= ID_CUP_START &&
+				query_cup_is_national(bet->fix->clid))
+			    sprintf(team_names[j], "%s (%d)",
+				    bet->fix->teams[j]->name,
+				    league_from_clid(bet->fix->teams[j]->clid)->layer);
+			else
+			    strcpy(team_names[j], bet->fix->teams[j]->name);
+
+		    gtk_list_store_append(ls, &iter);
+		    gtk_list_store_set(ls, &iter, 0, team_names[0],
+				       1, bet, 2, bet, 3, bet,
+				       4, team_names[1],
+				       5, buf, -1);
+		}
+	    }
+	}
+    }
+}
+
+void
+treeview2_set_up_bets(GtkTreeView *treeview)
+{
+    gint i;
+    GtkTreeViewColumn   *col;
+    GtkCellRenderer     *renderer;
+    gchar *titles[6] =
+	{_("Team1"),
+	 /* Team 1 wins (betting window). */
+	 _("Win1"),
+	 _("Draw"),
+	 /* Team 2 wins (betting window). */
+	 _("Win2"),
+	 _("Team2"),
+	 _("Wager/\nWin/Loss")};
+
+    gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
+				GTK_SELECTION_SINGLE);
+    gtk_tree_view_set_headers_visible(treeview, TRUE);
+
+    col = gtk_tree_view_column_new();
+    gtk_tree_view_column_set_title(col, titles[0]);
+    gtk_tree_view_append_column(treeview, col);
+    renderer = treeview_helper_cell_renderer_text_new();
+    gtk_tree_view_column_pack_start(col, renderer, TRUE);
+    gtk_tree_view_column_add_attribute(col, renderer,
+				       "markup", 0);
+
+    gtk_tree_view_column_set_alignment(col, 1.0);
+    g_object_set(renderer, "xalign", 1.0, NULL);
+
+    for(i=1;i<4;i++)
+    {
+	col = gtk_tree_view_column_new();
+	gtk_tree_view_column_set_title(col, titles[i]);
+	gtk_tree_view_append_column(treeview, col);
+	renderer = treeview_helper_cell_renderer_text_new();
+	gtk_tree_view_column_pack_start(col, renderer, TRUE);
+	gtk_tree_view_column_set_cell_data_func(col, renderer,
+						treeview_helper_bet_odds,
+						NULL, NULL);
+    }
+
+    col = gtk_tree_view_column_new();
+    gtk_tree_view_column_set_title(col, titles[4]);
+    gtk_tree_view_append_column(treeview, col);
+    renderer = treeview_helper_cell_renderer_text_new();
+    gtk_tree_view_column_pack_start(col, renderer, TRUE);
+    gtk_tree_view_column_add_attribute(col, renderer,
+				       "text", 4);
+
+    col = gtk_tree_view_column_new();
+    gtk_tree_view_column_set_title(col, titles[5]);
+    gtk_tree_view_append_column(treeview, col);
+    renderer = treeview_helper_cell_renderer_text_new();
+    gtk_tree_view_column_pack_start(col, renderer, TRUE);
+    gtk_tree_view_column_add_attribute(col, renderer,
+				       "markup", 5);
+    gtk_tree_view_column_set_alignment(col, 0.5);
+    g_object_set(renderer, "xalign", 0.5, NULL);
+}
+
+/** Show the current and recent bets in the betting window. */
+void
+treeview2_show_bets(void)
+{
+    GtkTreeView *treeview = 
+	GTK_TREE_VIEW(lookup_widget(window.bets, "treeview_bets"));
+    GtkListStore *model = 
+	gtk_list_store_new(6, G_TYPE_STRING, G_TYPE_POINTER, G_TYPE_POINTER, 
+			   G_TYPE_POINTER, G_TYPE_STRING, G_TYPE_STRING);
+    
+    treeview_helper_clear(treeview);
+    
+    treeview2_set_up_bets(treeview);
+
+    treeview2_create_bets(model);
+    gtk_tree_view_set_model(treeview, GTK_TREE_MODEL(model));
+    g_object_unref(model);
 }

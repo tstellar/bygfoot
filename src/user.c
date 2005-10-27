@@ -21,6 +21,7 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "bet.h"
 #include "cup.h"
 #include "file.h"
 #include "finance.h"
@@ -70,6 +71,9 @@ user_new(void)
 
     new.mmatches_file = NULL;
     new.mmatches = g_array_new(FALSE, FALSE, sizeof(MemMatch));
+
+    new.bets[0] = g_array_new(FALSE, FALSE, sizeof(BetUser));
+    new.bets[1] = g_array_new(FALSE, FALSE, sizeof(BetUser));
 
     return new;
 }

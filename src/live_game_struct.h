@@ -218,6 +218,9 @@ typedef struct
     /** Match statistics. @see #LiveGameStats */
     LiveGameStats stats;
     LiveGameTeamState team_state[2];
+    /** Ids of strategy actions applied. 
+	Actions only get applied once. */
+    GArray *action_ids[2];
 } LiveGame;
 
 #endif

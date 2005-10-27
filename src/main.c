@@ -29,6 +29,8 @@
 #include <time.h>
 #include <glib/gprintf.h>
 
+#include "bet_struct.h"
+#include "debug.h"
 #include "file.h"
 #include "free.h"
 #include "language.h"
@@ -40,6 +42,7 @@
 #include "misc_callbacks.h"
 #include "name_struct.h"
 #include "option.h"
+#include "start_end.h"
 #include "stat_struct.h"
 #include "strategy_struct.h"
 #include "transfer_struct.h"
@@ -55,11 +58,12 @@ gboolean load_last_save;
 void
 main_parse_cl_arguments(gint *argc, gchar ***argv)
 {
-    gboolean testcom = FALSE;
+    gboolean testcom = FALSE, calodds = FALSE;
     gchar *support_dir = NULL, *lang = NULL,
 	*testcom_file = NULL, *token_file = NULL, 
 	*event_name = NULL;
-    gint deb_level = -1, number_of_passes = 1;
+    gint deb_level = -1, number_of_passes = 1,
+	num_matches = 100, skilldiffmax = 20;
     GError *error = NULL;
     GOptionContext *context = NULL;
     GOptionEntry entries[] =
@@ -86,6 +90,15 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 	 { "num-passes", 'n', 0, G_OPTION_ARG_INT, &number_of_passes,
 	   _("How many commentaries to generate per event"), "N" },
 
+	 { "calodds", 'o', 0, G_OPTION_ARG_NONE, &calodds,
+	   _("Calibrate the betting odds by simulating a lot of matches"), NULL },
+
+	 { "num-matches", 'm', 0, G_OPTION_ARG_INT, &num_matches,
+	   _("How many matches to simulate per skill diff step"), "N" },
+
+	 { "num-skilldiff", 'S', 0, G_OPTION_ARG_INT, &skilldiffmax,
+	   _("How many skill diff steps to take"), "N" },
+
 	 {NULL}};
 
     if(argc == NULL || argv == NULL)
@@ -98,6 +111,15 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
     g_option_context_free(context);
 
     misc_print_error(&error, TRUE);
+
+    if(calodds)
+    {
+	option_add(&options, "int_opt_calodds", 1, NULL);
+	option_add(&options, "int_opt_calodds_skilldiffmax", skilldiffmax, NULL);
+	option_add(&options, "int_opt_calodds_matches", num_matches, NULL);
+    }
+    else
+	option_add(&options, "int_opt_calodds", 0, NULL);
 
     if(testcom)
     {
@@ -149,7 +171,7 @@ main_init_variables(void)
 	window.options = window.font_sel =
 	window.file_chooser = window.contract = 
 	window.menu_player = window.user_management = 
-	window.mmatches = NULL;
+	window.mmatches = window.bets = NULL;
     
     live_game_reset(&live_game_temp, NULL, FALSE);
 
@@ -158,6 +180,8 @@ main_init_variables(void)
     season_stats = g_array_new(FALSE, FALSE, sizeof(SeasonStat));
     name_lists = g_array_new(FALSE, FALSE, sizeof(NameList));
     strategies = g_array_new(FALSE, FALSE, sizeof(Strategy));
+    bets[0] = g_array_new(FALSE, FALSE, sizeof(BetMatch));
+    bets[1] = g_array_new(FALSE, FALSE, sizeof(BetMatch));
 
     save_file = NULL;
 

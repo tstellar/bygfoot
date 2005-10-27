@@ -273,8 +273,7 @@ strategy_update_team_pre_match(Team *tm)
     strategy_set_tokens(tm, NULL);
 
     for(i=prematches->len - 1; i >= 0; i--)
-	if(g_array_index(prematches, StrategyPrematch, i).condition == NULL ||
-	   misc_parse_condition(g_array_index(prematches, StrategyPrematch, i).condition,
+	if(misc_parse_condition(g_array_index(prematches, StrategyPrematch, i).condition,
 				token_strat))
 	{
 	   strategy_apply_prematch(tm, &g_array_index(prematches, StrategyPrematch, i));
@@ -425,37 +424,62 @@ strategy_compare_players_sub(gconstpointer a,
     gfloat skill1, skill2;
     const Player *pl1 = *(const Player**)a;
     const Player *pl2 = *(const Player**)b;
-    gint type = GPOINTER_TO_INT(user_data);
+    gint position = GPOINTER_TO_INT(user_data) % 10;
+    gint property = (GPOINTER_TO_INT(user_data) - position) / 10;
     gint return_value = 0;
 
-    switch(type)
-    {
-	default:
-	    g_warning("strategy_compare_players_sub: unknown type %d\n",
-		      type);
-	    return_value = 0;
-	    break;
-	case STRAT_LINEUP_FITTEST:
-	    return_value = misc_float_compare(pl1->fitness,
-					      pl2->fitness);
-	    break;
-	case STRAT_LINEUP_UNFITTEST:
-	    return_value = misc_float_compare(pl2->fitness,
-					      pl1->fitness);
-	    break;
-	case STRAT_LINEUP_BEST:
-	    skill1 = player_get_game_skill(pl1, TRUE);
-	    skill2 = player_get_game_skill(pl2, TRUE);	
-	    return_value = misc_float_compare(skill1, skill2);
-	    break;
-	case STRAT_LINEUP_WEAKEST:
-	    skill1 = player_get_game_skill(pl1, TRUE);
-	    skill2 = player_get_game_skill(pl2, TRUE);	
-	    return_value = misc_float_compare(skill2, skill1);
-	    break;
-    }
+    if(pl1->pos != pl2->pos &&
+       (pl1->pos == position || pl2->pos == position))
+	return_value = (pl1->pos == position) ? -1 : 1;
+    else
+	switch(property)
+	{
+	    default:
+		g_warning("strategy_compare_players_sub: unknown property %d\n",
+			  property);
+		return_value = 0;
+		break;
+	    case STRAT_LINEUP_FITTEST:
+		return_value = misc_float_compare(pl1->fitness,
+						  pl2->fitness);
+		break;
+	    case STRAT_LINEUP_UNFITTEST:
+		return_value = misc_float_compare(pl2->fitness,
+						  pl1->fitness);
+		break;
+	    case STRAT_LINEUP_BEST:
+		skill1 = player_get_game_skill(pl1, TRUE);
+		skill2 = player_get_game_skill(pl2, TRUE);	
+		return_value = misc_float_compare(skill1, skill2);
+		break;
+	    case STRAT_LINEUP_WEAKEST:
+		skill1 = player_get_game_skill(pl1, TRUE);
+		skill2 = player_get_game_skill(pl2, TRUE);	
+		return_value = misc_float_compare(skill2, skill1);
+		break;
+	}
 
     return return_value;
+}
+
+/** Compare two player positions, taking into account the number
+    of players playing the position in the team. */
+gint
+strategy_compare_positions(gconstpointer a,
+			   gconstpointer b,
+			   gpointer user_data)
+{
+    gint i, pos[4] = {0, 0, 0, 0};
+    gint pos1 = *(gint*)a,
+	pos2 = *(gint*)b;
+    const Team *tm = (const Team*)user_data;
+    
+    for(i=0;i<11;i++)
+	if(player_of_idx_team(tm, i)->cskill > 0 &&
+	   player_is_banned(player_of_idx_team(tm, i)) <= 0)
+	    pos[player_of_idx_team(tm, i)->pos]++;
+
+    return misc_int_compare(pos[pos1], pos[pos2]);
 }
 
 /** Find an appropriate player to send out or in.
@@ -471,10 +495,28 @@ strategy_get_sub(const Team *tm, gint position,
 	stop = (sub_in) ? tm->players->len : 11;
     GPtrArray *players = g_ptr_array_new();
     gint return_value = -1;
+    GArray *positions = g_array_new(FALSE, FALSE, sizeof(gint));
+
+    if(position < 90)
+	g_array_append_val(positions, position);
+    else
+    {
+	while(position >= 90)
+	{
+	    i = math_get_place(position, 1);
+	    g_array_append_val(positions, i);
+	    position = (position - position % 10) / 10;
+	}
+	
+	g_array_sort_with_data(positions, 
+			       (GCompareDataFunc)strategy_compare_positions,
+			       (gpointer)tm);
+    }
 
     for(i=start;i<stop;i++)
-	if(player_of_idx_team(tm, i)->pos == position &&
-	   player_of_idx_team(tm, i)->cskill > 0 &&
+	if(player_of_idx_team(tm, i)->cskill > 0 &&
+	   query_misc_integer_is_in_g_array(
+	       player_of_idx_team(tm, i)->pos, positions) &&
 	   (i > 10 || player_is_banned(player_of_idx_team(tm, i)) <= 0))
 	    g_ptr_array_add(players, (gpointer)player_of_idx_team(tm, i));
 
@@ -486,7 +528,7 @@ strategy_get_sub(const Team *tm, gint position,
 
     g_ptr_array_sort_with_data(players, 
 			       (GCompareDataFunc)strategy_compare_players_sub,
-			       GINT_TO_POINTER(property));
+			       GINT_TO_POINTER(property * 10 + g_array_index(positions, gint, 0)));
 
     return_value = ((Player*)g_ptr_array_index(players, 0))->id;
 
@@ -504,6 +546,8 @@ strategy_live_game_apply_action(LiveGame *match, gint team_idx,
     Team *tm = match->fix->teams[team_idx];
     gint old_form = tm->structure;
 
+    g_array_append_val(match->action_ids[team_idx], action->id);
+
     if(action->style != -100 && tm->style != action->style)
     {
 	tm->style = action->style;
@@ -520,7 +564,8 @@ strategy_live_game_apply_action(LiveGame *match, gint team_idx,
 				    tm->boost + 1);
     }
 
-    if(action->sub_in_pos != -1 && match->subs_left[team_idx] > 0)
+    if(action->sub_in_pos != -1 && match->subs_left[team_idx] > 0 &&
+       misc_parse_condition(action->sub_condition, token_strat))
     {
 	sub_in_id = strategy_get_sub(tm, action->sub_in_pos, 
 				     action->sub_in_prop, TRUE);
@@ -558,7 +603,11 @@ strategy_live_game_check(LiveGame *match, gint team_idx)
     for(i=strat->match_action->len - 1; i >= 0; i--)
     {
 	if((match->subs_left[team_idx] > 0 ||
-	    g_array_index(strat->match_action, StrategyMatchAction, i).sub_in_pos == -1) &&
+	    g_array_index(strat->match_action, 
+			  StrategyMatchAction, i).sub_in_pos == -1) &&
+	   !query_misc_integer_is_in_g_array(
+	       g_array_index(strat->match_action, StrategyMatchAction, i).id,
+	       match->action_ids[team_idx]) &&
 	   misc_parse_condition(
 	       g_array_index(strat->match_action, StrategyMatchAction, i).condition,
 	       token_strat))

@@ -89,4 +89,9 @@ gint
 strategy_get_sub(const Team *tm, gint position, 
 		 gint property, gboolean sub_in);
 
+gint
+strategy_compare_positions(gconstpointer a,
+			   gconstpointer b,
+			   gpointer user_data);
+
 #endif

@@ -21,8 +21,11 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "bet_struct.h"
 #include "cup.h"
 #include "file.h"
+#include "fixture.h"
+#include "free.h"
 #include "misc.h"
 #include "xml.h"
 #include "variables.h"
@@ -38,10 +41,15 @@ enum XmlLoadSaveCountryTags
     TAG_MISC_WEEK_ROUND,
     TAG_MISC_COUNTER,
     TAG_MISC_ALLCUP,
+    TAG_MISC_BET0,
+    TAG_MISC_BET1,
+    TAG_MISC_BET_FIX_ID,
+    TAG_MISC_BET_ODD,
     TAG_END
 };
 
-gint state, countidx;
+gint state, countidx, oddidx, betidx;
+BetMatch new_bet;
 
 void
 xml_loadsave_misc_start_element (GMarkupParseContext *context,
@@ -72,6 +80,13 @@ xml_loadsave_misc_start_element (GMarkupParseContext *context,
     if(tag == TAG_MISC)
 	countidx = 0;
 
+    if(tag == TAG_MISC_BET0 ||
+       tag == TAG_MISC_BET1)
+    {
+	oddidx = 0;
+	betidx = (tag == TAG_MISC_BET1);
+    }
+
     if(!valid_tag)
 	g_warning("xml_loadsave_misc_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
@@ -92,11 +107,23 @@ xml_loadsave_misc_end_element    (GMarkupParseContext *context,
        tag == TAG_MISC_COUNTER ||
        tag == TAG_MISC_SEASON ||
        tag == TAG_MISC_WEEK ||
-       tag == TAG_MISC_WEEK_ROUND)
+       tag == TAG_MISC_WEEK_ROUND ||
+       tag == TAG_MISC_BET0 ||
+       tag == TAG_MISC_BET1)
     {
 	state = TAG_MISC;
 	if(tag == TAG_MISC_COUNTER)
 	    countidx++;
+	else if(tag == TAG_MISC_BET0 ||
+		tag == TAG_MISC_BET1)
+	    g_array_append_val(bets[betidx], new_bet);
+    }
+    else if(tag == TAG_MISC_BET_ODD ||
+	    tag == TAG_MISC_BET_FIX_ID)
+    {
+	state = (betidx == 0) ? TAG_MISC_BET0 : TAG_MISC_BET1;
+	if(tag == TAG_MISC_BET_ODD)
+	    oddidx++;
     }
     else if(tag != TAG_MISC)
 	g_warning("xml_loadsave_misc_end_element: unknown tag: %s; I'm in state %d\n",
@@ -105,18 +132,20 @@ xml_loadsave_misc_end_element    (GMarkupParseContext *context,
 
 void
 xml_loadsave_misc_text         (GMarkupParseContext *context,
-				   const gchar         *text,
-				   gsize                text_len,  
-				   gpointer             user_data,
-				   GError             **error)
+				const gchar         *text,
+				gsize                text_len,  
+				gpointer             user_data,
+				GError             **error)
 {
     gchar buf[SMALL];
     gint int_value = -1;
+    gfloat float_value = -1;
 
     strncpy(buf, text, text_len);
     buf[text_len] = '\0';
 
     int_value = (gint)g_ascii_strtod(buf, NULL);
+    float_value = (gfloat)g_ascii_strtod(buf, NULL) / 10000;
 
     if(state == TAG_NAME)
 	misc_string_assign(&country.name, buf);
@@ -134,6 +163,10 @@ xml_loadsave_misc_text         (GMarkupParseContext *context,
 	counters[countidx] = int_value;
     else if(state == TAG_MISC_ALLCUP)
 	g_ptr_array_add(acps, cup_from_clid(int_value));
+    else if(state == TAG_MISC_BET_ODD)
+	new_bet.odds[oddidx] = float_value;
+    else if(state == TAG_MISC_BET_FIX_ID)
+	new_bet.fix = fixture_from_id(int_value);
 }
 
 
@@ -163,6 +196,8 @@ xml_loadsave_misc_read(const gchar *dirname, const gchar *basename)
 
     g_ptr_array_free(acps, TRUE);
     acps = g_ptr_array_new();
+
+    free_bets(TRUE);
 
     if(g_markup_parse_context_parse(context, file_contents, length, &error))
     {
@@ -204,6 +239,27 @@ xml_loadsave_misc_write(const gchar *prefix)
     for(i=0;i<acps->len;i++)
 	xml_write_int(fil, acp(i)->id, TAG_MISC_ALLCUP, I0);
 
+    xml_loadsave_misc_write_bets(fil);
+
     fprintf(fil, "</_%d>\n", TAG_MISC);
     fclose(fil);
+}
+
+/** Write the bets arrays into the file. */
+void
+xml_loadsave_misc_write_bets(FILE *fil)
+{
+    gint i, j, k;
+
+    for(i=0;i<2;i++)
+	for(j=0;j<bets[i]->len;j++)
+	{
+	    fprintf(fil, "%s<_%d>\n", I0, (i == 0) ? TAG_MISC_BET0 : TAG_MISC_BET1);
+	    xml_write_int(fil, g_array_index(bets[i], BetMatch, j).fix->id,
+			  TAG_MISC_BET_FIX_ID, I1);
+	    for(k=0;k<3;k++)
+		xml_write_float(fil, g_array_index(bets[i], BetMatch, j).odds[k],
+				TAG_MISC_BET_ODD, I1);
+	    fprintf(fil, "%s</_%d>\n", I0, (i == 0) ? TAG_MISC_BET0 : TAG_MISC_BET1);
+	}
 }

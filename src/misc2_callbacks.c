@@ -21,6 +21,7 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "bet.h"
 #include "callbacks.h"
 #include "callback_func.h"
 #include "debug.h"
@@ -146,10 +147,13 @@ on_button_digits_ok_clicked            (GtkButton       *button,
 	case STATUS_SET_YA_PERCENTAGE:
 	    current_user.youth_academy.percentage = values[1];
 	    break;
+	case STATUS_PLACE_BET:
+	    bet_place((Fixture*)statp, stat2, values[0]);
+	    break;
     }
 
     if(destroy_window)
-	window_destroy(&window.digits, TRUE);
+	window_destroy(&window.digits, FALSE);
 
     game_gui_set_main_window_header();
 
@@ -161,9 +165,7 @@ void
 on_button_digits_cancel_clicked        (GtkButton       *button,
                                         gpointer         user_data)
 {
-    window_destroy(&window.digits, TRUE);
-    if(stat0 == STATUS_LIVE_GAME_PAUSE)
-	gtk_widget_set_sensitive(window.main, TRUE);
+    window_destroy(&window.digits, FALSE);
 }
 
 gboolean

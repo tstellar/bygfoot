@@ -28,7 +28,7 @@
     are preferred when putting together the first 11). */
 enum StratLineupType
 {
-    STRAT_LINEUP_BEST = 0,
+    STRAT_LINEUP_BEST = 1,
     STRAT_LINEUP_WEAKEST,
     STRAT_LINEUP_FITTEST,
     STRAT_LINEUP_UNFITTEST,
@@ -53,14 +53,16 @@ typedef struct
 typedef struct
 {
     /** A condition describing when the action should be taken. */
-    gchar *condition;
+    gchar *condition, *sub_condition;
     /** New boost and style values. */
     gint boost, style;
     /** Substitution specifiers (position and property).
 	Property is taken from #StratLineupType. */
     gint sub_in_pos, sub_in_prop,
 	sub_out_pos, sub_out_prop;
-
+    /** An id to prevent actions from being applied again and
+	again during a match. */
+    gint id;
 } StrategyMatchAction;
 
 /** A CPU strategy. */

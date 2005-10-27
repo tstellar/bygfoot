@@ -32,6 +32,8 @@ debug_action(const gchar *text, gint value);
 gboolean
 debug_reset_counter(gpointer data);
 
+void
+debug_calibrate_betting_odds(gint skilldiffmax, gint matches_per_skilldiff);
 
 #endif
 

@@ -38,6 +38,7 @@ enum MonIn
     MON_IN_PRIZE = 0,
     MON_IN_TICKET,
     MON_IN_SPONSOR,
+    MON_IN_BETS,
     MON_IN_TRANSFERS,    
     MON_IN_END
 };
@@ -52,6 +53,7 @@ enum MonOut
     MON_OUT_YA,
     MON_OUT_JOURNEY,
     MON_OUT_COMPENSATIONS,
+    MON_OUT_BETS,
     MON_OUT_TRANSFERS,
     MON_OUT_STADIUM_IMPROVEMENT,
     MON_OUT_STADIUM_BILLS,
@@ -172,6 +174,8 @@ typedef struct
     gchar *mmatches_file;
     /** The array of MMs. */
     GArray *mmatches;
+    /** Array of current and recent bets. */
+    GArray *bets[2];
 } User;
 
 enum EventType

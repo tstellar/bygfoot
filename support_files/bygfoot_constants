@@ -874,3 +874,14 @@ float_player_streak_prob_max	40000
 # probability at streak_prob=0 (this is >0 because
 # the streak_prob is between -1 and 1, not 0 and 1)
 float_player_streak_prob_zero	5000
+
+# factors for the betting odds functions
+float_bet_better_factor	       2430
+float_bet_worse_factor	       -1290
+
+# this determines how much worse the odds
+# are made because of betting commission
+float_bet_commission_decrease 25000
+
+# how small the odds may become
+float_bet_lower_limit	 5000

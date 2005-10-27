@@ -32,4 +32,7 @@ xml_loadsave_misc_read(const gchar *dirname, const gchar *basename);
 void
 xml_loadsave_misc_write(const gchar *prefix);
 
+void
+xml_loadsave_misc_write_bets(FILE *fil);
+
 #endif

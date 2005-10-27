@@ -53,5 +53,14 @@ xml_loadsave_users_read(const gchar *dirname, const gchar *basename);
 void
 xml_loadsave_users_write(const gchar *prefix);
 
+void
+xml_user_write_history(FILE *fil, const GArray *history);
+
+void
+xml_user_write_events(FILE *fil, const GArray *events);
+
+void
+xml_user_write_bets(FILE *fil, GArray **bets);
+
 #endif
 
