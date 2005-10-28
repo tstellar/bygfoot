@@ -42,7 +42,7 @@ void
 game_gui_live_game_set_hscale(const LiveGameUnit *unit, GtkHScale *hscale);
 
 void
-game_gui_live_game_show_opponent_players(void);
+game_gui_live_game_show_opponent(void);
 
 void
 game_gui_set_main_window_header(void);
@@ -84,6 +84,10 @@ game_gui_set_main_window_sensitivity(gboolean value);
 
 void
 game_gui_write_av_skills(void);
+
+void
+game_gui_write_meter_images(const Team *tm, GtkImage *style, 
+			    GtkImage *boost);
 
 void
 game_gui_write_meters(const Team *tm);

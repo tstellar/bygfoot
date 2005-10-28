@@ -885,3 +885,9 @@ float_bet_commission_decrease 25000
 
 # how small the odds may become
 float_bet_lower_limit	 5000
+
+# how many wage units the user may wager at most
+float_bet_wager_limit_factor 50000
+
+# how much the user may wager at most
+int_bet_wager_max	      25000

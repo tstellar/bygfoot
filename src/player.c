@@ -424,8 +424,8 @@ player_compare_func(gconstpointer a, gconstpointer b, gpointer data)
 
     if(type == PLAYER_COMPARE_ATTRIBUTE_GAME_SKILL)
 	return_value = 
-	    misc_float_compare(player_get_game_skill(pl1, FALSE),
-			       player_get_game_skill(pl2, FALSE));
+	    misc_float_compare(player_get_game_skill(pl1, FALSE, TRUE),
+			       player_get_game_skill(pl2, FALSE, TRUE));
     else if(type == PLAYER_COMPARE_ATTRIBUTE_POS)
     {
 	if(MIN(player_id_index(pl1->team, pl1->id), player_id_index(pl2->team, pl2->id)) < 11 &&
@@ -482,8 +482,8 @@ player_compare_substitute_func(gconstpointer a, gconstpointer b, gpointer data)
 	powf(pl1->fitness, const_float("float_player_fitness_exponent")),
 	skill_for_pos2 = player_get_cskill(pl2, position, FALSE) * 
 	powf(pl2->fitness, const_float("float_player_fitness_exponent"));
-    gfloat game_skill1 = player_get_game_skill(pl1, FALSE),
-	game_skill2 = player_get_game_skill(pl2, FALSE);
+    gfloat game_skill1 = player_get_game_skill(pl1, FALSE, TRUE),
+	game_skill2 = player_get_game_skill(pl2, FALSE, TRUE);
     gboolean good_structure1 =
 	player_substitution_good_structure(pl1->team->structure, position, pl1->pos),
 	good_structure2 =
@@ -688,16 +688,21 @@ player_is_banned(const Player *pl)
 /** Return the player's skill contribution to his team.
     @param pl The player.
     @param skill Whether to take his skill or current skill into account.
+    @param special Whether to count special influence like boost and
+    streak.
     @return A float value representing the player's contribution. */
 gfloat
-player_get_game_skill(const Player *pl, gboolean skill)
+player_get_game_skill(const Player *pl, gboolean skill, gboolean count_special)
 {
-    return (skill) ? pl->skill * 
-	powf(pl->fitness, const_float("float_player_fitness_exponent")) * 
-	(1 + (gfloat)pl->streak * const_float("float_player_streak_influence_skill")) :
-	pl->cskill * 
-	powf(pl->fitness, const_float("float_player_fitness_exponent")) * 
-	(1 + (gfloat)pl->streak * const_float("float_player_streak_influence_skill"));
+    gfloat boost = (count_special) ? 
+	1 + const_float("float_player_boost_skill_effect") * pl->team->boost : 1;
+    gfloat streak = (count_special) ?
+	1 + (gfloat)pl->streak * const_float("float_player_streak_influence_skill") : 1;
+    
+    return (skill) ? pl->skill * boost * streak *
+	powf(pl->fitness, const_float("float_player_fitness_exponent"))	:
+	pl->cskill * boost * streak *
+	powf(pl->fitness, const_float("float_player_fitness_exponent"));
 }
 
 /** Decrease a player's fitness during a match.

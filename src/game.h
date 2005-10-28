@@ -44,7 +44,7 @@ game_get_values(const Fixture *fix, gfloat team_values[][GAME_TEAM_VALUE_END],
 		gfloat home_advantage);
 
 gfloat
-game_get_player_contribution(const Player *pl, gboolean attack);
+game_get_player_contribution(const Player *pl, gboolean attack, gboolean special);
 
 gint
 game_get_player(const Team *tm, gint player_type, 

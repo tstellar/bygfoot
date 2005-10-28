@@ -388,9 +388,7 @@ team_get_average_skill(const Team *tm, gboolean cskill)
     else
 	for(i=0;i<11;i++)
 	{
-	    sum += (player_get_game_skill(player_of_idx_team(tm, i), FALSE) /
-		    (1 + (gfloat)player_of_idx_team(tm, i)->streak * 
-		     const_float("float_player_streak_influence_skill")));
+	    sum += (player_get_game_skill(player_of_idx_team(tm, i), FALSE, FALSE));
 	    counter++;
 	}
 
@@ -669,8 +667,8 @@ team_update_cpu_subs(Team *tm)
     for(i=0;i<number_of_subs;i++)
 	game_substitute_player(tm, player_numbers[i]);
 
-    if(player_get_game_skill(player_of_idx_team(tm, 0), 0) <
-       player_get_game_skill(player_of_idx_team(tm, 10), 0) &&
+    if(player_get_game_skill(player_of_idx_team(tm, 0), FALSE, TRUE) <
+       player_get_game_skill(player_of_idx_team(tm, 10), FALSE, TRUE) &&
        math_rnd(0, 1) < const_float("float_team_replace_worse_goalie"))
 	game_substitute_player(tm, 0);
 }

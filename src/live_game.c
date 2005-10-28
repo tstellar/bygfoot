@@ -123,7 +123,7 @@ live_game_initialize(Fixture *fix)
 	    gtk_window_set_title(GTK_WINDOW(window.live),
 				 league_cup_get_name_string(((LiveGame*)statp)->fix->clid));
 	window_live_set_up();
-	game_gui_live_game_show_opponent_players();
+	game_gui_live_game_show_opponent();
     }
 
     game_initialize(fix);
@@ -974,7 +974,7 @@ live_game_event_substitution(gint team_number, gint sub_in, gint sub_out)
 	player_of_id_team(tm[team_number], sub_in)->participation = TRUE;
 
 	if(show)
-	    game_gui_live_game_show_opponent_players();
+	    game_gui_live_game_show_opponent();
     }
 
     g_array_append_val(unis, new);
@@ -1002,6 +1002,9 @@ live_game_event_team_change(gint team_number, gint event_type)
     g_array_append_val(unis, new);
     
     live_game_finish_unit();
+
+    if(show)
+	game_gui_live_game_show_opponent();
 }
 
 /** Calculate whether a player who tries to score succeeds. */
@@ -1032,8 +1035,8 @@ live_game_event_duel(void)
 
     new.event.player2 = goalie->id;
 
-    duel_factor = player_get_game_skill(attacker, FALSE) /
-	player_get_game_skill(goalie, FALSE);
+    duel_factor = player_get_game_skill(attacker, FALSE, TRUE) /
+	player_get_game_skill(goalie, FALSE, TRUE);
 
     res_idx1 = new.possession;
     if(new.time == LIVE_GAME_UNIT_TIME_PENALTIES)

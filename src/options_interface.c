@@ -175,6 +175,10 @@ create_window_options (void)
   GtkWidget *checkbutton_bet_show_all_leagues;
   GtkWidget *checkbutton_bet_show_cups;
   GtkWidget *checkbutton_bet_show_only_recent;
+  GtkWidget *hbox12;
+  GtkWidget *label42;
+  GtkObject *spinbutton_bet_wager_adj;
+  GtkWidget *spinbutton_bet_wager;
   GtkWidget *label41;
   GtkWidget *hseparator1;
   GtkWidget *hbox1;
@@ -980,6 +984,21 @@ create_window_options (void)
   gtk_widget_show (checkbutton_bet_show_only_recent);
   gtk_box_pack_start (GTK_BOX (vbox8), checkbutton_bet_show_only_recent, FALSE, FALSE, 0);
 
+  hbox12 = gtk_hbox_new (FALSE, 5);
+  gtk_widget_show (hbox12);
+  gtk_box_pack_start (GTK_BOX (vbox8), hbox12, FALSE, FALSE, 0);
+
+  label42 = gtk_label_new (_("Default wager"));
+  gtk_widget_show (label42);
+  gtk_box_pack_start (GTK_BOX (hbox12), label42, FALSE, FALSE, 0);
+
+  spinbutton_bet_wager_adj = gtk_adjustment_new (1, 1, 100, 100, 1000, 10);
+  spinbutton_bet_wager = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_bet_wager_adj), 1, 0);
+  gtk_widget_show (spinbutton_bet_wager);
+  gtk_box_pack_start (GTK_BOX (hbox12), spinbutton_bet_wager, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, spinbutton_bet_wager, _("How much you wager by default"), NULL);
+  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_bet_wager), TRUE);
+
   label41 = gtk_label_new (_("Betting"));
   gtk_widget_show (label41);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 4), label41);
@@ -1181,6 +1200,9 @@ create_window_options (void)
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_bet_show_all_leagues, "checkbutton_bet_show_all_leagues");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_bet_show_cups, "checkbutton_bet_show_cups");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_bet_show_only_recent, "checkbutton_bet_show_only_recent");
+  GLADE_HOOKUP_OBJECT (window_options, hbox12, "hbox12");
+  GLADE_HOOKUP_OBJECT (window_options, label42, "label42");
+  GLADE_HOOKUP_OBJECT (window_options, spinbutton_bet_wager, "spinbutton_bet_wager");
   GLADE_HOOKUP_OBJECT (window_options, label41, "label41");
   GLADE_HOOKUP_OBJECT (window_options, hseparator1, "hseparator1");
   GLADE_HOOKUP_OBJECT (window_options, hbox1, "hbox1");

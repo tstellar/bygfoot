@@ -341,6 +341,7 @@ enum SpinOptions
     SPIN_OPT_LIVE_SPEED,
     SPIN_OPT_LIVE_VERBOSITY,
     SPIN_OPT_CONTRACT,
+    SPIN_OPT_BET_WAGER,
     SPIN_OPT_END
 };
 
@@ -348,7 +349,7 @@ enum SpinOptions
 void
 option_gui_write_spin_widgets(gint **spin_options, GtkSpinButton **spin_widgets)
 {
-    gint speed_val = 0;
+    gint tmp = 0;
 
     spin_widgets[SPIN_OPT_AUTOSAVE] =
 	GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_autosave"));
@@ -372,13 +373,13 @@ option_gui_write_spin_widgets(gint **spin_options, GtkSpinButton **spin_widgets)
 
     /** Note the spinbutton value so that it doesn't get lost
 	when setting the range. */    
-    speed_val = gtk_spin_button_get_value_as_int(spin_widgets[SPIN_OPT_LIVE_SPEED]);
+    tmp = gtk_spin_button_get_value_as_int(spin_widgets[SPIN_OPT_LIVE_SPEED]);
     gtk_spin_button_set_range(
 	spin_widgets[SPIN_OPT_LIVE_SPEED], 0,
 	-rint((gfloat)(const_int("int_game_gui_live_game_speed_max") - 10) /
 	      (gfloat)(const_int("int_game_gui_live_game_speed_grad"))));
     gtk_spin_button_set_value(spin_widgets[SPIN_OPT_LIVE_SPEED],
-			      (gfloat)speed_val);
+			      (gdouble)tmp);
 
     spin_widgets[SPIN_OPT_LIVE_VERBOSITY] =
 	GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_live_verbosity"));
@@ -387,6 +388,17 @@ option_gui_write_spin_widgets(gint **spin_options, GtkSpinButton **spin_widgets)
     spin_widgets[SPIN_OPT_CONTRACT] =
 	GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_contract"));
     spin_options[SPIN_OPT_CONTRACT] = opt_user_intp("int_opt_user_contract_limit");
+
+    spin_widgets[SPIN_OPT_BET_WAGER] =
+	GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_bet_wager"));
+    spin_options[SPIN_OPT_BET_WAGER] = opt_user_intp("int_opt_user_bet_default_wager");
+
+    tmp = gtk_spin_button_get_value_as_int(spin_widgets[SPIN_OPT_BET_WAGER]);
+    gtk_spin_button_set_range(
+	spin_widgets[SPIN_OPT_BET_WAGER], 1,
+	(gdouble)const_int("int_bet_wager_max"));
+    gtk_spin_button_set_value(spin_widgets[SPIN_OPT_BET_WAGER],
+			      (gdouble)tmp);
 }
 
 

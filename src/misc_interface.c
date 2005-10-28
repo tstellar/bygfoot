@@ -489,6 +489,15 @@ create_window_live (void)
   GtkWidget *treeview_stats;
   GtkWidget *label81;
   GtkWidget *scrolledwindow13;
+  GtkWidget *viewport1;
+  GtkWidget *vbox49;
+  GtkWidget *hbox75;
+  GtkWidget *image_lg_opp_style;
+  GtkWidget *image_lg_opp_boost;
+  GtkWidget *label_lg_formation;
+  GtkWidget *hbox76;
+  GtkWidget *label120;
+  GtkWidget *label_lg_avskill;
   GtkWidget *treeview_lg_opponent;
   GtkWidget *label118;
   GtkWidget *hbox48;
@@ -619,9 +628,45 @@ create_window_live (void)
   gtk_container_add (GTK_CONTAINER (notebook1), scrolledwindow13);
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow13), GTK_SHADOW_IN);
 
+  viewport1 = gtk_viewport_new (NULL, NULL);
+  gtk_widget_show (viewport1);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow13), viewport1);
+
+  vbox49 = gtk_vbox_new (FALSE, 3);
+  gtk_widget_show (vbox49);
+  gtk_container_add (GTK_CONTAINER (viewport1), vbox49);
+
+  hbox75 = gtk_hbox_new (FALSE, 10);
+  gtk_widget_show (hbox75);
+  gtk_box_pack_start (GTK_BOX (vbox49), hbox75, FALSE, FALSE, 0);
+
+  image_lg_opp_style = create_pixmap (window_live, NULL);
+  gtk_widget_show (image_lg_opp_style);
+  gtk_box_pack_start (GTK_BOX (hbox75), image_lg_opp_style, FALSE, FALSE, 0);
+
+  image_lg_opp_boost = create_pixmap (window_live, NULL);
+  gtk_widget_show (image_lg_opp_boost);
+  gtk_box_pack_start (GTK_BOX (hbox75), image_lg_opp_boost, FALSE, FALSE, 0);
+
+  label_lg_formation = gtk_label_new ("");
+  gtk_widget_show (label_lg_formation);
+  gtk_box_pack_start (GTK_BOX (hbox75), label_lg_formation, FALSE, FALSE, 0);
+
+  hbox76 = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (hbox76);
+  gtk_box_pack_start (GTK_BOX (hbox75), hbox76, FALSE, FALSE, 0);
+
+  label120 = gtk_label_new (_("Av. skill: "));
+  gtk_widget_show (label120);
+  gtk_box_pack_start (GTK_BOX (hbox76), label120, FALSE, FALSE, 0);
+
+  label_lg_avskill = gtk_label_new ("");
+  gtk_widget_show (label_lg_avskill);
+  gtk_box_pack_start (GTK_BOX (hbox76), label_lg_avskill, FALSE, FALSE, 0);
+
   treeview_lg_opponent = gtk_tree_view_new ();
   gtk_widget_show (treeview_lg_opponent);
-  gtk_container_add (GTK_CONTAINER (scrolledwindow13), treeview_lg_opponent);
+  gtk_box_pack_start (GTK_BOX (vbox49), treeview_lg_opponent, TRUE, TRUE, 0);
 
   label118 = gtk_label_new (_("Opponent player list"));
   gtk_widget_show (label118);
@@ -792,6 +837,15 @@ create_window_live (void)
   GLADE_HOOKUP_OBJECT (window_live, treeview_stats, "treeview_stats");
   GLADE_HOOKUP_OBJECT (window_live, label81, "label81");
   GLADE_HOOKUP_OBJECT (window_live, scrolledwindow13, "scrolledwindow13");
+  GLADE_HOOKUP_OBJECT (window_live, viewport1, "viewport1");
+  GLADE_HOOKUP_OBJECT (window_live, vbox49, "vbox49");
+  GLADE_HOOKUP_OBJECT (window_live, hbox75, "hbox75");
+  GLADE_HOOKUP_OBJECT (window_live, image_lg_opp_style, "image_lg_opp_style");
+  GLADE_HOOKUP_OBJECT (window_live, image_lg_opp_boost, "image_lg_opp_boost");
+  GLADE_HOOKUP_OBJECT (window_live, label_lg_formation, "label_lg_formation");
+  GLADE_HOOKUP_OBJECT (window_live, hbox76, "hbox76");
+  GLADE_HOOKUP_OBJECT (window_live, label120, "label120");
+  GLADE_HOOKUP_OBJECT (window_live, label_lg_avskill, "label_lg_avskill");
   GLADE_HOOKUP_OBJECT (window_live, treeview_lg_opponent, "treeview_lg_opponent");
   GLADE_HOOKUP_OBJECT (window_live, label118, "label118");
   GLADE_HOOKUP_OBJECT (window_live, hbox48, "hbox48");

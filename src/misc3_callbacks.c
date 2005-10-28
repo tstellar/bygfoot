@@ -88,6 +88,7 @@ on_treeview_bets_button_press_event    (GtkWidget       *widget,
     GtkTreeViewColumn *col = NULL;
     GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(widget));
     GtkTreeIter iter;
+    GtkSpinButton *spin_wager = NULL;
     const BetMatch *bet = NULL;
     gint col_num = -1;
     gchar buf[SMALL];
@@ -129,6 +130,11 @@ on_treeview_bets_button_press_event    (GtkWidget       *widget,
     stat2 = col_num - 1;
 
     window_show_digits(buf, _("Wager"), 0, NULL, -1);
+    spin_wager = GTK_SPIN_BUTTON(lookup_widget(window.digits, "spinbutton1"));
+    gtk_spin_button_set_range(spin_wager, 0,
+			      (gdouble)const_int("int_bet_wager_max"));
+    gtk_spin_button_set_value(spin_wager,
+			      (gdouble)opt_user_int("int_opt_user_bet_default_wager"));
 
     return TRUE;
 }

@@ -1393,8 +1393,7 @@ void
 treeview_helper_player_cskill_to_cell(GtkCellRenderer *renderer, gchar *buf, const Player *pl)
 {
     sprintf(buf, "%.*f", opt_int("int_opt_player_precision"),
-	    player_get_game_skill(pl, FALSE) /
-	    (1 + (gfloat)pl->streak * const_float("float_player_streak_influence_skill")));
+	    player_get_game_skill(pl, FALSE, FALSE));
 	    
     if(pl->cskill < pl->skill)
 	g_object_set(renderer, "background", 

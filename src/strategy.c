@@ -82,8 +82,8 @@ strategy_compare_players(gconstpointer a,
 	return_value = -1;
     else
     {
-	gfloat skill1 = player_get_game_skill(pl1, TRUE),
-	    skill2 = player_get_game_skill(pl2, TRUE);
+	gfloat skill1 = player_get_game_skill(pl1, TRUE, TRUE),
+	    skill2 = player_get_game_skill(pl2, TRUE, TRUE);
 	
 	if(strat->lineup == STRAT_LINEUP_BEST)
 	    return_value = misc_float_compare(skill1, skill2);
@@ -448,13 +448,13 @@ strategy_compare_players_sub(gconstpointer a,
 						  pl1->fitness);
 		break;
 	    case STRAT_LINEUP_BEST:
-		skill1 = player_get_game_skill(pl1, TRUE);
-		skill2 = player_get_game_skill(pl2, TRUE);	
+		skill1 = player_get_game_skill(pl1, TRUE, TRUE);
+		skill2 = player_get_game_skill(pl2, TRUE, TRUE);	
 		return_value = misc_float_compare(skill1, skill2);
 		break;
 	    case STRAT_LINEUP_WEAKEST:
-		skill1 = player_get_game_skill(pl1, TRUE);
-		skill2 = player_get_game_skill(pl2, TRUE);	
+		skill1 = player_get_game_skill(pl1, TRUE, TRUE);
+		skill2 = player_get_game_skill(pl2, TRUE, TRUE);	
 		return_value = misc_float_compare(skill2, skill1);
 		break;
 	}

@@ -179,15 +179,32 @@ game_gui_live_game_set_hscale(const LiveGameUnit *unit, GtkHScale *hscale)
 /** Show the player list of the opposing team in the live game
     window. */
 void
-game_gui_live_game_show_opponent_players(void)
+game_gui_live_game_show_opponent(void)
 {
+    GtkImage *image_style = 
+	GTK_IMAGE(lookup_widget(window.live, "image_lg_opp_style")),
+	*image_boost = 
+	GTK_IMAGE(lookup_widget(window.live, "image_lg_opp_boost"));
+    GtkLabel *label_form = 
+	GTK_LABEL(lookup_widget(window.live, "label_lg_formation")),
+	*label_avskill = 
+	GTK_LABEL(lookup_widget(window.live, "label_lg_avskill"));
     GtkTreeView *treeview = 
 	GTK_TREE_VIEW(lookup_widget(window.live, "treeview_lg_opponent"));
     gint idx = (team_is_user(((LiveGame*)statp)->fix->teams[0]) == -1);
     const Team *tm = ((LiveGame*)statp)->fix->teams[!idx];
     gint scout = user_from_team(((LiveGame*)statp)->fix->teams[idx])->scout;
+    gfloat avskills[2] = {team_get_average_skill(tm, TRUE),
+			  team_get_average_skill(current_user.tm, TRUE)};
+    gchar buf[SMALL];
 
     treeview_show_player_list_team(treeview, tm, scout);
+    game_gui_write_meter_images(tm, image_style, image_boost);    
+    gui_label_set_text_from_int(label_form, tm->structure, FALSE);
+
+    sprintf(buf, "%.1f (%+.1f)", avskills[0], 
+	    avskills[0] - avskills[1]);
+    gtk_label_set_text(label_avskill, buf);
 }
 
 /** Look up the widgets in the main window. */
@@ -303,13 +320,9 @@ game_gui_write_av_skills(void)
 /** Set the images for the style and boost meters to the appropriate values
     from the team settings. */
 void
-game_gui_write_meters(const Team *tm)
+game_gui_write_meter_images(const Team *tm, GtkImage *style, GtkImage *boost)
 {
     gint i;
-    GtkImage *image_style_main = GTK_IMAGE(lookup_widget(window.main, "image_style")),
-	*image_boost_main = GTK_IMAGE(lookup_widget(window.main, "image_boost"));
-    GtkImage *image_style_live = NULL,
-	*image_boost_live = NULL;
 
     gchar *image_style_files[5] = 
 	{file_find_support_file(const_app("string_game_gui_style_all_out_defend_icon"), TRUE),
@@ -322,22 +335,34 @@ game_gui_write_meters(const Team *tm)
 	 file_find_support_file(const_app("string_game_gui_boost_off_icon"), TRUE),
 	 file_find_support_file(const_app("string_game_gui_boost_on_icon"), TRUE)};
 
-    gtk_image_set_from_file(image_style_main, image_style_files[tm->style + 2]);
-    gtk_image_set_from_file(image_boost_main, image_boost_files[tm->boost + 1]);
+    gtk_image_set_from_file(style, image_style_files[tm->style + 2]);
+    gtk_image_set_from_file(boost, image_boost_files[tm->boost + 1]);    
+
+    for(i=0;i<5;i++)
+	g_free(image_style_files[i]);
+    for(i=0;i<3;i++)
+	g_free(image_boost_files[i]);
+}
+
+/** Set the images for the style and boost meters in the main
+    window and the live game window. */
+void
+game_gui_write_meters(const Team *tm)
+{
+    GtkImage *image_style_main = GTK_IMAGE(lookup_widget(window.main, "image_style")),
+	*image_boost_main = GTK_IMAGE(lookup_widget(window.main, "image_boost"));
+    GtkImage *image_style_live = NULL,
+	*image_boost_live = NULL;
+
+    game_gui_write_meter_images(tm, image_style_main, image_boost_main);
 
     if(window.live != NULL)
     {
 	image_style_live = GTK_IMAGE(lookup_widget(window.live, "image_lg_style"));
 	image_boost_live = GTK_IMAGE(lookup_widget(window.live, "image_lg_boost"));
 
-	gtk_image_set_from_file(image_style_live, image_style_files[tm->style + 2]);
-	gtk_image_set_from_file(image_boost_live, image_boost_files[tm->boost + 1]);
+	game_gui_write_meter_images(tm, image_style_live, image_boost_live);
     }
-
-    for(i=0;i<5;i++)
-	g_free(image_style_files[i]);
-    for(i=0;i<3;i++)
-	g_free(image_boost_files[i]);
 }
 
 /** Activate the appropriate radio items for

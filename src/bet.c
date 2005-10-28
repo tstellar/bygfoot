@@ -28,6 +28,7 @@
 #include "league.h"
 #include "main.h"
 #include "maths.h"
+#include "misc.h"
 #include "option.h"
 #include "player.h"
 #include "treeview2.h"
@@ -133,7 +134,7 @@ bet_get_odds(BetMatch *bet)
 	for(j=0;j<11;j++)
 	    av_skill[i] += 
 		player_get_game_skill(player_of_idx_team(bet->fix->teams[i], j),
-				      FALSE);
+				      FALSE, TRUE);
 
 	av_skill[i] /= 11;
     }
@@ -214,7 +215,10 @@ bet_is_user(const BetMatch *bet)
 void
 bet_place(const Fixture *fix, gint outcome, gint wager)
 {
+    gfloat max_wager = finance_wage_unit(current_user.tm) * 
+	const_float("float_bet_wager_limit_factor");
     BetUser new_bet;
+    gchar buf[SMALL];
 
     if(wager <= 0)
 	return;
@@ -222,6 +226,13 @@ bet_place(const Fixture *fix, gint outcome, gint wager)
     if(wager > BUDGET(cur_user))
     {
 	game_gui_show_warning(_("You don't have the money."));
+	return;
+    }
+
+    if(wager > max_wager)
+    {
+	misc_print_grouped_int((gint)rint(max_wager), buf);
+	game_gui_show_warning(_("The betting office doesn't allow you to wager more than %s."), buf);
 	return;
     }
 

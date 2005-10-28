@@ -62,25 +62,26 @@ game_get_values(const Fixture *fix, gfloat team_values[][GAME_TEAM_VALUE_END],
 	style_factor = (gfloat)tm[i]->style * const_float("float_game_style_factor");
 
 	team_values[i][GAME_TEAM_VALUE_GOALIE] = 
-	    game_get_player_contribution(player_of_idx_team(tm[i], 0), FALSE) * 
-	    (1 + home_advantage * (i == 0)) *
-	    (1 + const_float("float_player_boost_skill_effect") * tm[i]->boost);
+	    game_get_player_contribution(player_of_idx_team(tm[i], 0), FALSE, TRUE) * 
+	    (1 + home_advantage * (i == 0));
 
 	for(j=1;j<11;j++)
 	    if(player_of_idx_team(tm[i], j)->cskill > 0)
 	    {
 		team_values[i][GAME_TEAM_VALUE_ATTACK] +=
-		    game_get_player_contribution(player_of_idx_team(tm[i], j), GAME_TEAM_VALUE_ATTACK);
+		    game_get_player_contribution(player_of_idx_team(tm[i], j), 
+						 GAME_TEAM_VALUE_ATTACK, TRUE);
 		team_values[i][GAME_TEAM_VALUE_MIDFIELD] +=
-		    game_get_player_contribution(player_of_idx_team(tm[i], j), GAME_TEAM_VALUE_MIDFIELD);
+		    game_get_player_contribution(player_of_idx_team(tm[i], j), 
+						 GAME_TEAM_VALUE_MIDFIELD, TRUE);
 		team_values[i][GAME_TEAM_VALUE_DEFEND] +=
-		    game_get_player_contribution(player_of_idx_team(tm[i], j), GAME_TEAM_VALUE_DEFEND);		
+		    game_get_player_contribution(player_of_idx_team(tm[i], j), 
+						 GAME_TEAM_VALUE_DEFEND, TRUE);
 	    }
 
 	for(j=GAME_TEAM_VALUE_DEFEND;j<GAME_TEAM_VALUE_DEFEND + 3;j++)
 	    team_values[i][j] *= 
-		((1 + home_advantage * (i == 0)) *
-		 (1 + const_float("float_player_boost_skill_effect") * tm[i]->boost));
+		((1 + home_advantage * (i == 0)));
 
 	team_values[i][GAME_TEAM_VALUE_DEFEND] *= (1 - style_factor);
 	team_values[i][GAME_TEAM_VALUE_ATTACK] *= (1 + style_factor);
@@ -90,10 +91,12 @@ game_get_values(const Fixture *fix, gfloat team_values[][GAME_TEAM_VALUE_END],
 /** Return the contribution of a player to the attack, midfield or defend.
     @param pl The player.
     @param type Whether we have defend, midfield or attack value.
+    @param special Whether to count special influence like boost and
+    streak.
     @return The player's contribution depending on position and
     fitness. */
 gfloat
-game_get_player_contribution(const Player *pl, gint type)
+game_get_player_contribution(const Player *pl, gint type, gboolean special)
 {
 /** How the cskill of field players get weighted for the team values in
     a match. Rows are player position, columns value type. 
@@ -109,7 +112,7 @@ game_get_player_contribution(const Player *pl, gint type)
 	  const_float("float_player_team_weight_forward_midfield"), 
 	  const_float("float_player_team_weight_forward_attack")}};
 
-    return player_get_game_skill(pl, FALSE) *
+    return player_get_game_skill(pl, FALSE, special) *
 	player_weights[pl->cpos - 1][type - GAME_TEAM_VALUE_DEFEND];
 }
 
@@ -204,7 +207,7 @@ game_get_player_probs(GArray *players, gfloat *probs, gfloat *weights, gboolean 
     gint i;
 
     probs[0] = (skills) ? 
-	player_get_game_skill(&g_array_index(players, Player, 1), FALSE) *
+	player_get_game_skill(&g_array_index(players, Player, 1), FALSE, TRUE) *
 	weights[g_array_index(players, Player, 1).cpos - 1] :
 	weights[g_array_index(players, Player, 1).cpos - 1] *
 	(g_array_index(players, Player, 1).cskill != 0);
@@ -217,7 +220,7 @@ game_get_player_probs(GArray *players, gfloat *probs, gfloat *weights, gboolean 
     {
 	probs[i] = probs[i - 1] + 
 	    ((skills) ? 
-	     player_get_game_skill(&g_array_index(players, Player, i + 1), FALSE) *
+	     player_get_game_skill(&g_array_index(players, Player, i + 1), FALSE, TRUE) *
 	     weights[g_array_index(players, Player, i + 1).cpos - 1] :
 	     weights[g_array_index(players, Player, i + 1).cpos - 1] *
 	     (g_array_index(players, Player, i + 1).cskill != 0));
@@ -1093,7 +1096,7 @@ game_get_max_values(gfloat max_values[4])
 	for(j=1;j<11;j++)
 	{
 	    pl.cpos = player_get_position_from_structure(442, j);
-	    max_values[i] += game_get_player_contribution(&pl, i);
+	    max_values[i] += game_get_player_contribution(&pl, i, FALSE);
 	}
     }
 }
@@ -1123,25 +1126,3 @@ game_get_default_penalty_shooter(const Team *tm)
 
     return return_value;
 }
-
-/* gint */
-/* game_get_cpu_goals_to_win(const Fixture *fix) */
-/* { */
-    
-/* } */
-
-/* /\** Check whether the CPU team's strategy (boost, style, subs) */
-/*     has to be adjusted. *\/ */
-/* void */
-/* game_check_cpu_strategy(LiveGame *lg) */
-/* { */
-/*     const LiveGameUnit *unit =  */
-/* 	&g_array_index(lg->units, LiveGameUnit, lg->units->len - 1); */
-/*     gint minutes_remaining = -1, goals_to_win = -1; */
-
-/*     if(unit->time == LIVE_GAME_UNIT_TIME_PENALTIES) */
-/* 	return; */
-
-/*     minutes_remaining = live_game_get_minutes_remaining(unit); */
-/*     goals_to_win = game_get_cpu_goals_to_win(lg->fix); */
-/* } */
