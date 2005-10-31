@@ -148,7 +148,7 @@ on_button_digits_ok_clicked            (GtkButton       *button,
 	    current_user.youth_academy.percentage = values[1];
 	    break;
 	case STATUS_PLACE_BET:
-	    bet_place((Fixture*)statp, stat2, values[0]);
+	    bet_place(stat2, stat3, values[0]);
 	    break;
     }
 

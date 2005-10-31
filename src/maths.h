@@ -29,7 +29,7 @@
 #include "bygfoot.h"
 
 /**
-   Macros for random number generation (#rnd for float, #rndi and #gauss_disti for integer).
+   Macros for random number generation.
 */
 #define math_rnd(lower,upper) g_rand_double_range(rand_generator, lower, upper)
 #define math_rndi(lower,upper) g_rand_int_range(rand_generator, lower, upper + 1)

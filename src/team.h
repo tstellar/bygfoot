@@ -44,12 +44,6 @@ enum TeamCompare
 Team
 team_new(gboolean new_id);
 
-gint
-team_assign_playing_structure(void);
-
-gint
-team_assign_playing_style(void);
-
 gboolean
 query_is_my_team(const Team *tm);
 
@@ -105,19 +99,7 @@ void
 team_update_team_weekly(Team *tm);
 
 void
-team_update_cpu_team(Team *tm, gboolean reset_fitness);
-
-void
 team_update_post_match(Team *tm, const Fixture *fix);
-
-void
-team_update_cpu_corrections(Team *tm, gboolean reset_fitness);
-
-void
-team_update_cpu_subs(Team *tm);
-
-void
-team_update_cpu_structure(Team *tm);
 
 void
 team_update_cpu_new_players(Team *tm);

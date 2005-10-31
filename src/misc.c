@@ -135,6 +135,24 @@ misc_randomise_g_pointer_array(GPtrArray *array)
     return new;
 }
 
+/** Return a freshly allocated copy of the array. */
+GPtrArray*
+misc_copy_ptr_array(const GPtrArray *array)
+{
+    gint i;
+    GPtrArray *copy = NULL;
+
+    if(array != NULL)
+	copy = g_ptr_array_new();
+    else
+	return NULL;
+
+    for(i=0;i<array->len;i++)
+	g_ptr_array_add(copy, g_ptr_array_index(array, i));
+
+    return copy;
+}
+
 /** Print a thousands-grouped output of 'number' into 'buf',
     like 2 234 345 instead of 2234345.
     @param number The number to print. 
@@ -248,30 +266,6 @@ query_misc_string_in_array(const gchar *string, GPtrArray *array)
     return FALSE;
 }
 
-/** Replace a token in a string by another string. 
-    The replacement should NOT CONTAIN THE TOKEN otherwise
-    we end up in an infinite loop. */
-void
-misc_string_replace_token(gchar *string, const gchar *token, const gchar *replacement)
-{
-    gchar buf[SMALL], buf2[SMALL];
-    gchar *occurrence = NULL;
-
-    if(strlen(string) < strlen(token))
-	return;
-
-    occurrence = g_strrstr(string, token);
-
-    if(occurrence != NULL)
-    {
-	strncpy(buf, string, strlen(string) - strlen(occurrence));
-	buf[strlen(string) - strlen(occurrence)] = '\0';
-	strcpy(buf2, occurrence + strlen(token));
-	sprintf(string, "%s%s%s", buf, replacement, buf2);
-	misc_string_replace_token(string, token, replacement);
-    }
-}
-
 /** Replace sums of the form [1 + 2 - 3] in the string. */
 void
 misc_replace_sums(gchar *string)
@@ -280,20 +274,20 @@ misc_replace_sums(gchar *string)
     gchar buf[SMALL], buf2[SMALL];
     const gchar *buf_return = NULL;    
 
-    strcpy(buf, string);
-
-    for(i=0;i<strlen(buf);i++)
-	if(buf[i] == '[')
-	{
-	    strncpy(buf2, buf, i);
-	    buf2[i] = '\0';
-	    buf_return = misc_parse_expression(buf + i + 1, &result);
-	    sprintf(string, "%s%d%s", buf2, result, buf_return + 1);
-	    
-	    misc_replace_sums(string);
-	}
+    while(g_strrstr(string, "["))
+    {
+	strcpy(buf, string);
+	
+	for(i=0;i<strlen(buf);i++)
+	    if(buf[i] == '[')
+	    {
+		strncpy(buf2, buf, i);
+		buf2[i] = '\0';
+		buf_return = misc_parse_expression(buf + i + 1, &result);
+		sprintf(string, "%s%d%s", buf2, result, buf_return + 1);
+	    }
+    }
 }
-
 
 /** Get a float representation of someone's age
     based on his birth year and month. */
@@ -458,24 +452,6 @@ misc_parse(const gchar *s, gint *result)
    return s;
 }
 
-/** Return a freshly allocated copy of the array. */
-GPtrArray*
-misc_copy_ptr_array(const GPtrArray *array)
-{
-    gint i;
-    GPtrArray *copy = NULL;
-
-    if(array != NULL)
-	copy = g_ptr_array_new();
-    else
-	return NULL;
-
-    for(i=0;i<array->len;i++)
-	g_ptr_array_add(copy, g_ptr_array_index(array, i));
-
-    return copy;
-}
-
 /** Free the string if it's non-NULL and assign the contents to it. */
 void
 misc_string_assign(gchar **string, const gchar *contents)
@@ -519,6 +495,30 @@ misc_string_choose_random(gchar *string)
    strcpy(string, start);
 }
 
+/** Replace a token in a string by another string. 
+    The replacement should NOT CONTAIN THE TOKEN otherwise
+    we end up in an infinite loop. */
+void
+misc_string_replace_token(gchar *string, const gchar *token, const gchar *replacement)
+{
+    gchar buf[SMALL], buf2[SMALL];
+    gchar *occurrence = NULL;
+
+    occurrence = g_strrstr(string, token);
+
+    if(occurrence == NULL || strlen(string) < strlen(token))
+	return;
+    
+    while(occurrence != NULL)
+    {
+	strncpy(buf, string, strlen(string) - strlen(occurrence));
+	buf[strlen(string) - strlen(occurrence)] = '\0';
+	strcpy(buf2, occurrence + strlen(token));
+	sprintf(string, "%s%s%s", buf, replacement, buf2);
+	occurrence = g_strrstr(string, token);
+    }
+}
+
 /** Replace simple arithmetic expressions like "1 + 2"
     and comparisons like "3 < 4" with the appropriate result. */
 void
@@ -527,63 +527,64 @@ misc_string_replace_expressions(gchar *string)
     gint i, j, last_idx = 0;
     gint value = -1;
     gchar buf[SMALL], buf2[SMALL];
+    gchar *occurrence = NULL,
+	*occurrence2 = NULL;
 
     if(debug > 100)
 	printf("misc_string_replace_expressions: #%s#\n",
 	       string);
 
-    if(g_strrstr(string, "[") == NULL)
-	return;
+    while(g_strrstr(string, "[") != NULL)
+    {
+	strcpy(buf, string);
+	strcpy(string, "");
 
-    strcpy(buf, string);
-    strcpy(string, "");
+	occurrence = g_strrstr(buf, "[");
+	i = strlen(buf) - strlen(occurrence);
 
-    for(i=strlen(buf) - 1; i>=0; i--)
-	if(buf[i] == '[')
+	strncpy(buf2, buf, i);
+	buf2[i] = '\0';
+	strcat(string, buf2);	
+
+	occurrence2 = g_strstr_len(occurrence, strlen(occurrence), "]");
+
+	if(occurrence2 == NULL)
 	{
-	    strncpy(buf2, buf, i);
-	    buf2[i] = '\0';
-	    strcat(string, buf2);
-
-	    for(j=i + 1;j<strlen(buf);j++)
-	    {
-		if(buf[j] == ']')
-		{
-		    strncpy(buf2, buf + i + 1, j - i - 1);
-		    buf2[j - i - 1] = '\0';
-		    if (g_strrstr(buf2, "|"))
-			misc_string_choose_random(buf2);
-		    else 
-		    {
-		      if(g_strrstr(buf2, "<") ||
-		         g_strrstr(buf2, ">") ||
-   		         g_strrstr(buf2, "=") ||
-		         g_strrstr(buf2, " G ") ||
-		         g_strrstr(buf2, " L ") ||
-		         g_strrstr(buf2, " GE ") ||
-		         g_strrstr(buf2, " LE "))
-			    misc_parse(buf2, &value);
-		       else
-		  	  misc_parse_expression(buf2, &value);
-  		       sprintf(buf2, "%d", value);
-		    }
-		    strcat(string, buf2);
-		    value = -1;
-
-		    last_idx = j + 1;
-
-		    break;
-		}
-	    }
-
-	    break;
+	    g_warning("misc_string_replace_expressions: no matching ] found.");
+	    return;
 	}
 
-    if(last_idx < strlen(buf))
-    {
-	strncpy(buf2, buf + last_idx, strlen(buf) - last_idx);
-	buf2[strlen(buf) - last_idx] = '\0';
+	j = strlen(buf) - strlen(occurrence2);
+	
+	strncpy(buf2, buf + i + 1, j - i - 1);
+	buf2[j - i - 1] = '\0';
+	if (g_strrstr(buf2, "|"))
+	    misc_string_choose_random(buf2);
+	else 
+	{
+	    if(g_strrstr(buf2, "<") ||
+	       g_strrstr(buf2, ">") ||
+	       g_strrstr(buf2, "=") ||
+	       g_strrstr(buf2, " G ") ||
+	       g_strrstr(buf2, " L ") ||
+	       g_strrstr(buf2, " GE ") ||
+	       g_strrstr(buf2, " LE "))
+		misc_parse(buf2, &value);
+	    else
+		misc_parse_expression(buf2, &value);
+	    sprintf(buf2, "%d", value);
+	}
 	strcat(string, buf2);
+	value = -1;
+
+	last_idx = j + 1;
+
+	if(last_idx < strlen(buf))
+	{
+	    strncpy(buf2, buf + last_idx, strlen(buf) - last_idx);
+	    buf2[strlen(buf) - last_idx] = '\0';
+	    strcat(string, buf2);
+	}
     }
 }
 
@@ -628,8 +629,6 @@ misc_string_get_parenthesised(const gchar *string, gchar *dest)
 
     strncpy(dest, openpar + 1, len);
     dest[len] = '\0';
-    
-    printf("getpar %s\n", dest);
 }
 
 /** Find out whether the conditions in the string are fulfilled. */
@@ -639,9 +638,6 @@ misc_parse_condition(const gchar *condition, GPtrArray **token_rep)
     gboolean return_value = FALSE;
     gchar buf[SMALL], buf2[SMALL];
 
-    if(condition == NULL)
-	return TRUE;
-    
     strcpy(buf, condition);
 
     while(g_strrstr(buf, "("))

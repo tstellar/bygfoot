@@ -1603,6 +1603,7 @@ treeview_helper_bet_odds(GtkTreeViewColumn *col,
 {
     gint column = treeview_helper_get_col_number_column(col);
     gchar buf[SMALL];
+    const Fixture *fix = NULL;
     const BetMatch *bet = NULL;
     const BetUser *bet_user = NULL;
 
@@ -1619,14 +1620,15 @@ treeview_helper_bet_odds(GtkTreeViewColumn *col,
 
     strcpy(buf, "");
     bet_user = bet_is_user(bet);
+    fix = fixture_from_id(bet->fix_id);
 
-    if(bet->fix->attendance == -1)
+    if(fix->attendance == -1)
 	sprintf(buf, "%.2f", bet->odds[column - 1]);
     else if(column == 2)
-	sprintf(buf, "%d - %d", bet->fix->result[0][0],
-		bet->fix->result[1][0]);
+	sprintf(buf, "%d - %d", fix->result[0][0],
+		fix->result[1][0]);
     
-    if(bet->fix->attendance == -1 &&
+    if(fix->attendance == -1 &&
        bet_user != NULL &&
        bet_user->outcome == column - 1)
 	g_object_set(renderer, "background",

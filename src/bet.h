@@ -29,7 +29,7 @@
 #include "fixture_struct.h"
 
 BetMatch*
-bet_from_fixture(const Fixture *fix);
+bet_from_fixture(gint fix_id);
 
 void
 bet_update_user_bets(void);
@@ -47,9 +47,9 @@ BetUser*
 bet_is_user(const BetMatch *bet);
 
 void
-bet_place(const Fixture *fix, gint outcome, gint wager);
+bet_place(gint fix_id, gint outcome, gint wager);
 
 void
-bet_remove(const Fixture *fix);
+bet_remove(gint fix_id);
 
 #endif

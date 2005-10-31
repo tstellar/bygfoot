@@ -55,62 +55,14 @@ team_new(gboolean new_id)
     
     new.clid = -1;
     new.id = (new_id) ? team_id_new : -1;
-    new.structure = 442; ///*dteam_assign_playing_structure();
-    new.style = 0; ///*dteam_assign_playing_style();
+    new.structure = 442;
+    new.style = 0;
     new.boost = 0;
     new.average_talent = 0;
 
     new.players = g_array_new(FALSE, FALSE, sizeof(Player));
 
     return new;
-}
-
-/**
-   Return a random playing style.
-   @see The #TeamPlayingStyle enumeration.
-*/
-gint
-team_assign_playing_style(void)
-{
-  gfloat rndom;
-
-  rndom = math_rnd(0,1);
-
-  /* all out defend */
-  if(rndom < const_float("float_team_playing_style_prob1"))
-    return -2;
-  /* defend */
-  else if(rndom < const_float("float_team_playing_style_prob2"))
-    return -1;
-  /* balanced */
-  else if(rndom < const_float("float_team_playing_style_prob3"))
-    return 0;
-  /* attack */
-  else if(rndom < const_float("float_team_playing_style_prob4"))
-    return 1;
-
-  /* all out attack */
-  return 2;
-}
-
-/**
-   Return a random playing structure.
-*/
-gint
-team_assign_playing_structure(void)
-{
-  gfloat rndom = math_rnd(0,1);
-    
-  if(rndom < const_float("float_team_playing_structure_prob1"))
-    return 532;
-  else if(rndom < const_float("float_team_playing_structure_prob2"))
-    return 442;
-  else if(rndom < const_float("float_team_playing_structure_prob3"))
-    return 352;
-  else if(rndom < const_float("float_team_playing_structure_prob4"))
-    return 433;
-
-  return 343;
 }
 
 /* Fill the players array of the team and the stadium.
@@ -600,96 +552,6 @@ team_change_attribute_with_message(Team *tm, gint attribute, gint new_value)
     }
 }
 
-/*d remove*/
-/** Make cpu players healthy etc.
-    @param tm The cpu team.
-    @param reset_fitness Whether to reset the fitness values of playes. */
-void
-team_update_cpu_corrections(Team *tm, gboolean reset_fitness)
-{
-    gint i, j;
-    Player *pl;
-
-    for(i=0;i<tm->players->len;i++)
-    {
-	pl = player_of_idx_team(tm, i);
-
-	for(j=0;j<pl->cards->len;j++)
-	    g_array_index(pl->cards, PlayerCard, j).red = 0;	
-
-	if(pl->cskill == 0)
-	{
-	    pl->health = pl->recovery = 0;
-	    pl->cskill = player_get_cskill(pl, pl->cpos, FALSE);
-
-	    pl->fitness = math_rnd(const_float("float_player_fitness_lower"),
-				   const_float("float_player_fitness_upper"));
-	}
-	
-	if(pl->pos != pl->cpos)
-	{
-	    pl->pos = pl->cpos;
-	    pl->cskill = player_get_cskill(pl, pl->cpos, FALSE);
-	}
-
-	if(reset_fitness)
-	    pl->fitness = math_rnd(const_float("float_player_fitness_lower"),
-				   const_float("float_player_fitness_upper"));
-    }
-    
-    team_rearrange(tm);
-    
-    tm->structure = team_find_appropriate_structure(tm);
-
-    if(!player_substitution_good_structure(tm->structure, PLAYER_POS_DEFENDER, PLAYER_POS_DEFENDER))
-    {
-	tm->structure = team_assign_playing_structure();
-	for(i=0;i<tm->players->len;i++)
-	{
-	    pl = player_of_idx_team(tm, i);
-	    pl->pos = pl->cpos = player_get_position_from_structure(tm->structure, i);
-	}
-    }
-}
-
-/*d remove*/
-/** Make some random substitutions in the cpu team. */
-void
-team_update_cpu_subs(Team *tm)
-{
-    gint i;
-    gint number_of_subs = math_rndi(const_int("int_team_subs_lower"),
-				    const_int("int_team_subs_upper"));
-    gint player_numbers[11];
-
-    math_generate_permutation(player_numbers, 0, 10);
-
-    for(i=0;i<number_of_subs;i++)
-	game_substitute_player(tm, player_numbers[i]);
-
-    if(player_get_game_skill(player_of_idx_team(tm, 0), FALSE, TRUE) <
-       player_get_game_skill(player_of_idx_team(tm, 10), FALSE, TRUE) &&
-       math_rnd(0, 1) < const_float("float_team_replace_worse_goalie"))
-	game_substitute_player(tm, 0);
-}
-
-/*d remove*/
-/** Change a cpu team's structure. */
-void
-team_update_cpu_structure(Team *tm)
-{
-    gint i;
-    Player *pl = NULL;
-
-    tm->structure = team_assign_playing_structure();
-
-    for(i=0;i<tm->players->len;i++)
-    {
-	pl = &g_array_index(tm->players, Player, i);
-	pl->pos = pl->cpos = player_get_position_from_structure(tm->structure, i);
-    }
-}
-
 /** Replace some players by new ones in a team. */
 void
 team_update_cpu_new_players(Team *tm)
@@ -706,27 +568,6 @@ team_update_cpu_new_players(Team *tm)
 	if(!query_transfer_player_is_on_list(player_of_idx_team(tm, player_numbers[i])))
 	    player_replace_by_new(player_of_idx_team(tm, player_numbers[i]), TRUE);
     }
-}
-
-/*d remove*/
-/** Heal players, re-set fitnesses, make some random subs
-    and replace some players with new ones.
-    @param tm The team we examine.
-    @param reset_fitness Whether to reset the fitness values of players. */
-void
-team_update_cpu_team(Team *tm, gboolean reset_fitness)
-{
-    team_update_cpu_corrections(tm, reset_fitness);
-    team_update_cpu_subs(tm);
-
-    if(math_rnd(0, 1) < const_float("float_team_new_player_probability"))
-	team_update_cpu_new_players(tm);
-
-    if(math_rnd(0, 1) < const_float("float_team_new_style"))
-	tm->style = team_assign_playing_style();
-
-    if(math_rnd(0, 1) < const_float("float_team_new_structure"))
-	team_update_cpu_structure(tm);
 }
 
 /** Increase player ages etc.

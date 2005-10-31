@@ -315,7 +315,7 @@ xml_loadsave_users_text         (GMarkupParseContext *context,
     else if(state == TAG_USER_BET_OUTCOME)
 	new_bet.outcome = int_value;
     else if(state == TAG_USER_BET_FIX_ID)
-	new_bet.fix = fixture_from_id(int_value);
+	new_bet.fix_id = int_value;
     else if(state >= TAG_START_PLAYERS && state <= TAG_END_PLAYERS)
 	xml_loadsave_players_text(buf);
 }
@@ -500,7 +500,7 @@ xml_user_write_bets(FILE *fil, GArray **bets)
 			  TAG_USER_BET_WAGER, I2);
 	    xml_write_int(fil, g_array_index(bets[i], BetUser, j).outcome,
 			  TAG_USER_BET_OUTCOME, I2);
-	    xml_write_int(fil, g_array_index(bets[i], BetUser, j).fix->id,
+	    xml_write_int(fil, g_array_index(bets[i], BetUser, j).fix_id,
 			  TAG_USER_BET_FIX_ID, I2);
 	    fprintf(fil, "%s</_%d>\n", I1, 
 		    (i == 0) ? TAG_USER_BET0 : TAG_USER_BET1);

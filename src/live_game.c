@@ -74,7 +74,7 @@ live_game_calculate_fixture(Fixture *fix)
     game_get_values(match->fix, match->team_values,
 		    match->home_advantage);
 
-    if((debug > 80 && fixture_user_team_involved(match->fix) != -1) ||
+    if((debug > 80 && stat2 != -1) ||
        debug > 130)
 	printf("\n\nlive_game_calculate_fixture\n%04d %s %s %04d\n\n",
 	       tm0->id, tm0->name, tm1->name, tm1->id);
@@ -90,7 +90,7 @@ live_game_calculate_fixture(Fixture *fix)
 
     if(last_unit.event.type == LIVE_GAME_EVENT_END_MATCH)
     {
-	if(fixture_user_team_involved(match->fix) != -1 || stat5 < -1000)
+	if(stat2 != -1 || stat5 < -1000)
 	    lg_commentary_free_tokens();
 	game_post_match(fix);
     }
@@ -102,13 +102,13 @@ live_game_calculate_fixture(Fixture *fix)
 void
 live_game_initialize(Fixture *fix)
 {
-    statp= (fixture_user_team_involved(fix) != -1) ? 
-	&usr(fixture_user_team_involved(fix)).live_game : &live_game_temp;
-    show = (fixture_user_team_involved(fix) != -1 && 
-	    option_int("int_opt_user_show_live_game", 
-		       &usr(fixture_user_team_involved(fix)).options));
-
     stat2 = fixture_user_team_involved(fix);
+
+    statp= (stat2 != -1) ? 
+	&usr(stat2).live_game : &live_game_temp;
+    show = (stat2 != -1 && 
+	    option_int("int_opt_user_show_live_game", 
+		       &usr(stat2).options));
 
     live_game_reset(match, fix, TRUE);
 
@@ -128,7 +128,7 @@ live_game_initialize(Fixture *fix)
 
     game_initialize(fix);
     
-    if(fixture_user_team_involved(fix) != -1 || stat5 < -1000)
+    if(stat2 != -1 || stat5 < -1000)
 	lg_commentary_initialize(fix);
 }
 
@@ -139,7 +139,7 @@ live_game_create_unit(void)
 {
     LiveGameUnit new;
 
-    if((debug > 100 && fixture_user_team_involved(match->fix) != -1) ||
+    if((debug > 100 && stat2 != -1) ||
        debug > 130)
 	printf("\t\tlive_game_create_unit\n");
 
@@ -199,7 +199,7 @@ live_game_fill_new_unit(LiveGameUnit *new)
     gfloat possession_change, scoring_chance = 0, 
 	injury_event_prob, foul_event_prob;
 
-    if((debug > 100 && fixture_user_team_involved(match->fix) != -1) ||
+    if((debug > 100 && stat2 != -1) ||
        debug > 130)
 	printf("\t\tlive_game_fill_new_unit\n");
 
@@ -259,7 +259,7 @@ live_game_create_start_unit(void)
 {
     LiveGameUnit new;
 
-    if((debug > 100 && fixture_user_team_involved(match->fix) != -1) ||
+    if((debug > 100 && stat2 != -1) ||
        debug > 130)
 	printf("\t\tlive_game_create_start_unit\n");
     new.event.player =
@@ -288,7 +288,7 @@ live_game_evaluate_unit(LiveGameUnit *unit)
 {
     gint type = unit->event.type;
 
-    if((debug > 100 && fixture_user_team_involved(match->fix) != -1) ||
+    if((debug > 100 && stat2 != -1) ||
        debug > 130)
 	printf("\t\tlive_game_evaluate_unit\n");
     if(type == LIVE_GAME_EVENT_FOUL)
@@ -314,7 +314,7 @@ live_game_evaluate_unit(LiveGameUnit *unit)
     {
 	live_game_finish_unit();
 	if(type != LIVE_GAME_EVENT_END_MATCH && show && 
-	   option_int("int_opt_user_pause_break", &usr(fixture_user_team_involved(match->fix)).options))
+	   option_int("int_opt_user_pause_break", &usr(stat2).options))
 	    misc_callback_pause_live_game();
     }
     else if(type != LIVE_GAME_EVENT_END_MATCH)
@@ -329,7 +329,7 @@ live_game_event_foul(void)
     gfloat rndom = math_rnd(0, 1);
     gint type, fouled_player, foul_player, foul_team;
 
-    if((debug > 100 && fixture_user_team_involved(match->fix) != -1) ||
+    if((debug > 100 && stat2 != -1) ||
        debug > 130)
 	printf("\t\tlive_game_event_foul\n");
     if(math_rnd(0, 1) > const_float("float_live_game_foul_by_possession") *
@@ -408,7 +408,7 @@ live_game_event_foul(void)
 void
 live_game_event_lost_possession(void)
 {
-    if((debug > 100 && fixture_user_team_involved(match->fix) != -1) ||
+    if((debug > 100 && stat2 != -1) ||
        debug > 130)
 	printf("\t\tlive_game_event_lost_possession\n");
     last_unit.event.player =
@@ -439,8 +439,9 @@ live_game_event_injury(gint team, gint player, gboolean create_new)
 {
     LiveGameUnit new;
     gint old_structure = -1, sub_in = -1;
+    gint usr_idx = -1;
 
-    if((debug > 100 && fixture_user_team_involved(match->fix) != -1) ||
+    if((debug > 100 && stat2 != -1) ||
        debug > 130)
 	printf("\t\tlive_game_event_injury\n");
     if(create_new)
@@ -455,6 +456,8 @@ live_game_event_injury(gint team, gint player, gboolean create_new)
     }
     else
 	live_game_injury_get_player();
+
+    usr_idx = team_is_user(tm[last_unit.event.team]);
     
     last_unit.minute = -1;
     last_unit.event.type = LIVE_GAME_EVENT_INJURY;
@@ -464,7 +467,7 @@ live_game_event_injury(gint team, gint player, gboolean create_new)
 	last_unit.event.type = LIVE_GAME_EVENT_TEMP_INJURY;
 
 	if(debug < 50 ||
-	   team_is_user(tm[last_unit.event.team]) == -1)
+	   usr_idx == -1)
 	    player_of_id_team(tm[last_unit.event.team],
 			      last_unit.event.player)->fitness =
 		MAX(0, player_of_id_team(tm[last_unit.event.team],
@@ -476,7 +479,7 @@ live_game_event_injury(gint team, gint player, gboolean create_new)
     live_game_finish_unit();
 
     if(debug >= 50 &&
-       team_is_user(tm[last_unit.event.team]) != -1)
+       usr_idx != -1)
 	return;
 
     if(last_unit.event.type == LIVE_GAME_EVENT_INJURY)
@@ -487,11 +490,11 @@ live_game_event_injury(gint team, gint player, gboolean create_new)
 	if(match->subs_left[last_unit.event.team] > 0)
 	{
 	    if(show && 
-	       team_is_user(tm[last_unit.event.team]) != -1 && 
+	       usr_idx != -1 && 
 	       ((option_int("int_opt_user_pause_injury",
-			    &usr(team_is_user(tm[last_unit.event.team])).options) &&
+			    &usr(usr_idx).options) &&
 		 !option_int("int_opt_user_auto_sub",
-			     &usr(team_is_user(tm[last_unit.event.team])).options)) ||
+			     &usr(usr_idx).options)) ||
 		tm[last_unit.event.team]->players->len == 11))
 		misc_callback_pause_live_game();
 	    else if(tm[last_unit.event.team]->players->len > 11)
@@ -532,7 +535,7 @@ live_game_event_stadium(void)
     for(i=1;i<3;i++)
 	probs[i] += probs[i - 1];
 
-    if((debug > 100 && fixture_user_team_involved(match->fix) != -1) ||
+    if((debug > 100 && stat2 != -1) ||
        debug > 130)
 	printf("\t\tlive_game_event_stadium\n");
     if(rndom <= probs[0])
@@ -563,7 +566,7 @@ live_game_event_scoring_chance(void)
     else
 	res_idx = 0;
 
-    if((debug > 100 && fixture_user_team_involved(match->fix) != -1) ||
+    if((debug > 100 && stat2 != -1) ||
        debug > 130)
 	printf("\t\tlive_game_event_scoring_chance\n");
 
@@ -633,7 +636,7 @@ live_game_event_penalty(void)
 {
     LiveGameUnit new;
 
-    if((debug > 100 && fixture_user_team_involved(match->fix) != -1) ||
+    if((debug > 100 && stat2 != -1) ||
        debug > 130)
 	printf("\t\tlive_game_event_penalty\n");
 
@@ -699,7 +702,7 @@ live_game_event_general(gboolean create_new)
 {
     LiveGameUnit new;
 
-    if((debug > 100 && fixture_user_team_involved(match->fix) != -1) ||
+    if((debug > 100 && stat2 != -1) ||
        debug > 130)
 	printf("\t\tlive_game_event_general\n");
 
@@ -789,7 +792,7 @@ live_game_event_general_get_players(void)
 	uni(unis->len - 2).event.player;
     gint type = uni(unis->len - 2).event.type;
 	
-    if((debug > 100 && fixture_user_team_involved(match->fix) != -1) ||
+    if((debug > 100 && stat2 != -1) ||
        debug > 130)
 	printf("\t\tlive_game_event_general_get_players\n");
     *pl1 = *pl2 = -1;
@@ -823,7 +826,7 @@ live_game_event_free_kick(void)
 {
     LiveGameUnit new = last_unit;
 
-    if((debug > 100 && fixture_user_team_involved(match->fix) != -1) ||
+    if((debug > 100 && stat2 != -1) ||
        debug > 130)
 	printf("\t\tlive_game_event_free_kick\n");
     new.event.player =
@@ -856,8 +859,9 @@ live_game_event_send_off(gint team, gint player, gboolean second_yellow)
 {
     LiveGameUnit new = last_unit;
     gint substitute = -1, to_substitute = -1;
+    gint usr_idx = team_is_user(tm[team]);
 
-    if((debug > 100 && fixture_user_team_involved(match->fix) != -1) ||
+    if((debug > 100 && stat2 != -1) ||
        debug > 130)
 	printf("\t\tlive_game_event_send_off\n");
     new.event.player =
@@ -874,7 +878,7 @@ live_game_event_send_off(gint team, gint player, gboolean second_yellow)
 
     live_game_finish_unit();
 
-    if(debug >= 50 && team_is_user(tm[team]) != -1)
+    if(debug >= 50 && usr_idx != -1)
 	return;
 
     player_streak_add_to_prob(
@@ -895,7 +899,7 @@ live_game_event_send_off(gint team, gint player, gboolean second_yellow)
 
     player_of_id_team(tm[team], player)->career[PLAYER_VALUE_CARD_RED]++;
     
-    if(team_is_user(tm[team]) != -1)
+    if(usr_idx != -1)
     {
 	tm[team]->structure = team_find_appropriate_structure(tm[team]);
 	team_rearrange(tm[team]);
@@ -904,11 +908,11 @@ live_game_event_send_off(gint team, gint player, gboolean second_yellow)
 
     if(match->subs_left[team] > 0)
     {
-	if(show && team_is_user(tm[team]) != -1 &&
+	if(show && usr_idx != -1 &&
 	   ((option_int("int_opt_user_pause_red",
-			&usr(team_is_user(tm[team])).options) &&
+			&usr(usr_idx).options) &&
 	     !option_int("int_opt_user_auto_sub",
-			 &usr(team_is_user(tm[team])).options)) ||
+			 &usr(usr_idx).options)) ||
 	    tm[team]->players->len == 1))
 	    misc_callback_pause_live_game();
 	else if(tm[team]->players->len > 11)
@@ -927,7 +931,7 @@ live_game_event_send_off(gint team, gint player, gboolean second_yellow)
 	    live_game_event_team_change(team, LIVE_GAME_EVENT_STRUCTURE_CHANGE);
 	}
     }
-    else if(team_is_user(tm[team]) == -1)
+    else if(usr_idx == -1)
     {
 	tm[team]->structure = team_find_appropriate_structure(tm[team]);
 	team_rearrange(tm[team]);
@@ -1018,7 +1022,7 @@ live_game_event_duel(void)
     Player *attacker, *goalie, *assistant;
     gint res_idx1, res_idx2;
 
-    if((debug > 100 && fixture_user_team_involved(match->fix) != -1) ||
+    if((debug > 100 && stat2 != -1) ||
        debug > 130)
 	printf("\t\tlive_game_event_duel\n");
 
@@ -1399,11 +1403,11 @@ live_game_finish_unit(void)
 {
     LiveGameUnit *unit = &last_unit;
 
-    if((debug > 100 && fixture_user_team_involved(match->fix) != -1) ||
+    if((debug > 100 && stat2 != -1) ||
        debug > 130)
 	printf("\t\tlive_game_finish_unit\n");
 
-    if((debug > 100 && fixture_user_team_involved(match->fix) != -1) ||
+    if((debug > 100 && stat2 != -1) ||
        debug > 130)
 	printf("OOOO1 idx %d min %d type %d poss %d team %d pl %d %d\n", unis->len - 1,
 	       unit->minute,
@@ -1416,13 +1420,13 @@ live_game_finish_unit(void)
 	game_decrease_fitness(match->fix);
 	game_get_values(match->fix, match->team_values,
 			match->home_advantage);
-	if(fixture_user_team_involved(match->fix) != -1 &&
+	if(stat2 != -1 &&
 	   stat2 == cur_user && show &&
 	   unit->minute % opt_int("int_opt_live_game_player_list_refresh") == 0)
 	    treeview_show_user_player_list();
     }
 
-    if(fixture_user_team_involved(match->fix) != -1 || stat5 < -1000)
+    if(stat2 != -1 || stat5 < -1000)
     {
 	if(unit->time != LIVE_GAME_UNIT_TIME_PENALTIES)
 	{
@@ -1457,7 +1461,7 @@ live_game_finish_unit(void)
     if(show)
 	game_gui_live_game_show_unit(unit);
 
-    if((debug > 100 && fixture_user_team_involved(match->fix) != -1) ||
+    if((debug > 100 && stat2 != -1) ||
        debug > 130)
 	printf("OOOO idx %d type %d poss %d team %d pl %d %d\n", unis->len - 1,
 	       unit->event.type, unit->possession, unit->event.team,

@@ -74,7 +74,7 @@ lg_commentary_generate(const LiveGame *live_game, LiveGameUnit *unit,
 	lg_commentary_set_player_tokens(unit, live_game->fix);
 	lg_commentary_set_stats_tokens(&live_game->stats);
     }
-
+    
     if(event_type == LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_DEFEND ||
        event_type == LIVE_GAME_EVENT_STYLE_CHANGE_DEFEND ||
        event_type == LIVE_GAME_EVENT_STYLE_CHANGE_BALANCED ||

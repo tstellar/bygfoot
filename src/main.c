@@ -118,8 +118,6 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 	option_add(&options, "int_opt_calodds_skilldiffmax", skilldiffmax, NULL);
 	option_add(&options, "int_opt_calodds_matches", num_matches, NULL);
     }
-    else
-	option_add(&options, "int_opt_calodds", 0, NULL);
 
     if(testcom)
     {
@@ -156,7 +154,7 @@ main_init_variables(void)
     country.name = NULL;
     country.symbol = NULL;
     country.sid = NULL;;
-    
+
     season = week = week_round = 1;
 
     for(i=0;i<COUNT_END;i++)
@@ -202,6 +200,8 @@ main_init_variables(void)
     xml_strategy_load_strategies();
 
     language_set(language_get_code_index(opt_str("string_opt_language_code")) + 1);
+
+    option_add(&options, "int_opt_calodds", 0, NULL);
 
     /** Some of these (or all) are disabled (set to 1) in supernational
 	country defs. */

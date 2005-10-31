@@ -65,12 +65,13 @@ player_new(Team *tm, gfloat average_talent, gboolean new_id)
 		 (new.pos == PLAYER_POS_GOALIE) *
 		 const_float("float_player_peak_age_goalie_addition"));//30;
 
-new.peak_region = 
+    new.peak_region = 
 	math_gauss_dist(const_float("float_player_peak_region_lower"),
 			const_float("float_player_peak_region_upper"));//2;
 
-    new.talent = CLAMP(average_talent * skill_factor, 0,
-		       const_float("float_player_max_skill"));//85;
+    new.talent = 
+	CLAMP(average_talent * skill_factor, 0,
+	      const_float("float_player_max_skill"));//85;
 
     new.skill = player_skill_from_talent(&new);
     new.cskill = new.skill;
@@ -1131,6 +1132,13 @@ player_remove_contract(Player *pl)
 void
 player_remove_from_team(Team *tm, gint idx)
 {
+    gint usr_idx = team_is_user(tm);
+
+    if(usr_idx != -1 && 
+       player_of_idx_team(tm, idx)->id ==
+       option_int("int_opt_user_penalty_shooter", &usr(usr_idx).options))
+	option_set_int("int_opt_user_penalty_shooter", &usr(usr_idx).options, -1);
+
     transfer_remove_player_ptr(player_of_idx_team(tm, idx));
     free_player(player_of_idx_team(tm, idx));
     g_array_remove_index(tm->players, idx);    

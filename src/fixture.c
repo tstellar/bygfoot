@@ -1335,3 +1335,9 @@ fixture_get_goals_to_win(const Fixture *fix, const Team *tm)
 
     return return_value;
 }
+
+gint
+fixture_get_goals_to_draw(const Fixture *fix, const Team *tm)
+{
+    
+}

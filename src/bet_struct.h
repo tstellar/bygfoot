@@ -31,7 +31,7 @@
 typedef struct
 {
     /** The match the bet is about. */
-    const Fixture *fix;
+    gint fix_id;
     /** The odds for a win, draw or loss of the first team. */
     gfloat odds[3];
     
@@ -41,7 +41,7 @@ typedef struct
 typedef struct
 {
     /** Match the user betted on. */
-    const Fixture *fix;
+    gint fix_id;
     /** Which outcome he picked. */
     gint outcome;
     /** How much he wagered. */

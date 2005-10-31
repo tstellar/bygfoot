@@ -57,6 +57,11 @@ misc2_callback_transfer_user_player(void)
 	    user_from_team(new_team)->money -= transoff(stat2, 0).fee;
 	    user_from_team(new_team)->money_out[1][MON_OUT_TRANSFERS] -= 
 		transoff(stat2, 0).fee;
+
+	    if(player_of_id_team(trans(stat2).tm, trans(stat2).id)->id ==
+	       opt_user_int("int_opt_user_penalty_shooter"))
+		opt_user_set_int("int_opt_user_penalty_shooter", -1);
+
 	    player_copy(player_of_id_team(trans(stat2).tm, trans(stat2).id),
 			new_team, new_team->players->len);
 	    player_of_idx_team(new_team, new_team->players->len - 1)->contract = 

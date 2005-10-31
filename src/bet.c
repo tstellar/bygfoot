@@ -51,19 +51,18 @@ bet_round_odd(gfloat odd)
 
 /** Find the bet containing the fixture. */
 BetMatch*
-bet_from_fixture(const Fixture *fix)
+bet_from_fixture(gint fix_id)
 {
     gint i, j;
 
     for(i=1;i>=0;i--)
 	for(j=0;j<bets[i]->len;j++)
-	    if(g_array_index(bets[i], BetMatch, j).fix == fix)
+	    if(g_array_index(bets[i], BetMatch, j).fix_id == fix_id)
 		return &g_array_index(bets[i], BetMatch, j);
 
     main_exit_program(EXIT_BET_ERROR, 
-		      "bet_from_fixture: bet going with fixture %s %s - %s not found",
-		      league_cup_get_name_string(fix->clid),
-		      fix->teams[0]->name, fix->teams[0]->name);
+		      "bet_from_fixture: bet going with fixture %d not found",
+		      fix_id);
 
     return NULL;
 }
@@ -73,7 +72,8 @@ void
 bet_update_user_bets(void)
 {
     gint i, j, outcome;
-    const BetMatch *bet;
+    const BetMatch *bet = NULL;
+    const Fixture *fix = NULL;
 
     for(i=0;i<users->len;i++)
     {
@@ -82,12 +82,13 @@ bet_update_user_bets(void)
 	
 	for(j=0;j<usr(i).bets[1]->len;j++)
 	{
-	    bet = bet_from_fixture(g_array_index(usr(i).bets[1], BetUser, j).fix);
+	    bet = bet_from_fixture(g_array_index(usr(i).bets[1], BetUser, j).fix_id);
+	    fix = fixture_from_id(g_array_index(usr(i).bets[1], BetUser, j).fix_id);
 
-	    if(bet->fix->result[0][0] < bet->fix->result[1][0])
+	    if(fix->result[0][0] < fix->result[1][0])
 		outcome = 2;
 	    else
-		outcome = (bet->fix->result[0][0] == bet->fix->result[1][0]);
+		outcome = (fix->result[0][0] == fix->result[1][0]);
 
 	    if(outcome == g_array_index(usr(i).bets[1], BetUser, j).outcome)
 	    {
@@ -123,7 +124,8 @@ bet_update_user_bets(void)
 void
 bet_get_odds(BetMatch *bet)
 {
-    gfloat home_advantage = (bet->fix->home_advantage) ?
+    const Fixture *fix = fixture_from_id(bet->fix_id);
+    gfloat home_advantage = (fix->home_advantage) ?
 	(const_float("float_game_home_advantage_lower") +
 	 const_float("float_game_home_advantage_upper")) / 2 : 0;
     gfloat av_skill[2] = {0, 0}, skilldiff;
@@ -133,7 +135,7 @@ bet_get_odds(BetMatch *bet)
     {
 	for(j=0;j<11;j++)
 	    av_skill[i] += 
-		player_get_game_skill(player_of_idx_team(bet->fix->teams[i], j),
+		player_get_game_skill(player_of_idx_team(fix->teams[i], j),
 				      FALSE, TRUE);
 
 	av_skill[i] /= 11;
@@ -189,7 +191,7 @@ bet_update(void)
     for(i=0;i<fixtures->len;i++)
 	if(fixture_user_team_involved((Fixture*)g_ptr_array_index(fixtures, i)) == -1)
 	{
-	    new_bet.fix = (Fixture*)g_ptr_array_index(fixtures, i);
+	    new_bet.fix_id = ((Fixture*)g_ptr_array_index(fixtures, i))->id;
 	    bet_get_odds(&new_bet);
 	    g_array_append_val(bets[1], new_bet);
 	}
@@ -205,7 +207,7 @@ bet_is_user(const BetMatch *bet)
 
     for(i=1;i>=0;i--)
 	for(j=0;j<current_user.bets[i]->len;j++)
-	    if(bet->fix == g_array_index(current_user.bets[i], BetUser, j).fix)
+	    if(bet->fix_id == g_array_index(current_user.bets[i], BetUser, j).fix_id)
 		return &g_array_index(current_user.bets[i], BetUser, j);
 
     return NULL;
@@ -213,7 +215,7 @@ bet_is_user(const BetMatch *bet)
 
 /** Place a new bet. */
 void
-bet_place(const Fixture *fix, gint outcome, gint wager)
+bet_place(gint fix_id, gint outcome, gint wager)
 {
     gfloat max_wager = finance_wage_unit(current_user.tm) * 
 	const_float("float_bet_wager_limit_factor");
@@ -236,7 +238,7 @@ bet_place(const Fixture *fix, gint outcome, gint wager)
 	return;
     }
 
-    new_bet.fix = fix;
+    new_bet.fix_id = fix_id;
     new_bet.outcome = outcome;
     new_bet.wager = wager;
 
@@ -248,12 +250,12 @@ bet_place(const Fixture *fix, gint outcome, gint wager)
 
 /** Remove the bet on the given fixture. */
 void
-bet_remove(const Fixture *fix)
+bet_remove(gint fix_id)
 {
     gint i;
 
     for(i=0;i<current_user.bets[1]->len;i++)
-	if(g_array_index(current_user.bets[1], BetUser, i).fix == fix)
+	if(g_array_index(current_user.bets[1], BetUser, i).fix_id == fix_id)
 	{
 	    g_array_remove_index(current_user.bets[1], i);
 	    return;

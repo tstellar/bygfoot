@@ -166,7 +166,7 @@ xml_loadsave_misc_text         (GMarkupParseContext *context,
     else if(state == TAG_MISC_BET_ODD)
 	new_bet.odds[oddidx] = float_value;
     else if(state == TAG_MISC_BET_FIX_ID)
-	new_bet.fix = fixture_from_id(int_value);
+	new_bet.fix_id = int_value;
 }
 
 
@@ -255,7 +255,7 @@ xml_loadsave_misc_write_bets(FILE *fil)
 	for(j=0;j<bets[i]->len;j++)
 	{
 	    fprintf(fil, "%s<_%d>\n", I0, (i == 0) ? TAG_MISC_BET0 : TAG_MISC_BET1);
-	    xml_write_int(fil, g_array_index(bets[i], BetMatch, j).fix->id,
+	    xml_write_int(fil, g_array_index(bets[i], BetMatch, j).fix_id,
 			  TAG_MISC_BET_FIX_ID, I1);
 	    for(k=0;k<3;k++)
 		xml_write_float(fil, g_array_index(bets[i], BetMatch, j).odds[k],

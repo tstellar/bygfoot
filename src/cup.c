@@ -166,7 +166,8 @@ query_cup_choose_team_is_league(const gchar *sid)
     return FALSE;
 }
 
-/** Write the cup or league of the chooseteam into the appropriate pointer. */
+/** Write the cup or league of the chooseteam into the appropriate pointer
+    and return TRUE; return FALSE if no cup/league is found. */
 void
 cup_get_choose_team_league_cup(const CupChooseTeam *ct, 
 			       const League **league, const Cup **cup)
@@ -179,12 +180,12 @@ cup_get_choose_team_league_cup(const CupChooseTeam *ct,
 
     sscanf(ct->sid, "%[^0-9]%d", trash, &idx);
 
-    if(g_str_has_prefix(ct->sid, "LEAGUE"))
+    if(g_str_has_prefix(ct->sid, "LEAGUE") && idx >=0 && idx <= ligs->len)
     {
 	*league = &lig(idx - 1);
 	*cup = NULL;
     }
-    else if(g_str_has_prefix(ct->sid, "CUP"))
+    else if(g_str_has_prefix(ct->sid, "CUP") && idx >=0 && idx <= cps->len)
     {
 	*cup = &cp(idx - 1);
 	*league = NULL;

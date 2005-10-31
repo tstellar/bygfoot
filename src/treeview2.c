@@ -256,6 +256,7 @@ treeview2_create_bets(GtkListStore *ls)
 	team_names[2][SMALL];
     const BetMatch *bet = NULL;
     const BetUser *bet_user = NULL;
+    const Fixture *fix = NULL;
     
     for(k=1;k>=0;k--)
     {
@@ -271,11 +272,11 @@ treeview2_create_bets(GtkListStore *ls)
 
 	for(i=0;i<bets[k]->len;i++)
 	{
-	    if(g_array_index(bets[k], BetMatch, i).fix->clid ==
-	       current_user.tm->clid ||
-	       (g_array_index(bets[k], BetMatch, i).fix->clid >= ID_CUP_START &&
+	    fix = fixture_from_id(g_array_index(bets[k], BetMatch, i).fix_id);
+	    if(fix->clid == current_user.tm->clid ||
+	       (fix->clid >= ID_CUP_START &&
 		opt_user_int("int_opt_user_bet_show_cups")) ||
-	       (g_array_index(bets[k], BetMatch, i).fix->clid < ID_CUP_START &&
+	       (fix->clid < ID_CUP_START &&
 		opt_user_int("int_opt_user_bet_show_all_leagues")))
 	    {
 		bet = &g_array_index(bets[k], BetMatch, i);
@@ -286,8 +287,8 @@ treeview2_create_bets(GtkListStore *ls)
 		   (bet_user != NULL ||
 		    !opt_user_int("int_opt_user_bet_show_my_recent"))))
 		{
-		    if(i == 0 || bet->fix->clid != 
-		       g_array_index(bets[k], BetMatch, i - 1).fix->clid)
+		    if(i == 0 || fix->clid != 
+		       fixture_from_id(g_array_index(bets[k], BetMatch, i - 1).fix_id)->clid)
 		    {
 			if(i > 0)
 			{
@@ -298,7 +299,7 @@ treeview2_create_bets(GtkListStore *ls)
 	    
 			gtk_list_store_append(ls, &iter);
 			gtk_list_store_set(ls, &iter, 
-					   0, league_cup_get_name_string(bet->fix->clid),
+					   0, league_cup_get_name_string(fix->clid),
 					   1, NULL, 2, NULL, 3, NULL, 4, "", 5, "", -1);
 		    }
 	
@@ -314,24 +315,24 @@ treeview2_create_bets(GtkListStore *ls)
 		    }
 
 		    for(j=0;j<2;j++)
-			if(query_fixture_has_tables(bet->fix))
+			if(query_fixture_has_tables(fix))
 			{
-			    if(bet->fix->clid < ID_CUP_START)
-				rank = team_get_league_rank(bet->fix->teams[j]);
+			    if(fix->clid < ID_CUP_START)
+				rank = team_get_league_rank(fix->teams[j]);
 			    else
-				rank = team_get_cup_rank(bet->fix->teams[j], 
-							 cup_get_last_tables_round(bet->fix->clid), TRUE);
+				rank = team_get_cup_rank(fix->teams[j], 
+							 cup_get_last_tables_round(fix->clid), TRUE);
 
 			    sprintf(team_names[j], "%s [%d]",
-				    bet->fix->teams[j]->name, rank);
+				    fix->teams[j]->name, rank);
 			}
-			else if(bet->fix->clid >= ID_CUP_START &&
-				query_cup_is_national(bet->fix->clid))
+			else if(fix->clid >= ID_CUP_START &&
+				query_cup_is_national(fix->clid))
 			    sprintf(team_names[j], "%s (%d)",
-				    bet->fix->teams[j]->name,
-				    league_from_clid(bet->fix->teams[j]->clid)->layer);
+				    fix->teams[j]->name,
+				    league_from_clid(fix->teams[j]->clid)->layer);
 			else
-			    strcpy(team_names[j], bet->fix->teams[j]->name);
+			    strcpy(team_names[j], fix->teams[j]->name);
 
 		    gtk_list_store_append(ls, &iter);
 		    gtk_list_store_set(ls, &iter, 0, team_names[0],

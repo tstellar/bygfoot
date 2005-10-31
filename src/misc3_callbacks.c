@@ -22,6 +22,7 @@
 */
 
 #include "bet.h"
+#include "fixture.h"
 #include "misc3_callbacks.h"
 #include "misc3_interface.h"
 #include "option.h"
@@ -112,12 +113,12 @@ on_treeview_bets_button_press_event    (GtkWidget       *widget,
 
     gtk_tree_model_get(model, &iter, col_num, &bet, -1);
 
-    if(bet == NULL || bet->fix->attendance != -1)
+    if(bet == NULL || fixture_from_id(bet->fix_id)->attendance != -1)
 	return TRUE;
 
     if(bet_is_user(bet))
     {
-	bet_remove(bet->fix);
+	bet_remove(bet->fix_id);
 	treeview2_show_bets();
 	return FALSE;
     }
@@ -125,9 +126,9 @@ on_treeview_bets_button_press_event    (GtkWidget       *widget,
     sprintf(buf, _("You bet on outcome %d with an odd of %.2f. How much do you wager?"),
 	    col_num - 1, bet->odds[col_num - 1]);
 
-    statp = (gpointer)bet->fix;
     stat1 = STATUS_PLACE_BET;
-    stat2 = col_num - 1;
+    stat2 = bet->fix_id;
+    stat3 = col_num - 1;
 
     window_show_digits(buf, _("Wager"), 0, NULL, -1);
     spin_wager = GTK_SPIN_BUTTON(lookup_widget(window.digits, "spinbutton1"));
@@ -153,4 +154,3 @@ on_checkbutton_bet_user_recent_button_press_event
 
     return FALSE;
 }
-

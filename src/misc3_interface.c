@@ -38,6 +38,7 @@ create_window_bets (void)
   GtkWidget *checkbutton_bet_cups;
   GtkWidget *checkbutton_bet_user_recent;
   GtkWidget *hseparator2;
+  GtkWidget *scrolledwindow1;
   GtkWidget *treeview_bets;
   GtkWidget *button_bet_close;
   GtkAccelGroup *accel_group;
@@ -90,9 +91,15 @@ create_window_bets (void)
   gtk_box_pack_start (GTK_BOX (vbox1), hseparator2, FALSE, FALSE, 0);
   gtk_widget_set_size_request (hseparator2, 1, 10);
 
+  scrolledwindow1 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrolledwindow1);
+  gtk_box_pack_start (GTK_BOX (vbox1), scrolledwindow1, TRUE, TRUE, 0);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow1), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow1), GTK_SHADOW_IN);
+
   treeview_bets = gtk_tree_view_new ();
   gtk_widget_show (treeview_bets);
-  gtk_box_pack_start (GTK_BOX (vbox1), treeview_bets, TRUE, TRUE, 0);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow1), treeview_bets);
 
   button_bet_close = gtk_button_new_from_stock ("gtk-close");
   gtk_widget_show (button_bet_close);
@@ -131,6 +138,7 @@ create_window_bets (void)
   GLADE_HOOKUP_OBJECT (window_bets, checkbutton_bet_cups, "checkbutton_bet_cups");
   GLADE_HOOKUP_OBJECT (window_bets, checkbutton_bet_user_recent, "checkbutton_bet_user_recent");
   GLADE_HOOKUP_OBJECT (window_bets, hseparator2, "hseparator2");
+  GLADE_HOOKUP_OBJECT (window_bets, scrolledwindow1, "scrolledwindow1");
   GLADE_HOOKUP_OBJECT (window_bets, treeview_bets, "treeview_bets");
   GLADE_HOOKUP_OBJECT (window_bets, button_bet_close, "button_bet_close");
   GLADE_HOOKUP_OBJECT_NO_REF (window_bets, tooltips, "tooltips");

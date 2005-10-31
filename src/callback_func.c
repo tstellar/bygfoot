@@ -42,6 +42,8 @@
 #include "user.h"
 #include "window.h"
 
+#include "bet.h"
+
 /** Show the users' live games. */
 void
 callback_show_next_live_game(void)

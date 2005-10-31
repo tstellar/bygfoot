@@ -273,7 +273,8 @@ strategy_update_team_pre_match(Team *tm)
     strategy_set_tokens(tm, NULL);
 
     for(i=prematches->len - 1; i >= 0; i--)
-	if(misc_parse_condition(g_array_index(prematches, StrategyPrematch, i).condition,
+	if(g_array_index(prematches, StrategyPrematch, i).condition == NULL ||
+	   misc_parse_condition(g_array_index(prematches, StrategyPrematch, i).condition,
 				token_strat))
 	{
 	   strategy_apply_prematch(tm, &g_array_index(prematches, StrategyPrematch, i));
@@ -565,7 +566,8 @@ strategy_live_game_apply_action(LiveGame *match, gint team_idx,
     }
 
     if(action->sub_in_pos != -1 && match->subs_left[team_idx] > 0 &&
-       misc_parse_condition(action->sub_condition, token_strat))
+       (action->sub_condition == NULL || 
+	misc_parse_condition(action->sub_condition, token_strat)))
     {
 	sub_in_id = strategy_get_sub(tm, action->sub_in_pos, 
 				     action->sub_in_prop, TRUE);
@@ -608,9 +610,10 @@ strategy_live_game_check(LiveGame *match, gint team_idx)
 	   !query_misc_integer_is_in_g_array(
 	       g_array_index(strat->match_action, StrategyMatchAction, i).id,
 	       match->action_ids[team_idx]) &&
-	   misc_parse_condition(
-	       g_array_index(strat->match_action, StrategyMatchAction, i).condition,
-	       token_strat))
+	   (g_array_index(strat->match_action, StrategyMatchAction, i).condition == NULL ||
+	    misc_parse_condition(
+		g_array_index(strat->match_action, StrategyMatchAction, i).condition,
+		token_strat)))
 	{
 	    strategy_live_game_apply_action(
 		match, team_idx, 
