@@ -50,7 +50,7 @@
 	 <commentary>Wild pass by _P1_ results in a throw in for _T_POSS__</commentary>
 	 <commentary>_P0_ takes a quick throw in</commentary>
 	 <commentary>Long throw in from a_P0_</commentary>
-    <commentary>Slide tackle by _P0_ was worthy of a topflight baseball homer.</commentary>
+    <commentary>Slide tackle by _P0_ was worthy of topflight baseball.</commentary>
 	 <commentary>Heavy ball uncontrolled by _P1_</commentary>
     <commentary>_P0_ wins the ball with a perfectly timed challenge</commentary>
     <commentary>Plenty of turnovers here as _T_NPOSS__ give it away</commentary>
@@ -165,6 +165,7 @@
     <commentary>There was no gold at the end of that rainbow run</commentary>
     <commentary>The ball pinballs around the penalty area but finds no way in</commentary>
     <commentary>That went everywhere except into the net</commentary>
+    <commentary>Into the net but dissalowed. The offside flag was raised</commentary>    
     <commentary cond="_SHOTS_POSS__ > 3 and _GOALS_POSS__ < 1">_P0_ is beginning to wonder what he has to do to score</commentary>
     <commentary cond="_SHOTS_POSS__ > 3 and _GOALS_POSS__ < 1">_T_POSS__ are beginning to wonder what they have to do to score</commentary> </event>
   <event>
@@ -202,7 +203,7 @@
 	 <commentary>The [battle|struggle|fight|war|combat] begins</commentary>
     <commentary>The referees are ready, players set, the whistle blows</commentary>
     <commentary cond="_TAVSKILLDIFF_ <= 4">The teams are well matched. We are in for [a real|an end to end] [tug of war|battle].</commentary>
-    <commentary cond="_TAVSKILLDIFF_ >=8">There's a huge gulf in the skill level. This should be a walk over for _T[_TAVSKILL0_ GE _TAVSKILL1_]_</commentary>
+    <commentary cond="_TAVSKILLDIFF_ >=8">There's a huge gulf in the skill level. This should be a walk over for _T[_TAVSKILL1_ GE _TAVSKILL0_]_</commentary>
     <commentary cond="_TAVSKILLDIFF_ >=4">_T[_TAVSKILL0_ GE _TAVSKILL1_]_ come into the game as underdogs.</commentary>
     <commentary cond="_TAVSKILLDIFF_ >=8">_T[_TAVSKILL0_ LE _TAVSKILL1_]_ start the game as sure favourites.</commentary>
     <commentary cond="_TAVSKILLDIFF_ <= 1 and [_TAVSKILL0_ + _TAVSKILL1_] >=85">The clash of the [gladiators|titans] [begins|kicks off]</commentary>
@@ -355,17 +356,20 @@
   <event>
     <name>send_off</name>
     <commentary>_P0_ has been sent off</commentary>
-    <commentary>_P0_ is sent off. _T_POSS__ is now down a man</commentary>
+    <commentary>_P0_ is sent off. _T_NPOSS__ is now down a man</commentary>
   </event>
   <event>
     <name>injury</name>
     <commentary>_P0_ will have to go off after what seems an ankle injury</commentary>
     <commentary>_P0_ looks like he's badly injured</commentary>
+    <commentary>The phsyio's had a look and _P0_ is taken off</commentary>
   </event>
   <event>
     <name>temp_injury</name>
     <commentary>_P0_ has pulled a muscle but should be able to continue</commentary>
     <commentary>_P0_ has picked up a slight knock</commentary>
+    <commentary>_P0_ has over stretched a muscle, seems ok</commentary>
+    <commentary>_P0_ recieves some attention and continues</commentary>
     <commentary>_P0_ has a large cut above his left eye but it has been patched up and he will be able to continue </commentary>
   </event>
   <event>
