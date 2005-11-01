@@ -383,7 +383,7 @@ float_season_end_team_change_upper 4000
 
 # additional percentage if a user was first league
 # champion
-float_season_end_user_champ_addition 1000
+float_season_end_user_champ_addition 2000
 
 # bounds for new teams when user's been fired
 # counted in the tables relative to his team
@@ -582,6 +582,9 @@ float_team_boost_foul_by_possession_factor2 90000
 # influence of boost on foul probability
 float_team_boost_foul_factor 40000
 
+# costs factor of boost per minute
+float_boost_cost_factor 2000
+
 # probability that be better goalie gets substituted
 # when updating the cpu teams
 float_team_replace_worse_goalie 80000
@@ -724,6 +727,7 @@ float_name_random_list_prob 20000
 string_language_names English Deutsch Français Spanish Nederlands Polski Danish Romanian Bulgarian Chinese
 string_language_codes C de fr es nl pl da ro bg zh
 string_language_symbols flag_england.png flag_germany.png flag_france.png flag_spain.png flag_netherlands.png flag_poland.png flag_dk.png flag_romania.png flag_bulgaria.png flag_china.png
+string_language_defs country_england.xml country_germany.xml country_france.xml country_spain.xml country_netherlands.xml country_poland.xml NONE country_romania.xml country_bulgaria.xml NONE
 
 # lower and upper limits of which percentage
 # of the player wages a sponsor pays; the actual

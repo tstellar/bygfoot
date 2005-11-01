@@ -1126,3 +1126,15 @@ game_get_default_penalty_shooter(const Team *tm)
 
     return return_value;
 }
+
+/** Deduce some money for boost during a match. */
+void
+game_boost_cost(void)
+{
+    gfloat wage_unit = finance_wage_unit(usr(stat2).tm);
+    gint deduce = 
+	(gint)rint(wage_unit * const_float("float_boost_cost_factor"));
+
+    usr(stat2).money -= deduce;
+    usr(stat2).money_out[1][MON_OUT_BOOST] -= deduce;
+}

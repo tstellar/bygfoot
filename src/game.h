@@ -117,7 +117,7 @@ game_reset_players(gint idx);
 gint
 game_get_default_penalty_shooter(const Team *tm);
 
-/* void */
-/* game_check_cpu_strategy(LiveGame *lg); */
+void
+game_boost_cost(void);
 
 #endif

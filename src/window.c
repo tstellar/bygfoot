@@ -28,6 +28,7 @@
 #include "game_gui.h"
 #include "gui.h"
 #include "interface.h"
+#include "language.h"
 #include "league.h"
 #include "live_game.h"
 #include "load_save.h"
@@ -148,6 +149,7 @@ window_show_startup(void)
     gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(combo_country), renderer, TRUE);
     gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(combo_country), renderer, "text", 1, NULL);
 
+    language_pick_country(country_files);
     model = treeview_create_country_list(country_files);
     gtk_combo_box_set_model(GTK_COMBO_BOX(combo_country), model);
     g_object_unref(model);

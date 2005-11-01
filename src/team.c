@@ -23,6 +23,7 @@
 
 #include "cup.h"
 #include "file.h"
+#include "finance.h"
 #include "fixture.h"
 #include "game.h"
 #include "game_gui.h"
@@ -543,11 +544,20 @@ team_change_attribute_with_message(Team *tm, gint attribute, gint new_value)
 	    break;
 	case TEAM_ATTRIBUTE_STYLE:
 	    current_user.tm->style = new_value;
-	    game_gui_print_message(_("Team style changed to %s."), team_attribute_to_char(attribute, new_value));
+	    game_gui_print_message(_("Team style changed to %s."), 
+				   team_attribute_to_char(attribute, new_value));
 	    break;
 	case TEAM_ATTRIBUTE_BOOST:
 	    current_user.tm->boost = new_value;
-	    game_gui_print_message(_("Boost changed to %s."), team_attribute_to_char(attribute, new_value));
+	    if(new_value == 1)
+		game_gui_print_message(
+		    _("Boost changed to %s (costs %d per minute)."), 
+		    team_attribute_to_char(attribute, new_value),
+		    (gint)rint(finance_wage_unit(current_user.tm) *
+			       const_float("float_boost_cost_factor")));
+	    else
+		game_gui_print_message(_("Boost changed to %s."), 
+				       team_attribute_to_char(attribute, new_value));
 	    break;
     }
 }

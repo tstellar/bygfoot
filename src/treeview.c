@@ -1344,7 +1344,9 @@ treeview_create_finances(const User* user)
 	 _("Journey costs"),
 	 /* Money paid to players a user fired. */
 	 _("Compensations"),
-	 _("Betting")};
+	 _("Betting"),
+	 /* Applying boost costs money. */
+	 _("Boost costs")};
 
     GtkTreeIter iter;
     GtkListStore *ls = 

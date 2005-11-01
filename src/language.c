@@ -69,7 +69,7 @@ language_set(gint index)
 	opt_set_str("string_opt_language_code", buf);
 
 	{
-	    extern int  _nl_msg_cat_cntr;
+	    extern int _nl_msg_cat_cntr;
 	    ++_nl_msg_cat_cntr;
 	}
 
@@ -111,4 +111,95 @@ language_get_code_index(const gchar *code)
     free_gchar_array(&codes);
 
     return return_value;
+}
+
+/** Compare country file names based on a preferred one (which
+    should get moved to the start). */
+gint
+language_compare_country_files(gconstpointer a, gconstpointer b, gpointer data)
+{
+    gint i, j;
+    const gchar *prefdef = (const gchar*)data;
+    const gchar *def1 = *(const gchar**)a;
+    const gchar *def2 = *(const gchar**)b;
+    gint len1 = strlen(def1), 
+	len2 = strlen(def2), lenmin = MIN(len1, len2);
+    gchar alphabet[26] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
+    'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    gint return_value = 0;
+
+    if(strcmp(def1, def2) == 0)
+	return_value = 0;
+    else if(strcmp(prefdef, def1) == 0)
+	return_value = -1;
+    else if(strcmp(prefdef, def2) == 0)
+	return_value = 1;
+    else
+    {
+	for(i=0;i<lenmin;i++)
+	    if(def1[i] != def2[i])
+		break;
+
+	if(i == lenmin)
+	    return_value = (len2 < len1);
+	else
+	{
+	    for(j=0;j<26;j++)
+		if(def1[i] == alphabet[j] ||
+		   def2[i] == alphabet[j])
+		    break;
+
+	    if(j == 26)
+	    {
+		g_warning("language_compare_country_files: chars %c and %c not comparable",
+			  def1[i], def2[i]);
+		return_value = 0;
+	    }
+	    else
+		return_value = (def1[i] == alphabet[j]) ? -1 : 1;
+	}
+    }
+
+    return return_value;
+}
+
+/** Put the country matching the local language to the
+    beginning of the array if possible. */
+void
+language_pick_country(GPtrArray *country_files)
+{
+    gint i, j;
+    GPtrArray *codes = 
+	misc_separate_strings(const_str("string_language_codes"));
+    GPtrArray *defs = 
+	misc_separate_strings(const_str("string_language_defs"));
+    gpointer prefdef = NULL;
+    const gchar *lang = g_getenv("LANG");
+
+    if(lang != NULL)
+	for(i=0;i<codes->len;i++)
+	{
+	    if(((g_str_has_prefix(lang, "en") &&
+		 strcmp((gchar*)g_ptr_array_index(codes, i), "C") == 0) ||
+		g_str_has_prefix(lang, (gchar*)g_ptr_array_index(codes, i))) &&
+	       strcmp((gchar*)g_ptr_array_index(defs, i), "NONE") != 0)
+		for(j=0;j<country_files->len;j++)
+		    if(strcmp((gchar*)g_ptr_array_index(country_files, j),
+			      (gchar*)g_ptr_array_index(defs, i)) == 0)
+		    {
+			prefdef = g_ptr_array_index(country_files, j);
+			break;
+		    }
+
+	    if(prefdef != NULL)
+		break;
+	}
+
+    g_ptr_array_sort_with_data(
+	country_files,
+	(GCompareDataFunc)language_compare_country_files,
+	prefdef);
+
+    free_gchar_array(&codes);
+    free_gchar_array(&defs);
 }
