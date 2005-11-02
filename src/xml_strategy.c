@@ -524,21 +524,10 @@ void
 xml_strategy_load_strategies(void)
 {
     gint i, j, k;
-    GList *elem = support_directories;
-    const gchar *strategydir = NULL;
+    const gchar *strategydir = file_get_first_support_dir_suffix("strategy");
     GPtrArray *files = NULL;
     gchar buf[SMALL];
   
-    while (elem)
-    {
-	if(g_str_has_suffix((gchar*)elem->data, "strategy"))
-	{
-	    strategydir = (const gchar*)elem->data;
-	    break;
-	}
-	elem = elem->next;
-    }
-
     if(strategydir == NULL)
 	main_exit_program(EXIT_STRATEGY_ERROR, 
 			  "xml_strategy_load_strategies: strategy directory not found.");

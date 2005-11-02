@@ -56,9 +56,10 @@ gui_label_set_text_from_int(GtkLabel *label, gint number, gboolean append)
 /* Show a window with a progress bar.
    @param value The value of the progress bar. If set to 1
    or < 0 the progress bar window gets destroyed.
-   @param text The text to show in the progress bar. */
+   @param text The text to show in the progress bar.
+   @param pictype What kind of picture to show above the progress bar. */
 void
-gui_show_progress(gfloat value, gchar *text)
+gui_show_progress(gfloat value, const gchar *text, gint pictype)
 {
     GtkProgressBar *progressbar = NULL;
 
@@ -69,7 +70,8 @@ gui_show_progress(gfloat value, gchar *text)
     }
 
     if(window.progress == NULL)
-	window_create(WINDOW_PROGRESS);
+	window_show_progress(pictype);
+
     progressbar = GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar"));
 
     if(value >= 0 && value < 1)

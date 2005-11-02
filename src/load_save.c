@@ -65,7 +65,8 @@ load_save_save_game(const gchar *filename)
     if(debug > 60)
 	printf("load_save_save options\n");
 
-    gui_show_progress(0, _("Saving options..."));
+    gui_show_progress(0, _("Saving options..."),
+		      PIC_TYPE_SAVE);
 
     sprintf(buf, "%s___options", prefix);
     file_save_opt_file(buf, &options);
@@ -78,7 +79,8 @@ load_save_save_game(const gchar *filename)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	_("Saving leagues and cups..."));
+	_("Saving leagues and cups..."),
+	PIC_TYPE_SAVE);
 
     xml_loadsave_leagues_cups_write(prefix);
 
@@ -88,7 +90,8 @@ load_save_save_game(const gchar *filename)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	_("Saving users..."));
+	_("Saving users..."),
+	PIC_TYPE_SAVE);
 
     xml_loadsave_users_write(prefix);
 
@@ -98,7 +101,8 @@ load_save_save_game(const gchar *filename)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	_("Saving transfer list..."));
+	_("Saving transfer list..."),
+	PIC_TYPE_SAVE);
 
     xml_loadsave_transfers_write(prefix);
 
@@ -108,7 +112,8 @@ load_save_save_game(const gchar *filename)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	_("Saving season stats..."));
+	_("Saving season stats..."),
+	PIC_TYPE_SAVE);
 
     xml_loadsave_season_stats_write(prefix);
 
@@ -118,14 +123,16 @@ load_save_save_game(const gchar *filename)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	_("Saving miscellaneous..."));
+	_("Saving miscellaneous..."),
+	PIC_TYPE_SAVE);
 
     xml_loadsave_misc_write(prefix);
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	_("Compressing savegame..."));
+	_("Compressing savegame..."),
+	PIC_TYPE_SAVE);
 
     sprintf(buf, "%s___", prefix);
     file_compress_files(fullname, buf);
@@ -133,14 +140,16 @@ load_save_save_game(const gchar *filename)
     if(debug > 60)
 	printf("load_save_save done \n");
 
-    gui_show_progress(1, _("Done."));
+    gui_show_progress(1, _("Done."),
+		      PIC_TYPE_SAVE);
 
     load_save_last_save_set(fullname);
 
     g_free(prefix);
     g_free(fullname);
 
-    gui_show_progress(-1, "");
+    gui_show_progress(-1, "",
+		      PIC_TYPE_SAVE);
     setsav1;
 }
 
@@ -184,7 +193,8 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     if(window.main != NULL)
 	gtk_widget_hide(window.main);
 
-    gui_show_progress(0, _("Uncompressing savegame..."));
+    gui_show_progress(0, _("Uncompressing savegame..."),
+		      PIC_TYPE_LOAD);
 
     file_decompress(fullname);
 
@@ -194,7 +204,8 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	_("Loading options..."));
+	_("Loading options..."),
+	PIC_TYPE_LOAD);
 
     sprintf(buf, "%s%s%s___options", dirname, G_DIR_SEPARATOR_S, prefix);
     file_load_opt_file(buf, &options);
@@ -208,7 +219,8 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	_("Loading leagues and cups..."));
+	_("Loading leagues and cups..."),
+	PIC_TYPE_LOAD);
 
     xml_loadsave_leagues_cups_read(dirname, prefix);
 
@@ -218,7 +230,8 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	_("Loading users..."));
+	_("Loading users..."),
+	PIC_TYPE_LOAD);
 
     xml_load_users(dirname, prefix);
 
@@ -228,7 +241,8 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	_("Loading transfer list..."));
+	_("Loading transfer list..."),
+	PIC_TYPE_LOAD);
 
     xml_load_transfers(dirname, prefix);
 
@@ -238,7 +252,8 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	_("Loading season stats..."));
+	_("Loading season stats..."),
+	PIC_TYPE_LOAD);
 
     xml_loadsave_season_stats_read(dirname, prefix);
 
@@ -248,14 +263,16 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
-	_("Loading miscellaneous..."));
+	_("Loading miscellaneous..."),
+	PIC_TYPE_LOAD);
 
     xml_loadsave_misc_read(dirname, prefix);
 
     if(debug > 60)
 	printf("load_save_load done \n");
 
-    gui_show_progress(1, _("Done."));
+    gui_show_progress(1, _("Done."),
+		      PIC_TYPE_LOAD);
 
     sprintf(buf, "%s%s%s___*", dirname, G_DIR_SEPARATOR_S, prefix);
     file_remove_files(buf);
@@ -264,7 +281,8 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
 
     load_save_last_save_set(fullname);
 
-    gui_show_progress(-1, "");
+    gui_show_progress(-1, "",
+		      PIC_TYPE_LOAD);
 
     if(create_main_window)
     {

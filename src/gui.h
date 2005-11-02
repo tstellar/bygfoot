@@ -26,11 +26,20 @@
 
 #include "bygfoot.h"
 
+/** What kind of pictures we on top of the progress bar. */
+enum PicType
+{
+    PIC_TYPE_NONE = 0,
+    PIC_TYPE_SAVE,
+    PIC_TYPE_LOAD,
+    PIC_TYPE_MATCHPIC
+};
+
 void
 gui_label_set_text_from_int(GtkLabel *label, gint number, gboolean append);
 
 void
-gui_show_progress(gfloat value, gchar *text);
+gui_show_progress(gfloat value, const gchar *text, gint pictype);
 
 void
 gui_set_arrow_pair(gint pair, gboolean state);

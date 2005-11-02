@@ -37,8 +37,11 @@ create_window_options (void)
   GtkWidget *checkbutton_conf_quit;
   GtkWidget *checkbutton_conf_unfit;
   GtkWidget *checkbutton_save_overwrite;
+  GtkWidget *hseparator5;
   GtkWidget *checkbutton_maximize;
   GtkWidget *checkbutton_pref_mess;
+  GtkWidget *checkbutton_show_progress_pics;
+  GtkWidget *hseparator6;
   GtkWidget *checkbutton_skip;
   GtkWidget *vseparator1;
   GtkWidget *table1;
@@ -231,6 +234,11 @@ create_window_options (void)
   gtk_box_pack_start (GTK_BOX (vbox3), checkbutton_save_overwrite, FALSE, FALSE, 0);
   gtk_tooltips_set_tip (tooltips, checkbutton_save_overwrite, _("Whether 'Save' overwrites the current save file or pops up a 'Save as' window"), NULL);
 
+  hseparator5 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator5);
+  gtk_box_pack_start (GTK_BOX (vbox3), hseparator5, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (hseparator5, 1, 10);
+
   checkbutton_maximize = gtk_check_button_new_with_mnemonic (_("Maximize main window"));
   gtk_widget_show (checkbutton_maximize);
   gtk_box_pack_start (GTK_BOX (vbox3), checkbutton_maximize, FALSE, FALSE, 0);
@@ -240,6 +248,16 @@ create_window_options (void)
   gtk_widget_show (checkbutton_pref_mess);
   gtk_box_pack_start (GTK_BOX (vbox3), checkbutton_pref_mess, FALSE, FALSE, 0);
   gtk_tooltips_set_tip (tooltips, checkbutton_pref_mess, _("Whether to show warnings and such in the message area in the main window when possible"), NULL);
+
+  checkbutton_show_progress_pics = gtk_check_button_new_with_mnemonic (_("Show progressbar pictures"));
+  gtk_widget_show (checkbutton_show_progress_pics);
+  gtk_box_pack_start (GTK_BOX (vbox3), checkbutton_show_progress_pics, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_show_progress_pics, _("Whether to show pictures on top of the progressbar when loading/saving or calculating results"), NULL);
+
+  hseparator6 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator6);
+  gtk_box_pack_start (GTK_BOX (vbox3), hseparator6, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (hseparator6, 1, 10);
 
   checkbutton_skip = gtk_check_button_new_with_mnemonic (_("Skip weeks without user matches"));
   gtk_widget_show (checkbutton_skip);
@@ -1069,8 +1087,11 @@ create_window_options (void)
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_conf_quit, "checkbutton_conf_quit");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_conf_unfit, "checkbutton_conf_unfit");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_save_overwrite, "checkbutton_save_overwrite");
+  GLADE_HOOKUP_OBJECT (window_options, hseparator5, "hseparator5");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_maximize, "checkbutton_maximize");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_pref_mess, "checkbutton_pref_mess");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_show_progress_pics, "checkbutton_show_progress_pics");
+  GLADE_HOOKUP_OBJECT (window_options, hseparator6, "hseparator6");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_skip, "checkbutton_skip");
   GLADE_HOOKUP_OBJECT (window_options, vseparator1, "vseparator1");
   GLADE_HOOKUP_OBJECT (window_options, table1, "table1");

@@ -105,7 +105,8 @@ strategy_compare_players(gconstpointer a,
 /** Check whether a lineup described in the prematch using the given
     formation can be made with the players. */
 gboolean
-query_strategy_formation_possible(const GPtrArray *players, const StrategyPrematch *prematch,
+query_strategy_formation_possible(const GPtrArray *players, 
+				  const StrategyPrematch *prematch,
 				  gint formation)
 {
     gint i, pos[3] = {0, 0, 0};
@@ -557,7 +558,8 @@ strategy_live_game_apply_action(LiveGame *match, gint team_idx,
 				    tm->style + 2);
     }
 
-    if(action->boost != -100 && tm->boost != action->boost)
+    if((action->boost != -100 && tm->boost != action->boost) &&
+       (action->boost != 1 || !sett_int("int_opt_disable_boost_on")))
     {
 	tm->boost = action->boost;
 	live_game_event_team_change(team_idx,

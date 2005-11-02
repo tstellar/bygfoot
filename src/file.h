@@ -82,6 +82,9 @@ file_my_system(const gchar *command);
 const gchar*
 file_get_first_support_dir(void);
 
+const gchar*
+file_get_first_support_dir_suffix(const gchar *suffix);
+
 void
 file_compress_files(const gchar *destfile, const gchar *prefix);
 
