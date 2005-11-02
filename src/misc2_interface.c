@@ -282,18 +282,32 @@ GtkWidget*
 create_window_progress (void)
 {
   GtkWidget *window_progress;
+  GtkWidget *vbox28;
+  GtkWidget *image_match;
   GtkWidget *progressbar;
 
   window_progress = gtk_window_new (GTK_WINDOW_POPUP);
-  gtk_window_set_position (GTK_WINDOW (window_progress), GTK_WIN_POS_CENTER);
+  gtk_window_set_position (GTK_WINDOW (window_progress), GTK_WIN_POS_CENTER_ALWAYS);
   gtk_window_set_modal (GTK_WINDOW (window_progress), TRUE);
+  gtk_window_set_type_hint (GTK_WINDOW (window_progress), GDK_WINDOW_TYPE_HINT_SPLASHSCREEN);
+
+  vbox28 = gtk_vbox_new (FALSE, 0);
+  gtk_widget_show (vbox28);
+  gtk_container_add (GTK_CONTAINER (window_progress), vbox28);
+
+  image_match = create_pixmap (window_progress, NULL);
+  gtk_widget_show (image_match);
+  gtk_box_pack_start (GTK_BOX (vbox28), image_match, FALSE, FALSE, 0);
 
   progressbar = gtk_progress_bar_new ();
   gtk_widget_show (progressbar);
-  gtk_container_add (GTK_CONTAINER (window_progress), progressbar);
+  gtk_box_pack_start (GTK_BOX (vbox28), progressbar, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (progressbar, 200, 20);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (window_progress, window_progress, "window_progress");
+  GLADE_HOOKUP_OBJECT (window_progress, vbox28, "vbox28");
+  GLADE_HOOKUP_OBJECT (window_progress, image_match, "image_match");
   GLADE_HOOKUP_OBJECT (window_progress, progressbar, "progressbar");
 
   return window_progress;

@@ -527,6 +527,26 @@ file_get_first_support_dir(void)
     return NULL;
 }
 
+/** Return the first support directory which has the given suffix.*/
+const gchar*
+file_get_first_support_dir_suffix(const gchar *suffix)
+{
+    GList *elem = support_directories;
+  
+    while (elem)
+    {
+	if(g_str_has_suffix((gchar*)elem->data, suffix))
+	    return (const gchar*)elem->data;
+
+	elem = elem->next;
+    }
+
+    g_warning("file_get_first_support_dir_suffix: no dir with suffix %s found.",
+	      suffix);
+
+    return NULL;    
+}
+
 /** Compress the files starting with the prefix.
     @param destfile The name of the file to create. */
 void

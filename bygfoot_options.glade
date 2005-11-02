@@ -108,6 +108,19 @@
 		  </child>
 
 		  <child>
+		    <widget class="GtkHSeparator" id="hseparator5">
+		      <property name="width_request">1</property>
+		      <property name="height_request">10</property>
+		      <property name="visible">True</property>
+		    </widget>
+		    <packing>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">False</property>
+		    </packing>
+		  </child>
+
+		  <child>
 		    <widget class="GtkCheckButton" id="checkbutton_maximize">
 		      <property name="visible">True</property>
 		      <property name="tooltip" translatable="yes">Whether game starts with a maximized main window (doesn't work with all window managers)</property>
@@ -139,6 +152,39 @@
 		      <property name="active">False</property>
 		      <property name="inconsistent">False</property>
 		      <property name="draw_indicator">True</property>
+		    </widget>
+		    <packing>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">False</property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkCheckButton" id="checkbutton_show_progress_pics">
+		      <property name="visible">True</property>
+		      <property name="tooltip" translatable="yes">Whether to show pictures on top of the progressbar when loading/saving or calculating results</property>
+		      <property name="can_focus">True</property>
+		      <property name="label" translatable="yes">Show progressbar pictures</property>
+		      <property name="use_underline">True</property>
+		      <property name="relief">GTK_RELIEF_NORMAL</property>
+		      <property name="focus_on_click">True</property>
+		      <property name="active">False</property>
+		      <property name="inconsistent">False</property>
+		      <property name="draw_indicator">True</property>
+		    </widget>
+		    <packing>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">False</property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkHSeparator" id="hseparator6">
+		      <property name="width_request">1</property>
+		      <property name="height_request">10</property>
+		      <property name="visible">True</property>
 		    </widget>
 		    <packing>
 		      <property name="padding">0</property>

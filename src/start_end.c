@@ -265,6 +265,7 @@ end_week_round_results(void)
 	(gfloat)fixture_get_number_of_matches(week, week_round);
     
     for(i=0;i<ligs->len;i++)
+    {
 	for(j=0;j<lig(i).fixtures->len;j++)
 	    if(g_array_index(lig(i).fixtures, Fixture, j).week_number == week &&
 	       g_array_index(lig(i).fixtures, Fixture, j).week_round_number == week_round &&
@@ -278,10 +279,13 @@ end_week_round_results(void)
 			g_array_index(lig(i).fixtures, Fixture, j).teams[0]->name,
 			buf,
 			g_array_index(lig(i).fixtures, Fixture, j).teams[1]->name);
-		gui_show_progress((gfloat)done / num_matches, buf2);
+		gui_show_progress((gfloat)done / num_matches, buf2,
+				  PIC_TYPE_MATCHPIC);
+
 		if(debug > 120)
 		    printf("%s \n", buf2);
 	    }
+    }
 
     for(i=0;i<acps->len;i++)
 	for(j=0;j<acp(i)->fixtures->len;j++)
@@ -298,13 +302,14 @@ end_week_round_results(void)
 			g_array_index(acp(i)->fixtures, Fixture, j).teams[0]->name,
 			buf,
 			g_array_index(acp(i)->fixtures, Fixture, j).teams[1]->name);
-		gui_show_progress((gfloat)done / num_matches, buf2);
+		gui_show_progress((gfloat)done / num_matches, buf2,
+				  PIC_TYPE_MATCHPIC);
 		if(debug > 120)
 		    printf("%s \n", buf2);
 	    }
 	}
 
-    gui_show_progress(-1, "");
+    gui_show_progress(-1, "", PIC_TYPE_MATCHPIC);
 }
 
 /** Sort league and cup tables. */

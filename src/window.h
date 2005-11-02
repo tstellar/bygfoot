@@ -108,4 +108,7 @@ window_main_load_geometry(void);
 void
 window_show_bets(void);
 
+void
+window_show_progress(gint pictype);
+
 #endif

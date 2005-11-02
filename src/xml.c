@@ -80,7 +80,8 @@ xml_load_league(const gchar *dirname, const gchar *basename)
 	    new.name);
     gui_show_progress(
 	gtk_progress_bar_get_fraction(
-	    GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar"))), buf);
+	    GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar"))), buf,
+	PIC_TYPE_LOAD);
 
     if(debug > 80)
 	printf("%s\n", buf);
@@ -113,7 +114,8 @@ xml_load_cup(Cup *cup, const gchar *dirname, const gchar *basename)
 	    cup->name);
     gui_show_progress(
 	gtk_progress_bar_get_fraction(
-	    GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar"))), buf);
+	    GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar"))), buf,
+	PIC_TYPE_LOAD);
 
     if(debug > 80)
 	printf("%s\n", buf);

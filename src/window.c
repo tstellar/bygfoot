@@ -33,6 +33,7 @@
 #include "live_game.h"
 #include "load_save.h"
 #include "main.h"
+#include "maths.h"
 #include "misc_callback_func.h"
 #include "misc_interface.h"
 #include "misc2_interface.h"
@@ -64,6 +65,59 @@
 /*     gtk_label_set_text(GTK_LABEL(lookup_widget(window.help, "label_contributors")), */
 /* 		       _("News")); */
 /* } */
+
+/** Show the window with the progress bar,
+    sometimes with a nice picture. */
+void
+window_show_progress(gint pictype)
+{
+    GPtrArray *pics = NULL;
+    const gchar *picdir = NULL;
+    gchar buf[SMALL];
+    GtkImage *image = NULL;
+
+    window_create(WINDOW_PROGRESS);
+
+    if(pictype == PIC_TYPE_NONE ||
+       !opt_int("int_opt_progressbar_pics"))
+	return;
+
+    image = GTK_IMAGE(lookup_widget(window.progress,
+				    "image_match"));
+
+    switch(pictype)
+    {
+	default:
+	    g_warning("window_show_progress: unknown picture type %d",
+		      pictype);
+	    break;
+	case PIC_TYPE_SAVE:
+	    gtk_image_set_from_stock(image, GTK_STOCK_FLOPPY,
+				     GTK_ICON_SIZE_DIALOG);
+	    break;
+	case PIC_TYPE_LOAD:
+	    gtk_image_set_from_stock(image, GTK_STOCK_OPEN,
+				     GTK_ICON_SIZE_DIALOG);
+	    break;
+	case PIC_TYPE_MATCHPIC:
+	    picdir = file_get_first_support_dir_suffix("pics");
+
+	    if(picdir == NULL)
+		return;
+
+	    pics = file_dir_get_contents(picdir, "match", "");
+
+	    if(pics->len != 0)
+	    {	
+		sprintf(buf, "%s%s%s", picdir, G_DIR_SEPARATOR_S,
+			(gchar*)g_ptr_array_index(pics, math_rndi(0, pics->len - 1)));
+		gtk_image_set_from_file(image, buf);
+	    }
+
+	    free_gchar_array(&pics);
+	    break;
+    }
+}
 
 /** Show the betting window. */
 void

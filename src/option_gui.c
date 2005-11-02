@@ -41,6 +41,7 @@ enum BooleanOptions
     BOOL_OPT_SAVE_OVERWRITE,
     BOOL_OPT_MAXIMIZE,
     BOOL_OPT_PREFER_MESS,
+    BOOL_OPT_PROGRESSBAR_PICS,
     BOOL_OPT_SKIP,
     BOOL_OPT_AUTOSAVE,
     BOOL_OPT_SHOW_LIVE,
@@ -121,6 +122,11 @@ option_gui_write_bool_widgets(gint **bool_options, GtkToggleButton **bool_widget
     bool_widgets[BOOL_OPT_PREFER_MESS] = 
 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_pref_mess"));
     bool_options[BOOL_OPT_PREFER_MESS] = opt_intp("int_opt_prefer_messages");
+
+    bool_widgets[BOOL_OPT_PROGRESSBAR_PICS] = 
+	GTK_TOGGLE_BUTTON(lookup_widget(window.options, 
+					"checkbutton_show_progress_pics"));
+    bool_options[BOOL_OPT_PROGRESSBAR_PICS] = opt_intp("int_opt_progressbar_pics");
 
     bool_widgets[BOOL_OPT_SKIP] = 
 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_skip"));

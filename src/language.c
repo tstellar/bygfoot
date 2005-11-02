@@ -130,9 +130,9 @@ language_compare_country_files(gconstpointer a, gconstpointer b, gpointer data)
 
     if(strcmp(def1, def2) == 0)
 	return_value = 0;
-    else if(strcmp(prefdef, def1) == 0)
+    else if(prefdef != NULL && strcmp(prefdef, def1) == 0)
 	return_value = -1;
-    else if(strcmp(prefdef, def2) == 0)
+    else if(prefdef != NULL && strcmp(prefdef, def2) == 0)
 	return_value = 1;
     else
     {
@@ -175,6 +175,9 @@ language_pick_country(GPtrArray *country_files)
 	misc_separate_strings(const_str("string_language_defs"));
     gpointer prefdef = NULL;
     const gchar *lang = g_getenv("LANG");
+
+    if(lang == NULL)
+	lang = g_getenv("LC_ALL");
 
     if(lang != NULL)
 	for(i=0;i<codes->len;i++)
