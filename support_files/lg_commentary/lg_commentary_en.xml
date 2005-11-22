@@ -217,13 +217,13 @@
     <commentary>It's half time</commentary>
     <commentary>It's a _RE_ at half time.</commentary>
     <commentary>It's a _RE_ at half time, _TL_'s manager has to find something special to spur his team on.</commentary>
-    <commentary>_TW_ are just 45 minutes away from a stunning victory</commentary>
     <commentary>Games like this make managers. _TL_ need inspiration from the top.</commentary>    <commentary>The dropped heads tell the story. It's been no picnic here for _TL_.</commentary>
     <commentary>_TL_'s manager cops a rollicking from the fans as he leaves the dugout</commentary>
     <commentary>So far _TW_ and their manager have done everything right.</commentary>
 	 <commentary>_TL_'s manager is furious with his teams performance this half</commentary>
 	 <commentary>One gets the feeling the manger will read _TL_ the riot act</commentary>
 	 <commentary>_TL_ will be on the receiving end of their managers [scolding|wrath]</commentary>
+    <commentary cond="_TAVSKILLDIFF_ >=8 and _GD_ >=1 and _TAVSKILL_TLN__ < _TAVSKILL_TWN__"pri="10">_TW_ are just 45 minutes away from a stunning victory</commentary>
     <commentary cond="_GD_ >0">_TL_ heads into the tunnel to await the managers scolding</commentary>
 	 <commentary cond="_GD_>0">A half , _TL_ team will quickly want to forget</commentary>
     <commentary cond="_POSS0_ >= 70 or _POSS1_ >= 70">_T[_POSS1_ GE 70]_ is dominating the possession</commentary>
@@ -416,13 +416,17 @@
     <name>style_change</name>
     <commentary>_T_TT__ has changed their style to _EX_</commentary>
     <commentary>_T_TT__ change to a _EX_ style</commentary>
-    <commentary cond="_MI_>75">Last ditch effort, _T_TT__ change to  _EX_</commentary>
+    <commentary cond="_EX_ == 'ATTACK'">_T_TT__ Try to create an oppening by attacking</commentary>
+    <commentary cond="_MI_>75 and _EX_ == 'BALANCED'">_T_TT__ change to  _EX_ and ease off</commentary>
+    <commentary cond="_MI_>75 and _EX_ == 'ATTACK'">Last ditch effort, _T_TT__ change to  _EX_</commentary>
     <commentary cond="_MI_>75">_MR_ minutes left, _T_TT__ try a change of tactics with an _EX_ style</commentary>
     <commentary cond="_TIME_=1 and _MR_ >= 44">Half time style change for, _T_TT__ to _EX_</commentary>
   </event>
   <event>
     <name>boost_change</name>
     <commentary>_T_TT__ has changed their boost to _EX_</commentary>
+    <commentary cond="_MI_>75 and _EX_ == 'ANTI' and _TT_ == _TLN_">Looks like _T_TT__ have given up</commentary>
+    <commentary cond="_MI_>75 and _EX_ == 'ANTI' and _TT_ == _TWN_">_T_TT__ must think they have this game sewn up</commentary>
     <commentary cond="_EX_ = 'ON'">_T_TT__ have gone up a gear</commentary>
     <commentary cond="_EX_ = 'ON' and _MI_ >75"pri="10">Boost on._T_TT__ are throwing everything they got</commentary>
   </event>
