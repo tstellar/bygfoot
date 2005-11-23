@@ -31,6 +31,8 @@
     <commentary>_P0_ twisting desperately to loose his man</commentary>
 	 <commentary>_P0_ rips [up|through] the [centre|midfield]</commentary>
     <commentary>_P0_ [looses|spins past] his [man|marker]</commentary>
+    <commentary cond="_MI_>80 and _GD_ ==0 and _TAVSKILLDIFF_ >= 4"pri="10">A draw will be a great result for the out matched _T[_TAVSKILL0_ GE _TAVSKILL1_]_</commentary>
+    <commentary cond="_MI_>80 and _GD_ ==1"pri="10">_TW_ need to buckle down and just hold on for a few more minutes</commentary>
     <commentary cond="_MI_>20 and _SHOTS_POSS__ < 2">_T_POSS__ need to [get the ball up front more|create more chances]</commentary>
     <commentary cond="_MI_>20 and _GOALS0_ + _GOALS1_ < 1  and _SHOTS0_ + _SHOTS1_ > 1 and _SHOTS0_ + _SHOTS1_ < 8">Only [_SHOTS0_ + _SHOTS1_] shots, [its a battle in the midfield|neither side are really trying]</commentary>
     <commentary cond="_MI_>20 and _GOALS0_ + _GOALS1_ < 1 and _SHOTS0_ + _SHOTS1_ = 1">Only 1 shot, [its a battle in the midfield|neither side are really trying]</commentary>
@@ -134,6 +136,7 @@
     <commentary>Outstanding Goal!</commentary>
     <commentary>Goal! Lady luck obviously supports _T_TT__</commentary>
     <commentary>[Curving|In swinging|Out swinging|Swerving] ball beats _P1_ to the line.Goal!</commentary>
+	 <commentary cond="_GOALS0_ + _GOALS1_ ==1">_T_TT_ [take first blood|are first to open the account] today</commentary>
 	 <commentary cond="_GD_ <=2 and _T_TT_ == _TLN_">That [strike|Goal] has sent the _T_TT_ fans wild</commentary>
 	 <commentary cond="_GD_ == 0 ">That [strike|Goal] has levelled the scores</commentary>
 	 <commentary cond="_GD_ <=2">_T_POSS__ have struck [pay dirt|gold]. What a Goal!</commentary>
@@ -193,6 +196,7 @@
     <commentary>That was in by all accounts, but they forgot to tell _P1_, who some how saved the day</commentary>
     <commentary>No power in the shot from _P0_. Taken easily by _P1_</commentary>
 	 <commentary>[A|Thats a] regulation [stop|save] for [_P1_|the keeper]</commentary>
+	 <commentary cond="_GD_ ==1">[_P1_|the goalie] is keeping _TL_ in the game</commentary> 
   </event>
   <event>
     <name>start_match</name>
@@ -206,9 +210,10 @@
 	 <commentary>The [battle|struggle|fight|war|combat] begins</commentary>
     <commentary>The referees are ready, players set, the whistle blows</commentary>
     <commentary>The fog lifts and away we go</commentary>
-    <commentary cond="_TAVSKILLDIFF_ <= 4"pri="10">The teams are well matched. We are in for [a real|an end to end] [tug of war|battle].</commentary>
+    <commentary cond="_TAVSKILLDIFF_ <= 2"pri="10">The teams are well matched. We are in for [a real|an end to end] [tug of war|battle].</commentary>
+    <commentary cond="_TAVSKILLDIFF_ < 5 and _TAVGSKILLDIFF_ >2"pri="10">_T[_TAVSKILL0_ LE _TAVSKILL1_]_ have the slight upper hand.</commentary>
     <commentary cond="_TAVSKILLDIFF_ >=8"pri="10">There's a huge gulf in the skill level. This should be a walk over for _T[_TAVSKILL1_ GE _TAVSKILL0_]_</commentary>
-    <commentary cond="_TAVSKILLDIFF_ >=4"pri="10">_T[_TAVSKILL0_ GE _TAVSKILL1_]_ come into the game as underdogs.</commentary>
+    <commentary cond="_TAVSKILLDIFF_ >=5"pri="10">_T[_TAVSKILL0_ GE _TAVSKILL1_]_ come into the game as underdogs.</commentary>
     <commentary cond="_TAVSKILLDIFF_ >=8"pri="10">_T[_TAVSKILL0_ LE _TAVSKILL1_]_ start the game as sure favourites.</commentary>
     <commentary cond="_TAVSKILLDIFF_ <= 1 and [_TAVSKILL0_ + _TAVSKILL1_] >=85"pri="10">The clash of the [gladiators|titans] [begins|kicks off]</commentary>
   </event>
