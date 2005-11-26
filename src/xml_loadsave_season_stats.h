@@ -1,4 +1,6 @@
 /*
+   xml_loadsave_season_stats.h
+
    Bygfoot Football Manager -- a small and simple GTK2-based
    football management game.
 

@@ -1,4 +1,6 @@
 /*
+   debug.h
+
    Bygfoot Football Manager -- a small and simple GTK2-based
    football management game.
 
@@ -34,6 +36,9 @@ debug_reset_counter(gpointer data);
 
 void
 debug_calibrate_betting_odds(gint skilldiffmax, gint matches_per_skilldiff);
+
+gboolean
+debug_egg_forwards_boost_style(void);
 
 #endif
 

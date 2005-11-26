@@ -1,4 +1,6 @@
 /*
+   callback_func.c
+
    Bygfoot Football Manager -- a small and simple GTK2-based
    football management game.
 
@@ -98,6 +100,14 @@ callback_player_clicked(gint idx, GdkEventButton *event)
     /* Only accept single-clicks right now. */
     if(event->type != GDK_BUTTON_PRESS)
 	return;
+
+    /*d*/
+    gint i;
+    for(i=0;i<lig(1).teams->len;i++)
+	printf("%d %s %d\n", i, g_array_index(lig(1).teams,
+					      Team, i).name,
+	       g_array_index(lig(1).teams,
+			     Team, i).id);
 
     if(event->button == 1)
     {

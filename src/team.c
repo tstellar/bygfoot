@@ -1,4 +1,6 @@
 /*
+   team.c
+
    Bygfoot Football Manager -- a small and simple GTK2-based
    football management game.
 
@@ -668,8 +670,10 @@ team_compare_func(gconstpointer a, gconstpointer b, gpointer data)
 					    league_from_clid(tm1->clid)->layer);
     }
     else if(type == TEAM_COMPARE_LEAGUE_LAYER)
-	return_value = misc_int_compare(league_from_clid(tm2->clid)->layer,
-					league_from_clid(tm1->clid)->layer);
+	return_value = 
+	    (tm1->clid >= ID_CUP_START || tm2->clid >= ID_CUP_START) ?
+	    0 : misc_int_compare(league_from_clid(tm2->clid)->layer,
+				 league_from_clid(tm1->clid)->layer);
     else if(type == TEAM_COMPARE_OFFENSIVE)
     {
 	gint gf1 = team_get_table_value(tm1, TABLE_GF),

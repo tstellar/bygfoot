@@ -1,4 +1,6 @@
 /*
+   debug.c
+
    Bygfoot Football Manager -- a small and simple GTK2-based
    football management game.
 
@@ -167,4 +169,24 @@ debug_calibrate_betting_odds(gint skilldiffmax, gint matches_per_skilldiff)
 	       res[0], res[1], res[2], (gfloat)res[0] / (gfloat)matches, 
 	       (gfloat)res[1] / (gfloat)matches, (gfloat)res[2] / (gfloat)matches);
     }
+}
+
+/** Check whether the 4 forwards, boost on, style all-out-attack
+    easter egg should be activated. */
+gboolean
+debug_egg_forwards_boost_style(void)
+{
+    gint i, fwds = 0;
+    
+    if(current_user.tm->boost != 1 ||
+       current_user.tm->style != 2 ||
+       current_user.tm->players->len < 11)
+	return FALSE;
+
+    for(i=0;i<11;i++)
+	if(g_array_index(current_user.tm->players, Player, i).cpos == 3 &&
+	   g_array_index(current_user.tm->players, Player, i).cskill > 0)
+	    fwds++;
+
+    return (fwds > 3);
 }

@@ -1,4 +1,6 @@
 /*
+   bet.c
+
    Bygfoot Football Manager -- a small and simple GTK2-based
    football management game.
 
@@ -213,8 +215,9 @@ bet_is_user(const BetMatch *bet)
     return NULL;
 }
 
-/** Place a new bet. */
-void
+/** Place a new bet. 
+    @return TRUE on success, FALSE otherwise. */
+gboolean
 bet_place(gint fix_id, gint outcome, gint wager)
 {
     gfloat max_wager = finance_wage_unit(current_user.tm) * 
@@ -223,19 +226,19 @@ bet_place(gint fix_id, gint outcome, gint wager)
     gchar buf[SMALL];
 
     if(wager <= 0)
-	return;
+	return TRUE;
 
     if(wager > BUDGET(cur_user))
     {
 	game_gui_show_warning(_("You don't have the money."));
-	return;
+	return FALSE;
     }
 
     if(wager > max_wager)
     {
 	misc_print_grouped_int((gint)rint(max_wager), buf);
 	game_gui_show_warning(_("The betting office doesn't allow you to wager more than %s."), buf);
-	return;
+	return FALSE;
     }
 
     new_bet.fix_id = fix_id;
@@ -246,6 +249,8 @@ bet_place(gint fix_id, gint outcome, gint wager)
 
     if(window.bets != NULL)
 	treeview2_show_bets();
+
+    return TRUE;
 }
 
 /** Remove the bet on the given fixture. */

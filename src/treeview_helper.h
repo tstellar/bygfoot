@@ -1,4 +1,6 @@
 /*
+   treeview_helper.h
+
    Bygfoot Football Manager -- a small and simple GTK2-based
    football management game.
 
@@ -210,5 +212,12 @@ treeview_helper_bet_odds(GtkTreeViewColumn *col,
 			 GtkTreeModel      *model,
 			 GtkTreeIter       *iter,
 			 gpointer           user_data);
+
+gboolean
+treeview_helper_search_equal(GtkTreeModel *model,
+			     gint column,
+			     const gchar *key,
+			     GtkTreeIter *iter,
+			     gpointer search_data);
 
 #endif

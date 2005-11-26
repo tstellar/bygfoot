@@ -1,4 +1,6 @@
 /*
+   league.c
+
    Bygfoot Football Manager -- a small and simple GTK2-based
    football management game.
 
@@ -349,6 +351,9 @@ league_remove_team_with_id(League *league, gint id)
 {
     gint i;
 
+    /*d*/
+    printf("lrm %s %d\n", league->name, id);
+
     for(i=0;i<league->teams->len;i++)
 	if(g_array_index(league->teams, Team, i).id == id)
 	{
@@ -496,6 +501,9 @@ league_get_team_movements_prom_rel(const League *league, GArray *team_movements)
 	    new_move.dest_idcs = dest_idcs;
 	    new_move.dest_assigned = FALSE;
 	    g_array_append_val(team_movements, new_move);
+
+	    printf("tmov1 %s tm %s %d\n", league->name, new_move.tm.name,
+		   new_move.tm.id);
 	}
 
 	free_gchar_array(&dest_sids);
@@ -544,6 +552,9 @@ league_get_team_movements_prom_games(const League *league, GArray *team_movement
 	new_move.dest_idcs = dest_idcs;
 	new_move.dest_assigned = FALSE;
 	g_array_append_val(team_movements, new_move);
+
+	printf("tmov2 %s tm %s %d\n", league->name, new_move.tm.name,
+	       new_move.tm.id);
     }
 
     free_gchar_array(&dest_sids);

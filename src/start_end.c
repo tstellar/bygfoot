@@ -1,4 +1,6 @@
 /*
+   start_end.c
+
    Bygfoot Football Manager -- a small and simple GTK2-based
    football management game.
 
@@ -566,6 +568,12 @@ start_new_season_league_changes(void)
 
     for(i=0;i<ligs->len;i++)
 	league_size[i] = lig(i).teams->len;
+
+    /*d*/
+    for(i=0;i<lig(1).teams->len;i++)
+	printf("# %d %s %d\n", i, 
+	       g_array_index(lig(1).teams, Team, i).name,
+	       g_array_index(lig(1).teams, Team, i).id);
 
     for(i=0;i<team_movements->len;i++)
 	league_remove_team_with_id(

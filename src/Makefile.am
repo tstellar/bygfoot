@@ -4,11 +4,12 @@ AM_CFLAGS = -Wall #-fprofile-arcs -ftest-coverage -pg
 INCLUDES = \
 	-DPACKAGE_DATA_DIR=\""$(datadir)"\" \
 	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
-	@PACKAGE_CFLAGS@
+	@PACKAGE_CFLAGS@ @GST_CFLAGS@
 
 bin_PROGRAMS = bygfoot
 
 bygfoot_SOURCES = \
+	mediaplayer.c mediaplayer.h \
 	bet.c bet.h bet_struct.h \
 	callback_func.c callback_func.h callbacks.h cup.h finance.h fixture.h game_gui.h gui.h league.h live_game.h maths.h misc.h option.h player.h start_end.h team.h transfer.h treeview.h treeview_helper.h user.h window.h \
 	callbacks.c callback_func.h callbacks.h debug.h free.h game_gui.h game.h gui.h league.h load_save.h main.h option.h player.h table.h team.h transfer.h treeview2.h treeview.h treeview_helper.h user.h window.h \
@@ -80,5 +81,5 @@ bygfoot_SOURCES = \
 	xml_team.c file.h free.h main.h misc.h option.h player.h team.h variables.h xml_team.h \
 	youth_academy.c free.h maths.h name.h option.h player.h team.h user.h youth_academy.h 
 
-bygfoot_LDADD = @PACKAGE_LIBS@ $(INTLLIBS)
+bygfoot_LDADD = @PACKAGE_LIBS@ @GST_LIBS@ $(INTLLIBS) 
 
