@@ -1,4 +1,6 @@
 /*
+   live_game.c
+
    Bygfoot Football Manager -- a small and simple GTK2-based
    football management game.
 
@@ -60,8 +62,7 @@ gboolean show;
 /** Calculate the result of a fixture using
     the live game variable.
     @param fix The fixture we calculate.
-    @see live_game_create_unit(), live_game_evaluate_unit(),
-    treeview_live_game_show_game_unit() */
+*/
 void
 live_game_calculate_fixture(Fixture *fix)
 {
@@ -81,7 +82,7 @@ live_game_calculate_fixture(Fixture *fix)
 
     do
     {
-	live_game_create_unit();	
+	live_game_create_unit();
 	live_game_evaluate_unit(&last_unit);
     }
     while(last_unit.event.type != LIVE_GAME_EVENT_END_MATCH &&
@@ -728,6 +729,8 @@ live_game_event_general(gboolean create_new)
 	   last_unit.event.type == LIVE_GAME_EVENT_STADIUM_BREAKDOWN ||
 	   last_unit.event.type == LIVE_GAME_EVENT_STADIUM_FIRE ||
 	   last_unit.event.type == LIVE_GAME_EVENT_STADIUM_RIOTS ||
+	   (last_unit.event.type >= LIVE_GAME_EVENT_STRUCTURE_CHANGE &&
+	    last_unit.event.type <= LIVE_GAME_EVENT_BOOST_CHANGE_ON) ||
 	   ((last_unit.event.type == LIVE_GAME_EVENT_POST ||
 	     last_unit.event.type == LIVE_GAME_EVENT_CROSS_BAR) &&
 	    math_rnd(0, 1) < const_float("float_live_game_possession_after_post")))
@@ -780,6 +783,10 @@ live_game_event_general(gboolean create_new)
 
     if(team_is_user(tm1) == -1)
 	strategy_live_game_check(match, 1);
+
+    if(last_unit.event.type >= LIVE_GAME_EVENT_STRUCTURE_CHANGE &&
+       last_unit.event.type <= LIVE_GAME_EVENT_BOOST_CHANGE_ON)
+	live_game_event_general(TRUE);
 }
 
 /** Fill in the players values in a general unit. */

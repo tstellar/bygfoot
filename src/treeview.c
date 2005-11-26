@@ -1,4 +1,6 @@
 /*
+   treeview.c
+
    Bygfoot Football Manager -- a small and simple GTK2-based
    football management game.
 
@@ -122,6 +124,11 @@ treeview_set_up_team_selection_treeview(GtkTreeView *treeview)
 	GTK_SELECTION_BROWSE);
     gtk_tree_view_set_headers_visible(treeview, TRUE);    
     gtk_tree_view_set_rules_hint(treeview, TRUE);
+
+    gtk_tree_view_set_search_column(treeview, 2);
+    gtk_tree_view_set_search_equal_func(treeview,
+					treeview_helper_search_equal,
+					NULL, NULL);
 
     /* Numbering the teams */
     col = gtk_tree_view_column_new();

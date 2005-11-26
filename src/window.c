@@ -1,4 +1,6 @@
 /*
+   window.c
+
    Bygfoot Football Manager -- a small and simple GTK2-based
    football management game.
 
@@ -22,6 +24,7 @@
 */
 
 #include "callbacks.h"
+#include "debug.h"
 #include "file.h"
 #include "finance.h"
 #include "free.h"
@@ -74,6 +77,7 @@ window_show_progress(gint pictype)
     GPtrArray *pics = NULL;
     const gchar *picdir = NULL;
     gchar buf[SMALL];
+    gchar *buf2 = NULL;
     GtkImage *image = NULL;
 
     window_create(WINDOW_PROGRESS);
@@ -100,21 +104,33 @@ window_show_progress(gint pictype)
 				     GTK_ICON_SIZE_DIALOG);
 	    break;
 	case PIC_TYPE_MATCHPIC:
-	    picdir = file_get_first_support_dir_suffix("pics");
-
-	    if(picdir == NULL)
-		return;
-
-	    pics = file_dir_get_contents(picdir, "match", "");
-
-	    if(pics->len != 0)
-	    {	
-		sprintf(buf, "%s%s%s", picdir, G_DIR_SEPARATOR_S,
-			(gchar*)g_ptr_array_index(pics, math_rndi(0, pics->len - 1)));
-		gtk_image_set_from_file(image, buf);
+	    if(debug_egg_forwards_boost_style())
+	    {
+		buf2 = file_find_support_file("soccerbabes.jpg", FALSE);
+		if(buf2 != NULL)
+		{
+		    gtk_image_set_from_file(image, buf2);
+		    g_free(buf2);
+		}
 	    }
 
-	    free_gchar_array(&pics);
+	    if(buf2 == NULL)
+	    {
+		picdir = file_get_first_support_dir_suffix("pics");
+		if(picdir == NULL)
+		    return;
+		
+		pics = file_dir_get_contents(picdir, "match", "");
+		
+		if(pics->len != 0)
+		{	
+		    sprintf(buf, "%s%s%s", picdir, G_DIR_SEPARATOR_S,
+			    (gchar*)g_ptr_array_index(pics, math_rndi(0, pics->len - 1)));
+		    gtk_image_set_from_file(image, buf);
+		}
+		
+		free_gchar_array(&pics);
+	    }
 	    break;
     }
 }

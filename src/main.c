@@ -1,4 +1,6 @@
 /*
+   main.c
+
    Bygfoot Football Manager -- a small and simple GTK2-based
    football management game.
 
@@ -38,6 +40,7 @@
 #include "live_game.h"
 #include "load_save.h"
 #include "main.h"
+#include "mediaplayer.h"
 #include "misc.h"
 #include "misc_callbacks.h"
 #include "name_struct.h"
@@ -76,7 +79,7 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 
 	 { "last-save", 'l', 0, G_OPTION_ARG_NONE, &load_last_save, _("Load last savegame"), NULL },
 
-	 { "testcom", 't', 0, G_OPTION_ARG_NONE, &testcom, _("Test an XML commmentary file"), NULL },
+	 { "testcom", 't', 0, G_OPTION_ARG_NONE, &testcom, _("Test an XML commentary file"), NULL },
 
 	 { "commentary-file", 'c', 0, G_OPTION_ARG_STRING, &testcom_file,
 	   _("Commentary file name (may be in a support dir)"), "FILE" },
@@ -276,8 +279,11 @@ main (gint argc, gchar *argv[])
 
     gtk_set_locale ();
     gtk_init (&argc, &argv);
-  
+    mediaplayer_init(&argc, &argv);
+
     main_init(&argc, &argv);
+
+/*     mediaplayer_play_media("file://receive.ogg"); */
 
     if((load_last_save && !load_game_from_command_line("last_save")) ||
        (!load_last_save && (argc == 1 ||

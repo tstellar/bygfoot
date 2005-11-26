@@ -1,4 +1,6 @@
 /*
+   cup.c
+
    Bygfoot Football Manager -- a small and simple GTK2-based
    football management game.
 
@@ -230,7 +232,7 @@ cup_get_team_pointers(Cup *cup, gint round)
     GPtrArray *teams = cup_round->team_ptrs;
 
     if(debug > 60)
-	printf("cup_get_team_pointers %s \n", cup->name);
+	printf("cup_get_team_pointers %s round %d\n", cup->name, round);
 
     if(teams->len > 0)
 	g_warning("cup_get_team_pointers: round %d in cup %s has non-empty team pointers array.",
@@ -238,11 +240,13 @@ cup_get_team_pointers(Cup *cup, gint round)
 
     for(i=0;i<cup_round->choose_teams->len;i++)
 	if(g_array_index(cup_round->choose_teams, CupChooseTeam, i).generate)
-	    cup_load_choose_team_generate(cup, cup_round,
-					  &g_array_index(cup_round->choose_teams, CupChooseTeam, i));
+	    cup_load_choose_team_generate(
+		cup, cup_round,
+		&g_array_index(cup_round->choose_teams, CupChooseTeam, i));
 	else
-	    cup_load_choose_team(cup, teams, 
-				 &g_array_index(cup_round->choose_teams, CupChooseTeam, i));
+	    cup_load_choose_team(
+		cup, teams, 
+		&g_array_index(cup_round->choose_teams, CupChooseTeam, i));
 
     if(cup_round->teams->len > 0)
 	while(teams->len + cup_round->teams->len > cup_round->new_teams)
@@ -260,7 +264,10 @@ cup_get_team_pointers(Cup *cup, gint round)
 
     if(debug > 70)
 	for(i=0;i<teams->len;i++)
-	    printf("cup_get_team_pointers: %d %s \n", i, ((Team*)g_ptr_array_index(teams, i))->name);
+	    printf("cup_get_team_pointers: %d %s (%d) %s\n", i,
+		   ((Team*)g_ptr_array_index(teams, i))->name,
+		   ((Team*)g_ptr_array_index(teams, i))->clid,
+		   cup->name);
 }
 
 /** Get the pointers to the teams (already generated, in one of the leagues or cups)
@@ -964,55 +971,33 @@ cup_get_winner(const Cup *cup)
 gboolean
 query_cup_begins(const Cup *cup)
 {
-    gint i;
+    gint i, j;
     const League *league = NULL;
     const Cup *cup_temp = NULL;
-    gboolean proceed = FALSE;
-    const CupRound *cup_round = &g_array_index(cup->rounds, CupRound, 0);
+    const CupRound *cup_round = NULL;
 
-    for(i=0;i<cup_round->choose_teams->len;i++)
-	if(!g_array_index(cup_round->choose_teams,CupChooseTeam, i).generate)
-	{
-	    
-	    cup_get_choose_team_league_cup(
-		&g_array_index(cup_round->choose_teams,
-			       CupChooseTeam, i), &league, &cup_temp);
+    for(j=0;j<cup->rounds->len;j++)
+    {
+	cup_round = &g_array_index(cup->rounds, CupRound, j);
 
-	    if((cup_temp == NULL && 
-		(!league->active || 
-		 (g_array_index(league->fixtures, Fixture,
-				league->fixtures->len - 1).week_number == week &&
-		  g_array_index(league->fixtures, Fixture,
-				league->fixtures->len - 1).week_round_number == week_round))) ||
-	       (league == NULL && 
-		(cup_temp->fixtures->len > 0 &&
-		 g_array_index(cup_temp->fixtures, Fixture,
-			       cup_temp->fixtures->len - 1).week_number == week &&
-		 g_array_index(cup_temp->fixtures, Fixture,
-			       cup_temp->fixtures->len - 1).week_round_number == week_round)))
-		proceed = TRUE;
-	}
-    
-    if(!proceed)
-	return FALSE;
-
-    for(i=0;i<cup_round->choose_teams->len;i++)
-	if(!g_array_index(cup_round->choose_teams,CupChooseTeam, i).generate)
-	{
-	    cup_get_choose_team_league_cup(
-		&g_array_index(cup_round->choose_teams,
-			       CupChooseTeam, i), &league, &cup_temp);
-	    if((cup_temp == NULL &&
-		(league->active &&
-		 g_array_index(league->fixtures, Fixture,
-			       league->fixtures->len - 1).attendance == -1)) ||
-	       (league == NULL &&
-		(cup_temp->fixtures->len == 0 || 
-		 (cup_temp->fixtures->len > 0 && 
-		  g_array_index(cup_temp->fixtures, Fixture,
-				cup_temp->fixtures->len - 1).attendance == -1))))
-		return FALSE;
-	}
+	for(i=0;i<cup_round->choose_teams->len;i++)
+	    if(!g_array_index(cup_round->choose_teams,CupChooseTeam, i).generate)
+	    {		
+		cup_get_choose_team_league_cup(
+		    &g_array_index(cup_round->choose_teams,
+				   CupChooseTeam, i), &league, &cup_temp);
+		
+		if((cup_temp == NULL && 
+		    (!league->active || 
+		     g_array_index(league->fixtures, Fixture,
+				   league->fixtures->len - 1).attendance == -1)) ||
+		   (league == NULL && 
+		    cup_temp->fixtures->len > 0 &&
+		    g_array_index(cup_temp->fixtures, Fixture,
+				  cup_temp->fixtures->len - 1).attendance == -1))
+		    return FALSE;
+	    }
+    }
 
     return TRUE;
 }

@@ -1,4 +1,6 @@
 /*
+   table.c
+
    Bygfoot Football Manager -- a small and simple GTK2-based
    football management game.
 

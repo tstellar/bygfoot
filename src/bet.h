@@ -1,4 +1,6 @@
 /*
+   bet.h
+
    Bygfoot Football Manager -- a small and simple GTK2-based
    football management game.
 
@@ -46,7 +48,7 @@ bet_round_odd(gfloat odd);
 BetUser*
 bet_is_user(const BetMatch *bet);
 
-void
+gboolean
 bet_place(gint fix_id, gint outcome, gint wager);
 
 void

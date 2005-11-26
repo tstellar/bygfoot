@@ -1,4 +1,6 @@
 /*
+   fixture.c
+
    Bygfoot Football Manager -- a small and simple GTK2-based
    football management game.
 
@@ -524,6 +526,10 @@ fixture_write_knockout_round(Cup *cup, gint cup_round, GPtrArray *teams)
     gint bye_len = (round->byes == -1) ?
 	math_get_bye_len(len) : round->byes;
 
+    if(debug > 60)
+	printf("fixture_write_knockout_round: %s %d byelen %d\n",
+	       cup->name, cup_round, bye_len);
+
     if(bye_len != 0)
     {
 	cup->bye = g_ptr_array_new();
@@ -556,7 +562,8 @@ fixture_write_knockout_round(Cup *cup, gint cup_round, GPtrArray *teams)
 	    fixture_get_free_round(first_week + cup->week_gap, teams, -1, -1);
 	for(i=0; i<=(teams->len - 2) / 2; i++)
 	    fixture_write(cup->fixtures, (Team*)g_ptr_array_index(teams, 2 * i + 1),
-			  (Team*)g_ptr_array_index(teams, 2 * i), first_week + cup->week_gap,
+			  (Team*)g_ptr_array_index(teams, 2 * i), 
+			  first_week + cup->week_gap,
 			  week_round_number, cup->id, cup_round, 0,
 			  !round->neutral, TRUE, TRUE);
     }
@@ -564,11 +571,14 @@ fixture_write_knockout_round(Cup *cup, gint cup_round, GPtrArray *teams)
     g_array_sort_with_data(cup->fixtures, fixture_compare_func,
 			   GINT_TO_POINTER(FIXTURE_COMPARE_DATE + 100));
 
-    cup->next_fixture_update_week = (cup_round < cup->rounds->len - 1 || round->replay > 0) ?
+    cup->next_fixture_update_week = 
+	(cup_round < cup->rounds->len - 1 || round->replay > 0) ?
 	g_array_index(cup->fixtures, Fixture, cup->fixtures->len - 1).week_number : -1;
-    cup->next_fixture_update_week_round = (cup_round < cup->rounds->len - 1 || round->replay > 0) ?
+    
+    cup->next_fixture_update_week_round = 
+	(cup_round < cup->rounds->len - 1 || round->replay > 0) ?
 	g_array_index(cup->fixtures, Fixture, cup->fixtures->len - 1).week_round_number : -1;
-
+    
     g_ptr_array_free(teams, TRUE);
 }
 
