@@ -1364,7 +1364,19 @@ treeview_create_finances(const User* user)
 
     gtk_list_store_append(ls, &iter);
     /* Finances balance. */
-    gtk_list_store_set(ls, &iter, 0, _("Bi-weekly balance"), 1, "", 2, "", -1);
+    if(week > 2)
+    {
+	if(week % 2 == 1)
+	    sprintf(buf, _("Bi-weekly balance\n(Week %d and %d)"),
+		    week - 2, week - 1);
+	else
+	    sprintf(buf, _("Bi-weekly balance\n(Week %d and %d)"),
+		    week - 3, week - 2);
+    }
+    else
+	strcpy(buf, _("Bi-weekly balance"));
+
+    gtk_list_store_set(ls, &iter, 0, buf, 1, "", 2, "", -1);
 
     for(i=0;i<MON_IN_TRANSFERS;i++)
 	if(in[i] != 0)

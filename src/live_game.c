@@ -445,6 +445,7 @@ live_game_event_injury(gint team, gint player, gboolean create_new)
     if((debug > 100 && stat2 != -1) ||
        debug > 130)
 	printf("\t\tlive_game_event_injury\n");
+
     if(create_new)
     {
 	new = last_unit;
@@ -898,6 +899,7 @@ live_game_event_send_off(gint team, gint player, gboolean second_yellow)
     }
 
     player_of_id_team(tms[team], player)->cskill = 0;
+
     if(second_yellow)
 	player_card_set(player_of_id_team(tms[team], player), match->fix->clid, PLAYER_VALUE_CARD_RED, 2, FALSE);
     else
