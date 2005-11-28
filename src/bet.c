@@ -33,6 +33,7 @@
 #include "misc.h"
 #include "option.h"
 #include "player.h"
+#include "support.h"
 #include "treeview2.h"
 #include "user.h"
 
@@ -220,8 +221,8 @@ bet_is_user(const BetMatch *bet)
 gboolean
 bet_place(gint fix_id, gint outcome, gint wager)
 {
-    gfloat max_wager = finance_wage_unit(current_user.tm) * 
-	const_float("float_bet_wager_limit_factor");
+    gint max_wager = (gint)rint(finance_wage_unit(current_user.tm) * 
+				const_float("float_bet_wager_limit_factor"));
     BetUser new_bet;
     gchar buf[SMALL];
 
@@ -236,8 +237,11 @@ bet_place(gint fix_id, gint outcome, gint wager)
 
     if(wager > max_wager)
     {
-	misc_print_grouped_int((gint)rint(max_wager), buf);
+	misc_print_grouped_int(max_wager, buf);
 	game_gui_show_warning(_("The betting office doesn't allow you to wager more than %s."), buf);
+	gtk_spin_button_set_value(
+	    GTK_SPIN_BUTTON(lookup_widget(window.digits, "spinbutton1")),
+	    (gdouble)max_wager);
 	return FALSE;
     }
 

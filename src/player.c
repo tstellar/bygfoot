@@ -1113,7 +1113,10 @@ player_update_weekly(Player *pl)
 		       pl->name, pl->contract);
 
     if(pl->contract <= 0)
+    {
 	player_remove_contract(pl);
+	return;
+    }
 
     player_update_skill(pl);
 }
