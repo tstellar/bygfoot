@@ -500,7 +500,8 @@ file_load_user_conf_file(User *user)
        !file_my_fopen(conf_file, "r", &fil, FALSE))
     {
 	g_free(conf_file);
-	conf_file = file_find_support_file(opt_str("string_opt_default_user_conf_file"), TRUE);
+	conf_file = 
+	    file_find_support_file(opt_str("string_opt_default_user_conf_file"), TRUE);
     }
 
     file_load_opt_file(conf_file, &user->options);

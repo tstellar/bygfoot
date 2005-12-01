@@ -55,43 +55,8 @@ on_button_offer_ok_clicked             (GtkButton       *button,
     gchar *team_name = g_strdup(current_user.tm->name);
 
     if(stat2 == STATUS_JOB_EXCHANGE_SHOW_TEAM)
-    {
-	if(query_job_application_successful((Job*)statp, &current_user))
-	{
-	    if(((Job*)statp)->type != JOB_TYPE_NATIONAL)
-	    {
-		game_gui_show_warning(
-		    _("The owners of %s accept your application. Since %s don't want to get stuck with a lame duck, you get fired instantly and spend the rest of the current season tending your garden."),
-		    job_get_team((Job*)statp)->name, current_user.tm->name);
-		job_change_country((Job*)statp);
-	    }
-	    else
-		game_gui_show_warning(
-		    _("The owners of %s accept your application."),
-		    current_user.tm->name);
-
-	    printf("misc2 1\n");
-	    user_change_team(&current_user, team_of_id(((Job*)statp)->team_id));
-
-	    printf("misc2 2\n");
-	    if(((Job*)statp)->type == JOB_TYPE_NATIONAL)
-		job_remove((Job*)statp, TRUE);
-	    else
-	    {
-		job_remove((Job*)statp, FALSE);
-		job_remove_national();
-	    }
-	    printf("misc2 3\n");
-	    
-	}
-	else
-	{
-	    game_gui_show_warning(
-		_("The owners of %s politely reject your application. You're not successful enough in their eyes."),
-		job_get_team((Job*)statp)->name);
-	    changed = FALSE;
-	}
-    }
+	changed = 
+	    misc2_callback_evaluate_job_application((Job*)statp, &current_user);
     else
 	user_change_team(&current_user, (Team*)statp);
 
@@ -247,10 +212,12 @@ on_button_yesno_yes_clicked            (GtkButton       *button,
 	    break;
 	case STATUS_USER_MANAGEMENT:
 	    user_remove(stat2, TRUE);
-	    treeview_show_users(GTK_TREE_VIEW(lookup_widget(window.user_management,
-							    "treeview_user_management_users")));
-	    treeview_show_team_list(GTK_TREE_VIEW(lookup_widget(window.user_management, 
-								"treeview_user_management_teams")),
+	    treeview_show_users(
+		GTK_TREE_VIEW(lookup_widget(window.user_management,
+					    "treeview_user_management_users")));
+	    treeview_show_team_list(
+		GTK_TREE_VIEW(lookup_widget(window.user_management, 
+					    "treeview_user_management_teams")),
 				    FALSE, FALSE);
 	    break;
 	case STATUS_QUERY_UNFIT:

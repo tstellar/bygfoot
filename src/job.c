@@ -334,7 +334,11 @@ query_job_application_successful(const Job *job, const User *user)
     }
 
     /*d*/
-    printf("%s %.0f\n", tm->name, success_needed);
+    printf("%s avd %.1f ld %d crd %d %.0f\n", tm->name,
+	   job_av_skill - user_av_skill,
+	   job->league_layer - league_from_clid(user->tm->clid)->layer,
+	   job->country_rating - country.rating,
+	   success_needed);
 
     return (user->counters[COUNT_USER_SUCCESS] >= success_needed);
 }
