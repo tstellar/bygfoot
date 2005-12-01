@@ -29,6 +29,7 @@
 #include "finance.h"
 #include "free.h"
 #include "game_gui.h"
+#include "job.h"
 #include "league.h"
 #include "maths.h"
 #include "misc.h"
@@ -217,7 +218,8 @@ void
 misc2_callback_add_user(void)
 {
     GtkTreeView *treeview_user_management_teams =
-	GTK_TREE_VIEW(lookup_widget(window.user_management, "treeview_user_management_teams"));
+	GTK_TREE_VIEW(lookup_widget(window.user_management,
+				    "treeview_user_management_teams"));
     GtkEntry *entry_user_management = 
 	GTK_ENTRY(lookup_widget(window.user_management, "entry_user_management"));
     const gchar *user_name = gtk_entry_get_text(entry_user_management);
@@ -225,9 +227,10 @@ misc2_callback_add_user(void)
     Team *tm = (Team*)treeview_helper_get_pointer(treeview_user_management_teams, 2);
     
     if(strlen(user_name) > 0)
-	misc_string_assign(&new_user.name, user_name);
-    
-    gtk_entry_set_text(entry_user_management, "");
+    {
+	misc_string_assign(&new_user.name, user_name);    
+	gtk_entry_set_text(entry_user_management, "");
+    }
 
     new_user.tm = tm;
     new_user.team_id = tm->id;
@@ -238,11 +241,13 @@ misc2_callback_add_user(void)
 
     g_array_append_val(users, new_user);
 
-    user_set_up_team(&usr(users->len - 1));
-
     file_load_user_conf_file(&usr(users->len - 1));
 
-    treeview_show_users(GTK_TREE_VIEW(lookup_widget(window.user_management, "treeview_user_management_users")));
+    user_set_up_team(&usr(users->len - 1));
+
+    treeview_show_users(
+	GTK_TREE_VIEW(lookup_widget(window.user_management,
+				    "treeview_user_management_users")));
     treeview_show_team_list(treeview_user_management_teams, FALSE, FALSE);
 
     setsav0;
@@ -292,4 +297,46 @@ misc2_callback_mmatches_button_press(GtkWidget *widget, gint row_num, gint col_n
 	user_mm_add_last_match(FALSE, FALSE);
 	treeview2_show_mmatches();
     }
+}
+
+/** Find out whether the user's application for the job
+    is accepted and show the appropriate popups.
+    @return TRUE if accepted, FALSE otherwise. */
+gboolean
+misc2_callback_evaluate_job_application(Job *job, User *user)
+{
+    if(!query_job_application_successful(job, user))
+    {
+	game_gui_show_warning(
+	    _("The owners of %s politely reject your application. You're not successful enough in their eyes."),
+	    job_get_team(job)->name);
+	return FALSE;
+    }
+
+    if(job->type != JOB_TYPE_NATIONAL)
+    {
+	game_gui_show_warning(
+	    _("The owners of %s accept your application. Since %s don't want to get stuck with a lame duck, you get fired instantly and spend the rest of the current season tending your garden."),
+	    job_get_team(job)->name, user->tm->name);
+	job_change_country(job);
+    }
+    else
+	game_gui_show_warning(
+	    _("The owners of %s accept your application."),
+	    current_user.tm->name);
+
+    printf("misc2 1\n");
+    user_change_team(user, team_of_id(job->team_id));
+
+    printf("misc2 2\n");
+    if(job->type == JOB_TYPE_NATIONAL)
+	job_remove(job, TRUE);
+    else
+    {
+	job_remove(job, FALSE);
+	job_remove_national();
+    }
+    printf("misc2 3\n");
+	    
+    return TRUE;
 }

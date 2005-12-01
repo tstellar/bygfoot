@@ -34,6 +34,7 @@
 #include "league.h"
 #include "load_save.h"
 #include "main.h"
+#include "misc2_callback_func.h"
 #include "option.h"
 #include "player.h"
 #include "table.h"
@@ -648,6 +649,14 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
 		game_gui_show_job_offer(NULL, 
 					&g_array_index(jobs, Job, idx - 1),
 					STATUS_JOB_EXCHANGE_SHOW_TEAM);
+	    else if(event->button == 3)
+		if(misc2_callback_evaluate_job_application(
+		       &g_array_index(jobs, Job, idx - 1), &current_user))
+		{
+		    stat0 = STATUS_MAIN;
+		    game_gui_show_main();
+		    setsav0;
+		}
 	    break;
     }
 
