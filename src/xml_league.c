@@ -133,7 +133,7 @@ xml_league_read_start_element (GMarkupParseContext *context,
 {
     PromRelElement new_element;
     Team new_team;
-    
+
     if(strcmp(element_name, TAG_LEAGUE) == 0)
     {
 	new_league = league_new(TRUE);

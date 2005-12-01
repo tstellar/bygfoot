@@ -26,6 +26,7 @@
 #include "callbacks.h"
 #include "finance.h"
 #include "game_gui.h"
+#include "league.h"
 #include "maths.h"
 #include "option.h"
 #include "player.h"
@@ -147,8 +148,6 @@ finance_update_user_weekly(User *user)
     {
 	new_team = team_get_new(tm, TRUE);
 	user_event_add(user, EVENT_TYPE_FIRE_FINANCE, -1, -1, new_team, NULL);
-	user_history_add(user, USER_HISTORY_FIRE_FINANCES, tm->id,
-			 new_team->id, new_team->clid, "");
     }
 }
 

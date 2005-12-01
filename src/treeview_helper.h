@@ -81,7 +81,8 @@ treeview_helper_get_table_element_colour_cups_cup(const Cup *cup,
 						  const Team *tm, gchar **colour_bg);
 
 void
-treeview_helper_set_user_colours(const Team *tm, gchar **colour_bg, gchar **colour_fg);
+treeview_helper_set_user_colours(const gchar *team_name,
+				 gchar **colour_bg, gchar **colour_fg);
 
 PlayerListAttribute
 treeview_helper_get_attributes_from_scout(gint scout);
@@ -219,5 +220,13 @@ treeview_helper_search_equal(GtkTreeModel *model,
 			     const gchar *key,
 			     GtkTreeIter *iter,
 			     gpointer search_data);
+
+void
+treeview_helper_job_exchange(GtkTreeViewColumn *col,
+			     GtkCellRenderer   *renderer,
+			     GtkTreeModel      *model,
+			     GtkTreeIter       *iter,
+			     gpointer           user_data);
+
 
 #endif

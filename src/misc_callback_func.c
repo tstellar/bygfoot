@@ -54,7 +54,7 @@ misc_callback_show_team_list(GtkWidget *widget, const gchar *country_file)
     GtkWidget *treeview_startup =
 	lookup_widget(widget, "treeview_startup");
 
-    xml_country_read(country_file);
+    xml_country_read(country_file, NULL);
 
     treeview_show_team_list(GTK_TREE_VIEW(treeview_startup), FALSE, FALSE);
 

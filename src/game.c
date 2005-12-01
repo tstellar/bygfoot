@@ -1009,6 +1009,7 @@ game_post_match(Fixture *fix)
     gint i;
     GPtrArray *teams = NULL;
     Cup *cup = NULL;
+    gchar buf[SMALL], buf2[SMALL];
 
     if((debug > 100 && fixture_user_team_involved(fix) != -1) ||
        debug > 130)
@@ -1020,13 +1021,7 @@ game_post_match(Fixture *fix)
 	table_update(fix);
     
     for(i=0;i<2;i++)
-/*     { */
-/* 	if(team_is_user(fix->teams[i]) == -1) */
-/* 	    team_update_cpu_team(fix->teams[i], */
-/* 				 (fixture_user_team_involved(fix) != -1)); */
-/* 	else */
-	    team_update_post_match(fix->teams[i], fix);
-/*     } */
+	team_update_post_match(fix->teams[i], fix);
 
     if(fix->clid < ID_CUP_START)
 	return;
@@ -1039,19 +1034,40 @@ game_post_match(Fixture *fix)
 	teams = cup_get_teams_sorted(cup);
 	
 	if(team_is_user((Team*)g_ptr_array_index(teams, 0)) != -1)
+	{
 	    user_history_add(&usr(team_is_user((Team*)g_ptr_array_index(teams, 0))),
-			     USER_HISTORY_WIN_FINAL, ((Team*)g_ptr_array_index(teams, 0))->id,
-			     fix->clid, fix->round,((Team*)g_ptr_array_index(teams, 1))->name);
+			     USER_HISTORY_WIN_FINAL, 
+			     ((Team*)g_ptr_array_index(teams, 0))->name,
+			     league_cup_get_name_string(fix->clid),
+			     ((Team*)g_ptr_array_index(teams, 1))->name, NULL);
+	    user_add_cup_success(&usr(team_is_user((Team*)g_ptr_array_index(teams, 0))),
+				 cup, fix->round, USER_HISTORY_WIN_FINAL);
+	}
 	else if(team_is_user((Team*)g_ptr_array_index(teams, 1)) != -1)
+	{
 	    user_history_add(&usr(team_is_user((Team*)g_ptr_array_index(teams, 1))),
-			     USER_HISTORY_LOSE_FINAL, ((Team*)g_ptr_array_index(teams, 1))->id,
-			     fix->clid, fix->round,((Team*)g_ptr_array_index(teams, 0))->name);
+			     USER_HISTORY_LOSE_FINAL, 
+			     ((Team*)g_ptr_array_index(teams, 1))->name,
+			     league_cup_get_name_string(fix->clid),
+			     ((Team*)g_ptr_array_index(teams, 0))->name, NULL);
+	    user_add_cup_success(&usr(team_is_user((Team*)g_ptr_array_index(teams, 1))),
+				 cup, fix->round, USER_HISTORY_LOSE_FINAL);
+	}
 	g_ptr_array_free(teams, TRUE);
     }
     else if(fixture_user_team_involved(fix) != -1)
-	user_history_add(&usr(fixture_user_team_involved(fix)), USER_HISTORY_REACH_CUP_ROUND,
-			 usr(fixture_user_team_involved(fix)).team_id,
-			 fix->clid, fix->round, "");
+    {
+	cup_get_round_name(cup_from_clid(fix->clid), fix->round, buf);
+	sprintf(buf2, "%d", fix->round + 1);
+
+	user_history_add(&usr(fixture_user_team_involved(fix)),
+			 USER_HISTORY_REACH_CUP_ROUND,
+			 usr(fixture_user_team_involved(fix)).name,
+			 league_cup_get_name_string(fix->clid),
+			 buf, buf2);
+	user_add_cup_success(&usr(fixture_user_team_involved(fix)),
+			     cup, fix->round, USER_HISTORY_REACH_CUP_ROUND);
+    }
 }
 
 /** Reduce stadium capacity and safety after a stadium event.

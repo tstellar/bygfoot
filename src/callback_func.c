@@ -101,14 +101,6 @@ callback_player_clicked(gint idx, GdkEventButton *event)
     if(event->type != GDK_BUTTON_PRESS)
 	return;
 
-    /*d*/
-    gint i;
-    for(i=0;i<lig(1).teams->len;i++)
-	printf("%d %s %d\n", i, g_array_index(lig(1).teams,
-					      Team, i).name,
-	       g_array_index(lig(1).teams,
-			     Team, i).id);
-
     if(event->button == 1)
     {
 	if(selected_row == -1)
@@ -704,6 +696,9 @@ callback_show_league_stats(gint type)
 void
 callback_show_season_history(gint type)
 {
+    const SeasonStat *stat = NULL;
+    gint len = season_stats->len;
+
     switch(type)
     {
 	default:
@@ -712,29 +707,31 @@ callback_show_season_history(gint type)
 	    break;
 	case SHOW_CURRENT:
 	    stat1 = -1;
-	    stat2 = season - 2;
+	    stat2 = len - 1;
 	    break;
 	case SHOW_NEXT_LEAGUE:
+	    stat = &g_array_index(season_stats, SeasonStat, stat2);
 	    if(stat1 == -1)
 		stat1 = 0;
-	    else if(stat1 == ligs->len - 1)
+	    else if(stat1 == stat->league_champs->len - 1)
 		stat1 = -1;
 	    else
 		stat1++;
 	    break;
 	case SHOW_PREVIOUS_LEAGUE:
+	    stat = &g_array_index(season_stats, SeasonStat, stat2);
 	    if(stat1 == -1)
-		stat1 = ligs->len - 1;
+		stat1 = stat->league_champs->len - 1;
 	    else if(stat1 == 0)
 		stat1 = -1;
 	    else
 		stat1--;
 	    break;
 	case SHOW_NEXT:
-	    stat2 = (stat2 + 1) % (season - 1);
+	    stat2 = (stat2 + 1) % len;
 	    break;
 	case SHOW_PREVIOUS:
-	    stat2 = (stat2 == 0) ? season - 2 : stat2 - 1;
+	    stat2 = (stat2 == 0) ? len - 1 : stat2 - 1;
 	    break;
     }
     

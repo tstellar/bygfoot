@@ -458,6 +458,9 @@ misc_parse(const gchar *s, gint *result)
 void
 misc_string_assign(gchar **string, const gchar *contents)
 {
+    if(contents == NULL)
+	return;
+
     if(*string != NULL)
 	g_free(*string);
 

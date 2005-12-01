@@ -52,10 +52,8 @@ enum
     TAG_USER_HISTORY_SEASON,
     TAG_USER_HISTORY_WEEK,
     TAG_USER_HISTORY_TYPE,
-    TAG_USER_HISTORY_TEAM_ID,
-    TAG_USER_HISTORY_VALUE1,
-    TAG_USER_HISTORY_VALUE2,
-    TAG_USER_HISTORY_VALUE_STRING,
+    TAG_USER_HISTORY_TEAM_NAME,
+    TAG_USER_HISTORY_STRING,
     TAG_USER_EVENT,
     TAG_USER_EVENT_TYPE,
     TAG_USER_EVENT_VALUE1,
@@ -114,8 +112,7 @@ xml_loadsave_users_start_element (GMarkupParseContext *context,
 	new_user = user_new();
 	idx = idx_mon_out = idx_mon_in = 0;
     }
-
-    if(tag >= TAG_START_PLAYERS && tag <= TAG_END_PLAYERS)
+    else if(tag >= TAG_START_PLAYERS && tag <= TAG_END_PLAYERS)
     {
 	state = TAG_START_PLAYERS;
 	valid_tag = TRUE;
@@ -125,19 +122,22 @@ xml_loadsave_users_start_element (GMarkupParseContext *context,
 
 	xml_loadsave_players_start_element(tag, new_user.tm);
     }
-
-    if(state == TAG_USER_MONEY_OUTS ||
-       state == TAG_USER_MONEY_INS)
+    else if(tag == TAG_USER_HISTORY)
+    {
 	idx = 0;
-
-    if(state == TAG_USER_BET0 ||
-       state == TAG_USER_BET1)
-	idx_bet = (state == TAG_USER_BET1);
-
-    if(tag == TAG_USER_HISTORY)
-	new_history.value_string = NULL;
+	new_history.team_name =
+	    new_history.string[0] =
+	    new_history.string[1] =
+	    new_history.string[2] = NULL;
+    }
     else if(tag == TAG_USER_EVENT)
 	new_event.value_string = NULL;
+    else if(tag == TAG_USER_MONEY_OUTS ||
+	    tag == TAG_USER_MONEY_INS)
+	idx = 0;
+    else if(tag == TAG_USER_BET0 ||
+       tag == TAG_USER_BET1)
+	idx_bet = (tag == TAG_USER_BET1);
 
     if(!valid_tag)
 	g_warning("xml_loadsave_users_start_element: unknown tag: %s; I'm in state %d\n",
@@ -207,11 +207,14 @@ xml_loadsave_users_end_element    (GMarkupParseContext *context,
     else if(tag == TAG_USER_HISTORY_SEASON ||
 	    tag == TAG_USER_HISTORY_WEEK ||
 	    tag == TAG_USER_HISTORY_TYPE ||
-	    tag == TAG_USER_HISTORY_TEAM_ID ||
-	    tag == TAG_USER_HISTORY_VALUE1 ||
-	    tag == TAG_USER_HISTORY_VALUE2 ||
-	    tag == TAG_USER_HISTORY_VALUE_STRING)
+	    tag == TAG_USER_HISTORY_TEAM_NAME ||
+	    tag == TAG_USER_HISTORY_STRING)
+    {
 	state = TAG_USER_HISTORY;
+	
+	if(tag == TAG_USER_HISTORY_STRING)
+	    idx++;
+    }
     else if(tag == TAG_USER_EVENT_TYPE ||
 	    tag == TAG_USER_EVENT_VALUE1 ||
 	    tag == TAG_USER_EVENT_VALUE2 ||
@@ -286,14 +289,10 @@ xml_loadsave_users_text         (GMarkupParseContext *context,
 	new_history.week = int_value;
     else if(state == TAG_USER_HISTORY_TYPE)
 	new_history.type = int_value;
-    else if(state == TAG_USER_HISTORY_TEAM_ID)
-	new_history.team_id = int_value;
-    else if(state == TAG_USER_HISTORY_VALUE1)
-	new_history.value1 = int_value;
-    else if(state == TAG_USER_HISTORY_VALUE2)
-	new_history.value2 = int_value;
-    else if(state == TAG_USER_HISTORY_VALUE_STRING)
-	misc_string_assign(&new_history.value_string, buf);
+    else if(state == TAG_USER_HISTORY_TEAM_NAME)
+	new_history.team_name = g_strdup(buf);
+    else if(state == TAG_USER_HISTORY_STRING)	
+	new_history.string[idx] = (strlen(buf) == 0) ? NULL : g_strdup(buf);
     else if(state == TAG_USER_EVENT_TYPE)
 	new_event.type = int_value;
     else if(state == TAG_USER_EVENT_VALUE1)
@@ -301,7 +300,7 @@ xml_loadsave_users_text         (GMarkupParseContext *context,
     else if(state == TAG_USER_EVENT_VALUE2)
 	new_event.value2 = int_value;
     else if(state == TAG_USER_EVENT_VALUE_STRING)
-	misc_string_assign(&new_event.value_string, buf);
+	new_event.value_string = g_strdup(buf);
     else if(state == TAG_USER_YA_COACH)
 	new_user.youth_academy.coach = int_value;
     else if(state == TAG_USER_YA_PERCENTAGE)
@@ -439,7 +438,7 @@ xml_loadsave_users_write(const gchar *prefix)
 void
 xml_user_write_history(FILE *fil, const GArray *history)
 {
-    gint i;
+    gint i, j;
 
     for(i=0;i<history->len;i++)
     {
@@ -451,14 +450,14 @@ xml_user_write_history(FILE *fil, const GArray *history)
 		      TAG_USER_HISTORY_WEEK, I2);
 	xml_write_int(fil, g_array_index(history, UserHistory, i).type,
 		      TAG_USER_HISTORY_TYPE, I2);
-	xml_write_int(fil, g_array_index(history, UserHistory, i).team_id,
-		      TAG_USER_HISTORY_TEAM_ID, I2);
-	xml_write_int(fil, g_array_index(history, UserHistory, i).value1,
-		      TAG_USER_HISTORY_VALUE1, I2);
-	xml_write_int(fil, g_array_index(history, UserHistory, i).value2,
-		      TAG_USER_HISTORY_VALUE2, I2);
-	xml_write_string(fil, g_array_index(history, UserHistory, i).value_string,
-			 TAG_USER_HISTORY_VALUE_STRING, I2);
+	xml_write_string(fil, g_array_index(history, UserHistory, i).team_name,
+			 TAG_USER_HISTORY_TEAM_NAME, I2);
+	for(j=0;j<3;j++)
+	    if(g_array_index(history, UserHistory, i).string[j] != NULL)
+		xml_write_string(fil, g_array_index(history, UserHistory, i).string[j],
+				 TAG_USER_HISTORY_STRING, I2);
+	    else
+		xml_write_string(fil, "", TAG_USER_HISTORY_STRING, I2);
 
 	fprintf(fil, "%s</_%d>\n", I1, TAG_USER_HISTORY);
     }

@@ -42,12 +42,13 @@ free_memory(void)
     free_names(FALSE);
     free_transfer_list();
     free_strategies();
-    free_country(FALSE);
+    free_country(&country, FALSE);
     free_users(FALSE);
     free_bets(FALSE);
     free_live_game(&live_game_temp);
     free_lg_commentary(FALSE);
     free_support_dirs();
+    free_jobs(FALSE);
 }
 
 /** Free the transfer list. */
@@ -86,20 +87,24 @@ free_season_stats(gboolean reset)
 	{
 	    free_gchar_ptr(
 		g_array_index(
-		    g_array_index(season_stats, SeasonStat, i).league_champs, ChampStat, j).cl_name);
+		    g_array_index(season_stats, SeasonStat, i).league_champs,
+		    ChampStat, j).cl_name);
 	    free_gchar_ptr(
 		g_array_index(
-		    g_array_index(season_stats, SeasonStat, i).league_champs, ChampStat, j).team_name);
+		    g_array_index(season_stats, SeasonStat, i).league_champs, 
+		    ChampStat, j).team_name);
 	}
 
 	for(j=0;j<g_array_index(season_stats, SeasonStat, i).cup_champs->len;j++)
 	{
 	    free_gchar_ptr(
 		g_array_index(
-		    g_array_index(season_stats, SeasonStat, i).cup_champs, ChampStat, j).cl_name);
+		    g_array_index(season_stats, SeasonStat, i).cup_champs, 
+		    ChampStat, j).cl_name);
 	    free_gchar_ptr(
 		g_array_index(
-		    g_array_index(season_stats, SeasonStat, i).cup_champs, ChampStat, j).team_name);
+		    g_array_index(season_stats, SeasonStat, i).cup_champs, 
+		    ChampStat, j).team_name);
 	}
 
 	g_array_free(g_array_index(season_stats, SeasonStat, i).cup_champs, TRUE);
@@ -139,7 +144,7 @@ free_users(gboolean reset)
 void
 free_user(User *user)
 {
-    gint i;
+    gint i, j;
 
     free_gchar_ptr(user->name);
     free_g_string(&user->sponsor.name);
@@ -152,8 +157,14 @@ free_user(User *user)
     free_g_array(&user->events);
     
     for(i=0;i<user->history->len;i++)
+    {
 	free_gchar_ptr(g_array_index(user->history,
-				     UserHistory, i).value_string);
+				     UserHistory, i).team_name);
+	for(j=0;j<3;j++)
+	    free_gchar_ptr(g_array_index(user->history,
+					 UserHistory, i).string[j]);
+    }
+
     free_g_array(&user->history);
 
     free_mmatches(&user->mmatches, FALSE);
@@ -261,23 +272,22 @@ free_live_game(LiveGame *match)
     free_g_array(&match->units);
 }
 
-
 /**
-   Free the main variable of the game, #country.
+   Free a country variable.
 */
 void
-free_country(gboolean reset)
+free_country(Country *cntry, gboolean reset)
 {
-    free_gchar_ptr(country.name);
-    free_gchar_ptr(country.symbol);
-    free_gchar_ptr(country.sid);
+    free_gchar_ptr(cntry->name);
+    free_gchar_ptr(cntry->symbol);
+    free_gchar_ptr(cntry->sid);
 
-    free_leagues_array(&ligs, reset);
-    free_cups_array(&cps, reset);
-    free_g_ptr_array(&acps);
+    free_leagues_array(&cntry->leagues, reset);
+    free_cups_array(&cntry->cups, reset);
+    free_g_ptr_array(&cntry->allcups);
 
     if(reset)
-	acps = g_ptr_array_new();
+	cntry->allcups = g_ptr_array_new();
 }
 
 /**
@@ -338,12 +348,21 @@ free_league_stats(LeagueStat *stats)
 {
     gint i;
 
+    free_gchar_ptr(stats->league_name);
+    free_gchar_ptr(stats->league_symbol);
+
     for(i=0;i<stats->teams_off->len;i++)
+    {
+	free_gchar_ptr(g_array_index(stats->teams_off, Stat, i).team_name);
 	free_gchar_ptr(g_array_index(stats->teams_off, Stat, i).value_string);
+    }
     free_g_array(&stats->teams_off);
 
     for(i=0;i<stats->teams_def->len;i++)
+    {
+	free_gchar_ptr(g_array_index(stats->teams_def, Stat, i).team_name);
 	free_gchar_ptr(g_array_index(stats->teams_def, Stat, i).value_string);
+    }
     free_g_array(&stats->teams_def);
 
     for(i=0;i<stats->player_scorers->len;i++)
@@ -731,5 +750,59 @@ free_bets(gboolean reset)
     {
 	bets[0] = g_array_new(FALSE, FALSE, sizeof(BetMatch));
 	bets[1] = g_array_new(FALSE, FALSE, sizeof(BetMatch));
+    }
+}
+
+/** Free a job struct.
+    @param free_team Whether to free the team associated
+    with the job if it's an international offer. */
+void
+free_job(Job *job, gboolean free_tm)
+{
+    gint i;
+
+    if(job->type == JOB_TYPE_INTERNATIONAL)
+    {
+	free_gchar_ptr(job->country_file);
+	free_gchar_ptr(job->country_name);
+	free_gchar_ptr(job->league_name);
+
+	for(i=0;i<job_teams->len;i++)
+	    if(g_array_index(job_teams, Team, i).id == job->team_id)
+	    {
+		if(free_tm)
+		    free_team(&g_array_index(job_teams, Team, i));
+		g_array_remove_index(job_teams, i);
+	    }
+    }
+}
+
+/** Free the jobs and job_teams arrays. */
+void
+free_jobs(gboolean reset)
+{
+    gint i;
+
+    if(jobs == NULL)
+    {
+	if(reset)
+	{
+	    jobs = g_array_new(FALSE, FALSE, sizeof(Job));
+	    job_teams = g_array_new(FALSE, FALSE, sizeof(Team));
+	}
+
+	return;
+    }
+
+    for(i=0;i<jobs->len;i++)
+	free_job(&g_array_index(jobs, Job, i), TRUE);
+
+    free_g_array(&jobs);
+    free_g_array(&job_teams);
+
+    if(reset)
+    {
+	jobs = g_array_new(FALSE, FALSE, sizeof(Job));
+	job_teams = g_array_new(FALSE, FALSE, sizeof(Team));
     }
 }

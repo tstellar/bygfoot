@@ -27,6 +27,7 @@
 #define USER_H
 
 #include "bygfoot.h"
+#include "cup_struct.h"
 #include "user_struct.h"
 #include "variables.h"
 
@@ -89,14 +90,18 @@ gboolean
 query_user_teams_have_unfit(void);
 
 void
-user_history_add(User *user, gint type, gint team_id, 
-		 gint value1, gint value2, gchar *string);
+user_history_add(User *user, gint type, const gchar *team_name,
+		 const gchar* string0, const gchar *string1,
+		 const gchar *string2);
 
 void
 user_history_to_string(const UserHistory *history, gchar *buf);
 
 gint
 user_history_compare(gconstpointer a, gconstpointer b);
+
+void
+user_add_cup_success(User *user, const Cup *cup, gint round, gint type);
 
 void
 user_job_offer(User *user);

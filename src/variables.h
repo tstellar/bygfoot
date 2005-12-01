@@ -27,10 +27,6 @@
 #include "enums.h"
 #include "live_game_struct.h"
 #include "option_struct.h"
-#include "player_struct.h"
-#include "stat_struct.h"
-#include "team_struct.h"
-#include "user_struct.h"
 
 /**
  * The main variable of the game.
@@ -75,6 +71,10 @@ GArray *strategies;
 
 /** Array of current and recent bets. */
 GArray *bets[2];
+
+/** Array of jobs in the job exchange and
+    teams going with the international jobs. */
+GArray *jobs, *job_teams;
 
 /** Some counters we use. */
 gint counters[COUNT_END];

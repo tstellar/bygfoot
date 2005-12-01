@@ -86,7 +86,7 @@ enum CounterValue
 enum UserHistoryType
 {
     USER_HISTORY_START_GAME = 0,
-    USER_HISTORY_FIRE_FINANCES,
+    USER_HISTORY_FIRE_FINANCE,
     USER_HISTORY_FIRE_FAILURE,
     USER_HISTORY_JOB_OFFER_ACCEPTED,
     USER_HISTORY_END_SEASON,
@@ -123,14 +123,13 @@ typedef struct
     /** When the event happened. */
     gint season, week;
     
-    /** The type (see #UserHistoryType) and team
-	of the user. */
-    gint type, team_id,
-	/** These can hold various information like
-	    team or league/cup ids. */
-	value1, value2;
-    gchar *value_string;
-
+    /** The type (see #UserHistoryType) of the history event. */
+    gint type;
+    /** The team of the user at the time. */
+    gchar *team_name;
+    /** These can hold various information like
+	team or league/cup ids. */
+    gchar *string[3];
 } UserHistory;
 
 /** A user sponsor. */

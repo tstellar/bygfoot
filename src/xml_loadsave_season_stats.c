@@ -149,7 +149,7 @@ xml_loadsave_season_stats_text         (GMarkupParseContext *context,
 	new_champ_stat.cl_name = g_strdup(buf);
     else if(state == TAG_LEAGUE_STAT_FILE)
     {
-	new_league_stat = stat_league_new(-1);
+	new_league_stat = stat_league_new("", "");
 	sprintf(buf2, "%s%s%s", dirname2, G_DIR_SEPARATOR_S, buf);
 	xml_loadsave_league_stat_read(buf2, &new_league_stat);
 	g_array_append_val(new_season_stat.league_stats, new_league_stat);

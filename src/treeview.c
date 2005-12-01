@@ -936,14 +936,15 @@ treeview_create_fixture(const Fixture *fix, GtkListStore *ls)
     gchar *symbol[2] = {NULL, NULL};
     gchar buf_result[SMALL], buf[3][SMALL];
     gchar *colour_fg = NULL, *colour_bg = NULL;
+    gint user_idx = fixture_user_team_involved(fix);
 
     if(fix->clid >= ID_CUP_START &&
        query_cup_is_international(fix->clid))
 	for(i=0;i<2;i++)
 	    symbol[i] = fix->teams[i]->symbol;
     
-    if(fixture_user_team_involved(fix) != -1)
-	treeview_helper_set_user_colours(usr(fixture_user_team_involved(fix)).tm,
+    if(user_idx != -1)
+	treeview_helper_set_user_colours(usr(user_idx).tm->name,
 					 &colour_bg, &colour_fg);
     else
     {
@@ -2040,7 +2041,7 @@ treeview_create_user_history(void)
 	gtk_list_store_set(ls, &iter,
 			   0, g_array_index(current_user.history, UserHistory, i).season,
 			   1, g_array_index(current_user.history, UserHistory, i).week,
-			   2, team_of_id(g_array_index(current_user.history, UserHistory, i).team_id)->name,
+			   2, g_array_index(current_user.history, UserHistory, i).team_name,
 			   4, buf, -1);
 
     }
@@ -2129,9 +2130,10 @@ treeview_create_league_stats(GtkListStore *ls, const LeagueStat *league_stat)
     gchar *colour_fg = NULL, *colour_bg = NULL;
     
     gtk_list_store_append(ls, &iter);
-    treeview_helper_insert_icon(ls, &iter, 0, league_from_clid(league_stat->clid)->symbol);
+    treeview_helper_insert_icon(ls, &iter, 0, 
+				league_stat->league_symbol);
     gtk_list_store_set(ls, &iter, 1, const_int("int_treeview_helper_int_empty"),
-		       2, league_cup_get_name_string(league_stat->clid), 3, "", 4, "", 5, "", -1);
+		       2, league_stat->league_name, 3, "", 4, "", 5, "", -1);
 
     for(i=0;i<2;i++)
     {
@@ -2151,11 +2153,13 @@ treeview_create_league_stats(GtkListStore *ls, const LeagueStat *league_stat)
 		    g_array_index(teams[i], Stat, j).value1,
 		    g_array_index(teams[i], Stat, j).value2);
 	    
-	    treeview_helper_set_user_colours(team_of_id(g_array_index(teams[i], Stat, j).team_id),
-					     &colour_bg, &colour_fg);
+	    treeview_helper_set_user_colours(
+		g_array_index(teams[i], Stat, j).team_name,
+		&colour_bg, &colour_fg);
 
 	    sprintf(buf2, "<span background='%s' foreground='%s'>%s</span>",
-		    colour_bg, colour_fg, team_of_id(g_array_index(teams[i], Stat, j).team_id)->name);
+		    colour_bg, colour_fg, 
+		    g_array_index(teams[i], Stat, j).team_name);
 	    
 	    gtk_list_store_append(ls, &iter);
 	    gtk_list_store_set(ls, &iter, 0, NULL, 1, j + 1,
@@ -2193,12 +2197,13 @@ treeview_create_league_stats(GtkListStore *ls, const LeagueStat *league_stat)
 			100 * (1 - (gfloat)g_array_index(players[i], Stat, j).value1 /
 			       (gfloat)g_array_index(players[i], Stat, j).value3) : 0);
 
-	    treeview_helper_set_user_colours(team_of_id(g_array_index(players[i], Stat, j).team_id),
-					     &colour_bg, &colour_fg);
+	    treeview_helper_set_user_colours(
+		g_array_index(players[i], Stat, j).team_name,
+		&colour_bg, &colour_fg);
 	    sprintf(buf3, "<span background='%s' foreground='%s'>%s (%s)</span>",
 		    colour_bg, colour_fg,
 		    g_array_index(players[i], Stat, j).value_string,
-		    team_of_id(g_array_index(players[i], Stat, j).team_id)->name);
+		    g_array_index(players[i], Stat, j).team_name);
 	    sprintf(buf4, "%d", g_array_index(players[i], Stat, j).value1);
 
 	    gtk_list_store_append(ls, &iter);
@@ -2300,11 +2305,12 @@ treeview_create_season_history_champions(GtkListStore *ls, const GArray* league_
     }
 }
 
-/** Show the season history of the specified season
-    and the specified page. Page is either a page of league stats
+/** Show the season history with given index in the season_stats array
+    and the specified page. 
+    @param page Either a page of league stats
     (if != -1) or -1 which means we show the champions. */
 void
-treeview_show_season_history(gint page, gint season_number)
+treeview_show_season_history(gint page, gint idx)
 {
     gchar buf[SMALL];
     GtkTreeView *treeview = GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right"));
@@ -2312,24 +2318,24 @@ treeview_show_season_history(gint page, gint season_number)
 	gtk_list_store_new(6, GDK_TYPE_PIXBUF, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING,
 			   G_TYPE_STRING, G_TYPE_STRING);
     GtkTreeIter iter;
-    SeasonStat *stat = &g_array_index(season_stats, SeasonStat, season_number);
+    SeasonStat *stat = &g_array_index(season_stats, SeasonStat, idx);
 
     treeview_helper_clear(treeview);
 
     treeview_set_up_league_stats(treeview);
 
-    sprintf(buf, _("Season %d"), season_number + 1);
+    sprintf(buf, _("Season %d"), stat->season_number);
     gtk_list_store_append(model, &iter);
     gtk_list_store_set(model, &iter, 0, NULL,
 		       1, const_int("int_treeview_helper_int_empty"),
 		       2, buf, -1);
 
     if(page != -1)
-	treeview_create_league_stats(model, 
-				     &g_array_index(stat->league_stats, LeagueStat, page));
+	treeview_create_league_stats(
+	    model, &g_array_index(stat->league_stats, LeagueStat, page));
     else
-	treeview_create_season_history_champions(model, stat->league_champs,
-						 stat->cup_champs);
+	treeview_create_season_history_champions(
+	    model, stat->league_champs, stat->cup_champs);
 
     gtk_tree_view_set_model(treeview, GTK_TREE_MODEL(model));
     g_object_unref(model);

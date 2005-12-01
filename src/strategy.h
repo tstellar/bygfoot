@@ -27,8 +27,9 @@
 #define STRATEGY_H
 
 #include "bygfoot.h"
+#include "player_struct.h"
 #include "strategy_struct.h"
-/* #include "team_struct.h" */
+#include "team_struct.h"
 #include "variables.h"
 
 void

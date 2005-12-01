@@ -30,6 +30,7 @@
 #include <glib/gprintf.h>
 
 #include "bygfoot.h"
+#include "job_struct.h"
 #include "live_game_struct.h"
 #include "option_struct.h"
 
@@ -95,7 +96,7 @@ void
 game_gui_write_meters(const Team *tm);
 
 void
-game_gui_show_job_offer(Team *team, gint type);
+game_gui_show_job_offer(Team *team, Job *job, gint type);
 
 void
 game_gui_write_check_items(void);

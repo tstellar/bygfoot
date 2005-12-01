@@ -28,6 +28,7 @@
 
 #include "bygfoot.h"
 #include "cup_struct.h"
+#include "job_struct.h"
 #include "league_struct.h"
 #include "live_game_struct.h"
 #include "name_struct.h"
@@ -56,7 +57,7 @@ void
 free_user(User *user);
 
 void
-free_country(gboolean reset);
+free_country(Country *cntry, gboolean reset);
 
 void
 free_leagues_array(GArray **leagues, gboolean reset);
@@ -132,5 +133,11 @@ free_strategies(void);
 
 void
 free_bets(gboolean reset);
+
+void
+free_job(Job *job, gboolean free_tm);
+
+void
+free_jobs(gboolean reset);
 
 #endif

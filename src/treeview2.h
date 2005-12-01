@@ -64,4 +64,13 @@ treeview2_set_up_bets(GtkTreeView *treeview);
 void
 treeview2_show_bets(void);
 
+void
+treeview2_create_job_exchange(GtkListStore *ls);
+
+void
+treeview2_set_up_job_exchange(GtkTreeView *treeview);
+
+void
+treeview2_show_job_exchange(void);
+
 #endif

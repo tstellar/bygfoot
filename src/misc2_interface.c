@@ -70,7 +70,8 @@ create_window_job_offer (void)
   gtk_container_set_border_width (GTK_CONTAINER (window_job_offer), 6);
   gtk_window_set_title (GTK_WINDOW (window_job_offer), _("Job offer"));
   gtk_window_set_position (GTK_WINDOW (window_job_offer), GTK_WIN_POS_CENTER);
-  gtk_window_set_default_size (GTK_WINDOW (window_job_offer), -1, 600);
+  gtk_window_set_modal (GTK_WINDOW (window_job_offer), TRUE);
+  gtk_window_set_default_size (GTK_WINDOW (window_job_offer), 500, 600);
 
   vbox5 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox5);

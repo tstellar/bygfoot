@@ -29,15 +29,6 @@
 #include <gtk/gtk.h>
 
 
-gboolean
-on_button_cancel_clicked               (GtkWidget       *widget,
-                                        GdkEvent        *event,
-                                        gpointer         user_data);
-
-void
-on_button_ok_clicked                   (GtkButton       *button,
-                                        gpointer         user_data);
-
 void
 on_button_offer_ok_clicked             (GtkButton       *button,
                                         gpointer         user_data);

@@ -29,6 +29,7 @@
 #include "finance.h"
 #include "free.h"
 #include "game_gui.h"
+#include "league.h"
 #include "maths.h"
 #include "misc.h"
 #include "misc2_callback_func.h"
@@ -231,7 +232,9 @@ misc2_callback_add_user(void)
     new_user.tm = tm;
     new_user.team_id = tm->id;
 
-    user_history_add(&new_user, USER_HISTORY_START_GAME, tm->id, tm->clid, -1, "");
+    user_history_add(&new_user, USER_HISTORY_START_GAME,
+		     tm->name, league_cup_get_name_string(tm->clid),
+		     NULL, NULL);
 
     g_array_append_val(users, new_user);
 
