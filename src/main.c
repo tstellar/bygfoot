@@ -35,12 +35,13 @@
 #include "debug.h"
 #include "file.h"
 #include "free.h"
+#include "job_struct.h"
 #include "language.h"
 #include "lg_commentary.h"
 #include "live_game.h"
 #include "load_save.h"
 #include "main.h"
-#include "mediaplayer.h"
+/* #include "mediaplayer.h" */
 #include "misc.h"
 #include "misc_callbacks.h"
 #include "name_struct.h"
@@ -183,6 +184,8 @@ main_init_variables(void)
     strategies = g_array_new(FALSE, FALSE, sizeof(Strategy));
     bets[0] = g_array_new(FALSE, FALSE, sizeof(BetMatch));
     bets[1] = g_array_new(FALSE, FALSE, sizeof(BetMatch));
+    jobs = g_array_new(FALSE, FALSE, sizeof(Job));
+    job_teams = g_array_new(FALSE, FALSE, sizeof(Team));
 
     save_file = NULL;
 
@@ -279,7 +282,7 @@ main (gint argc, gchar *argv[])
 
     gtk_set_locale ();
     gtk_init (&argc, &argv);
-    mediaplayer_init(&argc, &argv);
+    /* mediaplayer_init(&argc, &argv); */
 
     main_init(&argc, &argv);
 

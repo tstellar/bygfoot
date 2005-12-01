@@ -49,6 +49,6 @@ xml_country_read_text         (GMarkupParseContext *context,
 
 
 void
-xml_country_read(const gchar *country_name);
+xml_country_read(const gchar *country_name, Country *cntry_arg);
 
 #endif

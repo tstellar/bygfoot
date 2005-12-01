@@ -649,6 +649,9 @@ window_create(gint window_type)
 		window.main = create_main_window();
 		wind = window.main;
 		window_main_load_geometry();
+		window.paned_pos = 
+		    gtk_paned_get_position(
+			GTK_PANED(lookup_widget(window.main, "hpaned2")));
 		game_gui_print_message(_("Welcome to Bygfoot %s"), VERS);
 		sprintf(buf, "Bygfoot Football Manager %s", VERS);
 	    }
@@ -719,10 +722,7 @@ window_create(gint window_type)
 	    if(window.job_offer != NULL)
 		g_warning("window_create: called on already existing window\n");
 	    else
-	    {
-		popups_active++;
 		window.job_offer = create_window_job_offer();
-	    }
 	    wind = window.job_offer;
 	    strcpy(buf, _("Job offer"));
 	    break;

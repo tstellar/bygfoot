@@ -25,6 +25,7 @@
 
 #include "gui.h"
 #include "misc.h"
+#include "option.h"
 #include "support.h"
 #include "variables.h"
 #include "window.h"

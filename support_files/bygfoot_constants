@@ -895,3 +895,29 @@ float_bet_wager_limit_factor 50000
 
 # how much the user may wager at most
 int_bet_wager_max	      25000
+
+# lower and upper bounds for the number
+# of new job offers when the job exchange gets updated
+int_job_new_offers_lower     3
+int_job_new_offers_upper     6
+
+# how often (in weeks) an update occurs
+int_job_update_interval	     5
+
+# percentage of international offers
+float_job_international_perc  50000
+
+# number of success points per average skill
+# difference unit (needed when finding out whether
+# a user's application for a job is successful)
+int_job_application_points_per_av_skill	40
+
+# how many points a league layer difference is worth
+int_job_application_points_per_layer 30
+
+# how many points more are needed for an international
+# application
+int_job_application_points_international 150
+
+# how many points a country rating difference is worth
+int_job_application_points_per_rating 80

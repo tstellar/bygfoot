@@ -27,6 +27,7 @@
 #include "file.h"
 #include "game_gui.h"
 #include "gui.h"
+#include "job.h"
 #include "league.h"
 #include "live_game.h"
 #include "maths.h"
@@ -680,15 +681,31 @@ game_gui_show_warning(const gchar *format, ...)
 }
 
 /** Show the job offer window.
-    @param team The team offering the job.
-    @param type The offer type (whether the user's been fired). */
+    @param team The team offering the job or NULL if we're looking
+    at a job offer from the job exchange.
+    @param job The job pointer or NULL (depends on whether we're looking
+    at a job offer from the job exchange).
+    @param type The offer type (eg. whether the user's been fired). */
 void
-game_gui_show_job_offer(Team *team, gint type)
+game_gui_show_job_offer(Team *team, Job *job, gint type)
 {
     gchar buf[SMALL], buf2[SMALL];    
     GtkLabel *label_text, *label_text2, *label_name, 
 	*label_league, *label_rank, *label_money,
 	*label_cap, *label_saf, *label_average_skill;
+    Team *tm = (type != STATUS_JOB_EXCHANGE_SHOW_TEAM) ?
+	team : job_get_team(job);
+
+    statp = (type != STATUS_JOB_EXCHANGE_SHOW_TEAM) ?
+	(gpointer)team : (gpointer)job;
+    stat2 = type;
+
+    if(type == STATUS_JOB_OFFER_FIRE_FINANCE ||
+       type == STATUS_JOB_OFFER_FIRE_FAILURE)
+	user_history_add(&current_user, (type == STATUS_JOB_OFFER_FIRE_FINANCE) ?
+			 USER_HISTORY_FIRE_FINANCE : USER_HISTORY_FIRE_FAILURE,
+			 current_user.tm->name, team->name, 
+			 league_cup_get_name_string(team->clid), NULL);
 
     window_create(WINDOW_JOB_OFFER);
 
@@ -705,38 +722,55 @@ game_gui_show_job_offer(Team *team, gint type)
 
     if(type == STATUS_JOB_OFFER_FIRE_FINANCE)
 	sprintf(buf, _("The team owners have fired you because of financial mismanagement. Luckily, the owners of %s have heard of your dismissal and offer you a job. Here's some information on %s:"),
-		team->name, team->name);
+		tm->name, tm->name);
     else if(type == STATUS_JOB_OFFER_FIRE_FAILURE)
 	sprintf(buf, _("The team owners have fired you because of unsuccessfulness. Luckily, the owners of %s have heard of your dismissal and offer you a job. Here's some information on %s:"),
-		team->name, team->name);
+		tm->name, tm->name);
     else if(type == STATUS_JOB_OFFER_SUCCESS)
 	sprintf(buf, _("The owners of %s are deeply impressed by your success with %s and would like to hire you. Here's some information on %s:"),
-		team->name, current_user.tm->name, team->name);
+		tm->name, current_user.tm->name, tm->name);
+    else if(type == STATUS_JOB_EXCHANGE_SHOW_TEAM)
+	strcpy(buf, _("Click on OK to apply for the job. Click on CANCEL to close the window."));
     
-    strcpy(buf2, _("Accept?"));
-    if(type != STATUS_JOB_OFFER_SUCCESS)
+    strcpy(buf2, (type != STATUS_JOB_EXCHANGE_SHOW_TEAM) ?
+	   _("Accept?") : _("Apply for the job?"));
+
+    if(type != STATUS_JOB_OFFER_SUCCESS &&
+       type != STATUS_JOB_EXCHANGE_SHOW_TEAM)
 	strcat(buf2, _(" (NOTE: If you don't, the game is over for you.)"));
 
     gtk_label_set_text(label_text, buf);
     gtk_label_set_text(label_text2, buf2);
-    gtk_label_set_text(label_name, team->name);
-    gtk_label_set_text(label_league, league_cup_get_name_string(team->clid));
-    gui_label_set_text_from_int(label_rank, team_get_league_rank(team), FALSE);
-    misc_print_grouped_int(math_round_integer(team->stadium.capacity * 
-					      math_rndi(const_int("int_initial_money_lower"),
-							const_int("int_initial_money_upper")), 2),
-			   buf);
-    gtk_label_set_text(label_money, buf);
-    misc_print_grouped_int(team->stadium.capacity, buf);
-    gtk_label_set_text(label_cap, buf);
-    gui_label_set_text_from_int(label_saf, (gint)rint(team->stadium.safety * 100), FALSE);
+    gtk_label_set_text(label_name, tm->name);
+    gtk_label_set_text(label_league, 
+		       (type != STATUS_JOB_EXCHANGE_SHOW_TEAM) ?
+		       league_cup_get_name_string(tm->clid) : job->league_name);
 
-    sprintf(buf, "%.1f", team_get_average_skill(team, FALSE));
+    if(job == NULL ||
+       job->type == JOB_TYPE_NATIONAL)
+	gui_label_set_text_from_int(label_rank, 
+				    team_get_league_rank(tm), FALSE);
+
+    misc_print_grouped_int(
+	math_round_integer(tm->stadium.capacity * 
+			   math_rndi(const_int("int_initial_money_lower"),
+				     const_int("int_initial_money_upper")), 2),
+	buf);
+
+    gtk_label_set_text(label_money, buf);
+    misc_print_grouped_int(tm->stadium.capacity, buf);
+    gtk_label_set_text(label_cap, buf);
+    gui_label_set_text_from_int(label_saf,
+				(gint)rint(tm->stadium.safety * 100), FALSE);
+
+    sprintf(buf, "%.1f", team_get_average_skill(tm, FALSE));
     gtk_label_set_text(label_average_skill, buf);
 
-    treeview_show_player_list_team(GTK_TREE_VIEW(lookup_widget(window.job_offer, "treeview_players")),
-				   team, 
-				   (type != STATUS_JOB_OFFER_SUCCESS) ? 2 : current_user.scout);
+    treeview_show_player_list_team(
+	GTK_TREE_VIEW(lookup_widget(window.job_offer, "treeview_players")),
+	tm, 
+	(type != STATUS_JOB_OFFER_SUCCESS && type != STATUS_JOB_EXCHANGE_SHOW_TEAM) ? 
+	2 : current_user.scout);
 }
 
 /** Write the checkbuttons in the menus. */

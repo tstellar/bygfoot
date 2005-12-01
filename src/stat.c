@@ -33,13 +33,15 @@
 #include "team.h"
 #include "variables.h"
 
-/** Return a newly allocated league stat with given clid. */
+/** Return a newly allocated league stat with specified
+    league name and symbol. */
 LeagueStat
-stat_league_new(gint clid)
+stat_league_new(const gchar *league_name, const gchar *league_symbol)
 {
     LeagueStat new;
-
-    new.clid = clid;
+    
+    new.league_name = g_strdup(league_name);    
+    new.league_symbol = g_strdup(league_symbol);
     new.teams_off = g_array_new(FALSE, FALSE, sizeof(Stat));
     new.teams_def = g_array_new(FALSE, FALSE, sizeof(Stat));
     new.player_scorers = g_array_new(FALSE, FALSE, sizeof(Stat));
@@ -60,8 +62,12 @@ stat_update_leagues(void)
 	       lig(i).fixtures, Fixture, lig(i).fixtures->len - 1).week_number >= week)
 	{
 	    free_league_stats(&lig(i).stats);
-	    lig(i).stats.teams_off = stat_update_league_teams(lig(i).teams, TEAM_COMPARE_OFFENSIVE);
-	    lig(i).stats.teams_def = stat_update_league_teams(lig(i).teams, TEAM_COMPARE_DEFENSE);
+	    lig(i).stats.league_name = g_strdup(lig(i).name);
+	    lig(i).stats.league_symbol = g_strdup(lig(i).symbol);
+	    lig(i).stats.teams_off = 
+		stat_update_league_teams(lig(i).teams, TEAM_COMPARE_OFFENSIVE);
+	    lig(i).stats.teams_def = 
+		stat_update_league_teams(lig(i).teams, TEAM_COMPARE_DEFENSE);
 	    stat_update_league_players(&lig(i));
 	}
 }
@@ -103,7 +109,7 @@ stat_update_league_players(League *league)
 	for(j=0;j<maxlen;j++)
 	{
 	    pl = (Player*)g_ptr_array_index(players_sorted[i], j);
-	    new_stat.team_id = pl->team->id;
+	    new_stat.team_name = g_strdup(pl->team->name);
 	    new_stat.value_string = g_strdup(pl->name);
 	    new_stat.value1 = 
 		player_games_goals_get(pl, pl->team->clid, PLAYER_VALUE_GOALS);
@@ -138,9 +144,11 @@ stat_update_league_teams(const GArray *teams_array, gint compare_type)
 
     for(i=0;i<maxlen;i++)
     {
-	new_stat.team_id = ((Team*)g_ptr_array_index(teams, i))->id;
-	new_stat.value1 = team_get_table_value((Team*)g_ptr_array_index(teams, i), TABLE_GF);
-	new_stat.value2 = team_get_table_value((Team*)g_ptr_array_index(teams, i), TABLE_GA);
+	new_stat.team_name = g_strdup(((Team*)g_ptr_array_index(teams, i))->name);
+	new_stat.value1 = 
+	    team_get_table_value((Team*)g_ptr_array_index(teams, i), TABLE_GF);
+	new_stat.value2 = 
+	    team_get_table_value((Team*)g_ptr_array_index(teams, i), TABLE_GA);
 	new_stat.value3 = -1;
 	new_stat.value_string = NULL;
 
@@ -182,7 +190,7 @@ stat_create_season_stat(void)
 	g_array_append_val(new.league_champs, new_champ);
 
 	g_array_append_val(new.league_stats, lig(i).stats);
-	lig(i).stats = stat_league_new(lig(i).id);
+	lig(i).stats = stat_league_new(lig(i).name, lig(i).symbol);
     }
 
     for(i=0;i<acps->len;i++)

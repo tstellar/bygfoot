@@ -76,7 +76,7 @@ league_new(gboolean new_id)
     new.round_robins = 2;
     new.yellow_red = 1000;
 
-    new.stats = stat_league_new(new.id);
+    new.stats = stat_league_new("", "");
     
     new.active = TRUE;
 
@@ -731,12 +731,14 @@ league_team_movements_assign_dest(GArray *team_movements, gint idx,
     {
 	if(tmove->prom_rel_type == PROM_REL_PROMOTION)
 	    user_history_add(&usr(team_is_user(&tmove->tm)),
-			     USER_HISTORY_PROMOTED, tmove->tm.id,
-			     lig(g_array_index(tmove->dest_idcs, gint, 0)).id, -1, "");
+			     USER_HISTORY_PROMOTED, tmove->tm.name,
+			     lig(g_array_index(tmove->dest_idcs, gint, 0)).name,
+			     NULL, NULL);
 	else
 	    user_history_add(&usr(team_is_user(&tmove->tm)),
-			     USER_HISTORY_RELEGATED, tmove->tm.id,
-			     lig(g_array_index(tmove->dest_idcs, gint, 0)).id, -1, "");
+			     USER_HISTORY_RELEGATED, tmove->tm.name,
+			     lig(g_array_index(tmove->dest_idcs, gint, 0)).name,
+			     NULL, NULL);
     }
 }
 

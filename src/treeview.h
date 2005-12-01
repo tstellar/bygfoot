@@ -211,7 +211,7 @@ void
 treeview_create_league_stats(GtkListStore *ls, const LeagueStat *league_stat);
 
 void
-treeview_show_season_history(gint page, gint season_number);
+treeview_show_season_history(gint page, gint idx);
 
 void
 treeview_create_season_history_champions(GtkListStore *ls, const GArray* league_champs,

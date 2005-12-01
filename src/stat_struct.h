@@ -30,16 +30,17 @@
     string and integer values. */
 typedef struct
 {
-    gint team_id;
+    gchar *team_name;
     gint value1, value2, value3;
     gchar *value_string;
 } Stat;
 
 /** A structure holding some stat arrays about a league. */
 typedef struct
-{
-    /** The league id. */
-    gint clid;
+{    
+    gchar *league_symbol;
+    gchar *league_name;
+
     /** Best offensive and defensive teams. */
     GArray *teams_off, *teams_def;
     /** Best goal getters and goalies. */

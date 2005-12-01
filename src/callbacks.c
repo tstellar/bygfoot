@@ -30,6 +30,7 @@
 #include "game.h"
 #include "game_gui.h"
 #include "gui.h"
+#include "job.h"
 #include "league.h"
 #include "load_save.h"
 #include "main.h"
@@ -419,9 +420,10 @@ void
 on_menu_season_history_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    if(season == 1)
+    if(season_stats->len == 0)
     {
-	game_gui_print_message(_("This is your first season."));
+	game_gui_print_message(
+	    _("There are no season history elements stored yet."));
 	return;
     }
 
@@ -640,6 +642,12 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
 		on_menu_youth_move_to_team_activate(NULL, NULL);
 	    else
 		window_show_menu_youth((GdkEvent*)event);
+	    break;
+	case STATUS_SHOW_JOB_EXCHANGE:
+	    if(event->button == 1)
+		game_gui_show_job_offer(NULL, 
+					&g_array_index(jobs, Job, idx - 1),
+					STATUS_JOB_EXCHANGE_SHOW_TEAM);
 	    break;
     }
 
@@ -1185,3 +1193,30 @@ on_menu_betting_activate               (GtkMenuItem     *menuitem,
     window_show_bets();
 }
 
+void
+on_menu_show_job_exchange_activate     (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    stat0 = STATUS_SHOW_JOB_EXCHANGE;
+
+    gui_set_arrows();
+
+    treeview2_show_job_exchange();
+
+    game_gui_print_message(
+	_("Right click to apply for job at once, left click to see team info."));
+    game_gui_print_message_with_delay(
+	_("The job exchange update interval is %d weeks."),
+	const_int("int_job_update_interval"));
+}
+
+gboolean
+on_hpaned2_button_release_event        (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data)
+{
+    window.paned_pos = 
+	gtk_paned_get_position(GTK_PANED(widget));
+
+    return FALSE;
+}

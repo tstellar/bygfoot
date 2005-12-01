@@ -333,8 +333,14 @@ on_menu_save_window_geometry_activate  (GtkMenuItem     *menuitem,
 void
 on_menu_season_results_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
-#endif
-
 void
 on_menu_betting_activate               (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
+void
+on_menu_show_job_exchange_activate     (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+gboolean
+on_hpaned2_button_release_event        (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data);
+#endif

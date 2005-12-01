@@ -71,14 +71,14 @@ team_new(gboolean new_id)
 /* Fill the players array of the team and the stadium.
    @param tm The team that gets filled. */
 void
-team_generate_players_stadium(Team *tm)
+team_generate_players_stadium(Team *tm, gfloat av_talent)
 {
     gint i;    
     gfloat skill_factor = math_rnd(1 - const_float("float_team_skill_variance"),
 				   1 + const_float("float_team_skill_variance"));
     Player new;
-    gfloat wages = 0, average_talent;
-    gchar *def_file = team_has_def_file(tm);
+    gfloat wages = 0, average_talent, league_av_talent;
+    gchar *def_file = team_has_def_file(tm);    
 
     tm->strategy_sid = strategy_get_random();
 
@@ -89,9 +89,13 @@ team_generate_players_stadium(Team *tm)
 		 const_float("float_team_stadium_safety_upper"));
 
     if(tm->clid < ID_CUP_START)
+    {
+	league_av_talent = (av_talent > 0) ?
+	    av_talent : league_from_clid(tm->clid)->average_talent;
 	average_talent = (tm->average_talent == 0) ?
-	    skill_factor * league_from_clid(tm->clid)->average_talent :
+	    skill_factor * league_av_talent :
 	    tm->average_talent;
+    }
     else
 	average_talent = 
 	    skill_factor * team_get_average_talents(lig(0).teams) *
@@ -316,6 +320,21 @@ team_is_user(const Team *tm)
 
     for(i=0;i<users->len;i++)
 	if(usr(i).team_id == tm->id)
+	    return i;
+
+    return -1;
+}
+
+/** Check whether the team with given name is a user-managed team.
+    @param team_name The team name we examine.
+    @return The user's index in the #users array or -1.*/
+gint
+team_name_is_user(const gchar *team_name)
+{
+    gint i;
+
+    for(i=0;i<users->len;i++)
+	if(strcmp(team_name, usr(i).tm->name) == 0)
 	    return i;
 
     return -1;

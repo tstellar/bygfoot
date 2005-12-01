@@ -127,6 +127,11 @@ typedef struct
 	*symbol, /**< Symbol of the country, eg a flag pixmap. */
 	*sid; /**< Id of the country, eg 'england'. */
 
+    /** A rating point from 0-10 telling us
+	how good the first league of the country is.
+	Spain, for instance, has rating 10, whereas Ireland has only 5. */
+    gint rating;
+
     /** Leagues and cups arrays. */
     GArray *leagues, *cups;
     
@@ -160,5 +165,8 @@ typedef struct
 	*sponsors,
 	*mmatches,
 	*bets;
+    
+    /** The position of the horizontal divider is stored here. */
+    gint paned_pos;
 } Windows;
 #endif

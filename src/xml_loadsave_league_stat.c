@@ -33,11 +33,14 @@
 enum
 {
     TAG_LEAGUE_STAT = TAG_START_LEAGUE_STAT,
+    TAG_STAT_LEAGUE_NAME,
+    TAG_STAT_LEAGUE_SYMBOL,
     TAG_STAT_TEAMS_OFF,
     TAG_STAT_TEAMS_DEF,
     TAG_STAT_PLAYER_SCORERS,
     TAG_STAT_PLAYER_GOALIES,
     TAG_STAT,
+    TAG_STAT_TEAM_NAME,
     TAG_STAT_VALUE,
     TAG_STAT_VALUE_STRING,
     TAG_END
@@ -66,17 +69,11 @@ xml_loadsave_league_stat_start_element (GMarkupParseContext *context,
 	    valid_tag = TRUE;
 	}
 
-    for(i=TAG_NAME;i<=TAG_ROUND;i++)
-	if(tag == i)
-	{
-	    state = i;
-	    valid_tag = TRUE;
-	}
-
     if(tag == TAG_STAT)
     {
 	valueidx = 0;
-	new_stat.value_string = NULL;
+	new_stat.value_string = 
+	    new_stat.team_name = NULL;
     }
     else if(tag == TAG_STAT_TEAMS_OFF ||
 	    tag == TAG_STAT_TEAMS_DEF ||
@@ -85,8 +82,9 @@ xml_loadsave_league_stat_start_element (GMarkupParseContext *context,
 	in_state = tag;
 
     if(!valid_tag)
-	g_warning("xml_loadsave_league_stat_start_element: unknown tag: %s; I'm in state %d\n",
-		  element_name, state);
+	g_warning(
+	    "xml_loadsave_league_stat_start_element: unknown tag: %s; I'm in state %d\n",
+	    element_name, state);
 }
 
 void
@@ -98,7 +96,8 @@ xml_loadsave_league_stat_end_element    (GMarkupParseContext *context,
     GArray *stat_array = NULL;
     gint tag = xml_get_tag_from_name(element_name);
 
-    if(tag == TAG_ID ||
+    if(tag == TAG_STAT_LEAGUE_NAME ||
+       tag == TAG_STAT_LEAGUE_SYMBOL ||
        tag == TAG_STAT_TEAMS_OFF ||
        tag == TAG_STAT_TEAMS_DEF ||
        tag == TAG_STAT_PLAYER_SCORERS ||
@@ -127,15 +126,16 @@ xml_loadsave_league_stat_end_element    (GMarkupParseContext *context,
     else if(tag == TAG_STAT_VALUE_STRING ||
 	    tag == TAG_STAT_VALUE ||
 	    tag == TAG_STAT_VALUE_STRING ||
-	    tag == TAG_TEAM_ID)
+	    tag == TAG_STAT_TEAM_NAME)
     {
 	state = TAG_STAT;
 	if(tag == TAG_STAT_VALUE)
 	    valueidx++;	
     }
     else if(tag != TAG_LEAGUE_STAT)
-	g_warning("xml_loadsave_league_stat_end_element: unknown tag: %s; I'm in state %d\n",
-		  element_name, state);
+	g_warning(
+	    "xml_loadsave_league_stat_end_element: unknown tag: %s; I'm in state %d\n",
+	    element_name, state);
 }
 
 void
@@ -153,10 +153,12 @@ xml_loadsave_league_stat_text         (GMarkupParseContext *context,
 
     int_value = (gint)g_ascii_strtod(buf, NULL);
 
-    if(state == TAG_ID)
-	lig_stat->clid = int_value;
-    else if(state == TAG_TEAM_ID)
-	new_stat.team_id = int_value;
+    if(state == TAG_STAT_LEAGUE_NAME)
+	lig_stat->league_name = g_strdup(buf);
+    else if(state == TAG_STAT_LEAGUE_SYMBOL)
+	lig_stat->league_symbol = g_strdup(buf);
+    else if(state == TAG_STAT_TEAM_NAME)
+	new_stat.team_name = g_strdup(buf);
     else if(state == TAG_STAT_VALUE)
     {
 	if(valueidx == 0)
@@ -215,7 +217,8 @@ xml_loadsave_league_stat_write(const gchar *filename, const LeagueStat *league_s
 
     fprintf(fil, "<_%d>\n", TAG_LEAGUE_STAT);
     
-    xml_write_int(fil, league_stat->clid, TAG_ID, I0);
+    xml_write_string(fil, league_stat->league_name, TAG_STAT_LEAGUE_NAME, I0);
+    xml_write_string(fil, league_stat->league_symbol, TAG_STAT_LEAGUE_SYMBOL, I0);
 
     fprintf(fil, "<_%d>\n", TAG_STAT_TEAMS_OFF);
     for(i=0;i<league_stat->teams_off->len;i++)
@@ -251,7 +254,7 @@ xml_loadsave_league_stat_write_stat(FILE *fil, const Stat *stat)
 {
     fprintf(fil, "%s<_%d>\n", I1, TAG_STAT);
 
-    xml_write_int(fil, stat->team_id, TAG_TEAM_ID, I1);
+    xml_write_string(fil, stat->team_name, TAG_STAT_TEAM_NAME, I1);
     xml_write_int(fil, stat->value1, TAG_STAT_VALUE, I1);
     xml_write_int(fil, stat->value2, TAG_STAT_VALUE, I1);
     xml_write_int(fil, stat->value3, TAG_STAT_VALUE, I1);

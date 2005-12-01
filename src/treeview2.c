@@ -25,6 +25,7 @@
 
 #include "bet.h"
 #include "fixture.h"
+#include "job.h"
 #include "league.h"
 #include "live_game.h"
 #include "misc.h"
@@ -426,4 +427,103 @@ treeview2_show_bets(void)
     treeview2_create_bets(model);
     gtk_tree_view_set_model(treeview, GTK_TREE_MODEL(model));
     g_object_unref(model);
+}
+
+void
+treeview2_create_job_exchange(GtkListStore *ls)
+{
+    gint i;
+    GtkTreeIter iter;
+    gchar buf[SMALL];
+    const Team *tm = NULL;
+
+    for(i=0;i<jobs->len;i++)
+    {
+	tm = job_get_team(&g_array_index(jobs, Job, i));
+	sprintf(buf, "%s (%d)", g_array_index(jobs, Job, i).league_name,
+		g_array_index(jobs, Job, i).league_layer);
+
+	gtk_list_store_append(ls, &iter);
+	gtk_list_store_set(ls, &iter, 0, i + 1,
+			   1, tm->name, 
+			   2, buf,
+			   3, &g_array_index(jobs, Job, i),
+			   4, &g_array_index(jobs, Job, i),
+			   5, &g_array_index(jobs, Job, i),
+			   -1);
+    }
+}
+
+void
+treeview2_set_up_job_exchange(GtkTreeView *treeview)
+{
+    gint i;
+    GtkTreeViewColumn   *col;
+    GtkCellRenderer     *renderer;
+    gchar *titles[6] =
+	{"",
+	 _("Team"),
+	 _("League"),
+	 _("Country"),
+	 _("Av.skill"),
+	 _("Talent %")};
+
+    gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
+				GTK_SELECTION_SINGLE);
+    gtk_tree_view_set_headers_visible(treeview, TRUE);
+
+    col = gtk_tree_view_column_new();
+    gtk_tree_view_column_set_title(col, titles[0]);
+    gtk_tree_view_append_column(treeview, col);
+    renderer = treeview_helper_cell_renderer_text_new();
+    gtk_tree_view_column_pack_start(col, renderer, TRUE);
+    gtk_tree_view_column_add_attribute(col, renderer,
+				       "text", 0);
+
+    for(i=1;i<3;i++)
+    {
+	col = gtk_tree_view_column_new();
+	gtk_tree_view_column_set_title(col, titles[i]);
+	gtk_tree_view_append_column(treeview, col);
+	renderer = treeview_helper_cell_renderer_text_new();
+	gtk_tree_view_column_pack_start(col, renderer, TRUE);
+	gtk_tree_view_column_add_attribute(col, renderer,
+					   "text", i);
+    }
+
+    for(i=3;i<6;i++)
+    {
+	col = gtk_tree_view_column_new();
+	gtk_tree_view_column_set_title(col, titles[i]);
+	gtk_tree_view_append_column(treeview, col);
+	renderer = treeview_helper_cell_renderer_text_new();
+	gtk_tree_view_column_pack_start(col, renderer, TRUE);	
+	gtk_tree_view_column_set_cell_data_func(col, renderer,
+						treeview_helper_job_exchange,
+						NULL, NULL);	
+	if(i > 3)
+	{
+	    gtk_tree_view_column_set_alignment(col, 0.5);
+	    g_object_set(renderer, "xalign", 0.5, NULL);	    
+	}
+    }
+}
+
+/** Show the teams that offer a job. */
+void
+treeview2_show_job_exchange(void)
+{
+    GtkTreeView *treeview = 
+	GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right"));
+    GtkListStore *model = 
+	gtk_list_store_new(6, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING, 
+			   G_TYPE_POINTER, G_TYPE_POINTER, G_TYPE_POINTER);
+    
+    treeview_helper_clear(treeview);
+    
+    treeview2_set_up_job_exchange(treeview);
+
+    treeview2_create_job_exchange(model);
+    gtk_tree_view_set_model(treeview, GTK_TREE_MODEL(model));
+    g_object_unref(model);    
 }

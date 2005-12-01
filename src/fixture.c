@@ -67,17 +67,23 @@ fixture_write_cup_fixtures(Cup *cup)
 {
     gint i;
 
+    printf("fwc 1\n");
+
     for(i=0;i<cup->rounds->len;i++)
 	cup_get_team_pointers(cup, i);
 
+    printf("fwc 2 %d\n", 
+	   g_array_index(cup->rounds, CupRound, 0).round_robin_number_of_groups);
     if(g_array_index(cup->rounds, CupRound, 0).round_robin_number_of_groups > 0)
-	fixture_write_cup_round_robin(cup, 0, 
-				      misc_copy_ptr_array(
-					  g_array_index(cup->rounds, CupRound, 0).team_ptrs));
+	fixture_write_cup_round_robin(
+	    cup, 0, misc_copy_ptr_array(
+		g_array_index(cup->rounds, CupRound, 0).team_ptrs));
     else
-	fixture_write_knockout_round(cup, 0, 
-				     misc_copy_ptr_array(
-					 g_array_index(cup->rounds, CupRound, 0).team_ptrs));
+	fixture_write_knockout_round(
+	    cup, 0, misc_copy_ptr_array(
+		g_array_index(cup->rounds, CupRound, 0).team_ptrs));
+    printf("fwc 3\n");
+
 }
 
 /** Update the fixtures for the given cup. 
@@ -1346,8 +1352,9 @@ fixture_get_goals_to_win(const Fixture *fix, const Team *tm)
     return return_value;
 }
 
-gint
-fixture_get_goals_to_draw(const Fixture *fix, const Team *tm)
-{
+/*todo*/
+/* gint */
+/* fixture_get_goals_to_draw(const Fixture *fix, const Team *tm) */
+/* { */
     
-}
+/* } */

@@ -30,6 +30,8 @@
 #include "finance.h"
 #include "free.h"
 #include "game_gui.h"
+#include "league.h"
+#include "job.h"
 #include "load_save.h"
 #include "main.h"
 #include "misc2_callbacks.h"
@@ -37,6 +39,7 @@
 #include "misc2_interface.h"
 #include "player.h"
 #include "support.h"
+#include "team.h"
 #include "transfer.h"
 #include "treeview.h"
 #include "treeview2.h"
@@ -44,38 +47,72 @@
 #include "user.h"
 #include "window.h"
 
-gboolean
-on_button_cancel_clicked               (GtkWidget       *widget,
-                                        GdkEvent        *event,
-                                        gpointer         user_data)
-{
-
-  return FALSE;
-}
-
-
-void
-on_button_ok_clicked                   (GtkButton       *button,
-                                        gpointer         user_data)
-{
-
-}
-
-
 void
 on_button_offer_ok_clicked             (GtkButton       *button,
                                         gpointer         user_data)
 {
-    if(stat2 == STATUS_JOB_OFFER_SUCCESS)
-	user_history_add(&current_user, USER_HISTORY_JOB_OFFER_ACCEPTED, 
-			 current_user.tm->id, ((Team*)statp)->id, ((Team*)statp)->clid, "");
+    gboolean changed = TRUE;
+    gchar *team_name = g_strdup(current_user.tm->name);
 
-    user_change_team(&current_user, (Team*)statp);
+    if(stat2 == STATUS_JOB_EXCHANGE_SHOW_TEAM)
+    {
+	if(query_job_application_successful((Job*)statp, &current_user))
+	{
+	    if(((Job*)statp)->type != JOB_TYPE_NATIONAL)
+	    {
+		game_gui_show_warning(
+		    _("The owners of %s accept your application. Since %s don't want to get stuck with a lame duck, you get fired instantly and spend the rest of the current season tending your garden."),
+		    job_get_team((Job*)statp)->name, current_user.tm->name);
+		job_change_country((Job*)statp);
+	    }
+	    else
+		game_gui_show_warning(
+		    _("The owners of %s accept your application."),
+		    current_user.tm->name);
 
-    stat0 = STATUS_MAIN;
-    game_gui_show_main();
+	    printf("misc2 1\n");
+	    user_change_team(&current_user, team_of_id(((Job*)statp)->team_id));
 
-    window_destroy(&window.job_offer, TRUE);
+	    printf("misc2 2\n");
+	    if(((Job*)statp)->type == JOB_TYPE_NATIONAL)
+		job_remove((Job*)statp, TRUE);
+	    else
+	    {
+		job_remove((Job*)statp, FALSE);
+		job_remove_national();
+	    }
+	    printf("misc2 3\n");
+	    
+	}
+	else
+	{
+	    game_gui_show_warning(
+		_("The owners of %s politely reject your application. You're not successful enough in their eyes."),
+		job_get_team((Job*)statp)->name);
+	    changed = FALSE;
+	}
+    }
+    else
+	user_change_team(&current_user, (Team*)statp);
+
+    printf("misc2 4\n");
+    if(changed)
+    {
+	if(stat2 == STATUS_JOB_OFFER_SUCCESS ||
+	   stat2 == STATUS_JOB_EXCHANGE_SHOW_TEAM)
+	    user_history_add(&current_user, USER_HISTORY_JOB_OFFER_ACCEPTED, 
+			     team_name,
+			     current_user.tm->name,
+			     league_cup_get_name_string(current_user.tm->clid),
+			     NULL);
+
+	stat0 = STATUS_MAIN;
+	game_gui_show_main();
+    }
+
+    g_free(team_name);
+
+    window_destroy(&window.job_offer, FALSE);
 
     setsav0;
 }
@@ -85,7 +122,8 @@ void
 on_button_offer_cancel_clicked         (GtkButton       *button,
                                         gpointer         user_data)
 {
-    if(stat2 != STATUS_JOB_OFFER_SUCCESS)
+    if(stat2 != STATUS_JOB_OFFER_SUCCESS &&
+       stat2 != STATUS_JOB_EXCHANGE_SHOW_TEAM)
     {
 	if(users->len == 1)
 	    main_exit_program(EXIT_USER_FIRED, NULL);
@@ -96,9 +134,13 @@ on_button_offer_cancel_clicked         (GtkButton       *button,
 	}
     }
 
-    window_destroy(&window.job_offer, TRUE);
-    stat0 = STATUS_MAIN;
-    game_gui_show_main();
+    window_destroy(&window.job_offer, FALSE);
+
+    if(stat0 != STATUS_SHOW_JOB_EXCHANGE)
+    {
+	stat0 = STATUS_MAIN;
+	game_gui_show_main();
+    }
 }
 
 

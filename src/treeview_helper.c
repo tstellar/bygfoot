@@ -28,6 +28,7 @@
 #include "file.h"
 #include "fixture.h"
 #include "free.h"
+#include "job.h"
 #include "league.h"
 #include "misc.h"
 #include "option.h"
@@ -269,7 +270,7 @@ treeview_helper_get_user_history_icon(gint history_type)
 	    return NULL;
 	case USER_HISTORY_START_GAME:
 	    return const_app("string_treeview_helper_user_history_symbol_start_game_icon");
-    	case USER_HISTORY_FIRE_FINANCES:
+    	case USER_HISTORY_FIRE_FINANCE:
 	    return const_app("string_treeview_helper_user_history_symbol_fire_finances_icon");
     	case  USER_HISTORY_FIRE_FAILURE:
 	    return const_app("string_treeview_helper_user_history_symbol_fire_failure_icon");
@@ -629,14 +630,15 @@ treeview_helper_get_table_element_colours(const Table *table, gint idx,
 /** Set the char pointers to the constant determining the background and foreground
     colours of user entries in treeviews if the team is a user team. */
 void
-treeview_helper_set_user_colours(const Team *tm, gchar **colour_bg, gchar **colour_fg)
+treeview_helper_set_user_colours(const gchar *team_name,
+				 gchar **colour_bg, gchar **colour_fg)
 {
-    if(tm == current_user.tm)
+    if(strcmp(team_name, current_user.tm->name) == 0)
     {
 	*colour_fg = const_app("string_treeview_current_user_fg");
 	*colour_bg = const_app("string_treeview_current_user_bg");
     }
-    else if(team_is_user(tm) != -1)
+    else if(team_name_is_user(team_name) != -1)
     {
 	*colour_fg = const_app("string_treeview_user_fg");
 	*colour_bg = const_app("string_treeview_user_bg");
@@ -993,7 +995,7 @@ treeview_helper_player_to_cell(GtkTreeViewColumn *col,
 			       gpointer           user_data)
 {
     gint column = treeview_helper_get_col_number_column(col);
-    gint attribute = GPOINTER_TO_INT(user_data);
+    gint attribute = GPOINTER_TO_INT(user_data), idx = -1;
     gchar  buf[SMALL];
     const Player *pl;
 
@@ -1072,7 +1074,10 @@ treeview_helper_player_to_cell(GtkTreeViewColumn *col,
 		sprintf(buf, "%s (%s)", pl->team->name, pl->team->strategy_sid);
 	    break;
 	case PLAYER_LIST_ATTRIBUTE_LEAGUE_CUP:
-	    strcpy(buf, league_cup_get_name_string(pl->team->clid));
+	    idx = job_team_is_on_list(pl->team->id);
+	    strcpy(buf, (idx == -1) ?
+		   league_cup_get_name_string(pl->team->clid) :
+		   g_array_index(jobs, Job, idx).league_name);
 	    break;
     }
 
@@ -1659,4 +1664,44 @@ treeview_helper_search_equal(GtkTreeModel *model,
     return_value = (g_strrstr(name_lower, key) == NULL);
 
     return return_value;
+}
+
+void
+treeview_helper_job_exchange(GtkTreeViewColumn *col,
+			     GtkCellRenderer   *renderer,
+			     GtkTreeModel      *model,
+			     GtkTreeIter       *iter,
+			     gpointer           user_data)
+{
+    gint column = treeview_helper_get_col_number_column(col);
+    gchar buf[SMALL];
+    const Job *job = NULL;
+
+    gtk_tree_model_get(model, iter, column, &job, -1);
+    
+    if(job == NULL)
+	return;
+
+    g_object_set(renderer, "background",
+		 const_app("string_treeview_helper_color_default_background"), 
+		 "foreground",
+		 const_app("string_treeview_helper_color_default_foreground"), 
+		 NULL);
+
+    if(column == 3)
+    {
+	strcpy(buf, job->country_name);
+	if(job->type != JOB_TYPE_NATIONAL)
+	    g_object_set(renderer, "background",
+			 const_app("string_treeview_helper_color_job_international_bg"),
+			 "foreground",
+			 const_app("string_treeview_helper_color_job_international_fg"), 
+			 NULL);
+    }
+    else if(column == 4)
+	sprintf(buf, "%.1f", team_get_average_skill(job_get_team(job), FALSE));
+    else if(column == 5)
+	sprintf(buf, "%d", job->talent_percent);
+
+    g_object_set(renderer, "text", buf, NULL);
 }

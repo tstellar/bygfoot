@@ -92,7 +92,9 @@ user_set_up_team_new_game(User *user)
     if(user->scout == -1)
     {
 	user_set_up_team(user);
-	user_history_add(user, USER_HISTORY_START_GAME, user->tm->id, user->tm->clid, -1, "");
+	user_history_add(user, USER_HISTORY_START_GAME, 
+			 user->tm->name, 
+			 league_cup_get_name_string(user->tm->clid), NULL, NULL);
     }
     else
     {
@@ -108,7 +110,9 @@ user_set_up_team_new_game(User *user)
 	user->tm = &g_array_index(lig(user->scout).teams, Team, rndom);
 	user->team_id = g_array_index(lig(user->scout).teams, Team, rndom).id;
 
-	user_history_add(user, USER_HISTORY_START_GAME, user->tm->id, user->tm->clid, -1, "");
+	user_history_add(user, USER_HISTORY_START_GAME, 
+			 user->tm->name, 
+			 league_cup_get_name_string(user->tm->clid), NULL, NULL);
 
 	user_set_up_team(user);
     }
@@ -199,7 +203,7 @@ user_remove(gint idx, gboolean regenerate_team)
 	g_array_free(usr(idx).tm->players, TRUE);
 	usr(idx).tm->players = g_array_new(FALSE, FALSE, sizeof(Player));
 
-	team_generate_players_stadium(usr(idx).tm);
+	team_generate_players_stadium(usr(idx).tm, 0);
 	for(i=0;i<usr(idx).tm->players->len;i++)
 	    g_array_index(usr(idx).tm->players, Player, i).team = usr(idx).tm;
     }
@@ -293,10 +297,12 @@ user_job_offer(User *user)
     Team *new_team = NULL;
 
     if(math_rnd(0, 1) > const_float("float_user_success_counter_check") ||
-       ABS(user->counters[COUNT_USER_SUCCESS]) < (gfloat)const_int("int_user_success_offer_limit") * 0.9)
+       ABS(user->counters[COUNT_USER_SUCCESS]) < 
+       (gfloat)const_int("int_user_success_offer_limit") * 0.9)
 	return;
 
-    if(user->counters[COUNT_USER_SUCCESS] < -(gfloat)const_int("int_user_success_offer_limit") * 0.9 &&
+    if(user->counters[COUNT_USER_SUCCESS] < 
+       -(gfloat)const_int("int_user_success_offer_limit") * 0.9 &&
        !user->counters[COUNT_USER_WARNING])
     {
 	user_event_add(user, EVENT_TYPE_WARNING, -1, -1, NULL,
@@ -313,8 +319,6 @@ user_job_offer(User *user)
 	{
 	    new_team = team_get_new(user->tm, TRUE);
 	    user_event_add(user, EVENT_TYPE_FIRE_FAILURE, -1, -1, new_team, NULL);
-	    user_history_add(user, USER_HISTORY_FIRE_FAILURE, user->tm->id,
-			     new_team->id, new_team->clid, "");
 	}
 	else if(option_int("int_opt_user_show_job_offers", &user->options))
 	{
@@ -330,10 +334,11 @@ user_weekly_update_counters(User *user)
 {
     gint rank = team_get_league_rank(user->tm);
     gint teamslen = ((GArray*)(league_cup_get_teams(user->tm->clid)))->len;
-    gint rank_bounds[2] = {(gint)rint(const_float("float_user_success_table_bound_upper") *
-				      (gfloat)teamslen),
-			   (gint)rint(const_float("float_user_success_table_bound_lower") *
-				      (gfloat)teamslen)};
+    gint rank_bounds[2] = 
+	{(gint)rint(const_float("float_user_success_table_bound_upper") *
+		    (gfloat)teamslen),
+	 (gint)rint(const_float("float_user_success_table_bound_lower") *
+		    (gfloat)teamslen)};
     gint *cnts = user->counters;
     gint increase_capacity;
     gfloat increase_safety;
@@ -461,19 +466,16 @@ user_event_show_next(void)
 	    game_gui_show_warning(event->value_string);
 	    break;
 	case EVENT_TYPE_FIRE_FINANCE:
-	    stat2 = STATUS_JOB_OFFER_FIRE_FINANCE;
-	    statp = event->value_pointer;
-	    game_gui_show_job_offer((Team*)event->value_pointer, STATUS_JOB_OFFER_FIRE_FINANCE);
+	    game_gui_show_job_offer((Team*)event->value_pointer, NULL,
+				    STATUS_JOB_OFFER_FIRE_FINANCE);
 	    break;
 	case EVENT_TYPE_FIRE_FAILURE:
-	    stat2 = STATUS_JOB_OFFER_FIRE_FAILURE;
-	    statp = event->value_pointer;
-	    game_gui_show_job_offer((Team*)event->value_pointer, STATUS_JOB_OFFER_FIRE_FAILURE);
+	    game_gui_show_job_offer((Team*)event->value_pointer, NULL,
+				    STATUS_JOB_OFFER_FIRE_FAILURE);
 	    break;
 	case EVENT_TYPE_JOB_OFFER:
-	    stat2 = STATUS_JOB_OFFER_SUCCESS;
-	    statp = event->value_pointer;
-	    game_gui_show_job_offer((Team*)event->value_pointer, STATUS_JOB_OFFER_SUCCESS);
+	    game_gui_show_job_offer((Team*)event->value_pointer, NULL,
+				    STATUS_JOB_OFFER_SUCCESS);
 	    break;
 	case EVENT_TYPE_OVERDRAW:
 	    if(event->value1 == 1)
@@ -544,6 +546,7 @@ void
 user_change_team(User *user, Team *tm)
 {
     gint i;
+    gint success = user->counters[COUNT_USER_SUCCESS];
 
     user->tm = tm;
     user->team_id = tm->id;
@@ -551,6 +554,9 @@ user_change_team(User *user, Team *tm)
     user_set_up_team(user);
 
     user->counters[COUNT_USER_NEW_SPONSOR] = 0;
+    user->counters[COUNT_USER_SUCCESS] = (success < 0) ?
+	0 : (gint)rint((gfloat)success / 2);
+
     g_string_free(user->sponsor.name, TRUE);
     user->sponsor = user_get_sponsor(&current_user);    
 
@@ -601,29 +607,38 @@ user_history_compare(gconstpointer a, gconstpointer b)
 
 /** Add an element to the user history filled with the given values. */
 void
-user_history_add(User *user, gint type, gint team_id,
-		 gint value1, gint value2, gchar *string)
+user_history_add(User *user, gint type, const gchar *team_name,
+		 const gchar* string0, const gchar *string1,
+		 const gchar *string2)
 {
     gint i;
     UserHistory new_history;
     UserHistory *his = &new_history;
     gboolean replace = FALSE;
 
+    his->team_name = his->string[0] =
+	his->string[1] = his->string[2] = NULL;
 
     if(type == USER_HISTORY_WIN_FINAL ||
        type == USER_HISTORY_LOSE_FINAL ||
        type == USER_HISTORY_REACH_CUP_ROUND)
     {
 	for(i=0;i<user->history->len;i++)
-	    if((g_array_index(user->history, UserHistory, i).type == USER_HISTORY_WIN_FINAL ||
-		g_array_index(user->history, UserHistory, i).type == USER_HISTORY_LOSE_FINAL ||
-		g_array_index(user->history, UserHistory, i).type == USER_HISTORY_REACH_CUP_ROUND) &&
+	    if((g_array_index(user->history, UserHistory, i).type == 
+		USER_HISTORY_WIN_FINAL ||
+		g_array_index(user->history, UserHistory, i).type == 
+		USER_HISTORY_LOSE_FINAL ||
+		g_array_index(user->history, UserHistory, i).type == 
+		USER_HISTORY_REACH_CUP_ROUND) &&
 	       g_array_index(user->history, UserHistory, i).season == season &&
-	       g_array_index(user->history, UserHistory, i).team_id == team_id &&
-	       g_array_index(user->history, UserHistory, i).value1 == value1)
+	       strcmp(g_array_index(user->history, UserHistory, i).team_name,
+		      team_name) == 0 &&
+	       strcmp(g_array_index(user->history, UserHistory, i).string[1], 
+		      string1) == 0)
 	    {
 		/** Same cup round. */
-		if(g_array_index(user->history, UserHistory, i).value2 == value2 &&
+		if(strcmp(g_array_index(user->history, UserHistory, i).string[2],
+			  string2) == 0 &&
 		   type == USER_HISTORY_REACH_CUP_ROUND)
 		    return;
 
@@ -633,47 +648,7 @@ user_history_add(User *user, gint type, gint team_id,
 	    }
     }
 
-    if(type == USER_HISTORY_WIN_FINAL)
-    {
-	if(query_cup_is_international(value1))
-	    user->counters[COUNT_USER_SUCCESS] +=
-		const_int("int_user_success_international_winner");
-	else if(query_cup_is_national(value1))
-	    user->counters[COUNT_USER_SUCCESS] +=
-		const_int("int_user_success_national_winner");
-    }
-    else if(type == USER_HISTORY_LOSE_FINAL)
-    {
-	if(query_cup_is_international(value1))
-	    user->counters[COUNT_USER_SUCCESS] +=
-		const_int("int_user_success_international_final");
-	else if(query_cup_is_national(value1))
-	    user->counters[COUNT_USER_SUCCESS] +=
-		const_int("int_user_success_national_winner");
-		const_int("int_user_success_national_final");
-    }
-    else if(type == USER_HISTORY_REACH_CUP_ROUND)
-    {
-	if(value2 == cup_from_clid(value1)->rounds->len - 2)
-	{
-	    if(query_cup_is_international(value1))
-		user->counters[COUNT_USER_SUCCESS] +=
-		    const_int("int_user_success_international_semis");
-	    else if(query_cup_is_national(value1))
-		user->counters[COUNT_USER_SUCCESS] +=
-		    const_int("int_user_success_national_semis");
-	}
-	else if(value2 == cup_from_clid(value1)->rounds->len - 3)
-	{
-	    if(query_cup_is_international(value1))
-		user->counters[COUNT_USER_SUCCESS] +=
-		    const_int("int_user_success_international_quarter");
-	    else if(query_cup_is_national(value1))
-		user->counters[COUNT_USER_SUCCESS] +=
-		    const_int("int_user_success_national_quarter");
-	}
-    }
-    else if(type == USER_HISTORY_PROMOTED)
+    if(type == USER_HISTORY_PROMOTED)
 	user->counters[COUNT_USER_SUCCESS] += 
 	    const_int("int_user_success_promotion");
     else if(type == USER_HISTORY_RELEGATED)
@@ -682,20 +657,27 @@ user_history_add(User *user, gint type, gint team_id,
 
     his->season = season;
     his->week = week;
-
     his->type = type;
-    his->team_id = team_id;
-    his->value1 = value1;
-    his->value2 = value2;
     
     if(replace)
     {
-	misc_string_assign(&his->value_string, string);
+	if(string0 != NULL)
+	    misc_string_assign(&his->string[0], string0);
+	if(string2 != NULL)
+	    misc_string_assign(&his->string[2], string2);
 	g_array_sort(user->history, (GCompareFunc)user_history_compare);
     }
     else
     {
-	his->value_string = g_strdup(string);
+	his->team_name = g_strdup(team_name);
+
+	if(string0 != NULL)
+	    his->string[0] = g_strdup(string0);
+	if(string1 != NULL)
+	    his->string[1] = g_strdup(string1);
+	if(string2 != NULL)
+	    his->string[2] = g_strdup(string2);
+
 	g_array_prepend_val(user->history, *his);
     }
 }
@@ -705,8 +687,6 @@ user_history_add(User *user, gint type, gint team_id,
 void
 user_history_to_string(const UserHistory *history, gchar *buf)
 {
-    gchar buf2[SMALL];
-
     switch(history->type)
     {
 	default:
@@ -715,70 +695,117 @@ user_history_to_string(const UserHistory *history, gchar *buf)
 	case USER_HISTORY_START_GAME:
 	    /* Buy a team in a league. */
 	    sprintf(buf, _("You start the game with %s in the %s."),
-		    team_of_id(history->team_id)->name,
-		    league_cup_get_name_string(history->value1));
+		    history->team_name,
+		    history->string[0]);
 	    break;
-    	case USER_HISTORY_FIRE_FINANCES:
+    	case USER_HISTORY_FIRE_FINANCE:
 	    /* Team fires, team in a league. */
 	    sprintf(buf, _("%s fires you because of financial mismanagement.\nYou find a new job with %s in the %s."),
-		    team_of_id(history->team_id)->name,
-		    team_of_id(history->value1)->name,
-		    league_cup_get_name_string(history->value2));
+		    history->team_name,
+		    history->string[0],
+		    history->string[1]);
 	    break;
     	case  USER_HISTORY_FIRE_FAILURE:
 	    /* Team fires, team in a league. */
 	    sprintf(buf, _("%s fires you because of unsuccessfulness.\nYou find a new job with %s in the %s."),
-		    team_of_id(history->team_id)->name,
-		    team_of_id(history->value1)->name,
-		    league_cup_get_name_string(history->value2));
+		    history->team_name,
+		    history->string[0],
+		    history->string[1]);
 	    break;
     	case  USER_HISTORY_JOB_OFFER_ACCEPTED:
 	    /* Team in a league. Leave team. */
 	    sprintf(buf, _("%s offer you a job in the %s.\nYou accept the challenge and leave %s."),
-		    team_of_id(history->value1)->name,
-		    league_cup_get_name_string(history->value2),
-		    team_of_id(history->team_id)->name);
+		    history->string[0],
+		    history->string[1],
+		    history->team_name);
 	    break;
     	case  USER_HISTORY_END_SEASON:
 	    /* League name. */
-	    sprintf(buf, _("You finish the season in the %s on rank %d."),
-		    league_cup_get_name_string(history->value1),
-		    history->value2);
+	    sprintf(buf, _("You finish the season in the %s on rank %s."),
+		    history->string[0],
+		    history->string[1]);
 	    break;
     	case  USER_HISTORY_PROMOTED:
 	    /* League name. */
 	    sprintf(buf, _("You get promoted to the %s."),
-		    league_cup_get_name_string(history->value1));
+		    history->string[0]);
 	    break;	    
     	case  USER_HISTORY_RELEGATED:
 	    /* League name. */
 	    sprintf(buf, _("You get relegated to the %s."),
-		    league_cup_get_name_string(history->value1));
+		    history->string[0]);
 	    break;	    
     	case  USER_HISTORY_WIN_FINAL:
 	    /* Cup name, team name. */
 	    sprintf(buf, _("You win the %s final against %s."),
-		    league_cup_get_name_string(history->value1),
-		    history->value_string);
+		    history->string[0],
+		    history->string[1]);
 	    break;
     	case  USER_HISTORY_LOSE_FINAL:
 	    /* Cup name, team name. */
 	    sprintf(buf, _("You lose in the %s final against %s."),
-		    league_cup_get_name_string(history->value1),
-		    history->value_string);
+		    history->string[0],
+		    history->string[1]);
 	    break;
     	case USER_HISTORY_REACH_CUP_ROUND:	    
-	    cup_get_round_name(cup_from_clid(history->value1), history->value2, buf2);
 	    /* Cup round name (e.g. Last 32), number, cup name. */
-	    sprintf(buf, _("You reach the %s (round %d) of the %s."), buf2,
-		    history->value2 + 1,
-		    league_cup_get_name_string(history->value1));
+	    sprintf(buf, _("You reach the %s (round %s) of the %s."), 
+		    history->string[1],
+		    history->string[2],
+		    history->string[0]);
 	    break;
     	case USER_HISTORY_CHAMPION:	    
 	    /* League name. */
 	    sprintf(buf, _("You are champion of the %s!"),
-		    league_cup_get_name_string(history->value1));
+		    history->string[0]);
 	    break;
+    }
+}
+
+/** Increase the user success counter when the user
+    is successful in a cup. */
+void
+user_add_cup_success(User *user, const Cup *cup, gint round, gint type)
+{
+    if(type == USER_HISTORY_WIN_FINAL)
+    {
+	if(query_cup_is_international(cup->id))
+	    user->counters[COUNT_USER_SUCCESS] +=
+		const_int("int_user_success_international_winner");
+	else if(query_cup_is_national(cup->id))
+	    user->counters[COUNT_USER_SUCCESS] +=
+		const_int("int_user_success_national_winner");
+    }
+    else if(type == USER_HISTORY_LOSE_FINAL)
+    {
+	if(query_cup_is_international(cup->id))
+	    user->counters[COUNT_USER_SUCCESS] +=
+		const_int("int_user_success_international_final");
+	else if(query_cup_is_national(cup->id))
+	    user->counters[COUNT_USER_SUCCESS] +=
+		const_int("int_user_success_national_winner");
+		const_int("int_user_success_national_final");
+    }
+    else if(type == USER_HISTORY_REACH_CUP_ROUND)
+    {
+	if(round == cup_from_clid(cup->id)->rounds->len - 2)
+	{
+	    if(query_cup_is_international(cup->id))
+		user->counters[COUNT_USER_SUCCESS] +=
+		    const_int("int_user_success_international_semis");
+	    else if(query_cup_is_national(cup->id))
+		user->counters[COUNT_USER_SUCCESS] +=
+		    const_int("int_user_success_national_semis");
+	}
+	else if(round == cup_from_clid(cup->id)->rounds->len - 3)
+	{
+	    if(query_cup_is_international(cup->id))
+		user->counters[COUNT_USER_SUCCESS] +=
+		    const_int("int_user_success_international_quarter");
+	    else if(query_cup_is_national(cup->id))
+		user->counters[COUNT_USER_SUCCESS] +=
+		    const_int("int_user_success_national_quarter");
+	}
     }
 }
 
