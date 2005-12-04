@@ -60,7 +60,6 @@ on_button_offer_ok_clicked             (GtkButton       *button,
     else
 	user_change_team(&current_user, (Team*)statp);
 
-    printf("misc2 4\n");
     if(changed)
     {
 	if(stat2 == STATUS_JOB_OFFER_SUCCESS ||

@@ -1062,7 +1062,7 @@ game_post_match(Fixture *fix)
 
 	user_history_add(&usr(fixture_user_team_involved(fix)),
 			 USER_HISTORY_REACH_CUP_ROUND,
-			 usr(fixture_user_team_involved(fix)).name,
+			 usr(fixture_user_team_involved(fix)).tm->name,
 			 league_cup_get_name_string(fix->clid),
 			 buf, buf2);
 	user_add_cup_success(&usr(fixture_user_team_involved(fix)),

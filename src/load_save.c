@@ -127,6 +127,7 @@ load_save_save_game(const gchar *filename)
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(
 		  lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	/* The 'job exchange' is a list of teams looking for a manager. */
 	_("Saving job exchange..."),
 	PIC_TYPE_SAVE);
 
@@ -279,6 +280,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
 	      GTK_PROGRESS_BAR(
 		  lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	/* The 'job exchange' is a list of teams looking for a manager. */
 	_("Loading job exchange..."),
 	PIC_TYPE_LOAD);
 

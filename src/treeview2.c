@@ -268,7 +268,9 @@ treeview2_create_bets(GtkListStore *ls)
 	    gtk_list_store_append(ls, &iter);
 	    gtk_list_store_set(ls, &iter, 
 			       0, (k == 1) ?
+			       /* Copy the <span...> stuff, translate in between. */
 			       _("<span background='lightgrey' size='large' weight='bold'>Current bets</span>") :
+			       /* Copy the <span...> stuff, translate in between. */
 			       _("<span background='lightgrey' size='large' weight='bold'>Recent bets</span>"),
 			       1, NULL, 2, NULL, 3, NULL, 4, "", 5, "", -1);
 	}
@@ -362,6 +364,7 @@ treeview2_set_up_bets(GtkTreeView *treeview)
 	 /* Team 2 wins (betting window). */
 	 _("Win2"),
 	 _("Team2"),
+	 /* How much the user wagers; how much he won or lost. */
 	 _("Wager/\nWin/Loss")};
 
     gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),

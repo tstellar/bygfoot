@@ -74,7 +74,7 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 	{{ "support-dir", 's', 0, G_OPTION_ARG_STRING, &support_dir, 
 	   _("Specify additional support directory (takes priority over default ones)"), "DIR" },
 
-	 { "debug-level", 'd', 0, G_OPTION_ARG_INT, &deb_level, _("Debug level to use"), "N" },
+	 { "debug-level", 'd', 0, G_OPTION_ARG_INT, &deb_level, "[developer] Debug level to use", "N" },
 
 	 { "lang", 'L', 0, G_OPTION_ARG_STRING, &lang, _("Language to use (a code like 'de')"), "CODE" },
 
@@ -86,6 +86,9 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 	   _("Commentary file name (may be in a support dir)"), "FILE" },
 
 	 { "token-file", 'T', 0, G_OPTION_ARG_STRING, &token_file,
+	   /* Live game tokens are strings like _AT_ in live game commentary files
+	      which will be filled in by the program during runtime; e.g. _AT_ becomes
+	      the attendace for the match. */
 	   _("File containing live game tokens (may be in a support dir)"), "FILE" },
 
 	 { "event-name", 'e', 0, G_OPTION_ARG_STRING, &event_name,
@@ -95,13 +98,13 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 	   _("How many commentaries to generate per event"), "N" },
 
 	 { "calodds", 'o', 0, G_OPTION_ARG_NONE, &calodds,
-	   _("Calibrate the betting odds by simulating a lot of matches"), NULL },
+	   "[developer] Calibrate the betting odds by simulating a lot of matches", NULL },
 
 	 { "num-matches", 'm', 0, G_OPTION_ARG_INT, &num_matches,
-	   _("How many matches to simulate per skill diff step"), "N" },
+	   "[developer] How many matches to simulate per skill diff step", "N" },
 
 	 { "num-skilldiff", 'S', 0, G_OPTION_ARG_INT, &skilldiffmax,
-	   _("How many skill diff steps to take"), "N" },
+	   "[developer] How many skill diff steps to take", "N" },
 
 	 {NULL}};
 
