@@ -316,6 +316,9 @@ misc2_callback_evaluate_job_application(Job *job, User *user)
     if(job->type != JOB_TYPE_NATIONAL)
     {
 	game_gui_show_warning(
+	    /* A lame duck is someone who will quit his job soon and thus doesn't have
+	       a lot of influence/impact anymore, e.g. an American president during
+	       the last 2 years of his second presidency. */
 	    _("The owners of %s accept your application. Since %s don't want to get stuck with a lame duck, you get fired instantly and spend the rest of the current season tending your garden."),
 	    job_get_team(job)->name, user->tm->name);
 	job_change_country(job);
@@ -325,10 +328,8 @@ misc2_callback_evaluate_job_application(Job *job, User *user)
 	    _("The owners of %s accept your application."),
 	    current_user.tm->name);
 
-    printf("misc2 1\n");
     user_change_team(user, team_of_id(job->team_id));
 
-    printf("misc2 2\n");
     if(job->type == JOB_TYPE_NATIONAL)
 	job_remove(job, TRUE);
     else
@@ -336,7 +337,6 @@ misc2_callback_evaluate_job_application(Job *job, User *user)
 	job_remove(job, FALSE);
 	job_remove_national();
     }
-    printf("misc2 3\n");
 	    
     return TRUE;
 }

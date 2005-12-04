@@ -132,6 +132,7 @@ on_treeview_bets_button_press_event    (GtkWidget       *widget,
     stat2 = bet->fix_id;
     stat3 = col_num - 1;
 
+    /* 'Wager' is the amount of money the user placed on a bet. */
     window_show_digits(buf, _("Wager"), 0, NULL, -1);
     spin_wager = GTK_SPIN_BUTTON(lookup_widget(window.digits, "spinbutton1"));
     gtk_spin_button_set_range(spin_wager, 0,
