@@ -104,7 +104,7 @@ start_new_season(void)
 	    g_ptr_array_remove_index(acps, i);
     }
 
-    printf("s1\n");
+/*     printf("s1\n"); */
     for(i=cps->len - 1; i >= 0; i--)
 	if(cp(i).add_week == -1)
 	{
@@ -112,7 +112,7 @@ start_new_season(void)
 	    fixture_write_cup_fixtures(&cp(i));
 	}
 
-    printf("s2\n");
+/*     printf("s2\n"); */
     if(season > 1)
     {
 	for(i=0;i<users->len;i++)
@@ -144,25 +144,25 @@ start_new_season(void)
 		g_ptr_array_add(acps, &cp(i));
     }
 		
-    printf("s3\n");
+/*     printf("s3\n"); */
     for(i=0;i<ligs->len;i++)
 	if(lig(i).active)
 	    fixture_write_league_fixtures(&lig(i));
 
-    printf("s4\n");
+/*     printf("s4\n"); */
     for(i=cps->len - 1; i >= 0; i--)
     {
-	printf("%d %s adw %d\n", i, cp(i).name, cp(i).add_week);
+/* 	printf("%d %s adw %d\n", i, cp(i).name, cp(i).add_week); */
 
 	if(cp(i).add_week >= 0)
 	{
-	    printf("res\n");
+/* 	    printf("res\n"); */
 	    cup_reset(&cp(i));
 	    
-	    printf("fix\n");
+/* 	    printf("fix\n"); */
 	    if(cp(i).add_week == 0)
 		fixture_write_cup_fixtures(&cp(i));
-	    printf("done\n");
+/* 	    printf("done\n"); */
 	}
 	else if(cp(i).add_week == -1)
 	{
@@ -175,10 +175,10 @@ start_new_season(void)
 	    }
 	}
 
-	printf("#%d %s adw %d\n", i, cp(i).name, cp(i).add_week);
+/* 	printf("#%d %s adw %d\n", i, cp(i).name, cp(i).add_week); */
     }
     
-    printf("s5\n");
+/*     printf("s5\n"); */
     stat5 = -1;
 
     for(i=0;i<name_lists->len;i++)
@@ -187,7 +187,7 @@ start_new_season(void)
     if(season == 1)
 	bet_update();
 
-    printf("s6\n");
+/*     printf("s6\n"); */
 }
 
 /** Fill some global variables with default values at the

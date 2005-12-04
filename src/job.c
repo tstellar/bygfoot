@@ -69,21 +69,21 @@ job_update(void)
     job_add_new_international(int_offers);
 
     /*d*/
-    for(i=0;i<jobs->len;i++)
-    {
-	printf("%d %d %s %s %s %d %d %d\n",
-	       g_array_index(jobs, Job, i).type,
-	       g_array_index(jobs, Job, i).time,
-	       job_get_team(&g_array_index(jobs, Job, i))->name,
-	       g_array_index(jobs, Job, i).league_name,
-	       g_array_index(jobs, Job, i).country_name,
-	       g_array_index(jobs, Job, i).league_layer,
-	       g_array_index(jobs, Job, i).country_rating,
-	       g_array_index(jobs, Job, i).talent_percent);
-	query_job_application_successful(&g_array_index(jobs, Job, i),
-					 &current_user);
-    }
-    printf("\n");
+/*     for(i=0;i<jobs->len;i++) */
+/*     { */
+/* 	printf("%d %d %s %s %s %d %d %d\n", */
+/* 	       g_array_index(jobs, Job, i).type, */
+/* 	       g_array_index(jobs, Job, i).time, */
+/* 	       job_get_team(&g_array_index(jobs, Job, i))->name, */
+/* 	       g_array_index(jobs, Job, i).league_name, */
+/* 	       g_array_index(jobs, Job, i).country_name, */
+/* 	       g_array_index(jobs, Job, i).league_layer, */
+/* 	       g_array_index(jobs, Job, i).country_rating, */
+/* 	       g_array_index(jobs, Job, i).talent_percent); */
+/* 	query_job_application_successful(&g_array_index(jobs, Job, i), */
+/* 					 &current_user); */
+/*     } */
+/*     printf("\n"); */
 }
 
 /** Add some new international job offers to the job exchange. */
@@ -114,7 +114,7 @@ job_add_new_international(gint num_of_new)
 	idx = job_country_is_in_list(
 	    (gchar*)g_ptr_array_index(country_files, rndom), 
 	    countries, num_of_new);
-	
+
 	if(idx == -1)
 	{
 	    idx = k;
@@ -130,8 +130,8 @@ job_add_new_international(gint num_of_new)
 	new_job.time = math_rndi(const_int("int_job_update_interval") - 1,
 				 const_int("int_job_update_interval") + 1);
 	new_job.country_name = g_strdup(countries[idx].name);
-	new_job.country_rating = -1;
-	new_job.league_name = league->name;
+	new_job.country_rating = countries[idx].rating;
+	new_job.league_name = g_strdup(league->name);
 	new_job.league_layer = league->layer;
 
 	team_id = job_team_is_in_cup(tm->name);
@@ -157,9 +157,8 @@ job_add_new_international(gint num_of_new)
 	g_array_append_val(jobs, new_job);
     }
 
-    for(i=0;i<num_of_new;i++)
-	if(countries[i].sid != NULL)
-	    printf("%d %s\n", i, countries[i].sid);
+/*     for(i=0;i<k;i++) */
+/* 	printf("%d %s\n", i, countries[i].sid); */
 
     free_gchar_array(&country_files);
 }
@@ -202,6 +201,7 @@ job_add_new_national(void)
     new_job.country_rating = -1;
     new_job.league_name = league->name;
     new_job.league_layer = league->layer;
+
     new_job.talent_percent = 
 	(gint)rint((team_get_average_talent(tm) /
 		    league->average_talent) * 100);
@@ -334,11 +334,11 @@ query_job_application_successful(const Job *job, const User *user)
     }
 
     /*d*/
-    printf("%s avd %.1f ld %d crd %d %.0f\n", tm->name,
-	   job_av_skill - user_av_skill,
-	   job->league_layer - league_from_clid(user->tm->clid)->layer,
-	   job->country_rating - country.rating,
-	   success_needed);
+/*     printf("%s avd %.1f ld %d crd %d %.0f\n", tm->name, */
+/* 	   job_av_skill - user_av_skill, */
+/* 	   job->league_layer - league_from_clid(user->tm->clid)->layer, */
+/* 	   job->country_rating - country.rating, */
+/* 	   success_needed); */
 
     return (user->counters[COUNT_USER_SUCCESS] >= success_needed);
 }
@@ -369,13 +369,13 @@ job_change_country(Job *job)
     Team tm = *(job_get_team(job));
     gint season_temp = season + 1;
 
-    printf("1\n");
+/*     printf("1\n"); */
     for(i=transfer_list->len - 1;i>=0;i--)
 	transfer_remove_player(i);
     
     free_bets(TRUE);
 
-    printf("2\n");
+/*     printf("2\n"); */
     /* There's only one user (otherwise
        international job offers are disabled). */
     for(i=0;i<2;i++)
@@ -384,12 +384,12 @@ job_change_country(Job *job)
 	usr(0).bets[i] = g_array_new(FALSE, FALSE, sizeof(BetUser));
     }
 
-    printf("3\n");
+/*     printf("3\n"); */
     free_country(&country, TRUE);
 
     xml_country_read(job->country_file, &country);
 
-    printf("4\n");
+/*     printf("4\n"); */
     stat5 = STATUS_GENERATE_TEAMS;
     for(i=0;i<ligs->len;i++)
 	for(j=0;j<lig(i).teams->len;j++)
@@ -401,7 +401,6 @@ job_change_country(Job *job)
 		tm.id = g_array_index(lig(i).teams, Team, j).id;
 		tm.clid = g_array_index(lig(i).teams, Team, j).clid;
 		job->team_id = tm.id;
-		printf("id ## %d %d\n", tm.id, tm.clid);
 		free_team(&g_array_index(lig(i).teams, Team, j));
 		g_array_index(lig(i).teams, Team, j) = tm;
 
@@ -412,13 +411,13 @@ job_change_country(Job *job)
 	    }
     stat5 = -1;
 
-    printf("5\n");
+/*     printf("5\n"); */
     /* Set season to 1 so that some special things
        in the start_new_season function don't get applied. */
     season = 1;
     start_new_season();
     season = season_temp;
-    printf("6\n");
+/*     printf("6\n"); */
 }
 
 /** Remove all national job offers from the jobs list (when changing country). */
