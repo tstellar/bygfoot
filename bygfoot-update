@@ -365,15 +365,22 @@ function get_team_defs()
 
 		if [ -d ../$country ]; then
 		    pushd ../$country &> /dev/null
+		    team_found=0
 		    for league in league*xml; do
 			for team in "$team_name1" "$team_name2"; do
 			    if grep "<team_name>$team</team_name>" $league &> /dev/null; then
+				team_found=1
 				cp -f $league $league.bak
 				my_echo "   + Adding $team to $league..."
 				perl -0777 -pe "s+(team_name\>$team\</team_name\>)[\n\t ]*\<def_file\>[^\<]*\</def_file\>[\n\t ]*+\1\n+g" $league.bak | perl -0777 -pe "s+([\t ]*)(\<team_name\>$team\</team_name\>)+\1\2\n\1\<def_file\>$def_name\</def_file>+g" > $league
 			    fi
 			done
 		    done
+		    
+		    if [ $team_found -eq 0 ]; then
+			echo "   ** $team_name1 / $team_name2 not found in any of the leagues! **"
+		    fi
+
 		    popd &> /dev/null
 		else
 		    my_echo "Country directory $country not found."
