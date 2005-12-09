@@ -453,7 +453,8 @@ lg_commentary_set_player_tokens(const LiveGameUnit *unit, const Fixture *fix)
 		       player_get_last_name(pl1->name));
 	misc_token_add(token_rep,
 		       option_int("string_token_player_goals0", &tokens), 
-		       misc_int_to_char(player_games_goals_get(pl1, fix->clid, PLAYER_VALUE_GOALS)));
+		       misc_int_to_char(player_games_goals_get(
+					    pl1, fix->clid, PLAYER_VALUE_GOALS)));
 	misc_token_add(token_rep,
 		       option_int("string_token_player_goals_all0", &tokens), 
 		       misc_int_to_char(player_all_games_goals(pl1, PLAYER_VALUE_GOALS)));

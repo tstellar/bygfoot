@@ -70,16 +70,6 @@ on_team_selection_cancel_clicked       (GtkButton       *button,
     main_exit_program(EXIT_OK, NULL);
 }
 
-
-void
-on_team_selection_tv_row_activated     (GtkTreeView     *treeview,
-                                        GtkTreePath     *path,
-                                        GtkTreeViewColumn *column,
-                                        gpointer         user_data)
-{
-    on_button_add_player_clicked(NULL, NULL);
-}
-
 void
 on_team_selection_load_clicked         (GtkButton       *button,
                                         gpointer         user_data)

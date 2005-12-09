@@ -703,7 +703,10 @@ treeview_helper_team_selection(GtkTreeViewColumn *col,
 	g_object_set(renderer, "text", ((Team*)team_pointer)->name, NULL);
     else if(column == 4)
     {
-	sprintf(buf, "%.1f", team_get_average_skill((Team*)team_pointer, FALSE));
+	if(stat0 == STATUS_TEAM_SELECTION)
+	    strcpy(buf, "");
+	else
+	    sprintf(buf, "%.1f", team_get_average_skill((Team*)team_pointer, FALSE));
 	g_object_set(renderer, "text", buf, NULL);
     }
     else

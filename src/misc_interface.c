@@ -31,21 +31,22 @@ create_window_startup (void)
 {
   GtkWidget *window_startup;
   GtkWidget *vbox2;
+  GtkWidget *vbox34;
+  GtkWidget *label69;
+  GtkWidget *combo_country;
+  GtkWidget *label121;
   GtkWidget *hpaned1;
   GtkWidget *scrolledwindow10;
   GtkWidget *treeview_users;
   GtkWidget *scrolledwindow1;
   GtkWidget *treeview_startup;
   GtkWidget *hseparator10;
-  GtkWidget *vbox34;
-  GtkWidget *label69;
-  GtkWidget *combo_country;
   GtkWidget *hseparator11;
   GtkWidget *label4;
   GtkWidget *comboboxentry_start_league;
   GtkWidget *hseparator12;
-  GtkWidget *hbox54;
   GtkWidget *label75;
+  GtkWidget *hbox54;
   GtkWidget *entry_player_name;
   GtkWidget *button_add_player;
   GtkWidget *alignment19;
@@ -94,6 +95,24 @@ create_window_startup (void)
   gtk_widget_show (vbox2);
   gtk_container_add (GTK_CONTAINER (window_startup), vbox2);
 
+  vbox34 = gtk_vbox_new (FALSE, 0);
+  gtk_widget_show (vbox34);
+  gtk_box_pack_start (GTK_BOX (vbox2), vbox34, FALSE, TRUE, 5);
+
+  label69 = gtk_label_new (_("Choose country"));
+  gtk_widget_show (label69);
+  gtk_box_pack_start (GTK_BOX (vbox34), label69, FALSE, FALSE, 0);
+  gtk_misc_set_padding (GTK_MISC (label69), 0, 5);
+
+  combo_country = gtk_combo_box_new_text ();
+  gtk_widget_show (combo_country);
+  gtk_box_pack_start (GTK_BOX (vbox34), combo_country, TRUE, TRUE, 0);
+
+  label121 = gtk_label_new (_("Choose team"));
+  gtk_widget_show (label121);
+  gtk_box_pack_start (GTK_BOX (vbox2), label121, FALSE, FALSE, 0);
+  gtk_misc_set_padding (GTK_MISC (label121), 0, 5);
+
   hpaned1 = gtk_hpaned_new ();
   gtk_widget_show (hpaned1);
   gtk_box_pack_start (GTK_BOX (vbox2), hpaned1, TRUE, TRUE, 0);
@@ -128,25 +147,12 @@ create_window_startup (void)
   gtk_box_pack_start (GTK_BOX (vbox2), hseparator10, FALSE, FALSE, 0);
   gtk_widget_set_size_request (hseparator10, 1, 5);
 
-  vbox34 = gtk_vbox_new (FALSE, 0);
-  gtk_widget_show (vbox34);
-  gtk_box_pack_start (GTK_BOX (vbox2), vbox34, FALSE, TRUE, 5);
-
-  label69 = gtk_label_new (_("Choose country"));
-  gtk_widget_show (label69);
-  gtk_box_pack_start (GTK_BOX (vbox34), label69, FALSE, FALSE, 0);
-  gtk_misc_set_padding (GTK_MISC (label69), 0, 5);
-
-  combo_country = gtk_combo_box_new_text ();
-  gtk_widget_show (combo_country);
-  gtk_box_pack_start (GTK_BOX (vbox34), combo_country, TRUE, TRUE, 0);
-
   hseparator11 = gtk_hseparator_new ();
   gtk_widget_show (hseparator11);
   gtk_box_pack_start (GTK_BOX (vbox2), hseparator11, FALSE, FALSE, 0);
-  gtk_widget_set_size_request (hseparator11, 1, 5);
+  gtk_widget_set_size_request (hseparator11, 1, 10);
 
-  label4 = gtk_label_new (_("Start in"));
+  label4 = gtk_label_new (_("Choose league to start in"));
   gtk_widget_show (label4);
   gtk_box_pack_start (GTK_BOX (vbox2), label4, FALSE, FALSE, 0);
 
@@ -159,13 +165,13 @@ create_window_startup (void)
   gtk_box_pack_start (GTK_BOX (vbox2), hseparator12, FALSE, FALSE, 0);
   gtk_widget_set_size_request (hseparator12, 1, 5);
 
+  label75 = gtk_label_new (_("Choose username"));
+  gtk_widget_show (label75);
+  gtk_box_pack_start (GTK_BOX (vbox2), label75, FALSE, FALSE, 0);
+
   hbox54 = gtk_hbox_new (FALSE, 5);
   gtk_widget_show (hbox54);
   gtk_box_pack_start (GTK_BOX (vbox2), hbox54, FALSE, TRUE, 0);
-
-  label75 = gtk_label_new (_("Username"));
-  gtk_widget_show (label75);
-  gtk_box_pack_start (GTK_BOX (hbox54), label75, FALSE, FALSE, 0);
 
   entry_player_name = gtk_entry_new ();
   gtk_widget_show (entry_player_name);
@@ -175,7 +181,7 @@ create_window_startup (void)
 
   button_add_player = gtk_button_new ();
   gtk_widget_show (button_add_player);
-  gtk_box_pack_start (GTK_BOX (hbox54), button_add_player, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (vbox2), button_add_player, FALSE, FALSE, 0);
 
   alignment19 = gtk_alignment_new (0.5, 0.5, 0, 0);
   gtk_widget_show (alignment19);
@@ -326,14 +332,11 @@ create_window_startup (void)
   g_signal_connect ((gpointer) window_startup, "delete_event",
                     G_CALLBACK (on_team_selection_cancel_clicked),
                     NULL);
-  g_signal_connect ((gpointer) treeview_users, "button_press_event",
-                    G_CALLBACK (on_treeview_users_button_press_event),
-                    NULL);
-  g_signal_connect ((gpointer) treeview_startup, "row_activated",
-                    G_CALLBACK (on_team_selection_tv_row_activated),
-                    NULL);
   g_signal_connect ((gpointer) combo_country, "changed",
                     G_CALLBACK (on_combo_country_changed),
+                    NULL);
+  g_signal_connect ((gpointer) treeview_users, "button_press_event",
+                    G_CALLBACK (on_treeview_users_button_press_event),
                     NULL);
   g_signal_connect ((gpointer) entry_player_name, "activate",
                     G_CALLBACK (on_entry_player_name_activate),
@@ -357,21 +360,22 @@ create_window_startup (void)
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (window_startup, window_startup, "window_startup");
   GLADE_HOOKUP_OBJECT (window_startup, vbox2, "vbox2");
+  GLADE_HOOKUP_OBJECT (window_startup, vbox34, "vbox34");
+  GLADE_HOOKUP_OBJECT (window_startup, label69, "label69");
+  GLADE_HOOKUP_OBJECT (window_startup, combo_country, "combo_country");
+  GLADE_HOOKUP_OBJECT (window_startup, label121, "label121");
   GLADE_HOOKUP_OBJECT (window_startup, hpaned1, "hpaned1");
   GLADE_HOOKUP_OBJECT (window_startup, scrolledwindow10, "scrolledwindow10");
   GLADE_HOOKUP_OBJECT (window_startup, treeview_users, "treeview_users");
   GLADE_HOOKUP_OBJECT (window_startup, scrolledwindow1, "scrolledwindow1");
   GLADE_HOOKUP_OBJECT (window_startup, treeview_startup, "treeview_startup");
   GLADE_HOOKUP_OBJECT (window_startup, hseparator10, "hseparator10");
-  GLADE_HOOKUP_OBJECT (window_startup, vbox34, "vbox34");
-  GLADE_HOOKUP_OBJECT (window_startup, label69, "label69");
-  GLADE_HOOKUP_OBJECT (window_startup, combo_country, "combo_country");
   GLADE_HOOKUP_OBJECT (window_startup, hseparator11, "hseparator11");
   GLADE_HOOKUP_OBJECT (window_startup, label4, "label4");
   GLADE_HOOKUP_OBJECT (window_startup, comboboxentry_start_league, "comboboxentry_start_league");
   GLADE_HOOKUP_OBJECT (window_startup, hseparator12, "hseparator12");
-  GLADE_HOOKUP_OBJECT (window_startup, hbox54, "hbox54");
   GLADE_HOOKUP_OBJECT (window_startup, label75, "label75");
+  GLADE_HOOKUP_OBJECT (window_startup, hbox54, "hbox54");
   GLADE_HOOKUP_OBJECT (window_startup, entry_player_name, "entry_player_name");
   GLADE_HOOKUP_OBJECT (window_startup, button_add_player, "button_add_player");
   GLADE_HOOKUP_OBJECT (window_startup, alignment19, "alignment19");
