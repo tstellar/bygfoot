@@ -633,8 +633,8 @@ user_history_add(User *user, gint type, const gchar *team_name,
 	       g_array_index(user->history, UserHistory, i).season == season &&
 	       strcmp(g_array_index(user->history, UserHistory, i).team_name,
 		      team_name) == 0 &&
-	       strcmp(g_array_index(user->history, UserHistory, i).string[1], 
-		      string1) == 0)
+	       strcmp(g_array_index(user->history, UserHistory, i).string[0], 
+		      string0) == 0)
 	    {
 		/** Same cup round. */
 		if(strcmp(g_array_index(user->history, UserHistory, i).string[2],
@@ -663,6 +663,8 @@ user_history_add(User *user, gint type, const gchar *team_name,
     {
 	if(string0 != NULL)
 	    misc_string_assign(&his->string[0], string0);
+	if(string1 != NULL)
+	    misc_string_assign(&his->string[1], string1);
 	if(string2 != NULL)
 	    misc_string_assign(&his->string[2], string2);
 	g_array_sort(user->history, (GCompareFunc)user_history_compare);

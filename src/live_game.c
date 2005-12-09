@@ -474,8 +474,9 @@ live_game_event_injury(gint team, gint player, gboolean create_new)
 			      last_unit.event.player)->fitness =
 		MAX(0, player_of_id_team(tms[last_unit.event.team],
 					 last_unit.event.player)->fitness -
-		    math_rnd(const_float("float_live_game_temp_injury_fitness_decrease_lower"),
-			     const_float("float_live_game_temp_injury_fitness_decrease_upper")));
+		    math_rnd(
+			const_float("float_live_game_temp_injury_fitness_decrease_lower"),
+			const_float("float_live_game_temp_injury_fitness_decrease_upper")));
     }
     
     live_game_finish_unit();
@@ -612,7 +613,8 @@ live_game_event_scoring_chance(void)
 	    else
 	    {
 		last_unit.event.player =
-		    game_get_player(tms[last_unit.possession], last_unit.area, 0, -1, TRUE);
+		    game_get_player(
+			tms[last_unit.possession], last_unit.area, 0, -1, TRUE);
 
 		last_unit.event.player2 =
 		    game_get_player(tms[last_unit.possession], last_unit.area, 0, 
@@ -707,6 +709,9 @@ live_game_event_general(gboolean create_new)
     if((debug > 100 && stat2 != -1) ||
        debug > 130)
 	printf("\t\tlive_game_event_general\n");
+
+    if(create_new && stat0 == STATUS_LIVE_GAME_PAUSE)
+	return;
 
     if(create_new)
     {

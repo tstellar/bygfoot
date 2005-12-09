@@ -108,22 +108,29 @@ transfer_add_cpu_offers(void)
 	if(team_is_user(trans(i).tm) != -1 &&
 	   trans(i).offers->len == 0 &&
 	   math_rnd(0, 1) < const_float("float_transfer_offer_prob_max") -
-	   (user_from_team(trans(i).tm)->scout % 10 * const_float("float_transfer_offer_prob_reduce")))
-	    transfer_add_offer(i, transfer_team_get_new(),
-			       (gint)rint((gfloat)player_of_id_team(trans(i).tm, trans(i).id)->value *
-					  (1 + math_rnd(
-					      scout_factor_bounds[user_from_team(trans(i).tm)->scout % 10][0],
-					      scout_factor_bounds[user_from_team(trans(i).tm)->scout % 10][1]))),
-			       -1);
+	   (user_from_team(trans(i).tm)->scout % 10 * 
+	    const_float("float_transfer_offer_prob_reduce")))
+	    transfer_add_offer(
+		i, transfer_team_get_new(),
+		math_round_integer(
+		    (gint)rint(
+			(gfloat)player_of_id_team(trans(i).tm, trans(i).id)->value *
+			(1 + math_rnd(
+			    scout_factor_bounds[user_from_team(trans(i).tm)->scout % 10][0],
+			    scout_factor_bounds[user_from_team(trans(i).tm)->scout % 10][1]))), 2),
+		-1);
 }
+
 
 /** Return a random team as a potential buyer for a user player. */
 Team*
 transfer_team_get_new(void)
 {
     gint rndom;
-    GPtrArray *league_teams = team_get_sorted(team_compare_func, TEAM_COMPARE_UNSORTED, FALSE),
-	*cup_teams = team_get_sorted(team_compare_func, TEAM_COMPARE_UNSORTED, TRUE);
+    GPtrArray *league_teams = team_get_sorted(team_compare_func, 
+					      TEAM_COMPARE_UNSORTED, FALSE),
+	*cup_teams = team_get_sorted(team_compare_func, 
+				     TEAM_COMPARE_UNSORTED, TRUE);
     Team *return_value = NULL;
 
     while(return_value == NULL || team_is_user(return_value) != -1)
@@ -206,29 +213,39 @@ transfer_evaluate_offers(void)
 		{
 		    if(transoff(i, j).status != TRANSFER_OFFER_REJECTED2)
 		    {
-			if(player_of_id_team(trans(i).tm, trans(i).id)->value > transoff(i, j).fee &&
-			   player_of_id_team(trans(i).tm, trans(i).id)->wage > transoff(i, j).wage)
+			if(player_of_id_team(trans(i).tm, trans(i).id)->value >
+			   transoff(i, j).fee &&
+			   player_of_id_team(trans(i).tm, trans(i).id)->wage >
+			   transoff(i, j).wage)
 			{
-			    user_event_add(user_from_team(transoff(i, j).tm),
-					   EVENT_TYPE_TRANSFER_OFFER_REJECTED_FEE_WAGE, 
-					   transoff(i, j).fee, transoff(i, j).wage,
-					   trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name);
+			    user_event_add(
+				user_from_team(transoff(i, j).tm),
+				EVENT_TYPE_TRANSFER_OFFER_REJECTED_FEE_WAGE, 
+				transoff(i, j).fee, transoff(i, j).wage,
+				trans(i).tm, 
+				player_of_id_team(trans(i).tm, trans(i).id)->name);
 			    transoff(i, j).status = TRANSFER_OFFER_REJECTED;
 			}
-			else if(player_of_id_team(trans(i).tm, trans(i).id)->value > transoff(i, j).fee)
+			else if(player_of_id_team(trans(i).tm, trans(i).id)->value > 
+				transoff(i, j).fee)
 			{
-			    user_event_add(user_from_team(transoff(i, j).tm),
-					   EVENT_TYPE_TRANSFER_OFFER_REJECTED_FEE,
-					   transoff(i, j).fee, transoff(i, j).wage,
-					   trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name);
+			    user_event_add(
+				user_from_team(transoff(i, j).tm),
+				EVENT_TYPE_TRANSFER_OFFER_REJECTED_FEE,
+				transoff(i, j).fee, transoff(i, j).wage,
+				trans(i).tm, 
+				player_of_id_team(trans(i).tm, trans(i).id)->name);
 			    transoff(i, j).status = TRANSFER_OFFER_REJECTED;
 			}
-			else if(player_of_id_team(trans(i).tm, trans(i).id)->wage > transoff(i, j).wage)
+			else if(player_of_id_team(trans(i).tm, trans(i).id)->wage > 
+				transoff(i, j).wage)
 			{
-			    user_event_add(user_from_team(transoff(i, j).tm),
-					   EVENT_TYPE_TRANSFER_OFFER_REJECTED_WAGE,
-					   transoff(i, j).fee, transoff(i, j).wage,
-					   trans(i).tm, player_of_id_team(trans(i).tm, trans(i).id)->name);
+			    user_event_add(
+				user_from_team(transoff(i, j).tm),
+				EVENT_TYPE_TRANSFER_OFFER_REJECTED_WAGE,
+				transoff(i, j).fee, transoff(i, j).wage,
+				trans(i).tm, 
+				player_of_id_team(trans(i).tm, trans(i).id)->name);
 			    transoff(i, j).status = TRANSFER_OFFER_REJECTED;
 			}
 			else
@@ -257,11 +274,12 @@ transfer_add_new_players(void)
 			const_int("int_transfer_max_players") - transfer_list->len);
     
     for(i=0;i<number_of_new;i++)
-	transfer_add_player(transfer_player_get_new(
-				(math_rnd(0, 1) < const_float("float_transfer_cup_percentage") &&
-				 query_cup_transfer())),
-			    math_rndi(const_int("int_transfer_time_lower"),
-				      const_int("int_transfer_time_upper")));
+	transfer_add_player(
+	    transfer_player_get_new(
+		(math_rnd(0, 1) < const_float("float_transfer_cup_percentage") &&
+		 query_cup_transfer())),
+	    math_rndi(const_int("int_transfer_time_lower"),
+		      const_int("int_transfer_time_upper")));
 }
 
 /** Select a random player for the transfer list. */
@@ -303,12 +321,16 @@ transfer_add_player(Player *pl, gint time)
 
     for(i=0;i<4;i++)
     {
-	deviance_value = math_rnd(-(i + 1) * const_float("float_transfer_scout_deviance_value"),
-				  (i + 1) * const_float("float_transfer_scout_deviance_value"));
-	deviance_wage = math_rnd(-(i + 1) * const_float("float_transfer_scout_deviance_wage"),
-				 (i + 1) * const_float("float_transfer_scout_deviance_wage"));
-	new.fee[i] = (gint)rint((gfloat)pl->value * (1 + deviance_value));
-	new.wage[i] = (gint)rint((gfloat)pl->wage * (1 + deviance_wage));
+	deviance_value = 
+	    math_rnd(-(i + 1) * const_float("float_transfer_scout_deviance_value"),
+		     (i + 1) * const_float("float_transfer_scout_deviance_value"));
+	deviance_wage = 
+	    math_rnd(-(i + 1) * const_float("float_transfer_scout_deviance_wage"),
+		     (i + 1) * const_float("float_transfer_scout_deviance_wage"));
+	new.fee[i] = math_round_integer(
+	    (gint)rint((gfloat)pl->value * (1 + deviance_value)), 2);
+	new.wage[i] = math_round_integer(
+	    (gint)rint((gfloat)pl->wage * (1 + deviance_wage)), 2);
     }
 
     g_array_append_val(transfer_list, new);
@@ -453,13 +475,15 @@ transfer_add_remove_user_player(Player *pl)
     {
 	if(week < transfer_get_deadline())
 	{
-	    transfer_add_player(pl,
-				(gint)rint(((gfloat)const_int("int_transfer_time_lower") +
-					    (gfloat)const_int("int_transfer_time_upper")) / 2));
-	    game_gui_print_message(_("%s has been added to the transfer list for %d weeks."),
-				   pl->name, 
-				   (gint)rint(((gfloat)const_int("int_transfer_time_lower") +
-					       (gfloat)const_int("int_transfer_time_upper")) / 2));
+	    transfer_add_player(
+		pl,
+		(gint)rint(((gfloat)const_int("int_transfer_time_lower") +
+			    (gfloat)const_int("int_transfer_time_upper")) / 2));
+	    game_gui_print_message(
+		_("%s has been added to the transfer list for %d weeks."),
+		pl->name, 
+		(gint)rint(((gfloat)const_int("int_transfer_time_lower") +
+			    (gfloat)const_int("int_transfer_time_upper")) / 2));
 	}
 	else
 	{

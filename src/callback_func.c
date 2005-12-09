@@ -103,33 +103,6 @@ callback_player_clicked(gint idx, GdkEventButton *event)
 
     if(event->button == 1)
     {
-	if(selected_row == -1)
-	{
-	    selected_row = idx;
-	    return;
-	}
-
-	player_swap(current_user.tm, selected_row,
-		    current_user.tm, idx);
-	if(opt_user_int("int_opt_user_swap_adapts") == 1 &&
-	   current_user.tm->structure !=
-	   team_find_appropriate_structure(current_user.tm))
-	{
-	    team_change_structure(current_user.tm,
-				  team_find_appropriate_structure(current_user.tm));
-	    team_rearrange(current_user.tm);
-	}
-
-	game_gui_write_av_skills();
-
-	selected_row = -1;
-
-	treeview_show_user_player_list();
-	if(stat0 == STATUS_MAIN)
-	    treeview_show_next_opponent();
-    }
-    else if(event->button == 3)
-    {
 	if(stat0 == STATUS_SHOW_TRANSFER_LIST)
 	{
 	    selected_row = -1;
@@ -142,9 +115,36 @@ callback_player_clicked(gint idx, GdkEventButton *event)
 	}
 	else
 	{
-	    selected_row = idx;
-	    window_show_menu_player((GdkEvent*)event);
+	    if(selected_row == -1)
+	    {
+		selected_row = idx;
+		return;
+	    }
+
+	    player_swap(current_user.tm, selected_row,
+			current_user.tm, idx);
+	    if(opt_user_int("int_opt_user_swap_adapts") == 1 &&
+	       current_user.tm->structure !=
+	       team_find_appropriate_structure(current_user.tm))
+	    {
+		team_change_structure(current_user.tm,
+				      team_find_appropriate_structure(current_user.tm));
+		team_rearrange(current_user.tm);
+	    }
+
+	    game_gui_write_av_skills();
+
+	    selected_row = -1;
+
+	    treeview_show_user_player_list();
+	    if(stat0 == STATUS_MAIN)
+		treeview_show_next_opponent();
 	}
+    }
+    else if(event->button == 3)
+    {
+	selected_row = idx;
+	window_show_menu_player((GdkEvent*)event);
     }
 
     setsav0;
@@ -361,7 +361,8 @@ callback_transfer_list_user(gint button, gint idx)
     gchar buf[SMALL],
 	buf2[SMALL], buf3[SMALL];
 
-    if(button == 3)
+    if(button == 3 || 
+       (button == 1 && trans(idx).offers->len == 0))
     {
 	transfer_remove_player(idx);
 	on_button_transfers_clicked(NULL, NULL);
@@ -369,10 +370,8 @@ callback_transfer_list_user(gint button, gint idx)
     }
     else if(button == 1)
     {
-	if(trans(idx).offers->len == 0)
-	    game_gui_print_message(_("There are no offers for the player."));
-	else if(trans(idx).offers->len > 0 &&
-		transoff(idx, 0).status != TRANSFER_OFFER_ACCEPTED)
+	if(trans(idx).offers->len > 0 &&
+	   transoff(idx, 0).status != TRANSFER_OFFER_ACCEPTED)
 	    game_gui_print_message(_("There are some offers for the player which you rejected or will see next week."));
 	else
 	{
@@ -794,9 +793,10 @@ callback_show_youth_academy(void)
 	attributes.on_off[PLAYER_LIST_ATTRIBUTE_ETAL] = 1;
 
     if(stat0 != STATUS_SHOW_YA)
-	game_gui_print_message(_("Right click to move players to and from the youth academy; left click for context menu."));
+	game_gui_print_message(_("Left click to move players to and from the youth academy; right click for context menu."));
 
-    treeview_show_player_list(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")),
-			      player_get_pointers_from_array(current_user.youth_academy.players),
-			      attributes, FALSE);
+    treeview_show_player_list(
+	GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")),
+	player_get_pointers_from_array(current_user.youth_academy.players),
+	attributes, FALSE);
 }

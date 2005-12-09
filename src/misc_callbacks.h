@@ -35,11 +35,6 @@ on_team_selection_cancel_clicked       (GtkButton       *button,
                                         gpointer         user_data);
 
 void
-on_team_selection_tv_row_activated     (GtkTreeView     *treeview,
-                                        GtkTreePath     *path,
-                                        GtkTreeViewColumn *column,
-                                        gpointer         user_data);
-void
 on_team_selection_ok_clicked           (GtkButton       *button,
                                         gpointer         user_data);
 
@@ -173,7 +168,6 @@ on_button_sponsors_clicked             (GtkButton       *button,
 void
 on_button_sponsors_wait_clicked        (GtkButton       *button,
                                         gpointer         user_data);
-#endif
 
 gboolean
 on_eventbox_lg_style_button_press_event
@@ -186,3 +180,4 @@ on_eventbox_lg_boost_button_press_event
                                         (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data);
+#endif

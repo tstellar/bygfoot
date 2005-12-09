@@ -176,11 +176,19 @@ on_button_transfers_clicked            (GtkButton       *button,
 	game_gui_print_message(_("Transfers are disabled in this country definition."));
     else if(week < transfer_get_deadline() || transfer_list->len > 0)
     {
-	stat0 = STATUS_SHOW_TRANSFER_LIST;
-	game_gui_print_message(_("Left click to make an offer. Right click to remove offer."));
-	game_gui_print_message_with_delay(_("Transfer deadline is Week %d"), transfer_get_deadline());
-	treeview_show_transfer_list(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")));
-	gtk_notebook_set_current_page(GTK_NOTEBOOK(lookup_widget(window.main, "notebook_player")), 1);
+	if(stat0 != STATUS_SHOW_TRANSFER_LIST)
+	{
+	    stat0 = STATUS_SHOW_TRANSFER_LIST;
+	    game_gui_print_message(
+		_("Left click to make an offer. Right click to remove offer."));
+	    game_gui_print_message_with_delay(
+		_("Transfer deadline is Week %d"), transfer_get_deadline());
+	}
+
+	treeview_show_transfer_list(
+	    GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")));
+	gtk_notebook_set_current_page(
+	    GTK_NOTEBOOK(lookup_widget(window.main, "notebook_player")), 1);
 	
 	gui_set_arrows();
     }
@@ -533,7 +541,8 @@ on_menu_move_to_youth_academy_activate (GtkMenuItem     *menuitem,
 	if(pl->age > const_float("float_player_age_lower"))
 	    game_gui_print_message(_("The player is too old for the youth academy."));
 	else if(current_user.tm->players->len <= 11)
-	    game_gui_print_message(_("You can't move the player, there are too few players in your team."));
+	    game_gui_print_message(
+		_("You can't move the player, there are too few players in your team."));
 	else if(current_user.youth_academy.players->len ==
 		const_int("int_youth_academy_max_youths"))
 	    game_gui_print_message(_("There is no room in your youth academy."));
@@ -616,7 +625,8 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
     {
 	case STATUS_SHOW_TRANSFER_LIST:
 	    if(trans(idx - 1).tm == current_user.tm ||
-	       (trans(idx - 1).offers->len > 0 && transoff(idx - 1, 0).status == TRANSFER_OFFER_ACCEPTED) ||
+	       (trans(idx - 1).offers->len > 0 && 
+		transoff(idx - 1, 0).status == TRANSFER_OFFER_ACCEPTED) ||
 	       event->button == 1)
 		callback_transfer_list_clicked(event->button, idx - 1);
 	    else if(event->button == 3)
@@ -624,7 +634,8 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
 		if(transfer_remove_offer(idx - 1, current_user.tm))
 		    game_gui_print_message(_("Your offer has been removed."));
 		else
-		    game_gui_print_message(_("You haven't made an offer for the player."));
+		    game_gui_print_message(
+			_("You haven't made an offer for the player."));
 		return TRUE;
 	    }
 	    break;
@@ -639,9 +650,9 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
 	    break;
 	case STATUS_SHOW_YA:
 	    selected_row = idx - 1;
-	    if(event->button == 3)
+	    if(event->button == 1)
 		on_menu_youth_move_to_team_activate(NULL, NULL);
-	    else
+	    else if(event->button == 3)
 		window_show_menu_youth((GdkEvent*)event);
 	    break;
 	case STATUS_SHOW_JOB_EXCHANGE:
