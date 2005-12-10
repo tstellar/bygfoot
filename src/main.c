@@ -65,7 +65,7 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
     gboolean testcom = FALSE, calodds = FALSE;
     gchar *support_dir = NULL, *lang = NULL,
 	*testcom_file = NULL, *token_file = NULL, 
-	*event_name = NULL;
+	*event_name = NULL, *debug_text = NULL;
     gint deb_level = -1, number_of_passes = 1,
 	num_matches = 100, skilldiffmax = 20;
     GError *error = NULL;
@@ -106,6 +106,9 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 	 { "num-skilldiff", 'S', 0, G_OPTION_ARG_INT, &skilldiffmax,
 	   "[developer] How many skill diff steps to take", "N" },
 
+	 { "deb", 'D', 0, G_OPTION_ARG_STRING, &debug_text,
+	   "A debug command like 'deb100 to set the debug level'; see the debug window and debug.c", "STRING" },
+
 	 {NULL}};
 
     if(argc == NULL || argv == NULL)
@@ -145,6 +148,9 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 
     if(lang != NULL)
 	language_set(language_get_code_index(lang) + 1);
+
+    if(debug_text != NULL)
+	statp = debug_text;
 }
 
 /**

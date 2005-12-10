@@ -431,10 +431,13 @@ player_compare_func(gconstpointer a, gconstpointer b, gpointer data)
 			       player_get_game_skill(pl2, FALSE, TRUE));
     else if(type == PLAYER_COMPARE_ATTRIBUTE_POS)
     {
-	if(MIN(player_id_index(pl1->team, pl1->id), player_id_index(pl2->team, pl2->id)) < 11 &&
-	   MAX(player_id_index(pl1->team, pl1->id), player_id_index(pl2->team, pl2->id)) >= 11)
+	if(MIN(player_id_index(pl1->team, pl1->id), 
+	       player_id_index(pl2->team, pl2->id)) < 11 &&
+	   MAX(player_id_index(pl1->team, pl1->id), 
+	       player_id_index(pl2->team, pl2->id)) >= 11)
 	    return_value = 
-		(player_id_index(pl1->team, pl1->id) > player_id_index(pl2->team, pl2->id)) ?
+		(player_id_index(pl1->team, pl1->id) > 
+		 player_id_index(pl2->team, pl2->id)) ?
 		1 : -1;
 	else if(pl1->cskill == 0)
 	    return_value = (pl2->cskill == 0) ? 0 : 1;

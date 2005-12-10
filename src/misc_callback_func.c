@@ -99,6 +99,13 @@ misc_callback_start_game(void)
 	window_create(WINDOW_MAIN);
 	
 	game_gui_show_main();
+
+	if(statp != NULL)
+	{
+	    debug_action((gchar*)statp);
+	    g_free(statp);
+	    statp = NULL;
+	}
     }
     else
     {

@@ -363,11 +363,8 @@ on_button_debug_apply_clicked          (GtkButton       *button,
     GtkEntry *entry_debug =
 	GTK_ENTRY(lookup_widget(window.wdebug, "entry_debug"));
     const gchar *entry_text = gtk_entry_get_text(entry_debug);
-    gchar buf[SMALL];
-    gint value = -1;
-
-    sscanf(entry_text, "%[^-0-9]%d", buf, &value);
-    debug_action(buf, value);
+    
+    debug_action(entry_text);
 
     gtk_entry_set_text(entry_debug, "");
 }

@@ -29,7 +29,7 @@
 #include "bygfoot.h"
 
 void
-debug_action(const gchar *text, gint value);
+debug_action(const gchar *text);
 
 gboolean
 debug_reset_counter(gpointer data);

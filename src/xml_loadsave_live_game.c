@@ -276,9 +276,8 @@ xml_loadsave_live_game_write(const gchar *filename, const LiveGame *live_game)
 
 	if(live_game->fix->id > 10000000)
 	    g_warning(
-		"xml_loadsave_live_game_write: suspicious fix id: %d. competition: %s",
-		live_game->fix->id, 
-		league_cup_get_name_string(live_game->fix->id));
+		"xml_loadsave_live_game_write: suspicious fix id: %d.",
+		live_game->fix->id);
 
 	for(i=0;i<2;i++)
 	    xml_write_string(fil, live_game->team_names[i], 
