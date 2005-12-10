@@ -326,7 +326,7 @@ misc2_callback_evaluate_job_application(Job *job, User *user)
     else
 	game_gui_show_warning(
 	    _("The owners of %s accept your application."),
-	    current_user.tm->name);
+	    job_get_team(job)->name);
 
     user_change_team(user, team_of_id(job->team_id));
 
