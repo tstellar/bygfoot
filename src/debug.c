@@ -35,10 +35,15 @@
 #include "user.h"
 #include "variables.h"
 
-/** Take some debug action depending on the text and the value. */
+/** Take some debug action depending on the text. Text is a prefix and a number. */
 void
-debug_action(const gchar *text, gint value)
+debug_action(const gchar *text)
 {
+    gchar buf[SMALL];
+    gint value = -1;
+
+    sscanf(text, "%[^-0-9]%d", buf, &value);
+
     if(g_str_has_prefix(text, "deb"))
     {
 	option_set_int("int_debug", &constants, value);

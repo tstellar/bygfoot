@@ -29,6 +29,7 @@
 #include "free.h"
 #include "job.h"
 #include "league.h"
+#include "live_game.h"
 #include "main.h"
 #include "maths.h"
 #include "option.h"
@@ -369,13 +370,11 @@ job_change_country(Job *job)
     Team tm = *(job_get_team(job));
     gint season_temp = season + 1;
 
-/*     printf("1\n"); */
     for(i=transfer_list->len - 1;i>=0;i--)
 	transfer_remove_player(i);
     
     free_bets(TRUE);
 
-/*     printf("2\n"); */
     /* There's only one user (otherwise
        international job offers are disabled). */
     for(i=0;i<2;i++)
@@ -384,12 +383,12 @@ job_change_country(Job *job)
 	usr(0).bets[i] = g_array_new(FALSE, FALSE, sizeof(BetUser));
     }
 
-/*     printf("3\n"); */
+    live_game_reset(&usr(0).live_game, NULL, FALSE);
+
     free_country(&country, TRUE);
 
     xml_country_read(job->country_file, &country);
 
-/*     printf("4\n"); */
     stat5 = STATUS_GENERATE_TEAMS;
     for(i=0;i<ligs->len;i++)
 	for(j=0;j<lig(i).teams->len;j++)
@@ -411,22 +410,9 @@ job_change_country(Job *job)
 	    }
     stat5 = -1;
 
-/*     printf("5\n"); */
     /* Set season to 1 so that some special things
        in the start_new_season function don't get applied. */
     season = 1;
     start_new_season();
     season = season_temp;
-/*     printf("6\n"); */
-}
-
-/** Remove all national job offers from the jobs list (when changing country). */
-void
-job_remove_national(void)
-{
-    gint i;
-
-    for(i=jobs->len - 1; i >= 0; i--)
-	if(g_array_index(jobs, Job, i).type == JOB_TYPE_NATIONAL)
-	    job_remove(&g_array_index(jobs, Job, i), TRUE);
 }

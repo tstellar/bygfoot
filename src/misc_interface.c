@@ -40,7 +40,6 @@ create_window_startup (void)
   GtkWidget *treeview_users;
   GtkWidget *scrolledwindow1;
   GtkWidget *treeview_startup;
-  GtkWidget *hseparator10;
   GtkWidget *hseparator11;
   GtkWidget *label4;
   GtkWidget *comboboxentry_start_league;
@@ -97,12 +96,13 @@ create_window_startup (void)
 
   vbox34 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox34);
-  gtk_box_pack_start (GTK_BOX (vbox2), vbox34, FALSE, TRUE, 5);
+  gtk_box_pack_start (GTK_BOX (vbox2), vbox34, FALSE, TRUE, 0);
 
   label69 = gtk_label_new (_("Choose country"));
   gtk_widget_show (label69);
   gtk_box_pack_start (GTK_BOX (vbox34), label69, FALSE, FALSE, 0);
-  gtk_misc_set_padding (GTK_MISC (label69), 0, 5);
+  gtk_label_set_justify (GTK_LABEL (label69), GTK_JUSTIFY_CENTER);
+  gtk_misc_set_padding (GTK_MISC (label69), 0, 1);
 
   combo_country = gtk_combo_box_new_text ();
   gtk_widget_show (combo_country);
@@ -141,11 +141,6 @@ create_window_startup (void)
   gtk_container_set_border_width (GTK_CONTAINER (treeview_startup), 2);
   gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (treeview_startup), TRUE);
   gtk_tree_view_set_reorderable (GTK_TREE_VIEW (treeview_startup), TRUE);
-
-  hseparator10 = gtk_hseparator_new ();
-  gtk_widget_show (hseparator10);
-  gtk_box_pack_start (GTK_BOX (vbox2), hseparator10, FALSE, FALSE, 0);
-  gtk_widget_set_size_request (hseparator10, 1, 5);
 
   hseparator11 = gtk_hseparator_new ();
   gtk_widget_show (hseparator11);
@@ -369,7 +364,6 @@ create_window_startup (void)
   GLADE_HOOKUP_OBJECT (window_startup, treeview_users, "treeview_users");
   GLADE_HOOKUP_OBJECT (window_startup, scrolledwindow1, "scrolledwindow1");
   GLADE_HOOKUP_OBJECT (window_startup, treeview_startup, "treeview_startup");
-  GLADE_HOOKUP_OBJECT (window_startup, hseparator10, "hseparator10");
   GLADE_HOOKUP_OBJECT (window_startup, hseparator11, "hseparator11");
   GLADE_HOOKUP_OBJECT (window_startup, label4, "label4");
   GLADE_HOOKUP_OBJECT (window_startup, comboboxentry_start_league, "comboboxentry_start_league");

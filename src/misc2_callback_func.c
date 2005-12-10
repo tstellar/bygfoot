@@ -333,10 +333,7 @@ misc2_callback_evaluate_job_application(Job *job, User *user)
     if(job->type == JOB_TYPE_NATIONAL)
 	job_remove(job, TRUE);
     else
-    {
-	job_remove(job, FALSE);
-	job_remove_national();
-    }
+	free_jobs(TRUE);
 	    
     return TRUE;
 }
