@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bygfoot 1.9.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-10 13:13+0100\n"
-"PO-Revision-Date: 2005-12-05 18:05+0100\n"
+"POT-Creation-Date: 2005-12-13 13:57+0100\n"
+"PO-Revision-Date: 2005-12-10 14:08+0100\n"
 "Last-Translator: Arne en Tobe Deprez <tobedeprez@scarlet.be>\n"
 "Language-Team: Dutch <tobedeprez@scarlet.be>\n"
 "MIME-Version: 1.0\n"
@@ -282,13 +282,13 @@ msgid "%d : %d p."
 msgstr "%d : %d p."
 
 #. a match at home
-#: src/team.c:932
+#: src/team.c:933
 #, c-format
 msgid "%s (H) "
 msgstr "%s (T) "
 
 #. a match on neutral ground
-#: src/team.c:948
+#: src/team.c:949
 #, c-format
 msgid "%s (N) "
 msgstr "%s (N) "
@@ -446,7 +446,7 @@ msgid "4 years"
 msgstr "4 jaar"
 
 #. a match away
-#: src/team.c:938
+#: src/team.c:939
 #, c-format
 msgid "<span background='%s' foreground='%s'>%s (A) </span> "
 msgstr "<span background='%s' foreground='%s'>%s (U)</span>"
@@ -886,17 +886,15 @@ msgstr "Kies spel taal (misshien werkt dit niet in Windows)"
 
 #: src/misc_interface.c:150
 msgid "Choose league to start in"
-msgstr ""
+msgstr "Te gebruiken taal"
 
 #: src/misc_interface.c:111
-#, fuzzy
 msgid "Choose team"
-msgstr "Kies een bestand"
+msgstr "Kies een team"
 
 #: src/misc_interface.c:163
-#, fuzzy
 msgid "Choose username"
-msgstr "Kies een land"
+msgstr "Kies een gebruikersnaam"
 
 #: src/game_gui.c:733
 msgid "Click on OK to apply for the job. Click on CANCEL to close the window."
@@ -1109,12 +1107,12 @@ msgid "Dw"
 msgstr "Dw"
 
 #. draw
-#: src/team.c:998
+#: src/team.c:999
 msgid "Dw "
 msgstr "Dw "
 
 #. a drawn match
-#: src/team.c:922
+#: src/team.c:923
 #, c-format
 msgid "Dw %d : %d"
 msgstr "Dw %d - %d"
@@ -1478,12 +1476,12 @@ msgid "L"
 msgstr "L"
 
 #. lost
-#: src/team.c:1002
+#: src/team.c:1003
 msgid "L  "
 msgstr "V  "
 
 #. a lost match
-#: src/team.c:917
+#: src/team.c:918
 #, c-format
 msgid "L  %d : %d"
 msgstr "V  %d - %d"
@@ -1538,13 +1536,12 @@ msgstr ""
 "rechtermuisknop om de aanbieding te verwijderen."
 
 #: src/callback_func.c:796
-#, fuzzy
 msgid ""
 "Left click to move players to and from the youth academy; right click for "
 "context menu."
 msgstr ""
-"Klik met de rechter muisknop om spelers naar en van de jeugd academie te "
-"verplaatsen; klik met de linker muisknop om het popup menu te tonen."
+"Klik met de linkermuisknop om spelers van en naar de jeugdacademie de "
+"verplaatse; klik met de rechtermuisknop om het contextmenu te tonen."
 
 #: src/callbacks.c:870
 msgid ""
@@ -2754,12 +2751,12 @@ msgid "W"
 msgstr "W"
 
 #. won
-#: src/team.c:1005
+#: src/team.c:1006
 msgid "W  "
 msgstr "W  "
 
 #. a won match
-#: src/team.c:911
+#: src/team.c:912
 #, c-format
 msgid "W  %d : %d"
 msgstr "W  %d - %d"

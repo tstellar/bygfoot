@@ -75,7 +75,8 @@ enum
     TAG_END
 };
 
-gint state, idx_mon_in, idx_mon_out, idx, idx_bet;
+gint state, idx_mon_in, idx_mon_out, idx,
+    idx_bet, idx_cnt;
 User new_user;
 UserHistory new_history;
 Event new_event;
@@ -110,7 +111,7 @@ xml_loadsave_users_start_element (GMarkupParseContext *context,
     if(tag == TAG_USER)
     {
 	new_user = user_new();
-	idx = idx_mon_out = idx_mon_in = 0;
+	idx = idx_mon_out = idx_mon_in = idx_cnt = 0;
     }
     else if(tag >= TAG_START_PLAYERS && tag <= TAG_END_PLAYERS)
     {
@@ -118,7 +119,8 @@ xml_loadsave_users_start_element (GMarkupParseContext *context,
 	valid_tag = TRUE;
 
 	if(tag == TAG_START_PLAYERS)
-	    new_user.youth_academy.players = g_array_new(FALSE, FALSE, sizeof(Player));
+	    new_user.youth_academy.players = 
+		g_array_new(FALSE, FALSE, sizeof(Player));
 
 	xml_loadsave_players_start_element(tag, new_user.tm);
     }
@@ -151,7 +153,7 @@ xml_loadsave_users_end_element    (GMarkupParseContext *context,
 				   GError             **error)
 {
     gint tag = xml_get_tag_from_name(element_name);
-    
+
     if(tag == TAG_USER)
     {
 	state = TAG_USERS;
@@ -181,7 +183,7 @@ xml_loadsave_users_end_element    (GMarkupParseContext *context,
     {
 	state = TAG_USER;
 	if(tag == TAG_USER_COUNTER)
-	    idx++;
+	    idx_cnt++;
 	else if(tag == TAG_USER_MONEY_OUTS)
 	    idx_mon_out++;
 	else if(tag == TAG_USER_MONEY_INS)
@@ -278,7 +280,7 @@ xml_loadsave_users_text         (GMarkupParseContext *context,
     else if(state == TAG_USER_SPONSOR_BENEFIT)
 	new_user.sponsor.benefit = int_value;
     else if(state == TAG_USER_COUNTER)
-	new_user.counters[idx] = int_value;
+	new_user.counters[idx_cnt] = int_value;
     else if(state == TAG_USER_MONEY_IN)
 	new_user.money_in[idx_mon_in][idx] = int_value;
     else if(state == TAG_USER_MONEY_OUT)
@@ -414,14 +416,15 @@ xml_loadsave_users_write(const gchar *prefix)
 	{
 	    fprintf(fil, "%s<_%d>\n", I1, TAG_USER_MONEY_OUTS);
 	    for(k=0;k<MON_OUT_END;k++)
-		xml_write_int(fil, usr(i).money_out[j][k], TAG_USER_MONEY_OUT, I2);	    
+		xml_write_int(fil, usr(i).money_out[j][k], TAG_USER_MONEY_OUT, I2);
 	    fprintf(fil, "%s</_%d>\n", I1, TAG_USER_MONEY_OUTS);
 	}
 
 	xml_write_int(fil, usr(i).youth_academy.coach, TAG_USER_YA_COACH, I1);
 	xml_write_int(fil, usr(i).youth_academy.percentage, TAG_USER_YA_PERCENTAGE, I1);
 	xml_write_float(fil, usr(i).youth_academy.av_coach, TAG_USER_YA_AV_COACH, I1);
-	xml_write_float(fil, usr(i).youth_academy.av_percentage, TAG_USER_YA_AV_PERCENTAGE, I1);
+	xml_write_float(fil, usr(i).youth_academy.av_percentage, 
+			TAG_USER_YA_AV_PERCENTAGE, I1);
 	xml_write_float(fil, usr(i).youth_academy.counter_youth, TAG_USER_YA_COUNTER, I1);
 
 	xml_loadsave_players_write(fil, usr(i).youth_academy.players);
