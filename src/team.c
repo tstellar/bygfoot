@@ -778,7 +778,8 @@ team_get_new(const Team *tm, gboolean fire)
 	bound2 = (fire) ? const_int("int_team_new_bound_lower") :
 	const_int("int_team_new_bound_upper");
     gint idx = -1;
-    GPtrArray *teams = team_get_sorted(team_compare_func, TEAM_COMPARE_LEAGUE_RANK, FALSE);
+    GPtrArray *teams = 
+	team_get_sorted(team_compare_func, TEAM_COMPARE_LEAGUE_RANK, FALSE);
     Team *return_value;
 
     for(i=0;i<teams->len;i++)

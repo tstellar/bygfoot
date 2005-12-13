@@ -107,7 +107,7 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 	   "[developer] How many skill diff steps to take", "N" },
 
 	 { "deb", 'D', 0, G_OPTION_ARG_STRING, &debug_text,
-	   "A debug command like 'deb100 to set the debug level'; see the debug window and debug.c", "STRING" },
+	   "[developer] A debug command like 'deb100 to set the debug level'; see the debug window and debug.c", "STRING" },
 
 	 {NULL}};
 

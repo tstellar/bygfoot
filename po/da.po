@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bygfoot Football Manager 1.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-10 13:13+0100\n"
-"PO-Revision-Date: 2005-10-21 18:23+0100\n"
+"POT-Creation-Date: 2005-12-13 13:57+0100\n"
+"PO-Revision-Date: 2005-12-12 18:13+0100\n"
 "Last-Translator: Kristian Poul Herkild <kristian@herkild.dk>\n"
 "Language-Team:  <kristian@herkild.dk>\n"
 "MIME-Version: 1.0\n"
@@ -277,13 +277,13 @@ msgid "%d : %d p."
 msgstr "%d : %d str."
 
 #. a match at home
-#: src/team.c:932
+#: src/team.c:933
 #, c-format
 msgid "%s (H) "
 msgstr "%s (H) "
 
 #. a match on neutral ground
-#: src/team.c:948
+#: src/team.c:949
 #, c-format
 msgid "%s (N) "
 msgstr "%s (N) "
@@ -418,7 +418,7 @@ msgstr "%s: %d uger\n"
 
 #: src/main.c:117
 msgid "- a simple and addictive GTK2 football manager"
-msgstr "- en enkel og vanedannende GTK2 fodboldmanager"
+msgstr "- en enkel og vanedannende GTK2-fodboldmanager"
 
 #: src/misc_interface.c:1066 src/misc_interface.c:1074
 #: src/misc_interface.c:1100 src/misc_interface.c:1108
@@ -442,7 +442,7 @@ msgid "4 years"
 msgstr "4 år"
 
 #. a match away
-#: src/team.c:938
+#: src/team.c:939
 #, c-format
 msgid "<span background='%s' foreground='%s'>%s (A) </span> "
 msgstr "<span background='%s' foreground='%s'>%s (U) </span> "
@@ -479,12 +479,16 @@ msgstr ""
 msgid ""
 "<span background='lightgrey' size='large' weight='bold'>Current bets</span>"
 msgstr ""
+"<span background='lightgrey' size='large' weight='bold'>Nuværende væddemål</"
+"span>"
 
 #. Copy the <span...> stuff, translate in between.
 #: src/treeview2.c:274
 msgid ""
 "<span background='lightgrey' size='large' weight='bold'>Recent bets</span>"
 msgstr ""
+"<span background='lightgrey' size='large' weight='bold'>Seneste væddemål</"
+"span>"
 
 #: src/treeview.c:1616 src/treeview.c:1621
 #, c-format
@@ -509,20 +513,20 @@ msgstr "Tilføj sidste kamp"
 
 #: src/lg_commentary.c:508 src/team.c:533
 msgid "ALL OUT ATTACK"
-msgstr "Ultraoffensivt"
+msgstr "ultraoffensivt"
 
 #: src/lg_commentary.c:496 src/team.c:525
 msgid "ALL OUT DEFEND"
-msgstr "Ultradefensivt"
+msgstr "ultradefensivt"
 
 #. Boost value.
 #: src/lg_commentary.c:511 src/team.c:541
 msgid "ANTI"
-msgstr "Modsat"
+msgstr "modsat"
 
 #: src/lg_commentary.c:505 src/team.c:531
 msgid "ATTACK"
-msgstr "Offensivt"
+msgstr "offensivt"
 
 #: src/interface.c:1013 src/misc2_interface.c:1052
 msgid "About"
@@ -563,11 +567,11 @@ msgstr "Alle filer"
 
 #: src/interface.c:519
 msgid "All Out Attack"
-msgstr "Ultraoffensivt"
+msgstr "ultraoffensivt"
 
 #: src/interface.c:499
 msgid "All Out Defend"
-msgstr "Ultradefensivt"
+msgstr "ultradefensivt"
 
 #: src/interface.c:694
 msgid "Anti"
@@ -579,7 +583,7 @@ msgstr "Hvilken som helst"
 
 #: src/game_gui.c:736
 msgid "Apply for the job?"
-msgstr ""
+msgstr "Ansøge om jobbet?"
 
 #: src/callbacks.c:209
 msgid "At least one user didn't take his turn this week. Continue?"
@@ -623,7 +627,6 @@ msgid "Autosave interval "
 msgstr "Interval for automatisk gem"
 
 #: src/misc_interface.c:657
-#, fuzzy
 msgid "Av. skill: "
 msgstr "Gns. evner:  "
 
@@ -637,7 +640,6 @@ msgid "Av.Sk."
 msgstr "Gns. evne"
 
 #: src/treeview2.c:471
-#, fuzzy
 msgid "Av.skill"
 msgstr "Gns. evner:  "
 
@@ -726,22 +728,24 @@ msgstr "Bedste offensive hold"
 #: src/interface.c:998 src/options_interface.c:1020 src/treeview.c:1345
 #: src/treeview.c:1355 src/window.c:830
 msgid "Betting"
-msgstr ""
+msgstr "Væddemål"
 
 #: src/misc3_interface.c:61
 msgid "Betting -- Left click on odd to place or remove bet"
-msgstr ""
+msgstr "Væddemål -- venstreklik på odds for at tilføje eller fjerne væddemål"
 
 #: src/treeview.c:1378
 msgid "Bi-weekly balance"
 msgstr "Fjortendagesbalance"
 
 #: src/treeview.c:1371 src/treeview.c:1374
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Bi-weekly balance\n"
 "(Week %d and %d)"
-msgstr "Fjortendagesbalance"
+msgstr ""
+"Fjortendagesbalance\n"
+"(Uge %d og %d)"
 
 #: src/interface.c:673
 msgid "Boost"
@@ -752,9 +756,9 @@ msgid "Boost ON is disabled in this country definition."
 msgstr "Boost Til er slået fra i denne landedefinition."
 
 #: src/team.c:575
-#, fuzzy, c-format
+#, c-format
 msgid "Boost changed to %s (costs %d per minute)."
-msgstr "Boost ændret til %s."
+msgstr "Boost ændret til %s (koster %d pr. minut)."
 
 #: src/team.c:580
 #, c-format
@@ -763,9 +767,8 @@ msgstr "Boost ændret til %s."
 
 #. Applying boost costs money.
 #: src/treeview.c:1357
-#, fuzzy
 msgid "Boost costs"
-msgstr "Boost"
+msgstr "Boost-udgifter"
 
 #: src/player.c:1270
 msgid "Broken ankle"
@@ -801,7 +804,7 @@ msgstr "Bygfoot Mindeværdige Kampe"
 
 #: src/window.c:257
 msgid "Bygfoot Save Files"
-msgstr "Bygfoot Save Files"
+msgstr "Bygfoot Gemte Filer"
 
 #: src/misc2_interface.c:942
 msgid ""
@@ -848,7 +851,7 @@ msgstr "Kort"
 
 #: src/treeview.c:1916
 msgid "Career values"
-msgstr "Karriereværdier"
+msgstr "Spillerstatistik"
 
 #: src/misc_interface.c:762
 msgid ""
@@ -859,7 +862,7 @@ msgstr "Ændr kommentarniveau. Jo højere værdi, des flere kommentarer."
 #: src/misc_interface.c:740
 msgid "Change live game speed. The lower the value the faster the live game."
 msgstr ""
-"Ændr hastighed for 'direkte' kamp. Jo lavere værdi, des hurtige "
+"Ændr hastighed for 'direkte' kamp. Jo højere værdi, des hurtigere "
 "kampafvikling."
 
 #: src/misc_interface.c:101
@@ -877,21 +880,20 @@ msgstr ""
 
 #: src/misc_interface.c:150
 msgid "Choose league to start in"
-msgstr ""
+msgstr "Vælg liga"
 
 #: src/misc_interface.c:111
-#, fuzzy
 msgid "Choose team"
-msgstr "Vælg fil"
+msgstr "Vælg hold"
 
 #: src/misc_interface.c:163
-#, fuzzy
 msgid "Choose username"
-msgstr "Vælg et land"
+msgstr "Vælg brugnavn"
 
 #: src/game_gui.c:733
 msgid "Click on OK to apply for the job. Click on CANCEL to close the window."
 msgstr ""
+"Klik \"OK\" for at ansøge om jobbet. Klik \"ANNULÉR\" for at lukke vinduet."
 
 #: src/misc2_interface.c:817
 msgid "Click on a user to remove him from the game."
@@ -908,10 +910,12 @@ msgstr "Kommentarer"
 #: src/main.c:95
 msgid "Commentary event to test; leave out to test all commentaries"
 msgstr ""
+"Kommentarhændelse, der skal testes; lad stå tom, hvis alle kommentarer skal "
+"testes"
 
 #: src/main.c:86
 msgid "Commentary file name (may be in a support dir)"
-msgstr ""
+msgstr "Kommentarfilnavn (er muligvis i en hjælpemappe)"
 
 #: src/treeview.c:2546
 msgid "Company"
@@ -1051,11 +1055,11 @@ msgstr "Beslut senere"
 
 #: src/options_interface.c:1009
 msgid "Default wager"
-msgstr ""
+msgstr "Normal indsats"
 
 #: src/interface.c:504 src/treeview.c:1559
 msgid "Defend"
-msgstr "Defensivt"
+msgstr "defensivt"
 
 #: src/interface.c:647
 msgid "Defenders"
@@ -1082,9 +1086,8 @@ msgid "Done."
 msgstr "Færdig."
 
 #: src/treeview2.c:363
-#, fuzzy
 msgid "Draw"
-msgstr "U"
+msgstr "Uafgjort"
 
 #: src/treeview.c:1450
 msgid "Drawing credit"
@@ -1097,12 +1100,12 @@ msgid "Dw"
 msgstr "U"
 
 #. draw
-#: src/team.c:998
+#: src/team.c:999
 msgid "Dw "
 msgstr "U"
 
 #. a drawn match
-#: src/team.c:922
+#: src/team.c:923
 #, c-format
 msgid "Dw %d : %d"
 msgstr "U %d : %d"
@@ -1178,6 +1181,7 @@ msgstr "Gebyr"
 #: src/main.c:92
 msgid "File containing live game tokens (may be in a support dir)"
 msgstr ""
+"Fil, der indeholder \"direkte kampe\"-tegn (er muligvis i en hjælpemappe)"
 
 #: src/options_interface.c:358
 msgid ""
@@ -1336,7 +1340,7 @@ msgstr "Lyskenskade"
 
 #: src/player.c:1255
 msgid "Hamstring"
-msgstr "Beskadiget ledbånd i knæet"
+msgstr "Beskadigede knæhaser"
 
 #: src/user.c:487
 #, c-format
@@ -1357,7 +1361,7 @@ msgstr "Hjemme"
 
 #: src/main.c:98
 msgid "How many commentaries to generate per event"
-msgstr ""
+msgstr "Hvor mange kommentarer, der skal genereres til hver event"
 
 #: src/options_interface.c:401
 msgid "How many digits after the comma there are for skill etc."
@@ -1369,7 +1373,7 @@ msgstr "Hvor mange filer, der vil blive brugt, når der gemmes automatisk"
 
 #: src/options_interface.c:1017
 msgid "How much you wager by default"
-msgstr ""
+msgstr "Hvor meget, du normalt satser"
 
 #: src/options_interface.c:292
 msgid "How often the game is saved automatically"
@@ -1467,12 +1471,12 @@ msgid "L"
 msgstr "T"
 
 #. lost
-#: src/team.c:1002
+#: src/team.c:1003
 msgid "L  "
 msgstr "T"
 
 #. a lost match
-#: src/team.c:917
+#: src/team.c:918
 #, c-format
 msgid "L  %d : %d"
 msgstr "T  %d : %d"
@@ -1525,7 +1529,6 @@ msgid "Left click to make an offer. Right click to remove offer."
 msgstr "Venstre klik for at give tilbud. Højreklik for at fjerne tilbud."
 
 #: src/callback_func.c:796
-#, fuzzy
 msgid ""
 "Left click to move players to and from the youth academy; right click for "
 "context menu."
@@ -1606,9 +1609,8 @@ msgstr "Henter cuppen %s..."
 
 #. The 'job exchange' is a list of teams looking for a manager.
 #: src/load_save.c:284
-#, fuzzy
 msgid "Loading job exchange..."
-msgstr "Vis jobtilbud"
+msgstr "Indlæser jobskifte..."
 
 #: src/xml.c:81
 #, c-format
@@ -1616,9 +1618,8 @@ msgid "Loading league: %s"
 msgstr "Henter ligaen %s..."
 
 #: src/load_save.c:238
-#, fuzzy
 msgid "Loading leagues and cups..."
-msgstr "Indlæser ligaer %s..."
+msgstr "Indlæser ligaer og pokalturneringer..."
 
 #: src/load_save.c:295
 msgid "Loading miscellaneous..."
@@ -1671,7 +1672,7 @@ msgstr "Mindeværdig kamp tilføjet."
 
 #: src/interface.c:875 src/window.c:822
 msgid "Memorable matches"
-msgstr "Mindevædige kampe"
+msgstr "Mindeværdige kampe"
 
 #: src/treeview.c:1560
 msgid "Midfield"
@@ -1813,9 +1814,8 @@ msgid "Opponent"
 msgstr "Modstander"
 
 #: src/misc_interface.c:669
-#, fuzzy
 msgid "Opponent player list"
-msgstr "Nulstil spillerliste"
+msgstr "Modstanderens spillerliste"
 
 #: src/window.c:749
 msgid "Options"
@@ -1971,13 +1971,15 @@ msgstr "Afspil igen"
 
 #: src/misc_interface.c:232
 msgid "Randomise teams in cups"
-msgstr ""
+msgstr "Bland hold tilfældigt i pokalturneringer"
 
 #: src/misc_interface.c:235
 msgid ""
 "Randomise the order of teams in cups. This only makes sense in supernational "
 "definitions like the World Cup where the order of teams is fixed."
 msgstr ""
+"Bland hold tilfældigt i pokalturneringer. Dette giver kun mening i "
+"internationale definitioner som VM, hvor holdsammensætningen er fastlåst."
 
 #: src/misc2_interface.c:108 src/treeview.c:1644
 msgid "Rank"
@@ -2073,11 +2075,9 @@ msgid "Right click and left click to change your playing style"
 msgstr "Brug højreklik eller venstreklik for at ændre din spillestil"
 
 #: src/callbacks.c:1227
-#, fuzzy
 msgid "Right click to apply for job at once, left click to see team info."
 msgstr ""
-"Højreklik for at flytte spillere til og fra ungdomsakademiet; venstreklik "
-"for at få en menu."
+"Højreklik for at ansøge om stilling; venstreklik for at se klubinformationer."
 
 #: src/misc_interface.c:1056 src/misc_interface.c:1090
 msgid "Right-click to set to 0"
@@ -2139,14 +2139,12 @@ msgstr "Gem vinduesstørrelse, position og lodret skillelinie"
 
 #. The 'job exchange' is a list of teams looking for a manager.
 #: src/load_save.c:131
-#, fuzzy
 msgid "Saving job exchange..."
-msgstr "Vis jobtilbud"
+msgstr "Gemmer jobskifte..."
 
 #: src/load_save.c:85
-#, fuzzy
 msgid "Saving leagues and cups..."
-msgstr "Gemmer ligaer..."
+msgstr "Gemmer ligaer og pokalturneringer..."
 
 #: src/load_save.c:142
 msgid "Saving miscellaneous..."
@@ -2254,9 +2252,8 @@ msgid "Show info"
 msgstr "Vis info"
 
 #: src/interface.c:751
-#, fuzzy
 msgid "Show job exchange"
-msgstr "Vis jobtilbud"
+msgstr "Vis jobskifte"
 
 #: src/options_interface.c:534
 msgid "Show job offers"
@@ -2275,18 +2272,16 @@ msgid "Show live game"
 msgstr "Vis 'direkte' kamp"
 
 #: src/misc3_interface.c:74 src/options_interface.c:990
-#, fuzzy
 msgid "Show matches from all leagues"
-msgstr "Genindlæs kampe fra fil"
+msgstr "Vis kampe fra alle ligaer"
 
 #: src/misc3_interface.c:79 src/options_interface.c:995
-#, fuzzy
 msgid "Show matches from cups"
-msgstr "Genindlæs kampe fra fil"
+msgstr "Vis kampe fra pokalturneringer"
 
 #: src/misc3_interface.c:84 src/options_interface.c:1001
 msgid "Show only my recent bets"
-msgstr ""
+msgstr "Vis kun mine seneste væddemål"
 
 #: src/options_interface.c:581
 msgid "Show overall games/goals"
@@ -2294,7 +2289,7 @@ msgstr "Vis alle typer kampe/mål"
 
 #: src/options_interface.c:252
 msgid "Show progressbar pictures"
-msgstr ""
+msgstr "Vis billeder til statuslinje"
 
 #: src/interface.c:982
 msgid "Show stadium"
@@ -2306,11 +2301,11 @@ msgstr "Vis tendensbjælke"
 
 #: src/interface.c:1001
 msgid "Show the betting window"
-msgstr ""
+msgstr "Vis væddemålsvindue"
 
 #: src/interface.c:754
 msgid "Show the list of available manager jobs"
-msgstr ""
+msgstr "Vis liste over tilgængelige managerstillinger"
 
 #: src/interface.c:1098
 msgid "Show transferlist (T)"
@@ -2435,9 +2430,8 @@ msgid "Tables"
 msgstr "Stillinger"
 
 #: src/treeview2.c:472
-#, fuzzy
 msgid "Talent %"
-msgstr "Ans. talent "
+msgstr "Talent %"
 
 #: src/treeview2.c:468 src/treeview.c:151 src/treeview.c:308
 #: src/treeview.c:683 src/treeview.c:1221 src/treeview.c:1638
@@ -2459,18 +2453,16 @@ msgid "Team style changed to %s."
 msgstr "Spillestil ændret til %s."
 
 #: src/treeview2.c:360
-#, fuzzy
 msgid "Team1"
-msgstr "Klub"
+msgstr "Klub 1"
 
 #: src/treeview2.c:366
-#, fuzzy
 msgid "Team2"
-msgstr "Klub"
+msgstr "Klub 2"
 
 #: src/main.c:83
 msgid "Test an XML commentary file"
-msgstr ""
+msgstr "Test en XML-kommentarfil"
 
 #: src/callback_func.c:317
 msgid "The bank doesn't grant you more money."
@@ -2479,7 +2471,7 @@ msgstr "Din bank vil ikke give dig flere penge."
 #: src/bet.c:241
 #, c-format
 msgid "The betting office doesn't allow you to wager more than %s."
-msgstr ""
+msgstr "Væddemålskontoret vil ikke tillade dig at satse mere end %s."
 
 #: src/callbacks.c:111
 msgid "The current game state is unsaved and will be lost. Continue?"
@@ -2494,7 +2486,7 @@ msgstr "Jo højere værdi, des flere kommentarer vil du se."
 #: src/callbacks.c:1229
 #, c-format
 msgid "The job exchange update interval is %d weeks."
-msgstr ""
+msgstr "Jobskifteopdateringsintervallet er %d uger."
 
 #: src/options_interface.c:476
 msgid "The lower this value the faster the live game commentary will scroll."
@@ -2503,9 +2495,9 @@ msgstr ""
 "kamp blive opdateret."
 
 #: src/misc2_callback_func.c:328
-#, fuzzy, c-format
+#, c-format
 msgid "The owners of %s accept your application."
-msgstr "%s accepterer dit tilbud."
+msgstr "%s accepterer din ansøgning."
 
 #. A lame duck is someone who will quit his job soon and thus doesn't have
 #. a lot of influence/impact anymore, e.g. an American president during
@@ -2517,6 +2509,9 @@ msgid ""
 "with a lame duck, you get fired instantly and spend the rest of the current "
 "season tending your garden."
 msgstr ""
+"Ejerne af %s godkender din ansøgning. Siden du alligevel snart skifter "
+"arbejdsplads, ønsker %s ikke længere at beholde dig. Du bliver derfor fyret "
+"øjeblikkeligt, og bruger resten af den nuværende sæson på at passe din have."
 
 #: src/game_gui.c:730
 #, c-format
@@ -2569,6 +2564,8 @@ msgid ""
 "The owners of %s politely reject your application. You're not successful "
 "enough in their eyes."
 msgstr ""
+"Ejerne af %s afslår høfligt din ansøgning. Du er ikke succesfuld nok i deres "
+"øjne."
 
 #: src/callbacks.c:455
 msgid "The player is already on the list."
@@ -2652,9 +2649,8 @@ msgid "There are no leagues or cups with tables in this country definition."
 msgstr "Der er ingen ligaer eller pokalturneringer i denne landedefinition."
 
 #: src/callbacks.c:435
-#, fuzzy
 msgid "There are no season history elements stored yet."
-msgstr "Der er ingen tilbud på spilleren."
+msgstr "Der er endnu ingen gemte historieelementer."
 
 #: src/callback_func.c:375
 msgid ""
@@ -2673,7 +2669,7 @@ msgid ""
 "There were too many substitutions. Only 3 per game are allowed. Player list "
 "reset."
 msgstr ""
-"Der var for mange udskiftninger. Kun 3 per kamp er tillade. Spillerlisten er "
+"Der var for mange udskiftninger. Kun 3 per kamp er tilladt. Spillerlisten er "
 "sat tilbage."
 
 #: src/treeview.c:1343
@@ -2745,12 +2741,12 @@ msgid "W"
 msgstr "V"
 
 #. won
-#: src/team.c:1005
+#: src/team.c:1006
 msgid "W  "
 msgstr "V"
 
 #. a won match
-#: src/team.c:911
+#: src/team.c:912
 #, c-format
 msgid "W  %d : %d"
 msgstr "V  %d : %d"
@@ -2766,9 +2762,8 @@ msgstr "Løn"
 
 #. 'Wager' is the amount of money the user placed on a bet.
 #: src/misc3_callbacks.c:136
-#, fuzzy
 msgid "Wager"
-msgstr "Løn"
+msgstr "Indsats"
 
 #. How much the user wagers; how much he won or lost.
 #: src/treeview2.c:368
@@ -2776,6 +2771,8 @@ msgid ""
 "Wager/\n"
 "Win/Loss"
 msgstr ""
+"Indsats/\n"
+"Vundet/tabt"
 
 #: src/treeview.c:1347
 msgid "Wages"
@@ -2901,12 +2898,14 @@ msgstr ""
 
 #: src/options_interface.c:998
 msgid "Whether to show cup matches in the betting window"
-msgstr ""
+msgstr "Hvorvidt kampe fra pokalturneringer skal vises i væddemål"
 
 #: src/misc3_interface.c:82
 msgid ""
 "Whether to show cup matches. Use the options window to toggle permanently."
 msgstr ""
+"Hvorvidt der skal vises kampe fra pokalturneringer. Du kan ændre dette "
+"permanent i \"Indstillinger\"."
 
 #: src/options_interface.c:537
 msgid "Whether to show job offers when a user is successful"
@@ -2914,23 +2913,27 @@ msgstr "Hvorvidt at jobtilbud skal vises, når en bruger har succes"
 
 #: src/options_interface.c:993
 msgid "Whether to show matches of all leagues in the betting window"
-msgstr ""
+msgstr "Hvorvidt kampe fra alle turneringer skal vises under væddemål"
 
 #: src/misc3_interface.c:77
 msgid ""
 "Whether to show matches of all leagues. Use the options window to toggle "
 "permanently."
 msgstr ""
+"Hvorvidt der skal vises kampe fra alle turneringer. Du kan ændre dette "
+"permanent i \"Indstillinger\"."
 
 #: src/misc3_interface.c:87
 msgid "Whether to show only your bets in the recent bets list"
-msgstr ""
+msgstr "Hvorvidt der kun skal vises dine væddemål"
 
 #: src/options_interface.c:255
 msgid ""
 "Whether to show pictures on top of the progressbar when loading/saving or "
 "calculating results"
 msgstr ""
+"Hvorvidt, der skal vises billeder ved statuslinjen, når der hentes/gemmes, "
+"eller beregnes resultater"
 
 #: src/options_interface.c:584
 msgid "Whether to show the player games/goals value in all competitions"
@@ -2947,12 +2950,12 @@ msgstr ""
 #. Team 1 wins (betting window).
 #: src/treeview2.c:362
 msgid "Win1"
-msgstr ""
+msgstr "Hold 1 vinder"
 
 #. Team 2 wins (betting window).
 #: src/treeview2.c:365
 msgid "Win2"
-msgstr ""
+msgstr "Hold 2 vinder"
 
 #. Yellow cards of a player.
 #: src/treeview.c:301
@@ -3019,7 +3022,7 @@ msgstr "Du har ingen gæld."
 #: src/misc3_callbacks.c:128
 #, c-format
 msgid "You bet on outcome %d with an odd of %.2f. How much do you wager?"
-msgstr ""
+msgstr "Du vædder på resultatet %d med odds på %.2f. Hvor meget satser du?"
 
 #: src/callback_func.c:349
 #, c-format
@@ -3075,9 +3078,9 @@ msgstr "Det har du ikke penge til."
 
 #. League name.
 #: src/user.c:726
-#, fuzzy, c-format
+#, c-format
 msgid "You finish the season in the %s on rank %s."
-msgstr "Du slutter sæsonen i %s som nr. %d."
+msgstr "Du slutter sæsonen i %s som nr. %s."
 
 #. League name.
 #: src/user.c:732
@@ -3152,9 +3155,9 @@ msgstr ""
 
 #. Cup round name (e.g. Last 32), number, cup name.
 #: src/user.c:754
-#, fuzzy, c-format
+#, c-format
 msgid "You reach the %s (round %s) of the %s."
-msgstr "Du er nået til %s (runde %d) i %sen."
+msgstr "Du er nået til %s (runde %s) i %sen."
 
 #. Buy a team in a league.
 #: src/user.c:699
