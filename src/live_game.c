@@ -77,7 +77,7 @@ live_game_calculate_fixture(Fixture *fix)
 
     if((debug > 80 && stat2 != -1) ||
        debug > 130)
-	printf("\n\nlive_game_calculate_fixture\n%04d %s %s %04d\n\n",
+	g_print("\n\nlive_game_calculate_fixture\n%04d %s %s %04d\n\n",
 	       tm0->id, tm0->name, tm1->name, tm1->id);
 
     do
@@ -142,7 +142,7 @@ live_game_create_unit(void)
 
     if((debug > 100 && stat2 != -1) ||
        debug > 130)
-	printf("\t\tlive_game_create_unit\n");
+	g_print("\t\tlive_game_create_unit\n");
 
     if(unis->len == 0)
     {
@@ -202,7 +202,7 @@ live_game_fill_new_unit(LiveGameUnit *new)
 
     if((debug > 100 && stat2 != -1) ||
        debug > 130)
-	printf("\t\tlive_game_fill_new_unit\n");
+	g_print("\t\tlive_game_fill_new_unit\n");
 
     possession_change = const_float("float_live_game_event_general") *
 	const_float("float_live_game_possession_changes") /
@@ -262,7 +262,7 @@ live_game_create_start_unit(void)
 
     if((debug > 100 && stat2 != -1) ||
        debug > 130)
-	printf("\t\tlive_game_create_start_unit\n");
+	g_print("\t\tlive_game_create_start_unit\n");
     new.event.player =
 	new.event.player2 = -1;
 
@@ -291,7 +291,7 @@ live_game_evaluate_unit(LiveGameUnit *unit)
 
     if((debug > 100 && stat2 != -1) ||
        debug > 130)
-	printf("\t\tlive_game_evaluate_unit\n");
+	g_print("\t\tlive_game_evaluate_unit\n");
     if(type == LIVE_GAME_EVENT_FOUL)
 	live_game_event_foul();
     else if(type == LIVE_GAME_EVENT_LOST_POSSESSION)
@@ -332,7 +332,7 @@ live_game_event_foul(void)
 
     if((debug > 100 && stat2 != -1) ||
        debug > 130)
-	printf("\t\tlive_game_event_foul\n");
+	g_print("\t\tlive_game_event_foul\n");
     if(math_rnd(0, 1) > const_float("float_live_game_foul_by_possession") *
        game_get_foul_possession_factor(
 	   tms[last_unit.possession]->boost, tms[!last_unit.possession]->boost))
@@ -411,7 +411,7 @@ live_game_event_lost_possession(void)
 {
     if((debug > 100 && stat2 != -1) ||
        debug > 130)
-	printf("\t\tlive_game_event_lost_possession\n");
+	g_print("\t\tlive_game_event_lost_possession\n");
     last_unit.event.player =
 	game_get_player(tms[last_unit.possession], 
 			last_unit.area, 0, -1, TRUE);
@@ -444,7 +444,7 @@ live_game_event_injury(gint team, gint player, gboolean create_new)
 
     if((debug > 100 && stat2 != -1) ||
        debug > 130)
-	printf("\t\tlive_game_event_injury\n");
+	g_print("\t\tlive_game_event_injury\n");
 
     if(create_new)
     {
@@ -540,7 +540,7 @@ live_game_event_stadium(void)
 
     if((debug > 100 && stat2 != -1) ||
        debug > 130)
-	printf("\t\tlive_game_event_stadium\n");
+	g_print("\t\tlive_game_event_stadium\n");
     if(rndom <= probs[0])
 	last_unit.event.type = LIVE_GAME_EVENT_STADIUM_BREAKDOWN;
     else if(rndom <= probs[1])
@@ -571,7 +571,7 @@ live_game_event_scoring_chance(void)
 
     if((debug > 100 && stat2 != -1) ||
        debug > 130)
-	printf("\t\tlive_game_event_scoring_chance\n");
+	g_print("\t\tlive_game_event_scoring_chance\n");
 
     if(math_rnd(0, 1) < const_float("float_live_game_scoring_chance_is_own_goal"))
     {
@@ -642,7 +642,7 @@ live_game_event_penalty(void)
 
     if((debug > 100 && stat2 != -1) ||
        debug > 130)
-	printf("\t\tlive_game_event_penalty\n");
+	g_print("\t\tlive_game_event_penalty\n");
 
     if(last_unit.time != LIVE_GAME_UNIT_TIME_PENALTIES)
     {
@@ -708,7 +708,7 @@ live_game_event_general(gboolean create_new)
 
     if((debug > 100 && stat2 != -1) ||
        debug > 130)
-	printf("\t\tlive_game_event_general\n");
+	g_print("\t\tlive_game_event_general\n");
 
     if(create_new && stat0 == STATUS_LIVE_GAME_PAUSE)
 	return;
@@ -807,7 +807,7 @@ live_game_event_general_get_players(void)
 	
     if((debug > 100 && stat2 != -1) ||
        debug > 130)
-	printf("\t\tlive_game_event_general_get_players\n");
+	g_print("\t\tlive_game_event_general_get_players\n");
     *pl1 = *pl2 = -1;
 
     if(type == LIVE_GAME_EVENT_LOST_POSSESSION)
@@ -841,7 +841,7 @@ live_game_event_free_kick(void)
 
     if((debug > 100 && stat2 != -1) ||
        debug > 130)
-	printf("\t\tlive_game_event_free_kick\n");
+	g_print("\t\tlive_game_event_free_kick\n");
     new.event.player =
 	new.event.player2 = -1;
 
@@ -876,7 +876,7 @@ live_game_event_send_off(gint team, gint player, gboolean second_yellow)
 
     if((debug > 100 && stat2 != -1) ||
        debug > 130)
-	printf("\t\tlive_game_event_send_off\n");
+	g_print("\t\tlive_game_event_send_off\n");
     new.event.player =
 	new.event.player2 = -1;
 
@@ -1038,7 +1038,7 @@ live_game_event_duel(void)
 
     if((debug > 100 && stat2 != -1) ||
        debug > 130)
-	printf("\t\tlive_game_event_duel\n");
+	g_print("\t\tlive_game_event_duel\n");
 
     new.minute = -1;
     new.event.team = new.possession;
@@ -1419,11 +1419,11 @@ live_game_finish_unit(void)
 
     if((debug > 100 && stat2 != -1) ||
        debug > 130)
-	printf("\t\tlive_game_finish_unit\n");
+	g_print("\t\tlive_game_finish_unit\n");
 
     if((debug > 100 && stat2 != -1) ||
        debug > 130)
-	printf("OOOO1 idx %d min %d type %d poss %d team %d pl %d %d\n", unis->len - 1,
+	g_print("OOOO1 idx %d min %d type %d poss %d team %d pl %d %d\n", unis->len - 1,
 	       unit->minute,
 	       unit->event.type, unit->possession, unit->event.team,
 	       unit->event.player,
@@ -1457,7 +1457,7 @@ live_game_finish_unit(void)
 
 	if(-stat5 - 1000 == unit->event.type)
 	{
-	    printf("type %d com **%s**", unit->event.type, unit->event.commentary);
+	    g_print("type %d com **%s**", unit->event.type, unit->event.commentary);
 	    if(g_strrstr(unit->event.commentary, "[") ||
 	       g_strrstr(unit->event.commentary, "]") ||
 	       g_strrstr(unit->event.commentary, "<") ||
@@ -1467,9 +1467,9 @@ live_game_finish_unit(void)
 	       g_strrstr(unit->event.commentary, " L ") ||
 	       g_strrstr(unit->event.commentary, " GE ") ||
 	       g_strrstr(unit->event.commentary, " LE "))
-		printf(" ERROR?\n");
+		g_print(" ERROR?\n");
 	    else
-		printf("\n");
+		g_print("\n");
 	}
 
 	unit->event.verbosity = live_game_event_get_verbosity(unit->event.type);
@@ -1480,7 +1480,7 @@ live_game_finish_unit(void)
 
     if((debug > 100 && stat2 != -1) ||
        debug > 130)
-	printf("OOOO idx %d type %d poss %d team %d pl %d %d\n", unis->len - 1,
+	g_print("OOOO idx %d type %d poss %d team %d pl %d %d\n", unis->len - 1,
 	       unit->event.type, unit->possession, unit->event.team,
 	       unit->event.player,
 	       unit->event.player2);

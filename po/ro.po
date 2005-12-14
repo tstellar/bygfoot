@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot 0.9.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-12 17:51+0100\n"
+"POT-Creation-Date: 2005-12-14 14:59+0100\n"
 "PO-Revision-Date: 2005-12-13 12:06+0100\n"
 "Last-Translator: Spoială Cristian <scristian@gmail.com>\n"
 "Language-Team: Romanian\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/treeview_helper.c:864
+#: src/treeview_helper.c:860
 #, c-format
 msgid ""
 "\n"
@@ -24,7 +24,7 @@ msgstr ""
 "\n"
 "Goluri/Joc %.1f Salvări %% %.1f"
 
-#: src/treeview_helper.c:871
+#: src/treeview_helper.c:867
 #, c-format
 msgid ""
 "\n"
@@ -73,7 +73,7 @@ msgstr " (OG)"
 
 #. A goal scored with penalty.
 #. Penalty shooter.
-#: src/game.c:951 src/treeview_helper.c:1103
+#: src/game.c:951 src/treeview_helper.c:1099
 msgid " (P)"
 msgstr " (P)"
 
@@ -290,7 +290,7 @@ msgstr "%s (H) "
 msgid "%s (N) "
 msgstr "%s (N) "
 
-#: src/treeview_helper.c:980
+#: src/treeview_helper.c:976
 #, c-format
 msgid "%s (expected recovery in %d weeks)"
 msgstr "%s (revenire preconizată în %d săptămâni)"
@@ -406,14 +406,14 @@ msgstr ""
 
 #. Yellow cards of a player in a cup/league. No limit means there isn't a limit
 #. after which the player gets banned for a match automatically.
-#: src/treeview_helper.c:933
+#: src/treeview_helper.c:929
 #, c-format
 msgid "%s: %d (no limit)\n"
 msgstr "%s: %d (fără limită)\n"
 
 #. Ban info of a player in the format:
 #. 'Cup/league name: Number of weeks banned'
-#: src/treeview_helper.c:896
+#: src/treeview_helper.c:892
 #, c-format
 msgid "%s: %d weeks\n"
 msgstr "%s: %d săptămâni\n"
@@ -509,7 +509,7 @@ msgstr ""
 "Un jucator tinar a vrut sa se inscrie in ehipa de tineret dar nu mai sunt "
 "locuri libere."
 
-#: src/treeview_helper.c:1493
+#: src/treeview_helper.c:1489
 msgid "ADD LAST MATCH"
 msgstr "ADAUGA ULTIMUL MECI"
 
@@ -677,7 +677,7 @@ msgstr "Deplasare"
 msgid "BALANCED"
 msgstr "ECHILIBRAT"
 
-#: src/treeview_helper.c:1250
+#: src/treeview_helper.c:1246
 #, c-format
 msgid "BAN(%d)"
 msgstr "BAN(%d)"
@@ -1033,7 +1033,7 @@ msgid "Current skill"
 msgstr "Abilitatea curentă"
 
 #. Defender
-#: src/treeview_helper.c:1367
+#: src/treeview_helper.c:1363
 msgid "D"
 msgstr "D"
 
@@ -1096,7 +1096,7 @@ msgstr "Creditul de împrumut"
 
 #. Games drawn.
 #. Draw.
-#: src/treeview.c:1227 src/treeview_helper.c:1596
+#: src/treeview.c:1227 src/treeview_helper.c:1592
 msgid "Dw"
 msgstr "Ex"
 
@@ -1164,7 +1164,7 @@ msgid "Expenses"
 msgstr "Cheltuieli"
 
 #. Forward
-#: src/treeview_helper.c:1383
+#: src/treeview_helper.c:1379
 msgid "F"
 msgstr "F"
 
@@ -1258,7 +1258,7 @@ msgid "Fractured ankle"
 msgstr "Gleznă fracturată"
 
 #. Goalie
-#: src/treeview_helper.c:1359
+#: src/treeview_helper.c:1355
 msgid "G"
 msgstr "G"
 
@@ -1282,7 +1282,7 @@ msgstr "GP"
 msgid "Ga"
 msgstr "Jo"
 
-#: src/treeview_helper.c:844
+#: src/treeview_helper.c:840
 msgid "Games"
 msgstr "Jocuri"
 
@@ -1317,7 +1317,7 @@ msgstr "Goluri"
 msgid "Goalies"
 msgstr "Goluri"
 
-#: src/treeview.c:1678 src/treeview.c:2148 src/treeview_helper.c:845
+#: src/treeview.c:1678 src/treeview.c:2148 src/treeview_helper.c:841
 msgid "Goals"
 msgstr "Goluri"
 
@@ -1387,7 +1387,7 @@ msgstr ""
 "Cât de des este împrospătată list de jucători în timpul meciului în direct "
 "( minute în meciul în direct)"
 
-#: src/treeview_helper.c:1236
+#: src/treeview_helper.c:1232
 #, c-format
 msgid "INJ(%d)"
 msgstr "ACC(%d)"
@@ -1466,7 +1466,7 @@ msgstr "Daţi-l afară din academie"
 
 #. Games lost.
 #. Lost.
-#: src/treeview.c:1229 src/treeview_helper.c:1589
+#: src/treeview.c:1229 src/treeview_helper.c:1585
 msgid "L"
 msgstr "P"
 
@@ -1533,7 +1533,9 @@ msgstr ""
 msgid ""
 "Left click to move players to and from the youth academy; right click for "
 "context menu."
-msgstr "Click stânga pentru a muta jucătorii la şi de la academia de tineret; click dreapta pentru meniul contextual."
+msgstr ""
+"Click stânga pentru a muta jucătorii la şi de la academia de tineret; click "
+"dreapta pentru meniul contextual."
 
 #: src/callbacks.c:870
 msgid ""
@@ -1643,7 +1645,7 @@ msgid "Loan"
 msgstr "Împrumut"
 
 #. Midfielder
-#: src/treeview_helper.c:1375
+#: src/treeview_helper.c:1371
 msgid "M"
 msgstr "M"
 
@@ -1776,8 +1778,8 @@ msgstr "OFF"
 
 #. Player health: ok.
 #. Player status: ok.
-#: src/misc2_interface.c:222 src/player.c:1246 src/treeview_helper.c:987
-#: src/treeview_helper.c:1263
+#: src/misc2_interface.c:222 src/player.c:1246 src/treeview_helper.c:983
+#: src/treeview_helper.c:1259
 msgid "OK"
 msgstr "OK"
 
@@ -1865,7 +1867,7 @@ msgstr "Executant de penaltyuri/lovituri libere deselectat."
 msgid "Physio"
 msgstr "Fizic"
 
-#: src/treeview_helper.c:832
+#: src/treeview_helper.c:828
 msgid "Player accepts new offers"
 msgstr "Jucătorul acceptă noua ofertă"
 
@@ -1877,7 +1879,7 @@ msgstr "Precizia la atributele jucătorilor"
 msgid "Player attributes shown"
 msgstr "Arată atributele jucătorilor"
 
-#: src/treeview_helper.c:830
+#: src/treeview_helper.c:826
 msgid "Player doesn't negotiate anymore"
 msgstr "Jucătorul nu mai negociază"
 
@@ -1994,7 +1996,7 @@ msgstr "Rearanjează echipa"
 msgid "Recruiting preference"
 msgstr "Preferinţele de recrutare"
 
-#: src/treeview.c:738 src/treeview_helper.c:848
+#: src/treeview.c:738 src/treeview_helper.c:844
 msgid "Reds"
 msgstr "Roşii"
 
@@ -2223,7 +2225,7 @@ msgstr "Şutează la penalty"
 msgid "Shot %"
 msgstr "Şut %"
 
-#: src/treeview.c:732 src/treeview_helper.c:846
+#: src/treeview.c:732 src/treeview_helper.c:842
 msgid "Shots"
 msgstr "Şuturi"
 
@@ -2575,11 +2577,11 @@ msgstr "Jucătorul este reţinut (patronii echipei consideră o ofertă curentă
 msgid "The player is not on the list."
 msgstr "Jucătorul nu este pe listă."
 
-#: src/treeview_helper.c:970
+#: src/treeview_helper.c:966
 msgid "The player is on a cold streak"
 msgstr "Jucătorul nu este pe listă."
 
-#: src/treeview_helper.c:968
+#: src/treeview_helper.c:964
 msgid "The player is on a hot streak"
 msgstr "Jucătorul nu este pe listă."
 
@@ -2729,7 +2731,7 @@ msgstr "Nivelul de comentarii"
 
 #. Games won.
 #. Won.
-#: src/treeview.c:1225 src/treeview_helper.c:1578
+#: src/treeview.c:1225 src/treeview_helper.c:1574
 msgid "W"
 msgstr "V"
 
@@ -2952,7 +2954,7 @@ msgstr "CG"
 msgid "Yellow cards (limit)\n"
 msgstr "Cartonaşe galbene (limita)\n"
 
-#: src/treeview.c:737 src/treeview_helper.c:847
+#: src/treeview.c:737 src/treeview_helper.c:843
 msgid "Yellows"
 msgstr "Cartonaşe galbene"
 

@@ -546,9 +546,6 @@ league_get_team_movements_prom_games(const League *league, GArray *team_movement
 	new_move.dest_idcs = dest_idcs;
 	new_move.dest_assigned = FALSE;
 	g_array_append_val(team_movements, new_move);
-
-	printf("tmov2 %s tm %s %d\n", league->name, new_move.tm.name,
-	       new_move.tm.id);
     }
 
     free_gchar_array(&dest_sids);
@@ -627,25 +624,25 @@ league_team_movements_print(const GArray *team_movements,
     gint i, j;
     const TeamMove *tmove = NULL;
 
-    printf("%-25s Dest \t\t Possible\n\n", "Team");
+    g_print("%-25s Dest \t\t Possible\n\n", "Team");
     for(i=0;i<team_movements->len;i++)
     {
 	tmove = &g_array_index(team_movements, TeamMove, i);
 	if(tmove->dest_assigned)
-	    printf("%-25s (%d) %s \t\t", tmove->tm.name,
+	    g_print("%-25s (%d) %s \t\t", tmove->tm.name,
 		   league_from_clid(tmove->tm.clid)->layer,
 		   lig(g_array_index(tmove->dest_idcs, gint, 0)).name);
 	else
-	    printf("%-25s (%d) UNASSIGNED \t\t", tmove->tm.name,
+	    g_print("%-25s (%d) UNASSIGNED \t\t", tmove->tm.name,
 		   league_from_clid(tmove->tm.clid)->layer);
 	for(j=0;j<tmove->dest_idcs->len;j++)
-	    printf("%d ", g_array_index(tmove->dest_idcs, gint, j));
-	printf("\n");
+	    g_print("%d ", g_array_index(tmove->dest_idcs, gint, j));
+	g_print("\n");
     }
 
-    printf("%-20s Size Cursize\n", "League");
+    g_print("%-20s Size Cursize\n", "League");
     for(i=0;i<ligs->len;i++)
-	printf("%-20s %d %d\n", lig(i).name, league_size[i],
+	g_print("%-20s %d %d\n", lig(i).name, league_size[i],
 	       league_cur_size[i]);
 }
 
@@ -678,7 +675,7 @@ league_team_movements_assign_dest(GArray *team_movements, gint idx,
     TeamMove *tmove = &g_array_index(team_movements, TeamMove, idx);
 
     if(debug > 60)
-	printf("league_team_movements_assign_dest %s\n", tmove->tm.name);
+	g_print("league_team_movements_assign_dest %s\n", tmove->tm.name);
 
     if(tmove->dest_idcs->len == 1)
 	dest_idx = g_array_index(tmove->dest_idcs, gint, 0);
@@ -749,7 +746,7 @@ league_team_movements_prune(GArray *team_movements, const gint *league_size,
     gint i;
 
     if(debug > 60)
-	printf("league_team_movements_prune\n");
+	g_print("league_team_movements_prune\n");
 
     while(query_league_team_movements_unassigned_single(team_movements))
     {
@@ -772,7 +769,7 @@ league_team_movements_destinations(GArray *team_movements, const gint *league_si
     gint league_cur_size[ligs->len];
 
     if(debug > 60)
-	printf("league_team_movements_destinations\n");
+	g_print("league_team_movements_destinations\n");
 
     for(i=0;i<ligs->len;i++)
 	league_cur_size[i] = lig(i).teams->len;

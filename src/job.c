@@ -68,23 +68,6 @@ job_update(void)
 	job_add_new_national();
 
     job_add_new_international(int_offers);
-
-    /*d*/
-/*     for(i=0;i<jobs->len;i++) */
-/*     { */
-/* 	printf("%d %d %s %s %s %d %d %d\n", */
-/* 	       g_array_index(jobs, Job, i).type, */
-/* 	       g_array_index(jobs, Job, i).time, */
-/* 	       job_get_team(&g_array_index(jobs, Job, i))->name, */
-/* 	       g_array_index(jobs, Job, i).league_name, */
-/* 	       g_array_index(jobs, Job, i).country_name, */
-/* 	       g_array_index(jobs, Job, i).league_layer, */
-/* 	       g_array_index(jobs, Job, i).country_rating, */
-/* 	       g_array_index(jobs, Job, i).talent_percent); */
-/* 	query_job_application_successful(&g_array_index(jobs, Job, i), */
-/* 					 &current_user); */
-/*     } */
-/*     printf("\n"); */
 }
 
 /** Add some new international job offers to the job exchange. */
@@ -157,9 +140,6 @@ job_add_new_international(gint num_of_new)
 
 	g_array_append_val(jobs, new_job);
     }
-
-/*     for(i=0;i<k;i++) */
-/* 	printf("%d %s\n", i, countries[i].sid); */
 
     free_gchar_array(&country_files);
 }
@@ -333,13 +313,6 @@ query_job_application_successful(const Job *job, const User *user)
 	    ((gfloat)(job->country_rating - country.rating) *
 	     (gfloat)const_int("int_job_application_points_per_rating"));
     }
-
-    /*d*/
-/*     printf("%s avd %.1f ld %d crd %d %.0f\n", tm->name, */
-/* 	   job_av_skill - user_av_skill, */
-/* 	   job->league_layer - league_from_clid(user->tm->clid)->layer, */
-/* 	   job->country_rating - country.rating, */
-/* 	   success_needed); */
 
     return (user->counters[COUNT_USER_SUCCESS] >= success_needed);
 }

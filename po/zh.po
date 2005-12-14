@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-13 13:57+0100\n"
+"POT-Creation-Date: 2005-12-14 14:59+0100\n"
 "PO-Revision-Date: 2005-09-28 13:35+0800\n"
 "Last-Translator: root <lbyoopp@gmail.com>\n"
 "Language-Team: Chinese <i18n-translation@lists.linux.net.cn>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=GB2312\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/treeview_helper.c:864
+#: src/treeview_helper.c:860
 #, c-format
 msgid ""
 "\n"
@@ -25,7 +25,7 @@ msgstr ""
 "\n"
 "进球/比赛 %.1f 救球 %% %.1f"
 
-#: src/treeview_helper.c:871
+#: src/treeview_helper.c:867
 #, c-format
 msgid ""
 "\n"
@@ -73,7 +73,7 @@ msgstr " (乌龙球)"
 
 #. A goal scored with penalty.
 #. Penalty shooter.
-#: src/game.c:951 src/treeview_helper.c:1103
+#: src/game.c:951 src/treeview_helper.c:1099
 msgid " (P)"
 msgstr " (点球)"
 
@@ -290,7 +290,7 @@ msgstr ""
 msgid "%s (N) "
 msgstr ""
 
-#: src/treeview_helper.c:980
+#: src/treeview_helper.c:976
 #, c-format
 msgid "%s (expected recovery in %d weeks)"
 msgstr "%s (将会在%d周后痊愈)"
@@ -401,14 +401,14 @@ msgstr "%s 严重的伤病使他彻底的告别了职业赛场。他已经离开了你的球队"
 
 #. Yellow cards of a player in a cup/league. No limit means there isn't a limit
 #. after which the player gets banned for a match automatically.
-#: src/treeview_helper.c:933
+#: src/treeview_helper.c:929
 #, c-format
 msgid "%s: %d (no limit)\n"
 msgstr "%s: %d (没有黄牌累计)\n"
 
 #. Ban info of a player in the format:
 #. 'Cup/league name: Number of weeks banned'
-#: src/treeview_helper.c:896
+#: src/treeview_helper.c:892
 #, c-format
 msgid "%s: %d weeks\n"
 msgstr "%s: %d 周\n"
@@ -498,7 +498,7 @@ msgid ""
 "for him."
 msgstr "一名年轻球员希望能够加入你的青年队，但是当前球队中名额已满"
 
-#: src/treeview_helper.c:1493
+#: src/treeview_helper.c:1489
 msgid "ADD LAST MATCH"
 msgstr "添加上一场比赛"
 
@@ -667,7 +667,7 @@ msgstr "客场"
 msgid "BALANCED"
 msgstr "平衡"
 
-#: src/treeview_helper.c:1250
+#: src/treeview_helper.c:1246
 #, c-format
 msgid "BAN(%d)"
 msgstr "禁赛(%d)"
@@ -1018,7 +1018,7 @@ msgid "Current skill"
 msgstr "当前技能值"
 
 #. Defender
-#: src/treeview_helper.c:1367
+#: src/treeview_helper.c:1363
 msgid "D"
 msgstr "后卫"
 
@@ -1082,7 +1082,7 @@ msgstr "透支"
 
 #. Games drawn.
 #. Draw.
-#: src/treeview.c:1227 src/treeview_helper.c:1596
+#: src/treeview.c:1227 src/treeview_helper.c:1592
 msgid "Dw"
 msgstr "平"
 
@@ -1150,7 +1150,7 @@ msgid "Expenses"
 msgstr "消费"
 
 #. Forward
-#: src/treeview_helper.c:1383
+#: src/treeview_helper.c:1379
 msgid "F"
 msgstr "前锋"
 
@@ -1241,7 +1241,7 @@ msgid "Fractured ankle"
 msgstr "脚踝扭伤"
 
 #. Goalie
-#: src/treeview_helper.c:1359
+#: src/treeview_helper.c:1355
 msgid "G"
 msgstr "守门员"
 
@@ -1265,7 +1265,7 @@ msgstr "进球"
 msgid "Ga"
 msgstr "比赛"
 
-#: src/treeview_helper.c:844
+#: src/treeview_helper.c:840
 msgid "Games"
 msgstr "比赛"
 
@@ -1301,7 +1301,7 @@ msgstr "门将"
 msgid "Goalies"
 msgstr "门将"
 
-#: src/treeview.c:1678 src/treeview.c:2148 src/treeview_helper.c:845
+#: src/treeview.c:1678 src/treeview.c:2148 src/treeview_helper.c:841
 msgid "Goals"
 msgstr "进球"
 
@@ -1369,7 +1369,7 @@ msgid ""
 "minutes)"
 msgstr "在实时比赛中球员列表的更新速度（以实时比赛的计时单位 分 为标准）"
 
-#: src/treeview_helper.c:1236
+#: src/treeview_helper.c:1232
 #, c-format
 msgid "INJ(%d)"
 msgstr "伤(%d)"
@@ -1446,7 +1446,7 @@ msgstr "开除出球队"
 
 #. Games lost.
 #. Lost.
-#: src/treeview.c:1229 src/treeview_helper.c:1589
+#: src/treeview.c:1229 src/treeview_helper.c:1585
 msgid "L"
 msgstr "输"
 
@@ -1625,7 +1625,7 @@ msgid "Loan"
 msgstr "贷款"
 
 #. Midfielder
-#: src/treeview_helper.c:1375
+#: src/treeview_helper.c:1371
 msgid "M"
 msgstr "中场"
 
@@ -1758,8 +1758,8 @@ msgstr "关"
 
 #. Player health: ok.
 #. Player status: ok.
-#: src/misc2_interface.c:222 src/player.c:1246 src/treeview_helper.c:987
-#: src/treeview_helper.c:1263
+#: src/misc2_interface.c:222 src/player.c:1246 src/treeview_helper.c:983
+#: src/treeview_helper.c:1259
 msgid "OK"
 msgstr "正常"
 
@@ -1848,7 +1848,7 @@ msgstr "取消选择 点球/任意球 主罚球员"
 msgid "Physio"
 msgstr "队医"
 
-#: src/treeview_helper.c:832
+#: src/treeview_helper.c:828
 msgid "Player accepts new offers"
 msgstr "球员接受了新的出价"
 
@@ -1860,7 +1860,7 @@ msgstr "球员属性精度设定"
 msgid "Player attributes shown"
 msgstr "显示球员属性"
 
-#: src/treeview_helper.c:830
+#: src/treeview_helper.c:826
 msgid "Player doesn't negotiate anymore"
 msgstr "球员不愿再与你谈判下去了"
 
@@ -1975,7 +1975,7 @@ msgstr "重新配置球队"
 msgid "Recruiting preference"
 msgstr "购入选项"
 
-#: src/treeview.c:738 src/treeview_helper.c:848
+#: src/treeview.c:738 src/treeview_helper.c:844
 msgid "Reds"
 msgstr "红牌"
 
@@ -2201,7 +2201,7 @@ msgstr "罚点球"
 msgid "Shot %"
 msgstr "射门 %"
 
-#: src/treeview.c:732 src/treeview_helper.c:846
+#: src/treeview.c:732 src/treeview_helper.c:842
 msgid "Shots"
 msgstr "射门"
 
@@ -2550,12 +2550,12 @@ msgstr "该球员被摘牌（球队董事正在考虑其中一个报价）"
 msgid "The player is not on the list."
 msgstr "此玩家不在玩家列表中"
 
-#: src/treeview_helper.c:970
+#: src/treeview_helper.c:966
 #, fuzzy
 msgid "The player is on a cold streak"
 msgstr "此玩家不在玩家列表中"
 
-#: src/treeview_helper.c:968
+#: src/treeview_helper.c:964
 #, fuzzy
 msgid "The player is on a hot streak"
 msgstr "此玩家不在玩家列表中"
@@ -2702,7 +2702,7 @@ msgstr "解说用语"
 
 #. Games won.
 #. Won.
-#: src/treeview.c:1225 src/treeview_helper.c:1578
+#: src/treeview.c:1225 src/treeview_helper.c:1574
 msgid "W"
 msgstr "胜"
 
@@ -2906,7 +2906,7 @@ msgstr "黄牌"
 msgid "Yellow cards (limit)\n"
 msgstr "黄牌禁赛\n"
 
-#: src/treeview.c:737 src/treeview_helper.c:847
+#: src/treeview.c:737 src/treeview_helper.c:843
 msgid "Yellows"
 msgstr "黄牌"
 

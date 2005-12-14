@@ -232,7 +232,7 @@ cup_get_team_pointers(Cup *cup, gint round)
     GPtrArray *teams = cup_round->team_ptrs;
 
     if(debug > 60)
-	printf("cup_get_team_pointers %s round %d\n", cup->name, round);
+	g_print("cup_get_team_pointers %s round %d\n", cup->name, round);
 
     if(teams->len > 0)
 	g_warning("cup_get_team_pointers: round %d in cup %s has non-empty team pointers array.",
@@ -264,7 +264,7 @@ cup_get_team_pointers(Cup *cup, gint round)
 
     if(debug > 70)
 	for(i=0;i<teams->len;i++)
-	    printf("cup_get_team_pointers: %d %s (%d) %s\n", i,
+	    g_print("cup_get_team_pointers: %d %s (%d) %s\n", i,
 		   ((Team*)g_ptr_array_index(teams, i))->name,
 		   ((Team*)g_ptr_array_index(teams, i))->clid,
 		   cup->name);
@@ -283,7 +283,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
     const Cup *cup_temp = NULL;
 
     if(debug > 60)
-	printf("cup_load_choose_team: %s, %s \n", cup->name,
+	g_print("cup_load_choose_team: %s, %s \n", cup->name,
 	       ct->sid);
 
     cup_get_choose_team_league_cup(ct, &league, &cup_temp);
@@ -317,7 +317,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 	    for(j = 0; j < end; j++)
 	    {
 		if(debug > 80)
-		    printf("team %s isinint %d numteams %d\n",
+		    g_print("team %s isinint %d numteams %d\n",
 			   team_of_id(g_array_index(league->table.elements, 
 						    TableElement, order[j]).team_id)->name,
 			   query_team_is_in_cups(
@@ -429,7 +429,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 
     if(debug > 80)
 	for(i=debug_num;i<teams->len;i++)
-	    printf("cup_load_choose_team: %d %s \n", i, ((Team*)g_ptr_array_index(teams, i))->name);
+	    g_print("cup_load_choose_team: %d %s \n", i, ((Team*)g_ptr_array_index(teams, i))->name);
 }
 
 /** Load the teams specified in the chooseteam from a non-country league. */
@@ -443,7 +443,7 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
     GPtrArray *sids = NULL;
 
     if(debug > 60)
-	printf("cup_load_choose_team_generate: %s, %s \n", cup->name,
+	g_print("cup_load_choose_team_generate: %s, %s \n", cup->name,
 	       ct->sid);
 
     leagues = g_array_new(FALSE, FALSE, sizeof(League));

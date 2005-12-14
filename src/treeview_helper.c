@@ -675,11 +675,7 @@ treeview_helper_get_attributes_from_scout(gint scout)
     if(scout < 1)
 	attribute.on_off[PLAYER_LIST_ATTRIBUTE_GAMES] =
 	    attribute.on_off[PLAYER_LIST_ATTRIBUTE_GOALS] = 
-	    attribute.on_off[PLAYER_LIST_ATTRIBUTE_STATUS] = 
-	    /*d*/
-	    attribute.on_off[PLAYER_LIST_ATTRIBUTE_FITNESS] = 
-	    attribute.on_off[PLAYER_LIST_ATTRIBUTE_CSKILL] = 
-	    attribute.on_off[PLAYER_LIST_ATTRIBUTE_CPOS] = TRUE;
+	    attribute.on_off[PLAYER_LIST_ATTRIBUTE_STATUS] = TRUE;
 
     return attribute;
 }

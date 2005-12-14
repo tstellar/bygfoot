@@ -180,12 +180,12 @@ game_get_player(const Team *tm, gint player_type,
     else
     {
 	g_warning("game_get_player: All players injured or banned, apparently.\n");
-	printf("%s %s player list:\n", league_cup_get_name_string(tm->clid), tm->name);
+	g_print("%s %s player list:\n", league_cup_get_name_string(tm->clid), tm->name);
 	for(i=0;i<tm->players->len;i++)
 	{
 	    if(i < 10)
-		printf("prob %.3f  ", probs[i]);
-	    printf("%d %20s health %d cskill %.2f\n", i, player_of_idx_team(tm, i)->name,
+		g_print("prob %.3f  ", probs[i]);
+	    g_print("%d %20s health %d cskill %.2f\n", i, player_of_idx_team(tm, i)->name,
 		   player_of_idx_team(tm, i)->health, player_of_idx_team(tm, i)->cskill);
 	}
 
@@ -1013,7 +1013,7 @@ game_post_match(Fixture *fix)
 
     if((debug > 100 && fixture_user_team_involved(fix) != -1) ||
        debug > 130)
-	printf("game_post_match: %s - %s\n", 
+	g_print("game_post_match: %s - %s\n", 
 	       fix->teams[0]->name,
 	       fix->teams[1]->name);
 

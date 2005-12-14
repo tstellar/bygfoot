@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bygfoot 1.9.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-13 13:57+0100\n"
+"POT-Creation-Date: 2005-12-14 14:59+0100\n"
 "PO-Revision-Date: 2005-12-10 14:08+0100\n"
 "Last-Translator: Arne en Tobe Deprez <tobedeprez@scarlet.be>\n"
 "Language-Team: Dutch <tobedeprez@scarlet.be>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/treeview_helper.c:864
+#: src/treeview_helper.c:860
 #, c-format
 msgid ""
 "\n"
@@ -27,7 +27,7 @@ msgstr ""
 "\n"
 "Goals/Match %.1f Reddingen %% %.1f"
 
-#: src/treeview_helper.c:871
+#: src/treeview_helper.c:867
 #, c-format
 msgid ""
 "\n"
@@ -76,7 +76,7 @@ msgstr " (OG)"
 
 #. A goal scored with penalty.
 #. Penalty shooter.
-#: src/game.c:951 src/treeview_helper.c:1103
+#: src/game.c:951 src/treeview_helper.c:1099
 msgid " (P)"
 msgstr " (P)"
 
@@ -293,7 +293,7 @@ msgstr "%s (T) "
 msgid "%s (N) "
 msgstr "%s (N) "
 
-#: src/treeview_helper.c:980
+#: src/treeview_helper.c:976
 #, c-format
 msgid "%s (expected recovery in %d weeks)"
 msgstr "%s (verwachte terugkeer binnen %d weken)"
@@ -408,14 +408,14 @@ msgstr ""
 
 #. Yellow cards of a player in a cup/league. No limit means there isn't a limit
 #. after which the player gets banned for a match automatically.
-#: src/treeview_helper.c:933
+#: src/treeview_helper.c:929
 #, c-format
 msgid "%s: %d (no limit)\n"
 msgstr "%s: %d (geen limiet)\n"
 
 #. Ban info of a player in the format:
 #. 'Cup/league name: Number of weeks banned'
-#: src/treeview_helper.c:896
+#: src/treeview_helper.c:892
 #, c-format
 msgid "%s: %d weeks\n"
 msgstr "%s: %d weken\n"
@@ -511,7 +511,7 @@ msgstr ""
 "Er wou een nieuwe jeugdspeler toetreden tot uw academy, maar er was geen "
 "plaats voor hem."
 
-#: src/treeview_helper.c:1493
+#: src/treeview_helper.c:1489
 msgid "ADD LAST MATCH"
 msgstr "LAATSTE MATCH TOEVOEGEN"
 
@@ -678,7 +678,7 @@ msgstr "Uit"
 msgid "BALANCED"
 msgstr "GEBALANCEERD"
 
-#: src/treeview_helper.c:1250
+#: src/treeview_helper.c:1246
 #, c-format
 msgid "BAN(%d)"
 msgstr "BAN(%d)"
@@ -1039,7 +1039,7 @@ msgid "Current skill"
 msgstr "Huidige kwaliteit"
 
 #. Defender
-#: src/treeview_helper.c:1367
+#: src/treeview_helper.c:1363
 msgid "D"
 msgstr "V"
 
@@ -1102,7 +1102,7 @@ msgstr "Krediet opening"
 
 #. Games drawn.
 #. Draw.
-#: src/treeview.c:1227 src/treeview_helper.c:1596
+#: src/treeview.c:1227 src/treeview_helper.c:1592
 msgid "Dw"
 msgstr "Dw"
 
@@ -1170,7 +1170,7 @@ msgid "Expenses"
 msgstr "Uitgaven"
 
 #. Forward
-#: src/treeview_helper.c:1383
+#: src/treeview_helper.c:1379
 msgid "F"
 msgstr "A"
 
@@ -1263,7 +1263,7 @@ msgid "Fractured ankle"
 msgstr "Gebroken enkel"
 
 #. Goalie
-#: src/treeview_helper.c:1359
+#: src/treeview_helper.c:1355
 msgid "G"
 msgstr "K"
 
@@ -1287,7 +1287,7 @@ msgstr "GV"
 msgid "Ga"
 msgstr "Ma"
 
-#: src/treeview_helper.c:844
+#: src/treeview_helper.c:840
 msgid "Games"
 msgstr "Matchen"
 
@@ -1322,7 +1322,7 @@ msgstr "Keeper"
 msgid "Goalies"
 msgstr "Keepers"
 
-#: src/treeview.c:1678 src/treeview.c:2148 src/treeview_helper.c:845
+#: src/treeview.c:1678 src/treeview.c:2148 src/treeview_helper.c:841
 msgid "Goals"
 msgstr "Goals"
 
@@ -1392,7 +1392,7 @@ msgstr ""
 "Hoe vaak de spelerslijst wordt herladen tijdens een live match (in live "
 "match minuten)"
 
-#: src/treeview_helper.c:1236
+#: src/treeview_helper.c:1232
 #, c-format
 msgid "INJ(%d)"
 msgstr "BLE(%d)"
@@ -1471,7 +1471,7 @@ msgstr "Zet buiten de academie"
 
 #. Games lost.
 #. Lost.
-#: src/treeview.c:1229 src/treeview_helper.c:1589
+#: src/treeview.c:1229 src/treeview_helper.c:1585
 msgid "L"
 msgstr "L"
 
@@ -1653,7 +1653,7 @@ msgid "Loan"
 msgstr "Lening"
 
 #. Midfielder
-#: src/treeview_helper.c:1375
+#: src/treeview_helper.c:1371
 msgid "M"
 msgstr "M"
 
@@ -1786,8 +1786,8 @@ msgstr "NORMAAL"
 
 #. Player health: ok.
 #. Player status: ok.
-#: src/misc2_interface.c:222 src/player.c:1246 src/treeview_helper.c:987
-#: src/treeview_helper.c:1263
+#: src/misc2_interface.c:222 src/player.c:1246 src/treeview_helper.c:983
+#: src/treeview_helper.c:1259
 msgid "OK"
 msgstr "OK"
 
@@ -1875,7 +1875,7 @@ msgstr "Penalty/vrije schop schieter gedeselecteerd."
 msgid "Physio"
 msgstr "Kine"
 
-#: src/treeview_helper.c:832
+#: src/treeview_helper.c:828
 msgid "Player accepts new offers"
 msgstr "speler accepteert nieuwe aanbiedingen"
 
@@ -1887,7 +1887,7 @@ msgstr "Nauwkeurigheid van spelersattributen"
 msgid "Player attributes shown"
 msgstr "Spelers attributen getoont"
 
-#: src/treeview_helper.c:830
+#: src/treeview_helper.c:826
 msgid "Player doesn't negotiate anymore"
 msgstr "Speler onderhandelt niet meer met u"
 
@@ -2005,7 +2005,7 @@ msgstr "Herschik team"
 msgid "Recruiting preference"
 msgstr "Rekruterings voorkeuren"
 
-#: src/treeview.c:738 src/treeview_helper.c:848
+#: src/treeview.c:738 src/treeview_helper.c:844
 msgid "Reds"
 msgstr "Rode kaarten"
 
@@ -2234,7 +2234,7 @@ msgstr "Schiet penalty's"
 msgid "Shot %"
 msgstr "Schoten %"
 
-#: src/treeview.c:732 src/treeview_helper.c:846
+#: src/treeview.c:732 src/treeview_helper.c:842
 msgid "Shots"
 msgstr "Schoten"
 
@@ -2590,11 +2590,11 @@ msgstr ""
 msgid "The player is not on the list."
 msgstr "De speler staat niet op de transferlijst"
 
-#: src/treeview_helper.c:970
+#: src/treeview_helper.c:966
 msgid "The player is on a cold streak"
 msgstr "De speler is in een minder goede periode"
 
-#: src/treeview_helper.c:968
+#: src/treeview_helper.c:964
 msgid "The player is on a hot streak"
 msgstr "De speler is in een goede periode"
 
@@ -2746,7 +2746,7 @@ msgstr "Hoeveelheid Comentaar"
 
 #. Games won.
 #. Won.
-#: src/treeview.c:1225 src/treeview_helper.c:1578
+#: src/treeview.c:1225 src/treeview_helper.c:1574
 msgid "W"
 msgstr "W"
 
@@ -2980,7 +2980,7 @@ msgstr "GK"
 msgid "Yellow cards (limit)\n"
 msgstr "Gele kaarten (limiet)\n"
 
-#: src/treeview.c:737 src/treeview_helper.c:847
+#: src/treeview.c:737 src/treeview_helper.c:843
 msgid "Yellows"
 msgstr "Gele kaarten"
 

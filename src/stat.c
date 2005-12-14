@@ -240,12 +240,12 @@ stat_show_av_goals(GArray *fixtures)
 		draw++;
 	}
 
-    printf("------------------------------------ \n");
-    printf("%s\nGoals/G HomeG/G AwayG/G Away %% GD/G \n",
+    g_print("------------------------------------ \n");
+    g_print("%s\nGoals/G HomeG/G AwayG/G Away %% GD/G \n",
 	   league_cup_get_name_string(g_array_index(fixtures, Fixture, 0).clid));
-    printf("%.2f \t %.2f \t %.2f \t %.2f \t %.2f \n", allgoals/games, homegoals/games, awaygoals/games,
+    g_print("%.2f \t %.2f \t %.2f \t %.2f \t %.2f \n", allgoals/games, homegoals/games, awaygoals/games,
 	   awaygoals / allgoals, goaldiff/games);
-    printf("Home win %%: %.2f Loss %%: %.2f Draw %%: %.2f \n",
+    g_print("Home win %%: %.2f Loss %%: %.2f Draw %%: %.2f \n",
 	   homewon / games, homeloss / games, draw / games);
 }
 
@@ -255,7 +255,7 @@ stat_show_av_league_goals(void)
 {
     gint i;
 
-    printf("\n");printf("\n");
+    g_print("\n\n");
     for(i=0;i<ligs->len;i++)
 	stat_show_av_goals(league_cup_get_fixtures(lig(i).id));
 }
