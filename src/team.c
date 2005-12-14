@@ -148,8 +148,8 @@ query_team_is_in_cups(const Team *tm, gint group)
 			  (gchar*)g_ptr_array_index(cp(i).team_names, j)) == 0)
 		{
 		    if(debug > 90)
-			printf("team %s group %d found in %s \n", tm->name,
-			       group, cp(i).name);
+			g_print("team %s group %d found in %s \n", tm->name,
+				group, cp(i).name);
 		    return TRUE;
 		}
     

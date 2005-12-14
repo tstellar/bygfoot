@@ -108,7 +108,7 @@ debug_action(const gchar *text)
     }
     else if(g_str_has_prefix(text, "help"))
     {
-	printf("Debug options:\n"
+	g_print("Debug options:\n"
 	       "deb \t set debug value\n"
 	       "cap \t change stadium capacity\n"
 	       "saf \t change stadium safety\n"
@@ -170,9 +170,9 @@ debug_calibrate_betting_odds(gint skilldiffmax, gint matches_per_skilldiff)
 		res[(fix->result[0][0] == fix->result[1][0])]++;
 	}
 
-	printf("sd %3d res %3d %3d %3d prob %.2f %.2f %.2f\n", skilldiff,
-	       res[0], res[1], res[2], (gfloat)res[0] / (gfloat)matches, 
-	       (gfloat)res[1] / (gfloat)matches, (gfloat)res[2] / (gfloat)matches);
+	g_print("sd %3d res %3d %3d %3d prob %.2f %.2f %.2f\n", skilldiff,
+		res[0], res[1], res[2], (gfloat)res[0] / (gfloat)matches, 
+		(gfloat)res[1] / (gfloat)matches, (gfloat)res[2] / (gfloat)matches);
     }
 }
 

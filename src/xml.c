@@ -86,7 +86,7 @@ xml_load_league(const gchar *dirname, const gchar *basename)
 	PIC_TYPE_LOAD);
 
     if(debug > 80)
-	printf("%s\n", buf);
+	g_print("%s\n", buf);
 
     sprintf(buf, "%s%s%s_teams.xml", dirname, G_DIR_SEPARATOR_S, prefix);
     xml_loadsave_teams_read(buf, lig(ligs->len - 1).teams);
@@ -120,7 +120,7 @@ xml_load_cup(Cup *cup, const gchar *dirname, const gchar *basename)
 	PIC_TYPE_LOAD);
 
     if(debug > 80)
-	printf("%s\n", buf);
+	g_print("%s\n", buf);
 
     sprintf(buf, "%s%s%s_fixtures.xml", dirname, G_DIR_SEPARATOR_S, prefix);
     xml_loadsave_fixtures_read(buf, cup->fixtures);

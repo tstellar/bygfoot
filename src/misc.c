@@ -536,8 +536,8 @@ misc_string_replace_expressions(gchar *string)
 	*occurrence2 = NULL;
 
     if(debug > 100)
-	printf("misc_string_replace_expressions: #%s#\n",
-	       string);
+	g_print("misc_string_replace_expressions: #%s#\n",
+		string);
 
     while(g_strrstr(string, "[") != NULL)
     {

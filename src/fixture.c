@@ -527,7 +527,7 @@ fixture_write_knockout_round(Cup *cup, gint cup_round, GPtrArray *teams)
 	math_get_bye_len(len) : round->byes;
 
     if(debug > 60)
-	printf("fixture_write_knockout_round: %s %d byelen %d\n",
+	g_print("fixture_write_knockout_round: %s %d byelen %d\n",
 	       cup->name, cup_round, bye_len);
 
     if(bye_len != 0)
@@ -1345,10 +1345,3 @@ fixture_get_goals_to_win(const Fixture *fix, const Team *tm)
 
     return return_value;
 }
-
-/*todo*/
-/* gint */
-/* fixture_get_goals_to_draw(const Fixture *fix, const Team *tm) */
-/* { */
-    
-/* } */

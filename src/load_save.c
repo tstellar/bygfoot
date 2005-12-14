@@ -66,7 +66,7 @@ load_save_save_game(const gchar *filename)
 	file_remove_files(fullname);
 
     if(debug > 60)
-	printf("load_save_save options\n");
+	g_print("load_save_save options\n");
 
     gui_show_progress(0, _("Saving options..."),
 		      PIC_TYPE_SAVE);
@@ -77,7 +77,7 @@ load_save_save_game(const gchar *filename)
     file_save_opt_file(buf, &settings);
 
     if(debug > 60)
-	printf("load_save_save leagues/cups \n");
+	g_print("load_save_save leagues/cups \n");
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
@@ -88,7 +88,7 @@ load_save_save_game(const gchar *filename)
     xml_loadsave_leagues_cups_write(prefix);
 
     if(debug > 60)
-	printf("load_save_save users \n");
+	g_print("load_save_save users \n");
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
@@ -99,7 +99,7 @@ load_save_save_game(const gchar *filename)
     xml_loadsave_users_write(prefix);
 
     if(debug > 60)
-	printf("load_save_save transfers \n");
+	g_print("load_save_save transfers \n");
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
@@ -110,7 +110,7 @@ load_save_save_game(const gchar *filename)
     xml_loadsave_transfers_write(prefix);
 
     if(debug > 60)
-	printf("load_save_save stats \n");
+	g_print("load_save_save stats \n");
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
@@ -121,7 +121,7 @@ load_save_save_game(const gchar *filename)
     xml_loadsave_season_stats_write(prefix);
 
     if(debug > 60)
-	printf("load_save_save jobs \n");
+	g_print("load_save_save jobs \n");
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
@@ -134,7 +134,7 @@ load_save_save_game(const gchar *filename)
     xml_loadsave_jobs_write(prefix);
 
     if(debug > 60)
-	printf("load_save_save misc \n");
+	g_print("load_save_save misc \n");
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
@@ -154,7 +154,7 @@ load_save_save_game(const gchar *filename)
     file_compress_files(fullname, buf);
 
     if(debug > 60)
-	printf("load_save_save done \n");
+	g_print("load_save_save done \n");
 
     gui_show_progress(1, _("Done."),
 		      PIC_TYPE_SAVE);
@@ -215,7 +215,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     file_decompress(fullname);
 
     if(debug > 60)
-	printf("load_save_load options\n");
+	g_print("load_save_load options\n");
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
@@ -230,7 +230,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     language_set(language_get_code_index(opt_str("string_opt_language_code")) + 1);
 
     if(debug > 60)
-	printf("load_save_load leagues \n");
+	g_print("load_save_load leagues \n");
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
@@ -241,7 +241,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     xml_loadsave_leagues_cups_read(dirname, prefix);
 
     if(debug > 60)
-	printf("load_save_load users \n");
+	g_print("load_save_load users \n");
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
@@ -252,7 +252,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     xml_load_users(dirname, prefix);
 
     if(debug > 60)
-	printf("load_save_load transfers \n");
+	g_print("load_save_load transfers \n");
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
@@ -263,7 +263,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     xml_load_transfers(dirname, prefix);
 
     if(debug > 60)
-	printf("load_save_load stats \n");
+	g_print("load_save_load stats \n");
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
@@ -274,7 +274,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     xml_loadsave_season_stats_read(dirname, prefix);
 
     if(debug > 60)
-	printf("load_save_load jobs \n");
+	g_print("load_save_load jobs \n");
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
@@ -287,7 +287,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     xml_loadsave_jobs_read(dirname, prefix);
 
     if(debug > 60)
-	printf("load_save_load misc \n");
+	g_print("load_save_load misc \n");
 
     gui_show_progress(
 	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
@@ -298,7 +298,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     xml_loadsave_misc_read(dirname, prefix);
 
     if(debug > 60)
-	printf("load_save_load done \n");
+	g_print("load_save_load done \n");
 
     gui_show_progress(1, _("Done."),
 		      PIC_TYPE_LOAD);

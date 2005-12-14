@@ -10,7 +10,7 @@
 # using wget to retrieve patches from the homepage
 
 # version number
-version="1.9.2"
+version="1.9.3"
 # the bygfoot release version the script is shipped with
 relversion=UNKNOWN_VERSION
 # the current release version on the server
@@ -104,7 +104,6 @@ Note: You can call bygfoot-update without any options.
 MAIN OPTIONS:
 -c|--country-files         Download some official team names of well known teams
 -n|--new-package           Download the latest complete package
--u|--update                Update your Bygfoot source package using patches
 -b|--cvs                   Get CVS version
 
 AUXILIARY OPTIONS:
@@ -118,15 +117,6 @@ Global:
 -v|--version               Print version information and exit
 -Z|--no-zenity             Don't use zenity even if the version installed
                            is usable
-
-Relevant for source update mode:
--a|--apply-all             Apply all new patches without prompting
--p|--package-dir DIR       Set source package directory to DIR
--r|--recompile             Run './configure && make' after updating
--R|--no-recompile          Don't recompile after updating
-
-Relevant for country files mode:
--C|--country-dir DIR       Set the directory that contains the definitions
                            directory
 
 Relevant for package download mode:
@@ -834,33 +824,29 @@ function get_mode()
 	my_zenity --title="Bygfoot Online Update" --list \
 	    --list-text="Main Menu" \
 	    --radiolist --column "" --column "" --column "" \
-	    TRUE 1 "Update your Bygfoot source package using patches" \
-	    FALSE 2 "Download the latest Bygfoot release" \
-	    FALSE 3 "Get official team names and team definitions" \
-	    FALSE 4 "Get CVS version (2+ MB 'cause it's not compressed)"
+	    TRUE 1 "Download the latest Bygfoot release" \
+	    FALSE 2 "Get official team names and team definitions" \
+	    FALSE 3 "Get CVS version (2+ MB 'cause it's not compressed)"
     else
 	dialog --title "Bygfoot Online Update" --menu "Main Menu" 22 80 10 \
-	    1 " Update your Bygfoot source package using patches" \
-	    2 " Download the latest Bygfoot release" \
-	    3 " Get official team names and team definitions" \
-	    4 " Get CVS version (2+ MB 'cause it's not compressed)" 2> $input_file
+	    1 " Download the latest Bygfoot release" \
+	    2 " Get official team names and team definitions" \
+	    3 " Get CVS version (2+ MB 'cause it's not compressed)" 2> $input_file
     fi
 
     read_input
 
     if [ -z $tempvar ]; then
-	mode=$mode_src
+	mode=$mode_pack
 	return
     fi
 
-    if [ $tempvar -eq 2 ]; then
+    if [ $tempvar -eq 1 ]; then
 	mode=$mode_pack
-    elif [ $tempvar -eq 3 ]; then
+    elif [ $tempvar -eq 2 ]; then
 	mode=$mode_country
-    elif [ $tempvar -eq 4 ]; then
-	mode=$mode_cvs
     else
-	mode=$mode_src
+	mode=$mode_cvs
     fi
 }
 

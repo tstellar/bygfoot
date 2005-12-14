@@ -509,15 +509,6 @@ xml_strategy_read(const gchar *filename)
     {
 	if(g_array_index(curstrat.match_action, StrategyMatchAction, i).condition == NULL)
 	    main_exit_program(EXIT_STRATEGY_ERROR, "xml_strategy_read: unconditional match action encountered in file %s. match actions MUST have conditions.", filename);
-
-/* 	/\*d*\/ */
-/* 	printf("bo %d st %d subinpos %d subinprop %d suboutpos %d suboutprop %d\n",  */
-/* 	       g_array_index(curstrat.match_action, StrategyMatchAction, i).boost, */
-/* 	       g_array_index(curstrat.match_action, StrategyMatchAction, i).style, */
-/* 	       g_array_index(curstrat.match_action, StrategyMatchAction, i).sub_in_pos, */
-/* 	       g_array_index(curstrat.match_action, StrategyMatchAction, i).sub_in_prop, */
-/* 	       g_array_index(curstrat.match_action, StrategyMatchAction, i).sub_out_pos, */
-/* 	       g_array_index(curstrat.match_action, StrategyMatchAction, i).sub_out_prop); */
     }
 }
 

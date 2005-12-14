@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-13 13:57+0100\n"
+"POT-Creation-Date: 2005-12-14 14:59+0100\n"
 "PO-Revision-Date: 2005-09-08 12:56+0300\n"
 "Last-Translator: Rostislav \"zbrox\" Raykov <nostalgiafed@gmail.com>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: src/treeview_helper.c:864
+#: src/treeview_helper.c:860
 #, c-format
 msgid ""
 "\n"
@@ -24,7 +24,7 @@ msgstr ""
 "\n"
 "Голове/Мач %.1f Спасяване %% %.1f"
 
-#: src/treeview_helper.c:871
+#: src/treeview_helper.c:867
 #, c-format
 msgid ""
 "\n"
@@ -73,7 +73,7 @@ msgstr " (автогол)"
 
 #. A goal scored with penalty.
 #. Penalty shooter.
-#: src/game.c:951 src/treeview_helper.c:1103
+#: src/game.c:951 src/treeview_helper.c:1099
 msgid " (P)"
 msgstr " (Д)"
 
@@ -292,7 +292,7 @@ msgstr "%s (Дом) "
 msgid "%s (N) "
 msgstr "%s (Неут) "
 
-#: src/treeview_helper.c:980
+#: src/treeview_helper.c:976
 #, c-format
 msgid "%s (expected recovery in %d weeks)"
 msgstr "%s (очаквано възстановяване за %d седмици)"
@@ -408,14 +408,14 @@ msgstr ""
 
 #. Yellow cards of a player in a cup/league. No limit means there isn't a limit
 #. after which the player gets banned for a match automatically.
-#: src/treeview_helper.c:933
+#: src/treeview_helper.c:929
 #, c-format
 msgid "%s: %d (no limit)\n"
 msgstr "%s: %d (няма лимит)\n"
 
 #. Ban info of a player in the format:
 #. 'Cup/league name: Number of weeks banned'
-#: src/treeview_helper.c:896
+#: src/treeview_helper.c:892
 #, c-format
 msgid "%s: %d weeks\n"
 msgstr "%s: %d седмици\n"
@@ -507,7 +507,7 @@ msgstr ""
 "Нов младеж искаше да се регистрира в младежката Ви академия, но там нямаше "
 "място."
 
-#: src/treeview_helper.c:1493
+#: src/treeview_helper.c:1489
 msgid "ADD LAST MATCH"
 msgstr "Добавяне на последния мач"
 
@@ -679,7 +679,7 @@ msgstr "Гостуване"
 msgid "BALANCED"
 msgstr "Балансиран"
 
-#: src/treeview_helper.c:1250
+#: src/treeview_helper.c:1246
 #, c-format
 msgid "BAN(%d)"
 msgstr "НАКАЗАНИЕ(%d)"
@@ -1032,7 +1032,7 @@ msgid "Current skill"
 msgstr "Текущо умение"
 
 #. Defender
-#: src/treeview_helper.c:1367
+#: src/treeview_helper.c:1363
 msgid "D"
 msgstr "Защ"
 
@@ -1096,7 +1096,7 @@ msgstr "Кредитен лимит"
 
 #. Games drawn.
 #. Draw.
-#: src/treeview.c:1227 src/treeview_helper.c:1596
+#: src/treeview.c:1227 src/treeview_helper.c:1592
 msgid "Dw"
 msgstr "Рав"
 
@@ -1164,7 +1164,7 @@ msgid "Expenses"
 msgstr "Разходи"
 
 #. Forward
-#: src/treeview_helper.c:1383
+#: src/treeview_helper.c:1379
 msgid "F"
 msgstr "Н"
 
@@ -1257,7 +1257,7 @@ msgid "Fractured ankle"
 msgstr "Фрактура на глезена"
 
 #. Goalie
-#: src/treeview_helper.c:1359
+#: src/treeview_helper.c:1355
 msgid "G"
 msgstr "Врат."
 
@@ -1281,7 +1281,7 @@ msgstr "Вк. гол."
 msgid "Ga"
 msgstr "Мача"
 
-#: src/treeview_helper.c:844
+#: src/treeview_helper.c:840
 msgid "Games"
 msgstr "Мачове"
 
@@ -1316,7 +1316,7 @@ msgstr "Вратар"
 msgid "Goalies"
 msgstr "Вратари"
 
-#: src/treeview.c:1678 src/treeview.c:2148 src/treeview_helper.c:845
+#: src/treeview.c:1678 src/treeview.c:2148 src/treeview_helper.c:841
 msgid "Goals"
 msgstr "Голове"
 
@@ -1386,7 +1386,7 @@ msgstr ""
 "Колко често списъка с играчи се опреснява по време на мач на живо (в минути "
 "от мача на живо)"
 
-#: src/treeview_helper.c:1236
+#: src/treeview_helper.c:1232
 #, c-format
 msgid "INJ(%d)"
 msgstr "Контузия (%d)"
@@ -1465,7 +1465,7 @@ msgstr "Изхвърляне от академията"
 
 #. Games lost.
 #. Lost.
-#: src/treeview.c:1229 src/treeview_helper.c:1589
+#: src/treeview.c:1229 src/treeview_helper.c:1585
 msgid "L"
 msgstr "Заг"
 
@@ -1648,7 +1648,7 @@ msgid "Loan"
 msgstr "Заем"
 
 #. Midfielder
-#: src/treeview_helper.c:1375
+#: src/treeview_helper.c:1371
 msgid "M"
 msgstr "П"
 
@@ -1781,8 +1781,8 @@ msgstr "Изключен"
 
 #. Player health: ok.
 #. Player status: ok.
-#: src/misc2_interface.c:222 src/player.c:1246 src/treeview_helper.c:987
-#: src/treeview_helper.c:1263
+#: src/misc2_interface.c:222 src/player.c:1246 src/treeview_helper.c:983
+#: src/treeview_helper.c:1259
 msgid "OK"
 msgstr "OK"
 
@@ -1871,7 +1871,7 @@ msgstr "Отизбран е изпълнител на дузпи/свободн�
 msgid "Physio"
 msgstr "Физиотерапевт"
 
-#: src/treeview_helper.c:832
+#: src/treeview_helper.c:828
 msgid "Player accepts new offers"
 msgstr "Играчът приема нови предложения"
 
@@ -1883,7 +1883,7 @@ msgstr "Прецизност на качествата на играчите"
 msgid "Player attributes shown"
 msgstr "Показаните качества на играча"
 
-#: src/treeview_helper.c:830
+#: src/treeview_helper.c:826
 msgid "Player doesn't negotiate anymore"
 msgstr "Играчът вече не преговаря"
 
@@ -2000,7 +2000,7 @@ msgstr "Пренареждане на отбора"
 msgid "Recruiting preference"
 msgstr "Настройки на набирането на играчи"
 
-#: src/treeview.c:738 src/treeview_helper.c:848
+#: src/treeview.c:738 src/treeview_helper.c:844
 msgid "Reds"
 msgstr "Червени"
 
@@ -2237,7 +2237,7 @@ msgstr "Изпълнява дузпи"
 msgid "Shot %"
 msgstr "Изстрели %"
 
-#: src/treeview.c:732 src/treeview_helper.c:846
+#: src/treeview.c:732 src/treeview_helper.c:842
 msgid "Shots"
 msgstr "Изстрели"
 
@@ -2593,11 +2593,11 @@ msgstr ""
 msgid "The player is not on the list."
 msgstr "Играчът не е в списъка."
 
-#: src/treeview_helper.c:970
+#: src/treeview_helper.c:966
 msgid "The player is on a cold streak"
 msgstr "Играчът има лоша серия."
 
-#: src/treeview_helper.c:968
+#: src/treeview_helper.c:964
 msgid "The player is on a hot streak"
 msgstr "Играчът има добра серия."
 
@@ -2751,7 +2751,7 @@ msgstr "Честота"
 
 #. Games won.
 #. Won.
-#: src/treeview.c:1225 src/treeview_helper.c:1578
+#: src/treeview.c:1225 src/treeview_helper.c:1574
 msgid "W"
 msgstr "Поб"
 
@@ -2973,7 +2973,7 @@ msgstr "ЖК"
 msgid "Yellow cards (limit)\n"
 msgstr "Жълти картони (лимит)\n"
 
-#: src/treeview.c:737 src/treeview_helper.c:847
+#: src/treeview.c:737 src/treeview_helper.c:843
 msgid "Yellows"
 msgstr "Жълти картони"
 
