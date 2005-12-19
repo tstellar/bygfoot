@@ -637,9 +637,10 @@ user_history_add(User *user, gint type, const gchar *team_name,
 		      string0) == 0)
 	    {
 		/** Same cup round. */
-		if(strcmp(g_array_index(user->history, UserHistory, i).string[2],
-			  string2) == 0 &&
-		   type == USER_HISTORY_REACH_CUP_ROUND)
+		if(type == USER_HISTORY_REACH_CUP_ROUND &&
+		   string2 != NULL &&
+		   strcmp(g_array_index(user->history, UserHistory, i).string[2],
+			  string2) == 0)
 		    return;
 
 		his = &g_array_index(user->history, UserHistory, i);
