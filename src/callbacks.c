@@ -656,7 +656,10 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
 		window_show_menu_youth((GdkEvent*)event);
 	    break;
 	case STATUS_SHOW_JOB_EXCHANGE:
-	    if(event->button == 1)
+	    if(g_array_index(jobs, Job, idx - 1).type != JOB_TYPE_NATIONAL &&
+	       users->len > 1)
+		game_gui_show_warning("You can't apply for a job from abroad if there's more than one user.");
+	    else if(event->button == 1)
 		game_gui_show_job_offer(NULL, 
 					&g_array_index(jobs, Job, idx - 1),
 					STATUS_JOB_EXCHANGE_SHOW_TEAM);

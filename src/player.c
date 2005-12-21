@@ -726,18 +726,24 @@ player_decrease_fitness(Player *pl)
 	const_float("float_player_streak_influence_fitness_decrease");
 
     if(pl->age < pl->peak_age - pl->peak_region)
+    {
 	pl->fitness -= (((pl->peak_age - pl->peak_region - pl->age) *
 			 const_float("float_player_fitness_decrease_younger_factor") +
 			 const_float("float_player_fitness_decrease_add")) *
 			goalie_factor * boost_factor * streak_factor);
+    }
     else if(pl->age > pl->peak_age + pl->peak_region)
+    {
 	pl->fitness -= (((pl->age - pl->peak_age - pl->peak_region) *
 			 const_float("float_player_fitness_decrease_older_factor") +
 			 const_float("float_player_fitness_decrease_add")) *
 			goalie_factor * boost_factor * streak_factor);
+    }
     else
+    {
 	pl->fitness -= (const_float("float_player_fitness_decrease_add") *
 			goalie_factor * boost_factor * streak_factor);
+    }
 
     pl->fitness = MAX(0, pl->fitness);
 }

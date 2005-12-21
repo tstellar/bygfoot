@@ -336,7 +336,7 @@ main_exit_program(gint exit_code, gchar *format, ...)
 
     free_memory();
 
-    if(!os_is_unix)
+    if(!os_is_unix && exit_code != EXIT_OK)
     {
 	g_warning("Press RETURN. Program will exit.");
 	getchar();
