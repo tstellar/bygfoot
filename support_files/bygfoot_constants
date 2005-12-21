@@ -624,11 +624,11 @@ float_player_skill_update_peak	   1500
 
 # these determine the players' fitness decrease during
 # a match (depending on the peak age diff)
-float_player_fitness_decrease_younger_factor	5
-float_player_fitness_decrease_older_factor	10
+float_player_fitness_decrease_younger_factor	3
+float_player_fitness_decrease_older_factor	7
 # addition value is the same for both, as it coincides
 # with the decrease in the peak region
-float_player_fitness_decrease_add		5
+float_player_fitness_decrease_add		12
 
 # player fitness increase parameters
 float_player_fitness_increase_younger_factor	-850
@@ -846,8 +846,8 @@ float_player_streak_add_sendoff		-12000
 # influence of the streak on player values
 # in percent
 float_player_streak_influence_skill			7000
-float_player_streak_influence_fitness_decrease		-20000
-float_player_streak_influence_fitness_increase		20000
+float_player_streak_influence_fitness_decrease		-12000
+float_player_streak_influence_fitness_increase		12000
 
 # how many weeks there mustn't be an new streak
 int_player_streak_count_lower  3
