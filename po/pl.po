@@ -6,9 +6,10 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-12-21 16:52+0100\n"
-"PO-Revision-Date: 2005-12-02 14:24+0100\n"
+"PO-Revision-Date: 2005-12-22 10:29+0100\n"
 "Last-Translator: Michal Rudolf <mrudolf@kdewebdev.org>\n"
-"Language-Team: Polish <kdei18n-pl-devel@lists.sourceforge.net>\n"
+"Language-Team: Polish <kdei18n-pl-devel@lists.sourceforge.net"
+">\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,9 +19,8 @@ msgstr ""
 ">\n"
 ">\n"
 ">\n"
-"X-Generator: KBabel 1.10.1\n"
-"Plural-Forms:  nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%"
-"100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: KBabel 1.10.2\n"
+"Plural-Forms:  nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: src/treeview_helper.c:860
 #, c-format
@@ -485,16 +485,14 @@ msgstr ""
 
 #. Copy the <span...> stuff, translate in between.
 #: src/treeview2.c:272
-msgid ""
-"<span background='lightgrey' size='large' weight='bold'>Current bets</span>"
+msgid "<span background='lightgrey' size='large' weight='bold'>Current bets</span>"
 msgstr ""
 "<span background='lightgrey' size='large' weight='bold'>Aktualne zakłady</"
 "span>"
 
 #. Copy the <span...> stuff, translate in between.
 #: src/treeview2.c:274
-msgid ""
-"<span background='lightgrey' size='large' weight='bold'>Recent bets</span>"
+msgid "<span background='lightgrey' size='large' weight='bold'>Recent bets</span>"
 msgstr ""
 "<span background='lightgrey' size='large' weight='bold'>Ostatnie zakłady</"
 "span>"
@@ -870,8 +868,7 @@ msgstr ""
 
 #: src/misc_interface.c:740
 msgid "Change live game speed. The lower the value the faster the live game."
-msgstr ""
-"Zmienia szybkość relacji na żywo. Im niższa wartość, tym szybsza relacja."
+msgstr "Zmienia szybkość relacji na żywo. Im niższa wartość, tym szybsza relacja."
 
 #: src/misc_interface.c:101
 msgid "Choose country"
@@ -887,17 +884,15 @@ msgstr "Wybierz język gry (może nie działać w wersji dla Windows)"
 
 #: src/misc_interface.c:150
 msgid "Choose league to start in"
-msgstr ""
+msgstr "Wybierz początkową ligę"
 
 #: src/misc_interface.c:111
-#, fuzzy
 msgid "Choose team"
-msgstr "Wybierz plik"
+msgstr "Wybierz drużynę"
 
 #: src/misc_interface.c:163
-#, fuzzy
 msgid "Choose username"
-msgstr "Wybierz kraj"
+msgstr "Wybierz nazwę użytkownika"
 
 #: src/game_gui.c:733
 msgid "Click on OK to apply for the job. Click on CANCEL to close the window."
@@ -1188,8 +1183,7 @@ msgstr "Transfer"
 #. the attendace for the match.
 #: src/main.c:92
 msgid "File containing live game tokens (may be in a support dir)"
-msgstr ""
-"Plik zawierający zmienne relacji na żywo (może być w katalogu z danymi)"
+msgstr "Plik zawierający zmienne relacji na żywo (może być w katalogu z danymi)"
 
 #: src/options_interface.c:358
 msgid ""
@@ -1536,17 +1530,15 @@ msgstr ""
 "ofertę."
 
 #: src/callback_func.c:796
-#, fuzzy
 msgid ""
 "Left click to move players to and from the youth academy; right click for "
 "context menu."
 msgstr ""
-"Prawy przycisk przenosi gracza do/ze szkółki młodzików. Lewy przycisk - menu "
+"Lewy przycisk przenosi gracza do/ze szkółki młodzików; prawy przycisk - menu "
 "podręczne."
 
 #: src/callbacks.c:873
-msgid ""
-"Left-click: get loan; Right-click: pay back; Middle click: stadium window."
+msgid "Left-click: get loan; Right-click: pay back; Middle click: stadium window."
 msgstr "Lwy przycisk: pożyczka, prawy: spłata, środkowy: stadion."
 
 #: src/options_interface.c:957
@@ -2106,8 +2098,7 @@ msgstr "Bezpieczeństwo (%)"
 
 #: src/misc_callback_func.c:271
 msgid "Safety improvement too high, reset to highest possible value."
-msgstr ""
-"Zbyt wysoka wartość bezpieczeństwa, wybrano maksymalną dopuszczalną wartość."
+msgstr "Zbyt wysoka wartość bezpieczeństwa, wybrano maksymalną dopuszczalną wartość."
 
 #. % of saves for goalies (#goals / #shots)
 #: src/treeview.c:2127
@@ -2210,8 +2201,7 @@ msgid "Set investment"
 msgstr "Finansowanie"
 
 #: src/callbacks.c:1124 src/interface.c:671
-msgid ""
-"Set the percentage of your income you want to devote to your youth academy."
+msgid "Set the percentage of your income you want to devote to your youth academy."
 msgstr "Podaj procent dochodów, jaki chcesz przeznaczyć na szkółkę młodzików."
 
 #: src/options_interface.c:542
@@ -2575,8 +2565,7 @@ msgid "The player is already on the list."
 msgstr "Zawodnik jest już na liście."
 
 #: src/callback_func.c:464
-msgid ""
-"The player is locked (the team owners are considering an offer currently)."
+msgid "The player is locked (the team owners are considering an offer currently)."
 msgstr "Zawodnik jest aktualnie zablokowany (właściciele rozważają ofertę)."
 
 #: src/callbacks.c:471
@@ -2800,8 +2789,7 @@ msgid "Welcome to Bygfoot %s"
 msgstr "Witamy w programie Bygfoot %s"
 
 #: src/options_interface.c:235
-msgid ""
-"Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
+msgid "Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
 msgstr ""
 "Określa, czy 'Zapisz' nadpisuje aktualny plik, czy też wyświetla okno wyboru "
 "pliku"
@@ -2903,8 +2891,7 @@ msgid "Whether to show cup matches in the betting window"
 msgstr "Czy wyświetlać mecze pucharowe w oknie zakładów"
 
 #: src/misc3_interface.c:82
-msgid ""
-"Whether to show cup matches. Use the options window to toggle permanently."
+msgid "Whether to show cup matches. Use the options window to toggle permanently."
 msgstr ""
 "Czy wyświetlać mecze pucharowe. Tę opcje można skonfigurować na stałe w "
 "oknie ustawień."
@@ -2939,15 +2926,13 @@ msgstr ""
 
 #: src/options_interface.c:584
 msgid "Whether to show the player games/goals value in all competitions"
-msgstr ""
-"Określa, czy wyświetlać łączną liczbę spotkań/bramek we wszystkich zawodach."
+msgstr "Określa, czy wyświetlać łączną liczbę spotkań/bramek we wszystkich zawodach."
 
 #: src/options_interface.c:250
 msgid ""
 "Whether to show warnings and such in the message area in the main window "
 "when possible"
-msgstr ""
-"Określa, czy wyświetlać ostrzeżenia i inne komunikaty w polu wiadomości."
+msgstr "Określa, czy wyświetlać ostrzeżenia i inne komunikaty w polu wiadomości."
 
 #. Team 1 wins (betting window).
 #: src/treeview2.c:362
@@ -3331,11 +3316,3 @@ msgstr "_Drużyna"
 msgid "_User"
 msgstr "_Użytkownik"
 
-#~ msgid "Start in"
-#~ msgstr "Początkowa liga"
-
-#~ msgid "There are no offers for the player."
-#~ msgstr "Brak ofert dla zawodnika."
-
-#~ msgid "Username"
-#~ msgstr "Użytkownik"
