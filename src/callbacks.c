@@ -658,7 +658,7 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
 	case STATUS_SHOW_JOB_EXCHANGE:
 	    if(g_array_index(jobs, Job, idx - 1).type != JOB_TYPE_NATIONAL &&
 	       users->len > 1)
-		game_gui_show_warning("You can't apply for a job from abroad if there's more than one user.");
+		game_gui_show_warning(_("You can't apply for a job from abroad if there's more than one user."));
 	    else if(event->button == 1)
 		game_gui_show_job_offer(NULL, 
 					&g_array_index(jobs, Job, idx - 1),

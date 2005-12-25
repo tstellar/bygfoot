@@ -569,14 +569,13 @@ enum MainWindowInensitiveItems
     INSENSITIVE_ITEM_MENU_SCOUT,
     INSENSITIVE_ITEM_MENU_PHYSIO,
     INSENSITIVE_ITEM_MENU_BROWSE_TEAMS,
+    INSENSITIVE_ITEM_MENU_YOUTH_ACADEMY,
+    INSENSITIVE_ITEM_MENU_SHOW_JOB_EXCHANGE,
     INSENSITIVE_ITEM_MENU_PUT_ON_TRANSFER_LIST,
     INSENSITIVE_ITEM_MENU_REMOVE_FROM_TRANSFER_LIST,
     INSENSITIVE_ITEM_MENU_FIRE,
-    INSENSITIVE_ITEM_MENU_MANAGE_USERS,
-    INSENSITIVE_ITEM_MENU_USER_SHOW_LAST,
-    INSENSITIVE_ITEM_MENU_USER_SHOW_LAST_STATS,
-    INSENSITIVE_ITEM_MENU_USER_SHOW_COMING,
-    INSENSITIVE_ITEM_MENU_USER_SHOW_HISTORY,
+    INSENSITIVE_ITEM_MENU_MOVE_TO_YOUTH_ACADEMY,
+    INSENSITIVE_ITEM_MENU_USER,
     INSENSITIVE_ITEM_MENU_FINANCES_STADIUM,
     INSENSITIVE_ITEM_MENU_HELP,
     INSENSITIVE_ITEM_MENU_BROWSE_PLAYERS,
@@ -615,22 +614,20 @@ game_gui_set_main_window_sensitivity(gboolean value)
 	lookup_widget(window.main, "menu_physio");
     insensitive_items[INSENSITIVE_ITEM_MENU_BROWSE_TEAMS] = 
 	lookup_widget(window.main, "menu_browse_teams");
+    insensitive_items[INSENSITIVE_ITEM_MENU_YOUTH_ACADEMY] = 
+	lookup_widget(window.main, "menu_youth_academy");
+    insensitive_items[INSENSITIVE_ITEM_MENU_SHOW_JOB_EXCHANGE] = 
+	lookup_widget(window.main, "menu_show_job_exchange");
     insensitive_items[INSENSITIVE_ITEM_MENU_PUT_ON_TRANSFER_LIST] = 
 	lookup_widget(window.main, "menu_put_on_transfer_list");
     insensitive_items[INSENSITIVE_ITEM_MENU_REMOVE_FROM_TRANSFER_LIST] = 
 	lookup_widget(window.main, "menu_remove_from_transfer_list");
     insensitive_items[INSENSITIVE_ITEM_MENU_FIRE] = 
 	lookup_widget(window.main, "menu_fire");
-    insensitive_items[INSENSITIVE_ITEM_MENU_MANAGE_USERS] = 
-	lookup_widget(window.main, "menu_manage_users");
-    insensitive_items[INSENSITIVE_ITEM_MENU_USER_SHOW_LAST] = 
-	lookup_widget(window.main, "menu_user_show_last_match");
-    insensitive_items[INSENSITIVE_ITEM_MENU_USER_SHOW_LAST_STATS] = 
-	lookup_widget(window.main, "menu_user_show_last_stats");
-    insensitive_items[INSENSITIVE_ITEM_MENU_USER_SHOW_COMING] = 
-	lookup_widget(window.main, "menu_user_show_coming_matches");
-    insensitive_items[INSENSITIVE_ITEM_MENU_USER_SHOW_HISTORY] = 
-	lookup_widget(window.main, "menu_user_show_history");
+    insensitive_items[INSENSITIVE_ITEM_MENU_MOVE_TO_YOUTH_ACADEMY] = 
+	lookup_widget(window.main, "menu_move_to_youth_academy");
+    insensitive_items[INSENSITIVE_ITEM_MENU_USER] = 
+	lookup_widget(window.main, "menu_user");
     insensitive_items[INSENSITIVE_ITEM_MENU_FINANCES_STADIUM] = 
 	lookup_widget(window.main, "menu_finances_stadium");
     insensitive_items[INSENSITIVE_ITEM_MENU_HELP] = 
