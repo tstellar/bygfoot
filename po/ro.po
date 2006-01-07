@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot 0.9.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-21 12:10+0100\n"
+"POT-Creation-Date: 2006-01-07 20:50+0100\n"
 "PO-Revision-Date: 2005-12-13 12:06+0100\n"
 "Last-Translator: Spoială Cristian <scristian@gmail.com>\n"
 "Language-Team: Romanian\n"
@@ -33,7 +33,7 @@ msgstr ""
 "\n"
 "Goluri/Joc %.1f Şut %% %.1f"
 
-#: src/game_gui.c:850
+#: src/game_gui.c:847
 msgid ""
 "\n"
 "If you feel you've found out something about the game that has to be shared, "
@@ -63,7 +63,7 @@ msgstr " &amp; Fii"
 msgid " (FK)"
 msgstr " (FK)"
 
-#: src/game_gui.c:740
+#: src/game_gui.c:737
 msgid " (NOTE: If you don't, the game is over for you.)"
 msgstr " (NOTĂ: dacă nu alegeţi, jocul va lua sfârşit.)"
 
@@ -235,7 +235,7 @@ msgid " Week "
 msgstr " Săptămâna"
 
 #. Game was decided in extra time.
-#: src/fixture.c:858
+#: src/fixture.c:862
 msgid " e.t."
 msgstr " e.t."
 
@@ -252,7 +252,7 @@ msgid " more"
 msgstr " mult"
 
 #. Game was decided in penalty shoot-out.
-#: src/fixture.c:855
+#: src/fixture.c:859
 msgid " p."
 msgstr " p."
 
@@ -538,7 +538,7 @@ msgstr "Despre"
 msgid "Accept"
 msgstr "Acceptă"
 
-#: src/game_gui.c:736
+#: src/game_gui.c:733
 msgid "Accept?"
 msgstr "Acceptati?"
 
@@ -582,7 +582,7 @@ msgstr "Anti"
 msgid "Any"
 msgstr "Oricare"
 
-#: src/game_gui.c:736
+#: src/game_gui.c:733
 msgid "Apply for the job?"
 msgstr "Acceptati slujba?"
 
@@ -591,7 +591,7 @@ msgid "At least one user didn't take his turn this week. Continue?"
 msgstr ""
 "Cel puţin un utilizator nu a trecut tura în această săptămână. Continuaţi?"
 
-#: src/game_gui.c:848
+#: src/game_gui.c:845
 msgid ""
 "At the Bygfoot forums you can report bugs, ask for help and discuss the game "
 "(you don't have to register):\n"
@@ -814,7 +814,7 @@ msgstr ""
 "Fereastra Bygfoot pentru debug. Dacă aţi ajuns aici din greşeală, ÎNCHIDEŢI-"
 "O IMEDIAT (altfel procesorul va fi distrus prin supraîncălzire)."
 
-#: src/game_gui.c:846
+#: src/game_gui.c:843
 msgid ""
 "Bygfoot is a very intuitive and simple game, so there isn't a full-grown "
 "documentation. However, if you have trouble, there are a few places to go.\n"
@@ -891,7 +891,7 @@ msgstr "Alegeţi fişier"
 msgid "Choose username"
 msgstr "Alegeţi ţara"
 
-#: src/game_gui.c:733
+#: src/game_gui.c:730
 msgid "Click on OK to apply for the job. Click on CANCEL to close the window."
 msgstr ""
 "Apasati OK pentru a accepta job-ul. Apasati CANCEL pentru a inchide "
@@ -1451,7 +1451,7 @@ msgstr "Ofertă de lucru"
 msgid "Job offers"
 msgstr "Oferte de lucru"
 
-#: src/game_gui.c:808
+#: src/game_gui.c:805
 #, c-format
 msgid "Job offers set to %s."
 msgstr "Oferte de lucru setate la %s."
@@ -1554,7 +1554,7 @@ msgstr "Lista 2"
 msgid "Live game"
 msgstr "Meci în direct"
 
-#: src/game_gui.c:817
+#: src/game_gui.c:814
 #, c-format
 msgid "Live game set to %s."
 msgstr "Meci în direct setat la %s."
@@ -1601,7 +1601,7 @@ msgstr ""
 msgid "Load the last game that was saved or loaded."
 msgstr "Încarcă ultimul joc care a fost încărcat sau salvat."
 
-#: src/xml.c:115
+#: src/xml.c:118
 #, c-format
 msgid "Loading cup: %s"
 msgstr "Se încarcă cupa: %s"
@@ -1611,7 +1611,7 @@ msgstr "Se încarcă cupa: %s"
 msgid "Loading job exchange..."
 msgstr "Arată ofertele de lucru.."
 
-#: src/xml.c:81
+#: src/xml.c:83
 #, c-format
 msgid "Loading league: %s"
 msgstr "Se încarcă liga: %s"
@@ -1824,7 +1824,7 @@ msgstr "Opţiuni"
 msgid "Overwrite"
 msgstr "Rescrie"
 
-#: src/game_gui.c:826
+#: src/game_gui.c:823
 #, c-format
 msgid "Overwrite set to %s."
 msgstr "Rescrierea setata la %s."
@@ -2510,7 +2510,7 @@ msgstr ""
 "impotmolim, veti fi concediat instantaneu si veti petrece restul sezonului "
 "curent acasa."
 
-#: src/game_gui.c:730
+#: src/game_gui.c:727
 #, c-format
 msgid ""
 "The owners of %s are deeply impressed by your success with %s and would like "
@@ -2598,7 +2598,7 @@ msgstr "Jucătorul nu va mai negocia cu dumneavoastra."
 msgid "The structure value %d is invalid."
 msgstr "Valoarea %d pentru structură este invalidă."
 
-#: src/game_gui.c:724
+#: src/game_gui.c:721
 #, c-format
 msgid ""
 "The team owners have fired you because of financial mismanagement. Luckily, "
@@ -2609,7 +2609,7 @@ msgstr ""
 "fericire, patronii echipei %s au auzit de concediere şi ar dori să vă "
 "angajaze. Câteva informaţii despre %s:"
 
-#: src/game_gui.c:727
+#: src/game_gui.c:724
 #, c-format
 msgid ""
 "The team owners have fired you because of unsuccessfulness. Luckily, the "
@@ -3019,6 +3019,10 @@ msgstr "Puteţi plăti înapoi cam %s"
 #, c-format
 msgid "You can take out at most %s."
 msgstr "Puteţi scoate cam %s."
+
+#: src/callbacks.c:661
+msgid "You can't apply for a job from abroad if there's more than one user."
+msgstr ""
 
 #: src/callbacks.c:1140
 #, c-format

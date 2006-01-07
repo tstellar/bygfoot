@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-21 16:52+0100\n"
-"PO-Revision-Date: 2005-12-10 12:36+0100\n"
+"POT-Creation-Date: 2006-01-07 20:50+0100\n"
+"PO-Revision-Date: 2005-12-22 10:37+0100\n"
 "Last-Translator: Michael Trent <trent@cortalconsors.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr ""
 "\n"
 "Tore/Spiel %.1f Schüsse %% %.1f"
 
-#: src/game_gui.c:850
+#: src/game_gui.c:847
 msgid ""
 "\n"
 "If you feel you've found out something about the game that has to be shared, "
@@ -69,7 +69,7 @@ msgstr "&amp; Söhne"
 msgid " (FK)"
 msgstr " (FS)"
 
-#: src/game_gui.c:740
+#: src/game_gui.c:737
 msgid " (NOTE: If you don't, the game is over for you.)"
 msgstr "(BEMERKUNG: Wenn Du ablehnst, ist das Spiel vorbei für Dich.)"
 
@@ -243,7 +243,7 @@ msgid " Week "
 msgstr " Woche "
 
 #. Game was decided in extra time.
-#: src/fixture.c:858
+#: src/fixture.c:862
 msgid " e.t."
 msgstr " n.V."
 
@@ -260,7 +260,7 @@ msgid " more"
 msgstr " mehr"
 
 #. Game was decided in penalty shoot-out.
-#: src/fixture.c:855
+#: src/fixture.c:859
 msgid " p."
 msgstr " i.E."
 
@@ -547,7 +547,7 @@ msgstr "Über"
 msgid "Accept"
 msgstr "Annehmen"
 
-#: src/game_gui.c:736
+#: src/game_gui.c:733
 msgid "Accept?"
 msgstr "Einverstanden?"
 
@@ -591,7 +591,7 @@ msgstr "Anti"
 msgid "Any"
 msgstr "Egal"
 
-#: src/game_gui.c:736
+#: src/game_gui.c:733
 msgid "Apply for the job?"
 msgstr "Möchten Sie den Job annehmen?"
 
@@ -599,7 +599,7 @@ msgstr "Möchten Sie den Job annehmen?"
 msgid "At least one user didn't take his turn this week. Continue?"
 msgstr "Mindestens ein Benutzer ist noch nicht drangewesen. Fortfahren?"
 
-#: src/game_gui.c:848
+#: src/game_gui.c:845
 msgid ""
 "At the Bygfoot forums you can report bugs, ask for help and discuss the game "
 "(you don't have to register):\n"
@@ -825,7 +825,7 @@ msgstr ""
 "Bygfoot Debug-Fenster. Wenn Du zufällig hierhergekommen bist, SCHLIESSE "
 "SOFORT (ansonsten wird Dein Prozessor durch Überhitzen zerstört)."
 
-#: src/game_gui.c:846
+#: src/game_gui.c:843
 msgid ""
 "Bygfoot is a very intuitive and simple game, so there isn't a full-grown "
 "documentation. However, if you have trouble, there are a few places to go.\n"
@@ -902,7 +902,7 @@ msgstr "Wähle Mannschaft"
 msgid "Choose username"
 msgstr "Wähle Benutzernamen"
 
-#: src/game_gui.c:733
+#: src/game_gui.c:730
 msgid "Click on OK to apply for the job. Click on CANCEL to close the window."
 msgstr ""
 "Klicke OK um den Job anzunehmen oder auf CANCEL um das Fenster zu schließen."
@@ -1464,7 +1464,7 @@ msgstr "Jobangebot"
 msgid "Job offers"
 msgstr "Jobangebote"
 
-#: src/game_gui.c:808
+#: src/game_gui.c:805
 #, c-format
 msgid "Job offers set to %s."
 msgstr "Jobangebote %s."
@@ -1569,7 +1569,7 @@ msgstr "Liste 2"
 msgid "Live game"
 msgstr "Livespiel"
 
-#: src/game_gui.c:817
+#: src/game_gui.c:814
 #, c-format
 msgid "Live game set to %s."
 msgstr "Livespiel %s."
@@ -1616,7 +1616,7 @@ msgstr ""
 msgid "Load the last game that was saved or loaded."
 msgstr "Lade den Spielstand, der als letztes gespeichert oder geladen wurde."
 
-#: src/xml.c:115
+#: src/xml.c:118
 #, c-format
 msgid "Loading cup: %s"
 msgstr "Lade Pokal: %s"
@@ -1626,7 +1626,7 @@ msgstr "Lade Pokal: %s"
 msgid "Loading job exchange..."
 msgstr "Zeige Jobangebote ..."
 
-#: src/xml.c:81
+#: src/xml.c:83
 #, c-format
 msgid "Loading league: %s"
 msgstr "Lade Liga: %s"
@@ -1839,7 +1839,7 @@ msgstr "Einstellungen"
 msgid "Overwrite"
 msgstr "Überschreiben"
 
-#: src/game_gui.c:826
+#: src/game_gui.c:823
 #, c-format
 msgid "Overwrite set to %s."
 msgstr "Überschreiben %s."
@@ -2092,8 +2092,8 @@ msgstr "Rechtsklick und Linksklick, um den Spielstil zu verändern"
 #: src/callbacks.c:1230
 msgid "Right click to apply for job at once, left click to see team info."
 msgstr ""
-"Rechtsklick, um Spieler zwischen den Mannschaften zu bewegen; Linksklick für "
-"Kontextmenü."
+"Rechtsklick, um Dich sofort zu bewerben, Linksklick, um die Mannschafts-Info "
+"zu sehen."
 
 #: src/misc_interface.c:1056 src/misc_interface.c:1090
 msgid "Right-click to set to 0"
@@ -2528,7 +2528,7 @@ msgstr ""
 "fristlos gekündigt und kannst den Rest der Saison in deinem Garten "
 "verbringen."
 
-#: src/game_gui.c:730
+#: src/game_gui.c:727
 #, c-format
 msgid ""
 "The owners of %s are deeply impressed by your success with %s and would like "
@@ -2617,7 +2617,7 @@ msgstr "Der Spieler verhandelt nicht mehr."
 msgid "The structure value %d is invalid."
 msgstr "Der Wert %d ist ungültig."
 
-#: src/game_gui.c:724
+#: src/game_gui.c:721
 #, c-format
 msgid ""
 "The team owners have fired you because of financial mismanagement. Luckily, "
@@ -2628,7 +2628,7 @@ msgstr ""
 "Zum Glück haben die Verantwortlichen von %s von Deiner Entlassung gehört und "
 "bieten Dir einen Vertrag an. Hier sind einige Daten zu %s:"
 
-#: src/game_gui.c:727
+#: src/game_gui.c:724
 #, c-format
 msgid ""
 "The team owners have fired you because of unsuccessfulness. Luckily, the "
@@ -3045,6 +3045,12 @@ msgstr "Du kannst höchstens %s zurückzahlen."
 #, c-format
 msgid "You can take out at most %s."
 msgstr "Du kannst höchstens %s leihen."
+
+#: src/callbacks.c:661
+msgid "You can't apply for a job from abroad if there's more than one user."
+msgstr ""
+"Du kannst dich nicht ins Ausland bewerben, wenn es ausser Dir noch einen "
+"Benutzer gibt."
 
 #: src/callbacks.c:1140
 #, c-format
