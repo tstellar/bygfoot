@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-21 16:52+0100\n"
+"POT-Creation-Date: 2006-01-07 20:50+0100\n"
 "PO-Revision-Date: 2005-09-28 13:35+0800\n"
 "Last-Translator: root <lbyoopp@gmail.com>\n"
 "Language-Team: Chinese <i18n-translation@lists.linux.net.cn>\n"
@@ -34,7 +34,7 @@ msgstr ""
 "\n"
 "进球/比赛 %.1f 射门 %% %.1f"
 
-#: src/game_gui.c:850
+#: src/game_gui.c:847
 msgid ""
 "\n"
 "If you feel you've found out something about the game that has to be shared, "
@@ -63,7 +63,7 @@ msgstr ""
 msgid " (FK)"
 msgstr " (任意球)"
 
-#: src/game_gui.c:740
+#: src/game_gui.c:737
 msgid " (NOTE: If you don't, the game is over for you.)"
 msgstr " （注意：要是拒绝的话，这个游戏就结束了"
 
@@ -235,7 +235,7 @@ msgid " Week "
 msgstr " 周 "
 
 #. Game was decided in extra time.
-#: src/fixture.c:858
+#: src/fixture.c:862
 msgid " e.t."
 msgstr "加时赛"
 
@@ -252,7 +252,7 @@ msgid " more"
 msgstr "更多"
 
 #. Game was decided in penalty shoot-out.
-#: src/fixture.c:855
+#: src/fixture.c:859
 msgid " p."
 msgstr "点球"
 
@@ -527,7 +527,7 @@ msgstr "关于"
 msgid "Accept"
 msgstr "接受"
 
-#: src/game_gui.c:736
+#: src/game_gui.c:733
 msgid "Accept?"
 msgstr "准备接受？"
 
@@ -571,7 +571,7 @@ msgstr "防守反击"
 msgid "Any"
 msgstr "自由人"
 
-#: src/game_gui.c:736
+#: src/game_gui.c:733
 msgid "Apply for the job?"
 msgstr ""
 
@@ -579,7 +579,7 @@ msgstr ""
 msgid "At least one user didn't take his turn this week. Continue?"
 msgstr "还有玩家没有结束本周工作。继续？"
 
-#: src/game_gui.c:848
+#: src/game_gui.c:845
 msgid ""
 "At the Bygfoot forums you can report bugs, ask for help and discuss the game "
 "(you don't have to register):\n"
@@ -805,7 +805,7 @@ msgstr ""
 "Bygfoot调试窗口。如果你只不过是碰巧来到了这里，请赶快关闭它（否则你的cpu可能"
 "因过热而导致损坏！）"
 
-#: src/game_gui.c:846
+#: src/game_gui.c:843
 msgid ""
 "Bygfoot is a very intuitive and simple game, so there isn't a full-grown "
 "documentation. However, if you have trouble, there are a few places to go.\n"
@@ -879,7 +879,7 @@ msgstr "选择文件"
 msgid "Choose username"
 msgstr "选择国家/地区"
 
-#: src/game_gui.c:733
+#: src/game_gui.c:730
 msgid "Click on OK to apply for the job. Click on CANCEL to close the window."
 msgstr ""
 
@@ -1431,7 +1431,7 @@ msgstr "工作邀请"
 msgid "Job offers"
 msgstr "工作邀请"
 
-#: src/game_gui.c:808
+#: src/game_gui.c:805
 #, c-format
 msgid "Job offers set to %s."
 msgstr "工作邀请被设置为 %s"
@@ -1532,7 +1532,7 @@ msgstr ""
 msgid "Live game"
 msgstr "现场游戏"
 
-#: src/game_gui.c:817
+#: src/game_gui.c:814
 #, c-format
 msgid "Live game set to %s."
 msgstr "现场游戏被设定为 %s"
@@ -1579,7 +1579,7 @@ msgstr ""
 msgid "Load the last game that was saved or loaded."
 msgstr "读取上一个保存的游戏"
 
-#: src/xml.c:115
+#: src/xml.c:118
 #, c-format
 msgid "Loading cup: %s"
 msgstr "读取杯赛：%s"
@@ -1590,7 +1590,7 @@ msgstr "读取杯赛：%s"
 msgid "Loading job exchange..."
 msgstr "显示工作邀请"
 
-#: src/xml.c:81
+#: src/xml.c:83
 #, c-format
 msgid "Loading league: %s"
 msgstr "读取联赛：%s"
@@ -1805,7 +1805,7 @@ msgstr "选项"
 msgid "Overwrite"
 msgstr "覆盖选项"
 
-#: src/game_gui.c:826
+#: src/game_gui.c:823
 #, c-format
 msgid "Overwrite set to %s."
 msgstr "覆盖选项被设定为 %s."
@@ -2489,7 +2489,7 @@ msgid ""
 "season tending your garden."
 msgstr ""
 
-#: src/game_gui.c:730
+#: src/game_gui.c:727
 #, c-format
 msgid ""
 "The owners of %s are deeply impressed by your success with %s and would like "
@@ -2573,7 +2573,7 @@ msgstr "球员不会再就合同与你谈判下去了"
 msgid "The structure value %d is invalid."
 msgstr "球队阵容设置 %d 不是有效的阵形设置"
 
-#: src/game_gui.c:724
+#: src/game_gui.c:721
 #, c-format
 msgid ""
 "The team owners have fired you because of financial mismanagement. Luckily, "
@@ -2583,7 +2583,7 @@ msgstr ""
 "由于你经营不善球队董事会决定解出你的主教练职务。幸运的是，%s 的老板听说了你被"
 "解雇后向你提出合同，想邀请你去他们那里试试，这里是 %s 的简介"
 
-#: src/game_gui.c:727
+#: src/game_gui.c:724
 #, c-format
 msgid ""
 "The team owners have fired you because of unsuccessfulness. Luckily, the "
@@ -2965,6 +2965,10 @@ msgstr "你最多可以偿还 %s."
 #, c-format
 msgid "You can take out at most %s."
 msgstr "你最多可以提取 %s."
+
+#: src/callbacks.c:661
+msgid "You can't apply for a job from abroad if there's more than one user."
+msgstr ""
 
 #: src/callbacks.c:1140
 #, c-format

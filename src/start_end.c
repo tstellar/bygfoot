@@ -174,6 +174,8 @@ start_new_season(void)
 
     if(season == 1)
 	bet_update();
+
+    /*todo: reset league and cup id counters*/
 }
 
 /** Fill some global variables with default values at the
@@ -213,7 +215,7 @@ start_generate_league_teams(void)
 void
 end_week_round(void)
 {
-    gint i;
+    gint i = 0;
     gboolean new_week = TRUE;
     WeekFunc *end_func = end_week_round_funcs;
 
@@ -284,7 +286,8 @@ end_week_round_results(void)
 		live_game_calculate_fixture(&g_array_index(lig(i).fixtures, Fixture, j));
 
 		done++;
-		fixture_result_to_buf(&g_array_index(lig(i).fixtures, Fixture, j), buf, FALSE);
+		fixture_result_to_buf(&g_array_index(lig(i).fixtures, Fixture, j),
+				      buf, FALSE);
 		sprintf(buf2, "%s %s %s",
 			g_array_index(lig(i).fixtures, Fixture, j).teams[0]->name,
 			buf,
@@ -307,7 +310,8 @@ end_week_round_results(void)
 		live_game_calculate_fixture(&g_array_index(acp(i)->fixtures, Fixture, j));
 
 		done++;
-		fixture_result_to_buf(&g_array_index(acp(i)->fixtures, Fixture, j), buf, FALSE);
+		fixture_result_to_buf(&g_array_index(acp(i)->fixtures, Fixture, j), 
+				      buf, FALSE);
 		sprintf(buf2, "%s %s %s",
 			g_array_index(acp(i)->fixtures, Fixture, j).teams[0]->name,
 			buf,
@@ -346,8 +350,9 @@ end_week_round_sort_tables(void)
 	    for(j=0;j<cup_get_last_tables(acp(i)->id)->len;j++)
 	    {
 		for(k=0;k<g_array_index(cup_get_last_tables(acp(i)->id), Table, j).elements->len;k++)
-		    g_array_index(g_array_index(cup_get_last_tables(acp(i)->id), Table, j).elements,
-				  TableElement, k).old_rank = k;
+		    g_array_index(
+			g_array_index(cup_get_last_tables(acp(i)->id), Table, j).elements,
+			TableElement, k).old_rank = k;
 
 		g_array_sort_with_data(
 		    g_array_index(cup_get_last_tables(acp(i)->id), Table, j).elements,

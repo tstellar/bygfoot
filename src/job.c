@@ -94,7 +94,7 @@ job_add_new_international(gint num_of_new)
 	    rndom = math_rndi(0, country_files->len - 1);
 	while(g_strrstr((gchar*)g_ptr_array_index(country_files, rndom),
 			country.sid));
-
+	
 	idx = job_country_is_in_list(
 	    (gchar*)g_ptr_array_index(country_files, rndom), 
 	    countries, num_of_new);
@@ -104,6 +104,7 @@ job_add_new_international(gint num_of_new)
 	    idx = k;
 	    xml_country_read((gchar*)g_ptr_array_index(country_files, rndom),
 			     &countries[k]);
+	    counters[COUNT_LEAGUE_ID] -= countries[k].leagues->len;
 	    k++;
 	}
 
@@ -216,7 +217,7 @@ job_pick_team_from_country(const Country *cntry, Team **tm, League **league)
 				   Team, rndom - team_lens[i - 1]) :
 		    &g_array_index(g_array_index(
 				       cntry->leagues, League, i).teams, 
-				   Team, rndom);		
+				   Team, rndom);				
 		*league = &g_array_index(cntry->leagues, League, i);
 		break;
 	    }

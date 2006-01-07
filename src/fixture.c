@@ -92,6 +92,9 @@ fixture_update(Cup *cup)
     GPtrArray *teams = NULL;
     const CupRound *new_round = NULL;
 
+    if(debug > 90)
+	g_print("fixture_update: cup %s (id %d)\n", cup->name, cup->id);
+
     if(replay != 0 && 
        g_array_index(fixtures, Fixture, fixtures->len - 1).replay_number < replay && 
        fixture_update_write_replays(cup))
@@ -108,9 +111,10 @@ fixture_update(Cup *cup)
     if(round + 1 > cup->rounds->len - 1)
     {
 	g_ptr_array_free(teams, TRUE);
-	main_exit_program(EXIT_CUP_ROUND_ERROR, 
-			  "fixture_update: round index %d too high for round array (%d) in cup %s\n",
-			  round + 1, cup->rounds->len - 1, cup->name);
+	main_exit_program(
+	    EXIT_CUP_ROUND_ERROR, 
+	    "fixture_update: round index %d too high for round array (%d) in cup %s\n",
+	    round + 1, cup->rounds->len - 1, cup->name);
     }
 
     new_round = &g_array_index(cup->rounds, CupRound, round + 1);

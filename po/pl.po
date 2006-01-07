@@ -5,11 +5,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-21 16:52+0100\n"
-"PO-Revision-Date: 2005-12-22 10:29+0100\n"
+"POT-Creation-Date: 2006-01-07 20:50+0100\n"
+"PO-Revision-Date: 2005-12-22 10:42+0100\n"
 "Last-Translator: Michal Rudolf <mrudolf@kdewebdev.org>\n"
-"Language-Team: Polish <kdei18n-pl-devel@lists.sourceforge.net"
-">\n"
+"Language-Team: Polish <kdei18n-pl-devel@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,7 +19,8 @@ msgstr ""
 ">\n"
 ">\n"
 "X-Generator: KBabel 1.10.2\n"
-"Plural-Forms:  nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms:  nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%"
+"100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: src/treeview_helper.c:860
 #, c-format
@@ -40,7 +40,7 @@ msgstr ""
 "\n"
 "Bramki/Spotkania %.1f Skuteczność %% %.1f"
 
-#: src/game_gui.c:850
+#: src/game_gui.c:847
 msgid ""
 "\n"
 "If you feel you've found out something about the game that has to be shared, "
@@ -70,7 +70,7 @@ msgstr " &amp; Co."
 msgid " (FK)"
 msgstr " (w)"
 
-#: src/game_gui.c:740
+#: src/game_gui.c:737
 msgid " (NOTE: If you don't, the game is over for you.)"
 msgstr " (Uwaga: jeśli nie przyjmiesz propozycji, gra będzie skończona.)"
 
@@ -242,7 +242,7 @@ msgid " Week "
 msgstr " Tydzień "
 
 #. Game was decided in extra time.
-#: src/fixture.c:858
+#: src/fixture.c:862
 msgid " e.t."
 msgstr " dogr."
 
@@ -259,7 +259,7 @@ msgid " more"
 msgstr " więcej"
 
 #. Game was decided in penalty shoot-out.
-#: src/fixture.c:855
+#: src/fixture.c:859
 msgid " p."
 msgstr " k."
 
@@ -485,14 +485,16 @@ msgstr ""
 
 #. Copy the <span...> stuff, translate in between.
 #: src/treeview2.c:272
-msgid "<span background='lightgrey' size='large' weight='bold'>Current bets</span>"
+msgid ""
+"<span background='lightgrey' size='large' weight='bold'>Current bets</span>"
 msgstr ""
 "<span background='lightgrey' size='large' weight='bold'>Aktualne zakłady</"
 "span>"
 
 #. Copy the <span...> stuff, translate in between.
 #: src/treeview2.c:274
-msgid "<span background='lightgrey' size='large' weight='bold'>Recent bets</span>"
+msgid ""
+"<span background='lightgrey' size='large' weight='bold'>Recent bets</span>"
 msgstr ""
 "<span background='lightgrey' size='large' weight='bold'>Ostatnie zakłady</"
 "span>"
@@ -541,7 +543,7 @@ msgstr "O programie"
 msgid "Accept"
 msgstr "Akceptuj"
 
-#: src/game_gui.c:736
+#: src/game_gui.c:733
 msgid "Accept?"
 msgstr "Przyjmujesz?"
 
@@ -585,7 +587,7 @@ msgstr "Anty"
 msgid "Any"
 msgstr "Wszyscy"
 
-#: src/game_gui.c:736
+#: src/game_gui.c:733
 msgid "Apply for the job?"
 msgstr "Zgłosić się do pracy?"
 
@@ -595,7 +597,7 @@ msgstr ""
 "Przynajmniej jeden użytkownik nie wykonał działań na ten tydzień. "
 "Kontynuować?"
 
-#: src/game_gui.c:848
+#: src/game_gui.c:845
 msgid ""
 "At the Bygfoot forums you can report bugs, ask for help and discuss the game "
 "(you don't have to register):\n"
@@ -820,7 +822,7 @@ msgstr ""
 "Okno debuggera Bygfoot. Jeśli włączyłeś je przez przypadek, WYŁĄCZ "
 "NATYCHMIAST (w przeciwnym razie Twój komputer zostanie zniszczony)."
 
-#: src/game_gui.c:846
+#: src/game_gui.c:843
 msgid ""
 "Bygfoot is a very intuitive and simple game, so there isn't a full-grown "
 "documentation. However, if you have trouble, there are a few places to go.\n"
@@ -868,7 +870,8 @@ msgstr ""
 
 #: src/misc_interface.c:740
 msgid "Change live game speed. The lower the value the faster the live game."
-msgstr "Zmienia szybkość relacji na żywo. Im niższa wartość, tym szybsza relacja."
+msgstr ""
+"Zmienia szybkość relacji na żywo. Im niższa wartość, tym szybsza relacja."
 
 #: src/misc_interface.c:101
 msgid "Choose country"
@@ -894,7 +897,7 @@ msgstr "Wybierz drużynę"
 msgid "Choose username"
 msgstr "Wybierz nazwę użytkownika"
 
-#: src/game_gui.c:733
+#: src/game_gui.c:730
 msgid "Click on OK to apply for the job. Click on CANCEL to close the window."
 msgstr "Wciśnij OK by zgłosić się do pracy. ANULUJ zamyka okno."
 
@@ -1183,7 +1186,8 @@ msgstr "Transfer"
 #. the attendace for the match.
 #: src/main.c:92
 msgid "File containing live game tokens (may be in a support dir)"
-msgstr "Plik zawierający zmienne relacji na żywo (może być w katalogu z danymi)"
+msgstr ""
+"Plik zawierający zmienne relacji na żywo (może być w katalogu z danymi)"
 
 #: src/options_interface.c:358
 msgid ""
@@ -1450,7 +1454,7 @@ msgstr "Oferta pracy"
 msgid "Job offers"
 msgstr "Oferty pracy"
 
-#: src/game_gui.c:808
+#: src/game_gui.c:805
 #, c-format
 msgid "Job offers set to %s."
 msgstr "Oferty pracy ustawione na %s."
@@ -1538,7 +1542,8 @@ msgstr ""
 "podręczne."
 
 #: src/callbacks.c:873
-msgid "Left-click: get loan; Right-click: pay back; Middle click: stadium window."
+msgid ""
+"Left-click: get loan; Right-click: pay back; Middle click: stadium window."
 msgstr "Lwy przycisk: pożyczka, prawy: spłata, środkowy: stadion."
 
 #: src/options_interface.c:957
@@ -1553,7 +1558,7 @@ msgstr "Lista 2"
 msgid "Live game"
 msgstr "Relacja na żywo"
 
-#: src/game_gui.c:817
+#: src/game_gui.c:814
 #, c-format
 msgid "Live game set to %s."
 msgstr "Relacja na żywo ustawiona na %s."
@@ -1600,7 +1605,7 @@ msgstr ""
 msgid "Load the last game that was saved or loaded."
 msgstr "Wczytaj ostatnio zapisaną lub wczytywaną grę."
 
-#: src/xml.c:115
+#: src/xml.c:118
 #, c-format
 msgid "Loading cup: %s"
 msgstr "Wczytywanie pucharu: %s"
@@ -1610,7 +1615,7 @@ msgstr "Wczytywanie pucharu: %s"
 msgid "Loading job exchange..."
 msgstr "Wczytywanie ofert pracy..."
 
-#: src/xml.c:81
+#: src/xml.c:83
 #, c-format
 msgid "Loading league: %s"
 msgstr "Wczytywanie ligi: %s"
@@ -1823,7 +1828,7 @@ msgstr "Ustawienia"
 msgid "Overwrite"
 msgstr "Nadpisywanie"
 
-#: src/game_gui.c:826
+#: src/game_gui.c:823
 #, c-format
 msgid "Overwrite set to %s."
 msgstr "Nadpisywanie ustawione na %s."
@@ -2098,7 +2103,8 @@ msgstr "Bezpieczeństwo (%)"
 
 #: src/misc_callback_func.c:271
 msgid "Safety improvement too high, reset to highest possible value."
-msgstr "Zbyt wysoka wartość bezpieczeństwa, wybrano maksymalną dopuszczalną wartość."
+msgstr ""
+"Zbyt wysoka wartość bezpieczeństwa, wybrano maksymalną dopuszczalną wartość."
 
 #. % of saves for goalies (#goals / #shots)
 #: src/treeview.c:2127
@@ -2201,7 +2207,8 @@ msgid "Set investment"
 msgstr "Finansowanie"
 
 #: src/callbacks.c:1124 src/interface.c:671
-msgid "Set the percentage of your income you want to devote to your youth academy."
+msgid ""
+"Set the percentage of your income you want to devote to your youth academy."
 msgstr "Podaj procent dochodów, jaki chcesz przeznaczyć na szkółkę młodzików."
 
 #: src/options_interface.c:542
@@ -2506,7 +2513,7 @@ msgstr ""
 "Właściciele klubu %s akceptują Twoją ofertę. W związku z tym %s zwalnia cię "
 "i spędzasz resztę sezonu, uprawiając ogródek."
 
-#: src/game_gui.c:730
+#: src/game_gui.c:727
 #, c-format
 msgid ""
 "The owners of %s are deeply impressed by your success with %s and would like "
@@ -2565,7 +2572,8 @@ msgid "The player is already on the list."
 msgstr "Zawodnik jest już na liście."
 
 #: src/callback_func.c:464
-msgid "The player is locked (the team owners are considering an offer currently)."
+msgid ""
+"The player is locked (the team owners are considering an offer currently)."
 msgstr "Zawodnik jest aktualnie zablokowany (właściciele rozważają ofertę)."
 
 #: src/callbacks.c:471
@@ -2593,7 +2601,7 @@ msgstr "Zawodnik odmawia dalszych negocjacji."
 msgid "The structure value %d is invalid."
 msgstr "Wartość ustawienia %d jest nieprawidłowa."
 
-#: src/game_gui.c:724
+#: src/game_gui.c:721
 #, c-format
 msgid ""
 "The team owners have fired you because of financial mismanagement. Luckily, "
@@ -2604,7 +2612,7 @@ msgstr ""
 "finansami. Na szczęście właściciele klubu %s na wieść o Twoim zwolnieniu "
 "zaproponowali Ci pracę. Oto podstawowe wiadomości o %s:"
 
-#: src/game_gui.c:727
+#: src/game_gui.c:724
 #, c-format
 msgid ""
 "The team owners have fired you because of unsuccessfulness. Luckily, the "
@@ -2789,7 +2797,8 @@ msgid "Welcome to Bygfoot %s"
 msgstr "Witamy w programie Bygfoot %s"
 
 #: src/options_interface.c:235
-msgid "Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
+msgid ""
+"Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
 msgstr ""
 "Określa, czy 'Zapisz' nadpisuje aktualny plik, czy też wyświetla okno wyboru "
 "pliku"
@@ -2891,7 +2900,8 @@ msgid "Whether to show cup matches in the betting window"
 msgstr "Czy wyświetlać mecze pucharowe w oknie zakładów"
 
 #: src/misc3_interface.c:82
-msgid "Whether to show cup matches. Use the options window to toggle permanently."
+msgid ""
+"Whether to show cup matches. Use the options window to toggle permanently."
 msgstr ""
 "Czy wyświetlać mecze pucharowe. Tę opcje można skonfigurować na stałe w "
 "oknie ustawień."
@@ -2926,13 +2936,15 @@ msgstr ""
 
 #: src/options_interface.c:584
 msgid "Whether to show the player games/goals value in all competitions"
-msgstr "Określa, czy wyświetlać łączną liczbę spotkań/bramek we wszystkich zawodach."
+msgstr ""
+"Określa, czy wyświetlać łączną liczbę spotkań/bramek we wszystkich zawodach."
 
 #: src/options_interface.c:250
 msgid ""
 "Whether to show warnings and such in the message area in the main window "
 "when possible"
-msgstr "Określa, czy wyświetlać ostrzeżenia i inne komunikaty w polu wiadomości."
+msgstr ""
+"Określa, czy wyświetlać ostrzeżenia i inne komunikaty w polu wiadomości."
 
 #. Team 1 wins (betting window).
 #: src/treeview2.c:362
@@ -3018,6 +3030,12 @@ msgstr "Możesz spłacić najwyżej %s"
 #, c-format
 msgid "You can take out at most %s."
 msgstr "Możesz pobrać co najwyżej %s."
+
+#: src/callbacks.c:661
+msgid "You can't apply for a job from abroad if there's more than one user."
+msgstr ""
+"Nie możesz starać się o pracę za granicą, jeżeli gra więcej niż jeden "
+"użytkownik."
 
 #: src/callbacks.c:1140
 #, c-format
@@ -3315,4 +3333,3 @@ msgstr "_Drużyna"
 #: src/interface.c:835
 msgid "_User"
 msgstr "_Użytkownik"
-

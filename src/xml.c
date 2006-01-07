@@ -58,10 +58,12 @@ xml_load_users(const gchar *dirname, const gchar *basename)
 
     for(i=0;i<users->len;i++)
     {
-	sprintf(buf, "%s%s%s___user_%02d_options", dirname, G_DIR_SEPARATOR_S, basename, i);
+	sprintf(buf, "%s%s%s___user_%02d_options", 
+		dirname, G_DIR_SEPARATOR_S, basename, i);
 	file_load_opt_file(buf, &usr(i).options);
 
-	sprintf(buf, "%s%s%s___user_%02d_live_game.xml", dirname, G_DIR_SEPARATOR_S, basename, i);
+	sprintf(buf, "%s%s%s___user_%02d_live_game.xml", 
+		dirname, G_DIR_SEPARATOR_S, basename, i);
 	xml_loadsave_live_game_read(buf, &usr(i).live_game);
     }
 }
@@ -80,6 +82,7 @@ xml_load_league(const gchar *dirname, const gchar *basename)
 
     sprintf(buf, _("Loading league: %s"),
 	    new.name);
+
     gui_show_progress(
 	gtk_progress_bar_get_fraction(
 	    GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar"))), buf,

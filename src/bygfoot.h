@@ -43,7 +43,7 @@
 #define VERS "1.9.4"
 
 /** Home dir name */
-#define HOMEDIRNAME ".bygfoot-1.9"
+#define HOMEDIRNAME ".bygfoot-cvs"
 
 /**
  * Convenience macros, used for string sizes (typically buf[SMALL]).
@@ -53,9 +53,7 @@
 
 /** Starting numbers of league, cup and supercup numerical ids. */
 #define ID_LEAGUE_START 1000
-#define ID_CUP_START 2000
-#define ID_PROM_CUP_START 3000
-#define ID_SUPERCUP_START 4000
+#define ID_CUP_START 7000
 
 #define player_id_new (counters[COUNT_PLAYER_ID]++)
 #define team_id_new (counters[COUNT_TEAM_ID]++)

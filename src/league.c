@@ -52,7 +52,7 @@ league_new(gboolean new_id)
     new.sid = NULL;
     new.short_name = NULL;
     new.symbol = NULL;
-    
+
     new.id = (new_id) ? league_id_new : -1;
     new.layer = -1;
 
