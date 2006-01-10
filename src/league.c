@@ -373,7 +373,8 @@ league_season_start(League *league)
     gint idx = league_index_from_sid(league->sid);
     gboolean user_champ = 
 	(team_is_user(
-	    team_of_id(g_array_index(lig(0).table.elements, TableElement, 0).team_id)) != -1);
+	    team_of_id(
+		g_array_index(lig(0).table.elements, TableElement, 0).team_id)) != -1);
     gfloat team_change_factor = 0;
 
     for(i=0;i<league->table.elements->len;i++)
@@ -393,13 +394,17 @@ league_season_start(League *league)
 	team_change_factor = 
 	    (team_is_user(&g_array_index(league->teams, Team, i)) == -1) *
 	    math_rnd(const_float("float_season_end_team_change_lower") +
-		     (user_champ && idx == 0) * const_float("float_season_end_user_champ_addition"),
+		     (user_champ && idx == 0) * 
+		     const_float("float_season_end_user_champ_addition"),
 		     const_float("float_season_end_team_change_upper") +
-		     (user_champ && idx == 0) * const_float("float_season_end_user_champ_addition"));
+		     (user_champ && idx == 0) * 
+		     const_float("float_season_end_user_champ_addition"));
 
 	for(j=0;j<g_array_index(league->teams, Team, i).players->len;j++)
 	    player_season_start(
-		&g_array_index(g_array_index(league->teams, Team, i).players, Player, j), team_change_factor);
+		&g_array_index(
+		    g_array_index(
+			league->teams, Team, i).players, Player, j), team_change_factor);
 
 	g_array_index(league->teams, Team, i).stadium.average_attendance =
 	    g_array_index(league->teams, Team, i).stadium.games = 

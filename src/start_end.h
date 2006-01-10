@@ -91,4 +91,7 @@ start_week_add_cups(void);
 void
 end_week_hide_cups(void);
 
+void
+start_new_season_reset_ids(void);
+
 #endif

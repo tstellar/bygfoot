@@ -40,6 +40,7 @@
 #include "misc.h"
 #include "name.h"
 #include "option.h"
+#include "player.h"
 #include "start_end.h"
 #include "stat.h"
 #include "table.h"
@@ -130,10 +131,16 @@ start_new_season(void)
 
 	    usr(i).youth_academy.tm = usr(i).tm;
 	    for(j=0;j<usr(i).youth_academy.players->len;j++)
+	    {
 		g_array_index(usr(i).youth_academy.players, Player, j).team = usr(i).tm;
+		player_season_start(
+		    &g_array_index(usr(i).youth_academy.players, Player, j), 0);
+	    }
 
 	    live_game_reset(&usr(i).live_game, NULL, TRUE);
 	}
+
+	start_new_season_reset_ids();
     }
     else
     {
@@ -174,8 +181,6 @@ start_new_season(void)
 
     if(season == 1)
 	bet_update();
-
-    /*todo: reset league and cup id counters*/
 }
 
 /** Fill some global variables with default values at the
@@ -209,6 +214,29 @@ start_generate_league_teams(void)
 	    team_generate_players_stadium(&g_array_index(lig(i).teams, Team, j), 0);
 
     stat5 = -1;
+}
+
+/** Reset the cup and league ids to the smallest possible
+    value to avoid an overflow (gotta admit, the id system
+    isn't perfect). */
+void
+start_new_season_reset_ids(void)
+{
+    gint i, max;
+
+    max = -1;
+    for(i=0;i<ligs->len;i++)
+	if(lig(i).id > max)
+	    max = lig(i).id;
+
+    counters[COUNT_LEAGUE_ID] = max + 1;
+
+    max = -1;
+    for(i=0;i<cps->len;i++)
+	if(cp(i).id > max)
+	    max = cp(i).id;
+
+    counters[COUNT_CUP_ID] = max + 1;
 }
 
 /** End a week round. */
