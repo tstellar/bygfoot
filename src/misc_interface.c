@@ -67,17 +67,12 @@ create_window_startup (void)
   GtkWidget *hbox53;
   GtkWidget *image58;
   GtkWidget *label74;
+  GtkWidget *button_team_selection_back;
+  GtkWidget *alignment24;
+  GtkWidget *hbox77;
+  GtkWidget *image64;
+  GtkWidget *label122;
   GtkWidget *team_selection_cancel;
-  GtkWidget *team_selection_load;
-  GtkWidget *alignment3;
-  GtkWidget *hbox6;
-  GtkWidget *image4;
-  GtkWidget *label5;
-  GtkWidget *button_startup_resume;
-  GtkWidget *alignment21;
-  GtkWidget *hbox70;
-  GtkWidget *image61;
-  GtkWidget *label114;
   GtkAccelGroup *accel_group;
   GtkTooltips *tooltips;
 
@@ -269,7 +264,29 @@ create_window_startup (void)
   gtk_widget_show (label74);
   gtk_box_pack_start (GTK_BOX (hbox53), label74, FALSE, FALSE, 0);
 
-  team_selection_cancel = gtk_button_new_from_stock ("gtk-cancel");
+  button_team_selection_back = gtk_button_new ();
+  gtk_widget_show (button_team_selection_back);
+  gtk_box_pack_start (GTK_BOX (hbox3), button_team_selection_back, FALSE, FALSE, 0);
+  gtk_container_set_border_width (GTK_CONTAINER (button_team_selection_back), 2);
+  gtk_tooltips_set_tip (tooltips, button_team_selection_back, _("Go back to the splash screen"), NULL);
+
+  alignment24 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment24);
+  gtk_container_add (GTK_CONTAINER (button_team_selection_back), alignment24);
+
+  hbox77 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox77);
+  gtk_container_add (GTK_CONTAINER (alignment24), hbox77);
+
+  image64 = gtk_image_new_from_stock ("gtk-go-back", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image64);
+  gtk_box_pack_start (GTK_BOX (hbox77), image64, FALSE, FALSE, 0);
+
+  label122 = gtk_label_new_with_mnemonic (_("Back to splash"));
+  gtk_widget_show (label122);
+  gtk_box_pack_start (GTK_BOX (hbox77), label122, FALSE, FALSE, 0);
+
+  team_selection_cancel = gtk_button_new_from_stock ("gtk-quit");
   gtk_widget_show (team_selection_cancel);
   gtk_box_pack_start (GTK_BOX (hbox3), team_selection_cancel, TRUE, TRUE, 0);
   gtk_container_set_border_width (GTK_CONTAINER (team_selection_cancel), 2);
@@ -277,52 +294,6 @@ create_window_startup (void)
   gtk_widget_add_accelerator (team_selection_cancel, "clicked", accel_group,
                               GDK_Escape, 0,
                               GTK_ACCEL_VISIBLE);
-
-  team_selection_load = gtk_button_new ();
-  gtk_widget_show (team_selection_load);
-  gtk_box_pack_start (GTK_BOX (hbox3), team_selection_load, TRUE, TRUE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (team_selection_load), 2);
-  gtk_tooltips_set_tip (tooltips, team_selection_load, _("Ctrl-O"), NULL);
-  gtk_widget_add_accelerator (team_selection_load, "clicked", accel_group,
-                              GDK_o, GDK_CONTROL_MASK,
-                              GTK_ACCEL_VISIBLE);
-
-  alignment3 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment3);
-  gtk_container_add (GTK_CONTAINER (team_selection_load), alignment3);
-
-  hbox6 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox6);
-  gtk_container_add (GTK_CONTAINER (alignment3), hbox6);
-
-  image4 = gtk_image_new_from_stock ("gtk-open", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image4);
-  gtk_box_pack_start (GTK_BOX (hbox6), image4, FALSE, FALSE, 0);
-
-  label5 = gtk_label_new_with_mnemonic (_("Load game"));
-  gtk_widget_show (label5);
-  gtk_box_pack_start (GTK_BOX (hbox6), label5, FALSE, FALSE, 0);
-
-  button_startup_resume = gtk_button_new ();
-  gtk_widget_show (button_startup_resume);
-  gtk_box_pack_start (GTK_BOX (hbox3), button_startup_resume, FALSE, FALSE, 0);
-  gtk_tooltips_set_tip (tooltips, button_startup_resume, _("Load the last game that was saved or loaded."), NULL);
-
-  alignment21 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment21);
-  gtk_container_add (GTK_CONTAINER (button_startup_resume), alignment21);
-
-  hbox70 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox70);
-  gtk_container_add (GTK_CONTAINER (alignment21), hbox70);
-
-  image61 = gtk_image_new_from_stock ("gtk-revert-to-saved", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image61);
-  gtk_box_pack_start (GTK_BOX (hbox70), image61, FALSE, FALSE, 0);
-
-  label114 = gtk_label_new_with_mnemonic (_("_Resume last game"));
-  gtk_widget_show (label114);
-  gtk_box_pack_start (GTK_BOX (hbox70), label114, FALSE, FALSE, 0);
 
   g_signal_connect ((gpointer) window_startup, "delete_event",
                     G_CALLBACK (on_team_selection_cancel_clicked),
@@ -342,14 +313,11 @@ create_window_startup (void)
   g_signal_connect ((gpointer) team_selection_ok, "clicked",
                     G_CALLBACK (on_team_selection_ok_clicked),
                     NULL);
+  g_signal_connect ((gpointer) button_team_selection_back, "clicked",
+                    G_CALLBACK (on_button_team_selection_back_clicked),
+                    NULL);
   g_signal_connect ((gpointer) team_selection_cancel, "clicked",
                     G_CALLBACK (on_team_selection_cancel_clicked),
-                    NULL);
-  g_signal_connect ((gpointer) team_selection_load, "clicked",
-                    G_CALLBACK (on_team_selection_load_clicked),
-                    NULL);
-  g_signal_connect ((gpointer) button_startup_resume, "clicked",
-                    G_CALLBACK (on_button_startup_resume_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -390,17 +358,12 @@ create_window_startup (void)
   GLADE_HOOKUP_OBJECT (window_startup, hbox53, "hbox53");
   GLADE_HOOKUP_OBJECT (window_startup, image58, "image58");
   GLADE_HOOKUP_OBJECT (window_startup, label74, "label74");
+  GLADE_HOOKUP_OBJECT (window_startup, button_team_selection_back, "button_team_selection_back");
+  GLADE_HOOKUP_OBJECT (window_startup, alignment24, "alignment24");
+  GLADE_HOOKUP_OBJECT (window_startup, hbox77, "hbox77");
+  GLADE_HOOKUP_OBJECT (window_startup, image64, "image64");
+  GLADE_HOOKUP_OBJECT (window_startup, label122, "label122");
   GLADE_HOOKUP_OBJECT (window_startup, team_selection_cancel, "team_selection_cancel");
-  GLADE_HOOKUP_OBJECT (window_startup, team_selection_load, "team_selection_load");
-  GLADE_HOOKUP_OBJECT (window_startup, alignment3, "alignment3");
-  GLADE_HOOKUP_OBJECT (window_startup, hbox6, "hbox6");
-  GLADE_HOOKUP_OBJECT (window_startup, image4, "image4");
-  GLADE_HOOKUP_OBJECT (window_startup, label5, "label5");
-  GLADE_HOOKUP_OBJECT (window_startup, button_startup_resume, "button_startup_resume");
-  GLADE_HOOKUP_OBJECT (window_startup, alignment21, "alignment21");
-  GLADE_HOOKUP_OBJECT (window_startup, hbox70, "hbox70");
-  GLADE_HOOKUP_OBJECT (window_startup, image61, "image61");
-  GLADE_HOOKUP_OBJECT (window_startup, label114, "label114");
   GLADE_HOOKUP_OBJECT_NO_REF (window_startup, tooltips, "tooltips");
 
   gtk_widget_grab_focus (treeview_startup);

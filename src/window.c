@@ -69,6 +69,86 @@
 /* 		       _("News")); */
 /* } */
 
+/** Show the splash screen window. */
+void
+window_show_splash(void)
+{
+    window_create(WINDOW_SPLASH);
+
+    treeview_show_contributors(
+	GTK_TREE_VIEW(lookup_widget(window.splash, "treeview_splash_contributors")));
+    
+    window_load_hint_number();
+    window_splash_show_hint();
+}
+
+/** Show the hint determined by the hint counter in the splash window. */
+void
+window_splash_show_hint(void)
+{
+    gchar buf[SMALL];
+
+    gtk_label_set_text(
+	GTK_LABEL(lookup_widget(window.splash, "label_splash_hint")),
+	g_array_index(hints.list, Option, counters[COUNT_HINT_NUMBER]).string_value);
+
+    sprintf(buf, "(%d/%d)", counters[COUNT_HINT_NUMBER] + 1,
+	    hints.list->len);
+
+    gtk_label_set_text(
+	GTK_LABEL(lookup_widget(window.splash, "label_splash_hintcounter")),
+	buf);    
+}
+
+/** Load the index of the hint to show in the splash screen. */
+void
+window_load_hint_number(void)
+{
+    gchar filename[SMALL];
+    gchar dir[SMALL];
+    FILE *fil;
+    
+    file_get_bygfoot_dir(dir);
+
+    sprintf(filename, "%s%shint_num",
+	    dir, G_DIR_SEPARATOR_S);
+
+    fil = fopen(filename, "r");
+
+    if(fil == NULL)
+    {
+	counters[COUNT_HINT_NUMBER] = 0;
+	return;
+    }
+
+    fscanf(fil, "%d", &counters[COUNT_HINT_NUMBER]);
+
+    fclose(fil);
+}
+
+/** Save the index of the current hint. */
+void
+window_save_hint_number(void)
+{
+    gchar filename[SMALL];
+    gchar dir[SMALL];
+    FILE *fil;
+
+    file_get_bygfoot_dir(dir);
+
+    sprintf(filename, "%s%shint_num",
+	    dir, G_DIR_SEPARATOR_S);
+
+    fil = fopen(filename, "w");
+
+    if(fil == NULL)
+	return;
+
+    fprintf(fil, "%d", counters[COUNT_HINT_NUMBER]);
+
+    fclose(fil);
+}
+
 /** Show the window with the progress bar,
     sometimes with a nice picture. */
 void
@@ -160,32 +240,18 @@ void
 window_show_help(gint page)
 {
     gchar buf[SMALL];
-    gchar *help_file = file_find_support_file("bygfoot_help", TRUE);
-    OptionList help_list;
-
-    if(help_file == NULL)
-    {
-	game_gui_show_warning(_("Didn't find file 'bygfoot_help'."));
-	return;
-    }
-
-    help_list.list = NULL;
-    help_list.datalist = NULL;
-    file_load_opt_file(help_file, &help_list);
 
     window_create(WINDOW_HELP);
 
     sprintf(buf, "<span %s>Bygfoot Football Manager %s</span>\n(c) 2005 Győző Both (gyboth@bygfoot.com)\nhttp://bygfoot.sourceforge.net", const_app("string_help_window_program_name_attribute"), VERS);
     gtk_label_set_markup(GTK_LABEL(lookup_widget(window.help, "label_about")), buf);
 
-    treeview_show_contributors(&help_list);
+    treeview_show_contributors(
+	GTK_TREE_VIEW(lookup_widget(window.help, "treeview_contributors")));
 
     game_gui_set_help_labels();
 
     gtk_notebook_set_current_page(GTK_NOTEBOOK(lookup_widget(window.help, "notebook1")), page);
-
-    g_free(help_file);
-    free_option_list(&help_list, FALSE);
 }
 
 /**
@@ -242,7 +308,7 @@ window_show_file_sel(void)
     window_create(WINDOW_FILE_CHOOSER);
 
     if(stat5 != STATUS_LOAD_GAME &&
-       stat5 != STATUS_LOAD_GAME_TEAM_SELECTION)
+       stat5 != STATUS_LOAD_GAME_SPLASH)
 	gtk_file_chooser_set_action(GTK_FILE_CHOOSER(window.file_chooser),
 				    GTK_FILE_CHOOSER_ACTION_SAVE);
     else
@@ -252,7 +318,7 @@ window_show_file_sel(void)
     filter = gtk_file_filter_new();
     if(stat5 == STATUS_SAVE_GAME || 
        stat5 == STATUS_LOAD_GAME ||
-       stat5 == STATUS_LOAD_GAME_TEAM_SELECTION)
+       stat5 == STATUS_LOAD_GAME_SPLASH)
     {
 	gtk_file_filter_set_name(filter, _("Bygfoot Save Files"));
 	gtk_file_filter_add_pattern(filter, "*.zip");
@@ -272,7 +338,7 @@ window_show_file_sel(void)
 
     if((stat5 == STATUS_SAVE_GAME || 
 	stat5 == STATUS_LOAD_GAME ||
-	stat5 == STATUS_LOAD_GAME_TEAM_SELECTION) &&
+	stat5 == STATUS_LOAD_GAME_SPLASH) &&
        save_file != NULL)
 	gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(window.file_chooser),
 				      save_file);
@@ -301,7 +367,7 @@ window_show_file_sel(void)
 
 	if(stat5 == STATUS_LOAD_GAME)
 	    load_save_load_game(filename, FALSE);
-	else if(stat5 == STATUS_LOAD_GAME_TEAM_SELECTION)
+	else if(stat5 == STATUS_LOAD_GAME_SPLASH)
 	    misc_callback_startup_load(filename);
 	else if(stat5 == STATUS_SAVE_GAME)
 	    load_save_save_game(filename);
@@ -336,7 +402,7 @@ window_show_file_sel(void)
 	    user_mm_export_file(filename);
 
 	if(stat5 == STATUS_LOAD_GAME ||
-	   stat5 == STATUS_LOAD_GAME_TEAM_SELECTION)
+	   stat5 == STATUS_LOAD_GAME_SPLASH)
 	{
 	    cur_user = 0;
 	    on_button_back_to_main_clicked(NULL, NULL);
@@ -552,19 +618,14 @@ void
 window_main_save_geometry(void)
 {
     gchar filename[SMALL];
-    const gchar *home = g_get_home_dir();
-    gchar *pwd = g_get_current_dir();
+    gchar dir[SMALL];
     FILE *fil = NULL;
     gint width, height, pos_x, pos_y, paned_pos;
     
-    if(os_is_unix)
-	sprintf(filename, "%s%s%s%swindow_settings",
-		home, G_DIR_SEPARATOR_S, HOMEDIRNAME, G_DIR_SEPARATOR_S);
-    else
-	sprintf(filename, "%s%swindow_settings",
-		pwd, G_DIR_SEPARATOR_S);
+    file_get_bygfoot_dir(dir);
 
-    g_free(pwd);
+    sprintf(filename, "%s%swindow_settings",
+	    dir, G_DIR_SEPARATOR_S);
 
     if(window.main != NULL && file_my_fopen(filename, "w", &fil, FALSE))
     {
@@ -589,18 +650,13 @@ void
 window_main_load_geometry(void)
 {
     gchar filename[SMALL];
-    const gchar *home = g_get_home_dir();
-    gchar *pwd = g_get_current_dir();
+    gchar dir[SMALL];
     OptionList optionlist;
     
-    if(os_is_unix)
-	sprintf(filename, "%s%s%s%swindow_settings",
-		home, G_DIR_SEPARATOR_S, HOMEDIRNAME, G_DIR_SEPARATOR_S);
-    else
-	sprintf(filename, "%s%swindow_settings",
-		pwd, G_DIR_SEPARATOR_S);
+    file_get_bygfoot_dir(dir);
 
-    g_free(pwd);
+    sprintf(filename, "%s%swindow_settings",
+	    dir, G_DIR_SEPARATOR_S);
 
     if(g_file_test(filename, G_FILE_TEST_EXISTS))
     {
@@ -829,12 +885,19 @@ window_create(gint window_type)
 	    wind = window.bets;
 	    strcpy(buf, _("Betting"));
 	    break;
+	case WINDOW_SPLASH:
+	    if(window.splash != NULL)
+		g_warning("window_create: called on already existing window\n");
+	    else
+		window.splash = create_window_splash();
+	    wind = window.splash;
+	    break;
     }
 
     if(window_type != WINDOW_FILE_CHOOSER)
 	gtk_window_set_title(GTK_WINDOW(wind), buf);
 
-    if(window_type != WINDOW_PROGRESS)
+    if(window_type != WINDOW_PROGRESS && window_type != WINDOW_SPLASH)
 	g_timeout_add(20, (GSourceFunc)window_show, (gpointer)wind);
     else
 	gtk_widget_show(wind);
@@ -863,6 +926,14 @@ window_destroy(GtkWidget **wind, gboolean count_popups)
 
 	if(popups_active == 0 && window.main != NULL)
 	    gtk_widget_set_sensitive(window.main, TRUE);
+    }
+
+    if(*wind == window.splash)
+    {
+	counters[COUNT_HINT_NUMBER] = 
+	    (counters[COUNT_HINT_NUMBER] + 1) % hints.list->len;
+
+	window_save_hint_number();
     }
 
     gtk_widget_destroy(*wind);

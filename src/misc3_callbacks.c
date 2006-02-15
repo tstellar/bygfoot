@@ -25,6 +25,8 @@
 
 #include "bet.h"
 #include "fixture.h"
+#include "main.h"
+#include "misc_callback_func.h"
 #include "misc3_callbacks.h"
 #include "misc3_interface.h"
 #include "option.h"
@@ -157,3 +159,72 @@ on_checkbutton_bet_user_recent_button_press_event
 
     return FALSE;
 }
+
+gboolean
+on_window_splash_delete_event          (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data)
+{
+
+  return FALSE;
+}
+
+
+void
+on_button_splash_new_game_clicked      (GtkButton       *button,
+                                        gpointer         user_data)
+{   
+    window_destroy(&window.splash, FALSE);
+
+    window_show_startup();
+    stat0 = STATUS_TEAM_SELECTION;
+}
+
+
+void
+on_button_splash_load_game_clicked     (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    stat5 = STATUS_LOAD_GAME_SPLASH;
+    window_show_file_sel();
+}
+
+
+void
+on_button_splash_resume_game_clicked   (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    misc_callback_startup_load("last_save");
+}
+
+
+void
+on_button_splash_quit_clicked          (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    window_destroy(&window.splash, FALSE);
+    main_exit_program(EXIT_OK, NULL);
+}
+
+
+void
+on_button_splash_hint_back_clicked     (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    counters[COUNT_HINT_NUMBER] = (counters[COUNT_HINT_NUMBER] == 0) ?
+	hints.list->len - 1 : counters[COUNT_HINT_NUMBER] - 1;
+
+    window_splash_show_hint();
+}
+
+
+void
+on_button_splash_hint_next_clicked     (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    counters[COUNT_HINT_NUMBER] = 
+	(counters[COUNT_HINT_NUMBER] + 1) % hints.list->len;
+
+    window_splash_show_hint();
+}
+

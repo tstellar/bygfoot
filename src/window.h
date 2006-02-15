@@ -52,6 +52,7 @@ enum Windows
     WINDOW_SPONSORS,
     WINDOW_MMATCHES,
     WINDOW_BETS,
+    WINDOW_SPLASH,
     WINDOW_END
 };
 
@@ -112,5 +113,17 @@ window_show_bets(void);
 
 void
 window_show_progress(gint pictype);
+
+void
+window_show_splash(void);
+
+void
+window_load_hint_number(void);
+
+void
+window_save_hint_number(void);
+
+void
+window_splash_show_hint(void);
 
 #endif

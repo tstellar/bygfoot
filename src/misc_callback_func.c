@@ -298,12 +298,12 @@ misc_callback_improve_stadium(void)
 void
 misc_callback_startup_load(const gchar *filename)
 {
-    gtk_widget_hide(window.startup);
+    gtk_widget_hide(window.splash);
 
     if(load_save_load_game(filename, TRUE))
-	window_destroy(&window.startup, TRUE);
+	window_destroy(&window.splash, TRUE);
     else
-	gtk_widget_show(window.startup);
+	gtk_widget_show(window.splash);
 }
 
 

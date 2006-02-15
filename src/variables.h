@@ -123,3 +123,6 @@ gchar *save_file;
 
 /** Whether we are using a Unix system or Windows. */
 gboolean os_is_unix;
+
+/** The hints displayed in the splash screen. */
+OptionList hints;

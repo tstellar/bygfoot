@@ -148,3 +148,346 @@ create_window_bets (void)
   return window_bets;
 }
 
+GtkWidget*
+create_window_splash (void)
+{
+  GtkWidget *window_splash;
+  GtkWidget *vbox2;
+  GtkWidget *notebook1;
+  GtkWidget *image1;
+  GtkWidget *label2;
+  GtkWidget *scrolledwindow2;
+  GtkWidget *treeview_splash_contributors;
+  GtkWidget *label3;
+  GtkWidget *hseparator3;
+  GtkWidget *vbox3;
+  GtkWidget *hbox2;
+  GtkWidget *image2;
+  GtkWidget *label4;
+  GtkWidget *label_splash_hintcounter;
+  GtkWidget *button_splash_hint_back;
+  GtkWidget *alignment4;
+  GtkWidget *hbox8;
+  GtkWidget *image6;
+  GtkWidget *label11;
+  GtkWidget *button_splash_hint_next;
+  GtkWidget *alignment5;
+  GtkWidget *hbox9;
+  GtkWidget *image7;
+  GtkWidget *label12;
+  GtkWidget *label_splash_hint;
+  GtkWidget *hseparator4;
+  GtkWidget *hbox3;
+  GtkWidget *button_splash_new_game;
+  GtkWidget *alignment1;
+  GtkWidget *hbox4;
+  GtkWidget *image3;
+  GtkWidget *label7;
+  GtkWidget *button_splash_load_game;
+  GtkWidget *alignment2;
+  GtkWidget *hbox5;
+  GtkWidget *image4;
+  GtkWidget *label8;
+  GtkWidget *button_splash_resume_game;
+  GtkWidget *alignment3;
+  GtkWidget *hbox6;
+  GtkWidget *image5;
+  GtkWidget *label9;
+  GtkWidget *button_splash_quit;
+  GtkWidget *hbox7;
+  GtkWidget *label_splash_progress;
+  GtkWidget *progressbar_splash;
+  GtkAccelGroup *accel_group;
+  GtkTooltips *tooltips;
+
+  tooltips = gtk_tooltips_new ();
+
+  accel_group = gtk_accel_group_new ();
+
+  window_splash = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_container_set_border_width (GTK_CONTAINER (window_splash), 5);
+  gtk_window_set_position (GTK_WINDOW (window_splash), GTK_WIN_POS_CENTER_ALWAYS);
+
+  vbox2 = gtk_vbox_new (FALSE, 3);
+  gtk_widget_show (vbox2);
+  gtk_container_add (GTK_CONTAINER (window_splash), vbox2);
+
+  notebook1 = gtk_notebook_new ();
+  gtk_widget_show (notebook1);
+  gtk_box_pack_start (GTK_BOX (vbox2), notebook1, TRUE, TRUE, 0);
+
+  image1 = create_pixmap (window_splash, "bygfoot_splash.png");
+  gtk_widget_show (image1);
+  gtk_container_add (GTK_CONTAINER (notebook1), image1);
+
+  label2 = gtk_label_new ("     ");
+  gtk_widget_show (label2);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 0), label2);
+
+  scrolledwindow2 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrolledwindow2);
+  gtk_container_add (GTK_CONTAINER (notebook1), scrolledwindow2);
+  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow2), GTK_SHADOW_IN);
+
+  treeview_splash_contributors = gtk_tree_view_new ();
+  gtk_widget_show (treeview_splash_contributors);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow2), treeview_splash_contributors);
+
+  label3 = gtk_label_new (_("Contributors"));
+  gtk_widget_show (label3);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 1), label3);
+
+  hseparator3 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator3);
+  gtk_box_pack_start (GTK_BOX (vbox2), hseparator3, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (hseparator3, 1, 10);
+
+  vbox3 = gtk_vbox_new (FALSE, 0);
+  gtk_widget_show (vbox3);
+  gtk_box_pack_start (GTK_BOX (vbox2), vbox3, TRUE, TRUE, 0);
+
+  hbox2 = gtk_hbox_new (FALSE, 3);
+  gtk_widget_show (hbox2);
+  gtk_box_pack_start (GTK_BOX (vbox3), hbox2, FALSE, FALSE, 0);
+
+  image2 = gtk_image_new_from_stock ("gtk-dialog-info", GTK_ICON_SIZE_DND);
+  gtk_widget_show (image2);
+  gtk_box_pack_start (GTK_BOX (hbox2), image2, FALSE, FALSE, 0);
+
+  /* Splash screen hint question. */
+  label4 = gtk_label_new (_("Did you know?"));
+  gtk_widget_show (label4);
+  gtk_box_pack_start (GTK_BOX (hbox2), label4, FALSE, FALSE, 0);
+  gtk_label_set_use_markup (GTK_LABEL (label4), TRUE);
+
+  label_splash_hintcounter = gtk_label_new ("");
+  gtk_widget_show (label_splash_hintcounter);
+  gtk_box_pack_end (GTK_BOX (hbox2), label_splash_hintcounter, FALSE, FALSE, 0);
+
+  button_splash_hint_back = gtk_button_new ();
+  gtk_widget_show (button_splash_hint_back);
+  gtk_box_pack_start (GTK_BOX (hbox2), button_splash_hint_back, FALSE, FALSE, 0);
+
+  alignment4 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment4);
+  gtk_container_add (GTK_CONTAINER (button_splash_hint_back), alignment4);
+
+  hbox8 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox8);
+  gtk_container_add (GTK_CONTAINER (alignment4), hbox8);
+
+  image6 = gtk_image_new_from_stock ("gtk-go-back", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image6);
+  gtk_box_pack_start (GTK_BOX (hbox8), image6, FALSE, FALSE, 0);
+
+  label11 = gtk_label_new_with_mnemonic (_("Previous"));
+  gtk_widget_show (label11);
+  gtk_box_pack_start (GTK_BOX (hbox8), label11, FALSE, FALSE, 0);
+
+  button_splash_hint_next = gtk_button_new ();
+  gtk_widget_show (button_splash_hint_next);
+  gtk_box_pack_start (GTK_BOX (hbox2), button_splash_hint_next, FALSE, FALSE, 0);
+
+  alignment5 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment5);
+  gtk_container_add (GTK_CONTAINER (button_splash_hint_next), alignment5);
+
+  hbox9 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox9);
+  gtk_container_add (GTK_CONTAINER (alignment5), hbox9);
+
+  image7 = gtk_image_new_from_stock ("gtk-media-forward", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image7);
+  gtk_box_pack_start (GTK_BOX (hbox9), image7, FALSE, FALSE, 0);
+
+  label12 = gtk_label_new_with_mnemonic (_("Next"));
+  gtk_widget_show (label12);
+  gtk_box_pack_start (GTK_BOX (hbox9), label12, FALSE, FALSE, 0);
+
+  label_splash_hint = gtk_label_new ("");
+  gtk_widget_show (label_splash_hint);
+  gtk_box_pack_start (GTK_BOX (vbox3), label_splash_hint, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (label_splash_hint, -1, 90);
+  gtk_label_set_line_wrap (GTK_LABEL (label_splash_hint), TRUE);
+  gtk_misc_set_padding (GTK_MISC (label_splash_hint), 0, 5);
+
+  hseparator4 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator4);
+  gtk_box_pack_start (GTK_BOX (vbox2), hseparator4, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (hseparator4, 1, 10);
+
+  hbox3 = gtk_hbox_new (FALSE, 3);
+  gtk_widget_show (hbox3);
+  gtk_box_pack_start (GTK_BOX (vbox2), hbox3, TRUE, TRUE, 0);
+
+  button_splash_new_game = gtk_button_new ();
+  gtk_widget_show (button_splash_new_game);
+  gtk_box_pack_start (GTK_BOX (hbox3), button_splash_new_game, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, button_splash_new_game, _("Ctrl-N"), NULL);
+  gtk_widget_add_accelerator (button_splash_new_game, "clicked", accel_group,
+                              GDK_n, GDK_CONTROL_MASK,
+                              GTK_ACCEL_VISIBLE);
+
+  alignment1 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment1);
+  gtk_container_add (GTK_CONTAINER (button_splash_new_game), alignment1);
+
+  hbox4 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox4);
+  gtk_container_add (GTK_CONTAINER (alignment1), hbox4);
+
+  image3 = gtk_image_new_from_stock ("gtk-new", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image3);
+  gtk_box_pack_start (GTK_BOX (hbox4), image3, FALSE, FALSE, 0);
+
+  label7 = gtk_label_new_with_mnemonic (_("Start _new game"));
+  gtk_widget_show (label7);
+  gtk_box_pack_start (GTK_BOX (hbox4), label7, FALSE, FALSE, 0);
+
+  button_splash_load_game = gtk_button_new ();
+  gtk_widget_show (button_splash_load_game);
+  gtk_box_pack_start (GTK_BOX (hbox3), button_splash_load_game, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, button_splash_load_game, _("Ctrl-O"), NULL);
+  gtk_widget_add_accelerator (button_splash_load_game, "clicked", accel_group,
+                              GDK_o, GDK_CONTROL_MASK,
+                              GTK_ACCEL_VISIBLE);
+
+  alignment2 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment2);
+  gtk_container_add (GTK_CONTAINER (button_splash_load_game), alignment2);
+
+  hbox5 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox5);
+  gtk_container_add (GTK_CONTAINER (alignment2), hbox5);
+
+  image4 = gtk_image_new_from_stock ("gtk-open", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image4);
+  gtk_box_pack_start (GTK_BOX (hbox5), image4, FALSE, FALSE, 0);
+
+  label8 = gtk_label_new_with_mnemonic (_("_Load game"));
+  gtk_widget_show (label8);
+  gtk_box_pack_start (GTK_BOX (hbox5), label8, FALSE, FALSE, 0);
+
+  button_splash_resume_game = gtk_button_new ();
+  gtk_widget_show (button_splash_resume_game);
+  gtk_box_pack_start (GTK_BOX (hbox3), button_splash_resume_game, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, button_splash_resume_game, _("Ctrl-R"), NULL);
+  gtk_widget_add_accelerator (button_splash_resume_game, "clicked", accel_group,
+                              GDK_r, GDK_CONTROL_MASK,
+                              GTK_ACCEL_VISIBLE);
+
+  alignment3 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment3);
+  gtk_container_add (GTK_CONTAINER (button_splash_resume_game), alignment3);
+
+  hbox6 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox6);
+  gtk_container_add (GTK_CONTAINER (alignment3), hbox6);
+
+  image5 = gtk_image_new_from_stock ("gtk-revert-to-saved", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image5);
+  gtk_box_pack_start (GTK_BOX (hbox6), image5, FALSE, FALSE, 0);
+
+  label9 = gtk_label_new_with_mnemonic (_("_Resume game"));
+  gtk_widget_show (label9);
+  gtk_box_pack_start (GTK_BOX (hbox6), label9, FALSE, FALSE, 0);
+
+  button_splash_quit = gtk_button_new_from_stock ("gtk-quit");
+  gtk_widget_show (button_splash_quit);
+  gtk_box_pack_start (GTK_BOX (hbox3), button_splash_quit, TRUE, TRUE, 0);
+  gtk_tooltips_set_tip (tooltips, button_splash_quit, _("Esc"), NULL);
+  gtk_widget_add_accelerator (button_splash_quit, "clicked", accel_group,
+                              GDK_Escape, 0,
+                              GTK_ACCEL_VISIBLE);
+
+  hbox7 = gtk_hbox_new (FALSE, 5);
+  gtk_widget_show (hbox7);
+  gtk_box_pack_start (GTK_BOX (vbox2), hbox7, TRUE, TRUE, 0);
+
+  label_splash_progress = gtk_label_new (_("Ready"));
+  gtk_widget_show (label_splash_progress);
+  gtk_box_pack_start (GTK_BOX (hbox7), label_splash_progress, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (label_splash_progress, 400, -1);
+  gtk_misc_set_alignment (GTK_MISC (label_splash_progress), 0, 0.5);
+
+  progressbar_splash = gtk_progress_bar_new ();
+  gtk_widget_show (progressbar_splash);
+  gtk_box_pack_end (GTK_BOX (hbox7), progressbar_splash, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (progressbar_splash, -1, 10);
+
+  g_signal_connect ((gpointer) window_splash, "delete_event",
+                    G_CALLBACK (on_window_splash_delete_event),
+                    NULL);
+  g_signal_connect ((gpointer) button_splash_hint_back, "clicked",
+                    G_CALLBACK (on_button_splash_hint_back_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_splash_hint_next, "clicked",
+                    G_CALLBACK (on_button_splash_hint_next_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_splash_new_game, "clicked",
+                    G_CALLBACK (on_button_splash_new_game_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_splash_load_game, "clicked",
+                    G_CALLBACK (on_button_splash_load_game_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_splash_resume_game, "clicked",
+                    G_CALLBACK (on_button_splash_resume_game_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_splash_quit, "clicked",
+                    G_CALLBACK (on_button_splash_quit_clicked),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (window_splash, window_splash, "window_splash");
+  GLADE_HOOKUP_OBJECT (window_splash, vbox2, "vbox2");
+  GLADE_HOOKUP_OBJECT (window_splash, notebook1, "notebook1");
+  GLADE_HOOKUP_OBJECT (window_splash, image1, "image1");
+  GLADE_HOOKUP_OBJECT (window_splash, label2, "label2");
+  GLADE_HOOKUP_OBJECT (window_splash, scrolledwindow2, "scrolledwindow2");
+  GLADE_HOOKUP_OBJECT (window_splash, treeview_splash_contributors, "treeview_splash_contributors");
+  GLADE_HOOKUP_OBJECT (window_splash, label3, "label3");
+  GLADE_HOOKUP_OBJECT (window_splash, hseparator3, "hseparator3");
+  GLADE_HOOKUP_OBJECT (window_splash, vbox3, "vbox3");
+  GLADE_HOOKUP_OBJECT (window_splash, hbox2, "hbox2");
+  GLADE_HOOKUP_OBJECT (window_splash, image2, "image2");
+  GLADE_HOOKUP_OBJECT (window_splash, label4, "label4");
+  GLADE_HOOKUP_OBJECT (window_splash, label_splash_hintcounter, "label_splash_hintcounter");
+  GLADE_HOOKUP_OBJECT (window_splash, button_splash_hint_back, "button_splash_hint_back");
+  GLADE_HOOKUP_OBJECT (window_splash, alignment4, "alignment4");
+  GLADE_HOOKUP_OBJECT (window_splash, hbox8, "hbox8");
+  GLADE_HOOKUP_OBJECT (window_splash, image6, "image6");
+  GLADE_HOOKUP_OBJECT (window_splash, label11, "label11");
+  GLADE_HOOKUP_OBJECT (window_splash, button_splash_hint_next, "button_splash_hint_next");
+  GLADE_HOOKUP_OBJECT (window_splash, alignment5, "alignment5");
+  GLADE_HOOKUP_OBJECT (window_splash, hbox9, "hbox9");
+  GLADE_HOOKUP_OBJECT (window_splash, image7, "image7");
+  GLADE_HOOKUP_OBJECT (window_splash, label12, "label12");
+  GLADE_HOOKUP_OBJECT (window_splash, label_splash_hint, "label_splash_hint");
+  GLADE_HOOKUP_OBJECT (window_splash, hseparator4, "hseparator4");
+  GLADE_HOOKUP_OBJECT (window_splash, hbox3, "hbox3");
+  GLADE_HOOKUP_OBJECT (window_splash, button_splash_new_game, "button_splash_new_game");
+  GLADE_HOOKUP_OBJECT (window_splash, alignment1, "alignment1");
+  GLADE_HOOKUP_OBJECT (window_splash, hbox4, "hbox4");
+  GLADE_HOOKUP_OBJECT (window_splash, image3, "image3");
+  GLADE_HOOKUP_OBJECT (window_splash, label7, "label7");
+  GLADE_HOOKUP_OBJECT (window_splash, button_splash_load_game, "button_splash_load_game");
+  GLADE_HOOKUP_OBJECT (window_splash, alignment2, "alignment2");
+  GLADE_HOOKUP_OBJECT (window_splash, hbox5, "hbox5");
+  GLADE_HOOKUP_OBJECT (window_splash, image4, "image4");
+  GLADE_HOOKUP_OBJECT (window_splash, label8, "label8");
+  GLADE_HOOKUP_OBJECT (window_splash, button_splash_resume_game, "button_splash_resume_game");
+  GLADE_HOOKUP_OBJECT (window_splash, alignment3, "alignment3");
+  GLADE_HOOKUP_OBJECT (window_splash, hbox6, "hbox6");
+  GLADE_HOOKUP_OBJECT (window_splash, image5, "image5");
+  GLADE_HOOKUP_OBJECT (window_splash, label9, "label9");
+  GLADE_HOOKUP_OBJECT (window_splash, button_splash_quit, "button_splash_quit");
+  GLADE_HOOKUP_OBJECT (window_splash, hbox7, "hbox7");
+  GLADE_HOOKUP_OBJECT (window_splash, label_splash_progress, "label_splash_progress");
+  GLADE_HOOKUP_OBJECT (window_splash, progressbar_splash, "progressbar_splash");
+  GLADE_HOOKUP_OBJECT_NO_REF (window_splash, tooltips, "tooltips");
+
+  gtk_window_add_accel_group (GTK_WINDOW (window_splash), accel_group);
+
+  return window_splash;
+}
+

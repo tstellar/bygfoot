@@ -184,9 +184,10 @@ file_check_home_dir_create_dirs(void)
     }
 }
 
-/** Copy the basic config files into the user home dir. */
+/** Add the basic config files to the list of file to copy
+    into the user home dir. */
 void
-file_check_home_dir_copy_conf_files(void)
+file_check_home_dir_get_conf_files(GPtrArray **files_to_copy)
 {
     gint i;
     gchar *conf_files[2] =
@@ -203,14 +204,17 @@ file_check_home_dir_copy_conf_files(void)
 	if(!g_file_test(buf, G_FILE_TEST_EXISTS))
 	{
 	    conf_file = file_find_support_file(conf_files[i], TRUE);	    
-	    file_copy_file(conf_file, buf);
+	    g_ptr_array_add(files_to_copy[0], g_strdup(conf_file));
+	    g_ptr_array_add(files_to_copy[1], g_strdup(buf));
 	}
     }
 }
 
-/** Copy the xml definition files into the home dir. */
+/** Add the xml definition files to the list of files to copy
+    into the home dir. */
 void
-file_check_home_dir_copy_definition_dir(const gchar *dirname, const gchar *basename)
+file_check_home_dir_get_definition_dir(const gchar *dirname, const gchar *basename,
+				       GPtrArray **files_to_copy)
 {
     gint i;
     gchar buf[SMALL], buf2[SMALL];
@@ -237,7 +241,8 @@ file_check_home_dir_copy_definition_dir(const gchar *dirname, const gchar *basen
         
 	    sprintf(buf2, "%s%s%s", dirname, G_DIR_SEPARATOR_S,
 		    (gchar*)g_ptr_array_index(dir_contents, i));
-	    file_copy_file(buf2, buf);
+	    g_ptr_array_add(files_to_copy[0], g_strdup(buf2));
+	    g_ptr_array_add(files_to_copy[1], g_strdup(buf));
 	}
 	else
 	{
@@ -248,7 +253,7 @@ file_check_home_dir_copy_definition_dir(const gchar *dirname, const gchar *basen
 	    {
 		sprintf(buf2, "%s%s%s", basename, G_DIR_SEPARATOR_S,
 			(gchar*)g_ptr_array_index(dir_contents, i));
-		file_check_home_dir_copy_definition_dir(buf, buf2);
+		file_check_home_dir_get_definition_dir(buf, buf2, files_to_copy);
 	    }
 	}
     }
@@ -256,28 +261,97 @@ file_check_home_dir_copy_definition_dir(const gchar *dirname, const gchar *basen
     free_gchar_array(&dir_contents);
 }
 
-/** Copy the xml definition files into the home dir. */
+/** Step through the support dirs to find xml definition files
+    that get copied into the home dir. */
 void
-file_check_home_dir_copy_definition_files(void)
+file_check_home_dir_get_definition_files(GPtrArray **files_to_copy)
 {
     GList *elem = support_directories;
   
     while(elem != NULL)
     {    
 	if(g_str_has_suffix((gchar*)elem->data, "definitions"))
-	    file_check_home_dir_copy_definition_dir((const gchar*)elem->data, "definitions");
+	    file_check_home_dir_get_definition_dir((const gchar*)elem->data, 
+						   "definitions",
+						   files_to_copy);
 
 	elem = elem->next;
     }
 }
 
-/** Copy some files into the user's home directory. */
+/** Execute the copy commands on the files assembled earlier. */
 void
+file_check_home_dir_copy_files(GPtrArray **files_to_copy)
+{
+    gint i;
+    gchar buf[SMALL];
+    const gchar *filename = NULL;
+    GtkLabel *label_splash_progress =
+	GTK_LABEL(lookup_widget(window.splash, "label_splash_progress"));
+    GtkProgressBar *progressbar_splash =
+	GTK_PROGRESS_BAR(lookup_widget(window.splash, "progressbar_splash"));
+    GtkWidget *hint_buttons[2] = 
+	{lookup_widget(window.splash, "button_splash_hint_back"),
+	 lookup_widget(window.splash, "button_splash_hint_next")};
+    GtkWidget *hbox_buttons = lookup_widget(window.splash, "hbox3");
+
+    if(files_to_copy[0]->len > 0)
+    {
+	gtk_widget_set_sensitive(hint_buttons[0], FALSE);
+	gtk_widget_set_sensitive(hint_buttons[1], FALSE);
+	gtk_widget_set_sensitive(hbox_buttons, FALSE);
+    }
+
+    for(i=0;i<files_to_copy[0]->len;i++)
+    {
+	filename = g_strrstr((gchar*)g_ptr_array_index(files_to_copy[0], i), 
+			     G_DIR_SEPARATOR_S);
+	if(filename == NULL)
+	    filename = (gchar*)g_ptr_array_index(files_to_copy[0], i);
+	else
+	    filename = filename + 1;
+
+	sprintf(buf, _("Copying %s"), filename);
+	gtk_label_set_text(label_splash_progress, buf);
+	gtk_progress_bar_set_fraction(progressbar_splash, 
+				      (gdouble)i /(gdouble)files_to_copy[0]->len);
+	while(gtk_events_pending())
+	    gtk_main_iteration();
+
+	file_copy_file((gchar*)g_ptr_array_index(files_to_copy[0], i),
+		       (gchar*)g_ptr_array_index(files_to_copy[1], i));
+    }
+
+    gtk_progress_bar_set_fraction(progressbar_splash, 1);
+    gtk_label_set_text(label_splash_progress, _("Ready"));
+
+    while(gtk_events_pending())
+	gtk_main_iteration();    
+
+    if(files_to_copy[0]->len > 0)
+    {
+	gtk_widget_set_sensitive(hint_buttons[0], TRUE);
+	gtk_widget_set_sensitive(hint_buttons[1], TRUE);
+	gtk_widget_set_sensitive(hbox_buttons, TRUE);
+    }
+}
+
+/** Copy some files into the user's home directory. */
+gboolean
 file_check_home_dir(void)
 {
+    GPtrArray *files_to_copy[2] = {g_ptr_array_new(),
+				   g_ptr_array_new()};
+
     file_check_home_dir_create_dirs();
-    file_check_home_dir_copy_conf_files();
-    file_check_home_dir_copy_definition_files();
+    file_check_home_dir_get_conf_files(files_to_copy);
+    file_check_home_dir_get_definition_files(files_to_copy);
+    file_check_home_dir_copy_files(files_to_copy);
+
+    free_gchar_array(&(files_to_copy[0]));
+    free_gchar_array(&(files_to_copy[1]));
+
+    return FALSE;
 }
 
 /**
@@ -480,6 +554,7 @@ file_load_conf_files(void)
     file_load_opt_file(opt_str("string_opt_constants_file"), &constants);
     file_load_opt_file(opt_str("string_opt_appearance_file"), &constants_app);
     file_load_opt_file("bygfoot_tokens", &tokens);
+    file_load_opt_file("bygfoot_hints", &hints);
 
     for(i=0;i<tokens.list->len;i++)
 	g_array_index(tokens.list, Option, i).value = i;
@@ -657,4 +732,20 @@ file_copy_file(const gchar *source_file, const gchar *dest_file)
 		source_file, dest_file);
 
     file_my_system(buf);
+}
+
+/** Find out where the Bygfoot directory we can write to resides
+    and write the location into the string. */
+void
+file_get_bygfoot_dir(gchar *dir)
+{
+    const gchar *home = g_get_home_dir();
+    gchar *pwd = g_get_current_dir();
+    
+    if(os_is_unix)
+	sprintf(dir, "%s%s%s", home, G_DIR_SEPARATOR_S, HOMEDIRNAME);
+    else
+	sprintf(dir, "%s%s", pwd, G_DIR_SEPARATOR_S);
+
+    g_free(pwd);
 }

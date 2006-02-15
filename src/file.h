@@ -66,17 +66,21 @@ file_load_conf_files(void);
 void
 file_load_user_conf_file(User *user);
 
-void
+gboolean
 file_check_home_dir(void);
 
 void
-file_check_home_dir_copy_conf_files(void);
+file_check_home_dir_get_conf_files(GPtrArray **files_to_copy);
 
 void
-file_check_home_dir_copy_definition_files(void);
+file_check_home_dir_get_definition_files(GPtrArray **files_to_copy);
 
 void
-file_check_home_dir_copy_definition_dir(const gchar *dirname, const gchar *basename);
+file_check_home_dir_get_definition_dir(const gchar *dirname, const gchar *basename,
+				       GPtrArray **files_to_copy);
+
+void
+file_check_home_dir_copy_files(GPtrArray **files_to_copy);
 
 gboolean
 file_my_system(const gchar *command);
@@ -98,5 +102,8 @@ file_remove_files(const gchar *files);
 
 void
 file_copy_file(const gchar *source_file, const gchar *dest_file);
+
+void
+file_get_bygfoot_dir(gchar *dir);
 
 #endif

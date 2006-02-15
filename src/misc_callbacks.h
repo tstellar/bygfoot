@@ -38,10 +38,6 @@ void
 on_team_selection_ok_clicked           (GtkButton       *button,
                                         gpointer         user_data);
 
-void
-on_team_selection_load_clicked         (GtkButton       *button,
-                                        gpointer         user_data);
-
 gboolean
 on_button_font_sel_cancel_clicked      (GtkWidget       *widget,
                                         GdkEvent        *event,
@@ -113,10 +109,6 @@ on_spinbutton_capacity_button_press_event
                                         GdkEventButton  *event,
                                         gpointer         user_data);
 
-void
-on_button_startup_resume_clicked       (GtkButton       *button,
-                                        gpointer         user_data);
-
 gboolean
 on_window_stadium_delete_event         (GtkWidget       *widget,
                                         GdkEvent        *event,
@@ -179,5 +171,9 @@ gboolean
 on_eventbox_lg_boost_button_press_event
                                         (GtkWidget       *widget,
                                         GdkEventButton  *event,
+                                        gpointer         user_data);
+
+void
+on_button_team_selection_back_clicked  (GtkButton       *button,
                                         gpointer         user_data);
 #endif
