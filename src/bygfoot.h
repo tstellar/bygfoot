@@ -40,7 +40,7 @@
 /**
  * Program version number.
  */
-#define VERS "1.9.4"
+#define VERS "1.9.5"
 
 /** Home dir name */
 #define HOMEDIRNAME ".bygfoot-cvs"
@@ -162,7 +162,8 @@ typedef struct
 	*transfer_dialog,
 	*sponsors,
 	*mmatches,
-	*bets;
+	*bets,
+	*splash;
     
     /** The position of the horizontal divider is stored here. */
     gint paned_pos;

@@ -221,7 +221,7 @@ GtkTreeModel*
 treeview_create_country_list(const GPtrArray *country_list);
 
 void
-treeview_show_contributors(const OptionList *help_list);
+treeview_show_contributors(GtkTreeView *treeview);
 
 GtkTreeModel*
 treeview_create_league_list(void);

@@ -23,8 +23,8 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#ifndef TREEVIEW_CELL_H
-#define TREEVIEW_CELL_H
+#ifndef TREEVIEW_HELPER_H
+#define TREEVIEW_HELPER_H
 
 #include "bygfoot.h"
 

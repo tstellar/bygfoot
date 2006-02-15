@@ -175,6 +175,7 @@ main_init_variables(void)
 
     counters[COUNT_LEAGUE_ID] = ID_LEAGUE_START;
     counters[COUNT_CUP_ID] = ID_CUP_START;
+    counters[COUNT_HINT_NUMBER] = -1;
 
     window.main = window.startup =
 	window.live = window.warning = window.progress = window.digits =
@@ -182,7 +183,7 @@ main_init_variables(void)
 	window.options = window.font_sel =
 	window.file_chooser = window.contract = 
 	window.menu_player = window.user_management = 
-	window.mmatches = window.bets = NULL;
+	window.mmatches = window.bets = window.splash = NULL;
     
     live_game_reset(&live_game_temp, NULL, FALSE);
 
@@ -199,9 +200,11 @@ main_init_variables(void)
     save_file = NULL;
 
     constants_app.list = settings.list =
-	constants.list = options.list = tokens.list = NULL;
+	constants.list = options.list = tokens.list = 
+	hints.list = NULL;
     constants_app.datalist = settings.datalist =
-	constants.datalist = options.datalist = tokens.datalist = NULL;
+	constants.datalist = options.datalist = 
+	tokens.datalist = hints.datalist = NULL;
 
     popups_active = 0;
     selected_row = -1;
@@ -266,9 +269,6 @@ main_init(gint *argc, gchar ***argv)
 
     main_init_variables();
 
-    if(os_is_unix)
-	file_check_home_dir();
-
     load_last_save = FALSE;
     main_parse_cl_arguments(argc, argv);
 }
@@ -301,8 +301,12 @@ main (gint argc, gchar *argv[])
        (!load_last_save && (argc == 1 ||
 			    (argc > 1 && !load_game_from_command_line(argv[1])))))
     {
-	window_show_startup();
-	stat0 = STATUS_TEAM_SELECTION;
+	stat0 = STATUS_SPLASH;
+	window_show_splash();
+
+	if(os_is_unix)
+/* 	    g_timeout_add(20, (GSourceFunc)file_check_home_dir(), NULL); */
+	    file_check_home_dir();
     }
 
     gtk_main ();

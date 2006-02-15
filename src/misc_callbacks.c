@@ -70,15 +70,6 @@ on_team_selection_cancel_clicked       (GtkButton       *button,
     main_exit_program(EXIT_OK, NULL);
 }
 
-void
-on_team_selection_load_clicked         (GtkButton       *button,
-                                        gpointer         user_data)
-{
-    stat5 = STATUS_LOAD_GAME_TEAM_SELECTION;
-    window_show_file_sel();
-}
-
-
 gboolean
 on_button_font_sel_cancel_clicked      (GtkWidget       *widget,
                                         GdkEvent        *event,
@@ -275,13 +266,6 @@ on_spinbutton_capacity_button_press_event  (GtkWidget       *widget,
     return FALSE;
 }
 
-void
-on_button_startup_resume_clicked       (GtkButton       *button,
-                                        gpointer         user_data)
-{
-    misc_callback_startup_load("last_save");
-}
-
 gboolean
 on_window_stadium_delete_event         (GtkWidget       *widget,
                                         GdkEvent        *event,
@@ -464,4 +448,13 @@ on_eventbox_lg_boost_button_press_event (GtkWidget       *widget,
     stat0 = STATUS_LIVE_GAME_CHANGE;
 
     return FALSE;
+}
+
+void
+on_button_team_selection_back_clicked  (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    window_destroy(&window.startup, TRUE);
+    stat0 = STATUS_SPLASH;
+    window_show_splash();
 }

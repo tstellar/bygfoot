@@ -60,3 +60,32 @@ on_checkbutton_bet_user_recent_button_press_event
                                         GdkEventButton  *event,
                                         gpointer         user_data);
 #endif
+
+gboolean
+on_window_splash_delete_event          (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data);
+
+void
+on_button_splash_new_game_clicked      (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_splash_load_game_clicked     (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_splash_resume_game_clicked   (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_splash_quit_clicked          (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_splash_hint_back_clicked     (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_splash_hint_next_clicked     (GtkButton       *button,
+                                        gpointer         user_data);
