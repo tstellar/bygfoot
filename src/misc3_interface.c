@@ -296,7 +296,7 @@ create_window_splash (void)
   gtk_widget_show (hbox9);
   gtk_container_add (GTK_CONTAINER (alignment5), hbox9);
 
-  image7 = gtk_image_new_from_stock ("gtk-media-forward", GTK_ICON_SIZE_BUTTON);
+  image7 = gtk_image_new_from_stock ("gtk-go-forward", GTK_ICON_SIZE_BUTTON);
   gtk_widget_show (image7);
   gtk_box_pack_start (GTK_BOX (hbox9), image7, FALSE, FALSE, 0);
 

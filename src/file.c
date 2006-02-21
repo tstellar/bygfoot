@@ -29,6 +29,7 @@
 
 #include "file.h"
 #include "free.h"
+#include "language.h"
 #include "main.h"
 #include "misc.h"
 #include "option.h"
@@ -540,6 +541,22 @@ file_load_opt_file(const gchar *filename, OptionList *optionlist)
     fclose(fil);
 }
 
+/** Load the appropriate hints file. */
+void
+file_load_hints_file(void)
+{
+    gchar buf[SMALL], hints_file[SMALL];
+
+    language_get_code(buf);
+
+    sprintf(hints_file, "bygfoot_hints_%s", buf);
+    
+    if(!g_file_test(hints_file, G_FILE_TEST_EXISTS))
+	strcpy(hints_file, "bygfoot_hints_en");
+    
+    file_load_opt_file(hints_file, &hints);
+}
+
 /** Load the options at the beginning of a new game from
     the configuration files. */
 void
@@ -554,7 +571,7 @@ file_load_conf_files(void)
     file_load_opt_file(opt_str("string_opt_constants_file"), &constants);
     file_load_opt_file(opt_str("string_opt_appearance_file"), &constants_app);
     file_load_opt_file("bygfoot_tokens", &tokens);
-    file_load_opt_file("bygfoot_hints", &hints);
+    file_load_hints_file();
 
     for(i=0;i<tokens.list->len;i++)
 	g_array_index(tokens.list, Option, i).value = i;
