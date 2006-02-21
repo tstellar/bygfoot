@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-15 12:54+0100\n"
+"POT-Creation-Date: 2006-02-21 11:10+0100\n"
 "PO-Revision-Date: 2005-09-28 13:35+0800\n"
 "Last-Translator: root <lbyoopp@gmail.com>\n"
 "Language-Team: Chinese <i18n-translation@lists.linux.net.cn>\n"
@@ -42,10 +42,6 @@ msgid ""
 msgstr ""
 "\n"
 "如果想与大家分享你游戏中的感受，心得，你可以把它们写到Bygfoot的WIKI页中:\n"
-
-#: src/misc3_interface.c:223
-msgid "     "
-msgstr ""
 
 #. Company short name. Copy the '&amp;'.
 #: src/user.c:882
@@ -417,7 +413,7 @@ msgstr "%s: %d (没有黄牌累计)\n"
 msgid "%s: %d weeks\n"
 msgstr "%s: %d 周\n"
 
-#: src/main.c:117
+#: src/main.c:116
 msgid "- a simple and addictive GTK2 football manager"
 msgstr ""
 
@@ -555,7 +551,7 @@ msgstr "年龄"
 msgid "Age "
 msgstr "年龄 "
 
-#: src/window.c:335
+#: src/window.c:343
 msgid "All Files"
 msgstr "所有文件"
 
@@ -726,7 +722,7 @@ msgid "Best offensive teams"
 msgstr "进攻最佳球队"
 
 #: src/interface.c:998 src/options_interface.c:1020 src/treeview.c:1347
-#: src/treeview.c:1357 src/window.c:886
+#: src/treeview.c:1357 src/window.c:894
 msgid "Betting"
 msgstr ""
 
@@ -797,11 +793,11 @@ msgstr "浏览球员"
 msgid "Browse teams"
 msgstr "浏览球队"
 
-#: src/window.c:329
+#: src/window.c:337
 msgid "Bygfoot Memorable Matches"
 msgstr "bygfoot比赛集锦"
 
-#: src/window.c:323
+#: src/window.c:331
 msgid "Bygfoot Save Files"
 msgstr "bygfoot存档文件"
 
@@ -903,11 +899,11 @@ msgstr "点击一个玩家可以移除他"
 msgid "Commentary"
 msgstr "现场解说"
 
-#: src/main.c:95
+#: src/main.c:94
 msgid "Commentary event to test; leave out to test all commentaries"
 msgstr ""
 
-#: src/main.c:86
+#: src/main.c:85
 msgid "Commentary file name (may be in a support dir)"
 msgstr ""
 
@@ -968,7 +964,7 @@ msgstr ""
 "合同有效期\n"
 "(月)"
 
-#: src/window.c:828
+#: src/window.c:836
 msgid "Contract offer"
 msgstr "提供合同"
 
@@ -993,16 +989,16 @@ msgstr "找不到图片：%s"
 msgid "Country"
 msgstr "地区"
 
-#: src/misc3_interface.c:325
+#: src/misc3_interface.c:326
 #, fuzzy
 msgid "Ctrl-N"
 msgstr "Ctrl-O"
 
-#: src/misc3_interface.c:349
+#: src/misc3_interface.c:350
 msgid "Ctrl-O"
 msgstr "Ctrl-O"
 
-#: src/misc3_interface.c:373
+#: src/misc3_interface.c:374
 #, fuzzy
 msgid "Ctrl-R"
 msgstr "Ctrl-O"
@@ -1069,7 +1065,8 @@ msgstr "防守"
 msgid "Defenders"
 msgstr "后卫"
 
-#: src/misc3_interface.c:257
+#. Splash screen hint question.
+#: src/misc3_interface.c:258
 msgid "Did you know?"
 msgstr ""
 
@@ -1135,13 +1132,13 @@ msgstr "键入球队阵容（3个数字之和必须等于10）"
 msgid "Enter custom structure"
 msgstr "设定阵容"
 
-#: src/window.c:747
+#: src/window.c:755
 msgid "Erm..."
 msgstr ""
 
 #: src/misc2_interface.c:450 src/misc2_interface.c:537
 #: src/misc2_interface.c:1099 src/misc2_interface.c:1194
-#: src/misc3_interface.c:107 src/misc3_interface.c:397
+#: src/misc3_interface.c:107 src/misc3_interface.c:398
 #: src/misc_interface.c:293 src/misc_interface.c:1107
 #: src/options_interface.c:1054
 msgid "Esc"
@@ -1188,7 +1185,7 @@ msgstr "转会费"
 #. Live game tokens are strings like _AT_ in live game commentary files
 #. which will be filled in by the program during runtime; e.g. _AT_ becomes
 #. the attendace for the match.
-#: src/main.c:92
+#: src/main.c:91
 msgid "File containing live game tokens (may be in a support dir)"
 msgstr ""
 
@@ -1370,7 +1367,7 @@ msgstr "帮助"
 msgid "Home"
 msgstr "主场"
 
-#: src/main.c:98
+#: src/main.c:97
 msgid "How many commentaries to generate per event"
 msgstr ""
 
@@ -1427,7 +1424,7 @@ msgstr "从 赛季集锦 中导入比赛"
 msgid "Improve!"
 msgstr "提升！"
 
-#: src/treeview.c:1324 src/window.c:554
+#: src/treeview.c:1324 src/window.c:562
 #, c-format
 msgid ""
 "Improvement in progress.\n"
@@ -1450,7 +1447,7 @@ msgstr "增长"
 msgid "Injuries"
 msgstr "伤病"
 
-#: src/misc2_interface.c:71 src/window.c:783
+#: src/misc2_interface.c:71 src/window.c:791
 msgid "Job offer"
 msgstr "工作邀请"
 
@@ -1496,7 +1493,7 @@ msgstr "继续游戏"
 msgid "Language"
 msgstr "语言"
 
-#: src/main.c:79
+#: src/main.c:78
 msgid "Language to use (a code like 'de')"
 msgstr ""
 
@@ -1576,7 +1573,7 @@ msgstr "比赛现场解说细致度"
 msgid "Load game (Ctrl - O)"
 msgstr "读取进度(Ctrl-O)"
 
-#: src/main.c:81
+#: src/main.c:80
 #, fuzzy
 msgid "Load last savegame"
 msgstr "继续游戏"
@@ -1668,7 +1665,7 @@ msgstr "最大化主窗口"
 msgid "Memorable match added."
 msgstr "添加至比赛集锦"
 
-#: src/interface.c:875 src/window.c:878
+#: src/interface.c:875 src/window.c:886
 msgid "Memorable matches"
 msgstr "比赛集锦"
 
@@ -1733,7 +1730,7 @@ msgstr ""
 "新合同\n"
 "出价"
 
-#: src/misc3_interface.c:302
+#: src/misc3_interface.c:303
 #, fuzzy
 msgid "Next"
 msgstr "向后(W)"
@@ -1754,7 +1751,7 @@ msgstr "下一个玩家"
 msgid "Next week you'll fire him and hire a new one."
 msgstr "下周你应该解雇他并且雇佣一个新的"
 
-#: src/window.c:564
+#: src/window.c:572
 msgid "No improvements currently in progress."
 msgstr "当前还没有正在进行的设施升级工程"
 
@@ -1767,11 +1764,11 @@ msgstr "没有保存的比赛记录"
 msgid "None"
 msgstr ""
 
-#: src/window.c:387
+#: src/window.c:395
 msgid "Not a valid Bygfoot Memorable Matches filename."
 msgstr "不是一个有效的bygfoot比赛集锦文件名"
 
-#: src/window.c:764
+#: src/window.c:772
 msgid "Numbers..."
 msgstr ""
 
@@ -1821,7 +1818,7 @@ msgstr "对手"
 msgid "Opponent player list"
 msgstr "重新设定"
 
-#: src/window.c:805
+#: src/window.c:813
 msgid "Options"
 msgstr "选项"
 
@@ -1933,7 +1930,7 @@ msgstr "提示信息"
 msgid "Preferences"
 msgstr "参数设置"
 
-#: src/misc3_interface.c:282
+#: src/misc3_interface.c:283
 #, fuzzy
 msgid "Previous"
 msgstr "向前(Q)"
@@ -1996,7 +1993,7 @@ msgstr "排名"
 msgid "Rank "
 msgstr "排名"
 
-#: src/misc3_interface.c:406
+#: src/misc3_interface.c:407
 #, fuzzy
 msgid "Ready"
 msgstr "重新加载"
@@ -2201,7 +2198,7 @@ msgstr "赛季历史"
 msgid "Season results"
 msgstr "最近比分"
 
-#: src/misc_interface.c:384 src/window.c:813
+#: src/misc_interface.c:384 src/window.c:821
 msgid "Select font"
 msgstr "选择字体"
 
@@ -2355,7 +2352,7 @@ msgstr "跳过没有玩家比赛的周次"
 msgid "Space"
 msgstr "空格"
 
-#: src/main.c:75
+#: src/main.c:74
 msgid "Specify additional support directory (takes priority over default ones)"
 msgstr ""
 
@@ -2371,7 +2368,7 @@ msgstr "赞助商"
 msgid "Sponsorship"
 msgstr "赞助"
 
-#: src/window.c:867
+#: src/window.c:875
 msgid "Sponsorship offers"
 msgstr "赞助请求"
 
@@ -2403,7 +2400,7 @@ msgstr "球场数据"
 msgid "Start"
 msgstr "开始"
 
-#: src/misc3_interface.c:342
+#: src/misc3_interface.c:343
 #, fuzzy
 msgid "Start _new game"
 msgstr "开始于"
@@ -2482,7 +2479,7 @@ msgstr "球队"
 msgid "Team2"
 msgstr "球队"
 
-#: src/main.c:83
+#: src/main.c:82
 msgid "Test an XML commentary file"
 msgstr ""
 
@@ -2690,7 +2687,7 @@ msgstr "韧带损伤"
 msgid "Transfer deadline is Week %d"
 msgstr "转会截止日期是第 %d 周"
 
-#: src/window.c:859
+#: src/window.c:867
 msgid "Transfer offer"
 msgstr "转会请求"
 
@@ -2719,7 +2716,7 @@ msgstr "解压缩记录..."
 msgid "User %s didn't consider your offer yet."
 msgstr "%s 正在考虑你的报价"
 
-#: src/window.c:836
+#: src/window.c:844
 msgid "User management"
 msgstr "管理玩家"
 
@@ -2797,7 +2794,7 @@ msgstr "周"
 msgid "Week %d Round %d"
 msgstr "第%d周 第%d轮"
 
-#: src/window.c:711
+#: src/window.c:719
 #, c-format
 msgid "Welcome to Bygfoot %s"
 msgstr "欢迎来到 Bygfoot %s"
@@ -3211,7 +3208,7 @@ msgstr "球队人员已满，你不能再买进球员了"
 msgid "Your roster is full. You couldn't buy %s from %s."
 msgstr "你的球队大名单人数已满。你不能够买入 %s (%s)"
 
-#: src/window.c:775
+#: src/window.c:783
 msgid "Your stadium"
 msgstr "你的球场"
 
@@ -3266,7 +3263,7 @@ msgstr "文件"
 msgid "_Help"
 msgstr "帮助"
 
-#: src/misc3_interface.c:366
+#: src/misc3_interface.c:367
 #, fuzzy
 msgid "_Load game"
 msgstr "读取游戏"
@@ -3287,7 +3284,7 @@ msgstr "球员"
 msgid "_Resume"
 msgstr "返回"
 
-#: src/misc3_interface.c:390
+#: src/misc3_interface.c:391
 #, fuzzy
 msgid "_Resume game"
 msgstr "返回到先前进行的游戏"

@@ -45,6 +45,9 @@ language_compare_country_files(gconstpointer a, gconstpointer b, gpointer data);
 void
 language_pick_country(GPtrArray *country_files);
 
+void
+language_get_code(gchar *buf);
+
 /* #ifndef G_OS_UNIX */
 /* extern int _nl_msg_cat_cntr; */
 /* #endif */

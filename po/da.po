@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bygfoot Football Manager 1.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-15 12:54+0100\n"
+"POT-Creation-Date: 2006-02-21 11:10+0100\n"
 "PO-Revision-Date: 2005-12-12 18:13+0100\n"
 "Last-Translator: Kristian Poul Herkild <kristian@herkild.dk>\n"
 "Language-Team:  <kristian@herkild.dk>\n"
@@ -40,10 +40,6 @@ msgstr ""
 "\n"
 "Hvis du synes, du har fundet ud af noget om spillet, som det er nødvendigt "
 "at dele, kan du tilføje det i Bygfoot Wiki:\n"
-
-#: src/misc3_interface.c:223
-msgid "     "
-msgstr ""
 
 #. Company short name. Copy the '&amp;'.
 #: src/user.c:882
@@ -420,7 +416,7 @@ msgstr "%s: %d (no limit)\n"
 msgid "%s: %d weeks\n"
 msgstr "%s: %d uger\n"
 
-#: src/main.c:117
+#: src/main.c:116
 msgid "- a simple and addictive GTK2 football manager"
 msgstr "- en enkel og vanedannende GTK2-fodboldmanager"
 
@@ -565,7 +561,7 @@ msgstr "Alder"
 msgid "Age "
 msgstr "Alder"
 
-#: src/window.c:335
+#: src/window.c:343
 msgid "All Files"
 msgstr "Alle filer"
 
@@ -734,7 +730,7 @@ msgid "Best offensive teams"
 msgstr "Bedste offensive hold"
 
 #: src/interface.c:998 src/options_interface.c:1020 src/treeview.c:1347
-#: src/treeview.c:1357 src/window.c:886
+#: src/treeview.c:1357 src/window.c:894
 msgid "Betting"
 msgstr "Væddemål"
 
@@ -806,11 +802,11 @@ msgstr "Gennemse spillere"
 msgid "Browse teams"
 msgstr "Gennemse klubber"
 
-#: src/window.c:329
+#: src/window.c:337
 msgid "Bygfoot Memorable Matches"
 msgstr "Bygfoot Mindeværdige Kampe"
 
-#: src/window.c:323
+#: src/window.c:331
 msgid "Bygfoot Save Files"
 msgstr "Bygfoot Gemte Filer"
 
@@ -915,13 +911,13 @@ msgstr "Klik på en bruger, for at fjerne denne."
 msgid "Commentary"
 msgstr "Kommentarer"
 
-#: src/main.c:95
+#: src/main.c:94
 msgid "Commentary event to test; leave out to test all commentaries"
 msgstr ""
 "Kommentarhændelse, der skal testes; lad stå tom, hvis alle kommentarer skal "
 "testes"
 
-#: src/main.c:86
+#: src/main.c:85
 msgid "Commentary file name (may be in a support dir)"
 msgstr "Kommentarfilnavn (er muligvis i en hjælpemappe)"
 
@@ -982,7 +978,7 @@ msgstr ""
 "Kontraktlængde\n"
 "(måneder)"
 
-#: src/window.c:828
+#: src/window.c:836
 msgid "Contract offer"
 msgstr "Kontrakttilbud"
 
@@ -1007,16 +1003,16 @@ msgstr "Kunne ikke finde pixmapfil: %s"
 msgid "Country"
 msgstr "Land"
 
-#: src/misc3_interface.c:325
+#: src/misc3_interface.c:326
 #, fuzzy
 msgid "Ctrl-N"
 msgstr "Ctrl+O"
 
-#: src/misc3_interface.c:349
+#: src/misc3_interface.c:350
 msgid "Ctrl-O"
 msgstr "Ctrl+O"
 
-#: src/misc3_interface.c:373
+#: src/misc3_interface.c:374
 #, fuzzy
 msgid "Ctrl-R"
 msgstr "Ctrl+O"
@@ -1083,7 +1079,8 @@ msgstr "defensivt"
 msgid "Defenders"
 msgstr "Forsvarere"
 
-#: src/misc3_interface.c:257
+#. Splash screen hint question.
+#: src/misc3_interface.c:258
 msgid "Did you know?"
 msgstr ""
 
@@ -1148,13 +1145,13 @@ msgstr "Indtast en formation. Summen af tallene skal give 10."
 msgid "Enter custom structure"
 msgstr "Indtast tilpasset formation"
 
-#: src/window.c:747
+#: src/window.c:755
 msgid "Erm..."
 msgstr "Hmm..."
 
 #: src/misc2_interface.c:450 src/misc2_interface.c:537
 #: src/misc2_interface.c:1099 src/misc2_interface.c:1194
-#: src/misc3_interface.c:107 src/misc3_interface.c:397
+#: src/misc3_interface.c:107 src/misc3_interface.c:398
 #: src/misc_interface.c:293 src/misc_interface.c:1107
 #: src/options_interface.c:1054
 msgid "Esc"
@@ -1201,7 +1198,7 @@ msgstr "Gebyr"
 #. Live game tokens are strings like _AT_ in live game commentary files
 #. which will be filled in by the program during runtime; e.g. _AT_ becomes
 #. the attendace for the match.
-#: src/main.c:92
+#: src/main.c:91
 msgid "File containing live game tokens (may be in a support dir)"
 msgstr ""
 "Fil, der indeholder \"direkte kampe\"-tegn (er muligvis i en hjælpemappe)"
@@ -1386,7 +1383,7 @@ msgstr "Hjælp"
 msgid "Home"
 msgstr "Hjemme"
 
-#: src/main.c:98
+#: src/main.c:97
 msgid "How many commentaries to generate per event"
 msgstr "Hvor mange kommentarer, der skal genereres til hver event"
 
@@ -1447,7 +1444,7 @@ msgstr "Importér kampene fra en fil over mindeværdige kampe"
 msgid "Improve!"
 msgstr "Forbedr!"
 
-#: src/treeview.c:1324 src/window.c:554
+#: src/treeview.c:1324 src/window.c:562
 #, c-format
 msgid ""
 "Improvement in progress.\n"
@@ -1470,7 +1467,7 @@ msgstr "Forøg"
 msgid "Injuries"
 msgstr "Skader"
 
-#: src/misc2_interface.c:71 src/window.c:783
+#: src/misc2_interface.c:71 src/window.c:791
 msgid "Job offer"
 msgstr "Jobtilbud"
 
@@ -1516,7 +1513,7 @@ msgstr "Ind_læs sidste gemte spil"
 msgid "Language"
 msgstr "Sprog"
 
-#: src/main.c:79
+#: src/main.c:78
 msgid "Language to use (a code like 'de')"
 msgstr "Sprog, du ønsker at bruge (en kode som 'da')"
 
@@ -1599,7 +1596,7 @@ msgstr "Kommentarniveau for direkte kampe"
 msgid "Load game (Ctrl - O)"
 msgstr "Hent spil (Ctrl + O)"
 
-#: src/main.c:81
+#: src/main.c:80
 msgid "Load last savegame"
 msgstr "Ind_læs sidste gemte spil"
 
@@ -1689,7 +1686,7 @@ msgstr "Maximér hovedvindue"
 msgid "Memorable match added."
 msgstr "Mindeværdig kamp tilføjet."
 
-#: src/interface.c:875 src/window.c:878
+#: src/interface.c:875 src/window.c:886
 msgid "Memorable matches"
 msgstr "Mindeværdige kampe"
 
@@ -1754,7 +1751,7 @@ msgstr ""
 "Nye kontrakt-\n"
 "tilbud"
 
-#: src/misc3_interface.c:302
+#: src/misc3_interface.c:303
 #, fuzzy
 msgid "Next"
 msgstr "Næste (W)"
@@ -1775,7 +1772,7 @@ msgstr "Bedste bruger"
 msgid "Next week you'll fire him and hire a new one."
 msgstr "Du fyrer ham næste uge, og hyrer en ny."
 
-#: src/window.c:564
+#: src/window.c:572
 msgid "No improvements currently in progress."
 msgstr "Der foretages ingen forbedringer lige nu."
 
@@ -1788,11 +1785,11 @@ msgstr "Ingen gemte kampe."
 msgid "None"
 msgstr "Ingen"
 
-#: src/window.c:387
+#: src/window.c:395
 msgid "Not a valid Bygfoot Memorable Matches filename."
 msgstr "Dette er ikke en gyldig fil for mindeværdige kampe i Bygfoot."
 
-#: src/window.c:764
+#: src/window.c:772
 msgid "Numbers..."
 msgstr "Numre..."
 
@@ -1841,7 +1838,7 @@ msgstr "Modstander"
 msgid "Opponent player list"
 msgstr "Modstanderens spillerliste"
 
-#: src/window.c:805
+#: src/window.c:813
 msgid "Options"
 msgstr "Valgmuligheder"
 
@@ -1953,7 +1950,7 @@ msgstr "Foretrækker beskeder"
 msgid "Preferences"
 msgstr "Indstillinger"
 
-#: src/misc3_interface.c:282
+#: src/misc3_interface.c:283
 #, fuzzy
 msgid "Previous"
 msgstr "Forrige (Q)"
@@ -2018,7 +2015,7 @@ msgstr "Placering"
 msgid "Rank "
 msgstr "Placering: "
 
-#: src/misc3_interface.c:406
+#: src/misc3_interface.c:407
 #, fuzzy
 msgid "Ready"
 msgstr "Genindlæs"
@@ -2222,7 +2219,7 @@ msgstr "Sæsonhistorik"
 msgid "Season results"
 msgstr "Sæsonresultater"
 
-#: src/misc_interface.c:384 src/window.c:813
+#: src/misc_interface.c:384 src/window.c:821
 msgid "Select font"
 msgstr "Vælg skrifttype"
 
@@ -2374,7 +2371,7 @@ msgstr "Spring over uger uden kampe for brugere"
 msgid "Space"
 msgstr "Mellemrumstast"
 
-#: src/main.c:75
+#: src/main.c:74
 msgid "Specify additional support directory (takes priority over default ones)"
 msgstr ""
 "Angiv yderligere hjælpefoldere (disse har højere prioritet end "
@@ -2392,7 +2389,7 @@ msgstr "Sponsor"
 msgid "Sponsorship"
 msgstr "Sponsorering"
 
-#: src/window.c:867
+#: src/window.c:875
 msgid "Sponsorship offers"
 msgstr "Sponsortilbud"
 
@@ -2424,7 +2421,7 @@ msgstr "Stadionstatus"
 msgid "Start"
 msgstr "Begynd"
 
-#: src/misc3_interface.c:342
+#: src/misc3_interface.c:343
 #, fuzzy
 msgid "Start _new game"
 msgstr "Begynd i"
@@ -2499,7 +2496,7 @@ msgstr "Klub 1"
 msgid "Team2"
 msgstr "Klub 2"
 
-#: src/main.c:83
+#: src/main.c:82
 msgid "Test an XML commentary file"
 msgstr "Test en XML-kommentarfil"
 
@@ -2724,7 +2721,7 @@ msgstr "Beskadiget ledbånd"
 msgid "Transfer deadline is Week %d"
 msgstr "Tidsfristen for spillerhandler er uge %d"
 
-#: src/window.c:859
+#: src/window.c:867
 msgid "Transfer offer"
 msgstr "Transfertilbud"
 
@@ -2753,7 +2750,7 @@ msgstr "Udpakker gemt spil..."
 msgid "User %s didn't consider your offer yet."
 msgstr "Bruger %s har endnu ikke overvejet dit tilbud."
 
-#: src/window.c:836
+#: src/window.c:844
 msgid "User management"
 msgstr "Brugerhåndtering"
 
@@ -2831,7 +2828,7 @@ msgstr "Uge"
 msgid "Week %d Round %d"
 msgstr "Uge %d, runde %d"
 
-#: src/window.c:711
+#: src/window.c:719
 #, c-format
 msgid "Welcome to Bygfoot %s"
 msgstr "Velkommen til  Bygfoot %s"
@@ -3284,7 +3281,7 @@ msgstr "Du kan ikke købe flere spillere. Din trup er allerede fyldt op."
 msgid "Your roster is full. You couldn't buy %s from %s."
 msgstr "Din trup er fyldt op. Du kunne derfor ikke købe %s fra %s."
 
-#: src/window.c:775
+#: src/window.c:783
 msgid "Your stadium"
 msgstr "Dit stadion"
 
@@ -3341,7 +3338,7 @@ msgstr "_Fil"
 msgid "_Help"
 msgstr "_Hjælp"
 
-#: src/misc3_interface.c:366
+#: src/misc3_interface.c:367
 #, fuzzy
 msgid "_Load game"
 msgstr "Indlæs spil"
@@ -3362,7 +3359,7 @@ msgstr "_Spiller"
 msgid "_Resume"
 msgstr "_Genoptag"
 
-#: src/misc3_interface.c:390
+#: src/misc3_interface.c:391
 #, fuzzy
 msgid "_Resume game"
 msgstr "_Genoptag sidste spil"

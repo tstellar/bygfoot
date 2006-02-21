@@ -124,6 +124,14 @@ window_load_hint_number(void)
     fscanf(fil, "%d", &counters[COUNT_HINT_NUMBER]);
 
     fclose(fil);
+
+    if(counters[COUNT_HINT_NUMBER] < 0 ||
+       counters[COUNT_HINT_NUMBER] >= hints.list->len)
+    {
+	g_warning("Hint counter out of bounds: %d (bounds 0 and %d).\n",
+		  counters[COUNT_HINT_NUMBER], hints.list->len - 1);
+	counters[COUNT_HINT_NUMBER] = 0;
+    }
 }
 
 /** Save the index of the current hint. */

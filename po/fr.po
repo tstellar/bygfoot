@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bygfoot 1.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-15 12:54+0100\n"
+"POT-Creation-Date: 2006-02-21 11:10+0100\n"
 "PO-Revision-Date: 2005-12-09 17:03+0100\n"
 "Last-Translator: Forjan Frédéric <fforjan@linuxmail.org>\n"
 "Language-Team: French\n"
@@ -42,10 +42,6 @@ msgstr ""
 "\n"
 "Si vous pensez que vous avez trouvé quelque chose sur le jeu et que vous "
 "désirez le partager, vous pourrez l'ajouter au wiki de Bygfoot : \n"
-
-#: src/misc3_interface.c:223
-msgid "     "
-msgstr ""
 
 #. Company short name. Copy the '&amp;'.
 #: src/user.c:882
@@ -423,7 +419,7 @@ msgstr "%s: %d (sans limite)\n"
 msgid "%s: %d weeks\n"
 msgstr "%s: %d semaines\n"
 
-#: src/main.c:117
+#: src/main.c:116
 msgid "- a simple and addictive GTK2 football manager"
 msgstr "- Un jeux de manager de football simple et accrocheur"
 
@@ -569,7 +565,7 @@ msgstr "Age"
 msgid "Age "
 msgstr "Age "
 
-#: src/window.c:335
+#: src/window.c:343
 msgid "All Files"
 msgstr "Tous les fichiers"
 
@@ -739,7 +735,7 @@ msgid "Best offensive teams"
 msgstr "Meilleures attaques"
 
 #: src/interface.c:998 src/options_interface.c:1020 src/treeview.c:1347
-#: src/treeview.c:1357 src/window.c:886
+#: src/treeview.c:1357 src/window.c:894
 msgid "Betting"
 msgstr "Parier"
 
@@ -811,11 +807,11 @@ msgstr "Parcourir les joueurs"
 msgid "Browse teams"
 msgstr "Parcourir les équipes"
 
-#: src/window.c:329
+#: src/window.c:337
 msgid "Bygfoot Memorable Matches"
 msgstr "Matchs Mémorables Bygfoot"
 
-#: src/window.c:323
+#: src/window.c:331
 msgid "Bygfoot Save Files"
 msgstr "Fichiers de sauvegardes de Bygfoot"
 
@@ -922,11 +918,11 @@ msgstr "Cliquer sur un utilisateur pour le retirer."
 msgid "Commentary"
 msgstr "Commentaire"
 
-#: src/main.c:95
+#: src/main.c:94
 msgid "Commentary event to test; leave out to test all commentaries"
 msgstr "Commentaire d'évènement  à tester; laisse vide pour tous les testes."
 
-#: src/main.c:86
+#: src/main.c:85
 msgid "Commentary file name (may be in a support dir)"
 msgstr "Fichier de commentaires ( peut-être dans le répertoire \"support\")"
 
@@ -987,7 +983,7 @@ msgstr ""
 "Durée de contrat\n"
 "(Mois)"
 
-#: src/window.c:828
+#: src/window.c:836
 msgid "Contract offer"
 msgstr "Offre de contrat"
 
@@ -1012,16 +1008,16 @@ msgstr "Impossible de trouver l'image: %s"
 msgid "Country"
 msgstr "Pays"
 
-#: src/misc3_interface.c:325
+#: src/misc3_interface.c:326
 #, fuzzy
 msgid "Ctrl-N"
 msgstr "Ctrl-O"
 
-#: src/misc3_interface.c:349
+#: src/misc3_interface.c:350
 msgid "Ctrl-O"
 msgstr "Ctrl-O"
 
-#: src/misc3_interface.c:373
+#: src/misc3_interface.c:374
 #, fuzzy
 msgid "Ctrl-R"
 msgstr "Ctrl-O"
@@ -1088,7 +1084,8 @@ msgstr "Défense"
 msgid "Defenders"
 msgstr "Défenseurs"
 
-#: src/misc3_interface.c:257
+#. Splash screen hint question.
+#: src/misc3_interface.c:258
 msgid "Did you know?"
 msgstr ""
 
@@ -1154,13 +1151,13 @@ msgstr "Entrer une formation. La somme des chiffres doit faire 10."
 msgid "Enter custom structure"
 msgstr "Entrer une structure personnalisée"
 
-#: src/window.c:747
+#: src/window.c:755
 msgid "Erm..."
 msgstr "Euh..."
 
 #: src/misc2_interface.c:450 src/misc2_interface.c:537
 #: src/misc2_interface.c:1099 src/misc2_interface.c:1194
-#: src/misc3_interface.c:107 src/misc3_interface.c:397
+#: src/misc3_interface.c:107 src/misc3_interface.c:398
 #: src/misc_interface.c:293 src/misc_interface.c:1107
 #: src/options_interface.c:1054
 msgid "Esc"
@@ -1207,7 +1204,7 @@ msgstr "Montant"
 #. Live game tokens are strings like _AT_ in live game commentary files
 #. which will be filled in by the program during runtime; e.g. _AT_ becomes
 #. the attendace for the match.
-#: src/main.c:92
+#: src/main.c:91
 msgid "File containing live game tokens (may be in a support dir)"
 msgstr ""
 "Fichier contenant les balises de jeux en directs (peut-être dans le "
@@ -1392,7 +1389,7 @@ msgstr "Aide"
 msgid "Home"
 msgstr "Domicile"
 
-#: src/main.c:98
+#: src/main.c:97
 msgid "How many commentaries to generate per event"
 msgstr "Combien de commentaires à générer par évenements."
 
@@ -1455,7 +1452,7 @@ msgstr "Importer les matchs depuis un fichier de matchs mémorables"
 msgid "Improve!"
 msgstr "Améliorer!"
 
-#: src/treeview.c:1324 src/window.c:554
+#: src/treeview.c:1324 src/window.c:562
 #, c-format
 msgid ""
 "Improvement in progress.\n"
@@ -1478,7 +1475,7 @@ msgstr "Augmentation"
 msgid "Injuries"
 msgstr "Blessures"
 
-#: src/misc2_interface.c:71 src/window.c:783
+#: src/misc2_interface.c:71 src/window.c:791
 msgid "Job offer"
 msgstr "Offre d'emploi"
 
@@ -1524,7 +1521,7 @@ msgstr "Charger et sauvegarder (L_)"
 msgid "Language"
 msgstr "Langue"
 
-#: src/main.c:79
+#: src/main.c:78
 msgid "Language to use (a code like 'de')"
 msgstr "Langue à utiliser (un code de type 'fr')"
 
@@ -1607,7 +1604,7 @@ msgstr "Niveau de verbosité des matchs en direct"
 msgid "Load game (Ctrl - O)"
 msgstr "Charger le jeu (Ctrl - O)"
 
-#: src/main.c:81
+#: src/main.c:80
 msgid "Load last savegame"
 msgstr "Charger la dernier partie sauvegardée"
 
@@ -1698,7 +1695,7 @@ msgstr "Maximiser la fenêtre principale"
 msgid "Memorable match added."
 msgstr "Match mémorable ajouté."
 
-#: src/interface.c:875 src/window.c:878
+#: src/interface.c:875 src/window.c:886
 msgid "Memorable matches"
 msgstr "Matchs mémorables"
 
@@ -1763,7 +1760,7 @@ msgstr ""
 "Offres de\n"
 "nouveau contrat"
 
-#: src/misc3_interface.c:302
+#: src/misc3_interface.c:303
 #, fuzzy
 msgid "Next"
 msgstr "Prochain (W)"
@@ -1784,7 +1781,7 @@ msgstr "Utilisateur suivant"
 msgid "Next week you'll fire him and hire a new one."
 msgstr "La semaine prochaine, vous le renverrez et en embaucherez un autre."
 
-#: src/window.c:564
+#: src/window.c:572
 msgid "No improvements currently in progress."
 msgstr "Aucune amélioration en cours."
 
@@ -1797,11 +1794,11 @@ msgstr "Pas de match enregistré."
 msgid "None"
 msgstr "Aucun"
 
-#: src/window.c:387
+#: src/window.c:395
 msgid "Not a valid Bygfoot Memorable Matches filename."
 msgstr "Nom de fichiers de matchs invalide."
 
-#: src/window.c:764
+#: src/window.c:772
 msgid "Numbers..."
 msgstr "Nombres..."
 
@@ -1850,7 +1847,7 @@ msgstr "Adversaire"
 msgid "Opponent player list"
 msgstr "Liste des joueurs adverses"
 
-#: src/window.c:805
+#: src/window.c:813
 msgid "Options"
 msgstr "Options"
 
@@ -1962,7 +1959,7 @@ msgstr "Preferer les messages"
 msgid "Preferences"
 msgstr "Préférences"
 
-#: src/misc3_interface.c:282
+#: src/misc3_interface.c:283
 #, fuzzy
 msgid "Previous"
 msgstr "Précédent (Q)"
@@ -2028,7 +2025,7 @@ msgstr "Classement"
 msgid "Rank "
 msgstr "Classement "
 
-#: src/misc3_interface.c:406
+#: src/misc3_interface.c:407
 #, fuzzy
 msgid "Ready"
 msgstr "Recharger"
@@ -2236,7 +2233,7 @@ msgstr "Historique de la saison"
 msgid "Season results"
 msgstr "Résultats de la saison"
 
-#: src/misc_interface.c:384 src/window.c:813
+#: src/misc_interface.c:384 src/window.c:821
 msgid "Select font"
 msgstr "Choisir une police"
 
@@ -2389,7 +2386,7 @@ msgstr "Sauter les semaines sans match"
 msgid "Space"
 msgstr "Espace"
 
-#: src/main.c:75
+#: src/main.c:74
 msgid "Specify additional support directory (takes priority over default ones)"
 msgstr ""
 "Spécifier des chemins de répertoires additionnels pour le \"suport\" ( prend "
@@ -2407,7 +2404,7 @@ msgstr "Sponsor"
 msgid "Sponsorship"
 msgstr "Sponsor"
 
-#: src/window.c:867
+#: src/window.c:875
 msgid "Sponsorship offers"
 msgstr "Offres de sponsoring"
 
@@ -2439,7 +2436,7 @@ msgstr "État du stade"
 msgid "Start"
 msgstr "Commencer"
 
-#: src/misc3_interface.c:342
+#: src/misc3_interface.c:343
 #, fuzzy
 msgid "Start _new game"
 msgstr "Commencer"
@@ -2514,7 +2511,7 @@ msgstr "Équipe 1"
 msgid "Team2"
 msgstr "Équipe 2"
 
-#: src/main.c:83
+#: src/main.c:82
 msgid "Test an XML commentary file"
 msgstr "Test d'un commentaire dans un fichier XML"
 
@@ -2747,7 +2744,7 @@ msgstr "Elongation du ligament croisé"
 msgid "Transfer deadline is Week %d"
 msgstr "La date limite de transfert est la semaine %d."
 
-#: src/window.c:859
+#: src/window.c:867
 msgid "Transfer offer"
 msgstr "Offre de transfert"
 
@@ -2776,7 +2773,7 @@ msgstr "Décompression de la sauvegarde..."
 msgid "User %s didn't consider your offer yet."
 msgstr "L'utilisateur %s n'a pas encore examiné votre offre."
 
-#: src/window.c:836
+#: src/window.c:844
 msgid "User management"
 msgstr "Gestion des utilisateurs"
 
@@ -2854,7 +2851,7 @@ msgstr "Semaine"
 msgid "Week %d Round %d"
 msgstr "Semaine %d Partie %d"
 
-#: src/window.c:711
+#: src/window.c:719
 #, c-format
 msgid "Welcome to Bygfoot %s"
 msgstr "Bienvenue dans Bygfoot %s"
@@ -3309,7 +3306,7 @@ msgstr ""
 msgid "Your roster is full. You couldn't buy %s from %s."
 msgstr "Votre effectif est complet. Vous ne pouvez pas acheter %s de %s."
 
-#: src/window.c:775
+#: src/window.c:783
 msgid "Your stadium"
 msgstr "Votre stade"
 
@@ -3366,7 +3363,7 @@ msgstr "_Fichier"
 msgid "_Help"
 msgstr "Aide (_H)"
 
-#: src/misc3_interface.c:366
+#: src/misc3_interface.c:367
 #, fuzzy
 msgid "_Load game"
 msgstr "Charger une partie"
@@ -3387,7 +3384,7 @@ msgstr "Joueur (_P)"
 msgid "_Resume"
 msgstr "_Reprendre"
 
-#: src/misc3_interface.c:390
+#: src/misc3_interface.c:391
 #, fuzzy
 msgid "_Resume game"
 msgstr "_Reprendre la dernière partie"

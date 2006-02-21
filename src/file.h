@@ -106,4 +106,7 @@ file_copy_file(const gchar *source_file, const gchar *dest_file);
 void
 file_get_bygfoot_dir(gchar *dir);
 
+void
+file_load_hints_file(void);
+
 #endif

@@ -41,7 +41,6 @@
 #include "live_game.h"
 #include "load_save.h"
 #include "main.h"
-/* #include "mediaplayer.h" */
 #include "misc.h"
 #include "misc_callbacks.h"
 #include "name_struct.h"
@@ -305,7 +304,6 @@ main (gint argc, gchar *argv[])
 	window_show_splash();
 
 	if(os_is_unix)
-/* 	    g_timeout_add(20, (GSourceFunc)file_check_home_dir(), NULL); */
 	    file_check_home_dir();
     }
 

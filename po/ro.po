@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot 0.9.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-15 12:54+0100\n"
+"POT-Creation-Date: 2006-02-21 11:10+0100\n"
 "PO-Revision-Date: 2005-12-13 12:06+0100\n"
 "Last-Translator: Spoială Cristian <scristian@gmail.com>\n"
 "Language-Team: Romanian\n"
@@ -42,10 +42,6 @@ msgstr ""
 "\n"
 "Dacă găsiţi ceva interesant despre joc despre care ar trebui să ştie mai "
 "mulţi puteţi să îl adaugaţi în wiki Bygfoot:\n"
-
-#: src/misc3_interface.c:223
-msgid "     "
-msgstr ""
 
 #. Company short name. Copy the '&amp;'.
 #: src/user.c:882
@@ -422,7 +418,7 @@ msgstr "%s: %d (fără limită)\n"
 msgid "%s: %d weeks\n"
 msgstr "%s: %d săptămâni\n"
 
-#: src/main.c:117
+#: src/main.c:116
 msgid "- a simple and addictive GTK2 football manager"
 msgstr "- un simplu si captivant manager de fotbal bazat pe GTK2"
 
@@ -566,7 +562,7 @@ msgstr "Vârsta"
 msgid "Age "
 msgstr "Vârsta "
 
-#: src/window.c:335
+#: src/window.c:343
 msgid "All Files"
 msgstr "Toate fişierele"
 
@@ -736,7 +732,7 @@ msgid "Best offensive teams"
 msgstr "Cele mai bune echipe in atac"
 
 #: src/interface.c:998 src/options_interface.c:1020 src/treeview.c:1347
-#: src/treeview.c:1357 src/window.c:886
+#: src/treeview.c:1357 src/window.c:894
 msgid "Betting"
 msgstr "Pariu"
 
@@ -806,11 +802,11 @@ msgstr "Vizualizaţi jucătorii"
 msgid "Browse teams"
 msgstr "Vezi echipele"
 
-#: src/window.c:329
+#: src/window.c:337
 msgid "Bygfoot Memorable Matches"
 msgstr "Meciurile Memorabile ale Bygfoot"
 
-#: src/window.c:323
+#: src/window.c:331
 msgid "Bygfoot Save Files"
 msgstr "Fişierele cu salvări ale Bygfoot"
 
@@ -917,12 +913,12 @@ msgstr "Selectaţi un utilizator pentru a îl scoate."
 msgid "Commentary"
 msgstr "Comentariul"
 
-#: src/main.c:95
+#: src/main.c:94
 msgid "Commentary event to test; leave out to test all commentaries"
 msgstr ""
 "Eveniment comentat pentru test; parasiti pentru a testa toate comentariile"
 
-#: src/main.c:86
+#: src/main.c:85
 msgid "Commentary file name (may be in a support dir)"
 msgstr "Cometariu la numele fisierului (poate fi intr-un director support)"
 
@@ -983,7 +979,7 @@ msgstr ""
 "Durata contractului\n"
 "(Luni)"
 
-#: src/window.c:828
+#: src/window.c:836
 msgid "Contract offer"
 msgstr "Ofertă de contract"
 
@@ -1008,16 +1004,16 @@ msgstr "Nu s-a putut găsi fişierul imagine: %s"
 msgid "Country"
 msgstr "Tara"
 
-#: src/misc3_interface.c:325
+#: src/misc3_interface.c:326
 #, fuzzy
 msgid "Ctrl-N"
 msgstr "Ctrl-O"
 
-#: src/misc3_interface.c:349
+#: src/misc3_interface.c:350
 msgid "Ctrl-O"
 msgstr "Ctrl-O"
 
-#: src/misc3_interface.c:373
+#: src/misc3_interface.c:374
 #, fuzzy
 msgid "Ctrl-R"
 msgstr "Ctrl-O"
@@ -1084,7 +1080,8 @@ msgstr "Apărare"
 msgid "Defenders"
 msgstr "Fundaşi"
 
-#: src/misc3_interface.c:257
+#. Splash screen hint question.
+#: src/misc3_interface.c:258
 msgid "Did you know?"
 msgstr ""
 
@@ -1149,13 +1146,13 @@ msgstr "Introduceţi o structură. Suma cifrelor trebuie să fie până la 10."
 msgid "Enter custom structure"
 msgstr "Introduceţi o structură custom"
 
-#: src/window.c:747
+#: src/window.c:755
 msgid "Erm..."
 msgstr "Hmm..."
 
 #: src/misc2_interface.c:450 src/misc2_interface.c:537
 #: src/misc2_interface.c:1099 src/misc2_interface.c:1194
-#: src/misc3_interface.c:107 src/misc3_interface.c:397
+#: src/misc3_interface.c:107 src/misc3_interface.c:398
 #: src/misc_interface.c:293 src/misc_interface.c:1107
 #: src/options_interface.c:1054
 msgid "Esc"
@@ -1202,7 +1199,7 @@ msgstr "Preţ"
 #. Live game tokens are strings like _AT_ in live game commentary files
 #. which will be filled in by the program during runtime; e.g. _AT_ becomes
 #. the attendace for the match.
-#: src/main.c:92
+#: src/main.c:91
 msgid "File containing live game tokens (may be in a support dir)"
 msgstr ""
 "Fisierul continind meciul live a fost luat (poate fi in directorul support)"
@@ -1386,7 +1383,7 @@ msgstr "Ajutor"
 msgid "Home"
 msgstr "Acasă"
 
-#: src/main.c:98
+#: src/main.c:97
 msgid "How many commentaries to generate per event"
 msgstr "Cite cometarii sa fie generate per eveniment"
 
@@ -1447,7 +1444,7 @@ msgstr "Importati meciul din fisierul cu meciuri memorabile"
 msgid "Improve!"
 msgstr "Îmbunătăţeşte!"
 
-#: src/treeview.c:1324 src/window.c:554
+#: src/treeview.c:1324 src/window.c:562
 #, c-format
 msgid ""
 "Improvement in progress.\n"
@@ -1470,7 +1467,7 @@ msgstr "Măreşte"
 msgid "Injuries"
 msgstr "Accidentări"
 
-#: src/misc2_interface.c:71 src/window.c:783
+#: src/misc2_interface.c:71 src/window.c:791
 msgid "Job offer"
 msgstr "Ofertă de lucru"
 
@@ -1516,7 +1513,7 @@ msgstr "Î_ncărcaţi ultima salvare"
 msgid "Language"
 msgstr "Limbă"
 
-#: src/main.c:79
+#: src/main.c:78
 msgid "Language to use (a code like 'de')"
 msgstr "Limba folosita (un cod de exemplu 'de')"
 
@@ -1598,7 +1595,7 @@ msgstr "Nivelul comentariilor în meciul în direct"
 msgid "Load game (Ctrl - O)"
 msgstr "Încărcaţi un joc (Ctrl - O)"
 
-#: src/main.c:81
+#: src/main.c:80
 msgid "Load last savegame"
 msgstr "Încărcaţi ultima salvare"
 
@@ -1688,7 +1685,7 @@ msgstr "Maximizaţi fereastra principală."
 msgid "Memorable match added."
 msgstr "Meciurile memorabile au fost adaugate."
 
-#: src/interface.c:875 src/window.c:878
+#: src/interface.c:875 src/window.c:886
 msgid "Memorable matches"
 msgstr "Meciuri memorabile"
 
@@ -1753,7 +1750,7 @@ msgstr ""
 "Ofertă noua\n"
 "de contract"
 
-#: src/misc3_interface.c:302
+#: src/misc3_interface.c:303
 #, fuzzy
 msgid "Next"
 msgstr "Următorul (W)"
@@ -1774,7 +1771,7 @@ msgstr "Următorul utilizator"
 msgid "Next week you'll fire him and hire a new one."
 msgstr "Săptămână viitoare îl veţi concedia şi angaja unul nou."
 
-#: src/window.c:564
+#: src/window.c:572
 msgid "No improvements currently in progress."
 msgstr "Nu sunt îmbunătăţiri în progres."
 
@@ -1787,11 +1784,11 @@ msgstr "Nici un meci memorat."
 msgid "None"
 msgstr "Nici unul"
 
-#: src/window.c:387
+#: src/window.c:395
 msgid "Not a valid Bygfoot Memorable Matches filename."
 msgstr "Fişierele cu salvări ale Bygfoot invalid"
 
-#: src/window.c:764
+#: src/window.c:772
 msgid "Numbers..."
 msgstr "Numere..."
 
@@ -1840,7 +1837,7 @@ msgstr "Adversar"
 msgid "Opponent player list"
 msgstr "Lista jucătorilor adversi"
 
-#: src/window.c:805
+#: src/window.c:813
 msgid "Options"
 msgstr "Opţiuni"
 
@@ -1952,7 +1949,7 @@ msgstr "Mesaje preferate"
 msgid "Preferences"
 msgstr "Preferinţe"
 
-#: src/misc3_interface.c:282
+#: src/misc3_interface.c:283
 #, fuzzy
 msgid "Previous"
 msgstr "Anteriorul (Q)"
@@ -2017,7 +2014,7 @@ msgstr "Rang"
 msgid "Rank "
 msgstr "Rang"
 
-#: src/misc3_interface.c:406
+#: src/misc3_interface.c:407
 #, fuzzy
 msgid "Ready"
 msgstr "Reîncarcă"
@@ -2224,7 +2221,7 @@ msgstr "Istoricul sesiunii"
 msgid "Season results"
 msgstr "Rezultate sezonului"
 
-#: src/misc_interface.c:384 src/window.c:813
+#: src/misc_interface.c:384 src/window.c:821
 msgid "Select font"
 msgstr "Selectaţi font"
 
@@ -2376,7 +2373,7 @@ msgstr "Sari peste săptămânile fără jocuri ale utilizatorului"
 msgid "Space"
 msgstr "Spaţiu"
 
-#: src/main.c:75
+#: src/main.c:74
 msgid "Specify additional support directory (takes priority over default ones)"
 msgstr ""
 "Specifica un director support aditional (este prioritar fata de cel default) "
@@ -2393,7 +2390,7 @@ msgstr "Sponsor"
 msgid "Sponsorship"
 msgstr "Sponsorizare"
 
-#: src/window.c:867
+#: src/window.c:875
 msgid "Sponsorship offers"
 msgstr "Oferte de sponsorizări"
 
@@ -2425,7 +2422,7 @@ msgstr "Starea stadionului"
 msgid "Start"
 msgstr "Porniţi"
 
-#: src/misc3_interface.c:342
+#: src/misc3_interface.c:343
 msgid "Start _new game"
 msgstr ""
 
@@ -2499,7 +2496,7 @@ msgstr "Echipa1"
 msgid "Team2"
 msgstr "Echipa2"
 
-#: src/main.c:83
+#: src/main.c:82
 msgid "Test an XML commentary file"
 msgstr "Testeaza un fisier XML de comentariu"
 
@@ -2718,7 +2715,7 @@ msgstr "Ligamente fracturate"
 msgid "Transfer deadline is Week %d"
 msgstr "Perioada de transferuri se termină în săptămâna %d"
 
-#: src/window.c:859
+#: src/window.c:867
 msgid "Transfer offer"
 msgstr "Ofertă de transfer"
 
@@ -2747,7 +2744,7 @@ msgstr "Se decompresează salvarea jocului..."
 msgid "User %s didn't consider your offer yet."
 msgstr "Utilizatorul %s încă nu a luat în considerare oferta dumneavoastră."
 
-#: src/window.c:836
+#: src/window.c:844
 msgid "User management"
 msgstr "Managementul utilizatorilor"
 
@@ -2825,7 +2822,7 @@ msgstr "Săptămână"
 msgid "Week %d Round %d"
 msgstr "Săptămâna %d Runda %d"
 
-#: src/window.c:711
+#: src/window.c:719
 #, c-format
 msgid "Welcome to Bygfoot %s"
 msgstr "Bine aţi venit în Bygfoot %s"
@@ -3271,7 +3268,7 @@ msgstr "Lotul de jucători este deja plin. Nu mai puteţi cumpăra jucători noi
 msgid "Your roster is full. You couldn't buy %s from %s."
 msgstr "Lotul de jucători este plin. Nu aţi putut cumpăra pe %s de la %s."
 
-#: src/window.c:775
+#: src/window.c:783
 msgid "Your stadium"
 msgstr "Stadionul tău"
 
@@ -3328,7 +3325,7 @@ msgstr "_Fişier"
 msgid "_Help"
 msgstr "_Ajutor"
 
-#: src/misc3_interface.c:366
+#: src/misc3_interface.c:367
 #, fuzzy
 msgid "_Load game"
 msgstr "Încarcă joc"
@@ -3349,7 +3346,7 @@ msgstr "_Jucător"
 msgid "_Resume"
 msgstr "_Revine"
 
-#: src/misc3_interface.c:390
+#: src/misc3_interface.c:391
 #, fuzzy
 msgid "_Resume game"
 msgstr "_Reveniţi la ultimul joc"
