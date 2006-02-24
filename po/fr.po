@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bygfoot 1.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-21 11:10+0100\n"
+"POT-Creation-Date: 2006-02-24 13:09+0100\n"
 "PO-Revision-Date: 2005-12-09 17:03+0100\n"
 "Last-Translator: Forjan Frédéric <fforjan@linuxmail.org>\n"
 "Language-Team: French\n"
@@ -994,6 +994,11 @@ msgstr "Les contrats sont désactivés dans cette définition de pays."
 #: src/interface.c:1021 src/misc2_interface.c:1066 src/misc3_interface.c:236
 msgid "Contributors"
 msgstr "Contributeurs"
+
+#: src/file.c:315
+#, c-format
+msgid "Copying %s"
+msgstr ""
 
 #: src/misc_interface.c:1025 src/misc_interface.c:1059
 msgid "Costs"
@@ -2025,7 +2030,7 @@ msgstr "Classement"
 msgid "Rank "
 msgstr "Classement "
 
-#: src/misc3_interface.c:407
+#: src/file.c:327 src/misc3_interface.c:407
 #, fuzzy
 msgid "Ready"
 msgstr "Recharger"

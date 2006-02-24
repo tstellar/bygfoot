@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bygfoot 1.9.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-21 11:10+0100\n"
+"POT-Creation-Date: 2006-02-24 13:09+0100\n"
 "PO-Revision-Date: 2005-12-10 14:08+0100\n"
 "Last-Translator: Arne en Tobe Deprez <tobedeprez@scarlet.be>\n"
 "Language-Team: Dutch <tobedeprez@scarlet.be>\n"
@@ -996,6 +996,11 @@ msgstr "Je kan geen contracten maken in dit land."
 #: src/interface.c:1021 src/misc2_interface.c:1066 src/misc3_interface.c:236
 msgid "Contributors"
 msgstr "Makers"
+
+#: src/file.c:315
+#, c-format
+msgid "Copying %s"
+msgstr ""
 
 #: src/misc_interface.c:1025 src/misc_interface.c:1059
 msgid "Costs"
@@ -2023,7 +2028,7 @@ msgstr "Plaats"
 msgid "Rank "
 msgstr "Plaats"
 
-#: src/misc3_interface.c:407
+#: src/file.c:327 src/misc3_interface.c:407
 #, fuzzy
 msgid "Ready"
 msgstr "Herlaad"

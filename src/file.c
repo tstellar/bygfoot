@@ -546,14 +546,18 @@ void
 file_load_hints_file(void)
 {
     gchar buf[SMALL], hints_file[SMALL];
+    gchar *hints_file_sup = NULL;
 
     language_get_code(buf);
 
     sprintf(hints_file, "bygfoot_hints_%s", buf);
-    
-    if(!g_file_test(hints_file, G_FILE_TEST_EXISTS))
+    hints_file_sup = file_find_support_file(hints_file, FALSE);
+        
+    if(hints_file_sup != NULL)
+	g_free(hints_file_sup);
+    else
 	strcpy(hints_file, "bygfoot_hints_en");
-    
+
     file_load_opt_file(hints_file, &hints);
 }
 
