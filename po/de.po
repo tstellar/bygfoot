@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-21 11:10+0100\n"
-"PO-Revision-Date: 2006-02-21 10:18+0100\n"
+"POT-Creation-Date: 2006-02-24 13:09+0100\n"
+"PO-Revision-Date: 2006-02-23 18:24+0100\n"
 "Last-Translator: Michael Trent <trent@cortalconsors.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -698,7 +698,7 @@ msgstr "Zurück zum Hauptmenü (Esc)"
 
 #: src/misc_interface.c:285
 msgid "Back to splash"
-msgstr ""
+msgstr "Zurück zu Splash"
 
 #: src/interface.c:551 src/interface.c:583 src/interface.c:629
 msgid "Bad"
@@ -1002,6 +1002,11 @@ msgstr "Verträge sind in dieser Länderdefinition ausgeschaltet."
 msgid "Contributors"
 msgstr "Mitwirkende"
 
+#: src/file.c:315
+#, c-format
+msgid "Copying %s"
+msgstr "Kopiere %s"
+
 #: src/misc_interface.c:1025 src/misc_interface.c:1059
 msgid "Costs"
 msgstr "Kosten"
@@ -1016,18 +1021,16 @@ msgid "Country"
 msgstr "Land"
 
 #: src/misc3_interface.c:326
-#, fuzzy
 msgid "Ctrl-N"
-msgstr "Strg-O"
+msgstr "Strg-N"
 
 #: src/misc3_interface.c:350
 msgid "Ctrl-O"
 msgstr "Strg-O"
 
 #: src/misc3_interface.c:374
-#, fuzzy
 msgid "Ctrl-R"
-msgstr "Strg-O"
+msgstr "Strg-R"
 
 #: src/treeview.c:2283
 msgid "Cup champions"
@@ -1094,7 +1097,7 @@ msgstr "Verteidiger"
 #. Splash screen hint question.
 #: src/misc3_interface.c:258
 msgid "Did you know?"
-msgstr ""
+msgstr "Wussten Sie schon?"
 
 #: src/treeview.c:2387
 msgid "Didn't find file 'bygfoot_help'."
@@ -1339,7 +1342,7 @@ msgstr "To"
 
 #: src/misc_interface.c:271
 msgid "Go back to the splash screen"
-msgstr ""
+msgstr "Zum Splashscreen zurückkehren"
 
 #. Goals per game.
 #: src/treeview.c:2186
@@ -1766,9 +1769,8 @@ msgstr ""
 "Vertragsangebote"
 
 #: src/misc3_interface.c:303
-#, fuzzy
 msgid "Next"
-msgstr "Nächster (W)"
+msgstr "Nächster"
 
 #: src/interface.c:1381
 msgid "Next (W)"
@@ -1965,9 +1967,8 @@ msgid "Preferences"
 msgstr "Einstellungen"
 
 #: src/misc3_interface.c:283
-#, fuzzy
 msgid "Previous"
-msgstr "Voriger (Q)"
+msgstr "Voriger"
 
 #: src/interface.c:1368
 msgid "Previous (Q)"
@@ -2030,10 +2031,9 @@ msgstr "Rang"
 msgid "Rank "
 msgstr "Rang "
 
-#: src/misc3_interface.c:407
-#, fuzzy
+#: src/file.c:327 src/misc3_interface.c:407
 msgid "Ready"
-msgstr "Neu laden"
+msgstr "Bereit"
 
 #: src/interface.c:721
 msgid "Rearrange team"
@@ -2440,9 +2440,8 @@ msgid "Start"
 msgstr "Los!"
 
 #: src/misc3_interface.c:343
-#, fuzzy
 msgid "Start _new game"
-msgstr "Starte in"
+msgstr "_Neues Spiel"
 
 #: src/misc_interface.c:583
 msgid "Statistics"
@@ -3359,9 +3358,8 @@ msgid "_Help"
 msgstr "_Hilfe"
 
 #: src/misc3_interface.c:367
-#, fuzzy
 msgid "_Load game"
-msgstr "Lade Spielstand"
+msgstr "_Lade Spiel"
 
 #: src/interface.c:341
 msgid "_Options"
@@ -3380,9 +3378,8 @@ msgid "_Resume"
 msgstr "_Weiter"
 
 #: src/misc3_interface.c:391
-#, fuzzy
 msgid "_Resume game"
-msgstr "_Letzten Spielstand laden"
+msgstr "Letztes _Spiel laden"
 
 #: src/interface.c:481
 msgid "_Team"
