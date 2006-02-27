@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: es-1.9.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-02-24 13:09+0100\n"
-"PO-Revision-Date: 2005-12-22 16:26+0100\n"
+"PO-Revision-Date: 2006-02-27 18:08+0100\n"
 "Last-Translator: Carlos Garces <carlos-garces@usa.net>\n"
 "Language-Team:  <es@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -422,8 +422,10 @@ msgstr "%s: %d semanas\n"
 msgid "- a simple and addictive GTK2 football manager"
 msgstr "- Un manager de futbol en GTK simple y adictivo"
 
-#: src/misc_interface.c:1029 src/misc_interface.c:1037
-#: src/misc_interface.c:1063 src/misc_interface.c:1071
+#: src/misc_interface.c:1029
+#: src/misc_interface.c:1037
+#: src/misc_interface.c:1063
+#: src/misc_interface.c:1071
 msgid "0"
 msgstr "0"
 
@@ -492,7 +494,8 @@ msgstr ""
 "<span background='lightgrey' size='large' weight='bold'>Apuestas recientes</"
 "span>"
 
-#: src/treeview.c:1618 src/treeview.c:1623
+#: src/treeview.c:1618
+#: src/treeview.c:1623
 #, c-format
 msgid "<span foreground='%s' background='%s'>Week %d Round %d</span>"
 msgstr "<span foreground='%s' background='%s'>Semana %d Ronda %d</span>"
@@ -551,11 +554,13 @@ msgid "Add last recorded match to the current memorable matches file."
 msgstr ""
 "Agregar último partido registrado en el actual archivo 'Partidos Memorables'."
 
-#: src/misc2_interface.c:859 src/misc_interface.c:188
+#: src/misc2_interface.c:859
+#: src/misc_interface.c:188
 msgid "Add user"
 msgstr "Agregar usuario"
 
-#: src/treeview.c:304 src/treeview.c:1906
+#: src/treeview.c:304
+#: src/treeview.c:1906
 msgid "Age"
 msgstr "Edad"
 
@@ -593,14 +598,11 @@ msgid "At least one user didn't take his turn this week. Continue?"
 msgstr "Por lo menos un usuario no jugó su turno en esta semana. ¿Continúa?"
 
 #: src/game_gui.c:845
-msgid ""
-"At the Bygfoot forums you can report bugs, ask for help and discuss the game "
-"(you don't have to register):\n"
-msgstr ""
-"En el foro de Bygfoot puede publicar errores, pedir ayuda y discutir sobre "
-"el juego (no es necesario registrarse):\n"
+msgid "At the Bygfoot forums you can report bugs, ask for help and discuss the game (you don't have to register):\n"
+msgstr "En el foro de Bygfoot puede publicar errores, pedir ayuda y discutir sobre el juego (no es necesario registrarse):\n"
 
-#: src/interface.c:514 src/treeview.c:1563
+#: src/interface.c:514
+#: src/treeview.c:1563
 msgid "Attack"
 msgstr "Ataque"
 
@@ -689,9 +691,11 @@ msgstr "Volver al panel principal (Esc)"
 
 #: src/misc_interface.c:285
 msgid "Back to splash"
-msgstr ""
+msgstr "Volver a inicio"
 
-#: src/interface.c:551 src/interface.c:583 src/interface.c:629
+#: src/interface.c:551
+#: src/interface.c:583
+#: src/interface.c:629
 msgid "Bad"
 msgstr "Malo"
 
@@ -732,8 +736,11 @@ msgstr "Mejores arqueros"
 msgid "Best offensive teams"
 msgstr "Mejores equipos ofensivos"
 
-#: src/interface.c:998 src/options_interface.c:1020 src/treeview.c:1347
-#: src/treeview.c:1357 src/window.c:894
+#: src/interface.c:998
+#: src/options_interface.c:1020
+#: src/treeview.c:1347
+#: src/treeview.c:1357
+#: src/window.c:894
 msgid "Betting"
 msgstr "Apostar"
 
@@ -746,7 +753,8 @@ msgstr "Apostar -- Left click on odd to place or remove bet"
 msgid "Bi-weekly balance"
 msgstr "Balance quincenal"
 
-#: src/treeview.c:1373 src/treeview.c:1376
+#: src/treeview.c:1373
+#: src/treeview.c:1376
 #, c-format
 msgid ""
 "Bi-weekly balance\n"
@@ -759,7 +767,9 @@ msgstr ""
 msgid "Boost"
 msgstr "Motivación"
 
-#: src/callbacks.c:847 src/game_gui.c:418 src/misc_callbacks.c:437
+#: src/callbacks.c:847
+#: src/game_gui.c:418
+#: src/misc_callbacks.c:437
 msgid "Boost ON is disabled in this country definition."
 msgstr "'Motivación' está deshabilitado en esta definición regional."
 
@@ -823,12 +833,8 @@ msgstr ""
 "(Puede dañar el CPU por sobrecalentamiento)."
 
 #: src/game_gui.c:843
-msgid ""
-"Bygfoot is a very intuitive and simple game, so there isn't a full-grown "
-"documentation. However, if you have trouble, there are a few places to go.\n"
-msgstr ""
-"Bygfoot es un juego intuitivo y sencillo. Pero si usted necesita consultar "
-"la documentación puede dirigirse a estos sitios:\n"
+msgid "Bygfoot is a very intuitive and simple game, so there isn't a full-grown documentation. However, if you have trouble, there are a few places to go.\n"
+msgstr "Bygfoot es un juego intuitivo y sencillo. Pero si usted necesita consultar la documentación puede dirigirse a estos sitios:\n"
 
 #. Current position of a player.
 #: src/treeview.c:285
@@ -861,11 +867,8 @@ msgid "Career values"
 msgstr "Carrera"
 
 #: src/misc_interface.c:725
-msgid ""
-"Change commentary verbosity. The higher this value the more events you can "
-"see."
-msgstr ""
-"Cambia verbosidad del comentario. Valor alto permite ver más sobre el evento."
+msgid "Change commentary verbosity. The higher this value the more events you can see."
+msgstr "Cambia verbosidad del comentario. Valor alto permite ver más sobre el evento."
 
 #: src/misc_interface.c:703
 msgid "Change live game speed. The lower the value the faster the live game."
@@ -958,7 +961,8 @@ msgstr "Acción inválida"
 msgid "Constants file"
 msgstr "Archivo 'Constants'"
 
-#: src/treeview.c:309 src/treeview.c:1910
+#: src/treeview.c:309
+#: src/treeview.c:1910
 msgid "Contract"
 msgstr "Contrato"
 
@@ -986,16 +990,19 @@ msgstr "Ofertas de contrato"
 msgid "Contracts are disabled in this country definition."
 msgstr "'Contratos' está deshabilitado en esta definición regional."
 
-#: src/interface.c:1021 src/misc2_interface.c:1066 src/misc3_interface.c:236
+#: src/interface.c:1021
+#: src/misc2_interface.c:1066
+#: src/misc3_interface.c:236
 msgid "Contributors"
 msgstr "Colaboradores"
 
 #: src/file.c:315
 #, c-format
 msgid "Copying %s"
-msgstr ""
+msgstr "Copiando %s"
 
-#: src/misc_interface.c:1025 src/misc_interface.c:1059
+#: src/misc_interface.c:1025
+#: src/misc_interface.c:1059
 msgid "Costs"
 msgstr "Costos"
 
@@ -1076,7 +1083,8 @@ msgstr "Luego decido"
 msgid "Default wager"
 msgstr "Apuesta por defecto"
 
-#: src/interface.c:504 src/treeview.c:1561
+#: src/interface.c:504
+#: src/treeview.c:1561
 msgid "Defend"
 msgstr "Defensa"
 
@@ -1087,7 +1095,7 @@ msgstr "Defensores"
 #. Splash screen hint question.
 #: src/misc3_interface.c:258
 msgid "Did you know?"
-msgstr ""
+msgstr "¿Sabías que?"
 
 #: src/treeview.c:2387
 msgid "Didn't find file 'bygfoot_help'."
@@ -1118,8 +1126,8 @@ msgid "Drawing credit"
 msgstr "Crédito"
 
 #. Games drawn.
-#. Draw.
-#: src/treeview.c:1229 src/treeview_helper.c:1592
+#: src/treeview.c:1229
+#: src/treeview_helper.c:1592
 msgid "Dw"
 msgstr "E"
 
@@ -1154,10 +1162,14 @@ msgstr "Ingresar formación personalizada"
 msgid "Erm..."
 msgstr "Ooh..."
 
-#: src/misc2_interface.c:450 src/misc2_interface.c:537
-#: src/misc2_interface.c:1099 src/misc2_interface.c:1194
-#: src/misc3_interface.c:107 src/misc3_interface.c:398
-#: src/misc_interface.c:293 src/misc_interface.c:1107
+#: src/misc2_interface.c:450
+#: src/misc2_interface.c:537
+#: src/misc2_interface.c:1099
+#: src/misc2_interface.c:1194
+#: src/misc3_interface.c:107
+#: src/misc3_interface.c:398
+#: src/misc_interface.c:293
+#: src/misc_interface.c:1107
 #: src/options_interface.c:1054
 msgid "Esc"
 msgstr "Esc"
@@ -1179,7 +1191,8 @@ msgstr "TalE"
 msgid "Event"
 msgstr "Eventos"
 
-#: src/misc_interface.c:1033 src/misc_interface.c:1067
+#: src/misc_interface.c:1033
+#: src/misc_interface.c:1067
 msgid "Expected duration"
 msgstr "Tiempo estimado"
 
@@ -1324,14 +1337,14 @@ msgid "Global"
 msgstr "Global"
 
 #. Goals of a player.
-#. Goals.
-#: src/treeview.c:299 src/treeview.c:2184
+#: src/treeview.c:299
+#: src/treeview.c:2184
 msgid "Go"
 msgstr "Go"
 
 #: src/misc_interface.c:271
 msgid "Go back to the splash screen"
-msgstr ""
+msgstr "Volver a la ventana de inicio"
 
 #. Goals per game.
 #: src/treeview.c:2186
@@ -1347,7 +1360,9 @@ msgstr "Arquero"
 msgid "Goalies"
 msgstr "Arqueros"
 
-#: src/treeview.c:1680 src/treeview.c:2150 src/treeview_helper.c:841
+#: src/treeview.c:1680
+#: src/treeview.c:2150
+#: src/treeview_helper.c:841
 msgid "Goals"
 msgstr "Goles"
 
@@ -1431,12 +1446,8 @@ msgstr ""
 "(no necesitará presionar ''Nueva Semana'')"
 
 #: src/misc_interface.c:1304
-msgid ""
-"If you don't like any of the sponsors, you can go a few weeks without "
-"sponsor and wait for new offers."
-msgstr ""
-"Si no le convencen los patrocinantes, puede esperar algunas semanas sin "
-"patrocinante hasta recibir nuevas ofertas."
+msgid "If you don't like any of the sponsors, you can go a few weeks without sponsor and wait for new offers."
+msgstr "Si no le convencen los patrocinantes, puede esperar algunas semanas sin patrocinante hasta recibir nuevas ofertas."
 
 #: src/misc2_interface.c:1348
 msgid "Import file"
@@ -1450,7 +1461,8 @@ msgstr "Importar partidos desde 'Partidos Memorables'"
 msgid "Improve!"
 msgstr "¡Mejorar!"
 
-#: src/treeview.c:1324 src/window.c:562
+#: src/treeview.c:1324
+#: src/window.c:562
 #, c-format
 msgid ""
 "Improvement in progress.\n"
@@ -1473,7 +1485,8 @@ msgstr "Mejorar"
 msgid "Injuries"
 msgstr "Lesiones"
 
-#: src/misc2_interface.c:71 src/window.c:791
+#: src/misc2_interface.c:71
+#: src/window.c:791
 msgid "Job offer"
 msgstr "Oferta de trabajo"
 
@@ -1495,8 +1508,8 @@ msgid "Kick out of academy"
 msgstr "Expulsar de la Academia"
 
 #. Games lost.
-#. Lost.
-#: src/treeview.c:1231 src/treeview_helper.c:1585
+#: src/treeview.c:1231
+#: src/treeview_helper.c:1585
 msgid "L"
 msgstr "P"
 
@@ -1537,8 +1550,11 @@ msgstr "No se encuentra el último archivo guardado."
 msgid "Latest results"
 msgstr "Últimos resultados"
 
-#: src/misc2_interface.c:103 src/treeview2.c:469 src/treeview.c:162
-#: src/treeview.c:311 src/treeview.c:686
+#: src/misc2_interface.c:103
+#: src/treeview2.c:469
+#: src/treeview.c:162
+#: src/treeview.c:311
+#: src/treeview.c:686
 msgid "League"
 msgstr "Liga"
 
@@ -1580,7 +1596,9 @@ msgstr "Lista 1"
 msgid "List 2"
 msgstr "Lista 2"
 
-#: src/interface.c:369 src/misc_interface.c:497 src/options_interface.c:517
+#: src/interface.c:369
+#: src/misc_interface.c:497
+#: src/options_interface.c:517
 msgid "Live game"
 msgstr "Juego en directo"
 
@@ -1614,14 +1632,8 @@ msgid "Load team definitions"
 msgstr "Cargar definiciones del equipo"
 
 #: src/misc_interface.c:204
-msgid ""
-"Load teams from definition files (note that the official Bygfoot package "
-"doesn't contain team definition files, you have to get them from the "
-"homepage or via the bygfoot-update script)"
-msgstr ""
-"Carga los equipos desde los archivos de definición (Nota: el paquete oficial "
-"de Bygfoot no contiene archivos de definición, tiene que conseguirlos del "
-"'Homepage' o vía 'bygfoot-update')"
+msgid "Load teams from definition files (note that the official Bygfoot package doesn't contain team definition files, you have to get them from the homepage or via the bygfoot-update script)"
+msgstr "Carga los equipos desde los archivos de definición (Nota: el paquete oficial de Bygfoot no contiene archivos de definición, tiene que conseguirlos del 'Homepage' o vía 'bygfoot-update')"
 
 #: src/xml.c:118
 #, c-format
@@ -1693,7 +1705,8 @@ msgstr "Panel maximizado"
 msgid "Memorable match added."
 msgstr "Agregar 'Partidos Memorables'."
 
-#: src/interface.c:875 src/window.c:886
+#: src/interface.c:875
+#: src/window.c:886
 msgid "Memorable matches"
 msgstr "Partidos Memorables"
 
@@ -1737,7 +1750,9 @@ msgstr "Mover a la Acad. Juvenil"
 msgid "My league results"
 msgstr "Mis resultado del campeonato"
 
-#: src/misc2_interface.c:98 src/treeview.c:283 src/treeview.c:684
+#: src/misc2_interface.c:98
+#: src/treeview.c:283
+#: src/treeview.c:684
 #: src/treeview.c:1899
 msgid "Name"
 msgstr "Nombre"
@@ -1759,9 +1774,8 @@ msgstr ""
 "nuevo contraro"
 
 #: src/misc3_interface.c:303
-#, fuzzy
 msgid "Next"
-msgstr "Próximo (W)"
+msgstr "Siguiente"
 
 #: src/interface.c:1381
 msgid "Next (W)"
@@ -1892,7 +1906,8 @@ msgstr "Penales"
 msgid "Penalty/free kick shooter deselected."
 msgstr "Tirador de penal/tiro libre no está seleccionado."
 
-#: src/interface.c:557 src/treeview.c:1350
+#: src/interface.c:557
+#: src/treeview.c:1350
 msgid "Physio"
 msgstr "Físico"
 
@@ -1928,7 +1943,8 @@ msgstr "Lista de jugadores (2)"
 msgid "Player list refresh rate"
 msgstr "Intervalo de actualización de la lista de jugadores"
 
-#: src/interface.c:488 src/treeview.c:1667
+#: src/interface.c:488
+#: src/treeview.c:1667
 msgid "Playing style"
 msgstr "Estilo de juego"
 
@@ -1958,9 +1974,8 @@ msgid "Preferences"
 msgstr "Preferencias"
 
 #: src/misc3_interface.c:283
-#, fuzzy
 msgid "Previous"
-msgstr "Anterior (Q)"
+msgstr "Atras"
 
 #: src/interface.c:1368
 msgid "Previous (Q)"
@@ -2007,16 +2022,11 @@ msgid "Randomise teams in cups"
 msgstr "Equipos aleatorios en copas"
 
 #: src/misc_interface.c:230
-#, fuzzy
-msgid ""
-"Randomise the order of teams in cups. This only makes sense in supernational "
-"definitions like the World Cup where the order of teams is fixed."
-msgstr ""
-"Orden aleatorio de los equipos en las copas. Esto solo tiene sentido en las "
-"competiciones internacionales como el mundial, cuando el orden de los "
-"equipos es fijo."
+msgid "Randomise the order of teams in cups. This only makes sense in supernational definitions like the World Cup where the order of teams is fixed."
+msgstr "Orden aleatorio de los equipos en las copas. Esto solo tiene sentido en las competiciones internacionales como el mundial, cuando el orden de los equipos es fijo."
 
-#: src/misc2_interface.c:108 src/treeview.c:1646
+#: src/misc2_interface.c:108
+#: src/treeview.c:1646
 msgid "Rank"
 msgstr "Posición"
 
@@ -2024,10 +2034,10 @@ msgstr "Posición"
 msgid "Rank "
 msgstr "Posición "
 
-#: src/file.c:327 src/misc3_interface.c:407
-#, fuzzy
+#: src/file.c:327
+#: src/misc3_interface.c:407
 msgid "Ready"
-msgstr "Recargar"
+msgstr "Listo"
 
 #: src/interface.c:721
 msgid "Rearrange team"
@@ -2037,7 +2047,8 @@ msgstr "Rearmar equipo"
 msgid "Recruiting preference"
 msgstr "Preferencia de reclutamiento"
 
-#: src/treeview.c:740 src/treeview_helper.c:844
+#: src/treeview.c:740
+#: src/treeview_helper.c:844
 msgid "Reds"
 msgstr "Rojas"
 
@@ -2096,19 +2107,23 @@ msgstr "Resultado"
 msgid "Results"
 msgstr "Resultados"
 
-#: src/misc2_interface.c:1182 src/misc_interface.c:1083
+#: src/misc2_interface.c:1182
+#: src/misc_interface.c:1083
 msgid "Return"
 msgstr "Enter"
 
-#: src/misc_interface.c:667 src/misc_interface.c:689
+#: src/misc_interface.c:667
+#: src/misc_interface.c:689
 msgid "Return / Space"
 msgstr "Enter / Espacio"
 
-#: src/interface.c:1198 src/misc_interface.c:736
+#: src/interface.c:1198
+#: src/misc_interface.c:736
 msgid "Right click and left click to change boost state"
 msgstr "Clic-Der y Clic-Izq: cambiar el estado de motivación"
 
-#: src/interface.c:1188 src/misc_interface.c:745
+#: src/interface.c:1188
+#: src/misc_interface.c:745
 msgid "Right click and left click to change your playing style"
 msgstr "Clic-Der y Clic-Izq: cambiar el estilo de juego"
 
@@ -2119,7 +2134,8 @@ msgstr ""
 "Clic-Der: Mover jugadores hacia y desde la Academia Juvenil; Clic-Izq: Menú "
 "contextual"
 
-#: src/misc_interface.c:1019 src/misc_interface.c:1053
+#: src/misc_interface.c:1019
+#: src/misc_interface.c:1053
 msgid "Right-click to set to 0"
 msgstr "Clic-Der: ajusta a 0"
 
@@ -2209,7 +2225,8 @@ msgstr "Guardando lista de transferencia..."
 msgid "Saving users..."
 msgstr "Guardando usuarios..."
 
-#: src/interface.c:525 src/treeview.c:1351
+#: src/interface.c:525
+#: src/treeview.c:1351
 msgid "Scout"
 msgstr "Reclutador"
 
@@ -2231,7 +2248,8 @@ msgstr "Historial de la Temporada"
 msgid "Season results"
 msgstr "Resultados de la semana"
 
-#: src/misc_interface.c:384 src/window.c:821
+#: src/misc_interface.c:384
+#: src/window.c:821
 msgid "Select font"
 msgstr "Seleccione una fuente"
 
@@ -2262,11 +2280,13 @@ msgstr "Ti"
 msgid "Shoots penalties"
 msgstr "Tiros de penal"
 
-#: src/treeview.c:735 src/treeview.c:2126
+#: src/treeview.c:735
+#: src/treeview.c:2126
 msgid "Shot %"
 msgstr "Tiro %"
 
-#: src/treeview.c:734 src/treeview_helper.c:842
+#: src/treeview.c:734
+#: src/treeview_helper.c:842
 msgid "Shots"
 msgstr "Tiros"
 
@@ -2412,7 +2432,8 @@ msgstr "Ofertas de los patrocinantes"
 msgid "Stadium"
 msgstr "Estadio"
 
-#: src/misc2_interface.c:118 src/treeview.c:1314
+#: src/misc2_interface.c:118
+#: src/treeview.c:1314
 msgid "Stadium capacity"
 msgstr "Capacidad del estadio"
 
@@ -2424,7 +2445,8 @@ msgstr "Costo del estadio"
 msgid "Stadium management is disabled in this country definition."
 msgstr "'Gestión de estadio' está deshabilitada en esta definición regional."
 
-#: src/misc2_interface.c:123 src/treeview.c:1318
+#: src/misc2_interface.c:123
+#: src/treeview.c:1318
 msgid "Stadium safety"
 msgstr "Seguridad del estadio"
 
@@ -2438,7 +2460,7 @@ msgstr "Comenzar"
 
 #: src/misc3_interface.c:343
 msgid "Start _new game"
-msgstr ""
+msgstr "Empezar _nueva partida"
 
 #: src/misc_interface.c:583
 msgid "Statistics"
@@ -2484,9 +2506,14 @@ msgstr "Tabla de posiciones"
 msgid "Talent %"
 msgstr "Tal %"
 
-#: src/treeview2.c:468 src/treeview.c:153 src/treeview.c:310
-#: src/treeview.c:685 src/treeview.c:1223 src/treeview.c:1640
-#: src/treeview.c:1768 src/treeview.c:2062
+#: src/treeview2.c:468
+#: src/treeview.c:153
+#: src/treeview.c:310
+#: src/treeview.c:685
+#: src/treeview.c:1223
+#: src/treeview.c:1640
+#: src/treeview.c:1768
+#: src/treeview.c:2062
 msgid "Team"
 msgstr "Equipo"
 
@@ -2551,12 +2578,9 @@ msgstr "Los dueños de %s aceptaron su oferta."
 #. a lot of influence/impact anymore, e.g. an American president during
 #. the last 2 years of his second presidency.
 #: src/misc2_callback_func.c:322
-#, c-format
-msgid ""
-"The owners of %s accept your application. Since %s don't want to get stuck "
-"with a lame duck, you get fired instantly and spend the rest of the current "
-"season tending your garden."
-msgstr ""
+#, fuzzy, c-format
+msgid "The owners of %s accept your application. Since %s don't want to get stuck with a lame duck, you get fired instantly and spend the rest of the current season tending your garden."
+msgstr "Los dueños de %s aceptan su apuesta. Since %s don't want to get stuck with a lame duck, you get fired instantly and spend the rest of the current season tending your garden."
 
 #: src/game_gui.c:727
 #, c-format
@@ -2671,12 +2695,8 @@ msgid "The transfer deadline is over."
 msgstr "El plazo de la transferencia terminó."
 
 #: src/misc_interface.c:1262
-msgid ""
-"There are a few companies interested in sponsoring your team. Please select "
-"one:"
-msgstr ""
-"Hay algunas compañías interesadas en patrocinar su equipo. Por favor "
-"seleccione uno:"
+msgid "There are a few companies interested in sponsoring your team. Please select one:"
+msgstr "Hay algunas compañías interesadas en patrocinar su equipo. Por favor seleccione uno:"
 
 #: src/callbacks.c:215
 msgid "There are injured or banned players in one of the user teams. Continue?"
@@ -2708,12 +2728,8 @@ msgid "There is no room in your youth academy."
 msgstr "No hay sitio en su Academia Juvenil."
 
 #: src/misc_callbacks.c:189
-msgid ""
-"There were too many substitutions. Only 3 per game are allowed. Player list "
-"reset."
-msgstr ""
-"Tiene muchas sustituciones, Sólo se permiten 3 por partido. Reajuste la "
-"lista de jugadores."
+msgid "There were too many substitutions. Only 3 per game are allowed. Player list reset."
+msgstr "Tiene muchas sustituciones, Sólo se permiten 3 por partido. Reajuste la lista de jugadores."
 
 #: src/treeview.c:1345
 msgid "Ticket income"
@@ -2765,7 +2781,8 @@ msgstr "Gestión de usuario"
 msgid "Users -- click to remove"
 msgstr "Usuarios -- Clic para borrar"
 
-#: src/treeview.c:307 src/treeview.c:1908
+#: src/treeview.c:307
+#: src/treeview.c:1908
 msgid "Value"
 msgstr "Valor"
 
@@ -2778,8 +2795,8 @@ msgid "Verbosity"
 msgstr "Detalles"
 
 #. Games won.
-#. Won.
-#: src/treeview.c:1227 src/treeview_helper.c:1574
+#: src/treeview.c:1227
+#: src/treeview_helper.c:1574
 msgid "W"
 msgstr "G"
 
@@ -2794,7 +2811,9 @@ msgstr "G "
 msgid "W  %d : %d"
 msgstr "G  %d : %d"
 
-#: src/callback_func.c:487 src/callback_func.c:494 src/treeview.c:308
+#: src/callback_func.c:487
+#: src/callback_func.c:494
+#: src/treeview.c:308
 #: src/treeview.c:1909
 msgid "Wage"
 msgstr "Salario"
@@ -2992,12 +3011,12 @@ msgid "YC"
 msgstr "TA"
 
 #. 'Limit' is the number of yellow cards until a player gets
-#. banned automatically for a match.
 #: src/treeview.c:1914
 msgid "Yellow cards (limit)\n"
 msgstr "Tarjetas amarillas (límite)\n"
 
-#: src/treeview.c:739 src/treeview_helper.c:843
+#: src/treeview.c:739
+#: src/treeview_helper.c:843
 msgid "Yellows"
 msgstr "Amarillas"
 
@@ -3187,9 +3206,9 @@ msgstr ""
 
 #. Cup round name (e.g. Last 32), number, cup name.
 #: src/user.c:755
-#, fuzzy, c-format
+#, c-format
 msgid "You reach the %s (round %s) of the %s."
-msgstr "Llegó a el/la %s (ronda %d) de la %s."
+msgstr "Llegó a la %s (ronda %d) de %s."
 
 #. Buy a team in a league.
 #: src/user.c:700
@@ -3311,7 +3330,8 @@ msgstr ""
 msgid "Youth acad. invest."
 msgstr "Inver. en la Acad. Juvenil."
 
-#: src/interface.c:589 src/treeview.c:1353
+#: src/interface.c:589
+#: src/treeview.c:1353
 msgid "Youth academy"
 msgstr "Academia Juvenil"
 
@@ -3320,7 +3340,8 @@ msgstr "Academia Juvenil"
 msgid "Youth academy is disabled in this country definition."
 msgstr "'Motivación' está deshabilitada en esta definición regional."
 
-#: src/interface.c:607 src/treeview.c:1352
+#: src/interface.c:607
+#: src/treeview.c:1352
 msgid "Youth coach"
 msgstr "Entrenador"
 
@@ -3333,9 +3354,8 @@ msgid "_Help"
 msgstr "A_yuda"
 
 #: src/misc3_interface.c:367
-#, fuzzy
 msgid "_Load game"
-msgstr "Cargar Juego"
+msgstr "_Cargar Juego"
 
 #: src/interface.c:341
 msgid "_Options"
@@ -3354,9 +3374,8 @@ msgid "_Resume"
 msgstr "_Iniciar"
 
 #: src/misc3_interface.c:391
-#, fuzzy
 msgid "_Resume game"
-msgstr "_Iniciar último juego"
+msgstr "_Continuar partido"
 
 #: src/interface.c:481
 msgid "_Team"
