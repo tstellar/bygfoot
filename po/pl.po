@@ -1,14 +1,15 @@
 # translation of pl.po to Polish
 # translation of bygfoot.po to Polish
-# Michal Rudolf <mrudolf@kdewebdev.org>, 2005.
+# Michal Rudolf <mrudolf@kdewebdev.org>, 2005, 2006.
 msgid ""
 msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-02-24 13:09+0100\n"
-"PO-Revision-Date: 2005-12-22 10:42+0100\n"
+"PO-Revision-Date: 2006-02-28 22:51+0100\n"
 "Last-Translator: Michal Rudolf <mrudolf@kdewebdev.org>\n"
-"Language-Team: Polish <kdei18n-pl-devel@lists.sourceforge.net>\n"
+"Language-Team: Polish <kdei18n-pl-devel@lists.sourceforge.net"
+">\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,8 +20,7 @@ msgstr ""
 ">\n"
 ">\n"
 "X-Generator: KBabel 1.10.2\n"
-"Plural-Forms:  nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%"
-"100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms:  nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: src/treeview_helper.c:860
 #, c-format
@@ -485,16 +485,14 @@ msgstr ""
 
 #. Copy the <span...> stuff, translate in between.
 #: src/treeview2.c:272
-msgid ""
-"<span background='lightgrey' size='large' weight='bold'>Current bets</span>"
+msgid "<span background='lightgrey' size='large' weight='bold'>Current bets</span>"
 msgstr ""
 "<span background='lightgrey' size='large' weight='bold'>Aktualne zakłady</"
 "span>"
 
 #. Copy the <span...> stuff, translate in between.
 #: src/treeview2.c:274
-msgid ""
-"<span background='lightgrey' size='large' weight='bold'>Recent bets</span>"
+msgid "<span background='lightgrey' size='large' weight='bold'>Recent bets</span>"
 msgstr ""
 "<span background='lightgrey' size='large' weight='bold'>Ostatnie zakłady</"
 "span>"
@@ -694,7 +692,7 @@ msgstr "Powrót do głównego menu (Esc)"
 
 #: src/misc_interface.c:285
 msgid "Back to splash"
-msgstr ""
+msgstr "Powrót do ekranu powitalnego"
 
 #: src/interface.c:551 src/interface.c:583 src/interface.c:629
 msgid "Bad"
@@ -874,8 +872,7 @@ msgstr ""
 
 #: src/misc_interface.c:703
 msgid "Change live game speed. The lower the value the faster the live game."
-msgstr ""
-"Zmienia szybkość relacji na żywo. Im niższa wartość, tym szybsza relacja."
+msgstr "Zmienia szybkość relacji na żywo. Im niższa wartość, tym szybsza relacja."
 
 #: src/misc_interface.c:96
 msgid "Choose country"
@@ -999,7 +996,7 @@ msgstr "Podziękowania"
 #: src/file.c:315
 #, c-format
 msgid "Copying %s"
-msgstr ""
+msgstr "Kopiowanie %s"
 
 #: src/misc_interface.c:1025 src/misc_interface.c:1059
 msgid "Costs"
@@ -1015,18 +1012,16 @@ msgid "Country"
 msgstr "Kraj"
 
 #: src/misc3_interface.c:326
-#, fuzzy
 msgid "Ctrl-N"
-msgstr "Ctrl-O"
+msgstr "Ctrl-N"
 
 #: src/misc3_interface.c:350
 msgid "Ctrl-O"
 msgstr "Ctrl-O"
 
 #: src/misc3_interface.c:374
-#, fuzzy
 msgid "Ctrl-R"
-msgstr "Ctrl-O"
+msgstr "Ctrl-R"
 
 #: src/treeview.c:2283
 msgid "Cup champions"
@@ -1093,7 +1088,7 @@ msgstr "Obrońcy"
 #. Splash screen hint question.
 #: src/misc3_interface.c:258
 msgid "Did you know?"
-msgstr ""
+msgstr "Czy wiesz, że...?"
 
 #: src/treeview.c:2387
 msgid "Didn't find file 'bygfoot_help'."
@@ -1211,8 +1206,7 @@ msgstr "Transfer"
 #. the attendace for the match.
 #: src/main.c:91
 msgid "File containing live game tokens (may be in a support dir)"
-msgstr ""
-"Plik zawierający zmienne relacji na żywo (może być w katalogu z danymi)"
+msgstr "Plik zawierający zmienne relacji na żywo (może być w katalogu z danymi)"
 
 #: src/options_interface.c:358
 msgid ""
@@ -1336,7 +1330,7 @@ msgstr "Br"
 
 #: src/misc_interface.c:271
 msgid "Go back to the splash screen"
-msgstr ""
+msgstr "Wróć do ekranu powitalnego"
 
 #. Goals per game.
 #: src/treeview.c:2186
@@ -1571,8 +1565,7 @@ msgstr ""
 "podręczne."
 
 #: src/callbacks.c:873
-msgid ""
-"Left-click: get loan; Right-click: pay back; Middle click: stadium window."
+msgid "Left-click: get loan; Right-click: pay back; Middle click: stadium window."
 msgstr "Lwy przycisk: pożyczka, prawy: spłata, środkowy: stadion."
 
 #: src/options_interface.c:957
@@ -1760,9 +1753,8 @@ msgstr ""
 "nowego kontraktu"
 
 #: src/misc3_interface.c:303
-#, fuzzy
 msgid "Next"
-msgstr "Następny (W)"
+msgstr "Następny"
 
 #: src/interface.c:1381
 msgid "Next (W)"
@@ -1959,9 +1951,8 @@ msgid "Preferences"
 msgstr "Ustawienia"
 
 #: src/misc3_interface.c:283
-#, fuzzy
 msgid "Previous"
-msgstr "Poprzedni (Q)"
+msgstr "Poprzedni"
 
 #: src/interface.c:1368
 msgid "Previous (Q)"
@@ -2025,9 +2016,8 @@ msgid "Rank "
 msgstr "Miejsce "
 
 #: src/file.c:327 src/misc3_interface.c:407
-#, fuzzy
 msgid "Ready"
-msgstr "Wczytaj ponownie"
+msgstr "Gotowe"
 
 #: src/interface.c:721
 msgid "Rearrange team"
@@ -2139,8 +2129,7 @@ msgstr "Bezpieczeństwo (%)"
 
 #: src/misc_callback_func.c:271
 msgid "Safety improvement too high, reset to highest possible value."
-msgstr ""
-"Zbyt wysoka wartość bezpieczeństwa, wybrano maksymalną dopuszczalną wartość."
+msgstr "Zbyt wysoka wartość bezpieczeństwa, wybrano maksymalną dopuszczalną wartość."
 
 #. % of saves for goalies (#goals / #shots)
 #: src/treeview.c:2129
@@ -2243,8 +2232,7 @@ msgid "Set investment"
 msgstr "Finansowanie"
 
 #: src/callbacks.c:1124 src/interface.c:671
-msgid ""
-"Set the percentage of your income you want to devote to your youth academy."
+msgid "Set the percentage of your income you want to devote to your youth academy."
 msgstr "Podaj procent dochodów, jaki chcesz przeznaczyć na szkółkę młodzików."
 
 #: src/options_interface.c:542
@@ -2431,7 +2419,7 @@ msgstr "Start"
 
 #: src/misc3_interface.c:343
 msgid "Start _new game"
-msgstr ""
+msgstr "_Nowa gra"
 
 #: src/misc_interface.c:583
 msgid "Statistics"
@@ -2612,8 +2600,7 @@ msgid "The player is already on the list."
 msgstr "Zawodnik jest już na liście."
 
 #: src/callback_func.c:464
-msgid ""
-"The player is locked (the team owners are considering an offer currently)."
+msgid "The player is locked (the team owners are considering an offer currently)."
 msgstr "Zawodnik jest aktualnie zablokowany (właściciele rozważają ofertę)."
 
 #: src/callbacks.c:471
@@ -2837,8 +2824,7 @@ msgid "Welcome to Bygfoot %s"
 msgstr "Witamy w programie Bygfoot %s"
 
 #: src/options_interface.c:235
-msgid ""
-"Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
+msgid "Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
 msgstr ""
 "Określa, czy 'Zapisz' nadpisuje aktualny plik, czy też wyświetla okno wyboru "
 "pliku"
@@ -2940,8 +2926,7 @@ msgid "Whether to show cup matches in the betting window"
 msgstr "Czy wyświetlać mecze pucharowe w oknie zakładów"
 
 #: src/misc3_interface.c:82
-msgid ""
-"Whether to show cup matches. Use the options window to toggle permanently."
+msgid "Whether to show cup matches. Use the options window to toggle permanently."
 msgstr ""
 "Czy wyświetlać mecze pucharowe. Tę opcje można skonfigurować na stałe w "
 "oknie ustawień."
@@ -2976,15 +2961,13 @@ msgstr ""
 
 #: src/options_interface.c:584
 msgid "Whether to show the player games/goals value in all competitions"
-msgstr ""
-"Określa, czy wyświetlać łączną liczbę spotkań/bramek we wszystkich zawodach."
+msgstr "Określa, czy wyświetlać łączną liczbę spotkań/bramek we wszystkich zawodach."
 
 #: src/options_interface.c:250
 msgid ""
 "Whether to show warnings and such in the message area in the main window "
 "when possible"
-msgstr ""
-"Określa, czy wyświetlać ostrzeżenia i inne komunikaty w polu wiadomości."
+msgstr "Określa, czy wyświetlać ostrzeżenia i inne komunikaty w polu wiadomości."
 
 #. Team 1 wins (betting window).
 #: src/treeview2.c:362
@@ -3347,9 +3330,8 @@ msgid "_Help"
 msgstr "Pomo_c"
 
 #: src/misc3_interface.c:367
-#, fuzzy
 msgid "_Load game"
-msgstr "Wczytaj grę"
+msgstr "_Wczytaj grę"
 
 #: src/interface.c:341
 msgid "_Options"
@@ -3368,9 +3350,8 @@ msgid "_Resume"
 msgstr "_Kontynuuj"
 
 #: src/misc3_interface.c:391
-#, fuzzy
 msgid "_Resume game"
-msgstr "_Wczytaj ostatnią grę"
+msgstr "Wczytaj _ostatnią grę"
 
 #: src/interface.c:481
 msgid "_Team"
@@ -3380,5 +3361,3 @@ msgstr "_Drużyna"
 msgid "_User"
 msgstr "_Użytkownik"
 
-#~ msgid "Load the last game that was saved or loaded."
-#~ msgstr "Wczytaj ostatnio zapisaną lub wczytywaną grę."
