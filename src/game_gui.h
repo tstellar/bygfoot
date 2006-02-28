@@ -53,20 +53,35 @@ game_gui_set_main_window_header(void);
 void
 game_gui_show_main(void);
 
+#ifdef G_OS_UNIX
 void
 game_gui_show_warning(const gchar *format, ...)
 __attribute__ ((format (printf, 1, 2)));
+#else
+void
+game_gui_show_warning(const gchar *format, ...);
+#endif
 
+#ifdef G_OS_UNIX
 void
 game_gui_print_message(gchar *format, ...)
 __attribute__ ((format (printf, 1, 2)));
+#else
+void
+game_gui_print_message(gchar *format, ...);
+#endif
 
 gboolean
 game_gui_print_message_source(gpointer data);
 
+#ifdef G_OS_UNIX
 void
 game_gui_print_message_with_delay(const gchar *format, ...)
 __attribute__ ((format (printf, 1, 2)));
+#else
+void
+game_gui_print_message_with_delay(const gchar *format, ...);
+#endif
 
 void
 game_gui_get_radio_items(GtkWidget **style, GtkWidget **scout,

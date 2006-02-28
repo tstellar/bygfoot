@@ -146,7 +146,10 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 	option_set_int("int_debug", &constants, deb_level);
 
     if(lang != NULL)
+    {
 	language_set(language_get_code_index(lang) + 1);
+	file_load_hints_file();
+    }
 
     if(debug_text != NULL)
 	statp = debug_text;

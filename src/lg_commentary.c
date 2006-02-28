@@ -29,6 +29,7 @@
 #include "file.h"
 #include "fixture.h"
 #include "free.h"
+#include "language.h"
 #include "league.h"
 #include "lg_commentary.h"
 #include "live_game.h"
@@ -598,7 +599,6 @@ void
 lg_commentary_load_commentary_file_from_option(void)
 {
     gchar buf[SMALL], commentary_file[SMALL];
-    gchar *cur_locale = NULL;
 
     language_get_code(buf);
 

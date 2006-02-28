@@ -69,10 +69,16 @@ user_weekly_update_counters(User *user);
 Event
 user_event_new(void);
 
+#ifdef G_OS_UNIX
 void
 user_event_add(User *user, gint type, gint value1, gint value2, 
 	       gpointer value_pointer, gchar *format, ...)
 __attribute__ ((format (printf, 6, 7)));
+#else
+void
+user_event_add(User *user, gint type, gint value1, gint value2, 
+	       gpointer value_pointer, gchar *format, ...);
+#endif
 
 void
 user_event_remove(User *user, gint idx);

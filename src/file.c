@@ -552,7 +552,7 @@ file_load_hints_file(void)
 
     sprintf(hints_file, "bygfoot_hints_%s", buf);
     hints_file_sup = file_find_support_file(hints_file, FALSE);
-        
+
     if(hints_file_sup != NULL)
 	g_free(hints_file_sup);
     else

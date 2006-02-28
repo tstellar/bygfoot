@@ -34,9 +34,14 @@ main_init(gint *argc, gchar ***argv);
 void
 main_init_variables(void);
 
+#ifdef G_OS_UNIX
 void
 main_exit_program(gint exit_code, gchar *format, ...)
 __attribute__ ((noreturn, format (printf, 2, 3)));
+#else
+void
+main_exit_program(gint exit_code, gchar *format, ...);
+#endif
 
 void
 main_parse_cl_arguments(gint *argc, gchar ***argv);
