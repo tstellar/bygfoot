@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: es-1.9.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-02-24 13:09+0100\n"
-"PO-Revision-Date: 2006-02-28 12:23+0100\n"
+"PO-Revision-Date: 2006-02-28 13:03+0100\n"
 "Last-Translator: Carlos Garces <carlos-garces@usa.net>\n"
 "Language-Team:  <es@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -78,7 +78,7 @@ msgstr " (P)"
 
 #: src/cup.c:903
 msgid " -- First leg"
-msgstr " -- Primera temporada"
+msgstr " -- Primera vuelta"
 
 #: src/cup.c:906
 msgid " -- Replay matches"
@@ -86,7 +86,7 @@ msgstr " -- Repetir partido"
 
 #: src/cup.c:901
 msgid " -- Second leg"
-msgstr " -- Segunda temporada"
+msgstr " -- Segunda vuelta"
 
 #. Company short name.
 #: src/user.c:876
@@ -135,7 +135,7 @@ msgstr " Corp."
 #. Company name.
 #: src/user.c:871
 msgid " Data Systems"
-msgstr " Sistemas de dato"
+msgstr " Sistemas de datos"
 
 #. Company name.
 #: src/user.c:855
@@ -2532,11 +2532,12 @@ msgstr "Cuanto menor es el valor, más rápido visualizará los comentarios En V
 msgid "The owners of %s accept your application."
 msgstr "Los dueños de %s aceptaron su oferta."
 
+# Es dificil traducir Lame Duck (http://en.wikipedia.org/wiki/Lame_duck)
 #. A lame duck is someone who will quit his job soon and thus doesn't have
 #: src/misc2_callback_func.c:322
-#, fuzzy, c-format
+#, c-format
 msgid "The owners of %s accept your application. Since %s don't want to get stuck with a lame duck, you get fired instantly and spend the rest of the current season tending your garden."
-msgstr "Los dueños de %s aceptan su apuesta. Since %s don't want to get stuck with a lame duck, you get fired instantly and spend the rest of the current season tending your garden."
+msgstr "Los dueños de %s aceptan su propuesta. Como %s no quieren quedarse con un parasito, es despedido inmediatamente y pasa el resto de la temporada tumbado en el jardin."
 
 #: src/game_gui.c:727
 #, c-format
