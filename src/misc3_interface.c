@@ -165,6 +165,8 @@ create_window_splash (void)
   GtkWidget *image2;
   GtkWidget *label4;
   GtkWidget *label_splash_hintcounter;
+  GtkWidget *label_splash_hint;
+  GtkWidget *hbox10;
   GtkWidget *button_splash_hint_back;
   GtkWidget *alignment4;
   GtkWidget *hbox8;
@@ -175,7 +177,6 @@ create_window_splash (void)
   GtkWidget *hbox9;
   GtkWidget *image7;
   GtkWidget *label12;
-  GtkWidget *label_splash_hint;
   GtkWidget *hseparator4;
   GtkWidget *hbox3;
   GtkWidget *button_splash_new_game;
@@ -264,9 +265,20 @@ create_window_splash (void)
   gtk_widget_show (label_splash_hintcounter);
   gtk_box_pack_end (GTK_BOX (hbox2), label_splash_hintcounter, FALSE, FALSE, 0);
 
+  label_splash_hint = gtk_label_new ("");
+  gtk_widget_show (label_splash_hint);
+  gtk_box_pack_start (GTK_BOX (vbox3), label_splash_hint, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (label_splash_hint, -1, 90);
+  gtk_label_set_line_wrap (GTK_LABEL (label_splash_hint), TRUE);
+  gtk_misc_set_padding (GTK_MISC (label_splash_hint), 0, 5);
+
+  hbox10 = gtk_hbox_new (FALSE, 3);
+  gtk_widget_show (hbox10);
+  gtk_box_pack_start (GTK_BOX (vbox3), hbox10, FALSE, FALSE, 0);
+
   button_splash_hint_back = gtk_button_new ();
   gtk_widget_show (button_splash_hint_back);
-  gtk_box_pack_start (GTK_BOX (hbox2), button_splash_hint_back, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox10), button_splash_hint_back, TRUE, TRUE, 0);
 
   alignment4 = gtk_alignment_new (0.5, 0.5, 0, 0);
   gtk_widget_show (alignment4);
@@ -286,7 +298,7 @@ create_window_splash (void)
 
   button_splash_hint_next = gtk_button_new ();
   gtk_widget_show (button_splash_hint_next);
-  gtk_box_pack_start (GTK_BOX (hbox2), button_splash_hint_next, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox10), button_splash_hint_next, TRUE, TRUE, 0);
 
   alignment5 = gtk_alignment_new (0.5, 0.5, 0, 0);
   gtk_widget_show (alignment5);
@@ -303,13 +315,6 @@ create_window_splash (void)
   label12 = gtk_label_new_with_mnemonic (_("Next"));
   gtk_widget_show (label12);
   gtk_box_pack_start (GTK_BOX (hbox9), label12, FALSE, FALSE, 0);
-
-  label_splash_hint = gtk_label_new ("");
-  gtk_widget_show (label_splash_hint);
-  gtk_box_pack_start (GTK_BOX (vbox3), label_splash_hint, FALSE, FALSE, 0);
-  gtk_widget_set_size_request (label_splash_hint, -1, 90);
-  gtk_label_set_line_wrap (GTK_LABEL (label_splash_hint), TRUE);
-  gtk_misc_set_padding (GTK_MISC (label_splash_hint), 0, 5);
 
   hseparator4 = gtk_hseparator_new ();
   gtk_widget_show (hseparator4);
@@ -452,6 +457,8 @@ create_window_splash (void)
   GLADE_HOOKUP_OBJECT (window_splash, image2, "image2");
   GLADE_HOOKUP_OBJECT (window_splash, label4, "label4");
   GLADE_HOOKUP_OBJECT (window_splash, label_splash_hintcounter, "label_splash_hintcounter");
+  GLADE_HOOKUP_OBJECT (window_splash, label_splash_hint, "label_splash_hint");
+  GLADE_HOOKUP_OBJECT (window_splash, hbox10, "hbox10");
   GLADE_HOOKUP_OBJECT (window_splash, button_splash_hint_back, "button_splash_hint_back");
   GLADE_HOOKUP_OBJECT (window_splash, alignment4, "alignment4");
   GLADE_HOOKUP_OBJECT (window_splash, hbox8, "hbox8");
@@ -462,7 +469,6 @@ create_window_splash (void)
   GLADE_HOOKUP_OBJECT (window_splash, hbox9, "hbox9");
   GLADE_HOOKUP_OBJECT (window_splash, image7, "image7");
   GLADE_HOOKUP_OBJECT (window_splash, label12, "label12");
-  GLADE_HOOKUP_OBJECT (window_splash, label_splash_hint, "label_splash_hint");
   GLADE_HOOKUP_OBJECT (window_splash, hseparator4, "hseparator4");
   GLADE_HOOKUP_OBJECT (window_splash, hbox3, "hbox3");
   GLADE_HOOKUP_OBJECT (window_splash, button_splash_new_game, "button_splash_new_game");
