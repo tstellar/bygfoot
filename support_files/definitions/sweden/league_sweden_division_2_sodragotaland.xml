@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+
+  <sid>sweden_division_2_sodragotaland</sid>
+  <name>Division 2 Södra Götaland</name>
+  <short_name>Div 2 SG</short_name>
+  <symbol>flag_sweden.png</symbol>
+  <first_week>1</first_week>
+  <week_gap>1</week_gap>
+  <average_talent>7100</average_talent>
+  <names_file>sweden</names_file>
+  <layer>4</layer>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>1</rank_end>
+      <dest_sid>sweden_division_1_norra sweden_division_1_sodra</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_rel_element>
+      <rank_start>11</rank_start>
+      <rank_end>12</rank_end>
+      <dest_sid>sweden_division_3_mellerstagotaland sweden_division_3_mellerstanorrland sweden_division_3_nordostrasvealand sweden_division_3_nordvastragotaland sweden_division_3_norranorrland sweden_division_3_norrasvealand sweden_division_3_ostrasvealand sweden_division_3_sodragotaland sweden_division_3_sodranorrland sweden_division_3_sydostragotaland sweden_division_3_sydvastragotaland sweden_division_3_vastrasvealand</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Asmundtorps IF</team_name>
+    </team>
+    <team>
+      <team_name>Gantofta IF</team_name>
+    </team>
+    <team>
+      <team_name>Helsingborgs Södra</team_name>
+    </team>
+    <team>
+      <team_name>Höllvikens GIF</team_name>
+    </team>
+    <team>
+      <team_name>IFK Malmö FK</team_name>
+    </team>
+    <team>
+      <team_name>Karlskrona AIF</team_name>
+    </team>
+    <team>
+      <team_name>Kirseberg IF</team_name>
+    </team>
+    <team>
+      <team_name>Laholms FK</team_name>
+    </team>
+    <team>
+      <team_name>Lunds BK</team_name>
+    </team>
+    <team>
+      <team_name>Malmö Anadolu BI</team_name>
+    </team>
+    <team>
+      <team_name>Påarps GIF</team_name>
+    </team>
+    <team>
+      <team_name>Sölvesborgs GoIF</team_name>
+    </team>
+  </teams>
+
+</league>
