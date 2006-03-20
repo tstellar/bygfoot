@@ -1,0 +1,282 @@
+<lg_commentary>
+  <event>
+    <name>general</name>
+    <commentary>_P1_ passar</commentary>
+    <commentary>_P1_ passar men _P0_ missar den</commentary>
+    <commentary>_P1_ till _P0_</commentary>
+    <commentary>_P1_ lägger en [underbar|grym|otrolig|briljant] boll över till _P0_</commentary>
+    <commentary>Vacker liten [boll|pass] hittar fram till _P0_</commentary>
+    <commentary>Snygg fint och pass</commentary>
+    <commentary>Snyggt fotarbete, grym pass</commentary>
+    <commentary>_P1_ släpper bollen på _P0_s fötter</commentary>
+    <commentary>Hög pass från _P1_ hittar fram</commentary>
+    <commentary>_T_POSS__ attackerar</commentary>
+    <commentary>_T_NPOSS__ [försvarar|hanterar det]</commentary>
+    <commentary>Utomordentlig crossboll hittar fram till _P0_</commentary>
+    <commentary>Nu kan _T_POSS__ påbörja något genom _P0_</commentary>
+    <commentary>Inlägg av _P1_ [hittar fram till|tas emot av] _P0_</commentary>
+    <commentary>_P1_ [lägger|nålar] en grym boll till _P0_ </commentary>
+    <commentary>[Vacker|Superb|Lång|Briljant] passning från _P1_ släpper loss _P0_</commentary>
+    <commentary>[Lång|Kort|Utomordentligt] flytande passning från _P1_ hittar fram till _P0_</commentary>
+    <commentary>[Bra|Mycket bra|Smart] pass flyger över och ner till [höger|vänster]</commentary>
+    <commentary>[Snabb|Vältajmad] pass ned till [vänster|höger]</commentary>
+    <commentary>_P0_ smiter förbi sin motspelare och [bröstar|tar emot|tar ned] _P1_s perfekt [tajmade|balanserade] krossboll.</commentary>
+    <commentary>Ännu ett [smart|briljant|hyffsat|helt ok] drag [längs vänsterkanten|rakt genom försvaret|mot andra sidan]</commentary>
+    <commentary>_P0_ [hämtar upp|springer efter] _P1_s [höga boll|passning]</commentary>
+    <commentary>_P1_ [lägger|nålar] [den|bollen] genom [motståndarnas|spelarnas] [fötter|ben]  och hittar _P0_</commentary>
+    <commentary>_P1_ [fångar|kontrollerar] [den|bollen] med hans [fot|bröst|lår] och [skickar den|passar den|spelar vidare] till _P0_</commentary>
+    <commentary>_P1_ [lobbar|nickar] bollen vidare till _P0_</commentary>
+    <commentary>_P0_ fintar och väntar om igen</commentary>
+    <commentary>_P0_ fintar desperat för att bli av med sin motståndare</commentary>
+	 <commentary>_P0_ springer [upp till|genom] [mitten|mittfältet]</commentary>
+    <commentary>_P0_ [tappar|släpper] sin [motståndare|markerare]</commentary>
+    <commentary cond="_MI_>80 and _GD_ ==0 and _TAVSKILLDIFF_ >= 4"pri="10">Oavgjort skulle vara ett bra resultat för de utklassade _T[_TAVSKILL0_ GE _TAVSKILL1_]_</commentary>
+    <commentary cond="_MI_>80 and _GD_ ==1"pri="10">_TW_ behöver lugna ner sig och hålla sig kvar ett par minuter till</commentary>
+    <commentary cond="_MI_>20 and _SHOTS_POSS__ < 2">_T_POSS__ behöver [få upp bollen mer på fronten|skapa fler chanser]</commentary>
+    <commentary cond="_MI_>20 and _GOALS0_ + _GOALS1_ < 1  and _SHOTS0_ + _SHOTS1_ > 1 and _SHOTS0_ + _SHOTS1_ < 8">Bara [_SHOTS0_ + _SHOTS1_] skott, [det är en kamp på mittfältet|ingen sida försöker egentligen]</commentary>
+    <commentary cond="_MI_>20 and _GOALS0_ + _GOALS1_ < 1 and _SHOTS0_ + _SHOTS1_ = 1">Endast 1 skott, [det är en kamp på mittfältet|ingen sida försöker egentligen]</commentary>
+    <commentary cond="_MI_<20 and _SHOTS0_ + _SHOTS1_ > 2">_MI_ minuter på klockan, chanser här från båda lagen redan</commentary>
+    <commentary cond="_SHOTS0_ + _SHOTS1_ > 4">Utomordentliga skickligheter visas upp</commentary>
+    <commentary cond="_MI_ > 75">Vi går in i de avslutande minuterna av normaltiden</commentary>
+    <commentary cond="_FOULS0_ + _FOULS1_ >= 7">[Så många|[_FOULS0_ + _FOULS1_]] avblåsningar. Domarna behöver verkligen en ny [visselpipa|bok|penna]!</commentary>
+    <commentary cond="_MI_>85">Det är verkligen inte över förrän den feta damen sjunger och hon börjar värma upp redan nu</commentary>
+  </event>
+  <event>
+    <name>lost_possession</name>
+	 <commentary>_P1_ blir  bortfintad</commentary>
+	 <commentary>_P1_ blir bortfintad av _P0_</commentary>
+	 <commentary>[_P1_ ger bort bollen|Bollen ges bort] [nästan avsiktligen|för billigt|för enkelt]</commentary>
+	 <commentary>_P1_ tar den över linjen. Ett inkast till _T_POSS__</commentary>
+	 <commentary>Vild passning av _P1_ resulterar i ett inkast för _T_POSS__</commentary>
+	 <commentary>_P0_ gör ett snabbt inkast</commentary>
+	 <commentary>Långt inkast från _P0_</commentary>
+    <commentary>Glidtacklingen från _P0_ var riktigt vacker men farlig</commentary>
+	 <commentary>Tung boll okontrollerad av _P1_</commentary>
+    <commentary>_P0_ vinner bollen med perfekt tajming</commentary>
+    <commentary>Dålig kontroll av _P1_ gör att _P0_ kan stjäla bollen</commentary>
+    <commentary>_P0_ [tar|stjäler] bollen från _P1_ med en glidtackling</commentary>
+    <commentary>Kort boll till _P0_</commentary>
+    <commentary>Krossande tackling, _P0_ [kommer undan med|vinner|tar hand om] bollen</commentary>
+    <commentary>_P1_ lämnas kvar när _P0_ tar bollen</commentary>
+    <commentary>_P0_ gör en underbar brytning</commentary>
+    <commentary>_P0_ tar sig in på _P1_s fest och smiter undan med första priset</commentary>
+    <commentary>Inte _P1_s snyggaste passning när _P0_ bryter den</commentary>
+  </event>
+  <event>
+    <name>foul</name>
+    <commentary>[Ajjj|Woohaaa], det var en ful tackling på _P0_</commentary>
+    <commentary>Det [var verkligen en solklar utvisning, eller| kommer _P1_ att bli utvisad för] ?</commentary>
+    <commentary>_P1_ [knockar|springer|sparkar] över _P0_ med en dubbelfotat hopp</commentary>
+    <commentary>[Otäckt|Krossande] anfall på _P0_</commentary>
+    <commentary>_P0_ får sina ben undansparkade av _P1_</commentary>
+    <commentary>[Ruskigt|Otäckt|Kraftigt] anfall av _P1_ på _P0_</commentary>
+    <commentary>Brutal tackling från _P1_ lämnar _P0_ kvar på marken</commentary>
+    <commentary>_P1_ tar hand om _P0_ och lämnar honom kvar i plågor</commentary>
+    <commentary>De kallar inte _P1_ [The Slayer|The Assassin|The Killer] för inte. Han tog nästan kål på [killen|_P0_]</commentary>
+	 <commentary>Aj, den måste gjort ont!</commentary>
+    <commentary>_P0_ ligger på marken och han är inte glad</commentary>
+    <commentary>Jag vet inte med _P0_ men den tacklingen gjorde i alla fall mig gråtfärdig</commentary>
+    <commentary>Extremt hög spark från _P1_ skickar _P0_ till marken</commentary>
+    <commentary>_P1_s svarta bälte i [karate|tai kwon do|jujitsu|fula sparkar|fula tricks] kommer till hands när han sänkte _P0_</commentary>
+	 <commentary>_P1_ förlorade precis sitt tålamod och tar ner _P0_ på marken.</commentary>
+	 <commentary>_P0_ försökte göra en snäll tackling men den var för mycket för domaren</commentary>
+	 <commentary>Domaren har sett igenom fingrarna tidigare men blev tvungen att blåsa av _P0_</commentary>
+	 <commentary>Frustrationen kommer igång, när du börjar se avblåsningar som den.</commentary>
+	 <commentary>Det är vad man kallar en professionell tackling</commentary>
+	 <commentary>_P0_ försöker komma undan en otäck attack</commentary>
+	 <commentary>_P1_ med en otäck tackling. Den kommer han verkligen inte komma undan med</commentary>
+  </event>
+  <event>
+    <name>scoring_chance</name>
+    <commentary>_P0_ snurrar runt och skjuter</commentary>
+	<commentary>_P0_ hittar lite utrymme och gör ett försök.</commentary>
+	<commentary>En fin möjlighet öppnar sig för _T_POSS__</commentary>
+	<commentary>_P0_ skjuter från kort håll</commentary>
+	<commentary>_P0_ rusar innåt och skjuter</commentary>
+	<commentary>_P0_ gör ett försök från 30 meter</commentary>
+  </event>
+  <event>
+    <name>goal</name>
+    <commentary>Mål!!!</commentary>
+	<commentary>Mååååål!!!</commentary>
+    <commentary>_P0_ gör mål!!!</commentary>
+    <commentary>Mål!! Såg du den? [Deras målvakt|_P1_] gjorde verkligen inte det.</commentary>
+	<commentary cond="_T_TT__ == _TWN_ and _GD_ >3">Ännu en spik i kistan</commentary>
+    <commentary>Vilket mål!</commentary>
+	<commentary>Bollen [visslar|flyger|rullar] förbi _P1_ och det är måååål!!!</commentary>
+  </event>
+  <event>
+    <name>miss</name>
+    <commentary>[_P1_|Försvaret] rensar undan</commentary>
+    <commentary>Så nära men ändå inte</commentary>
+    <commentary>Det fanns inget guld i slutet på den regnbågen</commentary>
+    <commentary>In i nätet men bortdömt. Offside-flaggan viftad</commentary>  
+    <commentary>Åhh, vilken chans!</commentary>
+	<commentary>Den gick någon annanstans än i nätet</commentary>
+	<commentary cond="_SHOTS_POSS__ > 3 and _GOALS_POSS__ < 1">_P0_ börjar verkligen undra vad han måste göra för att göra mål</commentary>
+  </event>
+  <event>
+    <name>save</name>
+	<commentary>Ingen kraft i det skottet från _P0_. Fångades enkelt av _P1_</commentary>
+	<commentary cond="_GD_ ==1">[_P1_|Målvakten] håller _TL_ i matchen</commentary>
+	<commentary>Lågt skott som plockas precis till [höger|vänster] av _P1_</commentary>
+	<commentary>Som ett träningspass för _P1_</commentary>
+  </event>
+  <event>
+    <name>start_match</name>
+    <commentary>Vi är igång.</commentary>
+	 <commentary>[Kampen|Matchen|Fajten|Kriget|Matchen] börjar</commentary>
+	 <commentary>Domaren får en nickning från linjemännen och vi är igång</commentary>
+    <commentary>Dimman lättar och nu kör vi igång</commentary>
+	<commentary>Domarna är klara, spelarna uppvärmda, och där blåses matchen igång</commentary>
+	<commentary cond="_TAVSKILLDIFF_ >=8"pri="10">_T[_TAVSKILL0_ LE _TAVSKILL1_]_ börjar matchen som klara favoriter.</commentary>
+	
+  </event>
+  <event>
+    <name>half_time</name>
+    <commentary>Det är halvtid</commentary>
+    <commentary>Det står _RE_ vid halvtid.</commentary>
+	<commentary>Än så långe har _TW_ och deras manager gjort allting rätt.</commentary>
+	<commentary cond="_FOULS0_ + _FOULS1_ >= 8">Det är ett blodbad där ute och ingen fotbollsmatch.</commentary>
+	<commentary cond="_FOULS0_ + _FOULS1_ >= 10">[Så många|[_FOULS0_ + _FOULS1_]] avblåsningar. Domarna behöver verkligen köpa nya visselpipor efter detta!</commentary>
+  </event>
+  <event>
+    <name>extra_time</name>
+    <commentary>Det är fortfarande _RE_. Dags för extratid</commentary>
+    <commentary>Efter _MI_ minuter är det fortfarande _RE_: extratid</commentary>
+  </event>
+  <event>
+    <name>penalties</name>
+	<commentary>Vem hade gissat för _MI_ minuter sedan att det skulle bli så här</commentary>
+	<commentary>Två lag, jämna i alla aspekter, dags för straffar!</commentary>
+	<commentary cond="_GOALS0_ + _GOALS1_ < 1">Inga mål än så länge men nu kommer vi få se när vi går över till straffläggning</commentary>
+  </event>
+  <event>
+    <name>end_match</name>
+    <commentary>Matchen är över!</commentary>
+    <commentary>_TW_ triumferar!!!</commentary>
+    <commentary>Efter _MI_ minuter slutar matchen med _RE_</commentary>
+    <commentary>Domaren ser på klockan och blåser av för full tid</commentary>
+    <commentary>Jaha, det var det. Matchen slutar _RE_</commentary>
+	<commentary>_TW_s manager kommer att bli överlycklig med det resultatet</commentary>
+	<commentary cond="_GD_ = 0 "pri="10"> Matchen slutar lika. Det är fortfarande en poäng var.</commentary>
+    <commentary cond="_GD_ >= 4"pri="10">_TL_ blev slaktade med _GD_ mål.</commentary>
+    <commentary cond="_GD_ >= 2"pri="10">_TW_ kommer att dricka champagne ikväll.</commentary>
+  </event>
+  <event>
+    <name>own_goal</name>
+	<commentary>Det där lilla misstaget kostade _T_TT__ ett mål</commentary>
+	<commentary>Självmål av _P0_!</commentary>
+	<commentary>_P0_ passar bollen tillbaka till sin målvakt, åh nej, målvakten missar den! Självmål av _P0_!</commentary>
+  </event>
+  <event>
+    <name>header</name>
+	<commentary>Bollen träffar _P0_s huvud men inte mer än så</commentary>
+	<commentary>Språngnick av _P0_</commentary>
+	<commentary>Snygg nick av _P0_</commentary>
+	<commentary>Nickskarv av _P0_</commentary>
+  </event>
+  <event>
+    <name>post</name>
+	<commentary>Långt skott från _P0_ träffar stolpen</commentary>
+	<commentary>Och skotten flyger förbi fel sida av stolpen</commentary>
+	<commentary>Vilken osis! _P0_ träffar [högra|vänstra|fel sida av] stolpen</commentary>
+  </event>
+  <event>
+    <name>cross_bar</name>
+	<commentary>Bollen dunkar hårt i ribban</commentary>
+	<commentary>_P1_ verkade vara överallt på en gång men lyckas lägga bollen precis ovanför ribban</commentary>
+  </event>
+  <event>
+    <name>penalty</name>
+	<commentary>_P0_ kliver fram för att lägga straffen</commentary>
+	<commentary>_P0_ smyger fram för att lägga straffen</commentary>
+  </event>
+  <event>
+    <name>free_kick</name>
+	<commentary>[Kort|Lång] frispark från _P0_</commentary>
+	<commentary>Frispark: _P0_ spelar ut den långt på [vänster|höger] sida</commentary>
+  </event>
+  <event>
+    <name>foul_yellow</name>
+    <commentary>_P1_ för farlig glidtackling på _P0_</commentary>
+    <commentary>_P1_ för att ha sparkat bort bollen</commentary>
+    <commentary>_P1_ för fördröjning av spelet</commentary>
+    <commentary>_P1_ för handtagning</commentary>
+  </event>
+  <event>
+    <name>foul_red</name>
+    <commentary>_P1_ får ett för hög spark</commentary>
+    <commentary>_P1_ får sin marschorder för våldsamt uppträdande</commentary>
+    <commentary>_P1_ för avsiktlig handboll</commentary>
+    <commentary>_P1_ skickas ut för att stoppat en möjlighet för solklart mål</commentary>
+    <commentary>_P1_ har fått ett rött kort för att ha slagit _P0_</commentary>
+    <commentary>_P1_ för svordommar åt motståndarens fans</commentary>
+    <commentary>_P1_ får sin andra varning i matchen och får lämna planen</commentary>
+  </event>
+  <event>
+    <name>foul_red_injury</name>
+	<commentary>Läkaren och bårbärarna springer in för att hämta upp _P0_ som ligger och skriker tack vare _P1_</commentary>
+	<commentary>Tackling av _P1_; _P0_ verkar vara skadad... han kan behöva bytas ut</commentary>
+  </event>
+  <event>
+    <name>send_off</name>
+    <commentary>_P0_ har visats ut</commentary>
+    <commentary>_P0_ visas ut. _T_TT__ är nu en man mindre</commentary>
+  </event>
+  <event>
+    <name>injury</name>
+	<commentary>_P0_ ser ut att ha skadats rejält</commentary>
+	<commentary>_P0_ ligger kvar skadad på planen</commentary>
+  </event>
+  <event>
+    <name>temp_injury</name>
+    <commentary>_P0_ har åkt på en sträckning men borde kunna fortsätta matchen</commentary>
+	<commentary>_P0_ har fått ett sår i pannan efter en nick men ett plåster senare är han igång igen</commentary>
+  </event>
+  <event>
+    <name>stadium_breakdown</name>
+    <commentary>_T0_ upplever problem med sin stadium</commentary>
+    <commentary>Lamporna har precis slocknat</commentary>
+    <commentary>Tung dimma orsakar problem här på _T0_s mark</commentary>
+  </event>
+  <event>
+    <name>stadium_riots</name>
+    <commentary>Bönderna revolterar</commentary>
+    <commentary>Och fansen kastar facklor mot spelarbåset</commentary>
+    <commentary>Polisen kommer in för att stoppa slagsmålet mellan supporterklubbarna</commentary>
+    <commentary>Ett fan har lyckats att komma ner bland spelarna och attackerat domaren</commentary>
+    <commentary>Fansen springer ner bland spelarna liknande en fullskalig invasion</commentary>
+  </event>
+  <event>
+    <name>stadium_fire</name>
+    <commentary>Elden äter upp _T_TT__s stadium</commentary>
+    <commentary>Bortafansen har tänt eld på den norra läktaren</commentary>
+    <commentary>En fackla som kastats mot spelarbåset har startat en enorm rökutveckling</commentary>
+    <commentary>En högtalare har tagit eld och röken sprider sig runt omkring hela området</commentary>
+  </event>
+  <event>
+    <name>substitution</name>
+    <commentary>_T_TT__ gör ett byte, _P0_ kommer in för att ersätta _P1_</commentary>
+    <commentary cond="_MI_>60">_T_TT__ behöver lite friska ben, _P0_ kommer in för att ersätta _P1_</commentary>
+    <commentary>_P0_ kommer in från bänken för att ersätta _P1_</commentary>
+    <commentary>_P0_ ersätter _P1_</commentary>
+  </event>
+  <event>
+    <name>structure_change</name>
+    <commentary>_T_TT__ har ändrat sin struktur till _EX_</commentary>
+  </event>
+  <event>
+    <name>style_change</name>
+    <commentary>_T_TT__ har ändrat sin stil till _EX_</commentary>
+    <commentary>_T_TT__ ändrar till en _EX_-stil</commentary>
+  </event>
+  <event>
+    <name>boost_change</name>
+    <commentary>_T_TT__ har ändrat sin boost till _EX_</commentary>
+    <commentary cond="_MI_>75 and _EX_ == 'ANTI' and _TT_ == _TLN_">Ser ut som _T_TT__ har gett upp</commentary>
+    <commentary cond="_MI_>75 and _EX_ == 'ANTI' and _TT_ == _TWN_">_T_TT__ måste tro att de har denna match klar</commentary>
+    <commentary cond="_EX_ = 'ON'">_T_TT__ har växlat upp en växel</commentary>
+    <commentary cond="_EX_ = 'ON' and _MI_ >75"pri="10">Boost är på._T_TT__ kastar in allt de har</commentary>
+  </event>
+</lg_commentary>
