@@ -349,7 +349,7 @@ team_get_average_skill(const Team *tm, gboolean cskill)
 {
     gint i, counter = 0;
     gfloat sum = 0;
-
+    
     if(!cskill)
     {
 	for(i=0;i<tm->players->len;i++)

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+
+  <sid>sweden_superettan</sid>
+  <name>Superettan</name>
+  <short_name>Super</short_name>
+  <symbol>flag_sweden.png</symbol>
+  <first_week>1</first_week>
+  <week_gap>1</week_gap>
+  <average_talent>8100</average_talent>
+  <names_file>sweden</names_file>
+
+  <prom_rel>
+
+    <prom_games>
+      <prom_games_cup_sid>sweden_prom_games_superettan</prom_games_cup_sid>
+      <prom_games_dest_sid>sweden_superettan</prom_games_dest_sid>
+      <prom_games_loser_sid>sweden_division_1_sodra sweden_division_1_norra</prom_games_loser_sid>
+      <prom_games_number_of_advance>2</prom_games_number_of_advance>
+    </prom_games>
+
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>2</rank_end>
+      <dest_sid>sweden_allsvenskan</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_rel_element>
+      <rank_start>15</rank_start>
+      <rank_end>16</rank_end>
+      <dest_sid>sweden_division_1_sodra sweden_division_1_norra</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Assyriska</team_name>
+    </team>
+    <team>
+      <team_name>Brommapojkarna</team_name>
+    </team>
+    <team>
+      <team_name>Degerfors</team_name>
+    </team>
+    <team>
+      <team_name>Falkenberg</team_name>
+    </team>
+    <team>
+      <team_name>G. Sundsvall</team_name>
+    </team>
+    <team>
+      <team_name>Jönköping</team_name>
+    </team>
+    <team>
+      <team_name>Landskrona</team_name>
+    </team>
+    <team>
+      <team_name>Ljungskile</team_name>
+    </team>
+    <team>
+      <team_name>Mjällby</team_name>
+    </team>
+    <team>
+      <team_name>I. Norrköping</team_name>
+    </team>
+    <team>
+      <team_name>Qviding</team_name>
+    </team>
+    <team>
+      <team_name>Trelleborg</team_name>
+    </team>
+    <team>
+      <team_name>Umeå</team_name>
+    </team>
+    <team>
+      <team_name>Väsby</team_name>
+    </team>
+    <team>
+      <team_name>Åtvidaberg</team_name>
+    </team>
+    <team>
+      <team_name>Örebro</team_name>
+    </team>
+  </teams>
+
+</league>

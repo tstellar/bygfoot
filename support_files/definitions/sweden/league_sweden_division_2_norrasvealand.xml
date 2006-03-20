@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+
+  <sid>sweden_division_2_norrasvealand</sid>
+  <name>Division 2 Norra Svealand</name>
+  <short_name>Div 2 NS</short_name>
+  <symbol>flag_sweden.png</symbol>
+  <first_week>1</first_week>
+  <week_gap>1</week_gap>
+  <average_talent>7100</average_talent>
+  <names_file>sweden</names_file>
+  <layer>4</layer>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>1</rank_end>
+      <dest_sid>sweden_division_1_norra sweden_division_1_sodra</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_rel_element>
+      <rank_start>11</rank_start>
+      <rank_end>12</rank_end>
+      <dest_sid>sweden_division_3_mellerstagotaland sweden_division_3_mellerstanorrland sweden_division_3_nordostrasvealand sweden_division_3_nordvastragotaland sweden_division_3_norranorrland sweden_division_3_norrasvealand sweden_division_3_ostrasvealand sweden_division_3_sodragotaland sweden_division_3_sodranorrland sweden_division_3_sydostragotaland sweden_division_3_sydvastragotaland sweden_division_3_vastrasvealand</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Avesta AIK</team_name>
+    </team>
+    <team>
+      <team_name>Brynäs IF FK</team_name>
+    </team>
+    <team>
+      <team_name>IFK Österåkers FK</team_name>
+    </team>
+    <team>
+      <team_name>IK Brage</team_name>
+    </team>
+    <team>
+      <team_name>Sandvikens IF</team_name>
+    </team>
+    <team>
+      <team_name>Skiljebo SK</team_name>
+    </team>
+    <team>
+      <team_name>Slätta SK</team_name>
+    </team>
+    <team>
+      <team_name>Syrianska IF Kerbura</team_name>
+    </team>
+    <team>
+      <team_name>Topkapi Konya KIF</team_name>
+    </team>
+    <team>
+      <team_name>Vallentuna BK</team_name>
+    </team>
+    <team>
+      <team_name>Värtans IK</team_name>
+    </team>
+    <team>
+      <team_name>Västerås IK</team_name>
+    </team>
+  </teams>
+
+</league>

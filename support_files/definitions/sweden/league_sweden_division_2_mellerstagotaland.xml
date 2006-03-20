@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+
+  <sid>sweden_division_2_mellerstagotaland</sid>
+  <name>Division 2 Mellersta Götaland</name>
+  <short_name>Div 2 MG</short_name>
+  <symbol>flag_sweden.png</symbol>
+  <first_week>1</first_week>
+  <week_gap>1</week_gap>
+  <average_talent>7100</average_talent>
+  <names_file>sweden</names_file>
+  <layer>4</layer>
+
+  <prom_rel>
+
+    <prom_games>
+      <prom_games_cup_sid>sweden_prom_games_div3_2</prom_games_cup_sid>
+      <prom_games_dest_sid>sweden_division_2_mellerstagotaland sweden_division_2_norrasvealand sweden_division_2_norrland sweden_division_2_ostrasvealand sweden_division_2_sodragotaland sweden_division_2_vastragotaland</prom_games_dest_sid>
+      <prom_games_loser_sid>sweden_division_3_mellerstagotaland sweden_division_3_mellerstanorrland sweden_division_3_nordostrasvealand sweden_division_3_nordvastragotaland sweden_division_3_norranorrland sweden_division_3_norrasvealand sweden_division_3_ostrasvealand sweden_division_3_sodragotaland sweden_division_3_sodranorrland sweden_division_3_sydostragotaland sweden_division_3_sydvastragotaland sweden_division_3_vastrasvealand</prom_games_loser_sid>
+      <prom_games_number_of_advance>6</prom_games_number_of_advance>
+    </prom_games>
+
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>1</rank_end>
+      <dest_sid>sweden_division_1_norra sweden_division_1_sodra</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_rel_element>
+      <rank_start>11</rank_start>
+      <rank_end>12</rank_end>
+      <dest_sid>sweden_division_3_mellerstagotaland sweden_division_3_mellerstanorrland sweden_division_3_nordostrasvealand sweden_division_3_nordvastragotaland sweden_division_3_norranorrland sweden_division_3_norrasvealand sweden_division_3_ostrasvealand sweden_division_3_sodragotaland sweden_division_3_sodranorrland sweden_division_3_sydostragotaland sweden_division_3_sydvastragotaland sweden_division_3_vastrasvealand</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Grimsås IF</team_name>
+    </team>
+    <team>
+      <team_name>IF Heimer</team_name>
+    </team>
+    <team>
+      <team_name>IK Sleipner</team_name>
+    </team>
+    <team>
+      <team_name>IK Tord</team_name>
+    </team>
+    <team>
+      <team_name>Linköpings FF</team_name>
+    </team>
+    <team>
+      <team_name>Ljungby IF</team_name>
+    </team>
+    <team>
+      <team_name>Motala AIF FK</team_name>
+    </team>
+    <team>
+      <team_name>Rydaholms GoIF</team_name>
+    </team>
+    <team>
+      <team_name>Skövde AIK</team_name>
+    </team>
+    <team>
+      <team_name>Tenhults IF</team_name>
+    </team>
+    <team>
+      <team_name>Tibro AIK FK</team_name>
+    </team>
+    <team>
+      <team_name>Ulricehamns IFK</team_name>
+    </team>
+  </teams>
+
+</league>
