@@ -757,7 +757,7 @@ treeview_create_game_stats(LiveGame *live_game)
     gtk_list_store_append(ls, &iter);
     gtk_list_store_set(ls, &iter, 0, live_game->team_names[0],
 		       1, buf[0],
-		       2, live_game->team_names[0],
+		       2, live_game->team_names[1],
 		       -1);
 
     for(k=0;k<LIVE_GAME_STAT_ARRAY_END;k++)
