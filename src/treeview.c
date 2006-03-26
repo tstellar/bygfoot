@@ -745,11 +745,19 @@ treeview_create_game_stats(LiveGame *live_game)
 			    G_TYPE_STRING,
 			    G_TYPE_STRING);
 
-    fixture_result_to_buf(live_game->fix, buf[0], FALSE);
+    if(live_game->fix != NULL)
+	fixture_result_to_buf(live_game->fix, buf[0], FALSE);
+    else
+	sprintf(
+	    buf[0], "%d : %d",
+	    g_array_index(live_game->units, LiveGameUnit, live_game->units->len - 1).
+	    result[0],
+	    g_array_index(live_game->units, LiveGameUnit, live_game->units->len - 1).
+	    result[1]);
     gtk_list_store_append(ls, &iter);
-    gtk_list_store_set(ls, &iter, 0, live_game->fix->teams[0]->name,
+    gtk_list_store_set(ls, &iter, 0, live_game->team_names[0],
 		       1, buf[0],
-		       2, live_game->fix->teams[1]->name,
+		       2, live_game->team_names[0],
 		       -1);
 
     for(k=0;k<LIVE_GAME_STAT_ARRAY_END;k++)
@@ -791,7 +799,7 @@ treeview_create_game_stats(LiveGame *live_game)
 	}
     }
 
-    misc_print_grouped_int(live_game->fix->attendance, buf[0]);
+    misc_print_grouped_int(live_game->attendance, buf[0]);
     sprintf(buf[1], _("Attendance\n%s"), buf[0]);
     gtk_list_store_append(ls, &iter);
     gtk_list_store_set(ls, &iter, 0, buf[1], 1, "", 2, "", -1);

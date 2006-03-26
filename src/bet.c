@@ -86,7 +86,7 @@ bet_update_user_bets(void)
 	for(j=0;j<usr(i).bets[1]->len;j++)
 	{
 	    bet = bet_from_fixture(g_array_index(usr(i).bets[1], BetUser, j).fix_id);
-	    fix = fixture_from_id(g_array_index(usr(i).bets[1], BetUser, j).fix_id);
+	    fix = fixture_from_id(g_array_index(usr(i).bets[1], BetUser, j).fix_id, TRUE);
 
 	    if(fix->result[0][0] < fix->result[1][0])
 		outcome = 2;
@@ -127,7 +127,7 @@ bet_update_user_bets(void)
 void
 bet_get_odds(BetMatch *bet)
 {
-    const Fixture *fix = fixture_from_id(bet->fix_id);
+    const Fixture *fix = fixture_from_id(bet->fix_id, TRUE);
     gfloat home_advantage = (fix->home_advantage) ?
 	(const_float("float_game_home_advantage_lower") +
 	 const_float("float_game_home_advantage_upper")) / 2 : 0;

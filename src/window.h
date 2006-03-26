@@ -66,7 +66,7 @@ GtkWidget*
 window_create(gint window_type);
 
 void
-window_destroy(GtkWidget **wind, gboolean count_popups);
+window_destroy(GtkWidget **wind);
 
 void
 window_show_digits(const gchar *text_main, const gchar* text1,

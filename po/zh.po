@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-20 19:36+0100\n"
+"POT-Creation-Date: 2006-03-26 16:10+0200\n"
 "PO-Revision-Date: 2005-09-28 13:35+0800\n"
 "Last-Translator: root <lbyoopp@gmail.com>\n"
 "Language-Team: Chinese <i18n-translation@lists.linux.net.cn>\n"
@@ -94,7 +94,7 @@ msgstr " -- 第二局"
 msgid " Assoc."
 msgstr " 协会"
 
-#: src/options_interface.c:295
+#: src/options_interface.c:296
 msgid " Autosave files "
 msgstr " 自动存档"
 
@@ -239,15 +239,15 @@ msgstr " 周 "
 msgid " e.t."
 msgstr "加时赛"
 
-#: src/callback_func.c:386
+#: src/callback_func.c:387
 msgid " less"
 msgstr "更少"
 
-#: src/options_interface.c:558
+#: src/options_interface.c:559
 msgid " months"
 msgstr " 月"
 
-#: src/callback_func.c:384
+#: src/callback_func.c:385
 msgid " more"
 msgstr " 更多"
 
@@ -256,24 +256,24 @@ msgstr " 更多"
 msgid " p."
 msgstr " 点球"
 
-#: src/misc_interface.c:946
+#: src/misc_interface.c:949
 msgid " seats"
 msgstr " 座位数"
 
 #. Contract time and money a sponsor pays.
-#: src/treeview.c:1473
+#: src/treeview.c:1481
 #, c-format
 msgid "%.1f months / %s"
 msgstr "%.1f 月/ %s"
 
 #. A result after extra time.
-#: src/live_game.c:1695
+#: src/live_game.c:1696
 #, c-format
 msgid "%d : %d e.t."
 msgstr "%d : %d e.t."
 
 #. A result after penalties.
-#: src/live_game.c:1691
+#: src/live_game.c:1692
 #, c-format
 msgid "%d : %d p."
 msgstr "%d : %d p."
@@ -296,7 +296,7 @@ msgid "%s (expected recovery in %d weeks)"
 msgstr "%s (将会在%d周后痊愈)"
 
 #. A group of a round robin stage of a cup.
-#: src/treeview.c:1106
+#: src/treeview.c:1114
 #, c-format
 msgid "%s Group %d"
 msgstr "%s 第%d小组"
@@ -378,7 +378,7 @@ msgstr "%s 拒绝了你的出价，你还有 %d 次还价的机会"
 msgid "%s will shoot penalties and free kicks when he plays."
 msgstr "%s 将会主罚点球及任意球（如果他在场上的话）"
 
-#: src/callback_func.c:388
+#: src/callback_func.c:389
 #, c-format
 msgid ""
 "%s would like to buy %s. They offer %s for him, which is %s than the "
@@ -417,24 +417,24 @@ msgstr "%s: %d 周\n"
 msgid "- a simple and addictive GTK2 football manager"
 msgstr "- 易于上手的基于 GTK2 的足球经理游戏"
 
-#: src/misc_interface.c:1029 src/misc_interface.c:1037
-#: src/misc_interface.c:1063 src/misc_interface.c:1071
+#: src/misc_interface.c:1032 src/misc_interface.c:1040
+#: src/misc_interface.c:1066 src/misc_interface.c:1074
 msgid "0"
 msgstr "0"
 
-#: src/misc2_interface.c:621
+#: src/misc2_interface.c:622
 msgid "1 year"
 msgstr "1年"
 
-#: src/misc2_interface.c:645
+#: src/misc2_interface.c:646
 msgid "2 years"
 msgstr "2年"
 
-#: src/misc2_interface.c:629
+#: src/misc2_interface.c:630
 msgid "3 years"
 msgstr "3年"
 
-#: src/misc2_interface.c:637
+#: src/misc2_interface.c:638
 msgid "4 years"
 msgstr "4年"
 
@@ -444,7 +444,7 @@ msgstr "4年"
 msgid "<span background='%s' foreground='%s'>%s (A) </span> "
 msgstr "<span background='%s' foreground='%s'>%s (客场) </span> "
 
-#: src/treeview.c:809
+#: src/treeview.c:817
 #, c-format
 msgid ""
 "<span background='%s'>There was a fire\n"
@@ -453,7 +453,7 @@ msgstr ""
 "<span background='%s'>你的球场\n"
 "发生了火灾</span>"
 
-#: src/treeview.c:806
+#: src/treeview.c:814
 #, c-format
 msgid ""
 "<span background='%s'>There were riots\n"
@@ -462,7 +462,7 @@ msgstr ""
 "<span background='%s'>你的球场\n"
 "暴发了球迷骚乱</span>"
 
-#: src/treeview.c:803
+#: src/treeview.c:811
 #, c-format
 msgid ""
 "<span background='%s'>There were technical problems\n"
@@ -485,7 +485,7 @@ msgid ""
 msgstr ""
 "<span background='lightgrey' size='large' weight='bold'>最近下注</span>"
 
-#: src/treeview.c:1618 src/treeview.c:1623
+#: src/treeview.c:1626 src/treeview.c:1631
 #, c-format
 msgid "<span foreground='%s' background='%s'>Week %d Round %d</span>"
 msgstr "<span foreground='%s' background='%s'>第%d周 第%d轮</span>"
@@ -521,11 +521,11 @@ msgstr "防守反击"
 msgid "ATTACK"
 msgstr "进攻"
 
-#: src/interface.c:1013 src/misc2_interface.c:1053
+#: src/interface.c:1013 src/misc2_interface.c:1054
 msgid "About"
 msgstr "关于"
 
-#: src/misc_interface.c:1297
+#: src/misc_interface.c:1300
 msgid "Accept"
 msgstr "接受"
 
@@ -541,15 +541,15 @@ msgstr "添加上一场比赛"
 msgid "Add last recorded match to the current memorable matches file."
 msgstr "将上一场保存的比赛移至比赛集锦中"
 
-#: src/misc2_interface.c:860 src/misc_interface.c:188
+#: src/misc2_interface.c:861 src/misc_interface.c:189
 msgid "Add user"
 msgstr "添加玩家"
 
-#: src/treeview.c:304 src/treeview.c:1906
+#: src/treeview.c:304 src/treeview.c:1914
 msgid "Age"
 msgstr "年龄"
 
-#: src/options_interface.c:671
+#: src/options_interface.c:672
 msgid "Age "
 msgstr "年龄 "
 
@@ -589,11 +589,11 @@ msgstr ""
 "在Bygfoot的论坛你可以提交bug,寻问帮助，还可以参与到游戏心得讨论中(还没有注"
 "册?):\n"
 
-#: src/interface.c:514 src/treeview.c:1563
+#: src/interface.c:514 src/treeview.c:1571
 msgid "Attack"
 msgstr "进攻"
 
-#: src/treeview.c:795
+#: src/treeview.c:803
 #, c-format
 msgid ""
 "Attendance\n"
@@ -602,23 +602,23 @@ msgstr ""
 "到场球迷\n"
 "%s"
 
-#: src/options_interface.c:950
+#: src/options_interface.c:951
 msgid "Attribute "
 msgstr "属性 "
 
-#: src/options_interface.c:488
+#: src/options_interface.c:489
 msgid "Automatic substitutions"
 msgstr "自动更换替补球员"
 
-#: src/options_interface.c:388
+#: src/options_interface.c:389
 msgid "Autosave"
 msgstr "自动保存"
 
-#: src/options_interface.c:284
+#: src/options_interface.c:285
 msgid "Autosave interval "
 msgstr "自动保存"
 
-#: src/misc_interface.c:620
+#: src/misc_interface.c:622
 msgid "Av. skill: "
 msgstr "平均技能："
 
@@ -631,11 +631,11 @@ msgstr "平均技能："
 msgid "Av.Sk."
 msgstr "平均技能值"
 
-#: src/treeview2.c:471
+#: src/treeview2.c:472
 msgid "Av.skill"
 msgstr "平均技能："
 
-#: src/misc2_interface.c:824
+#: src/misc2_interface.c:825
 msgid "Available teams"
 msgstr "可供选择的球队"
 
@@ -643,15 +643,15 @@ msgstr "可供选择的球队"
 msgid "Average"
 msgstr "恢复"
 
-#: src/misc_interface.c:963
+#: src/misc_interface.c:966
 msgid "Average attendance"
 msgstr "平均到场人数"
 
-#: src/misc_interface.c:977
+#: src/misc_interface.c:980
 msgid "Average attendance %"
 msgstr "平均上座率 %"
 
-#: src/treeview.c:1664
+#: src/treeview.c:1672
 msgid "Average skill"
 msgstr "平均技能"
 
@@ -659,7 +659,7 @@ msgstr "平均技能"
 msgid "Average skill:"
 msgstr "平均技能值"
 
-#: src/treeview.c:1633
+#: src/treeview.c:1641
 msgid "Away"
 msgstr "客场"
 
@@ -676,7 +676,7 @@ msgstr "禁赛(%d)"
 msgid "Back to main menu (Esc)"
 msgstr "回到主菜单(Esc)"
 
-#: src/misc_interface.c:285
+#: src/misc_interface.c:286
 msgid "Back to splash"
 msgstr "回到开始画面"
 
@@ -685,7 +685,7 @@ msgid "Bad"
 msgstr "疲惫"
 
 #. Finances balance.
-#: src/treeview.c:1407
+#: src/treeview.c:1415
 msgid "Balance"
 msgstr "结余"
 
@@ -693,7 +693,7 @@ msgstr "结余"
 msgid "Balanced"
 msgstr "平衡"
 
-#: src/treeview.c:1915
+#: src/treeview.c:1923
 msgid "Banned\n"
 msgstr "禁赛\n"
 
@@ -705,24 +705,24 @@ msgstr "开始新的一周"
 msgid "Best"
 msgstr "状态最佳"
 
-#: src/treeview.c:2123
+#: src/treeview.c:2131
 msgid "Best defensive teams"
 msgstr "防守最佳球队"
 
-#: src/treeview.c:2126
+#: src/treeview.c:2134
 msgid "Best goal scorers"
 msgstr "最佳进球"
 
-#: src/treeview.c:2127
+#: src/treeview.c:2135
 msgid "Best goalkeepers"
 msgstr "最佳门将"
 
-#: src/treeview.c:2122
+#: src/treeview.c:2130
 msgid "Best offensive teams"
 msgstr "进攻最佳球队"
 
-#: src/interface.c:998 src/options_interface.c:1020 src/treeview.c:1347
-#: src/treeview.c:1357 src/window.c:894
+#: src/interface.c:998 src/options_interface.c:1021 src/treeview.c:1355
+#: src/treeview.c:1365 src/window.c:876
 msgid "Betting"
 msgstr "下注"
 
@@ -730,11 +730,11 @@ msgstr "下注"
 msgid "Betting -- Left click on odd to place or remove bet"
 msgstr "下注 -- 左键单击可以添加或者移出下注"
 
-#: src/treeview.c:1380
+#: src/treeview.c:1388
 msgid "Bi-weekly balance"
 msgstr "财政收支"
 
-#: src/treeview.c:1373 src/treeview.c:1376
+#: src/treeview.c:1381 src/treeview.c:1384
 #, c-format
 msgid ""
 "Bi-weekly balance\n"
@@ -762,7 +762,7 @@ msgid "Boost changed to %s."
 msgstr "Boost 设定为 %s."
 
 #. Applying boost costs money.
-#: src/treeview.c:1359
+#: src/treeview.c:1367
 msgid "Boost costs"
 msgstr "Boost耗费"
 
@@ -802,7 +802,7 @@ msgstr "Bygfoot比赛集锦"
 msgid "Bygfoot Save Files"
 msgstr "Bygfoot存档文件"
 
-#: src/misc2_interface.c:943
+#: src/misc2_interface.c:944
 msgid ""
 "Bygfoot debug window. If you got here by accident, CLOSE IMMEDIATELY "
 "(otherwise your CPU will be destroyed by overheating)."
@@ -823,7 +823,7 @@ msgstr ""
 msgid "CPos"
 msgstr "当前位置"
 
-#: src/options_interface.c:601
+#: src/options_interface.c:602
 msgid "CPos "
 msgstr "当前位置"
 
@@ -832,53 +832,53 @@ msgstr "当前位置"
 msgid "CSk"
 msgstr "当前技能"
 
-#: src/options_interface.c:615
+#: src/options_interface.c:616
 msgid "CSkill "
 msgstr "当前技能"
 
-#: src/misc_interface.c:1011
+#: src/misc_interface.c:1014
 msgid "Capacity (seats)"
 msgstr "容量（座位数）"
 
-#: src/options_interface.c:664
+#: src/options_interface.c:665
 msgid "Cards "
 msgstr "得牌 "
 
-#: src/treeview.c:1918
+#: src/treeview.c:1926
 msgid "Career values"
 msgstr "身价"
 
-#: src/misc_interface.c:725
+#: src/misc_interface.c:727
 msgid ""
 "Change commentary verbosity. The higher this value the more events you can "
 "see."
 msgstr "该表现场解说的冗长度，数值越大你就会看到更多的球场上发生的细节"
 
-#: src/misc_interface.c:703
+#: src/misc_interface.c:705
 msgid "Change live game speed. The lower the value the faster the live game."
 msgstr "改变现场游戏的进度.数值越小游戏就会越快"
 
-#: src/misc_interface.c:96
+#: src/misc_interface.c:97
 msgid "Choose country"
 msgstr "选择国家/地区"
 
-#: src/misc_interface.c:1194
+#: src/misc_interface.c:1197
 msgid "Choose file"
 msgstr "选择文件"
 
-#: src/options_interface.c:425
+#: src/options_interface.c:426
 msgid "Choose game language (might not work in Windows versions)"
 msgstr "选择游戏语言(可能在Windows下无法工作)"
 
-#: src/misc_interface.c:145
+#: src/misc_interface.c:146
 msgid "Choose league to start in"
 msgstr "选择起始联赛"
 
-#: src/misc_interface.c:106
+#: src/misc_interface.c:107
 msgid "Choose team"
 msgstr "选择球队"
 
-#: src/misc_interface.c:158
+#: src/misc_interface.c:159
 msgid "Choose username"
 msgstr "选择用户"
 
@@ -886,15 +886,15 @@ msgstr "选择用户"
 msgid "Click on OK to apply for the job. Click on CANCEL to close the window."
 msgstr "单击OK接受,单击CANCEL将会关闭窗口"
 
-#: src/misc2_interface.c:818
+#: src/misc2_interface.c:819
 msgid "Click on a user to remove him from the game."
 msgstr "点击一个玩家将他移除"
 
-#: src/misc_interface.c:125
+#: src/misc_interface.c:126
 msgid "Click on a user to remove him."
 msgstr "点击一个玩家可以移除他"
 
-#: src/misc_interface.c:569
+#: src/misc_interface.c:571
 msgid "Commentary"
 msgstr "现场解说"
 
@@ -906,12 +906,12 @@ msgstr "用来测试解说事件"
 msgid "Commentary file name (may be in a support dir)"
 msgstr "解说文件(应该在support文件夹中)"
 
-#: src/treeview.c:2563
+#: src/treeview.c:2571
 msgid "Company"
 msgstr "公司"
 
 #. Money paid to players a user fired.
-#: src/treeview.c:1356
+#: src/treeview.c:1364
 msgid "Compensations"
 msgstr "解约金"
 
@@ -927,35 +927,35 @@ msgstr "压缩游戏进度..."
 msgid "Concussion"
 msgstr "脑震荡"
 
-#: src/options_interface.c:222
+#: src/options_interface.c:223
 msgid "Confirm quit when not saved"
 msgstr "在没保存退出时提示玩家"
 
-#: src/options_interface.c:529
+#: src/options_interface.c:530
 msgid "Confirm removing youths"
 msgstr "移除年轻球员时要求确认"
 
-#: src/options_interface.c:227
+#: src/options_interface.c:228
 msgid "Confirm when unfit"
 msgstr "不适时需要确认"
 
-#: src/options_interface.c:319
+#: src/options_interface.c:320
 msgid "Constants file"
 msgstr "文件"
 
-#: src/treeview.c:309 src/treeview.c:1910
+#: src/treeview.c:309 src/treeview.c:1918
 msgid "Contract"
 msgstr "合同"
 
-#: src/options_interface.c:699
+#: src/options_interface.c:700
 msgid "Contract "
 msgstr "合同 "
 
-#: src/treeview.c:1475
+#: src/treeview.c:1483
 msgid "Contract / Money"
 msgstr "合同/费用"
 
-#: src/treeview.c:2564
+#: src/treeview.c:2572
 msgid ""
 "Contract length\n"
 "(Months)"
@@ -963,7 +963,7 @@ msgstr ""
 "合同有效期\n"
 "(月)"
 
-#: src/window.c:836
+#: src/window.c:821
 msgid "Contract offer"
 msgstr "提供合同"
 
@@ -971,7 +971,7 @@ msgstr "提供合同"
 msgid "Contracts are disabled in this country definition."
 msgstr "在这个地区定义文件中 签约解约选项 被禁止"
 
-#: src/interface.c:1021 src/misc2_interface.c:1067 src/misc3_interface.c:237
+#: src/interface.c:1021 src/misc2_interface.c:1068 src/misc3_interface.c:237
 msgid "Contributors"
 msgstr "捐献者"
 
@@ -980,7 +980,7 @@ msgstr "捐献者"
 msgid "Copying %s"
 msgstr "所有 %s"
 
-#: src/misc_interface.c:1025 src/misc_interface.c:1059
+#: src/misc_interface.c:1028 src/misc_interface.c:1062
 msgid "Costs"
 msgstr "消费"
 
@@ -989,7 +989,7 @@ msgstr "消费"
 msgid "Couldn't find pixmap file: %s"
 msgstr "找不到图片：%s"
 
-#: src/treeview2.c:87 src/treeview2.c:470
+#: src/treeview2.c:87 src/treeview2.c:471
 msgid "Country"
 msgstr "地区"
 
@@ -1005,31 +1005,31 @@ msgstr "Ctrl-O"
 msgid "Ctrl-R"
 msgstr "Ctrl-R"
 
-#: src/treeview.c:2283
+#: src/treeview.c:2291
 msgid "Cup champions"
 msgstr "杯赛冠军"
 
-#: src/misc_interface.c:928
+#: src/misc_interface.c:931
 msgid "Current capacity"
 msgstr "当前容量"
 
-#: src/misc2_interface.c:1298
+#: src/misc2_interface.c:1300
 msgid "Current file"
 msgstr "当前文件"
 
-#: src/treeview.c:2443
+#: src/treeview.c:2451
 msgid "Current league"
 msgstr "当前联赛"
 
-#: src/treeview.c:1901
+#: src/treeview.c:1909
 msgid "Current position"
 msgstr "当前位置"
 
-#: src/misc_interface.c:950
+#: src/misc_interface.c:953
 msgid "Current safety"
 msgstr "当前安全系数"
 
-#: src/treeview.c:1903
+#: src/treeview.c:1911
 msgid "Current skill"
 msgstr "当前技能值"
 
@@ -1042,24 +1042,24 @@ msgstr "后卫"
 msgid "DEFEND"
 msgstr "防守"
 
-#: src/treeview.c:1459
+#: src/treeview.c:1467
 #, c-format
 msgid "Debt (repay in %d weeks)"
 msgstr "负债(在%d周内偿还)"
 
-#: src/misc2_interface.c:936
+#: src/misc2_interface.c:937
 msgid "Debug"
 msgstr "调试"
 
-#: src/misc2_interface.c:1212
+#: src/misc2_interface.c:1213
 msgid "Decide later"
 msgstr "延迟"
 
-#: src/options_interface.c:1009
+#: src/options_interface.c:1010
 msgid "Default wager"
 msgstr "默认赌注"
 
-#: src/interface.c:504 src/treeview.c:1561
+#: src/interface.c:504 src/treeview.c:1569
 msgid "Defend"
 msgstr "防守"
 
@@ -1072,7 +1072,7 @@ msgstr "后卫"
 msgid "Did you know?"
 msgstr "你知道吗?"
 
-#: src/treeview.c:2387
+#: src/treeview.c:2395
 msgid "Didn't find file 'bygfoot_help'."
 msgstr "没有找到bygfoot帮助文件"
 
@@ -1080,11 +1080,11 @@ msgstr "没有找到bygfoot帮助文件"
 msgid "Do you really want to kick the poor boy out of your academy?"
 msgstr "你确定把这个可怜的球员开除出你的球队吗？"
 
-#: src/misc_interface.c:215
+#: src/misc_interface.c:216
 msgid "Don't load definitions"
 msgstr "不读取定义文件"
 
-#: src/misc_interface.c:218
+#: src/misc_interface.c:219
 msgid "Don't load team definitions at all"
 msgstr "完全由系统随机生成球队"
 
@@ -1092,17 +1092,17 @@ msgstr "完全由系统随机生成球队"
 msgid "Done."
 msgstr "完成."
 
-#: src/treeview2.c:363
+#: src/treeview2.c:364
 msgid "Draw"
 msgstr "支出"
 
-#: src/treeview.c:1452
+#: src/treeview.c:1460
 msgid "Drawing credit"
 msgstr "透支"
 
 #. Games drawn.
 #. Draw.
-#: src/treeview.c:1229 src/treeview_helper.c:1592
+#: src/treeview.c:1237 src/treeview_helper.c:1592
 msgid "Dw"
 msgstr "平"
 
@@ -1117,7 +1117,7 @@ msgstr "平"
 msgid "Dw %d : %d"
 msgstr "平 %d : %d"
 
-#: src/options_interface.c:678
+#: src/options_interface.c:679
 msgid "ETal "
 msgstr "潜力值"
 
@@ -1133,23 +1133,23 @@ msgstr "键入球队阵容（3个数字之和必须等于10）"
 msgid "Enter custom structure"
 msgstr "设定阵容"
 
-#: src/window.c:755
+#: src/window.c:749
 msgid "Erm..."
 msgstr ""
 
-#: src/misc2_interface.c:451 src/misc2_interface.c:538
-#: src/misc2_interface.c:1100 src/misc2_interface.c:1195
+#: src/misc2_interface.c:451 src/misc2_interface.c:539
+#: src/misc2_interface.c:1101 src/misc2_interface.c:1196
 #: src/misc3_interface.c:107 src/misc3_interface.c:403
-#: src/misc_interface.c:293 src/misc_interface.c:1107
-#: src/options_interface.c:1054
+#: src/misc_interface.c:294 src/misc_interface.c:1110
+#: src/options_interface.c:1055
 msgid "Esc"
 msgstr "Esc"
 
-#: src/misc_interface.c:643
+#: src/misc_interface.c:645
 msgid "Esc / Return / Space"
 msgstr "Esc/返回/空格"
 
-#: src/treeview.c:1905
+#: src/treeview.c:1913
 msgid "Estimated talent"
 msgstr "潜力"
 
@@ -1158,15 +1158,15 @@ msgstr "潜力"
 msgid "Etal"
 msgstr "潜力"
 
-#: src/treeview.c:2090
+#: src/treeview.c:2098
 msgid "Event"
 msgstr "事件"
 
-#: src/misc_interface.c:1033 src/misc_interface.c:1067
+#: src/misc_interface.c:1036 src/misc_interface.c:1070
 msgid "Expected duration"
 msgstr "预计工期"
 
-#: src/treeview.c:1501
+#: src/treeview.c:1509
 msgid "Expenses"
 msgstr "消费"
 
@@ -1179,7 +1179,7 @@ msgstr "前锋"
 msgid "F_igures"
 msgstr "图表"
 
-#: src/callback_func.c:486 src/callback_func.c:494
+#: src/callback_func.c:487 src/callback_func.c:495
 msgid "Fee"
 msgstr "转会费"
 
@@ -1190,7 +1190,7 @@ msgstr "转会费"
 msgid "File containing live game tokens (may be in a support dir)"
 msgstr "游戏界面相关文件(应该在support文件夹中)"
 
-#: src/options_interface.c:358
+#: src/options_interface.c:359
 msgid ""
 "File containing settings which determine a lot of aspects of the game "
 "behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
@@ -1225,11 +1225,11 @@ msgstr "第一个值：首发11人的平均技能值。第二个值：所有球员的技能平均值。"
 msgid "Fit"
 msgstr "健康情况"
 
-#: src/treeview.c:1904
+#: src/treeview.c:1912
 msgid "Fitness"
 msgstr "健康状况"
 
-#: src/options_interface.c:629
+#: src/options_interface.c:630
 msgid "Fitness "
 msgstr "健康情况"
 
@@ -1241,11 +1241,11 @@ msgstr "赛程（对手）"
 msgid "Fixtures (week)"
 msgstr "赛程（周）"
 
-#: src/options_interface.c:345
+#: src/options_interface.c:346
 msgid "Font name"
 msgstr "字体名称"
 
-#: src/options_interface.c:331 src/options_interface.c:418
+#: src/options_interface.c:332 src/options_interface.c:419
 msgid "Font used in treeviews"
 msgstr "设定显示所用的字体"
 
@@ -1267,17 +1267,17 @@ msgid "G"
 msgstr "守门员"
 
 #. Goals against.
-#: src/treeview.c:1235
+#: src/treeview.c:1243
 msgid "GA"
 msgstr "失球"
 
 #. Goal difference.
-#: src/treeview.c:1237
+#: src/treeview.c:1245
 msgid "GD"
 msgstr "净胜球"
 
 #. Goals for.
-#: src/treeview.c:1233
+#: src/treeview.c:1241
 msgid "GF"
 msgstr "进球"
 
@@ -1290,34 +1290,34 @@ msgstr "比赛"
 msgid "Games"
 msgstr "比赛"
 
-#: src/options_interface.c:636
+#: src/options_interface.c:637
 msgid "Games "
 msgstr "比赛"
 
-#: src/treeview.c:1911
+#: src/treeview.c:1919
 msgid "Games/Goals\n"
 msgstr "比赛/进球\n"
 
-#: src/options_interface.c:431
+#: src/options_interface.c:432
 msgid "Global"
 msgstr "全局选项"
 
 #. Goals of a player.
 #. Goals.
-#: src/treeview.c:299 src/treeview.c:2184
+#: src/treeview.c:299 src/treeview.c:2192
 msgid "Go"
 msgstr "进球"
 
-#: src/misc_interface.c:271
+#: src/misc_interface.c:272
 msgid "Go back to the splash screen"
 msgstr "回到起始画面"
 
 #. Goals per game.
-#: src/treeview.c:2186
+#: src/treeview.c:2194
 msgid "Go/Ga"
 msgstr "进球/比赛"
 
-#: src/treeview.c:1560
+#: src/treeview.c:1568
 msgid "Goalie"
 msgstr "门将"
 
@@ -1325,11 +1325,11 @@ msgstr "门将"
 msgid "Goalies"
 msgstr "门将"
 
-#: src/treeview.c:1680 src/treeview.c:2150 src/treeview_helper.c:841
+#: src/treeview.c:1688 src/treeview.c:2158 src/treeview_helper.c:841
 msgid "Goals"
 msgstr "进球"
 
-#: src/options_interface.c:650
+#: src/options_interface.c:651
 msgid "Goals "
 msgstr "进球"
 
@@ -1355,15 +1355,15 @@ msgstr "肌腱损伤"
 msgid "Have a look at the transfer list, there's an offer for %s."
 msgstr "请查看一下转会球员列表，有人为 %s 出价"
 
-#: src/treeview.c:1907
+#: src/treeview.c:1915
 msgid "Health"
 msgstr "身体"
 
-#: src/interface.c:1029 src/misc2_interface.c:1093
+#: src/interface.c:1029 src/misc2_interface.c:1094
 msgid "Help"
 msgstr "帮助"
 
-#: src/treeview.c:1631
+#: src/treeview.c:1639
 msgid "Home"
 msgstr "主场"
 
@@ -1371,23 +1371,23 @@ msgstr "主场"
 msgid "How many commentaries to generate per event"
 msgstr "对于每一个特定事件产生多少解说词"
 
-#: src/options_interface.c:401
+#: src/options_interface.c:402
 msgid "How many digits after the comma there are for skill etc."
 msgstr "用几位数字来表征球员技能值."
 
-#: src/options_interface.c:303
+#: src/options_interface.c:304
 msgid "How many files the autosave uses"
 msgstr "确定系统使用多少个文件用于自动存档"
 
-#: src/options_interface.c:1017
+#: src/options_interface.c:1018
 msgid "How much you wager by default"
 msgstr "决定你的默认下注的多少"
 
-#: src/options_interface.c:292
+#: src/options_interface.c:293
 msgid "How often the game is saved automatically"
 msgstr "用来确定系统自动保存的周期"
 
-#: src/options_interface.c:410
+#: src/options_interface.c:411
 msgid ""
 "How often the player list gets refreshed during a live game (in live game "
 "minutes)"
@@ -1398,7 +1398,7 @@ msgstr "在实时比赛中球员列表的更新速度（以实时比赛的计时单位 分 为标准）"
 msgid "INJ(%d)"
 msgstr "伤(%d)"
 
-#: src/options_interface.c:265
+#: src/options_interface.c:266
 msgid ""
 "If checked, weeks without user teams playing are calculated automatically "
 "(without the user having to press 'New week')"
@@ -1406,25 +1406,25 @@ msgstr ""
 "如果选择了这项，当所在的周没有玩家比赛时，系统会自动计算（也就是说，你不用在"
 "这时候点击“新的一周”按钮了）"
 
-#: src/misc_interface.c:1304
+#: src/misc_interface.c:1307
 msgid ""
 "If you don't like any of the sponsors, you can go a few weeks without "
 "sponsor and wait for new offers."
 msgstr "如果没有你中意的赞助商，你可以维持当前的无赞助状态等待新的赞助"
 
-#: src/misc2_interface.c:1349
+#: src/misc2_interface.c:1351
 msgid "Import file"
 msgstr "导入文件"
 
-#: src/misc2_interface.c:1335
+#: src/misc2_interface.c:1337
 msgid "Import the matches from a memorable matches file"
 msgstr "从 赛季集锦 中导入比赛"
 
-#: src/misc_interface.c:1100
+#: src/misc_interface.c:1103
 msgid "Improve!"
 msgstr "晋级！"
 
-#: src/treeview.c:1324 src/window.c:562
+#: src/treeview.c:1332 src/window.c:562
 #, c-format
 msgid ""
 "Improvement in progress.\n"
@@ -1435,11 +1435,11 @@ msgstr ""
 "还有 %d 的座位以及 %d%%的安全度未完成\n"
 "工期将会在 %d 周后完成"
 
-#: src/treeview.c:1500
+#: src/treeview.c:1508
 msgid "Income"
 msgstr "收入"
 
-#: src/misc_interface.c:999
+#: src/misc_interface.c:1002
 msgid "Increase"
 msgstr "增长"
 
@@ -1447,7 +1447,7 @@ msgstr "增长"
 msgid "Injuries"
 msgstr "伤病"
 
-#: src/misc2_interface.c:71 src/window.c:791
+#: src/misc2_interface.c:71 src/window.c:782
 msgid "Job offer"
 msgstr "工作邀请"
 
@@ -1460,7 +1460,7 @@ msgstr "工作邀请"
 msgid "Job offers set to %s."
 msgstr "工作邀请被设置为 %s"
 
-#: src/treeview.c:1354
+#: src/treeview.c:1362
 msgid "Journey costs"
 msgstr "季票收入"
 
@@ -1470,7 +1470,7 @@ msgstr "开除出球队"
 
 #. Games lost.
 #. Lost.
-#: src/treeview.c:1231 src/treeview_helper.c:1585
+#: src/treeview.c:1239 src/treeview_helper.c:1585
 msgid "L"
 msgstr "输"
 
@@ -1489,7 +1489,7 @@ msgstr "输 %d : %d"
 msgid "L_oad last save"
 msgstr "继续游戏"
 
-#: src/options_interface.c:381
+#: src/options_interface.c:382
 msgid "Language"
 msgstr "语言"
 
@@ -1507,20 +1507,20 @@ msgstr "还有 %d"
 msgid "Last save file not found."
 msgstr "先前进度文件丢失"
 
-#: src/treeview.c:1678
+#: src/treeview.c:1686
 msgid "Latest results"
 msgstr "最近比分"
 
-#: src/misc2_interface.c:103 src/treeview2.c:469 src/treeview.c:162
+#: src/misc2_interface.c:103 src/treeview2.c:470 src/treeview.c:162
 #: src/treeview.c:311 src/treeview.c:686
 msgid "League"
 msgstr "所在联赛"
 
-#: src/options_interface.c:706
+#: src/options_interface.c:707
 msgid "League "
 msgstr "联赛 "
 
-#: src/treeview.c:2282
+#: src/treeview.c:2290
 msgid "League champions"
 msgstr "联赛冠军"
 
@@ -1532,7 +1532,7 @@ msgstr "联赛信息"
 msgid "Left click to make an offer. Right click to remove offer."
 msgstr "左键单击可以对球员出价。右键单击移除报价"
 
-#: src/callback_func.c:796
+#: src/callback_func.c:797
 msgid ""
 "Left click to move players to and from the youth academy; right click for "
 "context menu."
@@ -1543,15 +1543,15 @@ msgid ""
 "Left-click: get loan; Right-click: pay back; Middle click: stadium window."
 msgstr "左键单击：申请贷款；右键单击：偿还贷款；鼠标中键：球场对话框"
 
-#: src/options_interface.c:957
+#: src/options_interface.c:958
 msgid "List 1 "
 msgstr "列表 1"
 
-#: src/options_interface.c:964
+#: src/options_interface.c:965
 msgid "List 2"
 msgstr "列表 2"
 
-#: src/interface.c:369 src/misc_interface.c:497 src/options_interface.c:517
+#: src/interface.c:369 src/misc_interface.c:498 src/options_interface.c:518
 msgid "Live game"
 msgstr "现场游戏"
 
@@ -1560,11 +1560,11 @@ msgstr "现场游戏"
 msgid "Live game set to %s."
 msgstr "现场游戏被设定为 %s"
 
-#: src/options_interface.c:456
+#: src/options_interface.c:457
 msgid "Live game speed factor"
 msgstr "比赛现场速度设定"
 
-#: src/options_interface.c:463
+#: src/options_interface.c:464
 msgid "Live game verbosity"
 msgstr "比赛现场解说细致度"
 
@@ -1576,15 +1576,15 @@ msgstr "读取进度(Ctrl-O)"
 msgid "Load last savegame"
 msgstr "读取上一次保存的游戏"
 
-#: src/misc_interface.c:211
+#: src/misc_interface.c:212
 msgid "Load only the player names in the definition files"
 msgstr "只从定义文件中读取球员姓名"
 
-#: src/misc_interface.c:201
+#: src/misc_interface.c:202
 msgid "Load team definitions"
 msgstr "读取球队定义文件"
 
-#: src/misc_interface.c:204
+#: src/misc_interface.c:205
 msgid ""
 "Load teams from definition files (note that the official Bygfoot package "
 "doesn't contain team definition files, you have to get them from the "
@@ -1632,7 +1632,7 @@ msgstr "读取转会球员列表中..."
 msgid "Loading users..."
 msgstr "读取玩家中..."
 
-#: src/callback_func.c:325
+#: src/callback_func.c:326
 msgid "Loan"
 msgstr "贷款"
 
@@ -1641,7 +1641,7 @@ msgstr "贷款"
 msgid "M"
 msgstr "中场"
 
-#: src/misc2_interface.c:708
+#: src/misc2_interface.c:709
 msgid "Make offer"
 msgstr "提出合同"
 
@@ -1653,7 +1653,7 @@ msgstr "管理比赛记录"
 msgid "Manage users"
 msgstr "管理玩家"
 
-#: src/options_interface.c:242
+#: src/options_interface.c:243
 msgid "Maximize main window"
 msgstr "最大化主窗口"
 
@@ -1661,11 +1661,11 @@ msgstr "最大化主窗口"
 msgid "Memorable match added."
 msgstr "添加至比赛集锦"
 
-#: src/interface.c:875 src/window.c:886
+#: src/interface.c:875 src/window.c:868
 msgid "Memorable matches"
 msgstr "比赛集锦"
 
-#: src/treeview.c:1562
+#: src/treeview.c:1570
 msgid "Midfield"
 msgstr "中场"
 
@@ -1673,11 +1673,11 @@ msgstr "中场"
 msgid "Midfielders"
 msgstr "中场"
 
-#: src/options_interface.c:586
+#: src/options_interface.c:587
 msgid "Misc."
 msgstr "其它"
 
-#: src/treeview.c:1448
+#: src/treeview.c:1456
 msgid "Money"
 msgstr "资金"
 
@@ -1689,7 +1689,7 @@ msgstr "资金"
 msgid "Money (approx.)"
 msgstr "资金(估计.)"
 
-#: src/treeview.c:2565
+#: src/treeview.c:2573
 msgid "Money / week"
 msgstr "资金/周"
 
@@ -1706,19 +1706,19 @@ msgid "My league results"
 msgstr "我的球队"
 
 #: src/misc2_interface.c:98 src/treeview.c:283 src/treeview.c:684
-#: src/treeview.c:1899
+#: src/treeview.c:1907
 msgid "Name"
 msgstr "姓名"
 
-#: src/options_interface.c:594
+#: src/options_interface.c:595
 msgid "Name "
 msgstr "姓名 "
 
-#: src/treeview.c:1629
+#: src/treeview.c:1637
 msgid "Neutral ground"
 msgstr "中立球场"
 
-#: src/treeview.c:1919
+#: src/treeview.c:1927
 msgid ""
 "New contract\n"
 "offers"
@@ -1751,7 +1751,7 @@ msgid "No improvements currently in progress."
 msgstr "当前还没有正在进行的设施升级工程"
 
 #: src/callbacks.c:755 src/callbacks.c:771 src/callbacks.c:1177
-#: src/misc2_callback_func.c:293 src/misc2_callbacks.c:573
+#: src/misc2_callback_func.c:296 src/misc2_callbacks.c:573
 msgid "No match stored."
 msgstr "没有保存的比赛记录"
 
@@ -1763,7 +1763,7 @@ msgstr "None"
 msgid "Not a valid Bygfoot Memorable Matches filename."
 msgstr "不是一个有效的bygfoot比赛集锦文件名"
 
-#: src/window.c:772
+#: src/window.c:766
 msgid "Numbers..."
 msgstr "Numbers..."
 
@@ -1796,11 +1796,11 @@ msgstr "提出新合同"
 msgid "On"
 msgstr "开"
 
-#: src/misc_interface.c:208
+#: src/misc_interface.c:209
 msgid "Only names"
 msgstr "只是姓名"
 
-#: src/misc2_interface.c:1309
+#: src/misc2_interface.c:1311
 msgid "Open a memorable matches file"
 msgstr "打开一个 赛季集锦 文件"
 
@@ -1808,11 +1808,11 @@ msgstr "打开一个 赛季集锦 文件"
 msgid "Opponent"
 msgstr "对手"
 
-#: src/misc_interface.c:632
+#: src/misc_interface.c:634
 msgid "Opponent player list"
 msgstr "对手列表"
 
-#: src/window.c:813
+#: src/window.c:798
 msgid "Options"
 msgstr "选项"
 
@@ -1826,28 +1826,28 @@ msgid "Overwrite set to %s."
 msgstr "覆盖选项被设定为 %s."
 
 #. Games played (a number).
-#: src/treeview.c:1225
+#: src/treeview.c:1233
 msgid "PL"
 msgstr "比赛"
 
 #. Points.
-#: src/treeview.c:1239
+#: src/treeview.c:1247
 msgid "PTS"
 msgstr "得分"
 
-#: src/options_interface.c:512
+#: src/options_interface.c:513
 msgid "Pause when break"
 msgstr "中场休息暂停"
 
-#: src/options_interface.c:502
+#: src/options_interface.c:503
 msgid "Pause when injury"
 msgstr "伤病自动暂停"
 
-#: src/options_interface.c:507
+#: src/options_interface.c:508
 msgid "Pause when red card"
 msgstr "红牌自动暂停"
 
-#: src/callback_func.c:351
+#: src/callback_func.c:352
 msgid "Payback"
 msgstr "偿还"
 
@@ -1859,7 +1859,7 @@ msgstr "点球"
 msgid "Penalty/free kick shooter deselected."
 msgstr "取消选择 点球/任意球 主罚球员"
 
-#: src/interface.c:557 src/treeview.c:1350
+#: src/interface.c:557 src/treeview.c:1358
 msgid "Physio"
 msgstr "队医"
 
@@ -1867,11 +1867,11 @@ msgstr "队医"
 msgid "Player accepts new offers"
 msgstr "球员接受了新的出价"
 
-#: src/options_interface.c:305
+#: src/options_interface.c:306
 msgid "Player attribute precision"
 msgstr "球员属性精度设定"
 
-#: src/options_interface.c:978
+#: src/options_interface.c:979
 msgid "Player attributes shown"
 msgstr "显示球员属性"
 
@@ -1891,11 +1891,11 @@ msgstr "球员列表1"
 msgid "Player list 2"
 msgstr "球员列表2"
 
-#: src/options_interface.c:312
+#: src/options_interface.c:313
 msgid "Player list refresh rate"
 msgstr "球员列表更新频率"
 
-#: src/interface.c:488 src/treeview.c:1667
+#: src/interface.c:488 src/treeview.c:1675
 msgid "Playing style"
 msgstr "比赛心态"
 
@@ -1904,11 +1904,11 @@ msgstr "比赛心态"
 msgid "Pos"
 msgstr "位置"
 
-#: src/options_interface.c:608
+#: src/options_interface.c:609
 msgid "Pos "
 msgstr "位置"
 
-#: src/treeview.c:1900
+#: src/treeview.c:1908
 msgid "Position"
 msgstr "位置"
 
@@ -1916,7 +1916,7 @@ msgstr "位置"
 msgid "Possession"
 msgstr "控球"
 
-#: src/options_interface.c:247
+#: src/options_interface.c:248
 msgid "Prefer messages"
 msgstr "提示信息"
 
@@ -1940,7 +1940,7 @@ msgstr "之前的 联赛/杯赛(1)"
 msgid "Previous user"
 msgstr "前一个玩家"
 
-#: src/treeview.c:1344
+#: src/treeview.c:1352
 msgid "Prize money"
 msgstr "奖金"
 
@@ -1968,17 +1968,17 @@ msgstr "移除"
 msgid "REPLAY"
 msgstr "重放"
 
-#: src/misc_interface.c:227
+#: src/misc_interface.c:228
 msgid "Randomise teams in cups"
 msgstr "杯赛中随机分组球队"
 
-#: src/misc_interface.c:230
+#: src/misc_interface.c:231
 msgid ""
 "Randomise the order of teams in cups. This only makes sense in supernational "
 "definitions like the World Cup where the order of teams is fixed."
 msgstr "在杯赛中随机分组球队,这个只有在类似世界杯这种性质的比赛中才有效"
 
-#: src/misc2_interface.c:108 src/treeview.c:1646
+#: src/misc2_interface.c:108 src/treeview.c:1654
 msgid "Rank"
 msgstr "排名"
 
@@ -2002,27 +2002,27 @@ msgstr "购入选项"
 msgid "Reds"
 msgstr "红牌"
 
-#: src/misc_interface.c:1318
+#: src/misc_interface.c:1321
 msgid "Reject for now"
 msgstr "拒绝"
 
-#: src/misc2_interface.c:1328 src/options_interface.c:377
+#: src/misc2_interface.c:1330 src/options_interface.c:378
 msgid "Reload"
 msgstr "重新加载"
 
-#: src/misc2_interface.c:1406
+#: src/misc2_interface.c:1408
 msgid "Reload and close"
 msgstr "读取并关闭"
 
-#: src/misc2_interface.c:1314
+#: src/misc2_interface.c:1316
 msgid "Reload matches from file"
 msgstr "重新从文件中加载比赛"
 
-#: src/misc2_interface.c:1392
+#: src/misc2_interface.c:1394
 msgid "Reload matches from file and close"
 msgstr "从文件中读取比赛并关闭"
 
-#: src/options_interface.c:363
+#: src/options_interface.c:364
 msgid "Reload the constants file"
 msgstr "重新读取文件"
 
@@ -2053,23 +2053,23 @@ msgstr "以现场游戏时的阵容重新设定球员列表（右键单击）"
 msgid "Result"
 msgstr "比赛结果"
 
-#: src/treeview.c:1769
+#: src/treeview.c:1777
 msgid "Results"
 msgstr "比赛结果"
 
-#: src/misc2_interface.c:1183 src/misc_interface.c:1083
+#: src/misc2_interface.c:1184 src/misc_interface.c:1086
 msgid "Return"
 msgstr "返回"
 
-#: src/misc_interface.c:667 src/misc_interface.c:689
+#: src/misc_interface.c:669 src/misc_interface.c:691
 msgid "Return / Space"
 msgstr "返回/空格"
 
-#: src/interface.c:1198 src/misc_interface.c:736
+#: src/interface.c:1198 src/misc_interface.c:738
 msgid "Right click and left click to change boost state"
 msgstr "左键或右键单击可改变 boost 的设定"
 
-#: src/interface.c:1188 src/misc_interface.c:745
+#: src/interface.c:1188 src/misc_interface.c:747
 msgid "Right click and left click to change your playing style"
 msgstr "左键或右键单击可改变界面风格"
 
@@ -2077,7 +2077,7 @@ msgstr "左键或右键单击可改变界面风格"
 msgid "Right click to apply for job at once, left click to see team info."
 msgstr "右键点击可以直接接受这份工作,左键单击可以查看球队详细信息"
 
-#: src/misc_interface.c:1019 src/misc_interface.c:1053
+#: src/misc_interface.c:1022 src/misc_interface.c:1056
 msgid "Right-click to set to 0"
 msgstr "右键单击设定为0"
 
@@ -2090,7 +2090,7 @@ msgstr "轮"
 msgid "Round robin"
 msgstr " -- 循环赛"
 
-#: src/misc_interface.c:1045
+#: src/misc_interface.c:1048
 msgid "Safety (%)"
 msgstr "安全度(%)"
 
@@ -2099,15 +2099,15 @@ msgid "Safety improvement too high, reset to highest possible value."
 msgstr "球场安全措施提升过高，重新设置到标准水平"
 
 #. % of saves for goalies (#goals / #shots)
-#: src/treeview.c:2129
+#: src/treeview.c:2137
 msgid "Save %"
 msgstr "救球 %"
 
-#: src/misc2_interface.c:1385
+#: src/misc2_interface.c:1387
 msgid "Save and close"
 msgstr "保存并关闭"
 
-#: src/misc2_interface.c:1371
+#: src/misc2_interface.c:1373
 msgid "Save changes to file and close"
 msgstr "保存设置并关闭"
 
@@ -2115,15 +2115,15 @@ msgstr "保存设置并关闭"
 msgid "Save game (Ctrl - S)"
 msgstr "保存游戏(Ctrl-S)"
 
-#: src/options_interface.c:1037
+#: src/options_interface.c:1038
 msgid "Save global settings to file"
 msgstr "保存全局设置到文件"
 
-#: src/options_interface.c:232
+#: src/options_interface.c:233
 msgid "Save overwrites"
 msgstr "保存并覆盖"
 
-#: src/options_interface.c:1042
+#: src/options_interface.c:1043
 msgid "Save user settings to file"
 msgstr "保存玩家设置到文件"
 
@@ -2164,16 +2164,16 @@ msgstr "保存转会列表..."
 msgid "Saving users..."
 msgstr "保存玩家..."
 
-#: src/interface.c:525 src/treeview.c:1351
+#: src/interface.c:525 src/treeview.c:1359
 msgid "Scout"
 msgstr "球探"
 
 #. Season.
-#: src/treeview.c:2061
+#: src/treeview.c:2069
 msgid "Sea"
 msgstr "赛季"
 
-#: src/treeview.c:2329
+#: src/treeview.c:2337
 #, c-format
 msgid "Season %d"
 msgstr "第%d赛季"
@@ -2186,7 +2186,7 @@ msgstr "赛季历史"
 msgid "Season results"
 msgstr "赛季结果"
 
-#: src/misc_interface.c:384 src/window.c:821
+#: src/misc_interface.c:385 src/window.c:806
 msgid "Select font"
 msgstr "选择字体"
 
@@ -2203,7 +2203,7 @@ msgid ""
 "Set the percentage of your income you want to devote to your youth academy."
 msgstr "设定你决定用收入的多少（百分比）用于青年队建设"
 
-#: src/options_interface.c:542
+#: src/options_interface.c:543
 msgid "Set to 0 to switch off warning"
 msgstr "设定为0来取消警告信息"
 
@@ -2216,7 +2216,7 @@ msgstr "射门"
 msgid "Shoots penalties"
 msgstr "罚点球"
 
-#: src/treeview.c:735 src/treeview.c:2126
+#: src/treeview.c:735 src/treeview.c:2134
 msgid "Shot %"
 msgstr "射门 %"
 
@@ -2224,11 +2224,11 @@ msgstr "射门 %"
 msgid "Shots"
 msgstr "射门"
 
-#: src/options_interface.c:643
+#: src/options_interface.c:644
 msgid "Shots "
 msgstr "射门"
 
-#: src/options_interface.c:562
+#: src/options_interface.c:563
 msgid "Show all leagues in the fixture view"
 msgstr "在赛程表中显示所有联赛信息"
 
@@ -2252,7 +2252,7 @@ msgstr "显示信息"
 msgid "Show job exchange"
 msgstr "显示当前可申请工作"
 
-#: src/options_interface.c:534
+#: src/options_interface.c:535
 msgid "Show job offers"
 msgstr "显示工作邀请"
 
@@ -2264,27 +2264,27 @@ msgstr "显示上一场比赛"
 msgid "Show last match stats"
 msgstr "显示最近的比赛"
 
-#: src/options_interface.c:443
+#: src/options_interface.c:444
 msgid "Show live game"
 msgstr "显示比赛现场"
 
-#: src/misc3_interface.c:74 src/options_interface.c:990
+#: src/misc3_interface.c:74 src/options_interface.c:991
 msgid "Show matches from all leagues"
 msgstr "显示所有联赛比赛信息"
 
-#: src/misc3_interface.c:79 src/options_interface.c:995
+#: src/misc3_interface.c:79 src/options_interface.c:996
 msgid "Show matches from cups"
 msgstr "显示所有杯赛比赛信息"
 
-#: src/misc3_interface.c:84 src/options_interface.c:1001
+#: src/misc3_interface.c:84 src/options_interface.c:1002
 msgid "Show only my recent bets"
 msgstr "仅显示我的最近下注"
 
-#: src/options_interface.c:581
+#: src/options_interface.c:582
 msgid "Show overall games/goals"
 msgstr "显示所有 比赛/进球"
 
-#: src/options_interface.c:252
+#: src/options_interface.c:253
 msgid "Show progressbar pictures"
 msgstr "显示进度条图片"
 
@@ -2292,7 +2292,7 @@ msgstr "显示进度条图片"
 msgid "Show stadium"
 msgstr "现职球场信息"
 
-#: src/options_interface.c:447
+#: src/options_interface.c:448
 msgid "Show tendency bar"
 msgstr "显示形势条"
 
@@ -2308,7 +2308,7 @@ msgstr "显示当前空缺经理列表"
 msgid "Show transferlist (T)"
 msgstr "显示转会球员(T)"
 
-#: src/options_interface.c:548
+#: src/options_interface.c:549
 msgid "Show warning if a player contract gets below "
 msgstr "显示警告信息当俱乐部中有球员合同期限低于 "
 
@@ -2321,19 +2321,19 @@ msgstr "显示你的青年队"
 msgid "Sk"
 msgstr "技能"
 
-#: src/treeview.c:1902
+#: src/treeview.c:1910
 msgid "Skill"
 msgstr "技能值"
 
-#: src/options_interface.c:622
+#: src/options_interface.c:623
 msgid "Skill "
 msgstr "技能"
 
-#: src/options_interface.c:262
+#: src/options_interface.c:263
 msgid "Skip weeks without user matches"
 msgstr "跳过没有玩家比赛的周次"
 
-#: src/misc_interface.c:246
+#: src/misc_interface.c:247
 msgid "Space"
 msgstr "空格"
 
@@ -2341,31 +2341,31 @@ msgstr "空格"
 msgid "Specify additional support directory (takes priority over default ones)"
 msgstr "指定额外的support文件夹(将会优先于原始文件夹)"
 
-#: src/misc_interface.c:706
+#: src/misc_interface.c:708
 msgid "Speed"
 msgstr "速度"
 
-#: src/treeview.c:1468
+#: src/treeview.c:1476
 msgid "Sponsor"
 msgstr "赞助商"
 
-#: src/treeview.c:1346
+#: src/treeview.c:1354
 msgid "Sponsorship"
 msgstr "赞助"
 
-#: src/window.c:875
+#: src/window.c:860
 msgid "Sponsorship offers"
 msgstr "赞助请求"
 
-#: src/treeview.c:1308
+#: src/treeview.c:1316
 msgid "Stadium"
 msgstr "球场"
 
-#: src/misc2_interface.c:118 src/treeview.c:1314
+#: src/misc2_interface.c:118 src/treeview.c:1322
 msgid "Stadium capacity"
 msgstr "球场座位数"
 
-#: src/treeview.c:1435
+#: src/treeview.c:1443
 msgid "Stadium expenses"
 msgstr "球场维护费"
 
@@ -2373,15 +2373,15 @@ msgstr "球场维护费"
 msgid "Stadium management is disabled in this country definition."
 msgstr "在这个地区定义文件中 球场设施管理 被禁止"
 
-#: src/misc2_interface.c:123 src/treeview.c:1318
+#: src/misc2_interface.c:123 src/treeview.c:1326
 msgid "Stadium safety"
 msgstr "到场球迷人数"
 
-#: src/treeview.c:1332
+#: src/treeview.c:1340
 msgid "Stadium status"
 msgstr "球场数据"
 
-#: src/misc_interface.c:263
+#: src/misc_interface.c:264
 msgid "Start"
 msgstr "开始"
 
@@ -2389,7 +2389,7 @@ msgstr "开始"
 msgid "Start _new game"
 msgstr "开始新游戏"
 
-#: src/misc_interface.c:583
+#: src/misc_interface.c:585
 msgid "Statistics"
 msgstr "球队统计"
 
@@ -2398,16 +2398,16 @@ msgstr "球队统计"
 msgid "Status"
 msgstr "状态"
 
-#: src/options_interface.c:657
+#: src/options_interface.c:658
 msgid "Status "
 msgstr "数据统计"
 
-#: src/misc_interface.c:914
+#: src/misc_interface.c:917
 msgid "Status:"
 msgstr "进度："
 
 #. Hot streak or cold streak of a player.
-#: src/treeview.c:1917
+#: src/treeview.c:1925
 msgid "Streak"
 msgstr "状态"
 
@@ -2415,12 +2415,12 @@ msgstr "状态"
 msgid "Structure"
 msgstr "球队阵容"
 
-#: src/options_interface.c:576
+#: src/options_interface.c:577
 msgid "Swap adapts structure"
 msgstr "自动改变阵形"
 
 #. Language is system-set (not user chosen).
-#: src/treeview.c:2489
+#: src/treeview.c:2497
 msgid "System"
 msgstr "系统"
 
@@ -2428,21 +2428,21 @@ msgstr "系统"
 msgid "Tables"
 msgstr "积分表"
 
-#: src/treeview2.c:472
+#: src/treeview2.c:473
 msgid "Talent %"
 msgstr "潜力值 %"
 
-#: src/treeview2.c:468 src/treeview.c:153 src/treeview.c:310
-#: src/treeview.c:685 src/treeview.c:1223 src/treeview.c:1640
-#: src/treeview.c:1768 src/treeview.c:2062
+#: src/treeview2.c:469 src/treeview.c:153 src/treeview.c:310
+#: src/treeview.c:685 src/treeview.c:1231 src/treeview.c:1648
+#: src/treeview.c:1776 src/treeview.c:2070
 msgid "Team"
 msgstr "球队"
 
-#: src/options_interface.c:713
+#: src/options_interface.c:714
 msgid "Team "
 msgstr "球队 "
 
-#: src/treeview.c:1672
+#: src/treeview.c:1680
 msgid "Team structure"
 msgstr "球队战术"
 
@@ -2451,11 +2451,11 @@ msgstr "球队战术"
 msgid "Team style changed to %s."
 msgstr "球队风格设定为 %s."
 
-#: src/treeview2.c:360
+#: src/treeview2.c:361
 msgid "Team1"
 msgstr "球队1"
 
-#: src/treeview2.c:366
+#: src/treeview2.c:367
 msgid "Team2"
 msgstr "球队2"
 
@@ -2463,7 +2463,7 @@ msgstr "球队2"
 msgid "Test an XML commentary file"
 msgstr "测试一个XML解说词文件"
 
-#: src/callback_func.c:317
+#: src/callback_func.c:318
 msgid "The bank doesn't grant you more money."
 msgstr "银行不会再给予你更多的借贷资金"
 
@@ -2476,7 +2476,7 @@ msgstr "庄家不允许你的出价高于 %s."
 msgid "The current game state is unsaved and will be lost. Continue?"
 msgstr "当前游戏还未保存，退出游戏会使进度丢失。继续？"
 
-#: src/options_interface.c:485
+#: src/options_interface.c:486
 msgid "The higher this value, the more commentary you'll see."
 msgstr "数值越高，你就会看到更详细的评论"
 
@@ -2485,11 +2485,11 @@ msgstr "数值越高，你就会看到更详细的评论"
 msgid "The job exchange update interval is %d weeks."
 msgstr "可供申请的工作列表的更新周期是 %d 周"
 
-#: src/options_interface.c:476
+#: src/options_interface.c:477
 msgid "The lower this value the faster the live game commentary will scroll."
 msgstr "数值越低现场评论的滚动速度就会越快"
 
-#: src/misc2_callback_func.c:328
+#: src/misc2_callback_func.c:331
 #, c-format
 msgid "The owners of %s accept your application."
 msgstr "%s 的董事答应了你的申请"
@@ -2497,7 +2497,7 @@ msgstr "%s 的董事答应了你的申请"
 #. A lame duck is someone who will quit his job soon and thus doesn't have
 #. a lot of influence/impact anymore, e.g. an American president during
 #. the last 2 years of his second presidency.
-#: src/misc2_callback_func.c:322
+#: src/misc2_callback_func.c:325
 #, c-format
 msgid ""
 "The owners of %s accept your application. Since %s don't want to get stuck "
@@ -2548,7 +2548,7 @@ msgid ""
 "better offer for the player than yours."
 msgstr "%s 的经理人拒绝了你的出价 (%s / %s).在所有对 %s 的出价中有人比你高很多"
 
-#: src/misc2_callback_func.c:311
+#: src/misc2_callback_func.c:314
 #, c-format
 msgid ""
 "The owners of %s politely reject your application. You're not successful "
@@ -2559,7 +2559,7 @@ msgstr "%s 的董事礼貌的拒绝了你的申请,他们认为你还不够成功"
 msgid "The player is already on the list."
 msgstr "此玩家已处于玩家列表中"
 
-#: src/callback_func.c:464
+#: src/callback_func.c:465
 msgid ""
 "The player is locked (the team owners are considering an offer currently)."
 msgstr "该球员被摘牌（球队董事正在考虑其中一个报价）"
@@ -2580,7 +2580,7 @@ msgstr "这个玩家最近势头很盛"
 msgid "The player is too old for the youth academy."
 msgstr "球员的年龄过大，不满足青年联赛的要求"
 
-#: src/callback_func.c:517
+#: src/callback_func.c:518
 msgid "The player won't negotiate with you anymore."
 msgstr "球员不会再就合同与你谈判下去了"
 
@@ -2609,11 +2609,11 @@ msgstr ""
 "面对一个失败的赛季加上球迷的压力球队董事解雇了你。幸运的是，%s 的老板在听说你"
 "被解雇后向你提出合同，邀请你去他们那里执教，这里是 %s 的信息"
 
-#: src/callback_func.c:471 src/callbacks.c:196 src/transfer.c:490
+#: src/callback_func.c:472 src/callbacks.c:196 src/transfer.c:490
 msgid "The transfer deadline is over."
 msgstr "球员转会截止日期已过"
 
-#: src/misc_interface.c:1262
+#: src/misc_interface.c:1265
 msgid ""
 "There are a few companies interested in sponsoring your team. Please select "
 "one:"
@@ -2635,7 +2635,7 @@ msgstr "这个地区定义文件中没有联赛和杯赛的信息"
 msgid "There are no season history elements stored yet."
 msgstr "到现在为止还没有赛季历史记录"
 
-#: src/callback_func.c:375
+#: src/callback_func.c:376
 msgid ""
 "There are some offers for the player which you rejected or will see next "
 "week."
@@ -2651,7 +2651,7 @@ msgid ""
 "reset."
 msgstr "你选择了过多的替补.每场比赛只允许有3名替补上场.重置球员列表"
 
-#: src/treeview.c:1345
+#: src/treeview.c:1353
 msgid "Ticket income"
 msgstr "门票收入"
 
@@ -2664,11 +2664,11 @@ msgstr "韧带损伤"
 msgid "Transfer deadline is Week %d"
 msgstr "转会截止日期是第 %d 周"
 
-#: src/window.c:867
+#: src/window.c:852
 msgid "Transfer offer"
 msgstr "转会请求"
 
-#: src/treeview.c:1425
+#: src/treeview.c:1433
 msgid "Transfers"
 msgstr "转会"
 
@@ -2688,34 +2688,34 @@ msgstr ""
 msgid "Uncompressing savegame..."
 msgstr "解压缩游戏存档..."
 
-#: src/callback_func.c:457
+#: src/callback_func.c:458
 #, c-format
 msgid "User %s didn't consider your offer yet."
 msgstr "%s 正在考虑你的报价"
 
-#: src/window.c:844
+#: src/window.c:829
 msgid "User management"
 msgstr "管理玩家"
 
-#: src/misc2_interface.c:803
+#: src/misc2_interface.c:804
 msgid "Users -- click to remove"
 msgstr "玩家 -- 点击移除"
 
-#: src/treeview.c:307 src/treeview.c:1908
+#: src/treeview.c:307 src/treeview.c:1916
 msgid "Value"
 msgstr "身价"
 
-#: src/options_interface.c:685
+#: src/options_interface.c:686
 msgid "Value "
 msgstr "身价 "
 
-#: src/misc_interface.c:713
+#: src/misc_interface.c:715
 msgid "Verbosity"
 msgstr "解说用语"
 
 #. Games won.
 #. Won.
-#: src/treeview.c:1227 src/treeview_helper.c:1574
+#: src/treeview.c:1235 src/treeview_helper.c:1574
 msgid "W"
 msgstr "胜"
 
@@ -2730,12 +2730,12 @@ msgstr "胜 "
 msgid "W  %d : %d"
 msgstr "胜 %d : %d"
 
-#: src/callback_func.c:487 src/callback_func.c:494 src/treeview.c:308
-#: src/treeview.c:1909
+#: src/callback_func.c:488 src/callback_func.c:495 src/treeview.c:308
+#: src/treeview.c:1917
 msgid "Wage"
 msgstr "工资"
 
-#: src/options_interface.c:692
+#: src/options_interface.c:693
 msgid "Wage "
 msgstr "工资 "
 
@@ -2745,7 +2745,7 @@ msgid "Wager"
 msgstr "赌注"
 
 #. How much the user wagers; how much he won or lost.
-#: src/treeview2.c:368
+#: src/treeview2.c:369
 msgid ""
 "Wager/\n"
 "Win/Loss"
@@ -2753,7 +2753,7 @@ msgstr ""
 "赌注/\n"
 "胜/败"
 
-#: src/treeview.c:1349
+#: src/treeview.c:1357
 msgid "Wages"
 msgstr "赌资"
 
@@ -2762,62 +2762,62 @@ msgstr "赌资"
 msgid "We"
 msgstr "周"
 
-#: src/treeview.c:2062
+#: src/treeview.c:2070
 msgid "Week"
 msgstr "周"
 
-#: src/treeview.c:895
+#: src/treeview.c:903
 #, c-format
 msgid "Week %d Round %d"
 msgstr "第%d周 第%d轮"
 
-#: src/window.c:719
+#: src/window.c:718
 #, c-format
 msgid "Welcome to Bygfoot %s"
 msgstr "欢迎来到 Bygfoot %s"
 
-#: src/options_interface.c:235
+#: src/options_interface.c:236
 msgid ""
 "Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
 msgstr "是否设定为 保存 覆盖掉原先文件 或者 弹出对话框显示 另存为"
 
-#: src/options_interface.c:532
+#: src/options_interface.c:533
 msgid ""
 "Whether a confirmation popup is shown when you kick out a youth from your "
 "academy"
 msgstr "当你想踢除出一名年轻球员时会有一个对话框出现来加以确认"
 
-#: src/options_interface.c:245
+#: src/options_interface.c:246
 msgid ""
 "Whether game starts with a maximized main window (doesn't work with all "
 "window managers)"
 msgstr "是否在游戏开始时进入最大化窗口（注意：并不是对所有的窗口管理器都有用）"
 
-#: src/options_interface.c:565
+#: src/options_interface.c:566
 msgid ""
 "Whether in the weekly fixture view all leagues or only the user league is "
 "shown"
 msgstr "决定是否在每周的赛程表中显示所有联赛 或者 只显示玩家所在联赛"
 
-#: src/options_interface.c:579
+#: src/options_interface.c:580
 msgid ""
 "Whether swapping two players automatically adapts the team structure to the "
 "player positions"
 msgstr "当更变球员时是否根据球员的位置自动更新球队阵形"
 
-#: src/options_interface.c:515
+#: src/options_interface.c:516
 msgid "Whether the live game pauses at half time and extra time"
 msgstr "决定在中场休息或者加时赛时自动暂停游戏"
 
-#: src/options_interface.c:505
+#: src/options_interface.c:506
 msgid "Whether the live game pauses when a user player is injured"
 msgstr "决定当有球员受伤时是否自动暂停游戏"
 
-#: src/options_interface.c:510
+#: src/options_interface.c:511
 msgid "Whether the live game pauses when a user player is sent off"
 msgstr "决定当球员被红牌罚下时自动暂停游戏"
 
-#: src/options_interface.c:491
+#: src/options_interface.c:492
 msgid ""
 "Whether the subs (e.g. for injured players) are made by the CPU. This is "
 "automatically done if the live game is off."
@@ -2825,37 +2825,37 @@ msgstr ""
 "替补球员替下主力球员（伤病等原因）是由系统决定的。当 比赛现场 被禁止使用时该"
 "行为被自动设定为默认"
 
-#: src/options_interface.c:393
+#: src/options_interface.c:394
 msgid "Whether to automatically save the game regularly"
 msgstr "是否经常自动存档"
 
-#: src/options_interface.c:1040
+#: src/options_interface.c:1041
 msgid ""
 "Whether to save the global settings to file (so that they get loaded next "
 "time you start a new game)"
 msgstr ""
 "决定是否将全局设置保存到文件（那样当你下次开始一个新的游戏时会自动读取）"
 
-#: src/options_interface.c:1045
+#: src/options_interface.c:1046
 msgid ""
 "Whether to save the user settings to file (so that they get loaded next time "
 "this user starts a new game)"
 msgstr ""
 "决定是否将玩家设置保存到文件（那样当玩家开始一个新的游戏时会被自动读取）"
 
-#: src/options_interface.c:230
+#: src/options_interface.c:231
 msgid ""
 "Whether to show a confirmation popup if a user team has an injured or banned "
 "player in the startup formation"
 msgstr "是否在球队首发阵容中有 受伤/禁赛 球员时弹出一个对话框加以确认"
 
-#: src/options_interface.c:225
+#: src/options_interface.c:226
 msgid ""
 "Whether to show a confirmation popup when you press quit and the game state "
 "is not saved"
 msgstr "是否在你还没有保存游戏退出是显示一个弹出示窗口加以确认"
 
-#: src/options_interface.c:998
+#: src/options_interface.c:999
 msgid "Whether to show cup matches in the betting window"
 msgstr "是否在下注窗口中显示杯赛信息"
 
@@ -2864,11 +2864,11 @@ msgid ""
 "Whether to show cup matches. Use the options window to toggle permanently."
 msgstr "是否显示杯赛信息.调用选项设置可以永久改变"
 
-#: src/options_interface.c:537
+#: src/options_interface.c:538
 msgid "Whether to show job offers when a user is successful"
 msgstr "当玩家取得成功时显示其他球会的 邀请执教 信息"
 
-#: src/options_interface.c:993
+#: src/options_interface.c:994
 msgid "Whether to show matches of all leagues in the betting window"
 msgstr "是否在下注窗口中显示所有联赛的比赛信息"
 
@@ -2882,29 +2882,29 @@ msgstr "是否显示联赛所有比赛信息,调用选项设置可以永久改变"
 msgid "Whether to show only your bets in the recent bets list"
 msgstr "是否只在最近下注列表中只显示你的相关信息"
 
-#: src/options_interface.c:255
+#: src/options_interface.c:256
 msgid ""
 "Whether to show pictures on top of the progressbar when loading/saving or "
 "calculating results"
 msgstr "是否在 读取/保存 或者计算结果时在进度条上显示图片"
 
-#: src/options_interface.c:584
+#: src/options_interface.c:585
 msgid "Whether to show the player games/goals value in all competitions"
 msgstr "是否在所有比赛中显示球员的 比赛/进球 值"
 
-#: src/options_interface.c:250
+#: src/options_interface.c:251
 msgid ""
 "Whether to show warnings and such in the message area in the main window "
 "when possible"
 msgstr "是否在尽可能的情况下在主窗口的消息栏中显示警告信息或者其他相关信息"
 
 #. Team 1 wins (betting window).
-#: src/treeview2.c:362
+#: src/treeview2.c:363
 msgid "Win1"
 msgstr ""
 
 #. Team 2 wins (betting window).
-#: src/treeview2.c:365
+#: src/treeview2.c:366
 msgid "Win2"
 msgstr ""
 
@@ -2915,7 +2915,7 @@ msgstr "黄牌"
 
 #. 'Limit' is the number of yellow cards until a player gets
 #. banned automatically for a match.
-#: src/treeview.c:1914
+#: src/treeview.c:1922
 msgid "Yellow cards (limit)\n"
 msgstr "黄牌禁赛\n"
 
@@ -2933,21 +2933,21 @@ msgstr "你最终赢得了 %s 的冠军"
 msgid "You are free from debt."
 msgstr "你还没有负债"
 
-#: src/callback_func.c:491
+#: src/callback_func.c:492
 #, c-format
 msgid ""
 "You are making an offer for %s again. Your previous values for fee and wage "
 "are preset."
 msgstr "你正在对 %s 报价，先前的报价被设定为默认出价"
 
-#: src/callback_func.c:483
+#: src/callback_func.c:484
 #, c-format
 msgid ""
 "You are making an offer for %s. Your scout's recommendations for fee and "
 "wage are preset."
 msgstr "你决定对 %s 报价，你的球探对于转会费以及工资的建议被设定为默认出价"
 
-#: src/callback_func.c:531
+#: src/callback_func.c:532
 #, c-format
 msgid ""
 "You are negotiating with %s about a new contract. Pay attention to what "
@@ -2961,7 +2961,7 @@ msgstr ""
 "出价前撤消。\n"
 "以下是你的球探的建议"
 
-#: src/callback_func.c:337
+#: src/callback_func.c:338
 msgid "You are not indebted."
 msgstr "你还没有负债"
 
@@ -2970,12 +2970,12 @@ msgstr "你还没有负债"
 msgid "You bet on outcome %d with an odd of %.2f. How much do you wager?"
 msgstr "你赌最终结果 %d (%.2f).你决定下多大的注?"
 
-#: src/callback_func.c:349
+#: src/callback_func.c:350
 #, c-format
 msgid "You can pay back at most %s"
 msgstr "你最多可以偿还 %s."
 
-#: src/callback_func.c:323
+#: src/callback_func.c:324
 #, c-format
 msgid "You can take out at most %s."
 msgstr "你最多可以提取 %s."
@@ -2993,7 +2993,7 @@ msgstr "你的球队最多只能有 %d 个球员"
 msgid "You can't move the player, there are too few players in your team."
 msgstr "你不能移动该球员，你的大名单中球员人数不足"
 
-#: src/callback_func.c:512
+#: src/callback_func.c:513
 msgid "You can't offer a new contract if the old one is still above 2 years."
 msgstr "当原先球员合同还大于两年时，你是不能更改合同的"
 
@@ -3016,7 +3016,7 @@ msgstr "你没有足够的资金出价购买 %s (%s)"
 msgid "You didn't have enough money to buy %s or your roster was full."
 msgstr "你没有足够资金购买%s或者球队球员人数已满"
 
-#: src/callback_func.c:343
+#: src/callback_func.c:344
 msgid "You don't have enough money to pay back."
 msgstr "你没有充足的资金来偿还贷款"
 
@@ -3089,7 +3089,7 @@ msgstr "请选择一个玩家"
 msgid "You lose in the %s final against %s."
 msgstr "你很遗憾的在 %s 决赛中数给了 %s"
 
-#: src/callback_func.c:428
+#: src/callback_func.c:429
 #, c-format
 msgid ""
 "You offered a transfer fee of %s and a wage of %s for %s. The owners and the "
@@ -3114,7 +3114,7 @@ msgstr "你开始了在%s的执教生涯（%s 联赛）"
 msgid "You still have some transfer business to manage."
 msgstr "你还有一些转会交易没有处理"
 
-#: src/callback_func.c:657
+#: src/callback_func.c:658
 #, c-format
 msgid ""
 "You want to fire %s. Since his contract expires in %.1f years, he demands a "
@@ -3142,7 +3142,7 @@ msgstr ""
 "你当前的赞助商对你迄今所取得的成果非常满意，原意与你续签赞助和约。当前他们每"
 "周会支付你: %d ."
 
-#: src/treeview.c:1612
+#: src/treeview.c:1620
 msgid "Your next opponent"
 msgstr "你的下一个对手"
 
@@ -3155,7 +3155,7 @@ msgstr ""
 "你对 %s 的出价被同意了。如果你确定要购买此名球员，可以去转会列表中左键单击他"
 "的名字即可完成交易"
 
-#: src/callback_func.c:414 src/callbacks.c:635
+#: src/callback_func.c:415 src/callbacks.c:635
 msgid "Your offer has been removed."
 msgstr "你的报价被撤消了"
 
@@ -3172,11 +3172,11 @@ msgid "Your player roster is full or you don't enough money."
 msgstr "你的球队人数已满或者你没有充足的资金"
 
 #. The user's results against a specific team.
-#: src/treeview.c:1685
+#: src/treeview.c:1693
 msgid "Your results"
 msgstr "比赛结果"
 
-#: src/callback_func.c:421
+#: src/callback_func.c:422
 msgid "Your roster is already full. You can't buy more players."
 msgstr "球队人员已满，你不能再买进球员了"
 
@@ -3186,7 +3186,7 @@ msgstr "球队人员已满，你不能再买进球员了"
 msgid "Your roster is full. You couldn't buy %s from %s."
 msgstr "你的球队大名单人数已满。你不能够买入 %s (%s)"
 
-#: src/window.c:783
+#: src/window.c:774
 msgid "Your stadium"
 msgstr "你的球场"
 
@@ -3215,11 +3215,11 @@ msgstr ""
 "青年球员 %s 的年龄很快就要超过青年队的限制了，你可以把他移至主力阵容或者将他"
 "开除出你的球队。除此之外他很可能自己去寻找一家新的俱乐部继续他的球员生涯"
 
-#: src/treeview.c:1482
+#: src/treeview.c:1490
 msgid "Youth acad. invest."
 msgstr "你对青年队的投资"
 
-#: src/interface.c:589 src/treeview.c:1353
+#: src/interface.c:589 src/treeview.c:1361
 msgid "Youth academy"
 msgstr "青年队"
 
@@ -3228,7 +3228,7 @@ msgstr "青年队"
 msgid "Youth academy is disabled in this country definition."
 msgstr "在这个地区定义文件中 青年联赛 被禁用"
 
-#: src/interface.c:607 src/treeview.c:1352
+#: src/interface.c:607 src/treeview.c:1360
 msgid "Youth coach"
 msgstr "青年队教练"
 
@@ -3248,7 +3248,7 @@ msgstr "读取游戏"
 msgid "_Options"
 msgstr "选项"
 
-#: src/misc_interface.c:660
+#: src/misc_interface.c:662
 msgid "_Pause"
 msgstr "暂停"
 
@@ -3256,7 +3256,7 @@ msgstr "暂停"
 msgid "_Player"
 msgstr "球员"
 
-#: src/misc_interface.c:681
+#: src/misc_interface.c:683
 msgid "_Resume"
 msgstr "返回"
 

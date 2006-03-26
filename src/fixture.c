@@ -1118,7 +1118,7 @@ fixture_get_matches(const Team *tm1, const Team *tm2)
 
 /** Return the fixture going with the id. */
 Fixture*
-fixture_from_id(gint id)
+fixture_from_id(gint id, gboolean abort_program)
 {
     gint i, j;
 
@@ -1132,8 +1132,9 @@ fixture_from_id(gint id)
 	    if(g_array_index(cp(i).fixtures, Fixture, j).id == id)
 		return &g_array_index(cp(i).fixtures, Fixture, j);
 
-    main_exit_program(EXIT_POINTER_NOT_FOUND, 
-		      "fixture_from_id: fixture with id %d found \n", id);
+    if(abort_program)
+	main_exit_program(EXIT_POINTER_NOT_FOUND, 
+			  "fixture_from_id: fixture with id %d found \n", id);
 
     return NULL;
 }

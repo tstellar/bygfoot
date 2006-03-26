@@ -63,7 +63,7 @@ on_button_options_ok_clicked           (GtkButton       *button,
 	file_save_opt_file(buf, &current_user.options);
     }
 
-    window_destroy(&window.options, TRUE);
+    window_destroy(&window.options);
 }
 
 
@@ -71,7 +71,7 @@ void
 on_button_options_cancel_clicked       (GtkButton       *button,
                                         gpointer         user_data)
 {
-    window_destroy(&window.options, TRUE);
+    window_destroy(&window.options);
 }
 
 

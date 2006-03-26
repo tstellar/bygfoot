@@ -83,7 +83,7 @@ callback_show_next_live_game(void)
 		return;
 	    }
 
-    window_destroy(&window.live, TRUE);
+    window_destroy(&window.live);
 
     /* no more user games to show: end round. */
     end_week_round();
@@ -168,7 +168,8 @@ callback_show_last_match(gboolean start, LiveGame *lg)
 
 	gui_set_sensitive_lg_meters(FALSE);
 
-	treeview_show_game_stats(GTK_TREE_VIEW(lookup_widget(window.live, "treeview_stats")), lg);
+	treeview_show_game_stats(
+	    GTK_TREE_VIEW(lookup_widget(window.live, "treeview_stats")), lg);
     }
     else
     {
@@ -195,7 +196,7 @@ callback_show_last_match(gboolean start, LiveGame *lg)
     }
     else if(stat4 == STATUS_SHOW_LAST_MATCH_ABORT)
     {
-	window_destroy(&window.live, TRUE);
+	window_destroy(&window.live);
 	stat1 = stat2 = stat3 = stat4 = -1;
     }
     else
@@ -207,7 +208,7 @@ void
 callback_show_last_match_stats(void)
 {
     current_user.live_game.fix = 
-	fixture_from_id(current_user.live_game.fix_id);
+	fixture_from_id(current_user.live_game.fix_id, TRUE);
     
     treeview_show_game_stats(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")),
 			     &current_user.live_game);

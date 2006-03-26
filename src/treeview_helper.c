@@ -1626,7 +1626,7 @@ treeview_helper_bet_odds(GtkTreeViewColumn *col,
 
     strcpy(buf, "");
     bet_user = bet_is_user(bet);
-    fix = fixture_from_id(bet->fix_id);
+    fix = fixture_from_id(bet->fix_id, TRUE);
 
     if(fix->attendance == -1)
 	sprintf(buf, "%.2f", bet->odds[column - 1]);

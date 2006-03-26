@@ -200,6 +200,7 @@ create_window_options (void)
   window_options = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_options), 5);
   gtk_window_set_position (GTK_WINDOW (window_options), GTK_WIN_POS_CENTER);
+  gtk_window_set_modal (GTK_WINDOW (window_options), TRUE);
 
   vbox1 = gtk_vbox_new (FALSE, 2);
   gtk_widget_show (vbox1);

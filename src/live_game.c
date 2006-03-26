@@ -111,6 +111,7 @@ live_game_initialize(Fixture *fix)
 	    option_int("int_opt_user_show_live_game", 
 		       &usr(stat2).options));
 
+    game_initialize(fix);
     live_game_reset(match, fix, TRUE);
 
     if(show)
@@ -127,8 +128,6 @@ live_game_initialize(Fixture *fix)
 	game_gui_live_game_show_opponent();
     }
 
-    game_initialize(fix);
-    
     if(stat2 != -1 || stat5 < -1000)
 	lg_commentary_initialize(fix);
 }
@@ -1600,12 +1599,14 @@ live_game_reset(LiveGame *live_game, Fixture *fix, gboolean free_variable)
     if(fix != NULL)
     {
 	live_game->fix_id = fix->id;
+	live_game->attendance = fix->attendance;
 	live_game->team_names[0] = g_strdup(fix->teams[0]->name);
 	live_game->team_names[1] = g_strdup(fix->teams[1]->name);
     }
     else
     {
 	live_game->fix_id = -1;
+	live_game->attendance = -1;
 	live_game->team_names[0] = 
 	    live_game->team_names[1] = NULL;
     }

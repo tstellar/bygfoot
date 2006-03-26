@@ -39,6 +39,7 @@ enum
     TAG_LIVE_GAME = TAG_START_LIVE_GAME,
     TAG_LIVE_GAME_FIX_ID,
     TAG_LIVE_GAME_TEAM_NAME,
+    TAG_LIVE_GAME_ATTENDANCE,
     TAG_LIVE_GAME_UNIT,
     TAG_LIVE_GAME_UNIT_POSSESSION,
     TAG_LIVE_GAME_UNIT_AREA,
@@ -113,6 +114,7 @@ xml_loadsave_live_game_end_element    (GMarkupParseContext *context,
     
     if(tag == TAG_LIVE_GAME_FIX_ID ||
        tag == TAG_LIVE_GAME_TEAM_NAME ||
+       tag == TAG_LIVE_GAME_ATTENDANCE ||
        tag == TAG_LIVE_GAME_UNIT ||
        tag == TAG_LIVE_GAME_STAT)
     {
@@ -188,10 +190,12 @@ xml_loadsave_live_game_text         (GMarkupParseContext *context,
     if(state == TAG_LIVE_GAME_FIX_ID)
     {
 	lgame->fix_id = int_value;
-	lgame->fix = fixture_from_id(int_value);
+	lgame->fix = fixture_from_id(int_value, FALSE);
     }
     else if(state == TAG_LIVE_GAME_TEAM_NAME)
 	misc_string_assign(&lgame->team_names[team_name_idx], buf);
+    else if(state == TAG_LIVE_GAME_ATTENDANCE)
+	lgame->attendance = int_value;
     else if(state == TAG_LIVE_GAME_UNIT_POSSESSION)
 	new_unit.possession = int_value;
     else if(state == TAG_LIVE_GAME_UNIT_AREA)
@@ -282,6 +286,8 @@ xml_loadsave_live_game_write(const gchar *filename, const LiveGame *live_game)
 	for(i=0;i<2;i++)
 	    xml_write_string(fil, live_game->team_names[i], 
 			     TAG_LIVE_GAME_TEAM_NAME, I0);
+
+	xml_write_int(fil, live_game->attendance, TAG_LIVE_GAME_ATTENDANCE, I0);
     }
 
     for(i=0;i<live_game->units->len;i++)
