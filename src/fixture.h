@@ -136,7 +136,7 @@ GPtrArray*
 fixture_get_coming(const Team *tm);
 
 Fixture*
-fixture_from_id(gint id);
+fixture_from_id(gint id, gboolean abort_program);
 
 gint
 fixture_get_last_week_round(gint week_number);

@@ -130,7 +130,9 @@ xml_mmatches_text         (GMarkupParseContext *context,
     {
 	sprintf(lg_file, "%s%s%s", dirname, G_DIR_SEPARATOR_S, buf);
 	live_game_reset(&new_match.lg, NULL, FALSE);
-	xml_loadsave_live_game_read(lg_file, &new_match.lg);	
+	xml_loadsave_live_game_read(lg_file, &new_match.lg);
+	new_match.lg.fix = NULL;
+	new_match.lg.fix_id = -1;
     }
 }
 

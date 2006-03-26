@@ -40,10 +40,11 @@
 /**
  * Program version number.
  */
-#define VERS "1.9.5"
+#define VERS "1.9.6"
 
 /** Home dir name */
 #define HOMEDIRNAME ".bygfoot-cvs"
+//#define HOMEDIRNAME ".bygfoot-1.9"
 
 /**
  * Convenience macros, used for string sizes (typically buf[SMALL]).

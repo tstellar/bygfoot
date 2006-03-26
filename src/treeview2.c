@@ -277,7 +277,7 @@ treeview2_create_bets(GtkListStore *ls)
 
 	for(i=0;i<bets[k]->len;i++)
 	{
-	    fix = fixture_from_id(g_array_index(bets[k], BetMatch, i).fix_id);
+	    fix = fixture_from_id(g_array_index(bets[k], BetMatch, i).fix_id, TRUE);
 	    if(fix->clid == current_user.tm->clid ||
 	       (fix->clid >= ID_CUP_START &&
 		opt_user_int("int_opt_user_bet_show_cups")) ||
@@ -293,7 +293,8 @@ treeview2_create_bets(GtkListStore *ls)
 		    !opt_user_int("int_opt_user_bet_show_my_recent"))))
 		{
 		    if(i == 0 || fix->clid != 
-		       fixture_from_id(g_array_index(bets[k], BetMatch, i - 1).fix_id)->clid)
+		       fixture_from_id(
+			   g_array_index(bets[k], BetMatch, i - 1).fix_id, TRUE)->clid)
 		    {
 			if(i > 0)
 			{

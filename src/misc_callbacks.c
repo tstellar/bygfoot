@@ -75,7 +75,7 @@ on_button_font_sel_cancel_clicked      (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
-    window_destroy(&window.font_sel, FALSE);
+    window_destroy(&window.font_sel);
 
     return FALSE;
 }
@@ -94,7 +94,7 @@ on_button_font_sel_ok_clicked          (GtkButton       *button,
 	g_free(font);
     }
 
-    window_destroy(&window.font_sel, FALSE);
+    window_destroy(&window.font_sel);
 }
 
 
@@ -145,7 +145,7 @@ on_button_live_close_clicked           (GtkButton       *button,
 	callback_show_next_live_game();
     else
     {
-	window_destroy(&window.live, TRUE);
+	window_destroy(&window.live);
 	stat1 = stat2 = stat3 = stat4 = -1;
     }
 }
@@ -248,7 +248,7 @@ void
 on_button_stadium_cancel_clicked       (GtkButton       *button,
                                         gpointer         user_data)
 {
-    window_destroy(&window.stadium, TRUE);
+    window_destroy(&window.stadium);
 }
 
 
@@ -327,7 +327,7 @@ on_button_sponsors_clicked             (GtkButton       *button,
 {
     misc_callback_new_sponsor();
 
-    window_destroy(&window.sponsors, FALSE);
+    window_destroy(&window.sponsors);
 }
 
 
@@ -366,7 +366,7 @@ on_button_sponsors_wait_clicked        (GtkButton       *button,
     else
 	current_user.counters[COUNT_USER_NEW_SPONSOR] = 0;
 
-    window_destroy(&window.sponsors, FALSE);
+    window_destroy(&window.sponsors);
 }
 
 gboolean
@@ -454,7 +454,7 @@ void
 on_button_team_selection_back_clicked  (GtkButton       *button,
                                         gpointer         user_data)
 {
-    window_destroy(&window.startup, TRUE);
+    window_destroy(&window.startup);
     stat0 = STATUS_SPLASH;
     window_show_splash();
 }

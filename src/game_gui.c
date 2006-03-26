@@ -652,7 +652,7 @@ game_gui_set_main_window_sensitivity(gboolean value)
 	for(i=0;i<SHOW_ITEM_END;i++)
 	    gtk_widget_hide(show_items[i]);
 
-    gtk_widget_set_sensitive(window.main, value);
+    gtk_window_set_modal(GTK_WINDOW(window.live), !value);
 }
 
 /** Show a window with a warning.

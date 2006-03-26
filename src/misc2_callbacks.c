@@ -76,7 +76,7 @@ on_button_offer_ok_clicked             (GtkButton       *button,
 
     g_free(team_name);
 
-    window_destroy(&window.job_offer, FALSE);
+    window_destroy(&window.job_offer);
 
     setsav0;
 }
@@ -98,7 +98,7 @@ on_button_offer_cancel_clicked         (GtkButton       *button,
 	}
     }
 
-    window_destroy(&window.job_offer, FALSE);
+    window_destroy(&window.job_offer);
 
     if(stat0 != STATUS_SHOW_JOB_EXCHANGE)
     {
@@ -113,7 +113,7 @@ on_button_warning_clicked              (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
-    window_destroy(&window.warning, FALSE);
+    window_destroy(&window.warning);
 
     if(stat4 == STATUS_SHOW_EVENT)
 	user_event_show_next();
@@ -162,7 +162,7 @@ on_button_digits_ok_clicked            (GtkButton       *button,
     }
 
     if(destroy_window)
-	window_destroy(&window.digits, FALSE);
+	window_destroy(&window.digits);
 
     game_gui_set_main_window_header();
 
@@ -174,7 +174,7 @@ void
 on_button_digits_cancel_clicked        (GtkButton       *button,
                                         gpointer         user_data)
 {
-    window_destroy(&window.digits, FALSE);
+    window_destroy(&window.digits);
 }
 
 gboolean
@@ -194,7 +194,7 @@ void
 on_button_yesno_yes_clicked            (GtkButton       *button,
                                         gpointer         user_data)
 {    
-    window_destroy(&window.yesno, TRUE);
+    window_destroy(&window.yesno);
     setsav0;
 
     switch(stat1)
@@ -247,7 +247,7 @@ void
 on_button_yesno_no_clicked             (GtkButton       *button,
                                         gpointer         user_data)
 {
-    window_destroy(&window.yesno, TRUE);
+    window_destroy(&window.yesno);
 
     if(stat4 == STATUS_SHOW_EVENT)
 	user_event_show_next();
@@ -265,7 +265,7 @@ void
 on_button_contract_cancel_clicked      (GtkButton       *button,
                                         gpointer         user_data)
 {
-    window_destroy(&window.contract, FALSE);
+    window_destroy(&window.contract);
 }
 
 
@@ -276,7 +276,7 @@ on_window_contract_delete_event        (GtkWidget       *widget,
 {
 
     if(GTK_WIDGET_IS_SENSITIVE(lookup_widget(window.contract, "button_contract_cancel")))
-	window_destroy(&window.contract, FALSE);    
+	window_destroy(&window.contract);    
 
     return TRUE;
 }
@@ -303,7 +303,7 @@ on_button_user_management_close_clicked
                                         (GtkButton       *button,
                                         gpointer         user_data)
 {
-    window_destroy(&window.user_management, FALSE);
+    window_destroy(&window.user_management);
     on_button_back_to_main_clicked(NULL, NULL);
 }
 
@@ -374,7 +374,7 @@ void
 on_button_debug_close_activate         (GtkButton       *button,
                                         gpointer         user_data)
 {
-    window_destroy(&window.wdebug, FALSE);
+    window_destroy(&window.wdebug);
 }
 
 
@@ -432,7 +432,7 @@ void
 on_button_help_close_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
-    window_destroy(&window.help, FALSE);
+    window_destroy(&window.help);
 }
 
 void
@@ -472,7 +472,7 @@ on_button_transfer_yes_clicked         (GtkButton       *button,
     else if(STATUS_TRANSFER_OFFER_CPU)
 	misc2_callback_transfer_cpu_player();
 
-    window_destroy(&window.transfer_dialog, FALSE);
+    window_destroy(&window.transfer_dialog);
 }
 
 
@@ -496,7 +496,7 @@ on_button_transfer_no_clicked          (GtkButton       *button,
     game_gui_set_main_window_header();
     on_button_transfers_clicked(NULL, NULL);
 
-    window_destroy(&window.transfer_dialog, FALSE);
+    window_destroy(&window.transfer_dialog);
 }
 
 
@@ -504,7 +504,7 @@ void
 on_button_transfer_later_clicked       (GtkButton       *button,
                                         gpointer         user_data)
 {
-    window_destroy(&window.transfer_dialog, FALSE);
+    window_destroy(&window.transfer_dialog);
 }
 
 gboolean
@@ -560,7 +560,7 @@ on_button_mm_save_close_clicked        (GtkButton       *button,
     user_mm_save_file(current_user.mmatches_file,
 		      current_user.mmatches);
     
-    window_destroy(&window.mmatches, TRUE);
+    window_destroy(&window.mmatches);
 }
 
 

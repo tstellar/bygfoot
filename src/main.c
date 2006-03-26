@@ -208,7 +208,6 @@ main_init_variables(void)
 	constants.datalist = options.datalist = 
 	tokens.datalist = hints.datalist = NULL;
 
-    popups_active = 0;
     selected_row = -1;
 
     timeout_id = -1;

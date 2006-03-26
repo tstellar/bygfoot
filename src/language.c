@@ -76,7 +76,7 @@ language_set(gint index)
 
 	if(window.main != NULL)
 	{
-	    window_destroy(&window.main, FALSE);
+	    window_destroy(&window.main);
 	    window_create(WINDOW_MAIN);
 	    on_button_back_to_main_clicked(NULL, NULL);
 	}

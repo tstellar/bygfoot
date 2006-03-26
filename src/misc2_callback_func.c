@@ -191,7 +191,7 @@ misc2_callback_contract_offer(void)
 		pl->offers = 0;
 		pl->wage = value;
 		game_gui_show_warning(_("%s accepts your offer."), pl->name);
-		window_destroy(&window.contract, FALSE);
+		window_destroy(&window.contract);
 	    }
 	    else
 	    {
@@ -204,7 +204,7 @@ misc2_callback_contract_offer(void)
 		{
 		    game_gui_show_warning(_("%s rejects your offer and won't negotiate with you anymore. You should sell him before his contract expires (he'll simply leave your team otherwise)."), 
 					  pl->name);
-		    window_destroy(&window.contract, FALSE);
+		    window_destroy(&window.contract);
 		}
 	    }
 
@@ -266,14 +266,17 @@ misc2_callback_mmatches_button_press(GtkWidget *widget, gint row_num, gint col_n
 	{
 	    stat1 = STATUS_SHOW_LAST_MATCH;
 	    stat3 = 0;
-	    callback_show_last_match(TRUE, 
-				     &g_array_index(current_user.mmatches, MemMatch, row_num).lg);
+	    callback_show_last_match(
+		TRUE, 
+		&g_array_index(current_user.mmatches, MemMatch, row_num).lg);
 	}
 	else if(col_num == TREEVIEW_MMATCH_COL_REMOVE)
 	{
 	    gtk_widget_hide(widget);
-	    free_g_string(&g_array_index(current_user.mmatches, MemMatch, row_num).competition_name);
-	    free_gchar_ptr(g_array_index(current_user.mmatches, MemMatch, row_num).country_name);
+	    free_g_string(&g_array_index(current_user.mmatches, MemMatch, row_num).
+			  competition_name);
+	    free_gchar_ptr(g_array_index(current_user.mmatches, MemMatch, row_num).
+			   country_name);
 	    free_live_game(&g_array_index(current_user.mmatches, MemMatch, row_num).lg);
 	    g_array_remove_index(current_user.mmatches, row_num);
 	    treeview2_show_mmatches();

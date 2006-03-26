@@ -51,7 +51,7 @@ void
 on_button_bet_close_clicked            (GtkButton       *button,
                                         gpointer         user_data)
 {
-    window_destroy(&window.bets, FALSE);
+    window_destroy(&window.bets);
 }
 
 gboolean
@@ -117,7 +117,7 @@ on_treeview_bets_button_press_event    (GtkWidget       *widget,
 
     gtk_tree_model_get(model, &iter, col_num, &bet, -1);
 
-    if(bet == NULL || fixture_from_id(bet->fix_id)->attendance != -1)
+    if(bet == NULL || fixture_from_id(bet->fix_id, TRUE)->attendance != -1)
 	return TRUE;
 
     if(bet_is_user(bet))
@@ -174,7 +174,7 @@ void
 on_button_splash_new_game_clicked      (GtkButton       *button,
                                         gpointer         user_data)
 {   
-    window_destroy(&window.splash, FALSE);
+    window_destroy(&window.splash);
 
     window_show_startup();
     stat0 = STATUS_TEAM_SELECTION;
@@ -202,7 +202,7 @@ void
 on_button_splash_quit_clicked          (GtkButton       *button,
                                         gpointer         user_data)
 {
-    window_destroy(&window.splash, FALSE);
+    window_destroy(&window.splash);
     main_exit_program(EXIT_OK, NULL);
 }
 

@@ -83,6 +83,7 @@ create_window_startup (void)
   window_startup = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_startup), 6);
   gtk_window_set_position (GTK_WINDOW (window_startup), GTK_WIN_POS_CENTER);
+  gtk_window_set_modal (GTK_WINDOW (window_startup), TRUE);
   gtk_window_set_default_size (GTK_WINDOW (window_startup), 550, 600);
 
   vbox2 = gtk_vbox_new (FALSE, 0);
@@ -496,6 +497,7 @@ create_window_live (void)
   gtk_container_set_border_width (GTK_CONTAINER (window_live), 6);
   gtk_window_set_title (GTK_WINDOW (window_live), _("Live game"));
   gtk_window_set_position (GTK_WINDOW (window_live), GTK_WIN_POS_CENTER);
+  gtk_window_set_modal (GTK_WINDOW (window_live), TRUE);
   gtk_window_set_default_size (GTK_WINDOW (window_live), 620, 550);
 
   vbox36 = gtk_vbox_new (FALSE, 0);
@@ -896,6 +898,7 @@ create_window_stadium (void)
   window_stadium = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_stadium), 5);
   gtk_window_set_position (GTK_WINDOW (window_stadium), GTK_WIN_POS_CENTER);
+  gtk_window_set_modal (GTK_WINDOW (window_stadium), TRUE);
 
   vbox39 = gtk_vbox_new (FALSE, 5);
   gtk_widget_show (vbox39);

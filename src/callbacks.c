@@ -61,7 +61,7 @@ void
 on_menu_new_activate                   (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    window_destroy(&window.main, FALSE);
+    window_destroy(&window.main);
     free_memory();
     
     main_init(NULL, NULL);

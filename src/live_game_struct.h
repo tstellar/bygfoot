@@ -203,6 +203,9 @@ typedef struct
     /** The names of the teams stored for later use (when the fixture
 	already got freed). */
     gchar *team_names[2];
+    /** Attendance stored for later use (when the fixture
+	already got freed). */
+    gint attendance;
     /** Substitutions left for the teams. */
     gint subs_left[2];
     /** The team that started the game, 0 or 1. */

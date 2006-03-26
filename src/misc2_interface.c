@@ -510,6 +510,7 @@ create_window_yesno (void)
   window_yesno = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_yesno), 5);
   gtk_window_set_position (GTK_WINDOW (window_yesno), GTK_WIN_POS_CENTER);
+  gtk_window_set_modal (GTK_WINDOW (window_yesno), TRUE);
 
   vbox17 = gtk_vbox_new (FALSE, 5);
   gtk_widget_show (vbox17);
@@ -1285,6 +1286,7 @@ create_window_mmatches (void)
   window_mmatches = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_mmatches), 5);
   gtk_window_set_position (GTK_WINDOW (window_mmatches), GTK_WIN_POS_CENTER);
+  gtk_window_set_modal (GTK_WINDOW (window_mmatches), TRUE);
   gtk_window_set_default_size (GTK_WINDOW (window_mmatches), 600, 500);
 
   vbox27 = gtk_vbox_new (FALSE, 3);

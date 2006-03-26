@@ -68,7 +68,7 @@ gui_show_progress(gfloat value, const gchar *text, gint pictype)
 
     if(value == 1 || value < 0)
     {
-	window_destroy(&window.progress, FALSE);
+	window_destroy(&window.progress);
 	return;
     }
 

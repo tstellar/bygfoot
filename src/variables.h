@@ -94,11 +94,6 @@ GArray *name_lists;
 /** The struct containing the window pointers. */
 Windows window;
 
-/** With this we keep track of the number of popup
-    windows and make the main window sensitive or
-    insensitive, depending. */
-gint popups_active;
-
 /** The variable for non-user games (which aren't shown). */
 LiveGame live_game_temp;
 

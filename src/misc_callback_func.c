@@ -89,7 +89,7 @@ misc_callback_start_game(void)
 	opt_set_int("int_opt_load_defs", 0);
 
     start_new_game();
-    window_destroy(&window.startup, TRUE);
+    window_destroy(&window.startup);
 
     if(!opt_int("int_opt_calodds"))
     {
@@ -288,7 +288,7 @@ misc_callback_improve_stadium(void)
     current_user.counters[COUNT_USER_STADIUM_CAPACITY] += value_capacity;
     current_user.counters[COUNT_USER_STADIUM_SAFETY] += value_safety;
 
-    window_destroy(&window.stadium, TRUE);
+    window_destroy(&window.stadium);
     game_gui_set_main_window_header();
 
     setsav0;
@@ -301,7 +301,7 @@ misc_callback_startup_load(const gchar *filename)
     gtk_widget_hide(window.splash);
 
     if(load_save_load_game(filename, TRUE))
-	window_destroy(&window.splash, TRUE);
+	window_destroy(&window.splash);
     else
 	gtk_widget_show(window.splash);
 }

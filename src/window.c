@@ -420,7 +420,7 @@ window_show_file_sel(void)
 	g_free(filename);
     }
 
-    window_destroy(&window.file_chooser, FALSE);
+    window_destroy(&window.file_chooser);
 }
 
 /** Show window with memorable matches list. */
@@ -449,7 +449,7 @@ void
 window_show_menu_player(GdkEvent *event)
 {
     if(window.menu_player != NULL)
-	window_destroy(&window.menu_player, FALSE);
+	window_destroy(&window.menu_player);
 
     window.menu_player = create_menu_player();
 
@@ -462,7 +462,7 @@ void
 window_show_menu_youth(GdkEvent *event)
 {
     if(window.menu_youth != NULL)
-	window_destroy(&window.menu_youth, FALSE);
+	window_destroy(&window.menu_youth);
 
     window.menu_youth = create_menu_youth();
 
@@ -695,7 +695,6 @@ window_main_load_geometry(void)
 GtkWidget*
 window_create(gint window_type)
 {
-    gint old_popups_active = popups_active;
     gchar buf[SMALL];
     GtkWidget *wind = NULL;
     
@@ -728,21 +727,16 @@ window_create(gint window_type)
 	    if(window.startup != NULL)
 		g_warning("window_create: called on already existing window\n");
 	    else
-	    {
-		popups_active++;
 		window.startup = create_window_startup();
-	    }
 	    wind = window.startup;
 	    break;
 	case WINDOW_LIVE:
 	    if(window.live != NULL)
 		g_warning("window_create: called on already existing window\n");
 	    else
-	    {
-		popups_active++;
 		window.live = create_window_live();
-	    }
-	    strcpy(buf, league_cup_get_name_string(((LiveGame*)statp)->fix->clid));
+	    if(((LiveGame*)statp)->fix != NULL)
+		strcpy(buf, league_cup_get_name_string(((LiveGame*)statp)->fix->clid));
 	    wind = window.live;
 	    window_live_set_up();
 	    break;
@@ -775,10 +769,7 @@ window_create(gint window_type)
 	    if(window.stadium != NULL)
 		g_warning("window_create: called on already existing window\n");
 	    else
-	    {
-		popups_active++;
 		window.stadium = create_window_stadium();
-	    }
 	    wind = window.stadium;
 	    strcpy(buf, _("Your stadium"));
 	    break;
@@ -794,10 +785,7 @@ window_create(gint window_type)
 	    if(window.yesno != NULL)
 		g_warning("window_create: called on already existing window\n");
 	    else
-	    {
-		popups_active++;
 		window.yesno = create_window_yesno();
-	    }
 	    wind = window.yesno;
 	    strcpy(buf, "???");
 	    break;
@@ -805,10 +793,7 @@ window_create(gint window_type)
 	    if(window.options != NULL)
 		g_warning("window_create: called on already existing window\n");
 	    else
-	    {
-		popups_active++;
 		window.options = create_window_options();
-	    }
 	    wind = window.options;
 	    strcpy(buf, _("Options"));
 	    break;
@@ -878,10 +863,7 @@ window_create(gint window_type)
 	    if(window.mmatches != NULL)
 		g_warning("window_create: called on already existing window\n");
 	    else
-	    {
 		window.mmatches = create_window_mmatches();
-		popups_active++;
-	    }
 	    wind = window.mmatches;
 	    strcpy(buf, _("Memorable matches"));
 	    break;
@@ -910,10 +892,6 @@ window_create(gint window_type)
     else
 	gtk_widget_show(wind);
 
-    if(popups_active != old_popups_active &&
-       window.main != NULL)
-	gtk_widget_set_sensitive(window.main, FALSE);
-
     return wind;
 }
 
@@ -923,18 +901,10 @@ window_create(gint window_type)
     @param count_popups Whether this window adds to the popup
     counter that determines when the main window gets (in)sensitive. */
 void
-window_destroy(GtkWidget **wind, gboolean count_popups)
+window_destroy(GtkWidget **wind)
 {
     if(*wind == NULL)
 	return;
-
-    if(*wind != window.main && count_popups)
-    {
-	popups_active--;
-
-	if(popups_active == 0 && window.main != NULL)
-	    gtk_widget_set_sensitive(window.main, TRUE);
-    }
 
     if(*wind == window.splash)
     {
