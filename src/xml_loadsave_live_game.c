@@ -282,13 +282,13 @@ xml_loadsave_live_game_write(const gchar *filename, const LiveGame *live_game)
 	    g_warning(
 		"xml_loadsave_live_game_write: suspicious fix id: %d.",
 		live_game->fix->id);
-
-	for(i=0;i<2;i++)
-	    xml_write_string(fil, live_game->team_names[i], 
-			     TAG_LIVE_GAME_TEAM_NAME, I0);
-
-	xml_write_int(fil, live_game->attendance, TAG_LIVE_GAME_ATTENDANCE, I0);
     }
+
+    for(i=0;i<2;i++)
+	xml_write_string(fil, live_game->team_names[i], 
+			 TAG_LIVE_GAME_TEAM_NAME, I0);
+    
+    xml_write_int(fil, live_game->attendance, TAG_LIVE_GAME_ATTENDANCE, I0);
 
     for(i=0;i<live_game->units->len;i++)
 	xml_loadsave_live_game_write_unit(fil,
