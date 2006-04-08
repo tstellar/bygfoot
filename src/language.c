@@ -44,7 +44,7 @@ language_set(gint index)
 {
     gchar buf[SMALL], buf2[SMALL];
     gchar *pwd = g_get_current_dir();
-    GPtrArray *codes = 
+    GPtrArray *codes =
 	misc_separate_strings(const_str("string_language_codes"));
 
     if(index > 0)
@@ -93,7 +93,7 @@ gint
 language_get_code_index(const gchar *code)
 {
     gint i, return_value = -1;
-    GPtrArray *codes = 
+    GPtrArray *codes =
 	misc_separate_strings(const_str("string_language_codes"));
     gchar local_code[SMALL];
 
@@ -101,7 +101,7 @@ language_get_code_index(const gchar *code)
 
     if(strcmp(code, "en") == 0)
 	strcpy(local_code, "C");
-    
+
     for(i=0;i<codes->len;i++)
 	if(strcmp(local_code, (gchar*)g_ptr_array_index(codes, i)) == 0)
 	{
@@ -123,7 +123,7 @@ language_compare_country_files(gconstpointer a, gconstpointer b, gpointer data)
     const gchar *prefdef = (const gchar*)data;
     const gchar *def1 = *(const gchar**)a;
     const gchar *def2 = *(const gchar**)b;
-    gint len1 = strlen(def1), 
+    gint len1 = strlen(def1),
 	len2 = strlen(def2), lenmin = MIN(len1, len2);
     gchar alphabet[26] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
     'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
@@ -170,9 +170,9 @@ void
 language_pick_country(GPtrArray *country_files)
 {
     gint i, j;
-    GPtrArray *codes = 
+    GPtrArray *codes =
 	misc_separate_strings(const_str("string_language_codes"));
-    GPtrArray *defs = 
+    GPtrArray *defs =
 	misc_separate_strings(const_str("string_language_defs"));
     gpointer prefdef = NULL;
     const gchar *lang = g_getenv("LANG");
@@ -208,7 +208,7 @@ language_pick_country(GPtrArray *country_files)
     free_gchar_array(&defs);
 }
 
-/** Find out which language to use (e.g. for live game commentary). 
+/** Find out which language to use (e.g. for live game commentary).
     Write the code (en, de etc.) into the buffer. */
 void
 language_get_code(gchar *buf)
@@ -216,12 +216,14 @@ language_get_code(gchar *buf)
     gchar *cur_locale = NULL;
 
 #ifdef G_OS_UNIX
-    cur_locale = setlocale(LC_MESSAGES, NULL);
+     cur_locale = setlocale(LC_MESSAGES, NULL);
+#else
+    cur_locale = g_win32_getlocale ();
 #endif
 
     if(strcmp(opt_str("string_opt_language_code"), "C") == 0)
 	strcpy(buf, "en");
-    else if(strcmp(opt_str("string_opt_language_code"), "") == 0 && 
+    else if(strcmp(opt_str("string_opt_language_code"), "") == 0 &&
 	    cur_locale != NULL)
     {
 	strncpy(buf, cur_locale, 2);
