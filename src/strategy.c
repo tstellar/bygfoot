@@ -530,9 +530,10 @@ strategy_get_sub(const Team *tm, gint position,
 	return -1;
     }
 
-    g_ptr_array_sort_with_data(players, 
-			       (GCompareDataFunc)strategy_compare_players_sub,
-			       GINT_TO_POINTER(property * 10 + g_array_index(positions, gint, 0)));
+    g_ptr_array_sort_with_data(
+	players, 
+	(GCompareDataFunc)strategy_compare_players_sub,
+	GINT_TO_POINTER(property * 10 + g_array_index(positions, gint, 0)));
 
     return_value = ((Player*)g_ptr_array_index(players, 0))->id;
 

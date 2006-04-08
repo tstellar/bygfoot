@@ -38,6 +38,7 @@
 enum XmlLoadSaveCountryTags
 {
     TAG_MISC = TAG_START_MISC,
+    TAG_MISC_VERSION,
     TAG_MISC_RATING,
     TAG_MISC_SEASON,
     TAG_MISC_WEEK,
@@ -106,6 +107,7 @@ xml_loadsave_misc_end_element    (GMarkupParseContext *context,
     if(tag == TAG_NAME ||
        tag == TAG_SYMBOL ||
        tag == TAG_SID ||
+       tag == TAG_MISC_VERSION ||
        tag == TAG_MISC_RATING ||
        tag == TAG_MISC_ALLCUP ||
        tag == TAG_MISC_COUNTER ||
@@ -232,6 +234,7 @@ xml_loadsave_misc_write(const gchar *prefix)
 
     fprintf(fil, "<_%d>\n", TAG_MISC);
 
+    xml_write_string(fil, VERS, TAG_MISC_VERSION, I0);
     xml_write_string(fil, country.name, TAG_NAME, I0);
     xml_write_string(fil, country.symbol, TAG_SYMBOL, I0);
     xml_write_string(fil, country.sid, TAG_SID, I0);
