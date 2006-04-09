@@ -38,7 +38,6 @@
 enum XmlLoadSaveCountryTags
 {
     TAG_MISC = TAG_START_MISC,
-    TAG_MISC_VERSION,
     TAG_MISC_RATING,
     TAG_MISC_SEASON,
     TAG_MISC_WEEK,
@@ -49,6 +48,7 @@ enum XmlLoadSaveCountryTags
     TAG_MISC_BET1,
     TAG_MISC_BET_FIX_ID,
     TAG_MISC_BET_ODD,
+    TAG_MISC_VERSION,
     TAG_END
 };
 
@@ -139,7 +139,7 @@ xml_loadsave_misc_end_element    (GMarkupParseContext *context,
 void
 xml_loadsave_misc_text         (GMarkupParseContext *context,
 				const gchar         *text,
-				gsize                text_len,  
+				gsize                text_len,
 				gpointer             user_data,
 				GError             **error)
 {
@@ -193,7 +193,7 @@ xml_loadsave_misc_read(const gchar *dirname, const gchar *basename)
 
     sprintf(file, "%s%s%s___misc.xml", dirname, G_DIR_SEPARATOR_S, basename);
 
-    context = 
+    context =
 	g_markup_parse_context_new(&parser, 0, NULL, NULL);
 
     if(!g_file_get_contents(file, &file_contents, &length, &error))
