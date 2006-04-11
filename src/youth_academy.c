@@ -42,14 +42,14 @@ youth_academy_new(User *user)
 				   const_int("int_youth_academy_youths_upper"));
 
     user->youth_academy.tm = user->tm;
-    user->youth_academy.coach = 
+    user->youth_academy.coach =
 	user->youth_academy.av_coach = QUALITY_AVERAGE;
     user->youth_academy.pos_pref = PLAYER_POS_ANY;
-    user->youth_academy.percentage = 
-	user->youth_academy.av_percentage = 
+    user->youth_academy.percentage =
+	user->youth_academy.av_percentage =
 	const_int("int_youth_academy_default_percentage");
 
-    user->youth_academy.counter_youth = 
+    user->youth_academy.counter_youth =
 	math_rnd(const_float("float_youth_academy_youth_counter_lower"),
 		 const_float("float_youth_academy_youth_counter_upper"));
 
@@ -67,8 +67,8 @@ youth_academy_new(User *user)
 void
 youth_academy_add_new_player(YouthAcademy *youth_academy)
 {
-    gint i;    
-    gfloat pos_probs[4] = 
+    gint i;
+    gfloat pos_probs[4] =
 	{const_float("float_youth_academy_pos_goalie"),
 	 const_float("float_youth_academy_pos_defender"),
 	 const_float("float_youth_academy_pos_midfielder"),
@@ -104,33 +104,33 @@ youth_academy_add_new_player(YouthAcademy *youth_academy)
 		       const_float("float_youth_academy_age_upper"));
     new.peak_age =
 	math_rnd(const_float("float_player_peak_age_lower") +
-		 (new.pos == PLAYER_POS_GOALIE) * 
+		 (new.pos == PLAYER_POS_GOALIE) *
 		 const_float("float_player_peak_age_goalie_addition"),
 		 const_float("float_player_peak_age_upper") +
-		 (new.pos == PLAYER_POS_GOALIE) * 
+		 (new.pos == PLAYER_POS_GOALIE) *
 		 const_float("float_player_peak_age_goalie_addition"));
 
     /* Argument for the talent factor function, depending on average coach and
 	percentage values (weighted). */
-    percentage_coach_talent_factor = (4 - youth_academy->av_coach) * 
-	(gfloat)const_int("int_youth_academy_max_percentage") * 
-	const_float("float_youth_academy_coach_weight") * 0.25 + 
+    percentage_coach_talent_factor = (4 - youth_academy->av_coach) *
+	(gfloat)const_int("int_youth_academy_max_percentage") *
+	const_float("float_youth_academy_coach_weight") * 0.25 +
 	youth_academy->av_percentage;
 
     /* Applying the talent factor funtion leading to a factor between
        float_youth_academy_talent_factor_lower and _upper */
-    percentage_coach_talent_factor = 
+    percentage_coach_talent_factor =
 	((const_float("float_youth_academy_talent_factor_upper") -
 	  const_float("float_youth_academy_talent_factor_lower")) /
-	 ((gfloat)const_int("int_youth_academy_max_percentage") * 
+	 ((gfloat)const_int("int_youth_academy_max_percentage") *
 	  (1 + const_float("float_youth_academy_coach_weight")))) *
-	percentage_coach_talent_factor + 
+	percentage_coach_talent_factor +
 	const_float("float_youth_academy_talent_factor_lower");
 
     new.talent = math_gauss_dist(
-	percentage_coach_talent_factor * av_talent * 
+	percentage_coach_talent_factor * av_talent *
 	(1 - const_float("float_youth_academy_talent_variance")),
-	percentage_coach_talent_factor * av_talent * 
+	percentage_coach_talent_factor * av_talent *
 	(1 + const_float("float_youth_academy_talent_variance")));
 
     new.talent = CLAMP(new.talent, 0, const_float("float_player_max_skill"));
@@ -159,7 +159,11 @@ youth_academy_add_new_player(YouthAcademy *youth_academy)
 
     new.streak = PLAYER_STREAK_NONE;
     new.streak_count = new.streak_prob = 0;
-    
+
+    new.peak_region =
+	math_gauss_dist(const_float("float_player_peak_region_lower"),
+			const_float("float_player_peak_region_upper"));//2;
+
     g_array_append_val(youth_academy->players, new);
 }
 
@@ -180,13 +184,13 @@ youth_academy_update_weekly(void)
 	for(j=ya->players->len - 1;j>=0;j--)
 	{
 	    player_update_weekly(&g_array_index(ya->players, Player, j));
-	    
+
 	    if(g_array_index(ya->players, Player, i).fitness < 0.9)
 		player_update_fitness(&g_array_index(ya->players, Player, j));
 	    else
 	    {
 		g_array_index(ya->players, Player, j).fitness += math_rnd(-0.05, 0.05);
-		g_array_index(ya->players, Player, j).fitness = 
+		g_array_index(ya->players, Player, j).fitness =
 		    MIN(g_array_index(ya->players, Player, j).fitness, 1);
 	    }
 
@@ -194,11 +198,11 @@ youth_academy_update_weekly(void)
 	       const_float("float_player_age_lower") &&
 	       g_array_index(ya->players, Player, j).age + 0.08 <=
 	       const_float("float_player_age_lower"))
-		user_event_add(&usr(i), EVENT_TYPE_WARNING, -1, -1, NULL, 
+		user_event_add(&usr(i), EVENT_TYPE_WARNING, -1, -1, NULL,
 			       _("Youth %s will be too old for the youth academy soon. Move him to your team or kick him out of the academy. Otherwise he'll probably look for another team to play in."), g_array_index(ya->players, Player, j).name);
 	    else if(g_array_index(ya->players, Player, j).age > const_float("float_player_age_lower"))
 	    {
-		user_event_add(&usr(i), EVENT_TYPE_WARNING, -1, -1, NULL, 
+		user_event_add(&usr(i), EVENT_TYPE_WARNING, -1, -1, NULL,
 			       _("Youth %s thought he's old enough for a real contract and left your youth academy."),
 			       g_array_index(ya->players, Player, j).name);
 		free_player(&g_array_index(ya->players, Player, j));
@@ -206,19 +210,19 @@ youth_academy_update_weekly(void)
 	    }
 	}
 
-	ya->av_coach = 
-	    (ya->av_coach * const_float("float_youth_academy_average_weight") + 
-	     (gfloat)ya->coach) / 
+	ya->av_coach =
+	    (ya->av_coach * const_float("float_youth_academy_average_weight") +
+	     (gfloat)ya->coach) /
 	    (const_float("float_youth_academy_average_weight") + 1);
 
-	ya->av_percentage = 
+	ya->av_percentage =
 	    (ya->av_percentage * const_float("float_youth_academy_average_weight") +
 	     (gfloat)ya->percentage) /
 	    (const_float("float_youth_academy_average_weight") + 1);
 
 	if(ya->percentage > 0)
 	{
-	    ya->counter_youth -= 
+	    ya->counter_youth -=
 		((1 / (gfloat)const_int("int_youth_academy_max_percentage")) *
 		 ya->av_percentage + const_float("float_youth_academy_counter_decrease_min"));
 
@@ -229,11 +233,11 @@ youth_academy_update_weekly(void)
 		if(ya->players->len < const_int("int_youth_academy_max_youths"))
 		{
 		    youth_academy_add_new_player(ya);
-		    user_event_add(&usr(i), EVENT_TYPE_WARNING, -1, -1, NULL, 
+		    user_event_add(&usr(i), EVENT_TYPE_WARNING, -1, -1, NULL,
 				   _("A new youth registered at your youth academy."));
 		}
 		else
-		    user_event_add(&usr(i), EVENT_TYPE_WARNING, -1, -1, NULL, 
+		    user_event_add(&usr(i), EVENT_TYPE_WARNING, -1, -1, NULL,
 				   _("A new youth wanted to registered at your youth academy but there was no room for him."));
 	    }
 	}
