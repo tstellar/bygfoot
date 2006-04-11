@@ -38,6 +38,7 @@
 enum XmlLoadSaveCountryTags
 {
     TAG_MISC = TAG_START_MISC,
+    TAG_MISC_VERSION,
     TAG_MISC_RATING,
     TAG_MISC_SEASON,
     TAG_MISC_WEEK,
