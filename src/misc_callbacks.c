@@ -382,7 +382,10 @@ on_eventbox_lg_style_button_press_event (GtkWidget       *widget,
 	return FALSE;
     }
 
-    if(event->type != GDK_BUTTON_PRESS)
+    if(event->type != GDK_BUTTON_PRESS ||
+       g_array_index(usr(stat2).live_game.units, LiveGameUnit,
+		     usr(stat2).live_game.units->len -1).event.type == 
+       LIVE_GAME_EVENT_END_MATCH)
 	return FALSE;
 
     if(event->button == 3)
