@@ -121,8 +121,9 @@ live_game_initialize(Fixture *fix)
 	if(window.live == NULL)
 	    window.live = window_create(WINDOW_LIVE);
 	else
-	    gtk_window_set_title(GTK_WINDOW(window.live),
-				 league_cup_get_name_string(((LiveGame*)statp)->fix->clid));
+	    gtk_window_set_title(
+		GTK_WINDOW(window.live),
+		league_cup_get_name_string(((LiveGame*)statp)->fix->clid));
 	window_live_set_up();
 	game_gui_live_game_show_opponent();
     }

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bygfoot 1.9.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-02 08:02+0200\n"
+"POT-Creation-Date: 2006-04-19 18:54+0200\n"
 "PO-Revision-Date: 2006-03-17 11:27+0100\n"
 "Last-Translator: Arne en Tobe Deprez <tobedeprez@scarlet.be>\n"
 "Language-Team: Dutch <tobedeprez@scarlet.be>\n"
@@ -270,13 +270,13 @@ msgid "%.1f months / %s"
 msgstr "%.1f maanden / %s"
 
 #. A result after extra time.
-#: src/live_game.c:1697
+#: src/live_game.c:1698
 #, c-format
 msgid "%d : %d e.t."
 msgstr "%d : %d n.v."
 
 #. A result after penalties.
-#: src/live_game.c:1693
+#: src/live_game.c:1694
 #, c-format
 msgid "%d : %d p."
 msgstr "%d : %d p."
@@ -499,11 +499,11 @@ msgstr ""
 msgid "<span foreground='%s' background='%s'>Week %d Round %d</span>"
 msgstr "<span foreground='%s' background='%s'>Week %d Ronde %d</span>"
 
-#: src/youth_academy.c:233
+#: src/youth_academy.c:237
 msgid "A new youth registered at your youth academy."
 msgstr "Er is een niewe jeugdspeler in uw jeugd academie geregistreerd"
 
-#: src/youth_academy.c:237
+#: src/youth_academy.c:241
 msgid ""
 "A new youth wanted to registered at your youth academy but there was no room "
 "for him."
@@ -760,7 +760,7 @@ msgstr ""
 msgid "Boost"
 msgstr "Motivatie:"
 
-#: src/callbacks.c:847 src/game_gui.c:418 src/misc_callbacks.c:437
+#: src/callbacks.c:847 src/game_gui.c:418 src/misc_callbacks.c:440
 msgid "Boost ON is disabled in this country definition."
 msgstr "Extra Motivatie kan niet gebruikt worden in dit land bestand."
 
@@ -3306,7 +3306,7 @@ msgstr "Uw team"
 msgid "Your team can't have less than 11 players."
 msgstr "Je team kan niet minder dan 11 spelers hebben."
 
-#: src/youth_academy.c:202
+#: src/youth_academy.c:206
 #, c-format
 msgid ""
 "Youth %s thought he's old enough for a real contract and left your youth "
@@ -3315,7 +3315,7 @@ msgstr ""
 "Jeugtspeler %s dacht dat hij oud genoeg was voor een echt contract en heeft "
 "uw jeugd academie verlaten."
 
-#: src/youth_academy.c:198
+#: src/youth_academy.c:202
 #, c-format
 msgid ""
 "Youth %s will be too old for the youth academy soon. Move him to your team "
