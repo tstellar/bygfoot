@@ -401,7 +401,8 @@ end_week_round_update_fixtures(void)
 	    fixture_update(acp(i));
 
     for(i=0;i<ligs->len;i++)
-	if(lig(i).active && week == g_array_index(
+	if(lig(i).active && week == 
+	   g_array_index(
 	       lig(i).fixtures, Fixture, lig(i).fixtures->len - 1).week_number && 
 	   week_round == 1 &&
 	   team_is_user(g_array_index(lig(i).table.elements, TableElement, 0).team) != -1)

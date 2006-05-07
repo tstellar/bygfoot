@@ -987,11 +987,11 @@ query_cup_begins(const Cup *cup)
 		    &g_array_index(cup_round->choose_teams,
 				   CupChooseTeam, i), &league, &cup_temp);
 		
-		if((cup_temp == NULL && 
-		    (!league->active || 
-		     g_array_index(league->fixtures, Fixture,
-				   league->fixtures->len - 1).attendance == -1)) ||
-		   (league == NULL && 
+		if((cup_temp == NULL &&
+		    league->active &&
+		    g_array_index(league->fixtures, Fixture,
+				  league->fixtures->len - 1).attendance == -1) ||
+		   (league == NULL &&
 		    ((cup_temp->fixtures->len > 0 &&
 		      g_array_index(cup_temp->fixtures, Fixture,
 				    cup_temp->fixtures->len - 1).attendance == -1) ||
