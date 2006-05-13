@@ -727,15 +727,16 @@ cup_get_matchdays_in_cup_round(const Cup *cup, gint round)
     if(cup_round->round_robin_number_of_groups > 0)
     {
 	number_of_teams = cup_round_get_number_of_teams(cup, round);
-	
-	if(number_of_teams % cup_round->round_robin_number_of_groups == 0)
-	    number_of_matchdays = 
-		((number_of_teams / cup_round->round_robin_number_of_groups) - 1) * 2;
+	number_of_teams += cup_round->round_robin_number_of_groups - 1;
+	number_of_teams /= cup_round->round_robin_number_of_groups;
+	/* Now, number_of_teams = number of teams in largest group */
+	if (number_of_teams % 2 == 0)
+	    number_of_matchdays = number_of_teams - 1;
 	else
-	    number_of_matchdays =
-		((number_of_teams - 
-		  (number_of_teams % cup_round->round_robin_number_of_groups)) /
-		 cup_round->round_robin_number_of_groups) * 2;
+	    number_of_matchdays = number_of_teams;
+	
+	if (g_array_index(cup->rounds, CupRound, round).home_away)
+	    number_of_matchdays *= 2;
     }
     else if(g_array_index(cup->rounds, CupRound, round).home_away)
 	number_of_matchdays = 2;
