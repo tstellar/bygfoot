@@ -12,15 +12,21 @@
   <names_file>scotland</names_file>
 
   <prom_rel>
+    <prom_games>
+      <prom_games_dest_sid>scotland2</prom_games_dest_sid>
+      <prom_games_loser_sid>scotland3</prom_games_loser_sid>
+      <prom_games_cup_sid>scotland_prom_games2</prom_games_cup_sid>
+    </prom_games>
+
     <prom_rel_element>
       <rank_start>1</rank_start>
-      <rank_end>2</rank_end>
+      <rank_end>1</rank_end>
       <dest_sid>scotland2</dest_sid>
       <prom_rel_type>promotion</prom_rel_type>
     </prom_rel_element>
 
     <prom_rel_element>
-      <rank_start>9</rank_start>
+      <rank_start>10</rank_start>
       <rank_end>10</rank_end>
       <dest_sid>scotland4</dest_sid>
       <prom_rel_type>relegation</prom_rel_type>
@@ -29,19 +35,19 @@
 
   <teams>
     <team>
-      <team_name>Peterhead</team_name>
+      <team_name>Alloa</team_name>
     </team>
     <team>
       <team_name>Ayr</team_name>
     </team>
     <team>
-      <team_name>Gretna</team_name>
+      <team_name>Brechin</team_name>
+    </team>
+    <team>
+      <team_name>Cowdenbeath</team_name>
     </team>
     <team>
       <team_name>Raith</team_name>
-    </team>
-    <team>
-      <team_name>Dumbarton</team_name>
     </team>
     <team>
       <team_name>Forfar</team_name>
@@ -50,13 +56,13 @@
       <team_name>Greenock</team_name>
     </team>
     <team>
-      <team_name>Partick</team_name>
+      <team_name>Peterhead</team_name>
     </team>
     <team>
       <team_name>Stirling</team_name>
     </team>
     <team>
-      <team_name>Alloa</team_name>
+      <team_name>Stranraer</team_name>
     </team>
   </teams>
 
