@@ -385,6 +385,18 @@ float_season_end_team_change_upper 4000
 # champion
 float_season_end_user_champ_addition 2000
 
+# additional percentage if a user was first league
+# champion and the team is among the best ones
+# (this means basically that we improve the top teams
+# so that they can challange the user's team better)
+float_season_end_user_champ_best_teams_addition 1500
+
+# the table rank limit below which we count
+# a team as a top team
+int_season_end_user_champ_best_teams_limit 5
+
+float_season_end_league_above_talent_factor 103000
+
 # bounds for new teams when user's been fired
 # counted in the tables relative to his team
 int_team_new_bound_upper 10

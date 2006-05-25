@@ -374,7 +374,24 @@ league_season_start(League *league)
     gboolean user_champ = 
 	(team_is_user(
 	    team_of_id(
-		g_array_index(lig(0).table.elements, TableElement, 0).team_id)) != -1);
+		g_array_index(lig(0).table.elements, TableElement, 0).team_id)) != -1),
+	league_above_talent =
+	(team_get_average_talents(league->teams) > league->average_talent *
+	 const_float("float_season_end_league_above_talent_factor") && !user_champ),
+	team_is_top = FALSE;
+    
+    gfloat team_change_lower = 
+	const_float("float_season_end_team_change_lower"),
+	user_champ_addition = 
+	const_float("float_season_end_user_champ_addition"),
+	user_champ_best_teams_addition = 
+	const_float("float_season_end_user_champ_best_teams_addition"),
+	team_change_upper = 
+	const_float("float_season_end_team_change_upper");
+
+    gint user_champ_best_teams_limit =
+	const_int("int_season_end_user_champ_best_teams_limit");
+
     gfloat team_change_factor = 0;
 
     for(i=0;i<league->table.elements->len;i++)
@@ -389,16 +406,25 @@ league_season_start(League *league)
 	    g_array_index(league->table.elements, TableElement, i).values[j] = 0;
     }
 
+    /*d*/
+/*     if(league == &lig(0)) */
+/* 	printf("league %s av %.2f ab %d\n", league->name, */
+/* 	       team_get_average_talents(league->teams), league_above_talent); */
+
     for(i=0;i<league->teams->len;i++)
     {
+	team_is_top = 
+	    (team_get_league_rank(&g_array_index(league->teams, Team, i)) <= 
+	     user_champ_best_teams_limit && idx == 0 && user_champ);
+
 	team_change_factor = 
 	    (team_is_user(&g_array_index(league->teams, Team, i)) == -1) *
-	    math_rnd(const_float("float_season_end_team_change_lower") +
-		     (user_champ && idx == 0) * 
-		     const_float("float_season_end_user_champ_addition"),
-		     const_float("float_season_end_team_change_upper") +
-		     (user_champ && idx == 0) * 
-		     const_float("float_season_end_user_champ_addition"));
+	    math_rnd(team_change_lower + user_champ * user_champ_addition +
+		     team_is_top * user_champ_best_teams_addition -
+		     league_above_talent * (user_champ_addition / 2),
+		     team_change_upper + user_champ * user_champ_addition +
+		     team_is_top * user_champ_best_teams_addition -
+		     league_above_talent * (user_champ_addition / 2));
 
 	for(j=0;j<g_array_index(league->teams, Team, i).players->len;j++)
 	    player_season_start(
@@ -410,6 +436,10 @@ league_season_start(League *league)
 	    g_array_index(league->teams, Team, i).stadium.games = 
 	    g_array_index(league->teams, Team, i).stadium.possible_attendance = 0;
     }
+
+/*     if(league == &lig(0)) */
+/* 	printf("2 league %s av %.2f\n", league->name, */
+/* 	       team_get_average_talents(league->teams)); */
 }
 
 /** Find out whether the team with specified rank in the league
