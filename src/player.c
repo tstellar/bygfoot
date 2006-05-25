@@ -1290,8 +1290,8 @@ player_injury_to_char(gint injury_type)
 }
 
 /** Nullify some stuff at the beginning of the season and change the skills
-    of cpu players.
-    @param skill_change Skill change of the player in percentage. */
+    and talents of cpu players.
+    @param skill_change Skill/talent change of the player in percentage. */
 void
 player_season_start(Player *pl, gfloat skill_change)
 {
@@ -1311,10 +1311,13 @@ player_season_start(Player *pl, gfloat skill_change)
 
     if(skill_change != 0)
     {
-	pl->skill *= (1 + skill_change);
+	pl->talent *= (1 + skill_change);
+	pl->talent = CLAMP(pl->talent, 0, const_float("float_player_max_skill"));
 
+	pl->skill *= (1 + skill_change);
 	pl->skill = CLAMP(pl->skill, 0, pl->talent);
 	pl->cskill = player_get_cskill(pl, pl->cpos, TRUE);
+
 	pl->value = player_assign_value(pl);
 
 	for(i=0;i<QUALITY_END;i++)
