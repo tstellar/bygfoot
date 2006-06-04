@@ -68,9 +68,6 @@ void
 misc_string_replace_token(gchar *string, const gchar *token, 
 			  const gchar *replacement);
 
-void
-misc_replace_sums(gchar *string);
-
 gfloat
 misc_get_age_from_birth(gint birth_year, gint birth_month);
 

@@ -357,7 +357,7 @@ xml_cup_read(const gchar *cup_name, GArray *cups)
 			    xml_cup_read_text, NULL, NULL};
     GMarkupParseContext *context;
     gchar *file_contents;
-    gint length;
+    gsize length;
     GError *error = NULL;
     gchar buf[SMALL];
 

@@ -168,7 +168,7 @@ xml_loadsave_transfers_read(const gchar *filename)
 			    xml_loadsave_transfers_text, NULL, NULL};
     GMarkupParseContext *context;
     gchar *file_contents;
-    guint length;
+    gsize length;
     GError *error = NULL;
 
     context = 

@@ -702,7 +702,7 @@ create_window_live (void)
   gtk_table_attach (GTK_TABLE (table2), spinbutton_speed, 1, 2, 1, 2,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_tooltips_set_tip (tooltips, spinbutton_speed, _("Change live game speed. The lower the value the faster the live game."), NULL);
+  gtk_tooltips_set_tip (tooltips, spinbutton_speed, _("Change live game speed. The higher the value the faster the live game."), NULL);
   gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_speed), TRUE);
 
   label112 = gtk_label_new (_("Speed"));

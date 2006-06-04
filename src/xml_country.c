@@ -206,7 +206,7 @@ xml_country_read(const gchar *country_name, Country *cntry_arg)
 			    xml_country_read_text, NULL, NULL};
     GMarkupParseContext *context;
     gchar *file_contents;
-    gint length;
+    gsize length;
     GError *error = NULL;
     gchar buf[SMALL];
     gint i;

@@ -292,11 +292,8 @@ main (gint argc, gchar *argv[])
 
     gtk_set_locale ();
     gtk_init (&argc, &argv);
-    /* mediaplayer_init(&argc, &argv); */
 
     main_init(&argc, &argv);
-
-/*     mediaplayer_play_media("file://receive.ogg"); */
 
     if((load_last_save && !load_game_from_command_line("last_save")) ||
        (!load_last_save && (argc == 1 ||

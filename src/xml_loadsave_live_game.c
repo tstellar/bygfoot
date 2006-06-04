@@ -235,7 +235,7 @@ xml_loadsave_live_game_read(const gchar *filename, LiveGame *live_game)
 			    xml_loadsave_live_game_text, NULL, NULL};
     GMarkupParseContext *context;
     gchar *file_contents;
-    guint length;
+    gsize length;
     GError *error = NULL;
 
     context = 

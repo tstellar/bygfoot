@@ -331,7 +331,7 @@ xml_loadsave_users_read(const gchar *dirname, const gchar *basename)
 			    xml_loadsave_users_text, NULL, NULL};
     GMarkupParseContext *context;
     gchar *file_contents;
-    guint length;
+    gsize length;
     GError *error = NULL;
     gchar file[SMALL];
 

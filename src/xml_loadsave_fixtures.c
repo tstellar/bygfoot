@@ -177,7 +177,7 @@ xml_loadsave_fixtures_read(const gchar *filename, GArray *fixtures)
 			    xml_loadsave_fixtures_text, NULL, NULL};
     GMarkupParseContext *context;
     gchar *file_contents;
-    guint length;
+    gsize length;
     GError *error = NULL;
 
     context = 

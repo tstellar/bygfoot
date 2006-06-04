@@ -553,7 +553,8 @@ callback_offer_new_contract(gint idx)
 void
 callback_show_team(gint type)
 {
-    GtkTreeView *treeview_right = GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right"));
+    GtkTreeView *treeview_right = 
+	GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right"));
     const Team *tm;
     const GArray *teams = NULL;
     const GPtrArray *teamsp = NULL;

@@ -470,7 +470,7 @@ xml_strategy_read(const gchar *filename)
 			    xml_strategy_read_text, NULL, NULL};
     GMarkupParseContext *context;
     gchar *file_contents;
-    gint length;
+    gsize length;
     GError *error = NULL;
 
     context = 

@@ -10,7 +10,7 @@
 # using wget to retrieve patches from the homepage
 
 # version number
-version="1.9.6"
+version="2.0.0"
 # the bygfoot release version the script is shipped with
 relversion=UNKNOWN_VERSION
 # the current release version on the server
@@ -127,7 +127,7 @@ Relevant for package download mode:
 
 Relevant for CVS mode:
 -B|--branch BRANCH         Which CVS branch to get; currently 1 or 2
-                           for the 1.8 or 1.9 branch.
+                           for the 1.8 or 2.0 branch.
 -U|--username NAME         Your SourceForge.Net username used for
                            checking out, or A for anonymous checkout.
 END
@@ -489,7 +489,7 @@ function get_paths()
     if [ $mode -eq $mode_country ]; then
 	if [ $use_zenity -eq 1 ]; then
 	    my_zenity --title="Bygfoot Online Update" --info \
-		--info-text="If you use the binary version of Bygfoot, you should specify './support_files/definitions' as country dir. If you use an installed version, you should specify '$HOME/.bygfoot-X/definitions' (X being the version number you use)."
+		--text="If you use the binary version of Bygfoot, you should specify './support_files/definitions' as country dir. If you use an installed version, you should specify '$HOME/.bygfoot-X/definitions' (X being the version number you use)."
 	else
 	    dialog --title "Bygfoot Online Update" --msgbox "If you use the binary version of Bygfoot, you should specify './support_files/definitons' as country dir. If you use an installed version, you should specify '$HOME/.bygfoot-X/definitions' (X being the version number you use)." \
 		22 80 2> $input_file
@@ -503,7 +503,7 @@ function get_paths()
 		else
 		    dialog --title "Bygfoot Online Update" \
 			--inputbox "Directory containing definitions directory" \
-			22 80 $HOME/.bygfoot-1.9/definitions 2> $input_file
+			22 80 $HOME/.bygfoot/definitions 2> $input_file
 		fi
 
 		read_input
@@ -511,10 +511,10 @@ function get_paths()
 		if [ ! -z $tempvar ]; then
 		    pushd $tempvar &> /dev/null; countrydir=$PWD; popd &> /dev/null
 		else
-		    countrydir=$HOME/.bygfoot-1.9/definitions
+		    countrydir=$HOME/.bygfoot/definitions
 		fi
 	    else
-		countrydir=$HOME/.bygfoot-1.9/definitions
+		countrydir=$HOME/.bygfoot/definitions
 	    fi
 	    my_echo
 	    my_echo "** b-u: Country dir set to"
@@ -530,7 +530,7 @@ function get_rev_type()
     if [ ! -e $packdir/revision_number ]; then
 	if [ $use_zenity -eq 1 ]; then
 	    my_zenity --title="Bygfoot Online Update" --error \
-		--error-text="I couldn't find the file containing your current revision number and type ($packdir/revision_number)."
+		--text="I couldn't find the file containing your current revision number and type ($packdir/revision_number)."
 	else
 	    dialog --title "Bygfoot Online Update" --msgbox \
 "I couldn't find the file containing your current revision number and type ($packdir/revision_number).\nFailure." \
@@ -590,7 +590,7 @@ function get_revision()
     if [ $apply_all -eq 0 ]; then
 	if [ $use_zenity -eq 1 ]; then
 	    my_zenity --title="Bygfoot Online Update" --list \
-		--list-text="Apply patch? (You can't apply newer ones if you don't apply this one because they depend on each other." \
+		--text="Apply patch? (You can't apply newer ones if you don't apply this one because they depend on each other." \
 		--radiolist --column "" --column "" --column "" \
 		TRUE 1 Yes \
 		FALSE 2 No \
@@ -653,14 +653,14 @@ function update_end()
     if [ $found -ge 1 ]; then
 	if [ $use_zenity -eq 1 ]; then
 	    my_zenity --title="Bygfoot Online Update" --info \
-		--info-text="$found new revisions found. Your new revision number should be $[revnr + found]. Have a look at the files README, ChangeLog and ReleaseNotes to see the changes that were made."
+		--text="$found new revisions found. Your new revision number should be $[revnr + found]. Have a look at the files README, ChangeLog and ReleaseNotes to see the changes that were made."
 	else
 	    dialog --title "Bygfoot Online Update" --msgbox "$found new revisions found.\nYour new revision number should be $[revnr + found].\nHave a look at the files README, ChangeLog and ReleaseNotes to see the changes that were made." 2> $input_file
 	fi
 
 	if [ $recompile -eq 0 -a $auto -eq 0 ]; then
 	    if [ $use_zenity -eq 1 ]; then
-		my_zenity --title="Bygfoot Online Update" --question --question-text="Would you like me to execute 'configure &amp;&amp; make' ?"
+		my_zenity --title="Bygfoot Online Update" --question --text="Would you like me to execute 'configure &amp;&amp; make' ?"
 	    else
 		dialog --title "Bygfoot Online Update" --yesno "Would you like me to execute 'configure && make' ?" 22 80 2> $input_file
 	    fi
@@ -676,7 +676,7 @@ function update_end()
     else
 	if [ $use_zenity -eq 1 ]; then	    
 	    my_zenity --title="Bygfoot Online Update" --info \
-		--info-text="No new revisions found.\nYour package seems to be up-to-date."
+		--text="No new revisions found.\nYour package seems to be up-to-date."
 	else
 	    dialog --title "Bygfoot Online Update" --msgbox "No new revisions found.\nYour package seems to be up-to-date." 22 80 2> $input_file
 	fi
@@ -708,7 +708,7 @@ function get_type()
     if [ $auto -ne 1 ];then
 	if [ $use_zenity -eq 1 ]; then
 	    my_zenity --title="Bygfoot Online Update" --list \
-		--list-text="Specify package type:" \
+		--text="Specify package type:" \
 		--radiolist --column "" --column "" --column "" \
 		TRUE 1 Stable \
 		FALSE 2 Unstable
@@ -746,7 +746,7 @@ function get_latest_versions()
     fi
 
     if [ $use_zenity -eq 1 ]; then	
-	zencmd="zenity --title=Bygfoot_Online_Update --list --list-text=Select_package.Your_version_is_$relversion(as_far_as_I_know). --radiolist --print-column 2"
+	zencmd="zenity --title=Bygfoot_Online_Update --list --text=Select_package.Your_version_is_$relversion(as_far_as_I_know). --radiolist --print-column 2"
 
 	zencmd="$zencmd --column - --column - --column Package"
 
@@ -787,7 +787,7 @@ function get_new_package()
 
     if [ $use_zenity -eq 1 ]; then
 	my_zenity --title="Bygfoot Online Update" --info \
-	    --info-text="You can find the package $selected_package in the directory $PWD."
+	    --text="You can find the package $selected_package in the directory $PWD."
     else
 	dialog --title "Bygfoot Online Update" \
 	    --msgbox "You can find the package $selected_package\nin the directory $PWD." \
@@ -822,16 +822,16 @@ function get_mode()
 
     if [ $use_zenity -eq 1 ]; then
 	my_zenity --title="Bygfoot Online Update" --list \
-	    --list-text="Main Menu" \
+	    --text="Main Menu" \
 	    --radiolist --column "" --column "" --column "" \
 	    TRUE 1 "Download the latest Bygfoot release" \
 	    FALSE 2 "Get official team names and team definitions" \
-	    FALSE 3 "Get CVS version (2+ MB 'cause it's not compressed)"
+	    FALSE 3 "Get CVS version (11+ MB)"
     else
 	dialog --title "Bygfoot Online Update" --menu "Main Menu" 22 80 10 \
 	    1 " Download the latest Bygfoot release" \
 	    2 " Get official team names and team definitions" \
-	    3 " Get CVS version (2+ MB 'cause it's not compressed)" 2> $input_file
+	    3 " Get CVS version (11+ MB)" 2> $input_file
     fi
 
     read_input
@@ -855,14 +855,14 @@ function get_cvs()
     if [ -z $cvs_version ];then
 	if [ $use_zenity -eq 1 ]; then
 	    my_zenity --title="Bygfoot Online Update" --list \
-		--list-text="Specify CVS version" \
+		--text="Specify CVS version" \
 		--radiolist --column "" --column "" --column "" \
 		FALSE 1 " 1.8 branch" \
-		TRUE 2 " 1.9 branch"
+		TRUE 2 " 2.0 branch"
 	else
 	    dialog --title "Bygfoot Online Update" --menu "Specify CVS version" 22 80 10 \
 		1 " 1.8 branch" \
-		2 " 1.9 branch" 2> $input_file
+		2 " 2.0 branch" 2> $input_file
 	fi
 
 	read_input
@@ -885,15 +885,15 @@ function get_cvs()
 	read_input
 
 	if [ -z $tempvar ]; then
-	    cvs_command="cvs -d:pserver:anonymous@cvs.sf.net:/cvsroot/bygfoot"
+	    cvs_command="cvs -z3 -d:pserver:anonymous@bygfoot.cvs.sourceforge.net:/cvsroot/bygfoot"
 	else
-	    cvs_command="cvs -d:ext:$tempvar@cvs.sf.net:/cvsroot/bygfoot"
+	    cvs_command="cvs -z3 -d:ext:$tempvar@bygfoot.cvs.sourceforge.net:/cvsroot/bygfoot"
 	fi
     else
 	if [ $cvs_user = "A" ]; then
-	    cvs_command="cvs -d:pserver:anonymous@cvs.sf.net:/cvsroot/bygfoot"
+	    cvs_command="cvs -z3 -d:pserver:anonymous@bygfoot.cvs.sourceforge.net:/cvsroot/bygfoot"
 	else
-	    cvs_command="cvs -d:ext:$cvs_user@cvs.sf.net:/cvsroot/bygfoot"
+	    cvs_command="cvs -z3 -d:ext:$cvs_user@bygfoot.cvs.sourceforge.net:/cvsroot/bygfoot"
 	fi	
     fi
     
@@ -903,7 +903,7 @@ function get_cvs()
     if [ $recompile -eq 0 -a $auto -eq 0 ]; then
 	if [ $use_zenity -eq 1 ]; then
 	    my_zenity --title="Bygfoot Online Update" --question \
-		--question-text="Would you like me to execute 'autogen.sh &amp;&amp; make' ?"
+		--text="Would you like me to execute 'autogen.sh &amp;&amp; make' ?"
 	else
 	    dialog --title "Bygfoot Online Update" \
 		--yesno "Would you like me to execute 'autogen.sh && make' ?" 22 80 2> $input_file
@@ -932,6 +932,7 @@ get_paths
 
 # what to do when user presses Ctrl-C
 trap 'my_echo; my_echo "** b-u: User abort." & my_exit $EXITABORT' 2
+
 if [ $mode -eq $mode_country ]; then
     get_country_files
 elif [ $mode -eq $mode_pack ]; then

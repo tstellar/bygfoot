@@ -24,7 +24,7 @@ bygfoot_SOURCES = \
 	interface.c callbacks.h interface.h support.h \
 	job.c bet.h cup.h file.h free.h job.h league.h live_game.h main.h maths.h option.h start_end.h team.h transfer.h user.h variables.h xml_country.h \
 	language.c callbacks.h free.h language.h lg_commentary.h misc.h option.h variables.h window.h \
-	lg_commentary.c cup.h file.h fixture.h free.h league.h lg_commentary.h live_game.h main.h maths.h misc.h option.h player.h team.h variables.h xml_lg_commentary.h \
+	lg_commentary.c cup.h file.h fixture.h free.h language.h league.h lg_commentary.h live_game.h main.h maths.h misc.h option.h player.h team.h variables.h xml_lg_commentary.h \
 	league.c cup.h free.h league.h main.h maths.h misc.h option.h player.h stat.h table.h team.h user.h variables.h \
 	live_game.c callbacks.h fixture.h free.h game_gui.h game.h league.h lg_commentary.h live_game.h main.h maths.h misc_callback_func.h misc.h option.h player.h strategy.h support.h team.h treeview.h user.h variables.h window.h \
 	load_save.c callbacks.h file.h game_gui.h gui.h language.h load_save.h misc.h option.h support.h user.h variables.h window.h xml.h xml_loadsave_cup.h xml_loadsave_jobs.h xml_loadsave_league.h xml_loadsave_leagues_cups.h xml_loadsave_misc.h xml_loadsave_season_stats.h xml_loadsave_transfers.h xml_loadsave_users.h \

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-05-25 21:48+0200\n"
+"POT-Creation-Date: 2006-06-04 19:06+0200\n"
 "PO-Revision-Date: 2006-03-01 17:06+0200\n"
 "Last-Translator: Rostislav \"zbrox\" Raykov <nostalgiafed@gmail.com>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
@@ -563,7 +563,7 @@ msgstr "Възраст"
 msgid "Age "
 msgstr "Възраст "
 
-#: src/window.c:343
+#: src/window.c:326
 msgid "All Files"
 msgstr "Всички файлове"
 
@@ -735,7 +735,7 @@ msgid "Best offensive teams"
 msgstr "Най-добрите нападателни отбори"
 
 #: src/interface.c:998 src/options_interface.c:1021 src/treeview.c:1355
-#: src/treeview.c:1365 src/window.c:876
+#: src/treeview.c:1365 src/window.c:859
 msgid "Betting"
 msgstr "Залагания"
 
@@ -810,11 +810,11 @@ msgstr "Разглеждане на играчи"
 msgid "Browse teams"
 msgstr "Разглеждане на отборите"
 
-#: src/window.c:337
+#: src/window.c:320
 msgid "Bygfoot Memorable Matches"
 msgstr "Запомнящи се Bygfoot мачове"
 
-#: src/window.c:331
+#: src/window.c:314
 msgid "Bygfoot Save Files"
 msgstr "Запазени игри на Bygfoot"
 
@@ -871,7 +871,8 @@ msgstr ""
 "толкова повече събития ще виждате."
 
 #: src/misc_interface.c:705
-msgid "Change live game speed. The lower the value the faster the live game."
+#, fuzzy
+msgid "Change live game speed. The higher the value the faster the live game."
 msgstr ""
 "Промяна на скоростта на мача на живо. По-малки стойности = по-бърза игра."
 
@@ -984,7 +985,7 @@ msgstr ""
 "Срок на договора\n"
 "(Месеци)"
 
-#: src/window.c:821
+#: src/window.c:804
 msgid "Contract offer"
 msgstr "Предложение за договор"
 
@@ -1154,7 +1155,7 @@ msgstr "Въведете структура. Сумата на тези цифр
 msgid "Enter custom structure"
 msgstr "Въвеждане на лична структура"
 
-#: src/window.c:749
+#: src/window.c:732
 msgid "Erm..."
 msgstr "Ами..."
 
@@ -1452,7 +1453,7 @@ msgstr "Внасяне на мачовете от файла за запомня
 msgid "Improve!"
 msgstr "Подобрение!"
 
-#: src/treeview.c:1332 src/window.c:562
+#: src/treeview.c:1332 src/window.c:545
 #, c-format
 msgid ""
 "Improvement in progress.\n"
@@ -1475,7 +1476,7 @@ msgstr "Увеличаване"
 msgid "Injuries"
 msgstr "Контузии"
 
-#: src/misc2_interface.c:71 src/window.c:782
+#: src/misc2_interface.c:71 src/window.c:765
 msgid "Job offer"
 msgstr "Предложение за работа"
 
@@ -1561,7 +1562,7 @@ msgid "Left click to make an offer. Right click to remove offer."
 msgstr ""
 "Ляво натискате за отправяне на предложение. Дясно за премахване на такова."
 
-#: src/callback_func.c:797
+#: src/callback_func.c:798
 msgid ""
 "Left click to move players to and from the youth academy; right click for "
 "context menu."
@@ -1694,7 +1695,7 @@ msgstr "Максимизиране на главния прозорец"
 msgid "Memorable match added."
 msgstr "Добавен е запомнящ се мач"
 
-#: src/interface.c:875 src/window.c:868
+#: src/interface.c:875 src/window.c:851
 msgid "Memorable matches"
 msgstr "Запомнящи се мачове"
 
@@ -1779,7 +1780,7 @@ msgstr "Следващ потребител"
 msgid "Next week you'll fire him and hire a new one."
 msgstr "Следващата седмица ще го уволните и ще наемете нов."
 
-#: src/window.c:572
+#: src/window.c:555
 msgid "No improvements currently in progress."
 msgstr "В момента няма течащи подобрения."
 
@@ -1792,11 +1793,11 @@ msgstr "Няма запазени мачове."
 msgid "None"
 msgstr "Няма"
 
-#: src/window.c:395
+#: src/window.c:378
 msgid "Not a valid Bygfoot Memorable Matches filename."
 msgstr "Не е валидно име за файл със запомнящи се мачове на Bygfoot"
 
-#: src/window.c:766
+#: src/window.c:749
 msgid "Numbers..."
 msgstr "Номера..."
 
@@ -1845,7 +1846,7 @@ msgstr "Противник"
 msgid "Opponent player list"
 msgstr "Списък с играчите на противника"
 
-#: src/window.c:798
+#: src/window.c:781
 msgid "Options"
 msgstr "Настройки"
 
@@ -2234,7 +2235,7 @@ msgstr "История на сезона"
 msgid "Season results"
 msgstr "Резултати от сезона"
 
-#: src/misc_interface.c:385 src/window.c:806
+#: src/misc_interface.c:385 src/window.c:789
 msgid "Select font"
 msgstr "Избор на шрифт"
 
@@ -2404,7 +2405,7 @@ msgstr "Спонсор"
 msgid "Sponsorship"
 msgstr "Спонсорство"
 
-#: src/window.c:860
+#: src/window.c:843
 msgid "Sponsorship offers"
 msgstr "Предложения за спонсорство"
 
@@ -2735,7 +2736,7 @@ msgstr "Скъсано важно сухожилие"
 msgid "Transfer deadline is Week %d"
 msgstr "Крайният срок за трансфери е до %d седмица."
 
-#: src/window.c:852
+#: src/window.c:835
 msgid "Transfer offer"
 msgstr "Предложение за трансфер"
 
@@ -2764,7 +2765,7 @@ msgstr "Разкомпресиране на запазената игра..."
 msgid "User %s didn't consider your offer yet."
 msgstr "Потребителят %s не е обмислил предложението Ви все още."
 
-#: src/window.c:829
+#: src/window.c:812
 msgid "User management"
 msgstr "Управление на потребителите"
 
@@ -2842,7 +2843,7 @@ msgstr "Седмица"
 msgid "Week %d Round %d"
 msgstr "Седмица %d Кръг %d"
 
-#: src/window.c:718
+#: src/window.c:701
 #, c-format
 msgid "Welcome to Bygfoot %s"
 msgstr "Това е Bygfoot %s"
@@ -3223,7 +3224,7 @@ msgstr "Започвате мача с %s от %s."
 msgid "You still have some transfer business to manage."
 msgstr "Все още имате работа по трансферите, която да свършите."
 
-#: src/callback_func.c:658
+#: src/callback_func.c:659
 #, c-format
 msgid ""
 "You want to fire %s. Since his contract expires in %.1f years, he demands a "
@@ -3296,7 +3297,7 @@ msgstr "Съставът Ви е пълен. Не може да купувате
 msgid "Your roster is full. You couldn't buy %s from %s."
 msgstr "Съставът Ви е пълен. Не можете да купите %s от %s."
 
-#: src/window.c:774
+#: src/window.c:757
 msgid "Your stadium"
 msgstr "Вашият стадион"
 

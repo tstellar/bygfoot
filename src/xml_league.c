@@ -388,7 +388,7 @@ xml_league_read(const gchar *league_name, GArray *leagues)
 			    xml_league_read_text, NULL, NULL};
     GMarkupParseContext *context;
     gchar *file_contents;
-    gint length;
+    gsize length;
     GError *error = NULL;
     gchar buf[SMALL];
 

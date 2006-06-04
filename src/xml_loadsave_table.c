@@ -146,7 +146,7 @@ xml_loadsave_table_read(const gchar *filename, Table *table)
 			    xml_loadsave_table_text, NULL, NULL};
     GMarkupParseContext *context;
     gchar *file_contents;
-    guint length;
+    gsize length;
     GError *error = NULL;
 
     context = 
