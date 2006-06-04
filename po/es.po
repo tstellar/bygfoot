@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es-1.9.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-05-25 21:48+0200\n"
+"POT-Creation-Date: 2006-06-04 19:06+0200\n"
 "PO-Revision-Date: 2006-03-17 11:30+0100\n"
 "Last-Translator: Carlos Garces <carlos-garces@usa.net>\n"
 "Language-Team:  <es@li.org>\n"
@@ -563,7 +563,7 @@ msgstr "Edad"
 msgid "Age "
 msgstr "Edad "
 
-#: src/window.c:343
+#: src/window.c:326
 msgid "All Files"
 msgstr "Todos los archivos"
 
@@ -732,7 +732,7 @@ msgid "Best offensive teams"
 msgstr "Mejores equipos ofensivos"
 
 #: src/interface.c:998 src/options_interface.c:1021 src/treeview.c:1355
-#: src/treeview.c:1365 src/window.c:876
+#: src/treeview.c:1365 src/window.c:859
 msgid "Betting"
 msgstr "Apostar"
 
@@ -805,11 +805,11 @@ msgstr "Explorar jugadores"
 msgid "Browse teams"
 msgstr "Explorar equipos"
 
-#: src/window.c:337
+#: src/window.c:320
 msgid "Bygfoot Memorable Matches"
 msgstr "'Partidos Memorables' Bygfoot"
 
-#: src/window.c:331
+#: src/window.c:314
 msgid "Bygfoot Save Files"
 msgstr "Archivos Bygfoot"
 
@@ -867,7 +867,8 @@ msgstr ""
 "Cambia verbosidad del comentario. Valor alto permite ver más sobre el evento."
 
 #: src/misc_interface.c:705
-msgid "Change live game speed. The lower the value the faster the live game."
+#, fuzzy
+msgid "Change live game speed. The higher the value the faster the live game."
 msgstr "Cambia velocidad de En Vivo. El valor menor agiliza el En Vivo."
 
 #: src/misc_interface.c:97
@@ -977,7 +978,7 @@ msgstr ""
 "Duración del\n"
 "contrato (Meses)"
 
-#: src/window.c:821
+#: src/window.c:804
 msgid "Contract offer"
 msgstr "Ofertas de contrato"
 
@@ -1147,7 +1148,7 @@ msgstr "Ingresar una formación. La suma tiene que dar 10."
 msgid "Enter custom structure"
 msgstr "Ingresar formación personalizada"
 
-#: src/window.c:749
+#: src/window.c:732
 msgid "Erm..."
 msgstr "Ooh..."
 
@@ -1447,7 +1448,7 @@ msgstr "Importar partidos desde 'Partidos Memorables'"
 msgid "Improve!"
 msgstr "¡Mejorar!"
 
-#: src/treeview.c:1332 src/window.c:562
+#: src/treeview.c:1332 src/window.c:545
 #, c-format
 msgid ""
 "Improvement in progress.\n"
@@ -1470,7 +1471,7 @@ msgstr "Mejorar"
 msgid "Injuries"
 msgstr "Lesiones"
 
-#: src/misc2_interface.c:71 src/window.c:782
+#: src/misc2_interface.c:71 src/window.c:765
 msgid "Job offer"
 msgstr "Oferta de trabajo"
 
@@ -1555,7 +1556,7 @@ msgstr "Estadísticas de la liga"
 msgid "Left click to make an offer. Right click to remove offer."
 msgstr "Clic-Izq: Ofertar. Clic-Der: Retirar oferta."
 
-#: src/callback_func.c:797
+#: src/callback_func.c:798
 msgid ""
 "Left click to move players to and from the youth academy; right click for "
 "context menu."
@@ -1687,7 +1688,7 @@ msgstr "Panel maximizado"
 msgid "Memorable match added."
 msgstr "Agregar 'Partidos Memorables'."
 
-#: src/interface.c:875 src/window.c:868
+#: src/interface.c:875 src/window.c:851
 msgid "Memorable matches"
 msgstr "Partidos Memorables"
 
@@ -1772,7 +1773,7 @@ msgstr "Próximo usuario"
 msgid "Next week you'll fire him and hire a new one."
 msgstr "La próxima semana, lo despedirán y contratarán otro."
 
-#: src/window.c:572
+#: src/window.c:555
 msgid "No improvements currently in progress."
 msgstr "No hay mejoras en marcha."
 
@@ -1785,11 +1786,11 @@ msgstr "No hay partidos almacenados."
 msgid "None"
 msgstr "Nada"
 
-#: src/window.c:395
+#: src/window.c:378
 msgid "Not a valid Bygfoot Memorable Matches filename."
 msgstr "No es un archivo válido de 'Partidos Memorables'."
 
-#: src/window.c:766
+#: src/window.c:749
 msgid "Numbers..."
 msgstr "Números..."
 
@@ -1838,7 +1839,7 @@ msgstr "Adversario"
 msgid "Opponent player list"
 msgstr "Lista de jugadores rivales"
 
-#: src/window.c:798
+#: src/window.c:781
 msgid "Options"
 msgstr "Opciones"
 
@@ -2216,7 +2217,7 @@ msgstr "Historial de la Temporada"
 msgid "Season results"
 msgstr "Resultados de la semana"
 
-#: src/misc_interface.c:385 src/window.c:806
+#: src/misc_interface.c:385 src/window.c:789
 msgid "Select font"
 msgstr "Seleccione una fuente"
 
@@ -2386,7 +2387,7 @@ msgstr "Patrocinador"
 msgid "Sponsorship"
 msgstr "Sponsor"
 
-#: src/window.c:860
+#: src/window.c:843
 msgid "Sponsorship offers"
 msgstr "Ofertas de los patrocinantes"
 
@@ -2712,7 +2713,7 @@ msgstr "Rotura de ligamento"
 msgid "Transfer deadline is Week %d"
 msgstr "La transferencia termina en %d semanas."
 
-#: src/window.c:852
+#: src/window.c:835
 msgid "Transfer offer"
 msgstr "Oferta de transferencia"
 
@@ -2741,7 +2742,7 @@ msgstr "Descomprimiendo archivo..."
 msgid "User %s didn't consider your offer yet."
 msgstr "El usuario %s todavía no ha considerado su oferta."
 
-#: src/window.c:829
+#: src/window.c:812
 msgid "User management"
 msgstr "Gestión de usuario"
 
@@ -2819,7 +2820,7 @@ msgstr "Semana"
 msgid "Week %d Round %d"
 msgstr "Semana %d Ronda %d"
 
-#: src/window.c:718
+#: src/window.c:701
 #, c-format
 msgid "Welcome to Bygfoot %s"
 msgstr "Bienvenido a Bygfoot %s"
@@ -3185,7 +3186,7 @@ msgstr "Ha iniciado el juego con %s en %s."
 msgid "You still have some transfer business to manage."
 msgstr "Tiene algunas ofertas pendientes."
 
-#: src/callback_func.c:658
+#: src/callback_func.c:659
 #, c-format
 msgid ""
 "You want to fire %s. Since his contract expires in %.1f years, he demands a "
@@ -3259,7 +3260,7 @@ msgstr "Su lista esta llena. No puede comprar más jugadores."
 msgid "Your roster is full. You couldn't buy %s from %s."
 msgstr "Su lista está llena. Usted no puede comprar %s de %s."
 
-#: src/window.c:774
+#: src/window.c:757
 msgid "Your stadium"
 msgstr "Su estadio"
 

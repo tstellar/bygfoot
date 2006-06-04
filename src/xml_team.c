@@ -229,7 +229,7 @@ xml_team_read(Team *tm, const gchar *def_file)
 			    xml_team_read_text, NULL, NULL};
     GMarkupParseContext *context;
     gchar *file_contents;
-    gint length;
+    gsize length;
     GError *error = NULL;
 
     team = tm;

@@ -1195,12 +1195,3 @@ team_get_table_clid(const Team *tm)
 
     return tm->clid;
 }
-
-const Team*
-team_get_next_opponent(const Team *tm)
-{
-    const Fixture *fix = team_get_fixture(tm, FALSE);
-    
-    return (fix == NULL) ? NULL :
-	fix->teams[fix->teams[0] == tm];
-}

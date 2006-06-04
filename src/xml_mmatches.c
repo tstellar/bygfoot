@@ -144,7 +144,7 @@ xml_mmatches_read(const gchar *filename, GArray *mmatches)
 			    xml_mmatches_text, NULL, NULL};
     GMarkupParseContext *context;
     gchar *file_contents;
-    guint length;
+    gsize length;
     GError *error = NULL;
 
     context = 

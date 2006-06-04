@@ -200,7 +200,7 @@ xml_loadsave_teams_read(const gchar *filename, GArray *teams)
 			    xml_loadsave_teams_text, NULL, NULL};
     GMarkupParseContext *context;
     gchar *file_contents;
-    guint length;
+    gsize length;
     GError *error = NULL;
 
     context = 

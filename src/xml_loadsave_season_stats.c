@@ -165,7 +165,7 @@ xml_loadsave_season_stats_read(const gchar *dirname, const gchar *prefix)
 			    xml_loadsave_season_stats_text, NULL, NULL};
     GMarkupParseContext *context;
     gchar *file_contents;
-    guint length;
+    gsize length;
     GError *error = NULL;
 
     context = 

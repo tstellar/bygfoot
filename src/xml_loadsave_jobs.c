@@ -152,7 +152,7 @@ xml_loadsave_jobs_read(const gchar *dirname, const gchar *basename)
 			    xml_loadsave_jobs_text, NULL, NULL};
     GMarkupParseContext *context;
     gchar *file_contents;
-    guint length;
+    gsize length;
     GError *error = NULL;
     gchar file[SMALL];
 

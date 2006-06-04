@@ -154,7 +154,4 @@ team_complete_def_sort(Team *tm);
 gint
 team_get_table_clid(const Team *tm);
 
-const Team*
-team_get_next_opponent(const Team *tm);
-
 #endif

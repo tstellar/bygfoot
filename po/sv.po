@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot 1.9.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-05-25 21:48+0200\n"
+"POT-Creation-Date: 2006-06-04 19:06+0200\n"
 "PO-Revision-Date: 2006-02-26 22:53+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -563,7 +563,7 @@ msgstr "Ålder"
 msgid "Age "
 msgstr "Ålder "
 
-#: src/window.c:343
+#: src/window.c:326
 msgid "All Files"
 msgstr "Alla filer"
 
@@ -732,7 +732,7 @@ msgid "Best offensive teams"
 msgstr "Bästa offensiva lag"
 
 #: src/interface.c:998 src/options_interface.c:1021 src/treeview.c:1355
-#: src/treeview.c:1365 src/window.c:876
+#: src/treeview.c:1365 src/window.c:859
 msgid "Betting"
 msgstr "Vadslagning"
 
@@ -804,11 +804,11 @@ msgstr "Bläddra spelare"
 msgid "Browse teams"
 msgstr "Bläddra lag"
 
-#: src/window.c:337
+#: src/window.c:320
 msgid "Bygfoot Memorable Matches"
 msgstr "Bygfoot - Minnesvärda matcher"
 
-#: src/window.c:331
+#: src/window.c:314
 msgid "Bygfoot Save Files"
 msgstr "Bygfoot - Sparade filer"
 
@@ -868,7 +868,8 @@ msgstr ""
 "kan du se."
 
 #: src/misc_interface.c:705
-msgid "Change live game speed. The lower the value the faster the live game."
+#, fuzzy
+msgid "Change live game speed. The higher the value the faster the live game."
 msgstr "Ändra hastighet för livematch. Ju lägre värde, ju snabbare livematch."
 
 #: src/misc_interface.c:97
@@ -978,7 +979,7 @@ msgstr ""
 "Kontraktslängd\n"
 "(Månader)"
 
-#: src/window.c:821
+#: src/window.c:804
 msgid "Contract offer"
 msgstr "Kontraktserbjudande"
 
@@ -1149,7 +1150,7 @@ msgstr "Ange en struktur. Siffrorna måste bli 10 tillsammans."
 msgid "Enter custom structure"
 msgstr "Ange anpassad struktur"
 
-#: src/window.c:749
+#: src/window.c:732
 msgid "Erm..."
 msgstr "Erm..."
 
@@ -1446,7 +1447,7 @@ msgstr "Importera matcher från en fil med minnesvärda matcher"
 msgid "Improve!"
 msgstr "Förbättra!"
 
-#: src/treeview.c:1332 src/window.c:562
+#: src/treeview.c:1332 src/window.c:545
 #, c-format
 msgid ""
 "Improvement in progress.\n"
@@ -1469,7 +1470,7 @@ msgstr "Öka"
 msgid "Injuries"
 msgstr "Skador"
 
-#: src/misc2_interface.c:71 src/window.c:782
+#: src/misc2_interface.c:71 src/window.c:765
 msgid "Job offer"
 msgstr "Jobberbjudande"
 
@@ -1556,7 +1557,7 @@ msgstr ""
 "Vänsterklick för att lämna ett erbjudande. Högerklick för att ta bort "
 "erbjudande."
 
-#: src/callback_func.c:797
+#: src/callback_func.c:798
 msgid ""
 "Left click to move players to and from the youth academy; right click for "
 "context menu."
@@ -1690,7 +1691,7 @@ msgstr "Maximera huvudfönster"
 msgid "Memorable match added."
 msgstr "Minnesvärd match lades till."
 
-#: src/interface.c:875 src/window.c:868
+#: src/interface.c:875 src/window.c:851
 msgid "Memorable matches"
 msgstr "Minnesvärda matcher"
 
@@ -1775,7 +1776,7 @@ msgstr "Nästa användare"
 msgid "Next week you'll fire him and hire a new one."
 msgstr "Nästa vecka sparkar du honom och anställer en ny."
 
-#: src/window.c:572
+#: src/window.c:555
 msgid "No improvements currently in progress."
 msgstr "Inga förbättringar görs för tillfället."
 
@@ -1788,11 +1789,11 @@ msgstr "Ingen match lagrad."
 msgid "None"
 msgstr "Ingen"
 
-#: src/window.c:395
+#: src/window.c:378
 msgid "Not a valid Bygfoot Memorable Matches filename."
 msgstr "Inte ett giltigt filnamn för Bygfoots minnesvärda matcher."
 
-#: src/window.c:766
+#: src/window.c:749
 msgid "Numbers..."
 msgstr "Siffror..."
 
@@ -1841,7 +1842,7 @@ msgstr "Motståndare"
 msgid "Opponent player list"
 msgstr "Motståndarens spelarlista"
 
-#: src/window.c:798
+#: src/window.c:781
 msgid "Options"
 msgstr "Alternativ"
 
@@ -2221,7 +2222,7 @@ msgstr "Säsongshistorik"
 msgid "Season results"
 msgstr "Säsongsresultat"
 
-#: src/misc_interface.c:385 src/window.c:806
+#: src/misc_interface.c:385 src/window.c:789
 msgid "Select font"
 msgstr "Välj typsnitt"
 
@@ -2390,7 +2391,7 @@ msgstr "Sponsor"
 msgid "Sponsorship"
 msgstr "Sponsring"
 
-#: src/window.c:860
+#: src/window.c:843
 msgid "Sponsorship offers"
 msgstr "Erbjudanden om sponsring"
 
@@ -2720,7 +2721,7 @@ msgstr "Skadat korsband"
 msgid "Transfer deadline is Week %d"
 msgstr "Tidsgräns för övergång är vecka %d"
 
-#: src/window.c:852
+#: src/window.c:835
 msgid "Transfer offer"
 msgstr "Erbjudande om övergång"
 
@@ -2749,7 +2750,7 @@ msgstr "Packar upp sparat spel..."
 msgid "User %s didn't consider your offer yet."
 msgstr "Användare %s har inte bestämt sig om ditt erbjudande än."
 
-#: src/window.c:829
+#: src/window.c:812
 msgid "User management"
 msgstr "Hantera användare"
 
@@ -2827,7 +2828,7 @@ msgstr "Vecka"
 msgid "Week %d Round %d"
 msgstr "Vecka %d Omgång %d"
 
-#: src/window.c:718
+#: src/window.c:701
 #, c-format
 msgid "Welcome to Bygfoot %s"
 msgstr "Välkommen till Bygfoot %s"
@@ -3204,7 +3205,7 @@ msgstr "Du börjar spelet med %s i %s."
 msgid "You still have some transfer business to manage."
 msgstr "Du har fortfarande ett par övergångar att ta hand om."
 
-#: src/callback_func.c:658
+#: src/callback_func.c:659
 #, c-format
 msgid ""
 "You want to fire %s. Since his contract expires in %.1f years, he demands a "
@@ -3277,7 +3278,7 @@ msgstr "Din lista är redan full. Du kan inte köpa fler spelare."
 msgid "Your roster is full. You couldn't buy %s from %s."
 msgstr "Din lista är full. Du kan inte köpa %s från %s."
 
-#: src/window.c:774
+#: src/window.c:757
 msgid "Your stadium"
 msgstr "Din stadium"
 

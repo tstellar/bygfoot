@@ -114,7 +114,7 @@ xml_name_read(const gchar *sid, NameList *namelist)
 			    xml_name_read_text, NULL, NULL};
     GMarkupParseContext *context;
     gchar *file_contents;
-    gint length;
+    gsize length;
     GError *error = NULL;
     gchar buf[SMALL];
 

@@ -272,7 +272,7 @@ xml_lg_commentary_read(const gchar *commentary_file)
 			    xml_lg_commentary_read_text, NULL, NULL};
     GMarkupParseContext *context;
     gchar *file_contents;
-    gint length;
+    gsize length;
     GError *error = NULL;
 
     context = 

@@ -268,29 +268,6 @@ query_misc_string_in_array(const gchar *string, GPtrArray *array)
     return FALSE;
 }
 
-/** Replace sums of the form [1 + 2 - 3] in the string. */
-void
-misc_replace_sums(gchar *string)
-{
-    gint i, result = -1;
-    gchar buf[SMALL], buf2[SMALL];
-    const gchar *buf_return = NULL;    
-
-    while(g_strrstr(string, "["))
-    {
-	strcpy(buf, string);
-	
-	for(i=0;i<strlen(buf);i++)
-	    if(buf[i] == '[')
-	    {
-		strncpy(buf2, buf, i);
-		buf2[i] = '\0';
-		buf_return = misc_parse_expression(buf + i + 1, &result);
-		sprintf(string, "%s%d%s", buf2, result, buf_return + 1);
-	    }
-    }
-}
-
 /** Get a float representation of someone's age
     based on his birth year and month. */
 gfloat

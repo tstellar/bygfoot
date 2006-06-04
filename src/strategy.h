@@ -80,9 +80,6 @@ void
 strategy_live_game_apply_action(LiveGame *match, gint team_idx,
 				const StrategyMatchAction *action);
 
-void
-strategy_live_game_initialize(const Fixture *fix);
-
 gint
 strategy_compare_players_sub(gconstpointer a,
 			     gconstpointer b,

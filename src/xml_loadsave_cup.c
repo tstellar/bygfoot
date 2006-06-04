@@ -282,7 +282,7 @@ xml_loadsave_cup_read(const gchar *filename, Cup *cup)
 			    xml_loadsave_cup_text, NULL, NULL};
     GMarkupParseContext *context;
     gchar *file_contents = NULL;
-    guint length;
+    gsize length;
     GError *error = NULL;
 
     context = 

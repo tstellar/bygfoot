@@ -212,7 +212,7 @@ xml_loadsave_league_read(const gchar *filename, League *league)
 			    xml_loadsave_league_text, NULL, NULL};
     GMarkupParseContext *context;
     gchar *file_contents;
-    guint length;
+    gsize length;
     GError *error = NULL;
 
     context = 
