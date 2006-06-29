@@ -705,7 +705,7 @@ game_substitute_player(Team *tm, gint player_number)
 
     if(team_is_user(tm) == cur_user)
     {
-	game_gui_write_av_skills();
+	game_gui_write_av_skills(NULL);
 	
 	selected_row = -1;	
 	treeview_show_user_player_list();
@@ -841,7 +841,7 @@ game_substitute_player_send_off(gint clid, Team *tm, gint player_number,
 
     if(team_is_user(tm) == cur_user)
     {
-	game_gui_write_av_skills();
+	game_gui_write_av_skills(NULL);
 	
 	selected_row = -1;	
 	treeview_show_user_player_list();

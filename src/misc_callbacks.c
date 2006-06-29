@@ -179,7 +179,6 @@ on_button_resume_clicked               (GtkButton       *button,
 	   LIVE_GAME_EVENT_PENALTIES)
 	{
 	    gtk_widget_set_sensitive(button_pause, TRUE);
-/* 	    gui_set_sensitive_lg_meters(TRUE); */
 	    gtk_widget_grab_focus(button_pause);
 	}
 	game_gui_set_main_window_sensitivity(FALSE);

@@ -64,6 +64,10 @@ typedef struct
     /** The number of byes to be awarded for this cup round.
         The default is enough to bring the next round to a power of two. */
     gint byes;
+    /** Number of weeks the cup round is delayed (or scheduled sooner if 
+	the value is negative) with respect to the previous cup round and
+	the week gap. Default: 0. */
+    gint delay;
     /** The teams that got loaded for this cup round.
 	Mostly this only happens in the first round. */
     GArray *teams;

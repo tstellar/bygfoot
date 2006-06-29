@@ -66,6 +66,7 @@ enum
     TAG_CUP_TEAM_NAME,
     TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK,
     TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK_ROUND,
+    TAG_CUP_ROUND_DELAY,
     TAG_END
 };
 
@@ -161,6 +162,7 @@ xml_loadsave_cup_end_element    (GMarkupParseContext *context,
 	    tag == TAG_CUP_ROUND_BYES ||
 	    tag == TAG_CUP_ROUND_REPLAY ||
 	    tag == TAG_CUP_ROUND_NEUTRAL ||
+	    tag == TAG_CUP_ROUND_DELAY ||
 	    tag == TAG_CUP_ROUND_RANDOMISE_TEAMS ||
 	    tag == TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS ||
 	    tag == TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE ||
@@ -264,6 +266,8 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
 	new_round.replay = int_value;
     else if(state == TAG_CUP_ROUND_NEUTRAL)
 	new_round.neutral = int_value;
+    else if(state == TAG_CUP_ROUND_DELAY)
+	new_round.delay = int_value;
     else if(state == TAG_CUP_ROUND_RANDOMISE_TEAMS)
 	new_round.randomise_teams = int_value;
     else if(state == TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS)
@@ -396,6 +400,8 @@ xml_loadsave_cup_write_round(FILE *fil, const gchar *prefix, const Cup *cup, gin
 		  TAG_CUP_ROUND_REPLAY, I1);
     xml_write_int(fil, cup_round->neutral,
 		  TAG_CUP_ROUND_NEUTRAL, I1);
+    xml_write_int(fil, cup_round->delay,
+		  TAG_CUP_ROUND_DELAY, I1);
     xml_write_int(fil, cup_round->randomise_teams,
 		  TAG_CUP_ROUND_RANDOMISE_TEAMS, I1);
     xml_write_int(fil, cup_round->round_robin_number_of_groups,

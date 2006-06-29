@@ -536,6 +536,9 @@ user_event_show_next(void)
 	    treeview_show_user_player_list();
 	    game_gui_show_warning(buf);
 	    break;
+	case EVENT_TYPE_CHARITY:
+	    game_gui_show_warning(_("The team owners are very satisfied with your financial management. Since the team's been earning a lot of money lately, they decide to donate half of it to charity."));
+	    break;
     }
 
     user_event_remove(&current_user, 0);

@@ -132,7 +132,7 @@ callback_player_clicked(gint idx, GdkEventButton *event)
 		team_rearrange(current_user.tm);
 	    }
 
-	    game_gui_write_av_skills();
+	    game_gui_write_av_skills(NULL);
 
 	    selected_row = -1;
 
@@ -608,7 +608,10 @@ callback_show_team(gint type)
     stat0 = STATUS_BROWSE_TEAMS;
 
     if(tm != current_user.tm)
+    {
 	treeview_show_player_list_team(treeview_right, tm, current_user.scout % 10);
+	game_gui_write_av_skills(tm);
+    }
     else
 	callback_show_team((type == SHOW_PREVIOUS) ? SHOW_PREVIOUS : SHOW_NEXT);
 }

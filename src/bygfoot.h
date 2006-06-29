@@ -40,7 +40,7 @@
 /**
  * Program version number.
  */
-#define VERS "2.0.0"
+#define VERS "2.0.1"
 
 /** Home dir name */
 //#define HOMEDIRNAME ".bygfoot-cvs"
