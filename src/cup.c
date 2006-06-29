@@ -101,6 +101,7 @@ cup_round_new(void)
     new.replay = 0;
     new.neutral = FALSE;
     new.randomise_teams = TRUE;
+    new.delay = 0;
     new.round_robin_number_of_groups = 0;
     new.round_robin_number_of_advance = 0;
     new.round_robin_number_of_best_advance = 0;
@@ -681,8 +682,9 @@ cup_get_round_reached(const Team *tm, const GArray *fixtures)
     @param cup_round The index of the cup round in the cup.rounds array.
     @return A week number. */
 gint
-cup_get_first_week_of_cup_round(const Cup *cup, gint cup_round)
+cup_get_first_week_of_cup_round(Cup *cup, gint cup_round)
 {
+    gint i;
     gint week_number;
 
     if(cup_round == cup->rounds->len - 1)
@@ -692,10 +694,34 @@ cup_get_first_week_of_cup_round(const Cup *cup, gint cup_round)
 	week_number = cup_get_first_week_of_cup_round(cup, cup_round + 1) -
 	    cup_get_matchdays_in_cup_round(cup, cup_round) * cup->week_gap;
 
+    week_number += g_array_index(cup->rounds, CupRound, cup_round).delay;
+
+    for(i=cup->rounds->len - 1; i > cup_round; i--)
+	week_number -= g_array_index(cup->rounds, CupRound, i).delay;
+
     if(week_number <= 0)
-	main_exit_program(EXIT_FIRST_WEEK_ERROR, 
-			  "cup_get_first_week_of_cup_round: first week of cup %s cup round %d is not positive (%d).\nPlease lower the week gap or set a later last week.\n", 
-			  cup->name, cup_round, week_number);
+    {
+	g_warning("cup_get_first_week_of_cup_round: First week of cup %s, cup round %d is not positive (%d). Please correct the cup definition file!!!\n",
+		  cup->name, cup_round, week_number);
+	
+	if(cup->week_gap > 1)
+	{
+	    cup->week_gap--;
+	    g_warning("Lowering week gap to %d and trying again.\n",
+		      cup->week_gap);
+	}
+	else
+	{
+	    cup->last_week++;
+	    g_warning("Increasing last week to %d and trying again.\n",
+		      cup->last_week);
+	}
+
+	return cup_get_first_week_of_cup_round(cup, cup_round);
+    }
+/* 	main_exit_program(EXIT_FIRST_WEEK_ERROR, */
+/* 			  "cup_get_first_week_of_cup_round: first week of cup %s cup round %d is not positive (%d).\nPlease lower the week gap or set a later last week.\n",  */
+/* 			  cup->name, cup_round, week_number); */
     
     return week_number;
 }

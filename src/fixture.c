@@ -388,7 +388,8 @@ fixture_write_cup_round_robin(Cup *cup, gint cup_round, GPtrArray *teams)
     to the teams. 
     @param one_round Whether a team plays each other team twice or only once. */
 void
-fixture_write_round_robin(gpointer league_cup, gint cup_round, GPtrArray *teams, gboolean one_round)
+fixture_write_round_robin(gpointer league_cup, gint cup_round, 
+			  GPtrArray *teams, gboolean one_round)
 {
     gint i, j;
     gint first_week, week_gap, week_round_number,

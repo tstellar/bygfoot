@@ -56,6 +56,13 @@ finance_update_user_weekly(User *user)
 	 const_float("float_finance_yc_factor3"),
 	 const_float("float_finance_yc_factor4")};
 
+    if(user->money > G_MAXINT - 50000000)
+    {
+	user_event_add(user, EVENT_TYPE_CHARITY, 
+		       -1, -1, NULL, NULL);
+	user->money = (user->money - user->money % 2) / 2;
+    }
+
     if(week % 2 == 1)
     {
 	for(i=0;i<MON_OUT_END;i++)

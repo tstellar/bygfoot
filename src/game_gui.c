@@ -297,7 +297,7 @@ game_gui_set_main_window_header(void)
     for(i=0;i<2;i++)
 	gtk_widget_set_sensitive(menu_users[i], (users->len > 1));
 
-    game_gui_write_av_skills();
+    game_gui_write_av_skills(NULL);
 
     game_gui_write_radio_items();
 
@@ -309,14 +309,15 @@ game_gui_set_main_window_header(void)
 /** Set the average skills of the current team
     into the appropriate labels. */
 void
-game_gui_write_av_skills(void)
+game_gui_write_av_skills(const Team *tm)
 {
     gchar buf[SMALL];
     GtkLabel *label_av_skills= GTK_LABEL(lookup_widget(window.main, "label_av_skills"));
+    const Team *tm_local = (tm == NULL) ? current_user.tm : tm;
 
     sprintf(buf, "%.1f  %.1f", 
-	    team_get_average_skill(current_user.tm, TRUE),
-	    team_get_average_skill(current_user.tm, FALSE));
+	    team_get_average_skill(tm_local, TRUE),
+	    team_get_average_skill(tm_local, FALSE));
     gtk_label_set_text(label_av_skills, buf);
 }
 

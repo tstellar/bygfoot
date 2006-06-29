@@ -62,7 +62,7 @@ void
 cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct);
 
 gint
-cup_get_first_week_of_cup_round(const Cup *cup, gint cup_round);
+cup_get_first_week_of_cup_round(Cup *cup, gint cup_round);
 
 gint
 cup_get_matchdays_in_cup_round(const Cup *cup, gint round);

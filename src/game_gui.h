@@ -101,7 +101,7 @@ void
 game_gui_set_main_window_sensitivity(gboolean value);
 
 void
-game_gui_write_av_skills(void);
+game_gui_write_av_skills(const Team *tm);
 
 void
 game_gui_write_meter_images(const Team *tm, GtkImage *style, 
