@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bygfoot Football Manager 1.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-29 18:04+0200\n"
+"POT-Creation-Date: 2006-06-30 15:22+0200\n"
 "PO-Revision-Date: 2006-05-27 12:31+0100\n"
 "Last-Translator: Kristian Poul Herkild <kristian@herkild.dk>\n"
 "Language-Team:  <kristian@herkild.dk>\n"
@@ -233,7 +233,7 @@ msgid " Week "
 msgstr " Uge "
 
 #. Game was decided in extra time.
-#: src/fixture.c:863
+#: src/fixture.c:880
 msgid " e.t."
 msgstr " forl.sp."
 
@@ -250,7 +250,7 @@ msgid " more"
 msgstr " mere"
 
 #. Game was decided in penalty shoot-out.
-#: src/fixture.c:860
+#: src/fixture.c:877
 msgid " p."
 msgstr " str."
 
@@ -330,7 +330,7 @@ msgstr ""
 "%s har fyret dig på grund af manglende succes.\n"
 "Du har fået et nyt arbejde hos %s i %s."
 
-#: src/transfer.c:483
+#: src/transfer.c:489
 #, c-format
 msgid "%s has been added to the transfer list for %d weeks."
 msgstr "%s er blevet tilføjet transferlisten for %d uger."
@@ -2666,7 +2666,7 @@ msgstr ""
 "af %s hørt om din fyring, og har tilbudt dig et job. Her er nogle "
 "informationer om %s:"
 
-#: src/callback_func.c:472 src/callbacks.c:196 src/transfer.c:490
+#: src/callback_func.c:472 src/callbacks.c:196 src/transfer.c:496
 msgid "The transfer deadline is over."
 msgstr "Tidsfristen for spillerhandler er overskredet."
 

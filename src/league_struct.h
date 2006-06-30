@@ -104,6 +104,8 @@ typedef struct
     /** How many round robins are played. Important for
 	small leagues with 10 teams or so. Default: 1. */
     gint round_robins;
+    /** */
+    gint rr_break;
     /** Number of yellow cards until a player gets banned. 
 	Default 1000 (which means 'off', basically). */
     gint yellow_red;

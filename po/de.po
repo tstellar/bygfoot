@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-29 18:04+0200\n"
+"POT-Creation-Date: 2006-06-30 15:22+0200\n"
 "PO-Revision-Date: 2006-05-20 10:05+0200\n"
 "Last-Translator: Michael Trent <trent@cortalconsors.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
@@ -243,7 +243,7 @@ msgid " Week "
 msgstr " Woche "
 
 #. Game was decided in extra time.
-#: src/fixture.c:863
+#: src/fixture.c:880
 msgid " e.t."
 msgstr " n.V."
 
@@ -260,7 +260,7 @@ msgid " more"
 msgstr " mehr"
 
 #. Game was decided in penalty shoot-out.
-#: src/fixture.c:860
+#: src/fixture.c:877
 msgid " p."
 msgstr " i.E."
 
@@ -341,7 +341,7 @@ msgstr ""
 "%s feuert Dich wegen Erfolglosigkeit.\n"
 "Du bekommst eine neue Arbeit mit %s in der %s."
 
-#: src/transfer.c:483
+#: src/transfer.c:489
 #, c-format
 msgid "%s has been added to the transfer list for %d weeks."
 msgstr "%s wurde für %d Wochen auf die Transferliste gesetzt."
@@ -2683,7 +2683,7 @@ msgstr ""
 "s·von·Deiner·Entlassung·gehört·und·bieten·Dir·einen·Vertrag·an."
 "·Hier·sind·einige·Daten·zu·%s:"
 
-#: src/callback_func.c:472 src/callbacks.c:196 src/transfer.c:490
+#: src/callback_func.c:472 src/callbacks.c:196 src/transfer.c:496
 msgid "The transfer deadline is over."
 msgstr "Die Transferfrist ist vorbei."
 

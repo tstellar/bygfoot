@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot 0.9.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-29 18:04+0200\n"
+"POT-Creation-Date: 2006-06-30 15:22+0200\n"
 "PO-Revision-Date: 2006-05-28 12:44+0200\n"
 "Last-Translator: Spoială Cristian <scristian@gmail.com>\n"
 "Language-Team: Romanian\n"
@@ -235,7 +235,7 @@ msgid " Week "
 msgstr " Săptămâna"
 
 #. Game was decided in extra time.
-#: src/fixture.c:863
+#: src/fixture.c:880
 msgid " e.t."
 msgstr " e.t."
 
@@ -252,7 +252,7 @@ msgid " more"
 msgstr " mult"
 
 #. Game was decided in penalty shoot-out.
-#: src/fixture.c:860
+#: src/fixture.c:877
 msgid " p."
 msgstr " p."
 
@@ -331,7 +331,7 @@ msgstr ""
 "%s v-a concediat datorită insucceselor.\n"
 "Aţi găsit de lucru la %s în %s."
 
-#: src/transfer.c:483
+#: src/transfer.c:489
 #, c-format
 msgid "%s has been added to the transfer list for %d weeks."
 msgstr "%s a fost adăugat pe lista de transferuri pentru %d săptămâni."
@@ -2663,7 +2663,7 @@ msgstr ""
 "patronii echipei %s au auzit de concediere şi ar dori să vă angajaze. Câteva "
 "informaţii despre %s:"
 
-#: src/callback_func.c:472 src/callbacks.c:196 src/transfer.c:490
+#: src/callback_func.c:472 src/callbacks.c:196 src/transfer.c:496
 msgid "The transfer deadline is over."
 msgstr "Perioada de transferuri s-a sfârşit."
 

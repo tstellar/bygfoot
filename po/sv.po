@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot 1.9.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-29 18:04+0200\n"
+"POT-Creation-Date: 2006-06-30 15:22+0200\n"
 "PO-Revision-Date: 2006-02-26 22:53+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -235,7 +235,7 @@ msgid " Week "
 msgstr " Vecka "
 
 #. Game was decided in extra time.
-#: src/fixture.c:863
+#: src/fixture.c:880
 msgid " e.t."
 msgstr " e.t."
 
@@ -252,7 +252,7 @@ msgid " more"
 msgstr " mer"
 
 #. Game was decided in penalty shoot-out.
-#: src/fixture.c:860
+#: src/fixture.c:877
 msgid " p."
 msgstr " s."
 
@@ -331,7 +331,7 @@ msgstr ""
 "%s sparkar dig på grund av dåliga framgångar.\n"
 "Du hittar ett nytt jobb hos %s i %s."
 
-#: src/transfer.c:483
+#: src/transfer.c:489
 #, c-format
 msgid "%s has been added to the transfer list for %d weeks."
 msgstr "%s har varit på övergångslistan i %d veckor."
@@ -2666,7 +2666,7 @@ msgstr ""
 "ägarna av %s hört om din situation och erbjuder dig ett jobb. Här är lite "
 "information om %s:"
 
-#: src/callback_func.c:472 src/callbacks.c:196 src/transfer.c:490
+#: src/callback_func.c:472 src/callbacks.c:196 src/transfer.c:496
 msgid "The transfer deadline is over."
 msgstr "Tidsgräns för övergång slut."
 

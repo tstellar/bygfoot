@@ -393,7 +393,7 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round,
 {
     gint i, j;
     gint first_week, week_gap, week_round_number,
-	clid, first_fixture;
+	clid, first_fixture, rr_break;
     gboolean home_advantage;
     League *league = NULL;
     Cup *cup = NULL;
@@ -409,10 +409,12 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round,
 	league = (League*)league_cup;
 	fixtures = league->fixtures;
 	clid = league->id;
-	first_week = (fixtures->len == 0) ? 
-	    league->first_week : g_array_index(fixtures, Fixture, fixtures->len - 1).week_number + 1;
+	first_week = (fixtures->len == 0) ? league->first_week : 
+	    g_array_index(fixtures, Fixture, fixtures->len - 1).week_number + 
+	    league->rr_break;
 	week_gap = league->week_gap;
 	home_advantage = TRUE;
+	rr_break = league->rr_break;
     }
     else
     {
@@ -422,6 +424,7 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round,
 	fixtures = cup->fixtures;
 	clid = cup->id;
 	home_advantage = (!g_array_index(cup->rounds, CupRound, cup_round).neutral);
+	rr_break = week_gap;
     }   
 
     first_fixture = fixtures->len;
@@ -448,15 +451,19 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round,
     if(!one_round)
     {
 	/* second half of fixtures */
+	first_week = first_week + (len - 2) * week_gap + rr_break;
 	for(i = 0; i < len - 1; i++)
 	{
-	    week_round_number = (cup_round == -1) ?
-		1 : fixture_get_free_round(first_week + (len - 1 + i) * week_gap, teams, -1, -1);
+	    week_round_number = (cup_round == -1) ? 1 :
+		fixture_get_free_round(first_week + i * week_gap, teams, -1, -1);
 
 	    for(j = 0; j < len / 2; j++)
-		fixture_write(fixtures, g_array_index(fixtures, Fixture, first_fixture + i * (len / 2) + j).teams[1],
-			      g_array_index(fixtures, Fixture, first_fixture + i * (len / 2) + j).teams[0],
-			      first_week + (len - 1 + i) * week_gap, week_round_number,			      
+		fixture_write(fixtures,
+			      g_array_index(fixtures, Fixture, 
+					    first_fixture + i * (len / 2) + j).teams[1],
+			      g_array_index(fixtures, Fixture, 
+					    first_fixture + i * (len / 2) + j).teams[0],
+			      first_week + i * week_gap, week_round_number,
 			      clid, cup_round, 0, home_advantage, FALSE, FALSE);
 	}
     }
@@ -555,11 +562,21 @@ fixture_write_knockout_round(Cup *cup, gint cup_round, GPtrArray *teams)
 
     week_round_number =
 	fixture_get_free_round(first_week, teams, -1, -1);
-    for(i=0; i<=(teams->len - 2) / 2; i++)
-	fixture_write(cup->fixtures, (Team*)g_ptr_array_index(teams, 2 * i),
-		      (Team*)g_ptr_array_index(teams, 2 * i + 1), first_week,
-		      week_round_number, cup->id, cup_round, 0,
-		      !round->neutral, FALSE, (!round->home_away && round->replay == 0));
+    for(i=0; i<=(teams->len - 2) / 2; i++)	
+	if(!round->home_away && query_cup_weak_at_home(cup->id) &&
+	   league_from_clid(((Team*)g_ptr_array_index(teams, 2 * i))->clid)->layer >=
+	   league_from_clid(((Team*)g_ptr_array_index(teams, 2 * i + 1))->clid)->layer)
+	    fixture_write(cup->fixtures, (Team*)g_ptr_array_index(teams, 2 * i),
+			  (Team*)g_ptr_array_index(teams, 2 * i + 1), first_week,
+			  week_round_number, cup->id, cup_round, 0,
+			  !round->neutral, FALSE, 
+			  (!round->home_away && round->replay == 0));
+	else
+	    fixture_write(cup->fixtures, (Team*)g_ptr_array_index(teams, 2 * i + 1),
+			  (Team*)g_ptr_array_index(teams, 2 * i), first_week,
+			  week_round_number, cup->id, cup_round, 0,
+			  !round->neutral, FALSE, 
+			  (!round->home_away && round->replay == 0));
 
     if(round->home_away)
     {
