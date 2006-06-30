@@ -349,7 +349,13 @@ transfer_get_deadline(void)
 		MAX(length, g_array_index(
 			lig(i).fixtures, Fixture, lig(i).fixtures->len - 1).week_number);
 
-    return (gint)rint((gfloat)length * const_float("float_transfer_deadline_percentage"));
+    if(length == 0)
+	for(i=0;i<cps->len;i++)
+	    length = MAX(length, cp(i).last_week);
+
+    return (length > 0) ? 
+	(gint)rint((gfloat)length * const_float("float_transfer_deadline_percentage")) :
+	35;
 }
 
 /** Remove a player from the transfer list. */

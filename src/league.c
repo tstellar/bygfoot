@@ -55,6 +55,7 @@ league_new(gboolean new_id)
 
     new.id = (new_id) ? league_id_new : -1;
     new.layer = -1;
+    new.rr_break = 1;
 
     new.average_talent = 0;
 

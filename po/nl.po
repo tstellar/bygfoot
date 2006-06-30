@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bygfoot 1.9.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-29 18:04+0200\n"
+"POT-Creation-Date: 2006-06-30 15:22+0200\n"
 "PO-Revision-Date: 2006-03-17 11:27+0100\n"
 "Last-Translator: Arne en Tobe Deprez <tobedeprez@scarlet.be>\n"
 "Language-Team: Dutch <tobedeprez@scarlet.be>\n"
@@ -238,7 +238,7 @@ msgid " Week "
 msgstr " Week "
 
 #. Game was decided in extra time.
-#: src/fixture.c:863
+#: src/fixture.c:880
 msgid " e.t."
 msgstr " n.v."
 
@@ -255,7 +255,7 @@ msgid " more"
 msgstr " meer"
 
 #. Game was decided in penalty shoot-out.
-#: src/fixture.c:860
+#: src/fixture.c:877
 msgid " p."
 msgstr " P."
 
@@ -334,7 +334,7 @@ msgstr ""
 "%s ontslaat je wegens onsuccesvolheid.\n"
 "Je vindt een nieuwe job met %s in de %s."
 
-#: src/transfer.c:483
+#: src/transfer.c:489
 #, c-format
 msgid "%s has been added to the transfer list for %d weeks."
 msgstr "%s werd op de transferlijst gezet voor %d weken."
@@ -2676,7 +2676,7 @@ msgstr ""
 "hebben de eigenaars van %s van uw ontslag gehoord en bieden u een nieuwe job "
 "aan. Hier is een beetje informatie over %s:"
 
-#: src/callback_func.c:472 src/callbacks.c:196 src/transfer.c:490
+#: src/callback_func.c:472 src/callbacks.c:196 src/transfer.c:496
 msgid "The transfer deadline is over."
 msgstr "De transfermarkt is gesloten."
 

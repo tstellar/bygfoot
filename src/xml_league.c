@@ -51,6 +51,7 @@
 #define TAG_AVERAGE_TALENT "average_talent"
 #define TAG_NAMES_FILE "names_file"
 #define TAG_ACTIVE "active"
+#define TAG_BREAK "break"
 #define TAG_PROM_REL "prom_rel"
 #define TAG_PROM_GAMES "prom_games"
 #define TAG_PROM_GAMES_DEST_SID "prom_games_dest_sid"
@@ -106,6 +107,7 @@ enum XmlLeagueStates
     STATE_TEAM_NAMES_FILE,
     STATE_TEAM_AVERAGE_TALENT,
     STATE_TEAM_DEF_FILE,
+    STATE_BREAK,
     STATE_END
 };
 
@@ -163,6 +165,8 @@ xml_league_read_start_element (GMarkupParseContext *context,
 	state = STATE_NAMES_FILE;
     else if(strcmp(element_name, TAG_ACTIVE) == 0)
 	state = STATE_ACTIVE;
+    else if(strcmp(element_name, TAG_BREAK) == 0)
+	state = STATE_BREAK;
     else if(strcmp(element_name, TAG_PROM_REL) == 0)
 	state = STATE_PROM_REL;
     else if(strcmp(element_name, TAG_PROM_GAMES) == 0)
@@ -239,6 +243,7 @@ xml_league_read_end_element    (GMarkupParseContext *context,
        strcmp(element_name, TAG_AVERAGE_TALENT) == 0 ||
        strcmp(element_name, TAG_NAMES_FILE) == 0 ||
        strcmp(element_name, TAG_ACTIVE) == 0 ||
+       strcmp(element_name, TAG_BREAK) == 0 ||
        strcmp(element_name, TAG_PROM_REL) == 0 ||
        strcmp(element_name, TAG_TEAMS) == 0)
 	state = STATE_LEAGUE;
@@ -319,6 +324,8 @@ xml_league_read_text         (GMarkupParseContext *context,
 	misc_string_assign(&new_league.names_file, buf);
     else if(state == STATE_ACTIVE)
 	new_league.active = int_value;
+    else if(state == STATE_BREAK)
+	new_league.rr_break = int_value;
     else if(state == STATE_PROM_GAMES_DEST_SID)
 	misc_string_assign(&new_league.prom_rel.prom_games_dest_sid, buf);
     else if(state == STATE_PROM_GAMES_LOSER_SID)

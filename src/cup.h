@@ -39,6 +39,7 @@
 #define query_cup_is_international(clid) query_cup_has_property(clid, "international")
 #define query_cup_is_national(clid) query_cup_has_property(clid, "national")
 #define query_cup_hide(clid) query_cup_has_property(clid, "hide")
+#define query_cup_weak_at_home(clid) query_cup_has_property(clid, "weak_at_home")
 
 Cup
 cup_new(gboolean new_id);

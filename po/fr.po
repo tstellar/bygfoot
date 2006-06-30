@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bygfoot 1.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-29 18:04+0200\n"
+"POT-Creation-Date: 2006-06-30 15:22+0200\n"
 "PO-Revision-Date: 2006-03-01 23:33+0100\n"
 "Last-Translator: Forjan Frédéric <fforjan@linuxmail.org>\n"
 "Language-Team: French\n"
@@ -235,7 +235,7 @@ msgid " Week "
 msgstr " Semaine "
 
 #. Game was decided in extra time.
-#: src/fixture.c:863
+#: src/fixture.c:880
 msgid " e.t."
 msgstr " a.p."
 
@@ -252,7 +252,7 @@ msgid " more"
 msgstr " plus"
 
 #. Game was decided in penalty shoot-out.
-#: src/fixture.c:860
+#: src/fixture.c:877
 msgid " p."
 msgstr " p."
 
@@ -332,7 +332,7 @@ msgstr ""
 "%s vous licencie pour manque d'efficacité.\n"
 "Vous trouvez un nouvel emploi chez %s dans la %s."
 
-#: src/transfer.c:483
+#: src/transfer.c:489
 #, c-format
 msgid "%s has been added to the transfer list for %d weeks."
 msgstr "%s a été ajouté à la liste des transfers pour %d semaines."
@@ -2687,7 +2687,7 @@ msgstr ""
 "résultats. Heureusement pour vous, l'équipe de %s a eu vent de votre renvoi "
 "et vous proposent un emploi. Voici quelques informations sur %s :"
 
-#: src/callback_func.c:472 src/callbacks.c:196 src/transfer.c:490
+#: src/callback_func.c:472 src/callbacks.c:196 src/transfer.c:496
 msgid "The transfer deadline is over."
 msgstr "La date limite de transfert est dépassée."
 
