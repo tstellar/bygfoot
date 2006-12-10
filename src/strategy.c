@@ -337,6 +337,11 @@ strategy_set_tokens(const Team *tm, const Fixture *fixture)
 		   option_int("string_token_avskilldiff", &tokens),
 		   misc_int_to_char((gint)rint(team_get_average_skill(tm, FALSE) -
 					       team_get_average_skill(opp, FALSE))));
+
+    misc_token_add(token_strat,
+		   option_int("string_token_opponent_skill", &tokens),
+		   misc_int_to_char((gint)rint(team_get_average_skill(opp, FALSE))));
+
     if(tm->clid < ID_CUP_START &&
        opp->clid < ID_CUP_START)
 	misc_token_add(token_strat,

@@ -152,6 +152,9 @@ user_set_up_team(User *user)
 
     user->counters[COUNT_USER_NEW_SPONSOR] = 
 	(sett_int("int_opt_disable_finances")) ? -5 : 1;
+
+    option_set_int("int_opt_user_penalty_shooter",
+		   &user->options, -1);
 }
 
 
