@@ -1067,15 +1067,15 @@ live_game_event_duel(void)
 	res_idx2 = 0;
 
     if(last_unit.event.type == LIVE_GAME_EVENT_PENALTY)
-	scoring_prob = const_float("float_live_game_score_penalty") * duel_factor;
+	scoring_prob = const_float("float_live_game_score_penalty") * duel_factor * attacker->team->luck;
     else if(last_unit.event.type == LIVE_GAME_EVENT_FREE_KICK)
-	scoring_prob = const_float("float_live_game_score_free_kick") * duel_factor;
+	scoring_prob = const_float("float_live_game_score_free_kick") * duel_factor * attacker->team->luck;
     else
 	scoring_prob = const_float("float_live_game_score_base_prob") * 
 	    powf(duel_factor, const_float("float_live_game_score_duel_exponent")) *
 	    powf(match->team_values[new.possession][GAME_TEAM_VALUE_ATTACK] /
 		 match->team_values[!new.possession][GAME_TEAM_VALUE_DEFEND],
-		 const_float("float_live_game_score_team_exponent"));
+		 const_float("float_live_game_score_team_exponent")) * attacker->team->luck;
 
     if(new.time != LIVE_GAME_UNIT_TIME_PENALTIES)
     {
@@ -1401,14 +1401,18 @@ live_game_pit_teams(const LiveGameUnit *unit, gfloat exponent)
     gfloat factor;
 
     if(unit->area == LIVE_GAME_UNIT_AREA_DEFEND)
-	factor = powf(match->team_values[unit->possession][GAME_TEAM_VALUE_DEFEND] /
-		      match->team_values[!unit->possession][GAME_TEAM_VALUE_ATTACK], exponent);
+	factor = powf((match->team_values[unit->possession][GAME_TEAM_VALUE_DEFEND] * tms[unit->possession]->luck) /
+		      (match->team_values[!unit->possession][GAME_TEAM_VALUE_ATTACK] * tms[!unit->possession]->luck),
+		      exponent);
     else if(unit->area == LIVE_GAME_UNIT_AREA_MIDFIELD)
-	factor = powf(match->team_values[unit->possession][GAME_TEAM_VALUE_MIDFIELD] /
-		      match->team_values[!unit->possession][GAME_TEAM_VALUE_MIDFIELD], exponent);
+	factor = 
+	    powf((match->team_values[unit->possession][GAME_TEAM_VALUE_MIDFIELD] * tms[unit->possession]->luck) /
+		 (match->team_values[!unit->possession][GAME_TEAM_VALUE_MIDFIELD] * tms[!unit->possession]->luck),
+		  exponent);
     else
-	factor = powf(match->team_values[unit->possession][GAME_TEAM_VALUE_ATTACK] /
-		      match->team_values[!unit->possession][GAME_TEAM_VALUE_DEFEND], exponent);
+	factor = powf((match->team_values[unit->possession][GAME_TEAM_VALUE_ATTACK] * tms[unit->possession]->luck) /
+		      (match->team_values[!unit->possession][GAME_TEAM_VALUE_DEFEND] * tms[!unit->possession]->luck),
+		      exponent);
 
     return factor;
 }

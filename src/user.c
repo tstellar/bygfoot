@@ -157,7 +157,6 @@ user_set_up_team(User *user)
 		   &user->options, -1);
 }
 
-
 /** Set the counters of the user to their initial values. */
 void
 user_set_up_counters(User *user)
@@ -170,6 +169,7 @@ user_set_up_counters(User *user)
     user->counters[COUNT_USER_LOAN] =
 	user->counters[COUNT_USER_POSITIVE] = -1;
 }
+
 /** Set up the user's finances when he's got a new team.
     @param user The user we set up the finances for. */
 void
@@ -205,6 +205,8 @@ user_remove(gint idx, gboolean regenerate_team)
 
 	g_array_free(usr(idx).tm->players, TRUE);
 	usr(idx).tm->players = g_array_new(FALSE, FALSE, sizeof(Player));
+
+	usr(idx).tm->luck = 1;
 
 	team_generate_players_stadium(usr(idx).tm, 0);
 	for(i=0;i<usr(idx).tm->players->len;i++)
@@ -567,7 +569,7 @@ user_change_team(User *user, Team *tm)
     user->sponsor = user_get_sponsor(&current_user);    
 
     for(i=user->events->len - 1; i >= 0; i--)
-	user_event_remove(user, i);    
+	user_event_remove(user, i);
 }
 
 /** Check whether one of the user teams has an unfit player
