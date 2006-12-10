@@ -395,6 +395,16 @@ float_season_end_user_champ_best_teams_addition 1500
 # a team as a top team
 int_season_end_user_champ_best_teams_limit 5
 
+# how much the user's luck deteriorates if he
+# becomes champion
+float_season_end_user_champ_luck_factor 90000
+
+# how much it regenerates if he's not champ
+float_season_end_user_champ_luck_factor_regen 105000
+
+# lower limit for the user's luck
+float_luck_limit  50000
+
 float_season_end_league_above_talent_factor 103000
 
 # bounds for new teams when user's been fired

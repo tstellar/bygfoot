@@ -62,6 +62,7 @@ team_new(gboolean new_id)
     new.style = 0;
     new.boost = 0;
     new.average_talent = 0;
+    new.luck = 1;
 
     new.players = g_array_new(FALSE, FALSE, sizeof(Player));
 

@@ -375,11 +375,12 @@ league_season_start(League *league)
     gboolean user_champ = 
 	(team_is_user(
 	    team_of_id(
-		g_array_index(lig(0).table.elements, TableElement, 0).team_id)) != -1),
-	league_above_talent =
+		g_array_index(lig(0).table.elements, TableElement, 0).team_id)) != -1);
+    gboolean league_above_talent =
 	(team_get_average_talents(league->teams) > league->average_talent *
-	 const_float("float_season_end_league_above_talent_factor") && !user_champ),
-	team_is_top = FALSE;
+	 const_float("float_season_end_league_above_talent_factor") && !user_champ);
+    gboolean team_is_top = FALSE;
+    Team *tm = NULL;
     
     gfloat team_change_lower = 
 	const_float("float_season_end_team_change_lower"),
@@ -394,6 +395,19 @@ league_season_start(League *league)
 	const_int("int_season_end_user_champ_best_teams_limit");
 
     gfloat team_change_factor = 0;
+
+    if(user_champ)
+    {
+	tm = team_of_id(
+	    g_array_index(lig(0).table.elements, TableElement, 0).team_id);
+	tm->luck = MAX(tm->luck * const_float("float_season_end_user_champ_luck_factor"),
+		       const_float("float_luck_limit"));
+    }
+    else
+	for(i=0;i<users->len;i++)
+	    if(usr(i).tm->luck < 1)
+		usr(i).tm->luck = 
+		    MIN(usr(i).tm->luck * const_float("float_season_end_user_champ_luck_factor_regen"), 1);
 
     for(i=0;i<league->table.elements->len;i++)
     {

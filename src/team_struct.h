@@ -88,7 +88,12 @@ typedef struct
 
     /** Average talent of the players at generation. */
     gfloat average_talent;
-    
+
+    /** A value that influences scoring chances etc.
+     If > 1, the team's lucky, if < 1, it's unlucky.
+     Only used for users' teams. */
+    gfloat luck;    
+
     Stadium stadium;
     /**
        Array of players.

@@ -48,6 +48,7 @@ enum
     TAG_TEAM_STADIUM_POSSIBLE_ATTENDANCE,
     TAG_TEAM_STADIUM_GAMES,
     TAG_TEAM_STADIUM_SAFETY,
+    TAG_TEAM_LUCK,
     TAG_END
 };
 
@@ -120,7 +121,8 @@ xml_loadsave_teams_end_element    (GMarkupParseContext *context,
 	    tag == TAG_TEAM_STRUCTURE ||
 	    tag == TAG_TEAM_STYLE ||
 	    tag == TAG_TEAM_BOOST ||
-	    tag == TAG_TEAM_STADIUM)
+	    tag == TAG_TEAM_STADIUM ||
+	    tag == TAG_TEAM_LUCK)
 	state = TAG_TEAM;
     else if(tag == TAG_TEAM_STADIUM_NAME ||
 	    tag == TAG_TEAM_STADIUM_CAPACITY ||
@@ -187,6 +189,8 @@ xml_loadsave_teams_text         (GMarkupParseContext *context,
 	new_team.stadium.games = int_value;
     else if(state == TAG_TEAM_STADIUM_SAFETY)
 	new_team.stadium.safety = float_value;
+    else if(state == TAG_TEAM_LUCK)
+	new_team.luck = float_value;
     else if(state >= TAG_START_PLAYERS && state <= TAG_END_PLAYERS)
 	xml_loadsave_players_text(buf);
 }
@@ -279,6 +283,8 @@ xml_loadsave_teams_write_team(FILE *fil, const Team* team)
     fprintf(fil, "%s</_%d>\n", I1, TAG_TEAM_STADIUM);
 
     xml_loadsave_players_write(fil, team->players);
+
+    xml_write_float(fil, team->luck, TAG_TEAM_LUCK, I1);
 
     fprintf(fil, "</_%d>\n", TAG_TEAM);
 }
