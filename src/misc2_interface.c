@@ -652,7 +652,7 @@ create_window_contract (void)
   radiobutton_contract1_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton_contract2));
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (radiobutton_contract2), TRUE);
 
-  spinbutton_contract1_adj = gtk_adjustment_new (1, 1, 100000, 1, 100, 10);
+  spinbutton_contract1_adj = gtk_adjustment_new (1, 1, 1000000, 1, 100, 10);
   spinbutton_contract1 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_contract1_adj), 1, 0);
   gtk_widget_show (spinbutton_contract1);
   gtk_table_attach (GTK_TABLE (table1), spinbutton_contract1, 1, 2, 0, 1,
@@ -660,21 +660,21 @@ create_window_contract (void)
                     (GtkAttachOptions) (0), 0, 0);
   gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_contract1), TRUE);
 
-  spinbutton_contract2_adj = gtk_adjustment_new (1, 1, 100000, 1, 100, 10);
+  spinbutton_contract2_adj = gtk_adjustment_new (1, 1, 1000000, 1, 100, 10);
   spinbutton_contract2 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_contract2_adj), 1, 0);
   gtk_widget_show (spinbutton_contract2);
   gtk_table_attach (GTK_TABLE (table1), spinbutton_contract2, 1, 2, 1, 2,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
 
-  spinbutton_contract3_adj = gtk_adjustment_new (1, 1, 100000, 1, 100, 10);
+  spinbutton_contract3_adj = gtk_adjustment_new (1, 1, 1000000, 1, 100, 10);
   spinbutton_contract3 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_contract3_adj), 1, 0);
   gtk_widget_show (spinbutton_contract3);
   gtk_table_attach (GTK_TABLE (table1), spinbutton_contract3, 1, 2, 2, 3,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
 
-  spinbutton_contract4_adj = gtk_adjustment_new (1, 1, 100000, 1, 100, 10);
+  spinbutton_contract4_adj = gtk_adjustment_new (1, 1, 1000000, 1, 100, 10);
   spinbutton_contract4 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_contract4_adj), 1, 0);
   gtk_widget_show (spinbutton_contract4);
   gtk_table_attach (GTK_TABLE (table1), spinbutton_contract4, 1, 2, 3, 4,

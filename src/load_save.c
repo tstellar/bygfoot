@@ -427,6 +427,7 @@ load_save_autosave(void)
 
     load_save_save_game(buf);
 
+
     counters[COUNT_AUTOSAVE_FILE] = (counters[COUNT_AUTOSAVE_FILE] + 1) % opt_int("int_opt_autosave_files");
 }
 
