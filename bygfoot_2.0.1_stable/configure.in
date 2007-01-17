@@ -1,0 +1,84 @@
+dnl Process this file with autoconf to produce a configure script.
+
+AC_INIT(configure.in)
+AM_INIT_AUTOMAKE(bygfoot, 0.1)
+AM_CONFIG_HEADER(config.h)
+AM_MAINTAINER_MODE
+
+AC_ISC_POSIX
+AC_PROG_CC
+AM_PROG_CC_STDC
+AC_HEADER_STDC
+
+pkg_modules="gtk+-2.0 >= 2.6"
+
+dnl echo -n "checking for  gthread-2.0 ... "
+dnl if pkg-config --exists  gthread-2.0 ; then
+dnl 	echo "yes"
+dnl pkg_modules="$pkg_modules  gthread-2.0"
+dnl else
+dnl 	echo "no"
+dnl 	AC_MSG_ERROR(gthread-2.0 not found)
+dnl fi
+
+PKG_CHECK_MODULES(PACKAGE, [$pkg_modules])
+AC_SUBST(PACKAGE_CFLAGS)
+AC_SUBST(PACKAGE_LIBS)
+
+GETTEXT_PACKAGE=bygfoot
+AC_SUBST(GETTEXT_PACKAGE)
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
+
+dnl Add the languages which your application supports here.
+ALL_LINGUAS="de nl fr pl ro bg zh es da sv"
+AM_GLIB_GNU_GETTEXT
+
+dnl gstreamer checking
+
+AC_ARG_ENABLE(gstreamer,
+	AC_HELP_STRING([--enable-gstreamer],[use GStreamer for media]),
+	[case "${enableval}" in
+	yes) ENABLE_GST=yes ;;
+        no)  ENABLE_GST=no ;;
+	*) AC_MSG_ERROR(bad value ${enableval} for --enable-gstreamer) ;;
+	esac],
+	[ENABLE_GST=no]) dnl Default value
+
+dnl localedir specification
+
+LOCALEDIR="$datadir/locale"
+AC_ARG_WITH([localedir],
+	AS_HELP_STRING([--with-localedir@<:@=DIR@:>@], [install locale data under specified dir]),
+	LOCALEDIR="${withval}"
+)
+AC_SUBST([LOCALEDIR])
+
+
+if test x$ENABLE_GST = xyes; then
+	HAVE_GSTREAMER=0
+	dnl start with 0.8
+	GST_MAJORMINOR=0.8
+	GSTREAMER_REQUIRED=0.8
+	PKG_CHECK_MODULES(GST, \
+		gstreamer-$GST_MAJORMINOR >= $GSTREAMER_REQUIRED,
+		HAVE_GSTREAMER=1,HAVE_GSTREAMER=0)
+	
+	if test "x$HAVE_GSTREAMER" = "x0"; then
+		AC_MSG_ERROR(you need gstreamer development packages installed !)
+	fi
+
+	AC_SUBST(GST_CFLAGS)
+	AC_SUBST(GST_LIBS)
+	AC_SUBST(HAVE_GSTREAMER)	
+	AC_DEFINE_UNQUOTED(HAVE_GSTREAMER, $HAVE_GSTREAME,[gstreamer])
+	AC_MSG_RESULT(GStreamer)
+fi
+
+
+
+
+AC_OUTPUT([
+Makefile
+src/Makefile
+po/Makefile.in
+])

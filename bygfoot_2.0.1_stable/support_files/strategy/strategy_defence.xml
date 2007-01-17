@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strategy>
+  <sid>defence</sid>
+  <desc>defensive</desc>
+  <priority>1</priority>
+
+  <prematch>
+    <formation>442</formation>
+    <formation>352</formation>
+    <formation>433</formation>
+    <formation>532</formation>
+    <formation>343</formation>
+
+    <lineup min_fitness="75">best</lineup>
+    <prematch_boost>off</prematch_boost>
+    <prematch_style>balanced</prematch_style>
+  </prematch>
+
+  <match_action cond="_TIME_ >= 1 and _GOALSTOWIN_ < -2">
+    <boost>anti</boost>
+  </match_action>
+
+  <match_action cond="_MT_ < 20 and _GOALSTOWIN_ < -1">
+    <boost>anti</boost>
+  </match_action>
+
+  <match_action cond="_MT_ < 20 and _GOALSTOWIN_ > 0 and _GOALSTOWIN_ < 2">
+    <boost>on</boost>
+  </match_action>
+
+  <match_action cond="_GOALSTOWIN_ <= -1">
+    <style>defend</style>
+  </match_action>
+
+  <match_action cond="_GOALSTOWIN_ = 0">
+    <style>balanced</style>
+  </match_action>
+
+  <match_action cond="_MT_ < 20 and _GOALSTOWIN_ < 0">
+    <style>all-out-defend</style>
+  </match_action>
+
+  <match_action cond="_TIME_ >= 1 and _GOALSTOWIN_ > 1 and _NUMMID_ > 2">
+    <sub cond="_SUBSLEFT_ > 1">
+      <in prop="best">forward</in>
+      <out prop="weakest">midfielder defender</out>
+    </sub>
+    <style>attack</style>
+  </match_action>
+
+  <match_action cond="_TIME_ >= 1 and _GOALSTOWIN_ < 0 and _NUMDEF_ < 5">
+    <sub cond="_SUBSLEFT_ > 1">
+      <in prop="best">defender</in>
+      <out prop="weakest">forward midfielder</out>
+    </sub>
+    <style>defend</style>
+  </match_action>
+
+</strategy>

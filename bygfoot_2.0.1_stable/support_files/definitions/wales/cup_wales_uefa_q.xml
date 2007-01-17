@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<cup>
+  <name>UEFA Cup Qualifiers</name>
+  <short_name>UEFA Qual.</short_name> 
+  <symbol>flag_eu.png</symbol>
+  <sid>wales_uefa_q</sid>
+  <group>102</group>
+  <yellow_red>3</yellow_red>
+  <talent_diff>1800</talent_diff>
+  <week_gap>2</week_gap>
+  <last_week>11</last_week>
+  <add_week>0</add_week>
+  <property>international</property>
+
+  <cup_rounds>
+    <cup_round>
+      <new_teams>8</new_teams>
+      <choose_teams>
+        <choose_team>
+          <choose_team_sid>CUP1</choose_team_sid>
+          <number_of_teams>1</number_of_teams>
+          <start_idx>1</start_idx>
+          <end_idx>2</end_idx>
+        </choose_team>
+
+        <choose_team>
+          <choose_team_sid>france2 germany2 italy2 scotland2
+            belgium2 romania2</choose_team_sid>
+          <number_of_teams>7</number_of_teams>
+          <randomly>1</randomly>
+          <generate>1</generate>
+        </choose_team>
+      </choose_teams>
+    </cup_round>
+
+    <cup_round>
+    </cup_round>
+    
+    <cup_round>
+    </cup_round>
+  </cup_rounds>
+</cup>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+
+  <sid>england3</sid>
+  <name>Football League One</name>
+  <short_name>F. L. One</short_name>
+  <symbol>flag_england.png</symbol>
+  <first_week>1</first_week>
+  <week_gap>1</week_gap>
+  <average_talent>7300</average_talent>
+  <names_file>england</names_file>
+
+  <prom_rel>
+
+    <prom_games>
+      <prom_games_dest_sid>england2</prom_games_dest_sid>
+      <prom_games_cup_sid>england_prom_games3</prom_games_cup_sid>
+    </prom_games>
+    
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>2</rank_end>
+      <dest_sid>england2</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_rel_element>
+      <rank_start>21</rank_start>
+      <rank_end>24</rank_end>
+      <dest_sid>england4</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Blackpool</team_name>
+    </team>
+    <team>
+      <team_name>Bournemouth</team_name>
+    </team>
+    <team>
+      <team_name>Bradford</team_name>
+    </team>
+    <team>
+      <team_name>Brentford</team_name>
+    </team>
+    <team>
+      <team_name>Brighton and Hove</team_name>
+    </team>
+    <team>
+      <team_name>Bristol C.</team_name>
+    </team>
+    <team>
+      <team_name>Carlisle</team_name>
+    </team>
+    <team>
+      <team_name>Cheltenham</team_name>
+    </team>
+    <team>
+      <team_name>Chesterfield</team_name>
+    </team>
+    <team>
+      <team_name>Crewe</team_name>
+    </team>
+    <team>
+      <team_name>Doncaster</team_name>
+    </team>
+    <team>
+      <team_name>Gillingham</team_name>
+    </team>
+    <team>
+      <team_name>Huddersfield</team_name>
+    </team>
+    <team>
+      <team_name>Leyton</team_name>
+    </team>
+    <team>
+      <team_name>Millwall</team_name>
+    </team>
+    <team>
+      <team_name>Northampton</team_name>
+    </team>
+    <team>
+      <team_name>Nottingham</team_name>
+    </team>
+    <team>
+      <team_name>Oldham</team_name>
+    </team>
+    <team>
+      <team_name>Port Vale</team_name>
+    </team>
+    <team>
+      <team_name>Rotherham</team_name>
+    </team>
+    <team>
+      <team_name>Scunthorpe</team_name>
+    </team>
+    <team>
+      <team_name>Swansea</team_name>
+    </team>
+    <team>
+      <team_name>Tranmere</team_name>
+    </team>
+    <team>
+      <team_name>Yeovil</team_name>
+    </team>
+  </teams>
+
+</league>
