@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>scg1</sid>
+  <name>Meridian prva liga</name>
+  <short_name>MPL</short_name>
+  <symbol>flag_scg.png</symbol>
+  <first_week>1</first_week>
+  <week_gap>1</week_gap>
+  <average_talent>7700</average_talent>
+  <names_file>scg</names_file>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>13</rank_start>
+      <rank_end>15</rank_end>
+      <dest_sid>scg2a</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_rel_element>
+      <rank_start>16</rank_start>
+      <rank_end>16</rank_end>
+      <dest_sid>scg2b</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>P. Belgrade</team_name>
+    </team>
+    <team>
+      <team_name>R.S. Belgrade</team_name>
+    </team>
+    <team>
+      <team_name>Golubovci</team_name>
+    </team>
+    <team>
+      <team_name>Beograd</team_name>
+    </team>
+    <team>
+      <team_name>Zemun</team_name>
+    </team>
+    <team>
+      <team_name>Podgorica</team_name>
+    </team>
+    <team>
+      <team_name>H. Kula</team_name>
+    </team>
+    <team>
+      <team_name>Vojvodina</team_name>
+    </team>
+    <team>
+      <team_name>Železnik</team_name>
+    </team>
+    <team>
+      <team_name>Smederevo</team_name>
+    </team>
+    <team>
+      <team_name>O. Belgrade</team_name>
+    </team>
+    <team>
+      <team_name>Novi Beograd</team_name>
+    </team>
+    <team>
+      <team_name>Čačak</team_name>
+    </team>
+    <team>
+      <team_name>Čukarica</team_name>
+    </team>
+    <team>
+      <team_name>Nikšić</team_name>
+    </team>
+    <team>
+      <team_name>H. Belgrade</team_name>
+    </team>
+  </teams>
+</league>
