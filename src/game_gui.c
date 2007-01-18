@@ -571,6 +571,7 @@ enum MainWindowInensitiveItems
     INSENSITIVE_ITEM_MENU_PHYSIO,
     INSENSITIVE_ITEM_MENU_BROWSE_TEAMS,
     INSENSITIVE_ITEM_MENU_YOUTH_ACADEMY,
+    INSENSITIVE_ITEM_MENU_TRAINING_CAMP,
     INSENSITIVE_ITEM_MENU_SHOW_JOB_EXCHANGE,
     INSENSITIVE_ITEM_MENU_PUT_ON_TRANSFER_LIST,
     INSENSITIVE_ITEM_MENU_REMOVE_FROM_TRANSFER_LIST,
@@ -617,6 +618,8 @@ game_gui_set_main_window_sensitivity(gboolean value)
 	lookup_widget(window.main, "menu_browse_teams");
     insensitive_items[INSENSITIVE_ITEM_MENU_YOUTH_ACADEMY] = 
 	lookup_widget(window.main, "menu_youth_academy");
+	insensitive_items[INSENSITIVE_ITEM_MENU_TRAINING_CAMP] = 
+	lookup_widget(window.main, "menu_training_camp");
     insensitive_items[INSENSITIVE_ITEM_MENU_SHOW_JOB_EXCHANGE] = 
 	lookup_widget(window.main, "menu_show_job_exchange");
     insensitive_items[INSENSITIVE_ITEM_MENU_PUT_ON_TRANSFER_LIST] = 
@@ -850,4 +853,15 @@ game_gui_set_help_labels(void)
 
     gtk_label_set_text(label_help_text2, text->str);
     g_string_free(text, TRUE);
+}
+
+/** Set the money of the current team into the label. */
+void
+game_gui_write_money(void)
+{
+    gchar buf[SMALL];
+    GtkLabel *label_money= GTK_LABEL(lookup_widget(window.main, "label_money"));
+    
+    misc_print_grouped_int(current_user.money, buf);
+	gtk_label_set_text(label_money, buf);
 }
