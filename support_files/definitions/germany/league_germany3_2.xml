@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <league>
 
-	<sid>germany2</sid>
-	<name>2. Bundesliga</name>
-	<short_name>2. BL</short_name>
+	<sid>germany3_2</sid>
+	<name>Regionalliga Süd</name>
+	<short_name>RL Süd</short_name>
 	<symbol>flag_germany.png</symbol>
 	<first_week>1</first_week>
 	<week_gap>1</week_gap>
-	<average_talent>7600</average_talent>
+	<average_talent>6500</average_talent>
+	<layer>3</layer>
 	<names_file>germany</names_file>
 
 	<prom_rel>
 		<prom_rel_element>
 			<rank_start>1</rank_start>
-			<rank_end>3</rank_end>
-			<dest_sid>germany1</dest_sid>
+			<rank_end>2</rank_end>
+			<dest_sid>germany2</dest_sid>
 			<prom_rel_type>promotion</prom_rel_type>
 		</prom_rel_element>
 	</prom_rel>
-
+	
 	<prom_rel>
 		<prom_rel_element>
 			<rank_start>15</rank_start>
 			<rank_end>18</rank_end>
-			<dest_sid>germany3_1 germany3_2</dest_sid>
+			<dest_sid>germany4_1 germany4_2 germany4_3 germany4_8</dest_sid>
 			<prom_rel_type>relegation</prom_rel_type>
 		</prom_rel_element>
 	</prom_rel>
@@ -31,75 +32,75 @@
 	<teams>
 		
 		<team>
-			<team_name>Karlsruhe</team_name>
+			<team_name>Wehen</team_name>
 		</team>
 
 		<team>
-			<team_name>Rostock</team_name>
+			<team_name>Hoffenheim</team_name>
 		</team>
 		
 		<team>
-			<team_name>Duisburg</team_name>
+			<team_name>Reutlingen</team_name>
 		</team>
 		
 		<team>
-			<team_name>Kaiserslautern</team_name>
+			<team_name>Siegen</team_name>
 		</team>
 		
 		<team>
-			<team_name>Aue</team_name>
+			<team_name>Ingolstadt</team_name>
 		</team>
 		
 		<team>
-			<team_name>Augsburg</team_name>
+			<team_name>Saarbrücken</team_name>
 		</team>
 		
 		<team>
-			<team_name>Offenbach</team_name>
+			<team_name>Aalen</team_name>
 		</team>
 		
 		<team>
-			<team_name>Fürth</team_name>
+			<team_name>Elversberg</team_name>
 		</team>
 		
 		<team>
-			<team_name>Köln</team_name>
+			<team_name>Kassel</team_name>
 		</team>
 		
 		<team>
-			<team_name>Paderborn</team_name>
+			<team_name>Pfullendorf</team_name>
 		</team>
 		
 		<team>
-			<team_name>Koblenz</team_name>
+			<team_name>Darmstadt</team_name>
 		</team>
 		
 		<team>
-			<team_name>Freiburg</team_name>
+			<team_name>Pirmasens</team_name>
 		</team>
 		
 		<team>
-			<team_name>Unterhaching</team_name>
+			<team_name>Sandhausen</team_name>
 		</team>
 		
 		<team>
-			<team_name>Burghausen</team_name>
+			<team_name>Regensburg</team_name>
 		</team>
 		
 		<team>
-			<team_name>Jena</team_name>
+			<team_name>Aschaffenburg</team_name>
 		</team>
 		
 		<team>
-			<team_name>Essen</team_name>
+			<team_name>Oggersheim</team_name>
 		</team>
 		
 		<team>
-			<team_name>Braunschweig</team_name>
+			<team_name>Ulm</team_name>
 		</team>
 		
 		<team>
-			<team_name>Osnabrück</team_name>
+			<team_name>Bamberg</team_name>
 		</team>
 																		
 	</teams>
