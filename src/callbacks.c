@@ -1243,3 +1243,19 @@ on_hpaned2_button_release_event        (GtkWidget       *widget,
 
     return FALSE;
 }
+
+void
+on_training_camp_activate              (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+   if(sett_int("int_opt_disable_training_camp"))
+    {
+	game_gui_print_message(
+	    _("Training camp is disabled in this country definition."));
+	return;
+    }
+
+    window_show_training_camp();
+
+}
+
