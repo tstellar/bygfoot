@@ -181,6 +181,7 @@ xml_country_read_text         (GMarkupParseContext *context,
 	sett_set_int("int_opt_disable_contracts", 1);
 	sett_set_int("int_opt_disable_boost_on", 1);
 	sett_set_int("int_opt_disable_ya", 1);
+	sett_set_int("int_opt_disable_training_camp", 1);//***ML***
     }
     else if(state == STATE_LEAGUE)
 	xml_league_read(buf, cntry->leagues);
@@ -243,6 +244,7 @@ xml_country_read(const gchar *country_name, Country *cntry_arg)
 	sett_set_int("int_opt_disable_contracts", 0);
 	sett_set_int("int_opt_disable_boost_on", 0);
 	sett_set_int("int_opt_disable_ya", 0);
+	sett_set_int("int_opt_disable_training_camp", 0); //***ML***
     }
 
     if(g_markup_parse_context_parse(context, file_contents, length, &error))
