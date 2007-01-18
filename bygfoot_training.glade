@@ -1,0 +1,338 @@
+<?xml version="1.0" standalone="no"?> <!--*- mode: xml -*-->
+<!DOCTYPE glade-interface SYSTEM "http://glade.gnome.org/glade-2.0.dtd">
+
+<glade-interface>
+
+<widget class="GtkWindow" id="window_training_camp">
+  <property name="visible">True</property>
+  <property name="title" translatable="yes">Training camp</property>
+  <property name="type">GTK_WINDOW_TOPLEVEL</property>
+  <property name="window_position">GTK_WIN_POS_CENTER</property>
+  <property name="modal">True</property>
+  <property name="resizable">False</property>
+  <property name="destroy_with_parent">False</property>
+  <property name="decorated">True</property>
+  <property name="skip_taskbar_hint">False</property>
+  <property name="skip_pager_hint">False</property>
+  <property name="type_hint">GDK_WINDOW_TYPE_HINT_NORMAL</property>
+  <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
+  <property name="focus_on_map">True</property>
+  <property name="urgency_hint">False</property>
+
+  <child>
+    <widget class="GtkFixed" id="panel_camp">
+      <property name="width_request">500</property>
+      <property name="height_request">290</property>
+      <property name="visible">True</property>
+
+      <child>
+	<widget class="GtkEntry" id="tf_costs">
+	  <property name="width_request">158</property>
+	  <property name="height_request">22</property>
+	  <property name="visible">True</property>
+	  <property name="editable">False</property>
+	  <property name="visibility">True</property>
+	  <property name="max_length">0</property>
+	  <property name="text" translatable="yes"></property>
+	  <property name="has_frame">False</property>
+	  <property name="invisible_char">●</property>
+	  <property name="activates_default">False</property>
+	</widget>
+	<packing>
+	  <property name="x">296</property>
+	  <property name="y">39</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkHSeparator" id="hs_camp2">
+	  <property name="width_request">450</property>
+	  <property name="height_request">16</property>
+	  <property name="visible">True</property>
+	</widget>
+	<packing>
+	  <property name="x">25</property>
+	  <property name="y">90</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkHSeparator" id="hs_camp1">
+	  <property name="width_request">450</property>
+	  <property name="height_request">16</property>
+	  <property name="visible">True</property>
+	</widget>
+	<packing>
+	  <property name="x">25</property>
+	  <property name="y">235</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkRadioButton" id="rb_camp2">
+	  <property name="width_request">150</property>
+	  <property name="height_request">21</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="label" translatable="yes">First-Class Hotel</property>
+	  <property name="use_underline">True</property>
+	  <property name="relief">GTK_RELIEF_NORMAL</property>
+	  <property name="focus_on_click">True</property>
+	  <property name="active">False</property>
+	  <property name="inconsistent">False</property>
+	  <property name="draw_indicator">True</property>
+	  <signal name="clicked" handler="on_rb_camp2_clicked" last_modification_time="Sun, 03 Dec 2006 16:50:34 GMT"/>
+	</widget>
+	<packing>
+	  <property name="x">24</property>
+	  <property name="y">40</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkButton" id="b_cancel">
+	  <property name="width_request">110</property>
+	  <property name="height_request">25</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="label">gtk-cancel</property>
+	  <property name="use_stock">True</property>
+	  <property name="relief">GTK_RELIEF_NORMAL</property>
+	  <property name="focus_on_click">True</property>
+	  <signal name="clicked" handler="on_b_cancel_clicked" last_modification_time="Sun, 03 Dec 2006 16:09:00 GMT"/>
+	</widget>
+	<packing>
+	  <property name="x">376</property>
+	  <property name="y">254</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkRadioButton" id="rb_camp1">
+	  <property name="width_request">150</property>
+	  <property name="height_request">21</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="label" translatable="yes">Good Hotel</property>
+	  <property name="use_underline">True</property>
+	  <property name="relief">GTK_RELIEF_NORMAL</property>
+	  <property name="focus_on_click">True</property>
+	  <property name="active">False</property>
+	  <property name="inconsistent">False</property>
+	  <property name="draw_indicator">True</property>
+	  <property name="group">rb_camp2</property>
+	  <signal name="clicked" handler="on_rb_camp1_clicked" last_modification_time="Sun, 03 Dec 2006 16:50:23 GMT"/>
+	</widget>
+	<packing>
+	  <property name="x">24</property>
+	  <property name="y">16</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkButton" id="b_ok">
+	  <property name="width_request">110</property>
+	  <property name="height_request">25</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="label">gtk-apply</property>
+	  <property name="use_stock">True</property>
+	  <property name="relief">GTK_RELIEF_NORMAL</property>
+	  <property name="focus_on_click">True</property>
+	  <signal name="clicked" handler="on_b_ok_clicked" last_modification_time="Sun, 03 Dec 2006 16:09:36 GMT"/>
+	</widget>
+	<packing>
+	  <property name="x">256</property>
+	  <property name="y">254</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkRadioButton" id="rb_camp3">
+	  <property name="width_request">150</property>
+	  <property name="height_request">21</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="label" translatable="yes">Premium Hotel</property>
+	  <property name="use_underline">True</property>
+	  <property name="relief">GTK_RELIEF_NORMAL</property>
+	  <property name="focus_on_click">True</property>
+	  <property name="active">False</property>
+	  <property name="inconsistent">False</property>
+	  <property name="draw_indicator">True</property>
+	  <property name="group">rb_camp2</property>
+	  <signal name="clicked" handler="on_rb_camp3_clicked" last_modification_time="Sun, 03 Dec 2006 16:50:53 GMT"/>
+	</widget>
+	<packing>
+	  <property name="x">24</property>
+	  <property name="y">64</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkLabel" id="l_costs">
+	  <property name="width_request">60</property>
+	  <property name="height_request">20</property>
+	  <property name="visible">True</property>
+	  <property name="label" translatable="yes">Costs</property>
+	  <property name="use_underline">False</property>
+	  <property name="use_markup">False</property>
+	  <property name="justify">GTK_JUSTIFY_LEFT</property>
+	  <property name="wrap">False</property>
+	  <property name="selectable">False</property>
+	  <property name="xalign">0.5</property>
+	  <property name="yalign">0.5</property>
+	  <property name="xpad">0</property>
+	  <property name="ypad">0</property>
+	  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+	  <property name="width_chars">-1</property>
+	  <property name="single_line_mode">False</property>
+	  <property name="angle">0</property>
+	</widget>
+	<packing>
+	  <property name="x">240</property>
+	  <property name="y">41</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkHScale" id="hs_recreation">
+	  <property name="width_request">200</property>
+	  <property name="height_request">36</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="draw_value">True</property>
+	  <property name="value_pos">GTK_POS_RIGHT</property>
+	  <property name="digits">1</property>
+	  <property name="update_policy">GTK_UPDATE_CONTINUOUS</property>
+	  <property name="inverted">False</property>
+	  <property name="adjustment">0 1 10 1 0 0</property>
+	  <signal name="change_value" handler="on_hs_recreation_change_value" last_modification_time="Wed, 06 Dec 2006 10:12:02 GMT"/>
+	</widget>
+	<packing>
+	  <property name="x">150</property>
+	  <property name="y">120</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkHScale" id="hs_training">
+	  <property name="width_request">200</property>
+	  <property name="height_request">36</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="draw_value">True</property>
+	  <property name="value_pos">GTK_POS_RIGHT</property>
+	  <property name="digits">1</property>
+	  <property name="update_policy">GTK_UPDATE_CONTINUOUS</property>
+	  <property name="inverted">False</property>
+	  <property name="adjustment">0 1 10 1 0 0</property>
+	  <signal name="change_value" handler="on_hs_training_change_value" last_modification_time="Wed, 06 Dec 2006 10:39:18 GMT"/>
+	</widget>
+	<packing>
+	  <property name="x">150</property>
+	  <property name="y">152</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkHScale" id="hs_camp_points">
+	  <property name="width_request">200</property>
+	  <property name="height_request">36</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="draw_value">True</property>
+	  <property name="value_pos">GTK_POS_RIGHT</property>
+	  <property name="digits">1</property>
+	  <property name="update_policy">GTK_UPDATE_CONTINUOUS</property>
+	  <property name="inverted">False</property>
+	  <property name="adjustment">0 1 10 1 0 0</property>
+	</widget>
+	<packing>
+	  <property name="x">150</property>
+	  <property name="y">184</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkLabel" id="l_recreation">
+	  <property name="width_request">120</property>
+	  <property name="height_request">20</property>
+	  <property name="visible">True</property>
+	  <property name="label" translatable="yes">Recreation</property>
+	  <property name="use_underline">False</property>
+	  <property name="use_markup">False</property>
+	  <property name="justify">GTK_JUSTIFY_LEFT</property>
+	  <property name="wrap">False</property>
+	  <property name="selectable">False</property>
+	  <property name="xalign">0.5</property>
+	  <property name="yalign">0.5</property>
+	  <property name="xpad">0</property>
+	  <property name="ypad">0</property>
+	  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+	  <property name="width_chars">-1</property>
+	  <property name="single_line_mode">False</property>
+	  <property name="angle">0</property>
+	</widget>
+	<packing>
+	  <property name="x">24</property>
+	  <property name="y">128</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkLabel" id="l_camp_points">
+	  <property name="width_request">120</property>
+	  <property name="height_request">20</property>
+	  <property name="visible">True</property>
+	  <property name="label" translatable="yes">Camp points</property>
+	  <property name="use_underline">False</property>
+	  <property name="use_markup">False</property>
+	  <property name="justify">GTK_JUSTIFY_LEFT</property>
+	  <property name="wrap">False</property>
+	  <property name="selectable">False</property>
+	  <property name="xalign">0.5</property>
+	  <property name="yalign">0.5</property>
+	  <property name="xpad">0</property>
+	  <property name="ypad">0</property>
+	  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+	  <property name="width_chars">-1</property>
+	  <property name="single_line_mode">False</property>
+	  <property name="angle">0</property>
+	</widget>
+	<packing>
+	  <property name="x">24</property>
+	  <property name="y">192</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkLabel" id="l_training">
+	  <property name="width_request">120</property>
+	  <property name="height_request">20</property>
+	  <property name="visible">True</property>
+	  <property name="label" translatable="yes">Training</property>
+	  <property name="use_underline">False</property>
+	  <property name="use_markup">False</property>
+	  <property name="justify">GTK_JUSTIFY_LEFT</property>
+	  <property name="wrap">False</property>
+	  <property name="selectable">False</property>
+	  <property name="xalign">0.5</property>
+	  <property name="yalign">0.5</property>
+	  <property name="xpad">0</property>
+	  <property name="ypad">0</property>
+	  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+	  <property name="width_chars">-1</property>
+	  <property name="single_line_mode">False</property>
+	  <property name="angle">0</property>
+	</widget>
+	<packing>
+	  <property name="x">24</property>
+	  <property name="y">160</property>
+	</packing>
+      </child>
+    </widget>
+  </child>
+</widget>
+
+</glade-interface>
