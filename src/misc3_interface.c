@@ -106,7 +106,7 @@ create_window_bets (void)
   gtk_box_pack_start (GTK_BOX (vbox1), button_bet_close, FALSE, FALSE, 0);
   gtk_tooltips_set_tip (tooltips, button_bet_close, _("Esc"), NULL);
   gtk_widget_add_accelerator (button_bet_close, "clicked", accel_group,
-                              GDK_Escape, 0,
+                              GDK_Escape, (GdkModifierType) 0,
                               GTK_ACCEL_VISIBLE);
 
   g_signal_connect ((gpointer) window_bets, "delete_event",
@@ -330,7 +330,7 @@ create_window_splash (void)
   gtk_box_pack_start (GTK_BOX (hbox3), button_splash_new_game, FALSE, FALSE, 0);
   gtk_tooltips_set_tip (tooltips, button_splash_new_game, _("Ctrl-N"), NULL);
   gtk_widget_add_accelerator (button_splash_new_game, "clicked", accel_group,
-                              GDK_n, GDK_CONTROL_MASK,
+                              GDK_n, (GdkModifierType) GDK_CONTROL_MASK,
                               GTK_ACCEL_VISIBLE);
 
   alignment1 = gtk_alignment_new (0.5, 0.5, 0, 0);
@@ -354,7 +354,7 @@ create_window_splash (void)
   gtk_box_pack_start (GTK_BOX (hbox3), button_splash_load_game, FALSE, FALSE, 0);
   gtk_tooltips_set_tip (tooltips, button_splash_load_game, _("Ctrl-O"), NULL);
   gtk_widget_add_accelerator (button_splash_load_game, "clicked", accel_group,
-                              GDK_o, GDK_CONTROL_MASK,
+                              GDK_o, (GdkModifierType) GDK_CONTROL_MASK,
                               GTK_ACCEL_VISIBLE);
 
   alignment2 = gtk_alignment_new (0.5, 0.5, 0, 0);
@@ -378,7 +378,7 @@ create_window_splash (void)
   gtk_box_pack_start (GTK_BOX (hbox3), button_splash_resume_game, FALSE, FALSE, 0);
   gtk_tooltips_set_tip (tooltips, button_splash_resume_game, _("Ctrl-R"), NULL);
   gtk_widget_add_accelerator (button_splash_resume_game, "clicked", accel_group,
-                              GDK_r, GDK_CONTROL_MASK,
+                              GDK_r, (GdkModifierType) GDK_CONTROL_MASK,
                               GTK_ACCEL_VISIBLE);
 
   alignment3 = gtk_alignment_new (0.5, 0.5, 0, 0);
@@ -402,7 +402,7 @@ create_window_splash (void)
   gtk_box_pack_start (GTK_BOX (hbox3), button_splash_quit, TRUE, TRUE, 0);
   gtk_tooltips_set_tip (tooltips, button_splash_quit, _("Esc"), NULL);
   gtk_widget_add_accelerator (button_splash_quit, "clicked", accel_group,
-                              GDK_Escape, 0,
+                              GDK_Escape, (GdkModifierType) 0,
                               GTK_ACCEL_VISIBLE);
 
   hbox7 = gtk_hbox_new (FALSE, 5);
