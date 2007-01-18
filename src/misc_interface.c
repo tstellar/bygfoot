@@ -246,7 +246,7 @@ create_window_startup (void)
   gtk_widget_set_sensitive (team_selection_ok, FALSE);
   gtk_tooltips_set_tip (tooltips, team_selection_ok, _("Space"), NULL);
   gtk_widget_add_accelerator (team_selection_ok, "clicked", accel_group,
-                              GDK_space, 0,
+                              GDK_space, (GdkModifierType) 0,
                               GTK_ACCEL_VISIBLE);
 
   alignment18 = gtk_alignment_new (0.5, 0.5, 0, 0);
@@ -293,7 +293,7 @@ create_window_startup (void)
   gtk_container_set_border_width (GTK_CONTAINER (team_selection_cancel), 2);
   gtk_tooltips_set_tip (tooltips, team_selection_cancel, _("Esc"), NULL);
   gtk_widget_add_accelerator (team_selection_cancel, "clicked", accel_group,
-                              GDK_Escape, 0,
+                              GDK_Escape, (GdkModifierType) 0,
                               GTK_ACCEL_VISIBLE);
 
   g_signal_connect ((gpointer) window_startup, "delete_event",
@@ -644,7 +644,7 @@ create_window_live (void)
   gtk_box_pack_start (GTK_BOX (hbox48), button_pause, FALSE, FALSE, 0);
   gtk_tooltips_set_tip (tooltips, button_pause, _("Esc / Return / Space"), NULL);
   gtk_widget_add_accelerator (button_pause, "clicked", accel_group,
-                              GDK_Escape, 0,
+                              GDK_Escape, (GdkModifierType) 0,
                               GTK_ACCEL_VISIBLE);
 
   alignment16 = gtk_alignment_new (0.5, 0.5, 0, 0);
@@ -1085,7 +1085,7 @@ create_window_stadium (void)
   gtk_box_pack_start (GTK_BOX (vbox39), button_stadium_ok, FALSE, FALSE, 0);
   gtk_tooltips_set_tip (tooltips, button_stadium_ok, _("Return"), NULL);
   gtk_widget_add_accelerator (button_stadium_ok, "clicked", accel_group,
-                              GDK_Return, 0,
+                              GDK_Return, (GdkModifierType) 0,
                               GTK_ACCEL_VISIBLE);
 
   alignment20 = gtk_alignment_new (0.5, 0.5, 0, 0);
@@ -1109,7 +1109,7 @@ create_window_stadium (void)
   gtk_box_pack_start (GTK_BOX (vbox39), button_stadium_cancel, FALSE, FALSE, 0);
   gtk_tooltips_set_tip (tooltips, button_stadium_cancel, _("Esc"), NULL);
   gtk_widget_add_accelerator (button_stadium_cancel, "clicked", accel_group,
-                              GDK_Escape, 0,
+                              GDK_Escape, (GdkModifierType) 0,
                               GTK_ACCEL_VISIBLE);
 
   g_signal_connect ((gpointer) window_stadium, "delete_event",
