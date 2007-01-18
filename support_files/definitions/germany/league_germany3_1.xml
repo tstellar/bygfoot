@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+
+	<sid>germany3_1</sid>
+	<name>Regionalliga Nord</name>
+	<short_name>RL Nord</short_name>
+	<symbol>flag_germany.png</symbol>
+	<first_week>1</first_week>
+	<week_gap>1</week_gap>
+	<average_talent>6500</average_talent>
+	<layer>3</layer>
+	<names_file>germany</names_file>
+
+	<prom_rel>
+		<prom_rel_element>
+			<rank_start>1</rank_start>
+			<rank_end>2</rank_end>
+			<dest_sid>germany2</dest_sid>
+			<prom_rel_type>promotion</prom_rel_type>
+		</prom_rel_element>
+	</prom_rel>
+	
+	<prom_rel>
+		<prom_rel_element>
+			<rank_start>15</rank_start>
+			<rank_end>19</rank_end>
+			<dest_sid>germany4_4 germany4_5 germany4_6 germany4_7 germany4_9</dest_sid>
+			<prom_rel_type>relegation</prom_rel_type>
+		</prom_rel_element>
+	</prom_rel>
+
+	<teams>
+		
+		<team>
+			<team_name>Wuppertal</team_name>
+		</team>
+
+		<team>
+			<team_name>Erfurt</team_name>
+		</team>
+		
+		<team>
+			<team_name>Düsseldorf</team_name>
+		</team>
+		
+		<team>
+			<team_name>Dresden</team_name>
+		</team>
+		
+		<team>
+			<team_name>Lübeck</team_name>
+		</team>
+		
+		<team>
+			<team_name>Emden</team_name>
+		</team>
+		
+		<team>
+			<team_name>Magdeburg</team_name>
+		</team>
+		
+		<team>
+			<team_name>St. Pauli</team_name>
+		</team>
+		
+		<team>
+			<team_name>Ahlen</team_name>
+		</team>
+		
+		<team>
+			<team_name>Kiel</team_name>
+		</team>
+		
+		<team>
+			<team_name>Wilhelmshaven</team_name>
+		</team>
+		
+		<team>
+			<team_name>Babelsberg</team_name>
+		</team>
+		
+		<team>
+			<team_name>Chemnitz</team_name>
+		</team>
+		
+		<team>
+			<team_name>Oberneuland</team_name>
+		</team>
+		
+		<team>
+			<team_name>Oberhausen</team_name>
+		</team>
+		
+		<team>
+			<team_name>Lippstadt</team_name>
+		</team>
+		
+		<team>
+			<team_name>Cloppenburg</team_name>
+		</team>
+		
+		<team>
+			<team_name>Velbert</team_name>
+		</team>
+		
+		<team>
+			<team_name>Verl</team_name>
+		</team>
+																		
+	</teams>
+
+</league>
