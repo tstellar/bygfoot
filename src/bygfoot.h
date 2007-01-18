@@ -38,9 +38,10 @@
 #include "gettext_macros.h"
 
 /**
- * Program version number.
+ * Program version number and year (copyright).
  */
 #define VERS "2.1.0"
+#define YEAR "2005 - 2007"
 
 /** Home dir name */
 //#define HOMEDIRNAME ".bygfoot-cvs"
@@ -164,7 +165,8 @@ typedef struct
 	*sponsors,
 	*mmatches,
 	*bets,
-	*splash;
+	*splash,
+	*training_camp;
     
     /** The position of the horizontal divider is stored here. */
     gint paned_pos;
