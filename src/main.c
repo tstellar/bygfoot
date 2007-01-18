@@ -185,7 +185,8 @@ main_init_variables(void)
 	window.options = window.font_sel =
 	window.file_chooser = window.contract = 
 	window.menu_player = window.user_management = 
-	window.mmatches = window.bets = window.splash = NULL;
+	window.mmatches = window.bets = window.splash =
+	window.training_camp = NULL;
     
     live_game_reset(&live_game_temp, NULL, FALSE);
 
@@ -230,6 +231,7 @@ main_init_variables(void)
     option_add(&settings, "int_opt_disable_contracts", 0, NULL);
     option_add(&settings, "int_opt_disable_boost_on", 0, NULL);
     option_add(&settings, "int_opt_disable_ya", 0, NULL);
+    option_add(&settings, "int_opt_disable_training_camp", 0, NULL);
 }
 
 /**
