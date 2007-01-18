@@ -122,4 +122,7 @@ game_gui_read_check_items(GtkWidget *widget);
 void
 game_gui_set_help_labels(void);
 
+void
+game_gui_write_money(void);
+
 #endif
