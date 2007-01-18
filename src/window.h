@@ -53,7 +53,8 @@ enum Windows
     WINDOW_MMATCHES,
     WINDOW_BETS,
     WINDOW_SPLASH,
-    WINDOW_END
+    WINDOW_END,
+    WINDOW_TRAINING_CAMP
 };
 
 void
@@ -122,5 +123,8 @@ window_save_hint_number(void);
 
 void
 window_splash_show_hint(void);
+
+void
+window_show_training_camp(void);//***ml***
 
 #endif
