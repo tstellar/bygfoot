@@ -1442,6 +1442,14 @@ treeview_create_finances(const User* user)
 	gtk_list_store_append(ls, &iter);
 	gtk_list_store_set(ls, &iter, 0, _("Stadium expenses"), 1, "", 2, buf2, -1);
     }
+    
+    if(out[MON_OUT_TRAINING_CAMP] != 0)
+    {
+		misc_print_grouped_int(out[MON_OUT_TRAINING_CAMP], buf);
+		sprintf(buf2, "<span foreground='%s'>%s</span>", const_app("string_treeview_finances_expenses_fg"), buf);
+		gtk_list_store_append(ls, &iter);
+		gtk_list_store_set(ls, &iter, 0, _("Training camp"), 1, "", 2, buf2, -1);
+    }
 
     gtk_list_store_append(ls, &iter);
     gtk_list_store_set(ls, &iter, 0, "", 1, "", 2, "", -1);
