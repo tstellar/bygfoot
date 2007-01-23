@@ -5,14 +5,39 @@
   <symbol>flag_usa.png</symbol>
   <sid>usa</sid>
   <leagues>
+    <!-- FOR A SINGLE TABLE MLS, UNCOMMENT THE FOLLOWING HERE
+	 AND SIMILAR IN CUPS SECTION FOR PLAYOFFS -->
+    <!--<league>usa_mls</league>-->
+    <!-- Then comment out the two conferences, and make similar changes
+	 in cup_usa_mls_cup.xml and cup_usa_open_cup.xml -->
     <league>usa_econf</league>
     <league>usa_wconf</league>
+    <league>usa_first</league>
+    <league>usa_second</league>
+    <league>usa_pdl_gl</league>
+    <league>usa_pdl_hl</league>
+    <league>usa_pdl_ma</league>
+    <league>usa_pdl_no</league>
+    <league>usa_pdl_ms</league>
+    <league>usa_pdl_se</league>
+    <league>usa_pdl_nw</league>
+    <league>usa_pdl_sw</league>
   </leagues>
 
   <cups>
+    <!-- COMMENT OUT CONFERENCE PLAYOFFS FOR SINGLE TABLE MLS -->
     <cup>usa_eplayoff</cup>
     <cup>usa_wplayoff</cup>
     <cup>usa_mls_cup</cup>
+    <cup>usa_open_cup</cup>
+    <cup>usa_first_cup</cup>
+    <cup>usa_second_cup</cup>
+    <cup>usa_pdl_central</cup>
+    <cup>usa_pdl_eastern</cup>
+    <cup>usa_pdl_southern</cup>
+    <cup>usa_pdl_western</cup>
+    <cup>usa_pdl_cup</cup>
+    <cup>usa_concacaf</cup>
   </cups>
 
 </country>
