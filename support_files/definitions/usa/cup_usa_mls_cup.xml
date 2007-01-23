@@ -5,14 +5,32 @@
   <symbol>flag_usa.png</symbol>
   <sid>usa_mls_cup</sid>
   <add_week>1000</add_week>
+  <!-- IN A SINGLE TABLE MLS, THE SEASON RUNS A LITTLE LONGER, SO COMMENT OUT
+       last_week LINE -->
+  <last_week>35</last_week>
   <week_gap>1</week_gap>
   <property>national</property>
 
   <cup_rounds>
+	  <!-- UNCOMMENT THESE ROUNDS IN SINGLE TABLE MLS. -->
+	  <!--<cup_round>
+		  <choose_teams>
+			  <choose_team>
+				  <choose_team_sid>usa_mls</choose_team_sid>
+				  <number_of_teams>8</number_of_teams>
+				  <start_idx>1</start_idx>
+				  <end_idx>8</end_idx>
+			  </choose_team>
+		  </choose_teams>
+	  </cup_round>
+	  <cup_round>
+		  <home_away>0</home_away>
+	  </cup_round>-->
+	  <!-- COMMENT OUT UP TO HERE FOR DUAL CONFERENCE MLS -->
     <cup_round>
       <home_away>0</home_away>
       <neutral>1</neutral>
-
+      <!-- COMMENT OUT TEAM SELECTIONS BELOW FOR SINGLE-TABLE MLS -->
       <choose_teams>
 	<choose_team>
 	  <choose_team_sid>usa_eplayoff</choose_team_sid>

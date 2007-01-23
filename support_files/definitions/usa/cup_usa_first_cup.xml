@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+	<name>First Division Playoffs</name>
+	<short_name>1st Div Playoffs</short_name>
+	<symbol>flag_usa.png</symbol>
+	<sid>usa_first_cup</sid>
+	<add_week>1000</add_week>
+	<last_week>38</last_week>
+	<week_gap>1</week_gap>
+	<property>national</property>
+	<property>highlight1</property>
+	
+	<cup_rounds>
+		<cup_round>
+			<choose_teams>
+				<choose_team>
+					<choose_team_sid>usa_first</choose_team_sid>
+					<number_of_teams>8</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>8</end_idx>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+		<cup_round>
+		</cup_round>
+		<cup_round>
+			<home_away>0</home_away>
+		</cup_round>
+	</cup_rounds>
+</cup>
