@@ -45,8 +45,8 @@ create_window_training_camp (void)
   GtkWidget *hs_training;
   GtkWidget *hs_camp_points;
   GtkWidget *l_recreation;
-  GtkWidget *l_camp_points;
   GtkWidget *l_training;
+  GtkWidget *l_camp_points;
 
   window_training_camp = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (window_training_camp), _("Training camp"));
@@ -116,36 +116,36 @@ create_window_training_camp (void)
 
   hs_recreation = gtk_hscale_new (GTK_ADJUSTMENT (gtk_adjustment_new (0, 1, 10, 1, 0, 0)));
   gtk_widget_show (hs_recreation);
-  gtk_fixed_put (GTK_FIXED (panel_camp), hs_recreation, 150, 120);
+  gtk_fixed_put (GTK_FIXED (panel_camp), hs_recreation, 175, 120);
   gtk_widget_set_size_request (hs_recreation, 200, 36);
   gtk_scale_set_value_pos (GTK_SCALE (hs_recreation), GTK_POS_RIGHT);
 
   hs_training = gtk_hscale_new (GTK_ADJUSTMENT (gtk_adjustment_new (0, 1, 10, 1, 0, 0)));
   gtk_widget_show (hs_training);
-  gtk_fixed_put (GTK_FIXED (panel_camp), hs_training, 150, 152);
+  gtk_fixed_put (GTK_FIXED (panel_camp), hs_training, 175, 152);
   gtk_widget_set_size_request (hs_training, 200, 36);
   gtk_scale_set_value_pos (GTK_SCALE (hs_training), GTK_POS_RIGHT);
 
   hs_camp_points = gtk_hscale_new (GTK_ADJUSTMENT (gtk_adjustment_new (0, 1, 10, 1, 0, 0)));
   gtk_widget_show (hs_camp_points);
-  gtk_fixed_put (GTK_FIXED (panel_camp), hs_camp_points, 150, 184);
+  gtk_fixed_put (GTK_FIXED (panel_camp), hs_camp_points, 175, 184);
   gtk_widget_set_size_request (hs_camp_points, 200, 36);
   gtk_scale_set_value_pos (GTK_SCALE (hs_camp_points), GTK_POS_RIGHT);
 
   l_recreation = gtk_label_new (_("Recreation"));
   gtk_widget_show (l_recreation);
   gtk_fixed_put (GTK_FIXED (panel_camp), l_recreation, 24, 128);
-  gtk_widget_set_size_request (l_recreation, 120, 20);
-
-  l_camp_points = gtk_label_new (_("Camp points"));
-  gtk_widget_show (l_camp_points);
-  gtk_fixed_put (GTK_FIXED (panel_camp), l_camp_points, 24, 192);
-  gtk_widget_set_size_request (l_camp_points, 120, 20);
+  gtk_widget_set_size_request (l_recreation, 140, 20);
 
   l_training = gtk_label_new (_("Training"));
   gtk_widget_show (l_training);
   gtk_fixed_put (GTK_FIXED (panel_camp), l_training, 24, 160);
-  gtk_widget_set_size_request (l_training, 120, 20);
+  gtk_widget_set_size_request (l_training, 140, 20);
+
+  l_camp_points = gtk_label_new (_("Camp points"));
+  gtk_widget_show (l_camp_points);
+  gtk_fixed_put (GTK_FIXED (panel_camp), l_camp_points, 24, 192);
+  gtk_widget_set_size_request (l_camp_points, 140, 20);
 
   g_signal_connect ((gpointer) rb_camp2, "clicked",
                     G_CALLBACK (on_rb_camp2_clicked),
@@ -185,8 +185,8 @@ create_window_training_camp (void)
   GLADE_HOOKUP_OBJECT (window_training_camp, hs_training, "hs_training");
   GLADE_HOOKUP_OBJECT (window_training_camp, hs_camp_points, "hs_camp_points");
   GLADE_HOOKUP_OBJECT (window_training_camp, l_recreation, "l_recreation");
-  GLADE_HOOKUP_OBJECT (window_training_camp, l_camp_points, "l_camp_points");
   GLADE_HOOKUP_OBJECT (window_training_camp, l_training, "l_training");
+  GLADE_HOOKUP_OBJECT (window_training_camp, l_camp_points, "l_camp_points");
 
   return window_training_camp;
 }
