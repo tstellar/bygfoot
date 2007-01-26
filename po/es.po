@@ -1,14 +1,15 @@
 # Spanish translation of Bygfoot.
 # Copyright (C) 2005 Marcelo Garrone
 # This file is distributed under the same license as the Bygfoot package.
-# Marcelo Garrone <marcelo.garrone@gmail.com>, 2005.
+# Marcelo Garrone <marcelo.garrone@gmail.com>, 2005, 2006
+# Carlos Garces <carlos-garces@usa.net>, 2006, 2007
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: es-1.9.2\n"
+"Project-Id-Version: bygfoot-2.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-01-17 10:20+0100\n"
-"PO-Revision-Date: 2006-03-17 11:30+0100\n"
+"PO-Revision-Date: 2007-01-24 11:30+0100\n"
 "Last-Translator: Carlos Garces <carlos-garces@usa.net>\n"
 "Language-Team:  <es@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -737,7 +738,6 @@ msgid "Betting"
 msgstr "Apostar"
 
 #: src/misc3_interface.c:61
-#, fuzzy
 msgid "Betting -- Left click on odd to place or remove bet"
 msgstr "Apostar -- Left click on odd to place or remove bet"
 
@@ -848,9 +848,8 @@ msgid "CSkill "
 msgstr "HabA "
 
 #: src/training_interface.c:145
-#, fuzzy
 msgid "Camp points"
-msgstr " &amp; Hijos"
+msgstr "Puntos de campo"
 
 #: src/misc_interface.c:1014
 msgid "Capacity (seats)"
@@ -872,7 +871,6 @@ msgstr ""
 "Cambia verbosidad del comentario. Valor alto permite ver más sobre el evento."
 
 #: src/misc_interface.c:705
-#, fuzzy
 msgid "Change live game speed. The higher the value the faster the live game."
 msgstr "Cambia velocidad de En Vivo. El valor menor agiliza el En Vivo."
 
@@ -1242,7 +1240,7 @@ msgstr ""
 
 #: src/training_interface.c:99
 msgid "First-Class Hotel"
-msgstr ""
+msgstr "Hotel de primera clase"
 
 #. Fitness of a player.
 #: src/treeview.c:293
@@ -1369,7 +1367,7 @@ msgstr "Bueno"
 
 #: src/training_interface.c:111
 msgid "Good Hotel"
-msgstr ""
+msgstr "Buen hotel"
 
 #: src/player.c:1264
 msgid "Groin injury"
@@ -1962,7 +1960,7 @@ msgstr "Preferencias"
 
 #: src/training_interface.c:133
 msgid "Premium Hotel"
-msgstr ""
+msgstr "El mejor hotel"
 
 #: src/misc3_interface.c:295
 msgid "Previous"
@@ -2039,7 +2037,7 @@ msgstr "Rearmar equipo"
 
 #: src/training_interface.c:123
 msgid "Recreation"
-msgstr ""
+msgstr "Regeneración"
 
 #: src/interface.c:650
 msgid "Recruiting preference"
@@ -2729,17 +2727,16 @@ msgstr "Rotura de ligamento"
 
 #: src/training_interface.c:128
 msgid "Training"
-msgstr ""
+msgstr "Entrenamiento"
 
 #: src/interface.c:726 src/training_interface.c:52 src/treeview.c:1451
 #: src/window.c:876
 msgid "Training camp"
-msgstr ""
+msgstr "Campo de entrenamiento"
 
 #: src/callbacks.c:1254
-#, fuzzy
 msgid "Training camp is disabled in this country definition."
-msgstr "'Transferencias' está deshabilitada en esta definición regional."
+msgstr "El campo de entrenamiento esta desabilitado para esta definicion de pais."
 
 #: src/callbacks.c:185
 #, c-format
