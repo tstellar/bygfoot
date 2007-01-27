@@ -450,7 +450,7 @@ create_window_digits (void)
   gtk_box_pack_start (GTK_BOX (hbox16), button_digits_cancel, TRUE, TRUE, 0);
   gtk_tooltips_set_tip (tooltips, button_digits_cancel, _("Esc"), NULL);
   gtk_widget_add_accelerator (button_digits_cancel, "clicked", accel_group,
-                              GDK_Escape, 0,
+                              GDK_Escape, (GdkModifierType) 0,
                               GTK_ACCEL_VISIBLE);
 
   g_signal_connect ((gpointer) window_digits, "delete_event",
@@ -538,7 +538,7 @@ create_window_yesno (void)
   gtk_box_pack_start (GTK_BOX (hbox18), button_yesno_no, TRUE, TRUE, 0);
   gtk_tooltips_set_tip (tooltips, button_yesno_no, _("Esc"), NULL);
   gtk_widget_add_accelerator (button_yesno_no, "clicked", accel_group,
-                              GDK_Escape, 0,
+                              GDK_Escape, (GdkModifierType) 0,
                               GTK_ACCEL_VISIBLE);
 
   g_signal_connect ((gpointer) window_yesno, "delete_event",
@@ -962,7 +962,7 @@ create_window_debug (void)
   gtk_widget_show (button_debug_close);
   gtk_box_pack_start (GTK_BOX (vbox22), button_debug_close, FALSE, FALSE, 0);
   gtk_widget_add_accelerator (button_debug_close, "clicked", accel_group,
-                              GDK_Escape, 0,
+                              GDK_Escape, (GdkModifierType) 0,
                               GTK_ACCEL_VISIBLE);
 
   g_signal_connect ((gpointer) window_debug, "delete_event",
@@ -1038,7 +1038,7 @@ create_window_help (void)
   gtk_notebook_set_tab_label_packing (GTK_NOTEBOOK (notebook1), vbox24,
                                       FALSE, FALSE, GTK_PACK_START);
 
-  image12 = create_pixmap (window_help, "bygfoot_icon.png");
+  image12 = create_pixmap (window_help, "bygfoot_splash2.png");
   gtk_widget_show (image12);
   gtk_box_pack_start (GTK_BOX (vbox24), image12, FALSE, FALSE, 0);
   gtk_misc_set_padding (GTK_MISC (image12), 0, 5);
@@ -1100,7 +1100,7 @@ create_window_help (void)
   gtk_box_pack_start (GTK_BOX (vbox23), button_help_close, FALSE, FALSE, 0);
   gtk_tooltips_set_tip (tooltips, button_help_close, _("Esc"), NULL);
   gtk_widget_add_accelerator (button_help_close, "clicked", accel_group,
-                              GDK_Escape, 0,
+                              GDK_Escape, (GdkModifierType) 0,
                               GTK_ACCEL_VISIBLE);
 
   g_signal_connect ((gpointer) window_help, "delete_event",
@@ -1183,7 +1183,7 @@ create_window_transfer_dialog (void)
   gtk_box_pack_start (GTK_BOX (hbox25), button_transfer_yes, TRUE, TRUE, 0);
   gtk_tooltips_set_tip (tooltips, button_transfer_yes, _("Return"), NULL);
   gtk_widget_add_accelerator (button_transfer_yes, "clicked", accel_group,
-                              GDK_Return, 0,
+                              GDK_Return, (GdkModifierType) 0,
                               GTK_ACCEL_VISIBLE);
 
   button_transfer_no = gtk_button_new_from_stock ("gtk-no");
@@ -1195,7 +1195,7 @@ create_window_transfer_dialog (void)
   gtk_box_pack_start (GTK_BOX (hbox25), button_transfer_later, TRUE, TRUE, 0);
   gtk_tooltips_set_tip (tooltips, button_transfer_later, _("Esc"), NULL);
   gtk_widget_add_accelerator (button_transfer_later, "clicked", accel_group,
-                              GDK_Escape, 0,
+                              GDK_Escape, (GdkModifierType) 0,
                               GTK_ACCEL_VISIBLE);
 
   alignment8 = gtk_alignment_new (0.5, 0.5, 0, 0);
