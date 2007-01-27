@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot 2.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-17 10:20+0100\n"
+"POT-Creation-Date: 2007-01-27 11:34+0100\n"
 "PO-Revision-Date: 2007-01-24 12:44+0200\n"
 "Last-Translator: Spoială Cristian <scristian@gmail.com>\n"
 "Language-Team: Romanian\n"
@@ -44,17 +44,17 @@ msgstr ""
 "mulţi puteţi să îl adaugaţi în wiki Bygfoot:\n"
 
 #. Company short name. Copy the '&amp;'.
-#: src/user.c:885
+#: src/user.c:890
 msgid " &amp; Co."
 msgstr " &amp; Co."
 
 #. Company addition. Copy the '&amp;'.
-#: src/user.c:894
+#: src/user.c:899
 msgid " &amp; Daughters"
 msgstr " &amp; Fiicele"
 
 #. Company addition, leading to 'Marshall & Sons Petroleum Co.'. Copy the '&amp;'.
-#: src/user.c:892
+#: src/user.c:897
 msgid " &amp; Sons"
 msgstr " &amp; Fii"
 
@@ -90,7 +90,7 @@ msgid " -- Second leg"
 msgstr " -- Retur"
 
 #. Company short name.
-#: src/user.c:879
+#: src/user.c:884
 msgid " Assoc."
 msgstr " Assoc."
 
@@ -99,101 +99,101 @@ msgid " Autosave files "
 msgstr " Autosalvează fişierele "
 
 #. Company name.
-#: src/user.c:860
+#: src/user.c:865
 msgid " Bank"
 msgstr " Bancă"
 
 #. Company addition.
-#: src/user.c:896
+#: src/user.c:901
 msgid " Bros."
 msgstr " Bros."
 
 #. Company name.
-#: src/user.c:856
+#: src/user.c:861
 msgid " Chemicals"
 msgstr " Chimicale"
 
 #. Company short name.
-#: src/user.c:881
+#: src/user.c:886
 msgid " Co."
 msgstr " Co."
 
 #. Company name.
-#: src/user.c:842
+#: src/user.c:847
 msgid " Communications"
 msgstr " Comunicări"
 
 #. Company name.
-#: src/user.c:848
+#: src/user.c:853
 msgid " Company"
 msgstr " Companie"
 
 #. Company short name.
-#: src/user.c:887
+#: src/user.c:892
 msgid " Corp."
 msgstr " Corp."
 
 #. Company name.
-#: src/user.c:874
+#: src/user.c:879
 msgid " Data Systems"
 msgstr " Data Systems"
 
 #. Company name.
-#: src/user.c:858
+#: src/user.c:863
 msgid " Energy"
 msgstr " Energie"
 
 #. Company short name.
-#: src/user.c:883
+#: src/user.c:888
 msgid " Ent."
 msgstr " Ent."
 
 #. Company name.
-#: src/user.c:868
+#: src/user.c:873
 msgid " Financial"
 msgstr " Financiară"
 
-#: src/user.c:531
+#: src/user.c:536
 msgid " Fortunately he's got a cousin who can help your team out."
 msgstr " Din fericire are un văr care vă poate ajuta la echipă."
 
 #. Company short name.
-#: src/user.c:889
+#: src/user.c:894
 msgid " Group"
 msgstr " Grup"
 
 #. Company name.
-#: src/user.c:844
+#: src/user.c:849
 msgid " Holdings"
 msgstr " Grup de firme"
 
 #. Company name.
-#: src/user.c:846
+#: src/user.c:851
 msgid " Industries"
 msgstr " Industrii"
 
 #. Company name.
-#: src/user.c:852
+#: src/user.c:857
 msgid " Labs"
 msgstr " Laboratoare"
 
 #. Company short name, leading to things like 'Marshall Data Systems Ltd.'
-#: src/user.c:877
+#: src/user.c:882
 msgid " Ltd."
 msgstr " S.R.L."
 
 #. Company name.
-#: src/user.c:870
+#: src/user.c:875
 msgid " Petroleum"
 msgstr " Petrol"
 
 #. Company name.
-#: src/user.c:862
+#: src/user.c:867
 msgid " Products"
 msgstr " Produse"
 
 #. Company name.
-#: src/user.c:872
+#: src/user.c:877
 msgid " Restaurants"
 msgstr " Restaurante"
 
@@ -202,7 +202,7 @@ msgid " Round "
 msgstr " Runda "
 
 #. Company name.
-#: src/user.c:866
+#: src/user.c:871
 msgid " Scientific"
 msgstr " Ştiinţific"
 
@@ -211,22 +211,22 @@ msgid " Season "
 msgstr " Sezon "
 
 #. Company name.
-#: src/user.c:864
+#: src/user.c:869
 msgid " Software"
 msgstr " Software"
 
 #. Company name.
-#: src/user.c:840
+#: src/user.c:845
 msgid " Systems"
 msgstr " Sisteme"
 
 #. Company name.
-#: src/user.c:854
+#: src/user.c:859
 msgid " Technologies"
 msgstr " Tehnologii"
 
 #. Company name.
-#: src/user.c:850
+#: src/user.c:855
 msgid " Telecommunications"
 msgstr " Telecomunicaţii"
 
@@ -267,25 +267,25 @@ msgid "%.1f months / %s"
 msgstr "%.1f luni / %s"
 
 #. A result after extra time.
-#: src/live_game.c:1698
+#: src/live_game.c:1702
 #, c-format
 msgid "%d : %d e.t."
 msgstr "e.t. %d : %d"
 
 #. A result after penalties.
-#: src/live_game.c:1694
+#: src/live_game.c:1698
 #, c-format
 msgid "%d : %d p."
 msgstr "p. %d : %d"
 
 #. a match at home
-#: src/team.c:933
+#: src/team.c:934
 #, c-format
 msgid "%s (H) "
 msgstr "%s (H) "
 
 #. a match on neutral ground
-#: src/team.c:949
+#: src/team.c:950
 #, c-format
 msgid "%s (N) "
 msgstr "%s (N) "
@@ -312,7 +312,7 @@ msgid "%s couldn't afford to buy %s or his roster was full."
 msgstr "%s nu vă permiteţi să cumpăraţi pe %s."
 
 #. Team fires, team in a league.
-#: src/user.c:709
+#: src/user.c:714
 #, c-format
 msgid ""
 "%s fires you because of financial mismanagement.\n"
@@ -322,7 +322,7 @@ msgstr ""
 "Aţi găsit de lucru la %s în %s."
 
 #. Team fires, team in a league.
-#: src/user.c:716
+#: src/user.c:721
 #, c-format
 msgid ""
 "%s fires you because of unsuccessfulness.\n"
@@ -336,13 +336,13 @@ msgstr ""
 msgid "%s has been added to the transfer list for %d weeks."
 msgstr "%s a fost adăugat pe lista de transferuri pentru %d săptămâni."
 
-#: src/user.c:462
+#: src/user.c:467
 #, c-format
 msgid "%s has left your team because his contract expired."
 msgstr "%s a părăsit echipa pentru că i-a expirat contractul."
 
 #. A player from a team has rejected a transfer offer.
-#: src/user.c:513
+#: src/user.c:518
 #, c-format
 msgid ""
 "%s of %s has rejected your offer (%s / %s). He wasn't satisfied with the "
@@ -352,7 +352,7 @@ msgstr ""
 "care i l-aţi oferit."
 
 #. Team in a league. Leave team.
-#: src/user.c:723
+#: src/user.c:728
 #, c-format
 msgid ""
 "%s offer you a job in the %s.\n"
@@ -395,7 +395,7 @@ msgstr ""
 msgid "%s's contract expires in %.1f years."
 msgstr "Contractul lui %s va expira în %.1f ani."
 
-#: src/user.c:528
+#: src/user.c:533
 #, c-format
 msgid ""
 "%s's injury was so severe that he can't play football on a professional "
@@ -444,7 +444,7 @@ msgid "4 years"
 msgstr "4 ani"
 
 #. a match away
-#: src/team.c:939
+#: src/team.c:940
 #, c-format
 msgid "<span background='%s' foreground='%s'>%s (A) </span> "
 msgstr "<span background='%s' foreground='%s'>%s (A) </span>"
@@ -513,20 +513,20 @@ msgstr ""
 msgid "ADD LAST MATCH"
 msgstr "ADAUGA ULTIMUL MECI"
 
-#: src/lg_commentary.c:509 src/team.c:533
+#: src/lg_commentary.c:509 src/team.c:534
 msgid "ALL OUT ATTACK"
 msgstr "TOŢI ÎN ATAC"
 
-#: src/lg_commentary.c:497 src/team.c:525
+#: src/lg_commentary.c:497 src/team.c:526
 msgid "ALL OUT DEFEND"
 msgstr "TOŢI ÎN APĂRARE"
 
 #. Boost value.
-#: src/lg_commentary.c:512 src/team.c:541
+#: src/lg_commentary.c:512 src/team.c:542
 msgid "ANTI"
 msgstr "ANTI"
 
-#: src/lg_commentary.c:506 src/team.c:531
+#: src/lg_commentary.c:506 src/team.c:532
 msgid "ATTACK"
 msgstr "ATAC"
 
@@ -673,7 +673,7 @@ msgstr "Abilitate medie:"
 msgid "Away"
 msgstr "Deplasare"
 
-#: src/lg_commentary.c:503 src/team.c:529
+#: src/lg_commentary.c:503 src/team.c:530
 msgid "BALANCED"
 msgstr "ECHILIBRAT"
 
@@ -759,12 +759,12 @@ msgstr "Stimulent"
 msgid "Boost ON is disabled in this country definition."
 msgstr "Stimulentul este dezactivat în definiţia ţărilor."
 
-#: src/team.c:575
+#: src/team.c:576
 #, c-format
 msgid "Boost changed to %s (costs %d per minute)."
 msgstr "Stimulentul schimbat la %s (cost %d pe minut)."
 
-#: src/team.c:580
+#: src/team.c:581
 #, c-format
 msgid "Boost changed to %s."
 msgstr "Stimulentul schimbat la %s."
@@ -996,7 +996,7 @@ msgid "Contributors"
 msgstr "Contribuitori"
 
 #: src/misc_interface.c:1028 src/misc_interface.c:1062
-#: src/training_interface.c:140
+#: src/training_interface.c:112
 msgid "Costs"
 msgstr "Costuri"
 
@@ -1029,7 +1029,7 @@ msgstr "Cupa campionilor"
 msgid "Current capacity"
 msgstr "Capacitatea curentă"
 
-#: src/misc2_interface.c:1299
+#: src/misc2_interface.c:1300
 msgid "Current file"
 msgstr "Fisierul curent"
 
@@ -1054,7 +1054,7 @@ msgstr "Abilitatea curentă"
 msgid "D"
 msgstr "D"
 
-#: src/lg_commentary.c:500 src/team.c:527
+#: src/lg_commentary.c:500 src/team.c:528
 msgid "DEFEND"
 msgstr "APARARE"
 
@@ -1067,7 +1067,7 @@ msgstr "Datorie (de plătit în %d săptămâni)"
 msgid "Debug"
 msgstr "Debug"
 
-#: src/misc2_interface.c:1212
+#: src/misc2_interface.c:1213
 msgid "Decide later"
 msgstr "Decide mai târziu"
 
@@ -1123,12 +1123,12 @@ msgid "Dw"
 msgstr "Ex"
 
 #. draw
-#: src/team.c:999
+#: src/team.c:1000
 msgid "Dw "
 msgstr "Ex "
 
 #. a drawn match
-#: src/team.c:923
+#: src/team.c:924
 #, c-format
 msgid "Dw %d : %d"
 msgstr "Ex %d : %d"
@@ -1155,7 +1155,7 @@ msgstr "Hmm..."
 
 #: src/misc3_interface.c:107 src/misc3_interface.c:403
 #: src/misc2_interface.c:451 src/misc2_interface.c:539
-#: src/misc2_interface.c:1100 src/misc2_interface.c:1195
+#: src/misc2_interface.c:1101 src/misc2_interface.c:1196
 #: src/misc_interface.c:294 src/misc_interface.c:1110
 #: src/options_interface.c:1055
 msgid "Esc"
@@ -1239,7 +1239,7 @@ msgstr ""
 "Prima valoare: media curentelor abilităţi ale primilor 11 jucători. A doua "
 "valoare reprezintă media abilităţilor tuturor jucătorilor."
 
-#: src/training_interface.c:99
+#: src/training_interface.c:81
 msgid "First-Class Hotel"
 msgstr "Hotel foarte bun"
 
@@ -1365,7 +1365,7 @@ msgstr "Goluri (normal)"
 msgid "Good"
 msgstr "Bun"
 
-#: src/training_interface.c:111
+#: src/training_interface.c:93
 msgid "Good Hotel"
 msgstr "Hotel bun"
 
@@ -1377,7 +1377,7 @@ msgstr "Accidentare la arcada"
 msgid "Hamstring"
 msgstr "Tendon"
 
-#: src/user.c:487
+#: src/user.c:492
 #, c-format
 msgid "Have a look at the transfer list, there's an offer for %s."
 msgstr "Uitaţi-vă pe lista de transferuri, este o ofertă pentru %s."
@@ -1386,7 +1386,7 @@ msgstr "Uitaţi-vă pe lista de transferuri, este o ofertă pentru %s."
 msgid "Health"
 msgstr "Sănătate"
 
-#: src/interface.c:1059 src/misc2_interface.c:1093
+#: src/interface.c:1059 src/misc2_interface.c:1094
 msgid "Help"
 msgstr "Ajutor"
 
@@ -1443,11 +1443,11 @@ msgstr ""
 "Dacă nu vă place nici unul dintre sponsori, puteţi merge câteva săptămâni "
 "fără sponsor şi să aşteptaţi oferte noi."
 
-#: src/misc2_interface.c:1350
+#: src/misc2_interface.c:1351
 msgid "Import file"
 msgstr "Importati fisier"
 
-#: src/misc2_interface.c:1336
+#: src/misc2_interface.c:1337
 msgid "Import the matches from a memorable matches file"
 msgstr "Importati meciul din fisierul cu meciuri memorabile"
 
@@ -1506,12 +1506,12 @@ msgid "L"
 msgstr "P"
 
 #. lost
-#: src/team.c:1003
+#: src/team.c:1004
 msgid "L  "
 msgstr "P  "
 
 #. a lost match
-#: src/team.c:918
+#: src/team.c:919
 #, c-format
 msgid "L  %d : %d"
 msgstr "P  %d : %d"
@@ -1692,7 +1692,7 @@ msgstr "Administrează utilizatorii"
 msgid "Maximize main window"
 msgstr "Maximizaţi fereastra principală."
 
-#: src/user.c:1053
+#: src/user.c:1058
 msgid "Memorable match added."
 msgstr "Meciurile memorabile au fost adaugate."
 
@@ -1803,7 +1803,7 @@ msgid "Numbers..."
 msgstr "Numere..."
 
 #. Boost value.
-#: src/lg_commentary.c:515 src/team.c:544
+#: src/lg_commentary.c:515 src/team.c:545
 msgid "OFF"
 msgstr "OFF"
 
@@ -1815,7 +1815,7 @@ msgid "OK"
 msgstr "OK"
 
 #. Boost value.
-#: src/lg_commentary.c:518 src/team.c:547
+#: src/lg_commentary.c:518 src/team.c:548
 msgid "ON"
 msgstr "ON"
 
@@ -1835,7 +1835,7 @@ msgstr "On"
 msgid "Only names"
 msgstr "Numai numele"
 
-#: src/misc2_interface.c:1310
+#: src/misc2_interface.c:1311
 msgid "Open a memorable matches file"
 msgstr "Deschide un fisier cu meciuri memorabile"
 
@@ -1959,7 +1959,7 @@ msgstr "Mesaje preferate"
 msgid "Preferences"
 msgstr "Preferinţe"
 
-#: src/training_interface.c:133
+#: src/training_interface.c:105
 msgid "Premium Hotel"
 msgstr "Hotel mediu"
 
@@ -2035,7 +2035,7 @@ msgstr "Pregătit"
 msgid "Rearrange team"
 msgstr "Rearanjează echipa"
 
-#: src/training_interface.c:123
+#: src/training_interface.c:135
 msgid "Recreation"
 msgstr "Recreatie"
 
@@ -2051,19 +2051,19 @@ msgstr "Roşii"
 msgid "Reject for now"
 msgstr "Refuzaţi pentru moment"
 
-#: src/misc2_interface.c:1329 src/options_interface.c:378
+#: src/misc2_interface.c:1330 src/options_interface.c:378
 msgid "Reload"
 msgstr "Reîncarcă"
 
-#: src/misc2_interface.c:1407
+#: src/misc2_interface.c:1408
 msgid "Reload and close"
 msgstr "Reincarca si inchide"
 
-#: src/misc2_interface.c:1315
+#: src/misc2_interface.c:1316
 msgid "Reload matches from file"
 msgstr "Reîncarcă fişierul cu meciuri"
 
-#: src/misc2_interface.c:1393
+#: src/misc2_interface.c:1394
 msgid "Reload matches from file and close"
 msgstr "Reincarca fisierul cu meciuri si inchide"
 
@@ -2104,7 +2104,7 @@ msgstr "Rezultat"
 msgid "Results"
 msgstr "Rezultate"
 
-#: src/misc2_interface.c:1183 src/misc_interface.c:1086
+#: src/misc2_interface.c:1184 src/misc_interface.c:1086
 msgid "Return"
 msgstr "Întoarce-te"
 
@@ -2154,11 +2154,11 @@ msgstr ""
 msgid "Save %"
 msgstr "Salvează %"
 
-#: src/misc2_interface.c:1386
+#: src/misc2_interface.c:1387
 msgid "Save and close"
 msgstr "Salveaza si inchide"
 
-#: src/misc2_interface.c:1372
+#: src/misc2_interface.c:1373
 msgid "Save changes to file and close"
 msgstr "Salveza modificarile si inchide"
 
@@ -2499,7 +2499,7 @@ msgstr "Echipa"
 msgid "Team structure"
 msgstr "Structura echipei"
 
-#: src/team.c:568
+#: src/team.c:569
 #, c-format
 msgid "Team style changed to %s."
 msgstr "Stilul echipei schimbat la %s."
@@ -2565,7 +2565,7 @@ msgstr ""
 "Patronii de la %s sunt impresionaţi de succesele cu %s. Ar dori să vă "
 "angajeze.Câteva informaţii despre %s:"
 
-#: src/user.c:309
+#: src/user.c:314
 #, c-format
 msgid ""
 "The owners of %s are not satisfied with the recent performance of the team. "
@@ -2574,7 +2574,7 @@ msgstr ""
 "Patronii echipei %s sunt dezamăgiţi de modul cum joacă echipa. Sunt zvonuri "
 "că ar căuta un antrenor nou."
 
-#: src/user.c:502
+#: src/user.c:507
 #, c-format
 msgid ""
 "The owners of %s have rejected your offer (%s / %s) for %s. Neither the fee "
@@ -2583,7 +2583,7 @@ msgstr ""
 "Patronii de la %s au respins oferta dumneavoastră (%s / %s) pentru %s. Nici "
 "suma de transfer şi nici salariul nu au fost acceptabile, au zis ei."
 
-#: src/user.c:507
+#: src/user.c:512
 #, c-format
 msgid ""
 "The owners of %s have rejected your offer (%s / %s) for %s. The team owners "
@@ -2592,7 +2592,7 @@ msgstr ""
 "Patronii de la %s au respins oferta dumneavoastră (%s / %s) pentru %s. Au "
 "fost nemulţumiţi de suma de transfer."
 
-#: src/user.c:497
+#: src/user.c:502
 #, c-format
 msgid ""
 "The owners of %s have rejected your offer (%s / %s) for %s. There was a "
@@ -2644,7 +2644,7 @@ msgstr "Jucătorul nu va mai negocia cu dumneavoastra."
 msgid "The structure value %d is invalid."
 msgstr "Valoarea %d pentru structură este invalidă."
 
-#: src/user.c:540
+#: src/user.c:545
 msgid ""
 "The team owners are very satisfied with your financial management. Since the "
 "team's been earning a lot of money lately, they decide to donate half of it "
@@ -2728,7 +2728,7 @@ msgstr "Profitul din bilete"
 msgid "Torn crucial ligament"
 msgstr "Ligamente fracturate"
 
-#: src/training_interface.c:128
+#: src/training_interface.c:140
 msgid "Training"
 msgstr "Antrenament"
 
@@ -2802,12 +2802,12 @@ msgid "W"
 msgstr "V"
 
 #. won
-#: src/team.c:1006
+#: src/team.c:1007
 msgid "W  "
 msgstr "V  "
 
 #. a won match
-#: src/team.c:912
+#: src/team.c:913
 #, c-format
 msgid "W  %d : %d"
 msgstr "V  %d : %d"
@@ -3025,7 +3025,7 @@ msgid "Yellows"
 msgstr "Cartonaşe galbene"
 
 #. League name.
-#: src/user.c:765
+#: src/user.c:770
 #, c-format
 msgid "You are champion of the %s!"
 msgstr "Sunteţi campion al %s!"
@@ -3113,7 +3113,7 @@ msgid "You can't replace a banned player."
 msgstr "Nu puteţi înlocui un jucător sancţionat."
 
 #. Buy a player from a team.
-#: src/user.c:519
+#: src/user.c:524
 #, c-format
 msgid "You didn't have enough money to buy %s from %s."
 msgstr "Nu aveţi destui bani ca să cumpăraţi pe %s de la %s."
@@ -3133,19 +3133,19 @@ msgid "You don't have the money."
 msgstr "Nu aveţi banii."
 
 #. League name.
-#: src/user.c:730
+#: src/user.c:735
 #, c-format
 msgid "You finish the season in the %s on rank %s."
 msgstr "Aţi terminat sezonul în %s pe locul %s."
 
 #. League name.
-#: src/user.c:736
+#: src/user.c:741
 #, c-format
 msgid "You get promoted to the %s."
 msgstr "Aţi promovat în %s."
 
 #. League name.
-#: src/user.c:741
+#: src/user.c:746
 #, c-format
 msgid "You get relegated to the %s."
 msgstr "Aţi retrogradat în %s."
@@ -3160,7 +3160,7 @@ msgstr "Aveţi %d săpămâni ca să plătiţi restul împrumutului."
 msgid "You have %d weeks to pay back your loan."
 msgstr "Aveţi %d săpămâni ca să plătiţi împrumutul."
 
-#: src/user.c:484
+#: src/user.c:489
 #, c-format
 msgid ""
 "You have overdrawn your bank account once again. Bear in mind that after the "
@@ -3171,7 +3171,7 @@ msgstr ""
 "concediat.\n"
 "Proprietarii echipei va mai dau %d saptamini sa depuneti bani in banca."
 
-#: src/user.c:482
+#: src/user.c:487
 #, c-format
 msgid ""
 "You have overdrawn your bank account. The team owners give you %d weeks to "
@@ -3195,7 +3195,7 @@ msgid "You haven't selected a player."
 msgstr "Nu aţi selectat un jucător."
 
 #. Cup name, team name.
-#: src/user.c:752
+#: src/user.c:757
 #, c-format
 msgid "You lose in the %s final against %s."
 msgstr "Aţi pierdut în finala %s împotriva %s."
@@ -3211,13 +3211,13 @@ msgstr ""
 "cumpăraţi acest jucător?"
 
 #. Cup round name (e.g. Last 32), number, cup name.
-#: src/user.c:758
+#: src/user.c:763
 #, c-format
 msgid "You reach the %s (round %s) of the %s."
 msgstr "Aţi ajuns în %s (runda %s) din %s."
 
 #. Buy a team in a league.
-#: src/user.c:703
+#: src/user.c:708
 #, c-format
 msgid "You start the game with %s in the %s."
 msgstr "Aţi pornit jocul cu %s în %s."
@@ -3236,7 +3236,7 @@ msgstr ""
 "el cere compensaţii de %s. Acceptaţi?"
 
 #. Cup name, team name.
-#: src/user.c:746
+#: src/user.c:751
 #, c-format
 msgid "You win the %s final against %s."
 msgstr "Aţi câştigat finala %s împotriva %s."
@@ -3246,7 +3246,7 @@ msgid "Your bank account has to be above your drawing credit limit next week."
 msgstr ""
 "Contului dumneavoastră din bancă îi expiră creditului săptămâna viitoare!!!"
 
-#: src/user.c:976
+#: src/user.c:981
 #, c-format
 msgid ""
 "Your current sponsor is satisfied with your results and would like to renew "
@@ -3259,7 +3259,7 @@ msgstr ""
 msgid "Your next opponent"
 msgstr "Următorul oponent"
 
-#: src/user.c:491
+#: src/user.c:496
 #, c-format
 msgid ""
 "Your offer for %s has been accepted. If you still want to buy him, go to the "
@@ -3294,7 +3294,7 @@ msgid "Your roster is already full. You can't buy more players."
 msgstr "Lotul de jucători este deja plin. Nu mai puteţi cumpăra jucători noi."
 
 #. Buy a player from a team.
-#: src/user.c:524
+#: src/user.c:529
 #, c-format
 msgid "Your roster is full. You couldn't buy %s from %s."
 msgstr "Lotul de jucători este plin. Nu aţi putut cumpăra pe %s de la %s."
