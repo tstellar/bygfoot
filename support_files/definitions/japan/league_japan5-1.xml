@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+	<sid>japan5-1</sid>
+	<name>Kansai League 2</name>
+	<short_name>Kansai 2</short_name>
+	<symbol>flag_japan.png</symbol>
+	<first_week>8</first_week>
+	<week_gap>1</week_gap>
+	<average_talent>4100</average_talent>
+	<names_file>japan</names_file>
+	<round_robins>2</round_robins>
+	<break>5</break>
+	<layer>5</layer>
+	
+	<prom_rel>
+		<prom_rel_element>
+			<rank_start>1</rank_start>
+			<rank_end>2</rank_end>
+			<dest_sid>japan4-1</dest_sid>
+			<prom_rel_type>promotion</prom_rel_type>
+		</prom_rel_element>
+	</prom_rel>
+
+	<teams>
+		<team>
+			<team_name>H. Osaka</team_name>
+		</team>
+		<team>
+			<team_name>Kyoto B.</team_name>
+		</team>
+		<team>
+			<team_name>R.G. Koka</team_name>
+		</team>
+		<team>
+			<team_name>T. Osaka</team_name>
+		</team>
+		<team>
+			<team_name>Kihoku</team_name>
+		</team>
+		<team>
+			<team_name>M. H.I. Kobe</team_name>
+		</team>
+		<team>
+			<team_name>Kobe C.</team_name>
+		</team>
+		<team>
+			<team_name>Riseisha</team_name>
+		</team>
+	</teams>
+</league>

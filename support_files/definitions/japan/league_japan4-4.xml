@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+	<sid>japan4-4</sid>
+	<name>Hokkaido League 1</name>
+	<short_name>Hokkaido 1</short_name>
+	<symbol>flag_japan.png</symbol>
+	<first_week>8</first_week>
+	<week_gap>1</week_gap>
+	<average_talent>4900</average_talent>
+	<names_file>japan</names_file>
+	<round_robins>2</round_robins>
+	<break>5</break>
+	<layer>4</layer>
+	
+	<prom_rel>
+		<prom_games>
+			<prom_games_dest_sid>japan4-4</prom_games_dest_sid>
+			<prom_games_loser_sid>japan5-4a japan5-4b japan5-4c japan5-4d</prom_games_loser_sid>
+			<prom_games_number_of_advance>2</prom_games_number_of_advance>
+			<prom_games_cup_sid>japan_prom5-4</prom_games_cup_sid>
+		</prom_games>
+	</prom_rel>
+
+	<teams>
+		<team>
+			<team_name>N. Hokkaido</team_name>
+		</team>
+		<team>
+			<team_name>B. Hakodate</team_name>
+		</team>
+		<team>
+			<team_name>Ashikawa C.S.C.</team_name>
+		</team>
+		<team>
+			<team_name>B. Hokkaido</team_name>
+		</team>
+		<team>
+			<team_name>Sapporo</team_name>
+		</team>
+		<team>
+			<team_name>T. Kuriyama</team_name>
+		</team>
+		<team>
+			<team_name>T. Hokkaido</team_name>
+		</team>
+		<team>
+			<team_name>Tokachi F.S.</team_name>
+		</team>
+	</teams>
+</league>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+	<sid>japan4-3</sid>
+	<name>Kanto League 1</name>
+	<short_name>Kanto 1</short_name>
+	<symbol>flag_japan.png</symbol>
+	<first_week>8</first_week>
+	<week_gap>1</week_gap>
+	<average_talent>4900</average_talent>
+	<names_file>japan</names_file>
+	<round_robins>2</round_robins>
+	<break>5</break>
+	<layer>4</layer>
+	
+	<prom_rel>
+		<prom_rel_element>
+			<rank_start>7</rank_start>
+			<rank_end>8</rank_end>
+			<dest_sid>japan5-3</dest_sid>
+			<prom_rel_type>relegation</prom_rel_type>
+		</prom_rel_element>
+	</prom_rel>
+
+	<teams>
+		<team>
+			<team_name>H. Luminozo</team_name>
+		</team>
+		<team>
+			<team_name>Saitama</team_name>
+		</team>
+		<team>
+			<team_name>M.S.D.F. Atsugi M.</team_name>
+		</team>
+		<team>
+			<team_name>Toho T.</team_name>
+		</team>
+		<team>
+			<team_name>Yokohama S.C.C.</team_name>
+		</team>
+		<team>
+			<team_name>Yaita</team_name>
+		</team>
+		<team>
+			<team_name>Hanno B.</team_name>
+		</team>
+		<team>
+			<team_name>T. Fuchu</team_name>
+		</team>
+	</teams>
+</league>
