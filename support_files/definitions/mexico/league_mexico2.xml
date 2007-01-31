@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+	<sid>mexico2</sid>
+	<name>Primera "a" Division</name>
+	<short_name>1a "a"</short_name>
+	<symbol>flag_mexico.png</symbol>
+	<layer>2</layer>
+	<first_week>1</first_week>
+	<week_gap>1</week_gap>
+	<average_talent>7550</average_talent>
+	<yellow_red>3</yellow_red>
+	<round_robins>2</round_robins>
+	<names_file>latinoamerica</names_file>
+	<break>9</break>
+	
+	<prom_rel>
+		<prom_games>
+			<prom_games_dest_sid>mexico2</prom_games_dest_sid>
+			<prom_games_loser_sid>mexico3-1 mexico3-2 mexico3-3 mexico3-4 mexico3-5</prom_games_loser_sid>
+			<prom_games_number_of_advance>5</prom_games_number_of_advance>
+			<prom_games_cup_sid>prom_games_mexico2</prom_games_cup_sid>
+		</prom_games>
+		
+		<prom_rel_element>
+			<rank_start>1</rank_start>
+			<rank_end>1</rank_end>
+			<dest_sid>mexico1</dest_sid>
+			<prom_rel_type>promotion</prom_rel_type>
+		</prom_rel_element>
+	</prom_rel>
+	
+	<teams>
+		<team>
+			<team_name>D. Sinaloa</team_name>
+		</team>
+		<team>
+			<team_name>Ciudad Victoria C.</team_name>
+		</team>
+		<team>
+			<team_name>Tepic C.C.</team_name>
+		</team>
+		<team>
+			<team_name>C.A. Oaxaca</team_name>
+		</team>
+		<team>
+			<team_name>Ciudad Juárez I.</team_name>
+		</team>
+		<team>
+			<team_name>León</team_name>
+		</team>
+		<team>
+			<team_name>Salamanca P.</team_name>
+		</team>
+		<team>
+			<team_name>Monterrey R.</team_name>
+		</team>
+		<team>
+			<team_name>Tampico M.</team_name>
+		</team>
+		<team>
+			<team_name>Puebla L,</team_name>
+		</team>
+		<team>
+			<team_name>Toluca A.M.</team_name>
+		</team>
+		<team>
+			<team_name>Durango</team_name>
+		</team>
+		<team>
+			<team_name>Villahermosa T.</team_name>
+		</team>
+		<team>
+			<team_name>Zacatepec</team_name>
+		</team>
+		<team>
+			<team_name>Coatzacoalcos</team_name>
+		</team>
+		<team>
+			<team_name>Hermosillo C.S.</team_name>
+		</team>
+		<team>
+			<team_name>Los Mochis T.</team_name>
+		</team>
+		<team>
+			<team_name>Irapuato</team_name>
+		</team>
+		<team>
+			<team_name>Puebla</team_name>
+		</team>
+		<team>
+			<team_name>C.F.P. Anáhuac</team_name>
+		</team>
+	</teams>
+</league>
