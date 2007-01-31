@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+	<sid>japan4-6</sid>
+	<name>Hoku-shin-etsu League 1</name>
+	<short_name>Hoku-shin-etsu 1</short_name>
+	<symbol>flag_japan.png</symbol>
+	<first_week>8</first_week>
+	<week_gap>1</week_gap>
+	<average_talent>4900</average_talent>
+	<names_file>japan</names_file>
+	<round_robins>2</round_robins>
+	<break>5</break>
+	<layer>4</layer>
+	
+	<prom_rel>
+		<prom_games>
+			<prom_games_dest_sid>japan4-6</prom_games_dest_sid>
+			<prom_games_loser_sid>japan5-6</prom_games_loser_sid>
+			<prom_games_number_of_advance>1</prom_games_number_of_advance>
+			<prom_games_cup_sid>japan_prom5-6</prom_games_cup_sid>
+		</prom_games>
+		<prom_rel_element>
+			<rank_start>8</rank_start>
+			<rank_end>8</rank_end>
+			<dest_sid>japan5-6</dest_sid>
+			<prom_rel_type>relegation</prom_rel_type>
+		</prom_rel_element>
+	</prom_rel>
+	
+	<teams>
+		<team>
+			<team_name>Nagano E.</team_name>
+		</team>
+		<team>
+			<team_name>A. Niigata J.S.C.</team_name>
+		</team>
+		<team>
+			<team_name>Z. Kanazawa</team_name>
+		</team>
+		<team>
+			<team_name>F. Ishikawa</team_name>
+		</team>
+		<team>
+			<team_name>Teihens</team_name>
+		</team>
+		<team>
+			<team_name>Ueda G.</team_name>
+		</team>
+		<team>
+			<team_name>Niigata U.</team_name>
+		</team>
+		<team>
+			<team_name>Matsumoto Yamaga</team_name>
+		</team>
+	</teams>
+</league>

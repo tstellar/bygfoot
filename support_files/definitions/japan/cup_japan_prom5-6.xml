@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+	<name>Hoku-shin-etsu Promotion Playoff</name>
+	<short_name>Ho. Playoff</short_name>
+	<sid>japan_prom5-6</sid>
+	<symbol>flag_japan.png</symbol>
+	<property>promotion</property>
+	<property>highlight2</property>
+	<add_week>1000</add_week>
+	<week_gap>1</week_gap>
+	
+	<cup_rounds>
+		<cup_round>
+			<choose_teams>
+				<choose_team>
+					<choose_team_sid>japan4-6</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>7</start_idx>
+					<end_idx>7</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>japan5-6</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>2</start_idx>
+					<end_idx>2</end_idx>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+	</cup_rounds>
+</cup>
