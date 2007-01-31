@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Opprykkskvalik</name>
+  <short_name>Opp.kv.</short_name>
+  <symbol>flag_norway.png</symbol>
+  <sid>norway_kvalik</sid>
+  <yellow_red>3</yellow_red>  
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>highlight2</property>
+
+  <cup_rounds>
+    <cup_round>
+    <home_away>0</home_away>
+    <replay>1</replay>
+    <number_of_groups>1</number_of_groups>
+    <number_of_advance>1</number_of_advance>
+      <choose_teams>
+	<choose_team>
+	  <choose_team_sid>norway1</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <start_idx>12</start_idx>
+	  <end_idx>12</end_idx>
+	</choose_team>
+	<choose_team>
+	  <choose_team_sid>norway2</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <start_idx>3</start_idx>
+	  <end_idx>3</end_idx>
+	</choose_team>
+     </choose_teams>
+    </cup_round>
+  </cup_rounds>
+
+
+</cup>
+
