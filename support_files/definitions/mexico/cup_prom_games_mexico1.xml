@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+	<name>Campeon de Primera "a"</name>
+	<short_name>1a Promocion</short_name>
+	<sid>prom_games_mexico1</sid>
+	<property>promotion</property>
+	<add_week>54</add_week>
+	<week_gap>1</week_gap>
+	<last_week>55</last_week>
+	
+	<cup_rounds>
+		<cup_round>
+			<choose_teams>
+				<choose_team>
+					<choose_team_sid>CUP4</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>1</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>CUP2</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>1</end_idx>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+	</cup_rounds>
+</cup>
