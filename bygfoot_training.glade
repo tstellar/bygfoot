@@ -27,7 +27,7 @@
 
       <child>
 	<widget class="GtkEntry" id="tf_costs">
-	  <property name="width_request">158</property>
+	  <property name="width_request">130</property>
 	  <property name="height_request">22</property>
 	  <property name="visible">True</property>
 	  <property name="editable">False</property>
@@ -39,20 +39,8 @@
 	  <property name="activates_default">False</property>
 	</widget>
 	<packing>
-	  <property name="x">296</property>
-	  <property name="y">39</property>
-	</packing>
-      </child>
-
-      <child>
-	<widget class="GtkHSeparator" id="hs_camp2">
-	  <property name="width_request">450</property>
-	  <property name="height_request">16</property>
-	  <property name="visible">True</property>
-	</widget>
-	<packing>
-	  <property name="x">25</property>
-	  <property name="y">90</property>
+	  <property name="x">336</property>
+	  <property name="y">40</property>
 	</packing>
       </child>
 
@@ -101,32 +89,6 @@
 	<packing>
 	  <property name="x">256</property>
 	  <property name="y">254</property>
-	</packing>
-      </child>
-
-      <child>
-	<widget class="GtkLabel" id="l_costs">
-	  <property name="width_request">60</property>
-	  <property name="height_request">20</property>
-	  <property name="visible">True</property>
-	  <property name="label" translatable="yes">Costs</property>
-	  <property name="use_underline">False</property>
-	  <property name="use_markup">False</property>
-	  <property name="justify">GTK_JUSTIFY_LEFT</property>
-	  <property name="wrap">False</property>
-	  <property name="selectable">False</property>
-	  <property name="xalign">0.5</property>
-	  <property name="yalign">0.5</property>
-	  <property name="xpad">0</property>
-	  <property name="ypad">0</property>
-	  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-	  <property name="width_chars">-1</property>
-	  <property name="single_line_mode">False</property>
-	  <property name="angle">0</property>
-	</widget>
-	<packing>
-	  <property name="x">240</property>
-	  <property name="y">41</property>
 	</packing>
       </child>
 
@@ -329,6 +291,44 @@
 	<packing>
 	  <property name="x">24</property>
 	  <property name="y">16</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkHSeparator" id="hs_camp2">
+	  <property name="width_request">450</property>
+	  <property name="height_request">16</property>
+	  <property name="visible">True</property>
+	</widget>
+	<packing>
+	  <property name="x">25</property>
+	  <property name="y">90</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkLabel" id="l_costs">
+	  <property name="width_request">90</property>
+	  <property name="height_request">20</property>
+	  <property name="visible">True</property>
+	  <property name="label" translatable="yes">Costs</property>
+	  <property name="use_underline">False</property>
+	  <property name="use_markup">False</property>
+	  <property name="justify">GTK_JUSTIFY_LEFT</property>
+	  <property name="wrap">False</property>
+	  <property name="selectable">False</property>
+	  <property name="xalign">0.5</property>
+	  <property name="yalign">0.5</property>
+	  <property name="xpad">0</property>
+	  <property name="ypad">0</property>
+	  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+	  <property name="width_chars">-1</property>
+	  <property name="single_line_mode">False</property>
+	  <property name="angle">0</property>
+	</widget>
+	<packing>
+	  <property name="x">255</property>
+	  <property name="y">41</property>
 	</packing>
       </child>
     </widget>
