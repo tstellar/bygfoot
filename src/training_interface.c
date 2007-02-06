@@ -32,11 +32,9 @@ create_window_training_camp (void)
   GtkWidget *window_training_camp;
   GtkWidget *panel_camp;
   GtkWidget *tf_costs;
-  GtkWidget *hs_camp2;
   GtkWidget *hs_camp1;
   GtkWidget *b_cancel;
   GtkWidget *b_ok;
-  GtkWidget *l_costs;
   GtkWidget *hs_recreation;
   GtkWidget *hs_training;
   GtkWidget *hs_camp_points;
@@ -47,6 +45,8 @@ create_window_training_camp (void)
   GSList *rb_camp3_group = NULL;
   GtkWidget *rb_camp2;
   GtkWidget *rb_camp1;
+  GtkWidget *hs_camp2;
+  GtkWidget *l_costs;
 
   window_training_camp = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (window_training_camp), _("Training camp"));
@@ -61,17 +61,12 @@ create_window_training_camp (void)
 
   tf_costs = gtk_entry_new ();
   gtk_widget_show (tf_costs);
-  gtk_fixed_put (GTK_FIXED (panel_camp), tf_costs, 296, 39);
-  gtk_widget_set_size_request (tf_costs, 158, 22);
+  gtk_fixed_put (GTK_FIXED (panel_camp), tf_costs, 336, 40);
+  gtk_widget_set_size_request (tf_costs, 130, 22);
   GTK_WIDGET_UNSET_FLAGS (tf_costs, GTK_CAN_FOCUS);
   gtk_editable_set_editable (GTK_EDITABLE (tf_costs), FALSE);
   gtk_entry_set_has_frame (GTK_ENTRY (tf_costs), FALSE);
   gtk_entry_set_invisible_char (GTK_ENTRY (tf_costs), 9679);
-
-  hs_camp2 = gtk_hseparator_new ();
-  gtk_widget_show (hs_camp2);
-  gtk_fixed_put (GTK_FIXED (panel_camp), hs_camp2, 25, 90);
-  gtk_widget_set_size_request (hs_camp2, 450, 16);
 
   hs_camp1 = gtk_hseparator_new ();
   gtk_widget_show (hs_camp1);
@@ -87,11 +82,6 @@ create_window_training_camp (void)
   gtk_widget_show (b_ok);
   gtk_fixed_put (GTK_FIXED (panel_camp), b_ok, 256, 254);
   gtk_widget_set_size_request (b_ok, 110, 25);
-
-  l_costs = gtk_label_new (_("Costs"));
-  gtk_widget_show (l_costs);
-  gtk_fixed_put (GTK_FIXED (panel_camp), l_costs, 240, 41);
-  gtk_widget_set_size_request (l_costs, 60, 20);
 
   hs_recreation = gtk_hscale_new (GTK_ADJUSTMENT (gtk_adjustment_new (0, 1, 10, 1, 0, 0)));
   gtk_widget_show (hs_recreation);
@@ -147,6 +137,16 @@ create_window_training_camp (void)
   gtk_radio_button_set_group (GTK_RADIO_BUTTON (rb_camp1), rb_camp3_group);
   rb_camp3_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (rb_camp1));
 
+  hs_camp2 = gtk_hseparator_new ();
+  gtk_widget_show (hs_camp2);
+  gtk_fixed_put (GTK_FIXED (panel_camp), hs_camp2, 25, 90);
+  gtk_widget_set_size_request (hs_camp2, 450, 16);
+
+  l_costs = gtk_label_new (_("Costs"));
+  gtk_widget_show (l_costs);
+  gtk_fixed_put (GTK_FIXED (panel_camp), l_costs, 255, 41);
+  gtk_widget_set_size_request (l_costs, 90, 20);
+
   g_signal_connect ((gpointer) b_cancel, "clicked",
                     G_CALLBACK (on_b_cancel_clicked),
                     NULL);
@@ -173,11 +173,9 @@ create_window_training_camp (void)
   GLADE_HOOKUP_OBJECT_NO_REF (window_training_camp, window_training_camp, "window_training_camp");
   GLADE_HOOKUP_OBJECT (window_training_camp, panel_camp, "panel_camp");
   GLADE_HOOKUP_OBJECT (window_training_camp, tf_costs, "tf_costs");
-  GLADE_HOOKUP_OBJECT (window_training_camp, hs_camp2, "hs_camp2");
   GLADE_HOOKUP_OBJECT (window_training_camp, hs_camp1, "hs_camp1");
   GLADE_HOOKUP_OBJECT (window_training_camp, b_cancel, "b_cancel");
   GLADE_HOOKUP_OBJECT (window_training_camp, b_ok, "b_ok");
-  GLADE_HOOKUP_OBJECT (window_training_camp, l_costs, "l_costs");
   GLADE_HOOKUP_OBJECT (window_training_camp, hs_recreation, "hs_recreation");
   GLADE_HOOKUP_OBJECT (window_training_camp, hs_training, "hs_training");
   GLADE_HOOKUP_OBJECT (window_training_camp, hs_camp_points, "hs_camp_points");
@@ -187,6 +185,8 @@ create_window_training_camp (void)
   GLADE_HOOKUP_OBJECT (window_training_camp, rb_camp3, "rb_camp3");
   GLADE_HOOKUP_OBJECT (window_training_camp, rb_camp2, "rb_camp2");
   GLADE_HOOKUP_OBJECT (window_training_camp, rb_camp1, "rb_camp1");
+  GLADE_HOOKUP_OBJECT (window_training_camp, hs_camp2, "hs_camp2");
+  GLADE_HOOKUP_OBJECT (window_training_camp, l_costs, "l_costs");
 
   return window_training_camp;
 }
