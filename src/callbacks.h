@@ -347,3 +347,8 @@ void
 on_training_camp_activate              (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 #endif
+
+gboolean
+on_player_list1_key_press_event        (GtkWidget       *widget,
+                                        GdkEventKey     *event,
+                                        gpointer         user_data);

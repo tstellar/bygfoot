@@ -91,6 +91,53 @@ callback_show_next_live_game(void)
     setsav0;
 }
 
+/** Handle either a left click or a return button press
+    on the player list.
+    @param idx The player number. */
+void
+callback_player_activate(gint idx)
+{
+    if(stat0 == STATUS_SHOW_TRANSFER_LIST)
+    {
+	selected_row = -1;
+	transfer_add_remove_user_player(player_of_idx_team(current_user.tm, idx));
+    }
+    else if(stat0 == STATUS_SHOW_YA)
+    {
+	selected_row = idx;
+	on_menu_move_to_youth_academy_activate(NULL, NULL);
+    }
+    else
+    {
+	if(selected_row == -1)
+	{
+	    selected_row = idx;
+	    return;
+	}
+
+	player_swap(current_user.tm, selected_row,
+		    current_user.tm, idx);
+
+	if(opt_user_int("int_opt_user_swap_adapts") == 1 &&
+	   current_user.tm->structure !=
+	   team_find_appropriate_structure(current_user.tm))
+	{
+	    team_change_structure(current_user.tm,
+				  team_find_appropriate_structure(current_user.tm));
+	    team_rearrange(current_user.tm);
+	}
+
+	game_gui_write_av_skills(NULL);
+
+	selected_row = -1;
+
+	treeview_show_user_player_list();
+	if(stat0 == STATUS_MAIN)
+	    treeview_show_next_opponent();
+    }
+
+}
+
 /** Handle a click on the player list.
     @param idx The player number.
     @param event The type of button click. */
@@ -102,45 +149,7 @@ callback_player_clicked(gint idx, GdkEventButton *event)
 	return;
 
     if(event->button == 1)
-    {
-	if(stat0 == STATUS_SHOW_TRANSFER_LIST)
-	{
-	    selected_row = -1;
-	    transfer_add_remove_user_player(player_of_idx_team(current_user.tm, idx));
-	}
-	else if(stat0 == STATUS_SHOW_YA)
-	{
-	    selected_row = idx;
-	    on_menu_move_to_youth_academy_activate(NULL, NULL);
-	}
-	else
-	{
-	    if(selected_row == -1)
-	    {
-		selected_row = idx;
-		return;
-	    }
-
-	    player_swap(current_user.tm, selected_row,
-			current_user.tm, idx);
-	    if(opt_user_int("int_opt_user_swap_adapts") == 1 &&
-	       current_user.tm->structure !=
-	       team_find_appropriate_structure(current_user.tm))
-	    {
-		team_change_structure(current_user.tm,
-				      team_find_appropriate_structure(current_user.tm));
-		team_rearrange(current_user.tm);
-	    }
-
-	    game_gui_write_av_skills(NULL);
-
-	    selected_row = -1;
-
-	    treeview_show_user_player_list();
-	    if(stat0 == STATUS_MAIN)
-		treeview_show_next_opponent();
-	}
-    }
+	callback_player_activate(idx);
     else if(event->button == 3)
     {
 	selected_row = idx;
