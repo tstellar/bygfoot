@@ -316,7 +316,7 @@ create_main_window (void)
   gtk_widget_show (menu_load_last_save);
   gtk_container_add (GTK_CONTAINER (menu_file_menu), menu_load_last_save);
   gtk_widget_add_accelerator (menu_load_last_save, "activate", accel_group,
-                              GDK_l, (GdkModifierType) GDK_CONTROL_MASK | GDK_SHIFT_MASK,
+                              GDK_l, GDK_CONTROL_MASK | GDK_SHIFT_MASK,
                               GTK_ACCEL_VISIBLE);
 
   image2520 = gtk_image_new_from_stock ("gtk-revert-to-saved", GTK_ICON_SIZE_MENU);
@@ -351,7 +351,7 @@ create_main_window (void)
   gtk_widget_show (menu_preferences);
   gtk_container_add (GTK_CONTAINER (menu_options_menu), menu_preferences);
   gtk_widget_add_accelerator (menu_preferences, "activate", accel_group,
-                              GDK_p, (GdkModifierType) GDK_CONTROL_MASK,
+                              GDK_p, GDK_CONTROL_MASK,
                               GTK_ACCEL_VISIBLE);
 
   image2521 = gtk_image_new_from_stock ("gtk-preferences", GTK_ICON_SIZE_MENU);
@@ -402,7 +402,7 @@ create_main_window (void)
   gtk_widget_show (menu_fixtures_week);
   gtk_container_add (GTK_CONTAINER (menu_figures_menu), menu_fixtures_week);
   gtk_widget_add_accelerator (menu_fixtures_week, "activate", accel_group,
-                              GDK_F3, (GdkModifierType) 0,
+                              GDK_F3, 0,
                               GTK_ACCEL_VISIBLE);
 
   image2523 = create_pixmap (main_window, "menu_fixtures.png");
@@ -413,7 +413,7 @@ create_main_window (void)
   gtk_widget_show (menu_fixtures);
   gtk_container_add (GTK_CONTAINER (menu_figures_menu), menu_fixtures);
   gtk_widget_add_accelerator (menu_fixtures, "activate", accel_group,
-                              GDK_F4, (GdkModifierType) 0,
+                              GDK_F4, 0,
                               GTK_ACCEL_VISIBLE);
 
   image2524 = create_pixmap (main_window, "menu_fixtures_comp.png");
@@ -424,7 +424,7 @@ create_main_window (void)
   gtk_widget_show (menu_tables);
   gtk_container_add (GTK_CONTAINER (menu_figures_menu), menu_tables);
   gtk_widget_add_accelerator (menu_tables, "activate", accel_group,
-                              GDK_F5, (GdkModifierType) 0,
+                              GDK_F5, 0,
                               GTK_ACCEL_VISIBLE);
 
   image2525 = create_pixmap (main_window, "menu_table.png");
@@ -435,7 +435,7 @@ create_main_window (void)
   gtk_widget_show (menu_my_league_results);
   gtk_container_add (GTK_CONTAINER (menu_figures_menu), menu_my_league_results);
   gtk_widget_add_accelerator (menu_my_league_results, "activate", accel_group,
-                              GDK_F6, (GdkModifierType) 0,
+                              GDK_F6, 0,
                               GTK_ACCEL_VISIBLE);
 
   image2526 = create_pixmap (main_window, "menu_league_results.png");
@@ -446,7 +446,7 @@ create_main_window (void)
   gtk_widget_show (menu_season_results);
   gtk_container_add (GTK_CONTAINER (menu_figures_menu), menu_season_results);
   gtk_widget_add_accelerator (menu_season_results, "activate", accel_group,
-                              GDK_s, (GdkModifierType) GDK_SHIFT_MASK,
+                              GDK_s, GDK_SHIFT_MASK,
                               GTK_ACCEL_VISIBLE);
 
   image2527 = create_pixmap (main_window, "menu_season_res.png");
@@ -462,7 +462,7 @@ create_main_window (void)
   gtk_widget_show (menu_league_stats);
   gtk_container_add (GTK_CONTAINER (menu_figures_menu), menu_league_stats);
   gtk_widget_add_accelerator (menu_league_stats, "activate", accel_group,
-                              GDK_s, (GdkModifierType) 0,
+                              GDK_s, 0,
                               GTK_ACCEL_VISIBLE);
 
   image2528 = create_pixmap (main_window, "menu_league_stats.png");
@@ -473,7 +473,7 @@ create_main_window (void)
   gtk_widget_show (menu_season_history);
   gtk_container_add (GTK_CONTAINER (menu_figures_menu), menu_season_history);
   gtk_widget_add_accelerator (menu_season_history, "activate", accel_group,
-                              GDK_h, (GdkModifierType) 0,
+                              GDK_h, 0,
                               GTK_ACCEL_VISIBLE);
 
   image2529 = create_pixmap (main_window, "menu_history.png");
@@ -613,7 +613,7 @@ create_main_window (void)
   gtk_widget_show (menu_show_youth_academy);
   gtk_container_add (GTK_CONTAINER (menu_youth_academy_menu), menu_show_youth_academy);
   gtk_widget_add_accelerator (menu_show_youth_academy, "activate", accel_group,
-                              GDK_y, (GdkModifierType) 0,
+                              GDK_y, 0,
                               GTK_ACCEL_VISIBLE);
 
   youth_coach1 = gtk_menu_item_new_with_mnemonic (_("Youth coach"));
@@ -753,7 +753,7 @@ create_main_window (void)
   gtk_container_add (GTK_CONTAINER (menu_team_menu), menu_rearrange_team);
   gtk_tooltips_set_tip (tooltips, menu_rearrange_team, _("Try to put the startup players onto their favoured positions and sort the substitutes (Ctrl-R or middle click)"), NULL);
   gtk_widget_add_accelerator (menu_rearrange_team, "activate", accel_group,
-                              GDK_r, (GdkModifierType) GDK_CONTROL_MASK,
+                              GDK_r, GDK_CONTROL_MASK,
                               GTK_ACCEL_VISIBLE);
 
   image2537 = create_pixmap (main_window, "menu_rearrange.png");
@@ -783,7 +783,7 @@ create_main_window (void)
   gtk_container_add (GTK_CONTAINER (menu_team_menu), menu_show_job_exchange);
   gtk_tooltips_set_tip (tooltips, menu_show_job_exchange, _("Show the list of available manager jobs"), NULL);
   gtk_widget_add_accelerator (menu_show_job_exchange, "activate", accel_group,
-                              GDK_j, (GdkModifierType) 0,
+                              GDK_j, 0,
                               GTK_ACCEL_VISIBLE);
 
   menu_player = gtk_menu_item_new_with_mnemonic (_("_Player"));
@@ -873,7 +873,7 @@ create_main_window (void)
   gtk_widget_show (menu_user_show_last_match);
   gtk_container_add (GTK_CONTAINER (menu_user_menu), menu_user_show_last_match);
   gtk_widget_add_accelerator (menu_user_show_last_match, "activate", accel_group,
-                              GDK_v, (GdkModifierType) GDK_CONTROL_MASK,
+                              GDK_v, GDK_CONTROL_MASK,
                               GTK_ACCEL_VISIBLE);
 
   image2547 = create_pixmap (main_window, "menu_last_match.png");
@@ -884,7 +884,7 @@ create_main_window (void)
   gtk_widget_show (menu_user_show_last_stats);
   gtk_container_add (GTK_CONTAINER (menu_user_menu), menu_user_show_last_stats);
   gtk_widget_add_accelerator (menu_user_show_last_stats, "activate", accel_group,
-                              GDK_F2, (GdkModifierType) 0,
+                              GDK_F2, 0,
                               GTK_ACCEL_VISIBLE);
 
   image2548 = create_pixmap (main_window, "menu_match_stats.png");
@@ -895,7 +895,7 @@ create_main_window (void)
   gtk_widget_show (menu_user_show_coming_matches);
   gtk_container_add (GTK_CONTAINER (menu_user_menu), menu_user_show_coming_matches);
   gtk_widget_add_accelerator (menu_user_show_coming_matches, "activate", accel_group,
-                              GDK_F1, (GdkModifierType) 0,
+                              GDK_F1, 0,
                               GTK_ACCEL_VISIBLE);
 
   image2549 = gtk_image_new_from_stock ("gtk-jump-to", GTK_ICON_SIZE_MENU);
@@ -918,7 +918,7 @@ create_main_window (void)
   gtk_container_add (GTK_CONTAINER (memorable_matches_menu), mm_add_last_match);
   gtk_tooltips_set_tip (tooltips, mm_add_last_match, _("Add last recorded match to the current memorable matches file."), NULL);
   gtk_widget_add_accelerator (mm_add_last_match, "activate", accel_group,
-                              GDK_a, (GdkModifierType) GDK_CONTROL_MASK,
+                              GDK_a, GDK_CONTROL_MASK,
                               GTK_ACCEL_VISIBLE);
 
   image2551 = gtk_image_new_from_stock ("gtk-add", GTK_ICON_SIZE_MENU);
@@ -930,7 +930,7 @@ create_main_window (void)
   gtk_container_add (GTK_CONTAINER (memorable_matches_menu), mm_manage_matches);
   gtk_tooltips_set_tip (tooltips, mm_manage_matches, _("Replay, delete or add memorable matches."), NULL);
   gtk_widget_add_accelerator (mm_manage_matches, "activate", accel_group,
-                              GDK_m, (GdkModifierType) GDK_CONTROL_MASK,
+                              GDK_m, GDK_CONTROL_MASK,
                               GTK_ACCEL_VISIBLE);
 
   image2552 = gtk_image_new_from_stock ("gtk-preferences", GTK_ICON_SIZE_MENU);
@@ -946,7 +946,7 @@ create_main_window (void)
   gtk_widget_show (menu_user_show_history);
   gtk_container_add (GTK_CONTAINER (menu_user_menu), menu_user_show_history);
   gtk_widget_add_accelerator (menu_user_show_history, "activate", accel_group,
-                              GDK_h, (GdkModifierType) GDK_CONTROL_MASK,
+                              GDK_h, GDK_CONTROL_MASK,
                               GTK_ACCEL_VISIBLE);
 
   image2553 = create_pixmap (main_window, "menu_history.png");
@@ -962,7 +962,7 @@ create_main_window (void)
   gtk_widget_show (menu_next_user);
   gtk_container_add (GTK_CONTAINER (menu_user_menu), menu_next_user);
   gtk_widget_add_accelerator (menu_next_user, "activate", accel_group,
-                              GDK_F9, (GdkModifierType) 0,
+                              GDK_F9, 0,
                               GTK_ACCEL_VISIBLE);
 
   image2554 = gtk_image_new_from_stock ("gtk-media-forward", GTK_ICON_SIZE_MENU);
@@ -973,7 +973,7 @@ create_main_window (void)
   gtk_widget_show (menu_previous_user);
   gtk_container_add (GTK_CONTAINER (menu_user_menu), menu_previous_user);
   gtk_widget_add_accelerator (menu_previous_user, "activate", accel_group,
-                              GDK_F8, (GdkModifierType) 0,
+                              GDK_F8, 0,
                               GTK_ACCEL_VISIBLE);
 
   image2555 = gtk_image_new_from_stock ("gtk-go-back", GTK_ICON_SIZE_MENU);
@@ -984,7 +984,7 @@ create_main_window (void)
   gtk_widget_show (menu_manage_users);
   gtk_container_add (GTK_CONTAINER (menu_user_menu), menu_manage_users);
   gtk_widget_add_accelerator (menu_manage_users, "activate", accel_group,
-                              GDK_F12, (GdkModifierType) 0,
+                              GDK_F12, 0,
                               GTK_ACCEL_VISIBLE);
 
   image2556 = gtk_image_new_from_stock ("gtk-justify-fill", GTK_ICON_SIZE_MENU);
@@ -1002,7 +1002,7 @@ create_main_window (void)
   gtk_widget_show (menu_show_finances);
   gtk_container_add (GTK_CONTAINER (menu_finances_stadium_menu), menu_show_finances);
   gtk_widget_add_accelerator (menu_show_finances, "activate", accel_group,
-                              GDK_f, (GdkModifierType) 0,
+                              GDK_f, 0,
                               GTK_ACCEL_VISIBLE);
 
   image2557 = create_pixmap (main_window, "menu_finances.png");
@@ -1013,7 +1013,7 @@ create_main_window (void)
   gtk_widget_show (menu_show_stadium);
   gtk_container_add (GTK_CONTAINER (menu_finances_stadium_menu), menu_show_stadium);
   gtk_widget_add_accelerator (menu_show_stadium, "activate", accel_group,
-                              GDK_f, (GdkModifierType) GDK_CONTROL_MASK,
+                              GDK_f, GDK_CONTROL_MASK,
                               GTK_ACCEL_VISIBLE);
 
   image2558 = create_pixmap (main_window, "menu_stadium.png");
@@ -1030,7 +1030,7 @@ create_main_window (void)
   gtk_container_add (GTK_CONTAINER (menu_finances_stadium_menu), menu_betting);
   gtk_tooltips_set_tip (tooltips, menu_betting, _("Show the betting window"), NULL);
   gtk_widget_add_accelerator (menu_betting, "activate", accel_group,
-                              GDK_b, (GdkModifierType) 0,
+                              GDK_b, 0,
                               GTK_ACCEL_VISIBLE);
 
   menu_help1 = gtk_menu_item_new_with_mnemonic (_("_Help"));
@@ -1114,7 +1114,7 @@ create_main_window (void)
   gtk_container_set_border_width (GTK_CONTAINER (button_back_to_main), 2);
   gtk_tooltips_set_tip (tooltips, button_back_to_main, _("Back to main menu (Esc)"), NULL);
   gtk_widget_add_accelerator (button_back_to_main, "clicked", accel_group,
-                              GDK_Escape, (GdkModifierType) 0,
+                              GDK_Escape, 0,
                               GTK_ACCEL_VISIBLE);
 
   image20 = gtk_image_new_from_stock ("gtk-home", GTK_ICON_SIZE_BUTTON);
@@ -1127,7 +1127,7 @@ create_main_window (void)
   gtk_container_set_border_width (GTK_CONTAINER (button_transfers), 2);
   gtk_tooltips_set_tip (tooltips, button_transfers, _("Show transferlist (T)"), NULL);
   gtk_widget_add_accelerator (button_transfers, "clicked", accel_group,
-                              GDK_t, (GdkModifierType) 0,
+                              GDK_t, 0,
                               GTK_ACCEL_VISIBLE);
 
   image32 = create_pixmap (main_window, "transfers.png");
@@ -1145,7 +1145,7 @@ create_main_window (void)
   gtk_container_set_border_width (GTK_CONTAINER (button_new_week), 2);
   gtk_tooltips_set_tip (tooltips, button_new_week, _("Begin a new week (Space)"), NULL);
   gtk_widget_add_accelerator (button_new_week, "clicked", accel_group,
-                              GDK_space, (GdkModifierType) 0,
+                              GDK_space, 0,
                               GTK_ACCEL_VISIBLE);
 
   image23 = create_pixmap (main_window, "new_week.png");
@@ -1371,7 +1371,7 @@ create_main_window (void)
   gtk_widget_set_sensitive (button_cl_back, FALSE);
   gtk_tooltips_set_tip (tooltips, button_cl_back, _("Previous league/cup (1)"), NULL);
   gtk_widget_add_accelerator (button_cl_back, "clicked", accel_group,
-                              GDK_1, (GdkModifierType) 0,
+                              GDK_1, 0,
                               GTK_ACCEL_VISIBLE);
 
   image215 = gtk_image_new_from_stock ("gtk-go-back", GTK_ICON_SIZE_BUTTON);
@@ -1384,7 +1384,7 @@ create_main_window (void)
   gtk_widget_set_sensitive (button_cl_forward, FALSE);
   gtk_tooltips_set_tip (tooltips, button_cl_forward, _("Next league/cup (2)"), NULL);
   gtk_widget_add_accelerator (button_cl_forward, "clicked", accel_group,
-                              GDK_2, (GdkModifierType) 0,
+                              GDK_2, 0,
                               GTK_ACCEL_VISIBLE);
 
   image216 = gtk_image_new_from_stock ("gtk-go-forward", GTK_ICON_SIZE_BUTTON);
@@ -1397,7 +1397,7 @@ create_main_window (void)
   gtk_widget_set_sensitive (button_browse_back, FALSE);
   gtk_tooltips_set_tip (tooltips, button_browse_back, _("Previous (Q)"), NULL);
   gtk_widget_add_accelerator (button_browse_back, "clicked", accel_group,
-                              GDK_q, (GdkModifierType) 0,
+                              GDK_q, 0,
                               GTK_ACCEL_VISIBLE);
 
   image10 = gtk_image_new_from_stock ("gtk-go-back", GTK_ICON_SIZE_BUTTON);
@@ -1410,7 +1410,7 @@ create_main_window (void)
   gtk_widget_set_sensitive (button_browse_forward, FALSE);
   gtk_tooltips_set_tip (tooltips, button_browse_forward, _("Next (W)"), NULL);
   gtk_widget_add_accelerator (button_browse_forward, "clicked", accel_group,
-                              GDK_w, (GdkModifierType) 0,
+                              GDK_w, 0,
                               GTK_ACCEL_VISIBLE);
 
   image9 = gtk_image_new_from_stock ("gtk-go-forward", GTK_ICON_SIZE_BUTTON);
@@ -1686,6 +1686,9 @@ create_main_window (void)
                     NULL);
   g_signal_connect ((gpointer) player_list1, "button_press_event",
                     G_CALLBACK (on_player_list1_button_press_event),
+                    NULL);
+  g_signal_connect ((gpointer) player_list1, "key_press_event",
+                    G_CALLBACK (on_player_list1_key_press_event),
                     NULL);
   g_signal_connect ((gpointer) player_list2, "button_press_event",
                     G_CALLBACK (on_player_list1_button_press_event),

@@ -36,6 +36,9 @@ void
 callback_player_clicked(gint idx, GdkEventButton *event);
 
 void
+callback_player_activate(gint idx);
+
+void
 callback_show_last_match(gboolean start, LiveGame *lg);
 
 void
