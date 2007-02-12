@@ -131,37 +131,9 @@
       </child>
 
       <child>
-	<widget class="GtkButton" id="b_dec_recreation">
-	  <property name="width_request">30</property>
-	  <property name="height_request">24</property>
-	  <property name="visible">True</property>
-	  <property name="can_focus">True</property>
-	  <property name="relief">GTK_RELIEF_NORMAL</property>
-	  <property name="focus_on_click">True</property>
-	  <signal name="clicked" handler="on_b_dec_recreation_clicked" last_modification_time="Mon, 12 Feb 2007 08:46:47 GMT"/>
-
-	  <child>
-	    <widget class="GtkImage" id="image1">
-	      <property name="visible">True</property>
-	      <property name="stock">gtk-remove</property>
-	      <property name="icon_size">4</property>
-	      <property name="xalign">0.5</property>
-	      <property name="yalign">0.5</property>
-	      <property name="xpad">0</property>
-	      <property name="ypad">0</property>
-	    </widget>
-	  </child>
-	</widget>
-	<packing>
-	  <property name="x">176</property>
-	  <property name="y">126</property>
-	</packing>
-      </child>
-
-      <child>
 	<widget class="GtkButton" id="b_inc_recreation">
 	  <property name="width_request">30</property>
-	  <property name="height_request">24</property>
+	  <property name="height_request">26</property>
 	  <property name="visible">True</property>
 	  <property name="can_focus">True</property>
 	  <property name="relief">GTK_RELIEF_NORMAL</property>
@@ -171,8 +143,7 @@
 	  <child>
 	    <widget class="GtkImage" id="image2">
 	      <property name="visible">True</property>
-	      <property name="stock">gtk-add</property>
-	      <property name="icon_size">4</property>
+	      <property name="pixbuf">increase_green.png</property>
 	      <property name="xalign">0.5</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
@@ -182,7 +153,7 @@
 	</widget>
 	<packing>
 	  <property name="x">425</property>
-	  <property name="y">126</property>
+	  <property name="y">125</property>
 	</packing>
       </child>
 
@@ -239,28 +210,6 @@
       </child>
 
       <child>
-	<widget class="GtkRadioButton" id="rb_camp1">
-	  <property name="width_request">200</property>
-	  <property name="height_request">21</property>
-	  <property name="visible">True</property>
-	  <property name="can_focus">True</property>
-	  <property name="has_focus">True</property>
-	  <property name="label" translatable="yes">Good Hotel</property>
-	  <property name="use_underline">True</property>
-	  <property name="relief">GTK_RELIEF_NORMAL</property>
-	  <property name="focus_on_click">True</property>
-	  <property name="active">False</property>
-	  <property name="inconsistent">False</property>
-	  <property name="draw_indicator">True</property>
-	  <signal name="clicked" handler="on_rb_camp1_clicked" last_modification_time="Sun, 03 Dec 2006 16:50:23 GMT"/>
-	</widget>
-	<packing>
-	  <property name="x">24</property>
-	  <property name="y">16</property>
-	</packing>
-      </child>
-
-      <child>
 	<widget class="GtkRadioButton" id="rb_camp2">
 	  <property name="width_request">200</property>
 	  <property name="height_request">21</property>
@@ -273,7 +222,6 @@
 	  <property name="active">False</property>
 	  <property name="inconsistent">False</property>
 	  <property name="draw_indicator">True</property>
-	  <property name="group">rb_camp1</property>
 	  <signal name="clicked" handler="on_rb_camp2_clicked" last_modification_time="Sun, 03 Dec 2006 16:50:34 GMT"/>
 	</widget>
 	<packing>
@@ -295,7 +243,7 @@
 	  <property name="active">False</property>
 	  <property name="inconsistent">False</property>
 	  <property name="draw_indicator">True</property>
-	  <property name="group">rb_camp1</property>
+	  <property name="group">rb_camp2</property>
 	  <signal name="clicked" handler="on_rb_camp3_clicked" last_modification_time="Sun, 03 Dec 2006 16:50:53 GMT"/>
 	</widget>
 	<packing>
@@ -307,7 +255,7 @@
       <child>
 	<widget class="GtkButton" id="b_dec_training">
 	  <property name="width_request">30</property>
-	  <property name="height_request">24</property>
+	  <property name="height_request">26</property>
 	  <property name="visible">True</property>
 	  <property name="can_focus">True</property>
 	  <property name="relief">GTK_RELIEF_NORMAL</property>
@@ -317,8 +265,7 @@
 	  <child>
 	    <widget class="GtkImage" id="image3">
 	      <property name="visible">True</property>
-	      <property name="stock">gtk-remove</property>
-	      <property name="icon_size">4</property>
+	      <property name="pixbuf">decrease_red.png</property>
 	      <property name="xalign">0.5</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
@@ -328,7 +275,7 @@
 	</widget>
 	<packing>
 	  <property name="x">176</property>
-	  <property name="y">158</property>
+	  <property name="y">157</property>
 	</packing>
       </child>
 
@@ -361,7 +308,7 @@
       <child>
 	<widget class="GtkButton" id="b_inc_training">
 	  <property name="width_request">30</property>
-	  <property name="height_request">24</property>
+	  <property name="height_request">26</property>
 	  <property name="visible">True</property>
 	  <property name="can_focus">True</property>
 	  <property name="relief">GTK_RELIEF_NORMAL</property>
@@ -371,8 +318,7 @@
 	  <child>
 	    <widget class="GtkImage" id="image4">
 	      <property name="visible">True</property>
-	      <property name="stock">gtk-add</property>
-	      <property name="icon_size">4</property>
+	      <property name="pixbuf">increase_green.png</property>
 	      <property name="xalign">0.5</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
@@ -382,7 +328,7 @@
 	</widget>
 	<packing>
 	  <property name="x">425</property>
-	  <property name="y">158</property>
+	  <property name="y">157</property>
 	</packing>
       </child>
 
@@ -437,6 +383,56 @@
 	<packing>
 	  <property name="x">220</property>
 	  <property name="y">120</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkButton" id="b_dec_recreation">
+	  <property name="width_request">30</property>
+	  <property name="height_request">26</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="relief">GTK_RELIEF_NORMAL</property>
+	  <property name="focus_on_click">True</property>
+	  <signal name="clicked" handler="on_b_dec_recreation_clicked" last_modification_time="Mon, 12 Feb 2007 08:46:47 GMT"/>
+
+	  <child>
+	    <widget class="GtkImage" id="image1">
+	      <property name="visible">True</property>
+	      <property name="pixbuf">decrease_red.png</property>
+	      <property name="xalign">0.5</property>
+	      <property name="yalign">0.5</property>
+	      <property name="xpad">0</property>
+	      <property name="ypad">0</property>
+	    </widget>
+	  </child>
+	</widget>
+	<packing>
+	  <property name="x">176</property>
+	  <property name="y">125</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkRadioButton" id="rb_camp1">
+	  <property name="width_request">200</property>
+	  <property name="height_request">21</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="has_focus">True</property>
+	  <property name="label" translatable="yes">Good Hotel</property>
+	  <property name="use_underline">True</property>
+	  <property name="relief">GTK_RELIEF_NORMAL</property>
+	  <property name="focus_on_click">True</property>
+	  <property name="active">False</property>
+	  <property name="inconsistent">False</property>
+	  <property name="draw_indicator">True</property>
+	  <property name="group">rb_camp2</property>
+	  <signal name="clicked" handler="on_rb_camp1_clicked" last_modification_time="Sun, 03 Dec 2006 16:50:23 GMT"/>
+	</widget>
+	<packing>
+	  <property name="x">24</property>
+	  <property name="y">16</property>
 	</packing>
       </child>
     </widget>
