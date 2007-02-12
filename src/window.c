@@ -966,5 +966,14 @@ window_show_training_camp(void)
     gtk_scale_set_digits (GTK_SCALE(hs_recreation), 0);
     gtk_scale_set_digits (GTK_SCALE(hs_training), 0);
     gtk_scale_set_digits (GTK_SCALE(hs_camp_points), 0);
+    gtk_widget_set_sensitive (GTK_WIDGET(hs_recreation), FALSE);
+    gtk_widget_set_sensitive (GTK_WIDGET(hs_training), FALSE);
     gtk_widget_set_sensitive (GTK_WIDGET(hs_camp_points), FALSE);
+    
+	GdkColor color;
+    gtk_widget_modify_fg(GTK_WIDGET(hs_recreation), GTK_STATE_INSENSITIVE , NULL);
+    gtk_widget_modify_bg(GTK_WIDGET(hs_recreation), GTK_STATE_NORMAL, NULL);
+    gdk_color_parse("black", &color);
+    gtk_widget_modify_fg(GTK_WIDGET(hs_recreation), GTK_STATE_INSENSITIVE , &color);
+    gtk_widget_modify_bg(GTK_WIDGET(hs_recreation), GTK_STATE_NORMAL, &color);
 }
