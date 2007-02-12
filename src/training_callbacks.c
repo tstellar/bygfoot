@@ -134,65 +134,98 @@ on_rb_camp1_clicked                    (GtkButton       *button,
     gtk_entry_set_text (tfCosts, buf);
 }
 
-
-gboolean
-on_hs_recreation_change_value          (GtkRange        *range,
-                                        GtkScrollType    scroll,
-                                        gdouble          value,
+void
+on_b_dec_recreation_clicked            (GtkButton       *button,
                                         gpointer         user_data)
 {
 	GtkHScale *hs_camp_points;
+	GtkHScale *hs_recreation;
 	gdouble value_camp_points;
 	gdouble value_recreation;
-	
-	value_recreation = gtk_range_get_value(GTK_RANGE(range));
-	
+		
 	hs_camp_points = GTK_HSCALE(lookup_widget(window.training_camp, "hs_camp_points"));
+	hs_recreation = GTK_HSCALE(lookup_widget(window.training_camp, "hs_recreation"));
 	value_camp_points = gtk_range_get_value(GTK_RANGE(hs_camp_points));
+	value_recreation = gtk_range_get_value(GTK_RANGE(hs_recreation));
 	
-	if ((value > (value_recreation + 0.5)) && (value_camp_points > CAMP_SCALE_MIN))
-	{	
-		gtk_range_set_value(GTK_RANGE(hs_camp_points), value_camp_points - 1.0);
-		return FALSE;
-	}
-	
-	if ((value < (value_recreation - 0.5)) && (value_camp_points < CAMP_SCALE_MAX))
+	if (value_recreation > CAMP_SCALE_MIN)
 	{
-		gtk_range_set_value(GTK_RANGE(hs_camp_points), value_camp_points + 1.0);
-		return FALSE;
+		value_recreation --;
+		value_camp_points ++;
+		gtk_range_set_value(GTK_RANGE(hs_recreation), value_recreation);
+		gtk_range_set_value(GTK_RANGE(hs_camp_points), value_camp_points);
 	}
-	
-	return TRUE;
 }
 
 
-gboolean
-on_hs_training_change_value            (GtkRange        *range,
-                                        GtkScrollType    scroll,
-                                        gdouble          value,
+void
+on_b_inc_recreation_clicked            (GtkButton       *button,
                                         gpointer         user_data)
 {
 	GtkHScale *hs_camp_points;
+	GtkHScale *hs_recreation;
+	gdouble value_camp_points;
+	gdouble value_recreation;
+		
+	hs_camp_points = GTK_HSCALE(lookup_widget(window.training_camp, "hs_camp_points"));
+	hs_recreation = GTK_HSCALE(lookup_widget(window.training_camp, "hs_recreation"));
+	value_camp_points = gtk_range_get_value(GTK_RANGE(hs_camp_points));
+	value_recreation = gtk_range_get_value(GTK_RANGE(hs_recreation));
+	
+	if (value_camp_points > CAMP_SCALE_MIN)
+	{
+		value_recreation ++;
+		value_camp_points --;
+		gtk_range_set_value(GTK_RANGE(hs_recreation), value_recreation);
+		gtk_range_set_value(GTK_RANGE(hs_camp_points), value_camp_points);
+	}
+}
+
+
+void
+on_b_dec_training_clicked              (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	GtkHScale *hs_camp_points;
+	GtkHScale *hs_training;
 	gdouble value_camp_points;
 	gdouble value_training;
-	
-	value_training = gtk_range_get_value(GTK_RANGE(range));
-	
+		
 	hs_camp_points = GTK_HSCALE(lookup_widget(window.training_camp, "hs_camp_points"));
+	hs_training = GTK_HSCALE(lookup_widget(window.training_camp, "hs_training"));
 	value_camp_points = gtk_range_get_value(GTK_RANGE(hs_camp_points));
+	value_training = gtk_range_get_value(GTK_RANGE(hs_training));
 	
-	if ((value > (value_training + 0.5)) && (value_camp_points > CAMP_SCALE_MIN))
-	{	
-		gtk_range_set_value(GTK_RANGE(hs_camp_points), value_camp_points - 1.0);
-		return FALSE;
-	}
-	
-	if ((value < (value_training - 0.5)) && (value_camp_points < CAMP_SCALE_MAX))
+	if (value_training > CAMP_SCALE_MIN)
 	{
-		gtk_range_set_value(GTK_RANGE(hs_camp_points), value_camp_points + 1.0);
-		return FALSE;
+		value_training --;
+		value_camp_points ++;
+		gtk_range_set_value(GTK_RANGE(hs_training), value_training);
+		gtk_range_set_value(GTK_RANGE(hs_camp_points), value_camp_points);
 	}
+}
+
+
+void
+on_b_inc_training_clicked              (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	GtkHScale *hs_camp_points;
+	GtkHScale *hs_training;
+	gdouble value_camp_points;
+	gdouble value_training;
+		
+	hs_camp_points = GTK_HSCALE(lookup_widget(window.training_camp, "hs_camp_points"));
+	hs_training = GTK_HSCALE(lookup_widget(window.training_camp, "hs_training"));
+	value_camp_points = gtk_range_get_value(GTK_RANGE(hs_camp_points));
+	value_training = gtk_range_get_value(GTK_RANGE(hs_training));
 	
-	return TRUE;
+	if (value_camp_points > CAMP_SCALE_MIN)
+	{
+		value_training ++;
+		value_camp_points --;
+		gtk_range_set_value(GTK_RANGE(hs_training), value_training);
+		gtk_range_set_value(GTK_RANGE(hs_camp_points), value_camp_points);
+	}
 }
 
