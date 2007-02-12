@@ -46,14 +46,18 @@ void
 on_rb_camp1_clicked                    (GtkButton       *button,
 										gpointer         user_data);
 
-gboolean
-on_hs_recreation_change_value          (GtkRange        *range,
-                                        GtkScrollType    scroll,
-                                        gdouble          value,
+void
+on_b_dec_recreation_clicked            (GtkButton       *button,
                                         gpointer         user_data);
 
-gboolean
-on_hs_training_change_value            (GtkRange        *range,
-                                        GtkScrollType    scroll,
-                                        gdouble          value,
+void
+on_b_inc_recreation_clicked            (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_b_dec_training_clicked              (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_b_inc_training_clicked              (GtkButton       *button,
                                         gpointer         user_data);
