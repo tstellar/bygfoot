@@ -4,23 +4,17 @@
 	<short_name>CONCACAF</short_name>
 	<sid>usa_concacaf</sid>
 	<talent_diff>250</talent_diff>
+	<group>1</group>
 	<yellow_red>3</yellow_red>
 	<last_week>12</last_week>
 	<week_gap>2</week_gap>
-	<group>1507</group>
 	<property>international</property>
-	<property>highlight1</property>
 	
 	<cup_rounds>
 		<cup_round>
 			<new_teams>8</new_teams>
 			<choose_teams>
-				<!--<choose_team>
-					<choose_team_sid>LEAGUE1</choose_team_sid>
-					<number_of_teams>2</number_of_teams>
-					<start_idx>1</start_idx>
-					<end_idx>2</end_idx>
-				</choose_team>-->
+				<!-- COMMENT OUT THESE SECTIONS FOR SINGLE-TABLE MLS -->
 				<choose_team>
 					<choose_team_sid>LEAGUE1</choose_team_sid>
 					<number_of_teams>1</number_of_teams>
@@ -33,6 +27,13 @@
 					<start_idx>1</start_idx>
 					<end_idx>1</end_idx>
 				</choose_team>
+				<!-- UNCOMMENT FOR SINGLE-TABLE MLS -->
+				<!--<choose_team>
+					<choose_team_sid>LEAGUE1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>2</end_idx>
+				</choose_team>-->
 				<choose_team>
 					<choose_team_sid>costa_rica1_short</choose_team_sid>
 					<number_of_teams>2</number_of_teams>
@@ -57,24 +58,6 @@
 					<randomly>1</randomly>
 					<generate>1</generate>
 				</choose_team>
-				<choose_team>
-					<choose_team_sid>usa_econf</choose_team_sid>
-					<number_of_teams>1</number_of_teams>
-					<randomly>1</randomly>
-					<generate>1</generate>
-				</choose_team>
-				<choose_team>
-					<choose_team_sid>usa_wconf</choose_team_sid>
-					<number_of_teams>1</number_of_teams>
-					<randomly>1</randomly>
-					<generate>1</generate>
-				</choose_team>
-				<!--<choose_team>
-					<choose_team_sid>usa_mls</choose_team_sid>
-					<number_of_teams>2</number_of_teams>
-					<randomly>1</randomly>
-					<generate>1</generate>
-				</choose_team>-->
 			</choose_teams>
 		</cup_round>
 		<cup_round>
