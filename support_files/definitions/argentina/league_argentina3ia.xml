@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+	
+	<sid>argentina3ia</sid>
+	<name>Interior A División Zona A</name>
+	<short_name>Int. A Zona A</short_name>
+	<symbol>flag_argentina.png</symbol>
+	<layer>3</layer>
+	<first_week>1</first_week>
+	<week_gap>1</week_gap>
+	<average_talent>6000</average_talent>
+	<yellow_red>3</yellow_red>
+	<names_file>latinoamerica</names_file>
+	<round_robins>4</round_robins>
+	
+	<prom_rel>
+		<prom_games>
+			<prom_games_dest_sid>argentina3ia</prom_games_dest_sid>
+			<prom_games_loser_sid>argentina4ia argentina4ib argentina4id</prom_games_loser_sid>
+			<prom_games_number_of_advance>4</prom_games_number_of_advance>
+			<prom_games_cup_sid>argentina_prom_games4ia</prom_games_cup_sid>
+		</prom_games>
+		<prom_rel_element>
+			<rank_start>12</rank_start>
+			<rank_end>12</rank_end>
+			<dest_sid>argentina4ic</dest_sid>
+			<prom_rel_type>relegation</prom_rel_type>
+		</prom_rel_element>
+	</prom_rel>
+	
+	<teams>
+		<team>
+			<team_name>J. A. Salta</team_name>
+		</team>
+		<team>
+			<team_name>G. B. Puerto Madryn</team_name>
+		</team>
+		<team>
+			<team_name>D. H. Pergamino</team_name>
+		</team>
+		<team>
+			<team_name>La Plata F. C.</team_name>
+		</team>
+		<team>
+			<team_name>S. D. San Juan</team_name>
+		</team>
+		<team>
+			<team_name>Ind. Rivadavia</team_name>
+		</team>
+		<team>
+			<team_name>J. U. U. San Luis</team_name>
+		</team>
+		<team>
+			<team_name>J. Pergamino</team_name>
+		</team>
+		<team>
+			<team_name>L. de C. Mendoza</team_name>
+		</team>
+		<team>
+			<team_name>R. Olavarría</team_name>
+		</team>
+		<team>
+			<team_name>Cipolletti</team_name>
+		</team>
+		<team>
+			<team_name>H. Comodoro Rivadavia</team_name>
+		</team>
+	</teams>
+	
+</league>
