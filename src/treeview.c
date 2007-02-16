@@ -453,14 +453,16 @@ treeview_show_player_list_team(GtkTreeView *treeview, const Team *tm, gint scout
 void
 treeview_live_game_show_commentary(const LiveGameUnit *unit)
 {
+    GtkTreeView *treeview = 
+	GTK_TREE_VIEW(lookup_widget(window.live, "treeview_commentary"));
+    GtkListStore *ls =
+	GTK_LIST_STORE(gtk_tree_view_get_model(treeview));
     GtkAdjustment *adjustment =
 	gtk_scrolled_window_get_vadjustment(
 	    GTK_SCROLLED_WINDOW(lookup_widget(window.live,
 					      "scrolledwindow9")));
-    GtkListStore *ls =
-	GTK_LIST_STORE(
-	    gtk_tree_view_get_model(GTK_TREE_VIEW(lookup_widget(window.live, "treeview_commentary"))));
     GtkTreeIter iter;
+    GtkTreePath *path;
     gchar buf[SMALL], buf2[SMALL];
 
     sprintf(buf, "%3d.", live_game_unit_get_minute(unit));
@@ -481,6 +483,10 @@ treeview_live_game_show_commentary(const LiveGameUnit *unit)
 
     adjustment->value = adjustment->lower - adjustment->page_size;
     gtk_adjustment_value_changed(adjustment);
+
+    path = gtk_tree_model_get_path(GTK_TREE_MODEL(ls), &iter);
+    gtk_tree_view_set_cursor(treeview, path, NULL, FALSE);
+    gtk_tree_path_free(path);
 }
 
 /** Create the list store for the live game 
