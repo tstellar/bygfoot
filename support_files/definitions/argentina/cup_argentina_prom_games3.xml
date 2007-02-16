@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+	<name>Promocion Nacional B</name>
+	<short_name>Prom. Nac. B</short_name>
+	<sid>argentina_prom_games3</sid>
+	<property>promotion</property>
+	<property>highlight2</property>
+	<add_week>1000</add_week>
+	<week_gap>1</week_gap>
+
+	<cup_rounds>
+		<cup_round>
+			<byes>0</byes>
+			<choose_teams>
+				<choose_team>
+					<choose_team_sid>argentina3ia</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>2</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>argentina3ib</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>2</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>argentina3m</choose_team_sid>
+					<number_of_teams>4</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>4</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>argentina2</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<start_idx>16</start_idx>
+					<end_idx>17</end_idx>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+	</cup_rounds>
+</cup>

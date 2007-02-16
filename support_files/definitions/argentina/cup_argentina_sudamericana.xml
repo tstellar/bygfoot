@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<cup>
+  <name>Copa SudAmericana</name>
+  <short_name>SudAm</short_name>
+  <sid>argentina_sudamericana</sid>
+  <talent_diff>250</talent_diff>
+  <yellow_red>3</yellow_red>
+  <last_week>34</last_week>
+  <week_gap>3</week_gap>
+  <group>1505</group>
+  <property>international</property>
+  <property>highlight3</property>
+
+  <cup_rounds>
+
+    <cup_round>
+      <new_teams>32</new_teams>
+      <byes>0</byes>
+      <randomise_teams>0</randomise_teams>
+
+      <choose_teams>
+	<choose_team>
+	  <choose_team_sid>colombia1_short</choose_team_sid>
+	  <number_of_teams>4</number_of_teams>
+	  <randomly>1</randomly>
+	  <generate>1</generate>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>ecuador1_short</choose_team_sid>
+	  <number_of_teams>4</number_of_teams>
+	  <randomly>1</randomly>
+	  <generate>1</generate>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>paraguay1_short</choose_team_sid>
+	  <number_of_teams>4</number_of_teams>
+	  <randomly>1</randomly>
+	  <generate>1</generate>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>venezuela1_short</choose_team_sid>
+	  <number_of_teams>4</number_of_teams>
+	  <randomly>1</randomly>
+	  <generate>1</generate>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>chile1_short</choose_team_sid>
+	  <number_of_teams>4</number_of_teams>
+	  <randomly>1</randomly>
+	  <generate>1</generate>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>uruguay1_short</choose_team_sid>
+	  <number_of_teams>4</number_of_teams>
+	  <randomly>1</randomly>
+	  <generate>1</generate>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>bolivia1_short</choose_team_sid>
+	  <number_of_teams>4</number_of_teams>
+	  <randomly>1</randomly>
+	  <generate>1</generate>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>peru1_short</choose_team_sid>
+	  <number_of_teams>4</number_of_teams>
+	  <randomly>1</randomly>
+	  <generate>1</generate>
+	</choose_team>
+      </choose_teams> 
+    </cup_round>
+    
+    <cup_round>
+      <new_teams>16</new_teams>
+                
+      <choose_teams>
+	<choose_team>
+	  <choose_team_sid>argentina1</choose_team_sid>
+	  <number_of_teams>6</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>6</end_idx>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>brazil1</choose_team_sid>
+	  <number_of_teams>6</number_of_teams>
+	  <randomly>1</randomly>
+	  <generate>1</generate>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>mexico1_short</choose_team_sid>
+	  <number_of_teams>2</number_of_teams>
+	  <randomly>1</randomly>
+	  <generate>1</generate>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>usa_econf usa_wconf</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <randomly>1</randomly>
+	  <generate>1</generate>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>costa_rica1_short</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <randomly>1</randomly>
+	  <generate>1</generate>
+	</choose_team>
+      </choose_teams>
+    </cup_round>
+
+    <cup_round></cup_round>
+    <cup_round></cup_round>
+    <cup_round></cup_round>
+    <cup_round></cup_round>
+  </cup_rounds>
+</cup>

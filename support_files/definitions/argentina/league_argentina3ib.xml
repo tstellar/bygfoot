@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+	
+	<sid>argentina3ib</sid>
+	<name>Interior A División Zona B</name>
+	<short_name>Int. A Zona B</short_name>
+	<symbol>flag_argentina.png</symbol>
+	<layer>3</layer>
+	<first_week>1</first_week>
+	<week_gap>1</week_gap>
+	<average_talent>6000</average_talent>
+	<yellow_red>3</yellow_red>
+	<names_file>latinoamerica</names_file>
+	<round_robins>4</round_robins>
+
+	<prom_rel>
+		<prom_games>
+			<prom_games_dest_sid>argentina3ib</prom_games_dest_sid>
+			<prom_games_loser_sid>argentina4ie argentina4if argentina4ig</prom_games_loser_sid>
+			<prom_games_number_of_advance>4</prom_games_number_of_advance>
+			<prom_games_cup_sid>argentina_prom_games4ib</prom_games_cup_sid>
+		</prom_games>
+		<prom_rel_element>
+			<rank_start>12</rank_start>
+			<rank_end>12</rank_end>
+			<dest_sid>argentina4ic</dest_sid>
+			<prom_rel_type>relegation</prom_rel_type>
+		</prom_rel_element>
+	</prom_rel>
+	
+	<teams>
+		<team>
+			<team_name>S. M. de Mendoza</team_name>
+		</team>
+		<team>
+			<team_name>A. Tucumán</team_name>
+		</team>
+		<team>
+			<team_name>U. de Sunchales</team_name>
+		</team>
+		<team>
+			<team_name>R. Córdoba</team_name>
+		</team>
+		<team>
+			<team_name>T. Perico</team_name>
+		</team>
+		<team>
+			<team_name>S. P. Formosa</team_name>
+		</team>
+		<team>
+			<team_name>N. de J. Rafaela</team_name>
+		</team>
+		<team>
+			<team_name>La Florida</team_name>
+		</team>
+		<team>
+			<team_name>A. C. Posadas</team_name>
+		</team>
+		<team>
+			<team_name>G. y E. Entre Rios</team_name>
+		</team>
+		<team>
+			<team_name>G. P. J. Córdoba</team_name>
+		</team>
+		<team>
+			<team_name>A. N. Monteros</team_name>
+		</team>
+
+	</teams>
+	
+</league>
