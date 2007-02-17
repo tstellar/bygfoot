@@ -101,10 +101,13 @@ typedef struct
     gint first_week;
     /** Weeks between two matchdays. Default 1. */
     gint week_gap;
+    /** Here we store intervals of fixtures during which
+	there should be two matches in a week instead of one. */
+    GArray *two_match_weeks[2];
     /** How many round robins are played. Important for
 	small leagues with 10 teams or so. Default: 1. */
     gint round_robins;
-    /** */
+    /** Number of weeks between the parts of a round robin. */
     gint rr_break;
     /** Number of yellow cards until a player gets banned. 
 	Default 1000 (which means 'off', basically). */

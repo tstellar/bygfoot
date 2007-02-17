@@ -133,4 +133,7 @@ league_team_movements_compare_dest_idcs(gconstpointer a, gconstpointer b,
 gboolean
 query_leagues_active_in_country(void);
 
+gboolean
+query_league_matchday_in_two_match_week(const League *league, gint matchday);
+
 #endif
