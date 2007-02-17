@@ -486,7 +486,7 @@ treeview_live_game_show_commentary(const LiveGameUnit *unit)
 
     path = gtk_tree_model_get_path(GTK_TREE_MODEL(ls), &iter);
     gtk_tree_view_set_cursor(treeview, path, NULL, FALSE);
-    gtk_widget_grab_focus (treeview);
+    gtk_widget_grab_focus(GTK_WIDGET(treeview));
     gtk_tree_path_free(path);
 }
 

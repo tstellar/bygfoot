@@ -339,6 +339,9 @@ free_league(League *league)
 
     free_g_array(&league->fixtures);
 
+    free_g_array(&league->two_match_weeks[0]);
+    free_g_array(&league->two_match_weeks[1]);
+
     free_league_stats(&league->stats);
 }
 

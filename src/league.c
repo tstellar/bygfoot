@@ -74,6 +74,8 @@ league_new(gboolean new_id)
     new.table.clid = new.id;
 
     new.first_week = new.week_gap = 1;
+    new.two_match_weeks[0] = g_array_new(FALSE, FALSE, sizeof(gint));
+    new.two_match_weeks[1] = g_array_new(FALSE, FALSE, sizeof(gint));
     new.round_robins = 2;
     new.yellow_red = 1000;
 
@@ -849,6 +851,27 @@ query_leagues_active_in_country(void)
     for(i=0;i<ligs->len;i++)
 	if(lig(i).active)
 	    return TRUE;
+
+    return FALSE;
+}
+
+/** Find out whether a given matchday should occur in the same week
+    as the one before or a full week later. */
+gboolean
+query_league_matchday_in_two_match_week(const League *league, gint matchday)
+{
+    gint i;
+
+    if(league == NULL)
+	return FALSE;
+
+    for(i=0;i<league->two_match_weeks[0]->len;i++)
+    {
+	if(g_array_index(league->two_match_weeks[0], gint, i) < matchday &&
+	   matchday <= g_array_index(league->two_match_weeks[1], gint, i) &&
+	   (matchday - g_array_index(league->two_match_weeks[0], gint, i)) % 2 == 1)
+	    return TRUE;
+    }
 
     return FALSE;
 }

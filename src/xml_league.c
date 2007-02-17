@@ -70,6 +70,8 @@
 #define TAG_TEAM_NAMES_FILE "team_names_file"
 #define TAG_TEAM_AVERAGE_TALENT "team_average_talent"
 #define TAG_TEAM_DEF_FILE "def_file"
+#define TAG_TWO_MATCH_WEEK_START "two_match_week_start"
+#define TAG_TWO_MATCH_WEEK_END "two_match_week_end"
 
 /**
  * Enum with the states used in the XML parser functions.
@@ -108,6 +110,8 @@ enum XmlLeagueStates
     STATE_TEAM_AVERAGE_TALENT,
     STATE_TEAM_DEF_FILE,
     STATE_BREAK,
+    STATE_TWO_MATCH_WEEK_START,
+    STATE_TWO_MATCH_WEEK_END,
     STATE_END
 };
 
@@ -167,6 +171,10 @@ xml_league_read_start_element (GMarkupParseContext *context,
 	state = STATE_ACTIVE;
     else if(strcmp(element_name, TAG_BREAK) == 0)
 	state = STATE_BREAK;
+    else if(strcmp(element_name, TAG_TWO_MATCH_WEEK_START) == 0)
+	state = STATE_TWO_MATCH_WEEK_START;
+    else if(strcmp(element_name, TAG_TWO_MATCH_WEEK_END) == 0)
+	state = STATE_TWO_MATCH_WEEK_END;
     else if(strcmp(element_name, TAG_PROM_REL) == 0)
 	state = STATE_PROM_REL;
     else if(strcmp(element_name, TAG_PROM_GAMES) == 0)
@@ -244,6 +252,8 @@ xml_league_read_end_element    (GMarkupParseContext *context,
        strcmp(element_name, TAG_NAMES_FILE) == 0 ||
        strcmp(element_name, TAG_ACTIVE) == 0 ||
        strcmp(element_name, TAG_BREAK) == 0 ||
+       strcmp(element_name, TAG_TWO_MATCH_WEEK_START) == 0 ||
+       strcmp(element_name, TAG_TWO_MATCH_WEEK_END) == 0 ||
        strcmp(element_name, TAG_PROM_REL) == 0 ||
        strcmp(element_name, TAG_TEAMS) == 0)
 	state = STATE_LEAGUE;
@@ -326,6 +336,10 @@ xml_league_read_text         (GMarkupParseContext *context,
 	new_league.active = int_value;
     else if(state == STATE_BREAK)
 	new_league.rr_break = int_value;
+    else if(state == STATE_TWO_MATCH_WEEK_START)
+	g_array_append_val(new_league.two_match_weeks[0], int_value);
+    else if(state == STATE_TWO_MATCH_WEEK_END)
+	g_array_append_val(new_league.two_match_weeks[1], int_value);
     else if(state == STATE_PROM_GAMES_DEST_SID)
 	misc_string_assign(&new_league.prom_rel.prom_games_dest_sid, buf);
     else if(state == STATE_PROM_GAMES_LOSER_SID)
