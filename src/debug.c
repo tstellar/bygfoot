@@ -49,6 +49,11 @@ debug_action(const gchar *text)
 	option_set_int("int_debug", &constants, value);
 	game_gui_print_message("Debug value set to %d.", value);
     }
+    else if(g_str_has_prefix(text, "writer"))
+    {
+    	option_set_int("int_debug_writer", &constants, value);
+    	game_gui_print_message("Debug writer value set to %d.", value);
+    } 
     else if(g_str_has_prefix(text, "cap"))
     {
 	current_user.tm->stadium.capacity += value;
@@ -110,6 +115,7 @@ debug_action(const gchar *text)
     {
 	g_print("Debug options:\n"
 	       "deb \t set debug value\n"
+	       "writer \t set debug-writer value\n"
 	       "cap \t change stadium capacity\n"
 	       "saf \t change stadium safety\n"
 	       "mon \t change money\n"
