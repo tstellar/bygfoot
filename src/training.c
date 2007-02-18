@@ -26,7 +26,6 @@
 #include "enums.h"
 #include "glib.h"
 #include "training.h"
-#include "training.h"
 #include "player.h" 
 
 void
