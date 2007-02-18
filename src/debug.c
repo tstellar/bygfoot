@@ -201,3 +201,28 @@ debug_egg_forwards_boost_style(void)
 
     return (fwds > 3);
 }
+
+/** 
+ * debug_writer writes debug-messages to an outpot
+ * 
+ * *file_name = the name of the file where the debug-funtion is called
+ * *method_name = the name of the function where the debug-funtion is called
+ * *text = the text of the debug message
+ * 
+ * debuglevel < int_debug -> print message to output
+ */
+void
+debug_writer_out(const gchar *file_name,
+				 const gchar *method_name,
+			 	 const gchar *text,
+			 	 gint debuglevel)
+{
+	
+	gint writer = option_int("int_debug_writer", &constants);
+	gint debugging = option_int("int_debug", &constants);
+
+	if ((debuglevel < debugging) && (writer == 1))
+	{
+		printf("%s # %s # %s\n", file_name, method_name, text);
+	}
+}
