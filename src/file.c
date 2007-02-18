@@ -55,6 +55,13 @@ file_add_support_directory_recursive                   (const gchar     *directo
     if(newdir == NULL)
 	return;
 
+    /* Ignore .svn directories */
+    if(g_strrstr(directory, ".svn"))
+    {
+	g_dir_close(newdir);
+	return;
+    }
+
     add_pixmap_directory(directory);
     support_directories = g_list_prepend (support_directories,
 					  g_strdup (directory));
@@ -250,7 +257,8 @@ file_check_home_dir_get_definition_dir(const gchar *dirname, const gchar *basena
 	    sprintf(buf, "%s%s%s", dirname, G_DIR_SEPARATOR_S,
 		    (gchar*)g_ptr_array_index(dir_contents, i));
 
-	    if(g_file_test(buf, G_FILE_TEST_IS_DIR))
+	    if(g_file_test(buf, G_FILE_TEST_IS_DIR) && 
+	       !g_strrstr(buf, ".svn"))
 	    {
 		sprintf(buf2, "%s%s%s", basename, G_DIR_SEPARATOR_S,
 			(gchar*)g_ptr_array_index(dir_contents, i));

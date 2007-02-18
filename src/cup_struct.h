@@ -68,6 +68,13 @@ typedef struct
 	the value is negative) with respect to the previous cup round and
 	the week gap. Default: 0. */
     gint delay;
+    /** Here we store intervals of fixtures during which
+	there should be two matches in a week instead of one.
+	This is only relevant in round robin rounds. */
+    GArray *two_match_weeks[2];
+    /** Whether the two matches of a home/away round are
+	played in one week. */
+    gboolean two_match_week;
     /** The teams that got loaded for this cup round.
 	Mostly this only happens in the first round. */
     GArray *teams;
