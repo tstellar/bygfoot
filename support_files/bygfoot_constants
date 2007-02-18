@@ -6,7 +6,10 @@
 
 # debug level
 int_debug 0
-# write debug messages to console 0=no >0=yes
+
+# write debug messages to console debug_writer=1
+# write debug messages to file debug_writer=2 (not implemented)
+# write debug messages to file console+file debug_writer=2 (not implemented)
 int_debug_writer 0
 
 #### float constants get divided by 100000 and loaded as floats
