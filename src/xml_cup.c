@@ -58,6 +58,9 @@
 #define TAG_CUP_ROUND_NUMBER_OF_GROUPS "number_of_groups"
 #define TAG_CUP_ROUND_NUMBER_OF_ADVANCE "number_of_advance"
 #define TAG_CUP_ROUND_NUMBER_OF_BEST_ADVANCE "number_of_best_advance"
+#define TAG_CUP_ROUND_TWO_MATCH_WEEK_START "two_match_week_start"
+#define TAG_CUP_ROUND_TWO_MATCH_WEEK_END "two_match_week_end"
+#define TAG_CUP_ROUND_TWO_MATCH_WEEK "two_match_week"
 #define TAG_CHOOSE_TEAMS "choose_teams"
 #define TAG_CHOOSE_TEAM "choose_team"
 #define TAG_CHOOSE_TEAM_SID "choose_team_sid"
@@ -96,6 +99,9 @@ enum XmlCupStates
     STATE_CUP_ROUND_NUMBER_OF_GROUPS,
     STATE_CUP_ROUND_NUMBER_OF_ADVANCE,
     STATE_CUP_ROUND_NUMBER_OF_BEST_ADVANCE,
+    STATE_CUP_ROUND_TWO_MATCH_WEEK_START,
+    STATE_CUP_ROUND_TWO_MATCH_WEEK_END,
+    STATE_CUP_ROUND_TWO_MATCH_WEEK,
     STATE_CHOOSE_TEAMS,
     STATE_CHOOSE_TEAM,
     STATE_CHOOSE_TEAM_SID,
@@ -185,6 +191,12 @@ xml_cup_read_start_element (GMarkupParseContext *context,
 	state = STATE_CUP_ROUND_NUMBER_OF_ADVANCE;
     else if(strcmp(element_name, TAG_CUP_ROUND_NUMBER_OF_BEST_ADVANCE) == 0)
 	state = STATE_CUP_ROUND_NUMBER_OF_BEST_ADVANCE;
+    else if(strcmp(element_name, TAG_CUP_ROUND_TWO_MATCH_WEEK_START) == 0)
+	state = STATE_CUP_ROUND_TWO_MATCH_WEEK_START;
+    else if(strcmp(element_name, TAG_CUP_ROUND_TWO_MATCH_WEEK_END) == 0)
+	state = STATE_CUP_ROUND_TWO_MATCH_WEEK_END;
+    else if(strcmp(element_name, TAG_CUP_ROUND_TWO_MATCH_WEEK) == 0)
+	state = STATE_CUP_ROUND_TWO_MATCH_WEEK;
     else if(strcmp(element_name, TAG_CHOOSE_TEAMS) == 0)
 	state = STATE_CHOOSE_TEAMS;
     else if(strcmp(element_name, TAG_CHOOSE_TEAM) == 0)
@@ -246,6 +258,9 @@ xml_cup_read_end_element    (GMarkupParseContext *context,
 	    strcmp(element_name, TAG_CUP_ROUND_NUMBER_OF_GROUPS) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_NUMBER_OF_ADVANCE) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_NUMBER_OF_BEST_ADVANCE) == 0 ||
+	    strcmp(element_name, TAG_CUP_ROUND_TWO_MATCH_WEEK_START) == 0 ||
+	    strcmp(element_name, TAG_CUP_ROUND_TWO_MATCH_WEEK_END) == 0 ||
+	    strcmp(element_name, TAG_CUP_ROUND_TWO_MATCH_WEEK) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_NEW_TEAMS) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_BYES) == 0 ||
 	    strcmp(element_name, TAG_CHOOSE_TEAMS) == 0)
@@ -333,6 +348,12 @@ xml_cup_read_text         (GMarkupParseContext *context,
 	new_round.round_robin_number_of_advance = int_value;
     else if(state == STATE_CUP_ROUND_NUMBER_OF_BEST_ADVANCE)
 	new_round.round_robin_number_of_best_advance = int_value;
+    else if(state == STATE_CUP_ROUND_TWO_MATCH_WEEK_START)
+	g_array_append_val(new_round.two_match_weeks[0], int_value);
+    else if(state == STATE_CUP_ROUND_TWO_MATCH_WEEK_END)
+	g_array_append_val(new_round.two_match_weeks[1], int_value);
+    else if(state == STATE_CUP_ROUND_TWO_MATCH_WEEK)
+	new_round.two_match_week = int_value;
     else if(state == STATE_CHOOSE_TEAM_SID)
 	misc_string_assign(&new_choose_team.sid, buf);
     else if(state == STATE_CHOOSE_TEAM_NUMBER_OF_TEAMS)

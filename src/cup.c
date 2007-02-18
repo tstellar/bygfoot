@@ -105,6 +105,9 @@ cup_round_new(void)
     new.round_robin_number_of_groups = 0;
     new.round_robin_number_of_advance = 0;
     new.round_robin_number_of_best_advance = 0;
+    new.two_match_weeks[0] = g_array_new(FALSE, FALSE, sizeof(gint));
+    new.two_match_weeks[1] = g_array_new(FALSE, FALSE, sizeof(gint));
+    new.two_match_week = FALSE;
     new.tables = g_array_new(FALSE, FALSE, sizeof(Table));
     new.choose_teams = g_array_new(FALSE, FALSE, sizeof(CupChooseTeam));
     new.teams = g_array_new(FALSE, FALSE, sizeof(Team));
@@ -719,9 +722,6 @@ cup_get_first_week_of_cup_round(Cup *cup, gint cup_round)
 
 	return cup_get_first_week_of_cup_round(cup, cup_round);
     }
-/* 	main_exit_program(EXIT_FIRST_WEEK_ERROR, */
-/* 			  "cup_get_first_week_of_cup_round: first week of cup %s cup round %d is not positive (%d).\nPlease lower the week gap or set a later last week.\n",  */
-/* 			  cup->name, cup_round, week_number); */
     
     return week_number;
 }
@@ -746,9 +746,11 @@ cup_get_last_week_from_first(const Cup *cup, gint first_week)
 gint
 cup_get_matchdays_in_cup_round(const Cup *cup, gint round)
 {
+    gint i;
     const CupRound *cup_round = &g_array_index(cup->rounds, CupRound, round);    
     gint number_of_teams = -1;
     gint number_of_matchdays = -1;
+    gint diff;
     
     if(cup_round->round_robin_number_of_groups > 0)
     {
@@ -761,11 +763,18 @@ cup_get_matchdays_in_cup_round(const Cup *cup, gint round)
 	else
 	    number_of_matchdays = number_of_teams;
 	
-	if (g_array_index(cup->rounds, CupRound, round).home_away)
+	if (cup_round->home_away)
 	    number_of_matchdays *= 2;
+
+	for(i=0;i<cup_round->two_match_weeks[0]->len;i++)
+	{
+	    diff = g_array_index(cup_round->two_match_weeks[1], gint, i) - 
+		g_array_index(cup_round->two_match_weeks[0], gint, i);	    
+	    number_of_matchdays -= ((diff + diff % 2) / 2);
+	}
     }
-    else if(g_array_index(cup->rounds, CupRound, round).home_away)
-	number_of_matchdays = 2;
+    else if(cup_round->home_away)
+	number_of_matchdays = 2 - cup_round->two_match_week;
     else
 	number_of_matchdays = 1;
 

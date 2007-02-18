@@ -62,6 +62,9 @@ enum
     TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS,
     TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE,
     TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE,
+    TAG_CUP_ROUND_TWO_MATCH_WEEK_START,
+    TAG_CUP_ROUND_TWO_MATCH_WEEK_END,
+    TAG_CUP_ROUND_TWO_MATCH_WEEK,
     TAG_CUP_TEAM_ID_BYE,
     TAG_CUP_TEAM_NAME,
     TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK,
@@ -166,7 +169,10 @@ xml_loadsave_cup_end_element    (GMarkupParseContext *context,
 	    tag == TAG_CUP_ROUND_RANDOMISE_TEAMS ||
 	    tag == TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS ||
 	    tag == TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE ||
-	    tag == TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE)
+	    tag == TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE ||
+	    tag == TAG_CUP_ROUND_TWO_MATCH_WEEK_START ||
+	    tag == TAG_CUP_ROUND_TWO_MATCH_WEEK_END ||
+	    tag == TAG_CUP_ROUND_TWO_MATCH_WEEK)
 	state = TAG_CUP_ROUND;
     else if(tag != TAG_CUP)
 	g_warning("xml_loadsave_cup_end_element: unknown tag: %s; I'm in state %d\n",
@@ -276,6 +282,12 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
 	new_round.round_robin_number_of_advance = int_value;
     else if(state == TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE)
 	new_round.round_robin_number_of_best_advance = int_value;
+    else if(state == TAG_CUP_ROUND_TWO_MATCH_WEEK_START)
+	g_array_append_val(new_round.two_match_weeks[0], int_value);
+    else if(state == TAG_CUP_ROUND_TWO_MATCH_WEEK_END)
+	g_array_append_val(new_round.two_match_weeks[1], int_value);
+    else if(state == TAG_CUP_ROUND_TWO_MATCH_WEEK)
+	new_round.two_match_week = int_value;
 }
 
 void
@@ -410,6 +422,16 @@ xml_loadsave_cup_write_round(FILE *fil, const gchar *prefix, const Cup *cup, gin
 		  TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE, I1);
     xml_write_int(fil, cup_round->round_robin_number_of_best_advance,
 		  TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE, I1);
+    xml_write_int(fil, cup_round->two_match_week,
+		  TAG_CUP_ROUND_TWO_MATCH_WEEK, I1);
+
+    for(i=0;i<cup_round->two_match_weeks[0]->len;i++)
+    {
+	xml_write_int(fil, g_array_index(cup_round->two_match_weeks[0], gint, i),
+		      TAG_CUP_ROUND_TWO_MATCH_WEEK_START, I1);
+	xml_write_int(fil, g_array_index(cup_round->two_match_weeks[0], gint, i),
+		      TAG_CUP_ROUND_TWO_MATCH_WEEK_END, I1);
+    }
 
     for(i=0;i<cup_round->tables->len;i++)
     {

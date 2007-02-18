@@ -492,6 +492,10 @@ free_cup(Cup *cup)
     free_gchar_ptr(cup->sid);
 
     for(i=0;i<cup->rounds->len;i++)
+    {
+	free_g_array(&g_array_index(cup->rounds, CupRound, i).two_match_weeks[0]);
+	free_g_array(&g_array_index(cup->rounds, CupRound, i).two_match_weeks[1]);
+
 	if(g_array_index(cup->rounds, CupRound, i).round_robin_number_of_groups > 0)
 	{
 	    for(j=0;j<g_array_index(cup->rounds, CupRound, i).tables->len;j++)
@@ -505,6 +509,7 @@ free_cup(Cup *cup)
 	    free_teams_array(&g_array_index(cup->rounds, CupRound, i).teams, FALSE);
 	    g_ptr_array_free(g_array_index(cup->rounds, CupRound, i).team_ptrs, TRUE);
 	}
+    }
 
     free_g_array(&cup->rounds);
     free_g_array(&cup->fixtures);
