@@ -88,6 +88,7 @@
 #define stat5 status[5]
 
 #define debug const_int("int_debug")
+#define debug_writer const_int("int_debug_writer")
 
 /**
  * Exit codes.
