@@ -66,6 +66,7 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 	*testcom_file = NULL, *token_file = NULL, 
 	*event_name = NULL, *debug_text = NULL;
     gint deb_level = -1, number_of_passes = 1,
+	deb_writer = -1,
 	num_matches = 100, skilldiffmax = 20;
     GError *error = NULL;
     GOptionContext *context = NULL;
@@ -74,6 +75,8 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 	   _("Specify additional support directory (takes priority over default ones)"), "DIR" },
 
 	 { "debug-level", 'd', 0, G_OPTION_ARG_INT, &deb_level, "[developer] Debug level to use", "N" },
+
+	 { "debug-writer", 'w', 0, G_OPTION_ARG_INT, &deb_writer, "[developer] Debug writer level to use", "N" },
 
 	 { "lang", 'L', 0, G_OPTION_ARG_STRING, &lang, _("Language to use (a code like 'de')"), "CODE" },
 
@@ -144,6 +147,9 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 
     if(deb_level != -1)
 	option_set_int("int_debug", &constants, deb_level);
+
+    if(deb_writer != -1)
+	option_set_int("int_debug_writer", &constants, deb_writer);
 
     if(lang != NULL)
     {
