@@ -164,6 +164,7 @@ on_button_back_to_main_clicked         (GtkButton       *button,
     if(stat0 != STATUS_LIVE_GAME_PAUSE)
 	stat0 = STATUS_MAIN;
     gtk_notebook_set_current_page(GTK_NOTEBOOK(lookup_widget(window.main, "notebook_player")), 0);
+    selected_row = -1;
     game_gui_show_main();
 
     gui_set_arrows();
@@ -231,6 +232,13 @@ on_player_list1_button_press_event     (GtkWidget       *widget,
 {
     gint idx = -1;
 
+	gchar message[SMALL];
+	sprintf(message, "Number of player in current team: %d", current_user.tm->players->len);
+	debug_writer_out("callbacks.c",
+					 "on_player_list1_button_press_event",
+					 message,
+					 3);
+	
     if(event->button == 2)
     {
 	on_menu_rearrange_team_activate(NULL, NULL);
@@ -250,6 +258,11 @@ on_player_list1_button_press_event     (GtkWidget       *widget,
 	selected_row = -1;
 	return FALSE;
     }
+    
+    sprintf(message, "Selected row of the player list: %d", selected_row);
+	debug_writer_out("callbacks.c", "on_player_list1_button_press_event", message, 3);
+	sprintf(message, "Index of a player in player list: %d", idx - 1);
+	debug_writer_out("callbacks.c", "on_player_list1_button_press_event", message, 3);
 
     callback_player_clicked(idx - 1, event);
 
@@ -268,6 +281,10 @@ on_player_list1_key_press_event        (GtkWidget       *widget,
 	return FALSE;
 
     idx = treeview_helper_get_index(GTK_TREE_VIEW(widget), 0);
+
+	gchar message[SMALL];
+	sprintf(message, "Index of a player in player list: %d", idx);
+	debug_writer_out("callbacks.c", "on_player_list1_key_press_event", message, 3);
 
     if(idx < 0 || idx - 1 == selected_row)
     {
