@@ -51,52 +51,57 @@ misc2_callback_transfer_user_player(void)
 {
     Team *new_team = transoff(stat2, 0).tm;
 
-    if(team_is_user(new_team) != -1)
+    if (current_user.tm->players->len - 1 < const_int("int_team_min_players"))
     {
-	if(new_team->players->len < const_int("int_team_max_players") &&
-	   BUDGET(team_is_user(new_team)) >= transoff(stat2, 0).fee)
-	{
-	    current_user.money += transoff(stat2, 0).fee;
-	    current_user.money_in[1][MON_IN_TRANSFERS] += transoff(stat2, 0).fee;
-	    user_from_team(new_team)->money -= transoff(stat2, 0).fee;
-	    user_from_team(new_team)->money_out[1][MON_OUT_TRANSFERS] -= 
-		transoff(stat2, 0).fee;
-
-	    if(player_of_id_team(trans(stat2).tm, trans(stat2).id)->id ==
-	       opt_user_int("int_opt_user_penalty_shooter"))
-		opt_user_set_int("int_opt_user_penalty_shooter", -1);
-
-	    player_copy(player_of_id_team(trans(stat2).tm, trans(stat2).id),
-			new_team, new_team->players->len);
-	    player_of_idx_team(new_team, new_team->players->len - 1)->contract = 
-		(gfloat)math_rndi(const_int("int_transfer_contract_lower"),
-				  const_int("int_transfer_contract_upper"));
-	    player_of_idx_team(new_team, new_team->players->len - 1)->wage = 
-		transoff(stat2, 0).wage;
-	    g_array_remove_index(current_user.tm->players, 
-				 player_id_index(current_user.tm, trans(stat2).id));
-	    transfer_remove_player(stat2);
-	}
-	else
-	{
-	    game_gui_show_warning(_("%s couldn't afford to buy %s or his roster was full."),
-				  user_from_team(new_team)->name, 
-				  player_of_id_team(trans(stat2).tm, trans(stat2).id)->name);
-	    user_event_add(user_from_team(new_team), EVENT_TYPE_WARNING, -1, -1, NULL, 
-			   _("You didn't have enough money to buy %s or your roster was full."),
-			   player_of_id_team(trans(stat2).tm, trans(stat2).id)->name);
-	    g_array_remove_index(trans(stat2).offers, 0);
-	    if(trans(stat2).offers->len > 0 && 
-	       transoff(stat2, 0).status == TRANSFER_OFFER_NOT_CONSIDERED)
-		transoff(stat2, 0).status = TRANSFER_OFFER_ACCEPTED;
-	}
+    	game_gui_show_warning(_("Your team can't have less than 11 players."));
     }
     else
-    {		
-	current_user.money += transoff(stat2, 0).fee;
-	current_user.money_in[1][MON_IN_TRANSFERS] += transoff(stat2, 0).fee;
-	player_remove_from_team(current_user.tm, 
-				player_id_index(current_user.tm, trans(stat2).id));
+    {
+	    if(team_is_user(new_team) != -1)
+    	{
+			if((new_team->players->len < const_int("int_team_max_players")) &&
+			   (BUDGET(team_is_user(new_team)) >= transoff(stat2, 0).fee))
+			{
+		    	current_user.money += transoff(stat2, 0).fee;
+			    current_user.money_in[1][MON_IN_TRANSFERS] += transoff(stat2, 0).fee;
+			    user_from_team(new_team)->money -= transoff(stat2, 0).fee;
+	    		user_from_team(new_team)->money_out[1][MON_OUT_TRANSFERS] -= 
+				transoff(stat2, 0).fee;
+
+		    	if(player_of_id_team(trans(stat2).tm, trans(stat2).id)->id ==
+			       opt_user_int("int_opt_user_penalty_shooter"))
+				opt_user_set_int("int_opt_user_penalty_shooter", -1);
+
+			    player_copy(player_of_id_team(trans(stat2).tm, trans(stat2).id),
+					new_team, new_team->players->len);
+		    	player_of_idx_team(new_team, new_team->players->len - 1)->contract = 
+				(gfloat)math_rndi(const_int("int_transfer_contract_lower"),
+						  const_int("int_transfer_contract_upper"));
+	    		player_of_idx_team(new_team, new_team->players->len - 1)->wage = 
+				transoff(stat2, 0).wage;
+			    g_array_remove_index(current_user.tm->players, 
+						 player_id_index(current_user.tm, trans(stat2).id));
+		    	transfer_remove_player(stat2);
+			}
+			else
+			{
+			    game_gui_show_warning(_("%s couldn't afford to buy %s or his roster was full."),
+						  user_from_team(new_team)->name, 
+						  player_of_id_team(trans(stat2).tm, trans(stat2).id)->name);
+	    		user_event_add(user_from_team(new_team), EVENT_TYPE_WARNING, -1, -1, NULL, 
+					   _("You didn't have enough money to buy %s or your roster was full."),
+					   player_of_id_team(trans(stat2).tm, trans(stat2).id)->name);
+			    g_array_remove_index(trans(stat2).offers, 0);
+	    		if(trans(stat2).offers->len > 0 && transoff(stat2, 0).status == TRANSFER_OFFER_NOT_CONSIDERED)
+					transoff(stat2, 0).status = TRANSFER_OFFER_ACCEPTED;
+			}
+    	}
+    	else
+    	{		
+			current_user.money += transoff(stat2, 0).fee;
+			current_user.money_in[1][MON_IN_TRANSFERS] += transoff(stat2, 0).fee;
+			player_remove_from_team(current_user.tm, player_id_index(current_user.tm, trans(stat2).id));
+    	}
     }
 
     treeview_show_user_player_list();
