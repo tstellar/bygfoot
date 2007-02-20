@@ -225,4 +225,13 @@ debug_writer_out(const gchar *file_name,
 	{
 		printf("%s # %s # %s\n", file_name, method_name, text);
 	}
+	
+	//Example
+	//gchar message[SMALL];
+    //sprintf(message, "Number of players in player list: %d", current_user.tm->players->len);
+    //debug_writer_out("misc2_callbacks2.c",
+	//		 "on_button_transfer_yes_clicked",
+	//		 	 message,
+	//		 	 3);
+	
 }
