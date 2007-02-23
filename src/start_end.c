@@ -509,8 +509,8 @@ start_week_add_cups(void)
     for(i=0;i<cps->len;i++)
 	if(cp(i).add_week == week)
 	{
-	    fixture_write_cup_fixtures(&cp(i));
 	    g_ptr_array_add(acps, &cp(i));
+	    fixture_write_cup_fixtures(&cp(i));
 	}
 }
 
