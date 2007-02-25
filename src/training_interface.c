@@ -194,6 +194,9 @@ create_window_training_camp (void)
   gtk_radio_button_set_group (GTK_RADIO_BUTTON (rb_camp1), rb_camp2_group);
   rb_camp2_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (rb_camp1));
 
+  g_signal_connect ((gpointer) window_training_camp, "delete_event",
+                    G_CALLBACK (on_window_training_camp_delete_event),
+                    NULL);
   g_signal_connect ((gpointer) b_cancel, "clicked",
                     G_CALLBACK (on_b_cancel_clicked),
                     NULL);
