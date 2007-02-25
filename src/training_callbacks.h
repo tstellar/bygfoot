@@ -61,3 +61,8 @@ on_b_dec_training_clicked              (GtkButton       *button,
 void
 on_b_inc_training_clicked              (GtkButton       *button,
                                         gpointer         user_data);
+
+gboolean
+on_window_training_camp_delete_event   (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data);

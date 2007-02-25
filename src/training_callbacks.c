@@ -229,3 +229,14 @@ on_b_inc_training_clicked              (GtkButton       *button,
 	}
 }
 
+
+gboolean
+on_window_training_camp_delete_event   (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data)
+{
+    on_b_cancel_clicked(NULL, NULL);
+
+    return TRUE;
+}
+
