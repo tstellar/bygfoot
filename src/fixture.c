@@ -1215,7 +1215,7 @@ fixture_get_next_week(gint *week_number, gint *week_round_number)
 		opt_user_int("int_opt_user_show_all_leagues")))
 	    {
 		*week_number = fix->week_number;
-		*week_round_number = 1;
+		*week_round_number = fix->week_round_number;
 	    }	    
 	}
 
