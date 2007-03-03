@@ -272,6 +272,7 @@ void
 game_initialize(Fixture *fix)
 {
     gint i, j;
+    gboolean income_cup = FALSE;
     gfloat journey_factor =
 	(fix->clid < ID_CUP_START ||
 	 (fix->clid >= ID_CUP_START && 
@@ -286,28 +287,45 @@ game_initialize(Fixture *fix)
     else
 	game_assign_attendance_neutral(fix);
 
-    ticket_income = 
-	fix->attendance * const_int("int_team_stadium_ticket_price");
+	if (fix->clid >= ID_CUP_START)
+	{
+		if (! g_array_index(cup_from_clid(fix->clid)->rounds, CupRound, fix->round).home_away)
+		{
+			ticket_income = fix->attendance * const_int("int_team_stadium_ticket_price") / 2;
+			income_cup = TRUE;
+		}
+	}
+	else
+		ticket_income = fix->attendance * const_int("int_team_stadium_ticket_price");
 
     if(!sett_int("int_opt_disable_finances") && user_idx[0] != -1 && fix->home_advantage)
     {
-	usr(user_idx[0]).money += ticket_income;
-	usr(user_idx[0]).money_in[1][MON_IN_TICKET] += ticket_income;
+		usr(user_idx[0]).money += ticket_income;
+		usr(user_idx[0]).money_in[1][MON_IN_TICKET] += ticket_income;
 
-	usr(user_idx[0]).money -= 
-	    (gint)rint((gfloat)ticket_income *
-		       (gfloat)usr(user_idx[0]).youth_academy.percentage / 100);
-	usr(user_idx[0]).money_out[1][MON_OUT_YA] -= 
-	    (gint)rint((gfloat)ticket_income *
-		       (gfloat)usr(user_idx[0]).youth_academy.percentage / 100);
+		usr(user_idx[0]).money -= 
+	    	(gint)rint((gfloat)ticket_income * (gfloat)usr(user_idx[0]).youth_academy.percentage / 100);
+		usr(user_idx[0]).money_out[1][MON_OUT_YA] -=
+			(gint)rint((gfloat)ticket_income * (gfloat)usr(user_idx[0]).youth_academy.percentage / 100);
 
-	if(debug < 50)
-	{
-	    fix->teams[0]->stadium.safety -= 
-		math_rnd(const_float("float_game_stadium_safety_deterioration_lower"),
-			 const_float("float_game_stadium_safety_deterioration_upper"));
-	    fix->teams[0]->stadium.safety = CLAMP(fix->teams[0]->stadium.safety, 0, 1);
-	}
+		if(debug < 50)
+		{
+    		fix->teams[0]->stadium.safety -= 
+				math_rnd(const_float("float_game_stadium_safety_deterioration_lower"),
+				const_float("float_game_stadium_safety_deterioration_upper"));
+    		fix->teams[0]->stadium.safety = CLAMP(fix->teams[0]->stadium.safety, 0, 1);
+		}
+    }
+    
+    if(!sett_int("int_opt_disable_finances") && user_idx[1] != -1 && income_cup)
+    {
+		usr(user_idx[1]).money += ticket_income;
+		usr(user_idx[1]).money_in[1][MON_IN_TICKET] += ticket_income;
+
+		usr(user_idx[1]).money -= 
+	    	(gint)rint((gfloat)ticket_income * (gfloat)usr(user_idx[1]).youth_academy.percentage / 100);
+		usr(user_idx[1]).money_out[1][MON_OUT_YA] -=
+			(gint)rint((gfloat)ticket_income * (gfloat)usr(user_idx[1]).youth_academy.percentage / 100);
     }
 
     for(i=0;i<2;i++)
