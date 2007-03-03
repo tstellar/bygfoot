@@ -453,7 +453,8 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round,
     week_number = first_week;
     for(i=0;i<len - 1;i++)
     {
-	if(i > 0 && !query_league_cup_matchday_in_two_match_week(two_match_weeks, i + 1))
+	if(i > 0 && !query_league_cup_matchday_in_two_match_week(two_match_weeks,
+								 fixture_count_matchdays(fixtures) + 1))
 	    week_number += week_gap;
 
 	fixture_write_round_robin_matchday(fixtures, cup_round, teams, i,
@@ -466,7 +467,8 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round,
 	week_number += rr_break;
 	for(i = 0; i < len - 1; i++)
 	{
-	    if(i > 0 && !query_league_cup_matchday_in_two_match_week(two_match_weeks, len + i))
+	    if(i > 0 && !query_league_cup_matchday_in_two_match_week(two_match_weeks, 
+								     fixture_count_matchdays(fixtures) + i))
 		week_number += week_gap;
 	       
 	    week_round_number = 
@@ -1383,4 +1385,26 @@ fixture_get_goals_to_win(const Fixture *fix, const Team *tm)
     }
 
     return return_value;
+}
+
+/** Count how many matchdays there are in 
+    a fixture array. */
+gint
+fixture_count_matchdays(const GArray *fixtures)
+{
+    gint i;
+    gint count = 0;
+
+    for(i=1;i<fixtures->len;i++)
+    {
+	if((g_array_index(fixtures, Fixture, i).week_number != 
+	    g_array_index(fixtures, Fixture, i - 1).week_number) ||
+	   (g_array_index(fixtures, Fixture, i).week_round_number != 
+	    g_array_index(fixtures, Fixture, i - 1).week_round_number))
+	    count++;
+    }
+
+    /** If there were fixtures, we counted one matchday too few
+	because we only counted the matchday transitions. */
+    return count + (fixtures->len != 0);
 }

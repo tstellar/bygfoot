@@ -156,4 +156,8 @@ fixture_get_season_results(void);
 gint
 fixture_get_goals_to_win(const Fixture *fix, const Team *tm);
 
+gint
+fixture_count_matchdays(const GArray *fixtures);
+
+
 #endif
