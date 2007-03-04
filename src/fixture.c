@@ -468,7 +468,7 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round,
 	for(i = 0; i < len - 1; i++)
 	{
 	    if(i > 0 && !query_league_cup_matchday_in_two_match_week(two_match_weeks, 
-								     fixture_count_matchdays(fixtures) + i))
+								     fixture_count_matchdays(fixtures) + 1))
 		week_number += week_gap;
 	       
 	    week_round_number = 
@@ -1395,16 +1395,14 @@ fixture_count_matchdays(const GArray *fixtures)
     gint i;
     gint count = 0;
 
-    for(i=1;i<fixtures->len;i++)
+    for(i=0;i<fixtures->len - 1;i++)
     {
 	if((g_array_index(fixtures, Fixture, i).week_number != 
-	    g_array_index(fixtures, Fixture, i - 1).week_number) ||
+	    g_array_index(fixtures, Fixture, i + 1).week_number) ||
 	   (g_array_index(fixtures, Fixture, i).week_round_number != 
-	    g_array_index(fixtures, Fixture, i - 1).week_round_number))
+	    g_array_index(fixtures, Fixture, i + 1).week_round_number))
 	    count++;
     }
 
-    /** If there were fixtures, we counted one matchday too few
-	because we only counted the matchday transitions. */
     return count + (fixtures->len != 0);
 }
