@@ -993,16 +993,17 @@ user_show_sponsor_continue(void)
 void
 user_mm_load_file(const gchar *filename, GArray *mmatches)
 {
-    gchar prefix[SMALL], filename_local[SMALL],
+    GString *prefix = g_string_new(""); 
+    gchar filename_local[SMALL],
 	matches_file[SMALL];
     GArray *mm_array = (mmatches == NULL) ?
 	current_user.mmatches : mmatches;
     
     strcpy(filename_local, filename);
-    strncpy(prefix, filename_local, strlen(filename_local) - 8);
-    prefix[strlen(filename_local) - 8] = '\0';
+    g_string_append_len(prefix, filename_local, strlen(filename_local) - 8);
+    //prefix[strlen(filename_local) - 8] = '\0';
 
-    sprintf(matches_file, "%s___mmatches", prefix);
+    sprintf(matches_file, "%s___mmatches", prefix->str);
 
     file_decompress(filename_local);
     
@@ -1011,11 +1012,13 @@ user_mm_load_file(const gchar *filename, GArray *mmatches)
 
     xml_mmatches_read(matches_file, mm_array);
 
-    strcat(prefix, "___*");
+    g_string_append(prefix, "___*");
     file_remove_files(prefix);
 
     if(mmatches == NULL)
 	misc_string_assign(&current_user.mmatches_file, filename_local);
+	
+	g_string_free(prefix, TRUE);
 }
 
 /** Add the last match to the MM file.
