@@ -121,11 +121,11 @@ file_find_support_file                       (const gchar     *filename, gboolea
 /** Execute command with 'system' and give a warning if return value is -1.
     @return TRUE on success, FALSE, otherwise. */
 gboolean
-file_my_system(const gchar *command)
+file_my_system(const GString *command)
 {
-    if(system(command) != 0)
+    if(system(command->str) != 0)
     {
-	g_warning("file_my_system: system returned -1 when executing '%s'.", command);
+	g_warning("file_my_system: system returned -1 when executing '%s'.", command->str);
 
 	if(!os_is_unix)
 	{
@@ -660,7 +660,7 @@ void
 file_compress_files(const gchar *destfile, const gchar *prefix)
 {
     gint i;
-    gchar buf[SMALL];
+    GString *buf = g_string_new("");
     gchar *basename = g_path_get_basename(prefix),
 	*dirname = g_path_get_dirname(prefix),
 	*zipbasename = g_path_get_basename(destfile),
@@ -670,29 +670,30 @@ file_compress_files(const gchar *destfile, const gchar *prefix)
     chdir(dirname);
     
     if (os_is_unix)
-        sprintf(buf, "%s %s %s", 
+        g_string_sprintf(buf, "%s %s %s", 
 		const_str("string_fs_compress_command"), 
 		const_str("string_fs_compress_switches"),
 		zipbasename);
     else
-        sprintf(buf, "\"%s%s%s\" %s %s", pwd, G_DIR_SEPARATOR_S, 
+        g_string_sprintf(buf, "\"%s%s%s\" %s %s", pwd, G_DIR_SEPARATOR_S, 
 		const_str("string_fs_compress_command"),
 		const_str("string_fs_compress_switches"),
 		zipbasename);
 
     for(i=0;i<files->len;i++)
     {
-	strcat(buf, " ");
-	strcat(buf, (gchar*)g_ptr_array_index(files, i));
+		g_string_append(buf, " ");
+		g_string_append(buf, (gchar*)g_ptr_array_index(files, i));
     }
 
     file_my_system(buf);
 
     chdir(pwd);
     
-    sprintf(buf, "%s%s%s*", dirname, G_DIR_SEPARATOR_S, basename);
+    g_string_sprintf(buf, "%s%s%s*", dirname, G_DIR_SEPARATOR_S, basename);
     file_remove_files(buf);
 
+    g_string_free(buf, TRUE);
     free_gchar_array(&files);
 
     g_free(basename);
@@ -705,7 +706,7 @@ file_compress_files(const gchar *destfile, const gchar *prefix)
 void
 file_decompress(const gchar *filename)
 {
-    gchar buf[SMALL];
+    GString *buf = g_string_new("");
     gchar *dirname = g_path_get_dirname(filename),
 	*basename = g_path_get_basename(filename),
 	*pwd = g_get_current_dir();
@@ -713,18 +714,20 @@ file_decompress(const gchar *filename)
     chdir(dirname);
 	
     if (os_is_unix)
-	sprintf(buf, "%s %s %s", 
+		g_string_sprintf(buf, "%s %s %s", 
 		const_str("string_fs_uncompress_command"), 
 		const_str("string_fs_uncompress_switches"),
 		basename);
     else
-	sprintf(buf, "\"%s%s%s\" %s %s", pwd, G_DIR_SEPARATOR_S,
+		g_string_sprintf(buf, "\"%s%s%s\" %s %s", pwd, G_DIR_SEPARATOR_S,
 		const_str("string_fs_uncompress_command"), 
 		const_str("string_fs_uncompress_switches"), 
 		basename);
 
     file_my_system(buf);
 
+	g_string_free(buf, TRUE);
+    
     g_free(dirname);
     g_free(basename);
 
@@ -735,32 +738,36 @@ file_decompress(const gchar *filename)
 /** Execute the appropriate remove command with 'files'
     as argument (can be directories or a regexp, too). */
 void
-file_remove_files(const gchar *files)
+file_remove_files(const GString *files)
 {
-    gchar buf[SMALL];
+    GString *buf = g_string_new("");
 
     if(os_is_unix)
-	sprintf(buf, "%s %s", const_str("string_fs_remove_file_command"), files);
+		g_string_sprintf(buf, "%s %s", const_str("string_fs_remove_file_command"), files->str);
     else
-	sprintf(buf, "%s \"%s\"", const_str("string_fs_remove_file_command"), files);
+		g_string_sprintf(buf, "%s \"%s\"", const_str("string_fs_remove_file_command"), files->str);
 
     file_my_system(buf);
+    
+    g_string_free(buf, TRUE);
 }
 
 /** Execute the appropriate copy command. */
 void
 file_copy_file(const gchar *source_file, const gchar *dest_file)
 {
-    gchar buf[SMALL];
+    GString *buf = g_string_new("");
 
     if(os_is_unix)
-	sprintf(buf, "%s %s %s", const_str("string_fs_copy_file_command"),
+		g_string_sprintf(buf, "%s %s %s", const_str("string_fs_copy_file_command"),
 		source_file, dest_file);
     else
-	sprintf(buf, "%s \"%s\" \"%s\"", const_str("string_fs_copy_file_command"),
+		g_string_sprintf(buf, "%s \"%s\" \"%s\"", const_str("string_fs_copy_file_command"),
 		source_file, dest_file);
 
     file_my_system(buf);
+    
+    g_string_free(buf, TRUE);
 }
 
 /** Find out where the Bygfoot directory we can write to resides
