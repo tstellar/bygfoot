@@ -83,7 +83,7 @@ void
 file_check_home_dir_copy_files(GPtrArray **files_to_copy);
 
 gboolean
-file_my_system(const gchar *command);
+file_my_system(const GString *command);
 
 const gchar*
 file_get_first_support_dir(void);
@@ -98,7 +98,7 @@ void
 file_decompress(const gchar *filename);
 
 void
-file_remove_files(const gchar *files);
+file_remove_files(const GString *files);
 
 void
 file_copy_file(const gchar *source_file, const gchar *dest_file);
