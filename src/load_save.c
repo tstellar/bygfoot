@@ -55,13 +55,15 @@ load_save_save_game(const gchar *filename)
     gchar *prefix = (g_str_has_suffix(filename, const_str("string_fs_save_suffix"))) ?
 	g_strndup(filename, strlen(filename) - strlen(const_str("string_fs_save_suffix"))) :
 	g_strdup(filename);
-    gchar *fullname = (g_str_has_suffix(filename, const_str("string_fs_save_suffix"))) ?
-	g_strdup(filename) :
-	g_strdup_printf("%s%s", filename, const_str("string_fs_save_suffix"));
+    GString *fullname = g_string_new(""); 
+    
+    g_string_append(fullname,(g_str_has_suffix(filename, const_str("string_fs_save_suffix"))) ?
+		g_strdup(filename) :
+		g_strdup_printf("%s%s", filename, const_str("string_fs_save_suffix")));
 
-    misc_string_assign(&save_file, fullname);
+    misc_string_assign(&save_file, fullname->str);
 
-    if(g_file_test(fullname, G_FILE_TEST_EXISTS))
+    if(g_file_test(fullname->str, G_FILE_TEST_EXISTS))
 	/*todo: replace with g_remove*/
 	file_remove_files(fullname);
 
@@ -151,7 +153,7 @@ load_save_save_game(const gchar *filename)
 	PIC_TYPE_SAVE);
 
     sprintf(buf, "%s___", prefix);
-    file_compress_files(fullname, buf);
+    file_compress_files(fullname->str, buf);
 
     if(debug > 60)
 	g_print("load_save_save done \n");
@@ -159,11 +161,11 @@ load_save_save_game(const gchar *filename)
     gui_show_progress(1, _("Done."),
 		      PIC_TYPE_SAVE);
 
-    load_save_last_save_set(fullname);
+    load_save_last_save_set(fullname->str);
 
     g_free(prefix);
-    g_free(fullname);
-
+    g_string_free(fullname, TRUE);
+    
     gui_show_progress(-1, "",
 		      PIC_TYPE_SAVE);
     setsav1;
@@ -174,7 +176,7 @@ load_save_save_game(const gchar *filename)
 gboolean
 load_save_load_game(const gchar* filename, gboolean create_main_window)
 {
-    gchar buf[SMALL];
+    GString *buf = g_string_new("");
     gchar *fullname = (g_str_has_suffix(filename, const_str("string_fs_save_suffix"))) ?
 	g_strdup(filename) :
 	g_strdup_printf("%s%s", filename, const_str("string_fs_save_suffix"));
@@ -223,10 +225,10 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
 	_("Loading options..."),
 	PIC_TYPE_LOAD);
 
-    sprintf(buf, "%s%s%s___options", dirname, G_DIR_SEPARATOR_S, prefix);
-    file_load_opt_file(buf, &options);
-    sprintf(buf, "%s%s%s___settings", dirname, G_DIR_SEPARATOR_S, prefix);
-    file_load_opt_file(buf, &settings);
+    g_string_sprintf(buf, "%s%s%s___options", dirname, G_DIR_SEPARATOR_S, prefix);
+    file_load_opt_file(buf->str, &options);
+    g_string_sprintf(buf, "%s%s%s___settings", dirname, G_DIR_SEPARATOR_S, prefix);
+    file_load_opt_file(buf->str, &settings);
     language_set(language_get_code_index(opt_str("string_opt_language_code")) + 1);
 
     if(debug > 60)
@@ -303,7 +305,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     gui_show_progress(1, _("Done."),
 		      PIC_TYPE_LOAD);
 
-    sprintf(buf, "%s%s%s___*", dirname, G_DIR_SEPARATOR_S, prefix);
+    g_string_sprintf(buf, "%s%s%s___*", dirname, G_DIR_SEPARATOR_S, prefix);
     file_remove_files(buf);
 
     misc_string_assign(&save_file, fullname);
@@ -323,6 +325,8 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
 	gtk_widget_show(window.main);
 	window_main_load_geometry();
     }
+
+	g_string_free(buf, TRUE);
 
     g_free(basename);
     g_free(dirname);
