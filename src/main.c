@@ -174,7 +174,7 @@ main_init_variables(void)
     acps = g_ptr_array_new();
     country.name = NULL;
     country.symbol = NULL;
-    country.sid = NULL;;
+    country.sid = g_strdup("NONAME");
 
     season = week = week_round = 1;
 

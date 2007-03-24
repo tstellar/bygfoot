@@ -287,7 +287,10 @@ free_country(Country *cntry, gboolean reset)
     free_g_ptr_array(&cntry->allcups);
 
     if(reset)
+    {
 	cntry->allcups = g_ptr_array_new();
+	cntry->sid = g_strdup("NONAME");
+    }
 }
 
 /**
