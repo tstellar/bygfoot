@@ -846,10 +846,10 @@ game_gui_set_help_labels(void)
     gtk_label_set_text(label_help_text1, 
 		       _("Bygfoot is a very intuitive and simple game, so there isn't a full-grown documentation. However, if you have trouble, there are a few places to go.\n"));
 
-    g_string_append_printf(text, _("At the Bygfoot forums you can report bugs, ask for help and discuss the game (you don't have to register):\n"));
+    g_string_append_printf(text, _("At the Bygfoot forums you can report bugs, ask for help and discuss the game:\n"));
     g_string_append_printf(text, "http://bygfoot.sourceforge.net/forum\n");
     g_string_append_printf(text, _("\nIf you feel you've found out something about the game that has to be shared, you can add it to the Bygfoot Wiki:\n"));
-    g_string_append_printf(text, "http://mec-symonds.eng.monash.edu.au/cgi-bin/twiki/view/Bygfoot/WebHome");
+    g_string_append_printf(text, "http://mec-symonds.eng.monash.edu.au/twiki/bin/view/Bygfoot/WebHome");
 
     gtk_label_set_text(label_help_text2, text->str);
     g_string_free(text, TRUE);
