@@ -1,9 +1,8 @@
 <lg_commentary>
   <event>
     <name>general</name>
-    <commentary>_P1_ passes</commentary>
     <commentary>_P0_</commentary>
-    <commentary>_P1_ à _P0_</commentary>
+    <commentary>_P1_ [à|donne à|passe à] _P0_</commentary>
     <commentary>_P1_ adresse une [superbe|belle|lumineuse] balle à _P0_</commentary>
     <commentary>Superbe [balle|passe] qui trouve _P0_</commentary>
     <commentary>Petit ballon de _P1_ qui cherche le une deux avec _PO_</commentary>
@@ -49,38 +48,37 @@
 	 	<commentary>Passe dévissée de _P1_ et le ballon sort en touche pour _T_POSS__</commentary>
 	 	<commentary>Ballon perdu qui sort en touche. _P0_ la joue rapidement</commentary>
 	 	<commentary>Ballon perdu par _T_NPOSS__, _P0_ en profite pour faire une longue touche</commentary>
-    <commentary>Tackle glissé de _P0_ qui subtilise la balle majistralement</commentary>
+    <commentary>Tacle glissé de _P0_ qui subtilise la balle majistralement</commentary>
 	 	<commentary>Passe difficilement controlée par _P1_ qui a du mal à garder le ballon</commentary>
     <commentary>_P0_ gagne son duel et récupère le ballon</commentary>
     <commentary>_T_NPOSS__ souffre énormément</commentary>
     <commentary>Mauvais controle de _P1_ qui profite à _P0_ qui s'empare du ballon</commentary>
-    <commentary>_P0_ [intercepte le |depossède _P1_ du] ballon par un superbe tackle glissé</commentary>
+    <commentary>_P0_ [intercepte le |depossède _P1_ du] ballon par un superbe tacle glissé</commentary>
     <commentary>Ballon perdu qui retombe dans les pieds de _P0_</commentary>
-    <commentary>Tackle ! _P0_ [repart avec|gagne|récupère] le ballon</commentary>
+    <commentary>Tacle de _P0_ ! Il [repart avec|gagne|récupère] le ballon</commentary>
     <commentary>_P1_ est isolé et perd le ballon, récupéré par _P0_</commentary>
     <commentary>_P0_ fait une superbe interception</commentary>
     <commentary>_P1_ fait une passe hasardeuse et _P0_ en profite pour intercepter le ballon</commentary>
   </event>
   <event>
     <name>foul</name>
-    <commentary>[Hou|Aïe], quel vilain tackle sur _P0_ !</commentary>
-		<commentary>Ouh là là _P1_ effectue un tackle avec les pieds décollés du sol...</commentary>
-    <commentary>Il y a de grandes chances pour que [cette agression soit sanctionnée|_P1_ prenne un carton pour ce geste] ?</commentary>
+    <commentary>[Hou|Aïe], quel vilain tacle sur _P0_ !</commentary>
+		<commentary>Ouh là là _P1_ effectue un takle avec les pieds décollés du sol...</commentary>
+    <commentary>Il y a de grandes chances pour que [cette agression soit sanctionnée|_P1_ prenne un carton pour ce geste]</commentary>
     <commentary>_P1_ [percute|renverse|bondit sur] _P0_ les deux pieds en avant</commentary>
     <commentary>Rugueuse intervention de _P1_ sur _P0_</commentary>
     <commentary>_P0_ [s'est fait retenir la jambe|est accroché] par _P1_</commentary>
-    <commentary>Un tackle vicieux de _P1_ laisse _P0_ étalé au sol. Il a l'air de souffrir</commentary>
+    <commentary>Un tacle vicieux de _P1_ laisse _P0_ étalé au sol. Il a l'air de souffrir</commentary>
     <commentary>On devrait appeler _P1_ [le Boucher|l'assassin|le Tueur]. Il a lâchement agressé [un joueur|_P0_] !</commentary>
 		<commentary>Oula! Ca doit faire mal, quel coup de _P1_ sur _P0_ !</commentary>
     <commentary>_P0_ est par terre et n'a pas l'air de rigoler</commentary>
     <commentary>Pied haut de _P1_ qui envoie _P0_ au sol</commentary>
-    <commentary>La ceinture noire de _P1_ en [Karaté|Taikwondo|Jujitsu] s'avère pratique, alors qu'il vient d'étaler _P0_</commentary>
-	 	<commentary>_P1_ a perdu sa patience et a séché _P0_ qui se retrouve au sol.</commentary>
+	 	<commentary>_P1_ a perdu patience et a séché _P0_ qui se retrouve au sol.</commentary>
 		<commentary>L'arbitre laissa l'avantage mais finalement dut revenir à la faute sur _P0_</commentary>
 	 	<commentary>Ce genre de fautes ne devrait jamais exister, c'est révoltant</commentary>
 	 	<commentary>La faute est plutôt grossière</commentary>
 	 	<commentary>_P0_ essaye d'éviter la charge</commentary>
-	 	<commentary>_P1_ commet une vilaine faute. Il ne s'en sortira probablement pas avec ça, car _P0_ a été sérieusement touché</commentary>
+	 	<commentary>_P1_ commet une vilaine faute. [Il ne s'en sortira probablement pas avec ça|L'arbitre va sûrement lui dire deux mots], car _P0_ a été sérieusement touché</commentary>
   </event>
   <event>
     <name>scoring_chance</name>
@@ -116,7 +114,7 @@
     <commentary>Ils n'oublieront pas ce but de si tôt !</commentary>
 	 	<commentary>_P0_ est aux anges et se met à danser. Il enflamme les supporters</commentary>
     <commentary>But! Il est évident que pour _T_TT_, la réussite est au RDV</commentary>
-	 	<commentary cond="_GOALS0_ + _GOALS1_ ==1">_T_TT_ [ouvre le score|sont les premiers à créditer leur compte] aujourd'hui</commentary>
+	 	<commentary cond="_GOALS0_ + _GOALS1_ ==1">_T_TT_ [ouvre le score|est la première à marquer] aujourd'hui</commentary>
 		<commentary cond="_GD_ <=2 and _T_TT_ == _TLN_">[Cette frappe|Ce but] a littéralement déchainé les supporters de _T_TT_</commentary>
 	 	<commentary cond="_GD_ == 0 ">[Cette frappe|Ce but] met les deux équipes à égalité</commentary>
 		<commentary cond="_GD_ == 0 ">Egalisation de _T_TT_ !</commentary>
@@ -127,47 +125,47 @@
   </event>
   <event>
     <name>miss</name>
-    <commentary>Tire sans conviction qui passe très loin du but</commentary>
+    <commentary>Tir sans conviction qui passe très loin du but</commentary>
     <commentary>Quel [terrible|désastreux] loupé de _P0_</commentary>
     <commentary>[il|_P0_] aurait dû cadrer ce ballon mais au lieu de cela manque largement sa cible</commentary>
     <commentary>[_P1_|La défense] réussit à écarter le danger</commentary>
-    <commentary>_P0_ [pousse|enroule] la balle</commentary>
+    <commentary>_P0_ enroule trop sa balle et elle passe à côté</commentary>
     <commentary>Et [la balle|le tir] meurt tout proche du poteau</commentary>
-    <commentary>Il manque quelque chose à cette équipe</commentary>
-    <commentary>Ohh quelle occasion manquée !</commentary>
+    <commentary>_T_POSS__ a vendangé une belle occasion</commentary>
+    <commentary>Oh quelle occasion manquée !</commentary>
     <commentary>Des occasions manquées comme celles-là pourraient bien coûter la victoire à _T_POSS__.</commentary>
     <commentary>Ca semblait pourtant bien parti pour _P0_.</commentary>
     <commentary>Il avait pourtant fait le plus dur mais il rate le plus facile</commentary>
-    <commentary>_T_POSS__ ont vendangé [une belle|leur] chance là.</commentary>
-    <commentary>Belle course, belle passe dommage que la récompense ne soit pas au bout</commentary>
-    <commentary>La chance a tourné le dos à [_P0_|_T_POSS__]</commentary>
+    <commentary>Belle course, belle passe dommage que la récompense ne soit pas au bout !</commentary>
+    <commentary>Sur ce coup là, la chance n'était pas avec [_P0_|_T_POSS__]</commentary>
+    <commentary>Il faut croire que les dieux ne sont pas avec [_P0_|_T_POSS__]</commentary>
     <commentary>Une tentative audacieuse mais qui n'est pas récompensée</commentary>
-    <commentary>La réussite n'est pas au RDV de cette course éperdue</commentary>
+    <commentary>La réussite n'est pas au RDV de cette magnifique course</commentary>
     <commentary>C'est une vraie partie de billard mais le ballon ne rentre pas</commentary>
-    <commentary>C'est parti n'importe où excepté [dans les buts|au bon endroit]</commentary>
+    <commentary>C'est parti n'importe où !</commentary>
     <commentary>Dans les filets mais pas accordé. Le juge de ligne avait levé son drapeau pour un hors-jeu.</commentary>    
     <commentary cond="_SHOTS_POSS__ > 3 and _GOALS_POSS__ < 1">_P0_ commence à se demander comment il doit s'y prendre pour marquer</commentary>
     <commentary cond="_SHOTS_POSS__ > 3 and _GOALS_POSS__ < 1">_T_POSS__ commence à se demander ce qu'ils doivent faire pour marquer ce soir</commentary> </event>
   <event>
     <name>save</name>
-	 <commentary>Enorme [frappe|tir] mais [le gardien|le portier|_P1_] a sorti les gants en bêton</commentary>
+		<commentary>[Enorme frappe|Magnifique tir] de _P0_ mais [le gardien _P1_|_P1_] a sorti les gants en bêton</commentary>
     <commentary>_P1_ l'effleure du bout des doigts et le dévie juste ce qu'il faut</commentary>
     <commentary>Il y a un mur là-bas du nom de _P1_. Quelle parade !</commentary>
     <commentary>Arrêt facile pour _P1_</commentary>
-    <commentary>_P1_ respire de nouveau tandis que le ballon [trouve le chemin de|finit sa course dans] ses bras.</commentary>
-    <commentary>Sans problèmes pour _P1_. Il se saisit du ballon</commentary>
+    <commentary>Le ballon [trouve le chemin des bras de _P1_|finit sa course dans les bras de _P1_]. Il peut respirer !</commentary>
+    <commentary>Sans problème pour _P1_. Il se saisit du ballon</commentary>
     <commentary>_P1_ dévie le tir de _P0_ au dessus de la barre transversale</commentary>
 		<commentary>D'une claquette, _P1_ fait passer le ballon de _P0_ au dessus de la barre transversale</commentary>
     <commentary>Enorme [accélération|coup de rein|démarrage] de _P0_ mais _P1_ effectue un [incroyable|superbe] plongeon dans les pieds de l'attaquant</commentary>
     <commentary>[Frappe|Tir] à ras terre à [droite|gauche] mais bien captée par _P1_</commentary>
 		<commentary>[Frappe|Tir] à ras terre à [droite|gauche] mais _P1_ se couche bien sur le ballon</commentary>
-		<commentary>_P1_ le ramasse avec facilité</commentary>
-    <commentary>_P1_ fait un superbe arrêt réflex et écarte le ballon</commentary>
+		<commentary>_P1_ se saisie du ballon avec facilité</commentary>
+    <commentary>_P1_ fait un superbe arrêt réflexe et écarte le ballon</commentary>
     <commentary>_P1_ [court en direction|fonce sur|sort sur] _P0_ et bloque le tir avec [son talon|son ventre|sa tête|son torse|son pied|sa chaussure]</commentary>
     <commentary>[Magnifique|Brillant|Sensationnel|Facile] arrêt du gardien</commentary>
     <commentary>Bien [sauvé|arrêté|stoppé] par _P1_</commentary>
-    <commentary>Ohh [il|le goal|le gardien|_P1_] a bien anticipé le mouvement de _P0_ et du coup s'interpose sans problème</commentary>
-    <commentary>C'était dedans de toute évidence, mais c'était sans compter le brio de _P1_, qui sauve la mise</commentary>
+    <commentary>Oh [il|le goal|le gardien|_P1_] a bien anticipé le mouvement de _P0_ et du coup s'interpose sans problème</commentary>
+    <commentary>C'était comme si c'était dedans, mais c'était sans compter le brio de _P1_, qui sauve la mise</commentary>
     <commentary>Frappe de _P0_ qui manque de puissance. Elle est captée facilement par _P1_</commentary>
 	 	<commentary cond="_GD_ ==1">[_P1_|Le gardien] permet à _TL_ de rester dans le match</commentary> 
   </event>
@@ -202,11 +200,11 @@
 	 	<commentary>L'entraineur de _TL_ a l'air mécontent des performances de son équipe lors de cett première mi-temps</commentary>
 	 	<commentary>_TL_ va devoir affronter [les réprimandes|la colère] de son entraineur</commentary>
 		<commentary>Il est possible que _TL_ prenne un savon par entraineur</commentary>
-    <commentary cond="_TAVSKILLDIFF_ >=8 and _GD_ >=1 and _TAVSKILL_TLN__ < _TAVSKILL_TWN__" pri="10">_TW_ sont à 45 minutes d'une incroyable victoire</commentary>
+    <commentary cond="_TAVSKILLDIFF_ >=8 and _GD_ >=1 and _TAVSKILL_TLN__ < _TAVSKILL_TWN__" pri="10">_TW_ est à 45 minutes d'une belle victoire</commentary>
     <commentary cond="_GD_ >0">_TL_ s'engouffre dans le tunnel et ça risque de chauffer</commentary>
 	 <commentary cond="_GD_>0">Une mi-temps que _TL_ devra vite oublier</commentary>
     <commentary cond="_POSS0_ >= 70 or _POSS1_ >= 70">_T[_POSS1_ GE 70]_ a la possession du ballon, c'est limpide</commentary>
-    <commentary cond="_POSS0_ >= 60 or _POSS1_ >= 60">_T[_POSS1_ GE 60]_ ont eu la meilleur possession cette mi-temps</commentary>
+    <commentary cond="_POSS0_ >= 60 or _POSS1_ >= 60">_T[_POSS1_ GE 60]_ a eu la meilleur possession cette mi-temps</commentary>
     <commentary cond="_POSS0_ > 50 and _GOALS1_ > _GOALS0_">_T0_ a beau avoir une meilleure possession, _T1_ semble l'avoir mieux exploitée</commentary>
     <commentary cond="_POSS1_ > 50 and _GOALS0_ > _GOALS1_">_T1_ a beau avoir une meilleure possession, _T0_ semble l'avoir mieux exploitée</commentary>
     <commentary cond="_POSS0_ >= 75 or _POSS1_ >= 75">_T[_POSS1_ GE 75]_ semble être la seule équipe sur le terrain</commentary>
@@ -214,8 +212,8 @@
     <commentary cond="_GOALS0_ + _GOALS1_ = 1 and _SHOTS0_ + _SHOTS1_ < 2">A ce niveau, un but d'avance [pourrait ne pas suffire|pourrait ne pas être suffisant]</commentary>
     <commentary cond="_GOALS0_ + _GOALS1_ = 1 and _SHOTS0_ + _SHOTS1_ > 2">Avec le nombre de tirs jusque là, un but d'avance pourrait être insuffisant</commentary>
     <commentary cond="_GOALS0_ + _GOALS1_ < 2 and _SHOTS0_ + _SHOTS1_ > 8">C'est sur que ce n'est pas un match prolifique en buts mais il y aura eu beaucoup de frappes tout de même</commentary>
-    <commentary cond="_GOALS0_ + _GOALS1_ < 1 and _SHOTS0_ + _SHOTS1_ > 4">_T[_SHOTS0_ LE _SHOTS1_]_ ont eu de nombreuses occasions de tuer cette rencontre</commentary>
-    <commentary cond="_GOALS0_ + _GOALS1_ < 2 and _SHOTS0_ + _SHOTS1_ > 3">_T[_SHOTS0_ LE _SHOTS1_]_ ont eu _SHOTS[_SHOTS0_ LE _SHOTS1_]_ chances de [terminer|clore] cette partie</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ < 1 and _SHOTS0_ + _SHOTS1_ > 4">_T[_SHOTS0_ LE _SHOTS1_]_ a eu de nombreuses occasions de tuer cette rencontre</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ < 2 and _SHOTS0_ + _SHOTS1_ > 3">_T[_SHOTS0_ LE _SHOTS1_]_ a eu _SHOTS[_SHOTS0_ LE _SHOTS1_]_ chances de [terminer|clore] cette partie</commentary>
     <commentary cond="_GOALS0_ + _GOALS1_ = 0 and _SHOTS0_ + _SHOTS1_ < 2">No bickies in the barrel yet and [it looks like the baker is on strike|to be honest no one is baking]</commentary>
     <commentary cond="_FOULS0_ - _FOULS1_ >= 4 or _FOULS1_ - _FOULS0_ >=4">Il y a deux équipes ici mais seulement [_T[_FOULS0_ GE _FOULS1_]_|une d'entre elles] joue au football</commentary>
     <commentary cond="_FOULS0_ + _FOULS1_ >= 8">C'est à un bain de sang que nous assistons ce soir, pas à un match de football.</commentary>
@@ -252,7 +250,7 @@
     <commentary cond="_GD_ = 0 " pri="10">Un match nul. Un point c'est mieux que rien.</commentary>
     <commentary cond="_GD_ > 0 " pri="10">C'est fini. Le score est de _RE_ en faveur de  _TW_</commentary>
     <commentary cond="_GOALS0_ + _GOALS1_ >= 6" pri="10">Eh bien, voici un match qui restera dans les mémoires !</commentary>
-    <commentary cond="_GD_ >= 4" pri="10">_TL_ ont été terrassés par des buts de _GD_.</commentary>
+    <commentary cond="_GD_ >= 4" pri="10">_TL_ a été terrassée par des buts de _GD_.</commentary>
     <commentary cond="_GD_ >= 2" pri="10">_TW_ va sabrer le champagne ce soir.</commentary>
     <commentary cond="[_TLAYER0_ - _TLAYER1_]> 1 or [_TLAYER1_ - _TLAYER0_] >1 and _TLAYER_TWN__ > _TLAYER_TLN__" pri="10">[Quelle belle victoire|Quel incroyable résultat] pour _TW_</commentary>
     <commentary cond="_GD_ > 3 and _TLAYER[_GOALS1_ > _GOALS0_]_ >= _TLAYER[_GOALS1_ < _GOALS0_]_" pri="10">_TL_ était face à un géant et ce _RE_ le montre bien</commentary>
@@ -300,7 +298,7 @@
     <commentary cond="_GD_ = 0">_T_POSS__ peuvent se détacher s'ils convertissent cette occasion</commentary>
     <commentary cond="_GD_=1 and _GOALS_POSS__ < _GOALS_NPOSS__">_P0_ peut tuer le match avec ce tir</commentary>
     <commentary cond="_MI_>85 and _GD_=1 and _GOALS_POSS__ < _GOALS_NPOSS__">_P0_ : Un penalty de dernière minute pourrait faire aboutir à un match nul</commentary>
-    <commentary cond="_MI_>85 and _GD_=1 and _GOALS_POSS__ < _GOALS_NPOSS__">_T_NPOSS__ ont perdu une belle occasion pour _T_POSS__ de revenir dans la partie</commentary>
+    <commentary cond="_MI_>85 and _GD_=1 and _GOALS_POSS__ < _GOALS_NPOSS__">_T_NPOSS__ a perdu une belle occasion pour _T_POSS__ de revenir dans la partie</commentary>
     <commentary cond="_MI_>85 and _GD_=1 and _GOALsS_POSS__ > _GOALS_NPOSS__">_P0_ peut clore la rencontre en marquant</commentary>
   </event>
   <event>
@@ -389,12 +387,12 @@
   </event>
   <event>
     <name>structure_change</name>
-    <commentary>_T_TT__ ont changé leur structure vers _EX_</commentary>
+    <commentary>_T_TT__ a changé leur structure vers _EX_</commentary>
     <commentary>_T_TT__ se restructurent en formation _EX_</commentary>
   </event>
   <event>
     <name>style_change</name>
-    <commentary>_T_TT__ ont changé leur style en _EX_</commentary>
+    <commentary>_T_TT__ a changé leur style en _EX_</commentary>
     <commentary>_T_TT__ change pour un style _EX_</commentary>
     <commentary cond="_EX_ == 'ATTACK'">_T_TT__ essaie de trouver l'ouverture en attaquant</commentary>
     <commentary cond="_MI_>75 and _EX_ == 'BALANCED'">_T_TT__ changeant pour _EX_ se relâche un peu</commentary>
@@ -404,9 +402,9 @@
   </event>
   <event>
     <name>boost_change</name>
-    <commentary>_T_TT__ ont changé leur boost à _EX_</commentary>
+    <commentary>_T_TT__ a changé leur boost à _EX_</commentary>
     <commentary cond="_MI_>75 and _EX_ == 'ANTI' and _TT_ == _TLN_">C'est comme si _T_TT__ avaient abandonné</commentary>
-    <commentary cond="_EX_ = 'ON'">_T_TT__ ont passé la seconde</commentary>
+    <commentary cond="_EX_ = 'ON'">_T_TT__ a passé la seconde</commentary>
     <commentary cond="_EX_ = 'ON' and _MI_ >75" pri="10">Boost activé. _T_TT__ lancent leurs dernières forces dans la bataille</commentary>
   </event>
 </lg_commentary>
