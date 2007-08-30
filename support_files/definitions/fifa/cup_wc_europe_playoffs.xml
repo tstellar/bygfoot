@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<cup>
+  <name>WC Qualification Playoffs Europe</name>
+  <short_name>WCQEurope PO</short_name>
+  <sid>wc_europe_playoffs</sid>
+  <symbol>wc_europe.png</symbol>
+  <yellow_red>3</yellow_red>
+  <add_week>41</add_week>
+  <last_week>44</last_week>
+  <week_gap>1</week_gap>
+  <property>international</property>
+  <property>highlight2</property>
+  <cup_rounds>
+    <cup_round>
+      <new_teams>4</new_teams>
+      <byes>0</byes>
+      <choose_teams>
+	<choose_team>
+	  <choose_team_sid>wc_europe</choose_team_sid>
+	  <number_of_teams>4</number_of_teams>
+	  <start_idx>13</start_idx>
+	  <end_idx>16</end_idx>
+        </choose_team>
+      </choose_teams>
+    </cup_round>
+  </cup_rounds>
+</cup>
