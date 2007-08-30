@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<cup>
+  <name>WC Qualification Oceania</name>
+  <short_name>WCQOceania</short_name>
+  <sid>wc_oceania</sid>
+  <symbol>wc_oceania.png</symbol>
+  <yellow_red>3</yellow_red>
+  <last_week>40</last_week>
+  <add_week>23</add_week>
+  <week_gap>1</week_gap>
+  <property>international</property>
+  <cup_rounds>
+    <cup_round>
+      <choose_teams>
+	  <choose_team>
+  	   	<byes>0</byes>
+	      <new_teams>12</new_teams>
+	      <randomise_teams>1</randomise_teams>
+		<choose_team_sid>ofc</choose_team_sid>
+        </choose_team>
+      </choose_teams>
+    </cup_round>
+    <cup_round>
+     	<number_of_groups>1</number_of_groups>
+    </cup_round>
+  </cup_rounds>
+</cup>

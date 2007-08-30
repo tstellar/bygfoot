@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<cup>
+  <name>WC Qualification Playoff Asia/N. + C. America</name>
+  <short_name>WCQAsiaNCAmericaPlayoff</short_name>
+  <sid>wc_asia_ncamerica</sid>
+  <symbol>wc.png</symbol>
+  <yellow_red>3</yellow_red>
+  <last_week>48</last_week>
+  <add_week>45</add_week>
+  <week_gap>1</week_gap>
+  <property>international</property>
+  <property>highlight2</property>
+  <cup_rounds>
+    <cup_round>
+      <new_teams>2</new_teams>
+      <choose_teams>  
+	<choose_team>
+	  <choose_team_sid>wc_asia_playoff</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>1</end_idx>
+        </choose_team>
+	<choose_team>
+	  <choose_team_sid>wc_ncamerica</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <start_idx>4</start_idx>
+	  <end_idx>4</end_idx>
+        </choose_team>
+      </choose_teams>  
+    </cup_round>
+  </cup_rounds>
+</cup>
