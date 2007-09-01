@@ -248,7 +248,7 @@ misc2_callback_add_user(void)
 
     file_load_user_conf_file(&usr(users->len - 1));
 
-    user_set_up_team(&usr(users->len - 1));
+    user_set_up_team(&usr(users->len - 1), TRUE);
 
     treeview_show_users(
 	GTK_TREE_VIEW(lookup_widget(window.user_management,
