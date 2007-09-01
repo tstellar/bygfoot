@@ -40,7 +40,7 @@ void
 user_set_up_team_new_game(User *user);
 
 void
-user_set_up_team(User *user);
+user_set_up_team(User *user, gboolean remove_players);
 
 void
 user_set_up_finances(User *user);

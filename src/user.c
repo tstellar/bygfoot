@@ -89,9 +89,12 @@ user_set_up_team_new_game(User *user)
     gchar buf[SMALL];
     gint rndom;
 
+    /* If the user chose to start in a different league than
+       his team is originally in, the league is stored in the scout
+       variable. */
     if(user->scout == -1)
     {
-	user_set_up_team(user);
+	user_set_up_team(user, TRUE);
 	user_history_add(user, USER_HISTORY_START_GAME, 
 			 user->tm->name, 
 			 league_cup_get_name_string(user->tm->clid), NULL, NULL);
@@ -114,25 +117,28 @@ user_set_up_team_new_game(User *user)
 			 user->tm->name, 
 			 league_cup_get_name_string(user->tm->clid), NULL, NULL);
 
-	user_set_up_team(user);
+	user_set_up_team(user, TRUE);
     }
 }
 
 /** Set up finances, remove some players etc. for a new user team.
     @par am user The user whose team we set up. */
 void
-user_set_up_team(User *user)
+user_set_up_team(User *user, gboolean remove_players)
 {
     gint i, j;
 
-    for(i=PLAYER_POS_DEFENDER; i<=PLAYER_POS_FORWARD; i++)
-	for(j=user->tm->players->len - 1; j > 10; j--)
-	    if(g_array_index(user->tm->players, Player, j).pos == i &&
-	       g_array_index(user->tm->players, Player, j).recovery != 1)
-	    {
-		player_remove_from_team(user->tm, j);
-		break;
-	    }
+    if(remove_players)
+    {
+	for(i=PLAYER_POS_DEFENDER; i<=PLAYER_POS_FORWARD; i++)
+	    for(j=user->tm->players->len - 1; j > 10; j--)
+		if(g_array_index(user->tm->players, Player, j).pos == i &&
+		   g_array_index(user->tm->players, Player, j).recovery != 1)
+		{
+		    player_remove_from_team(user->tm, j);
+		    break;
+		}
+    }
 
     for(i=0;i<user->tm->players->len;i++)
 	g_array_index(user->tm->players, Player, i).recovery = 0;
@@ -559,7 +565,7 @@ user_change_team(User *user, Team *tm)
     user->tm = tm;
     user->team_id = tm->id;
 
-    user_set_up_team(user);
+    user_set_up_team(user, FALSE);
 
     user->counters[COUNT_USER_NEW_SPONSOR] = 0;
     user->counters[COUNT_USER_SUCCESS] = (success < 0) ?
