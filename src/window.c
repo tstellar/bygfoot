@@ -33,6 +33,7 @@
 #include "interface.h"
 #include "language.h"
 #include "league.h"
+#include "league_table_interface.h"
 #include "live_game.h"
 #include "load_save.h"
 #include "main.h"
@@ -875,7 +876,14 @@ window_create(gint window_type)
 	    wind = window.training_camp;
 	    strcpy(buf, _("Training camp"));
 	    break;
-	    
+   	case WINDOW_LEAGUE_TABLE:
+   		if(window.league_table != NULL)
+   		g_warning("window_create: called on already existing window\n");
+   		else
+   		window.league_table = create_window_training_camp();
+   		wind = window.league_table;
+   		strcpy(buf, _("League table"));
+   		break;    
     }
 
     if(window_type != WINDOW_FILE_CHOOSER)
@@ -983,3 +991,78 @@ window_show_training_camp(void)
     gtk_widget_modify_bg(GTK_WIDGET(hs_training), GTK_STATE_NORMAL, &color);
     gtk_widget_modify_bg(GTK_WIDGET(hs_camp_points), GTK_STATE_NORMAL, &color);
 }
+
+/* Show the league table window for the current user. */
+void
+window_show_league_table(void)
+{
+	/*
+	GtkEntry *tfCosts;
+	GtkWidget *rb_camp1;
+    GtkWidget *rb_camp2;
+    GtkWidget *rb_camp3;
+    GtkLabel *l_costs;
+    GtkLabel *l_recreation;
+    GtkLabel *l_training;
+    GtkLabel *l_camp_points;
+    GtkHScale *hs_recreation;
+    GtkHScale *hs_training;
+    GtkHScale *hs_camp_points;
+	gchar buf[SMALL];
+	*/
+    window_create(WINDOW_LEAGUE_TABLE);
+    
+    /*
+    // Initialize entry costs
+    sprintf(buf, "%d", COSTS_CAMP_1);
+    tfCosts = GTK_ENTRY(lookup_widget(window.training_camp, "tf_costs"));
+    gtk_entry_set_text (tfCosts, buf);
+    
+    // Initialize radio group camp
+    rb_camp1 = GTK_WIDGET(lookup_widget(window.training_camp, "rb_camp1"));
+    rb_camp2 = GTK_WIDGET(lookup_widget(window.training_camp, "rb_camp2"));
+    rb_camp3 = GTK_WIDGET(lookup_widget(window.training_camp, "rb_camp3"));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(rb_camp1), TRUE);
+    
+    //Initialize labels
+    l_costs = GTK_LABEL(lookup_widget(window.training_camp, "l_costs"));
+    l_recreation = GTK_LABEL(lookup_widget(window.training_camp, "l_recreation"));
+    l_training = GTK_LABEL(lookup_widget(window.training_camp, "l_training"));
+    l_camp_points = GTK_LABEL(lookup_widget(window.training_camp, "l_camp_points"));
+    gtk_misc_set_alignment (GTK_MISC(l_costs), 0.0, 0.5);
+    gtk_misc_set_alignment (GTK_MISC(l_recreation), 0.0, 0.5);
+    gtk_misc_set_alignment (GTK_MISC(l_training), 0.0, 0.5);
+    gtk_misc_set_alignment (GTK_MISC(l_camp_points), 0.0, 0.5);
+    
+    //Initialize hScales
+    hs_recreation = GTK_HSCALE(lookup_widget(window.training_camp, "hs_recreation"));
+    hs_training = GTK_HSCALE(lookup_widget(window.training_camp, "hs_training"));
+    hs_camp_points = GTK_HSCALE(lookup_widget(window.training_camp, "hs_camp_points"));
+    gtk_range_set_range (GTK_RANGE(hs_recreation), CAMP_SCALE_MIN, CAMP_SCALE_MAX);
+    gtk_range_set_range (GTK_RANGE(hs_training), CAMP_SCALE_MIN, CAMP_SCALE_MAX);
+    gtk_range_set_range (GTK_RANGE(hs_camp_points), CAMP_SCALE_MIN, CAMP_SCALE_MAX);
+    gtk_range_set_value (GTK_RANGE(hs_recreation), CAMP_SCALE_MIN);
+    gtk_range_set_value (GTK_RANGE(hs_training), CAMP_SCALE_MIN);
+    gtk_range_set_value (GTK_RANGE(hs_camp_points), CAMP_SCALE_MAX);
+    gtk_scale_set_digits (GTK_SCALE(hs_recreation), 0);
+    gtk_scale_set_digits (GTK_SCALE(hs_training), 0);
+    gtk_scale_set_digits (GTK_SCALE(hs_camp_points), 0);
+    gtk_widget_set_sensitive (GTK_WIDGET(hs_recreation), FALSE);
+    gtk_widget_set_sensitive (GTK_WIDGET(hs_training), FALSE);
+    gtk_widget_set_sensitive (GTK_WIDGET(hs_camp_points), FALSE);
+    
+	GdkColor color;
+    //gtk_widget_modify_fg(GTK_WIDGET(hs_recreation), GTK_STATE_INSENSITIVE , NULL);
+    //gtk_widget_modify_fg(GTK_WIDGET(hs_training), GTK_STATE_INSENSITIVE , NULL);
+    //gtk_widget_modify_fg(GTK_WIDGET(hs_camp_points), GTK_STATE_INSENSITIVE , NULL);
+    //gtk_widget_modify_bg(GTK_WIDGET(hs_recreation), GTK_STATE_NORMAL, NULL);
+    gdk_color_parse("black", &color);
+    gtk_widget_modify_fg(GTK_WIDGET(hs_recreation), GTK_STATE_INSENSITIVE , &color);
+    gtk_widget_modify_fg(GTK_WIDGET(hs_training), GTK_STATE_INSENSITIVE , &color);
+    gtk_widget_modify_fg(GTK_WIDGET(hs_camp_points), GTK_STATE_INSENSITIVE , &color);
+    gtk_widget_modify_bg(GTK_WIDGET(hs_recreation), GTK_STATE_NORMAL, &color);
+    gtk_widget_modify_bg(GTK_WIDGET(hs_training), GTK_STATE_NORMAL, &color);
+    gtk_widget_modify_bg(GTK_WIDGET(hs_camp_points), GTK_STATE_NORMAL, &color);
+    */
+}
+
