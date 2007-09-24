@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+	<sid>peru2</sid>
+	<name>Segunda Division</name>
+	<short_name>Segunda</short_name>
+	<symbol>flag_peru.png</symbol>
+	<round_robins>2</round_robins>
+	<first_week>13</first_week>
+	<week_gap>1</week_gap>
+        <yellow_red>5</yellow_red>
+	<break>2</break>
+	<average_talent>6900</average_talent>
+	<names_file>peru</names_file>
+	<layer>2</layer>
+	<prom_rel>
+		<prom_rel_element>
+			<rank_start>1</rank_start>
+			<rank_end>1</rank_end>
+			<dest_sid>peru1</dest_sid>
+			<prom_rel_type>promotion</prom_rel_type>
+		</prom_rel_element>
+		<prom_rel_element>
+			<rank_start>11</rank_start>
+			<rank_end>12</rank_end>
+			<dest_sid>peru3-1 peru3-2 peru3-3 peru3-4 peru3-5 peru3-6 peru3-7 peru3-8</dest_sid>
+			<prom_rel_type>relegation</prom_rel_type>
+		</prom_rel_element>
+	</prom_rel>
+	<teams>
+		<team>
+			<team_name>J. Galvez</team_name>
+			<team_average_talent>7200</team_average_talent>
+		</team>
+		<team>
+			<team_name>U. Huaral</team_name>
+			<team_average_talent>7200</team_average_talent>
+		</team>
+		<team>
+			<team_name>S. Marcos</team_name>
+			<team_average_talent>7200</team_average_talent>
+		</team>
+		<team>
+			<team_name>D. Aviacion</team_name>
+			<team_average_talent>6800</team_average_talent>
+		</team>
+		<team>
+			<team_name>U.T.C.</team_name>
+			<team_average_talent>7000</team_average_talent>
+		</team>
+		<team>
+			<team_name>A. Minero</team_name>
+			<team_average_talent>6700</team_average_talent>
+		</team>
+		<team>
+			<team_name>A. Ugarte</team_name>
+			<team_average_talent>6700</team_average_talent>
+		</team>
+		<team>
+			<team_name>A. Cochahuayco</team_name>
+			<team_average_talent>6700</team_average_talent>
+		</team>
+		<team>
+			<team_name>Loreto FC</team_name>
+			<team_average_talent>7000</team_average_talent>
+		</team>
+		<team>
+			<team_name>C. Vallejo</team_name>
+			<team_average_talent>7100</team_average_talent>
+		</team>
+		<team>
+			<team_name>L.P. Sporting</team_name>
+			<team_average_talent>6700</team_average_talent>
+		</team>
+		<team>
+			<team_name>H. Acosvinchos</team_name>
+			<team_average_talent>6700</team_average_talent>
+		</team>
+	</teams>
+</league>
