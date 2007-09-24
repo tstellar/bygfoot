@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+	<name>Copa Peru - Subcampeon</name>
+	<short_name>CPeruSubCamp</short_name>
+	<sid>peru_subcampeon</sid>
+	<symbol>flag_peru.png</symbol>
+	<property>promotion</property>
+	<property>highlight2</property>
+	<add_week>1000</add_week>
+	<cup_rounds>
+		<cup_round>
+			<choose_teams>
+				<choose_team>
+					<choose_team_sid>peru_final</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>2</start_idx>
+					<end_idx>2</end_idx>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+	</cup_rounds>
+</cup>

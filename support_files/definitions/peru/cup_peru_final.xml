@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+	<name>Copa Peru - Final</name>
+	<short_name>CPeruFinal</short_name>
+	<sid>peru_final</sid>
+	<symbol>flag_peru.png</symbol>
+	<property>promotion</property>
+	<property>highlight2</property>
+	<add_week>35</add_week>
+	<last_week>38</last_week>
+	<cup_rounds>
+		<cup_round>
+			<choose_teams>
+				<choose_team>
+					<choose_team_sid>peru_clasfinal</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>2</end_idx>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+	</cup_rounds>
+</cup>
