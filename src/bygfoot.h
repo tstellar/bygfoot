@@ -167,7 +167,8 @@ typedef struct
 	*mmatches,
 	*bets,
 	*splash,
-	*training_camp;
+	*training_camp,
+    *league_table;
     
     /** The position of the horizontal divider is stored here. */
     gint paned_pos;
