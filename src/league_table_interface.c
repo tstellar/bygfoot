@@ -31,13 +31,10 @@ create_window_league_table (void)
 {
   GtkWidget *window_league_table;
   GtkWidget *panel_table;
-  GtkWidget *l_camp_points;
-  GtkWidget *l_recreation;
-  GtkWidget *l_training;
-  GtkWidget *b_ok;
-  GtkWidget *l_costs;
-  GtkWidget *hs_table1;
+  GtkWidget *l_headline;
   GtkWidget *hs_table2;
+  GtkWidget *hs_table1;
+  GtkWidget *b_ok;
 
   window_league_table = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (window_league_table), _("League table"));
@@ -50,58 +47,40 @@ create_window_league_table (void)
   gtk_container_add (GTK_CONTAINER (window_league_table), panel_table);
   gtk_widget_set_size_request (panel_table, 500, 290);
 
-  l_camp_points = gtk_label_new (_("Camp points"));
-  gtk_widget_show (l_camp_points);
-  gtk_fixed_put (GTK_FIXED (panel_table), l_camp_points, 24, 192);
-  gtk_widget_set_size_request (l_camp_points, 140, 20);
-
-  l_recreation = gtk_label_new (_("Recreation"));
-  gtk_widget_show (l_recreation);
-  gtk_fixed_put (GTK_FIXED (panel_table), l_recreation, 24, 128);
-  gtk_widget_set_size_request (l_recreation, 140, 20);
-
-  l_training = gtk_label_new (_("Training"));
-  gtk_widget_show (l_training);
-  gtk_fixed_put (GTK_FIXED (panel_table), l_training, 24, 160);
-  gtk_widget_set_size_request (l_training, 140, 20);
-
-  b_ok = gtk_button_new_from_stock ("gtk-ok");
-  gtk_widget_show (b_ok);
-  gtk_fixed_put (GTK_FIXED (panel_table), b_ok, 376, 254);
-  gtk_widget_set_size_request (b_ok, 110, 25);
-
-  l_costs = gtk_label_new (_("Costs"));
-  gtk_widget_show (l_costs);
-  gtk_fixed_put (GTK_FIXED (panel_table), l_costs, 208, 128);
-  gtk_widget_set_size_request (l_costs, 90, 20);
-
-  hs_table1 = gtk_hseparator_new ();
-  gtk_widget_show (hs_table1);
-  gtk_fixed_put (GTK_FIXED (panel_table), hs_table1, 25, 235);
-  gtk_widget_set_size_request (hs_table1, 450, 16);
+  l_headline = gtk_label_new (_("Headline"));
+  gtk_widget_show (l_headline);
+  gtk_fixed_put (GTK_FIXED (panel_table), l_headline, 208, 32);
+  gtk_widget_set_size_request (l_headline, 90, 20);
 
   hs_table2 = gtk_hseparator_new ();
   gtk_widget_show (hs_table2);
   gtk_fixed_put (GTK_FIXED (panel_table), hs_table2, 25, 88);
   gtk_widget_set_size_request (hs_table2, 450, 16);
 
+  hs_table1 = gtk_hseparator_new ();
+  gtk_widget_show (hs_table1);
+  gtk_fixed_put (GTK_FIXED (panel_table), hs_table1, 25, 235);
+  gtk_widget_set_size_request (hs_table1, 450, 16);
+
+  b_ok = gtk_button_new_from_stock ("gtk-ok");
+  gtk_widget_show (b_ok);
+  gtk_fixed_put (GTK_FIXED (panel_table), b_ok, 376, 254);
+  gtk_widget_set_size_request (b_ok, 110, 25);
+
   g_signal_connect ((gpointer) window_league_table, "delete_event",
-                    G_CALLBACK (on_window_training_camp_delete_event),
+                    G_CALLBACK (on_window_league_table_delete_event),
                     NULL);
   g_signal_connect ((gpointer) b_ok, "clicked",
-                    G_CALLBACK (on_b_cancel_clicked),
+                    G_CALLBACK (on_lt_b_ok_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (window_league_table, window_league_table, "window_league_table");
   GLADE_HOOKUP_OBJECT (window_league_table, panel_table, "panel_table");
-  GLADE_HOOKUP_OBJECT (window_league_table, l_camp_points, "l_camp_points");
-  GLADE_HOOKUP_OBJECT (window_league_table, l_recreation, "l_recreation");
-  GLADE_HOOKUP_OBJECT (window_league_table, l_training, "l_training");
-  GLADE_HOOKUP_OBJECT (window_league_table, b_ok, "b_ok");
-  GLADE_HOOKUP_OBJECT (window_league_table, l_costs, "l_costs");
-  GLADE_HOOKUP_OBJECT (window_league_table, hs_table1, "hs_table1");
+  GLADE_HOOKUP_OBJECT (window_league_table, l_headline, "l_headline");
   GLADE_HOOKUP_OBJECT (window_league_table, hs_table2, "hs_table2");
+  GLADE_HOOKUP_OBJECT (window_league_table, hs_table1, "hs_table1");
+  GLADE_HOOKUP_OBJECT (window_league_table, b_ok, "b_ok");
 
   return window_league_table;
 }
