@@ -30,6 +30,8 @@ msgid ""
 "\n"
 "Goals/Game %.1f Shot %% %.1f"
 msgstr ""
+"\n"
+"Goals/Game %.1f Tiri %% %.1f"
 
 #: src/game_gui.c:851
 msgid ""
@@ -197,7 +199,7 @@ msgstr ""
 
 #: src/interface.c:1197
 msgid " Round "
-msgstr " Girone "
+msgstr " Turno "
 
 #. Company name.
 #: src/user.c:871
@@ -631,7 +633,7 @@ msgstr "Media Abilita':  "
 #. Average skill
 #: src/treeview.c:171
 msgid "Av.Sk."
-msgstr "Med.Ab."
+msgstr "Media qualita'"
 
 #: src/treeview2.c:472
 msgid "Av.skill"
@@ -828,7 +830,7 @@ msgstr "PosA"
 
 #: src/options_interface.c:602
 msgid "CPos "
-msgstr "PosA"
+msgstr "Pos Attuale"
 
 #. Current skill of a player.
 #: src/treeview.c:289
@@ -837,7 +839,7 @@ msgstr "AbA"
 
 #: src/options_interface.c:616
 msgid "CSkill "
-msgstr "Abilita'A"
+msgstr "Abilita'Attuale"
 
 #: src/training_interface.c:99
 msgid "Camp points"
@@ -1087,7 +1089,7 @@ msgstr "Vuoi veramente buttare fuori il ragazzo dalla squadra giovanile?"
 
 #: src/misc_interface.c:216
 msgid "Don't load definitions"
-msgstr ""
+msgstr "Non caricare definizioni"
 
 #: src/misc_interface.c:219
 msgid "Don't load team definitions at all"
@@ -1099,7 +1101,7 @@ msgstr "Fatto."
 
 #: src/treeview2.c:364
 msgid "Draw"
-msgstr ""
+msgstr "X"
 
 #: src/treeview.c:1475
 msgid "Drawing credit"
@@ -1124,7 +1126,7 @@ msgstr "Pa %d : %d"
 
 #: src/options_interface.c:679
 msgid "ETal "
-msgstr "Pot"
+msgstr "Potenziale"
 
 #: src/treeview2.c:66
 msgid "EXPORT"
@@ -1161,7 +1163,7 @@ msgstr "Potenziale stimato"
 #. Estimated talent of a player.
 #: src/treeview.c:306
 msgid "Etal"
-msgstr "Pot"
+msgstr "Potenziale"
 
 #: src/treeview.c:2113
 msgid "Event"
@@ -1311,7 +1313,7 @@ msgstr ""
 
 #: src/options_interface.c:432
 msgid "Global"
-msgstr ""
+msgstr "Globali"
 
 #. Goals of a player.
 #. Goals.
@@ -1567,11 +1569,11 @@ msgstr ""
 
 #: src/options_interface.c:958
 msgid "List 1 "
-msgstr ""
+msgstr "Lista 1 "
 
 #: src/options_interface.c:965
 msgid "List 2"
-msgstr ""
+msgstr "Lista 2 "
 
 #: src/interface.c:371 src/misc_interface.c:498 src/options_interface.c:518
 msgid "Live game"
@@ -1897,11 +1899,11 @@ msgstr ""
 
 #: src/options_interface.c:979
 msgid "Player attributes shown"
-msgstr ""
+msgstr "Imposta visione caratteristiche giocatori"
 
 #: src/treeview_helper.c:826
 msgid "Player doesn't negotiate anymore"
-msgstr "Il giocatore non vuole negoziare piu'"
+msgstr "Il giocatore non vuole piu' negoziare"
 
 #: src/misc2_interface.c:166
 msgid "Player list"
@@ -2205,7 +2207,7 @@ msgstr "Sto salvando gli utenti..."
 
 #: src/interface.c:531 src/treeview.c:1366
 msgid "Scout"
-msgstr "Agente di mercato"
+msgstr "Osservatore"
 
 #. Season.
 #: src/treeview.c:2084
@@ -2313,7 +2315,7 @@ msgstr "Mostra partite di tutti i campionati"
 
 #: src/misc3_interface.c:79 src/options_interface.c:996
 msgid "Show matches from cups"
-msgstr "Mostra partite delle coppe"
+msgstr "Mostra partite di coppa"
 
 #: src/misc3_interface.c:84 src/options_interface.c:1002
 msgid "Show only my recent bets"
@@ -2402,7 +2404,7 @@ msgstr "Stadio"
 
 #: src/misc2_interface.c:118 src/treeview.c:1329
 msgid "Stadium capacity"
-msgstr ""
+msgstr "Capienza stadio"
 
 #: src/treeview.c:1450
 msgid "Stadium expenses"
@@ -2492,11 +2494,11 @@ msgstr "Lo stile di gioco della squadra e' stato cambiato in %s."
 
 #: src/treeview2.c:361
 msgid "Team1"
-msgstr "Squadra1"
+msgstr "Squadra 1"
 
 #: src/treeview2.c:367
 msgid "Team2"
-msgstr "Squadra2"
+msgstr "Squadra 2"
 
 #: src/main.c:85
 msgid "Test an XML commentary file"
@@ -2766,11 +2768,11 @@ msgstr "L'utente %s non ha ancora valutato la tua offerta"
 
 #: src/window.c:814
 msgid "User management"
-msgstr ""
+msgstr "Gestione utenti"
 
 #: src/misc2_interface.c:804
 msgid "Users -- click to remove"
-msgstr ""
+msgstr "Utenti -- click per rimuovere"
 
 #: src/treeview.c:307 src/treeview.c:1931
 msgid "Value"
@@ -2969,12 +2971,12 @@ msgstr ""
 #. Team 1 wins (betting window).
 #: src/treeview2.c:363
 msgid "Win1"
-msgstr ""
+msgstr "1"
 
 #. Team 2 wins (betting window).
 #: src/treeview2.c:366
 msgid "Win2"
-msgstr ""
+msgstr "2"
 
 #. Yellow cards of a player.
 #: src/treeview.c:303
@@ -3016,7 +3018,7 @@ msgid ""
 "You are making an offer for %s. Your scout's recommendations for fee and "
 "wage are preset."
 msgstr ""
-"Stai facendo un'offerta per %s. I suggerimenti del tuo agente di mercato sul "
+"Stai facendo un'offerta per %s. I suggerimenti del tuo direttore sportivo sul "
 "prezzo del cartellino e dello stipendio sono stati preimpostati."
 
 #: src/callback_func.c:541
@@ -3032,7 +3034,7 @@ msgstr ""
 "fai; se non raggiungi un accordo entro %d, lascera'la squadra alla scadenza "
 "del contratto (a meno che tu non lo venda prima).Puoi solamente uscire prima "
 "di fare la prima offerta. \n"
-"I suggerimenti del tuo agente di mercato sono stati preimpostati:"
+"I suggerimenti del tuo direttore sportivo sono stati preimpostati:"
 
 #: src/callback_func.c:347
 msgid "You are not indebted."
@@ -3052,7 +3054,7 @@ msgstr "Puoi estinguere al massimo %s"
 #: src/callback_func.c:333
 #, c-format
 msgid "You can take out at most %s."
-msgstr "Puoi spendere al massimo %s'"
+msgstr "Puoi chiedere al massimo %s'"
 
 #: src/callbacks.c:689
 msgid "You can't apply for a job from abroad if there's more than one user."
@@ -3137,8 +3139,10 @@ msgid ""
 "fourth time you get fired.\n"
 "The team owners give you %d weeks to get above your drawing credit limit."
 msgstr ""
-#"Hai superato il limite di fido ancora una volta. Cerca di capire che dopo "
-#"la quarta volta sarai licenziato.\n"
+"Hai superato il limite di fido ancora una volta. Cerca di capire che dopo "
+"la quarta volta sarai licenziato.\n"
+"La societa' ti concede %d settimane per riportare nel limite consentito "
+"dalla banca il fido."
 
 #: src/user.c:487
 #, c-format
@@ -3303,7 +3307,7 @@ msgstr "Investimento sui giovani"
 
 #: src/interface.c:601 src/treeview.c:1368
 msgid "Youth academy"
-msgstr "Giovanili"
+msgstr "Squadra Giovanili"
 
 #: src/callbacks.c:559 src/callbacks.c:1131 src/callbacks.c:1146
 #: src/callbacks.c:1163
