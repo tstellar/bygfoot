@@ -41,7 +41,7 @@
  * Program version number and year (copyright).
  */
 #define VERS "2.2.1"
-#define YEAR "2005 - 2007"
+#define YEAR "2005 - 2008"
 
 /** Home dir name */
 //#define HOMEDIRNAME ".bygfoot-cvs"
