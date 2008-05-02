@@ -38,6 +38,7 @@
 #include "load_save.h"
 #include "main.h"
 #include "maths.h"
+#include "misc.h"
 #include "misc_callback_func.h"
 #include "misc_interface.h"
 #include "misc2_interface.h"
@@ -941,7 +942,9 @@ window_show_training_camp(void)
     window_create(WINDOW_TRAINING_CAMP);
         
     // Initialize entry costs
-    sprintf(buf, "%d", COSTS_CAMP_1);
+    misc_print_grouped_int(
+	math_round_integer(finance_wage_unit(current_user.tm) * const_float("float_training_camp_factor1"), -2),
+	buf);
     tfCosts = GTK_ENTRY(lookup_widget(window.training_camp, "tf_costs"));
     gtk_entry_set_text (tfCosts, buf);
     

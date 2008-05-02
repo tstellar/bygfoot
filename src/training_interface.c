@@ -51,10 +51,10 @@ create_window_training_camp (void)
   GtkWidget *image4;
   GtkWidget *hs_camp_points;
   GtkWidget *hs_training;
-  GtkWidget *hs_recreation;
   GtkWidget *b_dec_recreation;
   GtkWidget *image1;
   GtkWidget *rb_camp1;
+  GtkWidget *hs_recreation;
 
   window_training_camp = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (window_training_camp), _("Training camp"));
@@ -171,13 +171,6 @@ create_window_training_camp (void)
   GTK_WIDGET_UNSET_FLAGS (hs_training, GTK_CAN_FOCUS);
   gtk_scale_set_value_pos (GTK_SCALE (hs_training), GTK_POS_RIGHT);
 
-  hs_recreation = gtk_hscale_new (GTK_ADJUSTMENT (gtk_adjustment_new (0, 1, 10, 1, 0, 0)));
-  gtk_widget_show (hs_recreation);
-  gtk_fixed_put (GTK_FIXED (panel_camp), hs_recreation, 220, 120);
-  gtk_widget_set_size_request (hs_recreation, 200, 36);
-  GTK_WIDGET_UNSET_FLAGS (hs_recreation, GTK_CAN_FOCUS);
-  gtk_scale_set_value_pos (GTK_SCALE (hs_recreation), GTK_POS_RIGHT);
-
   b_dec_recreation = gtk_button_new ();
   gtk_widget_show (b_dec_recreation);
   gtk_fixed_put (GTK_FIXED (panel_camp), b_dec_recreation, 176, 125);
@@ -193,6 +186,13 @@ create_window_training_camp (void)
   gtk_widget_set_size_request (rb_camp1, 200, 21);
   gtk_radio_button_set_group (GTK_RADIO_BUTTON (rb_camp1), rb_camp2_group);
   rb_camp2_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (rb_camp1));
+
+  hs_recreation = gtk_hscale_new (GTK_ADJUSTMENT (gtk_adjustment_new (0, 1, 10, 1, 0, 0)));
+  gtk_widget_show (hs_recreation);
+  gtk_fixed_put (GTK_FIXED (panel_camp), hs_recreation, 220, 120);
+  gtk_widget_set_size_request (hs_recreation, 200, 36);
+  GTK_WIDGET_UNSET_FLAGS (hs_recreation, GTK_CAN_FOCUS);
+  gtk_scale_set_value_pos (GTK_SCALE (hs_recreation), GTK_POS_RIGHT);
 
   g_signal_connect ((gpointer) window_training_camp, "delete_event",
                     G_CALLBACK (on_window_training_camp_delete_event),
@@ -247,10 +247,10 @@ create_window_training_camp (void)
   GLADE_HOOKUP_OBJECT (window_training_camp, image4, "image4");
   GLADE_HOOKUP_OBJECT (window_training_camp, hs_camp_points, "hs_camp_points");
   GLADE_HOOKUP_OBJECT (window_training_camp, hs_training, "hs_training");
-  GLADE_HOOKUP_OBJECT (window_training_camp, hs_recreation, "hs_recreation");
   GLADE_HOOKUP_OBJECT (window_training_camp, b_dec_recreation, "b_dec_recreation");
   GLADE_HOOKUP_OBJECT (window_training_camp, image1, "image1");
   GLADE_HOOKUP_OBJECT (window_training_camp, rb_camp1, "rb_camp1");
+  GLADE_HOOKUP_OBJECT (window_training_camp, hs_recreation, "hs_recreation");
 
   gtk_widget_grab_focus (rb_camp1);
   return window_training_camp;

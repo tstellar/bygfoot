@@ -28,10 +28,6 @@
 
 #include "bygfoot.h"
 
-#define COSTS_CAMP_1 200000
-#define COSTS_CAMP_2 400000
-#define COSTS_CAMP_3 600000
-
 #define CAMP_SCALE_MIN 0
 #define CAMP_SCALE_MAX 10
 #define CAMP_SCALE_STEP 1
