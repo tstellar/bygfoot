@@ -83,6 +83,9 @@ float_player_fitness_upper 100000
 float_player_contract_lower 100000
 float_player_contract_upper 400000
 
+# default contract value for youths
+float_player_contract_youth 100000
+
 # bounds for the last skill update at player generation. 
 float_player_lsu_lower 200000
 float_player_lsu_upper 1000000
@@ -405,13 +408,13 @@ int_season_end_user_champ_best_teams_limit 5
 
 # how much the user's luck deteriorates if he
 # becomes champion
-float_season_end_user_champ_luck_factor 95000
+float_season_end_user_champ_luck_factor 97500
 
 # how much it regenerates if he's not champ
-float_season_end_user_champ_luck_factor_regen 103000
+float_season_end_user_champ_luck_factor_regen 101000
 
 # lower limit for the user's luck
-float_luck_limit  50000
+float_luck_limit  90000
 
 float_season_end_league_above_talent_factor 103000
 
@@ -951,3 +954,25 @@ int_job_application_points_international 200
 
 # how many points a country rating difference is worth
 int_job_application_points_per_rating 80
+
+# the chance that a new star player to be bought doesn't
+# balk because of other star players already on the team
+float_transfer_star_no_balk 12000
+
+# the chance that a star player doesn't balk because
+# at contract renewal time
+float_contract_star_no_balk 25000
+
+# skill limit for transfers defining what we call a star
+float_transfer_star_skill_limit 9000000
+
+# skill limit for contract renewal defining what we call a star
+float_contract_star_skill_limit 9250000
+
+# how much the presence of a star player decreases the
+# probability that a new one accepts an offer
+float_transfer_star_prob_decrease 15000
+
+# probability of a star goalie accepting if there's
+# already one present
+float_transfer_star_goalie_accepts 12000
