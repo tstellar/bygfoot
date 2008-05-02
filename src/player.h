@@ -183,4 +183,7 @@ player_update_streak(Player *pl);
 gboolean
 query_player_is_in_ya(const Player *pl);
 
+gboolean
+query_player_star_balks(const Player *pl, const Team *tm, gboolean transfer);
+
 #endif

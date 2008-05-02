@@ -525,6 +525,12 @@ user_event_show_next(void)
 		    event->value_string,
 		    ((Team*)event->value_pointer)->name, buf2, buf3);
 	    break;
+	case EVENT_TYPE_TRANSFER_OFFER_REJECTED_STARS:
+	    /* A player from a team has rejected a transfer offer. */
+	    game_gui_show_warning(_("%s of %s has rejected your offer because your team has too many star players already. 'A player of my caliber doesn't play second fiddle,' he was quoted."),
+				  event->value_string,
+				  ((Team*)event->value_pointer)->name);
+	    break;
 	case EVENT_TYPE_TRANSFER_OFFER_MONEY:
 	    /* Buy a player from a team. */
 	    game_gui_show_warning(_("You didn't have enough money to buy %s from %s."),
