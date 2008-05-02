@@ -527,6 +527,12 @@ callback_offer_new_contract(gint idx)
 	game_gui_show_warning(_("The player won't negotiate with you anymore."));
 	return;
     }
+    else if(query_player_star_balks(pl, current_user.tm, FALSE))
+    {
+	pl->offers = const_int("int_contract_max_offers");
+	game_gui_show_warning(_("The player feels he doesn't have a future in your star-studded team. He refuses to negotiate."));
+	return;
+    }
 
     stat1 = player_assign_wage(pl);
     statp = (gpointer)pl;

@@ -248,6 +248,16 @@ transfer_evaluate_offers(void)
 				player_of_id_team(trans(i).tm, trans(i).id)->name);
 			    transoff(i, j).status = TRANSFER_OFFER_REJECTED;
 			}
+			else if(query_player_star_balks(
+				    player_of_id_team(trans(i).tm, trans(i).id), transoff(i, j).tm, TRUE))
+			{
+			    user_event_add(
+				user_from_team(transoff(i, j).tm),
+				EVENT_TYPE_TRANSFER_OFFER_REJECTED_STARS, -1, -1,
+				trans(i).tm, 
+				player_of_id_team(trans(i).tm, trans(i).id)->name);
+			    transoff(i, j).status = TRANSFER_OFFER_REJECTED;
+			}
 			else
 			    notify = TRUE;
 		    }
