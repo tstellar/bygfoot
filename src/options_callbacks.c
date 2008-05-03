@@ -28,6 +28,7 @@
 #include "options_interface.h"
 #include "option_gui.h"
 #include "support.h"
+#include "training.h"
 #include "user.h"
 #include "variables.h"
 #include "window.h"
@@ -59,6 +60,8 @@ on_button_options_ok_clicked           (GtkButton       *button,
 	    sprintf(buf, "%s%sbygfoot_user.conf", conf_dir, G_DIR_SEPARATOR_S);
 	else
 	    sprintf(buf, "%s%sbygfoot_%s.conf", conf_dir, G_DIR_SEPARATOR_S, current_user.name);
+
+	printf("%s\n", buf);
 
 	file_save_opt_file(buf, &current_user.options);
     }
@@ -143,3 +146,14 @@ on_window_options_delete_event         (GtkWidget       *widget,
     return TRUE;
 }
 
+
+void
+on_spinbutton_recreation_value_changed (GtkSpinButton   *spinbutton,
+                                        gpointer         user_data)
+{
+    gchar buf[SMALL];
+
+    sprintf(buf, "%d", CAMP_SCALE_MAX - gtk_spin_button_get_value_as_int(spinbutton));
+    
+    gtk_label_set_text(GTK_LABEL(lookup_widget(window.options, "label_training")), buf);
+}

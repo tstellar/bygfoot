@@ -241,4 +241,10 @@ treeview_set_up_sponsors(GtkTreeView *treeview);
 void
 treeview_show_sponsors(const GArray *sponsors);
 
+GtkTreeModel*
+treeview_create_training_hotel_list(void);
+
+void
+treeview_show_training_hotels_combo(void);
+
 #endif

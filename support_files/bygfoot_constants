@@ -229,7 +229,6 @@ int_treeview_max_pipes 50
 float_player_pos_bound1 37550
 float_player_pos_bound2 75100
 
-
 # minimum number of players in a user team.
 int_team_min_players 11
 # maximum number of players in a user team.
@@ -981,3 +980,9 @@ float_transfer_star_goalie_accepts 12000
 float_training_camp_factor1 500000
 float_training_camp_factor2 1000000
 float_training_camp_factor3 1500000
+
+# number of training camps allowed for one season
+int_training_camps_per_season 12
+
+# number of training camps allowed per week
+int_training_camps_week 2

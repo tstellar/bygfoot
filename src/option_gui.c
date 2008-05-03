@@ -31,6 +31,7 @@
 #include "option_gui.h"
 #include "misc.h"
 #include "support.h"
+#include "training.h"
 #include "treeview.h"
 #include "user.h"
 #include "variables.h"
@@ -350,6 +351,7 @@ enum SpinOptions
     SPIN_OPT_LIVE_VERBOSITY,
     SPIN_OPT_CONTRACT,
     SPIN_OPT_BET_WAGER,
+    SPIN_OPT_TRAINING_CAMP_RECREATION,
     SPIN_OPT_END
 };
 
@@ -378,6 +380,10 @@ option_gui_write_spin_widgets(gint **spin_options, GtkSpinButton **spin_widgets)
     spin_widgets[SPIN_OPT_LIVE_SPEED] =
 	GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_live_speed"));
     spin_options[SPIN_OPT_LIVE_SPEED] = opt_user_intp("int_opt_user_live_game_speed");
+
+    spin_widgets[SPIN_OPT_TRAINING_CAMP_RECREATION] =
+	GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_recreation"));
+    spin_options[SPIN_OPT_TRAINING_CAMP_RECREATION] = opt_user_intp("int_opt_user_training_camp_recreation");
 
     /** Note the spinbutton value so that it doesn't get lost
 	when setting the range. */    
@@ -437,6 +443,7 @@ void
 option_gui_set_up_window(void)
 {
     gint i;
+    gchar buf[SMALL];
     GtkToggleButton *bool_widgets[BOOL_OPT_END];
     gint *bool_options[BOOL_OPT_END];
 
@@ -447,6 +454,7 @@ option_gui_set_up_window(void)
     gchar **entry_options[ENTRY_OPT_END];
 
     treeview_show_language_combo();
+    treeview_show_training_hotels_combo();
 
     option_gui_write_bool_widgets(bool_options, bool_widgets);
     option_gui_write_spin_widgets(spin_options, spin_widgets);
@@ -460,6 +468,10 @@ option_gui_set_up_window(void)
 
     for(i=0;i<ENTRY_OPT_END;i++)
 	gtk_entry_set_text(entry_widgets[i], *(entry_options[i]));
+
+    sprintf(buf, "%d", CAMP_SCALE_MAX - gtk_spin_button_get_value_as_int(
+		GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_recreation"))));
+    gtk_label_set_text(GTK_LABEL(lookup_widget(window.options, "label_training")), buf);
 }
 
 /** Read the widget states in the options window and set the
@@ -470,6 +482,8 @@ option_gui_write_options(void)
     gint i;
     gint language_index = 
 	gtk_combo_box_get_active(GTK_COMBO_BOX(lookup_widget(window.options, "combobox_languages")));
+    gint training_camp_hotel =
+	gtk_combo_box_get_active(GTK_COMBO_BOX(lookup_widget(window.options, "combobox_hotel"))) + 1;
     GtkToggleButton *bool_widgets[BOOL_OPT_END];
     gint *bool_options[BOOL_OPT_END];
     GtkSpinButton *spin_widgets[SPIN_OPT_END];
@@ -478,6 +492,7 @@ option_gui_write_options(void)
     gchar **entry_options[ENTRY_OPT_END];
     
     language_set(language_index);
+    opt_user_set_int("int_opt_user_training_camp_hotel", training_camp_hotel);
 
     option_gui_write_bool_widgets(bool_options, bool_widgets);
     option_gui_write_spin_widgets(spin_options, spin_widgets);

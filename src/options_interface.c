@@ -183,6 +183,21 @@ create_window_options (void)
   GtkObject *spinbutton_bet_wager_adj;
   GtkWidget *spinbutton_bet_wager;
   GtkWidget *label41;
+  GtkWidget *vbox9;
+  GtkWidget *hbox13;
+  GtkWidget *label44;
+  GtkWidget *combobox_hotel;
+  GtkWidget *vbox10;
+  GtkWidget *hseparator7;
+  GtkWidget *hbox15;
+  GtkWidget *label45;
+  GtkObject *spinbutton_recreation_adj;
+  GtkWidget *spinbutton_recreation;
+  GtkWidget *hseparator8;
+  GtkWidget *hbox16;
+  GtkWidget *label47;
+  GtkWidget *label_training;
+  GtkWidget *label43;
   GtkWidget *hseparator1;
   GtkWidget *hbox1;
   GtkWidget *vbox2;
@@ -1022,6 +1037,73 @@ create_window_options (void)
   gtk_widget_show (label41);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 4), label41);
 
+  vbox9 = gtk_vbox_new (FALSE, 0);
+  gtk_widget_show (vbox9);
+  gtk_container_add (GTK_CONTAINER (notebook1), vbox9);
+  gtk_notebook_set_tab_label_packing (GTK_NOTEBOOK (notebook1), vbox9,
+                                      FALSE, FALSE, GTK_PACK_START);
+
+  hbox13 = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (hbox13);
+  gtk_box_pack_start (GTK_BOX (vbox9), hbox13, FALSE, FALSE, 0);
+
+  label44 = gtk_label_new (_("Default hotel"));
+  gtk_widget_show (label44);
+  gtk_box_pack_start (GTK_BOX (hbox13), label44, FALSE, FALSE, 0);
+  gtk_misc_set_alignment (GTK_MISC (label44), 0.1, 0.5);
+  gtk_misc_set_padding (GTK_MISC (label44), 4, 3);
+
+  combobox_hotel = gtk_combo_box_new_text ();
+  gtk_widget_show (combobox_hotel);
+  gtk_box_pack_start (GTK_BOX (hbox13), combobox_hotel, FALSE, FALSE, 0);
+
+  vbox10 = gtk_vbox_new (FALSE, 0);
+  gtk_widget_show (vbox10);
+  gtk_box_pack_start (GTK_BOX (vbox9), vbox10, FALSE, FALSE, 0);
+
+  hseparator7 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator7);
+  gtk_box_pack_start (GTK_BOX (vbox10), hseparator7, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (hseparator7, -1, 10);
+
+  hbox15 = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (hbox15);
+  gtk_box_pack_start (GTK_BOX (vbox10), hbox15, FALSE, FALSE, 0);
+
+  label45 = gtk_label_new (_("Default recreation:"));
+  gtk_widget_show (label45);
+  gtk_box_pack_start (GTK_BOX (hbox15), label45, FALSE, FALSE, 0);
+  gtk_misc_set_alignment (GTK_MISC (label45), 0.1, 0.5);
+  gtk_misc_set_padding (GTK_MISC (label45), 3, 3);
+
+  spinbutton_recreation_adj = gtk_adjustment_new (1, 0, 10, 1, 10, 10);
+  spinbutton_recreation = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_recreation_adj), 1, 0);
+  gtk_widget_show (spinbutton_recreation);
+  gtk_box_pack_start (GTK_BOX (hbox15), spinbutton_recreation, FALSE, FALSE, 0);
+
+  hseparator8 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator8);
+  gtk_box_pack_start (GTK_BOX (vbox9), hseparator8, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (hseparator8, -1, 10);
+
+  hbox16 = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (hbox16);
+  gtk_box_pack_start (GTK_BOX (vbox9), hbox16, FALSE, FALSE, 0);
+
+  label47 = gtk_label_new (_("Default training:"));
+  gtk_widget_show (label47);
+  gtk_box_pack_start (GTK_BOX (hbox16), label47, FALSE, FALSE, 0);
+  gtk_misc_set_alignment (GTK_MISC (label47), 0.1, 0.5);
+  gtk_misc_set_padding (GTK_MISC (label47), 3, 3);
+
+  label_training = gtk_label_new (_("label48"));
+  gtk_widget_show (label_training);
+  gtk_box_pack_start (GTK_BOX (hbox16), label_training, FALSE, FALSE, 0);
+
+  label43 = gtk_label_new (_("Training camp"));
+  gtk_widget_show (label43);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 5), label43);
+
   hseparator1 = gtk_hseparator_new ();
   gtk_widget_show (hseparator1);
   gtk_box_pack_start (GTK_BOX (vbox1), hseparator1, FALSE, FALSE, 0);
@@ -1054,7 +1136,7 @@ create_window_options (void)
   gtk_box_pack_start (GTK_BOX (hbox1), button_cancel, TRUE, TRUE, 0);
   gtk_tooltips_set_tip (tooltips, button_cancel, _("Esc"), NULL);
   gtk_widget_add_accelerator (button_cancel, "clicked", accel_group,
-                              GDK_Escape, 0,
+                              GDK_Escape, (GdkModifierType) 0,
                               GTK_ACCEL_VISIBLE);
 
   g_signal_connect ((gpointer) window_options, "delete_event",
@@ -1065,6 +1147,9 @@ create_window_options (void)
                     NULL);
   g_signal_connect ((gpointer) button_reload_constants, "clicked",
                     G_CALLBACK (on_button_reload_constants_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) spinbutton_recreation, "value_changed",
+                    G_CALLBACK (on_spinbutton_recreation_value_changed),
                     NULL);
   g_signal_connect ((gpointer) checkbutton_save_global, "button_press_event",
                     G_CALLBACK (on_checkbutton_save_global_button_press_event),
@@ -1226,6 +1311,20 @@ create_window_options (void)
   GLADE_HOOKUP_OBJECT (window_options, label42, "label42");
   GLADE_HOOKUP_OBJECT (window_options, spinbutton_bet_wager, "spinbutton_bet_wager");
   GLADE_HOOKUP_OBJECT (window_options, label41, "label41");
+  GLADE_HOOKUP_OBJECT (window_options, vbox9, "vbox9");
+  GLADE_HOOKUP_OBJECT (window_options, hbox13, "hbox13");
+  GLADE_HOOKUP_OBJECT (window_options, label44, "label44");
+  GLADE_HOOKUP_OBJECT (window_options, combobox_hotel, "combobox_hotel");
+  GLADE_HOOKUP_OBJECT (window_options, vbox10, "vbox10");
+  GLADE_HOOKUP_OBJECT (window_options, hseparator7, "hseparator7");
+  GLADE_HOOKUP_OBJECT (window_options, hbox15, "hbox15");
+  GLADE_HOOKUP_OBJECT (window_options, label45, "label45");
+  GLADE_HOOKUP_OBJECT (window_options, spinbutton_recreation, "spinbutton_recreation");
+  GLADE_HOOKUP_OBJECT (window_options, hseparator8, "hseparator8");
+  GLADE_HOOKUP_OBJECT (window_options, hbox16, "hbox16");
+  GLADE_HOOKUP_OBJECT (window_options, label47, "label47");
+  GLADE_HOOKUP_OBJECT (window_options, label_training, "label_training");
+  GLADE_HOOKUP_OBJECT (window_options, label43, "label43");
   GLADE_HOOKUP_OBJECT (window_options, hseparator1, "hseparator1");
   GLADE_HOOKUP_OBJECT (window_options, hbox1, "hbox1");
   GLADE_HOOKUP_OBJECT (window_options, vbox2, "vbox2");

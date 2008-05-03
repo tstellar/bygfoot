@@ -61,3 +61,7 @@ on_window_options_delete_event         (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data);
 #endif
+
+void
+on_spinbutton_recreation_value_changed (GtkSpinButton   *spinbutton,
+                                        gpointer         user_data);

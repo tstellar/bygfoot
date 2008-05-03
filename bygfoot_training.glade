@@ -46,54 +46,6 @@
       </child>
 
       <child>
-	<widget class="GtkHSeparator" id="hs_camp1">
-	  <property name="width_request">450</property>
-	  <property name="height_request">16</property>
-	  <property name="visible">True</property>
-	</widget>
-	<packing>
-	  <property name="x">25</property>
-	  <property name="y">235</property>
-	</packing>
-      </child>
-
-      <child>
-	<widget class="GtkButton" id="b_cancel">
-	  <property name="width_request">110</property>
-	  <property name="height_request">25</property>
-	  <property name="visible">True</property>
-	  <property name="can_focus">True</property>
-	  <property name="label">gtk-cancel</property>
-	  <property name="use_stock">True</property>
-	  <property name="relief">GTK_RELIEF_NORMAL</property>
-	  <property name="focus_on_click">True</property>
-	  <signal name="clicked" handler="on_b_cancel_clicked" last_modification_time="Sun, 03 Dec 2006 16:09:00 GMT"/>
-	</widget>
-	<packing>
-	  <property name="x">376</property>
-	  <property name="y">254</property>
-	</packing>
-      </child>
-
-      <child>
-	<widget class="GtkButton" id="b_ok">
-	  <property name="width_request">110</property>
-	  <property name="height_request">25</property>
-	  <property name="visible">True</property>
-	  <property name="can_focus">True</property>
-	  <property name="label">gtk-apply</property>
-	  <property name="use_stock">True</property>
-	  <property name="relief">GTK_RELIEF_NORMAL</property>
-	  <property name="focus_on_click">True</property>
-	  <signal name="clicked" handler="on_b_ok_clicked" last_modification_time="Sun, 03 Dec 2006 16:09:36 GMT"/>
-	</widget>
-	<packing>
-	  <property name="x">256</property>
-	  <property name="y">254</property>
-	</packing>
-      </child>
-
-      <child>
 	<widget class="GtkHSeparator" id="hs_camp2">
 	  <property name="width_request">450</property>
 	  <property name="height_request">16</property>
@@ -207,49 +159,6 @@
 	<packing>
 	  <property name="x">255</property>
 	  <property name="y">41</property>
-	</packing>
-      </child>
-
-      <child>
-	<widget class="GtkRadioButton" id="rb_camp2">
-	  <property name="width_request">200</property>
-	  <property name="height_request">21</property>
-	  <property name="visible">True</property>
-	  <property name="can_focus">True</property>
-	  <property name="label" translatable="yes">First-Class Hotel</property>
-	  <property name="use_underline">True</property>
-	  <property name="relief">GTK_RELIEF_NORMAL</property>
-	  <property name="focus_on_click">True</property>
-	  <property name="active">False</property>
-	  <property name="inconsistent">False</property>
-	  <property name="draw_indicator">True</property>
-	  <signal name="clicked" handler="on_rb_camp2_clicked" last_modification_time="Sun, 03 Dec 2006 16:50:34 GMT"/>
-	</widget>
-	<packing>
-	  <property name="x">24</property>
-	  <property name="y">40</property>
-	</packing>
-      </child>
-
-      <child>
-	<widget class="GtkRadioButton" id="rb_camp3">
-	  <property name="width_request">200</property>
-	  <property name="height_request">21</property>
-	  <property name="visible">True</property>
-	  <property name="can_focus">True</property>
-	  <property name="label" translatable="yes">Premium Hotel</property>
-	  <property name="use_underline">True</property>
-	  <property name="relief">GTK_RELIEF_NORMAL</property>
-	  <property name="focus_on_click">True</property>
-	  <property name="active">False</property>
-	  <property name="inconsistent">False</property>
-	  <property name="draw_indicator">True</property>
-	  <property name="group">rb_camp2</property>
-	  <signal name="clicked" handler="on_rb_camp3_clicked" last_modification_time="Sun, 03 Dec 2006 16:50:53 GMT"/>
-	</widget>
-	<packing>
-	  <property name="x">24</property>
-	  <property name="y">64</property>
 	</packing>
       </child>
 
@@ -370,24 +279,6 @@
       </child>
 
       <child>
-	<widget class="GtkHScale" id="hs_recreation">
-	  <property name="width_request">200</property>
-	  <property name="height_request">36</property>
-	  <property name="visible">True</property>
-	  <property name="draw_value">True</property>
-	  <property name="value_pos">GTK_POS_RIGHT</property>
-	  <property name="digits">1</property>
-	  <property name="update_policy">GTK_UPDATE_CONTINUOUS</property>
-	  <property name="inverted">False</property>
-	  <property name="adjustment">0 1 10 1 0 0</property>
-	</widget>
-	<packing>
-	  <property name="x">220</property>
-	  <property name="y">120</property>
-	</packing>
-      </child>
-
-      <child>
 	<widget class="GtkButton" id="b_dec_recreation">
 	  <property name="width_request">30</property>
 	  <property name="height_request">26</property>
@@ -415,6 +306,24 @@
       </child>
 
       <child>
+	<widget class="GtkHScale" id="hs_recreation">
+	  <property name="width_request">200</property>
+	  <property name="height_request">36</property>
+	  <property name="visible">True</property>
+	  <property name="draw_value">True</property>
+	  <property name="value_pos">GTK_POS_RIGHT</property>
+	  <property name="digits">1</property>
+	  <property name="update_policy">GTK_UPDATE_CONTINUOUS</property>
+	  <property name="inverted">False</property>
+	  <property name="adjustment">0 1 10 1 0 0</property>
+	</widget>
+	<packing>
+	  <property name="x">220</property>
+	  <property name="y">120</property>
+	</packing>
+      </child>
+
+      <child>
 	<widget class="GtkRadioButton" id="rb_camp1">
 	  <property name="width_request">200</property>
 	  <property name="height_request">21</property>
@@ -428,12 +337,123 @@
 	  <property name="active">False</property>
 	  <property name="inconsistent">False</property>
 	  <property name="draw_indicator">True</property>
-	  <property name="group">rb_camp2</property>
 	  <signal name="clicked" handler="on_rb_camp1_clicked" last_modification_time="Sun, 03 Dec 2006 16:50:23 GMT"/>
 	</widget>
 	<packing>
 	  <property name="x">24</property>
 	  <property name="y">16</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkRadioButton" id="rb_camp2">
+	  <property name="width_request">200</property>
+	  <property name="height_request">21</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="label" translatable="yes">First-Class Hotel</property>
+	  <property name="use_underline">True</property>
+	  <property name="relief">GTK_RELIEF_NORMAL</property>
+	  <property name="focus_on_click">True</property>
+	  <property name="active">False</property>
+	  <property name="inconsistent">False</property>
+	  <property name="draw_indicator">True</property>
+	  <property name="group">rb_camp1</property>
+	  <signal name="clicked" handler="on_rb_camp2_clicked" last_modification_time="Sun, 03 Dec 2006 16:50:34 GMT"/>
+	</widget>
+	<packing>
+	  <property name="x">24</property>
+	  <property name="y">40</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkRadioButton" id="rb_camp3">
+	  <property name="width_request">200</property>
+	  <property name="height_request">21</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="label" translatable="yes">Premium Hotel</property>
+	  <property name="use_underline">True</property>
+	  <property name="relief">GTK_RELIEF_NORMAL</property>
+	  <property name="focus_on_click">True</property>
+	  <property name="active">False</property>
+	  <property name="inconsistent">False</property>
+	  <property name="draw_indicator">True</property>
+	  <property name="group">rb_camp1</property>
+	  <signal name="clicked" handler="on_rb_camp3_clicked" last_modification_time="Sun, 03 Dec 2006 16:50:53 GMT"/>
+	</widget>
+	<packing>
+	  <property name="x">24</property>
+	  <property name="y">64</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkHSeparator" id="hs_camp1">
+	  <property name="width_request">450</property>
+	  <property name="height_request">16</property>
+	  <property name="visible">True</property>
+	</widget>
+	<packing>
+	  <property name="x">25</property>
+	  <property name="y">232</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkButton" id="b_ok">
+	  <property name="width_request">110</property>
+	  <property name="height_request">35</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="label">gtk-apply</property>
+	  <property name="use_stock">True</property>
+	  <property name="relief">GTK_RELIEF_NORMAL</property>
+	  <property name="focus_on_click">True</property>
+	  <signal name="clicked" handler="on_b_ok_clicked" last_modification_time="Sun, 03 Dec 2006 16:09:36 GMT"/>
+	</widget>
+	<packing>
+	  <property name="x">256</property>
+	  <property name="y">254</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkButton" id="b_cancel">
+	  <property name="width_request">110</property>
+	  <property name="height_request">35</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="label">gtk-cancel</property>
+	  <property name="use_stock">True</property>
+	  <property name="relief">GTK_RELIEF_NORMAL</property>
+	  <property name="focus_on_click">True</property>
+	  <signal name="clicked" handler="on_b_cancel_clicked" last_modification_time="Sun, 03 Dec 2006 16:09:00 GMT"/>
+	</widget>
+	<packing>
+	  <property name="x">376</property>
+	  <property name="y">254</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkCheckButton" id="checkbutton_save">
+	  <property name="width_request">208</property>
+	  <property name="height_request">21</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="label" translatable="yes">Save settings as default</property>
+	  <property name="use_underline">True</property>
+	  <property name="relief">GTK_RELIEF_NORMAL</property>
+	  <property name="focus_on_click">True</property>
+	  <property name="active">False</property>
+	  <property name="inconsistent">False</property>
+	  <property name="draw_indicator">True</property>
+	</widget>
+	<packing>
+	  <property name="x">24</property>
+	  <property name="y">264</property>
 	</packing>
       </child>
     </widget>
