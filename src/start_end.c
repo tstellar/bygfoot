@@ -121,6 +121,9 @@ start_new_season(void)
 			     usr(i).tm->name, 
 			     league_cup_get_name_string(usr(i).tm->clid), 
 			     buf, NULL);
+
+	    usr(i).counters[COUNT_USER_TRAININGS_LEFT_SEASON] =
+		const_int("int_training_camps_per_season");
 	}
 
 	start_new_season_league_changes();

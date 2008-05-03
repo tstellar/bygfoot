@@ -952,7 +952,13 @@ window_show_training_camp(void)
     rb_camp1 = GTK_WIDGET(lookup_widget(window.training_camp, "rb_camp1"));
     rb_camp2 = GTK_WIDGET(lookup_widget(window.training_camp, "rb_camp2"));
     rb_camp3 = GTK_WIDGET(lookup_widget(window.training_camp, "rb_camp3"));
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(rb_camp1), TRUE);
+
+    if(opt_user_int("int_opt_user_training_camp_hotel") == TRAINING_CAMP_HOTEL_GOOD)
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(rb_camp1), TRUE);
+    else if(opt_user_int("int_opt_user_training_camp_hotel") == TRAINING_CAMP_HOTEL_FIRST)
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(rb_camp2), TRUE);
+    else
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(rb_camp3), TRUE);
     
     //Initialize labels
     l_costs = GTK_LABEL(lookup_widget(window.training_camp, "l_costs"));
@@ -971,9 +977,10 @@ window_show_training_camp(void)
     gtk_range_set_range (GTK_RANGE(hs_recreation), CAMP_SCALE_MIN, CAMP_SCALE_MAX);
     gtk_range_set_range (GTK_RANGE(hs_training), CAMP_SCALE_MIN, CAMP_SCALE_MAX);
     gtk_range_set_range (GTK_RANGE(hs_camp_points), CAMP_SCALE_MIN, CAMP_SCALE_MAX);
-    gtk_range_set_value (GTK_RANGE(hs_recreation), CAMP_SCALE_MIN);
-    gtk_range_set_value (GTK_RANGE(hs_training), CAMP_SCALE_MIN);
-    gtk_range_set_value (GTK_RANGE(hs_camp_points), CAMP_SCALE_MAX);
+    gtk_range_set_value (GTK_RANGE(hs_recreation), opt_user_int("int_opt_user_training_camp_recreation"));
+    gtk_range_set_value (GTK_RANGE(hs_training), 
+			 CAMP_SCALE_MAX - opt_user_int("int_opt_user_training_camp_recreation"));
+    gtk_range_set_value (GTK_RANGE(hs_camp_points), CAMP_SCALE_MIN);
     gtk_scale_set_digits (GTK_SCALE(hs_recreation), 0);
     gtk_scale_set_digits (GTK_SCALE(hs_training), 0);
     gtk_scale_set_digits (GTK_SCALE(hs_camp_points), 0);

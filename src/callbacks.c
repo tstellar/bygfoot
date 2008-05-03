@@ -1283,6 +1283,19 @@ on_training_camp_activate              (GtkMenuItem     *menuitem,
 	return;
     }
 
-    window_show_training_camp();
+   if(current_user.counters[COUNT_USER_TRAININGS_WEEK] == 
+      const_int("int_training_camps_week"))
+   {
+       game_gui_print_message(_("Your team has already had enough training camps this week."));
+       return;
+   }
 
+   if(current_user.counters[COUNT_USER_TRAININGS_LEFT_SEASON] == 0)
+   {
+       game_gui_print_message(_("You've reached the limit of %d training camps for the season."),
+			      const_int("int_training_camps_per_season"));
+       return;
+   }
+
+   window_show_training_camp();
 }

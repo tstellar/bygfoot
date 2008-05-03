@@ -2552,6 +2552,46 @@ treeview_show_language_combo(void)
 }
 
 GtkTreeModel*
+treeview_create_training_hotel_list(void)
+{
+    GtkListStore *ls = gtk_list_store_new(1, G_TYPE_STRING);
+    GtkTreeIter iter;
+
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, _("Good Hotel"), -1);
+
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, _("First-Class Hotel"), -1);
+
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, _("Premium Hotel"), -1);
+
+    return GTK_TREE_MODEL(ls);
+}
+
+/** Show the list of training camp hotels. */
+void
+treeview_show_training_hotels_combo(void)
+{
+    GtkTreeModel *model = treeview_create_training_hotel_list();
+    GtkComboBox *combo_hotel =
+	GTK_COMBO_BOX(lookup_widget(window.options, "combobox_hotel"));
+    GtkCellRenderer *renderer = NULL;
+
+    gtk_cell_layout_clear(GTK_CELL_LAYOUT(combo_hotel));
+
+    renderer = treeview_helper_cell_renderer_text_new();
+    gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(combo_hotel), renderer, FALSE);
+    gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(combo_hotel), renderer, "text", 0, NULL);
+
+    gtk_combo_box_set_model(combo_hotel, model);
+    g_object_unref(model);
+
+    gtk_combo_box_set_active(GTK_COMBO_BOX(combo_hotel), 
+			     opt_user_int("int_opt_user_training_camp_hotel") - 1);
+}
+
+GtkTreeModel*
 treeview_create_sponsors(const GArray *sponsors)
 {
     gint i;

@@ -174,6 +174,8 @@ user_set_up_counters(User *user)
 
     user->counters[COUNT_USER_LOAN] =
 	user->counters[COUNT_USER_POSITIVE] = -1;
+    user->counters[COUNT_USER_TRAININGS_LEFT_SEASON] = 
+	const_int("int_training_camps_per_season");
 }
 
 /** Set up the user's finances when he's got a new team.
@@ -353,6 +355,8 @@ user_weekly_update_counters(User *user)
     gint *cnts = user->counters;
     gint increase_capacity;
     gfloat increase_safety;
+
+    cnts[COUNT_USER_TRAININGS_WEEK] = 0;
 
     if(cnts[COUNT_USER_STADIUM_CAPACITY] > 0)
     {

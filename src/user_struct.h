@@ -80,6 +80,8 @@ enum CounterValue
     COUNT_USER_SHOW_RES, /**< Whether the latest result is shown when the main window gets refreshed. */
     COUNT_USER_TOOK_TURN, /**< Whether the user took his turn in a week round. */
     COUNT_USER_NEW_SPONSOR, /**< A new sponsor offer has to be shown. */
+    COUNT_USER_TRAININGS_WEEK, /**< Whether the user has already had a training camp this week. */
+    COUNT_USER_TRAININGS_LEFT_SEASON, /**< How many training camps left for the season. */
     COUNT_USER_END
 };
 

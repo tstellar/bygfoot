@@ -40,7 +40,7 @@
 /**
  * Program version number and year (copyright).
  */
-#define VERS "2.2.1"
+#define VERS "2.3.0"
 #define YEAR "2005 - 2008"
 
 /** Home dir name */

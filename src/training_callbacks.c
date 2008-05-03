@@ -63,18 +63,22 @@ on_b_ok_clicked                        (GtkButton       *button,
     gdouble value_training;
     gdouble value_recreation;
     gint number_camp;
+    gboolean save;
     Team *current_team = current_user.tm;
-	
+
+    save = gtk_toggle_button_get_active(
+	GTK_TOGGLE_BUTTON(lookup_widget(window.training_camp, "checkbutton_save")));
+
     //Get active radio
     rb_camp1 = GTK_WIDGET(lookup_widget(window.training_camp, "rb_camp1"));
     rb_camp2 = GTK_WIDGET(lookup_widget(window.training_camp, "rb_camp2"));
 
     if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(rb_camp1)))
-	number_camp = 1;
+	number_camp = TRAINING_CAMP_HOTEL_GOOD;
     else if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(rb_camp2)))
-	number_camp = 2;
+	number_camp = TRAINING_CAMP_HOTEL_FIRST;
     else
-	number_camp = 3;
+	number_camp = TRAINING_CAMP_HOTEL_PREMIUM;
 	
     //Get values for training and recreation	
     hs_recreation = GTK_HSCALE(lookup_widget(window.training_camp, "hs_recreation"));
@@ -96,8 +100,19 @@ on_b_ok_clicked                        (GtkButton       *button,
 	
     //Set new av-values -> GUI
     game_gui_write_money();
+
+    if(save)
+    {
+	opt_user_set_int("int_opt_user_training_camp_hotel", number_camp);
+	opt_user_set_int("int_opt_user_training_camp_recreation", value_recreation);
+    }
 	
     window_destroy(&window.training_camp);
+
+    current_user.counters[COUNT_USER_TRAININGS_WEEK]++;
+    current_user.counters[COUNT_USER_TRAININGS_LEFT_SEASON]--;
+    game_gui_print_message(_("%d training camps left this season."),
+			   current_user.counters[COUNT_USER_TRAININGS_LEFT_SEASON]);
 }
 
 void
