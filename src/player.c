@@ -698,13 +698,17 @@ player_is_banned(const Player *pl)
     streak.
     @return A float value representing the player's contribution. */
 gfloat
-player_get_game_skill(const Player *pl, gboolean skill, gboolean count_special)
+player_get_game_skill(Player *pl, gboolean skill, gboolean count_special)
 {
     gfloat boost = (count_special) ? 
 	1 + const_float("float_player_boost_skill_effect") * pl->team->boost : 1;
     gfloat streak = (count_special) ?
 	1 + (gfloat)pl->streak * const_float("float_player_streak_influence_skill") : 1;
     
+    // workaround
+    if(pl->fitness < 0)
+	pl->fitness = const_float("float_player_fitness_lower");
+
     return (skill) ? pl->skill * boost * streak *
 	powf(pl->fitness, const_float("float_player_fitness_exponent"))	:
 	pl->cskill * boost * streak *
