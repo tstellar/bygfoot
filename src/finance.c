@@ -28,6 +28,7 @@
 #include "game_gui.h"
 #include "league.h"
 #include "maths.h"
+#include "misc.h"
 #include "option.h"
 #include "player.h"
 #include "team.h"
@@ -300,4 +301,58 @@ finance_get_stadium_improvement_duration(gfloat value, gboolean capacity)
 		   (gint)rint(const_float("float_stadium_improvement_base_safety") * 100)) + 1;
 
     return return_value;
+}
+
+/** Update the user's accounts depending on match type and attendance.
+    @fix The fixture being examined. */
+void
+finance_assign_game_money(const Fixture *fix)
+{
+    gint i;
+    gint user_idx[2] = {team_is_user(fix->teams[0]), team_is_user(fix->teams[1])};
+    gfloat journey_factor =
+	(fix->clid < ID_CUP_START ||
+	 (fix->clid >= ID_CUP_START && 
+	  query_cup_is_national(fix->clid))) ?
+	const_float("float_game_finance_journey_factor_national") :
+	const_float("float_game_finance_journey_factor_international");    
+    gint ticket_income[2] = {0, 0};
+
+    if (fix->clid >= ID_CUP_START && 
+	! g_array_index(cup_from_clid(fix->clid)->rounds, CupRound, fix->round).home_away)
+    {
+	ticket_income[0] = 
+	    ticket_income[1] = fix->attendance * const_int("int_team_stadium_ticket_price") / 2;
+    }
+    else
+	ticket_income[0] = fix->attendance * const_int("int_team_stadium_ticket_price");
+
+    for(i = 0; i < 2; i++)
+    {
+	if(user_idx[i] != -1)
+	{
+	    usr(user_idx[i]).money += ticket_income[i];
+	    usr(user_idx[i]).money_in[1][MON_IN_TICKET] += ticket_income[i];
+
+	    usr(user_idx[i]).money -= 
+		(gint)rint((gfloat)ticket_income[i] * (gfloat)usr(user_idx[0]).youth_academy.percentage / 100);
+	    usr(user_idx[i]).money_out[1][MON_OUT_YA] -=
+		(gint)rint((gfloat)ticket_income[i] * (gfloat)usr(user_idx[0]).youth_academy.percentage / 100);
+
+	    if(i == 0 && debug < 50)
+	    {
+		fix->teams[0]->stadium.safety -= 
+		    math_rnd(const_float("float_game_stadium_safety_deterioration_lower"),
+			     const_float("float_game_stadium_safety_deterioration_upper"));
+		fix->teams[0]->stadium.safety = CLAMP(fix->teams[0]->stadium.safety, 0, 1);
+	    }
+
+	    if(i == 1 || !fix->home_advantage)
+	    {
+		usr(user_idx[i]).money_out[1][MON_OUT_JOURNEY] -= 
+		    (gint)(finance_wage_unit(fix->teams[i]) * journey_factor);
+		usr(user_idx[i]).money -= (gint)(finance_wage_unit(fix->teams[i]) * journey_factor);
+	    }
+	}
+    }
 }
