@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+
+  <sid>romania2a</sid>
+  <name>Liga II Seria 1</name>
+  <short_name>L2S1</short_name>
+  <symbol>flag_romania.png</symbol>
+  <first_week>1</first_week>
+  <week_gap>1</week_gap>
+  <average_talent>7200</average_talent>
+  <names_file>romania</names_file>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>2</rank_end>
+      <dest_sid>romania1</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_rel_element>
+      <rank_start>16</rank_start>
+      <rank_end>18</rank_end>
+      <dest_sid>romania3a romania3c romania3e</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Braşov</team_name>
+    </team>
+    <team>
+      <team_name>Otopeni</team_name>
+    </team>
+    <team>
+      <team_name>Petrolul</team_name>
+    </team>
+    <team>
+      <team_name>Concordia</team_name>
+    </team>
+    <team>
+      <team_name>Prefabricate</team_name>
+    </team>
+    <team>
+      <team_name>Forex</team_name>
+    </team>
+    <team>
+      <team_name>Dinamo II</team_name>
+    </team>
+    <team>
+      <team_name>Tulcea</team_name>
+    </team>
+    <team>
+      <team_name>Botoşani</team_name>
+    </team>
+    <team>
+      <team_name>Sportul</team_name>
+    </team>
+    <team>
+      <team_name>Giurgiu</team_name>
+    </team>
+    <team>
+      <team_name>Progresul</team_name>
+    </team>
+    <team>
+      <team_name>Bacău</team_name>
+    </team>
+    <team>
+      <team_name>Câmpina</team_name>
+    </team>
+    <team>
+      <team_name>Focşani</team_name>
+    </team>
+    <team>
+      <team_name>Gaz</team_name>
+    </team>
+    <team>
+      <team_name>Dunărea</team_name>
+    </team>
+	<team>
+      <team_name>Săcele</team_name>
+    </team>
+  </teams>
+
+</league>
