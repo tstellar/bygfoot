@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+
+  <sid>austria2</sid>
+  <name>Esrte Liga</name>
+  <short_name>ÖEL</short_name>
+  <symbol>flag_austria.png</symbol>
+  <first_week>1</first_week>
+  <week_gap>1</week_gap>
+  <average_talent>7200</average_talent>
+  <names_file>germany</names_file>
+  <layer>1</layer>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>1</rank_end>
+      <dest_sid>austria1</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+    <prom_rel_element>
+      <rank_start>10</rank_start>
+      <rank_end>12</rank_end>
+      <dest_sid>austria3a austria3b austria3c</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+  
+  <teams>
+    <team>
+      <team_name>Kapfenberg</team_name>
+    </team>
+    <team>
+      <team_name>A. Lustenau</team_name>
+    </team>
+    <team>
+      <team_name>Lustenau</team_name>
+    </team>
+    <team>
+      <team_name>A. Wien A.</team_name>
+    </team>
+    <team>
+      <team_name>Gratkorn</team_name>
+    </team>
+    <team>
+      <team_name>Schwanenstadt</team_name>
+    </team>
+    <team>
+      <team_name>R.B. Salzburg A.</team_name>
+    </team>
+    <team>
+      <team_name>Schwadorf</team_name>
+    </team>
+    <team>
+      <team_name>Leoben</team_name>
+    </team>
+    <team>
+      <team_name>Parndorf</team_name>
+    </team>
+    <team>
+      <team_name>Kärnten</team_name>
+    </team>
+    <team>
+      <team_name>Bad Aussee</team_name>
+    </team>
+   </teams>
+
+</league>
