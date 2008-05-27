@@ -1,0 +1,427 @@
+<lg_commentary>
+  <event>
+    <name>general</name>
+    <commentary>_P1_ pasează</commentary>
+    <commentary>_P0_</commentary>
+    <commentary>_P1_ către _P0_</commentary>
+    <commentary>_P1_ trimite un balon [minunat|supereb|marfă|briliant] către _P0_</commentary>
+    <commentary>Mica [minge|pasă] încântătoare îl găseşte pe _P0_</commentary>
+    <commentary>Flick on from _P1_ waits for the one two</commentary>
+    <commentary>Neat dummy run and pass</commentary>
+    <commentary>Pasă importantă, muncă excelentă de picioare</commentary>
+    <commentary>_P1_ pierde mingea la picioarele lui _P0_</commentary>
+    <commentary>Pasa înaltă de la _P1_ îşi găseşte destinaţia</commentary>
+    <commentary>_T_POSS__ este în atac</commentary>
+    <commentary>_T_NPOSS__ este în apărare</commentary>
+    <commentary>Transversala în desfăşurare îl găseşte pe _P0_</commentary>
+    <commentary>Acum _T_POSS__ îşi poate spori provocarea prin _P0_</commentary>
+    <commentary>Mingea trimisă de _P1_ [găseşte pe|preluată de] _P0_</commentary>
+    <commentary>_P1_ [trimite|pasează] o minge superbă spre _P0_ </commentary>
+    <commentary>Pasa [drăguţă|superbă|lungă|excelentă] a lui _P1_ îl depăşeşte pe _P0_</commentary>
+    <commentary>Pasa [lungă|scurtă|perfectă] lansată dinspre _P1_ îl găseşte pe _P0_</commentary>
+    <commentary>Mişcare [bună|minunată|înţeleaptă] de a pasa de-a curmezişul înspre [dreapta|stânga]</commentary>
+    <commentary>Pasa [rapidă|bine planificată] [atinge uşor|mişcă] partea [stâng|dreaptă]</commentary>
+    <commentary>_P0_ alunecă pe lângă adversar şi [colectează|închide] pasa perfect calculată a lui _P1_.</commentary>
+    <commentary>Încă o mişcare [înţeleaptă|briliantă|gândită|decente] [pe flanc|la centru|înspre poartă]</commentary>
+    <commentary>_P0_ [colectează|închide] [încercarea|pasa] lui _P1_</commentary>
+    <commentary>_P1_ [atinge uşor|miscă] mingea pe la [piciorul|picioarele] [oponentului|jucătorului] şi îl găseşte pe _P0_</commentary>
+    <commentary>_P1_ [prinde în cursă|controleză] mingea cu [gheata|pieptul|coapsa] şi [o trimite|o pasează] spre _P0_</commentary>
+    <commentary>_P1_ [aruncă pe sus|aruncă prin aer] mingea înspre _P0_</commentary>
+    <commentary>_P0_ se răsuceşte şi se întoarce din nou</commentary>
+    <commentary>_P0_ se răsuceşte cu disperare să îl piardă pe adversar</commentary>
+    <commentary>_P0_ face o deschidere [în sus spre|către] [centru|mijlocul terenului]</commentary>
+    <commentary>_P0_ [îl pierde|se răsuceşte pierzându-l] pe [adversar|marcator]</commentary>
+    <commentary cond="_MI_>80 and _GD_ ==0 and _TAVSKILLDIFF_ >= 4"pri="10">Un egal ar fi un rezultat excelent pentru meciul _T[_TAVSKILL0_ GE _TAVSKILL1_]_</commentary>
+    <commentary cond="_MI_>80 and _GD_ ==1"pri="10">_TW_ trebuie să îşi revină şi să mai reziste câteva minute</commentary>
+    <commentary cond="_MI_>20 and _SHOTS_POSS__ < 2">_T_POSS__ trebuie să [ducă mingea mai în faţă|creeze mai multe ocazii]</commentary>
+    <commentary cond="_MI_>20 and _GOALS0_ + _GOALS1_ < 1  and _SHOTS0_ + _SHOTS1_ > 1 and _SHOTS0_ + _SHOTS1_ < 8">Numai [_SHOTS0_ + _SHOTS1_] şutează: [este o adevărată bătălie la mijlocul terenului|niciuna dintre părţi nu se străduieşte destul]</commentary>
+    <commentary cond="_MI_>20 and _GOALS0_ + _GOALS1_ < 1 and _SHOTS0_ + _SHOTS1_ = 1">Doar un şut: [este o adevărată bătălie la mijlocul terenului|niciuna dintre părţi nu se străduieşte destul]</commentary>
+    <commentary cond="_MI_<20 and _SHOTS0_ + _SHOTS1_ > 2">Încă _MI_ minute, mai sunt şanse aici pentru ambele echipe</commentary>
+    <commentary cond="_SHOTS0_ + _SHOTS1_ > 4">Expunere terifică de îndemânare</commentary>
+    <commentary cond="_MI_ > 75">Intrăm în minutele finale ale timpului regulamentar</commentary>
+    <commentary cond="_FOULS0_ + _FOULS1_ >= 7">[Atâtea|[_FOULS0_ + _FOULS1_]] faulturi. Arbitrul va avea nevoie de un nou [fluier|carneţel|creion]!</commentary>
+    <commentary cond="_MI_>85">Sigur că nu este gata până nu cântă doamna cea grasă, însă ea se încălzeşte deja</commentary>
+  </event>
+  <event>
+    <name>lost_possession</name>
+	<commentary>Este făcut knock out de _P1_. _P0_ la minge.</commentary>
+	<commentary>_P1_ a fost deposedat</commentary>
+	<commentary>_P1_ este deposedat de _P0_</commentary>
+	<commentary>[_P1_ trimite mingea|Mingea este trimisă] afară [fără de grijă|prea ieftin|prea uşor]</commentary>
+	<commentary>_P1_ duce mingea în afara terenului. O aruncare pentru _T_POSS__</commentary>
+	<commentary>Pasa sălbatică din partea lui _P1_ se termină printr-o aruncare pentru _T_POSS__</commentary>
+	<commentary>_P0_ aruncă de la margine</commentary>
+	<commentary>Aruncare lungă de la margine a lui _P0_</commentary>
+    <commentary>Preluarea prin alunecare a lui _P0_ ar fi fost valoroasă pentru baseball.</commentary>
+	<commentary>Mingea nu mai este controlată de _P1_</commentary>
+    <commentary>_P0_ câştigă mingea cu o provocare perfect sincronizată</commentary>
+    <commentary>Destule întoarceri de situaţie aici pentru că _T_NPOSS__ pierde controlul</commentary>
+    <commentary>Controlul neînţelept a lui _P1_ îi permite lui _P0_ să îi fure mingea</commentary>
+    <commentary>_P0_ [fură|preia] mingea de la _P1_ prin alunecare</commentary>
+    <commentary>Mingea pierdută cade spre _P0_</commentary>
+    <commentary>Preluare crănţănită! _P0_ [vine cu|câştigă] mingea</commentary>
+    <commentary>_P1_ rămâne suprins pentru că _P0_ preia mingea</commentary>
+    <commentary>_P0_ realizează o intercepţie superbă</commentary>
+    <commentary>_P0_ se face praf. _P1_ petrece şi vine cu premiul</commentary>
+    <commentary>Nu este cea mai bună pasă a lui _P1_ din moment ce _P0_ o interceptează</commentary>
+  </event>
+  <event>
+    <name>foul</name>
+    <commentary>[Oh|Of|Vai], acesta a fost un atac murdar asupra lui _P0_</commentary>
+    <commentary>Sigur [aceasta este o ofensă de suspendare|lui _P1_ i-ar trebui dat un cartonaş]?</commentary>
+    <commentary>_P1_ [îl loveşte pe|serveşte pe|se prăbuşeşte peste] _P0_ cu o lovitură cu ambele picioarele</commentary>
+    <commentary>Încercare [murdară|neplăcută] asupra lui _P0_</commentary>
+    <commentary>_P0_ rămâne fără picioare din cauza lui _P1_</commentary>
+    <commentary>Încercare [murdară|neplăcută] a lui _P1_ asupra lui _P0_</commentary>
+    <commentary>Atac vicios din partea lui _P1_ îl lasă pe _P0_ la pământ</commentary>
+    <commentary>_P1_ îl elimină pe _P0_ lăsându-l în agonie</commentary>
+    <commentary>Nu-l numesc pe _P1_ "[criminaul|asasinul|ucigaşul]" degeaba. Aproape că l-a ucis pe_P0_!</commentary>
+	<commentary>Au! Asta trebuie să doară</commentary>
+    <commentary>_P0_ este la pământ şi nu zâmbeşte</commentary>
+    <commentary>Nu ştiu lui _P0_, dar mie atacul mi-a adus lacrimi în ochi</commentary>
+    <commentary>Gheata extrem de înaltă a lui _P1_ îl trimite pe _P0_ la pământ</commentary>
+    <commentary>Centura neagră a lui _P1_ în [karate|taikwondo|jujitsu] îi este la îndemână din moment ce l-a trimis la pământ pe _P0_</commentary>
+	<commentary>_P1_ tocmai şi-a pierdut răbdarea şi l-a trimis pe _P0_ la pământ.</commentary>
+	<commentary>_P0_ preia întreaga furie a întrecerii lui _P1_.</commentary>
+	<commentary>_P0_ a încercat să absoarbă acel atac, dar este prea mult pentru arbitru</commentary>
+	<commentary>Arbitrul a jucat avantajul, dar în cele din urmă a trebuit să semnaleze faultul asupra lui _P0_</commentary>
+	<commentary>Frustrarea se simte deja, când începi să vezi faulturi ca ăsta.</commentary>
+	<commentary>Asta e ceea ce se numeşte un fault profesionist</commentary>
+	<commentary>_P0_ încearcă să scape dintr-o întrecere murdară</commentary>
+	<commentary>_P1_ cu un atac neadecvat. Cu siguranţă nu va scăpa cu atât.</commentary>
+  </event>
+  <event>
+    <name>scoring_chance</name>
+    <commentary>_P0_ se înfiltrează în apărare şi pocneşte</commentary>
+    <commentary>Transersala lungă pluteşte de la _P1_ până la _P0_ care [şutează spre gol|atacă]</commentary>
+    <commentary>_P0_ încearcă să înscrie!</commentary>
+    <commentary>_P0_ se răsuceşte şi şutează</commentary>
+    <commentary>[Un şut|O lovitură] incendiară a lui _P0_</commentary>
+    <commentary>_P0_ găseşte loc şi îşi încearcă norocul.</commentary>
+    <commentary>O adevărată oportunitate se deschide pentru _T_POSS__</commentary>
+    <commentary>Minge lungă de la _P1_ îl găseşte pe _P0_ la colţul [lung|scurt]</commentary>
+    <commentary>_P0_ [nu poate controla|se repede să şuteze] şi greşeala lui merge aproape de gol</commentary>
+    <commentary>Atingere interesantă aproape de gol</commentary>
+    <commentary>_P0_ ia mingea la voleu şi [o trimite|o serveşte|încearcă să se apropie] spre gol</commentary>
+    <commentary>_P0_ ia mingea în voleu de la pasa lui _P1_ împingând spre gol</commentary>
+    <commentary>_P0_ [şutează|aruncă|explodează] de la 30 de metri, arată de parcă [alunecă|se curbează|se răsuceşte|înnebuneşte]</commentary>
+    <commentary>_P0_ [alunecă|driblează|aleargă] în careu, se împotriveşte apărării şi şutează</commentary>
+    <commentary>_P0_ [alunecă|se prăbuşeşte|cade] dinspre flancul [dreapt|stâng] şi [loveşte|şutează|bate]</commentary>
+    <commentary>_P0_ îşi încearcă norocul de la 40 de metri</commentary>
+    <commentary>_P0_ [se repede|indică|aruncă] un şut [înalt|jos] spre colţul [drept|stâng]</commentary>
+    <commentary>_P0_ şutează de aproape</commentary>
+    <commentary>[O minge|o pasă] [profesională|minunată|inspirată] a lui _P1_ îl trimite pe _P0_ unu la unu cu portarul</commentary>
+    <commentary>Lovitura [în foarfecă|aeriană] a lui _P0_ se îndreaptă spre cornerul [drept|stâng]</commentary>
+    <commentary>_P0_ [valsează|se răsuceşte|alunecă|deschide] după ultimii doi apărători, îl păcăleşte pe portar şi trimite mingea spre gol</commentary>
+    <commentary>_P1_ lasă mingea lui _P0_ care trimite o rachetă înspre poartă</commentary>
+    <commentary>_P0_ se încarcă cu un şut</commentary>
+    <commentary>Mingea de la _P1_ oferă echipei _T_POSS__ o şansă</commentary>
+    <commentary>_P0_ trece de apărare şi şutează</commentary>
+    <commentary>_P0_ se străduie, dar tot degeaba.</commentary>
+  </event>
+  <event>
+    <name>goal</name>
+    <commentary>Gool!!!</commentary>
+    <commentary>Şi mingea este trimisă în plasă!!!</commentary>
+    <commentary>_P0_ înscrie!!!</commentary>
+    <commentary>Gol!! Aţi văzut? [Portarul advers|_P1_] sigur nu a văzut.</commentary>
+    <commentary>Mingea [merge|zboară|străpunge] direct peste _P1_ în plasă!!!</commentary>
+    <commentary>Mingea [fluieră|zboară|trece] peste _P1_ şi este gol!!!</commentary>
+    <commentary>_P0_ merge să se bucure</commentary>
+	<commentary>Un adevărat gol [hipnotic|minunat|frumos|fantastic|briliant]!!</commentary>
+    <commentary>Gol!! Încercarea [disperată|suprasolicitantă] a lui _P1_ nu poate reţine şutul lui _P0_</commentary>
+	<commentary>Mingea [este|se află] în plasă!!!</commentary>
+    <commentary>Petrecere! Galeriile nu vor uita acest [gol|ă lovitură|şut] în grabă</commentary>
+	<commentary>Dansul lui _P0_ porneşte fanii. El celebrează în moda [lui binecunoscută|sa]</commentary>
+    <commentary>Gol! Mingea lui _P0_ şochează [portarul|pe _P1_|echipa _T_NPOSS__]</commentary>
+    <commentary>Un gol remarcabil!</commentary>
+    <commentary>Gol! Norocul susţine cu siguranţă _T_TT__</commentary>
+    <commentary>Mingea [curbată|legănată|virată] îl bate pe _P1_ pe linie. Gol!</commentary>
+	<commentary cond="_GOALS0_ + _GOALS1_ ==1">_T_TT_ e prima echipă care deschide scorul astăzi</commentary>
+	<commentary cond="_GD_ <=2 and _T_TT_ == _TLN_">Acea lovitură a înnebunit fanii echipei _T_TT_</commentary>
+	<commentary cond="_GD_ == 0 ">Acel gol a crescut scorul</commentary>
+	<commentary cond="_GD_ <=2">_T_POSS__ au lovit aurul. Ce gol!</commentary>
+    <commentary cond="_T_TT__ == _TLN_ and _GD_ <=2 ">Mai poate _T_TT__ să şocheze printr-o revenire?</commentary>
+    <commentary cond="_T_TT__ == _TLN_">Norocul surâde echipei _T_TT__</commentary>
+    <commentary cond="_POSS_POSS__ < 45">_T_POSS__ înscrie</commentary>
+    <commentary cond="_T_TT__ == _TWN_ and _GD_ >3">E doar un alt cui în sicriu</commentary>
+  </event>
+  <event>
+    <name>miss</name>
+    <commentary>Un şut cu semne de întrebare</commentary>
+    <commentary>_P0_ aleargă şi se ascunde în spatele ratării [şocante|pline de spaimă|dezastruoase]</commentary>
+    <commentary>[El|_P0_] ar fi trebuit să îndrepre mingea, dar a mers singur şi a atacat de departe</commentary>
+    <commentary>[_P1_|Apărătorul] curăţă</commentary>
+    <commentary>_P0_ [împinge|încreţeşte] mingea</commentary>
+    <commentary>Apărătorul înapoi la locul său, când se părea că începe distracţia</commentary>
+    <commentary>_P0_ [loveşte|împinge] înspre scandal</commentary>
+    <commentary>Acea minge nici nu se îndrepta spre plasă.</commentary>
+    <commentary>O, ce şansă pierdută!</commentary>
+    <commentary>Oportunităţi pierdute ca aceasta, pot costa echipa _T_POSS__ meciul.</commentary>
+    <commentary>Era atât de promiţător pentru _P0_ la început.</commentary>
+    <commentary>Atât de aproape şi totuşi atât de departe</commentary>
+    <commentary>Bună alergare, bun livrare, dar nicio răsplată</commentary>
+    <commentary>Norocul şi-a întors spatele [lui _P0_|echipei _T_POSS__]</commentary>
+    <commentary>Cu adevărat o uşurare pentru _T_NPOSS__</commentary>
+    <commentary>Aceasta a mers oriunde, numai în plasă nu</commentary>
+    <commentary>În plasă, dar nu a fost aprobată. Steagul de offside fusese ridicat.</commentary>    
+    <commentary cond="_SHOTS_POSS__ > 3 and _GOALS_POSS__ < 1">_P0_ începe să îşi pună întrebări despre ce trebuie să facă pentru a înscrie</commentary>
+    <commentary cond="_SHOTS_POSS__ > 3 and _GOALS_POSS__ < 1">La echipa _T_POSS__ încep să se întrebe ce trebuie să facă pentru a înscrie</commentary> </event>
+  <event>
+    <name>save</name>
+    <commentary>Şutul sfârâie, dar [portarul|_P1_] cele mai bune mănuşi</commentary>
+    <commentary>Vârful degetelor portarului _P1_ trimite mingea depare</commentary>
+    <commentary>Este un zid acolo pe teren cu numele _P1_. Ce salvare terifică</commentary>
+    <commentary>Practică de prindere pentru _P1_</commentary>
+    <commentary>_P1_ respiră din nou după ce mingea [îşi găseşte locul|refractează] în mâinile sale.</commentary>
+	<commentary>_T_NPOSS__ se poate descărca cu o salvare superbă a lui _P1_</commentary> 
+	<commentary>_T_POSS__ este refuzată de o [salvare|evitare] [bună|superbă|briliantă] a lui _P1_</commentary>
+    <commentary>Culegere uşoară pentru _P1_. El preia mingea</commentary>
+    <commentary>_P1_ este forţat să răstoarne şutul lui _P0_ peste bara transversală</commentary>
+    <commentary>Superb[ă viteză| pas|ă îndemânare] arătată de _P0_, dar _P1_ a produs un blocaj [splendid|superb|la timp]</commentary>
+    <commentary>Şutul jos preluat cu bine în [stânga|dreapta] de _P1_</commentary>
+	<commentary>_P1_ culege mingea cu uşurinţă</commentary>
+    <commentary>_P1_ reuşeşte o salvare superbă din reflex</commentary>
+    <commentary>[Savat|Prins|Oprit|Preluat] cu bine de către _P1_</commentary>
+    <commentary>No power in the shot from _P0_. Taken easily by _P1_</commentary>
+	<commentary>Doar un stop regulamentar pentru [_P1_|portar]</commentary>
+	<commentary cond="_GD_ ==1">[_P1_|Portarul] menţine _TL_ în joc</commentary> 
+  </event>
+  <event>
+    <name>start_match</name>
+    <commentary>E o mulţime de _AT_ aici când arbitrul fluieră începutul meciului</commentary>
+    <commentary>Am început</commentary>
+    <commentary>Cele două echipe sunt salutate de zgomote la intrarea pe teren</commentary>
+    <commentary>[Mulţimea|_AT_ spectatori] strigă în tinp ce jucătorii ies din tunel</commentary>
+    <commentary>O zi fără nori dă impresia că acest meci urmează să iasă cu scântei</commentary>
+    <commentary>_AT_ [spectatori|fani] nu se pot înşela. Acesta este meciul la care cu toţii am venit să îl vedem</commentary>
+    <commentary>Arbitrul primeşte semnalul de la tuşiuer şi începem</commentary>
+    <commentary>[Bătălia|Lupta|Bătaia|Războiul|Întrecerea] începe</commentary>
+    <commentary>Arbitrii sunt gata, jucătorii sunt aranjaţi, fluierul sună</commentary>
+    <commentary>Ceaţa se ridică şi începem</commentary>
+    <commentary cond="_TAVSKILLDIFF_ <= 2"pri="10">Echipele sunt bine amestecate. Începem un adevărat război.</commentary>
+    <commentary cond="_TAVSKILLDIFF_ < 5 and _TAVGSKILLDIFF_ >2"pri="10">_T[_TAVSKILL0_ LE _TAVSKILL1_]_ are o mână uşor mai sus.</commentary>
+    <commentary cond="_TAVSKILLDIFF_ >=8"pri="10">Este o mare prăpastie în nivelul de îndemănare. Meciul ar trebui să fie o plimbare peste _T[_TAVSKILL1_ GE _TAVSKILL0_]_</commentary>
+    <commentary cond="_TAVSKILLDIFF_ >=5"pri="10">_T[_TAVSKILL0_ GE _TAVSKILL1_]_ au venit la meci ca subalterni.</commentary>
+    <commentary cond="_TAVSKILLDIFF_ >=8"pri="10">_T[_TAVSKILL0_ LE _TAVSKILL1_]_ încep meciul ca favoriţi clari.</commentary>
+    <commentary cond="_TAVSKILLDIFF_ <= 1 and [_TAVSKILL0_ + _TAVSKILL1_] >=85"pri="10">Ciocnirea [gladiatorilor|titanilor] [începe|e pe cale să înceapă]</commentary>
+  </event>
+  <event>
+    <name>half_time</name>
+    <commentary>Este jumătatea meciului</commentary>
+    <commentary>Meciul _RE_ este la jumătate.</commentary>
+    <commentary>Intrăm la pauză cu _RE_. Antrenorul echipei _TL_ trebuie să găsească ceva cu ce să îşi motiveze echipa.</commentary>
+    <commentary>Jocuri ca acestea crează antrenorii. _TL_ are nevoie de inspiraţie.</commentary>
+    <commentary>Capetele plecate îşi spun povestea. Nu a fost picnic aici pentru _TL_.</commentary>
+    <commentary>Antrenorul echipei _TL_ primeşte aplauze de la fani în timp ce iese de pe teren</commentary>
+    <commentary>Până acum _TW_ şi antrenorul lor au făcut totul bine.</commentary>
+    <commentary>Antrenorul echipei _TL_ este furios de rezultatele echipei sale la pauză</commentary>
+	<commentary>Cineva poate avea impresia că antrenorul va citi documentul de revoltă al _TL_</commentary>
+	<commentary>_TL_ va primi din plin [cearta|furia|ura|mânia] antrenorului</commentary>
+    <commentary cond="_TAVSKILLDIFF_ >=8 and _GD_ >=1 and _TAVSKILL_TLN__ < _TAVSKILL_TWN__"pri="10">_TW_ sunt la doar 45 de minute de o victorie răsunătoare</commentary>
+    <commentary cond="_GD_ >0">_TL_ se îndreaptă spre tunel pentru a aştepta cearta antrenorului</commentary>
+	<commentary cond="_GD_>0">O jumătate pe care _TL_ va dori să o uite rapid</commentary>
+    <commentary cond="_POSS0_ >= 70 or _POSS1_ >= 70">_T[_POSS1_ GE 70]_ domină posesia</commentary>
+    <commentary cond="_POSS0_ >= 60 or _POSS1_ >= 60">_T[_POSS1_ GE 60]_ a avut o foarte bună posesie a mingii în această jumătate</commentary>
+    <commentary cond="_POSS0_ > 50 and _GOALS1_ > _GOALS0_">Chiar dacă _T0_ a posedat mingea mai mult, _T1_ a folosit-o mai bine</commentary>
+    <commentary cond="_POSS1_ > 50 and _GOALS0_ > _GOALS1_">Chiar dacă _T1_ a posedat mai mult mingea, _T0_ a folosit-o mai bine</commentary>
+    <commentary cond="_POSS0_ >= 75 or _POSS1_ >= 75">_T[_POSS1_ GE 75]_ pare să fie singura echipă de pe teren</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 0 ">Bine: [niciun gol în această jumătate|nimeni nu a reuşit să spargă gheaţa şi să dea gol]</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 1 and _SHOTS0_ + _SHOTS1_ < 2">La acest nivel, unul mai mult [s-ar putea să nu|poate că e] de ajuns</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 1 and _SHOTS0_ + _SHOTS1_ > 2">Cu un aşa numpr de şuturi, un gol în plus poate că nu e de ajuns</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ < 2 and _SHOTS0_ + _SHOTS1_ > 8">Sigur că nu s-au dat multe goluri, dar am avut multe şuturi pe poartă</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ < 1 and _SHOTS0_ + _SHOTS1_ > 4">_T[_SHOTS0_ LE _SHOTS1_]_ a avut multe şanse să [încheie|sigileze] acest joc</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ < 2 and _SHOTS0_ + _SHOTS1_ > 3">_T[_SHOTS0_ LE _SHOTS1_]_ a avut _SHOTS[_SHOTS0_ LE _SHOTS1_]_ şanse să [încheie|sigileze|agaţe] acest joc</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 0 and _SHOTS0_ + _SHOTS1_ < 2">Nimic special încă şi [pare că jucătorii sunt în grevă|să fim serioşi, nimeni nu se străduieşte]</commentary>
+	 <commentary cond="_GOALS0_ + _GOALS1_ >= 6">E o ploaie de goluri. [_GOALS0_ + _GOALS1_] goluri până acum şi este doar prima repriză!</commentary>
+    <commentary cond="_FOULS0_ - _FOULS1_ >= 4 or _FOULS1_ - _FOULS0_ >=4">Sunt două echipe aici, dar numai [_T[_FOULS0_ GE _FOULS1_]_|una dintre ele] joacă fotbal</commentary>
+    <commentary cond="_FOULS0_ + _FOULS1_ >= 8">Este o baie de sânge pe teren, nu un meci.</commentary>
+    <commentary cond="_FOULS0_ + _FOULS1_ >= 10">[Atâtea|[_FOULS0_ + _FOULS1_]] faulturi. Arbitrul va avea nevoie de provizii de papetărie!</commentary>
+    <commentary cond="_FOULS0_ + _FOULS1_ >= 10">[Atâtea|[_FOULS0_ + _FOULS1_]] faulturi. Arbitrul va avea nevoie de [un fluier|un carneţel|un creion] nou!</commentary>
+    <commentary cond="_PEN0_ + _PEN1_ > 1">[_PEN0_ + _PEN1_] penaltyuri deja</commentary>
+  </event>
+  <event>
+    <name>extra_time</name>
+    <commentary>După un joc destul de închis intrăm în timpul suplimentar</commentary>
+    <commentary>Este încă _RE_: timp suplimentar</commentary>
+    <commentary>După _MI_ minute este încă _RE_: urmează timp suplimentar</commentary>
+    <commentary>Cine va cădea primul? Suntem în timpul suplimentar</commentary>
+    <commentary>A rămas determinarea şi oboseala acum în timpul suplimentar</commentary>
+  </event>
+  <event>
+    <name>penalties</name>
+    <commentary>Cine s-ar fi gândit acum _MI_ minute că se va ajunge aici?</commentary>
+    <commentary>Şi acum avem drama intensă a loviturilor de la 11 metri</commentary>
+    <commentary>Două echipe, egal până acum în toate aspectele, lovituri de pedeapsă de acum</commentary>
+    <commentary>Echipele nu reuşesc, aşa că e unul la unul. Jucător versus portar</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ < 1">Nici un gol până acum, aşa că vom vedea ce se întâmplă la penaltyuri</commentary>
+  </event>
+  <event>
+    <name>end_match</name>
+    <commentary>Meciul s-a sfârşit!</commentary>
+    <commentary>_TW_ triumfează!!!</commentary>
+    <commentary>Fanii huiduiesc _TL_ de pe teren</commentary>
+    <commentary>După _MI_ minute meciul se termină cu _RE_</commentary>
+    <commentary>Arbitrul îşi verifică ceasul şi fluieră sfârşitul timpului regulamentar</commentary>
+    <commentary>Asta este. Se sfârşeşte ca _RE_</commentary>
+    <commentary>Anternorul lui _TW_ va fi încântat cu acest rezultat</commentary>
+    <commentary cond="_TAVSKILLDIFF_ >=4 and _TWN_ = _T[_TAVSKILL0_ GE _TAVSKILL1_]_"pri="10"> _RE_, ce rezultat surprinzător pentru _TW_</commentary>
+    <commentary cond="_GD_ = 0 "pri="10">Un egal astfel. Totuşi, un punct e un punct.</commentary>
+    <commentary cond="_GD_ > 0 "pri="10">Asta este. Se sfârşeşte _RE_ în favoarea echipei _TW_.</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ >= 6"pri="10">Wow, un meci care nu va fi uitat. [_GOALS0_ + _GOALS1_] goluri!</commentary>
+    <commentary cond="_GD_ >= 4"pri="10">_TL_ au fost masacraţi cu _GD_ goluri.</commentary>
+    <commentary cond="_GD_ >= 2"pri="10">_TW_ vor sorbi din şampanie în această seară.</commentary>
+    <commentary cond="[_TLAYER0_ - _TLAYER1_]> 1 or [_TLAYER1_ - _TLAYER0_] >1 and _TLAYER_TWN__ > _TLAYER_TLN__"pri="10">Ce [victorie superbă|câştig uimitor] pentru _TW_.</commentary>
+    <commentary cond="_GD_ > 3 and _TLAYER[_GOALS1_ > _GOALS0_]_ >= _TLAYER[_GOALS1_ < _GOALS0_]_"pri="10">_TL_ au jucat împotriva unui gigant şi tabela de marcaj _RE_ o arată.</commentary>
+  </event>
+  <event>
+    <name>own_goal</name>
+    <commentary>Ooo, nu, mingea rişcoşează dinspre _P0_ în plasă</commentary>
+    <commentary>Parcă se joacă pinball în zona de pedeapsă, în final _P0_ se răsuceşte după linie</commentary>
+    <commentary>Un şut absolut superb care se întoarce la _P0_  şi apoi în spatele plasei</commentary>
+    <commentary>_P0_ pasează mingea înapoi la portarul său. Dar nu, portarul a ratat-o! Este un autogol a lui _P0_!</commentary>
+    <commentary>Acea mică neînţelege a costat pe _T_TT__ un gol</commentary>
+  </event>
+  <event>
+    <name>header</name>
+    <commentary>_P1_ trimite mingea spre _P0_ care o loveşte cu capul pe lângă un gol</commentary>
+    <commentary>Lovitură de cap a lui _P0_</commentary>
+    <commentary>A lansat în aer, apoi a lovit-o cu capul</commentary>
+    <commentary>Mingea vine spre spatele capului lui _P0_!</commentary>
+    <commentary>Lovitură de cap [puternică|uşoară|îndreptată] spre plasă de _P0_</commentary>
+    <commentary>Capul lui _P0_ găseşte sfârşitul unei aruncări lungi</commentary>
+  </event>
+  <event>
+    <name>post</name>
+    <commentary>Lovitura drăguţă a lui _P0_ loveşte bara</commentary>
+    <commentary>Şi lovitura priveşte cu jind spre bară</commentary>
+    <commentary>Sunt suprins că bara a reuşit să rămână în picioare după acel şut puternic</commentary>
+  </event>
+  <event>
+    <name>cross_bar</name>
+    <commentary>Mingea a zburat spre _P1_, dar a lovit bara transversală</commentary>
+    <commentary>Mingea loveşte puternic bara transversală trecând pe lângă _P1_</commentary>
+    <commentary>_P1_ părea că este peste tot în acelaşi timp, în final a trimis mingea în afară pe lângă bara transversală</commentary>
+  </event>
+  <event>
+    <name>penalty</name>
+    <commentary>_P0_ merge să dea un penalty</commentary>
+    <commentary>_P0_ are o şansă să înscrie cu un penalty</commentary>
+    <commentary>_P0_ poate să încerce ca grijile echipei _T_POSS__ să [dispară|nu mai fie] cu acest penalty</commentary>
+	 <commentary>Poate [_P0_|_T_POSS__] să convertească această lovitură?</commentary>
+    <commentary>Trebuie să îngropaţi nervii, înghiţiţi şi să vă concentraţi când daţi pelantyuri</commentary>
+    <commentary cond="_PEN_POSS__ > 1">_T_POSS__ pare că joacă pentru penaltyuri.</commentary>
+    <commentary cond="_GD_ = 0">_T_POSS__ poate să se furişeze dacă convertesc asta</commentary>
+    <commentary cond="_GD_=1 and _GOALS_POSS__ < _GOALS_NPOSS__">_P0_ poate să regleze jocul cu acest şut</commentary>
+    <commentary cond="_MI_>85 and _GD_=1 and _GOALS_POSS__ < _GOALS_NPOSS__">_P0_: Un pelanty târţziu poate să forţeze acest meci să se termine la egalitate</commentary>
+    <commentary cond="_MI_>85 and _GD_=1 and _GOALS_POSS__ < _GOALS_NPOSS__">_T_NPOSS__ a dat o şansă uşoară pentru _T_POSS__ să revină în acest joc</commentary>
+    <commentary cond="_MI_>85 and _GD_=1 and _GOALS_POSS__ > _GOALS_NPOSS__">_P0_ poate sigila rezultatul cu un gol</commentary>
+  </event>
+  <event>
+    <name>free_kick</name>
+    <commentary>Lovitură liberă scurtă a lui _P0_</commentary>
+    <commentary>_P0_ ţinteşte lovitura liberă jos şi puternic</commentary>
+    <commentary>_P0_ dă o lovitură liberă rapidă care se opreşte în zid</commentary>
+    <commentary>_P0_ trimite lovitura liberă în buclă peste zid</commentary>
+    <commentary>Lovitură liberă: _P0_ joacă mingea departe</commentary>
+    <commentary>Lovitură liberă: _P0_ trimite o minge lungă peste poartă</commentary>
+    <commentary>Lovitură liberă bătută prin faţa unui gol de _P0_</commentary>
+  </event>
+  <event>
+    <name>foul_yellow</name>
+    <commentary>_P1_ pentru o interceptare prin alunecare periculoasă asupra lui _P0_</commentary>
+    <commentary>_P1_ pentru fault asupra _P0_</commentary>
+    <commentary>_P1_ pentru faptul că a trimis mingea </commentary>
+    <commentary>_P1_ pentru că a tras de timp</commentary>
+    <commentary>_P1_ pentru henţ</commentary>
+    <commentary>_P1_ pentru oprirea lui _P0_ de la o lovitură liberă</commentary>
+    <commentary>_P1_ pentru dezacord repetat cu deciziile arbitrului</commentary>
+  </event>
+  <event>
+    <name>foul_red</name>
+    <commentary>_P1_ este sancţionat pentru o lovitură înaltă</commentary>
+    <commentary>_P1_ primeşte ordinul să mărşăluiască pentru dispreţ</commentary>
+    <commentary>_P1_ pentru o ţintă maliţioasă</commentary>
+    <commentary>_P1_ pentru henţ intenţionat</commentary>
+    <commentary>_P1_ este sancţionat pentru oprirea unei oportunităţi clare de înscriere</commentary>
+    <commentary>_P1_ a primit cartonaşul roşu pentru lovitura dată lui _P0_</commentary>
+    <commentary>_P1_ pentru înjurăturile adresate fanilor echipei adverse</commentary>
+  </event>
+  <event>
+    <name>foul_red_injury</name>
+    <commentary>_P1_ faultează şi o targă îl transportă pe _P0_ de pe iarbă</commentary>
+    <commentary>Fault a lui _P1_; _P0_ pare accidentat... poate fi nevoie de a fi înlocuit</commentary>
+  </event>
+  <event>
+    <name>send_off</name>
+    <commentary>_P0_ a fost eliminat.</commentary>
+    <commentary>_P0_ este eliminat. _T_TT__ a rămas fără un jucător</commentary>
+  </event>
+  <event>
+    <name>injury</name>
+    <commentary>_P0_ trebuie să părăsească terenul datorită unei accidentări la gleznă</commentary>
+    <commentary>_P0_ pare destul de rău accidentat</commentary>
+    <commentary>Medicul l-a consultat şi _P0_ părăseşte terenul</commentary>
+  </event>
+  <event>
+    <name>temp_injury</name>
+    <commentary>_P0_ şi-a întins puţin muşchiul, dar va fi în stare să continue</commentary>
+    <commentary>_P0_ s-a ales cu o lovitură uşoară</commentary>
+    <commentary>_P0_ încearcă să scape de o uşoară luxaţie</commentary>
+    <commentary>_P0_ şi-a întins un muşchi: pare în regulă</commentary>
+    <commentary>_P0_ primeşte îngrijiri medicale, dar continuă</commentary>
+    <commentary>_P0_ are o tăietură deasupra ochiului stâng, dar a fost bandajat şi poate să continue </commentary>
+  </event>
+  <event>
+    <name>stadium_breakdown</name>
+    <commentary>_T0_ are de a face cu probleme pe stadion</commentary>
+    <commentary>Proiectoarele nocturnei au rămas în beznă</commentary>
+    <commentary>Ceaţa deasă cauzează distrugeri aici la stadionul echipei _T0_</commentary>
+  </event>
+  <event>
+    <name>stadium_riots</name>
+    <commentary>Ţăranii se revoltă</commentary>
+    <commentary>Fanii aruncă diverse obiecte spre banca tehnică</commentary>
+    <commentary>Poliţia a intervenit spre a opri bătaia dintre suporterii adversari</commentary>
+    <commentary>Un fan a reuşit să intre pe teren şi îl atacă pe arbitru</commentary>
+    <commentary>Fanii se revarsă spre teren într-o invazie la scală largă</commentary>
+  </event>
+  <event>
+    <name>stadium_fire</name>
+    <commentary>Focul consumă stadionul echipei _T_TT__</commentary>
+    <commentary>Fanii echipei în deplasare au incendiat tribuna din nord</commentary>
+    <commentary>Un vorbitor a fugit în flăcări, iar focul se împrăştie în tot stadionul</commentary>
+  </event>
+  <event>
+    <name>substitution</name>
+    <commentary>_T_TT__ face o schimbare: _P0_ vine să îl înlocuiască pe _P1_</commentary>
+    <commentary cond="_MI_>60">_T_TT__ are nevoie de un jucător odihnit. _P0_ vine să îl înlocuiască pe _P1_</commentary>
+    <commentary>_P1_ iese în aplauzele fanilor. _P0_ îl înlocuieşte</commentary>
+    <commentary>_P1_ nu pare fericit de faptul că e înlocuit de _P0_</commentary>
+    <commentary>_P0_ vine de pe bancă să îl înlocuiască pe _P1_</commentary>
+    <commentary>_P0_ este înlocuit de _P1_</commentary>
+  </event>
+  <event>
+    <name>structure_change</name>
+    <commentary>_T_TT__ a schimbat structura echipei în _EX_</commentary>
+    <commentary>_T_TT__ se restructurează într-o formaţie _EX_</commentary>
+  </event>
+  <event>
+    <name>style_change</name>
+    <commentary>_T_TT__ schimbă stilul la _EX_</commentary>
+    <commentary>_T_TT__ trece la un stil _EX_</commentary>
+    <commentary cond="_EX_ == 'ATTACK'">_T_TT__ încearcă să deschidă scorul prin atac</commentary>
+    <commentary cond="_MI_>75 and _EX_ == 'BALANCED'">_T_TT__ trece la _EX_ şi o lasă mai moale</commentary>
+    <commentary cond="_MI_>75 and _EX_ == 'ATTACK'">Un ultim efort: _T_TT__ schimbă la _EX_</commentary>
+    <commentary cond="_MI_>75">_MR_ minute rămase. _T_TT__ încearcă să îşi schimbe tactica cu un stil _EX_</commentary>
+    <commentary cond="_TIME_=1 and _MR_ >= 44">Schimbare la jumătatea partidei pentru _T_TT__ spre _EX_</commentary>
+  </event>
+  <event>
+    <name>boost_change</name>
+    <commentary>_T_TT__ a schimbat stimulentul la _EX_</commentary>
+    <commentary cond="_MI_>75 and _EX_ == 'ANTI' and _TT_ == _TLN_">Se pare că _T_TT__ au renunţat</commentary>
+    <commentary cond="_MI_>75 and _EX_ == 'ANTI' and _TT_ == _TWN_">_T_TT__ trebuie să creadă că s-a sfârşit acest joc</commentary>
+    <commentary cond="_EX_ = 'ON'">_T_TT__ a schimbat viteza</commentary>
+    <commentary cond="_EX_ = 'ON' and _MI_ >75"pri="10">Stimulent activat. _T_TT__ joacă cu tot ce au</commentary>
+  </event>
+</lg_commentary>
