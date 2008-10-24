@@ -72,6 +72,7 @@ enum
     TAG_USER_BET_WAGER,
     TAG_USER_BET_OUTCOME,
     TAG_USER_BET_FIX_ID,
+    TAG_USER_YA_PREFERENCE,
     TAG_END
 };
 
@@ -313,6 +314,8 @@ xml_loadsave_users_text         (GMarkupParseContext *context,
 	new_user.youth_academy.av_percentage = float_value;
     else if(state == TAG_USER_YA_COUNTER)
 	new_user.youth_academy.counter_youth = float_value;
+    else if(state == TAG_USER_YA_PREFERENCE)
+	new_user.youth_academy.pos_pref = int_value;
     else if(state == TAG_USER_BET_WAGER)
 	new_bet.wager = int_value;
     else if(state == TAG_USER_BET_OUTCOME)
@@ -426,8 +429,9 @@ xml_loadsave_users_write(const gchar *prefix)
 	xml_write_float(fil, usr(i).youth_academy.av_percentage, 
 			TAG_USER_YA_AV_PERCENTAGE, I1);
 	xml_write_float(fil, usr(i).youth_academy.counter_youth, TAG_USER_YA_COUNTER, I1);
-
+        xml_write_int(fil, usr(i).youth_academy.pos_pref, TAG_USER_YA_PREFERENCE, I1); 
 	xml_loadsave_players_write(fil, usr(i).youth_academy.players);
+
 
 	fprintf(fil, "</_%d>\n", TAG_USER);
     }
