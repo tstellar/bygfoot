@@ -178,6 +178,7 @@ xml_loadsave_users_end_element    (GMarkupParseContext *context,
 	    tag == TAG_USER_YA_PERCENTAGE ||
 	    tag == TAG_USER_YA_AV_COACH ||
 	    tag == TAG_USER_YA_AV_PERCENTAGE ||
+	    tag == TAG_USER_YA_PREFERENCE ||
 	    tag == TAG_USER_YA_COUNTER ||
 	    tag == TAG_USER_BET0 ||
 	    tag == TAG_USER_BET1)
