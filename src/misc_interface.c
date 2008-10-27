@@ -861,8 +861,8 @@ create_window_stadium (void)
   GtkWidget *label111;
   GtkWidget *hseparator17;
   GtkWidget *table3;
-  GtkObject *spinbutton1_adj;
-  GtkWidget *spinbutton1;
+  GtkObject *spin_ticket_price_adj;
+  GtkWidget *spin_ticket_price;
   GtkWidget *label124;
   GtkWidget *label123;
   GtkWidget *hseparator14;
@@ -1004,10 +1004,10 @@ create_window_stadium (void)
   gtk_table_set_row_spacings (GTK_TABLE (table3), 3);
   gtk_table_set_col_spacings (GTK_TABLE (table3), 3);
 
-  spinbutton1_adj = gtk_adjustment_new (1, 0, 100, 1, 10, 10);
-  spinbutton1 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton1_adj), 1, 2);
-  gtk_widget_show (spinbutton1);
-  gtk_table_attach (GTK_TABLE (table3), spinbutton1, 1, 2, 1, 2,
+  spin_ticket_price_adj = gtk_adjustment_new (1, 0, 100, 1, 10, 10);
+  spin_ticket_price = gtk_spin_button_new (GTK_ADJUSTMENT (spin_ticket_price_adj), 1, 2);
+  gtk_widget_show (spin_ticket_price);
+  gtk_table_attach (GTK_TABLE (table3), spin_ticket_price, 1, 2, 1, 2,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
 
@@ -1189,7 +1189,7 @@ create_window_stadium (void)
   GLADE_HOOKUP_OBJECT (window_stadium, label111, "label111");
   GLADE_HOOKUP_OBJECT (window_stadium, hseparator17, "hseparator17");
   GLADE_HOOKUP_OBJECT (window_stadium, table3, "table3");
-  GLADE_HOOKUP_OBJECT (window_stadium, spinbutton1, "spinbutton1");
+  GLADE_HOOKUP_OBJECT (window_stadium, spin_ticket_price, "spin_ticket_price");
   GLADE_HOOKUP_OBJECT (window_stadium, label124, "label124");
   GLADE_HOOKUP_OBJECT (window_stadium, label123, "label123");
   GLADE_HOOKUP_OBJECT (window_stadium, hseparator14, "hseparator14");
