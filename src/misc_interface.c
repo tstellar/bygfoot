@@ -847,18 +847,24 @@ create_window_stadium (void)
   GtkWidget *vbox39;
   GtkWidget *label_stadium_name;
   GtkWidget *table1;
-  GtkWidget *label106;
-  GtkWidget *label_stadium_status;
-  GtkWidget *label101;
   GtkWidget *hbox69;
   GtkWidget *label_capacity;
   GtkWidget *label102;
-  GtkWidget *label103;
-  GtkWidget *progressbar_safety;
-  GtkWidget *label109;
   GtkWidget *label_average_attendance;
-  GtkWidget *label111;
   GtkWidget *progressbar_average_attendance;
+  GtkWidget *label106;
+  GtkWidget *label_stadium_status;
+  GtkWidget *label101;
+  GtkWidget *progressbar_safety;
+  GtkWidget *label103;
+  GtkWidget *label109;
+  GtkWidget *label111;
+  GtkWidget *hseparator17;
+  GtkWidget *table3;
+  GtkObject *spinbutton1_adj;
+  GtkWidget *spinbutton1;
+  GtkWidget *label124;
+  GtkWidget *label123;
   GtkWidget *hseparator14;
   GtkWidget *vbox43;
   GtkWidget *label90;
@@ -908,32 +914,9 @@ create_window_stadium (void)
   gtk_widget_show (label_stadium_name);
   gtk_box_pack_start (GTK_BOX (vbox39), label_stadium_name, FALSE, FALSE, 0);
 
-  table1 = gtk_table_new (5, 2, FALSE);
+  table1 = gtk_table_new (5, 2, TRUE);
   gtk_widget_show (table1);
   gtk_box_pack_start (GTK_BOX (vbox39), table1, FALSE, FALSE, 0);
-  gtk_table_set_row_spacings (GTK_TABLE (table1), 3);
-  gtk_table_set_col_spacings (GTK_TABLE (table1), 3);
-
-  label106 = gtk_label_new (_("Status:"));
-  gtk_widget_show (label106);
-  gtk_table_attach (GTK_TABLE (table1), label106, 0, 1, 0, 1,
-                    (GtkAttachOptions) (GTK_FILL),
-                    (GtkAttachOptions) (0), 0, 0);
-  gtk_misc_set_alignment (GTK_MISC (label106), 0, 0.5);
-
-  label_stadium_status = gtk_label_new ("");
-  gtk_widget_show (label_stadium_status);
-  gtk_table_attach (GTK_TABLE (table1), label_stadium_status, 1, 2, 0, 1,
-                    (GtkAttachOptions) (GTK_FILL),
-                    (GtkAttachOptions) (0), 0, 0);
-  gtk_misc_set_alignment (GTK_MISC (label_stadium_status), 0, 0.5);
-
-  label101 = gtk_label_new (_("Current capacity"));
-  gtk_widget_show (label101);
-  gtk_table_attach (GTK_TABLE (table1), label101, 0, 1, 1, 2,
-                    (GtkAttachOptions) (GTK_FILL),
-                    (GtkAttachOptions) (0), 0, 0);
-  gtk_misc_set_alignment (GTK_MISC (label101), 0, 0.5);
 
   hbox69 = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (hbox69);
@@ -950,26 +933,6 @@ create_window_stadium (void)
   gtk_widget_show (label102);
   gtk_box_pack_start (GTK_BOX (hbox69), label102, FALSE, FALSE, 0);
 
-  label103 = gtk_label_new (_("Current safety"));
-  gtk_widget_show (label103);
-  gtk_table_attach (GTK_TABLE (table1), label103, 0, 1, 2, 3,
-                    (GtkAttachOptions) (GTK_FILL),
-                    (GtkAttachOptions) (0), 0, 0);
-  gtk_misc_set_alignment (GTK_MISC (label103), 0, 0.5);
-
-  progressbar_safety = gtk_progress_bar_new ();
-  gtk_widget_show (progressbar_safety);
-  gtk_table_attach (GTK_TABLE (table1), progressbar_safety, 1, 2, 2, 3,
-                    (GtkAttachOptions) (GTK_FILL),
-                    (GtkAttachOptions) (0), 0, 0);
-
-  label109 = gtk_label_new (_("Average attendance"));
-  gtk_widget_show (label109);
-  gtk_table_attach (GTK_TABLE (table1), label109, 0, 1, 3, 4,
-                    (GtkAttachOptions) (GTK_FILL),
-                    (GtkAttachOptions) (0), 0, 0);
-  gtk_misc_set_alignment (GTK_MISC (label109), 0, 0.5);
-
   label_average_attendance = gtk_label_new ("");
   gtk_widget_show (label_average_attendance);
   gtk_table_attach (GTK_TABLE (table1), label_average_attendance, 1, 2, 3, 4,
@@ -977,18 +940,91 @@ create_window_stadium (void)
                     (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (label_average_attendance), 0, 0.5);
 
-  label111 = gtk_label_new (_("Average attendance %"));
-  gtk_widget_show (label111);
-  gtk_table_attach (GTK_TABLE (table1), label111, 0, 1, 4, 5,
-                    (GtkAttachOptions) (GTK_FILL),
-                    (GtkAttachOptions) (0), 0, 0);
-  gtk_misc_set_alignment (GTK_MISC (label111), 0, 0.5);
-
   progressbar_average_attendance = gtk_progress_bar_new ();
   gtk_widget_show (progressbar_average_attendance);
   gtk_table_attach (GTK_TABLE (table1), progressbar_average_attendance, 1, 2, 4, 5,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
+
+  label106 = gtk_label_new (_("Status:"));
+  gtk_widget_show (label106);
+  gtk_table_attach (GTK_TABLE (table1), label106, 0, 1, 0, 1,
+                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (label106), 0, 0.5);
+
+  label_stadium_status = gtk_label_new ("");
+  gtk_widget_show (label_stadium_status);
+  gtk_table_attach (GTK_TABLE (table1), label_stadium_status, 1, 2, 0, 1,
+                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (label_stadium_status), 0, 0.5);
+
+  label101 = gtk_label_new (_("Current capacity"));
+  gtk_widget_show (label101);
+  gtk_table_attach (GTK_TABLE (table1), label101, 0, 1, 1, 2,
+                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (label101), 0, 0.5);
+
+  progressbar_safety = gtk_progress_bar_new ();
+  gtk_widget_show (progressbar_safety);
+  gtk_table_attach (GTK_TABLE (table1), progressbar_safety, 1, 2, 2, 3,
+                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  label103 = gtk_label_new (_("Current safety"));
+  gtk_widget_show (label103);
+  gtk_table_attach (GTK_TABLE (table1), label103, 0, 1, 2, 3,
+                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (label103), 0, 0.5);
+
+  label109 = gtk_label_new (_("Average attendance"));
+  gtk_widget_show (label109);
+  gtk_table_attach (GTK_TABLE (table1), label109, 0, 1, 3, 4,
+                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (label109), 0, 0.5);
+
+  label111 = gtk_label_new (_("Average attendance %"));
+  gtk_widget_show (label111);
+  gtk_table_attach (GTK_TABLE (table1), label111, 0, 1, 4, 5,
+                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (label111), 0, 0.5);
+
+  hseparator17 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator17);
+  gtk_box_pack_start (GTK_BOX (vbox39), hseparator17, FALSE, FALSE, 0);
+
+  table3 = gtk_table_new (2, 2, TRUE);
+  gtk_widget_show (table3);
+  gtk_box_pack_start (GTK_BOX (vbox39), table3, FALSE, FALSE, 0);
+  gtk_table_set_row_spacings (GTK_TABLE (table3), 3);
+  gtk_table_set_col_spacings (GTK_TABLE (table3), 3);
+
+  spinbutton1_adj = gtk_adjustment_new (1, 0, 100, 1, 10, 10);
+  spinbutton1 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton1_adj), 1, 2);
+  gtk_widget_show (spinbutton1);
+  gtk_table_attach (GTK_TABLE (table3), spinbutton1, 1, 2, 1, 2,
+                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  label124 = gtk_label_new (_("Change ticket price"));
+  gtk_widget_show (label124);
+  gtk_table_attach (GTK_TABLE (table3), label124, 0, 2, 0, 1,
+                    (GtkAttachOptions) (0),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_label_set_justify (GTK_LABEL (label124), GTK_JUSTIFY_CENTER);
+  gtk_misc_set_alignment (GTK_MISC (label124), 0, 0.5);
+
+  label123 = gtk_label_new (_("Price per ticket"));
+  gtk_widget_show (label123);
+  gtk_table_attach (GTK_TABLE (table3), label123, 0, 1, 1, 2,
+                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (label123), 0, 0);
 
   hseparator14 = gtk_hseparator_new ();
   gtk_widget_show (hseparator14);
@@ -1139,18 +1175,23 @@ create_window_stadium (void)
   GLADE_HOOKUP_OBJECT (window_stadium, vbox39, "vbox39");
   GLADE_HOOKUP_OBJECT (window_stadium, label_stadium_name, "label_stadium_name");
   GLADE_HOOKUP_OBJECT (window_stadium, table1, "table1");
-  GLADE_HOOKUP_OBJECT (window_stadium, label106, "label106");
-  GLADE_HOOKUP_OBJECT (window_stadium, label_stadium_status, "label_stadium_status");
-  GLADE_HOOKUP_OBJECT (window_stadium, label101, "label101");
   GLADE_HOOKUP_OBJECT (window_stadium, hbox69, "hbox69");
   GLADE_HOOKUP_OBJECT (window_stadium, label_capacity, "label_capacity");
   GLADE_HOOKUP_OBJECT (window_stadium, label102, "label102");
-  GLADE_HOOKUP_OBJECT (window_stadium, label103, "label103");
-  GLADE_HOOKUP_OBJECT (window_stadium, progressbar_safety, "progressbar_safety");
-  GLADE_HOOKUP_OBJECT (window_stadium, label109, "label109");
   GLADE_HOOKUP_OBJECT (window_stadium, label_average_attendance, "label_average_attendance");
-  GLADE_HOOKUP_OBJECT (window_stadium, label111, "label111");
   GLADE_HOOKUP_OBJECT (window_stadium, progressbar_average_attendance, "progressbar_average_attendance");
+  GLADE_HOOKUP_OBJECT (window_stadium, label106, "label106");
+  GLADE_HOOKUP_OBJECT (window_stadium, label_stadium_status, "label_stadium_status");
+  GLADE_HOOKUP_OBJECT (window_stadium, label101, "label101");
+  GLADE_HOOKUP_OBJECT (window_stadium, progressbar_safety, "progressbar_safety");
+  GLADE_HOOKUP_OBJECT (window_stadium, label103, "label103");
+  GLADE_HOOKUP_OBJECT (window_stadium, label109, "label109");
+  GLADE_HOOKUP_OBJECT (window_stadium, label111, "label111");
+  GLADE_HOOKUP_OBJECT (window_stadium, hseparator17, "hseparator17");
+  GLADE_HOOKUP_OBJECT (window_stadium, table3, "table3");
+  GLADE_HOOKUP_OBJECT (window_stadium, spinbutton1, "spinbutton1");
+  GLADE_HOOKUP_OBJECT (window_stadium, label124, "label124");
+  GLADE_HOOKUP_OBJECT (window_stadium, label123, "label123");
   GLADE_HOOKUP_OBJECT (window_stadium, hseparator14, "hseparator14");
   GLADE_HOOKUP_OBJECT (window_stadium, vbox43, "vbox43");
   GLADE_HOOKUP_OBJECT (window_stadium, label90, "label90");
@@ -1195,6 +1236,7 @@ create_window_file_chooser (void)
   GtkWidget *button2;
 
   window_file_chooser = gtk_file_chooser_dialog_new (_("Choose file"), NULL, GTK_FILE_CHOOSER_ACTION_OPEN, NULL);
+  gtk_container_set_border_width (GTK_CONTAINER (window_file_chooser), 5);
   g_object_set (window_file_chooser,
                 "show-hidden", TRUE,
                 NULL);
