@@ -1004,12 +1004,13 @@ create_window_stadium (void)
   gtk_table_set_row_spacings (GTK_TABLE (table3), 3);
   gtk_table_set_col_spacings (GTK_TABLE (table3), 3);
 
-  spin_ticket_price_adj = gtk_adjustment_new (1, 0, 100, 1, 10, 10);
+  spin_ticket_price_adj = gtk_adjustment_new (1, 0, 100, 0.00999999977648, 10, 10);
   spin_ticket_price = gtk_spin_button_new (GTK_ADJUSTMENT (spin_ticket_price_adj), 1, 2);
   gtk_widget_show (spin_ticket_price);
   gtk_table_attach (GTK_TABLE (table3), spin_ticket_price, 1, 2, 1, 2,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
+  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spin_ticket_price), TRUE);
 
   label124 = gtk_label_new (_("Change ticket price"));
   gtk_widget_show (label124);

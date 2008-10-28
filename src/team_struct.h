@@ -65,6 +65,7 @@ typedef struct
 				of the capacity. Default: 0. */
 	games; /**< Number of games. Default: 0. */
     gfloat safety; /**< Safety percentage between 0 and 100. Default: randomized. */
+    gfloat ticket_price;
 
 } Stadium;
 

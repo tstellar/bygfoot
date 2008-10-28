@@ -64,6 +64,8 @@ team_new(gboolean new_id)
     new.average_talent = 0;
     new.luck = 1;
 
+    new.stadium.ticket_price = const_int("int_team_stadium_ticket_price");
+
     new.players = g_array_new(FALSE, FALSE, sizeof(Player));
 
     return new;
