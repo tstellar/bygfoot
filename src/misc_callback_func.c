@@ -260,7 +260,10 @@ misc_callback_improve_stadium(void)
     GtkSpinButton *spinbutton_capacity =
 	GTK_SPIN_BUTTON(lookup_widget(window.stadium, "spinbutton_capacity")),
 	*spinbutton_safety =
-	GTK_SPIN_BUTTON(lookup_widget(window.stadium, "spinbutton_safety"));
+	GTK_SPIN_BUTTON(lookup_widget(window.stadium, "spinbutton_safety")),
+        *spinbutton_ticket_price =
+        GTK_SPIN_BUTTON(lookup_widget(window.stadium, "spin_ticket_price"));
+    gfloat ticket_price = gtk_spin_button_get_value(spinbutton_ticket_price);
     gint value_capacity = gtk_spin_button_get_value_as_int(spinbutton_capacity),
 	value_safety = gtk_spin_button_get_value_as_int(spinbutton_safety);
     gint cost_capacity, cost_safety;
@@ -281,6 +284,8 @@ misc_callback_improve_stadium(void)
 	game_gui_show_warning(_("You don't have the money."));
 	return;
     }
+
+    current_user.tm->stadium.ticket_price = ticket_price;
 
     current_user.money -= (cost_capacity + cost_safety);
     current_user.money_out[1][MON_OUT_STADIUM_IMPROVEMENT] -= (cost_safety + cost_capacity);

@@ -49,6 +49,7 @@ enum
     TAG_TEAM_STADIUM_GAMES,
     TAG_TEAM_STADIUM_SAFETY,
     TAG_TEAM_LUCK,
+    TAG_TEAM_STADIUM_TICKET_PRICE,
     TAG_END
 };
 
@@ -129,6 +130,7 @@ xml_loadsave_teams_end_element    (GMarkupParseContext *context,
 	    tag == TAG_TEAM_STADIUM_AVERAGE_ATTENDANCE || 
 	    tag == TAG_TEAM_STADIUM_POSSIBLE_ATTENDANCE ||
 	    tag == TAG_TEAM_STADIUM_GAMES ||
+	    tag == TAG_TEAM_STADIUM_TICKET_PRICE ||
 	    tag == TAG_TEAM_STADIUM_SAFETY)
 	state = TAG_TEAM_STADIUM;
     else if(tag >= TAG_START_PLAYERS && tag <= TAG_END_PLAYERS)
@@ -189,6 +191,8 @@ xml_loadsave_teams_text         (GMarkupParseContext *context,
 	new_team.stadium.games = int_value;
     else if(state == TAG_TEAM_STADIUM_SAFETY)
 	new_team.stadium.safety = float_value;
+    else if(state == TAG_TEAM_STADIUM_TICKET_PRICE)
+        new_team.stadium.ticket_price = float_value;
     else if(state == TAG_TEAM_LUCK)
 	new_team.luck = float_value;
     else if(state >= TAG_START_PLAYERS && state <= TAG_END_PLAYERS)
@@ -279,6 +283,7 @@ xml_loadsave_teams_write_team(FILE *fil, const Team* team)
     xml_write_int(fil, team->stadium.possible_attendance, TAG_TEAM_STADIUM_POSSIBLE_ATTENDANCE, I2);
     xml_write_int(fil, team->stadium.games, TAG_TEAM_STADIUM_GAMES, I2);
     xml_write_float(fil, team->stadium.safety, TAG_TEAM_STADIUM_SAFETY, I2);
+    xml_write_float(fil, team->stadium.ticket_price, TAG_TEAM_STADIUM_TICKET_PRICE, I2);
 
     fprintf(fil, "%s</_%d>\n", I1, TAG_TEAM_STADIUM);
 
