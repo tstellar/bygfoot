@@ -76,7 +76,7 @@ user_new(void)
 
     new.bets[0] = g_array_new(FALSE, FALSE, sizeof(BetUser));
     new.bets[1] = g_array_new(FALSE, FALSE, sizeof(BetUser));
-
+    new.ticket_price = const_int("int_team_stadium_ticket_price");
     return new;
 }
 

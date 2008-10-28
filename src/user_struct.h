@@ -164,7 +164,7 @@ typedef struct
     /** The user's money, debt, income and expenses.
 	We have double arrays to store information about
 	the current and the past week. */
-    gint money, debt, money_in[2][MON_IN_END],
+    gint ticket_price, money, debt, money_in[2][MON_IN_END],
 	money_out[2][MON_OUT_END];
     /** The user's scout and physio qualities.
 	@see #Quality */
