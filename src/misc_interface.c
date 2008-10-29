@@ -1137,11 +1137,11 @@ create_window_stadium (void)
   gtk_widget_show (image60);
   gtk_box_pack_start (GTK_BOX (hbox67), image60, FALSE, FALSE, 0);
 
-  label107 = gtk_label_new_with_mnemonic (_("Improve!"));
+  label107 = gtk_label_new_with_mnemonic (_("Confirm!"));
   gtk_widget_show (label107);
   gtk_box_pack_start (GTK_BOX (hbox67), label107, FALSE, FALSE, 0);
 
-  button_stadium_cancel = gtk_button_new_from_stock ("gtk-close");
+  button_stadium_cancel = gtk_button_new_from_stock ("gtk-cancel");
   gtk_widget_show (button_stadium_cancel);
   gtk_box_pack_start (GTK_BOX (vbox39), button_stadium_cancel, FALSE, FALSE, 0);
   gtk_tooltips_set_tip (tooltips, button_stadium_cancel, _("Esc"), NULL);

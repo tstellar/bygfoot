@@ -334,9 +334,13 @@ game_assign_attendance(Fixture *fix)
 		 const_float("float_game_stadium_attendance_percentage_upper")) *
 	powf(tm[0]->stadium.safety, 
 	     const_float("float_game_stadium_attendance_safety_exponent"));
+    /* calculate the differnce in ticket prices has on attendance */
+    /* TODO: Make the factor 0.125 a constant*/
+    gfloat delta_price = tm[0]->stadium.ticket_price - const_int("int_team_stadium_ticket_price");
+    gfloat price_factor = 1/(1+0.125*delta_price);
     gint max_att = MIN((gint)rint((gfloat)league_cup_average_capacity(tm[0]->clid) *
 				  const_float("float_game_stadium_attendance_average_exceed_factor") *
-				  math_rnd(0.9, 1.1)),
+				  math_rnd(0.9, 1.1)*price_factor),
 		       tm[0]->stadium.capacity);
 
     if(fix->clid < ID_CUP_START && 
