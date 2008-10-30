@@ -96,8 +96,13 @@ float_team_stadium_safety_upper 100000
 
 # ticket price; this determines together with
 # the player wages the size of the stadium at
-# generation
+# generation.  It's also used inattendance
+# calculation
 int_team_stadium_ticket_price 25
+
+# price vs attendace. This determines together
+#  with the prices gow high the attedace will be
+float_team_stadium_price_attendance_factor 12500
 
 # factor for stadium size; this determines the income
 # of the user teams
