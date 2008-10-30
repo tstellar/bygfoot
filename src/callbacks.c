@@ -69,6 +69,7 @@ on_menu_new_activate                   (GtkMenuItem     *menuitem,
     main_init(NULL, NULL);
     window_show_startup();
     stat0 = STATUS_TEAM_SELECTION;
+    statp = NULL;
 }
 
 
