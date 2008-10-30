@@ -322,10 +322,10 @@ finance_assign_game_money(const Fixture *fix)
 	! g_array_index(cup_from_clid(fix->clid)->rounds, CupRound, fix->round).home_away)
     {
 	ticket_income[0] = 
-	    ticket_income[1] = fix->attendance * const_int("int_team_stadium_ticket_price") / 2;
+	    ticket_income[1] = fix->attendance * fix->teams[0]->stadium.ticket_price / 2;
     }
     else
-	ticket_income[0] = fix->attendance * const_int("int_team_stadium_ticket_price");
+	ticket_income[0] = fix->attendance * fix->teams[0]->stadium.ticket_price;
 
     for(i = 0; i < 2; i++)
     {

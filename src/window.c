@@ -521,6 +521,11 @@ window_show_stadium(void)
     
     spin_ticket_price = GTK_SPIN_BUTTON(lookup_widget(window.stadium, "spin_ticket_price"));
     gtk_spin_button_set_value(spin_ticket_price, tm->stadium.ticket_price);
+    /* Set the lower bound to constant_ticket_price-(1/constant_ticket_attendance)
+       +1 So that we can't divide by 0 or negative numbers*/
+    gfloat lower_bound = const_int("int_team_stadium_ticket_price")-(1/const_float("float_team_stadium_price_attendance_factor"))+1;
+
+    gtk_spin_button_set_range(spin_ticket_price, lower_bound, 100);
 
     progressbar_safety = GTK_PROGRESS_BAR(lookup_widget(window.stadium, "progressbar_safety"));
     progressbar_average_attendance = GTK_PROGRESS_BAR(lookup_widget(window.stadium, "progressbar_average_attendance"));

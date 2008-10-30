@@ -571,6 +571,9 @@ user_change_team(User *user, Team *tm)
     gint i;
     gint success = user->counters[COUNT_USER_SUCCESS];
 
+    /* Reset the ticketprice of the old team to the default value */
+    user->tm->stadium.ticket_price = const_int("int_team_stadium_ticket_price");
+
     user->tm = tm;
     user->team_id = tm->id;
 
