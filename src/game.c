@@ -334,12 +334,9 @@ game_assign_attendance(Fixture *fix)
 		 const_float("float_game_stadium_attendance_percentage_upper")) *
 	powf(tm[0]->stadium.safety, 
 	     const_float("float_game_stadium_attendance_safety_exponent"));
-    /* calculate the differnce in ticket prices has on attendance */
-    gfloat delta_price = tm[0]->stadium.ticket_price - const_int("int_team_stadium_ticket_price");
-    gfloat price_factor = 1/(1+const_float("float_team_stadium_price_attendance_factor")*delta_price);
     gint max_att = MIN((gint)rint((gfloat)league_cup_average_capacity(tm[0]->clid) *
 				  const_float("float_game_stadium_attendance_average_exceed_factor") *
-				  math_rnd(0.9, 1.1)*price_factor),
+				  math_rnd(0.9, 1.1)),
 		       tm[0]->stadium.capacity);
 
     if(fix->clid < ID_CUP_START && 
@@ -359,7 +356,11 @@ game_assign_attendance(Fixture *fix)
 	    factor *= const_float("float_game_stadium_attendance_cup_international_factor");
     }
 
-    factor = MIN(factor, 1);
+    /* calculate the differnce in ticket prices has on attendance */
+    gfloat delta_price = tm[0]->stadium.ticket_price - const_int("int_team_stadium_ticket_price");
+    gfloat price_factor = math_gauss_dist(0.92, 1.08) * 1/(1+const_float("float_team_stadium_price_attendance_factor")*delta_price);
+
+    factor = MIN(factor * price_factor, 1);
     fix->attendance = MIN(MIN((gint)rint((gfloat)tm[0]->stadium.capacity * factor),
 			      max_att * factor), max_att);
 
