@@ -301,7 +301,7 @@ create_window_options (void)
   gtk_widget_show (label6);
   gtk_box_pack_start (GTK_BOX (hbox3), label6, FALSE, FALSE, 0);
 
-  spinbutton_autosave_adj = gtk_adjustment_new (1, 1, 20, 1, 10, 10);
+  spinbutton_autosave_adj = gtk_adjustment_new (1, 1, 20, 1, 10, 0);
   spinbutton_autosave = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_autosave_adj), 1, 0);
   gtk_widget_show (spinbutton_autosave);
   gtk_box_pack_start (GTK_BOX (hbox3), spinbutton_autosave, FALSE, TRUE, 0);
@@ -312,7 +312,7 @@ create_window_options (void)
   gtk_widget_show (label36);
   gtk_box_pack_start (GTK_BOX (hbox3), label36, FALSE, FALSE, 0);
 
-  spinbutton_autosave_files_adj = gtk_adjustment_new (1, 0, 100, 1, 10, 10);
+  spinbutton_autosave_files_adj = gtk_adjustment_new (1, 0, 100, 1, 10, 0);
   spinbutton_autosave_files = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_autosave_files_adj), 1, 0);
   gtk_widget_show (spinbutton_autosave_files);
   gtk_box_pack_start (GTK_BOX (hbox3), spinbutton_autosave_files, TRUE, TRUE, 0);
@@ -408,7 +408,7 @@ create_window_options (void)
                     (GtkAttachOptions) (0), 0, 0);
   gtk_tooltips_set_tip (tooltips, checkbutton_autosave, _("Whether to automatically save the game regularly"), NULL);
 
-  spinbutton_precision_adj = gtk_adjustment_new (1, 0, 3, 1, 10, 10);
+  spinbutton_precision_adj = gtk_adjustment_new (1, 0, 3, 1, 10, 0);
   spinbutton_precision = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_precision_adj), 1, 0);
   gtk_widget_show (spinbutton_precision);
   gtk_table_attach (GTK_TABLE (table1), spinbutton_precision, 1, 2, 1, 2,
@@ -417,7 +417,7 @@ create_window_options (void)
   gtk_tooltips_set_tip (tooltips, spinbutton_precision, _("How many digits after the comma there are for skill etc."), NULL);
   gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_precision), TRUE);
 
-  spinbutton_refresh_adj = gtk_adjustment_new (1, 1, 100, 1, 10, 10);
+  spinbutton_refresh_adj = gtk_adjustment_new (1, 1, 100, 1, 10, 0);
   spinbutton_refresh = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_refresh_adj), 1, 0);
   gtk_widget_show (spinbutton_refresh);
   gtk_table_attach (GTK_TABLE (table1), spinbutton_refresh, 1, 2, 2, 3,
@@ -483,7 +483,7 @@ create_window_options (void)
                     (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (label39), 1, 0.5);
 
-  spinbutton_live_speed_adj = gtk_adjustment_new (0, 0, 40, 1, 10, 10);
+  spinbutton_live_speed_adj = gtk_adjustment_new (0, 0, 40, 1, 10, 0);
   spinbutton_live_speed = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_live_speed_adj), 1, 0);
   gtk_widget_show (spinbutton_live_speed);
   gtk_table_attach (GTK_TABLE (table3), spinbutton_live_speed, 1, 2, 0, 1,
@@ -492,7 +492,7 @@ create_window_options (void)
   gtk_tooltips_set_tip (tooltips, spinbutton_live_speed, _("The lower this value the faster the live game commentary will scroll."), NULL);
   gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_live_speed), TRUE);
 
-  spinbutton_live_verbosity_adj = gtk_adjustment_new (1, 1, 7, 1, 10, 10);
+  spinbutton_live_verbosity_adj = gtk_adjustment_new (1, 1, 7, 1, 10, 0);
   spinbutton_live_verbosity = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_live_verbosity_adj), 1, 0);
   gtk_widget_show (spinbutton_live_verbosity);
   gtk_table_attach (GTK_TABLE (table3), spinbutton_live_verbosity, 1, 2, 1, 2,
@@ -565,7 +565,7 @@ create_window_options (void)
   gtk_widget_show (label37);
   gtk_box_pack_start (GTK_BOX (hbox10), label37, FALSE, FALSE, 0);
 
-  spinbutton_contract_adj = gtk_adjustment_new (1, 0, 24, 1, 10, 10);
+  spinbutton_contract_adj = gtk_adjustment_new (1, 0, 24, 1, 10, 0);
   spinbutton_contract = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_contract_adj), 1, 0);
   gtk_widget_show (spinbutton_contract);
   gtk_box_pack_start (GTK_BOX (hbox10), spinbutton_contract, FALSE, FALSE, 0);
@@ -1026,7 +1026,7 @@ create_window_options (void)
   gtk_widget_show (label42);
   gtk_box_pack_start (GTK_BOX (hbox12), label42, FALSE, FALSE, 0);
 
-  spinbutton_bet_wager_adj = gtk_adjustment_new (1, 1, 100, 100, 1000, 10);
+  spinbutton_bet_wager_adj = gtk_adjustment_new (1, 1, 100, 100, 1000, 0);
   spinbutton_bet_wager = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_bet_wager_adj), 1, 0);
   gtk_widget_show (spinbutton_bet_wager);
   gtk_box_pack_start (GTK_BOX (hbox12), spinbutton_bet_wager, FALSE, FALSE, 0);
@@ -1076,7 +1076,7 @@ create_window_options (void)
   gtk_misc_set_alignment (GTK_MISC (label45), 0.1, 0.5);
   gtk_misc_set_padding (GTK_MISC (label45), 3, 3);
 
-  spinbutton_recreation_adj = gtk_adjustment_new (1, 0, 10, 1, 10, 10);
+  spinbutton_recreation_adj = gtk_adjustment_new (1, 0, 10, 1, 10, 0);
   spinbutton_recreation = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_recreation_adj), 1, 0);
   gtk_widget_show (spinbutton_recreation);
   gtk_box_pack_start (GTK_BOX (hbox15), spinbutton_recreation, FALSE, FALSE, 0);

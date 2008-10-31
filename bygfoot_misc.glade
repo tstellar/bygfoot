@@ -1507,7 +1507,7 @@
 		  <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		  <property name="snap_to_ticks">False</property>
 		  <property name="wrap">False</property>
-		  <property name="adjustment">0 0 30 1 10 10</property>
+		  <property name="adjustment">0 0 30 1 10 0</property>
 		  <signal name="value_changed" handler="on_spinbutton_speed_value_changed" last_modification_time="Mon, 10 Jan 2005 15:04:50 GMT"/>
 		  <signal name="button_press_event" handler="on_spinbutton_speed_button_press_event" last_modification_time="Thu, 19 May 2005 18:01:49 GMT"/>
 		</widget>
@@ -1587,7 +1587,7 @@
 		  <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		  <property name="snap_to_ticks">False</property>
 		  <property name="wrap">False</property>
-		  <property name="adjustment">1 1 7 1 10 10</property>
+		  <property name="adjustment">1 1 7 1 10 0</property>
 		  <signal name="value_changed" handler="on_spinbutton_verbosity_value_changed" last_modification_time="Thu, 19 May 2005 08:16:48 GMT"/>
 		</widget>
 		<packing>
@@ -2071,7 +2071,7 @@
 	      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 	      <property name="snap_to_ticks">False</property>
 	      <property name="wrap">False</property>
-	      <property name="adjustment">1 0 100 0.10000000149 10 10</property>
+	      <property name="adjustment">1 0 100 0.10000000149 10 0</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">1</property>
@@ -2236,7 +2236,7 @@
 		      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		      <property name="snap_to_ticks">False</property>
 		      <property name="wrap">False</property>
-		      <property name="adjustment">0 0 10000 1 100 10</property>
+		      <property name="adjustment">0 0 10000 1 100 0</property>
 		      <signal name="value_changed" handler="on_spinbutton_capacity_value_changed" last_modification_time="Thu, 17 Mar 2005 13:40:45 GMT"/>
 		      <signal name="button_press_event" handler="on_spinbutton_capacity_button_press_event" last_modification_time="Thu, 17 Mar 2005 20:19:07 GMT"/>
 		    </widget>
@@ -2409,7 +2409,7 @@
 		      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		      <property name="snap_to_ticks">False</property>
 		      <property name="wrap">False</property>
-		      <property name="adjustment">0 0 100 1 5 10</property>
+		      <property name="adjustment">0 0 100 1 5 0</property>
 		      <signal name="value_changed" handler="on_spinbutton_safety_value_changed" last_modification_time="Thu, 17 Mar 2005 13:40:49 GMT"/>
 		      <signal name="button_press_event" handler="on_spinbutton_capacity_button_press_event" last_modification_time="Thu, 17 Mar 2005 20:21:27 GMT"/>
 		    </widget>
