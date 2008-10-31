@@ -696,7 +696,7 @@ create_window_live (void)
   gtk_table_set_row_spacings (GTK_TABLE (table2), 1);
   gtk_table_set_col_spacings (GTK_TABLE (table2), 3);
 
-  spinbutton_speed_adj = gtk_adjustment_new (0, 0, 30, 1, 10, 10);
+  spinbutton_speed_adj = gtk_adjustment_new (0, 0, 30, 1, 10, 0);
   spinbutton_speed = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_speed_adj), 1, 0);
   gtk_widget_show (spinbutton_speed);
   gtk_table_attach (GTK_TABLE (table2), spinbutton_speed, 1, 2, 1, 2,
@@ -718,7 +718,7 @@ create_window_live (void)
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
 
-  spinbutton_verbosity_adj = gtk_adjustment_new (1, 1, 7, 1, 10, 10);
+  spinbutton_verbosity_adj = gtk_adjustment_new (1, 1, 7, 1, 10, 0);
   spinbutton_verbosity = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_verbosity_adj), 1, 0);
   gtk_widget_show (spinbutton_verbosity);
   gtk_table_attach (GTK_TABLE (table2), spinbutton_verbosity, 0, 1, 1, 2,
@@ -1004,7 +1004,7 @@ create_window_stadium (void)
   gtk_table_set_row_spacings (GTK_TABLE (table3), 3);
   gtk_table_set_col_spacings (GTK_TABLE (table3), 3);
 
-  spin_ticket_price_adj = gtk_adjustment_new (1, 0, 100, 0.10000000149, 10, 10);
+  spin_ticket_price_adj = gtk_adjustment_new (1, 0, 100, 0.10000000149, 10, 0);
   spin_ticket_price = gtk_spin_button_new (GTK_ADJUSTMENT (spin_ticket_price_adj), 1, 2);
   gtk_widget_show (spin_ticket_price);
   gtk_table_attach (GTK_TABLE (table3), spin_ticket_price, 1, 2, 1, 2,
@@ -1052,7 +1052,7 @@ create_window_stadium (void)
   gtk_widget_show (label91);
   gtk_box_pack_start (GTK_BOX (vbox44), label91, FALSE, FALSE, 0);
 
-  spinbutton_capacity_adj = gtk_adjustment_new (0, 0, 10000, 1, 100, 10);
+  spinbutton_capacity_adj = gtk_adjustment_new (0, 0, 10000, 1, 100, 0);
   spinbutton_capacity = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_capacity_adj), 1, 0);
   gtk_widget_show (spinbutton_capacity);
   gtk_box_pack_start (GTK_BOX (vbox44), spinbutton_capacity, FALSE, FALSE, 0);
@@ -1086,7 +1086,7 @@ create_window_stadium (void)
   gtk_widget_show (label92);
   gtk_box_pack_start (GTK_BOX (vbox45), label92, FALSE, FALSE, 0);
 
-  spinbutton_safety_adj = gtk_adjustment_new (0, 0, 100, 1, 5, 10);
+  spinbutton_safety_adj = gtk_adjustment_new (0, 0, 100, 1, 5, 0);
   spinbutton_safety = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_safety_adj), 1, 0);
   gtk_widget_show (spinbutton_safety);
   gtk_box_pack_start (GTK_BOX (vbox45), spinbutton_safety, FALSE, FALSE, 0);
