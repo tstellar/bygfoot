@@ -248,8 +248,7 @@ transfer_evaluate_offers(void)
 				player_of_id_team(trans(i).tm, trans(i).id)->name);
 			    transoff(i, j).status = TRANSFER_OFFER_REJECTED;
 			}
-			else if(query_player_star_balks(
-				    player_of_id_team(trans(i).tm, trans(i).id), transoff(i, j).tm, TRUE))
+			else if(transfer_new_star_balks(&trans(i), &transoff(i, j)))
 			{
 			    user_event_add(
 				user_from_team(transoff(i, j).tm),
@@ -547,4 +546,36 @@ transfer_get_previous_offer(const Transfer *tr, const Team *tm, gint *fee, gint 
 	    *fee = g_array_index(tr->offers, TransferOffer, i).fee;
 	    *wage = g_array_index(tr->offers, TransferOffer, i).wage;
 	}
+}
+
+/** Find out if a potential new star balks because there are already 
+    enough stars on the user team. */
+gboolean
+transfer_new_star_balks(const Transfer *tr, const TransferOffer *troff)
+{
+    gint i;
+    gint number_of_stars;
+
+    /* Weak players never balk. */
+    if(player_of_id_team(tr->tm, tr->id)->skill < 
+       const_float("float_transfer_star_skill_limit"))
+	return FALSE;
+
+    /* There is some chance that the new star doesn't balk at all. */
+    if(math_rnd(0, 1) < const_float("float_transfer_star_no_balk"))
+	return FALSE;
+
+    /* Find out if there are any stars at all on the team. */
+    number_of_stars = 0;
+    for(i = 0; i < troff->tm->players->len; i++)
+    {
+	if(g_array_index(troff->tm->players, Player, i).skill > 
+	   const_float("float_transfer_star_skill_limit"))
+	    number_of_stars++;
+    }
+    
+    if(number_of_stars == 0)
+	return FALSE;
+
+    return (math_rnd(0, 1) > 1 - number_of_stars * const_float("float_transfer_star_prob_decrease"));
 }

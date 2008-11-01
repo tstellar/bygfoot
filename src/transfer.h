@@ -96,4 +96,7 @@ transfer_offers_pending(void);
 void
 transfer_get_previous_offer(const Transfer *tr, const Team *tm, gint *fee, gint *wage);
 
+gboolean
+transfer_new_star_balks(const Transfer *tr, const TransferOffer *troff);
+
 #endif
