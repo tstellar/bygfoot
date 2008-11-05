@@ -335,9 +335,9 @@ finance_assign_game_money(const Fixture *fix)
 	    usr(user_idx[i]).money_in[1][MON_IN_TICKET] += ticket_income[i];
 
 	    usr(user_idx[i]).money -= 
-		(gint)rint((gfloat)ticket_income[i] * (gfloat)usr(user_idx[0]).youth_academy.percentage / 100);
+		(gint)rint((gfloat)ticket_income[i] * (gfloat)usr(user_idx[i]).youth_academy.percentage / 100);
 	    usr(user_idx[i]).money_out[1][MON_OUT_YA] -=
-		(gint)rint((gfloat)ticket_income[i] * (gfloat)usr(user_idx[0]).youth_academy.percentage / 100);
+		(gint)rint((gfloat)ticket_income[i] * (gfloat)usr(user_idx[i]).youth_academy.percentage / 100);
 
 	    if(i == 0 && debug < 50)
 	    {
