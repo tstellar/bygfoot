@@ -4,3 +4,4 @@
 
 GtkWidget* create_window_bets (void);
 GtkWidget* create_window_splash (void);
+GtkWidget* create_window_alr (void);

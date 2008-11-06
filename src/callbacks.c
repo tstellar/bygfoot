@@ -1300,3 +1300,11 @@ on_training_camp_activate              (GtkMenuItem     *menuitem,
 
    window_show_training_camp();
 }
+
+void
+on_automatic_loan_repayment_activate   (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+
+}
+
