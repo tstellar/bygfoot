@@ -8,7 +8,9 @@
 
 #include <sys/types.h>
 #include <sys/stat.h>
+#ifdef HAVE_UNISTD_H
 #include <unistd.h>
+#endif
 #include <string.h>
 #include <stdio.h>
 
@@ -189,6 +191,7 @@ create_main_window (void)
   GtkWidget *image2598;
   GtkWidget *menu_show_stadium;
   GtkWidget *image2599;
+  GtkWidget *automatic_loan_repayment;
   GtkWidget *trennlinie15;
   GtkWidget *menu_betting;
   GtkWidget *menu_help1;
@@ -726,9 +729,6 @@ create_main_window (void)
   menu_training_camp = gtk_menu_item_new_with_mnemonic (_("Training camp"));
   gtk_widget_show (menu_training_camp);
   gtk_container_add (GTK_CONTAINER (menu_team_menu), menu_training_camp);
-  gtk_widget_add_accelerator (menu_training_camp, "activate", accel_group,
-                              GDK_t, (GdkModifierType) GDK_CONTROL_MASK,
-                              GTK_ACCEL_VISIBLE);
 
   trennlinie18 = gtk_separator_menu_item_new ();
   gtk_widget_show (trennlinie18);
@@ -1022,6 +1022,13 @@ create_main_window (void)
   image2599 = create_pixmap (main_window, "menu_stadium.png");
   gtk_widget_show (image2599);
   gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_show_stadium), image2599);
+
+  automatic_loan_repayment = gtk_menu_item_new_with_mnemonic (_("Automatic loan repayment"));
+  gtk_widget_show (automatic_loan_repayment);
+  gtk_container_add (GTK_CONTAINER (menu_finances_stadium_menu), automatic_loan_repayment);
+  gtk_widget_add_accelerator (automatic_loan_repayment, "activate", accel_group,
+                              GDK_d, (GdkModifierType) GDK_CONTROL_MASK,
+                              GTK_ACCEL_VISIBLE);
 
   trennlinie15 = gtk_separator_menu_item_new ();
   gtk_widget_show (trennlinie15);
@@ -1645,6 +1652,9 @@ create_main_window (void)
   g_signal_connect ((gpointer) menu_show_stadium, "activate",
                     G_CALLBACK (on_menu_show_stadium_activate),
                     NULL);
+  g_signal_connect ((gpointer) automatic_loan_repayment, "activate",
+                    G_CALLBACK (on_automatic_loan_repayment_activate),
+                    NULL);
   g_signal_connect ((gpointer) menu_betting, "activate",
                     G_CALLBACK (on_menu_betting_activate),
                     NULL);
@@ -1869,6 +1879,7 @@ create_main_window (void)
   GLADE_HOOKUP_OBJECT (main_window, image2598, "image2598");
   GLADE_HOOKUP_OBJECT (main_window, menu_show_stadium, "menu_show_stadium");
   GLADE_HOOKUP_OBJECT (main_window, image2599, "image2599");
+  GLADE_HOOKUP_OBJECT (main_window, automatic_loan_repayment, "automatic_loan_repayment");
   GLADE_HOOKUP_OBJECT (main_window, trennlinie15, "trennlinie15");
   GLADE_HOOKUP_OBJECT (main_window, menu_betting, "menu_betting");
   GLADE_HOOKUP_OBJECT (main_window, menu_help1, "menu_help1");

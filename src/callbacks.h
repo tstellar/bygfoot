@@ -352,3 +352,7 @@ gboolean
 on_player_list1_key_press_event        (GtkWidget       *widget,
                                         GdkEventKey     *event,
                                         gpointer         user_data);
+
+void
+on_automatic_loan_repayment_activate   (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);

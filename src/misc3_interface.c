@@ -8,7 +8,9 @@
 
 #include <sys/types.h>
 #include <sys/stat.h>
+#ifdef HAVE_UNISTD_H
 #include <unistd.h>
+#endif
 #include <string.h>
 #include <stdio.h>
 
@@ -495,5 +497,255 @@ create_window_splash (void)
   gtk_window_add_accel_group (GTK_WINDOW (window_splash), accel_group);
 
   return window_splash;
+}
+
+GtkWidget*
+create_window_alr (void)
+{
+  GtkWidget *window_alr;
+  GtkWidget *vbox5;
+  GtkWidget *label22;
+  GtkWidget *table2;
+  GtkWidget *label23;
+  GtkWidget *label24;
+  GtkWidget *label_current_start_week;
+  GtkWidget *label_current_weekly_installment;
+  GtkWidget *hseparator5;
+  GtkWidget *label25;
+  GtkWidget *table1;
+  GtkWidget *label17;
+  GtkWidget *label18;
+  GtkObject *spinbutton_start_week_adj;
+  GtkWidget *spinbutton_start_week;
+  GtkObject *spinbutton_installment_adj;
+  GtkWidget *spinbutton_installment;
+  GtkWidget *button_calculate_start_week;
+  GtkWidget *alignment7;
+  GtkWidget *hbox16;
+  GtkWidget *image9;
+  GtkWidget *label21;
+  GtkWidget *button_calculate_installment;
+  GtkWidget *alignment6;
+  GtkWidget *hbox15;
+  GtkWidget *image8;
+  GtkWidget *label20;
+  GtkWidget *label_start_week;
+  GtkWidget *hseparator6;
+  GtkWidget *hbox11;
+  GtkWidget *button_alr_confirm;
+  GtkWidget *button_alr_cancel;
+
+  window_alr = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_window_set_title (GTK_WINDOW (window_alr), _("Automatic loan repayment"));
+  gtk_window_set_modal (GTK_WINDOW (window_alr), TRUE);
+
+  vbox5 = gtk_vbox_new (FALSE, 7);
+  gtk_widget_show (vbox5);
+  gtk_container_add (GTK_CONTAINER (window_alr), vbox5);
+  gtk_container_set_border_width (GTK_CONTAINER (vbox5), 5);
+
+  label22 = gtk_label_new (_("Current settings:"));
+  gtk_widget_show (label22);
+  gtk_box_pack_start (GTK_BOX (vbox5), label22, FALSE, FALSE, 0);
+  gtk_misc_set_alignment (GTK_MISC (label22), 0, 0.5);
+
+  table2 = gtk_table_new (2, 2, FALSE);
+  gtk_widget_show (table2);
+  gtk_box_pack_start (GTK_BOX (vbox5), table2, FALSE, FALSE, 0);
+
+  label23 = gtk_label_new (_("Start in week:"));
+  gtk_widget_show (label23);
+  gtk_table_attach (GTK_TABLE (table2), label23, 0, 1, 0, 1,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (label23), 0, 0.5);
+  gtk_misc_set_padding (GTK_MISC (label23), 5, 0);
+
+  label24 = gtk_label_new (_("Weekly installment:"));
+  gtk_widget_show (label24);
+  gtk_table_attach (GTK_TABLE (table2), label24, 0, 1, 1, 2,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (label24), 0, 0.5);
+  gtk_misc_set_padding (GTK_MISC (label24), 5, 0);
+
+  label_current_start_week = gtk_label_new (_("label26"));
+  gtk_widget_show (label_current_start_week);
+  gtk_table_attach (GTK_TABLE (table2), label_current_start_week, 1, 2, 0, 1,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (label_current_start_week), 0, 0.5);
+
+  label_current_weekly_installment = gtk_label_new (_("label27"));
+  gtk_widget_show (label_current_weekly_installment);
+  gtk_table_attach (GTK_TABLE (table2), label_current_weekly_installment, 1, 2, 1, 2,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (label_current_weekly_installment), 0, 0.5);
+
+  hseparator5 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator5);
+  gtk_box_pack_start (GTK_BOX (vbox5), hseparator5, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (hseparator5, -1, 10);
+
+  label25 = gtk_label_new (_("New settings:"));
+  gtk_widget_show (label25);
+  gtk_box_pack_start (GTK_BOX (vbox5), label25, FALSE, FALSE, 0);
+  gtk_misc_set_alignment (GTK_MISC (label25), 0, 0.5);
+
+  table1 = gtk_table_new (2, 4, FALSE);
+  gtk_widget_show (table1);
+  gtk_box_pack_start (GTK_BOX (vbox5), table1, FALSE, FALSE, 0);
+  gtk_table_set_row_spacings (GTK_TABLE (table1), 2);
+  gtk_table_set_col_spacings (GTK_TABLE (table1), 2);
+
+  label17 = gtk_label_new (_("Start in week"));
+  gtk_widget_show (label17);
+  gtk_table_attach (GTK_TABLE (table1), label17, 0, 1, 0, 1,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (label17), 1, 0.5);
+  gtk_misc_set_padding (GTK_MISC (label17), 3, 0);
+
+  label18 = gtk_label_new (_("Weekly installment"));
+  gtk_widget_show (label18);
+  gtk_table_attach (GTK_TABLE (table1), label18, 0, 1, 1, 2,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (label18), 1, 0.5);
+  gtk_misc_set_padding (GTK_MISC (label18), 3, 0);
+
+  spinbutton_start_week_adj = gtk_adjustment_new (1, 0, 0, 1, 10, 10);
+  spinbutton_start_week = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_start_week_adj), 1, 0);
+  gtk_widget_show (spinbutton_start_week);
+  gtk_table_attach (GTK_TABLE (table1), spinbutton_start_week, 1, 2, 0, 1,
+                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  spinbutton_installment_adj = gtk_adjustment_new (1, 0, 0, 1, 10, 10);
+  spinbutton_installment = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_installment_adj), 1, 0);
+  gtk_widget_show (spinbutton_installment);
+  gtk_table_attach (GTK_TABLE (table1), spinbutton_installment, 1, 2, 1, 2,
+                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  button_calculate_start_week = gtk_button_new ();
+  gtk_widget_show (button_calculate_start_week);
+  gtk_table_attach (GTK_TABLE (table1), button_calculate_start_week, 3, 4, 1, 2,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  alignment7 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment7);
+  gtk_container_add (GTK_CONTAINER (button_calculate_start_week), alignment7);
+
+  hbox16 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox16);
+  gtk_container_add (GTK_CONTAINER (alignment7), hbox16);
+
+  image9 = gtk_image_new_from_stock ("gtk-execute", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image9);
+  gtk_box_pack_start (GTK_BOX (hbox16), image9, FALSE, FALSE, 0);
+
+  label21 = gtk_label_new_with_mnemonic (_("Calculate start week"));
+  gtk_widget_show (label21);
+  gtk_box_pack_start (GTK_BOX (hbox16), label21, FALSE, FALSE, 0);
+
+  button_calculate_installment = gtk_button_new ();
+  gtk_widget_show (button_calculate_installment);
+  gtk_table_attach (GTK_TABLE (table1), button_calculate_installment, 3, 4, 0, 1,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  alignment6 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment6);
+  gtk_container_add (GTK_CONTAINER (button_calculate_installment), alignment6);
+
+  hbox15 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox15);
+  gtk_container_add (GTK_CONTAINER (alignment6), hbox15);
+
+  image8 = gtk_image_new_from_stock ("gtk-execute", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image8);
+  gtk_box_pack_start (GTK_BOX (hbox15), image8, FALSE, FALSE, 0);
+
+  label20 = gtk_label_new_with_mnemonic (_("Calculate weekly installment"));
+  gtk_widget_show (label20);
+  gtk_box_pack_start (GTK_BOX (hbox15), label20, FALSE, FALSE, 0);
+
+  label_start_week = gtk_label_new (_("(Week 10)"));
+  gtk_widget_show (label_start_week);
+  gtk_table_attach (GTK_TABLE (table1), label_start_week, 2, 3, 0, 1,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (label_start_week), 0, 0.5);
+  gtk_misc_set_padding (GTK_MISC (label_start_week), 3, 0);
+
+  hseparator6 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator6);
+  gtk_box_pack_start (GTK_BOX (vbox5), hseparator6, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (hseparator6, -1, 10);
+
+  hbox11 = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (hbox11);
+  gtk_box_pack_start (GTK_BOX (vbox5), hbox11, FALSE, TRUE, 3);
+
+  button_alr_confirm = gtk_button_new_from_stock ("gtk-apply");
+  gtk_widget_show (button_alr_confirm);
+  gtk_box_pack_start (GTK_BOX (hbox11), button_alr_confirm, TRUE, TRUE, 0);
+
+  button_alr_cancel = gtk_button_new_from_stock ("gtk-cancel");
+  gtk_widget_show (button_alr_cancel);
+  gtk_box_pack_start (GTK_BOX (hbox11), button_alr_cancel, TRUE, TRUE, 0);
+
+  g_signal_connect ((gpointer) spinbutton_start_week, "changed",
+                    G_CALLBACK (on_spinbutton_start_week_changed),
+                    NULL);
+  g_signal_connect ((gpointer) button_calculate_start_week, "clicked",
+                    G_CALLBACK (on_button_calculate_start_week_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_calculate_installment, "clicked",
+                    G_CALLBACK (on_button_calculate_installment_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_alr_confirm, "clicked",
+                    G_CALLBACK (on_button_alr_confirm_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_alr_cancel, "clicked",
+                    G_CALLBACK (on_button_alr_cancel_clicked),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (window_alr, window_alr, "window_alr");
+  GLADE_HOOKUP_OBJECT (window_alr, vbox5, "vbox5");
+  GLADE_HOOKUP_OBJECT (window_alr, label22, "label22");
+  GLADE_HOOKUP_OBJECT (window_alr, table2, "table2");
+  GLADE_HOOKUP_OBJECT (window_alr, label23, "label23");
+  GLADE_HOOKUP_OBJECT (window_alr, label24, "label24");
+  GLADE_HOOKUP_OBJECT (window_alr, label_current_start_week, "label_current_start_week");
+  GLADE_HOOKUP_OBJECT (window_alr, label_current_weekly_installment, "label_current_weekly_installment");
+  GLADE_HOOKUP_OBJECT (window_alr, hseparator5, "hseparator5");
+  GLADE_HOOKUP_OBJECT (window_alr, label25, "label25");
+  GLADE_HOOKUP_OBJECT (window_alr, table1, "table1");
+  GLADE_HOOKUP_OBJECT (window_alr, label17, "label17");
+  GLADE_HOOKUP_OBJECT (window_alr, label18, "label18");
+  GLADE_HOOKUP_OBJECT (window_alr, spinbutton_start_week, "spinbutton_start_week");
+  GLADE_HOOKUP_OBJECT (window_alr, spinbutton_installment, "spinbutton_installment");
+  GLADE_HOOKUP_OBJECT (window_alr, button_calculate_start_week, "button_calculate_start_week");
+  GLADE_HOOKUP_OBJECT (window_alr, alignment7, "alignment7");
+  GLADE_HOOKUP_OBJECT (window_alr, hbox16, "hbox16");
+  GLADE_HOOKUP_OBJECT (window_alr, image9, "image9");
+  GLADE_HOOKUP_OBJECT (window_alr, label21, "label21");
+  GLADE_HOOKUP_OBJECT (window_alr, button_calculate_installment, "button_calculate_installment");
+  GLADE_HOOKUP_OBJECT (window_alr, alignment6, "alignment6");
+  GLADE_HOOKUP_OBJECT (window_alr, hbox15, "hbox15");
+  GLADE_HOOKUP_OBJECT (window_alr, image8, "image8");
+  GLADE_HOOKUP_OBJECT (window_alr, label20, "label20");
+  GLADE_HOOKUP_OBJECT (window_alr, label_start_week, "label_start_week");
+  GLADE_HOOKUP_OBJECT (window_alr, hseparator6, "hseparator6");
+  GLADE_HOOKUP_OBJECT (window_alr, hbox11, "hbox11");
+  GLADE_HOOKUP_OBJECT (window_alr, button_alr_confirm, "button_alr_confirm");
+  GLADE_HOOKUP_OBJECT (window_alr, button_alr_cancel, "button_alr_cancel");
+
+  return window_alr;
 }
 

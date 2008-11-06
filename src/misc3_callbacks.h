@@ -89,3 +89,24 @@ on_button_splash_hint_back_clicked     (GtkButton       *button,
 void
 on_button_splash_hint_next_clicked     (GtkButton       *button,
                                         gpointer         user_data);
+
+void
+on_spinbutton_start_week_changed       (GtkEditable     *editable,
+                                        gpointer         user_data);
+
+void
+on_button_calculate_start_week_clicked (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_calculate_installment_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_alr_confirm_clicked          (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_alr_cancel_clicked           (GtkButton       *button,
+                                        gpointer         user_data);
