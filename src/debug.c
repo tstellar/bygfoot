@@ -42,6 +42,8 @@ debug_action(const gchar *text)
     gchar buf[SMALL];
     gint value = -1;
 
+    printf("debact: %s\n", text);
+
     sscanf(text, "%[^-0-9]%d", buf, &value);
 
     if(g_str_has_prefix(text, "deb"))

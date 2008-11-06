@@ -1473,12 +1473,17 @@ treeview_create_finances(const User* user)
     misc_print_grouped_int(finance_team_drawing_credit_loan(user->tm, FALSE), buf);
     gtk_list_store_append(ls, &iter);
     gtk_list_store_set(ls, &iter, 0, _("Drawing credit"), 1, buf, 2, "", -1);
+
+    sprintf(buf, "%.2f%%", current_interest * 100);
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, _("Current market interest"), 1, buf, 2, "", -1);
     
     if(user->debt != 0)
     {
 	misc_print_grouped_int(user->debt, buf);
-	sprintf(buf2, "<span foreground='%s'>%s</span>",
-		const_app("string_treeview_finances_expenses_fg"), buf);
+	sprintf(buf2, "<span foreground='%s'>%s (%.2f%% %s)</span>",
+		const_app("string_treeview_finances_expenses_fg"), buf, 
+                user->debt_interest * 100, _("interest rate"));
 	sprintf(buf, _("Debt (repay in %d weeks)"), user->counters[COUNT_USER_LOAN]);
 	gtk_list_store_append(ls, &iter);
 	gtk_list_store_set(ls, &iter, 0, buf, 1, "", 2, buf2, -1);

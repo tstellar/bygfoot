@@ -165,7 +165,9 @@ typedef struct
 	We have double arrays to store information about
 	the current and the past week. */
     gint money, debt, money_in[2][MON_IN_END],
-	money_out[2][MON_OUT_END];
+      money_out[2][MON_OUT_END];
+    /** Interest the debt was taken at. */
+    gfloat debt_interest;
     /** The user's scout and physio qualities.
 	@see #Quality */
     gint scout, physio;

@@ -121,7 +121,7 @@ finance_update_user_weekly(User *user)
 	user->money -=  (gint)(finance_wage_unit(tm) * yc_factor[user->youth_academy.coach % 10]);
     }
 
-    user->debt = (gint)rint((gfloat)user->debt * (1 + const_float("float_finance_interest")));
+    user->debt = (gint)rint((gfloat)user->debt * (1 + user->debt_interest));
 
     if(user->money < -finance_team_drawing_credit_loan(user->tm, FALSE) &&
        user->counters[COUNT_USER_POSITIVE] == -1 && debug < 50)
@@ -200,12 +200,25 @@ finance_team_drawing_credit_loan(const Team *tm, gboolean loan)
 void
 finance_get_loan(gint value)
 {
+    gfloat debt_old = current_user.debt;
+    gfloat debt_new = -value;
+    
     current_user.money += value;
     current_user.debt -= value;
 
-    current_user.counters[COUNT_USER_LOAN] = (current_user.counters[COUNT_USER_LOAN] == -1) ?
-	const_int("int_finance_payback_weeks") : 
-	current_user.counters[COUNT_USER_LOAN];    
+    if(current_user.counters[COUNT_USER_LOAN] == -1)
+        {
+            current_user.counters[COUNT_USER_LOAN] = const_int("int_finance_payback_weeks");
+            current_user.debt_interest = current_interest;
+        }
+    else
+        {
+            /** Calculate new interest in a way that the user can't take unfair advantage of new market interest. */
+            current_user.debt_interest = 
+                powf((debt_old * powf(1 + current_user.debt_interest, (gfloat)current_user.counters[COUNT_USER_LOAN]) +
+                      debt_new * powf(1 + current_interest, (gfloat)current_user.counters[COUNT_USER_LOAN])) / (gfloat)current_user.debt,
+                     1 / (gfloat)current_user.counters[COUNT_USER_LOAN]) - 1;
+        }
 
     game_gui_print_message(_("You have %d weeks to pay back your loan."),
 			   current_user.counters[COUNT_USER_LOAN]); 
@@ -355,4 +368,16 @@ finance_assign_game_money(const Fixture *fix)
 	    }
 	}
     }
+}
+
+/** Change the current interest on the market (random walk with three possibilities). */
+void
+finance_update_current_interest(void)
+{
+    current_interest += math_rndi(-1, 1) * const_float("float_finance_interest_step");
+    
+    if(current_interest < const_float("float_finance_interest_lower"))
+        current_interest = const_float("float_finance_interest_lower");
+    else if(current_interest > const_float("float_finance_interest_upper"))
+        current_interest = const_float("float_finance_interest_upper"); 
 }

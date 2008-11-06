@@ -338,6 +338,12 @@ float_finance_credit_factor_loan    70000
 # number of weeks to pay back a loan
 int_finance_payback_weeks 15
 
+# lower and upper limit for the current interest
+# and the change step between weeks
+float_finance_interest_lower 500
+float_finance_interest_upper 6000
+float_finance_interest_step 250
+
 # live game scale configuration
 float_game_gui_live_game_scale_attack	30000
 float_game_gui_live_game_scale_chance	45000

@@ -72,6 +72,9 @@ GArray *strategies;
 /** Array of current and recent bets. */
 GArray *bets[2];
 
+/** Loan interest for the current week. */
+gfloat current_interest;
+
 /** Array of jobs in the job exchange and
     teams going with the international jobs. */
 GArray *jobs, *job_teams;
