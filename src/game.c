@@ -114,6 +114,10 @@ game_get_player_contribution(const Player *pl, gint type, gboolean special)
 	  const_float("float_player_team_weight_forward_midfield"), 
 	  const_float("float_player_team_weight_forward_attack")}};
 
+    if(pl->cpos == PLAYER_POS_GOALIE)
+        printf("plgamesk %.1f, weight %.1f\n",
+               player_get_game_skill(pl, FALSE, special), player_weights[pl->cpos - 1][type - GAME_TEAM_VALUE_DEFEND]);
+
     return player_get_game_skill(pl, FALSE, special) *
 	player_weights[pl->cpos - 1][type - GAME_TEAM_VALUE_DEFEND];
 }

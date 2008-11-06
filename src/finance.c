@@ -214,10 +214,13 @@ finance_get_loan(gint value)
     else
         {
             /** Calculate new interest in a way that the user can't take unfair advantage of new market interest. */
-            current_user.debt_interest = 
-                powf((debt_old * powf(1 + current_user.debt_interest, (gfloat)current_user.counters[COUNT_USER_LOAN]) +
-                      debt_new * powf(1 + current_interest, (gfloat)current_user.counters[COUNT_USER_LOAN])) / (gfloat)current_user.debt,
-                     1 / (gfloat)current_user.counters[COUNT_USER_LOAN]) - 1;
+            if(current_interest != current_user.debt_interest)
+                {
+                    current_user.debt_interest = 
+                        powf((debt_old * powf(1 + current_user.debt_interest, (gfloat)current_user.counters[COUNT_USER_LOAN]) +
+                              debt_new * powf(1 + current_interest, (gfloat)current_user.counters[COUNT_USER_LOAN])) / (gfloat)current_user.debt,
+                             1 / (gfloat)current_user.counters[COUNT_USER_LOAN]) - 1;
+                }
         }
 
     game_gui_print_message(_("You have %d weeks to pay back your loan."),
