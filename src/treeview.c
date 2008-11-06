@@ -1596,8 +1596,6 @@ treeview_create_next_opponent_values(GtkListStore *ls, const Fixture *fix)
 
     for(i=0;i<4;i++)
     {
-        printf("%d tv %.1f %.1f maxval %.1f maxpip %d\n",
-               i, team_values[0][i], team_values[1][i], max_values[i], const_int("int_treeview_max_pipes"));
 	strcpy(buf2, "");
 	for(j=0;j<(gint)rint((gfloat)const_int("int_treeview_max_pipes") *
 			     (team_values[fix->teams[0] == current_user.tm][i] / max_values[i]));j++)
