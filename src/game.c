@@ -64,7 +64,7 @@ game_get_values(const Fixture *fix, gfloat team_values[][GAME_TEAM_VALUE_END],
 	style_factor = (gfloat)tm[i]->style * const_float("float_game_style_factor");
 
 	team_values[i][GAME_TEAM_VALUE_GOALIE] = 
-	    game_get_player_contribution(player_of_idx_team(tm[i], 0), FALSE, TRUE) * 
+	    player_get_game_skill(player_of_idx_team(tm[i], 0), FALSE, TRUE) * 
 	    (1 + home_advantage * (i == 0));
 
 	for(j=1;j<11;j++)
@@ -113,10 +113,6 @@ game_get_player_contribution(const Player *pl, gint type, gboolean special)
 	 {const_float("float_player_team_weight_forward_defense"), 
 	  const_float("float_player_team_weight_forward_midfield"), 
 	  const_float("float_player_team_weight_forward_attack")}};
-
-    if(pl->cpos == PLAYER_POS_GOALIE)
-        printf("plgamesk %.1f, weight %.1f\n",
-               player_get_game_skill(pl, FALSE, special), player_weights[pl->cpos - 1][type - GAME_TEAM_VALUE_DEFEND]);
 
     return player_get_game_skill(pl, FALSE, special) *
 	player_weights[pl->cpos - 1][type - GAME_TEAM_VALUE_DEFEND];
