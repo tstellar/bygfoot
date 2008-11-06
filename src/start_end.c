@@ -71,7 +71,8 @@ WeekFunc start_week_round_funcs[] =
 WeekFunc start_week_funcs[] = 
 {start_week_add_cups, start_week_update_users,
  start_week_update_teams, start_week_update_user_finances,
- youth_academy_update_weekly, transfer_update, job_update, NULL};
+ youth_academy_update_weekly, transfer_update, job_update,
+ finance_update_current_interest, NULL};
 
 WeekFunc end_week_funcs[] = {stat_update_leagues, end_week_hide_cups, NULL};
 

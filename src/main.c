@@ -41,6 +41,7 @@
 #include "live_game.h"
 #include "load_save.h"
 #include "main.h"
+#include "maths.h"
 #include "misc.h"
 #include "misc_callbacks.h"
 #include "name_struct.h"
@@ -205,7 +206,6 @@ main_init_variables(void)
     bets[1] = g_array_new(FALSE, FALSE, sizeof(BetMatch));
     jobs = g_array_new(FALSE, FALSE, sizeof(Job));
     job_teams = g_array_new(FALSE, FALSE, sizeof(Team));
-
     save_file = NULL;
 
     constants_app.list = settings.list =
@@ -224,7 +224,11 @@ main_init_variables(void)
 
     file_load_conf_files();
     xml_strategy_load_strategies();
-
+    
+    current_interest = rint(math_rnd(const_float("float_finance_interest_lower"),
+				     const_float("float_finance_interest_upper")) /
+			    const_float("float_finance_interest_step")) * const_float("float_finance_interest_step");
+    
     language_set(language_get_code_index(opt_str("string_opt_language_code")) + 1);
 
     option_add(&options, "int_opt_calodds", 0, NULL);

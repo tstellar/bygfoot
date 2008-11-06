@@ -56,4 +56,7 @@ finance_get_stadium_improvement_duration(gfloat value, gboolean capacity);
 void
 finance_assign_game_money(const Fixture *fix);
 
+void
+finance_update_current_interest(void);
+
 #endif

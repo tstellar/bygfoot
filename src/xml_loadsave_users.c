@@ -42,6 +42,7 @@ enum
     TAG_USER_COUNTER,
     TAG_USER_MONEY,
     TAG_USER_DEBT,
+    TAG_USER_DEBT_INTEREST,
     TAG_USER_MONEY_INS,
     TAG_USER_MONEY_IN,
     TAG_USER_MONEY_OUTS,
@@ -163,6 +164,7 @@ xml_loadsave_users_end_element    (GMarkupParseContext *context,
     else if(tag == TAG_USER_COUNTER ||
 	    tag == TAG_USER_MONEY ||
 	    tag == TAG_USER_DEBT ||
+	    tag == TAG_USER_DEBT_INTEREST ||
 	    tag == TAG_USER_MONEY_INS ||
 	    tag == TAG_USER_MONEY_OUTS ||
 	    tag == TAG_USER_SCOUT ||
@@ -268,6 +270,8 @@ xml_loadsave_users_text         (GMarkupParseContext *context,
 	new_user.money = int_value;
     else if(state == TAG_USER_DEBT)
 	new_user.debt = int_value;
+    else if(state == TAG_USER_DEBT_INTEREST)
+	new_user.debt_interest = float_value;
     else if(state == TAG_USER_SCOUT)
 	new_user.scout = int_value;
     else if(state == TAG_USER_PHYSIO)
@@ -392,6 +396,7 @@ xml_loadsave_users_write(const gchar *prefix)
 	xml_write_int(fil, usr(i).team_id, TAG_TEAM_ID, I1);
 	xml_write_int(fil, usr(i).money, TAG_USER_MONEY, I1);
 	xml_write_int(fil, usr(i).debt, TAG_USER_DEBT, I1);
+	xml_write_float(fil, usr(i).debt_interest, TAG_USER_DEBT_INTEREST, I1);
 	xml_write_int(fil, usr(i).scout, TAG_USER_SCOUT, I1);
 	xml_write_int(fil, usr(i).physio, TAG_USER_PHYSIO, I1);
 

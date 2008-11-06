@@ -49,6 +49,7 @@ enum XmlLoadSaveCountryTags
     TAG_MISC_BET_FIX_ID,
     TAG_MISC_BET_ODD,
     TAG_MISC_VERSION,
+    TAG_MISC_CURRENT_INTEREST,
     TAG_END
 };
 
@@ -108,6 +109,7 @@ xml_loadsave_misc_end_element    (GMarkupParseContext *context,
        tag == TAG_SYMBOL ||
        tag == TAG_SID ||
        tag == TAG_MISC_VERSION ||
+       tag == TAG_MISC_CURRENT_INTEREST ||
        tag == TAG_MISC_RATING ||
        tag == TAG_MISC_ALLCUP ||
        tag == TAG_MISC_COUNTER ||
@@ -175,6 +177,8 @@ xml_loadsave_misc_text         (GMarkupParseContext *context,
 	new_bet.odds[oddidx] = float_value;
     else if(state == TAG_MISC_BET_FIX_ID)
 	new_bet.fix_id = int_value;
+    else if(state == TAG_MISC_CURRENT_INTEREST)
+      current_interest = float_value;
 }
 
 
@@ -235,6 +239,7 @@ xml_loadsave_misc_write(const gchar *prefix)
     fprintf(fil, "<_%d>\n", TAG_MISC);
 
     xml_write_string(fil, VERS, TAG_MISC_VERSION, I0);
+    xml_write_float(fil, current_interest, TAG_MISC_CURRENT_INTEREST, I0);
     xml_write_string(fil, country.name, TAG_NAME, I0);
     xml_write_string(fil, country.symbol, TAG_SYMBOL, I0);
     xml_write_string(fil, country.sid, TAG_SID, I0);
