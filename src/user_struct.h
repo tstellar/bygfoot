@@ -168,6 +168,8 @@ typedef struct
       money_out[2][MON_OUT_END];
     /** Interest the debt was taken at. */
     gfloat debt_interest;
+    /** Information about the automatic loan repayment. */
+    gint alr_start_week, alr_weekly_installment;
     /** The user's scout and physio qualities.
 	@see #Quality */
     gint scout, physio;

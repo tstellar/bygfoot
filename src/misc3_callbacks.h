@@ -110,3 +110,7 @@ on_button_alr_confirm_clicked          (GtkButton       *button,
 void
 on_button_alr_cancel_clicked           (GtkButton       *button,
                                         gpointer         user_data);
+gboolean
+on_window_alr_delete_event            (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                       gpointer         user_data);
