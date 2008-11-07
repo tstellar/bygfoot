@@ -233,7 +233,8 @@ void
 on_spinbutton_start_week_changed       (GtkEditable     *editable,
                                         gpointer         user_data)
 {
-
+    gui_label_set_text_from_int(GTK_LABEL(lookup_widget(window.alr, "label_start_week")),
+                                week + 1, FALSE);
 }
 
 
@@ -266,6 +267,15 @@ void
 on_button_alr_cancel_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
-
+    window_destroy(&window.alr);
 }
 
+gboolean
+on_window_alr_delete_event            (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data)
+{
+    on_button_alr_cancel_clicked(NULL, NULL);
+    
+    return TRUE;
+}

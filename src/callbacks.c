@@ -1305,6 +1305,12 @@ void
 on_automatic_loan_repayment_activate   (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    if(current_user.debt == 0)
+        {
+            game_gui_print_message(_("You are not in debt."));
+            return;
+        }
 
+    window_show_alr();
 }
 

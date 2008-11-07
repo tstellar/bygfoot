@@ -238,12 +238,17 @@ finance_pay_loan(gint value)
     gint add = (gint)rint((gfloat)value / (gfloat)(-current_user.debt) * 
 			  (gfloat)const_int("int_finance_payback_weeks"));    
 
+    if(value > -current_user.debt)
+        value = -current_user.debt;
+
     current_user.money -= value;
     current_user.debt += value;
 
     if(current_user.debt == 0)
     {
 	current_user.counters[COUNT_USER_LOAN] = -1;
+        current_user.alr_start_week = 0;
+        current_user.alr_weekly_installment = 0;
 	game_gui_print_message(_("You are free from debt."));
     }
     else

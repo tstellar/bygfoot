@@ -189,7 +189,9 @@ user_set_up_finances(User *user)
     for(i=0; i<MON_IN_END;i++)
 	user->money_in[0][i] = user->money_in[1][i] = 0;
     
-    user->debt = 0;
+    user->debt = 
+        user->alr_start_week =
+        user->alr_weekly_installment = 0;
     user->money = 
 	math_round_integer(user->tm->stadium.capacity * 
 			   math_rndi(const_int("int_initial_money_lower"),

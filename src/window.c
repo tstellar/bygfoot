@@ -878,22 +878,30 @@ window_create(gint window_type)
 		window.splash = create_window_splash();
 	    wind = window.splash;
 	    break;
-   	case WINDOW_TRAINING_CAMP:
-	    if(window.training_camp != NULL)
-		g_warning("window_create: called on already existing window\n");
-	    else
-		window.training_camp = create_window_training_camp();
-	    wind = window.training_camp;
-	    strcpy(buf, _("Training camp"));
-	    break;
-   	case WINDOW_LEAGUE_TABLE:
-   		if(window.league_table != NULL)
-   		g_warning("window_create: called on already existing window\n");
-   		else
-   		window.league_table = create_window_training_camp();
-   		wind = window.league_table;
-   		strcpy(buf, _("League table"));
-   		break;    
+    case WINDOW_TRAINING_CAMP:
+        if(window.training_camp != NULL)
+            g_warning("window_create: called on already existing window\n");
+        else
+            window.training_camp = create_window_training_camp();
+        wind = window.training_camp;
+        strcpy(buf, _("Training camp"));
+        break;
+    case WINDOW_LEAGUE_TABLE:
+        if(window.league_table != NULL)
+            g_warning("window_create: called on already existing window\n");
+        else
+            window.league_table = create_window_training_camp();
+        wind = window.league_table;
+        strcpy(buf, _("League table"));
+        break;
+    case WINDOW_ALR:
+        if(window.alr != NULL)
+            g_warning("window_create: called on already existing window\n");
+        else
+            window.alr = create_window_alr();
+        wind = window.alr;
+        strcpy(buf, _("Automatic loan repayment"));
+        break;
     }
 
     if(window_type != WINDOW_FILE_CHOOSER)
@@ -1085,3 +1093,21 @@ window_show_league_table(void)
     */
 }
 
+/** Create and set up the debt repayment window. */
+void
+window_show_alr(void)
+{
+    window_create(WINDOW_ALR);
+
+    gui_label_set_text_from_int(GTK_LABEL(lookup_widget(window.alr, "label_current_start_week")),
+                                current_user.alr_start_week, FALSE);
+    gui_label_set_text_from_int(GTK_LABEL(lookup_widget(window.alr, "label_current_weekly_installment")),
+                                current_user.alr_weekly_installment, FALSE);
+    gtk_spin_button_set_range(GTK_SPIN_BUTTON(lookup_widget(window.alr, "spinbutton_start_week")),
+                              1, current_user.counters[COUNT_USER_LOAN]);
+    gtk_spin_button_set_range(GTK_SPIN_BUTTON(lookup_widget(window.alr, "spinbutton_weekly_installment")),
+                              0, -current_user.debt);
+
+    gui_label_set_text_from_int(GTK_LABEL(lookup_widget(window.alr, "label_start_week")),
+                                week + 1, FALSE);
+}
