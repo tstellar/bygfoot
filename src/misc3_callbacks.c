@@ -24,7 +24,9 @@
 */
 
 #include "bet.h"
+#include "finance.h"
 #include "fixture.h"
+#include "gui.h"
 #include "main.h"
 #include "misc_callback_func.h"
 #include "misc3_callbacks.h"
@@ -230,19 +232,18 @@ on_button_splash_hint_next_clicked     (GtkButton       *button,
 
 
 void
-on_spinbutton_start_week_changed       (GtkEditable     *editable,
-                                        gpointer         user_data)
-{
-    gui_label_set_text_from_int(GTK_LABEL(lookup_widget(window.alr, "label_start_week")),
-                                week + 1, FALSE);
-}
-
-
-void
 on_button_calculate_start_week_clicked (GtkButton       *button,
                                         gpointer         user_data)
 {
+    gint start_week;
 
+    start_week = finance_calculate_alr_start_week(
+        gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(lookup_widget(window.alr, "spinbutton_weekly_installment"))));
+
+    printf("startweek %d\n", start_week);
+
+    gtk_spin_button_set_value(
+        GTK_SPIN_BUTTON(lookup_widget(window.alr, "spinbutton_start_week")), (gfloat)start_week);
 }
 
 
@@ -251,7 +252,15 @@ on_button_calculate_installment_clicked
                                         (GtkButton       *button,
                                         gpointer         user_data)
 {
+    gint weekly_installment;
 
+    weekly_installment = finance_calculate_alr_weekly_installment(
+        gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(lookup_widget(window.alr, "spinbutton_start_week"))));
+
+    printf("inst %d\n", weekly_installment);
+
+    gtk_spin_button_set_value(
+        GTK_SPIN_BUTTON(lookup_widget(window.alr, "spinbutton_weekly_installment")), (gfloat)weekly_installment);
 }
 
 
@@ -279,3 +288,4 @@ on_window_alr_delete_event            (GtkWidget       *widget,
     
     return TRUE;
 }
+

@@ -28,6 +28,7 @@
 #include "callbacks.h"
 #include "callback_func.h"
 #include "debug.h"
+#include "fixture.h"
 #include "free.h"
 #include "game.h"
 #include "game_gui.h"
@@ -1306,11 +1307,15 @@ on_automatic_loan_repayment_activate   (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
     if(current_user.debt == 0)
-        {
-            game_gui_print_message(_("You are not in debt."));
-            return;
-        }
-
+    {
+        game_gui_print_message(_("You are not in debt."));
+        return;
+    }
+    else if(week >= fixture_get_last_scheduled_week() - 1)
+    {
+        game_gui_print_message(_("It's too late in the season for automatic loan repayment."));
+        return;            
+    }
+    
     window_show_alr();
 }
-

@@ -168,7 +168,6 @@ typedef struct
 	*bets,
 	*splash,
 	*training_camp,
-        *league_table,
         *alr;
     
     /** The position of the horizontal divider is stored here. */

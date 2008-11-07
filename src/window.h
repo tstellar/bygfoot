@@ -55,7 +55,6 @@ enum Windows
     WINDOW_SPLASH,
     WINDOW_END,
     WINDOW_TRAINING_CAMP,
-    WINDOW_LEAGUE_TABLE,
     WINDOW_ALR
 };
 
@@ -128,9 +127,6 @@ window_splash_show_hint(void);
 
 void
 window_show_training_camp(void);
-
-void
-window_show_league_table(void);
 
 void
 window_show_alr(void);

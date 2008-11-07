@@ -26,8 +26,6 @@ bygfoot_SOURCES = \
 	language.c callbacks.h free.h language.h lg_commentary.h misc.h option.h variables.h window.h \
 	lg_commentary.c cup.h file.h fixture.h free.h language.h league.h lg_commentary.h live_game.h main.h maths.h misc.h option.h player.h team.h variables.h xml_lg_commentary.h \
 	league.c cup.h free.h league.h main.h maths.h misc.h option.h player.h stat.h table.h team.h user.h variables.h \
-	league_table_callbacks.c league_table_callbacks.h league_table_interface.h window.h \
-	league_table_interface.c league_table_callbacks.h league_table_interface.h \
 	live_game.c callbacks.h fixture.h free.h game_gui.h game.h league.h lg_commentary.h live_game.h main.h maths.h misc_callback_func.h misc.h option.h player.h strategy.h support.h team.h treeview.h user.h variables.h window.h \
 	load_save.c callbacks.h file.h game_gui.h gui.h language.h load_save.h misc.h option.h support.h user.h variables.h window.h xml.h xml_loadsave_cup.h xml_loadsave_jobs.h xml_loadsave_league.h xml_loadsave_leagues_cups.h xml_loadsave_misc.h xml_loadsave_season_stats.h xml_loadsave_transfers.h xml_loadsave_users.h \
 	main.c bet_struct.h debug.h file.h free.h job_struct.h language.h lg_commentary.h live_game.h load_save.h main.h misc_callbacks.h misc.h name_struct.h option.h start_end.h stat_struct.h strategy_struct.h transfer_struct.h variables.h window.h xml_strategy.h \

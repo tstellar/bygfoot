@@ -25,6 +25,7 @@
 
 #include "callbacks.h"
 #include "finance.h"
+#include "fixture.h"
 #include "game_gui.h"
 #include "league.h"
 #include "maths.h"
@@ -388,4 +389,48 @@ finance_update_current_interest(void)
         current_interest = const_float("float_finance_interest_lower");
     else if(current_interest > const_float("float_finance_interest_upper"))
         current_interest = const_float("float_finance_interest_upper"); 
+}
+
+/** Calculate the weekly installment for an automatic loan repayment
+    depending on the start week. */
+gint
+finance_calculate_alr_weekly_installment(gint start_week)
+{
+    gfloat debt_start;
+    gfloat interest_factor;
+    gfloat installment;
+    gint weekly_installment;
+
+    debt_start = current_user.debt * powf(1 + current_user.debt_interest, (gfloat)(start_week - week));
+    interest_factor = 1 /
+        powf(1 + current_user.debt_interest, (gfloat)(const_int("int_finance_payback_weeks") - start_week + week + 1)) /
+        current_user.debt_interest;
+
+    installment = -debt_start / (1 / current_user.debt_interest - interest_factor + 1);
+    weekly_installment = (gint)rint(installment);
+
+    printf("start %.2f intfac %.2f inst %.2f winst %d\n", debt_start, interest_factor, installment, weekly_installment);
+
+    return (weekly_installment > installment) ? weekly_installment : weekly_installment + 1;
+}
+
+/** Calculate the start week for an automatic loan repayment
+    depending on the weekly installment. */
+gint
+finance_calculate_alr_start_week(gint weekly_installment)
+{
+    gint upper;
+    gint start_week;
+    gint installment;
+
+    upper = MIN(week + current_user.counters[COUNT_USER_LOAN] - 1, fixture_get_last_scheduled_week());
+    
+    for(start_week = week + 1; start_week <= upper; start_week++)
+    {
+        installment = finance_calculate_alr_weekly_installment(start_week);
+        if(installment > weekly_installment)
+            return start_week - 1;
+    }
+
+    return start_week - 1;
 }
