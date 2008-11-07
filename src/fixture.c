@@ -1406,3 +1406,16 @@ fixture_count_matchdays(const GArray *fixtures)
 
     return count + (fixtures->len != 0);
 }
+
+/** Return the last week there are fixtures written for. */
+gint
+fixture_get_last_scheduled_week(void)
+{
+    gint i;
+    gint week_nr = 0;
+
+    for(i=0;i<acps->len;i++)
+        week_nr = MAX(week_nr, g_array_index(acp(i)->fixtures, Fixture, acp(i)->fixtures->len - 1).week_number);
+
+    return week_nr;
+}

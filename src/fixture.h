@@ -159,5 +159,7 @@ fixture_get_goals_to_win(const Fixture *fix, const Team *tm);
 gint
 fixture_count_matchdays(const GArray *fixtures);
 
+gint
+fixture_get_last_scheduled_week(void);
 
 #endif

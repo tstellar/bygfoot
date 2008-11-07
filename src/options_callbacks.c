@@ -61,8 +61,6 @@ on_button_options_ok_clicked           (GtkButton       *button,
 	else
 	    sprintf(buf, "%s%sbygfoot_%s.conf", conf_dir, G_DIR_SEPARATOR_S, current_user.name);
 
-	printf("%s\n", buf);
-
 	file_save_opt_file(buf, &current_user.options);
     }
 
