@@ -137,9 +137,11 @@ on_button_digits_ok_clicked            (GtkButton       *button,
     {
 	case STATUS_GET_LOAN:
 	    finance_get_loan(values[0]);
+            on_menu_show_finances_activate(NULL, NULL);
 	    break;
 	case STATUS_PAY_LOAN:
-	    finance_pay_loan(values[0]);
+	    finance_pay_loan(&current_user, values[0]);
+            on_menu_show_finances_activate(NULL, NULL);
 	    break;
 	case STATUS_SHOW_TRANSFER_LIST:
 	    if(transfer_add_offer(stat2, current_user.tm, values[0], values[1]))
@@ -169,6 +171,14 @@ on_button_digits_ok_clicked            (GtkButton       *button,
     setsav0;
 }
 
+
+void
+on_button_digits_alr_clicked           (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    on_button_digits_ok_clicked(NULL, NULL);
+    on_automatic_loan_repayment_activate(NULL, NULL);
+}
 
 void
 on_button_digits_cancel_clicked        (GtkButton       *button,
@@ -617,4 +627,5 @@ on_button_mm_import_clicked            (GtkButton       *button,
     stat5 = STATUS_SELECT_MM_FILE_IMPORT;
     window_show_file_sel();
 }
+
 

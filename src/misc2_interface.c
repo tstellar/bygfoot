@@ -381,8 +381,14 @@ create_window_digits (void)
   GtkWidget *label_2;
   GtkObject *spinbutton2_adj;
   GtkWidget *spinbutton2;
-  GtkWidget *hbox16;
+  GtkWidget *hseparator10;
+  GtkWidget *vbox29;
   GtkWidget *button_digits_ok;
+  GtkWidget *button_digits_alr;
+  GtkWidget *alignment16;
+  GtkWidget *hbox38;
+  GtkWidget *image23;
+  GtkWidget *label63;
   GtkWidget *button_digits_cancel;
   GtkAccelGroup *accel_group;
   GtkTooltips *tooltips;
@@ -437,17 +443,41 @@ create_window_digits (void)
   gtk_box_pack_start (GTK_BOX (vbox16), spinbutton2, FALSE, FALSE, 0);
   gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton2), TRUE);
 
-  hbox16 = gtk_hbox_new (FALSE, 3);
-  gtk_widget_show (hbox16);
-  gtk_box_pack_start (GTK_BOX (vbox14), hbox16, FALSE, TRUE, 0);
+  hseparator10 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator10);
+  gtk_box_pack_start (GTK_BOX (vbox14), hseparator10, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (hseparator10, -1, 10);
+
+  vbox29 = gtk_vbox_new (FALSE, 3);
+  gtk_widget_show (vbox29);
+  gtk_box_pack_start (GTK_BOX (vbox14), vbox29, TRUE, FALSE, 0);
 
   button_digits_ok = gtk_button_new_from_stock ("gtk-ok");
   gtk_widget_show (button_digits_ok);
-  gtk_box_pack_start (GTK_BOX (hbox16), button_digits_ok, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (vbox29), button_digits_ok, FALSE, FALSE, 0);
+
+  button_digits_alr = gtk_button_new ();
+  gtk_box_pack_start (GTK_BOX (vbox29), button_digits_alr, FALSE, FALSE, 0);
+
+  alignment16 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment16);
+  gtk_container_add (GTK_CONTAINER (button_digits_alr), alignment16);
+
+  hbox38 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox38);
+  gtk_container_add (GTK_CONTAINER (alignment16), hbox38);
+
+  image23 = gtk_image_new_from_stock ("gtk-jump-to", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image23);
+  gtk_box_pack_start (GTK_BOX (hbox38), image23, FALSE, FALSE, 0);
+
+  label63 = gtk_label_new_with_mnemonic (_("Confirm & schedule repayment"));
+  gtk_widget_show (label63);
+  gtk_box_pack_start (GTK_BOX (hbox38), label63, FALSE, FALSE, 0);
 
   button_digits_cancel = gtk_button_new_from_stock ("gtk-cancel");
   gtk_widget_show (button_digits_cancel);
-  gtk_box_pack_start (GTK_BOX (hbox16), button_digits_cancel, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (vbox29), button_digits_cancel, FALSE, FALSE, 0);
   gtk_tooltips_set_tip (tooltips, button_digits_cancel, _("Esc"), NULL);
   gtk_widget_add_accelerator (button_digits_cancel, "clicked", accel_group,
                               GDK_Escape, (GdkModifierType) 0,
@@ -465,6 +495,9 @@ create_window_digits (void)
   g_signal_connect ((gpointer) button_digits_ok, "clicked",
                     G_CALLBACK (on_button_digits_ok_clicked),
                     NULL);
+  g_signal_connect ((gpointer) button_digits_alr, "clicked",
+                    G_CALLBACK (on_button_digits_alr_clicked),
+                    NULL);
   g_signal_connect ((gpointer) button_digits_cancel, "clicked",
                     G_CALLBACK (on_button_digits_cancel_clicked),
                     NULL);
@@ -480,8 +513,14 @@ create_window_digits (void)
   GLADE_HOOKUP_OBJECT (window_digits, vbox16, "vbox16");
   GLADE_HOOKUP_OBJECT (window_digits, label_2, "label_2");
   GLADE_HOOKUP_OBJECT (window_digits, spinbutton2, "spinbutton2");
-  GLADE_HOOKUP_OBJECT (window_digits, hbox16, "hbox16");
+  GLADE_HOOKUP_OBJECT (window_digits, hseparator10, "hseparator10");
+  GLADE_HOOKUP_OBJECT (window_digits, vbox29, "vbox29");
   GLADE_HOOKUP_OBJECT (window_digits, button_digits_ok, "button_digits_ok");
+  GLADE_HOOKUP_OBJECT (window_digits, button_digits_alr, "button_digits_alr");
+  GLADE_HOOKUP_OBJECT (window_digits, alignment16, "alignment16");
+  GLADE_HOOKUP_OBJECT (window_digits, hbox38, "hbox38");
+  GLADE_HOOKUP_OBJECT (window_digits, image23, "image23");
+  GLADE_HOOKUP_OBJECT (window_digits, label63, "label63");
   GLADE_HOOKUP_OBJECT (window_digits, button_digits_cancel, "button_digits_cancel");
   GLADE_HOOKUP_OBJECT_NO_REF (window_digits, tooltips, "tooltips");
 

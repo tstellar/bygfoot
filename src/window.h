@@ -72,7 +72,7 @@ window_destroy(GtkWidget **wind);
 
 void
 window_show_digits(const gchar *text_main, const gchar* text1,
-		   gint value1, const gchar* text2, gint value2);
+		   gint value1, const gchar* text2, gint value2, gboolean show_alr);
 
 void
 window_show_file_sel(void);

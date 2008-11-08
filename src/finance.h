@@ -42,7 +42,7 @@ gint
 finance_team_drawing_credit_loan(const Team *tm, gboolean loan);
 
 void
-finance_pay_loan(gint value);
+finance_pay_loan(User *user, gint value);
 
 void
 finance_get_loan(gint value);

@@ -461,7 +461,7 @@ window_show_menu_youth(GdkEvent *event)
     according to the arguments. */
 void
 window_show_digits(const gchar *text_main, const gchar* text1, gint value1, 
-		   const gchar* text2, gint value2)
+		   const gchar* text2, gint value2, gboolean show_alr)
 {
     GtkLabel *label_main, *label_1, *label_2;
     GtkSpinButton *spinbutton1, *spinbutton2;
@@ -496,6 +496,9 @@ window_show_digits(const gchar *text_main, const gchar* text1, gint value1,
 	gtk_label_set_text(label_2, text2);
     else
 	gtk_widget_hide(GTK_WIDGET(label_2)->parent);
+
+    if(show_alr)
+        gtk_widget_show(lookup_widget(window.digits, "button_digits_alr"));
 }
 
 /** Show the stadium window for the current user. */
@@ -1022,7 +1025,7 @@ window_show_alr(void)
     gui_label_set_text_from_int(GTK_LABEL(lookup_widget(window.alr, "label_current_weekly_installment")),
                                 current_user.alr_weekly_installment, FALSE);
     gtk_spin_button_set_range(GTK_SPIN_BUTTON(lookup_widget(window.alr, "spinbutton_start_week")),
-                              week + 1, MIN(week + current_user.counters[COUNT_USER_LOAN] - 1, fixture_get_last_scheduled_week()));
+                              week + 1, MIN(week + current_user.counters[COUNT_USER_LOAN], fixture_get_last_scheduled_week()));
     gtk_spin_button_set_range(GTK_SPIN_BUTTON(lookup_widget(window.alr, "spinbutton_weekly_installment")),
-                              0, -current_user.debt * powf(1 + current_user.debt_interest, const_int("int_finance_payback_weeks")));
+                              0, -current_user.debt * powf(1 + current_user.debt_interest, const_int("int_finance_payback_weeks")) + 1);
 }

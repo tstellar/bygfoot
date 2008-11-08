@@ -1489,6 +1489,19 @@ treeview_create_finances(const User* user)
 	gtk_list_store_set(ls, &iter, 0, buf, 1, "", 2, buf2, -1);
     }
 
+    if(user->alr_start_week != 0)
+    {
+        gtk_list_store_append(ls, &iter);
+        gtk_list_store_set(ls, &iter, 0, _("Automatic repayment"), 1, "", 2, "", -1);
+
+        misc_print_grouped_int(user->alr_weekly_installment, buf);
+	sprintf(buf2, "<span foreground='%s'>%s</span>",
+                const_app("string_treeview_finances_expenses_fg"), buf);
+        sprintf(buf, _("(from week %d)"), user->alr_start_week);
+	gtk_list_store_append(ls, &iter);
+	gtk_list_store_set(ls, &iter, 0, buf, 1, "", 2, buf2, -1);
+    }
+
     gtk_list_store_append(ls, &iter);
     gtk_list_store_set(ls, &iter, 0, "", 1, "", 2, "", -1);
 

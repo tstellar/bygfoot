@@ -749,7 +749,7 @@ on_menu_custom_structure_activate      (GtkMenuItem     *menuitem,
 {
     stat1 = STATUS_CUSTOM_STRUCTURE;
     window_show_digits(_("Enter a structure. The digits must sum up to 10."),
-		       NULL, -1, _("Structure"), current_user.tm->structure);
+		       NULL, -1, _("Structure"), current_user.tm->structure, FALSE);
 }
 
 
@@ -1152,7 +1152,7 @@ on_menu_set_investment_activate        (GtkMenuItem     *menuitem,
     stat1 = STATUS_SET_YA_PERCENTAGE;
     window_show_digits(
 	_("Set the percentage of your income you want to devote to your youth academy."),
-	NULL, -1, "%", current_user.youth_academy.percentage);
+	NULL, -1, "%", current_user.youth_academy.percentage, FALSE);
 }
 
 void
