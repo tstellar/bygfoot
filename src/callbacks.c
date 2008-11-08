@@ -1306,6 +1306,12 @@ void
 on_automatic_loan_repayment_activate   (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    if(sett_int("int_opt_disable_finances"))
+    {
+	game_gui_print_message(_("Finances are disabled in this country definition."));
+	return;
+    }
+
     if(current_user.debt == 0)
     {
         game_gui_print_message(_("You are not in debt."));

@@ -1497,7 +1497,7 @@ treeview_create_finances(const User* user)
         misc_print_grouped_int(user->alr_weekly_installment, buf);
 	sprintf(buf2, "<span foreground='%s'>%s</span>",
                 const_app("string_treeview_finances_expenses_fg"), buf);
-        sprintf(buf, _("(from week %d)"), user->alr_start_week);
+        sprintf(buf, _("(starting week %d)"), user->alr_start_week);
 	gtk_list_store_append(ls, &iter);
 	gtk_list_store_set(ls, &iter, 0, buf, 1, "", 2, buf2, -1);
     }
