@@ -24,8 +24,10 @@
 */
 
 #include "bet.h"
+#include "callbacks.h"
 #include "finance.h"
 #include "fixture.h"
+#include "game_gui.h"
 #include "gui.h"
 #include "main.h"
 #include "misc_callback_func.h"
@@ -137,7 +139,7 @@ on_treeview_bets_button_press_event    (GtkWidget       *widget,
     stat3 = col_num - 1;
 
     /* 'Wager' is the amount of money the user placed on a bet. */
-    window_show_digits(buf, _("Wager"), 0, NULL, -1);
+    window_show_digits(buf, _("Wager"), 0, NULL, -1, FALSE);
     spin_wager = GTK_SPIN_BUTTON(lookup_widget(window.digits, "spinbutton1"));
     gtk_spin_button_set_range(spin_wager, 0,
 			      (gdouble)const_int("int_bet_wager_max"));
@@ -240,8 +242,6 @@ on_button_calculate_start_week_clicked (GtkButton       *button,
     start_week = finance_calculate_alr_start_week(
         gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(lookup_widget(window.alr, "spinbutton_weekly_installment"))));
 
-    printf("startweek %d\n", start_week);
-
     gtk_spin_button_set_value(
         GTK_SPIN_BUTTON(lookup_widget(window.alr, "spinbutton_start_week")), (gfloat)start_week);
 }
@@ -257,8 +257,6 @@ on_button_calculate_installment_clicked
     weekly_installment = finance_calculate_alr_weekly_installment(
         gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(lookup_widget(window.alr, "spinbutton_start_week"))));
 
-    printf("inst %d\n", weekly_installment);
-
     gtk_spin_button_set_value(
         GTK_SPIN_BUTTON(lookup_widget(window.alr, "spinbutton_weekly_installment")), (gfloat)weekly_installment);
 }
@@ -268,7 +266,17 @@ void
 on_button_alr_confirm_clicked          (GtkButton       *button,
                                         gpointer         user_data)
 {
+    current_user.alr_start_week =
+        gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(lookup_widget(window.alr, "spinbutton_start_week")));
 
+    current_user.alr_weekly_installment =
+        gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(lookup_widget(window.alr, "spinbutton_weekly_installment")));
+
+    window_destroy(&window.alr);
+
+    setsav0;
+
+    on_menu_show_finances_activate(NULL, NULL);
 }
 
 

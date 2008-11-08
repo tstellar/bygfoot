@@ -124,6 +124,16 @@ finance_update_user_weekly(User *user)
 
     user->debt = (gint)rint((gfloat)user->debt * (1 + user->debt_interest));
 
+    if(user->alr_start_week != 0 && week >= user->alr_start_week)
+    {
+        finance_pay_loan(user, user->alr_weekly_installment);
+        if(user->debt == 0)
+        {
+            user->alr_start_week = 
+                user->alr_weekly_installment = 0;
+        }
+    }
+
     if(user->money < -finance_team_drawing_credit_loan(user->tm, FALSE) &&
        user->counters[COUNT_USER_POSITIVE] == -1 && debug < 50)
     {
@@ -143,7 +153,7 @@ finance_update_user_weekly(User *user)
     if(user->counters[COUNT_USER_LOAN] > -1)
 	user->counters[COUNT_USER_LOAN]--;
 
-    if(user->counters[COUNT_USER_LOAN] == 0 && debug < 50)
+    if(user->counters[COUNT_USER_LOAN] == 0 && debug < 50 && user->alr_start_week == 0)
 	user_event_add(user, EVENT_TYPE_WARNING, -1, -1, NULL, 
 		       _("You have to pay back your loan this week."));
 
@@ -226,42 +236,38 @@ finance_get_loan(gint value)
 
     game_gui_print_message(_("You have %d weeks to pay back your loan."),
 			   current_user.counters[COUNT_USER_LOAN]); 
-
-    on_menu_show_finances_activate(NULL, NULL);
 }
 
 
-/** Pay back some loan for the current user.
+/** Pay back some loan for the specified user.
     @param value The amount of money paid back. */
 void
-finance_pay_loan(gint value)
+finance_pay_loan(User *user, gint value)
 {
-    gint add = (gint)rint((gfloat)value / (gfloat)(-current_user.debt) * 
-			  (gfloat)const_int("int_finance_payback_weeks"));    
+    gint add = (gint)rint((gfloat)value / (gfloat)(-user->debt) * 
+                          (gfloat)const_int("int_finance_payback_weeks"));
 
-    if(value > -current_user.debt)
-        value = -current_user.debt;
+    if(value > -user->debt)
+        value = -user->debt;
 
-    current_user.money -= value;
-    current_user.debt += value;
+    user->money -= value;
+    user->debt += value;
 
-    if(current_user.debt == 0)
+    if(user->debt == 0)
     {
-	current_user.counters[COUNT_USER_LOAN] = -1;
-        current_user.alr_start_week = 0;
-        current_user.alr_weekly_installment = 0;
+	user->counters[COUNT_USER_LOAN] = -1;
+        user->alr_start_week = 0;
+        user->alr_weekly_installment = 0;
 	game_gui_print_message(_("You are free from debt."));
     }
     else
     {
-	current_user.counters[COUNT_USER_LOAN] = 
-	    MIN(current_user.counters[COUNT_USER_LOAN] + add,
+	user->counters[COUNT_USER_LOAN] = 
+	    MIN(user->counters[COUNT_USER_LOAN] + add,
 		const_int("int_finance_payback_weeks"));
 	game_gui_print_message(_("You have %d weeks to pay back the rest of your loan."),
-			       current_user.counters[COUNT_USER_LOAN]);
+			       user->counters[COUNT_USER_LOAN]);
     }
-
-    on_menu_show_finances_activate(NULL, NULL);
 }
 
 /** Return the cost of a stadium improvement.
@@ -396,20 +402,20 @@ finance_update_current_interest(void)
 gint
 finance_calculate_alr_weekly_installment(gint start_week)
 {
-    gfloat debt_start;
+    gfloat debt_end;
     gfloat interest_factor;
+    gfloat max_start_week;
     gfloat installment;
     gint weekly_installment;
 
-    debt_start = current_user.debt * powf(1 + current_user.debt_interest, (gfloat)(start_week - week));
-    interest_factor = 1 /
-        powf(1 + current_user.debt_interest, (gfloat)(const_int("int_finance_payback_weeks") - start_week + week + 1)) /
+    max_start_week = MIN(week + current_user.counters[COUNT_USER_LOAN], fixture_get_last_scheduled_week());
+    debt_end = current_user.debt * powf(1 + current_user.debt_interest, max_start_week - 1);
+    interest_factor =
+        (powf(1 + current_user.debt_interest, (gfloat)(max_start_week - start_week + 1)) - 1) /
         current_user.debt_interest;
 
-    installment = -debt_start / (1 / current_user.debt_interest - interest_factor + 1);
+    installment = -debt_end / interest_factor;
     weekly_installment = (gint)rint(installment);
-
-    printf("start %.2f intfac %.2f inst %.2f winst %d\n", debt_start, interest_factor, installment, weekly_installment);
 
     return (weekly_installment > installment) ? weekly_installment : weekly_installment + 1;
 }
@@ -423,14 +429,16 @@ finance_calculate_alr_start_week(gint weekly_installment)
     gint start_week;
     gint installment;
 
-    upper = MIN(week + current_user.counters[COUNT_USER_LOAN] - 1, fixture_get_last_scheduled_week());
+    upper = MIN(week + current_user.counters[COUNT_USER_LOAN], fixture_get_last_scheduled_week());
     
     for(start_week = week + 1; start_week <= upper; start_week++)
     {
         installment = finance_calculate_alr_weekly_installment(start_week);
         if(installment > weekly_installment)
             return start_week - 1;
+        else if(installment == weekly_installment)
+            return start_week;
     }
 
-    return start_week - 1;
+    return start_week;
 }

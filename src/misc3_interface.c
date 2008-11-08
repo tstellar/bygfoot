@@ -596,8 +596,8 @@ create_window_alr (void)
   table1 = gtk_table_new (2, 3, FALSE);
   gtk_widget_show (table1);
   gtk_box_pack_start (GTK_BOX (vbox5), table1, FALSE, FALSE, 0);
-  gtk_table_set_row_spacings (GTK_TABLE (table1), 2);
-  gtk_table_set_col_spacings (GTK_TABLE (table1), 2);
+  gtk_table_set_row_spacings (GTK_TABLE (table1), 5);
+  gtk_table_set_col_spacings (GTK_TABLE (table1), 10);
 
   label17 = gtk_label_new (_("Start in week"));
   gtk_widget_show (label17);
