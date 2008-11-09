@@ -153,7 +153,7 @@ finance_update_user_weekly(User *user)
     if(user->counters[COUNT_USER_LOAN] > -1)
 	user->counters[COUNT_USER_LOAN]--;
 
-    if(user->counters[COUNT_USER_LOAN] == 0 && debug < 50 && user->alr_start_week == 0)
+    if(user->counters[COUNT_USER_LOAN] == 0 && debug < 50)
 	user_event_add(user, EVENT_TYPE_WARNING, -1, -1, NULL, 
 		       _("You have to pay back your loan this week."));
 
