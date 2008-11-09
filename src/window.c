@@ -1018,12 +1018,19 @@ window_show_training_camp(void)
 void
 window_show_alr(void)
 {
+    gchar weekly_installment[SMALL],
+        debt[SMALL];
+
     window_create(WINDOW_ALR);
+
+    misc_print_grouped_int(current_user.alr_weekly_installment, weekly_installment);
+    misc_print_grouped_int(-current_user.debt, debt);
 
     gui_label_set_text_from_int(GTK_LABEL(lookup_widget(window.alr, "label_current_start_week")),
                                 current_user.alr_start_week, FALSE);
-    gui_label_set_text_from_int(GTK_LABEL(lookup_widget(window.alr, "label_current_weekly_installment")),
-                                current_user.alr_weekly_installment, FALSE);
+    gtk_label_set_text(GTK_LABEL(lookup_widget(window.alr, "label_current_weekly_installment")), weekly_installment);
+    gtk_label_set_text(GTK_LABEL(lookup_widget(window.alr, "label_alr_debt")), debt);
+
     gtk_spin_button_set_range(GTK_SPIN_BUTTON(lookup_widget(window.alr, "spinbutton_start_week")),
                               week + 1, MIN(week + current_user.counters[COUNT_USER_LOAN], fixture_get_last_scheduled_week()));
     gtk_spin_button_set_range(GTK_SPIN_BUTTON(lookup_widget(window.alr, "spinbutton_weekly_installment")),

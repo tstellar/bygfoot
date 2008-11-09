@@ -502,6 +502,10 @@ create_window_alr (void)
 {
   GtkWidget *window_alr;
   GtkWidget *vbox5;
+  GtkWidget *hbox17;
+  GtkWidget *label26;
+  GtkWidget *label_alr_debt;
+  GtkWidget *hseparator7;
   GtkWidget *label22;
   GtkWidget *table2;
   GtkWidget *label23;
@@ -543,6 +547,23 @@ create_window_alr (void)
   gtk_widget_show (vbox5);
   gtk_container_add (GTK_CONTAINER (window_alr), vbox5);
   gtk_container_set_border_width (GTK_CONTAINER (vbox5), 5);
+
+  hbox17 = gtk_hbox_new (FALSE, 3);
+  gtk_widget_show (hbox17);
+  gtk_box_pack_start (GTK_BOX (vbox5), hbox17, FALSE, FALSE, 0);
+
+  label26 = gtk_label_new (_("Your debt:"));
+  gtk_widget_show (label26);
+  gtk_box_pack_start (GTK_BOX (hbox17), label26, FALSE, FALSE, 0);
+
+  label_alr_debt = gtk_label_new ("");
+  gtk_widget_show (label_alr_debt);
+  gtk_box_pack_start (GTK_BOX (hbox17), label_alr_debt, FALSE, FALSE, 0);
+
+  hseparator7 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator7);
+  gtk_box_pack_start (GTK_BOX (vbox5), hseparator7, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (hseparator7, -1, 10);
 
   label22 = gtk_label_new (_("Current settings:"));
   gtk_widget_show (label22);
@@ -712,6 +733,10 @@ create_window_alr (void)
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (window_alr, window_alr, "window_alr");
   GLADE_HOOKUP_OBJECT (window_alr, vbox5, "vbox5");
+  GLADE_HOOKUP_OBJECT (window_alr, hbox17, "hbox17");
+  GLADE_HOOKUP_OBJECT (window_alr, label26, "label26");
+  GLADE_HOOKUP_OBJECT (window_alr, label_alr_debt, "label_alr_debt");
+  GLADE_HOOKUP_OBJECT (window_alr, hseparator7, "hseparator7");
   GLADE_HOOKUP_OBJECT (window_alr, label22, "label22");
   GLADE_HOOKUP_OBJECT (window_alr, table2, "table2");
   GLADE_HOOKUP_OBJECT (window_alr, label23, "label23");
