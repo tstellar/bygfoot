@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-10 17:28+0100\n"
-"PO-Revision-Date: 2005-09-28 13:35+0800\n"
-"Last-Translator: root <lbyoopp@gmail.com>\n"
+"POT-Creation-Date: 2008-11-12 12:27+0100\n"
+"PO-Revision-Date: 2008-11-12 21:41+1000\n"
+"Last-Translator: luojie-dune <lililjlj@gmail.com>\n"
 "Language-Team: Chinese <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=GB2312\n"
@@ -281,7 +281,7 @@ msgstr "%d : %d p."
 #: src/training_callbacks.c:114
 #, c-format
 msgid "%d training camps left this season."
-msgstr ""
+msgstr "本季度剩余 %d 期训练营"
 
 #. a match at home
 #: src/team.c:936
@@ -361,6 +361,8 @@ msgid ""
 "%s of %s has rejected your offer because your team has too many star players "
 "already. 'A player of my caliber doesn't play second fiddle,' he was quoted."
 msgstr ""
+"%s (隶属 %s )拒绝你的邀请，因为你的队伍有太多明星了。“一山难容二虎”，也许是"
+"这个意思。"
 
 #. Team in a league. Leave team.
 #: src/user.c:748
@@ -429,7 +431,7 @@ msgstr "%s: %d 周\n"
 #: src/treeview.c:1500
 #, c-format
 msgid "(starting week %d)"
-msgstr ""
+msgstr "(首周 %d)"
 
 #: src/main.c:120
 msgid "- a simple and addictive GTK2 football manager"
@@ -565,7 +567,7 @@ msgstr "添加玩家"
 
 #: src/misc2_callbacks.c:146
 msgid "Adjust repayment schedule?"
-msgstr ""
+msgstr "调整支付计划？"
 
 #: src/treeview.c:304 src/treeview.c:1947
 msgid "Age"
@@ -604,13 +606,10 @@ msgid "At least one user didn't take his turn this week. Continue?"
 msgstr "还有玩家没有结束本周工作。继续？"
 
 #: src/game_gui.c:849
-#, fuzzy
 msgid ""
 "At the Bygfoot forums you can report bugs, ask for help and discuss the "
 "game:\n"
-msgstr ""
-"在Bygfoot的论坛你可以提交bug,寻问帮助，还可以参与到游戏心得讨论中(还没有注"
-"册?):\n"
+msgstr "在Bygfoot的论坛你可以提交bug，寻求帮助，还可以参与到游戏心得讨论中:\n"
 
 #: src/interface.c:522 src/treeview.c:1604
 msgid "Attack"
@@ -631,11 +630,11 @@ msgstr "属性 "
 
 #: src/interface.c:1026 src/misc3_interface.c:543 src/window.c:898
 msgid "Automatic loan repayment"
-msgstr ""
+msgstr "自动偿还贷款"
 
 #: src/treeview.c:1495
 msgid "Automatic repayment"
-msgstr ""
+msgstr "自动偿还贷款"
 
 #: src/options_interface.c:504
 msgid "Automatic substitutions"
@@ -869,16 +868,15 @@ msgstr "当前技能"
 
 #: src/misc3_interface.c:679
 msgid "Calculate start week"
-msgstr ""
+msgstr "计算开始的星期"
 
 #: src/misc3_interface.c:657
 msgid "Calculate weekly installment"
-msgstr ""
+msgstr "计算周租"
 
 #: src/training_interface.c:85
-#, fuzzy
 msgid "Camp points"
-msgstr " &amp; 父子"
+msgstr "训练点数"
 
 #: src/misc_interface.c:1051
 msgid "Capacity (seats)"
@@ -899,13 +897,12 @@ msgid ""
 msgstr "该表现场解说的冗长度，数值越大你就会看到更多的球场上发生的细节"
 
 #: src/misc_interface.c:705
-#, fuzzy
 msgid "Change live game speed. The higher the value the faster the live game."
-msgstr "改变现场游戏的进度.数值越小游戏就会越快"
+msgstr "改变现场游戏的进度。数值越大游戏就会越快。"
 
 #: src/misc_interface.c:1015
 msgid "Change ticket price"
-msgstr ""
+msgstr "改变票价"
 
 #: src/misc_interface.c:97
 msgid "Choose country"
@@ -978,7 +975,7 @@ msgstr "脑震荡"
 
 #: src/misc2_interface.c:474
 msgid "Confirm & schedule repayment"
-msgstr ""
+msgstr "确认和计划 还贷"
 
 #: src/options_interface.c:238
 msgid "Confirm quit when not saved"
@@ -994,7 +991,7 @@ msgstr "不适时需要确认"
 
 #: src/misc_interface.c:1140
 msgid "Confirm!"
-msgstr ""
+msgstr "确认了！"
 
 #: src/options_interface.c:335
 msgid "Constants file"
@@ -1081,7 +1078,7 @@ msgstr "当前联赛"
 
 #: src/treeview.c:1479
 msgid "Current market interest"
-msgstr ""
+msgstr "当前市场利率"
 
 #: src/treeview.c:1942
 msgid "Current position"
@@ -1092,9 +1089,8 @@ msgid "Current safety"
 msgstr "当前安全系数"
 
 #: src/misc3_interface.c:568
-#, fuzzy
 msgid "Current settings:"
-msgstr "当前位置"
+msgstr "当前设置："
 
 #: src/treeview.c:1944
 msgid "Current skill"
@@ -1123,19 +1119,16 @@ msgid "Decide later"
 msgstr "延迟"
 
 #: src/options_interface.c:1050
-#, fuzzy
 msgid "Default hotel"
-msgstr "默认赌注"
+msgstr "默认宾馆"
 
 #: src/options_interface.c:1073
-#, fuzzy
 msgid "Default recreation:"
-msgstr "默认赌注"
+msgstr "默认消遣活动："
 
 #: src/options_interface.c:1093
-#, fuzzy
 msgid "Default training:"
-msgstr "默认赌注"
+msgstr "默认训练："
 
 #: src/options_interface.c:1025
 msgid "Default wager"
@@ -1217,7 +1210,7 @@ msgstr "设定阵容"
 
 #: src/window.c:748
 msgid "Erm..."
-msgstr ""
+msgstr "汇率机制 (Exchange Rate Mechanism) ..."
 
 #: src/misc2_interface.c:481 src/misc2_interface.c:578
 #: src/misc2_interface.c:1140 src/misc2_interface.c:1235
@@ -1304,7 +1297,7 @@ msgstr "第一个值：首发11人的平均技能值。第二个值：所有球员的技能平均值。"
 
 #: src/training_interface.c:169 src/treeview.c:2582
 msgid "First-Class Hotel"
-msgstr ""
+msgstr "顶级宾馆"
 
 #. Fitness of a player.
 #: src/treeview.c:293
@@ -1430,7 +1423,7 @@ msgstr "适合比赛"
 
 #: src/training_interface.c:162 src/treeview.c:2579
 msgid "Good Hotel"
-msgstr ""
+msgstr "宾馆"
 
 #: src/player.c:1268
 msgid "Groin injury"
@@ -1447,7 +1440,7 @@ msgstr "请查看一下转会球员列表，有人为 %s 出价"
 
 #: src/league_table_interface.c:50
 msgid "Headline"
-msgstr ""
+msgstr "头条"
 
 #: src/treeview.c:1948
 msgid "Health"
@@ -1539,7 +1532,7 @@ msgstr "伤病"
 
 #: src/callbacks.c:1322
 msgid "It's too late in the season for automatic loan repayment."
-msgstr ""
+msgstr "本赛季的自动偿还贷款已经过期了。"
 
 #: src/misc2_interface.c:71 src/window.c:781
 msgid "Job offer"
@@ -1623,7 +1616,6 @@ msgid "League stats"
 msgstr "联赛信息"
 
 #: src/league_table_interface.c:40
-#, fuzzy
 msgid "League table"
 msgstr "联赛信息"
 
@@ -1826,9 +1818,8 @@ msgstr ""
 "出价"
 
 #: src/misc3_interface.c:612
-#, fuzzy
 msgid "New settings:"
-msgstr "下注"
+msgstr "新设置："
 
 #: src/misc3_interface.c:315
 msgid "Next"
@@ -2030,7 +2021,7 @@ msgstr "参数设置"
 
 #: src/training_interface.c:176 src/treeview.c:2585
 msgid "Premium Hotel"
-msgstr ""
+msgstr "豪华宾馆"
 
 #: src/misc3_interface.c:295
 msgid "Previous"
@@ -2050,7 +2041,7 @@ msgstr "前一个玩家"
 
 #: src/misc_interface.c:1023
 msgid "Price per ticket"
-msgstr ""
+msgstr "票价"
 
 #: src/treeview.c:1359
 msgid "Prize money"
@@ -2108,7 +2099,7 @@ msgstr "重新配置球队"
 
 #: src/training_interface.c:99
 msgid "Recreation"
-msgstr ""
+msgstr "消遣活动"
 
 #: src/interface.c:653
 msgid "Recruiting preference"
@@ -2240,9 +2231,8 @@ msgid "Save overwrites"
 msgstr "保存并覆盖"
 
 #: src/training_interface.c:198
-#, fuzzy
 msgid "Save settings as default"
-msgstr "保存玩家设置到文件"
+msgstr "保存为默认设置文件"
 
 #: src/options_interface.c:1125
 msgid "Save user settings to file"
@@ -2511,14 +2501,12 @@ msgid "Start _new game"
 msgstr "开始新游戏"
 
 #: src/misc3_interface.c:623
-#, fuzzy
 msgid "Start in week"
-msgstr "开始新游戏"
+msgstr "开赛周"
 
 #: src/misc3_interface.c:577
-#, fuzzy
 msgid "Start in week:"
-msgstr "开始新游戏"
+msgstr "开赛周期"
 
 #: src/misc_interface.c:585
 msgid "Statistics"
@@ -2690,7 +2678,7 @@ msgstr "%s 的董事礼貌的拒绝了你的申请,他们认为你还不够成功"
 msgid ""
 "The player feels he doesn't have a future in your star-studded team. He "
 "refuses to negotiate."
-msgstr ""
+msgstr "这名选手觉得在你明星阵营中没有前程。他拒绝商谈。"
 
 #: src/callbacks.c:485
 msgid "The player is already on the list."
@@ -2731,7 +2719,7 @@ msgid ""
 "The team owners are very satisfied with your financial management. Since the "
 "team's been earning a lot of money lately, they decide to donate half of it "
 "to charity."
-msgstr ""
+msgstr "队伍的拥有者对你的金融管理成果非常满意。他们决定捐赠一半给慈善机构。"
 
 #: src/game_gui.c:725
 #, c-format
@@ -2805,17 +2793,16 @@ msgstr "韧带损伤"
 
 #: src/training_interface.c:118
 msgid "Training"
-msgstr ""
+msgstr "训练"
 
 #: src/interface.c:729 src/options_interface.c:1103
 #: src/training_interface.c:61 src/treeview.c:1458 src/window.c:890
 msgid "Training camp"
-msgstr ""
+msgstr "训练营"
 
 #: src/callbacks.c:1284
-#, fuzzy
 msgid "Training camp is disabled in this country definition."
-msgstr "这个地区定义文件中禁止了球员转会交易"
+msgstr "这个地区禁止训练营"
 
 #: src/callbacks.c:190
 #, c-format
@@ -2930,14 +2917,12 @@ msgid "Week %d Round %d"
 msgstr "第%d周 第%d轮"
 
 #: src/misc3_interface.c:631
-#, fuzzy
 msgid "Weekly installment"
-msgstr "设置投资"
+msgstr "周租"
 
 #: src/misc3_interface.c:585
-#, fuzzy
 msgid "Weekly installment:"
-msgstr "设置投资"
+msgstr "周租："
 
 #: src/window.c:717
 #, c-format
@@ -3069,12 +3054,12 @@ msgstr "是否在尽可能的情况下在主窗口的消息栏中显示警告信息或者其他相关信息"
 #. Team 1 wins (betting window).
 #: src/treeview2.c:363
 msgid "Win1"
-msgstr ""
+msgstr "首胜"
 
 #. Team 2 wins (betting window).
 #: src/treeview2.c:366
 msgid "Win2"
-msgstr ""
+msgstr "再胜"
 
 #. Yellow cards of a player.
 #: src/treeview.c:303
@@ -3130,9 +3115,8 @@ msgstr ""
 "以下是你的球探的建议"
 
 #: src/callbacks.c:1317
-#, fuzzy
 msgid "You are not in debt."
-msgstr "你还没有负债"
+msgstr "你没有负债"
 
 #: src/callback_func.c:347
 msgid "You are not indebted."
@@ -3305,7 +3289,7 @@ msgstr "你最终赢得了 %s ，在这场精彩的比赛中勇敢的战胜对手 %s"
 #: src/callbacks.c:1297
 #, c-format
 msgid "You've reached the limit of %d training camps for the season."
-msgstr ""
+msgstr "你收到了本赛季的训练营限制通知： %d"
 
 #: src/finance.c:162
 msgid "Your bank account has to be above your drawing credit limit next week."
@@ -3321,9 +3305,8 @@ msgstr ""
 "周会支付你: %d ."
 
 #: src/misc3_interface.c:555
-#, fuzzy
 msgid "Your debt:"
-msgstr "比赛结果"
+msgstr "你的债务："
 
 #: src/treeview.c:1653
 msgid "Your next opponent"
@@ -3383,7 +3366,7 @@ msgstr "你的出场阵容不足11人"
 
 #: src/callbacks.c:1291
 msgid "Your team has already had enough training camps this week."
-msgstr ""
+msgstr "你的队伍本周训练营够多了。"
 
 #: src/youth_academy.c:206
 #, c-format
@@ -3461,19 +3444,19 @@ msgstr "玩家"
 
 #: src/treeview.c:1486
 msgid "interest rate"
-msgstr ""
+msgstr "利率"
 
 #: src/misc3_interface.c:593
 msgid "label26"
-msgstr ""
+msgstr "标签26"
 
 #: src/misc3_interface.c:600
 msgid "label27"
-msgstr ""
+msgstr "标签27"
 
 #: src/options_interface.c:1099
 msgid "label48"
-msgstr ""
+msgstr "标签48"
 
 #~ msgid "Improve!"
 #~ msgstr "晋级！"
