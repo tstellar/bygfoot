@@ -423,7 +423,7 @@ create_window_digits (void)
   gtk_widget_show (label_1);
   gtk_box_pack_start (GTK_BOX (vbox15), label_1, FALSE, FALSE, 0);
 
-  spinbutton1_adj = gtk_adjustment_new (1, 0, 100000000, 10, 1000, 0);
+  spinbutton1_adj = gtk_adjustment_new (1, 0, 100000000, 100, 1000, 0);
   spinbutton1 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton1_adj), 1, 0);
   gtk_widget_show (spinbutton1);
   gtk_box_pack_start (GTK_BOX (vbox15), spinbutton1, FALSE, FALSE, 0);
@@ -437,7 +437,7 @@ create_window_digits (void)
   gtk_widget_show (label_2);
   gtk_box_pack_start (GTK_BOX (vbox16), label_2, FALSE, FALSE, 0);
 
-  spinbutton2_adj = gtk_adjustment_new (1, 0, 100000000, 1, 100, 0);
+  spinbutton2_adj = gtk_adjustment_new (1, 0, 100000000, 10, 100, 0);
   spinbutton2 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton2_adj), 1, 0);
   gtk_widget_show (spinbutton2);
   gtk_box_pack_start (GTK_BOX (vbox16), spinbutton2, FALSE, FALSE, 0);

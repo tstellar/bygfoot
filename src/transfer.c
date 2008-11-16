@@ -337,7 +337,7 @@ transfer_add_player(Player *pl, gint time)
 	    math_rnd(-(i + 1) * const_float("float_transfer_scout_deviance_wage"),
 		     (i + 1) * const_float("float_transfer_scout_deviance_wage"));
 	new.fee[i] = math_round_integer(
-	    (gint)rint((gfloat)pl->value * (1 + deviance_value)), 2);
+	    (gint)rint((gfloat)pl->value * (1 + deviance_value)), 3);
 	new.wage[i] = math_round_integer(
 	    (gint)rint((gfloat)pl->wage * (1 + deviance_wage)), 2);
     }
