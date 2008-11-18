@@ -62,6 +62,13 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
 void
 cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct);
 
+void
+cup_load_choose_team_from_league(Cup *cup, const League *league,
+                                 GPtrArray *teams, const CupChooseTeam *ct);
+
+void
+cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_team, GPtrArray *teams, const CupChooseTeam *ct);
+
 gint
 cup_get_first_week_of_cup_round(Cup *cup, gint cup_round);
 
