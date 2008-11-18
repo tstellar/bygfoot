@@ -127,7 +127,7 @@ misc_callback_add_player(void)
     GtkEntry *entry_player_name = 
 	GTK_ENTRY(lookup_widget(window.startup, "entry_player_name"));    
     GtkComboBox *combo_leagues =
-	GTK_COMBO_BOX(lookup_widget(window.startup, "comboboxentry_start_league"));
+	GTK_COMBO_BOX(lookup_widget(window.startup, "combobox_start_league"));
     const gchar *player_name = gtk_entry_get_text(entry_player_name);
     User new_user = user_new();
     Team *tm = (Team*)treeview_helper_get_pointer(treeview_startup, 2);

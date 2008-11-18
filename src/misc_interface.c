@@ -42,7 +42,7 @@ create_window_startup (void)
   GtkWidget *treeview_startup;
   GtkWidget *hseparator11;
   GtkWidget *label4;
-  GtkWidget *comboboxentry_start_league;
+  GtkWidget *combobox_start_league;
   GtkWidget *hseparator12;
   GtkWidget *label75;
   GtkWidget *hbox54;
@@ -147,9 +147,9 @@ create_window_startup (void)
   gtk_widget_show (label4);
   gtk_box_pack_start (GTK_BOX (vbox2), label4, FALSE, FALSE, 0);
 
-  comboboxentry_start_league = gtk_combo_box_entry_new_text ();
-  gtk_widget_show (comboboxentry_start_league);
-  gtk_box_pack_start (GTK_BOX (vbox2), comboboxentry_start_league, FALSE, FALSE, 0);
+  combobox_start_league = gtk_combo_box_new_text ();
+  gtk_widget_show (combobox_start_league);
+  gtk_box_pack_start (GTK_BOX (vbox2), combobox_start_league, FALSE, FALSE, 0);
 
   hseparator12 = gtk_hseparator_new ();
   gtk_widget_show (hseparator12);
@@ -335,7 +335,7 @@ create_window_startup (void)
   GLADE_HOOKUP_OBJECT (window_startup, treeview_startup, "treeview_startup");
   GLADE_HOOKUP_OBJECT (window_startup, hseparator11, "hseparator11");
   GLADE_HOOKUP_OBJECT (window_startup, label4, "label4");
-  GLADE_HOOKUP_OBJECT (window_startup, comboboxentry_start_league, "comboboxentry_start_league");
+  GLADE_HOOKUP_OBJECT (window_startup, combobox_start_league, "combobox_start_league");
   GLADE_HOOKUP_OBJECT (window_startup, hseparator12, "hseparator12");
   GLADE_HOOKUP_OBJECT (window_startup, label75, "label75");
   GLADE_HOOKUP_OBJECT (window_startup, hbox54, "hbox54");
