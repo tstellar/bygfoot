@@ -115,6 +115,9 @@ typedef struct
 	a league file or taken from one of the country's leagues
 	or cups. Default: FALSE. */
     gboolean generate;
+    /** Whether to skip the checking if a team participates in other
+        of the same cup groupcups. */
+    gboolean skip_group_check;
 } CupChooseTeam;
 
 /** Structure representing a cup. */
