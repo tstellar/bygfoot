@@ -100,9 +100,13 @@ team_generate_players_stadium(Team *tm, gfloat av_talent)
 	    tm->average_talent;
     }
     else
-	average_talent = 
-	    skill_factor * team_get_average_talents(lig(0).teams) *
-	    (1 + cup_from_clid(tm->clid)->talent_diff);
+    {
+        average_talent = (tm->average_talent == 0) ?
+            team_get_average_talents(lig(0).teams) *
+            (1 + cup_from_clid(tm->clid)->talent_diff) :
+            tm->average_talent;
+        average_talent *= skill_factor;
+    }
 	
     average_talent = CLAMP(average_talent, 0, const_float("float_player_max_skill"));
     tm->average_talent = average_talent;

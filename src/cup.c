@@ -461,9 +461,17 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
 	    xml_league_read((gchar*)g_ptr_array_index(sids, j), leagues);
 		    
 	    for(k=0; k < g_array_index(leagues, League, leagues->len - 1).teams->len; k++)
-		g_array_append_val(teams_local, g_array_index(
-				       g_array_index(leagues, League, leagues->len - 1).teams, Team,  k));
-
+            {
+                if(query_cup_has_property(cup->id, "league_talents"))
+                {        
+                    g_array_index(
+                        g_array_index(leagues, League, leagues->len - 1).teams, Team,  k).average_talent = 
+                        g_array_index(leagues, League, leagues->len - 1).average_talent;
+                }
+                g_array_append_val(teams_local, g_array_index(
+                                       g_array_index(leagues, League, leagues->len - 1).teams, Team,  k));
+            }
+            
 	    free_g_array(&g_array_index(leagues, League, leagues->len - 1).teams);
 	    free_league(&g_array_index(leagues, League, leagues->len - 1));
 	}
