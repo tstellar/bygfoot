@@ -2499,7 +2499,7 @@ treeview_show_leagues_combo(void)
 {
     GtkTreeModel *model = treeview_create_league_list();
     GtkComboBox *combo_leagues =
-	GTK_COMBO_BOX(lookup_widget(window.startup, "comboboxentry_start_league"));
+	GTK_COMBO_BOX(lookup_widget(window.startup, "combobox_start_league"));
     GtkCellRenderer *renderer = NULL;
     
     gtk_combo_box_set_model(combo_leagues, model);
