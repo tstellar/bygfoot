@@ -448,11 +448,14 @@ start_week_round(void)
     if(!query_start_end_season_end() &&
 	opt_int("int_opt_skip") &&
        !query_user_games_this_week_round() &&
+       !query_user_events() &&
        ((week_round == 1 && 
 	 !query_user_games_in_week_round(week - 1, fixture_get_last_week_round(week - 1))) ||
 	(week_round > 1 && 
-	 !query_user_games_in_week_round(week, week_round - 1))))
+	 !query_user_games_in_week_round(week, week_round - 1)))) {
+	user_event_show_next();
 	end_week_round();
+    }
     else
     {
         cur_user = 0;

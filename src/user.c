@@ -247,6 +247,19 @@ user_set_player_list_attributes(const User *user, PlayerListAttribute *attribute
 	}
 }
 
+/** Find out whether there are user events. */
+gboolean
+query_user_events()
+{
+    gint i;
+
+    for(i=0;i<users->len;i++)
+	if(usr(i).events->len!=0)
+	    return TRUE;
+
+    return FALSE;
+}
+
 /** Find out whether there are user games at the specified date. */
 gboolean
 query_user_games_in_week_round(gint week_number, gint week_round_number)
