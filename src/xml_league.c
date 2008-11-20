@@ -52,6 +52,7 @@
 #define TAG_NAMES_FILE "names_file"
 #define TAG_ACTIVE "active"
 #define TAG_BREAK "break"
+#define TAG_JOINED_LEAGUE "joined_league"
 #define TAG_PROM_REL "prom_rel"
 #define TAG_PROM_GAMES "prom_games"
 #define TAG_PROM_GAMES_DEST_SID "prom_games_dest_sid"
@@ -72,6 +73,8 @@
 #define TAG_TEAM_DEF_FILE "def_file"
 #define TAG_TWO_MATCH_WEEK_START "two_match_week_start"
 #define TAG_TWO_MATCH_WEEK_END "two_match_week_end"
+
+#define ATT_NAME_JOINED_LEAGUE_RR "rr"
 
 /**
  * Enum with the states used in the XML parser functions.
@@ -110,6 +113,7 @@ enum XmlLeagueStates
     STATE_TEAM_AVERAGE_TALENT,
     STATE_TEAM_DEF_FILE,
     STATE_BREAK,
+    STATE_JOINED_LEAGUE,
     STATE_TWO_MATCH_WEEK_START,
     STATE_TWO_MATCH_WEEK_END,
     STATE_END
@@ -139,6 +143,7 @@ xml_league_read_start_element (GMarkupParseContext *context,
 {
     PromRelElement new_element;
     Team new_team;
+    JoinedLeague new_joined_league;
 
     if(strcmp(element_name, TAG_LEAGUE) == 0)
     {
@@ -171,6 +176,17 @@ xml_league_read_start_element (GMarkupParseContext *context,
 	state = STATE_ACTIVE;
     else if(strcmp(element_name, TAG_BREAK) == 0)
 	state = STATE_BREAK;
+    else if(strcmp(element_name, TAG_JOINED_LEAGUE) == 0)
+    {
+	state = STATE_JOINED_LEAGUE;
+        new_joined_league.sid = NULL;
+        if(attribute_names[0] != NULL && strcmp(attribute_names[0], ATT_NAME_JOINED_LEAGUE_RR) == 0)
+            new_joined_league.rr = (gint)g_ascii_strtod(attribute_values[0], NULL);
+        else
+            new_joined_league.rr = 2;
+
+        g_array_append_val(new_league.joined_leagues, new_joined_league);
+    }
     else if(strcmp(element_name, TAG_TWO_MATCH_WEEK_START) == 0)
 	state = STATE_TWO_MATCH_WEEK_START;
     else if(strcmp(element_name, TAG_TWO_MATCH_WEEK_END) == 0)
@@ -252,6 +268,7 @@ xml_league_read_end_element    (GMarkupParseContext *context,
        strcmp(element_name, TAG_NAMES_FILE) == 0 ||
        strcmp(element_name, TAG_ACTIVE) == 0 ||
        strcmp(element_name, TAG_BREAK) == 0 ||
+       strcmp(element_name, TAG_JOINED_LEAGUE) == 0 ||
        strcmp(element_name, TAG_TWO_MATCH_WEEK_START) == 0 ||
        strcmp(element_name, TAG_TWO_MATCH_WEEK_END) == 0 ||
        strcmp(element_name, TAG_PROM_REL) == 0 ||
@@ -336,6 +353,11 @@ xml_league_read_text         (GMarkupParseContext *context,
 	new_league.active = int_value;
     else if(state == STATE_BREAK)
 	new_league.rr_break = int_value;
+    else if(state == STATE_JOINED_LEAGUE)
+	misc_string_assign(
+            &g_array_index(new_league.joined_leagues,
+                           JoinedLeague,
+                           new_league.joined_leagues->len - 1).sid, buf);
     else if(state == STATE_TWO_MATCH_WEEK_START)
 	g_array_append_val(new_league.two_match_weeks[0], int_value);
     else if(state == STATE_TWO_MATCH_WEEK_END)

@@ -335,6 +335,8 @@ free_league(League *league)
     if(league->teams != NULL)
 	free_teams_array(&league->teams, FALSE);
 
+    free_joined_leagues(&league->joined_leagues);
+
     free_g_array(&league->teams);
     free_g_array(&league->prom_rel.elements);;
     
@@ -346,6 +348,18 @@ free_league(League *league)
     free_g_array(&league->two_match_weeks[1]);
 
     free_league_stats(&league->stats);
+}
+
+/** Free the data in the joined leagues array. */
+void
+free_joined_leagues(GArray **joined_leagues)
+{
+    gint i;
+
+    for(i = 0; i < (*joined_leagues)->len; i++)
+        free_gchar_ptr(g_array_index(*joined_leagues, JoinedLeague, i).sid);
+
+    free_g_array(joined_leagues);
 }
 
 /** Free the league stats. */

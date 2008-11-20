@@ -162,4 +162,10 @@ fixture_count_matchdays(const GArray *fixtures);
 gint
 fixture_get_last_scheduled_week(void);
 
+void
+fixture_remove_rrs(GArray *fixtures, gint clid1, gint clid2, gint to_remove);
+
+void
+fixtures_condense(GArray *fixtures);
+
 #endif

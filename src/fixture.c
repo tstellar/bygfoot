@@ -42,21 +42,58 @@
 void
 fixture_write_league_fixtures(League *league)
 {
-    gint round_robins = league->round_robins;
-    GPtrArray *teams = NULL;
+    gint i,j;
+    gint max_rr;
+    gint joined_clids[league->joined_leagues->len];
+    gint joined_rrs[league->joined_leagues->len];
+    GPtrArray *teams;
     
+    max_rr = league->round_robins;
+    teams = team_get_pointers_from_array(league->teams, NULL);
+
     g_array_free(league->fixtures, TRUE);
     league->fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));
 
-    while(round_robins > 0)
+    /** Add all teams to the same pointer array. */
+    for(i = 0; i < league->joined_leagues->len; i++)
     {
-	teams = team_get_pointers_from_array(league->teams);
-	fixture_write_round_robin((gpointer)league, -1, teams, (round_robins == 1));
-	round_robins -= (round_robins > 1) ? 2 : 1;
+        joined_rrs[i] = g_array_index(league->joined_leagues, JoinedLeague, i).rr;
+        joined_clids[i] = league_index_from_sid(g_array_index(league->joined_leagues, JoinedLeague, i).sid);
+        max_rr = MAX(joined_rrs[i], max_rr);
+        teams = team_get_pointers_from_array(lig(joined_clids[i]).teams, teams);
+    }
+        
+    /** Write fixtures for as many round robins as required by the maximum number of rrs given. */
+    for(i = 0; i < max_rr;)
+    {
+    	fixture_write_round_robin((gpointer)league, -1, misc_copy_ptr_array(teams), (i == max_rr - 1));
+    	i += (i < max_rr - 1) ? 2 : 1;
     }
 
+    g_ptr_array_free(teams, TRUE);
     g_array_sort_with_data(league->fixtures, fixture_compare_func, 
 			   GINT_TO_POINTER(FIXTURE_COMPARE_DATE + 100));
+
+    if(league->joined_leagues->len > 0)
+    {
+        /** Remove fixtures involving only teams from the joined leagues and
+            for joined leagues with a smaller number of rrs than the maximum. */
+        for(i = 0; i < league->joined_leagues->len; i++)
+        {
+            if(joined_rrs[i] < max_rr)
+                fixture_remove_rrs(league->fixtures, league->id, lig(joined_clids[i]).id, max_rr - joined_rrs[i]);
+
+            for(j = i; j < league->joined_leagues->len; j++)
+                fixture_remove_rrs(league->fixtures, lig(joined_clids[i]).id, lig(joined_clids[j]).id, max_rr);
+        }
+
+        /** Remove fixtures for reduced number of rrs. */
+        if(league->round_robins < max_rr)
+            fixture_remove_rrs(league->fixtures, league->id, league->id, max_rr - league->round_robins);
+
+        /** Move matches to earlier weeks if possible. */
+        fixtures_condense(league->fixtures);
+    }
 }
 
 /** Write the fixtures for the given cup
@@ -1418,4 +1455,110 @@ fixture_get_last_scheduled_week(void)
         week_nr = MAX(week_nr, g_array_index(acp(i)->fixtures, Fixture, acp(i)->fixtures->len - 1).week_number);
 
     return week_nr;
+}
+
+/** Remove a number of round robin from a fixture array.
+    @fixtures: The fixture array.
+    @clid1: The league id for one team.
+    @clid2: The league id for the second team.
+    @to_remove: How many matches to remove per pairing. */
+void
+fixture_remove_rrs(GArray *fixtures, gint clid1, gint clid2, gint to_remove)
+{
+    gint i, j, k;
+    gint removed;
+    gint start;
+    League *league1, *league2;
+
+    league1 = league_from_clid(clid1);
+    league2 = league_from_clid(clid2);
+
+    for(i = 0; i < league1->teams->len; i++)
+    {
+        start = (clid1 == clid2) ? i + 1 : 0;
+        for(j = start; j < league2->teams->len; j++)
+        {
+            removed = 0;
+            for(k = fixtures->len - 1; k >= 0; k--)
+                if((g_array_index(fixtures, Fixture, k).teams[0]->id == g_array_index(league1->teams, Team, i).id &&
+                    g_array_index(fixtures, Fixture, k).teams[1]->id == g_array_index(league2->teams, Team, j).id) ||
+                   (g_array_index(fixtures, Fixture, k).teams[1]->id == g_array_index(league1->teams, Team, i).id &&
+                    g_array_index(fixtures, Fixture, k).teams[0]->id == g_array_index(league2->teams, Team, j).id))
+                {
+                    g_array_remove_index(fixtures, k);
+                    removed++;
+                    
+                    if(removed == to_remove)
+                        break;
+                }
+        }
+    }
+}
+
+/** Move matches in the fixture array to earlier dates if possible. */
+void
+fixtures_condense(GArray *fixtures)
+{
+    gint i, j, k, l;
+    GArray *matchday_teams[1000][5];
+    Fixture *fix;
+    gboolean fix_moved;
+
+    fix_moved = TRUE;
+    
+    while(fix_moved)
+    {
+        fix_moved = FALSE;
+
+        for(i = 0; i < 1000; i++)
+            for(j = 0; j < 5; j++)
+                matchday_teams[i][j] = NULL;
+
+        for(i = 0; i < ligs->len; i++)
+            for(j = 0; j < lig(i).fixtures->len; j++)
+            {
+                fix = &g_array_index(lig(i).fixtures, Fixture, j);
+                if(matchday_teams[fix->week_number - 1][fix->week_round_number - 1] == NULL)
+                    matchday_teams[fix->week_number - 1][fix->week_round_number - 1] = g_array_new(FALSE, FALSE, sizeof(gint));
+
+                g_array_append_val(matchday_teams[fix->week_number - 1][fix->week_round_number - 1], fix->teams[0]->id);
+                g_array_append_val(matchday_teams[fix->week_number - 1][fix->week_round_number - 1], fix->teams[1]->id);
+            }
+    
+
+        for(i = fixtures->len - 1; i >= 0; i--)
+        {
+            fix = &g_array_index(fixtures, Fixture, i);
+            for(j = 0; j <= fix->week_number - 2; j++)
+            {
+                for(k = 0; k < 5; k++)
+                {
+                    if(matchday_teams[j][k] != NULL)
+                    {
+                        for(l = 0; l < matchday_teams[j][k]->len; l++)
+                            if(g_array_index(matchday_teams[j][k], gint, l) == fix->teams[0]->id ||
+                               g_array_index(matchday_teams[j][k], gint, l) == fix->teams[1]->id)
+                                break;
+
+                        if(l == matchday_teams[j][k]->len)
+                        {
+                            fix_moved = TRUE;
+                            fix->week_number = j + 1;
+                            fix->week_round_number = k + 1;
+                            g_array_append_val(matchday_teams[j][k], fix->teams[0]->id);
+                            g_array_append_val(matchday_teams[j][k], fix->teams[1]->id);
+                        }
+                    }
+                }
+            }
+        }
+
+        for(i = 0; i < 1000; i++)
+            for(j = 0; j < 5; j++)
+                if(matchday_teams[i][j] != NULL)
+                    g_array_free(matchday_teams[i][j], TRUE);
+
+        g_array_sort_with_data(fixtures, fixture_compare_func,
+                               GINT_TO_POINTER(FIXTURE_COMPARE_DATE + 100));
+    }
 }

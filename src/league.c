@@ -67,8 +67,8 @@ league_new(gboolean new_id)
     new.prom_rel.elements = g_array_new(FALSE, FALSE, sizeof(PromRelElement));
 
     new.teams = g_array_new(FALSE, FALSE, sizeof(Team));
-    
     new.fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));
+    new.joined_leagues = g_array_new(FALSE, FALSE, sizeof(JoinedLeague));
 
     new.table = table_new();
     new.table.clid = new.id;
