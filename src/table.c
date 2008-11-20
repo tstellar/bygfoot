@@ -110,14 +110,16 @@ table_update_get_elements(TableElement **elements, const Fixture *fix)
 
     if(fix->clid < ID_CUP_START)
     {
-	table = &league_from_clid(fix->clid)->table;
-	for(i=0;i<table->elements->len;i++)
-	{
-	    if(g_array_index(table->elements, TableElement, i).team == fix->teams[0])
-		elements[0] = &g_array_index(table->elements, TableElement, i);
-	    else if(g_array_index(table->elements, TableElement, i).team == fix->teams[1])
-		elements[1] = &g_array_index(table->elements, TableElement, i);
-	}
+        for(j = 0; j < 2; j++)
+        {
+            table = &league_from_clid(fix->teams[j]->clid)->table;
+
+            for(i=0;i<table->elements->len;i++)
+            {
+                if(g_array_index(table->elements, TableElement, i).team == fix->teams[j])
+                    elements[j] = &g_array_index(table->elements, TableElement, i);
+            }
+        }
     }
     else
 	for(i=0;i<cup_get_last_tables(fix->clid)->len;i++)

@@ -59,7 +59,7 @@ gboolean
 query_team_is_in_cup(const Team *tm, const Cup *cup);
 
 GPtrArray*
-team_get_pointers_from_array(const GArray *teams);
+team_get_pointers_from_array(const GArray *teams, GPtrArray *team_ptrs);
 
 Team*
 team_of_id(gint id);

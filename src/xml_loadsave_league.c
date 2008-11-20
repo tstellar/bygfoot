@@ -54,6 +54,8 @@ enum
     TAG_LEAGUE_PROM_REL_ELEMENT_DEST_SID,
     TAG_LEAGUE_PROM_REL_ELEMENT_TYPE,
     TAG_LEAGUE_BREAK,
+    TAG_LEAGUE_JOINED_LEAGUE_SID,
+    TAG_LEAGUE_JOINED_LEAGUE_RR,
     TAG_LEAGUE_TWO_MATCH_WEEK_START,
     TAG_LEAGUE_TWO_MATCH_WEEK_END,
     TAG_END
@@ -74,7 +76,10 @@ xml_loadsave_league_start_element (GMarkupParseContext *context,
     gint i;
     gint tag = xml_get_tag_from_name(element_name);
     gboolean valid_tag = FALSE;
+    JoinedLeague new_joined_league;
 
+    new_joined_league.sid = NULL;
+        
     for(i=TAG_LEAGUE;i<TAG_END;i++)
 	if(tag == i)
 	{
@@ -95,6 +100,9 @@ xml_loadsave_league_start_element (GMarkupParseContext *context,
 	promrankidx = 0;
     }
 
+    if(tag == TAG_LEAGUE_JOINED_LEAGUE_SID)
+        g_array_append_val(new_league->joined_leagues, new_joined_league);        
+
     if(!valid_tag)
 	g_warning("xml_loadsave_league_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
@@ -112,6 +120,8 @@ xml_loadsave_league_end_element    (GMarkupParseContext *context,
        tag == TAG_LEAGUE_LAYER ||
        tag == TAG_LEAGUE_ACTIVE ||
        tag == TAG_LEAGUE_BREAK ||
+       tag == TAG_LEAGUE_JOINED_LEAGUE_SID ||
+       tag == TAG_LEAGUE_JOINED_LEAGUE_RR ||
        tag == TAG_LEAGUE_TWO_MATCH_WEEK_START ||
        tag == TAG_LEAGUE_TWO_MATCH_WEEK_END ||
        tag == TAG_LEAGUE_AVERAGE_TALENT ||
@@ -194,6 +204,15 @@ xml_loadsave_league_text         (GMarkupParseContext *context,
 	new_league->active = int_value;
     else if(state == TAG_LEAGUE_BREAK)
 	new_league->rr_break = int_value;
+    else if(state == TAG_LEAGUE_JOINED_LEAGUE_SID)
+	misc_string_assign(
+            &g_array_index(new_league->joined_leagues,
+                           JoinedLeague,
+                           new_league->joined_leagues->len - 1).sid, buf);
+    else if(state == TAG_LEAGUE_JOINED_LEAGUE_RR)
+        g_array_index(new_league->joined_leagues,
+                      JoinedLeague,
+                      new_league->joined_leagues->len - 1).rr = int_value;
     else if(state == TAG_LEAGUE_TWO_MATCH_WEEK_START)
 	g_array_append_val(new_league->two_match_weeks[0], int_value);
     else if(state == TAG_LEAGUE_TWO_MATCH_WEEK_END)
@@ -289,6 +308,13 @@ xml_loadsave_league_write(const gchar *prefix, const League *league)
     xml_write_int(fil, league->yellow_red, TAG_YELLOW_RED, I0);
     xml_write_int(fil, league->active, TAG_LEAGUE_ACTIVE, I0);
     xml_write_int(fil, league->rr_break, TAG_LEAGUE_BREAK, I0);
+
+    for(i = 0; i < league->joined_leagues->len; i++)
+    {
+        xml_write_string(fil, g_array_index(league->joined_leagues, JoinedLeague, i).sid, TAG_LEAGUE_JOINED_LEAGUE_SID, I0);
+        xml_write_int(fil, g_array_index(league->joined_leagues, JoinedLeague, i).rr, TAG_LEAGUE_JOINED_LEAGUE_RR, I0);
+    }
+
     xml_write_float(fil, league->average_talent, TAG_LEAGUE_AVERAGE_TALENT, I0);
 
     for(i=0;i<league->two_match_weeks[0]->len;i++)

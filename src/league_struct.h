@@ -78,6 +78,19 @@ typedef struct
 } PromRel;
 
 /**
+   A structure describing a different league joined to the current one
+   in the sense that there are matches played between teams from both leagues
+   like in the US conference system.
+*/
+typedef struct
+{
+    /** Sid of the joined league. */
+    gchar *sid;
+    /** How many round robins to schedule. */
+    gint rr;
+} JoinedLeague;
+
+/**
    Representation of a league.
    @see PromRel
    @see Table
@@ -105,7 +118,7 @@ typedef struct
 	there should be two matches in a week instead of one. */
     GArray *two_match_weeks[2];
     /** How many round robins are played. Important for
-	small leagues with 10 teams or so. Default: 1. */
+	small leagues with 10 teams or so. Default: 2. */
     gint round_robins;
     /** Number of weeks between the parts of a round robin. */
     gint rr_break;
@@ -117,6 +130,9 @@ typedef struct
     /** Array of teams in the league.
 	@see Team */
     GArray *teams;
+    /** List of leagues joined fixture-wise to this one.
+	@see JoinedLeague */
+    GArray *joined_leagues;
     /** League table.
 	@see Table */
     Table table;

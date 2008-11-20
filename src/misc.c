@@ -116,8 +116,7 @@ misc_separate_strings(gchar *string)
     return string_array;
 }
 
-/** Write a pointer array randomly into another one and free
-    the original one.
+/** Write a pointer array randomly into another one and free the original array.
     @param array The array to randomise.
     @return A new pointer array containing the items in random order. */
 GPtrArray*
@@ -512,7 +511,7 @@ misc_string_replace_expressions(gchar *string)
     gchar *occurrence = NULL,
 	*occurrence2 = NULL;
 
-    if(debug > 100)
+    if(debug > 200)
 	g_print("misc_string_replace_expressions: #%s#\n",
 		string);
 

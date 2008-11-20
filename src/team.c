@@ -183,15 +183,24 @@ query_team_is_in_cup(const Team *tm, const Cup *cup)
 /** Return a GPtrArray containing the pointers
     to the teams from the teams array.
     @param teams The teams array we use.
+    @param team_ptrs NULL or a pointer array we append to
     @return A GPtrArray containing pointers to the teams. */
 GPtrArray*
-team_get_pointers_from_array(const GArray *teams)
+team_get_pointers_from_array(const GArray *teams, GPtrArray *team_ptrs)
 {
     gint i;
     GPtrArray *team_pointers = g_ptr_array_new();
 
     for(i=0;i<teams->len;i++)
 	g_ptr_array_add(team_pointers, (gpointer)&g_array_index(teams, Team, i));
+
+    if(team_ptrs != NULL)
+    {
+        for(i = 0; i < team_ptrs->len; i++)
+            g_ptr_array_add(team_pointers, g_ptr_array_index(team_ptrs, i));
+        
+        g_ptr_array_free(team_ptrs, TRUE);
+    }
 
     return team_pointers;
 }

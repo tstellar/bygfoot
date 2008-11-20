@@ -66,6 +66,9 @@ void
 free_league(League *league);
 
 void
+free_joined_leagues(GArray **joined_leagues);
+
+void
 free_teams_array(GArray **teams, gboolean reset);
 
 void
