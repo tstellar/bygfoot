@@ -367,12 +367,15 @@ end_week_round_sort_tables(void)
     for(i=0;i<ligs->len;i++)
 	if(query_fixture_in_week_round(lig(i).id, week, week_round))
 	{
-	    for(j=0;j<lig(i).table.elements->len;j++)
-		g_array_index(lig(i).table.elements, TableElement, j).old_rank = j;
-
-	    g_array_sort_with_data(lig(i).table.elements,
-				   (GCompareDataFunc)table_element_compare_func,
-				   GINT_TO_POINTER(lig(i).id));
+            for(k = 0; k < lig(i).tables->len; k++)
+            {
+                for(j=0;j<g_array_index(lig(i).tables, Table, k).elements->len;j++)
+                    g_array_index(g_array_index(lig(i).tables, Table, k).elements, TableElement, j).old_rank = j;
+                
+                g_array_sort_with_data(g_array_index(lig(i).tables, Table, k).elements,
+                                       (GCompareDataFunc)table_element_compare_func,
+                                       GINT_TO_POINTER(lig(i).id));
+            }
 	}
 
     for(i=0;i<acps->len;i++)
@@ -409,13 +412,13 @@ end_week_round_update_fixtures(void)
 	   g_array_index(
 	       lig(i).fixtures, Fixture, lig(i).fixtures->len - 1).week_number && 
 	   week_round == 1 &&
-	   team_is_user(g_array_index(lig(i).table.elements, TableElement, 0).team) != -1)
-	    user_history_add(&usr(team_is_user(g_array_index(lig(i).table.elements, TableElement, 0).team)),
-			     USER_HISTORY_CHAMPION, 
-			     g_array_index(lig(i).table.elements, 
-					   TableElement, 0).team->name,
-			     league_cup_get_name_string(lig(i).id),
-			     NULL, NULL);
+	   team_is_user(g_array_index(league_table((&lig(i)))->elements, TableElement, 0).team) != -1)
+           user_history_add(&usr(team_is_user(g_array_index(league_table((&lig(i)))->elements, TableElement, 0).team)),
+                            USER_HISTORY_CHAMPION, 
+                            g_array_index(league_table((&lig(i)))->elements, 
+                                          TableElement, 0).team->name,
+                            league_cup_get_name_string(lig(i).id),
+                            NULL, NULL);
     
     for(i=0;i<cps->len;i++)
     {

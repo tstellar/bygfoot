@@ -86,6 +86,9 @@ user_event_remove(User *user, gint idx);
 void
 user_event_show_next(void);
 
+gboolean
+query_user_events();
+
 void
 user_change_team(User *user, Team *tm);
 

@@ -54,6 +54,6 @@ void
 xml_loadsave_league_write(const gchar *prefix, const League *league);
 
 void
-xml_loadsave_league_read(const gchar *filename, League *league);
+xml_loadsave_league_read(const gchar *filename, const gchar *team_file, League *league);
 
 #endif

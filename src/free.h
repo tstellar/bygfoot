@@ -111,7 +111,7 @@ void
 free_support_dirs(void);
 
 void
-free_table(Table *table);
+free_tables(GArray **tables);
 
 void
 free_league_stats(LeagueStat *stats);

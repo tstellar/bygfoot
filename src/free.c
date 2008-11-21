@@ -340,7 +340,7 @@ free_league(League *league)
     free_g_array(&league->teams);
     free_g_array(&league->prom_rel.elements);;
     
-    free_table(&league->table);
+    free_tables(&league->tables);
 
     free_g_array(&league->fixtures);
 
@@ -395,13 +395,20 @@ free_league_stats(LeagueStat *stats)
 }
 
 
-/** Free a table. */
+/** Free a tables array. */
 void
-free_table(Table *table)
+free_tables(GArray **tables)
 {
-    free_gchar_ptr(table->name);
+    gint i;
 
-    free_g_array(&table->elements);
+    for(i = 0; i < (*tables)->len; i++)
+    {
+        free_gchar_ptr(g_array_index(*tables, Table, i).name);        
+        free_g_array(&g_array_index(*tables, Table, i).elements);
+    }
+
+    g_array_free(*tables, TRUE);
+    *tables = NULL;
 }
 
 /** Free the memory occupied by a teams array.
@@ -515,8 +522,7 @@ free_cup(Cup *cup)
 
 	if(g_array_index(cup->rounds, CupRound, i).round_robin_number_of_groups > 0)
 	{
-	    for(j=0;j<g_array_index(cup->rounds, CupRound, i).tables->len;j++)
-		free_table(&g_array_index(g_array_index(cup->rounds, CupRound, i).tables, Table, j));
+            free_tables(&g_array_index(cup->rounds, CupRound, i).tables);
 
 	    for(j=0;j<g_array_index(cup->rounds, CupRound, i).choose_teams->len;j++)
 		free_cup_choose_team(

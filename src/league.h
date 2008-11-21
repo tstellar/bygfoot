@@ -35,6 +35,8 @@
 #define league_cup_get_fixtures(clid) (clid < ID_CUP_START) ? (league_from_clid(clid)->fixtures) : (cup_from_clid(clid)->fixtures)
 #define league_cup_get_name_string(clid) (clid < ID_CUP_START) ? league_from_clid(clid)->name : cup_from_clid(clid)->name
 #define league_cup_get_yellow_red(clid) (clid < ID_CUP_START) ? (league_from_clid(clid)->yellow_red) : (cup_from_clid(clid)->yellow_red)
+#define league_table_cumul(league) (&g_array_index(league->tables, Table, 0))
+#define league_table(league) (&g_array_index(league->tables, Table, league->tables->len - 1))
 
 #define query_league_has_prom_games(league) (league->prom_rel.prom_games_dest_sid != NULL)
 

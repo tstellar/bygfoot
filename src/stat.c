@@ -186,7 +186,7 @@ stat_create_season_stat(void)
     {
 	new_champ.cl_name = g_strdup(lig(i).name);
 	new_champ.team_name = 
-	    g_strdup(g_array_index(lig(i).table.elements, TableElement, 0).team->name);
+	    g_strdup(g_array_index(league_table((&lig(i)))->elements, TableElement, 0).team->name);
 	g_array_append_val(new.league_champs, new_champ);
 
 	g_array_append_val(new.league_stats, lig(i).stats);

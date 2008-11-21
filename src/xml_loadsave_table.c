@@ -186,7 +186,7 @@ xml_loadsave_table_write(const gchar *filename, const Table *table)
     xml_write_string(fil, table->name, TAG_NAME, I0);
     xml_write_int(fil, table->clid, TAG_ID, I0);
     xml_write_int(fil, table->round, TAG_ROUND, I0);
-        
+
     for(i=0;i<table->elements->len;i++)
     {
 	fprintf(fil, "<_%d>\n", TAG_TABLE_ELEMENT);
