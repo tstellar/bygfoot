@@ -412,7 +412,7 @@ team_get_league_rank(const Team *tm)
 	if(!league_from_clid(clid)->active)
 	    return 0;
 
-	elements = league_from_clid(tm->clid)->table.elements;
+	elements = league_table(league_from_clid(tm->clid))->elements;
     }
     else
     {
@@ -671,7 +671,7 @@ team_get_table_value(const Team *tm, gint type)
 			  "team_get_table_value: team is not a league team: %s \n", 
 			  tm->name);
     
-    elements = league_from_clid(tm->clid)->table.elements;
+    elements = league_table(league_from_clid(tm->clid))->elements;
 
     for(i=0;i<elements->len;i++)
 	if(g_array_index(elements, TableElement, i).team_id == tm->id)

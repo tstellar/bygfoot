@@ -26,6 +26,9 @@
 #include "file.h"
 #include "league.h"
 #include "misc.h"
+#include "option.h"
+#include "table.h"
+#include "variables.h"
 #include "xml.h"
 #include "xml_loadsave_cup.h"
 #include "xml_loadsave_fixtures.h"
@@ -58,12 +61,14 @@ enum
     TAG_LEAGUE_JOINED_LEAGUE_RR,
     TAG_LEAGUE_TWO_MATCH_WEEK_START,
     TAG_LEAGUE_TWO_MATCH_WEEK_END,
+    TAG_LEAGUE_TABLE_FILE,
     TAG_END
 };
 
 gint promrankidx, state;
 PromRelElement new_element;
 League *new_league;
+gchar *dirname;
 
 void
 xml_loadsave_league_start_element (GMarkupParseContext *context,
@@ -103,6 +108,9 @@ xml_loadsave_league_start_element (GMarkupParseContext *context,
     if(tag == TAG_LEAGUE_JOINED_LEAGUE_SID)
         g_array_append_val(new_league->joined_leagues, new_joined_league);        
 
+    if(debug > 100)
+        g_print("xml_loadsave_league_start_element: state %d\n", state);
+
     if(!valid_tag)
 	g_warning("xml_loadsave_league_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
@@ -123,7 +131,8 @@ xml_loadsave_league_end_element    (GMarkupParseContext *context,
        tag == TAG_LEAGUE_JOINED_LEAGUE_SID ||
        tag == TAG_LEAGUE_JOINED_LEAGUE_RR ||
        tag == TAG_LEAGUE_TWO_MATCH_WEEK_START ||
-       tag == TAG_LEAGUE_TWO_MATCH_WEEK_END ||
+       tag == TAG_LEAGUE_TABLE_FILE ||
+       tag == TAG_LEAGUE_AVERAGE_TALENT ||
        tag == TAG_LEAGUE_AVERAGE_TALENT ||
        tag == TAG_LEAGUE_ROUND_ROBINS ||
        tag == TAG_NAME ||
@@ -168,9 +177,10 @@ xml_loadsave_league_text         (GMarkupParseContext *context,
 				   gpointer             user_data,
 				   GError             **error)
 {
-    gchar buf[SMALL];
+    gchar buf[SMALL], buf2[SMALL];
     gint int_value = -1;
     gfloat float_value = -1;
+    Table new_table;
 
     strncpy(buf, text, text_len);
     buf[text_len] = '\0';
@@ -217,6 +227,14 @@ xml_loadsave_league_text         (GMarkupParseContext *context,
 	g_array_append_val(new_league->two_match_weeks[0], int_value);
     else if(state == TAG_LEAGUE_TWO_MATCH_WEEK_END)
 	g_array_append_val(new_league->two_match_weeks[1], int_value);
+    else if(state == TAG_LEAGUE_TABLE_FILE)
+    {
+	new_table = table_new();
+
+	sprintf(buf2, "%s%s%s", dirname, G_DIR_SEPARATOR_S, buf);
+	xml_loadsave_table_read(buf2, &new_table);
+	g_array_append_val(new_league->tables, new_table);
+    }
     else if(state == TAG_LEAGUE_AVERAGE_TALENT)
 	new_league->average_talent = float_value;
     else if(state == TAG_LEAGUE_PROM_REL_PROM_GAMES_DEST_SID)
@@ -236,7 +254,7 @@ xml_loadsave_league_text         (GMarkupParseContext *context,
 }
 
 void
-xml_loadsave_league_read(const gchar *filename, League *league)
+xml_loadsave_league_read(const gchar *filename, const gchar *team_file, League *league)
 {
     GMarkupParser parser = {xml_loadsave_league_start_element,
 			    xml_loadsave_league_end_element,
@@ -256,6 +274,9 @@ xml_loadsave_league_read(const gchar *filename, League *league)
     }
 
     new_league = league;
+    dirname = g_path_get_dirname(filename);
+
+    xml_loadsave_teams_read(team_file, new_league->teams);
 
     if(g_markup_parse_context_parse(context, file_contents, length, &error))
     {
@@ -268,6 +289,8 @@ xml_loadsave_league_read(const gchar *filename, League *league)
 	g_warning("xml_loadsave_league_read: error parsing file %s\n", filename);
 	misc_print_error(&error, TRUE);
     }
+
+    g_free(dirname);
 }
 
 void
@@ -276,9 +299,7 @@ xml_loadsave_league_write(const gchar *prefix, const League *league)
     gint i;
     gchar buf[SMALL];
     FILE *fil = NULL;
-
-    sprintf(buf, "%s___league_%d_table.xml", prefix, league->id);
-    xml_loadsave_table_write(buf, &league->table);
+    gchar *basename = g_path_get_basename(prefix);
 
     sprintf(buf, "%s___league_%d_teams.xml", prefix, league->id);
     xml_loadsave_teams_write(buf, league->teams);
@@ -308,6 +329,15 @@ xml_loadsave_league_write(const gchar *prefix, const League *league)
     xml_write_int(fil, league->yellow_red, TAG_YELLOW_RED, I0);
     xml_write_int(fil, league->active, TAG_LEAGUE_ACTIVE, I0);
     xml_write_int(fil, league->rr_break, TAG_LEAGUE_BREAK, I0);
+
+    for(i=0;i<league->tables->len;i++)
+    {
+	sprintf(buf, "%s___league_%d_table_%02d.xml", basename, league->id, i);
+	xml_write_string(fil, buf, TAG_LEAGUE_TABLE_FILE, I1);
+
+	sprintf(buf, "%s___league_%d_table_%02d.xml", prefix, league->id, i);
+	xml_loadsave_table_write(buf, &g_array_index(league->tables, Table, i));
+    }
 
     for(i = 0; i < league->joined_leagues->len; i++)
     {

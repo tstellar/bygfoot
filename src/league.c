@@ -46,6 +46,7 @@ League
 league_new(gboolean new_id)
 {
     League new;
+    Table new_table;
 
     new.name = NULL;
     new.names_file = g_strdup(opt_str("string_opt_player_names_file"));
@@ -70,8 +71,13 @@ league_new(gboolean new_id)
     new.fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));
     new.joined_leagues = g_array_new(FALSE, FALSE, sizeof(JoinedLeague));
 
-    new.table = table_new();
-    new.table.clid = new.id;
+    new.tables = g_array_new(FALSE, FALSE, sizeof(Table));
+    if(new_id)
+    {
+        new_table = table_new();
+        g_array_append_val(new.tables, new_table);
+        league_table((&new))->clid = new.id;        
+    }
 
     new.first_week = new.week_gap = 1;
     new.two_match_weeks[0] = g_array_new(FALSE, FALSE, sizeof(gint));
@@ -377,7 +383,7 @@ league_season_start(League *league)
     gboolean user_champ = 
 	(team_is_user(
 	    team_of_id(
-		g_array_index(lig(0).table.elements, TableElement, 0).team_id)) != -1);
+		g_array_index(league_table((&lig(0)))->elements, TableElement, 0).team_id)) != -1);
     gboolean league_above_talent =
 	(team_get_average_talents(league->teams) > league->average_talent *
 	 const_float("float_season_end_league_above_talent_factor") && !user_champ);
@@ -401,7 +407,7 @@ league_season_start(League *league)
     if(user_champ)
     {
 	tm = team_of_id(
-	    g_array_index(lig(0).table.elements, TableElement, 0).team_id);
+	    g_array_index(league_table((&lig(0)))->elements, TableElement, 0).team_id);
 	tm->luck = MAX(tm->luck * const_float("float_season_end_user_champ_luck_factor"),
 		       const_float("float_luck_limit"));
     }
@@ -411,16 +417,22 @@ league_season_start(League *league)
 		usr(i).tm->luck = 
 		    MIN(usr(i).tm->luck * const_float("float_season_end_user_champ_luck_factor_regen"), 1);
 
-    for(i=0;i<league->table.elements->len;i++)
+    for(i = league->tables->len - 1; i > 0; i--)
     {
-	g_array_index(league->table.elements, TableElement, i).team = 
+        g_array_free(g_array_index(league->tables, Table, i).elements, TRUE);
+        g_array_remove_index(league->tables, i);
+    }
+
+    for(i=0;i<league_table(league)->elements->len;i++)
+    {
+	g_array_index(league_table(league)->elements, TableElement, i).team = 
 	    &g_array_index(league->teams, Team, i);
-	g_array_index(league->table.elements, TableElement, i).team_id = 
+	g_array_index(league_table(league)->elements, TableElement, i).team_id = 
 	    g_array_index(league->teams, Team, i).id;
-	g_array_index(league->table.elements, TableElement, i).old_rank = i;
+	g_array_index(league_table(league)->elements, TableElement, i).old_rank = i;
 
 	for(j=0;j<TABLE_END;j++)
-	    g_array_index(league->table.elements, TableElement, i).values[j] = 0;
+	    g_array_index(league_table(league)->elements, TableElement, i).values[j] = 0;
     }
 
     /*d*/
@@ -545,7 +557,7 @@ league_get_team_movements_prom_rel(const League *league, GArray *team_movements)
 	    for(k=0;k<dest_sids->len;k++)		
 		g_array_append_val(dest_idcs, dest_idcs_int[dest_idcs_order[k]]);
 	    
-	    new_move.tm = *(g_array_index(league->table.elements, TableElement, j - 1).team);
+	    new_move.tm = *(g_array_index(league_table_cumul(league)->elements, TableElement, j - 1).team);
 	    new_move.prom_rel_type = g_array_index(elements, PromRelElement, i).type;
 	    new_move.dest_idcs = dest_idcs;
 	    new_move.dest_assigned = FALSE;

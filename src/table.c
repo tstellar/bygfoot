@@ -112,7 +112,7 @@ table_update_get_elements(TableElement **elements, const Fixture *fix)
     {
         for(j = 0; j < 2; j++)
         {
-            table = &league_from_clid(fix->teams[j]->clid)->table;
+            table = league_table(league_from_clid(fix->teams[j]->clid));
 
             for(i=0;i<table->elements->len;i++)
             {

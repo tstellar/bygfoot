@@ -1200,6 +1200,7 @@ GtkTreeModel*
 treeview_create_table(gint clid)
 {
     gint i;
+    GArray *tables;
     GtkListStore *ls = 
 	gtk_list_store_new(12,
 			   GDK_TYPE_PIXBUF,
@@ -1216,13 +1217,16 @@ treeview_create_table(gint clid)
 			   G_TYPE_STRING);
 
     if(clid < ID_CUP_START)
-	treeview_create_single_table(ls, 
-				     &league_from_clid(clid)->table, -1);
+    {
+        tables = league_from_clid(clid)->tables;
+        for(i = 0; i < tables->len; i++)
+            treeview_create_single_table(ls, &g_array_index(tables, Table, i), i + 1);        
+    }
     else
     {
-	for(i=0;i<cup_get_last_tables(clid)->len;i++)
-	    treeview_create_single_table(ls, 
-					 &g_array_index(cup_get_last_tables(clid), Table, i), i + 1);
+        tables = cup_get_last_tables(clid);
+	for(i=0;i< tables->len;i++)
+	    treeview_create_single_table(ls, &g_array_index(tables, Table, i), i + 1);
     }
 
     return GTK_TREE_MODEL(ls);
@@ -1774,7 +1778,7 @@ treeview_create_league_results(void)
     gint i;
     gchar name[SMALL], results[SMALL];
     GArray *table_elements = 
-	league_from_clid(current_user.tm->clid)->table.elements;
+	league_table(league_from_clid(current_user.tm->clid))->elements;
     GtkListStore *ls = 
 	gtk_list_store_new(3, G_TYPE_STRING, G_TYPE_STRING,
 			   G_TYPE_STRING);

@@ -71,17 +71,18 @@ xml_load_users(const gchar *dirname, const gchar *basename)
 void
 xml_load_league(const gchar *dirname, const gchar *basename)
 {
-    gchar buf[SMALL];
+    gchar buf[SMALL], team_file[SMALL];
     League new = league_new(FALSE);
     gchar *prefix = g_strndup(basename, strlen(basename) - 4);
 
-    sprintf(buf, "%s%s%s", dirname, G_DIR_SEPARATOR_S, basename);
-    xml_loadsave_league_read(buf, &new);
-
     g_array_append_val(ligs, new);
 
+    sprintf(buf, "%s%s%s", dirname, G_DIR_SEPARATOR_S, basename);
+    sprintf(team_file, "%s%s%s_teams.xml", dirname, G_DIR_SEPARATOR_S, prefix);
+    xml_loadsave_league_read(buf, team_file, &lig(ligs->len - 1));
+
     sprintf(buf, _("Loading league: %s"),
-	    new.name);
+	    lig(ligs->len - 1).name);
 
     gui_show_progress(
 	gtk_progress_bar_get_fraction(
@@ -91,14 +92,8 @@ xml_load_league(const gchar *dirname, const gchar *basename)
     if(debug > 80)
 	g_print("%s\n", buf);
 
-    sprintf(buf, "%s%s%s_teams.xml", dirname, G_DIR_SEPARATOR_S, prefix);
-    xml_loadsave_teams_read(buf, lig(ligs->len - 1).teams);
-
     sprintf(buf, "%s%s%s_fixtures.xml", dirname, G_DIR_SEPARATOR_S, prefix);
     xml_loadsave_fixtures_read(buf, lig(ligs->len - 1).fixtures);
-
-    sprintf(buf, "%s%s%s_table.xml", dirname, G_DIR_SEPARATOR_S, prefix);
-    xml_loadsave_table_read(buf, &lig(ligs->len - 1).table);
 
     sprintf(buf, "%s%s%s_stat.xml", dirname, G_DIR_SEPARATOR_S, prefix);
     xml_loadsave_league_stat_read(buf, &lig(ligs->len - 1).stats);

@@ -133,9 +133,9 @@ typedef struct
     /** List of leagues joined fixture-wise to this one.
 	@see JoinedLeague */
     GArray *joined_leagues;
-    /** League table.
+    /** League tables. Usually only one, sometimes more than one is created.
 	@see Table */
-    Table table;
+    GArray *tables;
     /** The fixtures of a season for the league. */
     GArray *fixtures;
     /** The current league statistics. */

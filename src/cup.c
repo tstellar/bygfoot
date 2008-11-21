@@ -121,7 +121,7 @@ cup_round_new(void)
 void
 cup_reset(Cup *cup)
 {
-    gint i, j;
+    gint i;
     
     free_gchar_array(&cup->team_names);
     cup->team_names = g_ptr_array_new();
@@ -141,11 +141,7 @@ cup_reset(Cup *cup)
     {
 	if(g_array_index(cup->rounds, CupRound, i).tables->len > 0)
 	{
-	    for(j=0;j<g_array_index(cup->rounds, CupRound, i).tables->len;j++)
-		free_table(&g_array_index(
-			       g_array_index(cup->rounds, CupRound, i).tables, Table, j));	
-	 
-	    g_array_free(g_array_index(cup->rounds, CupRound, i).tables, TRUE);
+            free_tables(&g_array_index(cup->rounds, CupRound, i).tables);	
 	    g_array_index(cup->rounds, CupRound, i).tables = 
 		g_array_new(FALSE, FALSE, sizeof(Table));
 	}
@@ -401,14 +397,14 @@ cup_load_choose_team_from_league(Cup *cup, const League *league,
 
     if(ct->number_of_teams == -1)
     {
-        for(j=0;j<league->table.elements->len;j++)
+        for(j=0;j<league_table(league)->elements->len;j++)
         {
             g_ptr_array_add(
                 teams, team_of_id(
-                    g_array_index(league->table.elements, TableElement, j).team_id));
+                    g_array_index(league_table(league)->elements, TableElement, j).team_id));
             g_ptr_array_add(
                 cup->team_names, 
-                g_strdup(team_of_id(g_array_index(league->table.elements, TableElement, j).team_id)->name));
+                g_strdup(team_of_id(g_array_index(league_table(league)->elements, TableElement, j).team_id)->name));
         }
     }
     else
@@ -427,23 +423,23 @@ cup_load_choose_team_from_league(Cup *cup, const League *league,
         {
             if(debug > 80)
                 g_print("team %s isinint %d numteams %d\n",
-                        team_of_id(g_array_index(league->table.elements, 
+                        team_of_id(g_array_index(league_table(league)->elements, 
                                                  TableElement, order[j]).team_id)->name,
                         query_team_is_in_cups(
-                            team_of_id(g_array_index(league->table.elements, 
+                            team_of_id(g_array_index(league_table(league)->elements, 
                                                      TableElement, order[j]).team_id),
                             cup->group),
                         number_of_teams);
 
             if(ct->skip_group_check ||
                !query_team_is_in_cups(
-                   team_of_id(g_array_index(league->table.elements, TableElement, order[j]).team_id), cup->group))
+                   team_of_id(g_array_index(league_table(league)->elements, TableElement, order[j]).team_id), cup->group))
             {
                 g_ptr_array_add(teams, 
-                                team_of_id(g_array_index(league->table.elements, TableElement, order[j]).team_id));
+                                team_of_id(g_array_index(league_table(league)->elements, TableElement, order[j]).team_id));
                 g_ptr_array_add(
                     cup->team_names, 
-                    g_strdup(team_of_id(g_array_index(league->table.elements, TableElement, order[j]).team_id)->name));
+                    g_strdup(team_of_id(g_array_index(league_table(league)->elements, TableElement, order[j]).team_id)->name));
                 number_of_teams++;
 
                 if(number_of_teams == ct->number_of_teams)

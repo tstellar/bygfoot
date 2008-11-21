@@ -326,7 +326,7 @@ xml_league_read_text         (GMarkupParseContext *context,
     if(state == STATE_NAME)
     {
 	misc_string_assign(&new_league.name, buf);
-	misc_string_assign(&new_league.table.name, buf);
+	misc_string_assign(&(league_table((&new_league))->name), buf);
     }
     else if(state == STATE_SHORT_NAME)
 	misc_string_assign(&new_league.short_name, buf);
@@ -469,8 +469,7 @@ xml_league_read(const gchar *league_name, GArray *leagues)
 		    &g_array_index(
 			g_array_index(
 			    leagues, League, leagues->len - 1).teams, Team, i), i);
-	    g_array_append_val(g_array_index(leagues, League, leagues->len - 1).
-			       table.elements, new_table_element);
+	    g_array_append_val(league_table((&g_array_index(leagues, League, leagues->len - 1)))->elements, new_table_element);
 	}
     }
     else
