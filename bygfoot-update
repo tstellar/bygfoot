@@ -289,7 +289,7 @@ function check_progs()
     fi
 
     my_echo
-    for i in sed tar bzip2 wget patch cvs; do
+    for i in sed tar bzip2 wget patch svn; do
 	my_echo -n "** b-u: checking for $i... "
 	if which $i &> /dev/null; then
 	    my_echo "ok"
@@ -885,15 +885,16 @@ function get_cvs()
 	read_input
 
 	if [ -z $tempvar ]; then
-	    cvs_command="cvs -z3 -d:pserver:anonymous@bygfoot.cvs.sourceforge.net:/cvsroot/bygfoot"
+	    cvs_command="svn co https://bygfoot.svn.sourceforge.net/svnroot/bygfoot bygfoot/trunk/bygfoor/trunk"
+
 	else
-	    cvs_command="cvs -z3 -d:ext:$tempvar@bygfoot.cvs.sourceforge.net:/cvsroot/bygfoot"
+	    cvs_command="svn --username=$tempvar co https://bygfoot.svn.sourceforge.net/svnroot/bygfoot bygfoot/trunk/bygfoor/trunk"
 	fi
     else
 	if [ $cvs_user = "A" ]; then
-	    cvs_command="cvs -z3 -d:pserver:anonymous@bygfoot.cvs.sourceforge.net:/cvsroot/bygfoot"
+	    cvs_command="svn co https://bygfoot.svn.sourceforge.net/svnroot/bygfoot bygfoot/trunk/bygfoor/trunk"
 	else
-	    cvs_command="cvs -z3 -d:ext:$cvs_user@bygfoot.cvs.sourceforge.net:/cvsroot/bygfoot"
+	    cvs_command="svn --username=$cvs_user co https://bygfoot.svn.sourceforge.net/svnroot/bygfoot bygfoot/trunk/bygfoor/trunk"
 	fi	
     fi
     
