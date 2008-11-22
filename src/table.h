@@ -40,7 +40,7 @@ void
 table_update(const Fixture *fix);
 
 void
-table_update_get_elements(TableElement **elements, const Fixture *fix);
+table_update_get_elements(TableElement **elements, const Fixture *fix, gboolean non_cumulative);
 
 gint
 table_element_compare_func(gconstpointer a,
@@ -49,6 +49,9 @@ table_element_compare_func(gconstpointer a,
 
 gboolean
 query_tables_in_country(void);
+
+Table
+table_copy(const Table *table);
 
 #endif
 

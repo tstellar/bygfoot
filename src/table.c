@@ -69,41 +69,59 @@ table_element_new(Team *team, gint old_rank)
 void
 table_update(const Fixture *fix)
 {
-    gint i;
+    gint i, j;
     gint idx = (fix->result[0][0] < fix->result[1][0]);
-    TableElement *elements[2] = {NULL, NULL};
+    TableElement *elements[2];
 
-    table_update_get_elements(elements, fix);
+    for(j = 0; j < 2; j++)
+    {        
+        elements[0] = elements[1] = NULL;
+        table_update_get_elements(elements, fix, (j == 1));
 
-    for(i=0;i<2;i++)
-    {
-	elements[i]->values[TABLE_PLAYED]++;
-	elements[i]->values[TABLE_GF] += fix->result[i][0];
-	elements[i]->values[TABLE_GA] += fix->result[!i][0];
-	elements[i]->values[TABLE_GD] = 
-	    elements[i]->values[TABLE_GF] - elements[i]->values[TABLE_GA];
-    }
+        for(i=0;i<2;i++)
+        {
+            if(elements[i] != NULL)
+            {
+                elements[i]->values[TABLE_PLAYED]++;
+                elements[i]->values[TABLE_GF] += fix->result[i][0];
+                elements[i]->values[TABLE_GA] += fix->result[!i][0];
+                elements[i]->values[TABLE_GD] = 
+                    elements[i]->values[TABLE_GF] - elements[i]->values[TABLE_GA];                
+            }
+        }
     
-    if(fix->result[0][0] == fix->result[1][0])
-	for(i=0;i<2;i++)
-	{
-	    elements[i]->values[TABLE_DRAW]++;
-	    elements[i]->values[TABLE_PTS] += 1;
-	}
-    else
-    {
-	elements[idx]->values[TABLE_WON]++;
-	elements[idx]->values[TABLE_PTS] += 3;
-	elements[!idx]->values[TABLE_LOST]++;
+        if(fix->result[0][0] == fix->result[1][0])
+            for(i=0;i<2;i++)
+            {
+                if(elements[i] != NULL)
+                {
+                    elements[i]->values[TABLE_DRAW]++;
+                    elements[i]->values[TABLE_PTS] += 1;
+                }
+            }
+        else
+        {
+            if(elements[idx] != NULL)
+            {
+                elements[idx]->values[TABLE_WON]++;
+                elements[idx]->values[TABLE_PTS] += 3;
+            }
+
+            if(elements[!idx] != NULL)
+            {
+                elements[!idx]->values[TABLE_LOST]++;
+            }
+        }
     }
 }
 
 /** Get the pointers to the table entries
     representing the two teams from the fixture. 
     @param elements The table entries.
-    @fix The fixture. */
+    @fix The fixture.
+    @non_cumulative Whether to return the last non-cumulative table. */
 void
-table_update_get_elements(TableElement **elements, const Fixture *fix)
+table_update_get_elements(TableElement **elements, const Fixture *fix, gboolean non_cumulative)
 {
     gint i, j;
     Table *table;
@@ -112,8 +130,17 @@ table_update_get_elements(TableElement **elements, const Fixture *fix)
     {
         for(j = 0; j < 2; j++)
         {
-            table = league_table(league_from_clid(fix->teams[j]->clid));
+            if(non_cumulative &&
+               league_from_clid(fix->teams[j]->clid)->tables->len == 1)
+            {
+                elements[j] = NULL;
+                continue;
+            }
 
+            table = (non_cumulative) ? 
+                league_table(league_from_clid(fix->teams[j]->clid)) :
+                league_table_cumul(league_from_clid(fix->teams[j]->clid));
+            
             for(i=0;i<table->elements->len;i++)
             {
                 if(g_array_index(table->elements, TableElement, i).team == fix->teams[j])
@@ -229,4 +256,34 @@ query_tables_in_country(void)
 	    return TRUE;
 
     return FALSE;
+}
+
+/** Copy a table. */
+Table
+table_copy(const Table *table)
+{
+    gint i, j;
+    Table new_table;
+    TableElement new_table_element;
+    TableElement *elem;
+
+    new_table.name = g_strdup(table->name);
+    new_table.clid = table->clid;
+    new_table.round = table->round;
+    new_table.elements = g_array_new(FALSE, FALSE, sizeof(TableElement));
+
+    for(i = 0; i < table->elements->len; i++)
+    {
+        elem = &g_array_index(table->elements, TableElement, i);
+        new_table_element.team = elem->team;
+        new_table_element.team_id = elem->team_id;
+        new_table_element.old_rank = elem->old_rank;
+
+        for(j=0;j<TABLE_END;j++)
+            new_table_element.values[j] = elem->values[j];
+        
+        g_array_append_val(new_table.elements, new_table_element);
+    }
+
+    return new_table;
 }

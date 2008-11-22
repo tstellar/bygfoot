@@ -91,4 +91,7 @@ end_week_hide_cups(void);
 void
 start_new_season_reset_ids(void);
 
+void
+start_week_update_leagues(void);
+
 #endif

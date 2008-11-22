@@ -59,6 +59,8 @@ enum
     TAG_LEAGUE_BREAK,
     TAG_LEAGUE_JOINED_LEAGUE_SID,
     TAG_LEAGUE_JOINED_LEAGUE_RR,
+    TAG_LEAGUE_NEW_TABLE_NAME,
+    TAG_LEAGUE_NEW_TABLE_ADD_WEEK,
     TAG_LEAGUE_TWO_MATCH_WEEK_START,
     TAG_LEAGUE_TWO_MATCH_WEEK_END,
     TAG_LEAGUE_TABLE_FILE,
@@ -82,9 +84,8 @@ xml_loadsave_league_start_element (GMarkupParseContext *context,
     gint tag = xml_get_tag_from_name(element_name);
     gboolean valid_tag = FALSE;
     JoinedLeague new_joined_league;
+    NewTable new_table;
 
-    new_joined_league.sid = NULL;
-        
     for(i=TAG_LEAGUE;i<TAG_END;i++)
 	if(tag == i)
 	{
@@ -108,6 +109,9 @@ xml_loadsave_league_start_element (GMarkupParseContext *context,
     if(tag == TAG_LEAGUE_JOINED_LEAGUE_SID)
         g_array_append_val(new_league->joined_leagues, new_joined_league);        
 
+    if(tag == TAG_LEAGUE_NEW_TABLE_NAME)
+        g_array_append_val(new_league->new_tables, new_table);        
+
     if(debug > 100)
         g_print("xml_loadsave_league_start_element: state %d\n", state);
 
@@ -130,6 +134,8 @@ xml_loadsave_league_end_element    (GMarkupParseContext *context,
        tag == TAG_LEAGUE_BREAK ||
        tag == TAG_LEAGUE_JOINED_LEAGUE_SID ||
        tag == TAG_LEAGUE_JOINED_LEAGUE_RR ||
+       tag == TAG_LEAGUE_NEW_TABLE_NAME ||
+       tag == TAG_LEAGUE_NEW_TABLE_ADD_WEEK ||
        tag == TAG_LEAGUE_TWO_MATCH_WEEK_START ||
        tag == TAG_LEAGUE_TABLE_FILE ||
        tag == TAG_LEAGUE_AVERAGE_TALENT ||
@@ -214,15 +220,22 @@ xml_loadsave_league_text         (GMarkupParseContext *context,
 	new_league->active = int_value;
     else if(state == TAG_LEAGUE_BREAK)
 	new_league->rr_break = int_value;
-    else if(state == TAG_LEAGUE_JOINED_LEAGUE_SID)
-	misc_string_assign(
-            &g_array_index(new_league->joined_leagues,
-                           JoinedLeague,
-                           new_league->joined_leagues->len - 1).sid, buf);
+    else if(state == TAG_LEAGUE_JOINED_LEAGUE_SID)	
+        g_array_index(new_league->joined_leagues,
+                      JoinedLeague,
+                      new_league->joined_leagues->len - 1).sid = g_strdup(buf);
     else if(state == TAG_LEAGUE_JOINED_LEAGUE_RR)
         g_array_index(new_league->joined_leagues,
                       JoinedLeague,
                       new_league->joined_leagues->len - 1).rr = int_value;
+    else if(state == TAG_LEAGUE_NEW_TABLE_NAME)	
+        g_array_index(new_league->new_tables,
+                      NewTable,
+                      new_league->new_tables->len - 1).name = g_strdup(buf);
+    else if(state == TAG_LEAGUE_NEW_TABLE_ADD_WEEK)
+        g_array_index(new_league->new_tables,
+                      NewTable,
+                      new_league->new_tables->len - 1).add_week = int_value;
     else if(state == TAG_LEAGUE_TWO_MATCH_WEEK_START)
 	g_array_append_val(new_league->two_match_weeks[0], int_value);
     else if(state == TAG_LEAGUE_TWO_MATCH_WEEK_END)
@@ -345,6 +358,12 @@ xml_loadsave_league_write(const gchar *prefix, const League *league)
         xml_write_int(fil, g_array_index(league->joined_leagues, JoinedLeague, i).rr, TAG_LEAGUE_JOINED_LEAGUE_RR, I0);
     }
 
+    for(i = 0; i < league->new_tables->len; i++)
+    {
+        xml_write_string(fil, g_array_index(league->new_tables, NewTable, i).name, TAG_LEAGUE_NEW_TABLE_NAME, I0);
+        xml_write_int(fil, g_array_index(league->new_tables, NewTable, i).add_week, TAG_LEAGUE_NEW_TABLE_ADD_WEEK, I0);
+    }
+    
     xml_write_float(fil, league->average_talent, TAG_LEAGUE_AVERAGE_TALENT, I0);
 
     for(i=0;i<league->two_match_weeks[0]->len;i++)

@@ -341,6 +341,7 @@ free_league(League *league)
     free_g_array(&league->prom_rel.elements);;
     
     free_tables(&league->tables);
+    free_new_tables(&league->new_tables);
 
     free_g_array(&league->fixtures);
 
@@ -409,6 +410,19 @@ free_tables(GArray **tables)
 
     g_array_free(*tables, TRUE);
     *tables = NULL;
+}
+
+/** Free a new_tables array. */
+void
+free_new_tables(GArray **new_tables)
+{
+    gint i;
+
+    for(i = 0; i < (*new_tables)->len; i++)
+        free_gchar_ptr(g_array_index(*new_tables, NewTable, i).name);        
+
+    g_array_free(*new_tables, TRUE);
+    *new_tables = NULL;
 }
 
 /** Free the memory occupied by a teams array.
