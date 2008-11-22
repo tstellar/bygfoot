@@ -69,7 +69,7 @@ WeekFunc start_week_round_funcs[] =
 /** Array of functions called when a week
     is started. */
 WeekFunc start_week_funcs[] = 
-{start_week_add_cups, start_week_update_users,
+{start_week_update_leagues, start_week_add_cups, start_week_update_users,
  start_week_update_teams, start_week_update_user_finances,
  youth_academy_update_weekly, transfer_update, job_update,
  finance_update_current_interest, NULL};
@@ -148,6 +148,12 @@ start_new_season(void)
     }
     else
     {
+        for(i=0;i<ligs->len;i++)
+        {
+            league_add_table(&lig(i));
+            league_check_new_tables(&lig(i));
+        }
+
 	for(i=0;i<cps->len;i++)
 	    if(cp(i).add_week <= 0)
 		g_ptr_array_add(acps, &cp(i));
@@ -589,6 +595,16 @@ start_week_update_users(void)
 
 	user_weekly_update_counters(&usr(i));
     }
+}
+
+/** Create new tables if necessary etc. */
+void
+start_week_update_leagues(void)
+{
+    gint i;
+
+    for(i = 0; i < ligs->len; i++)
+        league_check_new_tables(&lig(i));
 }
 
 /** Check whether the season has ended. */

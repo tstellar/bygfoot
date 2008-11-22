@@ -64,8 +64,6 @@ team_new(gboolean new_id)
     new.average_talent = 0;
     new.luck = 1;
 
-    new.stadium.ticket_price = const_int("int_team_stadium_ticket_price");
-
     new.players = g_array_new(FALSE, FALSE, sizeof(Player));
 
     return new;
@@ -90,6 +88,7 @@ team_generate_players_stadium(Team *tm, gfloat av_talent)
     tm->stadium.safety = 
 	math_rnd(const_float("float_team_stadium_safety_lower"),
 		 const_float("float_team_stadium_safety_upper"));
+    tm->stadium.ticket_price = const_int("int_team_stadium_ticket_price");
 
     if(tm->clid < ID_CUP_START)
     {

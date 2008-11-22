@@ -46,7 +46,6 @@ League
 league_new(gboolean new_id)
 {
     League new;
-    Table new_table;
 
     new.name = NULL;
     new.names_file = g_strdup(opt_str("string_opt_player_names_file"));
@@ -70,14 +69,8 @@ league_new(gboolean new_id)
     new.teams = g_array_new(FALSE, FALSE, sizeof(Team));
     new.fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));
     new.joined_leagues = g_array_new(FALSE, FALSE, sizeof(JoinedLeague));
-
+    new.new_tables = g_array_new(FALSE, FALSE, sizeof(NewTable));
     new.tables = g_array_new(FALSE, FALSE, sizeof(Table));
-    if(new_id)
-    {
-        new_table = table_new();
-        g_array_append_val(new.tables, new_table);
-        league_table((&new))->clid = new.id;        
-    }
 
     new.first_week = new.week_gap = 1;
     new.two_match_weeks[0] = g_array_new(FALSE, FALSE, sizeof(gint));
@@ -417,23 +410,13 @@ league_season_start(League *league)
 		usr(i).tm->luck = 
 		    MIN(usr(i).tm->luck * const_float("float_season_end_user_champ_luck_factor_regen"), 1);
 
-    for(i = league->tables->len - 1; i > 0; i--)
+    /** Reset tables */
+    for(i = league->tables->len - 1; i >= 0; i--)
     {
         g_array_free(g_array_index(league->tables, Table, i).elements, TRUE);
         g_array_remove_index(league->tables, i);
     }
-
-    for(i=0;i<league_table(league)->elements->len;i++)
-    {
-	g_array_index(league_table(league)->elements, TableElement, i).team = 
-	    &g_array_index(league->teams, Team, i);
-	g_array_index(league_table(league)->elements, TableElement, i).team_id = 
-	    g_array_index(league->teams, Team, i).id;
-	g_array_index(league_table(league)->elements, TableElement, i).old_rank = i;
-
-	for(j=0;j<TABLE_END;j++)
-	    g_array_index(league_table(league)->elements, TableElement, i).values[j] = 0;
-    }
+    league_add_table(league);
 
     /*d*/
 /*     if(league == &lig(0)) */
@@ -883,4 +866,51 @@ query_league_cup_matchday_in_two_match_week(GArray **two_match_weeks, gint match
     }
 
     return FALSE;
+}
+
+/** Add a new table to the league tables if specified
+    in the new_tables array. */
+void
+league_check_new_tables(League *league)
+{
+    gint i;
+    Table new_table;
+
+    for(i = 0; i < league->new_tables->len; i++)
+        if(g_array_index(league->new_tables, NewTable, i).add_week == week)
+        {
+            /** Create cumulative table if necessary. */
+            if(league->tables->len == 1 && week > 1)
+            {
+                new_table = table_copy(league_table(league));
+                g_array_append_val(league->tables, new_table);
+            }
+
+            league_add_table(league);
+            misc_string_assign(&league_table(league)->name,
+                               g_array_index(league->new_tables, NewTable, i).name);
+        }
+}
+
+/** Add an initialized table to the league. */
+void
+league_add_table(League *league)
+{
+    gint i;
+    Table new_table;
+    TableElement new_table_element;
+ 
+    new_table = table_new();
+    new_table.clid = league->id;
+    new_table.name = g_strdup(league->name);
+
+    for(i = 0; i < league->teams->len; i++)
+    {
+        new_table_element = 
+            table_element_new(
+                &g_array_index(league->teams, Team, i), i);
+        g_array_append_val(new_table.elements, new_table_element);
+    }
+
+    g_array_append_val(league->tables, new_table);
 }

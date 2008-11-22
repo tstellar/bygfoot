@@ -91,6 +91,17 @@ typedef struct
 } JoinedLeague;
 
 /**
+   A structure containing a week when a new table
+   gets created with nullified values for the league;
+   older tables get stored.
+*/
+typedef struct
+{
+    gint add_week;
+    gchar *name;
+} NewTable;
+
+/**
    Representation of a league.
    @see PromRel
    @see Table
@@ -136,6 +147,9 @@ typedef struct
     /** League tables. Usually only one, sometimes more than one is created.
 	@see Table */
     GArray *tables;
+    /** Array holding NewTable elements specifying when to add
+        a new table to the tables array. */
+    GArray *new_tables;
     /** The fixtures of a season for the league. */
     GArray *fixtures;
     /** The current league statistics. */

@@ -138,4 +138,10 @@ query_leagues_active_in_country(void);
 gboolean
 query_league_cup_matchday_in_two_match_week(GArray **two_match_weeks, gint matchday);
 
+void
+league_check_new_tables(League *league);
+
+void
+league_add_table(League *league);
+
 #endif

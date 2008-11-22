@@ -114,6 +114,9 @@ void
 free_tables(GArray **tables);
 
 void
+free_new_tables(GArray **new_tables);
+
+void
 free_league_stats(LeagueStat *stats);
 
 void

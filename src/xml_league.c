@@ -53,6 +53,7 @@
 #define TAG_ACTIVE "active"
 #define TAG_BREAK "break"
 #define TAG_JOINED_LEAGUE "joined_league"
+#define TAG_NEW_TABLE "new_table"
 #define TAG_PROM_REL "prom_rel"
 #define TAG_PROM_GAMES "prom_games"
 #define TAG_PROM_GAMES_DEST_SID "prom_games_dest_sid"
@@ -75,6 +76,7 @@
 #define TAG_TWO_MATCH_WEEK_END "two_match_week_end"
 
 #define ATT_NAME_JOINED_LEAGUE_RR "rr"
+#define ATT_NAME_NEW_TABLE_NAME "name"
 
 /**
  * Enum with the states used in the XML parser functions.
@@ -114,6 +116,7 @@ enum XmlLeagueStates
     STATE_TEAM_DEF_FILE,
     STATE_BREAK,
     STATE_JOINED_LEAGUE,
+    STATE_NEW_TABLE,
     STATE_TWO_MATCH_WEEK_START,
     STATE_TWO_MATCH_WEEK_END,
     STATE_END
@@ -144,6 +147,7 @@ xml_league_read_start_element (GMarkupParseContext *context,
     PromRelElement new_element;
     Team new_team;
     JoinedLeague new_joined_league;
+    NewTable new_table;
 
     if(strcmp(element_name, TAG_LEAGUE) == 0)
     {
@@ -186,6 +190,16 @@ xml_league_read_start_element (GMarkupParseContext *context,
             new_joined_league.rr = 2;
 
         g_array_append_val(new_league.joined_leagues, new_joined_league);
+    }
+    else if(strcmp(element_name, TAG_NEW_TABLE) == 0)
+    {
+     	state = STATE_NEW_TABLE;
+        if(attribute_names[0] != NULL && strcmp(attribute_names[0], ATT_NAME_NEW_TABLE_NAME) == 0)
+            new_table.name = g_strdup(attribute_values[0]);
+        else
+            new_table.name = g_strdup(new_league.name);
+
+        g_array_append_val(new_league.new_tables, new_table);        
     }
     else if(strcmp(element_name, TAG_TWO_MATCH_WEEK_START) == 0)
 	state = STATE_TWO_MATCH_WEEK_START;
@@ -269,6 +283,7 @@ xml_league_read_end_element    (GMarkupParseContext *context,
        strcmp(element_name, TAG_ACTIVE) == 0 ||
        strcmp(element_name, TAG_BREAK) == 0 ||
        strcmp(element_name, TAG_JOINED_LEAGUE) == 0 ||
+       strcmp(element_name, TAG_NEW_TABLE) == 0 ||
        strcmp(element_name, TAG_TWO_MATCH_WEEK_START) == 0 ||
        strcmp(element_name, TAG_TWO_MATCH_WEEK_END) == 0 ||
        strcmp(element_name, TAG_PROM_REL) == 0 ||
@@ -324,10 +339,7 @@ xml_league_read_text         (GMarkupParseContext *context,
     float_value = (gfloat)g_ascii_strtod(buf, NULL);
 
     if(state == STATE_NAME)
-    {
 	misc_string_assign(&new_league.name, buf);
-	misc_string_assign(&(league_table((&new_league))->name), buf);
-    }
     else if(state == STATE_SHORT_NAME)
 	misc_string_assign(&new_league.short_name, buf);
     else if(state == STATE_SID)
@@ -358,6 +370,8 @@ xml_league_read_text         (GMarkupParseContext *context,
             &g_array_index(new_league.joined_leagues,
                            JoinedLeague,
                            new_league.joined_leagues->len - 1).sid, buf);
+    else if(state == STATE_NEW_TABLE)
+        g_array_index(new_league.new_tables, NewTable, new_league.new_tables->len - 1).add_week = int_value;
     else if(state == STATE_TWO_MATCH_WEEK_START)
 	g_array_append_val(new_league.two_match_weeks[0], int_value);
     else if(state == STATE_TWO_MATCH_WEEK_END)
@@ -423,8 +437,6 @@ xml_league_read_text         (GMarkupParseContext *context,
 void
 xml_league_read(const gchar *league_name, GArray *leagues)
 {
-    gint i;
-    TableElement new_table_element;
     gchar *file_name = file_find_support_file(league_name, FALSE);
     GMarkupParser parser = {xml_league_read_start_element,
 			    xml_league_read_end_element,
@@ -462,15 +474,6 @@ xml_league_read(const gchar *league_name, GArray *leagues)
 	g_free(file_contents);
 
 	g_array_append_val(leagues, new_league);
-	for(i=0;i<g_array_index(leagues, League, leagues->len - 1).teams->len;i++)
-	{
-	    new_table_element = 
-		table_element_new(
-		    &g_array_index(
-			g_array_index(
-			    leagues, League, leagues->len - 1).teams, Team, i), i);
-	    g_array_append_val(league_table((&g_array_index(leagues, League, leagues->len - 1)))->elements, new_table_element);
-	}
     }
     else
     {

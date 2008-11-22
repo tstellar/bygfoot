@@ -1110,7 +1110,7 @@ treeview_table_write_header(GtkListStore *ls, const Table *table, gint number)
     if(table->clid < ID_CUP_START)
     {
 	symbol = league_from_clid(table->clid)->symbol;
-	strcpy(buf, league_cup_get_name_string(table->clid));
+	strcpy(buf, table->name);
     }
     else
     {
@@ -1219,7 +1219,7 @@ treeview_create_table(gint clid)
     if(clid < ID_CUP_START)
     {
         tables = league_from_clid(clid)->tables;
-        for(i = 0; i < tables->len; i++)
+        for(i = tables->len - 1; i >= 0; i--)
             treeview_create_single_table(ls, &g_array_index(tables, Table, i), i + 1);        
     }
     else
