@@ -55,9 +55,9 @@ language_set(gint index)
     if(strcmp(buf, opt_str("string_opt_language_code")) != 0 ||
        window.main == NULL)
     {
-#ifdef ENABLE_NLS
 	sprintf(buf2, "%s%slocale", pwd, G_DIR_SEPARATOR_S);
-	g_free(pwd);
+
+#ifdef ENABLE_NLS
 	if(g_file_test(buf2, G_FILE_TEST_EXISTS))
 	{
 	    bindtextdomain (GETTEXT_PACKAGE, buf2);
@@ -83,7 +83,7 @@ language_set(gint index)
     }
 
     lg_commentary_load_commentary_file_from_option();
-
+    g_free(pwd);
     free_gchar_array(&codes);
 }
 

@@ -101,6 +101,10 @@ typedef struct
     /** The number of teams chosen.
 	Default: -1 (ie. all teams are chosen). */
     gint number_of_teams;
+    /** Which league table to use. Only relevant
+        for leagues which use more than one table during
+        the season. Default is 0, ie. the cumulative table. */
+    gint from_table;
     /** The range from which the teams are chosen,
 	e.g. 2 and 5 means the teams from 2 to 5 are chosen
 	(given that 'number_of_teams' is 4). 

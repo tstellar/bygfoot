@@ -70,6 +70,7 @@
 #define TAG_CHOOSE_TEAM_RANDOMLY "randomly"
 #define TAG_CHOOSE_TEAM_GENERATE "generate"
 #define TAG_CHOOSE_TEAM_SKIP_GROUP_CHECK "skip_group_check"
+#define TAG_CHOOSE_TEAM_FROM_TABLE "from_table"
 
 /**
  * Enum with the states used in the XML parser functions.
@@ -112,6 +113,7 @@ enum XmlCupStates
     STATE_CHOOSE_TEAM_RANDOMLY,
     STATE_CHOOSE_TEAM_GENERATE,
     STATE_CHOOSE_TEAM_SKIP_GROUP_CHECK,
+    STATE_CHOOSE_TEAM_FROM_TABLE,
     STATE_END
 };
 
@@ -220,6 +222,8 @@ xml_cup_read_start_element (GMarkupParseContext *context,
 	state = STATE_CHOOSE_TEAM_GENERATE;
     else if(strcmp(element_name, TAG_CHOOSE_TEAM_SKIP_GROUP_CHECK) == 0)
 	state = STATE_CHOOSE_TEAM_SKIP_GROUP_CHECK;
+    else if(strcmp(element_name, TAG_CHOOSE_TEAM_FROM_TABLE) == 0)
+	state = STATE_CHOOSE_TEAM_FROM_TABLE;
     else
 	g_warning("xml_cup_read_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
@@ -280,6 +284,7 @@ xml_cup_read_end_element    (GMarkupParseContext *context,
 	    strcmp(element_name, TAG_CHOOSE_TEAM_END_IDX) == 0 ||
 	    strcmp(element_name, TAG_CHOOSE_TEAM_RANDOMLY) == 0 ||
 	    strcmp(element_name, TAG_CHOOSE_TEAM_SKIP_GROUP_CHECK) == 0 ||
+	    strcmp(element_name, TAG_CHOOSE_TEAM_FROM_TABLE) == 0 ||
 	    strcmp(element_name, TAG_CHOOSE_TEAM_GENERATE) == 0)
 	    state = STATE_CHOOSE_TEAM;
     else if(strcmp(element_name, TAG_CUP) != 0)
@@ -373,6 +378,8 @@ xml_cup_read_text         (GMarkupParseContext *context,
 	new_choose_team.generate = int_value;
     else if(state == STATE_CHOOSE_TEAM_SKIP_GROUP_CHECK)
 	new_choose_team.skip_group_check = int_value;
+    else if(state == STATE_CHOOSE_TEAM_FROM_TABLE)
+	new_choose_team.from_table = int_value;
 }
 
 /**
