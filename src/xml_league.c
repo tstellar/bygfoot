@@ -65,6 +65,7 @@
 #define TAG_PROM_REL_ELEMENT_RANK_END "rank_end"
 #define TAG_PROM_REL_ELEMENT_DEST_SID "dest_sid"
 #define TAG_PROM_REL_ELEMENT_TYPE "prom_rel_type"
+#define TAG_PROM_REL_ELEMENT_FROM_TABLE "from_table"
 #define TAG_TEAMS "teams"
 #define TAG_TEAM "team"
 #define TAG_TEAM_NAME "team_name"
@@ -107,6 +108,7 @@ enum XmlLeagueStates
     STATE_PROM_REL_ELEMENT_RANK_END,
     STATE_PROM_REL_ELEMENT_DEST_SID,
     STATE_PROM_REL_ELEMENT_TYPE,
+    STATE_PROM_REL_ELEMENT_FROM_TABLE,
     STATE_TEAMS,
     STATE_TEAM,
     STATE_TEAM_NAME,
@@ -231,6 +233,8 @@ xml_league_read_start_element (GMarkupParseContext *context,
 	state = STATE_PROM_REL_ELEMENT_DEST_SID;
     else if(strcmp(element_name, TAG_PROM_REL_ELEMENT_TYPE) == 0)
 	state = STATE_PROM_REL_ELEMENT_TYPE;
+    else if(strcmp(element_name, TAG_PROM_REL_ELEMENT_FROM_TABLE) == 0)
+	state = STATE_PROM_REL_ELEMENT_FROM_TABLE;
     else if(strcmp(element_name, TAG_TEAMS) == 0)
 	state = STATE_TEAMS;
     else if(strcmp(element_name, TAG_TEAM) == 0)
@@ -300,6 +304,7 @@ xml_league_read_end_element    (GMarkupParseContext *context,
     else if(strcmp(element_name, TAG_PROM_REL_ELEMENT_RANK_START) == 0 ||
 	    strcmp(element_name, TAG_PROM_REL_ELEMENT_RANK_END) == 0 ||
 	    strcmp(element_name, TAG_PROM_REL_ELEMENT_DEST_SID) == 0 ||
+	    strcmp(element_name, TAG_PROM_REL_ELEMENT_FROM_TABLE) == 0 ||
 	    strcmp(element_name, TAG_PROM_REL_ELEMENT_TYPE) == 0)
 	state = STATE_PROM_REL_ELEMENT;
     else if(strcmp(element_name, TAG_TEAM) == 0)
@@ -396,6 +401,10 @@ xml_league_read_text         (GMarkupParseContext *context,
 	misc_string_assign(&g_array_index(new_league.prom_rel.elements,
 				      PromRelElement,
 				      new_league.prom_rel.elements->len - 1).dest_sid, buf);
+    else if(state == STATE_PROM_REL_ELEMENT_FROM_TABLE)
+	g_array_index(new_league.prom_rel.elements,
+		      PromRelElement,
+		      new_league.prom_rel.elements->len - 1).from_table = int_value;
     else if(state == STATE_PROM_REL_ELEMENT_TYPE)
     {
 	if(strcmp(buf, "promotion") == 0)

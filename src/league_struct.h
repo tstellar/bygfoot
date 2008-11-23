@@ -47,6 +47,7 @@ enum PromRelType
 typedef struct
 {
     gint ranks[2]; /**< The range of teams; default 0 and 0 */
+    gint from_table; /**< From which table to pick the teams in case there are several. Default: 0. */
     gchar *dest_sid; /**< The id of the destination league. Default "" */
     gint type; /**< Type. Promotion or relegation or none. */
 } PromRelElement;
