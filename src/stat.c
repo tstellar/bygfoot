@@ -178,19 +178,22 @@ stat_season_stat_new(gint season_number)
 void
 stat_create_season_stat(void)
 {
-    gint i;
+    gint i, j;
     SeasonStat new = stat_season_stat_new(season);
     ChampStat new_champ;
 
     for(i=0;i<ligs->len;i++)
     {
-	new_champ.cl_name = g_strdup(lig(i).name);
-	new_champ.team_name = 
-	    g_strdup(g_array_index(league_table((&lig(i)))->elements, TableElement, 0).team->name);
-	g_array_append_val(new.league_champs, new_champ);
+        for(j = 0; j < lig(i).tables->len; j++)
+        {
+            new_champ.cl_name = g_strdup(g_array_index(lig(i).tables, Table, j).name);
+            new_champ.team_name = 
+                g_strdup(g_array_index(g_array_index(lig(i).tables, Table, j).elements, TableElement, 0).team->name);
+            g_array_append_val(new.league_champs, new_champ);
+        }
 
-	g_array_append_val(new.league_stats, lig(i).stats);
-	lig(i).stats = stat_league_new(lig(i).name, lig(i).symbol);
+        g_array_append_val(new.league_stats, lig(i).stats);
+        lig(i).stats = stat_league_new(lig(i).name, lig(i).symbol);     
     }
 
     for(i=0;i<acps->len;i++)
