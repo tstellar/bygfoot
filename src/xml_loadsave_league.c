@@ -56,6 +56,7 @@ enum
     TAG_LEAGUE_PROM_REL_ELEMENT_RANK,
     TAG_LEAGUE_PROM_REL_ELEMENT_DEST_SID,
     TAG_LEAGUE_PROM_REL_ELEMENT_TYPE,
+    TAG_LEAGUE_PROM_REL_ELEMENT_FROM_TABLE,
     TAG_LEAGUE_BREAK,
     TAG_LEAGUE_JOINED_LEAGUE_SID,
     TAG_LEAGUE_JOINED_LEAGUE_RR,
@@ -165,6 +166,7 @@ xml_loadsave_league_end_element    (GMarkupParseContext *context,
     }
     else if(tag == TAG_LEAGUE_PROM_REL_ELEMENT_RANK ||
 	    tag == TAG_LEAGUE_PROM_REL_ELEMENT_DEST_SID ||
+	    tag == TAG_LEAGUE_PROM_REL_ELEMENT_FROM_TABLE ||
 	    tag == TAG_LEAGUE_PROM_REL_ELEMENT_TYPE)
     {
 	state = TAG_LEAGUE_PROM_REL_ELEMENT;
@@ -262,6 +264,8 @@ xml_loadsave_league_text         (GMarkupParseContext *context,
 	new_element.ranks[promrankidx] = int_value;
     else if(state == TAG_LEAGUE_PROM_REL_ELEMENT_TYPE)
 	new_element.type = int_value;
+    else if(state == TAG_LEAGUE_PROM_REL_ELEMENT_FROM_TABLE)
+	new_element.from_table = int_value;
     else if(state == TAG_LEAGUE_PROM_REL_ELEMENT_DEST_SID)
 	misc_string_assign(&new_element.dest_sid, buf);
 }
@@ -395,6 +399,8 @@ xml_loadsave_league_write(const gchar *prefix, const League *league)
 		      TAG_LEAGUE_PROM_REL_ELEMENT_RANK, I2);
 	xml_write_int(fil, g_array_index(league->prom_rel.elements, PromRelElement, i).type,
 		      TAG_LEAGUE_PROM_REL_ELEMENT_TYPE, I2);
+	xml_write_int(fil, g_array_index(league->prom_rel.elements, PromRelElement, i).from_table,
+		      TAG_LEAGUE_PROM_REL_ELEMENT_FROM_TABLE, I2);
 	xml_write_string(fil, g_array_index(league->prom_rel.elements, PromRelElement, i).dest_sid,
 			   TAG_LEAGUE_PROM_REL_ELEMENT_DEST_SID, I2);
 	fprintf(fil, "%s</_%d>\n", I1, TAG_LEAGUE_PROM_REL_ELEMENT);

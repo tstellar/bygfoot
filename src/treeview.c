@@ -1100,7 +1100,7 @@ treeview_show_fixtures(GtkTreeView *treeview, gint clid,
     @param clid The cup or league id.
     @param number The number of the table if we display more than one. */
 void
-treeview_table_write_header(GtkListStore *ls, const Table *table, gint number)
+treeview_table_write_header(GtkListStore *ls, const Table *table, gint table_index)
 {
     gint i;
     gchar buf[SMALL];
@@ -1118,7 +1118,7 @@ treeview_table_write_header(GtkListStore *ls, const Table *table, gint number)
 	if(g_array_index(cup_from_clid(table->clid)->rounds, CupRound,
 			 table->round).tables->len > 1)			 
 	    /*  A group of a round robin stage of a cup. */
-	    sprintf(buf, _("%s Group %d"), cup_from_clid(table->clid)->name, number);
+	    sprintf(buf, _("%s Group %d"), cup_from_clid(table->clid)->name, table_index + 1);
 	else
 	    sprintf(buf, "%s", cup_from_clid(table->clid)->name);
     }
@@ -1135,7 +1135,7 @@ treeview_table_write_header(GtkListStore *ls, const Table *table, gint number)
     @param number The number of the table if we display more than one
     (cups, round robin); or -1 for leagues. */
 void
-treeview_create_single_table(GtkListStore *ls, const Table *table, gint number)
+treeview_create_single_table(GtkListStore *ls, const Table *table, gint table_index)
 {
     gint i, j;
     GtkTreeIter iter;
@@ -1143,7 +1143,7 @@ treeview_create_single_table(GtkListStore *ls, const Table *table, gint number)
     gchar buf[10][SMALL];
     gchar *colour_bg = NULL, *colour_fg = NULL;
 
-    treeview_table_write_header(ls, table, number);
+    treeview_table_write_header(ls, table, table_index);
 
     for(i=0;i<table->elements->len;i++)
     {
@@ -1164,12 +1164,12 @@ treeview_create_single_table(GtkListStore *ls, const Table *table, gint number)
 	    treeview_helper_insert_icon(ls, &iter, 2, 
 					const_app("string_treeview_table_stay_icon"));
 
-	treeview_helper_get_table_element_colours(table, i, 
+	treeview_helper_get_table_element_colours(table, table_index, i, 
 						  &colour_fg, &colour_bg, FALSE);
 	sprintf(buf[0], "<span background='%s' foreground='%s'>%d</span>",
 		colour_bg, colour_fg, i + 1);
 
-	treeview_helper_get_table_element_colours(table, i, &colour_fg, &colour_bg, TRUE);
+	treeview_helper_get_table_element_colours(table, table_index, i, &colour_fg, &colour_bg, TRUE);
 	if(debug < 50)
 	    sprintf(buf[1], "<span background='%s' foreground='%s'>%s</span>", 
 		    colour_bg, colour_fg, elem->team->name);
@@ -1220,13 +1220,13 @@ treeview_create_table(gint clid)
     {
         tables = league_from_clid(clid)->tables;
         for(i = tables->len - 1; i >= 0; i--)
-            treeview_create_single_table(ls, &g_array_index(tables, Table, i), i + 1);        
+            treeview_create_single_table(ls, &g_array_index(tables, Table, i), i);        
     }
     else
     {
         tables = cup_get_last_tables(clid);
 	for(i=0;i< tables->len;i++)
-	    treeview_create_single_table(ls, &g_array_index(tables, Table, i), i + 1);
+	    treeview_create_single_table(ls, &g_array_index(tables, Table, i), i);
     }
 
     return GTK_TREE_MODEL(ls);

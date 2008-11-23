@@ -449,7 +449,7 @@ treeview_helper_player_compare(GtkTreeModel *model,
     table would participate in an international cup and set the
     colours accordingly. */
 gboolean
-treeview_helper_get_table_element_colour_cups(const League *league, 
+treeview_helper_get_table_element_colour_cups(const League *league, gint table_index,
 					      gint idx, gchar **colour_bg)
 {
     gint i, j, k;
@@ -469,10 +469,12 @@ treeview_helper_get_table_element_colour_cups(const League *league,
 	    {
 		cup_round = &g_array_index(cp(i).rounds, CupRound, k);
 		for(j=0;j<cup_round->choose_teams->len;j++)
-		    if(strcmp(g_array_index(cup_round->choose_teams, 
+		    if((strcmp(g_array_index(cup_round->choose_teams, 
 					    CupChooseTeam, j).sid, buf) == 0 ||
 		       strcmp(g_array_index(cup_round->choose_teams, 
-					    CupChooseTeam, j).sid, league->sid) == 0)
+					    CupChooseTeam, j).sid, league->sid) == 0) &&
+                       g_array_index(cup_round->choose_teams, 
+                                     CupChooseTeam, j).from_table == table_index)
 		    {
 			if((idx + 1 >= g_array_index(cup_round->choose_teams, 
 						     CupChooseTeam, j).start_idx &&
@@ -561,7 +563,7 @@ treeview_helper_get_table_element_colour_cups_cup(const Cup *cup,
     @param idx The index of the element we're looking at.
     @param user Whether to take into account user colours. */
 void
-treeview_helper_get_table_element_colours(const Table *table, gint idx, 
+treeview_helper_get_table_element_colours(const Table *table, gint table_index, gint idx, 
 					  gchar **colour_fg, gchar **colour_bg,
 					  gboolean user)
 {
@@ -592,12 +594,12 @@ treeview_helper_get_table_element_colours(const Table *table, gint idx,
 	    *colour_bg = const_app("string_treeview_table_first");
 	else
 	{	    
-	    if(!treeview_helper_get_table_element_colour_cups(league, idx, colour_bg))
+	    if(!treeview_helper_get_table_element_colour_cups(league, table_index, idx, colour_bg))
 	    {
 		for(i=0;i<league->prom_rel.elements->len;i++)
 		{
 		    pelem = &g_array_index(league_from_clid(table->clid)->prom_rel.elements, PromRelElement, i);
-		    if(pelem->ranks[0] <= idx + 1 && idx + 1 <= pelem->ranks[1])
+		    if(pelem->ranks[0] <= idx + 1 && idx + 1 <= pelem->ranks[1] && pelem->from_table == table_index)
 		    {
 			if(pelem->type == PROM_REL_PROMOTION)
 			    *colour_bg = const_app("string_treeview_table_promotion");

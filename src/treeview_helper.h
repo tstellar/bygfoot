@@ -68,12 +68,12 @@ gint
 treeview_helper_get_col_number_column (GtkTreeViewColumn *col);
 
 void
-treeview_helper_get_table_element_colours(const Table *table, gint idx,
+treeview_helper_get_table_element_colours(const Table *table, gint table_index, gint idx,
 					  gchar **colour_fg, 
 					  gchar **colour_bg, gboolean user);
 
 gboolean
-treeview_helper_get_table_element_colour_cups(const League *league,
+treeview_helper_get_table_element_colour_cups(const League *league, gint table_index,
 					      gint idx, gchar **colour_bg);
 
 gboolean

@@ -95,7 +95,8 @@ prom_rel_element_new(void)
 {
     PromRelElement new;
 
-    new.ranks[0] = new.ranks[1] = 0;
+    new.ranks[0] = new.ranks[1] =
+        new.from_table = 0;
     new.dest_sid = NULL;
     new.type = PROM_REL_NONE;
 
@@ -517,13 +518,15 @@ league_get_team_movements_prom_rel(const League *league, GArray *team_movements)
     gint i, j, k;
     TeamMove new_move;
     const GArray *elements = league->prom_rel.elements;
+    PromRelElement *elem;
     GArray *dest_idcs = NULL;
     GPtrArray *dest_sids = NULL;
 
     for(i=0;i<elements->len;i++)
     {
+        elem = &g_array_index(elements, PromRelElement, i);
 	dest_sids = misc_separate_strings(
-	    g_array_index(elements, PromRelElement, i).dest_sid);
+	    elem->dest_sid);
 	gint dest_idcs_int[dest_sids->len];
 	gint dest_idcs_order[dest_sids->len];
 
@@ -531,8 +534,8 @@ league_get_team_movements_prom_rel(const League *league, GArray *team_movements)
 	    dest_idcs_int[j] = 
 		league_index_from_sid((gchar*)g_ptr_array_index(dest_sids, j));
 
-	for(j=g_array_index(elements, PromRelElement, i).ranks[0];
-	    j<=g_array_index(elements, PromRelElement, i).ranks[1]; j++)
+	for(j=elem->ranks[0];
+	    j<=elem->ranks[1]; j++)
 	{
 	    dest_idcs = g_array_new(FALSE, FALSE, sizeof(gint));
 	    math_generate_permutation(dest_idcs_order, 0, dest_sids->len - 1);
@@ -540,8 +543,8 @@ league_get_team_movements_prom_rel(const League *league, GArray *team_movements)
 	    for(k=0;k<dest_sids->len;k++)		
 		g_array_append_val(dest_idcs, dest_idcs_int[dest_idcs_order[k]]);
 	    
-	    new_move.tm = *(g_array_index(league_table_cumul(league)->elements, TableElement, j - 1).team);
-	    new_move.prom_rel_type = g_array_index(elements, PromRelElement, i).type;
+	    new_move.tm = *(g_array_index(g_array_index(league->tables, Table, elem->from_table).elements, TableElement, j - 1).team);
+	    new_move.prom_rel_type = elem->type;
 	    new_move.dest_idcs = dest_idcs;
 	    new_move.dest_assigned = FALSE;
 	    g_array_append_val(team_movements, new_move);
