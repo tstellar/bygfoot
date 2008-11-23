@@ -1102,3 +1102,24 @@ cup_get_highlight_colour(const Cup *cup)
 
     return NULL;
 }
+
+/** Check the cup fixtures for suspicious entries. */
+gboolean
+cup_check_fixtures(const Cup *cup)
+{
+    gint i;
+
+    for(i = 0; i < cup->fixtures->len; i++)
+    {
+        if(g_array_index(cup->fixtures, Fixture, i).teams[0] ==
+           g_array_index(cup->fixtures, Fixture, i).teams[1])
+        {
+            if(!query_cup_has_property(cup->id, "silent_on_fixture_error"))
+                g_warning("cup_check_fixture: bad fixture found in cup %s; cup will be disabled\n", cup->name);
+
+            return FALSE;
+        }
+    }
+
+    return TRUE;
+}

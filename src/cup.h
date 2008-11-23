@@ -133,4 +133,7 @@ query_cup_transfer(void);
 gchar*
 cup_get_highlight_colour(const Cup *cup);
 
+gboolean
+cup_check_fixtures(const Cup *cup);
+
 #endif

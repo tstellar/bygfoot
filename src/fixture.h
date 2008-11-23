@@ -43,7 +43,7 @@ enum FixtureCompare
 void
 fixture_write_league_fixtures(League *league);
 
-void
+gboolean
 fixture_write_cup_fixtures(Cup *cup);
 
 void
