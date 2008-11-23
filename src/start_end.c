@@ -111,7 +111,7 @@ start_new_season(void)
 	{
 	    cup_reset(&cp(i));
 	    fixture_write_cup_fixtures(&cp(i));
-	}
+        }
 
     if(season > 1)
     {
@@ -183,7 +183,14 @@ start_new_season(void)
 	    }
 	}
     }
-    
+
+    for(i = acps->len - 1; i >= 0; i--)
+        if(!cup_check_fixtures(acp(i)))
+        {
+            cup_reset(acp(i));
+            g_ptr_array_remove_index(acps, i);
+        }
+
     stat5 = -1;
 
     for(i=0;i<name_lists->len;i++)
@@ -433,8 +440,9 @@ end_week_round_update_fixtures(void)
 	   query_cup_begins(&cp(i)))
 	{
 	    cp(i).last_week = cup_get_last_week_from_first(&cp(i), week + 1);
-	    fixture_write_cup_fixtures(&cp(i));
-	    g_ptr_array_add(acps, &cp(i));
+            
+	    if(fixture_write_cup_fixtures(&cp(i)))
+                g_ptr_array_add(acps, &cp(i));
 	}
     }
 }
@@ -525,8 +533,8 @@ start_week_add_cups(void)
     for(i=0;i<cps->len;i++)
 	if(cp(i).add_week == week)
 	{
-	    g_ptr_array_add(acps, &cp(i));
-	    fixture_write_cup_fixtures(&cp(i));
+	    if(fixture_write_cup_fixtures(&cp(i)))
+                g_ptr_array_add(acps, &cp(i));            
 	}
 }
 

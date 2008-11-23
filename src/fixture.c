@@ -99,7 +99,7 @@ fixture_write_league_fixtures(League *league)
 /** Write the fixtures for the given cup
     at the beginning of a new season. 
     @param cup The cup we write the fixtures for. */
-void
+gboolean
 fixture_write_cup_fixtures(Cup *cup)
 {
     gint i;
@@ -115,6 +115,8 @@ fixture_write_cup_fixtures(Cup *cup)
 	fixture_write_knockout_round(
 	    cup, 0, misc_copy_ptr_array(
 		g_array_index(cup->rounds, CupRound, 0).team_ptrs));
+
+    return cup_check_fixtures(cup);
 }
 
 /** Update the fixtures for the given cup. 
