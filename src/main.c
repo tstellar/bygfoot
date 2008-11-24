@@ -147,7 +147,10 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
     }
 
     if(deb_level != -1)
+    {
 	option_set_int("int_debug", &constants, deb_level);
+        window_create(WINDOW_DEBUG);
+    }
 
     if(deb_writer != -1)
 	option_set_int("int_debug_writer", &constants, deb_writer);
