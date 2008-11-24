@@ -53,6 +53,7 @@ enum XmlTags
     TAG_YELLOW_RED,
     TAG_TEAM_ID,
     TAG_NAMES_FILE,
+    TAG_PROPERTY,
     TAG_ROUND
 };
 

@@ -333,7 +333,7 @@ treeview2_create_bets(GtkListStore *ls)
 				    fix->teams[j]->name, rank);
 			}
 			else if(fix->clid >= ID_CUP_START &&
-				query_cup_is_national(fix->clid))
+				query_league_cup_has_property(fix->clid, "national"))
 			    sprintf(team_names[j], "%s (%d)",
 				    fix->teams[j]->name,
 				    league_from_clid(fix->teams[j]->clid)->layer);

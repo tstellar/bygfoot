@@ -250,7 +250,7 @@ query_tables_in_country(void)
     gint i;
 
     for(i=0;i<ligs->len;i++)
-	if(lig(i).active)
+	if(query_league_active(&lig(i)))
 	    return TRUE;
 
     for(i=0;i<cps->len;i++)

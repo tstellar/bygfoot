@@ -350,7 +350,7 @@ game_assign_attendance(Fixture *fix)
 	if(cup_from_clid(fix->clid)->rounds->len - fix->round <=
 	   const_int("int_game_stadium_attendance_cup_rounds_full_house"))
 	    factor = 1;
-	else if(query_cup_is_national(fix->clid))
+	else if(query_league_cup_has_property(fix->clid, "national"))
 	    factor *= const_float("float_game_stadium_attendance_cup_national_factor");
 	else
 	    factor *= const_float("float_game_stadium_attendance_cup_international_factor");
@@ -378,7 +378,7 @@ game_assign_attendance_neutral(Fixture *fix)
     const GPtrArray *teamsp = 
 	(GPtrArray*)league_cup_get_teams(fix->clid);
     gfloat av_att = (fix->clid >= ID_CUP_START && 
-		     query_cup_is_international(fix->clid) && teamsp->len > 0) ?
+		     query_league_cup_has_property(fix->clid, "international") && teamsp->len > 0) ?
 	(gfloat)league_cup_average_capacity(fix->clid) :
 	(gfloat)league_cup_average_capacity(lig(0).id);
 

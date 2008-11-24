@@ -956,7 +956,7 @@ treeview_create_fixture(const Fixture *fix, GtkListStore *ls)
     gint user_idx = fixture_user_team_involved(fix);
 
     if(fix->clid >= ID_CUP_START &&
-       query_cup_is_international(fix->clid))
+       query_league_cup_has_property(fix->clid, "international"))
 	for(i=0;i<2;i++)
 	    symbol[i] = fix->teams[i]->symbol;
     
@@ -984,7 +984,7 @@ treeview_create_fixture(const Fixture *fix, GtkListStore *ls)
 		    colour_bg, colour_fg, fix->teams[i]->name, rank);
 	}
 	else if(fix->clid >= ID_CUP_START &&
-		query_cup_is_national(fix->clid))
+		query_league_cup_has_property(fix->clid, "national"))
 	    sprintf(buf[i], "<span background='%s' foreground='%s'>%s (%d)</span>",
 		    colour_bg, colour_fg, fix->teams[i]->name,
 		    league_from_clid(fix->teams[i]->clid)->layer);

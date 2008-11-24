@@ -50,9 +50,9 @@
 #define TAG_YELLOW_RED "yellow_red"
 #define TAG_AVERAGE_TALENT "average_talent"
 #define TAG_NAMES_FILE "names_file"
-#define TAG_ACTIVE "active"
 #define TAG_BREAK "break"
 #define TAG_JOINED_LEAGUE "joined_league"
+#define TAG_PROPERTY "property"
 #define TAG_NEW_TABLE "new_table"
 #define TAG_PROM_REL "prom_rel"
 #define TAG_PROM_GAMES "prom_games"
@@ -96,7 +96,6 @@ enum XmlLeagueStates
     STATE_YELLOW_RED,
     STATE_AVERAGE_TALENT,
     STATE_NAMES_FILE,
-    STATE_ACTIVE,
     STATE_PROM_REL,
     STATE_PROM_GAMES,
     STATE_PROM_GAMES_DEST_SID,
@@ -118,6 +117,7 @@ enum XmlLeagueStates
     STATE_TEAM_DEF_FILE,
     STATE_BREAK,
     STATE_JOINED_LEAGUE,
+    STATE_PROPERTY,
     STATE_NEW_TABLE,
     STATE_TWO_MATCH_WEEK_START,
     STATE_TWO_MATCH_WEEK_END,
@@ -178,10 +178,10 @@ xml_league_read_start_element (GMarkupParseContext *context,
 	state = STATE_AVERAGE_TALENT;
     else if(strcmp(element_name, TAG_NAMES_FILE) == 0)
 	state = STATE_NAMES_FILE;
-    else if(strcmp(element_name, TAG_ACTIVE) == 0)
-	state = STATE_ACTIVE;
     else if(strcmp(element_name, TAG_BREAK) == 0)
 	state = STATE_BREAK;
+    else if(strcmp(element_name, TAG_PROPERTY) == 0)
+	state = STATE_PROPERTY;
     else if(strcmp(element_name, TAG_JOINED_LEAGUE) == 0)
     {
 	state = STATE_JOINED_LEAGUE;
@@ -284,9 +284,9 @@ xml_league_read_end_element    (GMarkupParseContext *context,
        strcmp(element_name, TAG_YELLOW_RED) == 0 ||
        strcmp(element_name, TAG_AVERAGE_TALENT) == 0 ||
        strcmp(element_name, TAG_NAMES_FILE) == 0 ||
-       strcmp(element_name, TAG_ACTIVE) == 0 ||
        strcmp(element_name, TAG_BREAK) == 0 ||
        strcmp(element_name, TAG_JOINED_LEAGUE) == 0 ||
+       strcmp(element_name, TAG_PROPERTY) == 0 ||
        strcmp(element_name, TAG_NEW_TABLE) == 0 ||
        strcmp(element_name, TAG_TWO_MATCH_WEEK_START) == 0 ||
        strcmp(element_name, TAG_TWO_MATCH_WEEK_END) == 0 ||
@@ -366,10 +366,10 @@ xml_league_read_text         (GMarkupParseContext *context,
 	    (float_value / 10000) * const_float("float_player_max_skill");
     else if(state == STATE_NAMES_FILE)
 	misc_string_assign(&new_league.names_file, buf);
-    else if(state == STATE_ACTIVE)
-	new_league.active = int_value;
     else if(state == STATE_BREAK)
 	new_league.rr_break = int_value;
+    else if(state == STATE_PROPERTY)
+	g_ptr_array_add(new_league.properties, g_strdup(buf));
     else if(state == STATE_JOINED_LEAGUE)
 	misc_string_assign(
             &g_array_index(new_league.joined_leagues,

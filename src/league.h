@@ -35,10 +35,15 @@
 #define league_cup_get_fixtures(clid) (clid < ID_CUP_START) ? (league_from_clid(clid)->fixtures) : (cup_from_clid(clid)->fixtures)
 #define league_cup_get_name_string(clid) (clid < ID_CUP_START) ? league_from_clid(clid)->name : cup_from_clid(clid)->name
 #define league_cup_get_yellow_red(clid) (clid < ID_CUP_START) ? (league_from_clid(clid)->yellow_red) : (cup_from_clid(clid)->yellow_red)
-#define league_table_cumul(league) (&g_array_index(league->tables, Table, 0))
-#define league_table(league) (&g_array_index(league->tables, Table, league->tables->len - 1))
+
+#define league_cup_get_properties(clid) (clid < ID_CUP_START) ? ((gpointer)(league_from_clid(clid)->properties)) : ((gpointer)(cup_from_clid(clid)->properties))
+#define query_league_cup_has_property(clid, string) query_misc_string_in_array(string, (GArray*)league_cup_get_properties(clid))
+
+#define league_table_cumul(league) (&g_array_index((league)->tables, Table, 0))
+#define league_table(league) (&g_array_index((league)->tables, Table, league->tables->len - 1))
 
 #define query_league_has_prom_games(league) (league->prom_rel.prom_games_dest_sid != NULL)
+#define query_league_active(league) (!query_league_cup_has_property((league)->id, "inactive"))
 
 /** A struct needed when managing promotions
     and relegations. */

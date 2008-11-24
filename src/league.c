@@ -71,6 +71,7 @@ league_new(gboolean new_id)
     new.joined_leagues = g_array_new(FALSE, FALSE, sizeof(JoinedLeague));
     new.new_tables = g_array_new(FALSE, FALSE, sizeof(NewTable));
     new.tables = g_array_new(FALSE, FALSE, sizeof(Table));
+    new.properties = g_ptr_array_new();
 
     new.first_week = new.week_gap = 1;
     new.two_match_weeks[0] = g_array_new(FALSE, FALSE, sizeof(gint));
@@ -80,8 +81,6 @@ league_new(gboolean new_id)
 
     new.stats = stat_league_new("", "");
     
-    new.active = TRUE;
-
     return new;
 }
 
@@ -173,7 +172,7 @@ league_cup_get_next_clid(gint clid, gboolean count_inactive)
 
 	if(i != ligs->len - 1)
 	{
-	    if(lig(i + 1).active || count_inactive)
+	    if(query_league_active(&lig(i + 1)) || count_inactive)
 		return_value = lig(i + 1).id;
 	    else
 		return_value = league_cup_get_next_clid(lig(i + 1).id, count_inactive);
@@ -182,7 +181,7 @@ league_cup_get_next_clid(gint clid, gboolean count_inactive)
 	    return_value = acp(0)->id;
 	else
 	{
-	    if(lig(0).active || count_inactive)
+	    if(query_league_active(&lig(0)) || count_inactive)
 		return_value = lig(0).id;
 	    else
 		return_value = league_cup_get_next_clid(lig(0).id, count_inactive);
@@ -198,7 +197,7 @@ league_cup_get_next_clid(gint clid, gboolean count_inactive)
 	    return_value = acp(i + 1)->id;
 	else
 	{
-	    if(lig(0).active || count_inactive)
+	    if(query_league_active(&lig(0)) || count_inactive)
 		return_value = lig(0).id;
 	    else
 		return_value = league_cup_get_next_clid(lig(0).id, count_inactive);
@@ -225,7 +224,7 @@ league_cup_get_previous_clid(gint clid, gboolean count_inactive)
 
 	if(i != 0)
 	{
-	    if(lig(i - 1).active || count_inactive)
+	    if(query_league_active(&lig(i - 1)) || count_inactive)
 		return_value = lig(i - 1).id;
 	    else
 		return_value = league_cup_get_previous_clid(lig(i - 1).id, count_inactive);
@@ -234,7 +233,7 @@ league_cup_get_previous_clid(gint clid, gboolean count_inactive)
 	    return_value = acp(acps->len - 1)->id;
 	else
 	{
-	    if(lig(ligs->len - 1).active || count_inactive)
+	    if(query_league_active(&lig(ligs->len - 1)) || count_inactive)
 		return_value = lig(ligs->len - 1).id;
 	    else
 		return_value = league_cup_get_previous_clid(lig(ligs->len - 1).id, count_inactive);
@@ -250,7 +249,7 @@ league_cup_get_previous_clid(gint clid, gboolean count_inactive)
 	    return_value = acp(i - 1)->id;
 	else
 	{
-	    if(lig(ligs->len - 1).active || count_inactive)
+	    if(query_league_active(&lig(ligs->len - 1)) || count_inactive)
 		return_value = lig(ligs->len - 1).id;
 	    else
 		return_value = league_cup_get_previous_clid(lig(ligs->len - 1).id, count_inactive);
@@ -847,7 +846,7 @@ query_leagues_active_in_country(void)
     gint i;
 
     for(i=0;i<ligs->len;i++)
-	if(lig(i).active)
+	if(query_league_active(&lig(i)))
 	    return TRUE;
 
     return FALSE;

@@ -28,6 +28,7 @@
 #include "finance.h"
 #include "free.h"
 #include "game_gui.h"
+#include "league.h"
 #include "main.h"
 #include "maths.h"
 #include "misc.h"
@@ -353,7 +354,7 @@ transfer_get_deadline(void)
     gint length = 0;
 
     for(i=0;i<ligs->len;i++)
-	if(lig(i).active)
+	if(query_league_active(&lig(i)))
 	    length = 
 		MAX(length, g_array_index(
 			lig(i).fixtures, Fixture, lig(i).fixtures->len - 1).week_number);

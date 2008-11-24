@@ -39,7 +39,6 @@ enum
     TAG_CUP = TAG_START_CUP,
     TAG_CUP_LAST_WEEK,
     TAG_CUP_ADD_WEEK,
-    TAG_CUP_PROPERTY,
     TAG_CUP_GROUP,
     TAG_CUP_TALENT_DIFF,
     TAG_CUP_CHOOSE_TEAM,
@@ -132,9 +131,9 @@ xml_loadsave_cup_end_element    (GMarkupParseContext *context,
        tag == TAG_ID ||
        tag == TAG_YELLOW_RED ||
        tag == TAG_WEEK_GAP ||
+       tag == TAG_PROPERTY ||
        tag == TAG_CUP_LAST_WEEK ||
        tag == TAG_CUP_ADD_WEEK ||
-       tag == TAG_CUP_PROPERTY ||
        tag == TAG_CUP_GROUP ||
        tag == TAG_CUP_TALENT_DIFF ||
        tag == TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK ||
@@ -216,12 +215,12 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
 	new_cup->week_gap = int_value;
     else if(state == TAG_YELLOW_RED)
 	new_cup->yellow_red = int_value;
+    else if(state == TAG_PROPERTY)
+	g_ptr_array_add(new_cup->properties, g_strdup(buf));
     else if(state == TAG_CUP_LAST_WEEK)
 	new_cup->last_week = int_value;
     else if(state == TAG_CUP_ADD_WEEK)
 	new_cup->add_week = int_value;
-    else if(state == TAG_CUP_PROPERTY)
-	g_ptr_array_add(new_cup->properties, g_strdup(buf));
     else if(state == TAG_CUP_GROUP)
 	new_cup->group = int_value;
     else if(state == TAG_CUP_TALENT_DIFF)
@@ -370,7 +369,7 @@ xml_loadsave_cup_write(const gchar *prefix, const Cup *cup)
 
     for(i=0;i<cup->properties->len;i++)
 	xml_write_string(fil, (gchar*)g_ptr_array_index(cup->properties, i),
-			 TAG_CUP_PROPERTY, I0);
+			 TAG_PROPERTY, I0);
 
     for(i=0;i<cup->rounds->len;i++)
 	xml_loadsave_cup_write_round(fil, prefix, cup, i);
