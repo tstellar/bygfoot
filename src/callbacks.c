@@ -401,6 +401,9 @@ void
 on_menu_fixtures_activate              (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    game_gui_print_message(
+        _("Left click to show table."));
+
     stat0 = STATUS_SHOW_FIXTURES;
     callback_show_fixtures(SHOW_TEAM);
 
@@ -430,7 +433,11 @@ on_menu_tables_activate                (GtkMenuItem     *menuitem,
 	return;
     }
 
+    game_gui_print_message(
+        _("Left click to show fixtures."));
+
     stat0 = STATUS_SHOW_TABLES;
+    stat1 = team_get_table_clid(current_user.tm);
     callback_show_tables(SHOW_CURRENT);
 
     gui_set_arrows();
@@ -702,8 +709,24 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
 		    setsav0;
 		}
 	    break;
-    }
 
+    case STATUS_SHOW_TABLES:
+        stat0 = STATUS_SHOW_FIXTURES;
+        stat2 = week;
+        stat3 = week_round;
+        callback_show_fixtures(SHOW_CURRENT);
+        break;
+    case STATUS_SHOW_FIXTURES:
+        if(stat1 >= ID_CUP_START && cup_has_tables(stat1) == -1)
+            game_gui_print_message(_("Cup has no tables."));
+        else
+        {
+            stat0 = STATUS_SHOW_TABLES;
+            callback_show_tables(SHOW_CURRENT);   
+        }
+        break;
+    }
+    
     gui_set_arrows();
 
     return TRUE;
