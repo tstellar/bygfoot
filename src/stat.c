@@ -185,24 +185,31 @@ stat_create_season_stat(void)
 
     for(i=0;i<ligs->len;i++)
     {
-        for(j = 0; j < lig(i).tables->len; j++)
+        if(!query_league_cup_has_property(lig(i).id, "omit_from_history"))
         {
-            new_champ.cl_name = g_strdup(g_array_index(lig(i).tables, Table, j).name);
-            new_champ.team_name = 
-                g_strdup(g_array_index(g_array_index(lig(i).tables, Table, j).elements, TableElement, 0).team->name);
-            g_array_append_val(new.league_champs, new_champ);
-        }
+            for(j = 0; j < lig(i).tables->len; j++)
+            {
+                new_champ.cl_name = g_strdup(g_array_index(lig(i).tables, Table, j).name);
+                new_champ.team_name = 
+                    g_strdup(g_array_index(g_array_index(lig(i).tables, Table, j).elements, TableElement, 0).team->name);
+                g_array_append_val(new.league_champs, new_champ);
 
-        g_array_append_val(new.league_stats, lig(i).stats);
-        lig(i).stats = stat_league_new(lig(i).name, lig(i).symbol);     
+            }
+
+            g_array_append_val(new.league_stats, lig(i).stats);
+            lig(i).stats = stat_league_new(lig(i).name, lig(i).symbol);     
+        }
     }
 
     for(i=0;i<acps->len;i++)
     {
-	new_champ.cl_name = g_strdup(acp(i)->name);
-	new_champ.team_name = 
-	    g_strdup(cup_get_winner(acp(i))->name);
-	g_array_append_val(new.cup_champs, new_champ);
+        if(!query_league_cup_has_property(acp(i)->id, "omit_from_history"))
+        {
+            new_champ.cl_name = g_strdup(acp(i)->name);
+            new_champ.team_name = 
+                g_strdup(cup_get_winner(acp(i))->name);
+            g_array_append_val(new.cup_champs, new_champ);
+        }
     }
 
     g_array_append_val(season_stats, new);
