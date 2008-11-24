@@ -69,11 +69,13 @@ table_element_new(Team *team, gint old_rank)
 void
 table_update(const Fixture *fix)
 {
-    gint i, j;
+    gint i, j, end;
     gint idx = (fix->result[0][0] < fix->result[1][0]);
     TableElement *elements[2];
 
-    for(j = 0; j < 2; j++)
+    end = (fix->clid < ID_CUP_START) ? 2 : 1;
+
+    for(j = 0; j < end; j++)
     {        
         elements[0] = elements[1] = NULL;
         table_update_get_elements(elements, fix, (j == 1));

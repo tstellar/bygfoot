@@ -73,7 +73,7 @@ player_new(Team *tm, gfloat average_talent, gboolean new_id)
 
     new.talent = 
 	CLAMP(average_talent * skill_factor, 0,
-	      const_float("float_player_max_skill"));//85;
+	      const_float("float_player_max_skill"));;
 
     new.skill = player_skill_from_talent(&new);
     new.cskill = new.skill;
@@ -1212,7 +1212,7 @@ player_replace_by_new(Player *pl, gboolean free_player)
 {
     Team *tm = pl->team;
     gint idx = player_id_index(tm, pl->id);
-    Player new = player_new(tm, team_get_average_skill(tm, FALSE), FALSE);
+    Player new = player_new(tm, team_get_average_talent(tm), FALSE);
         
     new.name = name_get(pl->team->names_file);
     new.pos = pl->pos;
