@@ -153,11 +153,10 @@ typedef struct
     GArray *new_tables;
     /** The fixtures of a season for the league. */
     GArray *fixtures;
+    /** A gchar pointer array of properties (like "inactive"). */
+    GPtrArray *properties;
     /** The current league statistics. */
     LeagueStat stats;
-    /** Whether the league is only a container for teams
-	or really a league with fixtures and all. */
-    gboolean active;
 } League;
 
 #endif

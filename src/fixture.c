@@ -618,7 +618,7 @@ fixture_write_knockout_round(Cup *cup, gint cup_round, GPtrArray *teams)
     week_round_number =
 	fixture_get_free_round(first_week, teams, -1, -1);
     for(i=0; i<=(teams->len - 2) / 2; i++)	
-	if(!round->home_away && query_cup_weak_at_home(cup->id) &&
+	if(!round->home_away && query_league_cup_has_property(cup->id, "weak_at_home") &&
 	   league_from_clid(((Team*)g_ptr_array_index(teams, 2 * i))->clid)->layer <
 	   league_from_clid(((Team*)g_ptr_array_index(teams, 2 * i + 1))->clid)->layer)
 	    fixture_write(cup->fixtures, (Team*)g_ptr_array_index(teams, 2 * i + 1),
@@ -1243,7 +1243,7 @@ fixture_get_next_week(gint *week_number, gint *week_round_number)
     *week_number = *week_round_number = 1000;
 
     for(i=0;i<ligs->len;i++)
-	if(lig(i).active)
+	if(query_league_active(&lig(i)))
 	{
 	    fix = fixture_get_next(lig(i).id, local_week, local_round);
 	    if((fix->week_number > local_week ||
@@ -1290,7 +1290,7 @@ fixture_get_previous_week(gint *week_number, gint *week_round_number)
     *week_number = *week_round_number = -1;
 
     for(i=0;i<ligs->len;i++)
-	if(lig(i).active)
+	if(query_league_active(&lig(i)))
 	{
 	    fix = fixture_get_previous(lig(i).id, local_week, local_round);
 	    if((fix->week_number < local_week ||
@@ -1335,7 +1335,7 @@ fixture_get_season_results(void)
     GPtrArray *results = g_ptr_array_new();
     GArray *fixtures = NULL;
     
-    if(league_from_clid(current_user.tm->clid)->active)
+    if(query_league_active(league_from_clid(current_user.tm->clid)))
     {
 	fixtures = league_from_clid(current_user.tm->clid)->fixtures;
 	for(i=0;i<fixtures->len;i++)

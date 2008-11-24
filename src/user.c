@@ -811,21 +811,26 @@ user_history_to_string(const UserHistory *history, gchar *buf)
 void
 user_add_cup_success(User *user, const Cup *cup, gint round, gint type)
 {
+    gboolean international, national;
+
+    international = query_league_cup_has_property(cup->id, "international");
+    national = query_league_cup_has_property(cup->id, "national");
+
     if(type == USER_HISTORY_WIN_FINAL)
     {
-	if(query_cup_is_international(cup->id))
+	if(international)
 	    user->counters[COUNT_USER_SUCCESS] +=
 		const_int("int_user_success_international_winner");
-	else if(query_cup_is_national(cup->id))
+	else if(national)
 	    user->counters[COUNT_USER_SUCCESS] +=
 		const_int("int_user_success_national_winner");
     }
     else if(type == USER_HISTORY_LOSE_FINAL)
     {
-	if(query_cup_is_international(cup->id))
+	if(international)
 	    user->counters[COUNT_USER_SUCCESS] +=
 		const_int("int_user_success_international_final");
-	else if(query_cup_is_national(cup->id))
+	else if(international)
 	    user->counters[COUNT_USER_SUCCESS] +=
 		const_int("int_user_success_national_winner");
 		const_int("int_user_success_national_final");
@@ -834,19 +839,19 @@ user_add_cup_success(User *user, const Cup *cup, gint round, gint type)
     {
 	if(round == cup_from_clid(cup->id)->rounds->len - 2)
 	{
-	    if(query_cup_is_international(cup->id))
+	    if(international)
 		user->counters[COUNT_USER_SUCCESS] +=
 		    const_int("int_user_success_international_semis");
-	    else if(query_cup_is_national(cup->id))
+	    else if(national)
 		user->counters[COUNT_USER_SUCCESS] +=
 		    const_int("int_user_success_national_semis");
 	}
 	else if(round == cup_from_clid(cup->id)->rounds->len - 3)
 	{
-	    if(query_cup_is_international(cup->id))
+	    if(international)
 		user->counters[COUNT_USER_SUCCESS] +=
 		    const_int("int_user_success_international_quarter");
-	    else if(query_cup_is_national(cup->id))
+	    else if(national)
 		user->counters[COUNT_USER_SUCCESS] +=
 		    const_int("int_user_success_national_quarter");
 	}

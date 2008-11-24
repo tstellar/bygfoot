@@ -248,7 +248,7 @@ team_get_fixture(const Team *tm, gboolean last_fixture)
 	if(tm->clid < ID_CUP_START)
 	    for(i=0;i<ligs->len;i++)
 	    {
-		if(lig(i).active && lig(i).id == tm->clid)
+		if(query_league_active(&lig(i)) && lig(i).id == tm->clid)
 		{
 		    for(j=0;j<lig(i).fixtures->len;j++)
 			if(g_array_index(lig(i).fixtures, Fixture, j).attendance == -1 &&
@@ -267,7 +267,7 @@ team_get_fixture(const Team *tm, gboolean last_fixture)
 	       fix->week_number != week ||
 	       fix->week_round_number != week_round)
 	    {
-		if(query_cup_is_national(acp(i)->id) ||
+		if(query_league_cup_has_property(acp(i)->id, "national") ||
 		   query_team_is_in_cup(tm, acp(i)))
 		{
 		    for(j=0;j<acp(i)->fixtures->len;j++)
@@ -287,7 +287,7 @@ team_get_fixture(const Team *tm, gboolean last_fixture)
 	if(tm->clid < ID_CUP_START)
 	    for(i=0;i<ligs->len;i++)
 	    {
-		if(lig(i).active && lig(i).id == tm->clid)
+		if(query_league_active(&lig(i)) && lig(i).id == tm->clid)
 		{
 		    for(j=lig(i).fixtures->len - 1;j>=0;j--)
 			if(g_array_index(lig(i).fixtures, Fixture, j).attendance != -1 &&
@@ -306,7 +306,7 @@ team_get_fixture(const Team *tm, gboolean last_fixture)
 	       fix->week_number != week ||
 	       fix->week_round_number != week_round - 1)
 	    {
-		if(query_cup_is_national(acp(i)->id) ||
+		if(query_league_cup_has_property(acp(i)->id, "national") ||
 		   query_team_is_in_cup(tm, acp(i)))
 		{
 		    for(j=acp(i)->fixtures->len - 1;j>=0;j--)
@@ -408,7 +408,7 @@ team_get_league_rank(const Team *tm)
     
     if(clid < ID_CUP_START)
     {
-	if(!league_from_clid(clid)->active)
+	if(!query_league_active(league_from_clid(clid)))
 	    return 0;
 
 	elements = league_table(league_from_clid(tm->clid))->elements;
@@ -888,7 +888,7 @@ query_team_plays(const Team *tm, gint week_number, gint week_round_number)
 			return TRUE;
     
     for(i=0;i<acps->len;i++)
-	if(query_cup_is_national(acp(i)->id) ||
+	if(query_league_cup_has_property(acp(i)->id, "national") ||
 	   query_team_is_in_cup(tm, acp(i)))
 	    for(j=0;j<acp(i)->fixtures->len;j++)
 		if(g_array_index(acp(i)->fixtures, Fixture, j).week_number == week_number && 
@@ -1200,7 +1200,7 @@ team_get_table_clid(const Team *tm)
     gint i;
 
     if(tm->clid >= ID_CUP_START ||
-       (tm->clid < ID_CUP_START && !league_from_clid(tm->clid)->active))
+       (tm->clid < ID_CUP_START && !query_league_active(league_from_clid(tm->clid))))
     {
 	for(i = acps->len - 1; i >= 0; i--)
 	    if(cup_has_tables(acp(i)->id) != -1 && 

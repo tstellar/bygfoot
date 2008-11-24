@@ -43,7 +43,6 @@ enum
     TAG_LEAGUE_LAYER,
     TAG_LEAGUE_FIRST_WEEK,
     TAG_LEAGUE_ROUND_ROBINS,
-    TAG_LEAGUE_ACTIVE,
     TAG_LEAGUE_AVERAGE_TALENT,
     TAG_LEAGUE_PROM_REL,
     TAG_LEAGUE_PROM_REL_PROM_GAMES_DEST_SID,
@@ -131,7 +130,6 @@ xml_loadsave_league_end_element    (GMarkupParseContext *context,
     
     if(tag == TAG_LEAGUE_FIRST_WEEK ||
        tag == TAG_LEAGUE_LAYER ||
-       tag == TAG_LEAGUE_ACTIVE ||
        tag == TAG_LEAGUE_BREAK ||
        tag == TAG_LEAGUE_JOINED_LEAGUE_SID ||
        tag == TAG_LEAGUE_JOINED_LEAGUE_RR ||
@@ -142,6 +140,7 @@ xml_loadsave_league_end_element    (GMarkupParseContext *context,
        tag == TAG_LEAGUE_AVERAGE_TALENT ||
        tag == TAG_LEAGUE_AVERAGE_TALENT ||
        tag == TAG_LEAGUE_ROUND_ROBINS ||
+       tag == TAG_PROPERTY ||
        tag == TAG_NAME ||
        tag == TAG_NAMES_FILE ||
        tag == TAG_SHORT_NAME ||
@@ -198,6 +197,8 @@ xml_loadsave_league_text         (GMarkupParseContext *context,
 
     if(state == TAG_NAME)
 	misc_string_assign(&new_league->name, buf);
+    else if(state == TAG_PROPERTY)
+	g_ptr_array_add(new_league->properties, g_strdup(buf));
     else if(state == TAG_SHORT_NAME)
 	misc_string_assign(&new_league->short_name, buf);
     else if(state == TAG_NAMES_FILE)
@@ -218,8 +219,6 @@ xml_loadsave_league_text         (GMarkupParseContext *context,
 	new_league->week_gap = int_value;
     else if(state == TAG_YELLOW_RED)
 	new_league->yellow_red = int_value;
-    else if(state == TAG_LEAGUE_ACTIVE)
-	new_league->active = int_value;
     else if(state == TAG_LEAGUE_BREAK)
 	new_league->rr_break = int_value;
     else if(state == TAG_LEAGUE_JOINED_LEAGUE_SID)	
@@ -338,13 +337,16 @@ xml_loadsave_league_write(const gchar *prefix, const League *league)
     xml_write_string(fil, league->sid, TAG_SID, I0);
     xml_write_string(fil, league->symbol, TAG_SYMBOL, I0);
 
+    for(i=0;i<league->properties->len;i++)
+	xml_write_string(fil, (gchar*)g_ptr_array_index(league->properties, i),
+			 TAG_PROPERTY, I0);
+
     xml_write_int(fil, league->id, TAG_ID, I0);
     xml_write_int(fil, league->layer, TAG_LEAGUE_LAYER, I0);
     xml_write_int(fil, league->first_week, TAG_LEAGUE_FIRST_WEEK, I0);
     xml_write_int(fil, league->round_robins, TAG_LEAGUE_ROUND_ROBINS, I0);
     xml_write_int(fil, league->week_gap, TAG_WEEK_GAP, I0);
     xml_write_int(fil, league->yellow_red, TAG_YELLOW_RED, I0);
-    xml_write_int(fil, league->active, TAG_LEAGUE_ACTIVE, I0);
     xml_write_int(fil, league->rr_break, TAG_LEAGUE_BREAK, I0);
 
     for(i=0;i<league->tables->len;i++)

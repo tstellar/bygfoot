@@ -26,6 +26,7 @@
 #include "cup.h"
 #include "free.h"
 #include "league.h"
+#include "misc.h"
 #include "option.h"
 #include "player.h"
 #include "stat.h"
@@ -57,7 +58,7 @@ stat_update_leagues(void)
     gint i;
 
     for(i=0;i<ligs->len;i++)
-	if(lig(i).active && 
+	if(query_league_active(&lig(i)) && 
 	   g_array_index(
 	       lig(i).fixtures, Fixture, lig(i).fixtures->len - 1).week_number >= week)
 	{

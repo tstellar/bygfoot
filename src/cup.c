@@ -485,7 +485,7 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
 		    
 	    for(k=0; k < g_array_index(leagues, League, leagues->len - 1).teams->len; k++)
             {
-                if(query_cup_has_property(cup->id, "league_talents"))
+                if(query_league_cup_has_property(cup->id, "league_talents"))
                 {        
                     g_array_index(
                         g_array_index(leagues, League, leagues->len - 1).teams, Team,  k).average_talent = 
@@ -1056,7 +1056,7 @@ query_cup_begins(const Cup *cup)
 				   CupChooseTeam, i), &league, &cup_temp);
 		
 		if((cup_temp == NULL &&
-		    league->active &&
+		    query_league_active(league) &&
 		    g_array_index(league->fixtures, Fixture,
 				  league->fixtures->len - 1).attendance == -1) ||
 		   (league == NULL &&
@@ -1114,7 +1114,7 @@ cup_check_fixtures(const Cup *cup)
         if(g_array_index(cup->fixtures, Fixture, i).teams[0] ==
            g_array_index(cup->fixtures, Fixture, i).teams[1])
         {
-            if(!query_cup_has_property(cup->id, "silent_on_fixture_error"))
+            if(!query_league_cup_has_property(cup->id, "silent_on_fixture_error"))
                 g_warning("cup_check_fixture: bad fixture found in cup %s; cup will be disabled\n", cup->name);
 
             return FALSE;

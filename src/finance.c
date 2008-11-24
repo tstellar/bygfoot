@@ -341,7 +341,7 @@ finance_assign_game_money(const Fixture *fix)
     gfloat journey_factor =
 	(fix->clid < ID_CUP_START ||
 	 (fix->clid >= ID_CUP_START && 
-	  query_cup_is_national(fix->clid))) ?
+	  query_league_cup_has_property(fix->clid, "national"))) ?
 	const_float("float_game_finance_journey_factor_national") :
 	const_float("float_game_finance_journey_factor_international");    
     gint ticket_income[2] = {0, 0};

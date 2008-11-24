@@ -160,7 +160,7 @@ start_new_season(void)
     }
 		
     for(i=0;i<ligs->len;i++)
-	if(lig(i).active)
+	if(query_league_active(&lig(i)))
 	    fixture_write_league_fixtures(&lig(i));
 
     for(i=cps->len - 1; i >= 0; i--)
@@ -421,7 +421,7 @@ end_week_round_update_fixtures(void)
 	    fixture_update(acp(i));
 
     for(i=0;i<ligs->len;i++)
-	if(lig(i).active && week == 
+	if(query_league_active(&lig(i)) && week == 
 	   g_array_index(
 	       lig(i).fixtures, Fixture, lig(i).fixtures->len - 1).week_number && 
 	   week_round == 1 &&
@@ -519,7 +519,7 @@ end_week_hide_cups(void)
     gint i;
 
     for(i=acps->len - 1; i >= 0; i--)
-	if(query_cup_hide(acp(i)->id) &&
+	if(query_league_cup_has_property(acp(i)->id, "hide") &&
 	   g_array_index(acp(i)->fixtures, Fixture, acp(i)->fixtures->len - 1).attendance > 0)
 	    g_ptr_array_remove_index(acps, i);
 }

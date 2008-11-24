@@ -34,13 +34,6 @@
 #define cup_get_last_tables_round(clid) &g_array_index(cup_from_clid(clid)->rounds, CupRound, cup_has_tables(clid))
 #define cup_get_last_tables(clid) g_array_index(cup_from_clid(clid)->rounds, CupRound, cup_has_tables(clid)).tables
 
-#define query_cup_has_property(clid, string) query_misc_string_in_array(string, cup_from_clid(clid)->properties)
-
-#define query_cup_is_international(clid) query_cup_has_property(clid, "international")
-#define query_cup_is_national(clid) query_cup_has_property(clid, "national")
-#define query_cup_hide(clid) query_cup_has_property(clid, "hide")
-#define query_cup_weak_at_home(clid) query_cup_has_property(clid, "weak_at_home")
-
 Cup
 cup_new(gboolean new_id);
 

@@ -299,7 +299,7 @@ callback_show_tables(gint type)
 	return;
     }
 
-    while((clid < ID_CUP_START && !league_from_clid(clid)->active) ||
+    while((clid < ID_CUP_START && !query_league_active(league_from_clid(clid))) ||
 	  (clid >= ID_CUP_START && cup_has_tables(clid) == -1))
     {
 	if(type == SHOW_PREVIOUS_LEAGUE)
@@ -693,7 +693,7 @@ callback_show_league_stats(gint type)
 	case SHOW_CURRENT:
 	    stat1 = current_user.tm->clid;
 	    while(stat1 >= ID_CUP_START ||
-		  !league_from_clid(stat1)->active)
+		  !query_league_active(league_from_clid(stat1)))
 		stat1 = league_cup_get_next_clid(stat1, FALSE);
 	    break;
 	case SHOW_NEXT_LEAGUE:
