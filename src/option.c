@@ -36,6 +36,14 @@
 gchar*
 option_string(const gchar *name, OptionList *optionlist)
 {
+#ifdef DEBUG
+    printf("option_string\n");
+#endif
+
+#ifdef DEBUG
+    printf("option_string\n");
+#endif
+
     gpointer element = g_datalist_get_data(&optionlist->datalist, name);
     
     if(element != NULL)
@@ -70,6 +78,10 @@ option_string_pointer(const gchar *name, OptionList *optionlist)
 gint
 option_int(const gchar *name, OptionList *optionlist)
 {
+#ifdef DEBUG
+    printf("option_int\n");
+#endif
+
     gpointer element = g_datalist_get_data(&optionlist->datalist, name);
     
     if(element != NULL)
@@ -85,6 +97,10 @@ option_int(const gchar *name, OptionList *optionlist)
 gint*
 option_int_pointer(const gchar *name, OptionList *optionlist)
 {
+#ifdef DEBUG
+    printf("option_int_pointer\n");
+#endif
+
     gpointer element = g_datalist_get_data(&optionlist->datalist, name);
     
     if(element != NULL)
@@ -122,6 +138,10 @@ option_float(const gchar *name, OptionList *optionlist)
 void
 option_set_string(const gchar *name, OptionList *optionlist, const gchar *new_value)
 {
+#ifdef DEBUG
+    printf("option_set_string\n");
+#endif
+
     gpointer element = g_datalist_get_data(&optionlist->datalist, name);
     
     if(element == NULL)
@@ -137,6 +157,10 @@ option_set_string(const gchar *name, OptionList *optionlist, const gchar *new_va
 void
 option_set_int(const gchar *name, OptionList *optionlist, gint new_value)
 {
+#ifdef DEBUG
+    printf("option_set_int\n");
+#endif
+
     gpointer element = g_datalist_get_data(&optionlist->datalist, name);
     
     if(element == NULL)
@@ -151,6 +175,10 @@ void
 option_add(OptionList *optionlist, const gchar *name, 
 	   gint int_value, const gchar *string_value)
 {
+#ifdef DEBUG
+    printf("option_add\n");
+#endif
+
     gint i;
     Option new;
     gpointer element = NULL;

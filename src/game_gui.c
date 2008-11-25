@@ -45,6 +45,10 @@
 void
 game_gui_live_game_show_unit(const LiveGameUnit *unit)
 {
+#ifdef DEBUG
+    printf("game_gui_live_game_show_unit\n");
+#endif
+
     gchar buf[SMALL];
     gfloat sleep_factor = (unit->time == 3) ? 
 	const_float("float_game_gui_live_game_speed_penalties_factor") : 1;
@@ -119,6 +123,10 @@ game_gui_live_game_show_unit(const LiveGameUnit *unit)
 void
 game_gui_live_game_set_hscale(const LiveGameUnit *unit, GtkHScale *hscale)
 {
+#ifdef DEBUG
+    printf("game_gui_live_game_set_hscale\n");
+#endif
+
     GdkColor color;
 
     gtk_widget_modify_bg(GTK_WIDGET(hscale), GTK_STATE_NORMAL, NULL);
@@ -184,6 +192,10 @@ game_gui_live_game_set_hscale(const LiveGameUnit *unit, GtkHScale *hscale)
 void
 game_gui_live_game_show_opponent(void)
 {
+#ifdef DEBUG
+    printf("game_gui_live_game_show_opponent\n");
+#endif
+
     GtkImage *image_style = 
 	GTK_IMAGE(lookup_widget(window.live, "image_lg_opp_style")),
 	*image_boost = 
@@ -216,6 +228,10 @@ game_gui_get_radio_items(GtkWidget **style, GtkWidget **scout,
 			 GtkWidget **physio, GtkWidget **boost,
 			 GtkWidget **yc, GtkWidget **ya_pos_pref)
 {
+#ifdef DEBUG
+    printf("game_gui_get_radio_items\n");
+#endif
+
     style[0] = lookup_widget(window.main, "menu_all_out_defend");
     style[1] = lookup_widget(window.main, "menu_defend");
     style[2] = lookup_widget(window.main, "menu_balanced");
@@ -252,6 +268,10 @@ game_gui_get_radio_items(GtkWidget **style, GtkWidget **scout,
 void
 game_gui_set_main_window_header(void)
 {
+#ifdef DEBUG
+    printf("game_gui_set_main_window_header\n");
+#endif
+
     gint i, rank;
     gchar buf[SMALL];
     GtkLabel *label_user= GTK_LABEL(lookup_widget(window.main, "label_user")),
@@ -311,6 +331,10 @@ game_gui_set_main_window_header(void)
 void
 game_gui_write_av_skills(const Team *tm)
 {
+#ifdef DEBUG
+    printf("game_gui_write_av_skills\n");
+#endif
+
     gchar buf[SMALL];
     GtkLabel *label_av_skills= GTK_LABEL(lookup_widget(window.main, "label_av_skills"));
     const Team *tm_local = (tm == NULL) ? current_user.tm : tm;
@@ -326,6 +350,10 @@ game_gui_write_av_skills(const Team *tm)
 void
 game_gui_write_meter_images(const Team *tm, GtkImage *style, GtkImage *boost)
 {
+#ifdef DEBUG
+    printf("game_gui_write_meter_images\n");
+#endif
+
     gint i;
 
     gchar *image_style_files[5] = 
@@ -353,6 +381,10 @@ game_gui_write_meter_images(const Team *tm, GtkImage *style, GtkImage *boost)
 void
 game_gui_write_meters(const Team *tm)
 {
+#ifdef DEBUG
+    printf("game_gui_write_meters\n");
+#endif
+
     GtkImage *image_style_main = GTK_IMAGE(lookup_widget(window.main, "image_style")),
 	*image_boost_main = GTK_IMAGE(lookup_widget(window.main, "image_boost"));
     GtkImage *image_style_live = NULL,
@@ -374,6 +406,10 @@ game_gui_write_meters(const Team *tm)
 void
 game_gui_write_radio_items(void)
 {
+#ifdef DEBUG
+    printf("game_gui_write_radio_items\n");
+#endif
+
     GtkWidget *style[5], *scout[4], *physio[4], 
 	*boost[3], *yc[4], *ya_pos_pref[5];
 
@@ -399,6 +435,10 @@ game_gui_write_radio_items(void)
 void
 game_gui_read_radio_items(GtkWidget *widget)
 {
+#ifdef DEBUG
+    printf("game_gui_read_radio_items\n");
+#endif
+
     gint i;
     GtkWidget *boost[3], *yc[4], *ya_pos_pref[5];
     GtkWidget *style[5], *scout[4], *physio[4];
@@ -476,6 +516,10 @@ game_gui_read_radio_items(GtkWidget *widget)
 void
 game_gui_show_main(void)
 {
+#ifdef DEBUG
+    printf("game_gui_show_main\n");
+#endif
+
     game_gui_set_main_window_header();
     treeview_show_user_player_list();
 
@@ -503,6 +547,10 @@ game_gui_show_main(void)
 void
 game_gui_print_message(gchar *format, ...)
 {
+#ifdef DEBUG
+    printf("game_gui_print_message\n");
+#endif
+
     gchar text[SMALL];
     va_list args;
      
@@ -523,6 +571,10 @@ game_gui_print_message(gchar *format, ...)
 gboolean
 game_gui_print_message_source(gpointer data)
 {
+#ifdef DEBUG
+    printf("game_gui_print_message_source\n");
+#endif
+
     game_gui_print_message((gchar*)data);
 
     g_free(data);
@@ -534,6 +586,10 @@ game_gui_print_message_source(gpointer data)
 void
 game_gui_print_message_with_delay(const gchar *format, ...)
 {
+#ifdef DEBUG
+    printf("game_gui_print_message_with_delay\n");
+#endif
+
     gchar text[SMALL];
     va_list args;
      
@@ -553,6 +609,10 @@ game_gui_print_message_with_delay(const gchar *format, ...)
 gboolean
 game_gui_clear_entry_message(gpointer data)
 {
+#ifdef DEBUG
+    printf("game_gui_clear_entry_message\n");
+#endif
+
     if(window.main != NULL)
 	gtk_entry_set_text(GTK_ENTRY(lookup_widget(window.main, "entry_message")), "");
 
@@ -598,6 +658,10 @@ enum MainWindowShowItems
 void
 game_gui_set_main_window_sensitivity(gboolean value)
 {
+#ifdef DEBUG
+    printf("game_gui_set_main_window_sensitivity\n");
+#endif
+
     gint i;
     GtkWidget *insensitive_items[INSENSITIVE_ITEM_END];
     GtkWidget *show_items[SHOW_ITEM_END];
@@ -664,6 +728,10 @@ game_gui_set_main_window_sensitivity(gboolean value)
 void
 game_gui_show_warning(const gchar *format, ...)
 {
+#ifdef DEBUG
+    printf("game_gui_show_warning\n");
+#endif
+
     gchar text[SMALL];
     va_list args;
      
@@ -690,6 +758,10 @@ game_gui_show_warning(const gchar *format, ...)
 void
 game_gui_show_job_offer(Team *team, Job *job, gint type)
 {
+#ifdef DEBUG
+    printf("game_gui_show_job_offer\n");
+#endif
+
     gchar buf[SMALL], buf2[SMALL];    
     GtkLabel *label_text, *label_text2, *label_name, 
 	*label_league, *label_rank, *label_money,
@@ -778,6 +850,10 @@ game_gui_show_job_offer(Team *team, Job *job, gint type)
 void
 game_gui_write_check_items(void)
 {
+#ifdef DEBUG
+    printf("game_gui_write_check_items\n");
+#endif
+
     GtkCheckMenuItem *menu_job_offers = 
 	GTK_CHECK_MENU_ITEM(lookup_widget(window.main, "menu_job_offers")),
 	*menu_live_game = 
@@ -797,6 +873,10 @@ game_gui_write_check_items(void)
 void
 game_gui_read_check_items(GtkWidget *widget)
 {
+#ifdef DEBUG
+    printf("game_gui_read_check_items\n");
+#endif
+
     GtkWidget *menu_job_offers = 
 	lookup_widget(window.main, "menu_job_offers"),
 	*menu_live_game = lookup_widget(window.main, "menu_live_game"),
@@ -838,6 +918,10 @@ game_gui_read_check_items(GtkWidget *widget)
 void
 game_gui_set_help_labels(void)
 {
+#ifdef DEBUG
+    printf("game_gui_set_help_labels\n");
+#endif
+
     GtkLabel *label_help_text1 = 
 	GTK_LABEL(lookup_widget(window.help, "label_help_text1")),
 	*label_help_text2 = GTK_LABEL(lookup_widget(window.help, "label_help_text2"));
@@ -859,6 +943,10 @@ game_gui_set_help_labels(void)
 void
 game_gui_write_money(void)
 {
+#ifdef DEBUG
+    printf("game_gui_write_money\n");
+#endif
+
     gchar buf[SMALL];
     GtkLabel *label_money= GTK_LABEL(lookup_widget(window.main, "label_money"));
     

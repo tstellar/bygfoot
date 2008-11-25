@@ -52,6 +52,10 @@ void
 game_get_values(const Fixture *fix, gfloat team_values[][GAME_TEAM_VALUE_END],
 		gfloat home_advantage)
 {
+#ifdef DEBUG
+    printf("game_get_values\n");
+#endif
+
     gint i, j;
     Team *tm[2] = {fix->teams[0], fix->teams[1]};
     gfloat style_factor;
@@ -100,6 +104,7 @@ game_get_values(const Fixture *fix, gfloat team_values[][GAME_TEAM_VALUE_END],
 gfloat
 game_get_player_contribution(const Player *pl, gint type, gboolean special)
 {
+
 /** How the cskill of field players get weighted for the team values in
     a match. Rows are player position, columns value type. 
     @see game_get_player_contribution() */
@@ -132,6 +137,10 @@ game_get_player(const Team *tm, gint player_type,
 		gint last_penalty, gint not_this_one,
 		gboolean skills)
 {
+#ifdef DEBUG
+    printf("game_get_player\n");
+#endif
+
     gint i, player = not_this_one;
     gfloat weights[3];
     gfloat probs[10];
@@ -206,6 +215,10 @@ game_get_player(const Team *tm, gint player_type,
 void
 game_get_player_probs(GArray *players, gfloat *probs, gfloat *weights, gboolean skills)
 {
+#ifdef DEBUG
+    printf("game_get_player_probs\n");
+#endif
+
     gint i;
 
     probs[0] = (skills) ? 
@@ -239,6 +252,10 @@ game_get_player_probs(GArray *players, gfloat *probs, gfloat *weights, gboolean 
 gint
 game_get_penalty_taker(const Team *tm, gint last_penalty)
 {
+#ifdef DEBUG
+    printf("game_get_penalty_taker\n");
+#endif
+
     gint i, return_value = -1;
     GPtrArray *players = g_ptr_array_new();
 
@@ -271,6 +288,10 @@ game_get_penalty_taker(const Team *tm, gint last_penalty)
 void
 game_initialize(Fixture *fix)
 {
+#ifdef DEBUG
+    printf("game_initialize\n");
+#endif
+
     gint i, j;
     gint user_idx[2] = {team_is_user(fix->teams[0]), team_is_user(fix->teams[1])};
 
@@ -328,6 +349,10 @@ game_initialize(Fixture *fix)
 void
 game_assign_attendance(Fixture *fix)
 {
+#ifdef DEBUG
+    printf("game_assign_attendance\n");
+#endif
+
     Team *tm[2] = {fix->teams[0], fix->teams[1]};
     gfloat factor = 
 	math_rnd(const_float("float_game_stadium_attendance_percentage_lower"),
@@ -375,6 +400,10 @@ game_assign_attendance(Fixture *fix)
 void
 game_assign_attendance_neutral(Fixture *fix)
 {
+#ifdef DEBUG
+    printf("game_assign_attendance_neutral\n");
+#endif
+
     const GPtrArray *teamsp = 
 	(GPtrArray*)league_cup_get_teams(fix->clid);
     gfloat av_att = (fix->clid >= ID_CUP_START && 
@@ -392,6 +421,10 @@ game_assign_attendance_neutral(Fixture *fix)
 void
 game_save_team_states(void)
 {
+#ifdef DEBUG
+    printf("game_save_team_states\n");
+#endif
+
     gint i, j;
     const Team *teams[2] = {usr(stat2).live_game.fix->teams[0], 
 			    usr(stat2).live_game.fix->teams[1]};
@@ -417,6 +450,10 @@ game_save_team_states(void)
 gboolean
 game_check_live_game_resume_state(void)
 {
+#ifdef DEBUG
+    printf("game_check_live_game_resume_state\n");
+#endif
+
     gint i, j;
     gint subs[2] = {0, 0};
     const Team *teams[2] = {usr(stat2).live_game.fix->teams[0], 
@@ -446,6 +483,10 @@ game_check_live_game_resume_state(void)
 void
 game_reset_players(gint idx)
 {
+#ifdef DEBUG
+    printf("game_reset_players\n");
+#endif
+
     gint i;
     Team *tm = usr(stat2).live_game.fix->teams[idx];
     GArray *players = g_array_new(FALSE, FALSE, sizeof(Player));
@@ -474,6 +515,10 @@ game_reset_players(gint idx)
 void
 game_get_subs(gint team_number, gint *subs_in, gint *subs_out)
 {
+#ifdef DEBUG
+    printf("game_get_subs\n");
+#endif
+
     gint i, cnt = 0;
     const Team *tm = usr(stat2).live_game.fix->teams[team_number];
     gint current_players[11];
@@ -508,6 +553,10 @@ game_get_subs(gint team_number, gint *subs_in, gint *subs_out)
 void
 game_player_injury(Player *pl)
 {
+#ifdef DEBUG
+    printf("game_player_injury\n");
+#endif
+
     gint i;
     gfloat rndom;
     /* probabilities of different injuries */
@@ -608,6 +657,10 @@ game_player_injury(Player *pl)
 gfloat
 game_get_foul_possession_factor(gint boost1, gint boost2)
 {
+#ifdef DEBUG
+    printf("game_get_foul_possession_factor\n");
+#endif
+
     if(boost1 == boost2)
 	return 1;
 
@@ -625,6 +678,10 @@ game_get_foul_possession_factor(gint boost1, gint boost2)
 gint
 game_substitute_player(Team *tm, gint player_number)
 {
+#ifdef DEBUG
+    printf("game_substitute_player\n");
+#endif
+
     gint i, substitute = -1;
     GPtrArray *substitutes = g_ptr_array_new();
     gboolean adapt_structure;
@@ -686,6 +743,10 @@ game_substitute_player(Team *tm, gint player_number)
 gint
 game_find_to_substitute(gint clid, const Team *tm)
 {
+#ifdef DEBUG
+    printf("game_find_to_substitute\n");
+#endif
+
     gint i;
     gint position_to_substitute = -1;    
     GPtrArray *players = g_ptr_array_new();
@@ -726,6 +787,10 @@ game_find_to_substitute(gint clid, const Team *tm)
 gint
 game_player_get_ban_duration(void)
 {
+#ifdef DEBUG
+    printf("game_player_get_ban_duration\n");
+#endif
+
     gint i;
     gfloat rndom;
     gfloat duration_probs[6] =
@@ -759,6 +824,10 @@ void
 game_substitute_player_send_off(gint clid, Team *tm, gint player_number, 
 				gint *to_substitute, gint *substitute)
 {
+#ifdef DEBUG
+    printf("game_substitute_player_send_off\n");
+#endif
+
     gint i;
     gint position = -1;
     GPtrArray *substitutes = NULL;
@@ -816,6 +885,10 @@ game_substitute_player_send_off(gint clid, Team *tm, gint player_number,
 void
 game_decrease_fitness(const Fixture *fix)
 {
+#ifdef DEBUG
+    printf("game_decrease_fitness\n");
+#endif
+
     gint i, j;
 
     for(i=0;i<2;i++)
@@ -833,6 +906,10 @@ game_decrease_fitness(const Fixture *fix)
 void
 game_update_stats(LiveGame *lg, const LiveGameUnit *unit)
 {
+#ifdef DEBUG
+    printf("game_update_stats\n");
+#endif
+
     gint i;
     LiveGameStats *stats = &lg->stats;
     
@@ -891,6 +968,10 @@ game_update_stats(LiveGame *lg, const LiveGameUnit *unit)
 void
 game_update_stats_player(LiveGame *lg, const LiveGameUnit *unit)
 {
+#ifdef DEBUG
+    printf("game_update_stats_player\n");
+#endif
+
     gint i;
     gchar buf[SMALL], buf2[SMALL];    
     LiveGameStats *stats = &lg->stats;
@@ -969,6 +1050,10 @@ game_update_stats_player(LiveGame *lg, const LiveGameUnit *unit)
 void
 game_post_match(Fixture *fix)
 {
+#ifdef DEBUG
+    printf("game_post_match\n");
+#endif
+
     gint i;
     GPtrArray *teams = NULL;
     Cup *cup = NULL;
@@ -1039,6 +1124,10 @@ game_post_match(Fixture *fix)
 void
 game_stadium_event(Stadium *stadium, gint type)
 {
+#ifdef DEBUG
+    printf("game_stadium_event\n");
+#endif
+
     gfloat reduce;
     gfloat reduce_factor[3][2] =
 	{{const_float("float_game_stadium_safety_reduce_breakdown_lower"),
@@ -1062,6 +1151,10 @@ game_stadium_event(Stadium *stadium, gint type)
 void
 game_get_max_values(gfloat max_values[4])
 {
+#ifdef DEBUG
+    printf("game_get_max_values\n");
+#endif
+
     gint i, j;
     Player pl;
 
@@ -1088,6 +1181,10 @@ game_get_max_values(gfloat max_values[4])
 gint
 game_get_default_penalty_shooter(const Team *tm)
 {
+#ifdef DEBUG
+    printf("game_get_default_penalty_shooter\n");
+#endif
+
     gint return_value = -1;
 
     if(team_is_user(tm) != -1 &&
@@ -1112,6 +1209,10 @@ game_get_default_penalty_shooter(const Team *tm)
 void
 game_boost_cost(void)
 {
+#ifdef DEBUG
+    printf("game_boost_cost\n");
+#endif
+
     gfloat wage_unit = finance_wage_unit(usr(stat2).tm);
     gint deduce = 
 	(gint)rint(wage_unit * const_float("float_boost_cost_factor"));

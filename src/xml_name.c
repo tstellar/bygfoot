@@ -56,6 +56,10 @@ xml_name_read_start_element (GMarkupParseContext *context,
 			     gpointer             user_data,
 			     GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_name_read_start_element\n");
+#endif
+
     if(strcmp(element_name, TAG_NAMES) == 0)
 	state = STATE_NAMES;
     else if(strcmp(element_name, TAG_FIRST_NAME) == 0)
@@ -74,6 +78,10 @@ xml_name_read_end_element    (GMarkupParseContext *context,
 			      gpointer             user_data,
 			      GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_name_read_end_element\n");
+#endif
+
     if(strcmp(element_name, TAG_FIRST_NAME) == 0 ||
        strcmp(element_name, TAG_LAST_NAME) == 0)
        state = STATE_NAMES;
@@ -90,6 +98,10 @@ xml_name_read_text         (GMarkupParseContext *context,
 			    gpointer             user_data,
 			    GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_name_read_text\n");
+#endif
+
     gchar buf[text_len + 1];
 
     strncpy(buf, text, text_len);
@@ -108,6 +120,10 @@ xml_name_read_text         (GMarkupParseContext *context,
 void
 xml_name_read(const gchar *sid, NameList *namelist)
 {
+#ifdef DEBUG
+    printf("xml_name_read\n");
+#endif
+
     gchar *file_name = NULL;
     GMarkupParser parser = {xml_name_read_start_element,
 			    xml_name_read_end_element,

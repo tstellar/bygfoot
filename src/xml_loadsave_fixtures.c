@@ -58,6 +58,10 @@ xml_loadsave_fixtures_start_element (GMarkupParseContext *context,
 				    gpointer             user_data,
 				    GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_fixtures_start_element\n");
+#endif
+
     gint i;
     gint tag = xml_get_tag_from_name(element_name);
     gboolean valid_tag = FALSE;
@@ -90,6 +94,10 @@ xml_loadsave_fixtures_end_element    (GMarkupParseContext *context,
 				     gpointer             user_data,
 				     GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_fixtures_end_element\n");
+#endif
+
     gint tag = xml_get_tag_from_name(element_name);
     
     if(tag == TAG_FIXTURE)
@@ -132,6 +140,10 @@ xml_loadsave_fixtures_text         (GMarkupParseContext *context,
 				   gpointer             user_data,
 				   GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_fixtures_text\n");
+#endif
+
     gchar buf[SMALL];
     gint int_value = -1;
 
@@ -172,6 +184,10 @@ xml_loadsave_fixtures_text         (GMarkupParseContext *context,
 void
 xml_loadsave_fixtures_read(const gchar *filename, GArray *fixtures)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_fixtures_read\n");
+#endif
+
     GMarkupParser parser = {xml_loadsave_fixtures_start_element,
 			    xml_loadsave_fixtures_end_element,
 			    xml_loadsave_fixtures_text, NULL, NULL};
@@ -207,6 +223,10 @@ xml_loadsave_fixtures_read(const gchar *filename, GArray *fixtures)
 void
 xml_loadsave_fixtures_write(const gchar *filename, const GArray *fixtures)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_fixtures_write\n");
+#endif
+
     gint i, j;
     FILE *fil = NULL;
 

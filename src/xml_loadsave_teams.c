@@ -68,6 +68,10 @@ xml_loadsave_teams_start_element (GMarkupParseContext *context,
 				  gpointer             user_data,
 				  GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_teams_start_element\n");
+#endif
+
     gint i;
     gint tag = xml_get_tag_from_name(element_name);
     gboolean valid_tag = FALSE;
@@ -106,6 +110,10 @@ xml_loadsave_teams_end_element    (GMarkupParseContext *context,
 				   gpointer             user_data,
 				   GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_teams_end_element\n");
+#endif
+
     gint tag = xml_get_tag_from_name(element_name);
 
     if(tag == TAG_TEAM)
@@ -151,6 +159,10 @@ xml_loadsave_teams_text         (GMarkupParseContext *context,
 				 gpointer             user_data,
 				 GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_teams_text\n");
+#endif
+
     gchar buf[SMALL];
     gint int_value = -1;
     gfloat float_value = -1;
@@ -202,6 +214,10 @@ xml_loadsave_teams_text         (GMarkupParseContext *context,
 void
 xml_loadsave_teams_read(const gchar *filename, GArray *teams)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_teams_read\n");
+#endif
+
     gint i, j;
     GMarkupParser parser = {xml_loadsave_teams_start_element,
 			    xml_loadsave_teams_end_element,
@@ -243,6 +259,10 @@ xml_loadsave_teams_read(const gchar *filename, GArray *teams)
 void
 xml_loadsave_teams_write(const gchar *filename, const GArray *teams)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_teams_write\n");
+#endif
+
     gint i;
     FILE *fil = NULL;
 
@@ -260,6 +280,10 @@ xml_loadsave_teams_write(const gchar *filename, const GArray *teams)
 void
 xml_loadsave_teams_write_team(FILE *fil, const Team* team)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_teams_write_team\n");
+#endif
+
     fprintf(fil, "<_%d>\n", TAG_TEAM);
 
     xml_write_string(fil, team->name, TAG_NAME, I1);

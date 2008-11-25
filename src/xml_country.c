@@ -84,6 +84,10 @@ xml_country_read_start_element (GMarkupParseContext *context,
 				gpointer             user_data,
 				GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_country_read_start_element\n");
+#endif
+
     if(strcmp(element_name, TAG_NAME) == 0)
 	state = STATE_NAME;
     else if(strcmp(element_name, TAG_RATING) == 0)
@@ -126,6 +130,10 @@ xml_country_read_end_element    (GMarkupParseContext *context,
 				 gpointer             user_data,
 				 GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_country_read_end_element\n");
+#endif
+
     if(strcmp(element_name, TAG_NAME) == 0 ||
        strcmp(element_name, TAG_RATING) == 0 ||
        strcmp(element_name, TAG_SYMBOL) == 0 ||
@@ -157,6 +165,10 @@ xml_country_read_text         (GMarkupParseContext *context,
 			       gpointer             user_data,
 			       GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_country_read_text\n");
+#endif
+
     gchar buf[text_len + 1];
     gint int_value;
 
@@ -201,6 +213,10 @@ xml_country_read_text         (GMarkupParseContext *context,
 void
 xml_country_read(const gchar *country_name, Country *cntry_arg)
 {
+#ifdef DEBUG
+    printf("xml_country_read\n");
+#endif
+
     gchar *file_name = file_find_support_file(country_name, FALSE);
     GMarkupParser parser = {xml_country_read_start_element,
 			    xml_country_read_end_element,

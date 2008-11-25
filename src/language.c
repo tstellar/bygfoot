@@ -42,6 +42,10 @@ extern int _nl_msg_cat_cntr=0;
 void
 language_set(gint index)
 {
+#ifdef DEBUG
+    printf("language_set\n");
+#endif
+
     gchar buf[SMALL], buf2[SMALL];
     gchar *pwd = g_get_current_dir();
     GPtrArray *codes =
@@ -56,7 +60,6 @@ language_set(gint index)
        window.main == NULL)
     {
 	sprintf(buf2, "%s%slocale", pwd, G_DIR_SEPARATOR_S);
-
 #ifdef ENABLE_NLS
 	if(g_file_test(buf2, G_FILE_TEST_EXISTS))
 	{
@@ -92,6 +95,10 @@ language_set(gint index)
 gint
 language_get_code_index(const gchar *code)
 {
+#ifdef DEBUG
+    printf("language_get_code_index\n");
+#endif
+
     gint i, return_value = -1;
     GPtrArray *codes =
 	misc_separate_strings(const_str("string_language_codes"));
@@ -119,6 +126,10 @@ language_get_code_index(const gchar *code)
 gint
 language_compare_country_files(gconstpointer a, gconstpointer b, gpointer data)
 {
+#ifdef DEBUG
+    printf("language_compare_country_files\n");
+#endif
+
     gint i, j;
     const gchar *prefdef = (const gchar*)data;
     const gchar *def1 = *(const gchar**)a;
@@ -169,6 +180,10 @@ language_compare_country_files(gconstpointer a, gconstpointer b, gpointer data)
 void
 language_pick_country(GPtrArray *country_files)
 {
+#ifdef DEBUG
+    printf("language_pick_country\n");
+#endif
+
     gint i, j;
     GPtrArray *codes =
 	misc_separate_strings(const_str("string_language_codes"));
@@ -213,8 +228,11 @@ language_pick_country(GPtrArray *country_files)
 void
 language_get_code(gchar *buf)
 {
-    gchar *cur_locale = NULL;
+#ifdef DEBUG
+    printf("language_get_code\n");
+#endif
 
+    gchar *cur_locale = NULL;
 #ifdef G_OS_UNIX
      cur_locale = setlocale(LC_MESSAGES, NULL);
 #else

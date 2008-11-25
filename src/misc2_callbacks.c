@@ -51,6 +51,10 @@ void
 on_button_offer_ok_clicked             (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_offer_ok_clicked\n");
+#endif
+
     gboolean changed = TRUE;
     gchar *team_name = g_strdup(current_user.tm->name);
 
@@ -86,6 +90,10 @@ void
 on_button_offer_cancel_clicked         (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_offer_cancel_clicked\n");
+#endif
+
     if(stat2 != STATUS_JOB_OFFER_SUCCESS &&
        stat2 != STATUS_JOB_EXCHANGE_SHOW_TEAM)
     {
@@ -113,6 +121,10 @@ on_button_warning_clicked              (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_warning_clicked\n");
+#endif
+
     window_destroy(&window.warning);
 
     if(stat4 == STATUS_SHOW_EVENT)
@@ -126,6 +138,10 @@ void
 on_button_digits_ok_clicked            (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_digits_ok_clicked\n");
+#endif
+
     GtkSpinButton *spinbutton1 = GTK_SPIN_BUTTON(lookup_widget(window.digits, "spinbutton1")),
 	*spinbutton2 = GTK_SPIN_BUTTON(lookup_widget(window.digits, "spinbutton2"));
     gint values[2] =
@@ -178,6 +194,10 @@ void
 on_button_digits_alr_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_digits_alr_clicked\n");
+#endif
+
     on_button_digits_ok_clicked(NULL, NULL);
     on_automatic_loan_repayment_activate(NULL, NULL);
 }
@@ -186,6 +206,10 @@ void
 on_button_digits_cancel_clicked        (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_digits_cancel_clicked\n");
+#endif
+
     window_destroy(&window.digits);
 }
 
@@ -194,6 +218,10 @@ on_window_yesno_delete_event           (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_window_yesno_delete_event\n");
+#endif
+
     on_button_yesno_no_clicked(NULL, NULL);
 
     if(stat4 == STATUS_SHOW_EVENT)
@@ -205,7 +233,12 @@ on_window_yesno_delete_event           (GtkWidget       *widget,
 void
 on_button_yesno_yes_clicked            (GtkButton       *button,
                                         gpointer         user_data)
-{    
+{
+#ifdef DEBUG
+    printf("on_button_yesno_yes_clicked\n");
+#endif
+
+     
     window_destroy(&window.yesno);
     setsav0;
 
@@ -262,6 +295,10 @@ void
 on_button_yesno_no_clicked             (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_yesno_no_clicked\n");
+#endif
+
     window_destroy(&window.yesno);
 
     if(stat4 == STATUS_SHOW_EVENT)
@@ -273,6 +310,10 @@ void
 on_button_contract_offer_clicked       (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_contract_offer_clicked\n");
+#endif
+
     misc2_callback_contract_offer();
 }
 
@@ -280,6 +321,10 @@ void
 on_button_contract_cancel_clicked      (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_contract_cancel_clicked\n");
+#endif
+
     window_destroy(&window.contract);
 }
 
@@ -289,6 +334,10 @@ on_window_contract_delete_event        (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_window_contract_delete_event\n");
+#endif
+
 
     if(GTK_WIDGET_IS_SENSITIVE(lookup_widget(window.contract, "button_contract_cancel")))
 	window_destroy(&window.contract);    
@@ -301,6 +350,10 @@ void
 on_entry_user_management_activate      (GtkEntry        *entry,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_entry_user_management_activate\n");
+#endif
+
     on_button_user_management_add_clicked(NULL, NULL);
 }
 
@@ -309,6 +362,10 @@ void
 on_button_user_management_add_clicked  (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_user_management_add_clicked\n");
+#endif
+
     misc2_callback_add_user();
 }
 
@@ -318,6 +375,10 @@ on_button_user_management_close_clicked
 (GtkButton       *button,
  gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_user_management_close_clicked\n");
+#endif
+
     window_destroy(&window.user_management);
     on_button_back_to_main_clicked(NULL, NULL);
 }
@@ -329,6 +390,10 @@ on_treeview_user_management_users_button_press_event
  GdkEventButton  *event,
  gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_treeview_user_management_users_button_press_event\n");
+#endif
+
     gchar buf[SMALL];
     gint idx = -1;
 
@@ -357,6 +422,10 @@ on_treeview_user_management_teams_row_activated
  GtkTreeViewColumn *column,
  gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_treeview_user_management_teams_row_activated\n");
+#endif
+
     on_button_user_management_add_clicked(NULL, NULL);
 }
 
@@ -365,6 +434,10 @@ on_window_debug_delete_event           (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_window_debug_delete_event\n");
+#endif
+
     on_button_debug_close_activate(NULL, NULL);
 
     return FALSE;
@@ -375,6 +448,10 @@ void
 on_button_debug_apply_clicked          (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_debug_apply_clicked\n");
+#endif
+
     GtkEntry *entry_debug =
 	GTK_ENTRY(lookup_widget(window.wdebug, "entry_debug"));
     const gchar *entry_text = gtk_entry_get_text(entry_debug);
@@ -389,6 +466,10 @@ void
 on_button_debug_close_activate         (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_debug_close_activate\n");
+#endif
+
     window_destroy(&window.wdebug);
 }
 
@@ -397,6 +478,10 @@ void
 on_entry_debug_activate                (GtkEntry        *entry,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_entry_debug_activate\n");
+#endif
+
     on_button_debug_apply_clicked(NULL, NULL);
 }
 
@@ -406,6 +491,10 @@ on_window_job_offer_delete_event       (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_window_job_offer_delete_event\n");
+#endif
+
     on_button_offer_cancel_clicked(NULL, NULL);
     return FALSE;
 }
@@ -416,6 +505,10 @@ on_window_digits_delete_event          (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_window_digits_delete_event\n");
+#endif
+
     on_button_digits_cancel_clicked(NULL, NULL);
 
     return FALSE;
@@ -427,6 +520,10 @@ on_window_user_management_delete_event (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_window_user_management_delete_event\n");
+#endif
+
     on_button_user_management_close_clicked(NULL, NULL);
     return FALSE;
 }
@@ -437,6 +534,10 @@ on_window_help_delete_event            (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_window_help_delete_event\n");
+#endif
+
     on_button_help_close_clicked(NULL, NULL);
 
     return FALSE;
@@ -447,6 +548,10 @@ void
 on_button_help_close_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_help_close_clicked\n");
+#endif
+
     window_destroy(&window.help);
 }
 
@@ -454,6 +559,10 @@ void
 on_spinbutton1_activate                (GtkEntry        *entry,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_spinbutton1_activate\n");
+#endif
+
     gtk_spin_button_update(GTK_SPIN_BUTTON(lookup_widget(window.digits, "spinbutton1")));
     on_button_digits_ok_clicked(NULL, NULL);
 }
@@ -463,6 +572,10 @@ void
 on_spinbutton2_activate                (GtkEntry        *entry,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_spinbutton2_activate\n");
+#endif
+
     gtk_spin_button_update(GTK_SPIN_BUTTON(lookup_widget(window.digits, "spinbutton2")));
     on_button_digits_ok_clicked(NULL, NULL);
 }
@@ -473,6 +586,10 @@ on_window_transfer_dialog_delete_event (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_window_transfer_dialog_delete_event\n");
+#endif
+
     on_button_transfer_later_clicked(NULL, NULL);
     return FALSE;
 }
@@ -482,6 +599,10 @@ void
 on_button_transfer_yes_clicked         (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_transfer_yes_clicked\n");
+#endif
+
     if(stat1 == STATUS_TRANSFER_OFFER_USER)
 	misc2_callback_transfer_user_player();
     else if(STATUS_TRANSFER_OFFER_CPU)
@@ -495,6 +616,10 @@ void
 on_button_transfer_no_clicked          (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_transfer_no_clicked\n");
+#endif
+
     gint len = 1;
 
     transoff(stat2, 0).status = TRANSFER_OFFER_REJECTED;
@@ -519,6 +644,10 @@ void
 on_button_transfer_later_clicked       (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_transfer_later_clicked\n");
+#endif
+
     window_destroy(&window.transfer_dialog);
 }
 
@@ -527,6 +656,10 @@ on_window_mmatches_delete_event        (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_window_mmatches_delete_event\n");
+#endif
+
     on_button_mm_reload_close_clicked(NULL, NULL);
 
     return TRUE;
@@ -538,6 +671,10 @@ on_treeview_mmatches_button_press_event (GtkWidget       *widget,
 					 GdkEventButton  *event,
 					 gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_treeview_mmatches_button_press_event\n");
+#endif
+
     GtkTreePath *path = NULL;
     GtkTreeViewColumn *col = NULL;
     gint col_num = -1, mmidx = -1;
@@ -568,6 +705,10 @@ void
 on_button_mm_save_close_clicked        (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_mm_save_close_clicked\n");
+#endif
+
     const gchar *filename = 
 	gtk_entry_get_text(GTK_ENTRY(lookup_widget(window.mmatches, "entry_mm_file")));
 
@@ -583,6 +724,10 @@ void
 on_button_mm_add_clicked               (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_mm_add_clicked\n");
+#endif
+
     if(current_user.live_game.units->len == 0)
     {
 	game_gui_show_warning(_("No match stored."));
@@ -598,6 +743,10 @@ void
 on_button_mm_file_clicked              (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_mm_file_clicked\n");
+#endif
+
     stat5 = STATUS_SELECT_MM_FILE_LOAD;
     window_show_file_sel();
 }
@@ -607,6 +756,10 @@ void
 on_button_mm_reload_clicked            (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_mm_reload_clicked\n");
+#endif
+
     GtkWidget *treeview = lookup_widget(window.mmatches, "treeview_mmatches");
     const gchar *filename = 
 	gtk_entry_get_text(GTK_ENTRY(lookup_widget(window.mmatches, "entry_mm_file")));
@@ -621,6 +774,10 @@ void
 on_button_mm_reload_close_clicked      (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_mm_reload_close_clicked\n");
+#endif
+
     on_button_mm_reload_clicked(NULL, NULL);
     on_button_mm_save_close_clicked(NULL, NULL);
 }
@@ -629,6 +786,10 @@ void
 on_button_mm_import_clicked            (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_mm_import_clicked\n");
+#endif
+
     stat5 = STATUS_SELECT_MM_FILE_IMPORT;
     window_show_file_sel();
 }

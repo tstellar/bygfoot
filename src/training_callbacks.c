@@ -22,7 +22,6 @@
   along with this program; if not, write to the Free Software
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
-
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
 #endif
@@ -49,6 +48,10 @@ void
 on_b_cancel_clicked                    (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_b_cancel_clicked\n");
+#endif
+
     window_destroy(&window.training_camp);
 }
 
@@ -56,6 +59,10 @@ void
 on_b_ok_clicked                        (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_b_ok_clicked\n");
+#endif
+
     GtkWidget *rb_camp1;
     GtkWidget *rb_camp2;
     GtkHScale *hs_recreation;
@@ -119,6 +126,10 @@ void
 on_rb_camp3_clicked                    (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_rb_camp3_clicked\n");
+#endif
+
     GtkEntry *tfCosts;
     gchar buf[SMALL];
 	
@@ -134,6 +145,10 @@ void
 on_rb_camp2_clicked                    (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_rb_camp2_clicked\n");
+#endif
+
     GtkEntry *tfCosts;
     gchar buf[SMALL];
 	
@@ -149,6 +164,10 @@ void
 on_rb_camp1_clicked                    (GtkButton       *button,
 					gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_rb_camp1_clicked\n");
+#endif
+
     GtkEntry *tfCosts;
     gchar buf[SMALL];
 	
@@ -163,6 +182,10 @@ void
 on_b_dec_recreation_clicked            (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_b_dec_recreation_clicked\n");
+#endif
+
     GtkHScale *hs_camp_points;
     GtkHScale *hs_recreation;
     gdouble value_camp_points;
@@ -187,6 +210,10 @@ void
 on_b_inc_recreation_clicked            (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_b_inc_recreation_clicked\n");
+#endif
+
     GtkHScale *hs_camp_points;
     GtkHScale *hs_recreation;
     gdouble value_camp_points;
@@ -211,6 +238,10 @@ void
 on_b_dec_training_clicked              (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_b_dec_training_clicked\n");
+#endif
+
     GtkHScale *hs_camp_points;
     GtkHScale *hs_training;
     gdouble value_camp_points;
@@ -235,6 +266,10 @@ void
 on_b_inc_training_clicked              (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_b_inc_training_clicked\n");
+#endif
+
     GtkHScale *hs_camp_points;
     GtkHScale *hs_training;
     gdouble value_camp_points;
@@ -260,6 +295,10 @@ on_window_training_camp_delete_event   (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_window_training_camp_delete_event\n");
+#endif
+
     on_b_cancel_clicked(NULL, NULL);
 
     return TRUE;

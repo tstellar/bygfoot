@@ -46,6 +46,10 @@
 gboolean
 treeview_helper_select_row(GtkTreeView *treeview, GdkEventButton *event)
 {
+#ifdef DEBUG
+    printf("treeview_helper_select_row\n");
+#endif
+
     GtkTreeSelection *selection =
 	gtk_tree_view_get_selection(treeview);
     GtkTreePath *path;
@@ -70,6 +74,10 @@ treeview_helper_select_row(GtkTreeView *treeview, GdkEventButton *event)
 gint
 treeview_helper_get_index(GtkTreeView *treeview, gint column)
 {
+#ifdef DEBUG
+    printf("treeview_helper_get_index\n");
+#endif
+
     gint value;
     GtkTreeSelection *selection	= 
 	gtk_tree_view_get_selection(treeview);
@@ -93,6 +101,10 @@ treeview_helper_get_index(GtkTreeView *treeview, gint column)
 gpointer
 treeview_helper_get_pointer(GtkTreeView *treeview, gint column)
 {
+#ifdef DEBUG
+    printf("treeview_helper_get_pointer\n");
+#endif
+
     gpointer ptr;
     GtkTreeSelection *selection	=
 	gtk_tree_view_get_selection(treeview);
@@ -115,6 +127,10 @@ treeview_helper_get_pointer(GtkTreeView *treeview, gint column)
 void
 treeview_helper_clear(GtkTreeView *treeview)
 {
+#ifdef DEBUG
+    printf("treeview_helper_clear\n");
+#endif
+
     gint i;
     gint number_of_columns;
     GtkTreeView *list = (treeview == NULL) ?
@@ -142,6 +158,10 @@ treeview_helper_clear(GtkTreeView *treeview)
 gint
 treeview_helper_get_col_number_column (GtkTreeViewColumn *col)
 {
+#ifdef DEBUG
+    printf("treeview_helper_get_col_number_column\n");
+#endif
+
     GList *cols;
     gint num;
 
@@ -161,6 +181,10 @@ treeview_helper_get_col_number_column (GtkTreeViewColumn *col)
 gint
 treeview_helper_iter_get_row(GtkTreeModel *model, GtkTreeIter *iter)
 {
+#ifdef DEBUG
+    printf("treeview_helper_iter_get_row\n");
+#endif
+
     gchar *path = gtk_tree_model_get_string_from_iter(model, iter);
     gint row_idx = (gint)g_ascii_strtod(path, NULL);
 
@@ -189,6 +213,14 @@ treeview_helper_cell_renderer_text_new(void)
 gchar*
 treeview_helper_live_game_icon(gint event_type)
 {
+#ifdef DEBUG
+    printf("treeview_helper_live_game_icon\n");
+#endif
+
+#ifdef DEBUG
+    printf("treeview_helper_live_game_icon\n");
+#endif
+
     if(event_type == LIVE_GAME_EVENT_START_MATCH ||
        event_type == LIVE_GAME_EVENT_END_MATCH ||
        event_type == LIVE_GAME_EVENT_HALF_TIME ||
@@ -263,6 +295,14 @@ treeview_helper_live_game_icon(gint event_type)
 gchar*
 treeview_helper_get_user_history_icon(gint history_type)
 {
+#ifdef DEBUG
+    printf("treeview_helper_get_user_history_icon\n");
+#endif
+
+#ifdef DEBUG
+    printf("treeview_helper_get_user_history_icon\n");
+#endif
+
     switch(history_type)
     {
 	default:
@@ -325,6 +365,10 @@ treeview_helper_pixbuf_from_filename(gchar *filename)
 void
 treeview_helper_unref(GObject *object)
 {
+#ifdef DEBUG
+    printf("treeview_helper_unref\n");
+#endif
+
     if(object == NULL)
 	return;
 
@@ -339,6 +383,10 @@ void
 treeview_helper_insert_icon(GtkListStore *ls, GtkTreeIter *iter, gint column_nr,
 			    gchar *icon_name)
 {
+#ifdef DEBUG
+    printf("treeview_helper_insert_icon\n");
+#endif
+
     GdkPixbuf *symbol = treeview_helper_pixbuf_from_filename(icon_name);
 
     gtk_list_store_set(ls, iter, column_nr, symbol, -1);
@@ -353,6 +401,10 @@ treeview_helper_team_compare(GtkTreeModel *model,
 		      GtkTreeIter *b,
 		      gpointer user_data)
 {
+#ifdef DEBUG
+    printf("treeview_helper_team_compare\n");
+#endif
+
     gint type = GPOINTER_TO_INT(user_data);
     Team *tm1, *tm2;
     gint return_value = 0;
@@ -381,6 +433,10 @@ treeview_helper_player_compare(GtkTreeModel *model,
 			       GtkTreeIter *b,
 			       gpointer user_data)
 {
+#ifdef DEBUG
+    printf("treeview_helper_player_compare\n");
+#endif
+
     gint type = GPOINTER_TO_INT(user_data);
     Player *pl1, *pl2;
     gint return_value = 0;
@@ -452,6 +508,10 @@ gboolean
 treeview_helper_get_table_element_colour_cups(const League *league, gint table_index,
 					      gint idx, gchar **colour_bg)
 {
+#ifdef DEBUG
+    printf("treeview_helper_get_table_element_colour_cups\n");
+#endif
+
     gint i, j, k;
     const CupRound *cup_round = NULL;
     gint league_idx = league_cup_get_index_from_clid(league->id) + 1;
@@ -508,6 +568,10 @@ gboolean
 treeview_helper_get_table_element_colour_cups_cup(const Cup *cup, 
 						  const Team *tm, gchar **colour_bg)
 {
+#ifdef DEBUG
+    printf("treeview_helper_get_table_element_colour_cups_cup\n");
+#endif
+
     gint i, j, k, idx = -1;
     const CupRound *cup_round = NULL;
     gchar *cup_highlight_colour = NULL;
@@ -567,6 +631,10 @@ treeview_helper_get_table_element_colours(const Table *table, gint table_index, 
 					  gchar **colour_fg, gchar **colour_bg,
 					  gboolean user)
 {
+#ifdef DEBUG
+    printf("treeview_helper_get_table_element_colours\n");
+#endif
+
     gint i;
     const TableElement *elem = &g_array_index(table->elements, TableElement, idx);
     const PromRelElement *pelem = NULL;
@@ -635,6 +703,10 @@ void
 treeview_helper_set_user_colours(const gchar *team_name,
 				 gchar **colour_bg, gchar **colour_fg)
 {
+#ifdef DEBUG
+    printf("treeview_helper_set_user_colours\n");
+#endif
+
     if(strcmp(team_name, current_user.tm->name) == 0)
     {
 	*colour_fg = const_app("string_treeview_current_user_fg");
@@ -691,6 +763,10 @@ treeview_helper_team_selection(GtkTreeViewColumn *col,
 			       GtkTreeIter       *iter,
 			       gpointer           user_data)
 {
+#ifdef DEBUG
+    printf("treeview_helper_team_selection\n");
+#endif
+
     gchar buf[SMALL];
     gint column = treeview_helper_get_col_number_column(col);
     gpointer team_pointer;
@@ -719,6 +795,10 @@ treeview_helper_int_to_cell(GtkTreeViewColumn *col,
 			  GtkTreeIter       *iter,
 			  gpointer           user_data)
 {
+#ifdef DEBUG
+    printf("treeview_helper_int_to_cell\n");
+#endif
+
     gint column = treeview_helper_get_col_number_column(col);
     gint value;
     gchar  buf[SMALL];
@@ -741,6 +821,10 @@ treeview_helper_player_ext_info_to_cell(GtkTreeViewColumn *col,
 				      GtkTreeIter       *iter,
 				      gpointer           user_data)
 {
+#ifdef DEBUG
+    printf("treeview_helper_player_ext_info_to_cell\n");
+#endif
+
     gint column = treeview_helper_get_col_number_column(col);
     gint row_idx = treeview_helper_iter_get_row(model, iter);
     const Player *pl;
@@ -835,6 +919,10 @@ treeview_helper_player_ext_info_to_cell(GtkTreeViewColumn *col,
 void
 treeview_helper_player_info_career_to_cell(GtkCellRenderer *renderer, const Player *pl)
 {
+#ifdef DEBUG
+    printf("treeview_helper_player_info_career_to_cell\n");
+#endif
+
     gint i;
     gfloat goals_game = 0,
 	shot_perc = 0;
@@ -881,6 +969,10 @@ treeview_helper_player_info_career_to_cell(GtkCellRenderer *renderer, const Play
 void
 treeview_helper_player_info_banned_to_cell(GtkCellRenderer *renderer, const GArray *cards)
 {
+#ifdef DEBUG
+    printf("treeview_helper_player_info_banned_to_cell\n");
+#endif
+
     gint i;
     gchar buf[SMALL], buf2[SMALL];
 
@@ -907,6 +999,10 @@ treeview_helper_player_info_banned_to_cell(GtkCellRenderer *renderer, const GArr
 void
 treeview_helper_player_info_yellow_to_cell(GtkCellRenderer *renderer, const GArray *cards)
 {
+#ifdef DEBUG
+    printf("treeview_helper_player_info_yellow_to_cell\n");
+#endif
+
     gint i;
     gint yellow_red = -1;
     gchar buf[SMALL], buf2[SMALL];
@@ -942,6 +1038,10 @@ treeview_helper_player_info_yellow_to_cell(GtkCellRenderer *renderer, const GArr
 void
 treeview_helper_player_info_games_goals_to_cell(GtkCellRenderer *renderer, const GArray *games_goals)
 {
+#ifdef DEBUG
+    printf("treeview_helper_player_info_games_goals_to_cell\n");
+#endif
+
     gint i;
     gchar buf[SMALL], buf2[SMALL];
 
@@ -962,6 +1062,10 @@ treeview_helper_player_info_games_goals_to_cell(GtkCellRenderer *renderer, const
 void
 treeview_helper_player_info_streak_to_cell(GtkCellRenderer *renderer, gint streak)
 {
+#ifdef DEBUG
+    printf("treeview_helper_player_info_streak_to_cell\n");
+#endif
+
     if(streak == PLAYER_STREAK_HOT)
 	g_object_set(renderer, "text", _("The player is on a hot streak"), NULL);
     else if(streak == PLAYER_STREAK_COLD)
@@ -971,6 +1075,10 @@ treeview_helper_player_info_streak_to_cell(GtkCellRenderer *renderer, gint strea
 void
 treeview_helper_player_info_health_to_cell(GtkCellRenderer *renderer, const Player *pl)
 {
+#ifdef DEBUG
+    printf("treeview_helper_player_info_health_to_cell\n");
+#endif
+
     gchar buf[SMALL];
 
     if(pl->health != 0)
@@ -995,6 +1103,10 @@ treeview_helper_player_to_cell(GtkTreeViewColumn *col,
 			       GtkTreeIter       *iter,
 			       gpointer           user_data)
 {
+#ifdef DEBUG
+    printf("treeview_helper_player_to_cell\n");
+#endif
+
     gint column = treeview_helper_get_col_number_column(col);
     gint attribute = GPOINTER_TO_INT(user_data), idx = -1;
     gchar  buf[SMALL];
@@ -1090,6 +1202,10 @@ treeview_helper_player_to_cell(GtkTreeViewColumn *col,
 void
 treeview_helper_player_name_to_cell(GtkCellRenderer *renderer, gchar *buf, const Player *pl)
 {
+#ifdef DEBUG
+    printf("treeview_helper_player_name_to_cell\n");
+#endif
+
     const TransferOffer *off = transfer_player_has_offer(pl);
     const gchar *colour_fg = const_app("string_treeview_helper_color_default_foreground"),
 	*colour_bg = const_app("string_treeview_helper_color_default_background");
@@ -1135,6 +1251,10 @@ treeview_helper_player_name_to_cell(GtkCellRenderer *renderer, gchar *buf, const
 void
 treeview_helper_player_contract_to_cell(GtkCellRenderer *renderer, gchar *buf, gfloat contract_time)
 {
+#ifdef DEBUG
+    printf("treeview_helper_player_contract_to_cell\n");
+#endif
+
     sprintf(buf, "%.*f", 1 + opt_int("int_opt_player_precision"),
 	    contract_time);
 
@@ -1158,6 +1278,10 @@ treeview_helper_player_contract_to_cell(GtkCellRenderer *renderer, gchar *buf, g
 void
 treeview_helper_player_cards_to_cell(gchar *buf, const Player *pl)
 {
+#ifdef DEBUG
+    printf("treeview_helper_player_cards_to_cell\n");
+#endif
+
     gint yellow;
     Fixture *fix =
 	team_get_fixture(pl->team, FALSE);
@@ -1203,6 +1327,10 @@ treeview_helper_player_status_to_cell(GtkTreeViewColumn *col,
 				      GtkTreeIter       *iter,
 				      gpointer           user_data)
 {
+#ifdef DEBUG
+    printf("treeview_helper_player_status_to_cell\n");
+#endif
+
     const Player *pl = NULL;
     gchar buf[SMALL];
     gint ban = 0, column = -1;
@@ -1296,6 +1424,10 @@ treeview_helper_player_status_to_cell(GtkTreeViewColumn *col,
 void
 treeview_helper_player_games_goals_to_cell(gchar *buf, const Player *pl, gint type)
 {
+#ifdef DEBUG
+    printf("treeview_helper_player_games_goals_to_cell\n");
+#endif
+
     Fixture *fix = team_get_fixture(pl->team, FALSE);
     gint clid = pl->team->clid;
 
@@ -1322,6 +1454,10 @@ treeview_helper_player_games_goals_to_cell(gchar *buf, const Player *pl, gint ty
 void
 treeview_helper_player_fitness_to_cell(GtkCellRenderer *renderer, gchar *buf, gfloat fitness)
 {
+#ifdef DEBUG
+    printf("treeview_helper_player_fitness_to_cell\n");
+#endif
+
     sprintf(buf, "%.*f%%", opt_int("int_opt_player_precision"),
 	    fitness * 100);
 
@@ -1347,6 +1483,10 @@ void
 treeview_helper_player_pos_to_cell(GtkCellRenderer *renderer, gchar *buf, 
 				   const Player *pl, gint type)
 {
+#ifdef DEBUG
+    printf("treeview_helper_player_pos_to_cell\n");
+#endif
+
     gint pos = (type == PLAYER_LIST_ATTRIBUTE_POS) ?
 	pl->pos : pl->cpos;
 
@@ -1400,6 +1540,10 @@ treeview_helper_player_pos_to_cell(GtkCellRenderer *renderer, gchar *buf,
 void
 treeview_helper_player_cskill_to_cell(GtkCellRenderer *renderer, gchar *buf, const Player *pl)
 {
+#ifdef DEBUG
+    printf("treeview_helper_player_cskill_to_cell\n");
+#endif
+
     sprintf(buf, "%.*f", opt_int("int_opt_player_precision"),
 	    player_get_game_skill(pl, FALSE, FALSE));
 	    
@@ -1423,7 +1567,12 @@ treeview_helper_live_game_result(GtkTreeViewColumn *col,
 				 GtkTreeModel      *model,
 				 GtkTreeIter       *iter,
 				 gpointer           user_data)
-{    
+{
+#ifdef DEBUG
+    printf("treeview_helper_live_game_result\n");
+#endif
+
+     
     gint column = treeview_helper_get_col_number_column(col);
     gchar  buf[SMALL];
     gchar *data = NULL;
@@ -1444,6 +1593,10 @@ treeview_helper_int_compare(GtkTreeModel *model,
 			    GtkTreeIter *b,
 			    gpointer user_data)
 {
+#ifdef DEBUG
+    printf("treeview_helper_int_compare\n");
+#endif
+
     gint column = GPOINTER_TO_INT(user_data);
     gint value1, value2;
 
@@ -1460,6 +1613,10 @@ treeview_helper_mm_teams(GtkTreeViewColumn *col,
 			 GtkTreeIter       *iter,
 			 gpointer           user_data)
 {
+#ifdef DEBUG
+    printf("treeview_helper_mm_teams\n");
+#endif
+
     gint column = treeview_helper_get_col_number_column(col);
     const MemMatch *mm = NULL;
     const gchar *text = NULL;
@@ -1536,6 +1693,10 @@ treeview_helper_season_results(GtkTreeViewColumn *col,
 			       GtkTreeIter       *iter,
 			       gpointer           user_data)
 {
+#ifdef DEBUG
+    printf("treeview_helper_season_results\n");
+#endif
+
     gint column = treeview_helper_get_col_number_column(col);
     gchar buf[SMALL];
     const Fixture *fix = NULL;
@@ -1609,6 +1770,10 @@ treeview_helper_bet_odds(GtkTreeViewColumn *col,
 			 GtkTreeIter       *iter,
 			 gpointer           user_data)
 {
+#ifdef DEBUG
+    printf("treeview_helper_bet_odds\n");
+#endif
+
     gint column = treeview_helper_get_col_number_column(col);
     gchar buf[SMALL];
     const Fixture *fix = NULL;
@@ -1654,6 +1819,10 @@ treeview_helper_search_equal(GtkTreeModel *model,
 			     GtkTreeIter *iter,
 			     gpointer search_data)
 {
+#ifdef DEBUG
+    printf("treeview_helper_search_equal\n");
+#endif
+
     const Team *tm = NULL;
     gchar *name_lower = NULL;
     gboolean return_value = TRUE;
@@ -1674,6 +1843,10 @@ treeview_helper_job_exchange(GtkTreeViewColumn *col,
 			     GtkTreeIter       *iter,
 			     gpointer           user_data)
 {
+#ifdef DEBUG
+    printf("treeview_helper_job_exchange\n");
+#endif
+
     gint column = treeview_helper_get_col_number_column(col);
     gchar buf[SMALL];
     const Job *job = NULL;

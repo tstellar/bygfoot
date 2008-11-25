@@ -51,6 +51,10 @@
 void
 load_save_save_game(const gchar *filename)
 {
+#ifdef DEBUG
+    printf("load_save_save_game\n");
+#endif
+
     gchar buf[SMALL];
     gchar *prefix = (g_str_has_suffix(filename, const_str("string_fs_save_suffix"))) ?
 	g_strndup(filename, strlen(filename) - strlen(const_str("string_fs_save_suffix"))) :
@@ -176,6 +180,10 @@ load_save_save_game(const gchar *filename)
 gboolean
 load_save_load_game(const gchar* filename, gboolean create_main_window)
 {
+#ifdef DEBUG
+    printf("load_save_load_game\n");
+#endif
+
     GString *buf = g_string_new("");
     gchar *fullname = (g_str_has_suffix(filename, const_str("string_fs_save_suffix"))) ?
 	g_strdup(filename) :
@@ -340,6 +348,10 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
 void
 load_save_last_save_set(const gchar *filename)
 {
+#ifdef DEBUG
+    printf("load_save_last_save_set\n");
+#endif
+
     gchar buf[SMALL];
     const gchar *home = g_get_home_dir();
     FILE *fil = NULL;
@@ -367,6 +379,14 @@ load_save_last_save_set(const gchar *filename)
 gchar*
 load_save_last_save_get(void)
 {
+#ifdef DEBUG
+    printf("load_save_last_save_get\n");
+#endif
+
+#ifdef DEBUG
+    printf("load_save_last_save_get\n");
+#endif
+
     gchar buf[SMALL];
     const gchar *home = g_get_home_dir();
     FILE *fil = NULL;
@@ -399,6 +419,10 @@ load_save_last_save_get(void)
 void
 load_save_autosave(void)
 {
+#ifdef DEBUG
+    printf("load_save_autosave\n");
+#endif
+
     gchar buf[SMALL];
     const gchar *home = g_get_home_dir();
     FILE *fil = NULL;
@@ -439,6 +463,10 @@ load_save_autosave(void)
 gboolean
 load_game_from_command_line(const gchar *filename)
 {
+#ifdef DEBUG
+    printf("load_game_from_command_line\n");
+#endif
+
     gchar *fullname = NULL,
 	*support_file_name = NULL;
 

@@ -46,6 +46,10 @@ on_window_bets_delete_event            (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_window_bets_delete_event\n");
+#endif
+
     on_button_bet_close_clicked(NULL, NULL);
     
     return TRUE;
@@ -55,6 +59,10 @@ void
 on_button_bet_close_clicked            (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_bet_close_clicked\n");
+#endif
+
     window_destroy(&window.bets);
 }
 
@@ -64,6 +72,10 @@ on_checkbutton_bet_all_leagues_button_press_event
                                         GdkEventButton  *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_checkbutton_bet_all_leagues_button_press_event\n");
+#endif
+
     opt_user_set_int("int_opt_user_bet_show_all_leagues",
 		     !opt_user_int("int_opt_user_bet_show_all_leagues"));
 
@@ -79,6 +91,10 @@ on_checkbutton_bet_cups_button_press_event
                                         GdkEventButton  *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_checkbutton_bet_cups_button_press_event\n");
+#endif
+
     opt_user_set_int("int_opt_user_bet_show_cups",
 		     !opt_user_int("int_opt_user_bet_show_cups"));
 
@@ -93,6 +109,10 @@ on_treeview_bets_button_press_event    (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_treeview_bets_button_press_event\n");
+#endif
+
     GtkTreePath *path = NULL;
     GtkTreeViewColumn *col = NULL;
     GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(widget));
@@ -156,6 +176,10 @@ on_checkbutton_bet_user_recent_button_press_event
                                         GdkEventButton  *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_checkbutton_bet_user_recent_button_press_event\n");
+#endif
+
     opt_user_set_int("int_opt_user_bet_show_my_recent",
 		     !opt_user_int("int_opt_user_bet_show_my_recent"));
 
@@ -169,6 +193,10 @@ on_window_splash_delete_event          (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_window_splash_delete_event\n");
+#endif
+
 
   return FALSE;
 }
@@ -177,7 +205,12 @@ on_window_splash_delete_event          (GtkWidget       *widget,
 void
 on_button_splash_new_game_clicked      (GtkButton       *button,
                                         gpointer         user_data)
-{   
+{
+#ifdef DEBUG
+    printf("on_button_splash_new_game_clicked\n");
+#endif
+
+    
     window_destroy(&window.splash);
 
     window_show_startup();
@@ -189,6 +222,10 @@ void
 on_button_splash_load_game_clicked     (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_splash_load_game_clicked\n");
+#endif
+
     stat5 = STATUS_LOAD_GAME_SPLASH;
     window_show_file_sel();
 }
@@ -198,6 +235,10 @@ void
 on_button_splash_resume_game_clicked   (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_splash_resume_game_clicked\n");
+#endif
+
     misc_callback_startup_load("last_save");
 }
 
@@ -206,6 +247,10 @@ void
 on_button_splash_quit_clicked          (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_splash_quit_clicked\n");
+#endif
+
     window_destroy(&window.splash);
     main_exit_program(EXIT_OK, NULL);
 }
@@ -215,6 +260,10 @@ void
 on_button_splash_hint_back_clicked     (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_splash_hint_back_clicked\n");
+#endif
+
     counters[COUNT_HINT_NUMBER] = (counters[COUNT_HINT_NUMBER] == 0) ?
 	hints.list->len - 1 : counters[COUNT_HINT_NUMBER] - 1;
 
@@ -226,6 +275,10 @@ void
 on_button_splash_hint_next_clicked     (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_splash_hint_next_clicked\n");
+#endif
+
     counters[COUNT_HINT_NUMBER] = 
 	(counters[COUNT_HINT_NUMBER] + 1) % hints.list->len;
 
@@ -237,6 +290,10 @@ void
 on_button_calculate_start_week_clicked (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_calculate_start_week_clicked\n");
+#endif
+
     gint start_week;
 
     start_week = finance_calculate_alr_start_week(
@@ -252,6 +309,10 @@ on_button_calculate_installment_clicked
                                         (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_calculate_installment_clicked\n");
+#endif
+
     gint weekly_installment;
 
     weekly_installment = finance_calculate_alr_weekly_installment(
@@ -266,6 +327,10 @@ void
 on_button_alr_confirm_clicked          (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_alr_confirm_clicked\n");
+#endif
+
     current_user.alr_start_week =
         gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(lookup_widget(window.alr, "spinbutton_start_week")));
 
@@ -284,6 +349,10 @@ void
 on_button_alr_cancel_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_alr_cancel_clicked\n");
+#endif
+
     window_destroy(&window.alr);
 }
 
@@ -292,6 +361,10 @@ on_window_alr_delete_event            (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_window_alr_delete_event\n");
+#endif
+
     on_button_alr_cancel_clicked(NULL, NULL);
     
     return TRUE;

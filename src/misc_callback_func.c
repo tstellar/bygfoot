@@ -51,6 +51,10 @@
 void
 misc_callback_show_team_list(GtkWidget *widget, const gchar *country_file)
 {
+#ifdef DEBUG
+    printf("misc_callback_show_team_list\n");
+#endif
+
     GtkWidget *treeview_startup =
 	lookup_widget(widget, "treeview_startup");
 
@@ -65,6 +69,10 @@ misc_callback_show_team_list(GtkWidget *widget, const gchar *country_file)
 void
 misc_callback_start_game(void)
 {
+#ifdef DEBUG
+    printf("misc_callback_start_game\n");
+#endif
+
     gint i;
     GtkToggleButton *radio_load = 
 	GTK_TOGGLE_BUTTON(lookup_widget(window.startup, "radiobutton_team_def_load"));
@@ -120,6 +128,10 @@ misc_callback_start_game(void)
 void
 misc_callback_add_player(void)
 {
+#ifdef DEBUG
+    printf("misc_callback_add_player\n");
+#endif
+
     GtkTreeView *treeview_users =
 	GTK_TREE_VIEW(lookup_widget(window.startup, "treeview_users"));
     GtkTreeView *treeview_startup =
@@ -164,6 +176,10 @@ misc_callback_add_player(void)
 void
 misc_callback_remove_user(GdkEventButton *event)
 {
+#ifdef DEBUG
+    printf("misc_callback_remove_user\n");
+#endif
+
     GtkTreeView *treeview_users =
 	GTK_TREE_VIEW(lookup_widget(window.startup, "treeview_users"));
     GtkTreeView *treeview_startup =
@@ -188,6 +204,10 @@ misc_callback_remove_user(GdkEventButton *event)
 void
 misc_callback_pause_live_game(void)
 {
+#ifdef DEBUG
+    printf("misc_callback_pause_live_game\n");
+#endif
+
     GtkWidget *button_resume = 
 	lookup_widget(window.live, "button_resume");
 
@@ -221,6 +241,10 @@ misc_callback_pause_live_game(void)
 void
 misc_callback_update_stadium_window(gboolean capacity)
 {
+#ifdef DEBUG
+    printf("misc_callback_update_stadium_window\n");
+#endif
+
     GtkLabel *label_costs_capacity = 
 	GTK_LABEL(lookup_widget(window.stadium, "label_costs_capacity")),
 	*label_costs_safety =
@@ -257,6 +281,10 @@ misc_callback_update_stadium_window(gboolean capacity)
 void
 misc_callback_improve_stadium(void)
 {
+#ifdef DEBUG
+    printf("misc_callback_improve_stadium\n");
+#endif
+
     GtkSpinButton *spinbutton_capacity =
 	GTK_SPIN_BUTTON(lookup_widget(window.stadium, "spinbutton_capacity")),
 	*spinbutton_safety =
@@ -303,6 +331,10 @@ misc_callback_improve_stadium(void)
 void
 misc_callback_startup_load(const gchar *filename)
 {
+#ifdef DEBUG
+    printf("misc_callback_startup_load\n");
+#endif
+
     gtk_widget_hide(window.splash);
 
     if(load_save_load_game(filename, TRUE))
@@ -316,6 +348,10 @@ misc_callback_startup_load(const gchar *filename)
 void
 misc_callback_new_sponsor(void)
 {
+#ifdef DEBUG
+    printf("misc_callback_new_sponsor\n");
+#endif
+
     GtkTreeView *treeview = GTK_TREE_VIEW(lookup_widget(window.sponsors, "treeview_sponsors"));
     GtkTreeModel *model;
     GtkTreeIter iter;

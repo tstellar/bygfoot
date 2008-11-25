@@ -62,6 +62,10 @@ gboolean load_last_save;
 void
 main_parse_cl_arguments(gint *argc, gchar ***argv)
 {
+#ifdef DEBUG
+    printf("main_parse_cl_arguments\n");
+#endif
+
     gboolean testcom = FALSE, calodds = FALSE;
     gchar *support_dir = NULL, *lang = NULL,
 	*testcom_file = NULL, *token_file = NULL, 
@@ -171,6 +175,10 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 void
 main_init_variables(void)
 {
+#ifdef DEBUG
+    printf("main_init_variables\n");
+#endif
+
     gint i;
 
     ligs = g_array_new(FALSE, FALSE, sizeof(League));
@@ -257,9 +265,12 @@ main_init_variables(void)
 void
 main_init(gint *argc, gchar ***argv)
 {
+#ifdef DEBUG
+    printf("main_init\n");
+#endif
+
     gchar buf[SMALL];
     gchar *pwd = g_get_current_dir();
-
 #ifdef G_OS_WIN32
     os_is_unix = FALSE;
 #else
@@ -267,7 +278,6 @@ main_init(gint *argc, gchar ***argv)
 #endif
 
     support_directories = NULL;
-
 #ifdef G_OS_UNIX
     file_add_support_directory_recursive(PACKAGE_DATA_DIR "/" PACKAGE "/support_files");
     sprintf(buf, "%s%s%s", g_get_home_dir(), G_DIR_SEPARATOR_S, HOMEDIRNAME);
@@ -298,6 +308,9 @@ main_init(gint *argc, gchar ***argv)
 gint
 main (gint argc, gchar *argv[])
 {
+#ifdef DEBUG
+    printf("main\n");
+#endif
 
 #ifdef ENABLE_NLS
     bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
@@ -336,6 +349,10 @@ main (gint argc, gchar *argv[])
 void
 main_exit_program(gint exit_code, gchar *format, ...)
 {
+#ifdef DEBUG
+    printf("main_exit_program\n");
+#endif
+
     gchar text[SMALL];
     va_list args;
      

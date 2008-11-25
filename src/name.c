@@ -36,6 +36,14 @@
 gchar*
 name_get(const gchar *names_file)
 {
+#ifdef DEBUG
+    printf("name_get\n");
+#endif
+
+#ifdef DEBUG
+    printf("name_get\n");
+#endif
+
     gint i;
     NameList new;
 
@@ -73,6 +81,14 @@ name_get(const gchar *names_file)
 gchar*
 name_get_from_list(const NameList *namelist)
 {
+#ifdef DEBUG
+    printf("name_get_from_list\n");
+#endif
+
+#ifdef DEBUG
+    printf("name_get_from_list\n");
+#endif
+
     gchar buf[SMALL];
 
     sprintf(buf, "%s %s", name_get_random_first_name(namelist),
@@ -86,6 +102,10 @@ name_get_from_list(const NameList *namelist)
 void
 name_shorten_list(NameList *namelist)
 {
+#ifdef DEBUG
+    printf("name_shorten_list\n");
+#endif
+
     gint idx;
 
     while(namelist->first_names->len * namelist->last_names->len >

@@ -87,6 +87,10 @@ gchar *condition;
 gint
 xml_lg_commentary_event_name_to_int(const gchar *event_string)
 {
+#ifdef DEBUG
+    printf("xml_lg_commentary_event_name_to_int\n");
+#endif
+
     gint return_value = -1;
 
     if(strcmp(event_string, EVENT_NAME_GENERAL) == 0)
@@ -172,6 +176,10 @@ xml_lg_commentary_read_start_element (GMarkupParseContext *context,
 				      gpointer             user_data,
 				      GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_lg_commentary_read_start_element\n");
+#endif
+
     gint atidx = 0;
 
     if(strcmp(element_name, TAG_EVENT) == 0)
@@ -212,6 +220,10 @@ xml_lg_commentary_read_end_element    (GMarkupParseContext *context,
 				       gpointer             user_data,
 				       GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_lg_commentary_read_end_element\n");
+#endif
+
     if(strcmp(element_name, TAG_EVENT) == 0)
 	state = STATE_LG_COMMENTARY;
     else if(strcmp(element_name, TAG_EVENT_NAME) == 0 ||
@@ -235,6 +247,10 @@ xml_lg_commentary_read_text         (GMarkupParseContext *context,
 				     gpointer             user_data,
 				     GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_lg_commentary_read_text\n");
+#endif
+
     gchar buf[text_len + 1];
     LGCommentary commentary;
 
@@ -267,6 +283,10 @@ xml_lg_commentary_read_text         (GMarkupParseContext *context,
 void
 xml_lg_commentary_read(const gchar *commentary_file)
 {
+#ifdef DEBUG
+    printf("xml_lg_commentary_read\n");
+#endif
+
     GMarkupParser parser = {xml_lg_commentary_read_start_element,
 			    xml_lg_commentary_read_end_element,
 			    xml_lg_commentary_read_text, NULL, NULL};

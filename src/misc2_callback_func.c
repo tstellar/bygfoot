@@ -49,6 +49,10 @@
 void
 misc2_callback_transfer_user_player(void)
 {
+#ifdef DEBUG
+    printf("misc2_callback_transfer_user_player\n");
+#endif
+
     Team *new_team = transoff(stat2, 0).tm;
 
     if (current_user.tm->players->len - 1 < const_int("int_team_min_players"))
@@ -113,6 +117,10 @@ misc2_callback_transfer_user_player(void)
 void
 misc2_callback_transfer_cpu_player(void)
 {
+#ifdef DEBUG
+    printf("misc2_callback_transfer_cpu_player\n");
+#endif
+
     if(current_user.tm->players->len > const_int("int_team_max_players") ||
        BUDGET(cur_user) < transoff(stat2, 0).fee)
     {
@@ -146,6 +154,10 @@ misc2_callback_transfer_cpu_player(void)
 gboolean
 misc2_callback_change_structure(gint structure)
 {
+#ifdef DEBUG
+    printf("misc2_callback_change_structure\n");
+#endif
+
     gint poss_struct = team_find_appropriate_structure(current_user.tm);
 
     if(math_get_place(structure, 1) + math_get_place(structure, 2) + 
@@ -169,6 +181,10 @@ misc2_callback_change_structure(gint structure)
 void
 misc2_callback_contract_offer(void)
 {
+#ifdef DEBUG
+    printf("misc2_callback_contract_offer\n");
+#endif
+
     gint i;
     gchar buf[SMALL];
     GtkSpinButton *spinbutton;
@@ -222,6 +238,10 @@ misc2_callback_contract_offer(void)
 void
 misc2_callback_add_user(void)
 {
+#ifdef DEBUG
+    printf("misc2_callback_add_user\n");
+#endif
+
     GtkTreeView *treeview_user_management_teams =
 	GTK_TREE_VIEW(lookup_widget(window.user_management,
 				    "treeview_user_management_teams"));
@@ -264,7 +284,12 @@ misc2_callback_add_user(void)
  @param col_num The column number. */
 void
 misc2_callback_mmatches_button_press(GtkWidget *widget, gint row_num, gint col_num)
-{    
+{
+#ifdef DEBUG
+    printf("misc2_callback_mmatches_button_press\n");
+#endif
+
+     
     if(row_num < current_user.mmatches->len)
     {
 	if(col_num == TREEVIEW_MMATCH_COL_REPLAY)
@@ -313,6 +338,10 @@ misc2_callback_mmatches_button_press(GtkWidget *widget, gint row_num, gint col_n
 gboolean
 misc2_callback_evaluate_job_application(Job *job, User *user)
 {
+#ifdef DEBUG
+    printf("misc2_callback_evaluate_job_application\n");
+#endif
+
     if(!query_job_application_successful(job, user))
     {
 	game_gui_show_warning(

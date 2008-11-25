@@ -88,6 +88,10 @@ xml_loadsave_cup_start_element (GMarkupParseContext *context,
 				gpointer             user_data,
 				GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_cup_start_element\n");
+#endif
+
     gint i;
     gint tag = xml_get_tag_from_name(element_name);
     gboolean valid_tag = FALSE;
@@ -122,6 +126,10 @@ xml_loadsave_cup_end_element    (GMarkupParseContext *context,
 				 gpointer             user_data,
 				 GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_cup_end_element\n");
+#endif
+
     gint tag = xml_get_tag_from_name(element_name);
 
     if(tag == TAG_NAME ||
@@ -189,6 +197,10 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
 			       gpointer             user_data,
 			       GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_cup_text\n");
+#endif
+
     gint i;
     gchar buf[SMALL], buf2[SMALL];
     gint int_value = -1;
@@ -300,6 +312,10 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
 void
 xml_loadsave_cup_read(const gchar *filename, Cup *cup)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_cup_read\n");
+#endif
+
     GMarkupParser parser = {xml_loadsave_cup_start_element,
 			    xml_loadsave_cup_end_element,
 			    xml_loadsave_cup_text, NULL, NULL};
@@ -338,6 +354,10 @@ xml_loadsave_cup_read(const gchar *filename, Cup *cup)
 void
 xml_loadsave_cup_write(const gchar *prefix, const Cup *cup)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_cup_write\n");
+#endif
+
     gint i;
     gchar buf[SMALL];
     FILE *fil = NULL;
@@ -391,6 +411,10 @@ xml_loadsave_cup_write(const gchar *prefix, const Cup *cup)
 void
 xml_loadsave_cup_write_round(FILE *fil, const gchar *prefix, const Cup *cup, gint round)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_cup_write_round\n");
+#endif
+
     gint i;
     gchar buf[SMALL];
     const CupRound *cup_round = &g_array_index(cup->rounds, CupRound, round);
@@ -466,6 +490,10 @@ xml_loadsave_cup_write_round(FILE *fil, const gchar *prefix, const Cup *cup, gin
 void
 xml_loadsave_cup_write_choose_team(FILE *fil, const CupChooseTeam *choose_team)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_cup_write_choose_team\n");
+#endif
+
     fprintf(fil, "%s<_%d>\n", I1, TAG_CUP_CHOOSE_TEAM);
     
     xml_write_string(fil, choose_team->sid, TAG_CUP_CHOOSE_TEAM_SID, I2);

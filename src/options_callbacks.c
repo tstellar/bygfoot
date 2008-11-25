@@ -37,6 +37,10 @@ void
 on_button_options_ok_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_options_ok_clicked\n");
+#endif
+
     gboolean save_global =
 	gtk_toggle_button_get_active(
 	    GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_save_global"))),
@@ -72,6 +76,10 @@ void
 on_button_options_cancel_clicked       (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_options_cancel_clicked\n");
+#endif
+
     window_destroy(&window.options);
 }
 
@@ -80,6 +88,10 @@ void
 on_button_font_name_clicked            (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_font_name_clicked\n");
+#endif
+
     window_create(WINDOW_FONT_SEL);
 }
 
@@ -88,6 +100,10 @@ void
 on_button_reload_constants_clicked     (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_reload_constants_clicked\n");
+#endif
+
     const gchar *constants_file =
 	gtk_entry_get_text(GTK_ENTRY(lookup_widget(window.options, "entry_constants_file")));
 
@@ -101,6 +117,10 @@ on_checkbutton_save_global_button_press_event
                                         GdkEventButton  *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_checkbutton_save_global_button_press_event\n");
+#endif
+
     if(event->button == 3)
     {
 	gchar *conf_file = file_find_support_file("bygfoot.conf", TRUE);
@@ -122,6 +142,10 @@ on_checkbutton_save_user_button_press_event
                                         GdkEventButton  *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_checkbutton_save_user_button_press_event\n");
+#endif
+
 
     if(event->button == 3)
     {
@@ -139,6 +163,10 @@ on_window_options_delete_event         (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_window_options_delete_event\n");
+#endif
+
     on_button_options_cancel_clicked(NULL, NULL);
 
     return TRUE;
@@ -149,6 +177,10 @@ void
 on_spinbutton_recreation_value_changed (GtkSpinButton   *spinbutton,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_spinbutton_recreation_value_changed\n");
+#endif
+
     gchar buf[SMALL];
 
     sprintf(buf, "%d", CAMP_SCALE_MAX - gtk_spin_button_get_value_as_int(spinbutton));

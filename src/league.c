@@ -45,6 +45,10 @@
 League
 league_new(gboolean new_id)
 {
+#ifdef DEBUG
+    printf("league_new\n");
+#endif
+
     League new;
 
     new.name = NULL;
@@ -92,6 +96,10 @@ league_new(gboolean new_id)
 PromRelElement
 prom_rel_element_new(void)
 {
+#ifdef DEBUG
+    printf("prom_rel_element_new\n");
+#endif
+
     PromRelElement new;
 
     new.ranks[0] = new.ranks[1] =
@@ -108,6 +116,10 @@ prom_rel_element_new(void)
 gint
 league_cup_get_index_from_clid(gint clid)
 {
+#ifdef DEBUG
+    printf("league_cup_get_index_from_clid\n");
+#endif
+
     gint i;
     gint index = -1;
 
@@ -142,6 +154,10 @@ league_cup_get_index_from_clid(gint clid)
 League*
 league_from_clid(gint clid)
 {
+#ifdef DEBUG
+    printf("league_from_clid\n");
+#endif
+
     gint i;
 
     for(i=0;i<ligs->len;i++)
@@ -162,6 +178,10 @@ league_from_clid(gint clid)
 gint
 league_cup_get_next_clid(gint clid, gboolean count_inactive)
 {
+#ifdef DEBUG
+    printf("league_cup_get_next_clid\n");
+#endif
+
     gint i, return_value = -1;
 
     if(clid < ID_CUP_START)
@@ -214,6 +234,10 @@ league_cup_get_next_clid(gint clid, gboolean count_inactive)
 gint
 league_cup_get_previous_clid(gint clid, gboolean count_inactive)
 {
+#ifdef DEBUG
+    printf("league_cup_get_previous_clid\n");
+#endif
+
     gint i, return_value = -1;
 
     if(clid < ID_CUP_START)
@@ -265,6 +289,10 @@ league_cup_get_previous_clid(gint clid, gboolean count_inactive)
 Fixture*
 league_cup_get_next_fixture(gint clid, gint week_number, gint week_round_number)
 {
+#ifdef DEBUG
+    printf("league_cup_get_next_fixture\n");
+#endif
+
     gint i;
     GArray *fixtures = league_cup_get_fixtures(clid);
 
@@ -283,6 +311,10 @@ league_cup_get_next_fixture(gint clid, gint week_number, gint week_round_number)
 Fixture*
 league_cup_get_previous_fixture(gint clid, gint week_number, gint week_round_number)
 {
+#ifdef DEBUG
+    printf("league_cup_get_previous_fixture\n");
+#endif
+
     gint i;
     GArray *fixtures = league_cup_get_fixtures(clid);
 
@@ -301,6 +333,10 @@ league_cup_get_previous_fixture(gint clid, gint week_number, gint week_round_num
 gint
 league_cup_average_capacity(gint clid)
 {
+#ifdef DEBUG
+    printf("league_cup_average_capacity\n");
+#endif
+
     gint i, cnt = 0;
     gfloat sum = 0;
     const GArray *teams = NULL;
@@ -334,6 +370,10 @@ league_cup_average_capacity(gint clid)
 gint
 league_index_from_sid(const gchar *sid)
 {
+#ifdef DEBUG
+    printf("league_index_from_sid\n");
+#endif
+
     gint i;
 
     for(i=0;i<ligs->len;i++)
@@ -351,6 +391,10 @@ league_index_from_sid(const gchar *sid)
 void
 league_remove_team_with_id(League *league, gint id)
 {
+#ifdef DEBUG
+    printf("league_remove_team_with_id\n");
+#endif
+
     gint i;
 
     for(i=0;i<league->teams->len;i++)
@@ -371,6 +415,10 @@ league_remove_team_with_id(League *league, gint id)
 void
 league_season_start(League *league)
 {
+#ifdef DEBUG
+    printf("league_season_start\n");
+#endif
+
     gint i, j;
     gint idx = league_index_from_sid(league->sid);
     gboolean user_champ = 
@@ -459,6 +507,10 @@ league_season_start(League *league)
 gboolean
 query_league_rank_in_prom_games(const League *league, gint rank)
 {
+#ifdef DEBUG
+    printf("query_league_rank_in_prom_games\n");
+#endif
+
     gint i, j, k;
     const Cup *cup = NULL;
     const CupRound *cup_round = NULL;
@@ -500,6 +552,10 @@ query_league_rank_in_prom_games(const League *league, gint rank)
 gboolean
 query_league_matches_in_week(const League *league, gint week_number)
 {
+#ifdef DEBUG
+    printf("query_league_matches_in_week\n");
+#endif
+
     gint i;
 
     for(i=0;i<league->fixtures->len;i++)
@@ -514,6 +570,10 @@ query_league_matches_in_week(const League *league, gint week_number)
 void
 league_get_team_movements_prom_rel(const League *league, GArray *team_movements)
 {
+#ifdef DEBUG
+    printf("league_get_team_movements_prom_rel\n");
+#endif
+
     gint i, j, k;
     TeamMove new_move;
     const GArray *elements = league->prom_rel.elements;
@@ -560,6 +620,10 @@ void
 league_get_team_movements_prom_games(const League *league, GArray *team_movements,
 				     const GPtrArray *prom_games_teams, gboolean up)
 {
+#ifdef DEBUG
+    printf("league_get_team_movements_prom_games\n");
+#endif
+
     gint i, j;
     TeamMove new_move;
     GPtrArray *dest_sids = (up) ?
@@ -606,6 +670,10 @@ league_get_team_movements_prom_games(const League *league, GArray *team_movement
 void
 league_get_team_movements(League *league, GArray *team_movements)
 {
+#ifdef DEBUG
+    printf("league_get_team_movements\n");
+#endif
+
     GPtrArray *prom_games_teams = NULL;
     const Cup *prom_cup = NULL;
 
@@ -641,6 +709,10 @@ league_get_team_movements(League *league, GArray *team_movements)
 gboolean
 query_league_team_movements_unassigned(const GArray *team_movements)
 {
+#ifdef DEBUG
+    printf("query_league_team_movements_unassigned\n");
+#endif
+
     gint i;
 
     for(i=0;i<team_movements->len;i++)
@@ -655,6 +727,10 @@ query_league_team_movements_unassigned(const GArray *team_movements)
 gboolean
 query_league_team_movements_unassigned_single(const GArray *team_movements)
 {
+#ifdef DEBUG
+    printf("query_league_team_movements_unassigned_single\n");
+#endif
+
     gint i;
 
     for(i=0;i<team_movements->len;i++)
@@ -670,6 +746,10 @@ void
 league_team_movements_print(const GArray *team_movements, 
 			    const gint *league_size, const gint *league_cur_size)
 {
+#ifdef DEBUG
+    printf("league_team_movements_print\n");
+#endif
+
     gint i, j;
     const TeamMove *tmove = NULL;
 
@@ -701,6 +781,10 @@ gint
 league_team_movements_compare_dest_idcs(gconstpointer a, gconstpointer b, 
 					gpointer data)
 {
+#ifdef DEBUG
+    printf("league_team_movements_compare_dest_idcs\n");
+#endif
+
     gint league_idx1 = *(gint*)a,
 	league_idx2 = *(gint*)b;
     const gint *league_cur_size = (const gint*)data;
@@ -720,6 +804,10 @@ void
 league_team_movements_assign_dest(GArray *team_movements, gint idx,
 				  const gint *league_size, gint *league_cur_size)
 {
+#ifdef DEBUG
+    printf("league_team_movements_assign_dest\n");
+#endif
+
     gint i, j, dest_idx;
     TeamMove *tmove = &g_array_index(team_movements, TeamMove, idx);
 
@@ -792,6 +880,10 @@ void
 league_team_movements_prune(GArray *team_movements, const gint *league_size,
 			    gint *league_cur_size)
 {
+#ifdef DEBUG
+    printf("league_team_movements_prune\n");
+#endif
+
     gint i;
 
     if(debug > 60)
@@ -814,6 +906,10 @@ league_team_movements_prune(GArray *team_movements, const gint *league_size,
 void
 league_team_movements_destinations(GArray *team_movements, const gint *league_size)
 {
+#ifdef DEBUG
+    printf("league_team_movements_destinations\n");
+#endif
+
     gint i;
     gint league_cur_size[ligs->len];
 
@@ -843,6 +939,10 @@ league_team_movements_destinations(GArray *team_movements, const gint *league_si
 gboolean
 query_leagues_active_in_country(void)
 {
+#ifdef DEBUG
+    printf("query_leagues_active_in_country\n");
+#endif
+
     gint i;
 
     for(i=0;i<ligs->len;i++)
@@ -857,6 +957,10 @@ query_leagues_active_in_country(void)
 gboolean
 query_league_cup_matchday_in_two_match_week(GArray **two_match_weeks, gint matchday)
 {
+#ifdef DEBUG
+    printf("query_league_cup_matchday_in_two_match_week\n");
+#endif
+
     gint i;
 
     for(i=0;i<two_match_weeks[0]->len;i++)
@@ -875,6 +979,10 @@ query_league_cup_matchday_in_two_match_week(GArray **two_match_weeks, gint match
 void
 league_check_new_tables(League *league)
 {
+#ifdef DEBUG
+    printf("league_check_new_tables\n");
+#endif
+
     gint i;
     Table new_table;
 
@@ -898,6 +1006,10 @@ league_check_new_tables(League *league)
 void
 league_add_table(League *league)
 {
+#ifdef DEBUG
+    printf("league_add_table\n");
+#endif
+
     gint i;
     Table new_table;
     TableElement new_table_element;

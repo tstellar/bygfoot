@@ -94,6 +94,10 @@ xml_loadsave_users_start_element (GMarkupParseContext *context,
 				    gpointer             user_data,
 				    GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_users_start_element\n");
+#endif
+
     gint i;
     gint tag = xml_get_tag_from_name(element_name);
     gboolean valid_tag = FALSE;
@@ -156,6 +160,10 @@ xml_loadsave_users_end_element    (GMarkupParseContext *context,
 				   gpointer             user_data,
 				   GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_users_end_element\n");
+#endif
+
     gint tag = xml_get_tag_from_name(element_name);
 
     if(tag == TAG_USER)
@@ -252,6 +260,10 @@ xml_loadsave_users_text         (GMarkupParseContext *context,
 				 gpointer             user_data,
 				 GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_users_text\n");
+#endif
+
     gchar buf[SMALL];
     gint int_value = -1;
     gfloat float_value = -1;
@@ -342,6 +354,10 @@ xml_loadsave_users_text         (GMarkupParseContext *context,
 void
 xml_loadsave_users_read(const gchar *dirname, const gchar *basename)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_users_read\n");
+#endif
+
     GMarkupParser parser = {xml_loadsave_users_start_element,
 			    xml_loadsave_users_end_element,
 			    xml_loadsave_users_text, NULL, NULL};
@@ -378,6 +394,10 @@ xml_loadsave_users_read(const gchar *dirname, const gchar *basename)
 void
 xml_loadsave_users_write(const gchar *prefix)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_users_write\n");
+#endif
+
     gint i, j, k;
     gchar buf[SMALL];
     FILE *fil = NULL;
@@ -461,6 +481,10 @@ xml_loadsave_users_write(const gchar *prefix)
 void
 xml_user_write_history(FILE *fil, const GArray *history)
 {
+#ifdef DEBUG
+    printf("xml_user_write_history\n");
+#endif
+
     gint i, j;
 
     for(i=0;i<history->len;i++)
@@ -490,6 +514,10 @@ xml_user_write_history(FILE *fil, const GArray *history)
 void
 xml_user_write_events(FILE *fil, const GArray *events)
 {
+#ifdef DEBUG
+    printf("xml_user_write_events\n");
+#endif
+
     gint i;
 
     for(i=0;i<events->len;i++)
@@ -513,6 +541,10 @@ xml_user_write_events(FILE *fil, const GArray *events)
 void
 xml_user_write_bets(FILE *fil, GArray **bets)
 {
+#ifdef DEBUG
+    printf("xml_user_write_bets\n");
+#endif
+
     gint i, j;
 
     for(i=0;i<2;i++)

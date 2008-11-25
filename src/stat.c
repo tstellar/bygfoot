@@ -55,6 +55,10 @@ stat_league_new(const gchar *league_name, const gchar *league_symbol)
 void
 stat_update_leagues(void)
 {
+#ifdef DEBUG
+    printf("stat_update_leagues\n");
+#endif
+
     gint i;
 
     for(i=0;i<ligs->len;i++)
@@ -77,6 +81,10 @@ stat_update_leagues(void)
 void
 stat_update_league_players(League *league)
 {
+#ifdef DEBUG
+    printf("stat_update_league_players\n");
+#endif
+
     gint i, j;
     GPtrArray *players_sorted[2] = {g_ptr_array_new(),
 				    g_ptr_array_new()};
@@ -130,6 +138,10 @@ stat_update_league_players(League *league)
 GArray*
 stat_update_league_teams(const GArray *teams_array, gint compare_type)
 {
+#ifdef DEBUG
+    printf("stat_update_league_teams\n");
+#endif
+
     gint i;
     GArray *stats = g_array_new(FALSE, FALSE, sizeof(Stat));
     GPtrArray *teams = g_ptr_array_new();
@@ -165,6 +177,10 @@ stat_update_league_teams(const GArray *teams_array, gint compare_type)
 SeasonStat
 stat_season_stat_new(gint season_number)
 {
+#ifdef DEBUG
+    printf("stat_season_stat_new\n");
+#endif
+
     SeasonStat new;
 
     new.season_number = season_number;
@@ -179,6 +195,10 @@ stat_season_stat_new(gint season_number)
 void
 stat_create_season_stat(void)
 {
+#ifdef DEBUG
+    printf("stat_create_season_stat\n");
+#endif
+
     gint i, j;
     SeasonStat new = stat_season_stat_new(season);
     ChampStat new_champ;
@@ -220,6 +240,10 @@ stat_create_season_stat(void)
 void
 stat_show_av_goals(GArray *fixtures)
 {
+#ifdef DEBUG
+    printf("stat_show_av_goals\n");
+#endif
+
     gint i;
     gfloat games = 0,
 	allgoals = 0,
@@ -264,6 +288,10 @@ stat_show_av_goals(GArray *fixtures)
 void
 stat_show_av_league_goals(void)
 {
+#ifdef DEBUG
+    printf("stat_show_av_league_goals\n");
+#endif
+
     gint i;
 
     g_print("\n\n");

@@ -59,6 +59,10 @@ xml_loadsave_jobs_start_element (GMarkupParseContext *context,
 				 gpointer             user_data,
 				 GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_jobs_start_element\n");
+#endif
+
     gint i;
     gint tag = xml_get_tag_from_name(element_name);
     gboolean valid_tag = FALSE;
@@ -85,6 +89,10 @@ xml_loadsave_jobs_end_element    (GMarkupParseContext *context,
 				  gpointer             user_data,
 				  GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_jobs_end_element\n");
+#endif
+
     gint tag = xml_get_tag_from_name(element_name);
     
     if(tag == TAG_JOB)
@@ -114,6 +122,10 @@ xml_loadsave_jobs_text         (GMarkupParseContext *context,
 				 gpointer             user_data,
 				 GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_jobs_text\n");
+#endif
+
     gchar buf[SMALL];
     gint int_value = -1;
     gfloat float_value = -1;
@@ -147,6 +159,10 @@ xml_loadsave_jobs_text         (GMarkupParseContext *context,
 void
 xml_loadsave_jobs_read(const gchar *dirname, const gchar *basename)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_jobs_read\n");
+#endif
+
     GMarkupParser parser = {xml_loadsave_jobs_start_element,
 			    xml_loadsave_jobs_end_element,
 			    xml_loadsave_jobs_text, NULL, NULL};
@@ -188,6 +204,10 @@ xml_loadsave_jobs_read(const gchar *dirname, const gchar *basename)
 void
 xml_loadsave_jobs_write(const gchar *prefix)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_jobs_write\n");
+#endif
+
     gint i;
     gchar buf[SMALL];
     FILE *fil = NULL;

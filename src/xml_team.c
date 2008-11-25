@@ -83,6 +83,10 @@ xml_team_read_start_element (GMarkupParseContext *context,
 			    gpointer             user_data,
 			    GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_team_read_start_element\n");
+#endif
+
     if(strcmp(element_name, TAG_TEAM) == 0)
 	state = STATE_TEAM;
     else if(strcmp(element_name, TAG_TEAM_NAME) == 0)
@@ -131,6 +135,10 @@ xml_team_read_end_element    (GMarkupParseContext *context,
 			      gpointer             user_data,
 			      GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_team_read_end_element\n");
+#endif
+
     if(strcmp(element_name, TAG_TEAM_NAME) == 0 ||
        strcmp(element_name, TAG_STADIUM_NAME) == 0 ||
        strcmp(element_name, TAG_SYMBOL) == 0 ||
@@ -178,6 +186,10 @@ xml_team_read_text         (GMarkupParseContext *context,
 			   gpointer             user_data,
 			   GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_team_read_text\n");
+#endif
+
     gchar buf[text_len + 1];
     gint int_value;
     gfloat float_value;
@@ -224,6 +236,10 @@ xml_team_read_text         (GMarkupParseContext *context,
 void
 xml_team_read(Team *tm, const gchar *def_file)
 {
+#ifdef DEBUG
+    printf("xml_team_read\n");
+#endif
+
     GMarkupParser parser = {xml_team_read_start_element,
 			    xml_team_read_end_element,
 			    xml_team_read_text, NULL, NULL};

@@ -36,6 +36,10 @@ calculateTrainingCamp(Team *current_team,
                       gdouble value_recreation,
                       gint number_camp)
 {
+#ifdef DEBUG
+    printf("calculateTrainingCamp\n");
+#endif
+
     gint count, i;
     Player *player;
     gfloat skill_points=0.0;
@@ -112,6 +116,10 @@ calculate_skill_points(gint value_training,
                        gfloat fitness,
                        gfloat lsu)
 {
+#ifdef DEBUG
+    printf("calculate_skill_points\n");
+#endif
+
     gint training_points=0;
     gfloat skill_points=0.0;
     gint random=0;
@@ -165,6 +173,10 @@ calculate_fitness_points(gint value_training,
                          gint number_camp,
                          gfloat age)
 {
+#ifdef DEBUG
+    printf("calculate_fitness_points\n");
+#endif
+
     gint training_points=0;
     gfloat fitness_points=0.0;
     gint random=0;
@@ -224,6 +236,10 @@ calculate_recovery_points(gint value_recreation,
                           gint number_camp,
                           gfloat age)
 {
+#ifdef DEBUG
+    printf("calculate_recovery_points\n");
+#endif
+
     gint training_points=0;
     gint recovery_points=0;
     gint random=0;
@@ -260,6 +276,10 @@ calculate_recovery_points(gint value_recreation,
 gint
 random_int(gint min, gint max)
 {
+#ifdef DEBUG
+    printf("random_int\n");
+#endif
+
     gint random=0;
     GRand *grand = NULL;
 	
@@ -271,6 +291,10 @@ random_int(gint min, gint max)
 void
 calculateCostsTrainingCamp(gint number_camp)
 {
+#ifdef DEBUG
+    printf("calculateCostsTrainingCamp\n");
+#endif
+
     gint *money_out = current_user.money_out[0];
     gint *money = &current_user.money;
     gfloat factor = finance_wage_unit(current_user.tm);

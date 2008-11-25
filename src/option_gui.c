@@ -106,6 +106,10 @@ enum BooleanOptions
 void
 option_gui_write_bool_widgets(gint **bool_options, GtkToggleButton **bool_widgets)
 {
+#ifdef DEBUG
+    printf("option_gui_write_bool_widgets\n");
+#endif
+
     bool_widgets[BOOL_OPT_CONF_QUIT] = 
 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_conf_quit"));
     bool_options[BOOL_OPT_CONF_QUIT] = opt_intp("int_opt_confirm_quit");
@@ -359,6 +363,10 @@ enum SpinOptions
 void
 option_gui_write_spin_widgets(gint **spin_options, GtkSpinButton **spin_widgets)
 {
+#ifdef DEBUG
+    printf("option_gui_write_spin_widgets\n");
+#endif
+
     gint tmp = 0;
 
     spin_widgets[SPIN_OPT_AUTOSAVE] =
@@ -428,6 +436,10 @@ enum EntryOptions
 void
 option_gui_write_entry_widgets(gchar ***entry_options, GtkEntry **entry_widgets)
 {
+#ifdef DEBUG
+    printf("option_gui_write_entry_widgets\n");
+#endif
+
     entry_widgets[ENTRY_OPT_CONSTANTS] = 
 	GTK_ENTRY(lookup_widget(window.options, "entry_constants_file"));
     entry_options[ENTRY_OPT_CONSTANTS] = opt_strp("string_opt_constants_file");
@@ -442,6 +454,10 @@ option_gui_write_entry_widgets(gchar ***entry_options, GtkEntry **entry_widgets)
 void
 option_gui_set_up_window(void)
 {
+#ifdef DEBUG
+    printf("option_gui_set_up_window\n");
+#endif
+
     gint i;
     gchar buf[SMALL];
     GtkToggleButton *bool_widgets[BOOL_OPT_END];
@@ -479,6 +495,10 @@ option_gui_set_up_window(void)
 void
 option_gui_write_options(void)
 {
+#ifdef DEBUG
+    printf("option_gui_write_options\n");
+#endif
+
     gint i;
     gint language_index = 
 	gtk_combo_box_get_active(GTK_COMBO_BOX(lookup_widget(window.options, "combobox_languages")));

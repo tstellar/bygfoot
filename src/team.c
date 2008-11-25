@@ -50,6 +50,10 @@
 Team
 team_new(gboolean new_id)
 {
+#ifdef DEBUG
+    printf("team_new\n");
+#endif
+
     Team new;
 
     new.name = new.names_file = 
@@ -74,6 +78,10 @@ team_new(gboolean new_id)
 void
 team_generate_players_stadium(Team *tm, gfloat av_talent)
 {
+#ifdef DEBUG
+    printf("team_generate_players_stadium\n");
+#endif
+
     gint i;    
     gfloat skill_factor = math_rnd(1 - const_float("float_team_skill_variance"),
 				   1 + const_float("float_team_skill_variance"));
@@ -142,6 +150,10 @@ team_generate_players_stadium(Team *tm, gfloat av_talent)
 gboolean
 query_team_is_in_cups(const Team *tm, gint group)
 {
+#ifdef DEBUG
+    printf("query_team_is_in_cups\n");
+#endif
+
     gint i, j;
 
     if(group == -1)
@@ -169,6 +181,10 @@ query_team_is_in_cups(const Team *tm, gint group)
 gboolean
 query_team_is_in_cup(const Team *tm, const Cup *cup)
 {
+#ifdef DEBUG
+    printf("query_team_is_in_cup\n");
+#endif
+
     gint i;
 
     for(i=0;i<cup->team_names->len;i++)
@@ -187,6 +203,10 @@ query_team_is_in_cup(const Team *tm, const Cup *cup)
 GPtrArray*
 team_get_pointers_from_array(const GArray *teams, GPtrArray *team_ptrs)
 {
+#ifdef DEBUG
+    printf("team_get_pointers_from_array\n");
+#endif
+
     gint i;
     GPtrArray *team_pointers = g_ptr_array_new();
 
@@ -208,7 +228,12 @@ team_get_pointers_from_array(const GArray *teams, GPtrArray *team_ptrs)
     the id. */
 Team*
 team_of_id(gint id)
-{    
+{
+#ifdef DEBUG
+    printf("team_of_id\n");
+#endif
+
+     
     gint i, j;
 
     for(i=0;i<ligs->len;i++)
@@ -233,6 +258,10 @@ team_of_id(gint id)
 Fixture*
 team_get_fixture(const Team *tm, gboolean last_fixture)
 {
+#ifdef DEBUG
+    printf("team_get_fixture\n");
+#endif
+
     gint i, j;
     Fixture *fix = NULL;
 
@@ -331,6 +360,10 @@ team_get_fixture(const Team *tm, gboolean last_fixture)
 gint
 team_is_user(const Team *tm)
 {
+#ifdef DEBUG
+    printf("team_is_user\n");
+#endif
+
     gint i;
 
     for(i=0;i<users->len;i++)
@@ -346,6 +379,10 @@ team_is_user(const Team *tm)
 gint
 team_name_is_user(const gchar *team_name)
 {
+#ifdef DEBUG
+    printf("team_name_is_user\n");
+#endif
+
     gint i;
 
     for(i=0;i<users->len;i++)
@@ -362,6 +399,10 @@ team_name_is_user(const gchar *team_name)
 gfloat
 team_get_average_skill(const Team *tm, gboolean cskill)
 {
+#ifdef DEBUG
+    printf("team_get_average_skill\n");
+#endif
+
     gint i, counter = 0;
     gfloat sum = 0;
     
@@ -389,6 +430,10 @@ team_get_average_skill(const Team *tm, gboolean cskill)
 gfloat
 team_get_average_talent(const Team *tm)
 {
+#ifdef DEBUG
+    printf("team_get_average_talent\n");
+#endif
+
     gint i;
     gfloat sum = 0;
 
@@ -403,6 +448,10 @@ team_get_average_talent(const Team *tm)
 gint
 team_get_league_rank(const Team *tm)
 {
+#ifdef DEBUG
+    printf("team_get_league_rank\n");
+#endif
+
     gint i, clid = team_get_table_clid(tm), rank = 0;
     GArray *elements = NULL;
     
@@ -437,6 +486,10 @@ team_get_league_rank(const Team *tm)
 gint
 team_get_cup_rank(const Team *tm, const CupRound *cupround, gboolean abort)
 {
+#ifdef DEBUG
+    printf("team_get_cup_rank\n");
+#endif
+
     gint i, j;
 
     for(i=0;i<cupround->tables->len;i++)
@@ -461,6 +514,10 @@ team_get_cup_rank(const Team *tm, const CupRound *cupround, gboolean abort)
 gint
 team_find_appropriate_structure(const Team *tm)
 {
+#ifdef DEBUG
+    printf("team_find_appropriate_structure\n");
+#endif
+
   gint i;
   gint structure = 0;
 
@@ -483,6 +540,10 @@ team_find_appropriate_structure(const Team *tm)
 void
 team_change_structure(Team *tm, gint new_structure)
 {
+#ifdef DEBUG
+    printf("team_change_structure\n");
+#endif
+
   gint i;
 
   tm->structure = new_structure;
@@ -504,6 +565,10 @@ team_change_structure(Team *tm, gint new_structure)
 void
 team_rearrange(Team *tm)
 {
+#ifdef DEBUG
+    printf("team_rearrange\n");
+#endif
+
     gint i;
 
     g_array_sort_with_data(tm->players, (GCompareDataFunc)player_compare_func,
@@ -526,6 +591,14 @@ team_rearrange(Team *tm)
 gchar*
 team_attribute_to_char(gint attribute, gint value)
 {
+#ifdef DEBUG
+    printf("team_attribute_to_char\n");
+#endif
+
+#ifdef DEBUG
+    printf("team_attribute_to_char\n");
+#endif
+
     switch(attribute)
     {
 	default:
@@ -573,6 +646,10 @@ team_attribute_to_char(gint attribute, gint value)
 void
 team_change_attribute_with_message(Team *tm, gint attribute, gint new_value)
 {
+#ifdef DEBUG
+    printf("team_change_attribute_with_message\n");
+#endif
+
     switch(attribute)
     {
 	default:
@@ -602,6 +679,10 @@ team_change_attribute_with_message(Team *tm, gint attribute, gint new_value)
 void
 team_update_cpu_new_players(Team *tm)
 {
+#ifdef DEBUG
+    printf("team_update_cpu_new_players\n");
+#endif
+
     gint i;
     gint number_of_new = math_rndi(const_int("int_team_new_players_lower"),
 				   const_int("int_team_new_players_upper"));
@@ -621,6 +702,10 @@ team_update_cpu_new_players(Team *tm)
 void
 team_update_team_weekly(Team *tm)
 {
+#ifdef DEBUG
+    printf("team_update_team_weekly\n");
+#endif
+
     gint i;
 
     for(i=tm->players->len - 1;i>=0;i--)
@@ -637,6 +722,10 @@ team_update_team_weekly(Team *tm)
 void
 team_update_post_match(Team *tm, const Fixture *fix)
 {
+#ifdef DEBUG
+    printf("team_update_post_match\n");
+#endif
+
     gint i;
 
     for(i=0;i<tm->players->len;i++)
@@ -648,6 +737,10 @@ team_update_post_match(Team *tm, const Fixture *fix)
 void
 team_update_team_week_roundly(Team *tm)
 {
+#ifdef DEBUG
+    printf("team_update_team_week_roundly\n");
+#endif
+
     gint i;
 
     for(i=0;i<tm->players->len;i++)
@@ -662,6 +755,10 @@ team_update_team_week_roundly(Team *tm)
 gint
 team_get_table_value(const Team *tm, gint type)
 {
+#ifdef DEBUG
+    printf("team_get_table_value\n");
+#endif
+
     gint i;
     const GArray *elements = NULL;
 
@@ -688,6 +785,10 @@ team_get_table_value(const Team *tm, gint type)
 gint
 team_compare_func(gconstpointer a, gconstpointer b, gpointer data)
 {
+#ifdef DEBUG
+    printf("team_compare_func\n");
+#endif
+
     gint type = GPOINTER_TO_INT(data) % 100;
     const Team *tm1 = (GPOINTER_TO_INT(data) < 100) ? 
 	*(const Team**)a : (const Team*)a;
@@ -759,7 +860,12 @@ team_compare_func(gconstpointer a, gconstpointer b, gpointer data)
     @param cup Whether we return the international cup teams or league teams. */
 GPtrArray*
 team_get_sorted(GCompareDataFunc compare_function, gint type, gboolean cup)
-{ 
+{
+#ifdef DEBUG
+    printf("team_get_sorted\n");
+#endif
+
+  
     gint i, j;
     GPtrArray *teams = g_ptr_array_new();
 
@@ -786,6 +892,10 @@ team_get_sorted(GCompareDataFunc compare_function, gint type, gboolean cup)
 Team*
 team_get_new(const Team *tm, gboolean fire)
 {
+#ifdef DEBUG
+    printf("team_get_new\n");
+#endif
+
     gint i;
     gint lower = 0, upper = 0;
     gint bound1 = (fire) ? const_int("int_team_new_bound_upper") :
@@ -828,6 +938,10 @@ team_get_new(const Team *tm, gboolean fire)
 gint
 team_get_index(const Team *tm)
 {
+#ifdef DEBUG
+    printf("team_get_index\n");
+#endif
+
     gint i;
     gpointer *teams = league_cup_get_teams(tm->clid);
 
@@ -854,6 +968,10 @@ team_get_index(const Team *tm)
 gfloat
 team_get_average_talents(const GArray *teams)
 {
+#ifdef DEBUG
+    printf("team_get_average_talents\n");
+#endif
+
     gint i, j, cnt = 0;
     gfloat sum = 0;
 
@@ -875,6 +993,10 @@ team_get_average_talents(const GArray *teams)
 gboolean
 query_team_plays(const Team *tm, gint week_number, gint week_round_number)
 {
+#ifdef DEBUG
+    printf("query_team_plays\n");
+#endif
+
     gint i, j;
 
     if(tm->clid < ID_CUP_START)
@@ -907,6 +1029,10 @@ query_team_plays(const Team *tm, gint week_number, gint week_round_number)
 void
 team_write_own_results(const Team *tm, gchar *buf, gboolean sort, gboolean cup_matches)
 {
+#ifdef DEBUG
+    printf("team_write_own_results\n");
+#endif
+
     gint i, res[2];
     gchar buf2[SMALL], buf3[SMALL], buf4[SMALL], neutral[SMALL];
     gint place;
@@ -990,6 +1116,10 @@ team_write_own_results(const Team *tm, gchar *buf, gboolean sort, gboolean cup_m
 void
 team_write_results(const Team *tm, gchar *result_buf, gchar *goals_buf)
 {
+#ifdef DEBUG
+    printf("team_write_results\n");
+#endif
+
     gint i;
     GPtrArray *latest_fixtures = fixture_get_latest(tm);
     gint res[2], goals[2] = {0, 0};
@@ -1029,6 +1159,10 @@ team_write_results(const Team *tm, gchar *result_buf, gchar *goals_buf)
 gboolean
 query_team_is_in_teams_array(const Team *tm, const GPtrArray *teams)
 {
+#ifdef DEBUG
+    printf("query_team_is_in_teams_array\n");
+#endif
+
     gint i;
 
     for(i=0;i<teams->len;i++)
@@ -1043,6 +1177,14 @@ query_team_is_in_teams_array(const Team *tm, const GPtrArray *teams)
 gchar*
 team_has_def_file(const Team *tm)
 {
+#ifdef DEBUG
+    printf("team_has_def_file\n");
+#endif
+
+#ifdef DEBUG
+    printf("team_has_def_file\n");
+#endif
+
     gchar *return_value = NULL;
     gchar buf[SMALL];
 
@@ -1060,6 +1202,10 @@ team_has_def_file(const Team *tm)
 void
 team_complete_def(Team *tm)
 {
+#ifdef DEBUG
+    printf("team_complete_def\n");
+#endif
+
     gint i, new_pos, pos_sum;
     gint positions[4] = {0, 0, 0, 0};
     Player new_player;
@@ -1108,6 +1254,10 @@ team_complete_def(Team *tm)
 void
 team_complete_def_sort(Team *tm)
 {
+#ifdef DEBUG
+    printf("team_complete_def_sort\n");
+#endif
+
     gint i, j;
     gint positions[4] = {0, 0, 0, 0};
     gint structure[4] = {1, 
@@ -1197,6 +1347,10 @@ team_complete_def_sort(Team *tm)
 gint
 team_get_table_clid(const Team *tm)
 {
+#ifdef DEBUG
+    printf("team_get_table_clid\n");
+#endif
+
     gint i;
 
     if(tm->clid >= ID_CUP_START ||
