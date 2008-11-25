@@ -144,7 +144,9 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 
     if(support_dir != NULL)
     {
-	gchar *fullpath = g_path_get_dirname(support_dir);
+	gchar *fullpath = (support_dir[strlen(support_dir)] == G_DIR_SEPARATOR) ?
+            g_path_get_dirname(support_dir) :
+            g_strdup_printf("%s%s", support_dir, G_DIR_SEPARATOR_S);
 	file_add_support_directory_recursive(fullpath);
 	g_free(fullpath);
 	g_free(support_dir);
