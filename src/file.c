@@ -80,7 +80,7 @@ file_add_support_directory_recursive                   (const gchar     *directo
 				    G_DIR_SEPARATOR_S, file);
 
 	if(g_file_test(fullpath, G_FILE_TEST_IS_DIR))
-	    file_add_support_directory_recursive(fullpath);
+	    file_add_support_directory_recursive(fullpath);            
     
 	g_free(fullpath);
     }
