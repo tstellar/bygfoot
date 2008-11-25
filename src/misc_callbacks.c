@@ -44,6 +44,10 @@ void
 on_button_add_player_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_add_player_clicked\n");
+#endif
+
     misc_callback_add_player();
 }
 
@@ -52,6 +56,10 @@ void
 on_entry_player_name_activate          (GtkEntry        *entry,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_entry_player_name_activate\n");
+#endif
+
     on_button_add_player_clicked(NULL, NULL);
 }
 
@@ -60,6 +68,10 @@ void
 on_team_selection_ok_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_team_selection_ok_clicked\n");
+#endif
+
     misc_callback_start_game();
 }
 
@@ -67,6 +79,10 @@ void
 on_team_selection_cancel_clicked       (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_team_selection_cancel_clicked\n");
+#endif
+
     main_exit_program(EXIT_OK, NULL);
 }
 
@@ -75,6 +91,10 @@ on_button_font_sel_cancel_clicked      (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_font_sel_cancel_clicked\n");
+#endif
+
     window_destroy(&window.font_sel);
 
     return FALSE;
@@ -85,6 +105,10 @@ void
 on_button_font_sel_ok_clicked          (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_font_sel_ok_clicked\n");
+#endif
+
     gchar *font = 
 	gtk_font_selection_dialog_get_font_name(GTK_FONT_SELECTION_DIALOG(window.font_sel));
 
@@ -102,6 +126,10 @@ void
 on_button_font_sel_apply_clicked       (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_font_sel_apply_clicked\n");
+#endif
+
     gchar *font = 
 	gtk_font_selection_dialog_get_font_name(GTK_FONT_SELECTION_DIALOG(window.font_sel));
 
@@ -124,6 +152,10 @@ on_live_window_delete_event            (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_live_window_delete_event\n");
+#endif
+
     if(GTK_WIDGET_IS_SENSITIVE(lookup_widget(widget, "button_live_close")))
     {
 	on_button_live_close_clicked(NULL, NULL);
@@ -138,6 +170,10 @@ void
 on_button_live_close_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_live_close_clicked\n");
+#endif
+
     if(stat1 == STATUS_SHOW_LAST_MATCH && stat3 != -1 &&
        stat4 != STATUS_SHOW_LAST_MATCH_PAUSE)
 	stat4 = STATUS_SHOW_LAST_MATCH_ABORT;
@@ -155,6 +191,10 @@ void
 on_button_pause_clicked                (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_pause_clicked\n");
+#endif
+
     misc_callback_pause_live_game();
 }
 
@@ -163,6 +203,10 @@ void
 on_button_resume_clicked               (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_resume_clicked\n");
+#endif
+
     GtkWidget *button_pause = 
 	lookup_widget(window.live, "button_pause");
 
@@ -192,6 +236,10 @@ void
 on_spinbutton_speed_value_changed      (GtkSpinButton   *spinbutton,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_spinbutton_speed_value_changed\n");
+#endif
+
     option_set_int("int_opt_user_live_game_speed",
 		   &usr(stat2).options, gtk_spin_button_get_value_as_int(spinbutton));
 }
@@ -201,6 +249,10 @@ void
 on_spinbutton_verbosity_value_changed  (GtkSpinButton   *spinbutton,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_spinbutton_verbosity_value_changed\n");
+#endif
+
     option_set_int("int_opt_user_live_game_verbosity",
 		   &usr(stat2).options, gtk_spin_button_get_value_as_int(spinbutton));
 }
@@ -211,6 +263,10 @@ on_treeview_users_button_press_event   (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_treeview_users_button_press_event\n");
+#endif
+
     misc_callback_remove_user(event);
 
     return FALSE;
@@ -220,6 +276,10 @@ void
 on_spinbutton_capacity_value_changed   (GtkSpinButton   *spinbutton,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_spinbutton_capacity_value_changed\n");
+#endif
+
     misc_callback_update_stadium_window(TRUE);
 }
 
@@ -228,6 +288,10 @@ void
 on_spinbutton_safety_value_changed     (GtkSpinButton   *spinbutton,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_spinbutton_safety_value_changed\n");
+#endif
+
     misc_callback_update_stadium_window(FALSE);
 }
 
@@ -236,6 +300,10 @@ void
 on_button_stadium_ok_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_stadium_ok_clicked\n");
+#endif
+
     misc_callback_improve_stadium();
 
     if(stat0 == STATUS_SHOW_FINANCES)
@@ -247,6 +315,10 @@ void
 on_button_stadium_cancel_clicked       (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_stadium_cancel_clicked\n");
+#endif
+
     window_destroy(&window.stadium);
 }
 
@@ -256,6 +328,10 @@ on_spinbutton_capacity_button_press_event  (GtkWidget       *widget,
 					    GdkEventButton  *event,
 					    gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_spinbutton_capacity_button_press_event\n");
+#endif
+
     if(event->button == 3)
     {
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(widget), 0);
@@ -270,6 +346,10 @@ on_window_stadium_delete_event         (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_window_stadium_delete_event\n");
+#endif
+
     on_button_stadium_cancel_clicked(NULL, NULL);
 
     return TRUE;
@@ -279,6 +359,10 @@ void
 on_combo_country_changed               (GtkComboBox     *combobox,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_combo_country_changed\n");
+#endif
+
     GtkTreeIter iter;
     gchar *buf = NULL;
 
@@ -294,6 +378,10 @@ on_spinbutton_speed_button_press_event (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_spinbutton_speed_button_press_event\n");
+#endif
+
     if(event->button == 3)
     {
 	if(option_int("int_opt_user_live_game_speed", &usr(stat2).options) == 
@@ -324,6 +412,10 @@ void
 on_button_sponsors_clicked             (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_sponsors_clicked\n");
+#endif
+
     misc_callback_new_sponsor();
 
     window_destroy(&window.sponsors);
@@ -336,6 +428,10 @@ on_treeview_sponsors_row_activated     (GtkTreeView     *treeview,
                                         GtkTreeViewColumn *column,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_treeview_sponsors_row_activated\n");
+#endif
+
     on_button_sponsors_clicked(NULL, NULL);
 }
 
@@ -345,6 +441,10 @@ on_window_sponsors_delete_event        (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_window_sponsors_delete_event\n");
+#endif
+
 
     return TRUE;
 }
@@ -353,6 +453,10 @@ void
 on_button_sponsors_wait_clicked        (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_sponsors_wait_clicked\n");
+#endif
+
     if(stat1 != STATUS_SPONSOR_CONTINUE)
     {
 	g_string_printf(current_user.sponsor.name, _("None"));
@@ -373,6 +477,10 @@ on_eventbox_lg_style_button_press_event (GtkWidget       *widget,
 					 GdkEventButton  *event,
 					 gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_eventbox_lg_style_button_press_event\n");
+#endif
+
     gint new_style = -1;
 
     if(stat0 == STATUS_LIVE_GAME_PAUSE)
@@ -414,6 +522,10 @@ on_eventbox_lg_boost_button_press_event (GtkWidget       *widget,
 					 GdkEventButton  *event,
 					 gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_eventbox_lg_boost_button_press_event\n");
+#endif
+
     gint new_boost = -1;
 
     if(stat0 == STATUS_LIVE_GAME_PAUSE)
@@ -459,6 +571,10 @@ void
 on_button_team_selection_back_clicked  (GtkButton       *button,
                                         gpointer         user_data)
 {
+#ifdef DEBUG
+    printf("on_button_team_selection_back_clicked\n");
+#endif
+
     window_destroy(&window.startup);
     stat0 = STATUS_SPLASH;
     window_show_splash();

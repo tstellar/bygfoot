@@ -80,6 +80,10 @@ WeekFunc end_week_funcs[] = {stat_update_leagues, end_week_hide_cups, NULL};
 void
 start_new_game(void)
 {
+#ifdef DEBUG
+    printf("start_new_game\n");
+#endif
+
     start_write_variables();
 
     start_generate_league_teams();
@@ -90,6 +94,10 @@ start_new_game(void)
 void
 start_new_season(void)
 {
+#ifdef DEBUG
+    printf("start_new_season\n");
+#endif
+
     gint i, j;
     gchar buf[SMALL];
 
@@ -205,6 +213,10 @@ start_new_season(void)
 void
 start_write_variables(void)
 {
+#ifdef DEBUG
+    printf("start_write_variables\n");
+#endif
+
     gint i;
 
     season = 1;
@@ -218,6 +230,10 @@ start_write_variables(void)
 void
 start_generate_league_teams(void)
 {
+#ifdef DEBUG
+    printf("start_generate_league_teams\n");
+#endif
+
     gint i, j;    
 
     stat5 = STATUS_GENERATE_TEAMS;
@@ -239,6 +255,10 @@ start_generate_league_teams(void)
 void
 start_new_season_reset_ids(void)
 {
+#ifdef DEBUG
+    printf("start_new_season_reset_ids\n");
+#endif
+
     gint i, max;
 
     max = -1;
@@ -260,6 +280,10 @@ start_new_season_reset_ids(void)
 void
 end_week_round(void)
 {
+#ifdef DEBUG
+    printf("end_week_round\n");
+#endif
+
     gint i = 0;
     gboolean new_week = TRUE;
     WeekFunc *end_func = end_week_round_funcs;
@@ -316,6 +340,10 @@ end_week_round(void)
 void
 end_week_round_results(void)
 {
+#ifdef DEBUG
+    printf("end_week_round_results\n");
+#endif
+
     gint i, j, done = 0;
     gchar buf[SMALL], buf2[SMALL];
     gfloat num_matches =
@@ -375,6 +403,10 @@ end_week_round_results(void)
 void
 end_week_round_sort_tables(void)
 {
+#ifdef DEBUG
+    printf("end_week_round_sort_tables\n");
+#endif
+
     gint i, j, k;
 
     for(i=0;i<ligs->len;i++)
@@ -413,6 +445,10 @@ end_week_round_sort_tables(void)
 void
 end_week_round_update_fixtures(void)
 {
+#ifdef DEBUG
+    printf("end_week_round_update_fixtures\n");
+#endif
+
     gint i;
 
     for(i=0;i<acps->len;i++)
@@ -451,6 +487,10 @@ end_week_round_update_fixtures(void)
 void
 start_week_round(void)
 {
+#ifdef DEBUG
+    printf("start_week_round\n");
+#endif
+
     WeekFunc *start_func = start_week_round_funcs;
 
     if(debug > 100)
@@ -486,6 +526,10 @@ start_week_round(void)
 void
 start_week(void)
 {
+#ifdef DEBUG
+    printf("start_week\n");
+#endif
+
     WeekFunc *start_func = start_week_funcs;
 
     while(*start_func != NULL)
@@ -499,6 +543,10 @@ start_week(void)
 void
 end_week(void)
 {
+#ifdef DEBUG
+    printf("end_week\n");
+#endif
+
     WeekFunc *end_func = end_week_funcs;
 
     while(*end_func != NULL)
@@ -516,6 +564,10 @@ end_week(void)
 void
 end_week_hide_cups(void)
 {
+#ifdef DEBUG
+    printf("end_week_hide_cups\n");
+#endif
+
     gint i;
 
     for(i=acps->len - 1; i >= 0; i--)
@@ -528,6 +580,10 @@ end_week_hide_cups(void)
 void
 start_week_add_cups(void)
 {
+#ifdef DEBUG
+    printf("start_week_add_cups\n");
+#endif
+
     gint i;
 
     for(i=0;i<cps->len;i++)
@@ -544,6 +600,10 @@ start_week_add_cups(void)
 void
 start_week_update_teams(void)
 {
+#ifdef DEBUG
+    printf("start_week_update_teams\n");
+#endif
+
     gint i, j;
     
     for(i=0;i<ligs->len;i++)
@@ -560,6 +620,10 @@ start_week_update_teams(void)
 void
 start_week_round_update_teams(void)
 {
+#ifdef DEBUG
+    printf("start_week_round_update_teams\n");
+#endif
+
     gint i, j;
     
     for(i=0;i<ligs->len;i++)
@@ -575,6 +639,10 @@ start_week_round_update_teams(void)
 void
 start_week_update_user_finances(void)
 {
+#ifdef DEBUG
+    printf("start_week_update_user_finances\n");
+#endif
+
     gint i;
 
     if(sett_int("int_opt_disable_finances"))
@@ -588,6 +656,10 @@ start_week_update_user_finances(void)
 void
 start_week_update_users(void)
 {
+#ifdef DEBUG
+    printf("start_week_update_users\n");
+#endif
+
     gint i;
 
     for(i=0;i<users->len;i++)
@@ -609,6 +681,10 @@ start_week_update_users(void)
 void
 start_week_update_leagues(void)
 {
+#ifdef DEBUG
+    printf("start_week_update_leagues\n");
+#endif
+
     gint i;
 
     for(i = 0; i < ligs->len; i++)
@@ -619,6 +695,10 @@ start_week_update_leagues(void)
 gboolean
 query_start_end_season_end(void)
 {
+#ifdef DEBUG
+    printf("query_start_end_season_end\n");
+#endif
+
     gint i, j;
 
     for(i=0;i<ligs->len;i++)
@@ -638,6 +718,10 @@ query_start_end_season_end(void)
 void
 start_new_season_league_changes(void)
 {
+#ifdef DEBUG
+    printf("start_new_season_league_changes\n");
+#endif
+
     gint i, j, k;
     gint league_size[ligs->len];
     GArray *team_movements = g_array_new(FALSE, FALSE, sizeof(TeamMove));
@@ -697,5 +781,9 @@ start_new_season_league_changes(void)
 void
 end_season(void)
 {
+#ifdef DEBUG
+    printf("end_season\n");
+#endif
+
     stat_create_season_stat();
 }

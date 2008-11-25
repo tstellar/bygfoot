@@ -60,6 +60,10 @@
 void
 window_show_splash(void)
 {
+#ifdef DEBUG
+    printf("window_show_splash\n");
+#endif
+
     window_create(WINDOW_SPLASH);
 
     treeview_show_contributors(
@@ -73,6 +77,10 @@ window_show_splash(void)
 void
 window_splash_show_hint(void)
 {
+#ifdef DEBUG
+    printf("window_splash_show_hint\n");
+#endif
+
     gchar buf[SMALL];
 
     gtk_label_set_text(
@@ -91,6 +99,10 @@ window_splash_show_hint(void)
 void
 window_load_hint_number(void)
 {
+#ifdef DEBUG
+    printf("window_load_hint_number\n");
+#endif
+
     gchar filename[SMALL];
     gchar dir[SMALL];
     FILE *fil;
@@ -125,6 +137,10 @@ window_load_hint_number(void)
 void
 window_save_hint_number(void)
 {
+#ifdef DEBUG
+    printf("window_save_hint_number\n");
+#endif
+
     gchar filename[SMALL];
     gchar dir[SMALL];
     FILE *fil;
@@ -149,6 +165,10 @@ window_save_hint_number(void)
 void
 window_show_progress(gint pictype)
 {
+#ifdef DEBUG
+    printf("window_show_progress\n");
+#endif
+
     GPtrArray *pics = NULL;
     const gchar *picdir = NULL;
     gchar buf[SMALL];
@@ -214,6 +234,10 @@ window_show_progress(gint pictype)
 void
 window_show_bets(void)
 {
+#ifdef DEBUG
+    printf("window_show_bets\n");
+#endif
+
     window_create(WINDOW_BETS);
 
     gtk_toggle_button_set_active(
@@ -234,6 +258,10 @@ window_show_bets(void)
 void
 window_show_help(gint page)
 {
+#ifdef DEBUG
+    printf("window_show_help\n");
+#endif
+
     gchar buf[SMALL];
 
     window_create(WINDOW_HELP);
@@ -256,6 +284,10 @@ window_show_help(gint page)
 void
 window_show_startup(void)
 {
+#ifdef DEBUG
+    printf("window_show_startup\n");
+#endif
+
     GtkWidget *window_startup =
 	window_create(WINDOW_STARTUP);
     GtkWidget *combo_country =
@@ -294,6 +326,10 @@ window_show_startup(void)
 void
 window_show_file_sel(void)
 {
+#ifdef DEBUG
+    printf("window_show_file_sel\n");
+#endif
+
     gchar buf[SMALL];
     const gchar *home = g_get_home_dir();
     gchar *filename = NULL;
@@ -414,6 +450,10 @@ window_show_file_sel(void)
 void
 window_show_mmatches(void)
 {
+#ifdef DEBUG
+    printf("window_show_mmatches\n");
+#endif
+
     if(window.mmatches == NULL)
 	window_create(WINDOW_MMATCHES);
     treeview2_show_mmatches();
@@ -426,6 +466,10 @@ window_show_mmatches(void)
 void
 window_show_options(void)
 {
+#ifdef DEBUG
+    printf("window_show_options\n");
+#endif
+
     window_create(WINDOW_OPTIONS);
 
     option_gui_set_up_window();
@@ -435,6 +479,10 @@ window_show_options(void)
 void
 window_show_menu_player(GdkEvent *event)
 {
+#ifdef DEBUG
+    printf("window_show_menu_player\n");
+#endif
+
     if(window.menu_player != NULL)
 	window_destroy(&window.menu_player);
 
@@ -448,6 +496,10 @@ window_show_menu_player(GdkEvent *event)
 void
 window_show_menu_youth(GdkEvent *event)
 {
+#ifdef DEBUG
+    printf("window_show_menu_youth\n");
+#endif
+
     if(window.menu_youth != NULL)
 	window_destroy(&window.menu_youth);
 
@@ -463,6 +515,10 @@ void
 window_show_digits(const gchar *text_main, const gchar* text1, gint value1, 
 		   const gchar* text2, gint value2, gboolean show_alr)
 {
+#ifdef DEBUG
+    printf("window_show_digits\n");
+#endif
+
     GtkLabel *label_main, *label_1, *label_2;
     GtkSpinButton *spinbutton1, *spinbutton2;
 
@@ -505,6 +561,10 @@ window_show_digits(const gchar *text_main, const gchar* text1, gint value1,
 void
 window_show_stadium(void)
 {
+#ifdef DEBUG
+    printf("window_show_stadium\n");
+#endif
+
     gchar buf[SMALL];
     const Team *tm = current_user.tm;
     GtkLabel *label_capacity,
@@ -574,6 +634,10 @@ window_show_stadium(void)
 gboolean
 window_show(gpointer window)
 {
+#ifdef DEBUG
+    printf("window_show\n");
+#endif
+
     gtk_widget_show((GtkWidget*)window);
 
     return FALSE;
@@ -584,6 +648,10 @@ window_show(gpointer window)
 void
 window_show_yesno(const gchar *text)
 {
+#ifdef DEBUG
+    printf("window_show_yesno\n");
+#endif
+
     window_create(WINDOW_YESNO);
     gtk_label_set_text(GTK_LABEL(lookup_widget(window.yesno, "label_yesno")), text);
 }
@@ -593,6 +661,10 @@ window_show_yesno(const gchar *text)
 void
 window_show_transfer_dialog(const gchar *text)
 {
+#ifdef DEBUG
+    printf("window_show_transfer_dialog\n");
+#endif
+
     window_create(WINDOW_TRANSFER_DIALOG);
     gtk_label_set_text(GTK_LABEL(lookup_widget(window.transfer_dialog, "label_transfer_dialog")), text);
 }
@@ -602,6 +674,10 @@ window_show_transfer_dialog(const gchar *text)
 void
 window_live_set_up(void)
 {
+#ifdef DEBUG
+    printf("window_live_set_up\n");
+#endif
+
     GtkSpinButton *sb_speed = 
 	GTK_SPIN_BUTTON(lookup_widget(window.live, "spinbutton_speed"));
     gfloat user_option = (gfloat)option_int("int_opt_user_live_game_speed", 
@@ -624,6 +700,10 @@ window_live_set_up(void)
 void
 window_main_save_geometry(void)
 {
+#ifdef DEBUG
+    printf("window_main_save_geometry\n");
+#endif
+
     gchar filename[SMALL];
     gchar dir[SMALL];
     FILE *fil = NULL;
@@ -656,6 +736,10 @@ window_main_save_geometry(void)
 void
 window_main_load_geometry(void)
 {
+#ifdef DEBUG
+    printf("window_main_load_geometry\n");
+#endif
+
     gchar filename[SMALL];
     gchar dir[SMALL];
     OptionList optionlist;
@@ -918,6 +1002,10 @@ window_create(gint window_type)
 void
 window_destroy(GtkWidget **wind)
 {
+#ifdef DEBUG
+    printf("window_destroy\n");
+#endif
+
     if(*wind == NULL)
 	return;
 
@@ -938,6 +1026,10 @@ window_destroy(GtkWidget **wind)
 void
 window_show_training_camp(void)
 {
+#ifdef DEBUG
+    printf("window_show_training_camp\n");
+#endif
+
 	GtkEntry *tfCosts;
 	GtkWidget *rb_camp1;
     GtkWidget *rb_camp2;
@@ -1018,6 +1110,10 @@ window_show_training_camp(void)
 void
 window_show_alr(void)
 {
+#ifdef DEBUG
+    printf("window_show_alr\n");
+#endif
+
     gchar weekly_installment[SMALL],
         debt[SMALL];
 

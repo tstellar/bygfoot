@@ -41,6 +41,10 @@
 gfloat
 bet_round_odd(gfloat odd)
 {
+#ifdef DEBUG
+    printf("bet_round_odd\n");
+#endif
+
     gint local_odd = (gint)rint(odd * 100);
 
     if(local_odd % 5 == 0)
@@ -56,6 +60,10 @@ bet_round_odd(gfloat odd)
 BetMatch*
 bet_from_fixture(gint fix_id)
 {
+#ifdef DEBUG
+    printf("bet_from_fixture\n");
+#endif
+
     gint i, j;
 
     for(i=1;i>=0;i--)
@@ -74,6 +82,10 @@ bet_from_fixture(gint fix_id)
 void
 bet_update_user_bets(void)
 {
+#ifdef DEBUG
+    printf("bet_update_user_bets\n");
+#endif
+
     gint i, j, outcome;
     const BetMatch *bet = NULL;
     const Fixture *fix = NULL;
@@ -127,6 +139,10 @@ bet_update_user_bets(void)
 void
 bet_get_odds(BetMatch *bet)
 {
+#ifdef DEBUG
+    printf("bet_get_odds\n");
+#endif
+
     const Fixture *fix = fixture_from_id(bet->fix_id, TRUE);
     gfloat home_advantage = (fix->home_advantage) ?
 	(const_float("float_game_home_advantage_lower") +
@@ -175,6 +191,10 @@ bet_get_odds(BetMatch *bet)
 void
 bet_update(void)
 {
+#ifdef DEBUG
+    printf("bet_update\n");
+#endif
+
     gint i;
     GPtrArray *fixtures = fixture_get_week_list(week, week_round);
     BetMatch new_bet;
@@ -206,6 +226,10 @@ bet_update(void)
 BetUser*
 bet_is_user(const BetMatch *bet)
 {
+#ifdef DEBUG
+    printf("bet_is_user\n");
+#endif
+
     gint i, j;
 
     for(i=1;i>=0;i--)
@@ -221,6 +245,10 @@ bet_is_user(const BetMatch *bet)
 gboolean
 bet_place(gint fix_id, gint outcome, gint wager)
 {
+#ifdef DEBUG
+    printf("bet_place\n");
+#endif
+
     gint max_wager = (gint)rint(finance_wage_unit(current_user.tm) * 
 				const_float("float_bet_wager_limit_factor"));
     BetUser new_bet;
@@ -261,6 +289,10 @@ bet_place(gint fix_id, gint outcome, gint wager)
 void
 bet_remove(gint fix_id)
 {
+#ifdef DEBUG
+    printf("bet_remove\n");
+#endif
+
     gint i;
 
     for(i=0;i<current_user.bets[1]->len;i++)

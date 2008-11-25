@@ -44,6 +44,10 @@
 void
 transfer_update(void)
 {
+#ifdef DEBUG
+    printf("transfer_update\n");
+#endif
+
     gint i, j;
 
     if((week > transfer_get_deadline() ||
@@ -94,6 +98,10 @@ transfer_update(void)
 void
 transfer_add_cpu_offers(void)
 {
+#ifdef DEBUG
+    printf("transfer_add_cpu_offers\n");
+#endif
+
     gint i;
     gfloat scout_factor_bounds[4][2] =
 	{{const_float("float_transfer_offer_fee_best_lower"),
@@ -127,6 +135,10 @@ transfer_add_cpu_offers(void)
 Team*
 transfer_team_get_new(void)
 {
+#ifdef DEBUG
+    printf("transfer_team_get_new\n");
+#endif
+
     gint rndom;
     GPtrArray *league_teams = team_get_sorted(team_compare_func, 
 					      TEAM_COMPARE_UNSORTED, FALSE),
@@ -150,6 +162,10 @@ transfer_team_get_new(void)
 gint
 transfer_offer_compare_func(gconstpointer a, gconstpointer b)
 {
+#ifdef DEBUG
+    printf("transfer_offer_compare_func\n");
+#endif
+
     const TransferOffer *tr1 = (const TransferOffer*)a,
 	*tr2 = (const TransferOffer*)b;    
     gint return_value;
@@ -174,6 +190,10 @@ transfer_offer_compare_func(gconstpointer a, gconstpointer b)
 void
 transfer_offers_notify(Transfer *tr, gboolean sort)
 {
+#ifdef DEBUG
+    printf("transfer_offers_notify\n");
+#endif
+
     TransferOffer *off = NULL;
 
     if(sort)
@@ -200,6 +220,10 @@ transfer_offers_notify(Transfer *tr, gboolean sort)
 void
 transfer_evaluate_offers(void)
 {
+#ifdef DEBUG
+    printf("transfer_evaluate_offers\n");
+#endif
+
     gint i, j;
     gboolean notify;
 
@@ -277,6 +301,10 @@ transfer_evaluate_offers(void)
 void
 transfer_add_new_players(void)
 {
+#ifdef DEBUG
+    printf("transfer_add_new_players\n");
+#endif
+
     gint i;
     gint number_of_new = math_rndi(const_int("int_transfer_new_players_lower"),
 				   const_int("int_transfer_new_players_upper"));
@@ -296,6 +324,10 @@ transfer_add_new_players(void)
 Player*
 transfer_player_get_new(gboolean cup)
 {
+#ifdef DEBUG
+    printf("transfer_player_get_new\n");
+#endif
+
     GPtrArray *teams = team_get_sorted(team_compare_func, TEAM_COMPARE_UNSORTED, cup);
     Player *pl = NULL;
     Team *tm = NULL;
@@ -320,6 +352,10 @@ transfer_player_get_new(gboolean cup)
 void
 transfer_add_player(Player *pl, gint time)
 {
+#ifdef DEBUG
+    printf("transfer_add_player\n");
+#endif
+
     gint i;
     Transfer new;
     gfloat deviance_value, deviance_wage;
@@ -350,6 +386,10 @@ transfer_add_player(Player *pl, gint time)
 gint
 transfer_get_deadline(void)
 {
+#ifdef DEBUG
+    printf("transfer_get_deadline\n");
+#endif
+
     gint i;
     gint length = 0;
 
@@ -372,6 +412,10 @@ transfer_get_deadline(void)
 void
 transfer_remove_player(gint idx)
 {
+#ifdef DEBUG
+    printf("transfer_remove_player\n");
+#endif
+
     free_g_array(&trans(idx).offers);
     g_array_remove_index(transfer_list, idx);
 }
@@ -380,6 +424,10 @@ transfer_remove_player(gint idx)
 void
 transfer_remove_player_ptr(const Player *pl)
 {
+#ifdef DEBUG
+    printf("transfer_remove_player_ptr\n");
+#endif
+
     gint i;
 
     for(i=0;i<transfer_list->len;i++)
@@ -394,6 +442,10 @@ transfer_remove_player_ptr(const Player *pl)
 gboolean
 query_transfer_player_is_on_list(const Player *pl)
 {
+#ifdef DEBUG
+    printf("query_transfer_player_is_on_list\n");
+#endif
+
     gint i;
 
     for(i=0;i<transfer_list->len;i++)
@@ -409,6 +461,10 @@ query_transfer_player_is_on_list(const Player *pl)
 gboolean
 query_transfer_current_team_offer(const Player *pl)
 {
+#ifdef DEBUG
+    printf("query_transfer_current_team_offer\n");
+#endif
+
     gint i, j;
 
     for(i=0;i<transfer_list->len;i++)
@@ -445,6 +501,10 @@ transfer_player_has_offer(const Player *pl)
 gboolean
 transfer_add_offer(gint idx, Team *tm, gint fee, gint wage)
 {
+#ifdef DEBUG
+    printf("transfer_add_offer\n");
+#endif
+
     gint i;
     TransferOffer new;
 
@@ -471,6 +531,10 @@ transfer_add_offer(gint idx, Team *tm, gint fee, gint wage)
 gboolean
 transfer_remove_offer(gint idx, const Team *tm)
 {
+#ifdef DEBUG
+    printf("transfer_remove_offer\n");
+#endif
+
     gint i;
 
     for(i=0;i<trans(idx).offers->len;i++)
@@ -487,6 +551,10 @@ transfer_remove_offer(gint idx, const Team *tm)
 void
 transfer_add_remove_user_player(Player *pl)
 {
+#ifdef DEBUG
+    printf("transfer_add_remove_user_player\n");
+#endif
+
     if(!query_transfer_player_is_on_list(pl))
     {
 	if(week < transfer_get_deadline())
@@ -519,6 +587,10 @@ transfer_add_remove_user_player(Player *pl)
 gboolean
 transfer_offers_pending(void)
 {
+#ifdef DEBUG
+    printf("transfer_offers_pending\n");
+#endif
+
     gint i;
 
     for(i=0;i<transfer_list->len;i++)
@@ -539,6 +611,10 @@ transfer_offers_pending(void)
 void
 transfer_get_previous_offer(const Transfer *tr, const Team *tm, gint *fee, gint *wage)
 {
+#ifdef DEBUG
+    printf("transfer_get_previous_offer\n");
+#endif
+
     gint i;
 
     for(i=0;i<tr->offers->len;i++)
@@ -554,6 +630,10 @@ transfer_get_previous_offer(const Transfer *tr, const Team *tm, gint *fee, gint 
 gboolean
 transfer_new_star_balks(const Transfer *tr, const TransferOffer *troff)
 {
+#ifdef DEBUG
+    printf("transfer_new_star_balks\n");
+#endif
+
     gint i;
     gint number_of_stars;
 

@@ -77,6 +77,10 @@ PlayerCard new_card;
 void
 xml_loadsave_players_start_element(gint tag, Team *tm)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_players_start_element\n");
+#endif
+
     gint i;
     gboolean valid_tag = FALSE;
 
@@ -101,6 +105,10 @@ xml_loadsave_players_start_element(gint tag, Team *tm)
 void
 xml_loadsave_players_end_element(gint tag, GArray *players)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_players_end_element\n");
+#endif
+
     if(tag == TAG_PLAYER)
 	g_array_append_val(players, new_player);
     else if(tag == TAG_PLAYER_NAME ||
@@ -157,6 +165,10 @@ xml_loadsave_players_end_element(gint tag, GArray *players)
 void
 xml_loadsave_players_text(gchar *text)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_players_text\n");
+#endif
+
     gint int_value = -1;
     gfloat float_value = -1;
 
@@ -230,6 +242,10 @@ xml_loadsave_players_text(gchar *text)
 void
 xml_loadsave_players_write(FILE *fil, const GArray *players)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_players_write\n");
+#endif
+
     gint i;
 
     fprintf(fil, "%s<_%d>\n", I1, TAG_PLAYERS);
@@ -243,6 +259,10 @@ xml_loadsave_players_write(FILE *fil, const GArray *players)
 void
 xml_loadsave_players_write_player(FILE *fil, const Player *pl)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_players_write_player\n");
+#endif
+
     gint i;
 
     fprintf(fil, "%s<_%d>\n", I1, TAG_PLAYER);

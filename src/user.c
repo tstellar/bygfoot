@@ -51,6 +51,10 @@
 User
 user_new(void)
 {
+#ifdef DEBUG
+    printf("user_new\n");
+#endif
+
     User new;
 
     new.name = g_strdup("NONAME");
@@ -85,6 +89,10 @@ user_new(void)
 void
 user_set_up_team_new_game(User *user)
 {
+#ifdef DEBUG
+    printf("user_set_up_team_new_game\n");
+#endif
+
     gchar buf[SMALL];
     gint rndom;
 
@@ -125,6 +133,10 @@ user_set_up_team_new_game(User *user)
 void
 user_set_up_team(User *user, gboolean remove_players)
 {
+#ifdef DEBUG
+    printf("user_set_up_team\n");
+#endif
+
     gint i, j;
 
     if(remove_players)
@@ -166,6 +178,10 @@ user_set_up_team(User *user, gboolean remove_players)
 void
 user_set_up_counters(User *user)
 {
+#ifdef DEBUG
+    printf("user_set_up_counters\n");
+#endif
+
     gint i;
 
     for(i=0;i<COUNT_USER_END;i++)
@@ -182,6 +198,10 @@ user_set_up_counters(User *user)
 void
 user_set_up_finances(User *user)
 {
+#ifdef DEBUG
+    printf("user_set_up_finances\n");
+#endif
+
     gint i;
 
     for(i=0; i<MON_OUT_END;i++)
@@ -205,6 +225,10 @@ user_set_up_finances(User *user)
 void
 user_remove(gint idx, gboolean regenerate_team)
 {
+#ifdef DEBUG
+    printf("user_remove\n");
+#endif
+
     gint i;
 
     if(regenerate_team)
@@ -234,6 +258,10 @@ user_remove(gint idx, gboolean regenerate_team)
 void
 user_set_player_list_attributes(const User *user, PlayerListAttribute *attribute, gint list_number)
 {
+#ifdef DEBUG
+    printf("user_set_player_list_attributes\n");
+#endif
+
     gint i, cnt = 0;
     gchar prefix[SMALL];
 
@@ -251,6 +279,10 @@ user_set_player_list_attributes(const User *user, PlayerListAttribute *attribute
 gboolean
 query_user_events()
 {
+#ifdef DEBUG
+    printf("query_user_events\n");
+#endif
+
     gint i;
 
     for(i=0;i<users->len;i++)
@@ -264,6 +296,10 @@ query_user_events()
 gboolean
 query_user_games_in_week_round(gint week_number, gint week_round_number)
 {
+#ifdef DEBUG
+    printf("query_user_games_in_week_round\n");
+#endif
+
     gint i;
 
     for(i=0;i<users->len;i++)
@@ -277,6 +313,10 @@ query_user_games_in_week_round(gint week_number, gint week_round_number)
 gboolean
 query_user_game_in_week_round(gint usr_idx, gint week_number, gint week_round_number)
 {
+#ifdef DEBUG
+    printf("query_user_game_in_week_round\n");
+#endif
+
     gint i, j;
 
     for(i=0;i<ligs->len;i++)
@@ -321,6 +361,10 @@ user_from_team(const Team *tm)
 void
 user_job_offer(User *user)
 {
+#ifdef DEBUG
+    printf("user_job_offer\n");
+#endif
+
     Team *new_team = NULL;
 
     if(math_rnd(0, 1) > const_float("float_user_success_counter_check") ||
@@ -359,6 +403,10 @@ user_job_offer(User *user)
 void
 user_weekly_update_counters(User *user)
 {
+#ifdef DEBUG
+    printf("user_weekly_update_counters\n");
+#endif
+
     gint rank = team_get_league_rank(user->tm);
     gint teamslen = ((GArray*)(league_cup_get_teams(user->tm->clid)))->len;
     gint rank_bounds[2] = 
@@ -418,6 +466,10 @@ user_weekly_update_counters(User *user)
 Event
 user_event_new(void)
 {
+#ifdef DEBUG
+    printf("user_event_new\n");
+#endif
+
     Event new;
 
     new.user = NULL;
@@ -434,6 +486,10 @@ void
 user_event_add(User *user, gint type, gint value1, gint value2, 
 	       gpointer value_pointer, gchar *format, ...)
 {
+#ifdef DEBUG
+    printf("user_event_add\n");
+#endif
+
     Event new = user_event_new();
     gchar text[SMALL];
     va_list args;
@@ -463,6 +519,10 @@ user_event_add(User *user, gint type, gint value1, gint value2,
 void
 user_event_remove(User *user, gint idx)
 {
+#ifdef DEBUG
+    printf("user_event_remove\n");
+#endif
+
     free_event(&g_array_index(user->events, Event, idx));
     g_array_remove_index(user->events, idx);
 }
@@ -470,7 +530,12 @@ user_event_remove(User *user, gint idx)
 /** Show the next event for the current user. */
 void
 user_event_show_next(void)
-{    
+{
+#ifdef DEBUG
+    printf("user_event_show_next\n");
+#endif
+
+     
     Event *event = NULL;
     gchar buf[SMALL],
 	buf2[SMALL], buf3[SMALL];
@@ -583,6 +648,10 @@ user_event_show_next(void)
 void
 user_change_team(User *user, Team *tm)
 {
+#ifdef DEBUG
+    printf("user_change_team\n");
+#endif
+
     gint i;
     gint success = user->counters[COUNT_USER_SUCCESS];
 
@@ -610,6 +679,10 @@ user_change_team(User *user, Team *tm)
 gboolean
 query_user_teams_have_unfit(void)
 {
+#ifdef DEBUG
+    printf("query_user_teams_have_unfit\n");
+#endif
+
     gint i, j;
 
     for(i=0;i<users->len;i++)
@@ -630,6 +703,10 @@ query_user_teams_have_unfit(void)
 gint
 user_history_compare(gconstpointer a, gconstpointer b)
 {
+#ifdef DEBUG
+    printf("user_history_compare\n");
+#endif
+
     gint return_value = 0;
     const UserHistory *his1 = (const UserHistory*)a,
 	*his2 = (const UserHistory*)b;
@@ -652,6 +729,10 @@ user_history_add(User *user, gint type, const gchar *team_name,
 		 const gchar* string0, const gchar *string1,
 		 const gchar *string2)
 {
+#ifdef DEBUG
+    printf("user_history_add\n");
+#endif
+
     gint i;
     UserHistory new_history;
     UserHistory *his = &new_history;
@@ -731,6 +812,10 @@ user_history_add(User *user, gint type, const gchar *team_name,
 void
 user_history_to_string(const UserHistory *history, gchar *buf)
 {
+#ifdef DEBUG
+    printf("user_history_to_string\n");
+#endif
+
     switch(history->type)
     {
 	default:
@@ -811,6 +896,10 @@ user_history_to_string(const UserHistory *history, gchar *buf)
 void
 user_add_cup_success(User *user, const Cup *cup, gint round, gint type)
 {
+#ifdef DEBUG
+    printf("user_add_cup_success\n");
+#endif
+
     gboolean international, national;
 
     international = query_league_cup_has_property(cup->id, "international");
@@ -863,6 +952,10 @@ user_add_cup_success(User *user, const Cup *cup, gint round, gint type)
 gboolean
 query_user_no_turn(void)
 {
+#ifdef DEBUG
+    printf("query_user_no_turn\n");
+#endif
+
     gint i;
 
     for(i=0;i<users->len;i++)
@@ -876,6 +969,10 @@ query_user_no_turn(void)
 UserSponsor
 user_get_sponsor(const User *user)
 {
+#ifdef DEBUG
+    printf("user_get_sponsor\n");
+#endif
+
     UserSponsor new;
     gint suc_factor = (current_user.counters[COUNT_USER_SUCCESS] < 0) ? -1 : 1;
     gchar *names[18] =
@@ -964,6 +1061,10 @@ user_get_sponsor(const User *user)
 void
 user_show_sponsors(void)
 {
+#ifdef DEBUG
+    printf("user_show_sponsors\n");
+#endif
+
     gint i, num_offers;
     GArray *sponsors = g_array_new(FALSE, FALSE, sizeof(UserSponsor));
     UserSponsor sponsor;
@@ -1004,6 +1105,10 @@ user_show_sponsors(void)
 void
 user_show_sponsor_continue(void)
 {
+#ifdef DEBUG
+    printf("user_show_sponsor_continue\n");
+#endif
+
     GArray *sponsors = g_array_new(FALSE, FALSE, sizeof(UserSponsor));
     UserSponsor sponsor;
     gchar buf[SMALL];
@@ -1031,6 +1136,10 @@ user_show_sponsor_continue(void)
 void
 user_mm_load_file(const gchar *filename, GArray *mmatches)
 {
+#ifdef DEBUG
+    printf("user_mm_load_file\n");
+#endif
+
     GString *prefix = g_string_new(""); 
     gchar filename_local[SMALL],
 	matches_file[SMALL];
@@ -1066,6 +1175,10 @@ user_mm_load_file(const gchar *filename, GArray *mmatches)
 void
 user_mm_add_last_match(gboolean load_file, gboolean save_file)
 {
+#ifdef DEBUG
+    printf("user_mm_add_last_match\n");
+#endif
+
     MemMatch new;
     const Fixture *fix = current_user.live_game.fix;
     gchar buf[SMALL];
@@ -1107,6 +1220,10 @@ user_mm_add_last_match(gboolean load_file, gboolean save_file)
 void
 user_mm_save_file(const gchar *filename, const GArray *mmatches)
 {
+#ifdef DEBUG
+    printf("user_mm_save_file\n");
+#endif
+
     gchar prefix[SMALL];
 
     strncpy(prefix, filename, strlen(filename) - 8);
@@ -1124,6 +1241,10 @@ user_mm_save_file(const gchar *filename, const GArray *mmatches)
 void
 user_mm_set_filename(const gchar *filename, gchar *dest)
 {
+#ifdef DEBUG
+    printf("user_mm_set_filename\n");
+#endif
+
     gchar buf[SMALL];
 
     if(g_str_has_suffix(filename, ".bmm.zip"))
@@ -1154,6 +1275,10 @@ user_mm_set_filename(const gchar *filename, gchar *dest)
 void
 user_mm_import_file(const gchar *filename)
 {
+#ifdef DEBUG
+    printf("user_mm_import_file\n");
+#endif
+
     GArray *mm_array = g_array_new(FALSE, FALSE, sizeof(MemMatch));
     gint i;
 
@@ -1169,6 +1294,10 @@ user_mm_import_file(const gchar *filename)
 void
 user_mm_export_file(const gchar *filename)
 {
+#ifdef DEBUG
+    printf("user_mm_export_file\n");
+#endif
+
     gchar buf[SMALL];
     GArray *mmatches = g_array_new(FALSE, FALSE, sizeof(MemMatch));
 

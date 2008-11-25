@@ -146,6 +146,10 @@ xml_league_read_start_element (GMarkupParseContext *context,
 				gpointer             user_data,
 				GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_league_read_start_element\n");
+#endif
+
     PromRelElement new_element;
     Team new_team;
     JoinedLeague new_joined_league;
@@ -273,6 +277,10 @@ xml_league_read_end_element    (GMarkupParseContext *context,
 				gpointer             user_data,
 				GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_league_read_end_element\n");
+#endif
+
     if(strcmp(element_name, TAG_NAME) == 0 ||
        strcmp(element_name, TAG_SHORT_NAME) == 0 ||
        strcmp(element_name, TAG_SID) == 0 ||
@@ -333,6 +341,10 @@ xml_league_read_text         (GMarkupParseContext *context,
 			       gpointer             user_data,
 			       GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_league_read_text\n");
+#endif
+
     gchar buf[text_len + 1];
     gint int_value;
     gfloat float_value;
@@ -446,6 +458,10 @@ xml_league_read_text         (GMarkupParseContext *context,
 void
 xml_league_read(const gchar *league_name, GArray *leagues)
 {
+#ifdef DEBUG
+    printf("xml_league_read\n");
+#endif
+
     gchar *file_name = file_find_support_file(league_name, FALSE);
     GMarkupParser parser = {xml_league_read_start_element,
 			    xml_league_read_end_element,

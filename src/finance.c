@@ -39,6 +39,10 @@
 void
 finance_update_user_weekly(User *user)
 {
+#ifdef DEBUG
+    printf("finance_update_user_weekly\n");
+#endif
+
     gint i;
     Team *tm = user->tm;
     Team *new_team = NULL;
@@ -175,6 +179,10 @@ finance_update_user_weekly(User *user)
 gfloat
 finance_wage_unit(const Team *tm)
 {
+#ifdef DEBUG
+    printf("finance_wage_unit\n");
+#endif
+
     gint i;
     gfloat sum = 0;
 
@@ -189,6 +197,10 @@ finance_wage_unit(const Team *tm)
 gint
 finance_team_drawing_credit_loan(const Team *tm, gboolean loan)
 {
+#ifdef DEBUG
+    printf("finance_team_drawing_credit_loan\n");
+#endif
+
     gint i;
     gfloat sum = 0;
 
@@ -211,6 +223,10 @@ finance_team_drawing_credit_loan(const Team *tm, gboolean loan)
 void
 finance_get_loan(gint value)
 {
+#ifdef DEBUG
+    printf("finance_get_loan\n");
+#endif
+
     gfloat debt_old = current_user.debt;
     gfloat debt_new = -value;
     
@@ -244,6 +260,10 @@ finance_get_loan(gint value)
 void
 finance_pay_loan(User *user, gint value)
 {
+#ifdef DEBUG
+    printf("finance_pay_loan\n");
+#endif
+
     gint add = (gint)rint((gfloat)value / (gfloat)(-user->debt) * 
                           (gfloat)const_int("int_finance_payback_weeks"));
 
@@ -277,6 +297,10 @@ finance_pay_loan(User *user, gint value)
 gint
 finance_get_stadium_improvement_cost(gfloat value, gboolean capacity)
 {
+#ifdef DEBUG
+    printf("finance_get_stadium_improvement_cost\n");
+#endif
+
     gfloat return_value;
 
     if(capacity)
@@ -318,6 +342,10 @@ finance_get_stadium_improvement_cost(gfloat value, gboolean capacity)
 gint
 finance_get_stadium_improvement_duration(gfloat value, gboolean capacity)
 {
+#ifdef DEBUG
+    printf("finance_get_stadium_improvement_duration\n");
+#endif
+
     gint return_value;
 
     if(capacity)
@@ -336,6 +364,10 @@ finance_get_stadium_improvement_duration(gfloat value, gboolean capacity)
 void
 finance_assign_game_money(const Fixture *fix)
 {
+#ifdef DEBUG
+    printf("finance_assign_game_money\n");
+#endif
+
     gint i;
     gint user_idx[2] = {team_is_user(fix->teams[0]), team_is_user(fix->teams[1])};
     gfloat journey_factor =
@@ -389,6 +421,10 @@ finance_assign_game_money(const Fixture *fix)
 void
 finance_update_current_interest(void)
 {
+#ifdef DEBUG
+    printf("finance_update_current_interest\n");
+#endif
+
     current_interest += math_rndi(-1, 1) * const_float("float_finance_interest_step");
     
     if(current_interest < const_float("float_finance_interest_lower"))
@@ -402,6 +438,10 @@ finance_update_current_interest(void)
 gint
 finance_calculate_alr_weekly_installment(gint start_week)
 {
+#ifdef DEBUG
+    printf("finance_calculate_alr_weekly_installment\n");
+#endif
+
     gfloat debt_end;
     gfloat interest_factor;
     gfloat max_start_week;
@@ -425,6 +465,10 @@ finance_calculate_alr_weekly_installment(gint start_week)
 gint
 finance_calculate_alr_start_week(gint weekly_installment)
 {
+#ifdef DEBUG
+    printf("finance_calculate_alr_start_week\n");
+#endif
+
     gint upper;
     gint start_week;
     gint installment;

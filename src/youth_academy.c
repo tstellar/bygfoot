@@ -37,6 +37,10 @@
 void
 youth_academy_new(User *user)
 {
+#ifdef DEBUG
+    printf("youth_academy_new\n");
+#endif
+
     gint i;
     gint num_of_youths = math_rndi(const_int("int_youth_academy_youths_lower"),
 				   const_int("int_youth_academy_youths_upper"));
@@ -67,6 +71,10 @@ youth_academy_new(User *user)
 void
 youth_academy_add_new_player(YouthAcademy *youth_academy)
 {
+#ifdef DEBUG
+    printf("youth_academy_add_new_player\n");
+#endif
+
     gint i;
     gfloat pos_probs[4] =
 	{const_float("float_youth_academy_pos_goalie"),
@@ -171,6 +179,10 @@ youth_academy_add_new_player(YouthAcademy *youth_academy)
 void
 youth_academy_update_weekly(void)
 {
+#ifdef DEBUG
+    printf("youth_academy_update_weekly\n");
+#endif
+
     gint i, j;
     YouthAcademy *ya = NULL;
 

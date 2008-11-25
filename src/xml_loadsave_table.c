@@ -50,6 +50,10 @@ xml_loadsave_table_start_element (GMarkupParseContext *context,
 				    gpointer             user_data,
 				    GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_table_start_element\n");
+#endif
+
     gint i;
     gint tag = xml_get_tag_from_name(element_name);
     gboolean valid_tag = FALSE;
@@ -82,6 +86,10 @@ xml_loadsave_table_end_element    (GMarkupParseContext *context,
 				     gpointer             user_data,
 				     GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_table_end_element\n");
+#endif
+
     gint tag = xml_get_tag_from_name(element_name);
 
     if(tag == TAG_NAME ||
@@ -113,6 +121,10 @@ xml_loadsave_table_text         (GMarkupParseContext *context,
 				   gpointer             user_data,
 				   GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_table_text\n");
+#endif
+
     gchar buf[SMALL];
     gint int_value = -1;
 
@@ -141,6 +153,10 @@ xml_loadsave_table_text         (GMarkupParseContext *context,
 void
 xml_loadsave_table_read(const gchar *filename, Table *table)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_table_read\n");
+#endif
+
     GMarkupParser parser = {xml_loadsave_table_start_element,
 			    xml_loadsave_table_end_element,
 			    xml_loadsave_table_text, NULL, NULL};
@@ -176,6 +192,10 @@ xml_loadsave_table_read(const gchar *filename, Table *table)
 void
 xml_loadsave_table_write(const gchar *filename, const Table *table)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_table_write\n");
+#endif
+
     gint i, j;
     FILE *fil = NULL;
 

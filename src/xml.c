@@ -49,6 +49,10 @@
 void
 xml_load_users(const gchar *dirname, const gchar *basename)
 {
+#ifdef DEBUG
+    printf("xml_load_users\n");
+#endif
+
     gint i;
     gchar buf[SMALL];
 
@@ -71,6 +75,10 @@ xml_load_users(const gchar *dirname, const gchar *basename)
 void
 xml_load_league(const gchar *dirname, const gchar *basename)
 {
+#ifdef DEBUG
+    printf("xml_load_league\n");
+#endif
+
     gchar buf[SMALL], team_file[SMALL];
     League new = league_new(FALSE);
     gchar *prefix = g_strndup(basename, strlen(basename) - 4);
@@ -104,6 +112,10 @@ xml_load_league(const gchar *dirname, const gchar *basename)
 void
 xml_load_cup(Cup *cup, const gchar *dirname, const gchar *basename)
 {
+#ifdef DEBUG
+    printf("xml_load_cup\n");
+#endif
+
     gchar buf[SMALL];
     gchar *prefix = g_strndup(basename, strlen(basename) - 4);
 
@@ -129,6 +141,10 @@ xml_load_cup(Cup *cup, const gchar *dirname, const gchar *basename)
 void
 xml_load_transfers(const gchar *dirname, const gchar *basename)
 {
+#ifdef DEBUG
+    printf("xml_load_transfers\n");
+#endif
+
     gchar buf[SMALL];
 
     sprintf(buf, "%s%s%s___transfer_list.xml", dirname, G_DIR_SEPARATOR_S, basename);
@@ -142,6 +158,10 @@ xml_load_transfers(const gchar *dirname, const gchar *basename)
 void
 xml_write_string(FILE *fil, const gchar *string, gint tag, const gchar* indent)
 {
+#ifdef DEBUG
+    printf("xml_write_string\n");
+#endif
+
     if(string == NULL)
 	return;
 

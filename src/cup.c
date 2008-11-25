@@ -44,6 +44,10 @@
 Cup
 cup_new(gboolean new_id)
 {
+#ifdef DEBUG
+    printf("cup_new\n");
+#endif
+
     Cup new;
 
     new.name = NULL;
@@ -78,6 +82,14 @@ cup_new(gboolean new_id)
 CupChooseTeam
 cup_choose_team_new(void)
 {
+#ifdef DEBUG
+    printf("cup_choose_team_new\n");
+#endif
+
+#ifdef DEBUG
+    printf("cup_choose_team_new\n");
+#endif
+
     CupChooseTeam new;
 
     new.sid = NULL;
@@ -95,6 +107,10 @@ cup_choose_team_new(void)
 CupRound
 cup_round_new(void)
 {
+#ifdef DEBUG
+    printf("cup_round_new\n");
+#endif
+
     CupRound new;
 
     new.new_teams = 0;
@@ -122,6 +138,10 @@ cup_round_new(void)
 void
 cup_reset(Cup *cup)
 {
+#ifdef DEBUG
+    printf("cup_reset\n");
+#endif
+
     gint i;
     
     free_gchar_array(&cup->team_names);
@@ -161,6 +181,10 @@ cup_reset(Cup *cup)
 gboolean
 query_cup_choose_team_is_league(const gchar *sid)
 {
+#ifdef DEBUG
+    printf("query_cup_choose_team_is_league\n");
+#endif
+
     gint i;
 
     for(i=0;i<ligs->len;i++)
@@ -176,6 +200,10 @@ void
 cup_get_choose_team_league_cup(const CupChooseTeam *ct, 
 			       const League **league, const Cup **cup)
 {
+#ifdef DEBUG
+    printf("cup_get_choose_team_league_cup\n");
+#endif
+
     gint i, idx;
     gchar trash[SMALL];
 
@@ -229,6 +257,10 @@ cup_get_choose_team_league_cup(const CupChooseTeam *ct,
 void
 cup_get_team_pointers(Cup *cup, gint round)
 {
+#ifdef DEBUG
+    printf("cup_get_team_pointers\n");
+#endif
+
     gint i;
     CupRound *cup_round = &g_array_index(cup->rounds, CupRound, round);
     GPtrArray *teams = cup_round->team_ptrs;
@@ -277,6 +309,10 @@ cup_get_team_pointers(Cup *cup, gint round)
 void
 cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 {
+#ifdef DEBUG
+    printf("cup_load_choose_team\n");
+#endif
+
     gint i;
     gint debug_num = teams->len;
     const League *league = NULL;
@@ -301,6 +337,10 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 void
 cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_temp, GPtrArray *teams, const CupChooseTeam *ct)
 {
+#ifdef DEBUG
+    printf("cup_load_choose_team_from_cup\n");
+#endif
+
     gint i;
     gint start, end;
     gint number_of_teams;
@@ -390,6 +430,10 @@ void
 cup_load_choose_team_from_league(Cup *cup, const League *league,
                                  GPtrArray *teams, const CupChooseTeam *ct)
 {
+#ifdef DEBUG
+    printf("cup_load_choose_team_from_league\n");
+#endif
+
     gint start, end;
     gint number_of_teams;
     gint j;
@@ -463,6 +507,10 @@ cup_load_choose_team_from_league(Cup *cup, const League *league,
 void
 cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam *ct)
 {
+#ifdef DEBUG
+    printf("cup_load_choose_team_generate\n");
+#endif
+
     gint j, k;
     gint number_of_teams, end_idx = -1;
     GArray *teams_local = NULL;
@@ -578,6 +626,10 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
 GPtrArray*
 cup_get_teams_sorted(const Cup *cup)
 {
+#ifdef DEBUG
+    printf("cup_get_teams_sorted\n");
+#endif
+
     gint i, j;
     GPtrArray *teams = g_ptr_array_new();
     GArray *team_ids = g_array_new(FALSE, FALSE, sizeof(gint));
@@ -603,6 +655,10 @@ cup_get_teams_sorted(const Cup *cup)
 gint
 cup_compare_success(gconstpointer a, gconstpointer b, gpointer data)
 {
+#ifdef DEBUG
+    printf("cup_compare_success\n");
+#endif
+
     const Cup *cup = (const Cup*)data;
     const CupRound *cupround = NULL;
     const GArray *fixtures = cup->fixtures;
@@ -636,6 +692,10 @@ cup_compare_success(gconstpointer a, gconstpointer b, gpointer data)
 gint
 cup_compare_success_knockout(const Team *tm1, const Team *tm2, const GArray *fixtures)
 {
+#ifdef DEBUG
+    printf("cup_compare_success_knockout\n");
+#endif
+
     gint i;
     gint winner1 = -1, winner2 = -1;
     gint return_value = 0;
@@ -669,6 +729,10 @@ cup_compare_success_knockout(const Team *tm1, const Team *tm2, const GArray *fix
 gint
 cup_compare_success_tables(const Team *tm1, const Team *tm2, const Cup *cup, gint round)
 {
+#ifdef DEBUG
+    printf("cup_compare_success_tables\n");
+#endif
+
     gint i, j;
     gint return_value = 0;
     const CupRound *cupround = &g_array_index(cup->rounds, CupRound, round);
@@ -700,6 +764,10 @@ cup_compare_success_tables(const Team *tm1, const Team *tm2, const Cup *cup, gin
 gint
 cup_get_round_reached(const Team *tm, const GArray *fixtures)
 {
+#ifdef DEBUG
+    printf("cup_get_round_reached\n");
+#endif
+
     gint round = -1;
     gint i;
 
@@ -719,6 +787,10 @@ cup_get_round_reached(const Team *tm, const GArray *fixtures)
 gint
 cup_get_first_week_of_cup_round(Cup *cup, gint cup_round)
 {
+#ifdef DEBUG
+    printf("cup_get_first_week_of_cup_round\n");
+#endif
+
     gint i;
     gint week_number;
 
@@ -762,6 +834,10 @@ cup_get_first_week_of_cup_round(Cup *cup, gint cup_round)
 gint
 cup_get_last_week_from_first(const Cup *cup, gint first_week)
 {
+#ifdef DEBUG
+    printf("cup_get_last_week_from_first\n");
+#endif
+
     gint i;
     gint matchdays = 0;
 
@@ -778,6 +854,10 @@ cup_get_last_week_from_first(const Cup *cup, gint first_week)
 gint
 cup_get_matchdays_in_cup_round(const Cup *cup, gint round)
 {
+#ifdef DEBUG
+    printf("cup_get_matchdays_in_cup_round\n");
+#endif
+
     gint i;
     const CupRound *cup_round = &g_array_index(cup->rounds, CupRound, round);    
     gint number_of_teams = -1;
@@ -821,6 +901,10 @@ cup_get_matchdays_in_cup_round(const Cup *cup, gint round)
 gint
 cup_round_get_number_of_teams(const Cup *cup, gint round)
 {
+#ifdef DEBUG
+    printf("cup_round_get_number_of_teams\n");
+#endif
+
     const CupRound *cup_round = &g_array_index(cup->rounds, CupRound, round);
     gint number_of_teams = 0;
 
@@ -845,6 +929,10 @@ cup_round_get_number_of_teams(const Cup *cup, gint round)
 gint
 cup_round_get_byes(const Cup *cup, gint round)
 {
+#ifdef DEBUG
+    printf("cup_round_get_byes\n");
+#endif
+
     const CupRound *cup_round = &g_array_index(cup->rounds, CupRound, round);
     gint number_of_byes = 0, new_teams = 0;
 
@@ -880,6 +968,10 @@ cup_round_get_byes(const Cup *cup, gint round)
 gint
 cup_round_get_new_teams(const CupRound *cup_round)
 {
+#ifdef DEBUG
+    printf("cup_round_get_new_teams\n");
+#endif
+
     gint i, new_teams = 0;
     const Cup *cup_temp = NULL;
     const League *league = NULL;
@@ -922,6 +1014,10 @@ cup_round_get_new_teams(const CupRound *cup_round)
 Cup*
 cup_from_clid(gint clid)
 {
+#ifdef DEBUG
+    printf("cup_from_clid\n");
+#endif
+
     gint i;
 
     for(i=0;i<cps->len;i++)
@@ -938,6 +1034,10 @@ cup_from_clid(gint clid)
 Cup*
 cup_from_sid(const gchar *sid)
 {
+#ifdef DEBUG
+    printf("cup_from_sid\n");
+#endif
+
     gint i;
 
     for(i=0;i<cps->len;i++)
@@ -957,6 +1057,10 @@ cup_from_sid(const gchar *sid)
 void
 cup_round_name(const Fixture *fix, gchar *buf)
 {
+#ifdef DEBUG
+    printf("cup_round_name\n");
+#endif
+
     const Cup *cup = cup_from_clid(fix->clid);
     const CupRound *cup_round = 
 	&g_array_index(cup->rounds, CupRound, fix->round);
@@ -978,6 +1082,10 @@ cup_round_name(const Fixture *fix, gchar *buf)
 void
 cup_get_round_name(const Cup *cup, gint round, gchar *buf)
 {
+#ifdef DEBUG
+    printf("cup_get_round_name\n");
+#endif
+
     const CupRound *cup_round = 
 	&g_array_index(cup->rounds, CupRound, round);
 
@@ -1013,6 +1121,10 @@ cup_get_round_name(const Cup *cup, gint round, gchar *buf)
 gint
 cup_has_tables(gint clid)
 {
+#ifdef DEBUG
+    printf("cup_has_tables\n");
+#endif
+
     const Cup *cup = cup_from_clid(clid);
     gint i;
 
@@ -1027,6 +1139,10 @@ cup_has_tables(gint clid)
 Team*
 cup_get_winner(const Cup *cup)
 {
+#ifdef DEBUG
+    printf("cup_get_winner\n");
+#endif
+
     GPtrArray *teams_sorted = cup_get_teams_sorted(cup);
     Team *tm = (Team*)g_ptr_array_index(teams_sorted, 0);
     
@@ -1039,6 +1155,10 @@ cup_get_winner(const Cup *cup)
 gboolean
 query_cup_begins(const Cup *cup)
 {
+#ifdef DEBUG
+    printf("query_cup_begins\n");
+#endif
+
     gint i, j;
     const League *league = NULL;
     const Cup *cup_temp = NULL;
@@ -1075,6 +1195,10 @@ query_cup_begins(const Cup *cup)
 gboolean
 query_cup_transfer(void)
 {
+#ifdef DEBUG
+    printf("query_cup_transfer\n");
+#endif
+
     gint i;
 
     for(i=0;i<acps->len;i++)
@@ -1089,6 +1213,14 @@ query_cup_transfer(void)
 gchar*
 cup_get_highlight_colour(const Cup *cup)
 {
+#ifdef DEBUG
+    printf("cup_get_highlight_colour\n");
+#endif
+
+#ifdef DEBUG
+    printf("cup_get_highlight_colour\n");
+#endif
+
     gint i;
     gchar buf[SMALL];
 
@@ -1107,6 +1239,10 @@ cup_get_highlight_colour(const Cup *cup)
 gboolean
 cup_check_fixtures(const Cup *cup)
 {
+#ifdef DEBUG
+    printf("cup_check_fixtures\n");
+#endif
+
     gint i;
 
     for(i = 0; i < cup->fixtures->len; i++)

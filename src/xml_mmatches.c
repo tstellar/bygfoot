@@ -60,6 +60,10 @@ xml_mmatches_start_element (GMarkupParseContext *context,
 			    gpointer             user_data,
 			    GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_mmatches_start_element\n");
+#endif
+
     gint i;
     gint tag = xml_get_tag_from_name(element_name);
     gboolean valid_tag = FALSE;
@@ -85,6 +89,10 @@ xml_mmatches_end_element    (GMarkupParseContext *context,
 			     gpointer             user_data,
 			     GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_mmatches_end_element\n");
+#endif
+
     gint tag = xml_get_tag_from_name(element_name);
 
     if(tag == TAG_MMATCH)
@@ -110,6 +118,10 @@ xml_mmatches_text         (GMarkupParseContext *context,
 			   gpointer             user_data,
 			   GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_mmatches_text\n");
+#endif
+
     gchar buf[SMALL], lg_file[SMALL];
     gint int_value = -1;
 
@@ -139,6 +151,10 @@ xml_mmatches_text         (GMarkupParseContext *context,
 void
 xml_mmatches_read(const gchar *filename, GArray *mmatches)
 {
+#ifdef DEBUG
+    printf("xml_mmatches_read\n");
+#endif
+
     GMarkupParser parser = {xml_mmatches_start_element,
 			    xml_mmatches_end_element,
 			    xml_mmatches_text, NULL, NULL};
@@ -178,6 +194,10 @@ xml_mmatches_read(const gchar *filename, GArray *mmatches)
 void
 xml_mmatches_write(const gchar *prefix, const GArray *mmatches)
 {
+#ifdef DEBUG
+    printf("xml_mmatches_write\n");
+#endif
+
     FILE *fil;
     gint i;
     gchar buf[SMALL];

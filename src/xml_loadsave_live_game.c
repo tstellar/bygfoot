@@ -77,6 +77,10 @@ xml_loadsave_live_game_start_element (GMarkupParseContext *context,
 				      gpointer             user_data,
 				      GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_live_game_start_element\n");
+#endif
+
     gint i;
     gint tag = xml_get_tag_from_name(element_name);
     gboolean valid_tag = FALSE;
@@ -110,6 +114,10 @@ xml_loadsave_live_game_end_element    (GMarkupParseContext *context,
 				     gpointer             user_data,
 				     GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_live_game_end_element\n");
+#endif
+
     gint tag = xml_get_tag_from_name(element_name);
     
     if(tag == TAG_LIVE_GAME_FIX_ID ||
@@ -177,6 +185,10 @@ xml_loadsave_live_game_text         (GMarkupParseContext *context,
 				   gpointer             user_data,
 				   GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_live_game_text\n");
+#endif
+
     gchar buf[SMALL];
     gint int_value = -1;
     gfloat float_value = -1;
@@ -230,6 +242,10 @@ xml_loadsave_live_game_text         (GMarkupParseContext *context,
 void
 xml_loadsave_live_game_read(const gchar *filename, LiveGame *live_game)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_live_game_read\n");
+#endif
+
     GMarkupParser parser = {xml_loadsave_live_game_start_element,
 			    xml_loadsave_live_game_end_element,
 			    xml_loadsave_live_game_text, NULL, NULL};
@@ -267,6 +283,10 @@ xml_loadsave_live_game_read(const gchar *filename, LiveGame *live_game)
 void
 xml_loadsave_live_game_write(const gchar *filename, const LiveGame *live_game)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_live_game_write\n");
+#endif
+
     gint i;
     FILE *fil = NULL;
 
@@ -305,6 +325,10 @@ xml_loadsave_live_game_write(const gchar *filename, const LiveGame *live_game)
 void
 xml_loadsave_live_game_write_unit(FILE *fil, const LiveGameUnit *unit)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_live_game_write_unit\n");
+#endif
+
     fprintf(fil, "<_%d>\n", TAG_LIVE_GAME_UNIT);
 
     xml_write_int(fil, unit->possession,
@@ -345,6 +369,10 @@ xml_loadsave_live_game_write_unit(FILE *fil, const LiveGameUnit *unit)
 void
 xml_loadsave_live_game_write_stats(FILE *fil, const LiveGameStats *stats)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_live_game_write_stats\n");
+#endif
+
     gint i, j, k;
     
     fprintf(fil, "<_%d>\n", TAG_LIVE_GAME_STAT);

@@ -35,6 +35,10 @@
 gdouble
 math_gaussrand(void)
 {
+#ifdef DEBUG
+    printf("math_gaussrand\n");
+#endif
+
     static gdouble V1, V2, S;
     static gint phase = 0;
     gdouble X;
@@ -70,7 +74,12 @@ math_gaussrand(void)
 */
 gdouble
 math_gauss_dist(gdouble lower, gdouble upper)
-{						   
+{
+#ifdef DEBUG
+    printf("math_gauss_dist\n");
+#endif
+
+ 						   
     gdouble result;				   
      	
     result = (upper - lower) / 6 * math_gaussrand()
@@ -107,6 +116,10 @@ math_gauss_dist(gdouble lower, gdouble upper)
 gint
 math_get_place(gint value, gint place)
 {
+#ifdef DEBUG
+    printf("math_get_place\n");
+#endif
+
     if(place < 10)
 	return (value % (gint)powf(10, place) -
 		value % (gint)powf(10, place - 1)) /
@@ -141,6 +154,10 @@ math_get_place(gint value, gint place)
 gint
 math_round_integer(gint number, gint places)
 {
+#ifdef DEBUG
+    printf("math_round_integer\n");
+#endif
+
     gint length = 0;
     gfloat copy = (gfloat)number;
 
@@ -166,6 +183,10 @@ math_round_integer(gint number, gint places)
 void
 math_generate_permutation(gint *array, gint start, gint end)
 {
+#ifdef DEBUG
+    printf("math_generate_permutation\n");
+#endif
+
     gint i;
 
     for(i = start; i < end + 1; i++)
@@ -180,6 +201,10 @@ math_generate_permutation(gint *array, gint start, gint end)
 gint
 math_get_bye_len(gint number)
 {
+#ifdef DEBUG
+    printf("math_get_bye_len\n");
+#endif
+
     gint i;
 
     for(i=0;i<20;i++)
@@ -196,6 +221,10 @@ math_get_bye_len(gint number)
 gint
 math_sum_int_array(const gint *array, gint max)
 {
+#ifdef DEBUG
+    printf("math_sum_int_array\n");
+#endif
+
     gint i, sum = 0;
 
     for(i=0;i<max;i++)

@@ -64,6 +64,10 @@ xml_loadsave_misc_start_element (GMarkupParseContext *context,
 				    gpointer             user_data,
 				    GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_misc_start_element\n");
+#endif
+
     gint i;
     gint tag = xml_get_tag_from_name(element_name);
     gboolean valid_tag = FALSE;
@@ -103,6 +107,10 @@ xml_loadsave_misc_end_element    (GMarkupParseContext *context,
 				     gpointer             user_data,
 				     GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_misc_end_element\n");
+#endif
+
     gint tag = xml_get_tag_from_name(element_name);
 
     if(tag == TAG_NAME ||
@@ -145,6 +153,10 @@ xml_loadsave_misc_text         (GMarkupParseContext *context,
 				gpointer             user_data,
 				GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_misc_text\n");
+#endif
+
     gchar buf[SMALL];
     gint int_value = -1;
     gfloat float_value = -1;
@@ -186,6 +198,10 @@ xml_loadsave_misc_text         (GMarkupParseContext *context,
 void
 xml_loadsave_misc_read(const gchar *dirname, const gchar *basename)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_misc_read\n");
+#endif
+
     gchar file[SMALL];
     GMarkupParser parser = {xml_loadsave_misc_start_element,
 			    xml_loadsave_misc_end_element,
@@ -228,6 +244,10 @@ xml_loadsave_misc_read(const gchar *dirname, const gchar *basename)
 void
 xml_loadsave_misc_write(const gchar *prefix)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_misc_write\n");
+#endif
+
     gint i;
     gchar buf[SMALL];
     FILE *fil = NULL;
@@ -264,6 +284,10 @@ xml_loadsave_misc_write(const gchar *prefix)
 void
 xml_loadsave_misc_write_bets(FILE *fil)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_misc_write_bets\n");
+#endif
+
     gint i, j, k;
 
     for(i=0;i<2;i++)

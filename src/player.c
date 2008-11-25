@@ -45,6 +45,10 @@
 Player
 player_new(Team *tm, gfloat average_talent, gboolean new_id)
 {
+#ifdef DEBUG
+    printf("player_new\n");
+#endif
+
     gint i;
     gfloat skill_factor = 
 	math_rnd(1 - const_float("float_player_average_talent_variance"),
@@ -109,6 +113,10 @@ player_new(Team *tm, gfloat average_talent, gboolean new_id)
 void
 player_complete_def(Player *pl, gfloat average_talent)
 {
+#ifdef DEBUG
+    printf("player_complete_def\n");
+#endif
+
     gint i;
     gfloat skill_factor = 
 	math_rnd(1 - const_float("float_player_average_talent_variance"),
@@ -175,6 +183,10 @@ player_complete_def(Player *pl, gfloat average_talent)
 gint
 player_get_position_from_structure(gint structure, gint player_number)
 {
+#ifdef DEBUG
+    printf("player_get_position_from_structure\n");
+#endif
+
     gint position = -1;
     gint bound[2] =
 	{math_get_place(structure, 3) + 1,
@@ -205,6 +217,10 @@ player_get_position_from_structure(gint structure, gint player_number)
 gfloat
 player_skill_from_talent(const Player *pl)
 {
+#ifdef DEBUG
+    printf("player_skill_from_talent\n");
+#endif
+
     gfloat skill = pl->talent, cur_age = pl->peak_age;
 
     if(pl->age < pl->peak_age)
@@ -241,6 +257,10 @@ player_skill_from_talent(const Player *pl)
 void
 player_estimate_talent(Player *pl)
 {
+#ifdef DEBUG
+    printf("player_estimate_talent\n");
+#endif
+
     gint i, j;
     gfloat scout_deviance[QUALITY_END];
 
@@ -269,6 +289,10 @@ player_estimate_talent(Player *pl)
 gint
 player_assign_value(const Player *pl)
 {
+#ifdef DEBUG
+    printf("player_assign_value\n");
+#endif
+
     gfloat value;
 
     value = powf((const_float("float_player_value_skill_weight") * pl->skill +
@@ -292,6 +316,10 @@ player_assign_value(const Player *pl)
 gint
 player_assign_wage(const Player *pl)
 {
+#ifdef DEBUG
+    printf("player_assign_wage\n");
+#endif
+
     gfloat wage;
 
     wage = rint(((gfloat)pl->value * const_float("float_player_wage_value_factor")) *
@@ -345,6 +373,10 @@ player_of_idx_team(const Team *tm, gint number)
 Player*
 player_of_id_team(const Team *tm, gint id)
 {
+#ifdef DEBUG
+    printf("player_of_id_team\n");
+#endif
+
     gint i;
     
     for(i=0;i<tm->players->len;i++)
@@ -362,6 +394,10 @@ player_of_id_team(const Team *tm, gint id)
 gboolean
 query_player_id_in_team(gint player_id, const Team *tm)
 {
+#ifdef DEBUG
+    printf("query_player_id_in_team\n");
+#endif
+
     gint i;
 
     for(i=0;i<tm->players->len;i++)
@@ -380,6 +416,10 @@ query_player_id_in_team(gint player_id, const Team *tm)
 gint
 player_all_games_goals(const Player *pl, gint type)
 {
+#ifdef DEBUG
+    printf("player_all_games_goals\n");
+#endif
+
     gint i, sum = 0;
 
     for(i=0;i<pl->games_goals->len;i++)
@@ -400,6 +440,10 @@ player_all_games_goals(const Player *pl, gint type)
 gint
 player_all_cards(const Player *pl)
 {
+#ifdef DEBUG
+    printf("player_all_cards\n");
+#endif
+
     gint i, sum = 0;
 
     for(i=0;i<pl->cards->len;i++)
@@ -416,6 +460,10 @@ player_all_cards(const Player *pl)
 gint
 player_compare_func(gconstpointer a, gconstpointer b, gpointer data)
 {
+#ifdef DEBUG
+    printf("player_compare_func\n");
+#endif
+
     gint data_int = ABS(GPOINTER_TO_INT(data));
     gint data_int2 = GPOINTER_TO_INT(data);
     gint type = data_int % 100;
@@ -481,6 +529,10 @@ player_compare_func(gconstpointer a, gconstpointer b, gpointer data)
 gint
 player_compare_substitute_func(gconstpointer a, gconstpointer b, gpointer data)
 {
+#ifdef DEBUG
+    printf("player_compare_substitute_func\n");
+#endif
+
     const Player *pl1 = *(const Player**)a;
     const Player *pl2 = *(const Player**)b;
     gint position = GPOINTER_TO_INT(data);
@@ -535,6 +587,10 @@ player_compare_substitute_func(gconstpointer a, gconstpointer b, gpointer data)
 gboolean
 player_substitution_good_structure(gint old_structure, gint old_pos, gint player_pos)
 {
+#ifdef DEBUG
+    printf("player_substitution_good_structure\n");
+#endif
+
     gint accepted_structures[5] = {532, 442, 352, 433, 343};
     gint new_structure = 
 	old_structure - (gint)rint(powf(10, PLAYER_POS_FORWARD - old_pos)) +
@@ -550,6 +606,10 @@ player_substitution_good_structure(gint old_structure, gint old_pos, gint player
 void
 player_copy(Player *pl, Team *tm, gint insert_at)
 {
+#ifdef DEBUG
+    printf("player_copy\n");
+#endif
+
     Player new = *pl;
 
     new.team = tm;
@@ -575,6 +635,10 @@ player_copy(Player *pl, Team *tm, gint insert_at)
 void
 player_move(Team *tm1, gint player_number, Team *tm2, gint insert_at)
 {
+#ifdef DEBUG
+    printf("player_move\n");
+#endif
+
     Player pl = *player_of_idx_team(tm1, player_number);
 
     pl.team = tm2;
@@ -588,6 +652,10 @@ player_move(Team *tm1, gint player_number, Team *tm2, gint insert_at)
 void
 player_swap(Team *tm1, gint player_number1, Team *tm2, gint player_number2)
 {
+#ifdef DEBUG
+    printf("player_swap\n");
+#endif
+
     gint move = (tm1 == tm2 && player_number1 < player_number2) ? 
 	-1 : 1;
 
@@ -636,6 +704,10 @@ player_swap(Team *tm1, gint player_number1, Team *tm2, gint player_number2)
 gfloat
 player_get_cskill(const Player *pl, gint position, gboolean check_health)
 {
+#ifdef DEBUG
+    printf("player_get_cskill\n");
+#endif
+
     gfloat cskill_factor;
 
     if(check_health &&
@@ -668,6 +740,10 @@ player_get_cskill(const Player *pl, gint position, gboolean check_health)
 gint
 player_is_banned(const Player *pl)
 {
+#ifdef DEBUG
+    printf("player_is_banned\n");
+#endif
+
     Fixture *fix = team_get_fixture(pl->team, FALSE);
     gint yellow_red = -1, yellow, red;
 
@@ -716,6 +792,10 @@ player_get_game_skill(const Player *pl, gboolean skill, gboolean count_special)
 void
 player_decrease_fitness(Player *pl)
 {
+#ifdef DEBUG
+    printf("player_decrease_fitness\n");
+#endif
+
     gfloat goalie_factor = 
 	1 - const_float("float_player_fitness_decrease_factor_goalie") *
 	(pl->cpos == 0);
@@ -758,6 +838,10 @@ player_decrease_fitness(Player *pl)
 void
 player_update_fitness(Player *pl)
 {
+#ifdef DEBUG
+    printf("player_update_fitness\n");
+#endif
+
     gfloat variance = 
 	math_rnd(1 - const_float("float_player_fitness_increase_variance"),
 		 1 + const_float("float_player_fitness_increase_variance"));
@@ -795,6 +879,10 @@ player_update_fitness(Player *pl)
 gint
 player_card_get(const Player *pl, gint clid, gint card_type)
 {
+#ifdef DEBUG
+    printf("player_card_get\n");
+#endif
+
     gint i;
     gint return_value = 0;
     
@@ -822,6 +910,10 @@ player_card_get(const Player *pl, gint clid, gint card_type)
 void
 player_card_set(Player *pl, gint clid, gint card_type, gint value, gboolean diff)
 {
+#ifdef DEBUG
+    printf("player_card_set\n");
+#endif
+
     gint i, *card_value = NULL;
     PlayerCard new;
 
@@ -862,6 +954,10 @@ player_card_set(Player *pl, gint clid, gint card_type, gint value, gboolean diff
 gint
 player_games_goals_get(const Player *pl, gint clid, gint type)
 {
+#ifdef DEBUG
+    printf("player_games_goals_get\n");
+#endif
+
     gint i, return_value = 0;
 
     for(i=0;i<pl->games_goals->len;i++)
@@ -891,6 +987,10 @@ player_games_goals_get(const Player *pl, gint clid, gint type)
 void
 player_games_goals_set(Player *pl, gint clid, gint type, gint value)
 {
+#ifdef DEBUG
+    printf("player_games_goals_set\n");
+#endif
+
     gint i, *games_goals_value = NULL;
     PlayerGamesGoals new;
 
@@ -928,6 +1028,10 @@ player_games_goals_set(Player *pl, gint clid, gint type, gint value)
 void
 player_update_skill(Player *pl)
 {
+#ifdef DEBUG
+    printf("player_update_skill\n");
+#endif
+
     gint i;
 
     if(!query_player_is_youth(pl))
@@ -983,6 +1087,10 @@ player_update_skill(Player *pl)
 void
 player_update_injury(Player *pl)
 {
+#ifdef DEBUG
+    printf("player_update_injury\n");
+#endif
+
     gint i, j;
     gfloat rndom;
     gint physio = (query_player_is_cpu(pl)) ? 
@@ -1026,6 +1134,10 @@ player_update_injury(Player *pl)
 void
 player_update_streak(Player *pl)
 {
+#ifdef DEBUG
+    printf("player_update_streak\n");
+#endif
+
     gfloat streak_type, streak_prob, 
 	streak_length, decrease_factor = 0;
     gfloat streak_prob_factor = 
@@ -1100,6 +1212,10 @@ player_update_streak(Player *pl)
 void
 player_update_weekly(Player *pl)
 {
+#ifdef DEBUG
+    printf("player_update_weekly\n");
+#endif
+
     // workaround, possibly unnecessary
     if(pl->fitness < 0)
 	pl->fitness = const_float("float_player_fitness_lower");
@@ -1141,6 +1257,10 @@ player_update_weekly(Player *pl)
 void
 player_remove_contract(Player *pl)
 {
+#ifdef DEBUG
+    printf("player_remove_contract\n");
+#endif
+
     user_event_add(user_from_team(pl->team), EVENT_TYPE_PLAYER_LEFT, -1, -1, NULL,
 		   pl->name);
     player_remove_from_team(pl->team, player_id_index(pl->team, pl->id));
@@ -1151,6 +1271,10 @@ player_remove_contract(Player *pl)
 void
 player_remove_from_team(Team *tm, gint idx)
 {
+#ifdef DEBUG
+    printf("player_remove_from_team\n");
+#endif
+
     gint usr_idx = team_is_user(tm);
 
     if(usr_idx != -1 && 
@@ -1170,6 +1294,10 @@ player_remove_from_team(Team *tm, gint idx)
 void
 player_update_post_match(Player *pl, const Fixture *fix)
 {
+#ifdef DEBUG
+    printf("player_update_post_match\n");
+#endif
+
     gint yellow_red = league_cup_get_yellow_red(fix->clid);
     gint winner = -1;
 
@@ -1210,6 +1338,10 @@ player_update_post_match(Player *pl, const Fixture *fix)
 void
 player_replace_by_new(Player *pl, gboolean free_player)
 {
+#ifdef DEBUG
+    printf("player_replace_by_new\n");
+#endif
+
     Team *tm = pl->team;
     gint idx = player_id_index(tm, pl->id);
     Player new = player_new(tm, team_get_average_talent(tm), FALSE);
@@ -1232,6 +1364,10 @@ player_replace_by_new(Player *pl, gboolean free_player)
 void
 player_update_week_roundly(Team *tm, gint idx)
 {
+#ifdef DEBUG
+    printf("player_update_week_roundly\n");
+#endif
+
     Player *pl = player_of_idx_team(tm, idx);
 
     if(pl->health == 0 && 
@@ -1246,7 +1382,16 @@ player_update_week_roundly(Team *tm, gint idx)
 /** Return injury descriptions.  */
 gchar*
 player_injury_to_char(gint injury_type)
-{      
+{
+#ifdef DEBUG
+    printf("player_injury_to_char\n");
+#endif
+
+#ifdef DEBUG
+    printf("player_injury_to_char\n");
+#endif
+
+       
     switch(injury_type)
     {
 	default:
@@ -1300,6 +1445,10 @@ player_injury_to_char(gint injury_type)
 void
 player_season_start(Player *pl, gfloat skill_change)
 {
+#ifdef DEBUG
+    printf("player_season_start\n");
+#endif
+
     gint i;
 
     if(pl->games_goals->len > 0)
@@ -1338,6 +1487,14 @@ player_season_start(Player *pl, gfloat skill_change)
 gchar*
 player_get_last_name(const gchar *name)
 {
+#ifdef DEBUG
+    printf("player_get_last_name\n");
+#endif
+
+#ifdef DEBUG
+    printf("player_get_last_name\n");
+#endif
+
     gint i;
     gchar buf[SMALL];
     gchar *rev_name = NULL;
@@ -1372,6 +1529,10 @@ player_get_last_name(const gchar *name)
 GPtrArray*
 player_get_pointers_from_array(const GArray *players_array)
 {
+#ifdef DEBUG
+    printf("player_get_pointers_from_array\n");
+#endif
+
     gint i;
     GPtrArray *players = g_ptr_array_new();
 
@@ -1386,6 +1547,10 @@ player_get_pointers_from_array(const GArray *players_array)
 void
 player_move_to_ya(gint idx)
 {
+#ifdef DEBUG
+    printf("player_move_to_ya\n");
+#endif
+
     Player *pl = player_of_idx_team(current_user.tm, idx);
     Player player = *pl;
 
@@ -1403,6 +1568,10 @@ player_move_to_ya(gint idx)
 void
 player_move_from_ya(gint idx)
 {
+#ifdef DEBUG
+    printf("player_move_from_ya\n");
+#endif
+
     Player *pl = &g_array_index(current_user.youth_academy.players, Player, idx);
     Player player = *pl;
 
@@ -1417,6 +1586,10 @@ player_move_from_ya(gint idx)
 void
 player_streak_add_to_prob(Player *pl, gfloat add)
 {
+#ifdef DEBUG
+    printf("player_streak_add_to_prob\n");
+#endif
+
     pl->streak_prob += add;
     pl->streak_prob = CLAMP(pl->streak_prob, -1, 1);
 }
@@ -1425,6 +1598,10 @@ player_streak_add_to_prob(Player *pl, gfloat add)
 gboolean
 query_player_is_in_ya(const Player *pl)
 {
+#ifdef DEBUG
+    printf("query_player_is_in_ya\n");
+#endif
+
     gint i;
 
     for(i=0;i<pl->team->players->len;i++)
@@ -1439,6 +1616,10 @@ query_player_is_in_ya(const Player *pl)
 gboolean
 query_player_star_balks(const Player *pl, const Team *tm, gboolean transfer)
 {
+#ifdef DEBUG
+    printf("query_player_star_balks\n");
+#endif
+
     gint i;
     gint number_of_stars_field;
     gint number_of_stars_goal;

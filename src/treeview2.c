@@ -39,6 +39,10 @@
 void
 treeview2_create_mmatches(GtkListStore *ls)
 {
+#ifdef DEBUG
+    printf("treeview2_create_mmatches\n");
+#endif
+
     gint i;
     GtkTreeIter iter;
     gchar result[SMALL];
@@ -75,6 +79,10 @@ treeview2_create_mmatches(GtkListStore *ls)
 void
 treeview2_set_up_mmatches(GtkTreeView *treeview)
 {
+#ifdef DEBUG
+    printf("treeview2_set_up_mmatches\n");
+#endif
+
     gint i;
     GtkTreeViewColumn   *col;
     GtkCellRenderer     *renderer;
@@ -137,6 +145,10 @@ treeview2_set_up_mmatches(GtkTreeView *treeview)
 void
 treeview2_show_mmatches(void)
 {
+#ifdef DEBUG
+    printf("treeview2_show_mmatches\n");
+#endif
+
     GtkTreeView *treeview = 
 	GTK_TREE_VIEW(lookup_widget(window.mmatches, "treeview_mmatches"));
     GtkListStore *model = 
@@ -156,6 +168,10 @@ treeview2_show_mmatches(void)
 void
 treeview2_create_season_results(GtkListStore *ls)
 {
+#ifdef DEBUG
+    printf("treeview2_create_season_results\n");
+#endif
+
     gint i;
     GtkTreeIter iter;
     GPtrArray *results = fixture_get_season_results();
@@ -180,6 +196,10 @@ treeview2_create_season_results(GtkListStore *ls)
 void
 treeview2_set_up_season_results(GtkTreeView *treeview)
 {
+#ifdef DEBUG
+    printf("treeview2_set_up_season_results\n");
+#endif
+
     gint i;
     GtkTreeViewColumn   *col;
     GtkCellRenderer     *renderer;
@@ -235,6 +255,10 @@ treeview2_set_up_season_results(GtkTreeView *treeview)
 void
 treeview2_show_season_results(void)
 {
+#ifdef DEBUG
+    printf("treeview2_show_season_results\n");
+#endif
+
     GtkTreeView *treeview = 
 	GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right"));
     GtkListStore *model = 
@@ -253,6 +277,10 @@ treeview2_show_season_results(void)
 void
 treeview2_create_bets(GtkListStore *ls)
 {
+#ifdef DEBUG
+    printf("treeview2_create_bets\n");
+#endif
+
     gint i, j, k, rank;
     GtkTreeIter iter;
     gchar buf[SMALL], buf2[SMALL],
@@ -354,6 +382,10 @@ treeview2_create_bets(GtkListStore *ls)
 void
 treeview2_set_up_bets(GtkTreeView *treeview)
 {
+#ifdef DEBUG
+    printf("treeview2_set_up_bets\n");
+#endif
+
     gint i;
     GtkTreeViewColumn   *col;
     GtkCellRenderer     *renderer;
@@ -418,6 +450,10 @@ treeview2_set_up_bets(GtkTreeView *treeview)
 void
 treeview2_show_bets(void)
 {
+#ifdef DEBUG
+    printf("treeview2_show_bets\n");
+#endif
+
     GtkTreeView *treeview = 
 	GTK_TREE_VIEW(lookup_widget(window.bets, "treeview_bets"));
     GtkListStore *model = 
@@ -436,6 +472,10 @@ treeview2_show_bets(void)
 void
 treeview2_create_job_exchange(GtkListStore *ls)
 {
+#ifdef DEBUG
+    printf("treeview2_create_job_exchange\n");
+#endif
+
     gint i;
     GtkTreeIter iter;
     gchar buf[SMALL];
@@ -461,6 +501,10 @@ treeview2_create_job_exchange(GtkListStore *ls)
 void
 treeview2_set_up_job_exchange(GtkTreeView *treeview)
 {
+#ifdef DEBUG
+    printf("treeview2_set_up_job_exchange\n");
+#endif
+
     gint i;
     GtkTreeViewColumn   *col;
     GtkCellRenderer     *renderer;
@@ -517,6 +561,10 @@ treeview2_set_up_job_exchange(GtkTreeView *treeview)
 void
 treeview2_show_job_exchange(void)
 {
+#ifdef DEBUG
+    printf("treeview2_show_job_exchange\n");
+#endif
+
     GtkTreeView *treeview = 
 	GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right"));
     GtkListStore *model = 

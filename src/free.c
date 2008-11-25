@@ -38,6 +38,10 @@
 void
 free_memory(void)
 {
+#ifdef DEBUG
+    printf("free_memory\n");
+#endif
+
     free_variables();
     free_names(FALSE);
     free_transfer_list();
@@ -55,6 +59,10 @@ free_memory(void)
 void
 free_transfer_list(void)
 {
+#ifdef DEBUG
+    printf("free_transfer_list\n");
+#endif
+
     gint i;
 
     for(i=0;i<transfer_list->len;i++)
@@ -67,6 +75,10 @@ free_transfer_list(void)
 void
 free_season_stats(gboolean reset)
 {
+#ifdef DEBUG
+    printf("free_season_stats\n");
+#endif
+
     gint i, j;
 
     if(season_stats == NULL)
@@ -121,6 +133,10 @@ free_season_stats(gboolean reset)
 void
 free_users(gboolean reset)
 {
+#ifdef DEBUG
+    printf("free_users\n");
+#endif
+
     gint i;
 
     if(users == NULL)
@@ -144,6 +160,10 @@ free_users(gboolean reset)
 void
 free_user(User *user)
 {
+#ifdef DEBUG
+    printf("free_user\n");
+#endif
+
     gint i, j;
 
     free_gchar_ptr(user->name);
@@ -180,6 +200,10 @@ free_user(User *user)
 void
 free_mmatches(GArray **mmatches, gboolean reset)
 {
+#ifdef DEBUG
+    printf("free_mmatches\n");
+#endif
+
     gint i;
 
     if(*mmatches == NULL)
@@ -205,6 +229,10 @@ free_mmatches(GArray **mmatches, gboolean reset)
 void
 free_event(Event *event)
 {
+#ifdef DEBUG
+    printf("free_event\n");
+#endif
+
     free_gchar_ptr(event->value_string);
 }
 
@@ -215,6 +243,10 @@ free_event(Event *event)
 void
 free_option_list(OptionList *optionlist, gboolean reset)
 {
+#ifdef DEBUG
+    printf("free_option_list\n");
+#endif
+
     gint i;
 
     if(optionlist->list == NULL)
@@ -247,6 +279,10 @@ free_option_list(OptionList *optionlist, gboolean reset)
 void
 free_live_game(LiveGame *match)
 {
+#ifdef DEBUG
+    printf("free_live_game\n");
+#endif
+
     gint i, j, k;
 
     if(match->units == NULL || match->started_game == -1)
@@ -278,6 +314,10 @@ free_live_game(LiveGame *match)
 void
 free_country(Country *cntry, gboolean reset)
 {
+#ifdef DEBUG
+    printf("free_country\n");
+#endif
+
     free_gchar_ptr(cntry->name);
     free_gchar_ptr(cntry->symbol);
     free_gchar_ptr(cntry->sid);
@@ -300,6 +340,10 @@ free_country(Country *cntry, gboolean reset)
 void
 free_leagues_array(GArray **leagues, gboolean reset)
 {
+#ifdef DEBUG
+    printf("free_leagues_array\n");
+#endif
+
     gint i;
 
     if(*leagues == NULL)
@@ -325,6 +369,10 @@ free_leagues_array(GArray **leagues, gboolean reset)
 void
 free_league(League *league)
 {
+#ifdef DEBUG
+    printf("free_league\n");
+#endif
+
     free_gchar_ptr(league->name);
     free_gchar_ptr(league->short_name);
     free_gchar_ptr(league->symbol);
@@ -355,6 +403,10 @@ free_league(League *league)
 void
 free_joined_leagues(GArray **joined_leagues)
 {
+#ifdef DEBUG
+    printf("free_joined_leagues\n");
+#endif
+
     gint i;
 
     for(i = 0; i < (*joined_leagues)->len; i++)
@@ -367,6 +419,10 @@ free_joined_leagues(GArray **joined_leagues)
 void
 free_league_stats(LeagueStat *stats)
 {
+#ifdef DEBUG
+    printf("free_league_stats\n");
+#endif
+
     gint i;
 
     free_gchar_ptr(stats->league_name);
@@ -400,6 +456,10 @@ free_league_stats(LeagueStat *stats)
 void
 free_tables(GArray **tables)
 {
+#ifdef DEBUG
+    printf("free_tables\n");
+#endif
+
     gint i;
 
     for(i = 0; i < (*tables)->len; i++)
@@ -416,6 +476,10 @@ free_tables(GArray **tables)
 void
 free_new_tables(GArray **new_tables)
 {
+#ifdef DEBUG
+    printf("free_new_tables\n");
+#endif
+
     gint i;
 
     for(i = 0; i < (*new_tables)->len; i++)
@@ -430,6 +494,10 @@ free_new_tables(GArray **new_tables)
 void
 free_teams_array(GArray **teams, gboolean reset)
 {
+#ifdef DEBUG
+    printf("free_teams_array\n");
+#endif
+
     gint i;
 
     if(*teams == NULL)
@@ -455,6 +523,10 @@ free_teams_array(GArray **teams, gboolean reset)
 void
 free_team(Team *tm)
 {
+#ifdef DEBUG
+    printf("free_team\n");
+#endif
+
     free_gchar_ptr(tm->stadium.name);
     free_gchar_ptr(tm->name);
     free_gchar_ptr(tm->names_file);
@@ -468,6 +540,10 @@ free_team(Team *tm)
 void
 free_player_array(GArray **players)
 {
+#ifdef DEBUG
+    printf("free_player_array\n");
+#endif
+
     gint i;
 
     if(*players != NULL)
@@ -484,6 +560,10 @@ free_player_array(GArray **players)
 void
 free_player(Player *pl)
 {
+#ifdef DEBUG
+    printf("free_player\n");
+#endif
+
     free_gchar_ptr(pl->name);
 
     free_g_array(&pl->cards);
@@ -497,6 +577,10 @@ free_player(Player *pl)
 void
 free_cups_array(GArray **cups, gboolean reset)
 {
+#ifdef DEBUG
+    printf("free_cups_array\n");
+#endif
+
     gint i;
 
     if(*cups == NULL)
@@ -522,6 +606,10 @@ free_cups_array(GArray **cups, gboolean reset)
 void
 free_cup(Cup *cup)
 {
+#ifdef DEBUG
+    printf("free_cup\n");
+#endif
+
     gint i, j;
 
     free_gchar_ptr(cup->name);
@@ -564,6 +652,10 @@ free_cup(Cup *cup)
 void
 free_cup_choose_team(CupChooseTeam *cup_choose_team)
 {
+#ifdef DEBUG
+    printf("free_cup_choose_team\n");
+#endif
+
     free_gchar_ptr(cup_choose_team->sid);
 }
 
@@ -571,6 +663,10 @@ free_cup_choose_team(CupChooseTeam *cup_choose_team)
 void
 free_variables(void)
 {
+#ifdef DEBUG
+    printf("free_variables\n");
+#endif
+
     free_option_list(&options, FALSE);
     free_option_list(&settings, FALSE);
     free_option_list(&constants, FALSE);
@@ -588,6 +684,10 @@ free_variables(void)
 void
 free_lg_commentary(gboolean reset)
 {
+#ifdef DEBUG
+    printf("free_lg_commentary\n");
+#endif
+
     gint i, j;
 
     for(i=0;i<LIVE_GAME_EVENT_END;i++)
@@ -614,6 +714,14 @@ free_lg_commentary(gboolean reset)
 void
 free_gchar_array(GPtrArray **array)
 {
+#ifdef DEBUG
+    printf("_array\n");
+#endif
+
+#ifdef DEBUG
+    printf("free_gchar_array\n");
+#endif
+
     gint i;
 
     if(*array == NULL)
@@ -631,6 +739,10 @@ free_gchar_array(GPtrArray **array)
 void
 free_g_string(GString **string)
 {
+#ifdef DEBUG
+    printf("free_g_string\n");
+#endif
+
     if(*string == NULL)
 	return;
 
@@ -644,6 +756,10 @@ free_g_string(GString **string)
 void
 free_g_array(GArray **array)
 {
+#ifdef DEBUG
+    printf("free_g_array\n");
+#endif
+
     if(*array == NULL)
 	return;
 
@@ -657,6 +773,10 @@ free_g_array(GArray **array)
 void
 free_g_ptr_array(GPtrArray **array)
 {
+#ifdef DEBUG
+    printf("free_g_ptr_array\n");
+#endif
+
     if(*array == NULL)
 	return;
 
@@ -669,6 +789,10 @@ free_g_ptr_array(GPtrArray **array)
 void
 free_support_dirs(void)
 {
+#ifdef DEBUG
+    printf("free_support_dirs\n");
+#endif
+
   GList *elem = support_directories;
 
   if(elem == NULL)
@@ -688,6 +812,10 @@ free_support_dirs(void)
 void
 free_name_list(NameList *namelist, gboolean reset)
 {
+#ifdef DEBUG
+    printf("free_name_list\n");
+#endif
+
     gint i;
 
     if(namelist->sid == NULL)
@@ -724,6 +852,10 @@ free_name_list(NameList *namelist, gboolean reset)
 void
 free_names(gboolean reset)
 {
+#ifdef DEBUG
+    printf("free_names\n");
+#endif
+
     gint i;
 
     if(name_lists == NULL)
@@ -747,6 +879,10 @@ free_names(gboolean reset)
 void
 free_strategies(void)
 {
+#ifdef DEBUG
+    printf("free_strategies\n");
+#endif
+
     gint i, j;
 
     for(i=0;i<strategies->len;i++)
@@ -788,6 +924,10 @@ free_strategies(void)
 void
 free_bets(gboolean reset)
 {
+#ifdef DEBUG
+    printf("free_bets\n");
+#endif
+
     free_g_array(&(bets[0]));
     free_g_array(&(bets[1]));
 
@@ -804,6 +944,10 @@ free_bets(gboolean reset)
 void
 free_job(Job *job, gboolean free_tm)
 {
+#ifdef DEBUG
+    printf("free_job\n");
+#endif
+
     gint i;
 
     if(job->type == JOB_TYPE_INTERNATIONAL)
@@ -826,6 +970,10 @@ free_job(Job *job, gboolean free_tm)
 void
 free_jobs(gboolean reset)
 {
+#ifdef DEBUG
+    printf("free_jobs\n");
+#endif
+
     gint i;
 
     if(jobs == NULL)

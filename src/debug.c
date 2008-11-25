@@ -39,6 +39,10 @@
 void
 debug_action(const gchar *text)
 {
+#ifdef DEBUG
+    printf("debug_action\n");
+#endif
+
     gchar buf[SMALL];
     gint value = -1;
 
@@ -140,6 +144,10 @@ debug_action(const gchar *text)
 gboolean
 debug_reset_counter(gpointer data)
 {
+#ifdef DEBUG
+    printf("debug_reset_counter\n");
+#endif
+
     counters[COUNT_SHOW_DEBUG] = 0;
 
     return FALSE;
@@ -148,6 +156,10 @@ debug_reset_counter(gpointer data)
 void
 debug_calibrate_betting_odds(gint skilldiffmax, gint matches_per_skilldiff)
 {
+#ifdef DEBUG
+    printf("debug_calibrate_betting_odds\n");
+#endif
+
     gint i, skilldiff, matches;
     Fixture *fix = &g_array_index(lig(0).fixtures, Fixture, 0);
 
@@ -189,6 +201,10 @@ debug_calibrate_betting_odds(gint skilldiffmax, gint matches_per_skilldiff)
 gboolean
 debug_egg_forwards_boost_style(void)
 {
+#ifdef DEBUG
+    printf("debug_egg_forwards_boost_style\n");
+#endif
+
     gint i, fwds = 0;
     
     if(current_user.tm->boost != 1 ||
@@ -219,6 +235,10 @@ debug_writer_out(const gchar *file_name,
 			 	 const gchar *text,
 			 	 gint debuglevel)
 {
+#ifdef DEBUG
+    printf("debug_writer_out\n");
+#endif
+
 	
 	gint writer = option_int("int_debug_writer", &constants);
 	gint debugging = option_int("int_debug", &constants);

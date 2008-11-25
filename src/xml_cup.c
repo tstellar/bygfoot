@@ -141,6 +141,10 @@ xml_cup_read_start_element (GMarkupParseContext *context,
 			    gpointer             user_data,
 			    GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_cup_read_start_element\n");
+#endif
+
     if(strcmp(element_name, TAG_CUP) == 0)
     {
 	new_cup = cup_new(FALSE);
@@ -240,6 +244,10 @@ xml_cup_read_end_element    (GMarkupParseContext *context,
 			     gpointer             user_data,
 			     GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_cup_read_end_element\n");
+#endif
+
     if(strcmp(element_name, TAG_NAME) == 0 ||
        strcmp(element_name, TAG_SHORT_NAME) == 0 ||
        strcmp(element_name, TAG_SYMBOL) == 0 ||
@@ -305,6 +313,10 @@ xml_cup_read_text         (GMarkupParseContext *context,
 			   gpointer             user_data,
 			   GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_cup_read_text\n");
+#endif
+
     gchar buf[text_len + 1];
     gint int_value;
     gfloat float_value;
@@ -393,6 +405,10 @@ xml_cup_read_text         (GMarkupParseContext *context,
 void
 xml_cup_read(const gchar *cup_name, GArray *cups)
 {
+#ifdef DEBUG
+    printf("xml_cup_read\n");
+#endif
+
     gchar *file_name = file_find_support_file(cup_name, FALSE);
     GMarkupParser parser = {xml_cup_read_start_element,
 			    xml_cup_read_end_element,

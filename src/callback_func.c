@@ -50,6 +50,10 @@
 void
 callback_show_next_live_game(void)
 {
+#ifdef DEBUG
+    printf("callback_show_next_live_game\n");
+#endif
+
     gint i, j;
 
     for(i=0;i<users->len;i++)
@@ -97,6 +101,10 @@ callback_show_next_live_game(void)
 void
 callback_player_activate(gint idx)
 {
+#ifdef DEBUG
+    printf("callback_player_activate\n");
+#endif
+
     if(stat0 == STATUS_SHOW_TRANSFER_LIST)
     {
 	selected_row = -1;
@@ -144,6 +152,10 @@ callback_player_activate(gint idx)
 void
 callback_player_clicked(gint idx, GdkEventButton *event)
 {
+#ifdef DEBUG
+    printf("callback_player_clicked\n");
+#endif
+
     /* Only accept single-clicks right now. */
     if(event->type != GDK_BUTTON_PRESS)
 	return;
@@ -164,6 +176,10 @@ callback_player_clicked(gint idx, GdkEventButton *event)
 void
 callback_show_last_match(gboolean start, LiveGame *lg)
 {
+#ifdef DEBUG
+    printf("callback_show_last_match\n");
+#endif
+
     gint i;
 
     stat4 = -1;
@@ -216,6 +232,10 @@ callback_show_last_match(gboolean start, LiveGame *lg)
 void
 callback_show_last_match_stats(void)
 {
+#ifdef DEBUG
+    printf("callback_show_last_match_stats\n");
+#endif
+
     current_user.live_game.fix = 
 	fixture_from_id(current_user.live_game.fix_id, TRUE);
     
@@ -229,6 +249,10 @@ callback_show_last_match_stats(void)
 void
 callback_show_fixtures_week(gint type)
 {
+#ifdef DEBUG
+    printf("callback_show_fixtures_week\n");
+#endif
+
     switch(type)
     {
 	default:
@@ -269,6 +293,10 @@ callback_show_fixtures_week(gint type)
 void
 callback_show_fixtures(gint type)
 {
+#ifdef DEBUG
+    printf("callback_show_fixtures\n");
+#endif
+
     const Fixture *fix = fixture_get(type, stat1, stat2, stat3,
 				     current_user.tm);
 
@@ -285,6 +313,10 @@ callback_show_fixtures(gint type)
 void
 callback_show_tables(gint type)
 {
+#ifdef DEBUG
+    printf("callback_show_tables\n");
+#endif
+
     gint clid = -1;
 
     if(type == SHOW_CURRENT)
@@ -318,6 +350,10 @@ callback_show_tables(gint type)
 void
 callback_get_loan(void)
 {
+#ifdef DEBUG
+    printf("callback_get_loan\n");
+#endif
+
     gchar buf[SMALL], buf2[SMALL];
     gint max_loan = 
 	finance_team_drawing_credit_loan(current_user.tm, TRUE) + current_user.debt;
@@ -339,6 +375,10 @@ callback_get_loan(void)
 void
 callback_pay_loan(void)
 {
+#ifdef DEBUG
+    printf("callback_pay_loan\n");
+#endif
+
     gchar buf[SMALL], buf2[SMALL];
     gint max_payback = MIN(BUDGET(cur_user), -current_user.debt);
 
@@ -368,6 +408,10 @@ callback_pay_loan(void)
 void
 callback_transfer_list_user(gint button, gint idx)
 {
+#ifdef DEBUG
+    printf("callback_transfer_list_user\n");
+#endif
+
     gchar buf[SMALL],
 	buf2[SMALL], buf3[SMALL];
 
@@ -410,6 +454,10 @@ callback_transfer_list_user(gint button, gint idx)
 void
 callback_transfer_list_cpu(gint button, gint idx)
 {
+#ifdef DEBUG
+    printf("callback_transfer_list_cpu\n");
+#endif
+
     gchar buf[SMALL], buf2[SMALL], buf3[SMALL];
 
     if(button == 2)
@@ -448,6 +496,10 @@ callback_transfer_list_cpu(gint button, gint idx)
 void
 callback_transfer_list_clicked(gint button, gint idx)
 {
+#ifdef DEBUG
+    printf("callback_transfer_list_clicked\n");
+#endif
+
     gchar buf[SMALL];
     Transfer *tr = &trans(idx);
     gint old_fee, old_wage = -1;
@@ -509,6 +561,10 @@ callback_transfer_list_clicked(gint button, gint idx)
 void
 callback_offer_new_contract(gint idx)
 {
+#ifdef DEBUG
+    printf("callback_offer_new_contract\n");
+#endif
+
     gint i;
     gchar buf[SMALL];
     Player *pl = player_of_idx_team(current_user.tm, idx);
@@ -568,6 +624,10 @@ callback_offer_new_contract(gint idx)
 void
 callback_show_team(gint type)
 {
+#ifdef DEBUG
+    printf("callback_show_team\n");
+#endif
+
     GtkTreeView *treeview_right = 
 	GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right"));
     const Team *tm;
@@ -635,6 +695,10 @@ callback_show_team(gint type)
 void
 callback_show_player_list(gint type)
 {
+#ifdef DEBUG
+    printf("callback_show_player_list\n");
+#endif
+
     stat0 = STATUS_SHOW_PLAYER_LIST;
 
     switch(type)
@@ -665,6 +729,10 @@ callback_show_player_list(gint type)
 void
 callback_fire_player(gint idx)
 {
+#ifdef DEBUG
+    printf("callback_fire_player\n");
+#endif
+
     gchar buf[SMALL], buf2[SMALL];
     Player *pl = player_of_idx_team(current_user.tm, idx);
 
@@ -684,6 +752,10 @@ callback_fire_player(gint idx)
 void
 callback_show_league_stats(gint type)
 {
+#ifdef DEBUG
+    printf("callback_show_league_stats\n");
+#endif
+
     switch(type)
     {
 	default:
@@ -715,6 +787,10 @@ callback_show_league_stats(gint type)
 void
 callback_show_season_history(gint type)
 {
+#ifdef DEBUG
+    printf("callback_show_season_history\n");
+#endif
+
     const SeasonStat *stat = NULL;
     gint len = season_stats->len;
 
@@ -761,6 +837,10 @@ callback_show_season_history(gint type)
 void
 callback_show_next_opponent(void)
 {
+#ifdef DEBUG
+    printf("callback_show_next_opponent\n");
+#endif
+
     const Fixture *fix = team_get_fixture(current_user.tm, FALSE);
     const Team *opp = (fix == NULL) ? NULL :
 	fix->teams[fix->teams[0] == current_user.tm];
@@ -782,6 +862,10 @@ callback_show_next_opponent(void)
 void
 callback_show_player_team(void)
 {
+#ifdef DEBUG
+    printf("callback_show_player_team\n");
+#endif
+
     GtkTreeView *treeview_right = 
 	GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right"));
     const Player *pl = 
@@ -798,6 +882,10 @@ callback_show_player_team(void)
 void
 callback_show_youth_academy(void)
 {
+#ifdef DEBUG
+    printf("callback_show_youth_academy\n");
+#endif
+
     gint i;
     PlayerListAttribute attributes;
 

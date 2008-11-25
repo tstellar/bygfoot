@@ -41,6 +41,14 @@ GPtrArray *token_strat[2];
 gchar*
 strategy_get_random(void)
 {
+#ifdef DEBUG
+    printf("strategy_get_random\n");
+#endif
+
+#ifdef DEBUG
+    printf("strategy_get_random\n");
+#endif
+
     gint i, rndom = 
 	math_rndi(1, g_array_index(strategies, Strategy, strategies->len - 1).priority);
     
@@ -63,6 +71,10 @@ strategy_compare_players(gconstpointer a,
 			 gconstpointer b,
 			 gpointer user_data)
 {
+#ifdef DEBUG
+    printf("strategy_compare_players\n");
+#endif
+
     const Player *pl1 = *(const Player**)a;
     const Player *pl2 = *(const Player**)b;
     const StrategyPrematch *strat = (StrategyPrematch*)user_data;
@@ -111,6 +123,10 @@ query_strategy_formation_possible(const GPtrArray *players,
 				  const StrategyPrematch *prematch,
 				  gint formation)
 {
+#ifdef DEBUG
+    printf("query_strategy_formation_possible\n");
+#endif
+
     gint i, pos[3] = {0, 0, 0};
 
     for(i=0;i<players->len;i++)
@@ -134,6 +150,10 @@ void
 strategy_update_lineup(Team *tm, const GPtrArray *players,
 		       const StrategyPrematch *prematch, gint formation)
 {
+#ifdef DEBUG
+    printf("strategy_update_lineup\n");
+#endif
+
     gint i;
     GArray *ids = g_array_new(FALSE, FALSE, sizeof(gint));
     GArray *new_players = g_array_new(FALSE, FALSE, sizeof(Player));
@@ -179,6 +199,10 @@ strategy_update_lineup(Team *tm, const GPtrArray *players,
 void
 strategy_repair_player(Player *pl)
 {
+#ifdef DEBUG
+    printf("strategy_repair_player\n");
+#endif
+
     gint i;
 
     for(i=0;i<pl->cards->len;i++)
@@ -201,6 +225,10 @@ void
 strategy_repair_players(GPtrArray *players, 
 			const StrategyPrematch *prematch)
 {
+#ifdef DEBUG
+    printf("strategy_repair_players\n");
+#endif
+
     gint i, j;
     gint form[3] = 
 	{math_get_place(g_array_index(prematch->formations, gint, 0), 3),
@@ -233,6 +261,10 @@ strategy_repair_players(GPtrArray *players,
 void
 strategy_apply_prematch(Team *tm, const StrategyPrematch *prematch)
 {
+#ifdef DEBUG
+    printf("strategy_apply_prematch\n");
+#endif
+
     gint i;
     GPtrArray *players = player_get_pointers_from_array(tm->players);
 
@@ -269,6 +301,10 @@ strategy_apply_prematch(Team *tm, const StrategyPrematch *prematch)
 void
 strategy_update_team_pre_match(Team *tm)
 {
+#ifdef DEBUG
+    printf("strategy_update_team_pre_match\n");
+#endif
+
     gint i;
     const GArray *prematches =
 	strategy_from_sid(tm->strategy_sid)->prematch;
@@ -296,6 +332,10 @@ strategy_update_team_pre_match(Team *tm)
 Strategy*
 strategy_from_sid(const gchar *sid)
 {
+#ifdef DEBUG
+    printf("strategy_from_sid\n");
+#endif
+
     gint i;
 
     for(i=0;i<strategies->len;i++)
@@ -313,6 +353,10 @@ strategy_from_sid(const gchar *sid)
 void
 strategy_set_tokens(const Team *tm, const Fixture *fixture)
 {
+#ifdef DEBUG
+    printf("strategy_set_tokens\n");
+#endif
+
     const Fixture *fix = (fixture == NULL) ? 
 	team_get_fixture(tm, FALSE) : fixture;
     const Team *opp = (fix == NULL) ? NULL :
@@ -358,6 +402,10 @@ strategy_set_tokens(const Team *tm, const Fixture *fixture)
 void
 strategy_free_tokens(void)
 {
+#ifdef DEBUG
+    printf("strategy_free_tokens\n");
+#endif
+
     gint i;
 
     for(i=0;i<token_strat[0]->len;i++)
@@ -374,6 +422,10 @@ strategy_free_tokens(void)
 void
 strategy_live_game_set_tokens(const LiveGame *match, gint team_idx)
 {
+#ifdef DEBUG
+    printf("strategy_live_game_set_tokens\n");
+#endif
+
     gint tmp_int, 
 	current_min = live_game_unit_get_minute(
 	    &g_array_index(match->units, LiveGameUnit, match->units->len - 1));
@@ -430,6 +482,10 @@ strategy_compare_players_sub(gconstpointer a,
 			     gconstpointer b,
 			     gpointer user_data)
 {
+#ifdef DEBUG
+    printf("strategy_compare_players_sub\n");
+#endif
+
     gfloat skill1, skill2;
     const Player *pl1 = *(const Player**)a;
     const Player *pl2 = *(const Player**)b;
@@ -478,6 +534,10 @@ strategy_compare_positions(gconstpointer a,
 			   gconstpointer b,
 			   gpointer user_data)
 {
+#ifdef DEBUG
+    printf("strategy_compare_positions\n");
+#endif
+
     gint i, pos[4] = {0, 0, 0, 0};
     gint pos1 = *(gint*)a,
 	pos2 = *(gint*)b;
@@ -500,6 +560,10 @@ gint
 strategy_get_sub(const Team *tm, gint position, 
 		 gint property, gboolean sub_in)
 {
+#ifdef DEBUG
+    printf("strategy_get_sub\n");
+#endif
+
     gint i, start = (sub_in) ? 11 : 0,
 	stop = (sub_in) ? tm->players->len : 11;
     GPtrArray *players = g_ptr_array_new();
@@ -552,6 +616,10 @@ void
 strategy_live_game_apply_action(LiveGame *match, gint team_idx,
 				const StrategyMatchAction *action)
 {
+#ifdef DEBUG
+    printf("strategy_live_game_apply_action\n");
+#endif
+
     gint sub_in_id = -1, sub_out_id = -1;
     Team *tm = match->fix->teams[team_idx];
     gint old_form = tm->structure;
@@ -606,6 +674,10 @@ strategy_live_game_apply_action(LiveGame *match, gint team_idx,
 void
 strategy_live_game_check(LiveGame *match, gint team_idx)
 {
+#ifdef DEBUG
+    printf("strategy_live_game_check\n");
+#endif
+
     gint i;
     Team *tm = match->fix->teams[team_idx];
     const Strategy *strat = strategy_from_sid(tm->strategy_sid);

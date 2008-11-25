@@ -89,6 +89,9 @@
 
 #define debug const_int("int_debug")
 #define debug_writer const_int("int_debug_writer")
+/* Uncommenting this will cause each function to print its name when it's entered.
+   Makes the whole program really slow, of course. */
+//#define DEBUG
 
 /**
  * Exit codes.

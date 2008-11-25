@@ -105,6 +105,10 @@ xml_strategy_read_start_element (GMarkupParseContext *context,
 				 gpointer             user_data,
 				 GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_strategy_read_start_element\n");
+#endif
+
     gint atidx = 0;
 
     if(strcmp(element_name, TAG_STRATEGY) == 0)
@@ -283,6 +287,10 @@ xml_strategy_read_end_element    (GMarkupParseContext *context,
 				  gpointer             user_data,
 				  GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_strategy_read_end_element\n");
+#endif
+
     if(strcmp(element_name, TAG_STRATEGY_SID) == 0 ||
        strcmp(element_name, TAG_STRATEGY_DESC) == 0 ||
        strcmp(element_name, TAG_STRATEGY_PRIORITY) == 0 ||
@@ -319,6 +327,10 @@ xml_strategy_read_text         (GMarkupParseContext *context,
 				gpointer             user_data,
 				GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_strategy_read_text\n");
+#endif
+
     gchar buf[text_len + 1];
     gint int_value;
 
@@ -463,6 +475,10 @@ xml_strategy_read_text         (GMarkupParseContext *context,
 void
 xml_strategy_read(const gchar *filename)
 {
+#ifdef DEBUG
+    printf("xml_strategy_read\n");
+#endif
+
     gint i;
     Strategy new_strat;
     GMarkupParser parser = {xml_strategy_read_start_element,
@@ -516,6 +532,10 @@ xml_strategy_read(const gchar *filename)
 void
 xml_strategy_load_strategies(void)
 {
+#ifdef DEBUG
+    printf("xml_strategy_load_strategies\n");
+#endif
+
     gint i, j, k;
     const gchar *strategydir = file_get_first_support_dir_suffix("strategy");
     GPtrArray *files = NULL;

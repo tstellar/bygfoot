@@ -33,6 +33,10 @@
 Table
 table_new(void)
 {
+#ifdef DEBUG
+    printf("table_new\n");
+#endif
+
     Table new;
 
     new.name = NULL;
@@ -50,6 +54,10 @@ table_new(void)
 TableElement
 table_element_new(Team *team, gint old_rank)
 {
+#ifdef DEBUG
+    printf("table_element_new\n");
+#endif
+
     gint i;
     TableElement new;
 
@@ -69,6 +77,10 @@ table_element_new(Team *team, gint old_rank)
 void
 table_update(const Fixture *fix)
 {
+#ifdef DEBUG
+    printf("table_update\n");
+#endif
+
     gint i, j, end;
     gint idx = (fix->result[0][0] < fix->result[1][0]);
     TableElement *elements[2];
@@ -125,6 +137,10 @@ table_update(const Fixture *fix)
 void
 table_update_get_elements(TableElement **elements, const Fixture *fix, gboolean non_cumulative)
 {
+#ifdef DEBUG
+    printf("table_update_get_elements\n");
+#endif
+
     gint i, j;
     Table *table;
 
@@ -176,6 +192,10 @@ table_element_compare_func(gconstpointer a,
 			   gconstpointer b,
 			   gpointer clid_pointer)
 {
+#ifdef DEBUG
+    printf("table_element_compare_func\n");
+#endif
+
     gint i;
     gint clid, cup_round, value;
     TableElement *element1 = (TableElement*)a,
@@ -247,6 +267,10 @@ table_element_compare_func(gconstpointer a,
 gboolean
 query_tables_in_country(void)
 {
+#ifdef DEBUG
+    printf("query_tables_in_country\n");
+#endif
+
     gint i;
 
     for(i=0;i<ligs->len;i++)
@@ -264,6 +288,10 @@ query_tables_in_country(void)
 Table
 table_copy(const Table *table)
 {
+#ifdef DEBUG
+    printf("table_copy\n");
+#endif
+
     gint i, j;
     Table new_table;
     TableElement new_table_element;

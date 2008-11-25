@@ -58,6 +58,10 @@ xml_loadsave_league_stat_start_element (GMarkupParseContext *context,
 					gpointer             user_data,
 					GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_league_stat_start_element\n");
+#endif
+
     gint i;
     gint tag = xml_get_tag_from_name(element_name);
     gboolean valid_tag = FALSE;
@@ -93,6 +97,10 @@ xml_loadsave_league_stat_end_element    (GMarkupParseContext *context,
 					 gpointer             user_data,
 					 GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_league_stat_end_element\n");
+#endif
+
     GArray *stat_array = NULL;
     gint tag = xml_get_tag_from_name(element_name);
 
@@ -145,6 +153,10 @@ xml_loadsave_league_stat_text         (GMarkupParseContext *context,
 				       gpointer             user_data,
 				       GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_league_stat_text\n");
+#endif
+
     gchar buf[SMALL];
     gint int_value = -1;
 
@@ -175,6 +187,10 @@ xml_loadsave_league_stat_text         (GMarkupParseContext *context,
 void
 xml_loadsave_league_stat_read(const gchar *filename, LeagueStat *league_stat)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_league_stat_read\n");
+#endif
+
     GMarkupParser parser = {xml_loadsave_league_stat_start_element,
 			    xml_loadsave_league_stat_end_element,
 			    xml_loadsave_league_stat_text, NULL, NULL};
@@ -210,6 +226,10 @@ xml_loadsave_league_stat_read(const gchar *filename, LeagueStat *league_stat)
 void
 xml_loadsave_league_stat_write(const gchar *filename, const LeagueStat *league_stat)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_league_stat_write\n");
+#endif
+
     gint i;
     FILE *fil = NULL;
 
@@ -252,6 +272,10 @@ xml_loadsave_league_stat_write(const gchar *filename, const LeagueStat *league_s
 void
 xml_loadsave_league_stat_write_stat(FILE *fil, const Stat *stat)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_league_stat_write_stat\n");
+#endif
+
     fprintf(fil, "%s<_%d>\n", I1, TAG_STAT);
 
     xml_write_string(fil, stat->team_name, TAG_STAT_TEAM_NAME, I1);

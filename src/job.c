@@ -44,6 +44,10 @@
 void
 job_update(void)
 {
+#ifdef DEBUG
+    printf("job_update\n");
+#endif
+
     gint i;
     gint new_offers, int_offers;
 
@@ -74,6 +78,10 @@ job_update(void)
 void
 job_add_new_international(gint num_of_new)
 {
+#ifdef DEBUG
+    printf("job_add_new_international\n");
+#endif
+
     gint i, k, rndom, idx;
     GPtrArray *country_files = file_get_country_files();
     Country countries[num_of_new];
@@ -152,6 +160,10 @@ gint
 job_country_is_in_list(const gchar *country_file, 
 		       const Country *countries, gint len)
 {
+#ifdef DEBUG
+    printf("job_country_is_in_list\n");
+#endif
+
     gint i;
 
     for(i=0;i<len;i++)
@@ -169,6 +181,10 @@ job_country_is_in_list(const gchar *country_file,
 void
 job_add_new_national(void)
 {
+#ifdef DEBUG
+    printf("job_add_new_national\n");
+#endif
+
     Job new_job;
     League *league = NULL;
     Team *tm = NULL;
@@ -195,6 +211,10 @@ job_add_new_national(void)
 void
 job_pick_team_from_country(const Country *cntry, Team **tm, League **league)
 {
+#ifdef DEBUG
+    printf("job_pick_team_from_country\n");
+#endif
+
     gint i, rndom;
     gint team_lens[cntry->leagues->len];
 
@@ -232,6 +252,10 @@ job_pick_team_from_country(const Country *cntry, Team **tm, League **league)
 gint
 job_team_is_on_list(gint team_id)
 {
+#ifdef DEBUG
+    printf("job_team_is_on_list\n");
+#endif
+
     gint i;
 
     for(i=0;i<jobs->len;i++)
@@ -247,6 +271,10 @@ job_team_is_on_list(gint team_id)
 gint
 job_team_is_in_cup(const gchar *team_name)
 {
+#ifdef DEBUG
+    printf("job_team_is_in_cup\n");
+#endif
+
     gint i, j;
 
     for(i=0;i<acps->len;i++)
@@ -262,6 +290,10 @@ job_team_is_in_cup(const gchar *team_name)
 Team*
 job_get_team(const Job *job)
 {
+#ifdef DEBUG
+    printf("job_get_team\n");
+#endif
+
     gint i, j;
 
     if(job->type == JOB_TYPE_NATIONAL)
@@ -293,6 +325,10 @@ job_get_team(const Job *job)
 gboolean
 query_job_application_successful(const Job *job, const User *user)
 {
+#ifdef DEBUG
+    printf("query_job_application_successful\n");
+#endif
+
     gfloat success_needed;
     const Team *tm = job_get_team(job);
     gfloat user_av_skill = team_get_average_skill(user->tm, FALSE),
@@ -324,6 +360,10 @@ query_job_application_successful(const Job *job, const User *user)
 void
 job_remove(Job *job, gboolean free_tm)
 {
+#ifdef DEBUG
+    printf("job_remove\n");
+#endif
+
     gint i;
 
     for(i=0;i<jobs->len;i++)
@@ -340,6 +380,10 @@ job_remove(Job *job, gboolean free_tm)
 void
 job_change_country(Job *job)
 {
+#ifdef DEBUG
+    printf("job_change_country\n");
+#endif
+
     gint i, j, k;
     Team tm = *(job_get_team(job));
     gint season_temp = season + 1;

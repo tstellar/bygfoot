@@ -80,6 +80,10 @@ xml_loadsave_league_start_element (GMarkupParseContext *context,
 				    gpointer             user_data,
 				    GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_league_start_element\n");
+#endif
+
     gint i;
     gint tag = xml_get_tag_from_name(element_name);
     gboolean valid_tag = FALSE;
@@ -126,6 +130,10 @@ xml_loadsave_league_end_element    (GMarkupParseContext *context,
 				    gpointer             user_data,
 				    GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_league_end_element\n");
+#endif
+
     gint tag = xml_get_tag_from_name(element_name);
     
     if(tag == TAG_LEAGUE_FIRST_WEEK ||
@@ -184,6 +192,10 @@ xml_loadsave_league_text         (GMarkupParseContext *context,
 				   gpointer             user_data,
 				   GError             **error)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_league_text\n");
+#endif
+
     gchar buf[SMALL], buf2[SMALL];
     gint int_value = -1;
     gfloat float_value = -1;
@@ -272,6 +284,10 @@ xml_loadsave_league_text         (GMarkupParseContext *context,
 void
 xml_loadsave_league_read(const gchar *filename, const gchar *team_file, League *league)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_league_read\n");
+#endif
+
     GMarkupParser parser = {xml_loadsave_league_start_element,
 			    xml_loadsave_league_end_element,
 			    xml_loadsave_league_text, NULL, NULL};
@@ -312,6 +328,10 @@ xml_loadsave_league_read(const gchar *filename, const gchar *team_file, League *
 void
 xml_loadsave_league_write(const gchar *prefix, const League *league)
 {
+#ifdef DEBUG
+    printf("xml_loadsave_league_write\n");
+#endif
+
     gint i;
     gchar buf[SMALL];
     FILE *fil = NULL;

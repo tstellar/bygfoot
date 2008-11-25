@@ -42,6 +42,10 @@
 void
 fixture_write_league_fixtures(League *league)
 {
+#ifdef DEBUG
+    printf("fixture_write_league_fixtures\n");
+#endif
+
     gint i,j;
     gint max_rr;
     gint joined_clids[league->joined_leagues->len];
@@ -102,6 +106,10 @@ fixture_write_league_fixtures(League *league)
 gboolean
 fixture_write_cup_fixtures(Cup *cup)
 {
+#ifdef DEBUG
+    printf("fixture_write_cup_fixtures\n");
+#endif
+
     gint i;
 
     for(i=0;i<cup->rounds->len;i++)
@@ -124,6 +132,10 @@ fixture_write_cup_fixtures(Cup *cup)
 void
 fixture_update(Cup *cup)
 {
+#ifdef DEBUG
+    printf("fixture_update\n");
+#endif
+
     gint i;
     GArray *fixtures = cup->fixtures;
     gint round = g_array_index(fixtures, Fixture, fixtures->len - 1).round;
@@ -187,6 +199,10 @@ fixture_update(Cup *cup)
 GPtrArray*
 fixture_get_cup_round_winners(const Cup *cup)
 {
+#ifdef DEBUG
+    printf("fixture_get_cup_round_winners\n");
+#endif
+
     gint i;
     GPtrArray *array = NULL;
     GArray *fixtures = cup->fixtures;
@@ -238,6 +254,10 @@ fixture_get_cup_round_winners(const Cup *cup)
 GPtrArray*
 fixture_get_round_robin_advance(const Cup *cup, gint round)
 {
+#ifdef DEBUG
+    printf("fixture_get_round_robin_advance\n");
+#endif
+
     const CupRound *cupround = &g_array_index(cup->rounds, CupRound, round);
     GPtrArray *teams = cup_get_teams_sorted(cup);
     gint i, remove = teams->len -
@@ -259,6 +279,10 @@ fixture_get_round_robin_advance(const Cup *cup, gint round)
 gpointer
 fixture_winner_of(const Fixture *fix, gboolean team_id)
 {
+#ifdef DEBUG
+    printf("fixture_winner_of\n");
+#endif
+
     gint winner_idx = -1;
     const Fixture *first_leg = NULL;
     const CupRound *cupround = NULL;
@@ -309,6 +333,10 @@ fixture_winner_of(const Fixture *fix, gboolean team_id)
 gboolean
 fixture_update_write_replays(Cup *cup)
 {
+#ifdef DEBUG
+    printf("fixture_update_write_replays\n");
+#endif
+
     gint i;
     GArray *fixtures = cup->fixtures;
     gint replay_number = g_array_index(fixtures, Fixture, fixtures->len - 1).replay_number + 1;
@@ -344,6 +372,10 @@ fixture_update_write_replays(Cup *cup)
 void
 fixture_write_cup_round_robin(Cup *cup, gint cup_round, GPtrArray *teams)
 {
+#ifdef DEBUG
+    printf("fixture_write_cup_round_robin\n");
+#endif
+
     gint i, j, cnt;
     CupRound *cupround = &g_array_index(cup->rounds, CupRound, cup_round);
     gint number_of_groups = cupround->round_robin_number_of_groups;
@@ -433,6 +465,10 @@ void
 fixture_write_round_robin(gpointer league_cup, gint cup_round, 
 			  GPtrArray *teams, gboolean one_round)
 {
+#ifdef DEBUG
+    printf("fixture_write_round_robin\n");
+#endif
+
     gint i, j;
     gint first_week, week_gap, week_number, 
 	week_round_number, clid, first_fixture, 
@@ -553,6 +589,10 @@ fixture_write_round_robin_matchday(GArray *fixtures, gint cup_round, GPtrArray *
 				   gint special, gint week_number,
 				   gint clid, gboolean home_advantage)
 {
+#ifdef DEBUG
+    printf("fixture_write_round_robin_matchday\n");
+#endif
+
     gint i;
     gint len = teams->len / 2;
     gpointer home[len], away[len];
@@ -586,6 +626,10 @@ fixture_write_round_robin_matchday(GArray *fixtures, gint cup_round, GPtrArray *
 void
 fixture_write_knockout_round(Cup *cup, gint cup_round, GPtrArray *teams)
 {
+#ifdef DEBUG
+    printf("fixture_write_knockout_round\n");
+#endif
+
     gint i, len = teams->len;
     gint first_week = cup_get_first_week_of_cup_round(cup, cup_round);
     gint week_number, week_round_number;
@@ -678,6 +722,10 @@ fixture_write(GArray *fixtures, Team *home_team, Team *away_team, gint week_numb
 	      gint week_round_number, gint clid, gint cup_round, gint replay_number,
 	      gboolean home_advantage, gboolean second_leg, gboolean decisive)
 {
+#ifdef DEBUG
+    printf("fixture_write\n");
+#endif
+
     gint i;
     Fixture new;
 
@@ -714,6 +762,10 @@ fixture_write(GArray *fixtures, Team *home_team, Team *away_team, gint week_numb
 gint
 fixture_get_free_round(gint week_number, const GPtrArray *teams, gint team_id1, gint team_id2)
 {
+#ifdef DEBUG
+    printf("fixture_get_free_round\n");
+#endif
+
     gint i, j;
     gint max_round = 0;
 
@@ -756,6 +808,10 @@ fixture_get_free_round(gint week_number, const GPtrArray *teams, gint team_id1, 
 gboolean
 query_fixture_is_earlier(const Fixture *fix1, const Fixture *fix2)
 {
+#ifdef DEBUG
+    printf("query_fixture_is_earlier\n");
+#endif
+
     return (fix1->week_number < fix2->week_number ||
 	    (fix1->week_number == fix2->week_number && 
 	     fix1->week_round_number < fix2->week_round_number));
@@ -769,6 +825,10 @@ query_fixture_is_earlier(const Fixture *fix1, const Fixture *fix2)
 gboolean
 query_fixture_is_later(const Fixture *fix1, const Fixture *fix2)
 {
+#ifdef DEBUG
+    printf("query_fixture_is_later\n");
+#endif
+
     return (fix1->week_number > fix2->week_number ||
 	    (fix1->week_number == fix2->week_number && 
 	     fix1->week_round_number > fix2->week_round_number));
@@ -783,6 +843,10 @@ query_fixture_is_later(const Fixture *fix1, const Fixture *fix2)
 gboolean
 query_fixture_is_draw(const Fixture *fix)
 {
+#ifdef DEBUG
+    printf("query_fixture_is_draw\n");
+#endif
+
     const Fixture *first_leg;
 
     if(!fix->decisive)
@@ -805,6 +869,10 @@ query_fixture_is_draw(const Fixture *fix)
 gint
 fixture_user_team_involved(const Fixture *fix)
 {
+#ifdef DEBUG
+    printf("fixture_user_team_involved\n");
+#endif
+
     if(team_is_user(fix->teams[0]) != -1)
 	return team_is_user(fix->teams[0]);
 
@@ -821,6 +889,10 @@ fixture_user_team_involved(const Fixture *fix)
 gboolean
 query_fixture_has_tables(const Fixture *fix)
 {
+#ifdef DEBUG
+    printf("query_fixture_has_tables\n");
+#endif
+
     return (fix->clid < ID_CUP_START ||
 	    cup_has_tables(fix->clid) == fix->round);
 }
@@ -834,6 +906,10 @@ query_fixture_has_tables(const Fixture *fix)
 gboolean
 query_fixture_in_week_round(gint clid, gint week_number, gint week_round_number)
 {
+#ifdef DEBUG
+    printf("query_fixture_in_week_round\n");
+#endif
+
     gint i;
     GArray *fixtures = league_cup_get_fixtures(clid);
 
@@ -852,6 +928,10 @@ query_fixture_in_week_round(gint clid, gint week_number, gint week_round_number)
 Fixture*
 fixture_get_first_leg(const Fixture *fix)
 {
+#ifdef DEBUG
+    printf("fixture_get_first_leg\n");
+#endif
+
     gint i;
     Fixture *first_leg = NULL;
 
@@ -875,6 +955,10 @@ fixture_get_first_leg(const Fixture *fix)
 GPtrArray*
 fixture_get_week_list_clid(gint clid, gint week_number, gint week_round_number)
 {
+#ifdef DEBUG
+    printf("fixture_get_week_list_clid\n");
+#endif
+
     gint i;
     GArray *fixtures = league_cup_get_fixtures(clid);
     GPtrArray *fixtures_array = g_ptr_array_new();
@@ -891,6 +975,10 @@ fixture_get_week_list_clid(gint clid, gint week_number, gint week_round_number)
 GPtrArray*
 fixture_get_week_list(gint week_number, gint week_round_number)
 {
+#ifdef DEBUG
+    printf("fixture_get_week_list\n");
+#endif
+
     gint i, j;
     GPtrArray *fixtures = g_ptr_array_new();
 
@@ -914,6 +1002,10 @@ fixture_get_week_list(gint week_number, gint week_round_number)
 void
 fixture_result_to_buf(const Fixture *fix, gchar *buf, gboolean swap)
 {
+#ifdef DEBUG
+    printf("fixture_result_to_buf\n");
+#endif
+
     gchar local_buf[SMALL];
     gint idx0 = 0, idx1 = 1;
 
@@ -952,6 +1044,10 @@ fixture_result_to_buf(const Fixture *fix, gchar *buf, gboolean swap)
 gint
 fixture_get_number_of_matches(gint week_number, gint week_round_number)
 {
+#ifdef DEBUG
+    printf("fixture_get_number_of_matches\n");
+#endif
+
     gint i, j;
     gint sum = 0;
 
@@ -981,6 +1077,10 @@ fixture_get_number_of_matches(gint week_number, gint week_round_number)
 Fixture*
 fixture_get_next(gint clid, gint week_number, gint week_round_number)
 {
+#ifdef DEBUG
+    printf("fixture_get_next\n");
+#endif
+
     gint i;
     GArray *fixtures = league_cup_get_fixtures(clid);
 
@@ -1001,6 +1101,10 @@ fixture_get_next(gint clid, gint week_number, gint week_round_number)
 Fixture*
 fixture_get_previous(gint clid, gint week_number, gint week_round_number)
 {
+#ifdef DEBUG
+    printf("fixture_get_previous\n");
+#endif
+
     gint i;
     GArray *fixtures = league_cup_get_fixtures(clid);
 
@@ -1024,6 +1128,10 @@ Fixture*
 fixture_get(gint type, gint clid, gint week_number, 
 	    gint week_round_number, const Team *tm)
 {
+#ifdef DEBUG
+    printf("fixture_get\n");
+#endif
+
     Fixture *fix = NULL;
     gint new_clid = -1;
 
@@ -1064,6 +1172,10 @@ fixture_get(gint type, gint clid, gint week_number,
 gint
 fixture_compare_func(gconstpointer a, gconstpointer b, gpointer data)
 {
+#ifdef DEBUG
+    printf("fixture_compare_func\n");
+#endif
+
     gint local_data = GPOINTER_TO_INT(data);
     const Fixture *fix1 = (local_data >= 100) ? 
 	(const Fixture*)a : *(const Fixture**)a,
@@ -1092,6 +1204,10 @@ fixture_compare_func(gconstpointer a, gconstpointer b, gpointer data)
 GPtrArray*
 fixture_get_latest(const Team *tm)
 {
+#ifdef DEBUG
+    printf("fixture_get_latest\n");
+#endif
+
     gint i, j;
     GPtrArray *latest = g_ptr_array_new();
 
@@ -1126,6 +1242,10 @@ fixture_get_latest(const Team *tm)
 GPtrArray*
 fixture_get_coming(const Team *tm)
 {
+#ifdef DEBUG
+    printf("fixture_get_coming\n");
+#endif
+
     gint i, j;
     GPtrArray *coming = g_ptr_array_new();
 
@@ -1160,6 +1280,10 @@ fixture_get_coming(const Team *tm)
 GPtrArray*
 fixture_get_matches(const Team *tm1, const Team *tm2)
 {
+#ifdef DEBUG
+    printf("fixture_get_matches\n");
+#endif
+
     gint i, j;
     GPtrArray *matches = g_ptr_array_new();
 
@@ -1195,6 +1319,10 @@ fixture_get_matches(const Team *tm1, const Team *tm2)
 Fixture*
 fixture_from_id(gint id, gboolean abort_program)
 {
+#ifdef DEBUG
+    printf("fixture_from_id\n");
+#endif
+
     gint i, j;
 
     for(i=0;i<ligs->len;i++)
@@ -1218,6 +1346,10 @@ fixture_from_id(gint id, gboolean abort_program)
 gint
 fixture_get_last_week_round(gint week_number)
 {
+#ifdef DEBUG
+    printf("fixture_get_last_week_round\n");
+#endif
+
     gint i, j;
     gint week_round_number = 1;
 
@@ -1235,6 +1367,10 @@ fixture_get_last_week_round(gint week_number)
 void
 fixture_get_next_week(gint *week_number, gint *week_round_number)
 {
+#ifdef DEBUG
+    printf("fixture_get_next_week\n");
+#endif
+
     gint i;
     gint local_week = *week_number,
 	local_round = *week_round_number;
@@ -1282,6 +1418,10 @@ fixture_get_next_week(gint *week_number, gint *week_round_number)
 void
 fixture_get_previous_week(gint *week_number, gint *week_round_number)
 {
+#ifdef DEBUG
+    printf("fixture_get_previous_week\n");
+#endif
+
     gint i;
     gint local_week = *week_number,
 	local_round = *week_round_number;
@@ -1331,6 +1471,10 @@ fixture_get_previous_week(gint *week_number, gint *week_round_number)
 GPtrArray*
 fixture_get_season_results(void)
 {
+#ifdef DEBUG
+    printf("fixture_get_season_results\n");
+#endif
+
     gint i, j;
     GPtrArray *results = g_ptr_array_new();
     GArray *fixtures = NULL;
@@ -1365,6 +1509,10 @@ fixture_get_season_results(void)
 gint
 fixture_get_goals_to_win(const Fixture *fix, const Team *tm)
 {
+#ifdef DEBUG
+    printf("fixture_get_goals_to_win\n");
+#endif
+
     const Fixture *first_leg = NULL;
     gint idx = (tm == fix->teams[1]), return_value = -100;
     gint res[2] = {math_sum_int_array(fix->result[0], 2),
@@ -1431,6 +1579,10 @@ fixture_get_goals_to_win(const Fixture *fix, const Team *tm)
 gint
 fixture_count_matchdays(const GArray *fixtures)
 {
+#ifdef DEBUG
+    printf("fixture_count_matchdays\n");
+#endif
+
     gint i;
     gint count = 0;
 
@@ -1450,6 +1602,10 @@ fixture_count_matchdays(const GArray *fixtures)
 gint
 fixture_get_last_scheduled_week(void)
 {
+#ifdef DEBUG
+    printf("fixture_get_last_scheduled_week\n");
+#endif
+
     gint i;
     gint week_nr = 0;
 
@@ -1467,6 +1623,10 @@ fixture_get_last_scheduled_week(void)
 void
 fixture_remove_rrs(GArray *fixtures, gint clid1, gint clid2, gint to_remove)
 {
+#ifdef DEBUG
+    printf("fixture_remove_rrs\n");
+#endif
+
     gint i, j, k;
     gint removed;
     gint start;
@@ -1501,6 +1661,10 @@ fixture_remove_rrs(GArray *fixtures, gint clid1, gint clid2, gint to_remove)
 void
 fixtures_condense(GArray *fixtures)
 {
+#ifdef DEBUG
+    printf("fixtures_condense\n");
+#endif
+
     gint i, j, k, l;
     GArray *matchday_teams[1000][5];
     Fixture *fix;

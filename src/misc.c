@@ -41,6 +41,10 @@
 void
 misc_print_error(GError **error, gboolean abort_program)
 {
+#ifdef DEBUG
+    printf("misc_print_error\n");
+#endif
+
     if(*error == NULL)
 	return;
     
@@ -58,6 +62,10 @@ misc_print_error(GError **error, gboolean abort_program)
 void
 misc_swap_int(gint *first, gint *second)
 {
+#ifdef DEBUG
+    printf("misc_swap_int\n");
+#endif
+
     gint swap = *first;
 
     *first = *second;
@@ -70,6 +78,14 @@ misc_swap_int(gint *first, gint *second)
 void
 misc_swap_gpointer(gpointer *first, gpointer *second)
 {
+#ifdef DEBUG
+    printf("\n");
+#endif
+
+#ifdef DEBUG
+    printf("misc_swap_gpointer\n");
+#endif
+
     gpointer swap = *first;
 
     *first = *second;
@@ -122,6 +138,10 @@ misc_separate_strings(gchar *string)
 GPtrArray*
 misc_randomise_g_pointer_array(GPtrArray *array)
 {
+#ifdef DEBUG
+    printf("misc_randomise_g_pointer_array\n");
+#endif
+
     GPtrArray *new = g_ptr_array_new();
     gint order[array->len];
     gint i;
@@ -140,6 +160,10 @@ misc_randomise_g_pointer_array(GPtrArray *array)
 GPtrArray*
 misc_copy_ptr_array(const GPtrArray *array)
 {
+#ifdef DEBUG
+    printf("misc_copy_ptr_array\n");
+#endif
+
     gint i;
     GPtrArray *copy = NULL;
 
@@ -161,6 +185,10 @@ misc_copy_ptr_array(const GPtrArray *array)
 void
 misc_print_grouped_int(gint number, gchar *buf)
 {
+#ifdef DEBUG
+    printf("misc_print_grouped_int\n");
+#endif
+
     gint i;
     gchar buf2[SMALL];
     gint length = 0;
@@ -208,6 +236,10 @@ misc_print_grouped_int(gint number, gchar *buf)
 gboolean
 query_integer_is_in_array(gint item, gint *array, gint max)
 {
+#ifdef DEBUG
+    printf("query_integer_is_in_array\n");
+#endif
+
     gint i;
 
     for(i=0;i<max;i++)
@@ -221,6 +253,10 @@ query_integer_is_in_array(gint item, gint *array, gint max)
 gboolean
 query_misc_integer_is_in_g_array(gint item, GArray *array)
 {
+#ifdef DEBUG
+    printf("query_misc_integer_is_in_g_array\n");
+#endif
+
     gint i;
 
     for(i=0;i<array->len;i++)
@@ -234,6 +270,10 @@ query_misc_integer_is_in_g_array(gint item, GArray *array)
 gint
 misc_int_compare(gint first, gint second)
 {
+#ifdef DEBUG
+    printf("misc_int_compare\n");
+#endif
+
     if(first > second)
 	return -1;
     else if(first < second)
@@ -246,6 +286,10 @@ misc_int_compare(gint first, gint second)
 gint
 misc_float_compare(gfloat first, gfloat second)
 {
+#ifdef DEBUG
+    printf("misc_float_compare\n");
+#endif
+
     if(first > second)
 	return -1;
     else if(first < second)
@@ -272,6 +316,10 @@ query_misc_string_in_array(const gchar *string, GPtrArray *array)
 gfloat
 misc_get_age_from_birth(gint birth_year, gint birth_month)
 {
+#ifdef DEBUG
+    printf("misc_get_age_from_birth\n");
+#endif
+
     GDate *current_date = g_date_new();
     GDate *birth_date = g_date_new();
 
@@ -434,6 +482,10 @@ misc_parse(const gchar *s, gint *result)
 void
 misc_string_assign(gchar **string, const gchar *contents)
 {
+#ifdef DEBUG
+    printf("misc_string_assign\n");
+#endif
+
     if(contents == NULL)
 	return;
 
@@ -653,6 +705,7 @@ void
 misc_token_add(GPtrArray **token_rep, gint token_idx, 
 	       gchar *replacement)
 {
+
     g_ptr_array_add(token_rep[0], 
 		    (gpointer)g_strdup(g_array_index(tokens.list, Option, token_idx).string_value));
     g_ptr_array_add(token_rep[1], (gpointer)replacement);
@@ -661,7 +714,7 @@ misc_token_add(GPtrArray **token_rep, gint token_idx,
 /** Remove the replacement rule given by the index. */
 void
 misc_token_remove(GPtrArray **token_rep, gint idx)
-{
+{ 
     gint i;
 
     for(i=token_rep[0]->len - 1; i >= 0; i--)
