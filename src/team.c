@@ -248,17 +248,17 @@ team_get_fixture(const Team *tm, gboolean last_fixture)
 	if(tm->clid < ID_CUP_START)
 	    for(i=0;i<ligs->len;i++)
 	    {
-		if(query_league_active(&lig(i)) && lig(i).id == tm->clid)
+		if(query_league_active(&lig(i)))
 		{
 		    for(j=0;j<lig(i).fixtures->len;j++)
 			if(g_array_index(lig(i).fixtures, Fixture, j).attendance == -1 &&
-			   query_fixture_team_involved((&g_array_index(lig(i).fixtures, Fixture, j)), tm->id))
-			{
-			    fix = &g_array_index(lig(i).fixtures, Fixture, j);
-			    break;
+			   query_fixture_team_involved((&g_array_index(lig(i).fixtures, Fixture, j)), tm->id) &&
+                           (fix == NULL ||
+                            query_fixture_is_earlier(&g_array_index(lig(i).fixtures, Fixture, j), fix)))
+			{                            
+                            fix = &g_array_index(lig(i).fixtures, Fixture, j);
+                            break;
 			}
-
-		    break;
 		}
 	    }
 
@@ -287,17 +287,17 @@ team_get_fixture(const Team *tm, gboolean last_fixture)
 	if(tm->clid < ID_CUP_START)
 	    for(i=0;i<ligs->len;i++)
 	    {
-		if(query_league_active(&lig(i)) && lig(i).id == tm->clid)
+		if(query_league_active(&lig(i)))
 		{
 		    for(j=lig(i).fixtures->len - 1;j>=0;j--)
 			if(g_array_index(lig(i).fixtures, Fixture, j).attendance != -1 &&
-			   query_fixture_team_involved((&g_array_index(lig(i).fixtures, Fixture, j)), tm->id))
+			   query_fixture_team_involved((&g_array_index(lig(i).fixtures, Fixture, j)), tm->id) &&
+                           (fix == NULL ||
+                            query_fixture_is_later(&g_array_index(lig(i).fixtures, Fixture, j), fix)))
 			{
 			    fix = &g_array_index(lig(i).fixtures, Fixture, j);
 			    break;
 			}
-		
-		    break;
 		}
 	    }
 
