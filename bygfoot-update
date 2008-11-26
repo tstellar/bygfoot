@@ -409,7 +409,7 @@ function get_country_files()
     while read -d : oldname && read newname 
       do
       if [ "$oldname" == "League" ]; then
-	  DIRNAME=$newname
+	  DIRNAME=$(find . -type d -name $newname)
 	  my_echo "   + Adding official names to $DIRNAME..."
       else
 	  oldname="${oldname## }"
