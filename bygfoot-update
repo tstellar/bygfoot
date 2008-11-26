@@ -407,16 +407,19 @@ function get_country_files()
     my_wget http://bygfoot.sourceforge.net/revisions/official_names
 
     while read -d : oldname && read newname 
-      do
-      if [ "$oldname" == "League" ]; then
-	  DIRNAME=$(find . -type d -name $newname)
-	  my_echo "   + Adding official names to $DIRNAME..."
-      else
-	  oldname="${oldname## }"
-	  newname="${newname%% }"
-	  sed -i -e "s/>$oldname</>$newname</" $DIRNAME/league*.xml
-      fi
-      
+    do
+        if [ "$oldname" = "League" ]; then
+            DIRNAME=$(find . -type d -name $newname)
+            if [ ! $DIRNAME = "" ]; then
+                my_echo "   + Adding official names to $DIRNAME..."
+            fi
+        else
+            if [ ! $DIRNAME = "" ]; then        
+                oldname="${oldname## }"
+                newname="${newname%% }"
+                perl -i -pe "s/>$oldname</>$newname</g" $DIRNAME/league*.xml
+            fi
+        fi
     done < official_names
 
     rm -vf official_names 2>> $log_file | tee -a $log_file
