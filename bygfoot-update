@@ -417,7 +417,7 @@ function get_country_files()
             if [ ! $DIRNAME = "" ]; then        
                 oldname="${oldname## }"
                 newname="${newname%% }"
-                perl -i -pe "s/>$oldname</>$newname</g" $DIRNAME/league*.xml
+                perl -i -pe "s?>$oldname<?>$newname<?g" $DIRNAME/league*.xml
             fi
         fi
     done < official_names
