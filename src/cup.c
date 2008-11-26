@@ -440,7 +440,10 @@ cup_load_choose_team_from_league(Cup *cup, const League *league,
     Table *table;
 
     number_of_teams = 0;
-    table = &g_array_index(league->tables, Table, ct->from_table);
+    if(league->tables->len == 0)
+        table = &g_array_index(league->tables, Table, 0);
+    else
+        table = &g_array_index(league->tables, Table, ct->from_table);
 
     if(ct->number_of_teams == -1)
     {
