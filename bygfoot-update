@@ -385,7 +385,7 @@ function get_team_defs()
 		    uri) uri=$value ;;
 		    team_name1) team_name1="$value" ;;
 		    team_name2) team_name2="$value" ;;
-		    country) country=$value ;;
+		    country) country=$(find .. -type d -name $value | tail -n 1);;
 		esac
 	    fi
 	fi
@@ -409,7 +409,7 @@ function get_country_files()
     while read -d : oldname && read newname 
     do
         if [ "$oldname" = "League" ]; then
-            DIRNAME=$(find . -type d -name $newname)
+            DIRNAME=$(find . -type d -name $newname | tail -n 1)
             if [ ! $DIRNAME = "" ]; then
                 my_echo "   + Adding official names to $DIRNAME..."
             fi
