@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+	<name>México Liga Primera Torneo Clausadura</name>
+	<short_name>México Clausadura</short_name>
+	<sid>mexico1_clausadura</sid>
+	<property>national</property>
+	<add_week>22</add_week>
+	<last_week>46</last_week>
+	
+	<cup_rounds>
+		<cup_round>
+			<randomise_teams>1</randomise_teams>
+			<number_of_groups>3</number_of_groups>
+			<number_of_advance>1</number_of_advance>
+			<number_of_best_advance>5</number_of_best_advance>
+			<round_robins>3</round_robins>
+			<choose_teams>
+				<choose_team>
+					<choose_team_sid>mexico1</choose_team_sid>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+		<cup_round>
+			<home_away>1</home_away>
+		</cup_round>
+		<cup_round>
+			<home_away>1</home_away>
+		</cup_round>
+		<cup_round>
+			<neutral>1</neutral>
+		</cup_round>
+	</cup_rounds>
+</cup>
