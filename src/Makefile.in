@@ -54,12 +54,12 @@ am_bygfoot_OBJECTS = bet.$(OBJEXT) callback_func.$(OBJEXT) \
 	misc_callback_func.$(OBJEXT) misc2_callbacks.$(OBJEXT) \
 	misc3_callbacks.$(OBJEXT) misc2_callback_func.$(OBJEXT) \
 	misc_interface.$(OBJEXT) misc2_interface.$(OBJEXT) \
-	misc3_interface.$(OBJEXT) name.$(OBJEXT) option.$(OBJEXT) \
-	option_gui.$(OBJEXT) options_callbacks.$(OBJEXT) \
-	options_interface.$(OBJEXT) player.$(OBJEXT) \
-	start_end.$(OBJEXT) stat.$(OBJEXT) strategy.$(OBJEXT) \
-	support.$(OBJEXT) table.$(OBJEXT) team.$(OBJEXT) \
-	training.$(OBJEXT) training_callbacks.$(OBJEXT) \
+	misc3_interface.$(OBJEXT) name.$(OBJEXT) news.$(OBJEXT) \
+	option.$(OBJEXT) option_gui.$(OBJEXT) \
+	options_callbacks.$(OBJEXT) options_interface.$(OBJEXT) \
+	player.$(OBJEXT) start_end.$(OBJEXT) stat.$(OBJEXT) \
+	strategy.$(OBJEXT) support.$(OBJEXT) table.$(OBJEXT) \
+	team.$(OBJEXT) training.$(OBJEXT) training_callbacks.$(OBJEXT) \
 	training_interface.$(OBJEXT) transfer.$(OBJEXT) \
 	treeview.$(OBJEXT) treeview2.$(OBJEXT) \
 	treeview_helper.$(OBJEXT) user.$(OBJEXT) window.$(OBJEXT) \
@@ -75,8 +75,8 @@ am_bygfoot_OBJECTS = bet.$(OBJEXT) callback_func.$(OBJEXT) \
 	xml_loadsave_transfers.$(OBJEXT) xml_loadsave_users.$(OBJEXT) \
 	xml_cup.$(OBJEXT) xml_country.$(OBJEXT) xml_league.$(OBJEXT) \
 	xml_lg_commentary.$(OBJEXT) xml_mmatches.$(OBJEXT) \
-	xml_name.$(OBJEXT) xml_strategy.$(OBJEXT) xml_team.$(OBJEXT) \
-	youth_academy.$(OBJEXT)
+	xml_name.$(OBJEXT) xml_news.$(OBJEXT) xml_strategy.$(OBJEXT) \
+	xml_team.$(OBJEXT) youth_academy.$(OBJEXT)
 bygfoot_OBJECTS = $(am_bygfoot_OBJECTS)
 am__DEPENDENCIES_1 =
 bygfoot_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -199,7 +199,6 @@ sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
-top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CFLAGS = -Wall #-fprofile-arcs -ftest-coverage -pg
@@ -240,6 +239,7 @@ bygfoot_SOURCES = \
 	misc2_interface.c misc2_callbacks.h misc2_interface.h support.h \
 	misc3_interface.c misc3_callbacks.h misc3_interface.h support.h \
 	name.c main.h name.h option.h variables.h xml_name.h \
+	news.c news.h variables.h xml_news.h \
 	option.c main.h misc.h option.h variables.h \
 	option_gui.c callbacks.h file.h game_gui.h language.h misc.h option_gui.h option.h support.h training.h treeview.h user.h variables.h \
 	options_callbacks.c file.h option_gui.h options_callbacks.h options_interface.h support.h training.h user.h variables.h window.h \
@@ -281,6 +281,7 @@ bygfoot_SOURCES = \
 	xml_lg_commentary.c free.h lg_commentary.h live_game.h misc.h variables.h xml_lg_commentary.h \
 	xml_mmatches.c file.h free.h live_game.h misc.h user.h xml.h xml_loadsave_live_game.h xml_mmatches.h \
 	xml_name.c file.h free.h misc.h name.h variables.h xml_name.h \
+	xml_news.c file.h free.h news.h variables.h xml_news.h  \
 	xml_strategy.c file.h free.h main.h misc.h strategy_struct.h xml_strategy.h \
 	xml_team.c file.h free.h main.h misc.h option.h player.h team.h variables.h xml_team.h \
 	youth_academy.c free.h maths.h name.h option.h player.h team.h user.h youth_academy.h 
@@ -383,6 +384,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/misc_callbacks.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/misc_interface.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/name.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/news.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/option.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/option_gui.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/options_callbacks.Po@am__quote@
@@ -424,6 +426,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xml_loadsave_users.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xml_mmatches.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xml_name.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xml_news.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xml_strategy.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xml_team.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/youth_academy.Po@am__quote@

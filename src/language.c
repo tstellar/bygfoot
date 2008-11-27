@@ -30,6 +30,7 @@
 #include "language.h"
 #include "lg_commentary.h"
 #include "misc.h"
+#include "news.h"
 #include "option.h"
 #include "variables.h"
 #include "window.h"
@@ -86,6 +87,7 @@ language_set(gint index)
     }
 
     lg_commentary_load_commentary_file_from_option();
+    news_load_news_file_from_option();
     g_free(pwd);
     free_gchar_array(&codes);
 }

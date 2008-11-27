@@ -146,4 +146,7 @@ free_job(Job *job, gboolean free_tm);
 void
 free_jobs(gboolean reset);
 
+void
+free_news(gboolean reset);
+
 #endif

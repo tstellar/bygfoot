@@ -230,7 +230,7 @@ xml_lg_commentary_read_end_element    (GMarkupParseContext *context,
 	    strcmp(element_name, TAG_EVENT_COMMENTARY) == 0)
 	state = STATE_EVENT;
     else if(strcmp(element_name, TAG_LG_COMMENTARY) != 0)
-	g_warning("xml_lg_commentary_read_start_element: unknown tag: %s; I'm in state %d\n",
+	g_warning("xml_lg_commentary_read_end_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 

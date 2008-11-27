@@ -45,6 +45,7 @@
 #include "misc.h"
 #include "misc_callbacks.h"
 #include "name_struct.h"
+#include "news_struct.h"
 #include "option.h"
 #include "start_end.h"
 #include "stat_struct.h"
@@ -234,6 +235,9 @@ main_init_variables(void)
 
     for(i=0;i<LIVE_GAME_EVENT_END;i++)
 	lg_commentary[i] = g_array_new(FALSE, FALSE, sizeof(LGCommentary));
+
+    for(i=0;i<NEWS_ARTICLE_TYPE_END;i++)
+	news[i] = g_array_new(FALSE, FALSE, sizeof(NewsArticle));
 
     file_load_conf_files();
     xml_strategy_load_strategies();
