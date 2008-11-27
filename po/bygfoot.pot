@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-26 11:42+0100\n"
+"POT-Creation-Date: 2008-11-27 14:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -348,37 +348,37 @@ msgstr ""
 msgid "It's too late in the season for automatic loan repayment."
 msgstr ""
 
-#: src/cup.c:1073
+#: src/cup.c:1076
 msgid " -- Second leg"
 msgstr ""
 
-#: src/cup.c:1075
+#: src/cup.c:1078
 msgid " -- First leg"
 msgstr ""
 
-#: src/cup.c:1078
+#: src/cup.c:1081
 msgid " -- Replay matches"
 msgstr ""
 
-#: src/cup.c:1094
+#: src/cup.c:1097
 msgid "Round robin"
 msgstr ""
 
 #. A cup stage, e.g. Last 32 when there are only 32 teams left.
-#: src/cup.c:1102
+#: src/cup.c:1105
 #, c-format
 msgid "Last %d"
 msgstr ""
 
-#: src/cup.c:1105
+#: src/cup.c:1108
 msgid "Final"
 msgstr ""
 
-#: src/cup.c:1108
+#: src/cup.c:1111
 msgid "Semi-final"
 msgstr ""
 
-#: src/cup.c:1111
+#: src/cup.c:1114
 msgid "Quarter-final"
 msgstr ""
 
@@ -387,7 +387,7 @@ msgstr ""
 msgid "Copying %s"
 msgstr ""
 
-#: src/file.c:375 src/misc3_interface.c:411
+#: src/file.c:375 src/misc3_interface.c:412
 msgid "Ready"
 msgstr ""
 
@@ -534,7 +534,7 @@ msgstr ""
 msgid "Job offers"
 msgstr ""
 
-#: src/interface.c:373 src/misc_interface.c:497 src/options_interface.c:532
+#: src/interface.c:373 src/misc_interface.c:497 src/options_interface.c:533
 msgid "Live game"
 msgstr ""
 
@@ -690,7 +690,7 @@ msgstr ""
 msgid "Anti"
 msgstr ""
 
-#: src/interface.c:728 src/options_interface.c:1102
+#: src/interface.c:728 src/options_interface.c:1103
 #: src/training_interface.c:60 src/treeview.c:1594 src/window.c:974
 msgid "Training camp"
 msgstr ""
@@ -831,11 +831,11 @@ msgstr ""
 msgid "Show stadium"
 msgstr ""
 
-#: src/interface.c:1025 src/misc3_interface.c:542 src/window.c:982
+#: src/interface.c:1025 src/misc3_interface.c:543 src/window.c:982
 msgid "Automatic loan repayment"
 msgstr ""
 
-#: src/interface.c:1037 src/options_interface.c:1035 src/treeview.c:1498
+#: src/interface.c:1037 src/options_interface.c:1036 src/treeview.c:1498
 #: src/treeview.c:1508 src/window.c:959
 msgid "Betting"
 msgstr ""
@@ -852,7 +852,7 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: src/interface.c:1060 src/misc2_interface.c:1106 src/misc3_interface.c:236
+#: src/interface.c:1060 src/misc2_interface.c:1106 src/misc3_interface.c:237
 msgid "Contributors"
 msgstr ""
 
@@ -1083,42 +1083,42 @@ msgstr ""
 msgid "Loading miscellaneous..."
 msgstr ""
 
-#: src/main.c:80
+#: src/main.c:81
 msgid "Specify additional support directory (takes priority over default ones)"
 msgstr ""
 
-#: src/main.c:86
+#: src/main.c:87
 msgid "Language to use (a code like 'de')"
 msgstr ""
 
-#: src/main.c:88
+#: src/main.c:89
 msgid "Load last savegame"
 msgstr ""
 
-#: src/main.c:90
+#: src/main.c:91
 msgid "Test an XML commentary file"
 msgstr ""
 
-#: src/main.c:93
+#: src/main.c:94
 msgid "Commentary file name (may be in a support dir)"
 msgstr ""
 
 #. Live game tokens are strings like _AT_ in live game commentary files
 #. which will be filled in by the program during runtime; e.g. _AT_ becomes
 #. the attendace for the match.
-#: src/main.c:99
+#: src/main.c:100
 msgid "File containing live game tokens (may be in a support dir)"
 msgstr ""
 
-#: src/main.c:102
+#: src/main.c:103
 msgid "Commentary event to test; leave out to test all commentaries"
 msgstr ""
 
-#: src/main.c:105
+#: src/main.c:106
 msgid "How many commentaries to generate per event"
 msgstr ""
 
-#: src/main.c:124
+#: src/main.c:125
 msgid "- a simple and addictive GTK2 football manager"
 msgstr ""
 
@@ -1253,9 +1253,9 @@ msgstr ""
 
 #: src/misc2_interface.c:480 src/misc2_interface.c:577
 #: src/misc2_interface.c:1139 src/misc2_interface.c:1234
-#: src/misc3_interface.c:106 src/misc3_interface.c:402
+#: src/misc3_interface.c:107 src/misc3_interface.c:403
 #: src/misc_interface.c:293 src/misc_interface.c:1146
-#: src/options_interface.c:1136
+#: src/options_interface.c:1137
 msgid "Esc"
 msgstr ""
 
@@ -1325,7 +1325,7 @@ msgstr ""
 msgid "Reload matches from file"
 msgstr ""
 
-#: src/misc2_interface.c:1368 src/options_interface.c:392
+#: src/misc2_interface.c:1368 src/options_interface.c:393
 msgid "Reload"
 msgstr ""
 
@@ -1363,115 +1363,107 @@ msgstr ""
 msgid "Wager"
 msgstr ""
 
-#: src/misc3_interface.c:60
+#: src/misc3_interface.c:61
 msgid "Betting -- Left click on odd to place or remove bet"
 msgstr ""
 
-#: src/misc3_interface.c:73 src/options_interface.c:1005
+#: src/misc3_interface.c:74 src/options_interface.c:1006
 msgid "Show matches from all leagues"
 msgstr ""
 
-#: src/misc3_interface.c:76
+#: src/misc3_interface.c:77
 msgid ""
 "Whether to show matches of all leagues. Use the options window to toggle "
 "permanently."
 msgstr ""
 
-#: src/misc3_interface.c:78 src/options_interface.c:1010
+#: src/misc3_interface.c:79 src/options_interface.c:1011
 msgid "Show matches from cups"
 msgstr ""
 
-#: src/misc3_interface.c:81
+#: src/misc3_interface.c:82
 msgid ""
 "Whether to show cup matches. Use the options window to toggle permanently."
 msgstr ""
 
-#: src/misc3_interface.c:83 src/options_interface.c:1016
+#: src/misc3_interface.c:84 src/options_interface.c:1017
 msgid "Show only my recent bets"
 msgstr ""
 
-#: src/misc3_interface.c:86
+#: src/misc3_interface.c:87
 msgid "Whether to show only your bets in the recent bets list"
 msgstr ""
 
 #. Splash screen hint question.
-#: src/misc3_interface.c:258
+#: src/misc3_interface.c:259
 msgid "Did you know?"
 msgstr ""
 
-#: src/misc3_interface.c:294
+#: src/misc3_interface.c:295
 msgid "Previous"
 msgstr ""
 
-#: src/misc3_interface.c:314
+#: src/misc3_interface.c:315
 msgid "Next"
 msgstr ""
 
-#: src/misc3_interface.c:330
+#: src/misc3_interface.c:331
 msgid "Ctrl-N"
 msgstr ""
 
-#: src/misc3_interface.c:347
+#: src/misc3_interface.c:348
 msgid "Start _new game"
 msgstr ""
 
-#: src/misc3_interface.c:354
+#: src/misc3_interface.c:355
 msgid "Ctrl-O"
 msgstr ""
 
-#: src/misc3_interface.c:371
+#: src/misc3_interface.c:372
 msgid "_Load game"
 msgstr ""
 
-#: src/misc3_interface.c:378
+#: src/misc3_interface.c:379
 msgid "Ctrl-R"
 msgstr ""
 
-#: src/misc3_interface.c:395
+#: src/misc3_interface.c:396
 msgid "_Resume game"
 msgstr ""
 
-#: src/misc3_interface.c:554
+#: src/misc3_interface.c:555
 msgid "Your debt:"
 msgstr ""
 
-#: src/misc3_interface.c:567
+#: src/misc3_interface.c:568
 msgid "Current settings:"
 msgstr ""
 
-#: src/misc3_interface.c:576
+#: src/misc3_interface.c:577
 msgid "Start in week:"
 msgstr ""
 
-#: src/misc3_interface.c:584
+#: src/misc3_interface.c:585
 msgid "Weekly installment:"
 msgstr ""
 
-#: src/misc3_interface.c:592
-msgid "label26"
-msgstr ""
-
-#: src/misc3_interface.c:599
-msgid "label27"
-msgstr ""
-
-#: src/misc3_interface.c:611
+#: src/misc3_interface.c:612
 msgid "New settings:"
 msgstr ""
 
-#: src/misc3_interface.c:622
+#: src/misc3_interface.c:623
 msgid "Start in week"
 msgstr ""
 
-#: src/misc3_interface.c:630
+#: src/misc3_interface.c:631
 msgid "Weekly installment"
 msgstr ""
 
-#: src/misc3_interface.c:656
+#: src/misc3_interface.c:657
 msgid "Calculate weekly installment"
 msgstr ""
 
-#: src/misc3_interface.c:678
+#: src/misc3_interface.c:679
 msgid "Calculate start week"
 msgstr ""
 
@@ -1706,406 +1698,402 @@ msgstr ""
 msgid "Reject for now"
 msgstr ""
 
-#: src/options_interface.c:237
+#: src/options_interface.c:238
 msgid "Confirm quit when not saved"
 msgstr ""
 
-#: src/options_interface.c:240
+#: src/options_interface.c:241
 msgid ""
 "Whether to show a confirmation popup when you press quit and the game state "
 "is not saved"
 msgstr ""
 
-#: src/options_interface.c:242
+#: src/options_interface.c:243
 msgid "Confirm when unfit"
 msgstr ""
 
-#: src/options_interface.c:245
+#: src/options_interface.c:246
 msgid ""
 "Whether to show a confirmation popup if a user team has an injured or banned "
 "player in the startup formation"
 msgstr ""
 
-#: src/options_interface.c:247
+#: src/options_interface.c:248
 msgid "Save overwrites"
 msgstr ""
 
-#: src/options_interface.c:250
+#: src/options_interface.c:251
 msgid ""
 "Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
 msgstr ""
 
-#: src/options_interface.c:257
+#: src/options_interface.c:258
 msgid "Maximize main window"
 msgstr ""
 
-#: src/options_interface.c:260
+#: src/options_interface.c:261
 msgid ""
 "Whether game starts with a maximized main window (doesn't work with all "
 "window managers)"
 msgstr ""
 
-#: src/options_interface.c:262
+#: src/options_interface.c:263
 msgid "Prefer messages"
 msgstr ""
 
-#: src/options_interface.c:265
+#: src/options_interface.c:266
 msgid ""
 "Whether to show warnings and such in the message area in the main window "
 "when possible"
 msgstr ""
 
-#: src/options_interface.c:267
+#: src/options_interface.c:268
 msgid "Show progressbar pictures"
 msgstr ""
 
-#: src/options_interface.c:270
+#: src/options_interface.c:271
 msgid ""
 "Whether to show pictures on top of the progressbar when loading/saving or "
 "calculating results"
 msgstr ""
 
-#: src/options_interface.c:277
+#: src/options_interface.c:278
 msgid "Skip weeks without user matches"
 msgstr ""
 
-#: src/options_interface.c:280
+#: src/options_interface.c:281
 msgid ""
 "If checked, weeks without user teams playing are calculated automatically "
 "(without the user having to press 'New week')"
 msgstr ""
 
-#: src/options_interface.c:299
+#: src/options_interface.c:300
 msgid "Autosave interval "
 msgstr ""
 
-#: src/options_interface.c:307
+#: src/options_interface.c:308
 msgid "How often the game is saved automatically"
 msgstr ""
 
-#: src/options_interface.c:310
+#: src/options_interface.c:311
 msgid " Autosave files "
 msgstr ""
 
-#: src/options_interface.c:318
+#: src/options_interface.c:319
 msgid "How many files the autosave uses"
 msgstr ""
 
-#: src/options_interface.c:320
+#: src/options_interface.c:321
 msgid "Player attribute precision"
 msgstr ""
 
-#: src/options_interface.c:327
+#: src/options_interface.c:328
 msgid "Player list refresh rate"
 msgstr ""
 
-#: src/options_interface.c:334
+#: src/options_interface.c:335
 msgid "Constants file"
 msgstr ""
 
-#: src/options_interface.c:346 src/options_interface.c:433
+#: src/options_interface.c:347 src/options_interface.c:434
 msgid "Font used in treeviews"
 msgstr ""
 
-#: src/options_interface.c:360
+#: src/options_interface.c:361
 msgid "Font name"
 msgstr ""
 
-#: src/options_interface.c:373
+#: src/options_interface.c:374
 msgid ""
 "File containing settings which determine a lot of aspects of the game "
 "behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
 msgstr ""
 
-#: src/options_interface.c:378
+#: src/options_interface.c:379
 msgid "Reload the constants file"
 msgstr ""
 
-#: src/options_interface.c:396
+#: src/options_interface.c:397
 msgid "Language"
 msgstr ""
 
-#: src/options_interface.c:403
+#: src/options_interface.c:404
 msgid "Autosave"
 msgstr ""
 
-#: src/options_interface.c:408
+#: src/options_interface.c:409
 msgid "Whether to automatically save the game regularly"
 msgstr ""
 
-#: src/options_interface.c:416
+#: src/options_interface.c:417
 msgid "How many digits after the comma there are for skill etc."
 msgstr ""
 
-#: src/options_interface.c:425
+#: src/options_interface.c:426
 msgid ""
 "How often the player list gets refreshed during a live game (in live game "
 "minutes)"
 msgstr ""
 
-#: src/options_interface.c:440
+#: src/options_interface.c:441
 msgid "Choose game language (might not work in Windows versions)"
 msgstr ""
 
-#: src/options_interface.c:446
+#: src/options_interface.c:447
 msgid "Global"
 msgstr ""
 
-#: src/options_interface.c:458
+#: src/options_interface.c:459
 msgid "Show live game"
 msgstr ""
 
-#: src/options_interface.c:462
+#: src/options_interface.c:463
 msgid "Show tendency bar"
 msgstr ""
 
-#: src/options_interface.c:471
+#: src/options_interface.c:472
 msgid "Live game speed factor"
 msgstr ""
 
-#: src/options_interface.c:478
+#: src/options_interface.c:479
 msgid "Live game verbosity"
 msgstr ""
 
-#: src/options_interface.c:491
+#: src/options_interface.c:492
 msgid "The lower this value the faster the live game commentary will scroll."
 msgstr ""
 
-#: src/options_interface.c:500
+#: src/options_interface.c:501
 msgid "The higher this value, the more commentary you'll see."
 msgstr ""
 
-#: src/options_interface.c:503
+#: src/options_interface.c:504
 msgid "Automatic substitutions"
 msgstr ""
 
-#: src/options_interface.c:506
+#: src/options_interface.c:507
 msgid ""
 "Whether the subs (e.g. for injured players) are made by the CPU. This is "
 "automatically done if the live game is off."
 msgstr ""
 
-#: src/options_interface.c:517
+#: src/options_interface.c:518
 msgid "Pause when injury"
 msgstr ""
 
-#: src/options_interface.c:520
+#: src/options_interface.c:521
 msgid "Whether the live game pauses when a user player is injured"
 msgstr ""
 
-#: src/options_interface.c:522
+#: src/options_interface.c:523
 msgid "Pause when red card"
 msgstr ""
 
-#: src/options_interface.c:525
+#: src/options_interface.c:526
 msgid "Whether the live game pauses when a user player is sent off"
 msgstr ""
 
-#: src/options_interface.c:527
+#: src/options_interface.c:528
 msgid "Pause when break"
 msgstr ""
 
-#: src/options_interface.c:530
+#: src/options_interface.c:531
 msgid "Whether the live game pauses at half time and extra time"
 msgstr ""
 
-#: src/options_interface.c:544
+#: src/options_interface.c:545
 msgid "Confirm removing youths"
 msgstr ""
 
-#: src/options_interface.c:547
+#: src/options_interface.c:548
 msgid ""
 "Whether a confirmation popup is shown when you kick out a youth from your "
 "academy"
 msgstr ""
 
-#: src/options_interface.c:549
+#: src/options_interface.c:550
 msgid "Show job offers"
 msgstr ""
 
-#: src/options_interface.c:552
+#: src/options_interface.c:553
 msgid "Whether to show job offers when a user is successful"
 msgstr ""
 
-#: src/options_interface.c:557
+#: src/options_interface.c:558
 msgid "Set to 0 to switch off warning"
 msgstr ""
 
-#: src/options_interface.c:563
+#: src/options_interface.c:564
 msgid "Show warning if a player contract gets below "
 msgstr ""
 
-#: src/options_interface.c:573
+#: src/options_interface.c:574
 msgid " months"
 msgstr ""
 
-#: src/options_interface.c:577
+#: src/options_interface.c:578
 msgid "Show all leagues in the fixture view"
 msgstr ""
 
-#: src/options_interface.c:580
+#: src/options_interface.c:581
 msgid ""
 "Whether in the weekly fixture view all leagues or only the user league is "
 "shown"
 msgstr ""
 
-#: src/options_interface.c:591
+#: src/options_interface.c:592
 msgid "Swap adapts structure"
 msgstr ""
 
-#: src/options_interface.c:594
+#: src/options_interface.c:595
 msgid ""
 "Whether swapping two players automatically adapts the team structure to the "
 "player positions"
 msgstr ""
 
-#: src/options_interface.c:596
+#: src/options_interface.c:597
 msgid "Show overall games/goals"
 msgstr ""
 
-#: src/options_interface.c:599
+#: src/options_interface.c:600
 msgid "Whether to show the player games/goals value in all competitions"
 msgstr ""
 
-#: src/options_interface.c:601
+#: src/options_interface.c:602
 msgid "Misc."
 msgstr ""
 
-#: src/options_interface.c:609
+#: src/options_interface.c:610
 msgid "Name "
 msgstr ""
 
-#: src/options_interface.c:616
+#: src/options_interface.c:617
 msgid "CPos "
 msgstr ""
 
-#: src/options_interface.c:623
+#: src/options_interface.c:624
 msgid "Pos "
 msgstr ""
 
-#: src/options_interface.c:630
+#: src/options_interface.c:631
 msgid "CSkill "
 msgstr ""
 
-#: src/options_interface.c:637
+#: src/options_interface.c:638
 msgid "Skill "
 msgstr ""
 
-#: src/options_interface.c:644
+#: src/options_interface.c:645
 msgid "Fitness "
 msgstr ""
 
-#: src/options_interface.c:651
+#: src/options_interface.c:652
 msgid "Games "
 msgstr ""
 
-#: src/options_interface.c:658
+#: src/options_interface.c:659
 msgid "Shots "
 msgstr ""
 
-#: src/options_interface.c:665
+#: src/options_interface.c:666
 msgid "Goals "
 msgstr ""
 
-#: src/options_interface.c:672
+#: src/options_interface.c:673
 msgid "Status "
 msgstr ""
 
-#: src/options_interface.c:679
+#: src/options_interface.c:680
 msgid "Cards "
 msgstr ""
 
-#: src/options_interface.c:686
+#: src/options_interface.c:687
 msgid "Age "
 msgstr ""
 
-#: src/options_interface.c:693
+#: src/options_interface.c:694
 msgid "ETal "
 msgstr ""
 
-#: src/options_interface.c:700
+#: src/options_interface.c:701
 msgid "Value "
 msgstr ""
 
-#: src/options_interface.c:707
+#: src/options_interface.c:708
 msgid "Wage "
 msgstr ""
 
-#: src/options_interface.c:714
+#: src/options_interface.c:715
 msgid "Contract "
 msgstr ""
 
-#: src/options_interface.c:721
+#: src/options_interface.c:722
 msgid "League "
 msgstr ""
 
-#: src/options_interface.c:728
+#: src/options_interface.c:729
 msgid "Team "
 msgstr ""
 
-#: src/options_interface.c:965
+#: src/options_interface.c:966
 msgid "Attribute "
 msgstr ""
 
-#: src/options_interface.c:972
+#: src/options_interface.c:973
 msgid "List 1 "
 msgstr ""
 
-#: src/options_interface.c:979
+#: src/options_interface.c:980
 msgid "List 2"
 msgstr ""
 
-#: src/options_interface.c:993
+#: src/options_interface.c:994
 msgid "Player attributes shown"
 msgstr ""
 
-#: src/options_interface.c:1008
+#: src/options_interface.c:1009
 msgid "Whether to show matches of all leagues in the betting window"
 msgstr ""
 
-#: src/options_interface.c:1013
+#: src/options_interface.c:1014
 msgid "Whether to show cup matches in the betting window"
 msgstr ""
 
-#: src/options_interface.c:1024
+#: src/options_interface.c:1025
 msgid "Default wager"
 msgstr ""
 
-#: src/options_interface.c:1032
+#: src/options_interface.c:1033
 msgid "How much you wager by default"
 msgstr ""
 
-#: src/options_interface.c:1049
+#: src/options_interface.c:1050
 msgid "Default hotel"
 msgstr ""
 
-#: src/options_interface.c:1072
+#: src/options_interface.c:1073
 msgid "Default recreation:"
 msgstr ""
 
-#: src/options_interface.c:1092
+#: src/options_interface.c:1093
 msgid "Default training:"
 msgstr ""
 
-#: src/options_interface.c:1098
-msgid "label48"
-msgstr ""
-
-#: src/options_interface.c:1119
+#: src/options_interface.c:1120
 msgid "Save global settings to file"
 msgstr ""
 
-#: src/options_interface.c:1122
+#: src/options_interface.c:1123
 msgid ""
 "Whether to save the global settings to file (so that they get loaded next "
 "time you start a new game)"
 msgstr ""
 
-#: src/options_interface.c:1124
+#: src/options_interface.c:1125
 msgid "Save user settings to file"
 msgstr ""
 
-#: src/options_interface.c:1127
+#: src/options_interface.c:1128
 msgid ""
 "Whether to save the user settings to file (so that they get loaded next time "
 "this user starts a new game)"

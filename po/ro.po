@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-26 11:42+0100\n"
+"POT-Creation-Date: 2008-11-27 14:47+0100\n"
 "PO-Revision-Date: 2008-11-26 21:39+0200\n"
 "Last-Translator: Mihai <mihai@emma.ro>\n"
 "Language-Team: Romanian <(Corectat şi completat Mihai Floran)>\n"
@@ -73,20 +73,19 @@ msgstr " (autogol)"
 
 #. A goal scored with penalty.
 #. Penalty shooter.
-#: src/game.c:995
-#: src/treeview_helper.c:1217
+#: src/game.c:995 src/treeview_helper.c:1217
 msgid " (P)"
 msgstr " (penalty)"
 
-#: src/cup.c:1075
+#: src/cup.c:1078
 msgid " -- First leg"
 msgstr " -- Tur"
 
-#: src/cup.c:1078
+#: src/cup.c:1081
 msgid " -- Replay matches"
 msgstr " -- Rejucare meciuri"
 
-#: src/cup.c:1073
+#: src/cup.c:1076
 msgid " -- Second leg"
 msgstr " -- Retur"
 
@@ -95,7 +94,7 @@ msgstr " -- Retur"
 msgid " Assoc."
 msgstr " Asociaţii"
 
-#: src/options_interface.c:310
+#: src/options_interface.c:311
 msgid " Autosave files "
 msgstr " Autosalvare fişierele "
 
@@ -244,7 +243,7 @@ msgstr " et"
 msgid " less"
 msgstr " puţin"
 
-#: src/options_interface.c:573
+#: src/options_interface.c:574
 msgid " months"
 msgstr " luni"
 
@@ -350,14 +349,23 @@ msgstr "%s a părăsit echipa pentru că i-a expirat contractul."
 #. A player from a team has rejected a transfer offer.
 #: src/user.c:607
 #, c-format
-msgid "%s of %s has rejected your offer (%s / %s). He wasn't satisfied with the wage you offered."
-msgstr "%s de la %s v-a refuzat oferta (%s / %s). Nu a fost mulţumit de salariul pe care i l-aţi oferit."
+msgid ""
+"%s of %s has rejected your offer (%s / %s). He wasn't satisfied with the "
+"wage you offered."
+msgstr ""
+"%s de la %s v-a refuzat oferta (%s / %s). Nu a fost mulţumit de salariul pe "
+"care i l-aţi oferit."
 
 #. A player from a team has rejected a transfer offer.
 #: src/user.c:613
 #, c-format
-msgid "%s of %s has rejected your offer because your team has too many star players already. 'A player of my caliber doesn't play second fiddle,' he was quoted."
-msgstr "%s de la %s a refuzat oferta dumneavoastră pentru că echipa are prea multe staruri deja. 'Un jucător de calibrul meu nu joacă în linia a doua,' a spus el."
+msgid ""
+"%s of %s has rejected your offer because your team has too many star players "
+"already. 'A player of my caliber doesn't play second fiddle,' he was quoted."
+msgstr ""
+"%s de la %s a refuzat oferta dumneavoastră pentru că echipa are prea multe "
+"staruri deja. 'Un jucător de calibrul meu nu joacă în linia a doua,' a spus "
+"el."
 
 #. Team in a league. Leave team.
 #: src/user.c:846
@@ -371,8 +379,13 @@ msgstr ""
 
 #: src/misc2_callback_func.c:226
 #, c-format
-msgid "%s rejects your offer and won't negotiate with you anymore. You should sell him before his contract expires (he'll simply leave your team otherwise)."
-msgstr "%s respinge oferta dumneavoastră şi nu va mai negocia un alt contract. Ar trebui să îl vindeţi înainte să îi expire contractul (aftfel va părăsi echipa). "
+msgid ""
+"%s rejects your offer and won't negotiate with you anymore. You should sell "
+"him before his contract expires (he'll simply leave your team otherwise)."
+msgstr ""
+"%s respinge oferta dumneavoastră şi nu va mai negocia un alt contract. Ar "
+"trebui să îl vindeţi înainte să îi expire contractul (aftfel va părăsi "
+"echipa). "
 
 #: src/misc2_callback_func.c:221
 #, c-format
@@ -386,8 +399,12 @@ msgstr "%s va executa penaltyurile şi loviturile libere când joacă."
 
 #: src/callback_func.c:442
 #, c-format
-msgid "%s would like to buy %s. They offer %s for him, which is %s than the player's value. Do you accept?"
-msgstr "%s doreşte să îl cumpere pe %s. Oferă %s pentru el, care este cu %s decât valoarea jucătorului. Sunteţi de acord?"
+msgid ""
+"%s would like to buy %s. They offer %s for him, which is %s than the "
+"player's value. Do you accept?"
+msgstr ""
+"%s doreşte să îl cumpere pe %s. Oferă %s pentru el, care este cu %s decât "
+"valoarea jucătorului. Sunteţi de acord?"
 
 #: src/player.c:1242
 #, c-format
@@ -396,8 +413,12 @@ msgstr "Contractul lui %s va expira în %.1f ani."
 
 #: src/user.c:628
 #, c-format
-msgid "%s's injury was so severe that he can't play football on a professional level anymore. He leaves your team."
-msgstr "Accidentarea lui %s a fost aşa dură încât nu mai poate juca fotbal la nivel profesionist niciodată, astfel el părăseşte echipa."
+msgid ""
+"%s's injury was so severe that he can't play football on a professional "
+"level anymore. He leaves your team."
+msgstr ""
+"Accidentarea lui %s a fost aşa dură încât nu mai poate juca fotbal la nivel "
+"profesionist niciodată, astfel el părăseşte echipa."
 
 #. Yellow cards of a player in a cup/league. No limit means there isn't a limit
 #. after which the player gets banned for a match automatically.
@@ -418,14 +439,12 @@ msgstr "%s: %d săptămâni\n"
 msgid "(starting week %d)"
 msgstr "(săptămâna de început %d)"
 
-#: src/main.c:124
+#: src/main.c:125
 msgid "- a simple and addictive GTK2 football manager"
 msgstr "- un simplu si captivant manager de fotbal bazat pe GTK2"
 
-#: src/misc_interface.c:1068
-#: src/misc_interface.c:1076
-#: src/misc_interface.c:1102
-#: src/misc_interface.c:1110
+#: src/misc_interface.c:1068 src/misc_interface.c:1076
+#: src/misc_interface.c:1102 src/misc_interface.c:1110
 msgid "0"
 msgstr "0"
 
@@ -480,16 +499,21 @@ msgstr ""
 
 #. Copy the <span...> stuff, translate in between.
 #: src/treeview2.c:300
-msgid "<span background='lightgrey' size='large' weight='bold'>Current bets</span>"
-msgstr "<span background='lightgrey' size='large' weight='bold'>Pariuri curente</span>"
+msgid ""
+"<span background='lightgrey' size='large' weight='bold'>Current bets</span>"
+msgstr ""
+"<span background='lightgrey' size='large' weight='bold'>Pariuri curente</"
+"span>"
 
 #. Copy the <span...> stuff, translate in between.
 #: src/treeview2.c:302
-msgid "<span background='lightgrey' size='large' weight='bold'>Recent bets</span>"
-msgstr "<span background='lightgrey' size='large' weight='bold'>Pariuri recente</span>"
+msgid ""
+"<span background='lightgrey' size='large' weight='bold'>Recent bets</span>"
+msgstr ""
+"<span background='lightgrey' size='large' weight='bold'>Pariuri recente</"
+"span>"
 
-#: src/treeview.c:1815
-#: src/treeview.c:1820
+#: src/treeview.c:1815 src/treeview.c:1820
 #, c-format
 msgid "<span foreground='%s' background='%s'>Week %d Round %d</span>"
 msgstr "<span foreground='%s' background='%s'>Săptămâna %d Runda %d</span>"
@@ -499,36 +523,35 @@ msgid "A new youth registered at your youth academy."
 msgstr "Un tânar a fost înregistrat în echipa de juniori."
 
 #: src/youth_academy.c:253
-msgid "A new youth wanted to registered at your youth academy but there was no room for him."
-msgstr "Un jucător a vrut să se înscrie în echipa de juniori, dar nu mai sunt locuri libere."
+msgid ""
+"A new youth wanted to registered at your youth academy but there was no room "
+"for him."
+msgstr ""
+"Un jucător a vrut să se înscrie în echipa de juniori, dar nu mai sunt locuri "
+"libere."
 
 #: src/treeview_helper.c:1648
 msgid "ADD LAST MATCH"
 msgstr "ADAUGAŢI ULTIMUL MECI"
 
-#: src/lg_commentary.c:553
-#: src/team.c:621
+#: src/lg_commentary.c:553 src/team.c:621
 msgid "ALL OUT ATTACK"
 msgstr "TOŢI ÎN ATAC"
 
-#: src/lg_commentary.c:541
-#: src/team.c:613
+#: src/lg_commentary.c:541 src/team.c:613
 msgid "ALL OUT DEFEND"
 msgstr "TOŢI ÎN APĂRARE"
 
 #. Boost value.
-#: src/lg_commentary.c:556
-#: src/team.c:629
+#: src/lg_commentary.c:556 src/team.c:629
 msgid "ANTI"
 msgstr "ANTI"
 
-#: src/lg_commentary.c:550
-#: src/team.c:619
+#: src/lg_commentary.c:550 src/team.c:619
 msgid "ATTACK"
 msgstr "ATAC"
 
-#: src/interface.c:1052
-#: src/misc2_interface.c:1092
+#: src/interface.c:1052 src/misc2_interface.c:1092
 msgid "About"
 msgstr "Despre"
 
@@ -546,10 +569,10 @@ msgstr "Adăugare ultimul meci"
 
 #: src/interface.c:921
 msgid "Add last recorded match to the current memorable matches file."
-msgstr "Adăugaţi ultimul meci înregistrat în fişierul actual de meciuri memorabile."
+msgstr ""
+"Adăugaţi ultimul meci înregistrat în fişierul actual de meciuri memorabile."
 
-#: src/misc2_interface.c:899
-#: src/misc_interface.c:188
+#: src/misc2_interface.c:899 src/misc_interface.c:188
 msgid "Add user"
 msgstr "Adăugaţi utilizator"
 
@@ -557,12 +580,11 @@ msgstr "Adăugaţi utilizator"
 msgid "Adjust repayment schedule?"
 msgstr "Ajustaţi programarea plăţilor?"
 
-#: src/treeview.c:324
-#: src/treeview.c:2139
+#: src/treeview.c:324 src/treeview.c:2139
 msgid "Age"
 msgstr "Vârsta"
 
-#: src/options_interface.c:686
+#: src/options_interface.c:687
 msgid "Age "
 msgstr "Vârstă"
 
@@ -592,14 +614,19 @@ msgstr "Acceptaţi poziţia?"
 
 #: src/callbacks.c:270
 msgid "At least one user didn't take his turn this week. Continue?"
-msgstr "Cel puţin un utilizator nu şi-a efectuat tura în această săptămână. Continuaţi?"
+msgstr ""
+"Cel puţin un utilizator nu şi-a efectuat tura în această săptămână. "
+"Continuaţi?"
 
 #: src/game_gui.c:933
-msgid "At the Bygfoot forums you can report bugs, ask for help and discuss the game:\n"
-msgstr "Pe forumurile Bygfoot se pot raporta erori, cere ajutor şi discuta despre joc:\n"
+msgid ""
+"At the Bygfoot forums you can report bugs, ask for help and discuss the "
+"game:\n"
+msgstr ""
+"Pe forumurile Bygfoot se pot raporta erori, cere ajutor şi discuta despre "
+"joc:\n"
 
-#: src/interface.c:521
-#: src/treeview.c:1756
+#: src/interface.c:521 src/treeview.c:1756
 msgid "Attack"
 msgstr "Atac"
 
@@ -612,13 +639,11 @@ msgstr ""
 "Spectatori\n"
 "%s"
 
-#: src/options_interface.c:965
+#: src/options_interface.c:966
 msgid "Attribute "
 msgstr "Atribut "
 
-#: src/interface.c:1025
-#: src/misc3_interface.c:542
-#: src/window.c:982
+#: src/interface.c:1025 src/misc3_interface.c:543 src/window.c:982
 msgid "Automatic loan repayment"
 msgstr "Plată automată a împrumutului"
 
@@ -626,15 +651,15 @@ msgstr "Plată automată a împrumutului"
 msgid "Automatic repayment"
 msgstr "Plată automată"
 
-#: src/options_interface.c:503
+#: src/options_interface.c:504
 msgid "Automatic substitutions"
 msgstr "Schimbări automate"
 
-#: src/options_interface.c:403
+#: src/options_interface.c:404
 msgid "Autosave"
 msgstr "Autosalvare"
 
-#: src/options_interface.c:299
+#: src/options_interface.c:300
 msgid "Autosave interval "
 msgstr "Interval de autosalvare"
 
@@ -659,9 +684,7 @@ msgstr "Ab. medie:"
 msgid "Available teams"
 msgstr "Echipe disponibile"
 
-#: src/interface.c:556
-#: src/interface.c:591
-#: src/interface.c:640
+#: src/interface.c:556 src/interface.c:591 src/interface.c:640
 msgid "Average"
 msgstr "Mediu"
 
@@ -685,8 +708,7 @@ msgstr "Abilitate medie:"
 msgid "Away"
 msgstr "Deplasare"
 
-#: src/lg_commentary.c:547
-#: src/team.c:617
+#: src/lg_commentary.c:547 src/team.c:617
 msgid "BALANCED"
 msgstr "ECHILIBRAT"
 
@@ -703,9 +725,7 @@ msgstr "Înapoi la meniul principal (Esc)"
 msgid "Back to splash"
 msgstr "Înapoi"
 
-#: src/interface.c:562
-#: src/interface.c:597
-#: src/interface.c:646
+#: src/interface.c:562 src/interface.c:597 src/interface.c:646
 msgid "Bad"
 msgstr "Rău"
 
@@ -726,9 +746,7 @@ msgstr "Sancţionat\n"
 msgid "Begin a new week (Space)"
 msgstr "Începeţi o săptămână nouă (Space)"
 
-#: src/interface.c:544
-#: src/interface.c:579
-#: src/interface.c:628
+#: src/interface.c:544 src/interface.c:579 src/interface.c:628
 msgid "Best"
 msgstr "Foarte bun"
 
@@ -748,15 +766,12 @@ msgstr "Cei mai buni portari"
 msgid "Best offensive teams"
 msgstr "Cele mai bune echipe în atac"
 
-#: src/interface.c:1037
-#: src/options_interface.c:1035
-#: src/treeview.c:1498
-#: src/treeview.c:1508
-#: src/window.c:959
+#: src/interface.c:1037 src/options_interface.c:1036 src/treeview.c:1498
+#: src/treeview.c:1508 src/window.c:959
 msgid "Betting"
 msgstr "Pariuri"
 
-#: src/misc3_interface.c:60
+#: src/misc3_interface.c:61
 msgid "Betting -- Left click on odd to place or remove bet"
 msgstr "Pariuri -- Clic stânga pentru a paria sau pentru a înlătura un pariu"
 
@@ -764,8 +779,7 @@ msgstr "Pariuri -- Clic stânga pentru a paria sau pentru a înlătura un pariu"
 msgid "Bi-weekly balance"
 msgstr "Balanţa bisăptămânala"
 
-#: src/treeview.c:1524
-#: src/treeview.c:1527
+#: src/treeview.c:1524 src/treeview.c:1527
 #, c-format
 msgid ""
 "Bi-weekly balance\n"
@@ -778,9 +792,7 @@ msgstr ""
 msgid "Boost"
 msgstr "Stimulent"
 
-#: src/callbacks.c:1080
-#: src/game_gui.c:459
-#: src/misc_callbacks.c:554
+#: src/callbacks.c:1080 src/game_gui.c:459 src/misc_callbacks.c:554
 msgid "Boost ON is disabled in this country definition."
 msgstr "Stimulentul este dezactivat în definirea ţărilor."
 
@@ -836,19 +848,28 @@ msgid "Bygfoot Save Files"
 msgstr "Fişierele cu salvări"
 
 #: src/misc2_interface.c:982
-msgid "Bygfoot debug window. If you got here by accident, CLOSE IMMEDIATELY (otherwise your CPU will be destroyed by overheating)."
-msgstr "Fereastra Bygfoot pentru debug. Dacă aţi ajuns aici din greşeală, ÎNCHIDEŢI-O IMEDIAT (altfel procesorul va fi distrus prin supraîncălzire)."
+msgid ""
+"Bygfoot debug window. If you got here by accident, CLOSE IMMEDIATELY "
+"(otherwise your CPU will be destroyed by overheating)."
+msgstr ""
+"Fereastra Bygfoot pentru debug. Dacă aţi ajuns aici din greşeală, ÎNCHIDEŢI-"
+"O IMEDIAT (altfel procesorul va fi distrus prin supraîncălzire)."
 
 #: src/game_gui.c:931
-msgid "Bygfoot is a very intuitive and simple game, so there isn't a full-grown documentation. However, if you have trouble, there are a few places to go.\n"
-msgstr "Bygfoot este un joc foarte intuitiv şi simplu, aşadar nu e dezvoltată documentaţia în totalitate. Totuşi, dacă aveţi probleme, sunt câteva locuri unde aţi putea merge.\n"
+msgid ""
+"Bygfoot is a very intuitive and simple game, so there isn't a full-grown "
+"documentation. However, if you have trouble, there are a few places to go.\n"
+msgstr ""
+"Bygfoot este un joc foarte intuitiv şi simplu, aşadar nu e dezvoltată "
+"documentaţia în totalitate. Totuşi, dacă aveţi probleme, sunt câteva locuri "
+"unde aţi putea merge.\n"
 
 #. Current position of a player.
 #: src/treeview.c:305
 msgid "CPos"
 msgstr "PozA"
 
-#: src/options_interface.c:616
+#: src/options_interface.c:617
 msgid "CPos "
 msgstr "PozA "
 
@@ -857,15 +878,15 @@ msgstr "PozA "
 msgid "CSk"
 msgstr "AbilA"
 
-#: src/options_interface.c:630
+#: src/options_interface.c:631
 msgid "CSkill "
 msgstr "AbilA "
 
-#: src/misc3_interface.c:678
+#: src/misc3_interface.c:679
 msgid "Calculate start week"
 msgstr "Calculaţi săptămâna de început"
 
-#: src/misc3_interface.c:656
+#: src/misc3_interface.c:657
 msgid "Calculate weekly installment"
 msgstr "Calculaţi suma săptămânală de plată"
 
@@ -877,7 +898,7 @@ msgstr "Punctaj"
 msgid "Capacity (seats)"
 msgstr "Capacitate (locuri)"
 
-#: src/options_interface.c:679
+#: src/options_interface.c:680
 msgid "Cards "
 msgstr "Cartonaşe "
 
@@ -886,12 +907,18 @@ msgid "Career values"
 msgstr "Valoarea carierei"
 
 #: src/misc_interface.c:726
-msgid "Change commentary verbosity. The higher this value the more events you can see."
-msgstr "Schimbaţi nivelul de comentarii. Alegeţi o valoare mai mare pentru a vedea mai multe evenimente."
+msgid ""
+"Change commentary verbosity. The higher this value the more events you can "
+"see."
+msgstr ""
+"Schimbaţi nivelul de comentarii. Alegeţi o valoare mai mare pentru a vedea "
+"mai multe evenimente."
 
 #: src/misc_interface.c:704
 msgid "Change live game speed. The higher the value the faster the live game."
-msgstr "Schimbaţi viteza meciului în direct. O valoare mai mică va face meciul mai rapid."
+msgstr ""
+"Schimbaţi viteza meciului în direct. O valoare mai mică va face meciul mai "
+"rapid."
 
 #: src/misc_interface.c:1014
 msgid "Change ticket price"
@@ -905,7 +932,7 @@ msgstr "Alegeţi ţara"
 msgid "Choose file"
 msgstr "Alegeţi fişierul"
 
-#: src/options_interface.c:440
+#: src/options_interface.c:441
 msgid "Choose game language (might not work in Windows versions)"
 msgstr "Alegeţi limba (e posibil sa nu funcţioneze în varianta pentru Windows)"
 
@@ -923,7 +950,8 @@ msgstr "Alegeţi numele de utilizator"
 
 #: src/game_gui.c:806
 msgid "Click on OK to apply for the job. Click on CANCEL to close the window."
-msgstr "Apăsaţi OK pentru a accepta. Apăsaţi CANCEL pentru a închide fereastra."
+msgstr ""
+"Apăsaţi OK pentru a accepta. Apăsaţi CANCEL pentru a închide fereastra."
 
 #: src/misc2_interface.c:857
 msgid "Click on a user to remove him from the game."
@@ -937,11 +965,12 @@ msgstr "Selectaţi un utilizator pentru a-l scoate."
 msgid "Commentary"
 msgstr "Comentariu"
 
-#: src/main.c:102
+#: src/main.c:103
 msgid "Commentary event to test; leave out to test all commentaries"
-msgstr "Eveniment comentat pentru test; părăsiţi pentru a testa toate comentariile"
+msgstr ""
+"Eveniment comentat pentru test; părăsiţi pentru a testa toate comentariile"
 
-#: src/main.c:93
+#: src/main.c:94
 msgid "Commentary file name (may be in a support dir)"
 msgstr "Cometariu la numele fişierului (poate fi într-un director suport)"
 
@@ -954,8 +983,7 @@ msgstr "Companie"
 msgid "Compensations"
 msgstr "Compensaţii"
 
-#: src/treeview2.c:94
-#: src/treeview2.c:211
+#: src/treeview2.c:94 src/treeview2.c:211
 msgid "Competition"
 msgstr "Competiţie"
 
@@ -971,15 +999,15 @@ msgstr "Contuzie"
 msgid "Confirm & schedule repayment"
 msgstr "Confirmaţi şi programaţi plăţile"
 
-#: src/options_interface.c:237
+#: src/options_interface.c:238
 msgid "Confirm quit when not saved"
 msgstr "Confirmare ieşire când nu este salvat"
 
-#: src/options_interface.c:544
+#: src/options_interface.c:545
 msgid "Confirm removing youths"
 msgstr "Confirmare ştergere juniori"
 
-#: src/options_interface.c:242
+#: src/options_interface.c:243
 msgid "Confirm when unfit"
 msgstr "Confirmare când nu este în formă"
 
@@ -987,16 +1015,15 @@ msgstr "Confirmare când nu este în formă"
 msgid "Confirm!"
 msgstr "Confirmaţi!"
 
-#: src/options_interface.c:334
+#: src/options_interface.c:335
 msgid "Constants file"
 msgstr "Fişierul cu constante"
 
-#: src/treeview.c:329
-#: src/treeview.c:2143
+#: src/treeview.c:329 src/treeview.c:2143
 msgid "Contract"
 msgstr "Contract"
 
-#: src/options_interface.c:714
+#: src/options_interface.c:715
 msgid "Contract "
 msgstr "Contract"
 
@@ -1020,9 +1047,7 @@ msgstr "Ofertă de contract"
 msgid "Contracts are disabled in this country definition."
 msgstr "Contractele sunt dezactivate în definirea ţărilor."
 
-#: src/interface.c:1060
-#: src/misc2_interface.c:1106
-#: src/misc3_interface.c:236
+#: src/interface.c:1060 src/misc2_interface.c:1106 src/misc3_interface.c:237
 msgid "Contributors"
 msgstr "Contribuitori"
 
@@ -1031,32 +1056,29 @@ msgstr "Contribuitori"
 msgid "Copying %s"
 msgstr "Se copie %s"
 
-#: src/misc_interface.c:1064
-#: src/misc_interface.c:1098
+#: src/misc_interface.c:1064 src/misc_interface.c:1098
 #: src/training_interface.c:103
 msgid "Costs"
 msgstr "Costuri"
 
-#: src/support.c:103
-#: src/support.c:127
+#: src/support.c:103 src/support.c:127
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "Nu s-a putut găsi fişierul imagine: %s"
 
-#: src/treeview2.c:95
-#: src/treeview2.c:515
+#: src/treeview2.c:95 src/treeview2.c:515
 msgid "Country"
 msgstr "Ţara"
 
-#: src/misc3_interface.c:330
+#: src/misc3_interface.c:331
 msgid "Ctrl-N"
 msgstr "Ctrl+N"
 
-#: src/misc3_interface.c:354
+#: src/misc3_interface.c:355
 msgid "Ctrl-O"
 msgstr "Ctrl+O"
 
-#: src/misc3_interface.c:378
+#: src/misc3_interface.c:379
 msgid "Ctrl-R"
 msgstr "Ctrl+R"
 
@@ -1092,7 +1114,7 @@ msgstr "Poziţia curentă"
 msgid "Current safety"
 msgstr "Siguranţa curentă"
 
-#: src/misc3_interface.c:567
+#: src/misc3_interface.c:568
 msgid "Current settings:"
 msgstr "Setări curente:"
 
@@ -1105,8 +1127,7 @@ msgstr "Abilitatea curentă"
 msgid "D"
 msgstr "F"
 
-#: src/lg_commentary.c:544
-#: src/team.c:615
+#: src/lg_commentary.c:544 src/team.c:615
 msgid "DEFEND"
 msgstr "APĂRARE"
 
@@ -1123,24 +1144,23 @@ msgstr "Debug"
 msgid "Decide later"
 msgstr "Decideţi mai târziu"
 
-#: src/options_interface.c:1049
+#: src/options_interface.c:1050
 msgid "Default hotel"
 msgstr "Hotel implicit"
 
-#: src/options_interface.c:1072
+#: src/options_interface.c:1073
 msgid "Default recreation:"
 msgstr "Recreaţie implicită:"
 
-#: src/options_interface.c:1092
+#: src/options_interface.c:1093
 msgid "Default training:"
 msgstr "Antrenament implicit:"
 
-#: src/options_interface.c:1024
+#: src/options_interface.c:1025
 msgid "Default wager"
 msgstr "Salariul implicit"
 
-#: src/interface.c:509
-#: src/treeview.c:1754
+#: src/interface.c:509 src/treeview.c:1754
 msgid "Defend"
 msgstr "Apărare"
 
@@ -1149,7 +1169,7 @@ msgid "Defenders"
 msgstr "Fundaşi"
 
 #. Splash screen hint question.
-#: src/misc3_interface.c:258
+#: src/misc3_interface.c:259
 msgid "Did you know?"
 msgstr "Ştiaţi că ?"
 
@@ -1169,8 +1189,7 @@ msgstr "Fără încărcare definiţii"
 msgid "Don't load team definitions at all"
 msgstr "Fără încărcare definiţii echipă"
 
-#: src/load_save.c:165
-#: src/load_save.c:313
+#: src/load_save.c:165 src/load_save.c:313
 msgid "Done."
 msgstr "Realizat."
 
@@ -1184,8 +1203,7 @@ msgstr "Valoare overdraft"
 
 #. Games drawn.
 #. Draw.
-#: src/treeview.c:1368
-#: src/treeview_helper.c:1755
+#: src/treeview.c:1368 src/treeview_helper.c:1755
 msgid "Dw"
 msgstr "Eg"
 
@@ -1200,7 +1218,7 @@ msgstr "Eg"
 msgid "Dw %d : %d"
 msgstr "Eg %d : %d"
 
-#: src/options_interface.c:693
+#: src/options_interface.c:694
 msgid "ETal "
 msgstr "Tal "
 
@@ -1220,15 +1238,11 @@ msgstr "Introduceţi o structură personalizată"
 msgid "Erm..."
 msgstr "Hmm..."
 
-#: src/misc2_interface.c:480
-#: src/misc2_interface.c:577
-#: src/misc2_interface.c:1139
-#: src/misc2_interface.c:1234
-#: src/misc3_interface.c:106
-#: src/misc3_interface.c:402
-#: src/misc_interface.c:293
-#: src/misc_interface.c:1146
-#: src/options_interface.c:1136
+#: src/misc2_interface.c:480 src/misc2_interface.c:577
+#: src/misc2_interface.c:1139 src/misc2_interface.c:1234
+#: src/misc3_interface.c:107 src/misc3_interface.c:403
+#: src/misc_interface.c:293 src/misc_interface.c:1146
+#: src/options_interface.c:1137
 msgid "Esc"
 msgstr "Esc"
 
@@ -1249,8 +1263,7 @@ msgstr "Talent"
 msgid "Event"
 msgstr "Eveniment"
 
-#: src/misc_interface.c:1072
-#: src/misc_interface.c:1106
+#: src/misc_interface.c:1072 src/misc_interface.c:1106
 msgid "Expected duration"
 msgstr "Durata estimată"
 
@@ -1267,46 +1280,51 @@ msgstr "A"
 msgid "F_igures"
 msgstr "_Date"
 
-#: src/callback_func.c:548
-#: src/callback_func.c:556
+#: src/callback_func.c:548 src/callback_func.c:556
 msgid "Fee"
 msgstr "Preţ"
 
 #. Live game tokens are strings like _AT_ in live game commentary files
 #. which will be filled in by the program during runtime; e.g. _AT_ becomes
 #. the attendace for the match.
-#: src/main.c:99
+#: src/main.c:100
 msgid "File containing live game tokens (may be in a support dir)"
-msgstr "Fişierul conţinând meciul în direct a eşuat (poate fi în directorul support)"
+msgstr ""
+"Fişierul conţinând meciul în direct a eşuat (poate fi în directorul support)"
 
-#: src/options_interface.c:373
-msgid "File containing settings which determine a lot of aspects of the game behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
-msgstr "Fişierul care conţine setările şi care determină foarte multe aspecte ale comportamentului jocului. NU ÎL MODIFICAŢI DECÂT DACĂ CHIAR ŞTIŢI CE FACEŢI."
+#: src/options_interface.c:374
+msgid ""
+"File containing settings which determine a lot of aspects of the game "
+"behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
+msgstr ""
+"Fişierul care conţine setările şi care determină foarte multe aspecte ale "
+"comportamentului jocului. NU ÎL MODIFICAŢI DECÂT DACĂ CHIAR ŞTIŢI CE FACEŢI."
 
 #: src/interface.c:996
 msgid "Fin_Stad"
 msgstr "Finanţe şi _Stadion"
 
-#: src/cup.c:1105
+#: src/cup.c:1108
 msgid "Final"
 msgstr "Finala"
 
-#: src/callbacks.c:1105
-#: src/callbacks.c:1638
+#: src/callbacks.c:1105 src/callbacks.c:1638
 msgid "Finances are disabled in this country definition."
 msgstr "Finanţele sunt dezactivate în definirea ţării."
 
-#: src/interface.c:830
-#: src/interface.c:2002
+#: src/interface.c:830 src/interface.c:2002
 msgid "Fire"
 msgstr "Concediaţi"
 
 #: src/interface.c:1300
-msgid "First value: average current skill of the first 11 players. Second value: average skill of all players."
-msgstr "Prima valoare este media abilităţilor curente ale primilor 11 jucători. A doua valoare reprezintă media abilităţilor tuturor jucătorilor."
+msgid ""
+"First value: average current skill of the first 11 players. Second value: "
+"average skill of all players."
+msgstr ""
+"Prima valoare este media abilităţilor curente ale primilor 11 jucători. A "
+"doua valoare reprezintă media abilităţilor tuturor jucătorilor."
 
-#: src/training_interface.c:168
-#: src/treeview.c:2850
+#: src/training_interface.c:168 src/treeview.c:2850
 msgid "First-Class Hotel"
 msgstr "Hotel ***"
 
@@ -1319,7 +1337,7 @@ msgstr "Ajustare"
 msgid "Fitness"
 msgstr "Condiţie fizică"
 
-#: src/options_interface.c:644
+#: src/options_interface.c:645
 msgid "Fitness "
 msgstr "Condiţie fizică "
 
@@ -1331,12 +1349,11 @@ msgstr "Programări (competiţii)"
 msgid "Fixtures (week)"
 msgstr "Meciuri programate (săptămână)"
 
-#: src/options_interface.c:360
+#: src/options_interface.c:361
 msgid "Font name"
 msgstr "Numele fontului"
 
-#: src/options_interface.c:346
-#: src/options_interface.c:433
+#: src/options_interface.c:347 src/options_interface.c:434
 msgid "Font used in treeviews"
 msgstr "Fonturile utilizate în vederea arbore"
 
@@ -1381,7 +1398,7 @@ msgstr "Jo"
 msgid "Games"
 msgstr "Jocuri"
 
-#: src/options_interface.c:651
+#: src/options_interface.c:652
 msgid "Games "
 msgstr "Jocuri "
 
@@ -1389,14 +1406,13 @@ msgstr "Jocuri "
 msgid "Games/Goals\n"
 msgstr "Jocuri/Goluri\n"
 
-#: src/options_interface.c:446
+#: src/options_interface.c:447
 msgid "Global"
 msgstr "Global"
 
 #. Goals of a player.
 #. Goals.
-#: src/treeview.c:319
-#: src/treeview.c:2449
+#: src/treeview.c:319 src/treeview.c:2449
 msgid "Go"
 msgstr "Go"
 
@@ -1417,13 +1433,11 @@ msgstr "Portar"
 msgid "Goalies"
 msgstr "Portari"
 
-#: src/treeview.c:1877
-#: src/treeview.c:2415
-#: src/treeview_helper.c:931
+#: src/treeview.c:1877 src/treeview.c:2415 src/treeview_helper.c:931
 msgid "Goals"
 msgstr "Goluri"
 
-#: src/options_interface.c:665
+#: src/options_interface.c:666
 msgid "Goals "
 msgstr "Goluri "
 
@@ -1432,14 +1446,11 @@ msgstr "Goluri "
 msgid "Goals (regular)"
 msgstr "Goluri (normal)"
 
-#: src/interface.c:550
-#: src/interface.c:585
-#: src/interface.c:634
+#: src/interface.c:550 src/interface.c:585 src/interface.c:634
 msgid "Good"
 msgstr "Bun"
 
-#: src/training_interface.c:161
-#: src/treeview.c:2847
+#: src/training_interface.c:161 src/treeview.c:2847
 msgid "Good Hotel"
 msgstr "Hotel **"
 
@@ -1464,8 +1475,7 @@ msgstr "Titlu"
 msgid "Health"
 msgstr "Sănătate"
 
-#: src/interface.c:1068
-#: src/misc2_interface.c:1132
+#: src/interface.c:1068 src/misc2_interface.c:1132
 msgid "Help"
 msgstr "Ajutor"
 
@@ -1473,42 +1483,54 @@ msgstr "Ajutor"
 msgid "Home"
 msgstr "Acasă"
 
-#: src/main.c:105
+#: src/main.c:106
 msgid "How many commentaries to generate per event"
 msgstr "Număr de comentarii generate per eveniment"
 
-#: src/options_interface.c:416
+#: src/options_interface.c:417
 msgid "How many digits after the comma there are for skill etc."
 msgstr "Câte numere după virgulă sunt pentru abilităţi, etc"
 
-#: src/options_interface.c:318
+#: src/options_interface.c:319
 msgid "How many files the autosave uses"
 msgstr "Câte fişiere să fie folosite de autosalvare"
 
-#: src/options_interface.c:1032
+#: src/options_interface.c:1033
 msgid "How much you wager by default"
 msgstr "Ce salariu oferiţi implicit"
 
-#: src/options_interface.c:307
+#: src/options_interface.c:308
 msgid "How often the game is saved automatically"
 msgstr "Cât de des jocul este salvat automat"
 
-#: src/options_interface.c:425
-msgid "How often the player list gets refreshed during a live game (in live game minutes)"
-msgstr "Cât de des este împrospătată list de jucători în timpul meciului în direct (minute în meciul în direct)"
+#: src/options_interface.c:426
+msgid ""
+"How often the player list gets refreshed during a live game (in live game "
+"minutes)"
+msgstr ""
+"Cât de des este împrospătată list de jucători în timpul meciului în direct "
+"(minute în meciul în direct)"
 
 #: src/treeview_helper.c:1362
 #, c-format
 msgid "INJ(%d)"
 msgstr "ACC(%d)"
 
-#: src/options_interface.c:280
-msgid "If checked, weeks without user teams playing are calculated automatically (without the user having to press 'New week')"
-msgstr "Dacă este marcat, săptămânile când nu joacă echipa sunt calculate automat (utilizatorul nu mai trebuie să dea \"Săptămână nouă\")"
+#: src/options_interface.c:281
+msgid ""
+"If checked, weeks without user teams playing are calculated automatically "
+"(without the user having to press 'New week')"
+msgstr ""
+"Dacă este marcat, săptămânile când nu joacă echipa sunt calculate automat "
+"(utilizatorul nu mai trebuie să dea \"Săptămână nouă\")"
 
 #: src/misc_interface.c:1349
-msgid "If you don't like any of the sponsors, you can go a few weeks without sponsor and wait for new offers."
-msgstr "Dacă nu vă place nici unul dintre sponsori, puteţi merge câteva săptămâni fără sponsor şi să aşteptaţi oferte noi."
+msgid ""
+"If you don't like any of the sponsors, you can go a few weeks without "
+"sponsor and wait for new offers."
+msgstr ""
+"Dacă nu vă place nici unul dintre sponsori, puteţi merge câteva săptămâni "
+"fără sponsor şi să aşteptaţi oferte noi."
 
 #: src/misc2_interface.c:1389
 msgid "Import file"
@@ -1518,8 +1540,7 @@ msgstr "Importaţi fişier"
 msgid "Import the matches from a memorable matches file"
 msgstr "Importaţi meciul din fişierul cu meciuri memorabile"
 
-#: src/treeview.c:1471
-#: src/window.c:621
+#: src/treeview.c:1471 src/window.c:621
 #, c-format
 msgid ""
 "Improvement in progress.\n"
@@ -1546,8 +1567,7 @@ msgstr "Accidentări"
 msgid "It's too late in the season for automatic loan repayment."
 msgstr "Este prea târziu în acest sezon pentru a plăti automat împrumutul."
 
-#: src/misc2_interface.c:70
-#: src/window.c:865
+#: src/misc2_interface.c:70 src/window.c:865
 msgid "Job offer"
 msgstr "Ofertă de lucru"
 
@@ -1570,8 +1590,7 @@ msgstr "Daţi-l afară din academie"
 
 #. Games lost.
 #. Lost.
-#: src/treeview.c:1370
-#: src/treeview_helper.c:1748
+#: src/treeview.c:1370 src/treeview_helper.c:1748
 msgid "L"
 msgstr "P"
 
@@ -1590,16 +1609,16 @@ msgstr "P  %d : %d"
 msgid "L_oad last save"
 msgstr "Î_ncărcaţi ultima salvare"
 
-#: src/options_interface.c:396
+#: src/options_interface.c:397
 msgid "Language"
 msgstr "Limbă"
 
-#: src/main.c:86
+#: src/main.c:87
 msgid "Language to use (a code like 'de')"
 msgstr "Limba folosita (un cod de exemplu 'ro')"
 
 #. A cup stage, e.g. Last 32 when there are only 32 teams left.
-#: src/cup.c:1102
+#: src/cup.c:1105
 #, c-format
 msgid "Last %d"
 msgstr "Ultimii %d"
@@ -1612,15 +1631,12 @@ msgstr "Ultimul fişierul salvat nu a fost găsit."
 msgid "Latest results"
 msgstr "Ultimele rezultate"
 
-#: src/misc2_interface.c:102
-#: src/treeview2.c:514
-#: src/treeview.c:170
-#: src/treeview.c:331
-#: src/treeview.c:761
+#: src/misc2_interface.c:102 src/treeview2.c:514 src/treeview.c:170
+#: src/treeview.c:331 src/treeview.c:761
 msgid "League"
 msgstr "Liga"
 
-#: src/options_interface.c:721
+#: src/options_interface.c:722
 msgid "League "
 msgstr "Ligă "
 
@@ -1638,11 +1654,17 @@ msgstr "Tabelul ligii"
 
 #: src/callbacks.c:240
 msgid "Left click to make an offer. Right click to remove offer."
-msgstr "Click stânga pentru a face o ofertă. Click dreapta pentru a înlătura o ofertă."
+msgstr ""
+"Click stânga pentru a face o ofertă. Click dreapta pentru a înlătura o "
+"ofertă."
 
 #: src/callback_func.c:904
-msgid "Left click to move players to and from the youth academy; right click for context menu."
-msgstr "Click stânga pentru a muta jucătorii la şi de la academia de juniori; click dreapta pentru meniul contextual."
+msgid ""
+"Left click to move players to and from the youth academy; right click for "
+"context menu."
+msgstr ""
+"Click stânga pentru a muta jucătorii la şi de la academia de juniori; click "
+"dreapta pentru meniul contextual."
 
 #: src/callbacks.c:533
 msgid "Left click to show fixtures."
@@ -1653,20 +1675,19 @@ msgid "Left click to show table."
 msgstr "Click stânga pentru a vedea tabelul."
 
 #: src/callbacks.c:1110
-msgid "Left-click: get loan; Right-click: pay back; Middle click: stadium window."
+msgid ""
+"Left-click: get loan; Right-click: pay back; Middle click: stadium window."
 msgstr "Click stânga pentru împrumut; Click dreapta pentru plata împrumutului;"
 
-#: src/options_interface.c:972
+#: src/options_interface.c:973
 msgid "List 1 "
 msgstr "Lista 1 "
 
-#: src/options_interface.c:979
+#: src/options_interface.c:980
 msgid "List 2"
 msgstr "Lista 2"
 
-#: src/interface.c:373
-#: src/misc_interface.c:497
-#: src/options_interface.c:532
+#: src/interface.c:373 src/misc_interface.c:497 src/options_interface.c:533
 msgid "Live game"
 msgstr "Meci în direct"
 
@@ -1675,11 +1696,11 @@ msgstr "Meci în direct"
 msgid "Live game set to %s."
 msgstr "Meci în direct setat la %s."
 
-#: src/options_interface.c:471
+#: src/options_interface.c:472
 msgid "Live game speed factor"
 msgstr "Factorul de accelerare la meciurile în direct"
 
-#: src/options_interface.c:478
+#: src/options_interface.c:479
 msgid "Live game verbosity"
 msgstr "Nivelul comentariilor în meciul în direct"
 
@@ -1687,7 +1708,7 @@ msgstr "Nivelul comentariilor în meciul în direct"
 msgid "Load game (Ctrl - O)"
 msgstr "Încărcaţi joc (Ctrl+O)"
 
-#: src/main.c:88
+#: src/main.c:89
 msgid "Load last savegame"
 msgstr "Încărcaţi ultimul joc salvat"
 
@@ -1700,8 +1721,14 @@ msgid "Load team definitions"
 msgstr "Încărcaţi definiţiile echipei"
 
 #: src/misc_interface.c:204
-msgid "Load teams from definition files (note that the official Bygfoot package doesn't contain team definition files, you have to get them from the homepage or via the bygfoot-update script)"
-msgstr "Încărcaţi echipele din fişierele de definiţii (pachetul original Bygfoot nu conţine fişierile de definiţii a ţărilor, trebuie să îl luaţi de pe pagina web sau cu ajutorul scriptului de actualizare Bygfoot)"
+msgid ""
+"Load teams from definition files (note that the official Bygfoot package "
+"doesn't contain team definition files, you have to get them from the "
+"homepage or via the bygfoot-update script)"
+msgstr ""
+"Încărcaţi echipele din fişierele de definiţii (pachetul original Bygfoot nu "
+"conţine fişierile de definiţii a ţărilor, trebuie să îl luaţi de pe pagina "
+"web sau cu ajutorul scriptului de actualizare Bygfoot)"
 
 #: src/xml.c:125
 #, c-format
@@ -1763,7 +1790,7 @@ msgstr "Administraţi meciurile"
 msgid "Manage users"
 msgstr "Administraţi utilizatorii"
 
-#: src/options_interface.c:257
+#: src/options_interface.c:258
 msgid "Maximize main window"
 msgstr "Maximizaţi fereastra principală."
 
@@ -1771,8 +1798,7 @@ msgstr "Maximizaţi fereastra principală."
 msgid "Memorable match added."
 msgstr "Meciurile memorabile au fost adăugate."
 
-#: src/interface.c:907
-#: src/window.c:951
+#: src/interface.c:907 src/window.c:951
 msgid "Memorable matches"
 msgstr "Meciuri memorabile"
 
@@ -1784,7 +1810,7 @@ msgstr "Mijlocaş"
 msgid "Midfielders"
 msgstr "Mijlocaşi"
 
-#: src/options_interface.c:601
+#: src/options_interface.c:602
 msgid "Misc."
 msgstr "Diverse"
 
@@ -1808,8 +1834,7 @@ msgstr "Bani / săptămână"
 msgid "Move to team"
 msgstr "Mutaţi în echipă"
 
-#: src/interface.c:846
-#: src/interface.c:2010
+#: src/interface.c:846 src/interface.c:2010
 msgid "Move to youth academy"
 msgstr "Mutaţi în echipa de juniori"
 
@@ -1817,14 +1842,12 @@ msgstr "Mutaţi în echipa de juniori"
 msgid "My league results"
 msgstr "Rezultatele ligii"
 
-#: src/misc2_interface.c:97
-#: src/treeview.c:303
-#: src/treeview.c:759
+#: src/misc2_interface.c:97 src/treeview.c:303 src/treeview.c:759
 #: src/treeview.c:2132
 msgid "Name"
 msgstr "Nume"
 
-#: src/options_interface.c:609
+#: src/options_interface.c:610
 msgid "Name "
 msgstr "Nume "
 
@@ -1840,11 +1863,11 @@ msgstr ""
 "Noi oferte\n"
 "de contracte"
 
-#: src/misc3_interface.c:611
+#: src/misc3_interface.c:612
 msgid "New settings:"
 msgstr "Setări noi:"
 
-#: src/misc3_interface.c:314
+#: src/misc3_interface.c:315
 msgid "Next"
 msgstr "Următorul"
 
@@ -1868,11 +1891,8 @@ msgstr "Săptămână viitoare va fi concediat şi se va angaja unul nou."
 msgid "No improvements currently in progress."
 msgstr "Nu sunt îmbunătăţiri în progres."
 
-#: src/callbacks.c:972
-#: src/callbacks.c:992
-#: src/callbacks.c:1506
-#: src/misc2_callback_func.c:326
-#: src/misc2_callbacks.c:733
+#: src/callbacks.c:972 src/callbacks.c:992 src/callbacks.c:1506
+#: src/misc2_callback_func.c:326 src/misc2_callbacks.c:733
 msgid "No match stored."
 msgstr "Niciun meci memorat."
 
@@ -1889,23 +1909,19 @@ msgid "Numbers..."
 msgstr "Numere..."
 
 #. Boost value.
-#: src/lg_commentary.c:559
-#: src/team.c:632
+#: src/lg_commentary.c:559 src/team.c:632
 msgid "OFF"
 msgstr "OPRIT"
 
 #. Player health: ok.
 #. Player status: ok.
-#: src/misc2_interface.c:221
-#: src/player.c:1402
-#: src/treeview_helper.c:1093
+#: src/misc2_interface.c:221 src/player.c:1402 src/treeview_helper.c:1093
 #: src/treeview_helper.c:1389
 msgid "OK"
 msgstr "OK"
 
 #. Boost value.
-#: src/lg_commentary.c:562
-#: src/team.c:635
+#: src/lg_commentary.c:562 src/team.c:635
 msgid "ON"
 msgstr "PORNIT"
 
@@ -1913,8 +1929,7 @@ msgstr "PORNIT"
 msgid "Off"
 msgstr "Oprit"
 
-#: src/interface.c:822
-#: src/interface.c:1998
+#: src/interface.c:822 src/interface.c:1998
 msgid "Offer new contract"
 msgstr "Oferiţi contract nou"
 
@@ -1930,8 +1945,7 @@ msgstr "Doar numele"
 msgid "Open a memorable matches file"
 msgstr "Deschideţi un fişier cu meciuri memorabile"
 
-#: src/treeview2.c:92
-#: src/treeview2.c:212
+#: src/treeview2.c:92 src/treeview2.c:212
 msgid "Opponent"
 msgstr "Adversar"
 
@@ -1962,15 +1976,15 @@ msgstr "MJ"
 msgid "PTS"
 msgstr "PCT"
 
-#: src/options_interface.c:527
+#: src/options_interface.c:528
 msgid "Pause when break"
 msgstr "Pauză la jumătatea meciului"
 
-#: src/options_interface.c:517
+#: src/options_interface.c:518
 msgid "Pause when injury"
 msgstr "Pauză la accidentare"
 
-#: src/options_interface.c:522
+#: src/options_interface.c:523
 msgid "Pause when red card"
 msgstr "Pauză la cartonaş roşu"
 
@@ -1986,8 +2000,7 @@ msgstr "Penaltyuri"
 msgid "Penalty/free kick shooter deselected."
 msgstr "Executant de penalty-uri/lovituri libere deselectat."
 
-#: src/interface.c:568
-#: src/treeview.c:1501
+#: src/interface.c:568 src/treeview.c:1501
 msgid "Physio"
 msgstr "Maseur"
 
@@ -1995,11 +2008,11 @@ msgstr "Maseur"
 msgid "Player accepts new offers"
 msgstr "Jucătorul acceptă oferte noi"
 
-#: src/options_interface.c:320
+#: src/options_interface.c:321
 msgid "Player attribute precision"
 msgstr "Precizia la atributele jucătorilor"
 
-#: src/options_interface.c:993
+#: src/options_interface.c:994
 msgid "Player attributes shown"
 msgstr "Arătaţi atributele jucătorilor"
 
@@ -2019,12 +2032,11 @@ msgstr "Lista de jucători 1"
 msgid "Player list 2"
 msgstr "Lista de jucători 2"
 
-#: src/options_interface.c:327
+#: src/options_interface.c:328
 msgid "Player list refresh rate"
 msgstr "Rata de împrospătare a listei jucătorilor"
 
-#: src/interface.c:492
-#: src/treeview.c:1864
+#: src/interface.c:492 src/treeview.c:1864
 msgid "Playing style"
 msgstr "Tip de joc"
 
@@ -2033,7 +2045,7 @@ msgstr "Tip de joc"
 msgid "Pos"
 msgstr "Poz"
 
-#: src/options_interface.c:623
+#: src/options_interface.c:624
 msgid "Pos "
 msgstr "Poz "
 
@@ -2045,7 +2057,7 @@ msgstr "Poziţie"
 msgid "Possession"
 msgstr "Posesie"
 
-#: src/options_interface.c:262
+#: src/options_interface.c:263
 msgid "Prefer messages"
 msgstr "Mesaje preferate"
 
@@ -2053,12 +2065,11 @@ msgstr "Mesaje preferate"
 msgid "Preferences"
 msgstr "Preferinţe"
 
-#: src/training_interface.c:175
-#: src/treeview.c:2853
+#: src/training_interface.c:175 src/treeview.c:2853
 msgid "Premium Hotel"
 msgstr "Hotel ****"
 
-#: src/misc3_interface.c:294
+#: src/misc3_interface.c:295
 msgid "Previous"
 msgstr "Anterior"
 
@@ -2086,12 +2097,11 @@ msgstr "Banii de premiu"
 msgid "Pulled muscle"
 msgstr "Întindere musculară"
 
-#: src/interface.c:806
-#: src/interface.c:1990
+#: src/interface.c:806 src/interface.c:1990
 msgid "Put on transfer list"
 msgstr "Adaugaţi-l la lista de transferuri"
 
-#: src/cup.c:1111
+#: src/cup.c:1114
 msgid "Quarter-final"
 msgstr "Sferturi de finală"
 
@@ -2112,11 +2122,15 @@ msgid "Randomise teams in cups"
 msgstr "Amestecaţi aleatoriu echipele în cupe"
 
 #: src/misc_interface.c:230
-msgid "Randomise the order of teams in cups. This only makes sense in supernational definitions like the World Cup where the order of teams is fixed."
-msgstr "Amestecaţi aleatoriu ordinea echipelor în cupe. Aceasta are sens în definiţiile supernaţionale precum Cupa Mondială, unde ordinea echipelor este fixă."
+msgid ""
+"Randomise the order of teams in cups. This only makes sense in supernational "
+"definitions like the World Cup where the order of teams is fixed."
+msgstr ""
+"Amestecaţi aleatoriu ordinea echipelor în cupe. Aceasta are sens în "
+"definiţiile supernaţionale precum Cupa Mondială, unde ordinea echipelor este "
+"fixă."
 
-#: src/misc2_interface.c:107
-#: src/treeview.c:1843
+#: src/misc2_interface.c:107 src/treeview.c:1843
 msgid "Rank"
 msgstr "Rang"
 
@@ -2124,8 +2138,7 @@ msgstr "Rang"
 msgid "Rank "
 msgstr "Rang"
 
-#: src/file.c:375
-#: src/misc3_interface.c:411
+#: src/file.c:375 src/misc3_interface.c:412
 msgid "Ready"
 msgstr "Pregătit"
 
@@ -2141,8 +2154,7 @@ msgstr "Recreaţie"
 msgid "Recruiting preference"
 msgstr "Preferinţele de recrutare"
 
-#: src/treeview.c:823
-#: src/treeview_helper.c:934
+#: src/treeview.c:823 src/treeview_helper.c:934
 msgid "Reds"
 msgstr "Cartonaşe roşii"
 
@@ -2150,8 +2162,7 @@ msgstr "Cartonaşe roşii"
 msgid "Reject for now"
 msgstr "Refuzaţi pentru moment"
 
-#: src/misc2_interface.c:1368
-#: src/options_interface.c:392
+#: src/misc2_interface.c:1368 src/options_interface.c:393
 msgid "Reload"
 msgstr "Reîncărcaţi"
 
@@ -2167,12 +2178,11 @@ msgstr "Reîncărcaţi fişierul cu meciuri"
 msgid "Reload matches from file and close"
 msgstr "Reîncărcaţi fişierul cu meciuri şi inchideţi"
 
-#: src/options_interface.c:378
+#: src/options_interface.c:379
 msgid "Reload the constants file"
 msgstr "Reîncărcaţi fişierul cu constante"
 
-#: src/interface.c:814
-#: src/interface.c:1994
+#: src/interface.c:814 src/interface.c:1994
 msgid "Remove from transfer list"
 msgstr "Ştergeţi-l de pe lista de transferuri"
 
@@ -2189,13 +2199,15 @@ msgstr "Rejucaţi, ştergeţi sau adăugaţi meciuri memorabile."
 msgid "Reset player list"
 msgstr "Resetaţi lista jucătorilor"
 
-#: src/interface.c:739
-#: src/interface.c:1363
-msgid "Reset player list to the formation at the beginning of the live game pause (right click on player list)"
-msgstr "Resetaţi lista de informaţii a jucătorului la începutul pauzei jocului în direct (click dreapta pe lista jucătorului)"
+#: src/interface.c:739 src/interface.c:1363
+msgid ""
+"Reset player list to the formation at the beginning of the live game pause "
+"(right click on player list)"
+msgstr ""
+"Resetaţi lista de informaţii a jucătorului la începutul pauzei jocului în "
+"direct (click dreapta pe lista jucătorului)"
 
-#: src/treeview2.c:93
-#: src/treeview2.c:214
+#: src/treeview2.c:93 src/treeview2.c:214
 msgid "Result"
 msgstr "Rezultat"
 
@@ -2203,32 +2215,29 @@ msgstr "Rezultat"
 msgid "Results"
 msgstr "Rezultate"
 
-#: src/misc2_interface.c:1222
-#: src/misc_interface.c:1122
+#: src/misc2_interface.c:1222 src/misc_interface.c:1122
 msgid "Return"
 msgstr "Întoarcere"
 
-#: src/misc_interface.c:668
-#: src/misc_interface.c:690
+#: src/misc_interface.c:668 src/misc_interface.c:690
 msgid "Return / Space"
 msgstr "Enter / Spaţiu"
 
-#: src/interface.c:1237
-#: src/misc_interface.c:737
+#: src/interface.c:1237 src/misc_interface.c:737
 msgid "Right click and left click to change boost state"
 msgstr "Click dreapta şi click stânga pentru a schimba stimularea."
 
-#: src/interface.c:1227
-#: src/misc_interface.c:746
+#: src/interface.c:1227 src/misc_interface.c:746
 msgid "Right click and left click to change your playing style"
 msgstr "Click dreapta şi click stânga pentru a schimba stilul de joc."
 
 #: src/callbacks.c:1575
 msgid "Right click to apply for job at once, left click to see team info."
-msgstr "Click dreapta pentru a participa la târgul de muncă, click stânga pentru vizualizarea informaţiilor despre echipă."
+msgstr ""
+"Click dreapta pentru a participa la târgul de muncă, click stânga pentru "
+"vizualizarea informaţiilor despre echipă."
 
-#: src/misc_interface.c:1058
-#: src/misc_interface.c:1092
+#: src/misc_interface.c:1058 src/misc_interface.c:1092
 msgid "Right-click to set to 0"
 msgstr "Click dreapta pentru a seta la 0"
 
@@ -2237,7 +2246,7 @@ msgstr "Click dreapta pentru a seta la 0"
 msgid "Ro"
 msgstr "Ru"
 
-#: src/cup.c:1094
+#: src/cup.c:1097
 msgid "Round robin"
 msgstr "Runda"
 
@@ -2247,7 +2256,9 @@ msgstr "Siguranţă (%)"
 
 #: src/misc_callback_func.c:302
 msgid "Safety improvement too high, reset to highest possible value."
-msgstr "Îmbunătăţirile de siguranţă sunt prea mari, se alege cea mai mare valoare posibilă."
+msgstr ""
+"Îmbunătăţirile de siguranţă sunt prea mari, se alege cea mai mare valoare "
+"posibilă."
 
 #. % of saves for goalies (#goals / #shots)
 #: src/treeview.c:2394
@@ -2266,11 +2277,11 @@ msgstr "Salvaţi modificările aduse fişierului şi închideţi"
 msgid "Save game (Ctrl - S)"
 msgstr "Salvaţi jocul (Ctrl+S)"
 
-#: src/options_interface.c:1119
+#: src/options_interface.c:1120
 msgid "Save global settings to file"
 msgstr "Salvaţi setările globale în fişier"
 
-#: src/options_interface.c:247
+#: src/options_interface.c:248
 msgid "Save overwrites"
 msgstr "Salvarea suprascrie"
 
@@ -2278,7 +2289,7 @@ msgstr "Salvarea suprascrie"
 msgid "Save settings as default"
 msgstr "Salvaţi setările ca prestabilite"
 
-#: src/options_interface.c:1124
+#: src/options_interface.c:1125
 msgid "Save user settings to file"
 msgstr "Salvaţi setările utilizatorului în fişier"
 
@@ -2319,8 +2330,7 @@ msgstr "Se salvează lista de transferuri..."
 msgid "Saving users..."
 msgstr "Se salvează utilizatorii..."
 
-#: src/interface.c:533
-#: src/treeview.c:1502
+#: src/interface.c:533 src/treeview.c:1502
 msgid "Scout"
 msgstr "Căutător de talente"
 
@@ -2342,12 +2352,11 @@ msgstr "Raportul sezonului"
 msgid "Season results"
 msgstr "Rezultate sezonului"
 
-#: src/misc_interface.c:384
-#: src/window.c:889
+#: src/misc_interface.c:384 src/window.c:889
 msgid "Select font"
 msgstr "Selectaţi font"
 
-#: src/cup.c:1108
+#: src/cup.c:1111
 msgid "Semi-final"
 msgstr "Semi-finală"
 
@@ -2355,12 +2364,13 @@ msgstr "Semi-finală"
 msgid "Set investment"
 msgstr "Alegeţi investiţia"
 
-#: src/callbacks.c:1441
-#: src/interface.c:692
-msgid "Set the percentage of your income you want to devote to your youth academy."
-msgstr "Setaţi procentajul din profit pe care îi dedicaţi academiei de juniori."
+#: src/callbacks.c:1441 src/interface.c:692
+msgid ""
+"Set the percentage of your income you want to devote to your youth academy."
+msgstr ""
+"Setaţi procentajul din profit pe care îi dedicaţi academiei de juniori."
 
-#: src/options_interface.c:557
+#: src/options_interface.c:558
 msgid "Set to 0 to switch off warning"
 msgstr "Setaţi la 0 pentru a dezactiva avertismentele"
 
@@ -2369,26 +2379,23 @@ msgstr "Setaţi la 0 pentru a dezactiva avertismentele"
 msgid "Sh"
 msgstr "Şut"
 
-#: src/interface.c:838
-#: src/interface.c:2006
+#: src/interface.c:838 src/interface.c:2006
 msgid "Shoots penalties"
 msgstr "Şutează la penalty"
 
-#: src/treeview.c:818
-#: src/treeview.c:2391
+#: src/treeview.c:818 src/treeview.c:2391
 msgid "Shot %"
 msgstr "Şut %"
 
-#: src/treeview.c:817
-#: src/treeview_helper.c:932
+#: src/treeview.c:817 src/treeview_helper.c:932
 msgid "Shots"
 msgstr "Şuturi"
 
-#: src/options_interface.c:658
+#: src/options_interface.c:659
 msgid "Shots "
 msgstr "Şuturi"
 
-#: src/options_interface.c:577
+#: src/options_interface.c:578
 msgid "Show all leagues in the fixture view"
 msgstr "Afişaţi toate ligile în vederea programării meciurilor"
 
@@ -2404,8 +2411,7 @@ msgstr "Afişaţi finanţele"
 msgid "Show history"
 msgstr "Afişaţi istoric"
 
-#: src/interface.c:798
-#: src/interface.c:1986
+#: src/interface.c:798 src/interface.c:1986
 msgid "Show info"
 msgstr "Afişaţi informaţii"
 
@@ -2413,7 +2419,7 @@ msgstr "Afişaţi informaţii"
 msgid "Show job exchange"
 msgstr "Afişaţi ofertele de schimb de lucru"
 
-#: src/options_interface.c:549
+#: src/options_interface.c:550
 msgid "Show job offers"
 msgstr "Afişaţi ofertele de lucru"
 
@@ -2425,30 +2431,27 @@ msgstr "Afişaţi ultimul meci"
 msgid "Show last match stats"
 msgstr "Afişaţi statisticile ultimului meci"
 
-#: src/options_interface.c:458
+#: src/options_interface.c:459
 msgid "Show live game"
 msgstr "Afişaţi meciurile în direct"
 
-#: src/misc3_interface.c:73
-#: src/options_interface.c:1005
+#: src/misc3_interface.c:74 src/options_interface.c:1006
 msgid "Show matches from all leagues"
 msgstr "Afişaţi meciurile din toate ligile"
 
-#: src/misc3_interface.c:78
-#: src/options_interface.c:1010
+#: src/misc3_interface.c:79 src/options_interface.c:1011
 msgid "Show matches from cups"
 msgstr "Afişaţi meciurile din cupe"
 
-#: src/misc3_interface.c:83
-#: src/options_interface.c:1016
+#: src/misc3_interface.c:84 src/options_interface.c:1017
 msgid "Show only my recent bets"
 msgstr "Afişaţi doar pariurile mele recente"
 
-#: src/options_interface.c:596
+#: src/options_interface.c:597
 msgid "Show overall games/goals"
 msgstr "Afişaţi toate jocurile/golurile"
 
-#: src/options_interface.c:267
+#: src/options_interface.c:268
 msgid "Show progressbar pictures"
 msgstr "Afişaţi pozele bării de progres"
 
@@ -2456,7 +2459,7 @@ msgstr "Afişaţi pozele bării de progres"
 msgid "Show stadium"
 msgstr "Afişaţi stadion"
 
-#: src/options_interface.c:462
+#: src/options_interface.c:463
 msgid "Show tendency bar"
 msgstr "Afişaţi bara cu tendinţe"
 
@@ -2472,7 +2475,7 @@ msgstr "Afişaţi lista cu posturile de manager disponibile"
 msgid "Show transferlist (T)"
 msgstr "Afişaţi lista de transferuri (T)"
 
-#: src/options_interface.c:563
+#: src/options_interface.c:564
 msgid "Show warning if a player contract gets below "
 msgstr "Afişaţi o avertizare dacă contractul unui jucător are mai puţin de "
 
@@ -2489,11 +2492,11 @@ msgstr "Abil"
 msgid "Skill"
 msgstr "Abilitate"
 
-#: src/options_interface.c:637
+#: src/options_interface.c:638
 msgid "Skill "
 msgstr "Abilitate"
 
-#: src/options_interface.c:277
+#: src/options_interface.c:278
 msgid "Skip weeks without user matches"
 msgstr "Săriţi peste săptămânile fără jocuri ale utilizatorului"
 
@@ -2501,9 +2504,11 @@ msgstr "Săriţi peste săptămânile fără jocuri ale utilizatorului"
 msgid "Space"
 msgstr "Spaţiu"
 
-#: src/main.c:80
+#: src/main.c:81
 msgid "Specify additional support directory (takes priority over default ones)"
-msgstr "Specificaţi un director support adiţional (este prioritar faţă de cel standard) "
+msgstr ""
+"Specificaţi un director support adiţional (este prioritar faţă de cel "
+"standard) "
 
 #: src/misc_interface.c:707
 msgid "Speed"
@@ -2525,8 +2530,7 @@ msgstr "Oferte de sponsorizări"
 msgid "Stadium"
 msgstr "Stadion"
 
-#: src/misc2_interface.c:117
-#: src/treeview.c:1461
+#: src/misc2_interface.c:117 src/treeview.c:1461
 msgid "Stadium capacity"
 msgstr "Capacitatea stadionului"
 
@@ -2538,8 +2542,7 @@ msgstr "Cheltuielile stadionului"
 msgid "Stadium management is disabled in this country definition."
 msgstr "Administrarea stadionului este dezactivată în definirea ţărilor."
 
-#: src/misc2_interface.c:122
-#: src/treeview.c:1465
+#: src/misc2_interface.c:122 src/treeview.c:1465
 msgid "Stadium safety"
 msgstr "Siguranţa stadionului"
 
@@ -2551,15 +2554,15 @@ msgstr "Statutul stadionului"
 msgid "Start"
 msgstr "Porniţi"
 
-#: src/misc3_interface.c:347
+#: src/misc3_interface.c:348
 msgid "Start _new game"
 msgstr "Începeţi  joc _nou"
 
-#: src/misc3_interface.c:622
+#: src/misc3_interface.c:623
 msgid "Start in week"
 msgstr "Începeţi în săptămâna"
 
-#: src/misc3_interface.c:576
+#: src/misc3_interface.c:577
 msgid "Start in week:"
 msgstr "Începeţi în săptămâna:"
 
@@ -2572,7 +2575,7 @@ msgstr "Statistici"
 msgid "Status"
 msgstr "Statut"
 
-#: src/options_interface.c:672
+#: src/options_interface.c:673
 msgid "Status "
 msgstr "Statut "
 
@@ -2589,7 +2592,7 @@ msgstr "Dungă"
 msgid "Structure"
 msgstr "Structură"
 
-#: src/options_interface.c:591
+#: src/options_interface.c:592
 msgid "Swap adapts structure"
 msgstr "Schimbaţi adaptarea structurii"
 
@@ -2606,18 +2609,13 @@ msgstr "Clasament"
 msgid "Talent %"
 msgstr "Talent % "
 
-#: src/treeview2.c:513
-#: src/treeview.c:161
-#: src/treeview.c:330
-#: src/treeview.c:760
-#: src/treeview.c:1362
-#: src/treeview.c:1837
-#: src/treeview.c:1981
-#: src/treeview.c:2319
+#: src/treeview2.c:513 src/treeview.c:161 src/treeview.c:330
+#: src/treeview.c:760 src/treeview.c:1362 src/treeview.c:1837
+#: src/treeview.c:1981 src/treeview.c:2319
 msgid "Team"
 msgstr "Echipa"
 
-#: src/options_interface.c:728
+#: src/options_interface.c:729
 msgid "Team "
 msgstr "Echipă"
 
@@ -2638,7 +2636,7 @@ msgstr "Echipa1"
 msgid "Team2"
 msgstr "Echipa2"
 
-#: src/main.c:90
+#: src/main.c:91
 msgid "Test an XML commentary file"
 msgstr "Testaţi un fişier de comentarii XML"
 
@@ -2655,7 +2653,7 @@ msgstr "Oficiul de pariuri nu va da voie sa pariati mai mult de %s."
 msgid "The current game state is unsaved and will be lost. Continue?"
 msgstr "Jocul curent nu este salvat şi se va pierde. Continuaţi?"
 
-#: src/options_interface.c:500
+#: src/options_interface.c:501
 msgid "The higher this value, the more commentary you'll see."
 msgstr "Cu cât este valoare mai mare, cu atât vor fi mai multe comentarii."
 
@@ -2664,7 +2662,7 @@ msgstr "Cu cât este valoare mai mare, cu atât vor fi mai multe comentarii."
 msgid "The job exchange update interval is %d weeks."
 msgstr "Intervalul de actualizare a ofertelor de lucru este de %d săptămâni."
 
-#: src/options_interface.c:491
+#: src/options_interface.c:492
 msgid "The lower this value the faster the live game commentary will scroll."
 msgstr "Cu cât este valoare mai mică, cu atât vor fi mai puţine comentarii."
 
@@ -2678,49 +2676,84 @@ msgstr "Deţinătorii de la %s acceptă oferta dumneavoastră."
 #. the last 2 years of his second presidency.
 #: src/misc2_callback_func.c:359
 #, c-format
-msgid "The owners of %s accept your application. Since %s don't want to get stuck with a lame duck, you get fired instantly and spend the rest of the current season tending your garden."
-msgstr "Deţinătorii de la %s acceptă cererea dumneavoastra. Din moment ce %s nu doreşte să se împotmoleasăc, veţi fi concediat instantaneu şi veţi petrece restul sezonului curent acasă."
+msgid ""
+"The owners of %s accept your application. Since %s don't want to get stuck "
+"with a lame duck, you get fired instantly and spend the rest of the current "
+"season tending your garden."
+msgstr ""
+"Deţinătorii de la %s acceptă cererea dumneavoastra. Din moment ce %s nu "
+"doreşte să se împotmoleasăc, veţi fi concediat instantaneu şi veţi petrece "
+"restul sezonului curent acasă."
 
 #: src/game_gui.c:803
 #, c-format
-msgid "The owners of %s are deeply impressed by your success with %s and would like to hire you. Here's some information on %s:"
-msgstr "Patronii de la %s sunt impresionaţi de succesele dumneavoastră cu %s şi doresc să vă angajeze. Câteva informaţii despre %s:"
+msgid ""
+"The owners of %s are deeply impressed by your success with %s and would like "
+"to hire you. Here's some information on %s:"
+msgstr ""
+"Patronii de la %s sunt impresionaţi de succesele dumneavoastră cu %s şi "
+"doresc să vă angajeze. Câteva informaţii despre %s:"
 
 #: src/user.c:380
 #, c-format
-msgid "The owners of %s are not satisfied with the recent performance of the team. There are rumours they're looking for a new manager."
-msgstr "Patronii echipei %s sunt dezamăgiţi de modul în care joacă echipa. Sunt zvonuri că ar căuta un antrenor nou."
+msgid ""
+"The owners of %s are not satisfied with the recent performance of the team. "
+"There are rumours they're looking for a new manager."
+msgstr ""
+"Patronii echipei %s sunt dezamăgiţi de modul în care joacă echipa. Sunt "
+"zvonuri că ar căuta un antrenor nou."
 
 #: src/user.c:596
 #, c-format
-msgid "The owners of %s have rejected your offer (%s / %s) for %s. Neither the fee nor the wage you offered were acceptable, they say."
-msgstr "Deţinătorii de la %s au respins oferta dumneavoastră (%s / %s) pentru %s. Au zis că nici suma de transfer şi nici salariul nu au fost acceptabile."
+msgid ""
+"The owners of %s have rejected your offer (%s / %s) for %s. Neither the fee "
+"nor the wage you offered were acceptable, they say."
+msgstr ""
+"Deţinătorii de la %s au respins oferta dumneavoastră (%s / %s) pentru %s. Au "
+"zis că nici suma de transfer şi nici salariul nu au fost acceptabile."
 
 #: src/user.c:601
 #, c-format
-msgid "The owners of %s have rejected your offer (%s / %s) for %s. The team owners weren't satisfied with the fee you offered."
-msgstr "Patronii de la %s au respins oferta dumneavoastră (%s / %s) pentru %s. Au fost nemulţumiţi de suma de transfer oferită."
+msgid ""
+"The owners of %s have rejected your offer (%s / %s) for %s. The team owners "
+"weren't satisfied with the fee you offered."
+msgstr ""
+"Patronii de la %s au respins oferta dumneavoastră (%s / %s) pentru %s. Au "
+"fost nemulţumiţi de suma de transfer oferită."
 
 #: src/user.c:591
 #, c-format
-msgid "The owners of %s have rejected your offer (%s / %s) for %s. There was a better offer for the player than yours."
-msgstr "Patronii de la %s au respins oferta dumneavoastră (%s / %s) pentru %s. A fost o ofertă mai bună decât a dumneavoastră."
+msgid ""
+"The owners of %s have rejected your offer (%s / %s) for %s. There was a "
+"better offer for the player than yours."
+msgstr ""
+"Patronii de la %s au respins oferta dumneavoastră (%s / %s) pentru %s. A "
+"fost o ofertă mai bună decât a dumneavoastră."
 
 #: src/misc2_callback_func.c:348
 #, c-format
-msgid "The owners of %s politely reject your application. You're not successful enough in their eyes."
-msgstr "Patronii de la %s au refuzat politicos oferta dumneavoastră. În ochii lor, nu aţi avut destul succes."
+msgid ""
+"The owners of %s politely reject your application. You're not successful "
+"enough in their eyes."
+msgstr ""
+"Patronii de la %s au refuzat politicos oferta dumneavoastră. În ochii lor, "
+"nu aţi avut destul succes."
 
 #: src/callback_func.c:589
-msgid "The player feels he doesn't have a future in your star-studded team. He refuses to negotiate."
-msgstr "Jucătorul simte că nu va avea un viitor în echipa dumneavoastră plină de staruri. El refuză să negocieze."
+msgid ""
+"The player feels he doesn't have a future in your star-studded team. He "
+"refuses to negotiate."
+msgstr ""
+"Jucătorul simte că nu va avea un viitor în echipa dumneavoastră plină de "
+"staruri. El refuză să negocieze."
 
 #: src/callbacks.c:600
 msgid "The player is already on the list."
 msgstr "Jucătorul se află deja pe listă."
 
 #: src/callback_func.c:526
-msgid "The player is locked (the team owners are considering an offer currently)."
+msgid ""
+"The player is locked (the team owners are considering an offer currently)."
 msgstr "Jucătorul este reţinut (patronii echipei consideră o ofertă curentă)."
 
 #: src/callbacks.c:620
@@ -2749,32 +2782,53 @@ msgid "The structure value %d is invalid."
 msgstr "Valoarea %d pentru structură este invalidă."
 
 #: src/user.c:640
-msgid "The team owners are very satisfied with your financial management. Since the team's been earning a lot of money lately, they decide to donate half of it to charity."
-msgstr "Proprietarii clubului sunt foarte satisfăcuţi cu managementul dumneavoastră financiar. Din moment ce echipa câştigă mulţi bani în ultima vreme, au decis să doneze jumătate în proiecte de caritate."
+msgid ""
+"The team owners are very satisfied with your financial management. Since the "
+"team's been earning a lot of money lately, they decide to donate half of it "
+"to charity."
+msgstr ""
+"Proprietarii clubului sunt foarte satisfăcuţi cu managementul dumneavoastră "
+"financiar. Din moment ce echipa câştigă mulţi bani în ultima vreme, au decis "
+"să doneze jumătate în proiecte de caritate."
 
 #: src/game_gui.c:797
 #, c-format
-msgid "The team owners have fired you because of financial mismanagement. Luckily, the owners of %s have heard of your dismissal and offer you a job. Here's some information on %s:"
-msgstr "Proprietarii clublui v-au concediat datorită problemelor financiare. Din fericire, patronii echipei %s au auzit de concediere şi ar dori să vă angajaze. Câteva informaţii despre %s:"
+msgid ""
+"The team owners have fired you because of financial mismanagement. Luckily, "
+"the owners of %s have heard of your dismissal and offer you a job. Here's "
+"some information on %s:"
+msgstr ""
+"Proprietarii clublui v-au concediat datorită problemelor financiare. Din "
+"fericire, patronii echipei %s au auzit de concediere şi ar dori să vă "
+"angajaze. Câteva informaţii despre %s:"
 
 #: src/game_gui.c:800
 #, c-format
-msgid "The team owners have fired you because of unsuccessfulness. Luckily, the owners of %s have heard of your dismissal and offer you a job. Here's some information on %s:"
-msgstr "Proprietarii clublui v-au concediat din cauza insucceselor. Din fericire, patronii echipei %s au auzit de concediere şi ar dori să vă angajaze. Câteva informaţii despre %s:"
+msgid ""
+"The team owners have fired you because of unsuccessfulness. Luckily, the "
+"owners of %s have heard of your dismissal and offer you a job. Here's some "
+"information on %s:"
+msgstr ""
+"Proprietarii clublui v-au concediat din cauza insucceselor. Din fericire, "
+"patronii echipei %s au auzit de concediere şi ar dori să vă angajaze. Câteva "
+"informaţii despre %s:"
 
-#: src/callback_func.c:533
-#: src/callbacks.c:253
-#: src/transfer.c:574
+#: src/callback_func.c:533 src/callbacks.c:253 src/transfer.c:574
 msgid "The transfer deadline is over."
 msgstr "Perioada de transferuri s-a sfârşit."
 
 #: src/misc_interface.c:1307
-msgid "There are a few companies interested in sponsoring your team. Please select one:"
-msgstr "Sunt câteva companii care doresc să vă sponsorizeze echipa. Selectaţi una :"
+msgid ""
+"There are a few companies interested in sponsoring your team. Please select "
+"one:"
+msgstr ""
+"Sunt câteva companii care doresc să vă sponsorizeze echipa. Selectaţi una :"
 
 #: src/callbacks.c:276
 msgid "There are injured or banned players in one of the user teams. Continue?"
-msgstr "Sunt jucători accidentaţi sau sancţionaţi în una dintre echipele utilizatorilor. Continuaţi?"
+msgstr ""
+"Sunt jucători accidentaţi sau sancţionaţi în una dintre echipele "
+"utilizatorilor. Continuaţi?"
 
 #: src/callbacks.c:554
 msgid "There are no leagues in this country definition (only cups)."
@@ -2789,16 +2843,24 @@ msgid "There are no season history elements stored yet."
 msgstr "Nu sunt elemente din istoricul sesiunii salvate încă."
 
 #: src/callback_func.c:429
-msgid "There are some offers for the player which you rejected or will see next week."
-msgstr "Sunt câteva oferte pentru jucătorul refuzat, sau veţi vedeţi săptămâna viitoare."
+msgid ""
+"There are some offers for the player which you rejected or will see next "
+"week."
+msgstr ""
+"Sunt câteva oferte pentru jucătorul refuzat, sau veţi vedeţi săptămâna "
+"viitoare."
 
 #: src/callbacks.c:709
 msgid "There is no room in your youth academy."
 msgstr "Nu mai este loc în academia de juniori."
 
 #: src/misc_callbacks.c:232
-msgid "There were too many substitutions. Only 3 per game are allowed. Player list reset."
-msgstr "Sunt prea multe schimbări. Numai 3 sunt permise într-un joc. Se resetează lista de jucători."
+msgid ""
+"There were too many substitutions. Only 3 per game are allowed. Player list "
+"reset."
+msgstr ""
+"Sunt prea multe schimbări. Numai 3 sunt permise într-un joc. Se resetează "
+"lista de jucători."
 
 #: src/treeview.c:1496
 msgid "Ticket income"
@@ -2812,11 +2874,8 @@ msgstr "Ligamente fracturate"
 msgid "Training"
 msgstr "Antrenament"
 
-#: src/interface.c:728
-#: src/options_interface.c:1102
-#: src/training_interface.c:60
-#: src/treeview.c:1594
-#: src/window.c:974
+#: src/interface.c:728 src/options_interface.c:1103
+#: src/training_interface.c:60 src/treeview.c:1594 src/window.c:974
 msgid "Training camp"
 msgstr "Cantonament"
 
@@ -2837,14 +2896,17 @@ msgstr "Ofertă de transfer"
 msgid "Transfers"
 msgstr "Transferuri"
 
-#: src/callbacks.c:233
-#: src/callbacks.c:596
+#: src/callbacks.c:233 src/callbacks.c:596
 msgid "Transfers are disabled in this country definition."
 msgstr "Transferurile sunt dezactivate în definirea acestei ţări."
 
 #: src/interface.c:756
-msgid "Try to put the startup players onto their favoured positions and sort the substitutes (Ctrl-R or middle click)"
-msgstr "Încercaţi să puneţi jucătorii din echipa de început pe poziţia lor preferată şi să sortaţi rezervele (Ctrl+R sau click mijloc)"
+msgid ""
+"Try to put the startup players onto their favoured positions and sort the "
+"substitutes (Ctrl-R or middle click)"
+msgstr ""
+"Încercaţi să puneţi jucătorii din echipa de început pe poziţia lor preferată "
+"şi să sortaţi rezervele (Ctrl+R sau click mijloc)"
 
 #: src/load_save.c:222
 msgid "Uncompressing savegame..."
@@ -2863,12 +2925,11 @@ msgstr "Administrarea utilizatorilor"
 msgid "Users -- click to remove"
 msgstr "Utilizatorii -- click pentru a-i înlătura"
 
-#: src/treeview.c:327
-#: src/treeview.c:2141
+#: src/treeview.c:327 src/treeview.c:2141
 msgid "Value"
 msgstr "Valoare"
 
-#: src/options_interface.c:700
+#: src/options_interface.c:701
 msgid "Value "
 msgstr "Valoarea "
 
@@ -2878,8 +2939,7 @@ msgstr "Nivelul de comentarii"
 
 #. Games won.
 #. Won.
-#: src/treeview.c:1366
-#: src/treeview_helper.c:1737
+#: src/treeview.c:1366 src/treeview_helper.c:1737
 msgid "W"
 msgstr "V"
 
@@ -2894,14 +2954,12 @@ msgstr "V  "
 msgid "W  %d : %d"
 msgstr "V  %d : %d"
 
-#: src/callback_func.c:549
-#: src/callback_func.c:556
-#: src/treeview.c:328
+#: src/callback_func.c:549 src/callback_func.c:556 src/treeview.c:328
 #: src/treeview.c:2142
 msgid "Wage"
 msgstr "Salariu"
 
-#: src/options_interface.c:707
+#: src/options_interface.c:708
 msgid "Wage "
 msgstr "Salariu "
 
@@ -2937,11 +2995,11 @@ msgstr "Săptămână"
 msgid "Week %d Round %d"
 msgstr "Săptămâna %d Runda %d"
 
-#: src/misc3_interface.c:630
+#: src/misc3_interface.c:631
 msgid "Weekly installment"
 msgstr "Suma săptămânală"
 
-#: src/misc3_interface.c:584
+#: src/misc3_interface.c:585
 msgid "Weekly installment:"
 msgstr "Suma săptămânală:"
 
@@ -2950,97 +3008,149 @@ msgstr "Suma săptămânală:"
 msgid "Welcome to Bygfoot %s"
 msgstr "Bine aţi venit în Bygfoot %s"
 
-#: src/options_interface.c:250
-msgid "Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
-msgstr "Dacă salvarea să suprascrie fişierul salvat curent sau să apară o fereastră 'Salvaţi ca'"
+#: src/options_interface.c:251
+msgid ""
+"Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
+msgstr ""
+"Dacă salvarea să suprascrie fişierul salvat curent sau să apară o fereastră "
+"'Salvaţi ca'"
 
-#: src/options_interface.c:547
-msgid "Whether a confirmation popup is shown when you kick out a youth from your academy"
-msgstr "Dacă să apară un dialog de confirmare când daţi afară un jucător de la academia de juniori"
+#: src/options_interface.c:548
+msgid ""
+"Whether a confirmation popup is shown when you kick out a youth from your "
+"academy"
+msgstr ""
+"Dacă să apară un dialog de confirmare când daţi afară un jucător de la "
+"academia de juniori"
 
-#: src/options_interface.c:260
-msgid "Whether game starts with a maximized main window (doesn't work with all window managers)"
-msgstr "Dacă jocul să pornească cu fereastră principală maximizată (nu funcţionează în toate managerele de ferestre)"
+#: src/options_interface.c:261
+msgid ""
+"Whether game starts with a maximized main window (doesn't work with all "
+"window managers)"
+msgstr ""
+"Dacă jocul să pornească cu fereastră principală maximizată (nu funcţionează "
+"în toate managerele de ferestre)"
 
-#: src/options_interface.c:580
-msgid "Whether in the weekly fixture view all leagues or only the user league is shown"
-msgstr "Dacă în programarea săptămânală a meciurilor să apară numai meciurile din liga utilizatorului"
+#: src/options_interface.c:581
+msgid ""
+"Whether in the weekly fixture view all leagues or only the user league is "
+"shown"
+msgstr ""
+"Dacă în programarea săptămânală a meciurilor să apară numai meciurile din "
+"liga utilizatorului"
 
-#: src/options_interface.c:594
-msgid "Whether swapping two players automatically adapts the team structure to the player positions"
-msgstr "Dacă schimbarea a doi jucători adaptează automat structura echipei la poziţiile jucătorilor"
+#: src/options_interface.c:595
+msgid ""
+"Whether swapping two players automatically adapts the team structure to the "
+"player positions"
+msgstr ""
+"Dacă schimbarea a doi jucători adaptează automat structura echipei la "
+"poziţiile jucătorilor"
 
-#: src/options_interface.c:530
+#: src/options_interface.c:531
 msgid "Whether the live game pauses at half time and extra time"
 msgstr "Dacă jocul să se întrerupă la pauze"
 
-#: src/options_interface.c:520
+#: src/options_interface.c:521
 msgid "Whether the live game pauses when a user player is injured"
 msgstr "Dacă jocul să se întrerupă când un jucător este accidentat"
 
-#: src/options_interface.c:525
+#: src/options_interface.c:526
 msgid "Whether the live game pauses when a user player is sent off"
 msgstr "Dacă jocul să se întrerupă când un jucător este eliminat"
 
-#: src/options_interface.c:506
-msgid "Whether the subs (e.g. for injured players) are made by the CPU. This is automatically done if the live game is off."
-msgstr "Dacă schimbările (ex. pentru accedentări) să fie făcute de computer. Această opţiune este automat selectată dacă jocul în direct nu este folosit."
+#: src/options_interface.c:507
+msgid ""
+"Whether the subs (e.g. for injured players) are made by the CPU. This is "
+"automatically done if the live game is off."
+msgstr ""
+"Dacă schimbările (ex. pentru accedentări) să fie făcute de computer. Această "
+"opţiune este automat selectată dacă jocul în direct nu este folosit."
 
-#: src/options_interface.c:408
+#: src/options_interface.c:409
 msgid "Whether to automatically save the game regularly"
 msgstr "Dacă să fie salvat meciul în mod regulat"
 
-#: src/options_interface.c:1122
-msgid "Whether to save the global settings to file (so that they get loaded next time you start a new game)"
-msgstr "Dacă setările globale să fie salvate într-un fişier (ca să fie încărcate data viitoare când porniţi un joc nou)"
+#: src/options_interface.c:1123
+msgid ""
+"Whether to save the global settings to file (so that they get loaded next "
+"time you start a new game)"
+msgstr ""
+"Dacă setările globale să fie salvate într-un fişier (ca să fie încărcate "
+"data viitoare când porniţi un joc nou)"
 
-#: src/options_interface.c:1127
-msgid "Whether to save the user settings to file (so that they get loaded next time this user starts a new game)"
-msgstr "Dacă setările utilizatorului să fie salvate într-un fişier (ca să fie încărcate data viitoare când porniţi un joc nou cu acest utilizator)"
+#: src/options_interface.c:1128
+msgid ""
+"Whether to save the user settings to file (so that they get loaded next time "
+"this user starts a new game)"
+msgstr ""
+"Dacă setările utilizatorului să fie salvate într-un fişier (ca să fie "
+"încărcate data viitoare când porniţi un joc nou cu acest utilizator)"
 
-#: src/options_interface.c:245
-msgid "Whether to show a confirmation popup if a user team has an injured or banned player in the startup formation"
-msgstr "Dacă să apară o fereastră de confirmare când echipa utilizatorului are un jucător rănit sau suspendat în echipa de început"
+#: src/options_interface.c:246
+msgid ""
+"Whether to show a confirmation popup if a user team has an injured or banned "
+"player in the startup formation"
+msgstr ""
+"Dacă să apară o fereastră de confirmare când echipa utilizatorului are un "
+"jucător rănit sau suspendat în echipa de început"
 
-#: src/options_interface.c:240
-msgid "Whether to show a confirmation popup when you press quit and the game state is not saved"
+#: src/options_interface.c:241
+msgid ""
+"Whether to show a confirmation popup when you press quit and the game state "
+"is not saved"
 msgstr "Dacă să apară o fereastră de confirmare când ieşiţi şi nu aţi salvat"
 
-#: src/options_interface.c:1013
+#: src/options_interface.c:1014
 msgid "Whether to show cup matches in the betting window"
 msgstr "Dacă să se arate jocurile din cupă în fereastra de pariuri"
 
-#: src/misc3_interface.c:81
-msgid "Whether to show cup matches. Use the options window to toggle permanently."
-msgstr "Dacă să se arate jocurile din cupă. Utilizaţi fereastra de opţiuni pentru a înlătura permanent."
+#: src/misc3_interface.c:82
+msgid ""
+"Whether to show cup matches. Use the options window to toggle permanently."
+msgstr ""
+"Dacă să se arate jocurile din cupă. Utilizaţi fereastra de opţiuni pentru a "
+"înlătura permanent."
 
-#: src/options_interface.c:552
+#: src/options_interface.c:553
 msgid "Whether to show job offers when a user is successful"
-msgstr "Dacă să apară o ofertă de la alte echipe atunci când utilizatorul are succes"
+msgstr ""
+"Dacă să apară o ofertă de la alte echipe atunci când utilizatorul are succes"
 
-#: src/options_interface.c:1008
+#: src/options_interface.c:1009
 msgid "Whether to show matches of all leagues in the betting window"
 msgstr "Dacă să se afişeze meciurile din toate ligile în fereastra de pariuri"
 
-#: src/misc3_interface.c:76
-msgid "Whether to show matches of all leagues. Use the options window to toggle permanently."
-msgstr "Dacă să se afişeze meciurile din toate ligile. Folosiţi fereastra de opţiuni."
+#: src/misc3_interface.c:77
+msgid ""
+"Whether to show matches of all leagues. Use the options window to toggle "
+"permanently."
+msgstr ""
+"Dacă să se afişeze meciurile din toate ligile. Folosiţi fereastra de opţiuni."
 
-#: src/misc3_interface.c:86
+#: src/misc3_interface.c:87
 msgid "Whether to show only your bets in the recent bets list"
 msgstr "Dacă să se afişeze numai pariurile dumneavoastră în lista pariurilor."
 
-#: src/options_interface.c:270
-msgid "Whether to show pictures on top of the progressbar when loading/saving or calculating results"
-msgstr "Dacă să se afişeze poze în faţa bării de progres când se încarcă/salvează sau se calculează rezultatele"
+#: src/options_interface.c:271
+msgid ""
+"Whether to show pictures on top of the progressbar when loading/saving or "
+"calculating results"
+msgstr ""
+"Dacă să se afişeze poze în faţa bării de progres când se încarcă/salvează "
+"sau se calculează rezultatele"
 
-#: src/options_interface.c:599
+#: src/options_interface.c:600
 msgid "Whether to show the player games/goals value in all competitions"
 msgstr "Dacă să apară jocurile/golurile jucătorului în toate competiţiile"
 
-#: src/options_interface.c:265
-msgid "Whether to show warnings and such in the message area in the main window when possible"
-msgstr "Dacă să arate avertizări în zona de mesaje din fereastra principală când este posibil"
+#: src/options_interface.c:266
+msgid ""
+"Whether to show warnings and such in the message area in the main window "
+"when possible"
+msgstr ""
+"Dacă să arate avertizări în zona de mesaje din fereastra principală când "
+"este posibil"
 
 #. Team 1 wins (betting window).
 #: src/treeview2.c:395
@@ -3063,8 +3173,7 @@ msgstr "CG"
 msgid "Yellow cards (limit)\n"
 msgstr "Cartonaşe galbene (limită)\n"
 
-#: src/treeview.c:822
-#: src/treeview_helper.c:933
+#: src/treeview.c:822 src/treeview_helper.c:933
 msgid "Yellows"
 msgstr "Cartonaşe galbene"
 
@@ -3080,21 +3189,35 @@ msgstr "Nu aveţi datorii."
 
 #: src/callback_func.c:553
 #, c-format
-msgid "You are making an offer for %s again. Your previous values for fee and wage are preset."
-msgstr "Aţi făcut o ofertă pentru %s. Recomandările precedente pentru valoare şi salariu sunt prescrise."
+msgid ""
+"You are making an offer for %s again. Your previous values for fee and wage "
+"are preset."
+msgstr ""
+"Aţi făcut o ofertă pentru %s. Recomandările precedente pentru valoare şi "
+"salariu sunt prescrise."
 
 #: src/callback_func.c:545
 #, c-format
-msgid "You are making an offer for %s. Your scout's recommendations for fee and wage are preset."
-msgstr "Aţi făcut o ofertă pentru %s. Recomandările pentru valoare şi salariu ale căutătorului de talente sunt prescrise."
+msgid ""
+"You are making an offer for %s. Your scout's recommendations for fee and "
+"wage are preset."
+msgstr ""
+"Aţi făcut o ofertă pentru %s. Recomandările pentru valoare şi salariu ale "
+"căutătorului de talente sunt prescrise."
 
 #: src/callback_func.c:603
 #, c-format
 msgid ""
-"You are negotiating with %s about a new contract. Pay attention to what you're doing; if you don't come to terms with him within %d offers, he's going to leave your team after his current contract expires (unless you sell him). You may only abort BEFORE making the first offer.\n"
+"You are negotiating with %s about a new contract. Pay attention to what "
+"you're doing; if you don't come to terms with him within %d offers, he's "
+"going to leave your team after his current contract expires (unless you sell "
+"him). You may only abort BEFORE making the first offer.\n"
 "Your scout's recommendations are preset:"
 msgstr ""
-"Negociaţi cu %s un contract nou. Aveţi grijă ce faceţi, dacă nu vă înţelegeţi din %d oferte, el va pleca de la echipa dumneavoastră după ce îi va expira contractul curent (dacă nu îl vindeţi înainte). Puteţi anula ÎNAINTE să faceţi prima ofertă.\n"
+"Negociaţi cu %s un contract nou. Aveţi grijă ce faceţi, dacă nu vă "
+"înţelegeţi din %d oferte, el va pleca de la echipa dumneavoastră după ce îi "
+"va expira contractul curent (dacă nu îl vindeţi înainte). Puteţi anula "
+"ÎNAINTE să faceţi prima ofertă.\n"
 "Recomandările căutătorului de talente sunt prescrise:"
 
 #: src/callbacks.c:1644
@@ -3122,7 +3245,9 @@ msgstr "Puteţi împrumuta cel mult %s."
 
 #: src/callbacks.c:838
 msgid "You can't apply for a job from abroad if there's more than one user."
-msgstr "Nu vă puteţi înscrie pentru a munci în străinătate dacă sunt mai mulţi utilizatori."
+msgstr ""
+"Nu vă puteţi înscrie pentru a munci în străinătate dacă sunt mai mulţi "
+"utilizatori."
 
 #: src/callbacks.c:1461
 #, c-format
@@ -3131,7 +3256,8 @@ msgstr "Echipa dumneavoastră nu poate avea mai mult de %d jucători."
 
 #: src/callbacks.c:706
 msgid "You can't move the player, there are too few players in your team."
-msgstr "Nu puteţi muta jucătorul, sunt prea puţini jucători în echipa dumneavoastră."
+msgstr ""
+"Nu puteţi muta jucătorul, sunt prea puţini jucători în echipa dumneavoastră."
 
 #: src/callback_func.c:578
 msgid "You can't offer a new contract if the old one is still above 2 years."
@@ -3154,14 +3280,15 @@ msgstr "Nu aveţi destui bani pentru a-l cumpăra pe %s de la %s."
 #: src/misc2_callback_func.c:96
 #, c-format
 msgid "You didn't have enough money to buy %s or your roster was full."
-msgstr "Nu aveţi destui bani pentru a-l cumpăra pe %s, sau nu mai sunt locuri libere în lot."
+msgstr ""
+"Nu aveţi destui bani pentru a-l cumpăra pe %s, sau nu mai sunt locuri libere "
+"în lot."
 
 #: src/callback_func.c:393
 msgid "You don't have enough money to pay back."
 msgstr "Nu aveţi destui bani pentru a plăti."
 
-#: src/bet.c:262
-#: src/misc_callback_func.c:312
+#: src/bet.c:262 src/misc_callback_func.c:312
 msgid "You don't have the money."
 msgstr "Nu aveţi banii."
 
@@ -3196,16 +3323,22 @@ msgstr "Aveţi %d săpămâni să plătiţi împrumutul."
 #: src/user.c:578
 #, c-format
 msgid ""
-"You have overdrawn your bank account once again. Bear in mind that after the fourth time you get fired.\n"
+"You have overdrawn your bank account once again. Bear in mind that after the "
+"fourth time you get fired.\n"
 "The team owners give you %d weeks to get above your drawing credit limit."
 msgstr ""
-"Aţi golit din nou contul din bancă. Ţineţi minte că a patra oara veţi fi concediat.\n"
+"Aţi golit din nou contul din bancă. Ţineţi minte că a patra oara veţi fi "
+"concediat.\n"
 "Proprietarii echipei vă mai dau %d săptămâni să depuneţi banii în bancă."
 
 #: src/user.c:576
 #, c-format
-msgid "You have overdrawn your bank account. The team owners give you %d weeks to get above your drawing credit limit."
-msgstr "Aţi depăşit creditul contului dumneavoastră bancar. Patronii echipei vă dau %d săptămâni să ajungeţi peste limita creditului."
+msgid ""
+"You have overdrawn your bank account. The team owners give you %d weeks to "
+"get above your drawing credit limit."
+msgstr ""
+"Aţi depăşit creditul contului dumneavoastră bancar. Patronii echipei vă dau %"
+"d săptămâni să ajungeţi peste limita creditului."
 
 #: src/finance.c:162
 msgid "You have to pay back your loan this week."
@@ -3215,12 +3348,8 @@ msgstr "Trebuie să plătiţi împrumutul săptămâna aceasta."
 msgid "You haven't made an offer for the player."
 msgstr "Nu aţi facut nicio ofertă pentru jucător."
 
-#: src/callbacks.c:598
-#: src/callbacks.c:618
-#: src/callbacks.c:638
-#: src/callbacks.c:658
-#: src/callbacks.c:697
-#: src/callbacks.c:1168
+#: src/callbacks.c:598 src/callbacks.c:618 src/callbacks.c:638
+#: src/callbacks.c:658 src/callbacks.c:697 src/callbacks.c:1168
 #: src/callbacks.c:1188
 msgid "You haven't selected a player."
 msgstr "Nu aţi selectat niciun jucător."
@@ -3233,8 +3362,13 @@ msgstr "Aţi pierdut finala %s împotriva %s."
 
 #: src/callback_func.c:486
 #, c-format
-msgid "You offered a transfer fee of %s and a wage of %s for %s. The owners and the player are satisfied with your offer. Do you still want to buy the player?"
-msgstr "Aţi oferit o sumă de transfer de %s şi un salariu de %s pentru %s. Patronii echipei şi jucătorul sunt mulţumiţi cu oferta dumneavoastră. Mai doriţi să cumpăraţi acest jucător?"
+msgid ""
+"You offered a transfer fee of %s and a wage of %s for %s. The owners and the "
+"player are satisfied with your offer. Do you still want to buy the player?"
+msgstr ""
+"Aţi oferit o sumă de transfer de %s şi un salariu de %s pentru %s. Patronii "
+"echipei şi jucătorul sunt mulţumiţi cu oferta dumneavoastră. Mai doriţi să "
+"cumpăraţi acest jucător?"
 
 #. Cup round name (e.g. Last 32), number, cup name.
 #: src/user.c:881
@@ -3248,16 +3382,18 @@ msgstr "Aţi ajuns în %s (runda %s) din %s."
 msgid "You start the game with %s in the %s."
 msgstr "Aţi început jocul cu %s în %s."
 
-#: src/callbacks.c:266
-#: src/callbacks.c:885
-#: src/callbacks.c:906
+#: src/callbacks.c:266 src/callbacks.c:885 src/callbacks.c:906
 msgid "You still have some transfer business to manage."
 msgstr "Mai aveţi nişte afaceri legate de transferuri."
 
 #: src/callback_func.c:745
 #, c-format
-msgid "You want to fire %s. Since his contract expires in %.1f years, he demands a compensation of %s. Do you accept?"
-msgstr "Doriţi să îl concediaţi pe %s. Din moment ce contractul îi expiră în %.1f ani, el cere compensaţii de %s. Acceptaţi?"
+msgid ""
+"You want to fire %s. Since his contract expires in %.1f years, he demands a "
+"compensation of %s. Do you accept?"
+msgstr ""
+"Doriţi să îl concediaţi pe %s. Din moment ce contractul îi expiră în %.1f "
+"ani, el cere compensaţii de %s. Acceptaţi?"
 
 #. Cup name, team name.
 #: src/user.c:869
@@ -3272,14 +3408,19 @@ msgstr "Aţi atins limita de %d cantonamente pentru acest sezon."
 
 #: src/finance.c:166
 msgid "Your bank account has to be above your drawing credit limit next week."
-msgstr "Contului dumneavoastră din bancă îi expiră creditului săptămâna viitoare."
+msgstr ""
+"Contului dumneavoastră din bancă îi expiră creditului săptămâna viitoare."
 
 #: src/user.c:1124
 #, c-format
-msgid "Your current sponsor is satisfied with your results and would like to renew the contract. Currently they're paying you %d a week."
-msgstr "Sponsorul curent este satisfăcut cu rezultatele dumneavoastră şi ar dori să reînnoaiască contractul. Momentan el vă plăteşte %d pe săptămână."
+msgid ""
+"Your current sponsor is satisfied with your results and would like to renew "
+"the contract. Currently they're paying you %d a week."
+msgstr ""
+"Sponsorul curent este satisfăcut cu rezultatele dumneavoastră şi ar dori să "
+"reînnoaiască contractul. Momentan el vă plăteşte %d pe săptămână."
 
-#: src/misc3_interface.c:554
+#: src/misc3_interface.c:555
 msgid "Your debt:"
 msgstr "Creditul dumneavoastră:"
 
@@ -3289,11 +3430,14 @@ msgstr "Următorul oponent"
 
 #: src/user.c:585
 #, c-format
-msgid "Your offer for %s has been accepted. If you still want to buy him, go to the transfer list and left click on the player."
-msgstr "Oferta dumneavoastră pentru %s a fost acceptată. Dacă mai doriţi să îl cumpăraţi, mergeţi la lista de transferuri şi daţi click-dreapta pe jucător."
+msgid ""
+"Your offer for %s has been accepted. If you still want to buy him, go to the "
+"transfer list and left click on the player."
+msgstr ""
+"Oferta dumneavoastră pentru %s a fost acceptată. Dacă mai doriţi să îl "
+"cumpăraţi, mergeţi la lista de transferuri şi daţi click-dreapta pe jucător."
 
-#: src/callback_func.c:472
-#: src/callbacks.c:812
+#: src/callback_func.c:472 src/callbacks.c:812
 msgid "Your offer has been removed."
 msgstr "Oferta dumneavoastră a fost înlăturată."
 
@@ -3332,43 +3476,49 @@ msgstr "Stadionul dumneavoastră"
 msgid "Your team"
 msgstr "Echipa dumneavoastră"
 
-#: src/callbacks.c:640
-#: src/misc2_callback_func.c:60
+#: src/callbacks.c:640 src/misc2_callback_func.c:60
 msgid "Your team can't have less than 11 players."
 msgstr "Echipa dumneavoastră nu poate avea mai puţin de 11 jucători."
 
 #: src/callbacks.c:1614
 msgid "Your team has already had enough training camps this week."
-msgstr "Echipa dumneavoastră a ajut deja destule cantonamente în această săptămână."
+msgstr ""
+"Echipa dumneavoastră a ajut deja destule cantonamente în această săptămână."
 
 #: src/youth_academy.c:218
 #, c-format
-msgid "Youth %s thought he's old enough for a real contract and left your youth academy."
-msgstr "Jucătorul %s a crezut că este destul de matur pentru un contract şi a părăsit echipa de juniori."
+msgid ""
+"Youth %s thought he's old enough for a real contract and left your youth "
+"academy."
+msgstr ""
+"Jucătorul %s a crezut că este destul de matur pentru un contract şi a "
+"părăsit echipa de juniori."
 
 #: src/youth_academy.c:214
 #, c-format
-msgid "Youth %s will be too old for the youth academy soon. Move him to your team or kick him out of the academy. Otherwise he'll probably look for another team to play in."
-msgstr "Jucătorul %s va fi în curând prea în vârstă pentru echipa de juniori. Mutaţi-l în echipa dumneavoastră sau daţi-l afară din echipa de juniori. Altfel, va căuta o altă echipă la care să joace."
+msgid ""
+"Youth %s will be too old for the youth academy soon. Move him to your team "
+"or kick him out of the academy. Otherwise he'll probably look for another "
+"team to play in."
+msgstr ""
+"Jucătorul %s va fi în curând prea în vârstă pentru echipa de juniori. Mutaţi-"
+"l în echipa dumneavoastră sau daţi-l afară din echipa de juniori. Altfel, va "
+"căuta o altă echipă la care să joace."
 
 #: src/treeview.c:1659
 msgid "Youth acad. invest."
 msgstr "Invest. în acad. de juniori"
 
-#: src/interface.c:603
-#: src/treeview.c:1504
+#: src/interface.c:603 src/treeview.c:1504
 msgid "Youth academy"
 msgstr "Academia de juniori"
 
-#: src/callbacks.c:692
-#: src/callbacks.c:1416
-#: src/callbacks.c:1435
+#: src/callbacks.c:692 src/callbacks.c:1416 src/callbacks.c:1435
 #: src/callbacks.c:1456
 msgid "Youth academy is disabled in this country definition."
 msgstr "Academia de juniori este dezactivată în definirea acestei ţări."
 
-#: src/interface.c:621
-#: src/treeview.c:1503
+#: src/interface.c:621 src/treeview.c:1503
 msgid "Youth coach"
 msgstr "Antrenorul juniorilor"
 
@@ -3380,7 +3530,7 @@ msgstr "_Fişier"
 msgid "_Help"
 msgstr "_Ajutor"
 
-#: src/misc3_interface.c:371
+#: src/misc3_interface.c:372
 msgid "_Load game"
 msgstr "_Încărcaţi joc"
 
@@ -3400,7 +3550,7 @@ msgstr "_Jucător"
 msgid "_Resume"
 msgstr "_Revine"
 
-#: src/misc3_interface.c:395
+#: src/misc3_interface.c:396
 msgid "_Resume game"
 msgstr "_Reveniţi la joc"
 
@@ -3416,18 +3566,6 @@ msgstr "_Utilizator"
 msgid "interest rate"
 msgstr "rata dobânzii"
 
-#: src/misc3_interface.c:592
-msgid "label26"
-msgstr "etichetă26"
-
-#: src/misc3_interface.c:599
-msgid "label27"
-msgstr "etichetă27"
-
-#: src/options_interface.c:1098
-msgid "label48"
-msgstr "etichetă48"
-
 #~ msgid ""
 #~ "\n"
 #~ "If you feel you've found out something about the game that has to be "
@@ -3436,8 +3574,18 @@ msgstr "etichetă48"
 #~ "\n"
 #~ "Dacă găsiţi ceva interesant despre joc despre care ar trebui să ştie mai "
 #~ "multă lume, puteţi să îl scrieţi în wiki Bygfoot:\n"
+
 #~ msgid "Improve!"
 #~ msgstr "Îmbunătăţiţi!"
+
 #~ msgid "Load the last game that was saved or loaded."
 #~ msgstr "Încarcă ultimul joc care a fost încărcat sau salvat."
 
+#~ msgid "label26"
+#~ msgstr "etichetă26"
+
+#~ msgid "label27"
+#~ msgstr "etichetă27"
+
+#~ msgid "label48"
+#~ msgstr "etichetă48"
