@@ -1,21 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <league>
 	<sid>peru1</sid>
-	<name>Primera Division</name>
+	<layer>1</layer>	
+	<name>Primera División</name>
 	<short_name>Primera</short_name>
 	<symbol>flag_peru.png</symbol>
-	<first_week>1</first_week>
-	<week_gap>1</week_gap>
-	<round_robins>4</round_robins>
-        <yellow_red>5</yellow_red>
-	<break>2</break>
-	<average_talent>7500</average_talent>
+	<average_talent>6800</average_talent>
 	<names_file>peru</names_file>
-	<layer>1</layer>
+	<first_week>7</first_week>
+	<week_gap>1</week_gap>
+
+		<two_match_week_start>1</two_match_week_start>
+		<two_match_week_end>2</two_match_week_end>
+
+		<two_match_week_start>5</two_match_week_start>
+		<two_match_week_end>6</two_match_week_end>
+
+		<two_match_week_start>9</two_match_week_start>
+		<two_match_week_end>10</two_match_week_end>
+
+		<two_match_week_start>14</two_match_week_start>
+		<two_match_week_end>15</two_match_week_end>
+
+		<two_match_week_start>18</two_match_week_start>
+		<two_match_week_end>19</two_match_week_end>
+
+		<two_match_week_start>22</two_match_week_start>
+		<two_match_week_end>23</two_match_week_end>
+
+		<two_match_week_start>28</two_match_week_start>
+		<two_match_week_end>29</two_match_week_end>
+
+		<two_match_week_start>32</two_match_week_start>
+		<two_match_week_end>33</two_match_week_end>
+		
+		<two_match_week_start>36</two_match_week_start>
+		<two_match_week_end>37</two_match_week_end>
+		
+		<two_match_week_start>40</two_match_week_start>
+		<two_match_week_end>41</two_match_week_end>
+
+		<two_match_week_start>44</two_match_week_start>
+		<two_match_week_end>45</two_match_week_end>
+
+		<two_match_week_start>49</two_match_week_start>
+		<two_match_week_end>50</two_match_week_end>
+		
+	<yellow_red>5</yellow_red>
+	<round_robins>4</round_robins>
+	<break>1</break>
+	<new_table name="Apertura">1</new_table>
+	<new_table name="Clausura">27</new_table>
 	<prom_rel>
 		<prom_rel_element>
-			<rank_start>11</rank_start>
-			<rank_end>12</rank_end>
+			<rank_start>13</rank_start>
+			<rank_end>14</rank_end>
 			<dest_sid>peru2</dest_sid>
 			<prom_rel_type>relegation</prom_rel_type>
 		</prom_rel_element>
@@ -28,52 +67,60 @@
 	</prom_rel>
 	<teams>
 		<team>
-			<team_name>Ali Lima</team_name>
-			<team_average_talent>7800</team_average_talent>
-		</team>
-		<team>
-			<team_name>Cienciano</team_name>
-			<team_average_talent>7800</team_average_talent>
-		</team>
-		<team>
-			<team_name>S. Cristal</team_name>
-			<team_average_talent>7800</team_average_talent>
+			<team_name>S. Martín</team_name>
+			<team_average_talent>6800</team_average_talent>
 		</team>
 		<team>
 			<team_name>C. Bolognesi</team_name>
-			<team_average_talent>7600</team_average_talent>
+			<team_average_talent>6800</team_average_talent>
 		</team>
 		<team>
-			<team_name>U. de Deportes</team_name>
-			<team_average_talent>7800</team_average_talent>
-		</team>
-		<team>
-			<team_name>D. San Martin</team_name>
-			<team_average_talent>7700</team_average_talent>
-		</team>
-		<team>
-			<team_name>Melgar</team_name>
-			<team_average_talent>7600</team_average_talent>
-		</team>
-		<team>
-			<team_name>A. Atletico</team_name>
-			<team_average_talent>7300</team_average_talent>
+			<team_name>Cienciano</team_name>
+			<team_average_talent>6800</team_average_talent>
 		</team>
 		<team>
 			<team_name>S. Ancash</team_name>
-			<team_average_talent>7300</team_average_talent>
+			<team_average_talent>6800</team_average_talent>
+		</team>
+		<team>
+			<team_name>Universitario</team_name>
+			<team_average_talent>6800</team_average_talent>
+		</team>
+		<team>
+			<team_name>A. Lima</team_name>
+			<team_average_talent>6800</team_average_talent>
+		</team>
+		<team>
+			<team_name>S. Cristal</team_name>
+			<team_average_talent>6800</team_average_talent>
+		</team>
+		<team>
+			<team_name>Melgar</team_name>
+			<team_average_talent>6800</team_average_talent>
 		</team>
 		<team>
 			<team_name>S. Boys</team_name>
-			<team_average_talent>7500</team_average_talent>
+			<team_average_talent>6800</team_average_talent>
 		</team>
 		<team>
-			<team_name>Municipal</team_name>
-			<team_average_talent>7500</team_average_talent>
+			<team_name>J. Aurich</team_name>
+			<team_average_talent>6800</team_average_talent>
 		</team>
 		<team>
-			<team_name>T. Clean</team_name>
-			<team_average_talent>7200</team_average_talent>
+			<team_name>A. Atlético</team_name>
+			<team_average_talent>6800</team_average_talent>
+		</team>
+		<team>
+			<team_name>J. Gálvez</team_name>
+			<team_average_talent>6800</team_average_talent>
+		</team>
+		<team>
+			<team_name>C. Vallejo</team_name>
+			<team_average_talent>6800</team_average_talent>
+		</team>
+		<team>
+			<team_name>A. Minero</team_name>
+			<team_average_talent>6800</team_average_talent>
 		</team>
 	</teams>
 </league>
