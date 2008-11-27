@@ -40,6 +40,7 @@ bygfoot_SOURCES = \
 	misc2_interface.c misc2_callbacks.h misc2_interface.h support.h \
 	misc3_interface.c misc3_callbacks.h misc3_interface.h support.h \
 	name.c main.h name.h option.h variables.h xml_name.h \
+	news.c news.h variables.h xml_news.h \
 	option.c main.h misc.h option.h variables.h \
 	option_gui.c callbacks.h file.h game_gui.h language.h misc.h option_gui.h option.h support.h training.h treeview.h user.h variables.h \
 	options_callbacks.c file.h option_gui.h options_callbacks.h options_interface.h support.h training.h user.h variables.h window.h \
@@ -81,6 +82,7 @@ bygfoot_SOURCES = \
 	xml_lg_commentary.c free.h lg_commentary.h live_game.h misc.h variables.h xml_lg_commentary.h \
 	xml_mmatches.c file.h free.h live_game.h misc.h user.h xml.h xml_loadsave_live_game.h xml_mmatches.h \
 	xml_name.c file.h free.h misc.h name.h variables.h xml_name.h \
+	xml_news.c file.h free.h news.h variables.h xml_news.h  \
 	xml_strategy.c file.h free.h main.h misc.h strategy_struct.h xml_strategy.h \
 	xml_team.c file.h free.h main.h misc.h option.h player.h team.h variables.h xml_team.h \
 	youth_academy.c free.h maths.h name.h option.h player.h team.h user.h youth_academy.h 

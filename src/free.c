@@ -26,6 +26,7 @@
 #include "bet_struct.h"
 #include "free.h"
 #include "lg_commentary_struct.h"
+#include "news_struct.h"
 #include "strategy_struct.h"
 #include "transfer.h"
 #include "user.h"
@@ -51,6 +52,7 @@ free_memory(void)
     free_bets(FALSE);
     free_live_game(&live_game_temp);
     free_lg_commentary(FALSE);
+    free_news(FALSE);
     free_support_dirs();
     free_jobs(FALSE);
 }
@@ -705,6 +707,42 @@ free_lg_commentary(gboolean reset)
     if(reset)
 	for(i=0;i<LIVE_GAME_EVENT_END;i++)
 	    lg_commentary[i] = g_array_new(FALSE, FALSE, sizeof(LGCommentary));
+}
+
+/** Free the list with live game commentary text. */
+void
+free_news(gboolean reset)
+{
+#ifdef DEBUG
+    printf("free_news\n");
+#endif
+
+    gint i, j, k;
+
+    for(i=0;i<NEWS_ARTICLE_TYPE_END;i++)
+	if(news[i] != NULL)
+	{
+	    for(j=0;j<news[i]->len;j++)
+	    {
+		g_free(g_array_index(news[i], NewsArticle, j).condition);
+                
+                for(k = 0; k < g_array_index(news[i], NewsArticle, j).titles->len; k++)
+                    g_free(g_array_index(g_array_index(news[i], NewsArticle, j).titles, NewsText, k).text);
+
+                g_array_free(g_array_index(news[i], NewsArticle, j).titles, TRUE);
+
+                for(k = 0; k < g_array_index(news[i], NewsArticle, j).subtitles->len; k++)
+                    g_free(g_array_index(g_array_index(news[i], NewsArticle, j).subtitles, NewsText, k).text);
+
+                g_array_free(g_array_index(news[i], NewsArticle, j).subtitles, TRUE);
+	    }
+
+	    free_g_array(&news[i]);
+	}
+
+    if(reset)
+	for(i=0;i<NEWS_ARTICLE_TYPE_END;i++)
+	    news[i] = g_array_new(FALSE, FALSE, sizeof(NewsArticle));
 }
 
 /**

@@ -26,6 +26,7 @@
 #include "bygfoot.h"
 #include "enums.h"
 #include "live_game_struct.h"
+#include "news_struct.h"
 #include "option_struct.h"
 
 /**
@@ -57,6 +58,9 @@ OptionList tokens;
 
 /** The array containing the live game commentary strings. */
 GArray *lg_commentary[LIVE_GAME_EVENT_END];
+
+/** The array containing the news article strings. */
+GArray *news[NEWS_ARTICLE_TYPE_END];
 
 /** The array containing players to be transfered.
     @see TransferPlayer */
