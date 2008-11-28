@@ -359,9 +359,6 @@ end_week_round_results(void)
 	    {
 		live_game_calculate_fixture(&g_array_index(lig(i).fixtures, Fixture, j));
 
-                if(fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j)) != -1)
-                    news_generate_match(NULL, &g_array_index(lig(i).fixtures, Fixture, j));
-
 		done++;
 		fixture_result_to_buf(&g_array_index(lig(i).fixtures, Fixture, j),
 				      buf, FALSE);

@@ -79,7 +79,7 @@ lg_commentary_generate(const LiveGame *live_game, LiveGameUnit *unit,
 	lg_commentary_set_basic_tokens(unit, live_game->fix);
 	lg_commentary_set_team_tokens(unit, live_game->fix);
 	lg_commentary_set_player_tokens(unit, live_game->fix);
-	lg_commentary_set_stats_tokens(&live_game->stats);
+	lg_commentary_set_stats_tokens(&live_game->stats, token_rep);
     }
     
     if(event_type == LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_DEFEND ||
@@ -244,65 +244,65 @@ lg_commentary_get_order(const GArray *commentaries, gint *order)
 
 /** Fill the stats tokens. */
 void
-lg_commentary_set_stats_tokens(const LiveGameStats *stats)
+lg_commentary_set_stats_tokens(const LiveGameStats *stats, GPtrArray **token_arrays)
 {
 #ifdef DEBUG
     printf("lg_commentary_set_stats_tokens\n");
 #endif
 
-    misc_token_add(token_rep, 
+    misc_token_add(token_arrays, 
 		   option_int("string_token_stat_shots0", &tokens),
 		   misc_int_to_char(stats->values[0][LIVE_GAME_STAT_VALUE_SHOTS]));
 
-    misc_token_add(token_rep,
+    misc_token_add(token_arrays,
 		   option_int("string_token_stat_shot_per0", &tokens),
 		   misc_int_to_char(stats->values[0][LIVE_GAME_STAT_VALUE_SHOT_PERCENTAGE]));
-    misc_token_add(token_rep,
+    misc_token_add(token_arrays,
 		   option_int("string_token_stat_poss0", &tokens),
 		   misc_int_to_char((gint)rint(100 * 
 					       ((gfloat)stats->values[0][LIVE_GAME_STAT_VALUE_POSSESSION] /
 						((gfloat)stats->values[0][LIVE_GAME_STAT_VALUE_POSSESSION] + 
 						 (gfloat)stats->values[1][LIVE_GAME_STAT_VALUE_POSSESSION])))));
-    misc_token_add(token_rep,
+    misc_token_add(token_arrays,
 		   option_int("string_token_stat_pen0", &tokens),
 		   misc_int_to_char(stats->values[0][LIVE_GAME_STAT_VALUE_PENALTIES]));
-    misc_token_add(token_rep,
+    misc_token_add(token_arrays,
 		   option_int("string_token_stat_fouls0", &tokens),
 		   misc_int_to_char(stats->values[0][LIVE_GAME_STAT_VALUE_FOULS]));
-    misc_token_add(token_rep,
+    misc_token_add(token_arrays,
 		   option_int("string_token_stat_yellows0", &tokens),
 		   misc_int_to_char(stats->values[0][LIVE_GAME_STAT_VALUE_CARDS]));
-    misc_token_add(token_rep,
+    misc_token_add(token_arrays,
 		   option_int("string_token_stat_reds0", &tokens),
 		   misc_int_to_char(stats->values[0][LIVE_GAME_STAT_VALUE_REDS]));
-    misc_token_add(token_rep,
+    misc_token_add(token_arrays,
 		   option_int("string_token_stat_injs0", &tokens),
 		   misc_int_to_char(stats->values[0][LIVE_GAME_STAT_VALUE_INJURIES]));
 
-    misc_token_add(token_rep,
+    misc_token_add(token_arrays,
 		   option_int("string_token_stat_shots1", &tokens),
 		   misc_int_to_char(stats->values[1][LIVE_GAME_STAT_VALUE_SHOTS]));
-    misc_token_add(token_rep,
+    misc_token_add(token_arrays,
 		   option_int("string_token_stat_shot_per1", &tokens),
 		   misc_int_to_char(stats->values[1][LIVE_GAME_STAT_VALUE_SHOT_PERCENTAGE]));
-    misc_token_add(token_rep,
+    misc_token_add(token_arrays,
 		   option_int("string_token_stat_poss1", &tokens),
 		   misc_int_to_char((gint)rint(100 * ((gfloat)stats->values[1][LIVE_GAME_STAT_VALUE_POSSESSION] /
 						      ((gfloat)stats->values[0][LIVE_GAME_STAT_VALUE_POSSESSION] + 
 						       (gfloat)stats->values[1][LIVE_GAME_STAT_VALUE_POSSESSION])))));
-    misc_token_add(token_rep,
+    misc_token_add(token_arrays,
 		   option_int("string_token_stat_pen1", &tokens),
 		   misc_int_to_char(stats->values[1][LIVE_GAME_STAT_VALUE_PENALTIES]));
-    misc_token_add(token_rep,
+    misc_token_add(token_arrays,
 		   option_int("string_token_stat_fouls1", &tokens),
 		   misc_int_to_char(stats->values[1][LIVE_GAME_STAT_VALUE_FOULS]));
-    misc_token_add(token_rep,
+    misc_token_add(token_arrays,
 		   option_int("string_token_stat_yellows1", &tokens),
 		   misc_int_to_char(stats->values[1][LIVE_GAME_STAT_VALUE_CARDS]));
-    misc_token_add(token_rep,
+    misc_token_add(token_arrays,
 		   option_int("string_token_stat_reds1", &tokens),
 		   misc_int_to_char(stats->values[1][LIVE_GAME_STAT_VALUE_REDS]));
-    misc_token_add(token_rep,
+    misc_token_add(token_arrays,
 		   option_int("string_token_stat_injs1", &tokens),
 		   misc_int_to_char(stats->values[1][LIVE_GAME_STAT_VALUE_INJURIES]));
 }

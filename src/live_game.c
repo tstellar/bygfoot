@@ -113,7 +113,7 @@ live_game_initialize(Fixture *fix)
 
     stat2 = fixture_user_team_involved(fix);
 
-    statp= (stat2 != -1) ? 
+    statp = (stat2 != -1) ? 
 	&usr(stat2).live_game : &live_game_temp;
     show = (stat2 != -1 && 
 	    option_int("int_opt_user_show_live_game", 
