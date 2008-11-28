@@ -53,6 +53,7 @@ free_memory(void)
     free_live_game(&live_game_temp);
     free_lg_commentary(FALSE);
     free_news(FALSE);
+    free_newspaper(FALSE);
     free_support_dirs();
     free_jobs(FALSE);
 }
@@ -709,7 +710,7 @@ free_lg_commentary(gboolean reset)
 	    lg_commentary[i] = g_array_new(FALSE, FALSE, sizeof(LGCommentary));
 }
 
-/** Free the list with live game commentary text. */
+/** Free the news variables. */
 void
 free_news(gboolean reset)
 {
@@ -743,6 +744,31 @@ free_news(gboolean reset)
     if(reset)
 	for(i=0;i<NEWS_ARTICLE_TYPE_END;i++)
 	    news[i] = g_array_new(FALSE, FALSE, sizeof(NewsArticle));
+}
+
+void
+free_newspaper(gboolean reset)
+{
+    gint i;
+
+    for(i = 0; i < newspaper.names->len; i++)
+        g_free(g_ptr_array_index(newspaper.names, i));
+
+    g_ptr_array_free(newspaper.names, TRUE);
+
+    for(i = 0; i < newspaper.articles->len; i++)
+    {
+        g_free(g_array_index(newspaper.articles, NewsPaperArticle, i).title);
+        g_free(g_array_index(newspaper.articles, NewsPaperArticle, i).subtitle);
+    }
+
+    g_array_free(newspaper.articles, TRUE);
+
+    if(reset)
+    {
+        newspaper.names = g_ptr_array_new();
+        newspaper.articles = g_array_new(FALSE, FALSE, sizeof(NewsPaperArticle));
+    }
 }
 
 /**

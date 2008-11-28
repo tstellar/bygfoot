@@ -29,39 +29,28 @@
 #include "bygfoot.h"
 #include "news_struct.h"
 
-/* void */
-/* news_free_tokens(void); */
+void
+news_free_tokens(void);
 
-/* void */
-/* news_initialize(const Fixture *fix); */
+void
+news_set_match_tokens(const LiveGame *live_game, const Fixture *fix_);
 
-/* gboolean */
-/* news_check_news(const LGNews *news, gchar *dest); */
+void
+news_generate_match(const LiveGame *live_game, const Fixture *fix);
 
-/* gboolean */
-/* query_news_is_repetition(gint id); */
+void
+news_select(const GArray *news_array, gchar *title, gchar *subtitle,
+            gint *title_id, gint *subtitle_id);
 
-/* void */
-/* news_get_order(const GArray *commentaries, gint *order); */
+gint
+news_get_title(const GArray *titles, gchar *title, gint *order, 
+               gboolean is_title, gboolean ignore_repetition);
 
-/* void */
-/* news_set_basic_tokens(const LiveGameUnit *unit, const Fixture *fix);; */
+gboolean
+news_check_for_repetition(gint id, gboolean is_title);
 
-/* void */
-/* news_set_player_tokens(const LiveGameUnit *unit, const Fixture *fix); */
-
-/* void */
-/* news_set_team_tokens(const LiveGameUnit *unit, const Fixture *fix); */
-
-/* void */
-/* news_set_stats_tokens(const LiveGameStats *stats); */
-
-/* void */
-/* news_generate(const LiveGame *live_game, LiveGameUnit *unit,  */
-/* 		       const gchar *event_name, gint ev_type); */
-
-/* gchar* */
-/* news_get_extra_data(const LiveGameUnit *unit, const Fixture *fix); */
+gboolean
+news_check_article_condition(const NewsArticle *news_article);
 
 void
 news_load_news_file_from_option(void);
@@ -69,14 +58,8 @@ news_load_news_file_from_option(void);
 void
 news_load_news_file(const gchar *news_file, gboolean abort);
 
-/* void */
-/* news_test_load_token_file(const gchar *token_file); */
+void
+news_titles_get_order(const GArray *titles, gint *order);
 
-/* void */
-/* news_test(const gchar *news_file, const gchar* token_file, */
-/* 		   const gchar *event_name, gint number_of_passes); */
-
-/* gint */
-/* news_select(const GArray *commentaries, gchar *buf); */
 
 #endif

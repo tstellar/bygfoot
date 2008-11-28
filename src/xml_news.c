@@ -30,6 +30,7 @@
 #include "xml_news.h"
 
 #define TAG_NEWS "news"
+#define TAG_PAPER_NAME "paper_name"
 #define TAG_ARTICLE "news_article"
 #define TAG_ARTICLE_TYPE "type"
 #define TAG_ARTICLE_CONDITION "condition"
@@ -38,9 +39,7 @@
 
 #define ATT_NAME_TEXT_PRIORITY "priority"
 
-#define ARTICLE_TYPE_NAME_MATCH_LEAGUE "match_league"
-#define ARTICLE_TYPE_NAME_MATCH_NATIONAL_CUP "match_national_cup"
-#define ARTICLE_TYPE_NAME_MATCH_INTERNATIONAL_CUP "match_international_cup"
+#define ARTICLE_TYPE_NAME_MATCH "match"
 #define ARTICLE_TYPE_NAME_FINANCES "finances"
 #define ARTICLE_TYPE_NAME_STAR_PLAYER_TRANSFER "star_player_transfer"
 #define ARTICLE_TYPE_NAME_LEAGUE_CHAMPION "league_champion"
@@ -50,6 +49,7 @@
 enum XmlNewsStates
 {
     STATE_NEWS = 0,
+    STATE_PAPER_NAME,
     STATE_ARTICLE,
     STATE_ARTICLE_TYPE,
     STATE_ARTICLE_CONDITION,
@@ -73,12 +73,8 @@ xml_news_article_type_to_int(const gchar *type_string)
 
     gint return_value = -1;
 
-    if(strcmp(type_string, ARTICLE_TYPE_NAME_MATCH_LEAGUE) == 0)
-	return_value = NEWS_ARTICLE_TYPE_MATCH_LEAGUE;
-    else if(strcmp(type_string, ARTICLE_TYPE_NAME_MATCH_NATIONAL_CUP) == 0)
-	return_value = NEWS_ARTICLE_TYPE_MATCH_NATIONAL_CUP;
-    else if(strcmp(type_string, ARTICLE_TYPE_NAME_MATCH_INTERNATIONAL_CUP) == 0)
-	return_value = NEWS_ARTICLE_TYPE_MATCH_INTERNATIONAL_CUP;
+    if(strcmp(type_string, ARTICLE_TYPE_NAME_MATCH) == 0)
+	return_value = NEWS_ARTICLE_TYPE_MATCH;
     else if(strcmp(type_string, ARTICLE_TYPE_NAME_FINANCES) == 0)
 	return_value = NEWS_ARTICLE_TYPE_FINANCES;
     else if(strcmp(type_string, ARTICLE_TYPE_NAME_STAR_PLAYER_TRANSFER) == 0)
@@ -116,6 +112,8 @@ xml_news_read_start_element (GMarkupParseContext *context,
 
     if(strcmp(element_name, TAG_NEWS) == 0)
 	state = STATE_NEWS;
+    else if(strcmp(element_name, TAG_PAPER_NAME) == 0)
+	state = STATE_PAPER_NAME;
     else if(strcmp(element_name, TAG_ARTICLE) == 0)
     {
 	state = STATE_ARTICLE;
@@ -169,6 +167,8 @@ xml_news_read_end_element    (GMarkupParseContext *context,
      	state = STATE_NEWS;
         g_array_append_val(news[article_idx], new_article);
     }
+    else if(strcmp(element_name, TAG_PAPER_NAME) == 0)
+        state = STATE_NEWS;
     else if(strcmp(element_name, TAG_ARTICLE_TYPE) == 0 ||
 	    strcmp(element_name, TAG_ARTICLE_CONDITION) == 0 ||
 	    strcmp(element_name, TAG_ARTICLE_TITLE) == 0 ||
@@ -201,7 +201,9 @@ xml_news_read_text         (GMarkupParseContext *context,
     strncpy(buf, text, text_len);
     buf[text_len] = '\0';
 
-    if(state == STATE_ARTICLE_TYPE)
+    if(state == STATE_PAPER_NAME)
+        g_ptr_array_add(newspaper.names, g_strdup(buf));
+    else if(state == STATE_ARTICLE_TYPE)
 	article_idx = xml_news_article_type_to_int(buf);
     else if(state == STATE_ARTICLE_CONDITION)
         new_article.condition = g_strdup(buf);
@@ -257,6 +259,7 @@ xml_news_read(const gchar *news_file)
     }
 
     free_news(TRUE);
+    free_newspaper(TRUE);
 
     if(g_markup_parse_context_parse(context, file_contents, length, &error))
     {

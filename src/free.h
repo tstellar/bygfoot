@@ -149,4 +149,7 @@ free_jobs(gboolean reset);
 void
 free_news(gboolean reset);
 
+void
+free_newspaper(gboolean reset);
+
 #endif

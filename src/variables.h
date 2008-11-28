@@ -62,6 +62,9 @@ GArray *lg_commentary[LIVE_GAME_EVENT_END];
 /** The array containing the news article strings. */
 GArray *news[NEWS_ARTICLE_TYPE_END];
 
+/** Newspaper containing the news articles. */
+NewsPaper newspaper;
+
 /** The array containing players to be transfered.
     @see TransferPlayer */
 GArray *transfer_list;
