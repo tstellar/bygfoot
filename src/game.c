@@ -32,6 +32,7 @@
 #include "live_game.h"
 #include "main.h"
 #include "maths.h"
+#include "news.h"
 #include "misc.h"
 #include "option.h"
 #include "player.h"
@@ -1058,8 +1059,11 @@ game_post_match(Fixture *fix)
     GPtrArray *teams = NULL;
     Cup *cup = NULL;
     gchar buf[SMALL], buf2[SMALL];
+    gint usr_idx;
 
-    if((debug > 100 && fixture_user_team_involved(fix) != -1) ||
+    usr_idx = fixture_user_team_involved(fix);
+
+    if((debug > 100 && usr_idx != -1) ||
        debug > 130)
 	g_print("game_post_match: %s - %s\n", 
 		fix->teams[0]->name,
@@ -1070,6 +1074,9 @@ game_post_match(Fixture *fix)
     
     for(i=0;i<2;i++)
 	team_update_post_match(fix->teams[i], fix);
+    
+    if(usr_idx != -1)
+        news_generate_match(&usr(usr_idx).live_game, fix);
 
     if(fix->clid < ID_CUP_START)
 	return;
@@ -1103,17 +1110,17 @@ game_post_match(Fixture *fix)
 	}
 	g_ptr_array_free(teams, TRUE);
     }
-    else if(fixture_user_team_involved(fix) != -1)
+    else if(usr_idx != -1)
     {
 	cup_get_round_name(cup_from_clid(fix->clid), fix->round, buf);
 	sprintf(buf2, "%d", fix->round + 1);
 
-	user_history_add(&usr(fixture_user_team_involved(fix)),
+	user_history_add(&usr(usr_idx),
 			 USER_HISTORY_REACH_CUP_ROUND,
-			 usr(fixture_user_team_involved(fix)).tm->name,
+			 usr(usr_idx).tm->name,
 			 league_cup_get_name_string(fix->clid),
 			 buf, buf2);
-	user_add_cup_success(&usr(fixture_user_team_involved(fix)),
+	user_add_cup_success(&usr(usr_idx),
 			     cup, fix->round, USER_HISTORY_REACH_CUP_ROUND);
     }
 }

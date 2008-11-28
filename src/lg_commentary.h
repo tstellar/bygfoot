@@ -56,7 +56,7 @@ void
 lg_commentary_set_team_tokens(const LiveGameUnit *unit, const Fixture *fix);
 
 void
-lg_commentary_set_stats_tokens(const LiveGameStats *stats);
+lg_commentary_set_stats_tokens(const LiveGameStats *stats, GPtrArray **token_arrays);
 
 void
 lg_commentary_generate(const LiveGame *live_game, LiveGameUnit *unit, 

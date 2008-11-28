@@ -49,9 +49,6 @@ news_get_title(const GArray *titles, gchar *title, gint *order,
 gboolean
 news_check_for_repetition(gint id, gboolean is_title);
 
-gboolean
-news_check_article_condition(const NewsArticle *news_article);
-
 void
 news_load_news_file_from_option(void);
 

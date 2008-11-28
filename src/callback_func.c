@@ -84,7 +84,7 @@ callback_show_next_live_game(void)
 			  options))
 	    {
 		live_game_calculate_fixture(&g_array_index(acp(i)->fixtures, Fixture, j));
-		return;
+ 		return;
 	    }
 
     window_destroy(&window.live);
