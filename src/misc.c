@@ -728,3 +728,24 @@ misc_token_remove(GPtrArray **token_rep, gint idx)
 	    g_ptr_array_remove_index_fast(token_rep[1], i);
 	}    
 }
+
+/** Try to replace all tokens in the given text and write the result
+    into the dest variable. */
+gboolean
+misc_string_replace_all_tokens(GPtrArray **token_rep,
+                               const gchar *text_tokens, gchar *dest)
+{
+    gchar buf[SMALL];
+
+    strcpy(dest, text_tokens);
+    
+    do
+    {
+	strcpy(buf, dest);
+	misc_string_replace_tokens(dest, token_rep);
+	misc_string_replace_expressions(dest);
+    }
+    while(strcmp(buf, dest) != 0);
+
+    return (g_strrstr(dest, "_") == NULL);
+}

@@ -29,9 +29,7 @@
 /** Enumeration of news article types. */
 enum NewsArticleTypes
 {
-    NEWS_ARTICLE_TYPE_MATCH_LEAGUE = 0, /**< Article about a legue match. */
-    NEWS_ARTICLE_TYPE_MATCH_NATIONAL_CUP, /**< Article about a national cup match. */
-    NEWS_ARTICLE_TYPE_MATCH_INTERNATIONAL_CUP, /**< Article about an international cup match. */
+    NEWS_ARTICLE_TYPE_MATCH = 0, /**< Article about a match. */
     NEWS_ARTICLE_TYPE_FINANCES, /**< Article about user finances. */
     NEWS_ARTICLE_TYPE_STAR_PLAYER_TRANSFER, /**< Article about good players appearing on the transfer list. */
     NEWS_ARTICLE_TYPE_LEAGUE_CHAMPION, /**< Article about teams clinching the championship. */
@@ -40,7 +38,7 @@ enum NewsArticleTypes
     NEWS_ARTICLE_TYPE_END
 };
 
-/** Structure containing a news title or subtitle.  */
+/** Structure containing a news title or subtitle with tokens.  */
 typedef struct
 {
     gchar *text;
@@ -52,9 +50,10 @@ typedef struct
     /** An id to keep track of already used texts
         (so as not to use the same one too frequently). */
     gint id;    
+
 } NewsText;
 
-/** Structure describing a news paper article.  */
+/** Structure describing a news paper article with tokens.  */
 typedef struct
 {
     /** Possible article titles (possibly containing tokens). */
@@ -64,7 +63,27 @@ typedef struct
     /** A condition (if not fulfilled, the article doesn't get
 	shown). */
     gchar *condition;
+
 } NewsArticle;
+
+/** Structure holding an article without tokens (ie. the real deal that's displayed). */
+typedef struct
+{
+    gint week_number, week_round_number;
+    gint title_id, subtitle_id;
+    gchar *title, *subtitle;
+
+} NewsPaperArticle;
+
+/** Structure holding the newspaper for the game. */
+typedef struct
+{
+    /** A selection of newspaper names. */
+    GPtrArray *names;
+    /** The array of created articles. */
+    GArray *articles;
+
+} NewsPaper;
 
 #endif
 

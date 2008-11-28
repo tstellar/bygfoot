@@ -167,25 +167,13 @@ lg_commentary_check_commentary(const LGCommentary *commentary, gchar *dest)
     printf("lg_commentary_check_commentary\n");
 #endif
 
-    gchar buf[SMALL];
-
     if(strlen(commentary->text) == 0 ||
        (commentary->condition != NULL &&
 	!misc_parse_condition(commentary->condition, token_rep)) ||
        (repetition == FALSE && query_lg_commentary_is_repetition(commentary->id)))
 	return FALSE;
 
-    strcpy(dest, commentary->text);
-    
-    do
-    {
-	strcpy(buf, dest);
-	misc_string_replace_tokens(dest, token_rep);
-	misc_string_replace_expressions(dest);
-    }
-    while(strcmp(buf, dest) != 0);
-
-    return (g_strrstr(dest, "_") == NULL);
+    return misc_string_replace_all_tokens(token_rep, commentary->text, dest);
 }
 
 /** Check whether a commentary with given id has been used in the last

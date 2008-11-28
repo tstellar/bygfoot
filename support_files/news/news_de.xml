@@ -1,21 +1,23 @@
 <news>
-
+  <paper_name>Bygfoot Herald</paper_name>
+  <paper_name>4TehFans</paper_name>
+  <paper_name>Football Online</paper_name>
+  <paper_name>11vs11</paper_name>
+  <paper_name>The Pitch</paper_name>
+  <paper_name>News Of The Sports World</paper_name>
   <news_article>
-    <type>match_league</type>
-    <condition>cond</condition>
-    <title>title1</title>
-    <subtitle>subtitle1</subtitle>
-    <title priority="5">title2</title>
-    <subtitle priority="5">subtitle2</subtitle>
-  </news_article>
-
-  <news_article>
-    <type>match_national_cup</type>
-    <condition>condn</condition>
-    <title>title1n</title>
-    <subtitle>subtitle1n</subtitle>
-    <title priority="5">title2n</title>
-    <subtitle priority="5">subtitle2n</subtitle>
+    <type>match</type>
+    <condition>_GD_ > 1</condition>
+    <title>_TW_ [beats|crushes|kills] _TL_!</title>
+    <subtitle>Result: _RE_</subtitle>
+    <title priority="5">_TL_ loses to _TW_!</title>
+    <subtitle priority="5">_TL_ doesn't stand a chance against a _GOALS_TWN__ goal barrage.</subtitle>
+    <title>_TW_ wipes out _TL_!</title>
+    <subtitle>_RE_ is flattering for _TL_.</subtitle>
+    <title>_TL_ loses again!</title>
+    <subtitle>_TW_ just too strong.</subtitle>
+    <title>_TL_ in a world of misery!</title>
+    <subtitle>_TW_: _RE_ against _TL_.</subtitle>
   </news_article>
 
 </news>

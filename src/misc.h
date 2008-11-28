@@ -121,4 +121,8 @@ void
 misc_string_replace_parenthesised(gchar *string, const gchar *paren, 
 				  const gchar *replacement);
 
+gboolean
+misc_string_replace_all_tokens(GPtrArray **token_rep,
+                               const gchar *text_tokens, gchar *dest);
+
 #endif
