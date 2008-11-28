@@ -40,12 +40,13 @@
 #include "xml_loadsave_league.h"
 #include "xml_loadsave_leagues_cups.h"
 #include "xml_loadsave_misc.h"
+#include "xml_loadsave_newspaper.h"
 #include "xml_loadsave_season_stats.h"
 #include "xml_loadsave_transfers.h"
 #include "xml_loadsave_users.h"
 #include "xml.h"
 
-#define PROGRESS_MAX 8
+#define PROGRESS_MAX 9
 
 /** Save the game to the specified file. */
 void
@@ -138,6 +139,18 @@ load_save_save_game(const gchar *filename)
 	PIC_TYPE_SAVE);
 
     xml_loadsave_jobs_write(prefix);
+
+    if(debug > 60)
+	g_print("load_save_save newspaper \n");
+
+    gui_show_progress(
+	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
+	      GTK_PROGRESS_BAR(
+		  lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	_("Saving newspaper..."),
+	PIC_TYPE_SAVE);
+
+    xml_loadsave_newspaper_write(prefix);
 
     if(debug > 60)
 	g_print("load_save_save misc \n");
@@ -295,6 +308,18 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
 	PIC_TYPE_LOAD);
 
     xml_loadsave_jobs_read(dirname, prefix);
+
+    if(debug > 60)
+	g_print("load_save_load newspaper \n");
+
+    gui_show_progress(
+	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
+	      GTK_PROGRESS_BAR(
+		  lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	_("Loading newspaper..."),
+	PIC_TYPE_LOAD);
+
+    xml_loadsave_newspaper_read(dirname, prefix);
 
     if(debug > 60)
 	g_print("load_save_load misc \n");

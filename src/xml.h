@@ -73,6 +73,7 @@ enum XmlTags
 #define TAG_START_LEAGUES_CUPS 12000
 #define TAG_START_TRANSFERS 20000
 #define TAG_START_JOBS 21000
+#define TAG_START_NEWS_PAPER 22000
 
 #define xml_write_g_string(fil, gstring, tag, indent) xml_write_string(fil, (gstring)->str, tag, indent)
 
