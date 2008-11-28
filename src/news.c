@@ -73,6 +73,11 @@ news_generate_match(const LiveGame *live_game, const Fixture *fix)
         new_article.subtitle_id = subtitle_id;
 //        printf("%s / %s -- %d %d\n", title, subtitle, title_id, subtitle_id);
         g_array_append_val(newspaper.articles, new_article);
+
+/*         gint i; */
+/*         for(i = 0; i < newspaper.articles->len; i++) */
+/*             printf("%s\n%s\n", g_array_index(newspaper.articles, NewsPaperArticle, i).title,  */
+/*                    g_array_index(newspaper.articles, NewsPaperArticle, i).subtitle); */
     }
 
     news_free_tokens();

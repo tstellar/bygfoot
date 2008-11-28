@@ -70,6 +70,7 @@ bygfoot_SOURCES = \
 	xml_loadsave_league_stat.c file.h misc.h stat.h team.h xml.h xml_loadsave_league_stat.h \
 	xml_loadsave_live_game.c cup.h file.h fixture.h league.h live_game.h misc.h option.h variables.h xml.h xml_loadsave_live_game.h \
 	xml_loadsave_misc.c bet_struct.h cup.h file.h fixture.h free.h misc.h variables.h xml.h xml_loadsave_cup.h xml_loadsave_league.h xml_loadsave_misc.h \
+	xml_loadsave_newspaper.c file.h free.h variables.h xml.h xml_loadsave_newspaper.h \
 	xml_loadsave_players.c misc.h player.h team.h xml.h xml_loadsave_players.h \
 	xml_loadsave_season_stats.c file.h free.h misc.h stat.h variables.h xml.h xml_loadsave_league_stat.h xml_loadsave_season_stats.h \
 	xml_loadsave_table.c file.h misc.h team.h xml.h xml_loadsave_table.h \
