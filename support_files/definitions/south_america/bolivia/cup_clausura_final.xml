@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+	<name>Clausura</name>
+	<short_name>Clausura</short_name>
+	<symbol>flag_bolivia.png</symbol>
+	<sid>clausura_final</sid>
+	<add_week>42</add_week>
+	<last_week>46</last_week>
+	<week_gap>1</week_gap>
+	<property>national</property>
+	<property>highlight1</property>
+	<cup_rounds>
+		<cup_round>
+			<randomise_teams>0</randomise_teams>
+			<choose_teams>
+				<choose_team>
+					<choose_team_sid>clausura_grupo_a</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>1</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>clausura_grupo_b</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>2</start_idx>
+					<end_idx>2</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>clausura_grupo_b</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>1</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>clausura_grupo_a</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>2</start_idx>
+					<end_idx>2</end_idx>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+		<cup_round>
+		</cup_round>
+	</cup_rounds>
+</cup>
