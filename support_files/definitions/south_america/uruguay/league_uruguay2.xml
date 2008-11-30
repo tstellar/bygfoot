@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+	<sid>uruguay2</sid>
+	<layer>2</layer>	
+	<name>Segunda División</name>
+	<short_name>Segunda</short_name>
+	<symbol>flag_uruguay.png</symbol>
+	<average_talent>7000</average_talent>
+	<names_file>latinoamerica</names_file>	
+	<first_week>7</first_week>
+	<week_gap>1</week_gap>
+	<yellow_red>5</yellow_red>
+	<round_robins>2</round_robins>
+	<break>11</break>
+	<new_table name="Apertura">1</new_table>
+	<new_table name="Clausura">27</new_table>
+	<prom_rel>
+		<prom_rel_element>
+			<rank_start>1</rank_start>
+			<rank_end>3</rank_end>
+			<dest_sid>uruguay1</dest_sid>
+			<prom_rel_type>promotion</prom_rel_type>
+		</prom_rel_element>
+		<prom_rel_element>
+			<rank_start>14</rank_start>
+			<rank_end>15</rank_end>
+			<dest_sid>uruguay3</dest_sid>
+			<prom_rel_type>relegation</prom_rel_type>
+		</prom_rel_element>
+	</prom_rel>
+	<teams>
+		<team>
+		        <team_name>Atenas</team_name>
+		        <team_average_talent>7000</team_average_talent>
+		</team>
+		<team>
+		        <team_name>Boston R.</team_name>
+		        <team_average_talent>7000</team_average_talent>
+		</team>
+		<team>
+		        <team_name>Cerrito</team_name>
+		        <team_average_talent>7000</team_average_talent>
+		</team>
+		<team>
+		        <team_name>D. Maldonado</team_name>
+		        <team_average_talent>7000</team_average_talent>
+		</team>
+		<team>
+		        <team_name>Durazno</team_name>
+		        <team_average_talent>7000</team_average_talent>
+		</team>
+		<team>
+		        <team_name>Sisley</team_name>
+		        <team_average_talent>7000</team_average_talent>
+		</team>
+		<team>
+		        <team_name>Fénix</team_name>
+		        <team_average_talent>7000</team_average_talent>
+		</team>
+		<team>
+		        <team_name>Huracán B.</team_name>
+		        <team_average_talent>7000</team_average_talent>
+		</team>
+		<team>
+		        <team_name>L. Luz</team_name>
+		        <team_average_talent>7000</team_average_talent>
+		</team>
+		<team>
+		        <team_name>Miramar M.</team_name>
+		        <team_average_talent>7000</team_average_talent>
+		</team>
+		<team>
+		        <team_name>P. Colonia</team_name>
+		        <team_average_talent>7000</team_average_talent>
+		</team>
+		<team>
+		        <team_name>Progreso</team_name>
+		        <team_average_talent>7000</team_average_talent>
+		</team>
+		<team>
+		        <team_name>Rentistas</team_name>
+		        <team_average_talent>7000</team_average_talent>
+		</team>
+		<team>
+		        <team_name>Rocha</team_name>
+		        <team_average_talent>7000</team_average_talent>
+		</team>
+		<team>
+		        <team_name>A. Sud América</team_name>
+		        <team_average_talent>7000</team_average_talent>
+		</team>
+   	</teams>
+</league>

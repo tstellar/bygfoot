@@ -4,23 +4,21 @@
 	<name>Copa Perú</name>
 	<short_name>CPeru</short_name>
 	<symbol>flag_peru.png</symbol>	
-	<last_week>43</last_week>
+	<add_week>32</add_week>
+	<last_week>42</last_week>
 	<property>omit_from_history</property>
 	<cup_rounds>
 		<cup_round>
-			<delay>-4</delay>
-			<number_of_groups>8</number_of_groups>
+			<number_of_groups>4</number_of_groups>
 			<number_of_advance>2</number_of_advance>
 			<choose_teams>
 				<choose_team>
-					<choose_team_sid>peru3</choose_team_sid>
+					<choose_team_sid>peru_elim</choose_team_sid>
+					<number_of_teams>16</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>16</end_idx>
 				</choose_team>
 			</choose_teams>
-		</cup_round>
-		<cup_round>
-			<delay>-2</delay>
-			<number_of_groups>4</number_of_groups>
-			<number_of_advance>2</number_of_advance>
 		</cup_round>
 		<cup_round>
 		</cup_round>
