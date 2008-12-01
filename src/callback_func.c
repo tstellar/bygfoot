@@ -69,7 +69,8 @@ callback_show_next_live_game(void)
 			  &usr(fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j))).
 			  options))
 	    {
-		live_game_calculate_fixture(&g_array_index(lig(i).fixtures, Fixture, j));
+		live_game_calculate_fixture(&g_array_index(lig(i).fixtures, Fixture, j), 
+                                            &usr(fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j))).live_game);
 		return;
 	    }
 
@@ -83,7 +84,8 @@ callback_show_next_live_game(void)
 			  &usr(fixture_user_team_involved(&g_array_index(acp(i)->fixtures, Fixture, j))).
 			  options))
 	    {
-		live_game_calculate_fixture(&g_array_index(acp(i)->fixtures, Fixture, j));
+		live_game_calculate_fixture(&g_array_index(acp(i)->fixtures, Fixture, j), 
+                                            &usr(fixture_user_team_involved(&g_array_index(acp(i)->fixtures, Fixture, j))).live_game);
  		return;
 	    }
 
@@ -808,7 +810,7 @@ callback_show_season_history(gint type)
 	    stat = &g_array_index(season_stats, SeasonStat, stat2);
 	    if(stat1 == -1)
 		stat1 = 0;
-	    else if(stat1 == stat->league_champs->len - 1)
+	    else if(stat1 == stat->league_stats->len - 1)
 		stat1 = -1;
 	    else
 		stat1++;
@@ -816,7 +818,7 @@ callback_show_season_history(gint type)
 	case SHOW_PREVIOUS_LEAGUE:
 	    stat = &g_array_index(season_stats, SeasonStat, stat2);
 	    if(stat1 == -1)
-		stat1 = stat->league_champs->len - 1;
+		stat1 = stat->league_stats->len - 1;
 	    else if(stat1 == 0)
 		stat1 = -1;
 	    else
@@ -829,7 +831,7 @@ callback_show_season_history(gint type)
 	    stat2 = (stat2 == 0) ? len - 1 : stat2 - 1;
 	    break;
     }
-    
+
     treeview_show_season_history(stat1, stat2);
 }
 
