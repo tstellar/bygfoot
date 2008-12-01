@@ -38,6 +38,7 @@
 #define TAG_ARTICLE_SUBTITLE "subtitle"
 
 #define ATT_NAME_TEXT_PRIORITY "priority"
+#define ATT_NAME_TEXT_CONDITION "condition"
 
 #define ARTICLE_TYPE_NAME_MATCH "match"
 #define ARTICLE_TYPE_NAME_FINANCES "finances"
@@ -109,6 +110,9 @@ xml_news_read_start_element (GMarkupParseContext *context,
 #ifdef DEBUG
     printf("xml_news_read_start_element\n");
 #endif
+    gint atidx;
+    
+    atidx = 0;
 
     if(strcmp(element_name, TAG_NEWS) == 0)
 	state = STATE_NEWS;
@@ -119,6 +123,7 @@ xml_news_read_start_element (GMarkupParseContext *context,
 	state = STATE_ARTICLE;
         new_article.titles = g_array_new(FALSE, FALSE, sizeof(NewsText));
         new_article.subtitles = g_array_new(FALSE, FALSE, sizeof(NewsText));
+        new_article.condition = g_strdup("0");
     }
     else if(strcmp(element_name, TAG_ARTICLE_TYPE) == 0)
 	state = STATE_ARTICLE_TYPE;
@@ -128,19 +133,33 @@ xml_news_read_start_element (GMarkupParseContext *context,
     {
 	state = STATE_ARTICLE_TITLE;
         new_title.id = news_title_id_new;
-        if(attribute_names[0] != NULL && strcmp(attribute_names[0], ATT_NAME_TEXT_PRIORITY) == 0)
-            new_title.priority = (gint)g_ascii_strtod(attribute_values[0], NULL);
-        else
-            new_title.priority = 1;
+        new_title.priority = 1;
+        new_title.condition = g_strdup("1");
+
+        while(attribute_names[atidx] != NULL)
+        {
+            if(strcmp(attribute_names[atidx], ATT_NAME_TEXT_PRIORITY) == 0)
+                new_title.priority = (gint)g_ascii_strtod(attribute_values[atidx], NULL);
+            else if(strcmp(attribute_names[atidx], ATT_NAME_TEXT_CONDITION) == 0)
+                misc_string_assign(&new_title.condition, attribute_values[atidx]);
+            atidx++;
+        }
     }
     else if(strcmp(element_name, TAG_ARTICLE_SUBTITLE) == 0)
     {
 	state = STATE_ARTICLE_SUBTITLE;
         new_subtitle.id = news_subtitle_id_new;
-        if(attribute_names[0] != NULL && strcmp(attribute_names[0], ATT_NAME_TEXT_PRIORITY) == 0)
-            new_subtitle.priority = (gint)g_ascii_strtod(attribute_values[0], NULL);
-        else
-            new_subtitle.priority = 1;   
+        new_subtitle.priority = 1;
+        new_subtitle.condition = g_strdup("1");
+
+        while(attribute_names[atidx] != NULL)
+        {
+            if(strcmp(attribute_names[atidx], ATT_NAME_TEXT_PRIORITY) == 0)
+                new_subtitle.priority = (gint)g_ascii_strtod(attribute_values[atidx], NULL);
+            else if(strcmp(attribute_names[atidx], ATT_NAME_TEXT_CONDITION) == 0)
+                misc_string_assign(&new_subtitle.condition, attribute_values[atidx]);                            
+            atidx++;
+        }
     }
     else
 	g_warning("xml_news_read_start_element: unknown tag: %s; I'm in state %d\n",
@@ -206,7 +225,7 @@ xml_news_read_text         (GMarkupParseContext *context,
     else if(state == STATE_ARTICLE_TYPE)
 	article_idx = xml_news_article_type_to_int(buf);
     else if(state == STATE_ARTICLE_CONDITION)
-        new_article.condition = g_strdup(buf);
+        misc_string_assign(&new_article.condition, buf);
     else if(state == STATE_ARTICLE_TITLE)
     {
         new_title.text = g_strdup(buf);

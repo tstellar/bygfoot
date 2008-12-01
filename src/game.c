@@ -32,7 +32,6 @@
 #include "live_game.h"
 #include "main.h"
 #include "maths.h"
-#include "news.h"
 #include "misc.h"
 #include "option.h"
 #include "player.h"
@@ -984,6 +983,7 @@ game_update_stats_player(LiveGame *lg, const LiveGameUnit *unit)
     const Team *tm[2] = {lg->fix->teams[0], 
 			 lg->fix->teams[1]};
     GPtrArray *players = NULL;
+    const gchar *player_name;
     
     if(unit->event.type == LIVE_GAME_EVENT_GOAL ||
        unit->event.type == LIVE_GAME_EVENT_OWN_GOAL)
@@ -998,29 +998,34 @@ game_update_stats_player(LiveGame *lg, const LiveGameUnit *unit)
 	    /* A goal scored with a free kick. */
 	    strcpy(buf2, _(" (FK)"));
 	else if(unit->event.type == LIVE_GAME_EVENT_OWN_GOAL)
+            /* An own goal */
 	    strcpy(buf2, _(" (OG)"));
 	else 
 	    strcpy(buf2, "");
 
-	for(i=0;i<stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS]->len;i++)
+        player_name = player_of_id_team(tm[team], player)->name;
+        if(!own_goal)
+            g_ptr_array_add(stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS], g_strdup(player_name));
+
+	for(i=0;i<stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS_FOR_DISPLAY]->len;i++)
 	{
 	    if(g_str_has_prefix((gchar*)g_ptr_array_index(
-				    stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS], i),
-				player_of_id_team(tm[team], player)->name))
+				    stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS_FOR_DISPLAY], i),
+				player_name))
 	    {
 		sprintf(buf, "%s %d%s",
 			(gchar*)g_ptr_array_index(
-			    stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS], i),
+			    stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS_FOR_DISPLAY], i),
 			minute, buf2);
 		misc_string_assign((gchar**)&g_ptr_array_index(
-				       stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS], i), buf);
+				       stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS_FOR_DISPLAY], i), buf);
 		return;
 	    }
 	}
     
-	sprintf(buf, "%s %d%s", player_of_id_team(tm[team], player)->name,
+	sprintf(buf, "%s %d%s", player_name,
 		minute, buf2);
-	g_ptr_array_add(stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS], g_strdup(buf));
+	g_ptr_array_add(stats->players[array_index][LIVE_GAME_STAT_ARRAY_SCORERS_FOR_DISPLAY], g_strdup(buf));
     }
     else
     {
@@ -1075,9 +1080,6 @@ game_post_match(Fixture *fix)
     for(i=0;i<2;i++)
 	team_update_post_match(fix->teams[i], fix);
     
-    if(usr_idx != -1)
-        news_generate_match(&usr(usr_idx).live_game, fix);
-
     if(fix->clid < ID_CUP_START)
 	return;
 

@@ -205,7 +205,8 @@ stat_create_season_stat(void)
 
     for(i=0;i<ligs->len;i++)
     {
-        if(!query_league_cup_has_property(lig(i).id, "omit_from_history"))
+        if(!query_league_cup_has_property(lig(i).id, "omit_from_history") &&
+           !query_league_cup_has_property(lig(i).id, "inactive"))
         {
             for(j = 0; j < lig(i).tables->len; j++)
             {

@@ -845,7 +845,10 @@ treeview_create_game_stats(LiveGame *live_game)
 
     for(k=0;k<LIVE_GAME_STAT_ARRAY_END;k++)
     {
-	if(k == LIVE_GAME_STAT_ARRAY_SCORERS)
+        if(k == LIVE_GAME_STAT_ARRAY_SCORERS)
+            continue;
+
+	if(k == LIVE_GAME_STAT_ARRAY_SCORERS_FOR_DISPLAY)
 	{
 	    strcpy(buf[0], "");
 	    strcpy(buf[1], "");
@@ -2395,7 +2398,7 @@ treeview_create_league_stats(GtkListStore *ls, const LeagueStat *league_stat)
     gchar *player_icons[2] = {const_app("string_treeview_league_stats_scorers_icon"),
 			      const_app("string_treeview_league_stats_goalies_icon")};
     gchar *colour_fg = NULL, *colour_bg = NULL;
-    
+
     gtk_list_store_append(ls, &iter);
     treeview_helper_insert_icon(ls, &iter, 0, 
 				league_stat->league_symbol);

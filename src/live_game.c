@@ -62,17 +62,19 @@ gboolean show;
 /** Calculate the result of a fixture using
     the live game variable.
     @param fix The fixture we calculate.
+    @param live_game The live game used for calculation.
 */
 void
-live_game_calculate_fixture(Fixture *fix)
+live_game_calculate_fixture(Fixture *fix, LiveGame *live_game)
 {
 #ifdef DEBUG
     printf("live_game_calculate_fixture\n");
 #endif
+    statp = live_game;
 
     if(stat0 != STATUS_LIVE_GAME_PAUSE && 
        stat0 != STATUS_LIVE_GAME_CHANGE)
-	live_game_initialize(fix);
+	live_game_initialize(fix, live_game);
     else
 	stat0 = STATUS_SHOW_LIVE_GAME;
 
@@ -105,7 +107,7 @@ live_game_calculate_fixture(Fixture *fix)
 
 /** Initialize a few things at the beginning of a live game. */
 void
-live_game_initialize(Fixture *fix)
+live_game_initialize(Fixture *fix, LiveGame *live_game)
 {
 #ifdef DEBUG
     printf("live_game_initialize\n");
@@ -113,13 +115,12 @@ live_game_initialize(Fixture *fix)
 
     stat2 = fixture_user_team_involved(fix);
 
-    statp = (stat2 != -1) ? 
-	&usr(stat2).live_game : &live_game_temp;
+    statp = live_game;
     show = (stat2 != -1 && 
 	    option_int("int_opt_user_show_live_game", 
 		       &usr(stat2).options));
 
-    live_game_reset(match, fix, TRUE);
+    live_game_reset(match, fix, (stat2 != -1));
 
     if(show)
     {
@@ -131,11 +132,12 @@ live_game_initialize(Fixture *fix)
 	else
 	    gtk_window_set_title(
 		GTK_WINDOW(window.live),
-		league_cup_get_name_string(((LiveGame*)statp)->fix->clid));
+		league_cup_get_name_string(match->fix->clid));
 	window_live_set_up();
 	game_gui_live_game_show_opponent();
     }
 
+    fix->live_game = match;
     game_initialize(fix);
     match->attendance = fix->attendance;
 
@@ -1704,7 +1706,7 @@ live_game_resume(void)
 					tms[i]->boost + 1);
     }
 
-    live_game_calculate_fixture(usr(stat2).live_game.fix);
+    live_game_calculate_fixture(usr(stat2).live_game.fix, &usr(stat2).live_game);
 }
 
 

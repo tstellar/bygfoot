@@ -739,6 +739,7 @@ fixture_write(GArray *fixtures, Team *home_team, Team *away_team, gint week_numb
     new.teams[1] = away_team;
     new.team_ids[0] = home_team->id;
     new.team_ids[1] = away_team->id;
+    new.live_game = NULL;
     
     for(i=0;i<3;i++)
 	new.result[0][i] = new.result[1][i] = 0;

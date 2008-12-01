@@ -60,7 +60,7 @@ typedef void(*WeekFunc)(void);
     is ended. */
 WeekFunc end_week_round_funcs[] =
 {end_week_round_results, end_week_round_sort_tables,
- end_week_round_update_fixtures, NULL};
+ end_week_round_update_fixtures, end_week_round_generate_news, NULL};
 
 /** Array of functions called when a week round
     is started. */
@@ -346,9 +346,17 @@ end_week_round_results(void)
 #endif
 
     gint i, j, done = 0;
+    LiveGame live_game;
     gchar buf[SMALL], buf2[SMALL];
     gfloat num_matches =
 	(gfloat)fixture_get_number_of_matches(week, week_round);
+    gint usr_idx;
+
+    /** Free the matches from last week. */
+    for(i = 0; i < live_games->len; i++)
+        free_live_game(&g_array_index(live_games, LiveGame, i));
+    g_array_free(live_games, TRUE);
+    live_games = g_array_new(FALSE, FALSE, sizeof(LiveGame));
     
     for(i=0;i<ligs->len;i++)
     {
@@ -356,8 +364,18 @@ end_week_round_results(void)
 	    if(g_array_index(lig(i).fixtures, Fixture, j).week_number == week &&
 	       g_array_index(lig(i).fixtures, Fixture, j).week_round_number == week_round &&
 	       g_array_index(lig(i).fixtures, Fixture, j).attendance == -1)
-	    {
-		live_game_calculate_fixture(&g_array_index(lig(i).fixtures, Fixture, j));
+	    {                
+                usr_idx = fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j));
+
+                if(usr_idx == -1)
+                {
+                    g_array_append_val(live_games, live_game);
+                    live_game_calculate_fixture(&g_array_index(lig(i).fixtures, Fixture, j),
+                                                &g_array_index(live_games, LiveGame, live_games->len - 1));
+                }
+                else
+                    live_game_calculate_fixture(&g_array_index(lig(i).fixtures, Fixture, j),
+                                                &usr(usr_idx).live_game);
 
 		done++;
 		fixture_result_to_buf(&g_array_index(lig(i).fixtures, Fixture, j),
@@ -381,7 +399,17 @@ end_week_round_results(void)
 	       g_array_index(acp(i)->fixtures, Fixture, j).week_round_number == week_round &&
 	       g_array_index(acp(i)->fixtures, Fixture, j).attendance == -1)
 	    {
-		live_game_calculate_fixture(&g_array_index(acp(i)->fixtures, Fixture, j));
+                usr_idx = fixture_user_team_involved(&g_array_index(acp(i)->fixtures, Fixture, j));
+
+                if(usr_idx == -1)
+                {
+                    g_array_append_val(live_games, live_game);
+                    live_game_calculate_fixture(&g_array_index(acp(i)->fixtures, Fixture, j),
+                                                &g_array_index(live_games, LiveGame, live_games->len - 1));
+                }
+                else
+                    live_game_calculate_fixture(&g_array_index(acp(i)->fixtures, Fixture, j),
+                                                &usr(usr_idx).live_game);
 
 		done++;
 		fixture_result_to_buf(&g_array_index(acp(i)->fixtures, Fixture, j), 
@@ -482,6 +510,25 @@ end_week_round_update_fixtures(void)
                 g_ptr_array_add(acps, &cp(i));
 	}
     }
+}
+
+/** Write newspaper articles after week round. */
+void
+end_week_round_generate_news(void)
+{
+    gint i;
+
+    /** News for user matches. */
+    for(i = 0; i < users->len; i++)
+        if(usr(i).live_game.fix != NULL &&
+           usr(i).live_game.fix->week_number == week &&
+           usr(i).live_game.fix->week_round_number == week_round)
+            news_generate_match(&usr(i).live_game);
+
+    /** News for other matches. */
+    for(i = 0; i < live_games->len; i++)
+        if(news_check_match_relevant(&g_array_index(live_games, LiveGame, i)))
+            news_generate_match(&g_array_index(live_games, LiveGame, i));
 }
 
 /** Start a new week round. */

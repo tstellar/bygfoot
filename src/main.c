@@ -209,13 +209,12 @@ main_init_variables(void)
 	window.mmatches = window.bets = window.splash =
 	window.training_camp = NULL;
     
-    live_game_reset(&live_game_temp, NULL, FALSE);
-
     users = g_array_new(FALSE, FALSE, sizeof(User));
     transfer_list = g_array_new(FALSE, FALSE, sizeof(Transfer));
     season_stats = g_array_new(FALSE, FALSE, sizeof(SeasonStat));
     name_lists = g_array_new(FALSE, FALSE, sizeof(NameList));
     strategies = g_array_new(FALSE, FALSE, sizeof(Strategy));
+    live_games = g_array_new(FALSE, FALSE, sizeof(LiveGame));
     bets[0] = g_array_new(FALSE, FALSE, sizeof(BetMatch));
     bets[1] = g_array_new(FALSE, FALSE, sizeof(BetMatch));
     jobs = g_array_new(FALSE, FALSE, sizeof(Job));

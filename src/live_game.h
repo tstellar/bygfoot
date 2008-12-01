@@ -30,10 +30,10 @@
 #include "live_game_struct.h"
 
 void
-live_game_calculate_fixture(Fixture *fix);
+live_game_calculate_fixture(Fixture *fix, LiveGame *live_game);
 
 void
-live_game_initialize(Fixture *fix);
+live_game_initialize(Fixture *fix, LiveGame *live_game);
 
 gboolean
 query_live_game_event_is_break(gint minute, gint time);
