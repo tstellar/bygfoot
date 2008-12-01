@@ -144,6 +144,7 @@ xml_loadsave_league_end_element    (GMarkupParseContext *context,
        tag == TAG_LEAGUE_NEW_TABLE_NAME ||
        tag == TAG_LEAGUE_NEW_TABLE_ADD_WEEK ||
        tag == TAG_LEAGUE_TWO_MATCH_WEEK_START ||
+       tag == TAG_LEAGUE_TWO_MATCH_WEEK_END ||
        tag == TAG_LEAGUE_TABLE_FILE ||
        tag == TAG_LEAGUE_AVERAGE_TALENT ||
        tag == TAG_LEAGUE_AVERAGE_TALENT ||
