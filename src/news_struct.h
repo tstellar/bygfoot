@@ -49,7 +49,10 @@ typedef struct
     gint priority;
     /** An id to keep track of already used texts
         (so as not to use the same one too frequently). */
-    gint id;    
+    gint id;
+    /** A condition (if not fulfilled, the title or subtitle
+        doesn't get considered). */
+    gchar *condition;
 
 } NewsText;
 

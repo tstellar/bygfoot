@@ -33,10 +33,10 @@ void
 news_free_tokens(void);
 
 void
-news_set_match_tokens(const LiveGame *live_game, const Fixture *fix_);
+news_set_match_tokens(const LiveGame *live_game);
 
 void
-news_generate_match(const LiveGame *live_game, const Fixture *fix);
+news_generate_match(const LiveGame *live_game);
 
 void
 news_select(const GArray *news_array, gchar *title, gchar *subtitle,
@@ -58,5 +58,16 @@ news_load_news_file(const gchar *news_file, gboolean abort);
 void
 news_titles_get_order(const GArray *titles, gint *order);
 
+gboolean
+news_check_match_relevant(const LiveGame *live_game);
+
+void
+news_set_scorer_tokens(const LiveGameStats *stats);
+
+void
+news_set_league_cup_tokens(const Fixture *fix);
+
+void
+news_set_fixture_tokens(const Fixture *fix);
 
 #endif

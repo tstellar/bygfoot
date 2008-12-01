@@ -706,6 +706,10 @@ misc_token_add(GPtrArray **token_rep, gint token_idx,
 	       gchar *replacement)
 {
 
+/*     printf("tok +%s+ rep +%s+\n",  */
+/*            g_strdup(g_array_index(tokens.list, Option, token_idx).string_value), */
+/*            replacement); */
+
     g_ptr_array_add(token_rep[0], 
 		    (gpointer)g_strdup(g_array_index(tokens.list, Option, token_idx).string_value));
     g_ptr_array_add(token_rep[1], (gpointer)replacement);

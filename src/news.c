@@ -31,6 +31,7 @@
 #include "fixture.h"
 #include "language.h"
 #include "lg_commentary.h"
+#include "live_game.h"
 #include "league.h"
 #include "main.h"
 #include "maths.h"
@@ -38,6 +39,7 @@
 #include "news.h"
 #include "option.h"
 #include "team.h"
+#include "user.h"
 #include "variables.h"
 #include "xml_news.h"
 
@@ -46,7 +48,7 @@ GPtrArray *token_rep_news[2];
 
 /** Generate news for a user live game or a CPU fixture. */
 void
-news_generate_match(const LiveGame *live_game, const Fixture *fix)
+news_generate_match(const LiveGame *live_game)
 {
 #ifdef DEBUG
     printf("news_generate_match\n");
@@ -59,7 +61,7 @@ news_generate_match(const LiveGame *live_game, const Fixture *fix)
     token_rep_news[0] = g_ptr_array_new();
     token_rep_news[1] = g_ptr_array_new();
 
-    news_set_match_tokens(live_game, fix);
+    news_set_match_tokens(live_game);
 
     news_select(news[NEWS_ARTICLE_TYPE_MATCH], title, subtitle,
                 &title_id, &subtitle_id);
@@ -134,7 +136,8 @@ news_get_title(const GArray *titles, gchar *title, gint *order,
 
     for(i = 0; i < titles->len; i++)
     {
-        if(misc_string_replace_all_tokens(token_rep_news, g_array_index(titles, NewsText, order[i]).text, title))
+        if(misc_parse_condition(g_array_index(titles, NewsText, order[i]).condition, token_rep_news) &&
+           misc_string_replace_all_tokens(token_rep_news, g_array_index(titles, NewsText, order[i]).text, title))
         {
             result = g_array_index(titles, NewsText, order[i]).id;
             if(ignore_repetition || !news_check_for_repetition(result, is_title))
@@ -214,25 +217,199 @@ news_titles_get_order(const GArray *titles, gint *order)
 
 /** Set match-related tokens for the news. */
 void
-news_set_match_tokens(const LiveGame *live_game, const Fixture *fix_)
+news_set_match_tokens(const LiveGame *live_game)
 {
 #ifdef DEBUG
     printf("news_set_match_tokens\n");
 #endif
 
+    lg_commentary_set_stats_tokens(&live_game->stats, token_rep_news);
+    news_set_fixture_tokens(live_game->fix);
+    news_set_league_cup_tokens(live_game->fix);
+    news_set_scorer_tokens(&live_game->stats);
+}
+
+void
+news_set_scorer_tokens(const LiveGameStats *stats)
+{
+    gint i, j, k;
+    GPtrArray *scorers[2];
+    GArray *goals[2];
     gchar buf[SMALL];
-    const Fixture *fix;
-    gint avskill0, avskill1;
+    gchar scorer_str[SMALL];
+    const gchar *scorer;
+    gchar high_scorer[SMALL];
+    gint scorer_goals;
+    gint max_goals;
+
+    for(i = 0; i < 2; i++)
+    {
+        scorers[i] = g_ptr_array_new();
+        goals[i] = g_array_new(FALSE, FALSE, sizeof(gint));
+ 
+       for(j = 0; j < stats->players[i][LIVE_GAME_STAT_ARRAY_SCORERS]->len; j++)
+        {
+            scorer = (gchar*)g_ptr_array_index(stats->players[i][LIVE_GAME_STAT_ARRAY_SCORERS], j);
+
+            for(k=0;k<scorers[i]->len;k++)
+            {
+                if(strcmp(scorer, (gchar*)g_ptr_array_index(scorers[i], k)) == 0)
+                {
+                    g_array_index(goals[i], gint, k) = g_array_index(goals[i], gint, k) + 1;
+                    break;
+                }           
+            }
+            
+            if(k == scorers[i]->len)
+            {
+                gint onegoal = 1;
+                g_ptr_array_add(scorers[i], (gpointer)scorer);
+                g_array_append_val(goals[i], onegoal);
+            }            
+        }
+        
+        max_goals = 0;
+        strcpy(buf, "");
+        strcpy(scorer_str, "");
+        strcpy(high_scorer, "");
+
+        for(j = 0; j < scorers[i]->len; j++)
+        {
+            scorer_goals = g_array_index(goals[i], gint, j);
+            scorer = (gchar*)g_ptr_array_index(scorers[i], j);
+
+            if(scorer_goals > max_goals)
+            {
+                max_goals = scorer_goals;
+                strcpy(high_scorer, scorer);
+            }
+
+            if(j == 0)
+            {
+                if(scorer_goals > 1)
+                    sprintf(scorer_str, "%s (%d)", scorer, scorer_goals);
+                else
+                    sprintf(scorer_str, "%s", scorer);                    
+            }
+            else if(j == scorers[i]->len - 1 && j != 0)
+            {
+                if(scorer_goals > 1)
+                    sprintf(scorer_str, "%s and %s (%d)", buf, scorer, scorer_goals);
+                else
+                    sprintf(scorer_str, "%s and %s", buf, scorer);
+            }
+            else
+            {
+                if(scorer_goals > 1)
+                    sprintf(scorer_str, "%s, %s (%d)", buf, scorer, scorer_goals);
+                else
+                    sprintf(scorer_str, "%s, %s", buf, scorer);                    
+            }
+
+            strcpy(buf, scorer_str);
+        }
+        
+/*         printf("%d +%s+ +%s+ %d\n", i, scorer_str, high_scorer, max_goals); */
+
+        if(strcmp(scorer_str, "") != 0)
+        {
+            sprintf(buf, "string_token_multiple_scorers%d", i);
+            misc_token_add(token_rep_news,
+                           option_int(buf, &tokens),
+                           misc_int_to_char((scorers[i]->len > 1)));
+
+            sprintf(buf, "string_token_scorers%d", i);
+            misc_token_add(token_rep_news,
+                           option_int(buf, &tokens),
+                           g_strdup(scorer_str));
+            sprintf(buf, "string_token_highscorer%d", i);
+            misc_token_add(token_rep_news,
+                           option_int(buf, &tokens),
+                           g_strdup(high_scorer));
+            sprintf(buf, "string_token_highscorer_goals%d", i);
+            misc_token_add(token_rep_news,
+                           option_int(buf, &tokens),
+                           misc_int_to_char(max_goals));            
+        }
+
+        g_ptr_array_free(scorers[i], TRUE);
+        g_array_free(goals[i], TRUE);
+    }
+}
+
+void
+news_set_league_cup_tokens(const Fixture *fix)
+{
+    gchar buf[SMALL];
     const Cup *cup;
     const CupRound *cupround;
 
-    if(live_game == NULL)
-        fix = fix_;
-    else
+    if(fix->teams[0]->clid < ID_CUP_START)
+	misc_token_add(token_rep_news,
+		       option_int("string_token_team_layer0", &tokens),
+		       misc_int_to_char(league_from_clid(fix->teams[0]->clid)->layer));
+    if(fix->teams[1]->clid < ID_CUP_START)
+	misc_token_add(token_rep_news,
+		       option_int("string_token_team_layer1", &tokens),
+		       misc_int_to_char(league_from_clid(fix->teams[1]->clid)->layer));
+	
+    if(fix->teams[0]->clid < ID_CUP_START &&
+       fix->teams[1]->clid < ID_CUP_START)
+	misc_token_add(token_rep_news,
+		       option_int("string_token_team_layerdiff", &tokens),
+		       misc_int_to_char(league_from_clid(fix->teams[0]->clid)->layer -
+					league_from_clid(fix->teams[1]->clid)->layer));
+
+    misc_token_add(token_rep_news,
+		   option_int("string_token_league_cup_name", &tokens),
+		   g_strdup(league_cup_get_name_string(fix->clid)));
+
+    misc_token_add(token_rep_news,
+                   option_int("string_token_cup", &tokens),
+                   misc_int_to_char((fix->clid >= ID_CUP_START)));
+
+    if(fix->clid >= ID_CUP_START)
     {
-        fix = live_game->fix;
-        lg_commentary_set_stats_tokens(&live_game->stats, token_rep_news);
+        cup = cup_from_clid(fix->clid);
+        cupround = &g_array_index(cup->rounds, CupRound, fix->round);
+
+	cup_get_round_name(cup, fix->round, buf);
+	misc_token_add(token_rep_news,
+		       option_int("string_token_cup_round_name", &tokens),
+		       g_strdup(buf));
+
+        if(cupround->tables->len > 0)
+        {
+            misc_token_add(token_rep_news,
+                           option_int("string_token_cup_knockout", &tokens),
+                           g_strdup("0"));
+            misc_token_add(token_rep_news,
+                           option_int("string_token_cup_round_robin", &tokens),
+                           g_strdup("1"));
+        }            
+        else
+        {
+            misc_token_add(token_rep_news,
+                           option_int("string_token_cup_knockout", &tokens),
+                           g_strdup("1"));
+            misc_token_add(token_rep_news,
+                           option_int("string_token_cup_round_robin", &tokens),
+                           g_strdup("0"));
+
+        }
+        
+        if(fix->decisive)
+            misc_token_add(token_rep_news,
+                           option_int("string_token_cup_match_winner", &tokens),
+                           ((Team*)fixture_winner_of(fix, FALSE))->name);
     }
+}
+
+void
+news_set_fixture_tokens(const Fixture *fix)
+{
+    gchar buf[SMALL];
+    gint avskill0, avskill1;
 
     avskill0 = (gint)rint(team_get_average_skill(fix->teams[0], TRUE));
     avskill1 = (gint)rint(team_get_average_skill(fix->teams[1], TRUE));
@@ -241,6 +418,11 @@ news_set_match_tokens(const LiveGame *live_game, const Fixture *fix_)
     misc_token_add(token_rep_news, 
 		   option_int("string_token_result", &tokens),
 		   g_strdup(buf));
+
+    misc_print_grouped_int(fix->attendance, buf);
+    misc_token_add(token_rep_news,
+		   option_int("string_token_attendance", &tokens),
+		   g_strdup(buf));    
 
     misc_token_add(token_rep_news,
 		   option_int("string_token_goals0", &tokens), 
@@ -273,72 +455,7 @@ news_set_match_tokens(const LiveGame *live_game, const Fixture *fix_)
 	misc_token_add(token_rep_news,
 		       option_int("string_token_team_winningn", &tokens), 
 		       misc_int_to_char((fix->result[0][0] < fix->result[1][0])));
-    }
-
-    if(fix->teams[0]->clid < ID_CUP_START)
-	misc_token_add(token_rep_news,
-		       option_int("string_token_team_layer0", &tokens),
-		       misc_int_to_char(league_from_clid(fix->teams[0]->clid)->layer));
-    if(fix->teams[1]->clid < ID_CUP_START)
-	misc_token_add(token_rep_news,
-		       option_int("string_token_team_layer1", &tokens),
-		       misc_int_to_char(league_from_clid(fix->teams[1]->clid)->layer));
-	
-    if(fix->teams[0]->clid < ID_CUP_START &&
-       fix->teams[1]->clid < ID_CUP_START)
-	misc_token_add(token_rep_news,
-		       option_int("string_token_team_layerdiff", &tokens),
-		       misc_int_to_char(league_from_clid(fix->teams[0]->clid)->layer -
-					league_from_clid(fix->teams[1]->clid)->layer));
-
-    misc_token_add(token_rep_news,
-		   option_int("string_token_league_cup_name", &tokens),
-		   g_strdup(league_cup_get_name_string(fix->clid)));
-
-    if(fix->clid >= ID_CUP_START)
-    {
-        cup = cup_from_clid(fix->clid);
-        cupround = &g_array_index(cup->rounds, CupRound, fix->round);
-
-	misc_token_add(token_rep_news,
-		       option_int("string_token_cup", &tokens),
-		       g_strdup("1"));
-
-	cup_get_round_name(cup, fix->round, buf);
-	misc_token_add(token_rep_news,
-		       option_int("string_token_cup_round_name", &tokens),
-		       g_strdup(buf));
-
-        if(cupround->tables->len > 0)
-        {
-            misc_token_add(token_rep_news,
-                           option_int("string_token_cup_knockout", &tokens),
-                           g_strdup("0"));
-            misc_token_add(token_rep_news,
-                           option_int("string_token_cup_round_robin", &tokens),
-                           g_strdup("1"));
-        }            
-        else
-        {
-            misc_token_add(token_rep_news,
-                           option_int("string_token_cup_knockout", &tokens),
-                           g_strdup("1"));
-            misc_token_add(token_rep_news,
-                           option_int("string_token_cup_round_robin", &tokens),
-                           g_strdup("0"));
-
-        }
-        
-        if(fix->decisive)
-            misc_token_add(token_rep_news,
-                           option_int("string_token_cup_match_winner", &tokens),
-                           ((Team*)fixture_winner_of(fix, FALSE))->name);
-    }
-
-    misc_print_grouped_int(fix->attendance, buf);
-    misc_token_add(token_rep_news,
-		   option_int("string_token_attendance", &tokens),
-		   g_strdup(buf));
+    }    
 }
 
 /** Free the memory occupied by the tokens array and the permanent tokens. */
@@ -414,4 +531,35 @@ news_load_news_file(const gchar *news_file, gboolean abort)
 	else
 	    news_load_news_file("news_en.xml", TRUE);
     }
+}
+
+/** Find out if the match is interesting from a newspaper article
+    generation point of view. */
+gboolean
+news_check_match_relevant(const LiveGame *live_game)
+{
+    gint i;
+    GArray *user_leagues;
+
+    if(fixture_user_team_involved(live_game->fix) != -1)
+        return TRUE;
+
+    user_leagues = g_array_new(FALSE, FALSE, sizeof(gint));
+
+    if(live_game->fix->clid >= ID_CUP_START &&
+       live_game->fix->round >= cup_from_clid(live_game->fix->clid)->rounds->len - 4)
+        return TRUE;
+
+    for(i = 0; i < users->len; i++)
+        if(!query_misc_integer_is_in_g_array(usr(i).tm->clid, user_leagues))
+            g_array_append_val(user_leagues, usr(i).tm->clid);
+
+    if(query_misc_integer_is_in_g_array(live_game->fix->clid, user_leagues))
+    {
+        g_array_free(user_leagues, TRUE);
+        return TRUE;
+    }
+
+    g_array_free(user_leagues, TRUE);
+    return FALSE;
 }

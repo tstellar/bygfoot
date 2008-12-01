@@ -57,6 +57,8 @@ typedef struct
     /** How many people attended and whether there were
 	special events. */
     gint attendance;
+    /** Pointer to the live game used for the fixture calculation. */
+    gpointer live_game;
 } Fixture;
 
 #endif

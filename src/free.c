@@ -50,12 +50,13 @@ free_memory(void)
     free_country(&country, FALSE);
     free_users(FALSE);
     free_bets(FALSE);
-    free_live_game(&live_game_temp);
     free_lg_commentary(FALSE);
     free_news(FALSE);
     free_newspaper(FALSE);
     free_support_dirs();
     free_jobs(FALSE);
+
+    free_g_array(&live_games);
 }
 
 /** Free the transfer list. */
@@ -728,12 +729,18 @@ free_news(gboolean reset)
 		g_free(g_array_index(news[i], NewsArticle, j).condition);
                 
                 for(k = 0; k < g_array_index(news[i], NewsArticle, j).titles->len; k++)
+                {
                     g_free(g_array_index(g_array_index(news[i], NewsArticle, j).titles, NewsText, k).text);
+                    g_free(g_array_index(g_array_index(news[i], NewsArticle, j).titles, NewsText, k).condition);
+                }
 
                 g_array_free(g_array_index(news[i], NewsArticle, j).titles, TRUE);
 
                 for(k = 0; k < g_array_index(news[i], NewsArticle, j).subtitles->len; k++)
+                {
                     g_free(g_array_index(g_array_index(news[i], NewsArticle, j).subtitles, NewsText, k).text);
+                    g_free(g_array_index(g_array_index(news[i], NewsArticle, j).subtitles, NewsText, k).condition);
+                }
 
                 g_array_free(g_array_index(news[i], NewsArticle, j).subtitles, TRUE);
 	    }

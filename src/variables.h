@@ -104,8 +104,8 @@ GArray *name_lists;
 /** The struct containing the window pointers. */
 Windows window;
 
-/** The variable for non-user games (which aren't shown). */
-LiveGame live_game_temp;
+/** The variables for non-user live games (which aren't shown). */
+GArray *live_games;
 
 /** The index of the current user in the #users array. */
 gint cur_user;

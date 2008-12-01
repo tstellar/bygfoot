@@ -162,6 +162,7 @@ debug_calibrate_betting_odds(gint skilldiffmax, gint matches_per_skilldiff)
 
     gint i, skilldiff, matches;
     Fixture *fix = &g_array_index(lig(0).fixtures, Fixture, 0);
+    LiveGame live_game;
 
     fix->home_advantage = FALSE;
     
@@ -183,7 +184,7 @@ debug_calibrate_betting_odds(gint skilldiffmax, gint matches_per_skilldiff)
 		g_array_index(fix->teams[1]->players, Player, i).fitness = 0.9;
 	    }
 
-	    live_game_calculate_fixture(fix);
+	    live_game_calculate_fixture(fix, &live_game);
 	    if(fix->result[0][0] < fix->result[1][0])
 		res[2]++;
 	    else

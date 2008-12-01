@@ -94,4 +94,7 @@ start_new_season_reset_ids(void);
 void
 start_week_update_leagues(void);
 
+void
+end_week_round_generate_news(void);
+
 #endif
