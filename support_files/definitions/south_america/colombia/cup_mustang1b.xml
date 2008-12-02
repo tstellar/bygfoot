@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+	<name>Copa Mustang I: Grupo B</name>
+	<short_name>Mustang IB</short_name>
+	<symbol>flag_colombia.png</symbol>
+	<sid>mustang1b</sid>
+	<add_week>20</add_week>
+	<last_week>25</last_week>
+	<week_gap>1</week_gap>
+	<property>national</property>
+	<property>omit_from_history</property>
+	<property>highlight2</property>
+	<cup_rounds>
+		<cup_round>
+			<number_of_groups>1</number_of_groups>
+			<randomise_teams>0</randomise_teams>
+			<choose_teams>
+				<choose_team>
+					<choose_team_sid>colombia1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>2</start_idx>
+					<end_idx>2</end_idx>
+					<from_table>1</from_table>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>colombia1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>4</start_idx>
+					<end_idx>4</end_idx>
+					<from_table>1</from_table>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>colombia1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>6</start_idx>
+					<end_idx>6</end_idx>
+					<from_table>1</from_table>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>colombia1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>8</start_idx>
+					<end_idx>8</end_idx>
+					<from_table>1</from_table>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+	</cup_rounds>
+</cup>
