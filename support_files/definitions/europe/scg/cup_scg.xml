@@ -17,16 +17,13 @@
 	<choose_team_sid>scg1</choose_team_sid>
       </choose_team>
       <choose_team>
-	<choose_team_sid>scg2a</choose_team_sid>
-	<number_of_teams>10</number_of_teams>
-	<start_idx>1</start_idx>
-	<end_idx>10</end_idx>
+	<choose_team_sid>scg2</choose_team_sid>
       </choose_team>
       <choose_team>
-	<choose_team_sid>scg2b</choose_team_sid>
-	<number_of_teams>6</number_of_teams>
-	<start_idx>1</start_idx>
-	<end_idx>6</end_idx>
+	<choose_team_sid>scg3a scg3b scg3c scg3d</choose_team_sid>
+	<number_of_teams>2</number_of_teams>
+	<randomly>1</randomly>
+	<generate>1</generate>
       </choose_team>
     </choose_teams>
   </cup_round>
@@ -48,4 +45,3 @@
     <neutral>1</neutral>
   </cup_round>
 </cup>
-

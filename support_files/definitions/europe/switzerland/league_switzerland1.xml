@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>switzerland1</sid>
+  <name>Superliga</name>
+  <short_name>SL</short_name>
+  <symbol>flag_switzerland.png</symbol>
+  <first_week>1</first_week>
+  <week_gap>1</week_gap>
+  <average_talent>7300</average_talent>
+  <round_robins>4</round_robins>
+  <names_file>germany</names_file>
+  <yellow_red>5</yellow_red>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>10</rank_start>
+      <rank_end>10</rank_end>
+      <dest_sid>switzerland2</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Aarau</team_name>
+    </team>
+    <team>
+      <team_name>Basel</team_name>
+    </team>
+    <team>
+      <team_name>Bellinzona</team_name>
+    </team>
+    <team>
+      <team_name>G. Zürich</team_name>
+    </team>
+    <team>
+      <team_name>Luzern</team_name>
+    </team>
+    <team>
+      <team_name>X. Neuchâtel</team_name>
+    </team>
+    <team>
+      <team_name>Sion</team_name>
+    </team>
+    <team>
+      <team_name>Vaduz</team_name>
+    </team>
+    <team>
+      <team_name>Y. B. Bern</team_name>
+    </team>
+    <team>
+      <team_name>Zürich</team_name>
+    </team>
+  </teams>
+</league>
