@@ -1,0 +1,32 @@
+<cup>
+  <name>Superliga Promotion Games</name>
+  <short_name>S. Prom.</short_name>
+  <symbol>flag_switzerland.png</symbol>
+  <sid>switzerland_prom_games1</sid>
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>highlight2</property>
+  <yellow_red>3</yellow_red>
+
+  <cup_rounds>
+
+    <cup_round>
+      <choose_teams>
+	<choose_team>
+	  <choose_team_sid>switzerland2</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <start_idx>2</start_idx>
+	  <end_idx>2</end_idx>
+	</choose_team>
+	<choose_team>
+	  <choose_team_sid>switzerland1</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <start_idx>9</start_idx>
+	  <end_idx>9</end_idx>
+	</choose_team>
+      </choose_teams>
+    </cup_round>
+
+  </cup_rounds>
+
+</cup>

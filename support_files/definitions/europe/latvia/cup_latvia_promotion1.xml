@@ -1,0 +1,33 @@
+<cup>
+  <name>Latvia Promotion 1</name>
+  <short_name>L. Prom. 1</short_name>
+  <symbol>flag_latvia.png</symbol>
+  <sid>latvia_promotion1</sid>
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>highlight2</property>
+  <yellow_red>3</yellow_red>
+
+  <cup_rounds>
+
+    <cup_round>
+      <choose_teams>
+	<choose_team>
+	  <choose_team_sid>latvia2</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <start_idx>2</start_idx>
+	  <end_idx>2</end_idx>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>latvia1</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <start_idx>9</start_idx>
+	  <end_idx>9</end_idx>
+	</choose_team>
+      </choose_teams>
+    </cup_round>
+
+  </cup_rounds>
+
+</cup>

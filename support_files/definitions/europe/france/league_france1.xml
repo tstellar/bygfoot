@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <league>
-
   <sid>france1</sid>
   <name>Ligue 1</name>
   <short_name>L1</short_name>
   <symbol>flag_france.png</symbol>
   <first_week>1</first_week>
   <week_gap>1</week_gap>
-  <average_talent>8700</average_talent>
+  <break>3</break>
+  <average_talent>8100</average_talent>
   <names_file>france</names_file>
+  <yellow_red>5</yellow_red>
 
   <prom_rel>
     <prom_rel_element>
@@ -21,22 +22,7 @@
 
   <teams>
     <team>
-      <team_name>Paris SG</team_name>
-    </team>
-    <team>
       <team_name>Auxerre</team_name>
-    </team>
-    <team>
-      <team_name>Lyon</team_name>
-    </team>
-    <team>
-      <team_name>Marseille</team_name>
-    </team>
-    <team>
-      <team_name>Lille</team_name>
-    </team>
-    <team>
-      <team_name>Bastia</team_name>
     </team>
     <team>
       <team_name>Bordeaux</team_name>
@@ -45,19 +31,31 @@
       <team_name>Caen</team_name>
     </team>
     <team>
-      <team_name>Istres</team_name>
+      <team_name>Grenoble</team_name>
     </team>
     <team>
-      <team_name>Lens</team_name>
+      <team_name>Le Havre</team_name>
     </team>
     <team>
-      <team_name>Ajaccio</team_name>
+      <team_name>Le Mans</team_name>
     </team>
     <team>
-      <team_name>Metz</team_name>
+      <team_name>Lille</team_name>
+    </team>
+    <team>
+      <team_name>Lorient</team_name>
+    </team>
+    <team>
+      <team_name>Lyon</team_name>
+    </team>
+    <team>
+      <team_name>Marseille</team_name>
     </team>
     <team>
       <team_name>Monaco</team_name>
+    </team>
+    <team>
+      <team_name>Nancy</team_name>
     </team>
     <team>
       <team_name>Nantes</team_name>
@@ -66,20 +64,22 @@
       <team_name>Nice</team_name>
     </team>
     <team>
+      <team_name>Paris SG</team_name>
+    </team>
+    <team>
       <team_name>Rennes</team_name>
     </team>
     <team>
-      <team_name>Saint-Étienne</team_name>
+      <team_name>Saint-Etienne</team_name>
     </team>
     <team>
       <team_name>Sochaux</team_name>
     </team>
     <team>
-      <team_name>Strasbourg</team_name>
-    </team>
-    <team>
       <team_name>Toulouse</team_name>
     </team>
+    <team>
+     <team_name>Valenciennes</team_name>
+    </team>
   </teams>
-
 </league>
