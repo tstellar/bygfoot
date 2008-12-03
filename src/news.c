@@ -314,9 +314,9 @@ news_set_scorer_tokens(const LiveGameStats *stats)
         if(strcmp(scorer_str, "") != 0)
         {
             sprintf(buf, "string_token_multiple_scorers%d", i);
-            misc_token_add(token_rep_news,
-                           option_int(buf, &tokens),
-                           misc_int_to_char((scorers[i]->len > 1)));
+            misc_token_add_bool(token_rep_news,
+                                option_int(buf, &tokens),
+                                (scorers[i]->len > 1));
 
             sprintf(buf, "string_token_scorers%d", i);
             misc_token_add(token_rep_news,
@@ -364,9 +364,9 @@ news_set_league_cup_tokens(const Fixture *fix)
 		   option_int("string_token_league_cup_name", &tokens),
 		   g_strdup(league_cup_get_name_string(fix->clid)));
 
-    misc_token_add(token_rep_news,
-                   option_int("string_token_cup", &tokens),
-                   misc_int_to_char((fix->clid >= ID_CUP_START)));
+    misc_token_add_bool(token_rep_news,
+                        option_int("string_token_cup", &tokens),
+                        (fix->clid >= ID_CUP_START));
 
     if(fix->clid >= ID_CUP_START)
     {
@@ -378,25 +378,9 @@ news_set_league_cup_tokens(const Fixture *fix)
 		       option_int("string_token_cup_round_name", &tokens),
 		       g_strdup(buf));
 
-        if(cupround->tables->len > 0)
-        {
-            misc_token_add(token_rep_news,
+        misc_token_add_bool(token_rep_news,
                            option_int("string_token_cup_knockout", &tokens),
-                           g_strdup("0"));
-            misc_token_add(token_rep_news,
-                           option_int("string_token_cup_round_robin", &tokens),
-                           g_strdup("1"));
-        }            
-        else
-        {
-            misc_token_add(token_rep_news,
-                           option_int("string_token_cup_knockout", &tokens),
-                           g_strdup("1"));
-            misc_token_add(token_rep_news,
-                           option_int("string_token_cup_round_robin", &tokens),
-                           g_strdup("0"));
-
-        }
+                            (cupround->tables->len == 0));
         
         if(fix->decisive)
             misc_token_add(token_rep_news,

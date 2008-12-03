@@ -426,6 +426,7 @@ cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_temp, GPtrArray *teams, c
                               ct->number_of_teams, number_of_teams, cup->group);
     }
 }
+
 void
 cup_load_choose_team_from_league(Cup *cup, const League *league,
                                  GPtrArray *teams, const CupChooseTeam *ct)

@@ -60,7 +60,9 @@ typedef void(*WeekFunc)(void);
     is ended. */
 WeekFunc end_week_round_funcs[] =
 {end_week_round_results, end_week_round_sort_tables,
- end_week_round_update_fixtures, end_week_round_generate_news, NULL};
+ end_week_round_update_fixtures, NULL};
+/* {end_week_round_results, end_week_round_sort_tables, */
+/*  end_week_round_update_fixtures, end_week_round_generate_news, NULL}; */
 
 /** Array of functions called when a week round
     is started. */
@@ -393,6 +395,7 @@ end_week_round_results(void)
     }
 
     for(i=0;i<acps->len;i++)
+    {
 	for(j=0;j<acp(i)->fixtures->len;j++)
 	{
 	    if(g_array_index(acp(i)->fixtures, Fixture, j).week_number == week &&
@@ -424,7 +427,8 @@ end_week_round_results(void)
 		    g_print("%s \n", buf2);
 	    }
 	}
-
+    }
+    
     gui_show_progress(-1, "", PIC_TYPE_MATCHPIC);
 }
 

@@ -705,14 +705,19 @@ void
 misc_token_add(GPtrArray **token_rep, gint token_idx, 
 	       gchar *replacement)
 {
-
-/*     printf("tok +%s+ rep +%s+\n",  */
-/*            g_strdup(g_array_index(tokens.list, Option, token_idx).string_value), */
-/*            replacement); */
-
     g_ptr_array_add(token_rep[0], 
 		    (gpointer)g_strdup(g_array_index(tokens.list, Option, token_idx).string_value));
     g_ptr_array_add(token_rep[1], (gpointer)replacement);
+}
+
+/** Add a 0 or 1 as a token to the token array. */
+void
+misc_token_add_bool(GPtrArray **token_rep, gint token_idx, 
+                    gboolean value)
+{
+    g_ptr_array_add(token_rep[0], 
+		    (gpointer)g_strdup(g_array_index(tokens.list, Option, token_idx).string_value));
+    g_ptr_array_add(token_rep[1], misc_int_to_char(value));
 }
 
 /** Remove the replacement rule given by the index. */

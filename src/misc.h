@@ -125,4 +125,8 @@ gboolean
 misc_string_replace_all_tokens(GPtrArray **token_rep,
                                const gchar *text_tokens, gchar *dest);
 
+void
+misc_token_add_bool(GPtrArray **token_rep, gint token_idx, 
+                    gboolean value);
+
 #endif
