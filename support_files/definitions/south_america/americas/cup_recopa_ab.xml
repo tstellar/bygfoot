@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+	<name>Recopa Sudamericana</name>
+	<short_name>Recopa</short_name>
+	<sid>recopa_ab</sid>
+	<add_week>45</add_week>
+	<last_week>50</last_week>
+	<property>international</property>
+	<cup_rounds>
+		<cup_round>
+			<choose_teams>
+				<choose_team>
+					<choose_team_sid>sudamericana_ab</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>1</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>libertadores_ab</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>2</end_idx>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+	</cup_rounds>
+</cup>
