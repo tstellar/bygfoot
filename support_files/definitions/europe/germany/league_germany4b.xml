@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>germany4b</sid>
+  <name>Regionalliga West</name>
+  <short_name>RL West</short_name>
+  <symbol>flag_germany.png</symbol>
+  <first_week>1</first_week>
+  <week_gap>1</week_gap>
+  <break>7</break>
+  <average_talent>6100</average_talent>
+  <names_file>germany</names_file>
+  <yellow_red>5</yellow_red>
+  <layer>4</layer>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>1</rank_end>
+      <dest_sid>germany3</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_rel_element>
+      <rank_start>15</rank_start>
+      <rank_end>18</rank_end>
+      <dest_sid>germany5_7 germany5_9 germany5_11 germany5_12</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Bochum II</team_name>
+    </team>
+    <team>
+      <team_name>Cloppenburg</team_name>
+    </team>
+    <team>
+      <team_name>B. Dortmund II</team_name>
+    </team>
+    <team>
+      <team_name>Elversberg</team_name>
+    </team>
+    <team>
+      <team_name>Essen</team_name>
+    </team>
+    <team>
+      <team_name>Kaiserslautern II</team_name>
+    </team>
+    <team>
+      <team_name>Kleve</team_name>
+    </team>
+    <team>
+      <team_name>Köln II</team_name>
+    </team>
+    <team>
+      <team_name>B. Leverkusen II</team_name>
+    </team>
+    <team>
+      <team_name>S. Lotte</team_name>
+    </team>
+    <team>
+      <team_name>Mainz II</team_name>
+    </team>
+    <team>
+      <team_name>M'gladbach II</team_name>
+    </team>
+    <team>
+      <team_name>P. Münster</team_name>
+    </team>
+    <team>
+      <team_name>Oggersheim</team_name>
+    </team>
+    <team>
+      <team_name>Schalke II</team_name>
+    </team>
+    <team>
+      <team_name>E. Trier</team_name>
+    </team>
+    <team>
+      <team_name>Verl</team_name>
+    </team>
+    <team>
+      <team_name>Worms</team_name>
+    </team>
+  </teams>
+</league>
