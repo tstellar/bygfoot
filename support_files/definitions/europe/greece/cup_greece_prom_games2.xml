@@ -1,0 +1,36 @@
+<cup>
+  <name>Gamma Ethniki Promotion</name>
+  <short_name>G. E. Prom.</short_name>
+  <symbol>flag_greece.png</symbol>
+  <sid>greece_prom_games2</sid>
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>highlight2</property>
+  <yellow_red>3</yellow_red>
+
+  <cup_rounds>
+
+    <cup_round>
+      <choose_teams>
+	<choose_team>
+	  <choose_team_sid>greece3a</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <start_idx>2</start_idx>
+	  <end_idx>2</end_idx>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>greece3b</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <start_idx>2</start_idx>
+	  <end_idx>2</end_idx>
+	</choose_team>
+      </choose_teams>
+
+      <home_away>0</home_away>
+      <neutral>1</neutral>
+    </cup_round>
+
+  </cup_rounds>
+
+</cup>
