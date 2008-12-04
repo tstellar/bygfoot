@@ -59,10 +59,10 @@ typedef void(*WeekFunc)(void);
 /** Array of functions called when a week round
     is ended. */
 WeekFunc end_week_round_funcs[] =
-{end_week_round_results, end_week_round_sort_tables,
- end_week_round_update_fixtures, NULL};
 /* {end_week_round_results, end_week_round_sort_tables, */
-/*  end_week_round_update_fixtures, end_week_round_generate_news, NULL}; */
+/*  end_week_round_update_fixtures, NULL}; */
+{end_week_round_results, end_week_round_sort_tables,
+ end_week_round_update_fixtures, end_week_round_generate_news, NULL};
 
 /** Array of functions called when a week round
     is started. */

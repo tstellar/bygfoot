@@ -131,6 +131,10 @@ gint
 news_get_title(const GArray *titles, gchar *title, gint *order, 
                gboolean is_title, gboolean ignore_repetition)
 {
+#ifdef DEBUG
+    printf("news_get_title\n");
+#endif
+
     gint i;
     gint result;
 
@@ -154,6 +158,10 @@ news_get_title(const GArray *titles, gchar *title, gint *order,
 gboolean
 news_check_for_repetition(gint id, gboolean is_title)
 {
+#ifdef DEBUG
+    printf("news_check_for_repetition\n");
+#endif
+
     gint i;
     gint end;
 
@@ -232,6 +240,10 @@ news_set_match_tokens(const LiveGame *live_game)
 void
 news_set_scorer_tokens(const LiveGameStats *stats)
 {
+#ifdef DEBUG
+    printf("news_set_scorer_tokens\n");
+#endif
+
     gint i, j, k;
     GPtrArray *scorers[2];
     GArray *goals[2];
@@ -340,6 +352,10 @@ news_set_scorer_tokens(const LiveGameStats *stats)
 void
 news_set_league_cup_tokens(const Fixture *fix)
 {
+#ifdef DEBUG
+    printf("news_set_league_cup_tokens\n");
+#endif
+
     gchar buf[SMALL];
     const Cup *cup;
     const CupRound *cupround;
@@ -385,13 +401,17 @@ news_set_league_cup_tokens(const Fixture *fix)
         if(fix->decisive)
             misc_token_add(token_rep_news,
                            option_int("string_token_cup_match_winner", &tokens),
-                           ((Team*)fixture_winner_of(fix, FALSE))->name);
+                           g_strdup(((Team*)fixture_winner_of(fix, FALSE))->name));
     }
 }
 
 void
 news_set_fixture_tokens(const Fixture *fix)
 {
+#ifdef DEBUG
+    printf("news_set_fixture_tokens\n");
+#endif
+
     gchar buf[SMALL];
     gint avskill0, avskill1;
 
@@ -522,6 +542,10 @@ news_load_news_file(const gchar *news_file, gboolean abort)
 gboolean
 news_check_match_relevant(const LiveGame *live_game)
 {
+#ifdef DEBUG
+    printf("news_check_match_relevant\n");
+#endif
+
     gint i;
     GArray *user_leagues;
 
