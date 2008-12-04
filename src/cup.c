@@ -527,7 +527,7 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
 
     leagues = g_array_new(FALSE, FALSE, sizeof(League));
     teams_local = g_array_new(FALSE, FALSE, sizeof(Team));
-    sids = misc_separate_strings(ct->sid);
+    sids = misc_randomise_g_pointer_array(misc_separate_strings(ct->sid));
 
     for(j=0;j<sids->len;j++)
     {
