@@ -152,7 +152,7 @@ news_get_title(const GArray *titles, gchar *title, gint *order,
 
     for(i = 0; i < titles->len; i++)
     {
-        gboolean res = misc_string_replace_all_tokens(token_rep_news, g_array_index(titles, NewsText, order[i]).text, title);
+/*         gboolean res = misc_string_replace_all_tokens(token_rep_news, g_array_index(titles, NewsText, order[i]).text, title); */
 /*         printf("title: %s %d\n", title, res); */
         if(misc_parse_condition(g_array_index(titles, NewsText, order[i]).condition, token_rep_news) &&
            misc_string_replace_all_tokens(token_rep_news, g_array_index(titles, NewsText, order[i]).text, title))
