@@ -1652,3 +1652,12 @@ on_automatic_loan_repayment_activate   (GtkMenuItem     *menuitem,
     
     window_show_alr();
 }
+
+void
+on_menu_news_activate                  (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    window_create(WINDOW_NEWS);
+    treeview2_show_news();
+}
+

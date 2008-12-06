@@ -74,7 +74,7 @@ typedef struct
 {
     gint week_number, week_round_number;
     gint title_id, subtitle_id;
-    gchar *title, *subtitle;
+    gchar *title_small, *title, *subtitle;
 
 } NewsPaperArticle;
 

@@ -54,7 +54,8 @@ news_generate_match(const LiveGame *live_game)
     printf("news_generate_match\n");
 #endif
 
-    gchar title[SMALL], subtitle[SMALL];
+    gchar title_small[SMALL], buf[SMALL],
+	title[SMALL], subtitle[SMALL];
     gint title_id, subtitle_id;
     NewsPaperArticle new_article;
     
@@ -70,6 +71,10 @@ news_generate_match(const LiveGame *live_game)
     {
         new_article.week_number = week;
         new_article.week_round_number = week_round;
+	fixture_result_to_buf(live_game->fix, buf, FALSE);
+	sprintf(title_small, "%s %s %s", 
+		live_game->fix->teams[0]->name, buf, live_game->fix->teams[1]->name);
+        new_article.title_small = g_strdup(title_small);
         new_article.title = g_strdup(title);
         new_article.subtitle = g_strdup(subtitle);
         new_article.title_id = title_id;

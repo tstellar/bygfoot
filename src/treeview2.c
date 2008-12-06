@@ -579,3 +579,111 @@ treeview2_show_job_exchange(void)
     gtk_tree_view_set_model(treeview, GTK_TREE_MODEL(model));
     g_object_unref(model);    
 }
+
+void
+treeview2_create_news(GtkListStore *ls)
+{
+#ifdef DEBUG
+    printf("treeview2_create_news\n");
+#endif
+
+    gint i;
+    GtkTreeIter iter;
+    gchar buf[SMALL], buf2[SMALL];
+
+    if(newspaper.articles->len == 0)
+    {
+	gtk_list_store_append(ls, &iter);
+	sprintf(buf, "\n<span %s>%s</span>", 
+		const_app("string_news_window_title_attribute"),
+		_("No news available."));
+	gtk_list_store_set(ls, &iter, 0, buf, -1);
+	return;
+    }
+    
+    for(i = newspaper.articles->len - 1; i >= 0; i--)
+    {
+	if(i == newspaper.articles->len - 1 ||
+	   (i < newspaper.articles->len - 1 &&
+	    (g_array_index(newspaper.articles, NewsPaperArticle, i).week_number !=
+	     g_array_index(newspaper.articles, NewsPaperArticle, i + 1).week_number ||
+	     g_array_index(newspaper.articles, NewsPaperArticle, i).week_round_number !=
+	     g_array_index(newspaper.articles, NewsPaperArticle, i + 1).week_round_number)))
+	{
+	    gtk_list_store_append(ls, &iter);
+	    gtk_list_store_set(ls, &iter, 0, "", -1);
+
+	    gtk_list_store_append(ls, &iter);
+	    sprintf(buf2, _("Week %d, Week round %d"), 
+		    g_array_index(newspaper.articles, NewsPaperArticle, i).week_number,
+		    g_array_index(newspaper.articles, NewsPaperArticle, i).week_round_number);
+	    sprintf(buf, "<span %s>%s</span>", 
+		    const_app("string_news_window_week_number_attribute"),
+		    buf2);
+	    gtk_list_store_set(ls, &iter, 0, buf, -1);	    
+	}
+
+	gtk_list_store_append(ls, &iter);
+	sprintf(buf, "<span %s>%s</span>", 
+		const_app("string_news_window_title_small_attribute"),
+		g_array_index(newspaper.articles, NewsPaperArticle, i).title_small);
+	gtk_list_store_set(ls, &iter, 0, buf, -1);
+
+	gtk_list_store_append(ls, &iter);
+	sprintf(buf, "<span %s>%s</span>", 
+		const_app("string_news_window_title_attribute"),
+		g_array_index(newspaper.articles, NewsPaperArticle, i).title);
+	gtk_list_store_set(ls, &iter, 0, buf, -1);
+
+	gtk_list_store_append(ls, &iter);
+	sprintf(buf, "<span %s>%s</span>\n", 
+		const_app("string_news_window_subtitle_attribute"),
+		g_array_index(newspaper.articles, NewsPaperArticle, i).subtitle);
+	gtk_list_store_set(ls, &iter, 0, buf, -1);	
+    }
+}
+
+void
+treeview2_set_up_news(GtkTreeView *treeview)
+{
+#ifdef DEBUG
+    printf("treeview2_set_up_news\n");
+#endif
+
+    GtkTreeViewColumn   *col;
+    GtkCellRenderer     *renderer;
+
+    gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
+				GTK_SELECTION_NONE);
+    gtk_tree_view_set_headers_visible(treeview, FALSE);
+    gtk_tree_view_set_rules_hint(treeview, TRUE);
+
+    col = gtk_tree_view_column_new();
+    gtk_tree_view_append_column(treeview, col);
+    renderer = treeview_helper_cell_renderer_text_new();
+    gtk_tree_view_column_pack_start(col, renderer, TRUE);
+    gtk_tree_view_column_add_attribute(col, renderer,
+				       "markup", 0);
+}
+
+/** Show the news in the news treeview. */
+void
+treeview2_show_news(void)
+{
+#ifdef DEBUG
+    printf("treeview2_show_job_exchange\n");
+#endif
+
+    GtkTreeView *treeview = 
+	GTK_TREE_VIEW(lookup_widget(window.news, "treeview_news"));
+    GtkListStore *model = 
+	gtk_list_store_new(1, G_TYPE_STRING);
+    
+    treeview_helper_clear(treeview);
+    
+    treeview2_set_up_news(treeview);
+
+    treeview2_create_news(model);
+    gtk_tree_view_set_model(treeview, GTK_TREE_MODEL(model));
+    g_object_unref(model);        
+}

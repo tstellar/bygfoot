@@ -765,6 +765,7 @@ free_newspaper(gboolean reset)
 
     for(i = 0; i < newspaper.articles->len; i++)
     {
+        g_free(g_array_index(newspaper.articles, NewsPaperArticle, i).title_small);
         g_free(g_array_index(newspaper.articles, NewsPaperArticle, i).title);
         g_free(g_array_index(newspaper.articles, NewsPaperArticle, i).subtitle);
     }

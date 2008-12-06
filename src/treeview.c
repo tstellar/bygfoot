@@ -1484,7 +1484,7 @@ treeview_create_stadium_summary(GtkListStore *ls)
 }
 
 GtkTreeModel*
-treeview_create_finances(const User* user)
+treeview_create_finances(const User *user)
 {
 #ifdef DEBUG
     printf("treeview_create_finances\n");

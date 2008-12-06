@@ -981,6 +981,14 @@ window_create(gint window_type)
         wind = window.alr;
         strcpy(buf, _("Automatic loan repayment"));
         break;
+    case WINDOW_NEWS:
+        if(window.news != NULL)
+            g_warning("window_create: called on already existing window\n");
+        else
+            window.news = create_window_news();
+        wind = window.news;
+        strcpy(buf, _("Bygfoot news"));
+        break;
     }
 
     if(window_type != WINDOW_FILE_CHOOSER)
