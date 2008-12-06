@@ -136,7 +136,7 @@ void
 treeview_set_up_finances(GtkTreeView *treeview);
 
 GtkTreeModel*
-treeview_create_finances(const User* user);
+treeview_create_finances(const User *user);
 
 void
 treeview_show_player_list_team(GtkTreeView *treeview, const Team *tm, gint scout);

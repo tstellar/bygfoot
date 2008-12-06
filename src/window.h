@@ -55,6 +55,7 @@ enum Windows
     WINDOW_SPLASH,
     WINDOW_END,
     WINDOW_TRAINING_CAMP,
+    WINDOW_NEWS,
     WINDOW_ALR
 };
 

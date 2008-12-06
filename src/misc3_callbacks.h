@@ -108,5 +108,17 @@ on_window_alr_delete_event            (GtkWidget       *widget,
                                         GdkEvent        *event,
                                        gpointer         user_data);
 
-#endif
+gboolean
+on_window_news_delete_event            (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data);
 
+gboolean
+on_window_news_destroy_event           (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data);
+
+void
+on_button_news_close_clicked           (GtkButton       *button,
+                                        gpointer         user_data);
+#endif

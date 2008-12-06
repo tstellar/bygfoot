@@ -73,4 +73,13 @@ treeview2_set_up_job_exchange(GtkTreeView *treeview);
 void
 treeview2_show_job_exchange(void);
 
+void
+treeview2_create_news(GtkListStore *ls);
+
+void
+treeview2_set_up_news(GtkTreeView *treeview);
+
+void
+treeview2_show_news(void);
+
 #endif

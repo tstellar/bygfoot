@@ -346,8 +346,6 @@ on_hpaned2_button_release_event        (GtkWidget       *widget,
 void
 on_training_camp_activate              (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
-#endif
-
 gboolean
 on_player_list1_key_press_event        (GtkWidget       *widget,
                                         GdkEventKey     *event,
@@ -356,3 +354,9 @@ on_player_list1_key_press_event        (GtkWidget       *widget,
 void
 on_automatic_loan_repayment_activate   (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
+
+void
+on_menu_news_activate                  (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+#endif
+

@@ -370,3 +370,30 @@ on_window_alr_delete_event            (GtkWidget       *widget,
     return TRUE;
 }
 
+
+gboolean
+on_window_news_delete_event            (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data)
+{
+    window_destroy(&window.news);
+    return FALSE;
+}
+
+
+gboolean
+on_window_news_destroy_event           (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data)
+{
+    window_destroy(&window.news);
+    return FALSE;
+}
+
+
+void
+on_button_news_close_clicked           (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    window_destroy(&window.news);
+}

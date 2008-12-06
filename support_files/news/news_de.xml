@@ -7,26 +7,20 @@
   <paper_name>News Of The Sports World</paper_name>
   <news_article>
     <type>match</type>
-    <condition>_GD_ G 1</condition>
+    <condition>_CUP_ = 0 _GD_ G 1</condition>
     <title>_TW_ [beats|crushes|kills] _TL_!</title>
     <subtitle>Result: _RE_</subtitle>
-    <title priority="5">_TL_ loses to _TW_!</title>
-    <subtitle priority="5">_TL_ doesn't stand a chance against a _GOALS_TWN__ goal barrage.</subtitle>
+    <title>_TL_ loses to _TW_!</title>
+    <subtitle>_TL_ doesn't stand a chance against a _GOALS_TWN__ goal barrage.</subtitle>
     <title>_TW_ wipes out _TL_!</title>
     <subtitle>_RE_ is flattering for _TL_.</subtitle>
     <title>_TL_ loses again!</title>
     <subtitle>_TW_ just too strong.</subtitle>
     <title>_TL_ in a world of misery!</title>
     <subtitle>_TW_: _RE_ against _TL_.</subtitle>
-    <title priority="15">_LEAGUECUPNAME_: _TL_ loses to _TW_!</title>
-    <subtitle priority="15">_TL_ overwhelmed by _SHOTS_TWN__ shots.</subtitle>
-    <subtitle priority="25" condition="_MULTIPLESCORERS_ = 1">_SCORERS_TWN__ ensure victory for _TW_.</subtitle>
-  </news_article>
-
-  <news_article>
-    <type>match</type>
-    <condition>_CUP_ = 0</condition>
-    <title>_TW_ victorious!</title>
+    <title>_LEAGUECUPNAME_: _TL_ loses to _TW_!</title>
+    <subtitle>_TL_ overwhelmed by _SHOTS_TWN__ shots.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_ = 1">_SCORERS_TWN__ ensure victory for _TW_.</subtitle>
     <subtitle>_TW_ moves to rank _RANK_TWN__ in _LEAGUECUPNAME_.</subtitle>
     <subtitle condition="_RANK_TWN__ > _OLDRANK_TWN__">_TW_ moves to rank _RANK_TWN__ in _LEAGUECUPNAME_.</subtitle>
     <subtitle condition="_RANK_TWN__ = 1 and _OLDRANK_TWN__ != 1">_TW_ on top after defeating _TL_ _RE_.</subtitle>
