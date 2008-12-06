@@ -74,7 +74,7 @@ news_generate_match(const LiveGame *live_game)
         new_article.subtitle = g_strdup(subtitle);
         new_article.title_id = title_id;
         new_article.subtitle_id = subtitle_id;
-//        printf("%s / %s -- %d %d\n", title, subtitle, title_id, subtitle_id);
+/*         printf("%s / %s -- %d %d\n", title, subtitle, title_id, subtitle_id); */
         g_array_append_val(newspaper.articles, new_article);
 
 /*         gint i; */
@@ -98,17 +98,24 @@ news_select(const GArray *news_array, gchar *title, gchar *subtitle,
 
     gint i;
     const NewsArticle *article;
+    gint order_articles[news_array->len];
+
+    math_generate_permutation(order_articles, 0, news_array->len - 1);
 
     *title_id = *subtitle_id = -1;
 
     for(i=0;i<news_array->len;i++)
-	if(misc_parse_condition(g_array_index(news_array, NewsArticle, i).condition, token_rep_news))
+    {
+/*         printf("cond %s res %d\n", g_array_index(news_array, NewsArticle, order_articles[i]).condition, */
+/*                misc_parse_condition(g_array_index(news_array, NewsArticle, order_articles[i]).condition, token_rep_news)); */
+	if(misc_parse_condition(g_array_index(news_array, NewsArticle, order_articles[i]).condition, token_rep_news))
 	    break;
+    }
 
     if(i == news_array->len)
 	return;
 
-    article = &g_array_index(news_array, NewsArticle, i);
+    article = &g_array_index(news_array, NewsArticle, order_articles[i]);
 
     gint order_titles[article->titles->len],
         order_subtitles[article->subtitles->len];
@@ -140,6 +147,8 @@ news_get_title(const GArray *titles, gchar *title, gint *order,
 
     for(i = 0; i < titles->len; i++)
     {
+        gboolean res = misc_string_replace_all_tokens(token_rep_news, g_array_index(titles, NewsText, order[i]).text, title);
+/*         printf("title: %s %d\n", title, res); */
         if(misc_parse_condition(g_array_index(titles, NewsText, order[i]).condition, token_rep_news) &&
            misc_string_replace_all_tokens(token_rep_news, g_array_index(titles, NewsText, order[i]).text, title))
         {
@@ -235,6 +244,9 @@ news_set_match_tokens(const LiveGame *live_game)
     news_set_fixture_tokens(live_game->fix);
     news_set_league_cup_tokens(live_game->fix);
     news_set_scorer_tokens(&live_game->stats);
+
+    if(live_game->fix->clid < ID_CUP_START)
+        news_set_rank_tokens(live_game->fix);
 }
 
 void
@@ -325,7 +337,7 @@ news_set_scorer_tokens(const LiveGameStats *stats)
 
         if(strcmp(scorer_str, "") != 0)
         {
-            sprintf(buf, "string_token_multiple_scorers%d", i);
+            sprintf(buf, "string_token_bool_multiple_scorers%d", i);
             misc_token_add_bool(token_rep_news,
                                 option_int(buf, &tokens),
                                 (scorers[i]->len > 1));
@@ -381,7 +393,7 @@ news_set_league_cup_tokens(const Fixture *fix)
 		   g_strdup(league_cup_get_name_string(fix->clid)));
 
     misc_token_add_bool(token_rep_news,
-                        option_int("string_token_cup", &tokens),
+                        option_int("string_token_bool_cup", &tokens),
                         (fix->clid >= ID_CUP_START));
 
     if(fix->clid >= ID_CUP_START)
@@ -395,7 +407,7 @@ news_set_league_cup_tokens(const Fixture *fix)
 		       g_strdup(buf));
 
         misc_token_add_bool(token_rep_news,
-                           option_int("string_token_cup_knockout", &tokens),
+                           option_int("string_token_bool_cup_knockout", &tokens),
                             (cupround->tables->len == 0));
         
         if(fix->decisive)
@@ -405,6 +417,7 @@ news_set_league_cup_tokens(const Fixture *fix)
     }
 }
 
+/** Set the news tokens related to the fixture. */
 void
 news_set_fixture_tokens(const Fixture *fix)
 {
@@ -460,6 +473,34 @@ news_set_fixture_tokens(const Fixture *fix)
 		       option_int("string_token_team_winningn", &tokens), 
 		       misc_int_to_char((fix->result[0][0] < fix->result[1][0])));
     }    
+}
+
+/** Set the rank tokens of the involved teams. */
+void
+news_set_rank_tokens(const Fixture *fix)
+{
+#ifdef DEBUG
+    printf("news_set_rank_tokens\n");
+#endif
+    
+    gint i, j;
+    gchar buf[SMALL];
+    const Table *table;
+
+    for(i = 0; i < 2; i++)
+    {
+        table = league_table(league_from_clid(fix->teams[i]->clid));
+        for(j = 0; j < table->elements->len; j++)
+            if(g_array_index(table->elements, TableElement, j).team == fix->teams[i])
+            {                
+                sprintf(buf, "string_token_rank%d", i);
+                misc_token_add(token_rep_news, option_int(buf, &tokens), misc_int_to_char(j + 1));
+                sprintf(buf, "string_token_oldrank%d", i);
+                misc_token_add(token_rep_news, option_int(buf, &tokens), 
+                               misc_int_to_char(g_array_index(table->elements, TableElement, j).old_rank));
+                break;
+            }
+    }
 }
 
 /** Free the memory occupied by the tokens array and the permanent tokens. */
