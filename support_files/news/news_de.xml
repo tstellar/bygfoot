@@ -7,7 +7,7 @@
   <paper_name>News Of The Sports World</paper_name>
   <news_article>
     <type>match</type>
-    <condition>_GD_ > 1</condition>
+    <condition>_GD_ G 1</condition>
     <title>_TW_ [beats|crushes|kills] _TL_!</title>
     <subtitle>Result: _RE_</subtitle>
     <title priority="5">_TL_ loses to _TW_!</title>
@@ -21,6 +21,15 @@
     <title priority="15">_LEAGUECUPNAME_: _TL_ loses to _TW_!</title>
     <subtitle priority="15">_TL_ overwhelmed by _SHOTS_TWN__ shots.</subtitle>
     <subtitle priority="25" condition="_MULTIPLESCORERS_ = 1">_SCORERS_TWN__ ensure victory for _TW_.</subtitle>
+  </news_article>
+
+  <news_article>
+    <type>match</type>
+    <condition>_CUP_ = 0</condition>
+    <title>_TW_ victorious!</title>
+    <subtitle>_TW_ moves to rank _RANK_TWN__ in _LEAGUECUPNAME_.</subtitle>
+    <subtitle condition="_RANK_TWN__ > _OLDRANK_TWN__">_TW_ moves to rank _RANK_TWN__ in _LEAGUECUPNAME_.</subtitle>
+    <subtitle condition="_RANK_TWN__ = 1 and _OLDRANK_TWN__ != 1">_TW_ on top after defeating _TL_ _RE_.</subtitle>
   </news_article>
 
 </news>
