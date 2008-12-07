@@ -59,7 +59,7 @@ gint
 misc_float_compare(gfloat first, gfloat second);
 
 gboolean
-query_misc_string_in_array(const gchar *string, GPtrArray *array);
+query_misc_string_in_array(const gchar *string, const GPtrArray *array);
 
 gboolean
 query_misc_integer_is_in_g_array(gint item, GArray *array);

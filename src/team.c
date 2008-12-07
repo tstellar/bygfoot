@@ -943,7 +943,7 @@ team_get_index(const Team *tm)
 #endif
 
     gint i;
-    gpointer *teams = league_cup_get_teams(tm->clid);
+    gpointer *teams = (gpointer*)league_cup_get_teams(tm->clid);
 
     if(tm->clid < ID_CUP_START)
     {
