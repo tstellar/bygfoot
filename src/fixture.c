@@ -1203,7 +1203,7 @@ fixture_compare_func(gconstpointer a, gconstpointer b, gpointer data)
 
 /** Return an array with the last fixtures of the team. */
 GPtrArray*
-fixture_get_latest(const Team *tm)
+fixture_get_latest(const Team *tm, gboolean with_cups)
 {
 #ifdef DEBUG
     printf("fixture_get_latest\n");
@@ -1222,15 +1222,18 @@ fixture_get_latest(const Team *tm)
 			g_array_index(lig(i).fixtures, Fixture, j).teams[1] == tm)
 		    g_ptr_array_add(latest, &g_array_index(lig(i).fixtures, Fixture, j));
 	}
-    
-    for(i=0;i<acps->len;i++)
+
+    if(with_cups)
     {
-	for(j=0;j<acp(i)->fixtures->len;j++)
-	    if(g_array_index(acp(i)->fixtures, Fixture, j).attendance == -1)
-		break;
-	    else if(g_array_index(acp(i)->fixtures, Fixture, j).teams[0] == tm ||
-		    g_array_index(acp(i)->fixtures, Fixture, j).teams[1] == tm)
-		g_ptr_array_add(latest, &g_array_index(acp(i)->fixtures, Fixture, j));
+	for(i=0;i<acps->len;i++)
+	{
+	    for(j=0;j<acp(i)->fixtures->len;j++)
+		if(g_array_index(acp(i)->fixtures, Fixture, j).attendance == -1)
+		    break;
+		else if(g_array_index(acp(i)->fixtures, Fixture, j).teams[0] == tm ||
+			g_array_index(acp(i)->fixtures, Fixture, j).teams[1] == tm)
+		    g_ptr_array_add(latest, &g_array_index(acp(i)->fixtures, Fixture, j));
+	}	
     }
 
     g_ptr_array_sort_with_data(latest, fixture_compare_func,

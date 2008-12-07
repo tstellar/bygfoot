@@ -294,10 +294,76 @@ news_set_match_tokens(const LiveGame *live_game)
     lg_commentary_set_stats_tokens(&live_game->stats, token_rep_news);
     news_set_fixture_tokens(live_game->fix);
     news_set_league_cup_tokens(live_game->fix);
+    news_set_streak_tokens(live_game->fix);
     news_set_scorer_tokens(&live_game->stats);
 
     if(live_game->fix->clid < ID_CUP_START)
         news_set_rank_tokens(live_game->fix);
+}
+
+/** Set overall and league streak tokens for the two teams. */
+void
+news_set_streak_tokens(const Fixture *fix)
+{
+#ifdef DEBUG
+    printf("news_set_streak_tokens\n");
+#endif
+
+    gint i, j, k,
+	streak_won, streak_lost;
+    gint res[2];
+    gchar buf[SMALL], buf2[SMALL];
+    GPtrArray *latest_fixtures;
+    
+    for(i = 0; i < 2; i++)
+    {
+	for(k = 0; k < 2; k++)
+	{
+	    latest_fixtures = fixture_get_latest(fix->teams[0], (k == 0));
+	    streak_won = streak_lost = 0;
+
+	    for(j=latest_fixtures->len - 1;j>=0;j--)
+	    {
+		res[0] = math_sum_int_array(((Fixture*)g_ptr_array_index(latest_fixtures, j))->result[0], 3);
+		res[1] = math_sum_int_array(((Fixture*)g_ptr_array_index(latest_fixtures, j))->result[1], 3);
+
+		if(res[0] == res[1])
+		    break;
+		else if(res[(((Fixture*)g_ptr_array_index(latest_fixtures, j))->teams[0] == fix->teams[i])] >
+			res[(((Fixture*)g_ptr_array_index(latest_fixtures, j))->teams[0] != fix->teams[i])])
+		{
+		    if(streak_won == 0)
+			streak_lost++;
+		    else
+			break;
+		}
+		else
+		{
+		    if(streak_lost == 0)
+			streak_won++;
+		    else
+			break;
+		}	    	    
+	    }
+
+	    if(k == 0)
+		strcpy(buf2, "");
+	    else
+		strcpy(buf2, "league_");
+
+	    sprintf(buf, "string_token_streak_%swon%d", buf2, i);
+	    misc_token_add(token_rep_news,
+			   option_int(buf, &tokens),
+			   misc_int_to_char(streak_won));
+	    sprintf(buf, "string_token_streak_%slost%d", buf2, i);
+	    misc_token_add(token_rep_news,
+			   option_int(buf, &tokens),
+			   misc_int_to_char(streak_lost));
+
+
+	    g_ptr_array_free(latest_fixtures, TRUE);
+	}
+    }
 }
 
 void
@@ -369,9 +435,9 @@ news_set_scorer_tokens(const LiveGameStats *stats)
             else if(j == scorers[i]->len - 1 && j != 0)
             {
                 if(scorer_goals > 1)
-                    sprintf(scorer_str, "%s and %s (%d)", buf, scorer, scorer_goals);
+                    sprintf(scorer_str, _("%s and %s (%d)"), buf, scorer, scorer_goals);
                 else
-                    sprintf(scorer_str, "%s and %s", buf, scorer);
+                    sprintf(scorer_str, _("%s and %s"), buf, scorer);
             }
             else
             {
@@ -564,6 +630,7 @@ news_free_tokens(void)
 
     gint i;
 
+/*     printf("\n\n---------------------------------\n"); */
     for(i=token_rep_news[0]->len - 1;i >= 0; i--)
     {
 /*         printf("%s/%s\n", (gchar*)g_ptr_array_index(token_rep_news[0], i), */

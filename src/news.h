@@ -76,4 +76,7 @@ news_set_rank_tokens(const Fixture *fix);
 void
 news_articles_get_order(const GArray *articles, gint *order);
 
+void
+news_set_streak_tokens(const Fixture *fix);
+
 #endif

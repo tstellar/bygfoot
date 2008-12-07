@@ -124,7 +124,7 @@ Fixture*
 fixture_get_previous(gint clid, gint week_number, gint week_round_number);
 
 GPtrArray*
-fixture_get_latest(const Team *tm);
+fixture_get_latest(const Team *tm, gboolean with_cups);
 
 gint
 fixture_compare_func(gconstpointer a, gconstpointer b, gpointer data);
