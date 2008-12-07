@@ -300,7 +300,7 @@ misc_float_compare(gfloat first, gfloat second)
 
 /** Check whether the string is in the string array. */
 gboolean
-query_misc_string_in_array(const gchar *string, GPtrArray *array)
+query_misc_string_in_array(const gchar *string, const GPtrArray *array)
 {
     gint i;
 

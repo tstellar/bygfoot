@@ -66,6 +66,8 @@ typedef struct
     /** A condition (if not fulfilled, the article doesn't get
 	shown). */
     gchar *condition;
+    /** Priority of the article. */
+    gint priority;
 
 } NewsArticle;
 

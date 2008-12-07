@@ -34,6 +34,7 @@
 #define TAG_ARTICLE "news_article"
 #define TAG_ARTICLE_TYPE "type"
 #define TAG_ARTICLE_CONDITION "condition"
+#define TAG_ARTICLE_PRIORITY "priority"
 #define TAG_ARTICLE_TITLE "title"
 #define TAG_ARTICLE_SUBTITLE "subtitle"
 
@@ -54,6 +55,7 @@ enum XmlNewsStates
     STATE_ARTICLE,
     STATE_ARTICLE_TYPE,
     STATE_ARTICLE_CONDITION,
+    STATE_ARTICLE_PRIORITY,
     STATE_ARTICLE_TITLE,
     STATE_ARTICLE_SUBTITLE,
     STATE_END
@@ -124,11 +126,14 @@ xml_news_read_start_element (GMarkupParseContext *context,
         new_article.titles = g_array_new(FALSE, FALSE, sizeof(NewsText));
         new_article.subtitles = g_array_new(FALSE, FALSE, sizeof(NewsText));
         new_article.condition = g_strdup("0");
+	new_article.priority = 1;
     }
     else if(strcmp(element_name, TAG_ARTICLE_TYPE) == 0)
 	state = STATE_ARTICLE_TYPE;
     else if(strcmp(element_name, TAG_ARTICLE_CONDITION) == 0)
 	state = STATE_ARTICLE_CONDITION;
+    else if(strcmp(element_name, TAG_ARTICLE_PRIORITY) == 0)
+	state = STATE_ARTICLE_PRIORITY;
     else if(strcmp(element_name, TAG_ARTICLE_TITLE) == 0)
     {
 	state = STATE_ARTICLE_TITLE;
@@ -190,6 +195,7 @@ xml_news_read_end_element    (GMarkupParseContext *context,
         state = STATE_NEWS;
     else if(strcmp(element_name, TAG_ARTICLE_TYPE) == 0 ||
 	    strcmp(element_name, TAG_ARTICLE_CONDITION) == 0 ||
+	    strcmp(element_name, TAG_ARTICLE_PRIORITY) == 0 ||
 	    strcmp(element_name, TAG_ARTICLE_TITLE) == 0 ||
 	    strcmp(element_name, TAG_ARTICLE_SUBTITLE) == 0)
 	state = STATE_ARTICLE;
@@ -216,9 +222,12 @@ xml_news_read_text         (GMarkupParseContext *context,
 #endif
 
     gchar buf[text_len + 1];
+    gint int_value;
 
     strncpy(buf, text, text_len);
     buf[text_len] = '\0';
+
+    int_value = (gint)g_ascii_strtod(buf, NULL);
 
     if(state == STATE_PAPER_NAME)
         g_ptr_array_add(newspaper.names, g_strdup(buf));
@@ -226,6 +235,8 @@ xml_news_read_text         (GMarkupParseContext *context,
 	article_idx = xml_news_article_type_to_int(buf);
     else if(state == STATE_ARTICLE_CONDITION)
         misc_string_assign(&new_article.condition, buf);
+    else if(state == STATE_ARTICLE_PRIORITY)
+        new_article.priority = int_value;
     else if(state == STATE_ARTICLE_TITLE)
     {
         new_title.text = g_strdup(buf);

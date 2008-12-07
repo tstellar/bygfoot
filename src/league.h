@@ -31,13 +31,9 @@
 #include "league_struct.h"
 #include "fixture_struct.h"
 
-#define league_cup_get_teams(clid) (clid < ID_CUP_START) ? ((gpointer)(league_from_clid(clid)->teams)) : ((gpointer)(cup_from_clid(clid)->teams))
 #define league_cup_get_fixtures(clid) (clid < ID_CUP_START) ? (league_from_clid(clid)->fixtures) : (cup_from_clid(clid)->fixtures)
 #define league_cup_get_name_string(clid) (clid < ID_CUP_START) ? league_from_clid(clid)->name : cup_from_clid(clid)->name
 #define league_cup_get_yellow_red(clid) (clid < ID_CUP_START) ? (league_from_clid(clid)->yellow_red) : (cup_from_clid(clid)->yellow_red)
-
-#define league_cup_get_properties(clid) (clid < ID_CUP_START) ? ((gpointer)(league_from_clid(clid)->properties)) : ((gpointer)(cup_from_clid(clid)->properties))
-#define query_league_cup_has_property(clid, string) query_misc_string_in_array(string, (GArray*)league_cup_get_properties(clid))
 
 #define league_table_cumul(league) (&g_array_index((league)->tables, Table, 0))
 #define league_table(league) (&g_array_index((league)->tables, Table, league->tables->len - 1))
@@ -148,5 +144,14 @@ league_check_new_tables(League *league);
 
 void
 league_add_table(League *league);
+
+gboolean
+query_league_cup_has_property(gint clid, const gchar *property);
+
+GPtrArray*
+league_cup_get_teams(gint clid);
+
+GPtrArray*
+league_cup_get_properties(gint clid);
 
 #endif

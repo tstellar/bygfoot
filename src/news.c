@@ -105,7 +105,7 @@ news_select(const GArray *news_array, gchar *title, gchar *subtitle,
     const NewsArticle *article;
     gint order_articles[news_array->len];
 
-    math_generate_permutation(order_articles, 0, news_array->len - 1);
+    news_articles_get_order(news_array, order_articles);
 
     *title_id = *subtitle_id = -1;
 
@@ -192,8 +192,8 @@ news_check_for_repetition(gint id, gboolean is_title)
 
 
 /** Write a random order of indices into the integer array
-    (only depending on the priority values of the commentaries).
-    I don't like this implementation of ordering the commentaries
+    (only depending on the priority values of the news titles).
+    I don't like this implementation of ordering the titles
     according to their priority :-P can't think of a better one, though. */
 void
 news_titles_get_order(const GArray *titles, gint *order)
@@ -227,6 +227,52 @@ news_titles_get_order(const GArray *titles, gint *order)
 	    if(bounds[j] < permutation[i] && permutation[i] <= bounds[j + 1])
 	    {
 		if(!query_integer_is_in_array(j, order, titles->len))
+		{
+		    order[order_idx] = j;
+		    order_idx++;
+		}
+
+		break;
+	    }
+    }
+}
+
+/** Write a random order of indices into the integer array
+    (only depending on the priority values of the news articles).
+    I don't like this implementation of ordering the articles
+    according to their priority :-P can't think of a better one, though. */
+void
+news_articles_get_order(const GArray *articles, gint *order)
+{
+#ifdef DEBUG
+    printf("news_articles_get_order\n");
+#endif
+
+    gint i, j, order_idx = 0;
+    gint priority_sum = 0, bounds[articles->len + 1];
+
+    bounds[0] = 0;
+
+    for(i=0;i<articles->len;i++)
+    {
+	priority_sum += g_array_index(articles, NewsArticle, i).priority;
+	bounds[i + 1] = priority_sum;
+	order[i] = -1;
+    }
+
+    gint permutation[priority_sum];
+
+    math_generate_permutation(permutation, 1, priority_sum);
+
+    for(i=0;i<priority_sum;i++)
+    {
+	if(order_idx == articles->len)
+	    break;
+
+	for(j=0;j<articles->len;j++)
+	    if(bounds[j] < permutation[i] && permutation[i] <= bounds[j + 1])
+	    {
+		if(!query_integer_is_in_array(j, order, articles->len))
 		{
 		    order[order_idx] = j;
 		    order_idx++;

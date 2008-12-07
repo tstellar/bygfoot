@@ -1028,3 +1028,26 @@ league_add_table(League *league)
 
     g_array_append_val(league->tables, new_table);
 }
+
+gboolean
+query_league_cup_has_property(gint clid, const gchar *property)
+{
+    const GPtrArray *properties = league_cup_get_properties(clid);
+    return query_misc_string_in_array(property, properties);
+}
+
+GPtrArray*
+league_cup_get_teams(gint clid)
+{
+    return (clid < ID_CUP_START) ?
+	(GPtrArray*)league_from_clid(clid)->teams :
+	cup_from_clid(clid)->teams;
+}
+
+GPtrArray*
+league_cup_get_properties(gint clid)
+{
+    return (clid < ID_CUP_START) ? 
+	league_from_clid(clid)->properties :
+	cup_from_clid(clid)->properties;
+}

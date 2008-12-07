@@ -73,4 +73,7 @@ news_set_fixture_tokens(const Fixture *fix);
 void
 news_set_rank_tokens(const Fixture *fix);
 
+void
+news_articles_get_order(const GArray *articles, gint *order);
+
 #endif
