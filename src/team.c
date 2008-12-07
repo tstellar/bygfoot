@@ -1121,7 +1121,7 @@ team_write_results(const Team *tm, gchar *result_buf, gchar *goals_buf)
 #endif
 
     gint i;
-    GPtrArray *latest_fixtures = fixture_get_latest(tm);
+    GPtrArray *latest_fixtures = fixture_get_latest(tm, TRUE);
     gint res[2], goals[2] = {0, 0};
     gint end_idx = latest_fixtures->len - const_int("int_treeview_latest_results");
 
