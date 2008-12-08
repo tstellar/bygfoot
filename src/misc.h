@@ -58,6 +58,12 @@ misc_int_compare(gint first, gint second);
 gint
 misc_float_compare(gfloat first, gfloat second);
 
+const gchar*
+misc_strip_definitions_root(gchar *directory);
+
+gboolean
+query_misc_string_starts_with(const gchar *string, GList *list);
+
 gboolean
 query_misc_string_in_array(const gchar *string, const GPtrArray *array);
 

@@ -46,7 +46,7 @@ void
 treeview_helper_unref(GObject *object);
 
 void
-treeview_helper_insert_icon(GtkListStore *ls, GtkTreeIter *iter, gint column_nr,
+treeview_helper_insert_icon(GtkTreeModel *ls, GtkTreeIter *iter, gint column_nr,
 			    gchar *icon_name);
 
 GtkCellRenderer*

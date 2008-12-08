@@ -277,6 +277,20 @@ window_show_help(gint page)
     gtk_notebook_set_current_page(GTK_NOTEBOOK(lookup_widget(window.help, "notebook1")), page);
 }
 
+static void
+is_capital_sensitive (GtkCellLayout   *cell_layout,
+		      GtkCellRenderer *cell,
+		      GtkTreeModel    *tree_model,
+		      GtkTreeIter     *iter,
+		      gpointer         data)
+{
+  gboolean sensitive;
+
+  sensitive = !gtk_tree_model_iter_has_child (tree_model, iter);
+
+  g_object_set (cell, "sensitive", sensitive, NULL);
+}
+
 /**
    Show the country selection window. All files with prefix
    'country_' from $HOME/.bygfoot/definitions are appended to a combo box.
@@ -315,6 +329,11 @@ window_show_startup(void)
     language_pick_country(country_files);
     model = treeview_create_country_list(country_files);
     gtk_combo_box_set_model(GTK_COMBO_BOX(combo_country), model);
+    gtk_cell_layout_set_cell_data_func (GTK_CELL_LAYOUT (combo_country),
+					renderer,
+					is_capital_sensitive,
+					NULL, NULL);
+
     g_object_unref(model);
 
     gtk_combo_box_set_active(GTK_COMBO_BOX(combo_country), 0);
@@ -1140,3 +1159,4 @@ window_show_alr(void)
     gtk_spin_button_set_range(GTK_SPIN_BUTTON(lookup_widget(window.alr, "spinbutton_weekly_installment")),
                               0, -current_user.debt * powf(1 + current_user.debt_interest, const_int("int_finance_payback_weeks")) + 1);
 }
+
