@@ -298,6 +298,37 @@ misc_float_compare(gfloat first, gfloat second)
     return 0;
 }
 
+const gchar*
+misc_strip_definitions_root(gchar *directory)
+{
+    gchar **vector;
+    GList *list = root_definitions_directories;
+
+    while (list!=NULL)
+    {
+	if (g_str_has_prefix(directory, (gchar*)list->data))
+        {
+            vector = g_strsplit(directory, (gchar*)list->data,-1);
+            return g_strdup((gchar*)vector[g_strv_length(vector)-1]);
+        }
+        list = list->next; 
+    }
+    g_strfreev(vector);
+    return "";
+}
+
+/** Check whether the string starts with a string in the string array. */
+gboolean
+query_misc_string_starts_with(const gchar *string, GList *list)
+{
+    while (list!=NULL)
+    {
+	return g_str_has_prefix(string, (gchar*)list->data);
+        list = list->next; 
+    }
+    return FALSE;
+}
+
 /** Check whether the string is in the string array. */
 gboolean
 query_misc_string_in_array(const gchar *string, const GPtrArray *array)

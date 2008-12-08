@@ -37,6 +37,30 @@
 #include "variables.h"
 
 /**
+ * Adds a definition directory
+*/
+void add_definitions_directory(const gchar *directory)
+{
+#ifdef DEBUG
+    printf("add_definitions_directory\n");
+#endif
+    gchar **dir_split_up;
+
+    dir_split_up = g_strsplit_set (directory, "\\/", -1);
+    if (strcmp(dir_split_up[g_strv_length(dir_split_up)-1],"definitions")==0)
+    {
+        root_definitions_directories = g_list_prepend (root_definitions_directories,
+                                                  g_strdup(directory));
+    }
+    if (query_misc_string_starts_with(directory, root_definitions_directories))
+    {
+        definitions_directories = g_list_prepend (definitions_directories,
+                                                  g_strdup(directory));
+    }
+    g_strfreev(dir_split_up);
+}
+
+/**
    Add the specified directory to the list of directories file_find_support_file()
    searches for support files.
    Any subdirectories are added recursively.
@@ -66,6 +90,7 @@ file_add_support_directory_recursive                   (const gchar     *directo
 	return;
     }
 
+    add_definitions_directory(directory);
     add_pixmap_directory(directory);
     support_directories = g_list_prepend (support_directories,
 					  g_strdup (directory));
@@ -453,7 +478,8 @@ file_dir_get_contents(const gchar *dir_name, const gchar *prefix, const gchar *s
     return contents;
 }
 
-/** Return the country definition files found in the support dirs. */
+/** Return the country definition files found in the support dirs.
+ *  The files are appended with the directories*/
 GPtrArray*
 file_get_country_files(void)
 {
@@ -462,26 +488,38 @@ file_get_country_files(void)
 #endif
 
     gint i;
-    GList *elem = support_directories;
+    GList *elem = definitions_directories;
     GPtrArray *country_files = g_ptr_array_new();
     GPtrArray *dir_contents = NULL;
+    GPtrArray *country_files_full_path = g_ptr_array_new();
+    gchar buf[SMALL];
+    gchar *country_structure;
 
     while(elem != NULL)
     {
 	dir_contents = file_dir_get_contents((gchar*)elem->data, "country_", ".xml");
-
+	country_structure = misc_strip_definitions_root((gchar*)elem->data);
 	for(i=0;i<dir_contents->len;i++)
+        {
 	    if(!query_misc_string_in_array((gchar*)g_ptr_array_index(dir_contents, i),
 					   country_files))
+            {
 		g_ptr_array_add(country_files, 
-				g_strdup((gchar*)g_ptr_array_index(dir_contents, i)));
-
+                       g_strdup((gchar*)g_ptr_array_index(dir_contents, i)));
+                
+                sprintf(buf, "%s%s%s", g_strdup(country_structure),
+                        G_DIR_SEPARATOR_S,
+                        g_strdup((gchar*)g_ptr_array_index(dir_contents, i)));
+                g_ptr_array_add(country_files_full_path,g_strdup(buf));
+            }
+          }
 	free_gchar_array(&dir_contents);
 
 	elem = elem->next;
     }
+    free_gchar_array(&country_files);
 
-    return country_files;
+    return country_files_full_path;
 }
 
 /** Read the file until the next line that's not a comment or

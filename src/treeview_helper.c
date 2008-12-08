@@ -380,7 +380,7 @@ treeview_helper_unref(GObject *object)
     column.
     @param icon_name The filename of the icon. */
 void
-treeview_helper_insert_icon(GtkListStore *ls, GtkTreeIter *iter, gint column_nr,
+treeview_helper_insert_icon(GtkTreeModel *ls, GtkTreeIter *iter, gint column_nr,
 			    gchar *icon_name)
 {
 #ifdef DEBUG
@@ -388,8 +388,11 @@ treeview_helper_insert_icon(GtkListStore *ls, GtkTreeIter *iter, gint column_nr,
 #endif
 
     GdkPixbuf *symbol = treeview_helper_pixbuf_from_filename(icon_name);
-
-    gtk_list_store_set(ls, iter, column_nr, symbol, -1);
+    if (GTK_IS_LIST_STORE (ls)){
+        gtk_list_store_set(ls, iter, column_nr, symbol, -1);
+    } else if (GTK_IS_TREE_STORE(ls)){
+        gtk_tree_store_set(ls, iter, column_nr, symbol, -1);
+    }
     
     treeview_helper_unref(G_OBJECT(symbol));
 }

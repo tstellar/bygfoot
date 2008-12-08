@@ -297,7 +297,7 @@ main_init(gint *argc, gchar ***argv)
     sprintf(buf, "%s%ssaves", pwd, G_DIR_SEPARATOR_S);
     file_add_support_directory_recursive(buf);
     g_free(pwd);
-    
+
     /* initialize the random nr generator */
     rand_generator = g_rand_new();
 
