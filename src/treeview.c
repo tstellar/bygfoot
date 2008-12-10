@@ -2660,8 +2660,7 @@ treeview_create_country_list(const GPtrArray *country_list)
         if (g_str_has_prefix(current_country,"/")||g_str_has_prefix(current_country,"\\"))
         {
             // Strip leading "\\"
-            sprintf(buf, "%.*s", strlen(current_country) - 1, &current_country[1]);
-            current_country = g_strdup(buf);
+            sprintf(current_country, "%.*s", strlen(current_country) - 1, &current_country[1]);
         }
         dir_split_up = g_strsplit_set (current_country, "\\/", -1);
         for (j=0; j<g_strv_length(dir_split_up); j++)
