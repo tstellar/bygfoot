@@ -2649,13 +2649,21 @@ treeview_create_country_list(const GPtrArray *country_list)
     gboolean create_new_line;
     // This variable will be used to lookup 
     gchar* previous_element;
+    gchar* current_country;
     
     for(i=0;i<country_list->len;i++)
     {
         // We get countries as <Continent>/<...>/<country>
         // We then try to build a tree using "/ or \" as a separator
         // The list is already sorted, so we don't need to verify
-        dir_split_up = g_strsplit_set ((gchar*)g_ptr_array_index(country_list, i), "\\/", -1);
+        current_country = g_strdup((gchar*)g_ptr_array_index(country_list, i));
+        if (g_str_has_prefix(current_country,"/")||g_str_has_prefix(current_country,"\\"))
+        {
+            // Strip leading "\\"
+            sprintf(buf, "%.*s", strlen(current_country) - 1, &current_country[1]);
+            current_country = g_strdup(buf);
+        }
+        dir_split_up = g_strsplit_set (current_country, "\\/", -1);
         for (j=0; j<g_strv_length(dir_split_up); j++)
         {
             create_new_line = FALSE;
@@ -2666,7 +2674,7 @@ treeview_create_country_list(const GPtrArray *country_list)
                 create_new_line=TRUE;
             } else
             {
-	            gtk_tree_model_get (ls,(GtkTreeIter*)g_ptr_array_index(iterators,j), 1, &previous_element, -1);
+	            gtk_tree_model_get ((GtkTreeModel*)ls,(GtkTreeIter*)g_ptr_array_index(iterators,j), 1, &previous_element, -1);
                     if (strcmp(previous_element,dir_split_up[j])!=0) 
                     {
                         create_new_line=TRUE;
