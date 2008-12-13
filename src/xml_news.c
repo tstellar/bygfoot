@@ -30,7 +30,6 @@
 #include "xml_news.h"
 
 #define TAG_NEWS "news"
-#define TAG_PAPER_NAME "paper_name"
 #define TAG_ARTICLE "news_article"
 #define TAG_ARTICLE_TYPE "type"
 #define TAG_ARTICLE_CONDITION "condition"
@@ -51,7 +50,6 @@
 enum XmlNewsStates
 {
     STATE_NEWS = 0,
-    STATE_PAPER_NAME,
     STATE_ARTICLE,
     STATE_ARTICLE_TYPE,
     STATE_ARTICLE_CONDITION,
@@ -118,8 +116,6 @@ xml_news_read_start_element (GMarkupParseContext *context,
 
     if(strcmp(element_name, TAG_NEWS) == 0)
 	state = STATE_NEWS;
-    else if(strcmp(element_name, TAG_PAPER_NAME) == 0)
-	state = STATE_PAPER_NAME;
     else if(strcmp(element_name, TAG_ARTICLE) == 0)
     {
 	state = STATE_ARTICLE;
@@ -191,8 +187,6 @@ xml_news_read_end_element    (GMarkupParseContext *context,
      	state = STATE_NEWS;
         g_array_append_val(news[article_idx], new_article);
     }
-    else if(strcmp(element_name, TAG_PAPER_NAME) == 0)
-        state = STATE_NEWS;
     else if(strcmp(element_name, TAG_ARTICLE_TYPE) == 0 ||
 	    strcmp(element_name, TAG_ARTICLE_CONDITION) == 0 ||
 	    strcmp(element_name, TAG_ARTICLE_PRIORITY) == 0 ||
@@ -229,9 +223,7 @@ xml_news_read_text         (GMarkupParseContext *context,
 
     int_value = (gint)g_ascii_strtod(buf, NULL);
 
-    if(state == STATE_PAPER_NAME)
-        g_ptr_array_add(newspaper.names, g_strdup(buf));
-    else if(state == STATE_ARTICLE_TYPE)
+    if(state == STATE_ARTICLE_TYPE)
 	article_idx = xml_news_article_type_to_int(buf);
     else if(state == STATE_ARTICLE_CONDITION)
         misc_string_assign(&new_article.condition, buf);

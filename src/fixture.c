@@ -70,7 +70,7 @@ fixture_write_league_fixtures(League *league)
     /** Write fixtures for as many round robins as required by the maximum number of rrs given. */
     for(i = 0; i < max_rr;)
     {
-    	fixture_write_round_robin((gpointer)league, -1, misc_copy_ptr_array(teams), (i == max_rr - 1));
+    	fixture_write_round_robin((gpointer)league, -1, misc_copy_ptr_array(teams), (i == max_rr - 1), -1);
     	i += (i < max_rr - 1) ? 2 : 1;
     }
 
@@ -436,8 +436,16 @@ fixture_write_cup_round_robin(Cup *cup, gint cup_round, GPtrArray *teams)
     for(i=0;i<number_of_groups;i++)
     {
 	g_array_append_val(cupround->tables, table_group[i]);
-	fixture_write_round_robin((gpointer)cup, cup_round, 
-				  teams_group[i], !cupround->home_away);
+
+        for(j = 0; j < cupround->round_robins;)
+        {
+            fixture_write_round_robin((gpointer)cup, cup_round, 
+                                      misc_copy_ptr_array(teams_group[i]),
+                                      (j == cupround->round_robins - 1),
+                                      (j == 0) ? -1 : g_array_index(cup->fixtures, Fixture, cup->fixtures->len - 1).week_number + cup->week_gap);
+            j += (j < cupround->round_robins - 1) ? 2 : 1;
+        }
+        g_ptr_array_free(teams_group[i], TRUE);
     }
 
     g_ptr_array_free(teams, TRUE);
@@ -463,14 +471,14 @@ fixture_write_cup_round_robin(Cup *cup, gint cup_round, GPtrArray *teams)
     @param one_round Whether a team plays each other team twice or only once. */
 void
 fixture_write_round_robin(gpointer league_cup, gint cup_round, 
-			  GPtrArray *teams, gboolean one_round)
+			  GPtrArray *teams, gboolean one_round, gint first_week)
 {
 #ifdef DEBUG
     printf("fixture_write_round_robin\n");
 #endif
 
     gint i, j;
-    gint first_week, week_gap, week_number, 
+    gint week_gap, week_number, 
 	week_round_number, clid, first_fixture, 
 	rr_break;
     gboolean home_advantage;
@@ -500,7 +508,8 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round,
     else
     {
 	cup = (Cup*)league_cup;
-	first_week = cup_get_first_week_of_cup_round(cup, cup_round);
+        if(first_week == -1)
+            first_week = cup_get_first_week_of_cup_round(cup, cup_round);
 	week_gap = cup->week_gap;
 	fixtures = cup->fixtures;
 	two_match_weeks = g_array_index(cup->rounds, CupRound, cup_round).two_match_weeks;

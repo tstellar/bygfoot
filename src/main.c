@@ -239,7 +239,6 @@ main_init_variables(void)
 	news[i] = g_array_new(FALSE, FALSE, sizeof(NewsArticle));
 
     newspaper.articles = g_array_new(FALSE, FALSE, sizeof(NewsPaperArticle));
-    newspaper.names = g_ptr_array_new();
 
     file_load_conf_files();
     xml_strategy_load_strategies();
