@@ -129,9 +129,7 @@ xml_loadsave_newspaper_text         (GMarkupParseContext *context,
 
     int_value = (gint)g_ascii_strtod(buf, NULL);
 
-    if(state == TAG_NEWS_PAPER_NAME)
-	g_ptr_array_add(newspaper.names, g_strdup(buf));
-    else if(state == TAG_NEWS_PAPER_ARTICLE_WEEK)
+    if(state == TAG_NEWS_PAPER_ARTICLE_WEEK)
 	new_article.week_number = int_value;
     else if(state == TAG_NEWS_PAPER_ARTICLE_WEEK_ROUND)
 	new_article.week_round_number = int_value;
@@ -206,9 +204,6 @@ xml_loadsave_newspaper_write(const gchar *prefix)
 
     fprintf(fil, "<_%d>\n", TAG_NEWS_PAPER);
     
-    for(i = 0; i < newspaper.names->len; i++)
-        xml_write_string(fil, (gchar*)g_ptr_array_index(newspaper.names, i), TAG_NEWS_PAPER_NAME, I1);
-
     for(i=0;i<newspaper.articles->len;i++)
     {
 	fprintf(fil, "%s<_%d>\n", I0, TAG_NEWS_PAPER_ARTICLE);

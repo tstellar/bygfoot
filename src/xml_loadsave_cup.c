@@ -63,6 +63,7 @@ enum
     TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS,
     TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE,
     TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE,
+    TAG_CUP_ROUND_ROUND_ROBINS,
     TAG_CUP_ROUND_TWO_MATCH_WEEK_START,
     TAG_CUP_ROUND_TWO_MATCH_WEEK_END,
     TAG_CUP_ROUND_TWO_MATCH_WEEK,
@@ -181,6 +182,7 @@ xml_loadsave_cup_end_element    (GMarkupParseContext *context,
 	    tag == TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_GROUPS ||
 	    tag == TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE ||
 	    tag == TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE ||
+	    tag == TAG_CUP_ROUND_ROUND_ROBINS ||
 	    tag == TAG_CUP_ROUND_TWO_MATCH_WEEK_START ||
 	    tag == TAG_CUP_ROUND_TWO_MATCH_WEEK_END ||
 	    tag == TAG_CUP_ROUND_TWO_MATCH_WEEK)
@@ -301,6 +303,8 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
 	new_round.round_robin_number_of_advance = int_value;
     else if(state == TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE)
 	new_round.round_robin_number_of_best_advance = int_value;
+    else if(state == TAG_CUP_ROUND_ROUND_ROBINS)
+	new_round.round_robins = int_value;
     else if(state == TAG_CUP_ROUND_TWO_MATCH_WEEK_START)
 	g_array_append_val(new_round.two_match_weeks[0], int_value);
     else if(state == TAG_CUP_ROUND_TWO_MATCH_WEEK_END)
@@ -453,6 +457,8 @@ xml_loadsave_cup_write_round(FILE *fil, const gchar *prefix, const Cup *cup, gin
 		  TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_ADVANCE, I1);
     xml_write_int(fil, cup_round->round_robin_number_of_best_advance,
 		  TAG_CUP_ROUND_ROUND_ROBIN_NUMBER_OF_BEST_ADVANCE, I1);
+    xml_write_int(fil, cup_round->round_robins,
+		  TAG_CUP_ROUND_ROUND_ROBINS, I1);
     xml_write_int(fil, cup_round->two_match_week,
 		  TAG_CUP_ROUND_TWO_MATCH_WEEK, I1);
 

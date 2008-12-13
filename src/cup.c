@@ -123,6 +123,7 @@ cup_round_new(void)
     new.round_robin_number_of_groups = 0;
     new.round_robin_number_of_advance = 0;
     new.round_robin_number_of_best_advance = 0;
+    new.round_robins = 2;
     new.two_match_weeks[0] = g_array_new(FALSE, FALSE, sizeof(gint));
     new.two_match_weeks[1] = g_array_new(FALSE, FALSE, sizeof(gint));
     new.two_match_week = FALSE;
@@ -879,8 +880,7 @@ cup_get_matchdays_in_cup_round(const Cup *cup, gint round)
 	else
 	    number_of_matchdays = number_of_teams;
 	
-	if (cup_round->home_away)
-	    number_of_matchdays *= 2;
+        number_of_matchdays *= cup_round->round_robins;
 
 	for(i=0;i<cup_round->two_match_weeks[0]->len;i++)
 	{

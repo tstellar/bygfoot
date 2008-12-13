@@ -57,6 +57,8 @@ typedef struct
 	and additionally the best 3 from all the groups.
 	Default: 0. */
     gint round_robin_number_of_best_advance;
+    /** How many matchdays there are in the round robin phase. */
+    gint round_robins;
     /** Number of new teams participating in the cup round 
 	(ie. teams that get loaded and are not advancing from a previous
 	round). */

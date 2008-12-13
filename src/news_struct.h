@@ -77,14 +77,13 @@ typedef struct
     gint week_number, week_round_number;
     gint title_id, subtitle_id;
     gchar *title_small, *title, *subtitle;
+    gint user_idx;
 
 } NewsPaperArticle;
 
 /** Structure holding the newspaper for the game. */
 typedef struct
 {
-    /** A selection of newspaper names. */
-    GPtrArray *names;
     /** The array of created articles. */
     GArray *articles;
 
