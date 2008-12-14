@@ -233,7 +233,7 @@ xml_loadsave_league_text         (GMarkupParseContext *context,
     else if(state == TAG_YELLOW_RED)
 	new_league->yellow_red = int_value;
     else if(state == TAG_LEAGUE_BREAK)
-	new_league->rr_break = int_value;
+	g_array_append_val(new_league->rr_breaks, int_value);
     else if(state == TAG_LEAGUE_JOINED_LEAGUE_SID)	
         g_array_index(new_league->joined_leagues,
                       JoinedLeague,
@@ -368,7 +368,9 @@ xml_loadsave_league_write(const gchar *prefix, const League *league)
     xml_write_int(fil, league->round_robins, TAG_LEAGUE_ROUND_ROBINS, I0);
     xml_write_int(fil, league->week_gap, TAG_WEEK_GAP, I0);
     xml_write_int(fil, league->yellow_red, TAG_YELLOW_RED, I0);
-    xml_write_int(fil, league->rr_break, TAG_LEAGUE_BREAK, I0);
+
+    for(i = 0; i < league->rr_breaks->len; i++)
+        xml_write_int(fil, g_array_index(league->rr_breaks, gint, i), TAG_LEAGUE_BREAK, I0);
 
     for(i=0;i<league->tables->len;i++)
     {

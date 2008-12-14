@@ -59,7 +59,6 @@ league_new(gboolean new_id)
 
     new.id = (new_id) ? league_id_new : -1;
     new.layer = -1;
-    new.rr_break = 1;
 
     new.average_talent = 0;
 
@@ -76,6 +75,7 @@ league_new(gboolean new_id)
     new.new_tables = g_array_new(FALSE, FALSE, sizeof(NewTable));
     new.tables = g_array_new(FALSE, FALSE, sizeof(Table));
     new.properties = g_ptr_array_new();
+    new.rr_breaks = g_array_new(FALSE, FALSE, sizeof(gint));
 
     new.first_week = new.week_gap = 1;
     new.two_match_weeks[0] = g_array_new(FALSE, FALSE, sizeof(gint));
@@ -1050,4 +1050,52 @@ league_cup_get_properties(gint clid)
     return (clid < ID_CUP_START) ? 
 	league_from_clid(clid)->properties :
 	cup_from_clid(clid)->properties;
+}
+
+/** Synchronise the number of league breaks with the number of 
+    round robins in the league. */
+void
+league_cup_adjust_rr_breaks(GArray *rr_breaks, gint round_robins, gint week_gap)
+{
+#ifdef DEBUG
+    printf("league_cup_adjust_rr_breaks\n");
+#endif
+
+    gint i;
+    gint default_break;
+
+    /* Remove superfluous breaks. */
+    for(i = rr_breaks->len - 1; i >= round_robins - 1; i--)
+        g_array_remove_index(rr_breaks, i);
+
+    /* Add more breaks if necessary. */
+    if(rr_breaks->len == 0)
+        default_break = week_gap;
+    else
+        default_break = g_array_index(rr_breaks, gint, rr_breaks->len - 1);
+
+    for(i = rr_breaks->len; i < round_robins - 1; i++)
+        g_array_append_val(rr_breaks, default_break);
+}
+
+/** Fill the breaks array from a comma separated string of integers. */
+void
+league_cup_fill_rr_breaks(GArray *rr_breaks, const gchar *breaks)
+{
+#ifdef DEBUG
+    printf("league_cup_fill_rr_breaks\n");
+#endif
+
+    gint i = 0;
+    gchar **breaks_arr = g_strsplit(breaks, ",", 0);
+    gint new_break;
+
+    while(breaks_arr[i] != NULL)
+    {
+        new_break = (gint)g_ascii_strtod(breaks_arr[i], NULL);
+        g_array_append_val(rr_breaks, new_break);
+        i++;
+    }
+
+    g_strfreev(breaks_arr);
 }

@@ -154,4 +154,10 @@ league_cup_get_teams(gint clid);
 GPtrArray*
 league_cup_get_properties(gint clid);
 
+void
+league_cup_adjust_rr_breaks(GArray *rr_breaks, gint round_robins, gint week_gap);
+
+void
+league_cup_fill_rr_breaks(GArray *rr_breaks, const gchar *breaks);
+
 #endif

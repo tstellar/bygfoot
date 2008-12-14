@@ -70,7 +70,8 @@ fixture_write_league_fixtures(League *league)
     /** Write fixtures for as many round robins as required by the maximum number of rrs given. */
     for(i = 0; i < max_rr;)
     {
-    	fixture_write_round_robin((gpointer)league, -1, misc_copy_ptr_array(teams), (i == max_rr - 1), -1);
+    	fixture_write_round_robin((gpointer)league, -1, misc_copy_ptr_array(teams),
+                                  (i == max_rr - 1), -1, league->rr_breaks, i - 1);
     	i += (i < max_rr - 1) ? 2 : 1;
     }
 
@@ -442,7 +443,9 @@ fixture_write_cup_round_robin(Cup *cup, gint cup_round, GPtrArray *teams)
             fixture_write_round_robin((gpointer)cup, cup_round, 
                                       misc_copy_ptr_array(teams_group[i]),
                                       (j == cupround->round_robins - 1),
-                                      (j == 0) ? -1 : g_array_index(cup->fixtures, Fixture, cup->fixtures->len - 1).week_number + cup->week_gap);
+                                      (j == 0) ? -1 : g_array_index(cup->fixtures, Fixture, cup->fixtures->len - 1).week_number + 
+                                      g_array_index(cupround->rr_breaks, gint, j - 1),
+                                      cupround->rr_breaks, j - 1);
             j += (j < cupround->round_robins - 1) ? 2 : 1;
         }
         g_ptr_array_free(teams_group[i], TRUE);
@@ -471,7 +474,9 @@ fixture_write_cup_round_robin(Cup *cup, gint cup_round, GPtrArray *teams)
     @param one_round Whether a team plays each other team twice or only once. */
 void
 fixture_write_round_robin(gpointer league_cup, gint cup_round, 
-			  GPtrArray *teams, gboolean one_round, gint first_week)
+			  GPtrArray *teams, gboolean one_round, 
+                          gint first_week, GArray *rr_breaks,
+                          gint rr_break_idx)
 {
 #ifdef DEBUG
     printf("fixture_write_round_robin\n");
@@ -479,8 +484,7 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round,
 
     gint i, j;
     gint week_gap, week_number, 
-	week_round_number, clid, first_fixture, 
-	rr_break;
+	week_round_number, clid, first_fixture;
     gboolean home_advantage;
     League *league = NULL;
     Cup *cup = NULL;
@@ -500,10 +504,9 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round,
 	clid = league->id;
 	first_week = (fixtures->len == 0) ? league->first_week : 
 	    g_array_index(fixtures, Fixture, fixtures->len - 1).week_number + 
-	    league->rr_break;
+            g_array_index(rr_breaks, gint, rr_break_idx);
 	week_gap = league->week_gap;
 	home_advantage = TRUE;
-	rr_break = league->rr_break;
     }
     else
     {
@@ -515,7 +518,6 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round,
 	two_match_weeks = g_array_index(cup->rounds, CupRound, cup_round).two_match_weeks;
 	clid = cup->id;
 	home_advantage = (!g_array_index(cup->rounds, CupRound, cup_round).neutral);
-	rr_break = week_gap;
     }   
 
     first_fixture = fixtures->len;
@@ -548,7 +550,8 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round,
     if(!one_round)
     {
 	/* second half of fixtures */
-	week_number += rr_break;
+        week_number += g_array_index(rr_breaks, gint, rr_break_idx + 1);
+
 	for(i = 0; i < len - 1; i++)
 	{
 	    if(i > 0 && !query_league_cup_matchday_in_two_match_week(two_match_weeks, 
