@@ -25,6 +25,7 @@
 
 #include "cup.h"
 #include "file.h"
+#include "league.h"
 #include "main.h"
 #include "misc.h"
 #include "option.h"
@@ -59,6 +60,7 @@
 #define TAG_CUP_ROUND_NUMBER_OF_ADVANCE "number_of_advance"
 #define TAG_CUP_ROUND_NUMBER_OF_BEST_ADVANCE "number_of_best_advance"
 #define TAG_CUP_ROUND_ROUND_ROBINS "round_robins"
+#define TAG_CUP_ROUND_BREAK "break"
 #define TAG_CUP_ROUND_TWO_MATCH_WEEK_START "two_match_week_start"
 #define TAG_CUP_ROUND_TWO_MATCH_WEEK_END "two_match_week_end"
 #define TAG_CUP_ROUND_TWO_MATCH_WEEK "two_match_week"
@@ -103,6 +105,7 @@ enum XmlCupStates
     STATE_CUP_ROUND_NUMBER_OF_ADVANCE,
     STATE_CUP_ROUND_NUMBER_OF_BEST_ADVANCE,
     STATE_CUP_ROUND_ROUND_ROBINS,
+    STATE_CUP_ROUND_BREAK,
     STATE_CUP_ROUND_TWO_MATCH_WEEK_START,
     STATE_CUP_ROUND_TWO_MATCH_WEEK_END,
     STATE_CUP_ROUND_TWO_MATCH_WEEK,
@@ -203,6 +206,8 @@ xml_cup_read_start_element (GMarkupParseContext *context,
 	state = STATE_CUP_ROUND_NUMBER_OF_BEST_ADVANCE;
     else if(strcmp(element_name, TAG_CUP_ROUND_ROUND_ROBINS) == 0)
 	state = STATE_CUP_ROUND_ROUND_ROBINS;
+    else if(strcmp(element_name, TAG_CUP_ROUND_BREAK) == 0)
+	state = STATE_CUP_ROUND_BREAK;
     else if(strcmp(element_name, TAG_CUP_ROUND_TWO_MATCH_WEEK_START) == 0)
 	state = STATE_CUP_ROUND_TWO_MATCH_WEEK_START;
     else if(strcmp(element_name, TAG_CUP_ROUND_TWO_MATCH_WEEK_END) == 0)
@@ -272,6 +277,7 @@ xml_cup_read_end_element    (GMarkupParseContext *context,
         if(new_round.home_away == 0)
             new_round.round_robins = 1;
 	
+        league_cup_adjust_rr_breaks(new_round.rr_breaks, new_round.round_robins, new_cup.week_gap);
 	g_array_append_val(new_cup.rounds, new_round);
     }
     else if(strcmp(element_name, TAG_CUP_ROUND_HOME_AWAY) == 0 ||
@@ -283,6 +289,7 @@ xml_cup_read_end_element    (GMarkupParseContext *context,
 	    strcmp(element_name, TAG_CUP_ROUND_NUMBER_OF_ADVANCE) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_NUMBER_OF_BEST_ADVANCE) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_ROUND_ROBINS) == 0 ||
+	    strcmp(element_name, TAG_CUP_ROUND_BREAK) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_TWO_MATCH_WEEK_START) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_TWO_MATCH_WEEK_END) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_TWO_MATCH_WEEK) == 0 ||
@@ -381,6 +388,8 @@ xml_cup_read_text         (GMarkupParseContext *context,
 	new_round.round_robin_number_of_best_advance = int_value;
     else if(state == STATE_CUP_ROUND_ROUND_ROBINS)
 	new_round.round_robins = int_value;
+    else if(state == STATE_CUP_ROUND_BREAK)
+	league_cup_fill_rr_breaks(new_round.rr_breaks, buf);
     else if(state == STATE_CUP_ROUND_TWO_MATCH_WEEK_START)
 	g_array_append_val(new_round.two_match_weeks[0], int_value);
     else if(state == STATE_CUP_ROUND_TWO_MATCH_WEEK_END)

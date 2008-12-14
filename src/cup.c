@@ -124,6 +124,7 @@ cup_round_new(void)
     new.round_robin_number_of_advance = 0;
     new.round_robin_number_of_best_advance = 0;
     new.round_robins = 2;
+    new.rr_breaks = g_array_new(FALSE, FALSE, sizeof(gint));
     new.two_match_weeks[0] = g_array_new(FALSE, FALSE, sizeof(gint));
     new.two_match_weeks[1] = g_array_new(FALSE, FALSE, sizeof(gint));
     new.two_match_week = FALSE;

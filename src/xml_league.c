@@ -379,7 +379,7 @@ xml_league_read_text         (GMarkupParseContext *context,
     else if(state == STATE_NAMES_FILE)
 	misc_string_assign(&new_league.names_file, buf);
     else if(state == STATE_BREAK)
-	new_league.rr_break = int_value;
+        league_cup_fill_rr_breaks(new_league.rr_breaks, buf);
     else if(state == STATE_PROPERTY)
 	g_ptr_array_add(new_league.properties, g_strdup(buf));
     else if(state == STATE_JOINED_LEAGUE)
@@ -498,6 +498,7 @@ xml_league_read(const gchar *league_name, GArray *leagues)
 	g_markup_parse_context_free(context);
 	g_free(file_contents);
 
+        league_cup_adjust_rr_breaks(new_league.rr_breaks, new_league.round_robins, new_league.week_gap);
 	g_array_append_val(leagues, new_league);
     }
     else

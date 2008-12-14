@@ -396,6 +396,7 @@ free_league(League *league)
     free_new_tables(&league->new_tables);
 
     free_g_array(&league->fixtures);
+    free_g_array(&league->rr_breaks);
 
     free_g_array(&league->two_match_weeks[0]);
     free_g_array(&league->two_match_weeks[1]);
@@ -614,7 +615,7 @@ free_cup(Cup *cup)
     printf("free_cup\n");
 #endif
 
-    gint i, j;
+    gint i;
 
     free_gchar_ptr(cup->name);
     free_gchar_ptr(cup->short_name);
@@ -622,23 +623,7 @@ free_cup(Cup *cup)
     free_gchar_ptr(cup->sid);
 
     for(i=0;i<cup->rounds->len;i++)
-    {
-	free_g_array(&g_array_index(cup->rounds, CupRound, i).two_match_weeks[0]);
-	free_g_array(&g_array_index(cup->rounds, CupRound, i).two_match_weeks[1]);
-
-	if(g_array_index(cup->rounds, CupRound, i).round_robin_number_of_groups > 0)
-	{
-            free_tables(&g_array_index(cup->rounds, CupRound, i).tables);
-
-	    for(j=0;j<g_array_index(cup->rounds, CupRound, i).choose_teams->len;j++)
-		free_cup_choose_team(
-		    &g_array_index(g_array_index(cup->rounds, CupRound, i).choose_teams, CupChooseTeam, j));
-	    
-	    free_g_array(&g_array_index(cup->rounds, CupRound, i).choose_teams);
-	    free_teams_array(&g_array_index(cup->rounds, CupRound, i).teams, FALSE);
-	    g_ptr_array_free(g_array_index(cup->rounds, CupRound, i).team_ptrs, TRUE);
-	}
-    }
+        free_cup_round(&g_array_index(cup->rounds, CupRound, i));
 
     free_g_array(&cup->rounds);
     free_g_array(&cup->fixtures);
@@ -647,6 +632,32 @@ free_cup(Cup *cup)
     free_gchar_array(&cup->team_names);
     free_g_ptr_array(&cup->teams);
     free_gchar_array(&cup->properties);
+}
+
+void
+free_cup_round(CupRound *cup_round)
+{
+#ifdef DEBUG
+    printf("free_cup_round\n");
+#endif
+
+    gint j;
+
+    free_g_array(&cup_round->two_match_weeks[0]);
+    free_g_array(&cup_round->two_match_weeks[1]);
+
+    if(cup_round->round_robin_number_of_groups > 0)
+    {
+        free_tables(&cup_round->tables);
+
+        for(j=0;j<cup_round->choose_teams->len;j++)
+            free_cup_choose_team(
+                &g_array_index(cup_round->choose_teams, CupChooseTeam, j));
+	    
+        free_g_array(&cup_round->choose_teams);
+        free_teams_array(&cup_round->teams, FALSE);
+        g_ptr_array_free(cup_round->team_ptrs, TRUE);
+    }    
 }
 
 /**

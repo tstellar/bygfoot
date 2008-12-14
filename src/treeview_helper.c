@@ -388,11 +388,10 @@ treeview_helper_insert_icon(GtkTreeModel *ls, GtkTreeIter *iter, gint column_nr,
 #endif
 
     GdkPixbuf *symbol = treeview_helper_pixbuf_from_filename(icon_name);
-    if (GTK_IS_LIST_STORE (ls)){
-        gtk_list_store_set(ls, iter, column_nr, symbol, -1);
-    } else if (GTK_IS_TREE_STORE(ls)){
-        gtk_tree_store_set(ls, iter, column_nr, symbol, -1);
-    }
+    if (GTK_IS_LIST_STORE (ls))
+        gtk_list_store_set(GTK_LIST_STORE (ls), iter, column_nr, symbol, -1);
+    else if (GTK_IS_TREE_STORE(ls))
+        gtk_tree_store_set(GTK_TREE_STORE (ls), iter, column_nr, symbol, -1);
     
     treeview_helper_unref(G_OBJECT(symbol));
 }

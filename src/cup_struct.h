@@ -59,6 +59,8 @@ typedef struct
     gint round_robin_number_of_best_advance;
     /** How many matchdays there are in the round robin phase. */
     gint round_robins;
+    /** Number of weeks between the parts of a round robin. */
+    GArray *rr_breaks;
     /** Number of new teams participating in the cup round 
 	(ie. teams that get loaded and are not advancing from a previous
 	round). */

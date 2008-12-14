@@ -152,4 +152,7 @@ free_news(gboolean reset);
 void
 free_newspaper(gboolean reset);
 
+void
+free_cup_round(CupRound *cup_round);
+
 #endif

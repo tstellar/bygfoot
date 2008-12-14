@@ -50,8 +50,10 @@ void
 fixture_write_cup_round_robin(Cup *cup, gint cup_round, GPtrArray *teams);
 
 void
-fixture_write_round_robin(gpointer league_cup, gint cup_round, GPtrArray *teams,
-                          gboolean one_round, gint first_week);
+fixture_write_round_robin(gpointer league_cup, gint cup_round, 
+			  GPtrArray *teams, gboolean one_round, 
+                          gint first_week, GArray *rr_breaks,
+                          gint rr_break_idx);
 
 void
 fixture_write_round_robin_matchday(GArray *fixtures, gint cup_round, GPtrArray *teams,
