@@ -2641,7 +2641,7 @@ treeview_create_country_list(const GPtrArray *country_list)
     gint i;
     guint j;
     GtkTreeStore *ls = gtk_tree_store_new(2, GDK_TYPE_PIXBUF, G_TYPE_STRING);
-    gchar buf[SMALL], buf2[SMALL], trash[SMALL];
+    gchar buf[SMALL];
     gchar **dir_split_up;
     // This will keep the iterators for each level of the TreeStore
     GPtrArray *iterators;
@@ -2663,7 +2663,8 @@ treeview_create_country_list(const GPtrArray *country_list)
             sprintf(current_country, "%.*s", strlen(current_country) - 1, &current_country[1]);
         }
         dir_split_up = g_strsplit_set (current_country, G_DIR_SEPARATOR_S, -1);
-        // We only go up to the before last column
+        // We only go up to the before last column.  We don't want to show the
+        // file itself
         for (j=0; j<g_strv_length(dir_split_up)-1; j++)
         {
             create_new_line = FALSE;
@@ -2693,16 +2694,17 @@ treeview_create_country_list(const GPtrArray *country_list)
                  {
 	             gtk_tree_store_append(ls, (GtkTreeIter*)g_ptr_array_index(iterators,j), (GtkTreeIter*)g_ptr_array_index(iterators,j-1));
                  }
-                 // Clean out buf and buf2.  Otherwise the previous entry will
-                 // be used.  Meaning: The flag for the previous country will be
-                 // shown if no flag is found for this entry
-                 sprintf(buf, "%s", "");
-                 sprintf(buf2, "%s", "");
-	         sscanf((gchar*)dir_split_up[j], "country_%[^.]%[.xml]",
-	                buf2, trash);
-	         sprintf(buf, "flag_%s.png", buf2);
+                 // Don't set an image for anything else than the country
+                 if (j==g_strv_length(dir_split_up)-2)
+                 {
+                     // Clean out buf.  Otherwise the previous entry will
+                     // be used.  Meaning: The flag for the previous country will be
+                     // shown if no flag is found for this entry
+                     sprintf(buf, "%s", "");
+	             sprintf(buf, "flag_%s.png", (gchar*)dir_split_up[j]);
 
-	         treeview_helper_insert_icon((GtkTreeModel*)ls, (GtkTreeIter*)g_ptr_array_index(iterators,j), 0, buf);
+	             treeview_helper_insert_icon((GtkTreeModel*)ls, (GtkTreeIter*)g_ptr_array_index(iterators,j), 0, buf);
+                 }
 	         gtk_tree_store_set(ls, (GtkTreeIter*)g_ptr_array_index(iterators,j),
                                     1, (gchar*)dir_split_up[j], -1);
              }
