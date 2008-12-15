@@ -46,7 +46,7 @@ void add_definitions_directory(const gchar *directory)
 #endif
     gchar **dir_split_up;
 
-    dir_split_up = g_strsplit_set (directory, "\\/", -1);
+    dir_split_up = g_strsplit_set (directory, G_DIR_SEPARATOR_S, -1);
     if (strcmp(dir_split_up[g_strv_length(dir_split_up)-1],"definitions")==0)
     {
         root_definitions_directories = g_list_prepend (root_definitions_directories,

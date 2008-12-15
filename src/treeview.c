@@ -2657,13 +2657,14 @@ treeview_create_country_list(const GPtrArray *country_list)
         // We then try to build a tree using "/ or \" as a separator
         // The list is already sorted, so we don't need to verify
         current_country = g_strdup((gchar*)g_ptr_array_index(country_list, i));
-        if (g_str_has_prefix(current_country,"/")||g_str_has_prefix(current_country,"\\"))
+        if (g_str_has_prefix(current_country,G_DIR_SEPARATOR_S))
         {
-            // Strip leading "\\"
+            // Strip leading directory delimiter
             sprintf(current_country, "%.*s", strlen(current_country) - 1, &current_country[1]);
         }
-        dir_split_up = g_strsplit_set (current_country, "\\/", -1);
-        for (j=0; j<g_strv_length(dir_split_up); j++)
+        dir_split_up = g_strsplit_set (current_country, G_DIR_SEPARATOR_S, -1);
+        // We only go up to the before last column
+        for (j=0; j<g_strv_length(dir_split_up)-1; j++)
         {
             create_new_line = FALSE;
             // j is an element index.  As indexes start from 0 we always
@@ -2673,33 +2674,38 @@ treeview_create_country_list(const GPtrArray *country_list)
                 create_new_line=TRUE;
             } else
             {
-	            gtk_tree_model_get ((GtkTreeModel*)ls,(GtkTreeIter*)g_ptr_array_index(iterators,j), 1, &previous_element, -1);
-                    if (strcmp(previous_element,dir_split_up[j])!=0) 
-                    {
-                        create_new_line=TRUE;
-                    } 
-            }
-            // Do we need to create a new element or not 
-            if (create_new_line)
-            {
-                // Is it a toplevel item or not
-                // If not parent is NULL else the parent is the previous iterator in the
-                // pointer list
-                if (j==0)
+                gtk_tree_model_get ((GtkTreeModel*)ls,(GtkTreeIter*)g_ptr_array_index(iterators,j), 1, &previous_element, -1);
+                if (strcmp(previous_element,dir_split_up[j])!=0) 
                 {
-                    gtk_tree_store_append(ls, (GtkTreeIter*)g_ptr_array_index(iterators,j), NULL);
-                } else
-                {
-	            gtk_tree_store_append(ls, (GtkTreeIter*)g_ptr_array_index(iterators,j), (GtkTreeIter*)g_ptr_array_index(iterators,j-1));
-                }
-	        sscanf((gchar*)dir_split_up[j], "country_%[^.]%[.xml]",
-	               buf2, trash);
-	        sprintf(buf, "flag_%s.png", buf2);
+                    create_new_line=TRUE;
+                } 
+             }
+             // Do we need to create a new element or not 
+             if (create_new_line)
+             {
+                 // Is it a toplevel item or not
+                 // If not parent is NULL else the parent is the previous iterator in the
+                 // pointer list
+                 if (j==0)
+                 {
+                     gtk_tree_store_append(ls, (GtkTreeIter*)g_ptr_array_index(iterators,j), NULL);
+                 } else
+                 {
+	             gtk_tree_store_append(ls, (GtkTreeIter*)g_ptr_array_index(iterators,j), (GtkTreeIter*)g_ptr_array_index(iterators,j-1));
+                 }
+                 // Clean out buf and buf2.  Otherwise the previous entry will
+                 // be used.  Meaning: The flag for the previous country will be
+                 // shown if no flag is found for this entry
+                 sprintf(buf, "%s", "");
+                 sprintf(buf2, "%s", "");
+	         sscanf((gchar*)dir_split_up[j], "country_%[^.]%[.xml]",
+	                buf2, trash);
+	         sprintf(buf, "flag_%s.png", buf2);
 
-	        treeview_helper_insert_icon((GtkTreeModel*)ls, (GtkTreeIter*)g_ptr_array_index(iterators,j), 0, buf);
-	        gtk_tree_store_set(ls, (GtkTreeIter*)g_ptr_array_index(iterators,j), 1, 
-		                   (gchar*)dir_split_up[j], -1);
-            }
+	         treeview_helper_insert_icon((GtkTreeModel*)ls, (GtkTreeIter*)g_ptr_array_index(iterators,j), 0, buf);
+	         gtk_tree_store_set(ls, (GtkTreeIter*)g_ptr_array_index(iterators,j),
+                                    1, (gchar*)dir_split_up[j], -1);
+             }
 	}
         g_strfreev(dir_split_up);
     }

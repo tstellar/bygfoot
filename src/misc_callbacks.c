@@ -367,9 +367,12 @@ on_combo_country_changed               (GtkComboBox     *combobox,
     gchar *buf = NULL;
 
     gtk_combo_box_get_active_iter(combobox, &iter);
-    gtk_tree_model_get(gtk_combo_box_get_model(combobox), &iter, 1, &buf, -1);
-
-    misc_callback_show_team_list(GTK_WIDGET(combobox), buf);
+    if (!gtk_tree_model_iter_has_child (gtk_combo_box_get_model(combobox),
+        &iter))
+    {
+        gtk_tree_model_get(gtk_combo_box_get_model(combobox), &iter, 1, &buf, -1);
+        misc_callback_show_team_list(GTK_WIDGET(combobox), buf);
+    }
     g_free(buf);
 }
 
