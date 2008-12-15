@@ -71,14 +71,17 @@ news_generate_match(const LiveGame *live_game)
     {
         new_article.week_number = week;
         new_article.week_round_number = week_round;
+
 	fixture_result_to_buf(live_game->fix, buf, FALSE);
 	sprintf(title_small, "%s %s %s", 
 		live_game->fix->teams[0]->name, buf, live_game->fix->teams[1]->name);
         new_article.title_small = g_strdup(title_small);
+
         new_article.title = g_strdup(title);
         new_article.subtitle = g_strdup(subtitle);
         new_article.title_id = title_id;
         new_article.subtitle_id = subtitle_id;
+        new_article.user_idx = fixture_user_team_involved(live_game->fix);
 /*         printf("%s / %s -- %d %d\n", title, subtitle, title_id, subtitle_id); */
         g_array_append_val(newspaper.articles, new_article);
 
@@ -310,7 +313,8 @@ news_set_streak_tokens(const Fixture *fix)
 #endif
 
     gint i, j, k,
-	streak_won, streak_lost;
+	streak_won, streak_lost, streak_unbeaten;
+    gboolean draw;
     gint res[2];
     gchar buf[SMALL], buf2[SMALL];
     GPtrArray *latest_fixtures;
@@ -319,16 +323,29 @@ news_set_streak_tokens(const Fixture *fix)
     {
 	for(k = 0; k < 2; k++)
 	{
-	    latest_fixtures = fixture_get_latest(fix->teams[0], (k == 0));
-	    streak_won = streak_lost = 0;
+	    latest_fixtures = fixture_get_latest(fix->teams[i], (k == 0));
+	    streak_won = streak_lost = streak_unbeaten = 0;
+            draw = FALSE;
 
 	    for(j=latest_fixtures->len - 1;j>=0;j--)
-	    {
+	    {                
 		res[0] = math_sum_int_array(((Fixture*)g_ptr_array_index(latest_fixtures, j))->result[0], 3);
 		res[1] = math_sum_int_array(((Fixture*)g_ptr_array_index(latest_fixtures, j))->result[1], 3);
 
+/*                 printf("%s %s %d %d str %d %d %d\n", ((Fixture*)g_ptr_array_index(latest_fixtures, j))->teams[0]->name, */
+/*                        ((Fixture*)g_ptr_array_index(latest_fixtures, j))->teams[1]->name, res[0], res[1], */
+/*                        streak_won, streak_lost, streak_unbeaten); */
+
 		if(res[0] == res[1])
-		    break;
+                {
+                    if(streak_lost == 0)
+                    {
+                        draw = TRUE;
+                        streak_unbeaten++;                        
+                    }
+                    else
+                        break;
+                }
 		else if(res[(((Fixture*)g_ptr_array_index(latest_fixtures, j))->teams[0] == fix->teams[i])] >
 			res[(((Fixture*)g_ptr_array_index(latest_fixtures, j))->teams[0] != fix->teams[i])])
 		{
@@ -340,7 +357,12 @@ news_set_streak_tokens(const Fixture *fix)
 		else
 		{
 		    if(streak_lost == 0)
-			streak_won++;
+                    {
+                        streak_unbeaten++;
+
+                        if(!draw)
+                            streak_won++;
+                    }
 		    else
 			break;
 		}	    	    
@@ -359,7 +381,10 @@ news_set_streak_tokens(const Fixture *fix)
 	    misc_token_add(token_rep_news,
 			   option_int(buf, &tokens),
 			   misc_int_to_char(streak_lost));
-
+	    sprintf(buf, "string_token_streak_%sunbeaten%d", buf2, i);
+	    misc_token_add(token_rep_news,
+			   option_int(buf, &tokens),
+			   misc_int_to_char(streak_unbeaten));
 
 	    g_ptr_array_free(latest_fixtures, TRUE);
 	}
