@@ -229,4 +229,11 @@ treeview_helper_job_exchange(GtkTreeViewColumn *col,
 			     gpointer           user_data);
 
 
+void
+treeview_helper_news(GtkTreeViewColumn *col,
+                     GtkCellRenderer   *renderer,
+                     GtkTreeModel      *model,
+                     GtkTreeIter       *iter,
+                     gpointer           user_data);
+
 #endif

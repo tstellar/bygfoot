@@ -42,6 +42,7 @@ enum
     TAG_NEWS_PAPER_ARTICLE_TITLE_SMALL,
     TAG_NEWS_PAPER_ARTICLE_TITLE,
     TAG_NEWS_PAPER_ARTICLE_SUBTITLE,
+    TAG_NEWS_PAPER_ARTICLE_USER_IDX,
     TAG_END
 };
 
@@ -101,6 +102,7 @@ xml_loadsave_newspaper_end_element    (GMarkupParseContext *context,
 	    tag == TAG_NEWS_PAPER_ARTICLE_TITLE ||
 	    tag == TAG_NEWS_PAPER_ARTICLE_TITLE_ID ||
 	    tag == TAG_NEWS_PAPER_ARTICLE_SUBTITLE ||
+	    tag == TAG_NEWS_PAPER_ARTICLE_USER_IDX ||
 	    tag == TAG_NEWS_PAPER_ARTICLE_SUBTITLE_ID)
     {
 	state = TAG_NEWS_PAPER_ARTICLE;
@@ -143,6 +145,8 @@ xml_loadsave_newspaper_text         (GMarkupParseContext *context,
 	new_article.title_id = int_value;
     else if(state == TAG_NEWS_PAPER_ARTICLE_SUBTITLE_ID)
 	new_article.subtitle_id = int_value;
+    else if(state == TAG_NEWS_PAPER_ARTICLE_USER_IDX)
+	new_article.user_idx = int_value;
 }
 
 void
@@ -222,6 +226,8 @@ xml_loadsave_newspaper_write(const gchar *prefix)
 		      TAG_NEWS_PAPER_ARTICLE_TITLE_ID, I1);
 	xml_write_int(fil, g_array_index(newspaper.articles, NewsPaperArticle, i).subtitle_id, 
 		      TAG_NEWS_PAPER_ARTICLE_SUBTITLE_ID, I1);
+	xml_write_int(fil, g_array_index(newspaper.articles, NewsPaperArticle, i).user_idx, 
+		      TAG_NEWS_PAPER_ARTICLE_USER_IDX, I1);
 
 	fprintf(fil, "%s</_%d>\n", I0, TAG_NEWS_PAPER_ARTICLE);
     }

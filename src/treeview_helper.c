@@ -1839,6 +1839,62 @@ treeview_helper_search_equal(GtkTreeModel *model,
 }
 
 void
+treeview_helper_news(GtkTreeViewColumn *col,
+                      GtkCellRenderer   *renderer,
+                      GtkTreeModel      *model,
+                      GtkTreeIter       *iter,
+                      gpointer           user_data)
+{
+    const NewsPaperArticle *article = NULL;
+    const gchar *colour_fg;
+    const gchar *colour_bg;
+    gchar buf[SMALL];
+    GString *news_string;
+
+    gtk_tree_model_get(model, iter, 1, &article, -1);
+
+    colour_fg = const_app("string_treeview_helper_color_default_foreground");
+    colour_bg = const_app("string_treeview_helper_color_default_background");
+
+   if(article == NULL)
+    {
+        g_object_set(renderer, "markup", "", 
+                     "background", colour_bg, "foreground", colour_fg, NULL);
+        return;
+    }
+     
+    if(article->user_idx == cur_user)
+    {
+	colour_fg = const_app("string_treeview_current_user_fg");
+	colour_bg = const_app("string_treeview_current_user_bg");
+    }
+    else if(article->user_idx != -1)
+    {
+	colour_fg = const_app("string_treeview_user_fg");
+	colour_bg = const_app("string_treeview_user_bg");
+    }
+
+    sprintf(buf, "<span %s>%s</span>",
+            const_app("string_news_window_title_small_attribute"),
+            article->title_small);
+ 
+    news_string = g_string_new(buf);
+
+    g_string_append_printf(news_string, "\n<span %s>%s</span>",
+                           const_app("string_news_window_title_attribute"),
+                           article->title);
+ 
+    g_string_append_printf(news_string, "\n<span %s>%s</span>",
+                           const_app("string_news_window_subtitle_attribute"),
+                           article->subtitle);
+
+    g_object_set(renderer, "markup", news_string->str, 
+                 "background", colour_bg, "foreground", colour_fg, NULL);
+
+    g_string_free(news_string, TRUE);
+}
+
+void
 treeview_helper_job_exchange(GtkTreeViewColumn *col,
 			     GtkCellRenderer   *renderer,
 			     GtkTreeModel      *model,
