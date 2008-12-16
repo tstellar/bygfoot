@@ -59,6 +59,9 @@ callback_show_next_live_game(void)
     for(i=0;i<users->len;i++)
 	usr(i).counters[COUNT_USER_TOOK_TURN] = 0;
 
+    counters[COUNT_NEWS_SHOWN] = 
+        counters[COUNT_NEW_NEWS] = 0;
+
     for(i=0;i<ligs->len;i++)
 	for(j=0;j<lig(i).fixtures->len;j++)
 	    if(g_array_index(lig(i).fixtures, Fixture, j).week_number == week &&

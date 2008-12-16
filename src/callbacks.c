@@ -218,6 +218,13 @@ on_button_back_to_main_clicked         (GtkButton       *button,
     game_gui_show_main();
 
     gui_set_arrows();
+
+    if((opt_int("int_opt_news_popup") == 2 ||
+        (opt_int("int_opt_news_popup") == 1 &&
+         counters[COUNT_NEW_NEWS] == 1)) &&
+       counters[COUNT_NEWS_SHOWN] == 0 &&
+       counters[COUNT_NEW_NEWS] != 0)
+        on_menu_news_activate(NULL, NULL);
 }
 
 
@@ -1659,5 +1666,6 @@ on_menu_news_activate                  (GtkMenuItem     *menuitem,
 {
     window_create(WINDOW_NEWS);
     treeview2_show_news();
+    counters[COUNT_NEWS_SHOWN] = 1;
 }
 

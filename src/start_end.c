@@ -526,7 +526,8 @@ end_week_round_generate_news(void)
     for(i = 0; i < users->len; i++)
         if(usr(i).live_game.fix != NULL &&
            usr(i).live_game.fix->week_number == week &&
-           usr(i).live_game.fix->week_round_number == week_round)
+           usr(i).live_game.fix->week_round_number == week_round &&
+           news_check_match_relevant(&usr(i).live_game))
             news_generate_match(&usr(i).live_game);
 
     /** News for other matches. */

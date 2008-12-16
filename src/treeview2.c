@@ -603,29 +603,33 @@ treeview2_create_news(GtkListStore *ls)
     
     for(i = newspaper.articles->len - 1; i >= 0; i--)
     {
-	if(i == newspaper.articles->len - 1 ||
-	   (i < newspaper.articles->len - 1 &&
-	    (g_array_index(newspaper.articles, NewsPaperArticle, i).week_number !=
-	     g_array_index(newspaper.articles, NewsPaperArticle, i + 1).week_number ||
-	     g_array_index(newspaper.articles, NewsPaperArticle, i).week_round_number !=
-	     g_array_index(newspaper.articles, NewsPaperArticle, i + 1).week_round_number)))
-	{
-	    gtk_list_store_append(ls, &iter);
-	    gtk_list_store_set(ls, &iter, 0, "", 1, NULL, -1);
-
-	    gtk_list_store_append(ls, &iter);
-	    sprintf(buf2, _("Week %d Round %d"),
-		    g_array_index(newspaper.articles, NewsPaperArticle, i).week_number,
-		    g_array_index(newspaper.articles, NewsPaperArticle, i).week_round_number);
-	    sprintf(buf, "<span %s>%s</span>\n\n",
-		    const_app("string_news_window_week_number_attribute"),
-		    buf2);
-	    gtk_list_store_set(ls, &iter, 0, buf, 1, &g_array_index(newspaper.articles, NewsPaperArticle, i), -1);
-	}
-        else
+        if(!opt_int("int_opt_news_show_recent") ||
+           g_array_index(newspaper.articles, NewsPaperArticle, i).week_number == week - 1)
         {
-	    gtk_list_store_append(ls, &iter);
-	    gtk_list_store_set(ls, &iter, 0, "", 1, &g_array_index(newspaper.articles, NewsPaperArticle, i), -1);            
+            if(i == newspaper.articles->len - 1 ||
+               (i < newspaper.articles->len - 1 &&
+                (g_array_index(newspaper.articles, NewsPaperArticle, i).week_number !=
+                 g_array_index(newspaper.articles, NewsPaperArticle, i + 1).week_number ||
+                 g_array_index(newspaper.articles, NewsPaperArticle, i).week_round_number !=
+                 g_array_index(newspaper.articles, NewsPaperArticle, i + 1).week_round_number)))
+            {
+                gtk_list_store_append(ls, &iter);
+                gtk_list_store_set(ls, &iter, 0, "", 1, NULL, -1);
+
+                gtk_list_store_append(ls, &iter);
+                sprintf(buf2, _("Week %d Round %d"),
+                        g_array_index(newspaper.articles, NewsPaperArticle, i).week_number,
+                        g_array_index(newspaper.articles, NewsPaperArticle, i).week_round_number);
+                sprintf(buf, "<span %s>%s</span>\n\n",
+                        const_app("string_news_window_week_number_attribute"),
+                        buf2);
+                gtk_list_store_set(ls, &iter, 0, buf, 1, &g_array_index(newspaper.articles, NewsPaperArticle, i), -1);
+            }
+            else
+            {
+                gtk_list_store_append(ls, &iter);
+                gtk_list_store_set(ls, &iter, 0, "", 1, &g_array_index(newspaper.articles, NewsPaperArticle, i), -1);            
+            }
         }
     }
 }

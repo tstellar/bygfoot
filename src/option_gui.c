@@ -205,19 +205,19 @@ option_gui_write_bool_widgets(gint **bool_options, GtkToggleButton **bool_widget
 
     bool_widgets[BOOL_OPT_NEWS_USER] =
 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_news_user"));
-    bool_options[BOOL_OPT_NEWS_USER] = opt_user_intp("int_opt_user_news_create_user");
+    bool_options[BOOL_OPT_NEWS_USER] = opt_intp("int_opt_news_create_user");
 
     bool_widgets[BOOL_OPT_NEWS_CUP] =
 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_news_cup"));
-    bool_options[BOOL_OPT_NEWS_CUP] = opt_user_intp("int_opt_user_news_create_cup");
+    bool_options[BOOL_OPT_NEWS_CUP] = opt_intp("int_opt_news_create_cup");
 
     bool_widgets[BOOL_OPT_NEWS_LEAGUE] =
 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_news_league"));
-    bool_options[BOOL_OPT_NEWS_LEAGUE] = opt_user_intp("int_opt_user_news_create_league");
+    bool_options[BOOL_OPT_NEWS_LEAGUE] = opt_intp("int_opt_news_create_league");
 
     bool_widgets[BOOL_OPT_NEWS_RECENT] =
 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton_news_recent"));
-    bool_options[BOOL_OPT_NEWS_RECENT] = opt_user_intp("int_opt_user_news_show_recent");
+    bool_options[BOOL_OPT_NEWS_RECENT] = opt_intp("int_opt_news_show_recent");
 
     bool_widgets[BOOL_OPT_PL1_ATT_NAME] =
 	GTK_TOGGLE_BUTTON(lookup_widget(window.options, "checkbutton1"));
@@ -513,7 +513,7 @@ option_gui_set_up_window(void)
 		GTK_SPIN_BUTTON(lookup_widget(window.options, "spinbutton_recreation"))));
     gtk_label_set_text(GTK_LABEL(lookup_widget(window.options, "label_training")), buf);
 
-    gtk_toggle_button_set_active(news_popup_buttons[opt_user_int("int_opt_user_news_popup")], TRUE);
+    gtk_toggle_button_set_active(news_popup_buttons[opt_int("int_opt_news_popup")], TRUE);
 }
 
 /** Read the widget states in the options window and set the
@@ -569,7 +569,7 @@ option_gui_write_options(void)
     for(i = 0; i < 3; i++)
         if(gtk_toggle_button_get_active(news_popup_buttons[i]))
         {
-            opt_user_set_int("int_opt_user_news_popup", i);
+            opt_set_int("int_opt_news_popup", i);
             break;
         }
                 
