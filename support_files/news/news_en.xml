@@ -1,6 +1,13 @@
 <news>
   <news_article>
     <type>match</type>
+    <condition>_GD_ = 1</condition>
+    <title>_TW_ beats _TN_</title>
+    <title>_TN_ succumbs to _TW_ in _LEAGUECUPNAME_</title>
+    <subtitle>_TW_ edges out _TN_ in a tight match.</subtitle>
+  </news_article>
+  <news_article>
+    <type>match</type>
     <condition>_CUP_ = 0 and _GD_ G 1</condition>
     <title>_TW_ [beats|crushes|kills] _TL_!</title>
     <title>_TL_ loses to _TW_!</title>

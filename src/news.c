@@ -56,7 +56,7 @@ news_generate_match(const LiveGame *live_game)
 
     gchar title_small[SMALL], buf[SMALL],
 	title[SMALL], subtitle[SMALL];
-    gint title_id, subtitle_id;
+    gint title_id, subtitle_id, article_id;
     NewsPaperArticle new_article;
     
     token_rep_news[0] = g_ptr_array_new();
@@ -65,10 +65,11 @@ news_generate_match(const LiveGame *live_game)
     news_set_match_tokens(live_game);
 
     news_select(news[NEWS_ARTICLE_TYPE_MATCH], title, subtitle,
-                &title_id, &subtitle_id);
+                &article_id, &title_id, &subtitle_id);
 
     if(title_id != -1 && subtitle_id != -1)
     {
+        new_article.id = article_id;
         new_article.week_number = week;
         new_article.week_round_number = week_round;
 
@@ -82,13 +83,7 @@ news_generate_match(const LiveGame *live_game)
         new_article.title_id = title_id;
         new_article.subtitle_id = subtitle_id;
         new_article.user_idx = fixture_user_team_involved(live_game->fix);
-/*         printf("%s / %s -- %d %d\n", title, subtitle, title_id, subtitle_id); */
         g_array_append_val(newspaper.articles, new_article);
-
-/*         gint i; */
-/*         for(i = 0; i < newspaper.articles->len; i++) */
-/*             printf("%s\n%s\n", g_array_index(newspaper.articles, NewsPaperArticle, i).title,  */
-/*                    g_array_index(newspaper.articles, NewsPaperArticle, i).subtitle); */
     }
 
     news_free_tokens();
@@ -98,7 +93,7 @@ news_generate_match(const LiveGame *live_game)
     available and write the texts and ids into the variables. */
 void
 news_select(const GArray *news_array, gchar *title, gchar *subtitle,
-            gint *title_id, gint *subtitle_id)
+            gint *article_id, gint *title_id, gint *subtitle_id)
 {
 #ifdef DEBUG
     printf("news_select\n");
@@ -113,17 +108,21 @@ news_select(const GArray *news_array, gchar *title, gchar *subtitle,
     *title_id = *subtitle_id = -1;
 
     for(i=0;i<news_array->len;i++)
-    {
-/*         printf("cond %s res %d\n", g_array_index(news_array, NewsArticle, order_articles[i]).condition, */
-/*                misc_parse_condition(g_array_index(news_array, NewsArticle, order_articles[i]).condition, token_rep_news)); */
-	if(misc_parse_condition(g_array_index(news_array, NewsArticle, order_articles[i]).condition, token_rep_news))
+	if(!news_check_article_for_repetition(g_array_index(news_array, NewsArticle, order_articles[i]).id) &&
+           misc_parse_condition(g_array_index(news_array, NewsArticle, order_articles[i]).condition, token_rep_news))
 	    break;
-    }
+
+    if(i == news_array->len)
+        for(i=0;i<news_array->len;i++)
+            if(misc_parse_condition(g_array_index(news_array, NewsArticle, order_articles[i]).condition, token_rep_news))
+                break;
 
     if(i == news_array->len)
 	return;
 
     article = &g_array_index(news_array, NewsArticle, order_articles[i]);
+
+    *article_id = article->id;
 
     gint order_titles[article->titles->len],
         order_subtitles[article->subtitles->len];
@@ -155,13 +154,11 @@ news_get_title(const GArray *titles, gchar *title, gint *order,
 
     for(i = 0; i < titles->len; i++)
     {
-/*         gboolean res = misc_string_replace_all_tokens(token_rep_news, g_array_index(titles, NewsText, order[i]).text, title); */
-/*         printf("title: %s %d\n", title, res); */
         if(misc_parse_condition(g_array_index(titles, NewsText, order[i]).condition, token_rep_news) &&
            misc_string_replace_all_tokens(token_rep_news, g_array_index(titles, NewsText, order[i]).text, title))
         {
             result = g_array_index(titles, NewsText, order[i]).id;
-            if(ignore_repetition || !news_check_for_repetition(result, is_title))
+            if(ignore_repetition || !news_check_title_for_repetition(result, is_title))
                 return result;
             else
                 continue;
@@ -173,10 +170,10 @@ news_get_title(const GArray *titles, gchar *title, gint *order,
 
 /** Check whether a news article text has occurred in the paper recently. */
 gboolean
-news_check_for_repetition(gint id, gboolean is_title)
+news_check_title_for_repetition(gint id, gboolean is_title)
 {
 #ifdef DEBUG
-    printf("news_check_for_repetition\n");
+    printf("news_check_title_for_repetition\n");
 #endif
 
     gint i;
@@ -193,6 +190,26 @@ news_check_for_repetition(gint id, gboolean is_title)
     return FALSE;
 }
 
+/** Check recent news for article repetition. */
+gboolean
+news_check_article_for_repetition(gint id)
+{
+#ifdef DEBUG
+    printf("news_check_article_for_repetition\n");
+#endif
+
+    gint i;
+    gint end;
+
+    end = (newspaper.articles->len < const_int("int_news_repetition_check_number")) ?
+        0 : newspaper.articles->len - const_int("int_news_repetition_check_number");
+
+    for(i = newspaper.articles->len - 1; i >= end; i--)
+        if(g_array_index(newspaper.articles, NewsPaperArticle, i).id == id)
+            return TRUE;
+
+    return FALSE;
+}
 
 /** Write a random order of indices into the integer array
     (only depending on the priority values of the news titles).
@@ -331,10 +348,6 @@ news_set_streak_tokens(const Fixture *fix)
 	    {                
 		res[0] = math_sum_int_array(((Fixture*)g_ptr_array_index(latest_fixtures, j))->result[0], 3);
 		res[1] = math_sum_int_array(((Fixture*)g_ptr_array_index(latest_fixtures, j))->result[1], 3);
-
-/*                 printf("%s %s %d %d str %d %d %d\n", ((Fixture*)g_ptr_array_index(latest_fixtures, j))->teams[0]->name, */
-/*                        ((Fixture*)g_ptr_array_index(latest_fixtures, j))->teams[1]->name, res[0], res[1], */
-/*                        streak_won, streak_lost, streak_unbeaten); */
 
 		if(res[0] == res[1])
                 {
@@ -475,8 +488,6 @@ news_set_scorer_tokens(const LiveGameStats *stats)
             strcpy(buf, scorer_str);
         }
         
-/*         printf("%d +%s+ +%s+ %d\n", i, scorer_str, high_scorer, max_goals); */
-
         if(strcmp(scorer_str, "") != 0)
         {
             sprintf(buf, "string_token_bool_multiple_scorers%d", i);
@@ -542,6 +553,10 @@ news_set_league_cup_tokens(const Fixture *fix)
     {
         cup = cup_from_clid(fix->clid);
         cupround = &g_array_index(cup->rounds, CupRound, fix->round);
+
+        misc_token_add(token_rep_news,
+                       option_int("string_token_cup_stage", &tokens),
+                       misc_int_to_char(cup->rounds->len - fix->round));
 
 	cup_get_round_name(cup, fix->round, buf);
 	misc_token_add(token_rep_news,

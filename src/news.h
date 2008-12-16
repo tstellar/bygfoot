@@ -40,14 +40,17 @@ news_generate_match(const LiveGame *live_game);
 
 void
 news_select(const GArray *news_array, gchar *title, gchar *subtitle,
-            gint *title_id, gint *subtitle_id);
+            gint *article_id, gint *title_id, gint *subtitle_id);
 
 gint
 news_get_title(const GArray *titles, gchar *title, gint *order, 
                gboolean is_title, gboolean ignore_repetition);
 
 gboolean
-news_check_for_repetition(gint id, gboolean is_title);
+news_check_article_for_repetition(gint id);
+
+gboolean
+news_check_title_for_repetition(gint id, gboolean is_title);
 
 void
 news_load_news_file_from_option(void);
