@@ -83,6 +83,13 @@ news_generate_match(const LiveGame *live_game)
         new_article.title_id = title_id;
         new_article.subtitle_id = subtitle_id;
         new_article.user_idx = fixture_user_team_involved(live_game->fix);
+
+        if(counters[COUNT_NEW_NEWS] == 0)
+            counters[COUNT_NEW_NEWS] = 2;
+
+        if(new_article.user_idx != -1)
+            counters[COUNT_NEW_NEWS] = 1;
+
         g_array_append_val(newspaper.articles, new_article);
     }
 
@@ -748,20 +755,23 @@ news_check_match_relevant(const LiveGame *live_game)
     gint i;
     GArray *user_leagues;
 
-    if(fixture_user_team_involved(live_game->fix) != -1)
+    if(fixture_user_team_involved(live_game->fix) != -1 &&
+       opt_int("int_opt_news_create_user"))
         return TRUE;
 
     user_leagues = g_array_new(FALSE, FALSE, sizeof(gint));
 
     if(live_game->fix->clid >= ID_CUP_START &&
-       live_game->fix->round >= cup_from_clid(live_game->fix->clid)->rounds->len - 4)
+       live_game->fix->round >= cup_from_clid(live_game->fix->clid)->rounds->len - 4 &&
+       opt_int("int_opt_news_create_cup"))
         return TRUE;
 
     for(i = 0; i < users->len; i++)
         if(!query_misc_integer_is_in_g_array(usr(i).tm->clid, user_leagues))
             g_array_append_val(user_leagues, usr(i).tm->clid);
 
-    if(query_misc_integer_is_in_g_array(live_game->fix->clid, user_leagues))
+    if(query_misc_integer_is_in_g_array(live_game->fix->clid, user_leagues) &&
+       opt_int("int_opt_news_create_league"))
     {
         g_array_free(user_leagues, TRUE);
         return TRUE;
