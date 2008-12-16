@@ -77,6 +77,22 @@ create_window_options (void)
   GtkWidget *eventbox2;
   GtkWidget *combobox_languages;
   GtkWidget *label1;
+  GtkWidget *hbox6;
+  GtkWidget *vbox6;
+  GtkWidget *checkbutton_conf_youth;
+  GtkWidget *checkbutton_show_job;
+  GtkWidget *eventbox1;
+  GtkWidget *hbox10;
+  GtkWidget *label37;
+  GtkObject *spinbutton_contract_adj;
+  GtkWidget *spinbutton_contract;
+  GtkWidget *label38;
+  GtkWidget *checkbutton_show_all_leagues;
+  GtkWidget *vseparator3;
+  GtkWidget *vbox7;
+  GtkWidget *checkbutton_swap_adapts;
+  GtkWidget *checkbutton_show_overall;
+  GtkWidget *label3;
   GtkWidget *hbox4;
   GtkWidget *vbox4;
   GtkWidget *checkbutton_show_live;
@@ -95,22 +111,6 @@ create_window_options (void)
   GtkWidget *checkbutton_pause_red;
   GtkWidget *checkbutton_pause_break;
   GtkWidget *label2;
-  GtkWidget *hbox6;
-  GtkWidget *vbox6;
-  GtkWidget *checkbutton_conf_youth;
-  GtkWidget *checkbutton_show_job;
-  GtkWidget *eventbox1;
-  GtkWidget *hbox10;
-  GtkWidget *label37;
-  GtkObject *spinbutton_contract_adj;
-  GtkWidget *spinbutton_contract;
-  GtkWidget *label38;
-  GtkWidget *checkbutton_show_all_leagues;
-  GtkWidget *vseparator3;
-  GtkWidget *vbox7;
-  GtkWidget *checkbutton_swap_adapts;
-  GtkWidget *checkbutton_show_overall;
-  GtkWidget *label3;
   GtkWidget *table2;
   GtkWidget *label13;
   GtkWidget *label14;
@@ -198,6 +198,18 @@ create_window_options (void)
   GtkWidget *label47;
   GtkWidget *label_training;
   GtkWidget *label43;
+  GtkWidget *vbox11;
+  GtkWidget *hbox17;
+  GtkWidget *checkbutton_news_user;
+  GtkWidget *checkbutton_news_cup;
+  GtkWidget *checkbutton_news_league;
+  GtkWidget *checkbutton_news_recent;
+  GtkWidget *hbox18;
+  GtkWidget *radiobutton_news_popup_no;
+  GSList *radiobutton_news_popup_no_group = NULL;
+  GtkWidget *radiobutton_news_popup_user;
+  GtkWidget *radiobutton_news_popup_always;
+  GtkWidget *label48;
   GtkWidget *hseparator1;
   GtkWidget *hbox1;
   GtkWidget *vbox2;
@@ -448,6 +460,75 @@ create_window_options (void)
   gtk_widget_show (label1);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 0), label1);
 
+  hbox6 = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (hbox6);
+  gtk_container_add (GTK_CONTAINER (notebook1), hbox6);
+
+  vbox6 = gtk_vbox_new (FALSE, 0);
+  gtk_widget_show (vbox6);
+  gtk_box_pack_start (GTK_BOX (hbox6), vbox6, TRUE, TRUE, 0);
+
+  checkbutton_conf_youth = gtk_check_button_new_with_mnemonic (_("Confirm removing youths"));
+  gtk_widget_show (checkbutton_conf_youth);
+  gtk_box_pack_start (GTK_BOX (vbox6), checkbutton_conf_youth, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_conf_youth, _("Whether a confirmation popup is shown when you kick out a youth from your academy"), NULL);
+
+  checkbutton_show_job = gtk_check_button_new_with_mnemonic (_("Show job offers"));
+  gtk_widget_show (checkbutton_show_job);
+  gtk_box_pack_start (GTK_BOX (vbox6), checkbutton_show_job, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_show_job, _("Whether to show job offers when a user is successful"), NULL);
+
+  eventbox1 = gtk_event_box_new ();
+  gtk_widget_show (eventbox1);
+  gtk_box_pack_start (GTK_BOX (vbox6), eventbox1, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, eventbox1, _("Set to 0 to switch off warning"), NULL);
+
+  hbox10 = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (hbox10);
+  gtk_container_add (GTK_CONTAINER (eventbox1), hbox10);
+
+  label37 = gtk_label_new (_("Show warning if a player contract gets below "));
+  gtk_widget_show (label37);
+  gtk_box_pack_start (GTK_BOX (hbox10), label37, FALSE, FALSE, 0);
+
+  spinbutton_contract_adj = gtk_adjustment_new (1, 0, 24, 1, 10, 0);
+  spinbutton_contract = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_contract_adj), 1, 0);
+  gtk_widget_show (spinbutton_contract);
+  gtk_box_pack_start (GTK_BOX (hbox10), spinbutton_contract, FALSE, FALSE, 0);
+  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_contract), TRUE);
+
+  label38 = gtk_label_new (_(" months"));
+  gtk_widget_show (label38);
+  gtk_box_pack_start (GTK_BOX (hbox10), label38, FALSE, FALSE, 0);
+
+  checkbutton_show_all_leagues = gtk_check_button_new_with_mnemonic (_("Show all leagues in the fixture view"));
+  gtk_widget_show (checkbutton_show_all_leagues);
+  gtk_box_pack_start (GTK_BOX (vbox6), checkbutton_show_all_leagues, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_show_all_leagues, _("Whether in the weekly fixture view all leagues or only the user league is shown"), NULL);
+
+  vseparator3 = gtk_vseparator_new ();
+  gtk_widget_show (vseparator3);
+  gtk_box_pack_start (GTK_BOX (hbox6), vseparator3, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (vseparator3, 10, 1);
+
+  vbox7 = gtk_vbox_new (FALSE, 0);
+  gtk_widget_show (vbox7);
+  gtk_box_pack_start (GTK_BOX (hbox6), vbox7, TRUE, TRUE, 0);
+
+  checkbutton_swap_adapts = gtk_check_button_new_with_mnemonic (_("Swap adapts structure"));
+  gtk_widget_show (checkbutton_swap_adapts);
+  gtk_box_pack_start (GTK_BOX (vbox7), checkbutton_swap_adapts, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_swap_adapts, _("Whether swapping two players automatically adapts the team structure to the player positions"), NULL);
+
+  checkbutton_show_overall = gtk_check_button_new_with_mnemonic (_("Show overall games/goals"));
+  gtk_widget_show (checkbutton_show_overall);
+  gtk_box_pack_start (GTK_BOX (vbox7), checkbutton_show_overall, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_show_overall, _("Whether to show the player games/goals value in all competitions"), NULL);
+
+  label3 = gtk_label_new (_("Gameplay"));
+  gtk_widget_show (label3);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 1), label3);
+
   hbox4 = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (hbox4);
   gtk_container_add (GTK_CONTAINER (notebook1), hbox4);
@@ -532,76 +613,7 @@ create_window_options (void)
 
   label2 = gtk_label_new (_("Live game"));
   gtk_widget_show (label2);
-  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 1), label2);
-
-  hbox6 = gtk_hbox_new (FALSE, 0);
-  gtk_widget_show (hbox6);
-  gtk_container_add (GTK_CONTAINER (notebook1), hbox6);
-
-  vbox6 = gtk_vbox_new (FALSE, 0);
-  gtk_widget_show (vbox6);
-  gtk_box_pack_start (GTK_BOX (hbox6), vbox6, TRUE, TRUE, 0);
-
-  checkbutton_conf_youth = gtk_check_button_new_with_mnemonic (_("Confirm removing youths"));
-  gtk_widget_show (checkbutton_conf_youth);
-  gtk_box_pack_start (GTK_BOX (vbox6), checkbutton_conf_youth, FALSE, FALSE, 0);
-  gtk_tooltips_set_tip (tooltips, checkbutton_conf_youth, _("Whether a confirmation popup is shown when you kick out a youth from your academy"), NULL);
-
-  checkbutton_show_job = gtk_check_button_new_with_mnemonic (_("Show job offers"));
-  gtk_widget_show (checkbutton_show_job);
-  gtk_box_pack_start (GTK_BOX (vbox6), checkbutton_show_job, FALSE, FALSE, 0);
-  gtk_tooltips_set_tip (tooltips, checkbutton_show_job, _("Whether to show job offers when a user is successful"), NULL);
-
-  eventbox1 = gtk_event_box_new ();
-  gtk_widget_show (eventbox1);
-  gtk_box_pack_start (GTK_BOX (vbox6), eventbox1, FALSE, FALSE, 0);
-  gtk_tooltips_set_tip (tooltips, eventbox1, _("Set to 0 to switch off warning"), NULL);
-
-  hbox10 = gtk_hbox_new (FALSE, 0);
-  gtk_widget_show (hbox10);
-  gtk_container_add (GTK_CONTAINER (eventbox1), hbox10);
-
-  label37 = gtk_label_new (_("Show warning if a player contract gets below "));
-  gtk_widget_show (label37);
-  gtk_box_pack_start (GTK_BOX (hbox10), label37, FALSE, FALSE, 0);
-
-  spinbutton_contract_adj = gtk_adjustment_new (1, 0, 24, 1, 10, 0);
-  spinbutton_contract = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_contract_adj), 1, 0);
-  gtk_widget_show (spinbutton_contract);
-  gtk_box_pack_start (GTK_BOX (hbox10), spinbutton_contract, FALSE, FALSE, 0);
-  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton_contract), TRUE);
-
-  label38 = gtk_label_new (_(" months"));
-  gtk_widget_show (label38);
-  gtk_box_pack_start (GTK_BOX (hbox10), label38, FALSE, FALSE, 0);
-
-  checkbutton_show_all_leagues = gtk_check_button_new_with_mnemonic (_("Show all leagues in the fixture view"));
-  gtk_widget_show (checkbutton_show_all_leagues);
-  gtk_box_pack_start (GTK_BOX (vbox6), checkbutton_show_all_leagues, FALSE, FALSE, 0);
-  gtk_tooltips_set_tip (tooltips, checkbutton_show_all_leagues, _("Whether in the weekly fixture view all leagues or only the user league is shown"), NULL);
-
-  vseparator3 = gtk_vseparator_new ();
-  gtk_widget_show (vseparator3);
-  gtk_box_pack_start (GTK_BOX (hbox6), vseparator3, FALSE, FALSE, 0);
-  gtk_widget_set_size_request (vseparator3, 10, 1);
-
-  vbox7 = gtk_vbox_new (FALSE, 0);
-  gtk_widget_show (vbox7);
-  gtk_box_pack_start (GTK_BOX (hbox6), vbox7, TRUE, TRUE, 0);
-
-  checkbutton_swap_adapts = gtk_check_button_new_with_mnemonic (_("Swap adapts structure"));
-  gtk_widget_show (checkbutton_swap_adapts);
-  gtk_box_pack_start (GTK_BOX (vbox7), checkbutton_swap_adapts, FALSE, FALSE, 0);
-  gtk_tooltips_set_tip (tooltips, checkbutton_swap_adapts, _("Whether swapping two players automatically adapts the team structure to the player positions"), NULL);
-
-  checkbutton_show_overall = gtk_check_button_new_with_mnemonic (_("Show overall games/goals"));
-  gtk_widget_show (checkbutton_show_overall);
-  gtk_box_pack_start (GTK_BOX (vbox7), checkbutton_show_overall, FALSE, FALSE, 0);
-  gtk_tooltips_set_tip (tooltips, checkbutton_show_overall, _("Whether to show the player games/goals value in all competitions"), NULL);
-
-  label3 = gtk_label_new (_("Misc."));
-  gtk_widget_show (label3);
-  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 2), label3);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 2), label2);
 
   table2 = gtk_table_new (20, 3, FALSE);
   gtk_widget_show (table2);
@@ -1104,6 +1116,58 @@ create_window_options (void)
   gtk_widget_show (label43);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 5), label43);
 
+  vbox11 = gtk_vbox_new (FALSE, 4);
+  gtk_widget_show (vbox11);
+  gtk_container_add (GTK_CONTAINER (notebook1), vbox11);
+
+  hbox17 = gtk_hbox_new (FALSE, 5);
+  gtk_widget_show (hbox17);
+  gtk_box_pack_start (GTK_BOX (vbox11), hbox17, FALSE, FALSE, 0);
+
+  checkbutton_news_user = gtk_check_button_new_with_mnemonic (_("Create user news"));
+  gtk_widget_show (checkbutton_news_user);
+  gtk_box_pack_start (GTK_BOX (hbox17), checkbutton_news_user, FALSE, FALSE, 0);
+
+  checkbutton_news_cup = gtk_check_button_new_with_mnemonic (_("Create cup news"));
+  gtk_widget_show (checkbutton_news_cup);
+  gtk_box_pack_start (GTK_BOX (hbox17), checkbutton_news_cup, FALSE, FALSE, 0);
+
+  checkbutton_news_league = gtk_check_button_new_with_mnemonic (_("Create league news"));
+  gtk_widget_show (checkbutton_news_league);
+  gtk_box_pack_start (GTK_BOX (hbox17), checkbutton_news_league, FALSE, FALSE, 0);
+
+  checkbutton_news_recent = gtk_check_button_new_with_mnemonic (_("Show only recent news"));
+  gtk_widget_show (checkbutton_news_recent);
+  gtk_box_pack_start (GTK_BOX (vbox11), checkbutton_news_recent, FALSE, FALSE, 0);
+
+  hbox18 = gtk_hbox_new (FALSE, 5);
+  gtk_widget_show (hbox18);
+  gtk_box_pack_start (GTK_BOX (vbox11), hbox18, FALSE, FALSE, 0);
+
+  radiobutton_news_popup_no = gtk_radio_button_new_with_mnemonic (NULL, _("No automatic popup"));
+  gtk_widget_show (radiobutton_news_popup_no);
+  gtk_box_pack_start (GTK_BOX (hbox18), radiobutton_news_popup_no, FALSE, FALSE, 0);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton_news_popup_no), radiobutton_news_popup_no_group);
+  radiobutton_news_popup_no_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton_news_popup_no));
+
+  radiobutton_news_popup_user = gtk_radio_button_new_with_mnemonic (NULL, _("Popup for user news"));
+  gtk_widget_show (radiobutton_news_popup_user);
+  gtk_box_pack_start (GTK_BOX (hbox18), radiobutton_news_popup_user, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, radiobutton_news_popup_user, _("Show news window after a matchday when new user news was created"), NULL);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton_news_popup_user), radiobutton_news_popup_no_group);
+  radiobutton_news_popup_no_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton_news_popup_user));
+
+  radiobutton_news_popup_always = gtk_radio_button_new_with_mnemonic (NULL, _("Automatic popup"));
+  gtk_widget_show (radiobutton_news_popup_always);
+  gtk_box_pack_start (GTK_BOX (hbox18), radiobutton_news_popup_always, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, radiobutton_news_popup_always, _("Always show news window after a matchday"), NULL);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton_news_popup_always), radiobutton_news_popup_no_group);
+  radiobutton_news_popup_no_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton_news_popup_always));
+
+  label48 = gtk_label_new (_("News"));
+  gtk_widget_show (label48);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 6), label48);
+
   hseparator1 = gtk_hseparator_new ();
   gtk_widget_show (hseparator1);
   gtk_box_pack_start (GTK_BOX (vbox1), hseparator1, FALSE, FALSE, 0);
@@ -1209,6 +1273,21 @@ create_window_options (void)
   GLADE_HOOKUP_OBJECT (window_options, eventbox2, "eventbox2");
   GLADE_HOOKUP_OBJECT (window_options, combobox_languages, "combobox_languages");
   GLADE_HOOKUP_OBJECT (window_options, label1, "label1");
+  GLADE_HOOKUP_OBJECT (window_options, hbox6, "hbox6");
+  GLADE_HOOKUP_OBJECT (window_options, vbox6, "vbox6");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_conf_youth, "checkbutton_conf_youth");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_show_job, "checkbutton_show_job");
+  GLADE_HOOKUP_OBJECT (window_options, eventbox1, "eventbox1");
+  GLADE_HOOKUP_OBJECT (window_options, hbox10, "hbox10");
+  GLADE_HOOKUP_OBJECT (window_options, label37, "label37");
+  GLADE_HOOKUP_OBJECT (window_options, spinbutton_contract, "spinbutton_contract");
+  GLADE_HOOKUP_OBJECT (window_options, label38, "label38");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_show_all_leagues, "checkbutton_show_all_leagues");
+  GLADE_HOOKUP_OBJECT (window_options, vseparator3, "vseparator3");
+  GLADE_HOOKUP_OBJECT (window_options, vbox7, "vbox7");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_swap_adapts, "checkbutton_swap_adapts");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_show_overall, "checkbutton_show_overall");
+  GLADE_HOOKUP_OBJECT (window_options, label3, "label3");
   GLADE_HOOKUP_OBJECT (window_options, hbox4, "hbox4");
   GLADE_HOOKUP_OBJECT (window_options, vbox4, "vbox4");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_show_live, "checkbutton_show_live");
@@ -1225,21 +1304,6 @@ create_window_options (void)
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_pause_red, "checkbutton_pause_red");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_pause_break, "checkbutton_pause_break");
   GLADE_HOOKUP_OBJECT (window_options, label2, "label2");
-  GLADE_HOOKUP_OBJECT (window_options, hbox6, "hbox6");
-  GLADE_HOOKUP_OBJECT (window_options, vbox6, "vbox6");
-  GLADE_HOOKUP_OBJECT (window_options, checkbutton_conf_youth, "checkbutton_conf_youth");
-  GLADE_HOOKUP_OBJECT (window_options, checkbutton_show_job, "checkbutton_show_job");
-  GLADE_HOOKUP_OBJECT (window_options, eventbox1, "eventbox1");
-  GLADE_HOOKUP_OBJECT (window_options, hbox10, "hbox10");
-  GLADE_HOOKUP_OBJECT (window_options, label37, "label37");
-  GLADE_HOOKUP_OBJECT (window_options, spinbutton_contract, "spinbutton_contract");
-  GLADE_HOOKUP_OBJECT (window_options, label38, "label38");
-  GLADE_HOOKUP_OBJECT (window_options, checkbutton_show_all_leagues, "checkbutton_show_all_leagues");
-  GLADE_HOOKUP_OBJECT (window_options, vseparator3, "vseparator3");
-  GLADE_HOOKUP_OBJECT (window_options, vbox7, "vbox7");
-  GLADE_HOOKUP_OBJECT (window_options, checkbutton_swap_adapts, "checkbutton_swap_adapts");
-  GLADE_HOOKUP_OBJECT (window_options, checkbutton_show_overall, "checkbutton_show_overall");
-  GLADE_HOOKUP_OBJECT (window_options, label3, "label3");
   GLADE_HOOKUP_OBJECT (window_options, table2, "table2");
   GLADE_HOOKUP_OBJECT (window_options, label13, "label13");
   GLADE_HOOKUP_OBJECT (window_options, label14, "label14");
@@ -1325,6 +1389,17 @@ create_window_options (void)
   GLADE_HOOKUP_OBJECT (window_options, label47, "label47");
   GLADE_HOOKUP_OBJECT (window_options, label_training, "label_training");
   GLADE_HOOKUP_OBJECT (window_options, label43, "label43");
+  GLADE_HOOKUP_OBJECT (window_options, vbox11, "vbox11");
+  GLADE_HOOKUP_OBJECT (window_options, hbox17, "hbox17");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_news_user, "checkbutton_news_user");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_news_cup, "checkbutton_news_cup");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_news_league, "checkbutton_news_league");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_news_recent, "checkbutton_news_recent");
+  GLADE_HOOKUP_OBJECT (window_options, hbox18, "hbox18");
+  GLADE_HOOKUP_OBJECT (window_options, radiobutton_news_popup_no, "radiobutton_news_popup_no");
+  GLADE_HOOKUP_OBJECT (window_options, radiobutton_news_popup_user, "radiobutton_news_popup_user");
+  GLADE_HOOKUP_OBJECT (window_options, radiobutton_news_popup_always, "radiobutton_news_popup_always");
+  GLADE_HOOKUP_OBJECT (window_options, label48, "label48");
   GLADE_HOOKUP_OBJECT (window_options, hseparator1, "hseparator1");
   GLADE_HOOKUP_OBJECT (window_options, hbox1, "hbox1");
   GLADE_HOOKUP_OBJECT (window_options, vbox2, "vbox2");
