@@ -493,7 +493,7 @@ file_get_country_files(void)
     GPtrArray *dir_contents = NULL;
     GPtrArray *country_files_full_path = g_ptr_array_new();
     gchar buf[SMALL];
-    gchar *country_structure;
+    const gchar *country_structure;
 
     while(elem != NULL)
     {
