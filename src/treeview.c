@@ -2660,7 +2660,7 @@ treeview_create_country_list(const GPtrArray *country_list)
         if (g_str_has_prefix(current_country,G_DIR_SEPARATOR_S))
         {
             // Strip leading directory delimiter
-            sprintf(current_country, "%.*s", strlen(current_country) - 1, &current_country[1]);
+            sprintf(current_country, "%.*s", (gint)strlen(current_country) - 1, &current_country[1]);
         }
         dir_split_up = g_strsplit_set (current_country, G_DIR_SEPARATOR_S, -1);
         // We only go up to the before last column.  We don't want to show the
