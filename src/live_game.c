@@ -1575,15 +1575,13 @@ live_game_finish_unit(void)
 	    treeview_show_user_player_list();
     }
 
+    game_update_stats(match, unit);
+
     if(stat2 != -1 || stat5 < -1000)
     {
-	if(unit->time != LIVE_GAME_UNIT_TIME_PENALTIES)
-	{
-	    game_update_stats(match, unit);
-	    if(show)
-		treeview_show_game_stats(GTK_TREE_VIEW(lookup_widget(window.live, "treeview_stats")),
-					 match);
-	}
+	if(unit->time != LIVE_GAME_UNIT_TIME_PENALTIES && show)
+            treeview_show_game_stats(GTK_TREE_VIEW(lookup_widget(window.live, "treeview_stats")),
+                                     match);
 
 	lg_commentary_generate(match, unit, NULL, -1);
 

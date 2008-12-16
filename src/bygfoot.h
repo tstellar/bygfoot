@@ -65,6 +65,7 @@
 #define lg_commentary_id_new (counters[COUNT_LG_COMM_ID]++)
 #define news_title_id_new (counters[COUNT_NEWS_TITLE_ID]++)
 #define news_subtitle_id_new (counters[COUNT_NEWS_SUBTITLE_ID]++)
+#define news_article_id_new (counters[COUNT_NEWS_ARTICLE_ID]++)
 
 /** Convenience abbreviation. */
 #define ligs country.leagues

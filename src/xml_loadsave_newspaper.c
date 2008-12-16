@@ -35,6 +35,7 @@ enum
     TAG_NEWS_PAPER = TAG_START_NEWS_PAPER,
     TAG_NEWS_PAPER_NAME,
     TAG_NEWS_PAPER_ARTICLE,
+    TAG_NEWS_PAPER_ARTICLE_ID,
     TAG_NEWS_PAPER_ARTICLE_WEEK,
     TAG_NEWS_PAPER_ARTICLE_WEEK_ROUND,
     TAG_NEWS_PAPER_ARTICLE_TITLE_ID,
@@ -98,6 +99,7 @@ xml_loadsave_newspaper_end_element    (GMarkupParseContext *context,
     }
     else if(tag == TAG_NEWS_PAPER_ARTICLE_WEEK ||
 	    tag == TAG_NEWS_PAPER_ARTICLE_WEEK_ROUND ||
+	    tag == TAG_NEWS_PAPER_ARTICLE_ID ||
 	    tag == TAG_NEWS_PAPER_ARTICLE_TITLE_SMALL ||
 	    tag == TAG_NEWS_PAPER_ARTICLE_TITLE ||
 	    tag == TAG_NEWS_PAPER_ARTICLE_TITLE_ID ||
@@ -135,6 +137,8 @@ xml_loadsave_newspaper_text         (GMarkupParseContext *context,
 	new_article.week_number = int_value;
     else if(state == TAG_NEWS_PAPER_ARTICLE_WEEK_ROUND)
 	new_article.week_round_number = int_value;
+    else if(state == TAG_NEWS_PAPER_ARTICLE_ID)
+	new_article.id = int_value;
     else if(state == TAG_NEWS_PAPER_ARTICLE_TITLE_SMALL)
 	new_article.title_small = g_strdup(buf);
     else if(state == TAG_NEWS_PAPER_ARTICLE_TITLE)
@@ -212,6 +216,8 @@ xml_loadsave_newspaper_write(const gchar *prefix)
     {
 	fprintf(fil, "%s<_%d>\n", I0, TAG_NEWS_PAPER_ARTICLE);
 	
+	xml_write_int(fil, g_array_index(newspaper.articles, NewsPaperArticle, i).id, 
+		      TAG_NEWS_PAPER_ARTICLE_ID, I1);
 	xml_write_int(fil, g_array_index(newspaper.articles, NewsPaperArticle, i).week_number, 
 		      TAG_NEWS_PAPER_ARTICLE_WEEK, I1);
 	xml_write_int(fil, g_array_index(newspaper.articles, NewsPaperArticle, i).week_round_number, 

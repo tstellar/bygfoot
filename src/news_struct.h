@@ -68,6 +68,8 @@ typedef struct
     gchar *condition;
     /** Priority of the article. */
     gint priority;
+    /** An id to avoid repetitions. */
+    gint id;
 
 } NewsArticle;
 
@@ -77,6 +79,7 @@ typedef struct
     gint week_number, week_round_number;
     gint title_id, subtitle_id;
     gchar *title_small, *title, *subtitle;
+    gint id;
     gint user_idx;
 
 } NewsPaperArticle;

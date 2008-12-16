@@ -123,6 +123,7 @@ xml_news_read_start_element (GMarkupParseContext *context,
         new_article.subtitles = g_array_new(FALSE, FALSE, sizeof(NewsText));
         new_article.condition = g_strdup("0");
 	new_article.priority = 1;
+        new_article.id = news_article_id_new;
     }
     else if(strcmp(element_name, TAG_ARTICLE_TYPE) == 0)
 	state = STATE_ARTICLE_TYPE;
