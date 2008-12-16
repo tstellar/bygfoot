@@ -303,17 +303,19 @@ misc_strip_definitions_root(gchar *directory)
 {
     gchar **vector;
     GList *list = root_definitions_directories;
+    gchar *buf;
 
     while (list!=NULL)
     {
 	if (g_str_has_prefix(directory, (gchar*)list->data))
         {
             vector = g_strsplit(directory, (gchar*)list->data,-1);
-            return g_strdup((gchar*)vector[g_strv_length(vector)-1]);
+            buf =  g_strdup((gchar*)vector[g_strv_length(vector)-1]);
+            g_strfreev(vector);
+            return buf;
         }
         list = list->next; 
     }
-    g_strfreev(vector);
     return "";
 }
 
