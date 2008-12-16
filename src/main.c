@@ -30,6 +30,9 @@
 
 #include <time.h>
 #include <glib/gprintf.h>
+#include <glib.h>
+#include <io.h>
+#include <fcntl.h>
 
 #include "bet_struct.h"
 #include "debug.h"
@@ -324,7 +327,12 @@ main (gint argc, gchar *argv[])
     bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
     textdomain (GETTEXT_PACKAGE);
 #endif
-
+#ifdef G_OS_WIN32
+    int fd1 = open ("stdout.log", O_CREAT|O_WRONLY|O_TRUNC, 0666);
+    dup2 (fd1, 1);
+    int fd2 = open ("stderr.log", O_CREAT|O_WRONLY|O_TRUNC, 0666);
+    dup2 (fd2, 2);
+#endif
     gtk_set_locale ();
     gtk_init (&argc, &argv);
 
