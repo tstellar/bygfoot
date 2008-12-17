@@ -138,9 +138,12 @@ language_pick_country(GPtrArray *country_files)
     GPtrArray *defs =
 	misc_separate_strings(const_str("string_language_defs"));
     gpointer prefdef = NULL;
-    const gchar *lang = g_getenv("LANG");
+    const gchar *lang = g_getenv("LANGUAGE");
 
-    if(lang == NULL)
+    if(lang == NULL || strcmp(lang, "") == 0)
+	lang = g_getenv("LANG");
+
+    if(lang == NULL || strcmp(lang, "") == 0)
 	lang = g_getenv("LC_ALL");
 
     if(lang != NULL)
