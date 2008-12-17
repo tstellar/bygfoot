@@ -20,7 +20,6 @@
   <property name="type_hint">GDK_WINDOW_TYPE_HINT_NORMAL</property>
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
   <property name="focus_on_map">True</property>
-  <property name="urgency_hint">False</property>
   <signal name="delete_event" handler="on_window_bets_delete_event" last_modification_time="Thu, 27 Oct 2005 17:10:03 GMT"/>
 
   <child>
@@ -224,7 +223,6 @@
   <property name="type_hint">GDK_WINDOW_TYPE_HINT_NORMAL</property>
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
   <property name="focus_on_map">True</property>
-  <property name="urgency_hint">False</property>
   <signal name="delete_event" handler="on_window_splash_delete_event" last_modification_time="Fri, 10 Feb 2006 14:27:35 GMT"/>
 
   <child>
@@ -1005,7 +1003,6 @@
   <property name="type_hint">GDK_WINDOW_TYPE_HINT_NORMAL</property>
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
   <property name="focus_on_map">True</property>
-  <property name="urgency_hint">False</property>
   <signal name="delete_event" handler="on_window_alr_delete_event" last_modification_time="Fri, 10 Feb 2006 14:27:35 GMT"/>
 
   <child>
@@ -1627,9 +1624,9 @@
   <property name="visible">True</property>
   <property name="title" translatable="yes">Bygfoot News</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
-  <property name="window_position">GTK_WIN_POS_NONE</property>
+  <property name="window_position">GTK_WIN_POS_CENTER</property>
   <property name="modal">False</property>
-  <property name="default_width">500</property>
+  <property name="default_width">560</property>
   <property name="default_height">600</property>
   <property name="resizable">True</property>
   <property name="destroy_with_parent">False</property>
@@ -1639,7 +1636,6 @@
   <property name="type_hint">GDK_WINDOW_TYPE_HINT_NORMAL</property>
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
   <property name="focus_on_map">True</property>
-  <property name="urgency_hint">False</property>
   <signal name="delete_event" handler="on_window_news_delete_event" last_modification_time="Sat, 06 Dec 2008 15:33:30 GMT"/>
   <signal name="destroy_event" handler="on_window_news_destroy_event" last_modification_time="Sat, 06 Dec 2008 15:33:36 GMT"/>
 
@@ -1653,8 +1649,8 @@
 	<widget class="GtkScrolledWindow" id="scrolledwindow3">
 	  <property name="visible">True</property>
 	  <property name="can_focus">True</property>
-	  <property name="hscrollbar_policy">GTK_POLICY_ALWAYS</property>
-	  <property name="vscrollbar_policy">GTK_POLICY_ALWAYS</property>
+	  <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+	  <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
 	  <property name="shadow_type">GTK_SHADOW_IN</property>
 	  <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
 

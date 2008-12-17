@@ -1,27 +1,26 @@
 <news>
   <news_article>
     <type>match</type>
-    <condition>_CUP_ = 0 and _GD_ G 1</condition>
-    <title>_TW_ [beats|crushes|kills] _TL_!</title>
-    <title>_TL_ loses to _TW_!</title>
-    <title>_TW_ wipes out _TL_!</title>
-    <title>_TL_ loses again!</title>
-    <title>_TL_ in a world of misery!</title>
-    <title>_LEAGUECUPNAME_: _TL_ loses to _TW_!</title>
-    <subtitle priority="20" condition= "_UNBEATEN_TWN__ > 2">_TW_ unbeaten since _UNBEATEN_TWN__ matches.</subtitle>
-    <subtitle>Result: _RE_</subtitle>
-    <subtitle>_TL_ doesn't stand a chance against a _GOALS_TWN__ goal barrage.</subtitle>
-    <subtitle>_RE_ is flattering for _TL_.</subtitle>
-    <subtitle>_TW_ just too strong.</subtitle>
-    <subtitle>_TW_: _RE_ against _TL_.</subtitle>
-    <subtitle>_TL_ overwhelmed by _SHOTS_TWN__ shots.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_ = 1">_SCORERS_TWN__ ensure victory for _TW_.</subtitle>
-    <subtitle condition="_RANK_TWN__ != _OLDRANK_TWN__">_TW_ moves to rank _RANK_TWN__ in _LEAGUECUPNAME_.</subtitle>
-    <subtitle condition="_RANK_TWN__ > _OLDRANK_TWN__">_TW_ moves to rank _RANK_TWN__ in _LEAGUECUPNAME_.</subtitle>
-    <subtitle condition="_RANK_TWN__ = 1 and _OLDRANK_TWN__ != 1">_TW_ on top after defeating _TL_ _RE_.</subtitle>
-    <subtitle condition="_WON_TWN__ > 1">_TW_'s streak now at _WON_TWN__ wins.</subtitle>
-    <subtitle condition="_LOST_TLN__ > 1">_TL_'s losing streak now at _LOST_TLN__!</subtitle>
-    <subtitle condition="_LEAGUEWON_TWN__ > 1">_TW_ wins _WON_TWN__th in a row in _LEAGUECUPNAME_.</subtitle>
-    <subtitle condition="_LEAGUELOST_TLN__ > 1">_TL_ loses _LOST_TLN__th in a row in _LEAGUECUPNAME_.</subtitle>
+    <condition>_LAYERDIFF_ = 0 and _GD_ G 3</condition>
+    <title>_TL_ chancenlos gegen _TW_</title>
+    <title>Kantersieg für _TW_</title>
+    <title>_TL_ unterliegt _TW_ eindeutig</title>
+    <title>_TW_ beherrscht _TL_ nach Belieben</title>
+    <title>[Glanzvorstellung|Galavorstellung|Glanzleistung] von _TW_</title>
+    <title>_TW_ besiegt _TL_ mit [Glanzvorstellung|Galavorstellung|Glanzleistung]</title>
+    <title>Torreigen bei _T0_ gegen _T1_</title>
+    <title condition="_GOALS_TWL__ > 1">_TW_ siegt trotz _GOALS_TLN__ Gegentoren</title>
+    <title condition="_GOALS_TWL__ > 1">_GOALS_TWL__ nicht genug für _TL_</title>
+    <title condition="_TWN_ = 1">_TW_ dominiert bei _TL_</title>
+    <subtitle condition="_TWN_ = 0">_TW_ fertigt _TL_ zuhause _RE_ ab.</subtitle>
+    <subtitle condition="_GOALS_TLN__ > 1">In einem torreichen Spiel behält _TW_ die Oberhand.</subtitle>
+    <subtitle condition="_GOALS_TLN__ > 1">_TL_ unterliegt in einem Spiel der Offensivabteilungen.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__">_SCORERS_TWN__ treffen beim hohen Sieg von _TW_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__">_SCORERS_TWN__ erzielen die Tore beim überlegenen Heimsieg.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__">_TL_ wird durch Tore von _SCORERS_TWN__ regelrecht auseinandergenommen.</subtitle>
+    <subtitle condition="_HIGHGOALS_TWN__ > 1">_HIGHSCORER_TWN__ erzielt _HIGHGOALS_TWN__ Tore beim überlegenen Sieg.</subtitle>
+    <subtitle condition="_HIGHGOALS_TWN__ = 3">_HIGHSCORER_TWN__ erzielt Hattrick in unterhaltsamem Spiel.</subtitle>
+    <subtitle condition="_HIGHGOALS_TLN__ > 1">_HIGHGOALS_TLN__ Tore von _HIGHSCORER_TLN__ können die Niederlage von _TL_ nicht verhindern.</subtitle>
+    <subtitle condition="_GOALS_TLN__ > 1 and _MULTIPLESCORERS_TWL__">Tore von _SCORERS_TLN__ sind nicht genug bei der _RE_ Niederlage.</subtitle>
   </news_article>
 </news>
