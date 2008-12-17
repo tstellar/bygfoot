@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <league>
 	<sid>chile1</sid>
-	<layer>1</layer>	
+	<layer>1</layer>
 	<name>Primera División</name>
 	<short_name>Primera</short_name>
 	<symbol>flag_chile.png</symbol>
 	<average_talent>7400</average_talent>
-	<names_file>latinoamerica</names_file>	
+	<names_file>latinoamerica</names_file>
 	<first_week>7</first_week>
 	<week_gap>1</week_gap>
 	<yellow_red>5</yellow_red>
@@ -14,6 +14,14 @@
 	<break>3</break>
 	<new_table name="Apertura">1</new_table>
 	<new_table name="Clausura">27</new_table>
+	<prom_rel>
+		<prom_rel_element>
+			<rank_start>19</rank_start>
+			<rank_end>20</rank_end>
+			<dest_sid>chile2</dest_sid>
+			<prom_rel_type>relegation</prom_rel_type>
+		</prom_rel_element>
+	</prom_rel>
 	<teams>
 		<team>							 
  			<team_name>Antofagasta</team_name>
