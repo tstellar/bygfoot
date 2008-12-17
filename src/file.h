@@ -109,4 +109,10 @@ file_get_bygfoot_dir(gchar *dir);
 void
 file_load_hints_file(void);
 
+gchar*
+file_load_text_from_saves(const gchar *filename);
+
+void
+file_store_text_in_saves(const gchar *filename, const gchar *text);
+
 #endif

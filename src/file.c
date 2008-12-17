@@ -517,9 +517,16 @@ file_get_country_files(void)
 
 	elem = elem->next;
     }
-    free_gchar_array(&country_files);
 
-    return country_files_full_path;
+    free_gchar_array(&country_files);
+    country_files = g_ptr_array_new();
+
+    for(i = country_files_full_path->len - 1; i >= 0; i--)
+        g_ptr_array_add(country_files, g_strdup(g_ptr_array_index(country_files_full_path, i)));
+
+    free_gchar_array(&country_files_full_path);
+
+    return country_files;
 }
 
 /** Read the file until the next line that's not a comment or
@@ -934,4 +941,78 @@ file_get_bygfoot_dir(gchar *dir)
 	sprintf(dir, "%s%s", pwd, G_DIR_SEPARATOR_S);
 
     g_free(pwd);
+}
+
+/** Store text information in a text file in the saves directory.
+ */
+void
+file_store_text_in_saves(const gchar *filename, const gchar *text)
+{
+    #ifdef DEBUG
+    printf("file_store_text_in_saves\n");
+#endif
+
+    gchar buf[SMALL];
+    const gchar *home = g_get_home_dir();
+    FILE *fil = NULL;
+
+    if(os_is_unix)
+	sprintf(buf, "%s%s%s%ssaves%s%s", home, G_DIR_SEPARATOR_S,
+		HOMEDIRNAME, G_DIR_SEPARATOR_S, G_DIR_SEPARATOR_S, 
+                filename);
+    else
+    {
+	gchar *pwd = g_get_current_dir();
+	sprintf(buf, "%s%ssaves%s%s", pwd, G_DIR_SEPARATOR_S,
+		G_DIR_SEPARATOR_S, filename);
+	g_free(pwd);
+    }
+
+    if(!file_my_fopen(buf, "w", &fil, FALSE))
+    {
+        g_warning("file_store_text_in_saves: failed to store '%s' in file '%s'\n", text, buf);
+	return;
+    }
+
+    fprintf(fil, "%s", text);
+
+    fclose(fil);
+}
+
+/** Load the text stored in the file in the saves directory. */
+gchar*
+file_load_text_from_saves(const gchar *filename)
+{
+ #ifdef DEBUG
+    printf("file_load_text_from_saves\n");
+#endif
+
+    gchar buf[SMALL];
+    const gchar *home = g_get_home_dir();
+    FILE *fil = NULL;
+    gint i = 0, c;
+
+    if(os_is_unix)
+	sprintf(buf, "%s%s%s%ssaves%s%s", home, G_DIR_SEPARATOR_S,
+		HOMEDIRNAME, G_DIR_SEPARATOR_S,  G_DIR_SEPARATOR_S,
+                filename);
+    else
+    {
+	gchar *pwd = g_get_current_dir();
+	sprintf(buf, "%s%ssaves%s%s", pwd, G_DIR_SEPARATOR_S,
+		G_DIR_SEPARATOR_S, filename);
+	g_free(pwd);
+    }
+
+    fil = fopen(buf, "r");
+    if(fil == NULL)
+	return NULL;
+
+    while ((c = (gchar)fgetc(fil)) != EOF)
+	buf[i++] = (gchar)c;
+    buf[i] = 0;
+
+    fclose(fil);
+
+    return g_strdup(buf);   
 }

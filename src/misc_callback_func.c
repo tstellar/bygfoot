@@ -25,6 +25,7 @@
 
 #include "callbacks.h"
 #include "debug.h"
+#include "file.h"
 #include "finance.h"
 #include "free.h"
 #include "game.h"
@@ -98,6 +99,7 @@ misc_callback_start_game(void)
 
     start_new_game();
     window_destroy(&window.startup);
+    file_store_text_in_saves("last_country", country.sid);
 
     if(!opt_int("int_opt_calodds"))
     {
