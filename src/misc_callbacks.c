@@ -372,6 +372,11 @@ on_combo_country_changed               (GtkComboBox     *combobox,
     {
         gtk_tree_model_get(gtk_combo_box_get_model(combobox), &iter, 1, &buf, -1);
         misc_callback_show_team_list(GTK_WIDGET(combobox), buf);
+
+	gtk_widget_set_sensitive(lookup_widget(window.startup, "button_add_player"), TRUE);
+    } else {
+	gtk_widget_set_sensitive(lookup_widget(window.startup, "button_add_player"), FALSE);
+
     }
     g_free(buf);
 }

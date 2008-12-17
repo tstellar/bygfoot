@@ -307,7 +307,7 @@
       <child>
 	<widget class="GtkButton" id="button_add_player">
 	  <property name="visible">True</property>
-	  <property name="can_focus">True</property>
+	  <property name="sensitive">False</property>
 	  <property name="relief">GTK_RELIEF_NORMAL</property>
 	  <property name="focus_on_click">True</property>
 	  <signal name="clicked" handler="on_button_add_player_clicked" last_modification_time="Fri, 25 Feb 2005 16:22:19 GMT"/>
