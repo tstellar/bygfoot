@@ -788,7 +788,8 @@ create_window_news (void)
 
   window_news = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (window_news), _("Bygfoot News"));
-  gtk_window_set_default_size (GTK_WINDOW (window_news), 500, 600);
+  gtk_window_set_position (GTK_WINDOW (window_news), GTK_WIN_POS_CENTER);
+  gtk_window_set_default_size (GTK_WINDOW (window_news), 560, 600);
 
   vbox6 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox6);
@@ -797,6 +798,7 @@ create_window_news (void)
   scrolledwindow3 = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (scrolledwindow3);
   gtk_box_pack_start (GTK_BOX (vbox6), scrolledwindow3, TRUE, TRUE, 0);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow3), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow3), GTK_SHADOW_IN);
 
   treeview_news = gtk_tree_view_new ();

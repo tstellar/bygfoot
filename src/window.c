@@ -1017,7 +1017,7 @@ window_create(gint window_type)
         else
             window.news = create_window_news();
         wind = window.news;
-        strcpy(buf, _("Bygfoot news"));
+        strcpy(buf, _("Bygfoot News"));
         break;
     }
 

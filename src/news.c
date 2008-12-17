@@ -545,8 +545,8 @@ news_set_league_cup_tokens(const Fixture *fix)
        fix->teams[1]->clid < ID_CUP_START)
 	misc_token_add(token_rep_news,
 		       option_int("string_token_team_layerdiff", &tokens),
-		       misc_int_to_char(league_from_clid(fix->teams[0]->clid)->layer -
-					league_from_clid(fix->teams[1]->clid)->layer));
+		       misc_int_to_char(ABS(league_from_clid(fix->teams[0]->clid)->layer -
+                                            league_from_clid(fix->teams[1]->clid)->layer)));
 
     misc_token_add(token_rep_news,
 		   option_int("string_token_league_cup_name", &tokens),

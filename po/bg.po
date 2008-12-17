@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-27 14:47+0100\n"
+"POT-Creation-Date: 2008-12-17 18:32+0100\n"
 "PO-Revision-Date: 2006-03-01 17:06+0200\n"
 "Last-Translator: Rostislav \"zbrox\" Raykov <nostalgiafed@gmail.com>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: src/treeview_helper.c:950
+#: src/treeview_helper.c:952
 #, c-format
 msgid ""
 "\n"
@@ -24,7 +24,7 @@ msgstr ""
 "\n"
 "Голове/Мач %.1f Спасяване %% %.1f"
 
-#: src/treeview_helper.c:957
+#: src/treeview_helper.c:959
 #, c-format
 msgid ""
 "\n"
@@ -55,7 +55,7 @@ msgid " &amp; Sons"
 msgstr " "
 
 #. A goal scored with a free kick.
-#: src/game.c:998
+#: src/game.c:999
 msgid " (FK)"
 msgstr " (Пряк)"
 
@@ -63,25 +63,26 @@ msgstr " (Пряк)"
 msgid " (NOTE: If you don't, the game is over for you.)"
 msgstr " (ЗАБЕЛЕЖКА: Ако не го направите, играта приключва за Вас.)"
 
-#: src/game.c:1000
+#. An own goal
+#: src/game.c:1002
 msgid " (OG)"
 msgstr " (автогол)"
 
 #. A goal scored with penalty.
 #. Penalty shooter.
-#: src/game.c:995 src/treeview_helper.c:1217
+#: src/game.c:996 src/treeview_helper.c:1219
 msgid " (P)"
 msgstr " (Д)"
 
-#: src/cup.c:1078
+#: src/cup.c:1080
 msgid " -- First leg"
 msgstr " -- Първи мач"
 
-#: src/cup.c:1081
+#: src/cup.c:1083
 msgid " -- Replay matches"
 msgstr " -- Преиграване на мачовете"
 
-#: src/cup.c:1076
+#: src/cup.c:1078
 msgid " -- Second leg"
 msgstr " -- Втори мач"
 
@@ -90,7 +91,7 @@ msgstr " -- Втори мач"
 msgid " Assoc."
 msgstr " и съдружници"
 
-#: src/options_interface.c:311
+#: src/options_interface.c:323
 msgid " Autosave files "
 msgstr ""
 " Файлове на \n"
@@ -195,7 +196,7 @@ msgstr " Продукти"
 msgid " Restaurants"
 msgstr " Ресторанти"
 
-#: src/interface.c:1206
+#: src/interface.c:1210
 msgid " Round "
 msgstr " Кръг "
 
@@ -204,7 +205,7 @@ msgstr " Кръг "
 msgid " Scientific"
 msgstr " Научни дейности"
 
-#: src/interface.c:1186
+#: src/interface.c:1190
 msgid " Season "
 msgstr " Сезон "
 
@@ -228,38 +229,38 @@ msgstr "Технологии"
 msgid " Telecommunications"
 msgstr " Телекомуникации"
 
-#: src/interface.c:1196
+#: src/interface.c:1200
 msgid " Week "
 msgstr " Седмица "
 
 #. Game was decided in extra time.
-#: src/fixture.c:1029
+#: src/fixture.c:1042
 msgid " e.t."
 msgstr " в доп. време"
 
-#: src/callback_func.c:440
+#: src/callback_func.c:445
 msgid " less"
 msgstr " по-малко"
 
-#: src/options_interface.c:574
+#: src/options_interface.c:500
 msgid " months"
 msgstr " месеца"
 
-#: src/callback_func.c:438
+#: src/callback_func.c:443
 msgid " more"
 msgstr "повече"
 
 #. Game was decided in penalty shoot-out.
-#: src/fixture.c:1026
+#: src/fixture.c:1039
 msgid " p."
 msgstr " след дузпи"
 
-#: src/misc_interface.c:931
+#: src/misc_interface.c:934
 msgid " seats"
 msgstr " места"
 
 #. Contract time and money a sponsor pays.
-#: src/treeview.c:1650
+#: src/treeview.c:1655
 #, c-format
 msgid "%.1f months / %s"
 msgstr "%.1f месеца / %s"
@@ -293,13 +294,13 @@ msgstr "%s (Дом) "
 msgid "%s (N) "
 msgstr "%s (Неут) "
 
-#: src/treeview_helper.c:1086
+#: src/treeview_helper.c:1088
 #, c-format
 msgid "%s (expected recovery in %d weeks)"
 msgstr "%s (очаквано възстановяване за %d седмици)"
 
 #. A group of a round robin stage of a cup.
-#: src/treeview.c:1229
+#: src/treeview.c:1234
 #, c-format
 msgid "%s Group %d"
 msgstr "%s Група %d"
@@ -308,6 +309,16 @@ msgstr "%s Група %d"
 #, c-format
 msgid "%s accepts your offer."
 msgstr "%s приема Вашата оферта."
+
+#: src/news.c:485
+#, c-format
+msgid "%s and %s"
+msgstr ""
+
+#: src/news.c:483
+#, c-format
+msgid "%s and %s (%d)"
+msgstr ""
 
 #: src/misc2_callback_func.c:92
 #, c-format
@@ -387,12 +398,12 @@ msgstr ""
 msgid "%s rejects your offer. You may still make %d offers."
 msgstr "%s отхвърля предложението Ви. Може да направите още %d предложения."
 
-#: src/callbacks.c:669
+#: src/callbacks.c:676
 #, c-format
 msgid "%s will shoot penalties and free kicks when he plays."
 msgstr "%s ще изпълнява дузпи и свободни удари, когато е в игра."
 
-#: src/callback_func.c:442
+#: src/callback_func.c:447
 #, c-format
 msgid ""
 "%s would like to buy %s. They offer %s for him, which is %s than the "
@@ -417,29 +428,29 @@ msgstr ""
 
 #. Yellow cards of a player in a cup/league. No limit means there isn't a limit
 #. after which the player gets banned for a match automatically.
-#: src/treeview_helper.c:1027
+#: src/treeview_helper.c:1029
 #, c-format
 msgid "%s: %d (no limit)\n"
 msgstr "%s: %d (няма лимит)\n"
 
 #. Ban info of a player in the format:
 #. 'Cup/league name: Number of weeks banned'
-#: src/treeview_helper.c:986
+#: src/treeview_helper.c:988
 #, c-format
 msgid "%s: %d weeks\n"
 msgstr "%s: %d седмици\n"
 
-#: src/treeview.c:1636
+#: src/treeview.c:1641
 #, c-format
 msgid "(starting week %d)"
 msgstr ""
 
-#: src/main.c:125
+#: src/main.c:134
 msgid "- a simple and addictive GTK2 football manager"
 msgstr " - прост и пристрастяващ GTK2 футболен мениджър"
 
-#: src/misc_interface.c:1068 src/misc_interface.c:1076
-#: src/misc_interface.c:1102 src/misc_interface.c:1110
+#: src/misc_interface.c:1071 src/misc_interface.c:1079
+#: src/misc_interface.c:1105 src/misc_interface.c:1113
 msgid "0"
 msgstr "0"
 
@@ -465,7 +476,7 @@ msgstr "4 години"
 msgid "<span background='%s' foreground='%s'>%s (A) </span> "
 msgstr "<span background='%s' foreground='%s'>%s (Г) </span> "
 
-#: src/treeview.c:900
+#: src/treeview.c:905
 #, c-format
 msgid ""
 "<span background='%s'>There was a fire\n"
@@ -474,7 +485,7 @@ msgstr ""
 "<span background='%s'>Имаше пожар на\n"
 "стадиона.</span>"
 
-#: src/treeview.c:897
+#: src/treeview.c:902
 #, c-format
 msgid ""
 "<span background='%s'>There were riots\n"
@@ -483,7 +494,7 @@ msgstr ""
 "<span background='%s'>Имаше размирици\n"
 "на стадиона.</span>"
 
-#: src/treeview.c:894
+#: src/treeview.c:899
 #, c-format
 msgid ""
 "<span background='%s'>There were technical problems\n"
@@ -507,7 +518,7 @@ msgstr ""
 "<span background='lightgrey' size='large' weight='bold'>Последни залози</"
 "span>"
 
-#: src/treeview.c:1815 src/treeview.c:1820
+#: src/treeview.c:1820 src/treeview.c:1825
 #, c-format
 msgid "<span foreground='%s' background='%s'>Week %d Round %d</span>"
 msgstr "<span foreground='%s' background='%s'>Седмица %d Кръг %d</span>"
@@ -524,32 +535,32 @@ msgstr ""
 "Нов младеж искаше да се регистрира в младежката Ви академия, но там нямаше "
 "място."
 
-#: src/treeview_helper.c:1648
+#: src/treeview_helper.c:1650
 msgid "ADD LAST MATCH"
 msgstr "Добавяне на последния мач"
 
-#: src/lg_commentary.c:553 src/team.c:621
+#: src/lg_commentary.c:541 src/team.c:621
 msgid "ALL OUT ATTACK"
 msgstr "Всички в атака"
 
-#: src/lg_commentary.c:541 src/team.c:613
+#: src/lg_commentary.c:529 src/team.c:613
 msgid "ALL OUT DEFEND"
 msgstr "Всички в защита"
 
 #. Boost value.
-#: src/lg_commentary.c:556 src/team.c:629
+#: src/lg_commentary.c:544 src/team.c:629
 msgid "ANTI"
 msgstr "АНТИ"
 
-#: src/lg_commentary.c:550 src/team.c:619
+#: src/lg_commentary.c:538 src/team.c:619
 msgid "ATTACK"
 msgstr "Атакуващ"
 
-#: src/interface.c:1052 src/misc2_interface.c:1092
+#: src/interface.c:1056 src/misc2_interface.c:1092
 msgid "About"
 msgstr "Относно"
 
-#: src/misc_interface.c:1342
+#: src/misc_interface.c:1345
 msgid "Accept"
 msgstr "Приемане"
 
@@ -557,15 +568,15 @@ msgstr "Приемане"
 msgid "Accept?"
 msgstr "Приемате ли?"
 
-#: src/interface.c:918
+#: src/interface.c:1025
 msgid "Add last match"
 msgstr "Добавяне на последния мач"
 
-#: src/interface.c:921
+#: src/interface.c:1028
 msgid "Add last recorded match to the current memorable matches file."
 msgstr "Добавяне на последния записан мач към файла със запомнящите се мачове."
 
-#: src/misc2_interface.c:899 src/misc_interface.c:188
+#: src/misc2_interface.c:899 src/misc_interface.c:191
 msgid "Add user"
 msgstr "Добавяне на потребител"
 
@@ -573,31 +584,35 @@ msgstr "Добавяне на потребител"
 msgid "Adjust repayment schedule?"
 msgstr ""
 
-#: src/treeview.c:324 src/treeview.c:2139
+#: src/treeview.c:324 src/treeview.c:2144
 msgid "Age"
 msgstr "Възраст"
 
-#: src/options_interface.c:687
+#: src/options_interface.c:699
 msgid "Age "
 msgstr "Възраст "
 
-#: src/window.c:366
+#: src/window.c:396
 msgid "All Files"
 msgstr "Всички файлове"
 
-#: src/interface.c:527
+#: src/interface.c:500
 msgid "All Out Attack"
 msgstr "Всички в нападение"
 
-#: src/interface.c:503
+#: src/interface.c:476
 msgid "All Out Defend"
 msgstr "Всички в защита"
 
-#: src/interface.c:717
+#: src/options_interface.c:1163
+msgid "Always show news window after a matchday"
+msgstr ""
+
+#: src/interface.c:690
 msgid "Anti"
 msgstr "Анти"
 
-#: src/interface.c:683
+#: src/interface.c:656
 msgid "Any"
 msgstr "Всичко"
 
@@ -605,7 +620,7 @@ msgstr "Всичко"
 msgid "Apply for the job?"
 msgstr "Кандидатстване за работата?"
 
-#: src/callbacks.c:270
+#: src/callbacks.c:277
 msgid "At least one user didn't take his turn this week. Continue?"
 msgstr ""
 "Поне един потребител не е играл своя ход тази седмица. Продължавате ли?"
@@ -619,11 +634,11 @@ msgstr ""
 "На форумите на Bygfoot можете да докладвате грешки, задавате въпроси и да "
 "обсъджате играта (не е нужно да се регистрирате):\n"
 
-#: src/interface.c:521 src/treeview.c:1756
+#: src/interface.c:494 src/treeview.c:1761
 msgid "Attack"
 msgstr "Атакуващ"
 
-#: src/treeview.c:886
+#: src/treeview.c:891
 #, c-format
 msgid ""
 "Attendance\n"
@@ -632,37 +647,41 @@ msgstr ""
 "Посещаемост\n"
 "%s"
 
-#: src/options_interface.c:966
+#: src/options_interface.c:978
 msgid "Attribute "
 msgstr "Качество "
 
-#: src/interface.c:1025 src/misc3_interface.c:543 src/window.c:982
+#: src/interface.c:947 src/misc3_interface.c:543 src/window.c:1012
 msgid "Automatic loan repayment"
 msgstr ""
 
-#: src/treeview.c:1631
+#: src/options_interface.c:1160
+msgid "Automatic popup"
+msgstr ""
+
+#: src/treeview.c:1636
 msgid "Automatic repayment"
 msgstr ""
 
-#: src/options_interface.c:504
+#: src/options_interface.c:585
 msgid "Automatic substitutions"
 msgstr "Автоматични смени"
 
-#: src/options_interface.c:404
+#: src/options_interface.c:416
 msgid "Autosave"
 msgstr "Автоматично запазване"
 
-#: src/options_interface.c:300
+#: src/options_interface.c:312
 msgid "Autosave interval "
 msgstr ""
 "Интервал на \n"
 "автоматичното запазване "
 
-#: src/misc_interface.c:621
+#: src/misc_interface.c:624
 msgid "Av. skill: "
 msgstr "Средни качества: "
 
-#: src/interface.c:1306
+#: src/interface.c:1310
 msgid "Av. skills:  "
 msgstr "Средни качества:  "
 
@@ -679,19 +698,19 @@ msgstr "Средни качества"
 msgid "Available teams"
 msgstr "Налични отбори"
 
-#: src/interface.c:556 src/interface.c:591 src/interface.c:640
+#: src/interface.c:529 src/interface.c:564 src/interface.c:613
 msgid "Average"
 msgstr "Средно"
 
-#: src/misc_interface.c:982
+#: src/misc_interface.c:985
 msgid "Average attendance"
 msgstr "Средна посещаемост"
 
-#: src/misc_interface.c:989
+#: src/misc_interface.c:992
 msgid "Average attendance %"
 msgstr "Средна посещаемост %"
 
-#: src/treeview.c:1861
+#: src/treeview.c:1866
 msgid "Average skill"
 msgstr "Средно умение"
 
@@ -699,70 +718,70 @@ msgstr "Средно умение"
 msgid "Average skill:"
 msgstr "Средно умение:"
 
-#: src/treeview.c:1830
+#: src/treeview.c:1835
 msgid "Away"
 msgstr "Гостуване"
 
-#: src/lg_commentary.c:547 src/team.c:617
+#: src/lg_commentary.c:535 src/team.c:617
 msgid "BALANCED"
 msgstr "Балансиран"
 
-#: src/treeview_helper.c:1376
+#: src/treeview_helper.c:1378
 #, c-format
 msgid "BAN(%d)"
 msgstr "НАКАЗАНИЕ(%d)"
 
-#: src/interface.c:1124
+#: src/interface.c:1128
 msgid "Back to main menu (Esc)"
 msgstr "Връщане към основното меню"
 
-#: src/misc_interface.c:285
+#: src/misc_interface.c:288
 msgid "Back to splash"
 msgstr "Обратно към начален екран"
 
-#: src/interface.c:562 src/interface.c:597 src/interface.c:646
+#: src/interface.c:535 src/interface.c:570 src/interface.c:619
 msgid "Bad"
 msgstr "Зле"
 
 #. Finances balance.
-#: src/treeview.c:1558
+#: src/treeview.c:1563
 msgid "Balance"
 msgstr "Баланс"
 
-#: src/interface.c:515
+#: src/interface.c:488
 msgid "Balanced"
 msgstr "Балансиран"
 
-#: src/treeview.c:2148
+#: src/treeview.c:2153
 msgid "Banned\n"
 msgstr "Наказан\n"
 
-#: src/interface.c:1155
+#: src/interface.c:1159
 msgid "Begin a new week (Space)"
 msgstr "Започване на нова седмица (Space)"
 
-#: src/interface.c:544 src/interface.c:579 src/interface.c:628
+#: src/interface.c:517 src/interface.c:552 src/interface.c:601
 msgid "Best"
 msgstr "Най-доброто"
 
-#: src/treeview.c:2388
+#: src/treeview.c:2393
 msgid "Best defensive teams"
 msgstr "Най-добрите защитни отбори"
 
-#: src/treeview.c:2391
+#: src/treeview.c:2396
 msgid "Best goal scorers"
 msgstr "Най-добри голмайстори"
 
-#: src/treeview.c:2392
+#: src/treeview.c:2397
 msgid "Best goalkeepers"
 msgstr "Най-добри вратари"
 
-#: src/treeview.c:2387
+#: src/treeview.c:2392
 msgid "Best offensive teams"
 msgstr "Най-добрите нападателни отбори"
 
-#: src/interface.c:1037 src/options_interface.c:1036 src/treeview.c:1498
-#: src/treeview.c:1508 src/window.c:959
+#: src/interface.c:959 src/options_interface.c:1048 src/treeview.c:1503
+#: src/treeview.c:1513 src/window.c:989
 msgid "Betting"
 msgstr "Залагания"
 
@@ -772,11 +791,11 @@ msgstr ""
 "Залагания -- Ляво натискане на коефицент, за да поставите или премахнете "
 "залог"
 
-#: src/treeview.c:1531
+#: src/treeview.c:1536
 msgid "Bi-weekly balance"
 msgstr "Двуседмичен баланс"
 
-#: src/treeview.c:1524 src/treeview.c:1527
+#: src/treeview.c:1529 src/treeview.c:1532
 #, c-format
 msgid ""
 "Bi-weekly balance\n"
@@ -785,11 +804,11 @@ msgstr ""
 "Двуседмичен баланс\n"
 "(Седмица·%d и %d)"
 
-#: src/interface.c:694
+#: src/interface.c:667
 msgid "Boost"
 msgstr "Тласък"
 
-#: src/callbacks.c:1080 src/game_gui.c:459 src/misc_callbacks.c:554
+#: src/callbacks.c:1087 src/game_gui.c:459 src/misc_callbacks.c:560
 msgid "Boost ON is disabled in this country definition."
 msgstr ""
 "Режимът на тласъка \"Включен\" е изключен в дефиницията за тази страна."
@@ -805,7 +824,7 @@ msgid "Boost changed to %s."
 msgstr "Тласъкът е променен на %s."
 
 #. Applying boost costs money.
-#: src/treeview.c:1510
+#: src/treeview.c:1515
 msgid "Boost costs"
 msgstr "Разход по тласъка"
 
@@ -829,19 +848,24 @@ msgstr "Счупено ребро"
 msgid "Broken shoulder"
 msgstr "Счупено рамо"
 
-#: src/interface.c:859
+#: src/interface.c:832
 msgid "Browse players"
 msgstr "Разглеждане на играчи"
 
-#: src/interface.c:770
+#: src/interface.c:743
 msgid "Browse teams"
 msgstr "Разглеждане на отборите"
 
-#: src/window.c:360
+#: src/window.c:390
 msgid "Bygfoot Memorable Matches"
 msgstr "Запомнящи се Bygfoot мачове"
 
-#: src/window.c:354
+#: src/misc3_interface.c:790 src/window.c:1020
+#, fuzzy
+msgid "Bygfoot News"
+msgstr "Запазени игри на Bygfoot"
+
+#: src/window.c:384
 msgid "Bygfoot Save Files"
 msgstr "Запазени игри на Bygfoot"
 
@@ -864,7 +888,7 @@ msgstr ""
 msgid "CPos"
 msgstr "Тек. поз."
 
-#: src/options_interface.c:617
+#: src/options_interface.c:629
 msgid "CPos "
 msgstr "Тек. поз. "
 
@@ -873,7 +897,7 @@ msgstr "Тек. поз. "
 msgid "CSk"
 msgstr "Тек. умение"
 
-#: src/options_interface.c:631
+#: src/options_interface.c:643
 msgid "CSkill "
 msgstr "Тек. умение "
 
@@ -890,19 +914,19 @@ msgstr ""
 msgid "Camp points"
 msgstr " "
 
-#: src/misc_interface.c:1050
+#: src/misc_interface.c:1053
 msgid "Capacity (seats)"
 msgstr "Капацитет (места)"
 
-#: src/options_interface.c:680
+#: src/options_interface.c:692
 msgid "Cards "
 msgstr "Картони"
 
-#: src/treeview.c:2151
+#: src/treeview.c:2156
 msgid "Career values"
 msgstr "Стойности за кариера"
 
-#: src/misc_interface.c:726
+#: src/misc_interface.c:729
 msgid ""
 "Change commentary verbosity. The higher this value the more events you can "
 "see."
@@ -910,37 +934,37 @@ msgstr ""
 "Промяна на честотата на коментара. Колкото по-висока е тази стойност, "
 "толкова повече събития ще виждате."
 
-#: src/misc_interface.c:704
+#: src/misc_interface.c:707
 #, fuzzy
 msgid "Change live game speed. The higher the value the faster the live game."
 msgstr ""
 "Промяна на скоростта на мача на живо. По-малки стойности = по-бърза игра."
 
-#: src/misc_interface.c:1014
+#: src/misc_interface.c:1017
 msgid "Change ticket price"
 msgstr ""
 
-#: src/misc_interface.c:96
+#: src/misc_interface.c:97
 msgid "Choose country"
 msgstr "Избор на страна"
 
-#: src/misc_interface.c:1238
+#: src/misc_interface.c:1241
 msgid "Choose file"
 msgstr "Избор на файл"
 
-#: src/options_interface.c:441
+#: src/options_interface.c:453
 msgid "Choose game language (might not work in Windows versions)"
 msgstr "Избор на език на играта (може да не работи в Windows версията)"
 
-#: src/misc_interface.c:145
+#: src/misc_interface.c:146
 msgid "Choose league to start in"
 msgstr "Избор на начално първенство"
 
-#: src/misc_interface.c:106
+#: src/misc_interface.c:107
 msgid "Choose team"
 msgstr "Избор на отбор"
 
-#: src/misc_interface.c:158
+#: src/misc_interface.c:159
 msgid "Choose username"
 msgstr "Избор на потребител"
 
@@ -954,30 +978,30 @@ msgstr ""
 msgid "Click on a user to remove him from the game."
 msgstr "Натиснете на потребител, за да го махнете от играта."
 
-#: src/misc_interface.c:125
+#: src/misc_interface.c:126
 msgid "Click on a user to remove him."
 msgstr "Натиснете върху потребител да го махнете."
 
-#: src/misc_interface.c:570
+#: src/misc_interface.c:573
 msgid "Commentary"
 msgstr "Коментар"
 
-#: src/main.c:103
+#: src/main.c:112
 msgid "Commentary event to test; leave out to test all commentaries"
 msgstr ""
 "Събития от коментара, които да се тестват; пропуснете, за да се тестват "
 "всички коментари"
 
-#: src/main.c:94
+#: src/main.c:103
 msgid "Commentary file name (may be in a support dir)"
 msgstr "Файлово име на файла с коментарите"
 
-#: src/treeview.c:2924
+#: src/treeview.c:2986
 msgid "Company"
 msgstr "Компания"
 
 #. Money paid to players a user fired.
-#: src/treeview.c:1507
+#: src/treeview.c:1512
 msgid "Compensations"
 msgstr "Компенсации"
 
@@ -985,7 +1009,7 @@ msgstr "Компенсации"
 msgid "Competition"
 msgstr "Състезание"
 
-#: src/load_save.c:156
+#: src/load_save.c:169
 msgid "Compressing savegame..."
 msgstr "Компресиране на запазената игра..."
 
@@ -997,39 +1021,39 @@ msgstr "Сътресение"
 msgid "Confirm & schedule repayment"
 msgstr ""
 
-#: src/options_interface.c:238
+#: src/options_interface.c:250
 msgid "Confirm quit when not saved"
 msgstr "Подтвърждаване на затварянето при незапазени данни"
 
-#: src/options_interface.c:545
+#: src/options_interface.c:471
 msgid "Confirm removing youths"
 msgstr "Подтвърждение при премахването на младежи"
 
-#: src/options_interface.c:243
+#: src/options_interface.c:255
 msgid "Confirm when unfit"
 msgstr "Подтвърждение при липса на форма."
 
-#: src/misc_interface.c:1139
+#: src/misc_interface.c:1142
 msgid "Confirm!"
 msgstr ""
 
-#: src/options_interface.c:335
+#: src/options_interface.c:347
 msgid "Constants file"
 msgstr "Файл за константи"
 
-#: src/treeview.c:329 src/treeview.c:2143
+#: src/treeview.c:329 src/treeview.c:2148
 msgid "Contract"
 msgstr "Договор"
 
-#: src/options_interface.c:715
+#: src/options_interface.c:727
 msgid "Contract "
 msgstr "Договор "
 
-#: src/treeview.c:1652
+#: src/treeview.c:1657
 msgid "Contract / Money"
 msgstr "Договор/Пари"
 
-#: src/treeview.c:2925
+#: src/treeview.c:2987
 msgid ""
 "Contract length\n"
 "(Months)"
@@ -1037,29 +1061,29 @@ msgstr ""
 "Срок на договора\n"
 "(Месеци)"
 
-#: src/window.c:904
+#: src/window.c:934
 msgid "Contract offer"
 msgstr "Предложение за договор"
 
-#: src/callbacks.c:1162
+#: src/callbacks.c:1169
 msgid "Contracts are disabled in this country definition."
 msgstr "Договорите са изключени в определенията за тази страна."
 
-#: src/interface.c:1060 src/misc2_interface.c:1106 src/misc3_interface.c:237
+#: src/interface.c:1064 src/misc2_interface.c:1106 src/misc3_interface.c:237
 msgid "Contributors"
 msgstr "Допринесли"
 
-#: src/file.c:363
+#: src/file.c:388
 #, c-format
 msgid "Copying %s"
 msgstr "Копиране на %s"
 
-#: src/misc_interface.c:1064 src/misc_interface.c:1098
+#: src/misc_interface.c:1067 src/misc_interface.c:1101
 #: src/training_interface.c:103
 msgid "Costs"
 msgstr "Разходи"
 
-#: src/support.c:103 src/support.c:127
+#: src/support.c:90 src/support.c:114
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "Не може да се намери pixmap файлът: %s"
@@ -1067,6 +1091,19 @@ msgstr "Не може да се намери pixmap файлът: %s"
 #: src/treeview2.c:95 src/treeview2.c:515
 msgid "Country"
 msgstr "Страна"
+
+#: src/options_interface.c:1131
+msgid "Create cup news"
+msgstr ""
+
+#: src/options_interface.c:1135
+#, fuzzy
+msgid "Create league news"
+msgstr "Текуща лига"
+
+#: src/options_interface.c:1127
+msgid "Create user news"
+msgstr ""
 
 #: src/misc3_interface.c:331
 msgid "Ctrl-N"
@@ -1080,15 +1117,15 @@ msgstr "Ctrl-O"
 msgid "Ctrl-R"
 msgstr "Ctrl-R"
 
-#: src/treeview.c:2560
+#: src/treeview.c:2565
 msgid "Cup champions"
 msgstr "Носителите на купата"
 
-#: src/callbacks.c:861
+#: src/callbacks.c:868
 msgid "Cup has no tables."
 msgstr ""
 
-#: src/misc_interface.c:962
+#: src/misc_interface.c:965
 msgid "Current capacity"
 msgstr "Текущ капацитет"
 
@@ -1096,19 +1133,19 @@ msgstr "Текущ капацитет"
 msgid "Current file"
 msgstr "Текущ файл"
 
-#: src/treeview.c:2736
+#: src/treeview.c:2798
 msgid "Current league"
 msgstr "Текуща лига"
 
-#: src/treeview.c:1615
+#: src/treeview.c:1620
 msgid "Current market interest"
 msgstr ""
 
-#: src/treeview.c:2134
+#: src/treeview.c:2139
 msgid "Current position"
 msgstr "Текуща позиция"
 
-#: src/misc_interface.c:975
+#: src/misc_interface.c:978
 msgid "Current safety"
 msgstr "Текуща сигурност"
 
@@ -1117,20 +1154,20 @@ msgstr "Текуща сигурност"
 msgid "Current settings:"
 msgstr "Текуща позиция"
 
-#: src/treeview.c:2136
+#: src/treeview.c:2141
 msgid "Current skill"
 msgstr "Текущо умение"
 
 #. Defender
-#: src/treeview_helper.c:1505
+#: src/treeview_helper.c:1507
 msgid "D"
 msgstr "Защ"
 
-#: src/lg_commentary.c:544 src/team.c:615
+#: src/lg_commentary.c:532 src/team.c:615
 msgid "DEFEND"
 msgstr "ЗАЩИТЕН"
 
-#: src/treeview.c:1623
+#: src/treeview.c:1628
 #, c-format
 msgid "Debt (repay in %d weeks)"
 msgstr "Дълг (изплащане за %d седмици)"
@@ -1143,30 +1180,30 @@ msgstr "Следене за грешки"
 msgid "Decide later"
 msgstr "Решаване по-късно"
 
-#: src/options_interface.c:1050
+#: src/options_interface.c:1062
 #, fuzzy
 msgid "Default hotel"
 msgstr "Стандартен залог"
 
-#: src/options_interface.c:1073
+#: src/options_interface.c:1085
 #, fuzzy
 msgid "Default recreation:"
 msgstr "Стандартен залог"
 
-#: src/options_interface.c:1093
+#: src/options_interface.c:1105
 #, fuzzy
 msgid "Default training:"
 msgstr "Стандартен залог"
 
-#: src/options_interface.c:1025
+#: src/options_interface.c:1037
 msgid "Default wager"
 msgstr "Стандартен залог"
 
-#: src/interface.c:509 src/treeview.c:1754
+#: src/interface.c:482 src/treeview.c:1759
 msgid "Defend"
 msgstr "Защитен"
 
-#: src/interface.c:665
+#: src/interface.c:638
 msgid "Defenders"
 msgstr "Защитници"
 
@@ -1175,23 +1212,23 @@ msgstr "Защитници"
 msgid "Did you know?"
 msgstr "Знаете ли, че?"
 
-#: src/treeview.c:2676
+#: src/treeview.c:2738
 msgid "Didn't find file 'bygfoot_help'."
 msgstr "Не беше открит файла \"bygfoot_help\"."
 
-#: src/callbacks.c:1485
+#: src/callbacks.c:1492
 msgid "Do you really want to kick the poor boy out of your academy?"
 msgstr "Наистина ли изритате горкото момче от академията си?"
 
-#: src/misc_interface.c:215
+#: src/misc_interface.c:218
 msgid "Don't load definitions"
 msgstr "Да не се зареждат определенията"
 
-#: src/misc_interface.c:218
+#: src/misc_interface.c:221
 msgid "Don't load team definitions at all"
 msgstr "Да не се зареждат определенията за отборите"
 
-#: src/load_save.c:165 src/load_save.c:313
+#: src/load_save.c:178 src/load_save.c:338
 msgid "Done."
 msgstr "Готово."
 
@@ -1199,13 +1236,13 @@ msgstr "Готово."
 msgid "Draw"
 msgstr "Равенство"
 
-#: src/treeview.c:1611
+#: src/treeview.c:1616
 msgid "Drawing credit"
 msgstr "Кредитен лимит"
 
 #. Games drawn.
 #. Draw.
-#: src/treeview.c:1368 src/treeview_helper.c:1755
+#: src/treeview.c:1373 src/treeview_helper.c:1757
 msgid "Dw"
 msgstr "Рав"
 
@@ -1220,7 +1257,7 @@ msgstr "Рав"
 msgid "Dw %d : %d"
 msgstr "Равни %d : %d"
 
-#: src/options_interface.c:694
+#: src/options_interface.c:706
 msgid "ETal "
 msgstr "Изч. тал."
 
@@ -1228,31 +1265,31 @@ msgstr "Изч. тал."
 msgid "EXPORT"
 msgstr "Изнасяне"
 
-#: src/callbacks.c:926
+#: src/callbacks.c:933
 msgid "Enter a structure. The digits must sum up to 10."
 msgstr "Въведете структура. Сумата на тези цифри трябва да е 10."
 
-#: src/interface.c:745
+#: src/interface.c:718
 msgid "Enter custom structure"
 msgstr "Въвеждане на лична структура"
 
-#: src/window.c:832
+#: src/window.c:862
 msgid "Erm..."
 msgstr "Ами..."
 
 #: src/misc2_interface.c:480 src/misc2_interface.c:577
 #: src/misc2_interface.c:1139 src/misc2_interface.c:1234
 #: src/misc3_interface.c:107 src/misc3_interface.c:403
-#: src/misc_interface.c:293 src/misc_interface.c:1146
-#: src/options_interface.c:1137
+#: src/misc3_interface.c:816 src/misc_interface.c:296
+#: src/misc_interface.c:1149 src/options_interface.c:1201
 msgid "Esc"
 msgstr "Esc"
 
-#: src/misc_interface.c:644
+#: src/misc_interface.c:647
 msgid "Esc / Return / Space"
 msgstr "Esc / Enter / Space"
 
-#: src/treeview.c:2138
+#: src/treeview.c:2143
 msgid "Estimated talent"
 msgstr "Изчислен талант"
 
@@ -1261,20 +1298,20 @@ msgstr "Изчислен талант"
 msgid "Etal"
 msgstr "Изч. тал."
 
-#: src/treeview.c:2347
+#: src/treeview.c:2352
 msgid "Event"
 msgstr "Събитие"
 
-#: src/misc_interface.c:1072 src/misc_interface.c:1106
+#: src/misc_interface.c:1075 src/misc_interface.c:1109
 msgid "Expected duration"
 msgstr "Очаквана продължителност"
 
-#: src/treeview.c:1682
+#: src/treeview.c:1687
 msgid "Expenses"
 msgstr "Разходи"
 
 #. Forward
-#: src/treeview_helper.c:1521
+#: src/treeview_helper.c:1523
 msgid "F"
 msgstr "Н"
 
@@ -1282,19 +1319,19 @@ msgstr "Н"
 msgid "F_igures"
 msgstr "С_татистики"
 
-#: src/callback_func.c:548 src/callback_func.c:556
+#: src/callback_func.c:553 src/callback_func.c:561
 msgid "Fee"
 msgstr "Такса"
 
 #. Live game tokens are strings like _AT_ in live game commentary files
 #. which will be filled in by the program during runtime; e.g. _AT_ becomes
 #. the attendace for the match.
-#: src/main.c:100
+#: src/main.c:109
 msgid "File containing live game tokens (may be in a support dir)"
 msgstr ""
 "Файл съдържащ запазени думи за мачове на живо (може да е относителен адрес)"
 
-#: src/options_interface.c:374
+#: src/options_interface.c:386
 msgid ""
 "File containing settings which determine a lot of aspects of the game "
 "behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
@@ -1302,23 +1339,23 @@ msgstr ""
 "Файл съдържащ настройките, които определят много от аспектите в игратаНЕ ГО "
 "ПРОМЕНЯЙТЕ ОСВЕН, АКО НАИСТИНА ЗНАЕТЕ КАКВО ВЪРШИТЕ!!!"
 
-#: src/interface.c:996
+#: src/interface.c:918
 msgid "Fin_Stad"
 msgstr "Фин_Стад"
 
-#: src/cup.c:1108
+#: src/cup.c:1110
 msgid "Final"
 msgstr "Финал"
 
-#: src/callbacks.c:1105 src/callbacks.c:1638
+#: src/callbacks.c:1112 src/callbacks.c:1645
 msgid "Finances are disabled in this country definition."
 msgstr "Финансите са изключени в дефинициите за тази страна."
 
-#: src/interface.c:830 src/interface.c:2002
+#: src/interface.c:803 src/interface.c:2010
 msgid "Fire"
 msgstr "Уволняване"
 
-#: src/interface.c:1300
+#: src/interface.c:1304
 msgid ""
 "First value: average current skill of the first 11 players. Second value: "
 "average skill of all players."
@@ -1326,7 +1363,7 @@ msgstr ""
 "Първа стойност: средно текущо умение на първите 11 играча. Втора стойност: "
 "средно умение на всички играчи."
 
-#: src/training_interface.c:168 src/treeview.c:2850
+#: src/training_interface.c:168 src/treeview.c:2912
 msgid "First-Class Hotel"
 msgstr ""
 
@@ -1335,11 +1372,11 @@ msgstr ""
 msgid "Fit"
 msgstr "Тонус"
 
-#: src/treeview.c:2137
+#: src/treeview.c:2142
 msgid "Fitness"
 msgstr "Тонус"
 
-#: src/options_interface.c:645
+#: src/options_interface.c:657
 msgid "Fitness "
 msgstr "Тонус "
 
@@ -1351,19 +1388,19 @@ msgstr "Дати на мачове (съзтезания)"
 msgid "Fixtures (week)"
 msgstr "Дати на мачовете (седмица)"
 
-#: src/options_interface.c:361
+#: src/options_interface.c:373
 msgid "Font name"
 msgstr "Име на шрифт"
 
-#: src/options_interface.c:347 src/options_interface.c:434
+#: src/options_interface.c:359 src/options_interface.c:446
 msgid "Font used in treeviews"
 msgstr "Шрифтове използвани в дървовидната структура"
 
-#: src/interface.c:677
+#: src/interface.c:650
 msgid "Forwards"
 msgstr "Нападатели"
 
-#: src/treeview.c:821
+#: src/treeview.c:823
 msgid "Fouls"
 msgstr "Фалове"
 
@@ -1372,22 +1409,22 @@ msgid "Fractured ankle"
 msgstr "Фрактура на глезена"
 
 #. Goalie
-#: src/treeview_helper.c:1497
+#: src/treeview_helper.c:1499
 msgid "G"
 msgstr "Врат."
 
 #. Goals against.
-#: src/treeview.c:1374
+#: src/treeview.c:1379
 msgid "GA"
 msgstr "Доп. гол."
 
 #. Goal difference.
-#: src/treeview.c:1376
+#: src/treeview.c:1381
 msgid "GD"
 msgstr "Гол. разл."
 
 #. Goals for.
-#: src/treeview.c:1372
+#: src/treeview.c:1377
 msgid "GF"
 msgstr "Вк. гол."
 
@@ -1396,63 +1433,68 @@ msgstr "Вк. гол."
 msgid "Ga"
 msgstr "Мача"
 
-#: src/treeview_helper.c:930
+#: src/options_interface.c:528
+#, fuzzy
+msgid "Gameplay"
+msgstr "Мачове"
+
+#: src/treeview_helper.c:932
 msgid "Games"
 msgstr "Мачове"
 
-#: src/options_interface.c:652
+#: src/options_interface.c:664
 msgid "Games "
 msgstr "Мачове "
 
-#: src/treeview.c:2144
+#: src/treeview.c:2149
 msgid "Games/Goals\n"
 msgstr "Мачове/Гола\n"
 
-#: src/options_interface.c:447
+#: src/options_interface.c:459
 msgid "Global"
 msgstr "Общи"
 
 #. Goals of a player.
 #. Goals.
-#: src/treeview.c:319 src/treeview.c:2449
+#: src/treeview.c:319 src/treeview.c:2454
 msgid "Go"
 msgstr "Голове"
 
-#: src/misc_interface.c:271
+#: src/misc_interface.c:274
 msgid "Go back to the splash screen"
 msgstr "Връщане към началния екран"
 
 #. Goals per game.
-#: src/treeview.c:2451
+#: src/treeview.c:2456
 msgid "Go/Ga"
 msgstr "Гол/Мач"
 
-#: src/treeview.c:1753
+#: src/treeview.c:1758
 msgid "Goalie"
 msgstr "Вратар"
 
-#: src/interface.c:659
+#: src/interface.c:632
 msgid "Goalies"
 msgstr "Вратари"
 
-#: src/treeview.c:1877 src/treeview.c:2415 src/treeview_helper.c:931
+#: src/treeview.c:1882 src/treeview.c:2420 src/treeview_helper.c:933
 msgid "Goals"
 msgstr "Голове"
 
-#: src/options_interface.c:666
+#: src/options_interface.c:678
 msgid "Goals "
 msgstr "Голове "
 
 #. 'Normal' goals, ie. no penalties or free kicks.
-#: src/treeview.c:816
+#: src/treeview.c:818
 msgid "Goals (regular)"
 msgstr "Голове (от игра)"
 
-#: src/interface.c:550 src/interface.c:585 src/interface.c:634
+#: src/interface.c:523 src/interface.c:558 src/interface.c:607
 msgid "Good"
 msgstr "Добро"
 
-#: src/training_interface.c:161 src/treeview.c:2847
+#: src/training_interface.c:161 src/treeview.c:2909
 msgid "Good Hotel"
 msgstr ""
 
@@ -1473,39 +1515,39 @@ msgstr "Погледнете списъка за трансфер, има пре
 msgid "Headline"
 msgstr ""
 
-#: src/treeview.c:2140
+#: src/treeview.c:2145
 msgid "Health"
 msgstr "Здраве"
 
-#: src/interface.c:1068 src/misc2_interface.c:1132
+#: src/interface.c:1072 src/misc2_interface.c:1132
 msgid "Help"
 msgstr "Помощ"
 
-#: src/treeview.c:1828
+#: src/treeview.c:1833
 msgid "Home"
 msgstr "Домакинство"
 
-#: src/main.c:106
+#: src/main.c:115
 msgid "How many commentaries to generate per event"
 msgstr "Колко коментара да се генерират за събитие"
 
-#: src/options_interface.c:417
+#: src/options_interface.c:429
 msgid "How many digits after the comma there are for skill etc."
 msgstr "Колко цифри след запетаята има за умение и т.н."
 
-#: src/options_interface.c:319
+#: src/options_interface.c:331
 msgid "How many files the autosave uses"
 msgstr "Колко файла ползва авт. запазване"
 
-#: src/options_interface.c:1033
+#: src/options_interface.c:1045
 msgid "How much you wager by default"
 msgstr "Колко е стандартният залог"
 
-#: src/options_interface.c:308
+#: src/options_interface.c:320
 msgid "How often the game is saved automatically"
 msgstr "Колко често се запазва автоматично играта"
 
-#: src/options_interface.c:426
+#: src/options_interface.c:438
 msgid ""
 "How often the player list gets refreshed during a live game (in live game "
 "minutes)"
@@ -1513,12 +1555,12 @@ msgstr ""
 "Колко често списъка с играчи се опреснява по време на мач на живо (в минути "
 "от мача на живо)"
 
-#: src/treeview_helper.c:1362
+#: src/treeview_helper.c:1364
 #, c-format
 msgid "INJ(%d)"
 msgstr "Контузия (%d)"
 
-#: src/options_interface.c:281
+#: src/options_interface.c:293
 msgid ""
 "If checked, weeks without user teams playing are calculated automatically "
 "(without the user having to press 'New week')"
@@ -1526,7 +1568,7 @@ msgstr ""
 "Ако е отметанто, седмиците без мачове на потребителските отбори, ще се "
 "смятат автоматично (без да трябва да се натиска 'Следваща седмица')"
 
-#: src/misc_interface.c:1349
+#: src/misc_interface.c:1352
 msgid ""
 "If you don't like any of the sponsors, you can go a few weeks without "
 "sponsor and wait for new offers."
@@ -1542,7 +1584,7 @@ msgstr "Внасяне на файл"
 msgid "Import the matches from a memorable matches file"
 msgstr "Внасяне на мачовете от файла за запомнящи се мачове"
 
-#: src/treeview.c:1471 src/window.c:621
+#: src/treeview.c:1476 src/window.c:651
 #, c-format
 msgid ""
 "Improvement in progress.\n"
@@ -1553,23 +1595,23 @@ msgstr ""
 "%d места и %d%% от безопасността не са готови.\n"
 "Очакван край: %d седмици."
 
-#: src/treeview.c:1681
+#: src/treeview.c:1686
 msgid "Income"
 msgstr "Приходи"
 
-#: src/misc_interface.c:1038
+#: src/misc_interface.c:1041
 msgid "Increase"
 msgstr "Увеличаване"
 
-#: src/treeview.c:824
+#: src/treeview.c:826
 msgid "Injuries"
 msgstr "Контузии"
 
-#: src/callbacks.c:1649
+#: src/callbacks.c:1656
 msgid "It's too late in the season for automatic loan repayment."
 msgstr ""
 
-#: src/misc2_interface.c:70 src/window.c:865
+#: src/misc2_interface.c:70 src/window.c:895
 msgid "Job offer"
 msgstr "Предложение за работа"
 
@@ -1582,17 +1624,17 @@ msgstr "Предложения за работа"
 msgid "Job offers set to %s."
 msgstr "Предложения за работа са настроени на %s."
 
-#: src/treeview.c:1505
+#: src/treeview.c:1510
 msgid "Journey costs"
 msgstr "Разходи по пътуването"
 
-#: src/interface.c:2068
+#: src/interface.c:2076
 msgid "Kick out of academy"
 msgstr "Изхвърляне от академията"
 
 #. Games lost.
 #. Lost.
-#: src/treeview.c:1370 src/treeview_helper.c:1748
+#: src/treeview.c:1375 src/treeview_helper.c:1750
 msgid "L"
 msgstr "Заг"
 
@@ -1611,42 +1653,42 @@ msgstr "Загуба  %d : %d"
 msgid "L_oad last save"
 msgstr "Заре_ждане на последното запазване"
 
-#: src/options_interface.c:397
+#: src/options_interface.c:409
 msgid "Language"
 msgstr "Език"
 
-#: src/main.c:87
+#: src/main.c:94
 msgid "Language to use (a code like 'de')"
 msgstr "Език, който да се използва (код като 'bg')"
 
 #. A cup stage, e.g. Last 32 when there are only 32 teams left.
-#: src/cup.c:1105
+#: src/cup.c:1107
 #, c-format
 msgid "Last %d"
 msgstr "Последните %d"
 
-#: src/load_save.c:214
+#: src/load_save.c:227
 msgid "Last save file not found."
 msgstr "Последният запазен файл не бе открит."
 
-#: src/treeview.c:1875
+#: src/treeview.c:1880
 msgid "Latest results"
 msgstr "Най-новите резултати"
 
 #: src/misc2_interface.c:102 src/treeview2.c:514 src/treeview.c:170
-#: src/treeview.c:331 src/treeview.c:761
+#: src/treeview.c:331 src/treeview.c:763
 msgid "League"
 msgstr "Лига"
 
-#: src/options_interface.c:722
+#: src/options_interface.c:734
 msgid "League "
 msgstr "Лига "
 
-#: src/treeview.c:2559
+#: src/treeview.c:2564
 msgid "League champions"
 msgstr "Шампиони на лигата"
 
-#: src/interface.c:463
+#: src/interface.c:981
 msgid "League stats"
 msgstr "Статистика за лигата"
 
@@ -1655,12 +1697,12 @@ msgstr "Статистика за лигата"
 msgid "League table"
 msgstr "Статистика за лигата"
 
-#: src/callbacks.c:240
+#: src/callbacks.c:247
 msgid "Left click to make an offer. Right click to remove offer."
 msgstr ""
 "Ляво натискате за отправяне на предложение. Дясно за премахване на такова."
 
-#: src/callback_func.c:904
+#: src/callback_func.c:909
 msgid ""
 "Left click to move players to and from the youth academy; right click for "
 "context menu."
@@ -1668,29 +1710,29 @@ msgstr ""
 "Ляво натискане за преместване на играчите от младежката академия; дясно "
 "натискане за контекстно меню."
 
-#: src/callbacks.c:533
+#: src/callbacks.c:540
 msgid "Left click to show fixtures."
 msgstr ""
 
-#: src/callbacks.c:493
+#: src/callbacks.c:500
 msgid "Left click to show table."
 msgstr ""
 
-#: src/callbacks.c:1110
+#: src/callbacks.c:1117
 msgid ""
 "Left-click: get loan; Right-click: pay back; Middle click: stadium window."
 msgstr ""
 "Ляво натискане: взимане на заем; Дясно: връщане; Средно: прозорец за стадиона"
 
-#: src/options_interface.c:973
+#: src/options_interface.c:985
 msgid "List 1 "
 msgstr "Списък 1 "
 
-#: src/options_interface.c:980
+#: src/options_interface.c:992
 msgid "List 2"
 msgstr "Списък 2"
 
-#: src/interface.c:373 src/misc_interface.c:497 src/options_interface.c:533
+#: src/interface.c:373 src/misc_interface.c:500 src/options_interface.c:614
 msgid "Live game"
 msgstr "Мач на живо"
 
@@ -1699,31 +1741,31 @@ msgstr "Мач на живо"
 msgid "Live game set to %s."
 msgstr "Мачът на живо е настроен на %s."
 
-#: src/options_interface.c:472
+#: src/options_interface.c:553
 msgid "Live game speed factor"
 msgstr "Фактор на скоростта при мачовете на живо"
 
-#: src/options_interface.c:479
+#: src/options_interface.c:560
 msgid "Live game verbosity"
 msgstr "Честота на коментара"
 
-#: src/interface.c:1084
+#: src/interface.c:1088
 msgid "Load game (Ctrl - O)"
 msgstr "Зареждане на игра (Ctrl - O)"
 
-#: src/main.c:89
+#: src/main.c:87
 msgid "Load last savegame"
 msgstr "Зареждане на последното запазване"
 
-#: src/misc_interface.c:211
+#: src/misc_interface.c:214
 msgid "Load only the player names in the definition files"
 msgstr "Зареждане само на имената на играчите от файла за определенията"
 
-#: src/misc_interface.c:201
+#: src/misc_interface.c:204
 msgid "Load team definitions"
 msgstr "Зареждане на определенията за отбори"
 
-#: src/misc_interface.c:204
+#: src/misc_interface.c:207
 msgid ""
 "Load teams from definition files (note that the official Bygfoot package "
 "doesn't contain team definition files, you have to get them from the "
@@ -1739,7 +1781,7 @@ msgid "Loading cup: %s"
 msgstr "Зареждане на купа: %s"
 
 #. The 'job exchange' is a list of teams looking for a manager.
-#: src/load_save.c:294
+#: src/load_save.c:307
 msgid "Loading job exchange..."
 msgstr "Зареждане на предложенията за работа..."
 
@@ -1748,36 +1790,41 @@ msgstr "Зареждане на предложенията за работа..."
 msgid "Loading league: %s"
 msgstr "Зареждане на лига: %s..."
 
-#: src/load_save.c:248
+#: src/load_save.c:261
 msgid "Loading leagues and cups..."
 msgstr "Зареждане на първенствата и купите..."
 
-#: src/load_save.c:305
+#: src/load_save.c:330
 msgid "Loading miscellaneous..."
 msgstr "Зареждане на останалото..."
 
-#: src/load_save.c:233
+#: src/load_save.c:319
+#, fuzzy
+msgid "Loading newspaper..."
+msgstr "Зареждане на потребители..."
+
+#: src/load_save.c:246
 msgid "Loading options..."
 msgstr "Зареждане на настройките..."
 
-#: src/load_save.c:281
+#: src/load_save.c:294
 msgid "Loading season stats..."
 msgstr "Зареждане на сезонни статистики..."
 
-#: src/load_save.c:270
+#: src/load_save.c:283
 msgid "Loading transfer list..."
 msgstr "Зареждане на списък за трансфер..."
 
-#: src/load_save.c:259
+#: src/load_save.c:272
 msgid "Loading users..."
 msgstr "Зареждане на потребители..."
 
-#: src/callback_func.c:371
+#: src/callback_func.c:376
 msgid "Loan"
 msgstr "Заем"
 
 #. Midfielder
-#: src/treeview_helper.c:1513
+#: src/treeview_helper.c:1515
 msgid "M"
 msgstr "П"
 
@@ -1785,15 +1832,15 @@ msgstr "П"
 msgid "Make offer"
 msgstr "Отправяне на предложение"
 
-#: src/interface.c:930
+#: src/interface.c:1037
 msgid "Manage matches"
 msgstr "Управление на мачовете"
 
-#: src/interface.c:985
+#: src/interface.c:907
 msgid "Manage users"
 msgstr "Управление на потребителите"
 
-#: src/options_interface.c:258
+#: src/options_interface.c:270
 msgid "Maximize main window"
 msgstr "Максимизиране на главния прозорец"
 
@@ -1801,27 +1848,23 @@ msgstr "Максимизиране на главния прозорец"
 msgid "Memorable match added."
 msgstr "Добавен е запомнящ се мач"
 
-#: src/interface.c:907 src/window.c:951
+#: src/interface.c:1014 src/window.c:981
 msgid "Memorable matches"
 msgstr "Запомнящи се мачове"
 
-#: src/treeview.c:1755
+#: src/treeview.c:1760
 msgid "Midfield"
 msgstr "Средата на терена"
 
-#: src/interface.c:671
+#: src/interface.c:644
 msgid "Midfielders"
 msgstr "Полузащитници"
 
-#: src/options_interface.c:602
-msgid "Misc."
-msgstr "Допълнителни"
-
-#: src/treeview.c:1607
+#: src/treeview.c:1612
 msgid "Money"
 msgstr "Пари"
 
-#: src/interface.c:1282
+#: src/interface.c:1286
 msgid "Money "
 msgstr "Пари"
 
@@ -1829,15 +1872,15 @@ msgstr "Пари"
 msgid "Money (approx.)"
 msgstr "Пари (приблизително)"
 
-#: src/treeview.c:2926
+#: src/treeview.c:2988
 msgid "Money / week"
 msgstr "Пари / седмица"
 
-#: src/interface.c:2060
+#: src/interface.c:2068
 msgid "Move to team"
 msgstr "Преместване в отбор"
 
-#: src/interface.c:846 src/interface.c:2010
+#: src/interface.c:819 src/interface.c:2018
 msgid "Move to youth academy"
 msgstr "Преместване в младежката академия"
 
@@ -1845,20 +1888,20 @@ msgstr "Преместване в младежката академия"
 msgid "My league results"
 msgstr "Вашите резултати от лигата"
 
-#: src/misc2_interface.c:97 src/treeview.c:303 src/treeview.c:759
-#: src/treeview.c:2132
+#: src/misc2_interface.c:97 src/treeview.c:303 src/treeview.c:761
+#: src/treeview.c:2137
 msgid "Name"
 msgstr "Име"
 
-#: src/options_interface.c:610
+#: src/options_interface.c:622
 msgid "Name "
 msgstr "Име "
 
-#: src/treeview.c:1826
+#: src/treeview.c:1831
 msgid "Neutral ground"
 msgstr "Неутрален стадион"
 
-#: src/treeview.c:2152
+#: src/treeview.c:2157
 msgid ""
 "New contract\n"
 "offers"
@@ -1871,19 +1914,23 @@ msgstr ""
 msgid "New settings:"
 msgstr "Залагания"
 
+#: src/interface.c:974 src/options_interface.c:1167
+msgid "News"
+msgstr ""
+
 #: src/misc3_interface.c:315
 msgid "Next"
 msgstr "Следващ"
 
-#: src/interface.c:1420
+#: src/interface.c:1424
 msgid "Next (W)"
 msgstr "S"
 
-#: src/interface.c:1394
+#: src/interface.c:1398
 msgid "Next league/cup (2)"
 msgstr "Следваща лига/купа (2)"
 
-#: src/interface.c:963
+#: src/interface.c:885
 msgid "Next user"
 msgstr "Следващ потребител"
 
@@ -1891,57 +1938,65 @@ msgstr "Следващ потребител"
 msgid "Next week you'll fire him and hire a new one."
 msgstr "Следващата седмица ще го уволните и ще наемете нов."
 
-#: src/window.c:631
+#: src/options_interface.c:1147
+msgid "No automatic popup"
+msgstr ""
+
+#: src/window.c:661
 msgid "No improvements currently in progress."
 msgstr "В момента няма течащи подобрения."
 
-#: src/callbacks.c:972 src/callbacks.c:992 src/callbacks.c:1506
+#: src/callbacks.c:979 src/callbacks.c:999 src/callbacks.c:1513
 #: src/misc2_callback_func.c:326 src/misc2_callbacks.c:733
 msgid "No match stored."
 msgstr "Няма запазени мачове."
 
-#: src/misc_callbacks.c:462
+#: src/treeview2.c:599
+msgid "No news available."
+msgstr ""
+
+#: src/misc_callbacks.c:468
 msgid "None"
 msgstr "Няма"
 
-#: src/window.c:418
+#: src/window.c:448
 msgid "Not a valid Bygfoot Memorable Matches filename."
 msgstr "Не е валидно име за файл със запомнящи се мачове на Bygfoot"
 
-#: src/window.c:849
+#: src/window.c:879
 msgid "Numbers..."
 msgstr "Номера..."
 
 #. Boost value.
-#: src/lg_commentary.c:559 src/team.c:632
+#: src/lg_commentary.c:547 src/team.c:632
 msgid "OFF"
 msgstr "Изключен"
 
 #. Player health: ok.
 #. Player status: ok.
-#: src/misc2_interface.c:221 src/player.c:1402 src/treeview_helper.c:1093
-#: src/treeview_helper.c:1389
+#: src/misc2_interface.c:221 src/player.c:1402 src/treeview_helper.c:1095
+#: src/treeview_helper.c:1391
 msgid "OK"
 msgstr "OK"
 
 #. Boost value.
-#: src/lg_commentary.c:562 src/team.c:635
+#: src/lg_commentary.c:550 src/team.c:635
 msgid "ON"
 msgstr "Включен"
 
-#: src/interface.c:711
+#: src/interface.c:684
 msgid "Off"
 msgstr "Изключен"
 
-#: src/interface.c:822 src/interface.c:1998
+#: src/interface.c:795 src/interface.c:2006
 msgid "Offer new contract"
 msgstr "Предложение за нов договор"
 
-#: src/interface.c:705
+#: src/interface.c:678
 msgid "On"
 msgstr "Включен"
 
-#: src/misc_interface.c:208
+#: src/misc_interface.c:211
 msgid "Only names"
 msgstr "Само имена"
 
@@ -1953,11 +2008,11 @@ msgstr "Отваряне на файл със запомнящи се мачов
 msgid "Opponent"
 msgstr "Противник"
 
-#: src/misc_interface.c:633
+#: src/misc_interface.c:636
 msgid "Opponent player list"
 msgstr "Списък с играчите на противника"
 
-#: src/window.c:881
+#: src/window.c:911
 msgid "Options"
 msgstr "Настройки"
 
@@ -1971,56 +2026,56 @@ msgid "Overwrite set to %s."
 msgstr "Презаписването е настроено на %s."
 
 #. Games played (a number).
-#: src/treeview.c:1364
+#: src/treeview.c:1369
 msgid "PL"
 msgstr "Мача"
 
 #. Points.
-#: src/treeview.c:1378
+#: src/treeview.c:1383
 msgid "PTS"
 msgstr "Точки"
 
-#: src/options_interface.c:528
+#: src/options_interface.c:609
 msgid "Pause when break"
 msgstr "Пауза на полувремето"
 
-#: src/options_interface.c:518
+#: src/options_interface.c:599
 msgid "Pause when injury"
 msgstr "Пауза при контузия"
 
-#: src/options_interface.c:523
+#: src/options_interface.c:604
 msgid "Pause when red card"
 msgstr "Пауза при червен картон"
 
-#: src/callback_func.c:401
+#: src/callback_func.c:406
 msgid "Payback"
 msgstr "Връщане"
 
-#: src/treeview.c:820
+#: src/treeview.c:822
 msgid "Penalties"
 msgstr "Дузпи"
 
-#: src/callbacks.c:663
+#: src/callbacks.c:670
 msgid "Penalty/free kick shooter deselected."
 msgstr "Отизбран е изпълнител на дузпи/свободни удари"
 
-#: src/interface.c:568 src/treeview.c:1501
+#: src/interface.c:541 src/treeview.c:1506
 msgid "Physio"
 msgstr "Физиотерапевт"
 
-#: src/treeview_helper.c:914
+#: src/treeview_helper.c:916
 msgid "Player accepts new offers"
 msgstr "Играчът приема нови предложения"
 
-#: src/options_interface.c:321
+#: src/options_interface.c:333
 msgid "Player attribute precision"
 msgstr "Прецизност на качествата на играчите"
 
-#: src/options_interface.c:994
+#: src/options_interface.c:1006
 msgid "Player attributes shown"
 msgstr "Показаните качества на играча"
 
-#: src/treeview_helper.c:912
+#: src/treeview_helper.c:914
 msgid "Player doesn't negotiate anymore"
 msgstr "Играчът вече не преговаря"
 
@@ -2028,42 +2083,46 @@ msgstr "Играчът вече не преговаря"
 msgid "Player list"
 msgstr "Списък с играчи"
 
-#: src/interface.c:1349
+#: src/interface.c:1353
 msgid "Player list 1"
 msgstr "Списък с играчи 1"
 
-#: src/interface.c:1357
+#: src/interface.c:1361
 msgid "Player list 2"
 msgstr "Списък с играчи 2"
 
-#: src/options_interface.c:328
+#: src/options_interface.c:340
 msgid "Player list refresh rate"
 msgstr ""
 "Честота на опресняване на\n"
 "списъка с играчи"
 
-#: src/interface.c:492 src/treeview.c:1864
+#: src/interface.c:465 src/treeview.c:1869
 msgid "Playing style"
 msgstr "Стил на игра"
+
+#: src/options_interface.c:1153
+msgid "Popup for user news"
+msgstr ""
 
 #. Position of a player.
 #: src/treeview.c:307
 msgid "Pos"
 msgstr "Поз"
 
-#: src/options_interface.c:624
+#: src/options_interface.c:636
 msgid "Pos "
 msgstr "Поз "
 
-#: src/treeview.c:2133
+#: src/treeview.c:2138
 msgid "Position"
 msgstr "Позиция"
 
-#: src/treeview.c:819
+#: src/treeview.c:821
 msgid "Possession"
 msgstr "Притежание на топката"
 
-#: src/options_interface.c:263
+#: src/options_interface.c:275
 msgid "Prefer messages"
 msgstr "Предпочитане на съобщения"
 
@@ -2071,7 +2130,7 @@ msgstr "Предпочитане на съобщения"
 msgid "Preferences"
 msgstr "Настройки"
 
-#: src/training_interface.c:175 src/treeview.c:2853
+#: src/training_interface.c:175 src/treeview.c:2915
 msgid "Premium Hotel"
 msgstr ""
 
@@ -2079,23 +2138,23 @@ msgstr ""
 msgid "Previous"
 msgstr "Предишен"
 
-#: src/interface.c:1407
+#: src/interface.c:1411
 msgid "Previous (Q)"
 msgstr "Предишен (Q)"
 
-#: src/interface.c:1381
+#: src/interface.c:1385
 msgid "Previous league/cup (1)"
 msgstr "Предишна лига/купа (1)"
 
-#: src/interface.c:974
+#: src/interface.c:896
 msgid "Previous user"
 msgstr "Предишен потребител"
 
-#: src/misc_interface.c:1022
+#: src/misc_interface.c:1025
 msgid "Price per ticket"
 msgstr ""
 
-#: src/treeview.c:1495
+#: src/treeview.c:1500
 msgid "Prize money"
 msgstr "Пари от наградата"
 
@@ -2103,15 +2162,15 @@ msgstr "Пари от наградата"
 msgid "Pulled muscle"
 msgstr "Мускулно разтежение"
 
-#: src/interface.c:806 src/interface.c:1990
+#: src/interface.c:779 src/interface.c:1998
 msgid "Put on transfer list"
 msgstr "Поставяне в списъка за трансфер"
 
-#: src/cup.c:1114
+#: src/cup.c:1116
 msgid "Quarter-final"
 msgstr "Четвъртфинал"
 
-#: src/interface.c:1104
+#: src/interface.c:1108
 msgid "Quit (Ctrl - Q)"
 msgstr "Затваряне на програмата (Ctrl - Q)"
 
@@ -2123,11 +2182,11 @@ msgstr "ПРЕМАХВАНЕ"
 msgid "REPLAY"
 msgstr "ПРЕИГРАВАНЕ"
 
-#: src/misc_interface.c:227
+#: src/misc_interface.c:230
 msgid "Randomise teams in cups"
 msgstr "Разбъркване на отборите в купите"
 
-#: src/misc_interface.c:230
+#: src/misc_interface.c:233
 msgid ""
 "Randomise the order of teams in cups. This only makes sense in supernational "
 "definitions like the World Cup where the order of teams is fixed."
@@ -2136,19 +2195,19 @@ msgstr ""
 "международни дефиниции като Световното първенство, където редът на отборите "
 "е неподвижен."
 
-#: src/misc2_interface.c:107 src/treeview.c:1843
+#: src/misc2_interface.c:107 src/treeview.c:1848
 msgid "Rank"
 msgstr "Класиране"
 
-#: src/interface.c:1267
+#: src/interface.c:1271
 msgid "Rank "
 msgstr "Класиране"
 
-#: src/file.c:375 src/misc3_interface.c:412
+#: src/file.c:400 src/misc3_interface.c:412
 msgid "Ready"
 msgstr "Готово"
 
-#: src/interface.c:753
+#: src/interface.c:726
 msgid "Rearrange team"
 msgstr "Пренареждане на отбора"
 
@@ -2156,19 +2215,19 @@ msgstr "Пренареждане на отбора"
 msgid "Recreation"
 msgstr ""
 
-#: src/interface.c:652
+#: src/interface.c:625
 msgid "Recruiting preference"
 msgstr "Настройки на набирането на играчи"
 
-#: src/treeview.c:823 src/treeview_helper.c:934
+#: src/treeview.c:825 src/treeview_helper.c:936
 msgid "Reds"
 msgstr "Червени"
 
-#: src/misc_interface.c:1363
+#: src/misc_interface.c:1366
 msgid "Reject for now"
 msgstr "Отказване за сега"
 
-#: src/misc2_interface.c:1368 src/options_interface.c:393
+#: src/misc2_interface.c:1368 src/options_interface.c:405
 msgid "Reload"
 msgstr "Презареждане"
 
@@ -2184,11 +2243,11 @@ msgstr "Презареждане на мачове от файл"
 msgid "Reload matches from file and close"
 msgstr "Презареждане на мачове от файл и затваряне"
 
-#: src/options_interface.c:379
+#: src/options_interface.c:391
 msgid "Reload the constants file"
 msgstr "Презареждане на файла с константите"
 
-#: src/interface.c:814 src/interface.c:1994
+#: src/interface.c:787 src/interface.c:2002
 msgid "Remove from transfer list"
 msgstr "Премахване от списъка за трансфер"
 
@@ -2197,15 +2256,15 @@ msgstr "Премахване от списъка за трансфер"
 msgid "Remove user %s from the game?"
 msgstr "Премахване на потребителя %s от играта?"
 
-#: src/interface.c:933
+#: src/interface.c:1040
 msgid "Replay, delete or add memorable matches."
 msgstr "Преиграване, изтриване или добавяне на запомнящи се мачове"
 
-#: src/interface.c:737
+#: src/interface.c:710
 msgid "Reset player list"
 msgstr "Зануляване на списъка с играчи"
 
-#: src/interface.c:739 src/interface.c:1363
+#: src/interface.c:712 src/interface.c:1367
 msgid ""
 "Reset player list to the formation at the beginning of the live game pause "
 "(right click on player list)"
@@ -2217,33 +2276,33 @@ msgstr ""
 msgid "Result"
 msgstr "Резултат"
 
-#: src/treeview.c:1982
+#: src/treeview.c:1987
 msgid "Results"
 msgstr "Резултати"
 
-#: src/misc2_interface.c:1222 src/misc_interface.c:1122
+#: src/misc2_interface.c:1222 src/misc_interface.c:1125
 msgid "Return"
 msgstr "Enter"
 
-#: src/misc_interface.c:668 src/misc_interface.c:690
+#: src/misc_interface.c:671 src/misc_interface.c:693
 msgid "Return / Space"
 msgstr "Enter / Space"
 
-#: src/interface.c:1237 src/misc_interface.c:737
+#: src/interface.c:1241 src/misc_interface.c:740
 msgid "Right click and left click to change boost state"
 msgstr "Дясно и ляво натискане за смяна на тласъка"
 
-#: src/interface.c:1227 src/misc_interface.c:746
+#: src/interface.c:1231 src/misc_interface.c:749
 msgid "Right click and left click to change your playing style"
 msgstr "Дясно и ляво натискане за смяна на стила на игра"
 
-#: src/callbacks.c:1575
+#: src/callbacks.c:1582
 msgid "Right click to apply for job at once, left click to see team info."
 msgstr ""
 "Дясно натискане за кандидатстване за работа, ляво натискане за информация за "
 "отбора."
 
-#: src/misc_interface.c:1058 src/misc_interface.c:1092
+#: src/misc_interface.c:1061 src/misc_interface.c:1095
 msgid "Right-click to set to 0"
 msgstr "Дясно натискане за настройване на 0"
 
@@ -2252,22 +2311,22 @@ msgstr "Дясно натискане за настройване на 0"
 msgid "Ro"
 msgstr "Кръг"
 
-#: src/cup.c:1097
+#: src/cup.c:1099
 msgid "Round robin"
 msgstr "Квалификации"
 
-#: src/misc_interface.c:1084
+#: src/misc_interface.c:1087
 msgid "Safety (%)"
 msgstr "Безопасност (%)"
 
-#: src/misc_callback_func.c:302
+#: src/misc_callback_func.c:306
 msgid "Safety improvement too high, reset to highest possible value."
 msgstr ""
 "Подобрението на безопасността е прекалено високо, върнато към най-високата "
 "възможна стойност"
 
 #. % of saves for goalies (#goals / #shots)
-#: src/treeview.c:2394
+#: src/treeview.c:2399
 msgid "Save %"
 msgstr "Спасявания %"
 
@@ -2279,17 +2338,17 @@ msgstr "Запазване и затваряне"
 msgid "Save changes to file and close"
 msgstr "Запазване на промените към файл и затваряне"
 
-#: src/interface.c:1094
+#: src/interface.c:1098
 msgid "Save game (Ctrl - S)"
 msgstr "Запазване на игра (Ctrl - S)"
 
-#: src/options_interface.c:1120
+#: src/options_interface.c:1184
 msgid "Save global settings to file"
 msgstr ""
 "Запазване във файл\n"
 "на глобалните настройки"
 
-#: src/options_interface.c:248
+#: src/options_interface.c:260
 msgid "Save overwrites"
 msgstr "Запазването презаписва"
 
@@ -2300,7 +2359,7 @@ msgstr ""
 "Запазване във файл\n"
 "потребителските настройки"
 
-#: src/options_interface.c:1125
+#: src/options_interface.c:1189
 msgid "Save user settings to file"
 msgstr ""
 "Запазване във файл\n"
@@ -2315,49 +2374,54 @@ msgid "Save window size, position and vertical divider"
 msgstr "Запазване на размера, позицията и вертикалния разделител на прозореца"
 
 #. The 'job exchange' is a list of teams looking for a manager.
-#: src/load_save.c:137
+#: src/load_save.c:138
 msgid "Saving job exchange..."
 msgstr "Запазване на предложенията за работа..."
 
-#: src/load_save.c:91
+#: src/load_save.c:92
 msgid "Saving leagues and cups..."
 msgstr "Запазване на първенствата и купите..."
 
-#: src/load_save.c:148
+#: src/load_save.c:161
 msgid "Saving miscellaneous..."
 msgstr "Запазване на останалото..."
 
-#: src/load_save.c:77
+#: src/load_save.c:150
+#, fuzzy
+msgid "Saving newspaper..."
+msgstr "Запазване на потребителите..."
+
+#: src/load_save.c:78
 msgid "Saving options..."
 msgstr "Запазване на настройките..."
 
-#: src/load_save.c:124
+#: src/load_save.c:125
 msgid "Saving season stats..."
 msgstr "Запазване на сезонните статистики..."
 
-#: src/load_save.c:113
+#: src/load_save.c:114
 msgid "Saving transfer list..."
 msgstr "Запазване на списъка за трансфер..."
 
-#: src/load_save.c:102
+#: src/load_save.c:103
 msgid "Saving users..."
 msgstr "Запазване на потребителите..."
 
-#: src/interface.c:533 src/treeview.c:1502
+#: src/interface.c:506 src/treeview.c:1507
 msgid "Scout"
 msgstr "Разузнавач"
 
 #. Season.
-#: src/treeview.c:2318
+#: src/treeview.c:2323
 msgid "Sea"
 msgstr "Сезон"
 
-#: src/treeview.c:2610
+#: src/treeview.c:2615
 #, c-format
 msgid "Season %d"
 msgstr "Сезон %d"
 
-#: src/interface.c:474
+#: src/interface.c:992
 msgid "Season history"
 msgstr "История на сезона"
 
@@ -2365,26 +2429,26 @@ msgstr "История на сезона"
 msgid "Season results"
 msgstr "Резултати от сезона"
 
-#: src/misc_interface.c:384 src/window.c:889
+#: src/misc_interface.c:387 src/window.c:919
 msgid "Select font"
 msgstr "Избор на шрифт"
 
-#: src/cup.c:1111
+#: src/cup.c:1113
 msgid "Semi-final"
 msgstr "Полуфинал"
 
-#: src/interface.c:689
+#: src/interface.c:662
 msgid "Set investment"
 msgstr "Настройване на инвестициите"
 
-#: src/callbacks.c:1441 src/interface.c:692
+#: src/callbacks.c:1448 src/interface.c:665
 msgid ""
 "Set the percentage of your income you want to devote to your youth academy."
 msgstr ""
 "Настройте процента от приходите си, които искате да инвестирате в младежката "
 "си академия."
 
-#: src/options_interface.c:558
+#: src/options_interface.c:484
 msgid "Set to 0 to switch off warning"
 msgstr "Настройте на 0, за да изключите предупрежденията"
 
@@ -2393,107 +2457,112 @@ msgstr "Настройте на 0, за да изключите предупре
 msgid "Sh"
 msgstr "Изстрели"
 
-#: src/interface.c:838 src/interface.c:2006
+#: src/interface.c:811 src/interface.c:2014
 msgid "Shoots penalties"
 msgstr "Изпълнява дузпи"
 
-#: src/treeview.c:818 src/treeview.c:2391
+#: src/treeview.c:820 src/treeview.c:2396
 msgid "Shot %"
 msgstr "Изстрели %"
 
-#: src/treeview.c:817 src/treeview_helper.c:932
+#: src/treeview.c:819 src/treeview_helper.c:934
 msgid "Shots"
 msgstr "Изстрели"
 
-#: src/options_interface.c:659
+#: src/options_interface.c:671
 msgid "Shots "
 msgstr "Изстрели"
 
-#: src/options_interface.c:578
+#: src/options_interface.c:504
 msgid "Show all leagues in the fixture view"
 msgstr "Показване на всички лиги в прегледа на датите на мачовете"
 
-#: src/interface.c:896
+#: src/interface.c:869
 msgid "Show coming matches"
 msgstr "Показване на предстоящи мачове"
 
-#: src/interface.c:1003
+#: src/interface.c:925
 msgid "Show finances"
 msgstr "Показване на финанси"
 
-#: src/interface.c:947
-msgid "Show history"
-msgstr "Показване на история"
-
-#: src/interface.c:798 src/interface.c:1986
+#: src/interface.c:771 src/interface.c:1994
 msgid "Show info"
 msgstr "Показване на информация"
 
-#: src/interface.c:783
+#: src/interface.c:756
 msgid "Show job exchange"
 msgstr "Показване на предложенията за работа"
 
-#: src/options_interface.c:550
+#: src/options_interface.c:476
 msgid "Show job offers"
 msgstr "Показване на предложенията за работа"
 
-#: src/interface.c:874
+#: src/interface.c:847
 msgid "Show last match"
 msgstr "Показване на последния мач"
 
-#: src/interface.c:885
+#: src/interface.c:858
 msgid "Show last match stats"
 msgstr "Показване на статистики от последния мач"
 
-#: src/options_interface.c:459
+#: src/options_interface.c:540
 msgid "Show live game"
 msgstr "Показване на мача на живо"
 
-#: src/misc3_interface.c:74 src/options_interface.c:1006
+#: src/misc3_interface.c:74 src/options_interface.c:1018
 msgid "Show matches from all leagues"
 msgstr "Показване на мачовете от всички първенства..."
 
-#: src/misc3_interface.c:79 src/options_interface.c:1011
+#: src/misc3_interface.c:79 src/options_interface.c:1023
 msgid "Show matches from cups"
 msgstr "Показване на мачове от купите"
 
-#: src/misc3_interface.c:84 src/options_interface.c:1017
+#: src/options_interface.c:1156
+msgid "Show news window after a matchday when new user news was created"
+msgstr ""
+
+#: src/misc3_interface.c:84 src/options_interface.c:1029
 msgid "Show only my recent bets"
 msgstr "Показване само на скорошните залози"
 
-#: src/options_interface.c:597
+#: src/options_interface.c:1139
+#, fuzzy
+msgid "Show only recent news"
+msgstr "Показване само на скорошните залози"
+
+#: src/options_interface.c:523
 msgid "Show overall games/goals"
 msgstr "Показване на общо мачове/голове"
 
-#: src/options_interface.c:268
+#: src/options_interface.c:280
 msgid "Show progressbar pictures"
 msgstr "Показване на картинки за лентата за прогреса"
 
-#: src/interface.c:1014
+#: src/interface.c:936
 msgid "Show stadium"
 msgstr "Показване на стадион"
 
-#: src/options_interface.c:463
+#: src/options_interface.c:544
 msgid "Show tendency bar"
 msgstr "Показване на лентата за тенденциите"
 
-#: src/interface.c:1040
+#: src/interface.c:962
 msgid "Show the betting window"
 msgstr "Показване на прозореца за залагания"
 
-#: src/interface.c:786
+#: src/interface.c:759
 msgid "Show the list of available manager jobs"
 msgstr "Списък с наличните места за мениджър"
 
-#: src/interface.c:1137
+#: src/interface.c:1141
 msgid "Show transferlist (T)"
 msgstr "Показване на списъка за трансфер (T)"
 
-#: src/options_interface.c:564
+#: src/options_interface.c:490
 msgid "Show warning if a player contract gets below "
 msgstr "Предупреждение, ако договорът на играч изтича след по-малко от "
 
-#: src/interface.c:614
+#: src/interface.c:587
 msgid "Show youth academy"
 msgstr "Показване на младежката академия"
 
@@ -2502,68 +2571,73 @@ msgstr "Показване на младежката академия"
 msgid "Sk"
 msgstr "Умение"
 
-#: src/treeview.c:2135
+#: src/treeview.c:2140
 msgid "Skill"
 msgstr "Умение"
 
-#: src/options_interface.c:638
+#: src/options_interface.c:650
 msgid "Skill "
 msgstr "Умение "
 
-#: src/options_interface.c:278
+#: src/options_interface.c:290
 msgid "Skip weeks without user matches"
 msgstr "Пропускане на седмици без мачове на потребители"
 
-#: src/misc_interface.c:246
+#: src/misc_interface.c:249
 msgid "Space"
 msgstr "Space"
 
-#: src/main.c:81
+#: src/main.c:90
 msgid "Specify additional support directory (takes priority over default ones)"
 msgstr ""
 "Определяне на допълнителна поддържаща папка (има приоритет над стандартните)"
 
-#: src/misc_interface.c:707
+#: src/misc_interface.c:710
 msgid "Speed"
 msgstr "Скорост"
 
-#: src/treeview.c:1645
+#: src/treeview.c:1650
 msgid "Sponsor"
 msgstr "Спонсор"
 
-#: src/treeview.c:1497
+#: src/treeview.c:1502
 msgid "Sponsorship"
 msgstr "Спонсорство"
 
-#: src/window.c:943
+#: src/window.c:973
 msgid "Sponsorship offers"
 msgstr "Предложения за спонсорство"
 
-#: src/treeview.c:1455
+#: src/interface.c:967
+#, fuzzy
+msgid "St_ats"
+msgstr "Статус"
+
+#: src/treeview.c:1460
 msgid "Stadium"
 msgstr "Стадион"
 
-#: src/misc2_interface.c:117 src/treeview.c:1461
+#: src/misc2_interface.c:117 src/treeview.c:1466
 msgid "Stadium capacity"
 msgstr "Капацитет на стадиона"
 
-#: src/treeview.c:1586
+#: src/treeview.c:1591
 msgid "Stadium expenses"
 msgstr "Разходи по стадиона"
 
-#: src/callbacks.c:1129
+#: src/callbacks.c:1136
 msgid "Stadium management is disabled in this country definition."
 msgstr "Управлението на стадиона е изключено в дефинициите за тази страна."
 
-#: src/misc2_interface.c:122 src/treeview.c:1465
+#: src/misc2_interface.c:122 src/treeview.c:1470
 msgid "Stadium safety"
 msgstr "Безопасност на стадиона"
 
-#: src/treeview.c:1479
+#: src/treeview.c:1484
 msgid "Stadium status"
 msgstr "Статус на стадиона"
 
-#: src/misc_interface.c:263
+#: src/misc_interface.c:266
 msgid "Start"
 msgstr "Начало"
 
@@ -2581,7 +2655,7 @@ msgstr "_Нова игра"
 msgid "Start in week:"
 msgstr "_Нова игра"
 
-#: src/misc_interface.c:584
+#: src/misc_interface.c:587
 msgid "Statistics"
 msgstr "Статистика"
 
@@ -2590,29 +2664,33 @@ msgstr "Статистика"
 msgid "Status"
 msgstr "Статус"
 
-#: src/options_interface.c:673
+#: src/options_interface.c:685
 msgid "Status "
 msgstr "Статус "
 
-#: src/misc_interface.c:948
+#: src/misc_interface.c:951
 msgid "Status:"
 msgstr "Статус:"
 
 #. Hot streak or cold streak of a player.
-#: src/treeview.c:2150
+#: src/treeview.c:2155
 msgid "Streak"
 msgstr "Серия"
 
-#: src/callbacks.c:927
+#: src/main.c:92
+msgid "String id of the country to load"
+msgstr ""
+
+#: src/callbacks.c:934
 msgid "Structure"
 msgstr "Структура"
 
-#: src/options_interface.c:592
+#: src/options_interface.c:518
 msgid "Swap adapts structure"
 msgstr "Размяната адаптира структурата"
 
 #. Language is system-set (not user chosen).
-#: src/treeview.c:2790
+#: src/treeview.c:2852
 msgid "System"
 msgstr "Система"
 
@@ -2625,16 +2703,16 @@ msgid "Talent %"
 msgstr "Талант %"
 
 #: src/treeview2.c:513 src/treeview.c:161 src/treeview.c:330
-#: src/treeview.c:760 src/treeview.c:1362 src/treeview.c:1837
-#: src/treeview.c:1981 src/treeview.c:2319
+#: src/treeview.c:762 src/treeview.c:1367 src/treeview.c:1842
+#: src/treeview.c:1986 src/treeview.c:2324
 msgid "Team"
 msgstr "Отбор"
 
-#: src/options_interface.c:729
+#: src/options_interface.c:741
 msgid "Team "
 msgstr "Отбор "
 
-#: src/treeview.c:1869
+#: src/treeview.c:1874
 msgid "Team structure"
 msgstr "Структура на отбора"
 
@@ -2651,11 +2729,11 @@ msgstr "Отбор1"
 msgid "Team2"
 msgstr "Отбор2"
 
-#: src/main.c:91
+#: src/main.c:100
 msgid "Test an XML commentary file"
 msgstr "Тестване на XML файл с коментар"
 
-#: src/callback_func.c:363
+#: src/callback_func.c:368
 msgid "The bank doesn't grant you more money."
 msgstr "Банката Ви не Ви отпуска повече пари."
 
@@ -2668,17 +2746,17 @@ msgstr "Букмейкърът не Ви позволява да залагат�
 msgid "The current game state is unsaved and will be lost. Continue?"
 msgstr "Текущата игра не е запазена и ще бъде загубена. Ще продължите ли?"
 
-#: src/options_interface.c:501
+#: src/options_interface.c:582
 msgid "The higher this value, the more commentary you'll see."
 msgstr ""
 "Колкото по-висока е тази стойност, толкова повече коментиране ще виждате."
 
-#: src/callbacks.c:1577
+#: src/callbacks.c:1584
 #, c-format
 msgid "The job exchange update interval is %d weeks."
 msgstr "Обновяването на предложенията за работа е %d седмици."
 
-#: src/options_interface.c:492
+#: src/options_interface.c:573
 msgid "The lower this value the faster the live game commentary will scroll."
 msgstr ""
 "Колкото по-ниска е тази стойност, толкова по-бързо ще теже коментара на живо"
@@ -2756,39 +2834,39 @@ msgstr ""
 "Собствениците на %s учтиво отхвърлят кандидатурата Ви. Според тях не сте "
 "достатъчно преуспял."
 
-#: src/callback_func.c:589
+#: src/callback_func.c:594
 msgid ""
 "The player feels he doesn't have a future in your star-studded team. He "
 "refuses to negotiate."
 msgstr ""
 
-#: src/callbacks.c:600
+#: src/callbacks.c:607
 msgid "The player is already on the list."
 msgstr "Играчът е вече в списъка."
 
-#: src/callback_func.c:526
+#: src/callback_func.c:531
 msgid ""
 "The player is locked (the team owners are considering an offer currently)."
 msgstr ""
 "Играчът е заключен (в момента собствениците на отбора обмислят предложение)."
 
-#: src/callbacks.c:620
+#: src/callbacks.c:627
 msgid "The player is not on the list."
 msgstr "Играчът не е в списъка."
 
-#: src/treeview_helper.c:1072
+#: src/treeview_helper.c:1074
 msgid "The player is on a cold streak"
 msgstr "Играчът има лоша серия."
 
-#: src/treeview_helper.c:1070
+#: src/treeview_helper.c:1072
 msgid "The player is on a hot streak"
 msgstr "Играчът има добра серия."
 
-#: src/callbacks.c:703
+#: src/callbacks.c:710
 msgid "The player is too old for the youth academy."
 msgstr "Играчът е прекалено стар за младежката академия."
 
-#: src/callback_func.c:583
+#: src/callback_func.c:588
 msgid "The player won't negotiate with you anymore."
 msgstr "Играчът няма да преговаря с Вас повече."
 
@@ -2826,11 +2904,11 @@ msgstr ""
 "собствениците на %s са чули за освобождаването Ви и предлагат работа.Ето "
 "малко информация за %s:"
 
-#: src/callback_func.c:533 src/callbacks.c:253 src/transfer.c:574
+#: src/callback_func.c:538 src/callbacks.c:260 src/transfer.c:574
 msgid "The transfer deadline is over."
 msgstr "Крайният срок за трансфери е преминал."
 
-#: src/misc_interface.c:1307
+#: src/misc_interface.c:1310
 msgid ""
 "There are a few companies interested in sponsoring your team. Please select "
 "one:"
@@ -2838,25 +2916,25 @@ msgstr ""
 "Има няколко компании заинтересувани в спонсорство на отбора Ви. Изберете "
 "една:"
 
-#: src/callbacks.c:276
+#: src/callbacks.c:283
 msgid "There are injured or banned players in one of the user teams. Continue?"
 msgstr ""
 "Има контузени или наказани играчи в един от потребителските отбори. Ще "
 "продължите ли?"
 
-#: src/callbacks.c:554
+#: src/callbacks.c:561
 msgid "There are no leagues in this country definition (only cups)."
 msgstr "Няма първенства в дефиницията за тази страна (само купи)."
 
-#: src/callbacks.c:528
+#: src/callbacks.c:535
 msgid "There are no leagues or cups with tables in this country definition."
 msgstr "Няма нито първенства, нито купи с таблици в тази дефиниция за страна."
 
-#: src/callbacks.c:576
+#: src/callbacks.c:583
 msgid "There are no season history elements stored yet."
 msgstr "Все още няма запазени елементи от историята на сезона."
 
-#: src/callback_func.c:429
+#: src/callback_func.c:434
 msgid ""
 "There are some offers for the player which you rejected or will see next "
 "week."
@@ -2864,7 +2942,7 @@ msgstr ""
 "Има някои предложения за играча, които сте отказали или ще прегледате "
 "другата седмица."
 
-#: src/callbacks.c:709
+#: src/callbacks.c:716
 msgid "There is no room in your youth academy."
 msgstr "Няма място във Вашата младежка академия."
 
@@ -2876,7 +2954,7 @@ msgstr ""
 "Имаше прекалено много смени. Разрешени са само 3 на мач. Списъкът с играчи е "
 "занулен."
 
-#: src/treeview.c:1496
+#: src/treeview.c:1501
 msgid "Ticket income"
 msgstr "Приходи от билети"
 
@@ -2888,34 +2966,34 @@ msgstr "Скъсано важно сухожилие"
 msgid "Training"
 msgstr ""
 
-#: src/interface.c:728 src/options_interface.c:1103
-#: src/training_interface.c:60 src/treeview.c:1594 src/window.c:974
+#: src/interface.c:701 src/options_interface.c:1115
+#: src/training_interface.c:60 src/treeview.c:1599 src/window.c:1004
 msgid "Training camp"
 msgstr ""
 
-#: src/callbacks.c:1607
+#: src/callbacks.c:1614
 #, fuzzy
 msgid "Training camp is disabled in this country definition."
 msgstr "Трансферите в определенията за тази игра са изключени."
 
-#: src/callbacks.c:242
+#: src/callbacks.c:249
 #, c-format
 msgid "Transfer deadline is Week %d"
 msgstr "Крайният срок за трансфери е до %d седмица."
 
-#: src/window.c:935
+#: src/window.c:965
 msgid "Transfer offer"
 msgstr "Предложение за трансфер"
 
-#: src/treeview.c:1576
+#: src/treeview.c:1581
 msgid "Transfers"
 msgstr "Трансфери"
 
-#: src/callbacks.c:233 src/callbacks.c:596
+#: src/callbacks.c:240 src/callbacks.c:603
 msgid "Transfers are disabled in this country definition."
 msgstr "Трансферите в определенията за тази игра са изключени."
 
-#: src/interface.c:756
+#: src/interface.c:729
 msgid ""
 "Try to put the startup players onto their favoured positions and sort the "
 "substitutes (Ctrl-R or middle click)"
@@ -2923,16 +3001,21 @@ msgstr ""
 "Опитайте да сложите започващите мача играчи на техните предпочитани позиции "
 "и да подредите смените (Ctrl-R или средно натискане)"
 
-#: src/load_save.c:222
+#: src/load_save.c:235
 msgid "Uncompressing savegame..."
 msgstr "Разкомпресиране на запазената игра..."
 
-#: src/callback_func.c:519
+#: src/callback_func.c:524
 #, c-format
 msgid "User %s didn't consider your offer yet."
 msgstr "Потребителят %s не е обмислил предложението Ви все още."
 
-#: src/window.c:912
+#: src/interface.c:1003
+#, fuzzy
+msgid "User history"
+msgstr "История на сезона"
+
+#: src/window.c:942
 msgid "User management"
 msgstr "Управление на потребителите"
 
@@ -2940,21 +3023,21 @@ msgstr "Управление на потребителите"
 msgid "Users -- click to remove"
 msgstr "Потребители - натиснете за премахване"
 
-#: src/treeview.c:327 src/treeview.c:2141
+#: src/treeview.c:327 src/treeview.c:2146
 msgid "Value"
 msgstr "Стойност"
 
-#: src/options_interface.c:701
+#: src/options_interface.c:713
 msgid "Value "
 msgstr "Цена "
 
-#: src/misc_interface.c:714
+#: src/misc_interface.c:717
 msgid "Verbosity"
 msgstr "Честота"
 
 #. Games won.
 #. Won.
-#: src/treeview.c:1366 src/treeview_helper.c:1737
+#: src/treeview.c:1371 src/treeview_helper.c:1739
 msgid "W"
 msgstr "Поб"
 
@@ -2969,12 +3052,12 @@ msgstr "Поб  "
 msgid "W  %d : %d"
 msgstr "Победа  %d : %d"
 
-#: src/callback_func.c:549 src/callback_func.c:556 src/treeview.c:328
-#: src/treeview.c:2142
+#: src/callback_func.c:554 src/callback_func.c:561 src/treeview.c:328
+#: src/treeview.c:2147
 msgid "Wage"
 msgstr "Заплата"
 
-#: src/options_interface.c:708
+#: src/options_interface.c:720
 msgid "Wage "
 msgstr "Заплата "
 
@@ -2992,7 +3075,7 @@ msgstr ""
 "Залог/\n"
 "Победа/Загуба"
 
-#: src/treeview.c:1500
+#: src/treeview.c:1505
 msgid "Wages"
 msgstr "Заплати"
 
@@ -3001,11 +3084,11 @@ msgstr "Заплати"
 msgid "We"
 msgstr "Сед"
 
-#: src/treeview.c:2319
+#: src/treeview.c:2324
 msgid "Week"
 msgstr "Седмица"
 
-#: src/treeview.c:998
+#: src/treeview2.c:620 src/treeview.c:1003
 #, c-format
 msgid "Week %d Round %d"
 msgstr "Седмица %d Кръг %d"
@@ -3020,25 +3103,25 @@ msgstr "Настройване на инвестициите"
 msgid "Weekly installment:"
 msgstr "Настройване на инвестициите"
 
-#: src/window.c:801
+#: src/window.c:831
 #, c-format
 msgid "Welcome to Bygfoot %s"
 msgstr "Това е Bygfoot %s"
 
-#: src/options_interface.c:251
+#: src/options_interface.c:263
 msgid ""
 "Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
 msgstr ""
 "Дали 'Запазване' презаписва текущия запазен файл или изскача прозорец "
 "'Запазване като..'"
 
-#: src/options_interface.c:548
+#: src/options_interface.c:474
 msgid ""
 "Whether a confirmation popup is shown when you kick out a youth from your "
 "academy"
 msgstr "Дали излиза предупреждение при изхвърлянето на младеж от академията"
 
-#: src/options_interface.c:261
+#: src/options_interface.c:273
 msgid ""
 "Whether game starts with a maximized main window (doesn't work with all "
 "window managers)"
@@ -3046,7 +3129,7 @@ msgstr ""
 "Дали играта започва с максимизиран главен прозорец (не работи с всички "
 "прозоръчни мениджъри)"
 
-#: src/options_interface.c:581
+#: src/options_interface.c:507
 msgid ""
 "Whether in the weekly fixture view all leagues or only the user league is "
 "shown"
@@ -3054,7 +3137,7 @@ msgstr ""
 "Дали в прегледа на датите на мачовете по седмици да се виждат всички лиги "
 "или само потребителските"
 
-#: src/options_interface.c:595
+#: src/options_interface.c:521
 msgid ""
 "Whether swapping two players automatically adapts the team structure to the "
 "player positions"
@@ -3062,19 +3145,19 @@ msgstr ""
 "Дали разменянето на двама играчи автоматично адаптира структурата на отбора "
 "към позициите им"
 
-#: src/options_interface.c:531
+#: src/options_interface.c:612
 msgid "Whether the live game pauses at half time and extra time"
 msgstr "Дали да има пауза на мачовете на живо при почивките"
 
-#: src/options_interface.c:521
+#: src/options_interface.c:602
 msgid "Whether the live game pauses when a user player is injured"
 msgstr "Дали мачовете на живо паузират, когато потребителски играч е контузен"
 
-#: src/options_interface.c:526
+#: src/options_interface.c:607
 msgid "Whether the live game pauses when a user player is sent off"
 msgstr "Дали мачовете на живо паузират, когато потребителски играч е изгонен"
 
-#: src/options_interface.c:507
+#: src/options_interface.c:588
 msgid ""
 "Whether the subs (e.g. for injured players) are made by the CPU. This is "
 "automatically done if the live game is off."
@@ -3082,11 +3165,11 @@ msgstr ""
 "Дали смените (пр. за контузени играчи) се правят от компютъра. Това се прави "
 "автоматично, ако мача на живо е изключен."
 
-#: src/options_interface.c:409
+#: src/options_interface.c:421
 msgid "Whether to automatically save the game regularly"
 msgstr "Дали периодично играта да се запазва автоматично"
 
-#: src/options_interface.c:1123
+#: src/options_interface.c:1187
 msgid ""
 "Whether to save the global settings to file (so that they get loaded next "
 "time you start a new game)"
@@ -3094,7 +3177,7 @@ msgstr ""
 "Дали да се запазват глобалните настройки във файл (така, че следващият път "
 "да да се зареждат те)"
 
-#: src/options_interface.c:1128
+#: src/options_interface.c:1192
 msgid ""
 "Whether to save the user settings to file (so that they get loaded next time "
 "this user starts a new game)"
@@ -3102,7 +3185,7 @@ msgstr ""
 "Дали да се запазват потребителските настройки във файл (така, че следващият "
 "път да да се зареждат те, за дадения потребител)"
 
-#: src/options_interface.c:246
+#: src/options_interface.c:258
 msgid ""
 "Whether to show a confirmation popup if a user team has an injured or banned "
 "player in the startup formation"
@@ -3110,7 +3193,7 @@ msgstr ""
 "Дали да се показва прозорец за подтвърждение, ако потребителски отбор има "
 "контузен или наказан играч в началната формация"
 
-#: src/options_interface.c:241
+#: src/options_interface.c:253
 msgid ""
 "Whether to show a confirmation popup when you press quit and the game state "
 "is not saved"
@@ -3118,7 +3201,7 @@ msgstr ""
 "Дали да се показва прозорец за подтвърждение, когато затваряте програмата и "
 "състоянието на играта не е запазено"
 
-#: src/options_interface.c:1014
+#: src/options_interface.c:1026
 msgid "Whether to show cup matches in the betting window"
 msgstr "Дали да се показват мачовете за купите в прозореца за залаганията"
 
@@ -3129,13 +3212,13 @@ msgstr ""
 "Дали да се показват мачовете за купите. Използвайте прозореца за "
 "настройките, за да промените за постоянно."
 
-#: src/options_interface.c:553
+#: src/options_interface.c:479
 msgid "Whether to show job offers when a user is successful"
 msgstr ""
 "Дали да се показват предложения за работа, когато потребителя е успешен "
 "мениджър"
 
-#: src/options_interface.c:1009
+#: src/options_interface.c:1021
 msgid "Whether to show matches of all leagues in the betting window"
 msgstr ""
 "Дали да се показват мачовете от всички първенства в прозореца за залаганията"
@@ -3152,7 +3235,7 @@ msgstr ""
 msgid "Whether to show only your bets in the recent bets list"
 msgstr "Дали да се показват само Вашите залози в списъка с последни залози."
 
-#: src/options_interface.c:271
+#: src/options_interface.c:283
 msgid ""
 "Whether to show pictures on top of the progressbar when loading/saving or "
 "calculating results"
@@ -3160,12 +3243,12 @@ msgstr ""
 "Дали да се показват картинки над лентата за прогреса, при зареждане/"
 "запазване или пресмятане на резултати."
 
-#: src/options_interface.c:600
+#: src/options_interface.c:526
 msgid "Whether to show the player games/goals value in all competitions"
 msgstr ""
 "Дали да се показват стойността мачове/голове на играча за всички състезания"
 
-#: src/options_interface.c:266
+#: src/options_interface.c:278
 msgid ""
 "Whether to show warnings and such in the message area in the main window "
 "when possible"
@@ -3190,11 +3273,11 @@ msgstr "ЖК"
 
 #. 'Limit' is the number of yellow cards until a player gets
 #. banned automatically for a match.
-#: src/treeview.c:2147
+#: src/treeview.c:2152
 msgid "Yellow cards (limit)\n"
 msgstr "Жълти картони (лимит)\n"
 
-#: src/treeview.c:822 src/treeview_helper.c:933
+#: src/treeview.c:824 src/treeview_helper.c:935
 msgid "Yellows"
 msgstr "Жълти картони"
 
@@ -3208,7 +3291,7 @@ msgstr "Вие сте шампионите на %s!"
 msgid "You are free from debt."
 msgstr "Нямате задължения."
 
-#: src/callback_func.c:553
+#: src/callback_func.c:558
 #, c-format
 msgid ""
 "You are making an offer for %s again. Your previous values for fee and wage "
@@ -3217,7 +3300,7 @@ msgstr ""
 "Отново правите предложение за %s. Предишните Ви стойности за такса и заплата "
 "са настроени."
 
-#: src/callback_func.c:545
+#: src/callback_func.c:550
 #, c-format
 msgid ""
 "You are making an offer for %s. Your scout's recommendations for fee and "
@@ -3226,7 +3309,7 @@ msgstr ""
 "Правите предложение за %s. Препоръките на разузнавача Ви за такса и заплата "
 "са настроени."
 
-#: src/callback_func.c:603
+#: src/callback_func.c:608
 #, c-format
 msgid ""
 "You are negotiating with %s about a new contract. Pay attention to what "
@@ -3241,12 +3324,12 @@ msgstr ""
 "само ПРЕДИ да направите първото предложение.\n"
 "Предложенията на разузнавача Ви са настроени:"
 
-#: src/callbacks.c:1644
+#: src/callbacks.c:1651
 #, fuzzy
 msgid "You are not in debt."
 msgstr "Нямате задължения."
 
-#: src/callback_func.c:387
+#: src/callback_func.c:392
 msgid "You are not indebted."
 msgstr "Нямате задължения."
 
@@ -3255,33 +3338,33 @@ msgstr "Нямате задължения."
 msgid "You bet on outcome %d with an odd of %.2f. How much do you wager?"
 msgstr "Залагате на изход на мача %d с коефицент %.2f. Колко залагате?"
 
-#: src/callback_func.c:399
+#: src/callback_func.c:404
 #, c-format
 msgid "You can pay back at most %s"
 msgstr "Може да изплатите най-много %s."
 
-#: src/callback_func.c:369
+#: src/callback_func.c:374
 #, c-format
 msgid "You can take out at most %s."
 msgstr "Може да изтеглите максимум %s."
 
-#: src/callbacks.c:838
+#: src/callbacks.c:845
 msgid "You can't apply for a job from abroad if there's more than one user."
 msgstr ""
 "Не може да кандидатствате за работа в чужбина, ако има повече от един "
 "потребител."
 
-#: src/callbacks.c:1461
+#: src/callbacks.c:1468
 #, c-format
 msgid "You can't have more than %d players in the team."
 msgstr "Не може да имате повече от %d играча в отбора си."
 
-#: src/callbacks.c:706
+#: src/callbacks.c:713
 msgid "You can't move the player, there are too few players in your team."
 msgstr ""
 "Не можете да преместите играча. Има прекалено малко играчи в отбора Ви."
 
-#: src/callback_func.c:578
+#: src/callback_func.c:583
 msgid "You can't offer a new contract if the old one is still above 2 years."
 msgstr ""
 "Не можете да предлагате нов договор, ако стария е все още над 2 години."
@@ -3305,11 +3388,11 @@ msgstr "Нямахте достатъчно пари, за да купите %s 
 msgid "You didn't have enough money to buy %s or your roster was full."
 msgstr "Нямахте достатъчно пари, за да купите %s или съставът Ви е пълен."
 
-#: src/callback_func.c:393
+#: src/callback_func.c:398
 msgid "You don't have enough money to pay back."
 msgstr "Нямате достатъчно пари, за изплащането."
 
-#: src/bet.c:262 src/misc_callback_func.c:312
+#: src/bet.c:262 src/misc_callback_func.c:316
 msgid "You don't have the money."
 msgstr "Нямате толкова пари!"
 
@@ -3365,13 +3448,13 @@ msgstr ""
 msgid "You have to pay back your loan this week."
 msgstr "Трябва да върнете заема си тази седмица!"
 
-#: src/callbacks.c:815
+#: src/callbacks.c:822
 msgid "You haven't made an offer for the player."
 msgstr "Не сте отправили предложение към играча."
 
-#: src/callbacks.c:598 src/callbacks.c:618 src/callbacks.c:638
-#: src/callbacks.c:658 src/callbacks.c:697 src/callbacks.c:1168
-#: src/callbacks.c:1188
+#: src/callbacks.c:605 src/callbacks.c:625 src/callbacks.c:645
+#: src/callbacks.c:665 src/callbacks.c:704 src/callbacks.c:1175
+#: src/callbacks.c:1195
 msgid "You haven't selected a player."
 msgstr "Не сте избрали играч."
 
@@ -3381,7 +3464,7 @@ msgstr "Не сте избрали играч."
 msgid "You lose in the %s final against %s."
 msgstr "Губите на финала за %s от %s"
 
-#: src/callback_func.c:486
+#: src/callback_func.c:491
 #, c-format
 msgid ""
 "You offered a transfer fee of %s and a wage of %s for %s. The owners and the "
@@ -3402,11 +3485,11 @@ msgstr "Достигнахте до %s (кръг %s) на %s."
 msgid "You start the game with %s in the %s."
 msgstr "Започвате мача с %s от %s."
 
-#: src/callbacks.c:266 src/callbacks.c:885 src/callbacks.c:906
+#: src/callbacks.c:273 src/callbacks.c:892 src/callbacks.c:913
 msgid "You still have some transfer business to manage."
 msgstr "Все още имате работа по трансферите, която да свършите."
 
-#: src/callback_func.c:745
+#: src/callback_func.c:750
 #, c-format
 msgid ""
 "You want to fire %s. Since his contract expires in %.1f years, he demands a "
@@ -3421,7 +3504,7 @@ msgstr ""
 msgid "You win the %s final against %s."
 msgstr "Печелите финала за %s срещу %s."
 
-#: src/callbacks.c:1620
+#: src/callbacks.c:1627
 #, c-format
 msgid "You've reached the limit of %d training camps for the season."
 msgstr ""
@@ -3445,7 +3528,7 @@ msgstr ""
 msgid "Your debt:"
 msgstr "Вашите резултати"
 
-#: src/treeview.c:1809
+#: src/treeview.c:1814
 msgid "Your next opponent"
 msgstr "Вашият следващ противник"
 
@@ -3458,7 +3541,7 @@ msgstr ""
 "Предложението Ви за %s е било прието. Ако все още искате да го закупите, "
 "отидете на списъка за трансфер и натиснете с левия бутон на мишката на него"
 
-#: src/callback_func.c:472 src/callbacks.c:812
+#: src/callback_func.c:477 src/callbacks.c:819
 msgid "Your offer has been removed."
 msgstr "Предложението Ви беше премахнато."
 
@@ -3475,11 +3558,11 @@ msgid "Your player roster is full or you don't enough money."
 msgstr "Нямате място в състава или нямате достатъчно пари."
 
 #. The user's results against a specific team.
-#: src/treeview.c:1882
+#: src/treeview.c:1887
 msgid "Your results"
 msgstr "Вашите резултати"
 
-#: src/callback_func.c:479
+#: src/callback_func.c:484
 msgid "Your roster is already full. You can't buy more players."
 msgstr "Съставът Ви е пълен. Не може да купувате още играчи."
 
@@ -3489,7 +3572,7 @@ msgstr "Съставът Ви е пълен. Не може да купувате
 msgid "Your roster is full. You couldn't buy %s from %s."
 msgstr "Съставът Ви е пълен. Не можете да купите %s от %s."
 
-#: src/window.c:857
+#: src/window.c:887
 msgid "Your stadium"
 msgstr "Вашият стадион"
 
@@ -3497,11 +3580,11 @@ msgstr "Вашият стадион"
 msgid "Your team"
 msgstr "Вашият отбор"
 
-#: src/callbacks.c:640 src/misc2_callback_func.c:60
+#: src/callbacks.c:647 src/misc2_callback_func.c:60
 msgid "Your team can't have less than 11 players."
 msgstr "Отборът Ви не може да има по-малко от 11 играча."
 
-#: src/callbacks.c:1614
+#: src/callbacks.c:1621
 msgid "Your team has already had enough training camps this week."
 msgstr ""
 
@@ -3525,20 +3608,20 @@ msgstr ""
 "Преместете го в отбора Ви или го изхвърлете от академията. Или най-вероятно "
 "ще си търси другклуб, където да играе."
 
-#: src/treeview.c:1659
+#: src/treeview.c:1664
 msgid "Youth acad. invest."
 msgstr "Инвест. в млад. академия"
 
-#: src/interface.c:603 src/treeview.c:1504
+#: src/interface.c:576 src/treeview.c:1509
 msgid "Youth academy"
 msgstr "Младежка академия"
 
-#: src/callbacks.c:692 src/callbacks.c:1416 src/callbacks.c:1435
-#: src/callbacks.c:1456
+#: src/callbacks.c:699 src/callbacks.c:1423 src/callbacks.c:1442
+#: src/callbacks.c:1463
 msgid "Youth academy is disabled in this country definition."
 msgstr "Младежката академия е изключена в тази дефиниция за страна."
 
-#: src/interface.c:621 src/treeview.c:1503
+#: src/interface.c:594 src/treeview.c:1508
 msgid "Youth coach"
 msgstr "Треньор на младежите"
 
@@ -3546,7 +3629,7 @@ msgstr "Треньор на младежите"
 msgid "_File"
 msgstr "_Файл"
 
-#: src/interface.c:1045
+#: src/interface.c:1049
 msgid "_Help"
 msgstr "_Помощ"
 
@@ -3558,15 +3641,15 @@ msgstr "За_реждане на игра"
 msgid "_Options"
 msgstr "_Настройки"
 
-#: src/misc_interface.c:661
+#: src/misc_interface.c:664
 msgid "_Pause"
 msgstr "_Пауза"
 
-#: src/interface.c:791
+#: src/interface.c:764
 msgid "_Player"
 msgstr "_Играч"
 
-#: src/misc_interface.c:682
+#: src/misc_interface.c:685
 msgid "_Resume"
 msgstr "Продъл_жаване"
 
@@ -3574,15 +3657,15 @@ msgstr "Продъл_жаване"
 msgid "_Resume game"
 msgstr "_Продължаване на игра"
 
-#: src/interface.c:485
+#: src/interface.c:458
 msgid "_Team"
 msgstr "_Отбор"
 
-#: src/interface.c:867
+#: src/interface.c:840
 msgid "_User"
 msgstr "По_требител"
 
-#: src/treeview.c:1622
+#: src/treeview.c:1627
 msgid "interest rate"
 msgstr ""
 
@@ -3595,6 +3678,10 @@ msgstr ""
 #~ "Ако мислите, че сте открили нещо относно играта, което си струва да се "
 #~ "сподели, може да го добавите към уикито на Bygfoot:\n"
 
+#, fuzzy
+#~ msgid "Bygfoot news"
+#~ msgstr "Запазени игри на Bygfoot"
+
 #~ msgid "Improve!"
 #~ msgstr "Подобрение!"
 
@@ -3604,8 +3691,14 @@ msgstr ""
 #~ msgid "Loading cups..."
 #~ msgstr "Зареждане на купите..."
 
+#~ msgid "Misc."
+#~ msgstr "Допълнителни"
+
 #~ msgid "Saving cups..."
 #~ msgstr "Запазване на купите..."
+
+#~ msgid "Show history"
+#~ msgstr "Показване на история"
 
 #~ msgid "There are no offers for the player."
 #~ msgstr "Няма предложения за играча."
