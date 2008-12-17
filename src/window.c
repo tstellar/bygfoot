@@ -309,6 +309,7 @@ window_show_startup(void)
     GPtrArray *country_files = NULL;
     GtkTreeModel *model = NULL;
     GtkCellRenderer *renderer = NULL;
+    gchar *last_country = file_load_text_from_saves("last_country");
     
     country_files = file_get_country_files();
 
@@ -336,7 +337,14 @@ window_show_startup(void)
 
     g_object_unref(model);
 
-    gtk_combo_box_set_active(GTK_COMBO_BOX(combo_country), 0);
+    if(last_country != NULL)
+    {
+        misc_callback_show_team_list(combo_country, last_country);        
+        g_free(last_country);
+    }
+    else
+        misc_callback_show_team_list(combo_country, (const gchar*)g_ptr_array_index(country_files, country_files->len - 1));
+    //gtk_combo_box_set_active(GTK_COMBO_BOX(combo_country), country_index);
 
     free_gchar_array(&country_files);
 }

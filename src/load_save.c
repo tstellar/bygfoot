@@ -178,7 +178,7 @@ load_save_save_game(const gchar *filename)
     gui_show_progress(1, _("Done."),
 		      PIC_TYPE_SAVE);
 
-    load_save_last_save_set(fullname->str);
+    file_store_text_in_saves("last_save", fullname->str);
 
     g_free(prefix);
     g_string_free(fullname, TRUE);
@@ -214,7 +214,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
 	g_free(prefix);
 	g_free(fullname);
 
-	basename = load_save_last_save_get();
+	basename = file_load_text_from_saves("last_save");
 
 	if(basename != NULL)
 	{
@@ -343,7 +343,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
 
     misc_string_assign(&save_file, fullname);
 
-    load_save_last_save_set(fullname);
+    file_store_text_in_saves("last_save", fullname);
 
     gui_show_progress(-1, "",
 		      PIC_TYPE_LOAD);
@@ -369,76 +369,6 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     return TRUE;
 }
 
-/** Store the name of the last savegame in the users home dir. */
-void
-load_save_last_save_set(const gchar *filename)
-{
-#ifdef DEBUG
-    printf("load_save_last_save_set\n");
-#endif
-
-    gchar buf[SMALL];
-    const gchar *home = g_get_home_dir();
-    FILE *fil = NULL;
-
-    if(os_is_unix)
-	sprintf(buf, "%s%s%s%ssaves%slast_save", home, G_DIR_SEPARATOR_S,
-		HOMEDIRNAME, G_DIR_SEPARATOR_S, G_DIR_SEPARATOR_S);
-    else
-    {
-	gchar *pwd = g_get_current_dir();
-	sprintf(buf, "%s%ssaves%slast_save", pwd, G_DIR_SEPARATOR_S,
-		G_DIR_SEPARATOR_S);
-	g_free(pwd);
-    }
-
-    if(!file_my_fopen(buf, "w", &fil, FALSE))
-	return;
-
-    fprintf(fil, "%s", filename);
-
-    fclose(fil);
-}
-
-/** Return the filename of the last savegame. */
-gchar*
-load_save_last_save_get(void)
-{
-#ifdef DEBUG
-    printf("load_save_last_save_get\n");
-#endif
-
-#ifdef DEBUG
-    printf("load_save_last_save_get\n");
-#endif
-
-    gchar buf[SMALL];
-    const gchar *home = g_get_home_dir();
-    FILE *fil = NULL;
-    gint i = 0, c;
-
-    if(os_is_unix)
-	sprintf(buf, "%s%s%s%ssaves%slast_save", home, G_DIR_SEPARATOR_S,
-		HOMEDIRNAME, G_DIR_SEPARATOR_S,  G_DIR_SEPARATOR_S);
-    else
-    {
-	gchar *pwd = g_get_current_dir();
-	sprintf(buf, "%s%ssaves%slast_save", pwd, G_DIR_SEPARATOR_S,
-		G_DIR_SEPARATOR_S);
-	g_free(pwd);
-    }
-
-    if(!file_my_fopen(buf, "r", &fil, FALSE))
-	return NULL;
-
-    while ((c = (gchar)fgetc(fil)) != EOF)
-	buf[i++] = (gchar)c;
-    buf[i] = 0;    
-
-    fclose(fil);
-
-    return g_strdup(buf);
-}
 
 /** Write an autosave. */
 void
