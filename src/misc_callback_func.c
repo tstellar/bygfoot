@@ -64,6 +64,8 @@ misc_callback_show_team_list(GtkWidget *widget, const gchar *country_file)
     treeview_show_team_list(GTK_TREE_VIEW(treeview_startup), FALSE, FALSE);
 
     treeview_show_leagues_combo();
+
+    gtk_widget_set_sensitive(lookup_widget(widget, "button_add_player"), TRUE);
 }
 
 /** Start a new game after users and teams are selected. */

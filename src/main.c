@@ -76,27 +76,30 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
     gboolean testcom = FALSE, calodds = FALSE;
     gchar *support_dir = NULL, *lang = NULL,
 	*testcom_file = NULL, *token_file = NULL, 
-	*event_name = NULL, *debug_text = NULL;
+	*event_name = NULL, *debug_text = NULL,
+        *country_sid = NULL;
     gint deb_level = -1, number_of_passes = 1,
 	deb_writer = -1,
 	num_matches = 100, skilldiffmax = 20;
     GError *error = NULL;
     GOptionContext *context = NULL;
     GOptionEntry entries[] =
-	{{ "support-dir", 's', 0, G_OPTION_ARG_STRING, &support_dir, 
+	{{ "last-save", 'l', 0, G_OPTION_ARG_NONE, &load_last_save, _("Load last savegame"), NULL },
+
+         { "support-dir", 's', 0, G_OPTION_ARG_STRING, &support_dir, 
 	   _("Specify additional support directory (takes priority over default ones)"), "DIR" },
+         
+	 { "country", 'c', 0, G_OPTION_ARG_STRING, &country_sid, _("String id of the country to load"), "SID" },
+
+	 { "lang", 'L', 0, G_OPTION_ARG_STRING, &lang, _("Language to use (a code like 'de')"), "CODE" },
 
 	 { "debug-level", 'd', 0, G_OPTION_ARG_INT, &deb_level, "[developer] Debug level to use", "N" },
 
 	 { "debug-writer", 'w', 0, G_OPTION_ARG_INT, &deb_writer, "[developer] Debug writer level to use", "N" },
 
-	 { "lang", 'L', 0, G_OPTION_ARG_STRING, &lang, _("Language to use (a code like 'de')"), "CODE" },
-
-	 { "last-save", 'l', 0, G_OPTION_ARG_NONE, &load_last_save, _("Load last savegame"), NULL },
-
 	 { "testcom", 't', 0, G_OPTION_ARG_NONE, &testcom, _("Test an XML commentary file"), NULL },
 
-	 { "commentary-file", 'c', 0, G_OPTION_ARG_STRING, &testcom_file,
+	 { "commentary-file", 'C', 0, G_OPTION_ARG_STRING, &testcom_file,
 	   _("Commentary file name (may be in a support dir)"), "FILE" },
 
 	 { "token-file", 'T', 0, G_OPTION_ARG_STRING, &token_file,
@@ -172,10 +175,17 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
     {
 	language_set(language_get_code_index(lang) + 1);
 	file_load_hints_file();
+        g_free(lang);
     }
 
     if(debug_text != NULL)
 	statp = debug_text;
+
+    if(country_sid != NULL)
+    {
+        country.sid = g_strdup(country_sid);
+        g_free(country_sid);
+    }
 }
 
 /**
@@ -195,7 +205,7 @@ main_init_variables(void)
     acps = g_ptr_array_new();
     country.name = NULL;
     country.symbol = NULL;
-    country.sid = g_strdup("NONAME");
+    country.sid = NULL;
 
     season = week = week_round = 1;
 
@@ -345,11 +355,19 @@ main (gint argc, gchar *argv[])
        (!load_last_save && (argc == 1 ||
 			    (argc > 1 && !load_game_from_command_line(argv[1])))))
     {
-	stat0 = STATUS_SPLASH;
-	window_show_splash();
-
-	if(os_is_unix)
-	    file_check_home_dir();
+        if(country.sid == NULL)
+        {
+            stat0 = STATUS_SPLASH;
+            window_show_splash();
+            
+            if(os_is_unix)
+                file_check_home_dir();            
+        }
+        else
+        {
+            window_show_startup();
+            stat0 = STATUS_TEAM_SELECTION;
+        }
     }
 
     gtk_main ();
