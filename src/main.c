@@ -31,8 +31,11 @@
 #include <time.h>
 #include <glib/gprintf.h>
 #include <glib.h>
-#include <io.h>
-#include <fcntl.h>
+
+#ifdef G_OS_WIN32
+  #include <io.h>
+  #include <fcntl.h>
+#endif
 
 #include "bet_struct.h"
 #include "debug.h"
