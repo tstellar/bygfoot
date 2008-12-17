@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+	<name>Copa do Brasil</name>
+	<short_name>Copa</short_name>
+	<symbol>flag_brazil.png</symbol>
+	<sid>copa_do_brasil</sid>
+	<add_week>0</add_week>
+	<last_week>47</last_week>
+	<week_gap>3</week_gap>
+	<property>national</property>
+	<cup_rounds>
+		<cup_round>
+			<choose_teams>
+				<choose_team>
+					<choose_team_sid>brazil1</choose_team_sid>
+					<number_of_teams>14</number_of_teams>
+					<start_idx>7</start_idx>
+					<end_idx>20</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>brazil2</choose_team_sid>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>brazil3</choose_team_sid>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+		<cup_round>
+		</cup_round>
+		<cup_round>
+		</cup_round>
+		<cup_round>
+		</cup_round>
+		<cup_round>
+		</cup_round>
+		<cup_round>
+		</cup_round>
+		<cup_round>
+		</cup_round>
+	</cup_rounds>
+</cup>
