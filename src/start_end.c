@@ -108,6 +108,20 @@ start_new_season(void)
     free_names(TRUE);
     stat5 = STATUS_GENERATE_TEAMS;
 
+    if(season == 1)
+    {
+        for(i=0;i<ligs->len;i++)
+        {
+            league_add_table(&lig(i));
+            league_check_new_tables(&lig(i));
+        }
+
+	for(i=0;i<cps->len;i++)
+	    if(cp(i).add_week <= 0)
+		g_ptr_array_add(acps, &cp(i));
+    }
+
+    /* Remove cups that don't start at the beginning of season. */
     for(i = acps->len - 1; i >= 0; i--)
     {
 	g_ptr_array_free(acp(i)->team_names, TRUE);
@@ -117,6 +131,7 @@ start_new_season(void)
 	    g_ptr_array_remove_index(acps, i);
     }
 
+    /* Deal with cups that have to take place before promotion/relegation. */
     for(i=cps->len - 1; i >= 0; i--)
 	if(cp(i).add_week == -1)
 	{
@@ -138,6 +153,7 @@ start_new_season(void)
 		const_int("int_training_camps_per_season");
 	}
 
+        /* Promotion/relegation, mainly. */
 	start_new_season_league_changes();
 
 	for(i=0;i<users->len;i++)
@@ -156,18 +172,6 @@ start_new_season(void)
 	}
 
 	start_new_season_reset_ids();
-    }
-    else
-    {
-        for(i=0;i<ligs->len;i++)
-        {
-            league_add_table(&lig(i));
-            league_check_new_tables(&lig(i));
-        }
-
-	for(i=0;i<cps->len;i++)
-	    if(cp(i).add_week <= 0)
-		g_ptr_array_add(acps, &cp(i));
     }
 		
     for(i=0;i<ligs->len;i++)
@@ -793,8 +797,7 @@ start_new_season_league_changes(void)
     league_team_movements_destinations(team_movements, league_size);
 
     for(i = team_movements->len - 1; i >= 0; i--)
-	if(g_array_index(team_movements, TeamMove, i).prom_rel_type == 
-	   PROM_REL_RELEGATION)
+	if(g_array_index(team_movements, TeamMove, i).prom_rel_type == PROM_REL_RELEGATION)
 	    g_array_prepend_val(
 		lig(g_array_index(
 			g_array_index(team_movements, TeamMove, i).dest_idcs, 
@@ -802,8 +805,7 @@ start_new_season_league_changes(void)
 		g_array_index(team_movements, TeamMove, i).tm);
     
     for(i=1;i<team_movements->len;i++)
-	if(g_array_index(team_movements, TeamMove, i).prom_rel_type != 
-	   PROM_REL_RELEGATION)
+	if(g_array_index(team_movements, TeamMove, i).prom_rel_type != PROM_REL_RELEGATION)
 	    g_array_append_val(
 		lig(g_array_index(
 			g_array_index(team_movements, TeamMove, i).dest_idcs, 
