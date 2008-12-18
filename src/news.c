@@ -109,6 +109,7 @@ news_select(const GArray *news_array, gchar *title, gchar *subtitle,
     gint i;
     const NewsArticle *article;
     gint order_articles[news_array->len];
+    gint to_check;
 
     news_articles_get_order(news_array, order_articles);
 
@@ -136,13 +137,31 @@ news_select(const GArray *news_array, gchar *title, gchar *subtitle,
     news_titles_get_order(article->titles, order_titles);
     news_titles_get_order(article->subtitles, order_subtitles);
 
-    *title_id = news_get_title(article->titles, title, order_titles, TRUE, FALSE);
+    *title_id = news_get_title(article->titles, title, order_titles, TRUE, FALSE, 
+                               const_int("int_news_repetition_max_check_number"));
     if(*title_id == -1)
-        *title_id = news_get_title(article->titles, title, order_titles, TRUE, TRUE);
+        for(to_check = const_int("int_news_repetition_max_check_number") - 1; 
+            to_check >= const_int("int_news_repetition_min_check_number");
+            to_check--)
+        {
+            *title_id = news_get_title(article->titles, title, order_titles, TRUE, 
+                                       (to_check == const_int("int_news_repetition_min_check_number")), to_check);   
+            if(*title_id == -1)
+                break;
+        }
 
-    *subtitle_id = news_get_title(article->subtitles, subtitle, order_subtitles, FALSE, FALSE);
+    *subtitle_id = news_get_title(article->subtitles, subtitle, order_subtitles, FALSE, FALSE,
+                                  const_int("int_news_repetition_max_check_number"));
     if(*subtitle_id == -1)
-        *subtitle_id = news_get_title(article->subtitles, subtitle, order_subtitles, FALSE, TRUE);
+        for(to_check = const_int("int_news_repetition_max_check_number") - 1; 
+            to_check >= const_int("int_news_repetition_min_check_number");
+            to_check--)
+        {
+            *subtitle_id = news_get_title(article->subtitles, subtitle, order_subtitles, FALSE, 
+                                       (to_check == const_int("int_news_repetition_min_check_number")), to_check);   
+            if(*subtitle_id == -1)
+                break;
+        }
 
     return;
 }
@@ -150,7 +169,7 @@ news_select(const GArray *news_array, gchar *title, gchar *subtitle,
 /** Try to find a news article title with valid tokens. */
 gint
 news_get_title(const GArray *titles, gchar *title, gint *order, 
-               gboolean is_title, gboolean ignore_repetition)
+               gboolean is_title, gboolean ignore_repetition, gint to_check)
 {
 #ifdef DEBUG
     printf("news_get_title\n");
@@ -165,8 +184,8 @@ news_get_title(const GArray *titles, gchar *title, gint *order,
            misc_string_replace_all_tokens(token_rep_news, g_array_index(titles, NewsText, order[i]).text, title))
         {
             result = g_array_index(titles, NewsText, order[i]).id;
-            if(ignore_repetition || !news_check_title_for_repetition(result, is_title))
-                return result;
+            if(ignore_repetition || !news_check_title_for_repetition(result, is_title, to_check))
+                return result;                
             else
                 continue;
         }
@@ -177,7 +196,7 @@ news_get_title(const GArray *titles, gchar *title, gint *order,
 
 /** Check whether a news article text has occurred in the paper recently. */
 gboolean
-news_check_title_for_repetition(gint id, gboolean is_title)
+news_check_title_for_repetition(gint id, gboolean is_title, gint to_check)
 {
 #ifdef DEBUG
     printf("news_check_title_for_repetition\n");
@@ -186,8 +205,8 @@ news_check_title_for_repetition(gint id, gboolean is_title)
     gint i;
     gint end;
 
-    end = (newspaper.articles->len < const_int("int_news_repetition_check_number")) ?
-        0 : newspaper.articles->len - const_int("int_news_repetition_check_number");
+    end = (newspaper.articles->len < to_check) ?
+        0 : newspaper.articles->len - to_check;
 
     for(i = newspaper.articles->len - 1; i >= end; i--)
         if((is_title && g_array_index(newspaper.articles, NewsPaperArticle, i).title_id == id) ||
@@ -208,8 +227,8 @@ news_check_article_for_repetition(gint id)
     gint i;
     gint end;
 
-    end = (newspaper.articles->len < const_int("int_news_repetition_check_number")) ?
-        0 : newspaper.articles->len - const_int("int_news_repetition_check_number");
+    end = (newspaper.articles->len < const_int("int_news_repetition_max_check_number")) ?
+        0 : newspaper.articles->len - const_int("int_news_repetition_max_check_number");
 
     for(i = newspaper.articles->len - 1; i >= end; i--)
         if(g_array_index(newspaper.articles, NewsPaperArticle, i).id == id)
@@ -614,7 +633,7 @@ news_set_fixture_tokens(const Fixture *fix)
 		   option_int("string_token_result", &tokens),
 		   g_strdup(buf));
 
-    misc_print_grouped_int(fix->attendance, buf);
+    misc_print_grouped_int(math_round_integer(fix->attendance, 2), buf);
     misc_token_add(token_rep_news,
 		   option_int("string_token_attendance", &tokens),
 		   g_strdup(buf));    
