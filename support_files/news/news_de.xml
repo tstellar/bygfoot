@@ -2,25 +2,83 @@
   <news_article>
     <type>match</type>
     <condition>_LAYERDIFF_ = 0 and _GD_ G 3</condition>
-    <title>_TL_ chancenlos gegen _TW_</title>
+    <title condition="_TWN_ = 0">_TL_ ohne Chance bei _TW_</title>
+    <title>_TL_ völlig chancenlos gegen _TW_</title>
     <title>Kantersieg für _TW_</title>
-    <title>_TL_ unterliegt _TW_ eindeutig</title>
     <title>_TW_ beherrscht _TL_ nach Belieben</title>
     <title>[Glanzvorstellung|Galavorstellung|Glanzleistung] von _TW_</title>
     <title>_TW_ besiegt _TL_ mit [Glanzvorstellung|Galavorstellung|Glanzleistung]</title>
     <title>Torreigen bei _T0_ gegen _T1_</title>
+    <title condition="_TWN_ = 1">_TW_ dominiert auswärts</title>
+    <subtitle>_TL_ wird durch die gnadenlose Tormaschine von _TW_ zerstört.</subtitle>
+    <subtitle condition="_TWN_ = 0">_TW_ fertigt _TL_ zuhause _RE_ ab.</subtitle>
+    <subtitle condition="_TWN_ = 0">_TL_ kommt bei _TW_ unter die Räder.</subtitle>
+    <subtitle condition="_TWN_ = 1">_TW_ siegt _RE_ im Auswärtsspiel.</subtitle>
+    <subtitle condition="_GOALS_TLN__ > 1">In einem torreichen Spiel behält _TW_ die Oberhand.</subtitle>
+    <subtitle condition="_GOALS_TLN__ = 0">_TL_ zeigt sich sowohl in der Offensive als auch in der Defensive hoffnungslos schwach.</subtitle>
+    <subtitle condition="_GOALS_TLN__ > 1">_TL_ unterliegt in einem Spiel der Offensivabteilungen.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__ and _TWN_ = 0">_SCORERS_TWN__ erzielen die Tore beim haushohen Heimsieg.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__">_TL_ wird durch Tore von _SCORERS_TWN__ regelrecht auseinandergenommen.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__">_TL_ kommt durch Tore von _SCORERS_TWN__ unter die Räder.</subtitle>
+    <subtitle condition="_HIGHGOALS_TWN__ > 1">_HIGHSCORER_TWN__ erzielt _HIGHGOALS_TWN__ Tore bei sensationellem Sieg.</subtitle>
+    <subtitle condition="_HIGHGOALS_TWN__ = 3">_HIGHSCORER_TWN__ erzielt Hattrick in unterhaltsamem Spiel.</subtitle>
+    <subtitle condition="_HIGHGOALS_TLN__ > 1">_HIGHGOALS_TLN__ Tore von _HIGHSCORER_TLN__ können die Niederlage von _TL_ nicht verhindern.</subtitle>
+    <subtitle condition="_GOALS_TLN__ > 1 and _MULTIPLESCORERS_TWL__">Tore von _SCORERS_TLN__ sind nicht genug für _TL_ bei der _RE_ Niederlage.</subtitle>
+  </news_article>
+
+  <news_article>
+    <type>match</type>
+    <condition>_LAYERDIFF_ = 0 and _GD_ G 2</condition>
+    <title>_TL_ chancenlos gegen _TW_</title>
+    <title>Klarer Sieg für _TW_</title>
+    <title condition="_TWN_ = 0">Klarer Heimsieg für _TW_</title>
+    <title>_TL_ unterliegt _TW_ [klar|eindeutig]</title>
+    <title condition="_TWN_ = 0">_TL_ unterliegt auswärts [klar|eindeutig]</title>
+    <title>_TW_ dominiert _TL_</title>
+    <title condition="_TWN_ = 1">_TW_ dominiert bei _TL_</title>
+    <title condition="_TWN_ = 1">_TW_ dominiert auswärts</title>
     <title condition="_GOALS_TWL__ > 1">_TW_ siegt trotz _GOALS_TLN__ Gegentoren</title>
     <title condition="_GOALS_TWL__ > 1">_GOALS_TWL__ nicht genug für _TL_</title>
-    <title condition="_TWN_ = 1">_TW_ dominiert bei _TL_</title>
+    <subtitle>_TW_ beherrscht _TL_ deutlich beim _RE_ Sieg.</subtitle>
     <subtitle condition="_TWN_ = 0">_TW_ fertigt _TL_ zuhause _RE_ ab.</subtitle>
     <subtitle condition="_GOALS_TLN__ > 1">In einem torreichen Spiel behält _TW_ die Oberhand.</subtitle>
     <subtitle condition="_GOALS_TLN__ > 1">_TL_ unterliegt in einem Spiel der Offensivabteilungen.</subtitle>
     <subtitle condition="_MULTIPLESCORERS_TWN__">_SCORERS_TWN__ treffen beim hohen Sieg von _TW_.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_TWN__">_SCORERS_TWN__ erzielen die Tore beim überlegenen Heimsieg.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_TWN__">_TL_ wird durch Tore von _SCORERS_TWN__ regelrecht auseinandergenommen.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__ and _TWN_ = 0">_SCORERS_TWN__ erzielen die Tore beim ungefährdeten Heimsieg von _TW_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__ and _TWN_ = 1">_SCORERS_TWN__ erzielen die Tore beim ungefährdeten Auswärtssieg von _TW_.</subtitle>
     <subtitle condition="_HIGHGOALS_TWN__ > 1">_HIGHSCORER_TWN__ erzielt _HIGHGOALS_TWN__ Tore beim überlegenen Sieg.</subtitle>
+    <subtitle condition="_HIGHGOALS_TWN__ > 1">_HIGHSCORER_TWN__ trifft _HIGHGOALS_TWN__-mal.</subtitle>
     <subtitle condition="_HIGHGOALS_TWN__ = 3">_HIGHSCORER_TWN__ erzielt Hattrick in unterhaltsamem Spiel.</subtitle>
+    <subtitle condition="_HIGHGOALS_TWN__ = 3">Hattrick von _HIGHSCORER_TWN__ lässt _TL_ ohne Chance.</subtitle>
     <subtitle condition="_HIGHGOALS_TLN__ > 1">_HIGHGOALS_TLN__ Tore von _HIGHSCORER_TLN__ können die Niederlage von _TL_ nicht verhindern.</subtitle>
-    <subtitle condition="_GOALS_TLN__ > 1 and _MULTIPLESCORERS_TWL__">Tore von _SCORERS_TLN__ sind nicht genug bei der _RE_ Niederlage.</subtitle>
+    <subtitle condition="_HIGHGOALS_TLN__ > 1">_HIGHGOALS_TLN__ Tore von _HIGHSCORER_TLN__ können die Niederlage von _TL_ nicht abwenden.</subtitle>
+    <subtitle condition="_HIGHGOALS_TLN__ > 1">_TL_ verliert trotz _HIGHGOALS_TLN__ Treffer von _HIGHSCORER_TLN__.</subtitle>
+    <subtitle condition="_GOALS_TLN__ > 1 and _MULTIPLESCORERS_TWL__">Tore von _SCORERS_TLN__ sind nicht genug für _TL_ bei der _RE_ Niederlage.</subtitle>
+  </news_article>
+
+  <news_article>
+    <type>match</type>
+    <condition>_LAYERDIFF_ = 0 and _GOALS0_ != _GOALS1_</condition>
+    <title>_TW_ besiegt _TL_ mit _RE_</title>
+    <title>_TL_ unterliegt _TW_ _RE_</title>
+    <title condition="_TWN_ = 0">_TW_ siegt zuhause gegen _TL_</title>
+    <title condition="_TWN_ = 0">Heimsieg von _TW_</title>
+    <title condition="_TWN_ = 0">_TW_ zuhause erfolgreich</title>
+    <title condition="_TWN_ = 1">_TW_ siegt bei _TL_</title>
+    <title condition="_TWN_ = 1">Auswärtssieg von _TW_</title>
+    <title condition="_TWN_ = 1">_TW_ auswärts erfolgreich</title>
+    <title condition="_WON_TWN__ > 3">_WON_TWN__-ter Sieg in Folge für _TW_</title>
+    <title condition="_LOST_TLN__ > 3">_LOST_TLN__-te Niederlage in Folge für _TL_</title>
+    <title condition="_UNBEATEN_TWN__ > 3">_TW_ seit _UNBEATEN_TWN__ Spielen ungeschlagen</title>
+    <subtitle condition="_MULTIPLESCORERS_TWN__">_SCORERS_TWN__ erzielen die Tore gegen _TL_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__">_SCORERS_TWN__ treffen gegen _TL_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__">_TW_ behält die Oberhand dank Toren von _SCORERS_TWN__.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__ and _TWN_ = 1">_SCORERS_TWN__ erzielen die Tore in _TL_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__ = 0">_SCORERS_TWN__ sichert Sieg gegen _TL_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__ = 0">_SCORERS_TWN__ alleiniger Torschütze gegen _TL_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__ = 0">_SCORERS_TWN__ besiegt _TL_ im Alleingang.</subtitle>
+    <subtitle condition="_GOALS_TLN__ > 1">_GOALS_TLN__ Treffer reichen nicht zum Sieg für _TL_.</subtitle>
+    <subtitle condition="_GOALS_TLN__ > 1 and _MULTIPLESCORERS_TWN__">_TW_ siegt dank Toren von _SCORERS_TWN__ in unterhaltsamem Spiel.</subtitle>
+    <subtitle condition="_GOALS_TLN__ > 1">_TL_ unterliegt in torreichem Spiel gegen _TW_.</subtitle>
   </news_article>
 </news>
