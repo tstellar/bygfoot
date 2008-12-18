@@ -584,6 +584,10 @@ news_set_league_cup_tokens(const Fixture *fix)
                        option_int("string_token_cup_stage", &tokens),
                        misc_int_to_char(cup->rounds->len - fix->round));
 
+        misc_token_add(token_rep_news,
+                       option_int("string_token_cup_neutral", &tokens),
+                       misc_int_to_char(cupround->neutral));
+
 	cup_get_round_name(cup, fix->round, buf);
 	misc_token_add(token_rep_news,
 		       option_int("string_token_cup_round_name", &tokens),

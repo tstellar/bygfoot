@@ -21,9 +21,9 @@
     <subtitle condition="_MULTIPLESCORERS_TWN__">_TL_ wird durch Tore von _SCORERS_TWN__ regelrecht auseinandergenommen.</subtitle>
     <subtitle condition="_MULTIPLESCORERS_TWN__">_TL_ kommt durch Tore von _SCORERS_TWN__ unter die Räder.</subtitle>
     <subtitle condition="_HIGHGOALS_TWN__ > 1">_HIGHSCORER_TWN__ erzielt _HIGHGOALS_TWN__ Tore bei sensationellem Sieg.</subtitle>
-    <subtitle condition="_HIGHGOALS_TWN__ = 3">_HIGHSCORER_TWN__ erzielt Hattrick in unterhaltsamem Spiel.</subtitle>
+    <subtitle condition="_HIGHGOALS_TWN__ = 3">_HIGHSCORER_TWN__ erzielt Hattrick in einem unterhaltsamen Spiel.</subtitle>
     <subtitle condition="_HIGHGOALS_TLN__ > 1">_HIGHGOALS_TLN__ Tore von _HIGHSCORER_TLN__ können die Niederlage von _TL_ nicht verhindern.</subtitle>
-    <subtitle condition="_GOALS_TLN__ > 1 and _MULTIPLESCORERS_TWL__">Tore von _SCORERS_TLN__ sind nicht genug für _TL_ bei der _RE_ Niederlage.</subtitle>
+    <subtitle condition="_GOALS_TLN__ > 1 and _MULTIPLESCORERS_TLN__">Tore von _SCORERS_TLN__ sind nicht genug für _TL_ bei der _RE_ Niederlage.</subtitle>
   </news_article>
 
   <news_article>
@@ -37,8 +37,8 @@
     <title>_TW_ dominiert _TL_</title>
     <title condition="_TWN_ = 1">_TW_ dominiert bei _TL_</title>
     <title condition="_TWN_ = 1">_TW_ dominiert auswärts</title>
-    <title condition="_GOALS_TWL__ > 1">_TW_ siegt trotz _GOALS_TLN__ Gegentoren</title>
-    <title condition="_GOALS_TWL__ > 1">_GOALS_TWL__ nicht genug für _TL_</title>
+    <title condition="_GOALS_TLN__ > 1">_TW_ siegt trotz _GOALS_TLN__ Gegentoren</title>
+    <title condition="_GOALS_TLN__ > 1">_GOALS_TLN__ nicht genug für _TL_</title>
     <subtitle>_TW_ beherrscht _TL_ deutlich beim _RE_ Sieg.</subtitle>
     <subtitle condition="_TWN_ = 0">_TW_ fertigt _TL_ zuhause _RE_ ab.</subtitle>
     <subtitle condition="_GOALS_TLN__ > 1">In einem torreichen Spiel behält _TW_ die Oberhand.</subtitle>
@@ -48,12 +48,12 @@
     <subtitle condition="_MULTIPLESCORERS_TWN__ and _TWN_ = 1">_SCORERS_TWN__ erzielen die Tore beim ungefährdeten Auswärtssieg von _TW_.</subtitle>
     <subtitle condition="_HIGHGOALS_TWN__ > 1">_HIGHSCORER_TWN__ erzielt _HIGHGOALS_TWN__ Tore beim überlegenen Sieg.</subtitle>
     <subtitle condition="_HIGHGOALS_TWN__ > 1">_HIGHSCORER_TWN__ trifft _HIGHGOALS_TWN__-mal.</subtitle>
-    <subtitle condition="_HIGHGOALS_TWN__ = 3">_HIGHSCORER_TWN__ erzielt Hattrick in unterhaltsamem Spiel.</subtitle>
+    <subtitle condition="_HIGHGOALS_TWN__ = 3">_HIGHSCORER_TWN__ erzielt Hattrick in einem unterhaltsamen Spiel.</subtitle>
     <subtitle condition="_HIGHGOALS_TWN__ = 3">Hattrick von _HIGHSCORER_TWN__ lässt _TL_ ohne Chance.</subtitle>
     <subtitle condition="_HIGHGOALS_TLN__ > 1">_HIGHGOALS_TLN__ Tore von _HIGHSCORER_TLN__ können die Niederlage von _TL_ nicht verhindern.</subtitle>
     <subtitle condition="_HIGHGOALS_TLN__ > 1">_HIGHGOALS_TLN__ Tore von _HIGHSCORER_TLN__ können die Niederlage von _TL_ nicht abwenden.</subtitle>
     <subtitle condition="_HIGHGOALS_TLN__ > 1">_TL_ verliert trotz _HIGHGOALS_TLN__ Treffer von _HIGHSCORER_TLN__.</subtitle>
-    <subtitle condition="_GOALS_TLN__ > 1 and _MULTIPLESCORERS_TWL__">Tore von _SCORERS_TLN__ sind nicht genug für _TL_ bei der _RE_ Niederlage.</subtitle>
+    <subtitle condition="_GOALS_TLN__ > 1 and _MULTIPLESCORERS_TLN__">Tore von _SCORERS_TLN__ sind nicht genug für _TL_ bei der _RE_ Niederlage.</subtitle>
   </news_article>
 
   <news_article>
@@ -70,6 +70,10 @@
     <title condition="_WON_TWN__ > 3">_WON_TWN__-ter Sieg in Folge für _TW_</title>
     <title condition="_LOST_TLN__ > 3">_LOST_TLN__-te Niederlage in Folge für _TL_</title>
     <title condition="_UNBEATEN_TWN__ > 3">_TW_ seit _UNBEATEN_TWN__ Spielen ungeschlagen</title>
+    <subtitle condition="_TWN_ = 0">_AT_ Zuschauer sehen einen Heimsieg ihrer Mannschaft.</subtitle>
+    <subtitle condition="_TWN_ = 0">_AT_ Zuschauer feiern den Sieg gegen _TL_.</subtitle>
+    <subtitle condition="_TWN_ = 1">_AT_ Zuschauer leiden mit _TL_.</subtitle>
+    <subtitle condition="_TWN_ = 1">Die Zuschauer verlassen nach der Heimniederlage früh das Stadion.</subtitle>
     <subtitle condition="_MULTIPLESCORERS_TWN__">_SCORERS_TWN__ erzielen die Tore gegen _TL_.</subtitle>
     <subtitle condition="_MULTIPLESCORERS_TWN__">_SCORERS_TWN__ treffen gegen _TL_.</subtitle>
     <subtitle condition="_MULTIPLESCORERS_TWN__">_TW_ behält die Oberhand dank Toren von _SCORERS_TWN__.</subtitle>
@@ -78,7 +82,39 @@
     <subtitle condition="_MULTIPLESCORERS_TWN__ = 0">_SCORERS_TWN__ alleiniger Torschütze gegen _TL_.</subtitle>
     <subtitle condition="_MULTIPLESCORERS_TWN__ = 0">_SCORERS_TWN__ besiegt _TL_ im Alleingang.</subtitle>
     <subtitle condition="_GOALS_TLN__ > 1">_GOALS_TLN__ Treffer reichen nicht zum Sieg für _TL_.</subtitle>
-    <subtitle condition="_GOALS_TLN__ > 1 and _MULTIPLESCORERS_TWN__">_TW_ siegt dank Toren von _SCORERS_TWN__ in unterhaltsamem Spiel.</subtitle>
-    <subtitle condition="_GOALS_TLN__ > 1">_TL_ unterliegt in torreichem Spiel gegen _TW_.</subtitle>
+    <subtitle condition="_GOALS_TLN__ > 1 and _MULTIPLESCORERS_TWN__">_TW_ siegt dank Toren von _SCORERS_TWN__ in einem unterhaltsamen Spiel.</subtitle>
+    <subtitle condition="_GOALS_TLN__ > 1">_TL_ unterliegt in einem torreichen Spiel gegen _TW_.</subtitle>
+  </news_article>
+
+  <news_article>
+    <type>match</type>
+    <condition>_LAYERDIFF_ = 0 and _GD_ = 0</condition>
+    <title condition="_CUPNEUTRAL = 0">_T1_ holt Unentschieden bei _T0_</title>
+    <title condition="_CUPNEUTRAL = 0">_T0_ kommt zuhause nicht über ein _RE_ hinaus</title>
+    <title>Mageres Unentschieden für [_T0_|_T1_]</title>
+    <title>_T0_ und _T1_ trennen sich _RE_</title>
+    <title condition="_CUP_ = 0">Punkteteilung bei _T0_ gegen _T1_</title>
+    <title condition="_GOALS0_ > 1">Abwechslungsreiches Remis für _T0_</title>
+    <title condition="_GOALS0_ = 0">Langeweile pur bei _T0_ gegen _T1_</title>
+    <subtitle condition="_GOALS0_ > 1">[_T0_|_T1_] scheitert an Problemen in der Defensivabteilung.</subtitle>
+    <subtitle condition="_GOALS0_ > 1">[_T0_|_T1_] lässt _GOALS1_ Tore zu und muss sich über ein Remis nicht wundern.</subtitle>
+    <subtitle condition="_GOALS0_ > 1">[_T0_|_T1_] muss _GOALS1_ Treffer hinnehmen und holt nur ein Unentschieden.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS0_">Tore von _SCORERS0_ reichen _T0_ nur für ein _RE_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS0_ = 0">_SCORERS0_ rettet Unentschieden für _T0_ gegen _T1_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS0_ = 0">_SCORERS1_ rettet Unentschieden für _T1_ in _T0_.</subtitle>
+    <subtitle condition="_GOALS0_ < 2">_T0_ und _T1_ langweilen _AT_ Zuschauer mit Rumpelfussball und einem unsäglichen _RE_.</subtitle>
+    <subtitle condition="_GOALS0_ < 2">Beiden Teams fehlte die Energie in dieser Partie.</subtitle>
+    <subtitle>Faire Punkteteilung nach ausgeglichenem Spiel.</subtitle>
+    <subtitle>Das Remis hilft keinem der beiden Teams weiter.</subtitle>
+    <subtitle>Weder _T0_ noch _T1_ können mit einem Unentschieden zufrieden sein.</subtitle>
+    <subtitle condition="_GOALS0_ > 1">_AT_ werden trotz Unentschieden beim _RE_ gut unterhalten.</subtitle>
+    <subtitle condition="_GOALS0_ > 2">Trainer von [_T0_|_T1_] will sich in den nächsten Wochen auf die Defensive konzentrieren.</subtitle>
+    <subtitle condition="_GOALS0_ > 1">Gute Offensivleistung von [_T0_|_T1_] wird durch Leichtsinnsfehler kaputtgemacht.</subtitle>
+    <subtitle condition="_GOALS0_ > 1">[_T0_|_T1_] verschenkt durch Fehler in der Verteidigung den Sieg.</subtitle>
+    <subtitle condition="_GOALS0_ = 1">Ein Fehler kostet [_T0_|_T1_] den Sieg.</subtitle>
+    <subtitle condition="_GOALS0_ = 0 and _SHOTS0_ > 4">Mangelhafte Chancenverwertung raubt _T0_ die Chance auf den Sieg.</subtitle>
+    <subtitle condition="_GOALS1_ = 0 and _SHOTS1_ > 4">Mangelhafte Chancenverwertung raubt _T1_ die Chance auf den Sieg.</subtitle>
+    <subtitle condition="_GOALS1_ = 0 and _PEN1_ > 0">Ein verschenkter Elfmeter wird den Spielern von _T1_ noch lange den Schlaf rauben.</subtitle>
+    <subtitle condition="_GOALS0_ = 0 and _PEN0_ > 0">Ein verschenkter Elfmeter wird den Spielern von _T0_ noch lange den Schlaf rauben.</subtitle>
   </news_article>
 </news>
