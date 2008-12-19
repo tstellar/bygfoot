@@ -134,13 +134,15 @@
     <subtitle>Faire Punkteteilung nach ausgeglichenem Spiel.</subtitle>
     <subtitle>Das Remis hilft aber keinem der beiden Teams weiter.</subtitle>
     <subtitle>Weder _T0_ noch _T1_ können mit einem Unentschieden zufrieden sein.</subtitle>
+    <subtitle condition="_GOALS0_ < 2">Zahlreiche der _AT_ Zuschauer sterben an Langeweile während dieses unterirdischen Spiels.</subtitle>
+    <subtitle condition="_GOALS0_ < 2">Die beiden Teams liefern einen Grottenkick aus der Zeit des Catenaccio.</subtitle>
     <subtitle condition="_GOALS0_ > 1">_AT_ werden trotz Unentschieden beim _RE_ gut unterhalten.</subtitle>
     <subtitle condition="_GOALS0_ > 2">Trainer von [_T0_|_T1_] will sich in den nächsten Wochen auf die Defensive konzentrieren.</subtitle>
     <subtitle condition="_GOALS0_ > 1">Gute Offensivleistung von [_T0_|_T1_] wird durch Leichtsinnsfehler kaputtgemacht.</subtitle>
     <subtitle condition="_GOALS0_ > 1">[_T0_|_T1_] verschenkt durch Fehler in der Verteidigung den Sieg.</subtitle>
     <subtitle condition="_GOALS0_ = 1">Ein Fehler kostet [_T0_|_T1_] den Sieg.</subtitle>
-    <subtitle condition="_GOALS0_ = 0 and _SHOTS0_ > 2">Mangelhafte Chancenverwertung raubt _T0_ die Chance auf den Sieg.</subtitle>
-    <subtitle condition="_GOALS1_ = 0 and _SHOTS1_ > 2">Mangelhafte Chancenverwertung raubt _T1_ die Chance auf den Sieg.</subtitle>
+    <subtitle condition="_GOALS0_ < _SHOTS0_ + 3">Mangelhafte Chancenverwertung raubt _T0_ die Chance auf den Sieg.</subtitle>
+    <subtitle condition="_GOALS1_ < _SHOTS1_ + 3">Mangelhafte Chancenverwertung raubt _T1_ die Chance auf den Sieg.</subtitle>
     <subtitle condition="_GOALS1_ = 0 and _PEN1_ > 0">Ein verschenkter Elfmeter wird den Spielern von _T1_ noch lange den Schlaf rauben.</subtitle>
     <subtitle condition="_GOALS0_ = 0 and _PEN0_ > 0">Ein verschenkter Elfmeter wird den Spielern von _T0_ noch lange den Schlaf rauben.</subtitle>
     <subtitle condition="_UNBEATEN0_ > 3">_T0_ holt nur Unentschieden, ist aber seit _UNBEATEN0_ Matches ungeschlagen.</subtitle>
@@ -175,22 +177,46 @@
 
   <news_article>
     <type>match</type>
-    <condition>_LAYERDIFF_ = 0 and _GD_ != 0 and _TAVSKILLDIFF_ > 7</condition>
+    <condition>_TLAYERDIFF_ = 0 and _GD_ != 0 and _TAVSKILLDIFF_ > 7</condition>
     <title condition="_TAVSKILL_TWN__ > _TAVSKILL_TLN__">_TW_ [besiegt|gewinnt gegen|bezwingt|schlägt] _TL_</title>
-    <title condition="_TAVSKILL_TWN__ > _TAVSKILL_TLN__">Wie erwartet _TW_ [besiegt|bezwingt|schlägt] _TL_</title>
+    <title condition="_TAVSKILL_TWN__ > _TAVSKILL_TLN__">Wie erwartet [besiegt|bezwingt|schlägt] _TW_ _TL_</title>
     <title condition="_TAVSKILL_TWN__ > _TAVSKILL_TLN__">_TW_ erfüllt Erwartungen der Experten</title>
-    <title condition="_TAVSKILL_TWN__ > _TAVSKILL_TLN__">_TW_ schlägt _TL_ erwartungsgemäß mit _RE_</title>
+    <title condition="_TAVSKILL_TWN__ > _TAVSKILL_TLN__">_TW_ schlägt _TL_ erwartungsgemäß mit _REW_</title>
     <title condition="_TAVSKILL_TWN__ < _TAVSKILL_TLN__">_TW_ trotzt den Wettquoten und besiegt _TL_</title>
     <title condition="_TAVSKILL_TWN__ < _TAVSKILL_TLN__">_TW_ schafft kleine Sensation gegen _TL_</title>
     <title condition="_TAVSKILL_TWN__ < _TAVSKILL_TLN__">_TL_ nominell überlegen, verliert aber _RE_</title>
-    <subtitle condition="_TAVSKILL_TWN__ > _TAVSKILL_TLN__">Gegen _TW_ war nicht mehr drin für _TL_</subtitle>
+    <subtitle condition="_TAVSKILL_TWN__ > _TAVSKILL_TLN__">Gegen _TW_ war nicht mehr drin für _TL_.</subtitle>
     <subtitle condition="_TAVSKILL_TWN__ > _TAVSKILL_TLN__">_TW_ war auf dem Papier besser als _TL_ - und auf dem Platz auch.</subtitle>
     <subtitle condition="_TAVSKILL_TWN__ > _TAVSKILL_TLN__">_TW_ hatte die bessere Mannschaft und nutzte den Vorteil gnadenlos.</subtitle>
     <subtitle condition="_TAVSKILL_TWN__ < _TAVSKILL_TLN__">_TW_ stellt die Fussballwelt auf den Kopf mit dem überraschenden Sieg.</subtitle>
-    <subtitle condition="_TAVSKILL_TWN__ < _TAVSKILL_TLN__">_TW_ wurde schwächer eingeschätzt, macht die nominellen Nachteile aber mit Leidenschaft mehr als wett.</subtitle>
+    <subtitle condition="_TAVSKILL_TWN__ < _TAVSKILL_TLN__">_TW_ wurde schwächer eingeschätzt, macht aber alle Nachteile mit Leidenschaft mehr als wett.</subtitle>
     <subtitle condition="_TAVSKILL_TWN__ < _TAVSKILL_TLN__">Dank einer cleveren Taktik gewinnt _TW_ gegen einen höher eingeschätzten Gegner.</subtitle>
     <subtitle condition="_TAVSKILL_TWN__ < _TAVSKILL_TLN__">_TL_ muss sich an den eigenen Kopf fassen nach einer unnötigen Niederlage gegen einen auf dem Papier wesentlich schwächeren Widersacher.</subtitle>
     <subtitle condition="_TAVSKILL_TWN__ < _TAVSKILL_TLN__">_TW_ demonstriert eindrucksvoll, wie ein homogen agierendes Team einen Gegner mit den besseren Einzelspielern überwältigen kann.</subtitle>
+  </news_article>
+
+  <news_article>
+    <type>match</type>
+    <condition>_TLAYERDIFF_ > 0</condition>
+    <title condition="_GD_ = 0">_T[_TLAYER0_ L _TLAYER1_]_ schafft überraschendes Unentschieden</title>
+    <title condition="_GD_ = 0">_T[_TLAYER0_ L _TLAYER1_]_ hält _T[_TLAYER0_ G _TLAYER1_]_ stand</title>
+    <title condition="_GD_ = 0">_LEAGUECUPNAME_: _T[_TLAYER0_ L _TLAYER1_]_ erkämpft Remis</title>
+    <title condition="_TWN_ = [_TLAYER0_ < _TLAYER1_]">_T[_TLAYER0_ L _TLAYER1_]_ schlägt _T[_TLAYER0_ G _TLAYER1_]_ sensationell</title>
+    <title condition="_TWN_ = [_TLAYER0_ < _TLAYER1_]">_T[_TLAYER0_ L _TLAYER1_]_ schafft Sensation</title>
+    <title condition="_TWN_ = [_TLAYER0_ < _TLAYER1_]">_T[_TLAYER0_ L _TLAYER1_]_ siegt trotz Klassenunterschied</title>
+    <title condition="_TWN_ = [_TLAYER0_ > _TLAYER1_]">_T[_TLAYER0_ L _TLAYER1_]_ muss sich der Übermacht beugen</title>
+    <title condition="_TWN_ = [_TLAYER0_ > _TLAYER1_]">_T[_TLAYER0_ G _TLAYER1_]_ zu gut für _T[_TLAYER0_ L _TLAYER1_]_</title>
+    <title condition="_TWN_ = [_TLAYER0_ > _TLAYER1_]">_T[_TLAYER0_ G _TLAYER1_]_ bezwingt tapferen Gegner</title>
+    <subtitle condition="_GD_ = 0">_T[_TLAYER0_ L _TLAYER1_]_ hält dem Druck des übermächtigen Gegners stand.</subtitle>
+    <subtitle condition="_GD_ = 0 or _TWN_ = [_TLAYER0_ L _TLAYER1_]">Keiner hätte ein solches Ergebnis erwartet - ausser die Spieler und der Trainer von _T[_TLAYER0_ L _TLAYER1_]_.</subtitle>
+    <subtitle condition="_GD_ = 0 or _TWN_ = [_TLAYER0_ L _TLAYER1_]">_T[_TLAYER0_ L _TLAYER1_]_ gelingt mit dem _RE_ ein Ergebnis, das kein Experte erwartet hatte.</subtitle>
+    <subtitle condition="_TWN_ = [_TLAYER0_ > _TLAYER1_]">_T[_TLAYER0_ L _TLAYER1_]_ gibt alles, _T[_TLAYER0_ G _TLAYER1_]_ erweist sich jedoch als zu stark.</subtitle>
+    <subtitle condition="_TWN_ = [_TLAYER0_ > _TLAYER1_]">_T[_TLAYER0_ G _TLAYER1_]_ erfüllt die Erwartungen und siegt vor _AT_ Zuschauern.</subtitle>
+    <subtitle condition="_TWN_ = [_TLAYER0_ > _TLAYER1_] and _GD_ > 1">_T[_TLAYER0_ G _TLAYER1_]_ lässt dem unterklassigen Gegner keine Chance.</subtitle>
+    <subtitle condition="_TWN_ = [_TLAYER0_ < _TLAYER1_]">_T[_TLAYER0_ G _TLAYER1_]_ blamiert sich gegen den unterklassigen Gegner bis auf die Knochen.</subtitle>
+    <subtitle condition="_TWN_ = [_TLAYER0_ < _TLAYER1_]">Nach der überraschenden Niederlage nimmt die Polizei Ermittlungen wegen des Verdachts auf Manipulation auf.</subtitle>
+    <subtitle condition="_TWN_ = [_TLAYER0_ < _TLAYER1_]">_T[_TLAYER0_ L _TLAYER1_]_ fügt _T[_TLAYER0_ G _TLAYER1_]_ vor _AT_ Zuschauern eine demütigende Pokalniederlage zu.</subtitle>
+    <subtitle condition="_TWN_ = [_TLAYER0_ < _TLAYER1_]">_T[_TLAYER0_ L _TLAYER1_]_ lässt sich nicht durch den Klassenunterschied verunsichern und siegt _RE_.</subtitle>
   </news_article>
 
 </news>

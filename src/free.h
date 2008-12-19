@@ -32,6 +32,7 @@
 #include "league_struct.h"
 #include "live_game_struct.h"
 #include "name_struct.h"
+#include "news_struct.h"
 #include "player_struct.h"
 #include "team_struct.h"
 #include "user_struct.h"
@@ -151,6 +152,9 @@ free_news(gboolean reset);
 
 void
 free_newspaper(gboolean reset);
+
+void
+free_newspaper_article(NewsPaperArticle *article);
 
 void
 free_cup_round(CupRound *cup_round);

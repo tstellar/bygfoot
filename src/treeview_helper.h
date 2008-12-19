@@ -236,4 +236,11 @@ treeview_helper_news(GtkTreeViewColumn *col,
                      GtkTreeIter       *iter,
                      gpointer           user_data);
 
+void
+treeview_helper_news_additional(GtkTreeViewColumn *col,
+                                GtkCellRenderer   *renderer,
+                                GtkTreeModel      *model,
+                                GtkTreeIter       *iter,
+                                gpointer           user_data);
+
 #endif

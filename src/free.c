@@ -770,16 +770,20 @@ free_newspaper(gboolean reset)
     gint i;
 
     for(i = 0; i < newspaper.articles->len; i++)
-    {
-        g_free(g_array_index(newspaper.articles, NewsPaperArticle, i).title_small);
-        g_free(g_array_index(newspaper.articles, NewsPaperArticle, i).title);
-        g_free(g_array_index(newspaper.articles, NewsPaperArticle, i).subtitle);
-    }
+        free_newspaper_article(&g_array_index(newspaper.articles, NewsPaperArticle, i));
 
     g_array_free(newspaper.articles, TRUE);
 
     if(reset)
         newspaper.articles = g_array_new(FALSE, FALSE, sizeof(NewsPaperArticle));
+}
+
+void
+free_newspaper_article(NewsPaperArticle *article)
+{
+    g_free(article->title_small);
+    g_free(article->title);
+    g_free(article->subtitle);
 }
 
 /**
