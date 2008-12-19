@@ -580,6 +580,11 @@ news_set_league_cup_tokens(const Fixture *fix)
         cup = cup_from_clid(fix->clid);
         cupround = &g_array_index(cup->rounds, CupRound, fix->round);
 
+        if(query_league_cup_has_property(cup->id, "international"))
+            misc_token_add(token_rep_news,
+                           option_int("string_token_team_layerdiff", &tokens),
+                           misc_int_to_char(0));
+        
         misc_token_add(token_rep_news,
                        option_int("string_token_cup_stage", &tokens),
                        misc_int_to_char(cup->rounds->len - fix->round));
@@ -651,6 +656,16 @@ news_set_fixture_tokens(const Fixture *fix)
     misc_token_add(token_rep_news,
 		   option_int("string_token_attendance", &tokens),
 		   g_strdup(buf));    
+
+    misc_token_add(token_rep_news,
+		   option_int("string_token_team_avskill0", &tokens), 
+		   misc_int_to_char(avskill0));
+    misc_token_add(token_rep_news,
+		   option_int("string_token_team_avskill1", &tokens), 
+		   misc_int_to_char(avskill1));
+    misc_token_add(token_rep_news,
+		   option_int("string_token_team_avskilldiff", &tokens), 
+		   misc_int_to_char(ABS(avskill0 - avskill1)));
 
     misc_token_add(token_rep_news,
 		   option_int("string_token_goals0", &tokens), 
