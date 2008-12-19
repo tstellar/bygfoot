@@ -59,8 +59,6 @@ news_generate_match(const LiveGame *live_game)
     gint title_id, subtitle_id, article_id;
     NewsPaperArticle new_article;
     
-    printf("gen fix %s %s\n", live_game->fix->teams[0]->name, live_game->fix->teams[1]->name);
-
     token_rep_news[0] = g_ptr_array_new();
     token_rep_news[1] = g_ptr_array_new();
 
@@ -637,6 +635,16 @@ news_set_fixture_tokens(const Fixture *fix)
     fixture_result_to_buf(fix, buf, FALSE);
     misc_token_add(token_rep_news, 
 		   option_int("string_token_result", &tokens),
+		   g_strdup(buf));
+
+    fixture_result_to_buf(fix, buf, (math_sum_int_array(fix->result[0], 3) < math_sum_int_array(fix->result[1], 3)));
+    misc_token_add(token_rep_news, 
+		   option_int("string_token_result_rew", &tokens),
+		   g_strdup(buf));
+
+    fixture_result_to_buf(fix, buf, (math_sum_int_array(fix->result[0], 3) > math_sum_int_array(fix->result[1], 3)));
+    misc_token_add(token_rep_news, 
+		   option_int("string_token_result_rel", &tokens),
 		   g_strdup(buf));
 
     misc_print_grouped_int(math_round_integer(fix->attendance, 2), buf);
