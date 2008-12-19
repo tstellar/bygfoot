@@ -70,6 +70,13 @@
     <title condition="_WON_TWN__ > 3">_WON_TWN__-ter Sieg in Folge für _TW_</title>
     <title condition="_LOST_TLN__ > 3">_LOST_TLN__-te Niederlage in Folge für _TL_</title>
     <title condition="_UNBEATEN_TWN__ > 3">_TW_ seit _UNBEATEN_TWN__ Spielen ungeschlagen</title>
+    <title condition="_WON_TWN__ > 3">_TW_ baut Siegesserie auf _WON_TWN__ Spiele aus</title>
+    <title condition="_LOST_TLN__ > 3">_TL_ verliert _LOST_TLN__-tes Spiel in Folge</title>
+    <title condition="_UNBEATEN_TWN__ > 3">Auch _TL_ kann _TW_ nicht bezwingen</title>
+    <title condition="_LEAGUEWON_TWN__ > 3">_TW_ gewinnt _WON_TWN__-tes Ligaspiel in Folge</title>
+    <title condition="_LEAGUELOST_TLN__ > 3">_TL_ bleibt glücklos in der Liga</title>
+    <title condition="_LEAGUEUNBEATEN_TWN__ > 3">_TW_ in der Liga nicht zu bezwingen</title>
+    <subtitle>_TW_ ist eine Nummer zu groß für _TL_ und siegt verdient _RE_.</subtitle>
     <subtitle condition="_TWN_ = 0">_AT_ Zuschauer sehen einen Heimsieg ihrer Mannschaft.</subtitle>
     <subtitle condition="_TWN_ = 0">_AT_ Zuschauer feiern den Sieg gegen _TL_.</subtitle>
     <subtitle condition="_TWN_ = 1">_AT_ Zuschauer leiden mit _TL_.</subtitle>
@@ -116,5 +123,9 @@
     <subtitle condition="_GOALS1_ = 0 and _SHOTS1_ > 4">Mangelhafte Chancenverwertung raubt _T1_ die Chance auf den Sieg.</subtitle>
     <subtitle condition="_GOALS1_ = 0 and _PEN1_ > 0">Ein verschenkter Elfmeter wird den Spielern von _T1_ noch lange den Schlaf rauben.</subtitle>
     <subtitle condition="_GOALS0_ = 0 and _PEN0_ > 0">Ein verschenkter Elfmeter wird den Spielern von _T0_ noch lange den Schlaf rauben.</subtitle>
+    <subtitle condition="_UNBEATEN0_ > 3">_T0_ holt nur Unentschieden, ist aber seit _UNBEATEN0_ Matches ungeschlagen.</subtitle>
+    <subtitle condition="_UNBEATEN0_ > 3">Vor _AT_ Zuschauern bleibt _T0_ auch im _UNBEATEN0_-ten Spiel ohne Niederlage.</subtitle>
+    <subtitle condition="_LEAGUEUNBEATEN0_ > 3">_T0_ ist in der Liga auch für _T1_ nicht zu knacken und baut die Serie ohne Niederlage auf _UNBEATEN0_ aus.</subtitle>
+    <subtitle condition="_LEAGUEUNBEATEN0_ > 3">Mit dem _RE_ ist _T0_ nun schon seit _UNBEATEN0_ Begegnungen in der Liga ungeschlagen.</subtitle>
   </news_article>
 </news>

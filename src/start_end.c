@@ -62,7 +62,7 @@ WeekFunc end_week_round_funcs[] =
 /* {end_week_round_results, end_week_round_sort_tables, */
 /*  end_week_round_update_fixtures, NULL}; */
 {end_week_round_results, end_week_round_sort_tables,
- end_week_round_update_fixtures, end_week_round_generate_news, NULL};
+ end_week_round_generate_news, end_week_round_update_fixtures, NULL};
 
 /** Array of functions called when a week round
     is started. */
@@ -406,6 +406,7 @@ end_week_round_results(void)
 	       g_array_index(acp(i)->fixtures, Fixture, j).week_round_number == week_round &&
 	       g_array_index(acp(i)->fixtures, Fixture, j).attendance == -1)
 	    {
+
                 usr_idx = fixture_user_team_involved(&g_array_index(acp(i)->fixtures, Fixture, j));
 
                 if(usr_idx == -1)

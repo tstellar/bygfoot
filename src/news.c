@@ -59,6 +59,8 @@ news_generate_match(const LiveGame *live_game)
     gint title_id, subtitle_id, article_id;
     NewsPaperArticle new_article;
     
+    printf("gen fix %s %s\n", live_game->fix->teams[0]->name, live_game->fix->teams[1]->name);
+
     token_rep_news[0] = g_ptr_array_new();
     token_rep_news[1] = g_ptr_array_new();
 
