@@ -81,8 +81,8 @@
     <title condition="_LEAGUEWON_TWN__ > 3">_TW_ gewinnt _WON_TWN__-tes Ligaspiel in Folge</title>
     <title condition="_LEAGUELOST_TLN__ > 3">_TL_ bleibt glücklos in der Liga</title>
     <title condition="_LEAGUEUNBEATEN_TWN__ > 3">_TW_ in der Liga nicht zu bezwingen</title>
-    <subtitle condition="_WON_TWN__ > 5">_TW_ macht seit _WON_TWN__ Spielen alles platt.</title>
-    <subtitle condition="_LEAGUEWON_TWN__ > 5">_TW_ lässt auch in der _WON_TWN__-ten Ligapartie dem Gegner keine Chance.</title>
+    <subtitle condition="_WON_TWN__ > 5">_TW_ macht seit _WON_TWN__ Spielen alles platt.</subtitle>
+    <subtitle condition="_LEAGUEWON_TWN__ > 5">_TW_ lässt auch in der _WON_TWN__-ten Ligapartie dem Gegner keine Chance.</subtitle>
     <subtitle>_TW_ ist eine Nummer zu groß für _TL_ und siegt verdient _REW_.</subtitle>
     <subtitle condition="_TWN_ = 0">_AT_ Zuschauer sehen einen Heimsieg ihrer Mannschaft.</subtitle>
     <subtitle condition="_TWN_ = 0">_AT_ Zuschauer feiern den Sieg gegen _TL_.</subtitle>
@@ -108,6 +108,8 @@
     <subtitle condition="_RANK_TLN__ <  _OLDRANK_TLN__">_TL_ damit auf Rang _RANK_TLN__ in der Tabelle.</subtitle>
     <subtitle condition="_RANK_TLN__ <  _OLDRANK_TLN__">_TW_ rutscht durch die Niederlage auf Platz _RANK_TLN__ in der _LEAGUECUPNAME_-Tabelle.</subtitle>
     <subtitle condition="_RANK_TLN__ <  _OLDRANK_TLN__">_TW_ verliert [_RANK_TLN__ - _OLDRANK_TLN__] Plätze in der Tabelle.</subtitle>
+    <subtitle condition="_SHOTS_TWN__ < _GOALS_TWN__ + 2">_TW_ siegt dank perfekter Chancenverwertung.</subtitle>
+    <subtitle condition="_SHOTS_TWN__ < _GOALS_TWN__ + 2">_TL_ kann angesichts der Effektivität des Gegners nur staunen.</subtitle>
   </news_article>
 
   <news_article>
@@ -130,7 +132,7 @@
     <subtitle condition="_GOALS0_ < 2">_T0_ und _T1_ langweilen _AT_ Zuschauer mit Rumpelfussball und einem unsäglichen _RE_.</subtitle>
     <subtitle condition="_GOALS0_ < 2">Beiden Teams fehlte die Energie in dieser Partie.</subtitle>
     <subtitle>Faire Punkteteilung nach ausgeglichenem Spiel.</subtitle>
-    <subtitle>Das Remis hilft keinem der beiden Teams weiter.</subtitle>
+    <subtitle>Das Remis hilft aber keinem der beiden Teams weiter.</subtitle>
     <subtitle>Weder _T0_ noch _T1_ können mit einem Unentschieden zufrieden sein.</subtitle>
     <subtitle condition="_GOALS0_ > 1">_AT_ werden trotz Unentschieden beim _RE_ gut unterhalten.</subtitle>
     <subtitle condition="_GOALS0_ > 2">Trainer von [_T0_|_T1_] will sich in den nächsten Wochen auf die Defensive konzentrieren.</subtitle>
@@ -163,9 +165,33 @@
     <title condition="_TWN_ = 1 and _CUPNEUTRAL = 0">_TW_ siegt bei _TL_ denkbar knapp</title>
     <subtitle>Vor _AT_ Zuschauern behält _TW_ mit einem Tor Vorsprung die Oberhand.</subtitle>
     <subtitle>_AT_ Zuschauer sehen ein spannendes Spiel von zwei ausgeglichenen Mannschaften.</subtitle>
-    <subtitle condition="_GOALS_TWN__ = 1">_SCORERS_TWN__ entscheidet das Spiel mit einzigem Tor.</subtitle>
+    <subtitle>_TW_ gewinnt mit einem knappen, aber verdienten _REW_ gegen _TL_.</subtitle>
+    <subtitle>Es wäre für _TL_ wesentlich mehr als das undankbare _REL_ drin gewesen.</subtitle>
+    <subtitle condition="_SHOTS_TWN__ = _GOALS_TWN__">Es wäre für _TL_ wesentlich mehr als das undankbare _REL_ drin gewesen.</subtitle>
+    <subtitle condition="_GOALS_TWN__ = 1">_SCORERS_TWN__ entscheidet das Spiel mit seinem Tor.</subtitle>
     <subtitle condition="_GOALS_TWN__ = 1">Ein einziges Tor reicht für _TW_ für den Erfolg.</subtitle>
     <subtitle condition="_GOALS_TWN__ = 1 and _CUP_ = 0">Ein einziges Tor reicht für _TW_ für drei Punkte.</subtitle>
   </news_article>
+
+  <news_article>
+    <type>match</type>
+    <condition>_LAYERDIFF_ = 0 and _GD_ != 0 and _TAVSKILLDIFF_ > 7</condition>
+    <title condition="_TAVSKILL_TWN__ > _TAVSKILL_TLN__">_TW_ [besiegt|gewinnt gegen|bezwingt|schlägt] _TL_</title>
+    <title condition="_TAVSKILL_TWN__ > _TAVSKILL_TLN__">Wie erwartet _TW_ [besiegt|bezwingt|schlägt] _TL_</title>
+    <title condition="_TAVSKILL_TWN__ > _TAVSKILL_TLN__">_TW_ erfüllt Erwartungen der Experten</title>
+    <title condition="_TAVSKILL_TWN__ > _TAVSKILL_TLN__">_TW_ schlägt _TL_ erwartungsgemäß mit _RE_</title>
+    <title condition="_TAVSKILL_TWN__ < _TAVSKILL_TLN__">_TW_ trotzt den Wettquoten und besiegt _TL_</title>
+    <title condition="_TAVSKILL_TWN__ < _TAVSKILL_TLN__">_TW_ schafft kleine Sensation gegen _TL_</title>
+    <title condition="_TAVSKILL_TWN__ < _TAVSKILL_TLN__">_TL_ nominell überlegen, verliert aber _RE_</title>
+    <subtitle condition="_TAVSKILL_TWN__ > _TAVSKILL_TLN__">Gegen _TW_ war nicht mehr drin für _TL_</subtitle>
+    <subtitle condition="_TAVSKILL_TWN__ > _TAVSKILL_TLN__">_TW_ war auf dem Papier besser als _TL_ - und auf dem Platz auch.</subtitle>
+    <subtitle condition="_TAVSKILL_TWN__ > _TAVSKILL_TLN__">_TW_ hatte die bessere Mannschaft und nutzte den Vorteil gnadenlos.</subtitle>
+    <subtitle condition="_TAVSKILL_TWN__ < _TAVSKILL_TLN__">_TW_ stellt die Fussballwelt auf den Kopf mit dem überraschenden Sieg.</subtitle>
+    <subtitle condition="_TAVSKILL_TWN__ < _TAVSKILL_TLN__">_TW_ wurde schwächer eingeschätzt, macht die nominellen Nachteile aber mit Leidenschaft mehr als wett.</subtitle>
+    <subtitle condition="_TAVSKILL_TWN__ < _TAVSKILL_TLN__">Dank einer cleveren Taktik gewinnt _TW_ gegen einen höher eingeschätzten Gegner.</subtitle>
+    <subtitle condition="_TAVSKILL_TWN__ < _TAVSKILL_TLN__">_TL_ muss sich an den eigenen Kopf fassen nach einer unnötigen Niederlage gegen einen auf dem Papier wesentlich schwächeren Widersacher.</subtitle>
+    <subtitle condition="_TAVSKILL_TWN__ < _TAVSKILL_TLN__">_TW_ demonstriert eindrucksvoll, wie ein homogen agierendes Team einen Gegner mit den besseren Einzelspielern überwältigen kann.</subtitle>
+  </news_article>
+
 </news>
 
