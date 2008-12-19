@@ -539,6 +539,13 @@ end_week_round_generate_news(void)
     for(i = 0; i < live_games->len; i++)
         if(news_check_match_relevant(&g_array_index(live_games, LiveGame, i)))
             news_generate_match(&g_array_index(live_games, LiveGame, i));
+
+    /* Get rid of older news. */
+    while(newspaper.articles->len > const_int("int_news_history_length"))
+    {
+        free_newspaper_article(&g_array_index(newspaper.articles, NewsPaperArticle, 0));
+        g_array_remove_index(newspaper.articles, 0);
+    }
 }
 
 /** Start a new week round. */
