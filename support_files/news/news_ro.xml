@@ -1,29 +1,34 @@
-<!--Version 01/12/2008-->
 <news>
-  <paper_name>Bygfoot Herald</paper_name>
-  <paper_name>4TehFans</paper_name>
-  <paper_name>Footbal Online</paper_name>
-  <paper_name>11vs11</paper_name>
-  <paper_name>Pro Fotbal</paper_name>
-  <paper_name>Gazeta Fotbalului</paper_name>
   <news_article>
     <type>match</type>
-    <condition>_GD_ > 1</condition>
-    <title>_TW_ [bate|trece peste|ucide] _TL_!</title>
-    <subtitle>Rezultat: _RE_</subtitle>
-    <title priority="5">_TL_ pierde în faţa _TW_!</title>
-    <subtitle priority="5">_TL_ nu are nicio şansă împotriva ploii de _GOALS_TWN__ goluri.</subtitle>
-    <title>_TW_ şterge _TL_!</title>
-    <subtitle>_RE_ luptă pentru _TL_.</subtitle>
-    <title>_TL_ pierde din nou!</title>
-    <subtitle>Echipa _TW_ este pur şi simplu prea puternică.</subtitle>
-    <title>_TL_ într-o lume de mister!</title>
-    <subtitle>_TW_: _RE_ împotriva _TL_.</subtitle>
-    <title priority="15">_LEAGUECUPNAME_: _TL_ pierde împotriva _TW_!</title>
-    <subtitle priority="15">_TL_ a fost copleşită de _SHOTS_TWN__ goluri.</subtitle>
-    <subtitle priority="25" condition="_MULTIPLESCORERS_ = 1">_SCORERS_TWN__ asigură victoria pentru _TW_.</subtitle>
+    <condition>_GD_ = 1</condition>
+    <title>_TW_ învinge pe _TN_</title>
+    <title>_TN_ trece de _TW_ în _LEAGUECUPNAME_</title>
+    <subtitle>_TW_ pierde în faţa _TN_ într-un meci foarte strâns.</subtitle>
   </news_article>
-    <news_article>
+  <news_article>
+    <type>match</type>
+    <condition>_CUP_ = 0 and _GD_ G 1</condition>
+    <title>_TW_ [bate|învinge|ucide] _TL_!</title>
+    <title>_TL_ pierde în favoarea _TW_!</title>
+    <title>_TW_ şterge pe _TL_!</title>
+    <title>_TL_ pierde din nou!</title>
+    <title>_TL_ e deja într-o lume a mizeriei!</title>
+    <title>_LEAGUECUPNAME_: _TL_ pierde împotriva _TW_!</title>
+    <subtitle>Rezultat: _RE_</subtitle>
+    <subtitle>_TL_ nu are nicio şansă împotriva unui baraj de _GOALS_TWN__.</subtitle>
+    <subtitle>_RE_ este măgulitor pentru _TL_.</subtitle>
+    <subtitle>_TW_ este pur şi simplu prea puternică.</subtitle>
+    <subtitle>_TW_: _RE_ împotriva _TL_.</subtitle>
+    <subtitle>_TL_ e copleşită de _SHOTS_TWN__ şuturi.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_ = 1">_SCORERS_TWN__ asigură victoria pentru _TW_.</subtitle>
+    <subtitle condition="_RANK_TWN__ != _OLDRANK_TWN__">_TW_ trece pe locul _RANK_TWN__ în _LEAGUECUPNAME_.</subtitle>
+    <subtitle condition="_RANK_TWN__ > _OLDRANK_TWN__">_TW_ se mută pe locul _RANK_TWN__ în _LEAGUECUPNAME_.</subtitle>
+    <subtitle condition="_RANK_TWN__ = 1 and _OLDRANK_TWN__ != 1">_TW_ pe primul loc după ce a învins pe _TL_ _RE_.</subtitle>
+    <subtitle condition="_WON_TWN__ > 1">Echipa _TW_ a ajuns la _WON_TWN__ câştiguri consecutive.</subtitle>
+    <subtitle condition="_LOST_TLN__ > 1">_TL_ pierde seria de câştiguri consecutive pentru _LOST_TLN__!</subtitle>
+    <subtitle condition="_LEAGUEWON_TWN__ > 1">_TW_ învinge _WON_TWN__th într-o harţă în _LEAGUECUPNAME_.</subtitle>
+    <subtitle condition="_LEAGUELOST_TLN__ > 1">_TL_ pierde _LOST_TLN__th în gălăgie în _LEAGUECUPNAME_.</subtitle>
   </news_article>
 
 </news>
