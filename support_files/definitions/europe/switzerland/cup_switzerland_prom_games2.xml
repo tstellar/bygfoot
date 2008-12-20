@@ -1,0 +1,40 @@
+<cup>
+  <name>1. Liga Promotion Games</name>
+  <short_name>1. L. Prom.</short_name>
+  <symbol>flag_switzerland.png</symbol>
+  <sid>switzerland_prom_games2</sid>
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>highlight2</property>
+  <yellow_red>3</yellow_red>
+
+  <cup_rounds>
+    <cup_round>
+      <number_of_groups>2</number_of_groups>
+      <number_of_advance>1</number_of_advance>
+
+      <choose_teams>
+	<choose_team>
+	  <choose_team_sid>switzerland3a</choose_team_sid>
+	  <number_of_teams>2</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>2</end_idx>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>switzerland3b</choose_team_sid>
+	  <number_of_teams>2</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>2</end_idx>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>switzerland3c</choose_team_sid>
+	  <number_of_teams>2</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>2</end_idx>
+	</choose_team>
+      </choose_teams>
+    </cup_round>
+  </cup_rounds>
+</cup>
