@@ -4,34 +4,80 @@
   <short_name>CupaRM</short_name>
   <symbol>flag_moldova.png</symbol>
   <sid>moldova_cup</sid>
-  <last_week>40</last_week>
+  <last_week>31</last_week>
   <week_gap>3</week_gap>
   <property>national</property>
+
   <cup_rounds>
     <cup_round>
+      <home_away>0</home_away>
+
       <choose_teams>
-        <choose_team>
-          <choose_team_sid>moldova1</choose_team_sid>
-        </choose_team>
-        <choose_team>
-          <choose_team_sid>moldova2</choose_team_sid>
-        </choose_team>
         <choose_team>
           <choose_team_sid>moldova3a</choose_team_sid>
         </choose_team>
+
         <choose_team>
           <choose_team_sid>moldova3b</choose_team_sid>
         </choose_team>
       </choose_teams>
+      <byes>6</byes>
+      <delay>-12</delay>
     </cup_round>
+
+    <cup_round>
+      <home_away>0</home_away>
+
+      <choose_teams>
+        <choose_team>
+          <choose_team_sid>moldova2</choose_team_sid>
+	  <number_of_teams>12</number_of_teams>
+	  <start_idx>2</start_idx>
+	  <end_idx>16</end_idx>
+	  <randomly>1</randomly>
+        </choose_team>
+      </choose_teams>
+      <byes>2</byes>
+      <delay>-6</delay>
+    </cup_round>
+
+    <cup_round>
+      <home_away>0</home_away>
+
+      <choose_teams>
+        <choose_team>
+          <choose_team_sid>moldova1</choose_team_sid>
+	  <number_of_teams>3</number_of_teams>
+	  <start_idx>9</start_idx>
+	  <end_idx>11</end_idx>
+	  <randomly>1</randomly>
+        </choose_team>
+      </choose_teams>
+      <byes>0</byes>
+      <delay>-3</delay>
+    </cup_round>
+
+    <cup_round>
+      <home_away>0</home_away>
+
+      <choose_teams>
+        <choose_team>
+          <choose_team_sid>moldova1</choose_team_sid>
+	  <number_of_teams>8</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>8</end_idx>
+	  <randomly>1</randomly>
+        </choose_team>
+      </choose_teams>
+      <delay>-3</delay>
+    </cup_round>
+
     <cup_round>
     </cup_round>
+
     <cup_round>
     </cup_round>
-    <cup_round>
-    </cup_round>
-    <cup_round>
-    </cup_round>
+
     <cup_round>
       <home_away>0</home_away>
       <neutral>1</neutral>
