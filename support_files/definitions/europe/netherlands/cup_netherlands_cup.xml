@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cup>
-  <name>Amstel Cup</name>
-  <short_name>Amstel Cup</short_name>
+  <name>KNVB Cup</name>
+  <short_name>Cup</short_name>
   <symbol>flag_netherlands.png</symbol>
-  <sid>netherlands_amstelcup</sid>
+  <sid>netherlands_cup</sid>
   <yellow_red>3</yellow_red>
   <last_week>35</last_week>
   <week_gap>3</week_gap>
@@ -15,33 +15,45 @@
 
       <choose_teams>
 	<choose_team>
-	<choose_team_sid>netherlands1</choose_team_sid>
-	</choose_team>
-	<choose_team>
-	<choose_team_sid>netherlands2</choose_team_sid>
-	</choose_team>
-	<choose_team>
 	<choose_team_sid>netherlands3a</choose_team_sid>
 	</choose_team>
+
 	<choose_team>
 	<choose_team_sid>netherlands3b</choose_team_sid>
 	</choose_team>
+
 	<choose_team>
 	<choose_team_sid>netherlands3c</choose_team_sid>
 	</choose_team>
-
       </choose_teams>
+      <byes>10</byes>
+      <delay>-31</delay>
     </cup_round>	
+
     <cup_round>
       <home_away>0</home_away>
+
+      <choose_teams>
+	<choose_team>
+	<choose_team_sid>netherlands1</choose_team_sid>
+	</choose_team>
+
+	<choose_team>
+	<choose_team_sid>netherlands2</choose_team_sid>
+	</choose_team>
+      </choose_teams>
+      <byes>0</byes>
+      <delay>-17</delay>
     </cup_round>
 
     <cup_round>
       <home_away>0</home_away>
+      <delay>-10</delay>
     </cup_round>
 
     <cup_round>
       <home_away>0</home_away>
+      <delay>-4</delay>
     </cup_round>
 
     <cup_round>
