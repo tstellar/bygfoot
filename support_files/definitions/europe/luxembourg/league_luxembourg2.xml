@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <league>
   <sid>luxembourg2</sid>
-  <name>Division de Honour</name>
+  <name>Division Honour</name>
   <short_name>Div. Hon.</short_name>
   <symbol>flag_luxembourg.png</symbol>
   <first_week>1</first_week>
@@ -16,6 +16,13 @@
       <rank_end>3</rank_end>
       <dest_sid>luxembourg1</dest_sid>
       <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_rel_element>
+      <rank_start>13</rank_start>
+      <rank_end>14</rank_end>
+      <dest_sid>luxembourg3a luxembourg3b</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
     </prom_rel_element>
   </prom_rel>
 
