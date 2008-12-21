@@ -1,7 +1,7 @@
 <news>
   <news_article>
     <type>match</type>
-    <condition>_LAYERDIFF_ = 0 and _GD_ G 3</condition>
+    <condition>_TLAYERDIFF_ = 0 and _GD_ G 3</condition>
     <title condition="_TWN_ = 0">_TL_ ohne Chance bei _TW_</title>
     <title>_TL_ völlig chancenlos gegen _TW_</title>
     <title>Kantersieg für _TW_</title>
@@ -31,7 +31,7 @@
 
   <news_article>
     <type>match</type>
-    <condition>_LAYERDIFF_ = 0 and _GD_ G 2</condition>
+    <condition>_TLAYERDIFF_ = 0 and _GD_ G 2</condition>
     <title>_TL_ chancenlos gegen _TW_</title>
     <title>Klarer Sieg für _TW_</title>
     <title condition="_TWN_ = 0 and _CUPNEUTRAL = 0">Klarer Heimsieg für _TW_</title>
@@ -61,7 +61,7 @@
 
   <news_article>
     <type>match</type>
-    <condition>_LAYERDIFF_ = 0 and _GOALS0_ != _GOALS1_</condition>
+    <condition>_TLAYERDIFF_ = 0 and _GOALS0_ != _GOALS1_</condition>
     <priority>5</priority>
     <title>_TW_ besiegt _TL_ mit _REW_</title>
     <title>_TL_ unterliegt _TW_ _REL_</title>
@@ -114,7 +114,7 @@
 
   <news_article>
     <type>match</type>
-    <condition>_LAYERDIFF_ = 0 and _GD_ = 0</condition>
+    <condition>_TLAYERDIFF_ = 0 and _GD_ = 0</condition>
     <title condition="_CUPNEUTRAL = 0">_T1_ holt Unentschieden bei _T0_</title>
     <title condition="_CUPNEUTRAL = 0">_T0_ kommt zuhause nicht über ein _RE_ hinaus</title>
     <title>Mageres Unentschieden für [_T0_|_T1_]</title>
@@ -153,7 +153,7 @@
 
   <news_article>
     <type>match</type>
-    <condition>_LAYERDIFF_ = 0 and _GD_ = 1</condition>
+    <condition>_TLAYERDIFF_ = 0 and _GD_ = 1</condition>
     <title>Knappes _REW_ für _TW_</title>
     <title>_TW_ siegt knapp gegen _TL_</title>
     <title>_TW_ bezwingt _TL_ knapp</title>

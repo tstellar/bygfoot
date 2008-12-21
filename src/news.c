@@ -740,11 +740,8 @@ news_free_tokens(void)
 
     gint i;
 
-/*     printf("\n\n---------------------------------\n"); */
     for(i=token_rep_news[0]->len - 1;i >= 0; i--)
     {
-/*         printf("%s/%s\n", (gchar*)g_ptr_array_index(token_rep_news[0], i), */
-/*                (gchar*)g_ptr_array_index(token_rep_news[1], i)); */
 	g_free(g_ptr_array_index(token_rep_news[0], i));
 	g_free(g_ptr_array_index(token_rep_news[1], i));
     }
