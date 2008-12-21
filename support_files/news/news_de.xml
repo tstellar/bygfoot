@@ -74,9 +74,9 @@
     <title condition="_TWN_ = 1 and _CUPNEUTRAL = 0">_TW_ auswärts erfolgreich</title>
     <title condition="_WON_TWN__ > 3">_WON_TWN__-ter Sieg in Folge für _TW_</title>
     <title condition="_LOST_TLN__ > 3">_LOST_TLN__-te Niederlage in Folge für _TL_</title>
-    <title condition="_UNBEATEN_TWN__ > 3">_TW_ seit _UNBEATEN_TWN__ Spielen ungeschlagen</title>
+    <title condition="_UNBEATEN_TWN__ > 3">_TW_ seit _UNBEATEN_TWN__ Pflichtspielen ungeschlagen</title>
     <title condition="_WON_TWN__ > 3">_TW_ baut Siegesserie auf _WON_TWN__ Spiele aus</title>
-    <title condition="_LOST_TLN__ > 3">_TL_ verliert _LOST_TLN__-tes Spiel in Folge</title>
+    <title condition="_LOST_TLN__ > 3">_TL_ verliert _LOST_TLN__-tes Pflichtspiel in Folge</title>
     <title condition="_UNBEATEN_TWN__ > 3">Auch _TL_ kann _TW_ nicht bezwingen</title>
     <title condition="_LEAGUEWON_TWN__ > 3">_TW_ gewinnt _WON_TWN__-tes Ligaspiel in Folge</title>
     <title condition="_LEAGUELOST_TLN__ > 3">_TL_ bleibt glücklos in der Liga</title>
@@ -217,6 +217,30 @@
     <subtitle condition="_TWN_ = [_TLAYER0_ < _TLAYER1_]">Nach der überraschenden Niederlage nimmt die Polizei Ermittlungen wegen des Verdachts auf Manipulation auf.</subtitle>
     <subtitle condition="_TWN_ = [_TLAYER0_ < _TLAYER1_]">_T[_TLAYER0_ L _TLAYER1_]_ fügt _T[_TLAYER0_ G _TLAYER1_]_ vor _AT_ Zuschauern eine demütigende Pokalniederlage zu.</subtitle>
     <subtitle condition="_TWN_ = [_TLAYER0_ < _TLAYER1_]">_T[_TLAYER0_ L _TLAYER1_]_ lässt sich nicht durch den Klassenunterschied verunsichern und siegt _RE_.</subtitle>
+  </news_article>
+
+  <news_article>
+    <type>match</type>
+    <priority>25</priority>
+    <condition>_CUP_ = 1 and _CUPKO_ = 1 and _CUPPROMREL_ = 0 and _CUPAUX_ = 0 and _CUPSTAGE_ = 1 and _GD_ != 0</condition>    
+    <title>_CUPMATCHLOSER_ unterliegt in _LEAGUECUPNAME_-Finale</title>
+    <title>_CUPMATCHWINNER_ gewinnt _LEAGUECUPNAME_</title>
+    <title>_CUPMATCHWINNER_ _LEAGUECUPNAME_-Sieger</title>
+    <title>_CUPMATCHWINNER_ gewinnt _LEAGUECUPNAME_-Finale</title>
+    <title>_CUPMATCHWINNER_ besiegt _CUPMATCHLOSER_ in _LEAGUECUPNAME_-Finale</title>
+    <title condition="_GD_ = 1">Spannendes _LEAGUECUPNAME_-Finale zwischen _T0_ und _T1_</title>
+    <subtitle>_CUPMATCHLOSER_ hat das Nachsehen im _LEAGUECUPNAME_-Finale.</subtitle>
+    <subtitle>_CUPMATCHLOSER_ unterliegt _REL_ im _LEAGUECUPNAME_-Finale.</subtitle>
+    <subtitle>Anhänger von _CUPMATCHLOSER_ ziehen randalierend durch die Innenstadt nach der enttäuschenden _REL_-Niederlage.</subtitle>
+    <subtitle>_CUPMATCHWINNER_ endlich am Ziel, nachdem auch _CUPMATCHLOSER_ bezwungen ist.</subtitle>
+    <subtitle>_CUPMATCHWINNER_ ist auch von _CUPMATCHLOSER_ nicht aufzuhalten und gewinnt den Titel mit einem _REW_.</subtitle>
+    <subtitle condition="_GD_ = 1 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1">_SCORERS_CUPMATCHWINNERN__ verhelfen vor _AT_ Zusehern in einer Partie voller Spannung zum Titel.</subtitle>
+    <subtitle condition="_GD_ = 1 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 0">_SCORERS_CUPMATCHWINNERN__ wird zum Matchwinner gegen _CUPMATCHLOSER_ beim _REW_.</subtitle>
+    <subtitle condition="_GD_ = 1 and _GOALS_CUPMATCHWINNERN__ = 1">_SCORERS_CUPMATCHWINNERN__ entscheidet mit seinem Treffer die Partie gegen _CUPMATCHLOSER_ und bringt die Fans von _CUPMATCHWINNER_ zum Ausrasten.</subtitle>
+    <subtitle condition="_GD_ = 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1">_CUPMATCHWINNER_ kontrolliert die Finalbegegnung und gewinnt mit _REW_ den Titel.</subtitle>
+    <subtitle condition="_GD_ = 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 0">_SCORERS_CUPMATCHWINNERN__ trifft gegen _CUPMATCHLOSER_ und darf den Pokal auf der Ehrenrunde tragen.</subtitle>
+    <subtitle condition="_GD_ > 2">_CUPMATCHWINNER_ beherrscht _CUPMATCHLOSER_ in allen Belangen und gewinnt verdient das Finale.</subtitle>
+    <subtitle condition="_GD_ > 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1">_CUPMATCHLOSER_ wird in einer einseitigen Begegnung durch Tore von _SCORERS_CUPMATCHWINNERN__ zerlegt und muss bei der Siegerehrung zuschauen.</subtitle>
   </news_article>
 
 </news>
