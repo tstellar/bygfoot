@@ -117,7 +117,8 @@ news_select(const GArray *news_array, gchar *title, gchar *subtitle,
     *title_id = *subtitle_id = -1;
 
     for(i=0;i<news_array->len;i++)
-	if(!news_check_article_for_repetition(g_array_index(news_array, NewsArticle, order_articles[i]).id) &&
+	if((!news_check_article_for_repetition(g_array_index(news_array, NewsArticle, order_articles[i]).id) ||
+            g_array_index(news_array, NewsArticle, order_articles[i]).priority > 20) &&
            misc_parse_condition(g_array_index(news_array, NewsArticle, order_articles[i]).condition, token_rep_news))
 	    break;
 
@@ -551,6 +552,7 @@ news_set_league_cup_tokens(const Fixture *fix)
     gchar buf[SMALL];
     const Cup *cup;
     const CupRound *cupround;
+    const Team *tm;
 
     if(fix->teams[0]->clid < ID_CUP_START)
 	misc_token_add(token_rep_news,
@@ -591,7 +593,7 @@ news_set_league_cup_tokens(const Fixture *fix)
                        misc_int_to_char(cup->rounds->len - fix->round));
 
         misc_token_add(token_rep_news,
-                       option_int("string_token_cup_neutral", &tokens),
+                       option_int("string_token_bool_cup_neutral", &tokens),
                        misc_int_to_char(cupround->neutral));
 
 	cup_get_round_name(cup, fix->round, buf);
@@ -604,23 +606,35 @@ news_set_league_cup_tokens(const Fixture *fix)
                             (cupround->tables->len == 0));
         
         if(fix->decisive)
+        {
+            tm = (Team*)fixture_winner_of(fix, FALSE);
             misc_token_add(token_rep_news,
                            option_int("string_token_cup_match_winner", &tokens),
-                           g_strdup(((Team*)fixture_winner_of(fix, FALSE))->name));
+                           g_strdup(tm->name));
+            misc_token_add(token_rep_news,
+                           option_int("string_token_cup_match_loser", &tokens),
+                           g_strdup(fix->teams[fix->teams[1] != tm]->name));
+            misc_token_add(token_rep_news,
+                           option_int("string_token_cup_match_winnern", &tokens),
+                           misc_int_to_char(fix->teams[1] == tm));
+            misc_token_add(token_rep_news,
+                           option_int("string_token_cup_match_losern", &tokens),
+                           misc_int_to_char(fix->teams[1] != tm));
+        }
         
-        misc_token_add(token_rep_news,
-                       option_int("string_token_cup_national", &tokens),
-                       misc_int_to_char(query_league_cup_has_property(cup->id, "national")));
-        misc_token_add(token_rep_news,
-                       option_int("string_token_cup_international", &tokens),
-                       misc_int_to_char(query_league_cup_has_property(cup->id, "international")));
-        misc_token_add(token_rep_news,
-                       option_int("string_token_cup_promrel", &tokens),
-                       misc_int_to_char(query_league_cup_has_property(cup->id, "promotion")));
-        misc_token_add(token_rep_news,
-                       option_int("string_token_cup_aux", &tokens),
-                       misc_int_to_char(query_league_cup_has_property(cup->id, "hide") ||
-                                        query_league_cup_has_property(cup->id, "omit_from_history")));
+        misc_token_add_bool(token_rep_news,
+                            option_int("string_token_bool_cup_national", &tokens),
+                            query_league_cup_has_property(cup->id, "national"));
+        misc_token_add_bool(token_rep_news,
+                            option_int("string_token_bool_cup_international", &tokens),
+                            query_league_cup_has_property(cup->id, "international"));
+        misc_token_add_bool(token_rep_news,
+                            option_int("string_token_bool_cup_promrel", &tokens),
+                            query_league_cup_has_property(cup->id, "promotion"));
+        misc_token_add_bool(token_rep_news,
+                            option_int("string_token_bool_cup_aux", &tokens),
+                            query_league_cup_has_property(cup->id, "hide") ||
+                            query_league_cup_has_property(cup->id, "omit_from_history"));
     }
 }
 
@@ -633,25 +647,37 @@ news_set_fixture_tokens(const Fixture *fix)
 #endif
 
     gchar buf[SMALL];
+    gint res[2];
     gint avskill0, avskill1;
 
     avskill0 = (gint)rint(team_get_average_skill(fix->teams[0], TRUE));
     avskill1 = (gint)rint(team_get_average_skill(fix->teams[1], TRUE));
+    res[0] = math_sum_int_array(fix->result[0], 3);
+    res[1] = math_sum_int_array(fix->result[1], 3);
 
     fixture_result_to_buf(fix, buf, FALSE);
     misc_token_add(token_rep_news, 
 		   option_int("string_token_result", &tokens),
 		   g_strdup(buf));
 
-    fixture_result_to_buf(fix, buf, (math_sum_int_array(fix->result[0], 3) < math_sum_int_array(fix->result[1], 3)));
+    fixture_result_to_buf(fix, buf, (res[0] < res[1]));
     misc_token_add(token_rep_news, 
 		   option_int("string_token_result_rew", &tokens),
 		   g_strdup(buf));
 
-    fixture_result_to_buf(fix, buf, (math_sum_int_array(fix->result[0], 3) > math_sum_int_array(fix->result[1], 3)));
+    fixture_result_to_buf(fix, buf, (res[0] > res[1]));
     misc_token_add(token_rep_news, 
 		   option_int("string_token_result_rel", &tokens),
 		   g_strdup(buf));
+
+    misc_token_add_bool(token_rep_news, 
+                        option_int("string_token_bool_cup_penalties", &tokens),
+                        (fix->result[0][2] + fix->result[1][2] != 0));
+
+    misc_token_add_bool(token_rep_news, 
+                        option_int("string_token_bool_cup_extra", &tokens),
+                        (fix->result[0][2] + fix->result[1][2] == 0 &&
+                         fix->result[0][1] + fix->result[1][1] != 0));
 
     misc_print_grouped_int(math_round_integer(fix->attendance, 2), buf);
     misc_token_add(token_rep_news,
@@ -676,7 +702,7 @@ news_set_fixture_tokens(const Fixture *fix)
 		   misc_int_to_char(fix->result[1][0]));
     misc_token_add(token_rep_news,
 		   option_int("string_token_goal_diff", &tokens), 
-		   misc_int_to_char(ABS(fix->result[0][0] - fix->result[1][0])));
+		   misc_int_to_char(ABS(res[0] - res[1])));
 
     misc_token_add(token_rep_news,
 		   option_int("string_token_team_home", &tokens),

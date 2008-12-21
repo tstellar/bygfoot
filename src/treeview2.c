@@ -661,36 +661,36 @@ treeview2_set_up_news(GtkTreeView *treeview)
 
     GtkTreeViewColumn   *col;
     GtkCellRenderer     *renderer;
+    gint i;
 
     gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
 				GTK_SELECTION_NONE);
     gtk_tree_view_set_headers_visible(treeview, FALSE);
     gtk_tree_view_set_rules_hint(treeview, FALSE);
 
-    col = gtk_tree_view_column_new();
-    gtk_tree_view_append_column(treeview, col);
-    renderer = treeview_helper_cell_renderer_text_new();
-    gtk_tree_view_column_pack_start(col, renderer, TRUE);
-    gtk_tree_view_column_add_attribute(col, renderer,
-                                       "markup", 0);
-    col = gtk_tree_view_column_new();
-    gtk_tree_view_append_column(treeview, col);
-    renderer = treeview_helper_cell_renderer_text_new();
-    g_object_set(renderer, "wrap-mode", PANGO_WRAP_WORD, NULL);
-    g_object_set(renderer, "wrap-width", 400, NULL);
-    gtk_tree_view_column_pack_start(col, renderer, TRUE);	
-    gtk_tree_view_column_set_cell_data_func(col, renderer,
-                                            treeview_helper_news,
-                                            NULL, NULL);	        
-    col = gtk_tree_view_column_new();
-    gtk_tree_view_append_column(treeview, col);
-    renderer = treeview_helper_cell_renderer_text_new();
-    g_object_set(renderer, "wrap-mode", PANGO_WRAP_WORD, NULL);
-    g_object_set(renderer, "wrap-width", 400, NULL);
-    gtk_tree_view_column_pack_start(col, renderer, TRUE);	
-    gtk_tree_view_column_set_cell_data_func(col, renderer,
-                                            treeview_helper_news_additional,
-                                            NULL, NULL);	        
+    for(i = 0; i < 3; i++)
+    {
+        col = gtk_tree_view_column_new();
+        gtk_tree_view_append_column(treeview, col);
+        renderer = treeview_helper_cell_renderer_text_new();
+        gtk_tree_view_column_pack_start(col, renderer, TRUE);	
+
+        if(i == 0)
+            gtk_tree_view_column_add_attribute(col, renderer,
+                                               "markup", 0);
+        else if(i == 1)
+            gtk_tree_view_column_set_cell_data_func(col, renderer,
+                                                    treeview_helper_news,
+                                                    NULL, NULL);	        
+        else
+            gtk_tree_view_column_set_cell_data_func(col, renderer,
+                                                    treeview_helper_news_additional,
+                                                    NULL, NULL);	        
+
+        g_object_set(renderer, "wrap-mode", PANGO_WRAP_WORD, NULL);
+        g_object_set(renderer, "wrap-width", 400, NULL);
+        g_object_set(renderer, "yalign", 0.0, NULL);
+    }
 }
 
 /** Show the news in the news treeview. */
