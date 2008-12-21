@@ -74,20 +74,23 @@ treeview_create_team_selection_list(gboolean show_cup_teams, gboolean show_user_
 
     for(i=0;i<ligs->len;i++)
     {
-	for(j=0;j<lig(i).teams->len;j++)
-	{
-	    if(team_is_user(&g_array_index(lig(i).teams, Team, j)) == -1)
-	    {
-		gtk_list_store_append(ls, &iter);
-		treeview_helper_insert_icon((GtkTreeModel*)ls, &iter, 1, g_array_index(lig(i).teams, Team, j).symbol);
-		gtk_list_store_set(ls, &iter,
-				   0, cnt++,
-				   2, (gpointer)&g_array_index(lig(i).teams, Team, j),
-				   3, lig(i).name,
-				   4, (gpointer)&g_array_index(lig(i).teams, Team, j),
-				   -1);
-	    }
-	}	    
+        if(!query_league_cup_has_property(lig(i).id, "inactive"))
+        {
+            for(j=0;j<lig(i).teams->len;j++)
+            {
+                if(team_is_user(&g_array_index(lig(i).teams, Team, j)) == -1)
+                {
+                    gtk_list_store_append(ls, &iter);
+                    treeview_helper_insert_icon((GtkTreeModel*)ls, &iter, 1, g_array_index(lig(i).teams, Team, j).symbol);
+                    gtk_list_store_set(ls, &iter,
+                                       0, cnt++,
+                                       2, (gpointer)&g_array_index(lig(i).teams, Team, j),
+                                       3, lig(i).name,
+                                       4, (gpointer)&g_array_index(lig(i).teams, Team, j),
+                                       -1);
+                }
+            }	
+        }	    
     }
 
     if(!show_cup_teams)    
