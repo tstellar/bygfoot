@@ -512,7 +512,7 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round,
     {
 	cup = (Cup*)league_cup;
         if(first_week == -1)
-            first_week = cup_get_first_week_of_cup_round(cup, cup_round);
+            first_week = cup_get_first_week_of_cup_round(cup, cup_round, TRUE);
 	week_gap = cup->week_gap;
 	fixtures = cup->fixtures;
 	two_match_weeks = g_array_index(cup->rounds, CupRound, cup_round).two_match_weeks;
@@ -643,7 +643,7 @@ fixture_write_knockout_round(Cup *cup, gint cup_round, GPtrArray *teams)
 #endif
 
     gint i, len = teams->len;
-    gint first_week = cup_get_first_week_of_cup_round(cup, cup_round);
+    gint first_week = cup_get_first_week_of_cup_round(cup, cup_round, TRUE);
     gint week_number, week_round_number;
     CupRound *round = &g_array_index(cup->rounds, CupRound, cup_round);
     gint bye_len = (round->byes == -1) ?

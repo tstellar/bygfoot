@@ -791,26 +791,23 @@ cup_get_round_reached(const Team *tm, const GArray *fixtures)
     @param cup_round The index of the cup round in the cup.rounds array.
     @return A week number. */
 gint
-cup_get_first_week_of_cup_round(Cup *cup, gint cup_round)
+cup_get_first_week_of_cup_round(Cup *cup, gint cup_round, gboolean with_delay)
 {
 #ifdef DEBUG
     printf("cup_get_first_week_of_cup_round\n");
 #endif
 
-    gint i;
     gint week_number;
 
     if(cup_round == cup->rounds->len - 1)
 	week_number = cup->last_week - 
 	    (cup_get_matchdays_in_cup_round(cup, cup_round) - 1) * cup->week_gap;
     else
-	week_number = cup_get_first_week_of_cup_round(cup, cup_round + 1) -
+	week_number = cup_get_first_week_of_cup_round(cup, cup_round + 1, FALSE) -
 	    cup_get_matchdays_in_cup_round(cup, cup_round) * cup->week_gap;
 
-    week_number += g_array_index(cup->rounds, CupRound, cup_round).delay;
-
-    for(i=cup->rounds->len - 1; i > cup_round; i--)
-	week_number -= g_array_index(cup->rounds, CupRound, i).delay;
+    if(with_delay)
+        week_number += g_array_index(cup->rounds, CupRound, cup_round).delay;
 
     if(week_number <= 0)
     {
@@ -830,7 +827,7 @@ cup_get_first_week_of_cup_round(Cup *cup, gint cup_round)
 		      cup->last_week);
 	}
 
-	return cup_get_first_week_of_cup_round(cup, cup_round);
+	return cup_get_first_week_of_cup_round(cup, cup_round, with_delay);
     }
     
     return week_number;
