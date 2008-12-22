@@ -45,6 +45,7 @@ debug_action(const gchar *text)
 
     gchar buf[SMALL];
     gint value = -1;
+    gint i, j;
 
     printf("debact: %s\n", text);
 
@@ -117,6 +118,20 @@ debug_action(const gchar *text)
 	stat5 = -value - 1000;
 	game_gui_print_message("Commentary type displayed: %d.", value);
     }
+    else if(g_str_has_prefix(text, "printweeks"))
+    {
+        for(i = 0; i < cps->len; i++)
+        {
+            if(cp(i).add_week != 1000)
+            {
+                g_print("Cup: %s\n", cp(i).name);
+                for(j = 0; j < cp(i).rounds->len; j++)
+                    g_print("  Round %2d: Week %2d (w/o delay: %2d)\n",
+                            j, cup_get_first_week_of_cup_round(&cp(i), j, TRUE),
+                            cup_get_first_week_of_cup_round(&cp(i), j, FALSE));                
+            }
+        }
+    }
     else if(g_str_has_prefix(text, "help"))
     {
 	g_print("Debug options:\n"
@@ -128,6 +143,7 @@ debug_action(const gchar *text)
 	       "suc \t change success counter\n"
 	       "scout \t change scout\n"
 	       "physio \t change physio\n"
+	       "printweeks \t print the starting weeks of all cup rounds\n"
 	       "youth coach \t change youth coach\n"
 	       "pospref \t change recruiting pref\n"
 	       "goto \t Press 'new week' automatically until\n"
