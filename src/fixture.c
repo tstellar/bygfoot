@@ -305,7 +305,7 @@ fixture_winner_of(const Fixture *fix, gboolean team_id)
 		      math_sum_int_array(&(fix->result[1][0]), 3));
     else
     {
-	first_leg = fixture_get_first_leg(fix);
+	first_leg = fixture_get_first_leg(fix, FALSE);
 	
 	if(fix->result[0][2] + fix->result[1][2] != 0)
 	    winner_idx = (fix->result[0][2] < fix->result[1][2]);
@@ -869,7 +869,7 @@ query_fixture_is_draw(const Fixture *fix)
 	return (fix->result[0][0] + fix->result[0][1] ==
 		fix->result[1][0] + fix->result[1][1]);
 
-    first_leg = fixture_get_first_leg(fix);
+    first_leg = fixture_get_first_leg(fix, FALSE);
 
     return (fix->result[0][1] + fix->result[1][1] == 0 &&
 	    fix->result[0][0] == first_leg->result[0][0] &&
@@ -937,9 +937,10 @@ query_fixture_in_week_round(gint clid, gint week_number, gint week_round_number)
 /** Return a pointer to the first leg going with
  the fixture.
  @param fix The second leg fixture.
+ @param silent Whether to complain about a missing first leg.
  @return A fixture pointer or NULL if failed. */
 Fixture*
-fixture_get_first_leg(const Fixture *fix)
+fixture_get_first_leg(const Fixture *fix, gboolean silent)
 {
 #ifdef DEBUG
     printf("fixture_get_first_leg\n");
@@ -954,7 +955,7 @@ fixture_get_first_leg(const Fixture *fix)
 	   g_array_index(cup_from_clid(fix->clid)->fixtures, Fixture, i).team_ids[1] == fix->team_ids[0])
 	    first_leg = &g_array_index(cup_from_clid(fix->clid)->fixtures, Fixture, i);
 
-    if(first_leg == NULL)
+    if(first_leg == NULL && !silent)
 	g_warning("fixture_get_first_leg: didn't find first leg match; cup %s round %d\n",
 		  cup_from_clid(fix->clid)->name, fix->round);
 
@@ -1043,8 +1044,8 @@ fixture_result_to_buf(const Fixture *fix, gchar *buf, gboolean swap)
 
 	if(fix->second_leg)
 	    sprintf(buf, "%s (%d - %d)", local_buf,
-		    fixture_get_first_leg(fix)->result[idx1][0],
-		    fixture_get_first_leg(fix)->result[idx0][0]);
+		    fixture_get_first_leg(fix, FALSE)->result[idx1][0],
+		    fixture_get_first_leg(fix, FALSE)->result[idx0][0]);
 	else
 	    strcpy(buf, local_buf);
     }
@@ -1545,7 +1546,7 @@ fixture_get_goals_to_win(const Fixture *fix, const Team *tm)
     if(!fix->second_leg)
 	return res[!idx] - res[idx] + 1;
 
-    first_leg = fixture_get_first_leg(fix);
+    first_leg = fixture_get_first_leg(fix, FALSE);
 
     if(res[0] + first_leg->result[1][0] ==
        res[1] + first_leg->result[0][0])

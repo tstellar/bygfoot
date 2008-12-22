@@ -282,7 +282,6 @@ xml_news_read(const gchar *news_file)
     }
 
     free_news(TRUE);
-    free_newspaper(TRUE);
 
     if(g_markup_parse_context_parse(context, file_contents, length, &error))
     {
