@@ -649,6 +649,7 @@ news_set_fixture_tokens(const Fixture *fix)
     gchar buf[SMALL];
     gint res[2];
     gint avskill0, avskill1;
+    const Fixture *first_leg;
 
     avskill0 = (gint)rint(team_get_average_skill(fix->teams[0], TRUE));
     avskill1 = (gint)rint(team_get_average_skill(fix->teams[1], TRUE));
@@ -703,6 +704,22 @@ news_set_fixture_tokens(const Fixture *fix)
     misc_token_add(token_rep_news,
 		   option_int("string_token_goal_diff", &tokens), 
 		   misc_int_to_char(ABS(res[0] - res[1])));
+
+    if(fix->clid >= ID_CUP_START)
+    {
+        first_leg = fixture_get_first_leg(fix, TRUE);
+
+        if(first_leg != NULL)
+        {
+            misc_token_add_bool(token_rep_news, 
+                                option_int("string_token_bool_cup_second_leg", &tokens),
+                                TRUE);
+            misc_token_add(token_rep_news,
+                           option_int("string_token_goal_diff_aggregate", &tokens), 
+                           misc_int_to_char(ABS(fix->result[0][0] + fix->result[0][1] + first_leg->result[1][0] -
+                                                fix->result[1][0] - fix->result[1][1] - first_leg->result[0][0])));   
+        }
+    }
 
     misc_token_add(token_rep_news,
 		   option_int("string_token_team_home", &tokens),
@@ -766,8 +783,12 @@ news_free_tokens(void)
 
     gint i;
 
+/*     printf("-------------------------------------\n"); */
     for(i=token_rep_news[0]->len - 1;i >= 0; i--)
     {
+/*         printf("%s // %s\n",  */
+/*                (gchar*)g_ptr_array_index(token_rep_news[0], i), */
+/*                (gchar*)g_ptr_array_index(token_rep_news[1], i)); */
 	g_free(g_ptr_array_index(token_rep_news[0], i));
 	g_free(g_ptr_array_index(token_rep_news[1], i));
     }

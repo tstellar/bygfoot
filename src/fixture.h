@@ -106,7 +106,7 @@ gboolean
 query_fixture_in_week_round(gint clid, gint week_number, gint week_round_number);
 
 Fixture*
-fixture_get_first_leg(const Fixture *fix);
+fixture_get_first_leg(const Fixture *fix, gboolean silent);
 
 GPtrArray*
 fixture_get_week_list_clid(gint clid, gint week_number, gint week_round_number);
