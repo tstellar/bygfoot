@@ -353,8 +353,11 @@ function get_team_defs()
 		tar xfj $file_name.bz2
 		rm -rfv $file_name.bz2 2>> $log_file | tee -a $log_file
 
-		if [ -d ../$country ]; then
-		    pushd ../$country &> /dev/null
+                echo $PWD
+                read a
+                
+		if [ -d $country ]; then
+		    pushd $country &> /dev/null
 		    team_found=0
 		    for league in league*xml; do
 			for team in "$team_name1" "$team_name2"; do
@@ -411,7 +414,7 @@ function get_country_files()
         if [ "$oldname" = "League" ]; then
             DIRNAME=$(find . -type d -name $newname | tail -n 1)
             if [ ! $DIRNAME = "" ]; then
-                my_echo "   + Adding official names to $DIRNAME..."
+                my_echo "   + Adding official team names to $DIRNAME..."
             fi
         else
             if [ ! $DIRNAME = "" ]; then        

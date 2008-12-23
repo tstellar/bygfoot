@@ -77,13 +77,15 @@
     <title priority="20" condition="_CUPET_ = 1">_TW_ hat das besser Ende für sich nach Verlängerung</title>
     <title priority="20" condition="_CUPPEN_ = 1">_TW_ [besiegt|schlägt|bezwingt|gewinnt gegen] _TL_ _REW_ nach Elfmeterschießen</title>
     <title priority="20" condition="_CUPPEN_ = 1">_TW_ behält die Nerven im Elfmeterschießen gegen _TL_</title>
-    <title condition="_CUPNEUTRAL = 0">_T0_ gegen _T1_ endet _RE_</title>
-    <title condition="_TWN_ = 0 and _CUPNEUTRAL = 0">_TW_ siegt zuhause gegen _TL_</title>
-    <title condition="_TWN_ = 0 and _CUPNEUTRAL = 0">Heimsieg von _TW_</title>
-    <title condition="_TWN_ = 0 and _CUPNEUTRAL = 0">_TW_ zuhause erfolgreich</title>
-    <title condition="_TWN_ = 1 and _CUPNEUTRAL = 0">_TW_ siegt bei _TL_</title>
-    <title condition="_TWN_ = 1 and _CUPNEUTRAL = 0">Auswärtssieg von _TW_</title>
-    <title condition="_TWN_ = 1 and _CUPNEUTRAL = 0">_TW_ auswärts erfolgreich</title>
+    <title condition="_CUPNEUTRAL_ = 0">_T0_ gegen _T1_ endet _RE_</title>
+    <title condition="_CUPFIRSTLEG_ = 1">_TW_ gewinnt Hinspiel in _CUPROUNDNAME_ gegen _TL_</title>
+    <title condition="_CUPFIRSTLEG_ = 1">_TW_ [besiegt|schlägt|bezwingt|gewinnt gegen] _TL_ im Hinspiel</title>
+    <title condition="_TWN_ = 0 and _CUPNEUTRAL_ = 0">_TW_ siegt zuhause gegen _TL_</title>
+    <title condition="_TWN_ = 0 and _CUPNEUTRAL_ = 0">Heimsieg von _TW_</title>
+    <title condition="_TWN_ = 0 and _CUPNEUTRAL_ = 0">_TW_ zuhause erfolgreich</title>
+    <title condition="_TWN_ = 1 and _CUPNEUTRAL_ = 0">_TW_ siegt bei _TL_</title>
+    <title condition="_TWN_ = 1 and _CUPNEUTRAL_ = 0">Auswärtssieg von _TW_</title>
+    <title condition="_TWN_ = 1 and _CUPNEUTRAL_ = 0">_TW_ auswärts erfolgreich</title>
     <title condition="_WON_TWN__ > 3">_WON_TWN__-ter Sieg in Folge für _TW_</title>
     <title condition="_LOST_TLN__ > 3">_LOST_TLN__-te Niederlage in Folge für _TL_</title>
     <title condition="_UNBEATEN_TWN__ > 3">_TW_ seit _UNBEATEN_TWN__ Pflichtspielen ungeschlagen</title>
@@ -255,27 +257,39 @@
     <title priority="20" condition="_CUPET_ = 1">_TW_ hat das besser Ende für sich nach Verlängerung</title>
     <title priority="20" condition="_CUPPEN_ = 1">_TW_ [besiegt|schlägt|bezwingt|gewinnt gegen] _TL_ _REW_ nach Elfmeterschießen</title>
     <title priority="20" condition="_CUPPEN_ = 1">_TW_ behält die Nerven im Elfmeterschießen gegen _TL_</title>
-    <title>_CUPMATCHLOSER_ unterliegt in _LEAGUECUPNAME_-Finale</title>
-    <title>_CUPMATCHWINNER_ gewinnt _LEAGUECUPNAME_</title>
-    <title>_CUPMATCHWINNER_ _LEAGUECUPNAME_-Sieger</title>
-    <title>_CUPMATCHWINNER_ gewinnt _LEAGUECUPNAME_-Finale</title>
-    <title>_CUPMATCHWINNER_ besiegt _CUPMATCHLOSER_ in _LEAGUECUPNAME_-Finale</title>
-    <title condition="_GDAGG_ <= 1">Spannendes _LEAGUECUPNAME_-Finale zwischen _T0_ und _T1_</title>
-    <title>_CUPMATCHLOSER_ hat das Nachsehen im _LEAGUECUPNAME_-Finale.</title>
-    <title>_CUPMATCHLOSER_ unterliegt _REL_ im _LEAGUECUPNAME_-Finale.</title>
+    <title condition="_CUPFIRSTLEG_ = 1">_TW_ [gewinnt|siegt im|siegreich im] Hinspiel im _LEAGUECUPNAME_-Finale</title>
+    <title condition="_CUPFIRSTLEG_ = 1">_TW_ [besiegt|schlägt|bezwingt|gewinnt gegen] _TL_ im Hinspiel des _LEAGUECUPNAME_-Endspiels</title>
+    <title condition="_CUPFIRSTLEG_ = 1">_TL_ unterliegt _RE_ im Hinspiel des _LEAGUECUPNAME_-Endspiels</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ unterliegt in _LEAGUECUPNAME_-Finale</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ gewinnt _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ _LEAGUECUPNAME_-Sieger</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ gewinnt _LEAGUECUPNAME_-Finale</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ besiegt _CUPMATCHLOSER_ in _LEAGUECUPNAME_-Finale</title>
+    <title condition="_GDAGG_ <= 1 and (_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1)">Spannendes _LEAGUECUPNAME_-Finale zwischen _T0_ und _T1_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ hat das Nachsehen im _LEAGUECUPNAME_-Finale.</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ unterliegt _REL_ im _LEAGUECUPNAME_-Finale.</title>
     <subtitle condition="_CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ ist nach dem _REW_ im Final-Rückspiel erfolgreich.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1">_TL_ hofft, das _RE_ im Rückspiel wettmachen zu können.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">_TL_ steckt nach der Heimniederlage tief in der Patsche.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">_TW_ hat sich eine ausgezeichnete Ausgangsposition für das Rückspiel geschaffen.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">_TW_ ist der Titel so kaum noch zu nehmen.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 0 and _GD_ > 1">_TW_ hat nach dem überzeugenden Vorstellung vor heimischem Publikum nun allerbeste Chancen auf den Titel.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 0 and _GD_ = 1">_TW_ geht mit einem mageren Tor Vorsprung ins Rückspiel.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">Nur noch wenige Experten geben _TL_ jetzt noch eine Chance auf den _LEAGUECUPNAME_-Titel.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _GD_ < 2">_TL_ hat immer noch alle Chancen, den Pokal zu holen.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _GD_ < 2">_TL_ immer noch zuversichtlich, mit einer guten Leistung im Rückspiel das _RE_ wieder wettzumachen.</subtitle>
     <subtitle condition="_CUPSECONDLEG_ = 1 and _GOALS_CUPMATCHWINNERN__ <= _GOALS_CUPMATCHLOSERN__">Das _RE_ im Rückspiel reicht _CUPMATCHWINNER_, um den Titel zu holen.</subtitle>
-    <subtitle>Anhänger von _CUPMATCHLOSER_ ziehen randalierend durch die Innenstadt nach dem enttäuschenden _RE_.</subtitle>
-    <subtitle>_CUPMATCHWINNER_ endlich am Ziel, nachdem auch _CUPMATCHLOSER_ bezwungen ist.</subtitle>
-    <subtitle>_CUPMATCHWINNER_ ist auch von _CUPMATCHLOSER_ nicht aufzuhalten und gewinnt den Titel mit einem _REW_.</subtitle>
-    <subtitle condition="_GDAGG_ <= 1 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1">_SCORERS_CUPMATCHWINNERN__ verhelfen vor _AT_ Zusehern in einer Partie voller Spannung zum Titel.</subtitle>
-    <subtitle condition="_GDAGG_ <= 1 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 0 and _GOALS_CUPMATCHWINNERN__ > 0">_SCORERS_CUPMATCHWINNERN__ wird zum Matchwinner gegen _CUPMATCHLOSER_ beim _REW_.</subtitle>
-    <subtitle condition="_GDAGG_ <= 1 and _GOALS_CUPMATCHWINNERN__ = 1">_SCORERS_CUPMATCHWINNERN__ entscheidet mit seinem Treffer die Partie gegen _CUPMATCHLOSER_ und bringt die Fans von _CUPMATCHWINNER_ zum Ausrasten.</subtitle>
-    <subtitle condition="_GDAGG_ = 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1">_CUPMATCHWINNER_ kontrolliert die Finalbegegnung und gewinnt mit _REW_ den Titel.</subtitle>
-    <subtitle condition="_GDAGG_ = 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 0">_SCORERS_CUPMATCHWINNERN__ trifft gegen _CUPMATCHLOSER_ und darf den Pokal auf der Ehrenrunde tragen.</subtitle>
-    <subtitle condition="_GDAGG_ > 2 and _CUPSECONDLEG_ = 0">_CUPMATCHWINNER_ beherrscht _CUPMATCHLOSER_ in allen Belangen und gewinnt verdient das Finale.</subtitle>
+    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">Anhänger von _CUPMATCHLOSER_ ziehen randalierend durch die Innenstadt nach dem enttäuschenden _RE_.</subtitle>
+    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ endlich am Ziel, nachdem auch _CUPMATCHLOSER_ bezwungen ist.</subtitle>
+    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ ist auch von _CUPMATCHLOSER_ nicht aufzuhalten und gewinnt den Titel mit einem _REW_.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ <= 1 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1">_SCORERS_CUPMATCHWINNERN__ verhelfen vor _AT_ Zusehern in einer Partie voller Spannung zum Titel.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ or _CUPSECONDLEG_ = 1) = 0 and_GDAGG_ <= 1 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 0 and _GOALS_CUPMATCHWINNERN__ > 0">_SCORERS_CUPMATCHWINNERN__ wird zum Matchwinner gegen _CUPMATCHLOSER_ beim _REW_.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ <= 1 and _GOALS_CUPMATCHWINNERN__ = 1">_SCORERS_CUPMATCHWINNERN__ entscheidet mit seinem Treffer die Partie gegen _CUPMATCHLOSER_ und bringt die Fans von _CUPMATCHWINNER_ zum Ausrasten.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ = 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1">_CUPMATCHWINNER_ kontrolliert die Finalbegegnung und gewinnt mit _REW_ den Titel.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ = 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 0">_SCORERS_CUPMATCHWINNERN__ trifft gegen _CUPMATCHLOSER_ und darf den Pokal auf der Ehrenrunde tragen.</subtitle>
+    <subtitle condition="_GDAGG_ > 2 and _CUPHOMEAWAY_ = 0">_CUPMATCHWINNER_ beherrscht _CUPMATCHLOSER_ in allen Belangen und gewinnt verdient das Finale.</subtitle>
     <subtitle priority="10" condition="_GDAGG_ > 2 and _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ dominierte in den beiden Finalbegegnungen und gewinnt verdient den Pokal.</subtitle>
-    <subtitle condition="_GDAGG_ > 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPSECONDLEG_ = 0">_CUPMATCHLOSER_ wird in einer einseitigen Begegnung durch Tore von _SCORERS_CUPMATCHWINNERN__ zerlegt und muss bei der Siegerehrung zuschauen.</subtitle>
+    <subtitle condition="_GDAGG_ > 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPHOMEAWAY_ = 0">_CUPMATCHLOSER_ wird in einer einseitigen Begegnung durch Tore von _SCORERS_CUPMATCHWINNERN__ zerlegt und muss bei der Siegerehrung zuschauen.</subtitle>
     <subtitle condition="_GDAGG_ > 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ wird in einem letztlich einseitigen Finale bezwungen und muss bei der Siegerehrung zuschauen.</subtitle>
   </news_article>
 

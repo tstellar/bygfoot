@@ -605,6 +605,17 @@ news_set_league_cup_tokens(const Fixture *fix)
                            option_int("string_token_bool_cup_knockout", &tokens),
                             (cupround->tables->len == 0));
         
+        misc_token_add_bool(token_rep_news,
+                            option_int("string_token_bool_cup_home_away", &tokens),
+                            cupround->home_away);
+        
+        misc_token_add_bool(token_rep_news, 
+                            option_int("string_token_bool_cup_first_leg", &tokens),
+                            (cupround->home_away && !fix->second_leg));
+        misc_token_add_bool(token_rep_news, 
+                            option_int("string_token_bool_cup_second_leg", &tokens),
+                            (cupround->home_away && fix->second_leg));
+
         if(fix->decisive)
         {
             tm = (Team*)fixture_winner_of(fix, FALSE);
@@ -650,11 +661,13 @@ news_set_fixture_tokens(const Fixture *fix)
     gint res[2];
     gint avskill0, avskill1;
     const Fixture *first_leg;
+    gint goaldiffaggr;
 
     avskill0 = (gint)rint(team_get_average_skill(fix->teams[0], TRUE));
     avskill1 = (gint)rint(team_get_average_skill(fix->teams[1], TRUE));
     res[0] = math_sum_int_array(fix->result[0], 3);
     res[1] = math_sum_int_array(fix->result[1], 3);
+    goaldiffaggr = ABS(res[0] - res[1]);
 
     fixture_result_to_buf(fix, buf, FALSE);
     misc_token_add(token_rep_news, 
@@ -703,22 +716,19 @@ news_set_fixture_tokens(const Fixture *fix)
 		   misc_int_to_char(fix->result[1][0]));
     misc_token_add(token_rep_news,
 		   option_int("string_token_goal_diff", &tokens), 
-		   misc_int_to_char(ABS(res[0] - res[1])));
+		   misc_int_to_char(goaldiffaggr));
 
     if(fix->clid >= ID_CUP_START)
     {
         first_leg = fixture_get_first_leg(fix, TRUE);
 
         if(first_leg != NULL)
-        {
-            misc_token_add_bool(token_rep_news, 
-                                option_int("string_token_bool_cup_second_leg", &tokens),
-                                TRUE);
-            misc_token_add(token_rep_news,
-                           option_int("string_token_goal_diff_aggregate", &tokens), 
-                           misc_int_to_char(ABS(fix->result[0][0] + fix->result[0][1] + first_leg->result[1][0] -
-                                                fix->result[1][0] - fix->result[1][1] - first_leg->result[0][0])));   
-        }
+            goaldiffaggr = ABS(fix->result[0][0] + fix->result[0][1] + first_leg->result[1][0] -
+                               fix->result[1][0] - fix->result[1][1] - first_leg->result[0][0]);
+
+        misc_token_add(token_rep_news,
+                       option_int("string_token_goal_diff_aggregate", &tokens), 
+                       misc_int_to_char(goaldiffaggr));   
     }
 
     misc_token_add(token_rep_news,
