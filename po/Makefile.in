@@ -54,14 +54,14 @@ INCLUDES = -I.. -I$(top_srcdir)/intl
 COMPILE = $(CC) -c $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CFLAGS) $(XCFLAGS)
 
 SOURCES = 
-POFILES =  de.po nl.po fr.po pl.po ro.po bg.po zh.po es.po da.po sv.po it.po
-GMOFILES =  de.gmo nl.gmo fr.gmo pl.gmo ro.gmo bg.gmo zh.gmo es.gmo da.gmo sv.gmo it.gmo
+POFILES =  de.po nl.po fr.po pl.po pt.po ro.po bg.po zh.po es.po da.po sv.po it.po
+GMOFILES =  de.gmo nl.gmo fr.gmo pl.gmo pt.gmo ro.gmo bg.gmo zh.gmo es.gmo da.gmo sv.gmo it.gmo
 DISTFILES = ChangeLog Makefile.in.in POTFILES.in $(GETTEXT_PACKAGE).pot \
 $(POFILES) $(GMOFILES) $(SOURCES)
 
 POTFILES = \
 
-CATALOGS =  de.gmo nl.gmo fr.gmo pl.gmo ro.gmo bg.gmo zh.gmo es.gmo da.gmo sv.gmo it.gmo
+CATALOGS =  de.gmo nl.gmo fr.gmo pl.gmo pt.gmo ro.gmo bg.gmo zh.gmo es.gmo da.gmo sv.gmo it.gmo
 CATOBJEXT = .gmo
 INSTOBJEXT = .mo
 

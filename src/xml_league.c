@@ -151,6 +151,7 @@ xml_league_read_start_element (GMarkupParseContext *context,
 #endif
 
     PromRelElement new_element;
+    PromGames new_prom_games;
     Team new_team;
     JoinedLeague new_joined_league;
     NewTable new_table;
@@ -214,7 +215,11 @@ xml_league_read_start_element (GMarkupParseContext *context,
     else if(strcmp(element_name, TAG_PROM_REL) == 0)
 	state = STATE_PROM_REL;
     else if(strcmp(element_name, TAG_PROM_GAMES) == 0)
-	state = STATE_PROM_GAMES;
+    {
+        state = STATE_PROM_GAMES;
+        new_prom_games = prom_games_new();
+        g_array_append_val(new_league.prom_rel.prom_games, new_prom_games);
+    }
     else if(strcmp(element_name, TAG_PROM_GAMES_DEST_SID) == 0)
 	state = STATE_PROM_GAMES_DEST_SID;
     else if(strcmp(element_name, TAG_PROM_GAMES_LOSER_SID) == 0)
@@ -394,13 +399,17 @@ xml_league_read_text         (GMarkupParseContext *context,
     else if(state == STATE_TWO_MATCH_WEEK_END)
 	g_array_append_val(new_league.two_match_weeks[1], int_value);
     else if(state == STATE_PROM_GAMES_DEST_SID)
-	misc_string_assign(&new_league.prom_rel.prom_games_dest_sid, buf);
+	g_array_index(new_league.prom_rel.prom_games, PromGames,
+                      new_league.prom_rel.prom_games->len - 1).dest_sid = g_strdup(buf);
     else if(state == STATE_PROM_GAMES_LOSER_SID)
-	misc_string_assign(&new_league.prom_rel.prom_games_loser_sid, buf);
+	g_array_index(new_league.prom_rel.prom_games, PromGames,
+                      new_league.prom_rel.prom_games->len - 1).loser_sid = g_strdup(buf);
     else if(state == STATE_PROM_GAMES_NUMBER_OF_ADVANCE)
-	new_league.prom_rel.prom_games_number_of_advance = int_value;
+	g_array_index(new_league.prom_rel.prom_games, PromGames,
+                      new_league.prom_rel.prom_games->len - 1).number_of_advance = int_value;
     else if(state == STATE_PROM_GAMES_CUP_SID)
-	misc_string_assign(&new_league.prom_rel.prom_games_cup_sid, buf);
+	g_array_index(new_league.prom_rel.prom_games, PromGames,
+                      new_league.prom_rel.prom_games->len - 1).cup_sid = g_strdup(buf);
     else if(state == STATE_PROM_REL_ELEMENT_RANK_START)
 	g_array_index(new_league.prom_rel.elements,
 		      PromRelElement,

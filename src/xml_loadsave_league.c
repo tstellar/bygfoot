@@ -45,11 +45,11 @@ enum
     TAG_LEAGUE_ROUND_ROBINS,
     TAG_LEAGUE_AVERAGE_TALENT,
     TAG_LEAGUE_PROM_REL,
+    TAG_LEAGUE_PROM_GAMES,
     TAG_LEAGUE_PROM_REL_PROM_GAMES_DEST_SID,
     TAG_LEAGUE_PROM_REL_PROM_GAMES_CUP_SID,
     TAG_LEAGUE_PROM_REL_PROM_GAMES_LOSER_SID,
     TAG_LEAGUE_PROM_REL_PROM_GAMES_NUMBER_OF_ADVANCE,
-    TAG_LEAGUE_PROM_REL_CUP,
     TAG_LEAGUE_PROM_REL_ELEMENTS,
     TAG_LEAGUE_PROM_REL_ELEMENT,
     TAG_LEAGUE_PROM_REL_ELEMENT_RANK,
@@ -69,6 +69,7 @@ enum
 
 gint promrankidx, state;
 PromRelElement new_element;
+PromGames new_prom_games;
 League *new_league;
 gchar *dirname;
 
@@ -109,6 +110,9 @@ xml_loadsave_league_start_element (GMarkupParseContext *context,
 	new_element = prom_rel_element_new();
 	promrankidx = 0;
     }
+
+    if(tag == TAG_LEAGUE_PROM_GAMES)
+        new_prom_games = prom_games_new();
 
     if(tag == TAG_LEAGUE_JOINED_LEAGUE_SID)
         g_array_append_val(new_league->joined_leagues, new_joined_league);        
@@ -160,13 +164,18 @@ xml_loadsave_league_end_element    (GMarkupParseContext *context,
        tag == TAG_YELLOW_RED ||
        tag == TAG_LEAGUE_PROM_REL)
 	state = TAG_LEAGUE;
+    else if(tag == TAG_LEAGUE_PROM_GAMES ||
+	    tag == TAG_LEAGUE_PROM_REL_ELEMENTS)
+    {
+     	state = TAG_LEAGUE_PROM_REL;
+        if(tag == TAG_LEAGUE_PROM_GAMES)
+            g_array_append_val(new_league->prom_rel.prom_games, new_prom_games);
+    }
     else if(tag == TAG_LEAGUE_PROM_REL_PROM_GAMES_DEST_SID ||
 	    tag == TAG_LEAGUE_PROM_REL_PROM_GAMES_CUP_SID ||
 	    tag == TAG_LEAGUE_PROM_REL_PROM_GAMES_LOSER_SID ||
-	    tag == TAG_LEAGUE_PROM_REL_PROM_GAMES_NUMBER_OF_ADVANCE ||
-	    tag == TAG_LEAGUE_PROM_REL_CUP ||
-	    tag == TAG_LEAGUE_PROM_REL_ELEMENTS)
-	state = TAG_LEAGUE_PROM_REL;
+	    tag == TAG_LEAGUE_PROM_REL_PROM_GAMES_NUMBER_OF_ADVANCE)
+	state = TAG_LEAGUE_PROM_GAMES;
     else if(tag == TAG_LEAGUE_PROM_REL_ELEMENT)
     {
 	state = TAG_LEAGUE_PROM_REL_ELEMENTS;
@@ -265,13 +274,13 @@ xml_loadsave_league_text         (GMarkupParseContext *context,
     else if(state == TAG_LEAGUE_AVERAGE_TALENT)
 	new_league->average_talent = float_value;
     else if(state == TAG_LEAGUE_PROM_REL_PROM_GAMES_DEST_SID)
-	misc_string_assign(&new_league->prom_rel.prom_games_dest_sid, buf);
+	new_prom_games.dest_sid = g_strdup(buf);
     else if(state == TAG_LEAGUE_PROM_REL_PROM_GAMES_CUP_SID)
-	misc_string_assign(&new_league->prom_rel.prom_games_cup_sid, buf);
+	new_prom_games.cup_sid = g_strdup(buf);
     else if(state == TAG_LEAGUE_PROM_REL_PROM_GAMES_NUMBER_OF_ADVANCE)
-	new_league->prom_rel.prom_games_number_of_advance = int_value;
+	new_prom_games.number_of_advance = int_value;
     else if(state == TAG_LEAGUE_PROM_REL_PROM_GAMES_LOSER_SID)
-	misc_string_assign(&new_league->prom_rel.prom_games_loser_sid, buf);
+	new_prom_games.loser_sid = g_strdup(buf);
     else if(state == TAG_LEAGUE_PROM_REL_ELEMENT_RANK)
 	new_element.ranks[promrankidx] = int_value;
     else if(state == TAG_LEAGUE_PROM_REL_ELEMENT_TYPE)
@@ -403,16 +412,36 @@ xml_loadsave_league_write(const gchar *prefix, const League *league)
 		      TAG_LEAGUE_TWO_MATCH_WEEK_END, I0);
     }
 
+    xml_loadsave_league_prom_rel_write(fil, league);
+
+    fprintf(fil, "%s</_%d>\n", I0, TAG_LEAGUE);
+
+    fclose(fil);
+}
+
+/** Write the prom_rel data into the file. */
+void
+xml_loadsave_league_prom_rel_write(FILE *fil, const League *league)
+{
+    gint i;
+
     fprintf(fil, "%s<_%d>\n", I0, TAG_LEAGUE_PROM_REL);
 
-    xml_write_string(fil, league->prom_rel.prom_games_dest_sid,
-		     TAG_LEAGUE_PROM_REL_PROM_GAMES_DEST_SID, I1);
-    xml_write_string(fil, league->prom_rel.prom_games_cup_sid,
-		     TAG_LEAGUE_PROM_REL_PROM_GAMES_CUP_SID, I1);
-    xml_write_int(fil, league->prom_rel.prom_games_number_of_advance,
-		  TAG_LEAGUE_PROM_REL_PROM_GAMES_NUMBER_OF_ADVANCE, I1);
-    xml_write_string(fil, league->prom_rel.prom_games_loser_sid,
-		     TAG_LEAGUE_PROM_REL_PROM_GAMES_LOSER_SID, I1);
+    for(i = 0; i < league->prom_rel.prom_games->len; i++)
+    {
+        fprintf(fil, "%s<_%d>\n", I1, TAG_LEAGUE_PROM_GAMES);
+
+        xml_write_string(fil, g_array_index(league->prom_rel.prom_games, PromGames, i).dest_sid,
+                         TAG_LEAGUE_PROM_REL_PROM_GAMES_DEST_SID, I2);
+        xml_write_string(fil, g_array_index(league->prom_rel.prom_games, PromGames, i).cup_sid,
+                         TAG_LEAGUE_PROM_REL_PROM_GAMES_CUP_SID, I2);
+        xml_write_int(fil, g_array_index(league->prom_rel.prom_games, PromGames, i).number_of_advance,
+                      TAG_LEAGUE_PROM_REL_PROM_GAMES_NUMBER_OF_ADVANCE, I2);
+        xml_write_string(fil, g_array_index(league->prom_rel.prom_games, PromGames, i).loser_sid,
+                         TAG_LEAGUE_PROM_REL_PROM_GAMES_LOSER_SID, I2);
+        
+        fprintf(fil, "%s</_%d>\n", I1, TAG_LEAGUE_PROM_GAMES);
+    }
 
     fprintf(fil, "%s<_%d>\n", I1, TAG_LEAGUE_PROM_REL_ELEMENTS);
     for(i=0;i<league->prom_rel.elements->len;i++)
@@ -434,9 +463,4 @@ xml_loadsave_league_write(const gchar *prefix, const League *league)
 
     fprintf(fil, "%s</_%d>\n", I0, TAG_LEAGUE_PROM_REL);
 
-    fprintf(fil, "%s</_%d>\n", I0, TAG_LEAGUE);
-
-    fclose(fil);
 }
-
-

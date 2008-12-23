@@ -53,6 +53,22 @@ typedef struct
 } PromRelElement;
 
 /**
+   An element representing promotion/relegation games.
+*/
+typedef struct
+{
+    /** The id of the league the promotion games winner gets promoted to. Default "" */
+    gchar *dest_sid;
+    /** The id of the league the promotion games losers get moved to. Default "" */
+    gchar *loser_sid;
+    /** Number of teams that advance from the promotion games. Default: 1. */
+    gint number_of_advance;    
+    /** The cup determining how the promotion games are handled. */
+    gchar *cup_sid;
+
+} PromGames;
+
+/**
    This structure specifies how promotion and relegation is handled in a league.
    It contains promotion and relegation rules in an array and possibly also
    a rule about promotion games to be played.
@@ -60,22 +76,16 @@ typedef struct
 */
 typedef struct
 {
-    /** The id of the league the promotion games winner gets promoted to. Default "" */
-    gchar *prom_games_dest_sid;
-
-    /** The id of the league the promotion games losers get moved to. Default "" */
-    gchar *prom_games_loser_sid;
-
-    /** Number of teams that advance from the promotion games. Default: 1. */
-    gint prom_games_number_of_advance;
-    
     /** Array with promotion/relegation rules.
 	@see PromRelElement
     */
     GArray *elements;
 
-    /** The cup determining how the promotion games are handled. */
-    gchar *prom_games_cup_sid;
+    /** Array with promotion/relegation games.
+	@see PromGames
+    */
+    GArray *prom_games;
+
 } PromRel;
 
 /**
