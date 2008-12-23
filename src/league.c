@@ -62,12 +62,8 @@ league_new(gboolean new_id)
 
     new.average_talent = 0;
 
-    new.prom_rel.prom_games_dest_sid = NULL;
-    new.prom_rel.prom_games_loser_sid = NULL;
-    new.prom_rel.prom_games_cup_sid = NULL;
-    new.prom_rel.prom_games_number_of_advance = 1;
-
     new.prom_rel.elements = g_array_new(FALSE, FALSE, sizeof(PromRelElement));
+    new.prom_rel.prom_games = g_array_new(FALSE, FALSE, sizeof(PromGames));
 
     new.teams = g_array_new(FALSE, FALSE, sizeof(Team));
     new.fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));
@@ -106,6 +102,27 @@ prom_rel_element_new(void)
         new.from_table = 0;
     new.dest_sid = NULL;
     new.type = PROM_REL_NONE;
+
+    return new;
+}
+
+/**
+   Create a new PromGames with default values.
+   @see PromGames
+*/
+PromGames
+prom_games_new(void)
+{
+#ifdef DEBUG
+    printf("prom_games_new\n");
+#endif
+
+    PromGames new;
+
+    new.dest_sid = NULL;
+    new.loser_sid = NULL;
+    new.cup_sid = NULL;
+    new.number_of_advance = 1;
 
     return new;
 }
@@ -511,38 +528,41 @@ query_league_rank_in_prom_games(const League *league, gint rank)
     printf("query_league_rank_in_prom_games\n");
 #endif
 
-    gint i, j, k;
+    gint i, j, k, l;
     const Cup *cup = NULL;
     const CupRound *cup_round = NULL;
 
     for(i=0;i<ligs->len;i++)
 	if(query_league_has_prom_games((&lig(i))))
 	{
-	    cup = cup_from_sid(lig(i).prom_rel.prom_games_cup_sid);
-	    for(k=0;k<cup->rounds->len;k++)
-	    {
-		cup_round = &g_array_index(cup->rounds, CupRound, k);
-		for(j=0;j<cup_round->choose_teams->len;j++)
-		{
-		    if(strcmp(g_array_index(cup_round->choose_teams, CupChooseTeam, j).sid,
-			      league->sid) == 0 &&
-		       ((rank >= g_array_index(cup_round->choose_teams,
-					       CupChooseTeam, j).start_idx &&
-			 rank <= g_array_index(cup_round->choose_teams, 
-					       CupChooseTeam, j).end_idx && 
-			 g_array_index(cup_round->choose_teams, 
-				       CupChooseTeam, j).randomly) ||
-			(rank >= g_array_index(cup_round->choose_teams, 
-					       CupChooseTeam, j).start_idx &&
-			 rank < g_array_index(cup_round->choose_teams, 
-					      CupChooseTeam, j).start_idx + 
-			 g_array_index(cup_round->choose_teams, 
-				       CupChooseTeam, j).number_of_teams &&
-			 !g_array_index(cup_round->choose_teams, 
-					CupChooseTeam, j).randomly)))
-			return TRUE;
-		}
-	    }
+            for(l = 0; l < lig(i).prom_rel.prom_games->len; l++)
+            {
+                cup = cup_from_sid(g_array_index(lig(i).prom_rel.prom_games, PromGames, l).cup_sid);
+                for(k=0;k<cup->rounds->len;k++)
+                {
+                    cup_round = &g_array_index(cup->rounds, CupRound, k);
+                    for(j=0;j<cup_round->choose_teams->len;j++)
+                    {
+                        if(strcmp(g_array_index(cup_round->choose_teams, CupChooseTeam, j).sid,
+                                  league->sid) == 0 &&
+                           ((rank >= g_array_index(cup_round->choose_teams,
+                                                   CupChooseTeam, j).start_idx &&
+                             rank <= g_array_index(cup_round->choose_teams, 
+                                                   CupChooseTeam, j).end_idx && 
+                             g_array_index(cup_round->choose_teams, 
+                                           CupChooseTeam, j).randomly) ||
+                            (rank >= g_array_index(cup_round->choose_teams, 
+                                                   CupChooseTeam, j).start_idx &&
+                             rank < g_array_index(cup_round->choose_teams, 
+                                                  CupChooseTeam, j).start_idx + 
+                             g_array_index(cup_round->choose_teams, 
+                                           CupChooseTeam, j).number_of_teams &&
+                             !g_array_index(cup_round->choose_teams, 
+                                            CupChooseTeam, j).randomly)))
+                            return TRUE;
+                    }
+                }                
+            }
 	}
 
     return FALSE;
@@ -617,8 +637,9 @@ league_get_team_movements_prom_rel(const League *league, GArray *team_movements)
 /** Add the team movements from the promotion games
     to the array. */
 void
-league_get_team_movements_prom_games(const League *league, GArray *team_movements,
-				     const GPtrArray *prom_games_teams, gboolean up)
+league_get_team_movements_prom_games(const League *league, const PromGames *prom_games,
+                                     GArray *team_movements, const GPtrArray *prom_games_teams,
+                                     gboolean up)
 {
 #ifdef DEBUG
     printf("league_get_team_movements_prom_games\n");
@@ -627,18 +648,18 @@ league_get_team_movements_prom_games(const League *league, GArray *team_movement
     gint i, j;
     TeamMove new_move;
     GPtrArray *dest_sids = (up) ?
-	misc_separate_strings(league->prom_rel.prom_games_dest_sid) :
-	misc_separate_strings(league->prom_rel.prom_games_loser_sid);
+	misc_separate_strings(prom_games->dest_sid) :
+	misc_separate_strings(prom_games->loser_sid);
     GArray *dest_idcs = NULL;
     gint dest_idcs_int[dest_sids->len];
     gint dest_idcs_order[dest_sids->len];
     gint start_idx = 0, 
-	end_idx = league->prom_rel.prom_games_number_of_advance;
+	end_idx = prom_games->number_of_advance;
     gint prom_type = PROM_REL_PROMOTION;
 
     if(!up)
     {
-	start_idx = league->prom_rel.prom_games_number_of_advance;
+	start_idx = prom_games->number_of_advance;
 	end_idx = prom_games_teams->len;
 	prom_type = PROM_REL_RELEGATION;
     }
@@ -674,6 +695,7 @@ league_get_team_movements(League *league, GArray *team_movements)
     printf("league_get_team_movements\n");
 #endif
 
+    gint i;
     GPtrArray *prom_games_teams = NULL;
     const Cup *prom_cup = NULL;
 
@@ -681,24 +703,21 @@ league_get_team_movements(League *league, GArray *team_movements)
 
     if(query_league_has_prom_games(league))
     {
-	prom_cup = cup_from_sid(league->prom_rel.prom_games_cup_sid);
+        for(i = 0; i < league->prom_rel.prom_games->len; i++)
+        {
+            prom_cup = cup_from_sid(g_array_index(league->prom_rel.prom_games, PromGames, i).cup_sid);
     
-	if(prom_cup == NULL)
-	{
-	    g_warning("league_get_team_movements: promotion games cup not found for league %s (cup sid %s).\n",
-		      league->name, league->prom_rel.prom_games_cup_sid);
-	    return;
-	}
+            prom_games_teams = cup_get_teams_sorted(prom_cup);
 
-	prom_games_teams = cup_get_teams_sorted(prom_cup);
+            league_get_team_movements_prom_games(league, &g_array_index(league->prom_rel.prom_games, PromGames, i),
+                                                 team_movements, prom_games_teams, TRUE);
 
-	league_get_team_movements_prom_games(league, team_movements, prom_games_teams, TRUE);
-
-	if(league->prom_rel.prom_games_loser_sid != NULL)
-	    league_get_team_movements_prom_games(league, team_movements, 
-						 prom_games_teams, FALSE);
+            if(g_array_index(league->prom_rel.prom_games, PromGames, i).loser_sid != NULL)
+                league_get_team_movements_prom_games(league, &g_array_index(league->prom_rel.prom_games, PromGames, i),
+                                                     team_movements, prom_games_teams, FALSE);
 	
-	g_ptr_array_free(prom_games_teams, TRUE);
+            g_ptr_array_free(prom_games_teams, TRUE);
+        }
     }
 
     g_array_sort_with_data(league->teams, team_compare_func,

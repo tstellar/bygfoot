@@ -381,16 +381,14 @@ free_league(League *league)
     free_gchar_ptr(league->short_name);
     free_gchar_ptr(league->symbol);
     free_gchar_ptr(league->sid);
-    free_gchar_ptr(league->prom_rel.prom_games_dest_sid);
-    free_gchar_ptr(league->prom_rel.prom_games_cup_sid);
  
     if(league->teams != NULL)
 	free_teams_array(&league->teams, FALSE);
 
     free_joined_leagues(&league->joined_leagues);
+    free_prom_rel(&league->prom_rel);
 
     free_g_array(&league->teams);
-    free_g_array(&league->prom_rel.elements);;
     
     free_tables(&league->tables);
     free_new_tables(&league->new_tables);
@@ -402,6 +400,27 @@ free_league(League *league)
     free_g_array(&league->two_match_weeks[1]);
 
     free_league_stats(&league->stats);
+}
+
+/** Free the promotion/relegation struct of a league. */
+void
+free_prom_rel(PromRel *prom_rel)
+{
+    gint i;
+
+    for(i = 0; i < prom_rel->elements->len; i++)
+        g_free(g_array_index(prom_rel->elements, PromRelElement, i).dest_sid);
+
+    free_g_array(&prom_rel->elements);
+
+    for(i = 0; i < prom_rel->prom_games->len; i++)
+    {
+        g_free(g_array_index(prom_rel->prom_games, PromGames, i).dest_sid);
+        g_free(g_array_index(prom_rel->prom_games, PromGames, i).loser_sid);
+        g_free(g_array_index(prom_rel->prom_games, PromGames, i).cup_sid);
+    }
+
+    free_g_array(&prom_rel->prom_games);
 }
 
 /** Free the data in the joined leagues array. */

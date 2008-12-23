@@ -159,4 +159,7 @@ free_newspaper_article(NewsPaperArticle *article);
 void
 free_cup_round(CupRound *cup_round);
 
+void
+free_prom_rel(PromRel *prom_rel);
+
 #endif

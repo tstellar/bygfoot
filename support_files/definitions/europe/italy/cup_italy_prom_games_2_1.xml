@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cup>
-  <name>Seconda Divisione B Promotion</name>
-  <short_name>S. Div. B Prom.</short_name>
+  <name>Serie B Promotion</name>
+  <short_name>Serie B Prom.</short_name>
   <symbol>flag_italy.png</symbol>
-  <sid>italy_prom_games8</sid>
+  <sid>italy_prom_games_2_1</sid>
   <add_week>1000</add_week>
   <property>national</property>
   <property>highlight2</property>
+  <property>promotion</property>
 
   <cup_rounds>
     <cup_round>
@@ -14,10 +15,10 @@
 
       <choose_teams>
 	<choose_team>
-	  <choose_team_sid>italy4b</choose_team_sid>
+	  <choose_team_sid>italy2</choose_team_sid>
 	  <number_of_teams>4</number_of_teams>
-	  <start_idx>2</start_idx>
-	  <end_idx>5</end_idx>
+	  <start_idx>3</start_idx>
+	  <end_idx>6</end_idx>
 	</choose_team>
       </choose_teams>
     </cup_round>

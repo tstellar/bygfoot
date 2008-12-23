@@ -38,7 +38,7 @@
 #define league_table_cumul(league) (&g_array_index((league)->tables, Table, 0))
 #define league_table(league) (&g_array_index((league)->tables, Table, league->tables->len - 1))
 
-#define query_league_has_prom_games(league) (league->prom_rel.prom_games_dest_sid != NULL)
+#define query_league_has_prom_games(league) (league->prom_rel.prom_games->len > 0)
 #define query_league_active(league) (!query_league_cup_has_property((league)->id, "inactive"))
 
 /** A struct needed when managing promotions
@@ -58,6 +58,9 @@ league_new(gboolean new_id);
 
 PromRelElement
 prom_rel_element_new(void);
+
+PromGames
+prom_games_new(void);
 
 gint
 league_cup_get_index_from_clid(gint clid);
@@ -105,7 +108,8 @@ void
 league_get_team_movements_prom_rel(const League *league, GArray *team_movements);
 
 void
-league_get_team_movements_prom_games(const League *league, GArray *team_movements,
+league_get_team_movements_prom_games(const League *league, const PromGames *prom_games,
+                                     GArray *team_movements,
 				     const GPtrArray *prom_games_teams, gboolean up);
 
 void
