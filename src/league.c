@@ -72,6 +72,7 @@ league_new(gboolean new_id)
     new.tables = g_array_new(FALSE, FALSE, sizeof(Table));
     new.properties = g_ptr_array_new();
     new.rr_breaks = g_array_new(FALSE, FALSE, sizeof(gint));
+    new.week_breaks = g_array_new(FALSE, FALSE, sizeof(WeekBreak));
 
     new.first_week = new.week_gap = 1;
     new.two_match_weeks[0] = g_array_new(FALSE, FALSE, sizeof(gint));
@@ -1117,4 +1118,34 @@ league_cup_fill_rr_breaks(GArray *rr_breaks, const gchar *breaks)
     }
 
     g_strfreev(breaks_arr);
+}
+
+/** Set the values of the week breaks to the week gap of the league or
+    cup if necessary. */
+void
+league_cup_adjust_week_breaks(GArray *week_breaks, gint week_gap)
+{
+    gint i;
+
+    for(i = 0; i < week_breaks->len; i++)
+        if(g_array_index(week_breaks, WeekBreak, i).length == -1)
+            g_array_index(week_breaks, WeekBreak, i).length = week_gap;
+}
+
+/** Return the week number with a possible schedule break adjustment. */
+gint
+league_cup_get_week_with_break(gint clid, gint week_number)
+{
+    gint i;
+    const GArray *week_breaks;
+
+    week_breaks = (clid >= ID_CUP_START) ?
+        cup_from_clid(clid)->week_breaks :
+        league_from_clid(clid)->week_breaks;
+
+    for(i = 0; i < week_breaks->len; i++)
+        if(g_array_index(week_breaks, WeekBreak, i).week_number == week_number)
+            return week_number + g_array_index(week_breaks, WeekBreak, i).length;
+
+    return week_number;
 }

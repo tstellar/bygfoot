@@ -50,12 +50,24 @@ enum XmlTags
     TAG_SHORT_NAME,
     TAG_ID,
     TAG_WEEK_GAP,
+    TAG_WEEK_BREAK,
+    TAG_WEEK_BREAK_LENGTH,
     TAG_YELLOW_RED,
     TAG_TEAM_ID,
     TAG_NAMES_FILE,
     TAG_PROPERTY,
     TAG_ROUND
 };
+
+#define TAG_DEF_NAME "name"
+#define TAG_DEF_SHORT_NAME "short_name"
+#define TAG_DEF_SID "sid"
+#define TAG_DEF_SYMBOL "symbol"
+#define TAG_DEF_WEEK_GAP "week_gap"
+#define TAG_DEF_PROPERTY "property"
+#define TAG_DEF_YELLOW_RED "yellow_red"
+#define TAG_DEF_WEEK_BREAK "break_in"
+#define ATT_DEF_NAME_WEEK_BREAK_LENGTH "length"
 
 /** Starting values for tag enums in the various xml loading source files. */
 #define TAG_START_MISC 1000

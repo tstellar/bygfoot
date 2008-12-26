@@ -31,15 +31,13 @@
 #include "xml_cup.h"
 #include "xml_country.h"
 #include "xml_league.h"
+#include "xml.h"
 
 /**
  * The tags used in the XML files defining countries.
  */
 #define TAG_COUNTRY "country"
-#define TAG_NAME "name"
 #define TAG_RATING "rating"
-#define TAG_SYMBOL "symbol"
-#define TAG_SID "sid"
 #define TAG_SUPERNATIONAL "supernational"
 #define TAG_LEAGUES "leagues"
 #define TAG_LEAGUE "league"
@@ -88,13 +86,13 @@ xml_country_read_start_element (GMarkupParseContext *context,
     printf("xml_country_read_start_element\n");
 #endif
 
-    if(strcmp(element_name, TAG_NAME) == 0)
+    if(strcmp(element_name, TAG_DEF_NAME) == 0)
 	state = STATE_NAME;
     else if(strcmp(element_name, TAG_RATING) == 0)
 	state = STATE_RATING;
-    else if(strcmp(element_name, TAG_SYMBOL) == 0)
+    else if(strcmp(element_name, TAG_DEF_SYMBOL) == 0)
 	state = STATE_SYMBOL;
-    else if(strcmp(element_name, TAG_SID) == 0)
+    else if(strcmp(element_name, TAG_DEF_SID) == 0)
 	state = STATE_SID;
     else if(strcmp(element_name, TAG_SUPERNATIONAL) == 0)
 	state = STATE_SUPERNATIONAL;
@@ -130,14 +128,15 @@ xml_country_read_end_element    (GMarkupParseContext *context,
 				 gpointer             user_data,
 				 GError             **error)
 {
+
 #ifdef DEBUG
     printf("xml_country_read_end_element\n");
 #endif
 
-    if(strcmp(element_name, TAG_NAME) == 0 ||
+    if(strcmp(element_name, TAG_DEF_NAME) == 0 ||
        strcmp(element_name, TAG_RATING) == 0 ||
-       strcmp(element_name, TAG_SYMBOL) == 0 ||
-       strcmp(element_name, TAG_SID) == 0 ||
+       strcmp(element_name, TAG_DEF_SYMBOL) == 0 ||
+       strcmp(element_name, TAG_DEF_SID) == 0 ||
        strcmp(element_name, TAG_SUPERNATIONAL) == 0 ||
        strcmp(element_name, TAG_LEAGUES) == 0 ||
        strcmp(element_name, TAG_CUPS) == 0)

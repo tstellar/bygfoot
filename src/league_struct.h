@@ -27,7 +27,6 @@
 #define LEAGUE_STRUCT_H
 
 #include "bygfoot.h"
-#include "cup_struct.h"
 #include "stat_struct.h"
 #include "table_struct.h"
 
@@ -113,6 +112,18 @@ typedef struct
 } NewTable;
 
 /**
+   A structure describing a custom break in the fixtures
+   schedule occuring at a particular week.
+*/
+typedef struct
+{
+    /** In which week the break occurs. */
+    gint week_number;
+    /** Length of break in weeks. */
+    gint length;
+} WeekBreak;
+
+/**
    Representation of a league.
    @see PromRel
    @see Table
@@ -165,6 +176,8 @@ typedef struct
     GArray *fixtures;
     /** A gchar pointer array of properties (like "inactive"). */
     GPtrArray *properties;
+    /** Array of custom breaks in schedule. */
+    GArray *week_breaks;
     /** The current league statistics. */
     LeagueStat stats;
 } League;

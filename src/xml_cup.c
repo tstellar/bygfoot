@@ -31,21 +31,15 @@
 #include "option.h"
 #include "variables.h"
 #include "xml_cup.h"
+#include "xml.h"
 
 /**
  * The tags used in the XML files defining cups.
  */
 #define TAG_CUP "cup"
-#define TAG_NAME "name"
-#define TAG_SHORT_NAME "short_name"
-#define TAG_SYMBOL "symbol"
-#define TAG_SID "sid"
 #define TAG_GROUP "group"
-#define TAG_PROPERTY "property"
 #define TAG_LAST_WEEK "last_week"
 #define TAG_ADD_WEEK "add_week"
-#define TAG_WEEK_GAP "week_gap"
-#define TAG_YELLOW_RED "yellow_red"
 #define TAG_TALENT_DIFF "talent_diff"
 #define TAG_CUP_ROUNDS "cup_rounds"
 #define TAG_CUP_ROUND "cup_round"
@@ -90,6 +84,7 @@ enum XmlCupStates
     STATE_LAST_WEEK,
     STATE_ADD_WEEK,
     STATE_WEEK_GAP,
+    STATE_WEEK_BREAK,
     STATE_YELLOW_RED,
     STATE_TALENT_DIFF,
     STATE_CUP_ROUNDS,
@@ -131,6 +126,7 @@ gint state;
 Cup new_cup;
 CupRound new_round;
 CupChooseTeam new_choose_team;
+WeekBreak new_week_break;
 
 /**
  * The function called by the parser when an opening tag is read.
@@ -155,25 +151,33 @@ xml_cup_read_start_element (GMarkupParseContext *context,
 	new_cup = cup_new(FALSE);
 	state = STATE_CUP;
     }
-    else if(strcmp(element_name, TAG_NAME) == 0)
+    else if(strcmp(element_name, TAG_DEF_NAME) == 0)
 	state = STATE_NAME;
-    else if(strcmp(element_name, TAG_SHORT_NAME) == 0)
+    else if(strcmp(element_name, TAG_DEF_SHORT_NAME) == 0)
 	state = STATE_SHORT_NAME;
-    else if(strcmp(element_name, TAG_SYMBOL) == 0)
+    else if(strcmp(element_name, TAG_DEF_SYMBOL) == 0)
 	state = STATE_SYMBOL;
-    else if(strcmp(element_name, TAG_SID) == 0)
+    else if(strcmp(element_name, TAG_DEF_SID) == 0)
 	state = STATE_SID;
     else if(strcmp(element_name, TAG_GROUP) == 0)
 	state = STATE_GROUP;
     else if(strcmp(element_name, TAG_LAST_WEEK) == 0)
 	state = STATE_LAST_WEEK;
-    else if(strcmp(element_name, TAG_PROPERTY) == 0)
+    else if(strcmp(element_name, TAG_DEF_PROPERTY) == 0)
 	state = STATE_PROPERTY;
     else if(strcmp(element_name, TAG_ADD_WEEK) == 0)
 	state = STATE_ADD_WEEK;
-    else if(strcmp(element_name, TAG_WEEK_GAP) == 0)
+    else if(strcmp(element_name, TAG_DEF_WEEK_GAP) == 0)
 	state = STATE_WEEK_GAP;
-    else if(strcmp(element_name, TAG_YELLOW_RED) == 0)
+    else if(strcmp(element_name, TAG_DEF_WEEK_BREAK) == 0)
+    {
+     	state = STATE_WEEK_BREAK;
+        if(attribute_names[0] != NULL && strcmp(attribute_names[0], ATT_DEF_NAME_WEEK_BREAK_LENGTH) == 0)
+            new_week_break.length = (gint)g_ascii_strtod(attribute_values[0], NULL);
+        else
+            new_week_break.length = -1;
+    }
+    else if(strcmp(element_name, TAG_DEF_YELLOW_RED) == 0)
 	state = STATE_YELLOW_RED;
     else if(strcmp(element_name, TAG_TALENT_DIFF) == 0)
 	state = STATE_TALENT_DIFF;
@@ -257,19 +261,24 @@ xml_cup_read_end_element    (GMarkupParseContext *context,
     printf("xml_cup_read_end_element\n");
 #endif
 
-    if(strcmp(element_name, TAG_NAME) == 0 ||
-       strcmp(element_name, TAG_SHORT_NAME) == 0 ||
-       strcmp(element_name, TAG_SYMBOL) == 0 ||
-       strcmp(element_name, TAG_SID) == 0 ||
+    if(strcmp(element_name, TAG_DEF_NAME) == 0 ||
+       strcmp(element_name, TAG_DEF_SHORT_NAME) == 0 ||
+       strcmp(element_name, TAG_DEF_SYMBOL) == 0 ||
+       strcmp(element_name, TAG_DEF_SID) == 0 ||
        strcmp(element_name, TAG_GROUP) == 0 ||
        strcmp(element_name, TAG_LAST_WEEK) == 0 ||
-       strcmp(element_name, TAG_PROPERTY) == 0 ||
+       strcmp(element_name, TAG_DEF_PROPERTY) == 0 ||
        strcmp(element_name, TAG_ADD_WEEK) == 0 ||
-       strcmp(element_name, TAG_WEEK_GAP) == 0 ||
-       strcmp(element_name, TAG_YELLOW_RED) == 0 ||
+       strcmp(element_name, TAG_DEF_WEEK_GAP) == 0 ||
+       strcmp(element_name, TAG_DEF_YELLOW_RED) == 0 ||
        strcmp(element_name, TAG_TALENT_DIFF) == 0 ||
        strcmp(element_name, TAG_CUP_ROUNDS) == 0)
 	state = STATE_CUP;
+    else if(strcmp(element_name, TAG_DEF_WEEK_BREAK) == 0)
+    {
+	state = STATE_CUP;
+        g_array_append_val(new_cup.week_breaks, new_week_break);
+    }
     else if(strcmp(element_name, TAG_CUP_ROUND) == 0)
     {
 	state = STATE_CUP_ROUNDS;
@@ -361,6 +370,8 @@ xml_cup_read_text         (GMarkupParseContext *context,
 	new_cup.add_week = int_value;
     else if(state == STATE_WEEK_GAP)
 	new_cup.week_gap = int_value;
+    else if(state == STATE_WEEK_BREAK)
+	new_week_break.week_number = int_value;
     else if(state == STATE_YELLOW_RED)
 	new_cup.yellow_red = int_value;
     else if(state == STATE_TALENT_DIFF)
@@ -472,5 +483,6 @@ xml_cup_read(const gchar *cup_name, GArray *cups)
     }
 
     new_cup.id = cup_id_new;
+    league_cup_adjust_week_breaks(new_cup.week_breaks, new_cup.week_gap);
     g_array_append_val(cups, new_cup);
 }
