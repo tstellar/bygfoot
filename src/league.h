@@ -164,4 +164,10 @@ league_cup_adjust_rr_breaks(GArray *rr_breaks, gint round_robins, gint week_gap)
 void
 league_cup_fill_rr_breaks(GArray *rr_breaks, const gchar *breaks);
 
+void
+league_cup_adjust_week_breaks(GArray *week_breaks, gint week_gap);
+
+gint
+league_cup_get_week_with_break(gint clid, gint week_number);
+
 #endif

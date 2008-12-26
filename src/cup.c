@@ -68,6 +68,7 @@ cup_new(gboolean new_id)
     new.teams = g_ptr_array_new();
     new.team_names = g_ptr_array_new();
     new.fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));
+    new.week_breaks = g_array_new(FALSE, FALSE, sizeof(WeekBreak));
     new.bye = g_ptr_array_new();
 
     new.properties = g_ptr_array_new();

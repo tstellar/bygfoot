@@ -70,6 +70,7 @@ enum
 gint promrankidx, state;
 PromRelElement new_element;
 PromGames new_prom_games;
+WeekBreak new_week_break;
 League *new_league;
 gchar *dirname;
 
@@ -161,6 +162,8 @@ xml_loadsave_league_end_element    (GMarkupParseContext *context,
        tag == TAG_SID ||
        tag == TAG_ID ||
        tag == TAG_WEEK_GAP ||
+       tag == TAG_WEEK_BREAK ||
+       tag == TAG_WEEK_BREAK_LENGTH ||
        tag == TAG_YELLOW_RED ||
        tag == TAG_LEAGUE_PROM_REL)
 	state = TAG_LEAGUE;
@@ -239,6 +242,13 @@ xml_loadsave_league_text         (GMarkupParseContext *context,
 	new_league->round_robins = int_value;
     else if(state == TAG_WEEK_GAP)
 	new_league->week_gap = int_value;
+    else if(state == TAG_WEEK_BREAK)
+        new_week_break.week_number = int_value;
+    else if(state == TAG_WEEK_BREAK_LENGTH)
+    {
+        new_week_break.length = int_value;
+        g_array_append_val(new_league->week_breaks, new_week_break);
+    }
     else if(state == TAG_YELLOW_RED)
 	new_league->yellow_red = int_value;
     else if(state == TAG_LEAGUE_BREAK)
@@ -380,6 +390,12 @@ xml_loadsave_league_write(const gchar *prefix, const League *league)
 
     for(i = 0; i < league->rr_breaks->len; i++)
         xml_write_int(fil, g_array_index(league->rr_breaks, gint, i), TAG_LEAGUE_BREAK, I0);
+
+    for(i = 0; i < league->week_breaks->len; i++)
+    {
+        xml_write_int(fil, g_array_index(league->week_breaks, WeekBreak, i).week_number, TAG_WEEK_BREAK, I0);   
+        xml_write_int(fil, g_array_index(league->week_breaks, WeekBreak, i).length, TAG_WEEK_BREAK_LENGTH, I0);   
+    }
 
     for(i=0;i<league->tables->len;i++)
     {

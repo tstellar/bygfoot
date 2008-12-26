@@ -395,6 +395,7 @@ free_league(League *league)
 
     free_g_array(&league->fixtures);
     free_g_array(&league->rr_breaks);
+    free_g_array(&league->week_breaks);
 
     free_g_array(&league->two_match_weeks[0]);
     free_g_array(&league->two_match_weeks[1]);
@@ -646,6 +647,7 @@ free_cup(Cup *cup)
 
     free_g_array(&cup->rounds);
     free_g_array(&cup->fixtures);
+    free_g_array(&cup->week_breaks);
 
     free_g_ptr_array(&cup->bye);
     free_gchar_array(&cup->team_names);

@@ -81,6 +81,7 @@ Cup *new_cup;
 CupChooseTeam new_choose_team;
 CupRound new_round;
 gchar *dirname;
+WeekBreak new_week_break;
 
 void
 xml_loadsave_cup_start_element (GMarkupParseContext *context,
@@ -141,6 +142,8 @@ xml_loadsave_cup_end_element    (GMarkupParseContext *context,
        tag == TAG_ID ||
        tag == TAG_YELLOW_RED ||
        tag == TAG_WEEK_GAP ||
+       tag == TAG_WEEK_BREAK ||
+       tag == TAG_WEEK_BREAK_LENGTH ||
        tag == TAG_PROPERTY ||
        tag == TAG_CUP_LAST_WEEK ||
        tag == TAG_CUP_ADD_WEEK ||
@@ -229,6 +232,13 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
 	new_cup->id = int_value;
     else if(state == TAG_WEEK_GAP)
 	new_cup->week_gap = int_value;
+    else if(state == TAG_WEEK_BREAK)
+        new_week_break.week_number = int_value;
+    else if(state == TAG_WEEK_BREAK_LENGTH)
+    {
+        new_week_break.length = int_value;
+        g_array_append_val(new_cup->week_breaks, new_week_break);
+    }
     else if(state == TAG_YELLOW_RED)
 	new_cup->yellow_red = int_value;
     else if(state == TAG_PROPERTY)
@@ -401,6 +411,12 @@ xml_loadsave_cup_write(const gchar *prefix, const Cup *cup)
 
     for(i=0;i<cup->rounds->len;i++)
 	xml_loadsave_cup_write_round(fil, prefix, cup, i);
+
+    for(i = 0; i < cup->week_breaks->len; i++)
+    {
+        xml_write_int(fil, g_array_index(cup->week_breaks, WeekBreak, i).week_number, TAG_WEEK_BREAK, I0);   
+        xml_write_int(fil, g_array_index(cup->week_breaks, WeekBreak, i).length, TAG_WEEK_BREAK_LENGTH, I0);   
+    }
         
     if(cup->bye != NULL)
 	for(i=0;i<cup->bye->len;i++)

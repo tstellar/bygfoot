@@ -1848,7 +1848,7 @@ treeview_helper_news_additional(GtkTreeViewColumn *col,
     const NewsPaperArticle *article = NULL;
     const gchar *colour_fg;
     const gchar *colour_bg;
-    gchar buf[SMALL];
+    gchar buf[SMALL], buf2[SMALL], round_name[SMALL];
 
     gtk_tree_model_get(model, iter, 2, &article, -1);
 
@@ -1862,9 +1862,17 @@ treeview_helper_news_additional(GtkTreeViewColumn *col,
         return;
     }
 
+    if(article->clid >= ID_CUP_START)
+    {
+        cup_get_round_name(cup_from_clid(article->clid), article->cup_round, round_name);
+        sprintf(buf2, "%s\n%s", league_cup_get_name_string(article->clid), round_name);
+    }
+    else
+        sprintf(buf2, "%s", league_cup_get_name_string(article->clid));
+
     sprintf(buf, "<span %s>%s</span>", 
             const_app("string_news_window_league_cup_attribute"),
-            league_cup_get_name_string(article->clid));
+            buf2);
 
     g_object_set(renderer, "markup", buf, 
                  "background", colour_bg, "foreground", colour_fg, NULL);

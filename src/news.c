@@ -84,6 +84,7 @@ news_generate_match(const LiveGame *live_game)
         new_article.subtitle_id = subtitle_id;
         new_article.user_idx = fixture_user_team_involved(live_game->fix);
         new_article.clid = live_game->fix->clid;
+        new_article.cup_round = live_game->fix->round;
 
         if(counters[COUNT_NEW_NEWS] == 0)
             counters[COUNT_NEW_NEWS] = 2;

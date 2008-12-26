@@ -178,6 +178,8 @@ typedef struct
     GPtrArray *team_names;
     /** The fixtures of a season for the cup. */
     GArray *fixtures;
+    /** Array of custom breaks in schedule. */
+    GArray *week_breaks;
 } Cup;
 
 #endif
