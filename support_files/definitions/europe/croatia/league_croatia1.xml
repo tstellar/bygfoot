@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <league>
-
   <sid>croatia1</sid>
   <name>HNL Prva Liga</name>
   <short_name>1. HNL</short_name>
   <symbol>flag_croatia.png</symbol>
-  <first_week>1</first_week>
+  <first_week>5</first_week>
   <week_gap>1</week_gap>
+  <break_in length="1">10</break_in>
+  <break_in length="1">15</break_in>
+  <break_in length="10">24</break_in> 
   <average_talent>7400</average_talent>
   <round_robins>3</round_robins>
-  <names_file>scg</names_file>
+  <names_file>serbia</names_file>
   <yellow_red>5</yellow_red>
+  <two_match_week_start>29</two_match_week_start>
+  <two_match_week_end>30</two_match_week_end>
 
   <prom_rel>
     <prom_rel_element>
