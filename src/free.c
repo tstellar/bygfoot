@@ -644,8 +644,8 @@ free_cup(Cup *cup)
 
     for(i=0;i<cup->rounds->len;i++)
         free_cup_round(&g_array_index(cup->rounds, CupRound, i));
-
     free_g_array(&cup->rounds);
+
     free_g_array(&cup->fixtures);
     free_g_array(&cup->week_breaks);
 
@@ -666,6 +666,11 @@ free_cup_round(CupRound *cup_round)
 
     free_g_array(&cup_round->two_match_weeks[0]);
     free_g_array(&cup_round->two_match_weeks[1]);
+
+    for(j = 0; j < cup_round->waits->len; j++)
+        g_free(g_array_index(cup_round->waits, CupRoundWait, j).cup_sid);
+
+    free_g_array(&cup_round->waits);
 
     if(cup_round->round_robin_number_of_groups > 0)
     {

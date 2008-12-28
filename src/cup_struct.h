@@ -29,6 +29,16 @@
 #include "bygfoot.h"
 #include "table_struct.h"
 
+/** Information about what cup another cup has to wait for
+    before scheduling matches. */
+typedef struct
+{
+    /** The cup we wait for. */
+    gchar *cup_sid;
+    /** The cup round of the cup we wait for. */
+    gint cup_round;
+} CupRoundWait;
+
 /** Rules for a round of a cup.
     Cups consist of rounds, e.g. the final counts as
     a round or the round robin games. */
@@ -89,7 +99,9 @@ typedef struct
     /** Which new teams come into the cup (@see #CupChooseTeam) */
     GArray *choose_teams;
     /** The round robin tables (in case there is a round robin). */
-    GArray *tables;    
+    GArray *tables;
+    /** Array with CupRoundWaits. */
+    GArray *waits;
 } CupRound;
 
 /**

@@ -490,8 +490,8 @@ end_week_round_update_fixtures(void)
     gint i;
 
     for(i=0;i<acps->len;i++)
-	if(acp(i)->next_fixture_update_week == week &&
-	   acp(i)->next_fixture_update_week_round == week_round)
+	if(acp(i)->next_fixture_update_week <= week &&
+	   acp(i)->next_fixture_update_week_round <= week_round)
 	    fixture_update(acp(i));
 
     for(i=0;i<ligs->len;i++)

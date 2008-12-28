@@ -132,6 +132,7 @@ cup_round_new(void)
     new.tables = g_array_new(FALSE, FALSE, sizeof(Table));
     new.choose_teams = g_array_new(FALSE, FALSE, sizeof(CupChooseTeam));
     new.teams = g_array_new(FALSE, FALSE, sizeof(Team));
+    new.waits = g_array_new(FALSE, FALSE, sizeof(CupRoundWait));
     new.team_ptrs = g_ptr_array_new();
 
     return new;
@@ -352,7 +353,7 @@ cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_temp, GPtrArray *teams, c
     number_of_teams = 0;
     cup_teams_sorted = NULL;
 
-    if(season == 1 && cup->add_week == 0)
+    if(season == 1 && week == 1 && cup->add_week == 0)
     {
         if(lig(0).teams->len < ct->number_of_teams)
             main_exit_program(EXIT_CHOOSE_TEAM_ERROR, 
@@ -1261,4 +1262,45 @@ cup_check_fixtures(const Cup *cup)
     }
 
     return TRUE;
+}
+
+/** Check whether we have to wait for other cups
+    before we can write fixtures for the cup round. */
+gboolean
+cup_round_check_waits(const CupRound *cup_round)
+{
+    gint i, j, k;
+
+    for(i = 0; i < cup_round->waits->len; i++)
+    {
+        for(j = 0; j < acps->len; j++)
+        {
+            if(strcmp(acp(j)->sid, g_array_index(cup_round->waits, CupRoundWait, i).cup_sid) == 0)
+            {
+                /* Cup round we're waiting for isn't even reached. */
+                if(g_array_index(acp(j)->fixtures, Fixture, acp(j)->fixtures->len - 1).round < 
+                   g_array_index(cup_round->waits, CupRoundWait, i).cup_round)
+                    return TRUE;
+
+                for(k = acp(j)->fixtures->len - 1; k >= 0; k--)
+                {
+                    /* Cup round we've been waiting for is finished,
+                       we're not waiting anymore. */
+                    if(g_array_index(acp(j)->fixtures, Fixture, k).round > 
+                       g_array_index(cup_round->waits, CupRoundWait, i).cup_round)
+                        break;
+
+                    /* Still waiting for matches to be calculated. */
+                    if(g_array_index(acp(j)->fixtures, Fixture, k).round ==
+                       g_array_index(cup_round->waits, CupRoundWait, i).cup_round &&
+                       g_array_index(acp(j)->fixtures, Fixture, k).attendance == -1)
+                        return TRUE;
+                }
+
+                break;
+            }
+        }
+    }
+
+    return FALSE;
 }

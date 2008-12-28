@@ -151,6 +151,11 @@ fixture_update(Cup *cup)
        fixture_update_write_replays(cup))
 	    return;
     
+    /** Still waiting for other cups. */
+    if(round + 1 < cup->rounds->len &&
+       cup_round_check_waits(&g_array_index(cup->rounds, CupRound, round + 1)))
+       return;
+
     teams = fixture_get_cup_round_winners(cup);
 
     if(round == cup->rounds->len - 1 && teams->len < 2)
@@ -457,9 +462,9 @@ fixture_write_cup_round_robin(Cup *cup, gint cup_round, GPtrArray *teams)
 			   GINT_TO_POINTER(FIXTURE_COMPARE_DATE + 100));
 
     cup->next_fixture_update_week = (cup_round < cup->rounds->len - 1) ?
-	g_array_index(cup->fixtures, Fixture, cup->fixtures->len - 1).week_number : -1;
+	g_array_index(cup->fixtures, Fixture, cup->fixtures->len - 1).week_number : 1000;
     cup->next_fixture_update_week_round = (cup_round < cup->rounds->len - 1) ?
-	g_array_index(cup->fixtures, Fixture, cup->fixtures->len - 1).week_round_number : -1;
+	g_array_index(cup->fixtures, Fixture, cup->fixtures->len - 1).week_round_number : 1000;
 }
 
 /** Write round robin fixtures for the teams in the array.
@@ -534,6 +539,10 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round,
 	g_ptr_array_add(teams, &team_temp);
 	len++;
     }
+
+    /* Special rule for cups that have to wait for other cups. */
+    if(first_week < week + 1)
+        first_week = week + 1;
 
     /* first half of fixtures */
     week_number = league_cup_get_week_with_break(clid, first_week);
@@ -671,6 +680,10 @@ fixture_write_knockout_round(Cup *cup, gint cup_round, GPtrArray *teams)
     else if(round->randomise_teams)
 	teams = misc_randomise_g_pointer_array(teams);
 
+    /* Special rule for cups that have to wait for other cups. */
+    if(first_week < week + 1)
+        first_week = week + 1;
+
     week_number = league_cup_get_week_with_break(cup->id, first_week);
     week_round_number =
 	fixture_get_free_round(week_number, teams, -1, -1);
@@ -711,11 +724,11 @@ fixture_write_knockout_round(Cup *cup, gint cup_round, GPtrArray *teams)
 
     cup->next_fixture_update_week = 
 	(cup_round < cup->rounds->len - 1 || round->replay > 0) ?
-	g_array_index(cup->fixtures, Fixture, cup->fixtures->len - 1).week_number : -1;
+	g_array_index(cup->fixtures, Fixture, cup->fixtures->len - 1).week_number : 1000;
     
     cup->next_fixture_update_week_round = 
 	(cup_round < cup->rounds->len - 1 || round->replay > 0) ?
-	g_array_index(cup->fixtures, Fixture, cup->fixtures->len - 1).week_round_number : -1;
+	g_array_index(cup->fixtures, Fixture, cup->fixtures->len - 1).week_round_number : 1000;
     
     g_ptr_array_free(teams, TRUE);
 }
