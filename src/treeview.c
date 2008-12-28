@@ -1003,20 +1003,21 @@ treeview_create_fixtures_header(const Fixture *fix, GtkListStore *ls, gboolean b
     gchar *name = NULL;
     gchar *symbol = NULL;
 
-    sprintf(buf3, _("Week %d Round %d"), fix->week_number, fix->week_round_number);
 
     if(fix->clid < ID_CUP_START)
     {
+        sprintf(buf3, _("Week %d Round %d"), fix->week_number, fix->week_round_number);
 	name = league_cup_get_name_string(fix->clid);
 	strcpy(round_name, "");
 	symbol = league_from_clid(fix->clid)->symbol;
     }
     else
     {
+        sprintf(buf3, _("Week %d Round %d\nCup round %d"), 
+                fix->week_number, fix->week_round_number, fix->round + 1);
 	name = cup_from_clid(fix->clid)->name;
 	cup_round_name(fix, buf);
 	sprintf(round_name, "\n%s", buf);
-	strcat(buf3, "\n");
 	symbol = cup_from_clid(fix->clid)->symbol;
     }
     

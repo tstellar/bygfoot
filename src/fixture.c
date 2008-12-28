@@ -113,8 +113,7 @@ fixture_write_cup_fixtures(Cup *cup)
 
     gint i;
 
-    for(i=0;i<cup->rounds->len;i++)
-	cup_get_team_pointers(cup, i);
+    cup_get_team_pointers(cup, 0);
 
     if(g_array_index(cup->rounds, CupRound, 0).round_robin_number_of_groups > 0)
 	fixture_write_cup_round_robin(
@@ -170,6 +169,7 @@ fixture_update(Cup *cup)
     }
 
     new_round = &g_array_index(cup->rounds, CupRound, round + 1);
+    cup_get_team_pointers(cup, round + 1);
 
     for(i=0;i<new_round->team_ptrs->len;i++)
 	g_ptr_array_add(teams, g_ptr_array_index(new_round->team_ptrs, i));
@@ -696,6 +696,7 @@ fixture_write_knockout_round(Cup *cup, gint cup_round, GPtrArray *teams)
 	week_number = (round->two_match_week) ? 
 	    week_number :
             league_cup_get_week_with_break(cup->id, week_number + cup->week_gap);
+
 	week_round_number =
 	    fixture_get_free_round(week_number, teams, -1, -1);
 	for(i=0; i<=(teams->len - 2) / 2; i++)

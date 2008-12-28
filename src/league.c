@@ -1128,7 +1128,7 @@ league_cup_adjust_week_breaks(GArray *week_breaks, gint week_gap)
     gint i;
 
     for(i = 0; i < week_breaks->len; i++)
-        if(g_array_index(week_breaks, WeekBreak, i).length == -1)
+        if(g_array_index(week_breaks, WeekBreak, i).length == -1000)
             g_array_index(week_breaks, WeekBreak, i).length = week_gap;
 }
 
@@ -1145,7 +1145,7 @@ league_cup_get_week_with_break(gint clid, gint week_number)
 
     for(i = 0; i < week_breaks->len; i++)
         if(g_array_index(week_breaks, WeekBreak, i).week_number == week_number)
-            return week_number + g_array_index(week_breaks, WeekBreak, i).length;
+            return week_number + g_array_index(week_breaks, WeekBreak, i).length;            
 
     return week_number;
 }

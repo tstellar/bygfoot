@@ -175,7 +175,7 @@ xml_cup_read_start_element (GMarkupParseContext *context,
         if(attribute_names[0] != NULL && strcmp(attribute_names[0], ATT_DEF_NAME_WEEK_BREAK_LENGTH) == 0)
             new_week_break.length = (gint)g_ascii_strtod(attribute_values[0], NULL);
         else
-            new_week_break.length = -1;
+            new_week_break.length = -1000;
     }
     else if(strcmp(element_name, TAG_DEF_YELLOW_RED) == 0)
 	state = STATE_YELLOW_RED;
