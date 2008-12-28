@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <league>
-
   <sid>england1</sid>
   <name>Premiership</name>
   <short_name>Prem.</short_name>
   <symbol>flag_england.png</symbol>
-  <first_week>2</first_week>
+  <first_week>7</first_week>
   <week_gap>1</week_gap>
+  <break_in length="1">10</break_in>
+  <break_in length="1">15</break_in>
+  <break_in length="1">27</break_in>
+  <break_in length="1">39</break_in> 
   <average_talent>8500</average_talent>
   <names_file>england</names_file>
   <yellow_red>5</yellow_red>
+  <two_match_week_start>18</two_match_week_start>
+  <two_match_week_end>19</two_match_week_end>
 
   <prom_rel>
     <prom_rel_element>
