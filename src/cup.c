@@ -609,7 +609,7 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
 	if(number_of_teams == ct->number_of_teams)
 	    break;
     }
-    
+
     if(((ct->number_of_teams != -1 && number_of_teams != ct->number_of_teams) ||
 	(ct->number_of_teams == -1 && number_of_teams != teams_local->len)) &&
        teams_local->len > 0)
