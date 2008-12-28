@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Srbija Promotion</name>
+  <short_name>S. Prom.</short_name>
+  <symbol>flag_serbia.png</symbol>
+  <sid>serbia_prom_games1</sid>
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>highlight2</property>
+  <yellow_red>3</yellow_red>
+
+  <cup_rounds>
+
+    <cup_round>
+      <choose_teams>
+	<choose_team>
+	  <choose_team_sid>serbia2</choose_team_sid>
+	  <number_of_teams>4</number_of_teams>
+	  <start_idx>3</start_idx>
+	  <end_idx>6</end_idx>
+	</choose_team>
+      </choose_teams>
+     </cup_round>
+
+    <cup_round>
+    </cup_round>
+
+    <cup_round>
+	<new_teams>1</new_teams>
+      <choose_teams>
+	<choose_team>
+	  <choose_team_sid>serbia1</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <start_idx>10</start_idx>
+	  <end_idx>10</end_idx>
+	</choose_team>
+      </choose_teams>
+    </cup_round>
+  </cup_rounds>
+</cup>
