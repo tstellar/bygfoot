@@ -55,6 +55,7 @@
 #define TAG_CUP_ROUND_NUMBER_OF_BEST_ADVANCE "number_of_best_advance"
 #define TAG_CUP_ROUND_ROUND_ROBINS "round_robins"
 #define TAG_CUP_ROUND_BREAK "break"
+#define TAG_CUP_ROUND_WAIT "wait_for_cup"
 #define TAG_CUP_ROUND_TWO_MATCH_WEEK_START "two_match_week_start"
 #define TAG_CUP_ROUND_TWO_MATCH_WEEK_END "two_match_week_end"
 #define TAG_CUP_ROUND_TWO_MATCH_WEEK "two_match_week"
@@ -68,6 +69,8 @@
 #define TAG_CHOOSE_TEAM_GENERATE "generate"
 #define TAG_CHOOSE_TEAM_SKIP_GROUP_CHECK "skip_group_check"
 #define TAG_CHOOSE_TEAM_FROM_TABLE "from_table"
+
+#define ATT_NAME_CUP_ROUND_WAIT_ROUND "round"
 
 /**
  * Enum with the states used in the XML parser functions.
@@ -101,6 +104,7 @@ enum XmlCupStates
     STATE_CUP_ROUND_NUMBER_OF_BEST_ADVANCE,
     STATE_CUP_ROUND_ROUND_ROBINS,
     STATE_CUP_ROUND_BREAK,
+    STATE_CUP_ROUND_WAIT,
     STATE_CUP_ROUND_TWO_MATCH_WEEK_START,
     STATE_CUP_ROUND_TWO_MATCH_WEEK_END,
     STATE_CUP_ROUND_TWO_MATCH_WEEK,
@@ -127,6 +131,7 @@ Cup new_cup;
 CupRound new_round;
 CupChooseTeam new_choose_team;
 WeekBreak new_week_break;
+CupRoundWait new_wait;
 
 /**
  * The function called by the parser when an opening tag is read.
@@ -212,6 +217,17 @@ xml_cup_read_start_element (GMarkupParseContext *context,
 	state = STATE_CUP_ROUND_ROUND_ROBINS;
     else if(strcmp(element_name, TAG_CUP_ROUND_BREAK) == 0)
 	state = STATE_CUP_ROUND_BREAK;
+    else if(strcmp(element_name, TAG_CUP_ROUND_WAIT) == 0)
+    {
+     	state = STATE_CUP_ROUND_WAIT;
+        if(attribute_names[0] != NULL && strcmp(attribute_names[0], ATT_NAME_CUP_ROUND_WAIT_ROUND) == 0)
+            new_wait.cup_round = (gint)g_ascii_strtod(attribute_values[0], NULL) - 1;
+        else
+        {
+            new_wait.cup_round = -1;
+            g_warning("xml_cup_read_start_element: No round number specified for cup round wait in cup %s\n", new_cup.name);            
+        }
+    }
     else if(strcmp(element_name, TAG_CUP_ROUND_TWO_MATCH_WEEK_START) == 0)
 	state = STATE_CUP_ROUND_TWO_MATCH_WEEK_START;
     else if(strcmp(element_name, TAG_CUP_ROUND_TWO_MATCH_WEEK_END) == 0)
@@ -299,13 +315,18 @@ xml_cup_read_end_element    (GMarkupParseContext *context,
 	    strcmp(element_name, TAG_CUP_ROUND_NUMBER_OF_BEST_ADVANCE) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_ROUND_ROBINS) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_BREAK) == 0 ||
+	    strcmp(element_name, TAG_CUP_ROUND_WAIT) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_TWO_MATCH_WEEK_START) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_TWO_MATCH_WEEK_END) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_TWO_MATCH_WEEK) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_NEW_TEAMS) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_BYES) == 0 ||
 	    strcmp(element_name, TAG_CHOOSE_TEAMS) == 0)
-	state = STATE_CUP_ROUND;
+    {
+     	state = STATE_CUP_ROUND;
+        if(strcmp(element_name, TAG_CUP_ROUND_WAIT) == 0)
+            g_array_append_val(new_round.waits, new_wait);
+    }
     else if(strcmp(element_name, TAG_CHOOSE_TEAM) == 0)
     {
 	state = STATE_CHOOSE_TEAMS;
@@ -401,6 +422,8 @@ xml_cup_read_text         (GMarkupParseContext *context,
 	new_round.round_robins = int_value;
     else if(state == STATE_CUP_ROUND_BREAK)
 	league_cup_fill_rr_breaks(new_round.rr_breaks, buf);
+    else if(state == STATE_CUP_ROUND_WAIT)
+        new_wait.cup_sid = g_strdup(buf);
     else if(state == STATE_CUP_ROUND_TWO_MATCH_WEEK_START)
 	g_array_append_val(new_round.two_match_weeks[0], int_value);
     else if(state == STATE_CUP_ROUND_TWO_MATCH_WEEK_END)

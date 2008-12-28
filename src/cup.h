@@ -129,4 +129,7 @@ cup_get_highlight_colour(const Cup *cup);
 gboolean
 cup_check_fixtures(const Cup *cup);
 
+gboolean
+cup_round_check_waits(const CupRound *cup_round);
+
 #endif
