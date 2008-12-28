@@ -4,7 +4,7 @@
   <short_name>FA Cup</short_name>
   <symbol>flag_scotland.png</symbol>
   <sid>scotland_fa</sid>
-  <last_week>37</last_week>
+  <last_week>48</last_week>
   <week_gap>4</week_gap>
   <property>national</property>
 
@@ -31,6 +31,7 @@
 	</choose_team>
       </choose_teams>
       <byes>6</byes>
+      <delay>-6</delay>
     </cup_round>
 
     <cup_round>
@@ -50,22 +51,25 @@
 	  <choose_team_sid>scotland1</choose_team_sid>
 	</choose_team>
       </choose_teams>
-      <delay>1</delay>
+      <delay>-4</delay>
     </cup_round>
 
     <cup_round>
       <home_away>0</home_away>
       <replay>1</replay>
+      <delay>-4</delay>
     </cup_round>
 
     <cup_round>
       <home_away>0</home_away>
       <replay>1</replay>
+      <delay>-4</delay>
     </cup_round>
 
     <cup_round>
       <home_away>0</home_away>
       <neutral>1</neutral>
+      <delay>-1</delay>
     </cup_round>
 
     <cup_round>
