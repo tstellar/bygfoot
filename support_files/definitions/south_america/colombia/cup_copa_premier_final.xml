@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+	<name>Copa Premier</name>
+	<short_name>CPremier3</short_name>
+	<symbol>flag_colombia.png</symbol>
+	<sid>copa_premier_final</sid>
+	<add_week>41</add_week>
+	<last_week>45</last_week>
+	<week_gap>1</week_gap>
+	<property>promotion</property>
+	<property>national</property>
+	<cup_rounds>
+		<cup_round>
+			<choose_teams>
+				<choose_team>
+					<choose_team_sid>copa_premier_fase2</choose_team_sid>
+					<number_of_teams>4</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>4</end_idx>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+		<cup_round>
+		</cup_round>
+	</cup_rounds>
+</cup>
