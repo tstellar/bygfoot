@@ -2,9 +2,9 @@
 <cup>
   <name>Supercupa României</name>
   <short_name>SuperC_RO</short_name>
-  <sid>supercup_romania</sid>
-  <add_week>1000</add_week>
-  <group>59</group>
+  <symbol>flag_romania.png</symbol>
+  <sid>romania_supercup</sid>
+  <last_week>4</last_week>
   <property>national</property>
 
   <cup_rounds>
@@ -13,7 +13,6 @@
       <neutral>1</neutral>
 
       <choose_teams>
-	
 	<choose_team>
 	  <choose_team_sid>romania_coupe</choose_team_sid>
 	  <number_of_teams>1</number_of_teams>
@@ -27,10 +26,8 @@
 	  <start_idx>1</start_idx>
 	  <end_idx>2</end_idx>
 	</choose_team>
-
       </choose_teams>
 
     </cup_round>
   </cup_rounds>
-
 </cup>
