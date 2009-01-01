@@ -2,7 +2,7 @@
 <league>
   <sid>georgia1</sid>
   <name>Umaglesi Liga</name>
-  <short_name>Umaglesi</short_name>
+  <short_name>Umaglesi L.</short_name>
   <symbol>flag_georgia.png</symbol>
   <first_week>6</first_week>
   <week_gap>1</week_gap>
@@ -14,6 +14,15 @@
   <round_robins>3</round_robins>
   <yellow_red>5</yellow_red>
 
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>10</rank_start>
+      <rank_end>11</rank_end>
+      <dest_sid>georgia2a georgia2b</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
   <teams>
     <team>
       <team_name>Borjomi</team_name>
@@ -22,7 +31,7 @@
       <team_name>D. Tbilisi</team_name>
     </team>
     <team>
-      <team_name>Gagra</team_name>
+      <team_name>G. Tbilisi</team_name>
     </team>
     <team>
       <team_name>L. Tbilisi</team_name>
@@ -46,7 +55,7 @@
       <team_name>W. G. Tbilisi</team_name>
     </team>
     <team>
-      <team_name>Zestaponi</team_name>
+      <team_name>Zestafoni</team_name>
     </team>
   </teams>
 </league>
