@@ -266,13 +266,15 @@ cup_get_team_pointers(Cup *cup, gint round, gboolean preload)
     printf("cup_get_team_pointers\n");
 #endif
 
-    gint i;
+    gint i, existing_teams;
     CupRound *cup_round = &g_array_index(cup->rounds, CupRound, round);
     GPtrArray *teams = cup_round->team_ptrs;
 
     if(debug > 60)
 	g_print("cup_get_team_pointers %s round %d\n", cup->name, round);
 
+    existing_teams = cup_round->teams->len;
+    
     for(i=0;i<cup_round->choose_teams->len;i++)
         if(g_array_index(cup_round->choose_teams, CupChooseTeam, i).preload == preload)
         {
@@ -284,16 +286,16 @@ cup_get_team_pointers(Cup *cup, gint round, gboolean preload)
                 cup_load_choose_team(
                     cup, teams, 
                     &g_array_index(cup_round->choose_teams, CupChooseTeam, i));            
-        }
+        }        
 
-    if(cup_round->teams->len > 0)
-	while(teams->len + cup_round->teams->len > cup_round->new_teams)
+    if(cup_round->teams->len - existing_teams > 0)
+	while(teams->len + cup_round->teams->len - existing_teams > cup_round->new_teams)
 	{		
 	    free_team(&g_array_index(cup_round->teams, Team, cup_round->teams->len - 1));
 	    g_array_remove_index(cup_round->teams, cup_round->teams->len - 1);
 	}
 
-    for(i=0;i<cup_round->teams->len;i++)
+    for(i=existing_teams;i<cup_round->teams->len;i++)
     {	
 	team_generate_players_stadium(&g_array_index(cup_round->teams, Team, i), 0);
 	g_ptr_array_add(cup->teams, &g_array_index(cup_round->teams, Team, i));	    
@@ -302,10 +304,10 @@ cup_get_team_pointers(Cup *cup, gint round, gboolean preload)
 
     if(debug > 70)
 	for(i=0;i<teams->len;i++)
-	    g_print("cup_get_team_pointers: %d %s (%d) %s\n", i,
-		   ((Team*)g_ptr_array_index(teams, i))->name,
-		   ((Team*)g_ptr_array_index(teams, i))->clid,
-		   cup->name);
+	    g_print("cup_get_team_pointers: %s round %d team %d %s (clid %d)\n", 
+                    cup->name, round, i,
+                    ((Team*)g_ptr_array_index(teams, i))->name,
+                    ((Team*)g_ptr_array_index(teams, i))->clid);
 }
 
 /** Get the pointers to the teams (already generated, in one of the leagues or cups)
