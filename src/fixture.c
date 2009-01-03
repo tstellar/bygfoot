@@ -684,7 +684,7 @@ fixture_write_knockout_round(Cup *cup, gint cup_round, GPtrArray *teams)
 	teams = misc_randomise_g_pointer_array(teams);
 
     /* Special rule for cups that have to wait for other cups. */
-    if(first_week < week + 1)
+    if(first_week < week)
         first_week = week + 1;
 
     week_number = league_cup_get_week_with_break(cup->id, first_week);
