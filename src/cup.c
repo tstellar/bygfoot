@@ -100,6 +100,7 @@ cup_choose_team_new(void)
     new.generate = FALSE;
     new.skip_group_check = FALSE;
     new.from_table = 0;
+    new.preload = TRUE;
 
     return new;
 }
@@ -259,7 +260,7 @@ cup_get_choose_team_league_cup(const CupChooseTeam *ct,
     cup round. If necessary, teams are generated and stored in the teams
     array of the cup round. */
 void
-cup_get_team_pointers(Cup *cup, gint round)
+cup_get_team_pointers(Cup *cup, gint round, gboolean preload)
 {
 #ifdef DEBUG
     printf("cup_get_team_pointers\n");
@@ -272,19 +273,18 @@ cup_get_team_pointers(Cup *cup, gint round)
     if(debug > 60)
 	g_print("cup_get_team_pointers %s round %d\n", cup->name, round);
 
-    if(teams->len > 0)
-	g_warning("cup_get_team_pointers: round %d in cup %s has non-empty team pointers array.",
-		  round, cup->name);
-
     for(i=0;i<cup_round->choose_teams->len;i++)
-	if(g_array_index(cup_round->choose_teams, CupChooseTeam, i).generate)
-	    cup_load_choose_team_generate(
-		cup, cup_round,
-		&g_array_index(cup_round->choose_teams, CupChooseTeam, i));
-	else
-	    cup_load_choose_team(
-		cup, teams, 
-		&g_array_index(cup_round->choose_teams, CupChooseTeam, i));
+        if(g_array_index(cup_round->choose_teams, CupChooseTeam, i).preload == preload)
+        {
+            if(g_array_index(cup_round->choose_teams, CupChooseTeam, i).generate)
+                cup_load_choose_team_generate(
+                    cup, cup_round,
+                    &g_array_index(cup_round->choose_teams, CupChooseTeam, i));
+            else
+                cup_load_choose_team(
+                    cup, teams, 
+                    &g_array_index(cup_round->choose_teams, CupChooseTeam, i));            
+        }
 
     if(cup_round->teams->len > 0)
 	while(teams->len + cup_round->teams->len > cup_round->new_teams)

@@ -52,7 +52,7 @@ typedef struct
 } PromRelElement;
 
 /**
-   An element representing promotion/relegation games.
+   An struct representing promotion/relegation games.
 */
 typedef struct
 {

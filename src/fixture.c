@@ -113,7 +113,8 @@ fixture_write_cup_fixtures(Cup *cup)
 
     gint i;
 
-    cup_get_team_pointers(cup, 0);
+    for(i=0;i<cup->rounds->len;i++)
+        cup_get_team_pointers(cup, i, TRUE);
 
     if(g_array_index(cup->rounds, CupRound, 0).round_robin_number_of_groups > 0)
 	fixture_write_cup_round_robin(
@@ -174,7 +175,7 @@ fixture_update(Cup *cup)
     }
 
     new_round = &g_array_index(cup->rounds, CupRound, round + 1);
-    cup_get_team_pointers(cup, round + 1);
+    cup_get_team_pointers(cup, round + 1, FALSE);
 
     for(i=0;i<new_round->team_ptrs->len;i++)
 	g_ptr_array_add(teams, g_ptr_array_index(new_round->team_ptrs, i));
@@ -305,7 +306,9 @@ fixture_winner_of(const Fixture *fix, gboolean team_id)
     cupround = &g_array_index(cup_from_clid(fix->clid)->rounds, 
 			      CupRound, fix->round);
 
-    if(cupround->replay != 0 || !cupround->home_away)
+    if(cupround->replay != 0 ||
+       !cupround->home_away ||
+       cupround->round_robin_number_of_groups > 0)
 	winner_idx = (math_sum_int_array(&(fix->result[0][0]), 3) <
 		      math_sum_int_array(&(fix->result[1][0]), 3));
     else
@@ -964,12 +967,14 @@ fixture_get_first_leg(const Fixture *fix, gboolean silent)
 
     gint i;
     Fixture *first_leg = NULL;
+    const GArray *fixtures = cup_from_clid(fix->clid)->fixtures;
 
-    for(i=0;i<cup_from_clid(fix->clid)->fixtures->len;i++)
-	if(g_array_index(cup_from_clid(fix->clid)->fixtures, Fixture, i).round == fix->round &&
-	   g_array_index(cup_from_clid(fix->clid)->fixtures, Fixture, i).team_ids[0] == fix->team_ids[1] &&
-	   g_array_index(cup_from_clid(fix->clid)->fixtures, Fixture, i).team_ids[1] == fix->team_ids[0])
-	    first_leg = &g_array_index(cup_from_clid(fix->clid)->fixtures, Fixture, i);
+    if(g_array_index(cup_from_clid(fix->clid)->rounds, CupRound, fix->round).round_robin_number_of_groups == 0)
+        for(i=0;i<fixtures->len;i++)
+            if(g_array_index(fixtures, Fixture, i).round == fix->round &&
+               g_array_index(fixtures, Fixture, i).team_ids[0] == fix->team_ids[1] &&
+               g_array_index(fixtures, Fixture, i).team_ids[1] == fix->team_ids[0])
+                first_leg = &g_array_index(fixtures, Fixture, i);
 
     if(first_leg == NULL && !silent)
 	g_warning("fixture_get_first_leg: didn't find first leg match; cup %s round %d\n",

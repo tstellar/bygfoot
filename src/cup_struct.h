@@ -138,6 +138,11 @@ typedef struct
     /** Whether to skip the checking if a team participates in other
         of the same cup groupcups. */
     gboolean skip_group_check;
+    /** Whether to load the choose_team when the cup fixtures for the 
+        first cup round are written or only when the cup round the choose_team
+        belongs to is scheduled. Default: TRUE. */
+    gboolean preload;
+    
 } CupChooseTeam;
 
 /** Structure representing a cup. */

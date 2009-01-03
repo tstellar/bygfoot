@@ -50,6 +50,7 @@ enum
     TAG_CUP_CHOOSE_TEAM_GENERATE,
     TAG_CUP_CHOOSE_TEAM_SKIP_GROUP_CHECK,
     TAG_CUP_CHOOSE_TEAM_FROM_TABLE,
+    TAG_CUP_CHOOSE_TEAM_PRELOAD,
     TAG_CUP_ROUND,
     TAG_CUP_ROUND_NEW_TEAMS,
     TAG_CUP_ROUND_BYES,
@@ -174,6 +175,7 @@ xml_loadsave_cup_end_element    (GMarkupParseContext *context,
 	    tag == TAG_CUP_CHOOSE_TEAM_GENERATE ||
 	    tag == TAG_CUP_CHOOSE_TEAM_SKIP_GROUP_CHECK ||
 	    tag == TAG_CUP_CHOOSE_TEAM_FROM_TABLE ||
+	    tag == TAG_CUP_CHOOSE_TEAM_PRELOAD ||
 	    tag == TAG_CUP_CHOOSE_TEAM_RANDOMLY)
 	state = TAG_CUP_CHOOSE_TEAM;
     else if(tag == TAG_CUP_ROUND_HOME_AWAY ||
@@ -280,6 +282,8 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
 	new_choose_team.skip_group_check = int_value;
     else if(state == TAG_CUP_CHOOSE_TEAM_FROM_TABLE)
 	new_choose_team.from_table = int_value;
+    else if(state == TAG_CUP_CHOOSE_TEAM_PRELOAD)
+	new_choose_team.preload = int_value;
     else if(state == TAG_CUP_ROUND_HOME_AWAY)
 	new_round.home_away = int_value;
     else if(state == TAG_CUP_ROUND_NEW_TEAMS)
@@ -562,6 +566,8 @@ xml_loadsave_cup_write_choose_team(FILE *fil, const CupChooseTeam *choose_team)
 		  TAG_CUP_CHOOSE_TEAM_SKIP_GROUP_CHECK, I2);
     xml_write_int(fil, choose_team->from_table, 
 		  TAG_CUP_CHOOSE_TEAM_FROM_TABLE, I2);
+    xml_write_int(fil, choose_team->preload, 
+		  TAG_CUP_CHOOSE_TEAM_PRELOAD, I2);
 
     fprintf(fil, "%s</_%d>\n", I1, TAG_CUP_CHOOSE_TEAM);
 }
