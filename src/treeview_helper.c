@@ -531,12 +531,11 @@ treeview_helper_get_table_element_colour_cups(const League *league, gint table_i
 	    {
 		cup_round = &g_array_index(cp(i).rounds, CupRound, k);
 		for(j=0;j<cup_round->choose_teams->len;j++)
-		    if((strcmp(g_array_index(cup_round->choose_teams, 
-                                             CupChooseTeam, j).sid, buf) == 0 ||
-                        strcmp(g_array_index(cup_round->choose_teams, 
-                                             CupChooseTeam, j).sid, league->sid) == 0) &&
-                       g_array_index(cup_round->choose_teams, 
-                                     CupChooseTeam, j).from_table == table_index)
+		    if((strcmp(g_array_index(cup_round->choose_teams, CupChooseTeam, j).sid, buf) == 0 ||
+                        (strcmp(g_array_index(cup_round->choose_teams, CupChooseTeam, j).sid, league->sid) == 0 &&
+                         !g_array_index(cup_round->choose_teams, CupChooseTeam, j).generate)) &&
+                        g_array_index(cup_round->choose_teams, 
+                                      CupChooseTeam, j).from_table == table_index)
 		    {
 			if((idx + 1 >= g_array_index(cup_round->choose_teams, 
 						     CupChooseTeam, j).start_idx &&
