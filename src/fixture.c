@@ -1766,3 +1766,32 @@ fixtures_condense(GArray *fixtures)
                                GINT_TO_POINTER(FIXTURE_COMPARE_DATE + 100));
     }
 }
+
+/** Return the name of a cup round, e.g. 'round robin'
+    or 'final' or so.
+    @param fix A fixture belonging to the round.
+    @param buf The buffer we write the name into*/
+void
+fixture_get_cup_round_name(const Fixture *fix, gchar *buf)
+{
+#ifdef DEBUG
+    printf("cup_round_name\n");
+#endif
+
+    const Cup *cup = cup_from_clid(fix->clid);
+    const CupRound *cup_round = 
+	&g_array_index(cup->rounds, CupRound, fix->round);
+
+    cup_get_round_name(cup, fix->round, buf);
+
+    if(cup_round->home_away && cup_round->round_robin_number_of_groups == 0)
+    {
+	if(fix->second_leg)
+	    strcat(buf, _(" -- Second leg"));
+	else
+	    strcat(buf, _(" -- First leg"));
+    }
+    else if(fix->replay_number > 0)
+	strcat(buf, _(" -- Replay matches"));
+}
+
