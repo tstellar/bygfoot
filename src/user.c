@@ -1187,7 +1187,7 @@ user_mm_add_last_match(gboolean load_file, gboolean save_file)
 	new.competition_name = g_string_new(league_cup_get_name_string(fix->clid));
     else
     {
-	cup_round_name(fix, buf);
+	fixture_get_cup_round_name(fix, buf);
 	new.competition_name = g_string_new("");
 	g_string_printf(new.competition_name, "%s %s", 
 			league_cup_get_name_string(fix->clid), buf);

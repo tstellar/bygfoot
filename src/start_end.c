@@ -178,7 +178,8 @@ start_new_season(void)
 	if(query_league_active(&lig(i)))
 	    fixture_write_league_fixtures(&lig(i));
 
-    for(i=cps->len - 1; i >= 0; i--)
+/*     for(i=cps->len - 1; i >= 0; i--) */
+    for(i = 0; i < cps->len; i++)
     {
 	if(cp(i).add_week >= 0)
 	{

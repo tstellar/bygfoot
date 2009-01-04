@@ -84,7 +84,7 @@ Cup*
 cup_from_sid(const gchar* sid);
 
 void
-cup_round_name(const Fixture *fix, gchar *buf);
+cup_round_get_name(const Fixture *fix, gchar *buf);
 
 GPtrArray*
 cup_get_teams_sorted(const Cup *cup);

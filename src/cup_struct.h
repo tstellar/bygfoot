@@ -44,6 +44,8 @@ typedef struct
     a round or the round robin games. */
 typedef struct
 {
+    /** Name of the cup round. By default filled with "Last 32", "Final" etc. */
+    gchar *name;
     /** Whether there are home and away games or only one leg. 
 	Default: TRUE. */
     gboolean home_away;

@@ -43,6 +43,7 @@
 #define TAG_TALENT_DIFF "talent_diff"
 #define TAG_CUP_ROUNDS "cup_rounds"
 #define TAG_CUP_ROUND "cup_round"
+#define TAG_CUP_ROUND_NAME "round_name"
 #define TAG_CUP_ROUND_NEW_TEAMS "new_teams"
 #define TAG_CUP_ROUND_BYES "byes"
 #define TAG_CUP_ROUND_HOME_AWAY "home_away"
@@ -93,6 +94,7 @@ enum XmlCupStates
     STATE_TALENT_DIFF,
     STATE_CUP_ROUNDS,
     STATE_CUP_ROUND,
+    STATE_CUP_ROUND_NAME,
     STATE_CUP_ROUND_NEW_TEAMS,
     STATE_CUP_ROUND_BYES,
     STATE_CUP_ROUND_HOME_AWAY,
@@ -195,6 +197,8 @@ xml_cup_read_start_element (GMarkupParseContext *context,
 	new_round = cup_round_new();
 	state = STATE_CUP_ROUND;
     }
+    else if(strcmp(element_name, TAG_CUP_ROUND_NAME) == 0)
+	state = STATE_CUP_ROUND_NAME;
     else if(strcmp(element_name, TAG_CUP_ROUND_NEW_TEAMS) == 0)
 	state = STATE_CUP_ROUND_NEW_TEAMS;
     else if(strcmp(element_name, TAG_CUP_ROUND_BYES) == 0)
@@ -324,6 +328,7 @@ xml_cup_read_end_element    (GMarkupParseContext *context,
 	    strcmp(element_name, TAG_CUP_ROUND_TWO_MATCH_WEEK_END) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_TWO_MATCH_WEEK) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_NEW_TEAMS) == 0 ||
+	    strcmp(element_name, TAG_CUP_ROUND_NAME) == 0 ||
 	    strcmp(element_name, TAG_CUP_ROUND_BYES) == 0 ||
 	    strcmp(element_name, TAG_CHOOSE_TEAMS) == 0)
     {
@@ -403,6 +408,8 @@ xml_cup_read_text         (GMarkupParseContext *context,
     else if(state == STATE_TALENT_DIFF)
 	new_cup.talent_diff = 
 	    (float_value / 10000);
+    else if(state == STATE_CUP_ROUND_NAME)
+	new_round.name = g_strdup(buf);
     else if(state == STATE_CUP_ROUND_NEW_TEAMS)
 	new_round.new_teams = int_value;
     else if(state == STATE_CUP_ROUND_BYES)
@@ -479,6 +486,7 @@ xml_cup_read(const gchar *cup_name, GArray *cups)
     gsize length;
     GError *error = NULL;
     gchar buf[SMALL];
+    gint i;
 
     context = 
 	g_markup_parse_context_new(&parser, 0, NULL, NULL);
@@ -514,5 +522,13 @@ xml_cup_read(const gchar *cup_name, GArray *cups)
 
     new_cup.id = cup_id_new;
     league_cup_adjust_week_breaks(new_cup.week_breaks, new_cup.week_gap);
+
+    for(i = 0; i < new_cup.rounds->len; i++)
+        if(g_array_index(new_cup.rounds, CupRound, i).name == NULL)
+        {
+            cup_get_round_name(&new_cup, i, buf);
+            g_array_index(new_cup.rounds, CupRound, i).name = g_strdup(buf);
+        }
+
     g_array_append_val(cups, new_cup);
 }

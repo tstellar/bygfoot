@@ -664,6 +664,8 @@ free_cup_round(CupRound *cup_round)
 
     gint j;
 
+    g_free(cup_round->name);
+
     free_g_array(&cup_round->two_match_weeks[0]);
     free_g_array(&cup_round->two_match_weeks[1]);
 

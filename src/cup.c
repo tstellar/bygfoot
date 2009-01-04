@@ -115,6 +115,7 @@ cup_round_new(void)
 
     CupRound new;
 
+    new.name = NULL;
     new.new_teams = 0;
     new.byes = -1;
     new.home_away = TRUE;
@@ -1056,35 +1057,7 @@ cup_from_sid(const gchar *sid)
     return NULL;
 }
 
-/** Return the name of a cup round, e.g. 'round robin'
-    or 'final' or so.
-    @param fix A fixture belonging to the round.
-    @param buf The buffer we write the name into*/
-void
-cup_round_name(const Fixture *fix, gchar *buf)
-{
-#ifdef DEBUG
-    printf("cup_round_name\n");
-#endif
-
-    const Cup *cup = cup_from_clid(fix->clid);
-    const CupRound *cup_round = 
-	&g_array_index(cup->rounds, CupRound, fix->round);
-
-    cup_get_round_name(cup, fix->round, buf);
-
-    if(cup_round->home_away && cup_round->round_robin_number_of_groups == 0)
-    {
-	if(fix->second_leg)
-	    strcat(buf, _(" -- Second leg"));
-	else
-	    strcat(buf, _(" -- First leg"));
-    }
-    else if(fix->replay_number > 0)
-	strcat(buf, _(" -- Replay matches"));
-}
-
-/** Return the cup round given by the number. */
+/** Return a standard cup round name. */
 void
 cup_get_round_name(const Cup *cup, gint round, gchar *buf)
 {

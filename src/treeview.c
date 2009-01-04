@@ -1013,8 +1013,7 @@ treeview_create_fixtures_header(const Fixture *fix, GtkListStore *ls, gboolean b
         sprintf(buf3, _("Week %d Round %d\nCup round %d"), 
                 fix->week_number, fix->week_round_number, fix->round + 1);
 	name = cup_from_clid(fix->clid)->name;
-	cup_round_name(fix, buf);
-	sprintf(round_name, "\n%s", buf);
+	sprintf(round_name, "\n%s", g_array_index(cup_from_clid(fix->clid)->rounds, CupRound, fix->round).name);
 	symbol = cup_from_clid(fix->clid)->symbol;
     }
     
@@ -1806,10 +1805,8 @@ treeview_create_next_opponent(void)
     if(fix->clid < ID_CUP_START)
 	strcpy(buf, league_cup_get_name_string(fix->clid));
     else
-    {
-	cup_round_name(fix, buf2);
-	sprintf(buf, "%s (%s)", league_cup_get_name_string(fix->clid), buf2);
-    }		
+	sprintf(buf, "%s (%s)", league_cup_get_name_string(fix->clid),
+                g_array_index(cup_from_clid(fix->clid)->rounds, CupRound, cup_from_clid(fix->clid)->rounds->len - 1).name);
 
     gtk_list_store_append(ls, &iter);
     gtk_list_store_set(ls, &iter, 0, _("Your next opponent"), 1, buf, -1);
