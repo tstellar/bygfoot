@@ -118,10 +118,12 @@ news_select(const GArray *news_array, gchar *title, gchar *subtitle,
     *title_id = *subtitle_id = -1;
 
     for(i=0;i<news_array->len;i++)
+    {
 	if((!news_check_article_for_repetition(g_array_index(news_array, NewsArticle, order_articles[i]).id) ||
             g_array_index(news_array, NewsArticle, order_articles[i]).priority > 20) &&
            misc_parse_condition(g_array_index(news_array, NewsArticle, order_articles[i]).condition, token_rep_news))
-	    break;
+	    break;        
+    }
 
     if(i == news_array->len)
         for(i=0;i<news_array->len;i++)
@@ -648,6 +650,23 @@ news_set_league_cup_tokens(const Fixture *fix)
                             query_league_cup_has_property(cup->id, "hide") ||
                             query_league_cup_has_property(cup->id, "omit_from_history"));
     }
+    else
+    {
+        misc_token_add_bool(token_rep_news,
+                            option_int("string_token_bool_cup_knockout", &tokens),
+                            FALSE);
+        
+        misc_token_add_bool(token_rep_news,
+                            option_int("string_token_bool_cup_home_away", &tokens),
+                            FALSE);
+        
+        misc_token_add_bool(token_rep_news, 
+                            option_int("string_token_bool_cup_first_leg", &tokens),
+                            FALSE);
+        misc_token_add_bool(token_rep_news, 
+                            option_int("string_token_bool_cup_second_leg", &tokens),
+                            FALSE);
+    }
 }
 
 /** Set the news tokens related to the fixture. */
@@ -797,7 +816,7 @@ news_free_tokens(void)
 /*     printf("-------------------------------------\n"); */
     for(i=token_rep_news[0]->len - 1;i >= 0; i--)
     {
-/*         printf("%s // %s\n",  */
+/*         printf("%s // %s\n", */
 /*                (gchar*)g_ptr_array_index(token_rep_news[0], i), */
 /*                (gchar*)g_ptr_array_index(token_rep_news[1], i)); */
 	g_free(g_ptr_array_index(token_rep_news[0], i));
