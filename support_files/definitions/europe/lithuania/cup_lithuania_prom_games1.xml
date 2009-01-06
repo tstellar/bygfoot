@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>1. Lyga Promotion Games</name>
+  <short_name>1. L. Prom.</short_name>
+  <symbol>flag_lithuania.png</symbol>
+  <sid>lithuania_prom_games1</sid>
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>highlight2</property>
+  <yellow_red>3</yellow_red>
+
+  <cup_rounds>
+    <cup_round>
+
+      <choose_teams>
+	<choose_team>
+	  <choose_team_sid>lithuania2</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <start_idx>2</start_idx>
+	  <end_idx>2</end_idx>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>lithuania1</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <start_idx>7</start_idx>
+	  <end_idx>7</end_idx>
+	</choose_team>
+      </choose_teams>
+
+    </cup_round>
+  </cup_rounds>
+</cup>
