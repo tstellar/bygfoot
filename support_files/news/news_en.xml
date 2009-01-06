@@ -1,7 +1,7 @@
 <news>
   <news_article>
     <type>match</type>
-    <condition>_TLAYERDIFF_ = 0 and _GD_ G 3</condition>
+    <condition>_TLAYERDIFF_ = 0 and _GD_ G 3 and (_CUPKO_ = 0 or _CUPHOMEAWAY_ = 0 or _CUPFIRSTLEG_ = 1)</condition>
     <title priority="20" condition="_CUPET_ = 1">_TW_ [beats|overcomes|defeats] _TL_ in extra time</title>
     <title priority="20" condition="_CUPET_ = 1">_TW_ victorious in extra time</title>
     <title priority="20" condition="_CUPPEN_ = 1">_TW_ [beats|overcomes|defeats] _TL_ _REW_ in penalties</title>
@@ -32,7 +32,7 @@
 
   <news_article>
     <type>match</type>
-    <condition>_TLAYERDIFF_ = 0 and _GD_ G 2</condition>
+    <condition>_TLAYERDIFF_ = 0 and _GD_ G 2 and (_CUPKO_ = 0 or _CUPHOMEAWAY_ = 0 or _CUPFIRSTLEG_ = 1)</condition>
     <title priority="20" condition="_CUPET_ = 1">_TW_ [beats|overcomes|defeats] _TL_ in extra time</title>
     <title priority="20" condition="_CUPET_ = 1">_TW_ victorious in extra time</title>
     <title priority="20" condition="_CUPPEN_ = 1">_TW_ [beats|overcomes|defeats] _TL_ _REW_ in penalties</title>
@@ -45,7 +45,7 @@
     <title condition="_TWN_ = 1 and _CUPNEUTRAL = 0">_TW_ dominates at _TL_</title>
     <title condition="_TWN_ = 1 and _CUPNEUTRAL = 0">_TW_ dominates away</title>
     <title condition="_GOALS_TLN__ > 1">_TW_ victorious despite _GOALS_TLN__ goals against</title>
-    <title condition="_GOALS_TLN__ > 1">_GOALS_TLN__ not enough for _TL_</title>
+    <title condition="_GOALS_TLN__ > 1">_GOALS_TLN__ goals not enough for _TL_</title>
     <subtitle>_TW_ controls _TL_ in _REW_ effort.</subtitle>
     <subtitle condition="_TWN_ = 0 and _CUPNEUTRAL = 0">_TW_ dispatches _TL_ with a _RE_ home win.</subtitle>
     <subtitle condition="_GOALS_TLN__ > 1">_TW_ keeps the upper hand in a match with numerous goals.</subtitle>
@@ -65,10 +65,10 @@
 
   <news_article>
     <type>match</type>
-    <condition>_TLAYERDIFF_ = 0 and _GOALS0_ != _GOALS1_</condition>
+    <condition>_TLAYERDIFF_ = 0 and _GOALS0_ != _GOALS1_ and (_CUPKO_ = 0 or _CUPHOMEAWAY_ = 0 or _CUPFIRSTLEG_ = 1)</condition>
     <priority>5</priority>
-    <title>_TW_ besiegt _TL_ mit _REW_</title>
-    <title>_TL_ unterliegt _TW_ _REL_</title>
+    <title>_TW_ [beats|overcomes|defeats] _TL_ _REW_</title>
+    <title>_TL_ loses to _TW_ _REL_</title>
     <title priority="20" condition="_CUPET_ = 1">_TW_ [beats|overcomes|defeats] _TL_ in extra time</title>
     <title priority="20" condition="_CUPET_ = 1">_TW_ victorious in extra time</title>
     <title priority="20" condition="_CUPPEN_ = 1">_TW_ [beats|overcomes|defeats] _TL_ _REW_ in penalties</title>
@@ -121,78 +121,73 @@
 
   <news_article>
     <type>match</type>
-    <condition>_TLAYERDIFF_ = 0 and _GDAGG_ = 0</condition>
+    <condition>_TLAYERDIFF_ = 0 and _GD_ = 0 and (_CUPKO_ = 0 or _CUPHOMEAWAY_ = 0 or _CUPFIRSTLEG_ = 1)</condition>
     <title priority="20" condition="_CUPET_ = 1">_TW_ [beats|overcomes|defeats] _TL_ in extra time</title>
     <title priority="20" condition="_CUPET_ = 1">_TW_ victorious in extra time</title>
     <title priority="20" condition="_CUPPEN_ = 1">_TW_ [beats|overcomes|defeats] _TL_ _REW_ in penalties</title>
     <title priority="20" condition="_CUPPEN_ = 1">_TW_ hold their nerves in penalty shoot-out</title>
-    <title condition="_CUPNEUTRAL = 0">_T1_ holt Unentschieden bei _T0_</title>
-    <title condition="_CUPNEUTRAL = 0">_T0_ kommt zuhause nicht über ein _RE_ hinaus</title>
-    <title>Mageres Unentschieden für [_T0_|_T1_]</title>
-    <title>Torloses Unentschieden bei _T0_ gegen _T_</title>
-    <title>_T0_ und _T1_ trennen sich _RE_</title>
-    <title condition="_CUP_ = 0">Punkteteilung bei _T0_ gegen _T1_</title>
-    <title condition="_GOALS0_ > 1">Abwechslungsreiches Remis für _T0_</title>
-    <title condition="_GOALS0_ = 0">Langeweile pur bei _T0_ gegen _T1_</title>
-    <subtitle condition="_GOALS0_ > 1">[_T0_|_T1_] scheitert an Problemen in der Defensivabteilung.</subtitle>
-    <subtitle condition="_GOALS0_ > 1">[_T0_|_T1_] lässt _GOALS1_ Tore zu und muss sich über ein Remis nicht wundern.</subtitle>
-    <subtitle condition="_GOALS0_ > 1">[_T0_|_T1_] muss _GOALS1_ Treffer hinnehmen und holt nur ein Unentschieden.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS0_">Tore von _SCORERS0_ reichen _T0_ nur für ein _RE_.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS0_ = 0">_SCORERS0_ rettet Unentschieden für _T0_ gegen _T1_.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS0_ = 0">_SCORERS1_ rettet Unentschieden für _T1_ in _T0_.</subtitle>
-    <subtitle condition="_GOALS0_ < 2">_T0_ und _T1_ langweilen _AT_ Zuschauer mit Rumpelfussball und einem unsäglichen _RE_.</subtitle>
-    <subtitle condition="_GOALS0_ < 2">Beiden Teams fehlte die Energie in dieser Partie.</subtitle>
-    <subtitle condition="_CUP_ = 0">Faire Punkteteilung nach ausgeglichenem Spiel.</subtitle>
-    <subtitle>Das Remis hilft aber keinem der beiden Teams weiter.</subtitle>
-    <subtitle>Weder _T0_ noch _T1_ können mit einem Unentschieden zufrieden sein.</subtitle>
-    <subtitle condition="_GOALS0_ < 2">Zahlreiche der _AT_ Zuschauer sterben an Langeweile während dieses unterirdischen Spiels.</subtitle>
-    <subtitle condition="_GOALS0_ < 2">Die beiden Teams liefern einen Grottenkick aus der Zeit des Catenaccio.</subtitle>
-    <subtitle condition="_GOALS0_ > 1">_AT_ werden trotz Unentschieden beim _RE_ gut unterhalten.</subtitle>
-    <subtitle condition="_GOALS0_ > 2">Trainer von [_T0_|_T1_] will sich in den nächsten Wochen auf die Defensive konzentrieren.</subtitle>
-    <subtitle condition="_GOALS0_ > 1">Gute Offensivleistung von [_T0_|_T1_] wird durch Leichtsinnsfehler kaputtgemacht.</subtitle>
-    <subtitle condition="_GOALS0_ > 1">[_T0_|_T1_] verschenkt durch Fehler in der Verteidigung den Sieg.</subtitle>
-    <subtitle condition="_GOALS0_ = 1">Ein Fehler kostet [_T0_|_T1_] den Sieg.</subtitle>
-    <subtitle condition="_GOALS0_ < _SHOTS0_ + 3">Mangelhafte Chancenverwertung raubt _T0_ die Chance auf den Sieg.</subtitle>
-    <subtitle condition="_GOALS1_ < _SHOTS1_ + 3">Mangelhafte Chancenverwertung raubt _T1_ die Chance auf den Sieg.</subtitle>
-    <subtitle condition="_GOALS1_ = 0 and _PEN1_ > 0">Ein verschenkter Elfmeter wird den Spielern von _T1_ noch lange den Schlaf rauben.</subtitle>
-    <subtitle condition="_GOALS0_ = 0 and _PEN0_ > 0">Ein verschenkter Elfmeter wird den Spielern von _T0_ noch lange den Schlaf rauben.</subtitle>
-    <subtitle condition="_UNBEATEN0_ > 3">_T0_ holt nur Unentschieden, ist aber seit _UNBEATEN0_ Matches ungeschlagen.</subtitle>
-    <subtitle condition="_UNBEATEN0_ > 3">Vor _AT_ Zuschauern bleibt _T0_ auch im _UNBEATEN0_-ten Spiel ohne Niederlage.</subtitle>
-    <subtitle condition="_LEAGUEUNBEATEN0_ > 3">_T0_ ist in der Liga auch für _T1_ nicht zu knacken und baut die Serie ohne Niederlage auf _UNBEATEN0_ aus.</subtitle>
-    <subtitle condition="_LEAGUEUNBEATEN0_ > 3">Mit dem _RE_ ist _T0_ nun schon seit _UNBEATEN0_ Begegnungen in der Liga ungeschlagen.</subtitle>
+    <title condition="_CUPNEUTRAL = 0">_T1_ gets the draw at _T0_</title>
+    <title condition="_CUPNEUTRAL = 0">_T0_ manages only a _RE_ tie at home</title>
+    <title>Meagre draw for [_T0_|_T1_]</title>
+    <title condition="_GOALS0_ = 0">Goal-less draw in _T0_ vs. _T1_</title>
+    <title condition="_CUP_ = 0">_T0_ and _T1_ share the points</title>
+    <title condition="_GOALS0_ > 1">Eventful draw for [_T0_|_T1_]</title>
+    <title condition="_GOALS0_ = 0">_T0_ vs. _T1_ is pure boredom</title>
+    <subtitle condition="_GOALS0_ > 1">[_T0_|_T1_] let down by horrible defense.</subtitle>
+    <subtitle condition="_GOALS0_ > 1">[_T0_|_T1_] allows _GOALS1_ goals and should be satisfied with a tie.</subtitle>
+    <subtitle condition="_GOALS0_ > 1">[_T0_|_T1_] allows _GOALS1_ and gets only a draw.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS0_">Goals by _SCORERS0_ only ensure a _RE_ for _T0_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS0_ = 0">_SCORERS0_ saves the draw for _T0_ against _T1_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS0_ = 0">_SCORERS1_ saves the draw for _T1_ at _T0_.</subtitle>
+    <subtitle condition="_GOALS0_ < 2">_T0_ and _T1_ bore _AT_ spectators with horrible, horrible play and an utterly disappointing _RE_.</subtitle>
+    <subtitle condition="_GOALS0_ < 2">Both teams clearly lacked the energy in this match.</subtitle>
+    <subtitle>The draw doesn't help either team.</subtitle>
+    <subtitle>Neither _T0_ nor _T1_ can really be satisfied with a tie.</subtitle>
+    <subtitle condition="_GOALS0_ < 2">Several of the _AT_ spectators die of boredom during an atrocious game.</subtitle>
+    <subtitle condition="_GOALS0_ < 2">The two teams deliver repulsing football reminiscent of the days of Catenaccio.</subtitle>
+    <subtitle condition="_GOALS0_ > 1">_AT_ spectators enjoy a lively game despite the _RE_ draw.</subtitle>
+    <subtitle condition="_GOALS0_ > 2">The coach of [_T0_|_T1_] vows to concentrate on getting the defense in shape during the coming weeks.</subtitle>
+    <subtitle condition="_GOALS0_ > 1">[_T0_|_T1_] combines good offense with costly mistakes and only gets the draw.</subtitle>
+    <subtitle condition="_GOALS0_ > 1">[_T0_|_T1_] commits some easy mistakes and wastes victory.</subtitle>
+    <subtitle condition="_GOALS0_ = 1">One mistake by [_T0_|_T1_] wastes victory.</subtitle>
+    <subtitle condition="_GOALS0_ < _SHOTS0_ + 3">_T0_ waste their scoring chances and only get the draw.</subtitle>
+    <subtitle condition="_GOALS1_ < _SHOTS1_ + 3">_T1_ waste their scoring chances and only get the draw.</subtitle>
+    <subtitle condition="_GOALS1_ = 0 and _PEN1_ > 0">A wasted penalty shot will haunt _T1_'s players for a long time.</subtitle>
+    <subtitle condition="_GOALS0_ = 0 and _PEN0_ > 0">A wasted penalty shot will haunt _T0_'s players for a long time.</subtitle>
+    <subtitle condition="_UNBEATEN0_ > 3">_T0_ only gets the draw but the unbeaten streak of _UNBEATEN0_ matches is still alive.</subtitle>
+    <subtitle condition="_UNBEATEN0_ > 3">_AT_ spectators watch _T0_ extend their unbeaten streak to _UNBEATEN0_.</subtitle>
+    <subtitle condition="_LEAGUEUNBEATEN0_ > 3">_T0_ unbeatable for _T1_ and extends streak to _UNBEATEN0_ matches without loss in _LEAGUECUPNAME_.</subtitle>
   </news_article>
 
   <news_article>
     <type>match</type>
-    <condition>_TLAYERDIFF_ = 0 and _GD_ = 1</condition>
+    <condition>_TLAYERDIFF_ = 0 and _GD_ = 1 and (_CUPKO_ = 0 or _CUPHOMEAWAY_ = 0 or _CUPFIRSTLEG_ = 1)</condition>
     <title priority="20" condition="_CUPET_ = 1">_TW_ [beats|overcomes|defeats] _TL_ in extra time</title>
     <title priority="20" condition="_CUPET_ = 1">_TW_ victorious in extra time</title>
     <title priority="20" condition="_CUPPEN_ = 1">_TW_ [beats|overcomes|defeats] _TL_ _REW_ in penalties</title>
     <title priority="20" condition="_CUPPEN_ = 1">_TW_ hold their nerves in penalty shoot-out</title>
-    <title>Knappes _REW_ für _TW_</title>
-    <title>_TW_ siegt knapp gegen _TL_</title>
-    <title>_TW_ bezwingt _TL_ knapp</title>
-    <title>Hauchdünner Sieg für _TW_</title>
-    <title>_TL_ ärgert sich über unnötige Niederlage</title>
-    <title>_TL_ unterliegt _TW_ knapp</title>
-    <title>Spannung pur bei _T0_ gegen _T1_</title>
-    <title>Enges Spiel endet glücklich für _TW_</title>
-    <title condition="_CUPNEUTRAL = 0">Spannende Partie bei _T0_</title>
-    <title condition="_TWN_ = 0 and _CUPNEUTRAL = 0">Glücklicher Heimsieg für _TW_</title>
-    <title condition="_TWN_ = 1 and _CUPNEUTRAL = 0">_TW_ siegt bei _TL_ denkbar knapp</title>
-    <subtitle>Vor _AT_ Zuschauern behält _TW_ mit einem Tor Vorsprung die Oberhand.</subtitle>
-    <subtitle>_AT_ Zuschauer sehen ein spannendes Spiel von zwei ausgeglichenen Mannschaften.</subtitle>
-    <subtitle>_TW_ gewinnt mit einem knappen, aber verdienten _REW_ gegen _TL_.</subtitle>
-    <subtitle>Es wäre für _TL_ wesentlich mehr als das undankbare _REL_ drin gewesen.</subtitle>
-    <subtitle condition="_SHOTS_TWN__ = _GOALS_TWN__">Es wäre für _TL_ wesentlich mehr als das undankbare _REL_ drin gewesen.</subtitle>
-    <subtitle condition="_GOALS_TWN__ = 1">_SCORERS_TWN__ entscheidet das Spiel mit seinem Tor.</subtitle>
-    <subtitle condition="_GOALS_TWN__ = 1">Ein einziges Tor reicht für _TW_ für den Erfolg.</subtitle>
-    <subtitle condition="_GOALS_TWN__ = 1 and _CUP_ = 0">Ein einziges Tor reicht für _TW_ für drei Punkte.</subtitle>
+    <title>Tight _REW_ for _TW_</title>
+    <title>_TW_ [beats|overcomes|defeats] _TL_ in a [tight|close|tense] match</title>
+    <title>_TW_ wins in a [tight|close|tense] match</title>
+    <title>_TL_ frustrated about unnecessary loss</title>
+    <title>_TL_ loses to _TW_ in a [tight|close|tense] encounter</title>
+    <title>Pure excitement in _T0_ vs. _T1_</title>
+    <title>Close match with happy ending for _TW_</title>
+    <title condition="_CUPNEUTRAL = 0">Exciting game at _T0_</title>
+    <title condition="_TWN_ = 0 and _CUPNEUTRAL = 0">_TW_ fortunate to get home win</title>
+    <title condition="_TWN_ = 1 and _CUPNEUTRAL = 0">_TW_ wins at _TL_ in a [tight|close|tense] game</title>
+    <subtitle>_AT_ spectators watch _TW_ come out only one goal ahead of _TL_.</subtitle>
+    <subtitle>_AT_ spectators see a [tight|close|tense] encounter between two equal teams.</subtitle>
+    <subtitle>_TW_ gets a [tight|close|tense] but deserved _REW_ against _TL_.</subtitle>
+    <subtitle>_TL_ should have gotten more than a disappointing and unfortunate _REL_ out of this match.</subtitle>
+    <subtitle condition="_GOALS_TWN__ = 1">_SCORERS_TWN__ gets the game winning goal.</subtitle>
+    <subtitle condition="_GOALS_TWN__ = 1">One goal is enough for _TW_ to get the win in this match.</subtitle>
+    <subtitle condition="_GOALS_TWN__ = 1 and _CUP_ = 0">One goal is enough for _TW_ to grab three points.</subtitle>
   </news_article>
 
   <news_article>
     <type>match</type>
-    <condition>_TLAYERDIFF_ = 0 and _GD_ != 0 and _TAVSKILLDIFF_ > 7</condition>
+    <condition>_TLAYERDIFF_ = 0 and _GD_ != 0 and _TAVSKILLDIFF_ > 7 and (_CUPKO_ = 0 or _CUPHOMEAWAY_ = 0 or _CUPFIRSTLEG_ = 1)</condition>
     <title priority="20" condition="_CUPET_ = 1">_TW_ [beats|overcomes|defeats] _TL_ in extra time</title>
     <title priority="20" condition="_CUPET_ = 1">_TW_ victorious in extra time</title>
     <title priority="20" condition="_CUPPEN_ = 1">_TW_ [beats|overcomes|defeats] _TL_ _REW_ in penalties</title>
@@ -216,7 +211,7 @@
 
   <news_article>
     <type>match</type>
-    <condition>_TLAYERDIFF_ > 0</condition>
+    <condition>_TLAYERDIFF_ > 0 and (_CUPKO_ = 0 or _CUPHOMEAWAY_ = 0 or _CUPFIRSTLEG_ = 1)</condition>
     <title priority="20" condition="_CUPET_ = 1">_TW_ [beats|overcomes|defeats] _TL_ in extra time</title>
     <title priority="20" condition="_CUPET_ = 1">_TW_ victorious in extra time</title>
     <title priority="20" condition="_CUPPEN_ = 1">_TW_ [beats|overcomes|defeats] _TL_ _REW_ in penalties</title>
