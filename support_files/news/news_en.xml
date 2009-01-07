@@ -439,38 +439,34 @@
     <type>match</type>
     <priority>25</priority>
     <condition>_CUP_ = 1 and _CUPKO_ = 1 and _CUPPROMREL_ = 0 and _CUPAUX_ = 0 and _CUPSTAGE_ > 3 and _CUPHOMEAWAY_ = 0</condition>
-    <title>_CUPMATCHWINNER_ ist in der nächsten Runde</title>
-    <title>_CUPMATCHWINNER_ [ist|kommt] weiter</title>
-    <title>_CUPMATCHLOSER_ scheidet aus</title>
-    <title>_CUPMATCHLOSER_ draussen</title>
+    <title>_CUPMATCHWINNER_ through to the next round</title>
+    <title>_CUPMATCHWINNER_ advances</title>
+    <title>_CUPMATCHLOSER_ eliminated</title>
+    <title>_CUPMATCHLOSER_ is out</title>
     <title priority="20" condition="_CUPET_ = 1">_TW_ [beats|overcomes|defeats] _TL_ in extra time</title>
     <title priority="20" condition="_CUPET_ = 1">_TW_ victorious in extra time</title>
     <title priority="20" condition="_CUPPEN_ = 1">_TW_ [beats|overcomes|defeats] _TL_ _REW_ in penalties</title>
     <title priority="20" condition="_CUPPEN_ = 1">_TW_ hold their nerves in penalty shoot-out</title>
-    <title condition="_GD_ = 0">Unentschieden reicht _CUPMATCHWINNER_</title>
-    <title condition="_GD_ = 0">_CUPMATCHWINNER_ kommt mit Unentschieden weiter</title>
-    <title condition="_GD_ = 0">_CUPMATCHLOSER_ scheidet nach _RE_ aus</title>
-    <title condition="_GDAGG_ = 1">_CUPMATCHWINNER_ mit einem Tor Vorsprung weiter</title>
-    <title condition="_GDAGG_ = 1">_CUPMATCHLOSER_ scheidet knapp aus</title>
-    <title condition="_GDAGG_ = 1">_CUPMATCHLOSER_ nach knappem Gesamtergebnis draussen</title>
-    <title condition="_GDAGG_ > 1">_CUPMATCHWINNER_ locker weiter</title>
-    <title condition="_GDAGG_ > 1">_CUPMATCHWINNER_ ohne Probleme weiter</title>
-    <title condition="_GDAGG_ > 1">_CUPMATCHWINNER_ kommt locker in die nächste Runde</title>
-    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0">_SCORERS_CUPMATCHWINNERN__ machen die Sache klar für _CUPMATCHWINNER_.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0">_CUPMATCHWINNER_ kommt dank der Tore von _SCORERS_CUPMATCHWINNERN__ weiter.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0">_SCORERS_CUPMATCHWINNERN__ schießt _CUPMATCHWINNER_ eine Runde weiter.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0">_CUPMATCHWINNER_ kommt dank _SCORERS_CUPMATCHWINNERN__ weiter.</subtitle>
-    <subtitle condition="_GDAGG_ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0">_AT_ Zuschauer halten den Atem an beim spannenden _RE_ im Rückspiel.</subtitle>
-    <subtitle condition="_GDAGG_ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0">Die beiden Teams schenkten sich nichts in dieser Partie, doch _CUPMATCHWINNER_ hat das bessere Ende für sich.</subtitle>
-    <subtitle condition="_GDAGG_ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0">_CUPMATCHLOSER_ fehlt ein einziges Tor, um weiterzukommen.</subtitle>
-    <subtitle condition="_GDAGG_ = 1">Diese Paarung hatte es in sich, doch nach dem _RE_ muss sich _CUPMATCHLOSER_ mit dem Ausscheiden abfinden.</subtitle>
-    <subtitle condition="_GDAGG_ = 1">_CUPMATCHWINNER_ hält durch gegen _CUPMATCHLOSER_ und kommt denkbar knapp in die nächste Runde.</subtitle>
-    <subtitle condition="_CUPET_ = 0 and _CUPPEN_ = 0 and _GDAGG_ < 2">_CUPMATCHWINNER_ kann sich bei _SCORERS_CUPMATCHWINNERN__ fürs Weiterkommen bedanken.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0 and _GDAGG_ < 2">_SCORERS_CUPMATCHWINNERN__ treffen beim knappen Sieg für _CUPMATCHWINNER_.</subtitle>
-    <subtitle condition="_GDAGG_ > 2">_CUPMATCHWINNER_ war letztlich ungefährdet in dieser Begegnung und kommt verdient eine Runde weiter.</subtitle>
-    <subtitle condition="_GDAGG_ > 2">_CUPMATCHLOSER_ ist bei dieser Paarung chancenlos und fliegt raus.</subtitle>
-    <subtitle condition="_GDAGG_ > 2">_CUPMATCHLOSER_ hätte das Weiterkommen nicht verdient nach dem _RE_.</subtitle>
-    <subtitle condition="_GDAGG_ > 2">_CUPMATCHWINNER_ dominierte die Begegnung und kann weiter auf den Titel hoffen.</subtitle>
+    <title condition="_GD_ = 0">Draw enough for _CUPMATCHWINNER_</title>
+    <title condition="_GD_ = 0">_CUPMATCHWINNER_ advances with draw</title>
+    <title condition="_GD_ = 0">_CUPMATCHLOSER_ eliminated after _RE_ in second leg</title>
+    <title condition="_GDAGG_ = 1">_CUPMATCHWINNER_ advances with just one goal difference</title>
+    <title condition="_GDAGG_ = 1">_CUPMATCHLOSER_ out after a close match</title>
+    <title condition="_GDAGG_ > 1">_CUPMATCHWINNER_ advances easily</title>
+    <title condition="_GDAGG_ > 1">_CUPMATCHWINNER_ comfortably through to next round</title>
+    <title condition="_GDAGG_ > 1">_CUPMATCHWINNER_ reaches next round easily</title>
+    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0">_SCORERS_CUPMATCHWINNERN__ ensure that _CUPMATCHWINNER_ advances to the next round of _LEAGUECUPNAME_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0">_CUPMATCHWINNER_ through thanks to goals by _SCORERS_CUPMATCHWINNERN__.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0">_CUPMATCHWINNER_ advances to next round thanks to _SCORERS_CUPMATCHWINNERN__.</subtitle>
+    <subtitle condition="_GDAGG_ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0">_AT_ spectators breathless after an exiting _RE_.</subtitle>
+    <subtitle condition="_GDAGG_ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0">The teams were more or less equal in this match, but _CUPMATCHWINNER_ had luck on their side.</subtitle>
+    <subtitle condition="_GDAGG_ = 1">This was one tough match-up, but _CUPMATCHLOSER_ is out after a _RE_.</subtitle>
+    <subtitle condition="_GDAGG_ = 1">_CUPMATCHWINNER_ shows resilience against _CUPMATCHLOSER_ and advances to the next round after a scare.</subtitle>
+    <subtitle condition="_CUPET_ = 0 and _CUPPEN_ = 0 and _GDAGG_ < 2">_CUPMATCHWINNER_ should give _SCORERS_CUPMATCHWINNERN__ a medal for shooting them into the next round.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0 and _GDAGG_ < 2">_SCORERS_CUPMATCHWINNERN__ score as _CUPMATCHWINNER_ squeezes by _CUPMATCHLOSER_.</subtitle>
+    <subtitle condition="_GDAGG_ > 2">_CUPMATCHWINNER_ didn't face a real challenge in this match-up and deserves to advance.</subtitle>
+    <subtitle condition="_GDAGG_ > 2">_CUPMATCHLOSER_ didn't stand a chance in this game and is out.</subtitle>
+    <subtitle condition="_GDAGG_ > 2">_CUPMATCHWINNER_ dominated this match-up and is still a contender for the title.</subtitle>
   </news_article>
 
 </news>
