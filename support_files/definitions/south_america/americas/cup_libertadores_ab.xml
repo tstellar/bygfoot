@@ -14,7 +14,6 @@
 	<property>highlight1</property>
 	<cup_rounds>
 		<cup_round>
-			<delay>-2</delay>
 			<byes>0</byes>
 			<new_teams>12</new_teams>
 			<choose_teams>  
@@ -30,65 +29,86 @@
 					<number_of_teams>2</number_of_teams>
 					<randomly>1</randomly>
 					<generate>1</generate>
+					<start_idx>1</start_idx>
+					<end_idx>12</end_idx>
+					<skip_group_check>1</skip_group_check>
 				</choose_team>
 				<choose_team>
 					<choose_team_sid>brazil1</choose_team_sid>
 					<number_of_teams>2</number_of_teams>
 					<randomly>1</randomly>
 					<generate>1</generate>
+					<start_idx>1</start_idx>
+					<end_idx>12</end_idx>
+					<skip_group_check>1</skip_group_check>
 				</choose_team>
 				<choose_team>
 					<choose_team_sid>bolivia1</choose_team_sid>
 					<number_of_teams>1</number_of_teams>
 					<randomly>1</randomly>
 					<generate>1</generate>
+					<start_idx>1</start_idx>
+					<end_idx>6</end_idx>
 				</choose_team>
 				<choose_team>
 					<choose_team_sid>chile1</choose_team_sid>
 					<number_of_teams>1</number_of_teams>
 					<randomly>1</randomly>
 					<generate>1</generate>
+					<start_idx>1</start_idx>
+					<end_idx>6</end_idx>
 				</choose_team>
 				<choose_team>
 					<choose_team_sid>colombia1</choose_team_sid>
 					<number_of_teams>1</number_of_teams>
 					<randomly>1</randomly>
 					<generate>1</generate>
+					<start_idx>1</start_idx>
+					<end_idx>6</end_idx>
 				</choose_team>
 				<choose_team>
 					<choose_team_sid>ecuador1</choose_team_sid>
 					<number_of_teams>1</number_of_teams>
 					<randomly>1</randomly>
 					<generate>1</generate>
+					<start_idx>1</start_idx>
+					<end_idx>6</end_idx>
 				</choose_team>
 				<choose_team>
 					<choose_team_sid>paraguay1</choose_team_sid>
 					<number_of_teams>1</number_of_teams>
 					<randomly>1</randomly>
 					<generate>1</generate>
+					<start_idx>1</start_idx>
+					<end_idx>6</end_idx>
 				</choose_team>
 				<choose_team>
 					<choose_team_sid>peru1</choose_team_sid>
 					<number_of_teams>1</number_of_teams>
 					<randomly>1</randomly>
 					<generate>1</generate>
+					<start_idx>1</start_idx>
+					<end_idx>6</end_idx>
 				</choose_team>
 				<choose_team>
 					<choose_team_sid>uruguay1</choose_team_sid>
 					<number_of_teams>1</number_of_teams>
 					<randomly>1</randomly>
 					<generate>1</generate>
+					<start_idx>1</start_idx>
+					<end_idx>6</end_idx>
 				</choose_team>
 				<choose_team>
 					<choose_team_sid>venezuela1</choose_team_sid>
 					<number_of_teams>1</number_of_teams>
 					<randomly>1</randomly>
 					<generate>1</generate>
+					<start_idx>1</start_idx>
+					<end_idx>6</end_idx>
 				</choose_team>
 			</choose_teams>
 		</cup_round>
 		<cup_round>
-			<delay>-2</delay>
 			<number_of_groups>8</number_of_groups>
 			<number_of_advance>2</number_of_advance>
 			<new_teams>26</new_teams>
@@ -105,66 +125,88 @@
 					<number_of_teams>4</number_of_teams>
 					<randomly>1</randomly>
 					<generate>1</generate>
+					<start_idx>1</start_idx>
+					<end_idx>12</end_idx>
 				</choose_team>
 				<choose_team>
 					<choose_team_sid>brazil1</choose_team_sid>
 					<number_of_teams>4</number_of_teams>
 					<randomly>1</randomly>
 					<generate>1</generate>
+					<start_idx>1</start_idx>
+					<end_idx>12</end_idx>
 				</choose_team>
 				<choose_team>
 					<choose_team_sid>bolivia1</choose_team_sid>
 					<number_of_teams>2</number_of_teams>
 					<randomly>1</randomly>
 					<generate>1</generate>
+					<start_idx>1</start_idx>
+					<end_idx>6</end_idx>
 				</choose_team>
 				<choose_team>
 					<choose_team_sid>chile1</choose_team_sid>
 					<number_of_teams>2</number_of_teams>
 					<randomly>1</randomly>
 					<generate>1</generate>
+					<start_idx>1</start_idx>
+					<end_idx>6</end_idx>
 				</choose_team>
 				<choose_team>
 					<choose_team_sid>colombia1</choose_team_sid>
 					<number_of_teams>2</number_of_teams>
 					<randomly>1</randomly>
 					<generate>1</generate>
+					<start_idx>1</start_idx>
+					<end_idx>6</end_idx>
 				</choose_team>
 				<choose_team>
 					<choose_team_sid>ecuador1</choose_team_sid>
 					<number_of_teams>2</number_of_teams>
 					<randomly>1</randomly>
 					<generate>1</generate>
+					<start_idx>1</start_idx>
+					<end_idx>6</end_idx>
 				</choose_team>
 				<choose_team>
 					<choose_team_sid>paraguay1</choose_team_sid>
 					<number_of_teams>2</number_of_teams>
 					<randomly>1</randomly>
 					<generate>1</generate>
+					<start_idx>1</start_idx>
+					<end_idx>6</end_idx>
 				</choose_team>
 				<choose_team>
 					<choose_team_sid>peru1</choose_team_sid>
 					<number_of_teams>2</number_of_teams>
 					<randomly>1</randomly>
 					<generate>1</generate>
+					<start_idx>1</start_idx>
+					<end_idx>6</end_idx>
 				</choose_team>
 				<choose_team>
 					<choose_team_sid>uruguay1</choose_team_sid>
 					<number_of_teams>2</number_of_teams>
 					<randomly>1</randomly>
 					<generate>1</generate>
+					<start_idx>1</start_idx>
+					<end_idx>6</end_idx>
 				</choose_team>
 				<choose_team>
 					<choose_team_sid>venezuela1</choose_team_sid>
 					<number_of_teams>2</number_of_teams>
 					<randomly>1</randomly>
 					<generate>1</generate>
+					<start_idx>1</start_idx>
+					<end_idx>6</end_idx>
 				</choose_team>
 				<choose_team>
 					<choose_team_sid>mexico1</choose_team_sid>
 					<number_of_teams>2</number_of_teams>
 					<randomly>1</randomly>
 					<generate>1</generate>
+					<start_idx>1</start_idx>
+					<end_idx>6</end_idx>
 				</choose_team>
 			</choose_teams>
 		</cup_round>
