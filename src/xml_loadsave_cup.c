@@ -149,7 +149,7 @@ xml_loadsave_cup_end_element    (GMarkupParseContext *context,
        tag == TAG_WEEK_GAP ||
        tag == TAG_WEEK_BREAK ||
        tag == TAG_WEEK_BREAK_LENGTH ||
-       tag == TAG_SKIP_WEEKS_WITH ||
+/*        tag == TAG_SKIP_WEEKS_WITH || */
        tag == TAG_PROPERTY ||
        tag == TAG_CUP_LAST_WEEK ||
        tag == TAG_CUP_ADD_WEEK ||
@@ -249,8 +249,8 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
         new_week_break.length = int_value;
         g_array_append_val(new_cup->week_breaks, new_week_break);
     }
-    else if(state == TAG_SKIP_WEEKS_WITH)
-        g_ptr_array_add(new_cup->skip_weeks_with, g_strdup(buf));
+/*     else if(state == TAG_SKIP_WEEKS_WITH) */
+/*         g_ptr_array_add(new_cup->skip_weeks_with, g_strdup(buf)); */
     else if(state == TAG_YELLOW_RED)
 	new_cup->yellow_red = int_value;
     else if(state == TAG_PROPERTY)
@@ -432,9 +432,9 @@ xml_loadsave_cup_write(const gchar *prefix, const Cup *cup)
 	xml_write_string(fil, (gchar*)g_ptr_array_index(cup->properties, i),
 			 TAG_PROPERTY, I0);
 
-    for(i = 0; i < cup->skip_weeks_with->len; i++)
-	xml_write_string(fil, (gchar*)g_ptr_array_index(cup->skip_weeks_with, i),
-			 TAG_SKIP_WEEKS_WITH, I0);
+/*     for(i = 0; i < cup->skip_weeks_with->len; i++) */
+/* 	xml_write_string(fil, (gchar*)g_ptr_array_index(cup->skip_weeks_with, i), */
+/* 			 TAG_SKIP_WEEKS_WITH, I0); */
         
     for(i=0;i<cup->rounds->len;i++)
 	xml_loadsave_cup_write_round(fil, prefix, cup, i);
