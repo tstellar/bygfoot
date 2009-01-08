@@ -13,12 +13,17 @@
   <break_in length="-1">6</break_in>
   <break_in length="-1">7</break_in>
   <break_in length="-1">8</break_in>
+  <break_in length="1">15</break_in>
+  <break_in length="1">20</break_in>
+  <break_in length="-1">43</break_in>
+  <break_in length="-1">46</break_in>
   <property>international</property>
   <property>league_talents</property>
   <property>highlight1</property>
 
   <cup_rounds>
     <cup_round>
+      <round_name>1st qualifying round</round_name>
       <new_teams>28</new_teams>
 
       <choose_teams>
@@ -264,7 +269,7 @@
 	</choose_team>
 
 	<choose_team>
-	  <choose_team_sid>san_marino_group_a</choose_team_sid>
+	  <choose_team_sid>san_marino1</choose_team_sid>
 	  <number_of_teams>1</number_of_teams>
 	  <!--<start_idx>1</start_idx>-->
 	  <!--<end_idx>1</end_idx>-->
@@ -287,6 +292,7 @@
     </cup_round>
 
     <cup_round>
+      <round_name>2nd qualifying round</round_name>
       <new_teams>14</new_teams>
 
       <choose_teams>
@@ -423,6 +429,7 @@
    </cup_round>
 
     <cup_round>
+      <round_name>3rd qualifying round</round_name>
       <new_teams>18</new_teams>
 
       <choose_teams>
@@ -566,6 +573,7 @@
      </cup_round>
 
     <cup_round>
+      <round_name>Group stage</round_name>
       <number_of_groups>8</number_of_groups>
       <number_of_advance>2</number_of_advance>
       <new_teams>16</new_teams>
@@ -670,6 +678,7 @@
     </cup_round>
 
     <cup_round>
+      <delay>1</delay>
     </cup_round>
 
     <cup_round>

@@ -87,6 +87,7 @@ enum XmlLeagueStates
     STATE_FIRST_WEEK,
     STATE_WEEK_GAP,
     STATE_WEEK_BREAK,
+    STATE_SKIP_WEEKS_WITH,
     STATE_ROUND_ROBINS,
     STATE_YELLOW_RED,
     STATE_AVERAGE_TALENT,
@@ -181,6 +182,8 @@ xml_league_read_start_element (GMarkupParseContext *context,
 
         g_array_append_val(new_league.week_breaks, new_week_break);
     }
+    else if(strcmp(element_name, TAG_DEF_SKIP_WEEKS_WITH) == 0)
+     	state = STATE_SKIP_WEEKS_WITH;
     else if(strcmp(element_name, TAG_ROUND_ROBINS) == 0)
 	state = STATE_ROUND_ROBINS;
     else if(strcmp(element_name, TAG_DEF_YELLOW_RED) == 0)
@@ -300,6 +303,7 @@ xml_league_read_end_element    (GMarkupParseContext *context,
        strcmp(element_name, TAG_FIRST_WEEK) == 0 ||
        strcmp(element_name, TAG_DEF_WEEK_GAP) == 0 ||
        strcmp(element_name, TAG_DEF_WEEK_BREAK) == 0 ||
+       strcmp(element_name, TAG_DEF_SKIP_WEEKS_WITH) == 0 ||
        strcmp(element_name, TAG_ROUND_ROBINS) == 0 ||
        strcmp(element_name, TAG_DEF_YELLOW_RED) == 0 ||
        strcmp(element_name, TAG_AVERAGE_TALENT) == 0 ||
@@ -384,6 +388,8 @@ xml_league_read_text         (GMarkupParseContext *context,
     else if(state == STATE_WEEK_BREAK)
 	g_array_index(new_league.week_breaks, WeekBreak, 
                       new_league.week_breaks->len - 1).week_number = int_value;
+    else if(state == STATE_SKIP_WEEKS_WITH)
+        g_ptr_array_add(new_league.skip_weeks_with, g_strdup(buf));
     else if(state == STATE_ROUND_ROBINS)
 	new_league.round_robins = int_value;
     else if(state == STATE_YELLOW_RED)

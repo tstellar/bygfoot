@@ -1806,7 +1806,7 @@ treeview_create_next_opponent(void)
 	strcpy(buf, league_cup_get_name_string(fix->clid));
     else
 	sprintf(buf, "%s (%s)", league_cup_get_name_string(fix->clid),
-                g_array_index(cup_from_clid(fix->clid)->rounds, CupRound, cup_from_clid(fix->clid)->rounds->len - 1).name);
+                g_array_index(cup_from_clid(fix->clid)->rounds, CupRound, fix->round).name);
 
     gtk_list_store_append(ls, &iter);
     gtk_list_store_set(ls, &iter, 0, _("Your next opponent"), 1, buf, -1);

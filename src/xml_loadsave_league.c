@@ -164,6 +164,7 @@ xml_loadsave_league_end_element    (GMarkupParseContext *context,
        tag == TAG_WEEK_GAP ||
        tag == TAG_WEEK_BREAK ||
        tag == TAG_WEEK_BREAK_LENGTH ||
+       tag == TAG_SKIP_WEEKS_WITH ||
        tag == TAG_YELLOW_RED ||
        tag == TAG_LEAGUE_PROM_REL)
 	state = TAG_LEAGUE;
@@ -249,6 +250,8 @@ xml_loadsave_league_text         (GMarkupParseContext *context,
         new_week_break.length = int_value;
         g_array_append_val(new_league->week_breaks, new_week_break);
     }
+    else if(state == TAG_SKIP_WEEKS_WITH)
+        g_ptr_array_add(new_league->skip_weeks_with, g_strdup(buf));
     else if(state == TAG_YELLOW_RED)
 	new_league->yellow_red = int_value;
     else if(state == TAG_LEAGUE_BREAK)
@@ -380,6 +383,10 @@ xml_loadsave_league_write(const gchar *prefix, const League *league)
     for(i=0;i<league->properties->len;i++)
 	xml_write_string(fil, (gchar*)g_ptr_array_index(league->properties, i),
 			 TAG_PROPERTY, I0);
+
+    for(i = 0; i < league->skip_weeks_with->len; i++)
+	xml_write_string(fil, (gchar*)g_ptr_array_index(league->skip_weeks_with, i),
+			 TAG_SKIP_WEEKS_WITH, I0);
 
     xml_write_int(fil, league->id, TAG_ID, I0);
     xml_write_int(fil, league->layer, TAG_LEAGUE_LAYER, I0);

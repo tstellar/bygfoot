@@ -709,6 +709,7 @@ misc_parse_condition(const gchar *condition, GPtrArray **token_rep)
     while(g_strrstr(buf, "("))
     {
 	misc_string_get_parenthesised(buf, buf2);
+
 	if(misc_parse_condition(buf2, token_rep))
 	    misc_string_replace_parenthesised(buf, buf2, "1 = 1");
 	else

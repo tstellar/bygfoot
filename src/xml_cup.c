@@ -90,6 +90,7 @@ enum XmlCupStates
     STATE_ADD_WEEK,
     STATE_WEEK_GAP,
     STATE_WEEK_BREAK,
+    STATE_SKIP_WEEKS_WITH,
     STATE_YELLOW_RED,
     STATE_TALENT_DIFF,
     STATE_CUP_ROUNDS,
@@ -186,6 +187,8 @@ xml_cup_read_start_element (GMarkupParseContext *context,
         else
             new_week_break.length = -1000;
     }
+    else if(strcmp(element_name, TAG_DEF_SKIP_WEEKS_WITH) == 0)
+        state = STATE_SKIP_WEEKS_WITH;
     else if(strcmp(element_name, TAG_DEF_YELLOW_RED) == 0)
 	state = STATE_YELLOW_RED;
     else if(strcmp(element_name, TAG_TALENT_DIFF) == 0)
@@ -294,6 +297,7 @@ xml_cup_read_end_element    (GMarkupParseContext *context,
        strcmp(element_name, TAG_DEF_PROPERTY) == 0 ||
        strcmp(element_name, TAG_ADD_WEEK) == 0 ||
        strcmp(element_name, TAG_DEF_WEEK_GAP) == 0 ||
+       strcmp(element_name, TAG_DEF_SKIP_WEEKS_WITH) == 0 ||
        strcmp(element_name, TAG_DEF_YELLOW_RED) == 0 ||
        strcmp(element_name, TAG_TALENT_DIFF) == 0 ||
        strcmp(element_name, TAG_CUP_ROUNDS) == 0)
@@ -403,6 +407,8 @@ xml_cup_read_text         (GMarkupParseContext *context,
 	new_cup.week_gap = int_value;
     else if(state == STATE_WEEK_BREAK)
 	new_week_break.week_number = int_value;
+    else if(state == STATE_SKIP_WEEKS_WITH)
+        g_ptr_array_add(new_cup.skip_weeks_with, g_strdup(buf));
     else if(state == STATE_YELLOW_RED)
 	new_cup.yellow_red = int_value;
     else if(state == STATE_TALENT_DIFF)

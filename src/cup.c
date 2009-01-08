@@ -69,6 +69,7 @@ cup_new(gboolean new_id)
     new.team_names = g_ptr_array_new();
     new.fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));
     new.week_breaks = g_array_new(FALSE, FALSE, sizeof(WeekBreak));
+    new.skip_weeks_with = g_ptr_array_new();
     new.bye = g_ptr_array_new();
 
     new.properties = g_ptr_array_new();
@@ -212,6 +213,7 @@ cup_get_choose_team_league_cup(const CupChooseTeam *ct,
 
     gint i, idx;
     gchar trash[SMALL];
+    gchar prefix[SMALL];
 
     *league = NULL;
     *cup = NULL;
@@ -230,9 +232,15 @@ cup_get_choose_team_league_cup(const CupChooseTeam *ct,
     }
     else
     {
+        if(g_str_has_suffix(ct->sid, "*"))
+            g_utf8_strncpy(prefix, ct->sid, g_utf8_strlen(ct->sid, -1) - 1);
+        else
+            strcpy(prefix, "NONAME");
+
 	for(i=0;i<ligs->len;i++)
 	{
-	    if(strcmp(lig(i).sid, ct->sid) == 0)
+	    if(strcmp(lig(i).sid, ct->sid) == 0 ||
+               g_str_has_prefix(lig(i).sid, prefix))
 	    {
 		*league = &lig(i);
 		*cup = NULL;
@@ -242,7 +250,8 @@ cup_get_choose_team_league_cup(const CupChooseTeam *ct,
 
 	for(i=0;i<cps->len;i++)
 	{
-	    if(strcmp(cp(i).sid, ct->sid) == 0)
+	    if(strcmp(cp(i).sid, ct->sid) == 0 ||
+               g_str_has_prefix(cp(i).sid, prefix))
 	    {
 		*cup = &cp(i);
 		*league = NULL;
@@ -255,6 +264,13 @@ cup_get_choose_team_league_cup(const CupChooseTeam *ct,
 	main_exit_program(EXIT_CHOOSE_TEAM_ERROR, 
 			  "cup_get_choose_team_league_cup: no league nor cup found for chooseteam %s",
 			  ct->sid);
+    if(debug > 100)
+    {
+        if(*league == NULL)
+            printf("cup_get_choose_team_league_cup: sid %s cup %s\n", ct->sid, (*cup)->name);
+        else
+            printf("cup_get_choose_team_league_cup: sid %s league %s\n", ct->sid, (*league)->name);   
+    }
 }
 
 /** Load the pointers to the teams participating in the 
@@ -1245,12 +1261,20 @@ gboolean
 cup_round_check_waits(const CupRound *cup_round)
 {
     gint i, j, k;
+    gchar prefix[SMALL];
 
     for(i = 0; i < cup_round->waits->len; i++)
     {
+        if(g_str_has_suffix(g_array_index(cup_round->waits, CupRoundWait, i).cup_sid, "*"))
+            g_utf8_strncpy(prefix, g_array_index(cup_round->waits, CupRoundWait, i).cup_sid,
+                           g_utf8_strlen(g_array_index(cup_round->waits, CupRoundWait, i).cup_sid, -1) - 1);
+        else
+            strcpy(prefix, "NONAME");        
+
         for(j = 0; j < acps->len; j++)
         {
-            if(strcmp(acp(j)->sid, g_array_index(cup_round->waits, CupRoundWait, i).cup_sid) == 0)
+            if(strcmp(acp(j)->sid, g_array_index(cup_round->waits, CupRoundWait, i).cup_sid) == 0 ||
+               g_str_has_prefix(acp(j)->sid, prefix))
             {
                 /* Cup round we're waiting for isn't even reached. */
                 if(g_array_index(acp(j)->fixtures, Fixture, acp(j)->fixtures->len - 1).round < 

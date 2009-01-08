@@ -199,6 +199,10 @@ typedef struct
     GArray *fixtures;
     /** Array of custom breaks in schedule. */
     GArray *week_breaks;
+    /** Pointer array with the sids of competitions that
+        the fixtures of which should be avoided when scheduling
+        the cup fixtures. */
+    GPtrArray *skip_weeks_with;
 } Cup;
 
 #endif

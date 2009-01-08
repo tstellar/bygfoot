@@ -382,6 +382,8 @@ free_league(League *league)
     free_gchar_ptr(league->symbol);
     free_gchar_ptr(league->sid);
  
+    free_gchar_array(&league->skip_weeks_with);
+
     if(league->teams != NULL)
 	free_teams_array(&league->teams, FALSE);
 
@@ -641,6 +643,8 @@ free_cup(Cup *cup)
     free_gchar_ptr(cup->short_name);
     free_gchar_ptr(cup->symbol);
     free_gchar_ptr(cup->sid);
+
+    free_gchar_array(&cup->skip_weeks_with);
 
     for(i=0;i<cup->rounds->len;i++)
         free_cup_round(&g_array_index(cup->rounds, CupRound, i));
