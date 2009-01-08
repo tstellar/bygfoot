@@ -71,6 +71,7 @@ league_new(gboolean new_id)
     new.new_tables = g_array_new(FALSE, FALSE, sizeof(NewTable));
     new.tables = g_array_new(FALSE, FALSE, sizeof(Table));
     new.properties = g_ptr_array_new();
+    new.skip_weeks_with = g_ptr_array_new();
     new.rr_breaks = g_array_new(FALSE, FALSE, sizeof(gint));
     new.week_breaks = g_array_new(FALSE, FALSE, sizeof(WeekBreak));
 

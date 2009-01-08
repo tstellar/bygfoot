@@ -180,6 +180,10 @@ typedef struct
     GArray *week_breaks;
     /** The current league statistics. */
     LeagueStat stats;
+    /** Pointer array with the sids of competitions that
+        the fixtures of which should be avoided when scheduling
+        the league fixtures. */
+    GPtrArray *skip_weeks_with;
 } League;
 
 #endif

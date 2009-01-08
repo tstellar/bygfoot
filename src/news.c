@@ -745,12 +745,12 @@ news_set_fixture_tokens(const Fixture *fix)
         if(first_leg != NULL)
             goaldiffaggr = ABS(fix->result[0][0] + fix->result[0][1] + first_leg->result[1][0] -
                                fix->result[1][0] - fix->result[1][1] - first_leg->result[0][0]);
-
-        misc_token_add(token_rep_news,
-                       option_int("string_token_goal_diff_aggregate", &tokens), 
-                       misc_int_to_char(goaldiffaggr));   
     }
 
+    misc_token_add(token_rep_news,
+                   option_int("string_token_goal_diff_aggregate", &tokens), 
+                   misc_int_to_char(goaldiffaggr));   
+    
     misc_token_add(token_rep_news,
 		   option_int("string_token_team_home", &tokens),
 		   g_strdup(fix->teams[0]->name));
