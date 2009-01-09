@@ -109,8 +109,10 @@ debug_action(const gchar *text)
     }
     else if(g_str_has_prefix(text, "goto"))
     {
+        sett_set_int("int_opt_goto_mode", 1);
 	while(week < value)
 	    on_button_new_week_clicked(NULL, NULL);
+        sett_set_int("int_opt_goto_mode", 0);
     }
     else if(g_str_has_prefix(text, "testcom") ||
 	    g_str_has_prefix(text, "tc"))

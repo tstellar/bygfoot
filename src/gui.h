@@ -43,6 +43,9 @@ gui_label_set_text_from_int(GtkLabel *label, gint number, gboolean append);
 void
 gui_show_progress(gfloat value, const gchar *text, gint pictype);
 
+gdouble
+gui_get_progress_bar_fraction(void);
+
 void
 gui_set_arrow_pair(gint pair, gboolean state);
 

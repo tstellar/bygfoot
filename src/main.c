@@ -269,6 +269,7 @@ main_init_variables(void)
 
     /** Some of these (or all) are disabled (set to 1) in supernational
 	country defs. */
+    option_add(&settings, "int_opt_goto_mode", 0, NULL);
     option_add(&settings, "int_opt_disable_finances", 0, NULL);
     option_add(&settings, "int_opt_disable_transfers", 0, NULL);
     option_add(&settings, "int_opt_disable_stadium", 0, NULL);

@@ -175,6 +175,9 @@ window_show_progress(gint pictype)
     gchar *buf2 = NULL;
     GtkImage *image = NULL;
 
+    if(sett_int("int_opt_goto_mode"))
+        return;
+
     window_create(WINDOW_PROGRESS);
 
     if(pictype == PIC_TYPE_NONE ||
