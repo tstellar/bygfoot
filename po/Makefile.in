@@ -33,21 +33,21 @@ gnulocaledir = $(datadir)/locale
 gettextsrcdir = $(datadir)/glib-2.0/gettext/po
 subdir = po
 
-INSTALL = /Users/gy/bin/install-check
+INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 MKINSTALLDIRS = $(top_srcdir)/./mkinstalldirs
 
 CC = gcc
 GENCAT = @GENCAT@
-GMSGFMT = /Users/gy/gtk/inst/bin/msgfmt
-MSGFMT = /Users/gy/gtk/inst/bin/msgfmt
+GMSGFMT = /usr/bin/gmsgfmt
+MSGFMT = /usr/bin/msgfmt
 MSGFMT_OPTS = -c
-XGETTEXT = /Users/gy/gtk/inst/bin/xgettext
+XGETTEXT = /usr/bin/xgettext
 MSGMERGE = msgmerge
 
 DEFS = -DHAVE_CONFIG_H
-CFLAGS = -O2 -gstabs+3 -std=gnu89
-CPPFLAGS = -I/Users/gy/gtk/inst/include
+CFLAGS = -g -O2
+CPPFLAGS = 
 
 INCLUDES = -I.. -I$(top_srcdir)/intl
 
