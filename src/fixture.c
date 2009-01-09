@@ -544,7 +544,7 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round,
     }
 
     /* Special rule for cups that have to wait for other cups. */
-    if(first_week < week + 1)
+    if(cup_round != -1 && first_week < week + 1)
         first_week = week + 1;
 
     /* first half of fixtures */
