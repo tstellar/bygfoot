@@ -184,11 +184,18 @@ option_add(OptionList *optionlist, const gchar *name,
     gpointer element = NULL;
 
     if(optionlist->list != NULL)
-	g_datalist_get_data(&optionlist->datalist, name);
+	element = g_datalist_get_data(&optionlist->datalist, name);
     
     if(element != NULL)
-	main_exit_program(EXIT_OPTION_NOT_FOUND, 
-			  "Option named '%s' already contained in optionlist.", name);
+    {
+        if(debug > 0)
+            g_warning("Option %s already in optionlist\n", name);
+        ((Option*)element)->value = int_value;
+        ((Option*)element)->string_value = (string_value == NULL) ? NULL : g_strdup(string_value);
+        return;
+    }
+/* 	main_exit_program(EXIT_OPTION_NOT_FOUND,  */
+/* 			  "Option named '%s' already contained in optionlist.", name); */
 
     new.name = g_strdup(name);
     new.value = int_value;

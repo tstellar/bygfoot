@@ -87,8 +87,7 @@ load_save_save_game(const gchar *filename)
 	g_print("load_save_save leagues/cups \n");
 
     gui_show_progress(
-	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
-	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
 	_("Saving leagues and cups..."),
 	PIC_TYPE_SAVE);
 
@@ -98,8 +97,7 @@ load_save_save_game(const gchar *filename)
 	g_print("load_save_save users \n");
 
     gui_show_progress(
-	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
-	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
 	_("Saving users..."),
 	PIC_TYPE_SAVE);
 
@@ -109,8 +107,7 @@ load_save_save_game(const gchar *filename)
 	g_print("load_save_save transfers \n");
 
     gui_show_progress(
-	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
-	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
 	_("Saving transfer list..."),
 	PIC_TYPE_SAVE);
 
@@ -120,8 +117,7 @@ load_save_save_game(const gchar *filename)
 	g_print("load_save_save stats \n");
 
     gui_show_progress(
-	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
-	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
 	_("Saving season stats..."),
 	PIC_TYPE_SAVE);
 
@@ -131,9 +127,7 @@ load_save_save_game(const gchar *filename)
 	g_print("load_save_save jobs \n");
 
     gui_show_progress(
-	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
-	      GTK_PROGRESS_BAR(
-		  lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
 	/* The 'job exchange' is a list of teams looking for a manager. */
 	_("Saving job exchange..."),
 	PIC_TYPE_SAVE);
@@ -144,9 +138,7 @@ load_save_save_game(const gchar *filename)
 	g_print("load_save_save newspaper \n");
 
     gui_show_progress(
-	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
-	      GTK_PROGRESS_BAR(
-		  lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
 	_("Saving newspaper..."),
 	PIC_TYPE_SAVE);
 
@@ -156,16 +148,14 @@ load_save_save_game(const gchar *filename)
 	g_print("load_save_save misc \n");
 
     gui_show_progress(
-	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
-	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
 	_("Saving miscellaneous..."),
 	PIC_TYPE_SAVE);
 
     xml_loadsave_misc_write(prefix);
 
     gui_show_progress(
-	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
-	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
 	_("Compressing savegame..."),
 	PIC_TYPE_SAVE);
 
@@ -241,8 +231,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
 	g_print("load_save_load options\n");
 
     gui_show_progress(
-	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
-	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
 	_("Loading options..."),
 	PIC_TYPE_LOAD);
 
@@ -256,8 +245,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
 	g_print("load_save_load leagues \n");
 
     gui_show_progress(
-	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
-	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
 	_("Loading leagues and cups..."),
 	PIC_TYPE_LOAD);
 
@@ -267,8 +255,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
 	g_print("load_save_load users \n");
 
     gui_show_progress(
-	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
-	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
 	_("Loading users..."),
 	PIC_TYPE_LOAD);
 
@@ -278,8 +265,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
 	g_print("load_save_load transfers \n");
 
     gui_show_progress(
-	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
-	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
 	_("Loading transfer list..."),
 	PIC_TYPE_LOAD);
 
@@ -289,8 +275,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
 	g_print("load_save_load stats \n");
 
     gui_show_progress(
-	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
-	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
 	_("Loading season stats..."),
 	PIC_TYPE_LOAD);
 
@@ -300,9 +285,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
 	g_print("load_save_load jobs \n");
 
     gui_show_progress(
-	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
-	      GTK_PROGRESS_BAR(
-		  lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
 	/* The 'job exchange' is a list of teams looking for a manager. */
 	_("Loading job exchange..."),
 	PIC_TYPE_LOAD);
@@ -313,9 +296,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
 	g_print("load_save_load newspaper \n");
 
     gui_show_progress(
-	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
-	      GTK_PROGRESS_BAR(
-		  lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
 	_("Loading newspaper..."),
 	PIC_TYPE_LOAD);
 
@@ -325,8 +306,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
 	g_print("load_save_load misc \n");
 
     gui_show_progress(
-	((PROGRESS_MAX * gtk_progress_bar_get_fraction(
-	      GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")))) + 1) / PROGRESS_MAX,
+	((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
 	_("Loading miscellaneous..."),
 	PIC_TYPE_LOAD);
 

@@ -190,6 +190,8 @@ start_new_season(void)
 	    if(cp(i).add_week == 0)
 		fixture_write_cup_fixtures(&cp(i));
 	}
+        /* Reset team pointers using the stored ids
+           (pointers might have changed because of prom/rel). */
 	else if(cp(i).add_week == -1)
 	{
 	    for(j=0;j<cp(i).fixtures->len;j++)

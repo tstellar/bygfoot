@@ -378,8 +378,8 @@
 	 <choose_team_sid>switzerland1</choose_team_sid>
 	  <number_of_teams>1</number_of_teams>
 	  <!--here the representative of Liechtenstein, playing in the Swiss league since there's no national league in L. The id below points to its place in league_switzerland1 file among the ten teams.-->
-	  <start_idx>10</start_idx>
-	  <end_idx>10</end_idx>
+	  <!--<start_idx>10</start_idx>-->
+          <!--<end_idx>10</end_idx>-->
 	  <randomly>1</randomly>
 	  <generate>1</generate>
 	</choose_team>
@@ -642,7 +642,7 @@
 	</choose_team>
 
 	<choose_team>
-	  <choose_team_sid>san_marino1</choose_team_sid>
+	  <choose_team_sid>san_marino_group_a san_marino_group_b</choose_team_sid>
 	#the national cup winner here. 
 	  <number_of_teams>1</number_of_teams>
 	  <!--<start_idx>2</start_idx>-->
@@ -672,7 +672,7 @@
 
 	<choose_team>
 	 <!--this entry includes the 3 Fair Play winners awarded by the UEFA which begin in the first qualifying round. Since the criteria are impossible to implement here, the teams are drawn randomly-->
-	 <choose_team_sid>albania1 andorra1 armenia1 austria1 azerbaijan1 belarus1 belgium1 bosnia_herzegovina1 bulgaria1 croatia1 cyprus1 czech1 denmark1 england1 estonia1 faroe_islands1 finland1 france1 fyr_macedonia1 georgia1 germany1 greece1 hungary1 iceland1 ireland1 israel1 italy1 kazakhstan1 latvia1 lithuania1 luxembourg1 malta1 moldova1 montenegro1 netherlands1 n_ireland1 norway1 poland1 portugal1 romania1 russia1 san_marino1serbia1 scotland1 slovakia1 slovenia1 spain1 sweden_allsvenskan switzerland1 turkey1 ukraine1 wales1</choose_team_sid>
+	 <choose_team_sid>albania1 andorra1 armenia1 austria1 azerbaijan1 belarus1 belgium1 bosnia_herzegovina1 bulgaria1 croatia1 cyprus1 czech1 denmark1 england1 estonia1 faroe_islands1 finland1 france1 fyr_macedonia1 georgia1 germany1 greece1 hungary1 iceland1 ireland1 israel1 italy1 kazakhstan1 latvia1 lithuania1 luxembourg1 malta1 moldova1 montenegro1 netherlands1 n_ireland1 norway1 poland1 portugal1 romania1 russia1 san_marino_group_a san_marino_group_bserbia1 scotland1 slovakia1 slovenia1 spain1 sweden_allsvenskan switzerland1 turkey1 ukraine1 wales1</choose_team_sid>
 	  <number_of_teams>3</number_of_teams>
 	  <randomly>1</randomly>
 	  <generate>1</generate>
@@ -840,7 +840,7 @@
 
 	<choose_team>
 	 <!--this represents the 11 Intertoto Cup winners that enter the UEFA Cup in the 2nd qualifying round. As that cup isn't included in this game and would be hard to squeeze in or implement, the 11 winners are drawn randomly.-->
-         <choose_team_sid>albania1 andorra1 armenia1 austria1 azerbaijan1 belarus1 belgium1 bosnia_herzegovina1 bulgaria1 croatia1 cyprus1 czech1 denmark1 england1 estonia1 faroe_islands1 finland1 france1 fyr_macedonia1 georgia1 germany1 greece1 hungary1 iceland1 ireland1 israel1 italy1 kazakhstan1 latvia1 lithuania1 luxembourg1 malta1 moldova1 montenegro1 netherlands1 n_ireland1 norway1 poland1 portugal1 romania1 russia1 san_marino1 serbia1 scotland1 slovakia1 slovenia1 spain1 sweden_allsvenskan switzerland1 turkey1 ukraine1 wales1</choose_team_sid>
+         <choose_team_sid>albania1 andorra1 armenia1 austria1 azerbaijan1 belarus1 belgium1 bosnia_herzegovina1 bulgaria1 croatia1 cyprus1 czech1 denmark1 england1 estonia1 faroe_islands1 finland1 france1 fyr_macedonia1 georgia1 germany1 greece1 hungary1 iceland1 ireland1 israel1 italy1 kazakhstan1 latvia1 lithuania1 luxembourg1 malta1 moldova1 montenegro1 netherlands1 n_ireland1 norway1 poland1 portugal1 romania1 russia1 san_marino_group_a san_marino_group_b serbia1 scotland1 slovakia1 slovenia1 spain1 sweden_allsvenskan switzerland1 turkey1 ukraine1 wales1</choose_team_sid>
 	  <number_of_teams>11</number_of_teams>
 	  <randomly>1</randomly>
 	  <generate>1</generate>

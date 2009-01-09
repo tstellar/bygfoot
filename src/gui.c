@@ -60,6 +60,16 @@ gui_label_set_text_from_int(GtkLabel *label, gint number, gboolean append)
     gtk_label_set_text(label, buf2);
 }
 
+gdouble
+gui_get_progress_bar_fraction(void)
+{
+    if(sett_int("int_opt_goto_mode"))
+        return 0;
+    
+    return gtk_progress_bar_get_fraction(
+        GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar")));
+}
+
 /* Show a window with a progress bar.
    @param value The value of the progress bar. If set to 1
    or < 0 the progress bar window gets destroyed.
@@ -73,6 +83,9 @@ gui_show_progress(gfloat value, const gchar *text, gint pictype)
 #endif
 
     GtkProgressBar *progressbar = NULL;
+
+    if(sett_int("int_opt_goto_mode"))
+        return;
 
     if(value == 1 || value < 0)
     {
