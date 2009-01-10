@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+	<name>Serie A: Final</name>
+	<short_name>Serie A 3ra</short_name>
+	<symbol>flag_ecuador.png</symbol>
+	<sid>ecuador_serie_a_tres</sid>
+	<add_week>38</add_week>
+	<last_week>48</last_week>
+	<week_gap>1</week_gap>
+	<property>national</property>
+	<property>highlight1</property>
+	<cup_rounds>
+		<cup_round>
+			<number_of_groups>1</number_of_groups>
+			<number_of_advance>1</number_of_advance>
+			<choose_teams>
+				<choose_team>
+					<choose_team_sid>ecuador_serie_a_dos_a</choose_team_sid>
+					<number_of_teams>3</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>3</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>ecuador_serie_a_dos_b</choose_team_sid>
+					<number_of_teams>3</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>3</end_idx>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+	</cup_rounds>
+</cup>
