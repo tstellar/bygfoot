@@ -307,7 +307,7 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
 			    &g_array_index(new_round.teams, Team, i));
     }
     else if(state == TAG_CUP_ROUND_TEAM_PTR_ID)
-	g_ptr_array_add(new_round.team_ptrs, team_of_id(int_value));
+	g_ptr_array_add(new_round.team_ptrs, GINT_TO_POINTER(int_value));
     else if(state == TAG_CUP_ROUND_TABLE_FILE)
     {
 	new_table = table_new();

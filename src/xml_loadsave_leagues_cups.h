@@ -57,4 +57,7 @@ void
 xml_loadsave_leagues_cups_read(const gchar *dirname, const gchar *prefix);
 
 
+void
+xml_loadsave_leagues_cups_adjust_team_ptrs(void);
+
 #endif

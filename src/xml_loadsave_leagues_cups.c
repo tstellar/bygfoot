@@ -28,6 +28,7 @@
 #include "free.h"
 #include "league_struct.h"
 #include "misc.h"
+#include "team.h"
 #include "xml.h"
 #include "xml_loadsave_cup.h"
 #include "xml_loadsave_league.h"
@@ -163,6 +164,8 @@ xml_loadsave_leagues_cups_read(const gchar *dirname, const gchar *prefix)
 	g_warning("xml_loadsave_misc_read: error parsing file %s\n", file);
 	misc_print_error(&error, TRUE);
     }
+
+    xml_loadsave_leagues_cups_adjust_team_ptrs();
 }
 
 /** Write the leagues into xml files with the given prefix. */
@@ -202,4 +205,39 @@ xml_loadsave_leagues_cups_write(const gchar *prefix)
     fclose(fil);
 
     g_free(basename);
+}
+
+void
+xml_loadsave_leagues_cups_adjust_team_ptrs(void)
+{
+    gint i, j, k;
+    GPtrArray *team_ptrs;
+
+    for(i = 0; i < ligs->len; i++)
+    {
+        for(j = 0; j < lig(i).fixtures->len; j++)
+        {
+            for(k = 0; k < 2; k++)
+                g_array_index(lig(i).fixtures, Fixture, j).teams[k] = team_of_id(g_array_index(lig(i).fixtures, Fixture, j).team_ids[k]);
+        }
+    }
+
+    for(i = 0; i < cps->len; i++)
+    {
+        for(j = 0; j < cp(i).rounds->len; j++)
+        {
+            team_ptrs = g_ptr_array_new();
+            for(k = 0; k < g_array_index(cp(i).rounds, CupRound, j).team_ptrs->len; k++)
+                g_ptr_array_add(team_ptrs, team_of_id(GPOINTER_TO_INT(g_ptr_array_index(g_array_index(cp(i).rounds, CupRound, j).team_ptrs, k))));
+            
+            g_ptr_array_free(g_array_index(cp(i).rounds, CupRound, j).team_ptrs, TRUE);
+            g_array_index(cp(i).rounds, CupRound, j).team_ptrs = team_ptrs;
+        }
+
+        for(j = 0; j < cp(i).fixtures->len; j++)
+        {
+            for(k = 0; k < 2; k++)
+                g_array_index(cp(i).fixtures, Fixture, j).teams[k] = team_of_id(g_array_index(cp(i).fixtures, Fixture, j).team_ids[k]);
+        }
+    }
 }
