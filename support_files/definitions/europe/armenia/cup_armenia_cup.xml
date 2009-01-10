@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Armenian Cup</name>
+  <short_name>Arm. Cup</short_name>
+  <symbol>flag_armenia.png</symbol>
+  <sid>armenia_cup</sid>
+  <last_week>40</last_week>
+  <week_gap>4</week_gap>
+  <property>national</property>
+
+  <cup_rounds>
+    <cup_round>
+
+      <choose_teams>
+	<choose_team>
+	  <choose_team_sid>armenia1</choose_team_sid>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>armenia2</choose_team_sid>
+	</choose_team>
+      </choose_teams>
+
+    </cup_round>
+
+    <cup_round>
+    </cup_round>
+
+    <cup_round>
+    </cup_round>
+
+    <cup_round>
+      <home_away>0</home_away>
+      <neutral>1</neutral>
+    </cup_round>
+
+  </cup_rounds>
+</cup>
