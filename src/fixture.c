@@ -394,6 +394,9 @@ fixture_write_cup_round_robin(Cup *cup, gint cup_round, GPtrArray *teams)
     Table table_group[number_of_groups];
     TableElement new_table_element;
 
+    if(debug > 100)
+        g_print("fixture_write_cup_round_robin: %s round %d teamlen %d\n", cup->name, cup_round, teams->len);
+
     if(teams->len < number_of_groups)
 	main_exit_program(EXIT_FIXTURE_WRITE_ERROR, 
 			  "fixture_write_cup_round_robin: cup %s round %d: number of teams (%d) less than number of groups (%d)\n", 

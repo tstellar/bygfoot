@@ -175,10 +175,7 @@ xml_loadsave_fixtures_text         (GMarkupParseContext *context,
     else if(state == TAG_FIXTURE_RESULT)
 	new_fixture.result[residx1][residx2] = int_value;
     else if(state == TAG_TEAM_ID)
-    {
-	new_fixture.teams[teamidx] = team_of_id(int_value);
 	new_fixture.team_ids[teamidx] = int_value;
-    }
 }
 
 void
