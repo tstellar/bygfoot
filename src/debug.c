@@ -112,10 +112,20 @@ debug_action(const gchar *text)
         sett_set_int("int_opt_goto_mode", 1);
         if(value < 100)
             while(week < value)
+            {
                 on_button_new_week_clicked(NULL, NULL);
+                game_gui_set_main_window_header();
+                while (gtk_events_pending ())
+                    gtk_main_iteration ();
+            }        
         else
             while(season < value - 100)
+            {
                 on_button_new_week_clicked(NULL, NULL);
+                game_gui_set_main_window_header();
+                while (gtk_events_pending ())
+                    gtk_main_iteration ();
+            }
         sett_set_int("int_opt_goto_mode", 0);
     }
     else if(g_str_has_prefix(text, "testcom") ||
