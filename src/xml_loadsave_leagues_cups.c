@@ -25,9 +25,11 @@
 
 #include "cup.h"
 #include "file.h"
+#include "fixture.h"
 #include "free.h"
 #include "league_struct.h"
 #include "misc.h"
+#include "table.h"
 #include "team.h"
 #include "xml.h"
 #include "xml_loadsave_cup.h"
@@ -210,7 +212,7 @@ xml_loadsave_leagues_cups_write(const gchar *prefix)
 void
 xml_loadsave_leagues_cups_adjust_team_ptrs(void)
 {
-    gint i, j, k, l;
+    gint i, j, k;
     GPtrArray *team_ptrs;
 
     for(i = 0; i < ligs->len; i++)
