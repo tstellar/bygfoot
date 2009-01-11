@@ -85,7 +85,10 @@ gui_show_progress(gfloat value, const gchar *text, gint pictype)
     GtkProgressBar *progressbar = NULL;
 
     if(sett_int("int_opt_goto_mode"))
-        return;
+    {
+	window_destroy(&window.progress);        
+        return;  
+    } 
 
     if(value == 1 || value < 0)
     {

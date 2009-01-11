@@ -210,7 +210,7 @@ xml_loadsave_leagues_cups_write(const gchar *prefix)
 void
 xml_loadsave_leagues_cups_adjust_team_ptrs(void)
 {
-    gint i, j, k;
+    gint i, j, k, l;
     GPtrArray *team_ptrs;
 
     for(i = 0; i < ligs->len; i++)
@@ -218,8 +218,14 @@ xml_loadsave_leagues_cups_adjust_team_ptrs(void)
         for(j = 0; j < lig(i).fixtures->len; j++)
         {
             for(k = 0; k < 2; k++)
-                g_array_index(lig(i).fixtures, Fixture, j).teams[k] = team_of_id(g_array_index(lig(i).fixtures, Fixture, j).team_ids[k]);
+                g_array_index(lig(i).fixtures, Fixture, j).teams[k] = 
+                    team_of_id(g_array_index(lig(i).fixtures, Fixture, j).team_ids[k]);
         }
+
+        for(j = 0; j < lig(i).tables->len; j++)
+            for(k = 0; k < g_array_index(lig(i).tables, Table, j).elements->len; k++)
+                g_array_index(g_array_index(lig(i).tables, Table, j).elements, TableElement, k).team =
+                    team_of_id(g_array_index(g_array_index(lig(i).tables, Table, j).elements, TableElement, k).team_id);
     }
 
     for(i = 0; i < cps->len; i++)
@@ -232,6 +238,11 @@ xml_loadsave_leagues_cups_adjust_team_ptrs(void)
             
             g_ptr_array_free(g_array_index(cp(i).rounds, CupRound, j).team_ptrs, TRUE);
             g_array_index(cp(i).rounds, CupRound, j).team_ptrs = team_ptrs;
+
+            for(k = 0; k < g_array_index(cp(i).rounds, CupRound, j).tables->len; k++)
+                for(l = 0; l < g_array_index(g_array_index(cp(i).rounds, CupRound, j).tables, Table, k).elements->len; l++)
+                    g_array_index(g_array_index(g_array_index(cp(i).rounds, CupRound, j).tables, Table, k).elements, TableElement, l).team =
+                        team_of_id(g_array_index(g_array_index(g_array_index(cp(i).rounds, CupRound, j).tables, Table, k).elements, TableElement, l).team_id);
         }
 
         for(j = 0; j < cp(i).fixtures->len; j++)

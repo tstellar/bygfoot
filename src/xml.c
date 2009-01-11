@@ -92,10 +92,8 @@ xml_load_league(const gchar *dirname, const gchar *basename)
     sprintf(buf, _("Loading league: %s"),
 	    lig(ligs->len - 1).name);
 
-    gui_show_progress(
-	gtk_progress_bar_get_fraction(
-	    GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar"))), buf,
-	PIC_TYPE_LOAD);
+    gui_show_progress(gui_get_progress_bar_fraction(), buf,
+                      PIC_TYPE_LOAD);
 
     if(debug > 80)
 	g_print("%s\n", buf);
@@ -124,10 +122,8 @@ xml_load_cup(Cup *cup, const gchar *dirname, const gchar *basename)
 
     sprintf(buf, _("Loading cup: %s"),
 	    cup->name);
-    gui_show_progress(
-	gtk_progress_bar_get_fraction(
-	    GTK_PROGRESS_BAR(lookup_widget(window.progress, "progressbar"))), buf,
-	PIC_TYPE_LOAD);
+    gui_show_progress(gui_get_progress_bar_fraction(), buf,
+                      PIC_TYPE_LOAD);
 
     if(debug > 80)
 	g_print("%s\n", buf);

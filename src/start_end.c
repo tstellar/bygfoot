@@ -59,8 +59,6 @@ typedef void(*WeekFunc)(void);
 /** Array of functions called when a week round
     is ended. */
 WeekFunc end_week_round_funcs[] =
-/* {end_week_round_results, end_week_round_sort_tables, */
-/*  end_week_round_update_fixtures, NULL}; */
 {end_week_round_results, end_week_round_sort_tables,
  end_week_round_generate_news, end_week_round_update_fixtures, NULL};
 
@@ -579,7 +577,8 @@ start_week_round(void)
        ((week_round == 1 && 
 	 !query_user_games_in_week_round(week - 1, fixture_get_last_week_round(week - 1))) ||
 	(week_round > 1 && 
-	 !query_user_games_in_week_round(week, week_round - 1)))) {
+	 !query_user_games_in_week_round(week, week_round - 1)))) 
+    {
 	user_event_show_next();
 	end_week_round();
     }
