@@ -112,9 +112,20 @@ fixture_write_cup_fixtures(Cup *cup)
 #endif
 
     gint i;
+    GPtrArray *teams_sorted = NULL;
+    
+    /* Store the order of teams in case the cup
+       uses teams from its previous incarnation (previous season). */
+    if(query_cup_self_referential(cup))
+        teams_sorted = cup_get_teams_sorted(cup);
+
+    cup_reset(cup);
 
     for(i=0;i<cup->rounds->len;i++)
-        cup_get_team_pointers(cup, i, TRUE);
+        cup_get_team_pointers(cup, i, teams_sorted, TRUE);
+
+    if(teams_sorted != NULL)
+        g_ptr_array_free(teams_sorted, TRUE);
 
     if(g_array_index(cup->rounds, CupRound, 0).round_robin_number_of_groups > 0)
 	fixture_write_cup_round_robin(
@@ -175,7 +186,7 @@ fixture_update(Cup *cup)
     }
 
     new_round = &g_array_index(cup->rounds, CupRound, round + 1);
-    cup_get_team_pointers(cup, round + 1, FALSE);
+    cup_get_team_pointers(cup, round + 1, NULL, FALSE);
 
     for(i=0;i<new_round->team_ptrs->len;i++)
 	g_ptr_array_add(teams, g_ptr_array_index(new_round->team_ptrs, i));
@@ -547,8 +558,8 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round,
     }
 
     /* Special rule for cups that have to wait for other cups. */
-    if(cup_round != -1 && first_week < week + 1)
-        first_week = week + 1;
+    if(cup_round != -1 && first_week < week)
+        first_week = week;
 
     /* first half of fixtures */
     week_number = league_cup_get_week_with_break(clid, first_week);
@@ -1798,3 +1809,16 @@ fixture_get_cup_round_name(const Fixture *fix, gchar *buf)
 	strcat(buf, _(" -- Replay matches"));
 }
 
+/* Reset the team pointers from the team ids in the fixtures. */
+void
+fixture_refresh_team_pointers(GArray *fixtures)
+{
+    gint i, j;
+
+    for(i = 0; i < fixtures->len; i++)
+    {
+        for(j = 0; j < 2; j++)
+            g_array_index(fixtures, Fixture, i).teams[j] =
+                team_of_id(g_array_index(fixtures, Fixture, i).team_ids[j]);
+    }
+}

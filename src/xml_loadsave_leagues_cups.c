@@ -215,21 +215,16 @@ xml_loadsave_leagues_cups_adjust_team_ptrs(void)
 
     for(i = 0; i < ligs->len; i++)
     {
-        for(j = 0; j < lig(i).fixtures->len; j++)
-        {
-            for(k = 0; k < 2; k++)
-                g_array_index(lig(i).fixtures, Fixture, j).teams[k] = 
-                    team_of_id(g_array_index(lig(i).fixtures, Fixture, j).team_ids[k]);
-        }
+        fixture_refresh_team_pointers(lig(i).fixtures);
 
         for(j = 0; j < lig(i).tables->len; j++)
-            for(k = 0; k < g_array_index(lig(i).tables, Table, j).elements->len; k++)
-                g_array_index(g_array_index(lig(i).tables, Table, j).elements, TableElement, k).team =
-                    team_of_id(g_array_index(g_array_index(lig(i).tables, Table, j).elements, TableElement, k).team_id);
+            table_refresh_team_pointers(&g_array_index(lig(i).tables, Table, j));
     }
 
     for(i = 0; i < cps->len; i++)
     {
+        fixture_refresh_team_pointers(cp(i).fixtures);
+
         for(j = 0; j < cp(i).rounds->len; j++)
         {
             team_ptrs = g_ptr_array_new();
@@ -240,15 +235,7 @@ xml_loadsave_leagues_cups_adjust_team_ptrs(void)
             g_array_index(cp(i).rounds, CupRound, j).team_ptrs = team_ptrs;
 
             for(k = 0; k < g_array_index(cp(i).rounds, CupRound, j).tables->len; k++)
-                for(l = 0; l < g_array_index(g_array_index(cp(i).rounds, CupRound, j).tables, Table, k).elements->len; l++)
-                    g_array_index(g_array_index(g_array_index(cp(i).rounds, CupRound, j).tables, Table, k).elements, TableElement, l).team =
-                        team_of_id(g_array_index(g_array_index(g_array_index(cp(i).rounds, CupRound, j).tables, Table, k).elements, TableElement, l).team_id);
-        }
-
-        for(j = 0; j < cp(i).fixtures->len; j++)
-        {
-            for(k = 0; k < 2; k++)
-                g_array_index(cp(i).fixtures, Fixture, j).teams[k] = team_of_id(g_array_index(cp(i).fixtures, Fixture, j).team_ids[k]);
+                table_refresh_team_pointers(&g_array_index(g_array_index(cp(i).rounds, CupRound, j).tables, Table, k));
         }
     }
 }

@@ -53,5 +53,8 @@ query_tables_in_country(void);
 Table
 table_copy(const Table *table);
 
+void
+table_refresh_team_pointers(Table *table);
+
 #endif
 

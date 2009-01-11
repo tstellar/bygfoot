@@ -27,6 +27,7 @@
 #include "league.h"
 #include "misc.h"
 #include "table.h"
+#include "team.h"
 #include "variables.h"
 
 /** Return a newly allocated empty table. */
@@ -316,4 +317,15 @@ table_copy(const Table *table)
     }
 
     return new_table;
+}
+
+/** Refresh the team pointers in the table from the team ids. */
+void
+table_refresh_team_pointers(Table *table)
+{
+    gint i;
+
+    for(i = 0; i < table->elements->len; i++)
+        g_array_index(table->elements, TableElement, i).team =
+            team_of_id(g_array_index(table->elements, TableElement, i).team_id);
 }

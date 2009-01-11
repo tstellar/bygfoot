@@ -174,4 +174,7 @@ fixtures_condense(GArray *fixtures);
 void
 fixture_get_cup_round_name(const Fixture *fix, gchar *buf);
 
+void
+fixture_refresh_team_pointers(GArray *fixtures);
+
 #endif

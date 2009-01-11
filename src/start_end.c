@@ -132,10 +132,7 @@ start_new_season(void)
     /* Deal with cups that have to take place before promotion/relegation. */
     for(i=cps->len - 1; i >= 0; i--)
 	if(cp(i).add_week == -1)
-	{
-	    cup_reset(&cp(i));
 	    fixture_write_cup_fixtures(&cp(i));
-        }
 
     if(season > 1)
     {
@@ -181,25 +178,12 @@ start_new_season(void)
        needed for the international cups. */
     for(i=cps->len - 1; i >= 0; i--)
     {
-	if(cp(i).add_week >= 0)
-	{
-	    cup_reset(&cp(i));
-	    
-	    if(cp(i).add_week == 0)
-		fixture_write_cup_fixtures(&cp(i));
-	}
+        if(cp(i).add_week == 0)
+            fixture_write_cup_fixtures(&cp(i));
         /* Reset team pointers using the stored ids
            (pointers might have changed because of prom/rel). */
 	else if(cp(i).add_week == -1)
-	{
-	    for(j=0;j<cp(i).fixtures->len;j++)
-	    {
-		g_array_index(cp(i).fixtures, Fixture, j).teams[0] =
-		    team_of_id(g_array_index(cp(i).fixtures, Fixture, j).team_ids[0]);
-		g_array_index(cp(i).fixtures, Fixture, j).teams[1] =
-		    team_of_id(g_array_index(cp(i).fixtures, Fixture, j).team_ids[1]);
-	    }
-	}
+            fixture_refresh_team_pointers(cp(i).fixtures);
     }
 
     for(i = acps->len - 1; i >= 0; i--)
@@ -513,7 +497,7 @@ end_week_round_update_fixtures(void)
     for(i=0;i<cps->len;i++)
     {
 	if(cp(i).add_week == 1000 && 
-	   cp(i).fixtures->len == 0 &&
+	   query_cup_hidden(&cp(i)) &&
 	   query_cup_begins(&cp(i)))
 	{
 	    cp(i).last_week = cup_get_last_week_from_first(&cp(i), week + 1);
