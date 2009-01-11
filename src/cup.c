@@ -277,7 +277,7 @@ cup_get_choose_team_league_cup(const CupChooseTeam *ct,
     cup round. If necessary, teams are generated and stored in the teams
     array of the cup round. */
 void
-cup_get_team_pointers(Cup *cup, gint round, gboolean preload)
+cup_get_team_pointers(Cup *cup, gint round, GPtrArray *teams_sorted, gboolean preload)
 {
 #ifdef DEBUG
     printf("cup_get_team_pointers\n");
@@ -301,7 +301,7 @@ cup_get_team_pointers(Cup *cup, gint round, gboolean preload)
                     &g_array_index(cup_round->choose_teams, CupChooseTeam, i));
             else
                 cup_load_choose_team(
-                    cup, teams, 
+                    cup, teams, teams_sorted,
                     &g_array_index(cup_round->choose_teams, CupChooseTeam, i));            
         }        
 
@@ -330,7 +330,7 @@ cup_get_team_pointers(Cup *cup, gint round, gboolean preload)
 /** Get the pointers to the teams (already generated, in one of the leagues or cups)
     specified in the chooseteam. Add them to the 'teams' pointer array. */
 void
-cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
+cup_load_choose_team(Cup *cup, GPtrArray *teams, GPtrArray *teams_sorted, const CupChooseTeam *ct)
 {
 #ifdef DEBUG
     printf("cup_load_choose_team\n");
@@ -350,7 +350,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
     if(cup_temp == NULL)
         cup_load_choose_team_from_league(cup, league, teams, ct);
     else
-        cup_load_choose_team_from_cup(cup, cup_temp, teams, ct);
+        cup_load_choose_team_from_cup(cup, cup_temp, teams, teams_sorted, ct);
 
     if(debug > 80)
 	for(i=debug_num;i<teams->len;i++)
@@ -358,7 +358,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 }
 
 void
-cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_temp, GPtrArray *teams, const CupChooseTeam *ct)
+cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_temp, GPtrArray *teams, GPtrArray *teams_sorted, const CupChooseTeam *ct)
 {
 #ifdef DEBUG
     printf("cup_load_choose_team_from_cup\n");
@@ -410,7 +410,10 @@ cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_temp, GPtrArray *teams, c
     }
     else
     {
-        cup_teams_sorted = cup_get_teams_sorted(cup_temp);
+        /* Self-referential cup or no? */
+        cup_teams_sorted = (cup == cup_temp) ? 
+            teams_sorted : 
+            cup_get_teams_sorted(cup_temp);
 
         if(ct->number_of_teams == -1)
         {
@@ -439,7 +442,8 @@ cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_temp, GPtrArray *teams, c
             }
         }
 	
-        g_ptr_array_free(cup_teams_sorted, TRUE);
+        if(cup != cup_temp)
+            g_ptr_array_free(cup_teams_sorted, TRUE);
 
         if(ct->number_of_teams != -1 &&
            number_of_teams != ct->number_of_teams)
@@ -1302,4 +1306,33 @@ cup_round_check_waits(const CupRound *cup_round)
     }
 
     return FALSE;
+}
+
+/** Find out whether the cup chooses teams from itself
+    (e.g. the defending champion from last season). */
+gboolean
+query_cup_self_referential(const Cup *cup)
+{
+    gint i, j;
+
+    for(i = 0; i < cup->rounds->len; i++)
+        for(j = 0; j < g_array_index(cup->rounds, CupRound, i).choose_teams->len; j++)
+            if(strcmp(g_array_index(g_array_index(cup->rounds, CupRound, i).choose_teams, CupChooseTeam, j).sid, cup->sid) == 0)
+                return TRUE;
+
+    return FALSE;
+}
+
+/** Find out if the cup is part of the array of
+    cups that are displayed in the game. */
+gboolean
+query_cup_hidden(const Cup *cup)
+{
+    gint i;
+
+    for(i = 0; i < acps->len; i++)
+        if(acp(i) == cup)
+            return FALSE;
+
+    return TRUE;
 }
