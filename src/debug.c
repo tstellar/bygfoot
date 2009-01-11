@@ -164,6 +164,7 @@ debug_action(const gchar *text)
 	       "pospref \t change recruiting pref\n"
 	       "goto \t Press 'new week' automatically until\n"
 	       "     \t the appropriate week is reached\n"
+	       "     \t Supply 100+X to go to season X (e.g. 102)\n"
 	       "testcom|tc \t Test a specific live game commentary.\n"
 	       "           \t Find the numbers in live_game_struct.h (LiveGameEventType)\n"
 	       "           \t Use 'goto' afterwards.\n"
