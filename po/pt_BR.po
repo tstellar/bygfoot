@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: pt-br 2.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-12-17 18:32+0100\n"
-"PO-Revision-Date: 2008-12-22 16:31-0300\n"
-"Last-Translator: valdinei <valdineisales@gmail.com>\n"
+"PO-Revision-Date: 2009-01-12 17:14+0200\n"
+"Last-Translator: Mihai <mihai@emma.ro>\n"
 "Language-Team: Valdinei Martins <valdineisales@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -338,12 +338,11 @@ msgid "Training camp is disabled in this country definition."
 msgstr "'Concentração' não está habilitada nesta definição regional."
 
 #: src/callbacks.c:1621
-#, fuzzy
 msgid "Your team has already had enough training camps this week."
 msgstr "Seu time já treinou bastante esta semana."
 
 #: src/callbacks.c:1627
-#, fuzzy, c-format
+#, c-format
 msgid "You've reached the limit of %d training camps for the season."
 msgstr "Seu time alcançou o limite de %d para treinamento na concentração."
 
@@ -1002,7 +1001,6 @@ msgid "League table"
 msgstr "Classificação das ligas"
 
 #: src/league_table_interface.c:49
-#, fuzzy
 msgid "Headline"
 msgstr "Manchete"
 
@@ -1965,7 +1963,6 @@ msgid "Whether to show the player games/goals value in all competitions"
 msgstr "Mostrar partidas/gols do jogador em todas as competições."
 
 #: src/options_interface.c:528
-#, fuzzy
 msgid "Gameplay"
 msgstr "Jogabilidade"
 
@@ -2319,9 +2316,9 @@ msgid "W  "
 msgstr "V "
 
 #: src/training_callbacks.c:121
-#, fuzzy, c-format
+#, c-format
 msgid "%d training camps left this season."
-msgstr "%d deixou a concentração."
+msgstr "%d treinou a concentração."
 
 #: src/training_interface.c:84
 msgid "Camp points"
