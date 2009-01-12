@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: pt_PT\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-12-17 18:32+0100\n"
-"PO-Revision-Date: 2008-12-26 19:06+0200\n"
-"Last-Translator: Mihai <mihai@emma.ro>\n"
+"PO-Revision-Date: 2009-01-12 13:38-0000\n"
+"Last-Translator: Marco <alvesmr@netvisao.pt>\n"
 "Language-Team: Portuguese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1148,7 +1148,6 @@ msgid "Specify additional support directory (takes priority over default ones)"
 msgstr "Especifique um directório adicional de suporte (tem prioridade sobre os prédefinidos)"
 
 #: src/main.c:92
-#, fuzzy
 msgid "String id of the country to load"
 msgstr "Coloque a ID do país a carregar"
 
@@ -1177,10 +1176,9 @@ msgstr "Comentários por testar; deixe ficar para testar todos os comentários"
 
 #: src/main.c:115
 msgid "How many commentaries to generate per event"
-msgstr "Quantos comentários gerados por evento"
+msgstr "Quantos comentários são gerados por evento"
 
 #: src/main.c:134
-#, fuzzy
 msgid "- a simple and addictive GTK2 football manager"
 msgstr "- um simples e viciante gestor de futebol GTK2"
 
@@ -1796,7 +1794,6 @@ msgid "Whether to show a confirmation popup if a user team has an injured or ban
 msgstr "Só avisar se entre os titulares estiver um jogador lesionado ou suspenso"
 
 #: src/options_interface.c:260
-#, fuzzy
 msgid "Save overwrites"
 msgstr "Salvar"
 
@@ -1813,7 +1810,6 @@ msgid "Whether game starts with a maximized main window (doesn't work with all w
 msgstr "Iniciar o jogo com a janela principal maximizada (não funciona em todos os gestores de janelas)"
 
 #: src/options_interface.c:275
-#, fuzzy
 msgid "Prefer messages"
 msgstr "Mensagens"
 
@@ -1963,7 +1959,6 @@ msgid "Whether to show the player games/goals value in all competitions"
 msgstr "Mostrar os jogos/golos do jogador em todas as competições"
 
 #: src/options_interface.c:528
-#, fuzzy
 msgid "Gameplay"
 msgstr "Jogabilidade"
 
@@ -1988,477 +1983,455 @@ msgid "The lower this value the faster the live game commentary will scroll."
 msgstr "Quanto mais baixo este valor, mais rápido irá decorrer o comentário do jogo."
 
 #: src/options_interface.c:582
-#, fuzzy
 msgid "The higher this value, the more commentary you'll see."
-msgstr "Quanto mais baixo este valor, mais rápido irá decorrer o comentário do jogo."
+msgstr "Quanto mais alto este valor, mais comentários irá ver."
 
 #: src/options_interface.c:585
 msgid "Automatic substitutions"
-msgstr ""
+msgstr "Substituições automáticas"
 
 #: src/options_interface.c:588
 msgid "Whether the subs (e.g. for injured players) are made by the CPU. This is automatically done if the live game is off."
-msgstr ""
+msgstr "Se as substituições (ex: jogadores lesionados) são feitas pelo CPU. Esta opção é automática se o jogo não for ao vivo."
 
 #: src/options_interface.c:599
 msgid "Pause when injury"
-msgstr ""
+msgstr "Pausar nas lesões"
 
 #: src/options_interface.c:602
 msgid "Whether the live game pauses when a user player is injured"
-msgstr ""
+msgstr "Se os jogos ao vivo pausam se um jogador é lesionado"
 
 #: src/options_interface.c:604
 msgid "Pause when red card"
-msgstr ""
+msgstr "Pausar nos cartões vermelhos"
 
 #: src/options_interface.c:607
 msgid "Whether the live game pauses when a user player is sent off"
-msgstr ""
+msgstr "e os jogos ao vivo pausam se um jogador é expulso"
 
 #: src/options_interface.c:609
 msgid "Pause when break"
-msgstr ""
+msgstr "Pausar ao intervalo"
 
 #: src/options_interface.c:612
 msgid "Whether the live game pauses at half time and extra time"
-msgstr ""
+msgstr "e os jogos ao vivo pausam no intervalo ou tempo extra."
 
 #: src/options_interface.c:622
-#, fuzzy
 msgid "Name "
 msgstr "Nome"
 
 #: src/options_interface.c:629
-#, fuzzy
 msgid "CPos "
-msgstr "Custo"
+msgstr "CPos"
 
 #: src/options_interface.c:636
 msgid "Pos "
-msgstr ""
+msgstr "Pos"
 
 #: src/options_interface.c:643
 msgid "CSkill "
-msgstr ""
+msgstr "CHabilidade"
 
 #: src/options_interface.c:650
 msgid "Skill "
-msgstr ""
+msgstr "Habilidade"
 
 #: src/options_interface.c:657
 msgid "Fitness "
-msgstr ""
+msgstr "Preparação física"
 
 #: src/options_interface.c:664
-#, fuzzy
 msgid "Games "
-msgstr "Guarda-Redes"
+msgstr "Jogos"
 
 #: src/options_interface.c:671
 msgid "Shots "
-msgstr ""
+msgstr "Remates"
 
 #: src/options_interface.c:678
-#, fuzzy
 msgid "Goals "
-msgstr "Guarda-Redes"
+msgstr "Golos"
 
 #: src/options_interface.c:685
-#, fuzzy
 msgid "Status "
-msgstr "Estado:"
+msgstr "Estado"
 
 #: src/options_interface.c:692
 msgid "Cards "
-msgstr ""
+msgstr "Cartões"
 
 #: src/options_interface.c:699
 msgid "Age "
-msgstr ""
+msgstr "Idade"
 
 #: src/options_interface.c:706
 msgid "ETal "
-msgstr ""
+msgstr "TalE"
 
 #: src/options_interface.c:713
 msgid "Value "
-msgstr ""
+msgstr "Valor"
 
 #: src/options_interface.c:720
-#, fuzzy
 msgid "Wage "
 msgstr "Salário"
 
 #: src/options_interface.c:727
-#, fuzzy
 msgid "Contract "
-msgstr "Ficheiros de constantes"
+msgstr "Contracto"
 
 #: src/options_interface.c:734
-#, fuzzy
 msgid "League "
 msgstr "Liga"
 
 #: src/options_interface.c:741
-#, fuzzy
 msgid "Team "
-msgstr "_Equipa"
+msgstr "Equipa"
 
 #: src/options_interface.c:978
 msgid "Attribute "
-msgstr ""
+msgstr "Atributo"
 
 #: src/options_interface.c:985
 msgid "List 1 "
-msgstr ""
+msgstr "Lista 1"
 
 #: src/options_interface.c:992
-#, fuzzy
 msgid "List 2"
-msgstr "Último %d"
+msgstr "Lista 2"
 
 #: src/options_interface.c:1006
-#, fuzzy
 msgid "Player attributes shown"
-msgstr "Precisão dos atributos do jogador"
+msgstr "Atributos do jogador"
 
 #: src/options_interface.c:1021
-#, fuzzy
 msgid "Whether to show matches of all leagues in the betting window"
-msgstr "Mostrar os jogos de todas as ligas. Use a janela de opções para mudar permanentemente."
+msgstr "Mostrar os jogos de todas as ligas na janela de apostas"
 
 #: src/options_interface.c:1026
-#, fuzzy
 msgid "Whether to show cup matches in the betting window"
-msgstr "Mostrar os jogos de todas as taças. Use a janela de opções para mudar permanentemente."
+msgstr "Mostrar os jogos das taças na janela de apostas"
 
 #: src/options_interface.c:1037
 msgid "Default wager"
-msgstr ""
+msgstr "Aposta padrão"
 
 #: src/options_interface.c:1045
 msgid "How much you wager by default"
-msgstr ""
+msgstr "Quanto aposta por padrão"
 
 #: src/options_interface.c:1062
 msgid "Default hotel"
-msgstr ""
+msgstr "Hotel padrão"
 
 #: src/options_interface.c:1085
+#, fuzzy
 msgid "Default recreation:"
-msgstr ""
+msgstr "Recreação padrão:"
 
 #: src/options_interface.c:1105
 msgid "Default training:"
-msgstr ""
+msgstr "Treino padrão:"
 
 #: src/options_interface.c:1127
 msgid "Create user news"
-msgstr ""
+msgstr "Criar notícias do utilizador"
 
 #: src/options_interface.c:1131
 msgid "Create cup news"
-msgstr ""
+msgstr "Criar notícias da taça"
 
 #: src/options_interface.c:1135
 msgid "Create league news"
-msgstr ""
+msgstr "Criar notícias da liga"
 
 #: src/options_interface.c:1139
-#, fuzzy
 msgid "Show only recent news"
-msgstr "Mostrar apenas as minhas apostas recentes"
+msgstr "Mostrar apenas as notícias recentes"
 
 #: src/options_interface.c:1147
 msgid "No automatic popup"
-msgstr ""
+msgstr "Sem popup automático"
 
 #: src/options_interface.c:1153
 msgid "Popup for user news"
-msgstr ""
+msgstr "Popup nas notícias do utilizador"
 
 #: src/options_interface.c:1156
 msgid "Show news window after a matchday when new user news was created"
-msgstr ""
+msgstr "Mostrar uma janela de notícias depois de um dia de jodo quando forem criadas nosvas notícias do utilizador."
 
 #: src/options_interface.c:1160
-#, fuzzy
 msgid "Automatic popup"
-msgstr "Pagamento automático do empréstimo"
+msgstr "popup automático"
 
 #: src/options_interface.c:1163
 msgid "Always show news window after a matchday"
-msgstr ""
+msgstr "Mostrat sempre a janela das notícias depois do dia de jogo"
 
 #: src/options_interface.c:1184
 msgid "Save global settings to file"
-msgstr ""
+msgstr "Salvar definições globais para o ficheiro"
 
 #: src/options_interface.c:1187
 msgid "Whether to save the global settings to file (so that they get loaded next time you start a new game)"
-msgstr ""
+msgstr "Guardar as preferências gerais num ficheiro (para serem usadas ao iniciar um novo jogo)"
 
 #: src/options_interface.c:1189
 msgid "Save user settings to file"
-msgstr ""
+msgstr "Salvar definições do utilizador para o ficheiro"
 
 #: src/options_interface.c:1192
 msgid "Whether to save the user settings to file (so that they get loaded next time this user starts a new game)"
-msgstr ""
+msgstr "Guardar as preferências do utilizador num ficheiro (para serem usadas da próxima vez que iniciar um novo jogo)"
 
 #: src/player.c:669
-#, fuzzy
 msgid "You can't replace a banned player."
-msgstr "Não selecionou nenhum jogador."
+msgstr "Não pode substituir um jogador lesionado"
 
 #: src/player.c:1242
 #, c-format
 msgid "%s's contract expires in %.1f years."
-msgstr ""
+msgstr "O contracto do %s acaba em %.1f anos."
 
 #: src/player.c:1405
 msgid "Concussion"
-msgstr ""
+msgstr "Concussão"
 
 #: src/player.c:1408
 msgid "Pulled muscle"
-msgstr ""
+msgstr "Problemas musculares"
 
 #: src/player.c:1411
 msgid "Hamstring"
-msgstr ""
+msgstr "Tendão da coxa"
 
 #: src/player.c:1414
 msgid "Groin injury"
-msgstr ""
+msgstr "Lesão na virilha"
 
 #: src/player.c:1417
 msgid "Fractured ankle"
-msgstr ""
+msgstr "Tornozelo fracturado"
 
 #: src/player.c:1420
 msgid "Broken rib"
-msgstr ""
+msgstr "Costela Partida"
 
 #: src/player.c:1423
 msgid "Broken leg"
-msgstr ""
+msgstr "Perna partida"
 
 #: src/player.c:1426
 msgid "Broken ankle"
-msgstr ""
+msgstr "Tornozelo partido"
 
 #: src/player.c:1429
-#, fuzzy
 msgid "Broken arm"
-msgstr "Explorar equipas"
+msgstr "Braço partido"
 
 #: src/player.c:1432
 msgid "Broken shoulder"
-msgstr ""
+msgstr "Ombro partido"
 
 #: src/player.c:1435
 msgid "Torn crucial ligament"
-msgstr ""
+msgstr "Ruptura de ligamentos"
 
 #: src/support.c:90
 #: src/support.c:114
 #, c-format
 msgid "Couldn't find pixmap file: %s"
-msgstr ""
+msgstr "Não foi possível encontrar o ficheiro de imagem: %s"
 
 #: src/team.c:660
 #, c-format
 msgid "Team style changed to %s."
-msgstr ""
+msgstr "Estilo de jogo da equipa mudado para %s."
 
 #: src/team.c:667
 #, c-format
 msgid "Boost changed to %s (costs %d per minute)."
-msgstr ""
+msgstr "Moral mudado para %s (custa %d por minuto)."
 
 #: src/team.c:672
 #, c-format
 msgid "Boost changed to %s."
-msgstr ""
+msgstr "Moral mudado para %s."
 
 #. a won match
 #: src/team.c:1053
-#, fuzzy, c-format
+#, c-format
 msgid "W  %d : %d"
-msgstr "%d : %d p."
+msgstr "V  %d : %d"
 
 #. a lost match
 #: src/team.c:1059
-#, fuzzy, c-format
+#, c-format
 msgid "L  %d : %d"
-msgstr "%d : %d p."
+msgstr "D  %d : %d"
 
 #. a drawn match
 #: src/team.c:1064
-#, fuzzy, c-format
+#, c-format
 msgid "Dw %d : %d"
-msgstr "%d : %d p."
+msgstr "E %d : %d"
 
 #. a match at home
 #: src/team.c:1074
 #, c-format
 msgid "%s (H) "
-msgstr ""
+msgstr "%s (C)"
 
 #. a match away
 #: src/team.c:1080
 #, c-format
 msgid "<span background='%s' foreground='%s'>%s (A) </span> "
-msgstr ""
+msgstr "<span background='%s' foreground='%s'>%s (F) </span> "
 
 #. a match on neutral ground
 #: src/team.c:1090
 #, c-format
 msgid "%s (N) "
-msgstr ""
+msgstr "%s (N)"
 
 #. draw
 #: src/team.c:1144
 msgid "Dw "
-msgstr ""
+msgstr "E"
 
 #. lost
 #: src/team.c:1148
 msgid "L  "
-msgstr ""
+msgstr "D"
 
 #. won
 #: src/team.c:1151
 msgid "W  "
-msgstr ""
+msgstr "V"
 
 #: src/training_callbacks.c:121
-#, fuzzy, c-format
+#, c-format
 msgid "%d training camps left this season."
-msgstr "Atingiu o limite de %d estágios."
+msgstr "%d estágios ainda disponíveis esta época."
 
 #: src/training_interface.c:84
+#, fuzzy
 msgid "Camp points"
-msgstr ""
+msgstr "Preparação em campo"
 
 #: src/training_interface.c:98
+#, fuzzy
 msgid "Recreation"
-msgstr ""
+msgstr "Recreação"
 
 #: src/training_interface.c:117
-#, fuzzy
 msgid "Training"
-msgstr "Estágio"
+msgstr "Treino"
 
 #: src/training_interface.c:161
 #: src/treeview.c:2909
 msgid "Good Hotel"
-msgstr ""
+msgstr "Bom Hotel"
 
 #: src/training_interface.c:168
 #: src/treeview.c:2912
 msgid "First-Class Hotel"
-msgstr ""
+msgstr "Hotel de Primeira Classe"
 
 #: src/training_interface.c:175
 #: src/treeview.c:2915
 msgid "Premium Hotel"
-msgstr ""
+msgstr "Hotel de Luxo"
 
 #: src/training_interface.c:197
 msgid "Save settings as default"
-msgstr ""
+msgstr "Salvar definições como padrão"
 
 #: src/transfer.c:567
 #, c-format
 msgid "%s has been added to the transfer list for %d weeks."
-msgstr ""
+msgstr "%s foi adicionado à lista de transferências por %d semanas."
 
 #: src/treeview2.c:68
 msgid "REPLAY"
-msgstr ""
+msgstr "REPETIR"
 
 #: src/treeview2.c:69
 msgid "REMOVE"
-msgstr ""
+msgstr "APAGAR"
 
 #: src/treeview2.c:70
 msgid "EXPORT"
-msgstr ""
+msgstr "EXPORTAR"
 
 #: src/treeview2.c:91
-#, fuzzy
 msgid "Your team"
-msgstr "A sua dívida:"
+msgstr "A sua equipa"
 
 #: src/treeview2.c:92
 #: src/treeview2.c:212
 msgid "Opponent"
-msgstr ""
+msgstr "Adversário"
 
 #: src/treeview2.c:93
 #: src/treeview2.c:214
-#, fuzzy
 msgid "Result"
-msgstr "_Continuar"
+msgstr "Resultado"
 
 #: src/treeview2.c:94
 #: src/treeview2.c:211
 msgid "Competition"
-msgstr ""
+msgstr "Competição"
 
 #: src/treeview2.c:95
 #: src/treeview2.c:515
-#, fuzzy
 msgid "Country"
-msgstr "Comentário"
+msgstr "País"
 
 #. Week
 #: src/treeview2.c:208
-#, fuzzy
 msgid "We"
-msgstr "Salário"
+msgstr "Nós"
 
 #. Round
 #: src/treeview2.c:210
 msgid "Ro"
-msgstr ""
+msgstr "Ro"
 
 #. Copy the <span...> stuff, translate in between.
 #: src/treeview2.c:300
 msgid "<span background='lightgrey' size='large' weight='bold'>Current bets</span>"
-msgstr ""
+msgstr "<span background='lightgrey' size='large' weight='bold'>Apostas actuais</span>"
 
 #. Copy the <span...> stuff, translate in between.
 #: src/treeview2.c:302
 msgid "<span background='lightgrey' size='large' weight='bold'>Recent bets</span>"
-msgstr ""
+msgstr "<span background='lightgrey' size='large' weight='bold'>Apostas recentes</span>"
 
 #: src/treeview2.c:393
-#, fuzzy
 msgid "Team1"
-msgstr "_Equipa"
+msgstr "Equipa1"
 
 #. Team 1 wins (betting window).
 #: src/treeview2.c:395
 msgid "Win1"
-msgstr ""
+msgstr "Vitória1"
 
 #: src/treeview2.c:396
 msgid "Draw"
-msgstr ""
+msgstr "Empate"
 
 #. Team 2 wins (betting window).
 #: src/treeview2.c:398
 msgid "Win2"
-msgstr ""
+msgstr "Vitória2"
 
 #: src/treeview2.c:399
-#, fuzzy
 msgid "Team2"
-msgstr "_Equipa"
+msgstr "Equipa2"
 
 #. How much the user wagers; how much he won or lost.
 #: src/treeview2.c:401
@@ -2466,6 +2439,8 @@ msgid ""
 "Wager/\n"
 "Win/Loss"
 msgstr ""
+"Aposta/\n"
+"Ganhou/Perdeu"
 
 #: src/treeview2.c:513
 #: src/treeview.c:161
@@ -2475,162 +2450,153 @@ msgstr ""
 #: src/treeview.c:1842
 #: src/treeview.c:1986
 #: src/treeview.c:2324
-#, fuzzy
 msgid "Team"
-msgstr "_Equipa"
+msgstr "Equipa"
 
 #: src/treeview2.c:516
-#, fuzzy
 msgid "Av.skill"
 msgstr "Hab. Média:"
 
 #: src/treeview2.c:517
 msgid "Talent %"
-msgstr ""
+msgstr "Talento %"
 
 #: src/treeview2.c:599
 msgid "No news available."
-msgstr ""
+msgstr "Sem notícias disponíveis."
 
 #: src/treeview2.c:620
 #: src/treeview.c:1003
-#, fuzzy, c-format
+#, c-format
 msgid "Week %d Round %d"
-msgstr " Ronda"
+msgstr "Semana %d Ronda %d"
 
 #. Average skill
 #: src/treeview.c:179
 msgid "Av.Sk."
-msgstr ""
+msgstr "Hab.M."
 
 #. Current position of a player.
 #: src/treeview.c:305
-#, fuzzy
 msgid "CPos"
-msgstr "Custo"
+msgstr "CPos"
 
 #. Position of a player.
 #: src/treeview.c:307
 msgid "Pos"
-msgstr ""
+msgstr "Pos"
 
 #. Current skill of a player.
 #: src/treeview.c:309
 msgid "CSk"
-msgstr ""
+msgstr "CHab"
 
 #. Skill of a player.
 #: src/treeview.c:311
 msgid "Sk"
-msgstr ""
+msgstr "Hab"
 
 #. Fitness of a player.
 #: src/treeview.c:313
 msgid "Fit"
-msgstr ""
+msgstr "Fit"
 
 #. Games of a player.
 #: src/treeview.c:315
 msgid "Ga"
-msgstr ""
+msgstr "J"
 
 #. Shots of a player.
 #: src/treeview.c:317
 msgid "Sh"
-msgstr ""
+msgstr "Rem"
 
 #. Goals of a player.
 #. Goals.
 #: src/treeview.c:319
 #: src/treeview.c:2454
-#, fuzzy
 msgid "Go"
-msgstr "Bom"
+msgstr "Ir"
 
 #. Status of a player.
 #: src/treeview.c:321
-#, fuzzy
 msgid "Status"
-msgstr "Estado:"
+msgstr "Estado"
 
 #. Yellow cards of a player.
 #: src/treeview.c:323
 msgid "YC"
-msgstr ""
+msgstr "CA"
 
 #: src/treeview.c:324
 #: src/treeview.c:2144
-#, fuzzy
 msgid "Age"
-msgstr "Médio"
+msgstr "Idade"
 
 #. Estimated talent of a player.
 #: src/treeview.c:326
 msgid "Etal"
-msgstr ""
+msgstr "TalE"
 
 #: src/treeview.c:327
 #: src/treeview.c:2146
 msgid "Value"
-msgstr ""
+msgstr "Valor"
 
 #: src/treeview.c:329
 #: src/treeview.c:2148
-#, fuzzy
 msgid "Contract"
-msgstr "Colaboradores"
+msgstr "Contracto"
 
 #. 'Normal' goals, ie. no penalties or free kicks.
 #: src/treeview.c:818
 msgid "Goals (regular)"
-msgstr ""
+msgstr "Golos (norm.)"
 
 #: src/treeview.c:819
 #: src/treeview_helper.c:934
-#, fuzzy
 msgid "Shots"
-msgstr "Olheiro"
+msgstr "Remates"
 
 #: src/treeview.c:820
 #: src/treeview.c:2396
 msgid "Shot %"
-msgstr ""
+msgstr "Remate %"
 
 #: src/treeview.c:821
 msgid "Possession"
-msgstr ""
+msgstr "Posse"
 
 #: src/treeview.c:822
-#, fuzzy
 msgid "Penalties"
-msgstr "Marca penaltis"
+msgstr "Penaltis"
 
 #: src/treeview.c:823
 msgid "Fouls"
-msgstr ""
+msgstr "Faltas"
 
 #: src/treeview.c:824
 #: src/treeview_helper.c:935
 msgid "Yellows"
-msgstr ""
+msgstr "Amarelos"
 
 #: src/treeview.c:825
 #: src/treeview_helper.c:936
-#, fuzzy
 msgid "Reds"
-msgstr "Pronto"
+msgstr "Vermelhos"
 
 #: src/treeview.c:826
-#, fuzzy
 msgid "Injuries"
-msgstr "Aumentar"
+msgstr "Lesões"
 
 #: src/treeview.c:891
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Attendance\n"
 "%s"
-msgstr "Assistência média %"
+msgstr ""
+"Assistência média\n"
+"%s"
 
 #: src/treeview.c:899
 #, c-format
@@ -2638,6 +2604,8 @@ msgid ""
 "<span background='%s'>There were technical problems\n"
 "in the stadium.</span>"
 msgstr ""
+"<span background='%s'>Existem problemas técnicos\n"
+"no estádio.</span>"
 
 #: src/treeview.c:902
 #, c-format
@@ -2645,6 +2613,8 @@ msgid ""
 "<span background='%s'>There were riots\n"
 "in the stadium.</span>"
 msgstr ""
+"<span background='%s'>Existem motins\n"
+"no estádio.</span>"
 
 #: src/treeview.c:905
 #, c-format
@@ -2652,63 +2622,64 @@ msgid ""
 "<span background='%s'>There was a fire\n"
 "in the stadium.</span>"
 msgstr ""
+"<span background='%s'>Houve um incêndio\n"
+"no estádio.</span>"
 
 #. A group of a round robin stage of a cup.
 #: src/treeview.c:1234
 #, c-format
 msgid "%s Group %d"
-msgstr ""
+msgstr "%s Grupo%d"
 
 #. Games played (a number).
 #: src/treeview.c:1369
 msgid "PL"
-msgstr ""
+msgstr "Jog"
 
 #. Games won.
 #. Won.
 #: src/treeview.c:1371
 #: src/treeview_helper.c:1739
 msgid "W"
-msgstr ""
+msgstr "V"
 
 #. Games drawn.
 #. Draw.
 #: src/treeview.c:1373
 #: src/treeview_helper.c:1757
 msgid "Dw"
-msgstr ""
+msgstr "E"
 
 #. Games lost.
 #. Lost.
 #: src/treeview.c:1375
 #: src/treeview_helper.c:1750
 msgid "L"
-msgstr ""
+msgstr "D"
 
 #. Goals for.
 #: src/treeview.c:1377
 msgid "GF"
-msgstr ""
+msgstr "GF"
 
 #. Goals against.
 #: src/treeview.c:1379
 msgid "GA"
-msgstr ""
+msgstr "GC"
 
 #. Goal difference.
 #: src/treeview.c:1381
 msgid "GD"
-msgstr ""
+msgstr "DG"
 
 #. Points.
 #: src/treeview.c:1383
 msgid "PTS"
-msgstr ""
+msgstr "PTS"
 
 #: src/treeview.c:1460
-#, fuzzy
 msgid "Stadium"
-msgstr "Mostrar estádio"
+msgstr "Estádio"
 
 #: src/treeview.c:1476
 #: src/window.c:651
@@ -2718,43 +2689,43 @@ msgid ""
 "%d seats and %d%% safety still to be done.\n"
 "Expected finish: %d weeks."
 msgstr ""
+"Melhorias em progresso.\n"
+"%d assentos e %d%% de segurança estão em andamento.\n"
+"Tempo de trabalho: %d semanas."
 
 #: src/treeview.c:1484
-#, fuzzy
 msgid "Stadium status"
-msgstr "Segurança do estádio"
+msgstr "Estado do estádio"
 
 #: src/treeview.c:1500
 msgid "Prize money"
-msgstr ""
+msgstr "Recompensa"
 
 #: src/treeview.c:1501
 msgid "Ticket income"
-msgstr ""
+msgstr "Bilheteira"
 
 #: src/treeview.c:1502
 msgid "Sponsorship"
-msgstr ""
+msgstr "Patrocínio"
 
 #: src/treeview.c:1505
-#, fuzzy
 msgid "Wages"
-msgstr "Salário"
+msgstr "Salários"
 
 #: src/treeview.c:1510
 msgid "Journey costs"
-msgstr ""
+msgstr "Despesas de deslocação"
 
 #. Money paid to players a user fired.
 #: src/treeview.c:1512
 msgid "Compensations"
-msgstr ""
+msgstr "Remunerações"
 
 #. Applying boost costs money.
 #: src/treeview.c:1515
-#, fuzzy
 msgid "Boost costs"
-msgstr "Motivação"
+msgstr "Custo da Motivação"
 
 #: src/treeview.c:1529
 #: src/treeview.c:1532
@@ -2763,310 +2734,290 @@ msgid ""
 "Bi-weekly balance\n"
 "(Week %d and %d)"
 msgstr ""
+"Balanço quinzenal\n"
+"(Semanas %d e %d)"
 
 #: src/treeview.c:1536
 msgid "Bi-weekly balance"
-msgstr ""
+msgstr "Balanço quinzenal"
 
 #. Finances balance.
 #: src/treeview.c:1563
-#, fuzzy
 msgid "Balance"
 msgstr "Equilibrado"
 
 #: src/treeview.c:1581
 msgid "Transfers"
-msgstr ""
+msgstr "Transferências"
 
 #: src/treeview.c:1591
-#, fuzzy
 msgid "Stadium expenses"
-msgstr "Segurança do estádio"
+msgstr "Despesas do estádio"
 
 #: src/treeview.c:1612
-#, fuzzy
 msgid "Money"
 msgstr "Dinheiro"
 
 #: src/treeview.c:1616
 msgid "Drawing credit"
-msgstr ""
+msgstr "Crédito"
 
 #: src/treeview.c:1620
-#, fuzzy
 msgid "Current market interest"
-msgstr "Definições actuais:"
+msgstr "Actual interesse do mercado"
 
 #: src/treeview.c:1627
 msgid "interest rate"
-msgstr ""
+msgstr "taxa de juros"
 
 #: src/treeview.c:1628
 #, c-format
 msgid "Debt (repay in %d weeks)"
-msgstr ""
+msgstr "Dívida (paga em %d semanas)"
 
 #: src/treeview.c:1636
-#, fuzzy
 msgid "Automatic repayment"
 msgstr "Pagamento automático do empréstimo"
 
 #: src/treeview.c:1641
-#, fuzzy, c-format
+#, c-format
 msgid "(starting week %d)"
-msgstr "Começar na semana"
+msgstr "(semana inicial %d)"
 
 #: src/treeview.c:1650
 msgid "Sponsor"
-msgstr ""
+msgstr "Patrocínador"
 
 #. Contract time and money a sponsor pays.
 #: src/treeview.c:1655
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f months / %s"
-msgstr " meses"
+msgstr "%.1f meses / %s"
 
 #: src/treeview.c:1657
 msgid "Contract / Money"
-msgstr ""
+msgstr "Contracto / Dinheiro"
 
 #: src/treeview.c:1664
-#, fuzzy
 msgid "Youth acad. invest."
-msgstr "Academia de jovens"
+msgstr "Investimento na Academia de jovens"
 
 #: src/treeview.c:1686
 msgid "Income"
-msgstr ""
+msgstr "Rendimento"
 
 #: src/treeview.c:1687
 msgid "Expenses"
-msgstr ""
+msgstr "Despesas"
 
 #: src/treeview.c:1758
-#, fuzzy
 msgid "Goalie"
-msgstr "Guarda-Redes"
+msgstr "Guardião"
 
 #: src/treeview.c:1760
-#, fuzzy
 msgid "Midfield"
-msgstr "Médios"
+msgstr "Meio Campo"
 
 #: src/treeview.c:1814
 msgid "Your next opponent"
-msgstr ""
+msgstr "Próximo adversário"
 
 #: src/treeview.c:1820
 #: src/treeview.c:1825
 #, c-format
 msgid "<span foreground='%s' background='%s'>Week %d Round %d</span>"
-msgstr ""
+msgstr "<span foreground='%s' background='%s'>Semana %d Ronda %d</span>"
 
 #: src/treeview.c:1831
 msgid "Neutral ground"
-msgstr ""
+msgstr "Campo neutro"
 
 #: src/treeview.c:1833
 msgid "Home"
-msgstr ""
+msgstr "Casa"
 
 #: src/treeview.c:1835
 msgid "Away"
-msgstr ""
+msgstr "Fora"
 
 #: src/treeview.c:1866
-#, fuzzy
 msgid "Average skill"
-msgstr "Habilidade Média:"
+msgstr "Habilidade Média"
 
 #: src/treeview.c:1874
-#, fuzzy
 msgid "Team structure"
-msgstr "Formação"
+msgstr "Formação da equipa"
 
 #: src/treeview.c:1880
-#, fuzzy
 msgid "Latest results"
-msgstr "Resultados da época"
+msgstr "Últimos resultados"
 
 #: src/treeview.c:1882
 #: src/treeview.c:2420
 #: src/treeview_helper.c:933
-#, fuzzy
 msgid "Goals"
-msgstr "Guarda-Redes"
+msgstr "Golos"
 
 #. The user's results against a specific team.
 #: src/treeview.c:1887
-#, fuzzy
 msgid "Your results"
-msgstr "Resultados da época"
+msgstr "Os seus resultados"
 
 #: src/treeview.c:1987
 msgid "Results"
-msgstr ""
+msgstr "Resultados"
 
 #: src/treeview.c:2138
 msgid "Position"
-msgstr ""
+msgstr "Posição"
 
 #: src/treeview.c:2139
-#, fuzzy
 msgid "Current position"
-msgstr "Definições actuais:"
+msgstr "Posição actual"
 
 #: src/treeview.c:2140
 msgid "Skill"
-msgstr ""
+msgstr "Habilidade"
 
 #: src/treeview.c:2141
-#, fuzzy
 msgid "Current skill"
-msgstr "Ficheiro actual"
+msgstr "Habilidade actual"
 
 #: src/treeview.c:2142
 msgid "Fitness"
-msgstr ""
+msgstr "Preparação Física"
 
 #: src/treeview.c:2143
 msgid "Estimated talent"
-msgstr ""
+msgstr "Talento previsto"
 
 #: src/treeview.c:2145
-#, fuzzy
 msgid "Health"
-msgstr "Ajuda"
+msgstr "Saúde"
 
 #: src/treeview.c:2149
 msgid "Games/Goals\n"
-msgstr ""
+msgstr "Jogos/Golos\n"
 
 #. 'Limit' is the number of yellow cards until a player gets
 #. banned automatically for a match.
 #: src/treeview.c:2152
 msgid "Yellow cards (limit)\n"
-msgstr ""
+msgstr "Cartões amarelos (limite)\n"
 
 #: src/treeview.c:2153
-#, fuzzy
 msgid "Banned\n"
-msgstr "Equilibrado"
+msgstr "Banido\n"
 
 #. Hot streak or cold streak of a player.
 #: src/treeview.c:2155
 msgid "Streak"
-msgstr ""
+msgstr "Fase"
 
 #: src/treeview.c:2156
 msgid "Career values"
-msgstr ""
+msgstr "Carreira"
 
 #: src/treeview.c:2157
 msgid ""
 "New contract\n"
 "offers"
 msgstr ""
+"Propor\n"
+"novo contrato"
 
 #. Season.
 #: src/treeview.c:2323
 msgid "Sea"
-msgstr ""
+msgstr "Mar"
 
 #: src/treeview.c:2324
-#, fuzzy
 msgid "Week"
-msgstr " Semana"
+msgstr "Semana"
 
 #: src/treeview.c:2352
 msgid "Event"
-msgstr ""
+msgstr "Evento"
 
 #: src/treeview.c:2392
-#, fuzzy
 msgid "Best offensive teams"
-msgstr "Explorar equipas"
+msgstr "Melhores equipas ofensivas"
 
 #: src/treeview.c:2393
 msgid "Best defensive teams"
-msgstr ""
+msgstr "Melhores equipas defensivas"
 
 #: src/treeview.c:2396
 msgid "Best goal scorers"
-msgstr ""
+msgstr "Melhores marcadores"
 
 #: src/treeview.c:2397
 msgid "Best goalkeepers"
-msgstr ""
+msgstr "Melhores guarda-redes"
 
 #. % of saves for goalies (#goals / #shots)
 #: src/treeview.c:2399
-#, fuzzy
 msgid "Save %"
-msgstr "Segurança (%)"
+msgstr "Gravar %"
 
 #. Goals per game.
 #: src/treeview.c:2456
 msgid "Go/Ga"
-msgstr ""
+msgstr "Go/Pa"
 
 #: src/treeview.c:2564
-#, fuzzy
 msgid "League champions"
-msgstr "Estatísticas da Liga"
+msgstr "Liga dos campeões"
 
 #: src/treeview.c:2565
 msgid "Cup champions"
-msgstr ""
+msgstr "Liga dos campeões"
 
 #: src/treeview.c:2615
-#, fuzzy, c-format
+#, c-format
 msgid "Season %d"
-msgstr " Época"
+msgstr " Época %d"
 
 #: src/treeview.c:2738
 msgid "Didn't find file 'bygfoot_help'."
-msgstr ""
+msgstr "O ficheiro 'bygfoot_help' não foi encontrado."
 
 #: src/treeview.c:2798
-#, fuzzy
 msgid "Current league"
-msgstr "Ficheiro actual"
+msgstr "Liga Actual"
 
 #. Language is system-set (not user chosen).
 #: src/treeview.c:2852
 msgid "System"
-msgstr ""
+msgstr "Sistema"
 
 #: src/treeview.c:2986
 msgid "Company"
-msgstr ""
+msgstr "Empresa"
 
 #: src/treeview.c:2987
 msgid ""
 "Contract length\n"
 "(Months)"
 msgstr ""
+"Duração do\n"
+"contracto (Meses)"
 
 #: src/treeview.c:2988
-#, fuzzy
 msgid "Money / week"
-msgstr "Dinheiro"
+msgstr "Dinheiro / semana"
 
 #: src/treeview_helper.c:914
-#, fuzzy
 msgid "Player doesn't negotiate anymore"
-msgstr "O jogador não negociará mais consigo."
+msgstr "O jogador não negociará mais."
 
 #: src/treeview_helper.c:916
-#, fuzzy
 msgid "Player accepts new offers"
-msgstr "%s aceitou a sua oferta."
+msgstr "Jogador aceita novas ofertas"
 
 #: src/treeview_helper.c:932
-#, fuzzy
 msgid "Games"
-msgstr "Guarda-Redes"
+msgstr "Jogos"
 
 #: src/treeview_helper.c:952
 #, c-format
@@ -3074,6 +3025,8 @@ msgid ""
 "\n"
 "Goals/Game %.1f Save %% %.1f"
 msgstr ""
+"\n"
+"Golos/Jogo %.1f Defendido %% %.1f"
 
 #: src/treeview_helper.c:959
 #, c-format
@@ -3081,159 +3034,159 @@ msgid ""
 "\n"
 "Goals/Game %.1f Shot %% %.1f"
 msgstr ""
+"\n"
+"Golos/Jogo %.1f Remate %% %.1f"
 
 #. Ban info of a player in the format:
 #. 'Cup/league name: Number of weeks banned'
 #: src/treeview_helper.c:988
 #, c-format
 msgid "%s: %d weeks\n"
-msgstr ""
+msgstr "%s: %d semanas\n"
 
 #. Yellow cards of a player in a cup/league. No limit means there isn't a limit
 #. after which the player gets banned for a match automatically.
 #: src/treeview_helper.c:1029
 #, c-format
 msgid "%s: %d (no limit)\n"
-msgstr ""
+msgstr "%s: %d (sem limite)\n"
 
 #: src/treeview_helper.c:1072
-#, fuzzy
 msgid "The player is on a hot streak"
-msgstr "O jogador não está na lista."
+msgstr "O jogador está numa boa fase"
 
 #: src/treeview_helper.c:1074
-#, fuzzy
 msgid "The player is on a cold streak"
-msgstr "O jogador não está na lista."
+msgstr "O jogador está numa má fase"
 
 #: src/treeview_helper.c:1088
 #, c-format
 msgid "%s (expected recovery in %d weeks)"
-msgstr ""
+msgstr "%s (recuperação estimada em %d semanas)"
 
 #: src/treeview_helper.c:1364
 #, c-format
 msgid "INJ(%d)"
-msgstr ""
+msgstr "LES(%d)"
 
 #: src/treeview_helper.c:1378
 #, c-format
 msgid "BAN(%d)"
-msgstr ""
+msgstr "BAN(%d)"
 
 #. Goalie
 #: src/treeview_helper.c:1499
 msgid "G"
-msgstr ""
+msgstr "G"
 
 #. Defender
 #: src/treeview_helper.c:1507
 msgid "D"
-msgstr ""
+msgstr "D"
 
 #. Midfielder
 #: src/treeview_helper.c:1515
 msgid "M"
-msgstr ""
+msgstr "M"
 
 #. Forward
 #: src/treeview_helper.c:1523
 msgid "F"
-msgstr ""
+msgstr "F"
 
 #: src/treeview_helper.c:1650
 msgid "ADD LAST MATCH"
-msgstr ""
+msgstr "ADICIONAR ÚLTIMA PARTIDA"
 
 #: src/user.c:380
 #, c-format
 msgid "The owners of %s are not satisfied with the recent performance of the team. There are rumours they're looking for a new manager."
-msgstr ""
+msgstr "Os dirigentes do %s não estão satisfeitos com a performance da equipa. Há rumores que estão a procura de um novo treinador."
 
 #: src/user.c:556
 #, c-format
 msgid "%s has left your team because his contract expired."
-msgstr ""
+msgstr "%s saiu da equipa porque o contracto terminou."
 
 #: src/user.c:576
-#, fuzzy, c-format
+#, c-format
 msgid "You have overdrawn your bank account. The team owners give you %d weeks to get above your drawing credit limit."
-msgstr "A sua conta bancária deve ultrapassar o limite de crédito na próxima semana."
+msgstr "A sua conta bancária ultrapassou os limites de crédito. Os dirigentes deram-lhe %d semanas para recuperar."
 
 #: src/user.c:578
 #, c-format
 msgid ""
 "You have overdrawn your bank account once again. Bear in mind that after the fourth time you get fired.\n"
 "The team owners give you %d weeks to get above your drawing credit limit."
-msgstr ""
+msgstr "Você estourou o seu limite bancário. Os dirigentes dão-lhe %d semanas para superar o limite de crédito. Tenha em conta que após a 4ª vez, é despedido."
 
 #: src/user.c:581
 #, c-format
 msgid "Have a look at the transfer list, there's an offer for %s."
-msgstr ""
+msgstr "Veja a lista de transferências. Existe uma oferta pelo %s."
 
 #: src/user.c:585
 #, c-format
 msgid "Your offer for %s has been accepted. If you still want to buy him, go to the transfer list and left click on the player."
-msgstr ""
+msgstr "A sua oferta pelo %s foi aceite. Se ainda o quer comprar, vá à lista de transferência e clique em cima do jogador."
 
 #: src/user.c:591
 #, c-format
 msgid "The owners of %s have rejected your offer (%s / %s) for %s. There was a better offer for the player than yours."
-msgstr ""
+msgstr "Os dirigentes do %s rejeitaram a sua proposta (%s / %s) pelo (%s). Houve propostas mais altas que a sua."
 
 #: src/user.c:596
 #, c-format
 msgid "The owners of %s have rejected your offer (%s / %s) for %s. Neither the fee nor the wage you offered were acceptable, they say."
-msgstr ""
+msgstr "Os dirigentes do %s rejeitaram a sua proposta (%s / %s) pelo (%s). Nem o preço, nem o salário eram aceitáveis, no seu ponto de vista."
 
 #: src/user.c:601
 #, c-format
 msgid "The owners of %s have rejected your offer (%s / %s) for %s. The team owners weren't satisfied with the fee you offered."
-msgstr ""
+msgstr "Os dirigentes do %s rejeitaram a sua proposta (%s / %s) pelo (%s). Eles não ficaram muito satisfeitos com a sua oferta."
 
 #. A player from a team has rejected a transfer offer.
 #: src/user.c:607
 #, c-format
 msgid "%s of %s has rejected your offer (%s / %s). He wasn't satisfied with the wage you offered."
-msgstr ""
+msgstr "%s do %s rejeitou a sua proposta (%s / %s). Não estava satisfeito com a oferta salarial."
 
 #. A player from a team has rejected a transfer offer.
 #: src/user.c:613
 #, c-format
 msgid "%s of %s has rejected your offer because your team has too many star players already. 'A player of my caliber doesn't play second fiddle,' he was quoted."
-msgstr ""
+msgstr "%s do %s rejeitou a sua proposta porque a sua equipa já tem muitas vedetas. 'Um jogador do meu calivre não é para ficar no banco', disse ele."
 
 #. Buy a player from a team.
 #: src/user.c:619
-#, fuzzy, c-format
+#, c-format
 msgid "You didn't have enough money to buy %s from %s."
-msgstr "Não tem dinheiro suficiente para contractar o %s ou o seu plantel está completo."
+msgstr "Não tem dinheiro suficiente para contractar o %s ao %s."
 
 #. Buy a player from a team.
 #: src/user.c:624
-#, fuzzy, c-format
+#, c-format
 msgid "Your roster is full. You couldn't buy %s from %s."
-msgstr "O plantel está cheio. Não pode comprar mais jogadores"
+msgstr "O plantel está cheio. Não pode comprar o %s do %s."
 
 #: src/user.c:628
 #, c-format
 msgid "%s's injury was so severe that he can't play football on a professional level anymore. He leaves your team."
-msgstr ""
+msgstr "A lesão do %s foi tão grave que vai ter que deixar de jogar futebol profissionalmente. Ele deixou a sua equipa."
 
 #: src/user.c:631
 msgid " Fortunately he's got a cousin who can help your team out."
-msgstr ""
+msgstr "Felizmente ele tem um primo que pode ajudar a sua equipa."
 
 #: src/user.c:640
 msgid "The team owners are very satisfied with your financial management. Since the team's been earning a lot of money lately, they decide to donate half of it to charity."
-msgstr ""
+msgstr "Os dirigentes da equipa estão muito satisfeitos com a sua gestão financeira. Uma vez que a equipa está a ganhar muito dinheiro ultimamente, eles decidiram doar metade para caridade."
 
 #. Buy a team in a league.
 #: src/user.c:826
-#, fuzzy, c-format
+#, c-format
 msgid "You start the game with %s in the %s."
-msgstr "Não pode ter mais que %d jogadores na sua equipa."
+msgstr "Começa o jogo com %s no %s."
 
 #. Team fires, team in a league.
 #: src/user.c:832
@@ -3242,6 +3195,8 @@ msgid ""
 "%s fires you because of financial mismanagement.\n"
 "You find a new job with %s in the %s."
 msgstr ""
+"%s despediu-o por má gestão financeira.\n"
+"Mas encontroue um novo trabalho com %s no %s."
 
 #. Team fires, team in a league.
 #: src/user.c:839
@@ -3250,6 +3205,8 @@ msgid ""
 "%s fires you because of unsuccessfulness.\n"
 "You find a new job with %s in the %s."
 msgstr ""
+"%s despediu-o por causa do seu insucesso.\n"
+"Mas encontrou um novo trabalho com %s no %s."
 
 #. Team in a league. Leave team.
 #: src/user.c:846
@@ -3258,296 +3215,282 @@ msgid ""
 "%s offer you a job in the %s.\n"
 "You accept the challenge and leave %s."
 msgstr ""
+"%s ofereceu-lhe emprego no %s.\n"
+"Você aceita o desafio e deixa o %s."
 
 #. League name.
 #: src/user.c:853
 #, c-format
 msgid "You finish the season in the %s on rank %s."
-msgstr ""
+msgstr "Terminou a época na %s na %s posição."
 
 #. League name.
 #: src/user.c:859
 #, c-format
 msgid "You get promoted to the %s."
-msgstr ""
+msgstr "Foi promovido para a %s."
 
 #. League name.
 #: src/user.c:864
 #, c-format
 msgid "You get relegated to the %s."
-msgstr ""
+msgstr "Foi despromivido para a  %s."
 
 #. Cup name, team name.
 #: src/user.c:869
-#, fuzzy, c-format
+#, c-format
 msgid "You win the %s final against %s."
-msgstr "Você pode retirar, no máximo %s."
+msgstr "Ganhou a final do %s contra o %s"
 
 #. Cup name, team name.
 #: src/user.c:875
 #, c-format
 msgid "You lose in the %s final against %s."
-msgstr ""
+msgstr "Perdeu na final da %s contra o %s."
 
 #. Cup round name (e.g. Last 32), number, cup name.
 #: src/user.c:881
 #, c-format
 msgid "You reach the %s (round %s) of the %s."
-msgstr ""
+msgstr "Chegou à %s (jornada %s) da %s."
 
 #. League name.
 #: src/user.c:888
 #, c-format
 msgid "You are champion of the %s!"
-msgstr ""
+msgstr "É campeão da %s!"
 
 #. Company name.
 #: src/user.c:980
 msgid " Systems"
-msgstr ""
+msgstr " Sistemas"
 
 #. Company name.
 #: src/user.c:982
 msgid " Communications"
-msgstr ""
+msgstr " Comunicações"
 
 #. Company name.
 #: src/user.c:984
 msgid " Holdings"
-msgstr ""
+msgstr " Holdings"
 
 #. Company name.
 #: src/user.c:986
 msgid " Industries"
-msgstr ""
+msgstr " Indústrias"
 
 #. Company name.
 #: src/user.c:988
 msgid " Company"
-msgstr ""
+msgstr " Empresa"
 
 #. Company name.
 #: src/user.c:990
 msgid " Telecommunications"
-msgstr ""
+msgstr " Telecomunicações"
 
 #. Company name.
 #: src/user.c:992
 msgid " Labs"
-msgstr ""
+msgstr " Laboratórios"
 
 #. Company name.
 #: src/user.c:994
 msgid " Technologies"
-msgstr ""
+msgstr " Tecnologias"
 
 #. Company name.
 #: src/user.c:996
 msgid " Chemicals"
-msgstr ""
+msgstr " Químicos"
 
 #. Company name.
 #: src/user.c:998
 msgid " Energy"
-msgstr ""
+msgstr " Energia"
 
 #. Company name.
 #: src/user.c:1000
-#, fuzzy
 msgid " Bank"
-msgstr "Posição"
+msgstr "Banco"
 
 #. Company name.
 #: src/user.c:1002
 msgid " Products"
-msgstr ""
+msgstr " Productos"
 
 #. Company name.
 #: src/user.c:1004
 msgid " Software"
-msgstr ""
+msgstr " Software"
 
 #. Company name.
 #: src/user.c:1006
 msgid " Scientific"
-msgstr ""
+msgstr " Científico"
 
 #. Company name.
 #: src/user.c:1008
-#, fuzzy
 msgid " Financial"
-msgstr "Final"
+msgstr "Financeiro"
 
 #. Company name.
 #: src/user.c:1010
 msgid " Petroleum"
-msgstr ""
+msgstr " Petróleo"
 
 #. Company name.
 #: src/user.c:1012
-#, fuzzy
 msgid " Restaurants"
-msgstr "Voltar"
+msgstr "Restaurantes"
 
 #. Company name.
 #: src/user.c:1014
 msgid " Data Systems"
-msgstr ""
+msgstr " Sistemas de Dados"
 
 #. Company short name, leading to things like 'Marshall Data Systems Ltd.'
 #: src/user.c:1017
-#, fuzzy
 msgid " Ltd."
-msgstr "t.e."
+msgstr "Ltd."
 
 #. Company short name.
 #: src/user.c:1019
 msgid " Assoc."
-msgstr ""
+msgstr " Associados"
 
 #. Company short name.
 #: src/user.c:1021
 msgid " Co."
-msgstr ""
+msgstr " Co."
 
 #. Company short name.
 #: src/user.c:1023
-#, fuzzy
 msgid " Ent."
-msgstr "t.e."
+msgstr "Ent."
 
 #. Company short name. Copy the '&amp;'.
 #: src/user.c:1025
 msgid " &amp; Co."
-msgstr ""
+msgstr " &amp; Co."
 
 #. Company short name.
 #: src/user.c:1027
-#, fuzzy
 msgid " Corp."
-msgstr "p."
+msgstr "Corp."
 
 #. Company short name.
 #: src/user.c:1029
 msgid " Group"
-msgstr ""
+msgstr " Grupo"
 
 #. Company addition, leading to 'Marshall & Sons Petroleum Co.'. Copy the '&amp;'.
 #: src/user.c:1032
 msgid " &amp; Sons"
-msgstr ""
+msgstr " &amp; Filhos"
 
 #. Company addition. Copy the '&amp;'.
 #: src/user.c:1034
 msgid " &amp; Daughters"
-msgstr ""
+msgstr " &amp; Filhas"
 
 #. Company addition.
 #: src/user.c:1036
 msgid " Bros."
-msgstr ""
+msgstr "Irmãos"
 
 #: src/user.c:1124
 #, c-format
 msgid "Your current sponsor is satisfied with your results and would like to renew the contract. Currently they're paying you %d a week."
-msgstr ""
+msgstr "O seu patrocinador actual está satisfeito com os resultados e gostaria de renovar o contracto. Actualmente está a pagar-lhe %d por semana."
 
 #: src/user.c:1212
-#, fuzzy
 msgid "Memorable match added."
-msgstr "Jogos memoráveis"
+msgstr "Jogo memorável adicionado"
 
 #: src/window.c:384
-#, fuzzy
 msgid "Bygfoot Save Files"
-msgstr "Notícias do Bygfoot"
+msgstr "Ficheiros de Gravação do Bygfoot"
 
 #: src/window.c:390
-#, fuzzy
 msgid "Bygfoot Memorable Matches"
-msgstr "Jogos memoráveis"
+msgstr "Jogos memoráveis do Bygfoot"
 
 #: src/window.c:396
 msgid "All Files"
-msgstr ""
+msgstr "Todos os ficheiros"
 
 #: src/window.c:448
-#, fuzzy
 msgid "Not a valid Bygfoot Memorable Matches filename."
-msgstr "Importar os jogos de um ficheiro de jogos memoráveis"
+msgstr "Não é um um ficheiro de jogos memoráveis válido."
 
 #: src/window.c:661
 msgid "No improvements currently in progress."
-msgstr ""
+msgstr "Não há melhorias em curso."
 
 #: src/window.c:831
 #, c-format
 msgid "Welcome to Bygfoot %s"
-msgstr ""
+msgstr "Bemvindo ao Bygfoot %s"
 
 #: src/window.c:862
 msgid "Erm..."
-msgstr ""
+msgstr "Hmmm..."
 
 #: src/window.c:879
 msgid "Numbers..."
-msgstr ""
+msgstr "Números..."
 
 #: src/window.c:887
-#, fuzzy
 msgid "Your stadium"
-msgstr "Mostrar estádio"
+msgstr "O seu estádio"
 
 #: src/window.c:911
-#, fuzzy
 msgid "Options"
-msgstr "_Opções"
+msgstr "Opções"
 
 #: src/window.c:934
-#, fuzzy
 msgid "Contract offer"
-msgstr "Ficheiros de constantes"
+msgstr "Oferta de contractos"
 
 #: src/window.c:942
 msgid "User management"
-msgstr ""
+msgstr "Gestão de utilizadores"
 
 #: src/window.c:965
-#, fuzzy
 msgid "Transfer offer"
-msgstr "Fazer oferta"
+msgstr "Oferta de transferências"
 
 #: src/window.c:973
-#, fuzzy
 msgid "Sponsorship offers"
-msgstr "Mostrar ofertas de emprego"
+msgstr "Ofertas de patrocínio"
 
 #: src/xml.c:92
-#, fuzzy, c-format
+#, c-format
 msgid "Loading league: %s"
-msgstr "A carregar ligas e taças..."
+msgstr "A carregar liga: %s"
 
 #: src/xml.c:125
-#, fuzzy, c-format
+#, c-format
 msgid "Loading cup: %s"
-msgstr "A carregar utilizadores..."
+msgstr "A carregar taça: %s"
 
 #: src/youth_academy.c:214
 #, c-format
 msgid "Youth %s will be too old for the youth academy soon. Move him to your team or kick him out of the academy. Otherwise he'll probably look for another team to play in."
-msgstr ""
+msgstr "O jovem %s irá, brevemente, ser velho demais para estar na academia. Mova-o para a sua equipa ou expulse-o da academia. De outra forma ele irá, provavelmente, à procura de outra equipa para jogar."
 
 #: src/youth_academy.c:218
 #, c-format
 msgid "Youth %s thought he's old enough for a real contract and left your youth academy."
-msgstr ""
+msgstr "O jovem %s acha que já é velho o suficiente para um contracto a sério e por isso deixou a academia."
 
 #: src/youth_academy.c:249
-#, fuzzy
 msgid "A new youth registered at your youth academy."
-msgstr "Não existe mais espaço na sua academia."
+msgstr "Um novo jovem registou-se na sua academia."
 
 #: src/youth_academy.c:253
 msgid "A new youth wanted to registered at your youth academy but there was no room for him."
-msgstr ""
+msgstr "Um novo jovem quis registar-se na sua academia de jovens, mas já não há mais espaço para ele."
 
