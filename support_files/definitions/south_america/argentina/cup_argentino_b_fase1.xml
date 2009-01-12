@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cup>
-	<name>Torneo Argentino A</name>
-	<short_name>Argentino A</short_name>
+	<name>Torneo Argentino B</name>
+	<short_name>Argentino B</short_name>
 	<symbol>flag_argentina.png</symbol>
-	<sid>argentino_a_fase1</sid>
+	<sid>argentino_b_fase1</sid>
 	<add_week>0</add_week>
 	<last_week>36</last_week>
 	<week_gap>1</week_gap>
 	<property>national</property>
 	<property>omit_from_history</property>
-	<property>highlight2</property>
 	<cup_rounds>
 		<cup_round>
-			<number_of_groups>3</number_of_groups>
+			<number_of_groups>8</number_of_groups>
 			<number_of_advance>2</number_of_advance>
-			<number_of_best_advance>2</number_of_best_advance>
-			<round_robins>4</round_robins>
+			<round_robins>6</round_robins>
 			<choose_teams>
 				<choose_team>
-					<choose_team_sid>argentina3b</choose_team_sid>
+					<choose_team_sid>argentina4b</choose_team_sid>
 				</choose_team>
 			</choose_teams>
 		</cup_round>

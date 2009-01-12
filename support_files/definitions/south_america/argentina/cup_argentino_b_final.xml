@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cup>
-	<name>Torneo Argentino A</name>
-	<short_name>Argentino A</short_name>
+	<name>Torneo Argentino B</name>
+	<short_name>Argentino B</short_name>
 	<symbol>flag_argentina.png</symbol>
-	<sid>argentino_a_final</sid>
+	<sid>argentino_b_final</sid>
 	<add_week>44</add_week>
 	<last_week>46</last_week>
 	<property>promotion</property>
@@ -12,14 +12,17 @@
 	<property>highlight2</property>
 	<cup_rounds>
 		<cup_round>
+			<round_name>Ascenso</round_name>
 			<choose_teams>
 				<choose_team>
-					<choose_team_sid>argentino_a_fase2</choose_team_sid>
-					<number_of_teams>2</number_of_teams>
+					<choose_team_sid>argentino_b_fase2</choose_team_sid>
+					<number_of_teams>4</number_of_teams>
 					<start_idx>1</start_idx>
-					<end_idx>2</end_idx>
+					<end_idx>4</end_idx>
 				</choose_team>
 			</choose_teams>
+		</cup_round>
+		<cup_round>
 		</cup_round>
 	</cup_rounds>
 </cup>
