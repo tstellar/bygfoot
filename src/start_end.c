@@ -184,6 +184,8 @@ start_new_season(void)
            (pointers might have changed because of prom/rel). */
 	else if(cp(i).add_week == -1)
             fixture_refresh_team_pointers(cp(i).fixtures);
+        else if(!query_cup_self_referential(&cp(i)))
+            cup_reset(&cp(i));
     }
 
     for(i = acps->len - 1; i >= 0; i--)

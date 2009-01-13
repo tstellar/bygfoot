@@ -233,8 +233,7 @@ team_of_id(gint id)
     printf("team_of_id\n");
 #endif
 
-     
-    gint i, j;
+    gint i, j, k;
 
     for(i=0;i<ligs->len;i++)
 	for(j=0;j<lig(i).teams->len;j++)
@@ -242,9 +241,10 @@ team_of_id(gint id)
 		return &g_array_index(lig(i).teams, Team, j);
 
     for(i=0;i<cps->len;i++)
-	for(j=0;j<cp(i).teams->len;j++)
-	    if(((Team*)g_ptr_array_index(cp(i).teams, j))->id == id)
-		return (Team*)g_ptr_array_index(cp(i).teams, j);
+        for(j = 0; j < cp(i).rounds->len; j++)
+            for(k = 0; k < g_array_index(cp(i).rounds, CupRound, j).teams->len; k++)
+                if(g_array_index(g_array_index(cp(i).rounds, CupRound, j).teams, Team, k).id == id)
+                    return &g_array_index(g_array_index(cp(i).rounds, CupRound, j).teams, Team, k);
 
     main_exit_program(EXIT_POINTER_NOT_FOUND, 
 		      "team_of_id: team with id %d not found.", id);
