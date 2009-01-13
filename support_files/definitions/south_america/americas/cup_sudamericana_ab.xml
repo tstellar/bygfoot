@@ -19,13 +19,6 @@
 			<new_teams>8</new_teams>
 			<choose_teams>  
 				<choose_team>
-					<choose_team_sid>LEAGUE1</choose_team_sid>
-					<number_of_teams>1</number_of_teams>
-					<start_idx>7</start_idx>
-					<end_idx>7</end_idx>
-					<skip_group_check>1</skip_group_check>
-				</choose_team>
-				<choose_team>
 					<choose_team_sid>bolivia1</choose_team_sid>
 					<number_of_teams>1</number_of_teams>
 					<randomly>1</randomly>
@@ -99,8 +92,8 @@
 				<choose_team>
 					<choose_team_sid>LEAGUE1</choose_team_sid>
 					<number_of_teams>6</number_of_teams>
-					<start_idx>1</start_idx>
-					<end_idx>6</end_idx>
+					<start_idx>3</start_idx>
+					<end_idx>8</end_idx>
 					<skip_group_check>1</skip_group_check>
 				</choose_team>
 				<choose_team>
@@ -185,12 +178,20 @@
 			<new_teams>4</new_teams>
 			<choose_teams>  
 				<choose_team>
+					<choose_team_sid>LEAGUE1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>2</end_idx>
+					<skip_group_check>1</skip_group_check>
+				</choose_team>
+				<choose_team>
 					<choose_team_sid>argentina1</choose_team_sid>
 					<number_of_teams>2</number_of_teams>
 					<randomly>1</randomly>
 					<generate>1</generate>
 					<start_idx>1</start_idx>
 					<end_idx>14</end_idx>
+					<skip_group_check>1</skip_group_check>
 				</choose_team>
 				<choose_team>
 					<choose_team_sid>brazil1</choose_team_sid>
@@ -199,6 +200,7 @@
 					<generate>1</generate>
 					<start_idx>1</start_idx>
 					<end_idx>14</end_idx>
+					<skip_group_check>1</skip_group_check>
 				</choose_team>
 			</choose_teams>
 		</cup_round>
