@@ -91,7 +91,7 @@
     <title condition="_LEAGUELOST_TLN__ > 3">_TL_ remain luckless in league games</title>
     <title condition="_LEAGUEUNBEATEN_TWN__ > 3">_TW_ seem invincible in league matches</title>
     <subtitle condition="_WON_TWN__ > 5">Since _WON_TWN__ matches, _TW_ hammer every opponent.</subtitle>
-    <subtitle>_TW_ just too strong for _TL_, wins _REW_.</subtitle>
+    <subtitle>_TW_ just too strong for _TL_, win _REW_.</subtitle>
     <subtitle condition="_TWN_ = 0 and _CUPNEUTRAL_ = 0">_AT_ spectators watch their team win at home.</subtitle>
     <subtitle condition="_TWN_ = 0">_AT_ spectators celebrate the win against _TL_.</subtitle>
     <subtitle condition="_TWN_ = 1">_AT_ spectators commiserate with _TL_.</subtitle>
@@ -400,7 +400,7 @@
     <title>_CUPMATCHWINNER_ through to the next round</title>
     <title>_CUPMATCHWINNER_ advances</title>
     <title>_CUPMATCHLOSER_ eliminated</title>
-    <title>_CUPMATCHLOSER_ is out</title>
+    <title>_CUPMATCHLOSER_ are out</title>
     <title priority="20" condition="_CUPET_ = 1">_TW_ [beat|overcome|defeat] _TL_ in extra time</title>
     <title priority="20" condition="_CUPET_ = 1">_TW_ victorious in extra time</title>
     <title priority="20" condition="_CUPPEN_ = 1">_TW_ [beat|overcome|defeat] _TL_ _REW_ in penalties</title>
@@ -431,7 +431,7 @@
     <subtitle condition="_CUPET_ = 0 and _CUPPEN_ = 0 and _GDAGG_ < 2">_CUPMATCHWINNER_ should give _SCORERS_CUPMATCHWINNERN__ a medal for shooting them into the next round.</subtitle>
     <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0 and _GDAGG_ < 2">_SCORERS_CUPMATCHWINNERN__ score as _CUPMATCHWINNER_ squeezes by _CUPMATCHLOSER_.</subtitle>
     <subtitle condition="_GDAGG_ > 2">_CUPMATCHWINNER_ didn't face a real challenge in this match-up and deserve to advance.</subtitle>
-    <subtitle condition="_GDAGG_ > 2">_CUPMATCHLOSER_ didn't stand a chance overall and is out.</subtitle>
+    <subtitle condition="_GDAGG_ > 2">_CUPMATCHLOSER_ didn't stand a chance overall and are out.</subtitle>
     <subtitle condition="_GDAGG_ > 2">_CUPMATCHWINNER_ dominated this match-up and are still a contender for the title.</subtitle>
   </news_article>
 
@@ -442,7 +442,7 @@
     <title>_CUPMATCHWINNER_ through to the next round</title>
     <title>_CUPMATCHWINNER_ advances</title>
     <title>_CUPMATCHLOSER_ eliminated</title>
-    <title>_CUPMATCHLOSER_ is out</title>
+    <title>_CUPMATCHLOSER_ are out</title>
     <title priority="20" condition="_CUPET_ = 1">_TW_ [beat|overcome|defeat] _TL_ in extra time</title>
     <title priority="20" condition="_CUPET_ = 1">_TW_ victorious in extra time</title>
     <title priority="20" condition="_CUPPEN_ = 1">_TW_ [beat|overcome|defeat] _TL_ _REW_ in penalties</title>
@@ -465,7 +465,7 @@
     <subtitle condition="_CUPET_ = 0 and _CUPPEN_ = 0 and _GDAGG_ < 2">_CUPMATCHWINNER_ should give _SCORERS_CUPMATCHWINNERN__ a medal for shooting them into the next round.</subtitle>
     <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0 and _GDAGG_ < 2">_SCORERS_CUPMATCHWINNERN__ score as _CUPMATCHWINNER_ squeeze by _CUPMATCHLOSER_.</subtitle>
     <subtitle condition="_GDAGG_ > 2">_CUPMATCHWINNER_ didn't face a real challenge in this match-up and deserves to advance.</subtitle>
-    <subtitle condition="_GDAGG_ > 2">_CUPMATCHLOSER_ didn't stand a chance in this game and is out.</subtitle>
+    <subtitle condition="_GDAGG_ > 2">_CUPMATCHLOSER_ didn't stand a chance in this game and are out.</subtitle>
     <subtitle condition="_GDAGG_ > 2">_CUPMATCHWINNER_ dominated this match-up and are still a contender for the title.</subtitle>
   </news_article>
 

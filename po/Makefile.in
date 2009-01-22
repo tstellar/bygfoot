@@ -39,7 +39,7 @@ MKINSTALLDIRS = $(top_srcdir)/./mkinstalldirs
 
 CC = gcc
 GENCAT = @GENCAT@
-GMSGFMT = /usr/bin/gmsgfmt
+GMSGFMT = /usr/bin/msgfmt
 MSGFMT = /usr/bin/msgfmt
 MSGFMT_OPTS = -c
 XGETTEXT = /usr/bin/xgettext
