@@ -168,7 +168,16 @@ start_new_season(void)
 
 	start_new_season_reset_ids();
     }
-		
+    
+    /* We have to reset all fixture arrays beforehand because
+       of interleague scheduling (see joined_league). */
+    for(i=0;i<ligs->len;i++)
+	if(query_league_active(&lig(i)))
+        {
+            g_array_free(lig(i).fixtures, TRUE);
+            lig(i).fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));            
+        }
+
     for(i=0;i<ligs->len;i++)
 	if(query_league_active(&lig(i)))
 	    fixture_write_league_fixtures(&lig(i));

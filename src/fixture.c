@@ -55,9 +55,6 @@ fixture_write_league_fixtures(League *league)
     max_rr = league->round_robins;
     teams = team_get_pointers_from_array(league->teams, NULL);
 
-    g_array_free(league->fixtures, TRUE);
-    league->fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));
-
     /** Add all teams to the same pointer array. */
     for(i = 0; i < league->joined_leagues->len; i++)
     {
