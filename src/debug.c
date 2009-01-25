@@ -109,6 +109,12 @@ debug_action(const gchar *text)
     }
     else if(g_str_has_prefix(text, "goto"))
     {
+        if(debug < 50)
+            option_set_int("int_debug", &constants, 50);
+
+        if(option_int("int_opt_user_show_live_game", &current_user.options))
+            option_set_int("int_opt_user_show_live_game", &current_user.options, 0);
+
         sett_set_int("int_opt_goto_mode", 1);
         if(value < 100)
             while(week < value)
