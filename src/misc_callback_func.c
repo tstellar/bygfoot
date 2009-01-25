@@ -86,8 +86,8 @@ misc_callback_start_game(void)
 
     stat0 = STATUS_MAIN;
 
-    option_add(&options, "int_opt_load_defs", 1, NULL);
-    option_add(&options, "int_opt_randomise_teams", 0, NULL);
+/*     option_add(&options, "int_opt_load_defs", 1, NULL); */
+/*     option_add(&options, "int_opt_randomise_teams", 0, NULL); */
 
     if(gtk_toggle_button_get_active(checkbutton_randomise_teams))
 	opt_set_int("int_opt_randomise_teams", 1);
