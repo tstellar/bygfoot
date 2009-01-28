@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: bygfoot-2.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-12-17 18:32+0100\n"
-"PO-Revision-Date: 2009-01-23 23:30+0200\n"
-"Last-Translator: Mihai <mihai@emma.ro>\n"
+"PO-Revision-Date: 2009-01-28 08:54+0100\n"
+"Last-Translator: Ivan Ramirez <ircarrascal@hotmail.com>\n"
 "Language-Team:  <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -135,7 +135,7 @@ msgstr "El jugador no negociará más con usted."
 
 #: src/callback_func.c:594
 msgid "The player feels he doesn't have a future in your star-studded team. He refuses to negotiate."
-msgstr ""
+msgstr "El jugador siente que no tiene futuro es su equipo lleno de estrellas. El se rehusa a negociar."
 
 #: src/callback_func.c:608
 #, c-format
@@ -189,7 +189,7 @@ msgstr "Tiene jugadores lesionados o sancionados en uno de sus equipos. ¿Contin
 
 #: src/callbacks.c:500
 msgid "Left click to show table."
-msgstr ""
+msgstr "Click izquierda para mostrar tabla"
 
 #: src/callbacks.c:535
 msgid "There are no leagues or cups with tables in this country definition."
@@ -197,7 +197,7 @@ msgstr "No hay resultados de ligas y copas en esta definición regional."
 
 #: src/callbacks.c:540
 msgid "Left click to show fixtures."
-msgstr ""
+msgstr "Click izquierda para mostrar fixtures"
 
 #: src/callbacks.c:561
 msgid "There are no leagues in this country definition (only cups)."
@@ -264,7 +264,7 @@ msgstr "No ha propuesto una oferta para el jugador."
 
 #: src/callbacks.c:845
 msgid "You can't apply for a job from abroad if there's more than one user."
-msgstr ""
+msgstr "No puede aplicar a un trabajo en otro país si hay más de un usuario."
 
 #: src/callbacks.c:868
 msgid "Cup has no tables."
@@ -338,12 +338,12 @@ msgstr "El campo de entrenamiento esta desabilitado para esta definicion de pais
 
 #: src/callbacks.c:1621
 msgid "Your team has already had enough training camps this week."
-msgstr ""
+msgstr "Su equipo ha tenido suficientes concentraciones esta semana."
 
 #: src/callbacks.c:1627
 #, c-format
 msgid "You've reached the limit of %d training camps for the season."
-msgstr ""
+msgstr "Ha llegado al limite de %d concentraciones por temporada"
 
 #: src/callbacks.c:1651
 msgid "You are not in debt."
@@ -351,7 +351,7 @@ msgstr "Usted no está endeudado."
 
 #: src/callbacks.c:1656
 msgid "It's too late in the season for automatic loan repayment."
-msgstr ""
+msgstr "Es muy tarde para realizar pagos de deuda automáticos en esta temporada."
 
 #: src/cup.c:1078
 msgid " -- Second leg"
@@ -815,7 +815,7 @@ msgstr "$ _Finanzas"
 
 #: src/interface.c:925
 msgid "Show finances"
-msgstr "Ver Finansas"
+msgstr "Ver Finanzas"
 
 #: src/interface.c:936
 msgid "Show stadium"
@@ -825,7 +825,7 @@ msgstr "Ver estadio"
 #: src/misc3_interface.c:543
 #: src/window.c:1012
 msgid "Automatic loan repayment"
-msgstr ""
+msgstr "Pago automático de deuda"
 
 #: src/interface.c:959
 #: src/options_interface.c:1048
@@ -840,9 +840,8 @@ msgid "Show the betting window"
 msgstr "Mostrar la ventana de apuestas"
 
 #: src/interface.c:967
-#, fuzzy
 msgid "St_ats"
-msgstr "Estado"
+msgstr "Est_adísticas"
 
 #: src/interface.c:974
 #: src/options_interface.c:1167
@@ -997,13 +996,12 @@ msgid "Kick out of academy"
 msgstr "Expulsar de la Academia"
 
 #: src/league_table_interface.c:39
-#, fuzzy
 msgid "League table"
-msgstr "Estadísticas de la liga"
+msgstr "Tabla de la liga"
 
 #: src/league_table_interface.c:49
 msgid "Headline"
-msgstr ""
+msgstr "Titular"
 
 #: src/lg_commentary.c:529
 #: src/team.c:613
@@ -1086,9 +1084,8 @@ msgid "Saving job exchange..."
 msgstr "Guardando ofertas de trabajo..."
 
 #: src/load_save.c:150
-#, fuzzy
 msgid "Saving newspaper..."
-msgstr "Guardando usuarios..."
+msgstr "Guardando noticias..."
 
 #: src/load_save.c:161
 msgid "Saving miscellaneous..."
@@ -1137,9 +1134,8 @@ msgid "Loading job exchange..."
 msgstr "Cargando ofertas de trabajo..."
 
 #: src/load_save.c:319
-#, fuzzy
 msgid "Loading newspaper..."
-msgstr "Cargando usuarios..."
+msgstr "Cargando noticias..."
 
 #: src/load_save.c:330
 msgid "Loading miscellaneous..."
@@ -1155,7 +1151,7 @@ msgstr "Especifique un directorio adicional de soporte (tendra menor prioridad q
 
 #: src/main.c:92
 msgid "String id of the country to load"
-msgstr ""
+msgstr "id del país a cargar"
 
 #: src/main.c:94
 msgid "Language to use (a code like 'de')"
@@ -1225,7 +1221,7 @@ msgstr "%s rechazó su oferta y no negociará mas con usted. Debe venderlo antes
 #: src/misc2_callback_func.c:348
 #, c-format
 msgid "The owners of %s politely reject your application. You're not successful enough in their eyes."
-msgstr ""
+msgstr "Los dueños de %s rechazan su aplicación. En su opinión, usted no ha sido suficientemente exitoso."
 
 # Es dificil traducir Lame Duck (http://en.wikipedia.org/wiki/Lame_duck)
 #. A lame duck is someone who will quit his job soon and thus doesn't have
@@ -1243,7 +1239,7 @@ msgstr "Los dueños de %s aceptaron su oferta."
 
 #: src/misc2_callbacks.c:162
 msgid "Adjust repayment schedule?"
-msgstr ""
+msgstr "¿Ajustar el calendario de pagos?"
 
 #: src/misc2_callbacks.c:166
 msgid "Your offer has been updated."
@@ -1320,7 +1316,7 @@ msgstr "OK"
 
 #: src/misc2_interface.c:473
 msgid "Confirm & schedule repayment"
-msgstr ""
+msgstr "Confirmar monto y calendario de pagos"
 
 #: src/misc2_interface.c:480
 #: src/misc2_interface.c:577
@@ -1433,7 +1429,7 @@ msgstr "Recargar y cerrar"
 #: src/misc3_callbacks.c:154
 #, c-format
 msgid "You bet on outcome %d with an odd of %.2f. How much do you wager?"
-msgstr ""
+msgstr "Usted apuesta por un resultado %d con una probabilidad %.2f. ¿Cuánto apuesta?"
 
 #. 'Wager' is the amount of money the user placed on a bet.
 #: src/misc3_callbacks.c:162
@@ -1451,7 +1447,7 @@ msgstr "Ver partidos de todas las ligas"
 
 #: src/misc3_interface.c:77
 msgid "Whether to show matches of all leagues. Use the options window to toggle permanently."
-msgstr ""
+msgstr "Mostrar los partidos de todas las ligas. Use la ventana de opciones para modificar permanentemente."
 
 #: src/misc3_interface.c:79
 #: src/options_interface.c:1023
@@ -1460,7 +1456,7 @@ msgstr "Ver partidos de competiciones coperas"
 
 #: src/misc3_interface.c:82
 msgid "Whether to show cup matches. Use the options window to toggle permanently."
-msgstr ""
+msgstr "Mostrar los partidos de copas. Use la ventana de opciones para modificar permanentemente."
 
 #: src/misc3_interface.c:84
 #: src/options_interface.c:1029
@@ -1469,7 +1465,7 @@ msgstr "Mostrar solo las apuestas más recientes"
 
 #: src/misc3_interface.c:87
 msgid "Whether to show only your bets in the recent bets list"
-msgstr ""
+msgstr "Mostrar solo sus apuestas en la lista de apuestas recientes"
 
 #. Splash screen hint question.
 #: src/misc3_interface.c:259
@@ -1521,9 +1517,8 @@ msgid "Start in week:"
 msgstr "Empezar en semana:"
 
 #: src/misc3_interface.c:585
-#, fuzzy
 msgid "Weekly installment:"
-msgstr "Ajuste inversión"
+msgstr "Pago semanal:"
 
 #: src/misc3_interface.c:612
 msgid "New settings:"
@@ -1534,13 +1529,12 @@ msgid "Start in week"
 msgstr "Empezar en semana"
 
 #: src/misc3_interface.c:631
-#, fuzzy
 msgid "Weekly installment"
-msgstr "Ajuste inversión"
+msgstr "Pago semanal"
 
 #: src/misc3_interface.c:657
 msgid "Calculate weekly installment"
-msgstr ""
+msgstr "Calcular pago semanal"
 
 #: src/misc3_interface.c:679
 msgid "Calculate start week"
@@ -1832,7 +1826,7 @@ msgstr "Mostrar barras de progreso"
 
 #: src/options_interface.c:283
 msgid "Whether to show pictures on top of the progressbar when loading/saving or calculating results"
-msgstr ""
+msgstr "Mostrar fotos encima de la barra de progreso mientras se guardan/cargan archivos o calculan resultados"
 
 #: src/options_interface.c:290
 msgid "Skip weeks without user matches"
@@ -1968,9 +1962,8 @@ msgid "Whether to show the player games/goals value in all competitions"
 msgstr "Muestra partidos/goles del jugador en todas las competencias"
 
 #: src/options_interface.c:528
-#, fuzzy
 msgid "Gameplay"
-msgstr "Partidos"
+msgstr "Juego"
 
 #: src/options_interface.c:540
 msgid "Show live game"
@@ -2118,11 +2111,11 @@ msgstr "Mostrar atributos del jugador"
 
 #: src/options_interface.c:1021
 msgid "Whether to show matches of all leagues in the betting window"
-msgstr ""
+msgstr "Mostrar partidos de todas las ligas en la ventana de apuestas"
 
 #: src/options_interface.c:1026
 msgid "Whether to show cup matches in the betting window"
-msgstr ""
+msgstr "Mostrar los partidos de copas en la ventana de apuestas"
 
 #: src/options_interface.c:1037
 msgid "Default wager"
@@ -2133,19 +2126,16 @@ msgid "How much you wager by default"
 msgstr "Cuanto quieres apostar por defecto"
 
 #: src/options_interface.c:1062
-#, fuzzy
 msgid "Default hotel"
 msgstr "Hotel por defecto"
 
 #: src/options_interface.c:1085
-#, fuzzy
 msgid "Default recreation:"
-msgstr "Apuesta por defecto"
+msgstr "Recreación por defecto"
 
 #: src/options_interface.c:1105
-#, fuzzy
 msgid "Default training:"
-msgstr "Apuesta por defecto"
+msgstr "Concentración por defecto:"
 
 #: src/options_interface.c:1127
 msgid "Create user news"
@@ -2160,9 +2150,8 @@ msgid "Create league news"
 msgstr "Crear noticias de liga"
 
 #: src/options_interface.c:1139
-#, fuzzy
 msgid "Show only recent news"
-msgstr "Mostrar solo las apuestas más recientes"
+msgstr "Mostrar solo las noticias más recientes"
 
 #: src/options_interface.c:1147
 msgid "No automatic popup"
@@ -2174,7 +2163,7 @@ msgstr "Ventanas emergentes para noticias de usuario"
 
 #: src/options_interface.c:1156
 msgid "Show news window after a matchday when new user news was created"
-msgstr ""
+msgstr "Mostrar la ventana de noticias al término de la jornada cuando se han creado noticias para el usuario"
 
 #: src/options_interface.c:1160
 msgid "Automatic popup"
@@ -2328,7 +2317,7 @@ msgstr "G "
 #: src/training_callbacks.c:121
 #, c-format
 msgid "%d training camps left this season."
-msgstr ""
+msgstr "Le quedan %d concentraciones disponibles para esta temporada"
 
 #: src/training_interface.c:84
 msgid "Camp points"
@@ -2775,11 +2764,11 @@ msgstr "Crédito"
 
 #: src/treeview.c:1620
 msgid "Current market interest"
-msgstr ""
+msgstr "Interés del mercado actual"
 
 #: src/treeview.c:1627
 msgid "interest rate"
-msgstr ""
+msgstr "tasa de interés"
 
 #: src/treeview.c:1628
 #, c-format
@@ -3194,7 +3183,7 @@ msgstr " Afortunadamente tiene un primo que pueda ayudar a su equipo"
 
 #: src/user.c:640
 msgid "The team owners are very satisfied with your financial management. Since the team's been earning a lot of money lately, they decide to donate half of it to charity."
-msgstr ""
+msgstr "Los dueños del club estan satisfechos con su manejo de las finanzas. Ya que el equipo ha estado obteniendo grandes sumas de dinero ultimamente, ellos han decidido donar la mitad a instituciones de caridad."
 
 #. Buy a team in a league.
 #: src/user.c:826
