@@ -10,12 +10,12 @@ msgstr ""
 "Project-Id-Version: bygfoot 1.9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-12-17 18:32+0100\n"
-"PO-Revision-Date: 2005-08-17 14:08+0300\n"
-"Last-Translator:  <>\n"
+"PO-Revision-Date: 2009-02-16 20:03+0200\n"
+"Last-Translator: cem uykun <cuykun@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: src/treeview_helper.c:952
 #, c-format
@@ -23,6 +23,8 @@ msgid ""
 "\n"
 "Goals/Game %.1f Save %% %.1f"
 msgstr ""
+"\n"
+"Goller/Oyun %.1f Kurtarış %% %.1f"
 
 #: src/treeview_helper.c:959
 #, c-format
@@ -30,317 +32,324 @@ msgid ""
 "\n"
 "Goals/Game %.1f Shot %% %.1f"
 msgstr ""
+"\n"
+"Goller/Oyun %.1f Şut %% %.1f"
 
 #: src/game_gui.c:935
 msgid ""
 "\n"
 "You can also write an email to the authors:\n"
 msgstr ""
+"\n"
+"Programcılara aşağıdaki adresten email atabilirsin:\n"
 
+# Please do not change.Its reaaly need spaces
 #. Company short name. Copy the '&amp;'.
 #: src/user.c:1025
 msgid " &amp; Co."
-msgstr ""
+msgstr "  "
 
+# Please do not change.Its reaaly need spaces
 #. Company addition. Copy the '&amp;'.
 #: src/user.c:1034
 msgid " &amp; Daughters"
-msgstr ""
+msgstr "  "
 
+# Please do not change.Its reaaly need spaces
 #. Company addition, leading to 'Marshall & Sons Petroleum Co.'. Copy the '&amp;'.
 #: src/user.c:1032
 msgid " &amp; Sons"
-msgstr ""
+msgstr "  "
 
+# Serbest vuruştan atılan goller
 #. A goal scored with a free kick.
 #: src/game.c:999
 msgid " (FK)"
-msgstr ""
+msgstr " (SV)"
 
 #: src/game_gui.c:813
-#, fuzzy
 msgid " (NOTE: If you don't, the game is over for you.)"
-msgstr " (Not: eğer değilse, Oyun biter.)"
+msgstr " (NOT: Eğer başarılı olamazsan, oyun senin için bitecek)"
 
+# Kendi Kalesine
 #. An own goal
 #: src/game.c:1002
 msgid " (OG)"
-msgstr ""
+msgstr " (KK)"
 
+# Gol penaltıdan geldi
 #. A goal scored with penalty.
 #. Penalty shooter.
-#: src/game.c:996 src/treeview_helper.c:1219
+#: src/game.c:996
+#: src/treeview_helper.c:1219
 msgid " (P)"
-msgstr ""
+msgstr " (Pen)"
 
 #: src/cup.c:1080
 msgid " -- First leg"
-msgstr ""
+msgstr " -- İlk Maç"
 
 #: src/cup.c:1083
 msgid " -- Replay matches"
-msgstr ""
+msgstr " -- Maçları tekrarla"
 
 #: src/cup.c:1078
 msgid " -- Second leg"
-msgstr ""
+msgstr " --İkinci Maç"
 
 #. Company short name.
 #: src/user.c:1019
 msgid " Assoc."
-msgstr ""
+msgstr " Adi Ortaklığı"
 
 #: src/options_interface.c:323
-#, fuzzy
 msgid " Autosave files "
-msgstr "Her otomatik kayıt"
+msgstr " Dosyaları otomatik kaydet"
 
 #. Company name.
 #: src/user.c:1000
-#, fuzzy
 msgid " Bank"
-msgstr "Sıralama"
+msgstr " Bankası"
 
 #. Company addition.
 #: src/user.c:1036
 msgid " Bros."
-msgstr ""
+msgstr " Bros."
 
 #. Company name.
 #: src/user.c:996
 msgid " Chemicals"
-msgstr ""
+msgstr " Kimyasal Endüstri Grubu"
 
 #. Company short name.
 #: src/user.c:1021
 msgid " Co."
-msgstr ""
+msgstr " Sanayii"
 
 #. Company name.
 #: src/user.c:982
-#, fuzzy
 msgid " Communications"
-msgstr "Doğrulayıcılar"
+msgstr " Bilg. ve İletişim"
 
 #. Company name.
 #: src/user.c:988
 msgid " Company"
-msgstr ""
+msgstr " Şirketler Grubu"
 
 #. Company short name.
 #: src/user.c:1027
 msgid " Corp."
-msgstr ""
+msgstr " Holding."
 
 #. Company name.
 #: src/user.c:1014
 msgid " Data Systems"
-msgstr ""
+msgstr " Data Sistemleri ve Teknolojileri"
 
 #. Company name.
 #: src/user.c:998
 msgid " Energy"
-msgstr ""
+msgstr " Enerji Yatırım"
 
 #. Company short name.
 #: src/user.c:1023
 msgid " Ent."
-msgstr ""
+msgstr " Medya Grubu."
 
 #. Company name.
 #: src/user.c:1008
-#, fuzzy
 msgid " Financial"
-msgstr "Final"
+msgstr " Finansal Merkezleri"
 
 #: src/user.c:631
 msgid " Fortunately he's got a cousin who can help your team out."
-msgstr ""
+msgstr " Çok şükür takıma yardım edip sahaya çıkaracak bir yardımcısı var"
 
 #. Company short name.
 #: src/user.c:1029
 msgid " Group"
-msgstr ""
+msgstr " Grup"
 
 #. Company name.
 #: src/user.c:984
 msgid " Holdings"
-msgstr ""
+msgstr " Holding"
 
 #. Company name.
 #: src/user.c:986
-#, fuzzy
 msgid " Industries"
-msgstr "Geçmişler"
+msgstr " Endüstri"
 
 #. Company name.
 #: src/user.c:992
 msgid " Labs"
-msgstr ""
+msgstr " Laboratuvarları"
 
 #. Company short name, leading to things like 'Marshall Data Systems Ltd.'
 #: src/user.c:1017
 msgid " Ltd."
-msgstr ""
+msgstr " Ltd.Şti."
 
 #. Company name.
 #: src/user.c:1010
 msgid " Petroleum"
-msgstr ""
+msgstr " Petrol"
 
 #. Company name.
 #: src/user.c:1002
 msgid " Products"
-msgstr ""
+msgstr " Üretim Şirketleri ve Grubu"
 
 #. Company name.
 #: src/user.c:1012
-#, fuzzy
 msgid " Restaurants"
-msgstr "Geri dön"
+msgstr " Kebabçısı"
 
 #: src/interface.c:1210
-#, fuzzy
 msgid " Round "
-msgstr "1. Round"
+msgstr " Dönem"
 
 #. Company name.
 #: src/user.c:1006
 msgid " Scientific"
-msgstr ""
+msgstr " Bilim Ve Teknoloji Merkezi"
 
 #: src/interface.c:1190
-#, fuzzy
 msgid " Season "
-msgstr "Sezon "
+msgstr " Sezon"
 
 #. Company name.
 #: src/user.c:1004
-#, fuzzy
 msgid " Software"
-msgstr "Menajer maaşı"
+msgstr " Yazılım Şirketi"
 
 #. Company name.
 #: src/user.c:980
 msgid " Systems"
-msgstr ""
+msgstr " Bilgisayar Sistemleri"
 
 #. Company name.
 #: src/user.c:994
 msgid " Technologies"
-msgstr ""
+msgstr " Bilgi Teknolojileri"
 
 #. Company name.
 #: src/user.c:990
 msgid " Telecommunications"
-msgstr ""
+msgstr " Telekominikasyon a.ş"
 
 #: src/interface.c:1200
 msgid " Week "
 msgstr " Hafta "
 
+# Uzatma dakikaları
 #. Game was decided in extra time.
 #: src/fixture.c:1042
 msgid " e.t."
-msgstr ""
+msgstr "u.d."
 
 #: src/callback_func.c:445
 msgid " less"
-msgstr ""
+msgstr "az"
 
 #: src/options_interface.c:500
-#, fuzzy
 msgid " months"
-msgstr "Puanlar"
+msgstr "aylar"
 
 #: src/callback_func.c:443
 msgid " more"
-msgstr ""
+msgstr "fazla"
 
+# Penaltılara uzayan maç
 #. Game was decided in penalty shoot-out.
 #: src/fixture.c:1039
 msgid " p."
-msgstr ""
+msgstr "pen."
 
 #: src/misc_interface.c:934
 msgid " seats"
-msgstr ""
+msgstr "koltuklar"
 
 #. Contract time and money a sponsor pays.
 #: src/treeview.c:1655
 #, c-format
 msgid "%.1f months / %s"
-msgstr ""
+msgstr "%.1f ay / %s"
 
+# Sonuç uzatma dakikalarında
 #. A result after extra time.
 #: src/live_game.c:1846
 #, c-format
 msgid "%d : %d e.t."
-msgstr ""
+msgstr "%d : %d u.d."
 
+# Penaltılar sonucundaki skor
 #. A result after penalties.
 #: src/live_game.c:1842
 #, c-format
 msgid "%d : %d p."
-msgstr ""
+msgstr "%d : %d pen."
 
 #: src/training_callbacks.c:121
 #, c-format
 msgid "%d training camps left this season."
-msgstr ""
+msgstr "%d tane sezon sonuna kadar antreman kampı hakkın kaldı."
 
+# Evindeki maç
 #. a match at home
 #: src/team.c:1074
 #, c-format
 msgid "%s (H) "
-msgstr ""
+msgstr "%s (Evde) "
 
+# tarafsız sahadaki maç
 #. a match on neutral ground
 #: src/team.c:1090
 #, c-format
 msgid "%s (N) "
-msgstr ""
+msgstr "%s (Tarafsız saha) "
 
 #: src/treeview_helper.c:1088
-#, fuzzy, c-format
+#, c-format
 msgid "%s (expected recovery in %d weeks)"
-msgstr ""
-"Sakatlık: %s\n"
-"(yaklaşık olarak %d hafta sahalarda yok)"
+msgstr "%s (sakatlığın geçme süresi %d hafta)"
 
+# Kupalardaki yükselme grupları
 #. A group of a round robin stage of a cup.
 #: src/treeview.c:1234
 #, c-format
 msgid "%s Group %d"
-msgstr ""
+msgstr "%s Ön Eleme %d"
 
 #: src/misc2_callback_func.c:214
-#, fuzzy, c-format
+#, c-format
 msgid "%s accepts your offer."
-msgstr "Takım teklifinizi kabul etti."
+msgstr "%s teklifinizi kabul etti."
 
 #: src/news.c:485
-#, fuzzy, c-format
+#, c-format
 msgid "%s and %s"
-msgstr "  ve  "
+msgstr "%s ve %s"
 
 #: src/news.c:483
 #, c-format
 msgid "%s and %s (%d)"
-msgstr ""
+msgstr "%s ve %s (%d)"
 
 #: src/misc2_callback_func.c:92
 #, c-format
 msgid "%s couldn't afford to buy %s or his roster was full."
-msgstr ""
+msgstr "%s oyuncunuzu alamıyor %s veya takım kapasitesi dolmuş durumda."
 
 #. Team fires, team in a league.
 #: src/user.c:832
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s fires you because of financial mismanagement.\n"
 "You find a new job with %s in the %s."
-msgstr "Sizi takım yönetimi kötü mali yönetimden dolayı kovdu"
+msgstr ""
+"%s sizi kötü mali yönetimden dolayı kovdu.\n"
+"Yeni bir takım bul ile %s içinde %s."
 
 #. Team fires, team in a league.
 #: src/user.c:839
@@ -349,32 +358,30 @@ msgid ""
 "%s fires you because of unsuccessfulness.\n"
 "You find a new job with %s in the %s."
 msgstr ""
+"%s tarafından kovuldunuz.\n"
+"Yeni bir iş bul %s içinde %s."
 
 #: src/transfer.c:567
 #, c-format
 msgid "%s has been added to the transfer list for %d weeks."
-msgstr ""
+msgstr "%s transfer listesine eklendi %d hafta için."
 
 #: src/user.c:556
 #, c-format
 msgid "%s has left your team because his contract expired."
-msgstr ""
+msgstr "%s takımınızdan ayrıldı çünkü kontrat süresi doldu."
 
 #. A player from a team has rejected a transfer offer.
 #: src/user.c:607
 #, c-format
-msgid ""
-"%s of %s has rejected your offer (%s / %s). He wasn't satisfied with the "
-"wage you offered."
-msgstr ""
+msgid "%s of %s has rejected your offer (%s / %s). He wasn't satisfied with the wage you offered."
+msgstr "%s dan %s teklifinizle ilgilenmedi (%s / %s). Transfer ücretini yeterli bulmadı."
 
 #. A player from a team has rejected a transfer offer.
 #: src/user.c:613
 #, c-format
-msgid ""
-"%s of %s has rejected your offer because your team has too many star players "
-"already. 'A player of my caliber doesn't play second fiddle,' he was quoted."
-msgstr ""
+msgid "%s of %s has rejected your offer because your team has too many star players already. 'A player of my caliber doesn't play second fiddle,' he was quoted."
+msgstr "%s takımından %s teklifi reddetti çünkü takımda çok fazla star oyuncu var. 'Benim gibi yetenekli bir oyuncunun burada boşa zaman harcayacağını düşünüyorum,' olarak açıklama yaptı"
 
 #. Team in a league. Leave team.
 #: src/user.c:846
@@ -383,172 +390,176 @@ msgid ""
 "%s offer you a job in the %s.\n"
 "You accept the challenge and leave %s."
 msgstr ""
+"%s takımından size teklif var %s.\n"
+"Kabul edip ayrıl %s."
 
 #: src/misc2_callback_func.c:226
 #, c-format
-msgid ""
-"%s rejects your offer and won't negotiate with you anymore. You should sell "
-"him before his contract expires (he'll simply leave your team otherwise)."
-msgstr ""
+msgid "%s rejects your offer and won't negotiate with you anymore. You should sell him before his contract expires (he'll simply leave your team otherwise)."
+msgstr "%s teklifi reddetti ve daha fazla pazarlık istemiyor. Kontrat süresi dolmadan satabilirsiniz (yoksa bonservisini alarak başka takıma gidebilir)."
 
 #: src/misc2_callback_func.c:221
 #, c-format
 msgid "%s rejects your offer. You may still make %d offers."
-msgstr ""
+msgstr "%s teklifinizi reddetti. Hala %d teklif yapabilirsiniz."
 
 #: src/callbacks.c:676
-#, fuzzy, c-format
+#, c-format
 msgid "%s will shoot penalties and free kicks when he plays."
-msgstr "%s nin sutları extra zaman ve düzenli çalışma ile daha iyi olacak"
+msgstr "%s oyunda ise serbest vuruş ve penaltıları kullanacak."
 
 #: src/callback_func.c:447
 #, c-format
-msgid ""
-"%s would like to buy %s. They offer %s for him, which is %s than the "
-"player's value. Do you accept?"
-msgstr ""
+msgid "%s would like to buy %s. They offer %s for him, which is %s than the player's value. Do you accept?"
+msgstr "%s satın almak istiyor %s. Teklif yapıyorlar %s onun için, hangisi %s oyuncunun değeri.Kabul ediyormusun?"
 
 #: src/player.c:1242
 #, c-format
 msgid "%s's contract expires in %.1f years."
-msgstr ""
+msgstr "%s adlı oyuncunun kontrat süresi bitiyor %.1f yıl sonra."
 
 #: src/user.c:628
 #, c-format
-msgid ""
-"%s's injury was so severe that he can't play football on a professional "
-"level anymore. He leaves your team."
-msgstr ""
+msgid "%s's injury was so severe that he can't play football on a professional level anymore. He leaves your team."
+msgstr "%s'ın sakatlığı profesyonel futbol oynayamayacak kadar ciddi. Takımınızdan ayrılmaya karar verdi."
 
 #. Yellow cards of a player in a cup/league. No limit means there isn't a limit
 #. after which the player gets banned for a match automatically.
 #: src/treeview_helper.c:1029
 #, c-format
 msgid "%s: %d (no limit)\n"
-msgstr ""
+msgstr "%s: %d (cezasız)\n"
 
 #. Ban info of a player in the format:
 #. 'Cup/league name: Number of weeks banned'
 #: src/treeview_helper.c:988
-#, fuzzy, c-format
+#, c-format
 msgid "%s: %d weeks\n"
-msgstr "  haftalar"
+msgstr "%s: %d hafta cezalı\n"
 
 #: src/treeview.c:1641
 #, c-format
 msgid "(starting week %d)"
-msgstr ""
+msgstr "(başlangıç haftası %d)"
 
 #: src/main.c:134
 msgid "- a simple and addictive GTK2 football manager"
-msgstr ""
+msgstr "- basit ama bağımlılık yapan bir futbol menajerlik oyunudur."
 
-#: src/misc_interface.c:1071 src/misc_interface.c:1079
-#: src/misc_interface.c:1105 src/misc_interface.c:1113
+#: src/misc_interface.c:1071
+#: src/misc_interface.c:1079
+#: src/misc_interface.c:1105
+#: src/misc_interface.c:1113
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: src/misc2_interface.c:660
 msgid "1 year"
-msgstr ""
+msgstr "1 yıl"
 
 #: src/misc2_interface.c:684
 msgid "2 years"
-msgstr ""
+msgstr "2 yıl"
 
 #: src/misc2_interface.c:668
 msgid "3 years"
-msgstr ""
+msgstr "3 yıl"
 
 #: src/misc2_interface.c:676
 msgid "4 years"
-msgstr ""
+msgstr "4 yıl"
 
 #. a match away
 #: src/team.c:1080
 #, c-format
 msgid "<span background='%s' foreground='%s'>%s (A) </span> "
-msgstr ""
+msgstr "<span background='%s' foreground='%s'>%s (Dep) </span> "
 
 #: src/treeview.c:905
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "<span background='%s'>There was a fire\n"
 "in the stadium.</span>"
-msgstr "Stadta yangın var"
+msgstr ""
+"<span background='%s'>Yangın var\n"
+"stadyum içinde.</span>"
 
 #: src/treeview.c:902
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "<span background='%s'>There were riots\n"
 "in the stadium.</span>"
 msgstr ""
-"Stadta kargaşa\n"
-"var"
+"<span background='%s'>Ayaklanma var\n"
+"Stadyum içinde.</span>"
 
 #: src/treeview.c:899
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "<span background='%s'>There were technical problems\n"
 "in the stadium.</span>"
-msgstr "Stadında teknik bir problem var"
+msgstr ""
+"<span background='%s'>Teknik problemler var\n"
+"Stadyumda.</span>"
 
 #. Copy the <span...> stuff, translate in between.
 #: src/treeview2.c:300
-msgid ""
-"<span background='lightgrey' size='large' weight='bold'>Current bets</span>"
-msgstr ""
+msgid "<span background='lightgrey' size='large' weight='bold'>Current bets</span>"
+msgstr "<span background='lightgrey' size='large' weight='bold'>Mevcut bahis</span>"
 
 #. Copy the <span...> stuff, translate in between.
 #: src/treeview2.c:302
-msgid ""
-"<span background='lightgrey' size='large' weight='bold'>Recent bets</span>"
-msgstr ""
+msgid "<span background='lightgrey' size='large' weight='bold'>Recent bets</span>"
+msgstr "<span background='lightgrey' size='large' weight='bold'>Önceki bahisler</span>"
 
-#: src/treeview.c:1820 src/treeview.c:1825
+#: src/treeview.c:1820
+#: src/treeview.c:1825
 #, c-format
 msgid "<span foreground='%s' background='%s'>Week %d Round %d</span>"
-msgstr ""
+msgstr "<span foreground='%s' background='%s'>Hafta %d Ayak %d</span>"
 
 #: src/youth_academy.c:249
 msgid "A new youth registered at your youth academy."
-msgstr ""
+msgstr "Genç oyuncu akademinize yeni bir Paf oyuncusu kaydedildi."
 
 #: src/youth_academy.c:253
-msgid ""
-"A new youth wanted to registered at your youth academy but there was no room "
-"for him."
-msgstr ""
+msgid "A new youth wanted to registered at your youth academy but there was no room for him."
+msgstr "Genç oyuncu akademinize yeni bir Paf oyuncusu kaydedilmek istiyor fakat yeterli yer yok."
 
 #: src/treeview_helper.c:1650
 msgid "ADD LAST MATCH"
-msgstr ""
+msgstr "SON MAÇI EKLE"
 
-#: src/lg_commentary.c:541 src/team.c:621
+#: src/lg_commentary.c:541
+#: src/team.c:621
 msgid "ALL OUT ATTACK"
-msgstr ""
+msgstr "TÜM TAKIM ATAK"
 
-#: src/lg_commentary.c:529 src/team.c:613
+#: src/lg_commentary.c:529
+#: src/team.c:613
 msgid "ALL OUT DEFEND"
-msgstr ""
+msgstr "TÜM TAKIM DEFANS"
 
+# Takım Hızı YAVAŞ
 #. Boost value.
-#: src/lg_commentary.c:544 src/team.c:629
+#: src/lg_commentary.c:544
+#: src/team.c:629
 msgid "ANTI"
-msgstr ""
+msgstr "YAVAŞ"
 
-#: src/lg_commentary.c:538 src/team.c:619
+#: src/lg_commentary.c:538
+#: src/team.c:619
 msgid "ATTACK"
-msgstr ""
+msgstr "Atak"
 
-#: src/interface.c:1056 src/misc2_interface.c:1092
+#: src/interface.c:1056
+#: src/misc2_interface.c:1092
 msgid "About"
-msgstr ""
+msgstr "Hakkında"
 
 #: src/misc_interface.c:1345
-#, fuzzy
 msgid "Accept"
-msgstr "Kabul?"
+msgstr "Kabul"
 
 #: src/game_gui.c:809
 msgid "Accept?"
@@ -556,166 +567,166 @@ msgstr "Kabul?"
 
 #: src/interface.c:1025
 msgid "Add last match"
-msgstr ""
+msgstr "Son maçı ekle"
 
 #: src/interface.c:1028
 msgid "Add last recorded match to the current memorable matches file."
-msgstr ""
+msgstr "Son kayıtlı maçı unutulmaz maçlar dosyasına ekle"
 
-#: src/misc2_interface.c:899 src/misc_interface.c:191
+#: src/misc2_interface.c:899
+#: src/misc_interface.c:191
 msgid "Add user"
-msgstr ""
+msgstr "Kullanıcı ekle"
 
 #: src/misc2_callbacks.c:162
 msgid "Adjust repayment schedule?"
-msgstr ""
+msgstr "Geri ödeme planını onaylıyormusun?"
 
-#: src/treeview.c:324 src/treeview.c:2144
+#: src/treeview.c:324
+#: src/treeview.c:2144
 msgid "Age"
 msgstr "Yaş"
 
 #: src/options_interface.c:699
-#, fuzzy
 msgid "Age "
 msgstr "Yaş"
 
 #: src/window.c:396
 msgid "All Files"
-msgstr ""
+msgstr "Bütün dosyalar"
 
 #: src/interface.c:500
 msgid "All Out Attack"
-msgstr "Tamamen Hücum"
+msgstr "Herkes Atak"
 
 #: src/interface.c:476
 msgid "All Out Defend"
-msgstr "Tamamen Defans"
+msgstr "Herkes Savunma"
 
 #: src/options_interface.c:1163
 msgid "Always show news window after a matchday"
-msgstr ""
+msgstr "Maç gününden sonra daima haber penceresini göster"
 
 #: src/interface.c:690
 msgid "Anti"
-msgstr ""
+msgstr "YAVAŞ"
 
 #: src/interface.c:656
 msgid "Any"
-msgstr ""
+msgstr "Farketmez"
 
 #: src/game_gui.c:809
 msgid "Apply for the job?"
-msgstr ""
+msgstr "İşi kabul et?"
 
 #: src/callbacks.c:277
 msgid "At least one user didn't take his turn this week. Continue?"
-msgstr ""
+msgstr "Bir kullanıcı maçını hala oynamadı.Devam edecekmisin?"
 
 #: src/game_gui.c:933
-msgid ""
-"At the Bygfoot forums you can report bugs, ask for help and discuss the "
-"game:\n"
-msgstr ""
+msgid "At the Bygfoot forums you can report bugs, ask for help and discuss the game:\n"
+msgstr "Bygfoot forumlarında hatalarınızı rapor edebilirsiniz,yardım isteyip oyun hakkında tartışabilirsiniz:\n"
 
-#: src/interface.c:494 src/treeview.c:1761
+#: src/interface.c:494
+#: src/treeview.c:1761
 msgid "Attack"
 msgstr "Hücum"
 
 #: src/treeview.c:891
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Attendance\n"
 "%s"
-msgstr "ilgilenme:"
+msgstr ""
+"Seyirci\n"
+"%s"
 
 #: src/options_interface.c:978
-#, fuzzy
 msgid "Attribute "
 msgstr "Özellik"
 
-#: src/interface.c:947 src/misc3_interface.c:543 src/window.c:1012
+#: src/interface.c:947
+#: src/misc3_interface.c:543
+#: src/window.c:1012
 msgid "Automatic loan repayment"
-msgstr ""
+msgstr "Otomatik borç geri ödemesi"
 
 #: src/options_interface.c:1160
 msgid "Automatic popup"
-msgstr ""
+msgstr "Otomatik pencere"
 
 #: src/treeview.c:1636
 msgid "Automatic repayment"
-msgstr ""
+msgstr "Otomatik geriödeme"
 
 #: src/options_interface.c:585
 msgid "Automatic substitutions"
-msgstr ""
+msgstr "Otomatik oyuncu değiştirme"
 
 #: src/options_interface.c:416
-#, fuzzy
 msgid "Autosave"
-msgstr "Her otomatik kayıt"
+msgstr "Otomatik kayıt"
 
 #: src/options_interface.c:312
-#, fuzzy
 msgid "Autosave interval "
-msgstr "Her otomatik kayıt"
+msgstr "Otomatik kayıt aralığı"
 
 #: src/misc_interface.c:624
-#, fuzzy
 msgid "Av. skill: "
-msgstr "Ort. Hüner:  "
+msgstr "Ort.Yetenek:  "
 
 #: src/interface.c:1310
 msgid "Av. skills:  "
-msgstr "Ort. Hüner:  "
+msgstr "Ort.Yetenekler:  "
 
 #. Average skill
 #: src/treeview.c:179
 msgid "Av.Sk."
-msgstr ""
+msgstr "Ort.Yet."
 
 #: src/treeview2.c:516
-#, fuzzy
 msgid "Av.skill"
-msgstr "Ort. Hüner:  "
+msgstr "Ort.Yetenek"
 
 #: src/misc2_interface.c:863
 msgid "Available teams"
-msgstr ""
+msgstr "Mümkün olan takımlar"
 
-#: src/interface.c:529 src/interface.c:564 src/interface.c:613
+#: src/interface.c:529
+#: src/interface.c:564
+#: src/interface.c:613
 msgid "Average"
 msgstr "Ortalama"
 
 #: src/misc_interface.c:985
 msgid "Average attendance"
-msgstr "Ortalama ilgi"
+msgstr "Ortalama seyirci"
 
 #: src/misc_interface.c:992
-#, fuzzy
 msgid "Average attendance %"
-msgstr "Ortalama ilgi"
+msgstr "Ortalama seyirci %"
 
 #: src/treeview.c:1866
 msgid "Average skill"
-msgstr "Ortalama Hüner"
+msgstr "Ortalama Yetenek"
 
 #: src/misc2_interface.c:173
-#, fuzzy
 msgid "Average skill:"
-msgstr "Ortalama Hüner"
+msgstr "Ortalama Yetenek:"
 
 #: src/treeview.c:1835
 msgid "Away"
-msgstr "Deplansman"
+msgstr "Deplasman"
 
-#: src/lg_commentary.c:535 src/team.c:617
+#: src/lg_commentary.c:535
+#: src/team.c:617
 msgid "BALANCED"
-msgstr ""
+msgstr "Dengeli"
 
 #: src/treeview_helper.c:1378
 #, c-format
 msgid "BAN(%d)"
-msgstr ""
+msgstr "CEZALI(%d)"
 
 #: src/interface.c:1128
 msgid "Back to main menu (Esc)"
@@ -723,216 +734,209 @@ msgstr "Ana menuye geri dönmek için (Esc)"
 
 #: src/misc_interface.c:288
 msgid "Back to splash"
-msgstr ""
+msgstr "Açılış ekranına dön"
 
-#: src/interface.c:535 src/interface.c:570 src/interface.c:619
+#: src/interface.c:535
+#: src/interface.c:570
+#: src/interface.c:619
 msgid "Bad"
-msgstr "kötü"
+msgstr "Kötü"
 
 #. Finances balance.
 #: src/treeview.c:1563
-#, fuzzy
 msgid "Balance"
-msgstr "Dengeli"
+msgstr "Finansal Denge"
 
 #: src/interface.c:488
 msgid "Balanced"
 msgstr "Dengeli"
 
 #: src/treeview.c:2153
-#, fuzzy
 msgid "Banned\n"
-msgstr "Dengeli"
+msgstr "Cezalı\n"
 
 #: src/interface.c:1159
 msgid "Begin a new week (Space)"
-msgstr "Yeni bir haftaya başla (Space)"
+msgstr "Yeni bir Haftaya Başla (Boşluk)"
 
-#: src/interface.c:517 src/interface.c:552 src/interface.c:601
+#: src/interface.c:517
+#: src/interface.c:552
+#: src/interface.c:601
 msgid "Best"
 msgstr "En iyi"
 
 #: src/treeview.c:2393
 msgid "Best defensive teams"
-msgstr ""
+msgstr "En iyi defansif takımlar"
 
 #: src/treeview.c:2396
-#, fuzzy
 msgid "Best goal scorers"
-msgstr "En iyi kaleciler"
+msgstr "En iyi golcüler"
 
 #: src/treeview.c:2397
-#, fuzzy
 msgid "Best goalkeepers"
 msgstr "En iyi kaleciler"
 
 #: src/treeview.c:2392
 msgid "Best offensive teams"
-msgstr ""
+msgstr "En iyi ofansif takımlar"
 
-#: src/interface.c:959 src/options_interface.c:1048 src/treeview.c:1503
-#: src/treeview.c:1513 src/window.c:989
+#: src/interface.c:959
+#: src/options_interface.c:1048
+#: src/treeview.c:1503
+#: src/treeview.c:1513
+#: src/window.c:989
 msgid "Betting"
-msgstr ""
+msgstr "Bahis oyna"
 
 #: src/misc3_interface.c:61
 msgid "Betting -- Left click on odd to place or remove bet"
-msgstr ""
+msgstr "Bahis oynamak -- Sağ veya Sol klikle para yatır yada sil"
 
 #: src/treeview.c:1536
 msgid "Bi-weekly balance"
-msgstr ""
+msgstr "Hafta başı Finans durumu"
 
-#: src/treeview.c:1529 src/treeview.c:1532
+#: src/treeview.c:1529
+#: src/treeview.c:1532
 #, c-format
 msgid ""
 "Bi-weekly balance\n"
 "(Week %d and %d)"
 msgstr ""
+"Hafta başı finansman durumunuz\n"
+"(Hafta %d ve %d)"
 
 #: src/interface.c:667
 msgid "Boost"
-msgstr "Cesaret"
+msgstr "Takım Desteği"
 
-#: src/callbacks.c:1087 src/game_gui.c:459 src/misc_callbacks.c:560
+#: src/callbacks.c:1087
+#: src/game_gui.c:459
+#: src/misc_callbacks.c:560
 msgid "Boost ON is disabled in this country definition."
-msgstr ""
+msgstr "Takım Desteği AÇIK oynadığınız ülke tanımlamalarınızda kapalıdır."
 
 #: src/team.c:667
 #, c-format
 msgid "Boost changed to %s (costs %d per minute)."
-msgstr ""
+msgstr "Takım Desteği değişti %s (ücret %d her dakika)."
 
 #: src/team.c:672
 #, c-format
 msgid "Boost changed to %s."
-msgstr ""
+msgstr "Takım Desteği değişti %s."
 
 #. Applying boost costs money.
 #: src/treeview.c:1515
-#, fuzzy
 msgid "Boost costs"
-msgstr "Cesaret"
+msgstr "Takım Desteği ücreti"
 
 #: src/player.c:1426
-#, fuzzy
 msgid "Broken ankle"
-msgstr "ayak bileği kırılması"
+msgstr "Kırık ayak"
 
 #: src/player.c:1429
-#, fuzzy
 msgid "Broken arm"
-msgstr "Kırılan kol"
+msgstr "Kırık kol"
 
 #: src/player.c:1423
-#, fuzzy
 msgid "Broken leg"
-msgstr "Kırılan bacak"
+msgstr "Kırık bacak"
 
 #: src/player.c:1420
-#, fuzzy
 msgid "Broken rib"
-msgstr "Kırılan kol"
+msgstr "Kırık kaburga"
 
 #: src/player.c:1432
-#, fuzzy
 msgid "Broken shoulder"
-msgstr "omuz kırılması"
+msgstr "Kırık omuz"
 
 #: src/interface.c:832
-#, fuzzy
 msgid "Browse players"
-msgstr "En iyi oyuncular"
+msgstr "Ligdeki Oyuncuları listele"
 
 #: src/interface.c:743
 msgid "Browse teams"
-msgstr ""
+msgstr "Diğer Takımlara bak"
 
 #: src/window.c:390
 msgid "Bygfoot Memorable Matches"
-msgstr ""
+msgstr "Bygfoot Unutulmaz Maçlar"
 
-#: src/misc3_interface.c:790 src/window.c:1020
-#, fuzzy
+#: src/misc3_interface.c:790
+#: src/window.c:1020
 msgid "Bygfoot News"
-msgstr "Bygfoot"
+msgstr "Bygfoot Haberleri"
 
 #: src/window.c:384
-#, fuzzy
 msgid "Bygfoot Save Files"
-msgstr "Bygfoot help"
+msgstr "Bygfoot kayıt dosyaları"
 
 #: src/misc2_interface.c:982
-msgid ""
-"Bygfoot debug window. If you got here by accident, CLOSE IMMEDIATELY "
-"(otherwise your CPU will be destroyed by overheating)."
-msgstr ""
+msgid "Bygfoot debug window. If you got here by accident, CLOSE IMMEDIATELY (otherwise your CPU will be destroyed by overheating)."
+msgstr "Bygfoot hata penceresi. Kazara buraya geldiyseniz, HEMEN KAPATIN(Yoksa CPU'nuz aşırı ısınmadan zarar görebilir)."
 
 #: src/game_gui.c:931
-msgid ""
-"Bygfoot is a very intuitive and simple game, so there isn't a full-grown "
-"documentation. However, if you have trouble, there are a few places to go.\n"
-msgstr ""
+msgid "Bygfoot is a very intuitive and simple game, so there isn't a full-grown documentation. However, if you have trouble, there are a few places to go.\n"
+msgstr "Bygfoot oldukça basit ve öğrenilmesi kolay bir oyundur,Tamamen bitmiş açıklayıcı bir dökümanı mevcut değildir.Bununla birlikte,bir sorununuz olduğunda,bilgi alabileceğiniz bazı yerler mevcuttur.\n"
 
+# Mevcut pozisyon
 #. Current position of a player.
 #: src/treeview.c:305
 msgid "CPos"
-msgstr "Cpos"
+msgstr "MPoz"
 
+# Mevcut Pozisyon
 #: src/options_interface.c:629
-#, fuzzy
 msgid "CPos "
-msgstr "Cpos"
+msgstr "MPoz"
 
+# Mevcut yetenek
 #. Current skill of a player.
 #: src/treeview.c:309
 msgid "CSk"
-msgstr "CSK"
+msgstr "MYet"
 
 #: src/options_interface.c:643
-#, fuzzy
 msgid "CSkill "
-msgstr "Hüner"
+msgstr "Mevcut Yetenek"
 
 #: src/misc3_interface.c:679
 msgid "Calculate start week"
-msgstr ""
+msgstr "Haftayı hesapla"
 
 #: src/misc3_interface.c:657
 msgid "Calculate weekly installment"
-msgstr ""
+msgstr "Haftalık gideri hesapla"
 
 #: src/training_interface.c:84
 msgid "Camp points"
-msgstr ""
+msgstr "Kamp puanları"
 
 #: src/misc_interface.c:1053
-#, fuzzy
 msgid "Capacity (seats)"
-msgstr "Kapasite"
+msgstr "Kapasite(koltuklar)"
 
 #: src/options_interface.c:692
 msgid "Cards "
-msgstr ""
+msgstr "Kartlar"
 
 #: src/treeview.c:2156
 msgid "Career values"
-msgstr ""
+msgstr "Kariyer Geçmişi"
 
 #: src/misc_interface.c:729
-msgid ""
-"Change commentary verbosity. The higher this value the more events you can "
-"see."
-msgstr ""
+msgid "Change commentary verbosity. The higher this value the more events you can see."
+msgstr "Maç Anlatım hızını değiştirmek.Yüksek rakamlar daha çok olay gösterir"
 
 #: src/misc_interface.c:707
 msgid "Change live game speed. The higher the value the faster the live game."
-msgstr ""
+msgstr "Canlı maç hızını ayarlama.Yüksek değer, daha hızlı maç."
 
 #: src/misc_interface.c:1017
-#, fuzzy
 msgid "Change ticket price"
-msgstr "Takım adını değiştir"
+msgstr "Bilet ücreti değiştir"
 
 #: src/misc_interface.c:97
 msgid "Choose country"
@@ -944,604 +948,597 @@ msgstr "Dosya seç"
 
 #: src/options_interface.c:453
 msgid "Choose game language (might not work in Windows versions)"
-msgstr ""
+msgstr "Oyun dilini seç.(Windows versiyonlarında çalışmayabilir)"
 
 #: src/misc_interface.c:146
 msgid "Choose league to start in"
-msgstr ""
+msgstr "Oyun başlangıçı için Lig seçimi."
 
 #: src/misc_interface.c:107
-#, fuzzy
 msgid "Choose team"
-msgstr "Dosya seç"
+msgstr "Takımını Seç"
 
 #: src/misc_interface.c:159
-#, fuzzy
 msgid "Choose username"
-msgstr "Ülke Seçin"
+msgstr "Kullanıcı Adı Seçin"
 
 #: src/game_gui.c:806
 msgid "Click on OK to apply for the job. Click on CANCEL to close the window."
-msgstr ""
+msgstr "TAMAM'a bas ve oyuna başla.VAZGEÇ'e bas ve pencereyi kapat."
 
 #: src/misc2_interface.c:857
 msgid "Click on a user to remove him from the game."
-msgstr ""
+msgstr "Kullanıcıyı seç ve oyundan kaldır."
 
 #: src/misc_interface.c:126
 msgid "Click on a user to remove him."
-msgstr ""
+msgstr "Kullanıcıyı seç ve kaldır."
 
 #: src/misc_interface.c:573
 msgid "Commentary"
-msgstr ""
+msgstr "Maçın Önemli Anları"
 
 #: src/main.c:112
 msgid "Commentary event to test; leave out to test all commentaries"
-msgstr ""
+msgstr "Maç anlatımı testte,tüm anlatımları geçerek testi bırak."
 
 #: src/main.c:103
 msgid "Commentary file name (may be in a support dir)"
-msgstr ""
+msgstr "Anlatım dosyası (support klasöründe olmalı)"
 
 #: src/treeview.c:2986
 msgid "Company"
-msgstr ""
+msgstr "Şirket"
 
 #. Money paid to players a user fired.
 #: src/treeview.c:1512
-#, fuzzy
 msgid "Compensations"
-msgstr "Doğrulayıcılar"
+msgstr "Tazminat"
 
-#: src/treeview2.c:94 src/treeview2.c:211
-#, fuzzy
+#: src/treeview2.c:94
+#: src/treeview2.c:211
 msgid "Competition"
-msgstr "Sampiyon"
+msgstr "Lig/Kupa"
 
 #: src/load_save.c:169
 msgid "Compressing savegame..."
 msgstr "Kayıtlı oyun sıkıştırılıyor..."
 
 #: src/player.c:1405
-#, fuzzy
 msgid "Concussion"
-msgstr "şok"
+msgstr "Beyin Sarsıntısı"
 
 #: src/misc2_interface.c:473
 msgid "Confirm & schedule repayment"
-msgstr ""
+msgstr "Onayla & Geri ödeme tablosu"
 
 #: src/options_interface.c:250
-#, fuzzy
 msgid "Confirm quit when not saved"
-msgstr "Kaydetmeden çık"
+msgstr "Kaydetmeden çıkmayı onayla"
 
 #: src/options_interface.c:471
 msgid "Confirm removing youths"
-msgstr ""
+msgstr "Genç oyuncular ayrılırken onayla"
 
 #: src/options_interface.c:255
 msgid "Confirm when unfit"
-msgstr ""
+msgstr "Yetersiz olduğunda onayla"
 
 #: src/misc_interface.c:1142
 msgid "Confirm!"
-msgstr ""
+msgstr "Doğrula!"
 
 #: src/options_interface.c:347
-#, fuzzy
 msgid "Constants file"
-msgstr "Ülke dosyası"
+msgstr "Bileşenler dosyası"
 
-#: src/treeview.c:329 src/treeview.c:2148
+#: src/treeview.c:329
+#: src/treeview.c:2148
 msgid "Contract"
-msgstr ""
+msgstr "Kontrat süresi"
 
 #: src/options_interface.c:727
 msgid "Contract "
-msgstr ""
+msgstr "Kontrat süresi"
 
 #: src/treeview.c:1657
 msgid "Contract / Money"
-msgstr ""
+msgstr "Kontrat / Para"
 
 #: src/treeview.c:2987
 msgid ""
 "Contract length\n"
 "(Months)"
 msgstr ""
+"Kontrat süresi\n"
+"(Ay)"
 
 #: src/window.c:934
-#, fuzzy
 msgid "Contract offer"
-msgstr "Ülke dosyası"
+msgstr "Kontrat teklifi"
 
 #: src/callbacks.c:1169
 msgid "Contracts are disabled in this country definition."
-msgstr ""
+msgstr "Kontratlar, ülke ayarlarınızda devre dışı."
 
-#: src/interface.c:1064 src/misc2_interface.c:1106 src/misc3_interface.c:237
+#: src/interface.c:1064
+#: src/misc2_interface.c:1106
+#: src/misc3_interface.c:237
 msgid "Contributors"
-msgstr ""
+msgstr "Katkıda Bulunanlar"
 
 #: src/file.c:388
 #, c-format
 msgid "Copying %s"
-msgstr ""
+msgstr "Kopyala %s"
 
-#: src/misc_interface.c:1067 src/misc_interface.c:1101
+#: src/misc_interface.c:1067
+#: src/misc_interface.c:1101
 #: src/training_interface.c:103
 msgid "Costs"
-msgstr "Fiyatlar"
+msgstr "Ücretler"
 
-#: src/support.c:90 src/support.c:114
+#: src/support.c:90
+#: src/support.c:114
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "Resim dosyası bulunmuyor : %s"
 
-#: src/treeview2.c:95 src/treeview2.c:515
-#, fuzzy
+#: src/treeview2.c:95
+#: src/treeview2.c:515
 msgid "Country"
-msgstr "Ülke dosyası"
+msgstr "Ülke"
 
 #: src/options_interface.c:1131
 msgid "Create cup news"
-msgstr ""
+msgstr "Kupa haberleri oluştur."
 
 #: src/options_interface.c:1135
-#, fuzzy
 msgid "Create league news"
-msgstr "Seçili Lig"
+msgstr "Lig haberleri oluştur."
 
 #: src/options_interface.c:1127
 msgid "Create user news"
-msgstr ""
+msgstr "Oyuncu haberleri oluştur."
 
 #: src/misc3_interface.c:331
 msgid "Ctrl-N"
-msgstr ""
+msgstr "Ctrl-N"
 
 #: src/misc3_interface.c:355
 msgid "Ctrl-O"
-msgstr ""
+msgstr "Ctrl-O"
 
 #: src/misc3_interface.c:379
 msgid "Ctrl-R"
-msgstr ""
+msgstr "Ctrl-R"
 
 #: src/treeview.c:2565
-#, fuzzy
 msgid "Cup champions"
-msgstr "Sampiyon"
+msgstr "Kupa Sampiyonları"
 
 #: src/callbacks.c:868
 msgid "Cup has no tables."
-msgstr ""
+msgstr "Kupa tablosu yok"
 
 #: src/misc_interface.c:965
-#, fuzzy
 msgid "Current capacity"
-msgstr "Şu anki posizyon"
+msgstr "Mevcut kapasite"
 
 #: src/misc2_interface.c:1338
-#, fuzzy
 msgid "Current file"
-msgstr "Şu an ki Durumu"
+msgstr "Mevcut Dosya"
 
 #: src/treeview.c:2798
 msgid "Current league"
-msgstr "Seçili Lig"
+msgstr "Mevcut Lig"
 
 #: src/treeview.c:1620
 msgid "Current market interest"
-msgstr ""
+msgstr "Mevcut Transfer piyasasındaki ilgisi"
 
 #: src/treeview.c:2139
 msgid "Current position"
-msgstr "Şu anki posizyon"
+msgstr "Mevcut pozisyon"
 
 #: src/misc_interface.c:978
-#, fuzzy
 msgid "Current safety"
-msgstr "Seçili Lig"
+msgstr "Mevcut güvenlik"
 
 #: src/misc3_interface.c:568
-#, fuzzy
 msgid "Current settings:"
-msgstr "Şu anki posizyon"
+msgstr "Mevcut ayarlar:"
 
 #: src/treeview.c:2141
 msgid "Current skill"
-msgstr "Şu an ki Durumu"
+msgstr "Mevcut Yetenek"
 
+# Defans oyuncusu
 #. Defender
 #: src/treeview_helper.c:1507
-#, fuzzy
 msgid "D"
-msgstr "GD"
+msgstr "D"
 
-#: src/lg_commentary.c:532 src/team.c:615
-#, fuzzy
+#: src/lg_commentary.c:532
+#: src/team.c:615
 msgid "DEFEND"
-msgstr "EN İYİ DEFANS"
+msgstr "DEFANS"
 
 #: src/treeview.c:1628
-#, fuzzy, c-format
+#, c-format
 msgid "Debt (repay in %d weeks)"
-msgstr " bu hafta geri öde!!!"
+msgstr "Borç (geri öde %d haftada)"
 
 #: src/misc2_interface.c:975
-#, fuzzy
 msgid "Debug"
-msgstr "Borçlar"
+msgstr "Onarma"
 
 #: src/misc2_interface.c:1251
 msgid "Decide later"
-msgstr ""
+msgstr "Daha sonra karar ver"
 
 #: src/options_interface.c:1062
 msgid "Default hotel"
-msgstr ""
+msgstr "İki Yıldızlı Otel"
 
 #: src/options_interface.c:1085
-#, fuzzy
 msgid "Default recreation:"
-msgstr "Uluslararası"
+msgstr "Başlangıç dinlenme:"
 
 #: src/options_interface.c:1105
 msgid "Default training:"
-msgstr ""
+msgstr "Başlangıç Antreman:"
 
 #: src/options_interface.c:1037
 msgid "Default wager"
-msgstr ""
+msgstr "Başlangıç maaşı"
 
-#: src/interface.c:482 src/treeview.c:1759
+#: src/interface.c:482
+#: src/treeview.c:1759
 msgid "Defend"
 msgstr "Defans"
 
 #: src/interface.c:638
-#, fuzzy
 msgid "Defenders"
-msgstr "Defans"
+msgstr "Defans oyuncuları"
 
+# Açılış ekranındaki ipuçları
 #. Splash screen hint question.
 #: src/misc3_interface.c:259
 msgid "Did you know?"
-msgstr ""
+msgstr "İpuçlarını Biliyormusun?"
 
 #: src/treeview.c:2738
 msgid "Didn't find file 'bygfoot_help'."
-msgstr ""
+msgstr "'bygfoot_help' dosyası bulunamadı."
 
 #: src/callbacks.c:1492
-#, fuzzy
 msgid "Do you really want to kick the poor boy out of your academy?"
-msgstr "Kaydetmedn çıkmak istiyor musun ?"
+msgstr "Gerçekten bu kötü çocuğu akademiden çıkartmak istiyormusun?"
 
 #: src/misc_interface.c:218
-#, fuzzy
 msgid "Don't load definitions"
-msgstr "Takım özellikleri yükleme"
+msgstr "Özellikleri yükleme"
 
 #: src/misc_interface.c:221
-#, fuzzy
 msgid "Don't load team definitions at all"
 msgstr "Takım özellikleri yükleme"
 
-#: src/load_save.c:178 src/load_save.c:338
-#, fuzzy
+#: src/load_save.c:178
+#: src/load_save.c:338
 msgid "Done."
-msgstr "none"
+msgstr "Tamam."
 
 #: src/treeview2.c:396
-#, fuzzy
 msgid "Draw"
-msgstr "Aşağı"
+msgstr "0"
 
 #: src/treeview.c:1616
 msgid "Drawing credit"
 msgstr "Kredi planı"
 
+# Beraberlik
 #. Games drawn.
 #. Draw.
-#: src/treeview.c:1373 src/treeview_helper.c:1757
-#, fuzzy
+#: src/treeview.c:1373
+#: src/treeview_helper.c:1757
 msgid "Dw"
-msgstr "Aşağı"
+msgstr "B"
 
+# Beraberlik
 #. draw
 #: src/team.c:1144
-#, fuzzy
 msgid "Dw "
-msgstr "D "
+msgstr "B"
 
+# Berabere maçlar
 #. a drawn match
 #: src/team.c:1064
 #, c-format
 msgid "Dw %d : %d"
-msgstr ""
+msgstr "Ber %d : %d"
 
 #: src/options_interface.c:706
-#, fuzzy
 msgid "ETal "
-msgstr "ETal"
+msgstr "MaxYetenek"
 
 #: src/treeview2.c:70
 msgid "EXPORT"
-msgstr ""
+msgstr "Dışa aktar."
 
 #: src/callbacks.c:933
-#, fuzzy
 msgid "Enter a structure. The digits must sum up to 10."
-msgstr "Bu rakamların toplamı 10 etmeli"
+msgstr "Takım dizilişini gir.Bu rakamların toplamı 10 etmeli"
 
 #: src/interface.c:718
-#, fuzzy
 msgid "Enter custom structure"
-msgstr "Takım taktiği"
+msgstr "Takım taktiğini gir"
 
 #: src/window.c:862
 msgid "Erm..."
-msgstr ""
+msgstr "Uyarı..."
 
-#: src/misc2_interface.c:480 src/misc2_interface.c:577
-#: src/misc2_interface.c:1139 src/misc2_interface.c:1234
-#: src/misc3_interface.c:107 src/misc3_interface.c:403
-#: src/misc3_interface.c:816 src/misc_interface.c:296
-#: src/misc_interface.c:1149 src/options_interface.c:1201
+#: src/misc2_interface.c:480
+#: src/misc2_interface.c:577
+#: src/misc2_interface.c:1139
+#: src/misc2_interface.c:1234
+#: src/misc3_interface.c:107
+#: src/misc3_interface.c:403
+#: src/misc3_interface.c:816
+#: src/misc_interface.c:296
+#: src/misc_interface.c:1149
+#: src/options_interface.c:1201
 msgid "Esc"
-msgstr "Esc"
+msgstr "Çık"
 
 #: src/misc_interface.c:647
 msgid "Esc / Return / Space"
-msgstr "Esc·/·Return·/·Space"
+msgstr "Çık/Geri Dön/Boşluk"
 
 #: src/treeview.c:2143
 msgid "Estimated talent"
-msgstr "Hesaplanan Kabiliyet"
+msgstr "Maksimum Yetenek"
 
+# Geliştirilebilir Yetenek
 #. Estimated talent of a player.
 #: src/treeview.c:326
-#, fuzzy
 msgid "Etal"
-msgstr "ETal"
+msgstr "GYet"
 
 #: src/treeview.c:2352
 msgid "Event"
-msgstr ""
+msgstr "Etkinlik"
 
-#: src/misc_interface.c:1075 src/misc_interface.c:1109
+#: src/misc_interface.c:1075
+#: src/misc_interface.c:1109
 msgid "Expected duration"
-msgstr ""
+msgstr "Beklenen bitirilme süresi"
 
 #: src/treeview.c:1687
 msgid "Expenses"
-msgstr ""
+msgstr "Giderler"
 
+# hücum oyuncusu
 #. Forward
 #: src/treeview_helper.c:1523
-#, fuzzy
 msgid "F"
-msgstr "GF"
+msgstr "H"
 
+# Lig,Sezon ile ilgili tablolar ve istatistikler
 #: src/interface.c:396
-#, fuzzy
 msgid "F_igures"
-msgstr "Biçimler"
+msgstr "Ta_blolar"
 
-#: src/callback_func.c:553 src/callback_func.c:561
+#: src/callback_func.c:553
+#: src/callback_func.c:561
 msgid "Fee"
-msgstr ""
+msgstr "Ücret"
 
 #. Live game tokens are strings like _AT_ in live game commentary files
 #. which will be filled in by the program during runtime; e.g. _AT_ becomes
 #. the attendace for the match.
 #: src/main.c:109
 msgid "File containing live game tokens (may be in a support dir)"
-msgstr ""
+msgstr "Canlı oyun için işaret dosyaları (support klasöründe olmalı)"
 
 #: src/options_interface.c:386
-msgid ""
-"File containing settings which determine a lot of aspects of the game "
-"behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
-msgstr ""
+msgid "File containing settings which determine a lot of aspects of the game behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
+msgstr "Dosya oyunun düzgün çalışması için bir çok ayarları içermektedir.NE YAPTIĞINIZI BİLMİYORSANIZ KESİNLİKLE DEĞİŞTİRMEYE ÇALIŞMAYIN."
 
 #: src/interface.c:918
-#, fuzzy
 msgid "Fin_Stad"
-msgstr "Final"
+msgstr "Finans_Stadyum"
 
 #: src/cup.c:1110
 msgid "Final"
-msgstr "Final"
+msgstr "Son"
 
-#: src/callbacks.c:1112 src/callbacks.c:1645
+#: src/callbacks.c:1112
+#: src/callbacks.c:1645
 msgid "Finances are disabled in this country definition."
-msgstr ""
+msgstr "Finansal Yönetim ülke ayarlarınızda mevcut değil."
 
-#: src/interface.c:803 src/interface.c:2010
+#: src/interface.c:803
+#: src/interface.c:2010
 msgid "Fire"
 msgstr "Takımdan kov"
 
 #: src/interface.c:1304
-msgid ""
-"First value: average current skill of the first 11 players. Second value: "
-"average skill of all players."
-msgstr "İlk değer seçili oyuncunun hüneri İkinci değer tüm oyuncuların değeri"
+msgid "First value: average current skill of the first 11 players. Second value: average skill of all players."
+msgstr "İlk değer: İlk 11'in Yetenek Ortalaması. İkinci değer: Tüm Takım Ortalaması"
 
-#: src/training_interface.c:168 src/treeview.c:2912
+#: src/training_interface.c:168
+#: src/treeview.c:2912
 msgid "First-Class Hotel"
-msgstr ""
+msgstr "Dört Yıldızlı Otel"
 
 #. Fitness of a player.
 #: src/treeview.c:313
 msgid "Fit"
-msgstr "Fit"
+msgstr "Kon"
 
 #: src/treeview.c:2142
 msgid "Fitness"
 msgstr "Kondisyon"
 
 #: src/options_interface.c:657
-#, fuzzy
 msgid "Fitness "
 msgstr "Kondisyon"
 
 #: src/interface.c:414
 msgid "Fixtures (competitions)"
-msgstr ""
+msgstr "Fikstür."
 
 #: src/interface.c:403
-#, fuzzy
 msgid "Fixtures (week)"
-msgstr "Fikstur"
+msgstr "Fikstur(hafta)"
 
 #: src/options_interface.c:373
 msgid "Font name"
-msgstr ""
+msgstr "Font ismi"
 
-#: src/options_interface.c:359 src/options_interface.c:446
+#: src/options_interface.c:359
+#: src/options_interface.c:446
 msgid "Font used in treeviews"
-msgstr ""
+msgstr "Fontu buradan değiştirebilirsiniz"
 
 #: src/interface.c:650
-#, fuzzy
 msgid "Forwards"
-msgstr "Forvet"
+msgstr "Hücum oyuncuları"
 
 #: src/treeview.c:823
-#, fuzzy
 msgid "Fouls"
-msgstr "Goller"
+msgstr "Fauller"
 
 #: src/player.c:1417
-#, fuzzy
 msgid "Fractured ankle"
-msgstr "Ayak bileği çatlaması"
+msgstr "Ayak bileği kırığı"
 
 #. Goalie
 #: src/treeview_helper.c:1499
-#, fuzzy
 msgid "G"
-msgstr "GD"
+msgstr "K"
 
+# Yenilen gol sayısı
 #. Goals against.
 #: src/treeview.c:1379
 msgid "GA"
-msgstr "GA"
+msgstr "YG"
 
+# Gol Averajı
 #. Goal difference.
 #: src/treeview.c:1381
 msgid "GD"
-msgstr "GD"
+msgstr "AV"
 
+# Atılan Gol
 #. Goals for.
 #: src/treeview.c:1377
 msgid "GF"
-msgstr "GF"
+msgstr "AG"
 
+# Maçın Futbolcusu
+# En Değerli Oyuncu
 #. Games of a player.
 #: src/treeview.c:315
 msgid "Ga"
-msgstr "Ga"
+msgstr "EDO"
 
 #: src/options_interface.c:528
-#, fuzzy
 msgid "Gameplay"
-msgstr "Maçlar"
+msgstr "Oyun"
 
 #: src/treeview_helper.c:932
 msgid "Games"
 msgstr "Maçlar"
 
 #: src/options_interface.c:664
-#, fuzzy
 msgid "Games "
 msgstr "Maçlar"
 
 #: src/treeview.c:2149
 msgid "Games/Goals\n"
-msgstr ""
+msgstr "Oyunlar/Goller\n"
 
 #: src/options_interface.c:459
-#, fuzzy
 msgid "Global"
-msgstr "Goller"
+msgstr "Global"
 
 #. Goals of a player.
 #. Goals.
-#: src/treeview.c:319 src/treeview.c:2454
+#: src/treeview.c:319
+#: src/treeview.c:2454
 msgid "Go"
-msgstr "Go"
+msgstr "Gol"
 
 #: src/misc_interface.c:274
 msgid "Go back to the splash screen"
-msgstr ""
+msgstr "Başlangıç ekranına geri dön."
 
+# Maç başına gol miktarı
 #. Goals per game.
 #: src/treeview.c:2456
-#, fuzzy
 msgid "Go/Ga"
-msgstr "Goller"
+msgstr "Gol/Maç"
 
 #: src/treeview.c:1758
-#, fuzzy
 msgid "Goalie"
-msgstr "Goalie"
+msgstr "Kaleci"
 
 #: src/interface.c:632
-#, fuzzy
 msgid "Goalies"
-msgstr "Goalie"
+msgstr "Kaleciler"
 
-#: src/treeview.c:1882 src/treeview.c:2420 src/treeview_helper.c:933
+#: src/treeview.c:1882
+#: src/treeview.c:2420
+#: src/treeview_helper.c:933
 msgid "Goals"
 msgstr "Goller"
 
 #: src/options_interface.c:678
-#, fuzzy
 msgid "Goals "
 msgstr "Goller"
 
+# 'Normal' goller,yani penaltı ve serbest vuruş haricindekiler
 #. 'Normal' goals, ie. no penalties or free kicks.
 #: src/treeview.c:818
 msgid "Goals (regular)"
-msgstr ""
+msgstr "Goller(normal)"
 
-#: src/interface.c:523 src/interface.c:558 src/interface.c:607
+#: src/interface.c:523
+#: src/interface.c:558
+#: src/interface.c:607
 msgid "Good"
-msgstr "iyi"
+msgstr "İyi"
 
-#: src/training_interface.c:161 src/treeview.c:2909
+#: src/training_interface.c:161
+#: src/treeview.c:2909
 msgid "Good Hotel"
-msgstr ""
+msgstr "Üç Yıldızlı Otel"
 
 #: src/player.c:1414
-#, fuzzy
 msgid "Groin injury"
-msgstr "Kasık sakatlanması"
+msgstr "Kasık zedelenmesi"
 
 #: src/player.c:1411
 msgid "Hamstring"
-msgstr ""
+msgstr "Topuk Sakatlanması"
 
 #: src/user.c:581
 #, c-format
 msgid "Have a look at the transfer list, there's an offer for %s."
-msgstr ""
+msgstr "Transfer listesine bak,sana %s için teklif var."
 
 #: src/league_table_interface.c:49
 msgid "Headline"
-msgstr ""
+msgstr "Başlık"
 
 #: src/treeview.c:2145
-#, fuzzy
 msgid "Health"
-msgstr "Yardım"
+msgstr "Sağlık"
 
-#: src/interface.c:1072 src/misc2_interface.c:1132
+#: src/interface.c:1072
+#: src/misc2_interface.c:1132
 msgid "Help"
 msgstr "Yardım"
 
@@ -1551,85 +1548,79 @@ msgstr "Ev"
 
 #: src/main.c:115
 msgid "How many commentaries to generate per event"
-msgstr ""
+msgstr "Her maçta kaç tane yorum yaratılsın"
 
 #: src/options_interface.c:429
 msgid "How many digits after the comma there are for skill etc."
-msgstr ""
+msgstr "Beceri ve benzeri değerlerde virgülden sonra kaç dijit gösterilsin?"
 
 #: src/options_interface.c:331
 msgid "How many files the autosave uses"
-msgstr ""
+msgstr "Otomatik kaydetme için kaç tane dosya kullanacaksın."
 
 #: src/options_interface.c:1045
 msgid "How much you wager by default"
-msgstr ""
+msgstr "Başlangıç Bahis miktarını değiştir"
 
 #: src/options_interface.c:320
-#, fuzzy
 msgid "How often the game is saved automatically"
-msgstr "Ne kadar sıklıkla geçmişe yeni data eklensin "
+msgstr "Ne kadar sıklıkla oyun otomatik kaydedilsin"
 
 #: src/options_interface.c:438
-msgid ""
-"How often the player list gets refreshed during a live game (in live game "
-"minutes)"
-msgstr ""
+msgid "How often the player list gets refreshed during a live game (in live game minutes)"
+msgstr "Canlı oyun sırasında ne kadar sıklıkla oyuncu listelerinin güncelleneceğini gösterir.(Canlı oyun dakikalarında)"
 
 #: src/treeview_helper.c:1364
 #, c-format
 msgid "INJ(%d)"
-msgstr ""
+msgstr "Sakat(%d)"
 
 #: src/options_interface.c:293
-msgid ""
-"If checked, weeks without user teams playing are calculated automatically "
-"(without the user having to press 'New week')"
-msgstr ""
+msgid "If checked, weeks without user teams playing are calculated automatically (without the user having to press 'New week')"
+msgstr "Seçili olduğunda,otomatik olarak bir sonraki maç haftasına gidilir(Kullanıcı 'yeni bir maça başla' butonuna basmadan gerçekleşir)"
 
 #: src/misc_interface.c:1352
-msgid ""
-"If you don't like any of the sponsors, you can go a few weeks without "
-"sponsor and wait for new offers."
-msgstr ""
+msgid "If you don't like any of the sponsors, you can go a few weeks without sponsor and wait for new offers."
+msgstr "Sponsorlarını beğenmezsen;birkaç hafta sponsor olmadan devam et ve yeni teklifleri bekle."
 
 #: src/misc2_interface.c:1389
-#, fuzzy
 msgid "Import file"
-msgstr "İçe Aktar"
+msgstr "Dosya yükle"
 
 #: src/misc2_interface.c:1375
 msgid "Import the matches from a memorable matches file"
-msgstr ""
+msgstr "Maçları hatırlanan maçların dosyasına ekle."
 
-#: src/treeview.c:1476 src/window.c:651
+#: src/treeview.c:1476
+#: src/window.c:651
 #, c-format
 msgid ""
 "Improvement in progress.\n"
 "%d seats and %d%% safety still to be done.\n"
 "Expected finish: %d weeks."
 msgstr ""
+"Yükseltme devrede.\n"
+"%d koltuk ve %d%% güvenlik hala yapılacak.\n"
+"Beklenen bitirme süresi: %d hafta."
 
 #: src/treeview.c:1686
-#, fuzzy
 msgid "Income"
-msgstr "Ev"
+msgstr "Gelirler"
 
 #: src/misc_interface.c:1041
-#, fuzzy
 msgid "Increase"
-msgstr "Emniyeti artır"
+msgstr "Arttır"
 
 #: src/treeview.c:826
-#, fuzzy
 msgid "Injuries"
-msgstr "Sakatlar / Kartlar"
+msgstr "Sakatlık"
 
 #: src/callbacks.c:1656
 msgid "It's too late in the season for automatic loan repayment."
-msgstr ""
+msgstr "Sezon içinde otomatik borç geri ödemesi için çok geç."
 
-#: src/misc2_interface.c:70 src/window.c:895
+#: src/misc2_interface.c:70
+#: src/window.c:895
 msgid "Job offer"
 msgstr "İş teklifi"
 
@@ -1638,9 +1629,9 @@ msgid "Job offers"
 msgstr "İş Teklifleri"
 
 #: src/game_gui.c:889
-#, fuzzy, c-format
+#, c-format
 msgid "Job offers set to %s."
-msgstr "İş Teklifleri"
+msgstr "İş teklifleri ayarla %s."
 
 #: src/treeview.c:1510
 msgid "Journey costs"
@@ -1648,296 +1639,273 @@ msgstr "Yolculuk fiyatları"
 
 #: src/interface.c:2076
 msgid "Kick out of academy"
-msgstr ""
+msgstr "Akademiden kov."
 
+# Kaybedilen maç
+# Mağlubiyet
 #. Games lost.
 #. Lost.
-#: src/treeview.c:1375 src/treeview_helper.c:1750
+#: src/treeview.c:1375
+#: src/treeview_helper.c:1750
 msgid "L"
-msgstr "L"
+msgstr "M"
 
+# Yenilgi
 #. lost
 #: src/team.c:1148
-#, fuzzy
 msgid "L  "
-msgstr "L "
+msgstr "M"
 
 #. a lost match
 #: src/team.c:1059
 #, c-format
 msgid "L  %d : %d"
-msgstr ""
+msgstr "Yenilgi  %d : %d"
 
 #: src/interface.c:317
-#, fuzzy
 msgid "L_oad last save"
-msgstr "Yükle & Kaydet"
+msgstr "S_on kaydı yükle"
 
 #: src/options_interface.c:409
-#, fuzzy
 msgid "Language"
-msgstr "Lig"
+msgstr "Dil"
 
 #: src/main.c:94
 msgid "Language to use (a code like 'de')"
-msgstr ""
+msgstr "Kullanılan dil (kodu 'tr' gibi)"
 
 #. A cup stage, e.g. Last 32 when there are only 32 teams left.
 #: src/cup.c:1107
-#, fuzzy, c-format
+#, c-format
 msgid "Last %d"
-msgstr "Son 16"
+msgstr "Son %d"
 
 #: src/load_save.c:227
 msgid "Last save file not found."
-msgstr ""
+msgstr "Son save dosyası bulunamadı."
 
 #: src/treeview.c:1880
 msgid "Latest results"
-msgstr "Son sonuçlar"
+msgstr "Aldığı sonuçlar"
 
-#: src/misc2_interface.c:102 src/treeview2.c:514 src/treeview.c:170
-#: src/treeview.c:331 src/treeview.c:763
+#: src/misc2_interface.c:102
+#: src/treeview2.c:514
+#: src/treeview.c:170
+#: src/treeview.c:331
+#: src/treeview.c:763
 msgid "League"
 msgstr "Lig"
 
 #: src/options_interface.c:734
-#, fuzzy
 msgid "League "
-msgstr "Lig 1"
+msgstr "Lig"
 
 #: src/treeview.c:2564
 msgid "League champions"
-msgstr ""
+msgstr "Lig Şampiyonları"
 
 #: src/interface.c:981
-#, fuzzy
 msgid "League stats"
-msgstr "Lig Sonucları"
+msgstr "Lig Durumu"
 
 #: src/league_table_interface.c:39
-#, fuzzy
 msgid "League table"
-msgstr "Lig Sonucları"
+msgstr "Lig Durumu"
 
 #: src/callbacks.c:247
 msgid "Left click to make an offer. Right click to remove offer."
-msgstr ""
+msgstr "Sol klikle teklif yap.Sağ klikle teklifi kaldır."
 
 #: src/callback_func.c:909
-msgid ""
-"Left click to move players to and from the youth academy; right click for "
-"context menu."
-msgstr ""
+msgid "Left click to move players to and from the youth academy; right click for context menu."
+msgstr "Sol tuşa basarak oyuncuyu genç oyuncu akademisine;sağ tuşa basarak ana menüye gönder."
 
 #: src/callbacks.c:540
 msgid "Left click to show fixtures."
-msgstr ""
+msgstr "Sol tuş ile fikstürü göster"
 
 #: src/callbacks.c:500
 msgid "Left click to show table."
-msgstr ""
+msgstr "Sol tuş ile Lig Puan cetvelini göster"
 
 #: src/callbacks.c:1117
-msgid ""
-"Left-click: get loan; Right-click: pay back; Middle click: stadium window."
-msgstr ""
+msgid "Left-click: get loan; Right-click: pay back; Middle click: stadium window."
+msgstr "Sol Tuş:Borç al;Sağ tuş:Geri öde;Orta tuş:Stadyum penceresi"
 
 #: src/options_interface.c:985
-#, fuzzy
 msgid "List 1 "
-msgstr "Son 16"
+msgstr "Liste 1 "
 
 #: src/options_interface.c:992
-#, fuzzy
 msgid "List 2"
-msgstr "Son 32"
+msgstr "Liste 2"
 
-#: src/interface.c:373 src/misc_interface.c:500 src/options_interface.c:614
+#: src/interface.c:373
+#: src/misc_interface.c:500
+#: src/options_interface.c:614
 msgid "Live game"
 msgstr "Canlı Mac"
 
 #: src/game_gui.c:898
-#, fuzzy, c-format
+#, c-format
 msgid "Live game set to %s."
-msgstr "Canlı Mac"
+msgstr "Canlı Maç ayarla %s."
 
 #: src/options_interface.c:553
-#, fuzzy
 msgid "Live game speed factor"
-msgstr "       Canlı oyun süre faktoru   "
+msgstr "Canlı oyun süre faktoru   "
 
 #: src/options_interface.c:560
-#, fuzzy
 msgid "Live game verbosity"
-msgstr "Canlı Mac"
+msgstr "Canlı Mac Yorumu"
 
 #: src/interface.c:1088
-#, fuzzy
 msgid "Load game (Ctrl - O)"
-msgstr "Oyunu yükle ('L' yada Ctrl - O)"
+msgstr "Kayıtlı Oyunu yükle (Ctrl - O)"
 
 #: src/main.c:87
-#, fuzzy
 msgid "Load last savegame"
-msgstr "Yükle & Kaydet"
+msgstr "Son kayıtlı oyunu Yükle "
 
 #: src/misc_interface.c:214
-#, fuzzy
 msgid "Load only the player names in the definition files"
-msgstr "Sadece isimleri yükle"
+msgstr "oyun ayarları dosyasından sadece isimleri yükle"
 
 #: src/misc_interface.c:204
-#, fuzzy
 msgid "Load team definitions"
 msgstr "Takım özellikleri yükleme"
 
 #: src/misc_interface.c:207
-msgid ""
-"Load teams from definition files (note that the official Bygfoot package "
-"doesn't contain team definition files, you have to get them from the "
-"homepage or via the bygfoot-update script)"
-msgstr ""
+msgid "Load teams from definition files (note that the official Bygfoot package doesn't contain team definition files, you have to get them from the homepage or via the bygfoot-update script)"
+msgstr "Takımları özel ayarlar dosyasından yükle.(Önemli hatırlatma:Resmi Bygfoot paketinde takım özellikleri dosyaları mevcut değildir,Bunlara oyun anasayfamızdan veya bygfoot-update script ile ulaşabilirsiniz.)"
 
 #: src/xml.c:125
-#, fuzzy, c-format
+#, c-format
 msgid "Loading cup: %s"
-msgstr "Yüklenen takım %d"
+msgstr "Yüklenen kupa %s"
 
 #. The 'job exchange' is a list of teams looking for a manager.
 #: src/load_save.c:307
-#, fuzzy
 msgid "Loading job exchange..."
-msgstr "Yükleniyor fiksturer..."
+msgstr "Teknik Direktör arayanlar..."
 
 #: src/xml.c:92
-#, fuzzy, c-format
+#, c-format
 msgid "Loading league: %s"
-msgstr "Yüklenen takım %d"
+msgstr "Yüklenen Lig %s"
 
 #: src/load_save.c:261
-#, fuzzy
 msgid "Loading leagues and cups..."
-msgstr "Yükleniyor fiksturer..."
+msgstr "Yükleniyor ligler ve kupalar..."
 
 #: src/load_save.c:330
-#, fuzzy
 msgid "Loading miscellaneous..."
-msgstr "Yükleniyor fiksturer..."
+msgstr "Çeşitli özellikler Yükleniyor..."
 
 #: src/load_save.c:319
-#, fuzzy
 msgid "Loading newspaper..."
-msgstr "Yükleniyor fiksturer..."
+msgstr "Haberler Yükleniyor..."
 
 #: src/load_save.c:246
-#, fuzzy
 msgid "Loading options..."
-msgstr "Yükleniyor fiksturer..."
+msgstr "Yükleniyor seçenekler..."
 
 #: src/load_save.c:294
-#, fuzzy
 msgid "Loading season stats..."
-msgstr "Sonuçlar yükleniyor..."
+msgstr "Sezon durumları yükleniyor..."
 
 #: src/load_save.c:283
-#, fuzzy
 msgid "Loading transfer list..."
-msgstr "Sonuçlar yükleniyor..."
+msgstr "Transfer listesi yükleniyor..."
 
 #: src/load_save.c:272
-#, fuzzy
 msgid "Loading users..."
-msgstr "Yükleniyor fiksturer..."
+msgstr "Kullanıcılar Yükleniyor..."
 
 #: src/callback_func.c:376
-#, fuzzy
 msgid "Loan"
-msgstr "Polonya"
+msgstr "Kiralık"
 
+# ortasaha oyuncusu
 #. Midfielder
 #: src/treeview_helper.c:1515
 msgid "M"
-msgstr ""
+msgstr "O"
 
 #: src/misc2_interface.c:747
-#, fuzzy
 msgid "Make offer"
-msgstr "İş teklifi"
+msgstr "Teklif Et"
 
 #: src/interface.c:1037
 msgid "Manage matches"
-msgstr ""
+msgstr "Maçları yönet"
 
 #: src/interface.c:907
 msgid "Manage users"
-msgstr ""
+msgstr "Kullanıcıları yönet"
 
 #: src/options_interface.c:270
-#, fuzzy
 msgid "Maximize main window"
-msgstr " ana pencereler içerisinde kullan"
+msgstr "Ana pencereyi maksimize et"
 
 #: src/user.c:1212
 msgid "Memorable match added."
-msgstr ""
+msgstr "Unutulmaz maç eklendi."
 
-#: src/interface.c:1014 src/window.c:981
+#: src/interface.c:1014
+#: src/window.c:981
 msgid "Memorable matches"
-msgstr ""
+msgstr "Unutulmaz maçlar"
 
 #: src/treeview.c:1760
-#, fuzzy
 msgid "Midfield"
 msgstr "Ortasaha"
 
 #: src/interface.c:644
-#, fuzzy
 msgid "Midfielders"
-msgstr "Ortasaha"
+msgstr "Ortasaha oyuncuları"
 
 #: src/treeview.c:1612
 msgid "Money"
-msgstr "Para"
+msgstr "Para:"
 
 #: src/interface.c:1286
 msgid "Money "
-msgstr "Para "
+msgstr "Para: "
 
 #: src/misc2_interface.c:112
 msgid "Money (approx.)"
-msgstr "Para"
+msgstr "Para: (yaklaşık)"
 
 #: src/treeview.c:2988
-#, fuzzy
 msgid "Money / week"
-msgstr "Para "
+msgstr "Para / Hafta"
 
 #: src/interface.c:2068
 msgid "Move to team"
-msgstr ""
+msgstr "Takıma yolla"
 
-#: src/interface.c:819 src/interface.c:2018
+#: src/interface.c:819
+#: src/interface.c:2018
 msgid "Move to youth academy"
-msgstr ""
+msgstr "Genç oyuncu akademisine yolla"
 
 #: src/interface.c:436
-#, fuzzy
 msgid "My league results"
 msgstr "Lig Sonucları"
 
-#: src/misc2_interface.c:97 src/treeview.c:303 src/treeview.c:761
+#: src/misc2_interface.c:97
+#: src/treeview.c:303
+#: src/treeview.c:761
 #: src/treeview.c:2137
 msgid "Name"
 msgstr "İsim"
 
 #: src/options_interface.c:622
-#, fuzzy
 msgid "Name "
 msgstr "İsim"
 
 #: src/treeview.c:1831
-#, fuzzy
 msgid "Neutral ground"
 msgstr "Tarafsız saha"
 
@@ -1946,19 +1914,21 @@ msgid ""
 "New contract\n"
 "offers"
 msgstr ""
+"Yeni kontrat\n"
+"teklifler"
 
 #: src/misc3_interface.c:612
 msgid "New settings:"
-msgstr ""
+msgstr "Yeni ayarlar:"
 
-#: src/interface.c:974 src/options_interface.c:1167
+#: src/interface.c:974
+#: src/options_interface.c:1167
 msgid "News"
-msgstr ""
+msgstr "Haberler"
 
 #: src/misc3_interface.c:315
-#, fuzzy
 msgid "Next"
-msgstr "İleri (W)"
+msgstr "İleri"
 
 #: src/interface.c:1424
 msgid "Next (W)"
@@ -1966,164 +1936,170 @@ msgstr "İleri (W)"
 
 #: src/interface.c:1398
 msgid "Next league/cup (2)"
-msgstr ""
+msgstr "Sonraki Lig/Kupa (2)"
 
 #: src/interface.c:885
 msgid "Next user"
-msgstr ""
+msgstr "Sonraki kullanıcı"
 
 #: src/game_gui.c:507
-#, fuzzy
 msgid "Next week you'll fire him and hire a new one."
-msgstr "Gelecek hafta menajerini konup yeni birisini işe alabilirsin."
+msgstr "Gelecek hafta menajerini kovup yeni birisini işe alabilirsin."
 
 #: src/options_interface.c:1147
 msgid "No automatic popup"
-msgstr ""
+msgstr "Otomatik popup yok"
 
 #: src/window.c:661
 msgid "No improvements currently in progress."
-msgstr ""
+msgstr "Devam eden yükseltme mevcut değil."
 
-#: src/callbacks.c:979 src/callbacks.c:999 src/callbacks.c:1513
-#: src/misc2_callback_func.c:326 src/misc2_callbacks.c:733
+#: src/callbacks.c:979
+#: src/callbacks.c:999
+#: src/callbacks.c:1513
+#: src/misc2_callback_func.c:326
+#: src/misc2_callbacks.c:733
 msgid "No match stored."
-msgstr ""
+msgstr "Maç saklanmadı."
 
 #: src/treeview2.c:599
 msgid "No news available."
-msgstr ""
+msgstr "Yeni haber yok."
 
 #: src/misc_callbacks.c:468
-#, fuzzy
 msgid "None"
-msgstr "none"
+msgstr "Hiçbirisi"
 
 #: src/window.c:448
 msgid "Not a valid Bygfoot Memorable Matches filename."
-msgstr ""
+msgstr "Bygfoot Unutulmaz Maçlar dosya adı geçerli değil"
 
 #: src/window.c:879
 msgid "Numbers..."
-msgstr ""
+msgstr "Numaralar..."
 
+# Takım Hızı NORMAL
 #. Boost value.
-#: src/lg_commentary.c:547 src/team.c:632
+#: src/lg_commentary.c:547
+#: src/team.c:632
 msgid "OFF"
-msgstr ""
+msgstr "NORMAL"
 
 #. Player health: ok.
 #. Player status: ok.
-#: src/misc2_interface.c:221 src/player.c:1402 src/treeview_helper.c:1095
+#: src/misc2_interface.c:221
+#: src/player.c:1402
+#: src/treeview_helper.c:1095
 #: src/treeview_helper.c:1391
 msgid "OK"
-msgstr "Tamam"
+msgstr "Sağlıklı"
 
+# Takım Hızı: HIZLI
 #. Boost value.
-#: src/lg_commentary.c:550 src/team.c:635
+#: src/lg_commentary.c:550
+#: src/team.c:635
 msgid "ON"
-msgstr ""
+msgstr "HIZLI"
 
 #: src/interface.c:684
 msgid "Off"
-msgstr "Off"
+msgstr "NORMAL"
 
-#: src/interface.c:795 src/interface.c:2006
+#: src/interface.c:795
+#: src/interface.c:2006
 msgid "Offer new contract"
-msgstr ""
+msgstr "Yeni kontrat teklifi"
 
 #: src/interface.c:678
 msgid "On"
-msgstr ""
+msgstr "HIZLI"
 
 #: src/misc_interface.c:211
 msgid "Only names"
-msgstr ""
+msgstr "Sadece isimler"
 
 #: src/misc2_interface.c:1349
 msgid "Open a memorable matches file"
-msgstr ""
+msgstr "Hatırlanan maçlar dosyasını aç"
 
-#: src/treeview2.c:92 src/treeview2.c:212
+#: src/treeview2.c:92
+#: src/treeview2.c:212
 msgid "Opponent"
-msgstr ""
+msgstr "Rakip"
 
 #: src/misc_interface.c:636
-#, fuzzy
 msgid "Opponent player list"
-msgstr "En iyi oyuncular"
+msgstr "Rakip oyuncular listesi"
 
 #: src/window.c:911
-#, fuzzy
 msgid "Options"
-msgstr "Ayarlar"
+msgstr "Seçenekler"
 
 #: src/interface.c:377
 msgid "Overwrite"
 msgstr "Üzerine Yaz"
 
 #: src/game_gui.c:907
-#, fuzzy, c-format
+#, c-format
 msgid "Overwrite set to %s."
-msgstr "Üzerine Yaz"
+msgstr "Üzerine Yaz %s"
 
+# Oynanan MAç
 #. Games played (a number).
 #: src/treeview.c:1369
 msgid "PL"
-msgstr "PL"
+msgstr "OM"
 
+# PUAN
 #. Points.
 #: src/treeview.c:1383
 msgid "PTS"
-msgstr ""
+msgstr "PUAN"
 
 #: src/options_interface.c:609
 msgid "Pause when break"
-msgstr ""
+msgstr "Ara verildiğinde dur"
 
 #: src/options_interface.c:599
 msgid "Pause when injury"
-msgstr ""
+msgstr "Sakatlıkta dur"
 
 #: src/options_interface.c:604
 msgid "Pause when red card"
-msgstr ""
+msgstr "Kırmızı kart olduğunda dur."
 
 #: src/callback_func.c:406
 msgid "Payback"
-msgstr ""
+msgstr "Geri ödeme"
 
 #: src/treeview.c:822
-#, fuzzy
 msgid "Penalties"
-msgstr "Penaltı atışları"
+msgstr "Penaltılar"
 
 #: src/callbacks.c:670
 msgid "Penalty/free kick shooter deselected."
-msgstr ""
+msgstr "Penaltıcı/serbest vuruşçu seçili değil."
 
-#: src/interface.c:541 src/treeview.c:1506
+#: src/interface.c:541
+#: src/treeview.c:1506
 msgid "Physio"
-msgstr "Psiko"
+msgstr "Takım doktoru"
 
 #: src/treeview_helper.c:916
-#, fuzzy
 msgid "Player accepts new offers"
-msgstr "Oyuncu çalışmaları"
+msgstr "Oyuncu yeni anlaşmaları kabul eder."
 
 #: src/options_interface.c:333
-#, fuzzy
 msgid "Player attribute precision"
-msgstr "Oyuncu özellikleri"
+msgstr "Futbolcunun kendine has özellikleri"
 
 #: src/options_interface.c:1006
-#, fuzzy
 msgid "Player attributes shown"
-msgstr "Oyuncu özellikleri"
+msgstr "Oyuncu özelliklerini göster"
 
 #: src/treeview_helper.c:914
 msgid "Player doesn't negotiate anymore"
-msgstr ""
+msgstr "Futbolcu daha görüşme yapmak istemiyor"
 
 #: src/misc2_interface.c:165
 msgid "Player list"
@@ -2131,122 +2107,114 @@ msgstr "Oyuncu Listesi"
 
 #: src/interface.c:1353
 msgid "Player list 1"
-msgstr "Oyuncu listesi 1"
+msgstr "Takım Listesi 1"
 
 #: src/interface.c:1361
 msgid "Player list 2"
-msgstr "oyuncu Listesi 2"
+msgstr "Takım Listesi 2"
 
 #: src/options_interface.c:340
-#, fuzzy
 msgid "Player list refresh rate"
-msgstr "Oyuncu geçmişi"
+msgstr "Oyuncu listesi yenileme hızı"
 
-#: src/interface.c:465 src/treeview.c:1869
+#: src/interface.c:465
+#: src/treeview.c:1869
 msgid "Playing style"
 msgstr "Oyun tarzı"
 
 #: src/options_interface.c:1153
 msgid "Popup for user news"
-msgstr ""
+msgstr "Kullanıcı haberleri balonu"
 
 #. Position of a player.
 #: src/treeview.c:307
 msgid "Pos"
-msgstr "Pos"
+msgstr "Poz"
 
 #: src/options_interface.c:636
-#, fuzzy
 msgid "Pos "
-msgstr "Pos"
+msgstr "Poz"
 
 #: src/treeview.c:2138
 msgid "Position"
 msgstr "Posizyon"
 
 #: src/treeview.c:821
-#, fuzzy
 msgid "Possession"
 msgstr "Posizyon"
 
 #: src/options_interface.c:275
-#, fuzzy
 msgid "Prefer messages"
-msgstr "Popuplarda tercih edilen mesajlar"
+msgstr "Öncelikli mesajlar"
 
 #: src/interface.c:352
 msgid "Preferences"
-msgstr ""
+msgstr "Tercihler"
 
-#: src/training_interface.c:175 src/treeview.c:2915
+#: src/training_interface.c:175
+#: src/treeview.c:2915
 msgid "Premium Hotel"
-msgstr ""
+msgstr "Beş Yıldızlı Tatil Köyü"
 
 #: src/misc3_interface.c:295
-#, fuzzy
 msgid "Previous"
-msgstr "Geri (Q)"
+msgstr "Geri"
 
 #: src/interface.c:1411
 msgid "Previous (Q)"
 msgstr "Geri (Q)"
 
 #: src/interface.c:1385
-#, fuzzy
 msgid "Previous league/cup (1)"
-msgstr "Geri (Q)"
+msgstr "Geri lig/kupa (1)"
 
 #: src/interface.c:896
-#, fuzzy
 msgid "Previous user"
-msgstr "Geri (Q)"
+msgstr "Onceki kullanıcı"
 
 #: src/misc_interface.c:1025
 msgid "Price per ticket"
-msgstr ""
+msgstr "Bilet ücreti"
 
 #: src/treeview.c:1500
 msgid "Prize money"
 msgstr "İkramiye parası"
 
 #: src/player.c:1408
-#, fuzzy
 msgid "Pulled muscle"
 msgstr "Kas çekmesi"
 
-#: src/interface.c:779 src/interface.c:1998
+#: src/interface.c:779
+#: src/interface.c:1998
 msgid "Put on transfer list"
 msgstr "Transfer listesine koy"
 
 #: src/cup.c:1116
-#, fuzzy
 msgid "Quarter-final"
 msgstr "Çeyrek Final"
 
 #: src/interface.c:1108
-#, fuzzy
 msgid "Quit (Ctrl - Q)"
-msgstr "Çıkış (Q yada Ctrl - Q)"
+msgstr "Çıkış (Ctrl - Q)"
 
 #: src/treeview2.c:69
 msgid "REMOVE"
-msgstr ""
+msgstr "Kaldır"
 
 #: src/treeview2.c:68
 msgid "REPLAY"
-msgstr ""
+msgstr "Yeniden oynat"
 
 #: src/misc_interface.c:230
 msgid "Randomise teams in cups"
-msgstr ""
+msgstr "Kupada takımları rastgele seç"
 
 #: src/misc_interface.c:233
-msgid ""
-"Randomise the order of teams in cups. This only makes sense in supernational "
-"definitions like the World Cup where the order of teams is fixed."
-msgstr ""
+msgid "Randomise the order of teams in cups. This only makes sense in supernational definitions like the World Cup where the order of teams is fixed."
+msgstr "Kupalardaki takımları rastgele belirle. Bu sadece Dünya Kupası gibi uluslararası müsabakalarda takım sıralamalarının düzenlenmesine yarar."
 
-#: src/misc2_interface.c:107 src/treeview.c:1848
+#: src/misc2_interface.c:107
+#: src/treeview.c:1848
 msgid "Rank"
 msgstr "Sıralama"
 
@@ -2254,310 +2222,294 @@ msgstr "Sıralama"
 msgid "Rank "
 msgstr "Sıralama "
 
-#: src/file.c:400 src/misc3_interface.c:412
+#: src/file.c:400
+#: src/misc3_interface.c:412
 msgid "Ready"
-msgstr ""
+msgstr "Hazır"
 
 #: src/interface.c:726
-#, fuzzy
 msgid "Rearrange team"
-msgstr "Tekrar düzenle / "
+msgstr "Tekrar düzenle"
 
 #: src/training_interface.c:98
-#, fuzzy
 msgid "Recreation"
-msgstr "Uluslararası"
+msgstr "Dinlenme"
 
 #: src/interface.c:625
 msgid "Recruiting preference"
-msgstr ""
+msgstr "Oyuncu seçim önceliği"
 
-#: src/treeview.c:825 src/treeview_helper.c:936
+#: src/treeview.c:825
+#: src/treeview_helper.c:936
 msgid "Reds"
-msgstr ""
+msgstr "Kırmızı Kart"
 
 #: src/misc_interface.c:1366
-#, fuzzy
 msgid "Reject for now"
-msgstr "Font seç"
+msgstr "Şimdilik kabul etme."
 
-#: src/misc2_interface.c:1368 src/options_interface.c:405
+#: src/misc2_interface.c:1368
+#: src/options_interface.c:405
 msgid "Reload"
-msgstr ""
+msgstr "Yeniden yükle"
 
 #: src/misc2_interface.c:1446
 msgid "Reload and close"
-msgstr ""
+msgstr "Yeniden yükle ve kapat."
 
 #: src/misc2_interface.c:1354
 msgid "Reload matches from file"
-msgstr ""
+msgstr "Dosyadan maçları yeniden yükle."
 
 #: src/misc2_interface.c:1432
 msgid "Reload matches from file and close"
-msgstr ""
+msgstr "Dosyadan maçları yeniden yükle ve kapat"
 
 #: src/options_interface.c:391
-#, fuzzy
 msgid "Reload the constants file"
-msgstr "Takımlar ülke dosyasından"
+msgstr "Bileşenler dosyasını yeniden yükle"
 
-#: src/interface.c:787 src/interface.c:2002
+#: src/interface.c:787
+#: src/interface.c:2002
 msgid "Remove from transfer list"
 msgstr "Transfer listesinden çıkart"
 
 #: src/misc2_callbacks.c:412
 #, c-format
 msgid "Remove user %s from the game?"
-msgstr ""
+msgstr "%s kullanıcısını oyundan kaldır?"
 
 #: src/interface.c:1040
 msgid "Replay, delete or add memorable matches."
-msgstr ""
+msgstr "Unutulmaz maçları yeniden oynat,ekle veya sil"
 
 #: src/interface.c:710
-#, fuzzy
 msgid "Reset player list"
-msgstr "En iyi oyuncular"
+msgstr "Oyuncu listesini sıfırla"
 
-#: src/interface.c:712 src/interface.c:1367
-msgid ""
-"Reset player list to the formation at the beginning of the live game pause "
-"(right click on player list)"
-msgstr ""
+#: src/interface.c:712
+#: src/interface.c:1367
+msgid "Reset player list to the formation at the beginning of the live game pause (right click on player list)"
+msgstr "Canlı maç başlagıçında durdugunda oyuncu listenizi sağ tuşa basarak takım dizilimini değiştirebilirsiniz."
 
-#: src/treeview2.c:93 src/treeview2.c:214
-#, fuzzy
+#: src/treeview2.c:93
+#: src/treeview2.c:214
 msgid "Result"
-msgstr "En iyi"
+msgstr "Sonuç"
 
 #: src/treeview.c:1987
-#, fuzzy
 msgid "Results"
-msgstr "Sonuçların"
+msgstr "Sonuçlar"
 
-#: src/misc2_interface.c:1222 src/misc_interface.c:1125
+#: src/misc2_interface.c:1222
+#: src/misc_interface.c:1125
 msgid "Return"
 msgstr "Geri dön"
 
-#: src/misc_interface.c:671 src/misc_interface.c:693
-#, fuzzy
+#: src/misc_interface.c:671
+#: src/misc_interface.c:693
 msgid "Return / Space"
-msgstr "Esc·/·Return·/·Space"
+msgstr "Geri Dön / Boşluk"
 
-#: src/interface.c:1241 src/misc_interface.c:740
+#: src/interface.c:1241
+#: src/misc_interface.c:740
 msgid "Right click and left click to change boost state"
-msgstr ""
+msgstr "Sağ ve Sol tuşlara basarak Takım Desteği durumunu değiştir"
 
-#: src/interface.c:1231 src/misc_interface.c:749
+#: src/interface.c:1231
+#: src/misc_interface.c:749
 msgid "Right click and left click to change your playing style"
-msgstr ""
+msgstr "Sağ ve Sol tuşlara basarak takım oyun stilini değiştir"
 
 #: src/callbacks.c:1582
 msgid "Right click to apply for job at once, left click to see team info."
-msgstr ""
+msgstr "Sağ tıklama ile iş kabul et,sol tıklama ile takım bilgisini gör."
 
-#: src/misc_interface.c:1061 src/misc_interface.c:1095
+#: src/misc_interface.c:1061
+#: src/misc_interface.c:1095
 msgid "Right-click to set to 0"
-msgstr ""
+msgstr "Sağ tuşa basarak 0  eşitle"
 
+# Karşılaşma(ilk maç,2.maç)
 #. Round
 #: src/treeview2.c:210
 msgid "Ro"
-msgstr ""
+msgstr "Kar"
 
 #: src/cup.c:1099
 msgid "Round robin"
-msgstr "Round robin"
+msgstr "Ön Eleme"
 
 #: src/misc_interface.c:1087
-#, fuzzy
 msgid "Safety (%)"
-msgstr "Karlılık"
+msgstr "Güvenlik (%)"
 
 #: src/misc_callback_func.c:306
 msgid "Safety improvement too high, reset to highest possible value."
-msgstr ""
+msgstr "Güvenlik yükseltme değeri çok yüksek,geçerli bir yüksek değer giriniz."
 
 #. % of saves for goalies (#goals / #shots)
 #: src/treeview.c:2399
-#, fuzzy
 msgid "Save %"
-msgstr "Kaydet"
+msgstr "Kurtarma Yüz. %"
 
 #: src/misc2_interface.c:1425
-#, fuzzy
 msgid "Save and close"
-msgstr "Dosya ya kaydet"
+msgstr "Kaydet ve kapat"
 
 #: src/misc2_interface.c:1411
 msgid "Save changes to file and close"
-msgstr ""
+msgstr "Değişiklikleri dosyaya kaydet ve kapat"
 
 #: src/interface.c:1098
-#, fuzzy
 msgid "Save game (Ctrl - S)"
-msgstr "Oyunu kaydet (S yada Ctrl - S)"
+msgstr "Oyunu kaydet (Ctrl - S)"
 
 #: src/options_interface.c:1184
-#, fuzzy
 msgid "Save global settings to file"
-msgstr "Dosya ya kaydet"
+msgstr "Global ayarları Dosya'ya kaydet"
 
 #: src/options_interface.c:260
-#, fuzzy
 msgid "Save overwrites"
 msgstr "Eski oyunun üstüne yaz"
 
 #: src/training_interface.c:197
-#, fuzzy
 msgid "Save settings as default"
-msgstr "Dosya ya kaydet"
+msgstr "Ayarları öntanımlı olarak kaydet"
 
 #: src/options_interface.c:1189
-#, fuzzy
 msgid "Save user settings to file"
-msgstr "Dosya ya kaydet"
+msgstr "Kullanıcı ayarlarını Dosya'ya kaydet"
 
 #: src/interface.c:387
 msgid "Save window geometry"
-msgstr ""
+msgstr "Windows geometrisini kaydet"
 
 #: src/interface.c:390
 msgid "Save window size, position and vertical divider"
-msgstr ""
+msgstr "Pencere boyutunu,pozisyonunu ve dikey bölücüyü kaydet"
 
 #. The 'job exchange' is a list of teams looking for a manager.
 #: src/load_save.c:138
-#, fuzzy
 msgid "Saving job exchange..."
-msgstr "Kaydediliyor fiksturler"
+msgstr "İş değişikliği kaydediliyor..."
 
 #: src/load_save.c:92
-#, fuzzy
 msgid "Saving leagues and cups..."
-msgstr "Kaydediliyor fiksturler"
+msgstr "Ligler ve Kupalar kaydediliyor..."
 
 #: src/load_save.c:161
-#, fuzzy
 msgid "Saving miscellaneous..."
-msgstr "Kaydediliyor fiksturler"
+msgstr "Kaydediliyor"
 
 #: src/load_save.c:150
-#, fuzzy
 msgid "Saving newspaper..."
-msgstr "Sonuçlar kaydediliyor..."
+msgstr "Haberler kaydediliyor..."
 
 #: src/load_save.c:78
-#, fuzzy
 msgid "Saving options..."
-msgstr "Kaydediliyor fiksturler"
+msgstr "Seçenekler kaydediliyor..."
 
 #: src/load_save.c:125
-#, fuzzy
 msgid "Saving season stats..."
-msgstr "Sonuçlar kaydediliyor..."
+msgstr "Sezon sonuçları kaydediliyor..."
 
 #: src/load_save.c:114
-#, fuzzy
 msgid "Saving transfer list..."
-msgstr "Sonuçlar kaydediliyor..."
+msgstr "Transfer listeleri kaydediliyor..."
 
 #: src/load_save.c:103
-#, fuzzy
 msgid "Saving users..."
-msgstr "Sonuçlar kaydediliyor..."
+msgstr "Kullanıcılar kaydediliyor..."
 
-#: src/interface.c:506 src/treeview.c:1507
-#, fuzzy
+#: src/interface.c:506
+#: src/treeview.c:1507
 msgid "Scout"
-msgstr "Menajer maaşı"
+msgstr "Yetenek Avcısı"
 
 #. Season.
 #: src/treeview.c:2323
-#, fuzzy
 msgid "Sea"
-msgstr "Sezon"
+msgstr "Sez"
 
 #: src/treeview.c:2615
-#, fuzzy, c-format
+#, c-format
 msgid "Season %d"
-msgstr "Sezon "
+msgstr "Sezon %d"
 
 #: src/interface.c:992
-#, fuzzy
 msgid "Season history"
-msgstr "Geçmişi Göster"
+msgstr "Sezon Geçmişi"
 
 #: src/interface.c:447
-#, fuzzy
 msgid "Season results"
-msgstr "Son sonuçlar"
+msgstr "Sezon sonuçları"
 
-#: src/misc_interface.c:387 src/window.c:919
+#: src/misc_interface.c:387
+#: src/window.c:919
 msgid "Select font"
 msgstr "Font seç"
 
 #: src/cup.c:1113
-#, fuzzy
 msgid "Semi-final"
-msgstr "Yari Final"
+msgstr "Yari-Final"
 
 #: src/interface.c:662
-#, fuzzy
 msgid "Set investment"
-msgstr "Stand Geliştirme"
+msgstr "Akademi Yatırımı "
 
-#: src/callbacks.c:1448 src/interface.c:665
-msgid ""
-"Set the percentage of your income you want to devote to your youth academy."
-msgstr ""
+#: src/callbacks.c:1448
+#: src/interface.c:665
+msgid "Set the percentage of your income you want to devote to your youth academy."
+msgstr "Finans Gelirlerinizin Yüzde kaçını Genç oyuncu akademisine ayırmak istersiniz"
 
 #: src/options_interface.c:484
 msgid "Set to 0 to switch off warning"
-msgstr ""
+msgstr "Uyarıları kapatmak için 0 ayarla"
 
+# Futbolcunun şutları
 #. Shots of a player.
 #: src/treeview.c:317
 msgid "Sh"
-msgstr ""
+msgstr "Şutlar"
 
-#: src/interface.c:811 src/interface.c:2014
+#: src/interface.c:811
+#: src/interface.c:2014
 msgid "Shoots penalties"
-msgstr "Penaltı atışları"
+msgstr "Frikik ve Penaltıları kullansın"
 
-#: src/treeview.c:820 src/treeview.c:2396
+#: src/treeview.c:820
+#: src/treeview.c:2396
 msgid "Shot %"
-msgstr ""
+msgstr "Şut Yüz. %"
 
-#: src/treeview.c:819 src/treeview_helper.c:934
-#, fuzzy
+#: src/treeview.c:819
+#: src/treeview_helper.c:934
 msgid "Shots"
-msgstr "Fiyatlar"
+msgstr "Şutlar"
 
 #: src/options_interface.c:671
 msgid "Shots "
-msgstr ""
+msgstr "Şutlar"
 
 #: src/options_interface.c:504
 msgid "Show all leagues in the fixture view"
-msgstr ""
+msgstr "Bütün ligleri fikstürde göster"
 
 #: src/interface.c:869
 msgid "Show coming matches"
-msgstr ""
+msgstr "Gelecek maçları göster"
 
 #: src/interface.c:925
-#, fuzzy
 msgid "Show finances"
-msgstr "Finans"
+msgstr "Finans durumunu göster"
 
-#: src/interface.c:771 src/interface.c:1994
+#: src/interface.c:771
+#: src/interface.c:1994
 msgid "Show info"
-msgstr "İnfo yu göster"
+msgstr "Futbolcu Bilgisi"
 
 #: src/interface.c:756
-#, fuzzy
 msgid "Show job exchange"
 msgstr "İş Tekliflerini Göster"
 
@@ -2566,54 +2518,51 @@ msgid "Show job offers"
 msgstr "İş Tekliflerini Göster"
 
 #: src/interface.c:847
-#, fuzzy
 msgid "Show last match"
-msgstr "Oyuncunun istatislik grafini göster"
+msgstr "Son maçı göster"
 
 #: src/interface.c:858
 msgid "Show last match stats"
-msgstr ""
+msgstr "Son maçın istatistiklerini göster"
 
 #: src/options_interface.c:540
-#, fuzzy
 msgid "Show live game"
-msgstr "Canlı Macları Göster"
+msgstr "Canlı Maçı Göster"
 
-#: src/misc3_interface.c:74 src/options_interface.c:1018
+#: src/misc3_interface.c:74
+#: src/options_interface.c:1018
 msgid "Show matches from all leagues"
-msgstr ""
+msgstr "Bütün liglerdeki maçları göster."
 
-#: src/misc3_interface.c:79 src/options_interface.c:1023
+#: src/misc3_interface.c:79
+#: src/options_interface.c:1023
 msgid "Show matches from cups"
-msgstr ""
+msgstr "Kupalardaki maçları göster."
 
 #: src/options_interface.c:1156
 msgid "Show news window after a matchday when new user news was created"
-msgstr ""
+msgstr "Maç gününden sonra yeni kullanıcı haberleri yaratıldığında;haber penceresini göster."
 
-#: src/misc3_interface.c:84 src/options_interface.c:1029
-#, fuzzy
+#: src/misc3_interface.c:84
+#: src/options_interface.c:1029
 msgid "Show only my recent bets"
-msgstr "Ligimin sonuçlarını göster"
+msgstr "Sadece oynadığım bahisleri göster"
 
 #: src/options_interface.c:1139
-#, fuzzy
 msgid "Show only recent news"
-msgstr "Ligimin sonuçlarını göster"
+msgstr "Sadece yeni haberleri göster"
 
 #: src/options_interface.c:523
-#, fuzzy
 msgid "Show overall games/goals"
-msgstr "Canlı Macları Göster"
+msgstr "tüm maçları/golleri göster"
 
 #: src/options_interface.c:280
 msgid "Show progressbar pictures"
-msgstr ""
+msgstr "Resimli durum çubuğunu göster."
 
 #: src/interface.c:936
-#, fuzzy
 msgid "Show stadium"
-msgstr "Stad"
+msgstr "Stadı göster"
 
 #: src/options_interface.c:544
 msgid "Show tendency bar"
@@ -2621,11 +2570,11 @@ msgstr "Eğilim çubuğunu göster"
 
 #: src/interface.c:962
 msgid "Show the betting window"
-msgstr ""
+msgstr "Bahis penceresini göster"
 
 #: src/interface.c:759
 msgid "Show the list of available manager jobs"
-msgstr ""
+msgstr "Mevcut menejer işleri listesini göster."
 
 #: src/interface.c:1141
 msgid "Show transferlist (T)"
@@ -2633,106 +2582,98 @@ msgstr "Transfer Listesi Göster (T)"
 
 #: src/options_interface.c:490
 msgid "Show warning if a player contract gets below "
-msgstr ""
+msgstr "Futbolcu kontrat süresi yaklaştığında uyarı göster"
 
 #: src/interface.c:587
 msgid "Show youth academy"
-msgstr ""
+msgstr "Genç oyuncu akademisi göster."
 
 #. Skill of a player.
 #: src/treeview.c:311
 msgid "Sk"
-msgstr "Sk"
+msgstr "Yet"
 
 #: src/treeview.c:2140
 msgid "Skill"
-msgstr "Hüner"
+msgstr "Yetenek"
 
 #: src/options_interface.c:650
-#, fuzzy
 msgid "Skill "
-msgstr "Hüner"
+msgstr "Yetenek"
 
 #: src/options_interface.c:290
 msgid "Skip weeks without user matches"
-msgstr ""
+msgstr "Maç olmayan haftaları atla."
 
 #: src/misc_interface.c:249
-#, fuzzy
 msgid "Space"
-msgstr "Kaydet"
+msgstr "Boşluk"
 
 #: src/main.c:90
 msgid "Specify additional support directory (takes priority over default ones)"
-msgstr ""
+msgstr "Özel ekstra destek klasörü (önceliği varsayılandan fazladır)"
 
 #: src/misc_interface.c:710
 msgid "Speed"
-msgstr ""
+msgstr "Maç Hızı"
 
 #: src/treeview.c:1650
 msgid "Sponsor"
-msgstr ""
+msgstr "Sponsor"
 
 #: src/treeview.c:1502
 msgid "Sponsorship"
-msgstr ""
+msgstr "Sponsor firma"
 
 #: src/window.c:973
-#, fuzzy
 msgid "Sponsorship offers"
-msgstr "İş Tekliflerini Göster"
+msgstr "Sponsor Firma Teklifleri"
 
 #: src/interface.c:967
-#, fuzzy
 msgid "St_ats"
-msgstr "Durum"
+msgstr "Du_rum"
 
 #: src/treeview.c:1460
 msgid "Stadium"
 msgstr "Stad"
 
-#: src/misc2_interface.c:117 src/treeview.c:1466
+#: src/misc2_interface.c:117
+#: src/treeview.c:1466
 msgid "Stadium capacity"
 msgstr "Stad Kapasitesi"
 
 #: src/treeview.c:1591
-#, fuzzy
 msgid "Stadium expenses"
-msgstr "Stad Güvenliği"
+msgstr "Stad Giderleri"
 
 #: src/callbacks.c:1136
 msgid "Stadium management is disabled in this country definition."
-msgstr ""
+msgstr "Stadyum Yönetimi ülkenizde geçerli değil."
 
-#: src/misc2_interface.c:122 src/treeview.c:1470
+#: src/misc2_interface.c:122
+#: src/treeview.c:1470
 msgid "Stadium safety"
 msgstr "Stad Güvenliği"
 
 #: src/treeview.c:1484
-#, fuzzy
 msgid "Stadium status"
-msgstr "Stad Güvenliği"
+msgstr "Stadyum Durumu"
 
 #: src/misc_interface.c:266
-#, fuzzy
 msgid "Start"
 msgstr "Başlat"
 
 #: src/misc3_interface.c:348
-#, fuzzy
 msgid "Start _new game"
-msgstr "Başlat"
+msgstr "Başlat_yeni oyun"
 
 #: src/misc3_interface.c:623
-#, fuzzy
 msgid "Start in week"
-msgstr "Başlat"
+msgstr "Başlat hafta"
 
 #: src/misc3_interface.c:577
-#, fuzzy
 msgid "Start in week:"
-msgstr "Başlat"
+msgstr "Başlat hafta:"
 
 #: src/misc_interface.c:587
 msgid "Statistics"
@@ -2744,57 +2685,55 @@ msgid "Status"
 msgstr "Durum"
 
 #: src/options_interface.c:685
-#, fuzzy
 msgid "Status "
-msgstr "Durum"
+msgstr "Durumunuz"
 
 #: src/misc_interface.c:951
-#, fuzzy
 msgid "Status:"
-msgstr "Durum"
+msgstr "Durumunuz:"
 
 #. Hot streak or cold streak of a player.
 #: src/treeview.c:2155
-#, fuzzy
 msgid "Streak"
-msgstr "Sezon"
+msgstr "Gol vuruşu"
 
 #: src/main.c:92
 msgid "String id of the country to load"
-msgstr ""
+msgstr "Ülke sıra numarası yükleniyor"
 
 #: src/callbacks.c:934
-#, fuzzy
 msgid "Structure"
 msgstr "Takım Düzeni"
 
 #: src/options_interface.c:518
-#, fuzzy
 msgid "Swap adapts structure"
-msgstr "Takas  takım düzenini adapte et"
+msgstr "Takım düzenini değiştir"
 
 #. Language is system-set (not user chosen).
 #: src/treeview.c:2852
 msgid "System"
-msgstr ""
+msgstr "Sistem"
 
 #: src/interface.c:425
 msgid "Tables"
 msgstr "Puan Cetveli"
 
 #: src/treeview2.c:517
-#, fuzzy
 msgid "Talent %"
-msgstr "Yetenek"
+msgstr "Yetenek %"
 
-#: src/treeview2.c:513 src/treeview.c:161 src/treeview.c:330
-#: src/treeview.c:762 src/treeview.c:1367 src/treeview.c:1842
-#: src/treeview.c:1986 src/treeview.c:2324
+#: src/treeview2.c:513
+#: src/treeview.c:161
+#: src/treeview.c:330
+#: src/treeview.c:762
+#: src/treeview.c:1367
+#: src/treeview.c:1842
+#: src/treeview.c:1986
+#: src/treeview.c:2324
 msgid "Team"
 msgstr "Takım"
 
 #: src/options_interface.c:741
-#, fuzzy
 msgid "Team "
 msgstr "Takım"
 
@@ -2805,281 +2744,223 @@ msgstr "Takım taktiği"
 #: src/team.c:660
 #, c-format
 msgid "Team style changed to %s."
-msgstr ""
+msgstr "Takım dizilimi değiştirildi %s ."
 
 #: src/treeview2.c:393
-#, fuzzy
 msgid "Team1"
-msgstr "Takım"
+msgstr "Takım1"
 
 #: src/treeview2.c:399
-#, fuzzy
 msgid "Team2"
-msgstr "Takım"
+msgstr "Takım2"
 
 #: src/main.c:100
-#, fuzzy
 msgid "Test an XML commentary file"
-msgstr "Ülke dosyası seçin"
+msgstr "XML anlatım dosyasını test et."
 
 #: src/callback_func.c:368
-#, fuzzy
 msgid "The bank doesn't grant you more money."
-msgstr "Banka hesabınızda yeterli paranız yok"
+msgstr "Banka size daha fazla ödenek yapmıyor."
 
 #: src/bet.c:269
 #, c-format
 msgid "The betting office doesn't allow you to wager more than %s."
-msgstr ""
+msgstr "Bahis şirketi oynanan miktarı kabul etmiyor %s."
 
 #: src/callbacks.c:139
-#, fuzzy
 msgid "The current game state is unsaved and will be lost. Continue?"
-msgstr "Mevcut oyun kayıtlı değil ve kaybolabilir. Devam edecek misin ?"
+msgstr "Mevcut oyun kayıtlı değil ve kaybolabilir. Kapatmak istiyormusun?"
 
 #: src/options_interface.c:582
 msgid "The higher this value, the more commentary you'll see."
-msgstr ""
+msgstr "Bu değer yükseldikçe, daha fazla yorum görebilirsiniz."
 
 #: src/callbacks.c:1584
-#, fuzzy, c-format
+#, c-format
 msgid "The job exchange update interval is %d weeks."
-msgstr "Yenile aryı (haftalar içinde)"
+msgstr "İş değişimi için güncelleme zamanı %d hafta."
 
 #: src/options_interface.c:573
 msgid "The lower this value the faster the live game commentary will scroll."
-msgstr ""
+msgstr "Bu değer düşükse daha hızlı canlı maç yorumu gelecektir."
 
 #: src/misc2_callback_func.c:365
 #, c-format
 msgid "The owners of %s accept your application."
-msgstr ""
+msgstr "%s takımının yöneticileri başvurunuzu kabul etti."
 
 #. A lame duck is someone who will quit his job soon and thus doesn't have
 #. a lot of influence/impact anymore, e.g. an American president during
 #. the last 2 years of his second presidency.
 #: src/misc2_callback_func.c:359
 #, c-format
-msgid ""
-"The owners of %s accept your application. Since %s don't want to get stuck "
-"with a lame duck, you get fired instantly and spend the rest of the current "
-"season tending your garden."
-msgstr ""
+msgid "The owners of %s accept your application. Since %s don't want to get stuck with a lame duck, you get fired instantly and spend the rest of the current season tending your garden."
+msgstr "Takımın yöneticileri %s teklifinizi kabul ediyor. %s kadar süre emekliliğine kalmışken, başarısızlığında derhal kovulabilirsin ve sezonun geri kalanınında bahçende bahçıvanlık yaparak geçirebilirsin."
 
 #: src/game_gui.c:803
-#, fuzzy, c-format
-msgid ""
-"The owners of %s are deeply impressed by your success with %s and would like "
-"to hire you. Here's some information on %s:"
-msgstr ""
-"%s takımının yöneticisi başarından dolayı etkilendi. Sana iş eklif etmek "
-"istiyor. %s hakkında bilgiler:"
+#, c-format
+msgid "The owners of %s are deeply impressed by your success with %s and would like to hire you. Here's some information on %s:"
+msgstr "Bir takımın ilgisini çektiniz %s takım başkanı mevcut başarınızdan hayli etkilenmiş gözüküyor %s ve sizi takımında görmek istediğini belirtiyor.İşte bu konudaki bilgiler %s:"
 
 #: src/user.c:380
-#, fuzzy, c-format
-msgid ""
-"The owners of %s are not satisfied with the recent performance of the team. "
-"There are rumours they're looking for a new manager."
-msgstr ""
-"Yöneticiler takımın oyunundan memnun değiller. Söylentiye göre yeni bir "
-"Teknik Direktore bakıyorlar"
+#, c-format
+msgid "The owners of %s are not satisfied with the recent performance of the team. There are rumours they're looking for a new manager."
+msgstr "Takımının başkanı %s oyunundan memnun değiller. Söylentilere göre yeni bir Teknik Direktore bakıyorlar"
 
 #: src/user.c:596
 #, c-format
-msgid ""
-"The owners of %s have rejected your offer (%s / %s) for %s. Neither the fee "
-"nor the wage you offered were acceptable, they say."
-msgstr ""
+msgid "The owners of %s have rejected your offer (%s / %s) for %s. Neither the fee nor the wage you offered were acceptable, they say."
+msgstr "Takımın yöneticileri %s yapılan teklifi reddetti (%s / %s) için %s. Ne transfer ücreti nede maaşın kabul edilebilir olmadığını söylüyorlar."
 
 #: src/user.c:601
 #, c-format
-msgid ""
-"The owners of %s have rejected your offer (%s / %s) for %s. The team owners "
-"weren't satisfied with the fee you offered."
-msgstr ""
+msgid "The owners of %s have rejected your offer (%s / %s) for %s. The team owners weren't satisfied with the fee you offered."
+msgstr "Takımın yöneticileri %s yapılan teklifi reddetti (%s / %s) için %s. Yöneticiler önerilen transfer ücretinden pek memnun olmadılar."
 
 #: src/user.c:591
 #, c-format
-msgid ""
-"The owners of %s have rejected your offer (%s / %s) for %s. There was a "
-"better offer for the player than yours."
-msgstr ""
+msgid "The owners of %s have rejected your offer (%s / %s) for %s. There was a better offer for the player than yours."
+msgstr "Teklif yaptığın takım %s yöneticileri teklifini reddetti (%s / %s) Söz konusu futbolcu %s. Yaptığın tekliften çok daha iyileri var."
 
 #: src/misc2_callback_func.c:348
 #, c-format
-msgid ""
-"The owners of %s politely reject your application. You're not successful "
-"enough in their eyes."
-msgstr ""
+msgid "The owners of %s politely reject your application. You're not successful enough in their eyes."
+msgstr "%s takımının yöneticileri teklifinizi kibarca reddetti.Onlara göre yeterince iyi bir teklif gelmedi."
 
 #: src/callback_func.c:594
-msgid ""
-"The player feels he doesn't have a future in your star-studded team. He "
-"refuses to negotiate."
-msgstr ""
+msgid "The player feels he doesn't have a future in your star-studded team. He refuses to negotiate."
+msgstr "Futbolcu gelecekte takımınızdaki yıldızı sönenlerden birisi olabileceğini düşünüyor.Daha fazla görüşmeyi reddediyor."
 
 #: src/callbacks.c:607
-#, fuzzy
 msgid "The player is already on the list."
-msgstr "Oyuncu transfer listesinde"
+msgstr "Futbolcu zaten transfer listesinde."
 
 #: src/callback_func.c:531
-msgid ""
-"The player is locked (the team owners are considering an offer currently)."
-msgstr ""
+msgid "The player is locked (the team owners are considering an offer currently)."
+msgstr "Oyuncu kilitli durumda (takım yöneticileri gelen teklifleri değerlendiriyor)."
 
 #: src/callbacks.c:627
-#, fuzzy
 msgid "The player is not on the list."
-msgstr "Oyuncu transfer listesinde"
+msgstr "Futbolcu listede değil."
 
 #: src/treeview_helper.c:1074
-#, fuzzy
 msgid "The player is on a cold streak"
-msgstr "Oyuncu transfer listesinde"
+msgstr "Son vuruşlarda başarısız"
 
 #: src/treeview_helper.c:1072
-#, fuzzy
 msgid "The player is on a hot streak"
-msgstr "Oyuncu transfer listesinde"
+msgstr "Son vuruşlarda başarılı"
 
 #: src/callbacks.c:710
-#, fuzzy
 msgid "The player is too old for the youth academy."
-msgstr "Oyuncu transfer listesinde"
+msgstr "Futbolcu Genç oyuncu akademisi için çok yaşlı"
 
 #: src/callback_func.c:588
 msgid "The player won't negotiate with you anymore."
-msgstr ""
+msgstr "Futbolcu daha fazla görüşmeyi reddediyor."
 
 #: src/misc2_callback_func.c:168
 #, c-format
 msgid "The structure value %d is invalid."
-msgstr ""
+msgstr "Yapı değeri %d geçersiz.."
 
 #: src/user.c:640
-msgid ""
-"The team owners are very satisfied with your financial management. Since the "
-"team's been earning a lot of money lately, they decide to donate half of it "
-"to charity."
-msgstr ""
+msgid "The team owners are very satisfied with your financial management. Since the team's been earning a lot of money lately, they decide to donate half of it to charity."
+msgstr "Takımınızın Başkanı finansal yönetiminizden oldukça memnun oldu.Kazanılan paraların bir kısmını hayır kurumlarına bağış yapmaya karar verdiler."
 
 #: src/game_gui.c:797
-#, fuzzy, c-format
-msgid ""
-"The team owners have fired you because of financial mismanagement. Luckily, "
-"the owners of %s have heard of your dismissal and offer you a job. Here's "
-"some information on %s:"
-msgstr ""
-"\n"
-"Fakat yöneticilerden %s çıkarılmanı duymuş ve seni işe almak istiyor.Bunlar %"
-"s için bazı bilgiler :"
+#, c-format
+msgid "The team owners have fired you because of financial mismanagement. Luckily, the owners of %s have heard of your dismissal and offer you a job. Here's some information on %s:"
+msgstr "Takım Yöneticileri finansal yönetiminizdeki beceriksizliğiniz yüzünden sözleşmenizi feshetti. Şanslısınız, bir diğer kulüp olan %s  yöneticileri sizin ayrıldığınızı duydu ve size iş teklif etmek istiyor. İşte bu konudaki bilgiler %s:"
 
 #: src/game_gui.c:800
-#, fuzzy, c-format
-msgid ""
-"The team owners have fired you because of unsuccessfulness. Luckily, the "
-"owners of %s have heard of your dismissal and offer you a job. Here's some "
-"information on %s:"
-msgstr ""
-"\n"
-"Fakat yöneticilerden %s çıkarılmanı duymuş ve seni işe almak istiyor.Bunlar %"
-"s için bazı bilgiler :"
+#, c-format
+msgid "The team owners have fired you because of unsuccessfulness. Luckily, the owners of %s have heard of your dismissal and offer you a job. Here's some information on %s:"
+msgstr "Takım yöneticileri aldığınız başarısız sonuçlar üzerine sözleşmenizi feshetti. Şanslısınız, bir diğer kulüp olan %s  yöneticileri sizin ayrıldığınızı duydu ve size iş teklif etmek istiyor. İşte bu konudaki bilgiler %s:"
 
-#: src/callback_func.c:538 src/callbacks.c:260 src/transfer.c:574
-#, fuzzy
+#: src/callback_func.c:538
+#: src/callbacks.c:260
+#: src/transfer.c:574
 msgid "The transfer deadline is over."
-msgstr "Transfer Sezonu Kapandı (hafta 35)"
+msgstr "Transfer Sezonu Kapandı"
 
 #: src/misc_interface.c:1310
-msgid ""
-"There are a few companies interested in sponsoring your team. Please select "
-"one:"
-msgstr ""
+msgid "There are a few companies interested in sponsoring your team. Please select one:"
+msgstr "Birkaç değerli şirket takımınıza sponsor olmak istiyor.Lütfen bir tanesini seçin"
 
 #: src/callbacks.c:283
-#, fuzzy
 msgid "There are injured or banned players in one of the user teams. Continue?"
-msgstr "Takımda sakat yada cezalı oyuncular var. Devam edeyim mi ?"
+msgstr "Takımda sakat yada cezalı oyuncular var. Devam edilsin mi ?"
 
 #: src/callbacks.c:561
 msgid "There are no leagues in this country definition (only cups)."
-msgstr ""
+msgstr "Ülke ayarlarınızda lig veya kupa tabloları yapılandırılmamış (sadece kupalarda)."
 
 #: src/callbacks.c:535
 msgid "There are no leagues or cups with tables in this country definition."
-msgstr ""
+msgstr "Ülke ayarlarınızda lig veya kupa tabloları yapılandırılmamış."
 
 #: src/callbacks.c:583
-#, fuzzy
 msgid "There are no season history elements stored yet."
-msgstr "Geşmiş yok"
+msgstr "Sezon geçmişi bulunamadı."
 
 #: src/callback_func.c:434
-msgid ""
-"There are some offers for the player which you rejected or will see next "
-"week."
-msgstr ""
+msgid "There are some offers for the player which you rejected or will see next week."
+msgstr "Oyuncu için bazı teklifler var,kabul etmeyip gelecek hafta görebilirsiniz."
 
 #: src/callbacks.c:716
-#, fuzzy
 msgid "There is no room in your youth academy."
-msgstr "Stadta yangın var"
+msgstr "Genç oyuncu akademisinde yer yok."
 
 #: src/misc_callbacks.c:232
-msgid ""
-"There were too many substitutions. Only 3 per game are allowed. Player list "
-"reset."
-msgstr ""
+msgid "There were too many substitutions. Only 3 per game are allowed. Player list reset."
+msgstr "Çok fazla oyuncu değişikliği yapıyorsunuz.Bir maçta sadece 3 oyuncu değiştirebilirsiniz."
 
 #: src/treeview.c:1501
-#, fuzzy
 msgid "Ticket income"
-msgstr "Bilet satışı"
+msgstr "Bilet geliri"
 
 #: src/player.c:1435
-#, fuzzy
 msgid "Torn crucial ligament"
-msgstr "çapraz bağ zedelenmesi"
+msgstr "Çapraz bağ zedelenmesi"
 
 #: src/training_interface.c:117
 msgid "Training"
-msgstr ""
+msgstr "Antreman"
 
-#: src/interface.c:701 src/options_interface.c:1115
-#: src/training_interface.c:60 src/treeview.c:1599 src/window.c:1004
+#: src/interface.c:701
+#: src/options_interface.c:1115
+#: src/training_interface.c:60
+#: src/treeview.c:1599
+#: src/window.c:1004
 msgid "Training camp"
-msgstr ""
+msgstr "Hazırlık kampı"
 
 #: src/callbacks.c:1614
 msgid "Training camp is disabled in this country definition."
-msgstr ""
+msgstr "Hazırlık kampı ülke ayarlarınızda devre dışı."
 
 #: src/callbacks.c:249
-#, fuzzy, c-format
+#, c-format
 msgid "Transfer deadline is Week %d"
-msgstr "Transfer Sezonu Kapandı (hafta 35)"
+msgstr "Transfer Sezonu Hafta %d"
 
 #: src/window.c:965
-#, fuzzy
 msgid "Transfer offer"
-msgstr "Transfer Ücreti"
+msgstr "Transfer Teklifi"
 
 #: src/treeview.c:1581
 msgid "Transfers"
 msgstr "Transferler"
 
-#: src/callbacks.c:240 src/callbacks.c:603
+#: src/callbacks.c:240
+#: src/callbacks.c:603
 msgid "Transfers are disabled in this country definition."
-msgstr ""
+msgstr "Transferler ülke ayarlarınızda devre dışı."
 
 #: src/interface.c:729
-#, fuzzy
-msgid ""
-"Try to put the startup players onto their favoured positions and sort the "
-"substitutes (Ctrl-R or middle click)"
-msgstr ""
-"Takımı tekrar düzelt (R) (oyucuları istedikleri mevkilere koymayı dene)"
+msgid "Try to put the startup players onto their favoured positions and sort the substitutes (Ctrl-R or middle click)"
+msgstr "Takımı tekrar düzelt (R) (Futbolcuları kendi mevkilerine koymayı dene)"
 
 #: src/load_save.c:235
 msgid "Uncompressing savegame..."
@@ -3088,263 +2969,234 @@ msgstr "Kayıtlı oyun açılıyor..."
 #: src/callback_func.c:524
 #, c-format
 msgid "User %s didn't consider your offer yet."
-msgstr ""
+msgstr "%s daha teklifinizi düşünmedi."
 
 #: src/interface.c:1003
-#, fuzzy
 msgid "User history"
 msgstr "Geçmişi Göster"
 
 #: src/window.c:942
 msgid "User management"
-msgstr ""
+msgstr "Kullanıcı yönetimi"
 
 #: src/misc2_interface.c:842
 msgid "Users -- click to remove"
-msgstr ""
+msgstr "Kullanıcılar -- kaldırmak için tıkla."
 
-#: src/treeview.c:327 src/treeview.c:2146
+#: src/treeview.c:327
+#: src/treeview.c:2146
 msgid "Value"
 msgstr "Değer"
 
 #: src/options_interface.c:713
-#, fuzzy
 msgid "Value "
 msgstr "Değer"
 
 #: src/misc_interface.c:717
 msgid "Verbosity"
-msgstr ""
+msgstr "Anlatım Hızı"
 
 #. Games won.
 #. Won.
-#: src/treeview.c:1371 src/treeview_helper.c:1739
+#: src/treeview.c:1371
+#: src/treeview_helper.c:1739
 msgid "W"
-msgstr "W"
+msgstr "G"
 
 #. won
 #: src/team.c:1151
-#, fuzzy
 msgid "W  "
-msgstr "W "
+msgstr "G"
 
+# Kazanılan maç oranı
 #. a won match
 #: src/team.c:1053
 #, c-format
 msgid "W  %d : %d"
-msgstr ""
+msgstr "G  %d : %d"
 
-#: src/callback_func.c:554 src/callback_func.c:561 src/treeview.c:328
+#: src/callback_func.c:554
+#: src/callback_func.c:561
+#: src/treeview.c:328
 #: src/treeview.c:2147
 msgid "Wage"
 msgstr "Maaş"
 
 #: src/options_interface.c:720
-#, fuzzy
 msgid "Wage "
 msgstr "Maaş"
 
 #. 'Wager' is the amount of money the user placed on a bet.
 #: src/misc3_callbacks.c:162
-#, fuzzy
 msgid "Wager"
-msgstr "Maaş"
+msgstr "Bahis oranı"
 
+# Ne kadar bahis yaptın,Kazanç- kayıp oranın
 #. How much the user wagers; how much he won or lost.
 #: src/treeview2.c:401
 msgid ""
 "Wager/\n"
 "Win/Loss"
 msgstr ""
+"Bahis oranı/\n"
+"Kazanç/Kayıp"
 
 #: src/treeview.c:1505
-#, fuzzy
 msgid "Wages"
-msgstr "Maaş"
+msgstr "Haftalık Maaşlar"
 
+# Hafta
 #. Week
 #: src/treeview2.c:208
-#, fuzzy
 msgid "We"
-msgstr " Hafta "
+msgstr "Ha"
 
 #: src/treeview.c:2324
-#, fuzzy
 msgid "Week"
-msgstr " Hafta "
+msgstr "Hafta "
 
-#: src/treeview2.c:620 src/treeview.c:1003
-#, fuzzy, c-format
+#: src/treeview2.c:620
+#: src/treeview.c:1003
+#, c-format
 msgid "Week %d Round %d"
-msgstr "Hafta %d"
+msgstr "Hafta %d Ayak %d"
 
 #: src/misc3_interface.c:631
-#, fuzzy
 msgid "Weekly installment"
-msgstr "Stand Geliştirme"
+msgstr "Haftalık Taksitler"
 
 #: src/misc3_interface.c:585
-#, fuzzy
 msgid "Weekly installment:"
-msgstr "Stand Geliştirme"
+msgstr "Haftalık Taksitler:"
 
 #: src/window.c:831
 #, c-format
 msgid "Welcome to Bygfoot %s"
-msgstr ""
+msgstr "Bygfoot'a hoşgeldiniz %s"
 
 #: src/options_interface.c:263
-msgid ""
-"Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
-msgstr ""
+msgid "Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
+msgstr "Seçili olduğunda 'Geçerli' kayıtlı oyunun üstüne kayıt eder veya 'Farklı kaydet' penceresi açılır."
 
 #: src/options_interface.c:474
-msgid ""
-"Whether a confirmation popup is shown when you kick out a youth from your "
-"academy"
-msgstr ""
+msgid "Whether a confirmation popup is shown when you kick out a youth from your academy"
+msgstr "Seçili olduğunda Genç akademinizden Genç bir oyuncu kovduğunuzda uyarı penceresi açılır."
 
 #: src/options_interface.c:273
-msgid ""
-"Whether game starts with a maximized main window (doesn't work with all "
-"window managers)"
-msgstr ""
+msgid "Whether game starts with a maximized main window (doesn't work with all window managers)"
+msgstr "Seçili olduğuda oyun maksimum pencere boyutu ile başlar (tüm pencere yöneticileri ile çalışmayabilir)"
 
 #: src/options_interface.c:507
-msgid ""
-"Whether in the weekly fixture view all leagues or only the user league is "
-"shown"
-msgstr ""
+msgid "Whether in the weekly fixture view all leagues or only the user league is shown"
+msgstr "Seçili olduğunda fikstürler tüm liglerde veya sadece oyuncunun liginde gösterilir."
 
 #: src/options_interface.c:521
-#, fuzzy
-msgid ""
-"Whether swapping two players automatically adapts the team structure to the "
-"player positions"
-msgstr "Takım düzeni otomatik yapılacaktır."
+msgid "Whether swapping two players automatically adapts the team structure to the player positions"
+msgstr "İki oyuncuyu yerdeğiştirdiğinde takım düzeni otomatik olarak yapılacaktır."
 
 #: src/options_interface.c:612
 msgid "Whether the live game pauses at half time and extra time"
-msgstr ""
+msgstr "Seçili olduğunda Canlı maç anlatımı, devre arası ve uzatmalar olduğunda durur."
 
 #: src/options_interface.c:602
 msgid "Whether the live game pauses when a user player is injured"
-msgstr ""
+msgstr "Seçili olduğunda Canlı Maç anlatımı sakatlıklarda duracaktır."
 
 #: src/options_interface.c:607
 msgid "Whether the live game pauses when a user player is sent off"
-msgstr ""
+msgstr "Seçili olduğunda kırmızı kart olduğunda Canlı Maç anlatımı duracaktır."
 
 #: src/options_interface.c:588
-msgid ""
-"Whether the subs (e.g. for injured players) are made by the CPU. This is "
-"automatically done if the live game is off."
-msgstr ""
+msgid "Whether the subs (e.g. for injured players) are made by the CPU. This is automatically done if the live game is off."
+msgstr "Seçili olduğunda oyuncu değişiklikleri (sakatlıklıklar v.b. durumlarda) bilgisayar tarafından yapılacaktır."
 
 #: src/options_interface.c:421
 msgid "Whether to automatically save the game regularly"
-msgstr ""
+msgstr "Seçili olduğunda oyun düzenli bir biçimde otomatik olarak kayıt edilir."
 
 #: src/options_interface.c:1187
-msgid ""
-"Whether to save the global settings to file (so that they get loaded next "
-"time you start a new game)"
-msgstr ""
+msgid "Whether to save the global settings to file (so that they get loaded next time you start a new game)"
+msgstr "Seçili olduğunda Genel ayarları dosya olarak kaydedebilirsiniz. (yeni bir oyuna başladığında bu ayarları yeniden yükleyebilirsin)"
 
 #: src/options_interface.c:1192
-msgid ""
-"Whether to save the user settings to file (so that they get loaded next time "
-"this user starts a new game)"
-msgstr ""
+msgid "Whether to save the user settings to file (so that they get loaded next time this user starts a new game)"
+msgstr "Seçili olduğunda kullanıcı ayarlarını dosya olarak kaydeder (yeni bir oyuna başladığında bu ayarları yeniden yükleyebilirsin)"
 
 #: src/options_interface.c:258
-msgid ""
-"Whether to show a confirmation popup if a user team has an injured or banned "
-"player in the startup formation"
-msgstr ""
+msgid "Whether to show a confirmation popup if a user team has an injured or banned player in the startup formation"
+msgstr "Seçili olduğunda Maça başlarken sakat veya cezalı oyuncunuz varsa uyarı penceresi gösterir"
 
 #: src/options_interface.c:253
-msgid ""
-"Whether to show a confirmation popup when you press quit and the game state "
-"is not saved"
-msgstr ""
+msgid "Whether to show a confirmation popup when you press quit and the game state is not saved"
+msgstr "Seçili olduğunda  oyundan çıkarken veya oynanan oyun kayıt edilmediyse doğrulama penceresini gösterir"
 
 #: src/options_interface.c:1026
 msgid "Whether to show cup matches in the betting window"
-msgstr ""
+msgstr "Seçili olduğunda kupa maçlarını bahis ekranında gösterir"
 
 #: src/misc3_interface.c:82
-msgid ""
-"Whether to show cup matches. Use the options window to toggle permanently."
-msgstr ""
+msgid "Whether to show cup matches. Use the options window to toggle permanently."
+msgstr "Seçili olduğunda kupa maçları ile birlikte gösterilir."
 
 #: src/options_interface.c:479
-#, fuzzy
 msgid "Whether to show job offers when a user is successful"
-msgstr "Sen başarılı olduğun zaman sana diğer takımlar iş teklif ederler"
+msgstr "Seçili olduğunda oyuncu başarılı olduğu zamanlarda iş tekliflerini gösterir"
 
 #: src/options_interface.c:1021
 msgid "Whether to show matches of all leagues in the betting window"
-msgstr ""
+msgstr "Seçili olduğunda tüm liglerdeki tüm maçları bahis ekranında gösterir"
 
 #: src/misc3_interface.c:77
-msgid ""
-"Whether to show matches of all leagues. Use the options window to toggle "
-"permanently."
-msgstr ""
+msgid "Whether to show matches of all leagues. Use the options window to toggle permanently."
+msgstr "Seçili olduğunda tüm liglerdeki maçlar gösterilir."
 
 #: src/misc3_interface.c:87
 msgid "Whether to show only your bets in the recent bets list"
-msgstr ""
+msgstr "Seçerseniz,Sadece oynadığınız bahisleri mevcut listede gösterir"
 
 #: src/options_interface.c:283
-msgid ""
-"Whether to show pictures on top of the progressbar when loading/saving or "
-"calculating results"
-msgstr ""
+msgid "Whether to show pictures on top of the progressbar when loading/saving or calculating results"
+msgstr "Seçili olduğunda sonuçlar yüklenirken resimleri işlem çubuğunun üzerinde gösterir."
 
 #: src/options_interface.c:526
 msgid "Whether to show the player games/goals value in all competitions"
-msgstr ""
+msgstr "Seçili olduğunda futbolcunun maç başına gol oranını tüm karşılaşmalarda gösterir"
 
 #: src/options_interface.c:278
-msgid ""
-"Whether to show warnings and such in the message area in the main window "
-"when possible"
-msgstr ""
+msgid "Whether to show warnings and such in the message area in the main window when possible"
+msgstr "Seçili olduğunda mümkün olan tüm uyarıları ve diğer mesajları ana pencere gösterir"
 
 #. Team 1 wins (betting window).
 #: src/treeview2.c:395
 msgid "Win1"
-msgstr ""
+msgstr "1"
 
 #. Team 2 wins (betting window).
 #: src/treeview2.c:398
 msgid "Win2"
-msgstr ""
+msgstr "2"
 
 #. Yellow cards of a player.
 #: src/treeview.c:323
 msgid "YC"
-msgstr "YC"
+msgstr "SK"
 
 #. 'Limit' is the number of yellow cards until a player gets
 #. banned automatically for a match.
 #: src/treeview.c:2152
-#, fuzzy
 msgid "Yellow cards (limit)\n"
-msgstr "Sarı kart"
+msgstr "Sarı kart durumu \n"
 
-#: src/treeview.c:824 src/treeview_helper.c:935
-#, fuzzy
+#: src/treeview.c:824
+#: src/treeview_helper.c:935
 msgid "Yellows"
-msgstr "Sarı kart"
+msgstr "Sarı Kart"
 
 #. League name.
 #: src/user.c:888
 #, c-format
 msgid "You are champion of the %s!"
-msgstr ""
+msgstr "Şampiyon oldunuz %s!"
 
 #: src/finance.c:281
 msgid "You are free from debt."
@@ -3352,158 +3204,148 @@ msgstr "Borcunuzu yok"
 
 #: src/callback_func.c:558
 #, c-format
-msgid ""
-"You are making an offer for %s again. Your previous values for fee and wage "
-"are preset."
-msgstr ""
+msgid "You are making an offer for %s again. Your previous values for fee and wage are preset."
+msgstr "%s adlı futbolcuya Yeniden teklif yapıyorsunuz.Önceki teklifinizi değiştirmek isteyebilirsiniz."
 
 #: src/callback_func.c:550
 #, c-format
-msgid ""
-"You are making an offer for %s. Your scout's recommendations for fee and "
-"wage are preset."
-msgstr ""
+msgid "You are making an offer for %s. Your scout's recommendations for fee and wage are preset."
+msgstr "%s adlı futbolcuya Teklif yapıyorsunuz.Yöneticilerinizin önerdiği transfer ücreti ve maaş aşağıdaki gibidir."
 
 #: src/callback_func.c:608
 #, c-format
 msgid ""
-"You are negotiating with %s about a new contract. Pay attention to what "
-"you're doing; if you don't come to terms with him within %d offers, he's "
-"going to leave your team after his current contract expires (unless you sell "
-"him). You may only abort BEFORE making the first offer.\n"
+"You are negotiating with %s about a new contract. Pay attention to what you're doing; if you don't come to terms with him within %d offers, he's going to leave your team after his current contract expires (unless you sell him). You may only abort BEFORE making the first offer.\n"
 "Your scout's recommendations are preset:"
 msgstr ""
+"Görüşmelere başladınız %s yeni sözleşme hakkında.Dikkatli olmanızı öneriyoruz; eğer %d teklifinizde ikna olmazsa,Futbolcunuz sözleşme süresi biter bitmez takımınızdan ayrılacak (Tabii daha önce satabilirsiniz).Sadece teklif yapmadan önce iptal etme şansınız var unutmayın.\n"
+"Yöneticilerinizin tavsiyeleri girildi:"
 
 #: src/callbacks.c:1651
-#, fuzzy
 msgid "You are not in debt."
-msgstr "Borcunuzu yok"
+msgstr "Borcun yok"
 
 #: src/callback_func.c:392
-#, fuzzy
 msgid "You are not indebted."
-msgstr "Borcunuzu yok"
+msgstr "Boçlu değilsiniz.."
 
 #: src/misc3_callbacks.c:154
 #, c-format
 msgid "You bet on outcome %d with an odd of %.2f. How much do you wager?"
-msgstr ""
+msgstr "Oynamak istediğin bahis seçimi: %d ,bahis oranı ise %.2f. Kaç liralık bahis oynamak istiyorsun?"
 
 #: src/callback_func.c:404
 #, c-format
 msgid "You can pay back at most %s"
-msgstr ""
+msgstr "Borcunun bu kadarını geri ödemelisin %s"
 
 #: src/callback_func.c:374
 #, c-format
 msgid "You can take out at most %s."
-msgstr ""
+msgstr "Bu kadarını geri almalısın %s."
 
 #: src/callbacks.c:845
 msgid "You can't apply for a job from abroad if there's more than one user."
-msgstr ""
+msgstr "Eğer bir kullanıcıdan fazla dışarıda varsa bu işi uygulayamazsın."
 
 #: src/callbacks.c:1468
-#, fuzzy, c-format
+#, c-format
 msgid "You can't have more than %d players in the team."
-msgstr "Kondisyonu düşük oyuncular takımda"
+msgstr "%d oyuncudan fazla takımında bulunamaz."
 
 #: src/callbacks.c:713
 msgid "You can't move the player, there are too few players in your team."
-msgstr ""
+msgstr "Futbolcuyu hareket ettiremezsin,takımında çok az futbolcu var."
 
 #: src/callback_func.c:583
 msgid "You can't offer a new contract if the old one is still above 2 years."
-msgstr ""
+msgstr "Eğer eski olanı hala 2 yıllık civarındaysa,Yeni kontrat teklif edilemez"
 
 #: src/misc2_callbacks.c:407
-#, fuzzy
 msgid "You can't play Bygfoot without users!"
-msgstr "Bygfoot u değişiklikleri kaydetmeden başlat"
+msgstr "Bygfoot kullanıcı olmadan oynanamaz!"
 
 #: src/player.c:669
-#, fuzzy
 msgid "You can't replace a banned player."
-msgstr "Oyuncu Seçmediniz"
+msgstr "Kırmızı kart görmüş oyuncu maçta oynayamaz."
 
 #. Buy a player from a team.
 #: src/user.c:619
-#, fuzzy, c-format
+#, c-format
 msgid "You didn't have enough money to buy %s from %s."
-msgstr "Geniş bir stad için yeterli paranız yok"
+msgstr "Satın almak için yeterli paranız yok %s dan %s."
 
 #: src/misc2_callback_func.c:96
-#, fuzzy, c-format
+#, c-format
 msgid "You didn't have enough money to buy %s or your roster was full."
-msgstr "Geniş bir stad için yeterli paranız yok"
+msgstr "Bu oyuncuyu alacak yeterli paranız yok %s yada takımın kapasitesi zaten dolu durumda."
 
 #: src/callback_func.c:398
-#, fuzzy
 msgid "You don't have enough money to pay back."
-msgstr "Geniş bir stad için yeterli paranız yok"
+msgstr "Geri ödeme için yeterli paranız yok."
 
-#: src/bet.c:262 src/misc_callback_func.c:316
-#, fuzzy
+#: src/bet.c:262
+#: src/misc_callback_func.c:316
 msgid "You don't have the money."
 msgstr "Paranız Yok"
 
 #. League name.
 #: src/user.c:853
-#, fuzzy, c-format
+#, c-format
 msgid "You finish the season in the %s on rank %s."
-msgstr "ilk %d içerisinde bitirmelisin "
+msgstr "Sezon içinde bitirmelisin %s sıralamada %s."
 
 #. League name.
 #: src/user.c:859
-#, fuzzy, c-format
+#, c-format
 msgid "You get promoted to the %s."
-msgstr "Takımın bir üst lige çıktı"
+msgstr "Hak kazandın %s"
 
 #. League name.
 #: src/user.c:864
-#, fuzzy, c-format
+#, c-format
 msgid "You get relegated to the %s."
-msgstr "Bir takım seçmedin."
+msgstr "Küme düştün %s."
 
 #: src/finance.c:288
-#, fuzzy, c-format
+#, c-format
 msgid "You have %d weeks to pay back the rest of your loan."
-msgstr "Borcunuzun bir kısmını ödediniz."
+msgstr "Borcunuzun geri kalanının ödenmesi için %d hafta kaldı."
 
 #: src/finance.c:253
-#, fuzzy, c-format
+#, c-format
 msgid "You have %d weeks to pay back your loan."
-msgstr "Borcunuzun bir kısmını ödediniz."
+msgstr "Kredi geri ödemesi için %d hafta var."
 
 #: src/user.c:578
 #, c-format
 msgid ""
-"You have overdrawn your bank account once again. Bear in mind that after the "
-"fourth time you get fired.\n"
+"You have overdrawn your bank account once again. Bear in mind that after the fourth time you get fired.\n"
 "The team owners give you %d weeks to get above your drawing credit limit."
 msgstr ""
+"Banka hesabından çok fazla miktarda para çektiniz. Dört defa daha tekrarlandığında; işten kovulacağınız aklınızdan çıkarmayın.\n"
+"Takım başkanı size %d hafta daha süre veriyor,bu sürede banka hesabınızı düzeltmeniz gerekmektedir."
 
 #: src/user.c:576
 #, c-format
-msgid ""
-"You have overdrawn your bank account. The team owners give you %d weeks to "
-"get above your drawing credit limit."
-msgstr ""
+msgid "You have overdrawn your bank account. The team owners give you %d weeks to get above your drawing credit limit."
+msgstr "Banka hesabın sıfırlanmak üzere.Başkan hesabı düzeltmek üzere sana %d hafta süre veriyor"
 
 #: src/finance.c:162
-#, fuzzy
 msgid "You have to pay back your loan this week."
-msgstr "Borcunu ödemelisin ŞİMDİ !!!"
+msgstr "Borcunu bu hafta içinde geri ödemelisin."
 
 #: src/callbacks.c:822
-#, fuzzy
 msgid "You haven't made an offer for the player."
-msgstr "Oyuncu Seçmediniz"
+msgstr "Oyuncu için teklifiniz yok"
 
-#: src/callbacks.c:605 src/callbacks.c:625 src/callbacks.c:645
-#: src/callbacks.c:665 src/callbacks.c:704 src/callbacks.c:1175
+#: src/callbacks.c:605
+#: src/callbacks.c:625
+#: src/callbacks.c:645
+#: src/callbacks.c:665
+#: src/callbacks.c:704
+#: src/callbacks.c:1175
 #: src/callbacks.c:1195
-#, fuzzy
 msgid "You haven't selected a player."
 msgstr "Oyuncu Seçmediniz"
 
@@ -3511,159 +3353,150 @@ msgstr "Oyuncu Seçmediniz"
 #: src/user.c:875
 #, c-format
 msgid "You lose in the %s final against %s."
-msgstr ""
+msgstr "Yine kaybettin %s finalinde %s takımına"
 
 #: src/callback_func.c:491
 #, c-format
-msgid ""
-"You offered a transfer fee of %s and a wage of %s for %s. The owners and the "
-"player are satisfied with your offer. Do you still want to buy the player?"
-msgstr ""
+msgid "You offered a transfer fee of %s and a wage of %s for %s. The owners and the player are satisfied with your offer. Do you still want to buy the player?"
+msgstr "Transfer ücreti olarak önerdin %s ve kadar maaş %s için %s.Başkan ve futbolcu bu önerinden hoşnut değil.Hala futbolcuyu almak istiyormusun?"
 
 #. Cup round name (e.g. Last 32), number, cup name.
 #: src/user.c:881
-#, fuzzy, c-format
+#, c-format
 msgid "You reach the %s (round %s) of the %s."
-msgstr "Takımın bir üst lige çıktı"
+msgstr "Kupa Takım sıralamasında %s takım arasındasınız. (%s.tur)- Kupa adı: %s."
 
 #. Buy a team in a league.
 #: src/user.c:826
-#, fuzzy, c-format
+#, c-format
 msgid "You start the game with %s in the %s."
-msgstr "Takımın \"%s\" kupayı kazanmalı"
+msgstr "Oyuna %s takımıyla %s. ligine başlıyorsun"
 
-#: src/callbacks.c:273 src/callbacks.c:892 src/callbacks.c:913
+#: src/callbacks.c:273
+#: src/callbacks.c:892
+#: src/callbacks.c:913
 msgid "You still have some transfer business to manage."
-msgstr ""
+msgstr "Hala bekleyen transfer işin var."
 
 #: src/callback_func.c:750
 #, c-format
-msgid ""
-"You want to fire %s. Since his contract expires in %.1f years, he demands a "
-"compensation of %s. Do you accept?"
-msgstr ""
+msgid "You want to fire %s. Since his contract expires in %.1f years, he demands a compensation of %s. Do you accept?"
+msgstr "Kovmak istediğin kişi %s. %.1f yılına kadar geçerli bir sözleşmesi var, Tazminat hakkını talep ediyor %s. Kabul ediyormusun?"
 
+# Kupa adı,takım adı
 #. Cup name, team name.
 #: src/user.c:869
 #, c-format
 msgid "You win the %s final against %s."
-msgstr ""
+msgstr "%s, Kupayı %s  takımına karşı kazandın ."
 
 #: src/callbacks.c:1627
 #, c-format
 msgid "You've reached the limit of %d training camps for the season."
-msgstr ""
+msgstr "Sezondaki antreman kampı sayısının limitine %d ulaştınız."
 
 #: src/finance.c:166
-#, fuzzy
 msgid "Your bank account has to be above your drawing credit limit next week."
-msgstr "Banka hesabın gelecek hafta kredini aşacak!!!"
+msgstr "Your bank account has to be above your drawing credit limit next week."
 
 #: src/user.c:1124
 #, c-format
-msgid ""
-"Your current sponsor is satisfied with your results and would like to renew "
-"the contract. Currently they're paying you %d a week."
-msgstr ""
+msgid "Your current sponsor is satisfied with your results and would like to renew the contract. Currently they're paying you %d a week."
+msgstr "Sponsorunuz başarınızdan oldukça etkilendi ve anlaşmanızı yenilemek istiyor.İşte size haftabaşına önerdikleri miktar: %d"
 
 #: src/misc3_interface.c:555
-#, fuzzy
 msgid "Your debt:"
-msgstr "Sonuçların"
+msgstr "Borcunuz:"
 
 #: src/treeview.c:1814
-#, fuzzy
 msgid "Your next opponent"
-msgstr "Gelecek rakibin"
+msgstr "Bir sonraki rakip"
 
 #: src/user.c:585
 #, c-format
-msgid ""
-"Your offer for %s has been accepted. If you still want to buy him, go to the "
-"transfer list and left click on the player."
-msgstr ""
+msgid "Your offer for %s has been accepted. If you still want to buy him, go to the transfer list and left click on the player."
+msgstr "Teklif yaptığınız %s teklifinizi kabul ediyor.Hala kendisini almak istiyorsan, transfer listesine git ve oyuncu ismine sol tıkla."
 
-#: src/callback_func.c:477 src/callbacks.c:819
+#: src/callback_func.c:477
+#: src/callbacks.c:819
 msgid "Your offer has been removed."
-msgstr ""
+msgstr "Teklifiniz kaldırıldı"
 
 #: src/misc2_callbacks.c:166
 msgid "Your offer has been updated."
-msgstr ""
+msgstr "Teklifiniz güncellendi."
 
 #: src/misc2_callbacks.c:168
 msgid "Your offer will be considered next week."
-msgstr ""
+msgstr "Teklifiniz gelecek hafta cevaplanacak."
 
 #: src/misc2_callback_func.c:127
 msgid "Your player roster is full or you don't enough money."
-msgstr ""
+msgstr "Takım kapasiteniz dolu veya yeterli paranız yok."
 
 #. The user's results against a specific team.
 #: src/treeview.c:1887
 msgid "Your results"
-msgstr "Sonuçların"
+msgstr "Önceki karşılaşmalar"
 
 #: src/callback_func.c:484
 msgid "Your roster is already full. You can't buy more players."
-msgstr ""
+msgstr "Takımınız dolu duruma.Başka oyuncu transfer edemezsin."
 
+# Bir Takımdan oyuncu almak
 #. Buy a player from a team.
 #: src/user.c:624
 #, c-format
 msgid "Your roster is full. You couldn't buy %s from %s."
-msgstr ""
+msgstr "Takım kadron dolu. Satın alamazsın %s dan %s."
 
 #: src/window.c:887
-#, fuzzy
 msgid "Your stadium"
-msgstr "Takımın"
+msgstr "Stadyumunuz"
 
 #: src/treeview2.c:91
 msgid "Your team"
 msgstr "Takımın"
 
-#: src/callbacks.c:647 src/misc2_callback_func.c:60
-#, fuzzy
+#: src/callbacks.c:647
+#: src/misc2_callback_func.c:60
 msgid "Your team can't have less than 11 players."
-msgstr ""
-"20 oyuncudan fazla oyuncu takımınızda bulunduramazsınız. Soyunma odası yok."
+msgstr "11 oyuncudan az oyuncu takımınızda bulunduramazsınız."
 
 #: src/callbacks.c:1621
 msgid "Your team has already had enough training camps this week."
-msgstr ""
+msgstr "Takımın bu hafta yeterince antreman kampı yaptı"
 
 #: src/youth_academy.c:218
 #, c-format
-msgid ""
-"Youth %s thought he's old enough for a real contract and left your youth "
-"academy."
-msgstr ""
+msgid "Youth %s thought he's old enough for a real contract and left your youth academy."
+msgstr "Genç futbolcu %s yeterince piştiğini ve gerçek bir kontrat yapmak istediğini düşünüyor, bu yüzden genç akademinizden ayrılıyor."
 
 #: src/youth_academy.c:214
 #, c-format
-msgid ""
-"Youth %s will be too old for the youth academy soon. Move him to your team "
-"or kick him out of the academy. Otherwise he'll probably look for another "
-"team to play in."
-msgstr ""
+msgid "Youth %s will be too old for the youth academy soon. Move him to your team or kick him out of the academy. Otherwise he'll probably look for another team to play in."
+msgstr "Genç futbolcu %s yakında genç akademisi için çok yaşlı olacak. Takımına al yada akademiden kov. Yoksa oynayabilceği başka bir takıma gitmek durumunda kalacak."
 
 #: src/treeview.c:1664
 msgid "Youth acad. invest."
-msgstr ""
+msgstr "Genç oyuncu akademisine destek"
 
-#: src/interface.c:576 src/treeview.c:1509
+#: src/interface.c:576
+#: src/treeview.c:1509
 msgid "Youth academy"
-msgstr ""
+msgstr "Genç oyuncu akedemisi"
 
-#: src/callbacks.c:699 src/callbacks.c:1423 src/callbacks.c:1442
+#: src/callbacks.c:699
+#: src/callbacks.c:1423
+#: src/callbacks.c:1442
 #: src/callbacks.c:1463
 msgid "Youth academy is disabled in this country definition."
-msgstr ""
+msgstr "Genç oyuncu akademisi sizin ülkede devre dışıdır."
 
-#: src/interface.c:594 src/treeview.c:1508
+#: src/interface.c:594
+#: src/treeview.c:1508
 msgid "Youth coach"
-msgstr ""
+msgstr "Paf Takım Antrenörü"
 
 #: src/interface.c:302
 msgid "_File"
@@ -3674,44 +3507,40 @@ msgid "_Help"
 msgstr "_Yardım"
 
 #: src/misc3_interface.c:372
-#, fuzzy
 msgid "_Load game"
-msgstr "Kayıtlı Oyunu Aç"
+msgstr "_Oyun yükle"
 
 #: src/interface.c:345
-#, fuzzy
 msgid "_Options"
-msgstr "Ayarlar"
+msgstr "_Ayarlar"
 
 #: src/misc_interface.c:664
 msgid "_Pause"
-msgstr ""
+msgstr "_Durdur"
 
 #: src/interface.c:764
-#, fuzzy
 msgid "_Player"
-msgstr "Oyuncu"
+msgstr "_Futbolcu"
 
 #: src/misc_interface.c:685
 msgid "_Resume"
-msgstr ""
+msgstr "_Devam Et"
 
 #: src/misc3_interface.c:396
 msgid "_Resume game"
-msgstr ""
+msgstr "_Oyuna devam et"
 
 #: src/interface.c:458
-#, fuzzy
 msgid "_Team"
-msgstr "Takım"
+msgstr "_Takım"
 
 #: src/interface.c:840
 msgid "_User"
-msgstr ""
+msgstr "_Kullanıcı"
 
 #: src/treeview.c:1627
 msgid "interest rate"
-msgstr ""
+msgstr "İlgilenme derecesi"
 
 #~ msgid ""
 #~ "\n"
@@ -3721,459 +3550,321 @@ msgstr ""
 #~ "\n"
 #~ "%d haftada geri öde\n"
 #~ "İlgilenilen oran:  %.1f%%"
-
 #~ msgid "   "
 #~ msgstr "   "
-
 #~ msgid "       "
 #~ msgstr "       "
-
 #~ msgid "  Move player"
 #~ msgstr "  Oyuncu taşındı"
-
 #~ msgid " (enlargement in progress)"
 #~ msgstr " (enlargement in progress)"
-
 #~ msgid " (enlargement planned)"
 #~ msgstr " (enlargement planned)"
-
 #~ msgid " (own goal)"
 #~ msgstr ".(kendi kalesine)"
-
 #~ msgid " (penalty)"
 #~ msgstr " (penalty)"
-
 #~ msgid " (penalty: CROSS-BAR !!)"
 #~ msgstr " (penalty: CROSS-BAR !!)"
-
 #~ msgid " (penalty: MISSED !!)"
 #~ msgstr " (penalty: KAÇTI)"
-
 #~ msgid " (penalty: POST !!)"
 #~ msgstr " (penalty: POST !!)"
-
 #~ msgid " (penalty: SAVE !!)"
 #~ msgstr " (penalty: SAVE !!)"
-
 #~ msgid " 1st Leg"
 #~ msgstr " 1. lig"
-
 #~ msgid " 2nd Leg"
 #~ msgstr " 2. lig"
-
 #~ msgid " Cross-bar!"
 #~ msgstr " Çapraz çubuk!"
-
 #~ msgid " Goal!"
 #~ msgstr " Gol!"
-
 #~ msgid " Missed!"
 #~ msgstr " Kaçırdın!"
-
 #~ msgid " Post!"
 #~ msgstr " Post!"
-
 #~ msgid " Save!"
 #~ msgstr " Kurtarış!"
-
 #~ msgid ""
 #~ "%s is a substitute. He will only shoot the penalties if you move him into "
 #~ "the team; otherwise the field player with highest skill will shoot."
 #~ msgstr ""
 #~ "%s is a substitute. He will only shoot the penalties if you move him into "
 #~ "the team; otherwise the field player with highest skill will shoot."
-
 #~ msgid "%s shoots . . ."
 #~ msgstr "%s shot . . ."
-
 #~ msgid "(%d:%d Goals)"
 #~ msgstr "(%d:%d Gol)"
-
 #~ msgid "(Normal) Position"
 #~ msgstr "(Normal) Pozisyon"
-
 #~ msgid "(Normal) Skill"
 #~ msgstr "(Normal) Hüner"
-
 #~ msgid "(Prom. games winner)"
 #~ msgstr "(Prom. oyun galibleri)"
-
 #~ msgid ") for another 8 months"
 #~ msgstr ") diğer 8 ay için"
-
 #~ msgid "-1"
 #~ msgstr "-1"
-
 #~ msgid ". Accept?"
 #~ msgstr ". Tamam?"
-
 #~ msgid ". The player demands a wage of "
 #~ msgstr "Oyuncunun istediği aylık ücret "
-
 #~ msgid "1"
 #~ msgstr "1"
-
 #~ msgid "1-2"
 #~ msgstr "1-2"
-
 #~ msgid "1/16 Final"
 #~ msgstr "1/16 Final"
-
 #~ msgid "1/2 Final"
 #~ msgstr "Yarı Final"
-
 #~ msgid "1/4 Final"
 #~ msgstr "Çeyrek Final"
-
 #~ msgid "1/8 Final"
 #~ msgstr "1/8 Final"
-
 #~ msgid "1000"
 #~ msgstr "1000"
-
 #~ msgid "1500"
 #~ msgstr "1500"
-
 #~ msgid "2000"
 #~ msgstr "2000"
-
 #~ msgid "2nd Round"
 #~ msgstr "2. Round"
-
 #~ msgid "3-4"
 #~ msgstr "3-4"
-
 #~ msgid "332"
 #~ msgstr "332"
-
 #~ msgid "442"
 #~ msgstr "442"
-
 #~ msgid "5% safety increase costs"
 #~ msgstr "%5 emniyet artırma ücreti"
-
 #~ msgid "5-6"
 #~ msgstr "5-6"
-
 #~ msgid "500"
 #~ msgstr "500"
-
 #~ msgid ""
 #~ "After having a look at your bank account the team politely rejects your "
 #~ "offer."
 #~ msgstr ""
 #~ "Banka hesabınıza baktıktan sonra takım teklifinizi kibarca reddetti."
-
 #~ msgid "Age between "
 #~ msgstr "Yaş aralığı"
-
 #~ msgid "Apperance and behaviour of the game"
 #~ msgstr "Oyundaki görünüş ve davranış"
-
 #~ msgid "Apply changes"
 #~ msgstr "Değişiklikleri uygula"
-
 #~ msgid ""
 #~ "Are you sure you want to end this week's activities and begin a new week?"
 #~ msgstr ""
 #~ "Bu haftanın aktivitelerini bitirip yeni bir hafta başlamak isteğinden "
 #~ "emin misin ?"
-
 #~ msgid ""
 #~ "Are you sure you want to start a new game and discard your current game?"
 #~ msgstr "Aktif oyunu kapatıp yeni bir oyun açmaya emin misiniz?"
-
 #~ msgid "Arsenal"
 #~ msgstr "Arsenal"
-
 #~ msgid "Ascending"
 #~ msgstr "Tırmanıyor"
-
 #~ msgid "At the beginning of a new week show first"
 #~ msgstr "Yeni bir haftaya başlarken ilk göster"
-
 #~ msgid "Attendance (neutral stadium):"
 #~ msgstr "İlgilenme (tarafsız saha):"
-
 #~ msgid "Autosaving. Please stand by..."
 #~ msgstr "Otomatik kayıt Lütfen Bekleyin ..."
-
 #~ msgid "Average attendance development"
 #~ msgstr "Ortalama ilgilenme geliştirmek"
-
 #~ msgid "Average cskills"
 #~ msgstr "Averaj cskills"
-
 #~ msgid "BEST DEFENSIVE TEAM"
 #~ msgstr "EN İYİ SAVUNMA YAPAN TAKIM"
-
 #~ msgid "BEST FORWARD"
 #~ msgstr "EN İYİ FORVET"
-
 #~ msgid "BEST GOAL SCORERS"
 #~ msgstr "GOL KRALLIGI"
-
 #~ msgid "BEST GOALIES"
 #~ msgstr "EN İYİ KALECİLER"
-
 #~ msgid "BEST MIDFIELDER"
 #~ msgstr "EN İYİ ORTASAHA"
-
 #~ msgid "BEST OFFENSIVE TEAM"
 #~ msgstr "EN İYİ HUCUM YAPAN TAKIM"
-
 #~ msgid "BEST PLAYER"
 #~ msgstr "EN İYİ OYUNCU"
-
 #~ msgid "BEST PLAYERS"
 #~ msgstr "EN İYİ OYUNCULAR"
-
 #~ msgid "BEST TEAMS"
 #~ msgstr "EN İYİ TAKIMLAR"
-
 #~ msgid "Before next match"
 #~ msgstr "Gelecek Mactan önce"
-
 #~ msgid "Best field players"
 #~ msgstr "En iyi çalışan oyuncular"
-
 #~ msgid "Birth year and month"
 #~ msgstr "Doğum yılı ve ayı"
-
 #~ msgid "Bookmaker's tip"
 #~ msgstr "Bookmaker'ın ipucu"
-
 #~ msgid "Bottom league"
 #~ msgstr "Alt Lig"
-
 #~ msgid "Brazil"
 #~ msgstr "Brazilya"
-
 #~ msgid "Browse teams to find and buy new players"
 #~ msgstr "Bulduğun takımları göster ve yeni oyuncular al"
-
 #~ msgid "Bygfoot %s - Job Offer"
 #~ msgstr "Bygfoot %s - İş teklifi"
-
 #~ msgid "Bygfoot %s -- Help"
 #~ msgstr "Bygfoot %s -- Yardım"
-
 #~ msgid "Bygfoot %s -- Options"
 #~ msgstr "Bygfoot %s -- Ayarlar"
-
 #~ msgid "Bygfoot %s -- Team Editor"
 #~ msgstr "Bygfoot %s -- Takım Editoru"
-
 #~ msgid "Bygfoot - Stadium improvement"
 #~ msgstr "Bygfoot - Stad gelişiyor"
-
 #~ msgid "Bygfoot Team Editor"
 #~ msgstr "Bygfoot Takım Editoru"
 
 #, fuzzy
 #~ msgid "Bygfoot news"
 #~ msgstr "Bygfoot"
-
 #~ msgid "CHAMPIONS"
 #~ msgstr "SAMPİYONLAR"
-
 #~ msgid "CL"
 #~ msgstr "CL"
-
 #~ msgid "CL / Libertad."
 #~ msgstr "CL / Libertad."
-
 #~ msgid "CWC / Conm."
 #~ msgstr "CWC / Conm."
-
 #~ msgid "Cancel"
 #~ msgstr "iptal"
-
 #~ msgid "Change font"
 #~ msgstr "Fontu Değiştir"
-
 #~ msgid ""
 #~ "Change or update team structure (C) You can enter custom structures like "
 #~ "334, too."
 #~ msgstr ""
 #~ "Takımın düzenin değiştir yada yenile (C) 334 gibi değişik düzenler "
 #~ "girebilirsin"
-
 #~ msgid "Change team name to  "
 #~ msgstr "Takım adını değiştir  "
-
 #~ msgid ""
 #~ "Change the name of your current team for this game. Use the Bygfoot Team "
 #~ "Editor to change a team name permanently."
 #~ msgstr ""
 #~ "Sadece bu oyun içintakım adını değiştirir. Takım adını daimi değiştirmek "
 #~ "için lütfen editoru açın"
-
 #~ msgid ""
 #~ "Check this if you want Bygfoot to keep an eye on the transfer list for "
 #~ "you."
 #~ msgstr ""
 #~ "Eğer Bygfoot bir gözünü transfer listesinde senin için tutmasını "
 #~ "istiyorsan bunu işaretle"
-
 #~ msgid ""
 #~ "Check this if you'd like to have your team loaded from the definitions "
 #~ "file no matter what the other checkbuttons say."
 #~ msgstr ""
 #~ "Bunu işaretlediğinizde takımınızı tüm özellikleri dosyadan yüklenecektir "
 #~ "ve size diğer sçenekleri işaretlememenizi söyler"
-
 #~ msgid "Chile"
 #~ msgstr "Chile"
-
 #~ msgid "Choose a custom country file (see Help)"
 #~ msgstr "Bir ülke dosyası seçin ( Yardıma Bakın)"
-
 #~ msgid "Choose or enter country file"
 #~ msgstr "Bir ülke dosyası seç veya gir"
-
 #~ msgid "Close"
 #~ msgstr "Kapat"
-
 #~ msgid "Compress savegames"
 #~ msgstr "Sıkıstır kayıtlı oyunları"
-
 #~ msgid "Could not save new team name to %s. I couldn't find the old name."
 #~ msgstr "Takımın adı %s olarak kaydedemezsin.Eski adını bulamıyorum."
-
 #~ msgid "DW"
 #~ msgstr "DW"
-
 #~ msgid "Defender   "
 #~ msgstr "Defans   "
-
 #~ msgid "Delete history at end of season"
 #~ msgstr "Geçmişi sezon sonunda sil"
-
 #~ msgid "Discard / Play"
 #~ msgstr "Çıkart / Oynat"
-
 #~ msgid "Doesn't seem to be a Bygfoot save file."
 #~ msgstr "Bygfoot kayıt dosyası gibi görünmüyor."
-
 #~ msgid "Don't bother me with this next time"
 #~ msgstr "İleride Tekrar hatırlatma"
-
 #~ msgid "England"
 #~ msgstr "İngiltere"
-
 #~ msgid "Estimated talent between "
 #~ msgstr "Yetenekleri arasında hesapla"
-
 #~ msgid "Estimated value less than"
 #~ msgstr "Hesaplanan değer den aşağı"
-
 #~ msgid "Export"
 #~ msgstr "Dışa Aktar"
-
 #~ msgid ""
 #~ "Export the current team to a file (which will be overwritten if it exists)"
 #~ msgstr ""
 #~ "Geçerli takımı dosya ya aktar (Var olan dosyanın üzerine yazacaktır)"
-
 #~ msgid "Extra time"
 #~ msgstr "Uzatma dakikaları"
-
 #~ msgid "FIELD PLAYERS"
 #~ msgstr "ÇALIAN OYUNCULAR"
-
 #~ msgid ""
 #~ "File with the team names (country-specific, e.g. country_eng for the "
 #~ "English teams)"
 #~ msgstr ""
 #~ "Dosya takım adlarıyla birlikte (örn. country_tr Turk takımları için)"
-
 #~ msgid ""
 #~ "Filter players by their age (NOTE: You must have at least a 'good' scout "
 #~ "in order to be able to filter by age)"
 #~ msgstr ""
 #~ "Oyuncuları yaşlarına göre göster (NOT: İyi bir menajere sahip olmalısınız "
 #~ "oyuncuları yaşlarına göre seçmek için)"
-
 #~ msgid "Filter players by their estimated talent"
 #~ msgstr "Hesaplanan kabiliyetlerine gre süz"
-
 #~ msgid "Filter players by their estimated value"
 #~ msgstr "Oyuncuları hesaplanan değere göre süz"
-
 #~ msgid "Filter players by their league"
 #~ msgstr "Oyuncuları liglerine göre filtrele"
-
 #~ msgid "Filter players by their position"
 #~ msgstr "Oyuncularını posizyonlarına göre göster"
-
 #~ msgid "Filter players by their skill"
 #~ msgstr "Oyuncularını hünerlerine göre göster"
-
 #~ msgid "Finances / Stadium"
 #~ msgstr "Finans / Stad"
-
 #~ msgid "Finances and stadium (F)"
 #~ msgstr "Finans ve Stad (F)"
-
 #~ msgid "Finished (weeks)"
 #~ msgstr "Bitiş (haftalar)"
-
 #~ msgid "Fire player (Middle click)"
 #~ msgstr "Oyuncuyu Kov (Orta tuş ile tıkla)"
-
 #~ msgid "Fixtures by league"
 #~ msgstr "Lige göre fiksture"
-
 #~ msgid "France"
 #~ msgstr "Fransa"
-
 #~ msgid "GOALIES"
 #~ msgstr "Goller"
-
 #~ msgid "Germany"
 #~ msgstr "Almanya"
-
 #~ msgid "Get loan"
 #~ msgstr "Borc al"
-
 #~ msgid "Goal difference"
 #~ msgstr "Sayı Farkları"
-
 #~ msgid "Goal difference development"
 #~ msgstr "Sayı farklılıkları geliştirmek"
-
 #~ msgid "Goals / Game"
 #~ msgstr "Gol / Mac"
-
 #~ msgid "Goals against"
 #~ msgstr "Yenen Gol"
-
 #~ msgid "Goals against development"
 #~ msgstr "Golde gerileme"
-
 #~ msgid "Goals development for %s"
 #~ msgstr "Gol geliştirmek için %s"
-
 #~ msgid "Goals for"
 #~ msgstr "Atılan Gol"
-
 #~ msgid "Goals for development"
 #~ msgstr "Golde gelişme"
-
 #~ msgid "Help (H)"
 #~ msgstr "Yardım (H)"
-
 #~ msgid ""
 #~ "Here you can enter a custom structure like 334 (or 019, for that matter)"
 #~ msgstr "Buradan özel takım düzenleri girebilirsin 334 gibi"
-
 #~ msgid "History"
 #~ msgstr "Geçmiş"
-
 #~ msgid "History graph"
 #~ msgstr "Geçmiş Grafiği"
-
 #~ msgid ""
 #~ "How long the history can get at most (data from the beginning of the list "
 #~ "gets removed afterwards). WARNING: The higher this value is, the more "
@@ -4182,10 +3873,8 @@ msgstr ""
 #~ msgstr ""
 #~ "Ne kadar uzunlukta olsun geçmiş DİKKAT: Değerin büük olması ramden çok "
 #~ "yenmesi demektir."
-
 #~ msgid "Hungary"
 #~ msgstr "Macaristan"
-
 #~ msgid ""
 #~ "I'm sorry to tell you that one or more of your players have suffered "
 #~ "severe injuries. They won't be able to play football on a professional "
@@ -4195,14 +3884,12 @@ msgstr ""
 #~ "Bunu söylemekten üzgünüm ama bir yada daha fazla oyuncunuz sakat ve her "
 #~ "hanigi profesyonel bir maçta oynamak istemiyorlar:\n"
 #~ "..."
-
 #~ msgid ""
 #~ "If checked, messages are shown instead of popups when possible (ie. when "
 #~ "you don't have to make an 'OK/Cancel'-type of decision."
 #~ msgstr ""
 #~ "Eğer işaretlenirse mesajı popup penceresi içerisinde göstermeye çalış "
 #~ "mümkün olduğunda "
-
 #~ msgid ""
 #~ "If you check this, only the player names and the team structures are "
 #~ "loaded from the definition file, values like skill or age are generated "
@@ -4210,120 +3897,87 @@ msgstr ""
 #~ msgstr ""
 #~ "Eğer bunu işaretlerseniz takımlar dosyasından sadece oyuncu isimi "
 #~ "alınacaktır ve diğer özellikleri rastgele oluşturulacaktır."
-
 #~ msgid ""
 #~ "If you check this, the game generates all players randomly and won't read "
 #~ "the file with team definitions"
 #~ msgstr ""
 #~ "Eğer bunu işaretler iseniz oyuncuların tamamı rastgele oluşturulacaktır."
-
 #~ msgid ""
 #~ "If you uncheck this, clicking on 'Save' will pop up a 'Save as' window"
 #~ msgstr ""
 #~ "Eğer buna tıklamadıysan Kaydete tıkla Farklı Kaydet penceresi açılacaktır."
-
 #~ msgid ""
 #~ "Import teams from a definition file (the existing definition file will be "
 #~ "expanded)"
 #~ msgstr "Takımları tanım dosyasından ekle ( mevcut dosyayı genişletecektir.)"
-
 #~ msgid "Increase (seats)"
 #~ msgstr "Arttır (koltuklar)"
-
 #~ msgid "Increase capacity"
 #~ msgstr "Kapasiteyi artır"
-
 #~ msgid "Italy"
 #~ msgstr "İtalya"
-
 #~ msgid "League 2"
 #~ msgstr "Lig 2"
-
 #~ msgid "League 3"
 #~ msgstr "Lig 3"
-
 #~ msgid "League 4"
 #~ msgstr "Lig 4"
-
 #~ msgid "League 5"
 #~ msgstr "Lig 5"
-
 #~ msgid "Load my team from definitions file"
 #~ msgstr "Kendi takımımın özelliklerini özellikler dosyasından yükle"
 
 #, fuzzy
 #~ msgid "Loading cups..."
 #~ msgstr "Yükleniyor fiksturer..."
-
 #~ msgid "Look & Feel"
 #~ msgstr "Görünüm & Doku"
-
 #~ msgid "Maximal history length"
 #~ msgstr "Maximum geçmiş uzunluğu"
-
 #~ msgid "Messages"
 #~ msgstr "Mesajlar"
-
 #~ msgid "Messages just appear in the message window"
 #~ msgstr "Mesajlar mesj penceresinde gözüktü"
-
 #~ msgid "Messages slide into the message window from the right"
 #~ msgstr "Mesaj işaretcisi mesaj penceresinin sağ tarafından bulunur"
-
 #~ msgid "Mexico"
 #~ msgstr "Meksika"
 
 #, fuzzy
 #~ msgid "Misc."
 #~ msgstr "Misc"
-
 #~ msgid "Miscellaneous options"
 #~ msgstr "Çeşitli ayarlar"
-
 #~ msgid "Money development"
 #~ msgstr "Para Gelişmesi"
-
 #~ msgid "Move player down (Ctrl-Down)"
 #~ msgstr "Oyuncuyu aşağıya taşı (Ctrl-Aşağı)"
-
 #~ msgid "Move player up (Ctrl-Up)"
 #~ msgstr "Oyuncuyu kurarı taşı (Ctrl-Yukarı)"
-
 #~ msgid "Moving"
 #~ msgstr "Taşınıyor"
-
 #~ msgid "My games plus preview"
 #~ msgstr "Benim oyunlarım için pozitif bakış"
-
 #~ msgid "NONE\n"
 #~ msgstr "NONE\n"
-
 #~ msgid "Nation. Cup 1"
 #~ msgstr "Ulusal. Kupa 1"
-
 #~ msgid "Nation. Cup 2"
 #~ msgstr "Ulusal. Kupa 2"
-
 #~ msgid "New week"
 #~ msgstr "Yeni hafta"
-
 #~ msgid "No messages"
 #~ msgstr "Mesaj yok"
-
 #~ msgid "Notify"
 #~ msgstr "Bildir"
-
 #~ msgid ""
 #~ "Notify me whenever a player appears on the transfer list who fulfills my "
 #~ "conditions:"
 #~ msgstr "İstediğim şekilde bir oyuncu Transfer listesine düşünce beni uyar:"
-
 #~ msgid "Nr"
 #~ msgstr "Nr"
-
 #~ msgid "Objective from Team Manager :"
 #~ msgstr "Teknik Direktorden Objectif :"
-
 #~ msgid ""
 #~ "One of the structure numbers is not a valid structure specifier. The "
 #~ "digits of the first structure must add up to 10, those of the second one "
@@ -4331,7 +3985,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Girmiş olduğun taktik yapısı yanlış Yazmış olduğun numara 4 4 2 gibi "
 #~ "olabilir. Ve yanlız bir basamak içi en fazla 8 rakamını girebilirsin."
-
 #~ msgid ""
 #~ "One or more players could not be saved because of an invalid talent "
 #~ "value. The talent value of a players has to be greater or equal his skill "
@@ -4339,384 +3992,277 @@ msgstr ""
 #~ msgstr ""
 #~ "Bir yada daa fazla oyuncuyu kaydedemezsin. Çünkü yetenek değeri beceri "
 #~ "değerinden küçük olamaz. En fazla eşit olabilir."
-
 #~ msgid "Options (O)"
 #~ msgstr "Ayarlar (O)"
-
 #~ msgid "Options concering the transfer list"
 #~ msgstr "Ayarlar transfer listesi ile ilgilen "
-
 #~ msgid "Options for loading and saving games"
 #~ msgstr "Ayarlar için yüklenmiş ve kaydedilmiş oyunlar"
-
 #~ msgid "Overwrite old savegame"
 #~ msgstr "Eski oyunun üstüne yaz"
-
 #~ msgid "PLAYER AWARDS"
 #~ msgstr "OYUNCU ÖDÜLLERİ"
-
 #~ msgid "Pay loan"
 #~ msgstr "Borc öde"
-
 #~ msgid ""
 #~ "Penalty shooter deselected. Player with highest cskill will shoot "
 #~ "penalties."
 #~ msgstr ""
 #~ "Penaltı atıcısı seçilmedi. Penaltı atacak oyuncu Cskill'i yüksek olmalı."
-
 #~ msgid "Play normal league games and cups"
 #~ msgstr "Normal ligte ve kupalarda oyna"
-
 #~ msgid "Play only in Champions' League / Copa Libertadores"
 #~ msgstr "Yanlızca Sampiyonlar Liginde Oyna"
-
 #~ msgid "Play only in Cup Winners' Cup / Copa Conmebol"
 #~ msgstr "Yanlızca Kupa galipleri kupasında oyna"
-
 #~ msgid "Play only in UEFA Cup / Copa Sul-Americana"
 #~ msgstr "Yanlızca UEFA Kupasında oyna"
-
 #~ msgid "Play with season objective"
 #~ msgstr "Takım hedefleri ile oyna"
-
 #~ msgid "Player attributes that are shown in the two player lists"
 #~ msgstr "Oyuncu özellikleri her iki listedede gösterilir"
-
 #~ msgid "Player wages"
 #~ msgstr "Oyucu ücretleri"
-
 #~ msgid "Points development"
 #~ msgstr "Puan Geliştirmek"
-
 #~ msgid "Positions"
 #~ msgstr "Posizyonlar"
-
 #~ msgid "Premier Division"
 #~ msgstr "Premier Lig"
-
 #~ msgid "Put player on transfer list (Right click in transfer mode)"
 #~ msgstr "Oyuncuyu Transfer Listesine koy (Transfer modunda iken sağ tıkla)"
-
 #~ msgid "Quick options"
 #~ msgstr "Hızlı Ayarlar"
-
 #~ msgid "QuickOpt"
 #~ msgstr "HızlıAyar"
-
 #~ msgid "Quit"
 #~ msgstr "Çıkış"
-
 #~ msgid "Quit (Esc)"
 #~ msgstr "Çıkış"
-
 #~ msgid "Rank development"
 #~ msgstr "Sıralama geliştirmek"
-
 #~ msgid "Remove player from transfer list (Click in the transfer list)"
 #~ msgstr ""
 #~ "Oyunuyu transfer listesinden çıkart (Transfer listesinde iken tıkla)"
-
 #~ msgid "Romania"
 #~ msgstr "Romanya"
-
 #~ msgid "Runner-up"
 #~ msgstr "Depar"
-
 #~ msgid "SEASON AWARDS"
 #~ msgstr "Sezon Ödülleri"
-
 #~ msgid "Save / Play"
 #~ msgstr "Kaydet / Oynat"
-
 #~ msgid "Save current team to file (Ctrl-S)"
 #~ msgstr "Geçerli takımı dosyaya kaydet (Ctrl-S)"
-
 #~ msgid ""
 #~ "Save options to $HOME/.bygfoot/bygfoot.conf. If you start Bygfoot again, "
 #~ "they get loaded from the file."
 #~ msgstr ""
 #~ "Kayıt ayarları $HOME/.bygfoot/bygfoot.conf Eğer oyunu tekrar "
 #~ "başlatırsanız ayarları buradan yükliyecektir."
-
 #~ msgid "Save team definition file and start Bygfoot"
 #~ msgstr "Takım özellikleri kaydet ve Bygfoot u başlat"
 
 #, fuzzy
 #~ msgid "Saving cups..."
 #~ msgstr "Kaydediliyor fiksturler"
-
 #~ msgid "Saving team %d..."
 #~ msgstr "Kaydedilen takım %d"
-
 #~ msgid "Scout / Physio"
 #~ msgstr "Menajer / Fizyo"
-
 #~ msgid "Scout recommends"
 #~ msgstr "Menajer Tavsiyeleri"
-
 #~ msgid "Select file"
 #~ msgstr "Dosya seç"
-
 #~ msgid "Select next player (Ctrl-Right)"
 #~ msgstr "Bir sonraki oyuncuyu seç (Ctrl-Sağ)"
-
 #~ msgid "Select previous player (Ctrl-Left)"
 #~ msgstr "Bir önceki oyuncuyu seç (Ctrl-Sol)"
-
 #~ msgid "Select team and country"
 #~ msgstr "Ülke ve takım seçin"
-
 #~ msgid "Show 'live' games"
 #~ msgstr "Canlı göster oyunları"
-
 #~ msgid "Show a warning before beginning a new week"
 #~ msgstr "Yeni bir hafta başmadan önce uyarıyı göster"
-
 #~ msgid "Show a warning if I want to quit with a game that isn't saved"
 #~ msgstr "Eğer çıkarsam oyun kaydedilmez"
-
 #~ msgid ""
 #~ "Show a warning when injured or banned players are in the team when "
 #~ "beginning a new week"
 #~ msgstr "Sakat yada cezalı oyuncular yeni haftaya başlarken takımda"
-
 #~ msgid "Show editor help (F1)"
 #~ msgstr "Editorun Yardımını göster (F1)"
-
 #~ msgid ""
 #~ "Show extended info on my games (with injuries etc.) and a preview of my "
 #~ "next games"
 #~ msgstr ""
 #~ "Oyunlarım hakkında bilgiye eriş ve gelecek oyunlar hakkında ön bilgi "
 #~ "göster"
-
 #~ msgid "Show extended player information (Right click)"
 #~ msgstr "Extra kullancı bilgisini göster (Sağ tıkla)"
-
 #~ msgid "Show fitness colors"
 #~ msgstr "Form renklerini Göster"
-
 #~ msgid "Show fixtures (F4)"
 #~ msgstr "Fiksturu göster (F4)"
-
 #~ msgid "Show history"
 #~ msgstr "Geçmişi Göster"
-
 #~ msgid "Show live game tendency bar"
 #~ msgstr "Canlı oyunları eğilim çubuğunda göster"
-
 #~ msgid "Show my last games and a preview of my next games (P or F1)"
 #~ msgstr "Son macı göster ve gelecek mac hakkında en bilgi ver (P or F1)"
-
 #~ msgid "Show tables (F5)"
 #~ msgstr "Puan Cetvelini Göster (F5)"
-
 #~ msgid ""
 #~ "Show the results of all games in the league / cups my team participates in"
 #~ msgstr ""
 #~ "Liglerdeki tüm oyunların sonuçlarını göster / takımımın katıldığı kupalar"
-
 #~ msgid "Skill between "
 #~ msgstr "Hüner Arası"
-
 #~ msgid "Skill development for %s"
 #~ msgstr "Hüner geliştirmek için %s"
-
 #~ msgid "Skip weeks when my team doesn't play"
 #~ msgstr "Takımı oynatmadığım haftaları atla"
-
 #~ msgid "Sort transfer list by"
 #~ msgstr "Transfer Listesini sırala"
-
 #~ msgid "Space / Esc"
 #~ msgstr "Space / Esc"
-
 #~ msgid "Spain"
 #~ msgstr "İspanya"
-
 #~ msgid "Stadium bills"
 #~ msgstr "Stad Gelirleri"
-
 #~ msgid "Start Bygfoot Online Update"
 #~ msgstr "Bygfoot Online Update i Başlat"
-
 #~ msgid "Start Bygfoot Team Editor"
 #~ msgstr "Bygfoot Takım Editorunu başlat"
-
 #~ msgid "Start maximized"
 #~ msgstr "Maksimum başlat"
-
 #~ msgid "Static"
 #~ msgstr "Statik"
-
 #~ msgid "Swap players"
 #~ msgstr "oyuncular Takas edildi"
-
 #~ msgid "Swap two players   "
 #~ msgstr "İki oyuncuyu takas et   "
-
 #~ msgid "TEAM AWARDS"
 #~ msgstr "TAKIM ÖDÜLLERİ"
-
 #~ msgid "Team Editor Help"
 #~ msgstr "Takım Editoru Yardımı"
-
 #~ msgid "Team and player histories"
 #~ msgstr "Takım ve oyuncu geçmişi"
-
 #~ msgid "Team definitions file"
 #~ msgstr "Takım özellikleri dosyası"
-
 #~ msgid "Team histories"
 #~ msgstr "Takım geçmişi"
-
 #~ msgid "Team structures"
 #~ msgstr "Takım Düzeni"
-
 #~ msgid "Teams found in the country file. Choose one to edit it."
 #~ msgstr "Takımlar ülke dosyasında bulundu.Düzenlemek için bir tane seç"
-
 #~ msgid ""
 #~ "The average skills of the five leagues in the first season are: 8.0, 7.0, "
 #~ "6.0, 5.0 and 4.0."
 #~ msgstr "Beş lig için ortalama hüner ilk sezonda :8.0, 7.0, 6.0, 5.0 ve 4.0."
-
 #~ msgid ""
 #~ "The file team definitions are read from and written to. Default is $HOME/."
 #~ "bygfoot/text_files/teams."
 #~ msgstr ""
 #~ "Takım özellikleri dosyası $HOME/ bygfoot/text_files/teams klasörüne "
 #~ "yazıldı"
-
 #~ msgid ""
 #~ "The following teams were added to %s:\n"
 #~ "\n"
 #~ msgstr ""
 #~ "Sözü edilen takımlar %s yi ekledi: \n"
 #~ "\n"
-
 #~ msgid "The player doesn't like your offer and decides to stay in his team."
 #~ msgstr "Oyuncu teklifinizi beğenmedi ve takımda kalmaya karar verdi."
-
 #~ msgid ""
 #~ "The selected player will shoot the penalties in regulation and extra time "
 #~ "if he plays."
 #~ msgstr ""
 #~ "Seçilen oyuncunun penaltı atışları düzenli ve fazla çalışma ile "
 #~ "artacaktır eğer oyuncu oynarsa"
-
 #~ msgid ""
 #~ "The team has an adequate replacement for %s and is willing to cancel his "
 #~ "contract for "
 #~ msgstr ""
 #~ "%s in takımı onun yerine daha verimli bir oyuncu buldukları için "
 #~ "oyuncunun anlasmasını fes etti"
-
 #~ msgid ""
 #~ "The team has unfortunately no suitable replacement for %s and has to "
 #~ "reject your offer."
 #~ msgstr ""
 #~ "Takım transfer etmek istediğiniz oyuncu %s yerine birini bulamadığı için "
 #~ "teklifinizi reddetti."
-
 #~ msgid "The team owners fire you because of objective failed."
 #~ msgstr "Hedefe ulaşamadığın için kovuldun"
-
 #~ msgid "The team owners fire you because of unsuccessfulness."
 #~ msgstr "Kovuldun çünkü başarısızsın."
-
 #~ msgid "The team owners give you %d weeks to get positive."
 #~ msgstr "Takımı düzlüğe çıkartman için yöneim sana %d hafta verdi."
-
 #~ msgid ""
 #~ "The team rejects your offer and removes the player from the transferlist."
 #~ msgstr ""
 #~ "Takım oyuncuya verdiğiniz teklifi kabul etmedi ve oyuncuyu transfer "
 #~ "listesinden kaldırdı"
-
 #~ msgid ""
 #~ "The tendency bar shows in the live game window which team is closer to "
 #~ "scoring a goal"
 #~ msgstr ""
 #~ "Eğilim çubuğu canlı oyun penceresinde gole yakın olan tarafı gösterir"
-
 #~ msgid "The transferlist is full."
 #~ msgstr "Transfer listesi dolu"
-
 #~ msgid "These digits must add up to 8."
 #~ msgstr "Bu rakamların toplamı 8 etmeli"
-
 #~ msgid ""
 #~ "This affects the two windows in the main screen, the help window and the "
 #~ "live game window"
 #~ msgstr ""
 #~ "Bu efekt ana pencere içerisindeki her iki pencereyide etkiler,yardım "
 #~ "penceresi ve canlı oyun penceresi"
-
 #~ msgid "This can be between -100 and 100"
 #~ msgstr "100 ve 100 arasında olabilir"
-
 #~ msgid "This is your first season."
 #~ msgstr "Bu sizin ilk sezonunuz."
-
 #~ msgid "Top league"
 #~ msgstr "Top Lig"
-
 #~ msgid "Transferlist notification"
 #~ msgstr "Transfer Listesi Bildirmesi"
-
 #~ msgid "UEFA / Sul-Amer."
 #~ msgstr "UEFA / Sul-Amer."
-
 #~ msgid "UEFA / Sul-Americana"
 #~ msgstr "UEFA"
-
 #~ msgid "Undo! (Y / Ctrl-Z)"
 #~ msgstr "Geri! (Y / Ctrl-Z)"
-
 #~ msgid "Up"
 #~ msgstr "Yukarı"
-
 #~ msgid "Update player information"
 #~ msgstr "Oyuncu bilgilerini güncelle"
-
 #~ msgid "Value development for %s"
 #~ msgstr "Değer geliştirmek için %s"
-
 #~ msgid "Wage development for %s"
 #~ msgstr "Ücret Geliştirmek için %s"
-
 #~ msgid "Weeks / Seasons"
 #~ msgstr "Haftalar / Sezonlar"
-
 #~ msgid "Whether each season begins with an empty history list."
 #~ msgstr "Her birine boş bir geçmiş ile başladı"
-
 #~ msgid "Whether fitness percentage is shown in green and red shades"
 #~ msgstr "Kondisyon yeşil yada kırmızı gölge olğunda göster"
-
 #~ msgid ""
 #~ "XML files can get very big but they can be compressed well. Uncheck this "
 #~ "if you have plenty of space on your hard disk and would like to save some "
 #~ "time when loading and saving."
 #~ msgstr ""
 #~ "XML Dosyası çok büyül olabilir fakat iyi bir şekilde sıkıştırılmışsa."
-
 #~ msgid ""
 #~ "You can start the editor from the commandline with 'bygfoot -e' or '--"
 #~ "editor'"
 #~ msgstr ""
 #~ "Editore komut satırından 'bygfoot -e' yada '--editor' ile ulaşabilirsiniz."
-
 #~ msgid "You can't borrow this much."
 #~ msgstr "Bundan daha fazla borç alamazsın."
-
 #~ msgid "You can't have a bigger stadium; it's not safe."
 #~ msgstr "Büük bir stadın yok; hiç güvenli değil."
-
 #~ msgid "You can't improve your stadium safety, it's already 100% safe."
 #~ msgstr "Stadı yeterince geliştirmedin. Stad %100 dolu."
-
 #~ msgid ""
 #~ "You get a season objective from the team manager which you have to "
 #~ "fulfill if you don't want to get sacked at the end of the season if you "
@@ -4724,7 +4270,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Tekbik adam olarak takımın hedeflerine ulaştırmalısın. Eğer takıı sezon "
 #~ "sonunda hedeflerine ulaştıramazsan muhtemelen kovulursun."
-
 #~ msgid ""
 #~ "You have entered a player name beginning with the comment character '#'. "
 #~ "The player will be ignored when loading the team from the definitions "
@@ -4732,181 +4277,129 @@ msgstr ""
 #~ msgstr ""
 #~ "'#' işaretiyle başlayan bir oyuncu ismi girdiniz.Takım özellikleri "
 #~ "yüklendiğinden oyuncu adı kabul edilmiyecektir."
-
 #~ msgid ""
 #~ "You have entered an invalid birth date. Players must be older than 17. "
 #~ msgstr "Geçersiz bir doğum günü girdiniz. Oyuncu 17 yaşından büyük olmalı"
-
 #~ msgid ""
 #~ "You have entered an invalid talent value. The talent value of a player "
 #~ "has to be greater than his skill value. "
 #~ msgstr ""
 #~ "Geçersiz bir yenetek değeri girdiniz. Yetenek değeri bir oyuncunun en iyi "
 #~ "halidir. En kötü durumda beceri değerine eşit olabilir"
-
 #~ msgid "You have overdrawn your bank account once again. "
 #~ msgstr "Birkez daha banka hesabı limitleri geçti. "
-
 #~ msgid "You have overdrawn your bank account. "
 #~ msgstr "Banka hesabından fazla para çekilmiş."
-
 #~ msgid "You haven't entered a new team name. "
 #~ msgstr "Yeni bir takım ismi girmedin "
-
 #~ msgid "You haven't got the money to pay back this much"
 #~ msgstr "Paranız yok bundan daha fazlasını geri ödiyemezsiniz."
-
 #~ msgid "You haven't selected a team you want to edit or a definitions file. "
 #~ msgstr "Düzenlemek için bir takım seçmediniz."
-
 #~ msgid "You may increase only twice a week."
 #~ msgstr "Hafta yanlız iki kez artırabilirsin"
-
 #~ msgid "You might want to have a look at the transfer list. "
 #~ msgstr "Tranfer listesine bakmanda yarar var."
-
 #~ msgid "You'd like to fire %s. You can"
 #~ msgstr "%s i kovmak istiyormus. Yapabilirisin"
-
 #~ msgid "You're below your drawing credit limit. You can't pay back money."
 #~ msgstr "Yapılan kredi limitini geçtiniz. Geri ödeyimiyeceksiniz."
-
 #~ msgid "Your league"
 #~ msgstr "Ligin"
-
 #~ msgid "Your rank"
 #~ msgstr "Sıralaman"
-
 #~ msgid ""
 #~ "Your scout's not good enough, he doesn't know the age of the players on "
 #~ "the transfer list. Sorting the transfer list is switched off. "
 #~ msgstr ""
 #~ "Menajeriniz yetersiz,Transfer Listesindeki oyuncuların yaşlarını bilmiyor."
-
 #~ msgid ""
 #~ "Your stadium is being enlarged. You can't increase its capacity until "
 #~ "work's finished."
 #~ msgstr ""
 #~ "Stadı genişletme çalışmaları başladı. çalışmalar bitenedek herhangi bir "
 #~ "değişiklik yapamazsın."
-
 #~ msgid "Your team must stay in the current league."
 #~ msgstr "Takımın liginde kalmalı"
-
 #~ msgid ""
 #~ "Your team structure must have three non-zero digits which sum up to 10."
 #~ msgstr ""
 #~ "Takım takiğiniz en az üç basamaklı ve hiç 0 olmamalı ve toplamlarıda 10 "
 #~ "etmeli"
-
 #~ msgid "Your team's prize money"
 #~ msgstr "Takımının ikramiyesi"
-
 #~ msgid "banned for %d weeks (%s)"
 #~ msgstr "%d hafta yasaklandı"
-
 #~ msgid "button10"
 #~ msgstr "button10"
-
 #~ msgid "button8"
 #~ msgstr "button8"
-
 #~ msgid "button9"
 #~ msgstr "button9"
-
 #~ msgid "cracked rib"
 #~ msgstr "Kaburga çatlaması"
-
 #~ msgid "dangerous tackle"
 #~ msgstr "tehlikeli top kapma"
-
 #~ msgid "deliberate, goal-blocking foul"
 #~ msgstr "kasıtlı, gole giden oyuncuya foul"
-
 #~ msgid "fifth yellow card"
 #~ msgstr "50.sarı kart"
-
 #~ msgid "label20"
 #~ msgstr "label20"
-
 #~ msgid "label21"
 #~ msgstr "label21"
-
 #~ msgid "label22"
 #~ msgstr "label22"
-
 #~ msgid "label23"
 #~ msgstr "label23"
-
 #~ msgid "label24"
 #~ msgstr "label24"
-
 #~ msgid "label25"
 #~ msgstr "label25"
-
 #~ msgid "label26"
 #~ msgstr "label26"
-
 #~ msgid "label27"
 #~ msgstr "label27"
-
 #~ msgid "label36"
 #~ msgstr "label36"
-
 #~ msgid "label37"
 #~ msgstr "label37"
-
 #~ msgid "label38"
 #~ msgstr "label38"
-
 #~ msgid "label39"
 #~ msgstr "label39"
-
 #~ msgid "label40"
 #~ msgstr "label40"
 
 #, fuzzy
 #~ msgid "label48"
 #~ msgstr "label4"
-
 #~ msgid "label5"
 #~ msgstr "label5"
-
 #~ msgid "label6"
 #~ msgstr "label6"
-
 #~ msgid "label7"
 #~ msgstr "label7"
-
 #~ msgid "label70"
 #~ msgstr "label70"
-
 #~ msgid "pay a one-time compensation of "
 #~ msgstr "bir kez tek seferde tazminatı için "
-
 #~ msgid "pay his wage ("
 #~ msgstr "Maaşını öde ("
-
 #~ msgid "radiobutton0"
 #~ msgstr "radiobutton0"
-
 #~ msgid "radiobutton1"
 #~ msgstr "radiobutton1"
-
 #~ msgid "repeated bad tackle"
 #~ msgstr "topu ayagından tekrar aldı"
-
 #~ msgid "repeated delayed play"
 #~ msgstr "geçiken oyun tekrarı"
-
 #~ msgid "repeated dissent"
 #~ msgstr "tekrar eden görüş ayrılığı"
-
 #~ msgid "spat at player"
 #~ msgstr "Oyuncu ağız kavgası"
-
 #~ msgid "violent conduct"
 #~ msgstr "şiddetli davranış"
-
 #~ msgid "window1"
 #~ msgstr "window1"
+
