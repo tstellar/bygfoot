@@ -1,0 +1,3498 @@
+# translation of el.po to
+# Greek translations for PACKAGE package.
+# Copyright (C) 2009 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# elias <ilmakris@sch.gr>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: el\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-12-17 18:32+0100\n"
+"PO-Revision-Date: 2009-02-18 22:09+0200\n"
+"Last-Translator: Mihai <mihai@emma.ro>\n"
+"Language-Team:  <el@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: src/bet.c:262
+#: src/misc_callback_func.c:316
+msgid "You don't have the money."
+msgstr "Δεν έχετε τα χρήματα."
+
+#: src/bet.c:269
+#, c-format
+msgid "The betting office doesn't allow you to wager more than %s."
+msgstr "Το γραφείο στοιχήματοςδεν σας επιτρέπει να παίξετε πάνω από %s."
+
+#: src/callback_func.c:368
+msgid "The bank doesn't grant you more money."
+msgstr "Η τράπεζα δεν σας δανείζει περισσότερα χρήματα."
+
+#: src/callback_func.c:374
+#, c-format
+msgid "You can take out at most %s."
+msgstr "Μπορείτε να πάρετε %s το μέγιστο."
+
+#: src/callback_func.c:376
+msgid "Loan"
+msgstr "Δανεισμός"
+
+#: src/callback_func.c:392
+msgid "You are not indebted."
+msgstr "Δεν είστε χρεωμένοι."
+
+#: src/callback_func.c:398
+msgid "You don't have enough money to pay back."
+msgstr "Δεν έχετε αρκετά χρήματα για να ξεπληρώσετε."
+
+#: src/callback_func.c:404
+#, c-format
+msgid "You can pay back at most %s"
+msgstr "Μπορείτε να ξεπληρώσετε το πολύ %s"
+
+#: src/callback_func.c:406
+msgid "Payback"
+msgstr "Αποπληρωμή"
+
+#: src/callback_func.c:434
+msgid "There are some offers for the player which you rejected or will see next week."
+msgstr "Υπάρχουν κάποιες προσφορές για τον παίκτη που απορρίψατε ή θα δείτε την άλλη εβδομάδα."
+
+#: src/callback_func.c:443
+msgid " more"
+msgstr " περισσότερο"
+
+#: src/callback_func.c:445
+msgid " less"
+msgstr " λιγότερο"
+
+#: src/callback_func.c:447
+#, c-format
+msgid "%s would like to buy %s. They offer %s for him, which is %s than the player's value. Do you accept?"
+msgstr "Ο %s θα ήθελε να αγοράσει τον %s. Προσφέρουν %s γι' αυτόν, κάτι που είναι %s πάνω από την τιμή του παίκτη. Δέχεστε;"
+
+#: src/callback_func.c:477
+#: src/callbacks.c:819
+msgid "Your offer has been removed."
+msgstr "Η προσφορά σας αφαιρέθηκε."
+
+#: src/callback_func.c:484
+msgid "Your roster is already full. You can't buy more players."
+msgstr "Το ρόστερ σας είναι ήδη γεμάτο. Δεν μπορείτε να αγοράσετε και άλλους παίκτες."
+
+#: src/callback_func.c:491
+#, c-format
+msgid "You offered a transfer fee of %s and a wage of %s for %s. The owners and the player are satisfied with your offer. Do you still want to buy the player?"
+msgstr "Προσφέρατε ποσό %s για την μεταγραφή και μισθό %s %s. Οι ιδιοκτήτες και ο παίκτης είναι ικανοποιημένοι με την προσφορά σας. Θέλετε ακόμα να αγοράσετε τον παίκτη;"
+
+#: src/callback_func.c:524
+#, c-format
+msgid "User %s didn't consider your offer yet."
+msgstr "Ο χρήστης %s δεν εξέτασε ακόμα την προσφορά σας."
+
+#: src/callback_func.c:531
+msgid "The player is locked (the team owners are considering an offer currently)."
+msgstr "Ο παίκτης είναι κλειδωμένος (οι ιδιοκτήτες της ομάδας εξετάζουν τώρα μία προσφορά)."
+
+#: src/callback_func.c:538
+#: src/callbacks.c:260
+#: src/transfer.c:574
+msgid "The transfer deadline is over."
+msgstr "Η προθεσμία για τις μεταγραφές τελείωσε."
+
+#: src/callback_func.c:550
+#, c-format
+msgid "You are making an offer for %s. Your scout's recommendations for fee and wage are preset."
+msgstr "Κάνετε μία προσφορά για τον %s. Οι προτάσεις του σκάουτερ σας για ποσό μεταγραφής και μισθό έχουν προκαθοριστεί."
+
+#: src/callback_func.c:553
+#: src/callback_func.c:561
+msgid "Fee"
+msgstr "Ποσό μεταγραφής"
+
+#: src/callback_func.c:554
+#: src/callback_func.c:561
+#: src/treeview.c:328
+#: src/treeview.c:2147
+msgid "Wage"
+msgstr "Μισθός"
+
+#: src/callback_func.c:558
+#, c-format
+msgid "You are making an offer for %s again. Your previous values for fee and wage are preset."
+msgstr "Κάνετε μία προσφορά για τον %s ξανά. Οι προηγούμενες τιμές για ποσό μεταγραφής και μισθό είναι προκαθορισμένες."
+
+#: src/callback_func.c:583
+msgid "You can't offer a new contract if the old one is still above 2 years."
+msgstr "Δεν μπορείτε να προσφέρετε νέο συμβόλαιο αν το παλιό απέχει από την λήξη του πάνω από 2 χρόνια."
+
+#: src/callback_func.c:588
+msgid "The player won't negotiate with you anymore."
+msgstr "Ο παίκτης δεν θα διαπραγματευτεί άλλο μαζί σας."
+
+#: src/callback_func.c:594
+msgid "The player feels he doesn't have a future in your star-studded team. He refuses to negotiate."
+msgstr "Ο παίκτης αισθάνεται πως δεν έχει κανένα μέλλον στην ομάδα σας που είναι γεμάτη από μεγάλους παίχτες. Αρνείται να διαπραγματευτεί."
+
+#: src/callback_func.c:608
+#, c-format
+msgid ""
+"You are negotiating with %s about a new contract. Pay attention to what you're doing; if you don't come to terms with him within %d offers, he's going to leave your team after his current contract expires (unless you sell him). You may only abort BEFORE making the first offer.\n"
+"Your scout's recommendations are preset:"
+msgstr ""
+"Διαπραγματεύεστε με τον %s για νέο συμβόλαιο. Προσέξτε τι κάνετε, εάν δεν συμφωνήσετε στους όρους με αυτόν σε %d προσφορές, θα αφήσει την ομάδα σας αφού λήξει το τρέχον του συμβόλαιο (εκτός αν τον πουλήσετε). Μπορείτε να εγκαταλείψετε μόνο ΠΡΙΝ την πραγματοποίηση της πρώτης προσφοράς.\n"
+"Οι εισηγήσεις του σκάουτερ σας είναι προκαθορισμένες:"
+
+#: src/callback_func.c:750
+#, c-format
+msgid "You want to fire %s. Since his contract expires in %.1f years, he demands a compensation of %s. Do you accept?"
+msgstr "Θέλετε να απολύσετε τον %s. Από την στιγμή που το συμβόλαιο του λήγει σε %.1f χρόνια, απαιτεί %s ως αποζημίωση. Δέχεστε;"
+
+#: src/callback_func.c:909
+msgid "Left click to move players to and from the youth academy; right click for context menu."
+msgstr "Αριστερό κλικ για μετακίνηση παιχτών από και προς την ακαδημία νέων; δεξί κλικ για γενικότερο μενού."
+
+#: src/callbacks.c:139
+msgid "The current game state is unsaved and will be lost. Continue?"
+msgstr "Το τρέχον παιχνίδι δεν έχει σωθεί και θα χαθεί. Συνέχεια;"
+
+#: src/callbacks.c:240
+#: src/callbacks.c:603
+msgid "Transfers are disabled in this country definition."
+msgstr "Οι μεταγραφές είναι απενεργοποιημένες σε αυτόν τον ορισμό χώρας."
+
+#: src/callbacks.c:247
+msgid "Left click to make an offer. Right click to remove offer."
+msgstr "Αριστερό κλικ για υποβολή προσφοράς. Δεξί κλικ για απόσυρση προσφοράς."
+
+#: src/callbacks.c:249
+#, c-format
+msgid "Transfer deadline is Week %d"
+msgstr "Η προθεσμία για μεταγραφές λήγει την %d εβδομάδα."
+
+#: src/callbacks.c:273
+#: src/callbacks.c:892
+#: src/callbacks.c:913
+msgid "You still have some transfer business to manage."
+msgstr "Έχετε ακόμα κάποιες μεταγραφικές εκκρεμότητες."
+
+#: src/callbacks.c:277
+msgid "At least one user didn't take his turn this week. Continue?"
+msgstr "Τουλάχιστον ένας χρήστης δεν χρησιμοποίησε την σειρά του αυτή την εβδομάδα. Συνέχεια;"
+
+#: src/callbacks.c:283
+msgid "There are injured or banned players in one of the user teams. Continue?"
+msgstr "Υπάρχουν τραυματισμένοι ή τιμωρημένοι παίχτες σε μία από τις ομάδες του χρήστη. Συνέχεια?"
+
+#: src/callbacks.c:500
+msgid "Left click to show table."
+msgstr "Αριστερό κλικ για εμφάνιση πίνακα."
+
+#: src/callbacks.c:535
+msgid "There are no leagues or cups with tables in this country definition."
+msgstr "Δεν υπάρχουν λίγκες ή κύπελλα με πίνακες σε αυτόν τον ορισμό της χώρας."
+
+#: src/callbacks.c:540
+msgid "Left click to show fixtures."
+msgstr "Αριστερό κλικ για εμφάνιση εκδηλώσεων."
+
+#: src/callbacks.c:561
+msgid "There are no leagues in this country definition (only cups)."
+msgstr "Δεν υπάρχουν λίγκες σε αυτόν τον ορισμό χώρας (μόνο κύπελλα)."
+
+#: src/callbacks.c:583
+msgid "There are no season history elements stored yet."
+msgstr "Δεν έχουν αποθηκευτεί ακόμα στοιχεία από ιστορίες περιόδου."
+
+#: src/callbacks.c:605
+#: src/callbacks.c:625
+#: src/callbacks.c:645
+#: src/callbacks.c:665
+#: src/callbacks.c:704
+#: src/callbacks.c:1175
+#: src/callbacks.c:1195
+msgid "You haven't selected a player."
+msgstr "Δεν έχετε επιλέξει κάποιον παίχτη."
+
+#: src/callbacks.c:607
+msgid "The player is already on the list."
+msgstr "Ο παίχτης είναι ήδη στη λίστα."
+
+#: src/callbacks.c:627
+msgid "The player is not on the list."
+msgstr "Ο παίχτης δεν είναι στη λίστα."
+
+#: src/callbacks.c:647
+#: src/misc2_callback_func.c:60
+msgid "Your team can't have less than 11 players."
+msgstr "Η ομάδα σας δεν μπορεί να έχει λιγότερους από 11 παίχτες."
+
+#: src/callbacks.c:670
+msgid "Penalty/free kick shooter deselected."
+msgstr "Αποεπιλογή εκτελεστή πέναλτι/φάουλ."
+
+#: src/callbacks.c:676
+#, c-format
+msgid "%s will shoot penalties and free kicks when he plays."
+msgstr "%s θα εκτελεί πέναλτι και φάουλ όταν παίζει."
+
+#: src/callbacks.c:699
+#: src/callbacks.c:1423
+#: src/callbacks.c:1442
+#: src/callbacks.c:1463
+msgid "Youth academy is disabled in this country definition."
+msgstr "Η ακαδημία νέων είναι απενεργοποιημένη γι αυτόν τον ορισμό χώρας."
+
+#: src/callbacks.c:710
+msgid "The player is too old for the youth academy."
+msgstr "Ο παίχτης είναι μεγάλος για την ακαδημία νέων."
+
+#: src/callbacks.c:713
+msgid "You can't move the player, there are too few players in your team."
+msgstr "Δεν μπορείτε να μετακινήσετε τον παίχτη, υπάρχουν λίγοι παίχτες στην ομάδα σας."
+
+#: src/callbacks.c:716
+msgid "There is no room in your youth academy."
+msgstr "Δεν υπάρχει χώρος στην ακαδημία νέων."
+
+#: src/callbacks.c:822
+msgid "You haven't made an offer for the player."
+msgstr "Δεν έχετε κάνει προσφορά για τον παίκτη."
+
+#: src/callbacks.c:845
+msgid "You can't apply for a job from abroad if there's more than one user."
+msgstr "Δεν μπορείτε να ζητήσετε εργασία στο εξωτερικό εάν υπάρχει πάνω από έναν χρήστες."
+
+#: src/callbacks.c:868
+msgid "Cup has no tables."
+msgstr "Το κύπελλο δεν έχει πίνακες."
+
+#: src/callbacks.c:933
+msgid "Enter a structure. The digits must sum up to 10."
+msgstr "Εισάγετε ένα σύστημα. Το σύνολο των ψηφίων πρέπει να είναι 10. "
+
+#: src/callbacks.c:934
+msgid "Structure"
+msgstr "Σύστημα"
+
+#: src/callbacks.c:979
+#: src/callbacks.c:999
+#: src/callbacks.c:1513
+#: src/misc2_callback_func.c:326
+#: src/misc2_callbacks.c:733
+msgid "No match stored."
+msgstr "Δεν έχει αποθηκευτεί κανένας αγώνας."
+
+#: src/callbacks.c:1087
+#: src/game_gui.c:459
+#: src/misc_callbacks.c:560
+msgid "Boost ON is disabled in this country definition."
+msgstr "Το ON της ώθησης είναι απενεργοποιημένο σε αυτόν τον ορισμό χώρας."
+
+#: src/callbacks.c:1112
+#: src/callbacks.c:1645
+msgid "Finances are disabled in this country definition."
+msgstr "Τα οικονομικά είναι απενεργοποιημένα σε αυτόν τον ορισμό χώρας."
+
+#: src/callbacks.c:1117
+msgid "Left-click: get loan; Right-click: pay back; Middle click: stadium window."
+msgstr "Αριστερό κλικ: δανεισμός; Δεξί κλικ: αποπληρωμή; Μεσαίο κλικ: παράθυρο γηπέδου."
+
+#: src/callbacks.c:1136
+msgid "Stadium management is disabled in this country definition."
+msgstr "Η διαχείριση γηπέδου είναι απενεργοποιημένη σε αυτόν τον ορισμό χώρας."
+
+#: src/callbacks.c:1169
+msgid "Contracts are disabled in this country definition."
+msgstr "Τα συμβόλαια είναι απενεργοποιημένα σε αυτόν τον ορισμό χώρας."
+
+#: src/callbacks.c:1448
+#: src/interface.c:665
+msgid "Set the percentage of your income you want to devote to your youth academy."
+msgstr "Καθορισμός του ποσοστού εσόδων που θα επενδυθεί στην ακαδημία νέων."
+
+#: src/callbacks.c:1468
+#, c-format
+msgid "You can't have more than %d players in the team."
+msgstr "Δεν μπορείτε να έχετε περισσότερους από %d παίκτες στην ομάδα."
+
+#: src/callbacks.c:1492
+msgid "Do you really want to kick the poor boy out of your academy?"
+msgstr "Θέλετε σίγουρα να διώξετε το φτωχό αγόρι από την ακαδημία;"
+
+#: src/callbacks.c:1582
+msgid "Right click to apply for job at once, left click to see team info."
+msgstr "Δεξί κλικ  για αίτηση για εργασία, αριστερό κλικ για εμφάνιση πληροφοριών για την ομάδα."
+
+#: src/callbacks.c:1584
+#, c-format
+msgid "The job exchange update interval is %d weeks."
+msgstr "Το διάστημα ανταλλαγής εργασίας είναι %d εβδομάδες."
+
+#: src/callbacks.c:1614
+msgid "Training camp is disabled in this country definition."
+msgstr "Το προπονητικό κέντρο είναι απενεργοποιημένο σε αυτόν τον ορισμό χώρας."
+
+#: src/callbacks.c:1621
+msgid "Your team has already had enough training camps this week."
+msgstr "Η ομάδα σας έχει ήδη αρκετά προπονητικά κέντρα αυτή την εβδομάδα"
+
+#: src/callbacks.c:1627
+#, c-format
+msgid "You've reached the limit of %d training camps for the season."
+msgstr "Φτάσατε το όριο των %d προπονητικών κέντρων αυτή την περίοδο."
+
+#: src/callbacks.c:1651
+msgid "You are not in debt."
+msgstr "Δεν χρωστάτε."
+
+#: src/callbacks.c:1656
+msgid "It's too late in the season for automatic loan repayment."
+msgstr "Είναι αργά στην περίοδο για αυτόματη αποπληρωμή δανείου."
+
+#: src/cup.c:1078
+msgid " -- Second leg"
+msgstr " -- Δεύτερος αγώνας"
+
+#: src/cup.c:1080
+msgid " -- First leg"
+msgstr " -- Πρώτος αγώνας"
+
+#: src/cup.c:1083
+msgid " -- Replay matches"
+msgstr " -- Επανάληψη αγώνων"
+
+#: src/cup.c:1099
+msgid "Round robin"
+msgstr "Round robin"
+
+#. A cup stage, e.g. Last 32 when there are only 32 teams left.
+#: src/cup.c:1107
+#, c-format
+msgid "Last %d"
+msgstr "Τελευταίο %d"
+
+#: src/cup.c:1110
+msgid "Final"
+msgstr "Τελικός"
+
+#: src/cup.c:1113
+msgid "Semi-final"
+msgstr "Ημιτελικός"
+
+#: src/cup.c:1116
+msgid "Quarter-final"
+msgstr "Προημιτελικός"
+
+#: src/file.c:388
+#, c-format
+msgid "Copying %s"
+msgstr "Αντιγραφή %s"
+
+#: src/file.c:400
+#: src/misc3_interface.c:412
+msgid "Ready"
+msgstr "Έτοιμο"
+
+#: src/finance.c:162
+msgid "You have to pay back your loan this week."
+msgstr "Πρέπει να αποπληρώσετε το δάνειο σας αυτή την εβδομάδα."
+
+#: src/finance.c:166
+msgid "Your bank account has to be above your drawing credit limit next week."
+msgstr "Ο τραπεζικός λογαριασμός σας πρέπει να είναι πάνω από το πιστωτικό σας όριο αυτή την εβδομάδα."
+
+#: src/finance.c:253
+#, c-format
+msgid "You have %d weeks to pay back your loan."
+msgstr "Έχετε %d εβδομάδες να αποπληρώσετε το δάνειο σας."
+
+#: src/finance.c:281
+msgid "You are free from debt."
+msgstr "Είστε ελεύθερος από χρέη."
+
+#: src/finance.c:288
+#, c-format
+msgid "You have %d weeks to pay back the rest of your loan."
+msgstr "Έχετε %d εβδομάδες για να αποπληρώσετε το υπόλοιπο του δανείου σας."
+
+#. Game was decided in penalty shoot-out.
+#: src/fixture.c:1039
+msgid " p."
+msgstr " πέναλτι."
+
+#. Game was decided in extra time.
+#: src/fixture.c:1042
+msgid " e.t."
+msgstr " παράταση"
+
+#. A goal scored with penalty.
+#. Penalty shooter.
+#: src/game.c:996
+#: src/treeview_helper.c:1219
+msgid " (P)"
+msgstr " (Πέναλτι)"
+
+#. A goal scored with a free kick.
+#: src/game.c:999
+msgid " (FK)"
+msgstr " Φάουλ"
+
+#. An own goal
+#: src/game.c:1002
+msgid " (OG)"
+msgstr " (Αυτογκόλ)"
+
+#: src/game_gui.c:507
+msgid "Next week you'll fire him and hire a new one."
+msgstr "Την επόμενη εβδομάδα θα απολυθεί και θα προσληφθεί νέος."
+
+#: src/game_gui.c:797
+#, c-format
+msgid "The team owners have fired you because of financial mismanagement. Luckily, the owners of %s have heard of your dismissal and offer you a job. Here's some information on %s:"
+msgstr "Οι ιδιοκτήτες της ομάδας σας απέλυσαν λόγω οικονομικής κακοδιαχείρισης. Τυχαία, οι ιδιοκτήτες της %s άκουσαν για την αποδέσμευση σας και σας προσφέρουν εργασία. Εδώ υπάρχουν κάποιες πληροφορίες για την %s:"
+
+#: src/game_gui.c:800
+#, c-format
+msgid "The team owners have fired you because of unsuccessfulness. Luckily, the owners of %s have heard of your dismissal and offer you a job. Here's some information on %s:"
+msgstr "Οι ιδιοκτήτες της ομάδας σας απέλυσαν λόγω αποτυχίας. Τυχαία, οι ιδιοκτήτες της %s άκουσαν για την αποδέσμευση σας και σας προσφέρουν εργασία. Εδώ υπάρχουν κάποιες πληροφορίες για την %s:"
+
+#: src/game_gui.c:803
+#, c-format
+msgid "The owners of %s are deeply impressed by your success with %s and would like to hire you. Here's some information on %s:"
+msgstr "Οι ιδιοκτήτες της %s εντυπωσιάστηκαν από την επιτυχία σας με την %s και θα ήθελαν να σας προσλάβουν. Εδώ υπάρχουν κάποιες πληροφορίες για την %s:"
+
+#: src/game_gui.c:806
+msgid "Click on OK to apply for the job. Click on CANCEL to close the window."
+msgstr "Κλικ στο OK για αίτηση για εργασία. Κλικ στο CANCEL για κλείσιμο παραθύρου."
+
+#: src/game_gui.c:809
+msgid "Accept?"
+msgstr "Αποδοχή;"
+
+#: src/game_gui.c:809
+msgid "Apply for the job?"
+msgstr "Αίτηση για εργασία;"
+
+#: src/game_gui.c:813
+msgid " (NOTE: If you don't, the game is over for you.)"
+msgstr " (ΣΗΜΕΙΩΣΗ: Εάν δεν δεχτείτε, το παιχνίδι τελείωσε για σας.)"
+
+#: src/game_gui.c:889
+#, c-format
+msgid "Job offers set to %s."
+msgstr "Προσφορές για εργασία καθοριζόμενες σε %s."
+
+#: src/game_gui.c:898
+#, c-format
+msgid "Live game set to %s."
+msgstr "Ζωντανό παιχνίδι καθοριζόμενο σε %s."
+
+#: src/game_gui.c:907
+#, c-format
+msgid "Overwrite set to %s."
+msgstr "Επικάλυψη καθοριζόμενη σε %s."
+
+#: src/game_gui.c:931
+msgid "Bygfoot is a very intuitive and simple game, so there isn't a full-grown documentation. However, if you have trouble, there are a few places to go.\n"
+msgstr "Το Bygfoot είναι ένα πολύ ενορατικό και απλό παιχνίδι, οπότε δεν υπάρχει μια πλήρης τεκμηρίωση. Αν πάντως έχετε πρόβλημα, υπάρχουν κάποια μέρη για να πάτε.\n"
+
+#: src/game_gui.c:933
+msgid "At the Bygfoot forums you can report bugs, ask for help and discuss the game:\n"
+msgstr "Στα φόρουμ του Bygfoot μπορείτε να αναφέρετε bugs, να ζητήσετε βοήθεια και να συζητήσετε για το παιχνίδι:\n"
+
+#: src/game_gui.c:935
+msgid ""
+"\n"
+"You can also write an email to the authors:\n"
+msgstr ""
+"\n"
+"Μπορείτε ακόμα και να γράψετε ένα email προς τους συγγραφείς:\n"
+
+#: src/interface.c:302
+msgid "_File"
+msgstr "_Αρχείο"
+
+#: src/interface.c:317
+msgid "L_oad last save"
+msgstr "_Τελευταία αποθήκευση"
+
+#: src/interface.c:345
+msgid "_Options"
+msgstr "_Επιλογές"
+
+#: src/interface.c:352
+msgid "Preferences"
+msgstr "Προτιμήσεις"
+
+#: src/interface.c:368
+msgid "Job offers"
+msgstr "Προσφορές εργασίας"
+
+#: src/interface.c:373
+#: src/misc_interface.c:500
+#: src/options_interface.c:614
+msgid "Live game"
+msgstr "Ζωντανό παιχνίδι"
+
+#: src/interface.c:377
+msgid "Overwrite"
+msgstr "Επικάλυψη"
+
+#: src/interface.c:387
+msgid "Save window geometry"
+msgstr "Αποθήκευση γεωμετρίας παραθύρου"
+
+#: src/interface.c:390
+msgid "Save window size, position and vertical divider"
+msgstr "Αποθήκευση μεγέθους παραθύρου, θέσης και κάθετου διαχωριστή"
+
+#: src/interface.c:396
+msgid "F_igures"
+msgstr "Ε_μφανίσεις"
+
+#: src/interface.c:403
+msgid "Fixtures (week)"
+msgstr "Εκδηλώσεις (εβδομάδα)"
+
+#: src/interface.c:414
+msgid "Fixtures (competitions)"
+msgstr "Εκδηλώσεις (διοργανώσεις)"
+
+#: src/interface.c:425
+msgid "Tables"
+msgstr "Πίνακες"
+
+#: src/interface.c:436
+msgid "My league results"
+msgstr "Τα αποτελέσματα της λίγκας μου"
+
+#: src/interface.c:447
+msgid "Season results"
+msgstr "Αποτελέσματα περιόδου "
+
+#: src/interface.c:458
+msgid "_Team"
+msgstr "_Ομάδα"
+
+#: src/interface.c:465
+#: src/treeview.c:1869
+msgid "Playing style"
+msgstr "Στυλ παιχνιδιού"
+
+#: src/interface.c:476
+msgid "All Out Defend"
+msgstr "Όλοι άμυνα"
+
+#: src/interface.c:482
+#: src/treeview.c:1759
+msgid "Defend"
+msgstr "Άμυνα"
+
+#: src/interface.c:488
+msgid "Balanced"
+msgstr "Ισορροπία"
+
+#: src/interface.c:494
+#: src/treeview.c:1761
+msgid "Attack"
+msgstr "Επίθεση"
+
+#: src/interface.c:500
+msgid "All Out Attack"
+msgstr "Όλοι επίθεση"
+
+#: src/interface.c:506
+#: src/treeview.c:1507
+msgid "Scout"
+msgstr "Σκάουτερ"
+
+#: src/interface.c:517
+#: src/interface.c:552
+#: src/interface.c:601
+msgid "Best"
+msgstr "Καλύτερο"
+
+#: src/interface.c:523
+#: src/interface.c:558
+#: src/interface.c:607
+msgid "Good"
+msgstr "Καλό"
+
+#: src/interface.c:529
+#: src/interface.c:564
+#: src/interface.c:613
+msgid "Average"
+msgstr "Μέσο"
+
+#: src/interface.c:535
+#: src/interface.c:570
+#: src/interface.c:619
+msgid "Bad"
+msgstr "Κακό"
+
+#: src/interface.c:541
+#: src/treeview.c:1506
+msgid "Physio"
+msgstr "Φυσιοθεραπευτής"
+
+#: src/interface.c:576
+#: src/treeview.c:1509
+msgid "Youth academy"
+msgstr "Ακαδημία νέων"
+
+#: src/interface.c:587
+msgid "Show youth academy"
+msgstr "Εμφάνιση ακαδημίας νέων"
+
+#: src/interface.c:594
+#: src/treeview.c:1508
+msgid "Youth coach"
+msgstr "Προπονητής νέων"
+
+#: src/interface.c:625
+msgid "Recruiting preference"
+msgstr "Προτίμηση προσέλκυσης"
+
+#: src/interface.c:632
+msgid "Goalies"
+msgstr "Τερματοφύλακες"
+
+#: src/interface.c:638
+msgid "Defenders"
+msgstr "Αμυντικοί"
+
+#: src/interface.c:644
+msgid "Midfielders"
+msgstr "Μέσοι"
+
+#: src/interface.c:650
+msgid "Forwards"
+msgstr "Επιθετικοί"
+
+#: src/interface.c:656
+msgid "Any"
+msgstr "Οτιδήποτε"
+
+#: src/interface.c:662
+msgid "Set investment"
+msgstr "Καθορισμός επένδυσης"
+
+#: src/interface.c:667
+msgid "Boost"
+msgstr "Ώθηση"
+
+#: src/interface.c:678
+msgid "On"
+msgstr "Ενεργή"
+
+#: src/interface.c:684
+msgid "Off"
+msgstr "Ανενεργή"
+
+#: src/interface.c:690
+msgid "Anti"
+msgstr "Αντί"
+
+#: src/interface.c:701
+#: src/options_interface.c:1115
+#: src/training_interface.c:60
+#: src/treeview.c:1599
+#: src/window.c:1004
+msgid "Training camp"
+msgstr "Προπονητικό κέντρο"
+
+#: src/interface.c:710
+msgid "Reset player list"
+msgstr "Επαναφορά λίστας παικτών"
+
+#: src/interface.c:712
+#: src/interface.c:1367
+msgid "Reset player list to the formation at the beginning of the live game pause (right click on player list)"
+msgstr "Επαναφορά λίστας παικτών στη διάταξη της αρχής της παύσης του ζωντανού παιχνιδιού (δεξί κλικ στη λίστα παικτών)"
+
+#: src/interface.c:718
+msgid "Enter custom structure"
+msgstr "Εισάγετε προσαρμοσμένο σύστημα"
+
+#: src/interface.c:726
+msgid "Rearrange team"
+msgstr "Αναδιάταξη ομάδας"
+
+#: src/interface.c:729
+msgid "Try to put the startup players onto their favoured positions and sort the substitutes (Ctrl-R or middle click)"
+msgstr "Προσπάθεια για τοποθέτηση των παικτών στις αγαπημένες τους θέσεις και ταξινόμηση των αναπληρωματικών (Ctrl-R ή μεσαίο κλικ)"
+
+#: src/interface.c:743
+msgid "Browse teams"
+msgstr "Περιήγηση ομάδων"
+
+#: src/interface.c:756
+msgid "Show job exchange"
+msgstr "Εμφάνιση ανταλλαγής εργασίας"
+
+#: src/interface.c:759
+msgid "Show the list of available manager jobs"
+msgstr "Εμφάνιση λίστας από διαθέσιμες εργασίες για μάνατζερ"
+
+#: src/interface.c:764
+msgid "_Player"
+msgstr "_Παίκτης"
+
+#: src/interface.c:771
+#: src/interface.c:1994
+msgid "Show info"
+msgstr "Εμφάνιση πληροφοριών"
+
+#: src/interface.c:779
+#: src/interface.c:1998
+msgid "Put on transfer list"
+msgstr "Τοποθέτηση στη λίστα μεταγραφών"
+
+#: src/interface.c:787
+#: src/interface.c:2002
+msgid "Remove from transfer list"
+msgstr "Αφαίρεση από λίστα μεταγραφών"
+
+#: src/interface.c:795
+#: src/interface.c:2006
+msgid "Offer new contract"
+msgstr "Προσφορά νέου συμβολαίου"
+
+#: src/interface.c:803
+#: src/interface.c:2010
+msgid "Fire"
+msgstr "Απόλυση"
+
+#: src/interface.c:811
+#: src/interface.c:2014
+msgid "Shoots penalties"
+msgstr "Χτύπημα πέναλτι"
+
+#: src/interface.c:819
+#: src/interface.c:2018
+msgid "Move to youth academy"
+msgstr "Μετακίνηση στην ακαδημία νέων"
+
+#: src/interface.c:832
+msgid "Browse players"
+msgstr "Περιήγηση παικτών"
+
+#: src/interface.c:840
+msgid "_User"
+msgstr "_Χρήστης"
+
+#: src/interface.c:847
+msgid "Show last match"
+msgstr "Εμφάνιση τελευταίου αγώνα"
+
+#: src/interface.c:858
+msgid "Show last match stats"
+msgstr "Εμφάνιση στατιστικών τελευταίου αγώνα"
+
+#: src/interface.c:869
+msgid "Show coming matches"
+msgstr "Εμφάνιση επόμενων αγώνων"
+
+#: src/interface.c:885
+msgid "Next user"
+msgstr "Επόμενος χρήστης"
+
+#: src/interface.c:896
+msgid "Previous user"
+msgstr "Προηγούμενος χρήστης"
+
+#: src/interface.c:907
+msgid "Manage users"
+msgstr "Διαχείριση παικτών"
+
+#: src/interface.c:918
+msgid "Fin_Stad"
+msgstr "Οικ_Γήπ"
+
+#: src/interface.c:925
+msgid "Show finances"
+msgstr "Εμφάνιση οικονομικών"
+
+#: src/interface.c:936
+msgid "Show stadium"
+msgstr "Εμφάνιση γηπέδου"
+
+#: src/interface.c:947
+#: src/misc3_interface.c:543
+#: src/window.c:1012
+msgid "Automatic loan repayment"
+msgstr "Αυτόματη αποπληρωμή χρέους"
+
+#: src/interface.c:959
+#: src/options_interface.c:1048
+#: src/treeview.c:1503
+#: src/treeview.c:1513
+#: src/window.c:989
+msgid "Betting"
+msgstr "Στοίχημα"
+
+#: src/interface.c:962
+msgid "Show the betting window"
+msgstr "Εμφάνιση παραθύρου στοιχήματος"
+
+#: src/interface.c:967
+msgid "St_ats"
+msgstr "_Στατιστικά"
+
+#: src/interface.c:974
+#: src/options_interface.c:1167
+msgid "News"
+msgstr "Νέα"
+
+#: src/interface.c:981
+msgid "League stats"
+msgstr "Στατιστικά λίγκας"
+
+#: src/interface.c:992
+msgid "Season history"
+msgstr "Ιστορία περιόδου"
+
+#: src/interface.c:1003
+msgid "User history"
+msgstr "Ιστορία χρήστη"
+
+#: src/interface.c:1014
+#: src/window.c:981
+msgid "Memorable matches"
+msgstr "Αξέχαστοι αγώνες"
+
+#: src/interface.c:1025
+msgid "Add last match"
+msgstr "Προσθήκη τελευταίου αγώνα"
+
+#: src/interface.c:1028
+msgid "Add last recorded match to the current memorable matches file."
+msgstr "Προσθήκη τελευταίου παιχνιδιού στο τρέχον αρχείο με τους αξέχαστους αγώνες."
+
+#: src/interface.c:1037
+msgid "Manage matches"
+msgstr "Διαχείριση αγώνων"
+
+#: src/interface.c:1040
+msgid "Replay, delete or add memorable matches."
+msgstr "Ριπλέι, διαγραφή ή προσθήκη αξέχαστων αγώνων."
+
+#: src/interface.c:1049
+msgid "_Help"
+msgstr "_Βοήθεια"
+
+#: src/interface.c:1056
+#: src/misc2_interface.c:1092
+msgid "About"
+msgstr "Περί"
+
+#: src/interface.c:1064
+#: src/misc2_interface.c:1106
+#: src/misc3_interface.c:237
+msgid "Contributors"
+msgstr "Συντελεστές"
+
+#: src/interface.c:1072
+#: src/misc2_interface.c:1132
+msgid "Help"
+msgstr "Βοήθεια"
+
+#: src/interface.c:1088
+msgid "Load game (Ctrl - O)"
+msgstr "Φόρτωση παιχνιδιού (Ctrl - O)"
+
+#: src/interface.c:1098
+msgid "Save game (Ctrl - S)"
+msgstr "Αποθήκευση παιχνιδιού (Ctrl - S)"
+
+#: src/interface.c:1108
+msgid "Quit (Ctrl - Q)"
+msgstr "Έξοδος (Ctrl - Q)"
+
+#: src/interface.c:1128
+msgid "Back to main menu (Esc)"
+msgstr "Πίσω στο κυρίως μενού (Esc)"
+
+#: src/interface.c:1141
+msgid "Show transferlist (T)"
+msgstr "Εμφάνιση λίστας μεταγραφών (Τ)"
+
+#: src/interface.c:1159
+msgid "Begin a new week (Space)"
+msgstr "Αρχή νέας εβδομάδας (Space)"
+
+#: src/interface.c:1190
+msgid " Season "
+msgstr " Περίοδος "
+
+#: src/interface.c:1200
+msgid " Week "
+msgstr " Εβδομάδα "
+
+#: src/interface.c:1210
+msgid " Round "
+msgstr " Γύρος "
+
+#: src/interface.c:1231
+#: src/misc_interface.c:749
+msgid "Right click and left click to change your playing style"
+msgstr "Δεξί κλικ και αριστερό κλικ για αλλαγή στυλ παιχνιδιού"
+
+#: src/interface.c:1241
+#: src/misc_interface.c:740
+msgid "Right click and left click to change boost state"
+msgstr "Δεξί κλικ και αριστερό κλικ για αλλαγή κατάστασης ώθησης"
+
+#: src/interface.c:1271
+msgid "Rank "
+msgstr "Θέση"
+
+#: src/interface.c:1286
+msgid "Money "
+msgstr "Χρήματα "
+
+#: src/interface.c:1304
+msgid "First value: average current skill of the first 11 players. Second value: average skill of all players."
+msgstr "Πρώτη τιμή: μέση τρέχουσα δεξιότητα των πρώτων 11 παικτών. Δεύτερη τιμή: μέση δεξιότητα όλων των παικτών."
+
+#: src/interface.c:1310
+msgid "Av. skills:  "
+msgstr "Μέσες δεξιότητες:  "
+
+#: src/interface.c:1353
+msgid "Player list 1"
+msgstr "Λίστα παικτών 1"
+
+#: src/interface.c:1361
+msgid "Player list 2"
+msgstr "Λίστα παικτών 2"
+
+#: src/interface.c:1385
+msgid "Previous league/cup (1)"
+msgstr "Προηγούμενη λίγκα/κύπελλο (1)"
+
+#: src/interface.c:1398
+msgid "Next league/cup (2)"
+msgstr "Επόμενη λίγκα/κύπελλο (2)"
+
+#: src/interface.c:1411
+msgid "Previous (Q)"
+msgstr "Προηγούμενο (Q)"
+
+#: src/interface.c:1424
+msgid "Next (W)"
+msgstr "Επόμενο (W)"
+
+#: src/interface.c:2068
+msgid "Move to team"
+msgstr "Μετακίνηση σε ομάδα"
+
+#: src/interface.c:2076
+msgid "Kick out of academy"
+msgstr "Διώξιμο από ακαδημία"
+
+#: src/league_table_interface.c:39
+msgid "League table"
+msgstr "Πίνακας λίγκας"
+
+#: src/league_table_interface.c:49
+msgid "Headline"
+msgstr "Επικεφαλίδα"
+
+#: src/lg_commentary.c:529
+#: src/team.c:613
+msgid "ALL OUT DEFEND"
+msgstr "ΟΛΟΙ ΑΜΥΝΑ"
+
+#: src/lg_commentary.c:532
+#: src/team.c:615
+msgid "DEFEND"
+msgstr "ΑΜΥΝΑ"
+
+#: src/lg_commentary.c:535
+#: src/team.c:617
+msgid "BALANCED"
+msgstr "ΙΣΟΡΡΟΠΙΑ"
+
+#: src/lg_commentary.c:538
+#: src/team.c:619
+msgid "ATTACK"
+msgstr "ΕΠΙΘΕΣΗ"
+
+#: src/lg_commentary.c:541
+#: src/team.c:621
+msgid "ALL OUT ATTACK"
+msgstr "ΟΛΟΙ ΕΠΙΘΕΣΗ"
+
+#. Boost value.
+#: src/lg_commentary.c:544
+#: src/team.c:629
+msgid "ANTI"
+msgstr "ΑΝΤΙ"
+
+#. Boost value.
+#: src/lg_commentary.c:547
+#: src/team.c:632
+msgid "OFF"
+msgstr "ΑΝΕΝΕΡΓΟ"
+
+#. Boost value.
+#: src/lg_commentary.c:550
+#: src/team.c:635
+msgid "ON"
+msgstr "ΕΝΕΡΓΟ"
+
+#. A result after penalties.
+#: src/live_game.c:1842
+#, c-format
+msgid "%d : %d p."
+msgstr "%d : %d πέναλτι"
+
+#. A result after extra time.
+#: src/live_game.c:1846
+#, c-format
+msgid "%d : %d e.t."
+msgstr "%d : %d παράταση"
+
+#: src/load_save.c:78
+msgid "Saving options..."
+msgstr "Επιλογές αποθήκευσης..."
+
+#: src/load_save.c:92
+msgid "Saving leagues and cups..."
+msgstr "Αποθήκευση λιγκών και κυπέλλων..."
+
+#: src/load_save.c:103
+msgid "Saving users..."
+msgstr "Αποθήκευση χρηστών..."
+
+#: src/load_save.c:114
+msgid "Saving transfer list..."
+msgstr "Αποθήκευση λίστας μεταγραφών..."
+
+#: src/load_save.c:125
+msgid "Saving season stats..."
+msgstr "Αποθήκευση στατιστικών περιόδου..."
+
+#. The 'job exchange' is a list of teams looking for a manager.
+#: src/load_save.c:138
+msgid "Saving job exchange..."
+msgstr "Αποθήκευση ανταλλαγής εργασίας..."
+
+#: src/load_save.c:150
+msgid "Saving newspaper..."
+msgstr "Αποθήκευση εφημερίδας..."
+
+#: src/load_save.c:161
+msgid "Saving miscellaneous..."
+msgstr "Αποθήκευση διαφόρων..."
+
+#: src/load_save.c:169
+msgid "Compressing savegame..."
+msgstr "Συμπίεση αποθηκευμένου παιχνιδιού..."
+
+#: src/load_save.c:178
+#: src/load_save.c:338
+msgid "Done."
+msgstr "Ολοκληρώθηκε."
+
+#: src/load_save.c:227
+msgid "Last save file not found."
+msgstr "Δεν βρέθηκε αρχείο τελευταίας αποθήκευσης."
+
+#: src/load_save.c:235
+msgid "Uncompressing savegame..."
+msgstr "Αποσυμπίεση αποθηκευμένου παιχνιδιού..."
+
+#: src/load_save.c:246
+msgid "Loading options..."
+msgstr "Φόρτωση επιλογών..."
+
+#: src/load_save.c:261
+msgid "Loading leagues and cups..."
+msgstr "Φόρτωση λιγκών και κυπέλλων..."
+
+#: src/load_save.c:272
+msgid "Loading users..."
+msgstr "Φόρτωση χρηστών..."
+
+#: src/load_save.c:283
+msgid "Loading transfer list..."
+msgstr "Φόρτωση λίστας μεταγραφών..."
+
+#: src/load_save.c:294
+msgid "Loading season stats..."
+msgstr "Φόρτωση στατιστικών περιόδου..."
+
+#. The 'job exchange' is a list of teams looking for a manager.
+#: src/load_save.c:307
+msgid "Loading job exchange..."
+msgstr "Φόρτωση ανταλλαγής εργασίας..."
+
+#: src/load_save.c:319
+msgid "Loading newspaper..."
+msgstr "Φόρτωση εφημερίδας..."
+
+#: src/load_save.c:330
+msgid "Loading miscellaneous..."
+msgstr "Φόρτωση διαφόρων..."
+
+#: src/main.c:87
+msgid "Load last savegame"
+msgstr "Φόρτωση τελευταίου αποθηκευμένου παιχνιδιού"
+
+#: src/main.c:90
+msgid "Specify additional support directory (takes priority over default ones)"
+msgstr "Καθορισμός επιπρόσθετου καταλόγου υποστήριξης (έχει παραπάνω προτεραιότητα από τους προεπιλεγόμενους)"
+
+#: src/main.c:92
+msgid "String id of the country to load"
+msgstr "Αλφαριθμητικό id της χώρας για φόρτωση"
+
+#: src/main.c:94
+msgid "Language to use (a code like 'de')"
+msgstr "Γλώσσα για χρήση (κωδικός όπως 'de')"
+
+#: src/main.c:100
+msgid "Test an XML commentary file"
+msgstr "Δοκιμή XML αρχείου περιγραφής"
+
+#: src/main.c:103
+msgid "Commentary file name (may be in a support dir)"
+msgstr "Όνομα αρχείου περιγραφής (μπορεί να είναι σε έναν κατάλογο υποστήριξης)"
+
+#. Live game tokens are strings like _AT_ in live game commentary files
+#. which will be filled in by the program during runtime; e.g. _AT_ becomes
+#. the attendace for the match.
+#: src/main.c:109
+msgid "File containing live game tokens (may be in a support dir)"
+msgstr "Αρχείο που να περιλαμβάνει tokens ζωντανού παιχνιδιού (μπορεί να βρίσκεται σε ένα κατάλογο υποστήριξης)"
+
+#: src/main.c:112
+msgid "Commentary event to test; leave out to test all commentaries"
+msgstr "Γεγονός περιγραφής για δοκιμή; παραλείψτε το για δοκιμή όλων των περιγραφών"
+
+#: src/main.c:115
+msgid "How many commentaries to generate per event"
+msgstr "Πόσες περιγραφές θα δημιουργηθούν για κάθε γεγονός"
+
+#: src/main.c:134
+msgid "- a simple and addictive GTK2 football manager"
+msgstr "- ένας απλός και εθιστικός GTK2 μάνατζερ ποδοσφαίρου"
+
+#: src/misc2_callback_func.c:92
+#, c-format
+msgid "%s couldn't afford to buy %s or his roster was full."
+msgstr "%s δεν μπόρεσε να αγοράσει τον %s ή το ρόστερ του ήταν πλήρες."
+
+#: src/misc2_callback_func.c:96
+#, c-format
+msgid "You didn't have enough money to buy %s or your roster was full."
+msgstr "Δεν έχετε αρκετά χρήματα για να αγοράσετε τον %s ή το ρόστερ σας είναι πλήρες."
+
+#: src/misc2_callback_func.c:127
+msgid "Your player roster is full or you don't enough money."
+msgstr "Το ρόστερ παικτών σας είναι πλήρες ή δεν έχετε αρκετά χρήματα."
+
+#: src/misc2_callback_func.c:168
+#, c-format
+msgid "The structure value %d is invalid."
+msgstr "Η τιμή %d της δομής δεν είναι έγκυρη."
+
+#: src/misc2_callback_func.c:214
+#, c-format
+msgid "%s accepts your offer."
+msgstr "Ο %s δέχεται την προσφορά σας."
+
+#: src/misc2_callback_func.c:221
+#, c-format
+msgid "%s rejects your offer. You may still make %d offers."
+msgstr "Ο %s απορρίπτει την προσφορά σας. Μπορείτε να κάνετε ακόμα %d προσφορές."
+
+#: src/misc2_callback_func.c:226
+#, c-format
+msgid "%s rejects your offer and won't negotiate with you anymore. You should sell him before his contract expires (he'll simply leave your team otherwise)."
+msgstr "Ο %s απορρίπτει την προσφορά σας και δεν θα διαπραγματευτεί άλλο μαζί σας. Πρέπει να τον πουλήσετε πριν εκπνεύσει το συμβόλαιο του (αλλιώς θα αφήσει απλώς την ομάδα σας)."
+
+#: src/misc2_callback_func.c:348
+#, c-format
+msgid "The owners of %s politely reject your application. You're not successful enough in their eyes."
+msgstr "Οι ιδιοκτήτες της %s απορρίπτουν ευγενικά την αίτηση σας. Δεν είστε γι'αυτούς αρκετά επιτυχημένος."
+
+#. A lame duck is someone who will quit his job soon and thus doesn't have
+#. a lot of influence/impact anymore, e.g. an American president during
+#. the last 2 years of his second presidency.
+#: src/misc2_callback_func.c:359
+#, c-format
+msgid "The owners of %s accept your application. Since %s don't want to get stuck with a lame duck, you get fired instantly and spend the rest of the current season tending your garden."
+msgstr "Οι ιδιοκτήτες της %s αποδέχονται την αίτηση σας. Από την στιγμή που η %s δεν θέλει να κολλήσει με έναν αποτυχημένο, απολύεστε αμέσως και για το υπόλοιπο της περιόδου ασχολείστε με τον κήπο σας."
+
+#: src/misc2_callback_func.c:365
+#, c-format
+msgid "The owners of %s accept your application."
+msgstr "Οι ιδιοκτήτες της %s δέχονται την αίτηση σας."
+
+#: src/misc2_callbacks.c:162
+msgid "Adjust repayment schedule?"
+msgstr "Προσαρμογή προγράμματος αποπληρωμής?"
+
+#: src/misc2_callbacks.c:166
+msgid "Your offer has been updated."
+msgstr "Η προσφορά σας αναβαθμίστηκε."
+
+#: src/misc2_callbacks.c:168
+msgid "Your offer will be considered next week."
+msgstr "Η προσφορά σας θα εξεταστεί την επόμενη εβδομάδα."
+
+#: src/misc2_callbacks.c:407
+msgid "You can't play Bygfoot without users!"
+msgstr "Δεν μπορείτε να παίξετε Bygfoot χωρίς χρήστες!"
+
+#: src/misc2_callbacks.c:412
+#, c-format
+msgid "Remove user %s from the game?"
+msgstr "Αφαίρεση χρήστη %s από το παιχνίδι;"
+
+#: src/misc2_interface.c:70
+#: src/window.c:895
+msgid "Job offer"
+msgstr "Προσφορά εργασίας"
+
+#: src/misc2_interface.c:97
+#: src/treeview.c:303
+#: src/treeview.c:761
+#: src/treeview.c:2137
+msgid "Name"
+msgstr "Όνομα"
+
+#: src/misc2_interface.c:102
+#: src/treeview2.c:514
+#: src/treeview.c:170
+#: src/treeview.c:331
+#: src/treeview.c:763
+msgid "League"
+msgstr "Λίγκα"
+
+#: src/misc2_interface.c:107
+#: src/treeview.c:1848
+msgid "Rank"
+msgstr "Θέση"
+
+#: src/misc2_interface.c:112
+msgid "Money (approx.)"
+msgstr "Χρήματα (κατά προσέγγιση)"
+
+#: src/misc2_interface.c:117
+#: src/treeview.c:1466
+msgid "Stadium capacity"
+msgstr "Χωρητικότητα γηπέδου"
+
+#: src/misc2_interface.c:122
+#: src/treeview.c:1470
+msgid "Stadium safety"
+msgstr "Ασφάλεια γηπέδου"
+
+#: src/misc2_interface.c:165
+msgid "Player list"
+msgstr "Λίστα παικτών"
+
+#: src/misc2_interface.c:173
+msgid "Average skill:"
+msgstr "Μέση δεξιότητα:"
+
+#. Player health: ok.
+#. Player status: ok.
+#: src/misc2_interface.c:221
+#: src/player.c:1402
+#: src/treeview_helper.c:1095
+#: src/treeview_helper.c:1391
+msgid "OK"
+msgstr "Εντάξει"
+
+#: src/misc2_interface.c:473
+msgid "Confirm & schedule repayment"
+msgstr "Επιβεβαίωση & πρόγραμμα εξόφλησης"
+
+#: src/misc2_interface.c:480
+#: src/misc2_interface.c:577
+#: src/misc2_interface.c:1139
+#: src/misc2_interface.c:1234
+#: src/misc3_interface.c:107
+#: src/misc3_interface.c:403
+#: src/misc3_interface.c:816
+#: src/misc_interface.c:296
+#: src/misc_interface.c:1149
+#: src/options_interface.c:1201
+msgid "Esc"
+msgstr "Esc"
+
+#: src/misc2_interface.c:660
+msgid "1 year"
+msgstr "1 χρόνος"
+
+#: src/misc2_interface.c:668
+msgid "3 years"
+msgstr "3 χρόνια"
+
+#: src/misc2_interface.c:676
+msgid "4 years"
+msgstr "4 χρόνια"
+
+#: src/misc2_interface.c:684
+msgid "2 years"
+msgstr "2 χρόνια"
+
+#: src/misc2_interface.c:747
+msgid "Make offer"
+msgstr "Δημιουργία προσφοράς"
+
+#: src/misc2_interface.c:842
+msgid "Users -- click to remove"
+msgstr "Χρήστες -- κλικ για απομάκρυνση"
+
+#: src/misc2_interface.c:857
+msgid "Click on a user to remove him from the game."
+msgstr "Κλικ σε έναν χρήστη για απομάκρυνση του από το παιχνίδι."
+
+#: src/misc2_interface.c:863
+msgid "Available teams"
+msgstr "Διαθέσιμες ομάδες"
+
+#: src/misc2_interface.c:899
+#: src/misc_interface.c:191
+msgid "Add user"
+msgstr "Προσθήκη χρήστη"
+
+#: src/misc2_interface.c:975
+msgid "Debug"
+msgstr "Εκσφαλμάτωση"
+
+#: src/misc2_interface.c:982
+msgid "Bygfoot debug window. If you got here by accident, CLOSE IMMEDIATELY (otherwise your CPU will be destroyed by overheating)."
+msgstr "Παράθυρο εκσφαλμάτωσης Bygfoot. Εάν βρίσκεστε εδώ κατά λάθος, ΚΛΕΙΣΤΕ ΑΜΕΣΩΣ (αλλιώς η CPU σας θα καταστραφεί λόγω υπερθέρμανσης)."
+
+#: src/misc2_interface.c:1222
+#: src/misc_interface.c:1125
+msgid "Return"
+msgstr "Επιστροφή"
+
+#: src/misc2_interface.c:1251
+msgid "Decide later"
+msgstr "Απόφαση μετά"
+
+#: src/misc2_interface.c:1338
+msgid "Current file"
+msgstr "Τρέχον αρχείο"
+
+#: src/misc2_interface.c:1349
+msgid "Open a memorable matches file"
+msgstr "Άνοιγμα αρχείου με αξέχαστους αγώνες"
+
+#: src/misc2_interface.c:1354
+msgid "Reload matches from file"
+msgstr "Ανανέωση αγώνων από αρχείο"
+
+#: src/misc2_interface.c:1368
+#: src/options_interface.c:405
+msgid "Reload"
+msgstr "Ανανέωση"
+
+#: src/misc2_interface.c:1375
+msgid "Import the matches from a memorable matches file"
+msgstr "Εισαγωγή αγώνων από αρχείο με αξέχαστους αγώνες"
+
+#: src/misc2_interface.c:1389
+msgid "Import file"
+msgstr "Εισαγωγή αρχείου"
+
+#: src/misc2_interface.c:1411
+msgid "Save changes to file and close"
+msgstr "Αποθήκευση αλλαγών στο αρχείο και κλείσιμο"
+
+#: src/misc2_interface.c:1425
+msgid "Save and close"
+msgstr "Αποθήκευση και κλείσιμο"
+
+#: src/misc2_interface.c:1432
+msgid "Reload matches from file and close"
+msgstr "Ανανέωση αγώνων από αρχείο και κλείσιμο"
+
+#: src/misc2_interface.c:1446
+msgid "Reload and close"
+msgstr "Ανανέωση και κλείσιμο"
+
+#: src/misc3_callbacks.c:154
+#, c-format
+msgid "You bet on outcome %d with an odd of %.2f. How much do you wager?"
+msgstr "Στοιχηματίζετε σε αποτέλεσμα %d με πιθανότητα %.2f. Πόσο στοιχηματίζετε;"
+
+#. 'Wager' is the amount of money the user placed on a bet.
+#: src/misc3_callbacks.c:162
+msgid "Wager"
+msgstr "Ποσό στοιχήματος"
+
+#: src/misc3_interface.c:61
+msgid "Betting -- Left click on odd to place or remove bet"
+msgstr "Στοίχημα -- Αριστερό κλικ στη πιθανότητα για τοποθέτηση ή αφαίρεση στοιχήματος"
+
+#: src/misc3_interface.c:74
+#: src/options_interface.c:1018
+msgid "Show matches from all leagues"
+msgstr "Εμφάνιση αγώνων από όλες τις λίγκες"
+
+#: src/misc3_interface.c:77
+msgid "Whether to show matches of all leagues. Use the options window to toggle permanently."
+msgstr "Κατά πόσο θα εμφανίζονται αγώνες όλων των λιγκών. Χρησιμοποιείστε το παράθυρο επιλογών για μόνιμη ρύθμιση."
+
+#: src/misc3_interface.c:79
+#: src/options_interface.c:1023
+msgid "Show matches from cups"
+msgstr "Εμφάνιση αγώνων από κύπελλα"
+
+#: src/misc3_interface.c:82
+msgid "Whether to show cup matches. Use the options window to toggle permanently."
+msgstr "Κατά πόσο θα εμφανίζονται αγώνες κυπέλλου. Χρησιμοποιείστε το παράθυρο επιλογών για μόνιμη ρύθμιση."
+
+#: src/misc3_interface.c:84
+#: src/options_interface.c:1029
+msgid "Show only my recent bets"
+msgstr "Εμφάνιση μόνο των πρόσφατων στοιχημάτων."
+
+#: src/misc3_interface.c:87
+msgid "Whether to show only your bets in the recent bets list"
+msgstr "Κατά πόσο να εμφανιστούν μόνο τα στοιχήματα σας στη λίστα με τα πρόσφατα στοιχήματα"
+
+#. Splash screen hint question.
+#: src/misc3_interface.c:259
+msgid "Did you know?"
+msgstr "Γνωρίζετε;"
+
+#: src/misc3_interface.c:295
+msgid "Previous"
+msgstr "Προηγούμενο"
+
+#: src/misc3_interface.c:315
+msgid "Next"
+msgstr "Επόμενο"
+
+#: src/misc3_interface.c:331
+msgid "Ctrl-N"
+msgstr "Ctrl-N"
+
+#: src/misc3_interface.c:348
+msgid "Start _new game"
+msgstr "Έναρξη _νέου παιχνιδιού"
+
+#: src/misc3_interface.c:355
+msgid "Ctrl-O"
+msgstr "Ctrl-O"
+
+#: src/misc3_interface.c:372
+msgid "_Load game"
+msgstr "_Φόρτωση παιχνιδιού"
+
+#: src/misc3_interface.c:379
+msgid "Ctrl-R"
+msgstr "Ctrl-R"
+
+#: src/misc3_interface.c:396
+msgid "_Resume game"
+msgstr "_Συνέχεια παιχνιδιού"
+
+#: src/misc3_interface.c:555
+msgid "Your debt:"
+msgstr "Το χρέος σας:"
+
+#: src/misc3_interface.c:568
+msgid "Current settings:"
+msgstr "Τρέχουσες ρυθμίσεις:"
+
+#: src/misc3_interface.c:577
+msgid "Start in week:"
+msgstr "Έναρξη στην εβδομάδα:"
+
+#: src/misc3_interface.c:585
+msgid "Weekly installment:"
+msgstr "Εβδομαδιαίο πάγιο:"
+
+#: src/misc3_interface.c:612
+msgid "New settings:"
+msgstr "Νέες ρυθμίσεις:"
+
+#: src/misc3_interface.c:623
+msgid "Start in week"
+msgstr "Έναρξη στην εβδομάδα"
+
+#: src/misc3_interface.c:631
+msgid "Weekly installment"
+msgstr "Εβδομαδιαίο πάγιο"
+
+#: src/misc3_interface.c:657
+msgid "Calculate weekly installment"
+msgstr "Υπολογισμός εβδομαδιαίου πάγιου"
+
+#: src/misc3_interface.c:679
+msgid "Calculate start week"
+msgstr "Υπολογισμός αρχικής εβδομάδας"
+
+#: src/misc3_interface.c:790
+#: src/window.c:1020
+msgid "Bygfoot News"
+msgstr "Νέα Bygfoot"
+
+#: src/misc_callback_func.c:306
+msgid "Safety improvement too high, reset to highest possible value."
+msgstr "Πολύ υψηλή βελτίωση ασφαλείας, αλλαγή στη υψηλότερη δυνατή τιμή."
+
+#: src/misc_callbacks.c:232
+msgid "There were too many substitutions. Only 3 per game are allowed. Player list reset."
+msgstr "Υπάρχουν πολλές αλλαγές. Επιτρέπονται μόνο 3 ανά παιχνίδι. Η λίστα παικτών ξαναλλάζει."
+
+#: src/misc_callbacks.c:468
+msgid "None"
+msgstr "Κανένα"
+
+#: src/misc_interface.c:97
+msgid "Choose country"
+msgstr "Επιλογή χώρας"
+
+#: src/misc_interface.c:107
+msgid "Choose team"
+msgstr "Επιλογή ομάδας"
+
+#: src/misc_interface.c:126
+msgid "Click on a user to remove him."
+msgstr "Κλικ σε ένα χρήστη για απομάκρυνση του."
+
+#: src/misc_interface.c:146
+msgid "Choose league to start in"
+msgstr "Επιλογή λίγκας για αρχή"
+
+#: src/misc_interface.c:159
+msgid "Choose username"
+msgstr "Επιλογή ονόματος χρήστη"
+
+#: src/misc_interface.c:204
+msgid "Load team definitions"
+msgstr "Φόρτωση ορισμών ομάδας"
+
+#: src/misc_interface.c:207
+msgid "Load teams from definition files (note that the official Bygfoot package doesn't contain team definition files, you have to get them from the homepage or via the bygfoot-update script)"
+msgstr "Φόρτωση ομάδων από αρχεία ορισμού (σημειώστε πως το επίσημο πακέτο Bygfoot δεν περιέχει αρχεία ορισμού ομάδας, πρέπει να τα πάρετε από την αρχική σελίδα ή με το script bygfoot-update)"
+
+#: src/misc_interface.c:211
+msgid "Only names"
+msgstr "Μόνο ονόματα"
+
+#: src/misc_interface.c:214
+msgid "Load only the player names in the definition files"
+msgstr "Φόρτωση μόνο ονομάτων παικτών στα αρχεία ορισμού"
+
+#: src/misc_interface.c:218
+msgid "Don't load definitions"
+msgstr "Όχι φόρτωση ορισμών"
+
+#: src/misc_interface.c:221
+msgid "Don't load team definitions at all"
+msgstr "Όχι φόρτωση ορισμών ομάδων ότι και να γίνει"
+
+#: src/misc_interface.c:230
+msgid "Randomise teams in cups"
+msgstr "Επέλεξε τυχαίες ομάδες στα κύπελλα"
+
+#: src/misc_interface.c:233
+msgid "Randomise the order of teams in cups. This only makes sense in supernational definitions like the World Cup where the order of teams is fixed."
+msgstr "Επέλεξε τυχαία την σειρά των ομάδων στα κύπελλα. Αυτό έχει νόημα σε διεθνείς ορισμούς όπως το Παγκόσμιο Κύπελλο όπου η σειρά των ομάδων είναι σταθερή."
+
+#: src/misc_interface.c:249
+msgid "Space"
+msgstr "Space"
+
+#: src/misc_interface.c:266
+msgid "Start"
+msgstr "Έναρξη"
+
+#: src/misc_interface.c:274
+msgid "Go back to the splash screen"
+msgstr "Μετάβαση πίσω στην splash οθόνη"
+
+#: src/misc_interface.c:288
+msgid "Back to splash"
+msgstr "Πίσω στη splash"
+
+#: src/misc_interface.c:387
+#: src/window.c:919
+msgid "Select font"
+msgstr "Επιλογή γραμματοσειράς"
+
+#: src/misc_interface.c:573
+msgid "Commentary"
+msgstr "Περιγραφή"
+
+#: src/misc_interface.c:587
+msgid "Statistics"
+msgstr "Στατιστικά"
+
+#: src/misc_interface.c:624
+msgid "Av. skill: "
+msgstr "Μέση δεξιότητα"
+
+#: src/misc_interface.c:636
+msgid "Opponent player list"
+msgstr "Λίστα παικτών αντιπάλου"
+
+#: src/misc_interface.c:647
+msgid "Esc / Return / Space"
+msgstr "Esc / Return / Space"
+
+#: src/misc_interface.c:664
+msgid "_Pause"
+msgstr "_Παύση"
+
+#: src/misc_interface.c:671
+#: src/misc_interface.c:693
+msgid "Return / Space"
+msgstr "Return / Space"
+
+#: src/misc_interface.c:685
+msgid "_Resume"
+msgstr "_Συνέχεια"
+
+#: src/misc_interface.c:707
+msgid "Change live game speed. The higher the value the faster the live game."
+msgstr "Αλλαγή ταχύτητας ζωντανού παιχνιδιού. Υψηλότερη τιμή κάνει πιο γρήγορο το ζωντανό παιχνίδι."
+
+#: src/misc_interface.c:710
+msgid "Speed"
+msgstr "Ταχύτητα"
+
+#: src/misc_interface.c:717
+msgid "Verbosity"
+msgstr "Πολυλογία"
+
+#: src/misc_interface.c:729
+msgid "Change commentary verbosity. The higher this value the more events you can see."
+msgstr "Αλλαγή πολυλογίας περιγραφής. Όσο ψηλότερη τιμή, τόσο περισσότερα γεγονότα μπορείτε να δείτε."
+
+#: src/misc_interface.c:934
+msgid " seats"
+msgstr "θέσεις"
+
+#: src/misc_interface.c:951
+msgid "Status:"
+msgstr "Κατάσταση:"
+
+#: src/misc_interface.c:965
+msgid "Current capacity"
+msgstr "Τρέχουσα χωρητικότητα"
+
+#: src/misc_interface.c:978
+msgid "Current safety"
+msgstr "Τρέχουσα ασφάλεια"
+
+#: src/misc_interface.c:985
+msgid "Average attendance"
+msgstr "Μέση πληρότητα"
+
+#: src/misc_interface.c:992
+msgid "Average attendance %"
+msgstr "Μέση πληρότητα %"
+
+#: src/misc_interface.c:1017
+msgid "Change ticket price"
+msgstr "Αλλαγή τιμής εισιτηρίου"
+
+#: src/misc_interface.c:1025
+msgid "Price per ticket"
+msgstr "Τιμή ανά εισιτήριο"
+
+#: src/misc_interface.c:1041
+msgid "Increase"
+msgstr "Αύξηση"
+
+#: src/misc_interface.c:1053
+msgid "Capacity (seats)"
+msgstr "Χωρητικότητα (θέσεις)"
+
+#: src/misc_interface.c:1061
+#: src/misc_interface.c:1095
+msgid "Right-click to set to 0"
+msgstr "Δεξί κλικ για ρύθμιση στο 0"
+
+#: src/misc_interface.c:1067
+#: src/misc_interface.c:1101
+#: src/training_interface.c:103
+msgid "Costs"
+msgstr "Κοστίζει"
+
+#: src/misc_interface.c:1071
+#: src/misc_interface.c:1079
+#: src/misc_interface.c:1105
+#: src/misc_interface.c:1113
+msgid "0"
+msgstr "0"
+
+#: src/misc_interface.c:1075
+#: src/misc_interface.c:1109
+msgid "Expected duration"
+msgstr "Αναμενόμενη διάρκεια"
+
+#: src/misc_interface.c:1087
+msgid "Safety (%)"
+msgstr "Ασφάλεια (%)"
+
+#: src/misc_interface.c:1142
+msgid "Confirm!"
+msgstr "Επιβεβαίωση!"
+
+#: src/misc_interface.c:1241
+msgid "Choose file"
+msgstr "Επιλογή αρχείου"
+
+#: src/misc_interface.c:1310
+msgid "There are a few companies interested in sponsoring your team. Please select one:"
+msgstr "Υπάρχουν κάποιες εταιρίες που ενδιαφέρονται να γίνουν χορηγοί της ομάδας σας. Παρακαλώ επιλέξτε μία."
+
+#: src/misc_interface.c:1345
+msgid "Accept"
+msgstr "Αποδοχή"
+
+#: src/misc_interface.c:1352
+msgid "If you don't like any of the sponsors, you can go a few weeks without sponsor and wait for new offers."
+msgstr "Εάν δεν σας αρέσουν κάποιοι από τους χορηγούς, μπορείτε να είστε για λίγες εβδομάδες χωρίς χορηγό και να περιμένετε για νέες προσφορές."
+
+#: src/misc_interface.c:1366
+msgid "Reject for now"
+msgstr "Απόρριψη για τώρα"
+
+#: src/news.c:483
+#, c-format
+msgid "%s and %s (%d)"
+msgstr "%s και %s (%d)"
+
+#: src/news.c:485
+#, c-format
+msgid "%s and %s"
+msgstr "%s και %s"
+
+#: src/options_interface.c:250
+msgid "Confirm quit when not saved"
+msgstr "Επιβεβαίωση εξόδου όταν δεν υπάρχει αποθήκευση"
+
+#: src/options_interface.c:253
+msgid "Whether to show a confirmation popup when you press quit and the game state is not saved"
+msgstr "Κατά πόσο θα εμφανίζεται ένα αναδυόμενο για επιβεβαίωση αν πατηθεί έξοδος και η κατάσταση του παιχνιδιού δεν έχει αποθηκευτεί."
+
+#: src/options_interface.c:255
+msgid "Confirm when unfit"
+msgstr "Επιβεβαίωση αν σε μη καλή φυσική κατάσταση"
+
+#: src/options_interface.c:258
+msgid "Whether to show a confirmation popup if a user team has an injured or banned player in the startup formation"
+msgstr "Κατά πόσο να εμφανίζεται ένα αναδυόμενο για επιβεβαίωση αν η ομάδα κάποιου χρήστη έχει τραυματισμένο ή τιμωρημένο παίκτη στην αρχική διάταξη."
+
+#: src/options_interface.c:260
+msgid "Save overwrites"
+msgstr "Αποθήκευση επικαλύψεων"
+
+#: src/options_interface.c:263
+msgid "Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
+msgstr "Κατά πόσο η επιλογή 'Αποθήκευση' επικαλύπτει το τρέχον αποθηκευμένο αρχείο ή αναδύει ένα παράθυρο 'Αποθήκευση ως'"
+
+#: src/options_interface.c:270
+msgid "Maximize main window"
+msgstr "Μεγιστοποίηση κυρίως παραθύρου"
+
+#: src/options_interface.c:273
+msgid "Whether game starts with a maximized main window (doesn't work with all window managers)"
+msgstr "Κατά πόσο το παιχνίδι θα ξεκινάει με ένα μεγιστοποιημένο κυρίως παράθυρο (δεν δουλεύει με όλους τους window managers)"
+
+#: src/options_interface.c:275
+msgid "Prefer messages"
+msgstr "Προτίμηση μηνυμάτων"
+
+#: src/options_interface.c:278
+msgid "Whether to show warnings and such in the message area in the main window when possible"
+msgstr "Κατά πόσο θα εμφανίζονται προειδοποιήσεις και άλλα σχετικά στο κυρίως παράθυρο όταν αυτό είναι δυνατό"
+
+#: src/options_interface.c:280
+msgid "Show progressbar pictures"
+msgstr "Εμφάνιση εικόνων με μπάρες προόδου"
+
+#: src/options_interface.c:283
+msgid "Whether to show pictures on top of the progressbar when loading/saving or calculating results"
+msgstr "Κατά πόσο να εμφανίζονται εικόνες στο πάνω μέρος της μπάρας προόδου όταν φορτώνονται/αποθηκεύονται ή υπολογίζονται αποτελέσματα"
+
+#: src/options_interface.c:290
+msgid "Skip weeks without user matches"
+msgstr "Παράκαμψη εβδομάδων χωρίς αγώνες χρήστη"
+
+#: src/options_interface.c:293
+msgid "If checked, weeks without user teams playing are calculated automatically (without the user having to press 'New week')"
+msgstr "Αν είναι επιλεγμένο, οι εβδομάδες στις οποίες οι ομάδες χρήστη δεν παίζουν υπολογίζονται αυτόματα (χωρίς ο χρήστης να χρειάζεται να πατήσει 'Νέα εβδομάδα')"
+
+#: src/options_interface.c:312
+msgid "Autosave interval "
+msgstr "Χρονικό διάστημα αυτόματης αποθήκευσης "
+
+#: src/options_interface.c:320
+msgid "How often the game is saved automatically"
+msgstr "Πόσο συχνά αποθηκεύεται αυτόματα το παιχνίδι"
+
+#: src/options_interface.c:323
+msgid " Autosave files "
+msgstr " Αρχεία αυτόματης αποθήκευσης"
+
+#: src/options_interface.c:331
+msgid "How many files the autosave uses"
+msgstr "Πόσα αρχεία χρησιμοποιεί η αυτόματη αποθήκευση"
+
+#: src/options_interface.c:333
+msgid "Player attribute precision"
+msgstr "Ακρίβεια ιδιοτήτων παίκτη"
+
+#: src/options_interface.c:340
+msgid "Player list refresh rate"
+msgstr "Ρυθμός ανανέωσης λίστας παικτών"
+
+#: src/options_interface.c:347
+msgid "Constants file"
+msgstr "Αρχείο σταθερών"
+
+#: src/options_interface.c:359
+#: src/options_interface.c:446
+msgid "Font used in treeviews"
+msgstr "Γραμματοσειρά για χρήση σε treeviews"
+
+#: src/options_interface.c:373
+msgid "Font name"
+msgstr "Όνομα γραμματοσειράς"
+
+#: src/options_interface.c:386
+msgid "File containing settings which determine a lot of aspects of the game behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
+msgstr "Αρχείο που περιέχει ρυθμίσεις που καθορίζουν πολλές πλευρές της συμπεριφοράς του παιχνιδιού. ΜΗΝ ΤΙΣ ΑΛΛΑΖΕΤΕ ΕΚΤΟΣ ΑΝ ΞΕΡΕΤΕ ΤΙ ΚΑΝΕΤΕ."
+
+#: src/options_interface.c:391
+msgid "Reload the constants file"
+msgstr "Επαναφόρτωση του αρχείου ρυθμίσεων"
+
+#: src/options_interface.c:409
+msgid "Language"
+msgstr "Γλώσσα"
+
+#: src/options_interface.c:416
+msgid "Autosave"
+msgstr "Αυτόματη αποθήκευση"
+
+#: src/options_interface.c:421
+msgid "Whether to automatically save the game regularly"
+msgstr "Κατά πόσο να γίνεται τακτικά αυτόματη αποθήκευση του παιχνιδιού"
+
+#: src/options_interface.c:429
+msgid "How many digits after the comma there are for skill etc."
+msgstr "Πόσα δεκαδικά μετά το κόμμα να είναι για την δεξιότητα κ.λ.π."
+
+#: src/options_interface.c:438
+msgid "How often the player list gets refreshed during a live game (in live game minutes)"
+msgstr "Πόσο συχνά η λίστα παικτών θα ανανεώνεται στην διάρκεια ενός ζωντανού παιχνιδιού (σε λεπτά ζωντανού παιχνιδιού)"
+
+#: src/options_interface.c:453
+msgid "Choose game language (might not work in Windows versions)"
+msgstr "Επιλογή γλώσσας παιχνιδιού (ίσως να μην δουλεύει σε εκδόσεις των Windows)"
+
+#: src/options_interface.c:459
+msgid "Global"
+msgstr "Καθολικό"
+
+#: src/options_interface.c:471
+msgid "Confirm removing youths"
+msgstr "Επιβεβαίωση απομάκρυνσης νέων"
+
+#: src/options_interface.c:474
+msgid "Whether a confirmation popup is shown when you kick out a youth from your academy"
+msgstr "Κατά πόσο θα εμφανίζεται ένα αναδυόμενο για επιβεβαίωση όταν διώχνεται ένας νέος από την ακαδημία σας"
+
+#: src/options_interface.c:476
+msgid "Show job offers"
+msgstr "Εμφάνιση προσφορών εργασίας"
+
+#: src/options_interface.c:479
+msgid "Whether to show job offers when a user is successful"
+msgstr "Κατά πόσο να εμφανίζονται προσφορές για εργασία όταν ένας χρήστης είναι επιτυχημένος"
+
+#: src/options_interface.c:484
+msgid "Set to 0 to switch off warning"
+msgstr "Ρύθμιση στο 0 για απενεργοποίηση ειδοποίησης"
+
+#: src/options_interface.c:490
+msgid "Show warning if a player contract gets below "
+msgstr "Εμφάνιση ειδοποίησης αν η λήξη του συμβολαίου ενός παίκτη απέχει λιγότερο από"
+
+#: src/options_interface.c:500
+msgid " months"
+msgstr "μήνες"
+
+#: src/options_interface.c:504
+msgid "Show all leagues in the fixture view"
+msgstr "Εμφάνιση όλων των λιγκών στη θέαση εκδηλώσεων"
+
+#: src/options_interface.c:507
+msgid "Whether in the weekly fixture view all leagues or only the user league is shown"
+msgstr "Κατά πόσο στην θέαση εβδομαδιαίων εκδηλώσεων θα εμφανίζονται όλες οι λίγκες ή μόνο η λίγκα του χρήστη"
+
+#: src/options_interface.c:518
+msgid "Swap adapts structure"
+msgstr "Ανταλλαγή προσαρμόζει σύστημα"
+
+#: src/options_interface.c:521
+msgid "Whether swapping two players automatically adapts the team structure to the player positions"
+msgstr "Κατά πόσο ανταλλαγή δύο παικτών προκαλεί αυτόματη προσαρμογή του συστήματος της ομάδας στις θέσεις των παικτών"
+
+#: src/options_interface.c:523
+msgid "Show overall games/goals"
+msgstr "Εμφάνιση συνολικών παιχνίδια/τέρματα"
+
+#: src/options_interface.c:526
+msgid "Whether to show the player games/goals value in all competitions"
+msgstr "Κατά πόσο να εμφανίζεται η τιμή παιχνίδια/τέρματα του παίκτη σε όλες τις διοργανώσεις"
+
+#: src/options_interface.c:528
+msgid "Gameplay"
+msgstr "Gameplay"
+
+#: src/options_interface.c:540
+msgid "Show live game"
+msgstr "Εμφάνιση ζωντανού παιχνιδιού"
+
+#: src/options_interface.c:544
+msgid "Show tendency bar"
+msgstr "Εμφάνιση μπάρας ροπής"
+
+#: src/options_interface.c:553
+msgid "Live game speed factor"
+msgstr "Παράγοντας ταχύτητας ζωντανού παιχνιδιού"
+
+#: src/options_interface.c:560
+msgid "Live game verbosity"
+msgstr "Πολυλογία ζωντανού παιχνιδιού"
+
+#: src/options_interface.c:573
+msgid "The lower this value the faster the live game commentary will scroll."
+msgstr "Όσο μικρότερη τιμή, τόσο πιο γρήγορα θα κυλά η περιγραφή του ζωντανού παιχνιδιού."
+
+#: src/options_interface.c:582
+msgid "The higher this value, the more commentary you'll see."
+msgstr "Όσο μεγαλύτερη είναι η τιμή αυτή, τόσο πιο αναλυτική περιγραφή θα δείτε."
+
+#: src/options_interface.c:585
+msgid "Automatic substitutions"
+msgstr "Αυτόματες αντικαταστάσεις"
+
+#: src/options_interface.c:588
+msgid "Whether the subs (e.g. for injured players) are made by the CPU. This is automatically done if the live game is off."
+msgstr "Κατά πόσο οι αντικαταστάσεις (π.χ. για τραυματισμένους παίκτες) θα γίνονται από τη CPU. Αυτό γίνεται αυτόματα αν το ζωντανό παιχνίδι είναι απενεργοποιημένο."
+
+#: src/options_interface.c:599
+msgid "Pause when injury"
+msgstr "Παύση όταν υπάρχει τραυματισμός"
+
+#: src/options_interface.c:602
+msgid "Whether the live game pauses when a user player is injured"
+msgstr "Κατά πόσο το ζωντανό παιχνίδι θα διακόπτεται όταν ένας παίκτης κάποιου χρήστη είναι τραυματισμένος"
+
+#: src/options_interface.c:604
+msgid "Pause when red card"
+msgstr "Παύση όταν βγαίνει κόκκινη κάρτα"
+
+#: src/options_interface.c:607
+msgid "Whether the live game pauses when a user player is sent off"
+msgstr "Κατά πόσο το ζωντανό παιχνίδι θα διακόπτεται όταν βγαίνει ένας παίκτης"
+
+#: src/options_interface.c:609
+msgid "Pause when break"
+msgstr "Παύση όταν υπάρξει διάλειμμα"
+
+#: src/options_interface.c:612
+msgid "Whether the live game pauses at half time and extra time"
+msgstr "Κατά πόσο το ζωντανό παιχνίδι θα διακόπτεται στο ημίχρονο και στην παράταση"
+
+#: src/options_interface.c:622
+msgid "Name "
+msgstr "Όνομα"
+
+#: src/options_interface.c:629
+msgid "CPos "
+msgstr "ΤΘεσ "
+
+#: src/options_interface.c:636
+msgid "Pos "
+msgstr "Θέσ "
+
+#: src/options_interface.c:643
+msgid "CSkill "
+msgstr "ΤΔεξιότητα"
+
+#: src/options_interface.c:650
+msgid "Skill "
+msgstr "Δεξιότητα"
+
+#: src/options_interface.c:657
+msgid "Fitness "
+msgstr "Φυσική κατάσταση"
+
+#: src/options_interface.c:664
+msgid "Games "
+msgstr "Παιχνίδια "
+
+#: src/options_interface.c:671
+msgid "Shots "
+msgstr "Σουτ "
+
+#: src/options_interface.c:678
+msgid "Goals "
+msgstr "Τέρματα "
+
+#: src/options_interface.c:685
+msgid "Status "
+msgstr "Κατάσταση "
+
+#: src/options_interface.c:692
+msgid "Cards "
+msgstr "Κάρτες "
+
+#: src/options_interface.c:699
+msgid "Age "
+msgstr "Ηλικία "
+
+#: src/options_interface.c:706
+msgid "ETal "
+msgstr "ΑΤαλ"
+
+#: src/options_interface.c:713
+msgid "Value "
+msgstr "Τιμή "
+
+#: src/options_interface.c:720
+msgid "Wage "
+msgstr "Μισθός "
+
+#: src/options_interface.c:727
+msgid "Contract "
+msgstr "Συμβόλαιο "
+
+#: src/options_interface.c:734
+msgid "League "
+msgstr "Λίγκα "
+
+#: src/options_interface.c:741
+msgid "Team "
+msgstr "Ομάδα "
+
+#: src/options_interface.c:978
+msgid "Attribute "
+msgstr "Ιδιότητα "
+
+#: src/options_interface.c:985
+msgid "List 1 "
+msgstr "Λίστα 1 "
+
+#: src/options_interface.c:992
+msgid "List 2"
+msgstr "Λίστα 2"
+
+#: src/options_interface.c:1006
+msgid "Player attributes shown"
+msgstr "Εμφάνιση ιδιοτήτων παίκτη"
+
+#: src/options_interface.c:1021
+msgid "Whether to show matches of all leagues in the betting window"
+msgstr "Κατά πόσο να εμφανίζονται αγώνες όλων των λιγκών στο παράθυρο στοιχήματος"
+
+#: src/options_interface.c:1026
+msgid "Whether to show cup matches in the betting window"
+msgstr "Κατά πόσο να εμφανίζονται αγώνες κυπέλλου στο παράθυρο στοιχήματος"
+
+#: src/options_interface.c:1037
+msgid "Default wager"
+msgstr "Προεπιλογή ποσού στοιχήματος"
+
+#: src/options_interface.c:1045
+msgid "How much you wager by default"
+msgstr "Προεπιλεγόμενο ποσό στοιχήματος"
+
+#: src/options_interface.c:1062
+msgid "Default hotel"
+msgstr "Προεπιλογή ξενοδοχείου"
+
+#: src/options_interface.c:1085
+msgid "Default recreation:"
+msgstr "Προεπιλεγόμενη αναψυχή:"
+
+#: src/options_interface.c:1105
+msgid "Default training:"
+msgstr "Προεπιλογή προπόνησης:"
+
+#: src/options_interface.c:1127
+msgid "Create user news"
+msgstr "Δημιουργία νέων χρήστη"
+
+#: src/options_interface.c:1131
+msgid "Create cup news"
+msgstr "Δημιουργία νέων κυπέλλου"
+
+#: src/options_interface.c:1135
+msgid "Create league news"
+msgstr "Δημιουργία νέων λίγκας"
+
+#: src/options_interface.c:1139
+msgid "Show only recent news"
+msgstr "Εμφάνιση μόνο προσφάτων νέων"
+
+#: src/options_interface.c:1147
+msgid "No automatic popup"
+msgstr "Όχι αυτόματο αναδυόμενο"
+
+#: src/options_interface.c:1153
+msgid "Popup for user news"
+msgstr "Αναδυόμενο για νέα χρήστη"
+
+#: src/options_interface.c:1156
+msgid "Show news window after a matchday when new user news was created"
+msgstr "Εμφάνιση παραθύρου μετά από αγωνιστική όταν καινούρια νέα χρήστη έχουν δημιουργηθεί"
+
+#: src/options_interface.c:1160
+msgid "Automatic popup"
+msgstr "Αυτόματο αναδυόμενο"
+
+#: src/options_interface.c:1163
+msgid "Always show news window after a matchday"
+msgstr "Πάντα θα εμφανίζεται το παράθυρο νέων μετά από μία αγωνιστική"
+
+#: src/options_interface.c:1184
+msgid "Save global settings to file"
+msgstr "Αποθήκευση καθολικών ρυθμίσεων σε αρχείο"
+
+#: src/options_interface.c:1187
+msgid "Whether to save the global settings to file (so that they get loaded next time you start a new game)"
+msgstr "Κατά πόσο θα αποθηκεύονται οι καθολικές ρυθμίσεις σε αρχείο (για να φορτώνονται αυτόματα την επόμενη φορά που θα αρχίζετε ένα νέο παιχνίδι)"
+
+#: src/options_interface.c:1189
+msgid "Save user settings to file"
+msgstr "Αποθήκευση ρυθμίσεων χρήστη σε αρχείο"
+
+#: src/options_interface.c:1192
+msgid "Whether to save the user settings to file (so that they get loaded next time this user starts a new game)"
+msgstr "Κατά πόσο να αποθηκεύονται οι ρυθμίσεις ενός χρήστη σε ένα αρχείο (για να φορτωθούν την επόμενη φορά που ο χρήστης αυτός αρχίζει ένα νέο παιχνίδι)"
+
+#: src/player.c:669
+msgid "You can't replace a banned player."
+msgstr "Δεν μπορείτε να αντικαταστήσετε έναν τιμωρημένο παίκτη."
+
+#: src/player.c:1242
+#, c-format
+msgid "%s's contract expires in %.1f years."
+msgstr "Το συμβόλαιο του %s λήγει σε %.1f χρόνια."
+
+#: src/player.c:1405
+msgid "Concussion"
+msgstr "Διάσειση"
+
+#: src/player.c:1408
+msgid "Pulled muscle"
+msgstr "Τράβηγμα"
+
+#: src/player.c:1411
+msgid "Hamstring"
+msgstr "Ρήξη τενόντων"
+
+#: src/player.c:1414
+msgid "Groin injury"
+msgstr "Τραυματισμός βουβωνικής χώρας"
+
+#: src/player.c:1417
+msgid "Fractured ankle"
+msgstr "Κάταγμα αστραγάλου"
+
+#: src/player.c:1420
+msgid "Broken rib"
+msgstr "Σπασμένα πλευρά"
+
+#: src/player.c:1423
+msgid "Broken leg"
+msgstr "Σπασμένο πόδι"
+
+#: src/player.c:1426
+msgid "Broken ankle"
+msgstr "Σπασμένος αστράγαλος"
+
+#: src/player.c:1429
+msgid "Broken arm"
+msgstr "Σπασμένος βραχίονας"
+
+#: src/player.c:1432
+msgid "Broken shoulder"
+msgstr "Σπασμένος ώμος"
+
+#: src/player.c:1435
+msgid "Torn crucial ligament"
+msgstr "Ρήξη συνδέσμου"
+
+#: src/support.c:90
+#: src/support.c:114
+#, c-format
+msgid "Couldn't find pixmap file: %s"
+msgstr "Αδυναμία εύρεσης αρχείου pixmap: %s"
+
+#: src/team.c:660
+#, c-format
+msgid "Team style changed to %s."
+msgstr "Αλλαγή στυλ ομάδας σε %s."
+
+#: src/team.c:667
+#, c-format
+msgid "Boost changed to %s (costs %d per minute)."
+msgstr "Αλλαγή ώθησης σε %s (κοστίζει %d ανά λεπτό)."
+
+#: src/team.c:672
+#, c-format
+msgid "Boost changed to %s."
+msgstr "Αλλαγή ώθησης σε %s."
+
+#. a won match
+#: src/team.c:1053
+#, c-format
+msgid "W  %d : %d"
+msgstr "Ν  %d : %d"
+
+#. a lost match
+#: src/team.c:1059
+#, c-format
+msgid "L  %d : %d"
+msgstr "Η  %d: %d"
+
+#. a drawn match
+#: src/team.c:1064
+#, c-format
+msgid "Dw %d : %d"
+msgstr "Ι %d : %d"
+
+#. a match at home
+#: src/team.c:1074
+#, c-format
+msgid "%s (H) "
+msgstr "%s (Εν.) "
+
+#. a match away
+#: src/team.c:1080
+#, c-format
+msgid "<span background='%s' foreground='%s'>%s (A) </span> "
+msgstr "<span background='%s' foreground='%s'>%s (Εκ.) </span> "
+
+#. a match on neutral ground
+#: src/team.c:1090
+#, c-format
+msgid "%s (N) "
+msgstr "%s (Ουδ.) "
+
+#. draw
+#: src/team.c:1144
+msgid "Dw "
+msgstr "Ι "
+
+#. lost
+#: src/team.c:1148
+msgid "L  "
+msgstr "Η  "
+
+#. won
+#: src/team.c:1151
+msgid "W  "
+msgstr "Ν  "
+
+#: src/training_callbacks.c:121
+#, c-format
+msgid "%d training camps left this season."
+msgstr "Απομένουν %d προπονητικά κέντρα αυτή την περίοδο"
+
+#: src/training_interface.c:84
+msgid "Camp points"
+msgstr "Βαθμοί κέντρου"
+
+#: src/training_interface.c:98
+msgid "Recreation"
+msgstr "Αναψυχή"
+
+#: src/training_interface.c:117
+msgid "Training"
+msgstr "Προπόνηση"
+
+#: src/training_interface.c:161
+#: src/treeview.c:2909
+msgid "Good Hotel"
+msgstr "Καλό ξενοδοχείο"
+
+#: src/training_interface.c:168
+#: src/treeview.c:2912
+msgid "First-Class Hotel"
+msgstr "Ξενοδοχείο πρώτης κλάσης"
+
+#: src/training_interface.c:175
+#: src/treeview.c:2915
+msgid "Premium Hotel"
+msgstr "Ακριβό ξενοδοχείο"
+
+#: src/training_interface.c:197
+msgid "Save settings as default"
+msgstr "Αποθήκευση ρυθμίσεων ως προεπιλογών"
+
+#: src/transfer.c:567
+#, c-format
+msgid "%s has been added to the transfer list for %d weeks."
+msgstr "Ο %s προστέθηκε στη λίστα μεταγραφών για %d εβδομάδες."
+
+#: src/treeview2.c:68
+msgid "REPLAY"
+msgstr "ΡΙΠΛΕΪ"
+
+#: src/treeview2.c:69
+msgid "REMOVE"
+msgstr "ΑΦΑΙΡΕΣΗ"
+
+#: src/treeview2.c:70
+msgid "EXPORT"
+msgstr "ΕΞΑΓΩΓΗ"
+
+#: src/treeview2.c:91
+msgid "Your team"
+msgstr "Η ομάδα σας"
+
+#: src/treeview2.c:92
+#: src/treeview2.c:212
+msgid "Opponent"
+msgstr "Αντίπαλος"
+
+#: src/treeview2.c:93
+#: src/treeview2.c:214
+msgid "Result"
+msgstr "Αποτέλεσμα"
+
+#: src/treeview2.c:94
+#: src/treeview2.c:211
+msgid "Competition"
+msgstr "Διοργάνωση"
+
+#: src/treeview2.c:95
+#: src/treeview2.c:515
+msgid "Country"
+msgstr "Χώρα"
+
+#. Week
+#: src/treeview2.c:208
+msgid "We"
+msgstr "Εβ"
+
+#. Round
+#: src/treeview2.c:210
+msgid "Ro"
+msgstr "Γυρ"
+
+#. Copy the <span...> stuff, translate in between.
+#: src/treeview2.c:300
+msgid "<span background='lightgrey' size='large' weight='bold'>Current bets</span>"
+msgstr "<span background='lightgrey' size='large' weight='bold'>Τρέχοντα στοιχήματα</span>"
+
+#. Copy the <span...> stuff, translate in between.
+#: src/treeview2.c:302
+msgid "<span background='lightgrey' size='large' weight='bold'>Recent bets</span>"
+msgstr "<span background='lightgrey' size='large' weight='bold'>Πρόσφατα στοιχήματα</span>"
+
+#: src/treeview2.c:393
+msgid "Team1"
+msgstr "Ομάδα1"
+
+#. Team 1 wins (betting window).
+#: src/treeview2.c:395
+msgid "Win1"
+msgstr "Νίκητής1"
+
+#: src/treeview2.c:396
+msgid "Draw"
+msgstr "Ισοπαλία"
+
+#. Team 2 wins (betting window).
+#: src/treeview2.c:398
+msgid "Win2"
+msgstr "Νικητής2"
+
+#: src/treeview2.c:399
+msgid "Team2"
+msgstr "Ομάδα2"
+
+#. How much the user wagers; how much he won or lost.
+#: src/treeview2.c:401
+msgid ""
+"Wager/\n"
+"Win/Loss"
+msgstr ""
+"Ποσό στοιχήματος/\n"
+"Κέρδος/Χάσιμο"
+
+#: src/treeview2.c:513
+#: src/treeview.c:161
+#: src/treeview.c:330
+#: src/treeview.c:762
+#: src/treeview.c:1367
+#: src/treeview.c:1842
+#: src/treeview.c:1986
+#: src/treeview.c:2324
+msgid "Team"
+msgstr "Ομάδα"
+
+#: src/treeview2.c:516
+msgid "Av.skill"
+msgstr "Μέση δεξιότητα"
+
+#: src/treeview2.c:517
+msgid "Talent %"
+msgstr "Ταλέντο %"
+
+#: src/treeview2.c:599
+msgid "No news available."
+msgstr "Δεν υπάρχουν διαθέσιμα νέα."
+
+#: src/treeview2.c:620
+#: src/treeview.c:1003
+#, c-format
+msgid "Week %d Round %d"
+msgstr "Εβδομάδα %d Γύρος %d"
+
+#. Average skill
+#: src/treeview.c:179
+msgid "Av.Sk."
+msgstr "Μέσ.δεξ."
+
+#. Current position of a player.
+#: src/treeview.c:305
+msgid "CPos"
+msgstr "ΠΘέσ."
+
+#. Position of a player.
+#: src/treeview.c:307
+msgid "Pos"
+msgstr "Θέσ."
+
+#. Current skill of a player.
+#: src/treeview.c:309
+msgid "CSk"
+msgstr "ΠΔεξ."
+
+#. Skill of a player.
+#: src/treeview.c:311
+msgid "Sk"
+msgstr "Δεξ"
+
+#. Fitness of a player.
+#: src/treeview.c:313
+msgid "Fit"
+msgstr "Φυσ κατ."
+
+#. Games of a player.
+#: src/treeview.c:315
+msgid "Ga"
+msgstr "Αγ"
+
+#. Shots of a player.
+#: src/treeview.c:317
+msgid "Sh"
+msgstr "Σουτ"
+
+#. Goals of a player.
+#. Goals.
+#: src/treeview.c:319
+#: src/treeview.c:2454
+msgid "Go"
+msgstr "Γκολ"
+
+#. Status of a player.
+#: src/treeview.c:321
+msgid "Status"
+msgstr "Κατάσταση"
+
+#. Yellow cards of a player.
+#: src/treeview.c:323
+msgid "YC"
+msgstr "Κιτ. κ"
+
+#: src/treeview.c:324
+#: src/treeview.c:2144
+msgid "Age"
+msgstr "Ηλικία"
+
+#. Estimated talent of a player.
+#: src/treeview.c:326
+msgid "Etal"
+msgstr "Εκ.τ"
+
+#: src/treeview.c:327
+#: src/treeview.c:2146
+msgid "Value"
+msgstr "Τιμή"
+
+#: src/treeview.c:329
+#: src/treeview.c:2148
+msgid "Contract"
+msgstr "Συμβόλαιο"
+
+#. 'Normal' goals, ie. no penalties or free kicks.
+#: src/treeview.c:818
+msgid "Goals (regular)"
+msgstr "Τέρματα (κανονικά)"
+
+#: src/treeview.c:819
+#: src/treeview_helper.c:934
+msgid "Shots"
+msgstr "Σουτ"
+
+#: src/treeview.c:820
+#: src/treeview.c:2396
+msgid "Shot %"
+msgstr "Σουτ %"
+
+#: src/treeview.c:821
+msgid "Possession"
+msgstr "Κατοχή"
+
+#: src/treeview.c:822
+msgid "Penalties"
+msgstr "Πέναλτι"
+
+#: src/treeview.c:823
+msgid "Fouls"
+msgstr "Φάουλ"
+
+#: src/treeview.c:824
+#: src/treeview_helper.c:935
+msgid "Yellows"
+msgstr "Κίτρινες"
+
+#: src/treeview.c:825
+#: src/treeview_helper.c:936
+msgid "Reds"
+msgstr "Κόκκινες"
+
+#: src/treeview.c:826
+msgid "Injuries"
+msgstr "Τραυματισμοί"
+
+#: src/treeview.c:891
+#, c-format
+msgid ""
+"Attendance\n"
+"%s"
+msgstr ""
+"Πληρότητα\n"
+"%s"
+
+#: src/treeview.c:899
+#, c-format
+msgid ""
+"<span background='%s'>There were technical problems\n"
+"in the stadium.</span>"
+msgstr ""
+"<span background='%s'>Ύπηρξαν τεχνικά προβλήματα\n"
+"στο γήπεδο.</span>"
+
+#: src/treeview.c:902
+#, c-format
+msgid ""
+"<span background='%s'>There were riots\n"
+"in the stadium.</span>"
+msgstr ""
+"<span background='%s'>Ύπηρξαν έκτροπα\n"
+"στο γήπεδο.</span>"
+
+#: src/treeview.c:905
+#, c-format
+msgid ""
+"<span background='%s'>There was a fire\n"
+"in the stadium.</span>"
+msgstr ""
+"<span background='%s'>Ύπηρξε φωτιά\n"
+"στο γήπεδο.</span>"
+
+#. A group of a round robin stage of a cup.
+#: src/treeview.c:1234
+#, c-format
+msgid "%s Group %d"
+msgstr "%s Γκρουπ %d"
+
+#. Games played (a number).
+#: src/treeview.c:1369
+msgid "PL"
+msgstr "ΑΓ"
+
+#. Games won.
+#. Won.
+#: src/treeview.c:1371
+#: src/treeview_helper.c:1739
+msgid "W"
+msgstr "Ν"
+
+#. Games drawn.
+#. Draw.
+#: src/treeview.c:1373
+#: src/treeview_helper.c:1757
+msgid "Dw"
+msgstr "Ι"
+
+#. Games lost.
+#. Lost.
+#: src/treeview.c:1375
+#: src/treeview_helper.c:1750
+msgid "L"
+msgstr "Η"
+
+#. Goals for.
+#: src/treeview.c:1377
+msgid "GF"
+msgstr "ΕΠ"
+
+#. Goals against.
+#: src/treeview.c:1379
+msgid "GA"
+msgstr "ΑΜ"
+
+#. Goal difference.
+#: src/treeview.c:1381
+msgid "GD"
+msgstr "Δ"
+
+#. Points.
+#: src/treeview.c:1383
+msgid "PTS"
+msgstr "Β"
+
+#: src/treeview.c:1460
+msgid "Stadium"
+msgstr "Γήπεδο"
+
+#: src/treeview.c:1476
+#: src/window.c:651
+#, c-format
+msgid ""
+"Improvement in progress.\n"
+"%d seats and %d%% safety still to be done.\n"
+"Expected finish: %d weeks."
+msgstr ""
+"Πρόοδος βελτίωσης.\n"
+"Έχουν να γίνουν ακόμα %d θέσεις και %d%% ασφάλεια.\n"
+"Αναμενόμενο τέλος: %d εβδομάδες."
+
+#: src/treeview.c:1484
+msgid "Stadium status"
+msgstr "Κατάσταση γηπέδου"
+
+#: src/treeview.c:1500
+msgid "Prize money"
+msgstr "Λεφτά επάθλου"
+
+#: src/treeview.c:1501
+msgid "Ticket income"
+msgstr "Έσοδα από εισιτήρια"
+
+#: src/treeview.c:1502
+msgid "Sponsorship"
+msgstr "Χορηγία"
+
+#: src/treeview.c:1505
+msgid "Wages"
+msgstr "Μισθοί"
+
+#: src/treeview.c:1510
+msgid "Journey costs"
+msgstr "Κόστη ταξιδιού"
+
+#. Money paid to players a user fired.
+#: src/treeview.c:1512
+msgid "Compensations"
+msgstr "Αποζημιώσεις"
+
+#. Applying boost costs money.
+#: src/treeview.c:1515
+msgid "Boost costs"
+msgstr "Η ώθηση κοστίζει"
+
+#: src/treeview.c:1529
+#: src/treeview.c:1532
+#, c-format
+msgid ""
+"Bi-weekly balance\n"
+"(Week %d and %d)"
+msgstr ""
+"Ισορροπία μεταξύ δύο εβδομάδων\n"
+"(Εβδομάδα %d και %d)"
+
+#: src/treeview.c:1536
+msgid "Bi-weekly balance"
+msgstr "Ισορροπία μεταξύ δύο εβδομάδων"
+
+#. Finances balance.
+#: src/treeview.c:1563
+msgid "Balance"
+msgstr "Ισορροπία"
+
+#: src/treeview.c:1581
+msgid "Transfers"
+msgstr "Μεταγραφές"
+
+#: src/treeview.c:1591
+msgid "Stadium expenses"
+msgstr "Έξοδα γηπέδου"
+
+#: src/treeview.c:1612
+msgid "Money"
+msgstr "Χρήματα"
+
+#: src/treeview.c:1616
+msgid "Drawing credit"
+msgstr "Πιστωτικό όριο"
+
+#: src/treeview.c:1620
+msgid "Current market interest"
+msgstr "Τρέχων τόκος αγοράς"
+
+#: src/treeview.c:1627
+msgid "interest rate"
+msgstr "Επιτόκιο"
+
+#: src/treeview.c:1628
+#, c-format
+msgid "Debt (repay in %d weeks)"
+msgstr "Χρέος (εξόφληση σε %d εβδομάδες)"
+
+#: src/treeview.c:1636
+msgid "Automatic repayment"
+msgstr "Αυτόματη εξόφληση"
+
+#: src/treeview.c:1641
+#, c-format
+msgid "(starting week %d)"
+msgstr "(εκκίνηση εβδομάδα %d)"
+
+#: src/treeview.c:1650
+msgid "Sponsor"
+msgstr "Χορηγός"
+
+#. Contract time and money a sponsor pays.
+#: src/treeview.c:1655
+#, c-format
+msgid "%.1f months / %s"
+msgstr "%.1f μήνες / %s"
+
+#: src/treeview.c:1657
+msgid "Contract / Money"
+msgstr "Συμβόλαιο / Χρήματα"
+
+#: src/treeview.c:1664
+msgid "Youth acad. invest."
+msgstr "Επένδυση στην ακαδημία νέων."
+
+#: src/treeview.c:1686
+msgid "Income"
+msgstr "Εισόδημα"
+
+#: src/treeview.c:1687
+msgid "Expenses"
+msgstr "Έξοδα"
+
+#: src/treeview.c:1758
+msgid "Goalie"
+msgstr "Τερματοφύλακας"
+
+#: src/treeview.c:1760
+msgid "Midfield"
+msgstr "Μέσος"
+
+#: src/treeview.c:1814
+msgid "Your next opponent"
+msgstr "Ο επόμενος αντίπαλος σας"
+
+#: src/treeview.c:1820
+#: src/treeview.c:1825
+#, c-format
+msgid "<span foreground='%s' background='%s'>Week %d Round %d</span>"
+msgstr "<span foreground='%s' background='%s'>Εβδομάδα %d Γύρος %d</span>"
+
+#: src/treeview.c:1831
+msgid "Neutral ground"
+msgstr "Ουδέτερο έδαφος"
+
+#: src/treeview.c:1833
+msgid "Home"
+msgstr "Εντός"
+
+#: src/treeview.c:1835
+msgid "Away"
+msgstr "Εκτός"
+
+#: src/treeview.c:1866
+msgid "Average skill"
+msgstr "Μέση δεξιότητα"
+
+#: src/treeview.c:1874
+msgid "Team structure"
+msgstr "Σύστημα ομάδας"
+
+#: src/treeview.c:1880
+msgid "Latest results"
+msgstr "Τελευταία αποτελέσματα"
+
+#: src/treeview.c:1882
+#: src/treeview.c:2420
+#: src/treeview_helper.c:933
+msgid "Goals"
+msgstr "Γκολ"
+
+#. The user's results against a specific team.
+#: src/treeview.c:1887
+msgid "Your results"
+msgstr "Τα αποτελέσματα σας"
+
+#: src/treeview.c:1987
+msgid "Results"
+msgstr "Αποτελέσματα"
+
+#: src/treeview.c:2138
+msgid "Position"
+msgstr "Θέση"
+
+#: src/treeview.c:2139
+msgid "Current position"
+msgstr "Τρέχουσα θέση"
+
+#: src/treeview.c:2140
+msgid "Skill"
+msgstr "Δεξιότητα"
+
+#: src/treeview.c:2141
+msgid "Current skill"
+msgstr "Τρέχον δεξιότητα"
+
+#: src/treeview.c:2142
+msgid "Fitness"
+msgstr "Φυσική κατάσταση"
+
+#: src/treeview.c:2143
+msgid "Estimated talent"
+msgstr "Εκτιμώμενο ταλέντο"
+
+#: src/treeview.c:2145
+msgid "Health"
+msgstr "Υγεία"
+
+#: src/treeview.c:2149
+msgid "Games/Goals\n"
+msgstr "Παιχνίδια/Τέρματα\n"
+
+#. 'Limit' is the number of yellow cards until a player gets
+#. banned automatically for a match.
+#: src/treeview.c:2152
+msgid "Yellow cards (limit)\n"
+msgstr "Κίτρινες κάρτες (όριο)\n"
+
+#: src/treeview.c:2153
+msgid "Banned\n"
+msgstr "Τιμωρημένος\n"
+
+#. Hot streak or cold streak of a player.
+#: src/treeview.c:2155
+msgid "Streak"
+msgstr "Φόρμα"
+
+#: src/treeview.c:2156
+msgid "Career values"
+msgstr "Τιμές καριέρας"
+
+#: src/treeview.c:2157
+msgid ""
+"New contract\n"
+"offers"
+msgstr ""
+"Νέο συμβόλαιο\n"
+"προσφορές"
+
+#. Season.
+#: src/treeview.c:2323
+msgid "Sea"
+msgstr "Περ"
+
+#: src/treeview.c:2324
+msgid "Week"
+msgstr "Εβδομάδα"
+
+#: src/treeview.c:2352
+msgid "Event"
+msgstr "Γεγονός"
+
+#: src/treeview.c:2392
+msgid "Best offensive teams"
+msgstr "Ομάδες με τις καλύτερες επιθέσεις"
+
+#: src/treeview.c:2393
+msgid "Best defensive teams"
+msgstr "Ομάδες με τις καλύτερες άμυνες"
+
+#: src/treeview.c:2396
+msgid "Best goal scorers"
+msgstr "Πρώτοι σκόρερ"
+
+#: src/treeview.c:2397
+msgid "Best goalkeepers"
+msgstr "Καλύτεροι τερματοφύλακες"
+
+#. % of saves for goalies (#goals / #shots)
+#: src/treeview.c:2399
+msgid "Save %"
+msgstr "Αποκρούσεις %"
+
+#. Goals per game.
+#: src/treeview.c:2456
+msgid "Go/Ga"
+msgstr "Τερ/Αγ"
+
+#: src/treeview.c:2564
+msgid "League champions"
+msgstr "Πρωταθλητές λίγκας"
+
+#: src/treeview.c:2565
+msgid "Cup champions"
+msgstr "Κυπελλούχοι"
+
+#: src/treeview.c:2615
+#, c-format
+msgid "Season %d"
+msgstr "Περίοδος %d"
+
+#: src/treeview.c:2738
+msgid "Didn't find file 'bygfoot_help'."
+msgstr "Δεν βρέθηκε το αρχείο 'bygfoot_help'."
+
+#: src/treeview.c:2798
+msgid "Current league"
+msgstr "Τρέχουσα λίγκα"
+
+#. Language is system-set (not user chosen).
+#: src/treeview.c:2852
+msgid "System"
+msgstr "Σύστημα"
+
+#: src/treeview.c:2986
+msgid "Company"
+msgstr "Εταιρία:"
+
+#: src/treeview.c:2987
+msgid ""
+"Contract length\n"
+"(Months)"
+msgstr ""
+"Μήκος συμβολαίου\n"
+"(Μήνες)"
+
+#: src/treeview.c:2988
+msgid "Money / week"
+msgstr "Χρήματα / εβδομάδα"
+
+#: src/treeview_helper.c:914
+msgid "Player doesn't negotiate anymore"
+msgstr "Ο παίκτης δεν διαπραγματεύεται άλλο"
+
+#: src/treeview_helper.c:916
+msgid "Player accepts new offers"
+msgstr "Ο παίκτης δέχεται νέες προσφορές"
+
+#: src/treeview_helper.c:932
+msgid "Games"
+msgstr "Παιχνίδια"
+
+#: src/treeview_helper.c:952
+#, c-format
+msgid ""
+"\n"
+"Goals/Game %.1f Save %% %.1f"
+msgstr ""
+"\n"
+"Τέρματα/Αγώνα %.1f Αποκρούσεις %% %.1f"
+
+#: src/treeview_helper.c:959
+#, c-format
+msgid ""
+"\n"
+"Goals/Game %.1f Shot %% %.1f"
+msgstr ""
+"\n"
+"Τέρ/Αγ %.1f Σουτ %% %.1f"
+
+#. Ban info of a player in the format:
+#. 'Cup/league name: Number of weeks banned'
+#: src/treeview_helper.c:988
+#, c-format
+msgid "%s: %d weeks\n"
+msgstr "%s: %d εβδομάδες\n"
+
+#. Yellow cards of a player in a cup/league. No limit means there isn't a limit
+#. after which the player gets banned for a match automatically.
+#: src/treeview_helper.c:1029
+#, c-format
+msgid "%s: %d (no limit)\n"
+msgstr "%s: %d (χωρίς όριο)\n"
+
+#: src/treeview_helper.c:1072
+msgid "The player is on a hot streak"
+msgstr "Ο παίκτης βρίσκεται σε καλή φόρμα"
+
+#: src/treeview_helper.c:1074
+msgid "The player is on a cold streak"
+msgstr "Ο παίκτης είναι ντεφορμέ"
+
+#: src/treeview_helper.c:1088
+#, c-format
+msgid "%s (expected recovery in %d weeks)"
+msgstr "%s (αναμενόμενη αποκατάσταση σε %d εβδομάδες)"
+
+#: src/treeview_helper.c:1364
+#, c-format
+msgid "INJ(%d)"
+msgstr "ΤΡΑΥΜ(%d)"
+
+#: src/treeview_helper.c:1378
+#, c-format
+msgid "BAN(%d)"
+msgstr "ΤΙΜ(%d)"
+
+#. Goalie
+#: src/treeview_helper.c:1499
+msgid "G"
+msgstr "Τ"
+
+#. Defender
+#: src/treeview_helper.c:1507
+msgid "D"
+msgstr "Α"
+
+#. Midfielder
+#: src/treeview_helper.c:1515
+msgid "M"
+msgstr "Μ"
+
+#. Forward
+#: src/treeview_helper.c:1523
+msgid "F"
+msgstr "Ε"
+
+#: src/treeview_helper.c:1650
+msgid "ADD LAST MATCH"
+msgstr "ΠΡΟΣΘΕΣΗ ΤΕΛΕΥΤΑΙΟΥ ΑΓΩΝΑ"
+
+#: src/user.c:380
+#, c-format
+msgid "The owners of %s are not satisfied with the recent performance of the team. There are rumours they're looking for a new manager."
+msgstr "Οι ιδιοκτήτες της %s δεν είναι ικανοποιημένοι με την πρόσφατη απόδοση της ομάδας. Κυκλοφορούν φήμες ότι ψάχνουν για νέο μάνατζερ."
+
+#: src/user.c:556
+#, c-format
+msgid "%s has left your team because his contract expired."
+msgstr "Ο %s άφησε την ομάδα σας γιατί έληξε το συμβόλαιο του."
+
+#: src/user.c:576
+#, c-format
+msgid "You have overdrawn your bank account. The team owners give you %d weeks to get above your drawing credit limit."
+msgstr "Έχετε υπερχρεώσει τον τραπεζικό λογαριασμό σας. Οι ιδιοκτήτες της ομάδας σας δίνουν %d εβδομάδες καιρό για να είστε κάτω από το πιστωτικό σας όριο."
+
+#: src/user.c:578
+#, c-format
+msgid ""
+"You have overdrawn your bank account once again. Bear in mind that after the fourth time you get fired.\n"
+"The team owners give you %d weeks to get above your drawing credit limit."
+msgstr ""
+"Έχετε υπερχρεώσει ακόμα μία φορά τον τραπεζικό σας λογαριασμό. Συγκρατήστε στο μυαλό σας ότι μετά την τέταρτη φορά θα απολυθείτε.\n"
+"Οι ιδιοκτήτες της ομάδας σας δίνουν %d εβδομάδες καιρό για να είστε κάτω από το πιστωτικό σας όριο."
+
+#: src/user.c:581
+#, c-format
+msgid "Have a look at the transfer list, there's an offer for %s."
+msgstr "Ρίξτε μία ματιά στη λίστα μεταγραφών, υπάρχει μια προσφορά για τον %s."
+
+#: src/user.c:585
+#, c-format
+msgid "Your offer for %s has been accepted. If you still want to buy him, go to the transfer list and left click on the player."
+msgstr "Η προσφορά σας για τον %s έγινε δεκτή. Εάν θέλετε ακόμα να τον αγοράσετε, πηγαίνετε στη λίστα μεταγραφών και πατήστε αριστερό κλικ πάνω στον παίκτη."
+
+#: src/user.c:591
+#, c-format
+msgid "The owners of %s have rejected your offer (%s / %s) for %s. There was a better offer for the player than yours."
+msgstr "Οι ιδιοκτήτες της %s απέρριψαν την προσφορά σας (%s / %s) για τον %s. Υπάρχει μία καλύτερη προσφορά για τον παίκτη από την δική σας."
+
+#: src/user.c:596
+#, c-format
+msgid "The owners of %s have rejected your offer (%s / %s) for %s. Neither the fee nor the wage you offered were acceptable, they say."
+msgstr "Οι ιδιοκτήτες της %s απέρριψαν την προσφορά σας (%s / %s) για τον  %s. Λένε πως ούτε το ποσό μεταγραφής ούτε ο μισθός που προτείνατε έγιναν αποδεκτά."
+
+#: src/user.c:601
+#, c-format
+msgid "The owners of %s have rejected your offer (%s / %s) for %s. The team owners weren't satisfied with the fee you offered."
+msgstr "Οι ιδιοκτήτες της %s απέρριψαν την προσφορά σας (%s / %s) για τον  %s. Λένε πως δεν είναι ικανοποιημένοι με το ποσό μεταγραφής που προσφέρατε."
+
+#. A player from a team has rejected a transfer offer.
+#: src/user.c:607
+#, c-format
+msgid "%s of %s has rejected your offer (%s / %s). He wasn't satisfied with the wage you offered."
+msgstr "Ο %s της %s απέρριψε την προσφορά σας (%s / %s). Δεν είναι ικανοποιημένος με τον μισθό που προσφέρατε."
+
+#. A player from a team has rejected a transfer offer.
+#: src/user.c:613
+#, c-format
+msgid "%s of %s has rejected your offer because your team has too many star players already. 'A player of my caliber doesn't play second fiddle,' he was quoted."
+msgstr "Ο %s της %s απέρριψε την προσφορά σας γιατί η ομάδα σας ήδη έχει πολλούς παίκτες-αστέρια. 'Ένας παίκτης της αξίας μου δεν μπορεί να είναι δεύτερο βιολί,' είπε."
+
+#. Buy a player from a team.
+#: src/user.c:619
+#, c-format
+msgid "You didn't have enough money to buy %s from %s."
+msgstr "Δεν έχετε αρκετά χρήματα για να αγοράσετε τον %s από την %s."
+
+#. Buy a player from a team.
+#: src/user.c:624
+#, c-format
+msgid "Your roster is full. You couldn't buy %s from %s."
+msgstr "Το ρόστερ σας είναι γεμάτο. Δεν μπορείτε να αγοράσετε τον %s από την %s."
+
+#: src/user.c:628
+#, c-format
+msgid "%s's injury was so severe that he can't play football on a professional level anymore. He leaves your team."
+msgstr "Ο τραυματισμός του %s ήταν τόσο σοβαρός που δεν μπορεί να παίξει πια ποδόσφαιρο σε επαγγελματικό επίπεδο. Αφήνει την ομάδα σας."
+
+#: src/user.c:631
+msgid " Fortunately he's got a cousin who can help your team out."
+msgstr " Ευτυχώς έχει έναν ξάδερφο που μπορεί να βοηθήσει την ομάδα σας."
+
+#: src/user.c:640
+msgid "The team owners are very satisfied with your financial management. Since the team's been earning a lot of money lately, they decide to donate half of it to charity."
+msgstr "Οι ιδιοκτήτες της ομάδας είναι πολύ ευχαριστημένοι με την οικονομική σας διαχείριση Από την στιγμή που η ομάδα τελευταία κερδίζει πολλά λεφτά, αποφασίζουν να δωρίσουν το μισό για αγαθοεργίες."
+
+#. Buy a team in a league.
+#: src/user.c:826
+#, c-format
+msgid "You start the game with %s in the %s."
+msgstr "Αρχίζετε το παιχνίδι με %s στη %s."
+
+#. Team fires, team in a league.
+#: src/user.c:832
+#, c-format
+msgid ""
+"%s fires you because of financial mismanagement.\n"
+"You find a new job with %s in the %s."
+msgstr ""
+"Η %s σας απολύει λόγω οικονομικής κακοδιαχείρισης. \n"
+"Βρίσκετε νέα εργασία με %s στη %s."
+
+#. Team fires, team in a league.
+#: src/user.c:839
+#, c-format
+msgid ""
+"%s fires you because of unsuccessfulness.\n"
+"You find a new job with %s in the %s."
+msgstr ""
+"H %s σας απολύει λόγω αποτυχίας.\n"
+"Βρίσκετε νέα εργασία με %s στη %s."
+
+#. Team in a league. Leave team.
+#: src/user.c:846
+#, c-format
+msgid ""
+"%s offer you a job in the %s.\n"
+"You accept the challenge and leave %s."
+msgstr ""
+"Η %s σας προσφέρει εργασία στη %s.\n"
+" Δέχεστε την πρόκληση και αφήνετε την %s."
+
+#. League name.
+#: src/user.c:853
+#, c-format
+msgid "You finish the season in the %s on rank %s."
+msgstr "Τελειώνετε την περίοδο στη %s στη θέση %s."
+
+#. League name.
+#: src/user.c:859
+#, c-format
+msgid "You get promoted to the %s."
+msgstr "Προβιβάζεστε στη %s."
+
+#. League name.
+#: src/user.c:864
+#, c-format
+msgid "You get relegated to the %s."
+msgstr "Υποβιβάζεστε στη %s."
+
+#. Cup name, team name.
+#: src/user.c:869
+#, c-format
+msgid "You win the %s final against %s."
+msgstr "Κερδίζετε τον τελικό του %s ενάντια στη %s."
+
+#. Cup name, team name.
+#: src/user.c:875
+#, c-format
+msgid "You lose in the %s final against %s."
+msgstr "Χάνετε τον τελικό του %s ενάντια στη %s."
+
+#. Cup round name (e.g. Last 32), number, cup name.
+#: src/user.c:881
+#, c-format
+msgid "You reach the %s (round %s) of the %s."
+msgstr "Φτάνετε τον %s (γύρο %s) του %s."
+
+#. League name.
+#: src/user.c:888
+#, c-format
+msgid "You are champion of the %s!"
+msgstr "Είστε πρωταθλητές της %s!"
+
+#. Company name.
+#: src/user.c:980
+msgid " Systems"
+msgstr " Systems"
+
+#. Company name.
+#: src/user.c:982
+msgid " Communications"
+msgstr " Communications"
+
+#. Company name.
+#: src/user.c:984
+msgid " Holdings"
+msgstr " Holdings"
+
+#. Company name.
+#: src/user.c:986
+msgid " Industries"
+msgstr " Industries"
+
+#. Company name.
+#: src/user.c:988
+msgid " Company"
+msgstr " Company"
+
+#. Company name.
+#: src/user.c:990
+msgid " Telecommunications"
+msgstr " Telecommunications"
+
+#. Company name.
+#: src/user.c:992
+msgid " Labs"
+msgstr " Labs"
+
+#. Company name.
+#: src/user.c:994
+msgid " Technologies"
+msgstr " Technologies"
+
+#. Company name.
+#: src/user.c:996
+msgid " Chemicals"
+msgstr " Chemicals"
+
+#. Company name.
+#: src/user.c:998
+msgid " Energy"
+msgstr " Energy"
+
+#. Company name.
+#: src/user.c:1000
+msgid " Bank"
+msgstr " Bank"
+
+#. Company name.
+#: src/user.c:1002
+msgid " Products"
+msgstr " Products"
+
+#. Company name.
+#: src/user.c:1004
+msgid " Software"
+msgstr " Software"
+
+#. Company name.
+#: src/user.c:1006
+msgid " Scientific"
+msgstr " Scientific"
+
+#. Company name.
+#: src/user.c:1008
+msgid " Financial"
+msgstr " Financial"
+
+#. Company name.
+#: src/user.c:1010
+msgid " Petroleum"
+msgstr " Petroleum"
+
+#. Company name.
+#: src/user.c:1012
+msgid " Restaurants"
+msgstr " Restaurants"
+
+#. Company name.
+#: src/user.c:1014
+msgid " Data Systems"
+msgstr " Data Systems"
+
+#. Company short name, leading to things like 'Marshall Data Systems Ltd.'
+#: src/user.c:1017
+msgid " Ltd."
+msgstr " Ltd."
+
+#. Company short name.
+#: src/user.c:1019
+msgid " Assoc."
+msgstr " Assoc."
+
+#. Company short name.
+#: src/user.c:1021
+msgid " Co."
+msgstr " Co."
+
+#. Company short name.
+#: src/user.c:1023
+msgid " Ent."
+msgstr " Ent."
+
+#. Company short name. Copy the '&amp;'.
+#: src/user.c:1025
+msgid " &amp; Co."
+msgstr " &amp; Co."
+
+#. Company short name.
+#: src/user.c:1027
+msgid " Corp."
+msgstr " Corp."
+
+#. Company short name.
+#: src/user.c:1029
+msgid " Group"
+msgstr " Group"
+
+#. Company addition, leading to 'Marshall & Sons Petroleum Co.'. Copy the '&amp;'.
+#: src/user.c:1032
+msgid " &amp; Sons"
+msgstr " &amp; Sons"
+
+#. Company addition. Copy the '&amp;'.
+#: src/user.c:1034
+msgid " &amp; Daughters"
+msgstr " &amp; Daughters"
+
+#. Company addition.
+#: src/user.c:1036
+msgid " Bros."
+msgstr " Bros."
+
+#: src/user.c:1124
+#, c-format
+msgid "Your current sponsor is satisfied with your results and would like to renew the contract. Currently they're paying you %d a week."
+msgstr "Ο παρών χορηγός σας είναι ικανοποιημένος με τα αποτελέσματα σας και θα ήθελε να ανανεώσει το συμβόλαιο χορηγίας. Αυτή τη στιγμή σας πληρώνουν %d την εβδομάδα."
+
+#: src/user.c:1212
+msgid "Memorable match added."
+msgstr "Πρόσθεση αξέχαστου αγώνα."
+
+#: src/window.c:384
+msgid "Bygfoot Save Files"
+msgstr "Αρχεία αποθήκευσης Bygfoot"
+
+#: src/window.c:390
+msgid "Bygfoot Memorable Matches"
+msgstr "Αξέχαστοι αγώνες Bygfoot"
+
+#: src/window.c:396
+msgid "All Files"
+msgstr "Όλα τα αρχεία"
+
+#: src/window.c:448
+msgid "Not a valid Bygfoot Memorable Matches filename."
+msgstr "Μη έγκυρο όνομα αρχείου αξέχαστων αγώνων Bygfoot."
+
+#: src/window.c:661
+msgid "No improvements currently in progress."
+msgstr "Δεν υπάρχουν τρέχουσες βελτιώσεις σε πορεία."
+
+#: src/window.c:831
+#, c-format
+msgid "Welcome to Bygfoot %s"
+msgstr "Καλώς ήλθατε στο Bygfoot %s"
+
+#: src/window.c:862
+msgid "Erm..."
+msgstr "Ε..."
+
+#: src/window.c:879
+msgid "Numbers..."
+msgstr "Αριθμοί..."
+
+#: src/window.c:887
+msgid "Your stadium"
+msgstr "Το γήπεδο σας"
+
+#: src/window.c:911
+msgid "Options"
+msgstr "Επιλογές"
+
+#: src/window.c:934
+msgid "Contract offer"
+msgstr "Προσφορά συμβολαίου"
+
+#: src/window.c:942
+msgid "User management"
+msgstr "Διαχείριση χρηστών"
+
+#: src/window.c:965
+msgid "Transfer offer"
+msgstr "Προσφορά μεταγραφής"
+
+#: src/window.c:973
+msgid "Sponsorship offers"
+msgstr "Προσφορές χορηγίας"
+
+#: src/xml.c:92
+#, c-format
+msgid "Loading league: %s"
+msgstr "Φόρτωση λίγκας: %s"
+
+#: src/xml.c:125
+#, c-format
+msgid "Loading cup: %s"
+msgstr "Φόρτωση κυπέλλου: %s"
+
+#: src/youth_academy.c:214
+#, c-format
+msgid "Youth %s will be too old for the youth academy soon. Move him to your team or kick him out of the academy. Otherwise he'll probably look for another team to play in."
+msgstr "Ο νέος %s θα είναι σύντομα πολύ μεγάλος για την ακαδημία νέων. Μετακινήστε τον στην ομάδα σας ή διώξτε τον από την ακαδημία. Αλλιώς το πιθανότερο να ψάξει άλλη ομάδα για να παίξει."
+
+#: src/youth_academy.c:218
+#, c-format
+msgid "Youth %s thought he's old enough for a real contract and left your youth academy."
+msgstr "Ο νέος %s σκέφτηκε ότι είναι αρκετά μεγάλος για πραγματικό συμβόλαιο και αφήνει την ομάδα σας."
+
+#: src/youth_academy.c:249
+msgid "A new youth registered at your youth academy."
+msgstr "Ένας νέος παίκτης εγγράφηκε στην ακαδημία νέων σας."
+
+#: src/youth_academy.c:253
+msgid "A new youth wanted to registered at your youth academy but there was no room for him."
+msgstr "Ένας νέος παίκτης θέλησε να εγγραφεί στην ακαδημία νέων σας αλλά δεν υπήρχε χώρος γι' αυτόν."
+
