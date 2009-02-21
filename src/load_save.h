@@ -40,4 +40,7 @@ load_save_autosave(void);
 gboolean
 load_game_from_command_line(const gchar *filename);
 
+void
+load_save_write_autosave_name(gchar *filename);
+
 #endif

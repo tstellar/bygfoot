@@ -358,7 +358,7 @@ load_save_autosave(void)
     printf("load_save_autosave\n");
 #endif
 
-    gchar buf[SMALL];
+    gchar buf[SMALL], name[SMALL];
     const gchar *home = g_get_home_dir();
     FILE *fil = NULL;
     
@@ -371,15 +371,17 @@ load_save_autosave(void)
     if(counters[COUNT_AUTOSAVE] != 0)
 	return;
 
+    load_save_write_autosave_name(name);
+
     if(os_is_unix)
-	sprintf(buf, "%s%s%s%ssaves%sautosave%02d.zip", home, G_DIR_SEPARATOR_S,
+	sprintf(buf, "%s%s%s%ssaves%s%s_%02d.zip", home, G_DIR_SEPARATOR_S,
 		HOMEDIRNAME, G_DIR_SEPARATOR_S, G_DIR_SEPARATOR_S,
-		counters[COUNT_AUTOSAVE_FILE]);
+		name, counters[COUNT_AUTOSAVE_FILE]);
     else
     {
 	gchar *pwd = g_get_current_dir();
-	sprintf(buf, "%s%ssaves%sautosave%02d.zip", pwd, G_DIR_SEPARATOR_S,
-		G_DIR_SEPARATOR_S, counters[COUNT_AUTOSAVE_FILE]);
+	sprintf(buf, "%s%ssaves%s%s_%02d.zip", pwd, G_DIR_SEPARATOR_S,
+		G_DIR_SEPARATOR_S, name, counters[COUNT_AUTOSAVE_FILE]);
 	g_free(pwd);
     }
 
@@ -392,6 +394,15 @@ load_save_autosave(void)
 
 
     counters[COUNT_AUTOSAVE_FILE] = (counters[COUNT_AUTOSAVE_FILE] + 1) % opt_int("int_opt_autosave_files");
+}
+
+/** Write the autosave file name which is put together from
+    the user name, team name etc. into the parameter string. */
+void
+load_save_write_autosave_name(gchar *filename)
+{
+    sprintf(filename, "autosave_%s_%s_%s_S%02d_W%02d",
+            usr(0).name, country.name, usr(0).tm->name, season, week);
 }
 
 /** Try to load a savegame given on the command line. */
