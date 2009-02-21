@@ -407,7 +407,7 @@ user_weekly_update_counters(User *user)
     printf("user_weekly_update_counters\n");
 #endif
 
-    gint rank = team_get_league_rank(user->tm);
+    gint rank = team_get_league_rank(user->tm, -1);
     gint teamslen = ((GArray*)(league_cup_get_teams(user->tm->clid)))->len;
     gint rank_bounds[2] = 
 	{(gint)rint(const_float("float_user_success_table_bound_upper") *
