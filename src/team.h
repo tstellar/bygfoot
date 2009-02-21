@@ -83,7 +83,7 @@ gint
 team_get_cup_rank(const Team *tm, const CupRound *cupround, gboolean abort);
 
 gint
-team_get_league_rank(const Team *tm);
+team_get_league_rank(const Team *tm, gint clid);
 
 void
 team_change_structure(Team *tm, gint new_structure);
@@ -135,6 +135,9 @@ team_get_table_value(const Team *tm, gint type);
 
 void
 team_write_results(const Team *tm, gchar *result_buf, gchar *goals_buf);
+
+void
+team_write_overall_results(const Team *tm, gint clid, gchar *results);
 
 void
 team_write_own_results(const Team *tm, gchar *buf, gboolean sort, gboolean cup_matches);

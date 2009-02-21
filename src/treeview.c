@@ -1072,7 +1072,7 @@ treeview_create_fixture(const Fixture *fix, GtkListStore *ls)
 	if(query_fixture_has_tables(fix))
 	{
 	    if(fix->clid < ID_CUP_START)
-		rank = team_get_league_rank(fix->teams[i]);
+		rank = team_get_league_rank(fix->teams[i], fix->clid);
 	    else
 		rank = team_get_cup_rank(fix->teams[i], 
 					 cup_get_last_tables_round(fix->clid), TRUE);
@@ -1796,6 +1796,7 @@ treeview_create_next_opponent(void)
 	fix->teams[fix->teams[0] == current_user.tm];
     GtkListStore *ls = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_STRING);
     GtkTreeIter iter;
+    gint rank;
 
     if(opp == NULL)
 	return NULL;
@@ -1839,9 +1840,11 @@ treeview_create_next_opponent(void)
     gtk_list_store_append(ls, &iter);
     gtk_list_store_set(ls, &iter, 0, _("Team"), 1, opp->name, -1);
     
-    if(opp->clid < ID_CUP_START)
+    rank = team_get_league_rank(opp, fix->clid);
+    if(rank != 0)
     {
-	sprintf(buf, "%d (%s)", team_get_league_rank(opp), league_cup_get_name_string(opp->clid));
+	sprintf(buf, "%d (%s)", rank,
+                league_cup_get_name_string(fix->clid));
 	gtk_list_store_append(ls, &iter);
 	gtk_list_store_set(ls, &iter, 0, _("Rank"), 1, buf, -1);
     }
@@ -1879,10 +1882,18 @@ treeview_create_next_opponent(void)
     gtk_list_store_append(ls, &iter);
     gtk_list_store_set(ls, &iter, 0, _("Goals"), 1, buf2, -1);
 
+    team_write_overall_results(opp, fix->clid, buf);
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, _("Overall results"), 1, buf, -1);
+
     team_write_own_results(opp, buf, FALSE, TRUE);
     gtk_list_store_append(ls, &iter);    
     /* The user's results against a specific team. */
     gtk_list_store_set(ls, &iter, 0, _("Your results"), 1, buf, -1);
+
+    team_write_overall_results(current_user.tm, fix->clid, buf);
+    gtk_list_store_append(ls, &iter);
+    gtk_list_store_set(ls, &iter, 0, _("Your overall results"), 1, buf, -1);
     
     return GTK_TREE_MODEL(ls);
 }

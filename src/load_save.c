@@ -22,6 +22,7 @@
    along with this program; if not, write to the Free Software
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
+#include <ctype.h>
 
 #include "callbacks.h"
 #include "file.h"
@@ -401,8 +402,20 @@ load_save_autosave(void)
 void
 load_save_write_autosave_name(gchar *filename)
 {
-    sprintf(filename, "autosave_%s_%s_%s_S%02d_W%02d",
-            usr(0).name, country.name, usr(0).tm->name, season, week);
+    gchar teamname[SMALL];
+    gint i = 0;
+
+    while(usr(0).tm->name[i] != '\0')
+    {
+        teamname[i] = (isspace(usr(0).tm->name[i]) == 0) ?
+            usr(0).tm->name[i] : '_';
+        i++;
+    }
+    
+    teamname[i] = '\0';
+
+   sprintf(filename, "autosave_%s_%s_%s_S%02d_W%02d",
+            usr(0).name, country.name, teamname, season, week);
 }
 
 /** Try to load a savegame given on the command line. */

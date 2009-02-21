@@ -446,27 +446,32 @@ team_get_average_talent(const Team *tm)
 
 /** Return the rank of the team in the league tables. */
 gint
-team_get_league_rank(const Team *tm)
+team_get_league_rank(const Team *tm, gint clid)
 {
 #ifdef DEBUG
     printf("team_get_league_rank\n");
 #endif
 
-    gint i, clid = team_get_table_clid(tm), rank = 0;
+    gint i, clid_local, rank = 0;
     GArray *elements = NULL;
     
-    if(clid < ID_CUP_START)
+    clid_local = (clid == -1) ? team_get_table_clid(tm) : clid;
+
+    if(clid_local < ID_CUP_START)
     {
-	if(!query_league_active(league_from_clid(clid)))
+	if(!query_league_active(league_from_clid(clid_local)))
 	    return 0;
 
-	elements = league_table(league_from_clid(tm->clid))->elements;
+	elements = league_table(league_from_clid(clid_local))->elements;
     }
     else
     {
+        if(cup_has_tables(clid_local) == -1)
+            return 0;
+
 	rank = team_get_cup_rank(
-	    tm, &g_array_index(cup_from_clid(clid)->rounds, CupRound,
-			       cup_has_tables(clid)), FALSE);
+	    tm, &g_array_index(cup_from_clid(clid_local)->rounds, CupRound,
+			       cup_has_tables(clid_local)), FALSE);
 	return (rank == -1) ? 0 : rank;
     }
 
@@ -799,7 +804,8 @@ team_compare_func(gconstpointer a, gconstpointer b, gpointer data)
     if(type == TEAM_COMPARE_LEAGUE_RANK)
     {
 	if(tm1->clid == tm2->clid)
-	    return_value = misc_int_compare(team_get_league_rank(tm2), team_get_league_rank(tm1));
+	    return_value = misc_int_compare(team_get_league_rank(tm2, -1),
+                                            team_get_league_rank(tm1, -1));
 	else
 	    return_value = misc_int_compare(league_from_clid(tm2->clid)->layer,
 					    league_from_clid(tm1->clid)->layer);
@@ -1363,4 +1369,41 @@ team_get_table_clid(const Team *tm)
     }
 
     return tm->clid;
+}
+
+/** Write a won/lost/draw, gf:ga stat about the team's results in the
+    specified competition into the string. */
+void
+team_write_overall_results(const Team *tm, gint clid, gchar *results)
+{
+    gint i, idx;
+    gint won, lost, drawn, gf, ga;
+    const GArray *fixtures = league_cup_get_fixtures(clid);
+    const Fixture *fix;
+
+    won = lost = drawn = gf = ga = 0;
+
+    for(i = 0; i < fixtures->len; i++)
+    {
+        fix = &g_array_index(fixtures, Fixture, i);
+        if(fix->attendance == -1)
+            break;
+
+        if(fix->teams[0] != tm && fix->teams[1] != tm)
+            continue;
+        else
+            idx = (fix->teams[0] != tm);
+
+        if(fix->result[0][0] == fix->result[1][0])
+            drawn++;
+        else if(fix->result[idx][0] > fix->result[!idx][0])
+            won++;
+        else
+            lost++;
+
+        gf += fix->result[idx][0];
+        ga += fix->result[!idx][0];
+    }
+
+    sprintf(results, "%d-%d-%d, %d:%d", won, lost, drawn, gf, ga);
 }
