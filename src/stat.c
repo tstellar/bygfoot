@@ -93,7 +93,7 @@ stat_update_league_players(League *league)
     Player *pl = NULL;
     gint maxlen = const_int("int_stat_players_len");
     Stat new_stat;
-        
+
     for(i=0;i<league->teams->len;i++)
 	for(j=0;j<g_array_index(league->teams, Team, i).players->len;j++)
 	{
