@@ -1976,3 +1976,42 @@ treeview_helper_job_exchange(GtkTreeViewColumn *col,
 
     g_object_set(renderer, "text", buf, NULL);
 }
+
+void
+treeview_helper_player_name_editing_done(GtkCellRendererText *renderer,
+                                         gchar               *path,
+                                         gchar               *new_text,
+                                         gpointer             user_data)
+{
+    gint idx;
+
+    idx = (gint)strtol(path, NULL, 0);
+
+    if(idx == 11)
+        return;
+
+    idx = (idx > 11) ? idx - 1 : idx;
+    g_free(g_array_index(current_user.tm->players, Player, idx).name);
+    g_array_index(current_user.tm->players, Player, idx).name = g_strdup(new_text);
+
+    gtk_widget_set_sensitive(lookup_widget(window.main, "menubar1"), TRUE);
+    gtk_widget_set_sensitive(lookup_widget(window.main, "hbox1"), TRUE);
+}
+
+void
+treeview_helper_player_name_editing_canceled(GtkCellRendererText *renderer,
+                                             gpointer             user_data)
+{
+    gtk_widget_set_sensitive(lookup_widget(window.main, "menubar1"), TRUE);
+    gtk_widget_set_sensitive(lookup_widget(window.main, "hbox1"), TRUE);
+}
+
+void
+treeview_helper_player_name_editing_started(GtkCellRenderer *renderer,
+                                            GtkCellEditable *editable,
+                                            gchar           *path,
+                                            gpointer         user_data)
+{
+    gtk_widget_set_sensitive(lookup_widget(window.main, "menubar1"), FALSE);
+    gtk_widget_set_sensitive(lookup_widget(window.main, "hbox1"), FALSE);
+}

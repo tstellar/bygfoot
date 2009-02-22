@@ -290,7 +290,8 @@ treeview_create_player_list(GPtrArray *players, gint *attributes, gint max,
 /** Set up the tree view for a player list */
 void
 treeview_set_up_player_list(GtkTreeView *treeview, gint *attributes, gint max,
-			    gboolean show_separator, gboolean sortable)
+			    gboolean show_separator, gboolean transfer_list, 
+                            gboolean sortable)
 {
 #ifdef DEBUG
     printf("treeview_set_up_player_list\n");
@@ -356,6 +357,23 @@ treeview_set_up_player_list(GtkTreeView *treeview, gint *attributes, gint max,
 						GINT_TO_POINTER(attributes[i]),
 						NULL);
 
+        if(transfer_list && attributes[i] == PLAYER_LIST_ATTRIBUTE_NAME)
+        {
+            g_object_set(renderer, "editable", TRUE, NULL);
+            g_signal_connect (renderer,
+                              "editing-started",
+                              G_CALLBACK (treeview_helper_player_name_editing_started),
+                              NULL);
+            g_signal_connect (renderer,
+                              "editing-canceled",
+                              G_CALLBACK (treeview_helper_player_name_editing_canceled),
+                              NULL);
+            g_signal_connect (renderer,
+                              "edited",
+                              G_CALLBACK (treeview_helper_player_name_editing_done),
+                              NULL);
+        }
+
 	if(attributes[i] != PLAYER_LIST_ATTRIBUTE_NAME &&
 	   attributes[i] != PLAYER_LIST_ATTRIBUTE_TEAM &&
 	   attributes[i] != PLAYER_LIST_ATTRIBUTE_LEAGUE_CUP)
@@ -404,11 +422,12 @@ treeview_set_up_player_list(GtkTreeView *treeview, gint *attributes, gint max,
     @param treeview The treeview we fill.
     @param players The pointer array with the players. We free it afterwards.
     @param attrib The #PlayerListAttribute that determines which attributes to show.
-    @param show_separator Whether we draw a blank line after the 11th player. */
+    @param show_separator Whether we draw a blank line after the 11th player.
+    @param transfer_list Whether we show the second player list used for transfer view. */
 void
 treeview_show_player_list(GtkTreeView *treeview, GPtrArray *players, 
 			  PlayerListAttribute attribute,
-			  gboolean show_separator)
+			  gboolean show_separator, gboolean transfer_list)
 {
 #ifdef DEBUG
     printf("treeview_show_player_list\n");
@@ -429,7 +448,7 @@ treeview_show_player_list(GtkTreeView *treeview, GPtrArray *players,
 	    attributes[cnt++] = i;
     }
 
-    treeview_set_up_player_list(treeview, attributes, columns, show_separator, sortable);
+    treeview_set_up_player_list(treeview, attributes, columns, show_separator, transfer_list, sortable);
 
     model = treeview_create_player_list(players, attributes, 
 					columns, show_separator, 
@@ -461,7 +480,7 @@ treeview_show_user_player_list(void)
     {
 	players = player_get_pointers_from_array(current_user.tm->players);
 	user_set_player_list_attributes(&current_user, &attribute, i + 1);
-	treeview_show_player_list(GTK_TREE_VIEW(treeview[i]), players, attribute, TRUE);
+	treeview_show_player_list(GTK_TREE_VIEW(treeview[i]), players, attribute, TRUE, (i == 1));
     }
 }
 
@@ -477,7 +496,7 @@ treeview_show_player_list_team(GtkTreeView *treeview, const Team *tm, gint scout
     GPtrArray *players = player_get_pointers_from_array(tm->players);
 
     treeview_show_player_list(treeview, players, 
-			      treeview_helper_get_attributes_from_scout(scout), TRUE);
+			      treeview_helper_get_attributes_from_scout(scout), TRUE, FALSE);
 }
 
 /** Show the commentary and the minute belonging to the unit. 
@@ -1739,7 +1758,7 @@ treeview_show_transfer_list(GtkTreeView *treeview)
 	g_ptr_array_add(players, player_of_id_team(trans(i).tm, trans(i).id));
 
     treeview_show_player_list(treeview, players, 
-			      treeview_helper_get_attributes_from_scout(current_user.scout), FALSE);
+			      treeview_helper_get_attributes_from_scout(current_user.scout), FALSE, FALSE);
 }
 
 /** Create attack, midfield and defend bars. */
@@ -2067,7 +2086,7 @@ treeview_show_all_players(gint clid)
 	
     treeview_show_player_list(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")),
 			      players, 
-			      treeview_helper_get_attributes_from_scout(current_user.scout), FALSE);    
+			      treeview_helper_get_attributes_from_scout(current_user.scout), FALSE, FALSE);    
 }
 
 GtkTreeModel*
