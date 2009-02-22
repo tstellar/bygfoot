@@ -120,7 +120,8 @@ callback_player_activate(gint idx)
 	selected_row = idx;
 	on_menu_move_to_youth_academy_activate(NULL, NULL);
     }
-    else
+    else if(gtk_notebook_get_current_page(
+                GTK_NOTEBOOK(lookup_widget(window.main, "notebook_player"))) == 0)
     {
 	if(selected_row == -1)
 	{
@@ -911,5 +912,5 @@ callback_show_youth_academy(void)
     treeview_show_player_list(
 	GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")),
 	player_get_pointers_from_array(current_user.youth_academy.players),
-	attributes, FALSE);
+	attributes, FALSE, FALSE);
 }

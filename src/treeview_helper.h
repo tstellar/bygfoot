@@ -243,4 +243,19 @@ treeview_helper_news_additional(GtkTreeViewColumn *col,
                                 GtkTreeIter       *iter,
                                 gpointer           user_data);
 
+void
+treeview_helper_player_name_editing_done(GtkCellRendererText *renderer,
+                                         gchar               *path,
+                                         gchar               *new_text,
+                                         gpointer             user_data);
+void
+treeview_helper_player_name_editing_started(GtkCellRenderer *renderer,
+                                            GtkCellEditable *editable,
+                                            gchar           *path,
+                                            gpointer         user_data);
+
+void
+treeview_helper_player_name_editing_canceled(GtkCellRendererText *renderer,
+                                             gpointer             user_data);
+
 #endif

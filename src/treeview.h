@@ -49,12 +49,14 @@ treeview_create_player_list(GPtrArray *players, gint *attributes, gint max,
 			    gboolean show_separator, gboolean sortable, gboolean status);
 
 void
-treeview_set_up_player_list (GtkTreeView *treeview, gint *attributes, gint max,
-			     gboolean show_separator, gboolean sortable);
+treeview_set_up_player_list(GtkTreeView *treeview, gint *attributes, gint max,
+			    gboolean show_separator, gboolean transfer_list, 
+                            gboolean sortable);
 
 void
-treeview_show_player_list(GtkTreeView *treeview, GPtrArray *players, PlayerListAttribute attribute,
-			  gboolean show_separator);
+treeview_show_player_list(GtkTreeView *treeview, GPtrArray *players, 
+			  PlayerListAttribute attribute,
+			  gboolean show_separator, gboolean transfer_list);
 
 void
 treeview_show_user_player_list(void);
