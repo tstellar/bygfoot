@@ -358,7 +358,6 @@ on_automatic_loan_repayment_activate   (GtkMenuItem     *menuitem,
 void
 on_menu_news_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
-#endif
 
 
 void
@@ -368,3 +367,4 @@ on_menu_edit_name_activate             (GtkMenuItem     *menuitem,
 void
 on_player_menu_edit_name_activate      (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
+#endif
