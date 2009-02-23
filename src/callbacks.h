@@ -360,3 +360,11 @@ on_menu_news_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 #endif
 
+
+void
+on_menu_edit_name_activate             (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_player_menu_edit_name_activate      (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
