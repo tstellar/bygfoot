@@ -49,20 +49,25 @@
 #include "user.h"
 #include "window.h"
 
-gboolean
-on_button_quit_clicked                 (GtkWidget       *widget,
-                                        GdkEvent        *event,
+/***********************************************************************************************************
+******************************************** FILE MENU CALLBACKS *******************************************
+***********************************************************************************************************/
+
+void
+on_menu_load_last_save_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 #ifdef DEBUG
-    printf("on_button_quit_clicked\n");
+    printf("on_menu_load_last_save_activate\n");
 #endif
 
-    on_menu_quit_activate(NULL, NULL);
-
-    return TRUE;
+    if(load_save_load_game("last_save", FALSE))
+    {
+	cur_user = 0;
+	on_button_back_to_main_clicked(NULL, NULL);
+	setsav1;
+    }
 }
-
 
 void
 on_menu_new_activate                   (GtkMenuItem     *menuitem,
@@ -141,6 +146,9 @@ on_menu_quit_activate                  (GtkMenuItem     *menuitem,
 }
 
 
+/***********************************************************************************************************
+******************************************** HELP MENU CALLBACKS *******************************************
+***********************************************************************************************************/
 
 
 void
@@ -178,6 +186,101 @@ on_menu_about_activate                 (GtkMenuItem     *menuitem,
     window_show_help(0);
 }
 
+
+/***********************************************************************************************************
+******************************************** TOOLBAR CALLBACKS *********************************************
+***********************************************************************************************************/
+
+gboolean
+on_button_quit_clicked                 (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_button_quit_clicked\n");
+#endif
+
+    on_menu_quit_activate(NULL, NULL);
+
+    return TRUE;
+}
+
+
+gboolean
+on_eventbox_style_button_press_event   (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_eventbox_style_button_press_event\n");
+#endif
+
+    gint new_style = -1;
+
+    if(event->type != GDK_BUTTON_PRESS)
+	return FALSE;
+
+    if(event->button == 3)
+	new_style = (current_user.tm->style != 2) ?
+	    current_user.tm->style + 1 : -2;
+    else if(event->button == 1)
+	new_style = (current_user.tm->style != -2) ?
+	    current_user.tm->style - 1 : 2;
+    else
+	return FALSE;
+
+    team_change_attribute_with_message(current_user.tm, TEAM_ATTRIBUTE_STYLE, new_style);
+
+    game_gui_write_meters(current_user.tm);
+    game_gui_write_radio_items();
+    
+    if(stat0 == STATUS_MAIN)
+	treeview_show_next_opponent();
+
+    setsav0;
+
+    return FALSE;
+}
+
+
+gboolean
+on_eventbox_boost_button_press_event   (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_eventbox_boost_button_press_event\n");
+#endif
+
+    gint new_boost = -1; 
+
+    if(event->type != GDK_BUTTON_PRESS)
+	return FALSE;
+
+    if(event->button == 3)
+	new_boost = (current_user.tm->boost != 1) ?
+	    current_user.tm->boost + 1 : -1;
+    else if(event->button == 1)
+	new_boost = (current_user.tm->boost != -1) ?
+	    current_user.tm->boost - 1 : 1;
+    else
+	return FALSE;
+
+    if(new_boost == 1 && sett_int("int_opt_disable_boost_on"))
+	game_gui_print_message(_("Boost ON is disabled in this country definition."));
+    else
+	team_change_attribute_with_message(current_user.tm, TEAM_ATTRIBUTE_BOOST, new_boost);
+
+    game_gui_write_meters(current_user.tm);
+    game_gui_write_radio_items();
+
+    if(stat0 == STATUS_MAIN)
+	treeview_show_next_opponent();
+
+    setsav0;
+
+    return FALSE;
+}
 
 void
 on_button_load_clicked                 (GtkButton       *button,
@@ -289,6 +392,114 @@ on_button_new_week_clicked             (GtkButton       *button,
     }
 }
 
+/***********************************************************************************************************
+******************************************** TREEVIEW CALLBACKS ********************************************
+***********************************************************************************************************/
+
+gboolean
+on_treeview_right_button_press_event   (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_treeview_right_button_press_event\n");
+#endif
+
+    gint idx;
+
+    if(stat0 == STATUS_SHOW_FINANCES)
+    {
+	if(event->button == 1)
+	    callback_get_loan();
+	else if(event->button == 3)
+	    callback_pay_loan();
+	else if(event->button == 2)
+	    on_menu_show_stadium_activate(NULL, NULL);
+    }
+
+    if(gtk_tree_selection_get_mode(
+	   gtk_tree_view_get_selection(GTK_TREE_VIEW(widget))) ==
+       GTK_SELECTION_NONE)
+	return TRUE;
+
+    if(treeview_helper_select_row(GTK_TREE_VIEW(widget), event))
+	idx = treeview_helper_get_index(GTK_TREE_VIEW(widget), 0);
+    else
+	return TRUE;
+
+    switch(stat0)
+    {
+	case STATUS_SHOW_TRANSFER_LIST:
+	    if(trans(idx - 1).tm == current_user.tm ||
+	       (trans(idx - 1).offers->len > 0 && 
+		transoff(idx - 1, 0).status == TRANSFER_OFFER_ACCEPTED) ||
+	       event->button == 1)
+		callback_transfer_list_clicked(event->button, idx - 1);
+	    else if(event->button == 3)
+	    {
+		if(transfer_remove_offer(idx - 1, current_user.tm))
+		    game_gui_print_message(_("Your offer has been removed."));
+		else
+		    game_gui_print_message(
+			_("You haven't made an offer for the player."));
+		return TRUE;
+	    }
+	    break;
+	case STATUS_SHOW_TEAM_LIST:
+	    callback_show_team(SHOW_CURRENT);
+	    break;
+	case STATUS_MAIN:
+	    callback_show_next_opponent();
+	    break;
+	case STATUS_SHOW_PLAYER_LIST:
+	    callback_show_player_team();
+	    break;
+	case STATUS_SHOW_YA:
+	    selected_row = idx - 1;
+	    if(event->button == 1)
+		on_menu_youth_move_to_team_activate(NULL, NULL);
+	    else if(event->button == 3)
+		window_show_menu_youth((GdkEvent*)event);
+	    break;
+	case STATUS_SHOW_JOB_EXCHANGE:
+	    if(g_array_index(jobs, Job, idx - 1).type != JOB_TYPE_NATIONAL &&
+	       users->len > 1)
+		game_gui_show_warning(_("You can't apply for a job from abroad if there's more than one user."));
+	    else if(event->button == 1)
+		game_gui_show_job_offer(NULL, 
+					&g_array_index(jobs, Job, idx - 1),
+					STATUS_JOB_EXCHANGE_SHOW_TEAM);
+	    else if(event->button == 3)
+		if(misc2_callback_evaluate_job_application(
+		       &g_array_index(jobs, Job, idx - 1), &current_user))
+		{
+		    stat0 = STATUS_MAIN;
+		    game_gui_show_main();
+		    setsav0;
+		}
+	    break;
+
+    case STATUS_SHOW_TABLES:
+        stat0 = STATUS_SHOW_FIXTURES;
+        stat2 = week;
+        stat3 = week_round;
+        callback_show_fixtures(SHOW_CURRENT);
+        break;
+    case STATUS_SHOW_FIXTURES:
+        if(stat1 >= ID_CUP_START && cup_has_tables(stat1) == -1)
+            game_gui_print_message(_("Cup has no tables."));
+        else
+        {
+            stat0 = STATUS_SHOW_TABLES;
+            callback_show_tables(SHOW_CURRENT);   
+        }
+        break;
+    }
+    
+    gui_set_arrows();
+
+    return TRUE;
+}
 
 gboolean
 on_player_list1_button_press_event     (GtkWidget       *widget,
@@ -354,6 +565,10 @@ on_player_list1_key_press_event        (GtkWidget       *widget,
     return FALSE;
 }
 
+
+/***********************************************************************************************************
+******************************************** ARROW BUTTON CALLBACKS ****************************************
+***********************************************************************************************************/
 
 void
 on_button_browse_forward_clicked       (GtkButton       *button,
@@ -477,6 +692,37 @@ on_button_cl_forward_clicked           (GtkButton       *button,
 }
 
 
+/***********************************************************************************************************
+******************************************** PREFERENCES MENU CALLBACKS ************************************
+***********************************************************************************************************/
+
+void
+on_menu_save_window_geometry_activate  (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_menu_save_window_geometry_activate\n");
+#endif
+
+    window_main_save_geometry();
+}
+
+gboolean
+on_menu_check_button_press_event       (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_menu_check_button_press_event\n");
+#endif
+
+    game_gui_read_check_items(widget);
+
+    setsav0;
+	
+    return FALSE;
+}
+
 void
 on_menu_preferences_activate           (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
@@ -487,6 +733,10 @@ on_menu_preferences_activate           (GtkMenuItem     *menuitem,
 
     window_show_options();
 }
+
+/***********************************************************************************************************
+******************************************** FIGURES CALLBACKS *********************************************
+***********************************************************************************************************/
 
 void
 on_menu_fixtures_activate              (GtkMenuItem     *menuitem,
@@ -590,6 +840,78 @@ on_menu_season_history_activate        (GtkMenuItem     *menuitem,
     gui_set_arrows();
 }
 
+
+/***********************************************************************************************************
+******************************************** PLAYER MENU CALLBACKS *****************************************
+***********************************************************************************************************/
+
+void
+on_menu_edit_name_activate             (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+
+}
+
+void
+on_menu_browse_players_activate        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_menu_browse_players_activate\n");
+#endif
+
+    stat0 = STATUS_SHOW_PLAYER_LIST;
+    callback_show_player_list(SHOW_CURRENT);
+
+    gui_set_arrows();
+}
+
+void
+on_menu_offer_new_contract_activate    (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_menu_offer_new_contract_activate\n");
+#endif
+
+    if(sett_int("int_opt_disable_contracts"))
+    {
+	game_gui_print_message(_("Contracts are disabled in this country definition."));
+	return;
+    }
+
+    if(selected_row == -1)
+    {
+	game_gui_print_message(_("You haven't selected a player."));
+	return;
+    }
+
+    callback_offer_new_contract(selected_row);
+
+    setsav0;
+}
+
+
+void
+on_menu_show_info_activate      (GtkMenuItem     *menuitem,
+				 gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_menu_show_info_activate\n");
+#endif
+
+    if(selected_row == -1)
+    {
+	game_gui_print_message(_("You haven't selected a player."));
+	return;
+    }    
+
+    if(stat0 != STATUS_LIVE_GAME_PAUSE)
+	stat0 = STATUS_SHOW_PLAYER_INFO;
+    treeview_show_player_info(player_of_idx_team(current_user.tm, selected_row));
+
+    gui_set_arrows();
+}
 
 void
 on_menu_put_on_transfer_list_activate  (GtkMenuItem     *menuitem,
@@ -724,485 +1046,29 @@ on_menu_move_to_youth_academy_activate (GtkMenuItem     *menuitem,
     }
 }
 
-
-void
-on_menu_my_league_results_activate     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_menu_my_league_results_activate\n");
-#endif
-
-    stat0 = STATUS_SHOW_LEAGUE_RESULTS;
-    treeview_show_league_results(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")));
-
-    gui_set_arrows();
-}
+/***********************************************************************************************************
+******************************************** PLAYER CONTEXT MENU CALLBACKS *********************************
+***********************************************************************************************************/
 
 
 
 void
-on_menu_season_results_activate        (GtkMenuItem     *menuitem,
+on_player_menu_edit_name_activate      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-#ifdef DEBUG
-    printf("on_menu_season_results_activate\n");
-#endif
 
-    stat0 = STATUS_SHOW_SEASON_RESULTS;
-    treeview2_show_season_results();
-    gui_set_arrows();
-}
-
-
-void
-on_menu_browse_teams_activate          (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_menu_browse_teams_activate\n");
-#endif
-
-    GtkWidget *treeview_right =
-	lookup_widget(window.main, "treeview_right");
-
-    treeview_show_team_list(GTK_TREE_VIEW(treeview_right), TRUE, TRUE);
-
-    stat0 = STATUS_SHOW_TEAM_LIST;
-
-    gui_set_arrows();
-}
-
-
-gboolean
-on_treeview_right_button_press_event   (GtkWidget       *widget,
-                                        GdkEventButton  *event,
-                                        gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_treeview_right_button_press_event\n");
-#endif
-
-    gint idx;
-
-    if(stat0 == STATUS_SHOW_FINANCES)
-    {
-	if(event->button == 1)
-	    callback_get_loan();
-	else if(event->button == 3)
-	    callback_pay_loan();
-	else if(event->button == 2)
-	    on_menu_show_stadium_activate(NULL, NULL);
-    }
-
-    if(gtk_tree_selection_get_mode(
-	   gtk_tree_view_get_selection(GTK_TREE_VIEW(widget))) ==
-       GTK_SELECTION_NONE)
-	return TRUE;
-
-    if(treeview_helper_select_row(GTK_TREE_VIEW(widget), event))
-	idx = treeview_helper_get_index(GTK_TREE_VIEW(widget), 0);
-    else
-	return TRUE;
-
-    switch(stat0)
-    {
-	case STATUS_SHOW_TRANSFER_LIST:
-	    if(trans(idx - 1).tm == current_user.tm ||
-	       (trans(idx - 1).offers->len > 0 && 
-		transoff(idx - 1, 0).status == TRANSFER_OFFER_ACCEPTED) ||
-	       event->button == 1)
-		callback_transfer_list_clicked(event->button, idx - 1);
-	    else if(event->button == 3)
-	    {
-		if(transfer_remove_offer(idx - 1, current_user.tm))
-		    game_gui_print_message(_("Your offer has been removed."));
-		else
-		    game_gui_print_message(
-			_("You haven't made an offer for the player."));
-		return TRUE;
-	    }
-	    break;
-	case STATUS_SHOW_TEAM_LIST:
-	    callback_show_team(SHOW_CURRENT);
-	    break;
-	case STATUS_MAIN:
-	    callback_show_next_opponent();
-	    break;
-	case STATUS_SHOW_PLAYER_LIST:
-	    callback_show_player_team();
-	    break;
-	case STATUS_SHOW_YA:
-	    selected_row = idx - 1;
-	    if(event->button == 1)
-		on_menu_youth_move_to_team_activate(NULL, NULL);
-	    else if(event->button == 3)
-		window_show_menu_youth((GdkEvent*)event);
-	    break;
-	case STATUS_SHOW_JOB_EXCHANGE:
-	    if(g_array_index(jobs, Job, idx - 1).type != JOB_TYPE_NATIONAL &&
-	       users->len > 1)
-		game_gui_show_warning(_("You can't apply for a job from abroad if there's more than one user."));
-	    else if(event->button == 1)
-		game_gui_show_job_offer(NULL, 
-					&g_array_index(jobs, Job, idx - 1),
-					STATUS_JOB_EXCHANGE_SHOW_TEAM);
-	    else if(event->button == 3)
-		if(misc2_callback_evaluate_job_application(
-		       &g_array_index(jobs, Job, idx - 1), &current_user))
-		{
-		    stat0 = STATUS_MAIN;
-		    game_gui_show_main();
-		    setsav0;
-		}
-	    break;
-
-    case STATUS_SHOW_TABLES:
-        stat0 = STATUS_SHOW_FIXTURES;
-        stat2 = week;
-        stat3 = week_round;
-        callback_show_fixtures(SHOW_CURRENT);
-        break;
-    case STATUS_SHOW_FIXTURES:
-        if(stat1 >= ID_CUP_START && cup_has_tables(stat1) == -1)
-            game_gui_print_message(_("Cup has no tables."));
-        else
-        {
-            stat0 = STATUS_SHOW_TABLES;
-            callback_show_tables(SHOW_CURRENT);   
-        }
-        break;
-    }
-    
-    gui_set_arrows();
-
-    return TRUE;
 }
 
 void
-on_menu_next_user_activate             (GtkMenuItem     *menuitem,
+on_player_menu_show_info_activate      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 #ifdef DEBUG
-    printf("on_menu_next_user_activate\n");
+    printf("on_player_menu_show_info_activate\n");
 #endif
 
-    if(transfer_offers_pending())
-    {
-	game_gui_show_warning(_("You still have some transfer business to manage."));
-	return;
-    }
-
-    cur_user = (cur_user + 1) % users->len;
-    user_event_show_next();
-
-    on_button_back_to_main_clicked(NULL, NULL);
+    on_menu_show_info_activate(NULL, NULL);
 }
-
-
-void
-on_menu_previous_user_activate         (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_menu_previous_user_activate\n");
-#endif
-
-    if(transfer_offers_pending())
-    {
-	game_gui_show_warning(_("You still have some transfer business to manage."));
-	return;
-    }
-
-    cur_user = (cur_user == 0) ? users->len - 1 : cur_user - 1;
-    user_event_show_next();
-
-    on_button_back_to_main_clicked(NULL, NULL);
-}
-
-
-void
-on_menu_custom_structure_activate      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_menu_custom_structure_activate\n");
-#endif
-
-    stat1 = STATUS_CUSTOM_STRUCTURE;
-    window_show_digits(_("Enter a structure. The digits must sum up to 10."),
-		       NULL, -1, _("Structure"), current_user.tm->structure, FALSE);
-}
-
-
-gboolean
-on_menu_team_button_release_event        (GtkWidget       *widget,
-					  GdkEventButton  *event,
-					  gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_menu_team_button_release_event\n");
-#endif
-
-    game_gui_read_radio_items(widget);
-    setsav0;
-
-    return FALSE;
-}
-
-void
-on_menu_manage_users_activate          (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_menu_manage_users_activate\n");
-#endif
-
-    stat0 = stat1 = STATUS_USER_MANAGEMENT;
-    window_create(WINDOW_USER_MANAGEMENT);
-    treeview_show_users(GTK_TREE_VIEW(lookup_widget(window.user_management, "treeview_user_management_users")));
-    treeview_show_team_list(GTK_TREE_VIEW(lookup_widget(window.user_management, "treeview_user_management_teams")),
-			    FALSE, FALSE);
-}
-
-
-void
-on_menu_user_show_last_match_activate  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_menu_user_show_last_match_activate\n");
-#endif
-
-    if(current_user.live_game.units->len == 0)
-    {
-	game_gui_show_warning(_("No match stored."));
-	return;
-    }
-
-    stat1 = STATUS_SHOW_LAST_MATCH;
-    stat3 = 0;
-    callback_show_last_match(TRUE, &current_user.live_game);
-}
-
-
-void
-on_menu_user_show_last_stats_activate  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_menu_user_show_last_stats_activate\n");
-#endif
-
-    if(current_user.live_game.units->len == 0)
-    {
-	game_gui_show_warning(_("No match stored."));
-	return;
-    }
-
-    stat0 = STATUS_SHOW_LAST_MATCH_STATS;
-    callback_show_last_match_stats();
-
-    gui_set_arrows();
-}
-
-
-void
-on_menu_user_show_coming_matches_activate
-                                        (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_menu_user_show_coming_matches_activate\n");
-#endif
-
-    stat0 = STATUS_SHOW_PREVIEW;
-    treeview_show_preview();
-
-    gui_set_arrows();
-}
-
-
-gboolean
-on_eventbox_style_button_press_event   (GtkWidget       *widget,
-                                        GdkEventButton  *event,
-                                        gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_eventbox_style_button_press_event\n");
-#endif
-
-    gint new_style = -1;
-
-    if(event->type != GDK_BUTTON_PRESS)
-	return FALSE;
-
-    if(event->button == 3)
-	new_style = (current_user.tm->style != 2) ?
-	    current_user.tm->style + 1 : -2;
-    else if(event->button == 1)
-	new_style = (current_user.tm->style != -2) ?
-	    current_user.tm->style - 1 : 2;
-    else
-	return FALSE;
-
-    team_change_attribute_with_message(current_user.tm, TEAM_ATTRIBUTE_STYLE, new_style);
-
-    game_gui_write_meters(current_user.tm);
-    game_gui_write_radio_items();
-    
-    if(stat0 == STATUS_MAIN)
-	treeview_show_next_opponent();
-
-    setsav0;
-
-    return FALSE;
-}
-
-
-gboolean
-on_eventbox_boost_button_press_event   (GtkWidget       *widget,
-                                        GdkEventButton  *event,
-                                        gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_eventbox_boost_button_press_event\n");
-#endif
-
-    gint new_boost = -1; 
-
-    if(event->type != GDK_BUTTON_PRESS)
-	return FALSE;
-
-    if(event->button == 3)
-	new_boost = (current_user.tm->boost != 1) ?
-	    current_user.tm->boost + 1 : -1;
-    else if(event->button == 1)
-	new_boost = (current_user.tm->boost != -1) ?
-	    current_user.tm->boost - 1 : 1;
-    else
-	return FALSE;
-
-    if(new_boost == 1 && sett_int("int_opt_disable_boost_on"))
-	game_gui_print_message(_("Boost ON is disabled in this country definition."));
-    else
-	team_change_attribute_with_message(current_user.tm, TEAM_ATTRIBUTE_BOOST, new_boost);
-
-    game_gui_write_meters(current_user.tm);
-    game_gui_write_radio_items();
-
-    if(stat0 == STATUS_MAIN)
-	treeview_show_next_opponent();
-
-    setsav0;
-
-    return FALSE;
-}
-
-void
-on_menu_show_finances_activate         (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_menu_show_finances_activate\n");
-#endif
-
-    if(sett_int("int_opt_disable_finances"))
-    {
-	game_gui_print_message(_("Finances are disabled in this country definition."));
-	return;
-    }
-
-    stat0 = STATUS_SHOW_FINANCES;
-    game_gui_print_message(_("Left-click: get loan; Right-click: pay back; Middle click: stadium window."));
-    treeview_show_finances(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")),
-			   &current_user);
-
-    gui_set_arrows();
-}
-
-
-void
-on_menu_show_stadium_activate          (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_menu_show_stadium_activate\n");
-#endif
-
-    if(sett_int("int_opt_disable_stadium"))
-    {
-	game_gui_print_message(
-	    _("Stadium management is disabled in this country definition."));
-	return;
-    }
-
-    window_show_stadium();
-}
-
-gboolean
-on_menu_check_button_press_event       (GtkWidget       *widget,
-                                        GdkEventButton  *event,
-                                        gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_menu_check_button_press_event\n");
-#endif
-
-    game_gui_read_check_items(widget);
-
-    setsav0;
-	
-    return FALSE;
-}
-
-void
-on_menu_offer_new_contract_activate    (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_menu_offer_new_contract_activate\n");
-#endif
-
-    if(sett_int("int_opt_disable_contracts"))
-    {
-	game_gui_print_message(_("Contracts are disabled in this country definition."));
-	return;
-    }
-
-    if(selected_row == -1)
-    {
-	game_gui_print_message(_("You haven't selected a player."));
-	return;
-    }
-
-    callback_offer_new_contract(selected_row);
-
-    setsav0;
-}
-
-
-void
-on_menu_show_info_activate      (GtkMenuItem     *menuitem,
-				 gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_menu_show_info_activate\n");
-#endif
-
-    if(selected_row == -1)
-    {
-	game_gui_print_message(_("You haven't selected a player."));
-	return;
-    }    
-
-    if(stat0 != STATUS_LIVE_GAME_PAUSE)
-	stat0 = STATUS_SHOW_PLAYER_INFO;
-    treeview_show_player_info(player_of_idx_team(current_user.tm, selected_row));
-
-    gui_set_arrows();
-}
-
 
 void
 on_player_menu_put_on_transfer_list_activate
@@ -1279,61 +1145,9 @@ on_player_menu_move_to_youth_academy_activate
     on_menu_move_to_youth_academy_activate(NULL, NULL);
 }
 
-
-void
-on_menu_browse_players_activate        (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_menu_browse_players_activate\n");
-#endif
-
-    stat0 = STATUS_SHOW_PLAYER_LIST;
-    callback_show_player_list(SHOW_CURRENT);
-
-    gui_set_arrows();
-}
-
-void
-on_player_menu_show_info_activate      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_player_menu_show_info_activate\n");
-#endif
-
-    on_menu_show_info_activate(NULL, NULL);
-}
-
-
-void
-on_menu_rearrange_team_activate        (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_menu_rearrange_team_activate\n");
-#endif
-
-    team_rearrange(current_user.tm);
-    treeview_show_user_player_list();
-}
-
-
-void
-on_menu_load_last_save_activate        (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_menu_load_last_save_activate\n");
-#endif
-
-    if(load_save_load_game("last_save", FALSE))
-    {
-	cur_user = 0;
-	on_button_back_to_main_clicked(NULL, NULL);
-	setsav1;
-    }
-}
+/***********************************************************************************************************
+******************************************** STATS MENU CALLBACKS ******************************************
+***********************************************************************************************************/
 
 void
 on_menu_user_show_history_activate     (GtkMenuItem     *menuitem,
@@ -1350,64 +1164,88 @@ on_menu_user_show_history_activate     (GtkMenuItem     *menuitem,
 }
 
 void
-on_button_reset_players_clicked        (GtkButton       *button,
+on_mm_add_last_match_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 #ifdef DEBUG
-    printf("on_button_reset_players_clicked\n");
+    printf("on_mm_add_last_match_activate\n");
 #endif
 
-    on_menu_reset_players_activate(NULL, NULL);
+    if(current_user.live_game.units->len == 0)
+    {
+	game_gui_show_warning(_("No match stored."));
+	return;
+    }
+
+    if(current_user.mmatches_file == NULL)
+    {
+	stat5 = STATUS_SELECT_MM_FILE_ADD;
+	window_show_file_sel();
+    }
+    else
+	user_mm_add_last_match(FALSE, TRUE);
 }
 
 
 void
-on_menu_reset_players_activate         (GtkMenuItem     *menuitem,
+on_mm_manage_matches_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 #ifdef DEBUG
-    printf("on_menu_reset_players_activate\n");
+    printf("on_mm_manage_matches_activate\n");
 #endif
 
-    gint idx = -1;
-
-    if(team_is_user(usr(stat2).live_game.fix->teams[0]) == -1 ||
-       team_is_user(usr(stat2).live_game.fix->teams[1]) == -1)
-	idx  = (team_is_user(usr(stat2).live_game.fix->teams[0]) == -1);
+    if(current_user.mmatches_file == NULL)
+    {
+	stat5 = STATUS_SELECT_MM_FILE_LOAD;
+	window_show_file_sel();
+    }
     else
-    {
-	if(team_is_user(usr(stat2).live_game.fix->teams[0]) == cur_user)
-	    idx = 0;
-	else
-	    idx = 1;
-    }
-    
-    game_reset_players(idx);
+	window_show_mmatches();
 }
 
-gboolean
-on_button_quit_button_press_event      (GtkWidget       *widget,
-                                        GdkEventButton  *event,
+
+void
+on_menu_news_activate                  (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    window_create(WINDOW_NEWS);
+    treeview2_show_news();
+    counters[COUNT_NEWS_SHOWN] = 1;
+}
+
+void
+on_menu_my_league_results_activate     (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 #ifdef DEBUG
-    printf("on_button_quit_button_press_event\n");
+    printf("on_menu_my_league_results_activate\n");
 #endif
 
-    if(event->button == 3 && counters[COUNT_SHOW_DEBUG] == 0)
-    {
-	counters[COUNT_SHOW_DEBUG] = 1;
-	g_timeout_add(3000, (GSourceFunc)debug_reset_counter, NULL);
-    }
-    else if(event->button == 2 && counters[COUNT_SHOW_DEBUG] == 1)
-    {
-	window_create(WINDOW_DEBUG);
-	counters[COUNT_SHOW_DEBUG] = 0;
-    }
+    stat0 = STATUS_SHOW_LEAGUE_RESULTS;
+    treeview_show_league_results(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")));
 
-    return FALSE;
+    gui_set_arrows();
 }
 
+
+
+void
+on_menu_season_results_activate        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_menu_season_results_activate\n");
+#endif
+
+    stat0 = STATUS_SHOW_SEASON_RESULTS;
+    treeview2_show_season_results();
+    gui_set_arrows();
+}
+
+/***********************************************************************************************************
+******************************************** TEAM MENU CALLBACKS *******************************************
+***********************************************************************************************************/
 
 void
 on_menu_show_youth_academy_activate    (GtkMenuItem     *menuitem,
@@ -1448,6 +1286,324 @@ on_menu_set_investment_activate        (GtkMenuItem     *menuitem,
 	_("Set the percentage of your income you want to devote to your youth academy."),
 	NULL, -1, "%", current_user.youth_academy.percentage, FALSE);
 }
+
+void
+on_menu_show_job_exchange_activate     (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_menu_show_job_exchange_activate\n");
+#endif
+
+    stat0 = STATUS_SHOW_JOB_EXCHANGE;
+
+    gui_set_arrows();
+
+    treeview2_show_job_exchange();
+
+    game_gui_print_message(
+	_("Right click to apply for job at once, left click to see team info."));
+    game_gui_print_message_with_delay(
+	_("The job exchange update interval is %d weeks."),
+	const_int("int_job_update_interval"));
+}
+
+void
+on_training_camp_activate              (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_training_camp_activate\n");
+#endif
+
+   if(sett_int("int_opt_disable_training_camp"))
+    {
+	game_gui_print_message(
+	    _("Training camp is disabled in this country definition."));
+	return;
+    }
+
+   if(current_user.counters[COUNT_USER_TRAININGS_WEEK] == 
+      const_int("int_training_camps_week"))
+   {
+       game_gui_print_message(_("Your team has already had enough training camps this week."));
+       return;
+   }
+
+   if(current_user.counters[COUNT_USER_TRAININGS_LEFT_SEASON] == 0)
+   {
+       game_gui_print_message(_("You've reached the limit of %d training camps for the season."),
+			      const_int("int_training_camps_per_season"));
+       return;
+   }
+
+   window_show_training_camp();
+}
+
+void
+on_menu_rearrange_team_activate        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_menu_rearrange_team_activate\n");
+#endif
+
+    team_rearrange(current_user.tm);
+    treeview_show_user_player_list();
+}
+
+gboolean
+on_menu_team_button_release_event        (GtkWidget       *widget,
+					  GdkEventButton  *event,
+					  gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_menu_team_button_release_event\n");
+#endif
+
+    game_gui_read_radio_items(widget);
+    setsav0;
+
+    return FALSE;
+}
+
+void
+on_menu_custom_structure_activate      (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_menu_custom_structure_activate\n");
+#endif
+
+    stat1 = STATUS_CUSTOM_STRUCTURE;
+    window_show_digits(_("Enter a structure. The digits must sum up to 10."),
+		       NULL, -1, _("Structure"), current_user.tm->structure, FALSE);
+}
+
+void
+on_menu_browse_teams_activate          (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_menu_browse_teams_activate\n");
+#endif
+
+    GtkWidget *treeview_right =
+	lookup_widget(window.main, "treeview_right");
+
+    treeview_show_team_list(GTK_TREE_VIEW(treeview_right), TRUE, TRUE);
+
+    stat0 = STATUS_SHOW_TEAM_LIST;
+
+    gui_set_arrows();
+}
+
+/***********************************************************************************************************
+******************************************** USER MENU CALLBACKS *******************************************
+***********************************************************************************************************/
+
+void
+on_menu_next_user_activate             (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_menu_next_user_activate\n");
+#endif
+
+    if(transfer_offers_pending())
+    {
+	game_gui_show_warning(_("You still have some transfer business to manage."));
+	return;
+    }
+
+    cur_user = (cur_user + 1) % users->len;
+    user_event_show_next();
+
+    on_button_back_to_main_clicked(NULL, NULL);
+}
+
+
+void
+on_menu_previous_user_activate         (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_menu_previous_user_activate\n");
+#endif
+
+    if(transfer_offers_pending())
+    {
+	game_gui_show_warning(_("You still have some transfer business to manage."));
+	return;
+    }
+
+    cur_user = (cur_user == 0) ? users->len - 1 : cur_user - 1;
+    user_event_show_next();
+
+    on_button_back_to_main_clicked(NULL, NULL);
+}
+
+void
+on_menu_manage_users_activate          (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_menu_manage_users_activate\n");
+#endif
+
+    stat0 = stat1 = STATUS_USER_MANAGEMENT;
+    window_create(WINDOW_USER_MANAGEMENT);
+    treeview_show_users(GTK_TREE_VIEW(lookup_widget(window.user_management, "treeview_user_management_users")));
+    treeview_show_team_list(GTK_TREE_VIEW(lookup_widget(window.user_management, "treeview_user_management_teams")),
+			    FALSE, FALSE);
+}
+
+
+void
+on_menu_user_show_last_match_activate  (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_menu_user_show_last_match_activate\n");
+#endif
+
+    if(current_user.live_game.units->len == 0)
+    {
+	game_gui_show_warning(_("No match stored."));
+	return;
+    }
+
+    stat1 = STATUS_SHOW_LAST_MATCH;
+    stat3 = 0;
+    callback_show_last_match(TRUE, &current_user.live_game);
+}
+
+
+void
+on_menu_user_show_last_stats_activate  (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_menu_user_show_last_stats_activate\n");
+#endif
+
+    if(current_user.live_game.units->len == 0)
+    {
+	game_gui_show_warning(_("No match stored."));
+	return;
+    }
+
+    stat0 = STATUS_SHOW_LAST_MATCH_STATS;
+    callback_show_last_match_stats();
+
+    gui_set_arrows();
+}
+
+
+void
+on_menu_user_show_coming_matches_activate
+                                        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_menu_user_show_coming_matches_activate\n");
+#endif
+
+    stat0 = STATUS_SHOW_PREVIEW;
+    treeview_show_preview();
+
+    gui_set_arrows();
+}
+
+/***********************************************************************************************************
+******************************************** FINSTAD MENU CALLBACKS ****************************************
+***********************************************************************************************************/
+
+
+void
+on_menu_betting_activate               (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_menu_betting_activate\n");
+#endif
+
+    on_button_back_to_main_clicked(NULL, NULL);
+    window_show_bets();
+}
+
+void
+on_automatic_loan_repayment_activate   (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_automatic_loan_repayment_activate\n");
+#endif
+
+    if(sett_int("int_opt_disable_finances"))
+    {
+	game_gui_print_message(_("Finances are disabled in this country definition."));
+	return;
+    }
+
+    if(current_user.debt == 0)
+    {
+        game_gui_print_message(_("You are not in debt."));
+        return;
+    }
+    else if(week >= fixture_get_last_scheduled_week() - 1)
+    {
+        game_gui_print_message(_("It's too late in the season for automatic loan repayment."));
+        return;            
+    }
+    
+    window_show_alr();
+}
+
+void
+on_menu_show_finances_activate         (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_menu_show_finances_activate\n");
+#endif
+
+    if(sett_int("int_opt_disable_finances"))
+    {
+	game_gui_print_message(_("Finances are disabled in this country definition."));
+	return;
+    }
+
+    stat0 = STATUS_SHOW_FINANCES;
+    game_gui_print_message(_("Left-click: get loan; Right-click: pay back; Middle click: stadium window."));
+    treeview_show_finances(GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right")),
+			   &current_user);
+
+    gui_set_arrows();
+}
+
+
+void
+on_menu_show_stadium_activate          (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_menu_show_stadium_activate\n");
+#endif
+
+    if(sett_int("int_opt_disable_stadium"))
+    {
+	game_gui_print_message(
+	    _("Stadium management is disabled in this country definition."));
+	return;
+    }
+
+    window_show_stadium();
+}
+
+/***********************************************************************************************************
+******************************************** YOUTH CONTEXT MENU CALLBACKS **********************************
+***********************************************************************************************************/
 
 void
 on_menu_youth_move_to_team_activate    (GtkMenuItem     *menuitem,
@@ -1500,90 +1656,9 @@ on_menu_youth_kick_out_of_academy_activate
     }
 }
 
-void
-on_mm_add_last_match_activate          (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_mm_add_last_match_activate\n");
-#endif
-
-    if(current_user.live_game.units->len == 0)
-    {
-	game_gui_show_warning(_("No match stored."));
-	return;
-    }
-
-    if(current_user.mmatches_file == NULL)
-    {
-	stat5 = STATUS_SELECT_MM_FILE_ADD;
-	window_show_file_sel();
-    }
-    else
-	user_mm_add_last_match(FALSE, TRUE);
-}
-
-
-void
-on_mm_manage_matches_activate          (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_mm_manage_matches_activate\n");
-#endif
-
-    if(current_user.mmatches_file == NULL)
-    {
-	stat5 = STATUS_SELECT_MM_FILE_LOAD;
-	window_show_file_sel();
-    }
-    else
-	window_show_mmatches();
-}
-
-void
-on_menu_save_window_geometry_activate  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_menu_save_window_geometry_activate\n");
-#endif
-
-    window_main_save_geometry();
-}
-
-void
-on_menu_betting_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_menu_betting_activate\n");
-#endif
-
-    on_button_back_to_main_clicked(NULL, NULL);
-    window_show_bets();
-}
-
-void
-on_menu_show_job_exchange_activate     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-#ifdef DEBUG
-    printf("on_menu_show_job_exchange_activate\n");
-#endif
-
-    stat0 = STATUS_SHOW_JOB_EXCHANGE;
-
-    gui_set_arrows();
-
-    treeview2_show_job_exchange();
-
-    game_gui_print_message(
-	_("Right click to apply for job at once, left click to see team info."));
-    game_gui_print_message_with_delay(
-	_("The job exchange update interval is %d weeks."),
-	const_int("int_job_update_interval"));
-}
+/***********************************************************************************************************
+******************************************** MISCELLANEOUS CALLBACKS ***************************************
+***********************************************************************************************************/
 
 gboolean
 on_hpaned2_button_release_event        (GtkWidget       *widget,
@@ -1600,72 +1675,63 @@ on_hpaned2_button_release_event        (GtkWidget       *widget,
     return FALSE;
 }
 
-void
-on_training_camp_activate              (GtkMenuItem     *menuitem,
+gboolean
+on_button_quit_button_press_event      (GtkWidget       *widget,
+                                        GdkEventButton  *event,
                                         gpointer         user_data)
 {
 #ifdef DEBUG
-    printf("on_training_camp_activate\n");
+    printf("on_button_quit_button_press_event\n");
 #endif
 
-   if(sett_int("int_opt_disable_training_camp"))
+    if(event->button == 3 && counters[COUNT_SHOW_DEBUG] == 0)
     {
-	game_gui_print_message(
-	    _("Training camp is disabled in this country definition."));
-	return;
+	counters[COUNT_SHOW_DEBUG] = 1;
+	g_timeout_add(3000, (GSourceFunc)debug_reset_counter, NULL);
+    }
+    else if(event->button == 2 && counters[COUNT_SHOW_DEBUG] == 1)
+    {
+	window_create(WINDOW_DEBUG);
+	counters[COUNT_SHOW_DEBUG] = 0;
     }
 
-   if(current_user.counters[COUNT_USER_TRAININGS_WEEK] == 
-      const_int("int_training_camps_week"))
-   {
-       game_gui_print_message(_("Your team has already had enough training camps this week."));
-       return;
-   }
-
-   if(current_user.counters[COUNT_USER_TRAININGS_LEFT_SEASON] == 0)
-   {
-       game_gui_print_message(_("You've reached the limit of %d training camps for the season."),
-			      const_int("int_training_camps_per_season"));
-       return;
-   }
-
-   window_show_training_camp();
+    return FALSE;
 }
 
 void
-on_automatic_loan_repayment_activate   (GtkMenuItem     *menuitem,
+on_button_reset_players_clicked        (GtkButton       *button,
                                         gpointer         user_data)
 {
 #ifdef DEBUG
-    printf("on_automatic_loan_repayment_activate\n");
+    printf("on_button_reset_players_clicked\n");
 #endif
 
-    if(sett_int("int_opt_disable_finances"))
-    {
-	game_gui_print_message(_("Finances are disabled in this country definition."));
-	return;
-    }
+    on_menu_reset_players_activate(NULL, NULL);
+}
 
-    if(current_user.debt == 0)
+
+void
+on_menu_reset_players_activate         (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_menu_reset_players_activate\n");
+#endif
+
+    gint idx = -1;
+
+    if(team_is_user(usr(stat2).live_game.fix->teams[0]) == -1 ||
+       team_is_user(usr(stat2).live_game.fix->teams[1]) == -1)
+	idx  = (team_is_user(usr(stat2).live_game.fix->teams[0]) == -1);
+    else
     {
-        game_gui_print_message(_("You are not in debt."));
-        return;
-    }
-    else if(week >= fixture_get_last_scheduled_week() - 1)
-    {
-        game_gui_print_message(_("It's too late in the season for automatic loan repayment."));
-        return;            
+	if(team_is_user(usr(stat2).live_game.fix->teams[0]) == cur_user)
+	    idx = 0;
+	else
+	    idx = 1;
     }
     
-    window_show_alr();
+    game_reset_players(idx);
 }
 
-void
-on_menu_news_activate                  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-    window_create(WINDOW_NEWS);
-    treeview2_show_news();
-    counters[COUNT_NEWS_SHOWN] = 1;
-}
 
