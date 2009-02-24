@@ -121,7 +121,12 @@ callback_player_activate(gint idx)
 	on_menu_move_to_youth_academy_activate(NULL, NULL);
     }
     else if(gtk_notebook_get_current_page(
-                GTK_NOTEBOOK(lookup_widget(window.main, "notebook_player"))) == 0)
+                GTK_NOTEBOOK(lookup_widget(window.main, "notebook_player"))) == 1)
+    {
+        selected_row = idx;
+        return;        
+    }
+    else
     {
 	if(selected_row == -1)
 	{

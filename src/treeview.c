@@ -359,7 +359,6 @@ treeview_set_up_player_list(GtkTreeView *treeview, gint *attributes, gint max,
 
         if(transfer_list && attributes[i] == PLAYER_LIST_ATTRIBUTE_NAME)
         {
-            g_object_set_data(G_OBJECT(col), "cell_renderer_name", renderer);
             g_object_set(renderer, "editable", TRUE, NULL);
             g_signal_connect (renderer,
                               "editing-started",
