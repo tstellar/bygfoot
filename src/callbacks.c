@@ -962,51 +962,31 @@ void
 on_menu_edit_name_activate             (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-/*     GtkTreeViewColumn *col; */
-/*     GtkNotebook *notebook; */
-/*     GtkTreeView *player_list; */
-/*     GtkCellRenderer *renderer; */
-/*     GtkTreePath *tpath; */
-/*     gchar path[SMALL]; */
-/*     GdkRectangle bg; */
-/*     GdkRectangle cell_area; */
+    GtkTreeViewColumn *col;
+    GtkNotebook *notebook;
+    GtkTreeView *player_list;
+    GtkTreePath *tpath;
 
-/*     if(selected_row == -1) */
-/*     { */
-/* 	game_gui_print_message(_("You haven't selected a player.")); */
-/* 	return; */
-/*     } */
+    if(selected_row == -1)
+    {
+	game_gui_print_message(_("You haven't selected a player."));
+	return;
+    }
 
-/*     notebook = GTK_NOTEBOOK(lookup_widget(window.main, "notebook_player")); */
-/*     if(gtk_notebook_get_current_page(notebook) != 1) */
-/*         gtk_notebook_set_current_page(notebook, 1); */
+    notebook = GTK_NOTEBOOK(lookup_widget(window.main, "notebook_player"));
+    if(gtk_notebook_get_current_page(notebook) != 1)
+        gtk_notebook_set_current_page(notebook, 1);
 
-/*     sprintf(path, "%d", selected_row - 1); */
-/*     tpath = gtk_tree_path_new_from_indices(selected_row - 1); */
-/*     player_list = GTK_TREE_VIEW(lookup_widget(window.main, "player_list2")); */
-/*     col = gtk_tree_view_get_column(player_list, PLAYER_LIST_ATTRIBUTE_NAME + 1); */
-/*     renderer = GTK_CELL_RENDERER(g_object_get_data(G_OBJECT(col), "cell_renderer_name")); */
+    if(selected_row < 11)
+        tpath = gtk_tree_path_new_from_indices(selected_row, -1);
+    else
+        tpath = gtk_tree_path_new_from_indices(selected_row + 1, -1);
 
-/*     gtk_tree_view_set_cursor_on_cell(player_list, tpath, col, renderer, TRUE); */
+    player_list = GTK_TREE_VIEW(lookup_widget(window.main, "player_list2"));
+    col = gtk_tree_view_get_column(player_list, PLAYER_LIST_ATTRIBUTE_NAME + 1);
 
-/*     gtk_tree_view_get_background_area (player_list, */
-/*                                        tpath, col, &bg); */
-/*     gtk_tree_view_get_cell_area (player_list, */
-/*                                  tpath, col, &cell_area); */
+    gtk_tree_view_set_cursor(player_list, tpath, col, TRUE);
 
-//    gtk_cell_renderer_activate(renderer, NULL, GTK_WIDGET(player_list), path, NULL, NULL, GTK_CELL_RENDERER_SELECTED);
-//    gtk_cell_renderer_start_editing(renderer, NULL, GTK_WIDGET(player_list), path, &bg, &cell_area, GTK_CELL_RENDERER_SELECTED);
-/*                                                          GdkEvent *event, */
-
-/*                                                          GtkWidget *widget, */
-
-/*                                                          const gchar *path, */
-
-/*                                                          const GdkRectangle *background_area, */
-
-/*                                                          const GdkRectangle *cell_area, */
-
-/*                                                          GtkCellRendererState flags); */
     setsav0;
 }
 
@@ -1214,7 +1194,7 @@ void
 on_player_menu_edit_name_activate      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-
+    on_menu_edit_name_activate(NULL, NULL);
 }
 
 void
