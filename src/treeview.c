@@ -2678,6 +2678,7 @@ treeview_create_country_list(const GPtrArray *country_list)
     // This variable will be used to lookup 
     gchar* previous_element;
     gchar* current_country;
+    gchar* buf2;
     
     for(i=0;i<country_list->len;i++)
     {
@@ -2688,7 +2689,9 @@ treeview_create_country_list(const GPtrArray *country_list)
         if (g_str_has_prefix(current_country,G_DIR_SEPARATOR_S))
         {
             // Strip leading directory delimiter
-            sprintf(current_country, "%.*s", (gint)strlen(current_country) - 1, &current_country[1]);
+            buf2 = g_strdup((gchar*)current_country);
+            sprintf(current_country, "%.*s", (gint)strlen(current_country) - 1, &buf2[1]);
+            g_free(buf2);
         }
         dir_split_up = g_strsplit_set (current_country, G_DIR_SEPARATOR_S, -1);
         // We only go up to the before last column.  We don't want to show the
