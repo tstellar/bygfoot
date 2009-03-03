@@ -141,6 +141,10 @@ youth_academy_add_new_player(YouthAcademy *youth_academy)
 	percentage_coach_talent_factor * av_talent *
 	(1 + const_float("float_youth_academy_talent_variance")));
 
+    new.peak_region =
+	math_gauss_dist(const_float("float_player_peak_region_lower"),
+			const_float("float_player_peak_region_upper"));//2;
+
     new.talent = CLAMP(new.talent, 0, const_float("float_player_max_skill"));
     new.skill = player_skill_from_talent(&new);
     new.cskill = new.skill;
@@ -167,10 +171,6 @@ youth_academy_add_new_player(YouthAcademy *youth_academy)
 
     new.streak = PLAYER_STREAK_NONE;
     new.streak_count = new.streak_prob = 0;
-
-    new.peak_region =
-	math_gauss_dist(const_float("float_player_peak_region_lower"),
-			const_float("float_player_peak_region_upper"));//2;
 
     g_array_append_val(youth_academy->players, new);
 }
