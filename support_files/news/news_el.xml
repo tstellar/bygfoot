@@ -1,4 +1,4 @@
-﻿<news>
+<news>
   <news_article>
     <type>match</type>
     <condition>_TLAYERDIFF_ = 0 and _GD_ G 3 and (_CUPKO_ = 0 or _CUPHOMEAWAY_ = 0 or _CUPFIRSTLEG_ = 1)</condition>
@@ -203,7 +203,7 @@
     <title priority="20" condition="_CUPET_ = 1">Η _TW_ [νικάει τη|υπερισχύει της|κατατροπώνει τη] _TL_ στην παράταση</title>
     <title priority="20" condition="_CUPET_ = 1">Η _TW_ νικήτρια στην παράταση</title>
     <title priority="20" condition="_CUPPEN_ = 1">Η _TW_ [νικάει τη|υπερισχύει της|κατατροπώνει τη] _TL_ με _REW_ στα πέναλτι</title>
-    <title priority="20 condition="_CUPPEN_ = 1">Οι παίκτες της _TW_ ελέγχουν καλύτερα τα νεύρα τους στη διαδικασία των πέναλτι</title>
+    <title priority="20" condition="_CUPPEN_ = 1">Οι παίκτες της _TW_ ελέγχουν καλύτερα τα νεύρα τους στη διαδικασία των πέναλτι</title>
     <title condition="_GD_ = 0">Η _T[_TLAYER0_ L _TLAYER1_]_ παίρνει αναπάντεχη ισοπαλία</title>
     <title condition="_GD_ = 0">Η _T[_TLAYER0_ L _TLAYER1_]_ αντέχει την επίθεση της _T[_TLAYER0_ G _TLAYER1_]_</title>
     <title condition="_GD_ = 0">_LEAGUECUPNAME_: Η _T[_TLAYER0_ L _TLAYER1_]_ μόλις που καταφέρνει να πάρει μία ισοπαλία</title>
@@ -451,7 +451,6 @@
     <subtitle condition="_GDAGG_ > 2">Η_CUPMATCHLOSER_ είναι κατώτερη και φυσιολογικά αποκλείεται.</subtitle>
     <subtitle condition="_GDAGG_ > 2">Η_CUPMATCHWINNER_ κυριαρχεί στην αναμέτρηση και είναι φαβορί για τον τίτλο.</subtitle>
   </news_article>
-
 
 </news>
 
