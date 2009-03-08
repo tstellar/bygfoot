@@ -648,6 +648,37 @@ game_player_injury(Player *pl)
     }
 }
 
+/** Calculate the probability of a foul event occurring. */
+gfloat
+game_get_foul_prob(const LiveGame *live_game, const LiveGameUnit *unit)
+{
+    gfloat prob;
+    gint i;
+
+    /* Base probability (a linear function of match time). */
+    prob = const_float("float_live_game_foul_base") + 
+        const_float("float_live_game_foul_max_inc") * MIN(1, (gfloat)(unit->minute) / 90);
+
+    /* Add possible boost influence of the team not in possession. */
+    prob *= (1 + live_game->fix->teams[!unit->possession]->boost * 
+             const_float("float_team_boost_foul_factor"));
+
+    /* Reduce probability depending on the current cards of
+       the team not in possession, except if their boost is on. */
+    if(live_game->fix->teams[!unit->possession]->boost != 1)
+    {
+        for(i = 0; i < 11; i++)
+            if(g_array_index(live_game->fix->teams[!unit->possession]->players, Player, i).card_status == 
+               PLAYER_CARD_STATUS_YELLOW)
+                prob *= (1 - const_float("float_live_game_foul_prob_reduction_yellow"));
+            else if(g_array_index(live_game->fix->teams[!unit->possession]->players, Player, i).card_status == 
+                    PLAYER_CARD_STATUS_RED)
+                prob *= (1 - const_float("float_live_game_foul_prob_reduction_red"));
+    }
+
+    return prob;
+}
+
 /** Return a factor influencing who's fouled whom
     depending on the states of the team boosts.
     @param boost1 Boost of the team in possession.
