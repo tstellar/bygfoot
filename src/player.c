@@ -94,6 +94,7 @@ player_new(Team *tm, gfloat average_talent, gboolean new_id)
 		       const_float("float_player_lsu_upper"));
     new.cards = g_array_new(FALSE, FALSE, sizeof(PlayerCard));
     new.games_goals = g_array_new(FALSE, FALSE, sizeof(PlayerGamesGoals));
+    new.card_status = PLAYER_CARD_STATUS_NONE;
 
     for(i=0;i<PLAYER_VALUE_END;i++)
 	new.career[i] = 0;
@@ -1312,6 +1313,8 @@ player_update_post_match(Player *pl, const Fixture *fix)
 	if(player_card_get(pl, fix->clid, PLAYER_VALUE_CARD_RED) == 0 && debug < 50)
 	    player_card_set(pl, fix->clid, PLAYER_VALUE_CARD_RED, 1, FALSE);
     }
+
+    pl->card_status = PLAYER_CARD_STATUS_NONE;
 
     if(pl->cpos == PLAYER_POS_GOALIE &&
        ((fix->result[0][0] == 0 && fix->teams[1] == pl->team) ||

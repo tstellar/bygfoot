@@ -122,4 +122,7 @@ game_get_default_penalty_shooter(const Team *tm);
 void
 game_boost_cost(void);
 
+gfloat
+game_get_foul_prob(const LiveGame *live_game, const LiveGameUnit *unit);
+
 #endif

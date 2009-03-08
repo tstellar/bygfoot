@@ -517,13 +517,23 @@ float_live_game_stadium_event_riots	30000
 float_live_game_stadium_event_fire	10000
 
 # foul probabilities. 
-float_live_game_foul		11000
+float_live_game_foul_base                       7000
+float_live_game_foul_max_inc                    8000
+
+# if a team already got booked it fouls less often
+float_live_game_foul_prob_reduction_yellow      10000
+float_live_game_foul_prob_reduction_red         20000
+
+# a player who's already booked fouls more carefully
+float_live_game_foul_booked_reduction		50000
+
+# probabilities for special foul consequences
 float_live_game_foul_red_injury 1500
 float_live_game_foul_red	3800
 float_live_game_foul_yellow	28000
 
 # ban duration probabilities
-# should add up to 1000
+# should add up to 100000
 float_live_game_ban_1 70000
 float_live_game_ban_2 15000
 float_live_game_ban_3 10000

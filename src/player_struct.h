@@ -109,6 +109,14 @@ enum PlayerValue
     PLAYER_VALUE_END
 };
 
+/** Enumeration for the yellow/red
+    card status during the live game. */
+enum PlayerCardStatus
+{
+    PLAYER_CARD_STATUS_NONE = 0,
+    PLAYER_CARD_STATUS_YELLOW,
+    PLAYER_CARD_STATUS_RED
+};
 
 /**
    Representation of a player.
@@ -127,7 +135,8 @@ typedef struct
 	value, /**< Value of the player. */
 	wage, /**< Wage of the player. */
 	offers, /**< Number of times the player received a contract offer. */
-	streak; /**< The streak the player is on. */
+	streak, /**< The streak the player is on. */
+        card_status; /**< The card status of the player during a live game. */
 		
     gfloat skill, /**< Skill. Between 0 and a constant
 		     (specified in the constants file). */
