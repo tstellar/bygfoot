@@ -123,7 +123,7 @@ option_float(const gchar *name, OptionList *optionlist)
     gpointer element = g_datalist_get_data(&optionlist->datalist, name);
     
     if(element != NULL)
-	return (gfloat)((Option*)element)->value / 100000;
+	return (gfloat)((Option*)element)->value / OPTION_FLOAT_DIVISOR;
 
     main_exit_program(EXIT_OPTION_NOT_FOUND, 
 		      "option_float: option named %s not found\nMaybe you should delete the .bygfoot directory from your home dir", name);

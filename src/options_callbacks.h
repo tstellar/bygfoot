@@ -60,8 +60,30 @@ gboolean
 on_window_options_delete_event         (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data);
-#endif
-
 void
 on_spinbutton_recreation_value_changed (GtkSpinButton   *spinbutton,
                                         gpointer         user_data);
+
+void
+on_button_edit_constants_clicked       (GtkButton       *button,
+                                        gpointer         user_data);
+
+gboolean
+on_window_constants_destroy_event      (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data);
+
+gboolean
+on_window_constants_delete_event       (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data);
+
+void
+on_button_constants_reload_clicked     (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_constants_close_clicked      (GtkButton       *button,
+                                        gpointer         user_data);
+#endif
+

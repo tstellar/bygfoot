@@ -1022,6 +1022,14 @@ window_create(gint window_type)
         wind = window.news;
         strcpy(buf, _("Bygfoot News"));
         break;
+    case WINDOW_CONSTANTS:
+        if(window.constants != NULL)
+            g_warning("window_create: called on already existing window\n");
+        else
+            window.constants = create_window_constants();
+        wind = window.constants;
+        strcpy(buf, _("Bygfoot constants"));
+        break;
     }
 
     if(window_type != WINDOW_FILE_CHOOSER)
@@ -1174,3 +1182,11 @@ window_show_alr(void)
                               0, -current_user.debt * powf(1 + current_user.debt_interest, const_int("int_finance_payback_weeks")) + 1);
 }
 
+/** Show the window where the user can edit constants determining
+    gameplay behaviour. */
+void
+window_show_constants(void)
+{
+    window_create(WINDOW_CONSTANTS);
+    treeview2_show_constants();
+}

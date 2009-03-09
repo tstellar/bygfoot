@@ -67,6 +67,11 @@ create_window_options (void)
   GtkWidget *hbox9;
   GtkWidget *image2;
   GtkWidget *label35;
+  GtkWidget *button_edit_constants;
+  GtkWidget *alignment3;
+  GtkWidget *hbox19;
+  GtkWidget *image3;
+  GtkWidget *label49;
   GtkWidget *label40;
   GtkWidget *checkbutton_autosave;
   GtkObject *spinbutton_precision_adj;
@@ -227,7 +232,6 @@ create_window_options (void)
   window_options = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_options), 5);
   gtk_window_set_position (GTK_WINDOW (window_options), GTK_WIN_POS_CENTER);
-  gtk_window_set_modal (GTK_WINDOW (window_options), TRUE);
 
   vbox1 = gtk_vbox_new (FALSE, 2);
   gtk_widget_show (vbox1);
@@ -374,7 +378,7 @@ create_window_options (void)
   gtk_widget_show (label34);
   gtk_box_pack_start (GTK_BOX (hbox7), label34, FALSE, FALSE, 0);
 
-  hbox8 = gtk_hbox_new (FALSE, 0);
+  hbox8 = gtk_hbox_new (FALSE, 2);
   gtk_widget_show (hbox8);
   gtk_table_attach (GTK_TABLE (table1), hbox8, 1, 2, 3, 4,
                     (GtkAttachOptions) (GTK_FILL),
@@ -405,6 +409,27 @@ create_window_options (void)
   label35 = gtk_label_new_with_mnemonic (_("Reload"));
   gtk_widget_show (label35);
   gtk_box_pack_start (GTK_BOX (hbox9), label35, FALSE, FALSE, 0);
+
+  button_edit_constants = gtk_button_new ();
+  gtk_widget_show (button_edit_constants);
+  gtk_box_pack_start (GTK_BOX (hbox8), button_edit_constants, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, button_edit_constants, _("Edit the constants used in the game (this won't change the file, however)"), NULL);
+
+  alignment3 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment3);
+  gtk_container_add (GTK_CONTAINER (button_edit_constants), alignment3);
+
+  hbox19 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox19);
+  gtk_container_add (GTK_CONTAINER (alignment3), hbox19);
+
+  image3 = gtk_image_new_from_stock ("gtk-edit", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image3);
+  gtk_box_pack_start (GTK_BOX (hbox19), image3, FALSE, FALSE, 0);
+
+  label49 = gtk_label_new_with_mnemonic (_("Edit"));
+  gtk_widget_show (label49);
+  gtk_box_pack_start (GTK_BOX (hbox19), label49, FALSE, FALSE, 0);
 
   label40 = gtk_label_new (_("Language"));
   gtk_widget_show (label40);
@@ -1212,6 +1237,9 @@ create_window_options (void)
   g_signal_connect ((gpointer) button_reload_constants, "clicked",
                     G_CALLBACK (on_button_reload_constants_clicked),
                     NULL);
+  g_signal_connect ((gpointer) button_edit_constants, "clicked",
+                    G_CALLBACK (on_button_edit_constants_clicked),
+                    NULL);
   g_signal_connect ((gpointer) spinbutton_recreation, "value_changed",
                     G_CALLBACK (on_spinbutton_recreation_value_changed),
                     NULL);
@@ -1265,6 +1293,11 @@ create_window_options (void)
   GLADE_HOOKUP_OBJECT (window_options, hbox9, "hbox9");
   GLADE_HOOKUP_OBJECT (window_options, image2, "image2");
   GLADE_HOOKUP_OBJECT (window_options, label35, "label35");
+  GLADE_HOOKUP_OBJECT (window_options, button_edit_constants, "button_edit_constants");
+  GLADE_HOOKUP_OBJECT (window_options, alignment3, "alignment3");
+  GLADE_HOOKUP_OBJECT (window_options, hbox19, "hbox19");
+  GLADE_HOOKUP_OBJECT (window_options, image3, "image3");
+  GLADE_HOOKUP_OBJECT (window_options, label49, "label49");
   GLADE_HOOKUP_OBJECT (window_options, label40, "label40");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_autosave, "checkbutton_autosave");
   GLADE_HOOKUP_OBJECT (window_options, spinbutton_precision, "spinbutton_precision");
@@ -1412,5 +1445,208 @@ create_window_options (void)
   gtk_window_add_accel_group (GTK_WINDOW (window_options), accel_group);
 
   return window_options;
+}
+
+GtkWidget*
+create_window_constants (void)
+{
+  GtkWidget *window_constants;
+  GtkWidget *vbox12;
+  GtkWidget *notebook2;
+  GtkWidget *scrolledwindow1;
+  GtkWidget *treeview_constants_integer;
+  GtkWidget *label50;
+  GtkWidget *scrolledwindow2;
+  GtkWidget *treeview_constants_float;
+  GtkWidget *label51;
+  GtkWidget *scrolledwindow3;
+  GtkWidget *treeview_constants_string;
+  GtkWidget *label52;
+  GtkWidget *scrolledwindow4;
+  GtkWidget *treeview_constants_app;
+  GtkWidget *label53;
+  GtkWidget *hseparator9;
+  GtkWidget *button_constants_reload;
+  GtkWidget *alignment4;
+  GtkWidget *hbox20;
+  GtkWidget *image4;
+  GtkWidget *label54;
+  GtkWidget *button_constants_close;
+  GtkWidget *alignment5;
+  GtkWidget *hbox21;
+  GtkWidget *image5;
+  GtkWidget *label55;
+  GtkAccelGroup *accel_group;
+  GtkTooltips *tooltips;
+
+  tooltips = gtk_tooltips_new ();
+
+  accel_group = gtk_accel_group_new ();
+
+  window_constants = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_container_set_border_width (GTK_CONTAINER (window_constants), 5);
+  gtk_window_set_title (GTK_WINDOW (window_constants), _("window1"));
+  gtk_window_set_position (GTK_WINDOW (window_constants), GTK_WIN_POS_CENTER);
+  gtk_window_set_default_size (GTK_WINDOW (window_constants), 550, 700);
+
+  vbox12 = gtk_vbox_new (FALSE, 5);
+  gtk_widget_show (vbox12);
+  gtk_container_add (GTK_CONTAINER (window_constants), vbox12);
+
+  notebook2 = gtk_notebook_new ();
+  gtk_widget_show (notebook2);
+  gtk_box_pack_start (GTK_BOX (vbox12), notebook2, TRUE, TRUE, 0);
+
+  scrolledwindow1 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrolledwindow1);
+  gtk_container_add (GTK_CONTAINER (notebook2), scrolledwindow1);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow1), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow1), GTK_SHADOW_IN);
+
+  treeview_constants_integer = gtk_tree_view_new ();
+  gtk_widget_show (treeview_constants_integer);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow1), treeview_constants_integer);
+
+  label50 = gtk_label_new (_("Integer"));
+  gtk_widget_show (label50);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook2), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook2), 0), label50);
+
+  scrolledwindow2 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrolledwindow2);
+  gtk_container_add (GTK_CONTAINER (notebook2), scrolledwindow2);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow2), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow2), GTK_SHADOW_IN);
+
+  treeview_constants_float = gtk_tree_view_new ();
+  gtk_widget_show (treeview_constants_float);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow2), treeview_constants_float);
+
+  label51 = gtk_label_new (_("Float"));
+  gtk_widget_show (label51);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook2), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook2), 1), label51);
+
+  scrolledwindow3 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrolledwindow3);
+  gtk_container_add (GTK_CONTAINER (notebook2), scrolledwindow3);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow3), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow3), GTK_SHADOW_IN);
+
+  treeview_constants_string = gtk_tree_view_new ();
+  gtk_widget_show (treeview_constants_string);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow3), treeview_constants_string);
+
+  label52 = gtk_label_new (_("String"));
+  gtk_widget_show (label52);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook2), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook2), 2), label52);
+
+  scrolledwindow4 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrolledwindow4);
+  gtk_container_add (GTK_CONTAINER (notebook2), scrolledwindow4);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow4), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow4), GTK_SHADOW_IN);
+
+  treeview_constants_app = gtk_tree_view_new ();
+  gtk_widget_show (treeview_constants_app);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow4), treeview_constants_app);
+
+  label53 = gtk_label_new (_("Appearance"));
+  gtk_widget_show (label53);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook2), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook2), 3), label53);
+
+  hseparator9 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator9);
+  gtk_box_pack_start (GTK_BOX (vbox12), hseparator9, FALSE, TRUE, 0);
+  gtk_widget_set_size_request (hseparator9, -1, 10);
+
+  button_constants_reload = gtk_button_new ();
+  gtk_widget_show (button_constants_reload);
+  gtk_box_pack_start (GTK_BOX (vbox12), button_constants_reload, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, button_constants_reload, _("Reload constants files. This will overwrite any changes you made in the current game session."), NULL);
+
+  alignment4 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment4);
+  gtk_container_add (GTK_CONTAINER (button_constants_reload), alignment4);
+
+  hbox20 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox20);
+  gtk_container_add (GTK_CONTAINER (alignment4), hbox20);
+
+  image4 = gtk_image_new_from_stock ("gtk-refresh", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image4);
+  gtk_box_pack_start (GTK_BOX (hbox20), image4, FALSE, FALSE, 0);
+
+  label54 = gtk_label_new_with_mnemonic (_("Reload from file"));
+  gtk_widget_show (label54);
+  gtk_box_pack_start (GTK_BOX (hbox20), label54, FALSE, FALSE, 0);
+
+  button_constants_close = gtk_button_new ();
+  gtk_widget_show (button_constants_close);
+  gtk_box_pack_start (GTK_BOX (vbox12), button_constants_close, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, button_constants_close, _("Close window. Changes will be saved for the current session. To make permanent changes, edit constants files directly."), NULL);
+  gtk_widget_add_accelerator (button_constants_close, "clicked", accel_group,
+                              GDK_Escape, (GdkModifierType) 0,
+                              GTK_ACCEL_VISIBLE);
+
+  alignment5 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment5);
+  gtk_container_add (GTK_CONTAINER (button_constants_close), alignment5);
+
+  hbox21 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox21);
+  gtk_container_add (GTK_CONTAINER (alignment5), hbox21);
+
+  image5 = gtk_image_new_from_stock ("gtk-close", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image5);
+  gtk_box_pack_start (GTK_BOX (hbox21), image5, FALSE, FALSE, 0);
+
+  label55 = gtk_label_new_with_mnemonic (_("Close"));
+  gtk_widget_show (label55);
+  gtk_box_pack_start (GTK_BOX (hbox21), label55, FALSE, FALSE, 0);
+
+  g_signal_connect ((gpointer) window_constants, "destroy_event",
+                    G_CALLBACK (on_window_constants_destroy_event),
+                    NULL);
+  g_signal_connect ((gpointer) window_constants, "delete_event",
+                    G_CALLBACK (on_window_constants_delete_event),
+                    NULL);
+  g_signal_connect ((gpointer) button_constants_reload, "clicked",
+                    G_CALLBACK (on_button_constants_reload_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_constants_close, "clicked",
+                    G_CALLBACK (on_button_constants_close_clicked),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (window_constants, window_constants, "window_constants");
+  GLADE_HOOKUP_OBJECT (window_constants, vbox12, "vbox12");
+  GLADE_HOOKUP_OBJECT (window_constants, notebook2, "notebook2");
+  GLADE_HOOKUP_OBJECT (window_constants, scrolledwindow1, "scrolledwindow1");
+  GLADE_HOOKUP_OBJECT (window_constants, treeview_constants_integer, "treeview_constants_integer");
+  GLADE_HOOKUP_OBJECT (window_constants, label50, "label50");
+  GLADE_HOOKUP_OBJECT (window_constants, scrolledwindow2, "scrolledwindow2");
+  GLADE_HOOKUP_OBJECT (window_constants, treeview_constants_float, "treeview_constants_float");
+  GLADE_HOOKUP_OBJECT (window_constants, label51, "label51");
+  GLADE_HOOKUP_OBJECT (window_constants, scrolledwindow3, "scrolledwindow3");
+  GLADE_HOOKUP_OBJECT (window_constants, treeview_constants_string, "treeview_constants_string");
+  GLADE_HOOKUP_OBJECT (window_constants, label52, "label52");
+  GLADE_HOOKUP_OBJECT (window_constants, scrolledwindow4, "scrolledwindow4");
+  GLADE_HOOKUP_OBJECT (window_constants, treeview_constants_app, "treeview_constants_app");
+  GLADE_HOOKUP_OBJECT (window_constants, label53, "label53");
+  GLADE_HOOKUP_OBJECT (window_constants, hseparator9, "hseparator9");
+  GLADE_HOOKUP_OBJECT (window_constants, button_constants_reload, "button_constants_reload");
+  GLADE_HOOKUP_OBJECT (window_constants, alignment4, "alignment4");
+  GLADE_HOOKUP_OBJECT (window_constants, hbox20, "hbox20");
+  GLADE_HOOKUP_OBJECT (window_constants, image4, "image4");
+  GLADE_HOOKUP_OBJECT (window_constants, label54, "label54");
+  GLADE_HOOKUP_OBJECT (window_constants, button_constants_close, "button_constants_close");
+  GLADE_HOOKUP_OBJECT (window_constants, alignment5, "alignment5");
+  GLADE_HOOKUP_OBJECT (window_constants, hbox21, "hbox21");
+  GLADE_HOOKUP_OBJECT (window_constants, image5, "image5");
+  GLADE_HOOKUP_OBJECT (window_constants, label55, "label55");
+  GLADE_HOOKUP_OBJECT_NO_REF (window_constants, tooltips, "tooltips");
+
+  gtk_window_add_accel_group (GTK_WINDOW (window_constants), accel_group);
+
+  return window_constants;
 }
 
