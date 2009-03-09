@@ -30,6 +30,11 @@
 #include "bygfoot.h"
 #include "option_struct.h"
 
+/** We store float constants as integer to avoid
+    localisation problems, and this is the value
+    the integers get divided by when we load them. */
+#define OPTION_FLOAT_DIVISOR 100000
+
 /** Convenience abbrevs. */
 #define option_set_float(name, option_array, value) option_set_int(name, option_array, (gint)rint(value * 1000))
 

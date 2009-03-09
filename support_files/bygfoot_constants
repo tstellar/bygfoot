@@ -520,6 +520,9 @@ float_live_game_stadium_event_fire	10000
 float_live_game_foul_base                       7000
 float_live_game_foul_max_inc                    8000
 
+# influence of boost on foul probability
+float_team_boost_foul_factor 40000
+
 # if a team already got booked it fouls less often
 float_live_game_foul_prob_reduction_yellow      10000
 float_live_game_foul_prob_reduction_red         20000
@@ -631,9 +634,6 @@ float_player_boost_card_effect 80000
 # of the ball fouls
 float_team_boost_foul_by_possession_factor1 50000
 float_team_boost_foul_by_possession_factor2 90000
-
-# influence of boost on foul probability
-float_team_boost_foul_factor 40000
 
 # costs factor of boost per minute
 float_boost_cost_factor 2000

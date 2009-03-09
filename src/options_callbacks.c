@@ -24,6 +24,7 @@
 */
 
 #include "file.h"
+#include "option.h"
 #include "options_callbacks.h"
 #include "options_interface.h"
 #include "option_gui.h"
@@ -187,3 +188,55 @@ on_spinbutton_recreation_value_changed (GtkSpinButton   *spinbutton,
     
     gtk_label_set_text(GTK_LABEL(lookup_widget(window.options, "label_training")), buf);
 }
+
+void
+on_button_edit_constants_clicked       (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    window_show_constants();    
+}
+
+
+gboolean
+on_window_constants_destroy_event      (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data)
+{
+    on_button_constants_close_clicked(NULL, NULL);
+    return FALSE;
+}
+
+
+gboolean
+on_window_constants_delete_event       (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data)
+{
+    on_button_constants_close_clicked(NULL, NULL);
+    return FALSE;
+}
+
+
+void
+on_button_constants_reload_clicked     (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    if(window.options != NULL)
+    {
+        printf("hu\n");
+             file_load_opt_file(gtk_entry_get_text(GTK_ENTRY(lookup_widget(window.options, "entry_constants_file"))),
+                           &constants);
+    }   
+    else        
+        file_load_opt_file(opt_str("string_opt_constants_file"),
+                           &constants);
+}
+
+
+void
+on_button_constants_close_clicked      (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    window_destroy(&window.constants);
+}
+

@@ -82,4 +82,13 @@ treeview2_set_up_news(GtkTreeView *treeview);
 void
 treeview2_show_news(void);
 
+GtkTreeModel*
+treeview2_create_constants(const GArray *list, gint type);
+
+void
+treeview2_set_up_constants(GtkTreeView *treeview);
+
+void
+treeview2_show_constants(void);
+
 #endif

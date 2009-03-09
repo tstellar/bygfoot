@@ -160,6 +160,7 @@ typedef struct
 	*job_offer,
 	*yesno,
 	*options,
+        *constants,
 	*font_sel,
 	*file_chooser,
 	*contract,

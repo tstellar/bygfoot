@@ -42,6 +42,7 @@ enum Windows
     WINDOW_JOB_OFFER,
     WINDOW_YESNO,
     WINDOW_OPTIONS,
+    WINDOW_CONSTANTS,
     WINDOW_FONT_SEL,
     WINDOW_FILE_CHOOSER,
     WINDOW_CONTRACT,
@@ -131,5 +132,8 @@ window_show_training_camp(void);
 
 void
 window_show_alr(void);
+
+void
+window_show_constants(void);
 
 #endif

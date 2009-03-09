@@ -3,3 +3,4 @@
  */
 
 GtkWidget* create_window_options (void);
+GtkWidget* create_window_constants (void);
