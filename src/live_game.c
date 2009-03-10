@@ -1725,12 +1725,12 @@ live_game_reset(LiveGame *live_game, Fixture *fix, gboolean free_variable)
 #ifdef DEBUG
     printf("live_game_reset\n");
 #endif
-
     gint i;
 
     if(free_variable)
 	free_live_game(live_game);
 
+    live_game->started_game = -1;
     live_game->units = g_array_new(FALSE, FALSE, sizeof(LiveGameUnit));
     live_game->action_ids[0] = g_array_new(FALSE, FALSE, sizeof(gint));
     live_game->action_ids[1] = g_array_new(FALSE, FALSE, sizeof(gint));
