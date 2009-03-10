@@ -544,7 +544,7 @@ misc_string_choose_random(gchar *string)
       return;
       
    count = math_rndi(0, count - 1) + 1;
-   start = string;
+   start = g_strdup(string);
    for (i = 0; string[i]; i++)
       if (string[i] == STR_SEP)
       {

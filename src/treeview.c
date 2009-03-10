@@ -2741,6 +2741,7 @@ treeview_create_country_list(const GPtrArray *country_list)
              }
 	}
         g_strfreev(dir_split_up);
+        g_free(current_country);
     }
 
     return GTK_TREE_MODEL(ls);

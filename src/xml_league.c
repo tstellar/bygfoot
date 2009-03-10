@@ -258,8 +258,8 @@ xml_league_read_start_element (GMarkupParseContext *context,
     else if(strcmp(element_name, TAG_TEAM) == 0)
     {
 	new_team = team_new(TRUE);
-	misc_string_assign(&new_team.symbol, new_league.symbol);
-	misc_string_assign(&new_team.names_file, new_league.names_file);
+	misc_string_assign(&(new_team.symbol), new_league.symbol);
+	misc_string_assign(&(new_team.names_file), new_league.names_file);
 	new_team.clid = new_league.id;
 	g_array_append_val(new_league.teams, new_team);	
 	state = STATE_TEAM;
