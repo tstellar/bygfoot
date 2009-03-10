@@ -347,7 +347,6 @@ main (gint argc, gchar *argv[])
     int fd2 = open ("stderr.log", O_CREAT|O_WRONLY|O_TRUNC, 0666);
     dup2 (fd2, 2);
 #endif
-    gtk_set_locale ();
     gtk_init (&argc, &argv);
 
     main_init(&argc, &argv);
