@@ -237,9 +237,9 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
 	PIC_TYPE_LOAD);
 
     g_string_sprintf(buf, "%s%s%s___options", dirname, G_DIR_SEPARATOR_S, prefix);
-    file_load_opt_file(buf->str, &options);
+    file_load_opt_file(buf->str, &options, FALSE);
     g_string_sprintf(buf, "%s%s%s___settings", dirname, G_DIR_SEPARATOR_S, prefix);
-    file_load_opt_file(buf->str, &settings);
+    file_load_opt_file(buf->str, &settings, FALSE);
     language_set(language_get_code_index(opt_str("string_opt_language_code")) + 1);
 
     if(debug > 60)

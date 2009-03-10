@@ -792,3 +792,43 @@ misc_string_replace_all_tokens(GPtrArray **token_rep,
 
     return (g_strrstr(dest, "_") == NULL);
 }
+
+/* Alphabetic compare function. */
+gint
+misc_alphabetic_compare(gconstpointer a, gconstpointer b)
+{
+    const gchar *string[2] = {(const gchar*)a,
+                              (const gchar*)b};
+    gchar alphabet[26] = {'a','b','c','d','e','f','g',
+                          'h','i','j','k','l','m','n',
+                          'o','p','q','r','s','t','u',
+                          'v','w','x','y','z'};
+    gint len[2] = {strlen(string[0]), strlen(string[1])};
+    gint maxlen = MIN(len[0], len[1]);
+    gint letter[2];
+    gint i, j, k;
+
+    for(i = 0; i < maxlen; i++)
+    {
+        for(k = 0; k < 2; k++)
+        {
+            letter[k] = 0;
+            for(j = 0; j < 26; j++)
+                if(string[k][i] == alphabet[j])
+                {
+                    letter[k] = j;
+                    break;
+                }
+        }
+        
+        if(letter[0] < letter[1])
+            return -1;
+        else if(letter[0] > letter[1])
+            return 1;
+    }
+
+    if(len[0] != len[1])
+        return 1 - 2 * (len[0] < len[1]);
+
+    return 0;
+}

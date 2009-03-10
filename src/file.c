@@ -610,7 +610,7 @@ file_save_opt_file(const gchar *filename, OptionList *optionlist)
 /** Load a file containing name - value pairs into
     the specified array. */
 void
-file_load_opt_file(const gchar *filename, OptionList *optionlist)
+file_load_opt_file(const gchar *filename, OptionList *optionlist, gboolean sort)
 {
 #ifdef DEBUG
     printf("file_load_opt_file\n");
@@ -651,6 +651,9 @@ file_load_opt_file(const gchar *filename, OptionList *optionlist)
 	}
     }
 
+    if(sort)
+        g_array_sort(optionlist->list, (GCompareFunc)option_compare_func);
+
     for(i=0;i<optionlist->list->len;i++)
 	g_datalist_set_data(&optionlist->datalist, g_array_index(optionlist->list, Option, i).name,
 			    &g_array_index(optionlist->list, Option, i));
@@ -679,7 +682,7 @@ file_load_hints_file(void)
     else
 	strcpy(hints_file, "bygfoot_hints_en");
 
-    file_load_opt_file(hints_file, &hints);
+    file_load_opt_file(hints_file, &hints, FALSE);
 }
 
 /** Load the options at the beginning of a new game from
@@ -694,12 +697,12 @@ file_load_conf_files(void)
     gint i;
     gchar *conf_file = file_find_support_file("bygfoot.conf", TRUE);
 
-    file_load_opt_file(conf_file, &options);
+    file_load_opt_file(conf_file, &options, FALSE);
     g_free(conf_file);
 
-    file_load_opt_file(opt_str("string_opt_constants_file"), &constants);
-    file_load_opt_file(opt_str("string_opt_appearance_file"), &constants_app);
-    file_load_opt_file("bygfoot_tokens", &tokens);
+    file_load_opt_file(opt_str("string_opt_constants_file"), &constants, TRUE);
+    file_load_opt_file(opt_str("string_opt_appearance_file"), &constants_app, TRUE);
+    file_load_opt_file("bygfoot_tokens", &tokens, FALSE);
     file_load_hints_file();
 
     for(i=0;i<tokens.list->len;i++)
@@ -729,7 +732,7 @@ file_load_user_conf_file(User *user)
 	    file_find_support_file(opt_str("string_opt_default_user_conf_file"), TRUE);
     }
 
-    file_load_opt_file(conf_file, &user->options);
+    file_load_opt_file(conf_file, &user->options, FALSE);
     g_free(conf_file);
 }
 

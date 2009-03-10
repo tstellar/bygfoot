@@ -86,7 +86,7 @@ GtkTreeModel*
 treeview2_create_constants(const GPtrArray *list, gint type);
 
 void
-treeview2_set_up_constants(GtkTreeView *treeview);
+treeview2_set_up_constants(GtkTreeView *treeview, gint type);
 
 void
 treeview2_show_constants(void);

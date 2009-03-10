@@ -194,8 +194,6 @@ option_add(OptionList *optionlist, const gchar *name,
         ((Option*)element)->string_value = (string_value == NULL) ? NULL : g_strdup(string_value);
         return;
     }
-/* 	main_exit_program(EXIT_OPTION_NOT_FOUND,  */
-/* 			  "Option named '%s' already contained in optionlist.", name); */
 
     new.name = g_strdup(name);
     new.value = int_value;
@@ -213,4 +211,10 @@ option_add(OptionList *optionlist, const gchar *name,
 	g_datalist_set_data(&optionlist->datalist, 
 			    g_array_index(optionlist->list, Option, i).name,
 			    &g_array_index(optionlist->list, Option, i));
+}
+
+gint
+option_compare_func(gconstpointer a, gconstpointer b)
+{
+    return misc_alphabetic_compare(((const Option*)a)->name, ((const Option*)b)->name);
 }

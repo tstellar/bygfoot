@@ -135,4 +135,7 @@ void
 misc_token_add_bool(GPtrArray **token_rep, gint token_idx, 
                     gboolean value);
 
+gint
+misc_alphabetic_compare(gconstpointer a, gconstpointer b);
+
 #endif

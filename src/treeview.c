@@ -137,7 +137,7 @@ treeview_set_up_team_selection_treeview(GtkTreeView *treeview)
 
     gtk_tree_view_set_search_column(treeview, 2);
     gtk_tree_view_set_search_equal_func(treeview,
-					treeview_helper_search_equal,
+					treeview_helper_search_equal_teams,
 					NULL, NULL);
 
     /* Numbering the teams */
@@ -443,10 +443,8 @@ treeview_show_player_list(GtkTreeView *treeview, GPtrArray *players,
     treeview_helper_clear(treeview);
 
     for(i=0;i<PLAYER_LIST_ATTRIBUTE_END;i++)
-    {
 	if(attribute.on_off[i])
 	    attributes[cnt++] = i;
-    }
 
     treeview_set_up_player_list(treeview, attributes, columns, show_separator, transfer_list, sortable);
 
@@ -2773,7 +2771,7 @@ treeview_show_contributors(GtkTreeView *treeview)
 
     help_list.list = NULL;
     help_list.datalist = NULL;
-    file_load_opt_file(help_file, &help_list);
+    file_load_opt_file(help_file, &help_list, FALSE);
 
     gtk_tree_selection_set_mode(gtk_tree_view_get_selection(treeview),
 				GTK_SELECTION_NONE);

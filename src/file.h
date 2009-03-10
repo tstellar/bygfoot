@@ -46,7 +46,7 @@ gboolean
 file_get_next_opt_line(FILE *fil, gchar *opt_name, gchar *opt_value);
 
 void
-file_load_opt_file(const gchar *filename, OptionList *optionlist);
+file_load_opt_file(const gchar *filename, OptionList *optionlist, gboolean sort);
 
 void
 file_save_opt_file(const gchar *filename, OptionList *optionlist);
