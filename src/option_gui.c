@@ -560,7 +560,7 @@ option_gui_write_options(void)
 
 	if(i == ENTRY_OPT_CONSTANTS && 
 	   strcmp(gtk_entry_get_text(entry_widgets[i]), opt_str("string_opt_constants_file")) != 0)
-	    file_load_opt_file(gtk_entry_get_text(entry_widgets[i]), &constants);
+	    file_load_opt_file(gtk_entry_get_text(entry_widgets[i]), &constants, TRUE);
 	else if(i == ENTRY_OPT_FONT_NAME &&
 		strcmp(gtk_entry_get_text(entry_widgets[i]), opt_str("string_opt_font_name")) != 0)
 	    on_button_back_to_main_clicked(NULL, NULL);

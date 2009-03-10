@@ -786,7 +786,7 @@ window_main_load_geometry(void)
     {
 	optionlist.list = NULL;
 	optionlist.datalist = NULL;
-	file_load_opt_file(filename, &optionlist);
+	file_load_opt_file(filename, &optionlist, FALSE);
 
 	gtk_window_resize(GTK_WINDOW(window.main),
 			  option_int("int_window_settings_width", &optionlist),

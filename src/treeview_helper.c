@@ -1814,14 +1814,14 @@ treeview_helper_bet_odds(GtkTreeViewColumn *col,
 }
 
 gboolean
-treeview_helper_search_equal(GtkTreeModel *model,
-			     gint column,
-			     const gchar *key,
-			     GtkTreeIter *iter,
-			     gpointer search_data)
+treeview_helper_search_equal_teams(GtkTreeModel *model,
+                                   gint column,
+                                   const gchar *key,
+                                   GtkTreeIter *iter,
+                                   gpointer search_data)
 {
 #ifdef DEBUG
-    printf("treeview_helper_search_equal\n");
+    printf("treeview_helper_search_equal_teams\n");
 #endif
 
     const Team *tm = NULL;
@@ -1835,6 +1835,24 @@ treeview_helper_search_equal(GtkTreeModel *model,
     return_value = (g_strrstr(name_lower, key) == NULL);
 
     return return_value;
+}
+
+gboolean
+treeview_helper_search_equal_strings(GtkTreeModel *model,
+                                     gint column,
+                                     const gchar *key,
+                                     GtkTreeIter *iter,
+                                     gpointer search_data)
+{
+#ifdef DEBUG
+    printf("treeview_helper_search_equal_strings\n");
+#endif
+
+    const gchar *string = NULL;
+
+    gtk_tree_model_get(model, iter, column, &string, -1);
+    
+    return (g_strrstr(string, key) == NULL);
 }
 
 void
@@ -2014,4 +2032,35 @@ treeview_helper_player_name_editing_started(GtkCellRenderer *renderer,
 {
     gtk_widget_set_sensitive(lookup_widget(window.main, "menubar1"), FALSE);
     gtk_widget_set_sensitive(lookup_widget(window.main, "hbox1"), FALSE);
+}
+
+void
+treeview_helper_constants_editing_done(GtkCellRendererText *renderer,
+                                       gchar               *path,
+                                       gchar               *new_text,
+                                       gpointer             user_data)
+{
+    GtkTreeModel *model = gtk_tree_view_get_model((GtkTreeView*)user_data);
+    GtkTreeIter iter;
+    const gchar *name;
+    gfloat float_value = g_ascii_strtod(new_text, NULL);
+
+    gtk_tree_model_get_iter_from_string(model, &iter, path);
+    gtk_tree_model_get(model, &iter, 0, &name, -1);
+
+    if(g_str_has_prefix(name, "int_"))
+    {
+        option_set_int(name, &constants, (gint)float_value);
+        gtk_list_store_set(GTK_LIST_STORE(model), &iter, 1, (gint)float_value, -1);
+    }
+    else if(g_str_has_prefix(name, "float_"))
+    {        
+        option_set_int(name, &constants, (gint)rint(g_ascii_strtod(new_text, NULL) * OPTION_FLOAT_DIVISOR));
+        gtk_list_store_set(GTK_LIST_STORE(model), &iter, 1, float_value, -1);
+    }
+    else
+    {
+        option_set_string(name, &constants, new_text);
+        gtk_list_store_set(GTK_LIST_STORE(model), &iter, 1, new_text, -1);
+    }
 }

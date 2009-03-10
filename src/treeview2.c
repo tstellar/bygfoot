@@ -743,14 +743,14 @@ treeview2_create_constants(const GPtrArray *list, gint type)
         g_warning("treeview2_create_constants: unknown constants type\n");
         return NULL;
     case CONSTANTS_TYPE_INT:
-        ls = gtk_list_store_new(3, G_TYPE_INT, G_TYPE_STRING, G_TYPE_INT);
+        ls = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_INT);
         break;
     case CONSTANTS_TYPE_FLOAT:
-        ls = gtk_list_store_new(3, G_TYPE_INT, G_TYPE_STRING, G_TYPE_FLOAT);
+        ls = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_FLOAT);
         break;
     case CONSTANTS_TYPE_STRING:
     case CONSTANTS_TYPE_APP:
-        ls = gtk_list_store_new(3, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING);
+        ls = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_STRING);
         break;
     }	
 
@@ -760,21 +760,18 @@ treeview2_create_constants(const GPtrArray *list, gint type)
         
         if(type == CONSTANTS_TYPE_INT)
             gtk_list_store_set(ls, &iter, 
-                               0, i, 
-                               1, ((Option*)g_ptr_array_index(list, i))->name, 
-                               2, ((Option*)g_ptr_array_index(list, i))->value,
+                               0, ((Option*)g_ptr_array_index(list, i))->name, 
+                               1, ((Option*)g_ptr_array_index(list, i))->value,
                                -1);        
         else if(type == CONSTANTS_TYPE_FLOAT)
             gtk_list_store_set(ls, &iter, 
-                               0, i, 
-                               1, ((Option*)g_ptr_array_index(list, i))->name, 
-                               2, (gfloat)((Option*)g_ptr_array_index(list, i))->value / OPTION_FLOAT_DIVISOR,
+                               0, ((Option*)g_ptr_array_index(list, i))->name, 
+                               1, (gfloat)((Option*)g_ptr_array_index(list, i))->value / OPTION_FLOAT_DIVISOR,
                                -1);        
         else
             gtk_list_store_set(ls, &iter, 
-                               0, i, 
-                               1, ((Option*)g_ptr_array_index(list, i))->name, 
-                               2, ((Option*)g_ptr_array_index(list, i))->string_value,
+                               0, ((Option*)g_ptr_array_index(list, i))->name, 
+                               1, ((Option*)g_ptr_array_index(list, i))->string_value,
                                -1);        
     }
 
@@ -782,7 +779,7 @@ treeview2_create_constants(const GPtrArray *list, gint type)
 }
 
 void
-treeview2_set_up_constants(GtkTreeView *treeview)
+treeview2_set_up_constants(GtkTreeView *treeview, gint type)
 {
 #ifdef DEBUG
     printf("treeview2_set_up_constants\n");
@@ -790,9 +787,8 @@ treeview2_set_up_constants(GtkTreeView *treeview)
 
     GtkTreeViewColumn   *col;
     GtkCellRenderer     *renderer;
-    gchar *titles[3] =
-	{"",
-	 _("Name"),
+    gchar *titles[2] =
+	{_("Name"),
 	 _("Value")};
     gint i;
 
@@ -800,8 +796,12 @@ treeview2_set_up_constants(GtkTreeView *treeview)
 				GTK_SELECTION_SINGLE);
     gtk_tree_view_set_headers_visible(treeview, TRUE);
     gtk_tree_view_set_rules_hint(treeview, TRUE);
+    gtk_tree_view_set_search_column(treeview, 0);
+    gtk_tree_view_set_search_equal_func(treeview,
+					treeview_helper_search_equal_strings,
+					NULL, NULL);
 
-    for(i = 0; i < 3; i++)
+    for(i = 0; i < 2; i++)
     {
         col = gtk_tree_view_column_new();
         gtk_tree_view_column_set_title(col, titles[i]);
@@ -810,6 +810,15 @@ treeview2_set_up_constants(GtkTreeView *treeview)
         gtk_tree_view_column_pack_start(col, renderer, TRUE);	
         gtk_tree_view_column_add_attribute(col, renderer,
                                            "text", i);
+        
+        if(i == 1)
+        {
+            g_object_set(renderer, "editable", TRUE, NULL);
+            g_signal_connect (renderer,
+                              "edited",
+                              G_CALLBACK (treeview_helper_constants_editing_done),
+                              treeview);
+        }
     }
 }
 
@@ -848,7 +857,7 @@ treeview2_show_constants(void)
     for(i = 0; i < 4; i++)
     {
         treeview_helper_clear(treeview[i]);
-        treeview2_set_up_constants(treeview[i]);
+        treeview2_set_up_constants(treeview[i], i);
         model = treeview2_create_constants(list[i], i);
         gtk_tree_view_set_model(treeview[i], model);
         g_object_unref(model);        

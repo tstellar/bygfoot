@@ -108,7 +108,7 @@ on_button_reload_constants_clicked     (GtkButton       *button,
     const gchar *constants_file =
 	gtk_entry_get_text(GTK_ENTRY(lookup_widget(window.options, "entry_constants_file")));
 
-    file_load_opt_file(constants_file, &constants);
+    file_load_opt_file(constants_file, &constants, TRUE);
 }
 
 
@@ -126,7 +126,7 @@ on_checkbutton_save_global_button_press_event
     {
 	gchar *conf_file = file_find_support_file("bygfoot.conf", TRUE);
 	
-	file_load_opt_file(conf_file, &options);
+	file_load_opt_file(conf_file, &options, FALSE);
 	g_free(conf_file);
 
 	option_gui_set_up_window();
@@ -225,11 +225,11 @@ on_button_constants_reload_clicked     (GtkButton       *button,
     {
         printf("hu\n");
              file_load_opt_file(gtk_entry_get_text(GTK_ENTRY(lookup_widget(window.options, "entry_constants_file"))),
-                           &constants);
+                           &constants, TRUE);
     }   
     else        
         file_load_opt_file(opt_str("string_opt_constants_file"),
-                           &constants);
+                           &constants, TRUE);
 }
 
 

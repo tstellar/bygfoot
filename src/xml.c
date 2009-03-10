@@ -64,7 +64,7 @@ xml_load_users(const gchar *dirname, const gchar *basename)
     {
 	sprintf(buf, "%s%s%s___user_%02d_options", 
 		dirname, G_DIR_SEPARATOR_S, basename, i);
-	file_load_opt_file(buf, &usr(i).options);
+	file_load_opt_file(buf, &usr(i).options, FALSE);
 
 	sprintf(buf, "%s%s%s___user_%02d_live_game.xml", 
 		dirname, G_DIR_SEPARATOR_S, basename, i);
