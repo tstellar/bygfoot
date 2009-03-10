@@ -1,0 +1,466 @@
+<lg_commentary>
+  <event>
+    <name>general</name>
+    <commentary>_P1_ güzel bir pas çıkardı</commentary>
+    <commentary>_P0_ çalımlarla gidiyor</commentary>
+    <commentary>_P1_ dan _P0_ a gönderilen pas</commentary>
+    <commentary>_P1_ dan gönderilen [harika|başarılı|güzel|muhteşem] pası _P0_ alıyor</commentary>
+    <commentary>_P1_ Kısa bir [topu|pası] yerini buluyor _P0_</commentary>
+    <commentary>Rakiplerinden sıyrılan _P1_ defansı teke tekte yakaladı ve gole gidiyor</commentary>
+    <commentary>_P1_ Güzel bir vücut çalımı geldi ve pasını _P0_ aktardı</commentary>
+    <commentary>_P0_ Güzel hareketlerle rakibinden sıyrılıyor, ve mükemmel bir arapası verdi</commentary>
+    <commentary>_P1_ topu _P0_  önüne  ayağının içiyle bırakıyor</commentary>
+    <commentary>Havalanan top _P1_ önüne düşüyor ve bir pozisyon doğdu aniden</commentary>
+    <commentary>_T_POSS__ atağa çıkıyor ve pozisyona giriyor</commentary>
+    <commentary>_T_NPOSS__ geriye yaslandı [defanstalar ve dikkatli gözüküyorlar|geriye oynadılar]</commentary>
+    <commentary>[Terse atılan bir top|Akıl dolu bir pas]  _P0_ önüne düştü ve fuleli adımlarla atağa kalkıyor</commentary>
+    <commentary>Şimdi _T_POSS__  _P0_ ile atağa kalkıyor</commentary>
+    <commentary>_P1_  tarafından çıkarılan pası  _P0_ [yumuşattı ve önüne aldı|ters taraftaki arkadaşına gönderdi]</commentary>
+    <commentary>_P1_  tarafından _P0_  'a atılan [çok akıllıca|zekice] [bir pas|bir top]</commentary>
+    <commentary>_P1_ [harika|müthiş|akıl dolu|etkileyici] bir pasla arkadaşı _P0_ 'i görüyor</commentary>
+    <commentary>_P1_ [uzun|kısa|yavaş] pası takım arkadaşı _P0_ 'ya kadar gitti.</commentary>
+    <commentary>_P0_ [güzel|harika|ince] bir pas ile topu boş durumda olan arkadaşının olduğu [sağ|sol] tarafa çıkardı</commentary>
+    <commentary>_P0_  [hızlı|iyi zamanlanmış] bir pasla [solda|sağda] [boş durumdaki|hareket halindeki] arkadaşını gördü</commentary>
+    <commentary>_P0_ kafasını kaldırıp arkadaşlarının sahadaki dağılımına bakıyor ve uygun durumdaki _P1_'a pasını aktarıyor.</commentary>
+    <commentary>[Sol taraftan|Sağ taraftan|Orta sahanın bir kaç metre ilerisinden] [zekice|akıllıca|iyi düşünülmüş|uygun] pasla [kanatlardan atağa çıktılar|ortadan defansı delmeye çalışıyorlar|orta alandan oyunu kuruyorlar]</commentary>
+    <commentary>_P0_ _P1_'in arapasıyla [tehlike yaratıyor|atağa çıkıyor], bu atak [tehlikeli gözüküyor|bir gol şansı olabilir]</commentary>
+    <commentary>_P1_ rakibinin ayağıdan tereyağından kıl çeker gibi bir top kaptı ve uygun durumdaki arkadaşı _P0_ gördü.</commentary>
+    <commentary>_P1_  deplase durumdaki arkadaşı _P0_ görerek yeni bir atak başlatıyor</commentary>
+    <commentary>_P1_ [kafasıyla|göğsüyle] yumuşattığı topu, önündeki arkadaşına aktarıyor</commentary>
+    <commentary>_P0_ kendi etrafında dönüyor ve pas verecek arkadaşını arıyor</commentary>
+    <commentary>_P0_ kendi etrafında dönmek isterken topu kaptırıyor</commentary>
+	 <commentary>_P0_  [baskı yaparak|yerinde bir müdahele ile]  [orta alandaki|ceza sahası dışındaki] rakip atağı önledi, topu söktü aldı ve takımına kazandırdı,şimdi atağa çıkıyorlar</commentary>
+    <commentary>_P0_  rakibine [baskı yapıyor|geçit vermeyerek] ayağındaki topu [çalıyor|kazanıyor] ; Şimdi atak sırası _T_POSS__ takımında</commentary>
+    <commentary cond="_MI_>80 and _GD_ ==1"pri="10">Sürenin azalmasına rağmen _TW_  takımının biraz daha ciddiyetle oynaması lazım.Topun yuvarlak olduğunu unutmuşa benziyorlar</commentary>
+    <commentary cond="_MI_>20 and _SHOTS_POSS__ < 2">_T_POSS__  [ön tarafta daha fazla top kazanıyor bu dakikalarda|bu dakikalarda daha fazla pozisyona giriyor|gol pozisyonlarında bir adım önde]</commentary>
+    <commentary cond="_MI_>20 and _GOALS0_ + _GOALS1_ < 1  and _SHOTS0_ + _SHOTS1_ > 1 and _SHOTS0_ + _SHOTS1_ < 8">Maçtaki [_SHOTS0_ + _SHOTS1_] şut sayısı: bu maç [orta sahaların savaşı şeklinde|kıran kırana bir maç olmaya başladı]</commentary>
+    <commentary cond="_MI_>20 and _GOALS0_ + _GOALS1_ < 1 and _SHOTS0_ + _SHOTS1_ = 1">Sadece 1 şut atıldı: [acaba her iki takımın orta sahaları muhteşem mi oynuyor|acaba her iki takımın defansları mükemmel mi oynuyor]</commentary>
+    <commentary cond="_MI_<20 and _SHOTS0_ + _SHOTS1_ > 2">dakikalar _MI_ 'i gösterirken, her iki takımında bu maçı kazanmak için hırslı olduklarını görebiliyoruz</commentary>
+    <commentary cond="_SHOTS0_ + _SHOTS1_ > 4">Fevkalade yetenekler izliyoruz bu maçta</commentary>
+    <commentary cond="_MI_ > 75">Dakika : _MI_,Maçın bitmesine az bir süre kala,tehlikeli dakikalara girmiş bulunuyoruz.</commentary>
+    <commentary cond="_FOULS0_ + _FOULS1_ >= 7">Maçın genelinde şimdiye kadar  [çok fazla|[_FOULS0_ + _FOULS1_]] faul oldu. Sanırım hakemin yeni bir [düdüğe|deftere|kaleme] ihtiyacı var!</commentary>
+    <commentary cond="_MI_>85">Artık maçın sonuna geldik,bu ataklar her iki takımında son atakları olabilir</commentary>
+  </event>
+  <event>
+    <name>lost_possession</name>
+	 <commentary>_P1_  pas vermek istedi ancak rakibi müdahele etti ve taç. _P0_ taç atışını kullanacak.</commentary>
+	 <commentary>_P1_ topu ayağının altından kaçırıyor</commentary>
+	 <commentary>_P1_ arkasındaki _P0_  görmeyince topu kaptırmış oldu</commentary>
+	 <commentary>[_P1_ tarafından verilmeye çalışılan|Bu verilen] pas , [dikkatsiz bir pastı|ucuz bir pastı|çok basit bir pastı],topu kaptırdılar</commentary>
+	 <commentary>_P1_ topu taç çizgisi üzerinde alıyor. _T_POSS__ taç atışını kullanan takım</commentary>
+	 <commentary>_P1_'in verdiği  [iyi|kötü|süper] pas, _T_POSS__ 'in atacağı bir taça dönüştü</commentary>
+	 <commentary>_P0_ çabucak taç atışını kullanmak istiyor</commentary>
+	 <commentary>Uzun bir taç atışından sonra topla buluşan _P0_</commentary>
+    <commentary>Rakibinin ayağındaki topa kayarak müdahele eden _P0_ ,yine başarısız oldu.</commentary>
+	 <commentary>Sağ köşegönderine yakın bir yerden kesilen bu orta ,_P1_ tarafından kolayca savuşturuluyor</commentary>
+    <commentary>_P0_ topa [mükemmel bir zamanlamayla|zor da olsa] sahip oldu ve pas verecek arkadaşına bakıyor</commentary>
+    <commentary>_T_NPOSS__ [topla çabuk çıkmak istiyor|topu çabucak kaybetti]</commentary>
+    <commentary>_P1_ topu kötü kontrol edince hemen yanındaki _P0_ topu kolayca kapmış oldu</commentary>
+    <commentary>_P0_ topu [çalmak için|almak için|yakalamak için] yerinde bir hareket yapıyor.</commentary>
+    <commentary>_P0_ ileriye gönderdiği top , takımı için kayıp bir atak oldu.</commentary>
+    <commentary>_P0_  yerinde bir müdahelesiyle rakibinden topu kapmakla kalmadı ve takımını hızlıca atağa çıkardı</commentary>
+    <commentary>_P1_ sağa sola bakınırken ayağındaki topu _P0_ çekti ve aldı</commentary>
+    <commentary>_P0_ mükemmel bir zamanlamayla topu kesmeyi başardı</commentary>
+    <commentary>_P0_  _P1_'in partisine davetsiz misafir oluyor ve ayağındaki topu kapıyor.</commentary>
+    <commentary>Bu pas _P1_ için hiç de iyi değildi, _P0_ iyi bir zamanlamayla topu kontrol etmeyi başardı</commentary>
+  </event>
+  <event>
+    <name>foul</name>
+    <commentary>[Faulün babası bu babası!|Nerdeyse kemik sesi gelen bir müdahele!|Sarı kartlık bir hareket!], _P0_ yerde yatan oyuncu</commentary>
+    <commentary>Rakibine aynı sertlikle cevap veriyor , kesinlikle [_P1_ 'den kartlık bir hareket daha geldi|_P1_'in başı belada],hakemden bakalım bu sefer kart çıkacakmı?.</commentary>
+    <commentary>_P1_ , _P0_ 'a çift ayağıya dalarak öyle bir faul yaptı ki ; [kesin kart görmesi lazım|rakibine doktor müdahelesi gerekiyor|rakip takım kulübesi ayaklandı]</commentary>
+    <commentary>_P0_'den bir [çirkin|kötü niyetli|şiddetli] faul daha.</commentary>
+    <commentary>_P0_ topa vurmak isterken ayağını tehlikeli bir biçimde kaldırdı ve hakem faulü tereddütsüz çaldı.</commentary>
+    <commentary>_P1_ 'nin yaptığı tahlikeli hareketti,rakibi _P0_ 'nin sedyeyle saha dışına alınmasına sebebiyet verdi.</commentary>
+	 <commentary>Bu faul rakibini bir hayli sarsmış olmalı.</commentary>
+    <commentary>_P0_ yeşil çimlere yapıştı kaldı.</commentary>
+    <commentary>_P0_, bu futbolcunun rakibine müdahelesi kesinlikle nizami değildi</commentary>
+    <commentary>_P1_  'dan rakibine tehlikeli bir hamle geliyor ve _P0_ faule maruz kalıyor.</commentary>
+    <commentary>_P1_'ın siyah kuşaklık [Karate|Taekwondo|Jujitsu] hareketi, rakibi _P0_ yere serdi.Faul.</commentary>
+	 <commentary>_P1_ çok sinirli hareketler yapıyor , rakibine karşı taban uzatıyor resmen.</commentary>
+	 <commentary>_P0_ , _P1_'ın sert müdahelesiyle dizine çok tehlikeli bir darbe alıyor.</commentary>
+	 <commentary>_P0_  rakibinin ayağındaki topa müdahele etmek isterken, istemeyerek de olsa rakibinin dengesini bozuyor ve faulü yapıyor</commentary>
+	 <commentary>Hakem pozisyonu avantaja bırakmıştı ama, _P0_ avantajlı pozisyonunu kaybedince hemen düdüğünü çaldı ve faulü verdi.</commentary>
+	 <commentary>Böyle faulleri görmeye başlayınca maçın havası bir anda kayboldu gitti.</commentary>
+	 <commentary>Bu yapılan faulü profosyenel olarak yapılmış bir faul diyebiliriz.</commentary>
+	 <commentary>_P0_ sert müdaheleden kaçmaya çalıştı ama başaramadı</commentary>
+	 <commentary>_P1_ çok sert bir darbe ile rakibinin kramponlarına basıyor ve faule sebebiyet veriyor.</commentary>
+  </event>
+  <event>
+    <name>scoring_chance</name>
+    <commentary>_P0_ defansın arasında [sırayla bir bir çalımlayarak|herkesi bir bir geçerek] [gol şansını yakalıyor|kaleciyle karşı karşıya kalıyor]</commentary>
+    <commentary>_P0_ gol için kaleye yöneliyor, ve [füzesini|şutunu|kalecinin uzanamayacağı köşeye şutunu|ayağının içiyle plasesini] atıyor</commentary>
+    <commentary>_P0_ kendi ekseni etrafında dönüyor ve beklemeden şutunu çıkarıyor</commentary>
+    <commentary>_P0_ sihirli kramponlarından bir mükemmel [şut|son vuruş] daha çıkardı</commentary>
+    <commentary>_P0_ arka alanda büyük bir boşluk buldu ve gole gidiyor.</commentary>
+    <commentary>_T_POSS__ takımında bu atağı golle sonuçlandırma adına  mükemmel bir şans doğdu</commentary>
+    <commentary>_P1_ uzun bir top atıyor _P0_ topu rakip ceza alanı [yakınında|çevresinde] elde ediyor</commentary>
+    <commentary>_P0_ [harika|mükemmel] yükselerek kafasıyla topa ilk vuran oluyor</commentary>
+    <commentary>_P0_ kendi yarı alanından topla mükemmel hareketleniyor ve takımına son derece güzel bir gol şansı veriyor</commentary>
+	 <commentary>_P0_ takım arkadaşı _P1_'in milimetrik pasıyla kendisine gönderdiği topu kontrol ediyor ve ilerideki arkadaşlarına pozisyon yaratıyor.</commentary>
+    <commentary>_P0_ [şansını|şutunu|serbes atışı|frikiği] bir hayli uzaktan [35|30|25|20] metreden denedi. Bu şut [kaleciden sekiyor|üst direkten içeriye yöneliyor|barajdan sekti|ceza sahasında ayaklardan sekiyor]</commentary>
+    <commentary>_P0_ ceza sahasına doğru [topla ilerliyor|çalımlarla geliyor] , savunmanın içinde kendine bir şans arıyor.</commentary>
+    <commentary>_P0_ [sağ|sol] kanattan [topla içeri dalıyor|rakibini geçiyor|rakibini saf dışı ediyor]  ve şimdi çerçeveyi görüp [şutunu çekiyor|kaleye plasesini yapıyor|top falsolu bir vuruş yapıyor]</commentary>
+    <commentary>_P0_ şansını yaklaşık [30|25] metreden denedi.</commentary>
+    <commentary>_P0_  [sağdan|soldan] gelen korner atışı sonunda topla buluştu ve kaleyi karşısına aldı,şutunu atacak</commentary>
+    <commentary>_P0_ şutunu çekiyor</commentary>
+    <commentary>_P1_ tarafından _P0_ gönderilen bir arapasıyla şimdi her ikisi birden [kaleci ile|rakip kaleci ile] karşı karşıya kaldılar</commentary>
+    <commentary>_P0_  [soldan|sağdan] kullanılan kornerde kafasına gelen topu ceza sahasının içine doldurdu</commentary>
+    <commentary>_P0_ ceza sahasına doğru [soldan|sağdan] mükemmel bir orta kesiyor</commentary>
+    <commentary>Kendi yarısahasından topla çıkan _P1_ , takımı _T_POSS__ 'e gollük bir pozisyon hazırlama çabası içinde</commentary>
+    <commentary>_P0_ bütün defansı arkasında bıraktı ve kaleciyle karşı karşıya kalıyor</commentary>
+  </event>
+  <event>
+    <name>goal</name>
+    <commentary>Goooooooollll!!!</commentary>
+    <commentary>Ve top üç kale direğinin arasından ağlarla kucaklaşıyor !!!</commentary>
+    <commentary>_P0_ skoru değiştiren isim oluyor!!!</commentary>
+    <commentary>GOL!! [Filebekçisinin|rakip kaleceninin] yapacak bir şeyi yoktu.Fakat tertemiz bir gol oldu.</commentary>
+    <commentary>_P0_ golü değişik bir sevinme yöntemiyle kutluyor.Taraftarlar alkışlarla cevap veriyor.</commentary>
+	 <commentary>Aman allahım o ne [büyüleyici|olağanüstü|harikulade|fantastik|akıl dolu|spektaküler] bir goldü öyle!!!</commentary>
+    <commentary>GOL!! _P1_'in [umutsuzca|çaresizce|son bir hamleyle] topa karşı hamlesi yeterli gelmedi. _P0_ golü hanesine yazdırdı.</commentary>
+	 <commentary>Meşin yuvarlak [havada süzülerek|falso alarak] ağlarla kucaklaşıyor !!!</commentary>
+    <commentary>GOL!! takım saha içinde timsah yürüyüşü yapıyor. _T_TT__ bu kutlama için de antreman yapmış olmalı.</commentary>
+	 <commentary>_P0_'in golü taraftarlarını [ateşledi|ayağa kaldırdı] . Bu vuruş; [en iyi bilinen|kendisine has|özel|özel|kendisine özgün] vuruşlarından birisiydi.</commentary>
+    <commentary>GOL! _P0_ öldürücü vuruşunu yaptı, [kaleci çaresiz|kaleci ne olduğunu anlayamadı|top çatala takıldı kaldı].</commentary>
+    <commentary>Bu gole şapka çıkarılır ! Tam jeneriklik bir gol oldu sayın seyirciler</commentary>
+    <commentary>Gol! Bugün şanslı gününde olan takım: _T_TT__</commentary>
+    <commentary> Goll![Falsolu gelen top|rakibinin akıllı hamlesiyle kaleye gönderdiği top|yükseklik kazanan top|paylaşılamayan top] kale önünde _P1_'a çarparak ağlarla buluştu.</commentary>
+	 <commentary cond="_GOALS0_ + _GOALS1_ ==1">_T_TT_ bu maçtaki [ilk golü atan taraf oluyor|bu maçın açılış golünü atan taraf oluyor].</commentary>
+	 <commentary cond="_GD_ <=2 and _T_TT_ == _TLN_">Bu [şık gol|gol]  _T_TT_ taraftarlarını [çılgına çevirdi|ayağa kaldırdı].</commentary>
+	 <commentary cond="_GD_ == 0 ">Bu [şık gol|gol] skora denge getirdi</commentary>
+	 <commentary cond="_GD_ <=2">_T_POSS__ takımı [zor giden maçta kolay attı.|altın madeni buldu]. GOL,GOL,GOL</commentary>
+    <commentary cond="_T_TT__ == _TLN_ and _GD_ <=2 ">_T_TT__ takımının [şok|sürpriz] golü geldi.</commentary>
+    <commentary cond="_T_TT__ == _TLN_">Futbol tanrıları şimdi _T_TT__ takımına gülümsüyor.</commentary>
+    <commentary cond="_POSS_POSS__ < 10">_T_POSS__ takımı maça golle başlıyor.</commentary>
+    <commentary cond="_T_TT__ == _TWN_ and _GD_ >3">Tabuta bir çivi daha çaktılar.</commentary>
+  </event>
+  <event>
+    <name>miss</name>
+    <commentary>[_P0|_P0_] [kaçırdığı gole yanıyor|tribündeki taraftarlarına saç baş yoldurtuyor] !</commentary>
+    <commentary>_P0_ tarafından amaçsızca vurulan şut dışarıya çıktı.</commentary>
+    <commentary>[_P0_|_P0_] bomboş durumda topu ağlarla buluşturamadı ve, saha kenarındaki antrenöründen fırçayı yedi.</commentary>
+    <commentary>[_P1_|Defans]  tarafından tehlike geçiştirildi</commentary>
+    <commentary>_P0_ [zorlama bir vuruş|falsolu vuruş] yapıyor ancak top dışarda.</commentary>
+    <commentary>_P0_ son defans oyuncusundan da kurtuldu, vuruşunu da yaptı ancak top kalecide kaldı</commentary>
+    <commentary>_P0_ kaçırdığı bu pozisyonla , takımını kolay bir golden mahrum etmiş oldu.</commentary>
+    <commentary>Bu [top da|şutta] girmeyince , taraftarlar coşkulu tezahüratlarını daha da arttırarak takımlarına desteği sürdürüyorlar.</commentary>
+    <commentary>Kaleci ile karşı karşıya olan pozisyonu gole çeviremedi</commentary>
+    <commentary>_P0_ bu mutlak gol şansını tribünlerden yükselen ahhlar vahlar  sesleri arasında kaçırıyor</commentary>
+    <commentary>Cömertçe harcanan bu fırsatlar _T_POSS__ takımının maçı kaybetmesine neden olabilir.</commentary>
+    <commentary>_P0_ topa öyle bir vurdu ki ; top kale yerine  tribünlerde.</commentary>
+    <commentary>_P0_ bu golü atmak için çok uğraştı, ancak başarılı olamadı</commentary>
+    <commentary>_P0_ Oysa gole çok yaklaşmıştı, biraz daha düzgün vurabilseydi eğer...</commentary>
+    <commentary>_P0_ bu golü nasıl kaçırdığına kendi bile inanamıyor</commentary>
+    <commentary>_T_POSS__ [bu büyük|girdikleri az pozisyonlardaki] gol şanslarını bir bir cömertçe harcamaya başladı.</commentary>
+    <commentary>_P0_ Aradan iyi kaçtı,iyide pas almıştı,fakat başarılı olamadı </commentary>
+    <commentary>Futbol tanrıları [_P0_|_T_POSS__] yanında değil bu akşam.</commentary>
+    <commentary>_T_NPOSS__ için bu pozisyon gerçekten ucuz atlatıldı.</commentary>
+    <commentary>Cesurca bir denemeydi ama, kaleci gole izin vermedi</commentary>
+    <commentary>Gökkuşağının altından bu seferde altın çıkmadı, kaçan gole yazık oldu.</commentary>
+    <commentary>Top ceza sahası içinde [kafalardan sekiyor|karambolde] ancak bu topun kaleye girmesine yeterli gelmiyor.Aut !</commentary>
+    <commentary>Top toplayıcı çocuklar hayli yorulmuş olsa gerek bu topda farklı şekilde dışarıda</commentary>
+    <commentary>Top kaleye giriyor, ama ama..Hayır hakem golü iptal ediyor,yan hakemin ofsayt bayrağını görmekte geç kaldı.</commentary>    
+    <commentary cond="_SHOTS_POSS__ > 3 and _GOALS_POSS__ < 1">_P0_ gol atması mucizelere kaldı ,pozisyon sayısı oldukça azaldı</commentary>
+    <commentary cond="_SHOTS_POSS__ > 3 and _GOALS_POSS__ < 1">_T_POSS__ taraftarları tribünde dualar etmeye başladı, hala bir pozisyonları yok</commentary> </event>
+  <event>
+    <name>save</name>
+	 <commentary>Bir [asist daha geliyor|yakıcı şut daha geliyor], fakat [kalecinin|filebekçisinin|_P1_] [ellerinde|yerini iyi tutmasıyla] eriyen bir top oluyor.</commentary>
+    <commentary>_P1_'in parmak uçlarındaki sihir yine gözüktü.</commentary>
+    <commentary>_P1_ sanki kalesine  bir duvar ördü. O ne müthiş bir [yer tutuştu|zamanlamaydı].</commentary>
+    <commentary>_P1_ için bir antreman kurtarışı oluyor bu vuruş.</commentary>
+    <commentary>_P1_ kalesinde devleşiyor bu akşam,kurtarışları ard arda geliyor.</commentary>
+	 <commentary>_T_NPOSS__ takımı bu gece kalecisi  _P1_ 'a çok şey borçlu olacak.</commentary> 
+	 <commentary>_T_POSS__ takımının gol girişimleri, _P1_ 'in [süper|harika|müthiş] [kurtarışlarıyla|yer tutuşlarıyla] birer birer savuşturuluyor.</commentary>
+    <commentary>_P1_ kolay bir kurtarış daha yaptı. Topa elleriyle sahip oldu.</commentary>
+    <commentary>_P1_ kaleye girmekte olna bu topuda harika bir refleksi ile dışarı göndermeyi başardı.</commentary>
+    <commentary>[Sağ taraftan|Sol taraftan] gelen bu atağı _P1_ uzaklaştırıyor.</commentary>
+	<commentary>_P1_ kolaylıkla tehlikeleri geçiştiriyor.</commentary>
+    <commentary>_P1_ yeniden [süper|muazzam|fantastik] bir refleks ile köşeye giden topu çıkardı.</commentary>
+    <commentary>[Kaleciden|Filebekçisinden|Genç kaleciden] bir [büyük|akıllıca|sansasyonel|kolay|kendine güvenen] kurtarış daha geliyor.</commentary>
+    <commentary>_P1_ o bilinen kurtarışlarından birisini daha yapıyor.</commentary>
+    <commentary>_P0_ yaptığı bu şut çok güçlü değildi, _P1_ kolayca topa sahip çıktı.</commentary>
+	 <commentary>[_P1_ 'in|Kalecinin] bu kurtarışı, bir kere daha taraftarlarının gönlünde taht kurmasına sebep oldu.</commentary>
+  </event>
+  <event>
+    <name>start_match</name>
+    <commentary>Tribünlerdeki taraftar sayısı _AT_ , statta her şey yerli yerinde birazdan maç başlayacak.</commentary>
+    <commentary>Haftanın önemli karşılaşmasında sizlerle beraberiz sayın seyirciler.</commentary>
+    <commentary>iki takım da taraftarlarını selamlıyor,futbolcular birbirine başarılar diliyor.Maç birazdan başlamak üzere....</commentary>
+    <commentary>[Seyircilerin|_AT_ taraftarın] müthiş tezahüratları arasında takımlar çıkış tünelinde göründüler.</commentary>
+    <commentary>Umarız bu soğuk ve kapalı havada takımlar bize içimizi ısıtan bir futbol resitali yaşatır</commentary>
+    <commentary>_AT_ [futbolsever|taraftar] bu maçta tribünlere akın etti. Bizde bu maçın anlatımında sizlere yardımcı olacağız.</commentary>
+    <commentary>Hakem yardımcılarından işareti alıyor ve başlama düdüğüyle maç başlıyor</commentary>
+	 <commentary>Bu geceki [ futbol savaşı|karşılaşma|çarpışma|futbol düellosu] başlamak üzere...</commentary>
+    <commentary>Hakem triosu hazır,futbolcular hazır, taraftarlar tribünde hazır ; ıslık sesleri arasında maç başlamak üzere...</commentary>
+    <commentary>Tribünde yakılan meşalelerden dolayı oluşan sis dağılmak üzere , ve hakem maçı başlatıyor.</commentary>
+    <commentary cond="_TAVSKILLDIFF_ <= 2"pri="10">Bu takımlar daha önce bir çok defa karşılaştılar. Bu maçta [gerçek|kıyasıya] bir [mücadele olacak|futbol şöleni olacak].</commentary>
+    <commentary cond="_TAVSKILLDIFF_ < 5 and _TAVGSKILLDIFF_ >2"pri="10">_T[_TAVSKILL0_ LE _TAVSKILL1_]_ çok az bir üstünlük sayısıyla önde.</commentary>
+    <commentary cond="_TAVSKILLDIFF_ >=5"pri="10">_T[_TAVSKILL0_ GE _TAVSKILL1_]_ bu maça çıkarken bahislerde favori olarak gösterilmiyor.</commentary>
+    <commentary cond="_TAVSKILLDIFF_ >=8"pri="10">_T[_TAVSKILL0_ LE _TAVSKILL1_]_ bu maça herkesin favorisi olarak başlıyor.</commentary>
+  </event>
+  <event>
+    <name>half_time</name>
+    <commentary>İlk yarı hakemin düdüğüyle sona eriyor</commentary>
+    <commentary>İlk Devrenin skoru : _RE_</commentary>
+    <commentary>İlk Devrenin skoru : _RE_ . _TL_  teknik direktörü ikinci devre için [bakalım oyun planını değiştirecek mi?|sonuçtan emin değil|takımına bazı taktikler verecek gözüküyor] .</commentary>
+    <commentary>İlk yarı sonunda başları eğik. _TL_ bu stada piknik yapmayamı geldiler yoksa?.</commentary>
+    <commentary>_TW_ ve  teknik ekibi ilk yarı boyunca ellerinden gelenin en iyisini yapmaya çalıştılar.</commentary>
+	 <commentary>_TL_ takımı teknik direktörü [takımının|futbolcularının] ilk devredeki performanslarından oldukça [endişeli|çok kızgın] olmalı.</commentary>
+	 <commentary>_TL_ takımı teknik direktörünün surat ifadesi ilk yarının özeti sanki: _RE_</commentary>
+	 <commentary>_TL_ takımı bu maçtan sonra teknik direktörleri ile yollarını ayırmayı düşünebilirler.</commentary>
+    <commentary cond="_TAVSKILLDIFF_ >=8 and _GD_ >=1 and _TAVSKILL_TLN__ < _TAVSKILL_TWN__"pri="10">_TW_ takımının bu maçta zafere ulaşabilmesi için [sadece|aşağı yukarı] 45 dakikaya ihtiyaçları var.</commentary>
+    <commentary cond="_GD_ >0">_TL_ futbolcuları soyunma odasına [başları aşağıda|suratları asık|endişeli ifadelerle] gidiyorlar,artık teknik direktörlerinin son talimatlarını dinlemek zorundalar.</commentary>
+	 <commentary cond="_GD_>0">İlk yarıdaki _TL_ bu kötü performanısını çabucak unutmalı, ikinci yarıya daha hırslı çıkmalılar.</commentary>
+    <commentary cond="_POSS0_ >= 70 or _POSS1_ >= 70">_T[_POSS1_ GE 70]_ maçta pozisyonlarda daha ağır basıyor</commentary>
+    <commentary cond="_POSS0_ >= 60 or _POSS1_ >= 60">_T[_POSS1_ GE 60]_ pozisyonlar itibariyle ilk devrede [daha iyi|daha atak|daha ofansif] bir oyun ortaya koydular</commentary>
+    <commentary cond="_POSS0_ > 50 and _GOALS1_ > _GOALS0_">_T0_ daha fazla pozisyona giren taraf, fakat _T1_ takımının gol silahları da unutulmamalı</commentary>
+    <commentary cond="_POSS1_ > 50 and _GOALS0_ > _GOALS1_">_T1_ daha fazla pozisyona giren taraf, fakat _T1_ takımının ikinci yarıda neler yapabileceğini hepimiz biliyoruz</commentary>
+    <commentary cond="_POSS0_ >= 75 or _POSS1_ >= 75">_T[_POSS1_ GE 75]_ sahada futbol oynayan tek bir takım var gibi</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 0 ">Evet ilk yarıda gol sesi çıkmadı ve her iki takımdan ikinci yarıda daha yaratıcı oynamalarını bekliyoruz</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 1 and _SHOTS0_ + _SHOTS1_ < 2">Dengede giden bir ilk yarı sonunda ikinci yarı neler getirecek hep birlikte göreceğiz</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 1 and _SHOTS0_ + _SHOTS1_ > 2">Fazla pozisyon olmayan bir ilk yarı seyrettik.</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ < 2 and _SHOTS0_ + _SHOTS1_ > 8">Şu bir gerçek ki ilk yarıda skor olmasa da, zevkli ve bol şut atılan bir maç izledik</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ < 1 and _SHOTS0_ + _SHOTS1_ > 4">_T[_SHOTS0_ LE _SHOTS1_]_  ilk yarıda maça [son verecek|damgasını vuracak] [bol miktarda|pek çok]  pozisyon yakaladı.</commentary>
+	 <commentary cond="_GOALS0_ + _GOALS1_ >= 6">Goller yağmur gibi yağıyor: [_GOALS0_ + _GOALS1_] , ve bu kadar gol maçın sadece ilk yarısındaydı!</commentary>
+    <commentary cond="_FOULS0_ - _FOULS1_ >= 4 or _FOULS1_ - _FOULS0_ >=4">Sahada iki takım var, fakat sadece [_T[_FOULS0_ GE _FOULS1_]_|onlardan biri] futbollarıyla göz dolduruyor </commentary>
+    <commentary cond="_FOULS0_ + _FOULS1_ >= 8">Ilk yarıdaki oyun sanki bir futbol maçı değil kan banyosu,tekmeler kartlar havada uçuştu ilk yarıda...</commentary>
+    <commentary cond="_FOULS0_ + _FOULS1_ >= 10">[Çok fazla|[_FOULS0_ + _FOULS1_]] faullu oynadılar. Hakemler oyunu durdurmaktan yorulmuşa benziyor</commentary>
+    <commentary cond="_FOULS0_ + _FOULS1_ >= 10">[Çok fazla|[_FOULS0_ + _FOULS1_]] faul oldu. Hakemin yeni bir [düdüğe|deftere|kaleme]! ihtiyacı olmalı</commentary>
+    <commentary cond="_PEN0_ + _PEN1_ > 1">[_PEN0_ + _PEN1_] İlk yarıda sadece penaltılar konuştu.</commentary>
+  </event>
+  <event>
+    <name>extra_time</name>
+    <commentary>Birbirine denk güçlerin mücadelesinde maç uzatmalara gidiyor.</commentary>
+    <commentary>Tabela değişmiyor _RE_: Uzatmalar oynanacak.</commentary>
+    <commentary>Dakikalar _MI_ gösteriyor, ama sonuç değişmiyor _RE_: Vee uzatmalara gidiliyor</commentary>
+    <commentary>Maçta uzatma dakikaları başlıyor.Bakalım hangi takım diğerini yenebilecek.</commentary>
+    <commentary>Maç uzatmaya gidiyor.Uzatma dakikalarında daha az hata yapan ve dikkatli olan takım bu maçı alabilir.</commentary>
+  </event>
+  <event>
+    <name>penalties</name>
+    <commentary>_MI_ dakika sonunda maçın buralara geleceğini kim bilebilirdi.İşte penaltı atışları geliyor.</commentary>
+    <commentary>Ve maç penaltılara kalıyor.Yine dramatik görüntülerle karşılaşacağız,bir taraf sevinecek diğer taraf üzülecek</commentary>
+    <commentary>İki takımda beraberliği bozmayı başaramadı, sonucu penaltı atışları belirleyecek</commentary>
+    <commentary>Birazdan penaltı atışlarına geçilecek takımlar listelerini hazırladı ve penaltıcıları belirlemiş durumda</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ < 1">Başka gol yok, birazdan penaltı atışlarına geçilecek ve son sözü [kaleciler|penaltıcılar] söyleyecek</commentary>
+  </event>
+  <event>
+    <name>end_match</name>
+    <commentary>Vee maç bitiyor _TW_ futbolcuları taraftarlarının çılgınca alkışlarına ; onlarda kendi alkışlarıyla cevap veriyorlar</commentary>
+    <commentary>_TW_ büyük bir zafer kazandı , taraftarları galibiyeti kutluyor!!!</commentary>
+    <commentary>Kendi taraftarları tarafından sahadan ayrılırken yuhalanıyor _TL_</commentary>
+    <commentary>_MI_ dakika sonunda, maç şu skorla sona eriyor _RE_</commentary>
+    <commentary>Hakem saatine son bir kere daha bakıyor ,düdüğü ağzına götürdü ve maçın bitiş düdüğünü çalıyor</commentary>
+    <commentary>Evet, bu iş bu kadar. Maçın sonucu _RE_</commentary>
+    <commentary>_TW_ takımının menejeri bu sonuctan [mutlu oldu|dolayı oldukça heyecanlandı].</commentary>
+    <commentary cond="_TAVSKILLDIFF_ >=4 and _TWN_ = _T[_TAVSKILL0_ GE _TAVSKILL1_]_"pri="10"> _RE_, Bu skor _TW_ için mükemmel bir sonuç.</commentary>
+    <commentary cond="_GD_ = 0 "pri="10">Beraberlik,her iki takımda beraberliğe sevinemedi.Sevinen bahisçiler olmuştur muhakkak.</commentary>
+    <commentary cond="_GD_ > 0 "pri="10">_TW_'nin favori olduğu maçta sonuç beklenildiği gibi _RE_ bitiyor</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ >= 6"pri="10">Bu maçı tarih yazar. Hepsi birbirinden güzel [_GOALS0_ + _GOALS1_] gol seyretmiş olduk.</commentary>
+    <commentary cond="_GD_ >= 4"pri="10">_TL_ bu maçı çıkaramadı _GD_ gol farkı kolay değildi.</commentary>
+    <commentary cond="_GD_ >= 2"pri="10">_TW_ maçı kazandı.Bu gece futbolcular ve takım şampanya patlatıp çılgınlar gibi eğlenecek gözüküyor.</commentary>
+    <commentary cond="[_TLAYER0_ - _TLAYER1_]> 1 or [_TLAYER1_ - _TLAYER0_] >1 and _TLAYER_TWN__ > _TLAYER_TLN__"pri="10">Bu ne [muhteşem bir zafer|inanılmaz bir galibiyet] _TW_ takımı için.</commentary>
+    <commentary cond="_GD_ > 3 and _TLAYER[_GOALS1_ > _GOALS0_]_ >= _TLAYER[_GOALS1_ < _GOALS0_]_"pri="10">Bir kere daha ispatlandı ki _TL_ bu takımla başedecek güçte değil, _RE_ skor herşeyi ispatlar nitelikte</commentary>
+  </event>
+  <event>
+    <name>own_goal</name>
+    <commentary>Top [yerde sekiyor|yönünü değiştiriyor] _P0_ golü kendi kalesinde gördü</commentary>
+    <commentary>Penaltı noktası üzerine ayaklardan seken top, sonunda _P0_ çarparak kendi kalesine giriyor</commentary>
+    <commentary>Bir [isabetli|rüzgar gibi] şut, ve _P0_'dan sekerek herkesin şaşkın bakışları arasında kendi ağlarıyla buluşuyor</commentary>
+    <commentary>_P0_ kalecesine tehlikeli bir geri pas çıkarıyor. Olamaz, kaleci inanılmaz bir şekilde [ıskaladı|ayağının altından kaçırdı] Kendi kalesine attığı bir gol oluyor _P0_! için</commentary>
+    <commentary>Bir küçük anlaşmazlık _T_TT__ için pahalıya mal oluyor,kalelerinde bir gol görmüş oldular.</commentary>
+  </event>
+  <event>
+    <name>header</name>
+    <commentary>_P1_ kafayla topu forvetinin önüne indirdi _P0_, bu golü yazabilecek mi?</commentary>
+    <commentary>Gerilerden gelerek topa kafa atan _P0_ oldu.</commentary>
+    <commentary>Ceza sahası içinde yukarıdan süzülerek gelen topa, çok sert ve etkili bir kafa vuruşu geliyor.</commentary>
+    <commentary>İyi gelen ortada _P0_ kafa vuruşunu akıllı bir yere gönderdi.</commentary>
+    <commentary>_P0_ dan [Gol şansı yüksek|Çok etkili|Akıllıca düşünülmüş|Öldürücü yere gönderilmiş] bir kafa vuruşu oluyor.</commentary>
+    <commentary>_P0_'un kafa vuruşu , ileri uçtaki arkadaşına pas oluyor.</commentary>
+  </event>
+  <event>
+    <name>post</name>
+    <commentary>_P0_ çektiği bu şut ile top toplayıcı çocuklara depar attırıyor.Berbat bir vuruş.</commentary>
+    <commentary>Defansın şaşkın bakışları arasında kaleye doğru gönderilen şut oldu</commentary>
+    <commentary>Hiç kimsenin beklemediği bir anda mükemmel bir şut yolladı.</commentary>
+  </event>
+  <event>
+    <name>cross_bar</name>
+    <commentary>_P1_ çektiği şut kalenin üst direğine çarparak [üstten avuta gidiyor|yeniden ceza sahası içine geri dönüyor|defansın önüne düşüyor]</commentary>
+    <commentary>_P1_ topa öyle güzel vurdu ki biraz daha şansı olsa kale direği yerine ağlarla kucaklaşacaktı.Kale direğinden geri dönen top yine oyunda</commentary>
+    <commentary>_P1_ plase bir vuruşla kalecinin üstünden topu aşırmayı denedi,ancak top üst kaledireğinden geri dönerek ceza sahasına geri dönüyor</commentary>
+  </event>
+  <event>
+    <name>penalty</name>
+    <commentary>_P0_ penaltı atışını kullanmak üzere penaltı noktasına doğru ilerliyor</commentary>
+    <commentary>_P0_ penaltı vurşuyla skoru değiştirmek için bir şans yakaladı</commentary>
+    <commentary>_P0_ takımının penaltıcısı olarak bu vuruşu kullanmak üzere topun başına geçiyor</commentary>
+	 <commentary>Acaba [_P0_|_T_POSS__] bu penaltı atışı gol olabilecekmi?</commentary>
+    <commentary>_P0_ kenardan gelen işaretle penaltıyı kullanacak olan oyuncu, topu eline aldı ve beyaz noktaya dikti.</commentary>
+    <commentary cond="_PEN_POSS__ > 1">_T_POSS__ görünüşe göre sonucu penaltı ile atılan goller belirleyecek.</commentary>
+    <commentary cond="_GD_ = 0">Penaltı!!!._T_POSS__ bu penaltıyı atarsa [bu maçta|golsüz maçta] avantajı eline geçirecek.</commentary>
+    <commentary cond="_GD_=1 and _GOALS_POSS__ < _GOALS_NPOSS__">_P0_ şimdi [sonuca denge getirmek için|eşitliği sağlamak için] penaltı atışıyla bir şans yakaladı.</commentary>
+    <commentary cond="_MI_>85 and _GD_=1 and _GOALS_POSS__ < _GOALS_NPOSS__">_P0_: Geç gelen bir penaltı oldu,şimdi ortada olan oyun hareketlenebilir</commentary>
+    <commentary cond="_MI_>85 and _GD_=1 and _GOALS_POSS__ < _GOALS_NPOSS__">_T_NPOSS__ takımına bir maçı dengelemek adına bir şans geliyor.Penaltı atacaklar.</commentary>
+    <commentary cond="_MI_>85 and _GD_=1 and _GOALS_POSS__ > _GOALS_NPOSS__">_P0_ sıkıcı giden maçta nihayet bir penaltı ve gol görebildik</commentary>
+  </event>
+  <event>
+    <name>free_kick</name>
+    <commentary>_P0_ 'dan etkili bir serbest atış geliyor</commentary>
+    <commentary>_P0_ kaleye yakın bir yerden etkili bir frikik kulanıyor</commentary>
+    <commentary>_P0_ hiç bklemeden barajın üzerinden topu kaleye falsolu gönderiyor</commentary>
+    <commentary>_P0_ barajın üzerinden falsolu bir vuruş yaptı</commentary>
+    <commentary>Hakem serbest atış verdi: _P0_ çizgi dışında topa müdahele etti</commentary>
+    <commentary>Serbest Atış: _P0_ uzun bir ortayla topu kale alanına gönderiyor</commentary>
+    <commentary>_P0_ kullandığı serbest atışta ceza sahası karıştı,tam bir karambol anı</commentary>
+  </event>
+  <event>
+    <name>foul_yellow</name>
+    <commentary>_P1_ , _P0_ için [tehlikeli|sakatlayıcı|formasından çekmek suretiyle] bir müdahele yaparak , hakemden sarı kartı görüyor</commentary>
+    <commentary>_P1_ , _P0_'e yaptığı faul neticesinde  sarı kartı gördü</commentary>
+    <commentary>_P1_ topa hakemin düdüğünden sonra [vurduğu|kaleye gönderdiği|taşıdığı] için sarı kart görüyor</commentary>
+    <commentary>_P1_ zaman geçirdiği için  hakemden sarı kartı görüyor</commentary>
+    <commentary>_P1_ sarı kart görüyor,topa bilerek elleriyle müdahele etti</commentary>
+    <commentary>_P1_ , _P0_ 'nın topu oyuna hızlı sokmasını engellemekten sarı kartı görüyor</commentary>
+    <commentary>_P1_ hakeme şiddetli itirazdan sarı kartı görüyor</commentary>
+  </event>
+  <event>
+    <name>foul_red</name>
+    <commentary>_P1_ yüksek sesle rakibine bağırıp çağırıyor.Kırmızı kart gelecek</commentary>
+    <commentary>_P1_ hakaretlerle rakibinin üzerine yürüyor,başı belada</commentary>
+    <commentary>_P1_ kötü niyetle kramponlarıyla rakibine basıyor</commentary>
+    <commentary>_P1_ kasıtlı olarak eliyle oynuyor</commentary>
+    <commentary>_P1_ top rakibindeyken ayağını yerden kesecek kadar sert girerek, kırmızı kart görmeyi haketti bu futbolcu</commentary>
+    <commentary>_P1_ açıkça _P0_ [yumrukladı|tokat atıyor|itekledi|kafa attı] , hakem tereddütsüz kırmızı kartı gösteriyor</commentary>
+    <commentary>_P1_ rakip takım taraftarlarına el kol hareketleri yapıp küfürler ediyor</commentary>
+  </event>
+  <event>
+    <name>foul_red_injury</name>
+    <commentary>_P1_ kasti faulü yaptı, hakem elini cebine götürürken; _P0_ çimler üzerinde acıyla kıvranırken, sağlık ekipleri acil müdahele için saha içine koşarak girdiler</commentary>
+    <commentary>_P1_ Kasti bir faul yapıyor ; _P0_ sakatlanmışa benziyor... oyuncu değişikliğine gidebilirler</commentary>
+  </event>
+  <event>
+    <name>send_off</name>
+    <commentary>_P0_ oyundan atılıyor.</commentary>
+    <commentary>_P0_ oyun dışı kalıyor. _T_TT__ şimdi bir kişi eksik oynayacak.</commentary>
+  </event>
+  <event>
+    <name>injury</name>
+    <commentary>_P0_ değişmek zorunda. Yardımlarla [çıkıyor|sedyeye alınıyor|sahayı terkediyor], [omuzundan|dirseğinden|kolunda|el bileğinde|sırt bölgesinde|arka adelesinden|kafasından|boynunda|kiriş|kasığında|göğüs kafesinde ezilme] sakatlığı var</commentary>
+    <commentary>_P0_ [kötü|ciddi] şekilde sakatlandı , arkadaşları dışarı alınması için işaret veriyor</commentary>
+    <commentary>Takım doktorları iyice muayene ediyorlar, ancak _P0_ oynayacak durumda değil, değiştirilmesi için işaret geldi</commentary>
+  </event>
+  <event>
+    <name>temp_injury</name>
+    <commentary>_P0_ kasığında bir çekme var gibi görünüyor, fakat oyuna devam edebilecek durumdamı?</commentary>
+    <commentary>_P0_ ince bir darbeyle yerde,sakatlık geçiriyor,umarız ciddi bir şeyi yoktur.</commentary>
+    <commentary>_P0_ koşmayı deniyor ama kasığındaki gerilme ciddi gibi,hakem kendisini saha kenarına doktor kontrolüne gönderiyor</commentary>
+    <commentary>_P0_ kaslarında aşırı gerilme olabilir: durumu iyiye benziyor,devam edecek</commentary>
+    <commentary>_P0_ doktordan uyarıları alıyor sakatlanmamak için artık daha dikkatli oynamak zorunda</commentary>
+    <commentary>_P0_ [sol|sağ] gözüne güçlü bir darbe geliyor rakip oyuncudan, çabucak bir bandaj yapılıyor, ve oyuna devam edebilecek durumda</commentary>
+  </event>
+  <event>
+    <name>stadium_breakdown</name>
+    <commentary>_T0_ statyumunda teknik problemler başgösteriyor.Stat ışıkları birden gitti.</commentary>
+    <commentary>Stat ışıklarında problem var şimdi [iyice azaldı|tamamen söndü]</commentary>
+    <commentary>Ağır bir sis tabakası _T0_ stat çimlerine çökmüş vaziyette.Oyuncuları görmek iyice zorlaşmış durumda.</commentary>
+  </event>
+  <event>
+    <name>stadium_riots</name>
+    <commentary>Bazı taraftarlar kargaşa yaratıyorlar tribünlerde</commentary>
+    <commentary>Bazı kendini bilmez taraftarlar sahaya [yanan meşaleleri|pet su şişelerini] atmaya başladılar.Hakem anons istiyor.</commentary>
+    <commentary>Stat polisi kargaşa çıkartanları, stat dışına ite kaka götürmeye başladılar</commentary>
+    <commentary>Bir seyirci polisleri [aşarak|peşine takarak] sahanın içine kadar girdi ve hakeme [yumruk atmaya çalışıyor|tekme sallamayı deniyor|birşeyler anlatmaya çalışıyor].Sahalarda görmek istemediğimiz hareketler bunlar.</commentary>
+    <commentary>Taraftarlar takımlarını protesto etmek için sahaya sırtını döndüler ve stattan çıt sesi çıkmıyor .Çok ilgiç bir protesto doğrusu</commentary>
+  </event>
+  <event>
+    <name>stadium_fire</name>
+    <commentary>Yanlış görmüyorsam _T_TT__'un stadyumundan dumanlar yükseliyor</commentary>
+    <commentary>Deplasman takım taraftarlarının bazıları [açık|kapalı] tribünlerinin bir kısmını ateşe verdiler.İnanılmaz!</commentary>
+    <commentary>Takımlarının aldığı kötü sonucu hazmedemeyen bazı kendini bilmezler yine tribünleri ateşe verdi.Artık yetkililer bu [hareketlere|kendini bilmezlere|kendini taraftar sananlara] ağır cezalar vermeliler.</commentary>
+    <commentary>Taraftarlar yaktıkları meşaleleri saha içine atınca , oradaki kağıtlar tutuştu ve şimdi itfaiye olay yerine müdahele ediyor.</commentary>
+  </event>
+  <event>
+    <name>substitution</name>
+    <commentary>_T_TT__ oyuncu değişikliğine gidiyor: _P0_  _P1_ ile yer değiştiriyor</commentary>
+    <commentary cond="_MI_>60">_T_TT__ taze bir güce ihtiyacı vardı. _P0_ oyunda _P1_ saha dışında</commentary>
+    <commentary>_P1_ taraftarlarının alkışları arasında oyundan alınıyor. _P0_ oyuna giren isim</commentary>
+    <commentary>_P1_ oyundan alındığı için pek memnun değil gibi.Yerine giren oyuncu: _P0_</commentary>
+    <commentary>_P0_ saha kenarında,yedek kulubesinde antrenöründen son talimatları aldı ve şimdi _P1_  yerine oyuna dahil oluyor</commentary>
+    <commentary>_P0_ oyuna giriyor,çıkan oyuncu _P1_</commentary>
+  </event>
+  <event>
+    <name>structure_change</name>
+    <commentary>_T_TT__ saha dizilişini ve taktiklerini değiştirdiler _EX_</commentary>
+    <commentary>_T_TT__ takım oyun düzenlerini _EX_ olarak değiştirdiler.</commentary>
+  </event>
+  <event>
+    <name>style_change</name>
+    <commentary>_T_TT__ oyun düzenlerini değiştirdiler _EX_</commentary>
+    <commentary>_T_TT__ teknik direktöründen yeni bir hamle sırası _EX_  şekline döndürdüler takım düzenlerini...</commentary>
+    <commentary cond="_EX_ == 'ATTACK'">_T_TT__ daha atak oynamaya çalışacaklar</commentary>
+    <commentary cond="_MI_>75 and _EX_ == 'BALANCED'">_T_TT__ takımı _EX_ oyuna döndü</commentary>
+    <commentary cond="_MI_>75 and _EX_ == 'ATTACK'">Bir son şans denemesi daha: _T_TT__ dan _EX_</commentary>
+    <commentary cond="_MI_>75">_MR_ dakika kala. _T_TT__ taktiklerini _EX_ stiline çevirmeyi deniyorlar</commentary>
+    <commentary cond="_TIME_=1 and _MR_ >= 44">Devre arası oyun stillerinde değişiklik, _T_TT__ takımı _EX_ oynamaya başladı</commentary>
+  </event>
+  <event>
+    <name>boost_change</name>
+    <commentary>_T_TT__ takım güçlerini değiştiriyor _EX_</commentary>
+    <commentary cond="_MI_>75 and _EX_ == 'ANTI' and _TT_ == _TLN_">_T_TT__ takımı yenilgiyi kabullenmişe benziyor</commentary>
+    <commentary cond="_MI_>75 and _EX_ == 'ANTI' and _TT_ == _TWN_">_T_TT__ bu maçta  başaracaklarını düşünmüş olmalılar</commentary>
+    <commentary cond="_EX_ = 'ON'">_T_TT__ takımı vites yükseltiyor</commentary>
+    <commentary cond="_EX_ = 'ON' and _MI_ >75"pri="10">Takım desteği devrede. _T_TT__  bu maçı almak için varını yoğunu ortaya koyuyorlar</commentary>
+  </event>
+</lg_commentary>
+<!--
+düşünceler
+uygun teslimat
+beyin karartma
+sinir bozucu top kazanma
+kayıp sabır 
+birçok oda
+küçük oda
+bunu kelimeler anlatamaz
+sahada düş kırıklığı var
+oldukça gayretli 
+bir kere daha takım maçta geriye düştü
+ne zaman atak yapsalar skoru ellerinde tuttular
+ilk yarıda umutsuzca ataklar vardı
+ilk yarıyı önde bitiren takım avantaj sağlar
+takımlar birbirini süzüyor
+iyi pozisyon aldı
+'dan gelen topu alıyor
+takımda oyuna ağırlığını koyması gereken futbolcular var
+oyuncu bazı güzel pas örnekleri verdi
+takım ruhu sahadaydı
+ataklara karşı koydu
+oyuncu takımda poroblemlere sebebiyet verdi
+oyunucuya kafa atıyor
+oyuna hükmettiler ama sonuç için yeterli değildi
+kaleci bütün zor şutları kurtardı
+uzun zamandır gördüğüm en sıkıcı 45 dakikaydı
+puanlar çantada
+onlar çok pozisyona girdiler ama sonuca gidemediler
+umutlar birer birer tükeniyor
+camiada sıkıntılı günler
+pek çok şans yakaladı
+kaleci çetin bir ceviz olduğunu gösterdi
+kale için tehlikeli olabilecek bir top
+takım bu yarıda maçı kopardı
+ltakımın başı belada gibi
+güzel bir ilkyarı performansı izledik
+tek taraf futbol oynuyor
+kendisine güveni yok
+bütün gözleri kendine çevirdi
+tam güvence
+hırslı oyun
+takımın onun kurtarışlarına ihtiyacı var
+oyuncuları ayırıyor
+iletişimsizlik
+sert rüzgara karşı şut attı
+kaleciyi ters köşeye yatırdı
+kaleci bugün ? defa gol yemiş oldu
+-->
