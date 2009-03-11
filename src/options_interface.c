@@ -413,7 +413,7 @@ create_window_options (void)
   button_edit_constants = gtk_button_new ();
   gtk_widget_show (button_edit_constants);
   gtk_box_pack_start (GTK_BOX (hbox8), button_edit_constants, FALSE, FALSE, 0);
-  gtk_tooltips_set_tip (tooltips, button_edit_constants, _("Edit the constants used in the game (this won't change the file, however)"), NULL);
+  gtk_tooltips_set_tip (tooltips, button_edit_constants, _("Edit the constants used in the game"), NULL);
 
   alignment3 = gtk_alignment_new (0.5, 0.5, 0, 0);
   gtk_widget_show (alignment3);
@@ -1466,6 +1466,11 @@ create_window_constants (void)
   GtkWidget *treeview_constants_app;
   GtkWidget *label53;
   GtkWidget *hseparator9;
+  GtkWidget *button_constants_save;
+  GtkWidget *alignment6;
+  GtkWidget *hbox22;
+  GtkWidget *image6;
+  GtkWidget *label56;
   GtkWidget *button_constants_reload;
   GtkWidget *alignment4;
   GtkWidget *hbox20;
@@ -1487,7 +1492,7 @@ create_window_constants (void)
   gtk_container_set_border_width (GTK_CONTAINER (window_constants), 5);
   gtk_window_set_title (GTK_WINDOW (window_constants), _("window1"));
   gtk_window_set_position (GTK_WINDOW (window_constants), GTK_WIN_POS_CENTER);
-  gtk_window_set_default_size (GTK_WINDOW (window_constants), 650, 700);
+  gtk_window_set_default_size (GTK_WINDOW (window_constants), 650, 600);
 
   vbox12 = gtk_vbox_new (FALSE, 5);
   gtk_widget_show (vbox12);
@@ -1558,6 +1563,27 @@ create_window_constants (void)
   gtk_box_pack_start (GTK_BOX (vbox12), hseparator9, FALSE, TRUE, 0);
   gtk_widget_set_size_request (hseparator9, -1, 10);
 
+  button_constants_save = gtk_button_new ();
+  gtk_widget_show (button_constants_save);
+  gtk_box_pack_start (GTK_BOX (vbox12), button_constants_save, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, button_constants_save, _("Save changes to the constants file. DON'T DO THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."), NULL);
+
+  alignment6 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment6);
+  gtk_container_add (GTK_CONTAINER (button_constants_save), alignment6);
+
+  hbox22 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox22);
+  gtk_container_add (GTK_CONTAINER (alignment6), hbox22);
+
+  image6 = gtk_image_new_from_stock ("gtk-save", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image6);
+  gtk_box_pack_start (GTK_BOX (hbox22), image6, FALSE, FALSE, 0);
+
+  label56 = gtk_label_new_with_mnemonic (_("Save to file"));
+  gtk_widget_show (label56);
+  gtk_box_pack_start (GTK_BOX (hbox22), label56, FALSE, FALSE, 0);
+
   button_constants_reload = gtk_button_new ();
   gtk_widget_show (button_constants_reload);
   gtk_box_pack_start (GTK_BOX (vbox12), button_constants_reload, FALSE, FALSE, 0);
@@ -1582,7 +1608,7 @@ create_window_constants (void)
   button_constants_close = gtk_button_new ();
   gtk_widget_show (button_constants_close);
   gtk_box_pack_start (GTK_BOX (vbox12), button_constants_close, FALSE, FALSE, 0);
-  gtk_tooltips_set_tip (tooltips, button_constants_close, _("Close window. Changes will be saved for the current session. To make permanent changes, edit constants files directly."), NULL);
+  gtk_tooltips_set_tip (tooltips, button_constants_close, _("Close window. Changes will only be saved for the current session, unless you also save to file."), NULL);
   gtk_widget_add_accelerator (button_constants_close, "clicked", accel_group,
                               GDK_Escape, (GdkModifierType) 0,
                               GTK_ACCEL_VISIBLE);
@@ -1609,6 +1635,9 @@ create_window_constants (void)
   g_signal_connect ((gpointer) window_constants, "delete_event",
                     G_CALLBACK (on_window_constants_delete_event),
                     NULL);
+  g_signal_connect ((gpointer) button_constants_save, "clicked",
+                    G_CALLBACK (on_button_constants_save_clicked),
+                    NULL);
   g_signal_connect ((gpointer) button_constants_reload, "clicked",
                     G_CALLBACK (on_button_constants_reload_clicked),
                     NULL);
@@ -1633,6 +1662,11 @@ create_window_constants (void)
   GLADE_HOOKUP_OBJECT (window_constants, treeview_constants_app, "treeview_constants_app");
   GLADE_HOOKUP_OBJECT (window_constants, label53, "label53");
   GLADE_HOOKUP_OBJECT (window_constants, hseparator9, "hseparator9");
+  GLADE_HOOKUP_OBJECT (window_constants, button_constants_save, "button_constants_save");
+  GLADE_HOOKUP_OBJECT (window_constants, alignment6, "alignment6");
+  GLADE_HOOKUP_OBJECT (window_constants, hbox22, "hbox22");
+  GLADE_HOOKUP_OBJECT (window_constants, image6, "image6");
+  GLADE_HOOKUP_OBJECT (window_constants, label56, "label56");
   GLADE_HOOKUP_OBJECT (window_constants, button_constants_reload, "button_constants_reload");
   GLADE_HOOKUP_OBJECT (window_constants, alignment4, "alignment4");
   GLADE_HOOKUP_OBJECT (window_constants, hbox20, "hbox20");
