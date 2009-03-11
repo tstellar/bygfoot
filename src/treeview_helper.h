@@ -271,4 +271,10 @@ treeview_helper_constants_editing_done(GtkCellRendererText *renderer,
                                        gchar               *new_text,
                                        gpointer             user_data);
 
+void
+treeview_helper_constants_app_editing_done(GtkCellRendererText *renderer,
+                                           gchar               *path,
+                                           gchar               *new_text,
+                                           gpointer             user_data);
+
 #endif

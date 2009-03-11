@@ -2064,3 +2064,20 @@ treeview_helper_constants_editing_done(GtkCellRendererText *renderer,
         gtk_list_store_set(GTK_LIST_STORE(model), &iter, 1, new_text, -1);
     }
 }
+
+void
+treeview_helper_constants_app_editing_done(GtkCellRendererText *renderer,
+                                           gchar               *path,
+                                           gchar               *new_text,
+                                           gpointer             user_data)
+{
+    GtkTreeModel *model = gtk_tree_view_get_model((GtkTreeView*)user_data);
+    GtkTreeIter iter;
+    const gchar *name;
+
+    gtk_tree_model_get_iter_from_string(model, &iter, path);
+    gtk_tree_model_get(model, &iter, 0, &name, -1);
+
+    option_set_string(name, &constants_app, new_text);
+    gtk_list_store_set(GTK_LIST_STORE(model), &iter, 1, new_text, -1);
+}
