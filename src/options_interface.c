@@ -1452,7 +1452,7 @@ create_window_constants (void)
 {
   GtkWidget *window_constants;
   GtkWidget *vbox12;
-  GtkWidget *notebook2;
+  GtkWidget *notebook_constants;
   GtkWidget *scrolledwindow1;
   GtkWidget *treeview_constants_integer;
   GtkWidget *label50;
@@ -1487,19 +1487,19 @@ create_window_constants (void)
   gtk_container_set_border_width (GTK_CONTAINER (window_constants), 5);
   gtk_window_set_title (GTK_WINDOW (window_constants), _("window1"));
   gtk_window_set_position (GTK_WINDOW (window_constants), GTK_WIN_POS_CENTER);
-  gtk_window_set_default_size (GTK_WINDOW (window_constants), 550, 700);
+  gtk_window_set_default_size (GTK_WINDOW (window_constants), 650, 700);
 
   vbox12 = gtk_vbox_new (FALSE, 5);
   gtk_widget_show (vbox12);
   gtk_container_add (GTK_CONTAINER (window_constants), vbox12);
 
-  notebook2 = gtk_notebook_new ();
-  gtk_widget_show (notebook2);
-  gtk_box_pack_start (GTK_BOX (vbox12), notebook2, TRUE, TRUE, 0);
+  notebook_constants = gtk_notebook_new ();
+  gtk_widget_show (notebook_constants);
+  gtk_box_pack_start (GTK_BOX (vbox12), notebook_constants, TRUE, TRUE, 0);
 
   scrolledwindow1 = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (scrolledwindow1);
-  gtk_container_add (GTK_CONTAINER (notebook2), scrolledwindow1);
+  gtk_container_add (GTK_CONTAINER (notebook_constants), scrolledwindow1);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow1), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow1), GTK_SHADOW_IN);
 
@@ -1509,11 +1509,11 @@ create_window_constants (void)
 
   label50 = gtk_label_new (_("Integer"));
   gtk_widget_show (label50);
-  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook2), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook2), 0), label50);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook_constants), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook_constants), 0), label50);
 
   scrolledwindow2 = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (scrolledwindow2);
-  gtk_container_add (GTK_CONTAINER (notebook2), scrolledwindow2);
+  gtk_container_add (GTK_CONTAINER (notebook_constants), scrolledwindow2);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow2), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow2), GTK_SHADOW_IN);
 
@@ -1523,11 +1523,11 @@ create_window_constants (void)
 
   label51 = gtk_label_new (_("Float"));
   gtk_widget_show (label51);
-  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook2), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook2), 1), label51);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook_constants), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook_constants), 1), label51);
 
   scrolledwindow3 = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (scrolledwindow3);
-  gtk_container_add (GTK_CONTAINER (notebook2), scrolledwindow3);
+  gtk_container_add (GTK_CONTAINER (notebook_constants), scrolledwindow3);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow3), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow3), GTK_SHADOW_IN);
 
@@ -1537,11 +1537,11 @@ create_window_constants (void)
 
   label52 = gtk_label_new (_("String"));
   gtk_widget_show (label52);
-  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook2), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook2), 2), label52);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook_constants), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook_constants), 2), label52);
 
   scrolledwindow4 = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (scrolledwindow4);
-  gtk_container_add (GTK_CONTAINER (notebook2), scrolledwindow4);
+  gtk_container_add (GTK_CONTAINER (notebook_constants), scrolledwindow4);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow4), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow4), GTK_SHADOW_IN);
 
@@ -1551,7 +1551,7 @@ create_window_constants (void)
 
   label53 = gtk_label_new (_("Appearance"));
   gtk_widget_show (label53);
-  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook2), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook2), 3), label53);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook_constants), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook_constants), 3), label53);
 
   hseparator9 = gtk_hseparator_new ();
   gtk_widget_show (hseparator9);
@@ -1619,7 +1619,7 @@ create_window_constants (void)
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (window_constants, window_constants, "window_constants");
   GLADE_HOOKUP_OBJECT (window_constants, vbox12, "vbox12");
-  GLADE_HOOKUP_OBJECT (window_constants, notebook2, "notebook2");
+  GLADE_HOOKUP_OBJECT (window_constants, notebook_constants, "notebook_constants");
   GLADE_HOOKUP_OBJECT (window_constants, scrolledwindow1, "scrolledwindow1");
   GLADE_HOOKUP_OBJECT (window_constants, treeview_constants_integer, "treeview_constants_integer");
   GLADE_HOOKUP_OBJECT (window_constants, label50, "label50");

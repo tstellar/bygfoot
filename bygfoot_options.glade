@@ -3682,7 +3682,7 @@
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_CENTER</property>
   <property name="modal">False</property>
-  <property name="default_width">550</property>
+  <property name="default_width">650</property>
   <property name="default_height">700</property>
   <property name="resizable">True</property>
   <property name="destroy_with_parent">False</property>
@@ -3702,7 +3702,7 @@
       <property name="spacing">5</property>
 
       <child>
-	<widget class="GtkNotebook" id="notebook2">
+	<widget class="GtkNotebook" id="notebook_constants">
 	  <property name="visible">True</property>
 	  <property name="can_focus">True</property>
 	  <property name="show_tabs">True</property>

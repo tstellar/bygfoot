@@ -816,6 +816,8 @@ treeview2_set_up_constants(GtkTreeView *treeview, gint type)
             g_object_set(renderer, "editable", TRUE, NULL);
             g_signal_connect (renderer,
                               "edited",
+                              (type == CONSTANTS_TYPE_APP) ?
+                              G_CALLBACK (treeview_helper_constants_app_editing_done) :
                               G_CALLBACK (treeview_helper_constants_editing_done),
                               treeview);
         }

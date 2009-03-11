@@ -30,6 +30,7 @@
 #include "option_gui.h"
 #include "support.h"
 #include "training.h"
+#include "treeview2.h"
 #include "user.h"
 #include "variables.h"
 #include "window.h"
@@ -221,15 +222,15 @@ void
 on_button_constants_reload_clicked     (GtkButton       *button,
                                         gpointer         user_data)
 {
-    if(window.options != NULL)
-    {
-        printf("hu\n");
-             file_load_opt_file(gtk_entry_get_text(GTK_ENTRY(lookup_widget(window.options, "entry_constants_file"))),
-                           &constants, TRUE);
-    }   
-    else        
+    if(gtk_notebook_get_current_page(
+           GTK_NOTEBOOK(lookup_widget(GTK_WIDGET(button), "notebook_constants"))) == 3)
+        file_load_opt_file(opt_str("string_opt_appearance_file"),
+                           &constants_app, TRUE);
+    else
         file_load_opt_file(opt_str("string_opt_constants_file"),
                            &constants, TRUE);
+
+    treeview2_show_constants();
 }
 
 
