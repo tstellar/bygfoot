@@ -85,5 +85,9 @@ on_button_constants_reload_clicked     (GtkButton       *button,
 void
 on_button_constants_close_clicked      (GtkButton       *button,
                                         gpointer         user_data);
-#endif
 
+
+void
+on_button_constants_save_clicked       (GtkButton       *button,
+                                        gpointer         user_data);
+#endif

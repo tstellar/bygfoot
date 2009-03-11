@@ -241,3 +241,24 @@ on_button_constants_close_clicked      (GtkButton       *button,
     window_destroy(&window.constants);
 }
 
+
+void
+on_button_constants_save_clicked       (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    gchar buf[SMALL];
+
+    if(gtk_notebook_get_current_page(
+           GTK_NOTEBOOK(lookup_widget(GTK_WIDGET(button), "notebook_constants"))) == 3)
+    {
+        sprintf(buf, "%s%s%s", file_get_first_support_dir(),
+                G_DIR_SEPARATOR_S, opt_str("string_opt_appearance_file"));
+        file_save_opt_file(buf, &constants_app);
+    }
+    else
+    {
+        sprintf(buf, "%s%s%s", file_get_first_support_dir(),
+                G_DIR_SEPARATOR_S, opt_str("string_opt_constants_file"));
+        file_save_opt_file(buf, &constants);
+    }
+}
