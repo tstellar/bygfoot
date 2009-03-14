@@ -1511,7 +1511,7 @@ treeview_create_finances(const User *user)
 
     gint i, balance = 0;
     gchar buf[SMALL], buf2[SMALL], buf3[SMALL];
-    gint *in = user->money_in[0],
+    const gint *in = user->money_in[0],
 	*out = user->money_out[0];
     gchar *in_titles[MON_IN_TRANSFERS] =
 	{_("Prize money"),
