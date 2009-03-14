@@ -1238,7 +1238,7 @@ create_window_file_chooser (void)
   GtkWidget *button1;
   GtkWidget *button2;
 
-  window_file_chooser = gtk_file_chooser_dialog_new (_("Choose file"), NULL, GTK_FILE_CHOOSER_ACTION_OPEN, NULL);
+  window_file_chooser = gtk_file_chooser_dialog_new (_("Choose file"), NULL, GTK_FILE_CHOOSER_ACTION_OPEN, NULL,NULL);
   gtk_container_set_border_width (GTK_CONTAINER (window_file_chooser), 5);
   g_object_set (window_file_chooser,
                 "show-hidden", TRUE,
