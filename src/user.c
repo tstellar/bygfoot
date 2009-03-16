@@ -557,7 +557,7 @@ user_event_show_next(void)
 		    event->value_string);
 	    break;
 	case EVENT_TYPE_WARNING:
-	    game_gui_show_warning(event->value_string);
+	    game_gui_show_warning(event->value_string, NULL);
 	    break;
 	case EVENT_TYPE_FIRE_FINANCE:
 	    game_gui_show_job_offer((Team*)event->value_pointer, NULL,
@@ -634,7 +634,7 @@ user_event_show_next(void)
 	    else
 		player_remove_from_team(event->user->tm, player_id_index(event->user->tm, event->value1));
 	    treeview_show_user_player_list();
-	    game_gui_show_warning(buf);
+	    game_gui_show_warning(buf,NULL);
 	    break;
 	case EVENT_TYPE_CHARITY:
 	    game_gui_show_warning(_("The team owners are very satisfied with your financial management. Since the team's been earning a lot of money lately, they decide to donate half of it to charity."));
@@ -1115,7 +1115,7 @@ user_show_sponsor_continue(void)
 
     sponsor = user_get_sponsor(&current_user);
 
-    g_string_printf(sponsor.name, current_user.sponsor.name->str);
+    g_string_printf(sponsor.name, current_user.sponsor.name->str, NULL);
     
     g_array_append_val(sponsors, sponsor);
 
