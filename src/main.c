@@ -397,7 +397,7 @@ main_exit_program(gint exit_code, gchar *format, ...)
 	va_start (args, format);
 	g_vsprintf(text, format, args);
 	va_end (args);
-	g_warning(text);
+	g_warning(text, NULL);
     }
 
     if(gtk_main_level() > 0)

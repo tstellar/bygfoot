@@ -1264,7 +1264,7 @@ player_remove_contract(Player *pl)
 
     if(debug < 50)
         user_event_add(user_from_team(pl->team), EVENT_TYPE_PLAYER_LEFT, -1, -1, NULL,
-                       pl->name);
+                       pl->name, NULL);
     player_remove_from_team(pl->team, player_id_index(pl->team, pl->id));
 }
 

@@ -584,7 +584,7 @@ game_gui_print_message_source(gpointer data)
     printf("game_gui_print_message_source\n");
 #endif
 
-    game_gui_print_message((gchar*)data);
+    game_gui_print_message((gchar*)data, NULL);
 
     g_free(data);
 
@@ -750,7 +750,7 @@ game_gui_show_warning(const gchar *format, ...)
 
     if(opt_int("int_opt_prefer_messages") &&
        window.main != NULL)
-	game_gui_print_message(text);
+	game_gui_print_message(text, NULL);
     else
     {
 	window_create(WINDOW_WARNING);
