@@ -366,7 +366,7 @@ misc_callback_new_sponsor(void)
 				    &model, &iter);
     gtk_tree_model_get(model, &iter, 0, &name, 1, &contract, 2, &benefit, -1);
 
-    g_string_printf(current_user.sponsor.name, name);
+    g_string_printf(current_user.sponsor.name, name, NULL);
     current_user.sponsor.contract = contract * 4;
     current_user.sponsor.benefit = benefit;
 

@@ -299,7 +299,7 @@ xml_loadsave_users_text         (GMarkupParseContext *context,
     else if(state == TAG_USER_SPONSOR_NAME)
     {
 	misc_string_replace_token(buf, "AND", "&amp;");
-	g_string_printf(new_user.sponsor.name, buf);
+	g_string_printf(new_user.sponsor.name, buf, NULL);
     }
     else if(state == TAG_USER_SPONSOR_CONTRACT)
 	new_user.sponsor.contract = int_value;

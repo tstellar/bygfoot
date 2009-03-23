@@ -2708,7 +2708,8 @@ treeview_create_country_list(const GPtrArray *country_list)
                 if (strcmp(previous_element,dir_split_up[j])!=0) 
                 {
                     create_new_line=TRUE;
-                } 
+                }
+                g_free(previous_element); 
              }
              // Do we need to create a new element or not 
              if (create_new_line)

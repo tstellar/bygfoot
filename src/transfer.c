@@ -204,12 +204,12 @@ transfer_offers_notify(Transfer *tr, gboolean sort)
 
     if(team_is_user(tr->tm) != -1)
 	user_event_add(user_from_team(tr->tm), EVENT_TYPE_TRANSFER_OFFER_USER,
-		       -1, -1, NULL, player_of_id_team(tr->tm, tr->id)->name);
+		       -1, -1, NULL, player_of_id_team(tr->tm, tr->id)->name, NULL);
 
     else
 	user_event_add(user_from_team(off->tm),
 		       EVENT_TYPE_TRANSFER_OFFER_CPU, -1, -1,
-		       NULL, player_of_id_team(tr->tm, tr->id)->name);
+		       NULL, player_of_id_team(tr->tm, tr->id)->name, NULL);
 
     if(!sort)
 	user_event_show_next();
@@ -248,7 +248,7 @@ transfer_evaluate_offers(void)
 				EVENT_TYPE_TRANSFER_OFFER_REJECTED_FEE_WAGE, 
 				transoff(i, j).fee, transoff(i, j).wage,
 				trans(i).tm, 
-				player_of_id_team(trans(i).tm, trans(i).id)->name);
+				player_of_id_team(trans(i).tm, trans(i).id)->name, NULL);
 			    transoff(i, j).status = TRANSFER_OFFER_REJECTED;
 			}
 			else if(player_of_id_team(trans(i).tm, trans(i).id)->value > 
@@ -259,7 +259,7 @@ transfer_evaluate_offers(void)
 				EVENT_TYPE_TRANSFER_OFFER_REJECTED_FEE,
 				transoff(i, j).fee, transoff(i, j).wage,
 				trans(i).tm, 
-				player_of_id_team(trans(i).tm, trans(i).id)->name);
+				player_of_id_team(trans(i).tm, trans(i).id)->name, NULL);
 			    transoff(i, j).status = TRANSFER_OFFER_REJECTED;
 			}
 			else if(player_of_id_team(trans(i).tm, trans(i).id)->wage > 
@@ -270,7 +270,7 @@ transfer_evaluate_offers(void)
 				EVENT_TYPE_TRANSFER_OFFER_REJECTED_WAGE,
 				transoff(i, j).fee, transoff(i, j).wage,
 				trans(i).tm, 
-				player_of_id_team(trans(i).tm, trans(i).id)->name);
+				player_of_id_team(trans(i).tm, trans(i).id)->name, NULL);
 			    transoff(i, j).status = TRANSFER_OFFER_REJECTED;
 			}
 			else if(transfer_new_star_balks(&trans(i), &transoff(i, j)))
@@ -279,7 +279,7 @@ transfer_evaluate_offers(void)
 				user_from_team(transoff(i, j).tm),
 				EVENT_TYPE_TRANSFER_OFFER_REJECTED_STARS, -1, -1,
 				trans(i).tm, 
-				player_of_id_team(trans(i).tm, trans(i).id)->name);
+				player_of_id_team(trans(i).tm, trans(i).id)->name, NULL);
 			    transoff(i, j).status = TRANSFER_OFFER_REJECTED;
 			}
 			else
