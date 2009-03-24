@@ -1490,7 +1490,6 @@ create_window_constants (void)
 
   window_constants = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_constants), 5);
-  gtk_window_set_title (GTK_WINDOW (window_constants), _("window1"));
   gtk_window_set_position (GTK_WINDOW (window_constants), GTK_WIN_POS_CENTER);
   gtk_window_set_default_size (GTK_WINDOW (window_constants), 650, 600);
 
