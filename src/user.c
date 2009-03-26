@@ -210,6 +210,7 @@ user_set_up_finances(User *user)
 	user->money_in[0][i] = user->money_in[1][i] = 0;
     
     user->debt = 
+    user->debt_interest = 
         user->alr_start_week =
         user->alr_weekly_installment = 0;
     user->money = 
