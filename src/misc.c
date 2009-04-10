@@ -532,33 +532,13 @@ misc_string_assign(gchar **string, const gchar *contents)
 void
 misc_string_choose_random(gchar *string)
 {
-   const gchar STR_SEP = '|';
-   gint i = 0;
    gint count = 1;
-   const gchar* start;
+   gchar **array;
    
-   for (i = 0; string[i]; i++)
-      count += (string[i] == STR_SEP);
-
-   if (count == 1)
-      return;
-      
-   count = math_rndi(0, count - 1) + 1;
-   start = g_strdup(string);
-   for (i = 0; string[i]; i++)
-      if (string[i] == STR_SEP)
-      {
-         count--;
-	 if (count == 1)
-	    start = string + i + 1;
-	 else if (!count)
-	 {
-	    string[i] = '\0';
-	    break;
-         }
-      }
-
-   strcpy(string, start);
+   array = g_strsplit(string, "|", -1);
+   count = g_strv_length(array);
+   count = math_rndi(0, count - 1);
+   strcpy(string, array[count]);
 }
 
 /** Replace a token in a string by another string. 
