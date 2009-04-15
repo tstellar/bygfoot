@@ -1740,7 +1740,7 @@ live_game_reset(LiveGame *live_game, Fixture *fix, gboolean free_variable)
 	live_game->stats.players[0][i] = g_ptr_array_new();
 	live_game->stats.players[1][i] = g_ptr_array_new();
     }
-
+    live_game->stats.possession = 0;
     for(i=0;i<LIVE_GAME_STAT_VALUE_END;i++)
 	live_game->stats.values[0][i] =
 	    live_game->stats.values[1][i] = 0;
