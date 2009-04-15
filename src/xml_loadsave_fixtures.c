@@ -27,6 +27,7 @@
 #include "fixture.h"
 #include "misc.h"
 #include "team.h"
+#include "variables.h"
 #include "xml.h"
 #include "xml_loadsave_fixtures.h"
 
@@ -203,6 +204,7 @@ xml_loadsave_fixtures_read(const gchar *filename, GArray *fixtures)
     }
 
     fixtures_array = fixtures;
+    statp = fixtures;
 
     if(g_markup_parse_context_parse(context, file_contents, length, &error))
     {
