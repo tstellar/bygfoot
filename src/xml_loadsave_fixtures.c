@@ -204,7 +204,6 @@ xml_loadsave_fixtures_read(const gchar *filename, GArray *fixtures)
     }
 
     fixtures_array = fixtures;
-    statp = fixtures;
 
     if(g_markup_parse_context_parse(context, file_contents, length, &error))
     {
