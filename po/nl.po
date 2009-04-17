@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: Bygfoot 2.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-03-23 22:35+0100\n"
-"PO-Revision-Date: 2009-01-09 18:04+0200\n"
+"PO-Revision-Date: 2009-04-17 16:08+0200\n"
 "Last-Translator: Mihai <mihai@emma.ro>\n"
 "Language-Team: Dutch <tobedeprez@scarlet.be>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);"
 
 #: src/treeview_helper.c:951
 #, c-format
@@ -85,7 +85,7 @@ msgstr " --  Heenmatch"
 
 #: src/fixture.c:1806
 msgid " -- Replay matches"
-msgstr " -- Replay matchen"
+msgstr " -- Te herspelen matchen"
 
 #: src/fixture.c:1801
 msgid " -- Second leg"
@@ -537,7 +537,7 @@ msgid ""
 "A new youth wanted to registered at your youth academy but there was no room "
 "for him."
 msgstr ""
-"Er wou een nieuwe jeugdspeler toetreden tot uw academy, maar er was geen "
+"Er wou een nieuwe jeugdspeler toetreden tot uw academie, maar er was geen "
 "plaats voor hem."
 
 #: src/treeview_helper.c:1649
@@ -623,7 +623,7 @@ msgstr "Elke"
 
 #: src/options_interface.c:1556
 msgid "Appearance"
-msgstr ""
+msgstr "Weergave"
 
 #: src/game_gui.c:818
 msgid "Apply for the job?"
@@ -811,7 +811,7 @@ msgstr ""
 
 #: src/interface.c:669
 msgid "Boost"
-msgstr "Motivatie:"
+msgstr "Motivatie"
 
 #: src/callbacks.c:133 src/game_gui.c:468 src/misc_callbacks.c:560
 msgid "Boost ON is disabled in this country definition."
@@ -870,12 +870,11 @@ msgstr "Bygfoot Nieuws"
 
 #: src/window.c:387
 msgid "Bygfoot Save Files"
-msgstr "Bygfoot Opgeslagen bestaden"
+msgstr "Bygfoot Opgeslagen bestanden"
 
 #: src/window.c:1031
-#, fuzzy
 msgid "Bygfoot constants"
-msgstr "Motivatiekosten"
+msgstr "Bygfoot constanten"
 
 #: src/misc2_interface.c:982
 msgid ""
@@ -968,7 +967,7 @@ msgstr "Kies spel taal (misshien werkt dit niet in Windows)"
 
 #: src/misc_interface.c:146
 msgid "Choose league to start in"
-msgstr "Te gebruiken taal"
+msgstr "Te gebruiken klasse"
 
 #: src/misc_interface.c:107
 msgid "Choose team"
@@ -981,7 +980,7 @@ msgstr "Kies een gebruikersnaam"
 #: src/game_gui.c:815
 msgid "Click on OK to apply for the job. Click on CANCEL to close the window."
 msgstr ""
-"Klik op OK om te solliciteren voor deze job en klik op Anuleren om het "
+"Klik op OK om te solliciteren voor deze job en klik op Annuleren om het "
 "venster te sluiten."
 
 #: src/misc2_interface.c:857
@@ -993,15 +992,14 @@ msgid "Click on a user to remove him."
 msgstr "Klik op een gebruiker om hem te verwijderen."
 
 #: src/options_interface.c:1627
-#, fuzzy
 msgid "Close"
-msgstr "HPos"
+msgstr "Sluit af"
 
 #: src/options_interface.c:1610
 msgid ""
 "Close window. Changes will only be saved for the current session, unless you "
 "also save to file."
-msgstr ""
+msgstr "Sluit dit scherm. De wijzigingen worden enkel bewaard voor deze sessie tenzij u ook opslaat naar een bestand"
 
 #: src/misc_interface.c:573
 msgid "Commentary"
@@ -1036,7 +1034,7 @@ msgstr "Comprimeren van opgeslagen spel..."
 
 #: src/player.c:1409
 msgid "Concussion"
-msgstr "Hoofdblessure"
+msgstr "Hersenschudding"
 
 #: src/misc2_interface.c:473
 msgid "Confirm & schedule repayment"
@@ -1238,11 +1236,11 @@ msgstr "Wil je deze speler echt uit de academie zetten?"
 
 #: src/misc_interface.c:218
 msgid "Don't load definitions"
-msgstr "Laad geen defenieties"
+msgstr "Laad geen defenities"
 
 #: src/misc_interface.c:221
 msgid "Don't load team definitions at all"
-msgstr "Laad geen team defenitions"
+msgstr "Laad geen team defenities"
 
 #: src/load_save.c:169 src/load_save.c:319
 msgid "Done."
@@ -1283,21 +1281,19 @@ msgstr "EXPORTEREN"
 
 #: src/options_interface.c:430
 msgid "Edit"
-msgstr ""
+msgstr "Wijzig"
 
 #: src/interface.c:829 src/interface.c:2038
-#, fuzzy
 msgid "Edit name"
-msgstr "Naam van het lettertype"
+msgstr "Wijzig de naam"
 
 #: src/options_interface.c:416
-#, fuzzy
 msgid "Edit the constants used in the game"
-msgstr "Herlaad de constanten bestand"
+msgstr "Wijzig de constanten van het spel"
 
 #: src/callbacks.c:935
 msgid "Enter a structure. The digits must sum up to 10."
-msgstr "Typ uw structuur. De som van de cijfers moet 10 zijn."
+msgstr "Tik uw structuur. De som van de cijfers moet 10 zijn."
 
 #: src/interface.c:720
 msgid "Enter custom structure"
@@ -1321,7 +1317,7 @@ msgstr "Esc / Enter / Spatie"
 
 #: src/treeview.c:2169
 msgid "Estimated talent"
-msgstr "Talent"
+msgstr "Geschat Talent"
 
 #. Estimated talent of a player.
 #: src/treeview.c:327
@@ -1378,7 +1374,7 @@ msgstr "Finale"
 
 #: src/callbacks.c:1485 src/callbacks.c:1513
 msgid "Finances are disabled in this country definition."
-msgstr "De financieën kunnen niet gebruikt worden in dit land"
+msgstr "De financiën kunnen niet gebruikt worden in dit land"
 
 #: src/interface.c:805 src/interface.c:2026
 msgid "Fire"
@@ -1419,7 +1415,7 @@ msgstr "Matchen (week)"
 
 #: src/options_interface.c:1528
 msgid "Float"
-msgstr ""
+msgstr "Float"
 
 #: src/options_interface.c:377
 msgid "Font name"
@@ -1494,7 +1490,7 @@ msgstr "Go"
 
 #: src/misc_interface.c:274
 msgid "Go back to the splash screen"
-msgstr "Ga terug naar het slashscreen"
+msgstr "Ga terug naar het splashscherm"
 
 #. Goals per game.
 #: src/treeview.c:2482
@@ -1532,7 +1528,7 @@ msgstr "Goed hotel"
 
 #: src/player.c:1418
 msgid "Groin injury"
-msgstr "liesblessure"
+msgstr "Liesblessure"
 
 #: src/player.c:1415
 msgid "Hamstring"
@@ -1577,7 +1573,7 @@ msgstr "Hoeveel je standaard gokt"
 
 #: src/options_interface.c:324
 msgid "How often the game is saved automatically"
-msgstr "Hoe vaak het spel is automatisch wordt opgeslagen"
+msgstr "Hoe vaak het spel automatisch wordt opgeslagen"
 
 #: src/options_interface.c:463
 msgid ""
@@ -1598,7 +1594,7 @@ msgid ""
 "(without the user having to press 'New week')"
 msgstr ""
 "Als dit aangevinkt wordt, worden de weken zonder matchen van een gebruiker "
-"automatisch berekent (zonder dat de gebruiker 'nieuwe week' moet drukken)"
+"automatisch berekend (zonder dat de gebruiker 'nieuwe week' moet drukken)"
 
 #: src/misc_interface.c:1352
 msgid ""
@@ -1641,7 +1637,7 @@ msgstr "Blessures"
 
 #: src/options_interface.c:1514
 msgid "Integer"
-msgstr ""
+msgstr "Integer"
 
 #: src/callbacks.c:1496
 msgid "It's too late in the season for automatic loan repayment."
@@ -1667,7 +1663,7 @@ msgstr "Reis kosten"
 
 #: src/interface.c:2100
 msgid "Kick out of academy"
-msgstr "Zet buiten de academie"
+msgstr "Zet uit de academie"
 
 #. Games lost.
 #. Lost.
@@ -1696,7 +1692,7 @@ msgstr "Taal"
 
 #: src/main.c:94
 msgid "Language to use (a code like 'de')"
-msgstr "Te gebruiken taal (een code zoals 'de')"
+msgstr "Te gebruiken taal (een code zoals 'nl')"
 
 #. A cup stage, e.g. Last 32 when there are only 32 teams left.
 #: src/cup.c:1101
@@ -1719,7 +1715,7 @@ msgstr "Klasse"
 
 #: src/options_interface.c:759
 msgid "League "
-msgstr "Competitie "
+msgstr "Klasse "
 
 #: src/treeview.c:2590
 msgid "League champions"
@@ -1745,7 +1741,7 @@ msgid ""
 "context menu."
 msgstr ""
 "Klik met de linkermuisknop om spelers van en naar de jeugdacademie de "
-"verplaatse; klik met de rechtermuisknop om het contextmenu te tonen."
+"verplaatsen; klik met de rechtermuisknop om het contextmenu te tonen."
 
 #: src/callbacks.c:748
 msgid "Left click to show fixtures."
@@ -1781,7 +1777,7 @@ msgstr "Live match %s."
 
 #: src/options_interface.c:578
 msgid "Live game speed factor"
-msgstr "live match snelheids factor"
+msgstr "live match snelheidsfactor"
 
 #: src/options_interface.c:585
 msgid "Live game verbosity"
@@ -1810,7 +1806,7 @@ msgid ""
 "homepage or via the bygfoot-update script)"
 msgstr ""
 "Laad de teams van defenitie bestanden (NOOT: De Officiele bygfoot pakketten "
-"bevatten geen defnities van teams, je moet ze van the webpagina halen of via "
+"bevatten geen defnities van teams, je moet ze van de webpagina halen of via "
 "het bygfoot-update-script)"
 
 #: src/xml.c:123
@@ -1883,7 +1879,7 @@ msgstr "Maximaliseer hoofdvenster"
 
 #: src/user.c:1212
 msgid "Memorable match added."
-msgstr "Memorabele match toegevoegt"
+msgstr "Memorabele match toegevoegd"
 
 #: src/interface.c:1024 src/window.c:984
 msgid "Memorable matches"
@@ -1903,7 +1899,7 @@ msgstr "Geld"
 
 #: src/interface.c:1296
 msgid "Money "
-msgstr "Geld"
+msgstr "Geld "
 
 #: src/misc2_interface.c:112
 msgid "Money (approx.)"
@@ -1960,7 +1956,7 @@ msgstr "Volgende"
 
 #: src/interface.c:1434
 msgid "Next (W)"
-msgstr "Volgende"
+msgstr "Volgende (W)"
 
 #: src/interface.c:1408
 msgid "Next league/cup (2)"
@@ -1985,7 +1981,7 @@ msgstr "Geen verbeteringen bezig."
 #: src/callbacks.c:1412 src/callbacks.c:1432 src/callbacks.c:1572
 #: src/misc2_callback_func.c:326 src/misc2_callbacks.c:733
 msgid "No match stored."
-msgstr "Er is geen match in aantocht."
+msgstr "Er is geen match opgeslagen."
 
 #: src/treeview2.c:600
 msgid "No news available."
@@ -2046,16 +2042,15 @@ msgstr "Tegenstander"
 
 #: src/misc_interface.c:636
 msgid "Opponent player list"
-msgstr "Tegenstandersspelerlijst"
+msgstr "Spelerslijst tegenstander"
 
 #: src/window.c:914
 msgid "Options"
 msgstr "Opties"
 
 #: src/treeview.c:1904
-#, fuzzy
 msgid "Overall results"
-msgstr "Seizoen resultaten"
+msgstr "Globale resultaten"
 
 #: src/interface.c:379
 msgid "Overwrite"
@@ -2155,7 +2150,7 @@ msgstr "Pos "
 
 #: src/treeview.c:2164
 msgid "Position"
-msgstr "Postietie"
+msgstr "Positie"
 
 #: src/treeview.c:838
 msgid "Possession"
@@ -2278,12 +2273,11 @@ msgstr "Herladen en sluiten"
 msgid ""
 "Reload constants files. This will overwrite any changes you made in the "
 "current game session."
-msgstr ""
+msgstr "Herlaad constanten bestand. Dit zal alle veranderingen die je in deze game sessie maakte overschrijven."
 
 #: src/options_interface.c:1603
-#, fuzzy
 msgid "Reload from file"
-msgstr "Herlaat matchen van bestand"
+msgstr "Herlaad van bestand"
 
 #: src/misc2_interface.c:1354
 msgid "Reload matches from file"
@@ -2388,12 +2382,11 @@ msgid "Save changes to file and close"
 msgstr "Sla de veranderingen op en sluit af"
 
 #: src/options_interface.c:1568
-#, fuzzy
 msgid ""
 "Save changes to the constants file. DON'T DO THIS UNLESS YOU REALLY KNOW "
 "WHAT YOU ARE DOING."
 msgstr ""
-"Bestand dat instellingen van het spel bevatten. VERANDER DIT NIET TENZIJ JE "
+"Bestand dat instellingen van het spel bevat. VERANDER DIT NIET TENZIJ JE "
 "ECHT WEET WAT JE AAN HET DOEN BENT."
 
 #: src/interface.c:1108
@@ -2413,9 +2406,8 @@ msgid "Save settings as default"
 msgstr "Sla sinstellingen als standaard op"
 
 #: src/options_interface.c:1582
-#, fuzzy
 msgid "Save to file"
-msgstr "Sla gebruikersinstellingen op"
+msgstr "Sla op naar bestand"
 
 #: src/options_interface.c:1214
 msgid "Save user settings to file"
@@ -2730,9 +2722,8 @@ msgid "Streak"
 msgstr "Vorm"
 
 #: src/options_interface.c:1542
-#, fuzzy
 msgid "String"
-msgstr "Hamstringblessure"
+msgstr "String"
 
 #: src/main.c:92
 msgid "String id of the country to load"
@@ -3155,11 +3146,12 @@ msgid "Week %d Round %d"
 msgstr "Week %d Ronde %d"
 
 #: src/treeview.c:1030
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Week %d Round %d\n"
 "Cup round %d"
-msgstr "Week %d Ronde %d"
+msgstr "Week %d Ronde %d\n"
+"Cup ronde %d"
 
 #: src/misc3_interface.c:631
 msgid "Weekly installment"
@@ -3620,9 +3612,8 @@ msgid "Your offer will be considered next week."
 msgstr "Er zal volgende week over uw aanbod gesproken worden."
 
 #: src/treeview.c:1913
-#, fuzzy
 msgid "Your overall results"
-msgstr "Uw resultaat"
+msgstr "Uw globaal resultaat"
 
 #: src/misc2_callback_func.c:127
 msgid "Your player roster is full or you don't enough money."
