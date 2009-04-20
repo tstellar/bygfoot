@@ -342,8 +342,8 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, GPtrArray *teams_sorted, const 
     const Cup *cup_temp = NULL;
 
     if(debug > 60)
-	g_print("cup_load_choose_team: %s, %s \n", cup->name,
-	       ct->sid);
+	g_print("cup_load_choose_team: %s, %s, teams %d to %d, random: %d \n", cup->name,
+                ct->sid, ct->start_idx, ct->end_idx, ct->randomly);
 
     cup_get_choose_team_league_cup(ct, &league, &cup_temp);
 
@@ -500,7 +500,8 @@ cup_load_choose_team_from_league(Cup *cup, const League *league,
         for(j = 0; j < end; j++)
         {
             if(debug > 80)
-                g_print("team %s isinint %d numteams %d\n",
+                g_print("j %d order %d team %s isinint %d numteams %d\n",
+                        j, order[j],
                         team_of_id(g_array_index(table->elements, 
                                                  TableElement, order[j]).team_id)->name,
                         query_team_is_in_cups(
