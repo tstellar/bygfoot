@@ -180,13 +180,23 @@
   <event>
     <name>structure_change</name>
     <commentary>_T_TT__ veranderd zijn struktuur naar _EX_</commentary>
-  </event>
+    <commentary>_T_TT__ herstructureerd zichzelf in een _EX_ formatie</commentary>
   <event>
     <name>style_change</name>
     <commentary>_T_TT__ gaat _EX_ spelen</commentary>
+    <commentary cond="_EX_ == 'ATTACK'">_T_TT__ probeert een opening te forceren door te gaan aanvallen</commentary>
+    <commentary cond="_MI_>75 and _EX_ == 'BALANCED'">_T_TT__ haalt de riem eraf en veranderd zijn speeltstijl naar _EX_</commentary>
+    <commentary cond="_MI_>75 and _EX_ == 'ATTACK'">Een wanhoopspoging: _T_TT__ vera,derd zijn speelstijl naar _EX_</commentary>
+    <commentary cond="_MI_>75">_MR_ minuten over. _T_TT__ probeert het met een tactiek verandering.  Ze switchen naar _EX_ style</commentary>
+    <commentary cond="_TIME_=1 and _MR_ >= 44">_T_TT__ heeft zijn speelstijl tijdens de pauze veranderd naar _EX_</commentary>
+
   </event>
   <event>
     <name>boost_change</name>
     <commentary>_T_TT__ zet zijn extra motivatie _EX_</commentary>
+    <commentary cond="_MI_>75 and _EX_ == 'ANTI' and _TT_ == _TLN_">Het lijkt erop dat _T_TT__ heeft opgegeven</commentary>
+    <commentary cond="_MI_>75 and _EX_ == 'ANTI' and _TT_ == _TWN_">_T_TT__ moet denken dat de match reeds beklonken is</commentary>
+    <commentary cond="_EX_ = 'ON'">_T_TT__ steekt een tandje bij</commentary>
+    <commentary cond="_EX_ = 'ON' and _MI_ >75"pri="10">Boost op. _T_TT__ gooit er nog alles tegen aan</commentary>
   </event>
 </lg_commentary>
