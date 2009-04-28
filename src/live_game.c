@@ -100,6 +100,7 @@ live_game_calculate_fixture(Fixture *fix, LiveGame *live_game)
 	if(stat2 != -1 || stat5 < -1000)
 	    lg_commentary_free_tokens();
 	game_post_match(fix);
+        stat0 = STATUS_NONE;
     }
     else if(stat0 == STATUS_LIVE_GAME_CHANGE)
 	live_game_resume();
