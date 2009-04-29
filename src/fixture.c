@@ -988,7 +988,7 @@ fixture_get_first_leg(const Fixture *fix, gboolean silent)
                 first_leg = &g_array_index(fixtures, Fixture, i);
 
     if(first_leg == NULL && !silent)
-	g_warning("fixture_get_first_leg: didn't find first leg match; cup %s round %d\n",
+	debug_print_message("fixture_get_first_leg: didn't find first leg match; cup %s round %d\n",
 		  cup_from_clid(fix->clid)->name, fix->round);
 
     return first_leg;
@@ -1208,7 +1208,7 @@ fixture_get(gint type, gint clid, gint week_number,
     }
 
     if(fix == NULL)
-	g_warning("fixture_get: no fixture found for type %d clid %d (%s) week %d round %d\n",
+	debug_print_message("fixture_get: no fixture found for type %d clid %d (%s) week %d round %d\n",
 		  type, clid, league_cup_get_name_string(clid), week_number, week_round_number);
 
     return fix;
@@ -1233,7 +1233,7 @@ fixture_compare_func(gconstpointer a, gconstpointer b, gpointer data)
     switch(type)
     {
 	default:
-	    g_warning("fixture_compare_func: unknown type %d.\n", type);
+	    debug_print_message("fixture_compare_func: unknown type %d.\n", type);
 	    break;
 	case FIXTURE_COMPARE_DATE:
 	    if(query_fixture_is_earlier(fix1, fix2))
@@ -1570,7 +1570,7 @@ fixture_get_goals_to_win(const Fixture *fix, const Team *tm)
 
     if(!query_fixture_team_involved(fix, tm->id))
     {
-	g_warning("fixture_get_goals_to_win: team %s doesn't participate in fixture given (%s)\n",
+	debug_print_message("fixture_get_goals_to_win: team %s doesn't participate in fixture given (%s)\n",
 		  tm->name, league_cup_get_name_string(fix->clid));
 	return -100;
     }

@@ -36,6 +36,7 @@
 
 #include <gtk/gtk.h>
 #include "gettext_macros.h"
+#include "debug.h"
 
 /**
  * Program version number and year (copyright).
@@ -90,7 +91,7 @@
 #define stat4 status[4]
 #define stat5 status[5]
 
-#define debug const_int("int_debug")
+#define debug debug_level
 #define debug_writer const_int("int_debug_writer")
 /* Uncommenting this will cause each function to print its name when it's entered.
    Makes the whole program really slow, of course. */

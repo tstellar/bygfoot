@@ -423,7 +423,7 @@ league_remove_team_with_id(League *league, gint id)
 	    return;
 	}
 
-    g_warning("league_remove_team_with_id: team with id %d in league %s not found\n",
+    debug_print_message("league_remove_team_with_id: team with id %d in league %s not found\n",
 	      id, league->name);
 }
 

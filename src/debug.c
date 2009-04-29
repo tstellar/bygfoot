@@ -1,26 +1,26 @@
 /*
-   debug.c
+  debug.c
 
-   Bygfoot Football Manager -- a small and simple GTK2-based
-   football management game.
+  Bygfoot Football Manager -- a small and simple GTK2-based
+  football management game.
 
-   http://bygfoot.sourceforge.net
+  http://bygfoot.sourceforge.net
 
-   Copyright (C) 2005  Gyözö Both (gyboth@bygfoot.com)
+  Copyright (C) 2005  Gyözö Both (gyboth@bygfoot.com)
 
-   This program is free software; you can redistribute it and/or
-   modify it under the terms of the GNU General Public License
-   as published by the Free Software Foundation; either version 2
-   of the License, or (at your option) any later version.
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  as published by the Free Software Foundation; either version 2
+  of the License, or (at your option) any later version.
 
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 #include "callbacks.h"
@@ -34,6 +34,59 @@
 #include "team.h"
 #include "user.h"
 #include "variables.h"
+
+void
+debug_print_message(gchar *format, ...)
+{
+    gchar text[SMALL];
+    va_list args;
+    gchar buf[SMALL];
+    const gchar *home;
+    FILE *fil = NULL;
+    GTimeVal logtime;
+    gchar *logtime_string;
+     
+    if(format != NULL)
+    {
+	va_start (args, format);
+	g_vsprintf(buf, format, args);
+	va_end (args);
+    }
+
+    if(debug_output != DEBUG_OUT_LOGFILE)
+        g_warning("%s\n", buf);
+
+    if(debug_output != DEBUG_OUT_STDOUT)
+    {
+        g_get_current_time(&logtime);
+        logtime_string = g_time_val_to_iso8601(&logtime);
+
+        sprintf(text, "%s %s\n", logtime_string, buf);
+        g_free(logtime_string);
+
+        home = g_get_home_dir();
+
+        if(os_is_unix)
+            sprintf(buf, "%s%s%s%sbygfoot.log", home, G_DIR_SEPARATOR_S,
+                    HOMEDIRNAME, G_DIR_SEPARATOR_S);
+        else
+        {
+            gchar *pwd = g_get_current_dir();
+            sprintf(buf, "%s%sbygfoot.log", pwd, G_DIR_SEPARATOR_S);
+            g_free(pwd);
+        }
+        
+        fil = fopen(buf, "a");
+        if(fil == NULL)
+        {
+            g_warning("Couldn't open log file %s\n", buf);
+            return;
+        }
+
+        fprintf(fil, "%s\n", text);
+        fclose(fil);
+    }
+}
 
 /** Take some debug action depending on the text. Text is a prefix and a number. */
 void
@@ -53,19 +106,14 @@ debug_action(const gchar *text)
 
     if(g_str_has_prefix(text, "deb"))
     {
-	option_set_int("int_debug", &constants, value);
+	debug_level = value;
 	game_gui_print_message("Debug value set to %d.", value);
     }
-    else if(g_str_has_prefix(text, "writer"))
-    {
-    	option_set_int("int_debug_writer", &constants, value);
-    	game_gui_print_message("Debug writer value set to %d.", value);
-    } 
     else if(g_str_has_prefix(text, "cap"))
     {
 	current_user.tm->stadium.capacity += value;
 	game_gui_print_message("Stadium capacity changed by %d. New: %d.", value,
-		current_user.tm->stadium.capacity);
+                               current_user.tm->stadium.capacity);
     }
     else if(g_str_has_prefix(text, "saf"))
     {
@@ -73,19 +121,19 @@ debug_action(const gchar *text)
 	current_user.tm->stadium.safety = 
 	    CLAMP(current_user.tm->stadium.safety, 0, 1);
 	game_gui_print_message("Stadium safety changed by %d. New: %.2f", value,
-		current_user.tm->stadium.safety);
+                               current_user.tm->stadium.safety);
     }
     else if(g_str_has_prefix(text, "mon"))
     {
 	current_user.money += value;
 	game_gui_print_message("Money changed by %d. New: %d.", value,
-		current_user.money);
+                               current_user.money);
     }
     else if(g_str_has_prefix(text, "suc"))
     {
 	current_user.counters[COUNT_USER_SUCCESS] += value;
 	game_gui_print_message("Success counter changed by %d. New: %d.", value,
-		current_user.counters[COUNT_USER_SUCCESS]);
+                               current_user.counters[COUNT_USER_SUCCESS]);
     }
     else if(g_str_has_prefix(text, "scout"))
     {
@@ -110,7 +158,7 @@ debug_action(const gchar *text)
     else if(g_str_has_prefix(text, "goto"))
     {
         if(debug < 50)
-            option_set_int("int_debug", &constants, 50);
+            debug_level = 50;
 
         if(option_int("int_opt_user_show_live_game", &current_user.options))
             option_set_int("int_opt_user_show_live_game", &current_user.options, 0);
@@ -157,24 +205,24 @@ debug_action(const gchar *text)
     else if(g_str_has_prefix(text, "help"))
     {
 	g_print("Debug options:\n"
-	       "deb \t set debug value\n"
-	       "writer \t set debug-writer value\n"
-	       "cap \t change stadium capacity\n"
-	       "saf \t change stadium safety\n"
-	       "mon \t change money\n"
-	       "suc \t change success counter\n"
-	       "scout \t change scout\n"
-	       "physio \t change physio\n"
-	       "printweeks \t print the starting weeks of all cup rounds\n"
-	       "youth coach \t change youth coach\n"
-	       "pospref \t change recruiting pref\n"
-	       "goto \t Press 'new week' automatically until\n"
-	       "     \t the appropriate week is reached\n"
-	       "     \t Supply 100+X to go to season X (e.g. 102)\n"
-	       "testcom|tc \t Test a specific live game commentary.\n"
-	       "           \t Find the numbers in live_game_struct.h (LiveGameEventType)\n"
-	       "           \t Use 'goto' afterwards.\n"
-	       "help \t display this help\n");
+                "deb \t set debug value\n"
+                "writer \t set debug-writer value\n"
+                "cap \t change stadium capacity\n"
+                "saf \t change stadium safety\n"
+                "mon \t change money\n"
+                "suc \t change success counter\n"
+                "scout \t change scout\n"
+                "physio \t change physio\n"
+                "printweeks \t print the starting weeks of all cup rounds\n"
+                "youth coach \t change youth coach\n"
+                "pospref \t change recruiting pref\n"
+                "goto \t Press 'new week' automatically until\n"
+                "     \t the appropriate week is reached\n"
+                "     \t Supply 100+X to go to season X (e.g. 102)\n"
+                "testcom|tc \t Test a specific live game commentary.\n"
+                "           \t Find the numbers in live_game_struct.h (LiveGameEventType)\n"
+                "           \t Use 'goto' afterwards.\n"
+                "help \t display this help\n");
     }
 
     setsav0;
@@ -258,42 +306,4 @@ debug_egg_forwards_boost_style(void)
 	    fwds++;
 
     return (fwds > 3);
-}
-
-/** 
- * debug_writer writes debug-messages to an outpot
- * 
- * *file_name = the name of the file where the debug-funtion is called
- * *method_name = the name of the function where the debug-funtion is called
- * *text = the text of the debug message
- * 
- * debuglevel < int_debug -> print message to output
- */
-void
-debug_writer_out(const gchar *file_name,
-				 const gchar *method_name,
-			 	 const gchar *text,
-			 	 gint debuglevel)
-{
-#ifdef DEBUG
-    printf("debug_writer_out\n");
-#endif
-
-	
-	gint writer = option_int("int_debug_writer", &constants);
-	gint debugging = option_int("int_debug", &constants);
-
-	if ((debuglevel < debugging) && (writer == 1))
-	{
-		printf("%s # %s # %s\n", file_name, method_name, text);
-	}
-	
-	//Example
-	//gchar message[SMALL];
-    //sprintf(message, "Number of players in player list: %d", current_user.tm->players->len);
-    //debug_writer_out("misc2_callbacks2.c",
-	//		 "on_button_transfer_yes_clicked",
-	//		 	 message,
-	//		 	 3);
-	
 }

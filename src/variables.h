@@ -114,6 +114,9 @@ gint timeout_id;
 
 GRand *rand_generator;
 
+/** Debug information. */
+gint debug_level, debug_output;
+
 /**
    The list of directories the file_find_support_file() function
    searches for support files (e.g. pixmaps or text files).

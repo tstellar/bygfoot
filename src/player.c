@@ -933,7 +933,7 @@ player_card_set(Player *pl, gint clid, gint card_type, gint value, gboolean diff
 
 	    if(*card_value < 0)
 	    {
-		g_warning("player_card_set: negative card value; setting to 0\n");
+		debug_print_message("player_card_set: negative card value; setting to 0\n");
 		*card_value = 0;
 	    }
 	    
@@ -1009,7 +1009,7 @@ player_games_goals_set(Player *pl, gint clid, gint type, gint value)
 
 	    if(*games_goals_value < 0)
 	    {
-		g_warning("player_games_goals_set: negative value; setting to 0\n");
+		debug_print_message("player_games_goals_set: negative value; setting to 0\n");
 		*games_goals_value = 0;
 	    }
 	    
@@ -1163,7 +1163,7 @@ player_update_streak(Player *pl)
 	else if(pl->streak == PLAYER_STREAK_COLD)
 	    decrease_factor = 1;
 	else
-	    g_warning("player_update_streak: streak count is positive (%.1f) but player %s is not on a streak!\n", pl->streak_count, pl->name);
+	    debug_print_message("player_update_streak: streak count is positive (%.1f) but player %s is not on a streak!\n", pl->streak_count, pl->name);
 
 	pl->streak_count -= 
 	    (pl->streak_prob * decrease_factor *
@@ -1399,7 +1399,7 @@ player_injury_to_char(gint injury_type)
     switch(injury_type)
     {
 	default:
-	    g_warning("player_injury_to_char: unknown type %d\n", injury_type);
+	    debug_print_message("player_injury_to_char: unknown type %d\n", injury_type);
 	    return "";
 	    break;
 	case PLAYER_INJURY_NONE:
@@ -1506,7 +1506,7 @@ player_get_last_name(const gchar *name)
 
     if(!g_utf8_validate(name, -1, NULL))
     {
-	g_warning("player_get_last_name: invalid utf8-string: %s \n", name);
+	debug_print_message("player_get_last_name: invalid utf8-string: %s \n", name);
 	return "";
     }
 

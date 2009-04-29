@@ -837,19 +837,19 @@ cup_get_first_week_of_cup_round(Cup *cup, gint cup_round, gboolean with_delay)
 
     if(week_number <= 0)
     {
-	g_warning("cup_get_first_week_of_cup_round: First week of cup %s, cup round %d is not positive (%d). Please correct the cup definition file!!!\n",
+	debug_print_message("cup_get_first_week_of_cup_round: First week of cup %s, cup round %d is not positive (%d). Please correct the cup definition file!!!\n",
 		  cup->name, cup_round, week_number);
 	
 	if(cup->week_gap > 1)
 	{
 	    cup->week_gap--;
-	    g_warning("Lowering week gap to %d and trying again.\n",
+	    debug_print_message("Lowering week gap to %d and trying again.\n",
 		      cup->week_gap);
 	}
 	else
 	{
 	    cup->last_week++;
-	    g_warning("Increasing last week to %d and trying again.\n",
+	    debug_print_message("Increasing last week to %d and trying again.\n",
 		      cup->last_week);
 	}
 
@@ -1251,7 +1251,7 @@ cup_check_fixtures(const Cup *cup)
            g_array_index(cup->fixtures, Fixture, i).teams[1])
         {
             if(!query_league_cup_has_property(cup->id, "silent_on_fixture_error"))
-                g_warning("cup_check_fixture: bad fixture found in cup %s; cup will be disabled\n", cup->name);
+                debug_print_message("cup_check_fixture: bad fixture found in cup %s; cup will be disabled\n", cup->name);
 
             return FALSE;
         }

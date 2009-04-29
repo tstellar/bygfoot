@@ -234,7 +234,7 @@ xml_cup_read_start_element (GMarkupParseContext *context,
         else
         {
             new_wait.cup_round = -1;
-            g_warning("xml_cup_read_start_element: No round number specified for cup round wait in cup %s\n", new_cup.name);            
+            debug_print_message("xml_cup_read_start_element: No round number specified for cup round wait in cup %s\n", new_cup.name);            
         }
     }
     else if(strcmp(element_name, TAG_CUP_ROUND_TWO_MATCH_WEEK_START) == 0)
@@ -269,7 +269,7 @@ xml_cup_read_start_element (GMarkupParseContext *context,
     else if(strcmp(element_name, TAG_CHOOSE_TEAM_PRELOAD) == 0)
 	state = STATE_CHOOSE_TEAM_PRELOAD;
     else
-	g_warning("xml_cup_read_start_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_cup_read_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -356,7 +356,7 @@ xml_cup_read_end_element    (GMarkupParseContext *context,
 	    strcmp(element_name, TAG_CHOOSE_TEAM_GENERATE) == 0)
 	    state = STATE_CHOOSE_TEAM;
     else if(strcmp(element_name, TAG_CUP) != 0)
-	g_warning("xml_cup_read_end_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_cup_read_end_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -505,7 +505,7 @@ xml_cup_read(const gchar *cup_name, GArray *cups)
 
     if(!g_file_get_contents(file_name, &file_contents, &length, &error))
     {
-	g_warning("xml_cup_read: error reading file %s\n", file_name);
+	debug_print_message("xml_cup_read: error reading file %s\n", file_name);
 	misc_print_error(&error, FALSE);
 	return;
     }

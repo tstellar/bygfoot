@@ -100,7 +100,7 @@ xml_loadsave_teams_start_element (GMarkupParseContext *context,
     }
 
     if(!valid_tag)
-	g_warning("xml_loadsave_teams_start_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_loadsave_teams_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -148,7 +148,7 @@ xml_loadsave_teams_end_element    (GMarkupParseContext *context,
 	    state = TAG_TEAM;
     }
     else if(tag != TAG_TEAMS)
-	g_warning("xml_loadsave_teams_end_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_loadsave_teams_end_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -232,7 +232,7 @@ xml_loadsave_teams_read(const gchar *filename, GArray *teams)
 
     if(!g_file_get_contents(filename, &file_contents, &length, &error))
     {
-	g_warning("xml_loadsave_teams_read: error reading file %s\n", filename);
+	debug_print_message("xml_loadsave_teams_read: error reading file %s\n", filename);
 	misc_print_error(&error, TRUE);
     }
 
@@ -246,7 +246,7 @@ xml_loadsave_teams_read(const gchar *filename, GArray *teams)
     }
     else
     {
-	g_warning("xml_loadsave_teams_read: error parsing file %s\n", filename);
+	debug_print_message("xml_loadsave_teams_read: error parsing file %s\n", filename);
 	misc_print_error(&error, TRUE);
     }
 

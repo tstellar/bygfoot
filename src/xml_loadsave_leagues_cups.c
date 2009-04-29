@@ -71,7 +71,7 @@ xml_loadsave_leagues_cups_start_element (GMarkupParseContext *context,
 	}
 
     if(!valid_tag)
-	g_warning("xml_loadsave_leagues_cups_start_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_loadsave_leagues_cups_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -91,7 +91,7 @@ xml_loadsave_leagues_cups_end_element    (GMarkupParseContext *context,
        tag == TAG_CUP_FILE)
 	state = TAG_LEAGUES_CUPS;
     else if(tag != TAG_LEAGUES_CUPS)
-	g_warning("xml_loadsave_leagues_cups_end_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_loadsave_leagues_cups_end_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -146,7 +146,7 @@ xml_loadsave_leagues_cups_read(const gchar *dirname, const gchar *prefix)
 
     if(!g_file_get_contents(file, &file_contents, &length, &error))
     {
-	g_warning("xml_loadsave_misc_read: error reading file %s\n", file);
+	debug_print_message("xml_loadsave_misc_read: error reading file %s\n", file);
 	misc_print_error(&error, TRUE);
     }
 
@@ -163,7 +163,7 @@ xml_loadsave_leagues_cups_read(const gchar *dirname, const gchar *prefix)
     }
     else
     {
-	g_warning("xml_loadsave_misc_read: error parsing file %s\n", file);
+	debug_print_message("xml_loadsave_misc_read: error parsing file %s\n", file);
 	misc_print_error(&error, TRUE);
     }
 

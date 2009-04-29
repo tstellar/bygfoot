@@ -551,7 +551,7 @@ user_event_show_next(void)
     switch(event->type)
     {
 	default:
-	    g_warning("user_event_show_next: unknown event type %d\n", event->type);
+	    debug_print_message("user_event_show_next: unknown event type %d\n", event->type);
 	    break;
 	case EVENT_TYPE_PLAYER_LEFT:
 	    game_gui_show_warning(_("%s has left your team because his contract expired."),
@@ -820,7 +820,7 @@ user_history_to_string(const UserHistory *history, gchar *buf)
     switch(history->type)
     {
 	default:
-	    g_warning("user_history_to_string: unknown history type %d.\n", history->type);
+	    debug_print_message("user_history_to_string: unknown history type %d.\n", history->type);
 	    strcpy(buf, "FIXME!!!");
 	case USER_HISTORY_START_GAME:
 	    /* Buy a team in a league. */

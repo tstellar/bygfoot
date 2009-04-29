@@ -26,7 +26,15 @@
 #ifndef DEBUG_H
 #define DEBUG_H
 
-#include "bygfoot.h"
+#include <gtk/gtk.h>
+//#include "bygfoot.h"
+
+enum DebugOutput
+{
+    DEBUG_OUT_STDOUT = 0,
+    DEBUG_OUT_LOGFILE,
+    DEBUG_OUT_STDOUT_LOGFILE
+};
 
 void
 debug_action(const gchar *text);
@@ -45,6 +53,9 @@ debug_writer_out(const gchar *file_name,
 				 const gchar *method_name,
 			 	 const gchar *text,
 			 	 gint debuglevel);
+
+void
+debug_print_message(gchar *format, ...);
 
 #endif
 

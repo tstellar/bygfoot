@@ -145,7 +145,7 @@ option_set_string(const gchar *name, OptionList *optionlist, const gchar *new_va
     gpointer element = g_datalist_get_data(&optionlist->datalist, name);
     
     if(element == NULL)
-	g_warning("option_set_string: option named %s not found\nMaybe you should delete the .bygfoot directory from your home dir", name);
+	debug_print_message("option_set_string: option named %s not found\nMaybe you should delete the .bygfoot directory from your home dir", name);
     else
 	misc_string_assign(&((Option*)element)->string_value, new_value);
 }
@@ -164,7 +164,7 @@ option_set_int(const gchar *name, OptionList *optionlist, gint new_value)
     gpointer element = g_datalist_get_data(&optionlist->datalist, name);
     
     if(element == NULL)
-	g_warning("option_set_int: option named %s not found\nMaybe you should delete the .bygfoot directory from your home dir", name);
+	debug_print_message("option_set_int: option named %s not found\nMaybe you should delete the .bygfoot directory from your home dir", name);
     else
 	((Option*)element)->value = new_value;
 }
@@ -189,7 +189,7 @@ option_add(OptionList *optionlist, const gchar *name,
     if(element != NULL)
     {
         if(debug > 0)
-            g_warning("Option %s already in optionlist\n", name);
+            debug_print_message("Option %s already in optionlist\n", name);
         ((Option*)element)->value = int_value;
         ((Option*)element)->string_value = (string_value == NULL) ? NULL : g_strdup(string_value);
         return;

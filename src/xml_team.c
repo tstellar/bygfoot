@@ -120,7 +120,7 @@ xml_team_read_start_element (GMarkupParseContext *context,
     else if(strcmp(element_name, TAG_PLAYER_POSITION) == 0)
 	state = STATE_PLAYER_POSITION;
     else
-	g_warning("xml_team_read_start_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_team_read_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -169,7 +169,7 @@ xml_team_read_end_element    (GMarkupParseContext *context,
 	    strcmp(element_name, TAG_PLAYER_POSITION) == 0)
 	state = STATE_PLAYER;
     else if(strcmp(element_name, TAG_TEAM) != 0)
-	g_warning("xml_team_read_end_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_team_read_end_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -256,7 +256,7 @@ xml_team_read(Team *tm, const gchar *def_file)
 
     if(!g_file_get_contents(def_file, &file_contents, &length, &error))
     {
-	g_warning("xml_team_read: error reading file %s\n", def_file);
+	debug_print_message("xml_team_read: error reading file %s\n", def_file);
 	misc_print_error(&error, FALSE);
 	return;
     }

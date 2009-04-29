@@ -138,7 +138,7 @@ xml_strategy_read_start_element (GMarkupParseContext *context,
 		new_prematch.condition = 
 		    g_strdup(attribute_values[atidx]);
 	    else
-		g_warning("xml_strategy_read_start_element: unknown attribute %s\n",
+		debug_print_message("xml_strategy_read_start_element: unknown attribute %s\n",
 			  attribute_names[atidx]);
 
 	    atidx++;
@@ -158,7 +158,7 @@ xml_strategy_read_start_element (GMarkupParseContext *context,
 		curprematch.min_fitness =
 		    g_ascii_strtod(attribute_values[atidx], NULL) / 100;
 	    else
-		g_warning("xml_strategy_read_start_element: unknown attribute %s\n",
+		debug_print_message("xml_strategy_read_start_element: unknown attribute %s\n",
 			  attribute_names[atidx]);
 
 	    atidx++;
@@ -188,7 +188,7 @@ xml_strategy_read_start_element (GMarkupParseContext *context,
 		new_match_action.condition = 
 		    g_strdup(attribute_values[atidx]);
 	    else
-		g_warning("xml_strategy_read_start_element: unknown attribute %s\n",
+		debug_print_message("xml_strategy_read_start_element: unknown attribute %s\n",
 			  attribute_names[atidx]);
 
 	    atidx++;
@@ -211,7 +211,7 @@ xml_strategy_read_start_element (GMarkupParseContext *context,
 		curmatchaction.sub_condition = 
 		    g_strdup(attribute_values[atidx]);
 	    else
-		g_warning("xml_strategy_read_start_element: unknown attribute %s\n",
+		debug_print_message("xml_strategy_read_start_element: unknown attribute %s\n",
 			  attribute_names[atidx]);
 
 	    atidx++;
@@ -234,11 +234,11 @@ xml_strategy_read_start_element (GMarkupParseContext *context,
 		else if(strcmp(attribute_values[atidx], LINEUP_NAME_UNFITTEST) == 0)
 		    curmatchaction.sub_in_prop = STRAT_LINEUP_UNFITTEST;
 		else
-		    g_warning("xml_strategy_read_start_element: unknown property value %s\n",
+		    debug_print_message("xml_strategy_read_start_element: unknown property value %s\n",
 			      attribute_values[atidx]);
 	    }
 	    else
-		g_warning("xml_strategy_read_start_element: unknown attribute %s\n",
+		debug_print_message("xml_strategy_read_start_element: unknown attribute %s\n",
 			  attribute_names[atidx]);
 
 	    atidx++;
@@ -261,18 +261,18 @@ xml_strategy_read_start_element (GMarkupParseContext *context,
 		else if(strcmp(attribute_values[atidx], LINEUP_NAME_UNFITTEST) == 0)
 		    curmatchaction.sub_out_prop = STRAT_LINEUP_UNFITTEST;
 		else
-		    g_warning("xml_strategy_read_start_element: unknown property value %s\n",
+		    debug_print_message("xml_strategy_read_start_element: unknown property value %s\n",
 			      attribute_values[atidx]);
 	    }
 	    else
-		g_warning("xml_strategy_read_start_element: unknown attribute %s\n",
+		debug_print_message("xml_strategy_read_start_element: unknown attribute %s\n",
 			  attribute_names[atidx]);
 
 	    atidx++;
 	}
     }
     else
-	g_warning("xml_strategy_read_start_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_strategy_read_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -310,7 +310,7 @@ xml_strategy_read_end_element    (GMarkupParseContext *context,
 	    strcmp(element_name, TAG_STRATEGY_MATCH_ACTION_SUB_OUT_POS) == 0)
 	state = STATE_STRATEGY_MATCH_ACTION_SUB;
     else if(strcmp(element_name, TAG_STRATEGY) != 0)
-	g_warning("xml_strategy_read_end_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_strategy_read_end_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -363,7 +363,7 @@ xml_strategy_read_text         (GMarkupParseContext *context,
 	else if(strcmp(buf, LINEUP_NAME_FITTEST) == 0)
 	    curprematch.lineup = STRAT_LINEUP_FITTEST;
 	else
-	    g_warning(
+	    debug_print_message(
 		"xml_strategy_read_text: unknown lineup type %s\n", buf);
     }
     else if(state == STATE_STRATEGY_PREMATCH_BOOST)
@@ -375,7 +375,7 @@ xml_strategy_read_text         (GMarkupParseContext *context,
 	else if(strcmp(buf, BOOST_NAME_ANTI) == 0)
 	    curprematch.boost = -1;
 	else
-	    g_warning(
+	    debug_print_message(
 		"xml_strategy_read_text: unknown boost type %s\n", buf);
     }
     else if(state == STATE_STRATEGY_PREMATCH_STYLE)
@@ -391,7 +391,7 @@ xml_strategy_read_text         (GMarkupParseContext *context,
 	else if(strcmp(buf, STYLE_NAME_ALL_OUT_ATTACK) == 0)
 	    curprematch.style = 2;
 	else
-	    g_warning(
+	    debug_print_message(
 		"xml_strategy_read_text: unknown style type %s\n", buf);
     }
     else if(state == STATE_STRATEGY_MATCH_ACTION_STYLE)
@@ -407,7 +407,7 @@ xml_strategy_read_text         (GMarkupParseContext *context,
 	else if(strcmp(buf, STYLE_NAME_ALL_OUT_ATTACK) == 0)
 	    curmatchaction.style = 2;
 	else
-	    g_warning(
+	    debug_print_message(
 		"xml_strategy_read_text: unknown style type %s\n", buf);
     }
     else if(state == STATE_STRATEGY_MATCH_ACTION_BOOST)
@@ -419,7 +419,7 @@ xml_strategy_read_text         (GMarkupParseContext *context,
 	else if(strcmp(buf, BOOST_NAME_ANTI) == 0)
 	    curmatchaction.boost = -1;
 	else
-	    g_warning(
+	    debug_print_message(
 		"xml_strategy_read_text: unknown boost type %s\n", buf);
     }
     else if(state == STATE_STRATEGY_MATCH_ACTION_SUB_IN_POS ||
@@ -459,7 +459,7 @@ xml_strategy_read_text         (GMarkupParseContext *context,
 			   POS_NAME_FORWARD) == 0)
 		*pos = (*pos * 10) + 3;
 	    else
-		g_warning(
+		debug_print_message(
 		    "xml_strategy_read_text: unknown position %s\n", 
 		    (gchar*)g_ptr_array_index(positions, i));
 
@@ -494,7 +494,7 @@ xml_strategy_read(const gchar *filename)
 
     if(!g_file_get_contents(filename, &file_contents, &length, &error))
     {
-	g_warning("xml_strategy_read: error reading file %s\n", filename);
+	debug_print_message("xml_strategy_read: error reading file %s\n", filename);
 	misc_print_error(&error, TRUE);
 	return;
     }

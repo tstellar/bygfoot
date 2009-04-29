@@ -110,7 +110,7 @@ strategy_compare_players(gconstpointer a,
 		return_value = misc_float_compare(skill1, skill2);
 	}
 	else
-	    g_warning("strategy_compare_players: unknown lineup type %d\n", strat->lineup);
+	    debug_print_message("strategy_compare_players: unknown lineup type %d\n", strat->lineup);
     }
 
     return return_value;
@@ -500,7 +500,7 @@ strategy_compare_players_sub(gconstpointer a,
 	switch(property)
 	{
 	    default:
-		g_warning("strategy_compare_players_sub: unknown property %d\n",
+		debug_print_message("strategy_compare_players_sub: unknown property %d\n",
 			  property);
 		return_value = 0;
 		break;

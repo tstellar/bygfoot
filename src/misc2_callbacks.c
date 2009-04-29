@@ -245,7 +245,7 @@ on_button_yesno_yes_clicked            (GtkButton       *button,
     switch(stat1)
     {
     default:
-        g_warning("on_button_yesno_yes_clicked: unknown status %d\n", stat1);
+        debug_print_message("on_button_yesno_yes_clicked: unknown status %d\n", stat1);
         break;
     case STATUS_PAY_LOAN:
         on_automatic_loan_repayment_activate(NULL, NULL);
@@ -691,7 +691,7 @@ on_treeview_mmatches_button_press_event (GtkWidget       *widget,
 
     if(col_num == -1 || mmidx == -1)
     {
-	g_warning("on_treeview_mmatches_button_press_event: column or row not valid\n");
+	debug_print_message("on_treeview_mmatches_button_press_event: column or row not valid\n");
 	return TRUE;
     }
 
