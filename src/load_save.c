@@ -461,7 +461,7 @@ load_game_from_command_line(const gchar *filename)
 	    return FALSE;
     }
     
-    g_warning("Could not find file %s.\n", fullname);
+    debug_print_message("Could not find file %s.\n", fullname);
     g_free(fullname);
 
     return FALSE;

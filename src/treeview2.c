@@ -740,7 +740,7 @@ treeview2_create_constants(const GPtrArray *list, gint type)
     switch(type)
     {
     default:
-        g_warning("treeview2_create_constants: unknown constants type\n");
+        debug_print_message("treeview2_create_constants: unknown constants type\n");
         return NULL;
     case CONSTANTS_TYPE_INT:
         ls = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_INT);

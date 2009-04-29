@@ -182,7 +182,7 @@ game_gui_live_game_set_hscale(const LiveGameUnit *unit, GtkHScale *hscale)
 			     ((unit->possession == 0) ? -1 : 1)));
     }
     else
-	g_warning("game_gui_live_game_set_hscale: don't know what to do!\n");
+	debug_print_message("game_gui_live_game_set_hscale: don't know what to do!\n");
 
     gtk_widget_modify_bg(GTK_WIDGET(hscale), GTK_STATE_NORMAL, &color);
 }
@@ -919,7 +919,7 @@ game_gui_read_check_items(GtkWidget *widget)
 				   opt_int("int_opt_save_will_overwrite")));
     }
     else
-	g_warning("game_gui_read_check_items: unknown widget.");
+	debug_print_message("game_gui_read_check_items: unknown widget.");
 }
 
 /** Set the appropriate text into the labels in the help window. 

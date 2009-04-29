@@ -67,7 +67,7 @@ xml_name_read_start_element (GMarkupParseContext *context,
     else if(strcmp(element_name, TAG_LAST_NAME) == 0)
 	state = STATE_LAST_NAME;
     else
-	g_warning("xml_name_read_start_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_name_read_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -86,7 +86,7 @@ xml_name_read_end_element    (GMarkupParseContext *context,
        strcmp(element_name, TAG_LAST_NAME) == 0)
        state = STATE_NAMES;
     else if(strcmp(element_name, TAG_NAMES) != 0)
-	g_warning("xml_name_end_start_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_name_end_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -142,7 +142,7 @@ xml_name_read(const gchar *sid, NameList *namelist)
 
     if(!g_file_get_contents(file_name, &file_contents, &length, &error))
     {
-	g_warning("xml_name_read: error reading file %s\n", file_name);
+	debug_print_message("xml_name_read: error reading file %s\n", file_name);
 	misc_print_error(&error, TRUE);
 	return;
     }

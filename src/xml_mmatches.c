@@ -79,7 +79,7 @@ xml_mmatches_start_element (GMarkupParseContext *context,
 	new_match.country_name = NULL;
 
     if(!valid_tag)
-	g_warning("xml_loadsave_mmatches_start_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_loadsave_mmatches_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -107,7 +107,7 @@ xml_mmatches_end_element    (GMarkupParseContext *context,
 	    tag == TAG_MMATCHES_LG_FILE)
 	state = TAG_MMATCH;
     else if(tag != TAG_MMATCHES)
-	g_warning("xml_loadsave_mmatches_end_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_loadsave_mmatches_end_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -168,7 +168,7 @@ xml_mmatches_read(const gchar *filename, GArray *mmatches)
 
     if(!g_file_get_contents(filename, &file_contents, &length, &error))
     {
-	g_warning("xml_loadsave_mmatches_read: error reading file %s\n", filename);
+	debug_print_message("xml_loadsave_mmatches_read: error reading file %s\n", filename);
 	misc_print_error(&error, TRUE);
     }
 
@@ -183,7 +183,7 @@ xml_mmatches_read(const gchar *filename, GArray *mmatches)
     }
     else
     {
-	g_warning("xml_loadsave_mmatches_read: error parsing file %s\n", filename);
+	debug_print_message("xml_loadsave_mmatches_read: error parsing file %s\n", filename);
 	misc_print_error(&error, TRUE);
     }
 }

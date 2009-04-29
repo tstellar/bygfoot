@@ -48,7 +48,7 @@ misc_print_error(GError **error, gboolean abort_program)
     if(*error == NULL)
 	return;
     
-    g_warning("error message: %s\n", (*error)->message);
+    debug_print_message("error message: %s\n", (*error)->message);
     g_error_free(*error);
     *error = NULL;
 
@@ -112,7 +112,7 @@ misc_separate_strings(gchar *string)
 
     if(start == strlen(string))
     {
-	g_warning("misc_separate_strings: input string contains only white spaces\n");
+	debug_print_message("misc_separate_strings: input string contains only white spaces\n");
 	return string_array;
     }
 
@@ -596,7 +596,7 @@ misc_string_replace_expressions(gchar *string)
 
 	if(occurrence2 == NULL)
 	{
-	    g_warning("misc_string_replace_expressions: no matching ] found.");
+	    debug_print_message("misc_string_replace_expressions: no matching ] found.");
 	    return;
 	}
 

@@ -76,7 +76,7 @@ xml_loadsave_table_start_element (GMarkupParseContext *context,
 	valueidx = 0;
 
     if(!valid_tag)
-	g_warning("xml_loadsave_table_start_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_loadsave_table_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -110,7 +110,7 @@ xml_loadsave_table_end_element    (GMarkupParseContext *context,
 	    valueidx++;
     }
     else if(tag != TAG_TABLE)
-	g_warning("xml_loadsave_table_end_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_loadsave_table_end_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -167,7 +167,7 @@ xml_loadsave_table_read(const gchar *filename, Table *table)
 
     if(!g_file_get_contents(filename, &file_contents, &length, &error))
     {
-	g_warning("xml_loadsave_table_read: error reading file %s\n", filename);
+	debug_print_message("xml_loadsave_table_read: error reading file %s\n", filename);
 	misc_print_error(&error, TRUE);
     }
 
@@ -181,7 +181,7 @@ xml_loadsave_table_read(const gchar *filename, Table *table)
     }
     else
     {
-	g_warning("xml_loadsave_table_read: error parsing file %s\n", filename);
+	debug_print_message("xml_loadsave_table_read: error parsing file %s\n", filename);
 	misc_print_error(&error, TRUE);
     }
 }

@@ -188,7 +188,7 @@ game_get_player(const Team *tm, gint player_type,
     }
     else
     {
-	g_warning("game_get_player: All players injured or banned, apparently.\n");
+	debug_print_message("game_get_player: All players injured or banned, apparently.\n");
 	g_print("%s %s player list:\n", league_cup_get_name_string(tm->clid), tm->name);
 	for(i=0;i<tm->players->len;i++)
 	{
@@ -724,7 +724,7 @@ game_substitute_player(Team *tm, gint player_number)
     if(substitutes->len == 0)
     {
 	g_ptr_array_free(substitutes, TRUE);
-	g_warning("game_substitute_player: no suitable substitutes found (all injured/banned?)");
+	debug_print_message("game_substitute_player: no suitable substitutes found (all injured/banned?)");
 	return -1;
     }
 
@@ -880,7 +880,7 @@ game_substitute_player_send_off(gint clid, Team *tm, gint player_number,
     if(substitutes->len == 0)
     {
 	g_ptr_array_free(substitutes, TRUE);
-	g_warning("game_substitute_player_send_off: no suitable substitutes found (all injured/banned?)");
+	debug_print_message("game_substitute_player_send_off: no suitable substitutes found (all injured/banned?)");
 	*to_substitute = -1;
 	return;
     }

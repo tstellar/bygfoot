@@ -86,7 +86,7 @@ xml_loadsave_league_stat_start_element (GMarkupParseContext *context,
 	in_state = tag;
 
     if(!valid_tag)
-	g_warning(
+	debug_print_message(
 	    "xml_loadsave_league_stat_start_element: unknown tag: %s; I'm in state %d\n",
 	    element_name, state);
 }
@@ -124,7 +124,7 @@ xml_loadsave_league_stat_end_element    (GMarkupParseContext *context,
 	    stat_array = lig_stat->player_goalies;
 	else
 	{
-	    g_warning("xml_loadsave_league_stat_end_element: unknown in_state %d \n", 
+	    debug_print_message("xml_loadsave_league_stat_end_element: unknown in_state %d \n", 
 		      in_state);
 	    return;
 	}
@@ -141,7 +141,7 @@ xml_loadsave_league_stat_end_element    (GMarkupParseContext *context,
 	    valueidx++;	
     }
     else if(tag != TAG_LEAGUE_STAT)
-	g_warning(
+	debug_print_message(
 	    "xml_loadsave_league_stat_end_element: unknown tag: %s; I'm in state %d\n",
 	    element_name, state);
 }
@@ -204,7 +204,7 @@ xml_loadsave_league_stat_read(const gchar *filename, LeagueStat *league_stat)
 
     if(!g_file_get_contents(filename, &file_contents, &length, &error))
     {
-	g_warning("xml_loadsave_league_stat_read: error reading file %s\n", filename);
+	debug_print_message("xml_loadsave_league_stat_read: error reading file %s\n", filename);
 	misc_print_error(&error, TRUE);
     }
 
@@ -218,7 +218,7 @@ xml_loadsave_league_stat_read(const gchar *filename, LeagueStat *league_stat)
     }
     else
     {
-	g_warning("xml_loadsave_league_stat_read: error parsing file %s\n", filename);
+	debug_print_message("xml_loadsave_league_stat_read: error parsing file %s\n", filename);
 	misc_print_error(&error, TRUE);
     }
 }

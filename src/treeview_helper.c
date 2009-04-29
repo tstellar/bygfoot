@@ -306,7 +306,7 @@ treeview_helper_get_user_history_icon(gint history_type)
     switch(history_type)
     {
     default:
-        g_warning("treeview_helper_get_user_history_icon: unknown type %d.\n", history_type);
+        debug_print_message("treeview_helper_get_user_history_icon: unknown type %d.\n", history_type);
         return NULL;
     case USER_HISTORY_START_GAME:
         return const_app("string_treeview_helper_user_history_symbol_start_game_icon");
@@ -417,7 +417,7 @@ treeview_helper_team_compare(GtkTreeModel *model,
     switch(type)
     {
     default:
-        g_warning("treeview_team_compare: unknown type %d.\n", type);
+        debug_print_message("treeview_team_compare: unknown type %d.\n", type);
         break;
     case TEAM_COMPARE_AV_SKILL:
         return_value = misc_float_compare(team_get_average_skill(tm1, FALSE),
@@ -457,7 +457,7 @@ treeview_helper_player_compare(GtkTreeModel *model,
 	switch(type)
 	{
         default:
-            g_warning("treeview_player_compare: unknown type %d.\n", type);
+            debug_print_message("treeview_player_compare: unknown type %d.\n", type);
             break;
         case PLAYER_LIST_ATTRIBUTE_POS:
             return_value = misc_int_compare(pl1->pos, pl2->pos);
@@ -785,7 +785,7 @@ treeview_helper_team_selection(GtkTreeViewColumn *col,
 	g_object_set(renderer, "text", buf, NULL);
     }
     else
-	g_warning("treeview_helper_team_selection: unknown column: %d\n", column);
+	debug_print_message("treeview_helper_team_selection: unknown column: %d\n", column);
 }
 
 /** Render an integer. This is only so that we know when to draw nothing. */
@@ -843,7 +843,7 @@ treeview_helper_player_ext_info_to_cell(GtkTreeViewColumn *col,
     switch(row_idx)
     {
     default:
-        g_warning("treeview_helper_player_ext_info_to_cell: unknown row index %d\n",
+        debug_print_message("treeview_helper_player_ext_info_to_cell: unknown row index %d\n",
                   row_idx);
         break;
     case PLAYER_INFO_ATTRIBUTE_NAME:
@@ -1127,7 +1127,7 @@ treeview_helper_player_to_cell(GtkTreeViewColumn *col,
     switch(attribute)
     {
     default:
-        g_warning("treeview_helper_player_to_cell: unknown attribute %d.\n", attribute);
+        debug_print_message("treeview_helper_player_to_cell: unknown attribute %d.\n", attribute);
         break;
     case PLAYER_LIST_ATTRIBUTE_NAME:
         treeview_helper_player_name_to_cell(renderer, buf, pl);

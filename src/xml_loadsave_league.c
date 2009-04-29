@@ -125,7 +125,7 @@ xml_loadsave_league_start_element (GMarkupParseContext *context,
         g_print("xml_loadsave_league_start_element: state %d\n", state);
 
     if(!valid_tag)
-	g_warning("xml_loadsave_league_start_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_loadsave_league_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -195,7 +195,7 @@ xml_loadsave_league_end_element    (GMarkupParseContext *context,
 	    promrankidx++;
     }
     else if(tag != TAG_LEAGUE)
-	g_warning("xml_league_read_end_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_league_read_end_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -324,7 +324,7 @@ xml_loadsave_league_read(const gchar *filename, const gchar *team_file, League *
 
     if(!g_file_get_contents(filename, &file_contents, &length, &error))
     {
-	g_warning("xml_loadsave_league_read: error reading file %s\n", filename);
+	debug_print_message("xml_loadsave_league_read: error reading file %s\n", filename);
 	misc_print_error(&error, TRUE);
     }
 
@@ -341,7 +341,7 @@ xml_loadsave_league_read(const gchar *filename, const gchar *team_file, League *
     }
     else
     {
-	g_warning("xml_loadsave_league_read: error parsing file %s\n", filename);
+	debug_print_message("xml_loadsave_league_read: error parsing file %s\n", filename);
 	misc_print_error(&error, TRUE);
     }
 

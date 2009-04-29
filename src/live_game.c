@@ -169,7 +169,7 @@ live_game_create_unit(void)
 
     if(uni(unis->len - 1).event.type == LIVE_GAME_EVENT_END_MATCH)
     {
-	g_warning("live_game_create_unit: called after end of match.\n");
+	debug_print_message("live_game_create_unit: called after end of match.\n");
 	return;
     }
 
@@ -347,7 +347,7 @@ live_game_evaluate_unit(LiveGameUnit *unit)
 	    misc_callback_pause_live_game();
     }
     else if(type != LIVE_GAME_EVENT_END_MATCH)
-	g_warning("live_game_evaluate_unit: unknown event type %d\n",
+	debug_print_message("live_game_evaluate_unit: unknown event type %d\n",
 		  type);
 }
 
@@ -1458,7 +1458,7 @@ live_game_unit_before(const LiveGameUnit* unit, gint gap)
 		if(i - gap > 0)
 		    return &uni(i - gap);
 		else
-		    g_warning("live_game_unit_before: no unit found for gap %d\n", gap);
+		    debug_print_message("live_game_unit_before: no unit found for gap %d\n", gap);
 	    }
     }
     else
@@ -1469,7 +1469,7 @@ live_game_unit_before(const LiveGameUnit* unit, gint gap)
 		if(i + gap < unis->len - 1)
 		    return &uni(i + gap);
 		else
-		    g_warning("live_game_unit_before: no unit found for gap %d\n", gap);
+		    debug_print_message("live_game_unit_before: no unit found for gap %d\n", gap);
 	    }
     }
 

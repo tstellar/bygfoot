@@ -104,7 +104,7 @@ xml_loadsave_live_game_start_element (GMarkupParseContext *context,
 	statplidx2 = 0;    
 
     if(!valid_tag)
-	g_warning("xml_loadsave_live_game_start_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_loadsave_live_game_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -174,7 +174,7 @@ xml_loadsave_live_game_end_element    (GMarkupParseContext *context,
     else if(tag == TAG_LIVE_GAME_STAT_PLAYER_ELEMENT)
 	state = TAG_LIVE_GAME_STAT_PLAYER;
     else if(tag != TAG_LIVE_GAME)
-	g_warning("xml_loadsave_live_game_end_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_loadsave_live_game_end_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);	
 }
 
@@ -259,7 +259,7 @@ xml_loadsave_live_game_read(const gchar *filename, LiveGame *live_game)
 
     if(!g_file_get_contents(filename, &file_contents, &length, &error))
     {
-	g_warning("xml_loadsave_live_game_read: error reading file %s\n", filename);
+	debug_print_message("xml_loadsave_live_game_read: error reading file %s\n", filename);
 	misc_print_error(&error, TRUE);
     }
 
@@ -275,7 +275,7 @@ xml_loadsave_live_game_read(const gchar *filename, LiveGame *live_game)
     }
     else
     {
-	g_warning("xml_loadsave_live_game_read: error parsing file %s\n", filename);
+	debug_print_message("xml_loadsave_live_game_read: error parsing file %s\n", filename);
 	misc_print_error(&error, TRUE);
     }
 }
@@ -299,7 +299,7 @@ xml_loadsave_live_game_write(const gchar *filename, const LiveGame *live_game)
 	xml_write_int(fil, live_game->fix->id, TAG_LIVE_GAME_FIX_ID, I0);
 
 	if(live_game->fix->id > 10000000)
-	    g_warning(
+	    debug_print_message(
 		"xml_loadsave_live_game_write: suspicious fix id: %d.",
 		live_game->fix->id);
     }

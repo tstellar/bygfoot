@@ -76,10 +76,9 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
     gboolean testcom = FALSE, calodds = FALSE;
     gchar *support_dir = NULL, *lang = NULL,
 	*testcom_file = NULL, *token_file = NULL, 
-	*event_name = NULL, *debug_text = NULL,
+	*event_name = NULL,
         *country_sid = NULL;
-    gint deb_level = -1, number_of_passes = 1,
-	deb_writer = -1,
+    gint number_of_passes = 1,
 	num_matches = 100, skilldiffmax = 20;
     GError *error = NULL;
     GOptionContext *context = NULL;
@@ -92,10 +91,6 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 	 { "country", 'c', 0, G_OPTION_ARG_STRING, &country_sid, _("String id of the country to load"), "SID" },
 
 	 { "lang", 'L', 0, G_OPTION_ARG_STRING, &lang, _("Language to use (a code like 'de')"), "CODE" },
-
-	 { "debug-level", 'd', 0, G_OPTION_ARG_INT, &deb_level, "[developer] Debug level to use", "N" },
-
-	 { "debug-writer", 'w', 0, G_OPTION_ARG_INT, &deb_writer, "[developer] Debug writer level to use", "N" },
 
 	 { "testcom", 't', 0, G_OPTION_ARG_NONE, &testcom, _("Test an XML commentary file"), NULL },
 
@@ -114,7 +109,7 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 	 { "num-passes", 'n', 0, G_OPTION_ARG_INT, &number_of_passes,
 	   _("How many commentaries to generate per event"), "N" },
 
-	 { "calodds", 'o', 0, G_OPTION_ARG_NONE, &calodds,
+	 { "calodds", 'O', 0, G_OPTION_ARG_NONE, &calodds,
 	   "[developer] Calibrate the betting odds by simulating a lot of matches", NULL },
 
 	 { "num-matches", 'm', 0, G_OPTION_ARG_INT, &num_matches,
@@ -122,9 +117,6 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 
 	 { "num-skilldiff", 'S', 0, G_OPTION_ARG_INT, &skilldiffmax,
 	   "[developer] How many skill diff steps to take", "N" },
-
-	 { "deb", 'D', 0, G_OPTION_ARG_STRING, &debug_text,
-	   "[developer] A debug command like 'deb100 to set the debug level'; see the debug window and debug.c", "STRING" },
 
 	 {NULL}};
 
@@ -162,15 +154,6 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 	g_free(support_dir);
     }
 
-    if(deb_level != -1)
-    {
-	option_set_int("int_debug", &constants, deb_level);
-        window_create(WINDOW_DEBUG);
-    }
-
-    if(deb_writer != -1)
-	option_set_int("int_debug_writer", &constants, deb_writer);
-
     if(lang != NULL)
     {
 	language_set(language_get_code_index(lang) + 1);
@@ -178,14 +161,63 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
         g_free(lang);
     }
 
-    if(debug_text != NULL)
-	statp = debug_text;
-
     if(country_sid != NULL)
     {
         country.sid = g_strdup(country_sid);
         g_free(country_sid);
     }
+}
+
+/** Parse the command line arguments given by the user. */
+void
+main_parse_debug_cl_arguments(gint *argc, gchar ***argv)
+{
+#ifdef DEBUG
+    printf("main_parse_debug_cl_arguments\n");
+#endif
+
+    gint deb_level = -1,
+	deb_output = -1;
+    gchar *debug_text = NULL;
+    GError *error = NULL;
+    GOptionContext *context = NULL;
+    GOptionEntry entries[] =
+	{{ "debug-level", 'd', 0, G_OPTION_ARG_INT, &deb_level, "[developer] Debug level to use", "N" },
+	 { "debug-output", 'o', 0, G_OPTION_ARG_INT, &deb_output, "[developer] Debug output to use", "0, 1 or 2" },	 
+	 { "deb", 'D', 0, G_OPTION_ARG_STRING, &debug_text, 
+           "[developer] A debug command like 'deb100 to set the debug level'; see the debug window and debug.c", "STRING" },
+	 {NULL}};
+
+    if(argc == NULL || argv == NULL)
+	return;
+
+    context = g_option_context_new(_("- a simple and addictive GTK2 football manager"));
+    g_option_context_set_ignore_unknown_options(context, TRUE);
+    g_option_context_add_main_entries(context, entries, GETTEXT_PACKAGE);
+    g_option_context_add_group(context, gtk_get_option_group (TRUE));
+    g_option_context_parse(context, argc, argv, &error);
+    g_option_context_free(context);
+
+    if(error != NULL)
+    {
+        debug_print_message("error message: %s\n", error->message);  
+        g_error_free(error);
+        return;
+    }
+
+    debug_level = 0;
+    if(deb_level != -1)
+    {
+        debug_level = deb_level;
+        window_create(WINDOW_DEBUG);
+    }
+
+    debug_output = DEBUG_OUT_STDOUT;
+    if(deb_output != -1)
+	debug_output = deb_output;
+
+    if(debug_text != NULL)
+	statp = debug_text;
 }
 
 /**
@@ -295,13 +327,17 @@ main_init(gint *argc, gchar ***argv)
 
     gchar buf[SMALL];
     gchar *pwd = g_get_current_dir();
+
+    support_directories = NULL;
+    rand_generator = g_rand_new();
+    main_parse_debug_cl_arguments(argc, argv);
+
 #ifdef G_OS_WIN32
     os_is_unix = FALSE;
 #else
     os_is_unix = TRUE;
 #endif
 
-    support_directories = NULL;
 #ifdef G_OS_UNIX
     file_add_support_directory_recursive(PACKAGE_DATA_DIR "/" PACKAGE "/support_files");
     sprintf(buf, "%s%s%s", g_get_home_dir(), G_DIR_SEPARATOR_S, HOMEDIRNAME);
@@ -313,9 +349,6 @@ main_init(gint *argc, gchar ***argv)
     sprintf(buf, "%s%ssaves", pwd, G_DIR_SEPARATOR_S);
     file_add_support_directory_recursive(buf);
     g_free(pwd);
-
-    /* initialize the random nr generator */
-    rand_generator = g_rand_new();
 
     main_init_variables();
 
@@ -397,7 +430,7 @@ main_exit_program(gint exit_code, gchar *format, ...)
 	va_start (args, format);
 	g_vsprintf(text, format, args);
 	va_end (args);
-	g_warning(text, NULL);
+	debug_print_message(text, NULL);
     }
 
     if(gtk_main_level() > 0)
@@ -407,7 +440,7 @@ main_exit_program(gint exit_code, gchar *format, ...)
 
     if(!os_is_unix && exit_code != EXIT_OK)
     {
-	g_warning("Press RETURN. Program will exit.");
+	debug_print_message("Press RETURN. Program will exit.");
 	getchar();
     }
     

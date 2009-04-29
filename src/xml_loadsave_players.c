@@ -98,7 +98,7 @@ xml_loadsave_players_start_element(gint tag, Team *tm)
     }
 
     if(!valid_tag)
-	g_warning("xml_loadsave_players_start_element: unknown tag. I'm in state %d\n",
+	debug_print_message("xml_loadsave_players_start_element: unknown tag. I'm in state %d\n",
 		  state);
 }
 
@@ -158,7 +158,7 @@ xml_loadsave_players_end_element(gint tag, GArray *players)
 	    tag == TAG_PLAYER_CARD_RED)
 	state = TAG_PLAYER_CARD;
     else if(tag != TAG_PLAYERS)
-	g_warning("xml_loadsave_players_end_element: unknown tag. I'm in state %d\n",
+	debug_print_message("xml_loadsave_players_end_element: unknown tag. I'm in state %d\n",
 		  state);
 }
 

@@ -113,7 +113,7 @@ xml_country_read_start_element (GMarkupParseContext *context,
     else if(strcmp(element_name, TAG_CUP) == 0)
 	state = STATE_CUP;
     else if(strcmp(element_name, TAG_COUNTRY) != 0)
-	g_warning("xml_country_read_start_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_country_read_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -147,7 +147,7 @@ xml_country_read_end_element    (GMarkupParseContext *context,
 	state = STATE_CUPS;
 
     else if(strcmp(element_name, TAG_COUNTRY) != 0)
-	g_warning("xml_country_read_end_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_country_read_end_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -238,7 +238,7 @@ xml_country_read(const gchar *country_name, Country *cntry_arg)
 	
     if(!g_file_get_contents(file_name, &file_contents, &length, &error))
     {
-	g_warning("xml_country_read: error reading file %s\n", file_name);
+	debug_print_message("xml_country_read: error reading file %s\n", file_name);
 	misc_print_error(&error, TRUE);
 	return;
     }

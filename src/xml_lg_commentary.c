@@ -156,7 +156,7 @@ xml_lg_commentary_event_name_to_int(const gchar *event_string)
     else if(strcmp(event_string, EVENT_NAME_BOOST_CHANGE) == 0)
 	return_value = LIVE_GAME_EVENT_BOOST_CHANGE_ANTI;
     else
-	g_warning("xml_lg_commentary_event_name_to_int: unknown event name %s \n", 
+	debug_print_message("xml_lg_commentary_event_name_to_int: unknown event name %s \n", 
 		  event_string);
 
     return return_value;
@@ -205,7 +205,7 @@ xml_lg_commentary_read_start_element (GMarkupParseContext *context,
 
     }
     else if(strcmp(element_name, TAG_LG_COMMENTARY) != 0)
-	g_warning("xml_lg_commentary_read_start_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_lg_commentary_read_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -230,7 +230,7 @@ xml_lg_commentary_read_end_element    (GMarkupParseContext *context,
 	    strcmp(element_name, TAG_EVENT_COMMENTARY) == 0)
 	state = STATE_EVENT;
     else if(strcmp(element_name, TAG_LG_COMMENTARY) != 0)
-	g_warning("xml_lg_commentary_read_end_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_lg_commentary_read_end_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -300,7 +300,7 @@ xml_lg_commentary_read(const gchar *commentary_file)
 
     if(!g_file_get_contents(commentary_file, &file_contents, &length, &error))
     {
-	g_warning("xml_lg_commentary_read: error reading file %s\n", commentary_file);
+	debug_print_message("xml_lg_commentary_read: error reading file %s\n", commentary_file);
 	if(g_str_has_suffix(commentary_file, "lg_commentary_en.xml"))
 	    misc_print_error(&error, TRUE);
 	else
@@ -321,7 +321,7 @@ xml_lg_commentary_read(const gchar *commentary_file)
     }
     else
     {
-	g_warning("xml_lg_commentary_read: error parsing file %s\n", commentary_file);
+	debug_print_message("xml_lg_commentary_read: error parsing file %s\n", commentary_file);
 	if(g_str_has_suffix(commentary_file, "lg_commentary_en.xml"))
 	    misc_print_error(&error, TRUE);
 	else

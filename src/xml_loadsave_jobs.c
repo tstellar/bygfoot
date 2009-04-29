@@ -79,7 +79,7 @@ xml_loadsave_jobs_start_element (GMarkupParseContext *context,
 	    new_job.league_name = NULL;
 
     if(!valid_tag)
-	g_warning("xml_loadsave_jobs_start_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_loadsave_jobs_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -111,7 +111,7 @@ xml_loadsave_jobs_end_element    (GMarkupParseContext *context,
 	    tag == TAG_JOB_TEAM_ID)
 	state = TAG_JOB;
     else if(tag != TAG_JOBS)
-	g_warning("xml_loadsave_jobs_end_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_loadsave_jobs_end_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -184,7 +184,7 @@ xml_loadsave_jobs_read(const gchar *dirname, const gchar *basename)
 
     if(!g_file_get_contents(file, &file_contents, &length, &error))
     {
-	g_warning("xml_loadsave_jobs_read: error reading file %s\n", file);
+	debug_print_message("xml_loadsave_jobs_read: error reading file %s\n", file);
 	misc_print_error(&error, TRUE);
     }
 
@@ -196,7 +196,7 @@ xml_loadsave_jobs_read(const gchar *dirname, const gchar *basename)
     }
     else
     {
-	g_warning("xml_loadsave_jobs_read: error parsing file %s\n", file);
+	debug_print_message("xml_loadsave_jobs_read: error parsing file %s\n", file);
 	misc_print_error(&error, TRUE);
     }
 }

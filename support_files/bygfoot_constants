@@ -4,14 +4,6 @@
 # can be found in 'bygfoot_app'.
 #########
 
-# debug level
-int_debug 0
-
-# write debug messages to console debug_writer=1
-# write debug messages to file debug_writer=2 (not implemented)
-# write debug messages to file console+file debug_writer=2 (not implemented)
-int_debug_writer 0
-
 #### float constants get divided by 100000 and loaded as floats
 #### so we write 50000 if we'd like to have 0.5
 

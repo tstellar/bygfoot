@@ -161,7 +161,7 @@ language_compare_country_files(gconstpointer a, gconstpointer b, gpointer data)
 
 	    if(j == 26)
 	    {
-		g_warning("language_compare_country_files: chars %c and %c not comparable",
+		debug_print_message("language_compare_country_files: chars %c and %c not comparable",
 			  def1[i], def2[i]);
 		return_value = 0;
 	    }

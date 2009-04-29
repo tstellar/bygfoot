@@ -87,7 +87,7 @@ xml_news_article_type_to_int(const gchar *type_string)
     else if(strcmp(type_string, ARTICLE_TYPE_NAME_RELEGATION) == 0)
 	return_value = NEWS_ARTICLE_TYPE_RELEGATION;
     else
-	g_warning("xml_news_type_to_int: unknown type name %s \n", 
+	debug_print_message("xml_news_type_to_int: unknown type name %s \n", 
 		  type_string);
 
     return return_value;
@@ -164,7 +164,7 @@ xml_news_read_start_element (GMarkupParseContext *context,
         }
     }
     else
-	g_warning("xml_news_read_start_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_news_read_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -195,7 +195,7 @@ xml_news_read_end_element    (GMarkupParseContext *context,
 	    strcmp(element_name, TAG_ARTICLE_SUBTITLE) == 0)
 	state = STATE_ARTICLE;
     else if(strcmp(element_name, TAG_NEWS) != 0)
-	g_warning("xml_news_read_end_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_news_read_end_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -270,7 +270,7 @@ xml_news_read(const gchar *news_file)
 
     if(!g_file_get_contents(news_file, &file_contents, &length, &error))
     {
-	g_warning("xml_news_read: error reading file %s\n", news_file);
+	debug_print_message("xml_news_read: error reading file %s\n", news_file);
 	if(g_str_has_suffix(news_file, "news_en.xml"))
 	    misc_print_error(&error, TRUE);
 	else
@@ -291,7 +291,7 @@ xml_news_read(const gchar *news_file)
     }
     else
     {
-	g_warning("xml_news_read: error parsing file %s\n", news_file);
+	debug_print_message("xml_news_read: error parsing file %s\n", news_file);
 	if(g_str_has_suffix(news_file, "news_en.xml"))
 	    misc_print_error(&error, TRUE);
 	else

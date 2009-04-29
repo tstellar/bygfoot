@@ -127,7 +127,7 @@ window_load_hint_number(void)
     if(counters[COUNT_HINT_NUMBER] < 0 ||
        counters[COUNT_HINT_NUMBER] >= hints.list->len)
     {
-	g_warning("Hint counter out of bounds: %d (bounds 0 and %d).\n",
+	debug_print_message("Hint counter out of bounds: %d (bounds 0 and %d).\n",
 		  counters[COUNT_HINT_NUMBER], hints.list->len - 1);
 	counters[COUNT_HINT_NUMBER] = 0;
     }
@@ -190,7 +190,7 @@ window_show_progress(gint pictype)
     switch(pictype)
     {
 	default:
-	    g_warning("window_show_progress: unknown picture type %d",
+	    debug_print_message("window_show_progress: unknown picture type %d",
 		      pictype);
 	    break;
 	case PIC_TYPE_SAVE:
@@ -841,14 +841,14 @@ window_create(gint window_type)
 	    break;
 	case WINDOW_STARTUP:
 	    if(window.startup != NULL)
-		g_warning("window_create: called on already existing window\n");
+		debug_print_message("window_create: called on already existing window\n");
 	    else
 		window.startup = create_window_startup();
 	    wind = window.startup;
 	    break;
 	case WINDOW_LIVE:
 	    if(window.live != NULL)
-		g_warning("window_create: called on already existing window\n");
+		debug_print_message("window_create: called on already existing window\n");
 	    else
 		window.live = create_window_live();
 	    if(((LiveGame*)statp)->fix != NULL)
@@ -858,7 +858,7 @@ window_create(gint window_type)
 	    break;
 	case WINDOW_WARNING:
 	    if(window.warning != NULL)
-		g_warning("window_create: called on already existing window\n");
+		debug_print_message("window_create: called on already existing window\n");
 	    else
 		window.warning = create_window_warning();
 	    wind = window.warning;
@@ -866,7 +866,7 @@ window_create(gint window_type)
 	    break;
 	case WINDOW_PROGRESS:
 	    if(window.progress != NULL)
-		g_warning("window_create: called on already existing window\n");
+		debug_print_message("window_create: called on already existing window\n");
 	    else
 		window.progress = create_window_progress();
 	    wind = window.progress;
@@ -874,7 +874,7 @@ window_create(gint window_type)
 	    break;
 	case WINDOW_DIGITS:
 	    if(window.digits != NULL)
-		g_warning("window_create: called on already existing window\n");
+		debug_print_message("window_create: called on already existing window\n");
 	    else
 		window.digits = create_window_digits();
 
@@ -883,7 +883,7 @@ window_create(gint window_type)
 	    break;
 	case WINDOW_STADIUM:
 	    if(window.stadium != NULL)
-		g_warning("window_create: called on already existing window\n");
+		debug_print_message("window_create: called on already existing window\n");
 	    else
 		window.stadium = create_window_stadium();
 	    wind = window.stadium;
@@ -891,7 +891,7 @@ window_create(gint window_type)
 	    break;
 	case WINDOW_JOB_OFFER:
 	    if(window.job_offer != NULL)
-		g_warning("window_create: called on already existing window\n");
+		debug_print_message("window_create: called on already existing window\n");
 	    else
 		window.job_offer = create_window_job_offer();
 	    wind = window.job_offer;
@@ -899,7 +899,7 @@ window_create(gint window_type)
 	    break;
 	case WINDOW_YESNO:
 	    if(window.yesno != NULL)
-		g_warning("window_create: called on already existing window\n");
+		debug_print_message("window_create: called on already existing window\n");
 	    else
 		window.yesno = create_window_yesno();
 	    wind = window.yesno;
@@ -907,7 +907,7 @@ window_create(gint window_type)
 	    break;
 	case WINDOW_OPTIONS:
 	    if(window.options != NULL)
-		g_warning("window_create: called on already existing window\n");
+		debug_print_message("window_create: called on already existing window\n");
 	    else
 		window.options = create_window_options();
 	    wind = window.options;
@@ -915,7 +915,7 @@ window_create(gint window_type)
 	    break;
 	case WINDOW_FONT_SEL:
 	    if(window.font_sel != NULL)
-		g_warning("window_create: called on already existing window\n");
+		debug_print_message("window_create: called on already existing window\n");
 	    else
 		window.font_sel = create_window_font_sel();
 	    wind = window.font_sel;
@@ -923,14 +923,14 @@ window_create(gint window_type)
 	    break;
 	case WINDOW_FILE_CHOOSER:
 	    if(window.file_chooser != NULL)
-		g_warning("window_create: called on already existing window\n");
+		debug_print_message("window_create: called on already existing window\n");
 	    else
 		window.file_chooser = create_window_file_chooser();
 	    wind = window.file_chooser;
 	    break;
 	case WINDOW_CONTRACT:
 	    if(window.contract != NULL)
-		g_warning("window_create: called on already existing window\n");
+		debug_print_message("window_create: called on already existing window\n");
 	    else
 		window.contract = create_window_contract();
 	    wind = window.contract;
@@ -938,7 +938,7 @@ window_create(gint window_type)
 	    break;
 	case WINDOW_USER_MANAGEMENT:
 	    if(window.user_management != NULL)
-		g_warning("window_create: called on already existing window\n");
+		debug_print_message("window_create: called on already existing window\n");
 	    else
 		window.user_management = create_window_user_management();
 	    wind = window.user_management;
@@ -946,7 +946,7 @@ window_create(gint window_type)
 	    break;
 	case WINDOW_DEBUG:
 	    if(window.wdebug != NULL)
-		g_warning("window_create: called on already existing window\n");
+		debug_print_message("window_create: called on already existing window\n");
 	    else
 		window.wdebug = create_window_debug();
 	    wind = window.wdebug;
@@ -954,14 +954,14 @@ window_create(gint window_type)
 	    break;
 	case WINDOW_HELP:
 	    if(window.help != NULL)
-		g_warning("window_create: called on already existing window\n");
+		debug_print_message("window_create: called on already existing window\n");
 	    else
 		window.help = create_window_help();
 	    wind = window.help;
 	    break;
 	case WINDOW_TRANSFER_DIALOG:
 	    if(window.transfer_dialog != NULL)
-		g_warning("window_create: called on already existing window\n");
+		debug_print_message("window_create: called on already existing window\n");
 	    else
 		window.transfer_dialog = create_window_transfer_dialog();
 	    wind = window.transfer_dialog;
@@ -969,7 +969,7 @@ window_create(gint window_type)
 	    break;
 	case WINDOW_SPONSORS:
 	    if(window.sponsors != NULL)
-		g_warning("window_create: called on already existing window\n");
+		debug_print_message("window_create: called on already existing window\n");
 	    else
 		window.sponsors = create_window_sponsors();
 	    wind = window.sponsors;
@@ -977,7 +977,7 @@ window_create(gint window_type)
 	    break;
 	case WINDOW_MMATCHES:
 	    if(window.mmatches != NULL)
-		g_warning("window_create: called on already existing window\n");
+		debug_print_message("window_create: called on already existing window\n");
 	    else
 		window.mmatches = create_window_mmatches();
 	    wind = window.mmatches;
@@ -985,7 +985,7 @@ window_create(gint window_type)
 	    break;
 	case WINDOW_BETS:
 	    if(window.bets != NULL)
-		g_warning("window_create: called on already existing window\n");
+		debug_print_message("window_create: called on already existing window\n");
 	    else
 		window.bets = create_window_bets();
 	    wind = window.bets;
@@ -993,14 +993,14 @@ window_create(gint window_type)
 	    break;
 	case WINDOW_SPLASH:
 	    if(window.splash != NULL)
-		g_warning("window_create: called on already existing window\n");
+		debug_print_message("window_create: called on already existing window\n");
 	    else
 		window.splash = create_window_splash();
 	    wind = window.splash;
 	    break;
     case WINDOW_TRAINING_CAMP:
         if(window.training_camp != NULL)
-            g_warning("window_create: called on already existing window\n");
+            debug_print_message("window_create: called on already existing window\n");
         else
             window.training_camp = create_window_training_camp();
         wind = window.training_camp;
@@ -1008,7 +1008,7 @@ window_create(gint window_type)
         break;
     case WINDOW_ALR:
         if(window.alr != NULL)
-            g_warning("window_create: called on already existing window\n");
+            debug_print_message("window_create: called on already existing window\n");
         else
             window.alr = create_window_alr();
         wind = window.alr;
@@ -1016,7 +1016,7 @@ window_create(gint window_type)
         break;
     case WINDOW_NEWS:
         if(window.news != NULL)
-            g_warning("window_create: called on already existing window\n");
+            debug_print_message("window_create: called on already existing window\n");
         else
             window.news = create_window_news();
         wind = window.news;
@@ -1024,7 +1024,7 @@ window_create(gint window_type)
         break;
     case WINDOW_CONSTANTS:
         if(window.constants != NULL)
-            g_warning("window_create: called on already existing window\n");
+            debug_print_message("window_create: called on already existing window\n");
         else
             window.constants = create_window_constants();
         wind = window.constants;

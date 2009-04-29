@@ -658,7 +658,7 @@ team_change_attribute_with_message(Team *tm, gint attribute, gint new_value)
     switch(attribute)
     {
 	default:
-	    g_warning("team_attribute_to_char: unknown attribute %d\n", attribute);
+	    debug_print_message("team_attribute_to_char: unknown attribute %d\n", attribute);
 	    break;
 	case TEAM_ATTRIBUTE_STYLE:
 	    current_user.tm->style = new_value;

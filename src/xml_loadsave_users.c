@@ -150,7 +150,7 @@ xml_loadsave_users_start_element (GMarkupParseContext *context,
 	idx_bet = (tag == TAG_USER_BET1);
 
     if(!valid_tag)
-	g_warning("xml_loadsave_users_start_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_loadsave_users_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -249,7 +249,7 @@ xml_loadsave_users_end_element    (GMarkupParseContext *context,
 	    state = TAG_USER;
     }
     else if(tag != TAG_USERS)
-	g_warning("xml_loadsave_users_end_element: unknown tag: %s; I'm in state %d\n",
+	debug_print_message("xml_loadsave_users_end_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
 
@@ -374,7 +374,7 @@ xml_loadsave_users_read(const gchar *dirname, const gchar *basename)
 
     if(!g_file_get_contents(file, &file_contents, &length, &error))
     {
-	g_warning("xml_loadsave_users_read: error reading file %s\n", file);
+	debug_print_message("xml_loadsave_users_read: error reading file %s\n", file);
 	misc_print_error(&error, TRUE);
     }
 
@@ -386,7 +386,7 @@ xml_loadsave_users_read(const gchar *dirname, const gchar *basename)
     }
     else
     {
-	g_warning("xml_loadsave_users_read: error parsing file %s\n", file);
+	debug_print_message("xml_loadsave_users_read: error parsing file %s\n", file);
 	misc_print_error(&error, TRUE);
     }
 }
