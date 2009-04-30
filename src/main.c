@@ -326,7 +326,6 @@ main_init(gint *argc, gchar ***argv)
 #endif
 
     gchar buf[SMALL];
-    gchar *pwd = g_get_current_dir();
 
     support_directories = NULL;
     rand_generator = g_rand_new();
@@ -339,16 +338,31 @@ main_init(gint *argc, gchar ***argv)
 #endif
 
 #ifdef G_OS_UNIX
+#ifndef MAC_BUILD
     file_add_support_directory_recursive(PACKAGE_DATA_DIR "/" PACKAGE "/support_files");
     sprintf(buf, "%s%s%s", g_get_home_dir(), G_DIR_SEPARATOR_S, HOMEDIRNAME);
     file_add_support_directory_recursive(buf);
 #endif
+#endif
 
+#ifndef MAC_BUILD
+    gchar *pwd = g_get_current_dir();
     sprintf(buf, "%s%ssupport_files", pwd, G_DIR_SEPARATOR_S);
     file_add_support_directory_recursive(buf);
     sprintf(buf, "%s%ssaves", pwd, G_DIR_SEPARATOR_S);
     file_add_support_directory_recursive(buf);
     g_free(pwd);
+#else
+    CFURLRef newurlref;
+    CFStringRef newstring = CFSTR("support_files");
+    
+    newurlref = CFBundleCopyResourceURL(CFBundleGetMainBundle(), newstring, NULL, NULL);
+    newstring = CFURLCopyPath(newurlref);
+    CFStringGetCString(newstring, buf, SMALL + 1, kCFStringEncodingASCII);
+    file_add_support_directory_recursive(buf);
+    CFRelease(newurlref);
+    CFRelease(newstring);
+#endif
 
     main_init_variables();
 
@@ -370,9 +384,11 @@ main (gint argc, gchar *argv[])
 #endif
 
 #ifdef ENABLE_NLS
+#ifndef MAC_BUILD
     bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
     bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
     textdomain (GETTEXT_PACKAGE);
+#endif
 #endif
 #ifdef G_OS_WIN32
     int fd1 = open ("stdout.log", O_CREAT|O_WRONLY|O_TRUNC, 0666);
