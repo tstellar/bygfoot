@@ -115,4 +115,7 @@ file_load_text_from_saves(const gchar *filename);
 void
 file_store_text_in_saves(const gchar *filename, const gchar *text);
 
+gchar*
+file_get_mac_resource_path(const gchar *resource);
+
 #endif

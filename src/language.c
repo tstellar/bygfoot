@@ -26,6 +26,7 @@
 #include <locale.h>
 
 #include "callbacks.h"
+#include "file.h"
 #include "free.h"
 #include "language.h"
 #include "lg_commentary.h"
@@ -48,7 +49,7 @@ language_set(gint index)
 #endif
 
     gchar buf[SMALL], buf2[SMALL];
-    gchar *pwd = g_get_current_dir();
+    gchar *dir;
     GPtrArray *codes =
 	misc_separate_strings(const_str("string_language_codes"));
 
@@ -60,7 +61,15 @@ language_set(gint index)
     if(strcmp(buf, opt_str("string_opt_language_code")) != 0 ||
        window.main == NULL)
     {
-	sprintf(buf2, "%s%slocale", pwd, G_DIR_SEPARATOR_S);
+#ifndef MAC_BUILD
+        dir = g_get_current_dir();
+	sprintf(buf2, "%s%slocale", dir, G_DIR_SEPARATOR_S);
+#else
+        dir = file_get_mac_resource_path("locale");
+        strcpy(buf2, dir);
+#endif
+        g_free(dir);
+
 #ifdef ENABLE_NLS
 	if(g_file_test(buf2, G_FILE_TEST_EXISTS))
 	{
@@ -88,7 +97,6 @@ language_set(gint index)
 
     lg_commentary_load_commentary_file_from_option();
     news_load_news_file_from_option();
-    g_free(pwd);
     free_gchar_array(&codes);
 }
 
