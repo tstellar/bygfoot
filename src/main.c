@@ -61,6 +61,14 @@
 #include "window.h"
 #include "xml_strategy.h"
 
+#define DEBUG_LEVEL_DEFAULT 0
+
+#if defined(MAC_BUILD) || defined(G_OS_WIN32)
+#define DEBUG_OUTPUT_DEFAULT 2
+#else
+#define DEBUG_OUTPUT_DEFAULT 0
+#endif
+
 /** Whether the last save gets loaded at startup
     (cl switch -l). */
 gboolean load_last_save;
@@ -129,7 +137,11 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
     g_option_context_parse(context, argc, argv, &error);
     g_option_context_free(context);
 
-    misc_print_error(&error, TRUE);
+    if(error != NULL)
+    {
+        misc_print_error(&error, FALSE);
+        return;
+    }
 
     if(calodds)
     {
@@ -188,6 +200,9 @@ main_parse_debug_cl_arguments(gint *argc, gchar ***argv)
            "[developer] A debug command like 'deb100 to set the debug level'; see the debug window and debug.c", "STRING" },
 	 {NULL}};
 
+    debug_level = DEBUG_LEVEL_DEFAULT;
+    debug_output = DEBUG_OUTPUT_DEFAULT;
+
     if(argc == NULL || argv == NULL)
 	return;
 
@@ -200,19 +215,16 @@ main_parse_debug_cl_arguments(gint *argc, gchar ***argv)
 
     if(error != NULL)
     {
-        debug_print_message("error message: %s\n", error->message);  
-        g_error_free(error);
+        misc_print_error(&error, FALSE);
         return;
     }
 
-    debug_level = 0;
     if(deb_level != -1)
     {
         debug_level = deb_level;
         window_create(WINDOW_DEBUG);
     }
 
-    debug_output = DEBUG_OUT_STDOUT;
     if(deb_output != -1)
 	debug_output = deb_output;
 
@@ -326,6 +338,7 @@ main_init(gint *argc, gchar ***argv)
 #endif
 
     gchar buf[SMALL];
+    gchar *dir;
 
     support_directories = NULL;
     rand_generator = g_rand_new();
@@ -337,31 +350,23 @@ main_init(gint *argc, gchar ***argv)
     os_is_unix = TRUE;
 #endif
 
-#ifdef G_OS_UNIX
-#ifndef MAC_BUILD
+#if defined(G_OS_UNIX) && !defined(MAC_BUILD)
     file_add_support_directory_recursive(PACKAGE_DATA_DIR "/" PACKAGE "/support_files");
     sprintf(buf, "%s%s%s", g_get_home_dir(), G_DIR_SEPARATOR_S, HOMEDIRNAME);
     file_add_support_directory_recursive(buf);
 #endif
-#endif
 
 #ifndef MAC_BUILD
-    gchar *pwd = g_get_current_dir();
-    sprintf(buf, "%s%ssupport_files", pwd, G_DIR_SEPARATOR_S);
+    dir = g_get_current_dir();
+    sprintf(buf, "%s%ssupport_files", dir, G_DIR_SEPARATOR_S);
     file_add_support_directory_recursive(buf);
-    sprintf(buf, "%s%ssaves", pwd, G_DIR_SEPARATOR_S);
+
+    sprintf(buf, "%s%ssaves", dir, G_DIR_SEPARATOR_S);
     file_add_support_directory_recursive(buf);
-    g_free(pwd);
-#else
-    CFURLRef newurlref;
-    CFStringRef newstring = CFSTR("support_files");
-    
-    newurlref = CFBundleCopyResourceURL(CFBundleGetMainBundle(), newstring, NULL, NULL);
-    newstring = CFURLCopyPath(newurlref);
-    CFStringGetCString(newstring, buf, SMALL + 1, kCFStringEncodingASCII);
-    file_add_support_directory_recursive(buf);
-    CFRelease(newurlref);
-    CFRelease(newstring);
+    g_free(dir);
+#else    
+    dir = file_get_mac_resource_path("support_files");    
+    file_add_support_directory_recursive(dir);
 #endif
 
     main_init_variables();
@@ -383,12 +388,10 @@ main (gint argc, gchar *argv[])
     printf("main\n");
 #endif
 
-#ifdef ENABLE_NLS
-#ifndef MAC_BUILD
+#if defined(ENABLE_NLS) && !defined(MAC_BUILD)
     bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
     bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
     textdomain (GETTEXT_PACKAGE);
-#endif
 #endif
 #ifdef G_OS_WIN32
     int fd1 = open ("stdout.log", O_CREAT|O_WRONLY|O_TRUNC, 0666);

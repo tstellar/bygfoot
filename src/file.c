@@ -746,7 +746,8 @@ file_get_first_support_dir(void)
     while (elem)
     {
 	if(g_str_has_suffix((gchar*)elem->data, HOMEDIRNAME) ||
-	   g_str_has_suffix((gchar*)elem->data, "support_files"))
+	   g_str_has_suffix((gchar*)elem->data, "support_files") ||
+	   g_str_has_suffix((gchar*)elem->data, "support_files" G_DIR_SEPARATOR_S))
 	    return (const gchar*)elem->data;
 
 	elem = elem->next;
@@ -1006,4 +1007,26 @@ file_load_text_from_saves(const gchar *filename)
     fclose(fil);
 
     return g_strdup(buf);   
+}
+
+/** Return the path to a resource in the Mac OS X bundle. */
+gchar*
+file_get_mac_resource_path(const gchar *resource)
+{
+#ifndef MAC_BUILD
+    return NULL;
+#else
+    gchar buf[SMALL];
+    CFURLRef newurlref;
+    CFStringRef newstring = CFStringCreateWithCString(NULL, resource, kCFStringEncodingASCII);
+
+    newurlref = CFBundleCopyResourceURL(CFBundleGetMainBundle(), newstring, NULL, NULL);
+    CFRelease(newstring);
+    newstring = CFURLCopyPath(newurlref);
+    CFStringGetCString(newstring, buf, SMALL + 1, kCFStringEncodingASCII);
+    CFRelease(newurlref);
+    CFRelease(newstring);
+    
+    return g_strdup(buf);
+#endif
 }
