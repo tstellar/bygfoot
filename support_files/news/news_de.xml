@@ -115,13 +115,13 @@
     <subtitle condition="_GOALS_TLN__ > 1">_TL_ unterliegt in einem torreichen Spiel gegen _TW_.</subtitle>
     <subtitle condition="_INJS_TWN__ > 0">_TW_ bezahlt den Sieg mit Verletzungen.</subtitle>
     <subtitle condition="_INJS_TLN__ > 0">Zum Unglück kommt auch noch Verletzungspech für _TL_ dazu.</subtitle>
-    <subtitle condition="_RANK_TWN__ >  _OLDRANK_TWN__">_TW_ steht jetzt auf Platz _RANK_TWN__ in der Tabelle.</subtitle>
-    <subtitle condition="_RANK_TWN__ >  _OLDRANK_TWN__">_TW_ steht dank Sieg auf Platz _RANK_TWN__ in der _LEAGUECUPNAME_-Tabelle.</subtitle>
+    <subtitle condition="_RANK_TWN__ <  _OLDRANK_TWN__">_TW_ steht jetzt auf Platz _RANK_TWN__ in der Tabelle.</subtitle>
+    <subtitle condition="_RANK_TWN__ <  _OLDRANK_TWN__">_TW_ steht dank Sieg auf Platz _RANK_TWN__ in der _LEAGUECUPNAME_-Tabelle.</subtitle>
     <subtitle condition="_RANK_TWN__ = 1 and _OLDRANK_TWN__ < 1">_TW_ erobert damit die Tabellenführung.</subtitle>
-    <subtitle condition="_RANK_TWN__ >  _OLDRANK_TWN__ and _RANK_TWN__ != 1">_TW_ macht [_OLDRANK_TWN__ - _RANK_TWN__] Plätze gut in der Tabelle.</subtitle>
-    <subtitle condition="_RANK_TLN__ <  _OLDRANK_TLN__">_TL_ damit auf Rang _RANK_TLN__ in der Tabelle.</subtitle>
-    <subtitle condition="_RANK_TLN__ <  _OLDRANK_TLN__">_TL_ rutscht durch die Niederlage auf Platz _RANK_TLN__ in der _LEAGUECUPNAME_-Tabelle.</subtitle>
-    <subtitle condition="_RANK_TLN__ <  _OLDRANK_TLN__">_TL_ verliert [_RANK_TLN__ - _OLDRANK_TLN__] Plätze in der Tabelle.</subtitle>
+    <subtitle condition="_RANK_TWN__ <  _OLDRANK_TWN__ and _RANK_TWN__ != 1">_TW_ macht [_OLDRANK_TWN__ - _RANK_TWN__] Plätze gut in der Tabelle.</subtitle>
+    <subtitle condition="_RANK_TLN__ >  _OLDRANK_TLN__">_TL_ damit auf Rang _RANK_TLN__ in der Tabelle.</subtitle>
+    <subtitle condition="_RANK_TLN__ >  _OLDRANK_TLN__">_TL_ rutscht durch die Niederlage auf Platz _RANK_TLN__ in der _LEAGUECUPNAME_-Tabelle.</subtitle>
+    <subtitle condition="_RANK_TLN__ >  _OLDRANK_TLN__">_TL_ verliert [_RANK_TLN__ - _OLDRANK_TLN__] Plätze in der Tabelle.</subtitle>
     <subtitle condition="_SHOTS_TWN__ < _GOALS_TWN__ + 2">_TW_ siegt dank perfekter Chancenverwertung.</subtitle>
     <subtitle condition="_SHOTS_TWN__ < _GOALS_TWN__ + 2">_TL_ kann angesichts der Effektivität des Gegners nur staunen.</subtitle>
   </news_article>
