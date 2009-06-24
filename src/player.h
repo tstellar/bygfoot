@@ -29,6 +29,7 @@
 #include "bygfoot.h"
 #include "fixture_struct.h"
 #include "maths.h"
+#include "user_struct.h"
 #include "player_struct.h"
 #include "team_struct.h"
 

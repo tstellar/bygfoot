@@ -145,4 +145,10 @@ user_mm_load_file(const gchar *filename, GArray *mmatches);
 void
 user_mm_export_file(const gchar *filename);
 
+void
+store_default_team(User *user);
+
+void
+restore_default_team(User *user);
+
 #endif

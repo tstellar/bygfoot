@@ -80,6 +80,7 @@ user_new(void)
 
     new.bets[0] = g_array_new(FALSE, FALSE, sizeof(BetUser));
     new.bets[1] = g_array_new(FALSE, FALSE, sizeof(BetUser));
+    new.default_team = g_array_new(FALSE, FALSE, sizeof(gint));
     return new;
 }
 
@@ -1309,4 +1310,46 @@ user_mm_export_file(const gchar *filename)
     user_mm_save_file(buf, mmatches);
 
     g_array_free(mmatches, TRUE);
+}
+
+/**
+ * This will store the default team of a user
+ */
+void
+store_default_team(User *user)
+{
+#ifdef DEBUG
+    printf("store_player_order\n");
+#endif
+
+    gint i;
+    user->default_team = g_array_sized_new(FALSE, FALSE, sizeof(gint), user->tm->players->len);
+    for (i = 0; i < user->tm->players->len; i++) {
+       g_array_append_val(user->default_team, g_array_index(user->tm->players, Player, i).id);
+    }
+    user->default_structure = user->tm->structure;
+}
+
+/**
+ * This will restore the default team
+ */
+void
+restore_default_team(User *user)
+{
+#ifdef DEBUG
+    printf("restore_player_order\n");
+#endif
+
+    gint i, player1, player2;
+    for (i=0;i<user->tm->players->len; i++){
+        player1 = g_array_index(user->default_team, gint, i);
+        player2 = g_array_index(user->tm->players, Player, i).id;
+        if (player1 != player2) {
+            player_swap(user->tm,player_id_index(user->tm,player1), user->tm, player_id_index(user->tm,player2)); 
+        }
+    }
+    team_change_structure(user->tm, user->default_structure);
+    user->default_structure=-1;
+    g_array_free(user->default_team, TRUE);
+    user->default_team = g_array_new(FALSE, FALSE, sizeof(gint));
 }

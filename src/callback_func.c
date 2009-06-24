@@ -56,8 +56,15 @@ callback_show_next_live_game(void)
 
     gint i, j;
 
-    for(i=0;i<users->len;i++)
+    for(i=0;i<users->len;i++) {
 	usr(i).counters[COUNT_USER_TOOK_TURN] = 0;
+        // Store the player order before the live match this process is
+        // repeated so check first if it hasn't been done yet
+        if (usr(i).default_team->len==0 && option_int("int_opt_user_store_restore_default_team",
+			  &usr(i).options)) {
+            store_default_team(&usr(i));
+        }
+    }
 
     counters[COUNT_NEWS_SHOWN] = 
         counters[COUNT_NEW_NEWS] = 0;
@@ -94,6 +101,14 @@ callback_show_next_live_game(void)
 
     window_destroy(&window.live);
 
+    /* Restore the player_order as it was before the match */
+    for(i=0;i<users->len;i++) {
+        if (usr(i).default_team->len!=0 && option_int("int_opt_user_store_restore_default_team",
+			  &usr(i).options)) {
+            restore_default_team(&usr(i));
+        }
+    }
+    treeview_show_user_player_list();
     /* no more user games to show: end round. */
     end_week_round();
 

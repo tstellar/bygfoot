@@ -185,6 +185,10 @@ typedef struct
     GArray *mmatches;
     /** Array of current and recent bets. */
     GArray *bets[2];
+    // An array of gint that will be used to store the default team of a user
+    GArray *default_team;
+    // the default structure of a user team.
+    gint default_structure;
 } User;
 
 enum EventType
