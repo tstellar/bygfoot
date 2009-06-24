@@ -94,9 +94,11 @@ create_window_options (void)
   GtkWidget *label38;
   GtkWidget *checkbutton_show_all_leagues;
   GtkWidget *vseparator3;
+  GtkWidget *alignment7;
   GtkWidget *vbox7;
   GtkWidget *checkbutton_swap_adapts;
   GtkWidget *checkbutton_show_overall;
+  GtkWidget *checkbutton_store_restore_default_team;
   GtkWidget *label3;
   GtkWidget *hbox4;
   GtkWidget *vbox4;
@@ -536,9 +538,13 @@ create_window_options (void)
   gtk_box_pack_start (GTK_BOX (hbox6), vseparator3, FALSE, FALSE, 0);
   gtk_widget_set_size_request (vseparator3, 10, 1);
 
+  alignment7 = gtk_alignment_new (0.5, 0.5, 1, 1);
+  gtk_widget_show (alignment7);
+  gtk_box_pack_start (GTK_BOX (hbox6), alignment7, TRUE, TRUE, 0);
+
   vbox7 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox7);
-  gtk_box_pack_start (GTK_BOX (hbox6), vbox7, TRUE, TRUE, 0);
+  gtk_container_add (GTK_CONTAINER (alignment7), vbox7);
 
   checkbutton_swap_adapts = gtk_check_button_new_with_mnemonic (_("Swap adapts structure"));
   gtk_widget_show (checkbutton_swap_adapts);
@@ -549,6 +555,11 @@ create_window_options (void)
   gtk_widget_show (checkbutton_show_overall);
   gtk_box_pack_start (GTK_BOX (vbox7), checkbutton_show_overall, FALSE, FALSE, 0);
   gtk_tooltips_set_tip (tooltips, checkbutton_show_overall, _("Whether to show the player games/goals value in all competitions"), NULL);
+
+  checkbutton_store_restore_default_team = gtk_check_button_new_with_mnemonic (_("Always store/restore your default team"));
+  gtk_widget_show (checkbutton_store_restore_default_team);
+  gtk_box_pack_start (GTK_BOX (vbox7), checkbutton_store_restore_default_team, FALSE, FALSE, 0);
+  gtk_tooltips_set_tip (tooltips, checkbutton_store_restore_default_team, _("Always store/restore your default team before/after a match"), NULL);
 
   label3 = gtk_label_new (_("Gameplay"));
   gtk_widget_show (label3);
@@ -1317,9 +1328,11 @@ create_window_options (void)
   GLADE_HOOKUP_OBJECT (window_options, label38, "label38");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_show_all_leagues, "checkbutton_show_all_leagues");
   GLADE_HOOKUP_OBJECT (window_options, vseparator3, "vseparator3");
+  GLADE_HOOKUP_OBJECT (window_options, alignment7, "alignment7");
   GLADE_HOOKUP_OBJECT (window_options, vbox7, "vbox7");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_swap_adapts, "checkbutton_swap_adapts");
   GLADE_HOOKUP_OBJECT (window_options, checkbutton_show_overall, "checkbutton_show_overall");
+  GLADE_HOOKUP_OBJECT (window_options, checkbutton_store_restore_default_team, "checkbutton_store_restore_default_team");
   GLADE_HOOKUP_OBJECT (window_options, label3, "label3");
   GLADE_HOOKUP_OBJECT (window_options, hbox4, "hbox4");
   GLADE_HOOKUP_OBJECT (window_options, vbox4, "vbox4");

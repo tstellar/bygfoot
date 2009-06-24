@@ -1671,3 +1671,4 @@ query_player_star_balks(const Player *pl, const Team *tm, gboolean transfer)
 		    const_float("float_transfer_star_prob_decrease"));
     }
 }
+

@@ -197,6 +197,7 @@ free_user(User *user)
 
     free_g_array(&user->bets[0]);
     free_g_array(&user->bets[1]);
+    g_array_free(user->default_team, TRUE);
 }
 
 /** Free the memorable matches array of the user and the memorable matches
