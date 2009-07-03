@@ -1,0 +1,474 @@
+<news>
+  <news_article>
+    <type>match</type>
+    <condition>_TLAYERDIFF_ = 0 and _GD_ G 3 and (_CUPKO_ = 0 or _CUPHOMEAWAY_ = 0 or _CUPFIRSTLEG_ = 1)</condition>
+    <title priority="20" condition="_CUPET_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ i overtiden</title>
+    <title priority="20" condition="_CUPET_ = 1">_TW_ sejrrig i overtiden</title>
+    <title priority="20" condition="_CUPPEN_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ _REW_ på straffespark</title>
+    <title priority="20" condition="_CUPPEN_ = 1">_TW_ bevarer nerverne i straffesparkskonkurrencen</title>
+    <title condition="_TWN_ = 0">_TL_ har ikke en chance mod _TW_</title>
+    <title>_TL_ knust af _TW_</title>
+    <title>Skæv sejr af _TW_</title>
+    <title>_TW_ vinder let sejr</title>
+    <title>Ydmygende nederlag for _TL_</title>
+    <title>_TW_ [knuser|ydmyger|slår|overmander|kuer|har overmagten over] _TL_</title>
+    <title>_TW_ ydmyger _TL_ med _AT_ tilskuere</title>
+    <title condition="_TWN_ = 1 and _CUPNEUTRAL = 0">_TW_ har udebanedominans</title>
+    <title condition="_TWN_ = 1 and _CUPNEUTRAL = 0">_TW_ vinder stort over _TL_ foran deres hjemmepublikum</title>
+    <subtitle>_TW_ knuser _TL_ med deres robotagtige målmaskine.</subtitle>
+    <subtitle condition="_TWN_ = 0 and _CUPNEUTRAL = 0">_TW_ ekspederer _TL_ _RE_ hjemme.</subtitle>
+    <subtitle condition="_TWN_ = 0 and _CUPNEUTRAL = 0">_TL_ går i hundene på _TW_.</subtitle>
+    <subtitle condition="_TWN_ = 1 and _CUPNEUTRAL = 0">_TW_ vinder _REW_ ude.</subtitle>
+    <subtitle condition="_GOALS_TLN__ > 1">_TW_ bevarer overmagten i en kamp med masser af mål.</subtitle>
+    <subtitle condition="_GOALS_TLN__ = 0">_TL_ viser en alarmerende svaghed både offensivt og defensivt.</subtitle>
+    <subtitle condition="_GOALS_TLN__ > 1">_TL_ taber en kamp domineret af offensivt spil.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__ and _TWN_ = 0 and _CUPNEUTRAL_ = 0">_SCORERS_TWN__ scorer i overbevisende hjemmesejr.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__">_TL_ fuldstændig knust af mål fra _SCORERS_TWN__.</subtitle>
+    <subtitle condition="_HIGHGOALS_TWN__ > 1">_HIGHSCORER_TWN__ laver _HIGHGOALS_TWN__ mål i [sensationel|overbevisende] sejr.</subtitle>
+    <subtitle condition="_HIGHGOALS_TWN__ = 3">_HIGHSCORER_TWN__ laver et hattrick i en underholdende kamp.</subtitle>
+    <subtitle condition="_HIGHGOALS_TLN__ > 1">_HIGHGOALS_TLN__ mål af _HIGHSCORER_TLN__ kan ikke forhindre _TW_ i at vinde.</subtitle>
+    <subtitle condition="_GOALS_TLN__ > 1 and _MULTIPLESCORERS_TLN__">Mål af _SCORERS_TLN__ er ikke nok til at _TL_ kan vinde.</subtitle>
+  </news_article>
+
+  <news_article>
+    <type>match</type>
+    <condition>_TLAYERDIFF_ = 0 and _GD_ G 2 and (_CUPKO_ = 0 or _CUPHOMEAWAY_ = 0 or _CUPFIRSTLEG_ = 1)</condition>
+    <title priority="20" condition="_CUPET_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ i overtiden</title>
+    <title priority="20" condition="_CUPET_ = 1">_TW_ sejrrig i overtiden</title>
+    <title priority="20" condition="_CUPPEN_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ _REW_ på straffespark</title>
+    <title priority="20" condition="_CUPPEN_ = 1">_TW_ bevarer nerverne i straffesparkskonkurrencen</title>
+    <title>_TL_ har ikke en chance mod _TW_</title>
+    <title>Barnemad for _TW_</title>
+    <title condition="_TWN_ = 0 and _CUPNEUTRAL = 0">Nem hjemmesejr for _TW_</title>
+    <title>_TW_ vinder komfortabelt mod _TL_</title>
+    <title>_TW_ dominerer _TL_</title>
+    <title condition="_TWN_ = 1 and _CUPNEUTRAL = 0">_TW_ dominerer _TL_</title>
+    <title condition="_TWN_ = 1 and _CUPNEUTRAL = 0">_TW_ dominerer ude</title>
+    <title condition="_GOALS_TLN__ > 1">_TW_ vinder på trods af at der bliver scoret _GOALS_TLN__ mod dem</title>
+    <title condition="_GOALS_TLN__ > 1">_GOALS_TLN__ mål ikke nok for _TL_</title>
+    <subtitle>_TW_ har styr på _TL_ i _REW_ indsats.</subtitle>
+    <subtitle condition="_TWN_ = 0 and _CUPNEUTRAL = 0">_TW_ ekspederer _TL_ med _RE_ hjemmesejr.</subtitle>
+    <subtitle condition="_GOALS_TLN__ > 1">_TW_ kommer sejrrig ud i en kamp med mange mål.</subtitle>
+    <subtitle condition="_GOALS_TLN__ > 1">_TL_ taber den offensive kamp.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__">_SCORERS_TWN__ scorer i overbevisende sejr af _TW_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__ and _TWN_ = 0 and _CUPNEUTRAL_ = 0">_SCORERS_TWN__ [scorer|netter] i overbevisende hjemmesejr af _TW_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__ and _TWN_ = 1 and _CUPNEUTRAL_ = 0">_SCORERS_TWN__ [scorer|netter] i overbevisende udesejr af _TW_.</subtitle>
+    <subtitle condition="_HIGHGOALS_TWN__ > 1">_HIGHSCORER_TWN__ netter _HIGHGOALS_TWN__ mål i imponerende sejr.</subtitle>
+    <subtitle condition="_HIGHGOALS_TWN__ > 1">_HIGHSCORER_TWN__ scorer _HIGHGOALS_TWN__ gange.</subtitle>
+    <subtitle condition="_HIGHGOALS_TWN__ = 3">_HIGHSCORER_TWN__ laver hattrick i underholdende kamp.</subtitle>
+    <subtitle condition="_HIGHGOALS_TWN__ = 3">Hattrick af _HIGHSCORER_TWN__ lammer _TL_.</subtitle>
+    <subtitle condition="_HIGHGOALS_TLN__ > 1">_HIGHGOALS_TLN__ mål af _HIGHSCORER_TLN__ kan ikke forhindre _TL_ i at tabe.</subtitle>
+    <subtitle condition="_HIGHGOALS_TLN__ > 1">_HIGHGOALS_TLN__ mål af _HIGHSCORER_TLN__ er ikke nok til at holde _TL_ på afstand af _TW_.</subtitle>
+    <subtitle condition="_HIGHGOALS_TLN__ > 1">_TL_ taber på trods af _HIGHGOALS_TLN__ mål fra _HIGHSCORER_TLN__.</subtitle>
+    <subtitle condition="_GOALS_TLN__ > 1 and _MULTIPLESCORERS_TLN__">Mål af _SCORERS_TLN__ ikke nok da _TL_ taber _REL_.</subtitle>
+  </news_article>
+
+  <news_article>
+    <type>match</type>
+    <condition>_TLAYERDIFF_ = 0 and _GOALS0_ != _GOALS1_ and (_CUPKO_ = 0 or _CUPHOMEAWAY_ = 0 or _CUPFIRSTLEG_ = 1)</condition>
+    <priority>5</priority>
+    <title>_TW_ [slår|vinder over|besejrer] _TL_ _REW_</title>
+    <title>_TL_ taber til _TW_ _REL_</title>
+    <title priority="20" condition="_CUPET_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ i overtiden</title>
+    <title priority="20" condition="_CUPET_ = 1">_TW_ sejrrig i overtiden</title>
+    <title priority="20" condition="_CUPPEN_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ _REW_ på straffespark</title>
+    <title priority="20" condition="_CUPPEN_ = 1">_TW_ bevarer nerverne i straffesparkskonkurrencen</title>
+    <title condition="_CUPNEUTRAL_ = 0">_T0_ versus _T1_ ender med _RE_</title>
+    <title condition="_CUPFIRSTLEG_ = 1">_TW_ vinder første kamp i _CUPROUNDNAME_ mod _TL_</title>
+    <title condition="_CUPFIRSTLEG_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ i første kamp</title>
+    <title condition="_TWN_ = 0 and _CUPNEUTRAL_ = 0">_TW_ sejrrig hjemme mod _TL_</title>
+    <title condition="_TWN_ = 0 and _CUPNEUTRAL_ = 0">Hjemmesejr til _TW_</title>
+    <title condition="_TWN_ = 0 and _CUPNEUTRAL_ = 0">_TW_ vinder hjemme</title>
+    <title condition="_TWN_ = 1 and _CUPNEUTRAL_ = 0">_TW_ vinder over _TL_</title>
+    <title condition="_TWN_ = 1 and _CUPNEUTRAL_ = 0">Udebanesejr for _TW_</title>
+    <title condition="_TWN_ = 1 and _CUPNEUTRAL_ = 0">_TW_ får udebanesejr</title>
+    <title condition="_WON_TWN__ > 3">_WON_TWN__ sejre i træk for _TW_</title>
+    <title condition="_LOST_TLN__ > 3">_LOST_TLN__ nederlag i træk for _TL_</title>
+    <title condition="_UNBEATEN_TWN__ > 3">_TW_ ubesejret i _UNBEATEN_TWN__ kampe</title>
+    <title condition="_WON_TWN__ > 3">_TW_ udvinder sejrsrækken til _WON_TWN__</title>
+    <title condition="_LOST_TLN__ > 3">_TL_ taber _LOST_TLN__. kamp i træk</title>
+    <title condition="_LEAGUEWON_TWN__ > 3">_TW_ vinder _WON_TWN__. ligakamp i træk</title>
+    <title condition="_LEAGUELOST_TLN__ > 3">_TL_ har stadig ikke held i ligakampene</title>
+    <title condition="_LEAGUEUNBEATEN_TWN__ > 3">_TW_ virker uovervindelige i ligakampene</title>
+    <subtitle condition="_WON_TWN__ > 5">I _WON_TWN__ kampe har _TW_ knust alle modstandere.</subtitle>
+    <subtitle>_TW_ er bare for stærke for _TL_, vinder _REW_.</subtitle>
+    <subtitle condition="_TWN_ = 0 and _CUPNEUTRAL_ = 0">_AT_ tilskuere ser deres hold vinde hjemme.</subtitle>
+    <subtitle condition="_TWN_ = 0">_AT_ tilskuere fejrer sejren over _TL_.</subtitle>
+    <subtitle condition="_TWN_ = 1">_AT_ tilskuere viser deres medfølelse med _TL_.</subtitle>
+    <subtitle condition="_TWN_ = 1 and _CUPNEUTRAL_ = 0">De fleste af tilskuerne forlader skuffet stadion før kampen er over.</subtitle>
+    <subtitle condition="_CUP_ = 0">_TW_ får pointene mod _TL_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__">_SCORERS_TWN__ [scorer|laver målene] mod _TL_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__">_TW_ vinder over _TL_ takket være mål af _SCORERS_TWN__.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__ and _TWN_ = 1">_SCORERS_TWN__ [scorer|hamrer bolden ind] på _TL_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__ = 0">_SCORERS_TWN__ sikrer sejr mod _TL_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__ = 0">_SCORERS_TWN__ scorer kun imod _TL_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__ = 0 and _GOALS_TWN__ > 1">_SCORERS_TWN__ besejrer ene mand _TL_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__ = 0">_SCORERS_TWN__ er den eneste målscorer mod _TL_.</subtitle>
+    <subtitle condition="_GOALS_TLN__ > 1">_GOALS_TLN__ mål er ikke nok til at sejre for _TL_.</subtitle>
+    <subtitle condition="_GOALS_TLN__ > 1 and _MULTIPLESCORERS_TWN__">_TW_ vinder en underholdende kamp takket være mål af _SCORERS_TWN__.</subtitle>
+    <subtitle condition="_GOALS_TLN__ > 1">_TL_ taber til _TW_ i en kamp med mange mål.</subtitle>
+    <subtitle condition="_INJS_TWN__ > 0">_TW_ betaler med skader for sejren over _TL_.</subtitle>
+    <subtitle condition="_RANK_TWN__ >  _OLDRANK_TWN__">_TW_ stiger til nummer _RANK_TWN__ i tabellen.</subtitle>
+    <subtitle condition="_RANK_TWN__ >  _OLDRANK_TWN__">Takket være sejren bevæger _TW_ sig til placeringen _RANK_TWN__ i tabellen for _LEAGUECUPNAME_.</subtitle>
+    <subtitle condition="_RANK_TWN__ = 1 and _OLDRANK_TWN__ < 1">_TW_ er nu førende i _LEAGUECUPNAME_.</subtitle>
+    <subtitle condition="_RANK_TWN__ >  _OLDRANK_TWN__ and _RANK_TWN__ != 1">_TW_ stiger [_OLDRANK_TWN__ - _RANK_TWN__] pladser i tabellen.</subtitle>
+    <subtitle condition="_RANK_TLN__ <  _OLDRANK_TLN__">_TL_ er nu kun placeret som nummer _RANK_TLN__ i tabellen.</subtitle>
+    <subtitle condition="_RANK_TLN__ <  _OLDRANK_TLN__">_TL_ falder til nummer _RANK_TLN__ i tabellen for _LEAGUECUPNAME_.</subtitle>
+    <subtitle condition="_RANK_TLN__ <  _OLDRANK_TLN__">_TL_ taber [_RANK_TLN__ - _OLDRANK_TLN__] pladser i tabellen.</subtitle>
+    <subtitle condition="_SHOTS_TWN__ < _GOALS_TWN__ + 2">_TW_ scorer på næsten alle deres chancer og vinder derfor.</subtitle>
+    <subtitle condition="_SHOTS_TWN__ < _GOALS_TWN__ + 2">Træneren hos _TL_ er imponeret over effektiviteten hos modstanderen.</subtitle>
+  </news_article>
+
+  <news_article>
+    <type>match</type>
+    <condition>_TLAYERDIFF_ = 0 and _GD_ = 0 and (_CUPKO_ = 0 or _CUPHOMEAWAY_ = 0 or _CUPFIRSTLEG_ = 1)</condition>
+    <title priority="20" condition="_CUPET_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ i overtid</title>
+    <title priority="20" condition="_CUPET_ = 1">_TW_ sejrrig i overtiden</title>
+    <title priority="20" condition="_CUPPEN_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ _REW_ i straffespark</title>
+    <title priority="20" condition="_CUPPEN_ = 1">_TW_ bevarer nerverne i straffesparkskonkurrencen</title>
+    <title condition="_CUPNEUTRAL = 0">_T1_ får uafgjort mod _T0_</title>
+    <title condition="_CUPNEUTRAL = 0">_T0_ får kun en _RE_ uafgjort hjemme</title>
+    <title>Knap uafgjort for [_T0_|_T1_]</title>
+    <title condition="_GOALS0_ = 0">Målløs uafgjort i kampen _T0_ mod _T1_</title>
+    <title condition="_CUP_ = 0">_T0_ og _T1_ deler pointene</title>
+    <title condition="_GOALS0_ > 1">Begivenhedsrig uafgjort for [_T0_|_T1_]</title>
+    <title condition="_GOALS0_ = 0">_T0_ vs. _T1_ er det rene kedsomhed</title>
+    <subtitle condition="_GOALS0_ > 1">[_T0_|_T1_] skuffes af frygteligt forsvar.</subtitle>
+    <subtitle condition="_GOALS0_ > 1">[_T0_|_T1_] indkasserer _GOALS1_ mål og bør være tilfredse med en uafgjort.</subtitle>
+    <subtitle condition="_GOALS0_ > 1">[_T0_|_T1_] indkasserer _GOALS1_ og får kun en uafgjort.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS0_">Mål af _SCORERS0_ sikrer kun _RE_ for _T0_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS0_ = 0">_SCORERS0_ redder uafgjort for _T0_ mod _T1_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS0_ = 0">_SCORERS1_ redder en uafgjort _T1_ mod _T0_.</subtitle>
+    <subtitle condition="_GOALS0_ < 2">_T0_ og _T1_ keder _AT_ tilskuere med frygteligt spil og en meget skuffende _RE_.</subtitle>
+    <subtitle condition="_GOALS0_ < 2">Begge hold mangler tydeligvis energien i denne kamp.</subtitle>
+    <subtitle>Det uafgjorte resultat hjælper ingen af holdene.</subtitle>
+    <subtitle>Hverken _T0_ eller _T1_ kan være tilfredse med en uafgjort.</subtitle>
+    <subtitle condition="_GOALS0_ < 2">Flere af de _AT_ tilskuere dør af kedsomhed i en gyselig kamp.</subtitle>
+    <subtitle condition="_GOALS0_ < 2">De to hold leverer afskyende fodboldminder fra tiden med Catenaccio.</subtitle>
+    <subtitle condition="_GOALS0_ > 1">_AT_ tilskuere nyder en livlig kamp på trods af den uafgjorte _RE_.</subtitle>
+    <subtitle condition="_GOALS0_ > 2">Træneren for [_T0_|_T1_] lover at koncentrere sig om at få forsvaret i form i de kommende uger.</subtitle>
+    <subtitle condition="_GOALS0_ > 1">[_T0_|_T1_] kombinerer en god offensiv med dyrbare fejltagelser og får kun uafgjort.</subtitle>
+    <subtitle condition="_GOALS0_ > 1">[_T0_|_T1_] begår nogle indlysende fejl og taber sejren.</subtitle>
+    <subtitle condition="_GOALS0_ = 1">En fejl af [_T0_|_T1_] gør at sejren forsvinder.</subtitle>
+    <subtitle condition="_GOALS0_ < _SHOTS0_ + 3">_T0_ brænder deres målchancer og får kun uafgjort.</subtitle>
+    <subtitle condition="_GOALS1_ < _SHOTS1_ + 3">_T1_ brænder deres målchancer og får kun uafgjort.</subtitle>
+    <subtitle condition="_GOALS1_ = 0 and _PEN1_ > 0">Et brændt straffe vil forfølge _T1_s spillere i lang tid.</subtitle>
+    <subtitle condition="_GOALS0_ = 0 and _PEN0_ > 0">Et brændt straffe vil forfølge _T0_s spillere i lang tid.</subtitle>
+    <subtitle condition="_UNBEATEN0_ > 3">_T0_ får kun uafgjort men den fortsatte række af ubesejrede kampe med i alt _UNBEATEN0_ kampe står stadig.</subtitle>
+    <subtitle condition="_UNBEATEN0_ > 3">_AT_ tilskuere ser _T0_ udvide deres række af ubesejrede kampe til i alt _UNBEATEN0_.</subtitle>
+    <subtitle condition="_LEAGUEUNBEATEN0_ > 3">_T0_ kunne ikke slås af _T1_ og udvider rækken af ubesejrede kampe i _LEAGUECUPNAME_ til _UNBEATEN0_.</subtitle>
+  </news_article>
+
+  <news_article>
+    <type>match</type>
+    <condition>_TLAYERDIFF_ = 0 and _GD_ = 1 and (_CUPKO_ = 0 or _CUPHOMEAWAY_ = 0 or _CUPFIRSTLEG_ = 1)</condition>
+    <title priority="20" condition="_CUPET_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ i overtiden</title>
+    <title priority="20" condition="_CUPET_ = 1">_TW_ sejrrig i overtiden</title>
+    <title priority="20" condition="_CUPPEN_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ _REW_ i straffespark</title>
+    <title priority="20" condition="_CUPPEN_ = 1">_TW_ bevarer nerverne i straffesparkkonkurrencen</title>
+    <title>Lige _REW_ for _TW_</title>
+    <title>_TW_ [slår|vinder over|besejrer] _TL_ i en [tæt|lige|spændende] kamp</title>
+    <title>_TW_ vinder i en [tæt|lige|spændende] kamp</title>
+    <title>_TL_ frustreret over unødvendige tab</title>
+    <title>_TL_ taber til _TW_ i et [tæt|lige|spændende] møde</title>
+    <title>Ren fornøjelse i mødet mellem _T0_ og _T1_</title>
+    <title>Tæt kamp med en god udgang for _TW_</title>
+    <title condition="_CUPNEUTRAL = 0">Underholdende kamp på _T0_</title>
+    <title condition="_TWN_ = 0 and _CUPNEUTRAL = 0">_TW_ er heldige med at få hjemmesejr</title>
+    <title condition="_TWN_ = 1 and _CUPNEUTRAL = 0">_TW_ vinder over _TL_ i en [tæt|lige|spændende] kamp</title>
+    <subtitle>_AT_ tilskuere ser _TW_ vinde med kun et mål mere end _TL_.</subtitle>
+    <subtitle>_AT_ tilskuere ser et [tæt|lige|spændende] møde mellem to lige hold.</subtitle>
+    <subtitle>_TW_ får en [tæt|lige|spændende] men fortjent _REW_ mod _TL_.</subtitle>
+    <subtitle>_TL_ burde have fået mere ud af denne kamp end en skuffende og uheldig _REL_.</subtitle>
+    <subtitle condition="_GOALS_TWN__ = 1">_SCORERS_TWN__ scorer kampens afgørende mål.</subtitle>
+    <subtitle condition="_GOALS_TWN__ = 1">Et mål er ikke nok for _TW_ til at vinde denne kamp.</subtitle>
+    <subtitle condition="_GOALS_TWN__ = 1 and _CUP_ = 0">Et mål er nok til at _TW_ snupper alle tre point.</subtitle>
+  </news_article>
+
+  <news_article>
+    <type>match</type>
+    <condition>_TLAYERDIFF_ = 0 and _GD_ != 0 and _TAVSKILLDIFF_ > 7 and (_CUPKO_ = 0 or _CUPHOMEAWAY_ = 0 or _CUPFIRSTLEG_ = 1)</condition>
+    <title priority="20" condition="_CUPET_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ i overtiden</title>
+    <title priority="20" condition="_CUPET_ = 1">_TW_ sejrrig i overtiden</title>
+    <title priority="20" condition="_CUPPEN_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ _REW_ på straffespark</title>
+    <title priority="20" condition="_CUPPEN_ = 1">_TW_ bevarer nerverne i straffesparkkonkurrencen</title>
+    <title condition="_TAVSKILL_TWN__ > _TAVSKILL_TLN__">_TW_ [slår|vinder over|besejrer] _TL_</title>
+    <title condition="_TAVSKILL_TWN__ > _TAVSKILL_TLN__">Som forventet, _TW_ [slår|vinder over|besejrer] _TL_</title>
+    <title condition="_TAVSKILL_TWN__ > _TAVSKILL_TLN__">_TW_ indfrier forventningerne</title>
+    <title condition="_TAVSKILL_TWN__ < _TAVSKILL_TLN__">_TW_ beviser at væddemålene var forkerte, [slår|vinder over|besejrer] _TL_</title>
+    <title condition="_TAVSKILL_TWN__ < _TAVSKILL_TLN__">_TW_ ophidser _TL_</title>
+    <title condition="_TAVSKILL_TWN__ < _TAVSKILL_TLN__">_TL_ overlegen i teori, taber _REL_</title>
+    <subtitle condition="_TAVSKILL_TWN__ > _TAVSKILL_TLN__">_TL_ gjorde deres bedste men kunne ikke rigtig håbe på at vinde her.</subtitle>
+    <subtitle condition="_TAVSKILL_TWN__ > _TAVSKILL_TLN__">_TW_ havde et bedre hold og brugte deres fordel skånselsløst.</subtitle>
+    <subtitle condition="_TAVSKILL_TWN__ < _TAVSKILL_TLN__">_TW_ vender op og ned på fodboldverden ved en overraskende _REW_ sejr.</subtitle>
+    <subtitle condition="_TAVSKILL_TWN__ < _TAVSKILL_TLN__">_TW_ er det dårligste hold, men deres passion viste sig mere end nok til sejr.</subtitle>
+    <subtitle condition="_TAVSKILL_TWN__ < _TAVSKILL_TLN__">Takket være deres meget klogere strategi, har _TW_ succes mod et langt bedre hold.</subtitle>
+  </news_article>
+
+  <news_article>
+    <type>match</type>
+    <condition>_TLAYERDIFF_ > 0 and (_CUPKO_ = 0 or _CUPHOMEAWAY_ = 0 or _CUPFIRSTLEG_ = 1)</condition>
+    <title priority="20" condition="_CUPET_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ i overtiden</title>
+    <title priority="20" condition="_CUPET_ = 1">_TW_ sejrrig i overtiden</title>
+    <title priority="20" condition="_CUPPEN_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ _REW_ på straffespark</title>
+    <title priority="20" condition="_CUPPEN_ = 1">_TW_ bevarer nerverne i straffesparkskonkurrencen</title>
+    <title condition="_GD_ = 0">_T[_TLAYER0_ L _TLAYER1_]_ får uventet uafgjort</title>
+    <title condition="_GD_ = 0">_T[_TLAYER0_ L _TLAYER1_]_ holder stand mod _T[_TLAYER0_ G _TLAYER1_]_</title>
+    <title condition="_GD_ = 0">_LEAGUECUPNAME_: _T[_TLAYER0_ L _TLAYER1_]_ får en uafgjort</title>
+    <title condition="_TWN_ = [_TLAYER0_ < _TLAYER1_]">_T[_TLAYER0_ L _TLAYER1_]_ ophidser _T[_TLAYER0_ G _TLAYER1_]_</title>
+    <title condition="_TWN_ = [_TLAYER0_ < _TLAYER1_]">_T[_TLAYER0_ L _TLAYER1_]_ overvinder klasseforskellen</title>
+    <title condition="_TWN_ = [_TLAYER0_ > _TLAYER1_]">_T[_TLAYER0_ L _TLAYER1_]_ bukker under for en bedre modstander</title>
+    <title condition="_TWN_ = [_TLAYER0_ > _TLAYER1_]">_T[_TLAYER0_ G _TLAYER1_]_ for stærk for _T[_TLAYER0_ L _TLAYER1_]_</title>
+    <title condition="_TWN_ = [_TLAYER0_ > _TLAYER1_]">_T[_TLAYER0_ G _TLAYER1_]_ [slår|vinder over|besejrer] en modig modstander</title>
+    <subtitle condition="_GD_ = 0">_T[_TLAYER0_ L _TLAYER1_]_ modstår presset fra et bedre hold og holder det uafgjorte resultat.</subtitle>
+    <subtitle condition="_GD_ = 0 or _TWN_ = [_TLAYER0_ L _TLAYER1_]">Ingen forventede dette resultat - undtagen spillerne og træneren hos _T[_TLAYER0_ L _TLAYER1_]_.</subtitle>
+    <subtitle condition="_GD_ = 0 or _TWN_ = [_TLAYER0_ L _TLAYER1_]">_T[_TLAYER0_ L _TLAYER1_]_ opnår et resulat ingen ville have ventet på forhånd.</subtitle>
+    <subtitle condition="_TWN_ = [_TLAYER0_ > _TLAYER1_]">_T[_TLAYER0_ L _TLAYER1_]_ kæmper bravt, men _T[_TLAYER0_ G _TLAYER1_]_ er bare for stærke.</subtitle>
+    <subtitle condition="_TWN_ = [_TLAYER0_ > _TLAYER1_]">_AT_ tilskuere ser på mens _T[_TLAYER0_ G _TLAYER1_]_ opfylder forventningerne og bevarer styringen mod en overmatchet modstander.</subtitle>
+    <subtitle condition="_TWN_ = [_TLAYER0_ < _TLAYER1_]">_T[_TLAYER0_ G _TLAYER1_]_ er fuldstændig ydmyget af _REL_ mod en lavererangerende modstander.</subtitle>
+    <subtitle condition="_TWN_ = [_TLAYER0_ < _TLAYER1_]">_T[_TLAYER0_ L _TLAYER1_]_ skammer _T[_TLAYER0_ G _TLAYER1_]_ med _REW_ i _LEAGUECUPNAME_.</subtitle>
+    <subtitle condition="_TWN_ = [_TLAYER0_ < _TLAYER1_]">_T[_TLAYER0_ L _TLAYER1_]_ lod ikke klasseforskellen vise sig og kom igennem med en _REW_.</subtitle>
+  </news_article>
+
+  <news_article>
+    <type>match</type>
+    <priority>25</priority>
+    <condition>_CUP_ = 1 and _CUPKO_ = 1 and _CUPPROMREL_ = 0 and _CUPAUX_ = 0 and _CUPSTAGE_ = 1 and _GDAGG_ != 0</condition>    
+    <title priority="20" condition="_CUPET_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ i overtiden</title>
+    <title priority="20" condition="_CUPET_ = 1">_TW_ sejrrig i overtiden</title>
+    <title priority="20" condition="_CUPPEN_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ _REW_ på straffespark</title>
+    <title priority="20" condition="_CUPPEN_ = 1">_TW_ bevarer nerverne i straffesparkkonkurrencen</title>
+    <title condition="_CUPFIRSTLEG_ = 1">_TW_ [vinder|er sejrrig i|kommer bedst ud af] første finalekamp i _LEAGUECUPNAME_</title>
+    <title condition="_CUPFIRSTLEG_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ i første finalekamp i _LEAGUECUPNAME_</title>
+    <title condition="_CUPFIRSTLEG_ = 1">_TL_ [taber til|falder mod] _TW_ i første finalekamp i _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ taber finalen i _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ erobrer kongekronen i _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ vinder _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ er vinder af _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ [slår|vinder over|besejrer] _CUPMATCHLOSER_ i finalen i _LEAGUECUPNAME_</title>
+    <title condition="_GDAGG_ <= 1 and (_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1)">[Spændende|Underholdende] finale i _LEAGUECUPNAME_ [mellem|der blev spillet af] _T0_ og _T1_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ får kun sølv i finalen i _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ taber _REL_ i finalen i _LEAGUECUPNAME_</title>
+    <subtitle condition="_CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ er sejrrig efter en _REW_ i den anden kamp i finalen.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1">_TL_ håber at udligne resultatet _RE_ i den anden kamp.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">_TL_ er [i problemer|urolig|irriteret] efter at have tabt den første kamp hjemme.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">_TW_ er den klare favorit til titlen efter sejr ude.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">_TW_ er næsten fremme ved målet efter udesejr.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 0 and _GD_ > 1">_TW_ vinder hjemme og vil ikke nemt kunne stoppes i den anden kamp.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 0 and _GD_ = 1">_TW_ vil møde den anden kamp med kun et mål i forspring.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">Satserne for væddemålene mod _TL_ stiger før den anden kamp.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _GD_ < 2">_TL_ kan stadig vinde titlen hvis de tager sig sammen i den anden kamp.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _GD_ < 2">_TL_ er stadig fortrøstningsfuld med at kunne udligne i den anden kamp, hvis de forbereder sig godt.</subtitle>
+    <subtitle condition="_CUPSECONDLEG_ = 1 and _GOALS_CUPMATCHWINNERN__ <= _GOALS_CUPMATCHLOSERN__">_RE_ i den anden kamp er nok for _CUPMATCHWINNER_ til at få titlen.</subtitle>
+    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">Fan fra _CUPMATCHLOSER_ ødelægger dele af indre by efter skuffende _RE_ i finalen.</subtitle>
+    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ når sit endelige mål efter at have overmandet _CUPMATCHLOSER_.</subtitle>
+    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ kan ikke stoppes af _CUPMATCHLOSER_ og vinder titlen med _REW_.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ <= 1 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1">_SCORERS_CUPMATCHWINNERN__ hjælper _CUPMATCHWINNER_ med at vinde titlen efter en spændende kamp overværet af _AT_.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_  = 0 or _CUPSECONDLEG_ = 1) and_GDAGG_ <= 1 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 0 and _GOALS_CUPMATCHWINNERN__ > 0">_SCORERS_CUPMATCHWINNERN__ vinder pokalen helt alene mod _CUPMATCHLOSER_.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ <= 1 and _GOALS_CUPMATCHWINNERN__ = 1">_SCORERS_CUPMATCHWINNERN__ laver det afgørende pokalmål mod _CUPMATCHLOSER_.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ = 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1">_CUPMATCHWINNER_ har kontrollen, vinder finale efter _REW_.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ = 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 0">_SCORERS_CUPMATCHWINNERN__ scorer mod _CUPMATCHLOSER_ og er den første spiller til at løfte pokalen.</subtitle>
+    <subtitle condition="_GDAGG_ > 2 and _CUPHOMEAWAY_ = 0">_CUPMATCHWINNER_ skøjter til titlen mod en underlegen modstander.</subtitle>
+    <subtitle priority="10" condition="_GDAGG_ > 2 and _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ dominerer i titelkampene og fortjener at hjembringe pokalen.</subtitle>
+    <subtitle condition="_GDAGG_ > 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPHOMEAWAY_ = 0">_CUPMATCHLOSER_ [knust|overløbet] af mål fra _SCORERS_CUPMATCHWINNERN__.</subtitle>
+    <subtitle condition="_GDAGG_ > 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ havde ikke en chance i disse kampe, og i tilbageblik bør de være glade for at have nået finalen.</subtitle>
+  </news_article>
+
+  <news_article>
+    <type>match</type>
+    <priority>25</priority>
+    <condition>_CUP_ = 1 and _CUPKO_ = 1 and _CUPPROMREL_ = 0 and _CUPAUX_ = 0 and _CUPSTAGE_ = 2 and _GDAGG_ != 0</condition>    
+    <title priority="20" condition="_CUPET_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ i overtiden</title>
+    <title priority="20" condition="_CUPET_ = 1">_TW_ sejrrig i overtiden</title>
+    <title priority="20" condition="_CUPPEN_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ _REW_ på straffespark</title>
+    <title priority="20" condition="_CUPPEN_ = 1">_TW_ bevarer nerverne i straffesparkkonkurrencen</title>
+    <title condition="_CUPFIRSTLEG_ = 1">_TW_ [vinder|er sejrrig i|er ovenpå efter] første semifinalekamp i _LEAGUECUPNAME_</title>
+    <title condition="_CUPFIRSTLEG_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ i første semifinalekamp i _LEAGUECUPNAME_</title>
+    <title condition="_CUPFIRSTLEG_ = 1">_TL_ taber _RE_ i første semifinalekamp i _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ elimineret i semifinalen i _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ går videre i _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ igennem til finalen i _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ går videre til finalen i _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ [slår|vinder over|besejrer] _CUPMATCHLOSER_ i semifinalen i _LEAGUECUPNAME_</title>
+    <title condition="_GDAGG_ <= 1 and (_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1)">[Tæt|Neglebidende] _LEAGUECUPNAME_ semifinale mellem _T0_ and _T1_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ efterladt med intet efter semifinale i _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ taber _REL_ i semifinale i _LEAGUECUPNAME_</title>
+    <subtitle condition="_CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ har succes efter _REW_ i den anden kamp af semifinalen.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1">_TL_ håber at udligne _RE_ i den anden kamp.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">_TL_ er [i problemer|urolig|irriteret] efter at have tabt den første kamp hjemme.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">_TW_ er klar favorit til at gå videre til finalen efter udesejr.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">_TW_ er næsten videre efter udesejr.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 0 and _GD_ > 1">_TW_ vinder hjemme og bliver ikke nem at stoppe i den anden kamp.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 0 and _GD_ = 1">_TW_ vil [gå til|komme ud til|spille|starte] den anden kamp med kun 1 mål bedre..</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">Indsatser på væddemål mod _TL_ stiger før den anden kamp.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _GD_ < 2">_TL_ kan stadig gå videre til finalen hvis de tager sig sammen i den anden kamp.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _GD_ < 2">_TL_ er stadig overbevidst om, at de kan udligne i den anden kamp, hvis de forbereder sig godt.</subtitle>
+    <subtitle condition="_CUPSECONDLEG_ = 1 and _GOALS_CUPMATCHWINNERN__ <= _GOALS_CUPMATCHLOSERN__">_RE_ i den anden kamp er nok til videre avancement for _CUPMATCHWINNER_.</subtitle>
+    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">Fan af _CUPMATCHLOSER_ ødelægger dele af indre by efter skuffende _RE_ i semifinalen.</subtitle>
+    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ når finalen efter at have kontrolleret _CUPMATCHLOSER_.</subtitle>
+    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ kan ikke stoppes af _CUPMATCHLOSER_ og kommer videre med _REW_.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ <= 1 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1">_SCORERS_CUPMATCHWINNERN__ hjælper _CUPMATCHWINNER_ med at vinde titlen efter en spændende kamp overværet af _AT_.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_  = 0 or _CUPSECONDLEG_ = 1) and_GDAGG_ <= 1 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 0 and _GOALS_CUPMATCHWINNERN__ > 0">_SCORERS_CUPMATCHWINNERN__ sikrer på egen hånd en mulighed for titlen mod _CUPMATCHLOSER_.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ <= 1 and _GOALS_CUPMATCHWINNERN__ = 1">_SCORERS_CUPMATCHWINNERN__ scorer det afgørende mål mod _CUPMATCHLOSER_.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ = 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1">_CUPMATCHWINNER_ har kontrollen, vinder semifinalen efter _REW_.</subtitle>
+    <subtitle condition="_GDAGG_ > 2 and _CUPHOMEAWAY_ = 0">_CUPMATCHWINNER_ skøjter til titlen mod en underlegen modstander.</subtitle>
+    <subtitle priority="10" condition="_GDAGG_ > 2 and _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ dominerer i begge kampe og fortjener at komme i finalen.</subtitle>
+    <subtitle condition="_GDAGG_ > 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPHOMEAWAY_ = 0">_CUPMATCHLOSER_ [knust|overløbet] af mål fra _SCORERS_CUPMATCHWINNERN__.</subtitle>
+    <subtitle condition="_GDAGG_ > 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ havde ikke en chance i disse kampe, og i tilbageblik bør de være glade for at have nået finalen.</subtitle>
+  </news_article>
+
+  <news_article>
+    <type>match</type>
+    <priority>25</priority>
+    <condition>_CUP_ = 1 and _CUPKO_ = 1 and _CUPPROMREL_ = 0 and _CUPAUX_ = 0 and _CUPSTAGE_ = 3 and _GDAGG_ != 0</condition>    
+    <title priority="20" condition="_CUPET_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ i overtiden</title>
+    <title priority="20" condition="_CUPET_ = 1">_TW_ sejrrig i overtiden</title>
+    <title priority="20" condition="_CUPPEN_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ _REW_ på straffespark</title>
+    <title priority="20" condition="_CUPPEN_ = 1">_TW_ bevarer nerverne i straffesparkskonkurrencen</title>
+    <title condition="_CUPFIRSTLEG_ = 1">_TW_ [vinder|sejrrig i|har succes i] første kamp af kvartfinalen i _LEAGUECUPNAME_</title>
+    <title condition="_CUPFIRSTLEG_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ i første kvartfinalekamp i _LEAGUECUPNAME_</title>
+    <title condition="_CUPFIRSTLEG_ = 1">_TL_ taber _RE_ i første kvartfinalekamp i _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ elimineret i kvartfinalen i _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ går videre i _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ videre til semifinalen i _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ går videre til semifinalen i _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ [slår|vinder over|besejrer] _CUPMATCHLOSER_ i kvartfinalen i _LEAGUECUPNAME_</title>
+    <title condition="_GDAGG_ <= 1 and (_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1)">Spændende kvartfinale i _LEAGUECUPNAME_ mellem _T0_ og _T1_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ går tomhåndet fra kvartfinalen i _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ taber _REL_ i kvartfinalen i _LEAGUECUPNAME_</title>
+    <subtitle condition="_CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ succesfuld efter _REW_ i den anden kvartfinalekamp.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1">_TL_ håber at udligne _RE_ i den anden kamp.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">_TL_ er [i problemer|urolig|irriteret] efter at have tabt den første kamp hjemme.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">_TW_ er klare favoritter til at gå videre til semifinalen efter udesejr.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">_TW_ er næsten videre efter udesejr.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 0 and _GD_ > 1">_TW_ vinder hjemme og vil ikke nemt kunne stoppes i den anden kamp.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 0 and _GD_ = 1">_TW_ vil [gå til|komme ud til|spille|starte] den anden kamp med kun 1 mål bedre.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">Væddemål mod _TL_ stiger før den anden kamp.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _GD_ < 2">_TL_ kan stadig komme i semifinalerne hvis de tager sig sammen i den anden kamp.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _GD_ < 2">_TL_ er stadig fortrøstningsfuld med at kunne udligne i den anden kamp, hvis de forbereder sig godt.</subtitle>
+    <subtitle condition="_CUPSECONDLEG_ = 1 and _GOALS_CUPMATCHWINNERN__ <= _GOALS_CUPMATCHLOSERN__">_RE_ i den anden kamp er nok til at _CUPMATCHWINNER_ går videre.</subtitle>
+    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">Fan af _CUPMATCHLOSER_ ødelægger dele af indre by efter skuffende _RE_ i kvartfinalen.</subtitle>
+    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ når semifinalen efter at have kontrolleret _CUPMATCHLOSER_.</subtitle>
+    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ kan ikke stoppes af _CUPMATCHLOSER_ og er videre med _REW_.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ <= 1 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1">_SCORERS_CUPMATCHWINNERN__ hjælper _CUPMATCHWINNER_ med at komme videre efter en spændende kamp overværet af _AT_ tilskuere.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_  = 0 or _CUPSECONDLEG_ = 1) and_GDAGG_ <= 1 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 0 and _GOALS_CUPMATCHWINNERN__ > 0">_SCORERS_CUPMATCHWINNERN__ sikrer på egen hånd en plads i semifinalerne i kampen mod _CUPMATCHLOSER_.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ <= 1 and _GOALS_CUPMATCHWINNERN__ = 1">_SCORERS_CUPMATCHWINNERN__ laver det afgørende mål mod _CUPMATCHLOSER_.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ = 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1">_CUPMATCHWINNER_ i kontrol, vinder kvartfinale efter _REW_.</subtitle>
+    <subtitle condition="_GDAGG_ > 2 and _CUPHOMEAWAY_ = 0">_CUPMATCHWINNER_ skøjter mod semifinalerne mod en underlegen modstander.</subtitle>
+    <subtitle priority="10" condition="_GDAGG_ > 2 and _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ dominerer i begge kampe og fortjener at komme i semifinalen.</subtitle>
+    <subtitle condition="_GDAGG_ > 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPHOMEAWAY_ = 0">_CUPMATCHLOSER_ knust af mål fra _SCORERS_CUPMATCHWINNERN__.</subtitle>
+    <subtitle condition="_GDAGG_ > 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ havde ikke en chance i disse kampe og burde i tilbageblik sikkert være glad for at være kommet så langt.</subtitle>
+  </news_article>
+
+  <news_article>
+    <type>match</type>
+    <priority>25</priority>
+    <condition>_CUP_ = 1 and _CUPKO_ = 1 and _CUPPROMREL_ = 0 and _CUPAUX_ = 0 and _CUPSTAGE_ > 3 and _CUPFIRSTLEG_ = 1</condition>
+    <title condition="_GD_ = 0">_T1_ får uafgjort på _T0_</title>
+    <title condition="_GD_ = 0">_T0_ og _T1_ spillede uafgjort i første kamp</title>
+    <title condition="_GD_ = 0">_T1_ tilfreds med uafgjort</title>
+    <title>_TW_ [slår|vinder over|besejrer] _TL_ i første kamp</title>
+    <title>_TL_ taber første kamp mod _TW_</title>
+    <title condition="_GD_ > 1">Overbevisende sejr af _TW_ i første kamp</title>
+    <title condition="_GD_ = 1">_TW_ vinder [tæt|lige|spændende] første kamp</title>
+    <title condition="_GD_ = 1">_TL_ besejret i [tæt|lige|spændende] første kamp</title>
+    <subtitle condition="_GD_ > 2">_TW_ vil være svære at stoppe efter sejr på _REW_.</subtitle>
+    <subtitle condition="_GD_ > 2">_TL_ må begrave deres håb om videre avancement efter de blev jordet af _TW_ i den første kamp.</subtitle>
+    <subtitle condition="_GD_ > 2">_TW_ kan allerede begynde forberedelserne på den næste runde efter at have vundet _REW_.</subtitle>
+    <subtitle condition="_GD_ > 1 and _TWN_ = 1">_TW_ vinder ude og kan næppe stoppes i at gå videre.</subtitle>
+    <subtitle condition="_GD_ > 1 and _TWN_ = 1">Efter nederlag hjemme vil _TL_ få det svært i den anden kamp.</subtitle>
+    <subtitle condition="_GD_ > 1 and _TWN_ = 1">_TW_ er i en god position før den anden kamp efter en nem udebanesejr.</subtitle>
+    <subtitle condition="_GD_ = 1 and _TWN_ = 1">_TW_ lægger et godt grundlag for den anden kampe med deres _REW_ udebanesejr.</subtitle>
+    <subtitle condition="_GD_ = 1 and _TWN_ = 1">_TW_ er nu definitivt i en god position og kan gå videre med uafgjort hjemme.</subtitle>
+    <subtitle condition="_GD_ > 1 and _TLN_ = 1">_TW_ er næsten videre efter en nem hjemmesejr.</subtitle>
+    <subtitle condition="_GD_ > 1 and _TLN_ = 1">_TL_ vil forsøge at udligne _REL_ i den anden kamp, hjulpet frem af deres hjemmepublikum.</subtitle>
+    <subtitle condition="_GD_ > 1 and _TLN_ = 1">En overlegen kamp hjemme af _TW_ bør gøre det til en nem opgave i den anden kamp.</subtitle>
+    <subtitle condition="_GD_ = 1 and _TLN_ = 1">Efter en snæver _REW_ hjemmesejr af _TW_, er denne kamp stadig åben.</subtitle>
+    <subtitle condition="_GD_ = 1 and _TLN_ = 1">_TL_ kan stadig gå videre, forudsat at de vinder med mindst 2 mål i den anden kamp.</subtitle>
+    <subtitle condition="_GD_ = 1 and _TLN_ = 1 and _GOALS1_ > 1">_TL_ laver udebanemål som kan blive meget afgørende samlet set.</subtitle>
+    <subtitle condition="_GD_ = 1 and _TLN_ = 1 and _GOALS1_ > 1">_TW_ besejrer _TL_ men de kunne godt have undgået at inkassere de mål.</subtitle>
+    <subtitle condition="_GD_ = 0">_T1_ kan gå videre med en sejr hjemme i den anden kamp.</subtitle>
+    <subtitle condition="_GD_ = 0">_AT_ tilskuere efterladt utilfredse efter en mager uafgjort hjemme af _T0_.</subtitle>
+    <subtitle condition="_GD_ = 0">_T0_ skal tydeligvis forbedre sig i anden kamp, ellers er det slut.</subtitle>
+    <subtitle condition="_GD_ = 0 and _GOALS0_ > 1">_T1_ har kun brug for uafgjort 0 : 0 i den anden kamp for at gå videre til næste runde.</subtitle>
+  </news_article>
+
+  <news_article>
+    <type>match</type>
+    <priority>25</priority>
+    <condition>_CUP_ = 1 and _CUPKO_ = 1 and _CUPPROMREL_ = 0 and _CUPAUX_ = 0 and _CUPSTAGE_ > 3 and _CUPSECONDLEG_ = 1</condition>
+    <title>_CUPMATCHWINNER_ videre til næste runde</title>
+    <title>_CUPMATCHWINNER_ går videre</title>
+    <title>_CUPMATCHLOSER_ elimineret</title>
+    <title>_CUPMATCHLOSER_ er ude</title>
+    <title priority="20" condition="_CUPET_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ i overtid</title>
+    <title priority="20" condition="_CUPET_ = 1">_TW_ sejrrig i overtiden</title>
+    <title priority="20" condition="_CUPPEN_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ _REW_ i straffespark</title>
+    <title priority="20" condition="_CUPPEN_ = 1">_TW_ bevarer nerverne i straffesparkskonkurrencen</title>
+    <title condition="_GD_ = 0">Uafgjort nok for _CUPMATCHWINNER_</title>
+    <title condition="_GD_ = 0">_CUPMATCHWINNER_ går videre med uafgjort</title>
+    <title condition="_GD_ = 0">_CUPMATCHLOSER_ ude efter _RE_ i anden kamp</title>
+    <title condition="_TWN_ != _CUPMATCHWINNERN_">_REW_ mod _TL_ er ikke nok for _TW_</title>
+    <title condition="_TWN_ != _CUPMATCHWINNERN_">_REW_ er ikke nok for _TW_ i den anden kamp</title>
+    <title condition="_TWN_ != _CUPMATCHWINNERN_">_TW_ elimineret på trods af sejr i _REW_</title>
+    <title condition="_TWN_ != _CUPMATCHWINNERN_">_CUPMATCHWINNER_ videre trods nederlag</title>
+    <title condition="_GDAGG_ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0">_CUPMATCHWINNER_ går videre [takket være|på grund af] reglen om mål på udebane</title>
+    <title condition="_GDAGG_ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0">_CUPMATCHWINNER_ går videre efter _RE_</title>
+    <title condition="_GDAGG_ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0">Tæt samlet pointantal mellem _T0_ og _T1_</title>
+    <title condition="_GDAGG_ = 1">_CUPMATCHWINNER_ går videre med kun et mål i måldifference</title>
+    <title condition="_GDAGG_ = 1">_CUPMATCHLOSER_ ude efter en tæt kamp</title>
+    <title condition="_GDAGG_ > 1">_CUPMATCHWINNER_ går nemt videre</title>
+    <title condition="_GDAGG_ > 1">_CUPMATCHWINNER_ komfortabelt videre til næste runde</title>
+    <title condition="_GDAGG_ > 1">_CUPMATCHWINNER_ når nemt næste runde</title>
+    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0">_SCORERS_CUPMATCHWINNERN__ sikrer at _CUPMATCHWINNER_ fortsætter til næste runde af _LEAGUECUPNAME_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0">_CUPMATCHWINNER_ videre takket være mål af _SCORERS_CUPMATCHWINNERN__.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0">_CUPMATCHWINNER_ går videre til næste runde takket være _SCORERS_CUPMATCHWINNERN__.</subtitle>
+    <subtitle condition="_GDAGG_ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0">_AT_ tilskuere er åndeløse efter en spændende _RE_ i 2. halvleg.</subtitle>
+    <subtitle condition="_GDAGG_ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0">Holdene var mere eller mindre lige gode i disse kampe, men _CUPMATCHWINNER_ havde heldet på deres side.</subtitle>
+    <subtitle condition="_GDAGG_ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0">_CUPMATCHLOSER_ havde kun brug for et mere mål for at vinde kampen.</subtitle>
+    <subtitle condition="_GDAGG_ = 1">Dette var en hård kamp, men _CUPMATCHLOSER_ er ude efter _RE_ i 2. halvleg.</subtitle>
+    <subtitle condition="_GDAGG_ = 1">_CUPMATCHWINNER_ viser god modstand mod _CUPMATCHLOSER_ og fortsætter til næste runde efter en spændende kamp.</subtitle>
+    <subtitle condition="_CUPET_ = 0 and _CUPPEN_ = 0 and _GDAGG_ < 2">_CUPMATCHWINNER_ bør give _SCORERS_CUPMATCHWINNERN__ en medalje for at skyde dem ind i den næste runde.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0 and _GDAGG_ < 2">_SCORERS_CUPMATCHWINNERN__ scorer som _CUPMATCHWINNER_ klemmes af _CUPMATCHLOSER_.</subtitle>
+    <subtitle condition="_GDAGG_ > 2">_CUPMATCHWINNER_ mødte reelt ingen modstand i denne kamp og fortjener at gå videre.</subtitle>
+    <subtitle condition="_GDAGG_ > 2">_CUPMATCHLOSER_ havde ikke en chance i denne kamp og er ude.</subtitle>
+    <subtitle condition="_GDAGG_ > 2">_CUPMATCHWINNER_ dominerede denne kamp og er stadig en udfordrer til titlen.</subtitle>
+  </news_article>
+
+  <news_article>
+    <type>match</type>
+    <priority>25</priority>
+    <condition>_CUP_ = 1 and _CUPKO_ = 1 and _CUPPROMREL_ = 0 and _CUPAUX_ = 0 and _CUPSTAGE_ > 3 and _CUPHOMEAWAY_ = 0</condition>
+    <title>_CUPMATCHWINNER_ videre til den næste runde</title>
+    <title>_CUPMATCHWINNER_ går videre</title>
+    <title>_CUPMATCHLOSER_ elimineret</title>
+    <title>_CUPMATCHLOSER_ er ude</title>
+    <title priority="20" condition="_CUPET_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ i overtid</title>
+    <title priority="20" condition="_CUPET_ = 1">_TW_ sejrrig i overtiden</title>
+    <title priority="20" condition="_CUPPEN_ = 1">_TW_ [slår|vinder over|besejrer] _TL_ _REW_ på straffespark</title>
+    <title priority="20" condition="_CUPPEN_ = 1">_TW_ bevarer nerverne i straffesparkskonkurrencen</title>
+    <title condition="_GD_ = 0">Uafgjort nok for _CUPMATCHWINNER_</title>
+    <title condition="_GD_ = 0">_CUPMATCHWINNER_ går videre efter uafgjort</title>
+    <title condition="_GD_ = 0">_CUPMATCHLOSER_ elimineret efter _RE_ i anden halvleg</title>
+    <title condition="_GDAGG_ = 1">_CUPMATCHWINNER_ går videre kun 1 mål bedre</title>
+    <title condition="_GDAGG_ = 1">_CUPMATCHLOSER_ ude efter en tæt kamp</title>
+    <title condition="_GDAGG_ > 1">_CUPMATCHWINNER_ fortsætter nemt</title>
+    <title condition="_GDAGG_ > 1">_CUPMATCHWINNER_ nemt videre til næste runde</title>
+    <title condition="_GDAGG_ > 1">_CUPMATCHWINNER_ når nemt næste runde</title>
+    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0">_SCORERS_CUPMATCHWINNERN__ sikrer at _CUPMATCHWINNER_ fortsætter til næste runde af _LEAGUECUPNAME_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0">_CUPMATCHWINNER_ videre takket være mål af _SCORERS_CUPMATCHWINNERN__.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0">_CUPMATCHWINNER_ går videre til næste runde takket være _SCORERS_CUPMATCHWINNERN__.</subtitle>
+    <subtitle condition="_GDAGG_ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0">_AT_ tilskuere er åndeløse efter en spændende _RE_.</subtitle>
+    <subtitle condition="_GDAGG_ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0">Holdene var mere eller mindre lige gode i denne kamp, men _CUPMATCHWINNER_ havde heldet på deres side.</subtitle>
+    <subtitle condition="_GDAGG_ = 1">Dette var en hård kamp, men _CUPMATCHLOSER_ er ude efter _RE_.</subtitle>
+    <subtitle condition="_GDAGG_ = 1">_CUPMATCHWINNER_ viser god modstand mod _CUPMATCHLOSER_ og fortsætter til næste runde efter en spændende kamp.</subtitle>
+    <subtitle condition="_CUPET_ = 0 and _CUPPEN_ = 0 and _GDAGG_ < 2">_CUPMATCHWINNER_ bør give _SCORERS_CUPMATCHWINNERN__ en medalje for at sende dem ind i den næste runde.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0 and _GDAGG_ < 2">_SCORERS_CUPMATCHWINNERN__ scorer som _CUPMATCHWINNER_ presses af _CUPMATCHLOSER_.</subtitle>
+    <subtitle condition="_GDAGG_ > 2">_CUPMATCHWINNER_ mødte reelt ingen modstand i denne kamp og fortjener at gå videre.</subtitle>
+    <subtitle condition="_GDAGG_ > 2">_CUPMATCHLOSER_ havde ikke en chance i denne kamp og er ude.</subtitle>
+    <subtitle condition="_GDAGG_ > 2">_CUPMATCHWINNER_ dominerede denne kamp og er stadig en udfordrer til titlen.</subtitle>
+  </news_article>
+
+</news>
+
+
