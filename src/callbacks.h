@@ -368,3 +368,23 @@ void
 on_player_menu_edit_name_activate      (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 #endif
+
+void
+on_default_team1_activate              (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_store1_activate                     (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_restore1_activate                   (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_default_team_store_activate         (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_default_team_restore_activate       (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
