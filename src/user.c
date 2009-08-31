@@ -1349,7 +1349,4 @@ restore_default_team(User *user)
         }
     }
     team_change_structure(user->tm, user->default_structure);
-    user->default_structure=-1;
-    g_array_free(user->default_team, TRUE);
-    user->default_team = g_array_new(FALSE, FALSE, sizeof(gint));
 }

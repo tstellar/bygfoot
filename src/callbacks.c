@@ -865,6 +865,43 @@ on_menu_show_job_exchange_activate     (GtkMenuItem     *menuitem,
 }
 
 void
+on_default_team1_activate              (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+
+}
+
+
+void
+on_default_team_store_activate         (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_default_team_store_activate\n");
+#endif
+store_default_team(&current_user);
+}
+
+
+void
+on_default_team_restore_activate       (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+#ifdef DEBUG
+    printf("on_default_team_restore_activate\n");
+#endif
+    if (current_user.default_team->len==0)
+    {
+	game_gui_print_message(
+	    _("There is no default team stored yet."));
+	return;
+    }
+    restore_default_team(&current_user);
+    // reload the treeview
+    treeview_show_user_player_list();
+}
+
+void
 on_training_camp_activate              (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1756,5 +1793,3 @@ on_menu_reset_players_activate         (GtkMenuItem     *menuitem,
     
     game_reset_players(idx);
 }
-
-
