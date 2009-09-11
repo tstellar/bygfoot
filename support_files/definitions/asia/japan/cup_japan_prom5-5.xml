@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+	<name>Tohoku Promotion Playoff</name>
+	<short_name>To. Playoff</short_name>
+	<sid>japan_prom5-5</sid>
+	<symbol>flag_japan.png</symbol>
+	<property>promotion</property>
+	<property>highlight2</property>
+	<add_week>1000</add_week>
+	<week_gap>1</week_gap>
+	
+	<cup_rounds>
+		<cup_round>
+			<home_away>0</home_away>
+			<choose_teams>
+				<choose_team>
+					<choose_team_sid>japan5-5a</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>1</end_idx>
+				</choose_team>
+				<choose_team>
+					<choose_team_sid>japan5-5b</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>1</end_idx>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+		<cup_round>
+			<choose_team>
+				<choose_team_sid>japan4-5</choose_team_sid>
+				<number_of_teams>1</number_of_teams>
+				<start_idx>8</start_idx>
+				<end_idx>8</end_idx>
+			</choose_team>
+		</cup_round>
+	</cup_rounds>
+</cup>
