@@ -552,7 +552,7 @@ live_game_event_injury(gint team, gint player, gboolean create_new)
 	    {
 		sub_in = game_substitute_player(tms[last_unit.event.team],
 						player_id_index(tms[last_unit.event.team],
-								last_unit.event.player));
+								last_unit.event.player, TRUE));
 		if(sub_in != -1)
 		{
 		    old_structure = tms[last_unit.event.team]->structure;
@@ -1008,7 +1008,7 @@ live_game_event_send_off(gint team, gint player, gboolean second_yellow)
 	else if(tms[team]->players->len > 11)
 	{
 	    game_substitute_player_send_off(match->fix->clid,
-					    tms[team], player_id_index(tms[team], player),
+					    tms[team], player_id_index(tms[team], player, TRUE),
 					    &to_substitute, &substitute);
 
 	    if(to_substitute != -1)

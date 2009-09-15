@@ -55,22 +55,25 @@ callback_show_next_live_game(void)
 #endif
 
     gint i, j;
+    gint user_team_involved;
 
     for(i=0;i<users->len;i++) {
 	usr(i).counters[COUNT_USER_TOOK_TURN] = 0;
-        // Store the player order before the live match this process is
-        // repeated so check first if it hasn't been done yet
-        if (usr(i).default_team->len==0 && option_int("int_opt_user_store_restore_default_team",
-			  &usr(i).options)) {
-            store_default_team(&usr(i));
-        }
     }
 
     counters[COUNT_NEWS_SHOWN] = 
         counters[COUNT_NEW_NEWS] = 0;
 
-    for(i=0;i<ligs->len;i++)
-	for(j=0;j<lig(i).fixtures->len;j++)
+    for(i=0;i<ligs->len;i++) {
+	for(j=0;j<lig(i).fixtures->len;j++) {
+            // Store the player order before the live match: get the team that is involved, if it's a user team
+            // and that user has the option to always store the default team checked, store it
+            user_team_involved = fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j));
+            if (user_team_involved!=-1 && option_int("int_opt_user_store_restore_default_team",
+			  &usr(user_team_involved).options)) {
+                store_default_team(&usr(user_team_involved));
+            }
+            
 	    if(g_array_index(lig(i).fixtures, Fixture, j).week_number == week &&
 	       g_array_index(lig(i).fixtures, Fixture, j).week_round_number == week_round &&
 	       fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j)) != -1 &&
@@ -83,9 +86,20 @@ callback_show_next_live_game(void)
                                             &usr(fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j))).live_game);
 		return;
 	    }
+        }
+    }
 
-    for(i=0;i<acps->len;i++)
-	for(j=0;j<acp(i)->fixtures->len;j++)
+    for(i=0;i<acps->len;i++) {
+        for(j=0;j<acp(i)->fixtures->len;j++) {
+            // Store the player order before the live match: get the team that is involved, if it's a user team
+            // and that user has the option to always store the default team checked, store it
+            user_team_involved = fixture_user_team_involved(&g_array_index(acp(i)->fixtures, Fixture, j));
+
+            if (user_team_involved!=-1 && option_int("int_opt_user_store_restore_default_team",
+			  &usr(user_team_involved).options)) {
+                store_default_team(&usr(user_team_involved));
+            }
+
 	    if(g_array_index(acp(i)->fixtures, Fixture, j).week_number == week &&
 	       g_array_index(acp(i)->fixtures, Fixture, j).week_round_number == week_round &&
 	       fixture_user_team_involved(&g_array_index(acp(i)->fixtures, Fixture, j)) != -1 &&
@@ -98,6 +112,8 @@ callback_show_next_live_game(void)
                                             &usr(fixture_user_team_involved(&g_array_index(acp(i)->fixtures, Fixture, j))).live_game);
  		return;
 	    }
+        }
+    }
 
     window_destroy(&window.live);
 

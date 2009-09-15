@@ -84,7 +84,7 @@ misc2_callback_transfer_user_player(void)
 	    		player_of_idx_team(new_team, new_team->players->len - 1)->wage = 
 				transoff(stat2, 0).wage;
 			    g_array_remove_index(current_user.tm->players, 
-						 player_id_index(current_user.tm, trans(stat2).id));
+						 player_id_index(current_user.tm, trans(stat2).id, TRUE));
 		    	transfer_remove_player(stat2);
 			}
 			else
@@ -104,7 +104,7 @@ misc2_callback_transfer_user_player(void)
     	{		
 			current_user.money += transoff(stat2, 0).fee;
 			current_user.money_in[1][MON_IN_TRANSFERS] += transoff(stat2, 0).fee;
-			player_remove_from_team(current_user.tm, player_id_index(current_user.tm, trans(stat2).id));
+			player_remove_from_team(current_user.tm, player_id_index(current_user.tm, trans(stat2).id, TRUE));
     	}
     }
 

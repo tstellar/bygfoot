@@ -334,9 +334,10 @@ player_assign_wage(const Player *pl)
     his id.
     @param tm The team.
     @param player_id The player's id. 
+    @param stopWhenPlayerNotFound Should we stop when we don't find the player
     @return The array index or -1. */
 gint
-player_id_index(const Team *tm, gint player_id)
+player_id_index(const Team *tm, gint player_id, gboolean stopWhenPlayerNotFound)
 {
     gint i;
 
@@ -344,9 +345,11 @@ player_id_index(const Team *tm, gint player_id)
 	if(g_array_index(tm->players, Player, i).id == player_id)
 	    return i;
     
-    main_exit_program(EXIT_INT_NOT_FOUND, 
+    if (stopWhenPlayerNotFound) {
+        main_exit_program(EXIT_INT_NOT_FOUND, 
 		      "player_id_index: didn't find player with id %d of team %s\n", 
 		      player_id, tm->name);
+    }
 
     return -1;
 }
@@ -480,13 +483,13 @@ player_compare_func(gconstpointer a, gconstpointer b, gpointer data)
 			       player_get_game_skill(pl2, FALSE, TRUE));
     else if(type == PLAYER_COMPARE_ATTRIBUTE_POS)
     {
-	if(MIN(player_id_index(pl1->team, pl1->id), 
-	       player_id_index(pl2->team, pl2->id)) < 11 &&
-	   MAX(player_id_index(pl1->team, pl1->id), 
-	       player_id_index(pl2->team, pl2->id)) >= 11)
+	if(MIN(player_id_index(pl1->team, pl1->id, TRUE), 
+	       player_id_index(pl2->team, pl2->id, TRUE)) < 11 &&
+	   MAX(player_id_index(pl1->team, pl1->id, TRUE), 
+	       player_id_index(pl2->team, pl2->id, TRUE)) >= 11)
 	    return_value = 
-		(player_id_index(pl1->team, pl1->id) > 
-		 player_id_index(pl2->team, pl2->id)) ?
+		(player_id_index(pl1->team, pl1->id, TRUE) > 
+		 player_id_index(pl2->team, pl2->id, TRUE)) ?
 		1 : -1;
 	else if(pl1->cskill == 0)
 	    return_value = (pl2->cskill == 0) ? 0 : 1;
@@ -1265,7 +1268,7 @@ player_remove_contract(Player *pl)
     if(debug < 50)
         user_event_add(user_from_team(pl->team), EVENT_TYPE_PLAYER_LEFT, -1, -1, NULL,
                        pl->name, NULL);
-    player_remove_from_team(pl->team, player_id_index(pl->team, pl->id));
+    player_remove_from_team(pl->team, player_id_index(pl->team, pl->id, TRUE));
 }
 
 /** Remove a player from a team.
@@ -1347,7 +1350,7 @@ player_replace_by_new(Player *pl, gboolean free_player)
 #endif
 
     Team *tm = pl->team;
-    gint idx = player_id_index(tm, pl->id);
+    gint idx = player_id_index(tm, pl->id, TRUE);
     Player new = player_new(tm, team_get_average_talent(tm), FALSE);
         
     new.name = name_get(pl->team->names_file);

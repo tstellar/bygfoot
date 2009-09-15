@@ -101,7 +101,7 @@ gboolean
 player_substitution_good_structure(gint old_structure, gint old_pos, gint player_pos);
 
 gint
-player_id_index(const Team *tm, gint player_id);
+player_id_index(const Team *tm, gint player_id, gboolean stopWhenPlayerNotFound);
 
 gfloat
 player_get_game_skill(const Player *pl, gboolean skill, gboolean special);

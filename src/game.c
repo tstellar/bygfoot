@@ -744,7 +744,7 @@ game_substitute_player(Team *tm, gint player_number)
 
     substitute = ((Player*)g_ptr_array_index(substitutes, 0))->id;
 
-    player_swap(tm, player_number, tm, player_id_index(tm, substitute));
+    player_swap(tm, player_number, tm, player_id_index(tm, substitute,TRUE));
 
     g_ptr_array_free(substitutes, TRUE);
 
@@ -894,8 +894,8 @@ game_substitute_player_send_off(gint clid, Team *tm, gint player_number,
 			       GINT_TO_POINTER(position));
     
     *substitute = ((Player*)g_ptr_array_index(substitutes, 0))->id;
-    player_swap(tm, player_id_index(tm, *to_substitute),
-		tm, player_id_index(tm, *substitute));
+    player_swap(tm, player_id_index(tm, *to_substitute, TRUE),
+		tm, player_id_index(tm, *substitute, TRUE));
 
     g_ptr_array_free(substitutes, TRUE);
 
@@ -1235,7 +1235,7 @@ game_get_default_penalty_shooter(const Team *tm)
 				    &usr(team_is_user(tm)).options)) != NULL &&
        player_id_index(tm,
 		       option_int("int_opt_user_penalty_shooter",
-				  &usr(team_is_user(tm)).options)) < 11 &&
+				  &usr(team_is_user(tm)).options), TRUE) < 11 &&
        player_of_id_team(tm, 
 			 option_int("int_opt_user_penalty_shooter",
 				    &usr(team_is_user(tm)).options))->cskill != 0)
