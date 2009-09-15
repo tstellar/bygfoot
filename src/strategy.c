@@ -654,8 +654,8 @@ strategy_live_game_apply_action(LiveGame *match, gint team_idx,
 
 	if(sub_in_id > 0 && sub_out_id > 0)
 	{
-	    player_swap(tm, player_id_index(tm, sub_out_id),
-			tm, player_id_index(tm, sub_in_id));
+	    player_swap(tm, player_id_index(tm, sub_out_id, TRUE),
+			tm, player_id_index(tm, sub_in_id, TRUE));
 
 	    team_change_structure(tm, team_find_appropriate_structure(tm));
 	    team_rearrange(tm);

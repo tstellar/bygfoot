@@ -634,7 +634,7 @@ user_event_show_next(void)
 		player_replace_by_new(player_of_id_team(event->user->tm, event->value1), TRUE);
 	    }
 	    else
-		player_remove_from_team(event->user->tm, player_id_index(event->user->tm, event->value1));
+		player_remove_from_team(event->user->tm, player_id_index(event->user->tm, event->value1, TRUE));
 	    treeview_show_user_player_list();
 	    game_gui_show_warning(buf,NULL);
 	    break;
@@ -1340,12 +1340,18 @@ restore_default_team(User *user)
     printf("restore_player_order\n");
 #endif
 
-    gint i, player1, player2;
+    gint i, player1, player2, player1_index, player2_index;
     for (i=0;i<user->tm->players->len; i++){
         player1 = g_array_index(user->default_team, gint, i);
         player2 = g_array_index(user->tm->players, Player, i).id;
         if (player1 != player2) {
-            player_swap(user->tm,player_id_index(user->tm,player1), user->tm, player_id_index(user->tm,player2)); 
+            // We don't want to stop because a player has been romoved from your team
+            player1_index = player_id_index(user->tm,player1, FALSE);
+            player2_index = player_id_index(user->tm,player2, FALSE);
+            if (player1_index==-1 || player2_index==-1) {
+                return;
+            }
+            player_swap(user->tm,player1_index, user->tm, player2_index); 
         }
     }
     team_change_structure(user->tm, user->default_structure);
