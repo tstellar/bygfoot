@@ -14,6 +14,7 @@
 
 #include <gtk/gtk.h>
 
+#include "main.h"
 #include "support.h"
 
 GtkWidget*
@@ -42,6 +43,28 @@ lookup_widget                          (GtkWidget       *widget,
   return found_widget;
 }
 
+/** This will load the ui file, connect the signals and return the builder
+*/
+GtkBuilder*
+load_ui (const gchar *filename)
+{
+  GtkBuilder *builder;
+  GError *error = NULL;
+
+  builder = gtk_builder_new ();
+
+  if (!gtk_builder_add_from_file (builder, filename, &error))
+  {
+     main_exit_program(EXIT_FILE_NOT_FOUND, 
+      ": File not found %s\n", filename);
+  }
+
+  gtk_builder_connect_signals (builder, NULL);
+
+  return builder;
+}
+
+
 static GList *pixmaps_directories = NULL;
 
 /* Use this function to set the directory containing installed pixmaps. */
@@ -50,6 +73,10 @@ add_pixmap_directory                   (const gchar     *directory)
 {
   pixmaps_directories = g_list_prepend (pixmaps_directories,
                                         g_strdup (directory));
+  GtkIconTheme *icon_theme;
+  icon_theme = gtk_icon_theme_get_default ();
+
+  gtk_icon_theme_append_search_path (icon_theme, g_strdup(directory));
 }
 
 /* This is an internally used function to find pixmap files. */

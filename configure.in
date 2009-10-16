@@ -9,8 +9,9 @@ AC_ISC_POSIX
 AC_PROG_CC
 AM_PROG_CC_STDC
 AC_HEADER_STDC
+AM_CONDITIONAL(HAVE_WINDRES, which windres > /dev/null)
 
-pkg_modules="gtk+-2.0 >= 2.6 glib-2.0 >= 2.12"
+pkg_modules="gtk+-2.0 >= 2.14 glib-2.0 >= 2.12 gmodule-export-2.0"
 
 dnl echo -n "checking for  gthread-2.0 ... "
 dnl if pkg-config --exists  gthread-2.0 ; then
@@ -30,7 +31,7 @@ AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
 
 dnl Add the languages which your application supports here.
-ALL_LINGUAS="de nl fr pl pt_PT pt_BR ro bg zh es da sv it"
+ALL_LINGUAS="de nl fr pl pt_PT pt_BR ro bg zh es da sv it el"
 AM_GLIB_GNU_GETTEXT
 
 dnl gstreamer checking

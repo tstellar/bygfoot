@@ -1,0 +1,1860 @@
+<?xml version="1.0"?>
+<interface>
+  <requires lib="gtk+" version="2.16"/>
+  <!-- interface-naming-policy project-wide -->
+  <object class="GtkWindow" id="main_window">
+    <property name="visible">True</property>
+    <property name="border_width">6</property>
+    <property name="window_position">center</property>
+    <property name="default_width">300</property>
+    <property name="default_height">600</property>
+    <property name="icon">pixmaps/bygfoot_icon.png</property>
+    <signal name="delete_event" handler="on_button_quit_clicked"/>
+    <child>
+      <object class="GtkVBox" id="vbox1">
+        <property name="visible">True</property>
+        <child>
+          <object class="GtkMenuBar" id="menubar1">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkMenuItem" id="menu_file">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_File</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu_file_menu">
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_new">
+                        <property name="label">gtk-new</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menu_new_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_open">
+                        <property name="label">gtk-open</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menu_open_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_load_last_save">
+                        <property name="label">L_oad last save</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <accelerator key="l" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                        <signal name="activate" handler="on_menu_load_last_save_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_save">
+                        <property name="label">gtk-save</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menu_save_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_save_as">
+                        <property name="label">gtk-save-as</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menu_save_as_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="trennlinie1">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_quit">
+                        <property name="label">gtk-quit</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menu_quit_activate"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menu_options">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_Options</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu_options_menu">
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_preferences">
+                        <property name="label">Preferences</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                        <signal name="activate" handler="on_menu_preferences_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="trennlinie7">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkCheckMenuItem" id="menu_job_offers">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Job offers</property>
+                        <property name="use_underline">True</property>
+                        <property name="active">True</property>
+                        <signal name="button_press_event" handler="on_menu_check_button_press_event"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkCheckMenuItem" id="menu_live_game">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Live game</property>
+                        <property name="use_underline">True</property>
+                        <signal name="button_press_event" handler="on_menu_check_button_press_event"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkCheckMenuItem" id="menu_overwrite">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Overwrite</property>
+                        <property name="use_underline">True</property>
+                        <property name="active">True</property>
+                        <signal name="button_press_event" handler="on_menu_check_button_press_event"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="trennlinie14">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_save_window_geometry">
+                        <property name="label">Save window geometry</property>
+                        <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Save window size, position and vertical divider</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menu_save_window_geometry_activate"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menu_figures">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">F_igures</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu_figures_menu">
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_fixtures_week">
+                        <property name="label" translatable="yes">Fixtures (week)</property>
+                        <property name="visible">True</property>
+                        <property name="image">image1</property>
+                        <property name="use_stock">False</property>
+                        <accelerator key="F3" signal="activate"/>
+                        <signal name="activate" handler="on_menu_fixtures_week_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_fixtures">
+                        <property name="label">Fixtures (competitions)</property>
+                        <property name="visible">True</property>
+                        <property name="image">image2</property>
+                        <property name="use_stock">False</property>
+                        <accelerator key="F4" signal="activate"/>
+                        <signal name="activate" handler="on_menu_fixtures_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_tables">
+                        <property name="label">Tables</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <accelerator key="F5" signal="activate"/>
+                        <signal name="activate" handler="on_menu_tables_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_my_league_results">
+                        <property name="label">My league results</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <accelerator key="F6" signal="activate"/>
+                        <signal name="activate" handler="on_menu_my_league_results_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_season_results">
+                        <property name="label">Season results</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <accelerator key="s" signal="activate" modifiers="GDK_SHIFT_MASK"/>
+                        <signal name="activate" handler="on_menu_season_results_activate"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menu_team">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_Team</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu_team_menu">
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_playing_style">
+                        <property name="label">Playing style</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="menu_playing_style_menu">
+                            <child>
+                              <object class="GtkRadioMenuItem" id="menu_all_out_defend">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">All Out Defend</property>
+                                <property name="use_underline">True</property>
+                                <property name="draw_as_radio">True</property>
+                                <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkRadioMenuItem" id="menu_defend">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Defend</property>
+                                <property name="use_underline">True</property>
+                                <property name="draw_as_radio">True</property>
+                                <property name="group">menu_all_out_defend</property>
+                                <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkRadioMenuItem" id="menu_balanced">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Balanced</property>
+                                <property name="use_underline">True</property>
+                                <property name="draw_as_radio">True</property>
+                                <property name="group">menu_all_out_defend</property>
+                                <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkRadioMenuItem" id="menu_attack">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Attack</property>
+                                <property name="use_underline">True</property>
+                                <property name="draw_as_radio">True</property>
+                                <property name="group">menu_all_out_defend</property>
+                                <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkRadioMenuItem" id="menu_all_out_attack">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">All Out Attack</property>
+                                <property name="use_underline">True</property>
+                                <property name="draw_as_radio">True</property>
+                                <property name="group">menu_all_out_defend</property>
+                                <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_scout">
+                        <property name="label">Scout</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="menu_scout_menu">
+                            <child>
+                              <object class="GtkRadioMenuItem" id="menu_scout_best">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Best</property>
+                                <property name="use_underline">True</property>
+                                <property name="draw_as_radio">True</property>
+                                <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkRadioMenuItem" id="menu_scout_good">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Good</property>
+                                <property name="use_underline">True</property>
+                                <property name="draw_as_radio">True</property>
+                                <property name="group">menu_scout_best</property>
+                                <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkRadioMenuItem" id="menu_scout_average">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Average</property>
+                                <property name="use_underline">True</property>
+                                <property name="draw_as_radio">True</property>
+                                <property name="group">menu_scout_best</property>
+                                <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkRadioMenuItem" id="menu_scout_bad">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Bad</property>
+                                <property name="use_underline">True</property>
+                                <property name="draw_as_radio">True</property>
+                                <property name="group">menu_scout_best</property>
+                                <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_physio">
+                        <property name="label">Physio</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="menu_physio_menu">
+                            <child>
+                              <object class="GtkRadioMenuItem" id="menu_physio_best">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Best</property>
+                                <property name="use_underline">True</property>
+                                <property name="draw_as_radio">True</property>
+                                <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkRadioMenuItem" id="menu_physio_good">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Good</property>
+                                <property name="use_underline">True</property>
+                                <property name="draw_as_radio">True</property>
+                                <property name="group">menu_physio_best</property>
+                                <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkRadioMenuItem" id="menu_physio_average">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Average</property>
+                                <property name="use_underline">True</property>
+                                <property name="draw_as_radio">True</property>
+                                <property name="group">menu_physio_best</property>
+                                <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkRadioMenuItem" id="menu_physio_bad">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Bad</property>
+                                <property name="use_underline">True</property>
+                                <property name="draw_as_radio">True</property>
+                                <property name="group">menu_physio_best</property>
+                                <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_youth_academy">
+                        <property name="label">Youth academy</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="menu_youth_academy_menu">
+                            <child>
+                              <object class="GtkMenuItem" id="menu_show_youth_academy">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Show youth academy</property>
+                                <property name="use_underline">True</property>
+                                <accelerator key="y" signal="activate"/>
+                                <signal name="activate" handler="on_menu_show_youth_academy_activate"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="youth_coach1">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Youth coach</property>
+                                <property name="use_underline">True</property>
+                                <child type="submenu">
+                                  <object class="GtkMenu" id="youth_coach1_menu">
+                                    <child>
+                                      <object class="GtkRadioMenuItem" id="menu_yc_best">
+                                        <property name="visible">True</property>
+                                        <property name="label" translatable="yes">Best</property>
+                                        <property name="use_underline">True</property>
+                                        <property name="draw_as_radio">True</property>
+                                        <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkRadioMenuItem" id="menu_yc_good">
+                                        <property name="visible">True</property>
+                                        <property name="label" translatable="yes">Good</property>
+                                        <property name="use_underline">True</property>
+                                        <property name="draw_as_radio">True</property>
+                                        <property name="group">menu_yc_best</property>
+                                        <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkRadioMenuItem" id="menu_yc_average">
+                                        <property name="visible">True</property>
+                                        <property name="label" translatable="yes">Average</property>
+                                        <property name="use_underline">True</property>
+                                        <property name="draw_as_radio">True</property>
+                                        <property name="group">menu_yc_best</property>
+                                        <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkRadioMenuItem" id="menu_yc_bad">
+                                        <property name="visible">True</property>
+                                        <property name="label" translatable="yes">Bad</property>
+                                        <property name="use_underline">True</property>
+                                        <property name="draw_as_radio">True</property>
+                                        <property name="group">menu_yc_best</property>
+                                        <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="recruiting_preference1">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Recruiting preference</property>
+                                <property name="use_underline">True</property>
+                                <child type="submenu">
+                                  <object class="GtkMenu" id="recruiting_preference1_menu">
+                                    <child>
+                                      <object class="GtkRadioMenuItem" id="menu_recruit0">
+                                        <property name="visible">True</property>
+                                        <property name="label" translatable="yes">Goalies</property>
+                                        <property name="use_underline">True</property>
+                                        <property name="draw_as_radio">True</property>
+                                        <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkRadioMenuItem" id="menu_recruit1">
+                                        <property name="visible">True</property>
+                                        <property name="label" translatable="yes">Defenders</property>
+                                        <property name="use_underline">True</property>
+                                        <property name="draw_as_radio">True</property>
+                                        <property name="group">menu_recruit0</property>
+                                        <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkRadioMenuItem" id="menu_recruit2">
+                                        <property name="visible">True</property>
+                                        <property name="label" translatable="yes">Midfielders</property>
+                                        <property name="use_underline">True</property>
+                                        <property name="draw_as_radio">True</property>
+                                        <property name="group">menu_recruit0</property>
+                                        <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkRadioMenuItem" id="menu_recruit3">
+                                        <property name="visible">True</property>
+                                        <property name="label" translatable="yes">Forwards</property>
+                                        <property name="use_underline">True</property>
+                                        <property name="draw_as_radio">True</property>
+                                        <property name="group">menu_recruit0</property>
+                                        <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkRadioMenuItem" id="menu_recruit4">
+                                        <property name="visible">True</property>
+                                        <property name="label" translatable="yes">Any</property>
+                                        <property name="use_underline">True</property>
+                                        <property name="draw_as_radio">True</property>
+                                        <property name="group">menu_recruit0</property>
+                                        <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="menu_set_investment">
+                                <property name="visible">True</property>
+                                <property name="tooltip_text" translatable="yes">Set the percentage of your income you want to devote to your youth academy.</property>
+                                <property name="label" translatable="yes">Set investment</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_menu_set_investment_activate"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_boost">
+                        <property name="label">Boost</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="menu_boost_menu">
+                            <child>
+                              <object class="GtkRadioMenuItem" id="menu_boost_on">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">On</property>
+                                <property name="use_underline">True</property>
+                                <property name="draw_as_radio">True</property>
+                                <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkRadioMenuItem" id="menu_boost_off">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Off</property>
+                                <property name="use_underline">True</property>
+                                <property name="draw_as_radio">True</property>
+                                <property name="group">menu_boost_on</property>
+                                <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkRadioMenuItem" id="menu_boost_anti">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Anti</property>
+                                <property name="use_underline">True</property>
+                                <property name="draw_as_radio">True</property>
+                                <property name="group">menu_boost_on</property>
+                                <signal name="button_release_event" handler="on_menu_team_button_release_event"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="default_team1">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Default Team</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_default_team1_activate"/>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="default_team1_menu">
+                            <child>
+                              <object class="GtkMenuItem" id="store1">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Store</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_default_team_store_activate"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="restore1">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Restore</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_default_team_restore_activate"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="trennlinie11">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menu_training_camp">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Training camp</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_training_camp_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="trennlinie18">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_reset_players">
+                        <property name="label">Reset player list</property>
+                        <property name="tooltip_text" translatable="yes">Reset player list to the formation at the beginning of the live game pause (right click on player list)</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menu_reset_players_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_custom_structure">
+                        <property name="label">Enter custom structure</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menu_custom_structure_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_rearrange_team">
+                        <property name="label">Rearrange team</property>
+                        <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Try to put the startup players onto their favoured positions and sort the substitutes (Ctrl-R or middle click)</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <accelerator key="r" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                        <signal name="activate" handler="on_menu_rearrange_team_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="trennlinie8">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_browse_teams">
+                        <property name="label">Browse teams</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menu_browse_teams_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="trennlinie16">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menu_show_job_exchange">
+                        <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Show the list of available manager jobs</property>
+                        <property name="label" translatable="yes">Show job exchange</property>
+                        <property name="use_underline">True</property>
+                        <accelerator key="j" signal="activate"/>
+                        <signal name="activate" handler="on_menu_show_job_exchange_activate"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menu_player1">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_Player</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu_player_menu">
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_show_info">
+                        <property name="label">Show info</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menu_show_info_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_put_on_transfer_list">
+                        <property name="label">Put on transfer list</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menu_put_on_transfer_list_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_remove_from_transfer_list">
+                        <property name="label">Remove from transfer list</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menu_remove_from_transfer_list_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_offer_new_contract">
+                        <property name="label">Offer new contract</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menu_offer_new_contract_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_fire">
+                        <property name="label">Fire</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menu_fire_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_shoots_penalties">
+                        <property name="label">Shoots penalties</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menu_shoots_penalties_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_move_to_youth_academy">
+                        <property name="label">Move to youth academy</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menu_move_to_youth_academy_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_edit_name">
+                        <property name="label">Edit name</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menu_edit_name_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="trennlinie10">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_browse_players">
+                        <property name="label">Browse players</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menu_browse_players_activate"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menu_user">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_User</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu_user_menu">
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_user_show_last_match">
+                        <property name="label">Show last match</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <accelerator key="v" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                        <signal name="activate" handler="on_menu_user_show_last_match_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_user_show_last_stats">
+                        <property name="label">Show last match stats</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <accelerator key="F2" signal="activate"/>
+                        <signal name="activate" handler="on_menu_user_show_last_stats_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_user_show_coming_matches">
+                        <property name="label">Show coming matches</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <accelerator key="F1" signal="activate"/>
+                        <signal name="activate" handler="on_menu_user_show_coming_matches_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="trennlinie9">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_next_user">
+                        <property name="label">Next user</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <accelerator key="F9" signal="activate"/>
+                        <signal name="activate" handler="on_menu_next_user_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_previous_user">
+                        <property name="label">Previous user</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <accelerator key="F8" signal="activate"/>
+                        <signal name="activate" handler="on_menu_previous_user_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_manage_users">
+                        <property name="label">Manage users</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <accelerator key="F12" signal="activate"/>
+                        <signal name="activate" handler="on_menu_manage_users_activate"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menu_finances_stadium">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Fin_Stad</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu_finances_stadium_menu">
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_show_finances">
+                        <property name="label">Show finances</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <accelerator key="f" signal="activate"/>
+                        <signal name="activate" handler="on_menu_show_finances_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_show_stadium">
+                        <property name="label">Show stadium</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <accelerator key="f" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                        <signal name="activate" handler="on_menu_show_stadium_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="automatic_loan_repayment">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Automatic loan repayment</property>
+                        <property name="use_underline">True</property>
+                        <accelerator key="d" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                        <signal name="activate" handler="on_automatic_loan_repayment_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="trennlinie15">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menu_betting">
+                        <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Show the betting window</property>
+                        <property name="label" translatable="yes">Betting</property>
+                        <property name="use_underline">True</property>
+                        <accelerator key="b" signal="activate"/>
+                        <signal name="activate" handler="on_menu_betting_activate"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="stats1">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">St_ats</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="stats1_menu">
+                    <child>
+                      <object class="GtkMenuItem" id="menu_news">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">News</property>
+                        <property name="use_underline">True</property>
+                        <accelerator key="n" signal="activate"/>
+                        <signal name="activate" handler="on_menu_news_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_league_stats">
+                        <property name="label">League stats</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <accelerator key="s" signal="activate"/>
+                        <signal name="activate" handler="on_menu_league_stats_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_season_history">
+                        <property name="label">Season history</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <accelerator key="h" signal="activate"/>
+                        <signal name="activate" handler="on_menu_season_history_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_user_show_history">
+                        <property name="label">User history</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <accelerator key="h" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                        <signal name="activate" handler="on_menu_user_show_history_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="memorable_matches">
+                        <property name="label">Memorable matches</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="memorable_matches_menu">
+                            <child>
+                              <object class="GtkImageMenuItem" id="mm_add_last_match">
+                                <property name="label">Add last match</property>
+                                <property name="visible">True</property>
+                                <property name="tooltip_text" translatable="yes">Add last recorded match to the current memorable matches file.</property>
+                                <property name="use_underline">True</property>
+                                <property name="use_stock">True</property>
+                                <accelerator key="a" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                                <signal name="activate" handler="on_mm_add_last_match_activate"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkImageMenuItem" id="mm_manage_matches">
+                                <property name="label">Manage matches</property>
+                                <property name="visible">True</property>
+                                <property name="tooltip_text" translatable="yes">Replay, delete or add memorable matches.</property>
+                                <property name="use_underline">True</property>
+                                <property name="use_stock">True</property>
+                                <accelerator key="m" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                                <signal name="activate" handler="on_mm_manage_matches_activate"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menu_help1">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_Help</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu_help1_menu">
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_about">
+                        <property name="label">About</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menu_about_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_contributors">
+                        <property name="label">Contributors</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menu_contributors_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_help">
+                        <property name="label">Help</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menu_help_activate"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkHBox" id="hbox1">
+            <property name="visible">True</property>
+            <property name="has_focus">True</property>
+            <child>
+              <object class="GtkButton" id="button_load">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">False</property>
+                <property name="tooltip_text" translatable="yes">Load game (Ctrl - O)</property>
+                <property name="border_width">2</property>
+                <signal name="clicked" handler="on_button_load_clicked"/>
+                <child>
+                  <object class="GtkImage" id="image11">
+                    <property name="visible">True</property>
+                    <property name="stock">gtk-open</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="padding">2</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="button_save">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">False</property>
+                <property name="tooltip_text" translatable="yes">Save game (Ctrl - S)</property>
+                <property name="border_width">2</property>
+                <signal name="clicked" handler="on_button_save_clicked"/>
+                <child>
+                  <object class="GtkImage" id="image12">
+                    <property name="visible">True</property>
+                    <property name="stock">gtk-save</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="button_quit">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">False</property>
+                <property name="tooltip_text" translatable="yes">Quit (Ctrl - Q)</property>
+                <property name="border_width">2</property>
+                <signal name="button_press_event" handler="on_button_quit_button_press_event"/>
+                <signal name="clicked" handler="on_button_quit_clicked"/>
+                <child>
+                  <object class="GtkImage" id="image13">
+                    <property name="visible">True</property>
+                    <property name="stock">gtk-quit</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkVSeparator" id="vseparator1">
+                <property name="width_request">10</property>
+                <property name="height_request">1</property>
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkVSeparator" id="vseparator11">
+                <property name="width_request">10</property>
+                <property name="height_request">1</property>
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">4</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="button_back_to_main">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">False</property>
+                <property name="tooltip_text" translatable="yes">button_back_to_main</property>
+                <property name="border_width">2</property>
+                <accelerator key="Escape" signal="clicked"/>
+                <signal name="clicked" handler="on_button_back_to_main_clicked"/>
+                <child>
+                  <object class="GtkImage" id="image20">
+                    <property name="visible">True</property>
+                    <property name="stock">gtk-home</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">5</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="button_transfers">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">False</property>
+                <property name="tooltip_text" translatable="yes">Show transferlist (T)</property>
+                <property name="border_width">2</property>
+                <accelerator key="t" signal="clicked"/>
+                <signal name="clicked" handler="on_button_transfers_clicked"/>
+                <child>
+                  <object class="GtkImage" id="image32">
+                    <property name="visible">True</property>
+                    <property name="pixbuf">pixmaps/transfers.png</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">6</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkVSeparator" id="vseparator16">
+                <property name="width_request">40</property>
+                <property name="height_request">1</property>
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">7</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="button_new_week">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">False</property>
+                <property name="tooltip_text" translatable="yes">Begin a new week (Space)</property>
+                <property name="border_width">2</property>
+                <accelerator key="space" signal="clicked"/>
+                <signal name="clicked" handler="on_button_new_week_clicked"/>
+                <child>
+                  <object class="GtkImage" id="image23">
+                    <property name="visible">True</property>
+                    <property name="pixbuf">pixmaps/new_week.png</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">8</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="entry_message">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="editable">False</property>
+              </object>
+              <packing>
+                <property name="padding">5</property>
+                <property name="position">9</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkHSeparator" id="hseparator1">
+            <property name="width_request">1</property>
+            <property name="height_request">10</property>
+            <property name="visible">True</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEventBox" id="eventbox_main_info">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkHBox" id="hbox18">
+                <property name="visible">True</property>
+                <child>
+                  <object class="GtkLabel" id="label_user">
+                    <property name="visible">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label23">
+                    <property name="visible">True</property>
+                    <property name="xpad">5</property>
+                    <property name="label" translatable="yes"> Season </property>
+                    <property name="wrap">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label_season">
+                    <property name="visible">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label25">
+                    <property name="visible">True</property>
+                    <property name="xpad">5</property>
+                    <property name="label" translatable="yes"> Week </property>
+                    <property name="wrap">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label_week">
+                    <property name="visible">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label13114">
+                    <property name="visible">True</property>
+                    <property name="label" translatable="yes"> Round </property>
+                    <property name="wrap">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">5</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label_round">
+                    <property name="visible">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">6</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkVSeparator" id="vseparator14">
+                    <property name="width_request">15</property>
+                    <property name="height_request">1</property>
+                    <property name="visible">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">7</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkHBox" id="hbox48">
+                    <property name="visible">True</property>
+                    <child>
+                      <object class="GtkEventBox" id="eventbox_style">
+                        <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Right click and left click to change your playing style</property>
+                        <signal name="button_press_event" handler="on_eventbox_style_button_press_event"/>
+                        <child>
+                          <object class="GtkImage" id="image_style">
+                            <property name="visible">True</property>
+                            <property name="xpad">2</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEventBox" id="eventbox_boost">
+                        <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Right click and left click to change boost state</property>
+                        <signal name="button_press_event" handler="on_eventbox_boost_button_press_event"/>
+                        <child>
+                          <object class="GtkImage" id="image_boost">
+                            <property name="visible">True</property>
+                            <property name="xpad">2</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEventBox" id="eventbox_team_name">
+                        <property name="visible">True</property>
+                        <child>
+                          <object class="GtkLabel" id="label_team">
+                            <property name="visible">True</property>
+                            <property name="xpad">5</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">8</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label_league">
+                    <property name="visible">True</property>
+                    <property name="xpad">5</property>
+                    <property name="wrap">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">9</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEventBox" id="eventbox_rank">
+                    <property name="visible">True</property>
+                    <child>
+                      <object class="GtkHBox" id="hbox49">
+                        <property name="visible">True</property>
+                        <child>
+                          <object class="GtkLabel" id="label29">
+                            <property name="visible">True</property>
+                            <property name="xpad">5</property>
+                            <property name="label" translatable="yes">Rank </property>
+                            <property name="wrap">True</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label_rank">
+                            <property name="visible">True</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">10</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkVSeparator" id="vseparator15">
+                    <property name="width_request">15</property>
+                    <property name="height_request">1</property>
+                    <property name="visible">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="position">11</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label34">
+                    <property name="visible">True</property>
+                    <property name="xpad">5</property>
+                    <property name="label" translatable="yes">Money </property>
+                    <property name="wrap">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">12</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label_money">
+                    <property name="visible">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">13</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkVSeparator" id="vseparator17">
+                    <property name="width_request">15</property>
+                    <property name="height_request">1</property>
+                    <property name="visible">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">14</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEventBox" id="eventbox1">
+                    <property name="visible">True</property>
+                    <property name="tooltip_text" translatable="yes">First value: average current skill of the first 11 players. Second value: average skill of all players.</property>
+                    <child>
+                      <object class="GtkHBox" id="hbox50">
+                        <property name="visible">True</property>
+                        <child>
+                          <object class="GtkLabel" id="label69">
+                            <property name="visible">True</property>
+                            <property name="label" translatable="yes">Av. skills:  </property>
+                            <property name="wrap">True</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label_av_skills">
+                            <property name="visible">True</property>
+                            <property name="xpad">5</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="position">15</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkHBox" id="hbox7">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkHPaned" id="hpaned2">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="position">470</property>
+                <signal name="button_release_event" handler="on_hpaned2_button_release_event"/>
+                <child>
+                  <object class="GtkVBox" id="vbox3">
+                    <property name="visible">True</property>
+                    <child>
+                      <object class="GtkScrolledWindow" id="scrolledwindow2">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="border_width">2</property>
+                        <property name="hscrollbar_policy">automatic</property>
+                        <property name="vscrollbar_policy">automatic</property>
+                        <property name="shadow_type">in</property>
+                        <child>
+                          <object class="GtkViewport" id="viewport1">
+                            <property name="visible">True</property>
+                            <child>
+                              <object class="GtkNotebook" id="notebook_player">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="show_border">False</property>
+                                <child>
+                                  <object class="GtkTreeView" id="player_list1">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <signal name="button_press_event" handler="on_player_list1_button_press_event"/>
+                                    <signal name="key_press_event" handler="on_player_list1_key_press_event"/>
+                                  </object>
+                                </child>
+                                <child type="tab">
+                                  <object class="GtkLabel" id="label71">
+                                    <property name="visible">True</property>
+                                    <property name="label" translatable="yes">Player list 1</property>
+                                  </object>
+                                  <packing>
+                                    <property name="tab_fill">False</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeView" id="player_list2">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <signal name="button_press_event" handler="on_player_list1_button_press_event"/>
+                                  </object>
+                                  <packing>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                                <child type="tab">
+                                  <object class="GtkLabel" id="label72">
+                                    <property name="visible">True</property>
+                                    <property name="label" translatable="yes">Player list 2</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">1</property>
+                                    <property name="tab_fill">False</property>
+                                  </packing>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="button_reset_players">
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="tooltip_text" translatable="yes">Reset player list to the formation at the beginning of the live game pause (right click on player list)</property>
+                        <signal name="clicked" handler="on_button_reset_players_clicked"/>
+                        <child>
+                          <object class="GtkImage" id="image298">
+                            <property name="visible">True</property>
+                            <property name="stock">gtk-undo</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="resize">False</property>
+                    <property name="shrink">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkVBox" id="vbox8">
+                    <property name="visible">True</property>
+                    <child>
+                      <object class="GtkHBox" id="hbox_14">
+                        <property name="visible">True</property>
+                        <property name="spacing">2</property>
+                        <child>
+                          <object class="GtkButton" id="button_cl_back">
+                            <property name="visible">True</property>
+                            <property name="sensitive">False</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">Previous league/cup (1)</property>
+                            <accelerator key="1" signal="clicked"/>
+                            <signal name="clicked" handler="on_button_cl_back_clicked"/>
+                            <child>
+                              <object class="GtkImage" id="image215">
+                                <property name="visible">True</property>
+                                <property name="stock">gtk-go-back</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="button_cl_forward">
+                            <property name="visible">True</property>
+                            <property name="sensitive">False</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">Next league/cup (2)</property>
+                            <accelerator key="2" signal="clicked"/>
+                            <signal name="clicked" handler="on_button_cl_forward_clicked"/>
+                            <child>
+                              <object class="GtkImage" id="image216">
+                                <property name="visible">True</property>
+                                <property name="stock">gtk-go-forward</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="button_browse_back">
+                            <property name="visible">True</property>
+                            <property name="sensitive">False</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">Previous (Q)</property>
+                            <accelerator key="q" signal="clicked"/>
+                            <signal name="clicked" handler="on_button_browse_back_clicked"/>
+                            <child>
+                              <object class="GtkImage" id="image10">
+                                <property name="visible">True</property>
+                                <property name="stock">gtk-go-back</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="button_browse_forward">
+                            <property name="visible">True</property>
+                            <property name="sensitive">False</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">Next (W)</property>
+                            <accelerator key="w" signal="clicked"/>
+                            <signal name="clicked" handler="on_button_browse_forward_clicked"/>
+                            <child>
+                              <object class="GtkImage" id="image9">
+                                <property name="visible">True</property>
+                                <property name="stock">gtk-go-forward</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="position">3</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="padding">4</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkScrolledWindow" id="scrolledwindow3">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="border_width">2</property>
+                        <property name="hscrollbar_policy">automatic</property>
+                        <property name="vscrollbar_policy">automatic</property>
+                        <property name="shadow_type">in</property>
+                        <child>
+                          <object class="GtkTreeView" id="treeview_right">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="enable_search">False</property>
+                            <signal name="button_press_event" handler="on_treeview_right_button_press_event"/>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="resize">True</property>
+                    <property name="shrink">True</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="padding">3</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="position">4</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkMenu" id="menu_player">
+    <child>
+      <object class="GtkMenuItem" id="player_menu_show_info">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Show info</property>
+        <property name="use_underline">True</property>
+        <signal name="activate" handler="on_player_menu_show_info_activate"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="player_menu_put_on_transfer_list">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Put on transfer list</property>
+        <property name="use_underline">True</property>
+        <signal name="activate" handler="on_player_menu_put_on_transfer_list_activate"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="player_menu_remove_from_transfer_list">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Remove from transfer list</property>
+        <property name="use_underline">True</property>
+        <signal name="activate" handler="on_player_menu_remove_from_transfer_list_activate"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="player_menu_offer_new_contract">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Offer new contract</property>
+        <property name="use_underline">True</property>
+        <signal name="activate" handler="on_player_menu_offer_new_contract_activate"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="player_menu_fire">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Fire</property>
+        <property name="use_underline">True</property>
+        <signal name="activate" handler="on_player_menu_fire_activate"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="player_menu_shoots_penalties">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Shoots penalties</property>
+        <property name="use_underline">True</property>
+        <signal name="activate" handler="on_player_menu_shoots_penalties_activate"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="player_menu_move_to_youth_academy">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Move to youth academy</property>
+        <property name="use_underline">True</property>
+        <signal name="activate" handler="on_player_menu_move_to_youth_academy_activate"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="player_menu_edit_name">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Edit name</property>
+        <property name="use_underline">True</property>
+        <signal name="activate" handler="on_player_menu_edit_name_activate"/>
+      </object>
+    </child>
+  </object>
+  <object class="GtkMenu" id="menu_youth">
+    <child>
+      <object class="GtkImageMenuItem" id="menu_youth_move_to_team">
+        <property name="label">Move to team</property>
+        <property name="visible">True</property>
+        <property name="use_underline">True</property>
+        <property name="use_stock">True</property>
+        <signal name="activate" handler="on_menu_youth_move_to_team_activate"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="menu_youth_kick_out_of_academy">
+        <property name="label">Kick out of academy</property>
+        <property name="visible">True</property>
+        <property name="use_underline">True</property>
+        <property name="use_stock">True</property>
+        <signal name="activate" handler="on_menu_youth_kick_out_of_academy_activate"/>
+      </object>
+    </child>
+  </object>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="pixbuf">pixmaps/menu_fixtures.png</property>
+  </object>
+  <object class="GtkImage" id="image2">
+    <property name="visible">True</property>
+    <property name="pixbuf">pixmaps/menu_fixtures_comp.png</property>
+  </object>
+</interface>

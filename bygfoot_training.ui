@@ -1,0 +1,325 @@
+<?xml version="1.0"?>
+<interface>
+  <requires lib="gtk+" version="2.16"/>
+  <!-- interface-naming-policy toplevel-contextual -->
+  <object class="GtkWindow" id="window_training_camp">
+    <property name="visible">True</property>
+    <property name="title" translatable="yes">Training camp</property>
+    <property name="resizable">False</property>
+    <property name="modal">True</property>
+    <property name="window_position">center</property>
+    <signal name="delete_event" handler="on_window_training_camp_delete_event"/>
+    <child>
+      <object class="GtkFixed" id="panel_camp">
+        <property name="width_request">500</property>
+        <property name="height_request">290</property>
+        <property name="visible">True</property>
+        <child>
+          <object class="GtkEntry" id="tf_costs">
+            <property name="width_request">130</property>
+            <property name="height_request">22</property>
+            <property name="visible">True</property>
+            <property name="editable">False</property>
+            <property name="has_frame">False</property>
+            <property name="invisible_char">&#x25CF;</property>
+          </object>
+          <packing>
+            <property name="x">336</property>
+            <property name="y">40</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkHSeparator" id="hs_camp2">
+            <property name="width_request">450</property>
+            <property name="height_request">16</property>
+            <property name="visible">True</property>
+          </object>
+          <packing>
+            <property name="x">25</property>
+            <property name="y">90</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="l_camp_points">
+            <property name="width_request">140</property>
+            <property name="height_request">20</property>
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Camp points</property>
+          </object>
+          <packing>
+            <property name="x">24</property>
+            <property name="y">192</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="b_inc_recreation">
+            <property name="width_request">30</property>
+            <property name="height_request">26</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <signal name="clicked" handler="on_b_inc_recreation_clicked"/>
+            <child>
+              <object class="GtkImage" id="image2">
+                <property name="visible">True</property>
+                <property name="pixbuf">increase_green.png</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="x">425</property>
+            <property name="y">125</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="l_recreation">
+            <property name="width_request">140</property>
+            <property name="height_request">20</property>
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Recreation</property>
+          </object>
+          <packing>
+            <property name="x">24</property>
+            <property name="y">128</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="l_costs">
+            <property name="width_request">90</property>
+            <property name="height_request">20</property>
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Costs</property>
+          </object>
+          <packing>
+            <property name="x">255</property>
+            <property name="y">41</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="b_dec_training">
+            <property name="width_request">30</property>
+            <property name="height_request">26</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <signal name="clicked" handler="on_b_dec_training_clicked"/>
+            <child>
+              <object class="GtkImage" id="image3">
+                <property name="visible">True</property>
+                <property name="pixbuf">decrease_red.png</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="x">176</property>
+            <property name="y">157</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="l_training">
+            <property name="width_request">140</property>
+            <property name="height_request">20</property>
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Training</property>
+          </object>
+          <packing>
+            <property name="x">24</property>
+            <property name="y">160</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="b_inc_training">
+            <property name="width_request">30</property>
+            <property name="height_request">26</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <signal name="clicked" handler="on_b_inc_training_clicked"/>
+            <child>
+              <object class="GtkImage" id="image4">
+                <property name="visible">True</property>
+                <property name="pixbuf">increase_green.png</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="x">425</property>
+            <property name="y">157</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkHScale" id="hs_camp_points">
+            <property name="width_request">200</property>
+            <property name="height_request">36</property>
+            <property name="visible">True</property>
+            <property name="adjustment"></property>
+            <property name="value_pos">right</property>
+          </object>
+          <packing>
+            <property name="x">220</property>
+            <property name="y">184</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkHScale" id="hs_training">
+            <property name="width_request">200</property>
+            <property name="height_request">36</property>
+            <property name="visible">True</property>
+            <property name="adjustment"></property>
+            <property name="value_pos">right</property>
+          </object>
+          <packing>
+            <property name="x">220</property>
+            <property name="y">152</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="b_dec_recreation">
+            <property name="width_request">30</property>
+            <property name="height_request">26</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <signal name="clicked" handler="on_b_dec_recreation_clicked"/>
+            <child>
+              <object class="GtkImage" id="image1">
+                <property name="visible">True</property>
+                <property name="pixbuf">decrease_red.png</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="x">176</property>
+            <property name="y">125</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkHScale" id="hs_recreation">
+            <property name="width_request">200</property>
+            <property name="height_request">36</property>
+            <property name="visible">True</property>
+            <property name="adjustment"></property>
+            <property name="value_pos">right</property>
+          </object>
+          <packing>
+            <property name="x">220</property>
+            <property name="y">120</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkRadioButton" id="rb_camp1">
+            <property name="label" translatable="yes">Good Hotel</property>
+            <property name="width_request">200</property>
+            <property name="height_request">21</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="has_focus">True</property>
+            <property name="receives_default">False</property>
+            <property name="use_underline">True</property>
+            <property name="draw_indicator">True</property>
+            <signal name="clicked" handler="on_rb_camp1_clicked"/>
+          </object>
+          <packing>
+            <property name="x">24</property>
+            <property name="y">16</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkRadioButton" id="rb_camp2">
+            <property name="label" translatable="yes">First-Class Hotel</property>
+            <property name="width_request">200</property>
+            <property name="height_request">21</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <property name="use_underline">True</property>
+            <property name="draw_indicator">True</property>
+            <property name="group">rb_camp1</property>
+            <signal name="clicked" handler="on_rb_camp2_clicked"/>
+          </object>
+          <packing>
+            <property name="x">24</property>
+            <property name="y">40</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkRadioButton" id="rb_camp3">
+            <property name="label" translatable="yes">Premium Hotel</property>
+            <property name="width_request">200</property>
+            <property name="height_request">21</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <property name="use_underline">True</property>
+            <property name="draw_indicator">True</property>
+            <property name="group">rb_camp1</property>
+            <signal name="clicked" handler="on_rb_camp3_clicked"/>
+          </object>
+          <packing>
+            <property name="x">24</property>
+            <property name="y">64</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkHSeparator" id="hs_camp1">
+            <property name="width_request">450</property>
+            <property name="height_request">16</property>
+            <property name="visible">True</property>
+          </object>
+          <packing>
+            <property name="x">25</property>
+            <property name="y">232</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="b_ok">
+            <property name="label">gtk-apply</property>
+            <property name="width_request">110</property>
+            <property name="height_request">35</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <property name="use_stock">True</property>
+            <signal name="clicked" handler="on_b_ok_clicked"/>
+          </object>
+          <packing>
+            <property name="x">256</property>
+            <property name="y">254</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="b_cancel">
+            <property name="label">gtk-cancel</property>
+            <property name="width_request">110</property>
+            <property name="height_request">35</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <property name="use_stock">True</property>
+            <signal name="clicked" handler="on_b_cancel_clicked"/>
+          </object>
+          <packing>
+            <property name="x">376</property>
+            <property name="y">254</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkCheckButton" id="checkbutton_save">
+            <property name="label" translatable="yes">Save settings as default</property>
+            <property name="width_request">208</property>
+            <property name="height_request">21</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <property name="use_underline">True</property>
+            <property name="draw_indicator">True</property>
+          </object>
+          <packing>
+            <property name="x">24</property>
+            <property name="y">264</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

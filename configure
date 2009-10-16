@@ -661,6 +661,8 @@ GETTEXT_PACKAGE
 PACKAGE_LIBS
 PACKAGE_CFLAGS
 PKG_CONFIG
+HAVE_WINDRES_FALSE
+HAVE_WINDRES_TRUE
 EGREP
 GREP
 CPP
@@ -5696,8 +5698,16 @@ _ACEOF
 
 fi
 
+ if which windres > /dev/null; then
+  HAVE_WINDRES_TRUE=
+  HAVE_WINDRES_FALSE='#'
+else
+  HAVE_WINDRES_TRUE='#'
+  HAVE_WINDRES_FALSE=
+fi
 
-pkg_modules="gtk+-2.0 >= 2.6 glib-2.0 >= 2.12"
+
+pkg_modules="gtk+-2.0 >= 2.14 glib-2.0 >= 2.12 gmodule-export-2.0"
 
 
 
@@ -5940,7 +5950,7 @@ cat >>confdefs.h <<_ACEOF
 _ACEOF
 
 
-ALL_LINGUAS="de nl fr pl pt_PT pt_BR ro bg zh es da sv it"
+ALL_LINGUAS="de nl fr pl pt_PT pt_BR ro bg zh es da sv it el"
 # On IRIX 5.3, sys/types and inttypes.h are conflicting.
 
 
@@ -7862,6 +7872,13 @@ if test -z "${am__fastdepCC_TRUE}" && test -z "${am__fastdepCC_FALSE}"; then
   { { $as_echo "$as_me:$LINENO: error: conditional \"am__fastdepCC\" was never defined.
 Usually this means the macro was only invoked conditionally." >&5
 $as_echo "$as_me: error: conditional \"am__fastdepCC\" was never defined.
+Usually this means the macro was only invoked conditionally." >&2;}
+   { (exit 1); exit 1; }; }
+fi
+if test -z "${HAVE_WINDRES_TRUE}" && test -z "${HAVE_WINDRES_FALSE}"; then
+  { { $as_echo "$as_me:$LINENO: error: conditional \"HAVE_WINDRES\" was never defined.
+Usually this means the macro was only invoked conditionally." >&5
+$as_echo "$as_me: error: conditional \"HAVE_WINDRES\" was never defined.
 Usually this means the macro was only invoked conditionally." >&2;}
    { (exit 1); exit 1; }; }
 fi

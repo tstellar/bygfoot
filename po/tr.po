@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot 2.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-26 12:12+0200\n"
+"POT-Creation-Date: 2009-10-16 09:28+0200\n"
 "PO-Revision-Date: 2009-04-14 18:09+0200\n"
 "Last-Translator: cem uykun <cuykun@gmail.com>\n"
 "Language-Team: \n"
@@ -207,18 +207,10 @@ msgstr " Üretim Şirketleri ve Grubu"
 msgid " Restaurants"
 msgstr " Kebabçısı"
 
-#: src/interface.c:1220
-msgid " Round "
-msgstr " Devre"
-
 #. Company name.
 #: src/user.c:1008
 msgid " Scientific"
 msgstr " Bilim Ve Teknoloji Merkezi"
-
-#: src/interface.c:1200
-msgid " Season "
-msgstr " Sezon"
 
 #. Company name.
 #: src/user.c:1006
@@ -240,17 +232,13 @@ msgstr " Bilgi Teknolojileri"
 msgid " Telecommunications"
 msgstr " Telekominikasyon a.ş"
 
-#: src/interface.c:1210
-msgid " Week "
-msgstr " Hafta "
-
 # Uzatma dakikaları
 #. Game was decided in extra time.
 #: src/fixture.c:1075
 msgid " e.t."
 msgstr "u.d."
 
-#: src/callback_func.c:466
+#: src/callback_func.c:482
 msgid " less"
 msgstr "az"
 
@@ -258,7 +246,7 @@ msgstr "az"
 msgid " months"
 msgstr "ay"
 
-#: src/callback_func.c:464
+#: src/callback_func.c:480
 msgid " more"
 msgstr "fazla"
 
@@ -418,12 +406,12 @@ msgstr ""
 msgid "%s rejects your offer. You may still make %d offers."
 msgstr "%s teklifinizi reddetti. Hala %d teklif yapabilirsiniz."
 
-#: src/callbacks.c:1136
+#: src/callbacks.c:1173
 #, c-format
 msgid "%s will shoot penalties and free kicks when he plays."
 msgstr "%s oyunda ise serbest vuruş ve penaltıları kullanacak."
 
-#: src/callback_func.c:468
+#: src/callback_func.c:484
 #, c-format
 msgid ""
 "%s would like to buy %s. They offer %s for him, which is %s than the "
@@ -432,7 +420,7 @@ msgstr ""
 "%s takımı  futbolcun %s satın almak istiyor. Onun için  %s  liralık teklif "
 "yapıyorlar,Bu teklif oyuncunun gerçek değerinden %s .Kabul ediyormusun?"
 
-#: src/player.c:1243
+#: src/player.c:1246
 #, c-format
 msgid "%s's contract expires in %.1f years."
 msgstr "%s adlı oyuncunun kontrat süresi bitiyor %.1f yıl sonra."
@@ -577,7 +565,7 @@ msgstr "YAVAŞ"
 msgid "ATTACK"
 msgstr "Atak"
 
-#: src/interface.c:1066 src/misc2_interface.c:1092
+#: src/misc2_interface.c:1092
 msgid "About"
 msgstr "Hakkında"
 
@@ -588,14 +576,6 @@ msgstr "Kabul"
 #: src/game_gui.c:818
 msgid "Accept?"
 msgstr "Kabul?"
-
-#: src/interface.c:1035
-msgid "Add last match"
-msgstr "Son maçı ekle"
-
-#: src/interface.c:1038
-msgid "Add last recorded match to the current memorable matches file."
-msgstr "Son kayıtlı maçı unutulmaz maçlar dosyasına ekle"
 
 #: src/misc2_interface.c:899 src/misc_interface.c:191
 msgid "Add user"
@@ -617,14 +597,6 @@ msgstr "Yaş"
 msgid "All Files"
 msgstr "Bütün dosyalar"
 
-#: src/interface.c:502
-msgid "All Out Attack"
-msgstr "Herkes Atak"
-
-#: src/interface.c:478
-msgid "All Out Defend"
-msgstr "Herkes Savunma"
-
 #: src/options_interface.c:1199
 msgid "Always show news window after a matchday"
 msgstr "Maç gününden sonra daima haber penceresini göster"
@@ -636,14 +608,6 @@ msgstr ""
 #: src/options_interface.c:562
 msgid "Always store/restore your default team before/after a match"
 msgstr ""
-
-#: src/interface.c:692
-msgid "Anti"
-msgstr "YAVAŞ"
-
-#: src/interface.c:658
-msgid "Any"
-msgstr "Farketmez"
 
 #: src/options_interface.c:1569
 msgid "Appearance"
@@ -665,7 +629,7 @@ msgstr ""
 "Bygfoot forumlarında hatalarınızı rapor edebilirsiniz,yardım isteyip oyun "
 "hakkında tartışabilirsiniz:\n"
 
-#: src/interface.c:496 src/treeview.c:1778
+#: src/treeview.c:1778
 msgid "Attack"
 msgstr "Hücum"
 
@@ -682,7 +646,7 @@ msgstr ""
 msgid "Attribute "
 msgstr "Özellik"
 
-#: src/interface.c:957 src/misc3_interface.c:543 src/window.c:1015
+#: src/misc3_interface.c:543 src/window.c:1015
 msgid "Automatic loan repayment"
 msgstr "Otomatik kredi borcu geri ödemesi"
 
@@ -710,10 +674,6 @@ msgstr "Otomatik kayıt aralığı"
 msgid "Av. skill: "
 msgstr "Ort.Yetenek:  "
 
-#: src/interface.c:1320
-msgid "Av. skills:  "
-msgstr "Ort.Yetenekler:  "
-
 #. Average skill
 #: src/treeview.c:179
 msgid "Av.Sk."
@@ -726,10 +686,6 @@ msgstr "Ort.Yetenek"
 #: src/misc2_interface.c:863
 msgid "Available teams"
 msgstr "Mümkün olan takımlar"
-
-#: src/interface.c:531 src/interface.c:566 src/interface.c:615
-msgid "Average"
-msgstr "Ortalama"
 
 #: src/misc_interface.c:985
 msgid "Average attendance"
@@ -760,38 +716,18 @@ msgstr "Dengeli"
 msgid "BAN(%d)"
 msgstr "CEZALI(%d)"
 
-#: src/interface.c:1138
-msgid "Back to main menu (Esc)"
-msgstr "Genel Görünüm (Esc)"
-
 #: src/misc_interface.c:288
 msgid "Back to splash"
 msgstr "Açılış ekranına dön"
-
-#: src/interface.c:537 src/interface.c:572 src/interface.c:621
-msgid "Bad"
-msgstr "Kötü"
 
 #. Finances balance.
 #: src/treeview.c:1580
 msgid "Balance"
 msgstr "Finansal Denge"
 
-#: src/interface.c:490
-msgid "Balanced"
-msgstr "Dengeli"
-
 #: src/treeview.c:2179
 msgid "Banned\n"
 msgstr "Cezalı\n"
-
-#: src/interface.c:1169
-msgid "Begin a new week (Space)"
-msgstr "Yeni Maça/Haftaya Başla (Boşluk)"
-
-#: src/interface.c:519 src/interface.c:554 src/interface.c:603
-msgid "Best"
-msgstr "En iyi"
 
 #: src/treeview.c:2419
 msgid "Best defensive teams"
@@ -809,8 +745,8 @@ msgstr "En iyi kaleciler"
 msgid "Best offensive teams"
 msgstr "En iyi ofansif takımlar"
 
-#: src/interface.c:969 src/options_interface.c:1084 src/treeview.c:1520
-#: src/treeview.c:1530 src/window.c:992
+#: src/options_interface.c:1084 src/treeview.c:1520 src/treeview.c:1530
+#: src/window.c:992
 msgid "Betting"
 msgstr "Bahis Oyunu"
 
@@ -831,10 +767,6 @@ msgstr ""
 "Hafta başı finansman durumunuz\n"
 "(Hafta %d ve %d)"
 
-#: src/interface.c:669
-msgid "Boost"
-msgstr "Takım Desteği"
-
 #: src/callbacks.c:133 src/game_gui.c:468 src/misc_callbacks.c:560
 msgid "Boost ON is disabled in this country definition."
 msgstr "Takım Desteği AÇIK oynadığınız ülke tanımlamalarınızda kapalıdır."
@@ -854,33 +786,25 @@ msgstr "Takım Desteği değişti %s."
 msgid "Boost costs"
 msgstr "Takım Desteği ücreti"
 
-#: src/player.c:1430
+#: src/player.c:1433
 msgid "Broken ankle"
 msgstr "Kırık ayak"
 
-#: src/player.c:1433
+#: src/player.c:1436
 msgid "Broken arm"
 msgstr "Kırık kol"
 
-#: src/player.c:1427
+#: src/player.c:1430
 msgid "Broken leg"
 msgstr "Kırık bacak"
 
-#: src/player.c:1424
+#: src/player.c:1427
 msgid "Broken rib"
 msgstr "Kırık kaburga"
 
-#: src/player.c:1436
+#: src/player.c:1439
 msgid "Broken shoulder"
 msgstr "Kırık omuz"
-
-#: src/interface.c:842
-msgid "Browse players"
-msgstr "Ligdeki Oyuncuları listele"
-
-#: src/interface.c:745
-msgid "Browse teams"
-msgstr "Diğer Takımlara bak"
 
 #: src/window.c:393
 msgid "Bygfoot Memorable Matches"
@@ -1051,7 +975,7 @@ msgstr "Lig/Kupa"
 msgid "Compressing savegame..."
 msgstr "Kayıtlı oyun sıkıştırılıyor..."
 
-#: src/player.c:1409
+#: src/player.c:1412
 msgid "Concussion"
 msgstr "Beyin Sarsıntısı"
 
@@ -1103,11 +1027,11 @@ msgstr ""
 msgid "Contract offer"
 msgstr "Kontrat teklifi"
 
-#: src/callbacks.c:1017
+#: src/callbacks.c:1054
 msgid "Contracts are disabled in this country definition."
 msgstr "Kontratlar, ülke ayarlarınızda devre dışı."
 
-#: src/interface.c:1074 src/misc2_interface.c:1106 src/misc3_interface.c:237
+#: src/misc2_interface.c:1106 src/misc3_interface.c:237
 msgid "Contributors"
 msgstr "Katkıda Bulunanlar"
 
@@ -1121,7 +1045,7 @@ msgstr "Kopyala %s"
 msgid "Costs"
 msgstr "Ücretler"
 
-#: src/support.c:96 src/support.c:120
+#: src/support.c:117 src/support.c:141
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "Resim dosyası bulunmuyor : %s"
@@ -1233,13 +1157,9 @@ msgstr "Başlangıçtaki Antreman Oranı:"
 msgid "Default wager"
 msgstr "Bahis Başlangıç  Parası"
 
-#: src/interface.c:484 src/treeview.c:1776
+#: src/treeview.c:1776
 msgid "Defend"
 msgstr "Defans"
-
-#: src/interface.c:640
-msgid "Defenders"
-msgstr "Defans oyuncuları"
 
 # Açılış ekranındaki ipuçları
 #. Splash screen hint question.
@@ -1251,7 +1171,7 @@ msgstr "İpuçlarını Biliyormusun?"
 msgid "Didn't find file 'bygfoot_help'."
 msgstr "'bygfoot_help' dosyası bulunamadı."
 
-#: src/callbacks.c:1330
+#: src/callbacks.c:1367
 msgid "Do you really want to kick the poor boy out of your academy?"
 msgstr "Gerçekten bu kötü çocuğu akademiden çıkartmak istiyormusun?"
 
@@ -1307,7 +1227,7 @@ msgstr "Dışa aktar."
 msgid "Edit"
 msgstr "Düzenle"
 
-#: src/interface.c:829 src/interface.c:2038
+#: src/interface.c:161
 msgid "Edit name"
 msgstr "Oyuncu ismini değiştir."
 
@@ -1315,13 +1235,9 @@ msgstr "Oyuncu ismini değiştir."
 msgid "Edit the constants used in the game"
 msgstr "Bileşenler dosyasını oyundayken düzenle"
 
-#: src/callbacks.c:935
+#: src/callbacks.c:972
 msgid "Enter a structure. The digits must sum up to 10."
 msgstr "Takım dizilişini gir.Bu rakamların toplamı 10 etmeli"
-
-#: src/interface.c:720
-msgid "Enter custom structure"
-msgstr "Takım taktiğini gir"
 
 #: src/window.c:865
 msgid "Erm..."
@@ -1367,12 +1283,7 @@ msgstr "Giderler"
 msgid "F"
 msgstr "H"
 
-# Lig,Sezon ile ilgili tablolar ve istatistikler
-#: src/interface.c:398
-msgid "F_igures"
-msgstr "Ta_blolar"
-
-#: src/callback_func.c:574 src/callback_func.c:582
+#: src/callback_func.c:590 src/callback_func.c:598
 msgid "Fee"
 msgstr "Ücret"
 
@@ -1391,28 +1302,17 @@ msgstr ""
 "Dosya oyunun düzgün çalışması için bir çok ayarları içermektedir.NE "
 "YAPTIĞINIZI BİLMİYORSANIZ KESİNLİKLE DEĞİŞTİRMEYE ÇALIŞMAYIN."
 
-#: src/interface.c:928
-msgid "Fin_Stad"
-msgstr "Finans ve_Stadyum"
-
 #: src/cup.c:1105
 msgid "Final"
 msgstr "Son"
 
-#: src/callbacks.c:1485 src/callbacks.c:1513
+#: src/callbacks.c:1522 src/callbacks.c:1550
 msgid "Finances are disabled in this country definition."
 msgstr "Finansal Yönetim ülke ayarlarınızda mevcut değil."
 
-#: src/interface.c:805 src/interface.c:2026
+#: src/interface.c:149
 msgid "Fire"
 msgstr "Takımdan kov"
-
-#: src/interface.c:1314
-msgid ""
-"First value: average current skill of the first 11 players. Second value: "
-"average skill of all players."
-msgstr ""
-"İlk değer: İlk 11'in Yetenek Ortalaması. İkinci değer: Tüm Takım Ortalaması"
 
 #: src/training_interface.c:168 src/treeview.c:2943
 msgid "First-Class Hotel"
@@ -1431,14 +1331,6 @@ msgstr "Kondisyon"
 msgid "Fitness "
 msgstr "Kondisyon"
 
-#: src/interface.c:416
-msgid "Fixtures (competitions)"
-msgstr "Fikstür."
-
-#: src/interface.c:405
-msgid "Fixtures (week)"
-msgstr "Fikstur(hafta)"
-
 #: src/options_interface.c:1541
 msgid "Float"
 msgstr "Kesirli"
@@ -1451,15 +1343,11 @@ msgstr "Font ismi"
 msgid "Font used in treeviews"
 msgstr "Fontu buradan değiştirebilirsiniz"
 
-#: src/interface.c:652
-msgid "Forwards"
-msgstr "Hücum oyuncuları"
-
 #: src/treeview.c:840
 msgid "Fouls"
 msgstr "Fauller"
 
-#: src/player.c:1421
+#: src/player.c:1424
 msgid "Fractured ankle"
 msgstr "Ayak bileği kırığı"
 
@@ -1533,10 +1421,6 @@ msgstr "Gol/Maç"
 msgid "Goalie"
 msgstr "Kaleci"
 
-#: src/interface.c:634
-msgid "Goalies"
-msgstr "Kaleciler"
-
 #: src/treeview.c:1900 src/treeview.c:2446 src/treeview_helper.c:932
 msgid "Goals"
 msgstr "Goller"
@@ -1551,19 +1435,15 @@ msgstr "Goller"
 msgid "Goals (regular)"
 msgstr "Goller(normal)"
 
-#: src/interface.c:525 src/interface.c:560 src/interface.c:609
-msgid "Good"
-msgstr "İyi"
-
 #: src/training_interface.c:161 src/treeview.c:2940
 msgid "Good Hotel"
 msgstr "Üç Yıldızlı Otel"
 
-#: src/player.c:1418
+#: src/player.c:1421
 msgid "Groin injury"
 msgstr "Kasık zedelenmesi"
 
-#: src/player.c:1415
+#: src/player.c:1418
 msgid "Hamstring"
 msgstr "Topuk Sakatlanması"
 
@@ -1580,7 +1460,7 @@ msgstr "Başlık"
 msgid "Health"
 msgstr "Sağlık"
 
-#: src/interface.c:1082 src/misc2_interface.c:1132
+#: src/misc2_interface.c:1132
 msgid "Help"
 msgstr "Yardım"
 
@@ -1674,17 +1554,13 @@ msgstr "Sakatlık"
 msgid "Integer"
 msgstr "Tamsayı"
 
-#: src/callbacks.c:1496
+#: src/callbacks.c:1533
 msgid "It's too late in the season for automatic loan repayment."
 msgstr "Sezon içinde otomatik borç geri ödemesi için çok geç."
 
 #: src/misc2_interface.c:70 src/window.c:898
 msgid "Job offer"
 msgstr "İş teklifi"
-
-#: src/interface.c:370
-msgid "Job offers"
-msgstr "İş Teklifleri"
 
 #: src/game_gui.c:898
 #, c-format
@@ -1695,7 +1571,7 @@ msgstr "İş teklifleri ayarla %s."
 msgid "Journey costs"
 msgstr "Yolculuk Masrafları"
 
-#: src/interface.c:2100
+#: src/interface.c:223
 msgid "Kick out of academy"
 msgstr "Akademiden kov."
 
@@ -1718,10 +1594,6 @@ msgstr "M"
 #, c-format
 msgid "L  %d : %d"
 msgstr "M  %d : %d"
-
-#: src/interface.c:319
-msgid "L_oad last save"
-msgstr "S_on kaydı yükle"
 
 #: src/options_interface.c:436
 msgid "Language"
@@ -1758,10 +1630,6 @@ msgstr "Lig"
 msgid "League champions"
 msgstr "Lig Şampiyonları"
 
-#: src/interface.c:991
-msgid "League stats"
-msgstr "Lig Durumu"
-
 #: src/league_table_interface.c:39
 msgid "League table"
 msgstr "Lig Durumu"
@@ -1770,7 +1638,7 @@ msgstr "Lig Durumu"
 msgid "Left click to make an offer. Right click to remove offer."
 msgstr "Sol klikle teklif yap.Sağ klikle teklifi kaldır."
 
-#: src/callback_func.c:930
+#: src/callback_func.c:946
 msgid ""
 "Left click to move players to and from the youth academy; right click for "
 "context menu."
@@ -1786,7 +1654,7 @@ msgstr "Sol tuş ile fikstürü göster"
 msgid "Left click to show table."
 msgstr "Sol tuş ile Lig Puan cetvelini göster"
 
-#: src/callbacks.c:1518
+#: src/callbacks.c:1555
 msgid ""
 "Left-click: get loan; Right-click: pay back; Middle click: stadium window."
 msgstr "Sol Tuş:Borç al;Sağ tuş:Geri öde;Orta tuş:Stadyum penceresi"
@@ -1799,7 +1667,7 @@ msgstr "Liste 1 "
 msgid "List 2"
 msgstr "Liste 2"
 
-#: src/interface.c:375 src/misc_interface.c:500 src/options_interface.c:650
+#: src/misc_interface.c:500 src/options_interface.c:650
 msgid "Live game"
 msgstr "Canlı Mac"
 
@@ -1815,10 +1683,6 @@ msgstr "Canlı Maç Hız ayarı "
 #: src/options_interface.c:596
 msgid "Live game verbosity"
 msgstr "Canlı Maç Anlatımı"
-
-#: src/interface.c:1098
-msgid "Load game (Ctrl - O)"
-msgstr "Kayıtlı Oyunu yükle (Ctrl - O)"
 
 #: src/main.c:94
 msgid "Load last savegame"
@@ -1885,7 +1749,7 @@ msgstr "Transfer listesi yükleniyor..."
 msgid "Loading users..."
 msgstr "Kullanıcılar Yükleniyor..."
 
-#: src/callback_func.c:397
+#: src/callback_func.c:413
 msgid "Loan"
 msgstr "Kredi Borcu Alma"
 
@@ -1899,14 +1763,6 @@ msgstr "O"
 msgid "Make offer"
 msgstr "Teklif Et"
 
-#: src/interface.c:1047
-msgid "Manage matches"
-msgstr "Maçları yönet"
-
-#: src/interface.c:917
-msgid "Manage users"
-msgstr "Kullanıcıları yönet"
-
 #: src/options_interface.c:276
 msgid "Maximize main window"
 msgstr "Ana pencereyi maksimize et"
@@ -1915,7 +1771,7 @@ msgstr "Ana pencereyi maksimize et"
 msgid "Memorable match added."
 msgstr "Unutulmaz maç eklendi."
 
-#: src/interface.c:1024 src/window.c:984
+#: src/window.c:984
 msgid "Memorable matches"
 msgstr "Unutulmaz maçlar"
 
@@ -1923,17 +1779,9 @@ msgstr "Unutulmaz maçlar"
 msgid "Midfield"
 msgstr "Ortasaha"
 
-#: src/interface.c:646
-msgid "Midfielders"
-msgstr "Ortasaha oyuncuları"
-
 #: src/treeview.c:1629
 msgid "Money"
 msgstr "Para:"
-
-#: src/interface.c:1296
-msgid "Money "
-msgstr "Para: "
 
 #: src/misc2_interface.c:112
 msgid "Money (approx.)"
@@ -1943,17 +1791,13 @@ msgstr "Para: (yaklaşık)"
 msgid "Money / week"
 msgstr "Para / Hafta"
 
-#: src/interface.c:2092
+#: src/interface.c:215
 msgid "Move to team"
 msgstr "Takıma yolla"
 
-#: src/interface.c:821 src/interface.c:2034
+#: src/interface.c:157
 msgid "Move to youth academy"
 msgstr "Genç oyuncu akademisine yolla"
-
-#: src/interface.c:438
-msgid "My league results"
-msgstr "Lig Sonucları"
 
 #: src/misc2_interface.c:97 src/treeview2.c:791 src/treeview.c:304
 #: src/treeview.c:778 src/treeview.c:2163
@@ -1980,25 +1824,13 @@ msgstr ""
 msgid "New settings:"
 msgstr "Yeni ayarlar:"
 
-#: src/interface.c:984 src/options_interface.c:1203
+#: src/options_interface.c:1203
 msgid "News"
 msgstr "Haberler"
 
 #: src/misc3_interface.c:315
 msgid "Next"
 msgstr "İleri"
-
-#: src/interface.c:1434
-msgid "Next (W)"
-msgstr "İleri (W)"
-
-#: src/interface.c:1408
-msgid "Next league/cup (2)"
-msgstr "Sonraki Lig/Kupa (2)"
-
-#: src/interface.c:895
-msgid "Next user"
-msgstr "Sonraki kullanıcı"
 
 #: src/game_gui.c:516
 msgid "Next week you'll fire him and hire a new one."
@@ -2012,7 +1844,7 @@ msgstr "Haber penceresi açılmasın"
 msgid "No improvements currently in progress."
 msgstr "Devam eden yükseltme mevcut değil."
 
-#: src/callbacks.c:1412 src/callbacks.c:1432 src/callbacks.c:1572
+#: src/callbacks.c:1449 src/callbacks.c:1469 src/callbacks.c:1609
 #: src/misc2_callback_func.c:326 src/misc2_callbacks.c:733
 msgid "No match stored."
 msgstr "Maç saklanmadı."
@@ -2041,7 +1873,7 @@ msgstr "NORMAL"
 
 #. Player health: ok.
 #. Player status: ok.
-#: src/misc2_interface.c:221 src/player.c:1406 src/treeview_helper.c:1094
+#: src/misc2_interface.c:221 src/player.c:1409 src/treeview_helper.c:1094
 #: src/treeview_helper.c:1390
 msgid "OK"
 msgstr "OK"
@@ -2052,17 +1884,9 @@ msgstr "OK"
 msgid "ON"
 msgstr "HIZLI"
 
-#: src/interface.c:686
-msgid "Off"
-msgstr "NORMAL"
-
-#: src/interface.c:797 src/interface.c:2022
+#: src/interface.c:145
 msgid "Offer new contract"
 msgstr "Yeni kontrat teklifi"
-
-#: src/interface.c:680
-msgid "On"
-msgstr "HIZLI"
 
 #: src/misc_interface.c:211
 msgid "Only names"
@@ -2087,10 +1911,6 @@ msgstr "Seçenekler"
 #: src/treeview.c:1904
 msgid "Overall results"
 msgstr "Sezon sonuçları"
-
-#: src/interface.c:379
-msgid "Overwrite"
-msgstr "Üzerine Yaz"
 
 #: src/game_gui.c:916
 #, c-format
@@ -2121,7 +1941,7 @@ msgstr "Sakatlıkta dur"
 msgid "Pause when red card"
 msgstr "Kırmızı kart olduğunda dur."
 
-#: src/callback_func.c:427
+#: src/callback_func.c:443
 msgid "Payback"
 msgstr "Geri ödeme"
 
@@ -2129,11 +1949,11 @@ msgstr "Geri ödeme"
 msgid "Penalties"
 msgstr "Penaltılar"
 
-#: src/callbacks.c:1130
+#: src/callbacks.c:1167
 msgid "Penalty/free kick shooter deselected."
 msgstr "Penaltıcı/serbest vuruşçu seçili değil."
 
-#: src/interface.c:543 src/treeview.c:1523
+#: src/treeview.c:1523
 msgid "Physio"
 msgstr "Takım doktoru"
 
@@ -2157,19 +1977,11 @@ msgstr "Futbolcu daha fazla görüşme yapmak istemiyor"
 msgid "Player list"
 msgstr "Oyuncu Listesi"
 
-#: src/interface.c:1363
-msgid "Player list 1"
-msgstr "Takım Listesi 1"
-
-#: src/interface.c:1371
-msgid "Player list 2"
-msgstr "Takım Listesi 2"
-
 #: src/options_interface.c:346
 msgid "Player list refresh rate"
 msgstr "Oyuncu listesi yenileme hızı"
 
-#: src/interface.c:467 src/treeview.c:1887
+#: src/treeview.c:1887
 msgid "Playing style"
 msgstr "Oyun tarzı"
 
@@ -2198,10 +2010,6 @@ msgstr "Posizyon"
 msgid "Prefer messages"
 msgstr "Mesaj tercihi"
 
-#: src/interface.c:354
-msgid "Preferences"
-msgstr "Tercihler"
-
 #: src/training_interface.c:175 src/treeview.c:2946
 msgid "Premium Hotel"
 msgstr "Beş Yıldızlı Tatil Köyü"
@@ -2209,18 +2017,6 @@ msgstr "Beş Yıldızlı Tatil Köyü"
 #: src/misc3_interface.c:295
 msgid "Previous"
 msgstr "Geri"
-
-#: src/interface.c:1421
-msgid "Previous (Q)"
-msgstr "Geri (Q)"
-
-#: src/interface.c:1395
-msgid "Previous league/cup (1)"
-msgstr "Geri lig/kupa (1)"
-
-#: src/interface.c:906
-msgid "Previous user"
-msgstr "Önceki kullanıcı"
 
 #: src/misc_interface.c:1025
 msgid "Price per ticket"
@@ -2230,21 +2026,17 @@ msgstr "Bilet ücreti"
 msgid "Prize money"
 msgstr "İkramiye parası"
 
-#: src/player.c:1412
+#: src/player.c:1415
 msgid "Pulled muscle"
 msgstr "Kas çekmesi"
 
-#: src/interface.c:781 src/interface.c:2014
+#: src/interface.c:137
 msgid "Put on transfer list"
 msgstr "Transfer listesine koy"
 
 #: src/cup.c:1111
 msgid "Quarter-final"
 msgstr "Çeyrek Final"
-
-#: src/interface.c:1118
-msgid "Quit (Ctrl - Q)"
-msgstr "Çıkış (Ctrl - Q)"
 
 #: src/treeview2.c:69
 msgid "REMOVE"
@@ -2270,25 +2062,13 @@ msgstr ""
 msgid "Rank"
 msgstr "Sıralaman"
 
-#: src/interface.c:1281
-msgid "Rank "
-msgstr "Sıralaman "
-
 #: src/file.c:396 src/misc3_interface.c:412
 msgid "Ready"
 msgstr "Hazır"
 
-#: src/interface.c:728
-msgid "Rearrange team"
-msgstr "Tekrar düzenle"
-
 #: src/training_interface.c:98
 msgid "Recreation"
 msgstr "Dinlenme"
-
-#: src/interface.c:627
-msgid "Recruiting preference"
-msgstr "Oyuncu seçim önceliği"
 
 #: src/treeview.c:842 src/treeview_helper.c:935
 msgid "Reds"
@@ -2330,7 +2110,7 @@ msgstr "Dosyadan maçları yeniden yükle ve kapat"
 msgid "Reload the constants file"
 msgstr "Bileşenler dosyasını yeniden yükle"
 
-#: src/interface.c:789 src/interface.c:2018
+#: src/interface.c:141
 msgid "Remove from transfer list"
 msgstr "Transfer listesinden çıkart"
 
@@ -2338,22 +2118,6 @@ msgstr "Transfer listesinden çıkart"
 #, c-format
 msgid "Remove user %s from the game?"
 msgstr "%s kullanıcısını oyundan kaldır?"
-
-#: src/interface.c:1050
-msgid "Replay, delete or add memorable matches."
-msgstr "Unutulmaz maçları yeniden oynat,ekle veya sil"
-
-#: src/interface.c:712
-msgid "Reset player list"
-msgstr "Oyuncu listesini sıfırla"
-
-#: src/interface.c:714 src/interface.c:1377
-msgid ""
-"Reset player list to the formation at the beginning of the live game pause "
-"(right click on player list)"
-msgstr ""
-"Canlı maç durdugunda oyuncularınızın takım dizilimini sağ tuşa basarak "
-"değiştirebilirsiniz."
 
 #: src/treeview2.c:93 src/treeview2.c:214
 msgid "Result"
@@ -2371,11 +2135,11 @@ msgstr "Geri dön"
 msgid "Return / Space"
 msgstr "Geri Dön / Boşluk"
 
-#: src/interface.c:1251 src/misc_interface.c:740
+#: src/misc_interface.c:740
 msgid "Right click and left click to change boost state"
 msgstr "Sağ ve Sol tuşlara basarak Takım Desteği durumunu değiştir"
 
-#: src/interface.c:1241 src/misc_interface.c:749
+#: src/misc_interface.c:749
 msgid "Right click and left click to change your playing style"
 msgstr "Sağ ve Sol tuşlara basarak takım oyun stilini değiştir"
 
@@ -2426,10 +2190,6 @@ msgstr ""
 "Değişiklikleri ayarlar dosyasına kaydet.NE YAPTIĞINIZI BİLMİYORSANIZ "
 "KESİNLİKLE DEĞİŞTİRMEYE ÇALIŞMAYIN."
 
-#: src/interface.c:1108
-msgid "Save game (Ctrl - S)"
-msgstr "Oyunu kaydet (Ctrl - S)"
-
 #: src/options_interface.c:1220
 msgid "Save global settings to file"
 msgstr "Genel Ayarları Dosya'ya kaydet"
@@ -2449,14 +2209,6 @@ msgstr "Dosya olarak sakla"
 #: src/options_interface.c:1225
 msgid "Save user settings to file"
 msgstr "Kullanıcı Ayarlarını Dosya'ya kaydet"
-
-#: src/interface.c:389
-msgid "Save window geometry"
-msgstr "Windows geometrisini kaydet"
-
-#: src/interface.c:392
-msgid "Save window size, position and vertical divider"
-msgstr "Pencere boyutunu,pozisyonunu ve dikey bölücüyü kaydet"
 
 #. The 'job exchange' is a list of teams looking for a manager.
 #: src/load_save.c:133
@@ -2491,7 +2243,7 @@ msgstr "Transfer listeleri kaydediliyor..."
 msgid "Saving users..."
 msgstr "Kullanıcılar kaydediliyor..."
 
-#: src/interface.c:508 src/treeview.c:1524
+#: src/treeview.c:1524
 msgid "Scout"
 msgstr "Yetenek Avcısı Maaşı"
 
@@ -2505,14 +2257,6 @@ msgstr "Sez"
 msgid "Season %d"
 msgstr "Sezon %d"
 
-#: src/interface.c:1002
-msgid "Season history"
-msgstr "Sezon Geçmişi"
-
-#: src/interface.c:449
-msgid "Season results"
-msgstr "Sezon sonuçları"
-
 #: src/misc_interface.c:387 src/window.c:922
 msgid "Select font"
 msgstr "Font seç"
@@ -2521,11 +2265,7 @@ msgstr "Font seç"
 msgid "Semi-final"
 msgstr "Yari-Final"
 
-#: src/interface.c:664
-msgid "Set investment"
-msgstr "Akademi Yatırımı "
-
-#: src/callbacks.c:842 src/interface.c:667
+#: src/callbacks.c:842
 msgid ""
 "Set the percentage of your income you want to devote to your youth academy."
 msgstr ""
@@ -2541,7 +2281,7 @@ msgstr "Uyarıları kapatmak için 0 ayarla"
 msgid "Sh"
 msgstr "Şutlar"
 
-#: src/interface.c:813 src/interface.c:2030
+#: src/interface.c:153
 msgid "Shoots penalties"
 msgstr "Frikik ve Penaltıları kullansın"
 
@@ -2561,33 +2301,13 @@ msgstr "Şutlar"
 msgid "Show all leagues in the fixture view"
 msgstr "Bütün ligleri fikstürde göster"
 
-#: src/interface.c:879
-msgid "Show coming matches"
-msgstr "Gelecek maçları göster"
-
-#: src/interface.c:935
-msgid "Show finances"
-msgstr "Finans durumunu göster"
-
-#: src/interface.c:773 src/interface.c:2010
+#: src/interface.c:133
 msgid "Show info"
 msgstr "Futbolcu Bilgisi"
-
-#: src/interface.c:758
-msgid "Show job exchange"
-msgstr "İş Tekliflerini Göster"
 
 #: src/options_interface.c:503
 msgid "Show job offers"
 msgstr "İş Tekliflerini Göster"
-
-#: src/interface.c:857
-msgid "Show last match"
-msgstr "Son maçı göster"
-
-#: src/interface.c:868
-msgid "Show last match stats"
-msgstr "Son maçın istatistiklerini göster"
 
 #: src/options_interface.c:576
 msgid "Show live game"
@@ -2623,33 +2343,13 @@ msgstr "Futbolcuya ait maç/gol oranını göster"
 msgid "Show progressbar pictures"
 msgstr "Resimli durum çubuğunu göster."
 
-#: src/interface.c:946
-msgid "Show stadium"
-msgstr "Stadı göster"
-
 #: src/options_interface.c:580
 msgid "Show tendency bar"
 msgstr "Maç sırasında pozisyon bölgesini göster"
 
-#: src/interface.c:972
-msgid "Show the betting window"
-msgstr "Bahis penceresini göster"
-
-#: src/interface.c:761
-msgid "Show the list of available manager jobs"
-msgstr "Mevcut menejer işleri listesini göster."
-
-#: src/interface.c:1151
-msgid "Show transferlist (T)"
-msgstr "Transfer Listesi Göster (T)"
-
 #: src/options_interface.c:517
 msgid "Show warning if a player contract gets below "
 msgstr "Futbolcu sözleşmesi bitimine yakın uyarı göster"
-
-#: src/interface.c:589
-msgid "Show youth academy"
-msgstr "Genç oyuncu akademisi göster."
 
 #. Skill of a player.
 #: src/treeview.c:312
@@ -2692,10 +2392,6 @@ msgstr "Sponsor Gelirleri"
 msgid "Sponsorship offers"
 msgstr "Sponsor Firma Teklifleri"
 
-#: src/interface.c:977
-msgid "St_ats"
-msgstr "Du_rum"
-
 #: src/treeview.c:1477
 msgid "Stadium"
 msgstr "Stad"
@@ -2708,7 +2404,7 @@ msgstr "Stad Kapasitesi"
 msgid "Stadium expenses"
 msgstr "Stad Giderleri"
 
-#: src/callbacks.c:1537
+#: src/callbacks.c:1574
 msgid "Stadium management is disabled in this country definition."
 msgstr "Stadyum Yönetimi ülkenizde geçerli değil."
 
@@ -2766,7 +2462,7 @@ msgstr "Koşul"
 msgid "String id of the country to load"
 msgstr "Ülke sıra numarası yükleniyor"
 
-#: src/callbacks.c:936
+#: src/callbacks.c:973
 msgid "Structure"
 msgstr "Takım Düzeni"
 
@@ -2778,10 +2474,6 @@ msgstr "Takım düzenini otomatik değiştir"
 #: src/treeview.c:2883
 msgid "System"
 msgstr "Sistem"
-
-#: src/interface.c:427
-msgid "Tables"
-msgstr "Puan Cetveli"
 
 #: src/treeview2.c:517
 msgid "Talent %"
@@ -2818,7 +2510,7 @@ msgstr "Takım2"
 msgid "Test an XML commentary file"
 msgstr "XML anlatım dosyasını test et."
 
-#: src/callback_func.c:389
+#: src/callback_func.c:405
 msgid "The bank doesn't grant you more money."
 msgstr "Banka size daha fazla ödenek yapmıyor."
 
@@ -2918,7 +2610,7 @@ msgstr ""
 "%s takımının yöneticileri teklifinizi kibarca reddetti.Onlara göre yeterince "
 "iyi bir teklif gelmedi."
 
-#: src/callback_func.c:615
+#: src/callback_func.c:631
 msgid ""
 "The player feels he doesn't have a future in your star-studded team. He "
 "refuses to negotiate."
@@ -2926,17 +2618,17 @@ msgstr ""
 "Futbolcu gelecekte takımınızdaki yıldızı sönenlerden birisi olabileceğini "
 "düşünüyor.Daha fazla görüşmeyi reddediyor."
 
-#: src/callbacks.c:1067
+#: src/callbacks.c:1104
 msgid "The player is already on the list."
 msgstr "Futbolcu zaten transfer listesinde."
 
-#: src/callback_func.c:552
+#: src/callback_func.c:568
 msgid ""
 "The player is locked (the team owners are considering an offer currently)."
 msgstr ""
 "Oyuncu kilitli durumda (takım yöneticileri gelen teklifleri değerlendiriyor)."
 
-#: src/callbacks.c:1087
+#: src/callbacks.c:1124
 msgid "The player is not on the list."
 msgstr "Futbolcu listede değil."
 
@@ -2948,11 +2640,11 @@ msgstr "Futbolcu maç öncesi soğuk ve antremansız"
 msgid "The player is on a hot streak"
 msgstr "Futbolcu Maç öncesi sıcak ve antremanlı"
 
-#: src/callbacks.c:1170
+#: src/callbacks.c:1207
 msgid "The player is too old for the youth academy."
 msgstr "Futbolcu Genç oyuncu akademisi için çok yaşlı"
 
-#: src/callback_func.c:609
+#: src/callback_func.c:625
 msgid "The player won't negotiate with you anymore."
 msgstr "Futbolcu daha fazla görüşmeyi reddediyor."
 
@@ -2994,7 +2686,7 @@ msgstr ""
 "ayrıldığınızı duydu ve size iş teklif etmek istiyor. İşte bu konudaki "
 "bilgiler %s:"
 
-#: src/callback_func.c:559 src/callbacks.c:226 src/transfer.c:574
+#: src/callback_func.c:575 src/callbacks.c:226 src/transfer.c:574
 msgid "The transfer deadline is over."
 msgstr "Transfer Sezonu Kapandı"
 
@@ -3024,14 +2716,19 @@ msgstr "Ülke ayarlarınızda lig veya kupa tabloları yapılandırılmamış."
 msgid "There are no season history elements stored yet."
 msgstr "Sezon geçmişi bulunamadı."
 
-#: src/callback_func.c:455
+#: src/callback_func.c:471
 msgid ""
 "There are some offers for the player which you rejected or will see next "
 "week."
 msgstr ""
 "Oyuncu için bazı teklifler var,kabul etmeyip gelecek hafta görebilirsiniz."
 
-#: src/callbacks.c:1176
+#: src/callbacks.c:896
+#, fuzzy
+msgid "There is no default team stored yet."
+msgstr "Sezon geçmişi bulunamadı."
+
+#: src/callbacks.c:1213
 msgid "There is no room in your youth academy."
 msgstr "Genç oyuncu akademisinde yer yok."
 
@@ -3047,7 +2744,7 @@ msgstr ""
 msgid "Ticket income"
 msgstr "Bilet geliri"
 
-#: src/player.c:1439
+#: src/player.c:1442
 msgid "Torn crucial ligament"
 msgstr "Çapraz bağ zedelenmesi"
 
@@ -3055,12 +2752,12 @@ msgstr "Çapraz bağ zedelenmesi"
 msgid "Training"
 msgstr "Antreman"
 
-#: src/interface.c:703 src/options_interface.c:1151
-#: src/training_interface.c:60 src/treeview.c:1616 src/window.c:1007
+#: src/options_interface.c:1151 src/training_interface.c:60
+#: src/treeview.c:1616 src/window.c:1007
 msgid "Training camp"
 msgstr "Hazırlık kampı"
 
-#: src/callbacks.c:878
+#: src/callbacks.c:915
 msgid "Training camp is disabled in this country definition."
 msgstr "Hazırlık kampı ülke ayarlarınızda devre dışı."
 
@@ -3077,28 +2774,18 @@ msgstr "Transfer Teklifi"
 msgid "Transfers"
 msgstr "Transferler"
 
-#: src/callbacks.c:206 src/callbacks.c:1063
+#: src/callbacks.c:206 src/callbacks.c:1100
 msgid "Transfers are disabled in this country definition."
 msgstr "Transferler ülke ayarlarınızda devre dışı."
-
-#: src/interface.c:731
-msgid ""
-"Try to put the startup players onto their favoured positions and sort the "
-"substitutes (Ctrl-R or middle click)"
-msgstr "Takımı tekrar düzelt (R) (Futbolcuları kendi mevkilerine koymayı dene)"
 
 #: src/load_save.c:226
 msgid "Uncompressing savegame..."
 msgstr "Kayıtlı oyun açılıyor..."
 
-#: src/callback_func.c:545
+#: src/callback_func.c:561
 #, c-format
 msgid "User %s didn't consider your offer yet."
 msgstr "%s daha teklifinizi düşünmedi."
-
-#: src/interface.c:1013
-msgid "User history"
-msgstr "Geçmişi Göster"
 
 #: src/window.c:945
 msgid "User management"
@@ -3138,7 +2825,7 @@ msgstr "G"
 msgid "W  %d : %d"
 msgstr "G  %d : %d"
 
-#: src/callback_func.c:575 src/callback_func.c:582 src/treeview.c:329
+#: src/callback_func.c:591 src/callback_func.c:598 src/treeview.c:329
 #: src/treeview.c:2173
 msgid "Wage"
 msgstr "Maaş"
@@ -3385,7 +3072,7 @@ msgstr "Şampiyon oldunuz %s!"
 msgid "You are free from debt."
 msgstr "Borcunuzu yok"
 
-#: src/callback_func.c:579
+#: src/callback_func.c:595
 #, c-format
 msgid ""
 "You are making an offer for %s again. Your previous values for fee and wage "
@@ -3394,7 +3081,7 @@ msgstr ""
 "%s adlı futbolcuya Yeniden teklif yapıyorsunuz.Önceki teklifinizi "
 "değiştirmek isteyebilirsiniz."
 
-#: src/callback_func.c:571
+#: src/callback_func.c:587
 #, c-format
 msgid ""
 "You are making an offer for %s. Your scout's recommendations for fee and "
@@ -3403,7 +3090,7 @@ msgstr ""
 "%s adlı futbolcuya Teklif yapıyorsunuz.Yöneticilerinizin önerdiği transfer "
 "ücreti ve maaş aşağıdaki gibidir."
 
-#: src/callback_func.c:629
+#: src/callback_func.c:645
 #, c-format
 msgid ""
 "You are negotiating with %s about a new contract. Pay attention to what "
@@ -3418,11 +3105,11 @@ msgstr ""
 "şansınız var).SADECE TEKLİFTEN ÖNCE bunu iptal etme şansınız var unutmayın.\n"
 "Klüp Yöneticilerinizin tavsiyeleri :"
 
-#: src/callbacks.c:1491
+#: src/callbacks.c:1528
 msgid "You are not in debt."
 msgstr "Borcun yok"
 
-#: src/callback_func.c:413
+#: src/callback_func.c:429
 msgid "You are not indebted."
 msgstr "Borçlu değilsiniz.."
 
@@ -3433,12 +3120,12 @@ msgstr ""
 "Oynamak istediğin bahis seçimi: %d , bahis oranı ise %.2f. Kaç liralık bahis "
 "oynamak istiyorsun?"
 
-#: src/callback_func.c:425
+#: src/callback_func.c:441
 #, c-format
 msgid "You can pay back at most %s"
 msgstr "Borcunun bu kadarını geri ödemelisin %s"
 
-#: src/callback_func.c:395
+#: src/callback_func.c:411
 #, c-format
 msgid "You can take out at most %s."
 msgstr "Borçlanmak istediğin miktar : %s."
@@ -3447,16 +3134,16 @@ msgstr "Borçlanmak istediğin miktar : %s."
 msgid "You can't apply for a job from abroad if there's more than one user."
 msgstr "Eğer dışarıda bir kullanıcıdan daha fazla varsa bu işi uygulayamazsın."
 
-#: src/callbacks.c:1306
+#: src/callbacks.c:1343
 #, c-format
 msgid "You can't have more than %d players in the team."
 msgstr "%d oyuncudan fazla takımında bulunamaz."
 
-#: src/callbacks.c:1173
+#: src/callbacks.c:1210
 msgid "You can't move the player, there are too few players in your team."
 msgstr "Futbolcuyu hareket ettiremezsin,takımında çok az futbolcu var."
 
-#: src/callback_func.c:604
+#: src/callback_func.c:620
 msgid "You can't offer a new contract if the old one is still above 2 years."
 msgstr ""
 "Eğer futbolcunun şimdiki sözleşmesi 2 yıldan fazla ise , Yeni sözleşme "
@@ -3466,7 +3153,7 @@ msgstr ""
 msgid "You can't play Bygfoot without users!"
 msgstr "Bygfoot kullanıcı tanımlamadan oynanamaz!"
 
-#: src/player.c:670
+#: src/player.c:673
 msgid "You can't replace a banned player."
 msgstr "Kırmızı kart görmüş oyuncu maçta oynayamaz."
 
@@ -3483,7 +3170,7 @@ msgstr ""
 "Bu oyuncuyu alacak yeterli paranız yok %s yada takımın kapasitesi zaten dolu "
 "durumda."
 
-#: src/callback_func.c:419
+#: src/callback_func.c:435
 msgid "You don't have enough money to pay back."
 msgstr "Geri ödeme için yeterli paranız yok."
 
@@ -3548,9 +3235,9 @@ msgstr "Borcunu bu hafta içinde geri ödemelisin."
 msgid "You haven't made an offer for the player."
 msgstr "Oyuncu için teklifiniz yok"
 
-#: src/callbacks.c:972 src/callbacks.c:1023 src/callbacks.c:1043
-#: src/callbacks.c:1065 src/callbacks.c:1085 src/callbacks.c:1105
-#: src/callbacks.c:1125 src/callbacks.c:1164
+#: src/callbacks.c:1009 src/callbacks.c:1060 src/callbacks.c:1080
+#: src/callbacks.c:1102 src/callbacks.c:1122 src/callbacks.c:1142
+#: src/callbacks.c:1162 src/callbacks.c:1201
 msgid "You haven't selected a player."
 msgstr "Oyuncu Seçmediniz"
 
@@ -3560,7 +3247,7 @@ msgstr "Oyuncu Seçmediniz"
 msgid "You lose in the %s final against %s."
 msgstr "%s finalinde %s takımına Yine kaybettin"
 
-#: src/callback_func.c:512
+#: src/callback_func.c:528
 #, c-format
 msgid ""
 "You offered a transfer fee of %s and a wage of %s for %s. The owners and the "
@@ -3582,11 +3269,11 @@ msgstr "Tebrikler! Bir üst tura çıktın. %s  (%s.tur) - Kupa adı: %s."
 msgid "You start the game with %s in the %s."
 msgstr "Oyuna %s takımıyla başladın ve şu lige başlangıç yaptın: %s."
 
-#: src/callbacks.c:239 src/callbacks.c:1355 src/callbacks.c:1376
+#: src/callbacks.c:239 src/callbacks.c:1392 src/callbacks.c:1413
 msgid "You still have some transfer business to manage."
 msgstr "Hala bekleyen transfer işin var."
 
-#: src/callback_func.c:771
+#: src/callback_func.c:787
 #, c-format
 msgid ""
 "You want to fire %s. Since his contract expires in %.1f years, he demands a "
@@ -3602,7 +3289,7 @@ msgstr ""
 msgid "You win the %s final against %s."
 msgstr "%s, Kupayı %s  takımına karşı kazandın ."
 
-#: src/callbacks.c:891
+#: src/callbacks.c:928
 #, c-format
 msgid "You've reached the limit of %d training camps for the season."
 msgstr "Sezondaki antreman kampı sayısının limitine %d ulaştınız."
@@ -3637,7 +3324,7 @@ msgstr ""
 "%s için teklifiniz kabul ediliyor.Hala bu futbolcuyu almak istiyorsan,"
 "transfer listesine git ve oyuncu ismine sol tıkla."
 
-#: src/callback_func.c:498 src/callbacks.c:429
+#: src/callback_func.c:514 src/callbacks.c:429
 msgid "Your offer has been removed."
 msgstr "Teklifiniz kaldırıldı"
 
@@ -3662,7 +3349,7 @@ msgstr "Takım kapasiteniz dolu veya yeterli paranız yok."
 msgid "Your results"
 msgstr "Geçmiş Maçlar"
 
-#: src/callback_func.c:505
+#: src/callback_func.c:521
 msgid "Your roster is already full. You can't buy more players."
 msgstr "Takımınız dolu durumda.Başka oyuncu transfer edemezsin."
 
@@ -3681,11 +3368,11 @@ msgstr "Stadyumunuz"
 msgid "Your team"
 msgstr "Takımın"
 
-#: src/callbacks.c:1107 src/misc2_callback_func.c:60
+#: src/callbacks.c:1144 src/misc2_callback_func.c:60
 msgid "Your team can't have less than 11 players."
 msgstr "11 oyuncudan az oyuncu takımınızda bulunduramazsınız."
 
-#: src/callbacks.c:885
+#: src/callbacks.c:922
 msgid "Your team has already had enough training camps this week."
 msgstr "Takımın bu hafta yeterince antreman kampı yaptı"
 
@@ -3713,42 +3400,26 @@ msgstr ""
 msgid "Youth acad. invest."
 msgstr "Genç oyuncu akademisine destek"
 
-#: src/interface.c:578 src/treeview.c:1526
+#: src/treeview.c:1526
 msgid "Youth academy"
 msgstr "Genç oyuncu akedemisi"
 
-#: src/callbacks.c:817 src/callbacks.c:836 src/callbacks.c:1159
-#: src/callbacks.c:1301
+#: src/callbacks.c:817 src/callbacks.c:836 src/callbacks.c:1196
+#: src/callbacks.c:1338
 msgid "Youth academy is disabled in this country definition."
 msgstr "Genç oyuncu akademisi sizin ülkede devre dışıdır."
 
-#: src/interface.c:596 src/treeview.c:1525
+#: src/treeview.c:1525
 msgid "Youth coach"
 msgstr "Paf Takım Antrenörü"
-
-#: src/interface.c:304
-msgid "_File"
-msgstr "_Dosya"
-
-#: src/interface.c:1059
-msgid "_Help"
-msgstr "_Yardım"
 
 #: src/misc3_interface.c:372
 msgid "_Load game"
 msgstr "_Kayıdı yükle"
 
-#: src/interface.c:347
-msgid "_Options"
-msgstr "_Ayarlar"
-
 #: src/misc_interface.c:664
 msgid "_Pause"
 msgstr "_Durdur"
-
-#: src/interface.c:766
-msgid "_Player"
-msgstr "_Futbolcu"
 
 #: src/misc_interface.c:685
 msgid "_Resume"
@@ -3757,14 +3428,6 @@ msgstr "_Devam Et"
 #: src/misc3_interface.c:396
 msgid "_Resume game"
 msgstr "_Son Oyun"
-
-#: src/interface.c:460
-msgid "_Team"
-msgstr "_Takım"
-
-#: src/interface.c:850
-msgid "_User"
-msgstr "_Kullanıcı"
 
 #: src/treeview.c:1644
 msgid "interest rate"
@@ -3830,8 +3493,17 @@ msgstr "faiz oranı"
 #~ msgid " Post!"
 #~ msgstr " Post!"
 
+#~ msgid " Round "
+#~ msgstr " Devre"
+
 #~ msgid " Save!"
 #~ msgstr " Kurtarış!"
+
+#~ msgid " Season "
+#~ msgstr " Sezon"
+
+#~ msgid " Week "
+#~ msgstr " Hafta "
 
 #~ msgid ""
 #~ "%s is a substitute. He will only shoot the penalties if you move him into "
@@ -3915,6 +3587,12 @@ msgstr "faiz oranı"
 #~ msgid "500"
 #~ msgstr "500"
 
+#~ msgid "Add last match"
+#~ msgstr "Son maçı ekle"
+
+#~ msgid "Add last recorded match to the current memorable matches file."
+#~ msgstr "Son kayıtlı maçı unutulmaz maçlar dosyasına ekle"
+
 #~ msgid ""
 #~ "After having a look at your bank account the team politely rejects your "
 #~ "offer."
@@ -3923,6 +3601,18 @@ msgstr "faiz oranı"
 
 #~ msgid "Age between "
 #~ msgstr "Yaş aralığı"
+
+#~ msgid "All Out Attack"
+#~ msgstr "Herkes Atak"
+
+#~ msgid "All Out Defend"
+#~ msgstr "Herkes Savunma"
+
+#~ msgid "Anti"
+#~ msgstr "YAVAŞ"
+
+#~ msgid "Any"
+#~ msgstr "Farketmez"
 
 #~ msgid "Apperance and behaviour of the game"
 #~ msgstr "Oyundaki görünüş ve davranış"
@@ -3954,6 +3644,12 @@ msgstr "faiz oranı"
 
 #~ msgid "Autosaving. Please stand by..."
 #~ msgstr "Otomatik kayıt Lütfen Bekleyin ..."
+
+#~ msgid "Av. skills:  "
+#~ msgstr "Ort.Yetenekler:  "
+
+#~ msgid "Average"
+#~ msgstr "Ortalama"
 
 #~ msgid "Average attendance development"
 #~ msgstr "Ortalama ilgilenme geliştirmek"
@@ -3988,8 +3684,23 @@ msgstr "faiz oranı"
 #~ msgid "BEST TEAMS"
 #~ msgstr "EN İYİ TAKIMLAR"
 
+#~ msgid "Back to main menu (Esc)"
+#~ msgstr "Genel Görünüm (Esc)"
+
+#~ msgid "Bad"
+#~ msgstr "Kötü"
+
+#~ msgid "Balanced"
+#~ msgstr "Dengeli"
+
 #~ msgid "Before next match"
 #~ msgstr "Gelecek Mactan önce"
+
+#~ msgid "Begin a new week (Space)"
+#~ msgstr "Yeni Maça/Haftaya Başla (Boşluk)"
+
+#~ msgid "Best"
+#~ msgstr "En iyi"
 
 #~ msgid "Best field players"
 #~ msgstr "En iyi çalışan oyuncular"
@@ -4000,11 +3711,20 @@ msgstr "faiz oranı"
 #~ msgid "Bookmaker's tip"
 #~ msgstr "Bookmaker'ın ipucu"
 
+#~ msgid "Boost"
+#~ msgstr "Takım Desteği"
+
 #~ msgid "Bottom league"
 #~ msgstr "Alt Lig"
 
 #~ msgid "Brazil"
 #~ msgstr "Brazilya"
+
+#~ msgid "Browse players"
+#~ msgstr "Ligdeki Oyuncuları listele"
+
+#~ msgid "Browse teams"
+#~ msgstr "Diğer Takımlara bak"
 
 #~ msgid "Browse teams to find and buy new players"
 #~ msgstr "Bulduğun takımları göster ve yeni oyuncular al"
@@ -4101,6 +3821,9 @@ msgstr "faiz oranı"
 #~ msgid "Defender   "
 #~ msgstr "Defans   "
 
+#~ msgid "Defenders"
+#~ msgstr "Defans oyuncuları"
+
 #~ msgid "Delete history at end of season"
 #~ msgstr "Geçmişi sezon sonunda sil"
 
@@ -4115,6 +3838,9 @@ msgstr "faiz oranı"
 
 #~ msgid "England"
 #~ msgstr "İngiltere"
+
+#~ msgid "Enter custom structure"
+#~ msgstr "Takım taktiğini gir"
 
 #~ msgid "Estimated talent between "
 #~ msgstr "Yetenekleri arasında hesapla"
@@ -4135,6 +3861,10 @@ msgstr "faiz oranı"
 
 #~ msgid "FIELD PLAYERS"
 #~ msgstr "ÇALIAN OYUNCULAR"
+
+# Lig,Sezon ile ilgili tablolar ve istatistikler
+#~ msgid "F_igures"
+#~ msgstr "Ta_blolar"
 
 #~ msgid ""
 #~ "File with the team names (country-specific, e.g. country_eng for the "
@@ -4164,6 +3894,9 @@ msgstr "faiz oranı"
 #~ msgid "Filter players by their skill"
 #~ msgstr "Oyuncularını hünerlerine göre göster"
 
+#~ msgid "Fin_Stad"
+#~ msgstr "Finans ve_Stadyum"
+
 #~ msgid "Finances / Stadium"
 #~ msgstr "Finans / Stad"
 
@@ -4176,8 +3909,24 @@ msgstr "faiz oranı"
 #~ msgid "Fire player (Middle click)"
 #~ msgstr "Oyuncuyu Kov (Orta tuş ile tıkla)"
 
+#~ msgid ""
+#~ "First value: average current skill of the first 11 players. Second value: "
+#~ "average skill of all players."
+#~ msgstr ""
+#~ "İlk değer: İlk 11'in Yetenek Ortalaması. İkinci değer: Tüm Takım "
+#~ "Ortalaması"
+
+#~ msgid "Fixtures (competitions)"
+#~ msgstr "Fikstür."
+
+#~ msgid "Fixtures (week)"
+#~ msgstr "Fikstur(hafta)"
+
 #~ msgid "Fixtures by league"
 #~ msgstr "Lige göre fiksture"
+
+#~ msgid "Forwards"
+#~ msgstr "Hücum oyuncuları"
 
 #~ msgid "GOALIES"
 #~ msgstr "Goller"
@@ -4193,6 +3942,9 @@ msgstr "faiz oranı"
 
 #~ msgid "Goal difference development"
 #~ msgstr "Sayı farklılıkları geliştirmek"
+
+#~ msgid "Goalies"
+#~ msgstr "Kaleciler"
 
 #~ msgid "Goals / Game"
 #~ msgstr "Gol / Mac"
@@ -4211,6 +3963,9 @@ msgstr "faiz oranı"
 
 #~ msgid "Goals for development"
 #~ msgstr "Golde gelişme"
+
+#~ msgid "Good"
+#~ msgstr "İyi"
 
 #~ msgid "Help (H)"
 #~ msgstr "Yardım (H)"
@@ -4287,6 +4042,12 @@ msgstr "faiz oranı"
 #~ msgid "Italy"
 #~ msgstr "İtalya"
 
+#~ msgid "Job offers"
+#~ msgstr "İş Teklifleri"
+
+#~ msgid "L_oad last save"
+#~ msgstr "S_on kaydı yükle"
+
 #~ msgid "League 2"
 #~ msgstr "Lig 2"
 
@@ -4299,6 +4060,12 @@ msgstr "faiz oranı"
 #~ msgid "League 5"
 #~ msgstr "Lig 5"
 
+#~ msgid "League stats"
+#~ msgstr "Lig Durumu"
+
+#~ msgid "Load game (Ctrl - O)"
+#~ msgstr "Kayıtlı Oyunu yükle (Ctrl - O)"
+
 #~ msgid "Load my team from definitions file"
 #~ msgstr "Kendi takımımın özelliklerini özellikler dosyasından yükle"
 
@@ -4308,6 +4075,12 @@ msgstr "faiz oranı"
 
 #~ msgid "Look & Feel"
 #~ msgstr "Görünüm & Doku"
+
+#~ msgid "Manage matches"
+#~ msgstr "Maçları yönet"
+
+#~ msgid "Manage users"
+#~ msgstr "Kullanıcıları yönet"
 
 #~ msgid "Maximal history length"
 #~ msgstr "Maximum geçmiş uzunluğu"
@@ -4324,12 +4097,18 @@ msgstr "faiz oranı"
 #~ msgid "Mexico"
 #~ msgstr "Meksika"
 
+#~ msgid "Midfielders"
+#~ msgstr "Ortasaha oyuncuları"
+
 #, fuzzy
 #~ msgid "Misc."
 #~ msgstr "Misc"
 
 #~ msgid "Miscellaneous options"
 #~ msgstr "Çeşitli ayarlar"
+
+#~ msgid "Money "
+#~ msgstr "Para: "
 
 #~ msgid "Money development"
 #~ msgstr "Para Gelişmesi"
@@ -4346,6 +4125,9 @@ msgstr "faiz oranı"
 #~ msgid "My games plus preview"
 #~ msgstr "Benim oyunlarım için pozitif bakış"
 
+#~ msgid "My league results"
+#~ msgstr "Lig Sonucları"
+
 #~ msgid "NONE\n"
 #~ msgstr "NONE\n"
 
@@ -4357,6 +4139,15 @@ msgstr "faiz oranı"
 
 #~ msgid "New week"
 #~ msgstr "Yeni hafta"
+
+#~ msgid "Next (W)"
+#~ msgstr "İleri (W)"
+
+#~ msgid "Next league/cup (2)"
+#~ msgstr "Sonraki Lig/Kupa (2)"
+
+#~ msgid "Next user"
+#~ msgstr "Sonraki kullanıcı"
 
 #~ msgid "No messages"
 #~ msgstr "Mesaj yok"
@@ -4374,6 +4165,12 @@ msgstr "faiz oranı"
 
 #~ msgid "Objective from Team Manager :"
 #~ msgstr "Teknik Direktorden Objectif :"
+
+#~ msgid "Off"
+#~ msgstr "NORMAL"
+
+#~ msgid "On"
+#~ msgstr "HIZLI"
 
 #~ msgid ""
 #~ "One of the structure numbers is not a valid structure specifier. The "
@@ -4399,6 +4196,9 @@ msgstr "faiz oranı"
 
 #~ msgid "Options for loading and saving games"
 #~ msgstr "Ayarlar için yüklenmiş ve kaydedilmiş oyunlar"
+
+#~ msgid "Overwrite"
+#~ msgstr "Üzerine Yaz"
 
 #~ msgid "Overwrite old savegame"
 #~ msgstr "Eski oyunun üstüne yaz"
@@ -4433,6 +4233,12 @@ msgstr "faiz oranı"
 #~ msgid "Player attributes that are shown in the two player lists"
 #~ msgstr "Oyuncu özellikleri her iki listedede gösterilir"
 
+#~ msgid "Player list 1"
+#~ msgstr "Takım Listesi 1"
+
+#~ msgid "Player list 2"
+#~ msgstr "Takım Listesi 2"
+
 #~ msgid "Player wages"
 #~ msgstr "Oyucu ücretleri"
 
@@ -4442,8 +4248,20 @@ msgstr "faiz oranı"
 #~ msgid "Positions"
 #~ msgstr "Posizyonlar"
 
+#~ msgid "Preferences"
+#~ msgstr "Tercihler"
+
 #~ msgid "Premier Division"
 #~ msgstr "Premier Lig"
+
+#~ msgid "Previous (Q)"
+#~ msgstr "Geri (Q)"
+
+#~ msgid "Previous league/cup (1)"
+#~ msgstr "Geri lig/kupa (1)"
+
+#~ msgid "Previous user"
+#~ msgstr "Önceki kullanıcı"
 
 #~ msgid "Put player on transfer list (Right click in transfer mode)"
 #~ msgstr "Oyuncuyu Transfer Listesine koy (Transfer modunda iken sağ tıkla)"
@@ -4457,15 +4275,40 @@ msgstr "faiz oranı"
 #~ msgid "Quit"
 #~ msgstr "Çıkış"
 
+#~ msgid "Quit (Ctrl - Q)"
+#~ msgstr "Çıkış (Ctrl - Q)"
+
 #~ msgid "Quit (Esc)"
 #~ msgstr "Çıkış"
+
+#~ msgid "Rank "
+#~ msgstr "Sıralaman "
 
 #~ msgid "Rank development"
 #~ msgstr "Sıralama geliştirmek"
 
+#~ msgid "Rearrange team"
+#~ msgstr "Tekrar düzenle"
+
+#~ msgid "Recruiting preference"
+#~ msgstr "Oyuncu seçim önceliği"
+
 #~ msgid "Remove player from transfer list (Click in the transfer list)"
 #~ msgstr ""
 #~ "Oyunuyu transfer listesinden çıkart (Transfer listesinde iken tıkla)"
+
+#~ msgid "Replay, delete or add memorable matches."
+#~ msgstr "Unutulmaz maçları yeniden oynat,ekle veya sil"
+
+#~ msgid "Reset player list"
+#~ msgstr "Oyuncu listesini sıfırla"
+
+#~ msgid ""
+#~ "Reset player list to the formation at the beginning of the live game "
+#~ "pause (right click on player list)"
+#~ msgstr ""
+#~ "Canlı maç durdugunda oyuncularınızın takım dizilimini sağ tuşa basarak "
+#~ "değiştirebilirsiniz."
 
 #~ msgid "Romania"
 #~ msgstr "Romanya"
@@ -4482,6 +4325,9 @@ msgstr "faiz oranı"
 #~ msgid "Save current team to file (Ctrl-S)"
 #~ msgstr "Geçerli takımı dosyaya kaydet (Ctrl-S)"
 
+#~ msgid "Save game (Ctrl - S)"
+#~ msgstr "Oyunu kaydet (Ctrl - S)"
+
 #~ msgid ""
 #~ "Save options to $HOME/.bygfoot/bygfoot.conf. If you start Bygfoot again, "
 #~ "they get loaded from the file."
@@ -4491,6 +4337,12 @@ msgstr "faiz oranı"
 
 #~ msgid "Save team definition file and start Bygfoot"
 #~ msgstr "Takım özellikleri kaydet ve Bygfoot u başlat"
+
+#~ msgid "Save window geometry"
+#~ msgstr "Windows geometrisini kaydet"
+
+#~ msgid "Save window size, position and vertical divider"
+#~ msgstr "Pencere boyutunu,pozisyonunu ve dikey bölücüyü kaydet"
 
 #, fuzzy
 #~ msgid "Saving cups..."
@@ -4505,6 +4357,12 @@ msgstr "faiz oranı"
 #~ msgid "Scout recommends"
 #~ msgstr "Menajer Tavsiyeleri"
 
+#~ msgid "Season history"
+#~ msgstr "Sezon Geçmişi"
+
+#~ msgid "Season results"
+#~ msgstr "Sezon sonuçları"
+
 #~ msgid "Select next player (Ctrl-Right)"
 #~ msgstr "Bir sonraki oyuncuyu seç (Ctrl-Sağ)"
 
@@ -4513,6 +4371,9 @@ msgstr "faiz oranı"
 
 #~ msgid "Select team and country"
 #~ msgstr "Ülke ve takım seçin"
+
+#~ msgid "Set investment"
+#~ msgstr "Akademi Yatırımı "
 
 #~ msgid "Show 'live' games"
 #~ msgstr "Canlı göster oyunları"
@@ -4528,6 +4389,9 @@ msgstr "faiz oranı"
 #~ "beginning a new week"
 #~ msgstr "Sakat yada cezalı oyuncular yeni haftaya başlarken takımda"
 
+#~ msgid "Show coming matches"
+#~ msgstr "Gelecek maçları göster"
+
 #~ msgid "Show editor help (F1)"
 #~ msgstr "Editorun Yardımını göster (F1)"
 
@@ -4541,6 +4405,9 @@ msgstr "faiz oranı"
 #~ msgid "Show extended player information (Right click)"
 #~ msgstr "Extra kullancı bilgisini göster (Sağ tıkla)"
 
+#~ msgid "Show finances"
+#~ msgstr "Finans durumunu göster"
+
 #~ msgid "Show fitness colors"
 #~ msgstr "Form renklerini Göster"
 
@@ -4550,19 +4417,43 @@ msgstr "faiz oranı"
 #~ msgid "Show history"
 #~ msgstr "Geçmişi Göster"
 
+#~ msgid "Show job exchange"
+#~ msgstr "İş Tekliflerini Göster"
+
+#~ msgid "Show last match"
+#~ msgstr "Son maçı göster"
+
+#~ msgid "Show last match stats"
+#~ msgstr "Son maçın istatistiklerini göster"
+
 #~ msgid "Show live game tendency bar"
 #~ msgstr "Canlı oyunları eğilim çubuğunda göster"
 
 #~ msgid "Show my last games and a preview of my next games (P or F1)"
 #~ msgstr "Son macı göster ve gelecek mac hakkında en bilgi ver (P or F1)"
 
+#~ msgid "Show stadium"
+#~ msgstr "Stadı göster"
+
 #~ msgid "Show tables (F5)"
 #~ msgstr "Puan Cetvelini Göster (F5)"
+
+#~ msgid "Show the betting window"
+#~ msgstr "Bahis penceresini göster"
+
+#~ msgid "Show the list of available manager jobs"
+#~ msgstr "Mevcut menejer işleri listesini göster."
 
 #~ msgid ""
 #~ "Show the results of all games in the league / cups my team participates in"
 #~ msgstr ""
 #~ "Liglerdeki tüm oyunların sonuçlarını göster / takımımın katıldığı kupalar"
+
+#~ msgid "Show transferlist (T)"
+#~ msgstr "Transfer Listesi Göster (T)"
+
+#~ msgid "Show youth academy"
+#~ msgstr "Genç oyuncu akademisi göster."
 
 #~ msgid "Skill between "
 #~ msgstr "Hüner Arası"
@@ -4581,6 +4472,9 @@ msgstr "faiz oranı"
 
 #~ msgid "Spain"
 #~ msgstr "İspanya"
+
+#~ msgid "St_ats"
+#~ msgstr "Du_rum"
 
 #~ msgid "Stadium bills"
 #~ msgstr "Stad Gelirleri"
@@ -4605,6 +4499,9 @@ msgstr "faiz oranı"
 
 #~ msgid "TEAM AWARDS"
 #~ msgstr "TAKIM ÖDÜLLERİ"
+
+#~ msgid "Tables"
+#~ msgstr "Puan Cetveli"
 
 #~ msgid "Team Editor Help"
 #~ msgstr "Takım Editoru Yardımı"
@@ -4713,6 +4610,12 @@ msgstr "faiz oranı"
 #~ msgid "Transferlist notification"
 #~ msgstr "Transfer Listesi Bildirmesi"
 
+#~ msgid ""
+#~ "Try to put the startup players onto their favoured positions and sort the "
+#~ "substitutes (Ctrl-R or middle click)"
+#~ msgstr ""
+#~ "Takımı tekrar düzelt (R) (Futbolcuları kendi mevkilerine koymayı dene)"
+
 #~ msgid "UEFA / Sul-Amer."
 #~ msgstr "UEFA / Sul-Amer."
 
@@ -4727,6 +4630,9 @@ msgstr "faiz oranı"
 
 #~ msgid "Update player information"
 #~ msgstr "Oyuncu bilgilerini güncelle"
+
+#~ msgid "User history"
+#~ msgstr "Geçmişi Göster"
 
 #~ msgid "Value development for %s"
 #~ msgstr "Değer geliştirmek için %s"
@@ -4849,6 +4755,24 @@ msgstr "faiz oranı"
 
 #~ msgid "Your team's prize money"
 #~ msgstr "Takımının ikramiyesi"
+
+#~ msgid "_File"
+#~ msgstr "_Dosya"
+
+#~ msgid "_Help"
+#~ msgstr "_Yardım"
+
+#~ msgid "_Options"
+#~ msgstr "_Ayarlar"
+
+#~ msgid "_Player"
+#~ msgstr "_Futbolcu"
+
+#~ msgid "_Team"
+#~ msgstr "_Takım"
+
+#~ msgid "_User"
+#~ msgstr "_Kullanıcı"
 
 #~ msgid "banned for %d weeks (%s)"
 #~ msgstr "%d hafta yasaklandı"
