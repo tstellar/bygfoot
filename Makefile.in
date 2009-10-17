@@ -1499,9 +1499,10 @@ SUPPORT_FILES = support_files/pixmaps/live_game/save.png \
 	support_files/hints/bygfoot_hints_it \
 	support_files/hints/bygfoot_hints_ro \
 	support_files/hints/bygfoot_hints_el \
-	support_files/bygfoot_help support_files/bygfoot_user.conf \
-	support_files/bygfoot_tokens support_files/bygfoot.conf \
-	support_files/bygfoot_constants support_files/bygfoot_app
+	support_files/bygfoot_help support_files/bygfoot.ui \
+	support_files/bygfoot_user.conf support_files/bygfoot_tokens \
+	support_files/bygfoot.conf support_files/bygfoot_constants \
+	support_files/bygfoot_app
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
