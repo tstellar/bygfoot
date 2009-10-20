@@ -516,9 +516,6 @@ window_show_menu_player(GdkEvent *event)
     printf("window_show_menu_player\n");
 #endif
 
-    if(window.menu_player != NULL)
-	window_destroy(&window.menu_player);
-
     window.menu_player = create_menu_player();
 
     gtk_menu_popup(GTK_MENU(window.menu_player), NULL, NULL, NULL, NULL, 
@@ -532,9 +529,6 @@ window_show_menu_youth(GdkEvent *event)
 #ifdef DEBUG
     printf("window_show_menu_youth\n");
 #endif
-
-    if(window.menu_youth != NULL)
-	window_destroy(&window.menu_youth);
 
     window.menu_youth = create_menu_youth();
 

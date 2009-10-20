@@ -14,6 +14,8 @@
 #include "callbacks.h"
 #include "interface.h"
 #include "support.h"
+#include "variables.h"
+#include "file.h"
 
 #define GLADE_HOOKUP_OBJECT(component,widget,name) \
   g_object_set_data_full (G_OBJECT (component), name, \
@@ -29,6 +31,7 @@ create_main_window (void)
   GtkBuilder *builder;
   builder = load_ui(file_find_support_file("bygfoot.ui", TRUE));
   main_window = GTK_WIDGET (gtk_builder_get_object (builder, "main_window"));
+
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT (main_window, GTK_WIDGET (gtk_builder_get_object (builder, "hpaned2")),"hpaned2");
   GLADE_HOOKUP_OBJECT (main_window, GTK_WIDGET (gtk_builder_get_object (builder, "entry_message")),"entry_message");
@@ -77,11 +80,7 @@ create_main_window (void)
   GLADE_HOOKUP_OBJECT (main_window, GTK_WIDGET (gtk_builder_get_object (builder, "player_list1")),"player_list1");
   GLADE_HOOKUP_OBJECT (main_window, GTK_WIDGET (gtk_builder_get_object (builder, "player_list2")),"player_list2");
   GLADE_HOOKUP_OBJECT (main_window, GTK_WIDGET (gtk_builder_get_object (builder, "player_list1")),"player_list1");
-  GLADE_HOOKUP_OBJECT (main_window, GTK_WIDGET (gtk_builder_get_object (builder, "player_info")),"player_info");
-  GLADE_HOOKUP_OBJECT (main_window, GTK_WIDGET (gtk_builder_get_object (builder, "player_list1")),"player_list1");
-  GLADE_HOOKUP_OBJECT (main_window, GTK_WIDGET (gtk_builder_get_object (builder, "player_info")),"player_info");
   GLADE_HOOKUP_OBJECT (main_window, GTK_WIDGET (gtk_builder_get_object (builder, "treeview_right")),"treeview_right");
-  GLADE_HOOKUP_OBJECT (main_window, GTK_WIDGET (gtk_builder_get_object (builder, "player_info")),"player_info");
   GLADE_HOOKUP_OBJECT (main_window, GTK_WIDGET (gtk_builder_get_object (builder, "button_save")),"button_save");
   GLADE_HOOKUP_OBJECT (main_window, GTK_WIDGET (gtk_builder_get_object (builder, "menu_save")),"menu_save");
   GLADE_HOOKUP_OBJECT (main_window, GTK_WIDGET (gtk_builder_get_object (builder, "notebook_player")),"notebook_player");
@@ -111,6 +110,11 @@ create_main_window (void)
   GLADE_HOOKUP_OBJECT (main_window, GTK_WIDGET (gtk_builder_get_object (builder, "button_reset_players")),"button_reset_players");
   GLADE_HOOKUP_OBJECT (main_window, GTK_WIDGET (gtk_builder_get_object (builder, "menu_reset_players")),"menu_reset_players");
   GLADE_HOOKUP_OBJECT (main_window, GTK_WIDGET (gtk_builder_get_object (builder, "menubar1")),"menubar1");
+  GLADE_HOOKUP_OBJECT (main_window, GTK_WIDGET (gtk_builder_get_object (builder, "menu_player")),"menu_player");
+  GLADE_HOOKUP_OBJECT (main_window, GTK_WIDGET (gtk_builder_get_object (builder, "menu_youth")),"menu_youth");
+  /* free memory used by GtkBuilder object */
+  g_object_unref (G_OBJECT (builder));
+
 
   return main_window;
 }
@@ -119,85 +123,7 @@ GtkWidget*
 create_menu_player (void)
 {
   GtkWidget *menu_player;
-  GtkWidget *player_menu_show_info;
-  GtkWidget *player_menu_put_on_transfer_list;
-  GtkWidget *player_menu_remove_from_transfer_list;
-  GtkWidget *player_menu_offer_new_contract;
-  GtkWidget *player_menu_fire;
-  GtkWidget *player_menu_shoots_penalties;
-  GtkWidget *player_menu_move_to_youth_academy;
-  GtkWidget *player_menu_edit_name;
-
-  menu_player = gtk_menu_new ();
-
-  player_menu_show_info = gtk_menu_item_new_with_mnemonic (_("Show info"));
-  gtk_widget_show (player_menu_show_info);
-  gtk_container_add (GTK_CONTAINER (menu_player), player_menu_show_info);
-
-  player_menu_put_on_transfer_list = gtk_menu_item_new_with_mnemonic (_("Put on transfer list"));
-  gtk_widget_show (player_menu_put_on_transfer_list);
-  gtk_container_add (GTK_CONTAINER (menu_player), player_menu_put_on_transfer_list);
-
-  player_menu_remove_from_transfer_list = gtk_menu_item_new_with_mnemonic (_("Remove from transfer list"));
-  gtk_widget_show (player_menu_remove_from_transfer_list);
-  gtk_container_add (GTK_CONTAINER (menu_player), player_menu_remove_from_transfer_list);
-
-  player_menu_offer_new_contract = gtk_menu_item_new_with_mnemonic (_("Offer new contract"));
-  gtk_widget_show (player_menu_offer_new_contract);
-  gtk_container_add (GTK_CONTAINER (menu_player), player_menu_offer_new_contract);
-
-  player_menu_fire = gtk_menu_item_new_with_mnemonic (_("Fire"));
-  gtk_widget_show (player_menu_fire);
-  gtk_container_add (GTK_CONTAINER (menu_player), player_menu_fire);
-
-  player_menu_shoots_penalties = gtk_menu_item_new_with_mnemonic (_("Shoots penalties"));
-  gtk_widget_show (player_menu_shoots_penalties);
-  gtk_container_add (GTK_CONTAINER (menu_player), player_menu_shoots_penalties);
-
-  player_menu_move_to_youth_academy = gtk_menu_item_new_with_mnemonic (_("Move to youth academy"));
-  gtk_widget_show (player_menu_move_to_youth_academy);
-  gtk_container_add (GTK_CONTAINER (menu_player), player_menu_move_to_youth_academy);
-
-  player_menu_edit_name = gtk_menu_item_new_with_mnemonic (_("Edit name"));
-  gtk_widget_show (player_menu_edit_name);
-  gtk_container_add (GTK_CONTAINER (menu_player), player_menu_edit_name);
-
-  g_signal_connect ((gpointer) player_menu_show_info, "activate",
-                    G_CALLBACK (on_player_menu_show_info_activate),
-                    NULL);
-  g_signal_connect ((gpointer) player_menu_put_on_transfer_list, "activate",
-                    G_CALLBACK (on_player_menu_put_on_transfer_list_activate),
-                    NULL);
-  g_signal_connect ((gpointer) player_menu_remove_from_transfer_list, "activate",
-                    G_CALLBACK (on_player_menu_remove_from_transfer_list_activate),
-                    NULL);
-  g_signal_connect ((gpointer) player_menu_offer_new_contract, "activate",
-                    G_CALLBACK (on_player_menu_offer_new_contract_activate),
-                    NULL);
-  g_signal_connect ((gpointer) player_menu_fire, "activate",
-                    G_CALLBACK (on_player_menu_fire_activate),
-                    NULL);
-  g_signal_connect ((gpointer) player_menu_shoots_penalties, "activate",
-                    G_CALLBACK (on_player_menu_shoots_penalties_activate),
-                    NULL);
-  g_signal_connect ((gpointer) player_menu_move_to_youth_academy, "activate",
-                    G_CALLBACK (on_player_menu_move_to_youth_academy_activate),
-                    NULL);
-  g_signal_connect ((gpointer) player_menu_edit_name, "activate",
-                    G_CALLBACK (on_player_menu_edit_name_activate),
-                    NULL);
-
-  /* Store pointers to all widgets, for use by lookup_widget(). */
-  GLADE_HOOKUP_OBJECT_NO_REF (menu_player, menu_player, "menu_player");
-  GLADE_HOOKUP_OBJECT (menu_player, player_menu_show_info, "player_menu_show_info");
-  GLADE_HOOKUP_OBJECT (menu_player, player_menu_put_on_transfer_list, "player_menu_put_on_transfer_list");
-  GLADE_HOOKUP_OBJECT (menu_player, player_menu_remove_from_transfer_list, "player_menu_remove_from_transfer_list");
-  GLADE_HOOKUP_OBJECT (menu_player, player_menu_offer_new_contract, "player_menu_offer_new_contract");
-  GLADE_HOOKUP_OBJECT (menu_player, player_menu_fire, "player_menu_fire");
-  GLADE_HOOKUP_OBJECT (menu_player, player_menu_shoots_penalties, "player_menu_shoots_penalties");
-  GLADE_HOOKUP_OBJECT (menu_player, player_menu_move_to_youth_academy, "player_menu_move_to_youth_academy");
-  GLADE_HOOKUP_OBJECT (menu_player, player_menu_edit_name, "player_menu_edit_name");
-
+  menu_player = lookup_widget(window.main, "menu_player"); 
   return menu_player;
 }
 
@@ -205,42 +131,6 @@ GtkWidget*
 create_menu_youth (void)
 {
   GtkWidget *menu_youth;
-  GtkWidget *menu_youth_move_to_team;
-  GtkWidget *image2149;
-  GtkWidget *menu_youth_kick_out_of_academy;
-  GtkWidget *image2150;
-
-  menu_youth = gtk_menu_new ();
-
-  menu_youth_move_to_team = gtk_image_menu_item_new_with_mnemonic (_("Move to team"));
-  gtk_widget_show (menu_youth_move_to_team);
-  gtk_container_add (GTK_CONTAINER (menu_youth), menu_youth_move_to_team);
-
-  image2149 = create_pixmap (menu_youth, "menu_player_move_to_team.png");
-  gtk_widget_show (image2149);
-  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_youth_move_to_team), image2149);
-
-  menu_youth_kick_out_of_academy = gtk_image_menu_item_new_with_mnemonic (_("Kick out of academy"));
-  gtk_widget_show (menu_youth_kick_out_of_academy);
-  gtk_container_add (GTK_CONTAINER (menu_youth), menu_youth_kick_out_of_academy);
-
-  image2150 = gtk_image_new_from_stock ("gtk-delete", GTK_ICON_SIZE_MENU);
-  gtk_widget_show (image2150);
-  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_youth_kick_out_of_academy), image2150);
-
-  g_signal_connect ((gpointer) menu_youth_move_to_team, "activate",
-                    G_CALLBACK (on_menu_youth_move_to_team_activate),
-                    NULL);
-  g_signal_connect ((gpointer) menu_youth_kick_out_of_academy, "activate",
-                    G_CALLBACK (on_menu_youth_kick_out_of_academy_activate),
-                    NULL);
-
-  /* Store pointers to all widgets, for use by lookup_widget(). */
-  GLADE_HOOKUP_OBJECT_NO_REF (menu_youth, menu_youth, "menu_youth");
-  GLADE_HOOKUP_OBJECT (menu_youth, menu_youth_move_to_team, "menu_youth_move_to_team");
-  GLADE_HOOKUP_OBJECT (menu_youth, image2149, "image2149");
-  GLADE_HOOKUP_OBJECT (menu_youth, menu_youth_kick_out_of_academy, "menu_youth_kick_out_of_academy");
-  GLADE_HOOKUP_OBJECT (menu_youth, image2150, "image2150");
-
+  menu_youth = lookup_widget(window.main, "menu_youth"); 
   return menu_youth;
 }
