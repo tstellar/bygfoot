@@ -3,7 +3,6 @@
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkWindow" id="window_bets">
-    <property name="visible">True</property>
     <property name="border_width">5</property>
     <property name="modal">True</property>
     <property name="window_position">center</property>
@@ -146,7 +145,6 @@
     </child>
   </object>
   <object class="GtkWindow" id="window_splash">
-    <property name="visible">True</property>
     <property name="border_width">5</property>
     <property name="window_position">center-always</property>
     <signal name="delete_event" handler="on_window_splash_delete_event"/>
@@ -161,7 +159,7 @@
             <child>
               <object class="GtkImage" id="image1">
                 <property name="visible">True</property>
-                <property name="pixbuf">bygfoot_splash.png</property>
+                <property name="pixbuf">pixmaps/bygfoot_splash.png</property>
               </object>
             </child>
             <child type="tab">
@@ -616,7 +614,6 @@
     </child>
   </object>
   <object class="GtkWindow" id="window_alr">
-    <property name="visible">True</property>
     <property name="title" translatable="yes">Automatic loan repayment</property>
     <property name="modal">True</property>
     <signal name="delete_event" handler="on_window_alr_delete_event"/>
@@ -906,7 +903,6 @@
               <object class="GtkSpinButton" id="spinbutton_start_week">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="adjustment"></property>
                 <property name="climb_rate">1</property>
               </object>
               <packing>
@@ -920,7 +916,6 @@
               <object class="GtkSpinButton" id="spinbutton_weekly_installment">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="adjustment"></property>
                 <property name="climb_rate">1</property>
               </object>
               <packing>
@@ -991,7 +986,6 @@
     </child>
   </object>
   <object class="GtkWindow" id="window_news">
-    <property name="visible">True</property>
     <property name="title" translatable="yes">Bygfoot News</property>
     <property name="window_position">center</property>
     <property name="default_width">700</property>
