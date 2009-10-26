@@ -3,7 +3,6 @@
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkWindow" id="window_startup">
-    <property name="visible">True</property>
     <property name="border_width">6</property>
     <property name="modal">True</property>
     <property name="window_position">center</property>
@@ -480,7 +479,6 @@
     </child>
   </object>
   <object class="GtkFontSelectionDialog" id="window_font_sel">
-    <property name="visible">True</property>
     <property name="border_width">5</property>
     <property name="title" translatable="yes">Select font</property>
     <property name="modal">True</property>
@@ -542,7 +540,6 @@
     </action-widgets>
   </object>
   <object class="GtkWindow" id="window_live">
-    <property name="visible">True</property>
     <property name="border_width">6</property>
     <property name="title" translatable="yes">Live game</property>
     <property name="modal">True</property>
@@ -635,7 +632,6 @@
                   <object class="GtkHScale" id="hscale_area">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="adjustment"></property>
                     <property name="draw_value">False</property>
                   </object>
                   <packing>
@@ -955,7 +951,7 @@
                 <child>
                   <object class="GtkImage" id="image_lg_style">
                     <property name="visible">True</property>
-                    <property name="pixbuf">style_bal.png</property>
+                    <property name="pixbuf">pixmaps/style_bal.png</property>
                   </object>
                 </child>
               </object>
@@ -974,7 +970,7 @@
                 <child>
                   <object class="GtkImage" id="image_lg_boost">
                     <property name="visible">True</property>
-                    <property name="pixbuf">boost_off.png</property>
+                    <property name="pixbuf">pixmaps/boost_off.png</property>
                   </object>
                 </child>
               </object>
@@ -1010,7 +1006,6 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">Change live game speed. The higher the value the faster the live game.</property>
-                    <property name="adjustment"></property>
                     <property name="climb_rate">1</property>
                     <property name="numeric">True</property>
                     <signal name="button_press_event" handler="on_spinbutton_speed_button_press_event"/>
@@ -1052,7 +1047,6 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">Change commentary verbosity. The higher this value the more events you can see.</property>
-                    <property name="adjustment"></property>
                     <property name="climb_rate">1</property>
                     <property name="numeric">True</property>
                     <signal name="value_changed" handler="on_spinbutton_verbosity_value_changed"/>
@@ -1081,7 +1075,6 @@
     </child>
   </object>
   <object class="GtkWindow" id="window_stadium">
-    <property name="visible">True</property>
     <property name="border_width">5</property>
     <property name="modal">True</property>
     <property name="window_position">center</property>
@@ -1280,7 +1273,6 @@
               <object class="GtkSpinButton" id="spin_ticket_price">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="adjustment"></property>
                 <property name="climb_rate">1</property>
                 <property name="digits">2</property>
                 <property name="numeric">True</property>
@@ -1375,7 +1367,6 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">Right-click to set to 0</property>
-                        <property name="adjustment"></property>
                         <property name="climb_rate">1</property>
                         <signal name="button_press_event" handler="on_spinbutton_capacity_button_press_event"/>
                         <signal name="value_changed" handler="on_spinbutton_capacity_value_changed"/>
@@ -1466,7 +1457,6 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">Right-click to set to 0</property>
-                        <property name="adjustment"></property>
                         <property name="climb_rate">1</property>
                         <signal name="button_press_event" handler="on_spinbutton_capacity_button_press_event"/>
                         <signal name="value_changed" handler="on_spinbutton_safety_value_changed"/>
@@ -1635,7 +1625,6 @@
     </child>
   </object>
   <object class="GtkFileChooserDialog" id="window_file_chooser">
-    <property name="visible">True</property>
     <property name="border_width">5</property>
     <property name="title" translatable="yes">Choose file</property>
     <property name="window_position">center</property>
@@ -1695,7 +1684,6 @@
     </action-widgets>
   </object>
   <object class="GtkWindow" id="window_sponsors">
-    <property name="visible">True</property>
     <property name="border_width">5</property>
     <property name="modal">True</property>
     <property name="window_position">center</property>
