@@ -121,6 +121,14 @@ create_window_stadium (void)
   GTK_HOOKUP_OBJECT (window_stadium, builder, "progressbar_average_attendance");
   GTK_HOOKUP_OBJECT (window_stadium, builder, "spinbutton_capacity");
   GTK_HOOKUP_OBJECT (window_stadium, builder, "spinbutton_safety");
+  GTK_HOOKUP_OBJECT (window_stadium, builder, "label_costs_capacity");
+  GTK_HOOKUP_OBJECT (window_stadium, builder, "label_costs_safety");
+  GTK_HOOKUP_OBJECT (window_stadium, builder, "label_duration_capacity");
+  GTK_HOOKUP_OBJECT (window_stadium, builder, "label_duration_safety");
+  GTK_HOOKUP_OBJECT (window_stadium, builder, "label_costs_capacity");
+  GTK_HOOKUP_OBJECT (window_stadium, builder, "label_costs_safety");
+  GTK_HOOKUP_OBJECT (window_stadium, builder, "label_duration_capacity");
+  GTK_HOOKUP_OBJECT (window_stadium, builder, "label_duration_safety");
 
   /* free memory used by GtkBuilder object */
   g_object_unref (G_OBJECT (builder));
@@ -132,44 +140,15 @@ GtkWidget*
 create_window_file_chooser (void)
 {
   GtkWidget *window_file_chooser;
-  GtkWidget *dialog_vbox1;
-  GtkWidget *dialog_action_area1;
-  GtkWidget *button1;
-  GtkWidget *button2;
-
-  window_file_chooser = gtk_file_chooser_dialog_new (_("Choose file"), NULL, GTK_FILE_CHOOSER_ACTION_OPEN, NULL,NULL);
-  gtk_container_set_border_width (GTK_CONTAINER (window_file_chooser), 5);
-  g_object_set (window_file_chooser,
-                "show-hidden", TRUE,
-                NULL);
-  gtk_window_set_position (GTK_WINDOW (window_file_chooser), GTK_WIN_POS_CENTER);
-  gtk_window_set_type_hint (GTK_WINDOW (window_file_chooser), GDK_WINDOW_TYPE_HINT_DIALOG);
-
-  dialog_vbox1 = GTK_DIALOG (window_file_chooser)->vbox;
-  gtk_widget_show (dialog_vbox1);
-
-  dialog_action_area1 = GTK_DIALOG (window_file_chooser)->action_area;
-  gtk_widget_show (dialog_action_area1);
-  gtk_button_box_set_layout (GTK_BUTTON_BOX (dialog_action_area1), GTK_BUTTONBOX_END);
-
-  button1 = gtk_button_new_from_stock ("gtk-cancel");
-  gtk_widget_show (button1);
-  gtk_dialog_add_action_widget (GTK_DIALOG (window_file_chooser), button1, GTK_RESPONSE_CANCEL);
-  GTK_WIDGET_SET_FLAGS (button1, GTK_CAN_DEFAULT);
-
-  button2 = gtk_button_new_from_stock ("gtk-open");
-  gtk_widget_show (button2);
-  gtk_dialog_add_action_widget (GTK_DIALOG (window_file_chooser), button2, GTK_RESPONSE_OK);
-  GTK_WIDGET_SET_FLAGS (button2, GTK_CAN_DEFAULT);
+  GtkBuilder *builder;
+  builder = load_ui(file_find_support_file("bygfoot_misc.ui", TRUE));
+  window_file_chooser = GTK_WIDGET (gtk_builder_get_object (builder, "window_file_chooser"));
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
-  GLADE_HOOKUP_OBJECT_NO_REF (window_file_chooser, window_file_chooser, "window_file_chooser");
-  GLADE_HOOKUP_OBJECT_NO_REF (window_file_chooser, dialog_vbox1, "dialog_vbox1");
-  GLADE_HOOKUP_OBJECT_NO_REF (window_file_chooser, dialog_action_area1, "dialog_action_area1");
-  GLADE_HOOKUP_OBJECT (window_file_chooser, button1, "button1");
-  GLADE_HOOKUP_OBJECT (window_file_chooser, button2, "button2");
 
-  gtk_widget_grab_default (button2);
+  /* free memory used by GtkBuilder object */
+  g_object_unref (G_OBJECT (builder));
+
   return window_file_chooser;
 }
 
@@ -177,126 +156,15 @@ GtkWidget*
 create_window_sponsors (void)
 {
   GtkWidget *window_sponsors;
-  GtkWidget *vbox48;
-  GtkWidget *label_sponsors;
-  GtkWidget *scrolledwindow12;
-  GtkWidget *treeview_sponsors;
-  GtkWidget *hbox71;
-  GtkWidget *button_sponsors;
-  GtkWidget *alignment23;
-  GtkWidget *hbox73;
-  GtkWidget *image63;
-  GtkWidget *label117;
-  GtkWidget *button_sponsors_wait;
-  GtkWidget *alignment22;
-  GtkWidget *hbox72;
-  GtkWidget *image62;
-  GtkWidget *label116;
-  GtkTooltips *tooltips;
-
-  tooltips = gtk_tooltips_new ();
-
-  window_sponsors = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  gtk_container_set_border_width (GTK_CONTAINER (window_sponsors), 5);
-  gtk_window_set_position (GTK_WINDOW (window_sponsors), GTK_WIN_POS_CENTER);
-  gtk_window_set_modal (GTK_WINDOW (window_sponsors), TRUE);
-  gtk_window_set_default_size (GTK_WINDOW (window_sponsors), 450, 350);
-
-  vbox48 = gtk_vbox_new (FALSE, 3);
-  gtk_widget_show (vbox48);
-  gtk_container_add (GTK_CONTAINER (window_sponsors), vbox48);
-
-  label_sponsors = gtk_label_new (_("There are a few companies interested in sponsoring your team. Please select one:"));
-  gtk_widget_show (label_sponsors);
-  gtk_box_pack_start (GTK_BOX (vbox48), label_sponsors, FALSE, FALSE, 0);
-  gtk_label_set_line_wrap (GTK_LABEL (label_sponsors), TRUE);
-
-  scrolledwindow12 = gtk_scrolled_window_new (NULL, NULL);
-  gtk_widget_show (scrolledwindow12);
-  gtk_box_pack_start (GTK_BOX (vbox48), scrolledwindow12, TRUE, TRUE, 0);
-  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow12), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow12), GTK_SHADOW_IN);
-
-  treeview_sponsors = gtk_tree_view_new ();
-  gtk_widget_show (treeview_sponsors);
-  gtk_container_add (GTK_CONTAINER (scrolledwindow12), treeview_sponsors);
-
-  hbox71 = gtk_hbox_new (FALSE, 3);
-  gtk_widget_show (hbox71);
-  gtk_box_pack_start (GTK_BOX (vbox48), hbox71, FALSE, FALSE, 0);
-
-  button_sponsors = gtk_button_new ();
-  gtk_widget_show (button_sponsors);
-  gtk_box_pack_start (GTK_BOX (hbox71), button_sponsors, TRUE, TRUE, 0);
-
-  alignment23 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment23);
-  gtk_container_add (GTK_CONTAINER (button_sponsors), alignment23);
-
-  hbox73 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox73);
-  gtk_container_add (GTK_CONTAINER (alignment23), hbox73);
-
-  image63 = gtk_image_new_from_stock ("gtk-apply", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image63);
-  gtk_box_pack_start (GTK_BOX (hbox73), image63, FALSE, FALSE, 0);
-
-  label117 = gtk_label_new_with_mnemonic (_("Accept"));
-  gtk_widget_show (label117);
-  gtk_box_pack_start (GTK_BOX (hbox73), label117, FALSE, FALSE, 0);
-
-  button_sponsors_wait = gtk_button_new ();
-  gtk_widget_show (button_sponsors_wait);
-  gtk_box_pack_start (GTK_BOX (hbox71), button_sponsors_wait, TRUE, TRUE, 0);
-  gtk_tooltips_set_tip (tooltips, button_sponsors_wait, _("If you don't like any of the sponsors, you can go a few weeks without sponsor and wait for new offers."), NULL);
-
-  alignment22 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment22);
-  gtk_container_add (GTK_CONTAINER (button_sponsors_wait), alignment22);
-
-  hbox72 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox72);
-  gtk_container_add (GTK_CONTAINER (alignment22), hbox72);
-
-  image62 = gtk_image_new_from_stock ("gtk-go-forward", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image62);
-  gtk_box_pack_start (GTK_BOX (hbox72), image62, FALSE, FALSE, 0);
-
-  label116 = gtk_label_new_with_mnemonic (_("Reject for now"));
-  gtk_widget_show (label116);
-  gtk_box_pack_start (GTK_BOX (hbox72), label116, FALSE, FALSE, 0);
-
-  g_signal_connect ((gpointer) window_sponsors, "delete_event",
-                    G_CALLBACK (on_window_sponsors_delete_event),
-                    NULL);
-  g_signal_connect ((gpointer) treeview_sponsors, "row_activated",
-                    G_CALLBACK (on_treeview_sponsors_row_activated),
-                    NULL);
-  g_signal_connect ((gpointer) button_sponsors, "clicked",
-                    G_CALLBACK (on_button_sponsors_clicked),
-                    NULL);
-  g_signal_connect ((gpointer) button_sponsors_wait, "clicked",
-                    G_CALLBACK (on_button_sponsors_wait_clicked),
-                    NULL);
+  GtkBuilder *builder;
+  builder = load_ui(file_find_support_file("bygfoot_misc.ui", TRUE));
+  window_sponsors = GTK_WIDGET (gtk_builder_get_object (builder, "window_sponsors"));
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
-  GLADE_HOOKUP_OBJECT_NO_REF (window_sponsors, window_sponsors, "window_sponsors");
-  GLADE_HOOKUP_OBJECT (window_sponsors, vbox48, "vbox48");
-  GLADE_HOOKUP_OBJECT (window_sponsors, label_sponsors, "label_sponsors");
-  GLADE_HOOKUP_OBJECT (window_sponsors, scrolledwindow12, "scrolledwindow12");
-  GLADE_HOOKUP_OBJECT (window_sponsors, treeview_sponsors, "treeview_sponsors");
-  GLADE_HOOKUP_OBJECT (window_sponsors, hbox71, "hbox71");
-  GLADE_HOOKUP_OBJECT (window_sponsors, button_sponsors, "button_sponsors");
-  GLADE_HOOKUP_OBJECT (window_sponsors, alignment23, "alignment23");
-  GLADE_HOOKUP_OBJECT (window_sponsors, hbox73, "hbox73");
-  GLADE_HOOKUP_OBJECT (window_sponsors, image63, "image63");
-  GLADE_HOOKUP_OBJECT (window_sponsors, label117, "label117");
-  GLADE_HOOKUP_OBJECT (window_sponsors, button_sponsors_wait, "button_sponsors_wait");
-  GLADE_HOOKUP_OBJECT (window_sponsors, alignment22, "alignment22");
-  GLADE_HOOKUP_OBJECT (window_sponsors, hbox72, "hbox72");
-  GLADE_HOOKUP_OBJECT (window_sponsors, image62, "image62");
-  GLADE_HOOKUP_OBJECT (window_sponsors, label116, "label116");
-  GLADE_HOOKUP_OBJECT_NO_REF (window_sponsors, tooltips, "tooltips");
+  GTK_HOOKUP_OBJECT (window_sponsors, builder, "treeview_sponsors");
+
+  /* free memory used by GtkBuilder object */
+  g_object_unref (G_OBJECT (builder));
 
   return window_sponsors;
 }
