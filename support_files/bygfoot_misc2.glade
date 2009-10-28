@@ -3,7 +3,6 @@
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkWindow" id="window_job_offer">
-    <property name="visible">True</property>
     <property name="border_width">6</property>
     <property name="title" translatable="yes">Job offer</property>
     <property name="modal">True</property>
@@ -374,7 +373,6 @@
     </child>
   </object>
   <object class="GtkWindow" id="window_progress">
-    <property name="visible">True</property>
     <property name="type">popup</property>
     <property name="modal">True</property>
     <property name="window_position">center-always</property>
@@ -410,7 +408,6 @@
     </child>
   </object>
   <object class="GtkWindow" id="window_warning">
-    <property name="visible">True</property>
     <property name="border_width">10</property>
     <property name="modal">True</property>
     <property name="window_position">center</property>
@@ -461,7 +458,6 @@
     </child>
   </object>
   <object class="GtkWindow" id="window_digits">
-    <property name="visible">True</property>
     <property name="border_width">5</property>
     <property name="modal">True</property>
     <property name="window_position">center</property>
@@ -501,7 +497,6 @@
                   <object class="GtkSpinButton" id="spinbutton1">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="adjustment"></property>
                     <property name="climb_rate">1</property>
                     <property name="numeric">True</property>
                     <signal name="activate" handler="on_spinbutton1_activate"/>
@@ -534,7 +529,6 @@
                   <object class="GtkSpinButton" id="spinbutton2">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="adjustment"></property>
                     <property name="climb_rate">1</property>
                     <property name="numeric">True</property>
                     <signal name="activate" handler="on_spinbutton2_activate"/>
@@ -661,7 +655,6 @@
     </child>
   </object>
   <object class="GtkWindow" id="window_yesno">
-    <property name="visible">True</property>
     <property name="border_width">5</property>
     <property name="modal">True</property>
     <property name="window_position">center</property>
@@ -736,7 +729,6 @@
     </child>
   </object>
   <object class="GtkWindow" id="window_contract">
-    <property name="visible">True</property>
     <property name="border_width">5</property>
     <property name="modal">True</property>
     <property name="window_position">center</property>
@@ -844,7 +836,6 @@
               <object class="GtkSpinButton" id="spinbutton_contract1">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="adjustment"></property>
                 <property name="climb_rate">1</property>
                 <property name="numeric">True</property>
               </object>
@@ -858,7 +849,6 @@
               <object class="GtkSpinButton" id="spinbutton_contract2">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="adjustment"></property>
                 <property name="climb_rate">1</property>
               </object>
               <packing>
@@ -873,7 +863,6 @@
               <object class="GtkSpinButton" id="spinbutton_contract3">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="adjustment"></property>
                 <property name="climb_rate">1</property>
               </object>
               <packing>
@@ -888,7 +877,6 @@
               <object class="GtkSpinButton" id="spinbutton_contract4">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="adjustment"></property>
                 <property name="climb_rate">1</property>
               </object>
               <packing>
@@ -995,7 +983,6 @@
     </child>
   </object>
   <object class="GtkWindow" id="window_user_management">
-    <property name="visible">True</property>
     <property name="border_width">5</property>
     <property name="window_position">center</property>
     <property name="default_width">600</property>
@@ -1202,7 +1189,6 @@
     </child>
   </object>
   <object class="GtkWindow" id="window_debug">
-    <property name="visible">True</property>
     <property name="border_width">5</property>
     <property name="title" translatable="yes">Debug</property>
     <property name="window_position">center</property>
@@ -1279,7 +1265,6 @@
     </child>
   </object>
   <object class="GtkWindow" id="window_help">
-    <property name="visible">True</property>
     <property name="border_width">5</property>
     <property name="modal">True</property>
     <property name="window_position">center</property>
@@ -1302,7 +1287,7 @@
                   <object class="GtkImage" id="image12">
                     <property name="visible">True</property>
                     <property name="ypad">5</property>
-                    <property name="pixbuf">bygfoot_splash2.png</property>
+                    <property name="pixbuf">pixmaps/bygfoot_splash2.png</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -1448,7 +1433,6 @@
     </child>
   </object>
   <object class="GtkWindow" id="window_transfer_dialog">
-    <property name="visible">True</property>
     <property name="border_width">5</property>
     <property name="modal">True</property>
     <property name="window_position">center</property>
@@ -1571,7 +1555,6 @@
     </child>
   </object>
   <object class="GtkWindow" id="window_mmatches">
-    <property name="visible">True</property>
     <property name="border_width">5</property>
     <property name="modal">True</property>
     <property name="window_position">center</property>

@@ -16,13 +16,6 @@
 #include "support.h"
 #include "file.h"
 
-#define GLADE_HOOKUP_OBJECT(component,widget,name) \
-  g_object_set_data_full (G_OBJECT (component), name, \
-    gtk_widget_ref (widget), (GDestroyNotify) gtk_widget_unref)
-
-#define GLADE_HOOKUP_OBJECT_NO_REF(component,widget,name) \
-  g_object_set_data (G_OBJECT (component), name, widget)
-
 GtkWidget*
 create_window_bets (void)
 {
@@ -31,6 +24,8 @@ create_window_bets (void)
   builder = load_ui(file_find_support_file("bygfoot_misc3.glade", TRUE));
   window_bets = GTK_WIDGET (gtk_builder_get_object (builder, "window_bets"));
   gtk_widget_show (window_bets);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
   GTK_HOOKUP_OBJECT (window_bets, builder, "checkbutton_bet_all_leagues");
   GTK_HOOKUP_OBJECT (window_bets, builder, "checkbutton_bet_cups");
   GTK_HOOKUP_OBJECT (window_bets, builder, "checkbutton_bet_user_recent");
