@@ -46,7 +46,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_load_last_save">
-                        <property name="label">Load last save</property>
+                        <property name="label" translatable="yes">Load last save</property>
                         <property name="visible">True</property>
                         <property name="image">image5</property>
                         <property name="use_stock">False</property>
@@ -147,7 +147,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_save_window_geometry">
-                        <property name="label">Save window geometry</property>
+                        <property name="label" translatable="yes">Save window geometry</property>
                         <property name="visible">True</property>
                         <property name="tooltip_text" translatable="yes">Save window size, position and vertical divider</property>
                         <property name="image">image4</property>
@@ -178,7 +178,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_fixtures">
-                        <property name="label">Fixtures (competitions)</property>
+                        <property name="label" translatable="yes">Fixtures (competitions)</property>
                         <property name="visible">True</property>
                         <property name="image">image2</property>
                         <property name="use_stock">False</property>
@@ -188,7 +188,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_tables">
-                        <property name="label">Tables</property>
+                        <property name="label" translatable="yes">Tables</property>
                         <property name="visible">True</property>
                         <property name="image">image3</property>
                         <property name="use_stock">False</property>
@@ -198,7 +198,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_my_league_results">
-                        <property name="label">My league results</property>
+                        <property name="label" translatable="yes">My league results</property>
                         <property name="visible">True</property>
                         <property name="image">image6</property>
                         <property name="use_stock">False</property>
@@ -208,7 +208,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_season_results">
-                        <property name="label">Season results</property>
+                        <property name="label" translatable="yes">Season results</property>
                         <property name="visible">True</property>
                         <property name="image">image7</property>
                         <property name="use_stock">False</property>
@@ -229,7 +229,7 @@
                   <object class="GtkMenu" id="menu_team_menu">
                     <child>
                       <object class="GtkImageMenuItem" id="menu_playing_style">
-                        <property name="label">Playing style</property>
+                        <property name="label" translatable="yes">Playing style</property>
                         <property name="visible">True</property>
                         <property name="image">image8</property>
                         <property name="use_stock">False</property>
@@ -290,7 +290,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_scout">
-                        <property name="label">Scout</property>
+                        <property name="label" translatable="yes">Scout</property>
                         <property name="visible">True</property>
                         <property name="image">image9</property>
                         <property name="use_stock">False</property>
@@ -392,7 +392,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_youth_academy">
-                        <property name="label">Youth academy</property>
+                        <property name="label" translatable="yes">Youth academy</property>
                         <property name="visible">True</property>
                         <property name="image">image11</property>
                         <property name="use_stock">False</property>
@@ -532,7 +532,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_boost">
-                        <property name="label">Boost</property>
+                        <property name="label" translatable="yes">Boost</property>
                         <property name="visible">True</property>
                         <property name="image">image12</property>
                         <property name="use_stock">False</property>
@@ -619,7 +619,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_reset_players">
-                        <property name="label">Reset player list</property>
+                        <property name="label" translatable="yes">Reset player list</property>
                         <property name="tooltip_text" translatable="yes">Reset player list to the formation at the beginning of the live game pause (right click on player list)</property>
                         <property name="image">image13</property>
                         <property name="use_stock">False</property>
@@ -628,7 +628,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_custom_structure">
-                        <property name="label">Enter custom structure</property>
+                        <property name="label" translatable="yes">Enter custom structure</property>
                         <property name="visible">True</property>
                         <property name="image">image14</property>
                         <property name="use_stock">False</property>
@@ -637,7 +637,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_rearrange_team">
-                        <property name="label">Rearrange team</property>
+                        <property name="label" translatable="yes">Rearrange team</property>
                         <property name="visible">True</property>
                         <property name="tooltip_text" translatable="yes">Try to put the startup players onto their favoured positions and sort the substitutes (Ctrl-R or middle click)</property>
                         <property name="image">image15</property>
@@ -653,7 +653,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_browse_teams">
-                        <property name="label">Browse teams</property>
+                        <property name="label" translatable="yes">Browse teams</property>
                         <property name="visible">True</property>
                         <property name="image">image16</property>
                         <property name="use_stock">False</property>
@@ -688,7 +688,7 @@
                   <object class="GtkMenu" id="menu_player_menu">
                     <child>
                       <object class="GtkImageMenuItem" id="menu_show_info">
-                        <property name="label">Show info</property>
+                        <property name="label" translatable="yes">Show info</property>
                         <property name="visible">True</property>
                         <property name="image">image17</property>
                         <property name="use_stock">False</property>
@@ -697,7 +697,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_put_on_transfer_list">
-                        <property name="label">Put on transfer list</property>
+                        <property name="label" translatable="yes">Put on transfer list</property>
                         <property name="visible">True</property>
                         <property name="image">image18</property>
                         <property name="use_stock">False</property>
@@ -706,7 +706,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_remove_from_transfer_list">
-                        <property name="label">Remove from transfer list</property>
+                        <property name="label" translatable="yes">Remove from transfer list</property>
                         <property name="visible">True</property>
                         <property name="image">image19</property>
                         <property name="use_stock">False</property>
@@ -715,7 +715,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_offer_new_contract">
-                        <property name="label">Offer new contract</property>
+                        <property name="label" translatable="yes">Offer new contract</property>
                         <property name="visible">True</property>
                         <property name="image">image20</property>
                         <property name="use_stock">False</property>
@@ -724,7 +724,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_fire">
-                        <property name="label">Fire</property>
+                        <property name="label" translatable="yes">Fire</property>
                         <property name="visible">True</property>
                         <property name="image">image21</property>
                         <property name="use_stock">False</property>
@@ -733,7 +733,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_shoots_penalties">
-                        <property name="label">Shoots penalties</property>
+                        <property name="label" translatable="yes">Shoots penalties</property>
                         <property name="visible">True</property>
                         <property name="image">image22</property>
                         <property name="use_stock">False</property>
@@ -742,7 +742,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_move_to_youth_academy">
-                        <property name="label">Move to youth academy</property>
+                        <property name="label" translatable="yes">Move to youth academy</property>
                         <property name="visible">True</property>
                         <property name="image">image23</property>
                         <property name="use_stock">False</property>
@@ -751,7 +751,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_edit_name">
-                        <property name="label">Edit name</property>
+                        <property name="label" translatable="yes">Edit name</property>
                         <property name="visible">True</property>
                         <property name="image">image24</property>
                         <property name="use_stock">False</property>
@@ -765,7 +765,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_browse_players">
-                        <property name="label">Browse players</property>
+                        <property name="label" translatable="yes">Browse players</property>
                         <property name="visible">True</property>
                         <property name="image">image25</property>
                         <property name="use_stock">False</property>
@@ -785,7 +785,7 @@
                   <object class="GtkMenu" id="menu_user_menu">
                     <child>
                       <object class="GtkImageMenuItem" id="menu_user_show_last_match">
-                        <property name="label">Show last match</property>
+                        <property name="label" translatable="yes">Show last match</property>
                         <property name="visible">True</property>
                         <property name="image">image26</property>
                         <property name="use_stock">False</property>
@@ -795,7 +795,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_user_show_last_stats">
-                        <property name="label">Show last match stats</property>
+                        <property name="label"  translatable="yes">Show last match stats</property>
                         <property name="visible">True</property>
                         <property name="image">image27</property>
                         <property name="use_stock">False</property>
@@ -805,7 +805,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_user_show_coming_matches">
-                        <property name="label">Show coming matches</property>
+                        <property name="label" translatable="yes">Show coming matches</property>
                         <property name="visible">True</property>
                         <property name="image">image28</property>
                         <property name="use_stock">False</property>
@@ -820,7 +820,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_next_user">
-                        <property name="label">Next user</property>
+                        <property name="label" translatable="yes">Next user</property>
                         <property name="visible">True</property>
                         <property name="image">image29</property>
                         <property name="use_stock">False</property>
@@ -830,7 +830,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_previous_user">
-                        <property name="label">Previous user</property>
+                        <property name="label" translatable="yes">Previous user</property>
                         <property name="visible">True</property>
                         <property name="image">image30</property>
                         <property name="use_stock">False</property>
@@ -840,7 +840,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_manage_users">
-                        <property name="label">Manage users</property>
+                        <property name="label" translatable="yes">Manage users</property>
                         <property name="visible">True</property>
                         <property name="image">image31</property>
                         <property name="use_stock">False</property>
@@ -861,7 +861,7 @@
                   <object class="GtkMenu" id="menu_finances_stadium_menu">
                     <child>
                       <object class="GtkImageMenuItem" id="menu_show_finances">
-                        <property name="label">Show finances</property>
+                        <property name="label" translatable="yes">Show finances</property>
                         <property name="visible">True</property>
                         <property name="image">image32</property>
                         <property name="use_stock">False</property>
@@ -871,7 +871,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_show_stadium">
-                        <property name="label">Show stadium</property>
+                        <property name="label" translatable="yes">Show stadium</property>
                         <property name="visible">True</property>
                         <property name="image">image33</property>
                         <property name="use_stock">False</property>
@@ -925,7 +925,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_league_stats">
-                        <property name="label">League stats</property>
+                        <property name="label" translatable="yes">League stats</property>
                         <property name="visible">True</property>
                         <property name="image">image34</property>
                         <property name="use_stock">False</property>
@@ -935,7 +935,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_season_history">
-                        <property name="label">Season history</property>
+                        <property name="label" translatable="yes">Season history</property>
                         <property name="visible">True</property>
                         <property name="image">image35</property>
                         <property name="use_stock">False</property>
@@ -945,7 +945,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_user_show_history">
-                        <property name="label">User history</property>
+                        <property name="label" translatable="yes">User history</property>
                         <property name="visible">True</property>
                         <property name="image">image36</property>
                         <property name="use_stock">False</property>
@@ -955,7 +955,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="memorable_matches">
-                        <property name="label">Memorable matches</property>
+                        <property name="label" translatable="yes">Memorable matches</property>
                         <property name="visible">True</property>
                         <property name="image">image37</property>
                         <property name="use_stock">False</property>
@@ -963,7 +963,7 @@
                           <object class="GtkMenu" id="memorable_matches_menu">
                             <child>
                               <object class="GtkImageMenuItem" id="mm_add_last_match">
-                                <property name="label">Add last match</property>
+                                <property name="label" translatable="yes">Add last match</property>
                                 <property name="visible">True</property>
                                 <property name="tooltip_text" translatable="yes">Add last recorded match to the current memorable matches file.</property>
                                 <property name="image">image38</property>
@@ -974,7 +974,7 @@
                             </child>
                             <child>
                               <object class="GtkImageMenuItem" id="mm_manage_matches">
-                                <property name="label">Manage matches</property>
+                                <property name="label" translatable="yes">Manage matches</property>
                                 <property name="visible">True</property>
                                 <property name="tooltip_text" translatable="yes">Replay, delete or add memorable matches.</property>
                                 <property name="image">image39</property>
@@ -1000,7 +1000,7 @@
                   <object class="GtkMenu" id="menu_help1_menu">
                     <child>
                       <object class="GtkImageMenuItem" id="menu_about">
-                        <property name="label">About</property>
+                        <property name="label" translatable="yes">About</property>
                         <property name="visible">True</property>
                         <property name="image">image40</property>
                         <property name="use_stock">False</property>
@@ -1009,7 +1009,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_contributors">
-                        <property name="label">Contributors</property>
+                        <property name="label" translatable="yes">Contributors</property>
                         <property name="visible">True</property>
                         <property name="image">image41</property>
                         <property name="use_stock">False</property>
@@ -1018,7 +1018,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_help">
-                        <property name="label">Help</property>
+                        <property name="label" translatable="yes">Help</property>
                         <property name="visible">True</property>
                         <property name="image">image42</property>
                         <property name="use_stock">False</property>
@@ -1837,7 +1837,7 @@
   <object class="GtkMenu" id="menu_youth">
     <child>
       <object class="GtkImageMenuItem" id="menu_youth_move_to_team">
-        <property name="label">Move to team</property>
+        <property name="label" translatable="yes">Move to team</property>
         <property name="visible">True</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
@@ -1846,7 +1846,7 @@
     </child>
     <child>
       <object class="GtkImageMenuItem" id="menu_youth_kick_out_of_academy">
-        <property name="label">Kick out of academy</property>
+        <property name="label" translatable="yes">Kick out of academy</property>
         <property name="visible">True</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
