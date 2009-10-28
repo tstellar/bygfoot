@@ -22,7 +22,7 @@ create_main_window (void)
 {
   GtkWidget *main_window;
   GtkBuilder *builder;
-  builder = load_ui(file_find_support_file("bygfoot.ui", TRUE));
+  builder = load_ui(file_find_support_file("bygfoot.glade", TRUE));
   main_window = GTK_WIDGET (gtk_builder_get_object (builder, "main_window"));
 
   /* Store pointers to all widgets, for use by lookup_widget(). */

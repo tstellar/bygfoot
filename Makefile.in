@@ -69,6 +69,7 @@ GZIP_ENV = --best
 distuninstallcheck_listfiles = find . -type f -print
 distcleancheck_listfiles = find . -type f -print
 ACLOCAL = @ACLOCAL@
+ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -104,6 +105,10 @@ INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 INSTOBJEXT = @INSTOBJEXT@
 INTLLIBS = @INTLLIBS@
+INTLTOOL_EXTRACT = @INTLTOOL_EXTRACT@
+INTLTOOL_MERGE = @INTLTOOL_MERGE@
+INTLTOOL_PERL = @INTLTOOL_PERL@
+INTLTOOL_UPDATE = @INTLTOOL_UPDATE@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
@@ -115,6 +120,7 @@ MKDIR_P = @MKDIR_P@
 MKINSTALLDIRS = @MKINSTALLDIRS@
 MSGFMT = @MSGFMT@
 MSGFMT_OPTS = @MSGFMT_OPTS@
+MSGMERGE = @MSGMERGE@
 OBJEXT = @OBJEXT@
 PACKAGE = @PACKAGE@
 PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
@@ -184,6 +190,11 @@ EXTRA_DIST = \
 	autogen.sh \
 	bygfoot.glade \
 	bygfoot.gladep
+
+DISTCLEANFILES = \
+	intltool-extract \
+	intltool-merge \
+	intltool-update
 
 SUPPORT_DIRS = support_files support_files/pixmaps \
 	support_files/pixmaps/live_game support_files/pixmaps/symbols \
@@ -1499,10 +1510,13 @@ SUPPORT_FILES = support_files/pixmaps/live_game/save.png \
 	support_files/hints/bygfoot_hints_it \
 	support_files/hints/bygfoot_hints_ro \
 	support_files/hints/bygfoot_hints_el \
-	support_files/bygfoot_help support_files/bygfoot.ui \
+	support_files/bygfoot_help \
+	support_files/bygfoot_training.glade \
+	support_files/bygfoot_misc.glade \
 	support_files/bygfoot_user.conf support_files/bygfoot_tokens \
-	support_files/bygfoot.conf support_files/bygfoot_constants \
-	support_files/bygfoot_app
+	support_files/bygfoot.conf support_files/bygfoot.glade \
+	support_files/bygfoot_misc3.glade \
+	support_files/bygfoot_constants support_files/bygfoot_app
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
@@ -1863,6 +1877,7 @@ clean-generic:
 
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
+	-test -z "$(DISTCLEANFILES)" || rm -f $(DISTCLEANFILES)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"

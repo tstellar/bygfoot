@@ -21,7 +21,7 @@ create_window_training_camp (void)
 {
   GtkWidget *window_training_camp;
   GtkBuilder *builder;
-  builder = load_ui(file_find_support_file("bygfoot_training.ui", TRUE));
+  builder = load_ui(file_find_support_file("bygfoot_training.glade", TRUE));
   window_training_camp = GTK_WIDGET (gtk_builder_get_object (builder, "window_training_camp"));
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
