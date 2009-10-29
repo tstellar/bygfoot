@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 14:26+0100\n"
+"POT-Creation-Date: 2009-10-29 14:09+0100\n"
 "PO-Revision-Date: 2009-10-21 21:42+0200\n"
 "Last-Translator: Mihai <mihai@emma.ro>\n"
 "Language-Team: Romanian <(Corectat şi completat Mihai Floran)>\n"
@@ -840,46 +840,6 @@ msgstr "Nu puteţi juca Bygfoot fără utilizatori!"
 msgid "Remove user %s from the game?"
 msgstr "Înlăturaţi utilizatorul %s din joc?"
 
-#: ../src/misc2_interface.c:271
-msgid "Current file"
-msgstr "Fişierul curent"
-
-#: ../src/misc2_interface.c:282
-msgid "Open a memorable matches file"
-msgstr "Deschideţi un fişier cu meciuri memorabile"
-
-#: ../src/misc2_interface.c:287
-msgid "Reload matches from file"
-msgstr "Reîncărcaţi fişierul cu meciuri"
-
-#: ../src/misc2_interface.c:301 ../src/options_interface.c:411
-msgid "Reload"
-msgstr "Reîncărcaţi"
-
-#: ../src/misc2_interface.c:308
-msgid "Import the matches from a memorable matches file"
-msgstr "Importaţi meciul din fişierul cu meciuri memorabile"
-
-#: ../src/misc2_interface.c:322
-msgid "Import file"
-msgstr "Importaţi fişier"
-
-#: ../src/misc2_interface.c:344
-msgid "Save changes to file and close"
-msgstr "Salvaţi modificările aduse fişierului şi închideţi"
-
-#: ../src/misc2_interface.c:358
-msgid "Save and close"
-msgstr "Salvaţi şi închideţi"
-
-#: ../src/misc2_interface.c:365
-msgid "Reload matches from file and close"
-msgstr "Reîncărcaţi fişierul cu meciuri şi inchideţi"
-
-#: ../src/misc2_interface.c:379
-msgid "Reload and close"
-msgstr "Reîncărcaţi şi închideţi"
-
 #: ../src/misc3_callbacks.c:154
 #, c-format
 msgid "You bet on outcome %d with an odd of %.2f. How much do you wager?"
@@ -919,580 +879,6 @@ msgstr "%s şi %s (%d)"
 msgid "%s and %s"
 msgstr "%s şi %s"
 
-#: ../src/options_interface.c:256
-msgid "Confirm quit when not saved"
-msgstr "Confirmare ieşire când nu este salvat"
-
-#: ../src/options_interface.c:259
-msgid ""
-"Whether to show a confirmation popup when you press quit and the game state "
-"is not saved"
-msgstr "Dacă să apară o fereastră de confirmare când ieşiţi şi nu aţi salvat"
-
-#: ../src/options_interface.c:261
-msgid "Confirm when unfit"
-msgstr "Confirmare când nu este în formă"
-
-#: ../src/options_interface.c:264
-msgid ""
-"Whether to show a confirmation popup if a user team has an injured or banned "
-"player in the startup formation"
-msgstr ""
-"Dacă să apară o fereastră de confirmare când echipa utilizatorului are un "
-"jucător rănit sau suspendat în echipa de început"
-
-#: ../src/options_interface.c:266
-msgid "Save overwrites"
-msgstr "Salvarea suprascrie"
-
-#: ../src/options_interface.c:269
-msgid ""
-"Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
-msgstr ""
-"Dacă salvarea să suprascrie fişierul salvat curent sau să apară o fereastră "
-"'Salvaţi ca'"
-
-#: ../src/options_interface.c:276
-msgid "Maximize main window"
-msgstr "Maximizaţi fereastra principală."
-
-#: ../src/options_interface.c:279
-msgid ""
-"Whether game starts with a maximized main window (doesn't work with all "
-"window managers)"
-msgstr ""
-"Dacă jocul să pornească cu fereastră principală maximizată (nu funcţionează "
-"în toate managerele de ferestre)"
-
-#: ../src/options_interface.c:281
-msgid "Prefer messages"
-msgstr "Mesaje preferate"
-
-#: ../src/options_interface.c:284
-msgid ""
-"Whether to show warnings and such in the message area in the main window "
-"when possible"
-msgstr ""
-"Dacă să arate avertizări în zona de mesaje din fereastra principală când "
-"este posibil"
-
-#: ../src/options_interface.c:286
-msgid "Show progressbar pictures"
-msgstr "Afişaţi pozele bării de progres"
-
-#: ../src/options_interface.c:289
-msgid ""
-"Whether to show pictures on top of the progressbar when loading/saving or "
-"calculating results"
-msgstr ""
-"Dacă să se afişeze poze în faţa bării de progres când se încarcă/salvează "
-"sau se calculează rezultatele"
-
-#: ../src/options_interface.c:296
-msgid "Skip weeks without user matches"
-msgstr "Săriţi peste săptămânile fără jocuri ale utilizatorului"
-
-#: ../src/options_interface.c:299
-msgid ""
-"If checked, weeks without user teams playing are calculated automatically "
-"(without the user having to press 'New week')"
-msgstr ""
-"Dacă este marcat, săptămânile când nu joacă echipa sunt calculate automat "
-"(utilizatorul nu mai trebuie să dea \"Săptămână nouă\")"
-
-#: ../src/options_interface.c:318
-msgid "Autosave interval "
-msgstr "Interval de autosalvare"
-
-#: ../src/options_interface.c:326
-msgid "How often the game is saved automatically"
-msgstr "Cât de des jocul este salvat automat"
-
-#: ../src/options_interface.c:329
-msgid " Autosave files "
-msgstr " Autosalvare fişierele "
-
-#: ../src/options_interface.c:337
-msgid "How many files the autosave uses"
-msgstr "Câte fişiere să fie folosite de autosalvare"
-
-#: ../src/options_interface.c:339
-msgid "Player attribute precision"
-msgstr "Precizia la atributele jucătorilor"
-
-#: ../src/options_interface.c:346
-msgid "Player list refresh rate"
-msgstr "Rata de împrospătare a listei jucătorilor"
-
-#: ../src/options_interface.c:353
-msgid "Constants file"
-msgstr "Fişierul cu constante"
-
-#: ../src/options_interface.c:365 ../src/options_interface.c:473
-msgid "Font used in treeviews"
-msgstr "Fonturile utilizate în vederea arbore"
-
-#: ../src/options_interface.c:379
-msgid "Font name"
-msgstr "Numele fontului"
-
-#: ../src/options_interface.c:392
-msgid ""
-"File containing settings which determine a lot of aspects of the game "
-"behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
-msgstr ""
-"Fişierul care conţine setările şi care determină foarte multe aspecte ale "
-"comportamentului jocului. NU ÎL MODIFICAŢI DECÂT DACĂ CHIAR ŞTIŢI CE FACEŢI."
-
-#: ../src/options_interface.c:397
-msgid "Reload the constants file"
-msgstr "Reîncărcaţi fişierul cu constante"
-
-#: ../src/options_interface.c:418
-msgid "Edit the constants used in the game"
-msgstr "Modificaţi constantele folosite în joc"
-
-#: ../src/options_interface.c:432
-msgid "Edit"
-msgstr "Modificaţi"
-
-#: ../src/options_interface.c:436
-msgid "Language"
-msgstr "Limbă"
-
-#: ../src/options_interface.c:443
-msgid "Autosave"
-msgstr "Autosalvare"
-
-#: ../src/options_interface.c:448
-msgid "Whether to automatically save the game regularly"
-msgstr "Dacă să fie salvat meciul în mod regulat"
-
-#: ../src/options_interface.c:456
-msgid "How many digits after the comma there are for skill etc."
-msgstr "Câte numere după virgulă sunt pentru abilităţi, etc"
-
-#: ../src/options_interface.c:465
-msgid ""
-"How often the player list gets refreshed during a live game (in live game "
-"minutes)"
-msgstr ""
-"Cât de des este împrospătată list de jucători în timpul meciului în direct "
-"(minute în meciul în direct)"
-
-#: ../src/options_interface.c:480
-msgid "Choose game language (might not work in Windows versions)"
-msgstr "Alegeţi limba (e posibil sa nu funcţioneze în varianta pentru Windows)"
-
-#: ../src/options_interface.c:486
-msgid "Global"
-msgstr "Global"
-
-#: ../src/options_interface.c:498
-msgid "Confirm removing youths"
-msgstr "Confirmare ştergere juniori"
-
-#: ../src/options_interface.c:501
-msgid ""
-"Whether a confirmation popup is shown when you kick out a youth from your "
-"academy"
-msgstr ""
-"Dacă să apară un dialog de confirmare când daţi afară un jucător de la "
-"academia de juniori"
-
-#: ../src/options_interface.c:503
-msgid "Show job offers"
-msgstr "Afişaţi ofertele de lucru"
-
-#: ../src/options_interface.c:506
-msgid "Whether to show job offers when a user is successful"
-msgstr ""
-"Dacă să apară o ofertă de la alte echipe atunci când utilizatorul are succes"
-
-#: ../src/options_interface.c:511
-msgid "Set to 0 to switch off warning"
-msgstr "Setaţi la 0 pentru a dezactiva avertismentele"
-
-#: ../src/options_interface.c:517
-msgid "Show warning if a player contract gets below "
-msgstr "Afişaţi o avertizare dacă contractul unui jucător are mai puţin de "
-
-#: ../src/options_interface.c:527
-msgid " months"
-msgstr " luni"
-
-#: ../src/options_interface.c:531
-msgid "Show all leagues in the fixture view"
-msgstr "Afişaţi toate ligile în vederea programării meciurilor"
-
-#: ../src/options_interface.c:534
-msgid ""
-"Whether in the weekly fixture view all leagues or only the user league is "
-"shown"
-msgstr ""
-"Dacă în programarea săptămânală a meciurilor să apară numai meciurile din "
-"liga utilizatorului"
-
-#: ../src/options_interface.c:549
-msgid "Swap adapts structure"
-msgstr "Schimbaţi adaptarea structurii"
-
-#: ../src/options_interface.c:552
-msgid ""
-"Whether swapping two players automatically adapts the team structure to the "
-"player positions"
-msgstr ""
-"Dacă schimbarea a doi jucători adaptează automat structura echipei la "
-"poziţiile jucătorilor"
-
-#: ../src/options_interface.c:554
-msgid "Show overall games/goals"
-msgstr "Afişaţi toate jocurile/golurile"
-
-#: ../src/options_interface.c:557
-msgid "Whether to show the player games/goals value in all competitions"
-msgstr "Dacă să apară jocurile/golurile jucătorului în toate competiţiile"
-
-#: ../src/options_interface.c:559
-msgid "Always store/restore your default team"
-msgstr "Întotdeauna salvaţi/restauraţi echipa standard"
-
-#: ../src/options_interface.c:562
-msgid "Always store/restore your default team before/after a match"
-msgstr "Întotdeauna salvaţi/restauraţi echipa standard înainte/după un meci"
-
-#: ../src/options_interface.c:564
-msgid "Gameplay"
-msgstr "Jocuri"
-
-#: ../src/options_interface.c:576
-msgid "Show live game"
-msgstr "Afişaţi meciurile în direct"
-
-#: ../src/options_interface.c:580
-msgid "Show tendency bar"
-msgstr "Afişaţi bara cu tendinţe"
-
-#: ../src/options_interface.c:589
-msgid "Live game speed factor"
-msgstr "Factorul de accelerare la meciurile în direct"
-
-#: ../src/options_interface.c:596
-msgid "Live game verbosity"
-msgstr "Nivelul comentariilor în meciul în direct"
-
-#: ../src/options_interface.c:609
-msgid "The lower this value the faster the live game commentary will scroll."
-msgstr "Cu cât este valoare mai mică, cu atât vor fi mai puţine comentarii."
-
-#: ../src/options_interface.c:618
-msgid "The higher this value, the more commentary you'll see."
-msgstr "Cu cât este valoare mai mare, cu atât vor fi mai multe comentarii."
-
-#: ../src/options_interface.c:621
-msgid "Automatic substitutions"
-msgstr "Schimbări automate"
-
-#: ../src/options_interface.c:624
-msgid ""
-"Whether the subs (e.g. for injured players) are made by the CPU. This is "
-"automatically done if the live game is off."
-msgstr ""
-"Dacă schimbările (ex. pentru accedentări) să fie făcute de computer. Această "
-"opţiune este automat selectată dacă jocul în direct nu este folosit."
-
-#: ../src/options_interface.c:635
-msgid "Pause when injury"
-msgstr "Pauză la accidentare"
-
-#: ../src/options_interface.c:638
-msgid "Whether the live game pauses when a user player is injured"
-msgstr "Dacă jocul să se întrerupă când un jucător este accidentat"
-
-#: ../src/options_interface.c:640
-msgid "Pause when red card"
-msgstr "Pauză la cartonaş roşu"
-
-#: ../src/options_interface.c:643
-msgid "Whether the live game pauses when a user player is sent off"
-msgstr "Dacă jocul să se întrerupă când un jucător este eliminat"
-
-#: ../src/options_interface.c:645
-msgid "Pause when break"
-msgstr "Pauză la jumătatea meciului"
-
-#: ../src/options_interface.c:648
-msgid "Whether the live game pauses at half time and extra time"
-msgstr "Dacă jocul să se întrerupă la pauze"
-
-#: ../src/options_interface.c:650 ../support_files/bygfoot_misc.glade.h:33
-#: ../support_files/bygfoot.glade.h:42
-msgid "Live game"
-msgstr "Meci în direct"
-
-#: ../src/options_interface.c:658
-msgid "Name "
-msgstr "Nume "
-
-#: ../src/options_interface.c:665
-msgid "CPos "
-msgstr "PozA "
-
-#: ../src/options_interface.c:672
-msgid "Pos "
-msgstr "Poz "
-
-#: ../src/options_interface.c:679
-msgid "CSkill "
-msgstr "AbilA "
-
-#: ../src/options_interface.c:686
-msgid "Skill "
-msgstr "Abilitate"
-
-#: ../src/options_interface.c:693
-msgid "Fitness "
-msgstr "Condiţie fizică "
-
-#: ../src/options_interface.c:700
-msgid "Games "
-msgstr "Jocuri "
-
-#: ../src/options_interface.c:707
-msgid "Shots "
-msgstr "Şuturi"
-
-#: ../src/options_interface.c:714
-msgid "Goals "
-msgstr "Goluri "
-
-#: ../src/options_interface.c:721
-msgid "Status "
-msgstr "Statut "
-
-#: ../src/options_interface.c:728
-msgid "Cards "
-msgstr "Cartonaşe "
-
-#: ../src/options_interface.c:735
-msgid "Age "
-msgstr "Vârstă"
-
-#: ../src/options_interface.c:742
-msgid "ETal "
-msgstr "Tal "
-
-#: ../src/options_interface.c:749
-msgid "Value "
-msgstr "Valoarea "
-
-#: ../src/options_interface.c:756
-msgid "Wage "
-msgstr "Salariu "
-
-#: ../src/options_interface.c:763
-msgid "Contract "
-msgstr "Contract"
-
-#: ../src/options_interface.c:770
-msgid "League "
-msgstr "Ligă "
-
-#: ../src/options_interface.c:777
-msgid "Team "
-msgstr "Echipă"
-
-#: ../src/options_interface.c:1014
-msgid "Attribute "
-msgstr "Atribut "
-
-#: ../src/options_interface.c:1021
-msgid "List 1 "
-msgstr "Lista 1 "
-
-#: ../src/options_interface.c:1028
-msgid "List 2"
-msgstr "Lista 2"
-
-#: ../src/options_interface.c:1042
-msgid "Player attributes shown"
-msgstr "Arătaţi atributele jucătorilor"
-
-#: ../src/options_interface.c:1054 ../support_files/bygfoot_misc3.glade.h:18
-msgid "Show matches from all leagues"
-msgstr "Afişaţi meciurile din toate ligile"
-
-#: ../src/options_interface.c:1057
-msgid "Whether to show matches of all leagues in the betting window"
-msgstr "Dacă să se afişeze meciurile din toate ligile în fereastra de pariuri"
-
-#: ../src/options_interface.c:1059 ../support_files/bygfoot_misc3.glade.h:19
-msgid "Show matches from cups"
-msgstr "Afişaţi meciurile din cupe"
-
-#: ../src/options_interface.c:1062
-msgid "Whether to show cup matches in the betting window"
-msgstr "Dacă să se arate jocurile din cupă în fereastra de pariuri"
-
-#: ../src/options_interface.c:1065 ../support_files/bygfoot_misc3.glade.h:20
-msgid "Show only my recent bets"
-msgstr "Afişaţi doar pariurile mele recente"
-
-#: ../src/options_interface.c:1073
-msgid "Default wager"
-msgstr "Salariul implicit"
-
-#: ../src/options_interface.c:1081
-msgid "How much you wager by default"
-msgstr "Ce salariu oferiţi implicit"
-
-#: ../src/options_interface.c:1084 ../src/treeview.c:1520
-#: ../src/treeview.c:1530 ../src/window.c:986
-#: ../support_files/bygfoot.glade.h:20
-msgid "Betting"
-msgstr "Pariuri"
-
-#: ../src/options_interface.c:1098
-msgid "Default hotel"
-msgstr "Hotel implicit"
-
-#: ../src/options_interface.c:1121
-msgid "Default recreation:"
-msgstr "Recreaţie implicită:"
-
-#: ../src/options_interface.c:1141
-msgid "Default training:"
-msgstr "Antrenament implicit:"
-
-#: ../src/options_interface.c:1151 ../src/treeview.c:1616 ../src/window.c:1001
-#: ../support_files/bygfoot_training.glade.h:9
-#: ../support_files/bygfoot.glade.h:101
-msgid "Training camp"
-msgstr "Cantonament"
-
-#: ../src/options_interface.c:1163
-msgid "Create user news"
-msgstr "Creaţi ştiri ale utilizatorului"
-
-#: ../src/options_interface.c:1167
-msgid "Create cup news"
-msgstr "Creaţi ştiri ale cupei"
-
-#: ../src/options_interface.c:1171
-msgid "Create league news"
-msgstr "Creaţi ştiri ale ligii"
-
-#: ../src/options_interface.c:1175
-msgid "Show only recent news"
-msgstr "Afişaţi doar ştirile recente"
-
-#: ../src/options_interface.c:1183
-msgid "No automatic popup"
-msgstr "Fără pop-up automat"
-
-#: ../src/options_interface.c:1189
-msgid "Popup for user news"
-msgstr "Pop-up pentru ştirile utilizatorului"
-
-#: ../src/options_interface.c:1192
-msgid "Show news window after a matchday when new user news was created"
-msgstr ""
-"Afişaţi fereastra cu ştirile după meciuri când noi ştiri ale utilizatorului "
-"au fost create"
-
-#: ../src/options_interface.c:1196
-msgid "Automatic popup"
-msgstr "Pop-up automat"
-
-#: ../src/options_interface.c:1199
-msgid "Always show news window after a matchday"
-msgstr "Întotdeauna afişaţi fereastra cu ştirile după meci"
-
-#: ../src/options_interface.c:1203 ../support_files/bygfoot.glade.h:52
-msgid "News"
-msgstr "Ştiri"
-
-#: ../src/options_interface.c:1220
-msgid "Save global settings to file"
-msgstr "Salvaţi setările globale în fişier"
-
-#: ../src/options_interface.c:1223
-msgid ""
-"Whether to save the global settings to file (so that they get loaded next "
-"time you start a new game)"
-msgstr ""
-"Dacă setările globale să fie salvate într-un fişier (ca să fie încărcate "
-"data viitoare când porniţi un joc nou)"
-
-#: ../src/options_interface.c:1225
-msgid "Save user settings to file"
-msgstr "Salvaţi setările utilizatorului în fişier"
-
-#: ../src/options_interface.c:1228
-msgid ""
-"Whether to save the user settings to file (so that they get loaded next time "
-"this user starts a new game)"
-msgstr ""
-"Dacă setările utilizatorului să fie salvate într-un fişier (ca să fie "
-"încărcate data viitoare când porniţi un joc nou cu acest utilizator)"
-
-#: ../src/options_interface.c:1237 ../support_files/bygfoot_misc3.glade.h:13
-#: ../support_files/bygfoot_misc.glade.h:27
-msgid "Esc"
-msgstr "Esc"
-
-#: ../src/options_interface.c:1527
-msgid "Integer"
-msgstr "Întreg"
-
-#: ../src/options_interface.c:1541
-msgid "Float"
-msgstr "Variabil"
-
-#: ../src/options_interface.c:1555
-msgid "String"
-msgstr "Item"
-
-#: ../src/options_interface.c:1569
-msgid "Appearance"
-msgstr "Afişare"
-
-#: ../src/options_interface.c:1581
-msgid ""
-"Save changes to the constants file. DON'T DO THIS UNLESS YOU REALLY KNOW "
-"WHAT YOU ARE DOING."
-msgstr ""
-"Salvaţi modificările în fişierul de constantei. NU ÎL MODIFICAŢI DECÂT DACĂ "
-"CHIAR ŞTIŢI CE FACEŢI."
-
-#: ../src/options_interface.c:1595
-msgid "Save to file"
-msgstr "Salvaţi în fişier"
-
-#: ../src/options_interface.c:1602
-msgid ""
-"Reload constants files. This will overwrite any changes you made in the "
-"current game session."
-msgstr ""
-"Reîncărcaţi fişierul cu constante. Aceasta va suprascrie orice modificări pe "
-"care le-aţi făcut în sesiunea curentă a jocului."
-
-#: ../src/options_interface.c:1616
-msgid "Reload from file"
-msgstr "Reîncărcaţi din fişier"
-
-#: ../src/options_interface.c:1623
-msgid ""
-"Close window. Changes will only be saved for the current session, unless you "
-"also save to file."
-msgstr ""
-"Închideţi fereastra. Modificările vor fi salvate doar pentru sesiunea "
-"curentă, dacă nu aveţi un fişier de salvare."
-
-#: ../src/options_interface.c:1640
-msgid "Close"
-msgstr "Închideţi"
-
 #: ../src/player.c:673
 msgid "You can't replace a banned player."
 msgstr "Nu puteţi înlocui un jucător sancţionat."
@@ -1505,7 +891,7 @@ msgstr "Contractul lui %s va expira în %.1f ani."
 #. Player health: ok.
 #. Player status: ok.
 #: ../src/player.c:1409 ../src/treeview_helper.c:1094
-#: ../src/treeview_helper.c:1390
+#: ../src/treeview_helper.c:1390 ../support_files/bygfoot_misc2.glade.h:25
 msgid "OK"
 msgstr "OK"
 
@@ -1730,7 +1116,7 @@ msgid "Team"
 msgstr "Echipa"
 
 #: ../src/treeview2.c:514 ../src/treeview.c:170 ../src/treeview.c:332
-#: ../src/treeview.c:780
+#: ../src/treeview.c:780 ../support_files/bygfoot_misc2.glade.h:21
 msgid "League"
 msgstr "Liga"
 
@@ -1752,7 +1138,7 @@ msgid "Week %d Round %d"
 msgstr "Săptămâna %d Runda %d"
 
 #: ../src/treeview2.c:791 ../src/treeview.c:304 ../src/treeview.c:778
-#: ../src/treeview.c:2163
+#: ../src/treeview.c:2163 ../support_files/bygfoot_misc2.glade.h:24
 msgid "Name"
 msgstr "Nume"
 
@@ -1964,11 +1350,11 @@ msgstr "PCT"
 msgid "Stadium"
 msgstr "Stadion"
 
-#: ../src/treeview.c:1483
+#: ../src/treeview.c:1483 ../support_files/bygfoot_misc2.glade.h:36
 msgid "Stadium capacity"
 msgstr "Capacitatea stadionului"
 
-#: ../src/treeview.c:1487
+#: ../src/treeview.c:1487 ../support_files/bygfoot_misc2.glade.h:37
 msgid "Stadium safety"
 msgstr "Siguranţa stadionului"
 
@@ -1998,6 +1384,12 @@ msgstr "Profit din bilete"
 #: ../src/treeview.c:1519
 msgid "Sponsorship"
 msgstr "Sponsorizare"
+
+#: ../src/treeview.c:1520 ../src/treeview.c:1530 ../src/window.c:986
+#: ../support_files/bygfoot.glade.h:20
+#: ../support_files/bygfoot_options.glade.h:12
+msgid "Betting"
+msgstr "Pariuri"
 
 #: ../src/treeview.c:1522
 msgid "Wages"
@@ -2058,6 +1450,13 @@ msgstr "Transferuri"
 #: ../src/treeview.c:1608
 msgid "Stadium expenses"
 msgstr "Cheltuielile stadionului"
+
+#: ../src/treeview.c:1616 ../src/window.c:1001
+#: ../support_files/bygfoot.glade.h:101
+#: ../support_files/bygfoot_options.glade.h:94
+#: ../support_files/bygfoot_training.glade.h:9
+msgid "Training camp"
+msgstr "Cantonament"
 
 #: ../src/treeview.c:1629
 msgid "Money"
@@ -2152,7 +1551,7 @@ msgstr "Acasă"
 msgid "Away"
 msgstr "Deplasare"
 
-#: ../src/treeview.c:1866
+#: ../src/treeview.c:1866 ../support_files/bygfoot_misc2.glade.h:28
 msgid "Rank"
 msgstr "Rang"
 
@@ -2835,7 +2234,7 @@ msgstr "Numere..."
 msgid "Your stadium"
 msgstr "Stadionul dumneavoastră"
 
-#: ../src/window.c:892
+#: ../src/window.c:892 ../support_files/bygfoot_misc2.glade.h:20
 msgid "Job offer"
 msgstr "Ofertă de lucru"
 
@@ -2867,8 +2266,8 @@ msgstr "Oferte de sponsorizări"
 msgid "Memorable matches"
 msgstr "Meciuri memorabile"
 
-#: ../src/window.c:1009 ../support_files/bygfoot_misc3.glade.h:1
-#: ../support_files/bygfoot.glade.h:12
+#: ../src/window.c:1009 ../support_files/bygfoot.glade.h:12
+#: ../support_files/bygfoot_misc3.glade.h:1
 msgid "Automatic loan repayment"
 msgstr "Plată automată a împrumutului"
 
@@ -2922,367 +2321,6 @@ msgstr ""
 "Un jucător a vrut să se înscrie în echipa de juniori, dar nu mai sunt locuri "
 "libere."
 
-#: ../support_files/bygfoot_misc3.glade.h:2
-msgid "Betting -- Left click on odd to place or remove bet"
-msgstr "Pariuri -- Clic stânga pentru a paria sau pentru a înlătura un pariu"
-
-#: ../support_files/bygfoot_misc3.glade.h:4
-msgid "Calculate start week"
-msgstr "Calculaţi săptămâna de început"
-
-#: ../support_files/bygfoot_misc3.glade.h:5
-msgid "Calculate weekly installment"
-msgstr "Calculaţi suma săptămânală de plată"
-
-#: ../support_files/bygfoot_misc3.glade.h:6
-#: ../support_files/bygfoot.glade.h:24
-msgid "Contributors"
-msgstr "Contribuitori"
-
-#: ../support_files/bygfoot_misc3.glade.h:7
-msgid "Ctrl-N"
-msgstr "Ctrl+N"
-
-#: ../support_files/bygfoot_misc3.glade.h:8
-msgid "Ctrl-O"
-msgstr "Ctrl+O"
-
-#: ../support_files/bygfoot_misc3.glade.h:9
-msgid "Ctrl-R"
-msgstr "Ctrl+R"
-
-#: ../support_files/bygfoot_misc3.glade.h:10
-msgid "Current settings:"
-msgstr "Setări curente:"
-
-#. Splash screen hint question.
-#: ../support_files/bygfoot_misc3.glade.h:12
-msgid "Did you know?"
-msgstr "Ştiaţi că ?"
-
-#: ../support_files/bygfoot_misc3.glade.h:14
-msgid "New settings:"
-msgstr "Setări noi:"
-
-#: ../support_files/bygfoot_misc3.glade.h:15
-msgid "Next"
-msgstr "Următorul"
-
-#: ../support_files/bygfoot_misc3.glade.h:16
-msgid "Previous"
-msgstr "Anterior"
-
-#: ../support_files/bygfoot_misc3.glade.h:21
-msgid "Start _new game"
-msgstr "Începeţi  joc _nou"
-
-#: ../support_files/bygfoot_misc3.glade.h:22
-msgid "Start in week"
-msgstr "Începeţi în săptămâna"
-
-#: ../support_files/bygfoot_misc3.glade.h:23
-msgid "Start in week:"
-msgstr "Începeţi în săptămâna:"
-
-#: ../support_files/bygfoot_misc3.glade.h:24
-msgid "Weekly installment"
-msgstr "Suma săptămânală"
-
-#: ../support_files/bygfoot_misc3.glade.h:25
-msgid "Weekly installment:"
-msgstr "Suma săptămânală:"
-
-#: ../support_files/bygfoot_misc3.glade.h:26
-msgid ""
-"Whether to show cup matches. Use the options window to toggle permanently."
-msgstr ""
-"Dacă să se arate jocurile din cupă. Utilizaţi fereastra de opţiuni pentru a "
-"înlătura permanent."
-
-#: ../support_files/bygfoot_misc3.glade.h:27
-msgid ""
-"Whether to show matches of all leagues. Use the options window to toggle "
-"permanently."
-msgstr ""
-"Dacă să se afişeze meciurile din toate ligile. Folosiţi fereastra de opţiuni."
-
-#: ../support_files/bygfoot_misc3.glade.h:28
-msgid "Whether to show only your bets in the recent bets list"
-msgstr "Dacă să se afişeze numai pariurile dumneavoastră în lista pariurilor."
-
-#: ../support_files/bygfoot_misc3.glade.h:29
-msgid "Your debt:"
-msgstr "Creditul dumneavoastră:"
-
-#: ../support_files/bygfoot_misc3.glade.h:30
-msgid "_Load game"
-msgstr "_Încărcaţi joc"
-
-#: ../support_files/bygfoot_misc3.glade.h:31
-msgid "_Resume game"
-msgstr "_Reveniţi la joc"
-
-#: ../support_files/bygfoot_training.glade.h:1
-msgid "Camp points"
-msgstr "Punctaj"
-
-#: ../support_files/bygfoot_training.glade.h:2
-#: ../support_files/bygfoot_misc.glade.h:22
-msgid "Costs"
-msgstr "Costuri"
-
-#: ../support_files/bygfoot_training.glade.h:6
-msgid "Recreation"
-msgstr "Recreaţie"
-
-#: ../support_files/bygfoot_training.glade.h:7
-msgid "Save settings as default"
-msgstr "Salvaţi setările ca prestabilite"
-
-#: ../support_files/bygfoot_training.glade.h:8
-msgid "Training"
-msgstr "Antrenament"
-
-#: ../support_files/bygfoot_misc.glade.h:1
-msgid " seats"
-msgstr " locuri"
-
-#: ../support_files/bygfoot_misc.glade.h:2
-msgid "0"
-msgstr "0"
-
-#: ../support_files/bygfoot_misc.glade.h:3
-msgid "Accept"
-msgstr "Acceptaţi"
-
-#: ../support_files/bygfoot_misc.glade.h:4
-msgid "Add user"
-msgstr "Adăugaţi utilizator"
-
-#: ../support_files/bygfoot_misc.glade.h:5
-msgid "Av. skill: "
-msgstr "Abilitate medie:"
-
-#: ../support_files/bygfoot_misc.glade.h:6
-msgid "Average attendance"
-msgstr "Media spectatorilor"
-
-#: ../support_files/bygfoot_misc.glade.h:8
-#, no-c-format
-msgid "Average attendance %"
-msgstr "Media spectatorilor %"
-
-#: ../support_files/bygfoot_misc.glade.h:9
-msgid "Back to splash"
-msgstr "Înapoi"
-
-#: ../support_files/bygfoot_misc.glade.h:10
-msgid "Capacity (seats)"
-msgstr "Capacitate (locuri)"
-
-#: ../support_files/bygfoot_misc.glade.h:11
-msgid ""
-"Change commentary verbosity. The higher this value the more events you can "
-"see."
-msgstr ""
-"Schimbaţi nivelul de comentarii. Alegeţi o valoare mai mare pentru a vedea "
-"mai multe evenimente."
-
-#: ../support_files/bygfoot_misc.glade.h:12
-msgid "Change live game speed. The higher the value the faster the live game."
-msgstr ""
-"Schimbaţi viteza meciului în direct. O valoare mai mică va face meciul mai "
-"rapid."
-
-#: ../support_files/bygfoot_misc.glade.h:13
-msgid "Change ticket price"
-msgstr "Modificaţi preţul biletului"
-
-#: ../support_files/bygfoot_misc.glade.h:14
-msgid "Choose country"
-msgstr "Alegeţi ţara"
-
-#: ../support_files/bygfoot_misc.glade.h:15
-msgid "Choose file"
-msgstr "Alegeţi fişierul"
-
-#: ../support_files/bygfoot_misc.glade.h:16
-msgid "Choose league to start in"
-msgstr "Alegeţi în ce ligă doriţi să începeţi"
-
-#: ../support_files/bygfoot_misc.glade.h:17
-msgid "Choose team"
-msgstr "Alegeţi echipa"
-
-#: ../support_files/bygfoot_misc.glade.h:18
-msgid "Choose username"
-msgstr "Alegeţi numele de utilizator"
-
-#: ../support_files/bygfoot_misc.glade.h:19
-msgid "Click on a user to remove him."
-msgstr "Selectaţi un utilizator pentru a-l scoate."
-
-#: ../support_files/bygfoot_misc.glade.h:20
-msgid "Commentary"
-msgstr "Comentariu"
-
-#: ../support_files/bygfoot_misc.glade.h:21
-msgid "Confirm!"
-msgstr "Confirmaţi!"
-
-#: ../support_files/bygfoot_misc.glade.h:23
-msgid "Current capacity"
-msgstr "Capacitatea curentă"
-
-#: ../support_files/bygfoot_misc.glade.h:24
-msgid "Current safety"
-msgstr "Siguranţa curentă"
-
-#: ../support_files/bygfoot_misc.glade.h:25
-msgid "Don't load definitions"
-msgstr "Fără încărcare definiţii"
-
-#: ../support_files/bygfoot_misc.glade.h:26
-msgid "Don't load team definitions at all"
-msgstr "Fără încărcare definiţii echipă"
-
-#: ../support_files/bygfoot_misc.glade.h:28
-msgid "Esc / Return / Space"
-msgstr "Esc / Enter / Spaţiu"
-
-#: ../support_files/bygfoot_misc.glade.h:29
-msgid "Expected duration"
-msgstr "Durata estimată"
-
-#: ../support_files/bygfoot_misc.glade.h:30
-msgid "Go back to the splash screen"
-msgstr "Înapoi la ecran"
-
-#: ../support_files/bygfoot_misc.glade.h:31
-msgid ""
-"If you don't like any of the sponsors, you can go a few weeks without "
-"sponsor and wait for new offers."
-msgstr ""
-"Dacă nu vă place nici unul dintre sponsori, puteţi merge câteva săptămâni "
-"fără sponsor şi să aşteptaţi oferte noi."
-
-#: ../support_files/bygfoot_misc.glade.h:32
-msgid "Increase"
-msgstr "Măriţi"
-
-#: ../support_files/bygfoot_misc.glade.h:34
-msgid "Load only the player names in the definition files"
-msgstr "Încarcaţi numai numele jucătorilor din fişierele de definire"
-
-#: ../support_files/bygfoot_misc.glade.h:35
-msgid "Load team definitions"
-msgstr "Încărcaţi definiţiile echipei"
-
-#: ../support_files/bygfoot_misc.glade.h:36
-msgid ""
-"Load teams from definition files (note that the official Bygfoot package "
-"doesn't contain team definition files, you have to get them from the "
-"homepage or via the bygfoot-update script)"
-msgstr ""
-"Încărcaţi echipele din fişierele de definiţii (pachetul original Bygfoot nu "
-"conţine fişierile de definiţii a ţărilor, trebuie să îl luaţi de pe pagina "
-"web sau cu ajutorul scriptului de actualizare Bygfoot)"
-
-#: ../support_files/bygfoot_misc.glade.h:37
-msgid "Only names"
-msgstr "Doar numele"
-
-#: ../support_files/bygfoot_misc.glade.h:38
-msgid "Opponent player list"
-msgstr "Lista jucătorilor adverşi"
-
-#: ../support_files/bygfoot_misc.glade.h:39
-msgid "Price per ticket"
-msgstr "Preţ pe bilet"
-
-#: ../support_files/bygfoot_misc.glade.h:40
-msgid "Randomise teams in cups"
-msgstr "Amestecaţi aleatoriu echipele în cupe"
-
-#: ../support_files/bygfoot_misc.glade.h:41
-msgid ""
-"Randomise the order of teams in cups. This only makes sense in supernational "
-"definitions like the World Cup where the order of teams is fixed."
-msgstr ""
-"Amestecaţi aleatoriu ordinea echipelor în cupe. Aceasta are sens în "
-"definiţiile supernaţionale precum Cupa Mondială, unde ordinea echipelor este "
-"fixă."
-
-#: ../support_files/bygfoot_misc.glade.h:42
-msgid "Reject for now"
-msgstr "Refuzaţi pentru moment"
-
-#: ../support_files/bygfoot_misc.glade.h:43
-msgid "Return"
-msgstr "Întoarcere"
-
-#: ../support_files/bygfoot_misc.glade.h:44
-msgid "Return / Space"
-msgstr "Enter / Spaţiu"
-
-#: ../support_files/bygfoot_misc.glade.h:45
-#: ../support_files/bygfoot.glade.h:76
-msgid "Right click and left click to change boost state"
-msgstr "Click dreapta şi click stânga pentru a schimba stimularea."
-
-#: ../support_files/bygfoot_misc.glade.h:46
-#: ../support_files/bygfoot.glade.h:77
-msgid "Right click and left click to change your playing style"
-msgstr "Click dreapta şi click stânga pentru a schimba stilul de joc."
-
-#: ../support_files/bygfoot_misc.glade.h:47
-msgid "Right-click to set to 0"
-msgstr "Click dreapta pentru a seta la 0"
-
-#: ../support_files/bygfoot_misc.glade.h:49
-#, no-c-format
-msgid "Safety (%)"
-msgstr "Siguranţă (%)"
-
-#: ../support_files/bygfoot_misc.glade.h:51
-msgid "Space"
-msgstr "Spaţiu"
-
-#: ../support_files/bygfoot_misc.glade.h:52
-msgid "Speed"
-msgstr "Viteză"
-
-#: ../support_files/bygfoot_misc.glade.h:53
-msgid "Start"
-msgstr "Porniţi"
-
-#: ../support_files/bygfoot_misc.glade.h:54
-msgid "Statistics"
-msgstr "Statistici"
-
-#: ../support_files/bygfoot_misc.glade.h:55
-msgid "Status:"
-msgstr "Statut:"
-
-#: ../support_files/bygfoot_misc.glade.h:56
-msgid ""
-"There are a few companies interested in sponsoring your team. Please select "
-"one:"
-msgstr ""
-"Sunt câteva companii care doresc să vă sponsorizeze echipa. Selectaţi una :"
-
-#: ../support_files/bygfoot_misc.glade.h:57
-msgid "Verbosity"
-msgstr "Nivelul de comentarii"
-
-#: ../support_files/bygfoot_misc.glade.h:58
-msgid "_Pause"
-msgstr "_Pauză"
-
-#: ../support_files/bygfoot_misc.glade.h:59
-msgid "_Resume"
-msgstr "_Revine"
-
 #: ../support_files/bygfoot.glade.h:1
 msgid " Round "
 msgstr " Runda "
@@ -3295,7 +2333,7 @@ msgstr " Sezon "
 msgid " Week "
 msgstr " Săptămâna"
 
-#: ../support_files/bygfoot.glade.h:4
+#: ../support_files/bygfoot.glade.h:4 ../support_files/bygfoot_misc2.glade.h:5
 msgid "About"
 msgstr "Despre"
 
@@ -3365,6 +2403,12 @@ msgstr "Vizualizaţi jucătorii"
 msgid "Browse teams"
 msgstr "Vizualizaţi echipele"
 
+#: ../support_files/bygfoot.glade.h:24
+#: ../support_files/bygfoot_misc2.glade.h:12
+#: ../support_files/bygfoot_misc3.glade.h:6
+msgid "Contributors"
+msgstr "Contribuitori"
+
 #: ../support_files/bygfoot.glade.h:25
 #, fuzzy
 msgid "Default Team"
@@ -3423,6 +2467,7 @@ msgid "Good"
 msgstr "Bun"
 
 #: ../support_files/bygfoot.glade.h:39
+#: ../support_files/bygfoot_misc2.glade.h:17
 msgid "Help"
 msgstr "Ajutor"
 
@@ -3433,6 +2478,12 @@ msgstr "Oferte de lucru"
 #: ../support_files/bygfoot.glade.h:41
 msgid "League stats"
 msgstr "Statisticile ligii"
+
+#: ../support_files/bygfoot.glade.h:42
+#: ../support_files/bygfoot_misc.glade.h:33
+#: ../support_files/bygfoot_options.glade.h:52
+msgid "Live game"
+msgstr "Meci în direct"
 
 #: ../support_files/bygfoot.glade.h:43
 msgid "Load game (Ctrl - O)"
@@ -3466,6 +2517,11 @@ msgstr "Mutaţi în echipa de juniori"
 #: ../support_files/bygfoot.glade.h:51
 msgid "My league results"
 msgstr "Rezultatele ligii"
+
+#: ../support_files/bygfoot.glade.h:52
+#: ../support_files/bygfoot_options.glade.h:57
+msgid "News"
+msgstr "Ştiri"
 
 #: ../support_files/bygfoot.glade.h:53
 msgid "Next (W)"
@@ -3559,6 +2615,16 @@ msgstr ""
 #, fuzzy
 msgid "Restore"
 msgstr "Rezultat"
+
+#: ../support_files/bygfoot.glade.h:76
+#: ../support_files/bygfoot_misc.glade.h:45
+msgid "Right click and left click to change boost state"
+msgstr "Click dreapta şi click stânga pentru a schimba stimularea."
+
+#: ../support_files/bygfoot.glade.h:77
+#: ../support_files/bygfoot_misc.glade.h:46
+msgid "Right click and left click to change your playing style"
+msgstr "Click dreapta şi click stânga pentru a schimba stilul de joc."
 
 #: ../support_files/bygfoot.glade.h:78
 msgid "Save game (Ctrl - S)"
@@ -3681,6 +2747,1003 @@ msgstr "_Echipă"
 msgid "_User"
 msgstr "_Utilizator"
 
+#: ../support_files/bygfoot_misc.glade.h:1
+msgid " seats"
+msgstr " locuri"
+
+#: ../support_files/bygfoot_misc.glade.h:2
+msgid "0"
+msgstr "0"
+
+#: ../support_files/bygfoot_misc.glade.h:3
+msgid "Accept"
+msgstr "Acceptaţi"
+
+#: ../support_files/bygfoot_misc.glade.h:4
+#: ../support_files/bygfoot_misc2.glade.h:6
+msgid "Add user"
+msgstr "Adăugaţi utilizator"
+
+#: ../support_files/bygfoot_misc.glade.h:5
+msgid "Av. skill: "
+msgstr "Abilitate medie:"
+
+#: ../support_files/bygfoot_misc.glade.h:6
+msgid "Average attendance"
+msgstr "Media spectatorilor"
+
+#: ../support_files/bygfoot_misc.glade.h:8
+#, no-c-format
+msgid "Average attendance %"
+msgstr "Media spectatorilor %"
+
+#: ../support_files/bygfoot_misc.glade.h:9
+msgid "Back to splash"
+msgstr "Înapoi"
+
+#: ../support_files/bygfoot_misc.glade.h:10
+msgid "Capacity (seats)"
+msgstr "Capacitate (locuri)"
+
+#: ../support_files/bygfoot_misc.glade.h:11
+msgid ""
+"Change commentary verbosity. The higher this value the more events you can "
+"see."
+msgstr ""
+"Schimbaţi nivelul de comentarii. Alegeţi o valoare mai mare pentru a vedea "
+"mai multe evenimente."
+
+#: ../support_files/bygfoot_misc.glade.h:12
+msgid "Change live game speed. The higher the value the faster the live game."
+msgstr ""
+"Schimbaţi viteza meciului în direct. O valoare mai mică va face meciul mai "
+"rapid."
+
+#: ../support_files/bygfoot_misc.glade.h:13
+msgid "Change ticket price"
+msgstr "Modificaţi preţul biletului"
+
+#: ../support_files/bygfoot_misc.glade.h:14
+msgid "Choose country"
+msgstr "Alegeţi ţara"
+
+#: ../support_files/bygfoot_misc.glade.h:15
+msgid "Choose file"
+msgstr "Alegeţi fişierul"
+
+#: ../support_files/bygfoot_misc.glade.h:16
+msgid "Choose league to start in"
+msgstr "Alegeţi în ce ligă doriţi să începeţi"
+
+#: ../support_files/bygfoot_misc.glade.h:17
+msgid "Choose team"
+msgstr "Alegeţi echipa"
+
+#: ../support_files/bygfoot_misc.glade.h:18
+msgid "Choose username"
+msgstr "Alegeţi numele de utilizator"
+
+#: ../support_files/bygfoot_misc.glade.h:19
+msgid "Click on a user to remove him."
+msgstr "Selectaţi un utilizator pentru a-l scoate."
+
+#: ../support_files/bygfoot_misc.glade.h:20
+msgid "Commentary"
+msgstr "Comentariu"
+
+#: ../support_files/bygfoot_misc.glade.h:21
+msgid "Confirm!"
+msgstr "Confirmaţi!"
+
+#: ../support_files/bygfoot_misc.glade.h:22
+#: ../support_files/bygfoot_training.glade.h:2
+msgid "Costs"
+msgstr "Costuri"
+
+#: ../support_files/bygfoot_misc.glade.h:23
+msgid "Current capacity"
+msgstr "Capacitatea curentă"
+
+#: ../support_files/bygfoot_misc.glade.h:24
+msgid "Current safety"
+msgstr "Siguranţa curentă"
+
+#: ../support_files/bygfoot_misc.glade.h:25
+msgid "Don't load definitions"
+msgstr "Fără încărcare definiţii"
+
+#: ../support_files/bygfoot_misc.glade.h:26
+msgid "Don't load team definitions at all"
+msgstr "Fără încărcare definiţii echipă"
+
+#: ../support_files/bygfoot_misc.glade.h:27
+#: ../support_files/bygfoot_misc2.glade.h:16
+#: ../support_files/bygfoot_misc3.glade.h:13
+msgid "Esc"
+msgstr "Esc"
+
+#: ../support_files/bygfoot_misc.glade.h:28
+msgid "Esc / Return / Space"
+msgstr "Esc / Enter / Spaţiu"
+
+#: ../support_files/bygfoot_misc.glade.h:29
+msgid "Expected duration"
+msgstr "Durata estimată"
+
+#: ../support_files/bygfoot_misc.glade.h:30
+msgid "Go back to the splash screen"
+msgstr "Înapoi la ecran"
+
+#: ../support_files/bygfoot_misc.glade.h:31
+msgid ""
+"If you don't like any of the sponsors, you can go a few weeks without "
+"sponsor and wait for new offers."
+msgstr ""
+"Dacă nu vă place nici unul dintre sponsori, puteţi merge câteva săptămâni "
+"fără sponsor şi să aşteptaţi oferte noi."
+
+#: ../support_files/bygfoot_misc.glade.h:32
+msgid "Increase"
+msgstr "Măriţi"
+
+#: ../support_files/bygfoot_misc.glade.h:34
+msgid "Load only the player names in the definition files"
+msgstr "Încarcaţi numai numele jucătorilor din fişierele de definire"
+
+#: ../support_files/bygfoot_misc.glade.h:35
+msgid "Load team definitions"
+msgstr "Încărcaţi definiţiile echipei"
+
+#: ../support_files/bygfoot_misc.glade.h:36
+msgid ""
+"Load teams from definition files (note that the official Bygfoot package "
+"doesn't contain team definition files, you have to get them from the "
+"homepage or via the bygfoot-update script)"
+msgstr ""
+"Încărcaţi echipele din fişierele de definiţii (pachetul original Bygfoot nu "
+"conţine fişierile de definiţii a ţărilor, trebuie să îl luaţi de pe pagina "
+"web sau cu ajutorul scriptului de actualizare Bygfoot)"
+
+#: ../support_files/bygfoot_misc.glade.h:37
+msgid "Only names"
+msgstr "Doar numele"
+
+#: ../support_files/bygfoot_misc.glade.h:38
+msgid "Opponent player list"
+msgstr "Lista jucătorilor adverşi"
+
+#: ../support_files/bygfoot_misc.glade.h:39
+msgid "Price per ticket"
+msgstr "Preţ pe bilet"
+
+#: ../support_files/bygfoot_misc.glade.h:40
+msgid "Randomise teams in cups"
+msgstr "Amestecaţi aleatoriu echipele în cupe"
+
+#: ../support_files/bygfoot_misc.glade.h:41
+msgid ""
+"Randomise the order of teams in cups. This only makes sense in supernational "
+"definitions like the World Cup where the order of teams is fixed."
+msgstr ""
+"Amestecaţi aleatoriu ordinea echipelor în cupe. Aceasta are sens în "
+"definiţiile supernaţionale precum Cupa Mondială, unde ordinea echipelor este "
+"fixă."
+
+#: ../support_files/bygfoot_misc.glade.h:42
+msgid "Reject for now"
+msgstr "Refuzaţi pentru moment"
+
+#: ../support_files/bygfoot_misc.glade.h:43
+#: ../support_files/bygfoot_misc2.glade.h:33
+msgid "Return"
+msgstr "Întoarcere"
+
+#: ../support_files/bygfoot_misc.glade.h:44
+msgid "Return / Space"
+msgstr "Enter / Spaţiu"
+
+#: ../support_files/bygfoot_misc.glade.h:47
+msgid "Right-click to set to 0"
+msgstr "Click dreapta pentru a seta la 0"
+
+#: ../support_files/bygfoot_misc.glade.h:49
+#, no-c-format
+msgid "Safety (%)"
+msgstr "Siguranţă (%)"
+
+#: ../support_files/bygfoot_misc.glade.h:51
+msgid "Space"
+msgstr "Spaţiu"
+
+#: ../support_files/bygfoot_misc.glade.h:52
+msgid "Speed"
+msgstr "Viteză"
+
+#: ../support_files/bygfoot_misc.glade.h:53
+msgid "Start"
+msgstr "Porniţi"
+
+#: ../support_files/bygfoot_misc.glade.h:54
+msgid "Statistics"
+msgstr "Statistici"
+
+#: ../support_files/bygfoot_misc.glade.h:55
+msgid "Status:"
+msgstr "Statut:"
+
+#: ../support_files/bygfoot_misc.glade.h:56
+msgid ""
+"There are a few companies interested in sponsoring your team. Please select "
+"one:"
+msgstr ""
+"Sunt câteva companii care doresc să vă sponsorizeze echipa. Selectaţi una :"
+
+#: ../support_files/bygfoot_misc.glade.h:57
+msgid "Verbosity"
+msgstr "Nivelul de comentarii"
+
+#: ../support_files/bygfoot_misc.glade.h:58
+msgid "_Pause"
+msgstr "_Pauză"
+
+#: ../support_files/bygfoot_misc.glade.h:59
+msgid "_Resume"
+msgstr "_Revine"
+
+#: ../support_files/bygfoot_misc2.glade.h:1
+msgid "1 year"
+msgstr "1 an"
+
+#: ../support_files/bygfoot_misc2.glade.h:2
+msgid "2 years"
+msgstr "2 ani"
+
+#: ../support_files/bygfoot_misc2.glade.h:3
+msgid "3 years"
+msgstr "3 ani"
+
+#: ../support_files/bygfoot_misc2.glade.h:4
+msgid "4 years"
+msgstr "4 ani"
+
+#: ../support_files/bygfoot_misc2.glade.h:7
+msgid "Available teams"
+msgstr "Echipe disponibile"
+
+#: ../support_files/bygfoot_misc2.glade.h:8
+msgid "Average skill:"
+msgstr "Abilitate medie:"
+
+#: ../support_files/bygfoot_misc2.glade.h:9
+msgid ""
+"Bygfoot debug window. If you got here by accident, CLOSE IMMEDIATELY "
+"(otherwise your CPU will be destroyed by overheating)."
+msgstr ""
+"Fereastra Bygfoot pentru debug. Dacă aţi ajuns aici din greşeală, ÎNCHIDEŢI-"
+"O IMEDIAT (altfel procesorul va fi distrus prin supraîncălzire)."
+
+#: ../support_files/bygfoot_misc2.glade.h:10
+msgid "Click on a user to remove him from the game."
+msgstr "Selectaţi un utilizator pentru a-l scoate din joc."
+
+#: ../support_files/bygfoot_misc2.glade.h:11
+msgid "Confirm & schedule repayment"
+msgstr "Confirmaţi şi programaţi plăţile"
+
+#: ../support_files/bygfoot_misc2.glade.h:13
+msgid "Current file"
+msgstr "Fişierul curent"
+
+#: ../support_files/bygfoot_misc2.glade.h:14
+msgid "Debug"
+msgstr "Debug"
+
+#: ../support_files/bygfoot_misc2.glade.h:15
+msgid "Decide later"
+msgstr "Decideţi mai târziu"
+
+#: ../support_files/bygfoot_misc2.glade.h:18
+msgid "Import file"
+msgstr "Importaţi fişier"
+
+#: ../support_files/bygfoot_misc2.glade.h:19
+msgid "Import the matches from a memorable matches file"
+msgstr "Importaţi meciul din fişierul cu meciuri memorabile"
+
+#: ../support_files/bygfoot_misc2.glade.h:22
+msgid "Make offer"
+msgstr "Faceţi o ofertă"
+
+#: ../support_files/bygfoot_misc2.glade.h:23
+msgid "Money (approx.)"
+msgstr "Bani (aprox.)"
+
+#: ../support_files/bygfoot_misc2.glade.h:26
+msgid "Open a memorable matches file"
+msgstr "Deschideţi un fişier cu meciuri memorabile"
+
+#: ../support_files/bygfoot_misc2.glade.h:27
+msgid "Player list"
+msgstr "Lotul de jucători"
+
+#: ../support_files/bygfoot_misc2.glade.h:29
+#: ../support_files/bygfoot_options.glade.h:68
+msgid "Reload"
+msgstr "Reîncărcaţi"
+
+#: ../support_files/bygfoot_misc2.glade.h:30
+msgid "Reload and close"
+msgstr "Reîncărcaţi şi închideţi"
+
+#: ../support_files/bygfoot_misc2.glade.h:31
+msgid "Reload matches from file"
+msgstr "Reîncărcaţi fişierul cu meciuri"
+
+#: ../support_files/bygfoot_misc2.glade.h:32
+msgid "Reload matches from file and close"
+msgstr "Reîncărcaţi fişierul cu meciuri şi inchideţi"
+
+#: ../support_files/bygfoot_misc2.glade.h:34
+msgid "Save and close"
+msgstr "Salvaţi şi închideţi"
+
+#: ../support_files/bygfoot_misc2.glade.h:35
+msgid "Save changes to file and close"
+msgstr "Salvaţi modificările aduse fişierului şi închideţi"
+
+#: ../support_files/bygfoot_misc2.glade.h:38
+msgid "Users -- click to remove"
+msgstr "Utilizatorii -- click pentru a-i înlătura"
+
+#: ../support_files/bygfoot_options.glade.h:1
+msgid " Autosave files "
+msgstr " Autosalvare fişierele "
+
+#: ../support_files/bygfoot_options.glade.h:2
+msgid " months"
+msgstr " luni"
+
+#: ../support_files/bygfoot_options.glade.h:3
+msgid "Age "
+msgstr "Vârstă"
+
+#: ../support_files/bygfoot_options.glade.h:4
+msgid "Always store/restore your default team"
+msgstr "Întotdeauna salvaţi/restauraţi echipa standard"
+
+#: ../support_files/bygfoot_options.glade.h:5
+msgid "Always store/restore your default team before/after a match"
+msgstr "Întotdeauna salvaţi/restauraţi echipa standard înainte/după un meci"
+
+#: ../support_files/bygfoot_options.glade.h:6
+msgid "Appearance"
+msgstr "Afişare"
+
+#: ../support_files/bygfoot_options.glade.h:7
+msgid "Attribute "
+msgstr "Atribut "
+
+#: ../support_files/bygfoot_options.glade.h:8
+msgid "Automatic popup"
+msgstr "Pop-up automat"
+
+#: ../support_files/bygfoot_options.glade.h:9
+msgid "Automatic substitutions"
+msgstr "Schimbări automate"
+
+#: ../support_files/bygfoot_options.glade.h:10
+msgid "Autosave"
+msgstr "Autosalvare"
+
+#: ../support_files/bygfoot_options.glade.h:11
+msgid "Autosave interval "
+msgstr "Interval de autosalvare"
+
+#: ../support_files/bygfoot_options.glade.h:13
+msgid "CPos "
+msgstr "PozA "
+
+#: ../support_files/bygfoot_options.glade.h:14
+msgid "CSkill "
+msgstr "AbilA "
+
+#: ../support_files/bygfoot_options.glade.h:15
+msgid "Cards "
+msgstr "Cartonaşe "
+
+#: ../support_files/bygfoot_options.glade.h:16
+msgid "Choose game language (might not work in Windows versions)"
+msgstr "Alegeţi limba (e posibil sa nu funcţioneze în varianta pentru Windows)"
+
+#: ../support_files/bygfoot_options.glade.h:17
+msgid "Close"
+msgstr "Închideţi"
+
+#: ../support_files/bygfoot_options.glade.h:18
+msgid "Confirm quit when not saved"
+msgstr "Confirmare ieşire când nu este salvat"
+
+#: ../support_files/bygfoot_options.glade.h:19
+msgid "Confirm removing youths"
+msgstr "Confirmare ştergere juniori"
+
+#: ../support_files/bygfoot_options.glade.h:20
+msgid "Confirm when unfit"
+msgstr "Confirmare când nu este în formă"
+
+#: ../support_files/bygfoot_options.glade.h:21
+msgid "Constants file"
+msgstr "Fişierul cu constante"
+
+#: ../support_files/bygfoot_options.glade.h:22
+msgid "Contract "
+msgstr "Contract"
+
+#: ../support_files/bygfoot_options.glade.h:23
+msgid "Create cup news"
+msgstr "Creaţi ştiri ale cupei"
+
+#: ../support_files/bygfoot_options.glade.h:24
+msgid "Create league news"
+msgstr "Creaţi ştiri ale ligii"
+
+#: ../support_files/bygfoot_options.glade.h:25
+msgid "Create user news"
+msgstr "Creaţi ştiri ale utilizatorului"
+
+#: ../support_files/bygfoot_options.glade.h:26
+msgid "Default hotel"
+msgstr "Hotel implicit"
+
+#: ../support_files/bygfoot_options.glade.h:27
+msgid "Default recreation:"
+msgstr "Recreaţie implicită:"
+
+#: ../support_files/bygfoot_options.glade.h:28
+msgid "Default training:"
+msgstr "Antrenament implicit:"
+
+#: ../support_files/bygfoot_options.glade.h:29
+msgid "Default wager"
+msgstr "Salariul implicit"
+
+#: ../support_files/bygfoot_options.glade.h:30
+msgid "ETal "
+msgstr "Tal "
+
+#: ../support_files/bygfoot_options.glade.h:31
+msgid "Edit"
+msgstr "Modificaţi"
+
+#: ../support_files/bygfoot_options.glade.h:32
+msgid "Edit the constants used in the game"
+msgstr "Modificaţi constantele folosite în joc"
+
+#: ../support_files/bygfoot_options.glade.h:33
+msgid ""
+"File containing settings which determine a lot of aspects of the game "
+"behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
+msgstr ""
+"Fişierul care conţine setările şi care determină foarte multe aspecte ale "
+"comportamentului jocului. NU ÎL MODIFICAŢI DECÂT DACĂ CHIAR ŞTIŢI CE FACEŢI."
+
+#: ../support_files/bygfoot_options.glade.h:34
+msgid "Fitness "
+msgstr "Condiţie fizică "
+
+#: ../support_files/bygfoot_options.glade.h:35
+msgid "Float"
+msgstr "Variabil"
+
+#: ../support_files/bygfoot_options.glade.h:36
+msgid "Font name"
+msgstr "Numele fontului"
+
+#: ../support_files/bygfoot_options.glade.h:37
+msgid "Font used in treeviews"
+msgstr "Fonturile utilizate în vederea arbore"
+
+#: ../support_files/bygfoot_options.glade.h:38
+msgid "Gameplay"
+msgstr "Jocuri"
+
+#: ../support_files/bygfoot_options.glade.h:39
+msgid "Games "
+msgstr "Jocuri "
+
+#: ../support_files/bygfoot_options.glade.h:40
+msgid "Global"
+msgstr "Global"
+
+#: ../support_files/bygfoot_options.glade.h:41
+msgid "Goals "
+msgstr "Goluri "
+
+#: ../support_files/bygfoot_options.glade.h:42
+msgid "How many digits after the comma there are for skill etc."
+msgstr "Câte numere după virgulă sunt pentru abilităţi, etc"
+
+#: ../support_files/bygfoot_options.glade.h:43
+msgid "How many files the autosave uses"
+msgstr "Câte fişiere să fie folosite de autosalvare"
+
+#: ../support_files/bygfoot_options.glade.h:44
+msgid "How often the game is saved automatically"
+msgstr "Cât de des jocul este salvat automat"
+
+#: ../support_files/bygfoot_options.glade.h:45
+msgid ""
+"How often the player list gets refreshed during a live game (in live game "
+"minutes)"
+msgstr ""
+"Cât de des este împrospătată list de jucători în timpul meciului în direct "
+"(minute în meciul în direct)"
+
+#: ../support_files/bygfoot_options.glade.h:46
+msgid ""
+"If checked, weeks without user teams playing are calculated automatically "
+"(without the user having to press 'New week')"
+msgstr ""
+"Dacă este marcat, săptămânile când nu joacă echipa sunt calculate automat "
+"(utilizatorul nu mai trebuie să dea \"Săptămână nouă\")"
+
+#: ../support_files/bygfoot_options.glade.h:47
+msgid "Integer"
+msgstr "Întreg"
+
+#: ../support_files/bygfoot_options.glade.h:48
+msgid "Language"
+msgstr "Limbă"
+
+#: ../support_files/bygfoot_options.glade.h:49
+msgid "League "
+msgstr "Ligă "
+
+#: ../support_files/bygfoot_options.glade.h:50
+msgid "List 1 "
+msgstr "Lista 1 "
+
+#: ../support_files/bygfoot_options.glade.h:51
+msgid "List 2"
+msgstr "Lista 2"
+
+#: ../support_files/bygfoot_options.glade.h:53
+msgid "Live game speed factor"
+msgstr "Factorul de accelerare la meciurile în direct"
+
+#: ../support_files/bygfoot_options.glade.h:54
+msgid "Live game verbosity"
+msgstr "Nivelul comentariilor în meciul în direct"
+
+#: ../support_files/bygfoot_options.glade.h:55
+msgid "Maximize main window"
+msgstr "Maximizaţi fereastra principală."
+
+#: ../support_files/bygfoot_options.glade.h:56
+msgid "Name "
+msgstr "Nume "
+
+#: ../support_files/bygfoot_options.glade.h:58
+msgid "No automatic popup"
+msgstr "Fără pop-up automat"
+
+#: ../support_files/bygfoot_options.glade.h:59
+msgid "Pause when break"
+msgstr "Pauză la jumătatea meciului"
+
+#: ../support_files/bygfoot_options.glade.h:60
+msgid "Pause when injury"
+msgstr "Pauză la accidentare"
+
+#: ../support_files/bygfoot_options.glade.h:61
+msgid "Pause when red card"
+msgstr "Pauză la cartonaş roşu"
+
+#: ../support_files/bygfoot_options.glade.h:62
+msgid "Player attribute precision"
+msgstr "Precizia la atributele jucătorilor"
+
+#: ../support_files/bygfoot_options.glade.h:63
+msgid "Player attributes shown"
+msgstr "Arătaţi atributele jucătorilor"
+
+#: ../support_files/bygfoot_options.glade.h:64
+msgid "Player list refresh rate"
+msgstr "Rata de împrospătare a listei jucătorilor"
+
+#: ../support_files/bygfoot_options.glade.h:65
+msgid "Popup for user news"
+msgstr "Pop-up pentru ştirile utilizatorului"
+
+#: ../support_files/bygfoot_options.glade.h:66
+msgid "Pos "
+msgstr "Poz "
+
+#: ../support_files/bygfoot_options.glade.h:67
+msgid "Prefer messages"
+msgstr "Mesaje preferate"
+
+#: ../support_files/bygfoot_options.glade.h:69
+msgid "Reload from file"
+msgstr "Reîncărcaţi din fişier"
+
+#: ../support_files/bygfoot_options.glade.h:70
+msgid "Reload the constants file"
+msgstr "Reîncărcaţi fişierul cu constante"
+
+#: ../support_files/bygfoot_options.glade.h:71
+msgid "Save global settings to file"
+msgstr "Salvaţi setările globale în fişier"
+
+#: ../support_files/bygfoot_options.glade.h:72
+msgid "Save overwrites"
+msgstr "Salvarea suprascrie"
+
+#: ../support_files/bygfoot_options.glade.h:73
+msgid "Save to file"
+msgstr "Salvaţi în fişier"
+
+#: ../support_files/bygfoot_options.glade.h:74
+msgid "Save user settings to file"
+msgstr "Salvaţi setările utilizatorului în fişier"
+
+#: ../support_files/bygfoot_options.glade.h:75
+msgid "Set to 0 to switch off warning"
+msgstr "Setaţi la 0 pentru a dezactiva avertismentele"
+
+#: ../support_files/bygfoot_options.glade.h:76
+msgid "Shots "
+msgstr "Şuturi"
+
+#: ../support_files/bygfoot_options.glade.h:77
+msgid "Show all leagues in the fixture view"
+msgstr "Afişaţi toate ligile în vederea programării meciurilor"
+
+#: ../support_files/bygfoot_options.glade.h:78
+msgid "Show job offers"
+msgstr "Afişaţi ofertele de lucru"
+
+#: ../support_files/bygfoot_options.glade.h:79
+msgid "Show live game"
+msgstr "Afişaţi meciurile în direct"
+
+#: ../support_files/bygfoot_options.glade.h:80
+#: ../support_files/bygfoot_misc3.glade.h:18
+msgid "Show matches from all leagues"
+msgstr "Afişaţi meciurile din toate ligile"
+
+#: ../support_files/bygfoot_options.glade.h:81
+#: ../support_files/bygfoot_misc3.glade.h:19
+msgid "Show matches from cups"
+msgstr "Afişaţi meciurile din cupe"
+
+#: ../support_files/bygfoot_options.glade.h:82
+#: ../support_files/bygfoot_misc3.glade.h:20
+msgid "Show only my recent bets"
+msgstr "Afişaţi doar pariurile mele recente"
+
+#: ../support_files/bygfoot_options.glade.h:83
+msgid "Show only recent news"
+msgstr "Afişaţi doar ştirile recente"
+
+#: ../support_files/bygfoot_options.glade.h:84
+msgid "Show overall games/goals"
+msgstr "Afişaţi toate jocurile/golurile"
+
+#: ../support_files/bygfoot_options.glade.h:85
+msgid "Show progressbar pictures"
+msgstr "Afişaţi pozele bării de progres"
+
+#: ../support_files/bygfoot_options.glade.h:86
+msgid "Show tendency bar"
+msgstr "Afişaţi bara cu tendinţe"
+
+#: ../support_files/bygfoot_options.glade.h:87
+msgid "Show warning if a player contract gets below "
+msgstr "Afişaţi o avertizare dacă contractul unui jucător are mai puţin de "
+
+#: ../support_files/bygfoot_options.glade.h:88
+msgid "Skill "
+msgstr "Abilitate"
+
+#: ../support_files/bygfoot_options.glade.h:89
+msgid "Skip weeks without user matches"
+msgstr "Săriţi peste săptămânile fără jocuri ale utilizatorului"
+
+#: ../support_files/bygfoot_options.glade.h:90
+msgid "Status "
+msgstr "Statut "
+
+#: ../support_files/bygfoot_options.glade.h:91
+msgid "String"
+msgstr "Item"
+
+#: ../support_files/bygfoot_options.glade.h:92
+msgid "Swap adapts structure"
+msgstr "Schimbaţi adaptarea structurii"
+
+#: ../support_files/bygfoot_options.glade.h:93
+msgid "Team "
+msgstr "Echipă"
+
+#: ../support_files/bygfoot_options.glade.h:95
+msgid "Value "
+msgstr "Valoarea "
+
+#: ../support_files/bygfoot_options.glade.h:96
+msgid "Wage "
+msgstr "Salariu "
+
+#: ../support_files/bygfoot_options.glade.h:97
+msgid ""
+"Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
+msgstr ""
+"Dacă salvarea să suprascrie fişierul salvat curent sau să apară o fereastră "
+"'Salvaţi ca'"
+
+#: ../support_files/bygfoot_options.glade.h:98
+msgid ""
+"Whether a confirmation popup is shown when you kick out a youth from your "
+"academy"
+msgstr ""
+"Dacă să apară un dialog de confirmare când daţi afară un jucător de la "
+"academia de juniori"
+
+#: ../support_files/bygfoot_options.glade.h:99
+msgid ""
+"Whether game starts with a maximized main window (doesn't work with all "
+"window managers)"
+msgstr ""
+"Dacă jocul să pornească cu fereastră principală maximizată (nu funcţionează "
+"în toate managerele de ferestre)"
+
+#: ../support_files/bygfoot_options.glade.h:100
+msgid ""
+"Whether in the weekly fixture view all leagues or only the user league is "
+"shown"
+msgstr ""
+"Dacă în programarea săptămânală a meciurilor să apară numai meciurile din "
+"liga utilizatorului"
+
+#: ../support_files/bygfoot_options.glade.h:101
+msgid ""
+"Whether swapping two players automatically adapts the team structure to the "
+"player positions"
+msgstr ""
+"Dacă schimbarea a doi jucători adaptează automat structura echipei la "
+"poziţiile jucătorilor"
+
+#: ../support_files/bygfoot_options.glade.h:102
+msgid "Whether to automatically save the game regularly"
+msgstr "Dacă să fie salvat meciul în mod regulat"
+
+#: ../support_files/bygfoot_options.glade.h:103
+msgid ""
+"Whether to show a confirmation popup if a user team has an injured or banned "
+"player in the startup formation"
+msgstr ""
+"Dacă să apară o fereastră de confirmare când echipa utilizatorului are un "
+"jucător rănit sau suspendat în echipa de început"
+
+#: ../support_files/bygfoot_options.glade.h:104
+msgid ""
+"Whether to show a confirmation popup when you press quit and the game state "
+"is not saved"
+msgstr "Dacă să apară o fereastră de confirmare când ieşiţi şi nu aţi salvat"
+
+#: ../support_files/bygfoot_options.glade.h:105
+msgid "Whether to show job offers when a user is successful"
+msgstr ""
+"Dacă să apară o ofertă de la alte echipe atunci când utilizatorul are succes"
+
+#: ../support_files/bygfoot_options.glade.h:106
+msgid ""
+"Whether to show pictures on top of the progressbar when loading/saving or "
+"calculating results"
+msgstr ""
+"Dacă să se afişeze poze în faţa bării de progres când se încarcă/salvează "
+"sau se calculează rezultatele"
+
+#: ../support_files/bygfoot_options.glade.h:107
+msgid "Whether to show the player games/goals value in all competitions"
+msgstr "Dacă să apară jocurile/golurile jucătorului în toate competiţiile"
+
+#: ../support_files/bygfoot_options.glade.h:108
+msgid ""
+"Whether to show warnings and such in the message area in the main window "
+"when possible"
+msgstr ""
+"Dacă să arate avertizări în zona de mesaje din fereastra principală când "
+"este posibil"
+
+#: ../support_files/bygfoot_misc3.glade.h:2
+msgid "Betting -- Left click on odd to place or remove bet"
+msgstr "Pariuri -- Clic stânga pentru a paria sau pentru a înlătura un pariu"
+
+#: ../support_files/bygfoot_misc3.glade.h:4
+msgid "Calculate start week"
+msgstr "Calculaţi săptămâna de început"
+
+#: ../support_files/bygfoot_misc3.glade.h:5
+msgid "Calculate weekly installment"
+msgstr "Calculaţi suma săptămânală de plată"
+
+#: ../support_files/bygfoot_misc3.glade.h:7
+msgid "Ctrl-N"
+msgstr "Ctrl+N"
+
+#: ../support_files/bygfoot_misc3.glade.h:8
+msgid "Ctrl-O"
+msgstr "Ctrl+O"
+
+#: ../support_files/bygfoot_misc3.glade.h:9
+msgid "Ctrl-R"
+msgstr "Ctrl+R"
+
+#: ../support_files/bygfoot_misc3.glade.h:10
+msgid "Current settings:"
+msgstr "Setări curente:"
+
+#. Splash screen hint question.
+#: ../support_files/bygfoot_misc3.glade.h:12
+msgid "Did you know?"
+msgstr "Ştiaţi că ?"
+
+#: ../support_files/bygfoot_misc3.glade.h:14
+msgid "New settings:"
+msgstr "Setări noi:"
+
+#: ../support_files/bygfoot_misc3.glade.h:15
+msgid "Next"
+msgstr "Următorul"
+
+#: ../support_files/bygfoot_misc3.glade.h:16
+msgid "Previous"
+msgstr "Anterior"
+
+#: ../support_files/bygfoot_misc3.glade.h:21
+msgid "Start _new game"
+msgstr "Începeţi  joc _nou"
+
+#: ../support_files/bygfoot_misc3.glade.h:22
+msgid "Start in week"
+msgstr "Începeţi în săptămâna"
+
+#: ../support_files/bygfoot_misc3.glade.h:23
+msgid "Start in week:"
+msgstr "Începeţi în săptămâna:"
+
+#: ../support_files/bygfoot_misc3.glade.h:24
+msgid "Weekly installment"
+msgstr "Suma săptămânală"
+
+#: ../support_files/bygfoot_misc3.glade.h:25
+msgid "Weekly installment:"
+msgstr "Suma săptămânală:"
+
+#: ../support_files/bygfoot_misc3.glade.h:26
+msgid ""
+"Whether to show cup matches. Use the options window to toggle permanently."
+msgstr ""
+"Dacă să se arate jocurile din cupă. Utilizaţi fereastra de opţiuni pentru a "
+"înlătura permanent."
+
+#: ../support_files/bygfoot_misc3.glade.h:27
+msgid ""
+"Whether to show matches of all leagues. Use the options window to toggle "
+"permanently."
+msgstr ""
+"Dacă să se afişeze meciurile din toate ligile. Folosiţi fereastra de opţiuni."
+
+#: ../support_files/bygfoot_misc3.glade.h:28
+msgid "Whether to show only your bets in the recent bets list"
+msgstr "Dacă să se afişeze numai pariurile dumneavoastră în lista pariurilor."
+
+#: ../support_files/bygfoot_misc3.glade.h:29
+msgid "Your debt:"
+msgstr "Creditul dumneavoastră:"
+
+#: ../support_files/bygfoot_misc3.glade.h:30
+msgid "_Load game"
+msgstr "_Încărcaţi joc"
+
+#: ../support_files/bygfoot_misc3.glade.h:31
+msgid "_Resume game"
+msgstr "_Reveniţi la joc"
+
+#: ../support_files/bygfoot_training.glade.h:1
+msgid "Camp points"
+msgstr "Punctaj"
+
+#: ../support_files/bygfoot_training.glade.h:6
+msgid "Recreation"
+msgstr "Recreaţie"
+
+#: ../support_files/bygfoot_training.glade.h:7
+msgid "Save settings as default"
+msgstr "Salvaţi setările ca prestabilite"
+
+#: ../support_files/bygfoot_training.glade.h:8
+msgid "Training"
+msgstr "Antrenament"
+
+#~ msgid ""
+#~ "The lower this value the faster the live game commentary will scroll."
+#~ msgstr "Cu cât este valoare mai mică, cu atât vor fi mai puţine comentarii."
+
+#~ msgid "The higher this value, the more commentary you'll see."
+#~ msgstr "Cu cât este valoare mai mare, cu atât vor fi mai multe comentarii."
+
+#~ msgid ""
+#~ "Whether the subs (e.g. for injured players) are made by the CPU. This is "
+#~ "automatically done if the live game is off."
+#~ msgstr ""
+#~ "Dacă schimbările (ex. pentru accedentări) să fie făcute de computer. "
+#~ "Această opţiune este automat selectată dacă jocul în direct nu este "
+#~ "folosit."
+
+#~ msgid "Whether the live game pauses when a user player is injured"
+#~ msgstr "Dacă jocul să se întrerupă când un jucător este accidentat"
+
+#~ msgid "Whether the live game pauses when a user player is sent off"
+#~ msgstr "Dacă jocul să se întrerupă când un jucător este eliminat"
+
+#~ msgid "Whether the live game pauses at half time and extra time"
+#~ msgstr "Dacă jocul să se întrerupă la pauze"
+
+#~ msgid "Whether to show matches of all leagues in the betting window"
+#~ msgstr ""
+#~ "Dacă să se afişeze meciurile din toate ligile în fereastra de pariuri"
+
+#~ msgid "Whether to show cup matches in the betting window"
+#~ msgstr "Dacă să se arate jocurile din cupă în fereastra de pariuri"
+
+#~ msgid "How much you wager by default"
+#~ msgstr "Ce salariu oferiţi implicit"
+
+#~ msgid "Show news window after a matchday when new user news was created"
+#~ msgstr ""
+#~ "Afişaţi fereastra cu ştirile după meciuri când noi ştiri ale "
+#~ "utilizatorului au fost create"
+
+#~ msgid "Always show news window after a matchday"
+#~ msgstr "Întotdeauna afişaţi fereastra cu ştirile după meci"
+
+#~ msgid ""
+#~ "Whether to save the global settings to file (so that they get loaded next "
+#~ "time you start a new game)"
+#~ msgstr ""
+#~ "Dacă setările globale să fie salvate într-un fişier (ca să fie încărcate "
+#~ "data viitoare când porniţi un joc nou)"
+
+#~ msgid ""
+#~ "Whether to save the user settings to file (so that they get loaded next "
+#~ "time this user starts a new game)"
+#~ msgstr ""
+#~ "Dacă setările utilizatorului să fie salvate într-un fişier (ca să fie "
+#~ "încărcate data viitoare când porniţi un joc nou cu acest utilizator)"
+
+#~ msgid ""
+#~ "Save changes to the constants file. DON'T DO THIS UNLESS YOU REALLY KNOW "
+#~ "WHAT YOU ARE DOING."
+#~ msgstr ""
+#~ "Salvaţi modificările în fişierul de constantei. NU ÎL MODIFICAŢI DECÂT "
+#~ "DACĂ CHIAR ŞTIŢI CE FACEŢI."
+
+#~ msgid ""
+#~ "Reload constants files. This will overwrite any changes you made in the "
+#~ "current game session."
+#~ msgstr ""
+#~ "Reîncărcaţi fişierul cu constante. Aceasta va suprascrie orice modificări "
+#~ "pe care le-aţi făcut în sesiunea curentă a jocului."
+
+#~ msgid ""
+#~ "Close window. Changes will only be saved for the current session, unless "
+#~ "you also save to file."
+#~ msgstr ""
+#~ "Închideţi fereastra. Modificările vor fi salvate doar pentru sesiunea "
+#~ "curentă, dacă nu aveţi un fişier de salvare."
+
 #~ msgid ""
 #~ "\n"
 #~ "If you feel you've found out something about the game that has to be "
@@ -3690,46 +3753,9 @@ msgstr "_Utilizator"
 #~ "Dacă găsiţi ceva interesant despre joc despre care ar trebui să ştie mai "
 #~ "multă lume, puteţi să îl scrieţi în wiki Bygfoot:\n"
 
-#~ msgid "1 year"
-#~ msgstr "1 an"
-
-#~ msgid "2 years"
-#~ msgstr "2 ani"
-
-#~ msgid "3 years"
-#~ msgstr "3 ani"
-
-#~ msgid "4 years"
-#~ msgstr "4 ani"
-
-#~ msgid "Available teams"
-#~ msgstr "Echipe disponibile"
-
-#~ msgid "Average skill:"
-#~ msgstr "Abilitate medie:"
-
-#~ msgid ""
-#~ "Bygfoot debug window. If you got here by accident, CLOSE IMMEDIATELY "
-#~ "(otherwise your CPU will be destroyed by overheating)."
-#~ msgstr ""
-#~ "Fereastra Bygfoot pentru debug. Dacă aţi ajuns aici din greşeală, "
-#~ "ÎNCHIDEŢI-O IMEDIAT (altfel procesorul va fi distrus prin supraîncălzire)."
-
 #, fuzzy
 #~ msgid "Bygfoot news"
 #~ msgstr "Fişierele cu salvări"
-
-#~ msgid "Click on a user to remove him from the game."
-#~ msgstr "Selectaţi un utilizator pentru a-l scoate din joc."
-
-#~ msgid "Confirm & schedule repayment"
-#~ msgstr "Confirmaţi şi programaţi plăţile"
-
-#~ msgid "Debug"
-#~ msgstr "Debug"
-
-#~ msgid "Decide later"
-#~ msgstr "Decideţi mai târziu"
 
 #~ msgid "Headline"
 #~ msgstr "Titlu"
@@ -3746,29 +3772,17 @@ msgstr "_Utilizator"
 #~ msgid "Load the last game that was saved or loaded."
 #~ msgstr "Încarcă ultimul joc care a fost încărcat sau salvat."
 
-#~ msgid "Make offer"
-#~ msgstr "Faceţi o ofertă"
-
 #~ msgid "Misc."
 #~ msgstr "Diverse"
 
-#~ msgid "Money (approx.)"
-#~ msgstr "Bani (aprox.)"
-
 #~ msgid "Move to team"
 #~ msgstr "Mutaţi în echipă"
-
-#~ msgid "Player list"
-#~ msgstr "Lotul de jucători"
 
 #~ msgid "Preferences"
 #~ msgstr "Preferinţe"
 
 #~ msgid "Show history"
 #~ msgstr "Afişaţi istoric"
-
-#~ msgid "Users -- click to remove"
-#~ msgstr "Utilizatorii -- click pentru a-i înlătura"
 
 #~ msgid "label26"
 #~ msgstr "etichetă26"

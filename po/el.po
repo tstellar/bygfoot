@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 14:26+0100\n"
+"POT-Creation-Date: 2009-10-29 14:09+0100\n"
 "PO-Revision-Date: 2009-10-17 19:09+0300\n"
 "Last-Translator: elias\n"
 "Language-Team:  <el@li.org>\n"
@@ -851,46 +851,6 @@ msgstr "Δεν μπορείτε να παίξετε Bygfoot χωρίς χρήσ�
 msgid "Remove user %s from the game?"
 msgstr "Αφαίρεση χρήστη %s από το παιχνίδι;"
 
-#: ../src/misc2_interface.c:271
-msgid "Current file"
-msgstr "Τρέχον αρχείο"
-
-#: ../src/misc2_interface.c:282
-msgid "Open a memorable matches file"
-msgstr "Άνοιγμα αρχείου με αξέχαστους αγώνες"
-
-#: ../src/misc2_interface.c:287
-msgid "Reload matches from file"
-msgstr "Επαναφόρτωση αγώνων από αρχείο"
-
-#: ../src/misc2_interface.c:301 ../src/options_interface.c:411
-msgid "Reload"
-msgstr "Επαναφόρτωση"
-
-#: ../src/misc2_interface.c:308
-msgid "Import the matches from a memorable matches file"
-msgstr "Εισαγωγή αγώνων από αρχείο με αξέχαστους αγώνες"
-
-#: ../src/misc2_interface.c:322
-msgid "Import file"
-msgstr "Εισαγωγή αρχείου"
-
-#: ../src/misc2_interface.c:344
-msgid "Save changes to file and close"
-msgstr "Αποθήκευση αλλαγών στο αρχείο και κλείσιμο"
-
-#: ../src/misc2_interface.c:358
-msgid "Save and close"
-msgstr "Αποθήκευση και κλείσιμο"
-
-#: ../src/misc2_interface.c:365
-msgid "Reload matches from file and close"
-msgstr "Επαναφόρτωση αγώνων από αρχείο και κλείσιμο"
-
-#: ../src/misc2_interface.c:379
-msgid "Reload and close"
-msgstr "Επαναφόρτωση και κλείσιμο"
-
 #: ../src/misc3_callbacks.c:154
 #, c-format
 msgid "You bet on outcome %d with an odd of %.2f. How much do you wager?"
@@ -929,598 +889,6 @@ msgstr "%s και %s (%d)"
 msgid "%s and %s"
 msgstr "%s και %s"
 
-#: ../src/options_interface.c:256
-msgid "Confirm quit when not saved"
-msgstr "Επιβεβαίωση εξόδου όταν δεν υπάρχει αποθήκευση"
-
-#: ../src/options_interface.c:259
-msgid ""
-"Whether to show a confirmation popup when you press quit and the game state "
-"is not saved"
-msgstr ""
-"Κατά πόσο θα εμφανίζεται ένα αναδυόμενο για επιβεβαίωση αν πατηθεί έξοδος "
-"και η κατάσταση του παιχνιδιού δεν έχει αποθηκευτεί"
-
-#: ../src/options_interface.c:261
-msgid "Confirm when unfit"
-msgstr "Επιβεβαίωση αν σε μη καλή φυσική κατάσταση"
-
-#: ../src/options_interface.c:264
-msgid ""
-"Whether to show a confirmation popup if a user team has an injured or banned "
-"player in the startup formation"
-msgstr ""
-"Κατά πόσο να εμφανίζεται ένα αναδυόμενο για επιβεβαίωση αν η ομάδα κάποιου "
-"χρήστη έχει τραυματισμένο ή τιμωρημένο παίκτη στην αρχική διάταξη"
-
-#: ../src/options_interface.c:266
-msgid "Save overwrites"
-msgstr "Αποθήκευση επικαλύψεων"
-
-#: ../src/options_interface.c:269
-msgid ""
-"Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
-msgstr ""
-"Κατά πόσο η επιλογή 'Αποθήκευση' επικαλύπτει το τρέχον αποθηκευμένο αρχείο ή "
-"αναδύει ένα παράθυρο 'Αποθήκευση ως'"
-
-#: ../src/options_interface.c:276
-msgid "Maximize main window"
-msgstr "Μεγιστοποίηση κυρίως παραθύρου"
-
-#: ../src/options_interface.c:279
-msgid ""
-"Whether game starts with a maximized main window (doesn't work with all "
-"window managers)"
-msgstr ""
-"Κατά πόσο το παιχνίδι θα ξεκινάει με ένα μεγιστοποιημένο κυρίως παράθυρο "
-"(δεν δουλεύει με όλους τους window managers)"
-
-#: ../src/options_interface.c:281
-msgid "Prefer messages"
-msgstr "Προτίμηση μηνυμάτων"
-
-#: ../src/options_interface.c:284
-msgid ""
-"Whether to show warnings and such in the message area in the main window "
-"when possible"
-msgstr ""
-"Κατά πόσο θα εμφανίζονται προειδοποιήσεις και άλλα σχετικά στο κυρίως "
-"παράθυρο όταν αυτό είναι δυνατό"
-
-#: ../src/options_interface.c:286
-msgid "Show progressbar pictures"
-msgstr "Εμφάνιση εικόνων με μπάρες προόδου"
-
-#: ../src/options_interface.c:289
-msgid ""
-"Whether to show pictures on top of the progressbar when loading/saving or "
-"calculating results"
-msgstr ""
-"Κατά πόσο να εμφανίζονται εικόνες στο πάνω μέρος της μπάρας προόδου όταν "
-"φορτώνονται/αποθηκεύονται ή υπολογίζονται αποτελέσματα"
-
-#: ../src/options_interface.c:296
-msgid "Skip weeks without user matches"
-msgstr "Παράκαμψη εβδομάδων χωρίς αγώνες χρήστη"
-
-#: ../src/options_interface.c:299
-msgid ""
-"If checked, weeks without user teams playing are calculated automatically "
-"(without the user having to press 'New week')"
-msgstr ""
-"Αν είναι επιλεγμένο, οι εβδομάδες στις οποίες οι ομάδες χρήστη δεν παίζουν "
-"υπολογίζονται αυτόματα (χωρίς ο χρήστης να χρειάζεται να πατήσει 'Νέα "
-"εβδομάδα')"
-
-#: ../src/options_interface.c:318
-msgid "Autosave interval "
-msgstr "Χρονικό διάστημα αυτόματης αποθήκευσης "
-
-#: ../src/options_interface.c:326
-msgid "How often the game is saved automatically"
-msgstr "Πόσο συχνά αποθηκεύεται αυτόματα το παιχνίδι"
-
-#: ../src/options_interface.c:329
-msgid " Autosave files "
-msgstr " Αρχεία αυτόματης αποθήκευσης"
-
-#: ../src/options_interface.c:337
-msgid "How many files the autosave uses"
-msgstr "Πόσα αρχεία χρησιμοποιεί η αυτόματη αποθήκευση"
-
-#: ../src/options_interface.c:339
-msgid "Player attribute precision"
-msgstr "Ακρίβεια ιδιοτήτων παίκτη"
-
-#: ../src/options_interface.c:346
-msgid "Player list refresh rate"
-msgstr "Ρυθμός ανανέωσης λίστας παικτών"
-
-#: ../src/options_interface.c:353
-msgid "Constants file"
-msgstr "Αρχείο σταθερών"
-
-#: ../src/options_interface.c:365 ../src/options_interface.c:473
-msgid "Font used in treeviews"
-msgstr "Γραμματοσειρά για χρήση σε treeviews"
-
-#: ../src/options_interface.c:379
-msgid "Font name"
-msgstr "Όνομα γραμματοσειράς"
-
-#: ../src/options_interface.c:392
-msgid ""
-"File containing settings which determine a lot of aspects of the game "
-"behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
-msgstr ""
-"Αρχείο που περιέχει ρυθμίσεις που καθορίζουν πολλές πλευρές της συμπεριφοράς "
-"του παιχνιδιού. ΜΗΝ ΤΙΣ ΑΛΛΑΖΕΤΕ ΕΚΤΟΣ ΑΝ ΞΕΡΕΤΕ ΤΙ ΚΑΝΕΤΕ."
-
-#: ../src/options_interface.c:397
-msgid "Reload the constants file"
-msgstr "Επαναφόρτωση του αρχείου ρυθμίσεων"
-
-#: ../src/options_interface.c:418
-msgid "Edit the constants used in the game"
-msgstr "Επεξεργασία των ρυθμίσεων που χρησιμοποιούνται στο παιχνίδι"
-
-#: ../src/options_interface.c:432
-msgid "Edit"
-msgstr "Επεξεργασία"
-
-#: ../src/options_interface.c:436
-msgid "Language"
-msgstr "Γλώσσα"
-
-#: ../src/options_interface.c:443
-msgid "Autosave"
-msgstr "Αυτόματη αποθήκευση"
-
-#: ../src/options_interface.c:448
-msgid "Whether to automatically save the game regularly"
-msgstr "Κατά πόσο να γίνεται τακτικά αυτόματη αποθήκευση του παιχνιδιού"
-
-#: ../src/options_interface.c:456
-msgid "How many digits after the comma there are for skill etc."
-msgstr "Πόσα δεκαδικά μετά το κόμμα να είναι για την δεξιότητα κ.λ.π."
-
-#: ../src/options_interface.c:465
-msgid ""
-"How often the player list gets refreshed during a live game (in live game "
-"minutes)"
-msgstr ""
-"Πόσο συχνά η λίστα παικτών θα ανανεώνεται στην διάρκεια ενός ζωντανού "
-"παιχνιδιού (σε λεπτά ζωντανού παιχνιδιού)"
-
-#: ../src/options_interface.c:480
-msgid "Choose game language (might not work in Windows versions)"
-msgstr ""
-"Επιλογή γλώσσας παιχνιδιού (ίσως να μην δουλεύει σε εκδόσεις των Windows)"
-
-#: ../src/options_interface.c:486
-msgid "Global"
-msgstr "Καθολικό"
-
-#: ../src/options_interface.c:498
-msgid "Confirm removing youths"
-msgstr "Επιβεβαίωση απομάκρυνσης νέων"
-
-#: ../src/options_interface.c:501
-msgid ""
-"Whether a confirmation popup is shown when you kick out a youth from your "
-"academy"
-msgstr ""
-"Κατά πόσο θα εμφανίζεται ένα αναδυόμενο για επιβεβαίωση όταν διώχνεται ένας "
-"νέος από την ακαδημία σας"
-
-#: ../src/options_interface.c:503
-msgid "Show job offers"
-msgstr "Εμφάνιση προσφορών εργασίας"
-
-#: ../src/options_interface.c:506
-msgid "Whether to show job offers when a user is successful"
-msgstr ""
-"Κατά πόσο να εμφανίζονται προσφορές για εργασία όταν ένας χρήστης είναι "
-"επιτυχημένος"
-
-#: ../src/options_interface.c:511
-msgid "Set to 0 to switch off warning"
-msgstr "Ρύθμιση στο 0 για απενεργοποίηση ειδοποίησης"
-
-#: ../src/options_interface.c:517
-msgid "Show warning if a player contract gets below "
-msgstr ""
-"Εμφάνιση ειδοποίησης αν η λήξη του συμβολαίου ενός παίκτη απέχει λιγότερο από"
-
-#: ../src/options_interface.c:527
-msgid " months"
-msgstr "μήνες"
-
-#: ../src/options_interface.c:531
-msgid "Show all leagues in the fixture view"
-msgstr "Εμφάνιση όλων των λιγκών στη θέαση εκδηλώσεων"
-
-#: ../src/options_interface.c:534
-msgid ""
-"Whether in the weekly fixture view all leagues or only the user league is "
-"shown"
-msgstr ""
-"Κατά πόσο στην θέαση εβδομαδιαίων εκδηλώσεων θα εμφανίζονται όλες οι λίγκες "
-"ή μόνο η λίγκα του χρήστη"
-
-#: ../src/options_interface.c:549
-msgid "Swap adapts structure"
-msgstr "Ανταλλαγή προσαρμόζει σύστημα"
-
-#: ../src/options_interface.c:552
-msgid ""
-"Whether swapping two players automatically adapts the team structure to the "
-"player positions"
-msgstr ""
-"Κατά πόσο ανταλλαγή δύο παικτών προκαλεί αυτόματη προσαρμογή του συστήματος "
-"της ομάδας στις θέσεις των παικτών"
-
-#: ../src/options_interface.c:554
-msgid "Show overall games/goals"
-msgstr "Εμφάνιση συνολικών παιχνίδια/τέρματα"
-
-#: ../src/options_interface.c:557
-msgid "Whether to show the player games/goals value in all competitions"
-msgstr ""
-"Κατά πόσο να εμφανίζεται η τιμή παιχνίδια/τέρματα του παίκτη σε όλες τις "
-"διοργανώσεις"
-
-#: ../src/options_interface.c:559
-msgid "Always store/restore your default team"
-msgstr "Πάντα να αποθηκεύεται/ανακτάται η προεπιλεγμένη ομάδα σας"
-
-#: ../src/options_interface.c:562
-msgid "Always store/restore your default team before/after a match"
-msgstr ""
-"Πάντα να αποθηκεύεται/ανακτάται η προεπιλεγμένη ομάδα σας πριν/μετά από έναν "
-"αγώνα"
-
-#: ../src/options_interface.c:564
-msgid "Gameplay"
-msgstr "Gameplay"
-
-#: ../src/options_interface.c:576
-msgid "Show live game"
-msgstr "Εμφάνιση ζωντανού παιχνιδιού"
-
-#: ../src/options_interface.c:580
-msgid "Show tendency bar"
-msgstr "Εμφάνιση μπάρας ροπής"
-
-#: ../src/options_interface.c:589
-msgid "Live game speed factor"
-msgstr "Παράγοντας ταχύτητας ζωντανού παιχνιδιού"
-
-#: ../src/options_interface.c:596
-msgid "Live game verbosity"
-msgstr "Πολυλογία ζωντανού παιχνιδιού"
-
-#: ../src/options_interface.c:609
-msgid "The lower this value the faster the live game commentary will scroll."
-msgstr ""
-"Όσο μικρότερη τιμή, τόσο πιο γρήγορα θα κυλά η περιγραφή του ζωντανού "
-"παιχνιδιού."
-
-#: ../src/options_interface.c:618
-msgid "The higher this value, the more commentary you'll see."
-msgstr ""
-"Όσο μεγαλύτερη είναι η τιμή αυτή, τόσο πιο αναλυτική περιγραφή θα δείτε."
-
-#: ../src/options_interface.c:621
-msgid "Automatic substitutions"
-msgstr "Αυτόματες αντικαταστάσεις"
-
-#: ../src/options_interface.c:624
-msgid ""
-"Whether the subs (e.g. for injured players) are made by the CPU. This is "
-"automatically done if the live game is off."
-msgstr ""
-"Κατά πόσο οι αντικαταστάσεις (π.χ. για τραυματισμένους παίκτες) θα γίνονται "
-"από τη CPU. Αυτό γίνεται αυτόματα αν το ζωντανό παιχνίδι είναι "
-"απενεργοποιημένο."
-
-#: ../src/options_interface.c:635
-msgid "Pause when injury"
-msgstr "Παύση όταν υπάρχει τραυματισμός"
-
-#: ../src/options_interface.c:638
-msgid "Whether the live game pauses when a user player is injured"
-msgstr ""
-"Κατά πόσο το ζωντανό παιχνίδι θα διακόπτεται όταν ένας παίκτης κάποιου "
-"χρήστη είναι τραυματισμένος"
-
-#: ../src/options_interface.c:640
-msgid "Pause when red card"
-msgstr "Παύση όταν βγαίνει κόκκινη κάρτα"
-
-#: ../src/options_interface.c:643
-msgid "Whether the live game pauses when a user player is sent off"
-msgstr "Κατά πόσο το ζωντανό παιχνίδι θα διακόπτεται όταν βγαίνει ένας παίκτης"
-
-#: ../src/options_interface.c:645
-msgid "Pause when break"
-msgstr "Παύση όταν υπάρξει διάλειμμα"
-
-#: ../src/options_interface.c:648
-msgid "Whether the live game pauses at half time and extra time"
-msgstr ""
-"Κατά πόσο το ζωντανό παιχνίδι θα διακόπτεται στο ημίχρονο και στην παράταση"
-
-#: ../src/options_interface.c:650 ../support_files/bygfoot_misc.glade.h:33
-#: ../support_files/bygfoot.glade.h:42
-msgid "Live game"
-msgstr "Ζωντανό παιχνίδι"
-
-#: ../src/options_interface.c:658
-msgid "Name "
-msgstr "Όνομα"
-
-#: ../src/options_interface.c:665
-msgid "CPos "
-msgstr "ΤΘεσ "
-
-#: ../src/options_interface.c:672
-msgid "Pos "
-msgstr "Θέσ "
-
-#: ../src/options_interface.c:679
-msgid "CSkill "
-msgstr "ΤΔεξιότητα "
-
-#: ../src/options_interface.c:686
-msgid "Skill "
-msgstr "Δεξιότητα "
-
-#: ../src/options_interface.c:693
-msgid "Fitness "
-msgstr "Φυσική κατάσταση"
-
-#: ../src/options_interface.c:700
-msgid "Games "
-msgstr "Παιχνίδια "
-
-#: ../src/options_interface.c:707
-msgid "Shots "
-msgstr "Σουτ "
-
-#: ../src/options_interface.c:714
-msgid "Goals "
-msgstr "Τέρματα "
-
-#: ../src/options_interface.c:721
-msgid "Status "
-msgstr "Κατάσταση "
-
-#: ../src/options_interface.c:728
-msgid "Cards "
-msgstr "Κάρτες "
-
-#: ../src/options_interface.c:735
-msgid "Age "
-msgstr "Ηλικία "
-
-#: ../src/options_interface.c:742
-msgid "ETal "
-msgstr "ΑΤαλ"
-
-#: ../src/options_interface.c:749
-msgid "Value "
-msgstr "Τιμή "
-
-#: ../src/options_interface.c:756
-msgid "Wage "
-msgstr "Μισθός "
-
-#: ../src/options_interface.c:763
-msgid "Contract "
-msgstr "Συμβόλαιο "
-
-#: ../src/options_interface.c:770
-msgid "League "
-msgstr "Λίγκα "
-
-#: ../src/options_interface.c:777
-msgid "Team "
-msgstr "Ομάδα "
-
-#: ../src/options_interface.c:1014
-msgid "Attribute "
-msgstr "Ιδιότητα "
-
-#: ../src/options_interface.c:1021
-msgid "List 1 "
-msgstr "Λίστα 1 "
-
-#: ../src/options_interface.c:1028
-msgid "List 2"
-msgstr "Λίστα 2"
-
-#: ../src/options_interface.c:1042
-msgid "Player attributes shown"
-msgstr "Εμφάνιση ιδιοτήτων παίκτη"
-
-#: ../src/options_interface.c:1054 ../support_files/bygfoot_misc3.glade.h:18
-msgid "Show matches from all leagues"
-msgstr "Εμφάνιση αγώνων από όλες τις λίγκες"
-
-#: ../src/options_interface.c:1057
-msgid "Whether to show matches of all leagues in the betting window"
-msgstr ""
-"Κατά πόσο να εμφανίζονται αγώνες όλων των λιγκών στο παράθυρο στοιχήματος"
-
-#: ../src/options_interface.c:1059 ../support_files/bygfoot_misc3.glade.h:19
-msgid "Show matches from cups"
-msgstr "Εμφάνιση αγώνων από κύπελλα"
-
-#: ../src/options_interface.c:1062
-msgid "Whether to show cup matches in the betting window"
-msgstr "Κατά πόσο να εμφανίζονται αγώνες κυπέλλου στο παράθυρο στοιχήματος"
-
-#: ../src/options_interface.c:1065 ../support_files/bygfoot_misc3.glade.h:20
-msgid "Show only my recent bets"
-msgstr "Εμφάνιση μόνο των πρόσφατων στοιχημάτων μου"
-
-#: ../src/options_interface.c:1073
-msgid "Default wager"
-msgstr "Προεπιλογή ποσού στοιχήματος"
-
-#: ../src/options_interface.c:1081
-msgid "How much you wager by default"
-msgstr "Προεπιλεγόμενο ποσό στοιχήματος"
-
-#: ../src/options_interface.c:1084 ../src/treeview.c:1520
-#: ../src/treeview.c:1530 ../src/window.c:986
-#: ../support_files/bygfoot.glade.h:20
-msgid "Betting"
-msgstr "Στοίχημα"
-
-#: ../src/options_interface.c:1098
-msgid "Default hotel"
-msgstr "Προεπιλογή ξενοδοχείου"
-
-#: ../src/options_interface.c:1121
-msgid "Default recreation:"
-msgstr "Προεπιλεγόμενη αναψυχή:"
-
-#: ../src/options_interface.c:1141
-msgid "Default training:"
-msgstr "Προεπιλογή προπόνησης:"
-
-#: ../src/options_interface.c:1151 ../src/treeview.c:1616 ../src/window.c:1001
-#: ../support_files/bygfoot_training.glade.h:9
-#: ../support_files/bygfoot.glade.h:101
-msgid "Training camp"
-msgstr "Προπονητικό κέντρο"
-
-#: ../src/options_interface.c:1163
-msgid "Create user news"
-msgstr "Δημιουργία νέων χρήστη"
-
-#: ../src/options_interface.c:1167
-msgid "Create cup news"
-msgstr "Δημιουργία νέων κυπέλλου"
-
-#: ../src/options_interface.c:1171
-msgid "Create league news"
-msgstr "Δημιουργία νέων λίγκας"
-
-#: ../src/options_interface.c:1175
-msgid "Show only recent news"
-msgstr "Εμφάνιση μόνο προσφάτων νέων"
-
-#: ../src/options_interface.c:1183
-msgid "No automatic popup"
-msgstr "Όχι αυτόματο αναδυόμενο"
-
-#: ../src/options_interface.c:1189
-msgid "Popup for user news"
-msgstr "Αναδυόμενο για νέα χρήστη"
-
-#: ../src/options_interface.c:1192
-msgid "Show news window after a matchday when new user news was created"
-msgstr ""
-"Εμφάνιση παραθύρου μετά από αγωνιστική όταν καινούρια νέα χρήστη έχουν "
-"δημιουργηθεί"
-
-#: ../src/options_interface.c:1196
-msgid "Automatic popup"
-msgstr "Αυτόματο αναδυόμενο"
-
-#: ../src/options_interface.c:1199
-msgid "Always show news window after a matchday"
-msgstr "Πάντα θα εμφανίζεται το παράθυρο νέων μετά από μία αγωνιστική"
-
-#: ../src/options_interface.c:1203 ../support_files/bygfoot.glade.h:52
-msgid "News"
-msgstr "Νέα"
-
-#: ../src/options_interface.c:1220
-msgid "Save global settings to file"
-msgstr "Αποθήκευση καθολικών ρυθμίσεων σε αρχείο"
-
-#: ../src/options_interface.c:1223
-msgid ""
-"Whether to save the global settings to file (so that they get loaded next "
-"time you start a new game)"
-msgstr ""
-"Κατά πόσο θα αποθηκεύονται οι καθολικές ρυθμίσεις σε αρχείο (για να "
-"φορτώνονται αυτόματα την επόμενη φορά που θα αρχίζετε ένα νέο παιχνίδι)"
-
-#: ../src/options_interface.c:1225
-msgid "Save user settings to file"
-msgstr "Αποθήκευση ρυθμίσεων χρήστη σε αρχείο"
-
-#: ../src/options_interface.c:1228
-msgid ""
-"Whether to save the user settings to file (so that they get loaded next time "
-"this user starts a new game)"
-msgstr ""
-"Κατά πόσο να αποθηκεύονται οι ρυθμίσεις ενός χρήστη σε ένα αρχείο (για να "
-"φορτωθούν την επόμενη φορά που ο χρήστης αυτός αρχίζει ένα νέο παιχνίδι)"
-
-#: ../src/options_interface.c:1237 ../support_files/bygfoot_misc3.glade.h:13
-#: ../support_files/bygfoot_misc.glade.h:27
-msgid "Esc"
-msgstr "Esc"
-
-#: ../src/options_interface.c:1527
-msgid "Integer"
-msgstr "Ακέραιες"
-
-#: ../src/options_interface.c:1541
-msgid "Float"
-msgstr "Πραγματικές"
-
-#: ../src/options_interface.c:1555
-msgid "String"
-msgstr "Αλφαριθμητικές"
-
-#: ../src/options_interface.c:1569
-msgid "Appearance"
-msgstr "Εμφάνιση"
-
-#: ../src/options_interface.c:1581
-msgid ""
-"Save changes to the constants file. DON'T DO THIS UNLESS YOU REALLY KNOW "
-"WHAT YOU ARE DOING."
-msgstr ""
-"Αποθήκευση αλλαγών στο αρχείο σταθερών. ΜΗΝ ΤΟ ΚΑΝΕΤΕ ΕΚΤΟΣ ΑΝ ΞΕΡΕΤΕ ΤΙ "
-"ΚΑΝΕΤΕ."
-
-#: ../src/options_interface.c:1595
-msgid "Save to file"
-msgstr "Αποθήκευση σε αρχείο"
-
-#: ../src/options_interface.c:1602
-msgid ""
-"Reload constants files. This will overwrite any changes you made in the "
-"current game session."
-msgstr ""
-"Επαναφόρτωση αρχείου σταθερών. Αυτό θα επικαλύψει όποιες αλλαγές κάνατε στην "
-"τρέχουσα συνεδρία του παιχνιδιού."
-
-#: ../src/options_interface.c:1616
-msgid "Reload from file"
-msgstr "Επαναφόρτωση από αρχείο"
-
-#: ../src/options_interface.c:1623
-msgid ""
-"Close window. Changes will only be saved for the current session, unless you "
-"also save to file."
-msgstr ""
-"Κλείσιμο παραθύρου. Οι αλλαγές θα ισχύουν μόνο για την τρέχουσα συνεδρία, "
-"εκτός αν αποθηκεύσετε σε ένα αρχείο."
-
-#: ../src/options_interface.c:1640
-msgid "Close"
-msgstr "Κλείσιμο"
-
 #: ../src/player.c:673
 msgid "You can't replace a banned player."
 msgstr "Δεν μπορείτε να αντικαταστήσετε έναν τιμωρημένο παίκτη."
@@ -1533,7 +901,7 @@ msgstr "Το συμβόλαιο του %s λήγει σε %.1f χρόνια."
 #. Player health: ok.
 #. Player status: ok.
 #: ../src/player.c:1409 ../src/treeview_helper.c:1094
-#: ../src/treeview_helper.c:1390
+#: ../src/treeview_helper.c:1390 ../support_files/bygfoot_misc2.glade.h:25
 msgid "OK"
 msgstr "Εντάξει"
 
@@ -1758,7 +1126,7 @@ msgid "Team"
 msgstr "Ομάδα"
 
 #: ../src/treeview2.c:514 ../src/treeview.c:170 ../src/treeview.c:332
-#: ../src/treeview.c:780
+#: ../src/treeview.c:780 ../support_files/bygfoot_misc2.glade.h:21
 msgid "League"
 msgstr "Λίγκα"
 
@@ -1780,7 +1148,7 @@ msgid "Week %d Round %d"
 msgstr "Εβδομάδα %d Γύρος %d"
 
 #: ../src/treeview2.c:791 ../src/treeview.c:304 ../src/treeview.c:778
-#: ../src/treeview.c:2163
+#: ../src/treeview.c:2163 ../support_files/bygfoot_misc2.glade.h:24
 msgid "Name"
 msgstr "Όνομα"
 
@@ -1992,11 +1360,11 @@ msgstr "Β"
 msgid "Stadium"
 msgstr "Γήπεδο"
 
-#: ../src/treeview.c:1483
+#: ../src/treeview.c:1483 ../support_files/bygfoot_misc2.glade.h:36
 msgid "Stadium capacity"
 msgstr "Χωρητικότητα γηπέδου"
 
-#: ../src/treeview.c:1487
+#: ../src/treeview.c:1487 ../support_files/bygfoot_misc2.glade.h:37
 msgid "Stadium safety"
 msgstr "Ασφάλεια γηπέδου"
 
@@ -2026,6 +1394,12 @@ msgstr "Έσοδα από εισιτήρια"
 #: ../src/treeview.c:1519
 msgid "Sponsorship"
 msgstr "Χορηγία"
+
+#: ../src/treeview.c:1520 ../src/treeview.c:1530 ../src/window.c:986
+#: ../support_files/bygfoot.glade.h:20
+#: ../support_files/bygfoot_options.glade.h:12
+msgid "Betting"
+msgstr "Στοίχημα"
 
 #: ../src/treeview.c:1522
 msgid "Wages"
@@ -2086,6 +1460,13 @@ msgstr "Μεταγραφές"
 #: ../src/treeview.c:1608
 msgid "Stadium expenses"
 msgstr "Έξοδα γηπέδου"
+
+#: ../src/treeview.c:1616 ../src/window.c:1001
+#: ../support_files/bygfoot.glade.h:101
+#: ../support_files/bygfoot_options.glade.h:94
+#: ../support_files/bygfoot_training.glade.h:9
+msgid "Training camp"
+msgstr "Προπονητικό κέντρο"
 
 #: ../src/treeview.c:1629
 msgid "Money"
@@ -2180,7 +1561,7 @@ msgstr "Εντός"
 msgid "Away"
 msgstr "Εκτός"
 
-#: ../src/treeview.c:1866
+#: ../src/treeview.c:1866 ../support_files/bygfoot_misc2.glade.h:28
 msgid "Rank"
 msgstr "Θέση"
 
@@ -2866,7 +2247,7 @@ msgstr "Αριθμοί..."
 msgid "Your stadium"
 msgstr "Το γήπεδο σας"
 
-#: ../src/window.c:892
+#: ../src/window.c:892 ../support_files/bygfoot_misc2.glade.h:20
 msgid "Job offer"
 msgstr "Προσφορά εργασίας"
 
@@ -2898,8 +2279,8 @@ msgstr "Προσφορές χορηγίας"
 msgid "Memorable matches"
 msgstr "Αξέχαστοι αγώνες"
 
-#: ../src/window.c:1009 ../support_files/bygfoot_misc3.glade.h:1
-#: ../support_files/bygfoot.glade.h:12
+#: ../src/window.c:1009 ../support_files/bygfoot.glade.h:12
+#: ../support_files/bygfoot_misc3.glade.h:1
 msgid "Automatic loan repayment"
 msgstr "Αυτόματη αποπληρωμή χρέους"
 
@@ -2953,372 +2334,6 @@ msgstr ""
 "Ένας νέος παίκτης θέλησε να εγγραφεί στην ακαδημία νέων σας αλλά δεν υπήρχε "
 "χώρος γι' αυτόν."
 
-#: ../support_files/bygfoot_misc3.glade.h:2
-msgid "Betting -- Left click on odd to place or remove bet"
-msgstr ""
-"Στοίχημα -- Αριστερό κλικ στη πιθανότητα για τοποθέτηση ή αφαίρεση "
-"στοιχήματος"
-
-#: ../support_files/bygfoot_misc3.glade.h:4
-msgid "Calculate start week"
-msgstr "Υπολογισμός αρχικής εβδομάδας"
-
-#: ../support_files/bygfoot_misc3.glade.h:5
-msgid "Calculate weekly installment"
-msgstr "Υπολογισμός εβδομαδιαίου πάγιου"
-
-#: ../support_files/bygfoot_misc3.glade.h:6
-#: ../support_files/bygfoot.glade.h:24
-msgid "Contributors"
-msgstr "Συντελεστές"
-
-#: ../support_files/bygfoot_misc3.glade.h:7
-msgid "Ctrl-N"
-msgstr "Ctrl-N"
-
-#: ../support_files/bygfoot_misc3.glade.h:8
-msgid "Ctrl-O"
-msgstr "Ctrl-O"
-
-#: ../support_files/bygfoot_misc3.glade.h:9
-msgid "Ctrl-R"
-msgstr "Ctrl-R"
-
-#: ../support_files/bygfoot_misc3.glade.h:10
-msgid "Current settings:"
-msgstr "Τρέχουσες ρυθμίσεις:"
-
-#. Splash screen hint question.
-#: ../support_files/bygfoot_misc3.glade.h:12
-msgid "Did you know?"
-msgstr "Γνωρίζατε;"
-
-#: ../support_files/bygfoot_misc3.glade.h:14
-msgid "New settings:"
-msgstr "Νέες ρυθμίσεις:"
-
-#: ../support_files/bygfoot_misc3.glade.h:15
-msgid "Next"
-msgstr "Επόμενο"
-
-#: ../support_files/bygfoot_misc3.glade.h:16
-msgid "Previous"
-msgstr "Προηγούμενο"
-
-#: ../support_files/bygfoot_misc3.glade.h:21
-msgid "Start _new game"
-msgstr "Έναρξη _νέου παιχνιδιού"
-
-#: ../support_files/bygfoot_misc3.glade.h:22
-msgid "Start in week"
-msgstr "Έναρξη στην εβδομάδα"
-
-#: ../support_files/bygfoot_misc3.glade.h:23
-msgid "Start in week:"
-msgstr "Έναρξη στην εβδομάδα:"
-
-#: ../support_files/bygfoot_misc3.glade.h:24
-msgid "Weekly installment"
-msgstr "Εβδομαδιαίο πάγιο"
-
-#: ../support_files/bygfoot_misc3.glade.h:25
-msgid "Weekly installment:"
-msgstr "Εβδομαδιαίο πάγιο:"
-
-#: ../support_files/bygfoot_misc3.glade.h:26
-msgid ""
-"Whether to show cup matches. Use the options window to toggle permanently."
-msgstr ""
-"Κατά πόσο θα εμφανίζονται αγώνες κυπέλλου. Χρησιμοποιείστε το παράθυρο "
-"επιλογών για μόνιμη ρύθμιση."
-
-#: ../support_files/bygfoot_misc3.glade.h:27
-msgid ""
-"Whether to show matches of all leagues. Use the options window to toggle "
-"permanently."
-msgstr ""
-"Κατά πόσο θα εμφανίζονται αγώνες όλων των λιγκών. Χρησιμοποιείστε το "
-"παράθυρο επιλογών για μόνιμη ρύθμιση."
-
-#: ../support_files/bygfoot_misc3.glade.h:28
-msgid "Whether to show only your bets in the recent bets list"
-msgstr ""
-"Κατά πόσο να εμφανιστούν μόνο τα στοιχήματα σας στη λίστα με τα πρόσφατα "
-"στοιχήματα"
-
-#: ../support_files/bygfoot_misc3.glade.h:29
-msgid "Your debt:"
-msgstr "Το χρέος σας:"
-
-#: ../support_files/bygfoot_misc3.glade.h:30
-msgid "_Load game"
-msgstr "_Φόρτωση παιχνιδιού"
-
-#: ../support_files/bygfoot_misc3.glade.h:31
-msgid "_Resume game"
-msgstr "_Συνέχεια παιχνιδιού"
-
-#: ../support_files/bygfoot_training.glade.h:1
-msgid "Camp points"
-msgstr "Βαθμοί κέντρου"
-
-#: ../support_files/bygfoot_training.glade.h:2
-#: ../support_files/bygfoot_misc.glade.h:22
-msgid "Costs"
-msgstr "Κοστίζει"
-
-#: ../support_files/bygfoot_training.glade.h:6
-msgid "Recreation"
-msgstr "Αναψυχή"
-
-#: ../support_files/bygfoot_training.glade.h:7
-msgid "Save settings as default"
-msgstr "Αποθήκευση ρυθμίσεων ως προεπιλογών"
-
-#: ../support_files/bygfoot_training.glade.h:8
-msgid "Training"
-msgstr "Προπόνηση"
-
-#: ../support_files/bygfoot_misc.glade.h:1
-msgid " seats"
-msgstr "θέσεις"
-
-#: ../support_files/bygfoot_misc.glade.h:2
-msgid "0"
-msgstr "0"
-
-#: ../support_files/bygfoot_misc.glade.h:3
-msgid "Accept"
-msgstr "Αποδοχή"
-
-#: ../support_files/bygfoot_misc.glade.h:4
-msgid "Add user"
-msgstr "Προσθήκη χρήστη"
-
-#: ../support_files/bygfoot_misc.glade.h:5
-msgid "Av. skill: "
-msgstr "Μέση δεξιότητα: "
-
-#: ../support_files/bygfoot_misc.glade.h:6
-msgid "Average attendance"
-msgstr "Μέση πληρότητα"
-
-#: ../support_files/bygfoot_misc.glade.h:8
-#, no-c-format
-msgid "Average attendance %"
-msgstr "Μέση πληρότητα %"
-
-#: ../support_files/bygfoot_misc.glade.h:9
-msgid "Back to splash"
-msgstr "Πίσω στη splash"
-
-#: ../support_files/bygfoot_misc.glade.h:10
-msgid "Capacity (seats)"
-msgstr "Χωρητικότητα (θέσεις)"
-
-#: ../support_files/bygfoot_misc.glade.h:11
-msgid ""
-"Change commentary verbosity. The higher this value the more events you can "
-"see."
-msgstr ""
-"Αλλαγή πολυλογίας περιγραφής. Όσο ψηλότερη τιμή, τόσο περισσότερα γεγονότα "
-"μπορείτε να δείτε."
-
-#: ../support_files/bygfoot_misc.glade.h:12
-msgid "Change live game speed. The higher the value the faster the live game."
-msgstr ""
-"Αλλαγή ταχύτητας ζωντανού παιχνιδιού. Υψηλότερη τιμή κάνει πιο γρήγορο το "
-"ζωντανό παιχνίδι."
-
-#: ../support_files/bygfoot_misc.glade.h:13
-msgid "Change ticket price"
-msgstr "Αλλαγή τιμής εισιτηρίου"
-
-#: ../support_files/bygfoot_misc.glade.h:14
-msgid "Choose country"
-msgstr "Επιλογή χώρας"
-
-#: ../support_files/bygfoot_misc.glade.h:15
-msgid "Choose file"
-msgstr "Επιλογή αρχείου"
-
-#: ../support_files/bygfoot_misc.glade.h:16
-msgid "Choose league to start in"
-msgstr "Επιλογή λίγκας για αρχή"
-
-#: ../support_files/bygfoot_misc.glade.h:17
-msgid "Choose team"
-msgstr "Επιλογή ομάδας"
-
-#: ../support_files/bygfoot_misc.glade.h:18
-msgid "Choose username"
-msgstr "Επιλογή ονόματος χρήστη"
-
-#: ../support_files/bygfoot_misc.glade.h:19
-msgid "Click on a user to remove him."
-msgstr "Κλικ σε ένα χρήστη για απομάκρυνση του."
-
-#: ../support_files/bygfoot_misc.glade.h:20
-msgid "Commentary"
-msgstr "Περιγραφή"
-
-#: ../support_files/bygfoot_misc.glade.h:21
-msgid "Confirm!"
-msgstr "Επιβεβαίωση!"
-
-#: ../support_files/bygfoot_misc.glade.h:23
-msgid "Current capacity"
-msgstr "Τρέχουσα χωρητικότητα"
-
-#: ../support_files/bygfoot_misc.glade.h:24
-msgid "Current safety"
-msgstr "Τρέχουσα ασφάλεια"
-
-#: ../support_files/bygfoot_misc.glade.h:25
-msgid "Don't load definitions"
-msgstr "Όχι φόρτωση ορισμών"
-
-#: ../support_files/bygfoot_misc.glade.h:26
-msgid "Don't load team definitions at all"
-msgstr "Όχι φόρτωση ορισμών ομάδων ό,τι και να γίνει"
-
-#: ../support_files/bygfoot_misc.glade.h:28
-msgid "Esc / Return / Space"
-msgstr "Esc / Return / Space"
-
-#: ../support_files/bygfoot_misc.glade.h:29
-msgid "Expected duration"
-msgstr "Αναμενόμενη διάρκεια"
-
-#: ../support_files/bygfoot_misc.glade.h:30
-msgid "Go back to the splash screen"
-msgstr "Μετάβαση πίσω στην splash οθόνη"
-
-#: ../support_files/bygfoot_misc.glade.h:31
-msgid ""
-"If you don't like any of the sponsors, you can go a few weeks without "
-"sponsor and wait for new offers."
-msgstr ""
-"Εάν δεν σας αρέσουν κάποιοι από τους χορηγούς, μπορείτε να είστε για λίγες "
-"εβδομάδες χωρίς χορηγό και να περιμένετε για νέες προσφορές."
-
-#: ../support_files/bygfoot_misc.glade.h:32
-msgid "Increase"
-msgstr "Αύξηση"
-
-#: ../support_files/bygfoot_misc.glade.h:34
-msgid "Load only the player names in the definition files"
-msgstr "Φόρτωση μόνο ονομάτων παικτών στα αρχεία ορισμού"
-
-#: ../support_files/bygfoot_misc.glade.h:35
-msgid "Load team definitions"
-msgstr "Φόρτωση ορισμών ομάδας"
-
-#: ../support_files/bygfoot_misc.glade.h:36
-msgid ""
-"Load teams from definition files (note that the official Bygfoot package "
-"doesn't contain team definition files, you have to get them from the "
-"homepage or via the bygfoot-update script)"
-msgstr ""
-"Φόρτωση ομάδων από αρχεία ορισμού (σημειώστε πως το επίσημο πακέτο Bygfoot "
-"δεν περιέχει αρχεία ορισμού ομάδας, πρέπει να τα πάρετε από την αρχική "
-"σελίδα ή με το script bygfoot-update)"
-
-#: ../support_files/bygfoot_misc.glade.h:37
-msgid "Only names"
-msgstr "Μόνο ονόματα"
-
-#: ../support_files/bygfoot_misc.glade.h:38
-msgid "Opponent player list"
-msgstr "Λίστα παικτών αντιπάλου"
-
-#: ../support_files/bygfoot_misc.glade.h:39
-msgid "Price per ticket"
-msgstr "Τιμή ανά εισιτήριο"
-
-#: ../support_files/bygfoot_misc.glade.h:40
-msgid "Randomise teams in cups"
-msgstr "Επέλεξε τυχαίες ομάδες στα κύπελλα"
-
-#: ../support_files/bygfoot_misc.glade.h:41
-msgid ""
-"Randomise the order of teams in cups. This only makes sense in supernational "
-"definitions like the World Cup where the order of teams is fixed."
-msgstr ""
-"Επέλεξε τυχαία την σειρά των ομάδων στα κύπελλα. Αυτό έχει νόημα σε διεθνείς "
-"ορισμούς όπως το Παγκόσμιο Κύπελλο όπου η σειρά των ομάδων είναι σταθερή."
-
-#: ../support_files/bygfoot_misc.glade.h:42
-msgid "Reject for now"
-msgstr "Απόρριψη για τώρα"
-
-#: ../support_files/bygfoot_misc.glade.h:43
-msgid "Return"
-msgstr "Επιστροφή"
-
-#: ../support_files/bygfoot_misc.glade.h:44
-msgid "Return / Space"
-msgstr "Return / Space"
-
-#: ../support_files/bygfoot_misc.glade.h:45
-#: ../support_files/bygfoot.glade.h:76
-msgid "Right click and left click to change boost state"
-msgstr "Δεξί κλικ και αριστερό κλικ για αλλαγή κατάστασης ώθησης"
-
-#: ../support_files/bygfoot_misc.glade.h:46
-#: ../support_files/bygfoot.glade.h:77
-msgid "Right click and left click to change your playing style"
-msgstr "Δεξί κλικ και αριστερό κλικ για αλλαγή στυλ παιχνιδιού"
-
-#: ../support_files/bygfoot_misc.glade.h:47
-msgid "Right-click to set to 0"
-msgstr "Δεξί κλικ για ρύθμιση στο 0"
-
-#: ../support_files/bygfoot_misc.glade.h:49
-#, no-c-format
-msgid "Safety (%)"
-msgstr "Ασφάλεια (%)"
-
-#: ../support_files/bygfoot_misc.glade.h:51
-msgid "Space"
-msgstr "Διάστημα"
-
-#: ../support_files/bygfoot_misc.glade.h:52
-msgid "Speed"
-msgstr "Ταχύτητα"
-
-#: ../support_files/bygfoot_misc.glade.h:53
-msgid "Start"
-msgstr "Έναρξη"
-
-#: ../support_files/bygfoot_misc.glade.h:54
-msgid "Statistics"
-msgstr "Στατιστικά"
-
-#: ../support_files/bygfoot_misc.glade.h:55
-msgid "Status:"
-msgstr "Κατάσταση:"
-
-#: ../support_files/bygfoot_misc.glade.h:56
-msgid ""
-"There are a few companies interested in sponsoring your team. Please select "
-"one:"
-msgstr ""
-"Υπάρχουν κάποιες εταιρίες που ενδιαφέρονται να γίνουν χορηγοί της ομάδας "
-"σας. Παρακαλώ επιλέξτε μία:"
-
-#: ../support_files/bygfoot_misc.glade.h:57
-msgid "Verbosity"
-msgstr "Πολυλογία"
-
-#: ../support_files/bygfoot_misc.glade.h:58
-msgid "_Pause"
-msgstr "_Παύση"
-
-#: ../support_files/bygfoot_misc.glade.h:59
-msgid "_Resume"
-msgstr "_Συνέχεια"
-
 #: ../support_files/bygfoot.glade.h:1
 #, fuzzy
 msgid " Round "
@@ -3334,7 +2349,7 @@ msgstr "Περίοδος %d"
 msgid " Week "
 msgstr "Εβδομάδα"
 
-#: ../support_files/bygfoot.glade.h:4
+#: ../support_files/bygfoot.glade.h:4 ../support_files/bygfoot_misc2.glade.h:5
 msgid "About"
 msgstr "Περί"
 
@@ -3413,6 +2428,12 @@ msgstr ""
 msgid "Browse teams"
 msgstr "Επιλογή ομάδας"
 
+#: ../support_files/bygfoot.glade.h:24
+#: ../support_files/bygfoot_misc2.glade.h:12
+#: ../support_files/bygfoot_misc3.glade.h:6
+msgid "Contributors"
+msgstr "Συντελεστές"
+
 #: ../support_files/bygfoot.glade.h:25
 #, fuzzy
 msgid "Default Team"
@@ -3475,6 +2496,7 @@ msgid "Good"
 msgstr "Γκολ"
 
 #: ../support_files/bygfoot.glade.h:39
+#: ../support_files/bygfoot_misc2.glade.h:17
 msgid "Help"
 msgstr "Βοήθεια"
 
@@ -3487,6 +2509,12 @@ msgstr "Προσφορά εργασίας"
 #, fuzzy
 msgid "League stats"
 msgstr "Πίνακας λίγκας"
+
+#: ../support_files/bygfoot.glade.h:42
+#: ../support_files/bygfoot_misc.glade.h:33
+#: ../support_files/bygfoot_options.glade.h:52
+msgid "Live game"
+msgstr "Ζωντανό παιχνίδι"
 
 #: ../support_files/bygfoot.glade.h:43
 #, fuzzy
@@ -3526,6 +2554,11 @@ msgstr "Μετακίνηση στην ακαδημία νέων"
 #, fuzzy
 msgid "My league results"
 msgstr "Τελευταία αποτελέσματα"
+
+#: ../support_files/bygfoot.glade.h:52
+#: ../support_files/bygfoot_options.glade.h:57
+msgid "News"
+msgstr "Νέα"
 
 #: ../support_files/bygfoot.glade.h:53
 #, fuzzy
@@ -3627,6 +2660,16 @@ msgstr ""
 #, fuzzy
 msgid "Restore"
 msgstr "Αποτέλεσμα"
+
+#: ../support_files/bygfoot.glade.h:76
+#: ../support_files/bygfoot_misc.glade.h:45
+msgid "Right click and left click to change boost state"
+msgstr "Δεξί κλικ και αριστερό κλικ για αλλαγή κατάστασης ώθησης"
+
+#: ../support_files/bygfoot.glade.h:77
+#: ../support_files/bygfoot_misc.glade.h:46
+msgid "Right click and left click to change your playing style"
+msgstr "Δεξί κλικ και αριστερό κλικ για αλλαγή στυλ παιχνιδιού"
 
 #: ../support_files/bygfoot.glade.h:78
 msgid "Save game (Ctrl - S)"
@@ -3762,42 +2805,1026 @@ msgstr "Ομάδα"
 msgid "_User"
 msgstr ""
 
-#~ msgid "1 year"
-#~ msgstr "1 χρόνος"
+#: ../support_files/bygfoot_misc.glade.h:1
+msgid " seats"
+msgstr "θέσεις"
 
-#~ msgid "2 years"
-#~ msgstr "2 χρόνια"
+#: ../support_files/bygfoot_misc.glade.h:2
+msgid "0"
+msgstr "0"
 
-#~ msgid "3 years"
-#~ msgstr "3 χρόνια"
+#: ../support_files/bygfoot_misc.glade.h:3
+msgid "Accept"
+msgstr "Αποδοχή"
 
-#~ msgid "4 years"
-#~ msgstr "4 χρόνια"
+#: ../support_files/bygfoot_misc.glade.h:4
+#: ../support_files/bygfoot_misc2.glade.h:6
+msgid "Add user"
+msgstr "Προσθήκη χρήστη"
 
-#~ msgid "Available teams"
-#~ msgstr "Διαθέσιμες ομάδες"
+#: ../support_files/bygfoot_misc.glade.h:5
+msgid "Av. skill: "
+msgstr "Μέση δεξιότητα: "
 
-#~ msgid "Average skill:"
-#~ msgstr "Μέση δεξιότητα:"
+#: ../support_files/bygfoot_misc.glade.h:6
+msgid "Average attendance"
+msgstr "Μέση πληρότητα"
+
+#: ../support_files/bygfoot_misc.glade.h:8
+#, no-c-format
+msgid "Average attendance %"
+msgstr "Μέση πληρότητα %"
+
+#: ../support_files/bygfoot_misc.glade.h:9
+msgid "Back to splash"
+msgstr "Πίσω στη splash"
+
+#: ../support_files/bygfoot_misc.glade.h:10
+msgid "Capacity (seats)"
+msgstr "Χωρητικότητα (θέσεις)"
+
+#: ../support_files/bygfoot_misc.glade.h:11
+msgid ""
+"Change commentary verbosity. The higher this value the more events you can "
+"see."
+msgstr ""
+"Αλλαγή πολυλογίας περιγραφής. Όσο ψηλότερη τιμή, τόσο περισσότερα γεγονότα "
+"μπορείτε να δείτε."
+
+#: ../support_files/bygfoot_misc.glade.h:12
+msgid "Change live game speed. The higher the value the faster the live game."
+msgstr ""
+"Αλλαγή ταχύτητας ζωντανού παιχνιδιού. Υψηλότερη τιμή κάνει πιο γρήγορο το "
+"ζωντανό παιχνίδι."
+
+#: ../support_files/bygfoot_misc.glade.h:13
+msgid "Change ticket price"
+msgstr "Αλλαγή τιμής εισιτηρίου"
+
+#: ../support_files/bygfoot_misc.glade.h:14
+msgid "Choose country"
+msgstr "Επιλογή χώρας"
+
+#: ../support_files/bygfoot_misc.glade.h:15
+msgid "Choose file"
+msgstr "Επιλογή αρχείου"
+
+#: ../support_files/bygfoot_misc.glade.h:16
+msgid "Choose league to start in"
+msgstr "Επιλογή λίγκας για αρχή"
+
+#: ../support_files/bygfoot_misc.glade.h:17
+msgid "Choose team"
+msgstr "Επιλογή ομάδας"
+
+#: ../support_files/bygfoot_misc.glade.h:18
+msgid "Choose username"
+msgstr "Επιλογή ονόματος χρήστη"
+
+#: ../support_files/bygfoot_misc.glade.h:19
+msgid "Click on a user to remove him."
+msgstr "Κλικ σε ένα χρήστη για απομάκρυνση του."
+
+#: ../support_files/bygfoot_misc.glade.h:20
+msgid "Commentary"
+msgstr "Περιγραφή"
+
+#: ../support_files/bygfoot_misc.glade.h:21
+msgid "Confirm!"
+msgstr "Επιβεβαίωση!"
+
+#: ../support_files/bygfoot_misc.glade.h:22
+#: ../support_files/bygfoot_training.glade.h:2
+msgid "Costs"
+msgstr "Κοστίζει"
+
+#: ../support_files/bygfoot_misc.glade.h:23
+msgid "Current capacity"
+msgstr "Τρέχουσα χωρητικότητα"
+
+#: ../support_files/bygfoot_misc.glade.h:24
+msgid "Current safety"
+msgstr "Τρέχουσα ασφάλεια"
+
+#: ../support_files/bygfoot_misc.glade.h:25
+msgid "Don't load definitions"
+msgstr "Όχι φόρτωση ορισμών"
+
+#: ../support_files/bygfoot_misc.glade.h:26
+msgid "Don't load team definitions at all"
+msgstr "Όχι φόρτωση ορισμών ομάδων ό,τι και να γίνει"
+
+#: ../support_files/bygfoot_misc.glade.h:27
+#: ../support_files/bygfoot_misc2.glade.h:16
+#: ../support_files/bygfoot_misc3.glade.h:13
+msgid "Esc"
+msgstr "Esc"
+
+#: ../support_files/bygfoot_misc.glade.h:28
+msgid "Esc / Return / Space"
+msgstr "Esc / Return / Space"
+
+#: ../support_files/bygfoot_misc.glade.h:29
+msgid "Expected duration"
+msgstr "Αναμενόμενη διάρκεια"
+
+#: ../support_files/bygfoot_misc.glade.h:30
+msgid "Go back to the splash screen"
+msgstr "Μετάβαση πίσω στην splash οθόνη"
+
+#: ../support_files/bygfoot_misc.glade.h:31
+msgid ""
+"If you don't like any of the sponsors, you can go a few weeks without "
+"sponsor and wait for new offers."
+msgstr ""
+"Εάν δεν σας αρέσουν κάποιοι από τους χορηγούς, μπορείτε να είστε για λίγες "
+"εβδομάδες χωρίς χορηγό και να περιμένετε για νέες προσφορές."
+
+#: ../support_files/bygfoot_misc.glade.h:32
+msgid "Increase"
+msgstr "Αύξηση"
+
+#: ../support_files/bygfoot_misc.glade.h:34
+msgid "Load only the player names in the definition files"
+msgstr "Φόρτωση μόνο ονομάτων παικτών στα αρχεία ορισμού"
+
+#: ../support_files/bygfoot_misc.glade.h:35
+msgid "Load team definitions"
+msgstr "Φόρτωση ορισμών ομάδας"
+
+#: ../support_files/bygfoot_misc.glade.h:36
+msgid ""
+"Load teams from definition files (note that the official Bygfoot package "
+"doesn't contain team definition files, you have to get them from the "
+"homepage or via the bygfoot-update script)"
+msgstr ""
+"Φόρτωση ομάδων από αρχεία ορισμού (σημειώστε πως το επίσημο πακέτο Bygfoot "
+"δεν περιέχει αρχεία ορισμού ομάδας, πρέπει να τα πάρετε από την αρχική "
+"σελίδα ή με το script bygfoot-update)"
+
+#: ../support_files/bygfoot_misc.glade.h:37
+msgid "Only names"
+msgstr "Μόνο ονόματα"
+
+#: ../support_files/bygfoot_misc.glade.h:38
+msgid "Opponent player list"
+msgstr "Λίστα παικτών αντιπάλου"
+
+#: ../support_files/bygfoot_misc.glade.h:39
+msgid "Price per ticket"
+msgstr "Τιμή ανά εισιτήριο"
+
+#: ../support_files/bygfoot_misc.glade.h:40
+msgid "Randomise teams in cups"
+msgstr "Επέλεξε τυχαίες ομάδες στα κύπελλα"
+
+#: ../support_files/bygfoot_misc.glade.h:41
+msgid ""
+"Randomise the order of teams in cups. This only makes sense in supernational "
+"definitions like the World Cup where the order of teams is fixed."
+msgstr ""
+"Επέλεξε τυχαία την σειρά των ομάδων στα κύπελλα. Αυτό έχει νόημα σε διεθνείς "
+"ορισμούς όπως το Παγκόσμιο Κύπελλο όπου η σειρά των ομάδων είναι σταθερή."
+
+#: ../support_files/bygfoot_misc.glade.h:42
+msgid "Reject for now"
+msgstr "Απόρριψη για τώρα"
+
+#: ../support_files/bygfoot_misc.glade.h:43
+#: ../support_files/bygfoot_misc2.glade.h:33
+msgid "Return"
+msgstr "Επιστροφή"
+
+#: ../support_files/bygfoot_misc.glade.h:44
+msgid "Return / Space"
+msgstr "Return / Space"
+
+#: ../support_files/bygfoot_misc.glade.h:47
+msgid "Right-click to set to 0"
+msgstr "Δεξί κλικ για ρύθμιση στο 0"
+
+#: ../support_files/bygfoot_misc.glade.h:49
+#, no-c-format
+msgid "Safety (%)"
+msgstr "Ασφάλεια (%)"
+
+#: ../support_files/bygfoot_misc.glade.h:51
+msgid "Space"
+msgstr "Διάστημα"
+
+#: ../support_files/bygfoot_misc.glade.h:52
+msgid "Speed"
+msgstr "Ταχύτητα"
+
+#: ../support_files/bygfoot_misc.glade.h:53
+msgid "Start"
+msgstr "Έναρξη"
+
+#: ../support_files/bygfoot_misc.glade.h:54
+msgid "Statistics"
+msgstr "Στατιστικά"
+
+#: ../support_files/bygfoot_misc.glade.h:55
+msgid "Status:"
+msgstr "Κατάσταση:"
+
+#: ../support_files/bygfoot_misc.glade.h:56
+msgid ""
+"There are a few companies interested in sponsoring your team. Please select "
+"one:"
+msgstr ""
+"Υπάρχουν κάποιες εταιρίες που ενδιαφέρονται να γίνουν χορηγοί της ομάδας "
+"σας. Παρακαλώ επιλέξτε μία:"
+
+#: ../support_files/bygfoot_misc.glade.h:57
+msgid "Verbosity"
+msgstr "Πολυλογία"
+
+#: ../support_files/bygfoot_misc.glade.h:58
+msgid "_Pause"
+msgstr "_Παύση"
+
+#: ../support_files/bygfoot_misc.glade.h:59
+msgid "_Resume"
+msgstr "_Συνέχεια"
+
+#: ../support_files/bygfoot_misc2.glade.h:1
+msgid "1 year"
+msgstr "1 χρόνος"
+
+#: ../support_files/bygfoot_misc2.glade.h:2
+msgid "2 years"
+msgstr "2 χρόνια"
+
+#: ../support_files/bygfoot_misc2.glade.h:3
+msgid "3 years"
+msgstr "3 χρόνια"
+
+#: ../support_files/bygfoot_misc2.glade.h:4
+msgid "4 years"
+msgstr "4 χρόνια"
+
+#: ../support_files/bygfoot_misc2.glade.h:7
+msgid "Available teams"
+msgstr "Διαθέσιμες ομάδες"
+
+#: ../support_files/bygfoot_misc2.glade.h:8
+msgid "Average skill:"
+msgstr "Μέση δεξιότητα:"
+
+#: ../support_files/bygfoot_misc2.glade.h:9
+msgid ""
+"Bygfoot debug window. If you got here by accident, CLOSE IMMEDIATELY "
+"(otherwise your CPU will be destroyed by overheating)."
+msgstr ""
+"Παράθυρο εκσφαλμάτωσης Bygfoot. Εάν βρίσκεστε εδώ κατά λάθος, ΚΛΕΙΣΤΕ ΑΜΕΣΩΣ "
+"(αλλιώς η CPU σας θα καταστραφεί λόγω υπερθέρμανσης)."
+
+#: ../support_files/bygfoot_misc2.glade.h:10
+msgid "Click on a user to remove him from the game."
+msgstr "Κλικ σε έναν χρήστη για απομάκρυνση του από το παιχνίδι."
+
+#: ../support_files/bygfoot_misc2.glade.h:11
+msgid "Confirm & schedule repayment"
+msgstr "Επιβεβαίωση & πρόγραμμα εξόφλησης"
+
+#: ../support_files/bygfoot_misc2.glade.h:13
+msgid "Current file"
+msgstr "Τρέχον αρχείο"
+
+#: ../support_files/bygfoot_misc2.glade.h:14
+msgid "Debug"
+msgstr "Εκσφαλμάτωση"
+
+#: ../support_files/bygfoot_misc2.glade.h:15
+msgid "Decide later"
+msgstr "Απόφαση μετά"
+
+#: ../support_files/bygfoot_misc2.glade.h:18
+msgid "Import file"
+msgstr "Εισαγωγή αρχείου"
+
+#: ../support_files/bygfoot_misc2.glade.h:19
+msgid "Import the matches from a memorable matches file"
+msgstr "Εισαγωγή αγώνων από αρχείο με αξέχαστους αγώνες"
+
+#: ../support_files/bygfoot_misc2.glade.h:22
+msgid "Make offer"
+msgstr "Δημιουργία προσφοράς"
+
+#: ../support_files/bygfoot_misc2.glade.h:23
+msgid "Money (approx.)"
+msgstr "Χρήματα (κατά προσέγγιση)"
+
+#: ../support_files/bygfoot_misc2.glade.h:26
+msgid "Open a memorable matches file"
+msgstr "Άνοιγμα αρχείου με αξέχαστους αγώνες"
+
+#: ../support_files/bygfoot_misc2.glade.h:27
+#, fuzzy
+msgid "Player list"
+msgstr "Λίστα παικτών"
+
+#: ../support_files/bygfoot_misc2.glade.h:29
+#: ../support_files/bygfoot_options.glade.h:68
+msgid "Reload"
+msgstr "Επαναφόρτωση"
+
+#: ../support_files/bygfoot_misc2.glade.h:30
+msgid "Reload and close"
+msgstr "Επαναφόρτωση και κλείσιμο"
+
+#: ../support_files/bygfoot_misc2.glade.h:31
+msgid "Reload matches from file"
+msgstr "Επαναφόρτωση αγώνων από αρχείο"
+
+#: ../support_files/bygfoot_misc2.glade.h:32
+msgid "Reload matches from file and close"
+msgstr "Επαναφόρτωση αγώνων από αρχείο και κλείσιμο"
+
+#: ../support_files/bygfoot_misc2.glade.h:34
+msgid "Save and close"
+msgstr "Αποθήκευση και κλείσιμο"
+
+#: ../support_files/bygfoot_misc2.glade.h:35
+msgid "Save changes to file and close"
+msgstr "Αποθήκευση αλλαγών στο αρχείο και κλείσιμο"
+
+#: ../support_files/bygfoot_misc2.glade.h:38
+msgid "Users -- click to remove"
+msgstr "Χρήστες -- κλικ για απομάκρυνση"
+
+#: ../support_files/bygfoot_options.glade.h:1
+msgid " Autosave files "
+msgstr " Αρχεία αυτόματης αποθήκευσης"
+
+#: ../support_files/bygfoot_options.glade.h:2
+msgid " months"
+msgstr "μήνες"
+
+#: ../support_files/bygfoot_options.glade.h:3
+msgid "Age "
+msgstr "Ηλικία "
+
+#: ../support_files/bygfoot_options.glade.h:4
+msgid "Always store/restore your default team"
+msgstr "Πάντα να αποθηκεύεται/ανακτάται η προεπιλεγμένη ομάδα σας"
+
+#: ../support_files/bygfoot_options.glade.h:5
+msgid "Always store/restore your default team before/after a match"
+msgstr ""
+"Πάντα να αποθηκεύεται/ανακτάται η προεπιλεγμένη ομάδα σας πριν/μετά από έναν "
+"αγώνα"
+
+#: ../support_files/bygfoot_options.glade.h:6
+msgid "Appearance"
+msgstr "Εμφάνιση"
+
+#: ../support_files/bygfoot_options.glade.h:7
+msgid "Attribute "
+msgstr "Ιδιότητα "
+
+#: ../support_files/bygfoot_options.glade.h:8
+msgid "Automatic popup"
+msgstr "Αυτόματο αναδυόμενο"
+
+#: ../support_files/bygfoot_options.glade.h:9
+msgid "Automatic substitutions"
+msgstr "Αυτόματες αντικαταστάσεις"
+
+#: ../support_files/bygfoot_options.glade.h:10
+msgid "Autosave"
+msgstr "Αυτόματη αποθήκευση"
+
+#: ../support_files/bygfoot_options.glade.h:11
+msgid "Autosave interval "
+msgstr "Χρονικό διάστημα αυτόματης αποθήκευσης "
+
+#: ../support_files/bygfoot_options.glade.h:13
+msgid "CPos "
+msgstr "ΤΘεσ "
+
+#: ../support_files/bygfoot_options.glade.h:14
+msgid "CSkill "
+msgstr "ΤΔεξιότητα "
+
+#: ../support_files/bygfoot_options.glade.h:15
+msgid "Cards "
+msgstr "Κάρτες "
+
+#: ../support_files/bygfoot_options.glade.h:16
+msgid "Choose game language (might not work in Windows versions)"
+msgstr ""
+"Επιλογή γλώσσας παιχνιδιού (ίσως να μην δουλεύει σε εκδόσεις των Windows)"
+
+#: ../support_files/bygfoot_options.glade.h:17
+msgid "Close"
+msgstr "Κλείσιμο"
+
+#: ../support_files/bygfoot_options.glade.h:18
+msgid "Confirm quit when not saved"
+msgstr "Επιβεβαίωση εξόδου όταν δεν υπάρχει αποθήκευση"
+
+#: ../support_files/bygfoot_options.glade.h:19
+msgid "Confirm removing youths"
+msgstr "Επιβεβαίωση απομάκρυνσης νέων"
+
+#: ../support_files/bygfoot_options.glade.h:20
+msgid "Confirm when unfit"
+msgstr "Επιβεβαίωση αν σε μη καλή φυσική κατάσταση"
+
+#: ../support_files/bygfoot_options.glade.h:21
+msgid "Constants file"
+msgstr "Αρχείο σταθερών"
+
+#: ../support_files/bygfoot_options.glade.h:22
+msgid "Contract "
+msgstr "Συμβόλαιο "
+
+#: ../support_files/bygfoot_options.glade.h:23
+msgid "Create cup news"
+msgstr "Δημιουργία νέων κυπέλλου"
+
+#: ../support_files/bygfoot_options.glade.h:24
+msgid "Create league news"
+msgstr "Δημιουργία νέων λίγκας"
+
+#: ../support_files/bygfoot_options.glade.h:25
+msgid "Create user news"
+msgstr "Δημιουργία νέων χρήστη"
+
+#: ../support_files/bygfoot_options.glade.h:26
+msgid "Default hotel"
+msgstr "Προεπιλογή ξενοδοχείου"
+
+#: ../support_files/bygfoot_options.glade.h:27
+msgid "Default recreation:"
+msgstr "Προεπιλεγόμενη αναψυχή:"
+
+#: ../support_files/bygfoot_options.glade.h:28
+msgid "Default training:"
+msgstr "Προεπιλογή προπόνησης:"
+
+#: ../support_files/bygfoot_options.glade.h:29
+msgid "Default wager"
+msgstr "Προεπιλογή ποσού στοιχήματος"
+
+#: ../support_files/bygfoot_options.glade.h:30
+msgid "ETal "
+msgstr "ΑΤαλ"
+
+#: ../support_files/bygfoot_options.glade.h:31
+msgid "Edit"
+msgstr "Επεξεργασία"
+
+#: ../support_files/bygfoot_options.glade.h:32
+msgid "Edit the constants used in the game"
+msgstr "Επεξεργασία των ρυθμίσεων που χρησιμοποιούνται στο παιχνίδι"
+
+#: ../support_files/bygfoot_options.glade.h:33
+msgid ""
+"File containing settings which determine a lot of aspects of the game "
+"behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
+msgstr ""
+"Αρχείο που περιέχει ρυθμίσεις που καθορίζουν πολλές πλευρές της συμπεριφοράς "
+"του παιχνιδιού. ΜΗΝ ΤΙΣ ΑΛΛΑΖΕΤΕ ΕΚΤΟΣ ΑΝ ΞΕΡΕΤΕ ΤΙ ΚΑΝΕΤΕ."
+
+#: ../support_files/bygfoot_options.glade.h:34
+msgid "Fitness "
+msgstr "Φυσική κατάσταση"
+
+#: ../support_files/bygfoot_options.glade.h:35
+msgid "Float"
+msgstr "Πραγματικές"
+
+#: ../support_files/bygfoot_options.glade.h:36
+msgid "Font name"
+msgstr "Όνομα γραμματοσειράς"
+
+#: ../support_files/bygfoot_options.glade.h:37
+msgid "Font used in treeviews"
+msgstr "Γραμματοσειρά για χρήση σε treeviews"
+
+#: ../support_files/bygfoot_options.glade.h:38
+msgid "Gameplay"
+msgstr "Gameplay"
+
+#: ../support_files/bygfoot_options.glade.h:39
+msgid "Games "
+msgstr "Παιχνίδια "
+
+#: ../support_files/bygfoot_options.glade.h:40
+msgid "Global"
+msgstr "Καθολικό"
+
+#: ../support_files/bygfoot_options.glade.h:41
+msgid "Goals "
+msgstr "Τέρματα "
+
+#: ../support_files/bygfoot_options.glade.h:42
+msgid "How many digits after the comma there are for skill etc."
+msgstr "Πόσα δεκαδικά μετά το κόμμα να είναι για την δεξιότητα κ.λ.π."
+
+#: ../support_files/bygfoot_options.glade.h:43
+msgid "How many files the autosave uses"
+msgstr "Πόσα αρχεία χρησιμοποιεί η αυτόματη αποθήκευση"
+
+#: ../support_files/bygfoot_options.glade.h:44
+msgid "How often the game is saved automatically"
+msgstr "Πόσο συχνά αποθηκεύεται αυτόματα το παιχνίδι"
+
+#: ../support_files/bygfoot_options.glade.h:45
+msgid ""
+"How often the player list gets refreshed during a live game (in live game "
+"minutes)"
+msgstr ""
+"Πόσο συχνά η λίστα παικτών θα ανανεώνεται στην διάρκεια ενός ζωντανού "
+"παιχνιδιού (σε λεπτά ζωντανού παιχνιδιού)"
+
+#: ../support_files/bygfoot_options.glade.h:46
+msgid ""
+"If checked, weeks without user teams playing are calculated automatically "
+"(without the user having to press 'New week')"
+msgstr ""
+"Αν είναι επιλεγμένο, οι εβδομάδες στις οποίες οι ομάδες χρήστη δεν παίζουν "
+"υπολογίζονται αυτόματα (χωρίς ο χρήστης να χρειάζεται να πατήσει 'Νέα "
+"εβδομάδα')"
+
+#: ../support_files/bygfoot_options.glade.h:47
+msgid "Integer"
+msgstr "Ακέραιες"
+
+#: ../support_files/bygfoot_options.glade.h:48
+msgid "Language"
+msgstr "Γλώσσα"
+
+#: ../support_files/bygfoot_options.glade.h:49
+msgid "League "
+msgstr "Λίγκα "
+
+#: ../support_files/bygfoot_options.glade.h:50
+msgid "List 1 "
+msgstr "Λίστα 1 "
+
+#: ../support_files/bygfoot_options.glade.h:51
+msgid "List 2"
+msgstr "Λίστα 2"
+
+#: ../support_files/bygfoot_options.glade.h:53
+msgid "Live game speed factor"
+msgstr "Παράγοντας ταχύτητας ζωντανού παιχνιδιού"
+
+#: ../support_files/bygfoot_options.glade.h:54
+msgid "Live game verbosity"
+msgstr "Πολυλογία ζωντανού παιχνιδιού"
+
+#: ../support_files/bygfoot_options.glade.h:55
+msgid "Maximize main window"
+msgstr "Μεγιστοποίηση κυρίως παραθύρου"
+
+#: ../support_files/bygfoot_options.glade.h:56
+msgid "Name "
+msgstr "Όνομα"
+
+#: ../support_files/bygfoot_options.glade.h:58
+msgid "No automatic popup"
+msgstr "Όχι αυτόματο αναδυόμενο"
+
+#: ../support_files/bygfoot_options.glade.h:59
+msgid "Pause when break"
+msgstr "Παύση όταν υπάρξει διάλειμμα"
+
+#: ../support_files/bygfoot_options.glade.h:60
+msgid "Pause when injury"
+msgstr "Παύση όταν υπάρχει τραυματισμός"
+
+#: ../support_files/bygfoot_options.glade.h:61
+msgid "Pause when red card"
+msgstr "Παύση όταν βγαίνει κόκκινη κάρτα"
+
+#: ../support_files/bygfoot_options.glade.h:62
+msgid "Player attribute precision"
+msgstr "Ακρίβεια ιδιοτήτων παίκτη"
+
+#: ../support_files/bygfoot_options.glade.h:63
+msgid "Player attributes shown"
+msgstr "Εμφάνιση ιδιοτήτων παίκτη"
+
+#: ../support_files/bygfoot_options.glade.h:64
+msgid "Player list refresh rate"
+msgstr "Ρυθμός ανανέωσης λίστας παικτών"
+
+#: ../support_files/bygfoot_options.glade.h:65
+msgid "Popup for user news"
+msgstr "Αναδυόμενο για νέα χρήστη"
+
+#: ../support_files/bygfoot_options.glade.h:66
+msgid "Pos "
+msgstr "Θέσ "
+
+#: ../support_files/bygfoot_options.glade.h:67
+msgid "Prefer messages"
+msgstr "Προτίμηση μηνυμάτων"
+
+#: ../support_files/bygfoot_options.glade.h:69
+msgid "Reload from file"
+msgstr "Επαναφόρτωση από αρχείο"
+
+#: ../support_files/bygfoot_options.glade.h:70
+msgid "Reload the constants file"
+msgstr "Επαναφόρτωση του αρχείου ρυθμίσεων"
+
+#: ../support_files/bygfoot_options.glade.h:71
+msgid "Save global settings to file"
+msgstr "Αποθήκευση καθολικών ρυθμίσεων σε αρχείο"
+
+#: ../support_files/bygfoot_options.glade.h:72
+msgid "Save overwrites"
+msgstr "Αποθήκευση επικαλύψεων"
+
+#: ../support_files/bygfoot_options.glade.h:73
+msgid "Save to file"
+msgstr "Αποθήκευση σε αρχείο"
+
+#: ../support_files/bygfoot_options.glade.h:74
+msgid "Save user settings to file"
+msgstr "Αποθήκευση ρυθμίσεων χρήστη σε αρχείο"
+
+#: ../support_files/bygfoot_options.glade.h:75
+msgid "Set to 0 to switch off warning"
+msgstr "Ρύθμιση στο 0 για απενεργοποίηση ειδοποίησης"
+
+#: ../support_files/bygfoot_options.glade.h:76
+msgid "Shots "
+msgstr "Σουτ "
+
+#: ../support_files/bygfoot_options.glade.h:77
+msgid "Show all leagues in the fixture view"
+msgstr "Εμφάνιση όλων των λιγκών στη θέαση εκδηλώσεων"
+
+#: ../support_files/bygfoot_options.glade.h:78
+msgid "Show job offers"
+msgstr "Εμφάνιση προσφορών εργασίας"
+
+#: ../support_files/bygfoot_options.glade.h:79
+msgid "Show live game"
+msgstr "Εμφάνιση ζωντανού παιχνιδιού"
+
+#: ../support_files/bygfoot_options.glade.h:80
+#: ../support_files/bygfoot_misc3.glade.h:18
+msgid "Show matches from all leagues"
+msgstr "Εμφάνιση αγώνων από όλες τις λίγκες"
+
+#: ../support_files/bygfoot_options.glade.h:81
+#: ../support_files/bygfoot_misc3.glade.h:19
+msgid "Show matches from cups"
+msgstr "Εμφάνιση αγώνων από κύπελλα"
+
+#: ../support_files/bygfoot_options.glade.h:82
+#: ../support_files/bygfoot_misc3.glade.h:20
+msgid "Show only my recent bets"
+msgstr "Εμφάνιση μόνο των πρόσφατων στοιχημάτων μου"
+
+#: ../support_files/bygfoot_options.glade.h:83
+msgid "Show only recent news"
+msgstr "Εμφάνιση μόνο προσφάτων νέων"
+
+#: ../support_files/bygfoot_options.glade.h:84
+msgid "Show overall games/goals"
+msgstr "Εμφάνιση συνολικών παιχνίδια/τέρματα"
+
+#: ../support_files/bygfoot_options.glade.h:85
+msgid "Show progressbar pictures"
+msgstr "Εμφάνιση εικόνων με μπάρες προόδου"
+
+#: ../support_files/bygfoot_options.glade.h:86
+msgid "Show tendency bar"
+msgstr "Εμφάνιση μπάρας ροπής"
+
+#: ../support_files/bygfoot_options.glade.h:87
+msgid "Show warning if a player contract gets below "
+msgstr ""
+"Εμφάνιση ειδοποίησης αν η λήξη του συμβολαίου ενός παίκτη απέχει λιγότερο από"
+
+#: ../support_files/bygfoot_options.glade.h:88
+msgid "Skill "
+msgstr "Δεξιότητα "
+
+#: ../support_files/bygfoot_options.glade.h:89
+msgid "Skip weeks without user matches"
+msgstr "Παράκαμψη εβδομάδων χωρίς αγώνες χρήστη"
+
+#: ../support_files/bygfoot_options.glade.h:90
+msgid "Status "
+msgstr "Κατάσταση "
+
+#: ../support_files/bygfoot_options.glade.h:91
+msgid "String"
+msgstr "Αλφαριθμητικές"
+
+#: ../support_files/bygfoot_options.glade.h:92
+msgid "Swap adapts structure"
+msgstr "Ανταλλαγή προσαρμόζει σύστημα"
+
+#: ../support_files/bygfoot_options.glade.h:93
+msgid "Team "
+msgstr "Ομάδα "
+
+#: ../support_files/bygfoot_options.glade.h:95
+msgid "Value "
+msgstr "Τιμή "
+
+#: ../support_files/bygfoot_options.glade.h:96
+msgid "Wage "
+msgstr "Μισθός "
+
+#: ../support_files/bygfoot_options.glade.h:97
+msgid ""
+"Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
+msgstr ""
+"Κατά πόσο η επιλογή 'Αποθήκευση' επικαλύπτει το τρέχον αποθηκευμένο αρχείο ή "
+"αναδύει ένα παράθυρο 'Αποθήκευση ως'"
+
+#: ../support_files/bygfoot_options.glade.h:98
+msgid ""
+"Whether a confirmation popup is shown when you kick out a youth from your "
+"academy"
+msgstr ""
+"Κατά πόσο θα εμφανίζεται ένα αναδυόμενο για επιβεβαίωση όταν διώχνεται ένας "
+"νέος από την ακαδημία σας"
+
+#: ../support_files/bygfoot_options.glade.h:99
+msgid ""
+"Whether game starts with a maximized main window (doesn't work with all "
+"window managers)"
+msgstr ""
+"Κατά πόσο το παιχνίδι θα ξεκινάει με ένα μεγιστοποιημένο κυρίως παράθυρο "
+"(δεν δουλεύει με όλους τους window managers)"
+
+#: ../support_files/bygfoot_options.glade.h:100
+msgid ""
+"Whether in the weekly fixture view all leagues or only the user league is "
+"shown"
+msgstr ""
+"Κατά πόσο στην θέαση εβδομαδιαίων εκδηλώσεων θα εμφανίζονται όλες οι λίγκες "
+"ή μόνο η λίγκα του χρήστη"
+
+#: ../support_files/bygfoot_options.glade.h:101
+msgid ""
+"Whether swapping two players automatically adapts the team structure to the "
+"player positions"
+msgstr ""
+"Κατά πόσο ανταλλαγή δύο παικτών προκαλεί αυτόματη προσαρμογή του συστήματος "
+"της ομάδας στις θέσεις των παικτών"
+
+#: ../support_files/bygfoot_options.glade.h:102
+msgid "Whether to automatically save the game regularly"
+msgstr "Κατά πόσο να γίνεται τακτικά αυτόματη αποθήκευση του παιχνιδιού"
+
+#: ../support_files/bygfoot_options.glade.h:103
+msgid ""
+"Whether to show a confirmation popup if a user team has an injured or banned "
+"player in the startup formation"
+msgstr ""
+"Κατά πόσο να εμφανίζεται ένα αναδυόμενο για επιβεβαίωση αν η ομάδα κάποιου "
+"χρήστη έχει τραυματισμένο ή τιμωρημένο παίκτη στην αρχική διάταξη"
+
+#: ../support_files/bygfoot_options.glade.h:104
+msgid ""
+"Whether to show a confirmation popup when you press quit and the game state "
+"is not saved"
+msgstr ""
+"Κατά πόσο θα εμφανίζεται ένα αναδυόμενο για επιβεβαίωση αν πατηθεί έξοδος "
+"και η κατάσταση του παιχνιδιού δεν έχει αποθηκευτεί"
+
+#: ../support_files/bygfoot_options.glade.h:105
+msgid "Whether to show job offers when a user is successful"
+msgstr ""
+"Κατά πόσο να εμφανίζονται προσφορές για εργασία όταν ένας χρήστης είναι "
+"επιτυχημένος"
+
+#: ../support_files/bygfoot_options.glade.h:106
+msgid ""
+"Whether to show pictures on top of the progressbar when loading/saving or "
+"calculating results"
+msgstr ""
+"Κατά πόσο να εμφανίζονται εικόνες στο πάνω μέρος της μπάρας προόδου όταν "
+"φορτώνονται/αποθηκεύονται ή υπολογίζονται αποτελέσματα"
+
+#: ../support_files/bygfoot_options.glade.h:107
+msgid "Whether to show the player games/goals value in all competitions"
+msgstr ""
+"Κατά πόσο να εμφανίζεται η τιμή παιχνίδια/τέρματα του παίκτη σε όλες τις "
+"διοργανώσεις"
+
+#: ../support_files/bygfoot_options.glade.h:108
+msgid ""
+"Whether to show warnings and such in the message area in the main window "
+"when possible"
+msgstr ""
+"Κατά πόσο θα εμφανίζονται προειδοποιήσεις και άλλα σχετικά στο κυρίως "
+"παράθυρο όταν αυτό είναι δυνατό"
+
+#: ../support_files/bygfoot_misc3.glade.h:2
+msgid "Betting -- Left click on odd to place or remove bet"
+msgstr ""
+"Στοίχημα -- Αριστερό κλικ στη πιθανότητα για τοποθέτηση ή αφαίρεση "
+"στοιχήματος"
+
+#: ../support_files/bygfoot_misc3.glade.h:4
+msgid "Calculate start week"
+msgstr "Υπολογισμός αρχικής εβδομάδας"
+
+#: ../support_files/bygfoot_misc3.glade.h:5
+msgid "Calculate weekly installment"
+msgstr "Υπολογισμός εβδομαδιαίου πάγιου"
+
+#: ../support_files/bygfoot_misc3.glade.h:7
+msgid "Ctrl-N"
+msgstr "Ctrl-N"
+
+#: ../support_files/bygfoot_misc3.glade.h:8
+msgid "Ctrl-O"
+msgstr "Ctrl-O"
+
+#: ../support_files/bygfoot_misc3.glade.h:9
+msgid "Ctrl-R"
+msgstr "Ctrl-R"
+
+#: ../support_files/bygfoot_misc3.glade.h:10
+msgid "Current settings:"
+msgstr "Τρέχουσες ρυθμίσεις:"
+
+#. Splash screen hint question.
+#: ../support_files/bygfoot_misc3.glade.h:12
+msgid "Did you know?"
+msgstr "Γνωρίζατε;"
+
+#: ../support_files/bygfoot_misc3.glade.h:14
+msgid "New settings:"
+msgstr "Νέες ρυθμίσεις:"
+
+#: ../support_files/bygfoot_misc3.glade.h:15
+msgid "Next"
+msgstr "Επόμενο"
+
+#: ../support_files/bygfoot_misc3.glade.h:16
+msgid "Previous"
+msgstr "Προηγούμενο"
+
+#: ../support_files/bygfoot_misc3.glade.h:21
+msgid "Start _new game"
+msgstr "Έναρξη _νέου παιχνιδιού"
+
+#: ../support_files/bygfoot_misc3.glade.h:22
+msgid "Start in week"
+msgstr "Έναρξη στην εβδομάδα"
+
+#: ../support_files/bygfoot_misc3.glade.h:23
+msgid "Start in week:"
+msgstr "Έναρξη στην εβδομάδα:"
+
+#: ../support_files/bygfoot_misc3.glade.h:24
+msgid "Weekly installment"
+msgstr "Εβδομαδιαίο πάγιο"
+
+#: ../support_files/bygfoot_misc3.glade.h:25
+msgid "Weekly installment:"
+msgstr "Εβδομαδιαίο πάγιο:"
+
+#: ../support_files/bygfoot_misc3.glade.h:26
+msgid ""
+"Whether to show cup matches. Use the options window to toggle permanently."
+msgstr ""
+"Κατά πόσο θα εμφανίζονται αγώνες κυπέλλου. Χρησιμοποιείστε το παράθυρο "
+"επιλογών για μόνιμη ρύθμιση."
+
+#: ../support_files/bygfoot_misc3.glade.h:27
+msgid ""
+"Whether to show matches of all leagues. Use the options window to toggle "
+"permanently."
+msgstr ""
+"Κατά πόσο θα εμφανίζονται αγώνες όλων των λιγκών. Χρησιμοποιείστε το "
+"παράθυρο επιλογών για μόνιμη ρύθμιση."
+
+#: ../support_files/bygfoot_misc3.glade.h:28
+msgid "Whether to show only your bets in the recent bets list"
+msgstr ""
+"Κατά πόσο να εμφανιστούν μόνο τα στοιχήματα σας στη λίστα με τα πρόσφατα "
+"στοιχήματα"
+
+#: ../support_files/bygfoot_misc3.glade.h:29
+msgid "Your debt:"
+msgstr "Το χρέος σας:"
+
+#: ../support_files/bygfoot_misc3.glade.h:30
+msgid "_Load game"
+msgstr "_Φόρτωση παιχνιδιού"
+
+#: ../support_files/bygfoot_misc3.glade.h:31
+msgid "_Resume game"
+msgstr "_Συνέχεια παιχνιδιού"
+
+#: ../support_files/bygfoot_training.glade.h:1
+msgid "Camp points"
+msgstr "Βαθμοί κέντρου"
+
+#: ../support_files/bygfoot_training.glade.h:6
+msgid "Recreation"
+msgstr "Αναψυχή"
+
+#: ../support_files/bygfoot_training.glade.h:7
+msgid "Save settings as default"
+msgstr "Αποθήκευση ρυθμίσεων ως προεπιλογών"
+
+#: ../support_files/bygfoot_training.glade.h:8
+msgid "Training"
+msgstr "Προπόνηση"
 
 #~ msgid ""
-#~ "Bygfoot debug window. If you got here by accident, CLOSE IMMEDIATELY "
-#~ "(otherwise your CPU will be destroyed by overheating)."
+#~ "The lower this value the faster the live game commentary will scroll."
 #~ msgstr ""
-#~ "Παράθυρο εκσφαλμάτωσης Bygfoot. Εάν βρίσκεστε εδώ κατά λάθος, ΚΛΕΙΣΤΕ "
-#~ "ΑΜΕΣΩΣ (αλλιώς η CPU σας θα καταστραφεί λόγω υπερθέρμανσης)."
+#~ "Όσο μικρότερη τιμή, τόσο πιο γρήγορα θα κυλά η περιγραφή του ζωντανού "
+#~ "παιχνιδιού."
 
-#~ msgid "Click on a user to remove him from the game."
-#~ msgstr "Κλικ σε έναν χρήστη για απομάκρυνση του από το παιχνίδι."
+#~ msgid "The higher this value, the more commentary you'll see."
+#~ msgstr ""
+#~ "Όσο μεγαλύτερη είναι η τιμή αυτή, τόσο πιο αναλυτική περιγραφή θα δείτε."
 
-#~ msgid "Confirm & schedule repayment"
-#~ msgstr "Επιβεβαίωση & πρόγραμμα εξόφλησης"
+#~ msgid ""
+#~ "Whether the subs (e.g. for injured players) are made by the CPU. This is "
+#~ "automatically done if the live game is off."
+#~ msgstr ""
+#~ "Κατά πόσο οι αντικαταστάσεις (π.χ. για τραυματισμένους παίκτες) θα "
+#~ "γίνονται από τη CPU. Αυτό γίνεται αυτόματα αν το ζωντανό παιχνίδι είναι "
+#~ "απενεργοποιημένο."
 
-#~ msgid "Debug"
-#~ msgstr "Εκσφαλμάτωση"
+#~ msgid "Whether the live game pauses when a user player is injured"
+#~ msgstr ""
+#~ "Κατά πόσο το ζωντανό παιχνίδι θα διακόπτεται όταν ένας παίκτης κάποιου "
+#~ "χρήστη είναι τραυματισμένος"
 
-#~ msgid "Decide later"
-#~ msgstr "Απόφαση μετά"
+#~ msgid "Whether the live game pauses when a user player is sent off"
+#~ msgstr ""
+#~ "Κατά πόσο το ζωντανό παιχνίδι θα διακόπτεται όταν βγαίνει ένας παίκτης"
+
+#~ msgid "Whether the live game pauses at half time and extra time"
+#~ msgstr ""
+#~ "Κατά πόσο το ζωντανό παιχνίδι θα διακόπτεται στο ημίχρονο και στην "
+#~ "παράταση"
+
+#~ msgid "Whether to show matches of all leagues in the betting window"
+#~ msgstr ""
+#~ "Κατά πόσο να εμφανίζονται αγώνες όλων των λιγκών στο παράθυρο στοιχήματος"
+
+#~ msgid "Whether to show cup matches in the betting window"
+#~ msgstr "Κατά πόσο να εμφανίζονται αγώνες κυπέλλου στο παράθυρο στοιχήματος"
+
+#~ msgid "How much you wager by default"
+#~ msgstr "Προεπιλεγόμενο ποσό στοιχήματος"
+
+#~ msgid "Show news window after a matchday when new user news was created"
+#~ msgstr ""
+#~ "Εμφάνιση παραθύρου μετά από αγωνιστική όταν καινούρια νέα χρήστη έχουν "
+#~ "δημιουργηθεί"
+
+#~ msgid "Always show news window after a matchday"
+#~ msgstr "Πάντα θα εμφανίζεται το παράθυρο νέων μετά από μία αγωνιστική"
+
+#~ msgid ""
+#~ "Whether to save the global settings to file (so that they get loaded next "
+#~ "time you start a new game)"
+#~ msgstr ""
+#~ "Κατά πόσο θα αποθηκεύονται οι καθολικές ρυθμίσεις σε αρχείο (για να "
+#~ "φορτώνονται αυτόματα την επόμενη φορά που θα αρχίζετε ένα νέο παιχνίδι)"
+
+#~ msgid ""
+#~ "Whether to save the user settings to file (so that they get loaded next "
+#~ "time this user starts a new game)"
+#~ msgstr ""
+#~ "Κατά πόσο να αποθηκεύονται οι ρυθμίσεις ενός χρήστη σε ένα αρχείο (για να "
+#~ "φορτωθούν την επόμενη φορά που ο χρήστης αυτός αρχίζει ένα νέο παιχνίδι)"
+
+#~ msgid ""
+#~ "Save changes to the constants file. DON'T DO THIS UNLESS YOU REALLY KNOW "
+#~ "WHAT YOU ARE DOING."
+#~ msgstr ""
+#~ "Αποθήκευση αλλαγών στο αρχείο σταθερών. ΜΗΝ ΤΟ ΚΑΝΕΤΕ ΕΚΤΟΣ ΑΝ ΞΕΡΕΤΕ ΤΙ "
+#~ "ΚΑΝΕΤΕ."
+
+#~ msgid ""
+#~ "Reload constants files. This will overwrite any changes you made in the "
+#~ "current game session."
+#~ msgstr ""
+#~ "Επαναφόρτωση αρχείου σταθερών. Αυτό θα επικαλύψει όποιες αλλαγές κάνατε "
+#~ "στην τρέχουσα συνεδρία του παιχνιδιού."
+
+#~ msgid ""
+#~ "Close window. Changes will only be saved for the current session, unless "
+#~ "you also save to file."
+#~ msgstr ""
+#~ "Κλείσιμο παραθύρου. Οι αλλαγές θα ισχύουν μόνο για την τρέχουσα συνεδρία, "
+#~ "εκτός αν αποθηκεύσετε σε ένα αρχείο."
 
 #~ msgid "Headline"
 #~ msgstr "Επικεφαλίδα"
@@ -3805,14 +3832,5 @@ msgstr ""
 #~ msgid "Kick out of academy"
 #~ msgstr "Διώξιμο από ακαδημία"
 
-#~ msgid "Make offer"
-#~ msgstr "Δημιουργία προσφοράς"
-
-#~ msgid "Money (approx.)"
-#~ msgstr "Χρήματα (κατά προσέγγιση)"
-
 #~ msgid "Move to team"
 #~ msgstr "Μετακίνηση σε ομάδα"
-
-#~ msgid "Users -- click to remove"
-#~ msgstr "Χρήστες -- κλικ για απομάκρυνση"
