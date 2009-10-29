@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bygfoot Football Manager - trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 14:26+0100\n"
+"POT-Creation-Date: 2009-10-29 14:09+0100\n"
 "PO-Revision-Date: 2009-07-05 03:09+0100\n"
 "Last-Translator: Joe Hansen <joedalton2@yahoo.dk>\n"
 "Language-Team:  <joedalton2@yahoo.dk>\n"
@@ -832,46 +832,6 @@ msgstr "Du kan ikke spille Bygfoot uden brugere!"
 msgid "Remove user %s from the game?"
 msgstr "Fjern bruger %s fra spillet?"
 
-#: ../src/misc2_interface.c:271
-msgid "Current file"
-msgstr "Nuværende fil"
-
-#: ../src/misc2_interface.c:282
-msgid "Open a memorable matches file"
-msgstr "Åben en fil med mindeværdige kampe"
-
-#: ../src/misc2_interface.c:287
-msgid "Reload matches from file"
-msgstr "Genindlæs kampe fra fil"
-
-#: ../src/misc2_interface.c:301 ../src/options_interface.c:411
-msgid "Reload"
-msgstr "Genindlæs"
-
-#: ../src/misc2_interface.c:308
-msgid "Import the matches from a memorable matches file"
-msgstr "Importér kampene fra en fil over mindeværdige kampe"
-
-#: ../src/misc2_interface.c:322
-msgid "Import file"
-msgstr "Importér fil"
-
-#: ../src/misc2_interface.c:344
-msgid "Save changes to file and close"
-msgstr "Gem ændringer og luk"
-
-#: ../src/misc2_interface.c:358
-msgid "Save and close"
-msgstr "Gem og luk"
-
-#: ../src/misc2_interface.c:365
-msgid "Reload matches from file and close"
-msgstr "Genindlæs kampe fra fil og luk"
-
-#: ../src/misc2_interface.c:379
-msgid "Reload and close"
-msgstr "Genindlæs og luk"
-
 #: ../src/misc3_callbacks.c:154
 #, c-format
 msgid "You bet on outcome %d with an odd of %.2f. How much do you wager?"
@@ -909,589 +869,6 @@ msgstr "%s og %s (%d)"
 msgid "%s and %s"
 msgstr "%s og %s"
 
-#: ../src/options_interface.c:256
-msgid "Confirm quit when not saved"
-msgstr "Bekræft afslutning, når der ikke er gemt"
-
-#: ../src/options_interface.c:259
-msgid ""
-"Whether to show a confirmation popup when you press quit and the game state "
-"is not saved"
-msgstr ""
-"Hvorvidt, der skal vises et bekræftigelsesvindue, når du vil afslutte uden "
-"at spillets tilstand er gemt"
-
-#: ../src/options_interface.c:261
-msgid "Confirm when unfit"
-msgstr "Bekræft, når ude af form"
-
-#: ../src/options_interface.c:264
-msgid ""
-"Whether to show a confirmation popup if a user team has an injured or banned "
-"player in the startup formation"
-msgstr ""
-"Hvorvidt, der skal vises et bekræftigelsesvindue, hvis et brugerhold har en "
-"skadet eller karantænramt spiller i startformationen"
-
-#: ../src/options_interface.c:266
-msgid "Save overwrites"
-msgstr "Overskriv ved gemning"
-
-#: ../src/options_interface.c:269
-msgid ""
-"Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
-msgstr ""
-"Hvorvidt 'Gem' overskriver den nuværende fil, eller dukker op som et 'Gem "
-"som'-vindue"
-
-#: ../src/options_interface.c:276
-msgid "Maximize main window"
-msgstr "Maximér hovedvindue"
-
-#: ../src/options_interface.c:279
-msgid ""
-"Whether game starts with a maximized main window (doesn't work with all "
-"window managers)"
-msgstr ""
-"Hvorvidt spillet starter med et fuldskærmsvindue (virker ikke med alle "
-"vindueshåndterere)"
-
-#: ../src/options_interface.c:281
-msgid "Prefer messages"
-msgstr "Foretrækker beskeder"
-
-#: ../src/options_interface.c:284
-msgid ""
-"Whether to show warnings and such in the message area in the main window "
-"when possible"
-msgstr ""
-"Hvorvidt, der skal vises advarsler og lignende i hovedvinduets beskedområde, "
-"når dette er muligt."
-
-#: ../src/options_interface.c:286
-msgid "Show progressbar pictures"
-msgstr "Vis billeder til statuslinje"
-
-#: ../src/options_interface.c:289
-msgid ""
-"Whether to show pictures on top of the progressbar when loading/saving or "
-"calculating results"
-msgstr ""
-"Hvorvidt, der skal vises billeder ved statuslinjen, når der hentes/gemmes, "
-"eller beregnes resultater"
-
-#: ../src/options_interface.c:296
-msgid "Skip weeks without user matches"
-msgstr "Spring over uger uden kampe for brugere"
-
-#: ../src/options_interface.c:299
-msgid ""
-"If checked, weeks without user teams playing are calculated automatically "
-"(without the user having to press 'New week')"
-msgstr ""
-"Hvis der er sat hak i fluebenet, vil uger uden brugerkampe blive beregnet "
-"automatisk (uden at brugeren skal trykke på 'Ny uge')"
-
-#: ../src/options_interface.c:318
-msgid "Autosave interval "
-msgstr "Interval for automatisk gem "
-
-#: ../src/options_interface.c:326
-msgid "How often the game is saved automatically"
-msgstr "Hvor ofte spillet skal gemmes automatisk"
-
-#: ../src/options_interface.c:329
-msgid " Autosave files "
-msgstr " Automatisk gemte filer "
-
-#: ../src/options_interface.c:337
-msgid "How many files the autosave uses"
-msgstr "Hvor mange filer, der vil blive brugt, når der gemmes automatisk"
-
-#: ../src/options_interface.c:339
-msgid "Player attribute precision"
-msgstr "Præcision for spilleregenskaber"
-
-#: ../src/options_interface.c:346
-msgid "Player list refresh rate"
-msgstr "Opfriskningshastighed for spillerliste"
-
-#: ../src/options_interface.c:353
-msgid "Constants file"
-msgstr "Konstantfil"
-
-#: ../src/options_interface.c:365 ../src/options_interface.c:473
-msgid "Font used in treeviews"
-msgstr "Skrifttype brugt ved trævisning"
-
-#: ../src/options_interface.c:379
-msgid "Font name"
-msgstr "Skrifttypenavn"
-
-#: ../src/options_interface.c:392
-msgid ""
-"File containing settings which determine a lot of aspects of the game "
-"behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
-msgstr ""
-"Fil, der indeholder indstillinger, som bestemmer en masse aspekter i "
-"spillets opførsel. FORETAG INGEN ÆNDRINGER MED MINDRE DU VIRKELIG VED, HVAD "
-"DU FORETAGER DIG."
-
-#: ../src/options_interface.c:397
-msgid "Reload the constants file"
-msgstr "Genindlæs konstantfil"
-
-#: ../src/options_interface.c:418
-msgid "Edit the constants used in the game"
-msgstr "Rediger de konstante størrelser anvendt i spillet"
-
-#: ../src/options_interface.c:432
-msgid "Edit"
-msgstr "Rediger"
-
-#: ../src/options_interface.c:436
-msgid "Language"
-msgstr "Sprog"
-
-#: ../src/options_interface.c:443
-msgid "Autosave"
-msgstr "Gem filer automatisk"
-
-#: ../src/options_interface.c:448
-msgid "Whether to automatically save the game regularly"
-msgstr "Hvorvidt spillet skal gemmes automatisk med regelmæssige intervaller"
-
-#: ../src/options_interface.c:456
-msgid "How many digits after the comma there are for skill etc."
-msgstr "Hvor mange cifre, der skal være efter kommaet for evner m.m."
-
-#: ../src/options_interface.c:465
-msgid ""
-"How often the player list gets refreshed during a live game (in live game "
-"minutes)"
-msgstr ""
-"Hvor ofte spillerlisten bliver opdateret under en direkte kamp (i "
-"kampminutter)"
-
-#: ../src/options_interface.c:480
-msgid "Choose game language (might not work in Windows versions)"
-msgstr ""
-"Vælg sprog til at anvende i spillet (virker måske ikke i Windows-udgaver)"
-
-#: ../src/options_interface.c:486
-msgid "Global"
-msgstr "Global"
-
-#: ../src/options_interface.c:498
-msgid "Confirm removing youths"
-msgstr "Bekræft fjernelse af elever"
-
-#: ../src/options_interface.c:501
-msgid ""
-"Whether a confirmation popup is shown when you kick out a youth from your "
-"academy"
-msgstr ""
-"Hvorvidt et bekræftigelsesvindue skal vises, når du smider en ungdomsspiller "
-"ud af dit akademi"
-
-#: ../src/options_interface.c:503
-msgid "Show job offers"
-msgstr "Vis jobtilbud"
-
-#: ../src/options_interface.c:506
-msgid "Whether to show job offers when a user is successful"
-msgstr "Hvorvidt at jobtilbud skal vises, når en bruger har succes"
-
-#: ../src/options_interface.c:511
-msgid "Set to 0 to switch off warning"
-msgstr "Sæt til 0 for at slå advarsel fra"
-
-#: ../src/options_interface.c:517
-msgid "Show warning if a player contract gets below "
-msgstr "Vis advarsel, hvis en spillerkontrakt kommer under "
-
-#: ../src/options_interface.c:527
-msgid " months"
-msgstr " måneder"
-
-#: ../src/options_interface.c:531
-msgid "Show all leagues in the fixture view"
-msgstr "Vis alle ligaer i resultatoversigt"
-
-#: ../src/options_interface.c:534
-msgid ""
-"Whether in the weekly fixture view all leagues or only the user league is "
-"shown"
-msgstr ""
-"Hvorvidt alle ligaer vises i den ugentlige resultatoversigt, eller der kun "
-"vises resultater fra brugerens liga"
-
-#: ../src/options_interface.c:549
-msgid "Swap adapts structure"
-msgstr "Lad formation følge spillerombytning"
-
-#: ../src/options_interface.c:552
-msgid ""
-"Whether swapping two players automatically adapts the team structure to the "
-"player positions"
-msgstr ""
-"Hvorvidt ombytning på to spillere automatisk tilpasser holdformationen til "
-"spillerpositioner"
-
-#: ../src/options_interface.c:554
-msgid "Show overall games/goals"
-msgstr "Vis alle typer kampe/mål"
-
-#: ../src/options_interface.c:557
-msgid "Whether to show the player games/goals value in all competitions"
-msgstr "Hvorvidt spillerens kampe/mål-værdi for alle turneringer skal vises"
-
-#: ../src/options_interface.c:559
-msgid "Always store/restore your default team"
-msgstr "Gem/genopret altid dit standardhold"
-
-#: ../src/options_interface.c:562
-msgid "Always store/restore your default team before/after a match"
-msgstr "Gem/genopret altid dit standardhold før/efter en kamp"
-
-#: ../src/options_interface.c:564
-msgid "Gameplay"
-msgstr "Spil"
-
-#: ../src/options_interface.c:576
-msgid "Show live game"
-msgstr "Vis 'direkte' kamp"
-
-#: ../src/options_interface.c:580
-msgid "Show tendency bar"
-msgstr "Vis tendensbjælke"
-
-#: ../src/options_interface.c:589
-msgid "Live game speed factor"
-msgstr "Hastighedsfaktor for direkte kampe"
-
-#: ../src/options_interface.c:596
-msgid "Live game verbosity"
-msgstr "Kommentarniveau for direkte kampe"
-
-#: ../src/options_interface.c:609
-msgid "The lower this value the faster the live game commentary will scroll."
-msgstr ""
-"Jo lavere, denne værdi er, des hurtigere vil kommentarerne under 'direkte' "
-"kamp blive opdateret."
-
-#: ../src/options_interface.c:618
-msgid "The higher this value, the more commentary you'll see."
-msgstr "Jo højere værdi, des flere kommentarer vil du se."
-
-#: ../src/options_interface.c:621
-msgid "Automatic substitutions"
-msgstr "Automatisk udskiftning"
-
-#: ../src/options_interface.c:624
-msgid ""
-"Whether the subs (e.g. for injured players) are made by the CPU. This is "
-"automatically done if the live game is off."
-msgstr ""
-"Hvorvidt udskiftninger (dvs. af skadede spillere) foretages af computeren. "
-"Dette sker automatisk hvis 'direkte kampe' er slået fra."
-
-#: ../src/options_interface.c:635
-msgid "Pause when injury"
-msgstr "Pause ved skader"
-
-#: ../src/options_interface.c:638
-msgid "Whether the live game pauses when a user player is injured"
-msgstr ""
-"Hvorvidt den direkte kamp skal sættes på pause, når en spiller bliver skadet"
-
-#: ../src/options_interface.c:640
-msgid "Pause when red card"
-msgstr "Pause ved rødt kort"
-
-#: ../src/options_interface.c:643
-msgid "Whether the live game pauses when a user player is sent off"
-msgstr ""
-"Hvorvidt den direkte kamp skal sættes på pause, når en spiller bliver udvist"
-
-#: ../src/options_interface.c:645
-msgid "Pause when break"
-msgstr "Pause ved halvleg"
-
-#: ../src/options_interface.c:648
-msgid "Whether the live game pauses at half time and extra time"
-msgstr ""
-"Hvorvidt den direkte kamp skal sættes på pause ved halvleg og forlænget "
-"spilletid"
-
-#: ../src/options_interface.c:650 ../support_files/bygfoot_misc.glade.h:33
-#: ../support_files/bygfoot.glade.h:42
-msgid "Live game"
-msgstr "Direkte kamp"
-
-#: ../src/options_interface.c:658
-msgid "Name "
-msgstr "Navn "
-
-#: ../src/options_interface.c:665
-msgid "CPos "
-msgstr "Nuv. pos. "
-
-#: ../src/options_interface.c:672
-msgid "Pos "
-msgstr "Pos. "
-
-#: ../src/options_interface.c:679
-msgid "CSkill "
-msgstr "Nuv. evne "
-
-#: ../src/options_interface.c:686
-msgid "Skill "
-msgstr "Evne "
-
-#: ../src/options_interface.c:693
-msgid "Fitness "
-msgstr "Form"
-
-#: ../src/options_interface.c:700
-msgid "Games "
-msgstr "Spil"
-
-#: ../src/options_interface.c:707
-msgid "Shots "
-msgstr "Skud "
-
-#: ../src/options_interface.c:714
-msgid "Goals "
-msgstr "Mål"
-
-#: ../src/options_interface.c:721
-msgid "Status "
-msgstr "Status "
-
-#: ../src/options_interface.c:728
-msgid "Cards "
-msgstr "Kort "
-
-#: ../src/options_interface.c:735
-msgid "Age "
-msgstr "Alder "
-
-#: ../src/options_interface.c:742
-msgid "ETal "
-msgstr "Ans. talent "
-
-#: ../src/options_interface.c:749
-msgid "Value "
-msgstr "Værdi "
-
-#: ../src/options_interface.c:756
-msgid "Wage "
-msgstr "Løn"
-
-#: ../src/options_interface.c:763
-msgid "Contract "
-msgstr "Kontrakt"
-
-#: ../src/options_interface.c:770
-msgid "League "
-msgstr "Liga"
-
-#: ../src/options_interface.c:777
-msgid "Team "
-msgstr "Klub "
-
-#: ../src/options_interface.c:1014
-msgid "Attribute "
-msgstr "Egenskab "
-
-#: ../src/options_interface.c:1021
-msgid "List 1 "
-msgstr "Liste 1 "
-
-#: ../src/options_interface.c:1028
-msgid "List 2"
-msgstr "Liste 2"
-
-#: ../src/options_interface.c:1042
-msgid "Player attributes shown"
-msgstr "Viste spilleregenskaber"
-
-#: ../src/options_interface.c:1054 ../support_files/bygfoot_misc3.glade.h:18
-msgid "Show matches from all leagues"
-msgstr "Vis kampe fra alle ligaer"
-
-#: ../src/options_interface.c:1057
-msgid "Whether to show matches of all leagues in the betting window"
-msgstr "Hvorvidt kampe fra alle turneringer skal vises under væddemål"
-
-#: ../src/options_interface.c:1059 ../support_files/bygfoot_misc3.glade.h:19
-msgid "Show matches from cups"
-msgstr "Vis kampe fra pokalturneringer"
-
-#: ../src/options_interface.c:1062
-msgid "Whether to show cup matches in the betting window"
-msgstr "Hvorvidt kampe fra pokalturneringer skal vises i væddemål"
-
-#: ../src/options_interface.c:1065 ../support_files/bygfoot_misc3.glade.h:20
-msgid "Show only my recent bets"
-msgstr "Vis kun mine seneste væddemål"
-
-#: ../src/options_interface.c:1073
-msgid "Default wager"
-msgstr "Normal indsats"
-
-#: ../src/options_interface.c:1081
-msgid "How much you wager by default"
-msgstr "Hvor meget, du normalt satser"
-
-#: ../src/options_interface.c:1084 ../src/treeview.c:1520
-#: ../src/treeview.c:1530 ../src/window.c:986
-#: ../support_files/bygfoot.glade.h:20
-msgid "Betting"
-msgstr "Væddemål"
-
-#: ../src/options_interface.c:1098
-msgid "Default hotel"
-msgstr "Standardhotel"
-
-#: ../src/options_interface.c:1121
-msgid "Default recreation:"
-msgstr "Standardfritid:"
-
-#: ../src/options_interface.c:1141
-msgid "Default training:"
-msgstr "Standardtræning:"
-
-#: ../src/options_interface.c:1151 ../src/treeview.c:1616 ../src/window.c:1001
-#: ../support_files/bygfoot_training.glade.h:9
-#: ../support_files/bygfoot.glade.h:101
-msgid "Training camp"
-msgstr "Træningslejr"
-
-#: ../src/options_interface.c:1163
-msgid "Create user news"
-msgstr "Opret nyheder for bruger"
-
-#: ../src/options_interface.c:1167
-msgid "Create cup news"
-msgstr "Opret nyheder for cup"
-
-#: ../src/options_interface.c:1171
-msgid "Create league news"
-msgstr "Opret nyheder for liga"
-
-#: ../src/options_interface.c:1175
-msgid "Show only recent news"
-msgstr "Vis kun de seneste nyheder"
-
-#: ../src/options_interface.c:1183
-msgid "No automatic popup"
-msgstr "Ingen automatisk pop op"
-
-#: ../src/options_interface.c:1189
-msgid "Popup for user news"
-msgstr "Pop op vedrørende brugernyheder"
-
-#: ../src/options_interface.c:1192
-msgid "Show news window after a matchday when new user news was created"
-msgstr "Vis nyhedsvindue efter en kampdag når nye brugernyheder oprettes"
-
-#: ../src/options_interface.c:1196
-msgid "Automatic popup"
-msgstr "Automatisk pop op"
-
-#: ../src/options_interface.c:1199
-msgid "Always show news window after a matchday"
-msgstr "Vis altid nyhedsvindue efter en kampdag"
-
-#: ../src/options_interface.c:1203 ../support_files/bygfoot.glade.h:52
-msgid "News"
-msgstr "Nyheder"
-
-#: ../src/options_interface.c:1220
-msgid "Save global settings to file"
-msgstr "Gem globale indstillinger i fil"
-
-#: ../src/options_interface.c:1223
-msgid ""
-"Whether to save the global settings to file (so that they get loaded next "
-"time you start a new game)"
-msgstr ""
-"Hvorvidt de globale indstillinger skal gemmes i en fil (så de kan indlæses "
-"næste gang, du starter et nyt spil)"
-
-#: ../src/options_interface.c:1225
-msgid "Save user settings to file"
-msgstr "Gem brugerindstillinger i fil"
-
-#: ../src/options_interface.c:1228
-msgid ""
-"Whether to save the user settings to file (so that they get loaded next time "
-"this user starts a new game)"
-msgstr ""
-"Hvorvidt brugerindstillingerne skal gemmes i en fil (så de kan indlæses "
-"næste gang, brugeren starter et nyt spil)"
-
-#: ../src/options_interface.c:1237 ../support_files/bygfoot_misc3.glade.h:13
-#: ../support_files/bygfoot_misc.glade.h:27
-msgid "Esc"
-msgstr "Esc"
-
-#: ../src/options_interface.c:1527
-msgid "Integer"
-msgstr "Helt tal"
-
-# (merk.: lån) stifte, (papirer) emittere.
-# Mangler forklaring på hvad det her er.
-#: ../src/options_interface.c:1541
-msgid "Float"
-msgstr "Stifte"
-
-#: ../src/options_interface.c:1555
-msgid "String"
-msgstr "Streńg"
-
-#: ../src/options_interface.c:1569
-msgid "Appearance"
-msgstr "Udseende"
-
-#: ../src/options_interface.c:1581
-msgid ""
-"Save changes to the constants file. DON'T DO THIS UNLESS YOU REALLY KNOW "
-"WHAT YOU ARE DOING."
-msgstr ""
-"Gem ændringer til filen for konstante størrelser. GØR IKKE DETTE MED MINDRE "
-"DU VIRKELIG VED, HVAD DU FORETAGER DIG."
-
-#: ../src/options_interface.c:1595
-msgid "Save to file"
-msgstr "Gem til fil"
-
-#: ../src/options_interface.c:1602
-msgid ""
-"Reload constants files. This will overwrite any changes you made in the "
-"current game session."
-msgstr ""
-"Genindlæs filen for de konstante størrelser. Dette vil overskrive alle "
-"ændringer du har foretaget i det aktuelle spil."
-
-#: ../src/options_interface.c:1616
-msgid "Reload from file"
-msgstr "Genindlæs fra fil"
-
-#: ../src/options_interface.c:1623
-msgid ""
-"Close window. Changes will only be saved for the current session, unless you "
-"also save to file."
-msgstr ""
-"Luk vindue. Ændringer vil kun blive gemt for den nuværende session, "
-"medmindre du også gemmer til en fil."
-
-#: ../src/options_interface.c:1640
-msgid "Close"
-msgstr "Luk"
-
 #: ../src/player.c:673
 msgid "You can't replace a banned player."
 msgstr "Du kan ikke erstatte en udelukket spiller."
@@ -1504,7 +881,7 @@ msgstr "%s's kontrakt udløber om %.1f år."
 #. Player health: ok.
 #. Player status: ok.
 #: ../src/player.c:1409 ../src/treeview_helper.c:1094
-#: ../src/treeview_helper.c:1390
+#: ../src/treeview_helper.c:1390 ../support_files/bygfoot_misc2.glade.h:25
 msgid "OK"
 msgstr "O.k."
 
@@ -1729,7 +1106,7 @@ msgid "Team"
 msgstr "Klub"
 
 #: ../src/treeview2.c:514 ../src/treeview.c:170 ../src/treeview.c:332
-#: ../src/treeview.c:780
+#: ../src/treeview.c:780 ../support_files/bygfoot_misc2.glade.h:21
 msgid "League"
 msgstr "Liga"
 
@@ -1751,7 +1128,7 @@ msgid "Week %d Round %d"
 msgstr "Uge %d, runde %d"
 
 #: ../src/treeview2.c:791 ../src/treeview.c:304 ../src/treeview.c:778
-#: ../src/treeview.c:2163
+#: ../src/treeview.c:2163 ../support_files/bygfoot_misc2.glade.h:24
 msgid "Name"
 msgstr "Navn"
 
@@ -1963,11 +1340,11 @@ msgstr "P"
 msgid "Stadium"
 msgstr "Stadion"
 
-#: ../src/treeview.c:1483
+#: ../src/treeview.c:1483 ../support_files/bygfoot_misc2.glade.h:36
 msgid "Stadium capacity"
 msgstr "Stadionkapacitet"
 
-#: ../src/treeview.c:1487
+#: ../src/treeview.c:1487 ../support_files/bygfoot_misc2.glade.h:37
 msgid "Stadium safety"
 msgstr "Stadionsikkerhed"
 
@@ -1997,6 +1374,12 @@ msgstr "Billetsalg"
 #: ../src/treeview.c:1519
 msgid "Sponsorship"
 msgstr "Sponsorering"
+
+#: ../src/treeview.c:1520 ../src/treeview.c:1530 ../src/window.c:986
+#: ../support_files/bygfoot.glade.h:20
+#: ../support_files/bygfoot_options.glade.h:12
+msgid "Betting"
+msgstr "Væddemål"
 
 #: ../src/treeview.c:1522
 msgid "Wages"
@@ -2057,6 +1440,13 @@ msgstr "Transfere"
 #: ../src/treeview.c:1608
 msgid "Stadium expenses"
 msgstr "Stadionudgifter"
+
+#: ../src/treeview.c:1616 ../src/window.c:1001
+#: ../support_files/bygfoot.glade.h:101
+#: ../support_files/bygfoot_options.glade.h:94
+#: ../support_files/bygfoot_training.glade.h:9
+msgid "Training camp"
+msgstr "Træningslejr"
 
 #: ../src/treeview.c:1629
 msgid "Money"
@@ -2151,7 +1541,7 @@ msgstr "Hjemme"
 msgid "Away"
 msgstr "Ude"
 
-#: ../src/treeview.c:1866
+#: ../src/treeview.c:1866 ../support_files/bygfoot_misc2.glade.h:28
 msgid "Rank"
 msgstr "Placering"
 
@@ -2834,7 +2224,7 @@ msgstr "Numre..."
 msgid "Your stadium"
 msgstr "Dit stadion"
 
-#: ../src/window.c:892
+#: ../src/window.c:892 ../support_files/bygfoot_misc2.glade.h:20
 msgid "Job offer"
 msgstr "Jobtilbud"
 
@@ -2866,8 +2256,8 @@ msgstr "Sponsortilbud"
 msgid "Memorable matches"
 msgstr "Mindeværdige kampe"
 
-#: ../src/window.c:1009 ../support_files/bygfoot_misc3.glade.h:1
-#: ../support_files/bygfoot.glade.h:12
+#: ../src/window.c:1009 ../support_files/bygfoot.glade.h:12
+#: ../support_files/bygfoot_misc3.glade.h:1
 msgid "Automatic loan repayment"
 msgstr "Automatisk tilbagebetaling af lån"
 
@@ -2921,367 +2311,6 @@ msgstr ""
 "En ny ungdomsspiller ville gerne optages på dit ungdomsakademi, men der var "
 "ikke plads til ham."
 
-#: ../support_files/bygfoot_misc3.glade.h:2
-msgid "Betting -- Left click on odd to place or remove bet"
-msgstr "Væddemål -- venstreklik på odds for at tilføje eller fjerne væddemål"
-
-#: ../support_files/bygfoot_misc3.glade.h:4
-msgid "Calculate start week"
-msgstr "Kalkuler begyndelsesuge"
-
-# engelsk fejl? staves installment ikke instalment
-#: ../support_files/bygfoot_misc3.glade.h:5
-msgid "Calculate weekly installment"
-msgstr "Kalkuler ugelig rate"
-
-#: ../support_files/bygfoot_misc3.glade.h:6
-#: ../support_files/bygfoot.glade.h:24
-msgid "Contributors"
-msgstr "Bidragydere"
-
-#: ../support_files/bygfoot_misc3.glade.h:7
-msgid "Ctrl-N"
-msgstr "Ctrl+N"
-
-#: ../support_files/bygfoot_misc3.glade.h:8
-msgid "Ctrl-O"
-msgstr "Ctrl+O"
-
-#: ../support_files/bygfoot_misc3.glade.h:9
-msgid "Ctrl-R"
-msgstr "Ctrl+R"
-
-#: ../support_files/bygfoot_misc3.glade.h:10
-msgid "Current settings:"
-msgstr "Nuværende opsætning:"
-
-#. Splash screen hint question.
-#: ../support_files/bygfoot_misc3.glade.h:12
-msgid "Did you know?"
-msgstr "Dagens tip:"
-
-#: ../support_files/bygfoot_misc3.glade.h:14
-msgid "New settings:"
-msgstr "Ny opsætning:"
-
-#: ../support_files/bygfoot_misc3.glade.h:15
-msgid "Next"
-msgstr "Næste"
-
-#: ../support_files/bygfoot_misc3.glade.h:16
-msgid "Previous"
-msgstr "Forrige"
-
-#: ../support_files/bygfoot_misc3.glade.h:21
-msgid "Start _new game"
-msgstr "Start _nyt spil"
-
-#: ../support_files/bygfoot_misc3.glade.h:22
-msgid "Start in week"
-msgstr "Start i uge"
-
-#: ../support_files/bygfoot_misc3.glade.h:23
-msgid "Start in week:"
-msgstr "Start i uge:"
-
-#: ../support_files/bygfoot_misc3.glade.h:24
-msgid "Weekly installment"
-msgstr "Ugerate"
-
-#: ../support_files/bygfoot_misc3.glade.h:25
-msgid "Weekly installment:"
-msgstr "Ugerate:"
-
-#: ../support_files/bygfoot_misc3.glade.h:26
-msgid ""
-"Whether to show cup matches. Use the options window to toggle permanently."
-msgstr ""
-"Hvorvidt der skal vises kampe fra pokalturneringer. Du kan ændre dette "
-"permanent i \"Indstillinger\"."
-
-#: ../support_files/bygfoot_misc3.glade.h:27
-msgid ""
-"Whether to show matches of all leagues. Use the options window to toggle "
-"permanently."
-msgstr ""
-"Hvorvidt der skal vises kampe fra alle turneringer. Du kan ændre dette "
-"permanent i opsætningsvinduet."
-
-#: ../support_files/bygfoot_misc3.glade.h:28
-msgid "Whether to show only your bets in the recent bets list"
-msgstr "Hvorvidt der kun skal vises dine væddemål"
-
-#: ../support_files/bygfoot_misc3.glade.h:29
-msgid "Your debt:"
-msgstr "Din gæld:"
-
-#: ../support_files/bygfoot_misc3.glade.h:30
-msgid "_Load game"
-msgstr "Ind_læs spil"
-
-#: ../support_files/bygfoot_misc3.glade.h:31
-msgid "_Resume game"
-msgstr "_Fortsæt spil"
-
-#: ../support_files/bygfoot_training.glade.h:1
-msgid "Camp points"
-msgstr "Lejrpoint"
-
-#: ../support_files/bygfoot_training.glade.h:2
-#: ../support_files/bygfoot_misc.glade.h:22
-msgid "Costs"
-msgstr "Udgifter"
-
-#: ../support_files/bygfoot_training.glade.h:6
-msgid "Recreation"
-msgstr "Rekreation"
-
-#: ../support_files/bygfoot_training.glade.h:7
-msgid "Save settings as default"
-msgstr "Gem opsætning som standard"
-
-#: ../support_files/bygfoot_training.glade.h:8
-msgid "Training"
-msgstr "Træning"
-
-#: ../support_files/bygfoot_misc.glade.h:1
-msgid " seats"
-msgstr " sæder"
-
-#: ../support_files/bygfoot_misc.glade.h:2
-msgid "0"
-msgstr "0"
-
-#: ../support_files/bygfoot_misc.glade.h:3
-msgid "Accept"
-msgstr "Acceptér"
-
-#: ../support_files/bygfoot_misc.glade.h:4
-msgid "Add user"
-msgstr "Tilføj bruger"
-
-#: ../support_files/bygfoot_misc.glade.h:5
-msgid "Av. skill: "
-msgstr "Gns. evner: "
-
-#: ../support_files/bygfoot_misc.glade.h:6
-msgid "Average attendance"
-msgstr "Gennemsnitlig tilskuerantal"
-
-#: ../support_files/bygfoot_misc.glade.h:8
-#, no-c-format
-msgid "Average attendance %"
-msgstr "Gennemsnitlig tilskuerantal %"
-
-#: ../support_files/bygfoot_misc.glade.h:9
-msgid "Back to splash"
-msgstr "Tilbage til velkomstskærmen"
-
-#: ../support_files/bygfoot_misc.glade.h:10
-msgid "Capacity (seats)"
-msgstr "Kapacitet (sæder)"
-
-#: ../support_files/bygfoot_misc.glade.h:11
-msgid ""
-"Change commentary verbosity. The higher this value the more events you can "
-"see."
-msgstr "Ændr kommentarniveau. Jo højere værdi, des flere kommentarer."
-
-#: ../support_files/bygfoot_misc.glade.h:12
-msgid "Change live game speed. The higher the value the faster the live game."
-msgstr ""
-"Ændr hastighed for direkte kamp. Jo højere værdi, des hurtigere "
-"kampafvikling."
-
-#: ../support_files/bygfoot_misc.glade.h:13
-msgid "Change ticket price"
-msgstr "Ændr billetpris"
-
-#: ../support_files/bygfoot_misc.glade.h:14
-msgid "Choose country"
-msgstr "Vælg et land"
-
-#: ../support_files/bygfoot_misc.glade.h:15
-msgid "Choose file"
-msgstr "Vælg fil"
-
-#: ../support_files/bygfoot_misc.glade.h:16
-msgid "Choose league to start in"
-msgstr "Vælg liga"
-
-#: ../support_files/bygfoot_misc.glade.h:17
-msgid "Choose team"
-msgstr "Vælg hold"
-
-#: ../support_files/bygfoot_misc.glade.h:18
-msgid "Choose username"
-msgstr "Vælg brugnavn"
-
-#: ../support_files/bygfoot_misc.glade.h:19
-msgid "Click on a user to remove him."
-msgstr "Klik på en bruger, for at fjerne denne."
-
-#: ../support_files/bygfoot_misc.glade.h:20
-msgid "Commentary"
-msgstr "Kommentarer"
-
-#: ../support_files/bygfoot_misc.glade.h:21
-msgid "Confirm!"
-msgstr "Bekræft!"
-
-#: ../support_files/bygfoot_misc.glade.h:23
-msgid "Current capacity"
-msgstr "Nuværende stadionkapacitet"
-
-#: ../support_files/bygfoot_misc.glade.h:24
-msgid "Current safety"
-msgstr "Nuværende stadionsikkerhed"
-
-#: ../support_files/bygfoot_misc.glade.h:25
-msgid "Don't load definitions"
-msgstr "Indlæs ikke definitioner"
-
-#: ../support_files/bygfoot_misc.glade.h:26
-msgid "Don't load team definitions at all"
-msgstr "Indlæs overhovedet ikke klubdefinitioner"
-
-#: ../support_files/bygfoot_misc.glade.h:28
-msgid "Esc / Return / Space"
-msgstr "Esc / retur / mellemrumstast"
-
-#: ../support_files/bygfoot_misc.glade.h:29
-msgid "Expected duration"
-msgstr "Forventet varighed"
-
-#: ../support_files/bygfoot_misc.glade.h:30
-msgid "Go back to the splash screen"
-msgstr "Gå tilbage til velkomstskærmen"
-
-#: ../support_files/bygfoot_misc.glade.h:31
-msgid ""
-"If you don't like any of the sponsors, you can go a few weeks without "
-"sponsor and wait for new offers."
-msgstr ""
-"Hvis du ikke kan lide nogen af sponsorerne, kan du klare dig i nogle uger "
-"uden sponsor, og vente på nogle nye tilbud."
-
-#: ../support_files/bygfoot_misc.glade.h:32
-msgid "Increase"
-msgstr "Forøg"
-
-#: ../support_files/bygfoot_misc.glade.h:34
-msgid "Load only the player names in the definition files"
-msgstr "Indlæs kun spillernavne fra definitionsfiler"
-
-#: ../support_files/bygfoot_misc.glade.h:35
-msgid "Load team definitions"
-msgstr "Indlæs klubdefinitioner"
-
-#: ../support_files/bygfoot_misc.glade.h:36
-msgid ""
-"Load teams from definition files (note that the official Bygfoot package "
-"doesn't contain team definition files, you have to get them from the "
-"homepage or via the bygfoot-update script)"
-msgstr ""
-"Indlæs klubber fra definitionsfiler (bemærk, at den officielle Bygfootpakke "
-"ikke indeholder klubdefinitionsfiler - du er nødt til at hente dem fra "
-"hjemmesiden eller via bygfoot-update-scriptet)"
-
-#: ../support_files/bygfoot_misc.glade.h:37
-msgid "Only names"
-msgstr "Kun navne"
-
-#: ../support_files/bygfoot_misc.glade.h:38
-msgid "Opponent player list"
-msgstr "Modstanderens spillerliste"
-
-#: ../support_files/bygfoot_misc.glade.h:39
-msgid "Price per ticket"
-msgstr "Pris per billet"
-
-#: ../support_files/bygfoot_misc.glade.h:40
-msgid "Randomise teams in cups"
-msgstr "Bland hold tilfældigt i pokalturneringer"
-
-#: ../support_files/bygfoot_misc.glade.h:41
-msgid ""
-"Randomise the order of teams in cups. This only makes sense in supernational "
-"definitions like the World Cup where the order of teams is fixed."
-msgstr ""
-"Bland hold tilfældigt i pokalturneringer. Dette giver kun mening i "
-"internationale definitioner som VM, hvor holdsammensætningen er fastlåst."
-
-#: ../support_files/bygfoot_misc.glade.h:42
-msgid "Reject for now"
-msgstr "Afvis for nu"
-
-#: ../support_files/bygfoot_misc.glade.h:43
-msgid "Return"
-msgstr "Retur"
-
-#: ../support_files/bygfoot_misc.glade.h:44
-msgid "Return / Space"
-msgstr "Retur / mellemrumstast"
-
-#: ../support_files/bygfoot_misc.glade.h:45
-#: ../support_files/bygfoot.glade.h:76
-msgid "Right click and left click to change boost state"
-msgstr "Brug højreklik eller venstreklik for at ændre boostniveau"
-
-#: ../support_files/bygfoot_misc.glade.h:46
-#: ../support_files/bygfoot.glade.h:77
-msgid "Right click and left click to change your playing style"
-msgstr "Brug højreklik eller venstreklik for at ændre din spillestil"
-
-#: ../support_files/bygfoot_misc.glade.h:47
-msgid "Right-click to set to 0"
-msgstr "Højreklik for at nulstille"
-
-#: ../support_files/bygfoot_misc.glade.h:49
-#, no-c-format
-msgid "Safety (%)"
-msgstr "Sikkerhed (%)"
-
-#: ../support_files/bygfoot_misc.glade.h:51
-msgid "Space"
-msgstr "Mellemrumstast"
-
-#: ../support_files/bygfoot_misc.glade.h:52
-msgid "Speed"
-msgstr "Hastighed"
-
-#: ../support_files/bygfoot_misc.glade.h:53
-msgid "Start"
-msgstr "Begynd"
-
-#: ../support_files/bygfoot_misc.glade.h:54
-msgid "Statistics"
-msgstr "Statistik"
-
-#: ../support_files/bygfoot_misc.glade.h:55
-msgid "Status:"
-msgstr "Status:"
-
-#: ../support_files/bygfoot_misc.glade.h:56
-msgid ""
-"There are a few companies interested in sponsoring your team. Please select "
-"one:"
-msgstr ""
-"Der er nogle selskaber, der er interesserede i at sponsorere din klub. Vælg "
-"venligst en:"
-
-#: ../support_files/bygfoot_misc.glade.h:57
-msgid "Verbosity"
-msgstr "Kommentarniveau"
-
-#: ../support_files/bygfoot_misc.glade.h:58
-msgid "_Pause"
-msgstr "_Pause"
-
-#: ../support_files/bygfoot_misc.glade.h:59
-msgid "_Resume"
-msgstr "_Genoptag"
-
 #: ../support_files/bygfoot.glade.h:1
 msgid " Round "
 msgstr " Runde "
@@ -3294,7 +2323,7 @@ msgstr " Sæson "
 msgid " Week "
 msgstr " Uge "
 
-#: ../support_files/bygfoot.glade.h:4
+#: ../support_files/bygfoot.glade.h:4 ../support_files/bygfoot_misc2.glade.h:5
 msgid "About"
 msgstr "Om"
 
@@ -3364,6 +2393,12 @@ msgstr "Gennemse spillere"
 msgid "Browse teams"
 msgstr "Gennemse klubber"
 
+#: ../support_files/bygfoot.glade.h:24
+#: ../support_files/bygfoot_misc2.glade.h:12
+#: ../support_files/bygfoot_misc3.glade.h:6
+msgid "Contributors"
+msgstr "Bidragydere"
+
 #: ../support_files/bygfoot.glade.h:25
 #, fuzzy
 msgid "Default Team"
@@ -3422,6 +2457,7 @@ msgid "Good"
 msgstr "God"
 
 #: ../support_files/bygfoot.glade.h:39
+#: ../support_files/bygfoot_misc2.glade.h:17
 msgid "Help"
 msgstr "Hjælp"
 
@@ -3432,6 +2468,12 @@ msgstr "Jobtilbud"
 #: ../support_files/bygfoot.glade.h:41
 msgid "League stats"
 msgstr "Ligastatistik"
+
+#: ../support_files/bygfoot.glade.h:42
+#: ../support_files/bygfoot_misc.glade.h:33
+#: ../support_files/bygfoot_options.glade.h:52
+msgid "Live game"
+msgstr "Direkte kamp"
 
 #: ../support_files/bygfoot.glade.h:43
 msgid "Load game (Ctrl - O)"
@@ -3465,6 +2507,11 @@ msgstr "Flyt til ungdomsakademi"
 #: ../support_files/bygfoot.glade.h:51
 msgid "My league results"
 msgstr "Mine ligaresultater"
+
+#: ../support_files/bygfoot.glade.h:52
+#: ../support_files/bygfoot_options.glade.h:57
+msgid "News"
+msgstr "Nyheder"
 
 #: ../support_files/bygfoot.glade.h:53
 msgid "Next (W)"
@@ -3558,6 +2605,16 @@ msgstr ""
 #, fuzzy
 msgid "Restore"
 msgstr "Resultat"
+
+#: ../support_files/bygfoot.glade.h:76
+#: ../support_files/bygfoot_misc.glade.h:45
+msgid "Right click and left click to change boost state"
+msgstr "Brug højreklik eller venstreklik for at ændre boostniveau"
+
+#: ../support_files/bygfoot.glade.h:77
+#: ../support_files/bygfoot_misc.glade.h:46
+msgid "Right click and left click to change your playing style"
+msgstr "Brug højreklik eller venstreklik for at ændre din spillestil"
 
 #: ../support_files/bygfoot.glade.h:78
 msgid "Save game (Ctrl - S)"
@@ -3680,43 +2737,1011 @@ msgstr "_Klub"
 msgid "_User"
 msgstr "_Bruger"
 
-#~ msgid "1 year"
-#~ msgstr "1 år"
+#: ../support_files/bygfoot_misc.glade.h:1
+msgid " seats"
+msgstr " sæder"
 
-#~ msgid "2 years"
-#~ msgstr "2 år"
+#: ../support_files/bygfoot_misc.glade.h:2
+msgid "0"
+msgstr "0"
 
-#~ msgid "3 years"
-#~ msgstr "3 år"
+#: ../support_files/bygfoot_misc.glade.h:3
+msgid "Accept"
+msgstr "Acceptér"
 
-#~ msgid "4 years"
-#~ msgstr "4 år"
+#: ../support_files/bygfoot_misc.glade.h:4
+#: ../support_files/bygfoot_misc2.glade.h:6
+msgid "Add user"
+msgstr "Tilføj bruger"
 
-#~ msgid "Available teams"
-#~ msgstr "Tilgængelig klubber"
+#: ../support_files/bygfoot_misc.glade.h:5
+msgid "Av. skill: "
+msgstr "Gns. evner: "
 
-#~ msgid "Average skill:"
-#~ msgstr "Gennemsnitlig evne"
+#: ../support_files/bygfoot_misc.glade.h:6
+msgid "Average attendance"
+msgstr "Gennemsnitlig tilskuerantal"
+
+#: ../support_files/bygfoot_misc.glade.h:8
+#, no-c-format
+msgid "Average attendance %"
+msgstr "Gennemsnitlig tilskuerantal %"
+
+#: ../support_files/bygfoot_misc.glade.h:9
+msgid "Back to splash"
+msgstr "Tilbage til velkomstskærmen"
+
+#: ../support_files/bygfoot_misc.glade.h:10
+msgid "Capacity (seats)"
+msgstr "Kapacitet (sæder)"
+
+#: ../support_files/bygfoot_misc.glade.h:11
+msgid ""
+"Change commentary verbosity. The higher this value the more events you can "
+"see."
+msgstr "Ændr kommentarniveau. Jo højere værdi, des flere kommentarer."
+
+#: ../support_files/bygfoot_misc.glade.h:12
+msgid "Change live game speed. The higher the value the faster the live game."
+msgstr ""
+"Ændr hastighed for direkte kamp. Jo højere værdi, des hurtigere "
+"kampafvikling."
+
+#: ../support_files/bygfoot_misc.glade.h:13
+msgid "Change ticket price"
+msgstr "Ændr billetpris"
+
+#: ../support_files/bygfoot_misc.glade.h:14
+msgid "Choose country"
+msgstr "Vælg et land"
+
+#: ../support_files/bygfoot_misc.glade.h:15
+msgid "Choose file"
+msgstr "Vælg fil"
+
+#: ../support_files/bygfoot_misc.glade.h:16
+msgid "Choose league to start in"
+msgstr "Vælg liga"
+
+#: ../support_files/bygfoot_misc.glade.h:17
+msgid "Choose team"
+msgstr "Vælg hold"
+
+#: ../support_files/bygfoot_misc.glade.h:18
+msgid "Choose username"
+msgstr "Vælg brugnavn"
+
+#: ../support_files/bygfoot_misc.glade.h:19
+msgid "Click on a user to remove him."
+msgstr "Klik på en bruger, for at fjerne denne."
+
+#: ../support_files/bygfoot_misc.glade.h:20
+msgid "Commentary"
+msgstr "Kommentarer"
+
+#: ../support_files/bygfoot_misc.glade.h:21
+msgid "Confirm!"
+msgstr "Bekræft!"
+
+#: ../support_files/bygfoot_misc.glade.h:22
+#: ../support_files/bygfoot_training.glade.h:2
+msgid "Costs"
+msgstr "Udgifter"
+
+#: ../support_files/bygfoot_misc.glade.h:23
+msgid "Current capacity"
+msgstr "Nuværende stadionkapacitet"
+
+#: ../support_files/bygfoot_misc.glade.h:24
+msgid "Current safety"
+msgstr "Nuværende stadionsikkerhed"
+
+#: ../support_files/bygfoot_misc.glade.h:25
+msgid "Don't load definitions"
+msgstr "Indlæs ikke definitioner"
+
+#: ../support_files/bygfoot_misc.glade.h:26
+msgid "Don't load team definitions at all"
+msgstr "Indlæs overhovedet ikke klubdefinitioner"
+
+#: ../support_files/bygfoot_misc.glade.h:27
+#: ../support_files/bygfoot_misc2.glade.h:16
+#: ../support_files/bygfoot_misc3.glade.h:13
+msgid "Esc"
+msgstr "Esc"
+
+#: ../support_files/bygfoot_misc.glade.h:28
+msgid "Esc / Return / Space"
+msgstr "Esc / retur / mellemrumstast"
+
+#: ../support_files/bygfoot_misc.glade.h:29
+msgid "Expected duration"
+msgstr "Forventet varighed"
+
+#: ../support_files/bygfoot_misc.glade.h:30
+msgid "Go back to the splash screen"
+msgstr "Gå tilbage til velkomstskærmen"
+
+#: ../support_files/bygfoot_misc.glade.h:31
+msgid ""
+"If you don't like any of the sponsors, you can go a few weeks without "
+"sponsor and wait for new offers."
+msgstr ""
+"Hvis du ikke kan lide nogen af sponsorerne, kan du klare dig i nogle uger "
+"uden sponsor, og vente på nogle nye tilbud."
+
+#: ../support_files/bygfoot_misc.glade.h:32
+msgid "Increase"
+msgstr "Forøg"
+
+#: ../support_files/bygfoot_misc.glade.h:34
+msgid "Load only the player names in the definition files"
+msgstr "Indlæs kun spillernavne fra definitionsfiler"
+
+#: ../support_files/bygfoot_misc.glade.h:35
+msgid "Load team definitions"
+msgstr "Indlæs klubdefinitioner"
+
+#: ../support_files/bygfoot_misc.glade.h:36
+msgid ""
+"Load teams from definition files (note that the official Bygfoot package "
+"doesn't contain team definition files, you have to get them from the "
+"homepage or via the bygfoot-update script)"
+msgstr ""
+"Indlæs klubber fra definitionsfiler (bemærk, at den officielle Bygfootpakke "
+"ikke indeholder klubdefinitionsfiler - du er nødt til at hente dem fra "
+"hjemmesiden eller via bygfoot-update-scriptet)"
+
+#: ../support_files/bygfoot_misc.glade.h:37
+msgid "Only names"
+msgstr "Kun navne"
+
+#: ../support_files/bygfoot_misc.glade.h:38
+msgid "Opponent player list"
+msgstr "Modstanderens spillerliste"
+
+#: ../support_files/bygfoot_misc.glade.h:39
+msgid "Price per ticket"
+msgstr "Pris per billet"
+
+#: ../support_files/bygfoot_misc.glade.h:40
+msgid "Randomise teams in cups"
+msgstr "Bland hold tilfældigt i pokalturneringer"
+
+#: ../support_files/bygfoot_misc.glade.h:41
+msgid ""
+"Randomise the order of teams in cups. This only makes sense in supernational "
+"definitions like the World Cup where the order of teams is fixed."
+msgstr ""
+"Bland hold tilfældigt i pokalturneringer. Dette giver kun mening i "
+"internationale definitioner som VM, hvor holdsammensætningen er fastlåst."
+
+#: ../support_files/bygfoot_misc.glade.h:42
+msgid "Reject for now"
+msgstr "Afvis for nu"
+
+#: ../support_files/bygfoot_misc.glade.h:43
+#: ../support_files/bygfoot_misc2.glade.h:33
+msgid "Return"
+msgstr "Retur"
+
+#: ../support_files/bygfoot_misc.glade.h:44
+msgid "Return / Space"
+msgstr "Retur / mellemrumstast"
+
+#: ../support_files/bygfoot_misc.glade.h:47
+msgid "Right-click to set to 0"
+msgstr "Højreklik for at nulstille"
+
+#: ../support_files/bygfoot_misc.glade.h:49
+#, no-c-format
+msgid "Safety (%)"
+msgstr "Sikkerhed (%)"
+
+#: ../support_files/bygfoot_misc.glade.h:51
+msgid "Space"
+msgstr "Mellemrumstast"
+
+#: ../support_files/bygfoot_misc.glade.h:52
+msgid "Speed"
+msgstr "Hastighed"
+
+#: ../support_files/bygfoot_misc.glade.h:53
+msgid "Start"
+msgstr "Begynd"
+
+#: ../support_files/bygfoot_misc.glade.h:54
+msgid "Statistics"
+msgstr "Statistik"
+
+#: ../support_files/bygfoot_misc.glade.h:55
+msgid "Status:"
+msgstr "Status:"
+
+#: ../support_files/bygfoot_misc.glade.h:56
+msgid ""
+"There are a few companies interested in sponsoring your team. Please select "
+"one:"
+msgstr ""
+"Der er nogle selskaber, der er interesserede i at sponsorere din klub. Vælg "
+"venligst en:"
+
+#: ../support_files/bygfoot_misc.glade.h:57
+msgid "Verbosity"
+msgstr "Kommentarniveau"
+
+#: ../support_files/bygfoot_misc.glade.h:58
+msgid "_Pause"
+msgstr "_Pause"
+
+#: ../support_files/bygfoot_misc.glade.h:59
+msgid "_Resume"
+msgstr "_Genoptag"
+
+#: ../support_files/bygfoot_misc2.glade.h:1
+msgid "1 year"
+msgstr "1 år"
+
+#: ../support_files/bygfoot_misc2.glade.h:2
+msgid "2 years"
+msgstr "2 år"
+
+#: ../support_files/bygfoot_misc2.glade.h:3
+msgid "3 years"
+msgstr "3 år"
+
+#: ../support_files/bygfoot_misc2.glade.h:4
+msgid "4 years"
+msgstr "4 år"
+
+#: ../support_files/bygfoot_misc2.glade.h:7
+msgid "Available teams"
+msgstr "Tilgængelig klubber"
+
+#: ../support_files/bygfoot_misc2.glade.h:8
+msgid "Average skill:"
+msgstr "Gennemsnitlig evne"
+
+#: ../support_files/bygfoot_misc2.glade.h:9
+msgid ""
+"Bygfoot debug window. If you got here by accident, CLOSE IMMEDIATELY "
+"(otherwise your CPU will be destroyed by overheating)."
+msgstr ""
+"Bygfoots fejlsøgningsvindue. Hvis du er havnet her ved et tilfælde, SÅ LUK "
+"DET ØJEBLIKKELIGT (ellers vil din processor blive ødelagt af overophedning)."
+
+#: ../support_files/bygfoot_misc2.glade.h:10
+msgid "Click on a user to remove him from the game."
+msgstr "Klik på en bruger for at fjerne denne fra spillet."
+
+#: ../support_files/bygfoot_misc2.glade.h:11
+msgid "Confirm & schedule repayment"
+msgstr "Bekræft & planlæg tilbagebetaling"
+
+#: ../support_files/bygfoot_misc2.glade.h:13
+msgid "Current file"
+msgstr "Nuværende fil"
+
+#: ../support_files/bygfoot_misc2.glade.h:14
+msgid "Debug"
+msgstr "Fejlfinding"
+
+#: ../support_files/bygfoot_misc2.glade.h:15
+msgid "Decide later"
+msgstr "Beslut senere"
+
+#: ../support_files/bygfoot_misc2.glade.h:18
+msgid "Import file"
+msgstr "Importér fil"
+
+#: ../support_files/bygfoot_misc2.glade.h:19
+msgid "Import the matches from a memorable matches file"
+msgstr "Importér kampene fra en fil over mindeværdige kampe"
+
+#: ../support_files/bygfoot_misc2.glade.h:22
+msgid "Make offer"
+msgstr "Giv et tilbud"
+
+#: ../support_files/bygfoot_misc2.glade.h:23
+msgid "Money (approx.)"
+msgstr "Beløb (ca.)"
+
+#: ../support_files/bygfoot_misc2.glade.h:26
+msgid "Open a memorable matches file"
+msgstr "Åben en fil med mindeværdige kampe"
+
+#: ../support_files/bygfoot_misc2.glade.h:27
+msgid "Player list"
+msgstr "Spillerliste"
+
+#: ../support_files/bygfoot_misc2.glade.h:29
+#: ../support_files/bygfoot_options.glade.h:68
+msgid "Reload"
+msgstr "Genindlæs"
+
+#: ../support_files/bygfoot_misc2.glade.h:30
+msgid "Reload and close"
+msgstr "Genindlæs og luk"
+
+#: ../support_files/bygfoot_misc2.glade.h:31
+msgid "Reload matches from file"
+msgstr "Genindlæs kampe fra fil"
+
+#: ../support_files/bygfoot_misc2.glade.h:32
+msgid "Reload matches from file and close"
+msgstr "Genindlæs kampe fra fil og luk"
+
+#: ../support_files/bygfoot_misc2.glade.h:34
+msgid "Save and close"
+msgstr "Gem og luk"
+
+#: ../support_files/bygfoot_misc2.glade.h:35
+msgid "Save changes to file and close"
+msgstr "Gem ændringer og luk"
+
+#: ../support_files/bygfoot_misc2.glade.h:38
+msgid "Users -- click to remove"
+msgstr "Brugere -- klik for at fjerne"
+
+#: ../support_files/bygfoot_options.glade.h:1
+msgid " Autosave files "
+msgstr " Automatisk gemte filer "
+
+#: ../support_files/bygfoot_options.glade.h:2
+msgid " months"
+msgstr " måneder"
+
+#: ../support_files/bygfoot_options.glade.h:3
+msgid "Age "
+msgstr "Alder "
+
+#: ../support_files/bygfoot_options.glade.h:4
+msgid "Always store/restore your default team"
+msgstr "Gem/genopret altid dit standardhold"
+
+#: ../support_files/bygfoot_options.glade.h:5
+msgid "Always store/restore your default team before/after a match"
+msgstr "Gem/genopret altid dit standardhold før/efter en kamp"
+
+#: ../support_files/bygfoot_options.glade.h:6
+msgid "Appearance"
+msgstr "Udseende"
+
+#: ../support_files/bygfoot_options.glade.h:7
+msgid "Attribute "
+msgstr "Egenskab "
+
+#: ../support_files/bygfoot_options.glade.h:8
+msgid "Automatic popup"
+msgstr "Automatisk pop op"
+
+#: ../support_files/bygfoot_options.glade.h:9
+msgid "Automatic substitutions"
+msgstr "Automatisk udskiftning"
+
+#: ../support_files/bygfoot_options.glade.h:10
+msgid "Autosave"
+msgstr "Gem filer automatisk"
+
+#: ../support_files/bygfoot_options.glade.h:11
+msgid "Autosave interval "
+msgstr "Interval for automatisk gem "
+
+#: ../support_files/bygfoot_options.glade.h:13
+msgid "CPos "
+msgstr "Nuv. pos. "
+
+#: ../support_files/bygfoot_options.glade.h:14
+msgid "CSkill "
+msgstr "Nuv. evne "
+
+#: ../support_files/bygfoot_options.glade.h:15
+msgid "Cards "
+msgstr "Kort "
+
+#: ../support_files/bygfoot_options.glade.h:16
+msgid "Choose game language (might not work in Windows versions)"
+msgstr ""
+"Vælg sprog til at anvende i spillet (virker måske ikke i Windows-udgaver)"
+
+#: ../support_files/bygfoot_options.glade.h:17
+msgid "Close"
+msgstr "Luk"
+
+#: ../support_files/bygfoot_options.glade.h:18
+msgid "Confirm quit when not saved"
+msgstr "Bekræft afslutning, når der ikke er gemt"
+
+#: ../support_files/bygfoot_options.glade.h:19
+msgid "Confirm removing youths"
+msgstr "Bekræft fjernelse af elever"
+
+#: ../support_files/bygfoot_options.glade.h:20
+msgid "Confirm when unfit"
+msgstr "Bekræft, når ude af form"
+
+#: ../support_files/bygfoot_options.glade.h:21
+msgid "Constants file"
+msgstr "Konstantfil"
+
+#: ../support_files/bygfoot_options.glade.h:22
+msgid "Contract "
+msgstr "Kontrakt"
+
+#: ../support_files/bygfoot_options.glade.h:23
+msgid "Create cup news"
+msgstr "Opret nyheder for cup"
+
+#: ../support_files/bygfoot_options.glade.h:24
+msgid "Create league news"
+msgstr "Opret nyheder for liga"
+
+#: ../support_files/bygfoot_options.glade.h:25
+msgid "Create user news"
+msgstr "Opret nyheder for bruger"
+
+#: ../support_files/bygfoot_options.glade.h:26
+msgid "Default hotel"
+msgstr "Standardhotel"
+
+#: ../support_files/bygfoot_options.glade.h:27
+msgid "Default recreation:"
+msgstr "Standardfritid:"
+
+#: ../support_files/bygfoot_options.glade.h:28
+msgid "Default training:"
+msgstr "Standardtræning:"
+
+#: ../support_files/bygfoot_options.glade.h:29
+msgid "Default wager"
+msgstr "Normal indsats"
+
+#: ../support_files/bygfoot_options.glade.h:30
+msgid "ETal "
+msgstr "Ans. talent "
+
+#: ../support_files/bygfoot_options.glade.h:31
+msgid "Edit"
+msgstr "Rediger"
+
+#: ../support_files/bygfoot_options.glade.h:32
+msgid "Edit the constants used in the game"
+msgstr "Rediger de konstante størrelser anvendt i spillet"
+
+#: ../support_files/bygfoot_options.glade.h:33
+msgid ""
+"File containing settings which determine a lot of aspects of the game "
+"behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
+msgstr ""
+"Fil, der indeholder indstillinger, som bestemmer en masse aspekter i "
+"spillets opførsel. FORETAG INGEN ÆNDRINGER MED MINDRE DU VIRKELIG VED, HVAD "
+"DU FORETAGER DIG."
+
+#: ../support_files/bygfoot_options.glade.h:34
+msgid "Fitness "
+msgstr "Form"
+
+# (merk.: lån) stifte, (papirer) emittere.
+# Mangler forklaring på hvad det her er.
+#: ../support_files/bygfoot_options.glade.h:35
+msgid "Float"
+msgstr "Stifte"
+
+#: ../support_files/bygfoot_options.glade.h:36
+msgid "Font name"
+msgstr "Skrifttypenavn"
+
+#: ../support_files/bygfoot_options.glade.h:37
+msgid "Font used in treeviews"
+msgstr "Skrifttype brugt ved trævisning"
+
+#: ../support_files/bygfoot_options.glade.h:38
+msgid "Gameplay"
+msgstr "Spil"
+
+#: ../support_files/bygfoot_options.glade.h:39
+msgid "Games "
+msgstr "Spil"
+
+#: ../support_files/bygfoot_options.glade.h:40
+msgid "Global"
+msgstr "Global"
+
+#: ../support_files/bygfoot_options.glade.h:41
+msgid "Goals "
+msgstr "Mål"
+
+#: ../support_files/bygfoot_options.glade.h:42
+msgid "How many digits after the comma there are for skill etc."
+msgstr "Hvor mange cifre, der skal være efter kommaet for evner m.m."
+
+#: ../support_files/bygfoot_options.glade.h:43
+msgid "How many files the autosave uses"
+msgstr "Hvor mange filer, der vil blive brugt, når der gemmes automatisk"
+
+#: ../support_files/bygfoot_options.glade.h:44
+msgid "How often the game is saved automatically"
+msgstr "Hvor ofte spillet skal gemmes automatisk"
+
+#: ../support_files/bygfoot_options.glade.h:45
+msgid ""
+"How often the player list gets refreshed during a live game (in live game "
+"minutes)"
+msgstr ""
+"Hvor ofte spillerlisten bliver opdateret under en direkte kamp (i "
+"kampminutter)"
+
+#: ../support_files/bygfoot_options.glade.h:46
+msgid ""
+"If checked, weeks without user teams playing are calculated automatically "
+"(without the user having to press 'New week')"
+msgstr ""
+"Hvis der er sat hak i fluebenet, vil uger uden brugerkampe blive beregnet "
+"automatisk (uden at brugeren skal trykke på 'Ny uge')"
+
+#: ../support_files/bygfoot_options.glade.h:47
+msgid "Integer"
+msgstr "Helt tal"
+
+#: ../support_files/bygfoot_options.glade.h:48
+msgid "Language"
+msgstr "Sprog"
+
+#: ../support_files/bygfoot_options.glade.h:49
+msgid "League "
+msgstr "Liga"
+
+#: ../support_files/bygfoot_options.glade.h:50
+msgid "List 1 "
+msgstr "Liste 1 "
+
+#: ../support_files/bygfoot_options.glade.h:51
+msgid "List 2"
+msgstr "Liste 2"
+
+#: ../support_files/bygfoot_options.glade.h:53
+msgid "Live game speed factor"
+msgstr "Hastighedsfaktor for direkte kampe"
+
+#: ../support_files/bygfoot_options.glade.h:54
+msgid "Live game verbosity"
+msgstr "Kommentarniveau for direkte kampe"
+
+#: ../support_files/bygfoot_options.glade.h:55
+msgid "Maximize main window"
+msgstr "Maximér hovedvindue"
+
+#: ../support_files/bygfoot_options.glade.h:56
+msgid "Name "
+msgstr "Navn "
+
+#: ../support_files/bygfoot_options.glade.h:58
+msgid "No automatic popup"
+msgstr "Ingen automatisk pop op"
+
+#: ../support_files/bygfoot_options.glade.h:59
+msgid "Pause when break"
+msgstr "Pause ved halvleg"
+
+#: ../support_files/bygfoot_options.glade.h:60
+msgid "Pause when injury"
+msgstr "Pause ved skader"
+
+#: ../support_files/bygfoot_options.glade.h:61
+msgid "Pause when red card"
+msgstr "Pause ved rødt kort"
+
+#: ../support_files/bygfoot_options.glade.h:62
+msgid "Player attribute precision"
+msgstr "Præcision for spilleregenskaber"
+
+#: ../support_files/bygfoot_options.glade.h:63
+msgid "Player attributes shown"
+msgstr "Viste spilleregenskaber"
+
+#: ../support_files/bygfoot_options.glade.h:64
+msgid "Player list refresh rate"
+msgstr "Opfriskningshastighed for spillerliste"
+
+#: ../support_files/bygfoot_options.glade.h:65
+msgid "Popup for user news"
+msgstr "Pop op vedrørende brugernyheder"
+
+#: ../support_files/bygfoot_options.glade.h:66
+msgid "Pos "
+msgstr "Pos. "
+
+#: ../support_files/bygfoot_options.glade.h:67
+msgid "Prefer messages"
+msgstr "Foretrækker beskeder"
+
+#: ../support_files/bygfoot_options.glade.h:69
+msgid "Reload from file"
+msgstr "Genindlæs fra fil"
+
+#: ../support_files/bygfoot_options.glade.h:70
+msgid "Reload the constants file"
+msgstr "Genindlæs konstantfil"
+
+#: ../support_files/bygfoot_options.glade.h:71
+msgid "Save global settings to file"
+msgstr "Gem globale indstillinger i fil"
+
+#: ../support_files/bygfoot_options.glade.h:72
+msgid "Save overwrites"
+msgstr "Overskriv ved gemning"
+
+#: ../support_files/bygfoot_options.glade.h:73
+msgid "Save to file"
+msgstr "Gem til fil"
+
+#: ../support_files/bygfoot_options.glade.h:74
+msgid "Save user settings to file"
+msgstr "Gem brugerindstillinger i fil"
+
+#: ../support_files/bygfoot_options.glade.h:75
+msgid "Set to 0 to switch off warning"
+msgstr "Sæt til 0 for at slå advarsel fra"
+
+#: ../support_files/bygfoot_options.glade.h:76
+msgid "Shots "
+msgstr "Skud "
+
+#: ../support_files/bygfoot_options.glade.h:77
+msgid "Show all leagues in the fixture view"
+msgstr "Vis alle ligaer i resultatoversigt"
+
+#: ../support_files/bygfoot_options.glade.h:78
+msgid "Show job offers"
+msgstr "Vis jobtilbud"
+
+#: ../support_files/bygfoot_options.glade.h:79
+msgid "Show live game"
+msgstr "Vis 'direkte' kamp"
+
+#: ../support_files/bygfoot_options.glade.h:80
+#: ../support_files/bygfoot_misc3.glade.h:18
+msgid "Show matches from all leagues"
+msgstr "Vis kampe fra alle ligaer"
+
+#: ../support_files/bygfoot_options.glade.h:81
+#: ../support_files/bygfoot_misc3.glade.h:19
+msgid "Show matches from cups"
+msgstr "Vis kampe fra pokalturneringer"
+
+#: ../support_files/bygfoot_options.glade.h:82
+#: ../support_files/bygfoot_misc3.glade.h:20
+msgid "Show only my recent bets"
+msgstr "Vis kun mine seneste væddemål"
+
+#: ../support_files/bygfoot_options.glade.h:83
+msgid "Show only recent news"
+msgstr "Vis kun de seneste nyheder"
+
+#: ../support_files/bygfoot_options.glade.h:84
+msgid "Show overall games/goals"
+msgstr "Vis alle typer kampe/mål"
+
+#: ../support_files/bygfoot_options.glade.h:85
+msgid "Show progressbar pictures"
+msgstr "Vis billeder til statuslinje"
+
+#: ../support_files/bygfoot_options.glade.h:86
+msgid "Show tendency bar"
+msgstr "Vis tendensbjælke"
+
+#: ../support_files/bygfoot_options.glade.h:87
+msgid "Show warning if a player contract gets below "
+msgstr "Vis advarsel, hvis en spillerkontrakt kommer under "
+
+#: ../support_files/bygfoot_options.glade.h:88
+msgid "Skill "
+msgstr "Evne "
+
+#: ../support_files/bygfoot_options.glade.h:89
+msgid "Skip weeks without user matches"
+msgstr "Spring over uger uden kampe for brugere"
+
+#: ../support_files/bygfoot_options.glade.h:90
+msgid "Status "
+msgstr "Status "
+
+#: ../support_files/bygfoot_options.glade.h:91
+msgid "String"
+msgstr "Streńg"
+
+#: ../support_files/bygfoot_options.glade.h:92
+msgid "Swap adapts structure"
+msgstr "Lad formation følge spillerombytning"
+
+#: ../support_files/bygfoot_options.glade.h:93
+msgid "Team "
+msgstr "Klub "
+
+#: ../support_files/bygfoot_options.glade.h:95
+msgid "Value "
+msgstr "Værdi "
+
+#: ../support_files/bygfoot_options.glade.h:96
+msgid "Wage "
+msgstr "Løn"
+
+#: ../support_files/bygfoot_options.glade.h:97
+msgid ""
+"Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
+msgstr ""
+"Hvorvidt 'Gem' overskriver den nuværende fil, eller dukker op som et 'Gem "
+"som'-vindue"
+
+#: ../support_files/bygfoot_options.glade.h:98
+msgid ""
+"Whether a confirmation popup is shown when you kick out a youth from your "
+"academy"
+msgstr ""
+"Hvorvidt et bekræftigelsesvindue skal vises, når du smider en ungdomsspiller "
+"ud af dit akademi"
+
+#: ../support_files/bygfoot_options.glade.h:99
+msgid ""
+"Whether game starts with a maximized main window (doesn't work with all "
+"window managers)"
+msgstr ""
+"Hvorvidt spillet starter med et fuldskærmsvindue (virker ikke med alle "
+"vindueshåndterere)"
+
+#: ../support_files/bygfoot_options.glade.h:100
+msgid ""
+"Whether in the weekly fixture view all leagues or only the user league is "
+"shown"
+msgstr ""
+"Hvorvidt alle ligaer vises i den ugentlige resultatoversigt, eller der kun "
+"vises resultater fra brugerens liga"
+
+#: ../support_files/bygfoot_options.glade.h:101
+msgid ""
+"Whether swapping two players automatically adapts the team structure to the "
+"player positions"
+msgstr ""
+"Hvorvidt ombytning på to spillere automatisk tilpasser holdformationen til "
+"spillerpositioner"
+
+#: ../support_files/bygfoot_options.glade.h:102
+msgid "Whether to automatically save the game regularly"
+msgstr "Hvorvidt spillet skal gemmes automatisk med regelmæssige intervaller"
+
+#: ../support_files/bygfoot_options.glade.h:103
+msgid ""
+"Whether to show a confirmation popup if a user team has an injured or banned "
+"player in the startup formation"
+msgstr ""
+"Hvorvidt, der skal vises et bekræftigelsesvindue, hvis et brugerhold har en "
+"skadet eller karantænramt spiller i startformationen"
+
+#: ../support_files/bygfoot_options.glade.h:104
+msgid ""
+"Whether to show a confirmation popup when you press quit and the game state "
+"is not saved"
+msgstr ""
+"Hvorvidt, der skal vises et bekræftigelsesvindue, når du vil afslutte uden "
+"at spillets tilstand er gemt"
+
+#: ../support_files/bygfoot_options.glade.h:105
+msgid "Whether to show job offers when a user is successful"
+msgstr "Hvorvidt at jobtilbud skal vises, når en bruger har succes"
+
+#: ../support_files/bygfoot_options.glade.h:106
+msgid ""
+"Whether to show pictures on top of the progressbar when loading/saving or "
+"calculating results"
+msgstr ""
+"Hvorvidt, der skal vises billeder ved statuslinjen, når der hentes/gemmes, "
+"eller beregnes resultater"
+
+#: ../support_files/bygfoot_options.glade.h:107
+msgid "Whether to show the player games/goals value in all competitions"
+msgstr "Hvorvidt spillerens kampe/mål-værdi for alle turneringer skal vises"
+
+#: ../support_files/bygfoot_options.glade.h:108
+msgid ""
+"Whether to show warnings and such in the message area in the main window "
+"when possible"
+msgstr ""
+"Hvorvidt, der skal vises advarsler og lignende i hovedvinduets beskedområde, "
+"når dette er muligt."
+
+#: ../support_files/bygfoot_misc3.glade.h:2
+msgid "Betting -- Left click on odd to place or remove bet"
+msgstr "Væddemål -- venstreklik på odds for at tilføje eller fjerne væddemål"
+
+#: ../support_files/bygfoot_misc3.glade.h:4
+msgid "Calculate start week"
+msgstr "Kalkuler begyndelsesuge"
+
+# engelsk fejl? staves installment ikke instalment
+#: ../support_files/bygfoot_misc3.glade.h:5
+msgid "Calculate weekly installment"
+msgstr "Kalkuler ugelig rate"
+
+#: ../support_files/bygfoot_misc3.glade.h:7
+msgid "Ctrl-N"
+msgstr "Ctrl+N"
+
+#: ../support_files/bygfoot_misc3.glade.h:8
+msgid "Ctrl-O"
+msgstr "Ctrl+O"
+
+#: ../support_files/bygfoot_misc3.glade.h:9
+msgid "Ctrl-R"
+msgstr "Ctrl+R"
+
+#: ../support_files/bygfoot_misc3.glade.h:10
+msgid "Current settings:"
+msgstr "Nuværende opsætning:"
+
+#. Splash screen hint question.
+#: ../support_files/bygfoot_misc3.glade.h:12
+msgid "Did you know?"
+msgstr "Dagens tip:"
+
+#: ../support_files/bygfoot_misc3.glade.h:14
+msgid "New settings:"
+msgstr "Ny opsætning:"
+
+#: ../support_files/bygfoot_misc3.glade.h:15
+msgid "Next"
+msgstr "Næste"
+
+#: ../support_files/bygfoot_misc3.glade.h:16
+msgid "Previous"
+msgstr "Forrige"
+
+#: ../support_files/bygfoot_misc3.glade.h:21
+msgid "Start _new game"
+msgstr "Start _nyt spil"
+
+#: ../support_files/bygfoot_misc3.glade.h:22
+msgid "Start in week"
+msgstr "Start i uge"
+
+#: ../support_files/bygfoot_misc3.glade.h:23
+msgid "Start in week:"
+msgstr "Start i uge:"
+
+#: ../support_files/bygfoot_misc3.glade.h:24
+msgid "Weekly installment"
+msgstr "Ugerate"
+
+#: ../support_files/bygfoot_misc3.glade.h:25
+msgid "Weekly installment:"
+msgstr "Ugerate:"
+
+#: ../support_files/bygfoot_misc3.glade.h:26
+msgid ""
+"Whether to show cup matches. Use the options window to toggle permanently."
+msgstr ""
+"Hvorvidt der skal vises kampe fra pokalturneringer. Du kan ændre dette "
+"permanent i \"Indstillinger\"."
+
+#: ../support_files/bygfoot_misc3.glade.h:27
+msgid ""
+"Whether to show matches of all leagues. Use the options window to toggle "
+"permanently."
+msgstr ""
+"Hvorvidt der skal vises kampe fra alle turneringer. Du kan ændre dette "
+"permanent i opsætningsvinduet."
+
+#: ../support_files/bygfoot_misc3.glade.h:28
+msgid "Whether to show only your bets in the recent bets list"
+msgstr "Hvorvidt der kun skal vises dine væddemål"
+
+#: ../support_files/bygfoot_misc3.glade.h:29
+msgid "Your debt:"
+msgstr "Din gæld:"
+
+#: ../support_files/bygfoot_misc3.glade.h:30
+msgid "_Load game"
+msgstr "Ind_læs spil"
+
+#: ../support_files/bygfoot_misc3.glade.h:31
+msgid "_Resume game"
+msgstr "_Fortsæt spil"
+
+#: ../support_files/bygfoot_training.glade.h:1
+msgid "Camp points"
+msgstr "Lejrpoint"
+
+#: ../support_files/bygfoot_training.glade.h:6
+msgid "Recreation"
+msgstr "Rekreation"
+
+#: ../support_files/bygfoot_training.glade.h:7
+msgid "Save settings as default"
+msgstr "Gem opsætning som standard"
+
+#: ../support_files/bygfoot_training.glade.h:8
+msgid "Training"
+msgstr "Træning"
 
 #~ msgid ""
-#~ "Bygfoot debug window. If you got here by accident, CLOSE IMMEDIATELY "
-#~ "(otherwise your CPU will be destroyed by overheating)."
+#~ "The lower this value the faster the live game commentary will scroll."
 #~ msgstr ""
-#~ "Bygfoots fejlsøgningsvindue. Hvis du er havnet her ved et tilfælde, SÅ "
-#~ "LUK DET ØJEBLIKKELIGT (ellers vil din processor blive ødelagt af "
-#~ "overophedning)."
+#~ "Jo lavere, denne værdi er, des hurtigere vil kommentarerne under "
+#~ "'direkte' kamp blive opdateret."
 
-#~ msgid "Click on a user to remove him from the game."
-#~ msgstr "Klik på en bruger for at fjerne denne fra spillet."
+#~ msgid "The higher this value, the more commentary you'll see."
+#~ msgstr "Jo højere værdi, des flere kommentarer vil du se."
 
-#~ msgid "Confirm & schedule repayment"
-#~ msgstr "Bekræft & planlæg tilbagebetaling"
+#~ msgid ""
+#~ "Whether the subs (e.g. for injured players) are made by the CPU. This is "
+#~ "automatically done if the live game is off."
+#~ msgstr ""
+#~ "Hvorvidt udskiftninger (dvs. af skadede spillere) foretages af "
+#~ "computeren. Dette sker automatisk hvis 'direkte kampe' er slået fra."
 
-#~ msgid "Debug"
-#~ msgstr "Fejlfinding"
+#~ msgid "Whether the live game pauses when a user player is injured"
+#~ msgstr ""
+#~ "Hvorvidt den direkte kamp skal sættes på pause, når en spiller bliver "
+#~ "skadet"
 
-#~ msgid "Decide later"
-#~ msgstr "Beslut senere"
+#~ msgid "Whether the live game pauses when a user player is sent off"
+#~ msgstr ""
+#~ "Hvorvidt den direkte kamp skal sættes på pause, når en spiller bliver "
+#~ "udvist"
+
+#~ msgid "Whether the live game pauses at half time and extra time"
+#~ msgstr ""
+#~ "Hvorvidt den direkte kamp skal sættes på pause ved halvleg og forlænget "
+#~ "spilletid"
+
+#~ msgid "Whether to show matches of all leagues in the betting window"
+#~ msgstr "Hvorvidt kampe fra alle turneringer skal vises under væddemål"
+
+#~ msgid "Whether to show cup matches in the betting window"
+#~ msgstr "Hvorvidt kampe fra pokalturneringer skal vises i væddemål"
+
+#~ msgid "How much you wager by default"
+#~ msgstr "Hvor meget, du normalt satser"
+
+#~ msgid "Show news window after a matchday when new user news was created"
+#~ msgstr "Vis nyhedsvindue efter en kampdag når nye brugernyheder oprettes"
+
+#~ msgid "Always show news window after a matchday"
+#~ msgstr "Vis altid nyhedsvindue efter en kampdag"
+
+#~ msgid ""
+#~ "Whether to save the global settings to file (so that they get loaded next "
+#~ "time you start a new game)"
+#~ msgstr ""
+#~ "Hvorvidt de globale indstillinger skal gemmes i en fil (så de kan "
+#~ "indlæses næste gang, du starter et nyt spil)"
+
+#~ msgid ""
+#~ "Whether to save the user settings to file (so that they get loaded next "
+#~ "time this user starts a new game)"
+#~ msgstr ""
+#~ "Hvorvidt brugerindstillingerne skal gemmes i en fil (så de kan indlæses "
+#~ "næste gang, brugeren starter et nyt spil)"
+
+#~ msgid ""
+#~ "Save changes to the constants file. DON'T DO THIS UNLESS YOU REALLY KNOW "
+#~ "WHAT YOU ARE DOING."
+#~ msgstr ""
+#~ "Gem ændringer til filen for konstante størrelser. GØR IKKE DETTE MED "
+#~ "MINDRE DU VIRKELIG VED, HVAD DU FORETAGER DIG."
+
+#~ msgid ""
+#~ "Reload constants files. This will overwrite any changes you made in the "
+#~ "current game session."
+#~ msgstr ""
+#~ "Genindlæs filen for de konstante størrelser. Dette vil overskrive alle "
+#~ "ændringer du har foretaget i det aktuelle spil."
+
+#~ msgid ""
+#~ "Close window. Changes will only be saved for the current session, unless "
+#~ "you also save to file."
+#~ msgstr ""
+#~ "Luk vindue. Ændringer vil kun blive gemt for den nuværende session, "
+#~ "medmindre du også gemmer til en fil."
 
 #~ msgid "Headline"
 #~ msgstr "Overskrift"
@@ -3727,20 +3752,8 @@ msgstr "_Bruger"
 #~ msgid "League table"
 #~ msgstr "Ligatabel"
 
-#~ msgid "Make offer"
-#~ msgstr "Giv et tilbud"
-
-#~ msgid "Money (approx.)"
-#~ msgstr "Beløb (ca.)"
-
 #~ msgid "Move to team"
 #~ msgstr "Flyt til klub"
 
-#~ msgid "Player list"
-#~ msgstr "Spillerliste"
-
 #~ msgid "Preferences"
 #~ msgstr "Indstillinger"
-
-#~ msgid "Users -- click to remove"
-#~ msgstr "Brugere -- klik for at fjerne"

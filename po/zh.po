@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 14:26+0100\n"
+"POT-Creation-Date: 2009-10-29 14:09+0100\n"
 "PO-Revision-Date: 2009-07-07 22:03+0800\n"
 "Last-Translator: liubenyuan <liubenyuan@gmail.com>\n"
 "Language-Team: Chinese <i18n-translation@lists.linux.net.cn>\n"
@@ -798,46 +798,6 @@ msgstr "你应该添加一个玩家"
 msgid "Remove user %s from the game?"
 msgstr "确认将玩家 %s 从游戏中删除？"
 
-#: ../src/misc2_interface.c:271
-msgid "Current file"
-msgstr "当前文件"
-
-#: ../src/misc2_interface.c:282
-msgid "Open a memorable matches file"
-msgstr "打开一个 赛季集锦 文件"
-
-#: ../src/misc2_interface.c:287
-msgid "Reload matches from file"
-msgstr "从文件中加载比赛"
-
-#: ../src/misc2_interface.c:301 ../src/options_interface.c:411
-msgid "Reload"
-msgstr "重新加载"
-
-#: ../src/misc2_interface.c:308
-msgid "Import the matches from a memorable matches file"
-msgstr "从 赛季集锦 中导入比赛"
-
-#: ../src/misc2_interface.c:322
-msgid "Import file"
-msgstr "导入文件"
-
-#: ../src/misc2_interface.c:344
-msgid "Save changes to file and close"
-msgstr "保存设置并关闭"
-
-#: ../src/misc2_interface.c:358
-msgid "Save and close"
-msgstr "保存并关闭"
-
-#: ../src/misc2_interface.c:365
-msgid "Reload matches from file and close"
-msgstr "从文件中读取比赛并关闭"
-
-#: ../src/misc2_interface.c:379
-msgid "Reload and close"
-msgstr "读取并关闭"
-
 #: ../src/misc3_callbacks.c:154
 #, c-format
 msgid "You bet on outcome %d with an odd of %.2f. How much do you wager?"
@@ -873,551 +833,6 @@ msgstr "%s 和 %s (%d)"
 msgid "%s and %s"
 msgstr "%s 和 %s"
 
-#: ../src/options_interface.c:256
-msgid "Confirm quit when not saved"
-msgstr "没保存退出时提示玩家"
-
-#: ../src/options_interface.c:259
-msgid ""
-"Whether to show a confirmation popup when you press quit and the game state "
-"is not saved"
-msgstr "在退出时, 对未保存的游戏显示一个弹出示窗口加以确认"
-
-#: ../src/options_interface.c:261
-msgid "Confirm when unfit"
-msgstr "不适时需要确认"
-
-#: ../src/options_interface.c:264
-msgid ""
-"Whether to show a confirmation popup if a user team has an injured or banned "
-"player in the startup formation"
-msgstr "是否在球队首发阵容中有 受伤/禁赛 球员时弹出一个对话框加以确认"
-
-#: ../src/options_interface.c:266
-msgid "Save overwrites"
-msgstr "保存并覆盖"
-
-#: ../src/options_interface.c:269
-msgid ""
-"Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
-msgstr "设定保存选项为： 覆盖掉原先文件 或者 弹出对话框显示另存为"
-
-#: ../src/options_interface.c:276
-msgid "Maximize main window"
-msgstr "最大化主窗口"
-
-#: ../src/options_interface.c:279
-msgid ""
-"Whether game starts with a maximized main window (doesn't work with all "
-"window managers)"
-msgstr "是否在游戏开始时进入最大化窗口（注意：并不是对所有的窗口管理器都有用）"
-
-#: ../src/options_interface.c:281
-msgid "Prefer messages"
-msgstr "提示信息"
-
-#: ../src/options_interface.c:284
-msgid ""
-"Whether to show warnings and such in the message area in the main window "
-"when possible"
-msgstr "是否在尽可能的情况下在主窗口的消息栏中显示警告信息或者其他相关信息"
-
-#: ../src/options_interface.c:286
-msgid "Show progressbar pictures"
-msgstr "显示进度条图片"
-
-#: ../src/options_interface.c:289
-msgid ""
-"Whether to show pictures on top of the progressbar when loading/saving or "
-"calculating results"
-msgstr "是否在 读取/保存 或者计算结果时在进度条上显示图片"
-
-#: ../src/options_interface.c:296
-msgid "Skip weeks without user matches"
-msgstr "跳过没有玩家比赛的周次"
-
-#: ../src/options_interface.c:299
-msgid ""
-"If checked, weeks without user teams playing are calculated automatically "
-"(without the user having to press 'New week')"
-msgstr ""
-"如果选择了这项, 当所在的周没有玩家比赛时, 系统会自动计算（也就是说, 你不用在"
-"这时候点击“新的一周”按钮了）"
-
-#: ../src/options_interface.c:318
-msgid "Autosave interval "
-msgstr "自动保存间隔"
-
-#: ../src/options_interface.c:326
-msgid "How often the game is saved automatically"
-msgstr "用来确定系统自动保存的周期"
-
-#: ../src/options_interface.c:329
-msgid " Autosave files "
-msgstr " 自动存档"
-
-#: ../src/options_interface.c:337
-msgid "How many files the autosave uses"
-msgstr "确定系统使用多少个文件用于自动存档"
-
-#: ../src/options_interface.c:339
-msgid "Player attribute precision"
-msgstr "球员属性精度设定"
-
-#: ../src/options_interface.c:346
-msgid "Player list refresh rate"
-msgstr "球员列表更新频率"
-
-#: ../src/options_interface.c:353
-msgid "Constants file"
-msgstr "文件"
-
-#: ../src/options_interface.c:365 ../src/options_interface.c:473
-msgid "Font used in treeviews"
-msgstr "设定显示所用的字体"
-
-#: ../src/options_interface.c:379
-msgid "Font name"
-msgstr "字体名称"
-
-#: ../src/options_interface.c:392
-msgid ""
-"File containing settings which determine a lot of aspects of the game "
-"behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
-msgstr ""
-"设置文件会很大程度上决定游戏的可玩性. 除非你真的知道如何去做, 否则不要轻易改"
-"动设置文件"
-
-#: ../src/options_interface.c:397
-msgid "Reload the constants file"
-msgstr "重新读取文件"
-
-#: ../src/options_interface.c:418
-msgid "Edit the constants used in the game"
-msgstr "编辑系统变量"
-
-#: ../src/options_interface.c:432
-msgid "Edit"
-msgstr "编辑"
-
-#: ../src/options_interface.c:436
-msgid "Language"
-msgstr "语言"
-
-#: ../src/options_interface.c:443
-msgid "Autosave"
-msgstr "自动保存"
-
-#: ../src/options_interface.c:448
-msgid "Whether to automatically save the game regularly"
-msgstr "是否自动存档"
-
-#: ../src/options_interface.c:456
-msgid "How many digits after the comma there are for skill etc."
-msgstr "用几位数字来表征球员技能值."
-
-#: ../src/options_interface.c:465
-msgid ""
-"How often the player list gets refreshed during a live game (in live game "
-"minutes)"
-msgstr "在实时比赛中球员列表的更新速度（以实时比赛的计时单位 分 为标准）"
-
-#: ../src/options_interface.c:480
-msgid "Choose game language (might not work in Windows versions)"
-msgstr "选择游戏语言(可能在Windows下无法工作)"
-
-#: ../src/options_interface.c:486
-msgid "Global"
-msgstr "全局选项"
-
-#: ../src/options_interface.c:498
-msgid "Confirm removing youths"
-msgstr "移除年轻球员时要确认"
-
-#: ../src/options_interface.c:501
-msgid ""
-"Whether a confirmation popup is shown when you kick out a youth from your "
-"academy"
-msgstr "当你想将一名年轻球员扫地出门时弹出对话框加以确认"
-
-#: ../src/options_interface.c:503
-msgid "Show job offers"
-msgstr "显示工作邀请"
-
-#: ../src/options_interface.c:506
-msgid "Whether to show job offers when a user is successful"
-msgstr "当玩家取得成功时显示其他球会的 邀请执教 信息"
-
-#: ../src/options_interface.c:511
-msgid "Set to 0 to switch off warning"
-msgstr "设定为0来取消警告信息"
-
-#: ../src/options_interface.c:517
-msgid "Show warning if a player contract gets below "
-msgstr "显示警告信息当俱乐部中有球员合同期限低于 "
-
-#: ../src/options_interface.c:527
-msgid " months"
-msgstr " 月"
-
-#: ../src/options_interface.c:531
-msgid "Show all leagues in the fixture view"
-msgstr "在赛程表中显示所有联赛信息"
-
-#: ../src/options_interface.c:534
-msgid ""
-"Whether in the weekly fixture view all leagues or only the user league is "
-"shown"
-msgstr "决定是否在每周的赛程表中显示所有联赛 或者 只显示玩家所在联赛"
-
-#: ../src/options_interface.c:549
-msgid "Swap adapts structure"
-msgstr "自动改变阵形"
-
-#: ../src/options_interface.c:552
-msgid ""
-"Whether swapping two players automatically adapts the team structure to the "
-"player positions"
-msgstr "当变更球员时是否根据球员的位置自动更新球队阵形"
-
-#: ../src/options_interface.c:554
-msgid "Show overall games/goals"
-msgstr "显示所有 比赛/进球"
-
-#: ../src/options_interface.c:557
-msgid "Whether to show the player games/goals value in all competitions"
-msgstr "是否在所有比赛中显示球员的 比赛/进球 值"
-
-#: ../src/options_interface.c:559
-msgid "Always store/restore your default team"
-msgstr "总是 保存/回复 你的默认球队设置"
-
-#: ../src/options_interface.c:562
-msgid "Always store/restore your default team before/after a match"
-msgstr "在比赛 之前/之后 总是 保存/恢复 你的默认球队设置"
-
-#: ../src/options_interface.c:564
-msgid "Gameplay"
-msgstr "游戏规则"
-
-#: ../src/options_interface.c:576
-msgid "Show live game"
-msgstr "显示比赛现场"
-
-#: ../src/options_interface.c:580
-msgid "Show tendency bar"
-msgstr "显示形势条"
-
-#: ../src/options_interface.c:589
-msgid "Live game speed factor"
-msgstr "比赛现场速度"
-
-#: ../src/options_interface.c:596
-msgid "Live game verbosity"
-msgstr "比赛现场解说细致度"
-
-#: ../src/options_interface.c:609
-msgid "The lower this value the faster the live game commentary will scroll."
-msgstr "数值越低现场评论的滚动速度就会越快"
-
-#: ../src/options_interface.c:618
-msgid "The higher this value, the more commentary you'll see."
-msgstr "数值越高, 你就会看到更详细的评论"
-
-#: ../src/options_interface.c:621
-msgid "Automatic substitutions"
-msgstr "自动更换替补球员"
-
-#: ../src/options_interface.c:624
-msgid ""
-"Whether the subs (e.g. for injured players) are made by the CPU. This is "
-"automatically done if the live game is off."
-msgstr ""
-"替补球员替下主力球员（伤病等原因）是由系统决定的. 当 比赛现场 被禁止时此为默"
-"认选项"
-
-#: ../src/options_interface.c:635
-msgid "Pause when injury"
-msgstr "伤病自动暂停"
-
-#: ../src/options_interface.c:638
-msgid "Whether the live game pauses when a user player is injured"
-msgstr "当有球员受伤时是否自动暂停游戏"
-
-#: ../src/options_interface.c:640
-msgid "Pause when red card"
-msgstr "红牌自动暂停"
-
-#: ../src/options_interface.c:643
-msgid "Whether the live game pauses when a user player is sent off"
-msgstr "当球员被红牌罚下时自动暂停游戏"
-
-#: ../src/options_interface.c:645
-msgid "Pause when break"
-msgstr "中场休息暂停"
-
-#: ../src/options_interface.c:648
-msgid "Whether the live game pauses at half time and extra time"
-msgstr "在中场休息或者加时赛时自动暂停游戏"
-
-#: ../src/options_interface.c:650 ../support_files/bygfoot_misc.glade.h:33
-#: ../support_files/bygfoot.glade.h:42
-msgid "Live game"
-msgstr "比赛现场"
-
-#: ../src/options_interface.c:658
-msgid "Name "
-msgstr "姓名 "
-
-#: ../src/options_interface.c:665
-msgid "CPos "
-msgstr "当前位置"
-
-#: ../src/options_interface.c:672
-msgid "Pos "
-msgstr "位置"
-
-#: ../src/options_interface.c:679
-msgid "CSkill "
-msgstr "当前技能"
-
-#: ../src/options_interface.c:686
-msgid "Skill "
-msgstr "技能"
-
-#: ../src/options_interface.c:693
-msgid "Fitness "
-msgstr "健康情况"
-
-#: ../src/options_interface.c:700
-msgid "Games "
-msgstr "比赛"
-
-#: ../src/options_interface.c:707
-msgid "Shots "
-msgstr "射门"
-
-#: ../src/options_interface.c:714
-msgid "Goals "
-msgstr "进球"
-
-#: ../src/options_interface.c:721
-msgid "Status "
-msgstr "状态"
-
-#: ../src/options_interface.c:728
-msgid "Cards "
-msgstr "得牌 "
-
-#: ../src/options_interface.c:735
-msgid "Age "
-msgstr "年龄 "
-
-#: ../src/options_interface.c:742
-msgid "ETal "
-msgstr "潜力值"
-
-#: ../src/options_interface.c:749
-msgid "Value "
-msgstr "身价 "
-
-#: ../src/options_interface.c:756
-msgid "Wage "
-msgstr "赌注"
-
-#: ../src/options_interface.c:763
-msgid "Contract "
-msgstr "合同 "
-
-#: ../src/options_interface.c:770
-msgid "League "
-msgstr "联赛 "
-
-#: ../src/options_interface.c:777
-msgid "Team "
-msgstr "球队 "
-
-#: ../src/options_interface.c:1014
-msgid "Attribute "
-msgstr "属性 "
-
-#: ../src/options_interface.c:1021
-msgid "List 1 "
-msgstr "列表 1"
-
-#: ../src/options_interface.c:1028
-msgid "List 2"
-msgstr "列表 2"
-
-#: ../src/options_interface.c:1042
-msgid "Player attributes shown"
-msgstr "显示球员属性"
-
-#: ../src/options_interface.c:1054 ../support_files/bygfoot_misc3.glade.h:18
-msgid "Show matches from all leagues"
-msgstr "显示所有联赛"
-
-#: ../src/options_interface.c:1057
-msgid "Whether to show matches of all leagues in the betting window"
-msgstr "是否在下注窗口中显示所有联赛的比赛信息"
-
-#: ../src/options_interface.c:1059 ../support_files/bygfoot_misc3.glade.h:19
-msgid "Show matches from cups"
-msgstr "显示所有杯赛"
-
-#: ../src/options_interface.c:1062
-msgid "Whether to show cup matches in the betting window"
-msgstr "是否在下注窗口中显示杯赛信息"
-
-#: ../src/options_interface.c:1065 ../support_files/bygfoot_misc3.glade.h:20
-msgid "Show only my recent bets"
-msgstr "显示我的最近下注"
-
-#: ../src/options_interface.c:1073
-msgid "Default wager"
-msgstr "默认赌注"
-
-#: ../src/options_interface.c:1081
-msgid "How much you wager by default"
-msgstr "决定你的默认下注的多少"
-
-#: ../src/options_interface.c:1084 ../src/treeview.c:1520
-#: ../src/treeview.c:1530 ../src/window.c:986
-#: ../support_files/bygfoot.glade.h:20
-msgid "Betting"
-msgstr "下注"
-
-#: ../src/options_interface.c:1098
-msgid "Default hotel"
-msgstr "默认宾馆"
-
-#: ../src/options_interface.c:1121
-msgid "Default recreation:"
-msgstr "默认消遣活动："
-
-#: ../src/options_interface.c:1141
-msgid "Default training:"
-msgstr "默认训练："
-
-#: ../src/options_interface.c:1151 ../src/treeview.c:1616 ../src/window.c:1001
-#: ../support_files/bygfoot_training.glade.h:9
-#: ../support_files/bygfoot.glade.h:101
-msgid "Training camp"
-msgstr "训练营"
-
-#: ../src/options_interface.c:1163
-msgid "Create user news"
-msgstr "创造玩家讯息"
-
-#: ../src/options_interface.c:1167
-msgid "Create cup news"
-msgstr "创造优胜杯讯息"
-
-#: ../src/options_interface.c:1171
-msgid "Create league news"
-msgstr "创造联赛讯息"
-
-#: ../src/options_interface.c:1175
-msgid "Show only recent news"
-msgstr "显示最近讯息"
-
-#: ../src/options_interface.c:1183
-msgid "No automatic popup"
-msgstr "无自动弹出窗口"
-
-#: ../src/options_interface.c:1189
-msgid "Popup for user news"
-msgstr "显示玩家讯息在弹出窗口内"
-
-#: ../src/options_interface.c:1192
-msgid "Show news window after a matchday when new user news was created"
-msgstr "如赛日后有新玩家被创建, 在窗口内显示相关讯息"
-
-#: ../src/options_interface.c:1196
-msgid "Automatic popup"
-msgstr "自动弹出窗口"
-
-#: ../src/options_interface.c:1199
-msgid "Always show news window after a matchday"
-msgstr "总是在比赛日后显示讯息窗口"
-
-#: ../src/options_interface.c:1203 ../support_files/bygfoot.glade.h:52
-msgid "News"
-msgstr "新闻"
-
-#: ../src/options_interface.c:1220
-msgid "Save global settings to file"
-msgstr "保存全局设置到文件"
-
-#: ../src/options_interface.c:1223
-msgid ""
-"Whether to save the global settings to file (so that they get loaded next "
-"time you start a new game)"
-msgstr ""
-"决定是否将全局设置保存到文件（那样当你下次开始一个新的游戏时会自动读取）"
-
-#: ../src/options_interface.c:1225
-msgid "Save user settings to file"
-msgstr "保存玩家设置到文件"
-
-#: ../src/options_interface.c:1228
-msgid ""
-"Whether to save the user settings to file (so that they get loaded next time "
-"this user starts a new game)"
-msgstr ""
-"决定是否将玩家设置保存到文件（那样当玩家开始一个新的游戏时会被自动读取）"
-
-#: ../src/options_interface.c:1237 ../support_files/bygfoot_misc3.glade.h:13
-#: ../support_files/bygfoot_misc.glade.h:27
-msgid "Esc"
-msgstr "Esc"
-
-#: ../src/options_interface.c:1527
-msgid "Integer"
-msgstr "整型"
-
-#: ../src/options_interface.c:1541
-msgid "Float"
-msgstr "浮点"
-
-#: ../src/options_interface.c:1555
-msgid "String"
-msgstr "字符"
-
-#: ../src/options_interface.c:1569
-msgid "Appearance"
-msgstr "外观"
-
-#: ../src/options_interface.c:1581
-msgid ""
-"Save changes to the constants file. DON'T DO THIS UNLESS YOU REALLY KNOW "
-"WHAT YOU ARE DOING."
-msgstr "将变更保存到系统文件. 除非你真的知道如何去做, 否则不要轻易改动设置文件"
-
-#: ../src/options_interface.c:1595
-msgid "Save to file"
-msgstr "保存玩家设置到文件 "
-
-#: ../src/options_interface.c:1602
-msgid ""
-"Reload constants files. This will overwrite any changes you made in the "
-"current game session."
-msgstr "读取系统文件. 会覆盖当前游戏中所作的变动"
-
-#: ../src/options_interface.c:1616
-msgid "Reload from file"
-msgstr "重新从文件中加载比赛 "
-
-#: ../src/options_interface.c:1623
-msgid ""
-"Close window. Changes will only be saved for the current session, unless you "
-"also save to file."
-msgstr "关闭窗口. 只会保存当前文件所作的修改, 除非你选择保存到文件"
-
-#: ../src/options_interface.c:1640
-msgid "Close"
-msgstr "关闭"
-
 #: ../src/player.c:673
 msgid "You can't replace a banned player."
 msgstr "你不能替换一个被罚下的球员"
@@ -1430,7 +845,7 @@ msgstr "%s 的合同将于 %.1f 年后到期"
 #. Player health: ok.
 #. Player status: ok.
 #: ../src/player.c:1409 ../src/treeview_helper.c:1094
-#: ../src/treeview_helper.c:1390
+#: ../src/treeview_helper.c:1390 ../support_files/bygfoot_misc2.glade.h:25
 msgid "OK"
 msgstr "正常"
 
@@ -1653,7 +1068,7 @@ msgid "Team"
 msgstr "球队"
 
 #: ../src/treeview2.c:514 ../src/treeview.c:170 ../src/treeview.c:332
-#: ../src/treeview.c:780
+#: ../src/treeview.c:780 ../support_files/bygfoot_misc2.glade.h:21
 msgid "League"
 msgstr "所在联赛"
 
@@ -1675,7 +1090,7 @@ msgid "Week %d Round %d"
 msgstr "第%d周 第%d轮"
 
 #: ../src/treeview2.c:791 ../src/treeview.c:304 ../src/treeview.c:778
-#: ../src/treeview.c:2163
+#: ../src/treeview.c:2163 ../support_files/bygfoot_misc2.glade.h:24
 msgid "Name"
 msgstr "姓名"
 
@@ -1887,11 +1302,11 @@ msgstr "得分"
 msgid "Stadium"
 msgstr "球场"
 
-#: ../src/treeview.c:1483
+#: ../src/treeview.c:1483 ../support_files/bygfoot_misc2.glade.h:36
 msgid "Stadium capacity"
 msgstr "球场座位数"
 
-#: ../src/treeview.c:1487
+#: ../src/treeview.c:1487 ../support_files/bygfoot_misc2.glade.h:37
 msgid "Stadium safety"
 msgstr "球场治安"
 
@@ -1921,6 +1336,12 @@ msgstr "门票收入"
 #: ../src/treeview.c:1519
 msgid "Sponsorship"
 msgstr "赞助"
+
+#: ../src/treeview.c:1520 ../src/treeview.c:1530 ../src/window.c:986
+#: ../support_files/bygfoot.glade.h:20
+#: ../support_files/bygfoot_options.glade.h:12
+msgid "Betting"
+msgstr "下注"
 
 #: ../src/treeview.c:1522
 msgid "Wages"
@@ -1981,6 +1402,13 @@ msgstr "转会"
 #: ../src/treeview.c:1608
 msgid "Stadium expenses"
 msgstr "球场维护费"
+
+#: ../src/treeview.c:1616 ../src/window.c:1001
+#: ../support_files/bygfoot.glade.h:101
+#: ../support_files/bygfoot_options.glade.h:94
+#: ../support_files/bygfoot_training.glade.h:9
+msgid "Training camp"
+msgstr "训练营"
 
 #: ../src/treeview.c:1629
 msgid "Money"
@@ -2075,7 +1503,7 @@ msgstr "主场"
 msgid "Away"
 msgstr "客场"
 
-#: ../src/treeview.c:1866
+#: ../src/treeview.c:1866 ../support_files/bygfoot_misc2.glade.h:28
 msgid "Rank"
 msgstr "排名"
 
@@ -2745,7 +2173,7 @@ msgstr "数字..."
 msgid "Your stadium"
 msgstr "你的球场"
 
-#: ../src/window.c:892
+#: ../src/window.c:892 ../support_files/bygfoot_misc2.glade.h:20
 msgid "Job offer"
 msgstr "工作邀请"
 
@@ -2777,8 +2205,8 @@ msgstr "赞助请求"
 msgid "Memorable matches"
 msgstr "比赛集锦"
 
-#: ../src/window.c:1009 ../support_files/bygfoot_misc3.glade.h:1
-#: ../support_files/bygfoot.glade.h:12
+#: ../src/window.c:1009 ../support_files/bygfoot.glade.h:12
+#: ../support_files/bygfoot_misc3.glade.h:1
 msgid "Automatic loan repayment"
 msgstr "自动偿还贷款"
 
@@ -2829,353 +2257,6 @@ msgid ""
 "for him."
 msgstr "一名年轻球员希望能够加入你的青年队, 但是当前球队中名额已满"
 
-#: ../support_files/bygfoot_misc3.glade.h:2
-msgid "Betting -- Left click on odd to place or remove bet"
-msgstr "下注 -- 左键单击可以添加或者移出下注"
-
-#: ../support_files/bygfoot_misc3.glade.h:4
-msgid "Calculate start week"
-msgstr "计算开始的星期"
-
-#: ../support_files/bygfoot_misc3.glade.h:5
-msgid "Calculate weekly installment"
-msgstr "计算周租"
-
-#: ../support_files/bygfoot_misc3.glade.h:6
-#: ../support_files/bygfoot.glade.h:24
-msgid "Contributors"
-msgstr "捐献者"
-
-#: ../support_files/bygfoot_misc3.glade.h:7
-msgid "Ctrl-N"
-msgstr "Ctrl-N"
-
-#: ../support_files/bygfoot_misc3.glade.h:8
-msgid "Ctrl-O"
-msgstr "Ctrl-O"
-
-#: ../support_files/bygfoot_misc3.glade.h:9
-msgid "Ctrl-R"
-msgstr "Ctrl-R"
-
-#: ../support_files/bygfoot_misc3.glade.h:10
-msgid "Current settings:"
-msgstr "当前设置："
-
-#. Splash screen hint question.
-#: ../support_files/bygfoot_misc3.glade.h:12
-msgid "Did you know?"
-msgstr "你知道吗?"
-
-#: ../support_files/bygfoot_misc3.glade.h:14
-msgid "New settings:"
-msgstr "新设置："
-
-#: ../support_files/bygfoot_misc3.glade.h:15
-msgid "Next"
-msgstr "下一个"
-
-#: ../support_files/bygfoot_misc3.glade.h:16
-msgid "Previous"
-msgstr "前一个"
-
-#: ../support_files/bygfoot_misc3.glade.h:21
-msgid "Start _new game"
-msgstr "开始 _新游戏"
-
-#: ../support_files/bygfoot_misc3.glade.h:22
-msgid "Start in week"
-msgstr "开赛周"
-
-#: ../support_files/bygfoot_misc3.glade.h:23
-msgid "Start in week:"
-msgstr "开赛周："
-
-#: ../support_files/bygfoot_misc3.glade.h:24
-msgid "Weekly installment"
-msgstr "周租"
-
-#: ../support_files/bygfoot_misc3.glade.h:25
-msgid "Weekly installment:"
-msgstr "周租："
-
-#: ../support_files/bygfoot_misc3.glade.h:26
-msgid ""
-"Whether to show cup matches. Use the options window to toggle permanently."
-msgstr "是否显示杯赛信息. 调用选项设置可以永久改变"
-
-#: ../support_files/bygfoot_misc3.glade.h:27
-msgid ""
-"Whether to show matches of all leagues. Use the options window to toggle "
-"permanently."
-msgstr "是否显示联赛所有比赛信息, 调用选项进行设置可以永久改变"
-
-#: ../support_files/bygfoot_misc3.glade.h:28
-msgid "Whether to show only your bets in the recent bets list"
-msgstr "是否只在最近下注列表中只显示你的相关信息"
-
-#: ../support_files/bygfoot_misc3.glade.h:29
-msgid "Your debt:"
-msgstr "你的债务："
-
-#: ../support_files/bygfoot_misc3.glade.h:30
-msgid "_Load game"
-msgstr "_读取游戏"
-
-#: ../support_files/bygfoot_misc3.glade.h:31
-msgid "_Resume game"
-msgstr "_继续游戏"
-
-#: ../support_files/bygfoot_training.glade.h:1
-msgid "Camp points"
-msgstr "训练点数"
-
-#: ../support_files/bygfoot_training.glade.h:2
-#: ../support_files/bygfoot_misc.glade.h:22
-msgid "Costs"
-msgstr "消费"
-
-#: ../support_files/bygfoot_training.glade.h:6
-msgid "Recreation"
-msgstr "消遣活动"
-
-#: ../support_files/bygfoot_training.glade.h:7
-msgid "Save settings as default"
-msgstr "保存为默认设置文件"
-
-#: ../support_files/bygfoot_training.glade.h:8
-msgid "Training"
-msgstr "训练"
-
-#: ../support_files/bygfoot_misc.glade.h:1
-msgid " seats"
-msgstr " 座位数"
-
-#: ../support_files/bygfoot_misc.glade.h:2
-msgid "0"
-msgstr "0"
-
-#: ../support_files/bygfoot_misc.glade.h:3
-msgid "Accept"
-msgstr "接受"
-
-#: ../support_files/bygfoot_misc.glade.h:4
-msgid "Add user"
-msgstr "添加玩家"
-
-#: ../support_files/bygfoot_misc.glade.h:5
-msgid "Av. skill: "
-msgstr "平均技能："
-
-#: ../support_files/bygfoot_misc.glade.h:6
-msgid "Average attendance"
-msgstr "平均上座率"
-
-#: ../support_files/bygfoot_misc.glade.h:8
-#, no-c-format
-msgid "Average attendance %"
-msgstr "平均上座率 %"
-
-#: ../support_files/bygfoot_misc.glade.h:9
-msgid "Back to splash"
-msgstr "回到开始画面"
-
-#: ../support_files/bygfoot_misc.glade.h:10
-msgid "Capacity (seats)"
-msgstr "容量（座位数）"
-
-#: ../support_files/bygfoot_misc.glade.h:11
-msgid ""
-"Change commentary verbosity. The higher this value the more events you can "
-"see."
-msgstr "该表现场解说的细致度, 数值越大你就会看到更多的球场上发生的细节"
-
-#: ../support_files/bygfoot_misc.glade.h:12
-msgid "Change live game speed. The higher the value the faster the live game."
-msgstr "改变现场游戏的进度. 数值越大游戏就会越快. "
-
-#: ../support_files/bygfoot_misc.glade.h:13
-msgid "Change ticket price"
-msgstr "改变票价"
-
-#: ../support_files/bygfoot_misc.glade.h:14
-msgid "Choose country"
-msgstr "选择国家/地区"
-
-#: ../support_files/bygfoot_misc.glade.h:15
-msgid "Choose file"
-msgstr "选择文件"
-
-#: ../support_files/bygfoot_misc.glade.h:16
-msgid "Choose league to start in"
-msgstr "选择起始联赛"
-
-#: ../support_files/bygfoot_misc.glade.h:17
-msgid "Choose team"
-msgstr "选择球队"
-
-#: ../support_files/bygfoot_misc.glade.h:18
-msgid "Choose username"
-msgstr "选择用户"
-
-#: ../support_files/bygfoot_misc.glade.h:19
-msgid "Click on a user to remove him."
-msgstr "点击一个玩家可以移除他"
-
-#: ../support_files/bygfoot_misc.glade.h:20
-msgid "Commentary"
-msgstr "现场解说"
-
-#: ../support_files/bygfoot_misc.glade.h:21
-msgid "Confirm!"
-msgstr "确认了！"
-
-#: ../support_files/bygfoot_misc.glade.h:23
-msgid "Current capacity"
-msgstr "当前容量"
-
-#: ../support_files/bygfoot_misc.glade.h:24
-msgid "Current safety"
-msgstr "当前安全系数"
-
-#: ../support_files/bygfoot_misc.glade.h:25
-msgid "Don't load definitions"
-msgstr "不读取定义文件"
-
-#: ../support_files/bygfoot_misc.glade.h:26
-msgid "Don't load team definitions at all"
-msgstr "完全由系统随机生成球队, 不读取球队定义文件"
-
-#: ../support_files/bygfoot_misc.glade.h:28
-msgid "Esc / Return / Space"
-msgstr "Esc/返回/空格"
-
-#: ../support_files/bygfoot_misc.glade.h:29
-msgid "Expected duration"
-msgstr "预计工期"
-
-#: ../support_files/bygfoot_misc.glade.h:30
-msgid "Go back to the splash screen"
-msgstr "回到起始画面"
-
-#: ../support_files/bygfoot_misc.glade.h:31
-msgid ""
-"If you don't like any of the sponsors, you can go a few weeks without "
-"sponsor and wait for new offers."
-msgstr "如果没有你中意的赞助商, 你可以维持当前的无赞助状态等待新的赞助"
-
-#: ../support_files/bygfoot_misc.glade.h:32
-msgid "Increase"
-msgstr "增长"
-
-#: ../support_files/bygfoot_misc.glade.h:34
-msgid "Load only the player names in the definition files"
-msgstr "只从定义文件中读取球员姓名"
-
-#: ../support_files/bygfoot_misc.glade.h:35
-msgid "Load team definitions"
-msgstr "读取球队定义文件"
-
-#: ../support_files/bygfoot_misc.glade.h:36
-msgid ""
-"Load teams from definition files (note that the official Bygfoot package "
-"doesn't contain team definition files, you have to get them from the "
-"homepage or via the bygfoot-update script)"
-msgstr ""
-"从定义文件中读取球队信息（注意, 官方发布的bygfoot没有包括所有的球队定义, 你可"
-"以从bygfoot主页或者通过bygfoot-update脚本来得到他们）"
-
-#: ../support_files/bygfoot_misc.glade.h:37
-msgid "Only names"
-msgstr "只是姓名"
-
-#: ../support_files/bygfoot_misc.glade.h:38
-msgid "Opponent player list"
-msgstr "对手列表"
-
-#: ../support_files/bygfoot_misc.glade.h:39
-msgid "Price per ticket"
-msgstr "票价"
-
-#: ../support_files/bygfoot_misc.glade.h:40
-msgid "Randomise teams in cups"
-msgstr "杯赛中随机分组球队"
-
-#: ../support_files/bygfoot_misc.glade.h:41
-msgid ""
-"Randomise the order of teams in cups. This only makes sense in supernational "
-"definitions like the World Cup where the order of teams is fixed."
-msgstr "在杯赛中随机分组球队, 这个只有在类似世界杯这种性质的比赛中才有效"
-
-#: ../support_files/bygfoot_misc.glade.h:42
-msgid "Reject for now"
-msgstr "拒绝"
-
-#: ../support_files/bygfoot_misc.glade.h:43
-msgid "Return"
-msgstr "返回"
-
-#: ../support_files/bygfoot_misc.glade.h:44
-msgid "Return / Space"
-msgstr "返回/空格"
-
-#: ../support_files/bygfoot_misc.glade.h:45
-#: ../support_files/bygfoot.glade.h:76
-msgid "Right click and left click to change boost state"
-msgstr "左键或右键单击可改变 boost 的设定"
-
-#: ../support_files/bygfoot_misc.glade.h:46
-#: ../support_files/bygfoot.glade.h:77
-msgid "Right click and left click to change your playing style"
-msgstr "左键或右键单击可改变界面风格"
-
-#: ../support_files/bygfoot_misc.glade.h:47
-msgid "Right-click to set to 0"
-msgstr "右键单击设定为0"
-
-#: ../support_files/bygfoot_misc.glade.h:49
-#, no-c-format
-msgid "Safety (%)"
-msgstr "安全度(%)"
-
-#: ../support_files/bygfoot_misc.glade.h:51
-msgid "Space"
-msgstr "空格"
-
-#: ../support_files/bygfoot_misc.glade.h:52
-msgid "Speed"
-msgstr "速度"
-
-#: ../support_files/bygfoot_misc.glade.h:53
-msgid "Start"
-msgstr "开始"
-
-#: ../support_files/bygfoot_misc.glade.h:54
-msgid "Statistics"
-msgstr "统计"
-
-#: ../support_files/bygfoot_misc.glade.h:55
-msgid "Status:"
-msgstr "状态："
-
-#: ../support_files/bygfoot_misc.glade.h:56
-msgid ""
-"There are a few companies interested in sponsoring your team. Please select "
-"one:"
-msgstr "有很多公司乐意向你的球队提供赞助, 请选择一个："
-
-#: ../support_files/bygfoot_misc.glade.h:57
-msgid "Verbosity"
-msgstr "显示更多讯息"
-
-#: ../support_files/bygfoot_misc.glade.h:58
-msgid "_Pause"
-msgstr "_暂停"
-
-#: ../support_files/bygfoot_misc.glade.h:59
-msgid "_Resume"
-msgstr "_返回"
-
 #: ../support_files/bygfoot.glade.h:1
 msgid " Round "
 msgstr " 轮 "
@@ -3188,7 +2269,7 @@ msgstr " 赛季 "
 msgid " Week "
 msgstr " 周 "
 
-#: ../support_files/bygfoot.glade.h:4
+#: ../support_files/bygfoot.glade.h:4 ../support_files/bygfoot_misc2.glade.h:5
 msgid "About"
 msgstr "关于"
 
@@ -3257,6 +2338,12 @@ msgstr "球员一览"
 msgid "Browse teams"
 msgstr "球队一览"
 
+#: ../support_files/bygfoot.glade.h:24
+#: ../support_files/bygfoot_misc2.glade.h:12
+#: ../support_files/bygfoot_misc3.glade.h:6
+msgid "Contributors"
+msgstr "捐献者"
+
 #: ../support_files/bygfoot.glade.h:25
 #, fuzzy
 msgid "Default Team"
@@ -3313,6 +2400,7 @@ msgid "Good"
 msgstr "适合比赛"
 
 #: ../support_files/bygfoot.glade.h:39
+#: ../support_files/bygfoot_misc2.glade.h:17
 msgid "Help"
 msgstr "帮助"
 
@@ -3323,6 +2411,12 @@ msgstr "工作邀请"
 #: ../support_files/bygfoot.glade.h:41
 msgid "League stats"
 msgstr "联赛状态"
+
+#: ../support_files/bygfoot.glade.h:42
+#: ../support_files/bygfoot_misc.glade.h:33
+#: ../support_files/bygfoot_options.glade.h:52
+msgid "Live game"
+msgstr "比赛现场"
 
 #: ../support_files/bygfoot.glade.h:43
 msgid "Load game (Ctrl - O)"
@@ -3356,6 +2450,11 @@ msgstr "移至青年队"
 #: ../support_files/bygfoot.glade.h:51
 msgid "My league results"
 msgstr "我的球队"
+
+#: ../support_files/bygfoot.glade.h:52
+#: ../support_files/bygfoot_options.glade.h:57
+msgid "News"
+msgstr "新闻"
 
 #: ../support_files/bygfoot.glade.h:53
 msgid "Next (W)"
@@ -3447,6 +2546,16 @@ msgstr "以 现场游戏 时的阵容重新设定球员列表（右键单击）"
 #, fuzzy
 msgid "Restore"
 msgstr "比赛结果"
+
+#: ../support_files/bygfoot.glade.h:76
+#: ../support_files/bygfoot_misc.glade.h:45
+msgid "Right click and left click to change boost state"
+msgstr "左键或右键单击可改变 boost 的设定"
+
+#: ../support_files/bygfoot.glade.h:77
+#: ../support_files/bygfoot_misc.glade.h:46
+msgid "Right click and left click to change your playing style"
+msgstr "左键或右键单击可改变界面风格"
 
 #: ../support_files/bygfoot.glade.h:78
 msgid "Save game (Ctrl - S)"
@@ -3568,6 +2677,959 @@ msgstr "_球队"
 msgid "_User"
 msgstr "_玩家"
 
+#: ../support_files/bygfoot_misc.glade.h:1
+msgid " seats"
+msgstr " 座位数"
+
+#: ../support_files/bygfoot_misc.glade.h:2
+msgid "0"
+msgstr "0"
+
+#: ../support_files/bygfoot_misc.glade.h:3
+msgid "Accept"
+msgstr "接受"
+
+#: ../support_files/bygfoot_misc.glade.h:4
+#: ../support_files/bygfoot_misc2.glade.h:6
+msgid "Add user"
+msgstr "添加玩家"
+
+#: ../support_files/bygfoot_misc.glade.h:5
+msgid "Av. skill: "
+msgstr "平均技能："
+
+#: ../support_files/bygfoot_misc.glade.h:6
+msgid "Average attendance"
+msgstr "平均上座率"
+
+#: ../support_files/bygfoot_misc.glade.h:8
+#, no-c-format
+msgid "Average attendance %"
+msgstr "平均上座率 %"
+
+#: ../support_files/bygfoot_misc.glade.h:9
+msgid "Back to splash"
+msgstr "回到开始画面"
+
+#: ../support_files/bygfoot_misc.glade.h:10
+msgid "Capacity (seats)"
+msgstr "容量（座位数）"
+
+#: ../support_files/bygfoot_misc.glade.h:11
+msgid ""
+"Change commentary verbosity. The higher this value the more events you can "
+"see."
+msgstr "该表现场解说的细致度, 数值越大你就会看到更多的球场上发生的细节"
+
+#: ../support_files/bygfoot_misc.glade.h:12
+msgid "Change live game speed. The higher the value the faster the live game."
+msgstr "改变现场游戏的进度. 数值越大游戏就会越快. "
+
+#: ../support_files/bygfoot_misc.glade.h:13
+msgid "Change ticket price"
+msgstr "改变票价"
+
+#: ../support_files/bygfoot_misc.glade.h:14
+msgid "Choose country"
+msgstr "选择国家/地区"
+
+#: ../support_files/bygfoot_misc.glade.h:15
+msgid "Choose file"
+msgstr "选择文件"
+
+#: ../support_files/bygfoot_misc.glade.h:16
+msgid "Choose league to start in"
+msgstr "选择起始联赛"
+
+#: ../support_files/bygfoot_misc.glade.h:17
+msgid "Choose team"
+msgstr "选择球队"
+
+#: ../support_files/bygfoot_misc.glade.h:18
+msgid "Choose username"
+msgstr "选择用户"
+
+#: ../support_files/bygfoot_misc.glade.h:19
+msgid "Click on a user to remove him."
+msgstr "点击一个玩家可以移除他"
+
+#: ../support_files/bygfoot_misc.glade.h:20
+msgid "Commentary"
+msgstr "现场解说"
+
+#: ../support_files/bygfoot_misc.glade.h:21
+msgid "Confirm!"
+msgstr "确认了！"
+
+#: ../support_files/bygfoot_misc.glade.h:22
+#: ../support_files/bygfoot_training.glade.h:2
+msgid "Costs"
+msgstr "消费"
+
+#: ../support_files/bygfoot_misc.glade.h:23
+msgid "Current capacity"
+msgstr "当前容量"
+
+#: ../support_files/bygfoot_misc.glade.h:24
+msgid "Current safety"
+msgstr "当前安全系数"
+
+#: ../support_files/bygfoot_misc.glade.h:25
+msgid "Don't load definitions"
+msgstr "不读取定义文件"
+
+#: ../support_files/bygfoot_misc.glade.h:26
+msgid "Don't load team definitions at all"
+msgstr "完全由系统随机生成球队, 不读取球队定义文件"
+
+#: ../support_files/bygfoot_misc.glade.h:27
+#: ../support_files/bygfoot_misc2.glade.h:16
+#: ../support_files/bygfoot_misc3.glade.h:13
+msgid "Esc"
+msgstr "Esc"
+
+#: ../support_files/bygfoot_misc.glade.h:28
+msgid "Esc / Return / Space"
+msgstr "Esc/返回/空格"
+
+#: ../support_files/bygfoot_misc.glade.h:29
+msgid "Expected duration"
+msgstr "预计工期"
+
+#: ../support_files/bygfoot_misc.glade.h:30
+msgid "Go back to the splash screen"
+msgstr "回到起始画面"
+
+#: ../support_files/bygfoot_misc.glade.h:31
+msgid ""
+"If you don't like any of the sponsors, you can go a few weeks without "
+"sponsor and wait for new offers."
+msgstr "如果没有你中意的赞助商, 你可以维持当前的无赞助状态等待新的赞助"
+
+#: ../support_files/bygfoot_misc.glade.h:32
+msgid "Increase"
+msgstr "增长"
+
+#: ../support_files/bygfoot_misc.glade.h:34
+msgid "Load only the player names in the definition files"
+msgstr "只从定义文件中读取球员姓名"
+
+#: ../support_files/bygfoot_misc.glade.h:35
+msgid "Load team definitions"
+msgstr "读取球队定义文件"
+
+#: ../support_files/bygfoot_misc.glade.h:36
+msgid ""
+"Load teams from definition files (note that the official Bygfoot package "
+"doesn't contain team definition files, you have to get them from the "
+"homepage or via the bygfoot-update script)"
+msgstr ""
+"从定义文件中读取球队信息（注意, 官方发布的bygfoot没有包括所有的球队定义, 你可"
+"以从bygfoot主页或者通过bygfoot-update脚本来得到他们）"
+
+#: ../support_files/bygfoot_misc.glade.h:37
+msgid "Only names"
+msgstr "只是姓名"
+
+#: ../support_files/bygfoot_misc.glade.h:38
+msgid "Opponent player list"
+msgstr "对手列表"
+
+#: ../support_files/bygfoot_misc.glade.h:39
+msgid "Price per ticket"
+msgstr "票价"
+
+#: ../support_files/bygfoot_misc.glade.h:40
+msgid "Randomise teams in cups"
+msgstr "杯赛中随机分组球队"
+
+#: ../support_files/bygfoot_misc.glade.h:41
+msgid ""
+"Randomise the order of teams in cups. This only makes sense in supernational "
+"definitions like the World Cup where the order of teams is fixed."
+msgstr "在杯赛中随机分组球队, 这个只有在类似世界杯这种性质的比赛中才有效"
+
+#: ../support_files/bygfoot_misc.glade.h:42
+msgid "Reject for now"
+msgstr "拒绝"
+
+#: ../support_files/bygfoot_misc.glade.h:43
+#: ../support_files/bygfoot_misc2.glade.h:33
+msgid "Return"
+msgstr "返回"
+
+#: ../support_files/bygfoot_misc.glade.h:44
+msgid "Return / Space"
+msgstr "返回/空格"
+
+#: ../support_files/bygfoot_misc.glade.h:47
+msgid "Right-click to set to 0"
+msgstr "右键单击设定为0"
+
+#: ../support_files/bygfoot_misc.glade.h:49
+#, no-c-format
+msgid "Safety (%)"
+msgstr "安全度(%)"
+
+#: ../support_files/bygfoot_misc.glade.h:51
+msgid "Space"
+msgstr "空格"
+
+#: ../support_files/bygfoot_misc.glade.h:52
+msgid "Speed"
+msgstr "速度"
+
+#: ../support_files/bygfoot_misc.glade.h:53
+msgid "Start"
+msgstr "开始"
+
+#: ../support_files/bygfoot_misc.glade.h:54
+msgid "Statistics"
+msgstr "统计"
+
+#: ../support_files/bygfoot_misc.glade.h:55
+msgid "Status:"
+msgstr "状态："
+
+#: ../support_files/bygfoot_misc.glade.h:56
+msgid ""
+"There are a few companies interested in sponsoring your team. Please select "
+"one:"
+msgstr "有很多公司乐意向你的球队提供赞助, 请选择一个："
+
+#: ../support_files/bygfoot_misc.glade.h:57
+msgid "Verbosity"
+msgstr "显示更多讯息"
+
+#: ../support_files/bygfoot_misc.glade.h:58
+msgid "_Pause"
+msgstr "_暂停"
+
+#: ../support_files/bygfoot_misc.glade.h:59
+msgid "_Resume"
+msgstr "_返回"
+
+#: ../support_files/bygfoot_misc2.glade.h:1
+msgid "1 year"
+msgstr "1年"
+
+#: ../support_files/bygfoot_misc2.glade.h:2
+msgid "2 years"
+msgstr "2年"
+
+#: ../support_files/bygfoot_misc2.glade.h:3
+msgid "3 years"
+msgstr "3年"
+
+#: ../support_files/bygfoot_misc2.glade.h:4
+msgid "4 years"
+msgstr "4年"
+
+#: ../support_files/bygfoot_misc2.glade.h:7
+msgid "Available teams"
+msgstr "可供选择的球队"
+
+#: ../support_files/bygfoot_misc2.glade.h:8
+msgid "Average skill:"
+msgstr "平均技能值"
+
+#: ../support_files/bygfoot_misc2.glade.h:9
+msgid ""
+"Bygfoot debug window. If you got here by accident, CLOSE IMMEDIATELY "
+"(otherwise your CPU will be destroyed by overheating)."
+msgstr ""
+"Bygfoot调试窗口. 如果你只不过是碰巧来到了这里, 请赶快关闭它（否则你的cpu可能"
+"因过热而导致损坏！：）"
+
+#: ../support_files/bygfoot_misc2.glade.h:10
+msgid "Click on a user to remove him from the game."
+msgstr "点击一个玩家将他移除"
+
+#: ../support_files/bygfoot_misc2.glade.h:11
+msgid "Confirm & schedule repayment"
+msgstr "确认和计划 还贷"
+
+#: ../support_files/bygfoot_misc2.glade.h:13
+msgid "Current file"
+msgstr "当前文件"
+
+#: ../support_files/bygfoot_misc2.glade.h:14
+msgid "Debug"
+msgstr "调试"
+
+#: ../support_files/bygfoot_misc2.glade.h:15
+msgid "Decide later"
+msgstr "推迟决定"
+
+#: ../support_files/bygfoot_misc2.glade.h:18
+msgid "Import file"
+msgstr "导入文件"
+
+#: ../support_files/bygfoot_misc2.glade.h:19
+msgid "Import the matches from a memorable matches file"
+msgstr "从 赛季集锦 中导入比赛"
+
+#: ../support_files/bygfoot_misc2.glade.h:22
+msgid "Make offer"
+msgstr "提出合同"
+
+#: ../support_files/bygfoot_misc2.glade.h:23
+msgid "Money (approx.)"
+msgstr "资金(估计.)"
+
+#: ../support_files/bygfoot_misc2.glade.h:26
+msgid "Open a memorable matches file"
+msgstr "打开一个 赛季集锦 文件"
+
+#: ../support_files/bygfoot_misc2.glade.h:27
+msgid "Player list"
+msgstr "球员列表"
+
+#: ../support_files/bygfoot_misc2.glade.h:29
+#: ../support_files/bygfoot_options.glade.h:68
+msgid "Reload"
+msgstr "重新加载"
+
+#: ../support_files/bygfoot_misc2.glade.h:30
+msgid "Reload and close"
+msgstr "读取并关闭"
+
+#: ../support_files/bygfoot_misc2.glade.h:31
+msgid "Reload matches from file"
+msgstr "从文件中加载比赛"
+
+#: ../support_files/bygfoot_misc2.glade.h:32
+msgid "Reload matches from file and close"
+msgstr "从文件中读取比赛并关闭"
+
+#: ../support_files/bygfoot_misc2.glade.h:34
+msgid "Save and close"
+msgstr "保存并关闭"
+
+#: ../support_files/bygfoot_misc2.glade.h:35
+msgid "Save changes to file and close"
+msgstr "保存设置并关闭"
+
+#: ../support_files/bygfoot_misc2.glade.h:38
+msgid "Users -- click to remove"
+msgstr "玩家 -- 点击移除"
+
+#: ../support_files/bygfoot_options.glade.h:1
+msgid " Autosave files "
+msgstr " 自动存档"
+
+#: ../support_files/bygfoot_options.glade.h:2
+msgid " months"
+msgstr " 月"
+
+#: ../support_files/bygfoot_options.glade.h:3
+msgid "Age "
+msgstr "年龄 "
+
+#: ../support_files/bygfoot_options.glade.h:4
+msgid "Always store/restore your default team"
+msgstr "总是 保存/回复 你的默认球队设置"
+
+#: ../support_files/bygfoot_options.glade.h:5
+msgid "Always store/restore your default team before/after a match"
+msgstr "在比赛 之前/之后 总是 保存/恢复 你的默认球队设置"
+
+#: ../support_files/bygfoot_options.glade.h:6
+msgid "Appearance"
+msgstr "外观"
+
+#: ../support_files/bygfoot_options.glade.h:7
+msgid "Attribute "
+msgstr "属性 "
+
+#: ../support_files/bygfoot_options.glade.h:8
+msgid "Automatic popup"
+msgstr "自动弹出窗口"
+
+#: ../support_files/bygfoot_options.glade.h:9
+msgid "Automatic substitutions"
+msgstr "自动更换替补球员"
+
+#: ../support_files/bygfoot_options.glade.h:10
+msgid "Autosave"
+msgstr "自动保存"
+
+#: ../support_files/bygfoot_options.glade.h:11
+msgid "Autosave interval "
+msgstr "自动保存间隔"
+
+#: ../support_files/bygfoot_options.glade.h:13
+msgid "CPos "
+msgstr "当前位置"
+
+#: ../support_files/bygfoot_options.glade.h:14
+msgid "CSkill "
+msgstr "当前技能"
+
+#: ../support_files/bygfoot_options.glade.h:15
+msgid "Cards "
+msgstr "得牌 "
+
+#: ../support_files/bygfoot_options.glade.h:16
+msgid "Choose game language (might not work in Windows versions)"
+msgstr "选择游戏语言(可能在Windows下无法工作)"
+
+#: ../support_files/bygfoot_options.glade.h:17
+msgid "Close"
+msgstr "关闭"
+
+#: ../support_files/bygfoot_options.glade.h:18
+msgid "Confirm quit when not saved"
+msgstr "没保存退出时提示玩家"
+
+#: ../support_files/bygfoot_options.glade.h:19
+msgid "Confirm removing youths"
+msgstr "移除年轻球员时要确认"
+
+#: ../support_files/bygfoot_options.glade.h:20
+msgid "Confirm when unfit"
+msgstr "不适时需要确认"
+
+#: ../support_files/bygfoot_options.glade.h:21
+msgid "Constants file"
+msgstr "文件"
+
+#: ../support_files/bygfoot_options.glade.h:22
+msgid "Contract "
+msgstr "合同 "
+
+#: ../support_files/bygfoot_options.glade.h:23
+msgid "Create cup news"
+msgstr "创造优胜杯讯息"
+
+#: ../support_files/bygfoot_options.glade.h:24
+msgid "Create league news"
+msgstr "创造联赛讯息"
+
+#: ../support_files/bygfoot_options.glade.h:25
+msgid "Create user news"
+msgstr "创造玩家讯息"
+
+#: ../support_files/bygfoot_options.glade.h:26
+msgid "Default hotel"
+msgstr "默认宾馆"
+
+#: ../support_files/bygfoot_options.glade.h:27
+msgid "Default recreation:"
+msgstr "默认消遣活动："
+
+#: ../support_files/bygfoot_options.glade.h:28
+msgid "Default training:"
+msgstr "默认训练："
+
+#: ../support_files/bygfoot_options.glade.h:29
+msgid "Default wager"
+msgstr "默认赌注"
+
+#: ../support_files/bygfoot_options.glade.h:30
+msgid "ETal "
+msgstr "潜力值"
+
+#: ../support_files/bygfoot_options.glade.h:31
+msgid "Edit"
+msgstr "编辑"
+
+#: ../support_files/bygfoot_options.glade.h:32
+msgid "Edit the constants used in the game"
+msgstr "编辑系统变量"
+
+#: ../support_files/bygfoot_options.glade.h:33
+msgid ""
+"File containing settings which determine a lot of aspects of the game "
+"behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
+msgstr ""
+"设置文件会很大程度上决定游戏的可玩性. 除非你真的知道如何去做, 否则不要轻易改"
+"动设置文件"
+
+#: ../support_files/bygfoot_options.glade.h:34
+msgid "Fitness "
+msgstr "健康情况"
+
+#: ../support_files/bygfoot_options.glade.h:35
+msgid "Float"
+msgstr "浮点"
+
+#: ../support_files/bygfoot_options.glade.h:36
+msgid "Font name"
+msgstr "字体名称"
+
+#: ../support_files/bygfoot_options.glade.h:37
+msgid "Font used in treeviews"
+msgstr "设定显示所用的字体"
+
+#: ../support_files/bygfoot_options.glade.h:38
+msgid "Gameplay"
+msgstr "游戏规则"
+
+#: ../support_files/bygfoot_options.glade.h:39
+msgid "Games "
+msgstr "比赛"
+
+#: ../support_files/bygfoot_options.glade.h:40
+msgid "Global"
+msgstr "全局选项"
+
+#: ../support_files/bygfoot_options.glade.h:41
+msgid "Goals "
+msgstr "进球"
+
+#: ../support_files/bygfoot_options.glade.h:42
+msgid "How many digits after the comma there are for skill etc."
+msgstr "用几位数字来表征球员技能值."
+
+#: ../support_files/bygfoot_options.glade.h:43
+msgid "How many files the autosave uses"
+msgstr "确定系统使用多少个文件用于自动存档"
+
+#: ../support_files/bygfoot_options.glade.h:44
+msgid "How often the game is saved automatically"
+msgstr "用来确定系统自动保存的周期"
+
+#: ../support_files/bygfoot_options.glade.h:45
+msgid ""
+"How often the player list gets refreshed during a live game (in live game "
+"minutes)"
+msgstr "在实时比赛中球员列表的更新速度（以实时比赛的计时单位 分 为标准）"
+
+#: ../support_files/bygfoot_options.glade.h:46
+msgid ""
+"If checked, weeks without user teams playing are calculated automatically "
+"(without the user having to press 'New week')"
+msgstr ""
+"如果选择了这项, 当所在的周没有玩家比赛时, 系统会自动计算（也就是说, 你不用在"
+"这时候点击“新的一周”按钮了）"
+
+#: ../support_files/bygfoot_options.glade.h:47
+msgid "Integer"
+msgstr "整型"
+
+#: ../support_files/bygfoot_options.glade.h:48
+msgid "Language"
+msgstr "语言"
+
+#: ../support_files/bygfoot_options.glade.h:49
+msgid "League "
+msgstr "联赛 "
+
+#: ../support_files/bygfoot_options.glade.h:50
+msgid "List 1 "
+msgstr "列表 1"
+
+#: ../support_files/bygfoot_options.glade.h:51
+msgid "List 2"
+msgstr "列表 2"
+
+#: ../support_files/bygfoot_options.glade.h:53
+msgid "Live game speed factor"
+msgstr "比赛现场速度"
+
+#: ../support_files/bygfoot_options.glade.h:54
+msgid "Live game verbosity"
+msgstr "比赛现场解说细致度"
+
+#: ../support_files/bygfoot_options.glade.h:55
+msgid "Maximize main window"
+msgstr "最大化主窗口"
+
+#: ../support_files/bygfoot_options.glade.h:56
+msgid "Name "
+msgstr "姓名 "
+
+#: ../support_files/bygfoot_options.glade.h:58
+msgid "No automatic popup"
+msgstr "无自动弹出窗口"
+
+#: ../support_files/bygfoot_options.glade.h:59
+msgid "Pause when break"
+msgstr "中场休息暂停"
+
+#: ../support_files/bygfoot_options.glade.h:60
+msgid "Pause when injury"
+msgstr "伤病自动暂停"
+
+#: ../support_files/bygfoot_options.glade.h:61
+msgid "Pause when red card"
+msgstr "红牌自动暂停"
+
+#: ../support_files/bygfoot_options.glade.h:62
+msgid "Player attribute precision"
+msgstr "球员属性精度设定"
+
+#: ../support_files/bygfoot_options.glade.h:63
+msgid "Player attributes shown"
+msgstr "显示球员属性"
+
+#: ../support_files/bygfoot_options.glade.h:64
+msgid "Player list refresh rate"
+msgstr "球员列表更新频率"
+
+#: ../support_files/bygfoot_options.glade.h:65
+msgid "Popup for user news"
+msgstr "显示玩家讯息在弹出窗口内"
+
+#: ../support_files/bygfoot_options.glade.h:66
+msgid "Pos "
+msgstr "位置"
+
+#: ../support_files/bygfoot_options.glade.h:67
+msgid "Prefer messages"
+msgstr "提示信息"
+
+#: ../support_files/bygfoot_options.glade.h:69
+msgid "Reload from file"
+msgstr "重新从文件中加载比赛 "
+
+#: ../support_files/bygfoot_options.glade.h:70
+msgid "Reload the constants file"
+msgstr "重新读取文件"
+
+#: ../support_files/bygfoot_options.glade.h:71
+msgid "Save global settings to file"
+msgstr "保存全局设置到文件"
+
+#: ../support_files/bygfoot_options.glade.h:72
+msgid "Save overwrites"
+msgstr "保存并覆盖"
+
+#: ../support_files/bygfoot_options.glade.h:73
+msgid "Save to file"
+msgstr "保存玩家设置到文件 "
+
+#: ../support_files/bygfoot_options.glade.h:74
+msgid "Save user settings to file"
+msgstr "保存玩家设置到文件"
+
+#: ../support_files/bygfoot_options.glade.h:75
+msgid "Set to 0 to switch off warning"
+msgstr "设定为0来取消警告信息"
+
+#: ../support_files/bygfoot_options.glade.h:76
+msgid "Shots "
+msgstr "射门"
+
+#: ../support_files/bygfoot_options.glade.h:77
+msgid "Show all leagues in the fixture view"
+msgstr "在赛程表中显示所有联赛信息"
+
+#: ../support_files/bygfoot_options.glade.h:78
+msgid "Show job offers"
+msgstr "显示工作邀请"
+
+#: ../support_files/bygfoot_options.glade.h:79
+msgid "Show live game"
+msgstr "显示比赛现场"
+
+#: ../support_files/bygfoot_options.glade.h:80
+#: ../support_files/bygfoot_misc3.glade.h:18
+msgid "Show matches from all leagues"
+msgstr "显示所有联赛"
+
+#: ../support_files/bygfoot_options.glade.h:81
+#: ../support_files/bygfoot_misc3.glade.h:19
+msgid "Show matches from cups"
+msgstr "显示所有杯赛"
+
+#: ../support_files/bygfoot_options.glade.h:82
+#: ../support_files/bygfoot_misc3.glade.h:20
+msgid "Show only my recent bets"
+msgstr "显示我的最近下注"
+
+#: ../support_files/bygfoot_options.glade.h:83
+msgid "Show only recent news"
+msgstr "显示最近讯息"
+
+#: ../support_files/bygfoot_options.glade.h:84
+msgid "Show overall games/goals"
+msgstr "显示所有 比赛/进球"
+
+#: ../support_files/bygfoot_options.glade.h:85
+msgid "Show progressbar pictures"
+msgstr "显示进度条图片"
+
+#: ../support_files/bygfoot_options.glade.h:86
+msgid "Show tendency bar"
+msgstr "显示形势条"
+
+#: ../support_files/bygfoot_options.glade.h:87
+msgid "Show warning if a player contract gets below "
+msgstr "显示警告信息当俱乐部中有球员合同期限低于 "
+
+#: ../support_files/bygfoot_options.glade.h:88
+msgid "Skill "
+msgstr "技能"
+
+#: ../support_files/bygfoot_options.glade.h:89
+msgid "Skip weeks without user matches"
+msgstr "跳过没有玩家比赛的周次"
+
+#: ../support_files/bygfoot_options.glade.h:90
+msgid "Status "
+msgstr "状态"
+
+#: ../support_files/bygfoot_options.glade.h:91
+msgid "String"
+msgstr "字符"
+
+#: ../support_files/bygfoot_options.glade.h:92
+msgid "Swap adapts structure"
+msgstr "自动改变阵形"
+
+#: ../support_files/bygfoot_options.glade.h:93
+msgid "Team "
+msgstr "球队 "
+
+#: ../support_files/bygfoot_options.glade.h:95
+msgid "Value "
+msgstr "身价 "
+
+#: ../support_files/bygfoot_options.glade.h:96
+msgid "Wage "
+msgstr "赌注"
+
+#: ../support_files/bygfoot_options.glade.h:97
+msgid ""
+"Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
+msgstr "设定保存选项为： 覆盖掉原先文件 或者 弹出对话框显示另存为"
+
+#: ../support_files/bygfoot_options.glade.h:98
+msgid ""
+"Whether a confirmation popup is shown when you kick out a youth from your "
+"academy"
+msgstr "当你想将一名年轻球员扫地出门时弹出对话框加以确认"
+
+#: ../support_files/bygfoot_options.glade.h:99
+msgid ""
+"Whether game starts with a maximized main window (doesn't work with all "
+"window managers)"
+msgstr "是否在游戏开始时进入最大化窗口（注意：并不是对所有的窗口管理器都有用）"
+
+#: ../support_files/bygfoot_options.glade.h:100
+msgid ""
+"Whether in the weekly fixture view all leagues or only the user league is "
+"shown"
+msgstr "决定是否在每周的赛程表中显示所有联赛 或者 只显示玩家所在联赛"
+
+#: ../support_files/bygfoot_options.glade.h:101
+msgid ""
+"Whether swapping two players automatically adapts the team structure to the "
+"player positions"
+msgstr "当变更球员时是否根据球员的位置自动更新球队阵形"
+
+#: ../support_files/bygfoot_options.glade.h:102
+msgid "Whether to automatically save the game regularly"
+msgstr "是否自动存档"
+
+#: ../support_files/bygfoot_options.glade.h:103
+msgid ""
+"Whether to show a confirmation popup if a user team has an injured or banned "
+"player in the startup formation"
+msgstr "是否在球队首发阵容中有 受伤/禁赛 球员时弹出一个对话框加以确认"
+
+#: ../support_files/bygfoot_options.glade.h:104
+msgid ""
+"Whether to show a confirmation popup when you press quit and the game state "
+"is not saved"
+msgstr "在退出时, 对未保存的游戏显示一个弹出示窗口加以确认"
+
+#: ../support_files/bygfoot_options.glade.h:105
+msgid "Whether to show job offers when a user is successful"
+msgstr "当玩家取得成功时显示其他球会的 邀请执教 信息"
+
+#: ../support_files/bygfoot_options.glade.h:106
+msgid ""
+"Whether to show pictures on top of the progressbar when loading/saving or "
+"calculating results"
+msgstr "是否在 读取/保存 或者计算结果时在进度条上显示图片"
+
+#: ../support_files/bygfoot_options.glade.h:107
+msgid "Whether to show the player games/goals value in all competitions"
+msgstr "是否在所有比赛中显示球员的 比赛/进球 值"
+
+#: ../support_files/bygfoot_options.glade.h:108
+msgid ""
+"Whether to show warnings and such in the message area in the main window "
+"when possible"
+msgstr "是否在尽可能的情况下在主窗口的消息栏中显示警告信息或者其他相关信息"
+
+#: ../support_files/bygfoot_misc3.glade.h:2
+msgid "Betting -- Left click on odd to place or remove bet"
+msgstr "下注 -- 左键单击可以添加或者移出下注"
+
+#: ../support_files/bygfoot_misc3.glade.h:4
+msgid "Calculate start week"
+msgstr "计算开始的星期"
+
+#: ../support_files/bygfoot_misc3.glade.h:5
+msgid "Calculate weekly installment"
+msgstr "计算周租"
+
+#: ../support_files/bygfoot_misc3.glade.h:7
+msgid "Ctrl-N"
+msgstr "Ctrl-N"
+
+#: ../support_files/bygfoot_misc3.glade.h:8
+msgid "Ctrl-O"
+msgstr "Ctrl-O"
+
+#: ../support_files/bygfoot_misc3.glade.h:9
+msgid "Ctrl-R"
+msgstr "Ctrl-R"
+
+#: ../support_files/bygfoot_misc3.glade.h:10
+msgid "Current settings:"
+msgstr "当前设置："
+
+#. Splash screen hint question.
+#: ../support_files/bygfoot_misc3.glade.h:12
+msgid "Did you know?"
+msgstr "你知道吗?"
+
+#: ../support_files/bygfoot_misc3.glade.h:14
+msgid "New settings:"
+msgstr "新设置："
+
+#: ../support_files/bygfoot_misc3.glade.h:15
+msgid "Next"
+msgstr "下一个"
+
+#: ../support_files/bygfoot_misc3.glade.h:16
+msgid "Previous"
+msgstr "前一个"
+
+#: ../support_files/bygfoot_misc3.glade.h:21
+msgid "Start _new game"
+msgstr "开始 _新游戏"
+
+#: ../support_files/bygfoot_misc3.glade.h:22
+msgid "Start in week"
+msgstr "开赛周"
+
+#: ../support_files/bygfoot_misc3.glade.h:23
+msgid "Start in week:"
+msgstr "开赛周："
+
+#: ../support_files/bygfoot_misc3.glade.h:24
+msgid "Weekly installment"
+msgstr "周租"
+
+#: ../support_files/bygfoot_misc3.glade.h:25
+msgid "Weekly installment:"
+msgstr "周租："
+
+#: ../support_files/bygfoot_misc3.glade.h:26
+msgid ""
+"Whether to show cup matches. Use the options window to toggle permanently."
+msgstr "是否显示杯赛信息. 调用选项设置可以永久改变"
+
+#: ../support_files/bygfoot_misc3.glade.h:27
+msgid ""
+"Whether to show matches of all leagues. Use the options window to toggle "
+"permanently."
+msgstr "是否显示联赛所有比赛信息, 调用选项进行设置可以永久改变"
+
+#: ../support_files/bygfoot_misc3.glade.h:28
+msgid "Whether to show only your bets in the recent bets list"
+msgstr "是否只在最近下注列表中只显示你的相关信息"
+
+#: ../support_files/bygfoot_misc3.glade.h:29
+msgid "Your debt:"
+msgstr "你的债务："
+
+#: ../support_files/bygfoot_misc3.glade.h:30
+msgid "_Load game"
+msgstr "_读取游戏"
+
+#: ../support_files/bygfoot_misc3.glade.h:31
+msgid "_Resume game"
+msgstr "_继续游戏"
+
+#: ../support_files/bygfoot_training.glade.h:1
+msgid "Camp points"
+msgstr "训练点数"
+
+#: ../support_files/bygfoot_training.glade.h:6
+msgid "Recreation"
+msgstr "消遣活动"
+
+#: ../support_files/bygfoot_training.glade.h:7
+msgid "Save settings as default"
+msgstr "保存为默认设置文件"
+
+#: ../support_files/bygfoot_training.glade.h:8
+msgid "Training"
+msgstr "训练"
+
+#~ msgid ""
+#~ "The lower this value the faster the live game commentary will scroll."
+#~ msgstr "数值越低现场评论的滚动速度就会越快"
+
+#~ msgid "The higher this value, the more commentary you'll see."
+#~ msgstr "数值越高, 你就会看到更详细的评论"
+
+#~ msgid ""
+#~ "Whether the subs (e.g. for injured players) are made by the CPU. This is "
+#~ "automatically done if the live game is off."
+#~ msgstr ""
+#~ "替补球员替下主力球员（伤病等原因）是由系统决定的. 当 比赛现场 被禁止时此为"
+#~ "默认选项"
+
+#~ msgid "Whether the live game pauses when a user player is injured"
+#~ msgstr "当有球员受伤时是否自动暂停游戏"
+
+#~ msgid "Whether the live game pauses when a user player is sent off"
+#~ msgstr "当球员被红牌罚下时自动暂停游戏"
+
+#~ msgid "Whether the live game pauses at half time and extra time"
+#~ msgstr "在中场休息或者加时赛时自动暂停游戏"
+
+#~ msgid "Whether to show matches of all leagues in the betting window"
+#~ msgstr "是否在下注窗口中显示所有联赛的比赛信息"
+
+#~ msgid "Whether to show cup matches in the betting window"
+#~ msgstr "是否在下注窗口中显示杯赛信息"
+
+#~ msgid "How much you wager by default"
+#~ msgstr "决定你的默认下注的多少"
+
+#~ msgid "Show news window after a matchday when new user news was created"
+#~ msgstr "如赛日后有新玩家被创建, 在窗口内显示相关讯息"
+
+#~ msgid "Always show news window after a matchday"
+#~ msgstr "总是在比赛日后显示讯息窗口"
+
+#~ msgid ""
+#~ "Whether to save the global settings to file (so that they get loaded next "
+#~ "time you start a new game)"
+#~ msgstr ""
+#~ "决定是否将全局设置保存到文件（那样当你下次开始一个新的游戏时会自动读取）"
+
+#~ msgid ""
+#~ "Whether to save the user settings to file (so that they get loaded next "
+#~ "time this user starts a new game)"
+#~ msgstr ""
+#~ "决定是否将玩家设置保存到文件（那样当玩家开始一个新的游戏时会被自动读取）"
+
+#~ msgid ""
+#~ "Save changes to the constants file. DON'T DO THIS UNLESS YOU REALLY KNOW "
+#~ "WHAT YOU ARE DOING."
+#~ msgstr ""
+#~ "将变更保存到系统文件. 除非你真的知道如何去做, 否则不要轻易改动设置文件"
+
+#~ msgid ""
+#~ "Reload constants files. This will overwrite any changes you made in the "
+#~ "current game session."
+#~ msgstr "读取系统文件. 会覆盖当前游戏中所作的变动"
+
+#~ msgid ""
+#~ "Close window. Changes will only be saved for the current session, unless "
+#~ "you also save to file."
+#~ msgstr "关闭窗口. 只会保存当前文件所作的修改, 除非你选择保存到文件"
+
 #~ msgid ""
 #~ "\n"
 #~ "If you feel you've found out something about the game that has to be "
@@ -3576,46 +3638,9 @@ msgstr "_玩家"
 #~ "\n"
 #~ "如果想与大家分享你游戏中的感受, 心得, 你可以把它们写到Bygfoot的WIKI页中:\n"
 
-#~ msgid "1 year"
-#~ msgstr "1年"
-
-#~ msgid "2 years"
-#~ msgstr "2年"
-
-#~ msgid "3 years"
-#~ msgstr "3年"
-
-#~ msgid "4 years"
-#~ msgstr "4年"
-
-#~ msgid "Available teams"
-#~ msgstr "可供选择的球队"
-
-#~ msgid "Average skill:"
-#~ msgstr "平均技能值"
-
-#~ msgid ""
-#~ "Bygfoot debug window. If you got here by accident, CLOSE IMMEDIATELY "
-#~ "(otherwise your CPU will be destroyed by overheating)."
-#~ msgstr ""
-#~ "Bygfoot调试窗口. 如果你只不过是碰巧来到了这里, 请赶快关闭它（否则你的cpu可"
-#~ "能因过热而导致损坏！：）"
-
 #, fuzzy
 #~ msgid "Bygfoot news"
 #~ msgstr "Bygfoot存档文件"
-
-#~ msgid "Click on a user to remove him from the game."
-#~ msgstr "点击一个玩家将他移除"
-
-#~ msgid "Confirm & schedule repayment"
-#~ msgstr "确认和计划 还贷"
-
-#~ msgid "Debug"
-#~ msgstr "调试"
-
-#~ msgid "Decide later"
-#~ msgstr "推迟决定"
 
 #~ msgid "Headline"
 #~ msgstr "头条"
@@ -3639,20 +3664,11 @@ msgstr "_玩家"
 #~ msgid "Loading cups..."
 #~ msgstr "读取杯赛..."
 
-#~ msgid "Make offer"
-#~ msgstr "提出合同"
-
 #~ msgid "Misc."
 #~ msgstr "其它"
 
-#~ msgid "Money (approx.)"
-#~ msgstr "资金(估计.)"
-
 #~ msgid "Move to team"
 #~ msgstr "移至球队"
-
-#~ msgid "Player list"
-#~ msgstr "球员列表"
 
 #~ msgid "Preferences"
 #~ msgstr "参数设置"
@@ -3676,9 +3692,6 @@ msgstr "_玩家"
 
 #~ msgid "Username"
 #~ msgstr "玩家姓名"
-
-#~ msgid "Users -- click to remove"
-#~ msgstr "玩家 -- 点击移除"
 
 #~ msgid "label26"
 #~ msgstr "标签26"

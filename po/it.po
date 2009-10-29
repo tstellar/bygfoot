@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot 2.3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 14:26+0100\n"
+"POT-Creation-Date: 2009-10-29 14:09+0100\n"
 "PO-Revision-Date: 2009-08-03 20:20+0100\n"
 "Last-Translator: Roberto Destrieri <destroby@libero.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
@@ -840,46 +840,6 @@ msgstr "Non puoi giocare a Bygfoot senza utenti!"
 msgid "Remove user %s from the game?"
 msgstr "Vuoi rimuovere l'utente %s dal gioco?"
 
-#: ../src/misc2_interface.c:271
-msgid "Current file"
-msgstr "File attuale"
-
-#: ../src/misc2_interface.c:282
-msgid "Open a memorable matches file"
-msgstr "Apri un file di partite memorabili"
-
-#: ../src/misc2_interface.c:287
-msgid "Reload matches from file"
-msgstr "Ricarica partite dal file"
-
-#: ../src/misc2_interface.c:301 ../src/options_interface.c:411
-msgid "Reload"
-msgstr "Ricarica"
-
-#: ../src/misc2_interface.c:308
-msgid "Import the matches from a memorable matches file"
-msgstr "Importa le partite da un file che contiene partite indimenticabili"
-
-#: ../src/misc2_interface.c:322
-msgid "Import file"
-msgstr "Importa file"
-
-#: ../src/misc2_interface.c:344
-msgid "Save changes to file and close"
-msgstr "Salva cambiamenti nel file e chiudi"
-
-#: ../src/misc2_interface.c:358
-msgid "Save and close"
-msgstr "Salva e chiudi"
-
-#: ../src/misc2_interface.c:365
-msgid "Reload matches from file and close"
-msgstr "Ricarica partite dal file e chiudi"
-
-#: ../src/misc2_interface.c:379
-msgid "Reload and close"
-msgstr "Ricarica e chiudi"
-
 #: ../src/misc3_callbacks.c:154
 #, c-format
 msgid "You bet on outcome %d with an odd of %.2f. How much do you wager?"
@@ -920,589 +880,6 @@ msgstr "%s e %s (%d)"
 msgid "%s and %s"
 msgstr "%s e %s"
 
-#: ../src/options_interface.c:256
-msgid "Confirm quit when not saved"
-msgstr "Conferma uscita in caso di gioco non salvato"
-
-#: ../src/options_interface.c:259
-msgid ""
-"Whether to show a confirmation popup when you press quit and the game state "
-"is not saved"
-msgstr ""
-"Visualizzare la conferma quando si chiude il gioco senza averlo salvato"
-
-#: ../src/options_interface.c:261
-msgid "Confirm when unfit"
-msgstr "Conferma quando fuori forma"
-
-#: ../src/options_interface.c:264
-msgid ""
-"Whether to show a confirmation popup if a user team has an injured or banned "
-"player in the startup formation"
-msgstr ""
-"Visualizzare la conferma quando la squadra dell'utente ha un giocatore della "
-"formazione infortunato o squalificato"
-
-#: ../src/options_interface.c:266
-msgid "Save overwrites"
-msgstr "Salva sovrascrive"
-
-#: ../src/options_interface.c:269
-msgid ""
-"Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
-msgstr ""
-"'Salva' sovrascrive il file corrente oppure apre la finestra 'Salva come'"
-
-#: ../src/options_interface.c:276
-msgid "Maximize main window"
-msgstr "Massimizza finestra principale"
-
-#: ../src/options_interface.c:279
-msgid ""
-"Whether game starts with a maximized main window (doesn't work with all "
-"window managers)"
-msgstr ""
-"Il gioco inizia con una finestra principale ingrandita (non funziona con "
-"tutti i sistemi operativi)"
-
-#: ../src/options_interface.c:281
-msgid "Prefer messages"
-msgstr "Preferisci messaggi"
-
-#: ../src/options_interface.c:284
-msgid ""
-"Whether to show warnings and such in the message area in the main window "
-"when possible"
-msgstr ""
-"Visualizzare gli avvisi e simili nell'area messaggi della finestra "
-"principale quando è possibile"
-
-#: ../src/options_interface.c:286
-msgid "Show progressbar pictures"
-msgstr "Mostra barra di caricamento"
-
-#: ../src/options_interface.c:289
-msgid ""
-"Whether to show pictures on top of the progressbar when loading/saving or "
-"calculating results"
-msgstr ""
-"Visualizzare le immagini sopra la barra di caricamento quando vengono "
-"caricati/salvati o calcolati i risultati"
-
-#: ../src/options_interface.c:296
-msgid "Skip weeks without user matches"
-msgstr "Salta settimane senza partite dell'utente"
-
-#: ../src/options_interface.c:299
-msgid ""
-"If checked, weeks without user teams playing are calculated automatically "
-"(without the user having to press 'New week')"
-msgstr ""
-"Quando selezionato, le settimane che trascorrono senza una squadra gestita "
-"da un umano sono calcolate automaticamente (altrimenti si dovrà premere "
-"'Nuova settimana')"
-
-#: ../src/options_interface.c:318
-msgid "Autosave interval "
-msgstr "Intervallo di auto-salvataggio"
-
-#: ../src/options_interface.c:326
-msgid "How often the game is saved automatically"
-msgstr "Ogni quanto il gioco è salvato automaticamente"
-
-#: ../src/options_interface.c:329
-msgid " Autosave files "
-msgstr " Salvataggio files automatico"
-
-#: ../src/options_interface.c:337
-msgid "How many files the autosave uses"
-msgstr "Numero di files di autosalvataggio da utilizzare"
-
-#: ../src/options_interface.c:339
-msgid "Player attribute precision"
-msgstr "Attributo di precisione del giocatore"
-
-#: ../src/options_interface.c:346
-msgid "Player list refresh rate"
-msgstr "Frequenza di aggiornamento lista giocatori"
-
-#: ../src/options_interface.c:353
-msgid "Constants file"
-msgstr "File delle costanti"
-
-#: ../src/options_interface.c:365 ../src/options_interface.c:473
-msgid "Font used in treeviews"
-msgstr "Font usato nelle viste ad albero"
-
-#: ../src/options_interface.c:379
-msgid "Font name"
-msgstr "Nome Font"
-
-#: ../src/options_interface.c:392
-msgid ""
-"File containing settings which determine a lot of aspects of the game "
-"behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
-msgstr ""
-"File contente le impostazioni che determinano vari aspetti del comportamento "
-"del gioco. NON MODIFICARLI SE NON SAI COSA STAI FACENDO."
-
-#: ../src/options_interface.c:397
-msgid "Reload the constants file"
-msgstr "Ricarica il file delle costanti"
-
-#: ../src/options_interface.c:418
-msgid "Edit the constants used in the game"
-msgstr "Modifica le costanti usate nel gioco"
-
-#: ../src/options_interface.c:432
-msgid "Edit"
-msgstr "Modifica"
-
-#: ../src/options_interface.c:436
-msgid "Language"
-msgstr "Lingua"
-
-#: ../src/options_interface.c:443
-msgid "Autosave"
-msgstr "Salvataggio automatico"
-
-#: ../src/options_interface.c:448
-msgid "Whether to automatically save the game regularly"
-msgstr "Il salvataggio automatico della partita avviene regolarmente"
-
-#: ../src/options_interface.c:456
-msgid "How many digits after the comma there are for skill etc."
-msgstr "Numero di cifre dopo la virgola per l'abilità, ecc."
-
-#: ../src/options_interface.c:465
-msgid ""
-"How often the player list gets refreshed during a live game (in live game "
-"minutes)"
-msgstr ""
-"Ogni quanto la lista giocatori viene aggiornata durante una partita in "
-"diretta (minuti virtuali riferiti alla partita)"
-
-#: ../src/options_interface.c:480
-msgid "Choose game language (might not work in Windows versions)"
-msgstr ""
-"Scegli la lingua del gioco (potrebbe non funzionare nella versione Windows)"
-
-#: ../src/options_interface.c:486
-msgid "Global"
-msgstr "Globale"
-
-#: ../src/options_interface.c:498
-msgid "Confirm removing youths"
-msgstr "Confermi la rimozione dei giovani"
-
-#: ../src/options_interface.c:501
-msgid ""
-"Whether a confirmation popup is shown when you kick out a youth from your "
-"academy"
-msgstr "Mostra popup quando butti fuori un allievo dalla primavera"
-
-#: ../src/options_interface.c:503
-msgid "Show job offers"
-msgstr "Visualizza offerte di lavoro"
-
-#: ../src/options_interface.c:506
-msgid "Whether to show job offers when a user is successful"
-msgstr "Visualizzare le offerte di lavoro quando un utente ha successo"
-
-#: ../src/options_interface.c:511
-msgid "Set to 0 to switch off warning"
-msgstr "Imposta a 0 per non visualizzare gli avvertimenti"
-
-#: ../src/options_interface.c:517
-msgid "Show warning if a player contract gets below "
-msgstr "Mostra un avviso quando il contratto di un giocatore sta per scadere"
-
-#: ../src/options_interface.c:527
-msgid " months"
-msgstr " mesi"
-
-#: ../src/options_interface.c:531
-msgid "Show all leagues in the fixture view"
-msgstr "Mostra tutti i campionati nella modalità visione calendari"
-
-#: ../src/options_interface.c:534
-msgid ""
-"Whether in the weekly fixture view all leagues or only the user league is "
-"shown"
-msgstr ""
-"Durante la partita settimanale visualizza tutti i campionati oppure solo il "
-"campionato dell'utente"
-
-#: ../src/options_interface.c:549
-msgid "Swap adapts structure"
-msgstr "Adatta il modulo nelle sostituzioni"
-
-#: ../src/options_interface.c:552
-msgid ""
-"Whether swapping two players automatically adapts the team structure to the "
-"player positions"
-msgstr ""
-"Scambiando due giocatori il modulo della squadra è adattato automaticamente "
-"in accordo al ruolo dei giocatori"
-
-#: ../src/options_interface.c:554
-msgid "Show overall games/goals"
-msgstr "Mostra totale partite/reti"
-
-#: ../src/options_interface.c:557
-msgid "Whether to show the player games/goals value in all competitions"
-msgstr "Visualizzare le partite/reti del giocatore in tutti i campionati"
-
-#: ../src/options_interface.c:559
-msgid "Always store/restore your default team"
-msgstr "Salvare/ripristinare sempre la tua squadra predefinita"
-
-#: ../src/options_interface.c:562
-msgid "Always store/restore your default team before/after a match"
-msgstr ""
-"Salvare/ripristinare sempre la tua squadra predefinita primo/dopo una partita"
-
-#: ../src/options_interface.c:564
-msgid "Gameplay"
-msgstr "Stile di gioco"
-
-#: ../src/options_interface.c:576
-msgid "Show live game"
-msgstr "Mostra partita in diretta"
-
-#: ../src/options_interface.c:580
-msgid "Show tendency bar"
-msgstr "Visualizza la barra di tendenza"
-
-#: ../src/options_interface.c:589
-msgid "Live game speed factor"
-msgstr "Velocità partita in diretta"
-
-#: ../src/options_interface.c:596
-msgid "Live game verbosity"
-msgstr "Dettagli partita in diretta"
-
-#: ../src/options_interface.c:609
-msgid "The lower this value the faster the live game commentary will scroll."
-msgstr ""
-"Più basso questo valore, più veloce scorrerà il commento della partita in "
-"diretta. "
-
-#: ../src/options_interface.c:618
-msgid "The higher this value, the more commentary you'll see."
-msgstr "Più alto questo valore, maggiore il numero di commenti visualizzati."
-
-#: ../src/options_interface.c:621
-msgid "Automatic substitutions"
-msgstr "Sostituzioni automatiche"
-
-#: ../src/options_interface.c:624
-msgid ""
-"Whether the subs (e.g. for injured players) are made by the CPU. This is "
-"automatically done if the live game is off."
-msgstr ""
-"Le sostituzioni (es: per giocatori infortunati) sono decise dal computer. "
-"Questo viene fatto automaticamente se la partita in diretta è disabilitata."
-
-#: ../src/options_interface.c:635
-msgid "Pause when injury"
-msgstr "Pausa in caso di infortunio"
-
-#: ../src/options_interface.c:638
-msgid "Whether the live game pauses when a user player is injured"
-msgstr ""
-"La partita in diretta si interrompe quando un giocatore dell'utente si "
-"infortuna"
-
-#: ../src/options_interface.c:640
-msgid "Pause when red card"
-msgstr "Pausa in caso di cartellino rosso"
-
-#: ../src/options_interface.c:643
-msgid "Whether the live game pauses when a user player is sent off"
-msgstr ""
-"La partita in diretta si interrompe quando un giocatore dell'utente viene "
-"espulso"
-
-#: ../src/options_interface.c:645
-msgid "Pause when break"
-msgstr "Pausa nell'intervallo"
-
-#: ../src/options_interface.c:648
-msgid "Whether the live game pauses at half time and extra time"
-msgstr ""
-"La partita in diretta si interrompe dopo il primo tempo e nei tempi "
-"supplementari"
-
-#: ../src/options_interface.c:650 ../support_files/bygfoot_misc.glade.h:33
-#: ../support_files/bygfoot.glade.h:42
-msgid "Live game"
-msgstr "Partita in diretta"
-
-#: ../src/options_interface.c:658
-msgid "Name "
-msgstr "Nome "
-
-#: ../src/options_interface.c:665
-msgid "CPos "
-msgstr "Pos.Att."
-
-#: ../src/options_interface.c:672
-msgid "Pos "
-msgstr "Pos "
-
-#: ../src/options_interface.c:679
-msgid "CSkill "
-msgstr "Abilità Att."
-
-#: ../src/options_interface.c:686
-msgid "Skill "
-msgstr "Abilità "
-
-#: ../src/options_interface.c:693
-msgid "Fitness "
-msgstr "Forma"
-
-#: ../src/options_interface.c:700
-msgid "Games "
-msgstr "Partite "
-
-#: ../src/options_interface.c:707
-msgid "Shots "
-msgstr "Tiri "
-
-#: ../src/options_interface.c:714
-msgid "Goals "
-msgstr "Reti "
-
-#: ../src/options_interface.c:721
-msgid "Status "
-msgstr "Stato "
-
-#: ../src/options_interface.c:728
-msgid "Cards "
-msgstr "Cartellini "
-
-#: ../src/options_interface.c:735
-msgid "Age "
-msgstr "Età "
-
-#: ../src/options_interface.c:742
-msgid "ETal "
-msgstr "Potenziale"
-
-#: ../src/options_interface.c:749
-msgid "Value "
-msgstr "Valore "
-
-#: ../src/options_interface.c:756
-msgid "Wage "
-msgstr "Stipendio "
-
-#: ../src/options_interface.c:763
-msgid "Contract "
-msgstr "Contratto "
-
-#: ../src/options_interface.c:770
-msgid "League "
-msgstr "Campionato "
-
-#: ../src/options_interface.c:777
-msgid "Team "
-msgstr "Squadra "
-
-#: ../src/options_interface.c:1014
-msgid "Attribute "
-msgstr "Caratteristiche "
-
-#: ../src/options_interface.c:1021
-msgid "List 1 "
-msgstr "Lista 1 "
-
-#: ../src/options_interface.c:1028
-msgid "List 2"
-msgstr "Lista 2 "
-
-#: ../src/options_interface.c:1042
-msgid "Player attributes shown"
-msgstr "Mostra caratteristiche del giocatore"
-
-#: ../src/options_interface.c:1054 ../support_files/bygfoot_misc3.glade.h:18
-msgid "Show matches from all leagues"
-msgstr "Mostra partite di tutti i campionati"
-
-#: ../src/options_interface.c:1057
-msgid "Whether to show matches of all leagues in the betting window"
-msgstr ""
-"Visualizzare le partite di tutti i campionati nella finestra delle scommesse"
-
-#: ../src/options_interface.c:1059 ../support_files/bygfoot_misc3.glade.h:19
-msgid "Show matches from cups"
-msgstr "Mostra partite di coppa"
-
-#: ../src/options_interface.c:1062
-msgid "Whether to show cup matches in the betting window"
-msgstr "Visualizzare le partite di coppa nella finestra delle scommesse"
-
-#: ../src/options_interface.c:1065 ../support_files/bygfoot_misc3.glade.h:20
-msgid "Show only my recent bets"
-msgstr "Mostra solo le mie scommesse recenti"
-
-#: ../src/options_interface.c:1073
-msgid "Default wager"
-msgstr "Importo predefinito"
-
-#: ../src/options_interface.c:1081
-msgid "How much you wager by default"
-msgstr "Importo predefinito per le scommesse"
-
-#: ../src/options_interface.c:1084 ../src/treeview.c:1520
-#: ../src/treeview.c:1530 ../src/window.c:986
-#: ../support_files/bygfoot.glade.h:20
-msgid "Betting"
-msgstr "Scommesse"
-
-#: ../src/options_interface.c:1098
-msgid "Default hotel"
-msgstr "Hotel predefinito"
-
-#: ../src/options_interface.c:1121
-msgid "Default recreation:"
-msgstr "Ricreazione predefinita:"
-
-#: ../src/options_interface.c:1141
-msgid "Default training:"
-msgstr "Allenamento predefinito:"
-
-#: ../src/options_interface.c:1151 ../src/treeview.c:1616 ../src/window.c:1001
-#: ../support_files/bygfoot_training.glade.h:9
-#: ../support_files/bygfoot.glade.h:101
-msgid "Training camp"
-msgstr "Ritiro"
-
-#: ../src/options_interface.c:1163
-msgid "Create user news"
-msgstr "Crea notizie utente"
-
-#: ../src/options_interface.c:1167
-msgid "Create cup news"
-msgstr "Crea notizie di coppa"
-
-#: ../src/options_interface.c:1171
-msgid "Create league news"
-msgstr "Crea notizie del campionato"
-
-#: ../src/options_interface.c:1175
-msgid "Show only recent news"
-msgstr "Mostra solo le notizie recenti"
-
-#: ../src/options_interface.c:1183
-msgid "No automatic popup"
-msgstr "Nessun popup automatico"
-
-#: ../src/options_interface.c:1189
-msgid "Popup for user news"
-msgstr "Popup per le notizie utente"
-
-#: ../src/options_interface.c:1192
-msgid "Show news window after a matchday when new user news was created"
-msgstr ""
-"Visualizza la finestra notizie dopo una giornata in cui è stata creata una "
-"nuova notizie utente"
-
-#: ../src/options_interface.c:1196
-msgid "Automatic popup"
-msgstr "Popup automatico"
-
-#: ../src/options_interface.c:1199
-msgid "Always show news window after a matchday"
-msgstr "Mostrare sempre le notizie dopo una partita"
-
-#: ../src/options_interface.c:1203 ../support_files/bygfoot.glade.h:52
-msgid "News"
-msgstr "Notizie"
-
-#: ../src/options_interface.c:1220
-msgid "Save global settings to file"
-msgstr "Salva impostazioni generali"
-
-#: ../src/options_interface.c:1223
-msgid ""
-"Whether to save the global settings to file (so that they get loaded next "
-"time you start a new game)"
-msgstr ""
-"Salvare le impostazioni globali nel file (in modo che vengano caricate la "
-"prossima volta che si avvia un nuovo gioco)"
-
-#: ../src/options_interface.c:1225
-msgid "Save user settings to file"
-msgstr "Salva impostazioni utente"
-
-#: ../src/options_interface.c:1228
-msgid ""
-"Whether to save the user settings to file (so that they get loaded next time "
-"this user starts a new game)"
-msgstr ""
-"Salvare le impostazioni utente nel file (in modo che vengano caricate la "
-"prossima volta che si avvia un nuovo gioco)"
-
-#: ../src/options_interface.c:1237 ../support_files/bygfoot_misc3.glade.h:13
-#: ../support_files/bygfoot_misc.glade.h:27
-msgid "Esc"
-msgstr "Esc"
-
-#: ../src/options_interface.c:1527
-msgid "Integer"
-msgstr "Intero"
-
-#: ../src/options_interface.c:1541
-msgid "Float"
-msgstr "Reale"
-
-#: ../src/options_interface.c:1555
-msgid "String"
-msgstr "Stringa"
-
-#: ../src/options_interface.c:1569
-msgid "Appearance"
-msgstr "Aspetto"
-
-#: ../src/options_interface.c:1581
-msgid ""
-"Save changes to the constants file. DON'T DO THIS UNLESS YOU REALLY KNOW "
-"WHAT YOU ARE DOING."
-msgstr ""
-"Salvare le modifiche al file di costanti. NON MODIFICARLI SE NON SAI DAVVERO "
-"COSA STAI FACENDO."
-
-#: ../src/options_interface.c:1595
-msgid "Save to file"
-msgstr "Salva impostazioni utente"
-
-#: ../src/options_interface.c:1602
-msgid ""
-"Reload constants files. This will overwrite any changes you made in the "
-"current game session."
-msgstr ""
-"Ricarica file delle costanti. Questa operazione sovrascrive le eventuali "
-"modifiche apportate nel corso dell'attuale sessione di gioco."
-
-#: ../src/options_interface.c:1616
-msgid "Reload from file"
-msgstr "Ricarica dal file"
-
-#: ../src/options_interface.c:1623
-msgid ""
-"Close window. Changes will only be saved for the current session, unless you "
-"also save to file."
-msgstr ""
-"Chiudi la finestra. Le modifiche saranno salvate solamente per la sessione "
-"corrente, a meno che non salvi in un file."
-
-#: ../src/options_interface.c:1640
-msgid "Close"
-msgstr "Chiudi"
-
 #: ../src/player.c:673
 msgid "You can't replace a banned player."
 msgstr "Non puoi sostituire un giocatore squalificato."
@@ -1515,7 +892,7 @@ msgstr "Il contratto di %s scade fra %.1f anni."
 #. Player health: ok.
 #. Player status: ok.
 #: ../src/player.c:1409 ../src/treeview_helper.c:1094
-#: ../src/treeview_helper.c:1390
+#: ../src/treeview_helper.c:1390 ../support_files/bygfoot_misc2.glade.h:25
 msgid "OK"
 msgstr "OK"
 
@@ -1740,7 +1117,7 @@ msgid "Team"
 msgstr "Squadra"
 
 #: ../src/treeview2.c:514 ../src/treeview.c:170 ../src/treeview.c:332
-#: ../src/treeview.c:780
+#: ../src/treeview.c:780 ../support_files/bygfoot_misc2.glade.h:21
 msgid "League"
 msgstr "Campionato"
 
@@ -1762,7 +1139,7 @@ msgid "Week %d Round %d"
 msgstr "Settimana %d Turno %d"
 
 #: ../src/treeview2.c:791 ../src/treeview.c:304 ../src/treeview.c:778
-#: ../src/treeview.c:2163
+#: ../src/treeview.c:2163 ../support_files/bygfoot_misc2.glade.h:24
 msgid "Name"
 msgstr "Nome"
 
@@ -1974,11 +1351,11 @@ msgstr "PNT"
 msgid "Stadium"
 msgstr "Stadio"
 
-#: ../src/treeview.c:1483
+#: ../src/treeview.c:1483 ../support_files/bygfoot_misc2.glade.h:36
 msgid "Stadium capacity"
 msgstr "Capienza stadio"
 
-#: ../src/treeview.c:1487
+#: ../src/treeview.c:1487 ../support_files/bygfoot_misc2.glade.h:37
 msgid "Stadium safety"
 msgstr "Sicurezza stadio"
 
@@ -2008,6 +1385,12 @@ msgstr "Incassi partite"
 #: ../src/treeview.c:1519
 msgid "Sponsorship"
 msgstr "Sponsorizzazione"
+
+#: ../src/treeview.c:1520 ../src/treeview.c:1530 ../src/window.c:986
+#: ../support_files/bygfoot.glade.h:20
+#: ../support_files/bygfoot_options.glade.h:12
+msgid "Betting"
+msgstr "Scommesse"
 
 #: ../src/treeview.c:1522
 msgid "Wages"
@@ -2068,6 +1451,13 @@ msgstr "Trasferimenti"
 #: ../src/treeview.c:1608
 msgid "Stadium expenses"
 msgstr "Spese stadio"
+
+#: ../src/treeview.c:1616 ../src/window.c:1001
+#: ../support_files/bygfoot.glade.h:101
+#: ../support_files/bygfoot_options.glade.h:94
+#: ../support_files/bygfoot_training.glade.h:9
+msgid "Training camp"
+msgstr "Ritiro"
 
 #: ../src/treeview.c:1629
 msgid "Money"
@@ -2162,7 +1552,7 @@ msgstr "Casa"
 msgid "Away"
 msgstr "Fuori"
 
-#: ../src/treeview.c:1866
+#: ../src/treeview.c:1866 ../support_files/bygfoot_misc2.glade.h:28
 msgid "Rank"
 msgstr "Posizione"
 
@@ -2847,7 +2237,7 @@ msgstr "Numeri..."
 msgid "Your stadium"
 msgstr "Il tuo stadio"
 
-#: ../src/window.c:892
+#: ../src/window.c:892 ../support_files/bygfoot_misc2.glade.h:20
 msgid "Job offer"
 msgstr "Offerta di lavoro"
 
@@ -2879,8 +2269,8 @@ msgstr "Offerte di sponsorizzazione"
 msgid "Memorable matches"
 msgstr "Partite indimenticabili"
 
-#: ../src/window.c:1009 ../support_files/bygfoot_misc3.glade.h:1
-#: ../support_files/bygfoot.glade.h:12
+#: ../src/window.c:1009 ../support_files/bygfoot.glade.h:12
+#: ../support_files/bygfoot_misc3.glade.h:1
 msgid "Automatic loan repayment"
 msgstr "Rinnovo automatico dei prestiti"
 
@@ -2933,370 +2323,6 @@ msgid ""
 msgstr ""
 "Un nuovo giovane vorrebbe entrare nella primavera ma non c'è posto per lui."
 
-#: ../support_files/bygfoot_misc3.glade.h:2
-msgid "Betting -- Left click on odd to place or remove bet"
-msgstr ""
-"Per scommettere -- Clicca il sinistro sulla quota per piazzare o rimuovere "
-"la scommessa"
-
-#: ../support_files/bygfoot_misc3.glade.h:4
-msgid "Calculate start week"
-msgstr "Calcolo settimana di partenza"
-
-#: ../support_files/bygfoot_misc3.glade.h:5
-msgid "Calculate weekly installment"
-msgstr "Calcolo rata settimanale"
-
-#: ../support_files/bygfoot_misc3.glade.h:6
-#: ../support_files/bygfoot.glade.h:24
-msgid "Contributors"
-msgstr "Collaboratori"
-
-#: ../support_files/bygfoot_misc3.glade.h:7
-msgid "Ctrl-N"
-msgstr "Ctrl-N"
-
-#: ../support_files/bygfoot_misc3.glade.h:8
-msgid "Ctrl-O"
-msgstr "Ctrl-O"
-
-#: ../support_files/bygfoot_misc3.glade.h:9
-msgid "Ctrl-R"
-msgstr "Ctrl-R"
-
-#: ../support_files/bygfoot_misc3.glade.h:10
-msgid "Current settings:"
-msgstr "Impostazioni correnti:"
-
-#. Splash screen hint question.
-#: ../support_files/bygfoot_misc3.glade.h:12
-msgid "Did you know?"
-msgstr "Sapevi che?"
-
-#: ../support_files/bygfoot_misc3.glade.h:14
-msgid "New settings:"
-msgstr "Nuove impostazioni:"
-
-#: ../support_files/bygfoot_misc3.glade.h:15
-msgid "Next"
-msgstr "Prossimo"
-
-#: ../support_files/bygfoot_misc3.glade.h:16
-msgid "Previous"
-msgstr "Precedente"
-
-#: ../support_files/bygfoot_misc3.glade.h:21
-msgid "Start _new game"
-msgstr "Inizio _nuovo gioco"
-
-#: ../support_files/bygfoot_misc3.glade.h:22
-msgid "Start in week"
-msgstr "Inizio nella settimana"
-
-#: ../support_files/bygfoot_misc3.glade.h:23
-msgid "Start in week:"
-msgstr "Inizio nella settimana:"
-
-#: ../support_files/bygfoot_misc3.glade.h:24
-msgid "Weekly installment"
-msgstr "Rata settimanale"
-
-#: ../support_files/bygfoot_misc3.glade.h:25
-msgid "Weekly installment:"
-msgstr "Rata settimanale:"
-
-#: ../support_files/bygfoot_misc3.glade.h:26
-msgid ""
-"Whether to show cup matches. Use the options window to toggle permanently."
-msgstr ""
-"Visualizzare le partite di coppa. Utilizzare la finestra delle opzioni per "
-"attivare o disattivare in modo permanente."
-
-#: ../support_files/bygfoot_misc3.glade.h:27
-msgid ""
-"Whether to show matches of all leagues. Use the options window to toggle "
-"permanently."
-msgstr ""
-"Visualizzare le partite di tutti i campionati. Utilizzare la finestra delle "
-"opzioni per attivare o disattivare in modo permanente."
-
-#: ../support_files/bygfoot_misc3.glade.h:28
-msgid "Whether to show only your bets in the recent bets list"
-msgstr "Visualizzare solo le tue puntate nella lista delle puntate recenti"
-
-#: ../support_files/bygfoot_misc3.glade.h:29
-msgid "Your debt:"
-msgstr "I tuo debiti:"
-
-#: ../support_files/bygfoot_misc3.glade.h:30
-msgid "_Load game"
-msgstr "Carica gioco"
-
-#: ../support_files/bygfoot_misc3.glade.h:31
-msgid "_Resume game"
-msgstr "Riprendi gioco"
-
-#: ../support_files/bygfoot_training.glade.h:1
-msgid "Camp points"
-msgstr "Punti campo"
-
-#: ../support_files/bygfoot_training.glade.h:2
-#: ../support_files/bygfoot_misc.glade.h:22
-msgid "Costs"
-msgstr "Costi"
-
-#: ../support_files/bygfoot_training.glade.h:6
-msgid "Recreation"
-msgstr "Passatempi"
-
-#: ../support_files/bygfoot_training.glade.h:7
-msgid "Save settings as default"
-msgstr "Salva impostazioni come predefinite"
-
-#: ../support_files/bygfoot_training.glade.h:8
-msgid "Training"
-msgstr "Allenamento"
-
-#: ../support_files/bygfoot_misc.glade.h:1
-msgid " seats"
-msgstr "posti a sedere"
-
-#: ../support_files/bygfoot_misc.glade.h:2
-msgid "0"
-msgstr "0"
-
-#: ../support_files/bygfoot_misc.glade.h:3
-msgid "Accept"
-msgstr "Accetta"
-
-#: ../support_files/bygfoot_misc.glade.h:4
-msgid "Add user"
-msgstr "Aggiungi utente"
-
-#: ../support_files/bygfoot_misc.glade.h:5
-msgid "Av. skill: "
-msgstr "Media Abilità: "
-
-#: ../support_files/bygfoot_misc.glade.h:6
-msgid "Average attendance"
-msgstr "Media spettatori"
-
-#: ../support_files/bygfoot_misc.glade.h:8
-#, no-c-format
-msgid "Average attendance %"
-msgstr "Media spettatori %"
-
-#: ../support_files/bygfoot_misc.glade.h:9
-msgid "Back to splash"
-msgstr "Torna alla schermata d'inizio"
-
-#: ../support_files/bygfoot_misc.glade.h:10
-msgid "Capacity (seats)"
-msgstr "Capacità (posti a sedere)"
-
-#: ../support_files/bygfoot_misc.glade.h:11
-msgid ""
-"Change commentary verbosity. The higher this value the more events you can "
-"see."
-msgstr ""
-"Cambia dettagli commenti. Più alto il valore, maggiore il numero di commenti "
-"visualizzati."
-
-#: ../support_files/bygfoot_misc.glade.h:12
-msgid "Change live game speed. The higher the value the faster the live game."
-msgstr ""
-"Cambia velocità partita. Più alto il valore, più veloce sarà la partita"
-
-#: ../support_files/bygfoot_misc.glade.h:13
-msgid "Change ticket price"
-msgstr "Cambia il prezzo del biglietto"
-
-#: ../support_files/bygfoot_misc.glade.h:14
-msgid "Choose country"
-msgstr "Scegli una nazione"
-
-#: ../support_files/bygfoot_misc.glade.h:15
-msgid "Choose file"
-msgstr "Scegli un file"
-
-#: ../support_files/bygfoot_misc.glade.h:16
-msgid "Choose league to start in"
-msgstr "Scegli il campionato da dove iniziare"
-
-#: ../support_files/bygfoot_misc.glade.h:17
-msgid "Choose team"
-msgstr "Scegli una squadra"
-
-#: ../support_files/bygfoot_misc.glade.h:18
-msgid "Choose username"
-msgstr "Scegli nome utente"
-
-#: ../support_files/bygfoot_misc.glade.h:19
-msgid "Click on a user to remove him."
-msgstr "Clicca su un utente per rimuoverlo."
-
-#: ../support_files/bygfoot_misc.glade.h:20
-msgid "Commentary"
-msgstr "Commenti"
-
-#: ../support_files/bygfoot_misc.glade.h:21
-msgid "Confirm!"
-msgstr "Conferma!"
-
-#: ../support_files/bygfoot_misc.glade.h:23
-msgid "Current capacity"
-msgstr "Capacità attuale"
-
-#: ../support_files/bygfoot_misc.glade.h:24
-msgid "Current safety"
-msgstr "Sicurezza attuale"
-
-#: ../support_files/bygfoot_misc.glade.h:25
-msgid "Don't load definitions"
-msgstr "Non caricare definizioni"
-
-#: ../support_files/bygfoot_misc.glade.h:26
-msgid "Don't load team definitions at all"
-msgstr "Non caricare le definizioni della squadra"
-
-#: ../support_files/bygfoot_misc.glade.h:28
-msgid "Esc / Return / Space"
-msgstr "Esc / Return / Space"
-
-#: ../support_files/bygfoot_misc.glade.h:29
-msgid "Expected duration"
-msgstr "Durata prevista"
-
-#: ../support_files/bygfoot_misc.glade.h:30
-msgid "Go back to the splash screen"
-msgstr "Torna indietro allo schermo iniziale"
-
-#: ../support_files/bygfoot_misc.glade.h:31
-msgid ""
-"If you don't like any of the sponsors, you can go a few weeks without "
-"sponsor and wait for new offers."
-msgstr ""
-"Se nessuna delle offerte ti soddisfa, puoi iniziare senza uno sponsor per "
-"alcune settimane e aspettare nuove offerte."
-
-#: ../support_files/bygfoot_misc.glade.h:32
-msgid "Increase"
-msgstr "Aumento"
-
-#: ../support_files/bygfoot_misc.glade.h:34
-msgid "Load only the player names in the definition files"
-msgstr "Carica solo i nomi dei giocatori nel file di definizione"
-
-#: ../support_files/bygfoot_misc.glade.h:35
-msgid "Load team definitions"
-msgstr "Carica definizioni per le squadre"
-
-#: ../support_files/bygfoot_misc.glade.h:36
-msgid ""
-"Load teams from definition files (note that the official Bygfoot package "
-"doesn't contain team definition files, you have to get them from the "
-"homepage or via the bygfoot-update script)"
-msgstr ""
-"Carica squadre dal file di definizione (N.B. il pacchetto ufficiale Bygfoot "
-"non contiene i file per le definizione delle squadre, puoi averlo attraverso "
-"la homepage o attraverso lo script bygfoot-update)"
-
-#: ../support_files/bygfoot_misc.glade.h:37
-msgid "Only names"
-msgstr "Solo nomi"
-
-#: ../support_files/bygfoot_misc.glade.h:38
-msgid "Opponent player list"
-msgstr "Lista giocatori avversari"
-
-#: ../support_files/bygfoot_misc.glade.h:39
-msgid "Price per ticket"
-msgstr "Prezzo del biglietto"
-
-#: ../support_files/bygfoot_misc.glade.h:40
-msgid "Randomise teams in cups"
-msgstr "Squadre nelle coppe casuali"
-
-#: ../support_files/bygfoot_misc.glade.h:41
-msgid ""
-"Randomise the order of teams in cups. This only makes sense in supernational "
-"definitions like the World Cup where the order of teams is fixed."
-msgstr ""
-"Ordine delle squadre nelle coppe casuale. Questo ha senso solo nelle "
-"definizioni internazionali tipo la Coppa del Mondo dove l'ordine delle "
-"squadre è fisso."
-
-#: ../support_files/bygfoot_misc.glade.h:42
-msgid "Reject for now"
-msgstr "Rifiuta per il momento"
-
-#: ../support_files/bygfoot_misc.glade.h:43
-msgid "Return"
-msgstr "Return"
-
-#: ../support_files/bygfoot_misc.glade.h:44
-msgid "Return / Space"
-msgstr "Return / Space"
-
-#: ../support_files/bygfoot_misc.glade.h:45
-#: ../support_files/bygfoot.glade.h:76
-msgid "Right click and left click to change boost state"
-msgstr "Clicca il destro e il sinistro per cambiare lo stato del Boost"
-
-#: ../support_files/bygfoot_misc.glade.h:46
-#: ../support_files/bygfoot.glade.h:77
-msgid "Right click and left click to change your playing style"
-msgstr "Clicca il destro e il sinistro per cambiare lo stile di gioco"
-
-#: ../support_files/bygfoot_misc.glade.h:47
-msgid "Right-click to set to 0"
-msgstr "Clicca il destro per impostare a 0"
-
-#: ../support_files/bygfoot_misc.glade.h:49
-#, no-c-format
-msgid "Safety (%)"
-msgstr "Sicurezza (%)"
-
-#: ../support_files/bygfoot_misc.glade.h:51
-msgid "Space"
-msgstr "Spazio"
-
-#: ../support_files/bygfoot_misc.glade.h:52
-msgid "Speed"
-msgstr "Velocita'"
-
-#: ../support_files/bygfoot_misc.glade.h:53
-msgid "Start"
-msgstr "Inizio"
-
-#: ../support_files/bygfoot_misc.glade.h:54
-msgid "Statistics"
-msgstr "Statistiche"
-
-#: ../support_files/bygfoot_misc.glade.h:55
-msgid "Status:"
-msgstr "Stato:"
-
-#: ../support_files/bygfoot_misc.glade.h:56
-msgid ""
-"There are a few companies interested in sponsoring your team. Please select "
-"one:"
-msgstr ""
-"Ci sono diverse compagnie interessate a sponsorizzare la tua squadra. "
-"Selezionarne una:"
-
-#: ../support_files/bygfoot_misc.glade.h:57
-msgid "Verbosity"
-msgstr "Verbosità"
-
-#: ../support_files/bygfoot_misc.glade.h:58
-msgid "_Pause"
-msgstr "_Pausa"
-
-#: ../support_files/bygfoot_misc.glade.h:59
-msgid "_Resume"
-msgstr "_Riprendi"
-
 #: ../support_files/bygfoot.glade.h:1
 msgid " Round "
 msgstr " Turno "
@@ -3309,7 +2335,7 @@ msgstr " Stagione "
 msgid " Week "
 msgstr " Settimana "
 
-#: ../support_files/bygfoot.glade.h:4
+#: ../support_files/bygfoot.glade.h:4 ../support_files/bygfoot_misc2.glade.h:5
 msgid "About"
 msgstr "Informazioni su"
 
@@ -3378,6 +2404,12 @@ msgstr "Visualizza giocatori"
 msgid "Browse teams"
 msgstr "Vedi le squadre"
 
+#: ../support_files/bygfoot.glade.h:24
+#: ../support_files/bygfoot_misc2.glade.h:12
+#: ../support_files/bygfoot_misc3.glade.h:6
+msgid "Contributors"
+msgstr "Collaboratori"
+
 #: ../support_files/bygfoot.glade.h:25
 #, fuzzy
 msgid "Default Team"
@@ -3436,6 +2468,7 @@ msgid "Good"
 msgstr "Buono"
 
 #: ../support_files/bygfoot.glade.h:39
+#: ../support_files/bygfoot_misc2.glade.h:17
 msgid "Help"
 msgstr "Aiuto"
 
@@ -3446,6 +2479,12 @@ msgstr "Offerte di lavoro"
 #: ../support_files/bygfoot.glade.h:41
 msgid "League stats"
 msgstr "Statistiche del campionato"
+
+#: ../support_files/bygfoot.glade.h:42
+#: ../support_files/bygfoot_misc.glade.h:33
+#: ../support_files/bygfoot_options.glade.h:52
+msgid "Live game"
+msgstr "Partita in diretta"
 
 #: ../support_files/bygfoot.glade.h:43
 msgid "Load game (Ctrl - O)"
@@ -3479,6 +2518,11 @@ msgstr "Sposta nella squadra primavera"
 #: ../support_files/bygfoot.glade.h:51
 msgid "My league results"
 msgstr "Risultati campionato"
+
+#: ../support_files/bygfoot.glade.h:52
+#: ../support_files/bygfoot_options.glade.h:57
+msgid "News"
+msgstr "Notizie"
 
 #: ../support_files/bygfoot.glade.h:53
 msgid "Next (W)"
@@ -3572,6 +2616,16 @@ msgstr ""
 #, fuzzy
 msgid "Restore"
 msgstr "Risultato"
+
+#: ../support_files/bygfoot.glade.h:76
+#: ../support_files/bygfoot_misc.glade.h:45
+msgid "Right click and left click to change boost state"
+msgstr "Clicca il destro e il sinistro per cambiare lo stato del Boost"
+
+#: ../support_files/bygfoot.glade.h:77
+#: ../support_files/bygfoot_misc.glade.h:46
+msgid "Right click and left click to change your playing style"
+msgstr "Clicca il destro e il sinistro per cambiare lo stile di gioco"
 
 #: ../support_files/bygfoot.glade.h:78
 msgid "Save game (Ctrl - S)"
@@ -3694,6 +2748,1016 @@ msgstr "Squadra"
 msgid "_User"
 msgstr "Utente"
 
+#: ../support_files/bygfoot_misc.glade.h:1
+msgid " seats"
+msgstr "posti a sedere"
+
+#: ../support_files/bygfoot_misc.glade.h:2
+msgid "0"
+msgstr "0"
+
+#: ../support_files/bygfoot_misc.glade.h:3
+msgid "Accept"
+msgstr "Accetta"
+
+#: ../support_files/bygfoot_misc.glade.h:4
+#: ../support_files/bygfoot_misc2.glade.h:6
+msgid "Add user"
+msgstr "Aggiungi utente"
+
+#: ../support_files/bygfoot_misc.glade.h:5
+msgid "Av. skill: "
+msgstr "Media Abilità: "
+
+#: ../support_files/bygfoot_misc.glade.h:6
+msgid "Average attendance"
+msgstr "Media spettatori"
+
+#: ../support_files/bygfoot_misc.glade.h:8
+#, no-c-format
+msgid "Average attendance %"
+msgstr "Media spettatori %"
+
+#: ../support_files/bygfoot_misc.glade.h:9
+msgid "Back to splash"
+msgstr "Torna alla schermata d'inizio"
+
+#: ../support_files/bygfoot_misc.glade.h:10
+msgid "Capacity (seats)"
+msgstr "Capacità (posti a sedere)"
+
+#: ../support_files/bygfoot_misc.glade.h:11
+msgid ""
+"Change commentary verbosity. The higher this value the more events you can "
+"see."
+msgstr ""
+"Cambia dettagli commenti. Più alto il valore, maggiore il numero di commenti "
+"visualizzati."
+
+#: ../support_files/bygfoot_misc.glade.h:12
+msgid "Change live game speed. The higher the value the faster the live game."
+msgstr ""
+"Cambia velocità partita. Più alto il valore, più veloce sarà la partita"
+
+#: ../support_files/bygfoot_misc.glade.h:13
+msgid "Change ticket price"
+msgstr "Cambia il prezzo del biglietto"
+
+#: ../support_files/bygfoot_misc.glade.h:14
+msgid "Choose country"
+msgstr "Scegli una nazione"
+
+#: ../support_files/bygfoot_misc.glade.h:15
+msgid "Choose file"
+msgstr "Scegli un file"
+
+#: ../support_files/bygfoot_misc.glade.h:16
+msgid "Choose league to start in"
+msgstr "Scegli il campionato da dove iniziare"
+
+#: ../support_files/bygfoot_misc.glade.h:17
+msgid "Choose team"
+msgstr "Scegli una squadra"
+
+#: ../support_files/bygfoot_misc.glade.h:18
+msgid "Choose username"
+msgstr "Scegli nome utente"
+
+#: ../support_files/bygfoot_misc.glade.h:19
+msgid "Click on a user to remove him."
+msgstr "Clicca su un utente per rimuoverlo."
+
+#: ../support_files/bygfoot_misc.glade.h:20
+msgid "Commentary"
+msgstr "Commenti"
+
+#: ../support_files/bygfoot_misc.glade.h:21
+msgid "Confirm!"
+msgstr "Conferma!"
+
+#: ../support_files/bygfoot_misc.glade.h:22
+#: ../support_files/bygfoot_training.glade.h:2
+msgid "Costs"
+msgstr "Costi"
+
+#: ../support_files/bygfoot_misc.glade.h:23
+msgid "Current capacity"
+msgstr "Capacità attuale"
+
+#: ../support_files/bygfoot_misc.glade.h:24
+msgid "Current safety"
+msgstr "Sicurezza attuale"
+
+#: ../support_files/bygfoot_misc.glade.h:25
+msgid "Don't load definitions"
+msgstr "Non caricare definizioni"
+
+#: ../support_files/bygfoot_misc.glade.h:26
+msgid "Don't load team definitions at all"
+msgstr "Non caricare le definizioni della squadra"
+
+#: ../support_files/bygfoot_misc.glade.h:27
+#: ../support_files/bygfoot_misc2.glade.h:16
+#: ../support_files/bygfoot_misc3.glade.h:13
+msgid "Esc"
+msgstr "Esc"
+
+#: ../support_files/bygfoot_misc.glade.h:28
+msgid "Esc / Return / Space"
+msgstr "Esc / Return / Space"
+
+#: ../support_files/bygfoot_misc.glade.h:29
+msgid "Expected duration"
+msgstr "Durata prevista"
+
+#: ../support_files/bygfoot_misc.glade.h:30
+msgid "Go back to the splash screen"
+msgstr "Torna indietro allo schermo iniziale"
+
+#: ../support_files/bygfoot_misc.glade.h:31
+msgid ""
+"If you don't like any of the sponsors, you can go a few weeks without "
+"sponsor and wait for new offers."
+msgstr ""
+"Se nessuna delle offerte ti soddisfa, puoi iniziare senza uno sponsor per "
+"alcune settimane e aspettare nuove offerte."
+
+#: ../support_files/bygfoot_misc.glade.h:32
+msgid "Increase"
+msgstr "Aumento"
+
+#: ../support_files/bygfoot_misc.glade.h:34
+msgid "Load only the player names in the definition files"
+msgstr "Carica solo i nomi dei giocatori nel file di definizione"
+
+#: ../support_files/bygfoot_misc.glade.h:35
+msgid "Load team definitions"
+msgstr "Carica definizioni per le squadre"
+
+#: ../support_files/bygfoot_misc.glade.h:36
+msgid ""
+"Load teams from definition files (note that the official Bygfoot package "
+"doesn't contain team definition files, you have to get them from the "
+"homepage or via the bygfoot-update script)"
+msgstr ""
+"Carica squadre dal file di definizione (N.B. il pacchetto ufficiale Bygfoot "
+"non contiene i file per le definizione delle squadre, puoi averlo attraverso "
+"la homepage o attraverso lo script bygfoot-update)"
+
+#: ../support_files/bygfoot_misc.glade.h:37
+msgid "Only names"
+msgstr "Solo nomi"
+
+#: ../support_files/bygfoot_misc.glade.h:38
+msgid "Opponent player list"
+msgstr "Lista giocatori avversari"
+
+#: ../support_files/bygfoot_misc.glade.h:39
+msgid "Price per ticket"
+msgstr "Prezzo del biglietto"
+
+#: ../support_files/bygfoot_misc.glade.h:40
+msgid "Randomise teams in cups"
+msgstr "Squadre nelle coppe casuali"
+
+#: ../support_files/bygfoot_misc.glade.h:41
+msgid ""
+"Randomise the order of teams in cups. This only makes sense in supernational "
+"definitions like the World Cup where the order of teams is fixed."
+msgstr ""
+"Ordine delle squadre nelle coppe casuale. Questo ha senso solo nelle "
+"definizioni internazionali tipo la Coppa del Mondo dove l'ordine delle "
+"squadre è fisso."
+
+#: ../support_files/bygfoot_misc.glade.h:42
+msgid "Reject for now"
+msgstr "Rifiuta per il momento"
+
+#: ../support_files/bygfoot_misc.glade.h:43
+#: ../support_files/bygfoot_misc2.glade.h:33
+msgid "Return"
+msgstr "Return"
+
+#: ../support_files/bygfoot_misc.glade.h:44
+msgid "Return / Space"
+msgstr "Return / Space"
+
+#: ../support_files/bygfoot_misc.glade.h:47
+msgid "Right-click to set to 0"
+msgstr "Clicca il destro per impostare a 0"
+
+#: ../support_files/bygfoot_misc.glade.h:49
+#, no-c-format
+msgid "Safety (%)"
+msgstr "Sicurezza (%)"
+
+#: ../support_files/bygfoot_misc.glade.h:51
+msgid "Space"
+msgstr "Spazio"
+
+#: ../support_files/bygfoot_misc.glade.h:52
+msgid "Speed"
+msgstr "Velocita'"
+
+#: ../support_files/bygfoot_misc.glade.h:53
+msgid "Start"
+msgstr "Inizio"
+
+#: ../support_files/bygfoot_misc.glade.h:54
+msgid "Statistics"
+msgstr "Statistiche"
+
+#: ../support_files/bygfoot_misc.glade.h:55
+msgid "Status:"
+msgstr "Stato:"
+
+#: ../support_files/bygfoot_misc.glade.h:56
+msgid ""
+"There are a few companies interested in sponsoring your team. Please select "
+"one:"
+msgstr ""
+"Ci sono diverse compagnie interessate a sponsorizzare la tua squadra. "
+"Selezionarne una:"
+
+#: ../support_files/bygfoot_misc.glade.h:57
+msgid "Verbosity"
+msgstr "Verbosità"
+
+#: ../support_files/bygfoot_misc.glade.h:58
+msgid "_Pause"
+msgstr "_Pausa"
+
+#: ../support_files/bygfoot_misc.glade.h:59
+msgid "_Resume"
+msgstr "_Riprendi"
+
+#: ../support_files/bygfoot_misc2.glade.h:1
+msgid "1 year"
+msgstr "1 anno"
+
+#: ../support_files/bygfoot_misc2.glade.h:2
+msgid "2 years"
+msgstr "2 anni"
+
+#: ../support_files/bygfoot_misc2.glade.h:3
+msgid "3 years"
+msgstr "3 anni"
+
+#: ../support_files/bygfoot_misc2.glade.h:4
+msgid "4 years"
+msgstr "4 anni"
+
+#: ../support_files/bygfoot_misc2.glade.h:7
+msgid "Available teams"
+msgstr "Squadre disponibili"
+
+#: ../support_files/bygfoot_misc2.glade.h:8
+msgid "Average skill:"
+msgstr "Media abilità:"
+
+#: ../support_files/bygfoot_misc2.glade.h:9
+msgid ""
+"Bygfoot debug window. If you got here by accident, CLOSE IMMEDIATELY "
+"(otherwise your CPU will be destroyed by overheating)."
+msgstr ""
+"Finestra di debug per Bygfoot. Se sei arrivato qui per sbaglio, CHIUDI "
+"IMMEDIATAMENTE (altrimenti la tua CPU sara distrutta per surriscaldamento)."
+
+#: ../support_files/bygfoot_misc2.glade.h:10
+msgid "Click on a user to remove him from the game."
+msgstr "Clicca su un utente per rimuoverlo dal gioco."
+
+#: ../support_files/bygfoot_misc2.glade.h:11
+msgid "Confirm & schedule repayment"
+msgstr "Conferma e Pianifica rinnovamento"
+
+#: ../support_files/bygfoot_misc2.glade.h:13
+msgid "Current file"
+msgstr "File attuale"
+
+#: ../support_files/bygfoot_misc2.glade.h:14
+msgid "Debug"
+msgstr "Debug"
+
+#: ../support_files/bygfoot_misc2.glade.h:15
+msgid "Decide later"
+msgstr "Decidi dopo"
+
+#: ../support_files/bygfoot_misc2.glade.h:18
+msgid "Import file"
+msgstr "Importa file"
+
+#: ../support_files/bygfoot_misc2.glade.h:19
+msgid "Import the matches from a memorable matches file"
+msgstr "Importa le partite da un file che contiene partite indimenticabili"
+
+#: ../support_files/bygfoot_misc2.glade.h:22
+msgid "Make offer"
+msgstr "Fai un'offerta"
+
+#: ../support_files/bygfoot_misc2.glade.h:23
+msgid "Money (approx.)"
+msgstr "Soldi (appross.)"
+
+#: ../support_files/bygfoot_misc2.glade.h:26
+msgid "Open a memorable matches file"
+msgstr "Apri un file di partite memorabili"
+
+#: ../support_files/bygfoot_misc2.glade.h:27
+msgid "Player list"
+msgstr "Lista giocatori"
+
+#: ../support_files/bygfoot_misc2.glade.h:29
+#: ../support_files/bygfoot_options.glade.h:68
+msgid "Reload"
+msgstr "Ricarica"
+
+#: ../support_files/bygfoot_misc2.glade.h:30
+msgid "Reload and close"
+msgstr "Ricarica e chiudi"
+
+#: ../support_files/bygfoot_misc2.glade.h:31
+msgid "Reload matches from file"
+msgstr "Ricarica partite dal file"
+
+#: ../support_files/bygfoot_misc2.glade.h:32
+msgid "Reload matches from file and close"
+msgstr "Ricarica partite dal file e chiudi"
+
+#: ../support_files/bygfoot_misc2.glade.h:34
+msgid "Save and close"
+msgstr "Salva e chiudi"
+
+#: ../support_files/bygfoot_misc2.glade.h:35
+msgid "Save changes to file and close"
+msgstr "Salva cambiamenti nel file e chiudi"
+
+#: ../support_files/bygfoot_misc2.glade.h:38
+msgid "Users -- click to remove"
+msgstr "Utenti -- clicca per rimuovere"
+
+#: ../support_files/bygfoot_options.glade.h:1
+msgid " Autosave files "
+msgstr " Salvataggio files automatico"
+
+#: ../support_files/bygfoot_options.glade.h:2
+msgid " months"
+msgstr " mesi"
+
+#: ../support_files/bygfoot_options.glade.h:3
+msgid "Age "
+msgstr "Età "
+
+#: ../support_files/bygfoot_options.glade.h:4
+msgid "Always store/restore your default team"
+msgstr "Salvare/ripristinare sempre la tua squadra predefinita"
+
+#: ../support_files/bygfoot_options.glade.h:5
+msgid "Always store/restore your default team before/after a match"
+msgstr ""
+"Salvare/ripristinare sempre la tua squadra predefinita primo/dopo una partita"
+
+#: ../support_files/bygfoot_options.glade.h:6
+msgid "Appearance"
+msgstr "Aspetto"
+
+#: ../support_files/bygfoot_options.glade.h:7
+msgid "Attribute "
+msgstr "Caratteristiche "
+
+#: ../support_files/bygfoot_options.glade.h:8
+msgid "Automatic popup"
+msgstr "Popup automatico"
+
+#: ../support_files/bygfoot_options.glade.h:9
+msgid "Automatic substitutions"
+msgstr "Sostituzioni automatiche"
+
+#: ../support_files/bygfoot_options.glade.h:10
+msgid "Autosave"
+msgstr "Salvataggio automatico"
+
+#: ../support_files/bygfoot_options.glade.h:11
+msgid "Autosave interval "
+msgstr "Intervallo di auto-salvataggio"
+
+#: ../support_files/bygfoot_options.glade.h:13
+msgid "CPos "
+msgstr "Pos.Att."
+
+#: ../support_files/bygfoot_options.glade.h:14
+msgid "CSkill "
+msgstr "Abilità Att."
+
+#: ../support_files/bygfoot_options.glade.h:15
+msgid "Cards "
+msgstr "Cartellini "
+
+#: ../support_files/bygfoot_options.glade.h:16
+msgid "Choose game language (might not work in Windows versions)"
+msgstr ""
+"Scegli la lingua del gioco (potrebbe non funzionare nella versione Windows)"
+
+#: ../support_files/bygfoot_options.glade.h:17
+msgid "Close"
+msgstr "Chiudi"
+
+#: ../support_files/bygfoot_options.glade.h:18
+msgid "Confirm quit when not saved"
+msgstr "Conferma uscita in caso di gioco non salvato"
+
+#: ../support_files/bygfoot_options.glade.h:19
+msgid "Confirm removing youths"
+msgstr "Confermi la rimozione dei giovani"
+
+#: ../support_files/bygfoot_options.glade.h:20
+msgid "Confirm when unfit"
+msgstr "Conferma quando fuori forma"
+
+#: ../support_files/bygfoot_options.glade.h:21
+msgid "Constants file"
+msgstr "File delle costanti"
+
+#: ../support_files/bygfoot_options.glade.h:22
+msgid "Contract "
+msgstr "Contratto "
+
+#: ../support_files/bygfoot_options.glade.h:23
+msgid "Create cup news"
+msgstr "Crea notizie di coppa"
+
+#: ../support_files/bygfoot_options.glade.h:24
+msgid "Create league news"
+msgstr "Crea notizie del campionato"
+
+#: ../support_files/bygfoot_options.glade.h:25
+msgid "Create user news"
+msgstr "Crea notizie utente"
+
+#: ../support_files/bygfoot_options.glade.h:26
+msgid "Default hotel"
+msgstr "Hotel predefinito"
+
+#: ../support_files/bygfoot_options.glade.h:27
+msgid "Default recreation:"
+msgstr "Ricreazione predefinita:"
+
+#: ../support_files/bygfoot_options.glade.h:28
+msgid "Default training:"
+msgstr "Allenamento predefinito:"
+
+#: ../support_files/bygfoot_options.glade.h:29
+msgid "Default wager"
+msgstr "Importo predefinito"
+
+#: ../support_files/bygfoot_options.glade.h:30
+msgid "ETal "
+msgstr "Potenziale"
+
+#: ../support_files/bygfoot_options.glade.h:31
+msgid "Edit"
+msgstr "Modifica"
+
+#: ../support_files/bygfoot_options.glade.h:32
+msgid "Edit the constants used in the game"
+msgstr "Modifica le costanti usate nel gioco"
+
+#: ../support_files/bygfoot_options.glade.h:33
+msgid ""
+"File containing settings which determine a lot of aspects of the game "
+"behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
+msgstr ""
+"File contente le impostazioni che determinano vari aspetti del comportamento "
+"del gioco. NON MODIFICARLI SE NON SAI COSA STAI FACENDO."
+
+#: ../support_files/bygfoot_options.glade.h:34
+msgid "Fitness "
+msgstr "Forma"
+
+#: ../support_files/bygfoot_options.glade.h:35
+msgid "Float"
+msgstr "Reale"
+
+#: ../support_files/bygfoot_options.glade.h:36
+msgid "Font name"
+msgstr "Nome Font"
+
+#: ../support_files/bygfoot_options.glade.h:37
+msgid "Font used in treeviews"
+msgstr "Font usato nelle viste ad albero"
+
+#: ../support_files/bygfoot_options.glade.h:38
+msgid "Gameplay"
+msgstr "Stile di gioco"
+
+#: ../support_files/bygfoot_options.glade.h:39
+msgid "Games "
+msgstr "Partite "
+
+#: ../support_files/bygfoot_options.glade.h:40
+msgid "Global"
+msgstr "Globale"
+
+#: ../support_files/bygfoot_options.glade.h:41
+msgid "Goals "
+msgstr "Reti "
+
+#: ../support_files/bygfoot_options.glade.h:42
+msgid "How many digits after the comma there are for skill etc."
+msgstr "Numero di cifre dopo la virgola per l'abilità, ecc."
+
+#: ../support_files/bygfoot_options.glade.h:43
+msgid "How many files the autosave uses"
+msgstr "Numero di files di autosalvataggio da utilizzare"
+
+#: ../support_files/bygfoot_options.glade.h:44
+msgid "How often the game is saved automatically"
+msgstr "Ogni quanto il gioco è salvato automaticamente"
+
+#: ../support_files/bygfoot_options.glade.h:45
+msgid ""
+"How often the player list gets refreshed during a live game (in live game "
+"minutes)"
+msgstr ""
+"Ogni quanto la lista giocatori viene aggiornata durante una partita in "
+"diretta (minuti virtuali riferiti alla partita)"
+
+#: ../support_files/bygfoot_options.glade.h:46
+msgid ""
+"If checked, weeks without user teams playing are calculated automatically "
+"(without the user having to press 'New week')"
+msgstr ""
+"Quando selezionato, le settimane che trascorrono senza una squadra gestita "
+"da un umano sono calcolate automaticamente (altrimenti si dovrà premere "
+"'Nuova settimana')"
+
+#: ../support_files/bygfoot_options.glade.h:47
+msgid "Integer"
+msgstr "Intero"
+
+#: ../support_files/bygfoot_options.glade.h:48
+msgid "Language"
+msgstr "Lingua"
+
+#: ../support_files/bygfoot_options.glade.h:49
+msgid "League "
+msgstr "Campionato "
+
+#: ../support_files/bygfoot_options.glade.h:50
+msgid "List 1 "
+msgstr "Lista 1 "
+
+#: ../support_files/bygfoot_options.glade.h:51
+msgid "List 2"
+msgstr "Lista 2 "
+
+#: ../support_files/bygfoot_options.glade.h:53
+msgid "Live game speed factor"
+msgstr "Velocità partita in diretta"
+
+#: ../support_files/bygfoot_options.glade.h:54
+msgid "Live game verbosity"
+msgstr "Dettagli partita in diretta"
+
+#: ../support_files/bygfoot_options.glade.h:55
+msgid "Maximize main window"
+msgstr "Massimizza finestra principale"
+
+#: ../support_files/bygfoot_options.glade.h:56
+msgid "Name "
+msgstr "Nome "
+
+#: ../support_files/bygfoot_options.glade.h:58
+msgid "No automatic popup"
+msgstr "Nessun popup automatico"
+
+#: ../support_files/bygfoot_options.glade.h:59
+msgid "Pause when break"
+msgstr "Pausa nell'intervallo"
+
+#: ../support_files/bygfoot_options.glade.h:60
+msgid "Pause when injury"
+msgstr "Pausa in caso di infortunio"
+
+#: ../support_files/bygfoot_options.glade.h:61
+msgid "Pause when red card"
+msgstr "Pausa in caso di cartellino rosso"
+
+#: ../support_files/bygfoot_options.glade.h:62
+msgid "Player attribute precision"
+msgstr "Attributo di precisione del giocatore"
+
+#: ../support_files/bygfoot_options.glade.h:63
+msgid "Player attributes shown"
+msgstr "Mostra caratteristiche del giocatore"
+
+#: ../support_files/bygfoot_options.glade.h:64
+msgid "Player list refresh rate"
+msgstr "Frequenza di aggiornamento lista giocatori"
+
+#: ../support_files/bygfoot_options.glade.h:65
+msgid "Popup for user news"
+msgstr "Popup per le notizie utente"
+
+#: ../support_files/bygfoot_options.glade.h:66
+msgid "Pos "
+msgstr "Pos "
+
+#: ../support_files/bygfoot_options.glade.h:67
+msgid "Prefer messages"
+msgstr "Preferisci messaggi"
+
+#: ../support_files/bygfoot_options.glade.h:69
+msgid "Reload from file"
+msgstr "Ricarica dal file"
+
+#: ../support_files/bygfoot_options.glade.h:70
+msgid "Reload the constants file"
+msgstr "Ricarica il file delle costanti"
+
+#: ../support_files/bygfoot_options.glade.h:71
+msgid "Save global settings to file"
+msgstr "Salva impostazioni generali"
+
+#: ../support_files/bygfoot_options.glade.h:72
+msgid "Save overwrites"
+msgstr "Salva sovrascrive"
+
+#: ../support_files/bygfoot_options.glade.h:73
+msgid "Save to file"
+msgstr "Salva impostazioni utente"
+
+#: ../support_files/bygfoot_options.glade.h:74
+msgid "Save user settings to file"
+msgstr "Salva impostazioni utente"
+
+#: ../support_files/bygfoot_options.glade.h:75
+msgid "Set to 0 to switch off warning"
+msgstr "Imposta a 0 per non visualizzare gli avvertimenti"
+
+#: ../support_files/bygfoot_options.glade.h:76
+msgid "Shots "
+msgstr "Tiri "
+
+#: ../support_files/bygfoot_options.glade.h:77
+msgid "Show all leagues in the fixture view"
+msgstr "Mostra tutti i campionati nella modalità visione calendari"
+
+#: ../support_files/bygfoot_options.glade.h:78
+msgid "Show job offers"
+msgstr "Visualizza offerte di lavoro"
+
+#: ../support_files/bygfoot_options.glade.h:79
+msgid "Show live game"
+msgstr "Mostra partita in diretta"
+
+#: ../support_files/bygfoot_options.glade.h:80
+#: ../support_files/bygfoot_misc3.glade.h:18
+msgid "Show matches from all leagues"
+msgstr "Mostra partite di tutti i campionati"
+
+#: ../support_files/bygfoot_options.glade.h:81
+#: ../support_files/bygfoot_misc3.glade.h:19
+msgid "Show matches from cups"
+msgstr "Mostra partite di coppa"
+
+#: ../support_files/bygfoot_options.glade.h:82
+#: ../support_files/bygfoot_misc3.glade.h:20
+msgid "Show only my recent bets"
+msgstr "Mostra solo le mie scommesse recenti"
+
+#: ../support_files/bygfoot_options.glade.h:83
+msgid "Show only recent news"
+msgstr "Mostra solo le notizie recenti"
+
+#: ../support_files/bygfoot_options.glade.h:84
+msgid "Show overall games/goals"
+msgstr "Mostra totale partite/reti"
+
+#: ../support_files/bygfoot_options.glade.h:85
+msgid "Show progressbar pictures"
+msgstr "Mostra barra di caricamento"
+
+#: ../support_files/bygfoot_options.glade.h:86
+msgid "Show tendency bar"
+msgstr "Visualizza la barra di tendenza"
+
+#: ../support_files/bygfoot_options.glade.h:87
+msgid "Show warning if a player contract gets below "
+msgstr "Mostra un avviso quando il contratto di un giocatore sta per scadere"
+
+#: ../support_files/bygfoot_options.glade.h:88
+msgid "Skill "
+msgstr "Abilità "
+
+#: ../support_files/bygfoot_options.glade.h:89
+msgid "Skip weeks without user matches"
+msgstr "Salta settimane senza partite dell'utente"
+
+#: ../support_files/bygfoot_options.glade.h:90
+msgid "Status "
+msgstr "Stato "
+
+#: ../support_files/bygfoot_options.glade.h:91
+msgid "String"
+msgstr "Stringa"
+
+#: ../support_files/bygfoot_options.glade.h:92
+msgid "Swap adapts structure"
+msgstr "Adatta il modulo nelle sostituzioni"
+
+#: ../support_files/bygfoot_options.glade.h:93
+msgid "Team "
+msgstr "Squadra "
+
+#: ../support_files/bygfoot_options.glade.h:95
+msgid "Value "
+msgstr "Valore "
+
+#: ../support_files/bygfoot_options.glade.h:96
+msgid "Wage "
+msgstr "Stipendio "
+
+#: ../support_files/bygfoot_options.glade.h:97
+msgid ""
+"Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
+msgstr ""
+"'Salva' sovrascrive il file corrente oppure apre la finestra 'Salva come'"
+
+#: ../support_files/bygfoot_options.glade.h:98
+msgid ""
+"Whether a confirmation popup is shown when you kick out a youth from your "
+"academy"
+msgstr "Mostra popup quando butti fuori un allievo dalla primavera"
+
+#: ../support_files/bygfoot_options.glade.h:99
+msgid ""
+"Whether game starts with a maximized main window (doesn't work with all "
+"window managers)"
+msgstr ""
+"Il gioco inizia con una finestra principale ingrandita (non funziona con "
+"tutti i sistemi operativi)"
+
+#: ../support_files/bygfoot_options.glade.h:100
+msgid ""
+"Whether in the weekly fixture view all leagues or only the user league is "
+"shown"
+msgstr ""
+"Durante la partita settimanale visualizza tutti i campionati oppure solo il "
+"campionato dell'utente"
+
+#: ../support_files/bygfoot_options.glade.h:101
+msgid ""
+"Whether swapping two players automatically adapts the team structure to the "
+"player positions"
+msgstr ""
+"Scambiando due giocatori il modulo della squadra è adattato automaticamente "
+"in accordo al ruolo dei giocatori"
+
+#: ../support_files/bygfoot_options.glade.h:102
+msgid "Whether to automatically save the game regularly"
+msgstr "Il salvataggio automatico della partita avviene regolarmente"
+
+#: ../support_files/bygfoot_options.glade.h:103
+msgid ""
+"Whether to show a confirmation popup if a user team has an injured or banned "
+"player in the startup formation"
+msgstr ""
+"Visualizzare la conferma quando la squadra dell'utente ha un giocatore della "
+"formazione infortunato o squalificato"
+
+#: ../support_files/bygfoot_options.glade.h:104
+msgid ""
+"Whether to show a confirmation popup when you press quit and the game state "
+"is not saved"
+msgstr ""
+"Visualizzare la conferma quando si chiude il gioco senza averlo salvato"
+
+#: ../support_files/bygfoot_options.glade.h:105
+msgid "Whether to show job offers when a user is successful"
+msgstr "Visualizzare le offerte di lavoro quando un utente ha successo"
+
+#: ../support_files/bygfoot_options.glade.h:106
+msgid ""
+"Whether to show pictures on top of the progressbar when loading/saving or "
+"calculating results"
+msgstr ""
+"Visualizzare le immagini sopra la barra di caricamento quando vengono "
+"caricati/salvati o calcolati i risultati"
+
+#: ../support_files/bygfoot_options.glade.h:107
+msgid "Whether to show the player games/goals value in all competitions"
+msgstr "Visualizzare le partite/reti del giocatore in tutti i campionati"
+
+#: ../support_files/bygfoot_options.glade.h:108
+msgid ""
+"Whether to show warnings and such in the message area in the main window "
+"when possible"
+msgstr ""
+"Visualizzare gli avvisi e simili nell'area messaggi della finestra "
+"principale quando è possibile"
+
+#: ../support_files/bygfoot_misc3.glade.h:2
+msgid "Betting -- Left click on odd to place or remove bet"
+msgstr ""
+"Per scommettere -- Clicca il sinistro sulla quota per piazzare o rimuovere "
+"la scommessa"
+
+#: ../support_files/bygfoot_misc3.glade.h:4
+msgid "Calculate start week"
+msgstr "Calcolo settimana di partenza"
+
+#: ../support_files/bygfoot_misc3.glade.h:5
+msgid "Calculate weekly installment"
+msgstr "Calcolo rata settimanale"
+
+#: ../support_files/bygfoot_misc3.glade.h:7
+msgid "Ctrl-N"
+msgstr "Ctrl-N"
+
+#: ../support_files/bygfoot_misc3.glade.h:8
+msgid "Ctrl-O"
+msgstr "Ctrl-O"
+
+#: ../support_files/bygfoot_misc3.glade.h:9
+msgid "Ctrl-R"
+msgstr "Ctrl-R"
+
+#: ../support_files/bygfoot_misc3.glade.h:10
+msgid "Current settings:"
+msgstr "Impostazioni correnti:"
+
+#. Splash screen hint question.
+#: ../support_files/bygfoot_misc3.glade.h:12
+msgid "Did you know?"
+msgstr "Sapevi che?"
+
+#: ../support_files/bygfoot_misc3.glade.h:14
+msgid "New settings:"
+msgstr "Nuove impostazioni:"
+
+#: ../support_files/bygfoot_misc3.glade.h:15
+msgid "Next"
+msgstr "Prossimo"
+
+#: ../support_files/bygfoot_misc3.glade.h:16
+msgid "Previous"
+msgstr "Precedente"
+
+#: ../support_files/bygfoot_misc3.glade.h:21
+msgid "Start _new game"
+msgstr "Inizio _nuovo gioco"
+
+#: ../support_files/bygfoot_misc3.glade.h:22
+msgid "Start in week"
+msgstr "Inizio nella settimana"
+
+#: ../support_files/bygfoot_misc3.glade.h:23
+msgid "Start in week:"
+msgstr "Inizio nella settimana:"
+
+#: ../support_files/bygfoot_misc3.glade.h:24
+msgid "Weekly installment"
+msgstr "Rata settimanale"
+
+#: ../support_files/bygfoot_misc3.glade.h:25
+msgid "Weekly installment:"
+msgstr "Rata settimanale:"
+
+#: ../support_files/bygfoot_misc3.glade.h:26
+msgid ""
+"Whether to show cup matches. Use the options window to toggle permanently."
+msgstr ""
+"Visualizzare le partite di coppa. Utilizzare la finestra delle opzioni per "
+"attivare o disattivare in modo permanente."
+
+#: ../support_files/bygfoot_misc3.glade.h:27
+msgid ""
+"Whether to show matches of all leagues. Use the options window to toggle "
+"permanently."
+msgstr ""
+"Visualizzare le partite di tutti i campionati. Utilizzare la finestra delle "
+"opzioni per attivare o disattivare in modo permanente."
+
+#: ../support_files/bygfoot_misc3.glade.h:28
+msgid "Whether to show only your bets in the recent bets list"
+msgstr "Visualizzare solo le tue puntate nella lista delle puntate recenti"
+
+#: ../support_files/bygfoot_misc3.glade.h:29
+msgid "Your debt:"
+msgstr "I tuo debiti:"
+
+#: ../support_files/bygfoot_misc3.glade.h:30
+msgid "_Load game"
+msgstr "Carica gioco"
+
+#: ../support_files/bygfoot_misc3.glade.h:31
+msgid "_Resume game"
+msgstr "Riprendi gioco"
+
+#: ../support_files/bygfoot_training.glade.h:1
+msgid "Camp points"
+msgstr "Punti campo"
+
+#: ../support_files/bygfoot_training.glade.h:6
+msgid "Recreation"
+msgstr "Passatempi"
+
+#: ../support_files/bygfoot_training.glade.h:7
+msgid "Save settings as default"
+msgstr "Salva impostazioni come predefinite"
+
+#: ../support_files/bygfoot_training.glade.h:8
+msgid "Training"
+msgstr "Allenamento"
+
+#~ msgid ""
+#~ "The lower this value the faster the live game commentary will scroll."
+#~ msgstr ""
+#~ "Più basso questo valore, più veloce scorrerà il commento della partita in "
+#~ "diretta. "
+
+#~ msgid "The higher this value, the more commentary you'll see."
+#~ msgstr ""
+#~ "Più alto questo valore, maggiore il numero di commenti visualizzati."
+
+#~ msgid ""
+#~ "Whether the subs (e.g. for injured players) are made by the CPU. This is "
+#~ "automatically done if the live game is off."
+#~ msgstr ""
+#~ "Le sostituzioni (es: per giocatori infortunati) sono decise dal computer. "
+#~ "Questo viene fatto automaticamente se la partita in diretta è "
+#~ "disabilitata."
+
+#~ msgid "Whether the live game pauses when a user player is injured"
+#~ msgstr ""
+#~ "La partita in diretta si interrompe quando un giocatore dell'utente si "
+#~ "infortuna"
+
+#~ msgid "Whether the live game pauses when a user player is sent off"
+#~ msgstr ""
+#~ "La partita in diretta si interrompe quando un giocatore dell'utente viene "
+#~ "espulso"
+
+#~ msgid "Whether the live game pauses at half time and extra time"
+#~ msgstr ""
+#~ "La partita in diretta si interrompe dopo il primo tempo e nei tempi "
+#~ "supplementari"
+
+#~ msgid "Whether to show matches of all leagues in the betting window"
+#~ msgstr ""
+#~ "Visualizzare le partite di tutti i campionati nella finestra delle "
+#~ "scommesse"
+
+#~ msgid "Whether to show cup matches in the betting window"
+#~ msgstr "Visualizzare le partite di coppa nella finestra delle scommesse"
+
+#~ msgid "How much you wager by default"
+#~ msgstr "Importo predefinito per le scommesse"
+
+#~ msgid "Show news window after a matchday when new user news was created"
+#~ msgstr ""
+#~ "Visualizza la finestra notizie dopo una giornata in cui è stata creata "
+#~ "una nuova notizie utente"
+
+#~ msgid "Always show news window after a matchday"
+#~ msgstr "Mostrare sempre le notizie dopo una partita"
+
+#~ msgid ""
+#~ "Whether to save the global settings to file (so that they get loaded next "
+#~ "time you start a new game)"
+#~ msgstr ""
+#~ "Salvare le impostazioni globali nel file (in modo che vengano caricate la "
+#~ "prossima volta che si avvia un nuovo gioco)"
+
+#~ msgid ""
+#~ "Whether to save the user settings to file (so that they get loaded next "
+#~ "time this user starts a new game)"
+#~ msgstr ""
+#~ "Salvare le impostazioni utente nel file (in modo che vengano caricate la "
+#~ "prossima volta che si avvia un nuovo gioco)"
+
+#~ msgid ""
+#~ "Save changes to the constants file. DON'T DO THIS UNLESS YOU REALLY KNOW "
+#~ "WHAT YOU ARE DOING."
+#~ msgstr ""
+#~ "Salvare le modifiche al file di costanti. NON MODIFICARLI SE NON SAI "
+#~ "DAVVERO COSA STAI FACENDO."
+
+#~ msgid ""
+#~ "Reload constants files. This will overwrite any changes you made in the "
+#~ "current game session."
+#~ msgstr ""
+#~ "Ricarica file delle costanti. Questa operazione sovrascrive le eventuali "
+#~ "modifiche apportate nel corso dell'attuale sessione di gioco."
+
+#~ msgid ""
+#~ "Close window. Changes will only be saved for the current session, unless "
+#~ "you also save to file."
+#~ msgstr ""
+#~ "Chiudi la finestra. Le modifiche saranno salvate solamente per la "
+#~ "sessione corrente, a meno che non salvi in un file."
+
 #~ msgid ""
 #~ "\n"
 #~ "If you feel you've found out something about the game that has to be "
@@ -3702,44 +3766,6 @@ msgstr "Utente"
 #~ "\n"
 #~ "Se pensi di aver trovato qualcosa del gioco che merita di essere "
 #~ "condiviso, puoi aggiungerlo al Wiki di Bygfoot:\n"
-
-#~ msgid "1 year"
-#~ msgstr "1 anno"
-
-#~ msgid "2 years"
-#~ msgstr "2 anni"
-
-#~ msgid "3 years"
-#~ msgstr "3 anni"
-
-#~ msgid "4 years"
-#~ msgstr "4 anni"
-
-#~ msgid "Available teams"
-#~ msgstr "Squadre disponibili"
-
-#~ msgid "Average skill:"
-#~ msgstr "Media abilità:"
-
-#~ msgid ""
-#~ "Bygfoot debug window. If you got here by accident, CLOSE IMMEDIATELY "
-#~ "(otherwise your CPU will be destroyed by overheating)."
-#~ msgstr ""
-#~ "Finestra di debug per Bygfoot. Se sei arrivato qui per sbaglio, CHIUDI "
-#~ "IMMEDIATAMENTE (altrimenti la tua CPU sara distrutta per "
-#~ "surriscaldamento)."
-
-#~ msgid "Click on a user to remove him from the game."
-#~ msgstr "Clicca su un utente per rimuoverlo dal gioco."
-
-#~ msgid "Confirm & schedule repayment"
-#~ msgstr "Conferma e Pianifica rinnovamento"
-
-#~ msgid "Debug"
-#~ msgstr "Debug"
-
-#~ msgid "Decide later"
-#~ msgstr "Decidi dopo"
 
 #~ msgid "Headline"
 #~ msgstr "Titolo"
@@ -3753,26 +3779,14 @@ msgstr "Utente"
 #~ msgid "League table"
 #~ msgstr "Classifica campionato"
 
-#~ msgid "Make offer"
-#~ msgstr "Fai un'offerta"
-
 #~ msgid "Misc."
 #~ msgstr "Vari"
 
-#~ msgid "Money (approx.)"
-#~ msgstr "Soldi (appross.)"
-
 #~ msgid "Move to team"
 #~ msgstr "Vai alla squadra"
-
-#~ msgid "Player list"
-#~ msgstr "Lista giocatori"
 
 #~ msgid "Preferences"
 #~ msgstr "Preferenze"
 
 #~ msgid "Show history"
 #~ msgstr "Mostra cronologia"
-
-#~ msgid "Users -- click to remove"
-#~ msgstr "Utenti -- clicca per rimuovere"

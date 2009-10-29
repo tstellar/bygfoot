@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 14:26+0100\n"
+"POT-Creation-Date: 2009-10-29 14:09+0100\n"
 "PO-Revision-Date: 2006-03-01 17:06+0200\n"
 "Last-Translator: Rostislav \"zbrox\" Raykov <nostalgiafed@gmail.com>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
@@ -838,46 +838,6 @@ msgstr "Не можете да играете Bygfoot без потребите�
 msgid "Remove user %s from the game?"
 msgstr "Премахване на потребителя %s от играта?"
 
-#: ../src/misc2_interface.c:271
-msgid "Current file"
-msgstr "Текущ файл"
-
-#: ../src/misc2_interface.c:282
-msgid "Open a memorable matches file"
-msgstr "Отваряне на файл със запомнящи се мачове"
-
-#: ../src/misc2_interface.c:287
-msgid "Reload matches from file"
-msgstr "Презареждане на мачове от файл"
-
-#: ../src/misc2_interface.c:301 ../src/options_interface.c:411
-msgid "Reload"
-msgstr "Презареждане"
-
-#: ../src/misc2_interface.c:308
-msgid "Import the matches from a memorable matches file"
-msgstr "Внасяне на мачовете от файла за запомнящи се мачове"
-
-#: ../src/misc2_interface.c:322
-msgid "Import file"
-msgstr "Внасяне на файл"
-
-#: ../src/misc2_interface.c:344
-msgid "Save changes to file and close"
-msgstr "Запазване на промените към файл и затваряне"
-
-#: ../src/misc2_interface.c:358
-msgid "Save and close"
-msgstr "Запазване и затваряне"
-
-#: ../src/misc2_interface.c:365
-msgid "Reload matches from file and close"
-msgstr "Презареждане на мачове от файл и затваряне"
-
-#: ../src/misc2_interface.c:379
-msgid "Reload and close"
-msgstr "Презареждане и затваряне"
-
 #: ../src/misc3_callbacks.c:154
 #, c-format
 msgid "You bet on outcome %d with an odd of %.2f. How much do you wager?"
@@ -917,603 +877,6 @@ msgstr ""
 msgid "%s and %s"
 msgstr ""
 
-#: ../src/options_interface.c:256
-msgid "Confirm quit when not saved"
-msgstr "Подтвърждаване на затварянето при незапазени данни"
-
-#: ../src/options_interface.c:259
-msgid ""
-"Whether to show a confirmation popup when you press quit and the game state "
-"is not saved"
-msgstr ""
-"Дали да се показва прозорец за подтвърждение, когато затваряте програмата и "
-"състоянието на играта не е запазено"
-
-#: ../src/options_interface.c:261
-msgid "Confirm when unfit"
-msgstr "Подтвърждение при липса на форма."
-
-#: ../src/options_interface.c:264
-msgid ""
-"Whether to show a confirmation popup if a user team has an injured or banned "
-"player in the startup formation"
-msgstr ""
-"Дали да се показва прозорец за подтвърждение, ако потребителски отбор има "
-"контузен или наказан играч в началната формация"
-
-#: ../src/options_interface.c:266
-msgid "Save overwrites"
-msgstr "Запазването презаписва"
-
-#: ../src/options_interface.c:269
-msgid ""
-"Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
-msgstr ""
-"Дали 'Запазване' презаписва текущия запазен файл или изскача прозорец "
-"'Запазване като..'"
-
-#: ../src/options_interface.c:276
-msgid "Maximize main window"
-msgstr "Максимизиране на главния прозорец"
-
-#: ../src/options_interface.c:279
-msgid ""
-"Whether game starts with a maximized main window (doesn't work with all "
-"window managers)"
-msgstr ""
-"Дали играта започва с максимизиран главен прозорец (не работи с всички "
-"прозоръчни мениджъри)"
-
-#: ../src/options_interface.c:281
-msgid "Prefer messages"
-msgstr "Предпочитане на съобщения"
-
-#: ../src/options_interface.c:284
-msgid ""
-"Whether to show warnings and such in the message area in the main window "
-"when possible"
-msgstr ""
-"Дали да се показват предупреждения и подобни в района за съобщения в главния "
-"прозорец, когато е възможно"
-
-#: ../src/options_interface.c:286
-msgid "Show progressbar pictures"
-msgstr "Показване на картинки за лентата за прогреса"
-
-#: ../src/options_interface.c:289
-msgid ""
-"Whether to show pictures on top of the progressbar when loading/saving or "
-"calculating results"
-msgstr ""
-"Дали да се показват картинки над лентата за прогреса, при зареждане/"
-"запазване или пресмятане на резултати."
-
-#: ../src/options_interface.c:296
-msgid "Skip weeks without user matches"
-msgstr "Пропускане на седмици без мачове на потребители"
-
-#: ../src/options_interface.c:299
-msgid ""
-"If checked, weeks without user teams playing are calculated automatically "
-"(without the user having to press 'New week')"
-msgstr ""
-"Ако е отметанто, седмиците без мачове на потребителските отбори, ще се "
-"смятат автоматично (без да трябва да се натиска 'Следваща седмица')"
-
-#: ../src/options_interface.c:318
-msgid "Autosave interval "
-msgstr ""
-"Интервал на \n"
-"автоматичното запазване "
-
-#: ../src/options_interface.c:326
-msgid "How often the game is saved automatically"
-msgstr "Колко често се запазва автоматично играта"
-
-#: ../src/options_interface.c:329
-msgid " Autosave files "
-msgstr ""
-" Файлове на \n"
-"автоматичното запазване "
-
-#: ../src/options_interface.c:337
-msgid "How many files the autosave uses"
-msgstr "Колко файла ползва авт. запазване"
-
-#: ../src/options_interface.c:339
-msgid "Player attribute precision"
-msgstr "Прецизност на качествата на играчите"
-
-#: ../src/options_interface.c:346
-msgid "Player list refresh rate"
-msgstr ""
-"Честота на опресняване на\n"
-"списъка с играчи"
-
-#: ../src/options_interface.c:353
-msgid "Constants file"
-msgstr "Файл за константи"
-
-#: ../src/options_interface.c:365 ../src/options_interface.c:473
-msgid "Font used in treeviews"
-msgstr "Шрифтове използвани в дървовидната структура"
-
-#: ../src/options_interface.c:379
-msgid "Font name"
-msgstr "Име на шрифт"
-
-#: ../src/options_interface.c:392
-msgid ""
-"File containing settings which determine a lot of aspects of the game "
-"behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
-msgstr ""
-"Файл съдържащ настройките, които определят много от аспектите в игратаНЕ ГО "
-"ПРОМЕНЯЙТЕ ОСВЕН, АКО НАИСТИНА ЗНАЕТЕ КАКВО ВЪРШИТЕ!!!"
-
-#: ../src/options_interface.c:397
-msgid "Reload the constants file"
-msgstr "Презареждане на файла с константите"
-
-#: ../src/options_interface.c:418
-#, fuzzy
-msgid "Edit the constants used in the game"
-msgstr "Презареждане на файла с константите"
-
-#: ../src/options_interface.c:432
-msgid "Edit"
-msgstr ""
-
-#: ../src/options_interface.c:436
-msgid "Language"
-msgstr "Език"
-
-#: ../src/options_interface.c:443
-msgid "Autosave"
-msgstr "Автоматично запазване"
-
-#: ../src/options_interface.c:448
-msgid "Whether to automatically save the game regularly"
-msgstr "Дали периодично играта да се запазва автоматично"
-
-#: ../src/options_interface.c:456
-msgid "How many digits after the comma there are for skill etc."
-msgstr "Колко цифри след запетаята има за умение и т.н."
-
-#: ../src/options_interface.c:465
-msgid ""
-"How often the player list gets refreshed during a live game (in live game "
-"minutes)"
-msgstr ""
-"Колко често списъка с играчи се опреснява по време на мач на живо (в минути "
-"от мача на живо)"
-
-#: ../src/options_interface.c:480
-msgid "Choose game language (might not work in Windows versions)"
-msgstr "Избор на език на играта (може да не работи в Windows версията)"
-
-#: ../src/options_interface.c:486
-msgid "Global"
-msgstr "Общи"
-
-#: ../src/options_interface.c:498
-msgid "Confirm removing youths"
-msgstr "Подтвърждение при премахването на младежи"
-
-#: ../src/options_interface.c:501
-msgid ""
-"Whether a confirmation popup is shown when you kick out a youth from your "
-"academy"
-msgstr "Дали излиза предупреждение при изхвърлянето на младеж от академията"
-
-#: ../src/options_interface.c:503
-msgid "Show job offers"
-msgstr "Показване на предложенията за работа"
-
-#: ../src/options_interface.c:506
-msgid "Whether to show job offers when a user is successful"
-msgstr ""
-"Дали да се показват предложения за работа, когато потребителя е успешен "
-"мениджър"
-
-#: ../src/options_interface.c:511
-msgid "Set to 0 to switch off warning"
-msgstr "Настройте на 0, за да изключите предупрежденията"
-
-#: ../src/options_interface.c:517
-msgid "Show warning if a player contract gets below "
-msgstr "Предупреждение, ако договорът на играч изтича след по-малко от "
-
-#: ../src/options_interface.c:527
-msgid " months"
-msgstr " месеца"
-
-#: ../src/options_interface.c:531
-msgid "Show all leagues in the fixture view"
-msgstr "Показване на всички лиги в прегледа на датите на мачовете"
-
-#: ../src/options_interface.c:534
-msgid ""
-"Whether in the weekly fixture view all leagues or only the user league is "
-"shown"
-msgstr ""
-"Дали в прегледа на датите на мачовете по седмици да се виждат всички лиги "
-"или само потребителските"
-
-#: ../src/options_interface.c:549
-msgid "Swap adapts structure"
-msgstr "Размяната адаптира структурата"
-
-#: ../src/options_interface.c:552
-msgid ""
-"Whether swapping two players automatically adapts the team structure to the "
-"player positions"
-msgstr ""
-"Дали разменянето на двама играчи автоматично адаптира структурата на отбора "
-"към позициите им"
-
-#: ../src/options_interface.c:554
-msgid "Show overall games/goals"
-msgstr "Показване на общо мачове/голове"
-
-#: ../src/options_interface.c:557
-msgid "Whether to show the player games/goals value in all competitions"
-msgstr ""
-"Дали да се показват стойността мачове/голове на играча за всички състезания"
-
-#: ../src/options_interface.c:559
-msgid "Always store/restore your default team"
-msgstr ""
-
-#: ../src/options_interface.c:562
-msgid "Always store/restore your default team before/after a match"
-msgstr ""
-
-#: ../src/options_interface.c:564
-#, fuzzy
-msgid "Gameplay"
-msgstr "Мачове"
-
-#: ../src/options_interface.c:576
-msgid "Show live game"
-msgstr "Показване на мача на живо"
-
-#: ../src/options_interface.c:580
-msgid "Show tendency bar"
-msgstr "Показване на лентата за тенденциите"
-
-#: ../src/options_interface.c:589
-msgid "Live game speed factor"
-msgstr "Фактор на скоростта при мачовете на живо"
-
-#: ../src/options_interface.c:596
-msgid "Live game verbosity"
-msgstr "Честота на коментара"
-
-#: ../src/options_interface.c:609
-msgid "The lower this value the faster the live game commentary will scroll."
-msgstr ""
-"Колкото по-ниска е тази стойност, толкова по-бързо ще теже коментара на живо"
-
-#: ../src/options_interface.c:618
-msgid "The higher this value, the more commentary you'll see."
-msgstr ""
-"Колкото по-висока е тази стойност, толкова повече коментиране ще виждате."
-
-#: ../src/options_interface.c:621
-msgid "Automatic substitutions"
-msgstr "Автоматични смени"
-
-#: ../src/options_interface.c:624
-msgid ""
-"Whether the subs (e.g. for injured players) are made by the CPU. This is "
-"automatically done if the live game is off."
-msgstr ""
-"Дали смените (пр. за контузени играчи) се правят от компютъра. Това се прави "
-"автоматично, ако мача на живо е изключен."
-
-#: ../src/options_interface.c:635
-msgid "Pause when injury"
-msgstr "Пауза при контузия"
-
-#: ../src/options_interface.c:638
-msgid "Whether the live game pauses when a user player is injured"
-msgstr "Дали мачовете на живо паузират, когато потребителски играч е контузен"
-
-#: ../src/options_interface.c:640
-msgid "Pause when red card"
-msgstr "Пауза при червен картон"
-
-#: ../src/options_interface.c:643
-msgid "Whether the live game pauses when a user player is sent off"
-msgstr "Дали мачовете на живо паузират, когато потребителски играч е изгонен"
-
-#: ../src/options_interface.c:645
-msgid "Pause when break"
-msgstr "Пауза на полувремето"
-
-#: ../src/options_interface.c:648
-msgid "Whether the live game pauses at half time and extra time"
-msgstr "Дали да има пауза на мачовете на живо при почивките"
-
-#: ../src/options_interface.c:650 ../support_files/bygfoot_misc.glade.h:33
-#: ../support_files/bygfoot.glade.h:42
-msgid "Live game"
-msgstr "Мач на живо"
-
-#: ../src/options_interface.c:658
-msgid "Name "
-msgstr "Име "
-
-#: ../src/options_interface.c:665
-msgid "CPos "
-msgstr "Тек. поз. "
-
-#: ../src/options_interface.c:672
-msgid "Pos "
-msgstr "Поз "
-
-#: ../src/options_interface.c:679
-msgid "CSkill "
-msgstr "Тек. умение "
-
-#: ../src/options_interface.c:686
-msgid "Skill "
-msgstr "Умение "
-
-#: ../src/options_interface.c:693
-msgid "Fitness "
-msgstr "Тонус "
-
-#: ../src/options_interface.c:700
-msgid "Games "
-msgstr "Мачове "
-
-#: ../src/options_interface.c:707
-msgid "Shots "
-msgstr "Изстрели"
-
-#: ../src/options_interface.c:714
-msgid "Goals "
-msgstr "Голове "
-
-#: ../src/options_interface.c:721
-msgid "Status "
-msgstr "Статус "
-
-#: ../src/options_interface.c:728
-msgid "Cards "
-msgstr "Картони"
-
-#: ../src/options_interface.c:735
-msgid "Age "
-msgstr "Възраст "
-
-#: ../src/options_interface.c:742
-msgid "ETal "
-msgstr "Изч. тал."
-
-#: ../src/options_interface.c:749
-msgid "Value "
-msgstr "Цена "
-
-#: ../src/options_interface.c:756
-msgid "Wage "
-msgstr "Заплата "
-
-#: ../src/options_interface.c:763
-msgid "Contract "
-msgstr "Договор "
-
-#: ../src/options_interface.c:770
-msgid "League "
-msgstr "Лига "
-
-#: ../src/options_interface.c:777
-msgid "Team "
-msgstr "Отбор "
-
-#: ../src/options_interface.c:1014
-msgid "Attribute "
-msgstr "Качество "
-
-#: ../src/options_interface.c:1021
-msgid "List 1 "
-msgstr "Списък 1 "
-
-#: ../src/options_interface.c:1028
-msgid "List 2"
-msgstr "Списък 2"
-
-#: ../src/options_interface.c:1042
-msgid "Player attributes shown"
-msgstr "Показаните качества на играча"
-
-#: ../src/options_interface.c:1054 ../support_files/bygfoot_misc3.glade.h:18
-msgid "Show matches from all leagues"
-msgstr "Показване на мачовете от всички първенства..."
-
-#: ../src/options_interface.c:1057
-msgid "Whether to show matches of all leagues in the betting window"
-msgstr ""
-"Дали да се показват мачовете от всички първенства в прозореца за залаганията"
-
-#: ../src/options_interface.c:1059 ../support_files/bygfoot_misc3.glade.h:19
-msgid "Show matches from cups"
-msgstr "Показване на мачове от купите"
-
-#: ../src/options_interface.c:1062
-msgid "Whether to show cup matches in the betting window"
-msgstr "Дали да се показват мачовете за купите в прозореца за залаганията"
-
-#: ../src/options_interface.c:1065 ../support_files/bygfoot_misc3.glade.h:20
-msgid "Show only my recent bets"
-msgstr "Показване само на скорошните залози"
-
-#: ../src/options_interface.c:1073
-msgid "Default wager"
-msgstr "Стандартен залог"
-
-#: ../src/options_interface.c:1081
-msgid "How much you wager by default"
-msgstr "Колко е стандартният залог"
-
-#: ../src/options_interface.c:1084 ../src/treeview.c:1520
-#: ../src/treeview.c:1530 ../src/window.c:986
-#: ../support_files/bygfoot.glade.h:20
-msgid "Betting"
-msgstr "Залагания"
-
-#: ../src/options_interface.c:1098
-#, fuzzy
-msgid "Default hotel"
-msgstr "Стандартен залог"
-
-#: ../src/options_interface.c:1121
-#, fuzzy
-msgid "Default recreation:"
-msgstr "Стандартен залог"
-
-#: ../src/options_interface.c:1141
-#, fuzzy
-msgid "Default training:"
-msgstr "Стандартен залог"
-
-#: ../src/options_interface.c:1151 ../src/treeview.c:1616 ../src/window.c:1001
-#: ../support_files/bygfoot_training.glade.h:9
-#: ../support_files/bygfoot.glade.h:101
-msgid "Training camp"
-msgstr ""
-
-#: ../src/options_interface.c:1163
-msgid "Create user news"
-msgstr ""
-
-#: ../src/options_interface.c:1167
-msgid "Create cup news"
-msgstr ""
-
-#: ../src/options_interface.c:1171
-#, fuzzy
-msgid "Create league news"
-msgstr "Текуща лига"
-
-#: ../src/options_interface.c:1175
-#, fuzzy
-msgid "Show only recent news"
-msgstr "Показване само на скорошните залози"
-
-#: ../src/options_interface.c:1183
-msgid "No automatic popup"
-msgstr ""
-
-#: ../src/options_interface.c:1189
-msgid "Popup for user news"
-msgstr ""
-
-#: ../src/options_interface.c:1192
-msgid "Show news window after a matchday when new user news was created"
-msgstr ""
-
-#: ../src/options_interface.c:1196
-msgid "Automatic popup"
-msgstr ""
-
-#: ../src/options_interface.c:1199
-msgid "Always show news window after a matchday"
-msgstr ""
-
-#: ../src/options_interface.c:1203 ../support_files/bygfoot.glade.h:52
-msgid "News"
-msgstr ""
-
-#: ../src/options_interface.c:1220
-msgid "Save global settings to file"
-msgstr ""
-"Запазване във файл\n"
-"на глобалните настройки"
-
-#: ../src/options_interface.c:1223
-msgid ""
-"Whether to save the global settings to file (so that they get loaded next "
-"time you start a new game)"
-msgstr ""
-"Дали да се запазват глобалните настройки във файл (така, че следващият път "
-"да да се зареждат те)"
-
-#: ../src/options_interface.c:1225
-msgid "Save user settings to file"
-msgstr ""
-"Запазване във файл\n"
-"потребителските настройки"
-
-#: ../src/options_interface.c:1228
-msgid ""
-"Whether to save the user settings to file (so that they get loaded next time "
-"this user starts a new game)"
-msgstr ""
-"Дали да се запазват потребителските настройки във файл (така, че следващият "
-"път да да се зареждат те, за дадения потребител)"
-
-#: ../src/options_interface.c:1237 ../support_files/bygfoot_misc3.glade.h:13
-#: ../support_files/bygfoot_misc.glade.h:27
-msgid "Esc"
-msgstr "Esc"
-
-#: ../src/options_interface.c:1527
-msgid "Integer"
-msgstr ""
-
-#: ../src/options_interface.c:1541
-msgid "Float"
-msgstr ""
-
-#: ../src/options_interface.c:1555
-#, fuzzy
-msgid "String"
-msgstr "Ахилес"
-
-#: ../src/options_interface.c:1569
-msgid "Appearance"
-msgstr ""
-
-#: ../src/options_interface.c:1581
-#, fuzzy
-msgid ""
-"Save changes to the constants file. DON'T DO THIS UNLESS YOU REALLY KNOW "
-"WHAT YOU ARE DOING."
-msgstr ""
-"Файл съдържащ настройките, които определят много от аспектите в игратаНЕ ГО "
-"ПРОМЕНЯЙТЕ ОСВЕН, АКО НАИСТИНА ЗНАЕТЕ КАКВО ВЪРШИТЕ!!!"
-
-#: ../src/options_interface.c:1595
-#, fuzzy
-msgid "Save to file"
-msgstr ""
-"Запазване във файл\n"
-"потребителските настройки"
-
-#: ../src/options_interface.c:1602
-msgid ""
-"Reload constants files. This will overwrite any changes you made in the "
-"current game session."
-msgstr ""
-
-#: ../src/options_interface.c:1616
-#, fuzzy
-msgid "Reload from file"
-msgstr "Презареждане на мачове от файл"
-
-#: ../src/options_interface.c:1623
-msgid ""
-"Close window. Changes will only be saved for the current session, unless you "
-"also save to file."
-msgstr ""
-
-#: ../src/options_interface.c:1640
-#, fuzzy
-msgid "Close"
-msgstr "Тек. поз."
-
 #: ../src/player.c:673
 msgid "You can't replace a banned player."
 msgstr "Не можете да замените наказан играч."
@@ -1526,7 +889,7 @@ msgstr "Договорът на %s изтича след %.1f години."
 #. Player health: ok.
 #. Player status: ok.
 #: ../src/player.c:1409 ../src/treeview_helper.c:1094
-#: ../src/treeview_helper.c:1390
+#: ../src/treeview_helper.c:1390 ../support_files/bygfoot_misc2.glade.h:25
 msgid "OK"
 msgstr "OK"
 
@@ -1750,7 +1113,7 @@ msgid "Team"
 msgstr "Отбор"
 
 #: ../src/treeview2.c:514 ../src/treeview.c:170 ../src/treeview.c:332
-#: ../src/treeview.c:780
+#: ../src/treeview.c:780 ../support_files/bygfoot_misc2.glade.h:21
 msgid "League"
 msgstr "Лига"
 
@@ -1772,7 +1135,7 @@ msgid "Week %d Round %d"
 msgstr "Седмица %d Кръг %d"
 
 #: ../src/treeview2.c:791 ../src/treeview.c:304 ../src/treeview.c:778
-#: ../src/treeview.c:2163
+#: ../src/treeview.c:2163 ../support_files/bygfoot_misc2.glade.h:24
 msgid "Name"
 msgstr "Име"
 
@@ -1982,11 +1345,11 @@ msgstr "Точки"
 msgid "Stadium"
 msgstr "Стадион"
 
-#: ../src/treeview.c:1483
+#: ../src/treeview.c:1483 ../support_files/bygfoot_misc2.glade.h:36
 msgid "Stadium capacity"
 msgstr "Капацитет на стадиона"
 
-#: ../src/treeview.c:1487
+#: ../src/treeview.c:1487 ../support_files/bygfoot_misc2.glade.h:37
 msgid "Stadium safety"
 msgstr "Безопасност на стадиона"
 
@@ -2016,6 +1379,12 @@ msgstr "Приходи от билети"
 #: ../src/treeview.c:1519
 msgid "Sponsorship"
 msgstr "Спонсорство"
+
+#: ../src/treeview.c:1520 ../src/treeview.c:1530 ../src/window.c:986
+#: ../support_files/bygfoot.glade.h:20
+#: ../support_files/bygfoot_options.glade.h:12
+msgid "Betting"
+msgstr "Залагания"
 
 #: ../src/treeview.c:1522
 msgid "Wages"
@@ -2076,6 +1445,13 @@ msgstr "Трансфери"
 #: ../src/treeview.c:1608
 msgid "Stadium expenses"
 msgstr "Разходи по стадиона"
+
+#: ../src/treeview.c:1616 ../src/window.c:1001
+#: ../support_files/bygfoot.glade.h:101
+#: ../support_files/bygfoot_options.glade.h:94
+#: ../support_files/bygfoot_training.glade.h:9
+msgid "Training camp"
+msgstr ""
 
 #: ../src/treeview.c:1629
 msgid "Money"
@@ -2170,7 +1546,7 @@ msgstr "Домакинство"
 msgid "Away"
 msgstr "Гостуване"
 
-#: ../src/treeview.c:1866
+#: ../src/treeview.c:1866 ../support_files/bygfoot_misc2.glade.h:28
 msgid "Rank"
 msgstr "Класиране"
 
@@ -2849,7 +2225,7 @@ msgstr "Номера..."
 msgid "Your stadium"
 msgstr "Вашият стадион"
 
-#: ../src/window.c:892
+#: ../src/window.c:892 ../support_files/bygfoot_misc2.glade.h:20
 msgid "Job offer"
 msgstr "Предложение за работа"
 
@@ -2881,8 +2257,8 @@ msgstr "Предложения за спонсорство"
 msgid "Memorable matches"
 msgstr "Запомнящи се мачове"
 
-#: ../src/window.c:1009 ../support_files/bygfoot_misc3.glade.h:1
-#: ../support_files/bygfoot.glade.h:12
+#: ../src/window.c:1009 ../support_files/bygfoot.glade.h:12
+#: ../support_files/bygfoot_misc3.glade.h:1
 msgid "Automatic loan repayment"
 msgstr ""
 
@@ -2938,382 +2314,6 @@ msgstr ""
 "Нов младеж искаше да се регистрира в младежката Ви академия, но там нямаше "
 "място."
 
-#: ../support_files/bygfoot_misc3.glade.h:2
-msgid "Betting -- Left click on odd to place or remove bet"
-msgstr ""
-"Залагания -- Ляво натискане на коефицент, за да поставите или премахнете "
-"залог"
-
-#: ../support_files/bygfoot_misc3.glade.h:4
-msgid "Calculate start week"
-msgstr ""
-
-#: ../support_files/bygfoot_misc3.glade.h:5
-msgid "Calculate weekly installment"
-msgstr ""
-
-#: ../support_files/bygfoot_misc3.glade.h:6
-#: ../support_files/bygfoot.glade.h:24
-msgid "Contributors"
-msgstr "Допринесли"
-
-#: ../support_files/bygfoot_misc3.glade.h:7
-msgid "Ctrl-N"
-msgstr "Ctrl-N"
-
-#: ../support_files/bygfoot_misc3.glade.h:8
-msgid "Ctrl-O"
-msgstr "Ctrl-O"
-
-#: ../support_files/bygfoot_misc3.glade.h:9
-msgid "Ctrl-R"
-msgstr "Ctrl-R"
-
-#: ../support_files/bygfoot_misc3.glade.h:10
-#, fuzzy
-msgid "Current settings:"
-msgstr "Текуща позиция"
-
-#. Splash screen hint question.
-#: ../support_files/bygfoot_misc3.glade.h:12
-msgid "Did you know?"
-msgstr "Знаете ли, че?"
-
-#: ../support_files/bygfoot_misc3.glade.h:14
-#, fuzzy
-msgid "New settings:"
-msgstr "Залагания"
-
-#: ../support_files/bygfoot_misc3.glade.h:15
-msgid "Next"
-msgstr "Следващ"
-
-#: ../support_files/bygfoot_misc3.glade.h:16
-msgid "Previous"
-msgstr "Предишен"
-
-#: ../support_files/bygfoot_misc3.glade.h:21
-msgid "Start _new game"
-msgstr "_Нова игра"
-
-#: ../support_files/bygfoot_misc3.glade.h:22
-#, fuzzy
-msgid "Start in week"
-msgstr "_Нова игра"
-
-#: ../support_files/bygfoot_misc3.glade.h:23
-#, fuzzy
-msgid "Start in week:"
-msgstr "_Нова игра"
-
-#: ../support_files/bygfoot_misc3.glade.h:24
-#, fuzzy
-msgid "Weekly installment"
-msgstr "Настройване на инвестициите"
-
-#: ../support_files/bygfoot_misc3.glade.h:25
-#, fuzzy
-msgid "Weekly installment:"
-msgstr "Настройване на инвестициите"
-
-#: ../support_files/bygfoot_misc3.glade.h:26
-msgid ""
-"Whether to show cup matches. Use the options window to toggle permanently."
-msgstr ""
-"Дали да се показват мачовете за купите. Използвайте прозореца за "
-"настройките, за да промените за постоянно."
-
-#: ../support_files/bygfoot_misc3.glade.h:27
-msgid ""
-"Whether to show matches of all leagues. Use the options window to toggle "
-"permanently."
-msgstr ""
-"Дали да се показват мачовете от всички първенства. Използвайте прозореца за "
-"настройките, за да променяте за постоянно."
-
-#: ../support_files/bygfoot_misc3.glade.h:28
-msgid "Whether to show only your bets in the recent bets list"
-msgstr "Дали да се показват само Вашите залози в списъка с последни залози."
-
-#: ../support_files/bygfoot_misc3.glade.h:29
-#, fuzzy
-msgid "Your debt:"
-msgstr "Вашите резултати"
-
-#: ../support_files/bygfoot_misc3.glade.h:30
-msgid "_Load game"
-msgstr "За_реждане на игра"
-
-#: ../support_files/bygfoot_misc3.glade.h:31
-msgid "_Resume game"
-msgstr "_Продължаване на игра"
-
-#: ../support_files/bygfoot_training.glade.h:1
-#, fuzzy
-msgid "Camp points"
-msgstr " "
-
-#: ../support_files/bygfoot_training.glade.h:2
-#: ../support_files/bygfoot_misc.glade.h:22
-msgid "Costs"
-msgstr "Разходи"
-
-#: ../support_files/bygfoot_training.glade.h:6
-msgid "Recreation"
-msgstr ""
-
-#: ../support_files/bygfoot_training.glade.h:7
-#, fuzzy
-msgid "Save settings as default"
-msgstr ""
-"Запазване във файл\n"
-"потребителските настройки"
-
-#: ../support_files/bygfoot_training.glade.h:8
-msgid "Training"
-msgstr ""
-
-#: ../support_files/bygfoot_misc.glade.h:1
-msgid " seats"
-msgstr " места"
-
-#: ../support_files/bygfoot_misc.glade.h:2
-msgid "0"
-msgstr "0"
-
-#: ../support_files/bygfoot_misc.glade.h:3
-msgid "Accept"
-msgstr "Приемане"
-
-#: ../support_files/bygfoot_misc.glade.h:4
-msgid "Add user"
-msgstr "Добавяне на потребител"
-
-#: ../support_files/bygfoot_misc.glade.h:5
-msgid "Av. skill: "
-msgstr "Средни качества: "
-
-#: ../support_files/bygfoot_misc.glade.h:6
-msgid "Average attendance"
-msgstr "Средна посещаемост"
-
-#: ../support_files/bygfoot_misc.glade.h:8
-#, no-c-format
-msgid "Average attendance %"
-msgstr "Средна посещаемост %"
-
-#: ../support_files/bygfoot_misc.glade.h:9
-msgid "Back to splash"
-msgstr "Обратно към начален екран"
-
-#: ../support_files/bygfoot_misc.glade.h:10
-msgid "Capacity (seats)"
-msgstr "Капацитет (места)"
-
-#: ../support_files/bygfoot_misc.glade.h:11
-msgid ""
-"Change commentary verbosity. The higher this value the more events you can "
-"see."
-msgstr ""
-"Промяна на честотата на коментара. Колкото по-висока е тази стойност, "
-"толкова повече събития ще виждате."
-
-#: ../support_files/bygfoot_misc.glade.h:12
-#, fuzzy
-msgid "Change live game speed. The higher the value the faster the live game."
-msgstr ""
-"Промяна на скоростта на мача на живо. По-малки стойности = по-бърза игра."
-
-#: ../support_files/bygfoot_misc.glade.h:13
-msgid "Change ticket price"
-msgstr ""
-
-#: ../support_files/bygfoot_misc.glade.h:14
-msgid "Choose country"
-msgstr "Избор на страна"
-
-#: ../support_files/bygfoot_misc.glade.h:15
-msgid "Choose file"
-msgstr "Избор на файл"
-
-#: ../support_files/bygfoot_misc.glade.h:16
-msgid "Choose league to start in"
-msgstr "Избор на начално първенство"
-
-#: ../support_files/bygfoot_misc.glade.h:17
-msgid "Choose team"
-msgstr "Избор на отбор"
-
-#: ../support_files/bygfoot_misc.glade.h:18
-msgid "Choose username"
-msgstr "Избор на потребител"
-
-#: ../support_files/bygfoot_misc.glade.h:19
-msgid "Click on a user to remove him."
-msgstr "Натиснете върху потребител да го махнете."
-
-#: ../support_files/bygfoot_misc.glade.h:20
-msgid "Commentary"
-msgstr "Коментар"
-
-#: ../support_files/bygfoot_misc.glade.h:21
-msgid "Confirm!"
-msgstr ""
-
-#: ../support_files/bygfoot_misc.glade.h:23
-msgid "Current capacity"
-msgstr "Текущ капацитет"
-
-#: ../support_files/bygfoot_misc.glade.h:24
-msgid "Current safety"
-msgstr "Текуща сигурност"
-
-#: ../support_files/bygfoot_misc.glade.h:25
-msgid "Don't load definitions"
-msgstr "Да не се зареждат определенията"
-
-#: ../support_files/bygfoot_misc.glade.h:26
-msgid "Don't load team definitions at all"
-msgstr "Да не се зареждат определенията за отборите"
-
-#: ../support_files/bygfoot_misc.glade.h:28
-msgid "Esc / Return / Space"
-msgstr "Esc / Enter / Space"
-
-#: ../support_files/bygfoot_misc.glade.h:29
-msgid "Expected duration"
-msgstr "Очаквана продължителност"
-
-#: ../support_files/bygfoot_misc.glade.h:30
-msgid "Go back to the splash screen"
-msgstr "Връщане към началния екран"
-
-#: ../support_files/bygfoot_misc.glade.h:31
-msgid ""
-"If you don't like any of the sponsors, you can go a few weeks without "
-"sponsor and wait for new offers."
-msgstr ""
-"Ако не харесвате никой от спонсорите, можете да карате няколко седмици без "
-"спонсор и да чакате нови предложение."
-
-#: ../support_files/bygfoot_misc.glade.h:32
-msgid "Increase"
-msgstr "Увеличаване"
-
-#: ../support_files/bygfoot_misc.glade.h:34
-msgid "Load only the player names in the definition files"
-msgstr "Зареждане само на имената на играчите от файла за определенията"
-
-#: ../support_files/bygfoot_misc.glade.h:35
-msgid "Load team definitions"
-msgstr "Зареждане на определенията за отбори"
-
-#: ../support_files/bygfoot_misc.glade.h:36
-msgid ""
-"Load teams from definition files (note that the official Bygfoot package "
-"doesn't contain team definition files, you have to get them from the "
-"homepage or via the bygfoot-update script)"
-msgstr ""
-"Зареждане на отбори от файловете с определения (официалният пакет на Bygfoot "
-"не съдържа определения на официални отбори, трябва да ги вземете от сайтаили "
-"чрез скрипта bygfoot-update)"
-
-#: ../support_files/bygfoot_misc.glade.h:37
-msgid "Only names"
-msgstr "Само имена"
-
-#: ../support_files/bygfoot_misc.glade.h:38
-msgid "Opponent player list"
-msgstr "Списък с играчите на противника"
-
-#: ../support_files/bygfoot_misc.glade.h:39
-msgid "Price per ticket"
-msgstr ""
-
-#: ../support_files/bygfoot_misc.glade.h:40
-msgid "Randomise teams in cups"
-msgstr "Разбъркване на отборите в купите"
-
-#: ../support_files/bygfoot_misc.glade.h:41
-msgid ""
-"Randomise the order of teams in cups. This only makes sense in supernational "
-"definitions like the World Cup where the order of teams is fixed."
-msgstr ""
-"Разбъркване на реда на отборите в купите. Това има значение само при "
-"международни дефиниции като Световното първенство, където редът на отборите "
-"е неподвижен."
-
-#: ../support_files/bygfoot_misc.glade.h:42
-msgid "Reject for now"
-msgstr "Отказване за сега"
-
-#: ../support_files/bygfoot_misc.glade.h:43
-msgid "Return"
-msgstr "Enter"
-
-#: ../support_files/bygfoot_misc.glade.h:44
-msgid "Return / Space"
-msgstr "Enter / Space"
-
-#: ../support_files/bygfoot_misc.glade.h:45
-#: ../support_files/bygfoot.glade.h:76
-msgid "Right click and left click to change boost state"
-msgstr "Дясно и ляво натискане за смяна на тласъка"
-
-#: ../support_files/bygfoot_misc.glade.h:46
-#: ../support_files/bygfoot.glade.h:77
-msgid "Right click and left click to change your playing style"
-msgstr "Дясно и ляво натискане за смяна на стила на игра"
-
-#: ../support_files/bygfoot_misc.glade.h:47
-msgid "Right-click to set to 0"
-msgstr "Дясно натискане за настройване на 0"
-
-#: ../support_files/bygfoot_misc.glade.h:49
-#, no-c-format
-msgid "Safety (%)"
-msgstr "Безопасност (%)"
-
-#: ../support_files/bygfoot_misc.glade.h:51
-msgid "Space"
-msgstr "Space"
-
-#: ../support_files/bygfoot_misc.glade.h:52
-msgid "Speed"
-msgstr "Скорост"
-
-#: ../support_files/bygfoot_misc.glade.h:53
-msgid "Start"
-msgstr "Начало"
-
-#: ../support_files/bygfoot_misc.glade.h:54
-msgid "Statistics"
-msgstr "Статистика"
-
-#: ../support_files/bygfoot_misc.glade.h:55
-msgid "Status:"
-msgstr "Статус:"
-
-#: ../support_files/bygfoot_misc.glade.h:56
-msgid ""
-"There are a few companies interested in sponsoring your team. Please select "
-"one:"
-msgstr ""
-"Има няколко компании заинтересувани в спонсорство на отбора Ви. Изберете "
-"една:"
-
-#: ../support_files/bygfoot_misc.glade.h:57
-msgid "Verbosity"
-msgstr "Честота"
-
-#: ../support_files/bygfoot_misc.glade.h:58
-msgid "_Pause"
-msgstr "_Пауза"
-
-#: ../support_files/bygfoot_misc.glade.h:59
-msgid "_Resume"
-msgstr "Продъл_жаване"
-
 #: ../support_files/bygfoot.glade.h:1
 msgid " Round "
 msgstr " Кръг "
@@ -3326,7 +2326,7 @@ msgstr " Сезон "
 msgid " Week "
 msgstr " Седмица "
 
-#: ../support_files/bygfoot.glade.h:4
+#: ../support_files/bygfoot.glade.h:4 ../support_files/bygfoot_misc2.glade.h:5
 msgid "About"
 msgstr "Относно"
 
@@ -3395,6 +2395,12 @@ msgstr "Разглеждане на играчи"
 msgid "Browse teams"
 msgstr "Разглеждане на отборите"
 
+#: ../support_files/bygfoot.glade.h:24
+#: ../support_files/bygfoot_misc2.glade.h:12
+#: ../support_files/bygfoot_misc3.glade.h:6
+msgid "Contributors"
+msgstr "Допринесли"
+
 #: ../support_files/bygfoot.glade.h:25
 #, fuzzy
 msgid "Default Team"
@@ -3454,6 +2460,7 @@ msgid "Good"
 msgstr "Добро"
 
 #: ../support_files/bygfoot.glade.h:39
+#: ../support_files/bygfoot_misc2.glade.h:17
 msgid "Help"
 msgstr "Помощ"
 
@@ -3464,6 +2471,12 @@ msgstr "Предложения за работа"
 #: ../support_files/bygfoot.glade.h:41
 msgid "League stats"
 msgstr "Статистика за лигата"
+
+#: ../support_files/bygfoot.glade.h:42
+#: ../support_files/bygfoot_misc.glade.h:33
+#: ../support_files/bygfoot_options.glade.h:52
+msgid "Live game"
+msgstr "Мач на живо"
 
 #: ../support_files/bygfoot.glade.h:43
 msgid "Load game (Ctrl - O)"
@@ -3497,6 +2510,11 @@ msgstr "Преместване в младежката академия"
 #: ../support_files/bygfoot.glade.h:51
 msgid "My league results"
 msgstr "Вашите резултати от лигата"
+
+#: ../support_files/bygfoot.glade.h:52
+#: ../support_files/bygfoot_options.glade.h:57
+msgid "News"
+msgstr ""
 
 #: ../support_files/bygfoot.glade.h:53
 msgid "Next (W)"
@@ -3590,6 +2608,16 @@ msgstr ""
 #, fuzzy
 msgid "Restore"
 msgstr "Резултат"
+
+#: ../support_files/bygfoot.glade.h:76
+#: ../support_files/bygfoot_misc.glade.h:45
+msgid "Right click and left click to change boost state"
+msgstr "Дясно и ляво натискане за смяна на тласъка"
+
+#: ../support_files/bygfoot.glade.h:77
+#: ../support_files/bygfoot_misc.glade.h:46
+msgid "Right click and left click to change your playing style"
+msgstr "Дясно и ляво натискане за смяна на стила на игра"
 
 #: ../support_files/bygfoot.glade.h:78
 msgid "Save game (Ctrl - S)"
@@ -3714,6 +2742,1025 @@ msgstr "_Отбор"
 msgid "_User"
 msgstr "По_требител"
 
+#: ../support_files/bygfoot_misc.glade.h:1
+msgid " seats"
+msgstr " места"
+
+#: ../support_files/bygfoot_misc.glade.h:2
+msgid "0"
+msgstr "0"
+
+#: ../support_files/bygfoot_misc.glade.h:3
+msgid "Accept"
+msgstr "Приемане"
+
+#: ../support_files/bygfoot_misc.glade.h:4
+#: ../support_files/bygfoot_misc2.glade.h:6
+msgid "Add user"
+msgstr "Добавяне на потребител"
+
+#: ../support_files/bygfoot_misc.glade.h:5
+msgid "Av. skill: "
+msgstr "Средни качества: "
+
+#: ../support_files/bygfoot_misc.glade.h:6
+msgid "Average attendance"
+msgstr "Средна посещаемост"
+
+#: ../support_files/bygfoot_misc.glade.h:8
+#, no-c-format
+msgid "Average attendance %"
+msgstr "Средна посещаемост %"
+
+#: ../support_files/bygfoot_misc.glade.h:9
+msgid "Back to splash"
+msgstr "Обратно към начален екран"
+
+#: ../support_files/bygfoot_misc.glade.h:10
+msgid "Capacity (seats)"
+msgstr "Капацитет (места)"
+
+#: ../support_files/bygfoot_misc.glade.h:11
+msgid ""
+"Change commentary verbosity. The higher this value the more events you can "
+"see."
+msgstr ""
+"Промяна на честотата на коментара. Колкото по-висока е тази стойност, "
+"толкова повече събития ще виждате."
+
+#: ../support_files/bygfoot_misc.glade.h:12
+#, fuzzy
+msgid "Change live game speed. The higher the value the faster the live game."
+msgstr ""
+"Промяна на скоростта на мача на живо. По-малки стойности = по-бърза игра."
+
+#: ../support_files/bygfoot_misc.glade.h:13
+msgid "Change ticket price"
+msgstr ""
+
+#: ../support_files/bygfoot_misc.glade.h:14
+msgid "Choose country"
+msgstr "Избор на страна"
+
+#: ../support_files/bygfoot_misc.glade.h:15
+msgid "Choose file"
+msgstr "Избор на файл"
+
+#: ../support_files/bygfoot_misc.glade.h:16
+msgid "Choose league to start in"
+msgstr "Избор на начално първенство"
+
+#: ../support_files/bygfoot_misc.glade.h:17
+msgid "Choose team"
+msgstr "Избор на отбор"
+
+#: ../support_files/bygfoot_misc.glade.h:18
+msgid "Choose username"
+msgstr "Избор на потребител"
+
+#: ../support_files/bygfoot_misc.glade.h:19
+msgid "Click on a user to remove him."
+msgstr "Натиснете върху потребител да го махнете."
+
+#: ../support_files/bygfoot_misc.glade.h:20
+msgid "Commentary"
+msgstr "Коментар"
+
+#: ../support_files/bygfoot_misc.glade.h:21
+msgid "Confirm!"
+msgstr ""
+
+#: ../support_files/bygfoot_misc.glade.h:22
+#: ../support_files/bygfoot_training.glade.h:2
+msgid "Costs"
+msgstr "Разходи"
+
+#: ../support_files/bygfoot_misc.glade.h:23
+msgid "Current capacity"
+msgstr "Текущ капацитет"
+
+#: ../support_files/bygfoot_misc.glade.h:24
+msgid "Current safety"
+msgstr "Текуща сигурност"
+
+#: ../support_files/bygfoot_misc.glade.h:25
+msgid "Don't load definitions"
+msgstr "Да не се зареждат определенията"
+
+#: ../support_files/bygfoot_misc.glade.h:26
+msgid "Don't load team definitions at all"
+msgstr "Да не се зареждат определенията за отборите"
+
+#: ../support_files/bygfoot_misc.glade.h:27
+#: ../support_files/bygfoot_misc2.glade.h:16
+#: ../support_files/bygfoot_misc3.glade.h:13
+msgid "Esc"
+msgstr "Esc"
+
+#: ../support_files/bygfoot_misc.glade.h:28
+msgid "Esc / Return / Space"
+msgstr "Esc / Enter / Space"
+
+#: ../support_files/bygfoot_misc.glade.h:29
+msgid "Expected duration"
+msgstr "Очаквана продължителност"
+
+#: ../support_files/bygfoot_misc.glade.h:30
+msgid "Go back to the splash screen"
+msgstr "Връщане към началния екран"
+
+#: ../support_files/bygfoot_misc.glade.h:31
+msgid ""
+"If you don't like any of the sponsors, you can go a few weeks without "
+"sponsor and wait for new offers."
+msgstr ""
+"Ако не харесвате никой от спонсорите, можете да карате няколко седмици без "
+"спонсор и да чакате нови предложение."
+
+#: ../support_files/bygfoot_misc.glade.h:32
+msgid "Increase"
+msgstr "Увеличаване"
+
+#: ../support_files/bygfoot_misc.glade.h:34
+msgid "Load only the player names in the definition files"
+msgstr "Зареждане само на имената на играчите от файла за определенията"
+
+#: ../support_files/bygfoot_misc.glade.h:35
+msgid "Load team definitions"
+msgstr "Зареждане на определенията за отбори"
+
+#: ../support_files/bygfoot_misc.glade.h:36
+msgid ""
+"Load teams from definition files (note that the official Bygfoot package "
+"doesn't contain team definition files, you have to get them from the "
+"homepage or via the bygfoot-update script)"
+msgstr ""
+"Зареждане на отбори от файловете с определения (официалният пакет на Bygfoot "
+"не съдържа определения на официални отбори, трябва да ги вземете от сайтаили "
+"чрез скрипта bygfoot-update)"
+
+#: ../support_files/bygfoot_misc.glade.h:37
+msgid "Only names"
+msgstr "Само имена"
+
+#: ../support_files/bygfoot_misc.glade.h:38
+msgid "Opponent player list"
+msgstr "Списък с играчите на противника"
+
+#: ../support_files/bygfoot_misc.glade.h:39
+msgid "Price per ticket"
+msgstr ""
+
+#: ../support_files/bygfoot_misc.glade.h:40
+msgid "Randomise teams in cups"
+msgstr "Разбъркване на отборите в купите"
+
+#: ../support_files/bygfoot_misc.glade.h:41
+msgid ""
+"Randomise the order of teams in cups. This only makes sense in supernational "
+"definitions like the World Cup where the order of teams is fixed."
+msgstr ""
+"Разбъркване на реда на отборите в купите. Това има значение само при "
+"международни дефиниции като Световното първенство, където редът на отборите "
+"е неподвижен."
+
+#: ../support_files/bygfoot_misc.glade.h:42
+msgid "Reject for now"
+msgstr "Отказване за сега"
+
+#: ../support_files/bygfoot_misc.glade.h:43
+#: ../support_files/bygfoot_misc2.glade.h:33
+msgid "Return"
+msgstr "Enter"
+
+#: ../support_files/bygfoot_misc.glade.h:44
+msgid "Return / Space"
+msgstr "Enter / Space"
+
+#: ../support_files/bygfoot_misc.glade.h:47
+msgid "Right-click to set to 0"
+msgstr "Дясно натискане за настройване на 0"
+
+#: ../support_files/bygfoot_misc.glade.h:49
+#, no-c-format
+msgid "Safety (%)"
+msgstr "Безопасност (%)"
+
+#: ../support_files/bygfoot_misc.glade.h:51
+msgid "Space"
+msgstr "Space"
+
+#: ../support_files/bygfoot_misc.glade.h:52
+msgid "Speed"
+msgstr "Скорост"
+
+#: ../support_files/bygfoot_misc.glade.h:53
+msgid "Start"
+msgstr "Начало"
+
+#: ../support_files/bygfoot_misc.glade.h:54
+msgid "Statistics"
+msgstr "Статистика"
+
+#: ../support_files/bygfoot_misc.glade.h:55
+msgid "Status:"
+msgstr "Статус:"
+
+#: ../support_files/bygfoot_misc.glade.h:56
+msgid ""
+"There are a few companies interested in sponsoring your team. Please select "
+"one:"
+msgstr ""
+"Има няколко компании заинтересувани в спонсорство на отбора Ви. Изберете "
+"една:"
+
+#: ../support_files/bygfoot_misc.glade.h:57
+msgid "Verbosity"
+msgstr "Честота"
+
+#: ../support_files/bygfoot_misc.glade.h:58
+msgid "_Pause"
+msgstr "_Пауза"
+
+#: ../support_files/bygfoot_misc.glade.h:59
+msgid "_Resume"
+msgstr "Продъл_жаване"
+
+#: ../support_files/bygfoot_misc2.glade.h:1
+msgid "1 year"
+msgstr "1 година"
+
+#: ../support_files/bygfoot_misc2.glade.h:2
+msgid "2 years"
+msgstr "2 години"
+
+#: ../support_files/bygfoot_misc2.glade.h:3
+msgid "3 years"
+msgstr "3 години"
+
+#: ../support_files/bygfoot_misc2.glade.h:4
+msgid "4 years"
+msgstr "4 години"
+
+#: ../support_files/bygfoot_misc2.glade.h:7
+msgid "Available teams"
+msgstr "Налични отбори"
+
+#: ../support_files/bygfoot_misc2.glade.h:8
+msgid "Average skill:"
+msgstr "Средно умение:"
+
+#: ../support_files/bygfoot_misc2.glade.h:9
+msgid ""
+"Bygfoot debug window. If you got here by accident, CLOSE IMMEDIATELY "
+"(otherwise your CPU will be destroyed by overheating)."
+msgstr ""
+
+#: ../support_files/bygfoot_misc2.glade.h:10
+msgid "Click on a user to remove him from the game."
+msgstr "Натиснете на потребител, за да го махнете от играта."
+
+#: ../support_files/bygfoot_misc2.glade.h:11
+msgid "Confirm & schedule repayment"
+msgstr ""
+
+#: ../support_files/bygfoot_misc2.glade.h:13
+msgid "Current file"
+msgstr "Текущ файл"
+
+#: ../support_files/bygfoot_misc2.glade.h:14
+msgid "Debug"
+msgstr "Следене за грешки"
+
+#: ../support_files/bygfoot_misc2.glade.h:15
+msgid "Decide later"
+msgstr "Решаване по-късно"
+
+#: ../support_files/bygfoot_misc2.glade.h:18
+msgid "Import file"
+msgstr "Внасяне на файл"
+
+#: ../support_files/bygfoot_misc2.glade.h:19
+msgid "Import the matches from a memorable matches file"
+msgstr "Внасяне на мачовете от файла за запомнящи се мачове"
+
+#: ../support_files/bygfoot_misc2.glade.h:22
+msgid "Make offer"
+msgstr "Отправяне на предложение"
+
+#: ../support_files/bygfoot_misc2.glade.h:23
+msgid "Money (approx.)"
+msgstr "Пари (приблизително)"
+
+#: ../support_files/bygfoot_misc2.glade.h:26
+msgid "Open a memorable matches file"
+msgstr "Отваряне на файл със запомнящи се мачове"
+
+#: ../support_files/bygfoot_misc2.glade.h:27
+msgid "Player list"
+msgstr "Списък с играчи"
+
+#: ../support_files/bygfoot_misc2.glade.h:29
+#: ../support_files/bygfoot_options.glade.h:68
+msgid "Reload"
+msgstr "Презареждане"
+
+#: ../support_files/bygfoot_misc2.glade.h:30
+msgid "Reload and close"
+msgstr "Презареждане и затваряне"
+
+#: ../support_files/bygfoot_misc2.glade.h:31
+msgid "Reload matches from file"
+msgstr "Презареждане на мачове от файл"
+
+#: ../support_files/bygfoot_misc2.glade.h:32
+msgid "Reload matches from file and close"
+msgstr "Презареждане на мачове от файл и затваряне"
+
+#: ../support_files/bygfoot_misc2.glade.h:34
+msgid "Save and close"
+msgstr "Запазване и затваряне"
+
+#: ../support_files/bygfoot_misc2.glade.h:35
+msgid "Save changes to file and close"
+msgstr "Запазване на промените към файл и затваряне"
+
+#: ../support_files/bygfoot_misc2.glade.h:38
+msgid "Users -- click to remove"
+msgstr "Потребители - натиснете за премахване"
+
+#: ../support_files/bygfoot_options.glade.h:1
+msgid " Autosave files "
+msgstr ""
+" Файлове на \n"
+"автоматичното запазване "
+
+#: ../support_files/bygfoot_options.glade.h:2
+msgid " months"
+msgstr " месеца"
+
+#: ../support_files/bygfoot_options.glade.h:3
+msgid "Age "
+msgstr "Възраст "
+
+#: ../support_files/bygfoot_options.glade.h:4
+msgid "Always store/restore your default team"
+msgstr ""
+
+#: ../support_files/bygfoot_options.glade.h:5
+msgid "Always store/restore your default team before/after a match"
+msgstr ""
+
+#: ../support_files/bygfoot_options.glade.h:6
+msgid "Appearance"
+msgstr ""
+
+#: ../support_files/bygfoot_options.glade.h:7
+msgid "Attribute "
+msgstr "Качество "
+
+#: ../support_files/bygfoot_options.glade.h:8
+msgid "Automatic popup"
+msgstr ""
+
+#: ../support_files/bygfoot_options.glade.h:9
+msgid "Automatic substitutions"
+msgstr "Автоматични смени"
+
+#: ../support_files/bygfoot_options.glade.h:10
+msgid "Autosave"
+msgstr "Автоматично запазване"
+
+#: ../support_files/bygfoot_options.glade.h:11
+msgid "Autosave interval "
+msgstr ""
+"Интервал на \n"
+"автоматичното запазване "
+
+#: ../support_files/bygfoot_options.glade.h:13
+msgid "CPos "
+msgstr "Тек. поз. "
+
+#: ../support_files/bygfoot_options.glade.h:14
+msgid "CSkill "
+msgstr "Тек. умение "
+
+#: ../support_files/bygfoot_options.glade.h:15
+msgid "Cards "
+msgstr "Картони"
+
+#: ../support_files/bygfoot_options.glade.h:16
+msgid "Choose game language (might not work in Windows versions)"
+msgstr "Избор на език на играта (може да не работи в Windows версията)"
+
+#: ../support_files/bygfoot_options.glade.h:17
+#, fuzzy
+msgid "Close"
+msgstr "Тек. поз."
+
+#: ../support_files/bygfoot_options.glade.h:18
+msgid "Confirm quit when not saved"
+msgstr "Подтвърждаване на затварянето при незапазени данни"
+
+#: ../support_files/bygfoot_options.glade.h:19
+msgid "Confirm removing youths"
+msgstr "Подтвърждение при премахването на младежи"
+
+#: ../support_files/bygfoot_options.glade.h:20
+msgid "Confirm when unfit"
+msgstr "Подтвърждение при липса на форма."
+
+#: ../support_files/bygfoot_options.glade.h:21
+msgid "Constants file"
+msgstr "Файл за константи"
+
+#: ../support_files/bygfoot_options.glade.h:22
+msgid "Contract "
+msgstr "Договор "
+
+#: ../support_files/bygfoot_options.glade.h:23
+msgid "Create cup news"
+msgstr ""
+
+#: ../support_files/bygfoot_options.glade.h:24
+#, fuzzy
+msgid "Create league news"
+msgstr "Текуща лига"
+
+#: ../support_files/bygfoot_options.glade.h:25
+msgid "Create user news"
+msgstr ""
+
+#: ../support_files/bygfoot_options.glade.h:26
+#, fuzzy
+msgid "Default hotel"
+msgstr "Стандартен залог"
+
+#: ../support_files/bygfoot_options.glade.h:27
+#, fuzzy
+msgid "Default recreation:"
+msgstr "Стандартен залог"
+
+#: ../support_files/bygfoot_options.glade.h:28
+#, fuzzy
+msgid "Default training:"
+msgstr "Стандартен залог"
+
+#: ../support_files/bygfoot_options.glade.h:29
+msgid "Default wager"
+msgstr "Стандартен залог"
+
+#: ../support_files/bygfoot_options.glade.h:30
+msgid "ETal "
+msgstr "Изч. тал."
+
+#: ../support_files/bygfoot_options.glade.h:31
+msgid "Edit"
+msgstr ""
+
+#: ../support_files/bygfoot_options.glade.h:32
+#, fuzzy
+msgid "Edit the constants used in the game"
+msgstr "Презареждане на файла с константите"
+
+#: ../support_files/bygfoot_options.glade.h:33
+msgid ""
+"File containing settings which determine a lot of aspects of the game "
+"behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
+msgstr ""
+"Файл съдържащ настройките, които определят много от аспектите в игратаНЕ ГО "
+"ПРОМЕНЯЙТЕ ОСВЕН, АКО НАИСТИНА ЗНАЕТЕ КАКВО ВЪРШИТЕ!!!"
+
+#: ../support_files/bygfoot_options.glade.h:34
+msgid "Fitness "
+msgstr "Тонус "
+
+#: ../support_files/bygfoot_options.glade.h:35
+msgid "Float"
+msgstr ""
+
+#: ../support_files/bygfoot_options.glade.h:36
+msgid "Font name"
+msgstr "Име на шрифт"
+
+#: ../support_files/bygfoot_options.glade.h:37
+msgid "Font used in treeviews"
+msgstr "Шрифтове използвани в дървовидната структура"
+
+#: ../support_files/bygfoot_options.glade.h:38
+#, fuzzy
+msgid "Gameplay"
+msgstr "Мачове"
+
+#: ../support_files/bygfoot_options.glade.h:39
+msgid "Games "
+msgstr "Мачове "
+
+#: ../support_files/bygfoot_options.glade.h:40
+msgid "Global"
+msgstr "Общи"
+
+#: ../support_files/bygfoot_options.glade.h:41
+msgid "Goals "
+msgstr "Голове "
+
+#: ../support_files/bygfoot_options.glade.h:42
+msgid "How many digits after the comma there are for skill etc."
+msgstr "Колко цифри след запетаята има за умение и т.н."
+
+#: ../support_files/bygfoot_options.glade.h:43
+msgid "How many files the autosave uses"
+msgstr "Колко файла ползва авт. запазване"
+
+#: ../support_files/bygfoot_options.glade.h:44
+msgid "How often the game is saved automatically"
+msgstr "Колко често се запазва автоматично играта"
+
+#: ../support_files/bygfoot_options.glade.h:45
+msgid ""
+"How often the player list gets refreshed during a live game (in live game "
+"minutes)"
+msgstr ""
+"Колко често списъка с играчи се опреснява по време на мач на живо (в минути "
+"от мача на живо)"
+
+#: ../support_files/bygfoot_options.glade.h:46
+msgid ""
+"If checked, weeks without user teams playing are calculated automatically "
+"(without the user having to press 'New week')"
+msgstr ""
+"Ако е отметанто, седмиците без мачове на потребителските отбори, ще се "
+"смятат автоматично (без да трябва да се натиска 'Следваща седмица')"
+
+#: ../support_files/bygfoot_options.glade.h:47
+msgid "Integer"
+msgstr ""
+
+#: ../support_files/bygfoot_options.glade.h:48
+msgid "Language"
+msgstr "Език"
+
+#: ../support_files/bygfoot_options.glade.h:49
+msgid "League "
+msgstr "Лига "
+
+#: ../support_files/bygfoot_options.glade.h:50
+msgid "List 1 "
+msgstr "Списък 1 "
+
+#: ../support_files/bygfoot_options.glade.h:51
+msgid "List 2"
+msgstr "Списък 2"
+
+#: ../support_files/bygfoot_options.glade.h:53
+msgid "Live game speed factor"
+msgstr "Фактор на скоростта при мачовете на живо"
+
+#: ../support_files/bygfoot_options.glade.h:54
+msgid "Live game verbosity"
+msgstr "Честота на коментара"
+
+#: ../support_files/bygfoot_options.glade.h:55
+msgid "Maximize main window"
+msgstr "Максимизиране на главния прозорец"
+
+#: ../support_files/bygfoot_options.glade.h:56
+msgid "Name "
+msgstr "Име "
+
+#: ../support_files/bygfoot_options.glade.h:58
+msgid "No automatic popup"
+msgstr ""
+
+#: ../support_files/bygfoot_options.glade.h:59
+msgid "Pause when break"
+msgstr "Пауза на полувремето"
+
+#: ../support_files/bygfoot_options.glade.h:60
+msgid "Pause when injury"
+msgstr "Пауза при контузия"
+
+#: ../support_files/bygfoot_options.glade.h:61
+msgid "Pause when red card"
+msgstr "Пауза при червен картон"
+
+#: ../support_files/bygfoot_options.glade.h:62
+msgid "Player attribute precision"
+msgstr "Прецизност на качествата на играчите"
+
+#: ../support_files/bygfoot_options.glade.h:63
+msgid "Player attributes shown"
+msgstr "Показаните качества на играча"
+
+#: ../support_files/bygfoot_options.glade.h:64
+msgid "Player list refresh rate"
+msgstr ""
+"Честота на опресняване на\n"
+"списъка с играчи"
+
+#: ../support_files/bygfoot_options.glade.h:65
+msgid "Popup for user news"
+msgstr ""
+
+#: ../support_files/bygfoot_options.glade.h:66
+msgid "Pos "
+msgstr "Поз "
+
+#: ../support_files/bygfoot_options.glade.h:67
+msgid "Prefer messages"
+msgstr "Предпочитане на съобщения"
+
+#: ../support_files/bygfoot_options.glade.h:69
+#, fuzzy
+msgid "Reload from file"
+msgstr "Презареждане на мачове от файл"
+
+#: ../support_files/bygfoot_options.glade.h:70
+msgid "Reload the constants file"
+msgstr "Презареждане на файла с константите"
+
+#: ../support_files/bygfoot_options.glade.h:71
+msgid "Save global settings to file"
+msgstr ""
+"Запазване във файл\n"
+"на глобалните настройки"
+
+#: ../support_files/bygfoot_options.glade.h:72
+msgid "Save overwrites"
+msgstr "Запазването презаписва"
+
+#: ../support_files/bygfoot_options.glade.h:73
+#, fuzzy
+msgid "Save to file"
+msgstr ""
+"Запазване във файл\n"
+"потребителските настройки"
+
+#: ../support_files/bygfoot_options.glade.h:74
+msgid "Save user settings to file"
+msgstr ""
+"Запазване във файл\n"
+"потребителските настройки"
+
+#: ../support_files/bygfoot_options.glade.h:75
+msgid "Set to 0 to switch off warning"
+msgstr "Настройте на 0, за да изключите предупрежденията"
+
+#: ../support_files/bygfoot_options.glade.h:76
+msgid "Shots "
+msgstr "Изстрели"
+
+#: ../support_files/bygfoot_options.glade.h:77
+msgid "Show all leagues in the fixture view"
+msgstr "Показване на всички лиги в прегледа на датите на мачовете"
+
+#: ../support_files/bygfoot_options.glade.h:78
+msgid "Show job offers"
+msgstr "Показване на предложенията за работа"
+
+#: ../support_files/bygfoot_options.glade.h:79
+msgid "Show live game"
+msgstr "Показване на мача на живо"
+
+#: ../support_files/bygfoot_options.glade.h:80
+#: ../support_files/bygfoot_misc3.glade.h:18
+msgid "Show matches from all leagues"
+msgstr "Показване на мачовете от всички първенства..."
+
+#: ../support_files/bygfoot_options.glade.h:81
+#: ../support_files/bygfoot_misc3.glade.h:19
+msgid "Show matches from cups"
+msgstr "Показване на мачове от купите"
+
+#: ../support_files/bygfoot_options.glade.h:82
+#: ../support_files/bygfoot_misc3.glade.h:20
+msgid "Show only my recent bets"
+msgstr "Показване само на скорошните залози"
+
+#: ../support_files/bygfoot_options.glade.h:83
+#, fuzzy
+msgid "Show only recent news"
+msgstr "Показване само на скорошните залози"
+
+#: ../support_files/bygfoot_options.glade.h:84
+msgid "Show overall games/goals"
+msgstr "Показване на общо мачове/голове"
+
+#: ../support_files/bygfoot_options.glade.h:85
+msgid "Show progressbar pictures"
+msgstr "Показване на картинки за лентата за прогреса"
+
+#: ../support_files/bygfoot_options.glade.h:86
+msgid "Show tendency bar"
+msgstr "Показване на лентата за тенденциите"
+
+#: ../support_files/bygfoot_options.glade.h:87
+msgid "Show warning if a player contract gets below "
+msgstr "Предупреждение, ако договорът на играч изтича след по-малко от "
+
+#: ../support_files/bygfoot_options.glade.h:88
+msgid "Skill "
+msgstr "Умение "
+
+#: ../support_files/bygfoot_options.glade.h:89
+msgid "Skip weeks without user matches"
+msgstr "Пропускане на седмици без мачове на потребители"
+
+#: ../support_files/bygfoot_options.glade.h:90
+msgid "Status "
+msgstr "Статус "
+
+#: ../support_files/bygfoot_options.glade.h:91
+#, fuzzy
+msgid "String"
+msgstr "Ахилес"
+
+#: ../support_files/bygfoot_options.glade.h:92
+msgid "Swap adapts structure"
+msgstr "Размяната адаптира структурата"
+
+#: ../support_files/bygfoot_options.glade.h:93
+msgid "Team "
+msgstr "Отбор "
+
+#: ../support_files/bygfoot_options.glade.h:95
+msgid "Value "
+msgstr "Цена "
+
+#: ../support_files/bygfoot_options.glade.h:96
+msgid "Wage "
+msgstr "Заплата "
+
+#: ../support_files/bygfoot_options.glade.h:97
+msgid ""
+"Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
+msgstr ""
+"Дали 'Запазване' презаписва текущия запазен файл или изскача прозорец "
+"'Запазване като..'"
+
+#: ../support_files/bygfoot_options.glade.h:98
+msgid ""
+"Whether a confirmation popup is shown when you kick out a youth from your "
+"academy"
+msgstr "Дали излиза предупреждение при изхвърлянето на младеж от академията"
+
+#: ../support_files/bygfoot_options.glade.h:99
+msgid ""
+"Whether game starts with a maximized main window (doesn't work with all "
+"window managers)"
+msgstr ""
+"Дали играта започва с максимизиран главен прозорец (не работи с всички "
+"прозоръчни мениджъри)"
+
+#: ../support_files/bygfoot_options.glade.h:100
+msgid ""
+"Whether in the weekly fixture view all leagues or only the user league is "
+"shown"
+msgstr ""
+"Дали в прегледа на датите на мачовете по седмици да се виждат всички лиги "
+"или само потребителските"
+
+#: ../support_files/bygfoot_options.glade.h:101
+msgid ""
+"Whether swapping two players automatically adapts the team structure to the "
+"player positions"
+msgstr ""
+"Дали разменянето на двама играчи автоматично адаптира структурата на отбора "
+"към позициите им"
+
+#: ../support_files/bygfoot_options.glade.h:102
+msgid "Whether to automatically save the game regularly"
+msgstr "Дали периодично играта да се запазва автоматично"
+
+#: ../support_files/bygfoot_options.glade.h:103
+msgid ""
+"Whether to show a confirmation popup if a user team has an injured or banned "
+"player in the startup formation"
+msgstr ""
+"Дали да се показва прозорец за подтвърждение, ако потребителски отбор има "
+"контузен или наказан играч в началната формация"
+
+#: ../support_files/bygfoot_options.glade.h:104
+msgid ""
+"Whether to show a confirmation popup when you press quit and the game state "
+"is not saved"
+msgstr ""
+"Дали да се показва прозорец за подтвърждение, когато затваряте програмата и "
+"състоянието на играта не е запазено"
+
+#: ../support_files/bygfoot_options.glade.h:105
+msgid "Whether to show job offers when a user is successful"
+msgstr ""
+"Дали да се показват предложения за работа, когато потребителя е успешен "
+"мениджър"
+
+#: ../support_files/bygfoot_options.glade.h:106
+msgid ""
+"Whether to show pictures on top of the progressbar when loading/saving or "
+"calculating results"
+msgstr ""
+"Дали да се показват картинки над лентата за прогреса, при зареждане/"
+"запазване или пресмятане на резултати."
+
+#: ../support_files/bygfoot_options.glade.h:107
+msgid "Whether to show the player games/goals value in all competitions"
+msgstr ""
+"Дали да се показват стойността мачове/голове на играча за всички състезания"
+
+#: ../support_files/bygfoot_options.glade.h:108
+msgid ""
+"Whether to show warnings and such in the message area in the main window "
+"when possible"
+msgstr ""
+"Дали да се показват предупреждения и подобни в района за съобщения в главния "
+"прозорец, когато е възможно"
+
+#: ../support_files/bygfoot_misc3.glade.h:2
+msgid "Betting -- Left click on odd to place or remove bet"
+msgstr ""
+"Залагания -- Ляво натискане на коефицент, за да поставите или премахнете "
+"залог"
+
+#: ../support_files/bygfoot_misc3.glade.h:4
+msgid "Calculate start week"
+msgstr ""
+
+#: ../support_files/bygfoot_misc3.glade.h:5
+msgid "Calculate weekly installment"
+msgstr ""
+
+#: ../support_files/bygfoot_misc3.glade.h:7
+msgid "Ctrl-N"
+msgstr "Ctrl-N"
+
+#: ../support_files/bygfoot_misc3.glade.h:8
+msgid "Ctrl-O"
+msgstr "Ctrl-O"
+
+#: ../support_files/bygfoot_misc3.glade.h:9
+msgid "Ctrl-R"
+msgstr "Ctrl-R"
+
+#: ../support_files/bygfoot_misc3.glade.h:10
+#, fuzzy
+msgid "Current settings:"
+msgstr "Текуща позиция"
+
+#. Splash screen hint question.
+#: ../support_files/bygfoot_misc3.glade.h:12
+msgid "Did you know?"
+msgstr "Знаете ли, че?"
+
+#: ../support_files/bygfoot_misc3.glade.h:14
+#, fuzzy
+msgid "New settings:"
+msgstr "Залагания"
+
+#: ../support_files/bygfoot_misc3.glade.h:15
+msgid "Next"
+msgstr "Следващ"
+
+#: ../support_files/bygfoot_misc3.glade.h:16
+msgid "Previous"
+msgstr "Предишен"
+
+#: ../support_files/bygfoot_misc3.glade.h:21
+msgid "Start _new game"
+msgstr "_Нова игра"
+
+#: ../support_files/bygfoot_misc3.glade.h:22
+#, fuzzy
+msgid "Start in week"
+msgstr "_Нова игра"
+
+#: ../support_files/bygfoot_misc3.glade.h:23
+#, fuzzy
+msgid "Start in week:"
+msgstr "_Нова игра"
+
+#: ../support_files/bygfoot_misc3.glade.h:24
+#, fuzzy
+msgid "Weekly installment"
+msgstr "Настройване на инвестициите"
+
+#: ../support_files/bygfoot_misc3.glade.h:25
+#, fuzzy
+msgid "Weekly installment:"
+msgstr "Настройване на инвестициите"
+
+#: ../support_files/bygfoot_misc3.glade.h:26
+msgid ""
+"Whether to show cup matches. Use the options window to toggle permanently."
+msgstr ""
+"Дали да се показват мачовете за купите. Използвайте прозореца за "
+"настройките, за да промените за постоянно."
+
+#: ../support_files/bygfoot_misc3.glade.h:27
+msgid ""
+"Whether to show matches of all leagues. Use the options window to toggle "
+"permanently."
+msgstr ""
+"Дали да се показват мачовете от всички първенства. Използвайте прозореца за "
+"настройките, за да променяте за постоянно."
+
+#: ../support_files/bygfoot_misc3.glade.h:28
+msgid "Whether to show only your bets in the recent bets list"
+msgstr "Дали да се показват само Вашите залози в списъка с последни залози."
+
+#: ../support_files/bygfoot_misc3.glade.h:29
+#, fuzzy
+msgid "Your debt:"
+msgstr "Вашите резултати"
+
+#: ../support_files/bygfoot_misc3.glade.h:30
+msgid "_Load game"
+msgstr "За_реждане на игра"
+
+#: ../support_files/bygfoot_misc3.glade.h:31
+msgid "_Resume game"
+msgstr "_Продължаване на игра"
+
+#: ../support_files/bygfoot_training.glade.h:1
+#, fuzzy
+msgid "Camp points"
+msgstr " "
+
+#: ../support_files/bygfoot_training.glade.h:6
+msgid "Recreation"
+msgstr ""
+
+#: ../support_files/bygfoot_training.glade.h:7
+#, fuzzy
+msgid "Save settings as default"
+msgstr ""
+"Запазване във файл\n"
+"потребителските настройки"
+
+#: ../support_files/bygfoot_training.glade.h:8
+msgid "Training"
+msgstr ""
+
+#~ msgid ""
+#~ "The lower this value the faster the live game commentary will scroll."
+#~ msgstr ""
+#~ "Колкото по-ниска е тази стойност, толкова по-бързо ще теже коментара на "
+#~ "живо"
+
+#~ msgid "The higher this value, the more commentary you'll see."
+#~ msgstr ""
+#~ "Колкото по-висока е тази стойност, толкова повече коментиране ще виждате."
+
+#~ msgid ""
+#~ "Whether the subs (e.g. for injured players) are made by the CPU. This is "
+#~ "automatically done if the live game is off."
+#~ msgstr ""
+#~ "Дали смените (пр. за контузени играчи) се правят от компютъра. Това се "
+#~ "прави автоматично, ако мача на живо е изключен."
+
+#~ msgid "Whether the live game pauses when a user player is injured"
+#~ msgstr ""
+#~ "Дали мачовете на живо паузират, когато потребителски играч е контузен"
+
+#~ msgid "Whether the live game pauses when a user player is sent off"
+#~ msgstr ""
+#~ "Дали мачовете на живо паузират, когато потребителски играч е изгонен"
+
+#~ msgid "Whether the live game pauses at half time and extra time"
+#~ msgstr "Дали да има пауза на мачовете на живо при почивките"
+
+#~ msgid "Whether to show matches of all leagues in the betting window"
+#~ msgstr ""
+#~ "Дали да се показват мачовете от всички първенства в прозореца за "
+#~ "залаганията"
+
+#~ msgid "Whether to show cup matches in the betting window"
+#~ msgstr "Дали да се показват мачовете за купите в прозореца за залаганията"
+
+#~ msgid "How much you wager by default"
+#~ msgstr "Колко е стандартният залог"
+
+#~ msgid ""
+#~ "Whether to save the global settings to file (so that they get loaded next "
+#~ "time you start a new game)"
+#~ msgstr ""
+#~ "Дали да се запазват глобалните настройки във файл (така, че следващият "
+#~ "път да да се зареждат те)"
+
+#~ msgid ""
+#~ "Whether to save the user settings to file (so that they get loaded next "
+#~ "time this user starts a new game)"
+#~ msgstr ""
+#~ "Дали да се запазват потребителските настройки във файл (така, че "
+#~ "следващият път да да се зареждат те, за дадения потребител)"
+
+#, fuzzy
+#~ msgid ""
+#~ "Save changes to the constants file. DON'T DO THIS UNLESS YOU REALLY KNOW "
+#~ "WHAT YOU ARE DOING."
+#~ msgstr ""
+#~ "Файл съдържащ настройките, които определят много от аспектите в игратаНЕ "
+#~ "ГО ПРОМЕНЯЙТЕ ОСВЕН, АКО НАИСТИНА ЗНАЕТЕ КАКВО ВЪРШИТЕ!!!"
+
 #~ msgid ""
 #~ "\n"
 #~ "If you feel you've found out something about the game that has to be "
@@ -3723,36 +3770,9 @@ msgstr "По_требител"
 #~ "Ако мислите, че сте открили нещо относно играта, което си струва да се "
 #~ "сподели, може да го добавите към уикито на Bygfoot:\n"
 
-#~ msgid "1 year"
-#~ msgstr "1 година"
-
-#~ msgid "2 years"
-#~ msgstr "2 години"
-
-#~ msgid "3 years"
-#~ msgstr "3 години"
-
-#~ msgid "4 years"
-#~ msgstr "4 години"
-
-#~ msgid "Available teams"
-#~ msgstr "Налични отбори"
-
-#~ msgid "Average skill:"
-#~ msgstr "Средно умение:"
-
 #, fuzzy
 #~ msgid "Bygfoot news"
 #~ msgstr "Запазени игри на Bygfoot"
-
-#~ msgid "Click on a user to remove him from the game."
-#~ msgstr "Натиснете на потребител, за да го махнете от играта."
-
-#~ msgid "Debug"
-#~ msgstr "Следене за грешки"
-
-#~ msgid "Decide later"
-#~ msgstr "Решаване по-късно"
 
 #~ msgid "Improve!"
 #~ msgstr "Подобрение!"
@@ -3770,20 +3790,11 @@ msgstr "По_требител"
 #~ msgid "Loading cups..."
 #~ msgstr "Зареждане на купите..."
 
-#~ msgid "Make offer"
-#~ msgstr "Отправяне на предложение"
-
 #~ msgid "Misc."
 #~ msgstr "Допълнителни"
 
-#~ msgid "Money (approx.)"
-#~ msgstr "Пари (приблизително)"
-
 #~ msgid "Move to team"
 #~ msgstr "Преместване в отбор"
-
-#~ msgid "Player list"
-#~ msgstr "Списък с играчи"
 
 #~ msgid "Preferences"
 #~ msgstr "Настройки"
@@ -3802,6 +3813,3 @@ msgstr "По_требител"
 
 #~ msgid "Username"
 #~ msgstr "Потребителско име"
-
-#~ msgid "Users -- click to remove"
-#~ msgstr "Потребители - натиснете за премахване"
