@@ -56,7 +56,7 @@ load_ui (const gchar *filename)
   if (!gtk_builder_add_from_file (builder, filename, &error))
   {
      main_exit_program(EXIT_FILE_NOT_FOUND, 
-      ": File not found %s\n", filename);
+      ": Problems found in the glade file: %s\n", error->message);
   }
 
   gtk_builder_connect_signals (builder, NULL);
