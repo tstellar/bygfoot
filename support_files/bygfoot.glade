@@ -292,7 +292,7 @@
                       <object class="GtkImageMenuItem" id="menu_scout">
                         <property name="label" translatable="yes">Scout</property>
                         <property name="visible">True</property>
-                        <property name="image">image9</property>
+                        <property name="image">image_scout</property>
                         <property name="use_stock">False</property>
                         <child type="submenu">
                           <object class="GtkMenu" id="menu_scout_menu">
@@ -343,7 +343,7 @@
                       <object class="GtkImageMenuItem" id="menu_physio">
                         <property name="label">Physio</property>
                         <property name="visible">True</property>
-                        <property name="image">image10</property>
+                        <property name="image">image_physio</property>
                         <property name="use_stock">False</property>
                         <child type="submenu">
                           <object class="GtkMenu" id="menu_physio_menu">
@@ -394,7 +394,7 @@
                       <object class="GtkImageMenuItem" id="menu_youth_academy">
                         <property name="label" translatable="yes">Youth academy</property>
                         <property name="visible">True</property>
-                        <property name="image">image11</property>
+                        <property name="image">image_ya</property>
                         <property name="use_stock">False</property>
                         <child type="submenu">
                           <object class="GtkMenu" id="menu_youth_academy_menu">
@@ -534,7 +534,7 @@
                       <object class="GtkImageMenuItem" id="menu_boost">
                         <property name="label" translatable="yes">Boost</property>
                         <property name="visible">True</property>
-                        <property name="image">image12</property>
+                        <property name="image">image_menu_boost</property>
                         <property name="use_stock">False</property>
                         <child type="submenu">
                           <object class="GtkMenu" id="menu_boost_menu">
@@ -621,7 +621,7 @@
                       <object class="GtkImageMenuItem" id="menu_reset_players">
                         <property name="label" translatable="yes">Reset player list</property>
                         <property name="tooltip_text" translatable="yes">Reset player list to the formation at the beginning of the live game pause (right click on player list)</property>
-                        <property name="image">image13</property>
+                        <property name="image">image_reset</property>
                         <property name="use_stock">False</property>
                         <signal name="activate" handler="on_menu_reset_players_activate"/>
                       </object>
@@ -717,7 +717,7 @@
                       <object class="GtkImageMenuItem" id="menu_offer_new_contract">
                         <property name="label" translatable="yes">Offer new contract</property>
                         <property name="visible">True</property>
-                        <property name="image">image20</property>
+                        <property name="image">image_player_contract</property>
                         <property name="use_stock">False</property>
                         <signal name="activate" handler="on_menu_offer_new_contract_activate"/>
                       </object>
@@ -744,7 +744,7 @@
                       <object class="GtkImageMenuItem" id="menu_move_to_youth_academy">
                         <property name="label" translatable="yes">Move to youth academy</property>
                         <property name="visible">True</property>
-                        <property name="image">image23</property>
+                        <property name="image">image_move_to_ya</property>
                         <property name="use_stock">False</property>
                         <signal name="activate" handler="on_menu_move_to_youth_academy_activate"/>
                       </object>
@@ -863,7 +863,7 @@
                       <object class="GtkImageMenuItem" id="menu_show_finances">
                         <property name="label" translatable="yes">Show finances</property>
                         <property name="visible">True</property>
-                        <property name="image">image32</property>
+                        <property name="image">image_show_finances</property>
                         <property name="use_stock">False</property>
                         <accelerator key="f" signal="activate"/>
                         <signal name="activate" handler="on_menu_show_finances_activate"/>
@@ -1887,23 +1887,23 @@
     <property name="visible">True</property>
     <property name="pixbuf">pixmaps/menu_style.png</property>
   </object>
-  <object class="GtkImage" id="image9">
+  <object class="GtkImage" id="image_scout">
     <property name="visible">True</property>
     <property name="pixbuf">pixmaps/menu_scout.png</property>
   </object>
-  <object class="GtkImage" id="image10">
+  <object class="GtkImage" id="image_physio">
     <property name="visible">True</property>
     <property name="pixbuf">pixmaps/menu_physio.png</property>
   </object>
-  <object class="GtkImage" id="image11">
+  <object class="GtkImage" id="image_ya">
     <property name="visible">True</property>
     <property name="pixbuf">pixmaps/menu_youth_academy.png</property>
   </object>
-  <object class="GtkImage" id="image12">
+  <object class="GtkImage" id="image_menu_boost">
     <property name="visible">True</property>
     <property name="pixbuf">pixmaps/menu_boost.png</property>
   </object>
-  <object class="GtkImage" id="image13">
+  <object class="GtkImage" id="image_reset">
     <property name="visible">True</property>
     <property name="stock">gtk-undo</property>
     <property name="icon-size">1</property>
@@ -1932,7 +1932,7 @@
     <property name="visible">True</property>
     <property name="pixbuf">pixmaps/menu_player_remove_transfer.png</property>
   </object>
-  <object class="GtkImage" id="image20">
+  <object class="GtkImage" id="image_player_contract">
     <property name="visible">True</property>
     <property name="pixbuf">pixmaps/menu_player_contract.png</property>
   </object>
@@ -1944,7 +1944,7 @@
     <property name="visible">True</property>
     <property name="pixbuf">pixmaps/menu_player_shoots.png</property>
   </object>
-  <object class="GtkImage" id="image23">
+  <object class="GtkImage" id="image_move_to_ya">
     <property name="visible">True</property>
     <property name="pixbuf">pixmaps/menu_player_move_to_ya.png</property>
   </object>
@@ -1986,7 +1986,7 @@
     <property name="stock">gtk-justify-fill</property>
     <property name="icon-size">1</property>
   </object>
-  <object class="GtkImage" id="image32">
+  <object class="GtkImage" id="image_show_finances">
     <property name="visible">True</property>
     <property name="pixbuf">pixmaps/menu_finances.png</property>
   </object>
