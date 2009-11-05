@@ -1,24 +1,27 @@
+# translation of el.po to greek
 # translation of el.po to
 # Greek translations for PACKAGE package.
 # Copyright (C) 2009 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# elias <ilmakris@sch.gr>, 2009.
 #
+# elias <ilmakris@sch.gr>, 2009.
+# Ilias Makris <ilmakris@sch.gr>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-10-29 14:09+0100\n"
-"PO-Revision-Date: 2009-10-17 19:09+0300\n"
-"Last-Translator: elias\n"
-"Language-Team:  <el@li.org>\n"
+"PO-Revision-Date: 2009-11-05 14:26+0200\n"
+"Last-Translator: Mihai <mihai@emma.ro>\n"
+"Language-Team: greek <ilmakris@sch.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../src/bet.c:262 ../src/misc_callback_func.c:316
+#: ../src/bet.c:262
+#: ../src/misc_callback_func.c:316
 msgid "You don't have the money."
 msgstr "Δεν έχετε τα χρήματα."
 
@@ -58,12 +61,8 @@ msgid "Payback"
 msgstr "Αποπληρωμή"
 
 #: ../src/callback_func.c:471
-msgid ""
-"There are some offers for the player which you rejected or will see next "
-"week."
-msgstr ""
-"Υπάρχουν κάποιες προσφορές για τον παίκτη που απορρίψατε ή θα δείτε την άλλη "
-"εβδομάδα."
+msgid "There are some offers for the player which you rejected or will see next week."
+msgstr "Υπάρχουν κάποιες προσφορές για τον παίκτη που απορρίψατε ή θα δείτε την άλλη εβδομάδα."
 
 #: ../src/callback_func.c:480
 msgid " more"
@@ -75,31 +74,22 @@ msgstr " λιγότερο"
 
 #: ../src/callback_func.c:484
 #, c-format
-msgid ""
-"%s would like to buy %s. They offer %s for him, which is %s than the "
-"player's value. Do you accept?"
-msgstr ""
-"Ο %s θα ήθελε να αγοράσει τον %s. Προσφέρουν %s γι' αυτόν, κάτι που είναι %s "
-"πάνω από την τιμή του παίκτη. Δέχεστε;"
+msgid "%s would like to buy %s. They offer %s for him, which is %s than the player's value. Do you accept?"
+msgstr "Ο %s θα ήθελε να αγοράσει τον %s. Προσφέρουν %s γι' αυτόν, κάτι που είναι %s πάνω από την τιμή του παίκτη. Δέχεστε;"
 
-#: ../src/callback_func.c:514 ../src/callbacks.c:429
+#: ../src/callback_func.c:514
+#: ../src/callbacks.c:429
 msgid "Your offer has been removed."
 msgstr "Η προσφορά σας αφαιρέθηκε."
 
 #: ../src/callback_func.c:521
 msgid "Your roster is already full. You can't buy more players."
-msgstr ""
-"Το ρόστερ σας είναι ήδη γεμάτο. Δεν μπορείτε να αγοράσετε και άλλους παίκτες."
+msgstr "Το ρόστερ σας είναι ήδη γεμάτο. Δεν μπορείτε να αγοράσετε και άλλους παίκτες."
 
 #: ../src/callback_func.c:528
 #, c-format
-msgid ""
-"You offered a transfer fee of %s and a wage of %s for %s. The owners and the "
-"player are satisfied with your offer. Do you still want to buy the player?"
-msgstr ""
-"Προσφέρατε ποσό %s για την μεταγραφή και μισθό %s για τον %s. Οι ιδιοκτήτες "
-"και ο παίκτης είναι ικανοποιημένοι με την προσφορά σας. Θέλετε ακόμα να "
-"αγοράσετε τον παίκτη;"
+msgid "You offered a transfer fee of %s and a wage of %s for %s. The owners and the player are satisfied with your offer. Do you still want to buy the player?"
+msgstr "Προσφέρατε ποσό %s για την μεταγραφή και μισθό %s για τον %s. Οι ιδιοκτήτες και ο παίκτης είναι ικανοποιημένοι με την προσφορά σας. Θέλετε ακόμα να αγοράσετε τον παίκτη;"
 
 #: ../src/callback_func.c:561
 #, c-format
@@ -107,98 +97,75 @@ msgid "User %s didn't consider your offer yet."
 msgstr "Ο χρήστης %s δεν εξέτασε ακόμα την προσφορά σας."
 
 #: ../src/callback_func.c:568
-msgid ""
-"The player is locked (the team owners are considering an offer currently)."
-msgstr ""
-"Ο παίκτης είναι κλειδωμένος (οι ιδιοκτήτες της ομάδας εξετάζουν τώρα μία "
-"προσφορά)."
+msgid "The player is locked (the team owners are considering an offer currently)."
+msgstr "Ο παίκτης είναι κλειδωμένος (οι ιδιοκτήτες της ομάδας εξετάζουν τώρα μία προσφορά)."
 
-#: ../src/callback_func.c:575 ../src/callbacks.c:226 ../src/transfer.c:574
+#: ../src/callback_func.c:575
+#: ../src/callbacks.c:226
+#: ../src/transfer.c:574
 msgid "The transfer deadline is over."
 msgstr "Η προθεσμία για τις μεταγραφές τελείωσε."
 
 #: ../src/callback_func.c:587
 #, c-format
-msgid ""
-"You are making an offer for %s. Your scout's recommendations for fee and "
-"wage are preset."
-msgstr ""
-"Κάνετε μία προσφορά για τον %s. Οι προτάσεις του σκάουτερ σας για ποσό "
-"μεταγραφής και μισθό έχουν προκαθοριστεί."
+msgid "You are making an offer for %s. Your scout's recommendations for fee and wage are preset."
+msgstr "Κάνετε μία προσφορά για τον %s. Οι προτάσεις του σκάουτερ σας για ποσό μεταγραφής και μισθό έχουν προκαθοριστεί."
 
-#: ../src/callback_func.c:590 ../src/callback_func.c:598
+#: ../src/callback_func.c:590
+#: ../src/callback_func.c:598
 msgid "Fee"
 msgstr "Ποσό μεταγραφής"
 
-#: ../src/callback_func.c:591 ../src/callback_func.c:598 ../src/treeview.c:329
+#: ../src/callback_func.c:591
+#: ../src/callback_func.c:598
+#: ../src/treeview.c:329
 #: ../src/treeview.c:2173
 msgid "Wage"
 msgstr "Μισθός"
 
 #: ../src/callback_func.c:595
 #, c-format
-msgid ""
-"You are making an offer for %s again. Your previous values for fee and wage "
-"are preset."
-msgstr ""
-"Κάνετε μία προσφορά για τον %s ξανά. Οι προηγούμενες τιμές για ποσό "
-"μεταγραφής και μισθό είναι προκαθορισμένες."
+msgid "You are making an offer for %s again. Your previous values for fee and wage are preset."
+msgstr "Κάνετε μία προσφορά για τον %s ξανά. Οι προηγούμενες τιμές για ποσό μεταγραφής και μισθό είναι προκαθορισμένες."
 
 #: ../src/callback_func.c:620
 msgid "You can't offer a new contract if the old one is still above 2 years."
-msgstr ""
-"Δεν μπορείτε να προσφέρετε νέο συμβόλαιο αν το παλιό απέχει από την λήξη του "
-"πάνω από 2 χρόνια."
+msgstr "Δεν μπορείτε να προσφέρετε νέο συμβόλαιο αν το παλιό απέχει από την λήξη του πάνω από 2 χρόνια."
 
 #: ../src/callback_func.c:625
 msgid "The player won't negotiate with you anymore."
 msgstr "Ο παίκτης δεν θα διαπραγματευτεί άλλο μαζί σας."
 
 #: ../src/callback_func.c:631
-msgid ""
-"The player feels he doesn't have a future in your star-studded team. He "
-"refuses to negotiate."
-msgstr ""
-"Ο παίκτης αισθάνεται πως δεν έχει κανένα μέλλον στην ομάδα σας που είναι "
-"γεμάτη από μεγάλους παίχτες. Αρνείται να διαπραγματευτεί."
+msgid "The player feels he doesn't have a future in your star-studded team. He refuses to negotiate."
+msgstr "Ο παίκτης αισθάνεται πως δεν έχει κανένα μέλλον στην ομάδα σας που είναι γεμάτη από μεγάλους παίχτες. Αρνείται να διαπραγματευτεί."
 
 #: ../src/callback_func.c:645
 #, c-format
 msgid ""
-"You are negotiating with %s about a new contract. Pay attention to what "
-"you're doing; if you don't come to terms with him within %d offers, he's "
-"going to leave your team after his current contract expires (unless you sell "
-"him). You may only abort BEFORE making the first offer.\n"
+"You are negotiating with %s about a new contract. Pay attention to what you're doing; if you don't come to terms with him within %d offers, he's going to leave your team after his current contract expires (unless you sell him). You may only abort BEFORE making the first offer.\n"
 "Your scout's recommendations are preset:"
 msgstr ""
-"Διαπραγματεύεστε με τον %s για νέο συμβόλαιο. Προσέξτε τι κάνετε, εάν δεν "
-"συμφωνήσετε στους όρους με αυτόν σε %d προσφορές, θα αφήσει την ομάδα σας "
-"αφού λήξει το τρέχον του συμβόλαιο (εκτός αν τον πουλήσετε). Μπορείτε να "
-"εγκαταλείψετε μόνο ΠΡΙΝ την πραγματοποίηση της πρώτης προσφοράς.\n"
+"Διαπραγματεύεστε με τον %s για νέο συμβόλαιο. Προσέξτε τι κάνετε, εάν δεν συμφωνήσετε στους όρους με αυτόν σε %d προσφορές, θα αφήσει την ομάδα σας αφού λήξει το τρέχον του συμβόλαιο (εκτός αν τον πουλήσετε). Μπορείτε να εγκαταλείψετε μόνο ΠΡΙΝ την πραγματοποίηση της πρώτης προσφοράς.\n"
 "Οι εισηγήσεις του σκάουτερ σας είναι προκαθορισμένες:"
 
 #: ../src/callback_func.c:787
 #, c-format
-msgid ""
-"You want to fire %s. Since his contract expires in %.1f years, he demands a "
-"compensation of %s. Do you accept?"
-msgstr ""
-"Θέλετε να απολύσετε τον %s. Από την στιγμή που το συμβόλαιο του λήγει σε "
-"%.1f χρόνια, απαιτεί %s ως αποζημίωση. Δέχεστε;"
+msgid "You want to fire %s. Since his contract expires in %.1f years, he demands a compensation of %s. Do you accept?"
+msgstr "Θέλετε να απολύσετε τον %s. Από την στιγμή που το συμβόλαιο του λήγει σε %.1f χρόνια, απαιτεί %s ως αποζημίωση. Δέχεστε;"
 
 #: ../src/callback_func.c:946
-msgid ""
-"Left click to move players to and from the youth academy; right click for "
-"context menu."
-msgstr ""
-"Αριστερό κλικ για μετακίνηση παιχτών από και προς την ακαδημία νέων; δεξί "
-"κλικ για γενικότερο μενού."
+msgid "Left click to move players to and from the youth academy; right click for context menu."
+msgstr "Αριστερό κλικ για μετακίνηση παιχτών από και προς την ακαδημία νέων; δεξί κλικ για γενικότερο μενού."
 
-#: ../src/callbacks.c:133 ../src/game_gui.c:468 ../src/misc_callbacks.c:560
+#: ../src/callbacks.c:133
+#: ../src/game_gui.c:468
+#: ../src/misc_callbacks.c:560
 msgid "Boost ON is disabled in this country definition."
 msgstr "Το ON της ώθησης είναι απενεργοποιημένο σε αυτόν τον ορισμό χώρας."
 
-#: ../src/callbacks.c:206 ../src/callbacks.c:1100
+#: ../src/callbacks.c:206
+#: ../src/callbacks.c:1100
 msgid "Transfers are disabled in this country definition."
 msgstr "Οι μεταγραφές είναι απενεργοποιημένες σε αυτόν τον ορισμό χώρας."
 
@@ -211,21 +178,19 @@ msgstr "Αριστερό κλικ για υποβολή προσφοράς. Δε
 msgid "Transfer deadline is Week %d"
 msgstr "Η προθεσμία για μεταγραφές λήγει την %d εβδομάδα"
 
-#: ../src/callbacks.c:239 ../src/callbacks.c:1392 ../src/callbacks.c:1413
+#: ../src/callbacks.c:239
+#: ../src/callbacks.c:1392
+#: ../src/callbacks.c:1413
 msgid "You still have some transfer business to manage."
 msgstr "Έχετε ακόμα κάποιες μεταγραφικές εκκρεμότητες."
 
 #: ../src/callbacks.c:243
 msgid "At least one user didn't take his turn this week. Continue?"
-msgstr ""
-"Τουλάχιστον ένας χρήστης δεν χρησιμοποίησε την σειρά του αυτή την εβδομάδα. "
-"Συνέχεια;"
+msgstr "Τουλάχιστον ένας χρήστης δεν χρησιμοποίησε την σειρά του αυτή την εβδομάδα. Συνέχεια;"
 
 #: ../src/callbacks.c:249
 msgid "There are injured or banned players in one of the user teams. Continue?"
-msgstr ""
-"Υπάρχουν τραυματισμένοι ή τιμωρημένοι παίχτες σε μία από τις ομάδες του "
-"χρήστη. Συνέχεια?"
+msgstr "Υπάρχουν τραυματισμένοι ή τιμωρημένοι παίχτες σε μία από τις ομάδες του χρήστη. Συνέχεια?"
 
 #: ../src/callbacks.c:432
 msgid "You haven't made an offer for the player."
@@ -233,9 +198,7 @@ msgstr "Δεν έχετε κάνει προσφορά για τον παίκτη
 
 #: ../src/callbacks.c:455
 msgid "You can't apply for a job from abroad if there's more than one user."
-msgstr ""
-"Δεν μπορείτε να ζητήσετε εργασία στο εξωτερικό εάν υπάρχει πάνω από έναν "
-"χρήστες."
+msgstr "Δεν μπορείτε να ζητήσετε εργασία στο εξωτερικό εάν υπάρχει πάνω από έναν χρήστες."
 
 #: ../src/callbacks.c:478
 msgid "Cup has no tables."
@@ -243,7 +206,7 @@ msgstr "Το κύπελλο δεν έχει πίνακες."
 
 #: ../src/callbacks.c:648
 msgid "The current game state is unsaved and will be lost. Continue?"
-msgstr "Το τρέχον παιχνίδι δεν έχει σωθεί και θα χαθεί. Συνέχεια;"
+msgstr "Η κατάσταση του τρέχοντος παιχνιδιού δεν έχει σωθεί και θα χαθεί. Συνέχεια;"
 
 #: ../src/callbacks.c:708
 msgid "Left click to show table."
@@ -251,8 +214,7 @@ msgstr "Αριστερό κλικ για εμφάνιση πίνακα."
 
 #: ../src/callbacks.c:743
 msgid "There are no leagues or cups with tables in this country definition."
-msgstr ""
-"Δεν υπάρχουν λίγκες ή κύπελλα με πίνακες σε αυτόν τον ορισμό της χώρας."
+msgstr "Δεν υπάρχουν λίγκες ή κύπελλα με πίνακες σε αυτόν τον ορισμό της χώρας."
 
 #: ../src/callbacks.c:748
 msgid "Left click to show fixtures."
@@ -266,21 +228,21 @@ msgstr "Δεν υπάρχουν λίγκες σε αυτόν τον ορισμό
 msgid "There are no season history elements stored yet."
 msgstr "Δεν έχουν αποθηκευτεί ακόμα στοιχεία από ιστορίες περιόδου."
 
-#: ../src/callbacks.c:817 ../src/callbacks.c:836 ../src/callbacks.c:1196
+#: ../src/callbacks.c:817
+#: ../src/callbacks.c:836
+#: ../src/callbacks.c:1196
 #: ../src/callbacks.c:1338
 msgid "Youth academy is disabled in this country definition."
 msgstr "Η ακαδημία νέων είναι απενεργοποιημένη γι αυτόν τον ορισμό χώρας."
 
-#: ../src/callbacks.c:842 ../support_files/bygfoot.glade.h:85
-msgid ""
-"Set the percentage of your income you want to devote to your youth academy."
+#: ../src/callbacks.c:842
+#: ../support_files/bygfoot.glade.h:85
+msgid "Set the percentage of your income you want to devote to your youth academy."
 msgstr "Καθορισμός του ποσοστού εσόδων που θα επενδυθεί στην ακαδημία νέων."
 
 #: ../src/callbacks.c:861
 msgid "Right click to apply for job at once, left click to see team info."
-msgstr ""
-"Δεξί κλικ  για αίτηση για εργασία, αριστερό κλικ για εμφάνιση πληροφοριών "
-"για την ομάδα."
+msgstr "Δεξί κλικ  για αίτηση για εργασία, αριστερό κλικ για εμφάνιση πληροφοριών για την ομάδα."
 
 #: ../src/callbacks.c:863
 #, c-format
@@ -293,8 +255,7 @@ msgstr "Δεν έχει αποθηκευτεί ακόμα προκαθορισμ
 
 #: ../src/callbacks.c:915
 msgid "Training camp is disabled in this country definition."
-msgstr ""
-"Το προπονητικό κέντρο είναι απενεργοποιημένο σε αυτόν τον ορισμό χώρας."
+msgstr "Το προπονητικό κέντρο είναι απενεργοποιημένο σε αυτόν τον ορισμό χώρας."
 
 #: ../src/callbacks.c:922
 msgid "Your team has already had enough training camps this week."
@@ -313,9 +274,14 @@ msgstr "Εισάγετε ένα σύστημα. Το σύνολο των ψηφ�
 msgid "Structure"
 msgstr "Σύστημα"
 
-#: ../src/callbacks.c:1009 ../src/callbacks.c:1060 ../src/callbacks.c:1080
-#: ../src/callbacks.c:1102 ../src/callbacks.c:1122 ../src/callbacks.c:1142
-#: ../src/callbacks.c:1162 ../src/callbacks.c:1201
+#: ../src/callbacks.c:1009
+#: ../src/callbacks.c:1060
+#: ../src/callbacks.c:1080
+#: ../src/callbacks.c:1102
+#: ../src/callbacks.c:1122
+#: ../src/callbacks.c:1142
+#: ../src/callbacks.c:1162
+#: ../src/callbacks.c:1201
 msgid "You haven't selected a player."
 msgstr "Δεν έχετε επιλέξει κάποιον παίχτη."
 
@@ -331,7 +297,8 @@ msgstr "Ο παίχτης είναι ήδη στη λίστα."
 msgid "The player is not on the list."
 msgstr "Ο παίχτης δεν είναι στη λίστα."
 
-#: ../src/callbacks.c:1144 ../src/misc2_callback_func.c:60
+#: ../src/callbacks.c:1144
+#: ../src/misc2_callback_func.c:60
 msgid "Your team can't have less than 11 players."
 msgstr "Η ομάδα σας δεν μπορεί να έχει λιγότερους από 11 παίχτες."
 
@@ -350,9 +317,7 @@ msgstr "Ο παίχτης είναι μεγάλος για την ακαδημί
 
 #: ../src/callbacks.c:1210
 msgid "You can't move the player, there are too few players in your team."
-msgstr ""
-"Δεν μπορείτε να μετακινήσετε τον παίχτη, υπάρχουν λίγοι παίχτες στην ομάδα "
-"σας."
+msgstr "Δεν μπορείτε να μετακινήσετε τον παίχτη, υπάρχουν λίγοι παίχτες στην ομάδα σας."
 
 #: ../src/callbacks.c:1213
 msgid "There is no room in your youth academy."
@@ -367,12 +332,16 @@ msgstr "Δεν μπορείτε να έχετε περισσότερους απ�
 msgid "Do you really want to kick the poor boy out of your academy?"
 msgstr "Θέλετε σίγουρα να διώξετε το άτυχο αγόρι από την ακαδημία;"
 
-#: ../src/callbacks.c:1449 ../src/callbacks.c:1469 ../src/callbacks.c:1609
-#: ../src/misc2_callback_func.c:326 ../src/misc2_callbacks.c:733
+#: ../src/callbacks.c:1449
+#: ../src/callbacks.c:1469
+#: ../src/callbacks.c:1609
+#: ../src/misc2_callback_func.c:326
+#: ../src/misc2_callbacks.c:733
 msgid "No match stored."
 msgstr "Δεν έχει αποθηκευτεί κανένας αγώνας."
 
-#: ../src/callbacks.c:1522 ../src/callbacks.c:1550
+#: ../src/callbacks.c:1522
+#: ../src/callbacks.c:1550
 msgid "Finances are disabled in this country definition."
 msgstr "Τα οικονομικά είναι απενεργοποιημένα σε αυτόν τον ορισμό χώρας."
 
@@ -385,11 +354,8 @@ msgid "It's too late in the season for automatic loan repayment."
 msgstr "Είναι αργά στην περίοδο για αυτόματη αποπληρωμή δανείου."
 
 #: ../src/callbacks.c:1555
-msgid ""
-"Left-click: get loan; Right-click: pay back; Middle click: stadium window."
-msgstr ""
-"Αριστερό κλικ: δανεισμός; Δεξί κλικ: αποπληρωμή; Μεσαίο κλικ: παράθυρο "
-"γηπέδου."
+msgid "Left-click: get loan; Right-click: pay back; Middle click: stadium window."
+msgstr "Αριστερό κλικ: δανεισμός; Δεξί κλικ: αποπληρωμή; Μεσαίο κλικ: παράθυρο γηπέδου."
 
 #: ../src/callbacks.c:1574
 msgid "Stadium management is disabled in this country definition."
@@ -422,7 +388,8 @@ msgstr "Προημιτελικός"
 msgid "Copying %s"
 msgstr "Αντιγραφή %s"
 
-#: ../src/file.c:396 ../support_files/bygfoot_misc3.glade.h:17
+#: ../src/file.c:396
+#: ../support_files/bygfoot_misc3.glade.h:17
 msgid "Ready"
 msgstr "Έτοιμο"
 
@@ -432,9 +399,7 @@ msgstr "Πρέπει να αποπληρώσετε το δάνειο σας αυ
 
 #: ../src/finance.c:166
 msgid "Your bank account has to be above your drawing credit limit next week."
-msgstr ""
-"Ο τραπεζικός λογαριασμός σας πρέπει να είναι πάνω από το πιστωτικό σας όριο "
-"αυτή την εβδομάδα."
+msgstr "Ο τραπεζικός λογαριασμός σας πρέπει να είναι πάνω από το πιστωτικό σας όριο αυτή την εβδομάδα."
 
 #: ../src/finance.c:253
 #, c-format
@@ -458,7 +423,7 @@ msgstr " πέναλτι."
 #. Game was decided in extra time.
 #: ../src/fixture.c:1075
 msgid " e.t."
-msgstr " παράταση"
+msgstr " παρ."
 
 #: ../src/fixture.c:1801
 msgid " -- Second leg"
@@ -474,7 +439,8 @@ msgstr " -- Επανάληψη αγώνων"
 
 #. A goal scored with penalty.
 #. Penalty shooter.
-#: ../src/game.c:1027 ../src/treeview_helper.c:1218
+#: ../src/game.c:1027
+#: ../src/treeview_helper.c:1218
 msgid " (P)"
 msgstr " (Πέναλτι)"
 
@@ -494,39 +460,22 @@ msgstr "Την επόμενη εβδομάδα θα απολυθεί και θα
 
 #: ../src/game_gui.c:806
 #, c-format
-msgid ""
-"The team owners have fired you because of financial mismanagement. Luckily, "
-"the owners of %s have heard of your dismissal and offer you a job. Here's "
-"some information on %s:"
-msgstr ""
-"Οι ιδιοκτήτες της ομάδας σας απέλυσαν λόγω οικονομικής κακοδιαχείρισης. "
-"Τυχαία, οι ιδιοκτήτες της %s άκουσαν για την αποδέσμευση σας και σας "
-"προσφέρουν εργασία. Εδώ υπάρχουν κάποιες πληροφορίες για την %s:"
+msgid "The team owners have fired you because of financial mismanagement. Luckily, the owners of %s have heard of your dismissal and offer you a job. Here's some information on %s:"
+msgstr "Οι ιδιοκτήτες της ομάδας σας απέλυσαν λόγω οικονομικής κακοδιαχείρισης. Τυχαία, οι ιδιοκτήτες της %s άκουσαν για την αποδέσμευση σας και σας προσφέρουν εργασία. Εδώ υπάρχουν κάποιες πληροφορίες για την %s:"
 
 #: ../src/game_gui.c:809
 #, c-format
-msgid ""
-"The team owners have fired you because of unsuccessfulness. Luckily, the "
-"owners of %s have heard of your dismissal and offer you a job. Here's some "
-"information on %s:"
-msgstr ""
-"Οι ιδιοκτήτες της ομάδας σας απέλυσαν λόγω αποτυχίας. Τυχαία, οι ιδιοκτήτες "
-"της %s άκουσαν για την αποδέσμευση σας και σας προσφέρουν εργασία. Εδώ "
-"υπάρχουν κάποιες πληροφορίες για την %s:"
+msgid "The team owners have fired you because of unsuccessfulness. Luckily, the owners of %s have heard of your dismissal and offer you a job. Here's some information on %s:"
+msgstr "Οι ιδιοκτήτες της ομάδας σας απέλυσαν λόγω αποτυχίας. Τυχαία, οι ιδιοκτήτες της %s άκουσαν για την αποδέσμευση σας και σας προσφέρουν εργασία. Εδώ υπάρχουν κάποιες πληροφορίες για την %s:"
 
 #: ../src/game_gui.c:812
 #, c-format
-msgid ""
-"The owners of %s are deeply impressed by your success with %s and would like "
-"to hire you. Here's some information on %s:"
-msgstr ""
-"Οι ιδιοκτήτες της %s εντυπωσιάστηκαν από την επιτυχία σας με την %s και θα "
-"ήθελαν να σας προσλάβουν. Εδώ υπάρχουν κάποιες πληροφορίες για την %s:"
+msgid "The owners of %s are deeply impressed by your success with %s and would like to hire you. Here's some information on %s:"
+msgstr "Οι ιδιοκτήτες της %s εντυπωσιάστηκαν από την επιτυχία σας με την %s και θα ήθελαν να σας προσλάβουν. Εδώ υπάρχουν κάποιες πληροφορίες για την %s:"
 
 #: ../src/game_gui.c:815
 msgid "Click on OK to apply for the job. Click on CANCEL to close the window."
-msgstr ""
-"Κλικ στο OK για αίτηση για εργασία. Κλικ στο CANCEL για κλείσιμο παραθύρου."
+msgstr "Κλικ στο OK για αίτηση για εργασία. Κλικ στο CANCEL για κλείσιμο παραθύρου."
 
 #: ../src/game_gui.c:818
 msgid "Accept?"
@@ -556,22 +505,13 @@ msgid "Overwrite set to %s."
 msgstr "Επικάλυψη καθοριζόμενη σε %s."
 
 #: ../src/game_gui.c:940
-msgid ""
-"Bygfoot is a very intuitive and simple game, so there isn't a full-grown "
-"documentation. However, if you have trouble, there are a few places to go.\n"
-msgstr ""
-"Το Bygfoot είναι ένα πολύ ενορατικό και απλό παιχνίδι, οπότε δεν υπάρχει μια "
-"πλήρης τεκμηρίωση. Αν πάντως έχετε πρόβλημα, υπάρχουν κάποια μέρη για να "
-"πάτε.\n"
+msgid "Bygfoot is a very intuitive and simple game, so there isn't a full-grown documentation. However, if you have trouble, there are a few places to go.\n"
+msgstr "Το Bygfoot είναι ένα πολύ ενορατικό και απλό παιχνίδι, οπότε δεν υπάρχει μια πλήρης τεκμηρίωση. Αν πάντως έχετε πρόβλημα, υπάρχουν κάποια μέρη για να πάτε.\n"
 
 #: ../src/game_gui.c:942
 #, c-format
-msgid ""
-"At the Bygfoot forums you can report bugs, ask for help and discuss the "
-"game:\n"
-msgstr ""
-"Στα φόρουμ του Bygfoot μπορείτε να αναφέρετε bugs, να ζητήσετε βοήθεια και "
-"να συζητήσετε για το παιχνίδι:\n"
+msgid "At the Bygfoot forums you can report bugs, ask for help and discuss the game:\n"
+msgstr "Στα φόρουμ του Bygfoot μπορείτε να αναφέρετε bugs, να ζητήσετε βοήθεια και να συζητήσετε για το παιχνίδι:\n"
 
 #: ../src/game_gui.c:944
 #, c-format
@@ -582,38 +522,46 @@ msgstr ""
 "\n"
 "Μπορείτε ακόμα και να γράψετε ένα email προς τους συγγραφείς:\n"
 
-#: ../src/lg_commentary.c:529 ../src/team.c:618
+#: ../src/lg_commentary.c:529
+#: ../src/team.c:618
 msgid "ALL OUT DEFEND"
 msgstr "ΟΛΟΙ ΑΜΥΝΑ"
 
-#: ../src/lg_commentary.c:532 ../src/team.c:620
+#: ../src/lg_commentary.c:532
+#: ../src/team.c:620
 msgid "DEFEND"
 msgstr "ΑΜΥΝΑ"
 
-#: ../src/lg_commentary.c:535 ../src/team.c:622
+#: ../src/lg_commentary.c:535
+#: ../src/team.c:622
 msgid "BALANCED"
 msgstr "ΙΣΟΡΡΟΠΙΑ"
 
-#: ../src/lg_commentary.c:538 ../src/team.c:624
+#: ../src/lg_commentary.c:538
+#: ../src/team.c:624
 msgid "ATTACK"
 msgstr "ΕΠΙΘΕΣΗ"
 
-#: ../src/lg_commentary.c:541 ../src/team.c:626
+#: ../src/lg_commentary.c:541
+#: ../src/team.c:626
 msgid "ALL OUT ATTACK"
 msgstr "ΟΛΟΙ ΕΠΙΘΕΣΗ"
 
 #. Boost value.
-#: ../src/lg_commentary.c:544 ../src/team.c:634
+#: ../src/lg_commentary.c:544
+#: ../src/team.c:634
 msgid "ANTI"
 msgstr "ΑΝΤΙ"
 
 #. Boost value.
-#: ../src/lg_commentary.c:547 ../src/team.c:637
+#: ../src/lg_commentary.c:547
+#: ../src/team.c:637
 msgid "OFF"
 msgstr "ΑΝΕΝΕΡΓΟ"
 
 #. Boost value.
-#: ../src/lg_commentary.c:550 ../src/team.c:640
+#: ../src/lg_commentary.c:550
+#: ../src/team.c:640
 msgid "ON"
 msgstr "ΕΝΕΡΓΟ"
 
@@ -666,7 +614,8 @@ msgstr "Αποθήκευση διαφόρων..."
 msgid "Compressing savegame..."
 msgstr "Συμπίεση αποθηκευμένου παιχνιδιού..."
 
-#: ../src/load_save.c:169 ../src/load_save.c:319
+#: ../src/load_save.c:169
+#: ../src/load_save.c:319
 msgid "Done."
 msgstr "Ολοκληρώθηκε."
 
@@ -717,9 +666,7 @@ msgstr "Φόρτωση τελευταίου αποθηκευμένου παιχ�
 
 #: ../src/main.c:97
 msgid "Specify additional support directory (takes priority over default ones)"
-msgstr ""
-"Καθορισμός επιπρόσθετου καταλόγου υποστήριξης (έχει παραπάνω προτεραιότητα "
-"από τους προεπιλεγόμενους)"
+msgstr "Καθορισμός επιπρόσθετου καταλόγου υποστήριξης (έχει παραπάνω προτεραιότητα από τους προεπιλεγόμενους)"
 
 #: ../src/main.c:99
 msgid "String id of the country to load"
@@ -735,28 +682,25 @@ msgstr "Δοκιμή XML αρχείου περιγραφής"
 
 #: ../src/main.c:106
 msgid "Commentary file name (may be in a support dir)"
-msgstr ""
-"Όνομα αρχείου περιγραφής (μπορεί να είναι σε έναν κατάλογο υποστήριξης)"
+msgstr "Όνομα αρχείου περιγραφής (μπορεί να είναι σε έναν κατάλογο υποστήριξης)"
 
 #. Live game tokens are strings like _AT_ in live game commentary files
 #. which will be filled in by the program during runtime; e.g. _AT_ becomes
 #. the attendace for the match.
 #: ../src/main.c:112
 msgid "File containing live game tokens (may be in a support dir)"
-msgstr ""
-"Αρχείο που να περιλαμβάνει tokens ζωντανού παιχνιδιού (μπορεί να βρίσκεται "
-"σε ένα κατάλογο υποστήριξης)"
+msgstr "Αρχείο που να περιλαμβάνει tokens ζωντανού παιχνιδιού (μπορεί να βρίσκεται σε ένα κατάλογο υποστήριξης)"
 
 #: ../src/main.c:115
 msgid "Commentary event to test; leave out to test all commentaries"
-msgstr ""
-"Γεγονός περιγραφής για δοκιμή; παραλείψτε το για δοκιμή όλων των περιγραφών"
+msgstr "Γεγονός περιγραφής για δοκιμή; παραλείψτε το για δοκιμή όλων των περιγραφών"
 
 #: ../src/main.c:118
 msgid "How many commentaries to generate per event"
 msgstr "Πόσες περιγραφές θα δημιουργηθούν για κάθε γεγονός"
 
-#: ../src/main.c:134 ../src/main.c:209
+#: ../src/main.c:134
+#: ../src/main.c:209
 msgid "- a simple and addictive GTK2 football manager"
 msgstr "- ένας απλός και εθιστικός GTK2 μάνατζερ ποδοσφαίρου"
 
@@ -768,9 +712,7 @@ msgstr "%s δεν μπόρεσε να αγοράσει τον %s ή το ρόσ�
 #: ../src/misc2_callback_func.c:96
 #, c-format
 msgid "You didn't have enough money to buy %s or your roster was full."
-msgstr ""
-"Δεν έχετε αρκετά χρήματα για να αγοράσετε τον %s ή το ρόστερ σας είναι "
-"πλήρες."
+msgstr "Δεν έχετε αρκετά χρήματα για να αγοράσετε τον %s ή το ρόστερ σας είναι πλήρες."
 
 #: ../src/misc2_callback_func.c:127
 msgid "Your player roster is full or you don't enough money."
@@ -789,41 +731,25 @@ msgstr "Ο %s δέχεται την προσφορά σας."
 #: ../src/misc2_callback_func.c:221
 #, c-format
 msgid "%s rejects your offer. You may still make %d offers."
-msgstr ""
-"Ο %s απορρίπτει την προσφορά σας. Μπορείτε να κάνετε ακόμα %d προσφορές."
+msgstr "Ο %s απορρίπτει την προσφορά σας. Μπορείτε να κάνετε ακόμα %d προσφορές."
 
 #: ../src/misc2_callback_func.c:226
 #, c-format
-msgid ""
-"%s rejects your offer and won't negotiate with you anymore. You should sell "
-"him before his contract expires (he'll simply leave your team otherwise)."
-msgstr ""
-"Ο %s απορρίπτει την προσφορά σας και δεν θα διαπραγματευτεί άλλο μαζί σας. "
-"Πρέπει να τον πουλήσετε πριν εκπνεύσει το συμβόλαιο του (αλλιώς θα αφήσει "
-"απλώς την ομάδα σας)."
+msgid "%s rejects your offer and won't negotiate with you anymore. You should sell him before his contract expires (he'll simply leave your team otherwise)."
+msgstr "Ο %s απορρίπτει την προσφορά σας και δεν θα διαπραγματευτεί άλλο μαζί σας. Πρέπει να τον πουλήσετε πριν εκπνεύσει το συμβόλαιο του (αλλιώς θα αφήσει απλώς την ομάδα σας)."
 
 #: ../src/misc2_callback_func.c:348
 #, c-format
-msgid ""
-"The owners of %s politely reject your application. You're not successful "
-"enough in their eyes."
-msgstr ""
-"Οι ιδιοκτήτες της %s απορρίπτουν ευγενικά την αίτηση σας. Δεν είστε "
-"γι'αυτούς αρκετά επιτυχημένος."
+msgid "The owners of %s politely reject your application. You're not successful enough in their eyes."
+msgstr "Οι ιδιοκτήτες της %s απορρίπτουν ευγενικά την αίτηση σας. Δεν είστε γι'αυτούς αρκετά επιτυχημένος."
 
 #. A lame duck is someone who will quit his job soon and thus doesn't have
 #. a lot of influence/impact anymore, e.g. an American president during
 #. the last 2 years of his second presidency.
 #: ../src/misc2_callback_func.c:359
 #, c-format
-msgid ""
-"The owners of %s accept your application. Since %s don't want to get stuck "
-"with a lame duck, you get fired instantly and spend the rest of the current "
-"season tending your garden."
-msgstr ""
-"Οι ιδιοκτήτες της %s αποδέχονται την αίτηση σας. Από την στιγμή που η %s δεν "
-"θέλει να κολλήσει με έναν αποτυχημένο, απολύεστε αμέσως και για το υπόλοιπο "
-"της περιόδου ασχολείστε με τον κήπο σας."
+msgid "The owners of %s accept your application. Since %s don't want to get stuck with a lame duck, you get fired instantly and spend the rest of the current season tending your garden."
+msgstr "Οι ιδιοκτήτες της %s αποδέχονται την αίτηση σας. Από την στιγμή που η %s δεν θέλει να κολλήσει με έναν αποτυχημένο, απολύεστε αμέσως και για το υπόλοιπο της περιόδου ασχολείστε με τον κήπο σας."
 
 #: ../src/misc2_callback_func.c:365
 #, c-format
@@ -854,8 +780,7 @@ msgstr "Αφαίρεση χρήστη %s από το παιχνίδι;"
 #: ../src/misc3_callbacks.c:154
 #, c-format
 msgid "You bet on outcome %d with an odd of %.2f. How much do you wager?"
-msgstr ""
-"Στοιχηματίζετε σε αποτέλεσμα %d με πιθανότητα %.2f. Πόσο στοιχηματίζετε;"
+msgstr "Στοιχηματίζετε σε αποτέλεσμα %d με πιθανότητα %.2f. Πόσο στοιχηματίζετε;"
 
 #. 'Wager' is the amount of money the user placed on a bet.
 #: ../src/misc3_callbacks.c:162
@@ -864,15 +789,11 @@ msgstr "Ποσό στοιχήματος"
 
 #: ../src/misc_callback_func.c:306
 msgid "Safety improvement too high, reset to highest possible value."
-msgstr "Πολύ υψηλή βελτίωση ασφαλείας, αλλαγή στη υψηλότερη δυνατή τιμή."
+msgstr "Πολύ υψηλή βελτίωση ασφαλείας, επαναφορά στην υψηλότερη δυνατή τιμή."
 
 #: ../src/misc_callbacks.c:232
-msgid ""
-"There were too many substitutions. Only 3 per game are allowed. Player list "
-"reset."
-msgstr ""
-"Υπάρχουν πολλές αλλαγές. Επιτρέπονται μόνο 3 ανά παιχνίδι. Η λίστα παικτών "
-"ξαναλλάζει."
+msgid "There were too many substitutions. Only 3 per game are allowed. Player list reset."
+msgstr "Υπάρχουν πολλές αλλαγές. Επιτρέπονται μόνο 3 ανά παιχνίδι. Επαναφορά λίστας παικτών."
 
 #: ../src/misc_callbacks.c:468
 #, c-format
@@ -900,8 +821,10 @@ msgstr "Το συμβόλαιο του %s λήγει σε %.1f χρόνια."
 
 #. Player health: ok.
 #. Player status: ok.
-#: ../src/player.c:1409 ../src/treeview_helper.c:1094
-#: ../src/treeview_helper.c:1390 ../support_files/bygfoot_misc2.glade.h:25
+#: ../src/player.c:1409
+#: ../src/treeview_helper.c:1094
+#: ../src/treeview_helper.c:1390
+#: ../support_files/bygfoot_misc2.glade.h:25
 msgid "OK"
 msgstr "Εντάξει"
 
@@ -949,7 +872,8 @@ msgstr "Σπασμένος ώμος"
 msgid "Torn crucial ligament"
 msgstr "Ρήξη συνδέσμου"
 
-#: ../src/support.c:117 ../src/support.c:141
+#: ../src/support.c:117
+#: ../src/support.c:141
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "Αδυναμία εύρεσης αρχείου pixmap: %s"
@@ -1046,19 +970,23 @@ msgstr "ΕΞΑΓΩΓΗ"
 msgid "Your team"
 msgstr "Η ομάδα σας"
 
-#: ../src/treeview2.c:92 ../src/treeview2.c:212
+#: ../src/treeview2.c:92
+#: ../src/treeview2.c:212
 msgid "Opponent"
 msgstr "Αντίπαλος"
 
-#: ../src/treeview2.c:93 ../src/treeview2.c:214
+#: ../src/treeview2.c:93
+#: ../src/treeview2.c:214
 msgid "Result"
 msgstr "Αποτέλεσμα"
 
-#: ../src/treeview2.c:94 ../src/treeview2.c:211
+#: ../src/treeview2.c:94
+#: ../src/treeview2.c:211
 msgid "Competition"
 msgstr "Διοργάνωση"
 
-#: ../src/treeview2.c:95 ../src/treeview2.c:515
+#: ../src/treeview2.c:95
+#: ../src/treeview2.c:515
 msgid "Country"
 msgstr "Χώρα"
 
@@ -1074,19 +1002,13 @@ msgstr "Γυρ"
 
 #. Copy the <span...> stuff, translate in between.
 #: ../src/treeview2.c:300
-msgid ""
-"<span background='lightgrey' size='large' weight='bold'>Current bets</span>"
-msgstr ""
-"<span background='lightgrey' size='large' weight='bold'>Τρέχοντα στοιχήματα</"
-"span>"
+msgid "<span background='lightgrey' size='large' weight='bold'>Current bets</span>"
+msgstr "<span background='lightgrey' size='large' weight='bold'>Τρέχοντα στοιχήματα</span>"
 
 #. Copy the <span...> stuff, translate in between.
 #: ../src/treeview2.c:302
-msgid ""
-"<span background='lightgrey' size='large' weight='bold'>Recent bets</span>"
-msgstr ""
-"<span background='lightgrey' size='large' weight='bold'>Πρόσφατα στοιχήματα</"
-"span>"
+msgid "<span background='lightgrey' size='large' weight='bold'>Recent bets</span>"
+msgstr "<span background='lightgrey' size='large' weight='bold'>Πρόσφατα στοιχήματα</span>"
 
 #: ../src/treeview2.c:393
 msgid "Team1"
@@ -1119,20 +1041,28 @@ msgstr ""
 "Ποσό στοιχήματος/\n"
 "Κέρδος/Χάσιμο"
 
-#: ../src/treeview2.c:513 ../src/treeview.c:161 ../src/treeview.c:331
-#: ../src/treeview.c:779 ../src/treeview.c:1384 ../src/treeview.c:1858
-#: ../src/treeview.c:2012 ../src/treeview.c:2350
+#: ../src/treeview2.c:513
+#: ../src/treeview.c:161
+#: ../src/treeview.c:331
+#: ../src/treeview.c:779
+#: ../src/treeview.c:1384
+#: ../src/treeview.c:1858
+#: ../src/treeview.c:2012
+#: ../src/treeview.c:2350
 msgid "Team"
 msgstr "Ομάδα"
 
-#: ../src/treeview2.c:514 ../src/treeview.c:170 ../src/treeview.c:332
-#: ../src/treeview.c:780 ../support_files/bygfoot_misc2.glade.h:21
+#: ../src/treeview2.c:514
+#: ../src/treeview.c:170
+#: ../src/treeview.c:332
+#: ../src/treeview.c:780
+#: ../support_files/bygfoot_misc2.glade.h:21
 msgid "League"
 msgstr "Λίγκα"
 
 #: ../src/treeview2.c:516
 msgid "Av.skill"
-msgstr "Μέση δεξιότητα"
+msgstr "Μέση ικανότητα"
 
 #: ../src/treeview2.c:517
 msgid "Talent %"
@@ -1142,17 +1072,23 @@ msgstr "Ταλέντο %"
 msgid "No news available."
 msgstr "Δεν υπάρχουν διαθέσιμα νέα."
 
-#: ../src/treeview2.c:626 ../src/treeview.c:1023
+#: ../src/treeview2.c:626
+#: ../src/treeview.c:1023
 #, c-format
 msgid "Week %d Round %d"
 msgstr "Εβδομάδα %d Γύρος %d"
 
-#: ../src/treeview2.c:791 ../src/treeview.c:304 ../src/treeview.c:778
-#: ../src/treeview.c:2163 ../support_files/bygfoot_misc2.glade.h:24
+#: ../src/treeview2.c:791
+#: ../src/treeview.c:304
+#: ../src/treeview.c:778
+#: ../src/treeview.c:2163
+#: ../support_files/bygfoot_misc2.glade.h:24
 msgid "Name"
 msgstr "Όνομα"
 
-#: ../src/treeview2.c:792 ../src/treeview.c:328 ../src/treeview.c:2172
+#: ../src/treeview2.c:792
+#: ../src/treeview.c:328
+#: ../src/treeview.c:2172
 msgid "Value"
 msgstr "Τιμή"
 
@@ -1198,7 +1134,8 @@ msgstr "Σουτ"
 
 #. Goals of a player.
 #. Goals.
-#: ../src/treeview.c:320 ../src/treeview.c:2480
+#: ../src/treeview.c:320
+#: ../src/treeview.c:2480
 msgid "Go"
 msgstr "Γκολ"
 
@@ -1212,7 +1149,8 @@ msgstr "Κατάσταση"
 msgid "YC"
 msgstr "Κιτ. κ"
 
-#: ../src/treeview.c:325 ../src/treeview.c:2170
+#: ../src/treeview.c:325
+#: ../src/treeview.c:2170
 msgid "Age"
 msgstr "Ηλικία"
 
@@ -1221,7 +1159,8 @@ msgstr "Ηλικία"
 msgid "Etal"
 msgstr "Εκ.τ"
 
-#: ../src/treeview.c:330 ../src/treeview.c:2174
+#: ../src/treeview.c:330
+#: ../src/treeview.c:2174
 msgid "Contract"
 msgstr "Συμβόλαιο"
 
@@ -1230,11 +1169,13 @@ msgstr "Συμβόλαιο"
 msgid "Goals (regular)"
 msgstr "Τέρματα (κανονικά)"
 
-#: ../src/treeview.c:836 ../src/treeview_helper.c:933
+#: ../src/treeview.c:836
+#: ../src/treeview_helper.c:933
 msgid "Shots"
 msgstr "Σουτ"
 
-#: ../src/treeview.c:837 ../src/treeview.c:2422
+#: ../src/treeview.c:837
+#: ../src/treeview.c:2422
 msgid "Shot %"
 msgstr "Σουτ %"
 
@@ -1250,11 +1191,13 @@ msgstr "Πέναλτι"
 msgid "Fouls"
 msgstr "Φάουλ"
 
-#: ../src/treeview.c:841 ../src/treeview_helper.c:934
+#: ../src/treeview.c:841
+#: ../src/treeview_helper.c:934
 msgid "Yellows"
 msgstr "Κίτρινες"
 
-#: ../src/treeview.c:842 ../src/treeview_helper.c:935
+#: ../src/treeview.c:842
+#: ../src/treeview_helper.c:935
 msgid "Reds"
 msgstr "Κόκκινες"
 
@@ -1320,19 +1263,22 @@ msgstr "ΑΓ"
 
 #. Games won.
 #. Won.
-#: ../src/treeview.c:1388 ../src/treeview_helper.c:1738
+#: ../src/treeview.c:1388
+#: ../src/treeview_helper.c:1738
 msgid "W"
 msgstr "Ν"
 
 #. Games drawn.
 #. Draw.
-#: ../src/treeview.c:1390 ../src/treeview_helper.c:1756
+#: ../src/treeview.c:1390
+#: ../src/treeview_helper.c:1756
 msgid "Dw"
 msgstr "Ι"
 
 #. Games lost.
 #. Lost.
-#: ../src/treeview.c:1392 ../src/treeview_helper.c:1749
+#: ../src/treeview.c:1392
+#: ../src/treeview_helper.c:1749
 msgid "L"
 msgstr "Η"
 
@@ -1360,15 +1306,18 @@ msgstr "Β"
 msgid "Stadium"
 msgstr "Γήπεδο"
 
-#: ../src/treeview.c:1483 ../support_files/bygfoot_misc2.glade.h:36
+#: ../src/treeview.c:1483
+#: ../support_files/bygfoot_misc2.glade.h:36
 msgid "Stadium capacity"
 msgstr "Χωρητικότητα γηπέδου"
 
-#: ../src/treeview.c:1487 ../support_files/bygfoot_misc2.glade.h:37
+#: ../src/treeview.c:1487
+#: ../support_files/bygfoot_misc2.glade.h:37
 msgid "Stadium safety"
 msgstr "Ασφάλεια γηπέδου"
 
-#: ../src/treeview.c:1493 ../src/window.c:648
+#: ../src/treeview.c:1493
+#: ../src/window.c:648
 #, c-format
 msgid ""
 "Improvement in progress.\n"
@@ -1395,7 +1344,9 @@ msgstr "Έσοδα από εισιτήρια"
 msgid "Sponsorship"
 msgstr "Χορηγία"
 
-#: ../src/treeview.c:1520 ../src/treeview.c:1530 ../src/window.c:986
+#: ../src/treeview.c:1520
+#: ../src/treeview.c:1530
+#: ../src/window.c:986
 #: ../support_files/bygfoot.glade.h:20
 #: ../support_files/bygfoot_options.glade.h:12
 msgid "Betting"
@@ -1409,15 +1360,18 @@ msgstr "Μισθοί"
 msgid "Physio"
 msgstr "Φυσιοθεραπευτής"
 
-#: ../src/treeview.c:1524 ../support_files/bygfoot.glade.h:81
+#: ../src/treeview.c:1524
+#: ../support_files/bygfoot.glade.h:81
 msgid "Scout"
 msgstr "Σκάουτερ"
 
-#: ../src/treeview.c:1525 ../support_files/bygfoot.glade.h:105
+#: ../src/treeview.c:1525
+#: ../support_files/bygfoot.glade.h:105
 msgid "Youth coach"
 msgstr "Προπονητής νέων"
 
-#: ../src/treeview.c:1526 ../support_files/bygfoot.glade.h:104
+#: ../src/treeview.c:1526
+#: ../support_files/bygfoot.glade.h:104
 msgid "Youth academy"
 msgstr "Ακαδημία νέων"
 
@@ -1435,7 +1389,8 @@ msgstr "Αποζημιώσεις"
 msgid "Boost costs"
 msgstr "Η ώθηση κοστίζει"
 
-#: ../src/treeview.c:1546 ../src/treeview.c:1549
+#: ../src/treeview.c:1546
+#: ../src/treeview.c:1549
 #, c-format
 msgid ""
 "Bi-weekly balance\n"
@@ -1461,7 +1416,8 @@ msgstr "Μεταγραφές"
 msgid "Stadium expenses"
 msgstr "Έξοδα γηπέδου"
 
-#: ../src/treeview.c:1616 ../src/window.c:1001
+#: ../src/treeview.c:1616
+#: ../src/window.c:1001
 #: ../support_files/bygfoot.glade.h:101
 #: ../support_files/bygfoot_options.glade.h:94
 #: ../support_files/bygfoot_training.glade.h:9
@@ -1528,7 +1484,8 @@ msgstr "Έξοδα"
 msgid "Goalie"
 msgstr "Τερματοφύλακας"
 
-#: ../src/treeview.c:1776 ../support_files/bygfoot.glade.h:26
+#: ../src/treeview.c:1776
+#: ../support_files/bygfoot.glade.h:26
 msgid "Defend"
 msgstr "Άμυνα"
 
@@ -1536,7 +1493,8 @@ msgstr "Άμυνα"
 msgid "Midfield"
 msgstr "Μέσος"
 
-#: ../src/treeview.c:1778 ../support_files/bygfoot.glade.h:11
+#: ../src/treeview.c:1778
+#: ../support_files/bygfoot.glade.h:11
 msgid "Attack"
 msgstr "Επίθεση"
 
@@ -1544,7 +1502,8 @@ msgstr "Επίθεση"
 msgid "Your next opponent"
 msgstr "Ο επόμενος αντίπαλος σας"
 
-#: ../src/treeview.c:1836 ../src/treeview.c:1841
+#: ../src/treeview.c:1836
+#: ../src/treeview.c:1841
 #, c-format
 msgid "<span foreground='%s' background='%s'>Week %d Round %d</span>"
 msgstr "<span foreground='%s' background='%s'>Εβδομάδα %d Γύρος %d</span>"
@@ -1561,15 +1520,17 @@ msgstr "Εντός"
 msgid "Away"
 msgstr "Εκτός"
 
-#: ../src/treeview.c:1866 ../support_files/bygfoot_misc2.glade.h:28
+#: ../src/treeview.c:1866
+#: ../support_files/bygfoot_misc2.glade.h:28
 msgid "Rank"
 msgstr "Θέση"
 
 #: ../src/treeview.c:1884
 msgid "Average skill"
-msgstr "Μέση δεξιότητα"
+msgstr "Μέση ικανότητα"
 
-#: ../src/treeview.c:1887 ../support_files/bygfoot.glade.h:62
+#: ../src/treeview.c:1887
+#: ../support_files/bygfoot.glade.h:62
 msgid "Playing style"
 msgstr "Στυλ παιχνιδιού"
 
@@ -1581,7 +1542,9 @@ msgstr "Σύστημα ομάδας"
 msgid "Latest results"
 msgstr "Τελευταία αποτελέσματα"
 
-#: ../src/treeview.c:1900 ../src/treeview.c:2446 ../src/treeview_helper.c:932
+#: ../src/treeview.c:1900
+#: ../src/treeview.c:2446
+#: ../src/treeview_helper.c:932
 msgid "Goals"
 msgstr "Γκολ"
 
@@ -1612,11 +1575,11 @@ msgstr "Τρέχουσα θέση"
 
 #: ../src/treeview.c:2166
 msgid "Skill"
-msgstr "Δεξιότητα"
+msgstr "Ικανότητα"
 
 #: ../src/treeview.c:2167
 msgid "Current skill"
-msgstr "Τρέχουσα δεξιότητα"
+msgstr "Τρέχουσα ικανότητα"
 
 #: ../src/treeview.c:2168
 msgid "Fitness"
@@ -1726,15 +1689,18 @@ msgstr "Τρέχουσα λίγκα"
 msgid "System"
 msgstr "Σύστημα"
 
-#: ../src/treeview.c:2940 ../support_files/bygfoot_training.glade.h:4
+#: ../src/treeview.c:2940
+#: ../support_files/bygfoot_training.glade.h:4
 msgid "Good Hotel"
 msgstr "Καλό ξενοδοχείο"
 
-#: ../src/treeview.c:2943 ../support_files/bygfoot_training.glade.h:3
+#: ../src/treeview.c:2943
+#: ../support_files/bygfoot_training.glade.h:3
 msgid "First-Class Hotel"
 msgstr "Ξενοδοχείο πρώτης κλάσης"
 
-#: ../src/treeview.c:2946 ../support_files/bygfoot_training.glade.h:5
+#: ../src/treeview.c:2946
+#: ../support_files/bygfoot_training.glade.h:5
 msgid "Premium Hotel"
 msgstr "Ακριβό ξενοδοχείο"
 
@@ -1847,12 +1813,8 @@ msgstr "ΠΡΟΣΘΕΣΗ ΤΕΛΕΥΤΑΙΟΥ ΑΓΩΝΑ"
 
 #: ../src/user.c:382
 #, c-format
-msgid ""
-"The owners of %s are not satisfied with the recent performance of the team. "
-"There are rumours they're looking for a new manager."
-msgstr ""
-"Οι ιδιοκτήτες της %s δεν είναι ικανοποιημένοι με την πρόσφατη απόδοση της "
-"ομάδας. Κυκλοφορούν φήμες ότι ψάχνουν για νέο μάνατζερ."
+msgid "The owners of %s are not satisfied with the recent performance of the team. There are rumours they're looking for a new manager."
+msgstr "Οι ιδιοκτήτες της %s δεν είναι ικανοποιημένοι με την πρόσφατη απόδοση της ομάδας. Κυκλοφορούν φήμες ότι ψάχνουν για νέο μάνατζερ."
 
 #: ../src/user.c:558
 #, c-format
@@ -1861,24 +1823,17 @@ msgstr "Ο %s άφησε την ομάδα σας γιατί έληξε το σ�
 
 #: ../src/user.c:578
 #, c-format
-msgid ""
-"You have overdrawn your bank account. The team owners give you %d weeks to "
-"get above your drawing credit limit."
-msgstr ""
-"Έχετε υπερχρεώσει τον τραπεζικό λογαριασμό σας. Οι ιδιοκτήτες της ομάδας σας "
-"δίνουν %d εβδομάδες καιρό για να είστε κάτω από το πιστωτικό σας όριο."
+msgid "You have overdrawn your bank account. The team owners give you %d weeks to get above your drawing credit limit."
+msgstr "Έχετε υπερχρεώσει τον τραπεζικό λογαριασμό σας. Οι ιδιοκτήτες της ομάδας σας δίνουν %d εβδομάδες καιρό για να είστε κάτω από το πιστωτικό σας όριο."
 
 #: ../src/user.c:580
 #, c-format
 msgid ""
-"You have overdrawn your bank account once again. Bear in mind that after the "
-"fourth time you get fired.\n"
+"You have overdrawn your bank account once again. Bear in mind that after the fourth time you get fired.\n"
 "The team owners give you %d weeks to get above your drawing credit limit."
 msgstr ""
-"Έχετε υπερχρεώσει ακόμα μία φορά τον τραπεζικό σας λογαριασμό. Συγκρατήστε "
-"στο μυαλό σας ότι μετά την τέταρτη φορά θα απολυθείτε.\n"
-"Οι ιδιοκτήτες της ομάδας σας δίνουν %d εβδομάδες καιρό για να είστε κάτω από "
-"το πιστωτικό σας όριο."
+"Έχετε υπερχρεώσει ακόμα μία φορά τον τραπεζικό σας λογαριασμό. Συγκρατήστε στο μυαλό σας ότι μετά την τέταρτη φορά θα απολυθείτε.\n"
+"Οι ιδιοκτήτες της ομάδας σας δίνουν %d εβδομάδες καιρό για να είστε κάτω από το πιστωτικό σας όριο."
 
 #: ../src/user.c:583
 #, c-format
@@ -1887,60 +1842,35 @@ msgstr "Ρίξτε μία ματιά στη λίστα μεταγραφών, υ�
 
 #: ../src/user.c:587
 #, c-format
-msgid ""
-"Your offer for %s has been accepted. If you still want to buy him, go to the "
-"transfer list and left click on the player."
-msgstr ""
-"Η προσφορά σας για τον %s έγινε δεκτή. Εάν θέλετε ακόμα να τον αγοράσετε, "
-"πηγαίνετε στη λίστα μεταγραφών και πατήστε αριστερό κλικ πάνω στον παίκτη."
+msgid "Your offer for %s has been accepted. If you still want to buy him, go to the transfer list and left click on the player."
+msgstr "Η προσφορά σας για τον %s έγινε δεκτή. Εάν θέλετε ακόμα να τον αγοράσετε, πηγαίνετε στη λίστα μεταγραφών και πατήστε αριστερό κλικ πάνω στον παίκτη."
 
 #: ../src/user.c:593
 #, c-format
-msgid ""
-"The owners of %s have rejected your offer (%s / %s) for %s. There was a "
-"better offer for the player than yours."
-msgstr ""
-"Οι ιδιοκτήτες της %s απέρριψαν την προσφορά σας (%s / %s) για τον %s. "
-"Υπάρχει μία καλύτερη προσφορά για τον παίκτη από την δική σας."
+msgid "The owners of %s have rejected your offer (%s / %s) for %s. There was a better offer for the player than yours."
+msgstr "Οι ιδιοκτήτες της %s απέρριψαν την προσφορά σας (%s / %s) για τον %s. Υπάρχει μία καλύτερη προσφορά για τον παίκτη από την δική σας."
 
 #: ../src/user.c:598
 #, c-format
-msgid ""
-"The owners of %s have rejected your offer (%s / %s) for %s. Neither the fee "
-"nor the wage you offered were acceptable, they say."
-msgstr ""
-"Οι ιδιοκτήτες της %s απέρριψαν την προσφορά σας (%s / %s) για τον  %s. Λένε "
-"πως ούτε το ποσό μεταγραφής ούτε ο μισθός που προτείνατε έγιναν αποδεκτά."
+msgid "The owners of %s have rejected your offer (%s / %s) for %s. Neither the fee nor the wage you offered were acceptable, they say."
+msgstr "Οι ιδιοκτήτες της %s απέρριψαν την προσφορά σας (%s / %s) για τον  %s. Λένε πως ούτε το ποσό μεταγραφής ούτε ο μισθός που προτείνατε έγιναν αποδεκτά."
 
 #: ../src/user.c:603
 #, c-format
-msgid ""
-"The owners of %s have rejected your offer (%s / %s) for %s. The team owners "
-"weren't satisfied with the fee you offered."
-msgstr ""
-"Οι ιδιοκτήτες της %s απέρριψαν την προσφορά σας (%s / %s) για τον  %s. Λένε "
-"πως δεν είναι ικανοποιημένοι με το ποσό μεταγραφής που προσφέρατε."
+msgid "The owners of %s have rejected your offer (%s / %s) for %s. The team owners weren't satisfied with the fee you offered."
+msgstr "Οι ιδιοκτήτες της %s απέρριψαν την προσφορά σας (%s / %s) για τον  %s. Λένε πως δεν είναι ικανοποιημένοι με το ποσό μεταγραφής που προσφέρατε."
 
 #. A player from a team has rejected a transfer offer.
 #: ../src/user.c:609
 #, c-format
-msgid ""
-"%s of %s has rejected your offer (%s / %s). He wasn't satisfied with the "
-"wage you offered."
-msgstr ""
-"Ο %s της %s απέρριψε την προσφορά σας (%s / %s). Δεν είναι ικανοποιημένος με "
-"τον μισθό που προσφέρατε."
+msgid "%s of %s has rejected your offer (%s / %s). He wasn't satisfied with the wage you offered."
+msgstr "Ο %s της %s απέρριψε την προσφορά σας (%s / %s). Δεν είναι ικανοποιημένος με τον μισθό που προσφέρατε."
 
 #. A player from a team has rejected a transfer offer.
 #: ../src/user.c:615
 #, c-format
-msgid ""
-"%s of %s has rejected your offer because your team has too many star players "
-"already. 'A player of my caliber doesn't play second fiddle,' he was quoted."
-msgstr ""
-"Ο %s της %s απέρριψε την προσφορά σας γιατί η ομάδα σας ήδη έχει πολλούς "
-"παίκτες-αστέρια. 'Ένας παίκτης της αξίας μου δεν μπορεί να είναι δεύτερο "
-"βιολί,' είπε."
+msgid "%s of %s has rejected your offer because your team has too many star players already. 'A player of my caliber doesn't play second fiddle,' he was quoted."
+msgstr "Ο %s της %s απέρριψε την προσφορά σας γιατί η ομάδα σας ήδη έχει πολλούς παίκτες-αστέρια. 'Ένας παίκτης της αξίας μου δεν μπορεί να είναι δεύτερο βιολί,' είπε."
 
 #. Buy a player from a team.
 #: ../src/user.c:621
@@ -1952,31 +1882,20 @@ msgstr "Δεν έχετε αρκετά χρήματα για να αγοράσε
 #: ../src/user.c:626
 #, c-format
 msgid "Your roster is full. You couldn't buy %s from %s."
-msgstr ""
-"Το ρόστερ σας είναι γεμάτο. Δεν μπορείτε να αγοράσετε τον %s από την %s."
+msgstr "Το ρόστερ σας είναι γεμάτο. Δεν μπορείτε να αγοράσετε τον %s από την %s."
 
 #: ../src/user.c:630
 #, c-format
-msgid ""
-"%s's injury was so severe that he can't play football on a professional "
-"level anymore. He leaves your team."
-msgstr ""
-"Ο τραυματισμός του %s ήταν τόσο σοβαρός που δεν μπορεί να παίξει πια "
-"ποδόσφαιρο σε επαγγελματικό επίπεδο. Αφήνει την ομάδα σας."
+msgid "%s's injury was so severe that he can't play football on a professional level anymore. He leaves your team."
+msgstr "Ο τραυματισμός του %s ήταν τόσο σοβαρός που δεν μπορεί να παίξει πια ποδόσφαιρο σε επαγγελματικό επίπεδο. Αφήνει την ομάδα σας."
 
 #: ../src/user.c:633
 msgid " Fortunately he's got a cousin who can help your team out."
 msgstr " Ευτυχώς έχει έναν ξάδερφο που μπορεί να βοηθήσει την ομάδα σας."
 
 #: ../src/user.c:642
-msgid ""
-"The team owners are very satisfied with your financial management. Since the "
-"team's been earning a lot of money lately, they decide to donate half of it "
-"to charity."
-msgstr ""
-"Οι ιδιοκτήτες της ομάδας είναι πολύ ευχαριστημένοι με την οικονομική σας "
-"διαχείριση Από την στιγμή που η ομάδα τελευταία κερδίζει πολλά λεφτά, "
-"αποφασίζουν να δωρίσουν το μισό για αγαθοεργίες."
+msgid "The team owners are very satisfied with your financial management. Since the team's been earning a lot of money lately, they decide to donate half of it to charity."
+msgstr "Οι ιδιοκτήτες της ομάδας είναι πολύ ευχαριστημένοι με την οικονομική σας διαχείριση Από την στιγμή που η ομάδα τελευταία κερδίζει πολλά λεφτά, αποφασίζουν να δωρίσουν το μισό για αγαθοεργίες."
 
 #. Buy a team in a league.
 #: ../src/user.c:828
@@ -2198,13 +2117,8 @@ msgstr " Bros."
 
 #: ../src/user.c:1126
 #, c-format
-msgid ""
-"Your current sponsor is satisfied with your results and would like to renew "
-"the contract. Currently they're paying you %d a week."
-msgstr ""
-"Ο παρών χορηγός σας είναι ικανοποιημένος με τα αποτελέσματα σας και θα ήθελε "
-"να ανανεώσει το συμβόλαιο χορηγίας. Αυτή τη στιγμή σας πληρώνουν %d την "
-"εβδομάδα."
+msgid "Your current sponsor is satisfied with your results and would like to renew the contract. Currently they're paying you %d a week."
+msgstr "Ο παρών χορηγός σας είναι ικανοποιημένος με τα αποτελέσματα σας και θα ήθελε να ανανεώσει το συμβόλαιο χορηγίας. Αυτή τη στιγμή σας πληρώνουν %d την εβδομάδα."
 
 #: ../src/user.c:1214
 msgid "Memorable match added."
@@ -2247,7 +2161,8 @@ msgstr "Αριθμοί..."
 msgid "Your stadium"
 msgstr "Το γήπεδο σας"
 
-#: ../src/window.c:892 ../support_files/bygfoot_misc2.glade.h:20
+#: ../src/window.c:892
+#: ../support_files/bygfoot_misc2.glade.h:20
 msgid "Job offer"
 msgstr "Προσφορά εργασίας"
 
@@ -2255,7 +2170,8 @@ msgstr "Προσφορά εργασίας"
 msgid "Options"
 msgstr "Επιλογές"
 
-#: ../src/window.c:916 ../support_files/bygfoot_misc.glade.h:50
+#: ../src/window.c:916
+#: ../support_files/bygfoot_misc.glade.h:50
 msgid "Select font"
 msgstr "Επιλογή γραμματοσειράς"
 
@@ -2275,16 +2191,19 @@ msgstr "Προσφορά μεταγραφής"
 msgid "Sponsorship offers"
 msgstr "Προσφορές χορηγίας"
 
-#: ../src/window.c:978 ../support_files/bygfoot.glade.h:47
+#: ../src/window.c:978
+#: ../support_files/bygfoot.glade.h:47
 msgid "Memorable matches"
 msgstr "Αξέχαστοι αγώνες"
 
-#: ../src/window.c:1009 ../support_files/bygfoot.glade.h:12
+#: ../src/window.c:1009
+#: ../support_files/bygfoot.glade.h:12
 #: ../support_files/bygfoot_misc3.glade.h:1
 msgid "Automatic loan repayment"
 msgstr "Αυτόματη αποπληρωμή χρέους"
 
-#: ../src/window.c:1017 ../support_files/bygfoot_misc3.glade.h:3
+#: ../src/window.c:1017
+#: ../support_files/bygfoot_misc3.glade.h:3
 msgid "Bygfoot News"
 msgstr "Νέα Bygfoot"
 
@@ -2304,129 +2223,102 @@ msgstr "Φόρτωση κυπέλλου: %s"
 
 #: ../src/youth_academy.c:215
 #, c-format
-msgid ""
-"Youth %s will be too old for the youth academy soon. Move him to your team "
-"or kick him out of the academy. Otherwise he'll probably look for another "
-"team to play in."
-msgstr ""
-"Ο νέος %s θα είναι σύντομα πολύ μεγάλος για την ακαδημία νέων. Μετακινήστε "
-"τον στην ομάδα σας ή διώξτε τον από την ακαδημία. Αλλιώς το πιθανότερο να "
-"ψάξει άλλη ομάδα για να παίξει."
+msgid "Youth %s will be too old for the youth academy soon. Move him to your team or kick him out of the academy. Otherwise he'll probably look for another team to play in."
+msgstr "Ο νέος %s θα είναι σύντομα πολύ μεγάλος για την ακαδημία νέων. Μετακινήστε τον στην ομάδα σας ή διώξτε τον από την ακαδημία. Αλλιώς το πιθανότερο να ψάξει άλλη ομάδα για να παίξει."
 
 #: ../src/youth_academy.c:220
 #, c-format
-msgid ""
-"Youth %s thought he's old enough for a real contract and left your youth "
-"academy."
-msgstr ""
-"Ο νέος %s σκέφτηκε ότι είναι αρκετά μεγάλος για πραγματικό συμβόλαιο και "
-"αφήνει την ομάδα σας."
+msgid "Youth %s thought he's old enough for a real contract and left your youth academy."
+msgstr "Ο νέος %s σκέφτηκε ότι είναι αρκετά μεγάλος για πραγματικό συμβόλαιο και αφήνει την ομάδα σας."
 
 #: ../src/youth_academy.c:253
 msgid "A new youth registered at your youth academy."
 msgstr "Ένας νέος παίκτης εγγράφηκε στην ακαδημία νέων σας."
 
 #: ../src/youth_academy.c:257
-msgid ""
-"A new youth wanted to registered at your youth academy but there was no room "
-"for him."
-msgstr ""
-"Ένας νέος παίκτης θέλησε να εγγραφεί στην ακαδημία νέων σας αλλά δεν υπήρχε "
-"χώρος γι' αυτόν."
+msgid "A new youth wanted to registered at your youth academy but there was no room for him."
+msgstr "Ένας νέος παίκτης θέλησε να εγγραφεί στην ακαδημία νέων σας αλλά δεν υπήρχε χώρος γι' αυτόν."
 
 #: ../support_files/bygfoot.glade.h:1
-#, fuzzy
 msgid " Round "
-msgstr "Round robin"
+msgstr "Γύρος "
 
 #: ../support_files/bygfoot.glade.h:2
-#, fuzzy
 msgid " Season "
-msgstr "Περίοδος %d"
+msgstr " Περίοδος "
 
 #: ../support_files/bygfoot.glade.h:3
-#, fuzzy
 msgid " Week "
-msgstr "Εβδομάδα"
+msgstr " Εβδομάδα "
 
-#: ../support_files/bygfoot.glade.h:4 ../support_files/bygfoot_misc2.glade.h:5
+#: ../support_files/bygfoot.glade.h:4
+#: ../support_files/bygfoot_misc2.glade.h:5
 msgid "About"
 msgstr "Περί"
 
 #: ../support_files/bygfoot.glade.h:5
 msgid "Add last match"
-msgstr ""
+msgstr "Πρόσθεση τελευταίου αγώνα"
 
 #: ../support_files/bygfoot.glade.h:6
-#, fuzzy
 msgid "Add last recorded match to the current memorable matches file."
-msgstr "Εισαγωγή αγώνων από αρχείο με αξέχαστους αγώνες"
+msgstr "Εισαγωγή τελευταίου καταγεγραμμένου αγώνα στο παρόν αρχείο με αξέχαστους αγώνες."
 
 #: ../support_files/bygfoot.glade.h:7
-#, fuzzy
 msgid "All Out Attack"
-msgstr "Επίθεση"
+msgstr "Όλοι επίθεση"
 
 #: ../support_files/bygfoot.glade.h:8
-#, fuzzy
 msgid "All Out Defend"
-msgstr "Άμυνα"
+msgstr "Όλοι άμυνα"
 
 #: ../support_files/bygfoot.glade.h:9
 msgid "Anti"
-msgstr ""
+msgstr "Αντί"
 
 #: ../support_files/bygfoot.glade.h:10
 msgid "Any"
-msgstr ""
+msgstr "Οποιοδήποτε"
 
 #: ../support_files/bygfoot.glade.h:13
-#, fuzzy
 msgid "Av. skills:  "
-msgstr "Μέση δεξιότητα: "
+msgstr "Μέσ. ικανότητες:  "
 
 #: ../support_files/bygfoot.glade.h:14
-#, fuzzy
 msgid "Average"
-msgstr "Μέση δεξιότητα"
+msgstr "Μέσος"
 
 #: ../support_files/bygfoot.glade.h:15
-#, fuzzy
 msgid "Back to main (Esc)"
-msgstr "Πίσω στη splash"
+msgstr "Πίσω στην κύρια (Esc)"
 
 #: ../support_files/bygfoot.glade.h:16
-#, fuzzy
 msgid "Bad"
-msgstr "Τιμωρημένος\n"
+msgstr "Κακός"
 
 #: ../support_files/bygfoot.glade.h:17
-#, fuzzy
 msgid "Balanced"
-msgstr "Ισορροπία"
+msgstr "Ισορροπημένο"
 
 #: ../support_files/bygfoot.glade.h:18
 msgid "Begin a new week (Space)"
-msgstr ""
+msgstr "Αρχή μίας νέας εβδομάδας (Διάστημα)"
 
 #: ../support_files/bygfoot.glade.h:19
-#, fuzzy
 msgid "Best"
-msgstr "Αποτέλεσμα"
+msgstr "Καλύτερο"
 
 #: ../support_files/bygfoot.glade.h:21
-#, fuzzy
 msgid "Boost"
-msgstr "Η ώθηση κοστίζει"
+msgstr "Ώθηση"
 
 #: ../support_files/bygfoot.glade.h:22
 msgid "Browse players"
-msgstr ""
+msgstr "Περιήγηση παικτών"
 
 #: ../support_files/bygfoot.glade.h:23
-#, fuzzy
 msgid "Browse teams"
-msgstr "Επιλογή ομάδας"
+msgstr "Περιήγηση ομάδων"
 
 #: ../support_files/bygfoot.glade.h:24
 #: ../support_files/bygfoot_misc2.glade.h:12
@@ -2435,65 +2327,56 @@ msgid "Contributors"
 msgstr "Συντελεστές"
 
 #: ../support_files/bygfoot.glade.h:25
-#, fuzzy
 msgid "Default Team"
-msgstr "Προεπιλογή ξενοδοχείου"
+msgstr "Προεπιλεγόμενη ομάδα"
 
 #: ../support_files/bygfoot.glade.h:27
-#, fuzzy
 msgid "Defenders"
-msgstr "Άμυνα"
+msgstr "Αμυντικοί"
 
 #: ../support_files/bygfoot.glade.h:28
 msgid "Edit name"
 msgstr "Επεξεργασία ονόματος"
 
 #: ../support_files/bygfoot.glade.h:29
-#, fuzzy
 msgid "Enter custom structure"
-msgstr "Σύστημα ομάδας"
+msgstr "Εισαγωγή συστήματος ομάδας"
 
 #: ../support_files/bygfoot.glade.h:30
-#, fuzzy
 msgid "F_igures"
-msgstr "Απόλυση"
+msgstr "_Μεγέθη"
 
 #: ../support_files/bygfoot.glade.h:31
-#, fuzzy
 msgid "Fin_Stad"
-msgstr "Τελικός"
+msgstr "Οικ_Γήπ"
 
 #: ../support_files/bygfoot.glade.h:32
 msgid "Fire"
 msgstr "Απόλυση"
 
 #: ../support_files/bygfoot.glade.h:33
-msgid ""
-"First value: average current skill of the first 11 players. Second value: "
-"average skill of all players."
-msgstr ""
+msgid "First value: average current skill of the first 11 players. Second value: average skill of all players."
+msgstr "Πρώτη τιμή: μέσος όρος των παρόντων ικανοτήτων των πρώτων 11 παικτών. Δεύτερη τιμή: μέσος όρος των ικανοτήτων όλων των παικτών."
 
 #: ../support_files/bygfoot.glade.h:34
 msgid "Fixtures (competitions)"
-msgstr ""
+msgstr "Ημερομηνίες (διοργανώσεις)"
 
 #: ../support_files/bygfoot.glade.h:35
 msgid "Fixtures (week)"
-msgstr ""
+msgstr "Ημερομηνίες (εβδομάδα)"
 
 #: ../support_files/bygfoot.glade.h:36
 msgid "Forwards"
-msgstr ""
+msgstr "Επιθετικοί"
 
 #: ../support_files/bygfoot.glade.h:37
-#, fuzzy
 msgid "Goalies"
-msgstr "Τερματοφύλακας"
+msgstr "Τερματοφύλακες"
 
 #: ../support_files/bygfoot.glade.h:38
-#, fuzzy
 msgid "Good"
-msgstr "Γκολ"
+msgstr "Καλός"
 
 #: ../support_files/bygfoot.glade.h:39
 #: ../support_files/bygfoot_misc2.glade.h:17
@@ -2501,14 +2384,12 @@ msgid "Help"
 msgstr "Βοήθεια"
 
 #: ../support_files/bygfoot.glade.h:40
-#, fuzzy
 msgid "Job offers"
-msgstr "Προσφορά εργασίας"
+msgstr "Προσφορές εργασίας"
 
 #: ../support_files/bygfoot.glade.h:41
-#, fuzzy
 msgid "League stats"
-msgstr "Πίνακας λίγκας"
+msgstr "Στατιστικά λίγκας"
 
 #: ../support_files/bygfoot.glade.h:42
 #: ../support_files/bygfoot_misc.glade.h:33
@@ -2517,43 +2398,36 @@ msgid "Live game"
 msgstr "Ζωντανό παιχνίδι"
 
 #: ../support_files/bygfoot.glade.h:43
-#, fuzzy
 msgid "Load game (Ctrl - O)"
-msgstr "_Φόρτωση παιχνιδιού"
+msgstr "Φόρτωση παιχνιδιού (Ctrl - O)"
 
 #: ../support_files/bygfoot.glade.h:44
-#, fuzzy
 msgid "Load last save"
-msgstr "Φόρτωση τελευταίου αποθηκευμένου παιχνιδιού"
+msgstr "Φόρτωση τελευταίας αποθήκευσης"
 
 #: ../support_files/bygfoot.glade.h:45
-#, fuzzy
 msgid "Manage matches"
-msgstr "Αξέχαστοι αγώνες"
+msgstr "Διαχείριση αγώνων"
 
 #: ../support_files/bygfoot.glade.h:46
-#, fuzzy
 msgid "Manage users"
-msgstr "Αποθήκευση χρηστών..."
+msgstr "Διαχείριση χρηστών"
 
 #: ../support_files/bygfoot.glade.h:48
-#, fuzzy
 msgid "Midfielders"
-msgstr "Μέσος"
+msgstr "Μέσοι"
 
 #: ../support_files/bygfoot.glade.h:49
-#, fuzzy
 msgid "Money "
-msgstr "Χρήματα"
+msgstr "Χρήματα "
 
 #: ../support_files/bygfoot.glade.h:50
 msgid "Move to youth academy"
 msgstr "Μετακίνηση στην ακαδημία νέων"
 
 #: ../support_files/bygfoot.glade.h:51
-#, fuzzy
 msgid "My league results"
-msgstr "Τελευταία αποτελέσματα"
+msgstr "Τα αποτελέσματα μου στη λίγκα"
 
 #: ../support_files/bygfoot.glade.h:52
 #: ../support_files/bygfoot_options.glade.h:57
@@ -2561,22 +2435,20 @@ msgid "News"
 msgstr "Νέα"
 
 #: ../support_files/bygfoot.glade.h:53
-#, fuzzy
 msgid "Next (W)"
-msgstr "Επόμενο"
+msgstr "Επόμενο ( W)"
 
 #: ../support_files/bygfoot.glade.h:54
 msgid "Next league/cup (2)"
-msgstr ""
+msgstr "Επόμενη λίγκα/κύπελλο (2)"
 
 #: ../support_files/bygfoot.glade.h:55
-#, fuzzy
 msgid "Next user"
-msgstr "Επόμενο"
+msgstr "Επόμενος χρήστης"
 
 #: ../support_files/bygfoot.glade.h:56
 msgid "Off"
-msgstr ""
+msgstr "Κλειστό"
 
 #: ../support_files/bygfoot.glade.h:57
 msgid "Offer new contract"
@@ -2584,36 +2456,31 @@ msgstr "Προσφορά νέου συμβολαίου"
 
 #: ../support_files/bygfoot.glade.h:58
 msgid "On"
-msgstr ""
+msgstr "Ανοικτό"
 
 #: ../support_files/bygfoot.glade.h:59
-#, fuzzy
 msgid "Overwrite"
-msgstr "Αποθήκευση επικαλύψεων"
+msgstr "Επικάλυψη"
 
 #: ../support_files/bygfoot.glade.h:60
-#, fuzzy
 msgid "Player list 1"
-msgstr "Λίστα παικτών"
+msgstr "Λίστα παικτών 1"
 
 #: ../support_files/bygfoot.glade.h:61
-#, fuzzy
 msgid "Player list 2"
-msgstr "Λίστα παικτών"
+msgstr "Λίστα παικτών 2"
 
 #: ../support_files/bygfoot.glade.h:63
-#, fuzzy
 msgid "Previous (Q)"
-msgstr "Προηγούμενο"
+msgstr "Προηγούμενο (Q)"
 
 #: ../support_files/bygfoot.glade.h:64
 msgid "Previous league/cup (1)"
-msgstr ""
+msgstr "Προηγούμενη λίγκα/κύπελλο (1)"
 
 #: ../support_files/bygfoot.glade.h:65
-#, fuzzy
 msgid "Previous user"
-msgstr "Προηγούμενο"
+msgstr "Προηγούμενος χρήστης"
 
 #: ../support_files/bygfoot.glade.h:66
 msgid "Put on transfer list"
@@ -2621,45 +2488,39 @@ msgstr "Τοποθέτηση στη λίστα μεταγραφών"
 
 #: ../support_files/bygfoot.glade.h:67
 msgid "Quit (Ctrl - Q)"
-msgstr ""
+msgstr "Έξοδος (Ctrl - Q)"
 
 #: ../support_files/bygfoot.glade.h:68
-#, fuzzy
 msgid "Rank "
-msgstr "Θέση"
+msgstr "Θέση "
 
 #: ../support_files/bygfoot.glade.h:69
 msgid "Rearrange team"
-msgstr ""
+msgstr "Αναδιάταξη ομάδας"
 
 #: ../support_files/bygfoot.glade.h:70
 msgid "Recruiting preference"
-msgstr ""
+msgstr "Προτίμηση προσέλκυσης"
 
 #: ../support_files/bygfoot.glade.h:71
 msgid "Remove from transfer list"
 msgstr "Αφαίρεση από λίστα μεταγραφών"
 
 #: ../support_files/bygfoot.glade.h:72
-#, fuzzy
 msgid "Replay, delete or add memorable matches."
-msgstr "Άνοιγμα αρχείου με αξέχαστους αγώνες"
+msgstr "Επανάληψη, διαγραφή ή πρόσθεση αξέχαστων αγώνων."
 
 #: ../support_files/bygfoot.glade.h:73
-#, fuzzy
 msgid "Reset player list"
-msgstr "Λίστα παικτών αντιπάλου"
+msgstr "Επαναφορά λίστας παικτών"
 
 #: ../support_files/bygfoot.glade.h:74
-msgid ""
-"Reset player list to the formation at the beginning of the live game pause "
-"(right click on player list)"
-msgstr ""
+msgid "Reset player list to the formation at the beginning of the live game pause (right click on player list)"
+msgstr "Επαναφορά λίστας παικτών στη διάταξη της αρχής της παύσης του ζωντανού παιχνιδιού (δεξί κλικ στη λίστα παικτών)"
 
 #: ../support_files/bygfoot.glade.h:75
-#, fuzzy
 msgid "Restore"
-msgstr "Αποτέλεσμα"
+msgstr "Ανάκτηση"
 
 #: ../support_files/bygfoot.glade.h:76
 #: ../support_files/bygfoot_misc.glade.h:45
@@ -2673,30 +2534,27 @@ msgstr "Δεξί κλικ και αριστερό κλικ για αλλαγή �
 
 #: ../support_files/bygfoot.glade.h:78
 msgid "Save game (Ctrl - S)"
-msgstr ""
+msgstr "Αποθήκευση παιχνιδιού (Ctrl - S)"
 
 #: ../support_files/bygfoot.glade.h:79
 msgid "Save window geometry"
-msgstr ""
+msgstr "Αποθήκευση γεωμετρίας παραθύρου"
 
 #: ../support_files/bygfoot.glade.h:80
 msgid "Save window size, position and vertical divider"
-msgstr ""
+msgstr "Αποθήκευση μεγέθους παραθύρου, θέσης και κάθετου διαιρέτη"
 
 #: ../support_files/bygfoot.glade.h:82
-#, fuzzy
 msgid "Season history"
-msgstr "Περίοδος %d"
+msgstr "Ιστορία περιόδου"
 
 #: ../support_files/bygfoot.glade.h:83
-#, fuzzy
 msgid "Season results"
-msgstr "Τελευταία αποτελέσματα"
+msgstr "Αποτελέσματα περιόδου"
 
 #: ../support_files/bygfoot.glade.h:84
-#, fuzzy
 msgid "Set investment"
-msgstr "Εβδομαδιαίο πάγιο"
+msgstr "Καθορισμός επένδυσης"
 
 #: ../support_files/bygfoot.glade.h:86
 msgid "Shoots penalties"
@@ -2704,106 +2562,91 @@ msgstr "Χτύπημα πέναλτι"
 
 #: ../support_files/bygfoot.glade.h:87
 msgid "Show coming matches"
-msgstr ""
+msgstr "Εμφάνιση επόμενων αγώνων"
 
 #: ../support_files/bygfoot.glade.h:88
-#, fuzzy
 msgid "Show finances"
-msgstr "Εμφάνιση πληροφοριών"
+msgstr "Εμφάνιση οικονομικών"
 
 #: ../support_files/bygfoot.glade.h:89
 msgid "Show info"
 msgstr "Εμφάνιση πληροφοριών"
 
 #: ../support_files/bygfoot.glade.h:90
-#, fuzzy
 msgid "Show job exchange"
-msgstr "Αποθήκευση ανταλλαγής εργασίας..."
+msgstr "Εμφάνιση ανταλλαγής εργασίας"
 
 #: ../support_files/bygfoot.glade.h:91
 msgid "Show last match"
-msgstr ""
+msgstr "Εμφάνιση τελευταίου αγώνα"
 
 #: ../support_files/bygfoot.glade.h:92
 msgid "Show last match stats"
-msgstr ""
+msgstr "Εμφάνιση στατιστικών τελευταίου αγώνα"
 
 #: ../support_files/bygfoot.glade.h:93
-#, fuzzy
 msgid "Show stadium"
-msgstr "Το γήπεδο σας"
+msgstr "Εμφάνιση γηπέδου"
 
 #: ../support_files/bygfoot.glade.h:94
-#, fuzzy
 msgid "Show the betting window"
-msgstr "Κατά πόσο να εμφανίζονται αγώνες κυπέλλου στο παράθυρο στοιχήματος"
+msgstr "Εμφάνιση παραθύρου στοιχήματος"
 
 #: ../support_files/bygfoot.glade.h:95
 msgid "Show the list of available manager jobs"
-msgstr ""
+msgstr "Εμφάνιση λίστας διαθέσιμων εργασιών για μάνατζερ"
 
 #: ../support_files/bygfoot.glade.h:96
-#, fuzzy
 msgid "Show transferlist (T)"
-msgstr "Τοποθέτηση στη λίστα μεταγραφών"
+msgstr "Εμφάνιση λίστας μεταγραφών (T)"
 
 #: ../support_files/bygfoot.glade.h:97
-#, fuzzy
 msgid "Show youth academy"
-msgstr "Ακαδημία νέων"
+msgstr "Εμφάνιση ακαδημίας νέων"
 
 #: ../support_files/bygfoot.glade.h:98
-#, fuzzy
 msgid "St_ats"
-msgstr "Κατάσταση"
+msgstr "Στ_ατιστικά"
 
 #: ../support_files/bygfoot.glade.h:99
-#, fuzzy
 msgid "Store"
-msgstr "Φόρμα"
+msgstr "Αποθήκευση"
 
 #: ../support_files/bygfoot.glade.h:100
 msgid "Tables"
-msgstr ""
+msgstr "Πίνακες"
 
 #: ../support_files/bygfoot.glade.h:102
-msgid ""
-"Try to put the startup players onto their favoured positions and sort the "
-"substitutes (Ctrl-R or middle click)"
-msgstr ""
+msgid "Try to put the startup players onto their favoured positions and sort the substitutes (Ctrl-R or middle click)"
+msgstr "Προσπάθεια για τοποθέτηση των αρχικών παικτών στις αγαπημένες τους θέσεις και ταξινόμηση των αναπληρωματικών (Ctrl-R ή μεσαίο κλικ)"
 
 #: ../support_files/bygfoot.glade.h:103
 msgid "User history"
-msgstr ""
+msgstr "Ιστορία χρήστη"
 
 #: ../support_files/bygfoot.glade.h:106
-#, fuzzy
 msgid "_File"
-msgstr "Απόλυση"
+msgstr "_Αρχείο"
 
 #: ../support_files/bygfoot.glade.h:107
-#, fuzzy
 msgid "_Help"
-msgstr "Βοήθεια"
+msgstr "Βο_ήθεια"
 
 #: ../support_files/bygfoot.glade.h:108
-#, fuzzy
 msgid "_Options"
-msgstr "Επιλογές"
+msgstr "Επιλ_ογές"
 
 #: ../support_files/bygfoot.glade.h:109
-#, fuzzy
 msgid "_Player"
-msgstr "Λίστα παικτών"
+msgstr "Λίστα _παικτών"
 
 #: ../support_files/bygfoot.glade.h:110
-#, fuzzy
 msgid "_Team"
-msgstr "Ομάδα"
+msgstr "_Ομάδα"
 
 #: ../support_files/bygfoot.glade.h:111
 msgid "_User"
-msgstr ""
+msgstr "_Χρήστης"
 
 #: ../support_files/bygfoot_misc.glade.h:1
 msgid " seats"
@@ -2824,7 +2667,7 @@ msgstr "Προσθήκη χρήστη"
 
 #: ../support_files/bygfoot_misc.glade.h:5
 msgid "Av. skill: "
-msgstr "Μέση δεξιότητα: "
+msgstr "Μέσ. ικανότητα: "
 
 #: ../support_files/bygfoot_misc.glade.h:6
 msgid "Average attendance"
@@ -2844,18 +2687,12 @@ msgid "Capacity (seats)"
 msgstr "Χωρητικότητα (θέσεις)"
 
 #: ../support_files/bygfoot_misc.glade.h:11
-msgid ""
-"Change commentary verbosity. The higher this value the more events you can "
-"see."
-msgstr ""
-"Αλλαγή πολυλογίας περιγραφής. Όσο ψηλότερη τιμή, τόσο περισσότερα γεγονότα "
-"μπορείτε να δείτε."
+msgid "Change commentary verbosity. The higher this value the more events you can see."
+msgstr "Αλλαγή πολυλογίας περιγραφής. Όσο ψηλότερη τιμή, τόσο περισσότερα γεγονότα μπορείτε να δείτε."
 
 #: ../support_files/bygfoot_misc.glade.h:12
 msgid "Change live game speed. The higher the value the faster the live game."
-msgstr ""
-"Αλλαγή ταχύτητας ζωντανού παιχνιδιού. Υψηλότερη τιμή κάνει πιο γρήγορο το "
-"ζωντανό παιχνίδι."
+msgstr "Αλλαγή ταχύτητας ζωντανού παιχνιδιού. Υψηλότερη τιμή κάνει πιο γρήγορο το ζωντανό παιχνίδι."
 
 #: ../support_files/bygfoot_misc.glade.h:13
 msgid "Change ticket price"
@@ -2933,12 +2770,8 @@ msgid "Go back to the splash screen"
 msgstr "Μετάβαση πίσω στην splash οθόνη"
 
 #: ../support_files/bygfoot_misc.glade.h:31
-msgid ""
-"If you don't like any of the sponsors, you can go a few weeks without "
-"sponsor and wait for new offers."
-msgstr ""
-"Εάν δεν σας αρέσουν κάποιοι από τους χορηγούς, μπορείτε να είστε για λίγες "
-"εβδομάδες χωρίς χορηγό και να περιμένετε για νέες προσφορές."
+msgid "If you don't like any of the sponsors, you can go a few weeks without sponsor and wait for new offers."
+msgstr "Εάν δεν σας αρέσουν κάποιοι από τους χορηγούς, μπορείτε να είστε για λίγες εβδομάδες χωρίς χορηγό και να περιμένετε για νέες προσφορές."
 
 #: ../support_files/bygfoot_misc.glade.h:32
 msgid "Increase"
@@ -2953,14 +2786,8 @@ msgid "Load team definitions"
 msgstr "Φόρτωση ορισμών ομάδας"
 
 #: ../support_files/bygfoot_misc.glade.h:36
-msgid ""
-"Load teams from definition files (note that the official Bygfoot package "
-"doesn't contain team definition files, you have to get them from the "
-"homepage or via the bygfoot-update script)"
-msgstr ""
-"Φόρτωση ομάδων από αρχεία ορισμού (σημειώστε πως το επίσημο πακέτο Bygfoot "
-"δεν περιέχει αρχεία ορισμού ομάδας, πρέπει να τα πάρετε από την αρχική "
-"σελίδα ή με το script bygfoot-update)"
+msgid "Load teams from definition files (note that the official Bygfoot package doesn't contain team definition files, you have to get them from the homepage or via the bygfoot-update script)"
+msgstr "Φόρτωση ομάδων από αρχεία ορισμού (σημειώστε πως το επίσημο πακέτο Bygfoot δεν περιέχει αρχεία ορισμού ομάδας, πρέπει να τα πάρετε από την αρχική σελίδα ή με το script bygfoot-update)"
 
 #: ../support_files/bygfoot_misc.glade.h:37
 msgid "Only names"
@@ -2979,12 +2806,8 @@ msgid "Randomise teams in cups"
 msgstr "Επέλεξε τυχαίες ομάδες στα κύπελλα"
 
 #: ../support_files/bygfoot_misc.glade.h:41
-msgid ""
-"Randomise the order of teams in cups. This only makes sense in supernational "
-"definitions like the World Cup where the order of teams is fixed."
-msgstr ""
-"Επέλεξε τυχαία την σειρά των ομάδων στα κύπελλα. Αυτό έχει νόημα σε διεθνείς "
-"ορισμούς όπως το Παγκόσμιο Κύπελλο όπου η σειρά των ομάδων είναι σταθερή."
+msgid "Randomise the order of teams in cups. This only makes sense in supernational definitions like the World Cup where the order of teams is fixed."
+msgstr "Επέλεξε τυχαία την σειρά των ομάδων στα κύπελλα. Αυτό έχει νόημα σε διεθνείς ορισμούς όπως το Παγκόσμιο Κύπελλο όπου η σειρά των ομάδων είναι σταθερή."
 
 #: ../support_files/bygfoot_misc.glade.h:42
 msgid "Reject for now"
@@ -3029,12 +2852,8 @@ msgid "Status:"
 msgstr "Κατάσταση:"
 
 #: ../support_files/bygfoot_misc.glade.h:56
-msgid ""
-"There are a few companies interested in sponsoring your team. Please select "
-"one:"
-msgstr ""
-"Υπάρχουν κάποιες εταιρίες που ενδιαφέρονται να γίνουν χορηγοί της ομάδας "
-"σας. Παρακαλώ επιλέξτε μία:"
+msgid "There are a few companies interested in sponsoring your team. Please select one:"
+msgstr "Υπάρχουν κάποιες εταιρίες που ενδιαφέρονται να γίνουν χορηγοί της ομάδας σας. Παρακαλώ επιλέξτε μία:"
 
 #: ../support_files/bygfoot_misc.glade.h:57
 msgid "Verbosity"
@@ -3050,43 +2869,44 @@ msgstr "_Συνέχεια"
 
 #: ../support_files/bygfoot_misc2.glade.h:1
 msgid "1 year"
-msgstr "1 χρόνος"
+msgstr ""
 
 #: ../support_files/bygfoot_misc2.glade.h:2
+#, fuzzy
 msgid "2 years"
-msgstr "2 χρόνια"
+msgstr "θέσεις"
 
 #: ../support_files/bygfoot_misc2.glade.h:3
+#, fuzzy
 msgid "3 years"
-msgstr "3 χρόνια"
+msgstr "θέσεις"
 
 #: ../support_files/bygfoot_misc2.glade.h:4
+#, fuzzy
 msgid "4 years"
-msgstr "4 χρόνια"
+msgstr "θέσεις"
 
 #: ../support_files/bygfoot_misc2.glade.h:7
 msgid "Available teams"
-msgstr "Διαθέσιμες ομάδες"
+msgstr ""
 
 #: ../support_files/bygfoot_misc2.glade.h:8
+#, fuzzy
 msgid "Average skill:"
-msgstr "Μέση δεξιότητα:"
+msgstr "Μέση ικανότητα"
 
 #: ../support_files/bygfoot_misc2.glade.h:9
-msgid ""
-"Bygfoot debug window. If you got here by accident, CLOSE IMMEDIATELY "
-"(otherwise your CPU will be destroyed by overheating)."
+msgid "Bygfoot debug window. If you got here by accident, CLOSE IMMEDIATELY (otherwise your CPU will be destroyed by overheating)."
 msgstr ""
-"Παράθυρο εκσφαλμάτωσης Bygfoot. Εάν βρίσκεστε εδώ κατά λάθος, ΚΛΕΙΣΤΕ ΑΜΕΣΩΣ "
-"(αλλιώς η CPU σας θα καταστραφεί λόγω υπερθέρμανσης)."
 
 #: ../support_files/bygfoot_misc2.glade.h:10
+#, fuzzy
 msgid "Click on a user to remove him from the game."
-msgstr "Κλικ σε έναν χρήστη για απομάκρυνση του από το παιχνίδι."
+msgstr "Κλικ σε ένα χρήστη για απομάκρυνση του."
 
 #: ../support_files/bygfoot_misc2.glade.h:11
 msgid "Confirm & schedule repayment"
-msgstr "Επιβεβαίωση & πρόγραμμα εξόφλησης"
+msgstr ""
 
 #: ../support_files/bygfoot_misc2.glade.h:13
 msgid "Current file"
@@ -3094,11 +2914,11 @@ msgstr "Τρέχον αρχείο"
 
 #: ../support_files/bygfoot_misc2.glade.h:14
 msgid "Debug"
-msgstr "Εκσφαλμάτωση"
+msgstr ""
 
 #: ../support_files/bygfoot_misc2.glade.h:15
 msgid "Decide later"
-msgstr "Απόφαση μετά"
+msgstr ""
 
 #: ../support_files/bygfoot_misc2.glade.h:18
 msgid "Import file"
@@ -3109,12 +2929,13 @@ msgid "Import the matches from a memorable matches file"
 msgstr "Εισαγωγή αγώνων από αρχείο με αξέχαστους αγώνες"
 
 #: ../support_files/bygfoot_misc2.glade.h:22
+#, fuzzy
 msgid "Make offer"
-msgstr "Δημιουργία προσφοράς"
+msgstr "Προσφορά μεταγραφής"
 
 #: ../support_files/bygfoot_misc2.glade.h:23
 msgid "Money (approx.)"
-msgstr "Χρήματα (κατά προσέγγιση)"
+msgstr ""
 
 #: ../support_files/bygfoot_misc2.glade.h:26
 msgid "Open a memorable matches file"
@@ -3123,7 +2944,7 @@ msgstr "Άνοιγμα αρχείου με αξέχαστους αγώνες"
 #: ../support_files/bygfoot_misc2.glade.h:27
 #, fuzzy
 msgid "Player list"
-msgstr "Λίστα παικτών"
+msgstr "Λίστα παικτών 1"
 
 #: ../support_files/bygfoot_misc2.glade.h:29
 #: ../support_files/bygfoot_options.glade.h:68
@@ -3152,7 +2973,7 @@ msgstr "Αποθήκευση αλλαγών στο αρχείο και κλεί�
 
 #: ../support_files/bygfoot_misc2.glade.h:38
 msgid "Users -- click to remove"
-msgstr "Χρήστες -- κλικ για απομάκρυνση"
+msgstr ""
 
 #: ../support_files/bygfoot_options.glade.h:1
 msgid " Autosave files "
@@ -3172,9 +2993,7 @@ msgstr "Πάντα να αποθηκεύεται/ανακτάται η προε�
 
 #: ../support_files/bygfoot_options.glade.h:5
 msgid "Always store/restore your default team before/after a match"
-msgstr ""
-"Πάντα να αποθηκεύεται/ανακτάται η προεπιλεγμένη ομάδα σας πριν/μετά από έναν "
-"αγώνα"
+msgstr "Πάντα να αποθηκεύεται/ανακτάται η προεπιλεγμένη ομάδα σας πριν/μετά από έναν αγώνα"
 
 #: ../support_files/bygfoot_options.glade.h:6
 msgid "Appearance"
@@ -3206,7 +3025,7 @@ msgstr "ΤΘεσ "
 
 #: ../support_files/bygfoot_options.glade.h:14
 msgid "CSkill "
-msgstr "ΤΔεξιότητα "
+msgstr "ΤΙκανότητα "
 
 #: ../support_files/bygfoot_options.glade.h:15
 msgid "Cards "
@@ -3214,8 +3033,7 @@ msgstr "Κάρτες "
 
 #: ../support_files/bygfoot_options.glade.h:16
 msgid "Choose game language (might not work in Windows versions)"
-msgstr ""
-"Επιλογή γλώσσας παιχνιδιού (ίσως να μην δουλεύει σε εκδόσεις των Windows)"
+msgstr "Επιλογή γλώσσας παιχνιδιού (ίσως να μην δουλεύει σε εκδόσεις των Windows)"
 
 #: ../support_files/bygfoot_options.glade.h:17
 msgid "Close"
@@ -3282,12 +3100,8 @@ msgid "Edit the constants used in the game"
 msgstr "Επεξεργασία των ρυθμίσεων που χρησιμοποιούνται στο παιχνίδι"
 
 #: ../support_files/bygfoot_options.glade.h:33
-msgid ""
-"File containing settings which determine a lot of aspects of the game "
-"behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
-msgstr ""
-"Αρχείο που περιέχει ρυθμίσεις που καθορίζουν πολλές πλευρές της συμπεριφοράς "
-"του παιχνιδιού. ΜΗΝ ΤΙΣ ΑΛΛΑΖΕΤΕ ΕΚΤΟΣ ΑΝ ΞΕΡΕΤΕ ΤΙ ΚΑΝΕΤΕ."
+msgid "File containing settings which determine a lot of aspects of the game behaviour. DON'T CHANGE THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING."
+msgstr "Αρχείο που περιέχει ρυθμίσεις που καθορίζουν πολλές πλευρές της συμπεριφοράς του παιχνιδιού. ΜΗΝ ΤΙΣ ΑΛΛΑΖΕΤΕ ΕΚΤΟΣ ΑΝ ΞΕΡΕΤΕ ΤΙ ΚΑΝΕΤΕ."
 
 #: ../support_files/bygfoot_options.glade.h:34
 msgid "Fitness "
@@ -3323,7 +3137,7 @@ msgstr "Τέρματα "
 
 #: ../support_files/bygfoot_options.glade.h:42
 msgid "How many digits after the comma there are for skill etc."
-msgstr "Πόσα δεκαδικά μετά το κόμμα να είναι για την δεξιότητα κ.λ.π."
+msgstr "Πόσα δεκαδικά μετά το κόμμα να είναι για την ικανότητα κ.λ.π."
 
 #: ../support_files/bygfoot_options.glade.h:43
 msgid "How many files the autosave uses"
@@ -3334,21 +3148,12 @@ msgid "How often the game is saved automatically"
 msgstr "Πόσο συχνά αποθηκεύεται αυτόματα το παιχνίδι"
 
 #: ../support_files/bygfoot_options.glade.h:45
-msgid ""
-"How often the player list gets refreshed during a live game (in live game "
-"minutes)"
-msgstr ""
-"Πόσο συχνά η λίστα παικτών θα ανανεώνεται στην διάρκεια ενός ζωντανού "
-"παιχνιδιού (σε λεπτά ζωντανού παιχνιδιού)"
+msgid "How often the player list gets refreshed during a live game (in live game minutes)"
+msgstr "Πόσο συχνά η λίστα παικτών θα ανανεώνεται στην διάρκεια ενός ζωντανού παιχνιδιού (σε λεπτά ζωντανού παιχνιδιού)"
 
 #: ../support_files/bygfoot_options.glade.h:46
-msgid ""
-"If checked, weeks without user teams playing are calculated automatically "
-"(without the user having to press 'New week')"
-msgstr ""
-"Αν είναι επιλεγμένο, οι εβδομάδες στις οποίες οι ομάδες χρήστη δεν παίζουν "
-"υπολογίζονται αυτόματα (χωρίς ο χρήστης να χρειάζεται να πατήσει 'Νέα "
-"εβδομάδα')"
+msgid "If checked, weeks without user teams playing are calculated automatically (without the user having to press 'New week')"
+msgstr "Αν είναι επιλεγμένο, οι εβδομάδες στις οποίες οι ομάδες χρήστη δεν παίζουν υπολογίζονται αυτόματα (χωρίς ο χρήστης να χρειάζεται να πατήσει 'Νέα εβδομάδα')"
 
 #: ../support_files/bygfoot_options.glade.h:47
 msgid "Integer"
@@ -3503,12 +3308,11 @@ msgstr "Εμφάνιση μπάρας ροπής"
 
 #: ../support_files/bygfoot_options.glade.h:87
 msgid "Show warning if a player contract gets below "
-msgstr ""
-"Εμφάνιση ειδοποίησης αν η λήξη του συμβολαίου ενός παίκτη απέχει λιγότερο από"
+msgstr "Εμφάνιση ειδοποίησης αν η λήξη του συμβολαίου ενός παίκτη απέχει λιγότερο από"
 
 #: ../support_files/bygfoot_options.glade.h:88
 msgid "Skill "
-msgstr "Δεξιότητα "
+msgstr "Ικανότητα "
 
 #: ../support_files/bygfoot_options.glade.h:89
 msgid "Skip weeks without user matches"
@@ -3539,97 +3343,56 @@ msgid "Wage "
 msgstr "Μισθός "
 
 #: ../support_files/bygfoot_options.glade.h:97
-msgid ""
-"Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
-msgstr ""
-"Κατά πόσο η επιλογή 'Αποθήκευση' επικαλύπτει το τρέχον αποθηκευμένο αρχείο ή "
-"αναδύει ένα παράθυρο 'Αποθήκευση ως'"
+msgid "Whether 'Save' overwrites the current save file or pops up a 'Save as' window"
+msgstr "Κατά πόσο η επιλογή 'Αποθήκευση' επικαλύπτει το τρέχον αποθηκευμένο αρχείο ή αναδύει ένα παράθυρο 'Αποθήκευση ως'"
 
 #: ../support_files/bygfoot_options.glade.h:98
-msgid ""
-"Whether a confirmation popup is shown when you kick out a youth from your "
-"academy"
-msgstr ""
-"Κατά πόσο θα εμφανίζεται ένα αναδυόμενο για επιβεβαίωση όταν διώχνεται ένας "
-"νέος από την ακαδημία σας"
+msgid "Whether a confirmation popup is shown when you kick out a youth from your academy"
+msgstr "Κατά πόσο θα εμφανίζεται ένα αναδυόμενο για επιβεβαίωση όταν διώχνεται ένας νέος από την ακαδημία σας"
 
 #: ../support_files/bygfoot_options.glade.h:99
-msgid ""
-"Whether game starts with a maximized main window (doesn't work with all "
-"window managers)"
-msgstr ""
-"Κατά πόσο το παιχνίδι θα ξεκινάει με ένα μεγιστοποιημένο κυρίως παράθυρο "
-"(δεν δουλεύει με όλους τους window managers)"
+msgid "Whether game starts with a maximized main window (doesn't work with all window managers)"
+msgstr "Κατά πόσο το παιχνίδι θα ξεκινάει με ένα μεγιστοποιημένο κυρίως παράθυρο (δεν δουλεύει με όλους τους window managers)"
 
 #: ../support_files/bygfoot_options.glade.h:100
-msgid ""
-"Whether in the weekly fixture view all leagues or only the user league is "
-"shown"
-msgstr ""
-"Κατά πόσο στην θέαση εβδομαδιαίων εκδηλώσεων θα εμφανίζονται όλες οι λίγκες "
-"ή μόνο η λίγκα του χρήστη"
+msgid "Whether in the weekly fixture view all leagues or only the user league is shown"
+msgstr "Κατά πόσο στην θέαση εβδομαδιαίων εκδηλώσεων θα εμφανίζονται όλες οι λίγκες ή μόνο η λίγκα του χρήστη"
 
 #: ../support_files/bygfoot_options.glade.h:101
-msgid ""
-"Whether swapping two players automatically adapts the team structure to the "
-"player positions"
-msgstr ""
-"Κατά πόσο ανταλλαγή δύο παικτών προκαλεί αυτόματη προσαρμογή του συστήματος "
-"της ομάδας στις θέσεις των παικτών"
+msgid "Whether swapping two players automatically adapts the team structure to the player positions"
+msgstr "Κατά πόσο ανταλλαγή δύο παικτών προκαλεί αυτόματη προσαρμογή του συστήματος της ομάδας στις θέσεις των παικτών"
 
 #: ../support_files/bygfoot_options.glade.h:102
 msgid "Whether to automatically save the game regularly"
 msgstr "Κατά πόσο να γίνεται τακτικά αυτόματη αποθήκευση του παιχνιδιού"
 
 #: ../support_files/bygfoot_options.glade.h:103
-msgid ""
-"Whether to show a confirmation popup if a user team has an injured or banned "
-"player in the startup formation"
-msgstr ""
-"Κατά πόσο να εμφανίζεται ένα αναδυόμενο για επιβεβαίωση αν η ομάδα κάποιου "
-"χρήστη έχει τραυματισμένο ή τιμωρημένο παίκτη στην αρχική διάταξη"
+msgid "Whether to show a confirmation popup if a user team has an injured or banned player in the startup formation"
+msgstr "Κατά πόσο να εμφανίζεται ένα αναδυόμενο για επιβεβαίωση αν η ομάδα κάποιου χρήστη έχει τραυματισμένο ή τιμωρημένο παίκτη στην αρχική διάταξη"
 
 #: ../support_files/bygfoot_options.glade.h:104
-msgid ""
-"Whether to show a confirmation popup when you press quit and the game state "
-"is not saved"
-msgstr ""
-"Κατά πόσο θα εμφανίζεται ένα αναδυόμενο για επιβεβαίωση αν πατηθεί έξοδος "
-"και η κατάσταση του παιχνιδιού δεν έχει αποθηκευτεί"
+msgid "Whether to show a confirmation popup when you press quit and the game state is not saved"
+msgstr "Κατά πόσο θα εμφανίζεται ένα αναδυόμενο για επιβεβαίωση αν πατηθεί έξοδος και η κατάσταση του παιχνιδιού δεν έχει αποθηκευτεί"
 
 #: ../support_files/bygfoot_options.glade.h:105
 msgid "Whether to show job offers when a user is successful"
-msgstr ""
-"Κατά πόσο να εμφανίζονται προσφορές για εργασία όταν ένας χρήστης είναι "
-"επιτυχημένος"
+msgstr "Κατά πόσο να εμφανίζονται προσφορές για εργασία όταν ένας χρήστης είναι επιτυχημένος"
 
 #: ../support_files/bygfoot_options.glade.h:106
-msgid ""
-"Whether to show pictures on top of the progressbar when loading/saving or "
-"calculating results"
-msgstr ""
-"Κατά πόσο να εμφανίζονται εικόνες στο πάνω μέρος της μπάρας προόδου όταν "
-"φορτώνονται/αποθηκεύονται ή υπολογίζονται αποτελέσματα"
+msgid "Whether to show pictures on top of the progressbar when loading/saving or calculating results"
+msgstr "Κατά πόσο να εμφανίζονται εικόνες στο πάνω μέρος της μπάρας προόδου όταν φορτώνονται/αποθηκεύονται ή υπολογίζονται αποτελέσματα"
 
 #: ../support_files/bygfoot_options.glade.h:107
 msgid "Whether to show the player games/goals value in all competitions"
-msgstr ""
-"Κατά πόσο να εμφανίζεται η τιμή παιχνίδια/τέρματα του παίκτη σε όλες τις "
-"διοργανώσεις"
+msgstr "Κατά πόσο να εμφανίζεται η τιμή παιχνίδια/τέρματα του παίκτη σε όλες τις διοργανώσεις"
 
 #: ../support_files/bygfoot_options.glade.h:108
-msgid ""
-"Whether to show warnings and such in the message area in the main window "
-"when possible"
-msgstr ""
-"Κατά πόσο θα εμφανίζονται προειδοποιήσεις και άλλα σχετικά στο κυρίως "
-"παράθυρο όταν αυτό είναι δυνατό"
+msgid "Whether to show warnings and such in the message area in the main window when possible"
+msgstr "Κατά πόσο θα εμφανίζονται προειδοποιήσεις και άλλα σχετικά στο κυρίως παράθυρο όταν αυτό είναι δυνατό"
 
 #: ../support_files/bygfoot_misc3.glade.h:2
 msgid "Betting -- Left click on odd to place or remove bet"
-msgstr ""
-"Στοίχημα -- Αριστερό κλικ στη πιθανότητα για τοποθέτηση ή αφαίρεση "
-"στοιχήματος"
+msgstr "Στοίχημα -- Αριστερό κλικ στη πιθανότητα για τοποθέτηση ή αφαίρεση στοιχήματος"
 
 #: ../support_files/bygfoot_misc3.glade.h:4
 msgid "Calculate start week"
@@ -3693,25 +3456,16 @@ msgid "Weekly installment:"
 msgstr "Εβδομαδιαίο πάγιο:"
 
 #: ../support_files/bygfoot_misc3.glade.h:26
-msgid ""
-"Whether to show cup matches. Use the options window to toggle permanently."
-msgstr ""
-"Κατά πόσο θα εμφανίζονται αγώνες κυπέλλου. Χρησιμοποιείστε το παράθυρο "
-"επιλογών για μόνιμη ρύθμιση."
+msgid "Whether to show cup matches. Use the options window to toggle permanently."
+msgstr "Κατά πόσο θα εμφανίζονται αγώνες κυπέλλου. Χρησιμοποιείστε το παράθυρο επιλογών για μόνιμη ρύθμιση."
 
 #: ../support_files/bygfoot_misc3.glade.h:27
-msgid ""
-"Whether to show matches of all leagues. Use the options window to toggle "
-"permanently."
-msgstr ""
-"Κατά πόσο θα εμφανίζονται αγώνες όλων των λιγκών. Χρησιμοποιείστε το "
-"παράθυρο επιλογών για μόνιμη ρύθμιση."
+msgid "Whether to show matches of all leagues. Use the options window to toggle permanently."
+msgstr "Κατά πόσο θα εμφανίζονται αγώνες όλων των λιγκών. Χρησιμοποιείστε το παράθυρο επιλογών για μόνιμη ρύθμιση."
 
 #: ../support_files/bygfoot_misc3.glade.h:28
 msgid "Whether to show only your bets in the recent bets list"
-msgstr ""
-"Κατά πόσο να εμφανιστούν μόνο τα στοιχήματα σας στη λίστα με τα πρόσφατα "
-"στοιχήματα"
+msgstr "Κατά πόσο να εμφανιστούν μόνο τα στοιχήματα σας στη λίστα με τα πρόσφατα στοιχήματα"
 
 #: ../support_files/bygfoot_misc3.glade.h:29
 msgid "Your debt:"
@@ -3746,11 +3500,9 @@ msgstr "Προπόνηση"
 #~ msgstr ""
 #~ "Όσο μικρότερη τιμή, τόσο πιο γρήγορα θα κυλά η περιγραφή του ζωντανού "
 #~ "παιχνιδιού."
-
 #~ msgid "The higher this value, the more commentary you'll see."
 #~ msgstr ""
 #~ "Όσο μεγαλύτερη είναι η τιμή αυτή, τόσο πιο αναλυτική περιγραφή θα δείτε."
-
 #~ msgid ""
 #~ "Whether the subs (e.g. for injured players) are made by the CPU. This is "
 #~ "automatically done if the live game is off."
@@ -3758,67 +3510,54 @@ msgstr "Προπόνηση"
 #~ "Κατά πόσο οι αντικαταστάσεις (π.χ. για τραυματισμένους παίκτες) θα "
 #~ "γίνονται από τη CPU. Αυτό γίνεται αυτόματα αν το ζωντανό παιχνίδι είναι "
 #~ "απενεργοποιημένο."
-
 #~ msgid "Whether the live game pauses when a user player is injured"
 #~ msgstr ""
 #~ "Κατά πόσο το ζωντανό παιχνίδι θα διακόπτεται όταν ένας παίκτης κάποιου "
 #~ "χρήστη είναι τραυματισμένος"
-
 #~ msgid "Whether the live game pauses when a user player is sent off"
 #~ msgstr ""
 #~ "Κατά πόσο το ζωντανό παιχνίδι θα διακόπτεται όταν βγαίνει ένας παίκτης"
-
 #~ msgid "Whether the live game pauses at half time and extra time"
 #~ msgstr ""
 #~ "Κατά πόσο το ζωντανό παιχνίδι θα διακόπτεται στο ημίχρονο και στην "
 #~ "παράταση"
-
 #~ msgid "Whether to show matches of all leagues in the betting window"
 #~ msgstr ""
 #~ "Κατά πόσο να εμφανίζονται αγώνες όλων των λιγκών στο παράθυρο στοιχήματος"
-
 #~ msgid "Whether to show cup matches in the betting window"
 #~ msgstr "Κατά πόσο να εμφανίζονται αγώνες κυπέλλου στο παράθυρο στοιχήματος"
-
 #~ msgid "How much you wager by default"
 #~ msgstr "Προεπιλεγόμενο ποσό στοιχήματος"
-
 #~ msgid "Show news window after a matchday when new user news was created"
 #~ msgstr ""
 #~ "Εμφάνιση παραθύρου μετά από αγωνιστική όταν καινούρια νέα χρήστη έχουν "
 #~ "δημιουργηθεί"
-
 #~ msgid "Always show news window after a matchday"
 #~ msgstr "Πάντα θα εμφανίζεται το παράθυρο νέων μετά από μία αγωνιστική"
-
 #~ msgid ""
 #~ "Whether to save the global settings to file (so that they get loaded next "
 #~ "time you start a new game)"
 #~ msgstr ""
 #~ "Κατά πόσο θα αποθηκεύονται οι καθολικές ρυθμίσεις σε αρχείο (για να "
 #~ "φορτώνονται αυτόματα την επόμενη φορά που θα αρχίζετε ένα νέο παιχνίδι)"
-
 #~ msgid ""
 #~ "Whether to save the user settings to file (so that they get loaded next "
 #~ "time this user starts a new game)"
 #~ msgstr ""
 #~ "Κατά πόσο να αποθηκεύονται οι ρυθμίσεις ενός χρήστη σε ένα αρχείο (για να "
 #~ "φορτωθούν την επόμενη φορά που ο χρήστης αυτός αρχίζει ένα νέο παιχνίδι)"
-
 #~ msgid ""
 #~ "Save changes to the constants file. DON'T DO THIS UNLESS YOU REALLY KNOW "
 #~ "WHAT YOU ARE DOING."
 #~ msgstr ""
 #~ "Αποθήκευση αλλαγών στο αρχείο σταθερών. ΜΗΝ ΤΟ ΚΑΝΕΤΕ ΕΚΤΟΣ ΑΝ ΞΕΡΕΤΕ ΤΙ "
 #~ "ΚΑΝΕΤΕ."
-
 #~ msgid ""
 #~ "Reload constants files. This will overwrite any changes you made in the "
 #~ "current game session."
 #~ msgstr ""
 #~ "Επαναφόρτωση αρχείου σταθερών. Αυτό θα επικαλύψει όποιες αλλαγές κάνατε "
 #~ "στην τρέχουσα συνεδρία του παιχνιδιού."
-
 #~ msgid ""
 #~ "Close window. Changes will only be saved for the current session, unless "
 #~ "you also save to file."
@@ -3826,11 +3565,3 @@ msgstr "Προπόνηση"
 #~ "Κλείσιμο παραθύρου. Οι αλλαγές θα ισχύουν μόνο για την τρέχουσα συνεδρία, "
 #~ "εκτός αν αποθηκεύσετε σε ένα αρχείο."
 
-#~ msgid "Headline"
-#~ msgstr "Επικεφαλίδα"
-
-#~ msgid "Kick out of academy"
-#~ msgstr "Διώξιμο από ακαδημία"
-
-#~ msgid "Move to team"
-#~ msgstr "Μετακίνηση σε ομάδα"
