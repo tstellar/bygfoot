@@ -12,9 +12,11 @@
     <child>
       <object class="GtkVBox" id="vbox2">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <child>
           <object class="GtkVBox" id="vbox34">
             <property name="visible">True</property>
+            <property name="orientation">vertical</property>
             <child>
               <object class="GtkLabel" id="label69">
                 <property name="visible">True</property>
@@ -550,6 +552,7 @@
     <child>
       <object class="GtkVBox" id="vbox36">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <child>
           <object class="GtkProgressBar" id="progressbar_live">
             <property name="visible">True</property>
@@ -568,6 +571,7 @@
             <child>
               <object class="GtkVBox" id="vbox38">
                 <property name="visible">True</property>
+                <property name="orientation">vertical</property>
                 <property name="spacing">3</property>
                 <child>
                   <object class="GtkHBox" id="hbox57">
@@ -632,11 +636,12 @@
                   <object class="GtkHScale" id="hscale_area">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="adjustment">hscale_adjustment</property>
                     <property name="draw_value">False</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
-                    <property name="position">1</property>
+                    <property name="position">2</property>
                   </packing>
                 </child>
                 <child>
@@ -705,6 +710,7 @@
                             <child>
                               <object class="GtkVBox" id="vbox49">
                                 <property name="visible">True</property>
+                                <property name="orientation">vertical</property>
                                 <property name="spacing">3</property>
                                 <child>
                                   <object class="GtkHBox" id="hbox75">
@@ -808,7 +814,7 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="position">2</property>
+                    <property name="position">3</property>
                   </packing>
                 </child>
               </object>
@@ -1006,6 +1012,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">Change live game speed. The higher the value the faster the live game.</property>
+                    <property name="adjustment">speed_adjustment</property>
                     <property name="climb_rate">1</property>
                     <property name="numeric">True</property>
                     <signal name="button_press_event" handler="on_spinbutton_speed_button_press_event"/>
@@ -1047,6 +1054,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">Change commentary verbosity. The higher this value the more events you can see.</property>
+                    <property name="adjustment">verbosity_adjustment</property>
                     <property name="climb_rate">1</property>
                     <property name="numeric">True</property>
                     <signal name="value_changed" handler="on_spinbutton_verbosity_value_changed"/>
@@ -1336,6 +1344,7 @@
         <child>
           <object class="GtkVBox" id="vbox43">
             <property name="visible">True</property>
+            <property name="orientation">vertical</property>
             <child>
               <object class="GtkLabel" id="label90">
                 <property name="visible">True</property>
@@ -1353,6 +1362,7 @@
                 <child>
                   <object class="GtkVBox" id="vbox44">
                     <property name="visible">True</property>
+                    <property name="orientation">vertical</property>
                     <property name="spacing">3</property>
                     <child>
                       <object class="GtkLabel" id="label91">
@@ -1387,6 +1397,7 @@
                     <child>
                       <object class="GtkVBox" id="vbox46">
                         <property name="visible">True</property>
+                        <property name="orientation">vertical</property>
                         <property name="spacing">3</property>
                         <child>
                           <object class="GtkLabel" id="label93">
@@ -1447,6 +1458,7 @@
                 <child>
                   <object class="GtkVBox" id="vbox45">
                     <property name="visible">True</property>
+                    <property name="orientation">vertical</property>
                     <property name="spacing">3</property>
                     <child>
                       <object class="GtkLabel" id="label92">
@@ -1478,6 +1490,7 @@
                     <child>
                       <object class="GtkVBox" id="vbox47">
                         <property name="visible">True</property>
+                        <property name="orientation">vertical</property>
                         <property name="spacing">3</property>
                         <child>
                           <object class="GtkLabel" id="label94">
@@ -1641,6 +1654,7 @@
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox1">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">24</property>
         <child internal-child="action_area">
           <object class="GtkHButtonBox" id="dialog-action_area1">
@@ -1701,6 +1715,7 @@
     <child>
       <object class="GtkVBox" id="vbox48">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">3</property>
         <child>
           <object class="GtkLabel" id="label_sponsors">
@@ -1856,5 +1871,20 @@
     <property name="upper">100</property>
     <property name="step_increment">0.10000000000000001</property>
     <property name="page_increment">1</property>
+  </object>
+  <object class="GtkAdjustment" id="verbosity_adjustment">
+    <property name="upper">7</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="speed_adjustment">
+    <property name="upper">40</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="hscale_adjustment">
+    <property name="upper">10</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
   </object>
 </interface>
