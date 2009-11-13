@@ -112,6 +112,8 @@ create_window_options (void)
   GTK_HOOKUP_OBJECT (window_options, builder, "spinbutton_precision");
   GTK_HOOKUP_OBJECT (window_options, builder, "spinbutton_recreation");
   GTK_HOOKUP_OBJECT (window_options, builder, "spinbutton_refresh");
+  GTK_HOOKUP_OBJECT (window_options, builder, "checkbutton_save_global");
+  GTK_HOOKUP_OBJECT (window_options, builder, "checkbutton_save_user");
 
   /* free memory used by GtkBuilder object */
   g_object_unref (G_OBJECT (builder));
