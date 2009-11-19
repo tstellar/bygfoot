@@ -137,6 +137,11 @@ create_window_contract (void)
   GTK_HOOKUP_OBJECT (window_contract, builder, "spinbutton_contract2");
   GTK_HOOKUP_OBJECT (window_contract, builder, "spinbutton_contract3");
   GTK_HOOKUP_OBJECT (window_contract, builder, "spinbutton_contract4");
+  GTK_HOOKUP_OBJECT (window_contract, builder, "radiobutton_contract1");
+  GTK_HOOKUP_OBJECT (window_contract, builder, "radiobutton_contract2");
+  GTK_HOOKUP_OBJECT (window_contract, builder, "radiobutton_contract3");
+  GTK_HOOKUP_OBJECT (window_contract, builder, "radiobutton_contract4");
+  GTK_HOOKUP_OBJECT (window_contract, builder, "button_contract_cancel");
 
   /* free memory used by GtkBuilder object */
   g_object_unref (G_OBJECT (builder));
