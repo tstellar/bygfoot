@@ -11,7 +11,7 @@ AM_PROG_CC_STDC
 AC_HEADER_STDC
 AM_CONDITIONAL(HAVE_WINDRES, which windres > /dev/null)
 IT_PROG_INTLTOOL(0.35.0)
-pkg_modules="gtk+-2.0 >= 2.14 glib-2.0 >= 2.12 gmodule-export-2.0"
+pkg_modules="gtk+-2.0 >= 2.16 glib-2.0 >= 2.12 gmodule-export-2.0"
 
 dnl echo -n "checking for  gthread-2.0 ... "
 dnl if pkg-config --exists  gthread-2.0 ; then
