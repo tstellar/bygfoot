@@ -13,6 +13,7 @@
     <child>
       <object class="GtkVBox" id="vbox5">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <child>
           <object class="GtkLabel" id="label_text">
             <property name="visible">True</property>
@@ -41,6 +42,7 @@
             <child>
               <object class="GtkVBox" id="vbox6">
                 <property name="visible">True</property>
+                <property name="orientation">vertical</property>
                 <property name="spacing">3</property>
                 <child>
                   <object class="GtkLabel" id="label15">
@@ -134,6 +136,7 @@
             <child>
               <object class="GtkVBox" id="vbox7">
                 <property name="visible">True</property>
+                <property name="orientation">vertical</property>
                 <property name="spacing">3</property>
                 <child>
                   <object class="GtkLabel" id="label_name">
@@ -381,6 +384,7 @@
     <child>
       <object class="GtkVBox" id="vbox28">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <child>
           <object class="GtkImage" id="image_match">
             <property name="visible">True</property>
@@ -416,6 +420,7 @@
     <child>
       <object class="GtkVBox" id="vbox13">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">10</property>
         <child>
           <object class="GtkImage" id="image7">
@@ -465,6 +470,7 @@
     <child>
       <object class="GtkVBox" id="vbox14">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">10</property>
         <child>
           <object class="GtkLabel" id="label_main">
@@ -483,6 +489,7 @@
             <child>
               <object class="GtkVBox" id="vbox15">
                 <property name="visible">True</property>
+                <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkLabel" id="label_1">
                     <property name="visible">True</property>
@@ -516,6 +523,7 @@
             <child>
               <object class="GtkVBox" id="vbox16">
                 <property name="visible">True</property>
+                <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkLabel" id="label_2">
                     <property name="visible">True</property>
@@ -566,6 +574,7 @@
         <child>
           <object class="GtkVBox" id="vbox29">
             <property name="visible">True</property>
+            <property name="orientation">vertical</property>
             <property name="spacing">3</property>
             <child>
               <object class="GtkButton" id="button_digits_ok">
@@ -664,6 +673,7 @@
     <child>
       <object class="GtkVBox" id="vbox17">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">5</property>
         <child>
           <object class="GtkImage" id="image8">
@@ -738,6 +748,7 @@
     <child>
       <object class="GtkVBox" id="vbox18">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">3</property>
         <child>
           <object class="GtkImage" id="image9">
@@ -838,6 +849,7 @@
               <object class="GtkSpinButton" id="spinbutton_contract1">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="adjustment">contract_adjustment1</property>
                 <property name="climb_rate">1</property>
                 <property name="numeric">True</property>
               </object>
@@ -851,6 +863,7 @@
               <object class="GtkSpinButton" id="spinbutton_contract2">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="adjustment">contract_adjustment2</property>
                 <property name="climb_rate">1</property>
               </object>
               <packing>
@@ -865,6 +878,7 @@
               <object class="GtkSpinButton" id="spinbutton_contract3">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="adjustment">contract_adjustment3</property>
                 <property name="climb_rate">1</property>
               </object>
               <packing>
@@ -879,6 +893,7 @@
               <object class="GtkSpinButton" id="spinbutton_contract4">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="adjustment">contract_adjustment4</property>
                 <property name="climb_rate">1</property>
               </object>
               <packing>
@@ -993,6 +1008,7 @@
     <child>
       <object class="GtkVBox" id="vbox19">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">5</property>
         <child>
           <object class="GtkHBox" id="hbox23">
@@ -1005,6 +1021,7 @@
                 <child>
                   <object class="GtkVBox" id="vbox20">
                     <property name="visible">True</property>
+                    <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkLabel" id="label47">
                         <property name="visible">True</property>
@@ -1047,6 +1064,7 @@
                 <child>
                   <object class="GtkVBox" id="vbox21">
                     <property name="visible">True</property>
+                    <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkLabel" id="label46">
                         <property name="visible">True</property>
@@ -1198,6 +1216,7 @@
     <child>
       <object class="GtkVBox" id="vbox22">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">5</property>
         <child>
           <object class="GtkLabel" id="label48">
@@ -1276,6 +1295,7 @@
     <child>
       <object class="GtkVBox" id="vbox23">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">3</property>
         <child>
           <object class="GtkNotebook" id="notebook1">
@@ -1284,6 +1304,7 @@
             <child>
               <object class="GtkVBox" id="vbox24">
                 <property name="visible">True</property>
+                <property name="orientation">vertical</property>
                 <property name="spacing">5</property>
                 <child>
                   <object class="GtkImage" id="image12">
@@ -1356,6 +1377,7 @@
             <child>
               <object class="GtkVBox" id="vbox25">
                 <property name="visible">True</property>
+                <property name="orientation">vertical</property>
                 <property name="spacing">3</property>
                 <child>
                   <object class="GtkImage" id="image13">
@@ -1442,6 +1464,7 @@
     <child>
       <object class="GtkVBox" id="vbox26">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">5</property>
         <child>
           <object class="GtkImage" id="image14">
@@ -1566,6 +1589,7 @@
     <child>
       <object class="GtkVBox" id="vbox27">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">3</property>
         <child>
           <object class="GtkHBox" id="hbox27">
@@ -1849,6 +1873,26 @@
     <property name="page_increment">10</property>
   </object>
   <object class="GtkAdjustment" id="adjustment2">
+    <property name="upper">100000000</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="contract_adjustment1">
+    <property name="upper">100000000</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="contract_adjustment2">
+    <property name="upper">100000000</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="contract_adjustment3">
+    <property name="upper">100000000</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="contract_adjustment4">
     <property name="upper">100000000</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>

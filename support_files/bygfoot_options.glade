@@ -9,6 +9,7 @@
     <child>
       <object class="GtkVBox" id="vbox1">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child>
           <object class="GtkNotebook" id="notebook1">
@@ -20,6 +21,7 @@
                 <child>
                   <object class="GtkVBox" id="vbox3">
                     <property name="visible">True</property>
+                    <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkCheckButton" id="checkbutton_conf_quit">
                         <property name="label" translatable="yes">Confirm quit when not saved</property>
@@ -199,6 +201,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="tooltip_text" translatable="yes">How often the game is saved automatically</property>
+                            <property name="adjustment">AutosaveInterval_adjustment</property>
                             <property name="climb_rate">1</property>
                             <property name="numeric">True</property>
                           </object>
@@ -223,6 +226,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="tooltip_text" translatable="yes">How many files the autosave uses</property>
+                            <property name="adjustment">autosave_files_adjustment</property>
                             <property name="climb_rate">1</property>
                           </object>
                           <packing>
@@ -484,6 +488,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">How many digits after the comma there are for skill etc.</property>
+                        <property name="adjustment">player_attribute_precision_adjustment</property>
                         <property name="climb_rate">1</property>
                         <property name="numeric">True</property>
                       </object>
@@ -501,6 +506,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">How often the player list gets refreshed during a live game (in live game minutes)</property>
+                        <property name="adjustment">player_list_refresh_rate_adjustment</property>
                         <property name="climb_rate">1</property>
                         <property name="numeric">True</property>
                       </object>
@@ -574,6 +580,7 @@
                 <child>
                   <object class="GtkVBox" id="vbox6">
                     <property name="visible">True</property>
+                    <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkCheckButton" id="checkbutton_conf_youth">
                         <property name="label" translatable="yes">Confirm removing youths</property>
@@ -628,6 +635,7 @@
                               <object class="GtkSpinButton" id="spinbutton_contract">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="adjustment">end_of_contract_adjustment</property>
                                 <property name="climb_rate">1</property>
                                 <property name="numeric">True</property>
                               </object>
@@ -696,6 +704,7 @@
                     <child>
                       <object class="GtkVBox" id="vbox7">
                         <property name="visible">True</property>
+                        <property name="orientation">vertical</property>
                         <child>
                           <object class="GtkCheckButton" id="checkbutton_swap_adapts">
                             <property name="label" translatable="yes">Swap adapts structure</property>
@@ -772,6 +781,7 @@
                 <child>
                   <object class="GtkVBox" id="vbox4">
                     <property name="visible">True</property>
+                    <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkCheckButton" id="checkbutton_show_live">
                         <property name="label" translatable="yes">Show live game</property>
@@ -836,6 +846,7 @@
                           <object class="GtkSpinButton" id="spinbutton_live_speed">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="adjustment">live_game_speed_adjustment</property>
                             <property name="climb_rate">1</property>
                             <property name="numeric">True</property>
                           </object>
@@ -850,6 +861,7 @@
                           <object class="GtkSpinButton" id="spinbutton_live_verbosity">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="adjustment">live_game_verbose_adjustment</property>
                             <property name="climb_rate">1</property>
                             <property name="numeric">True</property>
                           </object>
@@ -903,6 +915,7 @@
                 <child>
                   <object class="GtkVBox" id="vbox5">
                     <property name="visible">True</property>
+                    <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkCheckButton" id="checkbutton_pause_injury">
                         <property name="label" translatable="yes">Pause when injury</property>
@@ -1920,6 +1933,7 @@
                 <child>
                   <object class="GtkVBox" id="vbox8">
                     <property name="visible">True</property>
+                    <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkCheckButton" id="checkbutton_bet_show_all_leagues">
                         <property name="label" translatable="yes">Show matches from all leagues</property>
@@ -1985,6 +1999,7 @@
                           <object class="GtkSpinButton" id="spinbutton_bet_wager">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="adjustment">default_wager_adjustment</property>
                             <property name="climb_rate">1</property>
                             <property name="numeric">True</property>
                           </object>
@@ -2024,6 +2039,7 @@
             <child>
               <object class="GtkVBox" id="vbox9">
                 <property name="visible">True</property>
+                <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkHBox" id="hbox13">
                     <property name="visible">True</property>
@@ -2061,6 +2077,7 @@
                 <child>
                   <object class="GtkVBox" id="vbox10">
                     <property name="visible">True</property>
+                    <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkHSeparator" id="hseparator7">
                         <property name="height_request">10</property>
@@ -2093,6 +2110,7 @@
                           <object class="GtkSpinButton" id="spinbutton_recreation">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="adjustment">default_recreation_adjustment</property>
                             <property name="climb_rate">1</property>
                             <signal name="value_changed" handler="on_spinbutton_recreation_value_changed"/>
                           </object>
@@ -2180,6 +2198,7 @@
             <child>
               <object class="GtkVBox" id="vbox11">
                 <property name="visible">True</property>
+                <property name="orientation">vertical</property>
                 <property name="spacing">4</property>
                 <child>
                   <object class="GtkHBox" id="hbox17">
@@ -2355,6 +2374,7 @@
             <child>
               <object class="GtkVBox" id="vbox2">
                 <property name="visible">True</property>
+                <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkCheckButton" id="checkbutton_save_global">
                     <property name="label" translatable="yes">Save global settings to file</property>
@@ -2441,6 +2461,7 @@
     <child>
       <object class="GtkVBox" id="vbox12">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">5</property>
         <child>
           <object class="GtkNotebook" id="notebook_constants">
@@ -2719,5 +2740,50 @@
         </child>
       </object>
     </child>
+  </object>
+  <object class="GtkAdjustment" id="AutosaveInterval_adjustment">
+    <property name="upper">20</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="autosave_files_adjustment">
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="end_of_contract_adjustment">
+    <property name="upper">24</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="live_game_speed_adjustment">
+    <property name="upper">40</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="live_game_verbose_adjustment">
+    <property name="upper">7</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="default_wager_adjustment">
+    <property name="upper">25000</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="default_recreation_adjustment">
+    <property name="upper">10</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="player_attribute_precision_adjustment">
+    <property name="upper">3</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="player_list_refresh_rate_adjustment">
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
   </object>
 </interface>
