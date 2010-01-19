@@ -98,6 +98,9 @@ live_game_event_send_off(gint team, gint player, gboolean second_yellow);
 void
 live_game_event_duel(void);
 
+void
+live_game_event_corner_kick(void);
+
 gboolean
 query_live_game_second_yellow(gint team, gint player);
 

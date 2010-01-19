@@ -450,6 +450,8 @@ lg_commentary_set_player_tokens(const LiveGameUnit *unit, const Fixture *fix)
 	    unit->event.type == LIVE_GAME_EVENT_MISS ||
 	    unit->event.type == LIVE_GAME_EVENT_SAVE ||
 	    unit->event.type == LIVE_GAME_EVENT_POST ||
+	    unit->event.type == LIVE_GAME_EVENT_PLAYER_PUSHED_IN_CORNER ||
+	    unit->event.type == LIVE_GAME_EVENT_KEEPER_PUSHED_IN_CORNER ||
 	    unit->event.type == LIVE_GAME_EVENT_CROSS_BAR)
     {
 	pl1 = player_of_id_team(fix->teams[unit->possession],
