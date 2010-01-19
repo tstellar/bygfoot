@@ -29,7 +29,10 @@
 #include "bygfoot.h"
 #include "fixture_struct.h"
 
-/** Events happening during a live game.
+/** Events happening during a live game.  Some of these events should always
+    be ordered in blocks as they can occur.  For example LIVE_GAME_EVENT_POST
+    until LIVE_GAME_EVENT_CROSS_BAR is a group of actions that can all occur
+    in a scoring chance.  We pick one of these randomly in this case.
     @see #LiveGameEvent
     @see #LiveGameUnit */
 enum LiveGameEventType
@@ -49,35 +52,40 @@ enum LiveGameEventType
     LIVE_GAME_EVENT_FREE_KICK, /* 9 */
     LIVE_GAME_EVENT_GOAL, /* 10 */
     LIVE_GAME_EVENT_OWN_GOAL, /* 11 */
+    /* Start missed scoring chance block */
     LIVE_GAME_EVENT_POST, /* 12 */
     LIVE_GAME_EVENT_MISS, /* 13 */
     LIVE_GAME_EVENT_SAVE, /* 14 */
-    LIVE_GAME_EVENT_CROSS_BAR, /* 15 */
-    LIVE_GAME_EVENT_FOUL, /* 16 */
-    LIVE_GAME_EVENT_FOUL_YELLOW, /* 17 */
-    LIVE_GAME_EVENT_FOUL_RED, /* 18 */
-    LIVE_GAME_EVENT_FOUL_RED_INJURY, /* 19 */
-    LIVE_GAME_EVENT_SEND_OFF, /* 20 */
-    LIVE_GAME_EVENT_INJURY, /* 21 */
+    LIVE_GAME_EVENT_KEEPER_PUSHED_IN_CORNER, /* 15 */
+    LIVE_GAME_EVENT_CROSS_BAR, /* 16 */
+    LIVE_GAME_EVENT_PLAYER_PUSHED_IN_CORNER, /* 17 */
+    /* End missed scoring chance block */
+    LIVE_GAME_EVENT_CORNER_KICK, /* 18 */
+    LIVE_GAME_EVENT_FOUL, /* 19 */
+    LIVE_GAME_EVENT_FOUL_YELLOW, /* 20 */
+    LIVE_GAME_EVENT_FOUL_RED, /* 21 */
+    LIVE_GAME_EVENT_FOUL_RED_INJURY, /* 22 */
+    LIVE_GAME_EVENT_SEND_OFF, /* 23 */
+    LIVE_GAME_EVENT_INJURY, /* 24 */
     /** An injury that permits the player to
 	continue after some brief time. */
-    LIVE_GAME_EVENT_TEMP_INJURY, /* 22 */
-    LIVE_GAME_EVENT_PENALTIES, /* 23 */
-    LIVE_GAME_EVENT_STADIUM, /* 24 */
-    LIVE_GAME_EVENT_STADIUM_BREAKDOWN, /* 25 */
-    LIVE_GAME_EVENT_STADIUM_RIOTS, /* 26 */
-    LIVE_GAME_EVENT_STADIUM_FIRE, /* 27 */
-    LIVE_GAME_EVENT_SUBSTITUTION, /* 28 */
-    LIVE_GAME_EVENT_STRUCTURE_CHANGE, /* 29 */
-    LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_DEFEND, /* 30 */
-    LIVE_GAME_EVENT_STYLE_CHANGE_DEFEND, /* 31 */
-    LIVE_GAME_EVENT_STYLE_CHANGE_BALANCED, /* 32 */
-    LIVE_GAME_EVENT_STYLE_CHANGE_ATTACK, /* 33 */
-    LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_ATTACK, /* 34 */
-    LIVE_GAME_EVENT_BOOST_CHANGE_ANTI, /* 35 */
-    LIVE_GAME_EVENT_BOOST_CHANGE_OFF, /* 36 */
-    LIVE_GAME_EVENT_BOOST_CHANGE_ON, /* 37 */
-    LIVE_GAME_EVENT_END
+    LIVE_GAME_EVENT_TEMP_INJURY, /* 25 */
+    LIVE_GAME_EVENT_PENALTIES, /* 26 */
+    LIVE_GAME_EVENT_STADIUM, /* 27 */
+    LIVE_GAME_EVENT_STADIUM_BREAKDOWN, /* 28 */
+    LIVE_GAME_EVENT_STADIUM_RIOTS, /* 29 */
+    LIVE_GAME_EVENT_STADIUM_FIRE, /* 30 */
+    LIVE_GAME_EVENT_SUBSTITUTION, /* 31 */
+    LIVE_GAME_EVENT_STRUCTURE_CHANGE, /* 32 */
+    LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_DEFEND, /* 33 */
+    LIVE_GAME_EVENT_STYLE_CHANGE_DEFEND, /* 34 */
+    LIVE_GAME_EVENT_STYLE_CHANGE_BALANCED, /* 35 */
+    LIVE_GAME_EVENT_STYLE_CHANGE_ATTACK, /* 36 */
+    LIVE_GAME_EVENT_STYLE_CHANGE_ALL_OUT_ATTACK, /* 37 */
+    LIVE_GAME_EVENT_BOOST_CHANGE_ANTI, /* 38 */
+    LIVE_GAME_EVENT_BOOST_CHANGE_OFF, /* 39 */
+    LIVE_GAME_EVENT_BOOST_CHANGE_ON, /* 40 */
+    LIVE_GAME_EVENT_END /* 41 */
 };
 
 enum LiveGameUnitArea

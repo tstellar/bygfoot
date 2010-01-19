@@ -819,9 +819,11 @@ live_game_event_general(gboolean create_new)
 	    new.possession = !last_unit.possession;
 	    if(last_unit.event.type == LIVE_GAME_EVENT_GOAL ||
 	       last_unit.event.type == LIVE_GAME_EVENT_OWN_GOAL)
+            {
 		new.area = LIVE_GAME_UNIT_AREA_MIDFIELD;
-	    else
+            } else {
 		new.area = LIVE_GAME_UNIT_AREA_DEFEND;
+            }
 	}
 	else if(last_unit.event.type == LIVE_GAME_EVENT_HALF_TIME)
 	{
@@ -1191,17 +1193,27 @@ live_game_event_duel(void)
 		    assistant, const_float("float_player_streak_add_assist"));
 	}
     }
-    else
-	new.event.type = math_gauss_disti(LIVE_GAME_EVENT_POST, LIVE_GAME_EVENT_CROSS_BAR);
+    else {
+        /* In penalties a player can't push the ball in corner*/
+        if (new.time == LIVE_GAME_UNIT_TIME_PENALTIES)
+        {
+          new.event.type = math_gauss_disti(LIVE_GAME_EVENT_POST, LIVE_GAME_EVENT_CROSS_BAR);
+        }
+        else
+        {
+          new.event.type = math_gauss_disti(LIVE_GAME_EVENT_POST, LIVE_GAME_EVENT_PLAYER_PUSHED_IN_CORNER);
+        }
+    }
 
     if(new.time != LIVE_GAME_UNIT_TIME_PENALTIES &&
        (new.event.type == LIVE_GAME_EVENT_SAVE ||
+        new.event.type == LIVE_GAME_EVENT_KEEPER_PUSHED_IN_CORNER ||
 	new.event.type == LIVE_GAME_EVENT_GOAL))
     {
 	player_games_goals_set(goalie, match->fix->clid, PLAYER_VALUE_SHOTS, 1);
 	goalie->career[PLAYER_VALUE_SHOTS]++;
 
-	if(new.event.type == LIVE_GAME_EVENT_SAVE)
+	if(new.event.type == LIVE_GAME_EVENT_SAVE || new.event.type == LIVE_GAME_EVENT_KEEPER_PUSHED_IN_CORNER )
 	    player_streak_add_to_prob(goalie,
 				      const_float("float_player_streak_add_goalie_save"));
     }
@@ -1211,7 +1223,56 @@ live_game_event_duel(void)
     live_game_finish_unit();
 
     if(last_unit.time != LIVE_GAME_UNIT_TIME_PENALTIES)
-	live_game_event_general(TRUE);
+    {
+       if (last_unit.event.type == LIVE_GAME_EVENT_KEEPER_PUSHED_IN_CORNER ||
+           last_unit.event.type == LIVE_GAME_EVENT_PLAYER_PUSHED_IN_CORNER) {
+         live_game_event_corner_kick();
+       }
+       else
+       {
+         live_game_event_general(TRUE);
+       }
+    }
+}
+
+/** Create an event for the corner kick.
+*/
+void
+live_game_event_corner_kick()
+{
+#ifdef DEBUG
+    printf("live_game_event_corner_kick\n");
+#endif
+
+    LiveGameUnit new;
+
+    if((debug > 100 && stat2 != -1) ||
+       debug > 130)
+	g_print("\t\tlive_game_event_corner_kick\n");
+
+    if(stat0 == STATUS_LIVE_GAME_PAUSE)
+	return;
+
+    new.minute = live_game_get_minute();
+    new.time = last_unit.time;
+    new.event.commentary = NULL;
+    new.event.type = LIVE_GAME_EVENT_CORNER_KICK;
+    new.result[0] = last_unit.result[0];
+    new.result[1] = last_unit.result[1];
+    new.area = last_unit.area;
+    new.possession = last_unit.possession;
+    new.event.team = new.possession;
+
+    new.event.player =
+	game_get_default_penalty_shooter(tms[new.possession]);
+
+    if(new.event.player == -1)
+	new.event.player =
+	    game_get_player(tms[new.possession], new.area, 0, -1, TRUE);
+
+    g_array_append_val(unis, new);
+
+    live_game_finish_unit();
 }
 
 /** Find out whether the specified player already has a yellow card
@@ -1796,6 +1857,9 @@ live_game_event_get_verbosity(gint event_type)
 	    event_type == LIVE_GAME_EVENT_FREE_KICK ||
 	    event_type == LIVE_GAME_EVENT_POST ||
 	    event_type == LIVE_GAME_EVENT_MISS ||
+	    event_type == LIVE_GAME_EVENT_CORNER_KICK ||
+	    event_type == LIVE_GAME_EVENT_KEEPER_PUSHED_IN_CORNER ||
+	    event_type == LIVE_GAME_EVENT_PLAYER_PUSHED_IN_CORNER ||
 	    event_type == LIVE_GAME_EVENT_CROSS_BAR ||
 	    event_type == LIVE_GAME_EVENT_SAVE)
 	return_value = 1;

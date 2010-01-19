@@ -52,6 +52,9 @@
 #define EVENT_NAME_OWN_GOAL "own_goal"
 #define EVENT_NAME_POST "post"
 #define EVENT_NAME_MISS "miss"
+#define EVENT_NAME_CORNER_KICK "corner"
+#define EVENT_NAME_KEEPER_PUSHED_IN_CORNER "keeper_pushed_in_corner"
+#define EVENT_NAME_PLAYER_PUSHED_IN_CORNER "player_pushed_in_corner"
 #define EVENT_NAME_SAVE "save"
 #define EVENT_NAME_CROSS_BAR "cross_bar"
 #define EVENT_NAME_FOUL "foul"
@@ -121,6 +124,12 @@ xml_lg_commentary_event_name_to_int(const gchar *event_string)
 	return_value = LIVE_GAME_EVENT_POST;
     else if(strcmp(event_string, EVENT_NAME_MISS) == 0)
 	return_value = LIVE_GAME_EVENT_MISS;
+    else if(strcmp(event_string, EVENT_NAME_CORNER_KICK) == 0)
+	return_value = LIVE_GAME_EVENT_CORNER_KICK;
+    else if(strcmp(event_string, EVENT_NAME_KEEPER_PUSHED_IN_CORNER) == 0)
+	return_value = LIVE_GAME_EVENT_KEEPER_PUSHED_IN_CORNER;
+    else if(strcmp(event_string, EVENT_NAME_PLAYER_PUSHED_IN_CORNER) == 0)
+	return_value = LIVE_GAME_EVENT_PLAYER_PUSHED_IN_CORNER;
     else if(strcmp(event_string, EVENT_NAME_SAVE) == 0)
 	return_value = LIVE_GAME_EVENT_SAVE;
     else if(strcmp(event_string, EVENT_NAME_CROSS_BAR) == 0)
