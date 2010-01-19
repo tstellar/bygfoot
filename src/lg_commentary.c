@@ -459,7 +459,8 @@ lg_commentary_set_player_tokens(const LiveGameUnit *unit, const Fixture *fix)
 	pl2 = player_of_id_team(fix->teams[!unit->possession],
 				    unit->event.player2);
     }
-    else if(unit->event.type == LIVE_GAME_EVENT_OWN_GOAL)
+    else if(unit->event.type == LIVE_GAME_EVENT_OWN_GOAL ||
+            unit->event.type == LIVE_GAME_EVENT_CORNER_KICK)
 	pl1 = player_of_id_team(fix->teams[!unit->possession],
 				unit->event.player);
     else if(unit->event.type == LIVE_GAME_EVENT_FOUL ||
