@@ -814,6 +814,7 @@ live_game_event_general(gboolean create_new)
 		last_unit.event.type == LIVE_GAME_EVENT_MISS ||
 		last_unit.event.type == LIVE_GAME_EVENT_SAVE ||
 		last_unit.event.type == LIVE_GAME_EVENT_POST ||
+		last_unit.event.type == LIVE_GAME_EVENT_CORNER_KICK ||
 		last_unit.event.type == LIVE_GAME_EVENT_CROSS_BAR)
 	{
 	    new.possession = !last_unit.possession;
@@ -1252,7 +1253,8 @@ live_game_event_corner_kick()
 
     if(stat0 == STATUS_LIVE_GAME_PAUSE)
 	return;
-
+    new.event.player =
+	new.event.player2 = -1;
     new.minute = live_game_get_minute();
     new.time = last_unit.time;
     new.event.commentary = NULL;
@@ -1273,6 +1275,17 @@ live_game_event_corner_kick()
     g_array_append_val(unis, new);
 
     live_game_finish_unit();
+
+    // The corner is taken, define what happens next
+    new = last_unit;
+    new.minute = -1;
+    new.event.team = new.possession;
+    new.event.commentary = NULL;
+    new.event.type = LIVE_GAME_EVENT_GENERAL;
+    new.event.commentary_id = -1;
+    live_game_fill_new_unit(&new);
+    g_array_append_val(unis, new);
+    live_game_evaluate_unit(&new);
 }
 
 /** Find out whether the specified player already has a yellow card
