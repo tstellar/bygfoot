@@ -15,7 +15,7 @@
     <commentary>Η ομάδα _T_NPOSS__ είναι στην [άμυνα|άμυνα]</commentary>
     <commentary>Εκπληκτική διείσδυσή άπο τον _P0_</commentary>
     <commentary>Τώρα η ομάδα _T_POSS__ έχει μία ευκαιρία με τον _P0_</commentary>
-    <commentary>Η μπάλα μέσα από τον _P1_ [βρίσκει τον|χάνεται από τον] _P0_</commentary>
+    <commentary>Η μπάλιά από τον _P1_ [βρίσκει τον|χάνεται από τον] _P0_</commentary>
     <commentary> _P1_ [τροφοδοτεί] με μία καλή μπαλιά τον _P0_ </commentary>
     <commentary>[Υπέροχη|Καταπληκτική|Μακριά|Φανταστική] πάσα από τον _P1_ απελευθερώνει τον _P0_</commentary>
     <commentary>[Μακριά|Κοντινή|Ακριβής] σέντρα από τον _P1_ βρίσκει τον _P0_</commentary>
@@ -145,6 +145,21 @@
     <commentary cond="_POSS_POSS__ < 45">Η ομάδα _T_POSS__ σκοράρει παρά την εικόνα του παιχνιδιού</commentary>
     <commentary cond="_T_TT__ == _TWN_ and _GD_ >3">Απλώς μεγαλώνει την έκταση του σκορ</commentary>
   </event>
+  <event>
+       <name>corner</name>
+          <commentary>Ο _PO_ εκτελεί το κόρνερ</commentary>
+   </event>
+   <event>
+     <name>keeper_pushed_in_corner</name>
+     <commentary>Ο τερματοφύλακας παραχωρεί κόρνερ</commentary>
+    <commentary>Ο _P1_ διώχνει την μπάλα με τα ακροδάκτυλα του σε κόρνερ </commentary>
+    <commentary>Ο _P1_'s αποκρούει το σουτ του  _P0_ και στέλνει την μπάλα πάνω από την οριζόντιο δοκό</commentary>
+     <commentary>Ο _P1_ με μια εκπληκτική απόκρουση παραχωρεί κόρνερ</commentary>
+   </event>
+  <event>
+    <name>player_pushed_in_corner</name>
+    <commentary>Ο _P1_ παραχωρεί κόρνερ</commentary>
+ </event>
   <event>
     <name>miss</name>
     <commentary>[Αυτός|_P0_] [σουτάρει|στέλνει την μπάλα] εκτός!</commentary>
