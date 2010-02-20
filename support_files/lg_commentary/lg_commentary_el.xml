@@ -31,8 +31,8 @@
     <commentary>Ο _P0_ στριφογυρίζει απεγνωσμένα για να τον χάσει ο αμυντικός</commentary>
 	 <commentary>Ο _P0_ κινείται [πάνω|προς] στο [κέντρο|κέντρο]</commentary>
     <commentary>Ο _P0_ [χάνει|ξεφεύγει από] τον [αντίπαλο|αμυντικό]</commentary>
-    <commentary cond="_MI_>80 and _GD_ ==0 and _TAVSKILLDIFF_ >= 4"pri="10">Μία ισοπαλία θα είναι ένα καλό αποτέλεσμα για την πιο αδύναμη _T[_TAVSKILL0_ GE _TAVSKILL1_]_</commentary>
-    <commentary cond="_MI_>80 and _GD_ ==1"pri="10">Η ομάδα _TW_ θα πρέπει να βάλει την μπάλα κάτω και να κρατήσει αποτέλεσμα</commentary>
+    <commentary cond="_MI_>80 and _GD_ ==0 and _TAVSKILLDIFF_ >= 4" pri="10">Μία ισοπαλία θα είναι ένα καλό αποτέλεσμα για την πιο αδύναμη _T[_TAVSKILL0_ GE _TAVSKILL1_]_</commentary>
+    <commentary cond="_MI_>80 and _GD_ ==1" pri="10">Η ομάδα _TW_ θα πρέπει να βάλει την μπάλα κάτω και να κρατήσει αποτέλεσμα</commentary>
     <commentary cond="_MI_>20 and _SHOTS_POSS__ < 2">Η ομάδα _T_POSS__ πρέπει [να βγει μπροστά|να δημιουργήσει πιο πολλές ευκαιρίες]</commentary>
     <commentary cond="_MI_>20 and _GOALS0_ + _GOALS1_ < 1  and _SHOTS0_ + _SHOTS1_ > 1 and _SHOTS0_ + _SHOTS1_ < 8">Μόνο [_SHOTS0_ + _SHOTS1_] σουτ: [είναι μία μάχη κέντρου|καμία πλευρά δεν προσπαθεί πραγματικά]</commentary>
     <commentary cond="_MI_>20 and _GOALS0_ + _GOALS1_ < 1 and _SHOTS0_ + _SHOTS1_ = 1">Μόνο 1 σουτ: [είναι μία μάχη κέντρου|καμία πλευρά δεν προσπαθεί πραγματικά]</commentary>
@@ -225,12 +225,12 @@
 	 <commentary>[Η μάχη|Ο αγώνας|Το ματς|Ο πόλεμος|Το παιχνίδι] αρχίζει</commentary>
     <commentary>Οι διαιτητές είναι έτοιμοι, οι παίχτες στην θέση τους, το παιχνίδι αρχίζει</commentary>
     <commentary>Η ομίχλη απομακρύνεται και το ματς αρχίζει</commentary>
-    <commentary cond="_TAVSKILLDIFF_ <= 2"pri="10">Οι ομάδες είναι ισοδύναμες. Είμαστε έτοιμοι για [μία αληθινή|μία μέχρι τέλους] μάχη.</commentary>
-    <commentary cond="_TAVSKILLDIFF_ < 5 and _TAVGSKILLDIFF_ >2"pri="10">Η ομάδα _T[_TAVSKILL0_ LE _TAVSKILL1_]_ έχει ελαφρώς το πάνω χέρι.</commentary>
-    <commentary cond="_TAVSKILLDIFF_ >=8"pri="10">Υπάρχει μεγάλη διαφορά δυναμικότητας ανάμεσα στις δύο ομάδες. Λογικά θα είναι προπόνηση για την ομάδα _T[_TAVSKILL1_ GE _TAVSKILL0_]_</commentary>
-    <commentary cond="_TAVSKILLDIFF_ >=5"pri="10">Η ομάδα _T[_TAVSKILL0_ GE _TAVSKILL1_]_ είναι το αουτσάιντερ.</commentary>
-    <commentary cond="_TAVSKILLDIFF_ >=8"pri="10">Η ομάδα _T[_TAVSKILL0_ LE _TAVSKILL1_]_ είναι το φαβορί.</commentary>
-    <commentary cond="_TAVSKILLDIFF_ <= 1 and [_TAVSKILL0_ + _TAVSKILL1_] >=85"pri="10">Η μάχη τιτάνων αρχίζει</commentary>
+    <commentary cond="_TAVSKILLDIFF_ <= 2" pri="10">Οι ομάδες είναι ισοδύναμες. Είμαστε έτοιμοι για [μία αληθινή|μία μέχρι τέλους] μάχη.</commentary>
+    <commentary cond="_TAVSKILLDIFF_ < 5 and _TAVGSKILLDIFF_ >2" pri="10">Η ομάδα _T[_TAVSKILL0_ LE _TAVSKILL1_]_ έχει ελαφρώς το πάνω χέρι.</commentary>
+    <commentary cond="_TAVSKILLDIFF_ >=8" pri="10">Υπάρχει μεγάλη διαφορά δυναμικότητας ανάμεσα στις δύο ομάδες. Λογικά θα είναι προπόνηση για την ομάδα _T[_TAVSKILL1_ GE _TAVSKILL0_]_</commentary>
+    <commentary cond="_TAVSKILLDIFF_ >=5" pri="10">Η ομάδα _T[_TAVSKILL0_ GE _TAVSKILL1_]_ είναι το αουτσάιντερ.</commentary>
+    <commentary cond="_TAVSKILLDIFF_ >=8" pri="10">Η ομάδα _T[_TAVSKILL0_ LE _TAVSKILL1_]_ είναι το φαβορί.</commentary>
+    <commentary cond="_TAVSKILLDIFF_ <= 1 and [_TAVSKILL0_ + _TAVSKILL1_] >=85" pri="10">Η μάχη τιτάνων αρχίζει</commentary>
   </event>
   <event>
     <name>half_time</name>
@@ -244,7 +244,7 @@
 	 <commentary>Ο προπονητής της ομάδας _TL_ είναι εκνευρισμένος με την απόδοση της σε αυτό το ημίχρονο</commentary>
 	 <commentary>Έχω ένα προαίσθημα ότι οι παίχτες της ομάδας _TL_ θα τα ακούσουν</commentary>
 	 <commentary>Έχω ένα προαίσθημα ότι οι παίχτες της ομάδας _TL_ θα τα ακούσουν</commentary>
-    <commentary cond="_TAVSKILLDIFF_ >=8 and _GD_ >=1 and _TAVSKILL_TLN__ < _TAVSKILL_TWN__"pri="10">Η ομάδα _TW_ απέχει 45 λεπτά από μία φοβερή νίκη</commentary>
+    <commentary cond="_TAVSKILLDIFF_ >=8 and _GD_ >=1 and _TAVSKILL_TLN__ < _TAVSKILL_TWN__" pri="10">Η ομάδα _TW_ απέχει 45 λεπτά από μία φοβερή νίκη</commentary>
     <commentary cond="_GD_ >0">Η ομάδα _TL_ μπαίνει στο τούνελ για ακούσει τις οδηγίες από τον προπονητή</commentary>
 	 <commentary cond="_GD_>0">Ένα ημίχρονο που η ομάδα _TL_ θέλει να ξεχάσει γρήγορα</commentary>
     <commentary cond="_POSS0_ >= 70 or _POSS1_ >= 70">Η ομάδα _T[_POSS1_ GE 70]_ είχε την κατοχή της μπάλας</commentary>
@@ -291,14 +291,14 @@
     <commentary>Ο διαιτητής βλέπει το ρολόι του και σφυρίζει την λήξη</commentary>
     <commentary>Αυτό ήταν λοιπόν. Τελειώνει με _RE_</commentary>
     <commentary>Ο προπονητής της _TW_ θα είναι ευχαριστημένος με το αποτέλεσμα</commentary>
-    <commentary cond="_TAVSKILLDIFF_ >=4 and _TWN_ = _T[_TAVSKILL0_ GE _TAVSKILL1_]_"pri="10">_RE_, τι καταπληκτικό αποτέλεσμα για την ομάδα _TW_</commentary>
-    <commentary cond="_GD_ = 0 "pri="10">Ισοπαλία λοιπόν. Ένας πόντος είναι ένας πόντος.</commentary>
-    <commentary cond="_GD_ > 0 "pri="10">Αυτό ήταν λοιπόν. Τελικό σκορ _RE_ για την ομάδα _TW_</commentary>
-    <commentary cond="_GOALS0_ + _GOALS1_ >= 6"pri="10">Αυτό το ματς θα το θυμάμαι καιρό. [_GOALS0_ + _GOALS1_] φοβερά γκολ!</commentary>
-    <commentary cond="_GD_ >= 4"pri="10">Η ομάδα _TL_ συντρίφθηκε με _GD_ γκολ.</commentary>
-    <commentary cond="_GD_ >= 2"pri="10">Η ομάδα _TW_ θα πάει στα μπουζούκια σήμερα.</commentary>
-    <commentary cond="[_TLAYER0_ - _TLAYER1_]> 1 or [_TLAYER1_ - _TLAYER0_] >1 and _TLAYER_TWN__ >_TLAYER_TLN__"pri="10">Τι [υπέροχη νίκη|εκπληκτική νίκη] για την ομάδα _TW_</commentary>
-    <commentary cond="_GD_ > 3 and _TLAYER[_GOALS1_ >_GOALS0_]_ >= _TLAYER[_GOALS1_ < _GOALS0_]_"pri="10">Η ομάδα _TL_ αντιμετώπισε έναν γίγαντα και το _RE_ το επαληθεύει</commentary>
+    <commentary cond="_TAVSKILLDIFF_ >=4 and _TWN_ = _T[_TAVSKILL0_ GE _TAVSKILL1_]_" pri="10">_RE_, τι καταπληκτικό αποτέλεσμα για την ομάδα _TW_</commentary>
+    <commentary cond="_GD_ = 0 " pri="10">Ισοπαλία λοιπόν. Ένας πόντος είναι ένας πόντος.</commentary>
+    <commentary cond="_GD_ > 0 " pri="10">Αυτό ήταν λοιπόν. Τελικό σκορ _RE_ για την ομάδα _TW_</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ >= 6" pri="10">Αυτό το ματς θα το θυμάμαι καιρό. [_GOALS0_ + _GOALS1_] φοβερά γκολ!</commentary>
+    <commentary cond="_GD_ >= 4" pri="10">Η ομάδα _TL_ συντρίφθηκε με _GD_ γκολ.</commentary>
+    <commentary cond="_GD_ >= 2" pri="10">Η ομάδα _TW_ θα πάει στα μπουζούκια σήμερα.</commentary>
+    <commentary cond="[_TLAYER0_ - _TLAYER1_]> 1 or [_TLAYER1_ - _TLAYER0_] >1 and _TLAYER_TWN__ >_TLAYER_TLN__" pri="10">Τι [υπέροχη νίκη|εκπληκτική νίκη] για την ομάδα _TW_</commentary>
+    <commentary cond="_GD_ > 3 and _TLAYER[_GOALS1_ >_GOALS0_]_ >= _TLAYER[_GOALS1_ < _GOALS0_]_" pri="10">Η ομάδα _TL_ αντιμετώπισε έναν γίγαντα και το _RE_ το επαληθεύει</commentary>
   </event>
   <event>
     <name>own_goal</name>
@@ -449,7 +449,7 @@
     <commentary cond="_MI_>75 and _EX_ == 'ANTI' and _TT_ == _TLN_">Φαίνεται ότι η ομάδα _T_TT__ εγκαταλείπει την μάχη</commentary>
     <commentary cond="_MI_>75 and _EX_ == 'ANTI' and _TT_ == _TWN_">Η ομάδα _T_TT__ θα πρέπει να σκεφτεί αν έχει εξασφαλίσει την νίκη</commentary>
     <commentary cond="_EX_ = 'ON'">Η ομάδα _T_TT__ ανέβασε ταχύτητα</commentary>
-    <commentary cond="_EX_ = 'ON' and _MI_ >75"pri="10">Ώθηση ενεργή.Η ομάδα _T_TT__ κάνει ότι είναι δυνατόν</commentary>
+    <commentary cond="_EX_ = 'ON' and _MI_ >75" pri="10">Ώθηση ενεργή.Η ομάδα _T_TT__ κάνει ότι είναι δυνατόν</commentary>
   </event>
 </lg_commentary>
 <!--
