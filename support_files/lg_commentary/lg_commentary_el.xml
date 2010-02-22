@@ -1,5 +1,5 @@
-﻿<lg_commentary>
-  <event>
+<lg_commentary>
+<event>
     <name>general</name>
     <commentary>_P1_ πασάρει</commentary>
     <commentary>_P0_</commentary>
@@ -29,7 +29,7 @@
     <commentary>Ο _P1_ [δίνει|δίνει με το κεφάλι] την μπάλα προς τον _P0_</commentary>
     <commentary>Ο _P0_ σβουρίζει και γυρίζει ξανά</commentary>
     <commentary>Ο _P0_ στριφογυρίζει απεγνωσμένα για να τον χάσει ο αμυντικός</commentary>
-	 <commentary>Ο _P0_ κινείται [πάνω|προς] στο [κέντρο|κέντρο]</commentary>
+         <commentary>Ο _P0_ κινείται [πάνω|προς] στο [κέντρο|κέντρο]</commentary>
     <commentary>Ο _P0_ [χάνει|ξεφεύγει από] τον [αντίπαλο|αμυντικό]</commentary>
     <commentary cond="_MI_>80 and _GD_ ==0 and _TAVSKILLDIFF_ >= 4" pri="10">Μία ισοπαλία θα είναι ένα καλό αποτέλεσμα για την πιο αδύναμη _T[_TAVSKILL0_ GE _TAVSKILL1_]_</commentary>
     <commentary cond="_MI_>80 and _GD_ ==1" pri="10">Η ομάδα _TW_ θα πρέπει να βάλει την μπάλα κάτω και να κρατήσει αποτέλεσμα</commentary>
@@ -44,16 +44,16 @@
   </event>
   <event>
     <name>lost_possession</name>
-	 <commentary>Διώχνει σε πλάγιο _P1_. _P0_ εκτελεί το πλάγιο.</commentary>
-	 <commentary>_P1_ χάνει την μπάλα</commentary>
-	 <commentary>_P1_ χάνει την μπάλα από τον _P0_</commentary>
-	 <commentary>[Ο _P1_ πουλάει την μπάλα|Η μπάλα χάνεται] [απρόσεχτα|φθηνά|πολύ εύκολα]</commentary>
-	 <commentary>_P1_ την βγάζει εκτός. Πλάγιο για την ομάδα _T_POSS__</commentary>
-	 <commentary>Δυνατή πάσα του _P1_ έχει ως αποτέλεσμα ένα πλάγιο για την ομάδα _T_POSS__</commentary>
-	 <commentary>Ο _P0_ εκτελεί γρήγορα το πλάγιο</commentary>
-	 <commentary>Μακρινό πλάγιο από τον _P0_</commentary>
+         <commentary>Διώχνει σε πλάγιο _P1_. _P0_ εκτελεί το πλάγιο.</commentary>
+         <commentary>_P1_ χάνει την μπάλα</commentary>
+         <commentary>_P1_ χάνει την μπάλα από τον _P0_</commentary>
+         <commentary>[Ο _P1_ πουλάει την μπάλα|Η μπάλα χάνεται] [απρόσεχτα|φθηνά|πολύ εύκολα]</commentary>
+         <commentary>_P1_ την βγάζει εκτός. Πλάγιο για την ομάδα _T_POSS__</commentary>
+         <commentary>Δυνατή πάσα του _P1_ έχει ως αποτέλεσμα ένα πλάγιο για την ομάδα _T_POSS__</commentary>
+         <commentary>Ο _P0_ εκτελεί γρήγορα το πλάγιο</commentary>
+         <commentary>Μακρινό πλάγιο από τον _P0_</commentary>
     <commentary>Τάκλιν άπο τον _P0_ </commentary>
-	 <commentary>Κακό κοντρόλ άπο τον _P1_</commentary>
+         <commentary>Κακό κοντρόλ άπο τον _P1_</commentary>
     <commentary>_P0_ κερδίζει την μπάλα με ένα τέλειο τάκλιν</commentary>
     <commentary>Πολλά πισωγυρίσματα καθώς η ομάδα _T_NPOSS__ χάνει την μπάλα</commentary>
     <commentary>Άσχημο κοντρόλ από τον _P1_ και ο _P0_ του κλέβει την μπάλα</commentary>
@@ -71,24 +71,24 @@
     <commentary>Σίγουρα ο _P1_ θα πάρει κάρτα για αυτό</commentary>
     <commentary>_P1_ [κλαδεύει|ανακόπτει|σταματάει] τον _P0_ με τα δύο πόδια</commentary>
     <commentary>[Επικίνδυνη|Δυνατή] διεκδίκηση με τον _P0_</commentary>
-    <commentary>  _P1_ πέρνει τα πόδια του _P0_</commentary>
+    <commentary> _P1_ πέρνει τα πόδια του _P0_</commentary>
     <commentary>[Ανακοπτική|Δυνατή|Σημαντική] διεκδίκηση από τον _P1_ στον _P0_</commentary>
     <commentary>Επικίνδυνο τάκλιν από τον _P1_ αφήνει τον _P0_ στο έδαφος</commentary>
     <commentary>_P1_ πέρνει τα πόδια του _P0_ </commentary>
     <commentary>Δεν αποκαλούν τον _P1_ [Σφαγέα|Τσεκούρι|Δολοφόνο|Γκαζμά] για το τίποτα. Σχεδόν σκότωσε τον [αντίπαλο|_P0_]!</commentary>
-	 <commentary>Ωχ! Αυτό πρέπει να πόνεσε</commentary>
+         <commentary>Ωχ! Αυτό πρέπει να πόνεσε</commentary>
     <commentary>Ο _P0_ είναι στο έδαφος και δεν χαμογελάει</commentary>
     <commentary>Δεν ξέρω για τον _P0_ αλλα αυτό το τάκλιν μου έφερε δάκρυά στα μάτια</commentary>
     <commentary>Αντιαθλητικό τάκλιν του _P1_ ρίχνει τον _P0_ στο έδαφος</commentary>
     <commentary>Η μαύρη ζώνη του _P1_ στο [καράτε|ταεκβοντο|τζούντο] φάνηκε χρήσημη σε αυτή τη διεκδίκηση με τον _P0_</commentary>
-	 <commentary>Ο _P1_ έχασε την ψυχραιμία του και έριξε τον _P0_ στο έδαφος.</commentary>
-	 <commentary>Ο _P0_ δέχτηκε όλη την δύναμη από την διεκδίκησή του _P1_ .</commentary>
-	 <commentary>Ο _P0_ προσπάθησε να απορροφήσει αυτό το τάκλιν αλλά ο διαιτητής αποφασίζει ότι αυτό πάει πολύ.</commentary>
-	 <commentary>Ο διαιτητής έδωσε το πλεονέκτημα αλλά τελικά σφυρίζει το φάουλ στον _P0_</commentary>
-	 <commentary>Τέτοια φάουλ είναι ενδεικτικά του εκνευρισμού που επικρατεί.</commentary>
-	 <commentary>Αντιαθλητικό φάουλ</commentary>
-	 <commentary>Ο _P0_ προσπαθεί να αποφύγει την δυνατή διεκδίκηση</commentary>
-	 <commentary>_P1_ κάνει ένα δυνατό τάκλιν. Σίγουρα δεν θα αποφύγει την τιμωρία.</commentary>
+         <commentary>Ο _P1_ έχασε την ψυχραιμία του και έριξε τον _P0_ στο έδαφος.</commentary>
+         <commentary>Ο _P0_ δέχτηκε όλη την δύναμη από την διεκδίκησή του _P1_ .</commentary>
+         <commentary>Ο _P0_ προσπάθησε να απορροφήσει αυτό το τάκλιν αλλά ο διαιτητής αποφασίζει ότι αυτό πάει πολύ.</commentary>
+         <commentary>Ο διαιτητής έδωσε το πλεονέκτημα αλλά τελικά σφυρίζει το φάουλ στον _P0_</commentary>
+         <commentary>Τέτοια φάουλ είναι ενδεικτικά του εκνευρισμού που επικρατεί.</commentary>
+         <commentary>Αντιαθλητικό φάουλ</commentary>
+         <commentary>Ο _P0_ προσπαθεί να αποφύγει την δυνατή διεκδίκηση</commentary>
+         <commentary>_P1_ κάνει ένα δυνατό τάκλιν. Σίγουρα δεν θα αποφύγει την τιμωρία.</commentary>
   </event>
   <event>
     <name>scoring_chance</name>
@@ -103,7 +103,7 @@
     <commentary>_P0_ [πλασάρει|σημαδεύει την γωνία|πλασάρει γλυκά] και η μπάλα κατευθύνεται [προς τα δίχτυα|προς την εστία]</commentary>
     <commentary>Σουτάρει σε πρώτο χρόνο</commentary>
     <commentary>_P0_ πέρνει την μπάλα και [σουτάρει|πλασάρει|δοκιμάζει το σουτ] </commentary>
-	 <commentary>Ο _P0_ δέχεται την πάσα του _P1_ και σουτάρει</commentary>
+         <commentary>Ο _P0_ δέχεται την πάσα του _P1_ και σουτάρει</commentary>
     <commentary>Ο _P0_ [κεραυνοβολεί|σουτάρει|σουτάρει με δύναμη] από τα 20 μέτρα, και η μπάλα φαίνεται να [έχει φάλτσο|πηγαίνει προς την εστία|οδεύει εκτός]</commentary>
     <commentary>_P0_ [διεισδύει|ντριπλάρει|τρέχει|μπαίνει] στην περιοχή, ξεπερνάει την άμυνα και σουτάρει</commentary>
     <commentary>_P0_ [διεισδύει|συγκλίνει|μπαίνει] στην περιοχή από το [δεξί|αριστερό] άκρο και [σουτάρει|πλασάρει στη γωνία|προσπαθεί με σουτ]</commentary>
@@ -127,19 +127,19 @@
     <commentary>Και η μπάλα [φεύγει σαν σφαίρα|πετάει] από το πόδι του _P1_ και καταλήγει στα δίχτυα!!!</commentary>
     <commentary>Η μπάλα [φεύγει|φεύγει] από τον _P1_ και είναι γκολ!!!</commentary>
     <commentary>Ο _P0_ πανηγυρίζει</commentary>
-	 <commentary>Ένα πραγματικά [εκπληκτικό|υπέροχο|μοναδικό|φανταστικό|πανέμορφο] γκολ!!</commentary>
+         <commentary>Ένα πραγματικά [εκπληκτικό|υπέροχο|μοναδικό|φανταστικό|πανέμορφο] γκολ!!</commentary>
     <commentary>Γκολ!!Η [απελπισμένη|υπεράνθρωπη] βουτιά του _P1_ δεν μπορεί να σώσει το γκολ από το σουτ του _P0_</commentary>
-	 <commentary>Η μπάλα [είναι|καταλήγει] στα δίχτυα!!!</commentary>
+         <commentary>Η μπάλα [είναι|καταλήγει] στα δίχτυα!!!</commentary>
     <commentary>Πανηγυρισμοί ξεσπούν! Θα κάνουν καιρό να ξεχάσουν αυτό το [γκολ|σουτ|πλασέ]</commentary>
-	 <commentary>Ο χορευτικός πανηγυρισμός του _P0_ αναφλέγει τους φιλάθλους. Πανηγυρίζει με τον [γνωστό|δικό του] μοναδικό τρόπο</commentary>
+         <commentary>Ο χορευτικός πανηγυρισμός του _P0_ αναφλέγει τους φιλάθλους. Πανηγυρίζει με τον [γνωστό|δικό του] μοναδικό τρόπο</commentary>
     <commentary>Γκολ! Το πλασέ από τον _P0_ αφοπλίζει [τον τερματοφύλακα|_P1_|_T_NPOSS__]</commentary>
     <commentary>Εκπληκτικό Γκολ!</commentary>
     <commentary>Γκολ! Η θεά τύχη προφανώς υποστηρίζει την ομάδα _T_TT__</commentary>
     <commentary>[Σουτ με φάλτσο|Σουτ με εσωτερικό φάλτσο|Σουτ με εξωτερικό φάλτσο] και η μπάλα καταλήγει στα δίχτυα Γκολ!</commentary>
-	 <commentary cond="_GOALS0_ + _GOALS1_ ==1">Η ομάδα _T_TT_ [ανοίγει το σκορ|είναι η πρώτη που σκοράρει] σήμερα</commentary>
-	 <commentary cond="_GD_ <=2 and _T_TT_ == _TLN_">Αυτό το [σουτ|γκολ] τρέλανε τους φιλάθλους της ομάδας _T_TT_</commentary>
-	 <commentary cond="_GD_ == 0 ">Αυτό το [σουτ|γκολ] έφερε το σκορ στα ίσα</commentary>
-	 <commentary cond="_GD_ <=2">Η ομάδα _T_POSS__ βρήκε [χρυσό|δίχτυα]. Τι γκολ!</commentary>
+         <commentary cond="_GOALS0_ + _GOALS1_ ==1">Η ομάδα _T_TT_ [ανοίγει το σκορ|είναι η πρώτη που σκοράρει] σήμερα</commentary>
+         <commentary cond="_GD_ <=2 and _T_TT_ == _TLN_">Αυτό το [σουτ|γκολ] τρέλανε τους φιλάθλους της ομάδας _T_TT_</commentary>
+         <commentary cond="_GD_ == 0 ">Αυτό το [σουτ|γκολ] έφερε το σκορ στα ίσα</commentary>
+         <commentary cond="_GD_ <=2">Η ομάδα _T_POSS__ βρήκε [χρυσό|δίχτυα]. Τι γκολ!</commentary>
     <commentary cond="_T_TT__ == _TLN_ and _GD_ <=2 ">Μπορεί η ομάδα _T_TT__ να επανέλθει?</commentary>
     <commentary cond="_T_TT__ == _TLN_">Η θεά τύχη χαμογελάει στην ομάδα _T_TT__ τώρα</commentary>
     <commentary cond="_POSS_POSS__ < 45">Η ομάδα _T_POSS__ σκοράρει παρά την εικόνα του παιχνιδιού</commentary>
@@ -191,18 +191,18 @@
     <commentary cond="_SHOTS_POSS__ > 3 and _GOALS_POSS__ < 1">Η παίχτες της ομάδας _T_POSS__ αρχίζουν να αναρωτιούνται τι πρέπει να κάνουν για να σκοράρουν</commentary> </event>
   <event>
     <name>save</name>
-	 <commentary>Φοβερό [χτύπημα|σουτ] αλλά [ο τερματοφύλακας|ο γκολκίπερ|ο _P1_] έχει μαγνητικά γάντια</commentary>
+         <commentary>Φοβερό [χτύπημα|σουτ] αλλά [ο τερματοφύλακας|ο γκολκίπερ|ο _P1_] έχει μαγνητικά γάντια</commentary>
     <commentary>Ο _P1_ διώχνει με τα ακροδάχτυλα</commentary>
     <commentary>Υπάρχει ένας τοίχος εκεί με το όνομα _P1_. Φανταστική απόκρουση</commentary>
     <commentary>Σαν σε προπόνηση ο _P1_</commentary>
     <commentary>Ο _P1_ κατεβάζει τα ρολά.</commentary>
-	 <commentary>Η ομάδα _T_NPOSS__ χρωστάει πολλά στον _P1_</commentary> 
-	 <commentary>Η ομάδα _T_POSS__ βρίσκει αντιμέτωπη την [καταπληκτική|υπέροχη|φανταστική] απόκρουση του _P1_</commentary>
+         <commentary>Η ομάδα _T_NPOSS__ χρωστάει πολλά στον _P1_</commentary> 
+         <commentary>Η ομάδα _T_POSS__ βρίσκει αντιμέτωπη την [καταπληκτική|υπέροχη|φανταστική] απόκρουση του _P1_</commentary>
     <commentary>Ο _P1_ μπλοκάρει εύκολα.</commentary>
     <commentary>Ο _P1_ αποκρούει το σουτ του _P0_ σε κόρνερ</commentary>
     <commentary>Καταπληκτική [ταχύτητα|ικανότητα] από τον _P0_ αλλά ο _P1_ κάνει μία [μοναδική|σπάνια|συγχρονισμένη] επέμβαση</commentary>
     <commentary>Ο _P1_ πέφτει στην [δεξιά|αριστερή] του γωνία και μπλοκάρει την μπάλα</commentary>
-	<commentary>Ο _P1_ μαζεύει εύκολα</commentary>
+        <commentary>Ο _P1_ μαζεύει εύκολα</commentary>
     <commentary>Ο _P1_ δείχνει σπουδαία ανακλαστικά και σώζει την εστία του από παραβίαση</commentary>
     <commentary>Ο _P1_ [βγαίνει προς|τρέχει προς|στο ένας με έναν με] τον _P0_ και αποκρούει το σουτ με το  [χέρι|σώμα|κεφάλι|κορμό|πόδι|παπούτσι]</commentary>
     <commentary>[Καλή|Πολύ καλή|Δύσκολη|Εύκολη] επέμβαση από τον [τερματοφύλακα|γκολκίπερ|πορτιέρο]</commentary>
@@ -210,8 +210,8 @@
     <commentary>[Ο τερματοφύλακας|Ο γκολκίπερ|Ο _P1_] αντιλήφθηκε κάθε κίνηση του _P0_</commentary>
     <commentary>Ο _P1_ σώζει την ομάδα του από ένα σίγουρο γκολ</commentary>
     <commentary>Αδύναμο σουτ από τον _P0_. Εύκολα μπλοκάρει ο _P1_</commentary>
-	 <commentary>[Μία|Αυτή είναι μία] εύκολη [επέμβαση|απόκρουση] από τον [_P1_|τερματοφύλακα]</commentary>
-	 <commentary cond="_GD_ ==1">[Ο _P1_|Ο τερματοφύλακας] κρατάει την ομάδα _TL_ στο παιχνίδι</commentary> 
+         <commentary>[Μία|Αυτή είναι μία] εύκολη [επέμβαση|απόκρουση] από τον [_P1_|τερματοφύλακα]</commentary>
+         <commentary cond="_GD_ ==1">[Ο _P1_|Ο τερματοφύλακας] κρατάει την ομάδα _TL_ στο παιχνίδι</commentary> 
   </event>
   <event>
     <name>start_match</name>
@@ -222,7 +222,7 @@
     <commentary>Μία ηλιόλουστη μέρα που δίνει την εντύπωση ότι το ματς θα λάμψει</commentary>
     <commentary>_AT_ [φίλαθλοι|οπαδοί] δεν μπορεί να κάνουν λάθος. Αυτό είναι το ματς που ήρθαμε να δούμε όλοι</commentary>
     <commentary>Ο διαιτητής κάνει νόημα στον βοηθό και ο αγώνας αρχίζει</commentary>
-	 <commentary>[Η μάχη|Ο αγώνας|Το ματς|Ο πόλεμος|Το παιχνίδι] αρχίζει</commentary>
+         <commentary>[Η μάχη|Ο αγώνας|Το ματς|Ο πόλεμος|Το παιχνίδι] αρχίζει</commentary>
     <commentary>Οι διαιτητές είναι έτοιμοι, οι παίχτες στην θέση τους, το παιχνίδι αρχίζει</commentary>
     <commentary>Η ομίχλη απομακρύνεται και το ματς αρχίζει</commentary>
     <commentary cond="_TAVSKILLDIFF_ <= 2" pri="10">Οι ομάδες είναι ισοδύναμες. Είμαστε έτοιμοι για [μία αληθινή|μία μέχρι τέλους] μάχη.</commentary>
@@ -241,16 +241,16 @@
     <commentary>Τα πεσμένα κεφάλια είναι χαρακτηριστικά. Δεν ήταν πικ νικ για την ομάδα _TL_.</commentary>
     <commentary>Οι οπαδοί βρίζουν τον προπονητή της ομάδας _TL_ καθώς αυτός μπαίνει στο τούνελ</commentary>
     <commentary>Μέχρι τώρα η ομάδα _TW_ και ο προπονητής της κάναν τα πάντα σωστά.</commentary>
-	 <commentary>Ο προπονητής της ομάδας _TL_ είναι εκνευρισμένος με την απόδοση της σε αυτό το ημίχρονο</commentary>
-	 <commentary>Έχω ένα προαίσθημα ότι οι παίχτες της ομάδας _TL_ θα τα ακούσουν</commentary>
-	 <commentary>Έχω ένα προαίσθημα ότι οι παίχτες της ομάδας _TL_ θα τα ακούσουν</commentary>
+         <commentary>Ο προπονητής της ομάδας _TL_ είναι εκνευρισμένος με την απόδοση της σε αυτό το ημίχρονο</commentary>
+         <commentary>Έχω ένα προαίσθημα ότι οι παίχτες της ομάδας _TL_ θα τα ακούσουν</commentary>
+         <commentary>Έχω ένα προαίσθημα ότι οι παίχτες της ομάδας _TL_ θα τα ακούσουν</commentary>
     <commentary cond="_TAVSKILLDIFF_ >=8 and _GD_ >=1 and _TAVSKILL_TLN__ < _TAVSKILL_TWN__" pri="10">Η ομάδα _TW_ απέχει 45 λεπτά από μία φοβερή νίκη</commentary>
     <commentary cond="_GD_ >0">Η ομάδα _TL_ μπαίνει στο τούνελ για ακούσει τις οδηγίες από τον προπονητή</commentary>
-	 <commentary cond="_GD_>0">Ένα ημίχρονο που η ομάδα _TL_ θέλει να ξεχάσει γρήγορα</commentary>
+         <commentary cond="_GD_>0">Ένα ημίχρονο που η ομάδα _TL_ θέλει να ξεχάσει γρήγορα</commentary>
     <commentary cond="_POSS0_ >= 70 or _POSS1_ >= 70">Η ομάδα _T[_POSS1_ GE 70]_ είχε την κατοχή της μπάλας</commentary>
     <commentary cond="_POSS0_ >= 60 or _POSS1_ >= 60">Η ομάδα _T[_POSS1_ GE 60]_ είχε την [πολυτέλεια|μερίδα του λέοντος] της κατοχής σε αυτό το ημίχρονο</commentary>
-    <commentary cond="_POSS0_ > 50 and _GOALS1_ >_GOALS0_">Η ομάδα _T0_ μπορεί να είχε την κατοχή αλλά η ομάδα _T1_ χρησιμοποίησε καλύτερα την δική της</commentary>
-    <commentary cond="_POSS1_ > 50 and _GOALS0_ >_GOALS1_">Η ομάδα _T0_ μπορεί να είχε την κατοχή αλλά η ομάδα _T1_ χρησιμοποίησε καλύτερα την δική της</commentary>
+    <commentary cond="_POSS0_ > 50 and _GOALS1_ > _GOALS0_">Η ομάδα _T0_ μπορεί να είχε την κατοχή αλλά η ομάδα _T1_ χρησιμοποίησε καλύτερα την δική της</commentary>
+    <commentary cond="_POSS1_ > 50 and _GOALS0_ > _GOALS1_">Η ομάδα _T0_ μπορεί να είχε την κατοχή αλλά η ομάδα _T1_ χρησιμοποίησε καλύτερα την δική της</commentary>
     <commentary cond="_POSS0_ >= 75 or _POSS1_ >= 75">Η ομάδα _T[_POSS1_ GE 75]_ φαίνεται να είναι η μόνη ομάδα στο γήπεδο</commentary>
     <commentary cond="_GOALS0_ + _GOALS1_ = 0 ">Λοιπόν [οι τράπεζες είναι κλειστές|το σακούλι με τα γλυκά είναι άδειο]: [δεν υπάρχουν γκολ σε αυτό το ημίχρονο|κανείς δεν κατάφερε να σκοράρει]</commentary>
     <commentary cond="_GOALS0_ + _GOALS1_ = 1 and _SHOTS0_ + _SHOTS1_ < 2">Σε αυτό το σημείο ένα γκολ πάνω [ίσως να μην είναι|ίσως να είναι] αρκετό</commentary>
@@ -259,7 +259,7 @@
     <commentary cond="_GOALS0_ + _GOALS1_ < 1 and _SHOTS0_ + _SHOTS1_ > 4">Η ομάδα _T[_SHOTS0_ LE _SHOTS1_]_ είχε αρκετές ευκαιρίες να  [τελειώσει|ασφαλίσει] αυτό το παιχνίδι</commentary>
     <commentary cond="_GOALS0_ + _GOALS1_ < 2 and _SHOTS0_ + _SHOTS1_ > 3">Η ομάδα _T[_SHOTS0_ LE _SHOTS1_]_ είχε _SHOTS[_SHOTS0_ LE _SHOTS1_]_ ευκαιρίες να [τελειώσει|κλειδώσει|ασφαλίσει] αυτό το παιχνίδι</commentary>
     <commentary cond="_GOALS0_ + _GOALS1_ = 0 and _SHOTS0_ + _SHOTS1_ < 2">Χωρίς γκολ ακόμη και το κοινό φαίνεται να αρχίζει να κρυώνει</commentary>
-	 <commentary cond="_GOALS0_ + _GOALS1_ >= 6">Βρέχει γκολ. [_GOALS0_ + _GOALS1_] μέχρι στιγμής και είμαστε ακόμη στο πρώτο ημίχρονο!</commentary>
+         <commentary cond="_GOALS0_ + _GOALS1_ >= 6">Βρέχει γκολ. [_GOALS0_ + _GOALS1_] μέχρι στιγμής και είμαστε ακόμη στο πρώτο ημίχρονο!</commentary>
     <commentary cond="_FOULS0_ - _FOULS1_ >= 4 or _FOULS1_ - _FOULS0_ >=4">Υπάρχουν δύο ομάδες στο γήπεδο η [_T[_FOULS0_ GE _FOULS1_]_|μία από αυτές] παίζει ποδόσφαιρο</commentary>
     <commentary cond="_FOULS0_ + _FOULS1_ >= 8">Αυτό δεν είναι ποδοσφαιρικός αγώνας, είναι λουτρό αίματος.</commentary>
     <commentary cond="_FOULS0_ + _FOULS1_ >= 10">[Τόσα πολλά|[_FOULS0_ + _FOULS1_]] φάουλ. Ο διαιτητής θα χρειαστεί νέα αναλώσιμα!</commentary>
@@ -291,14 +291,14 @@
     <commentary>Ο διαιτητής βλέπει το ρολόι του και σφυρίζει την λήξη</commentary>
     <commentary>Αυτό ήταν λοιπόν. Τελειώνει με _RE_</commentary>
     <commentary>Ο προπονητής της _TW_ θα είναι ευχαριστημένος με το αποτέλεσμα</commentary>
-    <commentary cond="_TAVSKILLDIFF_ >=4 and _TWN_ = _T[_TAVSKILL0_ GE _TAVSKILL1_]_" pri="10">_RE_, τι καταπληκτικό αποτέλεσμα για την ομάδα _TW_</commentary>
+    <commentary cond="_TAVSKILLDIFF_ >=4 and _TWN_ = _T[_TAVSKILL0_ GE _TAVSKILL1_]_" pri="10"> _RE_, τι καταπληκτικό αποτέλεσμα για την ομάδα _TW_</commentary>
     <commentary cond="_GD_ = 0 " pri="10">Ισοπαλία λοιπόν. Ένας πόντος είναι ένας πόντος.</commentary>
     <commentary cond="_GD_ > 0 " pri="10">Αυτό ήταν λοιπόν. Τελικό σκορ _RE_ για την ομάδα _TW_</commentary>
     <commentary cond="_GOALS0_ + _GOALS1_ >= 6" pri="10">Αυτό το ματς θα το θυμάμαι καιρό. [_GOALS0_ + _GOALS1_] φοβερά γκολ!</commentary>
     <commentary cond="_GD_ >= 4" pri="10">Η ομάδα _TL_ συντρίφθηκε με _GD_ γκολ.</commentary>
     <commentary cond="_GD_ >= 2" pri="10">Η ομάδα _TW_ θα πάει στα μπουζούκια σήμερα.</commentary>
-    <commentary cond="[_TLAYER0_ - _TLAYER1_]> 1 or [_TLAYER1_ - _TLAYER0_] >1 and _TLAYER_TWN__ >_TLAYER_TLN__" pri="10">Τι [υπέροχη νίκη|εκπληκτική νίκη] για την ομάδα _TW_</commentary>
-    <commentary cond="_GD_ > 3 and _TLAYER[_GOALS1_ >_GOALS0_]_ >= _TLAYER[_GOALS1_ < _GOALS0_]_" pri="10">Η ομάδα _TL_ αντιμετώπισε έναν γίγαντα και το _RE_ το επαληθεύει</commentary>
+    <commentary cond="[_TLAYER0_ - _TLAYER1_]> 1 or [_TLAYER1_ - _TLAYER0_] >1 and _TLAYER_TWN__ > _TLAYER_TLN__" pri="10">Τι [υπέροχη νίκη|εκπληκτική νίκη] για την ομάδα _TW_</commentary>
+    <commentary cond="_GD_ > 3 and _TLAYER[_GOALS1_ > _GOALS0_]_ >= _TLAYER[_GOALS1_ < _GOALS0_]_" pri="10">Η ομάδα _TL_ αντιμετώπισε έναν γίγαντα και το _RE_ το επαληθεύει</commentary>
   </event>
   <event>
     <name>own_goal</name>
@@ -334,14 +334,14 @@
     <commentary>Ο _P0_ θα χτυπήσει το πέναλτι</commentary>
     <commentary>_P0_ έχει την ευκαιρία να σκοράρει από την βούλα του πέναλτι</commentary>
     <commentary>Ο _P0_ μπορεί να εξαφανίσει κάποιες ανησυχίες της ομάδας του με αυτό το πέναλτι</commentary>
-	 <commentary>Μπορεί [ο _P0_|η ομάδα _T_POSS__] να αξιοποιήσει αυτό το πέναλτι?</commentary>
+         <commentary>Μπορεί [ο _P0_|η ομάδα _T_POSS__] να αξιοποιήσει αυτό το πέναλτι?</commentary>
     <commentary>Τα πέναλτι χρειάζονται ψυχραιμία και αυτοσυγκέντρωση</commentary>
     <commentary cond="_PEN_POSS__ > 1">Η ομάδα _T_POSS__ φαίνεται να παίζει για τα πέναλτι.</commentary>
     <commentary cond="_GD_ = 0">Η ομάδα _T_POSS__ μπορεί να πάρει κεφάλι στο σκορ αν το βάλει</commentary>
     <commentary cond="_GD_=1 and _GOALS_POSS__ < _GOALS_NPOSS__">_P0_ μπορεί να ισοφαρίσει από την βούλα</commentary>
     <commentary cond="_MI_>85 and _GD_=1 and _GOALS_POSS__ < _GOALS_NPOSS__">_P0_: Ένα πέναλτι μπορεί να φέρει το ματς στα ίσα</commentary>
     <commentary cond="_MI_>85 and _GD_=1 and _GOALS_POSS__ < _GOALS_NPOSS__">Η ομάδα _T_NPOSS__ έδωσε μία εύκολη ευκαιρία για την ομάδα _T_POSS__ να επανέλθει στο παιχνίδι</commentary>
-    <commentary cond="_MI_>85 and _GD_=1 and _GOALS_POSS__ >_GOALS_NPOSS__">Ο _P0_ μπορεί να πάρει το παιχνίδι με ένα γκολ από εδώ</commentary>
+    <commentary cond="_MI_>85 and _GD_=1 and _GOALS_POSS__ > _GOALS_NPOSS__">Ο _P0_ μπορεί να πάρει το παιχνίδι με ένα γκολ από εδώ</commentary>
   </event>
   <event>
     <name>free_kick</name>
