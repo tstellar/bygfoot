@@ -5,7 +5,6 @@
 #include <gtk/gtk.h>
 
 #include "league_table_callbacks.h"
-#include "league_table_interface.h"
 #include "support.h"
 
 
