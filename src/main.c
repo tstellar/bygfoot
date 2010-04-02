@@ -37,6 +37,7 @@
   #include <fcntl.h>
 #endif
 
+#include "bygfoot.h"
 #include "bet_struct.h"
 #include "debug.h"
 #include "file.h"
@@ -83,7 +84,7 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 
     gboolean testcom = FALSE, calodds = FALSE;
     gchar *support_dir = NULL, *lang = NULL,
-	*testcom_file = NULL, *token_file = NULL, 
+	*testcom_file = NULL, *token_file = NULL,
 	*event_name = NULL,
         *country_sid = NULL;
     gint number_of_passes = 1,
@@ -93,9 +94,9 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
     GOptionEntry entries[] =
 	{{ "last-save", 'l', 0, G_OPTION_ARG_NONE, &load_last_save, _("Load last savegame"), NULL },
 
-         { "support-dir", 's', 0, G_OPTION_ARG_STRING, &support_dir, 
+         { "support-dir", 's', 0, G_OPTION_ARG_STRING, &support_dir,
 	   _("Specify additional support directory (takes priority over default ones)"), "DIR" },
-         
+
 	 { "country", 'c', 0, G_OPTION_ARG_STRING, &country_sid, _("String id of the country to load"), "SID" },
 
 	 { "lang", 'L', 0, G_OPTION_ARG_STRING, &lang, _("Language to use (a code like 'de')"), "CODE" },
@@ -195,8 +196,8 @@ main_parse_debug_cl_arguments(gint *argc, gchar ***argv)
     GOptionContext *context = NULL;
     GOptionEntry entries[] =
 	{{ "debug-level", 'd', 0, G_OPTION_ARG_INT, &deb_level, "[developer] Debug level to use", "N" },
-	 { "debug-output", 'o', 0, G_OPTION_ARG_INT, &deb_output, "[developer] Debug output to use", "0, 1 or 2" },	 
-	 { "deb", 'D', 0, G_OPTION_ARG_STRING, &debug_text, 
+	 { "debug-output", 'o', 0, G_OPTION_ARG_INT, &deb_output, "[developer] Debug output to use", "0, 1 or 2" },
+	 { "deb", 'D', 0, G_OPTION_ARG_STRING, &debug_text,
            "[developer] A debug command like 'deb100 to set the debug level'; see the debug window and debug.c", "STRING" },
 	 {NULL}};
 
@@ -262,13 +263,13 @@ main_init_variables(void)
 
     window.main = window.startup =
 	window.live = window.warning = window.progress = window.digits =
-	window.stadium = window.job_offer = window.yesno = 
+	window.stadium = window.job_offer = window.yesno =
 	window.options = window.font_sel =
-	window.file_chooser = window.contract = 
-	window.menu_player = window.user_management = 
+	window.file_chooser = window.contract =
+	window.menu_player = window.user_management =
 	window.mmatches = window.bets = window.splash =
 	window.training_camp = NULL;
-    
+
     users = g_array_new(FALSE, FALSE, sizeof(User));
     transfer_list = g_array_new(FALSE, FALSE, sizeof(Transfer));
     season_stats = g_array_new(FALSE, FALSE, sizeof(SeasonStat));
@@ -282,10 +283,10 @@ main_init_variables(void)
     save_file = NULL;
 
     constants_app.list = settings.list =
-	constants.list = options.list = tokens.list = 
+	constants.list = options.list = tokens.list =
 	hints.list = NULL;
     constants_app.datalist = settings.datalist =
-	constants.datalist = options.datalist = 
+	constants.datalist = options.datalist =
 	tokens.datalist = hints.datalist = NULL;
 
     selected_row = -1;
@@ -302,11 +303,11 @@ main_init_variables(void)
 
     file_load_conf_files();
     xml_strategy_load_strategies();
-    
+
     current_interest = rint(math_rnd(const_float("float_finance_interest_lower"),
 				     const_float("float_finance_interest_upper")) /
 			    const_float("float_finance_interest_step")) * const_float("float_finance_interest_step");
-    
+
     language_set(language_get_code_index(opt_str("string_opt_language_code")) + 1);
 
     option_add(&options, "int_opt_calodds", 0, NULL);
@@ -364,8 +365,8 @@ main_init(gint *argc, gchar ***argv)
     sprintf(buf, "%s%ssaves", dir, G_DIR_SEPARATOR_S);
     file_add_support_directory_recursive(buf);
     g_free(dir);
-#else    
-    dir = file_get_mac_resource_path("support_files");    
+#else
+    dir = file_get_mac_resource_path("support_files");
     file_add_support_directory_recursive(dir);
 #endif
 
@@ -411,9 +412,9 @@ main (gint argc, gchar *argv[])
         {
             stat0 = STATUS_SPLASH;
             window_show_splash();
-            
+
             if(os_is_unix)
-                file_check_home_dir();            
+                file_check_home_dir();
         }
         else
         {
@@ -443,7 +444,7 @@ main_exit_program(gint exit_code, gchar *format, ...)
 
     gchar text[SMALL];
     va_list args;
-     
+
     if(format != NULL)
     {
 	va_start (args, format);
@@ -462,6 +463,6 @@ main_exit_program(gint exit_code, gchar *format, ...)
 	debug_print_message("Press RETURN. Program will exit.");
 	getchar();
     }
-    
+
     exit(exit_code);
 }
