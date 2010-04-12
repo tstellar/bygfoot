@@ -1145,7 +1145,7 @@ user_mm_load_file(const gchar *filename, GArray *mmatches)
     GString *prefix = g_string_new(""); 
     gchar filename_local[SMALL],
 	matches_file[SMALL];
-    GArray *mm_array = (mmatches == NULL) ?
+    GArray *mm_array = (mmatches != NULL) ?
 	current_user.mmatches : mmatches;
     
     strcpy(filename_local, filename);
@@ -1157,7 +1157,10 @@ user_mm_load_file(const gchar *filename, GArray *mmatches)
     file_decompress(filename_local);
     
     if(mmatches == NULL)
+    {
 	free_mmatches(&mm_array, TRUE);
+        mm_array = g_array_new(FALSE, FALSE, sizeof(MemMatch));
+    }
 
     xml_mmatches_read(matches_file, mm_array);
 
@@ -1168,6 +1171,7 @@ user_mm_load_file(const gchar *filename, GArray *mmatches)
 	misc_string_assign(&current_user.mmatches_file, filename_local);
 	
 	g_string_free(prefix, TRUE);
+    current_user.mmatches = mm_array;
 }
 
 /** Add the last match to the MM file.
