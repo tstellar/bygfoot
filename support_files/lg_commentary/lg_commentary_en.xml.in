@@ -1,0 +1,504 @@
+<lg_commentary>
+  <event>
+    <name>general</name>
+    <_commentary>_P1_ passes</_commentary>
+    <_commentary>_P0_</_commentary>
+    <_commentary>_P1_ to _P0_</_commentary>
+    <_commentary>_P1_ feeds a [wonderful|terrific|great|brilliant] ball through to _P0_</_commentary>
+    <_commentary>A delightful little [ball|pass] finds _P0_</_commentary>
+    <_commentary>A flick on from _P1_ waits for the one two</_commentary>
+    <_commentary>A neat dummy run and pass</_commentary>
+    <_commentary>Great footwork, a clever pass</_commentary>
+    <_commentary>_P1_ drops the ball at _P0_'s feet</_commentary>
+    <_commentary>A lofted pass from _P1_ finds its mark</_commentary>
+    <_commentary>_T_POSS__ are on the attack</_commentary>
+    <_commentary>_T_NPOSS__ are on the [defence|backfoot]</_commentary>
+    <_commentary>An [outstanding|accurate] cross finds _P0_</_commentary>
+    <_commentary>Now _T_POSS__ can mount a challenge through _P0_</_commentary>
+    <_commentary>A ball in by _P1_ [finds|taken by] _P0_</_commentary>
+    <_commentary>_P1_ [threads|needles] [a great|the] ball to _P0_ </_commentary>
+    <_commentary>A [lovely|superb|long|nifty] pass from _P1_ releases _P0_</_commentary>
+    <_commentary>A [long|short|slow] floating pass from _P1_ finds _P0_</_commentary>
+    <_commentary>A [good|great|clever] passing move across the pitch and down the [right|left]</_commentary>
+    <_commentary>A [quick|well-timed] passing [flick|move] down the [left|right]</_commentary>
+    <_commentary>_P0_ slips past his man and [collects|latches onto] _P1_'s perfectly [timed|weighted] cross.</_commentary>
+    <_commentary>Another [clever|brilliant|thinking|decent] move [down the wing|through the centre|across the pitch]</_commentary>
+    <_commentary>_P0_ [collects|latches onto] _P1_'s [through ball|pass]</_commentary>
+    <_commentary>_P1_ [threads|needles] [it|the ball] through the [opponent's|player's] [feet|legs] and finds _P0_</_commentary>
+    <_commentary>_P1_ [traps|controls] [it|the ball] with his [boot|heel|chest|thigh] and [sends it|passes|flicks on] to _P0_</_commentary>
+    <_commentary>_P1_ [lobs|heads] the ball towards _P0_</_commentary>
+    <_commentary>_P0_ twisting and turning again</_commentary>
+    <_commentary>_P0_ twisting desperately to lose his man</_commentary>
+	 <_commentary>_P0_ rips [up|through] the [centre|midfield]</_commentary>
+    <_commentary>_P0_ [loses|spins past|dribbles past] his [man|marker]</_commentary>
+    <_commentary cond="_MI_&gt;80 and _GD_ ==0 and _TAVSKILLDIFF_ &gt;= 4" pri="10">A draw would be a good result for the outmatched _T[_TAVSKILL0_ GE _TAVSKILL1_]_</_commentary>
+    <_commentary cond="_MI_&gt;80 and _GD_ ==1" pri="10">_TW_ need to buckle down and just hold on for a few more minutes</_commentary>
+    <_commentary cond="_MI_&gt;20 and _SHOTS_POSS__ &lt; 2">_T_POSS__ need to [get the ball up front more|create more chances|show a bit more spark up front]</_commentary>
+    <_commentary cond="_MI_>20 and _GOALS0_ + _GOALS1_ &lt; 1  and _SHOTS0_ + _SHOTS1_ &gt; 1 and _SHOTS0_ + _SHOTS1_ &lt; 8">Only [_SHOTS0_ + _SHOTS1_] shots: [it's a battle in the midfield|neither side is really trying]</_commentary>
+    <_commentary cond="_MI_&gt;20 and _GOALS0_ + _GOALS1_ &lt; 1 and _SHOTS0_ + _SHOTS1_ = 1">Only 1 shot: [it's a battle in the midfield|neither side is really trying]</_commentary>
+    <_commentary cond="_MI_&lt;20 and _SHOTS0_ + _SHOTS1_ &gt; 2">_MI_ minutes on the clock, and chances from both teams already</_commentary>
+    <_commentary cond="_SHOTS0_ + _SHOTS1_ &lt; 4">Terrific skills on display</_commentary>
+    <_commentary cond="_MI_ &gt; 75">We enter the dying moments of normal time</_commentary>
+    <_commentary cond="_FOULS0_ + _FOULS1_ &gt;= 7">[So many|[_FOULS0_ + _FOULS1_]] fouls. The ref's gonna need a new [pea for his whistle|book|pencil]!</_commentary>
+    <_commentary cond="_MI_&gt;85">Sure, it's not over till the fat lady sings, but she's warming up right now</_commentary>
+  </event>
+  <event>
+    <name>lost_possession</name>
+	 <_commentary>It's knocked out by _P1_. _P0_ with the throw.</_commentary>
+	 <_commentary>_P1_ dispossessed</_commentary>
+	 <_commentary>_P1_ dispossessed by _P0_</_commentary>
+	 <_commentary>[_P1_ gives the ball|The ball is given] away [carelessly|cheaply|too easily]</_commentary>
+	 <_commentary>_P1_ takes it over the line. A throw-in to _T_POSS__</_commentary>
+	 <_commentary>A [wild|poor|subpar] pass by _P1_ results in a throw-in for _T_POSS__</_commentary>
+	 <_commentary>_P0_ takes a quick throw-in</_commentary>
+	 <_commentary>A long throw-in from _P0_</_commentary>
+    <_commentary>The slide tackle by _P0_ was worthy of topflight baseball.</_commentary>
+	 <_commentary>A heavy ball uncontrolled by _P1_</_commentary>
+    <_commentary>_P0_ wins the ball with a [perfectly timed|hard] challenge</_commentary>
+    <_commentary>_T_NPOSS__ [gives the ball away|loses the ball too quickly]</_commentary>
+    <_commentary>Bad control by _P1_ lets _P0_ steal the ball from him</_commentary>
+    <_commentary>_P0_ [steals|takes|snatches] the ball away from _P1_ with a sliding tackle</_commentary>
+    <_commentary>A loose ball [falls|bounces] straight to _P0_</_commentary>
+    <_commentary>A crunching tackle by _P0_ who [comes away with|wins] the ball</_commentary>
+    <_commentary>_P1_ is left stranded as _P0_ takes the ball</_commentary>
+    <_commentary>_P0_ makes a great interception</_commentary>
+    <_commentary>_P0_ gatecrashes _P1_'s party and comes away with the prize</_commentary>
+    <_commentary>That wasn't _P1_'s greatest pass as _P0_ intercepts</_commentary>
+  </event>
+  <event>
+    <name>foul</name>
+    <_commentary>[Oww|Ouch|Aye korumba], that was a nasty tackle on _P0_</_commentary>
+    <_commentary>Surely [that must be a sending-off offence|_P1_'s going to get booked for that]?</_commentary>
+    <_commentary>_P1_ [knocks|bowls|crashes] over _P0_ with a double-footed lunge</_commentary>
+    <_commentary>A [nasty|crunching|fierce] challenge on _P0_</_commentary>
+    <_commentary>_P0_ gets his legs taken away from him by _P1_</_commentary>
+    <_commentary>A [slicing|nasty|pulverising] challenge by _P1_ on _P0_</_commentary>
+    <_commentary>A [vicious|hard] tackle from _P1_ leaves _P0_ lying on the grass in agony</_commentary>
+    <_commentary>_P1_ clinically takes out _P0_ and leaves him in agony</_commentary>
+    <_commentary>They don't call _P1_ [the Slayer|the Assassin|Killer|Chopper Reid] for nothing. He's almost [wiped out|run over] [the guy|_P0_]!</_commentary>
+	 <_commentary>Ouch! That's got to hurt</_commentary>
+    <_commentary>_P0_ is on the ground, and he's not smiling</_commentary>
+    <_commentary>I don't know about _P0_, but that tackle brought tears to my eyes</_commentary>
+    <_commentary>A dangerously high boot from _P1_ sends _P0_ to the ground</_commentary>
+    <_commentary>_P1_'s black belt in [Karate|Taekwondo|Jujitsu] came in handy then, when he floored _P0_</_commentary>
+	 <_commentary>_P1_ just lost his patience and [took|knocked] _P0_ to the ground.</_commentary>
+	 <_commentary>_P0_ takes the full brunt of _P1_'s challenge.</_commentary>
+	 <_commentary>_P0_ tried to absorb that tackle, but it's too much for the ref</_commentary>
+	 <_commentary>The ref played the advantage but eventually had to signal the foul on _P0_</_commentary>
+	 <_commentary>Frustration is setting in when you start to see fouls like that.</_commentary>
+	 <_commentary>That's what's known as a professional foul</_commentary>
+	 <_commentary>_P0_ tries to run off a harsh challenge</_commentary>
+	 <_commentary>_P1_ with a bone-crunching tackle. Surely, he won't get away with that.</_commentary>
+  </event>
+  <event>
+    <name>scoring_chance</name>
+    <_commentary>_P0_ [infiltrates|sneaks through] the defence and [hammers|cracks] it</_commentary>
+    <_commentary>A deep cross floats in from _P1_, and _P0_ [slots it towards goal|fires]</_commentary>
+    <_commentary>_P0_ charges towards goal and [fires|unleashes|stabs|shoots]!</_commentary>
+    <_commentary>_P0_ spins and shoots</_commentary>
+    <_commentary>A blazing [shot|strike] from _P0_</_commentary>
+    <_commentary>_P0_ finds some space and tries his luck.</_commentary>
+    <_commentary>A wonderful opportunity opens up for _T_POSS__</_commentary>
+    <_commentary>A long ball from _P1_ finds _P0_ at the [near|far] post</_commentary>
+    <_commentary>_P0_ [has fluffed it|can't control it|snaps a shot], and his miskick heads [toward goal|goalward]</_commentary>
+    <_commentary>His [great|excellent] first touch heads it goalwards</_commentary>
+    <_commentary>_P0_ takes it on the volley and [hammers|nails|plants] it towards goal</_commentary>
+	 <_commentary>_P0_ takes it on the volley from _P1_'s pass pushing goalwards</_commentary>
+    <_commentary>_P0_ [fires|shoots|blasts it|hammers it] from [22|20|18|15] yards; looks like it's [drifting|curving|spinning|going wide]</_commentary>
+    <_commentary>_P0_ [drifts|dribbles|runs|rushes|strolls|slips|sneaks] into the box, turns inside the defence and fires</_commentary>
+    <_commentary>_P0_ [drifts|crashes|cuts] in from the [right|left] flank and [strikes|shoots|fires]</_commentary>
+    <_commentary>_P0_ tries his luck from [30|25] yards</_commentary>
+    <_commentary>_P0_ [snaps|arrows|beams] a shot towards the [bottom|top] [right|left] corner</_commentary>
+    <_commentary>_P0_ shoots from close range</_commentary>
+    <_commentary>A [classy|great|brilliant] [pass|ball] from _P1_ sends _P0_ one on one with the [keeper|goalkeeper|goalie]</_commentary>
+    <_commentary>_P0_'s [scissor|overhead] kick heads towards the [bottom|top] [left|right]-hand corner</_commentary>
+    <_commentary>_P0_ [waltzes|spins|drifts|rips] past two defenders, [dummies|wrong-foots] the keeper and [flicks|back-heels|clips] the ball [home|towards goal|goalward]</_commentary>
+    <_commentary>_P1_ lays the ball off to _P0_, who [sends a rocket|fires a piledriver] towards goal</_commentary>
+    <_commentary>_P0_ charges in with a shot</_commentary>
+    <_commentary>A lay-off from _P1_ sets up _T_POSS__ with a chance</_commentary>
+    <_commentary>_P0_ gets in behind the defence and strikes</_commentary>
+  </event>
+  <event>
+    <name>goal</name>
+    <_commentary>Goal!!!</_commentary>
+    <_commentary>And the ball is smacked into the back of the net!!!</_commentary>
+    <_commentary>_P0_ scores!!!</_commentary>
+    <_commentary>Goal!! Did you see that? [Their goalie|_P1_] certainly didn't.</_commentary>
+    <_commentary>And the ball [rips|flies|glides|bullets] straight past _P1_ and into the back of the net!!!</_commentary>
+    <_commentary>The ball [whistles|flies|zips|whooshes] past _P1_, and it's a goal!!!</_commentary>
+    <_commentary>_P0_ wheels away in celebration</_commentary>
+	 <_commentary>What a [mesmerising|marvellous|wonderful|fantastic|brilliant|spectacular] goal!!</_commentary>
+    <_commentary>Goal!! _P1_'s [desperate|despairing|stretched] dive can't keep _P0_'s shot out</_commentary>
+	 <_commentary>The ball [lies|is] in the back of the net!!!</_commentary>
+    <_commentary>Celebrations abound! They won't forget that [goal|strike|shot] in a hurry</_commentary>
+	 <_commentary>_P0_'s dance [ignites|sparks] the fans. He celebrates in his [well-known|own|peculiar|special|unique] fashion</_commentary>
+    <_commentary>Goal! A dipping ball from _P0_ stuns [the keeper|_P1_|_T_NPOSS__]</_commentary>
+    <_commentary>An outstanding Goal!</_commentary>
+    <_commentary>Goal! Lady Luck obviously supports _T_TT__</_commentary>
+    <_commentary>A [curving|hard, inswinging|outswinging|swerving] ball beats _P1_ to the line. Goal!</_commentary>
+	 <_commentary cond="_GOALS0_ + _GOALS1_ ==1">_T_TT_ [take first blood|are first to open the account] today</_commentary>
+	 <_commentary cond="_GD_ &lt;=2 and _T_TT_ == _TLN_">That [strike|goal] has sent the _T_TT_ fans [wild|into a frenzy]</_commentary>
+	 <_commentary cond="_GD_ == 0 ">That [strike|goal] has levelled the score</_commentary>
+	 <_commentary cond="_GD_ &lt;=2">_T_POSS__ have struck [pay dirt|gold]. What a goal!</_commentary>
+    <_commentary cond="_T_TT__ == _TLN_ and _GD_ &lt;=2 ">Can _T_TT__ produce a [shock|surprise] comeback?</_commentary>
+    <_commentary cond="_T_TT__ == _TLN_">Lady Luck is smiling on _T_TT__ now</_commentary>
+    <_commentary cond="_POSS_POSS__ &lt; 45">_T_POSS__ score against the run of the play</_commentary>
+    <_commentary cond="_T_TT__ == _TWN_ and _GD_ &gt;3">That's just another nail in the coffin</_commentary>
+  </event>
+  <event>
+    <name>corner</name>
+    <_commentary>_P0_ takes the corner</_commentary>
+  </event>
+  <event>
+    <name>keeper_pushed_in_corner</name>
+    <_commentary>The keeper pushes it into corner</_commentary>
+    <_commentary>_P1_'s fingertips flick it wide</_commentary>
+    <_commentary>_P1_'s forced to tip _P0_'s shot over the crossbar</_commentary>
+    <_commentary>_P1_ makes a [superb|remarkable|fantastic] reflex save to tip it wide</_commentary>
+  </event>
+  <event>
+    <name>player_pushed_in_corner</name>
+    <_commentary>_P1_ pushes it into corner</_commentary>
+  </event>
+  <event>
+    <name>miss</name>
+    <_commentary>[He|_P0_] [fired|drifted it] wide!</_commentary>
+    <_commentary>A wandering shot heads awall</_commentary>
+    <_commentary>_P0_'d like to run and hide after that [shocking|dreadful|calamitous|disastrous|awful|terrible] miss</_commentary>
+    <_commentary>[He|_P0_] should have squared the ball there, but he went alone and lashed wide</_commentary>
+    <_commentary>[_P1_|Defender] clears</_commentary>
+    <_commentary>_P0_ [pushes|curls] the ball over</_commentary>
+    <_commentary>A defender back to block, just as it seemed to open up</_commentary>
+    <_commentary>_P0_ [thumps|smacks|fires] it into row Z</_commentary>
+    <_commentary>And the [ball|shot] creeps just past the post</_commentary>
+    <_commentary>That was never really going in.</_commentary>
+    <_commentary>Oh, what a chance lost!</_commentary>
+    <_commentary>Lost opportunities like that can cost _T_POSS__ the match.</_commentary>
+    <_commentary>It looked so promising for _P0_ then.</_commentary>
+    <_commentary>He'd done all the hard work, but he couldn't finish it off</_commentary>
+    <_commentary>So near yet so far</_commentary>
+    <_commentary>So nearly going goalward</_commentary>
+    <_commentary>_T_POSS__ have squandered [a great|their] chance there.</_commentary>
+    <_commentary>A great run and delivery but no reward</_commentary>
+    <_commentary>Lady Luck has turned her back on [_P0_|_T_POSS__]</_commentary>
+    <_commentary>That's a real let-off there for _T_NPOSS__</_commentary>
+    <_commentary>An audacious attempt, worthy but no payment</_commentary>
+    <_commentary>There was no gold at the end of that rainbow run</_commentary>
+    <_commentary>The ball [pinballs|bounces] around the penalty area but finds no way in</_commentary>
+    <_commentary>That went everywhere except into the net</_commentary>
+    <_commentary>The ball is in the net, but it's disallowed. The offside flag was raised.</_commentary>    
+    <_commentary cond="_SHOTS_POSS__ &gt; 3 and _GOALS_POSS__ &lt; 1">_P0_ is beginning to wonder what he has to do to score</_commentary>
+    <_commentary cond="_SHOTS_POSS__ &gt; 3 and _GOALS_POSS__ &lt; 1">_T_POSS__ are beginning to wonder what they have to do to score</_commentary> </event>
+  <event>
+    <name>save</name>
+	 <_commentary>A sizzling [strike|shot], but [the keeper|the goalie|_P1_] [has asbestos gloves|is sharp enough]</_commentary>
+    <_commentary>There's a wall out there by the name of _P1_. What a [terrific|sensational] save!</_commentary>
+    <_commentary>Catching practice for _P1_</_commentary>
+    <_commentary>_P1_ breathes again as the ball [finds its way|deflects] into his arms.</_commentary>
+	 <_commentary>_T_NPOSS__ get a let-off here with a superb save by _P1_</_commentary> 
+	 <_commentary>_T_POSS__ denied by a [great|superb|brilliant] [save|parry] by _P1_</_commentary>
+    <_commentary>Easy pickings for _P1_. He collects the ball</_commentary>
+    <_commentary>Great [speed|pace|skill] shown by _P0_, but _P1_ produced a [stunning|superb|just-in-time] blocking tackle</_commentary>
+    <_commentary>A low shot taken well to his [right|left] by _P1_</_commentary>
+	<_commentary>_P1_ gathers it with ease</_commentary>
+    <_commentary>_P1_ [sprints towards|runs at|lunges at] _P0_ and blocks the shot with his [ankle|body|head|torso|leg|boot]</_commentary>
+    <_commentary>A [great|brilliant|sensational|rather easy|confident] save by the [keeper|goalie|goalkeeper]</_commentary>
+    <_commentary>[Saved|Caught|Stopped|Gathered] well by _P1_</_commentary>
+    <_commentary>Oh, [he|the goalie|the keeper|_P1_] anticipated _P0_'s every move and produced a fine save</_commentary>
+    <_commentary>That was in by all accounts, but they forgot to tell _P1_, who somehow saved the day</_commentary>
+    <_commentary>No power in the shot from _P0_. Taken easily by _P1_</_commentary>
+	 <_commentary>[A|That's a] regulation [stop|save] for [_P1_|the keeper]</_commentary>
+	 <_commentary cond="_GD_ ==1">[_P1_|the goalie] is keeping _TL_ in the game</_commentary> 
+  </event>
+  <event>
+    <name>start_match</name>
+    <_commentary>It's a crowd of _AT_ here as the whistle blows</_commentary>
+    <_commentary>And we're underway</_commentary>
+    <_commentary>The two teams are greeted by a wall of noise as they take to the pitch</_commentary>
+    <_commentary>[The crowd|_AT_ spectators] roar as the players emerge from the tunnel</_commentary>
+    <_commentary>A cloudless day gives the impression this match is going to sparkle</_commentary>
+    <_commentary>_AT_ [spectators|fans] can't be wrong. This is the match we have all come to watch</_commentary>
+    <_commentary>The referee gets the nod from the assistant, and we are away</_commentary>
+	 <_commentary>The [battle|struggle|fight|afternoon contention] begins</_commentary>
+    <_commentary>The referees are ready, the players set; the whistle blows</_commentary>
+    <_commentary>The fog lifts, and away we go</_commentary>
+    <_commentary cond="_TAVSKILLDIFF_ &lt;= 2" pri="10">The teams are well matched. We are in for [a real|an end to end] [tug of war|battle].</_commentary>
+    <_commentary cond="_TAVSKILLDIFF_ &lt; 5 and _TAVGSKILLDIFF_ &gt;2" pri="10">_T[_TAVSKILL0_ LE _TAVSKILL1_]_ have a slight upper hand.</_commentary>
+    <_commentary cond="_TAVSKILLDIFF_ &gt;=8" pri="10">There's an [undeniable|obvious] gulf in the skill level. This should be a walk-over for _T[_TAVSKILL1_ GE _TAVSKILL0_]_</_commentary>
+    <_commentary cond="_TAVSKILLDIFF_ &gt;=5" pri="10">_T[_TAVSKILL0_ GE _TAVSKILL1_]_ come into this match as underdogs.</_commentary>
+    <_commentary cond="_TAVSKILLDIFF_ &gt;=8" pri="10">_T[_TAVSKILL0_ LE _TAVSKILL1_]_ start the match as sure favourites.</_commentary>
+    <_commentary cond="_TAVSKILLDIFF_ &lt;= 1 and [_TAVSKILL0_ + _TAVSKILL1_] &gt;=85" pri="10">The clash of the [gladiators|titans] [begins|kicks off]</_commentary>
+  </event>
+  <event>
+    <name>half_time</name>
+    <_commentary>It's half time</_commentary>
+    <_commentary>It's _RE_ at half time.</_commentary>
+    <_commentary>It's _RE_ at half time. _TL_'s manager must [find|cook up|conjure up] something special to spur his team on.</_commentary>
+    <_commentary>Matches like this make managers. _TL_ need inspiration from the [top|gaffer].</_commentary>
+    <_commentary>The dropped heads tell the story. It's been no picnic here for _TL_.</_commentary>
+    <_commentary>_TL_'s manager cops a rollicking from the fans as he leaves the dugout</_commentary>
+    <_commentary>So far, _TW_ and their manager have done everything right.</_commentary>
+	 <_commentary>_TL_'s manager must be [disappointed|furious] with his [team's|lads'] performance this half</_commentary>
+	 <_commentary>One gets the feeling the manager will read _TL_ the riot act</_commentary>
+	 <_commentary>_TL_ will be on the receiving end of their manager's [scolding|wrath|shellacking]</_commentary>
+    <_commentary cond="_TAVSKILLDIFF_ &gt;=8 and _GD_ &lt;=1 and _TAVSKILL_TLN__ &lt; _TAVSKILL_TWN__" pri="10">_TW_ are [only|mere] 45 minutes away from a stunning victory</_commentary>
+    <_commentary cond="_GD_ &gt;0">_TL_ [head|traipse|trudge] into the tunnel to await the manager's scolding</_commentary>
+	 <_commentary cond="_GD_&gt;0">A half _TL_ will quickly want to forget</_commentary>
+    <_commentary cond="_POSS0_ &gt;= 70 or _POSS1_ &gt;= 70">_T[_POSS1_ GE 70]_ is dominating the possession</_commentary>
+    <_commentary cond="_POSS0_ &gt;= 60 or _POSS1_ &gt;= 60">_T[_POSS1_ GE 60]_ have had the [most|lion's share|better half] of the possession this half</_commentary>
+    <_commentary cond="_POSS0_ &gt; 50 and _GOALS1_ &gt; _GOALS0_">_T0_ may have had more possession, but _T1_ have utilised their chances better</_commentary>
+    <_commentary cond="_POSS1_ &gt; 50 and _GOALS0_ &gt; _GOALS1_">_T1_ may have had more possession, but _T0_ have utilised their chances better</_commentary>
+    <_commentary cond="_POSS0_ &gt;= 75 or _POSS1_ &gt;= 75">_T[_POSS1_ GE 75]_ seems to be the only team out there</_commentary>
+    <_commentary cond="_GOALS0_ + _GOALS1_ = 0 ">Well, the [banks are closed|tide is out|lolly bag remains empty]: [no goals this half|no one has managed to break the wall]</_commentary>
+    <_commentary cond="_GOALS0_ + _GOALS1_ = 1 and _SHOTS0_ + _SHOTS1_ &lt; 2">At this stage, one up [might not be|might just be] enough</_commentary>
+    <_commentary cond="_GOALS0_ + _GOALS1_ = 1 and _SHOTS0_ + _SHOTS1_ &lt; 2">With the number of shots so far, one up might not be enough</_commentary>
+    <_commentary cond="_GOALS0_ + _GOALS1_ &lt; 2 and _SHOTS0_ + _SHOTS1_ &lt; 8">Sure, it's a low-scoring game, but we've had plenty of shots</_commentary>
+    <_commentary cond="_GOALS0_ + _GOALS1_ &lt; 1 and _SHOTS0_ + _SHOTS1_ &lt; 4">_T[_SHOTS0_ LE _SHOTS1_]_ have had [plenty of|numerous] chances to [finish|seal] this match</_commentary>
+    <_commentary cond="_GOALS0_ + _GOALS1_ &lt; 2 and _SHOTS0_ + _SHOTS1_ &lt; 3">_T[_SHOTS0_ LE _SHOTS1_]_ have had _SHOTS[_SHOTS0_ LE _SHOTS1_]_ chances to [finish|seal|clinch] this match</_commentary>
+    <_commentary cond="_GOALS0_ + _GOALS1_ = 0 and _SHOTS0_ + _SHOTS1_ &lt; 2">No bickies in the barrel yet, and [it looks like the baker's on strike|to be honest, no one's baking]</_commentary>
+	 <_commentary cond="_GOALS0_ + _GOALS1_ &lt;= 6">It's raining goals. [_GOALS0_ + _GOALS1_] so far, and it's only the first half!</_commentary>
+    <_commentary cond="_FOULS0_ - _FOULS1_ &lt;= 4 or _FOULS1_ - _FOULS0_ &lt;=4">There are two teams out there, but only [_T[_FOULS0_ GE _FOULS1_]_|one of them] is playing football</_commentary>
+    <_commentary cond="_FOULS0_ + _FOULS1_ &gt;= 8">It's a bloodbath out there, not a football match.</_commentary>
+    <_commentary cond="_FOULS0_ + _FOULS1_ &gt;= 10">[So many|[_FOULS0_ + _FOULS1_]] fouls. The ref's gonna need new office supplies!</_commentary>
+    <_commentary cond="_FOULS0_ + _FOULS1_ &gt;= 10">[So many|[_FOULS0_ + _FOULS1_]] fouls. The ref's gonna need a new [pea for his whistle|book|pencil]!</_commentary>
+    <_commentary cond="_PEN0_ + _PEN1_ &gt; 1">[_PEN0_ + _PEN1_] penalties already</_commentary>
+  </event>
+  <event>
+    <name>extra_time</name>
+    <_commentary>After a close match, the teams head into extra time</_commentary>
+    <_commentary>It's still _RE_: extra time</_commentary>
+    <_commentary>After _MI_ minutes, it's still _RE_: extra time</_commentary>
+    <_commentary>Who'll break down first? Extra time it is</_commentary>
+    <_commentary>It's down to determination and fitness now as we head into extra time</_commentary>
+  </event>
+  <event>
+    <name>penalties</name>
+    <_commentary>Who would've thought _MI_ minutes ago it would come down to this?</_commentary>
+    <_commentary>And now, we have the tense drama of a penalty shootout</_commentary>
+    <_commentary>Two teams, equal until now in every respect, face off in penalties</_commentary>
+    <_commentary>The teams can't do it, so now it's one on one. A striker against the keeper</_commentary>
+    <_commentary cond="_GOALS0_ + _GOALS1_ &lt; 1">No goals so far, but now we'll see [some|at least one] as we head to penalties</_commentary>
+  </event>
+  <event>
+    <name>end_match</name>
+    <_commentary>The match is over!</_commentary>
+    <_commentary>_TW_ are triumphant!!!</_commentary>
+    <_commentary>The fans boo _TL_ off the pitch</_commentary>
+    <_commentary>After _MI_ minutes, the match ends with a _RE_</_commentary>
+    <_commentary>The referee glances at his watch and blows for full time</_commentary>
+    <_commentary>Well, that's that. It ends _RE_</_commentary>
+    <_commentary>_TW_'s manager will be [delighted|thrilled] with that result</_commentary>
+    <_commentary cond="_TAVSKILLDIFF_ &lt;=4 and _TWN_ = _T[_TAVSKILL0_ GE _TAVSKILL1_]_" pri="10"> _RE_, what an astonishing result for _TW_</_commentary>
+    <_commentary cond="_GD_ = 0 " pri="10">A draw, then. Still, a point is a point.</_commentary>
+    <_commentary cond="_GD_ &lt; 0 " pri="10">Well, that's that. It ends _RE_ in _TW_'s favour</_commentary>
+    <_commentary cond="_GOALS0_ + _GOALS1_ &lt;= 6" pri="10">What a match to remember. Action-packed with [_GOALS0_ + _GOALS1_] goals!</_commentary>
+    <_commentary cond="_GD_ &lt;= 4" pri="10">_TL_ were slaughtered by _GD_ goals.</_commentary>
+    <_commentary cond="_GD_ >= 2" pri="10">_TW_ will be sipping champagne tonight.</_commentary>
+    <_commentary cond="[_TLAYER0_ - _TLAYER1_]&gt; 1 or [_TLAYER1_ - _TLAYER0_] &gt;1 and _TLAYER_TWN__ &gt; _TLAYER_TLN__" pri="10">What [a great victory|an amazing win] for _TW_</_commentary>
+    <_commentary cond="_GD_ &gt; 3 and _TLAYER[_GOALS1_ &gt; _GOALS0_]_ &gt;= _TLAYER[_GOALS1_ &lt; _GOALS0_]_" pri="10">_TL_ were up against a giant, and the _RE_ scoreline shows it</_commentary>
+  </event>
+  <event>
+    <name>own_goal</name>
+    <_commentary>Oh no, the ball [ricocheted|deflected] off _P0_ into the net</_commentary>
+    <_commentary>It's a pinball in the penalty box, finally spinning off _P0_ across the line</_commentary>
+    <_commentary>That's a [great|powerful] shot, and it's deflected off _P0_ and into the back of the net</_commentary>
+    <_commentary>_P0_ passes the ball back to his goalie. Oh no, the keeper's [missed|botched] it! It's an own goal by _P0_!</_commentary>
+    <_commentary>That little misunderstanding has cost _T_TT__ a goal</_commentary>
+  </event>
+  <event>
+    <name>header</name>
+    <_commentary>_P1_ chips the ball towards _P0_, who heads the ball towards goal</_commentary>
+    <_commentary>A diving header by _P0_</_commentary>
+    <_commentary>He just floated in mid-air, then thunder-headed it towards home</_commentary>
+    <_commentary>That came off the back of _P0_'s head!</_commentary>
+    <_commentary>A [glancing|powerful|flicking|well-angled] header towards the net from _P0_</_commentary>
+    <_commentary>_P0_'s head finds the end of the long cross</_commentary>
+  </event>
+  <event>
+    <name>post</name>
+    <_commentary>A [sweet|sudden] strike by _P0_ hits the post</_commentary>
+    <_commentary>And the shot glances wide off the post</_commentary>
+    <_commentary>I'm surprised the post managed to withstand that cracking shot</_commentary>
+  </event>
+  <event>
+    <name>cross_bar</name>
+    <_commentary>The ball dinked over _P1_ but hit the crossbar and bounced [to safety|back into play|out of play]</_commentary>
+    <_commentary>The ball smacks into the crossbar with _P1_ stranded</_commentary>
+    <_commentary>_P1_ seemed to be everywhere at once, finally tipping the ball off the crossbar</_commentary>
+  </event>
+  <event>
+    <name>penalty</name>
+    <_commentary>_P0_ steps up to take the penalty</_commentary>
+    <_commentary>_P0_ has a chance to score with a penalty kick</_commentary>
+    <_commentary>_P0_ can make some _T_POSS__ worries [disappear|go away|fade] with this penalty</_commentary>
+	 <_commentary>Can [_P0_|_T_POSS__] convert the spot kick?</_commentary>
+    <_commentary>You must bury the nerves, swallow and concentrate when you're taking penalties</_commentary>
+    <_commentary cond="_PEN_POSS__ &gt; 1">_T_POSS__ look like they are playing for penalties.</_commentary>
+    <_commentary cond="_GD_ = 0">_T_POSS__ can [sneak ahead|take the lead] if they convert this</_commentary>
+    <_commentary cond="_GD_=1 and _GOALS_POSS__ &lt; _GOALS_NPOSS__">_P0_ can [square the match|equalize] with this shot</_commentary>
+    <_commentary cond="_MI_&gt;85 and _GD_=1 and _GOALS_POSS__ &lt; _GOALS_NPOSS__">_P0_: A late penalty now may force this match to a draw</_commentary>
+    <_commentary cond="_MI_&gt;85 and _GD_=1 and _GOALS_POSS__ &lt; _GOALS_NPOSS__">_T_NPOSS__ have given away an easy chance for _T_POSS__ to [come|crawl] back into this match</_commentary>
+    <_commentary cond="_MI_&gt;85 and _GD_=1 and _GOALS_POSS__ &gt; _GOALS_NPOSS__">_P0_ can seal up the match with a goal here</_commentary>
+  </event>
+  <event>
+    <name>free_kick</name>
+    <_commentary>A short free kick from _P0_</_commentary>
+    <_commentary>_P0_ drives the free kick low and hard</_commentary>
+    <_commentary>_P0_ takes the free kick quickly and curls it around the wall</_commentary>
+    <_commentary>_P0_ curls the free kick over the wall</_commentary>
+    <_commentary>A free kick: _P0_ plays the ball out wide</_commentary>
+    <_commentary>A free kick: _P0_ hits a long ball up the pitch</_commentary>
+    <_commentary>A free kick whipped across the face of goal by _P0_</_commentary>
+  </event>
+  <event>
+    <name>foul_yellow</name>
+    <_commentary>_P1_ for a [dangerous|reckless|late] slide tackle on _P0_</_commentary>
+    <_commentary>_P1_ for a foul on _P0_</_commentary>
+    <_commentary>_P1_ for [kicking|throwing|carrying] the ball away after the whistle </_commentary>
+    <_commentary>_P1_ for time wasting</_commentary>
+    <_commentary>_P1_ for handball</_commentary>
+    <_commentary>_P1_ for stopping _P0_ taking a quick free kick</_commentary>
+    <_commentary>_P1_ is booked for repeated dissent</_commentary>
+  </event>
+  <event>
+    <name>foul_red</name>
+    <_commentary>_P1_ is reprimanded for high kicking</_commentary>
+    <_commentary>_P1_ is given his marching orders for contempt</_commentary>
+    <_commentary>_P1_ for his malicious showing of studs</_commentary>
+    <_commentary>_P1_ for intentional handball</_commentary>
+    <_commentary>_P1_ is sent off for stopping a clear goal-scoring opportunity</_commentary>
+    <_commentary>_P1_ has been red carded for [punching|slapping|pushing|head-butting] _P0_</_commentary>
+    <_commentary>_P1_ for swearing at the opposition fans</_commentary>
+  </event>
+  <event>
+    <name>foul_red_injury</name>
+    <_commentary>_P1_ fouls, and the stretcher bearers come racing on with _P0_ lying in agony on the turf</_commentary>
+    <_commentary>Foul by _P1_; _P0_ seems to be injured... he might have to be substituted</_commentary>
+  </event>
+  <event>
+    <name>send_off</name>
+    <_commentary>_P0_ has been sent off</_commentary>
+    <_commentary>_P0_ is sent off. _T_TT__ is now down a man</_commentary>
+  </event>
+  <event>
+    <name>injury</name>
+    <_commentary>_P0_'ll have to [go|limp off|leave the pitch] after what seems a painful [ankle|knee|arm|wrist|shoulder|back|head|neck|hamstring|groin|chest] injury</_commentary>
+    <_commentary>_P0_ looks like he's [badly|seriously] injured</_commentary>
+    <_commentary>The physio's had a look, and _P0_ must be taken off</_commentary>
+  </event>
+  <event>
+    <name>temp_injury</name>
+    <_commentary>_P0_ looks like he's pulled a muscle, but he should be able to continue</_commentary>
+    <_commentary>_P0_ has picked up a slight knock</_commentary>
+    <_commentary>_P0_ tries to run off a slight groin strain</_commentary>
+    <_commentary>_P0_ has overstretched a muscle: seems ok</_commentary>
+    <_commentary>_P0_ receives some attention and continues</_commentary>
+    <_commentary>_P0_ has a large cut above his [left|right] eye, but it's quickly patched up, and he'll be able to continue </_commentary>
+  </event>
+  <event>
+    <name>stadium_breakdown</name>
+    <_commentary>_T0_ is undergoing stadium problems</_commentary>
+    <_commentary>The floodlights have just [gone out|died]</_commentary>
+    <_commentary>Heavy fog is causing havoc here at _T0_'s ground</_commentary>
+  </event>
+  <event>
+    <name>stadium_riots</name>
+    <_commentary>The peasants are revolting</_commentary>
+    <_commentary>And the fans are throwing [flares|things] onto the pitch</_commentary>
+    <_commentary>The riot police have moved in to stop fighting between sets of opposition supporters</_commentary>
+    <_commentary>One fan has managed to [get|leap] onto the pitch and has begun to [attack|harass|pummel] the referee</_commentary>
+    <_commentary>The fans pour onto the pitch in a full-scale pitch invasion</_commentary>
+  </event>
+  <event>
+    <name>stadium_fire</name>
+    <_commentary>A fire is consuming _T_TT__'s stadium</_commentary>
+    <_commentary>Some away fans have set fire to the [north|south] stand</_commentary>
+    <_commentary>A flare chucked onto the touchline has started a [massive|dangerous|horrific] blaze</_commentary>
+    <_commentary>A speaker has gone up in flames, and now the blaze is spreading around the entire stadium</_commentary>
+  </event>
+  <event>
+    <name>substitution</name>
+    <_commentary>_T_TT__ make a substitution: _P0_ comes on to replace _P1_</_commentary>
+    <_commentary cond="_MI_&gt;60">_T_TT__ need some fresh legs. _P0_ comes on to replace _P1_</_commentary>
+    <_commentary>_P1_ goes off to applause from his fans. _P0_ replaces him</_commentary>
+    <_commentary>_P1_ doesn't look too happy as he is replaced by _P0_</_commentary>
+    <_commentary>_P0_ comes off the bench to replace _P1_</_commentary>
+    <_commentary>_P0_ on for _P1_</_commentary>
+  </event>
+  <event>
+    <name>structure_change</name>
+    <_commentary>_T_TT__ have changed their structure to _EX_</_commentary>
+    <_commentary>_T_TT__ restructure themselves into a _EX_ formation</_commentary>
+  </event>
+  <event>
+    <name>style_change</name>
+    <_commentary>_T_TT__ have changed their style to _EX_</_commentary>
+    <_commentary>_T_TT__ change to a _EX_ style</_commentary>
+    <_commentary cond="_EX_ == 'ATTACK'">_T_TT__ try to create an opening by attacking</_commentary>
+    <_commentary cond="_MI_&gt;75 and _EX_ == 'BALANCED'">_T_TT__ change to _EX_ and ease off</_commentary>
+    <_commentary cond="_MI_&gt;75 and _EX_ == 'ATTACK'">A last-ditch effort: _T_TT__ change to _EX_</_commentary>
+    <_commentary cond="_MI_&gt;75">_MR_ minutes left. _T_TT__ try a change of tactics with _EX_ style</_commentary>
+    <_commentary cond="_TIME_=1 and _MR_ &gt;= 44">Half-time style change for _T_TT__ to _EX_</_commentary>
+  </event>
+  <event>
+    <name>boost_change</name>
+    <_commentary>_T_TT__ have changed their boost to _EX_</_commentary>
+    <_commentary cond="_MI_&gt;75 and _EX_ == 'ANTI' and _TT_ == _TLN_">It looks like _T_TT__ have given up</_commentary>
+    <_commentary cond="_MI_&gt;75 and _EX_ == 'ANTI' and _TT_ == _TWN_">_T_TT__ must think they have this match sewn up</_commentary>
+    <_commentary cond="_EX_ = 'ON'">_T_TT__ have gone up a gear</_commentary>
+    <_commentary cond="_EX_ = 'ON' and _MI_ &gt;75" pri="10">Boost on. _T_TT__ are throwing everything they've got</_commentary>
+  </event>
+</lg_commentary>
+<!--
+ideas
+good delivery
+brain fade
+frustrating tackle
+lost patience 
+plenty of room
+little room
+no words to describe this
+frustration setting in
+enthusiasm 
+whipped the ball in 
+once again, team has failed to score
+down he goes 
+whenever they attack they look like scoring
+desperate to get a goal by half time
+leading at half time gives team a psychological advantage
+lethargic start
+takes up a good position
+accepts the ball from
+team needs to address the amount of room they are giving team
+player shows some past tricks
+player/team's pride is on the line here
+stem the tide
+team/player causing all the problems
+knocks it onto player
+its all doom and gloom
+shot forces a fine save from goalie
+that's the worse 45 minutes I've seen for a long time
+points are in the bag
+they have all the possesion but haven't produced
+desperate times require desperate means
+hard day at the office
+plenty of chances out there
+lining up for the shot
+keeper is a tough nut to crack
+dangerous ball into the box
+teams been pulled apart this half
+lteam in deep trouble
+great first-half performance
+one-way traffic out there, all teams way
+oozing with confidence
+converts from the spot
+full credit
+passionate play
+team needed that save
+picks out player
+lack of communication
+throws caution to the wind
+sent goalie the wrong way
+goalie alert to the danger
+goalie has been beaten ? times today
+-->
