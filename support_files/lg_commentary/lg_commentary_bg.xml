@@ -1,250 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <lg_commentary>
   <event>
     <name>general</name>
-    <commentary>_P1_ подава топката към _P0_</commentary>
-    <commentary>_P1_ прави невероятен висок пас към _P0_ </commentary>
-    <commentary>Невероятен пас на _P1_ извежда _P0_</commentary>
-    <commentary>Дълъг висок пас на _P1_ намира _P0_</commentary>
-    <commentary>Невероятен пас по дължината на игрището и надясно.</commentary>
-    <commentary>Бърз пас наляво.</commentary>
-    <commentary>Пореден добър пробив по крилото</commentary>
-    <commentary>_P0_ се включва чрез паса на _P1_</commentary>
-    <commentary>_P1_ прави пробивен пас през много играчи и намира _P0_</commentary>
-    <commentary>_P1_ спира на гърди и подава към _P0_</commentary>
-    <commentary>_P1_ подава с глава напред към _P0_</commentary>
-    <commentary>_P0_ пробива през средата</commentary>
-    <commentary>_P0_ финтира и преминава през персоналния си пазач</commentary>
+    <commentary>_P1_ passes</commentary>
+    <commentary>_P0_</commentary>
+    <commentary>_P1_ to _P0_</commentary>
+    <commentary>_P1_ feeds a [wonderful|terrific|great|brilliant] ball through to _P0_</commentary>
+    <commentary>A delightful little [ball|pass] finds _P0_</commentary>
+    <commentary>A flick on from _P1_ waits for the one two</commentary>
+    <commentary>A neat dummy run and pass</commentary>
+    <commentary>Great footwork, a clever pass</commentary>
+    <commentary>_P1_ drops the ball at _P0_'s feet</commentary>
+    <commentary>A lofted pass from _P1_ finds its mark</commentary>
+    <commentary>_T_POSS__ are on the attack</commentary>
+    <commentary>_T_NPOSS__ are on the [defence|backfoot]</commentary>
+    <commentary>An [outstanding|accurate] cross finds _P0_</commentary>
+    <commentary>Now _T_POSS__ can mount a challenge through _P0_</commentary>
+    <commentary>A ball in by _P1_ [finds|taken by] _P0_</commentary>
+    <commentary>_P1_ [threads|needles] [a great|the] ball to _P0_</commentary>
+    <commentary>A [lovely|superb|long|nifty] pass from _P1_ releases _P0_</commentary>
+    <commentary>A [long|short|slow] floating pass from _P1_ finds _P0_</commentary>
+    <commentary>A [good|great|clever] passing move across the pitch and down the [right|left]</commentary>
+    <commentary>A [quick|well-timed] passing [flick|move] down the [left|right]</commentary>
+    <commentary>_P0_ slips past his man and [collects|latches onto] _P1_'s perfectly [timed|weighted] cross.</commentary>
+    <commentary>Another [clever|brilliant|thinking|decent] move [down the wing|through the centre|across the pitch]</commentary>
+    <commentary>_P0_ [collects|latches onto] _P1_'s [through ball|pass]</commentary>
+    <commentary>_P1_ [threads|needles] [it|the ball] through the [opponent's|player's] [feet|legs] and finds _P0_</commentary>
+    <commentary>_P1_ [traps|controls] [it|the ball] with his [boot|heel|chest|thigh] and [sends it|passes|flicks on] to _P0_</commentary>
+    <commentary>_P1_ [lobs|heads] the ball towards _P0_</commentary>
+    <commentary>_P0_ twisting and turning again</commentary>
+    <commentary>_P0_ twisting desperately to lose his man</commentary>
+	 <commentary>_P0_ rips [up|through] the [centre|midfield]</commentary>
+    <commentary>_P0_ [loses|spins past|dribbles past] his [man|marker]</commentary>
+    <commentary pri="10" cond="_MI_&gt;80 and _GD_ ==0 and _TAVSKILLDIFF_ &gt;= 4">A draw would be a good result for the outmatched _T[_TAVSKILL0_ GE _TAVSKILL1_]_</commentary>
+    <commentary pri="10" cond="_MI_&gt;80 and _GD_ ==1">_TW_ need to buckle down and just hold on for a few more minutes</commentary>
+    <commentary cond="_MI_&gt;20 and _SHOTS_POSS__ &lt; 2">_T_POSS__ need to [get the ball up front more|create more chances|show a bit more spark up front]</commentary>
+    <commentary cond="_MI_>20 and _GOALS0_ + _GOALS1_ &lt; 1  and _SHOTS0_ + _SHOTS1_ &gt; 1 and _SHOTS0_ + _SHOTS1_ &lt; 8">Only [_SHOTS0_ + _SHOTS1_] shots: [it's a battle in the midfield|neither side is really trying]</commentary>
+    <commentary cond="_MI_&gt;20 and _GOALS0_ + _GOALS1_ &lt; 1 and _SHOTS0_ + _SHOTS1_ = 1">Only 1 shot: [it's a battle in the midfield|neither side is really trying]</commentary>
+    <commentary cond="_MI_&lt;20 and _SHOTS0_ + _SHOTS1_ &gt; 2">_MI_ minutes on the clock, and chances from both teams already</commentary>
+    <commentary cond="_SHOTS0_ + _SHOTS1_ &lt; 4">Terrific skills on display</commentary>
+    <commentary cond="_MI_ &gt; 75">We enter the dying moments of normal time</commentary>
+    <commentary cond="_FOULS0_ + _FOULS1_ &gt;= 7">[So many|[_FOULS0_ + _FOULS1_]] fouls. The ref's gonna need a new [pea for his whistle|book|pencil]!</commentary>
+    <commentary cond="_MI_&gt;85">Sure, it's not over till the fat lady sings, but she's warming up right now</commentary>
   </event>
   <event>
     <name>lost_possession</name>
-    <commentary>_P0_ печели топката с невероятно навременна битка</commentary>
-    <commentary>Лош контрол от страна на _P1_ позволява на _P0_ да му открадне топката</commentary>
-    <commentary>_P0_ отнема топката от _P1_ с шпагат</commentary>
-    <commentary>Избягалата топка попада в _P0_</commentary>
+	 <commentary>It's knocked out by _P1_. _P0_ with the throw.</commentary>
+	 <commentary>_P1_ dispossessed</commentary>
+	 <commentary>_P1_ dispossessed by _P0_</commentary>
+	 <commentary>[_P1_ gives the ball|The ball is given] away [carelessly|cheaply|too easily]</commentary>
+	 <commentary>_P1_ takes it over the line. A throw-in to _T_POSS__</commentary>
+	 <commentary>A [wild|poor|subpar] pass by _P1_ results in a throw-in for _T_POSS__</commentary>
+	 <commentary>_P0_ takes a quick throw-in</commentary>
+	 <commentary>A long throw-in from _P0_</commentary>
+    <commentary>The slide tackle by _P0_ was worthy of topflight baseball.</commentary>
+	 <commentary>A heavy ball uncontrolled by _P1_</commentary>
+    <commentary>_P0_ wins the ball with a [perfectly timed|hard] challenge</commentary>
+    <commentary>_T_NPOSS__ [gives the ball away|loses the ball too quickly]</commentary>
+    <commentary>Bad control by _P1_ lets _P0_ steal the ball from him</commentary>
+    <commentary>_P0_ [steals|takes|snatches] the ball away from _P1_ with a sliding tackle</commentary>
+    <commentary>A loose ball [falls|bounces] straight to _P0_</commentary>
+    <commentary>A crunching tackle by _P0_ who [comes away with|wins] the ball</commentary>
+    <commentary>_P1_ is left stranded as _P0_ takes the ball</commentary>
+    <commentary>_P0_ makes a great interception</commentary>
+    <commentary>_P0_ gatecrashes _P1_'s party and comes away with the prize</commentary>
+    <commentary>That wasn't _P1_'s greatest pass as _P0_ intercepts</commentary>
   </event>
   <event>
     <name>foul</name>
-    <commentary>О-о-о, неприятен сблъсък с _P0_</commentary>
-    <commentary>Това определено трябва да е червен картон!</commentary>
-    <commentary>_P1_ събаря _P0_ с шпагат с двата крака</commentary>
-    <commentary>Груб двубой с _P0_</commentary>
-    <commentary>Краката на _P0_ бяха преиначени от _P1_</commentary>
-    <commentary>Разбиващо влизане на _P1_ в краката на _P0_</commentary>
-    <commentary>Злобен двубой на _P1_ оставя _P0_ лежащ на земята да агонизира</commentary>
-    <commentary>Това определено боли!</commentary>
-    <commentary>Високо вдигнатия крак на _P1_ изпраща _P0_ на земята</commentary>
+    <commentary>[Oww|Ouch|Aye korumba], that was a nasty tackle on _P0_</commentary>
+    <commentary>Surely [that must be a sending-off offence|_P1_'s going to get booked for that]?</commentary>
+    <commentary>_P1_ [knocks|bowls|crashes] over _P0_ with a double-footed lunge</commentary>
+    <commentary>A [nasty|crunching|fierce] challenge on _P0_</commentary>
+    <commentary>_P0_ gets his legs taken away from him by _P1_</commentary>
+    <commentary>A [slicing|nasty|pulverising] challenge by _P1_ on _P0_</commentary>
+    <commentary>A [vicious|hard] tackle from _P1_ leaves _P0_ lying on the grass in agony</commentary>
+    <commentary>_P1_ clinically takes out _P0_ and leaves him in agony</commentary>
+    <commentary>They don't call _P1_ [the Slayer|the Assassin|Killer|Chopper Reid] for nothing. He's almost [wiped out|run over] [the guy|_P0_]!</commentary>
+	 <commentary>Ouch! That's got to hurt</commentary>
+    <commentary>_P0_ is on the ground, and he's not smiling</commentary>
+    <commentary>I don't know about _P0_, but that tackle brought tears to my eyes</commentary>
+    <commentary>A dangerously high boot from _P1_ sends _P0_ to the ground</commentary>
+    <commentary>_P1_'s black belt in [Karate|Taekwondo|Jujitsu] came in handy then, when he floored _P0_</commentary>
+	 <commentary>_P1_ just lost his patience and [took|knocked] _P0_ to the ground.</commentary>
+	 <commentary>_P0_ takes the full brunt of _P1_'s challenge.</commentary>
+	 <commentary>_P0_ tried to absorb that tackle, but it's too much for the ref</commentary>
+	 <commentary>The ref played the advantage but eventually had to signal the foul on _P0_</commentary>
+	 <commentary>Frustration is setting in when you start to see fouls like that.</commentary>
+	 <commentary>That's what's known as a professional foul</commentary>
+	 <commentary>_P0_ tries to run off a harsh challenge</commentary>
+	 <commentary>_P1_ with a bone-crunching tackle. Surely, he won't get away with that.</commentary>
   </event>
   <event>
     <name>scoring_chance</name>
-    <commentary>_P0_ напредва към вратата и стреля!</commentary>
-    <commentary>_P0_ се завърта и стреля</commentary>
-    <commentary>Дълга топка от _P1_ намира _P0_ при далечната греда</commentary>
-    <commentary>_P0_ не успява да овладее добре топката, но мощният му удар се отправя към гол-линията</commentary>
-    <commentary>_P0_ стреля от 20 метра и изглежда няма да отбележи</commentary>
-    <commentary>_P0_ дриблира в наказателното, завърта се около защитата и стреля</commentary>
-    <commentary>_P0_ се включва от левия фланг и стреля</commentary>
-    <commentary>_P0_ си опитва късмета от 28 метра</commentary>
-    <commentary>_P0_ стреля пронизващо към горният десен ъгъл</commentary>
-    <commentary>_P0_ стреля от близко разстояние</commentary>
-    <commentary>Невероятна топка от _P1_ изпраща _P0_ сам срещу вратаря</commentary>
-    <commentary>Прехвърлящият удар на _P0_ се отправя застрашително към горния десен ъгъл</commentary>
-    <commentary>_P0_ финтира двама защитника, излъгва вратаря и с пета отправя топката към гол-линията.</commentary>
-    <commentary>_P1_ залепва топката на крака на _P0_, който изпраща ракетен изстрел към вратата</commentary>
+    <commentary>_P0_ [infiltrates|sneaks through] the defence and [hammers|cracks] it</commentary>
+    <commentary>A deep cross floats in from _P1_, and _P0_ [slots it towards goal|fires]</commentary>
+    <commentary>_P0_ charges towards goal and [fires|unleashes|stabs|shoots]!</commentary>
+    <commentary>_P0_ spins and shoots</commentary>
+    <commentary>A blazing [shot|strike] from _P0_</commentary>
+    <commentary>_P0_ finds some space and tries his luck.</commentary>
+    <commentary>A wonderful opportunity opens up for _T_POSS__</commentary>
+    <commentary>A long ball from _P1_ finds _P0_ at the [near|far] post</commentary>
+    <commentary>_P0_ [has fluffed it|can't control it|snaps a shot], and his miskick heads [toward goal|goalward]</commentary>
+    <commentary>His [great|excellent] first touch heads it goalwards</commentary>
+    <commentary>_P0_ takes it on the volley and [hammers|nails|plants] it towards goal</commentary>
+	 <commentary>_P0_ takes it on the volley from _P1_'s pass pushing goalwards</commentary>
+    <commentary>_P0_ [fires|shoots|blasts it|hammers it] from [22|20|18|15] yards; looks like it's [drifting|curving|spinning|going wide]</commentary>
+    <commentary>_P0_ [drifts|dribbles|runs|rushes|strolls|slips|sneaks] into the box, turns inside the defence and fires</commentary>
+    <commentary>_P0_ [drifts|crashes|cuts] in from the [right|left] flank and [strikes|shoots|fires]</commentary>
+    <commentary>_P0_ tries his luck from [30|25] yards</commentary>
+    <commentary>_P0_ [snaps|arrows|beams] a shot towards the [bottom|top] [right|left] corner</commentary>
+    <commentary>_P0_ shoots from close range</commentary>
+    <commentary>A [classy|great|brilliant] [pass|ball] from _P1_ sends _P0_ one on one with the [keeper|goalkeeper|goalie]</commentary>
+    <commentary>_P0_'s [scissor|overhead] kick heads towards the [bottom|top] [left|right]-hand corner</commentary>
+    <commentary>_P0_ [waltzes|spins|drifts|rips] past two defenders, [dummies|wrong-foots] the keeper and [flicks|back-heels|clips] the ball [home|towards goal|goalward]</commentary>
+    <commentary>_P1_ lays the ball off to _P0_, who [sends a rocket|fires a piledriver] towards goal</commentary>
+    <commentary>_P0_ charges in with a shot</commentary>
+    <commentary>A lay-off from _P1_ sets up _T_POSS__ with a chance</commentary>
+    <commentary>_P0_ gets in behind the defence and strikes</commentary>
   </event>
   <event>
     <name>goal</name>
-    <commentary>ГОЛ!!!</commentary>
-    <commentary>И топката едва не разкъсва мрежата зад вратаря!!!</commentary>
-    <commentary>_P0_ отбелязва!!!</commentary>
-    <commentary>И топката излита директно покрай _P1_ и в мрежата!!!</commentary>
-    <commentary>Топката минава покрай _P1_ и това е ГОЛ!!!</commentary>
-    <commentary>_P0_ се оттегля радвайки се след чудесен гол, който подлудява тифозите</commentary>
-    <commentary>Отчаяният плонж на _P1_ не може да спре изстрела на _P0_ и топката е спряна от вътрешната страна на мрежата!!!</commentary>
-    <commentary>Танцът завладява публиката, _P0_ се радва по негов си странен начин</commentary>
+    <commentary>Goal!!!</commentary>
+    <commentary>And the ball is smacked into the back of the net!!!</commentary>
+    <commentary>_P0_ scores!!!</commentary>
+    <commentary>Goal!! Did you see that? [Their goalie|_P1_] certainly didn't.</commentary>
+    <commentary>And the ball [rips|flies|glides|bullets] straight past _P1_ and into the back of the net!!!</commentary>
+    <commentary>The ball [whistles|flies|zips|whooshes] past _P1_, and it's a goal!!!</commentary>
+    <commentary>_P0_ wheels away in celebration</commentary>
+	 <commentary>What a [mesmerising|marvellous|wonderful|fantastic|brilliant|spectacular] goal!!</commentary>
+    <commentary>Goal!! _P1_'s [desperate|despairing|stretched] dive can't keep _P0_'s shot out</commentary>
+	 <commentary>The ball [lies|is] in the back of the net!!!</commentary>
+    <commentary>Celebrations abound! They won't forget that [goal|strike|shot] in a hurry</commentary>
+	 <commentary>_P0_'s dance [ignites|sparks] the fans. He celebrates in his [well-known|own|peculiar|special|unique] fashion</commentary>
+    <commentary>Goal! A dipping ball from _P0_ stuns [the keeper|_P1_|_T_NPOSS__]</commentary>
+    <commentary>An outstanding Goal!</commentary>
+    <commentary>Goal! Lady Luck obviously supports _T_TT__</commentary>
+    <commentary>A [curving|hard, inswinging|outswinging|swerving] ball beats _P1_ to the line. Goal!</commentary>
+	 <commentary cond="_GOALS0_ + _GOALS1_ ==1">_T_TT_ [take first blood|are first to open the account] today</commentary>
+	 <commentary cond="_GD_ &lt;=2 and _T_TT_ == _TLN_">That [strike|goal] has sent the _T_TT_ fans [wild|into a frenzy]</commentary>
+	 <commentary cond="_GD_ == 0 ">That [strike|goal] has levelled the score</commentary>
+	 <commentary cond="_GD_ &lt;=2">_T_POSS__ have struck [pay dirt|gold]. What a goal!</commentary>
+    <commentary cond="_T_TT__ == _TLN_ and _GD_ &lt;=2 ">Can _T_TT__ produce a [shock|surprise] comeback?</commentary>
+    <commentary cond="_T_TT__ == _TLN_">Lady Luck is smiling on _T_TT__ now</commentary>
+    <commentary cond="_POSS_POSS__ &lt; 45">_T_POSS__ score against the run of the play</commentary>
+    <commentary cond="_T_TT__ == _TWN_ and _GD_ &gt;3">That's just another nail in the coffin</commentary>
+  </event>
+  <event>
+    <name>corner</name>
+    <commentary>_P0_ takes the corner</commentary>
+  </event>
+  <event>
+    <name>keeper_pushed_in_corner</name>
+    <commentary>The keeper pushes it into corner</commentary>
+    <commentary>_P1_'s fingertips flick it wide</commentary>
+    <commentary>_P1_'s forced to tip _P0_'s shot over the crossbar</commentary>
+    <commentary>_P1_ makes a [superb|remarkable|fantastic] reflex save to tip it wide</commentary>
+  </event>
+  <event>
+    <name>player_pushed_in_corner</name>
+    <commentary>_P1_ pushes it into corner</commentary>
   </event>
   <event>
     <name>miss</name>
-    <commentary>_P0_ стреля прекалено неточно!</commentary>
-    <commentary>Защитникът изчиства</commentary>
-    <commentary>_P0_ прехвърля топката над вратата</commentary>
-    <commentary>Защитникът се връща и блокира</commentary>
-    <commentary>Изстрелът на _P0_ отлита в сектор А</commentary>
-    <commentary>И топката пропуска вратата за милиметри</commentary>
-  </event>
+    <commentary>[He|_P0_] [fired|drifted it] wide!</commentary>
+    <commentary>A wandering shot heads awall</commentary>
+    <commentary>_P0_'d like to run and hide after that [shocking|dreadful|calamitous|disastrous|awful|terrible] miss</commentary>
+    <commentary>[He|_P0_] should have squared the ball there, but he went alone and lashed wide</commentary>
+    <commentary>[_P1_|Defender] clears</commentary>
+    <commentary>_P0_ [pushes|curls] the ball over</commentary>
+    <commentary>A defender back to block, just as it seemed to open up</commentary>
+    <commentary>_P0_ [thumps|smacks|fires] it into row Z</commentary>
+    <commentary>And the [ball|shot] creeps just past the post</commentary>
+    <commentary>That was never really going in.</commentary>
+    <commentary>Oh, what a chance lost!</commentary>
+    <commentary>Lost opportunities like that can cost _T_POSS__ the match.</commentary>
+    <commentary>It looked so promising for _P0_ then.</commentary>
+    <commentary>He'd done all the hard work, but he couldn't finish it off</commentary>
+    <commentary>So near yet so far</commentary>
+    <commentary>So nearly going goalward</commentary>
+    <commentary>_T_POSS__ have squandered [a great|their] chance there.</commentary>
+    <commentary>A great run and delivery but no reward</commentary>
+    <commentary>Lady Luck has turned her back on [_P0_|_T_POSS__]</commentary>
+    <commentary>That's a real let-off there for _T_NPOSS__</commentary>
+    <commentary>An audacious attempt, worthy but no payment</commentary>
+    <commentary>There was no gold at the end of that rainbow run</commentary>
+    <commentary>The ball [pinballs|bounces] around the penalty area but finds no way in</commentary>
+    <commentary>That went everywhere except into the net</commentary>
+    <commentary>The ball is in the net, but it's disallowed. The offside flag was raised.</commentary>    
+    <commentary cond="_SHOTS_POSS__ &gt; 3 and _GOALS_POSS__ &lt; 1">_P0_ is beginning to wonder what he has to do to score</commentary>
+    <commentary cond="_SHOTS_POSS__ &gt; 3 and _GOALS_POSS__ &lt; 1">_T_POSS__ are beginning to wonder what they have to do to score</commentary> </event>
   <event>
     <name>save</name>
-    <commentary>_P1_ успява да избие топката с върха на пръстите си</commentary>
-    <commentary>_P1_ избива изстрела на _P0_ над горната греда</commentary>
-    <commentary>Добро следене на играта от страна на _P0_, който успява да стигне до топката преди _P1_</commentary>
-    <commentary>_P1_ спасява ниският удар в долния ляв ъгъл</commentary>
-    <commentary>_P1_ показва невероятен рефлекс</commentary>
-    <commentary>_P1_ тича към _P0_ и блокира изстрела с шпагат</commentary>
-    <commentary>Лесно спасяване за вратаря</commentary>
-    <commentary>Умело хващане на _P1_</commentary>
+	 <commentary>A sizzling [strike|shot], but [the keeper|the goalie|_P1_] [has asbestos gloves|is sharp enough]</commentary>
+    <commentary>There's a wall out there by the name of _P1_. What a [terrific|sensational] save!</commentary>
+    <commentary>Catching practice for _P1_</commentary>
+    <commentary>_P1_ breathes again as the ball [finds its way|deflects] into his arms.</commentary>
+	 <commentary>_T_NPOSS__ get a let-off here with a superb save by _P1_</commentary> 
+	 <commentary>_T_POSS__ denied by a [great|superb|brilliant] [save|parry] by _P1_</commentary>
+    <commentary>Easy pickings for _P1_. He collects the ball</commentary>
+    <commentary>Great [speed|pace|skill] shown by _P0_, but _P1_ produced a [stunning|superb|just-in-time] blocking tackle</commentary>
+    <commentary>A low shot taken well to his [right|left] by _P1_</commentary>
+	<commentary>_P1_ gathers it with ease</commentary>
+    <commentary>_P1_ [sprints towards|runs at|lunges at] _P0_ and blocks the shot with his [ankle|body|head|torso|leg|boot]</commentary>
+    <commentary>A [great|brilliant|sensational|rather easy|confident] save by the [keeper|goalie|goalkeeper]</commentary>
+    <commentary>[Saved|Caught|Stopped|Gathered] well by _P1_</commentary>
+    <commentary>Oh, [he|the goalie|the keeper|_P1_] anticipated _P0_'s every move and produced a fine save</commentary>
+    <commentary>That was in by all accounts, but they forgot to tell _P1_, who somehow saved the day</commentary>
+    <commentary>No power in the shot from _P0_. Taken easily by _P1_</commentary>
+	 <commentary>[A|That's a] regulation [stop|save] for [_P1_|the keeper]</commentary>
+	 <commentary cond="_GD_ ==1">[_P1_|the goalie] is keeping _TL_ in the game</commentary> 
   </event>
   <event>
     <name>start_match</name>
-    <commentary>Ето го и първият съдийски сигнал</commentary>
-    <commentary>Мачът започва</commentary>
-    <commentary>Двата отбора са посрещнати от стена от викове, при излизането си на терена</commentary>
-    <commentary>Публиката подкрепя любимците си, докато те излизат от тунела за започването на мача</commentary>
-    <commentary>Слънчевият ден дава надежди за добър мач</commentary>
-    <commentary>Феновете на _AT_ не могат да грешат. Това е мач, който всички сме дошли да гледаме.</commentary>
-    <commentary>Съдията получава онова кимване от страничните си помошници и това е началото</commentary>
-    <commentary>Битката на титаните има вече начало</commentary>
-    <commentary>Съдиите са готови, играчите също - двубоя започва</commentary>
+    <commentary>It's a crowd of _AT_ here as the whistle blows</commentary>
+    <commentary>And we're underway</commentary>
+    <commentary>The two teams are greeted by a wall of noise as they take to the pitch</commentary>
+    <commentary>[The crowd|_AT_ spectators] roar as the players emerge from the tunnel</commentary>
+    <commentary>A cloudless day gives the impression this match is going to sparkle</commentary>
+    <commentary>_AT_ [spectators|fans] can't be wrong. This is the match we have all come to watch</commentary>
+    <commentary>The referee gets the nod from the assistant, and we are away</commentary>
+	 <commentary>The [battle|struggle|fight|afternoon contention] begins</commentary>
+    <commentary>The referees are ready, the players set; the whistle blows</commentary>
+    <commentary>The fog lifts, and away we go</commentary>
+    <commentary pri="10" cond="_TAVSKILLDIFF_ &lt;= 2">The teams are well matched. We are in for [a real|an end to end] [tug of war|battle].</commentary>
+    <commentary pri="10" cond="_TAVSKILLDIFF_ &lt; 5 and _TAVGSKILLDIFF_ &gt;2">_T[_TAVSKILL0_ LE _TAVSKILL1_]_ have a slight upper hand.</commentary>
+    <commentary pri="10" cond="_TAVSKILLDIFF_ &gt;=8">There's an [undeniable|obvious] gulf in the skill level. This should be a walk-over for _T[_TAVSKILL1_ GE _TAVSKILL0_]_</commentary>
+    <commentary pri="10" cond="_TAVSKILLDIFF_ &gt;=5">_T[_TAVSKILL0_ GE _TAVSKILL1_]_ come into this match as underdogs.</commentary>
+    <commentary pri="10" cond="_TAVSKILLDIFF_ &gt;=8">_T[_TAVSKILL0_ LE _TAVSKILL1_]_ start the match as sure favourites.</commentary>
+    <commentary pri="10" cond="_TAVSKILLDIFF_ &lt;= 1 and [_TAVSKILL0_ + _TAVSKILL1_] &gt;=85">The clash of the [gladiators|titans] [begins|kicks off]</commentary>
   </event>
   <event>
     <name>half_time</name>
-    <commentary>Полувремето е</commentary>
-    <commentary>Резултатът е _RE_ на полувремето.</commentary>
-    <commentary>Резултатът е _RE_ на полувремето. Мениджърът на _TL_ трябва спешно да намери начин да мотивира отбора си.</commentary>
-    <commentary>_TL_ се отправят към тунела, за да посрещнат виковете на треньора.</commentary>
-    <commentary>_TW_ са само на 45 минути от зашеметяваща победа</commentary>
-    <commentary>На терена има два отбора, но само единият от тях играе футбол</commentary>
+    <commentary>It's half time</commentary>
+    <commentary>It's _RE_ at half time.</commentary>
+    <commentary>It's _RE_ at half time. _TL_'s manager must [find|cook up|conjure up] something special to spur his team on.</commentary>
+    <commentary>Matches like this make managers. _TL_ need inspiration from the [top|gaffer].</commentary>
+    <commentary>The dropped heads tell the story. It's been no picnic here for _TL_.</commentary>
+    <commentary>_TL_'s manager cops a rollicking from the fans as he leaves the dugout</commentary>
+    <commentary>So far, _TW_ and their manager have done everything right.</commentary>
+	 <commentary>_TL_'s manager must be [disappointed|furious] with his [team's|lads'] performance this half</commentary>
+	 <commentary>One gets the feeling the manager will read _TL_ the riot act</commentary>
+	 <commentary>_TL_ will be on the receiving end of their manager's [scolding|wrath|shellacking]</commentary>
+    <commentary pri="10" cond="_TAVSKILLDIFF_ &gt;=8 and _GD_ &lt;=1 and _TAVSKILL_TLN__ &lt; _TAVSKILL_TWN__">_TW_ are [only|mere] 45 minutes away from a stunning victory</commentary>
+    <commentary cond="_GD_ &gt;0">_TL_ [head|traipse|trudge] into the tunnel to await the manager's scolding</commentary>
+	 <commentary cond="_GD_&gt;0">A half _TL_ will quickly want to forget</commentary>
+    <commentary cond="_POSS0_ &gt;= 70 or _POSS1_ &gt;= 70">_T[_POSS1_ GE 70]_ is dominating the possession</commentary>
+    <commentary cond="_POSS0_ &gt;= 60 or _POSS1_ &gt;= 60">_T[_POSS1_ GE 60]_ have had the [most|lion's share|better half] of the possession this half</commentary>
+    <commentary cond="_POSS0_ &gt; 50 and _GOALS1_ &gt; _GOALS0_">_T0_ may have had more possession, but _T1_ have utilised their chances better</commentary>
+    <commentary cond="_POSS1_ &gt; 50 and _GOALS0_ &gt; _GOALS1_">_T1_ may have had more possession, but _T0_ have utilised their chances better</commentary>
+    <commentary cond="_POSS0_ &gt;= 75 or _POSS1_ &gt;= 75">_T[_POSS1_ GE 75]_ seems to be the only team out there</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 0 ">Well, the [banks are closed|tide is out|lolly bag remains empty]: [no goals this half|no one has managed to break the wall]</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 1 and _SHOTS0_ + _SHOTS1_ &lt; 2">At this stage, one up [might not be|might just be] enough</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 1 and _SHOTS0_ + _SHOTS1_ &lt; 2">With the number of shots so far, one up might not be enough</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ &lt; 2 and _SHOTS0_ + _SHOTS1_ &lt; 8">Sure, it's a low-scoring game, but we've had plenty of shots</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ &lt; 1 and _SHOTS0_ + _SHOTS1_ &lt; 4">_T[_SHOTS0_ LE _SHOTS1_]_ have had [plenty of|numerous] chances to [finish|seal] this match</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ &lt; 2 and _SHOTS0_ + _SHOTS1_ &lt; 3">_T[_SHOTS0_ LE _SHOTS1_]_ have had _SHOTS[_SHOTS0_ LE _SHOTS1_]_ chances to [finish|seal|clinch] this match</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ = 0 and _SHOTS0_ + _SHOTS1_ &lt; 2">No bickies in the barrel yet, and [it looks like the baker's on strike|to be honest, no one's baking]</commentary>
+	 <commentary cond="_GOALS0_ + _GOALS1_ &lt;= 6">It's raining goals. [_GOALS0_ + _GOALS1_] so far, and it's only the first half!</commentary>
+    <commentary cond="_FOULS0_ - _FOULS1_ &lt;= 4 or _FOULS1_ - _FOULS0_ &lt;=4">There are two teams out there, but only [_T[_FOULS0_ GE _FOULS1_]_|one of them] is playing football</commentary>
+    <commentary cond="_FOULS0_ + _FOULS1_ &gt;= 8">It's a bloodbath out there, not a football match.</commentary>
+    <commentary cond="_FOULS0_ + _FOULS1_ &gt;= 10">[So many|[_FOULS0_ + _FOULS1_]] fouls. The ref's gonna need new office supplies!</commentary>
+    <commentary cond="_FOULS0_ + _FOULS1_ &gt;= 10">[So many|[_FOULS0_ + _FOULS1_]] fouls. The ref's gonna need a new [pea for his whistle|book|pencil]!</commentary>
+    <commentary cond="_PEN0_ + _PEN1_ &gt; 1">[_PEN0_ + _PEN1_] penalties already</commentary>
   </event>
   <event>
     <name>extra_time</name>
-    <commentary>След този уравновесен като сили мач е време за продължения</commentary>
-    <commentary>Все още е _RE_: Продължения!</commentary>
-    <commentary>След _MI_ минути, все още резултат се задържа на_RE_: продължения</commentary>
-    <commentary>Кой ще се пречупи първи през продълженията?</commentary>
-    <commentary>Сега при продълженията всичко опира до желанието за победа и физическата издръжливост на играчите</commentary>
+    <commentary>After a close match, the teams head into extra time</commentary>
+    <commentary>It's still _RE_: extra time</commentary>
+    <commentary>After _MI_ minutes, it's still _RE_: extra time</commentary>
+    <commentary>Who'll break down first? Extra time it is</commentary>
+    <commentary>It's down to determination and fitness now as we head into extra time</commentary>
   </event>
   <event>
     <name>penalties</name>
-    <commentary>Преди _MI_ минути, кой би предположил, че ще се стигне до тук</commentary>
-    <commentary>Сега идва драмата на дузпите!</commentary>
-    <commentary>Два отбора, рамо до рамо до последно, сега ще решат мача с дузпи</commentary>
-    <commentary>Отборите не успяха да излъчат победител. Затова сега ще се реши всичко 1 на 1.</commentary>
+    <commentary>Who would've thought _MI_ minutes ago it would come down to this?</commentary>
+    <commentary>And now, we have the tense drama of a penalty shootout</commentary>
+    <commentary>Two teams, equal until now in every respect, face off in penalties</commentary>
+    <commentary>The teams can't do it, so now it's one on one. A striker against the keeper</commentary>
+    <commentary cond="_GOALS0_ + _GOALS1_ &lt; 1">No goals so far, but now we'll see [some|at least one] as we head to penalties</commentary>
   </event>
   <event>
     <name>end_match</name>
-    <commentary>Край на мача!</commentary>
-    <commentary>_TW_ триумфират!!!</commentary>
-    <commentary>Феновете освиркват _TL_</commentary>
-    <commentary>След _MI_ минути мачът свършва при резултат _RE_</commentary>
-    <commentary>Реферът поглежда часовника си и обявява края на мача</commentary>
-    <commentary>Беше каквото беше. Резултат е _RE_</commentary>
-    <commentary>_RE_, какъв невероятен резултат за _TW_</commentary>
+    <commentary>The match is over!</commentary>
+    <commentary>_TW_ are triumphant!!!</commentary>
+    <commentary>The fans boo _TL_ off the pitch</commentary>
+    <commentary>After _MI_ minutes, the match ends with a _RE_</commentary>
+    <commentary>The referee glances at his watch and blows for full time</commentary>
+    <commentary>Well, that's that. It ends _RE_</commentary>
+    <commentary>_TW_'s manager will be [delighted|thrilled] with that result</commentary>
+    <commentary pri="10" cond="_TAVSKILLDIFF_ &lt;=4 and _TWN_ = _T[_TAVSKILL0_ GE _TAVSKILL1_]_">_RE_, what an astonishing result for _TW_</commentary>
+    <commentary pri="10" cond="_GD_ = 0 ">A draw, then. Still, a point is a point.</commentary>
+    <commentary pri="10" cond="_GD_ &lt; 0 ">Well, that's that. It ends _RE_ in _TW_'s favour</commentary>
+    <commentary pri="10" cond="_GOALS0_ + _GOALS1_ &lt;= 6">What a match to remember. Action-packed with [_GOALS0_ + _GOALS1_] goals!</commentary>
+    <commentary pri="10" cond="_GD_ &lt;= 4">_TL_ were slaughtered by _GD_ goals.</commentary>
+    <commentary pri="10" cond="_GD_ >= 2">_TW_ will be sipping champagne tonight.</commentary>
+    <commentary pri="10" cond="[_TLAYER0_ - _TLAYER1_]&gt; 1 or [_TLAYER1_ - _TLAYER0_] &gt;1 and _TLAYER_TWN__ &gt; _TLAYER_TLN__">What [a great victory|an amazing win] for _TW_</commentary>
+    <commentary pri="10" cond="_GD_ &gt; 3 and _TLAYER[_GOALS1_ &gt; _GOALS0_]_ &gt;= _TLAYER[_GOALS1_ &lt; _GOALS0_]_">_TL_ were up against a giant, and the _RE_ scoreline shows it</commentary>
   </event>
   <event>
     <name>own_goal</name>
-    <commentary>О, не! Топката рикошира от крака на _P0_ право в мрежата</commentary>
-    <commentary>Меле в наказателното и за нещастие отбита от _P0_ преминава гол-линията</commentary>
-    <commentary>Това е чудесен изстрел и е отбит от _P0_ зад гърба на вратаря</commentary>
-    <commentary>_P0_ връща към вратаря, но той я пропуска! Автогол на _P0_!</commentary>
-    <commentary>Това малко недоразумение костваше един гол на _T_TT__</commentary>
+    <commentary>Oh no, the ball [ricocheted|deflected] off _P0_ into the net</commentary>
+    <commentary>It's a pinball in the penalty box, finally spinning off _P0_ across the line</commentary>
+    <commentary>That's a [great|powerful] shot, and it's deflected off _P0_ and into the back of the net</commentary>
+    <commentary>_P0_ passes the ball back to his goalie. Oh no, the keeper's [missed|botched] it! It's an own goal by _P0_!</commentary>
+    <commentary>That little misunderstanding has cost _T_TT__ a goal</commentary>
   </event>
   <event>
     <name>header</name>
-    <commentary>_P1_ чуква топката напред към _P0_, който я насочва с глава към гола</commentary>
-    <commentary>Плонжиращ удар с глава на _P0_</commentary>
+    <commentary>_P1_ chips the ball towards _P0_, who heads the ball towards goal</commentary>
+    <commentary>A diving header by _P0_</commentary>
+    <commentary>He just floated in mid-air, then thunder-headed it towards home</commentary>
+    <commentary>That came off the back of _P0_'s head!</commentary>
+    <commentary>A [glancing|powerful|flicking|well-angled] header towards the net from _P0_</commentary>
+    <commentary>_P0_'s head finds the end of the long cross</commentary>
   </event>
   <event>
     <name>post</name>
-    <commentary>Красив удар на _P0_, но уцелва гредата</commentary>
-    <commentary>Право в гредата</commentary>
-    <commentary>Учуден съм, че гредата издържа на този силен изстрел</commentary>
+    <commentary>A [sweet|sudden] strike by _P0_ hits the post</commentary>
+    <commentary>And the shot glances wide off the post</commentary>
+    <commentary>I'm surprised the post managed to withstand that cracking shot</commentary>
   </event>
   <event>
     <name>cross_bar</name>
-    <commentary>Топката прехвърля _P1_, но се удря в горната греда и излиза в безопасност</commentary>
-    <commentary>Топката се забива в горната греда</commentary>
-    <commentary>_P1_ сякаш е навсякъде едновременно, накрая обаче прехвърлящият му удар удря горната греда</commentary>
+    <commentary>The ball dinked over _P1_ but hit the crossbar and bounced [to safety|back into play|out of play]</commentary>
+    <commentary>The ball smacks into the crossbar with _P1_ stranded</commentary>
+    <commentary>_P1_ seemed to be everywhere at once, finally tipping the ball off the crossbar</commentary>
   </event>
   <event>
     <name>penalty</name>
-    <commentary>_P0_ пристъпва към точката за изпълнение на дузпи</commentary>
-    <commentary>_P0_ има шанса да реализира 12 метров наказателен удар</commentary>
-    <commentary>_P0_ пропусна дузпа преди време, но сега има шанс да се реваншира</commentary>
-    <commentary>Трябва да се забравят нервите, да се преглътне и да се концетрира при изпълнението на дузпа</commentary>
+    <commentary>_P0_ steps up to take the penalty</commentary>
+    <commentary>_P0_ has a chance to score with a penalty kick</commentary>
+    <commentary>_P0_ can make some _T_POSS__ worries [disappear|go away|fade] with this penalty</commentary>
+	 <commentary>Can [_P0_|_T_POSS__] convert the spot kick?</commentary>
+    <commentary>You must bury the nerves, swallow and concentrate when you're taking penalties</commentary>
+    <commentary cond="_PEN_POSS__ &gt; 1">_T_POSS__ look like they are playing for penalties.</commentary>
+    <commentary cond="_GD_ = 0">_T_POSS__ can [sneak ahead|take the lead] if they convert this</commentary>
+    <commentary cond="_GD_=1 and _GOALS_POSS__ &lt; _GOALS_NPOSS__">_P0_ can [square the match|equalize] with this shot</commentary>
+    <commentary cond="_MI_&gt;85 and _GD_=1 and _GOALS_POSS__ &lt; _GOALS_NPOSS__">_P0_: A late penalty now may force this match to a draw</commentary>
+    <commentary cond="_MI_&gt;85 and _GD_=1 and _GOALS_POSS__ &lt; _GOALS_NPOSS__">_T_NPOSS__ have given away an easy chance for _T_POSS__ to [come|crawl] back into this match</commentary>
+    <commentary cond="_MI_&gt;85 and _GD_=1 and _GOALS_POSS__ &gt; _GOALS_NPOSS__">_P0_ can seal up the match with a goal here</commentary>
   </event>
   <event>
     <name>free_kick</name>
-    <commentary>Късо изпълнение на _P0_</commentary>
-    <commentary>_P0_ изпълнява ниско и силно</commentary>
-    <commentary>_P0_ изпълнява бързо прекият свободен удар и завърта топката около стената</commentary>
-    <commentary>_P0_ завърта топката около стената</commentary>
-    <commentary>Свободен удар: _P0_ изпълнява много неточно</commentary>
-    <commentary>Свободен удар: _P0_ изпраща топката далече</commentary>
+    <commentary>A short free kick from _P0_</commentary>
+    <commentary>_P0_ drives the free kick low and hard</commentary>
+    <commentary>_P0_ takes the free kick quickly and curls it around the wall</commentary>
+    <commentary>_P0_ curls the free kick over the wall</commentary>
+    <commentary>A free kick: _P0_ plays the ball out wide</commentary>
+    <commentary>A free kick: _P0_ hits a long ball up the pitch</commentary>
+    <commentary>A free kick whipped across the face of goal by _P0_</commentary>
   </event>
   <event>
     <name>foul_yellow</name>
-    <commentary>_P1_ за опасен шпагат срещу _P0_</commentary>
-    <commentary>_P1_ за фала срещу _P0_</commentary>
-    <commentary>_P1_ за оспорване на съдийско решение</commentary>
-    <commentary>_P1_ за забавяне на играта</commentary>
-    <commentary>_P1_ за игра с ръка</commentary>
-    <commentary>_P1_ за преченето на _P0_ да изпълни свободен удар</commentary>
-    <commentary>_P1_ за изритване на топката в присъп на яд</commentary>
+    <commentary>_P1_ for a [dangerous|reckless|late] slide tackle on _P0_</commentary>
+    <commentary>_P1_ for a foul on _P0_</commentary>
+    <commentary>_P1_ for [kicking|throwing|carrying] the ball away after the whistle</commentary>
+    <commentary>_P1_ for time wasting</commentary>
+    <commentary>_P1_ for handball</commentary>
+    <commentary>_P1_ for stopping _P0_ taking a quick free kick</commentary>
+    <commentary>_P1_ is booked for repeated dissent</commentary>
   </event>
   <event>
     <name>foul_red</name>
-    <commentary>_P1_ получава червен картон за високо вдигнат крак</commentary>
-    <commentary>На _P1_ са му посочени съблекалните заради агресивното му поведение</commentary>
-    <commentary>_P1_ за много опасна игра</commentary>
-    <commentary>_P1_ за умишлена игра с ръка</commentary>
-    <commentary>_P1_ за спирането на чисто голово положение</commentary>
-    <commentary>_P1_ получава червен картон за удрянето на _P0_</commentary>
-    <commentary>_P1_ за неприлични жестове към противниковата публика</commentary>
+    <commentary>_P1_ is reprimanded for high kicking</commentary>
+    <commentary>_P1_ is given his marching orders for contempt</commentary>
+    <commentary>_P1_ for his malicious showing of studs</commentary>
+    <commentary>_P1_ for intentional handball</commentary>
+    <commentary>_P1_ is sent off for stopping a clear goal-scoring opportunity</commentary>
+    <commentary>_P1_ has been red carded for [punching|slapping|pushing|head-butting] _P0_</commentary>
+    <commentary>_P1_ for swearing at the opposition fans</commentary>
   </event>
   <event>
     <name>foul_red_injury</name>
-    <commentary>_P1_ прави фал и носилката пристига, за да прибере агонизиращия _P0_</commentary>
-    <commentary>Фал на _P1_; _P0_ явно е контузен...ще трябва да бъде заменен</commentary>
+    <commentary>_P1_ fouls, and the stretcher bearers come racing on with _P0_ lying in agony on the turf</commentary>
+    <commentary>Foul by _P1_; _P0_ seems to be injured... he might have to be substituted</commentary>
   </event>
   <event>
     <name>send_off</name>
-    <commentary>_P0_ е изгонен</commentary>
+    <commentary>_P0_ has been sent off</commentary>
+    <commentary>_P0_ is sent off. _T_TT__ is now down a man</commentary>
   </event>
   <event>
     <name>injury</name>
-    <commentary>_P0_ ще трябва да напусне мача заради както изглежда контузия на глезена</commentary>
-    <commentary>_P0_ явно е контузен зле</commentary>
+    <commentary>_P0_'ll have to [go|limp off|leave the pitch] after what seems a painful [ankle|knee|arm|wrist|shoulder|back|head|neck|hamstring|groin|chest] injury</commentary>
+    <commentary>_P0_ looks like he's [badly|seriously] injured</commentary>
+    <commentary>The physio's had a look, and _P0_ must be taken off</commentary>
   </event>
   <event>
     <name>temp_injury</name>
-    <commentary>_P0_ е разтегнал мускул, но ще може да продължи</commentary>
-    <commentary>_P0_ е леко ударен</commentary>
-    <commentary>_P0_ има голяма аркада на лявото око, но ще бъде закърпен и ще може да продължи </commentary>
+    <commentary>_P0_ looks like he's pulled a muscle, but he should be able to continue</commentary>
+    <commentary>_P0_ has picked up a slight knock</commentary>
+    <commentary>_P0_ tries to run off a slight groin strain</commentary>
+    <commentary>_P0_ has overstretched a muscle: seems ok</commentary>
+    <commentary>_P0_ receives some attention and continues</commentary>
+    <commentary>_P0_ has a large cut above his [left|right] eye, but it's quickly patched up, and he'll be able to continue</commentary>
   </event>
   <event>
     <name>stadium_breakdown</name>
-    <commentary>_T0_ има проблеми със стадиона</commentary>
-    <commentary>Светлините изгаснаха</commentary>
+    <commentary>_T0_ is undergoing stadium problems</commentary>
+    <commentary>The floodlights have just [gone out|died]</commentary>
+    <commentary>Heavy fog is causing havoc here at _T0_'s ground</commentary>
   </event>
   <event>
     <name>stadium_riots</name>
-    <commentary>Хората се бунтуват</commentary>
-    <commentary>И феновете хвърлят димки на терена</commentary>
-    <commentary>Полицията се намесва в спирането на сблъсъци между двете агитки</commentary>
-    <commentary>Някак си промъкнал се на терена фен напада съдията</commentary>
-    <commentary>Феновете нахлуват масово на игрището</commentary>
+    <commentary>The peasants are revolting</commentary>
+    <commentary>And the fans are throwing [flares|things] onto the pitch</commentary>
+    <commentary>The riot police have moved in to stop fighting between sets of opposition supporters</commentary>
+    <commentary>One fan has managed to [get|leap] onto the pitch and has begun to [attack|harass|pummel] the referee</commentary>
+    <commentary>The fans pour onto the pitch in a full-scale pitch invasion</commentary>
   </event>
   <event>
     <name>stadium_fire</name>
-    <commentary>Огън поглъща стадиона на _T_TT__</commentary>
-    <commentary>Феновете на гостите правят пожар в северната част на стадиона</commentary>
-    <commentary>Факла закачена до тъч линията дава началото на голям пламък</commentary>
-    <commentary>Говорител се е запалил и пламъците се разнасят из целия стадион</commentary>
+    <commentary>A fire is consuming _T_TT__'s stadium</commentary>
+    <commentary>Some away fans have set fire to the [north|south] stand</commentary>
+    <commentary>A flare chucked onto the touchline has started a [massive|dangerous|horrific] blaze</commentary>
+    <commentary>A speaker has gone up in flames, and now the blaze is spreading around the entire stadium</commentary>
   </event>
   <event>
     <name>substitution</name>
-    <commentary>_T_TT__ правят смяна, _P0_ идва да замени _P1_</commentary>
-    <commentary>_P1_ излиза под ръкоплясканията на феновете, _P0_ го заменя</commentary>
-    <commentary>_P1_ е освиркван докато излиза от терена, заменен от _P0_</commentary>
+    <commentary>_T_TT__ make a substitution: _P0_ comes on to replace _P1_</commentary>
+    <commentary cond="_MI_&gt;60">_T_TT__ need some fresh legs. _P0_ comes on to replace _P1_</commentary>
+    <commentary>_P1_ goes off to applause from his fans. _P0_ replaces him</commentary>
+    <commentary>_P1_ doesn't look too happy as he is replaced by _P0_</commentary>
+    <commentary>_P0_ comes off the bench to replace _P1_</commentary>
+    <commentary>_P0_ on for _P1_</commentary>
   </event>
   <event>
     <name>structure_change</name>
-    <commentary>_T_TT__ промениха подредбата си на _EX_</commentary>
+    <commentary>_T_TT__ have changed their structure to _EX_</commentary>
+    <commentary>_T_TT__ restructure themselves into a _EX_ formation</commentary>
   </event>
   <event>
     <name>style_change</name>
-    <commentary>_T_TT__ промениха стила си на _EX_</commentary>
+    <commentary>_T_TT__ have changed their style to _EX_</commentary>
+    <commentary>_T_TT__ change to a _EX_ style</commentary>
+    <commentary cond="_EX_ == 'ATTACK'">_T_TT__ try to create an opening by attacking</commentary>
+    <commentary cond="_MI_&gt;75 and _EX_ == 'BALANCED'">_T_TT__ change to _EX_ and ease off</commentary>
+    <commentary cond="_MI_&gt;75 and _EX_ == 'ATTACK'">A last-ditch effort: _T_TT__ change to _EX_</commentary>
+    <commentary cond="_MI_&gt;75">_MR_ minutes left. _T_TT__ try a change of tactics with _EX_ style</commentary>
+    <commentary cond="_TIME_=1 and _MR_ &gt;= 44">Half-time style change for _T_TT__ to _EX_</commentary>
   </event>
   <event>
     <name>boost_change</name>
-    <commentary>_T_TT__ промениха тласъка си на _EX_</commentary>
+    <commentary>_T_TT__ have changed their boost to _EX_</commentary>
+    <commentary cond="_MI_&gt;75 and _EX_ == 'ANTI' and _TT_ == _TLN_">It looks like _T_TT__ have given up</commentary>
+    <commentary cond="_MI_&gt;75 and _EX_ == 'ANTI' and _TT_ == _TWN_">_T_TT__ must think they have this match sewn up</commentary>
+    <commentary cond="_EX_ = 'ON'">_T_TT__ have gone up a gear</commentary>
+    <commentary pri="10" cond="_EX_ = 'ON' and _MI_ &gt;75">Boost on. _T_TT__ are throwing everything they've got</commentary>
   </event>
 </lg_commentary>
