@@ -177,7 +177,7 @@ create_window_debug (void)
   window_debug = GTK_WIDGET (gtk_builder_get_object (builder, "window_debug"));
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
-//  GTK_HOOKUP_OBJECT (window_contract, builder, "label_contract");
+  GTK_HOOKUP_OBJECT (window_debug, builder, "entry_debug");
 
   /* free memory used by GtkBuilder object */
   g_object_unref (G_OBJECT (builder));
