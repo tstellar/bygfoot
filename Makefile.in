@@ -164,8 +164,6 @@ PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
 POFILES = @POFILES@
 POSUB = @POSUB@
 PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
@@ -2042,11 +2040,14 @@ uninstall-am:
 generate-xml:
 	intltool-merge --xml-style -m po support_files/lg_commentary/lg_commentary_en.xml.in lg_commentary.xml
 	intltool-merge --xml-style -m po support_files/news/news_en.xml.in news.xml
-	for lang in $(ALL_LINGUAS) en; do \
+	for lang in $(ALL_LINGUAS) ; do \
 		mv $$lang/lg_commentary.xml support_files/lg_commentary/lg_commentary_$${lang}.xml; \
 		mv $$lang/news.xml support_files/news/news_$${lang}.xml; \
 		rm -rf $$lang; \
 	done
+	mv C/lg_commentary.xml support_files/lg_commentary/lg_commentary_en.xml; \
+	mv C/news.xml support_files/news/news_en.xml; \
+	rm -rf C; 
 
 install-data-local: generate-xml
 	@$(NORMAL_INSTALL)

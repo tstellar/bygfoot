@@ -23,11 +23,14 @@ SUPPORT_FILES = support_files/pixmaps/live_game/save.png support_files/pixmaps/l
 generate-xml:
 	intltool-merge --xml-style -m po support_files/lg_commentary/lg_commentary_en.xml.in lg_commentary.xml
 	intltool-merge --xml-style -m po support_files/news/news_en.xml.in news.xml
-	for lang in $(ALL_LINGUAS) en; do \
+	for lang in $(ALL_LINGUAS) ; do \
 		mv $$lang/lg_commentary.xml support_files/lg_commentary/lg_commentary_$${lang}.xml; \
 		mv $$lang/news.xml support_files/news/news_$${lang}.xml; \
 		rm -rf $$lang; \
 	done
+	mv C/lg_commentary.xml support_files/lg_commentary/lg_commentary_en.xml; \
+	mv C/news.xml support_files/news/news_en.xml; \
+	rm -rf C; 
 
 install-data-local: generate-xml
 	@$(NORMAL_INSTALL)
