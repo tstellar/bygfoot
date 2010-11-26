@@ -11,6 +11,7 @@ AM_PROG_CC_STDC
 AC_HEADER_STDC
 AM_CONDITIONAL(HAVE_WINDRES, which windres > /dev/null)
 IT_PROG_INTLTOOL(0.35.0,1)
+AC_PROG_LIBTOOL
 pkg_modules="gtk+-2.0 >= 2.16 glib-2.0 >= 2.12 gmodule-export-2.0"
 
 dnl echo -n "checking for  gthread-2.0 ... "
@@ -81,5 +82,6 @@ ifdef(`__unix__', `AC_MSG_RESULT([OK]'')')
 AC_OUTPUT([
 Makefile
 src/Makefile
+src/zip/Makefile
 po/Makefile.in
 ])
