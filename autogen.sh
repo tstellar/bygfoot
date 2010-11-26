@@ -1,6 +1,6 @@
 #!/bin/sh
 # Run this to generate all the initial makefiles, etc.
-
+autoreconf
 srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.
 

@@ -1,10 +1,13 @@
 ## Process this file with automake to produce Makefile.in
 AM_CFLAGS = -Wall #-fprofile-arcs -ftest-coverage -pg
 
-INCLUDES = \
+SUBDIRS = zip
+
+INCLUDES = -I$(srcdir)/zip \
 	-DPACKAGE_DATA_DIR=\""$(datadir)"\" \
 	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
 	@PACKAGE_CFLAGS@ @GST_CFLAGS@
+
 
 bin_PROGRAMS = bygfoot
 
@@ -88,5 +91,8 @@ bygfoot_SOURCES = \
 	xml_team.c file.h free.h main.h misc.h option.h player.h team.h variables.h xml_team.h \
 	youth_academy.c free.h maths.h name.h option.h player.h team.h user.h youth_academy.h 
 
-bygfoot_LDADD = @PACKAGE_LIBS@ @GST_LIBS@ $(INTLLIBS) 
+BYGFOOTLIBS = \
+zip/libminizip.la
+
+bygfoot_LDADD = @PACKAGE_LIBS@ @GST_LIBS@ $(INTLLIBS) $(BYGFOOTLIBS)
 
