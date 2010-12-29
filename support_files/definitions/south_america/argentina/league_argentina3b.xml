@@ -7,9 +7,29 @@
 	<symbol>flag_argentina.png</symbol>
 	<average_talent>6300</average_talent>
 	<names_file>argentina</names_file>
-	<property>inactive</property>
-	<property>omit_from_history</property>
-	<prom_rel>
+	<week_gap>1</week_gap>
+	
+		<two_match_week_start>3</two_match_week_start>
+		<two_match_week_end>4</two_match_week_end>
+
+		<two_match_week_start>13</two_match_week_start>
+		<two_match_week_end>14</two_match_week_end>
+
+		<two_match_week_start>20</two_match_week_start>
+		<two_match_week_end>21</two_match_week_end>
+
+		<two_match_week_start>29</two_match_week_start>
+		<two_match_week_end>30</two_match_week_end>
+
+	<yellow_red>5</yellow_red>
+	<round_robins>2</round_robins>
+<prom_rel>
+<prom_games>
+			<prom_games_dest_sid>argentina2</prom_games_dest_sid>
+			<prom_games_loser_sid>argentina3b</prom_games_loser_sid>
+			<prom_games_number_of_advance>2</prom_games_number_of_advance>
+			<prom_games_cup_sid>reducido3b</prom_games_cup_sid>
+		</prom_games>
 		<prom_games>
 			<prom_games_dest_sid>argentina3b</prom_games_dest_sid>
 			<prom_games_loser_sid>argentina4b</prom_games_loser_sid>
@@ -19,7 +39,7 @@
 	</prom_rel>
 	<teams>
 		<team>
-			<team_name>Alvarado</team_name>
+			<team_name>Douglas Haig</team_name>
 			<team_average_talent>6300</team_average_talent>
 		</team>
 		<team>
@@ -38,12 +58,12 @@
 		</team>
 
 		<team>
-			<team_name>J. Pergamino</team_name>
+			<team_name>Rivadavia</team_name>
 			<team_average_talent>6300</team_average_talent>
 		</team>
 
 		<team>
-			<team_name>R. Lincoln</team_name>
+			<team_name>Union</team_name>
 			<team_average_talent>6300</team_average_talent>
 		</team>
 
@@ -63,52 +83,32 @@
 		</team>
 
 		<team>
-			<team_name>Ben Hur</team_name>
-			<team_average_talent>6300</team_average_talent>
-		</team>
-
-		<team>
-			<team_name>B. Unidos</team_name>
-			<team_average_talent>6300</team_average_talent>
-		</team>
-
-		<team>
-			<team_name>GyE Concepción</team_name>
-			<team_average_talent>6300</team_average_talent>
-		</team>
-
-		<team>
-			<team_name>Libertad</team_name>
-			<team_average_talent>6300</team_average_talent>
-		</team>
-
-		<team>
-			<team_name>Patronato</team_name>
-			<team_average_talent>6300</team_average_talent>
-		</team>
-
-		<team>
-			<team_name>R. Arroyo S.</team_name>
-			<team_average_talent>6300</team_average_talent>
-		</team>
-
-		<team>
-			<team_name>U. Sunchales</team_name>
-			<team_average_talent>6300</team_average_talent>
-		</team>
-
-		<team>
 			<team_name>Alumni</team_name>
 			<team_average_talent>6300</team_average_talent>
 		</team>
 
 		<team>
-			<team_name>C. C. S. Estero</team_name>
+			<team_name>D. Maipu</team_name>
 			<team_average_talent>6300</team_average_talent>
 		</team>
 
 		<team>
-			<team_name>D. Maipú</team_name>
+			<team_name>Estudiantes (RC)</team_name>
+			<team_average_talent>6300</team_average_talent>
+		</team>
+
+		<team>
+			<team_name>Juventud Unida</team_name>
+			<team_average_talent>6300</team_average_talent>
+		</team>
+
+		<team>
+			<team_name>Racing (Cordoba)</team_name>
+			<team_average_talent>6300</team_average_talent>
+		</team>
+
+		<team>
+			<team_name>S. Belgrano</team_name>
 			<team_average_talent>6300</team_average_talent>
 		</team>
 
@@ -118,7 +118,27 @@
 		</team>
 
 		<team>
-			<team_name>GyE Mendoza</team_name>
+			<team_name>Talleres</team_name>
+			<team_average_talent>6300</team_average_talent>
+		</team>
+
+		<team>
+			<team_name>C. Cordoba</team_name>
+			<team_average_talent>6300</team_average_talent>
+		</team>
+
+		<team>
+			<team_name>C. Norte</team_name>
+			<team_average_talent>6300</team_average_talent>
+		</team>
+
+		<team>
+			<team_name>Crucero del Norte</team_name>
+			<team_average_talent>6300</team_average_talent>
+		</team>
+
+		<team>
+			<team_name>GyE Concepcion</team_name>
 			<team_average_talent>6300</team_average_talent>
 		</team>
 
@@ -128,17 +148,13 @@
 		</team>
 
 		<team>
-			<team_name>J. Unida</team_name>
+			<team_name>Libertad</team_name>
 			<team_average_talent>6300</team_average_talent>
 		</team>
 
 		<team>
-			<team_name>Racing C.</team_name>
+			<team_name>Union</team_name>
 			<team_average_talent>6300</team_average_talent>
 		</team>
-<!--		<team>
-			<team_name>T. Perico</team_name>
-			<team_average_talent>6300</team_average_talent>
-		</team>-->
 	</teams>
 </league>
