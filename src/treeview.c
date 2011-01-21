@@ -1069,10 +1069,8 @@ treeview_create_fixture(const Fixture *fix, GtkListStore *ls)
     gchar *colour_fg = NULL, *colour_bg = NULL;
     gint user_idx = fixture_user_team_involved(fix);
 
-    if(fix->clid >= ID_CUP_START &&
-       query_league_cup_has_property(fix->clid, "international"))
-	for(i=0;i<2;i++)
-	    symbol[i] = fix->teams[i]->symbol;
+    for(i=0;i<2;i++)
+        symbol[i] = fix->teams[i]->symbol;
     
     if(user_idx != -1)
 	treeview_helper_set_user_colours(usr(user_idx).tm->name,
@@ -1285,8 +1283,7 @@ treeview_create_single_table(GtkListStore *ls, const Table *table, gint table_in
 
 	elem = &g_array_index(table->elements, TableElement, i);
 
-	if(table->clid >= ID_CUP_START)
-	    treeview_helper_insert_icon((GtkTreeModel*)ls, &iter, 0, elem->team->symbol);
+	treeview_helper_insert_icon((GtkTreeModel*)ls, &iter, 0, elem->team->symbol);
 	
 	if(elem->old_rank > i)
 	    treeview_helper_insert_icon((GtkTreeModel*)ls, &iter, 2, 
