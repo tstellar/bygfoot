@@ -822,10 +822,8 @@ file_compress_files(const gchar *destfile, const gchar *prefix)
 
   zipClose(zf, NULL);
 
+  file_remove_files(files);
   chdir(pwd);
-
-  g_string_sprintf(buf, "%s%s%s*", dirname, G_DIR_SEPARATOR_S, basename);
-  file_remove_files(buf);
 
   g_string_free(buf, TRUE);
   free_gchar_array(&files);
@@ -877,7 +875,12 @@ file_decompress(const gchar *filename)
     }
   }
 
+  GPtrArray *files_to_remove = file_dir_get_contents(dirname, basename, "");
+  file_remove_files(files_to_remove);
+  chdir(pwd);
+
   g_string_free(buf, TRUE);
+  free_gchar_array(&files_to_remove);
 
   g_free(dirname);
   g_free(basename);
@@ -886,25 +889,23 @@ file_decompress(const gchar *filename)
   g_free(pwd);
 }
 
-/** Execute the appropriate remove command with 'files'
+/** Remove the files defined in the 'files' array
   as argument (can be directories or a regexp, too). */
   void
-file_remove_files(const GString *files)
+file_remove_files(const GPtrArray *files)
 {
 #ifdef DEBUG
   printf("file_remove_files\n");
 #endif
-
-  GString *buf = g_string_new("");
-
-  if(os_is_unix)
-    g_string_sprintf(buf, "%s %s", const_str("string_fs_remove_file_command"), files->str);
-  else
-    g_string_sprintf(buf, "%s \"%s\"", const_str("string_fs_remove_file_command"), files->str);
-
-  file_my_system(buf);
-
-  g_string_free(buf, TRUE);
+  gint i;  
+  for(i=0;i<files->len;i++)
+  {
+    printf("Removing File %s\n", (gchar*)g_ptr_array_index(files, i));
+    int rc = g_remove((gchar*)g_ptr_array_index(files, i));
+    if (rc==-1) {
+      printf("Problem Removing File %s\n", (gchar*)g_ptr_array_index(files, i));
+    }
+  }
 }
 
 /** Execute the appropriate copy command. */
