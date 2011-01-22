@@ -8,4 +8,3 @@ libminizip_la_SOURCES =	\
 	unzip.c \
 	unzip.h
 
-CLEANFILES = *~

@@ -23,6 +23,7 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #include <ctype.h>
+#include <glib/gstdio.h>
 
 #include "callbacks.h"
 #include "file.h"
@@ -70,8 +71,7 @@ load_save_save_game(const gchar *filename)
     misc_string_assign(&save_file, fullname->str);
 
     if(g_file_test(fullname->str, G_FILE_TEST_EXISTS))
-	/*todo: replace with g_remove*/
-	file_remove_files(fullname);
+	g_remove(fullname->str);
 
     if(debug > 60)
 	g_print("load_save_save options\n");
@@ -320,7 +320,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
 		      PIC_TYPE_LOAD);
 
     g_string_sprintf(buf, "%s%s%s___*", dirname, G_DIR_SEPARATOR_S, prefix);
-    file_remove_files(buf);
+    g_remove(buf->str);
 
     misc_string_assign(&save_file, fullname);
 

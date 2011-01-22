@@ -100,7 +100,7 @@ void
 file_decompress(const gchar *filename);
 
 void
-file_remove_files(const GString *files);
+file_remove_files(const GPtrArray *files);
 
 void
 file_copy_file(const gchar *source_file, const gchar *dest_file);
