@@ -846,7 +846,7 @@ file_decompress(const gchar *filename)
   gchar *dirname = g_path_get_dirname(filename),
         *basename = g_path_get_basename(filename),
         *pwd = g_get_current_dir();
-
+  gchar extracted_file[256];
   chdir(dirname);
 
   uLong i;
@@ -861,7 +861,7 @@ file_decompress(const gchar *filename)
 
   for (i=0;i<gi.number_entry;i++)
   {
-    if (do_extract_currentfile(uf) != UNZ_OK)
+    if (do_extract_currentfile(uf, extracted_file) != UNZ_OK)
       break;
 
     if ((i+1)<gi.number_entry)
@@ -875,12 +875,9 @@ file_decompress(const gchar *filename)
     }
   }
 
-  GPtrArray *files_to_remove = file_dir_get_contents(dirname, basename, "");
-  file_remove_files(files_to_remove);
   chdir(pwd);
 
   g_string_free(buf, TRUE);
-  free_gchar_array(&files_to_remove);
 
   g_free(dirname);
   g_free(basename);
@@ -1024,15 +1021,18 @@ file_load_text_from_saves(const gchar *filename)
   return g_strdup(buf);   
 }
 
-int do_extract_currentfile(unzFile uf)
+int do_extract_currentfile(unzFile uf, gchar *extracted_file)
 {
-  char filename_inzip[256];
+  gchar filename_inzip[256];
   int err=UNZ_OK;
   FILE *fout=NULL;
   void* buf;
   uInt size_buf;
   unz_file_info file_info;
   err = unzGetCurrentFileInfo(uf,&file_info,filename_inzip,sizeof(filename_inzip),NULL,0,NULL,0);
+
+  // copy the filename to extracted file
+  g_sprintf(extracted_file, "%s", filename_inzip);
 
   if (err!=UNZ_OK)
   {
