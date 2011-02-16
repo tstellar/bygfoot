@@ -27,6 +27,7 @@
 
 #include "callbacks.h"
 #include "file.h"
+#include "free.h"
 #include "gui.h"
 #include "game_gui.h"
 #include "language.h"
@@ -197,6 +198,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     gchar *prefix = (g_str_has_suffix(basename, const_str("string_fs_save_suffix"))) ?
 	g_strndup(basename, strlen(basename) - strlen(const_str("string_fs_save_suffix"))) :
 	g_strdup(basename);
+    gchar *pwd = g_get_current_dir();
 
     if(g_str_has_suffix(filename, "last_save"))
     {
@@ -319,8 +321,21 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     gui_show_progress(1, _("Done."),
 		      PIC_TYPE_LOAD);
 
-    g_string_sprintf(buf, "%s%s%s___*", dirname, G_DIR_SEPARATOR_S, prefix);
-    g_remove(buf->str);
+    chdir(dirname);
+    GPtrArray *files = file_dir_get_contents(dirname, prefix, "");
+    // Remove the zipfile from the list
+    gint i;  
+    for(i=0;i<files->len;i++)
+    {
+      if (g_strcmp0((gchar*)g_ptr_array_index(files, i),basename)==0){
+         g_ptr_array_remove_index_fast(files, i);
+      }
+    }
+    file_remove_files(files);
+    chdir(pwd);
+    g_free(pwd);
+    free_gchar_array(&files);
+
 
     misc_string_assign(&save_file, fullname);
 

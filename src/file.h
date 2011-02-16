@@ -118,7 +118,7 @@ void
 file_store_text_in_saves(const gchar *filename, const gchar *text);
 
 int
-do_extract_currentfile(unzFile uf);
+do_extract_currentfile(unzFile uf, gchar *extracted_file);
 
 int
 do_compress_currentfile(zipFile zf, char* fileToZip);
