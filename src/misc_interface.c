@@ -114,7 +114,6 @@ create_window_live (void)
   GTK_HOOKUP_OBJECT (window_live, builder, "treeview_stats");
   GTK_HOOKUP_OBJECT (window_live, builder, "eventbox_lg_style");
   GTK_HOOKUP_OBJECT (window_live, builder, "eventbox_lg_boost");
-  GTK_HOOKUP_OBJECT (window_live, builder, "footballfield");
 
   /* free memory used by GtkBuilder object */
   g_object_unref (G_OBJECT (builder));
