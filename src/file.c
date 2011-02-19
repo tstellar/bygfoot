@@ -897,7 +897,9 @@ file_remove_files(const GPtrArray *files)
   gint i;  
   for(i=0;i<files->len;i++)
   {
-    printf("Removing File %s\n", (gchar*)g_ptr_array_index(files, i));
+    #ifdef DEBUG
+      printf("Removing File %s\n", (gchar*)g_ptr_array_index(files, i));
+    #endif
     int rc = g_remove((gchar*)g_ptr_array_index(files, i));
     if (rc==-1) {
       printf("Problem Removing File %s\n", (gchar*)g_ptr_array_index(files, i));
@@ -1060,7 +1062,9 @@ int do_extract_currentfile(unzFile uf, gchar *extracted_file)
 
   if (fout!=NULL)
   {
-    printf(" extracting: %s\n",filename_inzip);
+    #ifdef DEBUG
+      printf(" extracting: %s\n",filename_inzip);
+    #endif
 
     do
     {
@@ -1113,8 +1117,10 @@ int do_compress_currentfile(zipFile zf, char* fileToZip)
     printf("error zip file not open");
     err= ZIP_ERRNO;
   }
+  #ifdef DEBUG
   else
     printf("creating %s\n",fileToZip);
+  #endif
 
   FILE * fin;
   int size_read;
