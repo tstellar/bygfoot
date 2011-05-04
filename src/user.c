@@ -1164,8 +1164,19 @@ user_mm_load_file(const gchar *filename, GArray *mmatches)
 
     xml_mmatches_read(matches_file, mm_array);
 
-    g_string_append(prefix, "___*");
-    file_remove_files(prefix);
+    gchar* dirname = g_get_current_dir();
+    GPtrArray *files = file_dir_get_contents(dirname, prefix->str, "");
+    // Remove the zipfile from the list
+    gint i;  
+    for(i=0;i<files->len;i++)
+    {
+      if (g_strcmp0((gchar*)g_ptr_array_index(files, i),filename_local)==0){
+         g_ptr_array_remove_index_fast(files, i);
+      }
+    }
+    file_remove_files(files);
+    g_free(dirname);
+    free_gchar_array(&files);
 
     if(mmatches == NULL)
 	misc_string_assign(&current_user.mmatches_file, filename_local);
