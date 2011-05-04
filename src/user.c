@@ -1360,7 +1360,7 @@ restore_default_team(User *user)
         player1 = g_array_index(user->default_team, gint, i);
         player2 = g_array_index(user->tm->players, Player, i).id;
         if (player1 != player2) {
-            // We don't want to stop because a player has been romoved from your team
+            // We don't want to stop because a player has been removed from your team
             player1_index = player_id_index(user->tm,player1, FALSE);
             player2_index = player_id_index(user->tm,player2, FALSE);
             if (player1_index==-1 || player2_index==-1) {

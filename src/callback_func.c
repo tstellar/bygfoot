@@ -66,51 +66,47 @@ callback_show_next_live_game(void)
 
     for(i=0;i<ligs->len;i++) {
 	for(j=0;j<lig(i).fixtures->len;j++) {
-            // Store the player order before the live match: get the team that is involved, if it's a user team
-            // and that user has the option to always store the default team checked, store it
-            user_team_involved = fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j));
-            if (user_team_involved!=-1 && option_int("int_opt_user_store_restore_default_team",
-			  &usr(user_team_involved).options)) {
-                store_default_team(&usr(user_team_involved));
-            }
-            
+            user_team_involved = fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j));            
 	    if(g_array_index(lig(i).fixtures, Fixture, j).week_number == week &&
 	       g_array_index(lig(i).fixtures, Fixture, j).week_round_number == week_round &&
 	       fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j)) != -1 &&
-	       g_array_index(lig(i).fixtures, Fixture, j).attendance == -1 &&
-	       option_int("int_opt_user_show_live_game",
+	       g_array_index(lig(i).fixtures, Fixture, j).attendance == -1 ) {
+                // Store the player order before the live match: get the team that is involved, if it's a user team
+                // and that user has the option to always store the default team checked, store it
+                if (option_int("int_opt_user_store_restore_default_team", &usr(user_team_involved).options)) {
+                    store_default_team(&usr(user_team_involved));
+                }
+                if (option_int("int_opt_user_show_live_game",
 			  &usr(fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j))).
-			  options))
-	    {
-		live_game_calculate_fixture(&g_array_index(lig(i).fixtures, Fixture, j), 
-                                            &usr(fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j))).live_game);
-		return;
+			  options)) {
+		    live_game_calculate_fixture(&g_array_index(lig(i).fixtures, Fixture, j), 
+                                                &usr(fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j))).live_game);
+		    return;
+                }
 	    }
         }
     }
 
     for(i=0;i<acps->len;i++) {
         for(j=0;j<acp(i)->fixtures->len;j++) {
-            // Store the player order before the live match: get the team that is involved, if it's a user team
-            // and that user has the option to always store the default team checked, store it
             user_team_involved = fixture_user_team_involved(&g_array_index(acp(i)->fixtures, Fixture, j));
-
-            if (user_team_involved!=-1 && option_int("int_opt_user_store_restore_default_team",
-			  &usr(user_team_involved).options)) {
-                store_default_team(&usr(user_team_involved));
-            }
-
 	    if(g_array_index(acp(i)->fixtures, Fixture, j).week_number == week &&
 	       g_array_index(acp(i)->fixtures, Fixture, j).week_round_number == week_round &&
 	       fixture_user_team_involved(&g_array_index(acp(i)->fixtures, Fixture, j)) != -1 &&
-	       g_array_index(acp(i)->fixtures, Fixture, j).attendance == -1 &&
-	       option_int("int_opt_user_show_live_game",
-			  &usr(fixture_user_team_involved(&g_array_index(acp(i)->fixtures, Fixture, j))).
-			  options))
+	       g_array_index(acp(i)->fixtures, Fixture, j).attendance == -1)
 	    {
-		live_game_calculate_fixture(&g_array_index(acp(i)->fixtures, Fixture, j), 
-                                            &usr(fixture_user_team_involved(&g_array_index(acp(i)->fixtures, Fixture, j))).live_game);
- 		return;
+                // Store the player order before the live match: get the team that is involved, if it's a user team
+                // and that user has the option to always store the default team checked, store it
+                if (option_int("int_opt_user_store_restore_default_team", &usr(user_team_involved).options)) {
+                    store_default_team(&usr(user_team_involved));
+                }
+                if (option_int("int_opt_user_show_live_game",
+			  &usr(fixture_user_team_involved(&g_array_index(acp(i)->fixtures, Fixture, j))).
+			  options)) {
+		    live_game_calculate_fixture(&g_array_index(acp(i)->fixtures, Fixture, j), 
+                                                &usr(fixture_user_team_involved(&g_array_index(acp(i)->fixtures, Fixture, j))).live_game);
+ 		    return;
+                }
 	    }
         }
     }
