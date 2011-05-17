@@ -611,7 +611,6 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
 
     if(teams_local->len < end_idx)
     {
-	free_teams_array(&teams_local, FALSE);
 	main_exit_program(EXIT_CHOOSE_TEAM_ERROR, 
 			  "cup_load_choose_team_generate: not enough teams (%d) in chooseteam %s in cup %s (%d are specified) \n",
 			  teams_local->len, ct->sid, 
