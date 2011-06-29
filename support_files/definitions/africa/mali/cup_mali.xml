@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Coupe du Mali</name>
+  <short_name>Coupe</short_name>
+  <symbol>flag_mali.png</symbol>
+  <sid>cup_mali</sid>
+  <yellow_red>3</yellow_red>
+  <last_week>24</last_week>
+  <week_gap>2</week_gap>
+  <property>national</property>
+
+  <cup_rounds>
+    <cup_round>
+
+    <choose_teams>
+
+      <choose_team>
+	<choose_team_sid>mali1</choose_team_sid>
+	<number_of_teams>12</number_of_teams>
+	<start_idx>3</start_idx>
+	<end_idx>14</end_idx>
+      </choose_team>
+
+    </choose_teams>
+
+    </cup_round>
+
+    <cup_round>
+      <choose_team>
+	<choose_team_sid>mali1</choose_team_sid>
+	<number_of_teams>2</number_of_teams>
+	<start_idx>1</start_idx>
+	<end_idx>2</end_idx>
+      </choose_team>
+    </cup_round>
+
+    <cup_round>
+    </cup_round>
+
+    <cup_round>
+    </cup_round>
+
+  </cup_rounds>
+
+</cup>
