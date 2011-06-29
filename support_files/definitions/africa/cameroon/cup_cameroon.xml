@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Coupe du Cameroun</name>
+  <short_name>Coupe</short_name>
+  <symbol>flag_cameroon.png</symbol>
+  <sid>cup_cameroon</sid>
+  <yellow_red>3</yellow_red>
+  <last_week>24</last_week>
+  <week_gap>2</week_gap>
+  <property>national</property>
+
+  <cup_rounds>
+    <cup_round>
+
+    <choose_teams>
+
+      <choose_team>
+	<choose_team_sid>cameroon1</choose_team_sid>
+	<number_of_teams>10</number_of_teams>
+	<start_idx>5</start_idx>
+	<end_idx>14</end_idx>
+      </choose_team>
+
+      <choose_team>
+	<choose_team_sid>cameroon2</choose_team_sid>
+      </choose_team>
+
+    </choose_teams>
+
+    </cup_round>
+
+    <cup_round>
+      <choose_team>
+	<choose_team_sid>cameroon1</choose_team_sid>
+	<number_of_teams>4</number_of_teams>
+	<start_idx>1</start_idx>
+	<end_idx>4</end_idx>
+      </choose_team>
+    </cup_round>
+
+    <cup_round>
+    </cup_round>
+
+    <cup_round>
+    </cup_round>
+
+    <cup_round>
+    </cup_round>
+  </cup_rounds>
+
+</cup>
