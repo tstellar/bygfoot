@@ -3,471 +3,471 @@
   <news_article>
     <type>match</type>
     <condition>_TLAYERDIFF_ = 0 and _GD_ G 3 and (_CUPKO_ = 0 or _CUPHOMEAWAY_ = 0 or _CUPFIRSTLEG_ = 1)</condition>
-    <title priority="20" condition="_CUPET_ = 1">_TW_ [beat|overcome|defeat] _TL_ in extra time</title>
-    <title priority="20" condition="_CUPET_ = 1">_TW_ victorious in extra time</title>
-    <title priority="20" condition="_CUPPEN_ = 1">_TW_ [beat|overcome|defeat] _TL_ _REW_ in penalties</title>
-    <title priority="20" condition="_CUPPEN_ = 1">_TW_ hold their nerves in penalty shoot-out</title>
-    <title condition="_TWN_ = 0">_TL_ don't stand a chance at _TW_</title>
-    <title>_TL_ trashed by _TW_</title>
-    <title>Lopsided victory by _TW_</title>
-    <title>_TW_ win in blowout</title>
-    <title>Humiliating defeat for _TL_</title>
-    <title>_TW_ [crush|humiliate|thrash|overwhelm|rout|overpower] _TL_</title>
-    <title>_TW_ humiliate _TL_ with _AT_ watching</title>
-    <title condition="_TWN_ = 1 and _CUPNEUTRAL = 0">_TW_ display away dominance</title>
-    <title condition="_TWN_ = 1 and _CUPNEUTRAL = 0">_TW_ trounce _TL_ in front of their home crowd</title>
-    <subtitle>_TW_ destroy _TL_ with their machine-like goal production.</subtitle>
-    <subtitle condition="_TWN_ = 0 and _CUPNEUTRAL = 0">_TW_ dispatch _TL_ _RE_ at home.</subtitle>
-    <subtitle condition="_TWN_ = 0 and _CUPNEUTRAL = 0">_TL_ goes to the dogs at _TW_.</subtitle>
-    <subtitle condition="_TWN_ = 1 and _CUPNEUTRAL = 0">_TW_ win _REW_ away.</subtitle>
-    <subtitle condition="_GOALS_TLN__ &gt; 1">_TW_ retain the upper hand in a match featuring a torrent of goals.</subtitle>
-    <subtitle condition="_GOALS_TLN__ = 0">_TL_ show an alarming weakness both on the offense and on the defense.</subtitle>
-    <subtitle condition="_GOALS_TLN__ &gt; 1">_TL_ lose a match dominated by offense.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_TWN__ and _TWN_ = 0 and _CUPNEUTRAL_ = 0">_SCORERS_TWN__ score in devastating home win.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_TWN__">_TL_ utterly destroyed by goals from _SCORERS_TWN__.</subtitle>
-    <subtitle condition="_HIGHGOALS_TWN__ &gt; 1">_HIGHSCORER_TWN__ nets _HIGHGOALS_TWN__ goals in [sensational|dominating] win.</subtitle>
-    <subtitle condition="_HIGHGOALS_TWN__ = 3">_HIGHSCORER_TWN__ scores a hat-trick in an entertaining encounter.</subtitle>
-    <subtitle condition="_HIGHGOALS_TLN__ &gt; 1">_HIGHGOALS_TLN__ goals by _HIGHSCORER_TLN__ can't stop _TW_ from winning.</subtitle>
-    <subtitle condition="_GOALS_TLN__ &gt; 1 and _MULTIPLESCORERS_TLN__">Goals by _SCORERS_TLN__ are not enough for _TL_ to win.</subtitle>
+    <title priority="20" condition="_CUPET_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ στην παράταση</title>
+    <title priority="20" condition="_CUPET_ = 1" xml:lang="el">Η _TW_ κερδίζει στην παράταση</title>
+    <title priority="20" condition="_CUPPEN_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ _REW_ στην διαδικασία των πέναλτι</title>
+    <title priority="20" condition="_CUPPEN_ = 1" xml:lang="el">Η _TW_ ελέγχουν τα νεύρα τους κατά την διαδικασία των πέναλτι</title>
+    <title condition="_TWN_ = 0" xml:lang="el">Η _TL_ δεν είχε καμία ευκαιρία απέναντι στην _TW_</title>
+    <title xml:lang="el">Συντριβή της _TL_ από την _TW_</title>
+    <title xml:lang="el">Εύκολη νίκη για την  _TW_</title>
+    <title xml:lang="el">Πανηγυρική νίκη της _TW_</title>
+    <title xml:lang="el">Εξευτελιστική ήττα για την _TL_</title>
+    <title xml:lang="el">[Συντριβή|Εξευτελισμός] της _TL_ από την _TW_</title>
+    <title xml:lang="el">_AT_ θεατές παρακολουθούν τον εξευτελισμό της _TL_ από την _TW_</title>
+    <title condition="_TWN_ = 1 and _CUPNEUTRAL = 0" xml:lang="el">Εκτός έδρας επίδειξη δύναμης της _TW_</title>
+    <title condition="_TWN_ = 1 and _CUPNEUTRAL = 0" xml:lang="el">Η _TW_ συντρίβει την _TL_ μπροστά στους οπαδούς της</title>
+    <subtitle xml:lang="el">Η _TW_ συντρίβει την _TL_ χάρις στο επιθετικό παιχνίδι της.</subtitle>
+    <subtitle condition="_TWN_ = 0 and _CUPNEUTRAL = 0" xml:lang="el">Η _TW_ κερδίζει την _TL_ με _RE_ στην έδρα της.</subtitle>
+    <subtitle condition="_TWN_ = 0 and _CUPNEUTRAL = 0" xml:lang="el">Από το κακό στο χειρότερο η _TL_ απέναντι στη _TW_.</subtitle>
+    <subtitle condition="_TWN_ = 1 and _CUPNEUTRAL = 0" xml:lang="el">Εκτός έδρας [νίκη|επικράτηση] της _TW_ με _REW_.</subtitle>
+    <subtitle condition="_GOALS_TLN__ &gt; 1" xml:lang="el">Η _TW_ διατηρεί το πάνω χέρι σε ένα παιχνίδι με πολλά γκολ.</subtitle>
+    <subtitle condition="_GOALS_TLN__ = 0" xml:lang="el">Η _TL_ δείχνει μία ανησυχητική αδυναμία και στην επίθεση και στην άμυνα.</subtitle>
+    <subtitle condition="_GOALS_TLN__ &gt; 1" xml:lang="el">Ήττα της _TL_ σε ένα επιθετικό παιχνίδι.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__ and _TWN_ = 0 and _CUPNEUTRAL_ = 0" xml:lang="el">Ο _SCORERS_TWN__ σκοράρει σε μία ισοπεδωτική εντός έδρας νίκη.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__" xml:lang="el">Συντριβή της _TL_ με γκολ των _SCORERS_TWN__.</subtitle>
+    <subtitle condition="_HIGHGOALS_TWN__ &gt; 1" xml:lang="el">Ο _HIGHSCORER_TWN__ βάζει _HIGHGOALS_TWN__ γκολ σε μία φανταστική νίκη.</subtitle>
+    <subtitle condition="_HIGHGOALS_TWN__ = 3" xml:lang="el">Ο _HIGHSCORER_TWN__ πετυχαίνει χατ-τρικ σε ένα διασκεδαστικό παιχνίδι.</subtitle>
+    <subtitle condition="_HIGHGOALS_TLN__ &gt; 1" xml:lang="el">Τα _HIGHGOALS_TLN__ γκολ του _HIGHSCORER_TLN__ δεν μπορούν να αποτρέψουν τη νίκη της _TW_.</subtitle>
+    <subtitle condition="_GOALS_TLN__ &gt; 1 and _MULTIPLESCORERS_TLN__" xml:lang="el">Τα γκολ των _SCORERS_TLN__ δεν ήταν αρκετά για νίκη της _TL_.</subtitle>
   </news_article>
 
   <news_article>
     <type>match</type>
     <condition>_TLAYERDIFF_ = 0 and _GD_ G 2 and (_CUPKO_ = 0 or _CUPHOMEAWAY_ = 0 or _CUPFIRSTLEG_ = 1)</condition>
-    <title priority="20" condition="_CUPET_ = 1">_TW_ [beat|overcome|defeat] _TL_ in extra time</title>
-    <title priority="20" condition="_CUPET_ = 1">_TW_ victorious in extra time</title>
-    <title priority="20" condition="_CUPPEN_ = 1">_TW_ [beat|overcome|defeat] _TL_ _REW_ in penalties</title>
-    <title priority="20" condition="_CUPPEN_ = 1">_TW_ hold their nerves in penalty shoot-out</title>
-    <title>_TL_ don't stand a chance against _TW_</title>
-    <title>Walkover for _TW_</title>
-    <title condition="_TWN_ = 0 and _CUPNEUTRAL = 0">Easy home win for _TW_</title>
-    <title>_TW_ wins comfortably against _TL_</title>
-    <title>_TW_ dominates _TL_</title>
-    <title condition="_TWN_ = 1 and _CUPNEUTRAL = 0">_TW_ dominate at _TL_</title>
-    <title condition="_TWN_ = 1 and _CUPNEUTRAL = 0">_TW_ dominate away</title>
-    <title condition="_GOALS_TLN__ &gt; 1">_TW_ victorious despite _GOALS_TLN__ goals against</title>
-    <title condition="_GOALS_TLN__ &gt; 1">_GOALS_TLN__ goals not enough for _TL_</title>
-    <subtitle>_TW_ controls _TL_ in _REW_ effort.</subtitle>
-    <subtitle condition="_TWN_ = 0 and _CUPNEUTRAL = 0">_TW_ dispatch _TL_ with a _RE_ home win.</subtitle>
-    <subtitle condition="_GOALS_TLN__ &gt; 1">_TW_ keep the upper hand in a match with numerous goals.</subtitle>
-    <subtitle condition="_GOALS_TLN__ &gt; 1">_TL_ lose the match of offenses.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_TWN__">_SCORERS_TWN__ scores in convincing win by _TW_.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_TWN__ and _TWN_ = 0 and _CUPNEUTRAL_ = 0">_SCORERS_TWN__ [score|strike] in convincing home win by _TW_.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_TWN__ and _TWN_ = 1 and _CUPNEUTRAL_ = 0">_SCORERS_TWN__ [score|strike] in convincing away win by _TW_.</subtitle>
-    <subtitle condition="_HIGHGOALS_TWN__ &gt; 1">_HIGHSCORER_TWN__ nets _HIGHGOALS_TWN__ goals in impressive victory.</subtitle>
-    <subtitle condition="_HIGHGOALS_TWN__ &gt; 1">_HIGHSCORER_TWN__ scores _HIGHGOALS_TWN__ times.</subtitle>
-    <subtitle condition="_HIGHGOALS_TWN__ = 3">_HIGHSCORER_TWN__ gets hat-trick in an entertaining match.</subtitle>
-    <subtitle condition="_HIGHGOALS_TWN__ = 3">Hat-trick by _HIGHSCORER_TWN__ stuns _TL_.</subtitle>
-    <subtitle condition="_HIGHGOALS_TLN__ &gt; 1">_HIGHGOALS_TLN__ goals by _HIGHSCORER_TLN__ can't prevent _TL_ from losing.</subtitle>
-    <subtitle condition="_HIGHGOALS_TLN__ &gt; 1">_HIGHGOALS_TLN__ goals by _HIGHSCORER_TLN__ not enough for _TL_ to withstand _TW_.</subtitle>
-    <subtitle condition="_HIGHGOALS_TLN__ &gt; 1">_TL_ loses despite getting _HIGHGOALS_TLN__ goals from _HIGHSCORER_TLN__.</subtitle>
-    <subtitle condition="_GOALS_TLN__ &gt; 1 and _MULTIPLESCORERS_TLN__">Goals by _SCORERS_TLN__ not enough as _TL_ loses _REL_.</subtitle>
+    <title priority="20" condition="_CUPET_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ στην παράταση</title>
+    <title priority="20" condition="_CUPET_ = 1" xml:lang="el">Η _TW_ κερδίζει στην παράταση</title>
+    <title priority="20" condition="_CUPPEN_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ _REW_ στην διαδικασία των πέναλτι</title>
+    <title priority="20" condition="_CUPPEN_ = 1" xml:lang="el">Η _TW_ ελέγχουν τα νεύρα τους κατά την διαδικασία των πέναλτι</title>
+    <title xml:lang="el">Η _TL_ δεν είχε καμία ευκαιρία απέναντι στην _TW_</title>
+    <title xml:lang="el">Περίπατος για την  _TW_</title>
+    <title condition="_TWN_ = 0 and _CUPNEUTRAL = 0" xml:lang="el">Εύκολη εντός έδρας νίκη για την _TW_</title>
+    <title xml:lang="el">Άνετη νίκη της _TW_ επί της _TL_</title>
+    <title xml:lang="el">Κυριαρχία της _TW_ επί της _TL_</title>
+    <title condition="_TWN_ = 1 and _CUPNEUTRAL = 0" xml:lang="el">Κυριαρχία της _TW_ επί της _TL_</title>
+    <title condition="_TWN_ = 1 and _CUPNEUTRAL = 0" xml:lang="el">Εκτός έδρας κυριαρχία της _TW_</title>
+    <title condition="_GOALS_TLN__ &gt; 1" xml:lang="el">Η _TW_ κερδίζει παρά τα _GOALS_TLN__ γκολ που δέχτηκε</title>
+    <title condition="_GOALS_TLN__ &gt; 1" xml:lang="el">Τα _GOALS_TLN__ γκολ της _TL_.δεν είναι αρκετά</title>
+    <subtitle xml:lang="el">Η _TW_ ελέγχει το παιχνίδι με την _TL_ και κερδίζει _REW_.</subtitle>
+    <subtitle condition="_TWN_ = 0 and _CUPNEUTRAL = 0" xml:lang="el">Η _TW_ κερδίζει εντός έδρας την _TL_ με _RE_.</subtitle>
+    <subtitle condition="_GOALS_TLN__ &gt; 1" xml:lang="el">Η _TW_ έχει το πάνω χέρι σε ένα παιχνίδι με πολλά γκολ.</subtitle>
+    <subtitle condition="_GOALS_TLN__ &gt; 1" xml:lang="el">Ήττα της _TL_ σε ένα επιθετικό παιχνίδι.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__" xml:lang="el">Ο _SCORERS_TWN__ σκοράρει σε μία αναμφισβήτητη νίκη.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__ and _TWN_ = 0 and _CUPNEUTRAL_ = 0" xml:lang="el">Οι _SCORERS_TWN__ [σκοράρουν|πετυχαίνουν τα γκολ] σε μία αναμφισβήτητη εντός έδρας νίκη της _TW_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__ and _TWN_ = 1 and _CUPNEUTRAL_ = 0" xml:lang="el">Οι _SCORERS_TWN__ [σκοράρουν|πετυχαίνουν τα γκολ] σε μία αναμφισβήτητη εκτός έδρας νίκη της _TW_.</subtitle>
+    <subtitle condition="_HIGHGOALS_TWN__ &gt; 1" xml:lang="el">Ο _HIGHSCORER_TWN__ βάζει _HIGHGOALS_TWN__ γκολ σε μία επιβλητική νίκη.</subtitle>
+    <subtitle condition="_HIGHGOALS_TWN__ &gt; 1" xml:lang="el">Ο _HIGHSCORER_TWN__ σκοράρει _HIGHGOALS_TWN__ φορές.</subtitle>
+    <subtitle condition="_HIGHGOALS_TWN__ = 3" xml:lang="el">Ο _HIGHSCORER_TWN__ πετυχαίνει χατ-τρικ σε ένα εκπληκτικό παιχνίδι.</subtitle>
+    <subtitle condition="_HIGHGOALS_TWN__ = 3" xml:lang="el">Το χατ-τρικ του _HIGHSCORER_TWN__ ρίχνει στο καναβάτσο την _TL_.</subtitle>
+    <subtitle condition="_HIGHGOALS_TLN__ &gt; 1" xml:lang="el">Τα _HIGHGOALS_TLN__ γκολ του _HIGHSCORER_TLN__ δεν μπορούν να αποτρέψουν την ήττα της _TL_.</subtitle>
+    <subtitle condition="_HIGHGOALS_TLN__ &gt; 1" xml:lang="el">Τα _HIGHGOALS_TLN__ γκολ του _HIGHSCORER_TLN__ δεν είναι αρκετά για την _TL_ να αντιμετωπίσει την _TW_.</subtitle>
+    <subtitle condition="_HIGHGOALS_TLN__ &gt; 1" xml:lang="el">Ήττα της _TL_ παρά τα _HIGHGOALS_TLN__ γκολ του _HIGHSCORER_TLN__.</subtitle>
+    <subtitle condition="_GOALS_TLN__ &gt; 1 and _MULTIPLESCORERS_TLN__" xml:lang="el">Τα γκολ των _SCORERS_TLN__ δεν ήταν αρκετά και η  _TL_ χάνει με _REL_.</subtitle>
   </news_article>
 
   <news_article>
     <type>match</type>
     <condition>_TLAYERDIFF_ = 0 and _GOALS0_ != _GOALS1_ and (_CUPKO_ = 0 or _CUPHOMEAWAY_ = 0 or _CUPFIRSTLEG_ = 1)</condition>
     <priority>5</priority>
-    <title>_TW_ [beat|overcome|defeat] _TL_ _REW_</title>
-    <title>_TL_ loses to _TW_ _REL_</title>
-    <title priority="20" condition="_CUPET_ = 1">_TW_ [beat|overcome|defeat] _TL_ in extra time</title>
-    <title priority="20" condition="_CUPET_ = 1">_TW_ victorious in extra time</title>
-    <title priority="20" condition="_CUPPEN_ = 1">_TW_ [beat|overcome|defeat] _TL_ _REW_ in penalties</title>
-    <title priority="20" condition="_CUPPEN_ = 1">_TW_ hold their nerves in penalty shoot-out</title>
-    <title condition="_CUPNEUTRAL_ = 0">_T0_ vs. _T1_ ends with a _RE_</title>
-    <title condition="_CUPFIRSTLEG_ = 1">_TW_ wins first leg of _CUPROUNDNAME_ against _TL_</title>
-    <title condition="_CUPFIRSTLEG_ = 1">_TW_ [beat|overcome|defeat] _TL_ in first leg</title>
-    <title condition="_TWN_ = 0 and _CUPNEUTRAL_ = 0">_TW_ victorious at home against _TL_</title>
-    <title condition="_TWN_ = 0 and _CUPNEUTRAL_ = 0">Home victory for _TW_</title>
-    <title condition="_TWN_ = 0 and _CUPNEUTRAL_ = 0">_TW_ win at home</title>
-    <title condition="_TWN_ = 1 and _CUPNEUTRAL_ = 0">_TW_ win at _TL_</title>
-    <title condition="_TWN_ = 1 and _CUPNEUTRAL_ = 0">Away win for _TW_</title>
-    <title condition="_TWN_ = 1 and _CUPNEUTRAL_ = 0">_TW_ get away victory</title>
-    <title condition="_WON_TWN__ &gt; 3">_WON_TWN__ victories in a row for _TW_</title>
-    <title condition="_LOST_TLN__ &gt; 3">_LOST_TLN__ losses in a row for _TL_</title>
-    <title condition="_UNBEATEN_TWN__ &gt; 3">_TW_ unbeaten since _UNBEATEN_TWN__ matches</title>
-    <title condition="_WON_TWN__ &gt; 3">_TW_ extend winning streak to _WON_TWN__</title>
-    <title condition="_LOST_TLN__ &gt; 3">_TL_ lose _LOST_TLN__th match in a row</title>
-    <title condition="_LEAGUEWON_TWN__ &gt; 3">_TW_ win _WON_TWN__th league game in a row</title>
-    <title condition="_LEAGUELOST_TLN__ &gt; 3">_TL_ remain luckless in league games</title>
-    <title condition="_LEAGUEUNBEATEN_TWN__ &gt; 3">_TW_ seem invincible in league matches</title>
-    <subtitle condition="_WON_TWN__ &gt; 5">Since _WON_TWN__ matches, _TW_ hammer every opponent.</subtitle>
-    <subtitle>_TW_ just too strong for _TL_, win _REW_.</subtitle>
-    <subtitle condition="_TWN_ = 0 and _CUPNEUTRAL_ = 0">_AT_ spectators watch their team win at home.</subtitle>
-    <subtitle condition="_TWN_ = 0">_AT_ spectators celebrate the win against _TL_.</subtitle>
-    <subtitle condition="_TWN_ = 1">_AT_ spectators commiserate with _TL_.</subtitle>
-    <subtitle condition="_TWN_ = 1 and _CUPNEUTRAL_ = 0">Most of the spectators leave the stadium disappointedly before the match is over.</subtitle>
-    <subtitle condition="_CUP_ = 0">_TW_ get the points against _TL_.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_TWN__">_SCORERS_TWN__ [score|get the goals] against _TL_.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_TWN__">_TW_ on top vs _TL_ thanks to goals by _SCORERS_TWN__.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_TWN__ and _TWN_ = 1">_SCORERS_TWN__ [score|strike] at _TL_.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_TWN__ = 0">_SCORERS_TWN__ ensures victory against _TL_.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_TWN__ = 0">_SCORERS_TWN__ only scorer against _TL_.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_TWN__ = 0 and _GOALS_TWN__ &gt; 1">_SCORERS_TWN__ defeats _TL_ single-handedly.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_TWN__ = 0">_SCORERS_TWN__ is the only scorer against _TL_.</subtitle>
-    <subtitle condition="_GOALS_TLN__ &gt; 1">_GOALS_TLN__ goals are not enough to win for _TL_.</subtitle>
-    <subtitle condition="_GOALS_TLN__ &gt; 1 and _MULTIPLESCORERS_TWN__">_TW_ win an entertaining match thanks to goals by _SCORERS_TWN__.</subtitle>
-    <subtitle condition="_GOALS_TLN__ &gt; 1">_TL_ lose to _TW_ in a match of many goals.</subtitle>
-    <subtitle condition="_INJS_TWN__ &gt; 0">_TW_ pay with injuries for the win against _TL_.</subtitle>
-    <subtitle condition="_RANK_TWN__ &gt;  _OLDRANK_TWN__">_TW_ improve to rank _RANK_TWN__ in the table.</subtitle>
-    <subtitle condition="_RANK_TWN__ &gt;  _OLDRANK_TWN__">Thanks to the win, _TW_ move to rank _RANK_TWN__ in the _LEAGUECUPNAME_ table.</subtitle>
-    <subtitle condition="_RANK_TWN__ = 1 and _OLDRANK_TWN__ &lt; 1">_TW_ is now _LEAGUECUPNAME_ leader.</subtitle>
-    <subtitle condition="_RANK_TWN__ &gt;  _OLDRANK_TWN__ and _RANK_TWN__ != 1">_TW_ gain [_OLDRANK_TWN__ - _RANK_TWN__] positions in the table.</subtitle>
-    <subtitle condition="_RANK_TLN__ &lt;  _OLDRANK_TLN__">_TL_ now only on rank _RANK_TLN__ in the table.</subtitle>
-    <subtitle condition="_RANK_TLN__ &lt;  _OLDRANK_TLN__">_TL_ down to rank _RANK_TLN__ in the _LEAGUECUPNAME_ table.</subtitle>
-    <subtitle condition="_RANK_TLN__ &lt;  _OLDRANK_TLN__">_TL_ lose [_RANK_TLN__ - _OLDRANK_TLN__] positions in the table.</subtitle>
-    <subtitle condition="_SHOTS_TWN__ &lt; _GOALS_TWN__ + 2">_TW_ convert almost all of their shots and get the win.</subtitle>
-    <subtitle condition="_SHOTS_TWN__ &lt; _GOALS_TWN__ + 2">_TL_ coach impressed by the efficiency of their opponent.</subtitle>
+    <title xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ _REW_</title>
+    <title xml:lang="el">Ήττα _REL_ της _TL_ από την _TW_</title>
+    <title priority="20" condition="_CUPET_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ στην παράταση</title>
+    <title priority="20" condition="_CUPET_ = 1" xml:lang="el">Η _TW_ κερδίζει στην παράταση</title>
+    <title priority="20" condition="_CUPPEN_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ _REW_ στην διαδικασία των πέναλτι</title>
+    <title priority="20" condition="_CUPPEN_ = 1" xml:lang="el">Η _TW_ ελέγχουν τα νεύρα τους κατά την διαδικασία των πέναλτι</title>
+    <title condition="_CUPNEUTRAL_ = 0" xml:lang="el">Ο αγώνας _T0_ - _T1_ λήγει _RE_</title>
+    <title condition="_CUPFIRSTLEG_ = 1" xml:lang="el">Η _TW_ κερδίζει τον πρώτο αγώνα του _CUPROUNDNAME_ την _TL_</title>
+    <title condition="_CUPFIRSTLEG_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ στον πρώτο αγώνα</title>
+    <title condition="_TWN_ = 0 and _CUPNEUTRAL_ = 0" xml:lang="el">Η _TW_ κερδίζει στην έδρα της την _TL_ με _RE_.</title>
+    <title condition="_TWN_ = 0 and _CUPNEUTRAL_ = 0" xml:lang="el">Εντός έδρας νίκη για την _TW_</title>
+    <title condition="_TWN_ = 0 and _CUPNEUTRAL_ = 0" xml:lang="el">Εντός έδρας νίκη για την _TW_</title>
+    <title condition="_TWN_ = 1 and _CUPNEUTRAL_ = 0" xml:lang="el">Η _TW_ κερδίζει την _TL_</title>
+    <title condition="_TWN_ = 1 and _CUPNEUTRAL_ = 0" xml:lang="el">Εκτός έδρας νίκη για την _TW_</title>
+    <title condition="_TWN_ = 1 and _CUPNEUTRAL_ = 0" xml:lang="el">Εκτός έδρας [νίκη|επικράτηση] της _TW_</title>
+    <title condition="_WON_TWN__ &gt; 3" xml:lang="el">_WON_TWN__ συνεχόμενες νίκες για την _TW_</title>
+    <title condition="_LOST_TLN__ &gt; 3" xml:lang="el">_LOST_TLN__ συνεχόμενες ήττες για την _TL_</title>
+    <title condition="_UNBEATEN_TWN__ &gt; 3" xml:lang="el">Η _TW_ παραμένει αήττητη εδώ και _UNBEATEN_TWN__ παιχνίδια</title>
+    <title condition="_WON_TWN__ &gt; 3" xml:lang="el">Η _TW_ επεκτείνει το νικηφόρο σερί της σε _WON_TWN__ αγώνες</title>
+    <title condition="_LOST_TLN__ &gt; 3" xml:lang="el">Η _TL_ χάνει το _LOST_TLN__ο συνεχόμενο παιχνίδι</title>
+    <title condition="_LEAGUEWON_TWN__ &gt; 3" xml:lang="el">Η _TW_ κερδίζει το _WON_TWN__ο συνεχόμενο παιχνίδι πρωταθλήματος</title>
+    <title condition="_LEAGUELOST_TLN__ &gt; 3" xml:lang="el">Η _TL_ παραμένει άτυχη στα παιχνίδια πρωταθλήματος</title>
+    <title condition="_LEAGUEUNBEATEN_TWN__ &gt; 3" xml:lang="el">Η _TW_ δείχνει ανίκητη στα παιχνίδια πρωταθλήματος</title>
+    <subtitle condition="_WON_TWN__ &gt; 5" xml:lang="el">Τα τελευταία _WON_TWN__ παιχνίδια, η _TW_ [διαλύει|κερδίζει] κάθε αντίπαλο.</subtitle>
+    <subtitle xml:lang="el">Η _TW_ ασταμάτητη από την _TL_, κερδίζει _REW_.</subtitle>
+    <subtitle condition="_TWN_ = 0 and _CUPNEUTRAL_ = 0" xml:lang="el">_AT_ θεατές παρακολουθούν την ομάδα τους να κερδίζει εντός έδρας.</subtitle>
+    <subtitle condition="_TWN_ = 0" xml:lang="el">_AT_ θεατές πανηγυρίζουν τη νίκη απέναντι στη _TL_.</subtitle>
+    <subtitle condition="_TWN_ = 1" xml:lang="el">_AT_ θεατές εμψυχώνουν την _TL_.</subtitle>
+    <subtitle condition="_TWN_ = 1 and _CUPNEUTRAL_ = 0" xml:lang="el">Οι περισσότεροι θεατές αποχωρούν απογοητευμένοι πριν το τέλος του αγώνα.</subtitle>
+    <subtitle condition="_CUP_ = 0" xml:lang="el">Η _TW_ κατακτά τους βαθμούς απέναντι στην _TL_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__" xml:lang="el">Οι _SCORERS_TWN__ [σκοράρουν|πετυχαίνουν τα γκολ] ενάντια στην _TL_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__" xml:lang="el">Η _TW_ κερδίζει την _TL_ χάρις σε γκολ των _SCORERS_TWN__.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__ and _TWN_ = 1" xml:lang="el">Οι _SCORERS_TWN__ [σκοράρουν|πετυχαίνουν τα γκολ] ενάντια στην _TL_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__ = 0" xml:lang="el">Ο _SCORERS_TWN__ [διασφαλίζει|σφραγίζει] τη νίκη εναντίον της _TL_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__ = 0" xml:lang="el">Ο _SCORERS_TWN__ μόνος σκόρερ εναντίον της _TL_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__ = 0 and _GOALS_TWN__ &gt; 1" xml:lang="el">Ο _SCORERS_TWN__ μόνος του κερδίζει δύσκολα την _TL_ </subtitle>
+    <subtitle condition="_MULTIPLESCORERS_TWN__ = 0" xml:lang="el">Ο _SCORERS_TWN__ είναι ο μόνος σκόρερ εναντίον της _TL_.</subtitle>
+    <subtitle condition="_GOALS_TLN__ &gt; 1" xml:lang="el">Τα _GOALS_TLN__ γκολ της _TL_.δεν είναι αρκετά για τη νίκη.</subtitle>
+    <subtitle condition="_GOALS_TLN__ &gt; 1 and _MULTIPLESCORERS_TWN__" xml:lang="el">Νίκη της _TW_ σε ένα φανταστικό παιχνίδι χάρις σε γκολ των _SCORERS_TWN__.</subtitle>
+    <subtitle condition="_GOALS_TLN__ &gt; 1" xml:lang="el">Ήττα της _TL_ από την _TW_ σε ένα παιχνίδι με πολλά γκολ.</subtitle>
+    <subtitle condition="_INJS_TWN__ &gt; 0" xml:lang="el">Πύρρεια νίκη της _TW_ επί της _TL_.</subtitle>
+    <subtitle condition="_RANK_TWN__ &gt;  _OLDRANK_TWN__" xml:lang="el">Η _TW_ [ανεβαίνει|σκαρφαλώνει] στην _RANK_TWN__ θέση στον βαθμολογικό πίνακα.</subtitle>
+    <subtitle condition="_RANK_TWN__ &gt;  _OLDRANK_TWN__" xml:lang="el">Χάρις στη νίκη, η _TW_ ανεβαίνει _στη RANK_TWN__ θέση στη βαθμολογία της _LEAGUECUPNAME_.</subtitle>
+    <subtitle condition="_RANK_TWN__ = 1 and _OLDRANK_TWN__ &lt; 1" xml:lang="el">Η _TW_ είναι τώρα επικεφαλής στη _LEAGUECUPNAME_.</subtitle>
+    <subtitle condition="_RANK_TWN__ &gt;  _OLDRANK_TWN__ and _RANK_TWN__ != 1" xml:lang="el">Η _TW_ κερδίζει [_OLDRANK_TWN__ - _RANK_TWN__] θέσεις στον βαθμολογικό πίνακα.</subtitle>
+    <subtitle condition="_RANK_TLN__ &lt;  _OLDRANK_TLN__" xml:lang="el">Η _TL_ τώρα βρίσκεται στη θέση _RANK_TLN__ στη βαθμολογία.</subtitle>
+    <subtitle condition="_RANK_TLN__ &lt;  _OLDRANK_TLN__" xml:lang="el">Η _TL_ κατεβαίνει στην _RANK_TLN__ θέση στον βαθμολογικό πίνακα της _LEAGUECUPNAME_.</subtitle>
+    <subtitle condition="_RANK_TLN__ &lt;  _OLDRANK_TLN__" xml:lang="el">Η _TL_ χάνει [_RANK_TLN__ - _OLDRANK_TLN__] θέσεις στην βαθμολογία.</subtitle>
+    <subtitle condition="_SHOTS_TWN__ &lt; _GOALS_TWN__ + 2" xml:lang="el">Η _TW_ αξιοποιεί όλες της τις ευκαιρίες και παίρνει τη νίκη.</subtitle>
+    <subtitle condition="_SHOTS_TWN__ &lt; _GOALS_TWN__ + 2" xml:lang="el">Η αποτελεσματικότητα του αντιπάλου εντυπωσιάζει τον προπονητή της _TL_.</subtitle>
   </news_article>
 
   <news_article>
     <type>match</type>
     <condition>_TLAYERDIFF_ = 0 and _GD_ = 0 and (_CUPKO_ = 0 or _CUPHOMEAWAY_ = 0 or _CUPFIRSTLEG_ = 1)</condition>
-    <title priority="20" condition="_CUPET_ = 1">_TW_ [beat|overcome|defeat] _TL_ in extra time</title>
-    <title priority="20" condition="_CUPET_ = 1">_TW_ victorious in extra time</title>
-    <title priority="20" condition="_CUPPEN_ = 1">_TW_ [beat|overcome|defeat] _TL_ _REW_ in penalties</title>
-    <title priority="20" condition="_CUPPEN_ = 1">_TW_ hold their nerves in penalty shoot-out</title>
-    <title condition="_CUPNEUTRAL = 0">_T1_ get the draw at _T0_</title>
-    <title condition="_CUPNEUTRAL = 0">_T0_ manage only a _RE_ tie at home</title>
-    <title>Meagre draw for [_T0_|_T1_]</title>
-    <title condition="_GOALS0_ = 0">Goal-less draw in _T0_ vs. _T1_</title>
-    <title condition="_CUP_ = 0">_T0_ and _T1_ share the points</title>
-    <title condition="_GOALS0_ &gt; 1">Eventful draw for [_T0_|_T1_]</title>
-    <title condition="_GOALS0_ = 0">_T0_ vs. _T1_ is pure boredom</title>
-    <subtitle condition="_GOALS0_ &gt; 1">[_T0_|_T1_] let down by horrible defense.</subtitle>
-    <subtitle condition="_GOALS0_ &gt; 1">[_T0_|_T1_] allow _GOALS1_ goals and should be satisfied with a tie.</subtitle>
-    <subtitle condition="_GOALS0_ &gt; 1">[_T0_|_T1_] allow _GOALS1_ and gets only a draw.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS0_">Goals by _SCORERS0_ only ensure a _RE_ for _T0_.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS0_ = 0">_SCORERS0_ saves the draw for _T0_ against _T1_.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS0_ = 0">_SCORERS1_ saves the draw for _T1_ at _T0_.</subtitle>
-    <subtitle condition="_GOALS0_ &lt; 2">_T0_ and _T1_ bore _AT_ spectators with horrible, horrible play and an utterly disappointing _RE_.</subtitle>
-    <subtitle condition="_GOALS0_ &lt; 2">Both teams clearly lacked the energy in this match.</subtitle>
-    <subtitle>The draw doesn't help either team.</subtitle>
-    <subtitle>Neither _T0_ nor _T1_ can really be satisfied with a tie.</subtitle>
-    <subtitle condition="_GOALS0_ &lt; 2">Several of the _AT_ spectators die of boredom during an atrocious game.</subtitle>
-    <subtitle condition="_GOALS0_ &lt; 2">The two teams deliver repulsing football reminiscent of the days of Catenaccio.</subtitle>
-    <subtitle condition="_GOALS0_ &gt; 1">_AT_ spectators enjoy a lively game despite the _RE_ draw.</subtitle>
-    <subtitle condition="_GOALS0_ &gt; 2">The coach of [_T0_|_T1_] vows to concentrate on getting the defense in shape during the coming weeks.</subtitle>
-    <subtitle condition="_GOALS0_ &gt; 1">[_T0_|_T1_] combine good offense with costly mistakes and only gets the draw.</subtitle>
-    <subtitle condition="_GOALS0_ &gt; 1">[_T0_|_T1_] commit some easy mistakes and wastes victory.</subtitle>
-    <subtitle condition="_GOALS0_ = 1">One mistake by [_T0_|_T1_] wastes victory.</subtitle>
-    <subtitle condition="_GOALS0_ &lt; _SHOTS0_ + 3">_T0_ waste their scoring chances and only get the draw.</subtitle>
-    <subtitle condition="_GOALS1_ &lt; _SHOTS1_ + 3">_T1_ waste their scoring chances and only get the draw.</subtitle>
-    <subtitle condition="_GOALS1_ = 0 and _PEN1_ &gt; 0">A wasted penalty shot will haunt _T1_'s players for a long time.</subtitle>
-    <subtitle condition="_GOALS0_ = 0 and _PEN0_ &gt; 0">A wasted penalty shot will haunt _T0_'s players for a long time.</subtitle>
-    <subtitle condition="_UNBEATEN0_ &gt; 3">_T0_ only gets the draw but the unbeaten streak of _UNBEATEN0_ matches is still alive.</subtitle>
-    <subtitle condition="_UNBEATEN0_ &gt; 3">_AT_ spectators watch _T0_ extend their unbeaten streak to _UNBEATEN0_.</subtitle>
-    <subtitle condition="_LEAGUEUNBEATEN0_ &gt; 3">_T0_ unbeatable for _T1_ and extends streak to _UNBEATEN0_ matches without loss in _LEAGUECUPNAME_.</subtitle>
+    <title priority="20" condition="_CUPET_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ στην παράταση</title>
+    <title priority="20" condition="_CUPET_ = 1" xml:lang="el">Η _TW_ κερδίζει στην παράταση</title>
+    <title priority="20" condition="_CUPPEN_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ _REW_ στην διαδικασία των πέναλτι</title>
+    <title priority="20" condition="_CUPPEN_ = 1" xml:lang="el">Η _TW_ ελέγχουν τα νεύρα τους κατά την διαδικασία των πέναλτι</title>
+    <title condition="_CUPNEUTRAL = 0" xml:lang="el">Η _T1_ παίρνει την ισοπαλία στην έδρα της _T0_</title>
+    <title condition="_CUPNEUTRAL = 0" xml:lang="el">Η _T0_ παραχωρεί εντός έδρας ισοπαλία με σκορ _RE_</title>
+    <title xml:lang="el">Απλή ισοπαλία για την [_T0_|_T1_]</title>
+    <title condition="_GOALS0_ = 0" xml:lang="el">Λευκή ισοπαλία στο _T0_ - _T1_</title>
+    <title condition="_CUP_ = 0" xml:lang="el">Οι _T0_ και _T1_ μοιράζονται τους βαθμούς</title>
+    <title condition="_GOALS0_ &gt; 1" xml:lang="el">Περιπετειώδης ισοπαλία για την [_T0_|_T1_]</title>
+    <title condition="_GOALS0_ = 0" xml:lang="el">Ο αγώνας _T0_ - _T1_ είναι απλώς βαρετός</title>
+    <subtitle condition="_GOALS0_ &gt; 1" xml:lang="el">Η [_T0_|_T1_] προδίδεται από την κακή άμυνα.</subtitle>
+    <subtitle condition="_GOALS0_ &gt; 1" xml:lang="el">Η [_T0_|_T1_] δέχεται _GOALS1_ γκολ και πρέπει να είναι ικανοποιημένη με την ισοπαλία.</subtitle>
+    <subtitle condition="_GOALS0_ &gt; 1" xml:lang="el">Η [_T0_|_T1_] δέχεται _GOALS1_ γκολ και αρκείται στην ισοπαλία.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS0_" xml:lang="el">Τα γκολ του _SCORERS0_ διασφαλίζουν ένα _RE_ για την _T0_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS0_ = 0" xml:lang="el">Ο _SCORERS0_ σώζει την ισοπαλία για την _T0_ απέναντι στην _T1_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS0_ = 0" xml:lang="el">Ο _SCORERS1_ σώζει την ισοπαλία για την _T1_ στην έδρα της _T0_.</subtitle>
+    <subtitle condition="_GOALS0_ &lt; 2" xml:lang="el">_AT_ θεατές παρακολουθούν ένα βαρετό παιχνίδι ανάμεσα στις _T0_ και _T1_ που λήγει _RE_.</subtitle>
+    <subtitle condition="_GOALS0_ &lt; 2" xml:lang="el">Υπήρχε καθαρή έλλειψη ενέργειας και από τις δύο ομάδες γι αυτό το παιχνίδι.</subtitle>
+    <subtitle xml:lang="el">Η ισοπαλία δεν [βοηθά|βολεύει] καμία ομάδα.</subtitle>
+    <subtitle xml:lang="el">Καμία από τις δύο ομάδες δεν πρέπει να είναι ικανοποιημένη με μία ισοπαλία.</subtitle>
+    <subtitle condition="_GOALS0_ &lt; 2" xml:lang="el">_AT_ θεατές παρακολουθούν ένα βαρετό παιχνίδι.</subtitle>
+    <subtitle condition="_GOALS0_ &lt; 2" xml:lang="el">Οι δύο ομάδες παίζουν τόσο απωθητικό ποδόσφαιρο που θυμίζει κατενάτσιο.</subtitle>
+    <subtitle condition="_GOALS0_ &gt; 1" xml:lang="el">_AT_ θεατές απολαμβάνουν ένα χορταστικό παιχνίδι παρά την ισοπαλία με σκορ _RE_.</subtitle>
+    <subtitle condition="_GOALS0_ &gt; 2" xml:lang="el">Ο προπονητής της [_T0_|_T1_] υπόσχεται τις επόμενες εβδομάδες  να επικεντρωθεί στη βελτίωση της άμυνας </subtitle>
+    <subtitle condition="_GOALS0_ &gt; 1" xml:lang="el">Η [_T0_|_T1_] συνδυάζει καλή επίθεση με μοιραία λάθη και αρκείται στην ισοπαλία.</subtitle>
+    <subtitle condition="_GOALS0_ &gt; 1" xml:lang="el">Η [_T0_|_T1_] διαπράττει κάποια εύκολα λάθη και χαραμίζει τη νίκη.</subtitle>
+    <subtitle condition="_GOALS0_ = 1" xml:lang="el">Ένα λάθος της [_T0_|_T1_] [χαραμίζει|σπαταλά] τη νίκη.</subtitle>
+    <subtitle condition="_GOALS0_ &lt; _SHOTS0_ + 3" xml:lang="el">Η _T0_ πετάει στα σκουπίδια τις ευκαιρίες της και παραχωρεί ισοπαλία.</subtitle>
+    <subtitle condition="_GOALS1_ &lt; _SHOTS1_ + 3" xml:lang="el">Η _T1_ πετάει στα σκουπίδια τις ευκαιρίες της και παραχωρεί ισοπαλία.</subtitle>
+    <subtitle condition="_GOALS1_ = 0 and _PEN1_ &gt; 0" xml:lang="el">Ένα χαμένο πέναλτι θα κυνηγά τους παίκτες της _T1_ για καιρό.</subtitle>
+    <subtitle condition="_GOALS0_ = 0 and _PEN0_ &gt; 0" xml:lang="el">Ένα χαμένο πέναλτι θα κυνηγά τους παίκτες της _T0_ για καιρό.</subtitle>
+    <subtitle condition="_UNBEATEN0_ &gt; 3" xml:lang="el">Η _T0_ παραχωρεί ισοπαλία αλλά το αήττητο σερί των _UNBEATEN0_ αγώνων παραμένει.</subtitle>
+    <subtitle condition="_UNBEATEN0_ &gt; 3" xml:lang="el">_AT_ θεατές παρακολουθούν την _T0_ να επεκτείνει το αήττητο σερί της σε _UNBEATEN0_ αγώνες</subtitle>
+    <subtitle condition="_LEAGUEUNBEATEN0_ &gt; 3" xml:lang="el">Η _T1_ δεν μπορεί να νικήσει την _T0_ που επεκτείνει το αήττητο σερί της στην _LEAGUECUPNAME_ σε _UNBEATEN0_ αγώνες.</subtitle>
   </news_article>
 
   <news_article>
     <type>match</type>
     <condition>_TLAYERDIFF_ = 0 and _GD_ = 1 and (_CUPKO_ = 0 or _CUPHOMEAWAY_ = 0 or _CUPFIRSTLEG_ = 1)</condition>
-    <title priority="20" condition="_CUPET_ = 1">_TW_ [beat|overcome|defeat] _TL_ in extra time</title>
-    <title priority="20" condition="_CUPET_ = 1">_TW_ victorious in extra time</title>
-    <title priority="20" condition="_CUPPEN_ = 1">_TW_ [beat|overcome|defeat] _TL_ _REW_ in penalties</title>
-    <title priority="20" condition="_CUPPEN_ = 1">_TW_ hold their nerves in penalty shoot-out</title>
-    <title>Tight _REW_ for _TW_</title>
-    <title>_TW_ [beat|overcome|defeat] _TL_ in a [tight|close|tense] match</title>
-    <title>_TW_ wins in a [tight|close|tense] match</title>
-    <title>_TL_ frustrated about unnecessary loss</title>
-    <title>_TL_ loses to _TW_ in a [tight|close|tense] encounter</title>
-    <title>Pure excitement in _T0_ vs. _T1_</title>
-    <title>Close match with happy ending for _TW_</title>
-    <title condition="_CUPNEUTRAL = 0">Exciting game at _T0_</title>
-    <title condition="_TWN_ = 0 and _CUPNEUTRAL = 0">_TW_ fortunate to get home win</title>
-    <title condition="_TWN_ = 1 and _CUPNEUTRAL = 0">_TW_ win at _TL_ in a [tight|close|tense] game</title>
-    <subtitle>_AT_ spectators watch _TW_ come out only one goal ahead of _TL_.</subtitle>
-    <subtitle>_AT_ spectators see a [tight|close|tense] encounter between two equal teams.</subtitle>
-    <subtitle>_TW_ get a [tight|close|tense] but deserved _REW_ against _TL_.</subtitle>
-    <subtitle>_TL_ should have gotten more than a disappointing and unfortunate _REL_ out of this match.</subtitle>
-    <subtitle condition="_GOALS_TWN__ = 1">_SCORERS_TWN__ get the game winning goal.</subtitle>
-    <subtitle condition="_GOALS_TWN__ = 1">One goal is enough for _TW_ to get the win in this match.</subtitle>
-    <subtitle condition="_GOALS_TWN__ = 1 and _CUP_ = 0">One goal is enough for _TW_ to grab three points.</subtitle>
+    <title priority="20" condition="_CUPET_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ στην παράταση</title>
+    <title priority="20" condition="_CUPET_ = 1" xml:lang="el">Η _TW_ κερδίζει στην παράταση</title>
+    <title priority="20" condition="_CUPPEN_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ _REW_ στην διαδικασία των πέναλτι</title>
+    <title priority="20" condition="_CUPPEN_ = 1" xml:lang="el">Η _TW_ ελέγχουν τα νεύρα τους κατά την διαδικασία των πέναλτι</title>
+    <title xml:lang="el">Δύσκολο _REW_ για την _TW_</title>
+    <title xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ σε ένα [κλειστό|αμφίρροπο] παιχνίδι</title>
+    <title xml:lang="el">Νίκη της _TW_ σε ένα [κλειστό|αμφίρροπο] παιχνίδι</title>
+    <title xml:lang="el">Απογοήτευση στην _TL_ από την απρόσμενη ήττα</title>
+    <title xml:lang="el">Η _TL_ χάνει από την _TW_ σε μία [κλειστή|αμφίρροπη] αναμέτρηση</title>
+    <title xml:lang="el">Παιχνίδια σαν το _T0_ -. _T1_ ευχαριστιέσαι να τα βλέπεις</title>
+    <title xml:lang="el">Κλειστό παιχνίδι με ευτυχή κατάληξη για την _TW_</title>
+    <title condition="_CUPNEUTRAL = 0" xml:lang="el">Συναρπαστικό παιχνίδι στο γήπεδο της _T0_</title>
+    <title condition="_TWN_ = 0 and _CUPNEUTRAL = 0" xml:lang="el">Η _TW_ ήταν τυχερή και κέρδισε εντός έδρας</title>
+    <title condition="_TWN_ = 1 and _CUPNEUTRAL = 0" xml:lang="el">Η _TW_ κερδίζει την _TL_ σε ένα [κλειστό|αμφίρροπο] παιχνίδι</title>
+    <subtitle xml:lang="el">_AT_ θεατές παρακολουθούν την _TW_ να ξεφεύγει με ένα μόνο γκολ διαφορά από την _TL_.</subtitle>
+    <subtitle xml:lang="el">_AT_ θεατές βλέπουν μία [κλειστή|αμφίρροπη] αναμέτρηση ανάμεσα σε δύο ισοδύναμες ομάδες.</subtitle>
+    <subtitle xml:lang="el">Η _TW_ επιτυγχάνει ένα δύσκολο αλλά πανάξιο _REW_ απέναντι στην _TL_.</subtitle>
+    <subtitle xml:lang="el">Η _TL_ άξιζε κάτι καλύτερο σε αυτό το παιχνίδι από ένα απογοητευτικό _REL_.</subtitle>
+    <subtitle condition="_GOALS_TWN__ = 1" xml:lang="el">Ο _SCORERS_TWN__ πετυχαίνει το νικητήριο γκολ.</subtitle>
+    <subtitle condition="_GOALS_TWN__ = 1" xml:lang="el">Ένα γκολ για την _TW_ είναι αρκετό για να κερδίσει αυτό το παιχνίδι.</subtitle>
+    <subtitle condition="_GOALS_TWN__ = 1 and _CUP_ = 0" xml:lang="el">Ένα γκολ είναι αρκετό για την _TW_ να πάρει τους τρεις βαθμούς.</subtitle>
   </news_article>
 
   <news_article>
     <type>match</type>
     <condition>_TLAYERDIFF_ = 0 and _GD_ != 0 and _TAVSKILLDIFF_ &gt; 7 and (_CUPKO_ = 0 or _CUPHOMEAWAY_ = 0 or _CUPFIRSTLEG_ = 1)</condition>
-    <title priority="20" condition="_CUPET_ = 1">_TW_ [beat|overcome|defeat] _TL_ in extra time</title>
-    <title priority="20" condition="_CUPET_ = 1">_TW_ victorious in extra time</title>
-    <title priority="20" condition="_CUPPEN_ = 1">_TW_ [beat|overcome|defeat] _TL_ _REW_ in penalties</title>
-    <title priority="20" condition="_CUPPEN_ = 1">_TW_ hold their nerves in penalty shoot-out</title>
-    <title condition="_TAVSKILL_TWN__ &gt; _TAVSKILL_TLN__">_TW_ [beat|overcome|defeat] _TL_</title>
-    <title condition="_TAVSKILL_TWN__ &gt; _TAVSKILL_TLN__">As expected, _TW_ [beat|overcome|defeat] _TL_</title>
-    <title condition="_TAVSKILL_TWN__ &gt; _TAVSKILL_TLN__">_TW_ fulfill expectations</title>
-    <title condition="_TAVSKILL_TWN__ &lt; _TAVSKILL_TLN__">_TW_ prove betting odds wrong, [beat|overcome|defeat] _TL_</title>
-    <title condition="_TAVSKILL_TWN__ &lt; _TAVSKILL_TLN__">_TW_ upset _TL_</title>
-    <title condition="_TAVSKILL_TWN__ &lt; _TAVSKILL_TLN__">_TL_ superior in theory, lose _REL_</title>
-    <subtitle condition="_TAVSKILL_TWN__ &gt; _TAVSKILL_TLN__">_TL_ did their best but couldn't really hope to win here.</subtitle>
-    <subtitle condition="_TAVSKILL_TWN__ &gt; _TAVSKILL_TLN__">_TW_ had a better team and used their advantage ruthlessly.</subtitle>
-    <subtitle condition="_TAVSKILL_TWN__ &lt; _TAVSKILL_TLN__">_TW_ turn the football world upside down with a surprising _REW_ win.</subtitle>
-    <subtitle condition="_TAVSKILL_TWN__ &lt; _TAVSKILL_TLN__">_TW_ are the weaker team, but their passion proved more than sufficient in this victory.</subtitle>
-    <subtitle condition="_TAVSKILL_TWN__ &lt; _TAVSKILL_TLN__">Thanks to their exceedingly clever strategy, _TW_ are successful against the better team.</subtitle>
+    <title priority="20" condition="_CUPET_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ στην παράταση</title>
+    <title priority="20" condition="_CUPET_ = 1" xml:lang="el">Η _TW_ κερδίζει στην παράταση</title>
+    <title priority="20" condition="_CUPPEN_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ _REW_ στην διαδικασία των πέναλτι</title>
+    <title priority="20" condition="_CUPPEN_ = 1" xml:lang="el">Η _TW_ ελέγχουν τα νεύρα τους κατά την διαδικασία των πέναλτι</title>
+    <title condition="_TAVSKILL_TWN__ &gt; _TAVSKILL_TLN__" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_</title>
+    <title condition="_TAVSKILL_TWN__ &gt; _TAVSKILL_TLN__" xml:lang="el">Όπως αναμενόταν, η _TW_ [νίκησε την |υπερίσχυσε της] _TL_</title>
+    <title condition="_TAVSKILL_TWN__ &gt; _TAVSKILL_TLN__" xml:lang="el">Η _TW_ ικανοποιεί τις προσδοκίες</title>
+    <title condition="_TAVSKILL_TWN__ &lt; _TAVSKILL_TLN__" xml:lang="el">Η _TW_ διαψεύδει τα προγνωστικά και κερδίζει την _TL_</title>
+    <title condition="_TAVSKILL_TWN__ &lt; _TAVSKILL_TLN__" xml:lang="el">Η _TW_ απογοητεύει τη _TL_</title>
+    <title condition="_TAVSKILL_TWN__ &lt; _TAVSKILL_TLN__" xml:lang="el">Το φαβορί _TL_ χάνει _REL_</title>
+    <subtitle condition="_TAVSKILL_TWN__ &gt; _TAVSKILL_TLN__" xml:lang="el">Η _TL_ δεν είχε καμία ελπίδα για νίκη αν και έκανε ότι μπορούσε.</subtitle>
+    <subtitle condition="_TAVSKILL_TWN__ &gt; _TAVSKILL_TLN__" xml:lang="el">Η _TW_ είχε καλύτερη ομάδα και το απέδειξε στο γήπεδο.</subtitle>
+    <subtitle condition="_TAVSKILL_TWN__ &lt; _TAVSKILL_TLN__" xml:lang="el">Η _TW_ φέρνει τα πάνω κάτω με ένα εκπληκτικό _REW_.</subtitle>
+    <subtitle condition="_TAVSKILL_TWN__ &lt; _TAVSKILL_TLN__" xml:lang="el">Η _TW_ είναι [πιο αδύνατη ομάδα|το αουτσάιντερ] αλλά το πάθος της αποδεικνύεται αρκετό για τη νίκη.</subtitle>
+    <subtitle condition="_TAVSKILL_TWN__ &lt; _TAVSKILL_TLN__" xml:lang="el">Χάρις στην πανέξυπνη τακτική της, η _TW_ επιτυγχάνει απέναντι σε μία καλύτερη ομάδα.</subtitle>
   </news_article>
 
   <news_article>
     <type>match</type>
     <condition>_TLAYERDIFF_ &gt; 0 and (_CUPKO_ = 0 or _CUPHOMEAWAY_ = 0 or _CUPFIRSTLEG_ = 1)</condition>
-    <title priority="20" condition="_CUPET_ = 1">_TW_ [beat|overcome|defeat] _TL_ in extra time</title>
-    <title priority="20" condition="_CUPET_ = 1">_TW_ victorious in extra time</title>
-    <title priority="20" condition="_CUPPEN_ = 1">_TW_ [beat|overcome|defeat] _TL_ _REW_ in penalties</title>
-    <title priority="20" condition="_CUPPEN_ = 1">_TW_ hold their nerves in penalty shoot-out</title>
-    <title condition="_GD_ = 0">_T[_TLAYER0_ L _TLAYER1_]_ get unexpected draw</title>
-    <title condition="_GD_ = 0">_T[_TLAYER0_ L _TLAYER1_]_ withstands _T[_TLAYER0_ G _TLAYER1_]_</title>
-    <title condition="_GD_ = 0">_LEAGUECUPNAME_: _T[_TLAYER0_ L _TLAYER1_]_ eke out a draw</title>
-    <title condition="_TWN_ = [_TLAYER0_ &lt; _TLAYER1_]">_T[_TLAYER0_ L _TLAYER1_]_ upset _T[_TLAYER0_ G _TLAYER1_]_</title>
-    <title condition="_TWN_ = [_TLAYER0_ &lt; _TLAYER1_]">_T[_TLAYER0_ L _TLAYER1_]_ overcome class difference</title>
-    <title condition="_TWN_ = [_TLAYER0_ &gt; _TLAYER1_]">_T[_TLAYER0_ L _TLAYER1_]_ succumb to a superior opponent</title>
-    <title condition="_TWN_ = [_TLAYER0_ &gt; _TLAYER1_]">_T[_TLAYER0_ G _TLAYER1_]_ too strong for _T[_TLAYER0_ L _TLAYER1_]_</title>
-    <title condition="_TWN_ = [_TLAYER0_ &gt; _TLAYER1_]">_T[_TLAYER0_ G _TLAYER1_]_ [beat|overcome|defeat] a brave opponent</title>
-    <subtitle condition="_GD_ = 0">_T[_TLAYER0_ L _TLAYER1_]_ withstands the pressure from a nominally much better team and holds the draw.</subtitle>
-    <subtitle condition="_GD_ = 0 or _TWN_ = [_TLAYER0_ L _TLAYER1_]">Nobody expected this result - except for the players and the coach of _T[_TLAYER0_ L _TLAYER1_]_.</subtitle>
-    <subtitle condition="_GD_ = 0 or _TWN_ = [_TLAYER0_ L _TLAYER1_]">_T[_TLAYER0_ L _TLAYER1_]_ get a result nobody would have expected beforehand.</subtitle>
-    <subtitle condition="_TWN_ = [_TLAYER0_ &gt; _TLAYER1_]">_T[_TLAYER0_ L _TLAYER1_]_ put up a good fight, but _T[_TLAYER0_ G _TLAYER1_]_ are just too strong.</subtitle>
-    <subtitle condition="_TWN_ = [_TLAYER0_ &gt; _TLAYER1_]">_AT_ spectators watch as _T[_TLAYER0_ G _TLAYER1_]_ fulfill the expectations and keeps the upper hand against an overmatched opponent.</subtitle>
-    <subtitle condition="_TWN_ = [_TLAYER0_ &lt; _TLAYER1_]">_T[_TLAYER0_ G _TLAYER1_]_ thoroughly embarrassed by the _REL_ against a lower class opponent.</subtitle>
-    <subtitle condition="_TWN_ = [_TLAYER0_ &lt; _TLAYER1_]">_T[_TLAYER0_ L _TLAYER1_]_ shame _T[_TLAYER0_ G _TLAYER1_]_ with a _REW_ in _LEAGUECUPNAME_.</subtitle>
-    <subtitle condition="_TWN_ = [_TLAYER0_ &lt; _TLAYER1_]">_T[_TLAYER0_ L _TLAYER1_]_ don't let the class difference get to them and come throught with a _REW_.</subtitle>
+    <title priority="20" condition="_CUPET_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ στην παράταση</title>
+    <title priority="20" condition="_CUPET_ = 1" xml:lang="el">Η _TW_ κερδίζει στην παράταση</title>
+    <title priority="20" condition="_CUPPEN_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ _REW_ στην διαδικασία των πέναλτι</title>
+    <title priority="20" condition="_CUPPEN_ = 1" xml:lang="el">Η _TW_ ελέγχουν τα νεύρα τους κατά την διαδικασία των πέναλτι</title>
+    <title condition="_GD_ = 0" xml:lang="el">Αναπάντεχη ισοπαλία για την _T[_TLAYER0_ L _TLAYER1_]_</title>
+    <title condition="_GD_ = 0" xml:lang="el">Η _T[_TLAYER0_ L _TLAYER1_]_ αντέχει την διαφορά κλάσης της_T[_TLAYER0_ G _TLAYER1_]_</title>
+    <title condition="_GD_ = 0" xml:lang="el">_LEAGUECUPNAME_: Η _T[_TLAYER0_ L _TLAYER1_]_ παίρνει ισοπαλία</title>
+    <title condition="_TWN_ = [_TLAYER0_ &lt; _TLAYER1_]" xml:lang="el">Η _T[_TLAYER0_ L _TLAYER1_]_ κάνει άνω κάτω την _T[_TLAYER0_ G _TLAYER1_]_</title>
+    <title condition="_TWN_ = [_TLAYER0_ &lt; _TLAYER1_]" xml:lang="el">Η _T[_TLAYER0_ L _TLAYER1_]_ υπερισχύει της διαφοράς κατηγορίας</title>
+    <title condition="_TWN_ = [_TLAYER0_ &gt; _TLAYER1_]" xml:lang="el">Η _T[_TLAYER0_ L _TLAYER1_]_ υποκύπτει σε έναν ανώτερο αντίπαλο</title>
+    <title condition="_TWN_ = [_TLAYER0_ &gt; _TLAYER1_]" xml:lang="el">H _T[_TLAYER0_ G _TLAYER1_]_ ήταν πολύ δύσκολος αντίπαλος για την _T[_TLAYER0_ L _TLAYER1_]_</title>
+    <title condition="_TWN_ = [_TLAYER0_ &gt; _TLAYER1_]" xml:lang="el">Η _T[_TLAYER0_ G _TLAYER1_]_ κερδίζει έναν δύσκολο αντίπαλο</title>
+    <subtitle condition="_GD_ = 0" xml:lang="el">Η _T[_TLAYER0_ L _TLAYER1_]_ αντέχει την πίεση από μία θεωρητικά πιο καλή ομάδα και παίρνει την ισοπαλία.</subtitle>
+    <subtitle condition="_GD_ = 0 or _TWN_ = [_TLAYER0_ L _TLAYER1_]" xml:lang="el">Κανείς εκτός τους παίκτες και τον προπονητή της [_TLAYER0_ L _TLAYER1_]_.δεν περίμενε αυτό το αποτέλεσμα</subtitle>
+    <subtitle condition="_GD_ = 0 or _TWN_ = [_TLAYER0_ L _TLAYER1_]" xml:lang="el">Η _T[_TLAYER0_ L _TLAYER1_]_ επιτυγχάνει κάτι που πριν τον αγώνα φαινόταν ακατόρθωτο</subtitle>
+    <subtitle condition="_TWN_ = [_TLAYER0_ &gt; _TLAYER1_]" xml:lang="el">Η _T[_TLAYER0_ L _TLAYER1_]_ ήταν πολύ μαχητική αλλά η _T[_TLAYER0_ G _TLAYER1_]_ ήταν πολύ δυνατή.</subtitle>
+    <subtitle condition="_TWN_ = [_TLAYER0_ &gt; _TLAYER1_]" xml:lang="el">_AT_ θεατές παρακολουθούν την _T[_TLAYER0_ G _TLAYER1_]_ να δικαιώνει τις προσδοκίες και να κυριαρχεί επί ενός υποδεέστερου αντιπάλου.</subtitle>
+    <subtitle condition="_TWN_ = [_TLAYER0_ &lt; _TLAYER1_]" xml:lang="el">Η _T[_TLAYER0_ G _TLAYER1_]_ πρέπει να νιώθει ντροπή μετά το _REL_ από έναν κατώτερο στα χαρτιά αντίπαλο.</subtitle>
+    <subtitle condition="_TWN_ = [_TLAYER0_ &lt; _TLAYER1_]" xml:lang="el">Η _T[_TLAYER0_ L _TLAYER1_]_ ντροπιάζει την _T[_TLAYER0_ G _TLAYER1_]_ με _REW_ στο _LEAGUECUPNAME_.</subtitle>
+    <subtitle condition="_TWN_ = [_TLAYER0_ &lt; _TLAYER1_]" xml:lang="el">Η _T[_TLAYER0_ L _TLAYER1_]_ παρ' ότι ήταν κατώτερη θεωρητικά περνάει με ένα _REW_.</subtitle>
   </news_article>
 
   <news_article>
     <type>match</type>
     <priority>25</priority>
     <condition>_CUP_ = 1 and _CUPKO_ = 1 and _CUPPROMREL_ = 0 and _CUPAUX_ = 0 and _CUPSTAGE_ = 1 and _GDAGG_ != 0</condition>    
-    <title priority="20" condition="_CUPET_ = 1">_TW_ [beat|overcome|defeat] _TL_ in extra time</title>
-    <title priority="20" condition="_CUPET_ = 1">_TW_ victorious in extra time</title>
-    <title priority="20" condition="_CUPPEN_ = 1">_TW_ [beat|overcome|defeat] _TL_ _REW_ in penalties</title>
-    <title priority="20" condition="_CUPPEN_ = 1">_TW_ hold their nerves in penalty shoot-out</title>
-    <title condition="_CUPFIRSTLEG_ = 1">_TW_ [wins in|victorious in|takes] first leg of _LEAGUECUPNAME_ final</title>
-    <title condition="_CUPFIRSTLEG_ = 1">_TW_ [beat|overcome|defeat] _TL_ in first leg of _LEAGUECUPNAME_ final</title>
-    <title condition="_CUPFIRSTLEG_ = 1">_TL_ [loses|falls] to _TW_ in first leg of _LEAGUECUPNAME_ final</title>
-    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ lose _LEAGUECUPNAME_ final</title>
-    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ take _LEAGUECUPNAME_ crown</title>
-    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ win _LEAGUECUPNAME_</title>
-    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ are _LEAGUECUPNAME_ winners</title>
-    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ [beat|overcome|defeat] _CUPMATCHLOSER_ in _LEAGUECUPNAME_ final</title>
-    <title condition="_GDAGG_ &lt;= 1 and (_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1)">[Exciting|Spectacular] _LEAGUECUPNAME_ final [between|featuring] _T0_ and _T1_</title>
-    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ only take silver in _LEAGUECUPNAME_ final</title>
-    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ lose _REL_ in _LEAGUECUPNAME_ final</title>
-    <subtitle condition="_CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ are on top after a _REW_ in the second leg of the final.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1">_TL_ hope to equalize the _RE_ in the second leg.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">_TL_ are [in trouble|mired|vexed] after losing the first leg at home.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">_TW_ are the clear favourite for the title after getting the away win.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">_TW_ are almost there after winning away.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 0 and _GD_ &gt; 1">_TW_ win at home and won't be stopped easily in the second leg.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 0 and _GD_ = 1">_TW_ will tackle the second leg with only one goal ahead.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">Betting odds against _TL_ rise for the second leg match.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1 and _GD_ &lt; 2">_TL_ can still get the title if they pull themselves together for the second leg.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1 and _GD_ &lt; 2">_TL_ still confident to equalize in the second leg if they prepare well.</subtitle>
-    <subtitle condition="_CUPSECONDLEG_ = 1 and _GOALS_CUPMATCHWINNERN__ &lt;= _GOALS_CUPMATCHLOSERN__">_RE_ in the second leg is enough for _CUPMATCHWINNER_ to grab the title.</subtitle>
-    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ fans destroy parts of downtown after the disappointing _RE_ in the final.</subtitle>
-    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ reache its final goal after having subdued _CUPMATCHLOSER_.</subtitle>
-    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ can't be stopped by _CUPMATCHLOSER_ and win the title with a _REW_.</subtitle>
-    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ &lt;= 1 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1">_SCORERS_CUPMATCHWINNERN__ help _CUPMATCHWINNER_ win the title after an exciting match watched by a crowd of _AT_.</subtitle>
-    <subtitle condition="(_CUPHOMEAWAY_  = 0 or _CUPSECONDLEG_ = 1) and_GDAGG_ &lt;= 1 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 0 and _GOALS_CUPMATCHWINNERN__ &gt; 0">_SCORERS_CUPMATCHWINNERN__ win the cup single-handedly against _CUPMATCHLOSER_.</subtitle>
-    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ &lt;= 1 and _GOALS_CUPMATCHWINNERN__ = 1">_SCORERS_CUPMATCHWINNERN__ get the cup winning goal against _CUPMATCHLOSER_.</subtitle>
-    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ = 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1">_CUPMATCHWINNER_ in control, win final after a _REW_.</subtitle>
-    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ = 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 0">_SCORERS_CUPMATCHWINNERN__ scores against _CUPMATCHLOSER_ and is the first player to hoist the cup.</subtitle>
-    <subtitle condition="_GDAGG_ &gt; 2 and _CUPHOMEAWAY_ = 0">_CUPMATCHWINNER_ cruise to the title against an overmatched opponent.</subtitle>
-    <subtitle priority="10" condition="_GDAGG_ &gt; 2 and _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ dominant in the title games and deserves to take home the cup.</subtitle>
-    <subtitle condition="_GDAGG_ &gt; 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPHOMEAWAY_ = 0">_CUPMATCHLOSER_ [thrashed|mauled] by goals from _SCORERS_CUPMATCHWINNERN__.</subtitle>
-    <subtitle condition="_GDAGG_ &gt; 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ didn't stand a chance in these matches and, in retrospect, should probably be glad to have reached the final.</subtitle>
+    <title priority="20" condition="_CUPET_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ στην παράταση</title>
+    <title priority="20" condition="_CUPET_ = 1" xml:lang="el">Η _TW_ κερδίζει στην παράταση</title>
+    <title priority="20" condition="_CUPPEN_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ _REW_ στην διαδικασία των πέναλτι</title>
+    <title priority="20" condition="_CUPPEN_ = 1" xml:lang="el">Η _TW_ ελέγχουν τα νεύρα τους κατά την διαδικασία των πέναλτι</title>
+    <title condition="_CUPFIRSTLEG_ = 1" xml:lang="el">[Θρίαμβος|Νίκη] της _TW_ στον πρώτο τελικό του _LEAGUECUPNAME_</title>
+    <title condition="_CUPFIRSTLEG_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ στον πρώτο τελικό του _LEAGUECUPNAME_</title>
+    <title condition="_CUPFIRSTLEG_ = 1" xml:lang="el">Η _TL_ χάνει από τη _TW_ στον πρώτο αγώνα του τελικού του _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHLOSER_ χάνει στον τελικό του _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHWINNER_ κερδίζει το στέμμα του _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHWINNER_ κερδίζει το _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHWINNER_ κατακτά το _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHWINNER_ [κερδίζει τη|υπερτερεί της] _CUPMATCHLOSER_ στον τελικό του _LEAGUECUPNAME_</title>
+    <title condition="_GDAGG_ &lt;= 1 and (_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1)" xml:lang="el">[Εκπληκτικός|Συναρπαστικός] τελικός του _LEAGUECUPNAME_ ανάμεσα στις _T0_ και _T1_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHLOSER_ αρκείται απλώς στο ασημένιο στον τελικό του _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHLOSER_ χάνει με _REL_ στον τελικό του _LEAGUECUPNAME_</title>
+    <subtitle condition="_CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHWINNER_ είναι στην κορυφή μετά από ένα _REW_ στον δεύτερο αγώνα του τελικού.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1" xml:lang="el">Η _TL_ ελπίζει στον δεύτερο αγώνα να ισοφαρίσει το _RE_.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1" xml:lang="el">Δύσκολη η θέση της _TL_ μετά την ήττα της στον πρώτο αγώνα και μάλιστα εντός έδρας.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1" xml:lang="el">Η _TW_ είναι τώρα φαβορί για τον τίτλο μετά την εκτός έδρας νίκη.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1" xml:lang="el">Η _TW_ έχει σχεδόν περάσει μετά την εκτός έδρας νίκη.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 0 and _GD_ &gt; 1" xml:lang="el">Εντός έδρας νίκη για την _TW_ που δύσκολα θα σταματηθεί στον δεύτερο αγώνα</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 0 and _GD_ = 1" xml:lang="el">Η _TW_ πηγαίνει στον δεύτερο αγώνα με προβάδισμα μόνο ενός γκολ.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1" xml:lang="el">Οι πιθανότητες εναντίον της _TL_ για τον δεύτερο αγώνα αυξάνονται.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _GD_ &lt; 2" xml:lang="el">Η _TL_ μπορεί ακόμα να κερδίσει τον τίτλο αν προετοιμαστεί καλύτερα για τον δεύτερο αγώνα.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _GD_ &lt; 2" xml:lang="el">Υπάρχει σιγουριά στην _TL_ ότι, αν προετοιμαστεί σωστά, θα ανατρεψει το σκορ στον δεύτερο αγώνα.</subtitle>
+    <subtitle condition="_CUPSECONDLEG_ = 1 and _GOALS_CUPMATCHWINNERN__ &lt;= _GOALS_CUPMATCHLOSERN__" xml:lang="el">Το _RE_ στον δεύτερο αγώνα δεν αρκεί για να κερδίσει τον τίτλο η _CUPMATCHWINNER_.</subtitle>
+    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Οι οπαδοί της _CUPMATCHLOSER_ καταστρέφουν τμήματα του κέντρου της πόλης μετά από το απογοητευτικό _RE_ στον τελικό.</subtitle>
+    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHWINNER_ φτάνει στον τελικό της στόχο [νικώντας|υποτάσσοντας] την _CUPMATCHLOSER_.</subtitle>
+    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHLOSER_ δεν μπορεί να σταματήσει την _CUPMATCHWINNER_ που κατακτά τον τίτλο με ένα _REW_.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ &lt;= 1 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1" xml:lang="el">Οι _SCORERS_CUPMATCHWINNERN__ βοηθούν την _CUPMATCHWINNER_ να κερδίσει τον τίτλο σε ένα συναρπαστικό παιχνίδι που παρακολουθούν _AT_ θεατές.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_  = 0 or _CUPSECONDLEG_ = 1) and_GDAGG_ &lt;= 1 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 0 and _GOALS_CUPMATCHWINNERN__ &gt; 0" xml:lang="el">Μόνος του ο _SCORERS_CUPMATCHWINNERN__ διασφαλίζει τη δύσκολη επικράτηση για τον τίτλο ενάντια στην _CUPMATCHLOSER_.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ &lt;= 1 and _GOALS_CUPMATCHWINNERN__ = 1" xml:lang="el">Ο _SCORERS_CUPMATCHWINNERN__ πετυχαίνει το νικητήριο γκολ που κρίνει το κύπελλο ενάντια στη _CUPMATCHLOSER_.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ = 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1" xml:lang="el">Η _CUPMATCHWINNER_ κερδίζει τον τελικό μετά από ένα _REW_.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ = 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 0" xml:lang="el">Ο _SCORERS_CUPMATCHWINNERN__ σκοράρει ενάντια στην _CUPMATCHLOSER_ και είναι ο πρώτος παίκτης που σηκώνει το κύπελλο.</subtitle>
+    <subtitle condition="_GDAGG_ &gt; 2 and _CUPHOMEAWAY_ = 0" xml:lang="el">Η _CUPMATCHWINNER_ κατακτά άνετα τον τίτλο απέναντι σε έναν υποδεέστερο αντίπαλο.</subtitle>
+    <subtitle priority="10" condition="_GDAGG_ &gt; 2 and _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHWINNER_ κυριαρχεί στα παιχνίδια για τον τίτλο και αξίζει να πάρει το κύπελλο.</subtitle>
+    <subtitle condition="_GDAGG_ &gt; 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPHOMEAWAY_ = 0" xml:lang="el">Η _CUPMATCHLOSER_ διαλύεται με γκολ των _SCORERS_CUPMATCHWINNERN__.</subtitle>
+    <subtitle condition="_GDAGG_ &gt; 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHLOSER_ δεν είχε καμία ευκαιρία σε αυτά τα παιχνίδια και μάλλον πρέπει να είναι ευχαριστημένη που έφτασε ως τον τελικό.</subtitle>
   </news_article>
 
   <news_article>
     <type>match</type>
     <priority>25</priority>
     <condition>_CUP_ = 1 and _CUPKO_ = 1 and _CUPPROMREL_ = 0 and _CUPAUX_ = 0 and _CUPSTAGE_ = 2 and _GDAGG_ != 0</condition>    
-    <title priority="20" condition="_CUPET_ = 1">_TW_ [beat|overcome|defeat] _TL_ in extra time</title>
-    <title priority="20" condition="_CUPET_ = 1">_TW_ victorious in extra time</title>
-    <title priority="20" condition="_CUPPEN_ = 1">_TW_ [beat|overcome|defeat] _TL_ _REW_ in penalties</title>
-    <title priority="20" condition="_CUPPEN_ = 1">_TW_ hold their nerves in penalty shoot-out</title>
-    <title condition="_CUPFIRSTLEG_ = 1">_TW_ [wins|victorious in|success in] first leg of _LEAGUECUPNAME_ semifinal</title>
-    <title condition="_CUPFIRSTLEG_ = 1">_TW_ [beat|overcome|defeat] _TL_ first leg of _LEAGUECUPNAME_ semifinal</title>
-    <title condition="_CUPFIRSTLEG_ = 1">_TL_ lose _RE_ in first leg of _LEAGUECUPNAME_ semifinal</title>
-    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ eliminated in _LEAGUECUPNAME_ semifinal</title>
-    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ advance in _LEAGUECUPNAME_</title>
-    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ through to _LEAGUECUPNAME_ final</title>
-    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ advance to _LEAGUECUPNAME_ final</title>
-    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ [beat|overcome|defeat] _CUPMATCHLOSER_ in _LEAGUECUPNAME_ semifinal</title>
-    <title condition="_GDAGG_ &lt;= 1 and (_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1)">[Tense|Nailbiting] _LEAGUECUPNAME_ semifinal between _T0_ and _T1_</title>
-    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ left empty-handed in _LEAGUECUPNAME_ semifinal</title>
-    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ lose _REL_ in _LEAGUECUPNAME_ semifinal</title>
-    <subtitle condition="_CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ successful after a _REW_ in the second leg of the semifinal.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1">_TL_ hope to equalize the _RE_ in the second leg.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">_TL_ are [in trouble|mired|vexed] after losing the first leg at home.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">_TW_ are the clear favourite to advance to the final after getting the away win.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">_TW_ are almost through after winning away.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 0 and _GD_ &gt; 1">_TW_ win at home and won't be stopped easily in the second leg.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 0 and _GD_ = 1">_TW_ will [head to|go to|play|contest] the second leg with only one goal ahead.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">Betting odds against _TL_ rise for the second leg match.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1 and _GD_ &lt; 2">_TL_ can still advance to the final if they pull themselves together for the second leg.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1 and _GD_ &lt; 2">_TL_ still confident to equalize in the second leg if they prepare well.</subtitle>
-    <subtitle condition="_CUPSECONDLEG_ = 1 and _GOALS_CUPMATCHWINNERN__ &lt;= _GOALS_CUPMATCHLOSERN__">_RE_ in the second leg is enough for _CUPMATCHWINNER_ to advance.</subtitle>
-    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ fans destroy parts of downtown after the disappointing _RE_ in the semifinal.</subtitle>
-    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ reache the final after having subdued _CUPMATCHLOSER_.</subtitle>
-    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ can't be stopped by _CUPMATCHLOSER_ and comes through with a _REW_.</subtitle>
-    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ &lt;= 1 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1">_SCORERS_CUPMATCHWINNERN__ help _CUPMATCHWINNER_ advance after an exciting match watched by a crowd of _AT_.</subtitle>
-    <subtitle condition="(_CUPHOMEAWAY_  = 0 or _CUPSECONDLEG_ = 1) and_GDAGG_ &lt;= 1 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 0 and _GOALS_CUPMATCHWINNERN__ &gt; 0">_SCORERS_CUPMATCHWINNERN__ single-handedly ensures a shot at the title against _CUPMATCHLOSER_.</subtitle>
-    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ &lt;= 1 and _GOALS_CUPMATCHWINNERN__ = 1">_SCORERS_CUPMATCHWINNERN__ gets the winning goal against _CUPMATCHLOSER_.</subtitle>
-    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ = 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1">_CUPMATCHWINNER_ in control, win semifinal after a _REW_.</subtitle>
-    <subtitle condition="_GDAGG_ &gt; 2 and _CUPHOMEAWAY_ = 0">_CUPMATCHWINNER_ cruise to the finals against an overmatched opponent.</subtitle>
-    <subtitle priority="10" condition="_GDAGG_ &gt; 2 and _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ dominant in both games and deserves to advance to the final.</subtitle>
-    <subtitle condition="_GDAGG_ &gt; 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPHOMEAWAY_ = 0">_CUPMATCHLOSER_ [thrashed|mauled] by goals from _SCORERS_CUPMATCHWINNERN__.</subtitle>
-    <subtitle condition="_GDAGG_ &gt; 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ didn't stand a chance in these matches and, in retrospect, should probably be glad to have come this far.</subtitle>
+    <title priority="20" condition="_CUPET_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ στην παράταση</title>
+    <title priority="20" condition="_CUPET_ = 1" xml:lang="el">Η _TW_ κερδίζει στην παράταση</title>
+    <title priority="20" condition="_CUPPEN_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ _REW_ στην διαδικασία των πέναλτι</title>
+    <title priority="20" condition="_CUPPEN_ = 1" xml:lang="el">Η _TW_ ελέγχουν τα νεύρα τους κατά την διαδικασία των πέναλτι</title>
+    <title condition="_CUPFIRSTLEG_ = 1" xml:lang="el">[Θρίαμβος|Νίκη|Επιτυχία] της _TW_ στον πρώτο ημιτελικό του _LEAGUECUPNAME_</title>
+    <title condition="_CUPFIRSTLEG_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ στον πρώτο ημιτελικό του _LEAGUECUPNAME_</title>
+    <title condition="_CUPFIRSTLEG_ = 1" xml:lang="el">Ήττα της _TL_ με _RE_ στον πρώτο αγώνα για τα ημιτελικά του _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHLOSER_ αποκλείεται στον ημιτελικό του _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHWINNER_ προκρίνεται στον επόμενο γύρο του _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHWINNER_ [περνάει|προκρίνεται] στον τελικό του _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHWINNER_ προκρίνεται στον τελικό του _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHWINNER_ [κερδίζει τη|υπερτερεί της] _CUPMATCHLOSER_ στον ημιτελικό του _LEAGUECUPNAME_</title>
+    <title condition="_GDAGG_ &lt;= 1 and (_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1)" xml:lang="el">[Συναρπαστικός|Αγχωτικός] ημιτελικός για το _LEAGUECUPNAME_ μεταξύ της _T0_ και της _T1_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHLOSER_ φεύγει με άδεια χέρια από τον ημιτελικό του _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHLOSER_ χάνει με _REL_ στον ημιτελικό του _LEAGUECUPNAME_</title>
+    <subtitle condition="_CUPSECONDLEG_ = 1" xml:lang="el">Ευτυχή κατάληξη για την _CUPMATCHWINNER_ μετά από ένα _REW_ στον δεύτερο αγώνα του ημιτελικού.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1" xml:lang="el">Η _TL_ ελπίζει στον δεύτερο αγώνα να ισοφαρίσει το _RE_.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1" xml:lang="el">Δύσκολη η θέση της _TL_ μετά την ήττα της στον πρώτο αγώνα και μάλιστα εντός έδρας.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1" xml:lang="el">Η _TW_ είναι τώρα φαβορί για πρόκριση στον τελικό μετά την εκτός έδρας νίκη.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1" xml:lang="el">Η _TW_ έχει σχεδόν περάσει μετά την εκτός έδρας νίκη.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 0 and _GD_ &gt; 1" xml:lang="el">Εντός έδρας νίκη για την _TW_ που δύσκολα θα σταματηθεί στον δεύτερο αγώνα</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 0 and _GD_ = 1" xml:lang="el">Η _TW_ θα πάει στον δεύτερο αγώνα προβάδισμα μόνο ενός γκολ.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1" xml:lang="el">Οι πιθανότητες εναντίον της _TL_ για τον δεύτερο αγώνα αυξάνονται.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _GD_ &lt; 2" xml:lang="el">Η _TL_ μπορεί ακόμα να προκριθεί στον τελικό αν προετοιμαστεί καλύτερα για τον δεύτερο αγώνα.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _GD_ &lt; 2" xml:lang="el">Υπάρχει σιγουριά στην _TL_ ότι, αν προετοιμαστεί σωστά, θα ανατρεψει το σκορ στον δεύτερο αγώνα.</subtitle>
+    <subtitle condition="_CUPSECONDLEG_ = 1 and _GOALS_CUPMATCHWINNERN__ &lt;= _GOALS_CUPMATCHLOSERN__" xml:lang="el">Το _RE_ στον δεύτερο αγώνα δεν αρκεί για πρόκριση της _CUPMATCHWINNER_.</subtitle>
+    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Οι οπαδοί της _CUPMATCHLOSER_ καταστρέφουν τμήματα του κέντρου της πόλης μετά από το απογοητευτικό _RE_ στον ημιτελικό.</subtitle>
+    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHWINNER_ φτάνει στον τελικό [νικώντας|υποτάσσοντας] την _CUPMATCHLOSER_.</subtitle>
+    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHLOSER_ δεν μπορεί να σταματήσει την _CUPMATCHWINNER_ που περνά με ένα _REW_.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ &lt;= 1 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1" xml:lang="el">Οι _SCORERS_CUPMATCHWINNERN__ βοηθούν στην πρόκριση της _CUPMATCHWINNER_ σε ένα συναρπαστικό παιχνίδι που παρακολουθούν _AT_ θεατές.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_  = 0 or _CUPSECONDLEG_ = 1) and_GDAGG_ &lt;= 1 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 0 and _GOALS_CUPMATCHWINNERN__ &gt; 0" xml:lang="el">Μόνος του ο _SCORERS_CUPMATCHWINNERN__ διασφαλίζει μία ευκαιρία για τον τίτλο ενάντια στην _CUPMATCHLOSER_.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ &lt;= 1 and _GOALS_CUPMATCHWINNERN__ = 1" xml:lang="el">Ο _SCORERS_CUPMATCHWINNERN__ πετυχαίνει το νικητήριο γκολ ενάντια στη _CUPMATCHLOSER_.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ = 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1" xml:lang="el">Η _CUPMATCHWINNER_ κερδίζει τον ημιτελικό μετά από ένα _REW_.</subtitle>
+    <subtitle condition="_GDAGG_ &gt; 2 and _CUPHOMEAWAY_ = 0" xml:lang="el">Η _CUPMATCHWINNER_ φτάνει άνετα στον τελικό απέναντι σε έναν υποδεέστερο αντίπαλο.</subtitle>
+    <subtitle priority="10" condition="_GDAGG_ &gt; 2 and _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHWINNER_ κυριαρχεί και στα δυο παιχνίδια και αξίζει την πρόκριση στον τελικό.</subtitle>
+    <subtitle condition="_GDAGG_ &gt; 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPHOMEAWAY_ = 0" xml:lang="el">Η _CUPMATCHLOSER_ διαλύεται με γκολ των _SCORERS_CUPMATCHWINNERN__.</subtitle>
+    <subtitle condition="_GDAGG_ &gt; 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHLOSER_ δεν είχε καμία ευκαιρία σε αυτά τα παιχνίδια και μάλλον πρέπει να είναι ευχαριστημένη που έφτασε ως εδώ.</subtitle>
   </news_article>
 
   <news_article>
     <type>match</type>
     <priority>25</priority>
     <condition>_CUP_ = 1 and _CUPKO_ = 1 and _CUPPROMREL_ = 0 and _CUPAUX_ = 0 and _CUPSTAGE_ = 3 and _GDAGG_ != 0</condition>    
-    <title priority="20" condition="_CUPET_ = 1">_TW_ [beat|overcome|defeat] _TL_ in extra time</title>
-    <title priority="20" condition="_CUPET_ = 1">_TW_ victorious in extra time</title>
-    <title priority="20" condition="_CUPPEN_ = 1">_TW_ [beat|overcome|defeat] _TL_ _REW_ in penalties</title>
-    <title priority="20" condition="_CUPPEN_ = 1">_TW_ hold their nerves in penalty shoot-out</title>
-    <title condition="_CUPFIRSTLEG_ = 1">_TW_ [wins|victorious in|success in] first leg of _LEAGUECUPNAME_ quarterfinal</title>
-    <title condition="_CUPFIRSTLEG_ = 1">_TW_ [beat|overcome|defeat] _TL_ first leg of _LEAGUECUPNAME_ quarterfinal</title>
-    <title condition="_CUPFIRSTLEG_ = 1">_TL_ lose _RE_ in first leg of _LEAGUECUPNAME_ quarterfinal</title>
-    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ eliminated in _LEAGUECUPNAME_ quarterfinal</title>
-    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ advance in _LEAGUECUPNAME_</title>
-    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ through to _LEAGUECUPNAME_ semifinal</title>
-    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ advance to _LEAGUECUPNAME_ semifinal</title>
-    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ [beat|overcome|defeat] _CUPMATCHLOSER_ in _LEAGUECUPNAME_ quarterfinal</title>
-    <title condition="_GDAGG_ &lt;= 1 and (_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1)">Tense _LEAGUECUPNAME_ quarterfinal between _T0_ and _T1_</title>
-    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ left empty-handed in _LEAGUECUPNAME_ quarterfinal</title>
-    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ lose _REL_ in _LEAGUECUPNAME_ quarterfinal</title>
-    <subtitle condition="_CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ successful after a _REW_ in the second leg of the quarterfinal.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1">_TL_ hope to equalize the _RE_ in the second leg.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">_TL_ are [in trouble|mired|vexed] after losing the first leg at home.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">_TW_ are the clear favourites to advance to the semifinal after getting the away win.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">_TW_ are almost through after winning away.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 0 and _GD_ &gt; 1">_TW_ win at home and won't be stopped easily in the second leg.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 0 and _GD_ = 1">_TW_ will [head to|go to|play|contest] the second leg with only one goal ahead.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1">Betting odds against _TL_ rise for the second leg match.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1 and _GD_ &lt; 2">_TL_ can still advance to the semis if they pull themselves together for the second leg.</subtitle>
-    <subtitle condition="_CUPFIRSTLEG_ = 1 and _GD_ &lt; 2">_TL_ still confident to equalize in the second leg if they prepare well.</subtitle>
-    <subtitle condition="_CUPSECONDLEG_ = 1 and _GOALS_CUPMATCHWINNERN__ &lt;= _GOALS_CUPMATCHLOSERN__">_RE_ in the second leg is enough for _CUPMATCHWINNER_ to advance.</subtitle>
-    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ fans destroy parts of downtown after the disappointing _RE_ in the quarterfinal.</subtitle>
-    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ reache the semifinal after having subdued _CUPMATCHLOSER_.</subtitle>
-    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ can't be stopped by _CUPMATCHLOSER_ and come through with a _REW_.</subtitle>
-    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ &lt;= 1 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1">_SCORERS_CUPMATCHWINNERN__ help _CUPMATCHWINNER_ advance after an exciting match watched by a crowd of _AT_.</subtitle>
-    <subtitle condition="(_CUPHOMEAWAY_  = 0 or _CUPSECONDLEG_ = 1) and_GDAGG_ &lt;= 1 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 0 and _GOALS_CUPMATCHWINNERN__ &gt; 0">_SCORERS_CUPMATCHWINNERN__ single-handedly ensures a place in the semis against _CUPMATCHLOSER_.</subtitle>
-    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ &lt;= 1 and _GOALS_CUPMATCHWINNERN__ = 1">_SCORERS_CUPMATCHWINNERN__ gets the winning goal against _CUPMATCHLOSER_.</subtitle>
-    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ = 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1">_CUPMATCHWINNER_ in control, win quarterfinal after a _REW_.</subtitle>
-    <subtitle condition="_GDAGG_ &gt; 2 and _CUPHOMEAWAY_ = 0">_CUPMATCHWINNER_ cruise to the semifinals against an overmatched opponent.</subtitle>
-    <subtitle priority="10" condition="_GDAGG_ &gt; 2 and _CUPSECONDLEG_ = 1">_CUPMATCHWINNER_ dominant in both games and deserve to advance to the semifinal.</subtitle>
-    <subtitle condition="_GDAGG_ &gt; 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPHOMEAWAY_ = 0">_CUPMATCHLOSER_ trashed by goals from _SCORERS_CUPMATCHWINNERN__.</subtitle>
-    <subtitle condition="_GDAGG_ &gt; 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPSECONDLEG_ = 1">_CUPMATCHLOSER_ didn't stand a chance in these matches and, in retrospect, should probably be glad to have come this far.</subtitle>
+    <title priority="20" condition="_CUPET_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ στην παράταση</title>
+    <title priority="20" condition="_CUPET_ = 1" xml:lang="el">Η _TW_ κερδίζει στην παράταση</title>
+    <title priority="20" condition="_CUPPEN_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ _REW_ στην διαδικασία των πέναλτι</title>
+    <title priority="20" condition="_CUPPEN_ = 1" xml:lang="el">Η _TW_ ελέγχουν τα νεύρα τους κατά την διαδικασία των πέναλτι</title>
+    <title condition="_CUPFIRSTLEG_ = 1" xml:lang="el">[Θρίαμβος|Νίκη|Επιτυχία] της _TW_ στον πρώτο προημιτελικό του _LEAGUECUPNAME_</title>
+    <title condition="_CUPFIRSTLEG_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ στον πρώτο προημιτελικό του _LEAGUECUPNAME_</title>
+    <title condition="_CUPFIRSTLEG_ = 1" xml:lang="el">Ήττα της _TL_ με _RE_ στον πρώτο αγώνα για τα προημιτελικά του _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHLOSER_ αποκλείεται στον προημιτελικό του _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHWINNER_ προκρίνεται στον επόμενο γύρο του _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHWINNER_ [περνάει|προκρίνεται] στον ημιτελικό του _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHWINNER_ προκρίνεται στον ημιτελικό του _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHWINNER_ [κερδίζει τη|υπερτερεί της] _CUPMATCHLOSER_ στον προημιτελικό του _LEAGUECUPNAME_</title>
+    <title condition="_GDAGG_ &lt;= 1 and (_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1)" xml:lang="el">Αγχωτικός προημιτελικός για το _LEAGUECUPNAME_ ανάμεσα στις _T0_ και _T1_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHLOSER_ φεύγει με άδεια χέρια από τον προημιτελικό του _LEAGUECUPNAME_</title>
+    <title condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHLOSER_ χάνει με _REL_ στον προημιτελικό του _LEAGUECUPNAME_</title>
+    <subtitle condition="_CUPSECONDLEG_ = 1" xml:lang="el">Ευτυχή κατάληξη για την _CUPMATCHWINNER_ μετά από ένα _REW_ στον δεύτερο αγώνα του προημιτελικού.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1" xml:lang="el">Η _TL_ ελπίζει στον δεύτερο αγώνα να ισοφαρίσει το _RE_.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1" xml:lang="el">Δύσκολη η θέση της _TL_ μετά την ήττα της στον πρώτο αγώνα και μάλιστα εντός έδρας.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1" xml:lang="el">Η _TW_ είναι τώρα φαβορί για πρόκριση στον ημιτελικό μετά την εκτός έδρας νίκη.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1" xml:lang="el">Η _TW_ έχει σχεδόν περάσει μετά την εκτός έδρας νίκη.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 0 and _GD_ &gt; 1" xml:lang="el">Εντός έδρας νίκη για την _TW_ που δύσκολα θα σταματηθεί στον δεύτερο αγώνα</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 0 and _GD_ = 1" xml:lang="el">Η _TW_ θα πάει στον δεύτερο αγώνα προβάδισμα μόνο ενός γκολ.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _TWN_ = 1" xml:lang="el">Οι πιθανότητες εναντίον της _TL_ για τον δεύτερο αγώνα αυξάνονται.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _GD_ &lt; 2" xml:lang="el">Η _TL_ μπορεί ακόμα να προκριθεί στα ημιτελικά αν προετοιμαστεί καλύτερα για τον δεύτερο αγώνα.</subtitle>
+    <subtitle condition="_CUPFIRSTLEG_ = 1 and _GD_ &lt; 2" xml:lang="el">Υπάρχει σιγουριά στην _TL_ ότι, αν προετοιμαστεί σωστά, θα ανατρεψει το σκορ στον δεύτερο αγώνα.</subtitle>
+    <subtitle condition="_CUPSECONDLEG_ = 1 and _GOALS_CUPMATCHWINNERN__ &lt;= _GOALS_CUPMATCHLOSERN__" xml:lang="el">Το _RE_ στον δεύτερο αγώνα δεν αρκεί για πρόκριση της _CUPMATCHWINNER_.</subtitle>
+    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Οι οπαδοί της _CUPMATCHLOSER_ καταστρέφουν τμήματα του κέντρου της πόλης μετά από το απογοητευτικό _RE_ στον προημιτελικό.</subtitle>
+    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHWINNER_ φτάνει στον ημιτελικό [νικώντας|υποτάσσοντας] την _CUPMATCHLOSER_.</subtitle>
+    <subtitle condition="_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHLOSER_ δεν μπορεί να σταματήσει την _CUPMATCHWINNER_ που περνά με ένα _REW_.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ &lt;= 1 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1" xml:lang="el">Οι _SCORERS_CUPMATCHWINNERN__ βοηθούν στην πρόκριση της _CUPMATCHWINNER_ σε ένα συναρπαστικό παιχνίδι που παρακολουθούν _AT_ θεατές.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_  = 0 or _CUPSECONDLEG_ = 1) and_GDAGG_ &lt;= 1 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 0 and _GOALS_CUPMATCHWINNERN__ &gt; 0" xml:lang="el">Μόνος του ο _SCORERS_CUPMATCHWINNERN__ διασφαλίζει τη δύσκολη πρόκριση στα ημιτελικά ενάντια στην _CUPMATCHLOSER_.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ &lt;= 1 and _GOALS_CUPMATCHWINNERN__ = 1" xml:lang="el">Ο _SCORERS_CUPMATCHWINNERN__ πετυχαίνει το νικητήριο γκολ ενάντια στη _CUPMATCHLOSER_.</subtitle>
+    <subtitle condition="(_CUPHOMEAWAY_ = 0 or _CUPSECONDLEG_ = 1) and _GDAGG_ = 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1" xml:lang="el">Η _CUPMATCHWINNER_ κερδίζει τον προημιτελικό μετά από ένα _REW_.</subtitle>
+    <subtitle condition="_GDAGG_ &gt; 2 and _CUPHOMEAWAY_ = 0" xml:lang="el">Η _CUPMATCHWINNER_ φτάνει άνετα στον ημιτελικό απέναντι σε έναν υποδεέστερο αντίπαλο.</subtitle>
+    <subtitle priority="10" condition="_GDAGG_ &gt; 2 and _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHWINNER_ κυριαρχεί και στα δυο παιχνίδια και αξίζει την πρόκριση στον ημιτελικό.</subtitle>
+    <subtitle condition="_GDAGG_ &gt; 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPHOMEAWAY_ = 0" xml:lang="el">Η _CUPMATCHLOSER_ διαλύεται με γκολ των _SCORERS_CUPMATCHWINNERN__.</subtitle>
+    <subtitle condition="_GDAGG_ &gt; 2 and _MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPSECONDLEG_ = 1" xml:lang="el">Η _CUPMATCHLOSER_ δεν είχε καμία ευκαιρία σε αυτά τα παιχνίδια και μάλλον πρέπει να είναι ευχαριστημένη που έφτασε ως εδώ.</subtitle>
   </news_article>
 
   <news_article>
     <type>match</type>
     <priority>25</priority>
     <condition>_CUP_ = 1 and _CUPKO_ = 1 and _CUPPROMREL_ = 0 and _CUPAUX_ = 0 and _CUPSTAGE_ &gt; 3 and _CUPFIRSTLEG_ = 1</condition>
-    <title condition="_GD_ = 0">_T1_ gets the draw at _T0_</title>
-    <title condition="_GD_ = 0">_T0_ and _T1_ tied after first leg match</title>
-    <title condition="_GD_ = 0">_T1_ content with a tie</title>
-    <title>_TW_ [beat|overcome|defeat] _TL_ in first leg</title>
-    <title>_TL_ loses first leg against _TW_</title>
-    <title condition="_GD_ &gt; 1">Convincing win by _TW_ in first leg</title>
-    <title condition="_GD_ = 1">_TW_ win [tight|close|tense] first leg</title>
-    <title condition="_GD_ = 1">_TL_ defeated in [tight|close|tense] first leg</title>
-    <subtitle condition="_GD_ &gt; 2">_TW_ will be hard to stop after the _REW_ victory.</subtitle>
-    <subtitle condition="_GD_ &gt; 2">_TL_ can bury their hopes of advancing after getting trounced by _TW_ in the first match.</subtitle>
-    <subtitle condition="_GD_ &gt; 2">_TW_ can already start preparing for the next round after having won _REW_.</subtitle>
-    <subtitle condition="_GD_ &gt; 1 and _TWN_ = 1">_TW_ win away and can hardly be stopped from advancing.</subtitle>
-    <subtitle condition="_GD_ &gt; 1 and _TWN_ = 1">After losing at home, _TL_ will have a really hard time in the second leg.</subtitle>
-    <subtitle condition="_GD_ &gt; 1 and _TWN_ = 1">_TW_ are in a great position for the second leg match after an easy away win.</subtitle>
-    <subtitle condition="_GD_ = 1 and _TWN_ = 1">_TW_ build a nice cushion for the second leg with the _REW_ away win.</subtitle>
-    <subtitle condition="_GD_ = 1 and _TWN_ = 1">_TW_ are now definitely in an enviable position and can advance by getting a draw at home.</subtitle>
-    <subtitle condition="_GD_ &gt; 1 and _TLN_ = 1">_TW_ are almost through after winning easily at home.</subtitle>
-    <subtitle condition="_GD_ &gt; 1 and _TLN_ = 1">_TL_ will try to equalise the _REL_ in the second leg, powered by their home crowd.</subtitle>
-    <subtitle condition="_GD_ &gt; 1 and _TLN_ = 1">A dominating performance at home by _TW_ should leave them with an easy task in the second leg.</subtitle>
-    <subtitle condition="_GD_ = 1 and _TLN_ = 1">After a meager _REW_ home win by _TW_, this match-up is still up in the air.</subtitle>
-    <subtitle condition="_GD_ = 1 and _TLN_ = 1">_TL_ can still advance, provided they win with at least two goals in the second leg.</subtitle>
-    <subtitle condition="_GD_ = 1 and _TLN_ = 1 and _GOALS1_ &gt; 1">_TL_ scores away goals that can become very important overall.</subtitle>
-    <subtitle condition="_GD_ = 1 and _TLN_ = 1 and _GOALS1_ &gt; 1">_TW_ defeats _TL_ but they really could have avoided those goals against.</subtitle>
-    <subtitle condition="_GD_ = 0">_T1_ can advance with a home win in the second leg.</subtitle>
-    <subtitle condition="_GD_ = 0">_AT_ spectators left unsatisfied after a meagre home draw by _T0_.</subtitle>
-    <subtitle condition="_GD_ = 0">_T0_ clearly have to improve in the second leg, otherwise it's game over.</subtitle>
-    <subtitle condition="_GD_ = 0 and _GOALS0_ &gt; 1">_T1_ only need a 0 : 0 draw in the second leg to advance to the next round.</subtitle>
+    <title condition="_GD_ = 0" xml:lang="el">Η _T1_ παίρνει την ισοπαλία στην έδρα της _T0_</title>
+    <title condition="_GD_ = 0" xml:lang="el">Ισοπαλία στον πρώτο αγώνα ανάμεσα στις _T0_ και _T1_</title>
+    <title condition="_GD_ = 0" xml:lang="el">Η _T1_ είναι ευχαριστημένη με την ισοπαλία</title>
+    <title xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ στον πρώτο αγώνα</title>
+    <title xml:lang="el">Ήττα της _TL_ από την _TW_ στον πρώτο αγώνα</title>
+    <title condition="_GD_ &gt; 1" xml:lang="el">Πειστική νίκη στον πρώτο αγώνα για την _TW_</title>
+    <title condition="_GD_ = 1" xml:lang="el">Νίκη της _TW_ σε έναν [κλειστό|αμφίρροπο] πρώτο αγώνα</title>
+    <title condition="_GD_ = 1" xml:lang="el">Ήττα της _TL_ σε έναν [κλειστό|αμφίρροπο] πρώτο αγώνα</title>
+    <subtitle condition="_GD_ &gt; 2" xml:lang="el">Δύσκολο να συγκρατηθεί η ασταμάτητη _TW_ μετά τη νίκη με _REW_.</subtitle>
+    <subtitle condition="_GD_ &gt; 2" xml:lang="el">Η _TL_ διατηρεί ελάχιστες ελπίδες για πρόκριση μετά από την βαριά ήττα από την _TW_ στον πρώτο αγώνα</subtitle>
+    <subtitle condition="_GD_ &gt; 2" xml:lang="el">Μετά τη νίκη της με _REW_ , η _TW_ μπορεί ήδη να προετοιμάζεται για τον επόμενο γύρο.</subtitle>
+    <subtitle condition="_GD_ &gt; 1 and _TWN_ = 1" xml:lang="el">Η _TW_ κερδίζει εκτός έδρας και δύσκολα θα αποτραπεί η πρόκριση της.</subtitle>
+    <subtitle condition="_GD_ &gt; 1 and _TWN_ = 1" xml:lang="el">Μετά την εντός έδρας ήττα, η _TL_ θα έχει δύσκολο έργο [στον επαναληπτικό|στη ρεβάνς]</subtitle>
+    <subtitle condition="_GD_ &gt; 1 and _TWN_ = 1" xml:lang="el">Η _TW_ βρίσκεται σε πολύ καλύτερη θέση ενόψει του δεύτερου αγώνα μετά από μία εύκολη εκτός έδρας νίκη.</subtitle>
+    <subtitle condition="_GD_ = 1 and _TWN_ = 1" xml:lang="el">Χάρις στην εκτός έδρας νίκη με _REW_, η _TW_ έχει χτίσει μια διαφορά ασφαλείας για τον δεύτερο αγώνα.</subtitle>
+    <subtitle condition="_GD_ = 1 and _TWN_ = 1" xml:lang="el">Η _TW_ βρίσκεται τώρα σε μία πολύ καλή θέση και μπορεί να προκριθεί με μία εντός έδρας ισοπαλία.</subtitle>
+    <subtitle condition="_GD_ &gt; 1 and _TLN_ = 1" xml:lang="el">Η _TW_ έχει σχεδόν περάσει μετά την εύκολη εντός έδρας νίκη.</subtitle>
+    <subtitle condition="_GD_ &gt; 1 and _TLN_ = 1" xml:lang="el">Η _TL_με την βοήθεια της έδρας θα προσπαθήσει να ανατρέψει το _REL_ στο δεύτερο παιχνίδι.</subtitle>
+    <subtitle condition="_GD_ &gt; 1 and _TLN_ = 1" xml:lang="el">Η _TW_ με μία ανώτερη εμφάνιση εντός έδρας πρέπει να έχει εύκολο έργο [στον επαναληπτικό|στη ρεβάνς]</subtitle>
+    <subtitle condition="_GD_ = 1 and _TLN_ = 1" xml:lang="el">Μετά από μία ισχνή _REW_ εντός έδρας νίκη της _TW_, αυτή η αναμέτρηση παραμένει αμφίρροπη.</subtitle>
+    <subtitle condition="_GD_ = 1 and _TLN_ = 1" xml:lang="el">Η _TL_ μπορεί να προκριθεί εφόσον νικήσει στον δεύτερο αγώνα με διαφορά τουλάχιστον δύο γκολ.</subtitle>
+    <subtitle condition="_GD_ = 1 and _TLN_ = 1 and _GOALS1_ &gt; 1" xml:lang="el">Η _TL_ πετυχαίνει εκτός έδρας γκολ που μπορεί να της φανούν πολύ χρήσιμα στο μέλλον.</subtitle>
+    <subtitle condition="_GD_ = 1 and _TLN_ = 1 and _GOALS1_ &gt; 1" xml:lang="el">Η _TW_ κερδίζει την _TL_ αν και θα μπορούσε να αποφύγει τα γκολ που δέχτηκε.</subtitle>
+    <subtitle condition="_GD_ = 0" xml:lang="el">Η _T1_ μπορεί να περάσει με μία εντός έδρας νίκη στον δεύτερο αγώνα.</subtitle>
+    <subtitle condition="_GD_ = 0" xml:lang="el">_AT_ θεατές μένουν ανικανοποίητοι μετά από μία ισχνή εντός έδρας ισοπαλία της _T0_.</subtitle>
+    <subtitle condition="_GD_ = 0" xml:lang="el">Η _T0_ πρέπει να βελτιωθεί για τον δεύτερο αγώνα, αλλιώς τα πάντα τελείωσαν.</subtitle>
+    <subtitle condition="_GD_ = 0 and _GOALS0_ &gt; 1" xml:lang="el">Αρκεί μία ισοπαλία με 0-0 για την _T1_ ώστε να [προκριθεί|περάσει] στον επόμενο γύρο.</subtitle>
   </news_article>
 
   <news_article>
     <type>match</type>
     <priority>25</priority>
     <condition>_CUP_ = 1 and _CUPKO_ = 1 and _CUPPROMREL_ = 0 and _CUPAUX_ = 0 and _CUPSTAGE_ &gt; 3 and _CUPSECONDLEG_ = 1</condition>
-    <title>_CUPMATCHWINNER_ through to the next round</title>
-    <title>_CUPMATCHWINNER_ advances</title>
-    <title>_CUPMATCHLOSER_ eliminated</title>
-    <title>_CUPMATCHLOSER_ are out</title>
-    <title priority="20" condition="_CUPET_ = 1">_TW_ [beat|overcome|defeat] _TL_ in extra time</title>
-    <title priority="20" condition="_CUPET_ = 1">_TW_ victorious in extra time</title>
-    <title priority="20" condition="_CUPPEN_ = 1">_TW_ [beat|overcome|defeat] _TL_ _REW_ in penalties</title>
-    <title priority="20" condition="_CUPPEN_ = 1">_TW_ hold their nerves in penalty shoot-out</title>
-    <title condition="_GD_ = 0">Draw enough for _CUPMATCHWINNER_</title>
-    <title condition="_GD_ = 0">_CUPMATCHWINNER_ advance with draw</title>
-    <title condition="_GD_ = 0">_CUPMATCHLOSER_ eliminated after _RE_ in second leg</title>
-    <title condition="_TWN_ != _CUPMATCHWINNERN_">_REW_ against _TL_ not enough for _TW_</title>
-    <title condition="_TWN_ != _CUPMATCHWINNERN_">_REW_ not enough for _TW_ in second leg</title>
-    <title condition="_TWN_ != _CUPMATCHWINNERN_">_TW_ eliminated despite winning _REW_</title>
-    <title condition="_TWN_ != _CUPMATCHWINNERN_">_CUPMATCHWINNER_ through in spite of loss</title>
-    <title condition="_GDAGG_ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0">_CUPMATCHWINNER_ advance [thanks to|on] away goal rule</title>
-    <title condition="_GDAGG_ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0">_CUPMATCHWINNER_ advance after _RE_</title>
-    <title condition="_GDAGG_ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0">Tight overall score between _T0_ and _T1_</title>
-    <title condition="_GDAGG_ = 1">_CUPMATCHWINNER_ advance with just one goal difference</title>
-    <title condition="_GDAGG_ = 1">_CUPMATCHLOSER_ out after a close match</title>
-    <title condition="_GDAGG_ &gt; 1">_CUPMATCHWINNER_ advance easily</title>
-    <title condition="_GDAGG_ &gt; 1">_CUPMATCHWINNER_ comfortably through to next round</title>
-    <title condition="_GDAGG_ &gt; 1">_CUPMATCHWINNER_ reach next round easily</title>
-    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0">_SCORERS_CUPMATCHWINNERN__ ensure that _CUPMATCHWINNER_ advance to the next round of _LEAGUECUPNAME_.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0">_CUPMATCHWINNER_ through thanks to goals by _SCORERS_CUPMATCHWINNERN__.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0">_CUPMATCHWINNER_ advance to next round thanks to _SCORERS_CUPMATCHWINNERN__.</subtitle>
-    <subtitle condition="_GDAGG_ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0">_AT_ spectators breathless after an exiting _RE_ in the second leg.</subtitle>
-    <subtitle condition="_GDAGG_ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0">The teams were more or less equal in these matches, but _CUPMATCHWINNER_ had luck on their side.</subtitle>
-    <subtitle condition="_GDAGG_ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0">_CUPMATCHLOSER_ would only have needed one more goal to win the match-up.</subtitle>
-    <subtitle condition="_GDAGG_ = 1">This was one tough match-up, but _CUPMATCHLOSER_ are out after a _RE_ in the second leg.</subtitle>
-    <subtitle condition="_GDAGG_ = 1">_CUPMATCHWINNER_ shows resilience against _CUPMATCHLOSER_ and advances to the next round after a scare.</subtitle>
-    <subtitle condition="_CUPET_ = 0 and _CUPPEN_ = 0 and _GDAGG_ &lt; 2">_CUPMATCHWINNER_ should give _SCORERS_CUPMATCHWINNERN__ a medal for shooting them into the next round.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0 and _GDAGG_ &lt; 2">_SCORERS_CUPMATCHWINNERN__ score as _CUPMATCHWINNER_ squeezes by _CUPMATCHLOSER_.</subtitle>
-    <subtitle condition="_GDAGG_ &gt; 2">_CUPMATCHWINNER_ didn't face a real challenge in this match-up and deserve to advance.</subtitle>
-    <subtitle condition="_GDAGG_ &gt; 2">_CUPMATCHLOSER_ didn't stand a chance overall and are out.</subtitle>
-    <subtitle condition="_GDAGG_ &gt; 2">_CUPMATCHWINNER_ dominated this match-up and are still a contender for the title.</subtitle>
+    <title xml:lang="el">Η _CUPMATCHWINNER_ [περνάει|προκρίνεται] στον επόμενο γύρο</title>
+    <title xml:lang="el">Η _CUPMATCHWINNER_ προκρίνεται</title>
+    <title xml:lang="el">Η _CUPMATCHLOSER_ αποκλείεται</title>
+    <title xml:lang="el">Η _CUPMATCHLOSER_ αποκλείεται</title>
+    <title priority="20" condition="_CUPET_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ στην παράταση</title>
+    <title priority="20" condition="_CUPET_ = 1" xml:lang="el">Η _TW_ κερδίζει στην παράταση</title>
+    <title priority="20" condition="_CUPPEN_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ _REW_ στην διαδικασία των πέναλτι</title>
+    <title priority="20" condition="_CUPPEN_ = 1" xml:lang="el">Η _TW_ ελέγχουν τα νεύρα τους κατά την διαδικασία των πέναλτι</title>
+    <title condition="_GD_ = 0" xml:lang="el">Η ισοπαλία ήταν αρκετή για την _CUPMATCHWINNER_</title>
+    <title condition="_GD_ = 0" xml:lang="el">Η _CUPMATCHWINNER_ προκρίνεται με ισοπαλία</title>
+    <title condition="_GD_ = 0" xml:lang="el">Η _CUPMATCHLOSER_ αποκλείεται μετά το _RE_ στον δεύτερο αγώνα</title>
+    <title condition="_TWN_ != _CUPMATCHWINNERN_" xml:lang="el">Το _REW_ απέναντι στην _TL_ δεν είναι αρκετό για την _TW_</title>
+    <title condition="_TWN_ != _CUPMATCHWINNERN_" xml:lang="el">Το _REW_ στον δεύτερο αγώνα δεν είναι αρκετό για την _TW_</title>
+    <title condition="_TWN_ != _CUPMATCHWINNERN_" xml:lang="el">Αποκλεισμός της _TW_ παρά τη νίκη της με _REW_</title>
+    <title condition="_TWN_ != _CUPMATCHWINNERN_" xml:lang="el">Η _CUPMATCHWINNER_ προκρίνεται παρά την ήττα</title>
+    <title condition="_GDAGG_ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0" xml:lang="el">Η _CUPMATCHWINNER_ [προκρίνεται|περνάει στον επόμενο γύρο] χάρις στα εκτός έδρας γκολ</title>
+    <title condition="_GDAGG_ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0" xml:lang="el">Η _CUPMATCHWINNER_ προκρίνεται μετά από ένα _RE_</title>
+    <title condition="_GDAGG_ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0" xml:lang="el">Κλειστό συνολικό σκορ ανάμεσα στις _T0_ και _T1_</title>
+    <title condition="_GDAGG_ = 1" xml:lang="el">Η _CUPMATCHWINNER_ προκρίνεται με μόνο ένα γκολ διαφορά</title>
+    <title condition="_GDAGG_ = 1" xml:lang="el">Η _CUPMATCHLOSER_ αποκλείεται μετά από ένα αμφίρροπο παιχνίδι</title>
+    <title condition="_GDAGG_ &gt; 1" xml:lang="el">Εύκολη πρόκριση της _CUPMATCHWINNER_</title>
+    <title condition="_GDAGG_ &gt; 1" xml:lang="el">Άνετη πρόκριση της _CUPMATCHWINNER_ στον επόμενο γύρο</title>
+    <title condition="_GDAGG_ &gt; 1" xml:lang="el">Εύκολη πρόκριση της _CUPMATCHWINNER_ στον επόμενο γύρο</title>
+    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0" xml:lang="el">Οι _SCORERS_CUPMATCHWINNERN__ διασφαλίζουν την πρόκριση της _CUPMATCHWINNER_ στον επόμενο γύρο του _LEAGUECUPNAME_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0" xml:lang="el">Η _CUPMATCHWINNER_ περνά χάρις σε γκολ των _SCORERS_CUPMATCHWINNERN__.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0" xml:lang="el">Η _CUPMATCHWINNER_ προκρίνεται στον επόμενο γύρο χάρις στους _SCORERS_CUPMATCHWINNERN__.</subtitle>
+    <subtitle condition="_GDAGG_ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0" xml:lang="el">_AT_ θεατές παρακολουθούν με αγωνία ένα _RE_ στον δεύτερο αγώνα.</subtitle>
+    <subtitle condition="_GDAGG_ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0" xml:lang="el">Οι δύο ομάδες ήταν σχεδόν ισοδύναμες σε αυτά τα παιχνίδια, απλώς η _CUPMATCHWINNER_ ήταν πιο τυχερή.</subtitle>
+    <subtitle condition="_GDAGG_ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0" xml:lang="el">Η _CUPMATCHLOSER_ χρειαζόταν μόνο ένα ακόμα γκολ για να νικήσει στην σειρά των αγώνων.</subtitle>
+    <subtitle condition="_GDAGG_ = 1" xml:lang="el">Ήταν μία σκληρή αναμέτρηση, αλλά η _CUPMATCHLOSER_ αποκλείεται μετά από ένα _RE_ στον δεύτερο αγώνα.</subtitle>
+    <subtitle condition="_GDAGG_ = 1" xml:lang="el">Η _CUPMATCHWINNER_ δείχνει χαλαρότητα απέναντι στη _CUPMATCHLOSER_ και περνάει δύσκολα.</subtitle>
+    <subtitle condition="_CUPET_ = 0 and _CUPPEN_ = 0 and _GDAGG_ &lt; 2" xml:lang="el">Η _CUPMATCHWINNER_ πρέπει να κάνει [άγαλμα|τάμα] στους _SCORERS_CUPMATCHWINNERN__ που την έστειλαν στον επόμενο γύρο.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0 and _GDAGG_ &lt; 2" xml:lang="el">Οι _SCORERS_CUPMATCHWINNERN__ σκοράρουν στη δύσκολη επικράτηση της _CUPMATCHWINNER_ επί της _CUPMATCHLOSER_.</subtitle>
+    <subtitle condition="_GDAGG_ &gt; 2" xml:lang="el">Η _CUPMATCHWINNER_ δεν αντιμετώπισε σοβαρή αντίσταση σε αυτή τη σειρά και αξίζει την πρόκριση.</subtitle>
+    <subtitle condition="_GDAGG_ &gt; 2" xml:lang="el">Η _CUPMATCHLOSER_ δεν είχε καμία ευκαιρία και αποκλείεται.</subtitle>
+    <subtitle condition="_GDAGG_ &gt; 2" xml:lang="el">Η _CUPMATCHWINNER_ κυριαρχεί σε αυτή τη σειρά και είναι ακόμα ένα από τα φαβορί για τον τίτλο.</subtitle>
   </news_article>
 
   <news_article>
     <type>match</type>
     <priority>25</priority>
     <condition>_CUP_ = 1 and _CUPKO_ = 1 and _CUPPROMREL_ = 0 and _CUPAUX_ = 0 and _CUPSTAGE_ &gt; 3 and _CUPHOMEAWAY_ = 0</condition>
-    <title>_CUPMATCHWINNER_ through to the next round</title>
-    <title>_CUPMATCHWINNER_ advances</title>
-    <title>_CUPMATCHLOSER_ eliminated</title>
-    <title>_CUPMATCHLOSER_ are out</title>
-    <title priority="20" condition="_CUPET_ = 1">_TW_ [beat|overcome|defeat] _TL_ in extra time</title>
-    <title priority="20" condition="_CUPET_ = 1">_TW_ victorious in extra time</title>
-    <title priority="20" condition="_CUPPEN_ = 1">_TW_ [beat|overcome|defeat] _TL_ _REW_ in penalties</title>
-    <title priority="20" condition="_CUPPEN_ = 1">_TW_ hold their nerves in penalty shoot-out</title>
-    <title condition="_GD_ = 0">Draw enough for _CUPMATCHWINNER_</title>
-    <title condition="_GD_ = 0">_CUPMATCHWINNER_ advance with draw</title>
-    <title condition="_GD_ = 0">_CUPMATCHLOSER_ eliminated after _RE_ in second leg</title>
-    <title condition="_GDAGG_ = 1">_CUPMATCHWINNER_ advance with just one goal difference</title>
-    <title condition="_GDAGG_ = 1">_CUPMATCHLOSER_ out after a close match</title>
-    <title condition="_GDAGG_ &gt; 1">_CUPMATCHWINNER_ advance easily</title>
-    <title condition="_GDAGG_ &gt; 1">_CUPMATCHWINNER_ comfortably through to next round</title>
-    <title condition="_GDAGG_ &gt; 1">_CUPMATCHWINNER_ reach next round easily</title>
-    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0">_SCORERS_CUPMATCHWINNERN__ ensure that _CUPMATCHWINNER_ advance to the next round of _LEAGUECUPNAME_.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0">_CUPMATCHWINNER_ through thanks to goals by _SCORERS_CUPMATCHWINNERN__.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0">_CUPMATCHWINNER_ advance to next round thanks to _SCORERS_CUPMATCHWINNERN__.</subtitle>
-    <subtitle condition="_GDAGG_ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0">_AT_ spectators breathless after an exiting _RE_.</subtitle>
-    <subtitle condition="_GDAGG_ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0">The teams were more or less equal in this match, but _CUPMATCHWINNER_ had luck on their side.</subtitle>
-    <subtitle condition="_GDAGG_ = 1">This was one tough match-up, but _CUPMATCHLOSER_ are out after a _RE_.</subtitle>
-    <subtitle condition="_GDAGG_ = 1">_CUPMATCHWINNER_ shows resilience against _CUPMATCHLOSER_ and advances to the next round after a scare.</subtitle>
-    <subtitle condition="_CUPET_ = 0 and _CUPPEN_ = 0 and _GDAGG_ &lt; 2">_CUPMATCHWINNER_ should give _SCORERS_CUPMATCHWINNERN__ a medal for shooting them into the next round.</subtitle>
-    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0 and _GDAGG_ &lt; 2">_SCORERS_CUPMATCHWINNERN__ score as _CUPMATCHWINNER_ squeeze by _CUPMATCHLOSER_.</subtitle>
-    <subtitle condition="_GDAGG_ &gt; 2">_CUPMATCHWINNER_ didn't face a real challenge in this match-up and deserves to advance.</subtitle>
-    <subtitle condition="_GDAGG_ &gt; 2">_CUPMATCHLOSER_ didn't stand a chance in this game and are out.</subtitle>
-    <subtitle condition="_GDAGG_ &gt; 2">_CUPMATCHWINNER_ dominated this match-up and are still a contender for the title.</subtitle>
+    <title xml:lang="el">Η _CUPMATCHWINNER_ [περνάει|προκρίνεται] στον επόμενο γύρο</title>
+    <title xml:lang="el">Η _CUPMATCHWINNER_ προκρίνεται</title>
+    <title xml:lang="el">Η _CUPMATCHLOSER_ αποκλείεται</title>
+    <title xml:lang="el">Η _CUPMATCHLOSER_ αποκλείεται</title>
+    <title priority="20" condition="_CUPET_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ στην παράταση</title>
+    <title priority="20" condition="_CUPET_ = 1" xml:lang="el">Η _TW_ κερδίζει στην παράταση</title>
+    <title priority="20" condition="_CUPPEN_ = 1" xml:lang="el">Η _TW_ [κερδίζει την|υπερισχύει της] _TL_ _REW_ στην διαδικασία των πέναλτι</title>
+    <title priority="20" condition="_CUPPEN_ = 1" xml:lang="el">Η _TW_ ελέγχουν τα νεύρα τους κατά την διαδικασία των πέναλτι</title>
+    <title condition="_GD_ = 0" xml:lang="el">Η ισοπαλία ήταν αρκετή για την _CUPMATCHWINNER_</title>
+    <title condition="_GD_ = 0" xml:lang="el">Η _CUPMATCHWINNER_ προκρίνεται με ισοπαλία</title>
+    <title condition="_GD_ = 0" xml:lang="el">Η _CUPMATCHLOSER_ αποκλείεται μετά το _RE_ στον δεύτερο αγώνα</title>
+    <title condition="_GDAGG_ = 1" xml:lang="el">Η _CUPMATCHWINNER_ προκρίνεται με μόνο ένα γκολ διαφορά</title>
+    <title condition="_GDAGG_ = 1" xml:lang="el">Η _CUPMATCHLOSER_ αποκλείεται μετά από ένα αμφίρροπο παιχνίδι</title>
+    <title condition="_GDAGG_ &gt; 1" xml:lang="el">Εύκολη πρόκριση της _CUPMATCHWINNER_</title>
+    <title condition="_GDAGG_ &gt; 1" xml:lang="el">Άνετη πρόκριση της _CUPMATCHWINNER_ στον επόμενο γύρο</title>
+    <title condition="_GDAGG_ &gt; 1" xml:lang="el">Εύκολη πρόκριση της _CUPMATCHWINNER_ στον επόμενο γύρο</title>
+    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0" xml:lang="el">Οι _SCORERS_CUPMATCHWINNERN__ διασφαλίζουν την πρόκριση της _CUPMATCHWINNER_ στον επόμενο γύρο του _LEAGUECUPNAME_.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0" xml:lang="el">Η _CUPMATCHWINNER_ περνά χάρις σε γκολ των _SCORERS_CUPMATCHWINNERN__.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 0 and _CUPET_ = 0 and _CUPPEN_ = 0" xml:lang="el">Η _CUPMATCHWINNER_ προκρίνεται στον επόμενο γύρο χάρις στους _SCORERS_CUPMATCHWINNERN__.</subtitle>
+    <subtitle condition="_GDAGG_ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0" xml:lang="el">_AT_ θεατές παρακολουθούν με αγωνία ένα _RE_.</subtitle>
+    <subtitle condition="_GDAGG_ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0" xml:lang="el">Οι δύο ομάδες ήταν σχεδόν ισοδύναμες σε αυτό το παιχνίδι, απλώς η _CUPMATCHWINNER_ ήταν πιο τυχερή.</subtitle>
+    <subtitle condition="_GDAGG_ = 1" xml:lang="el">Ήταν μία σκληρή αναμέτρηση, αλλά η _CUPMATCHLOSER_ αποκλείεται μετά από ένα _RE_.</subtitle>
+    <subtitle condition="_GDAGG_ = 1" xml:lang="el">Η _CUPMATCHWINNER_ δείχνει χαλαρότητα απέναντι στη _CUPMATCHLOSER_ και περνάει δύσκολα.</subtitle>
+    <subtitle condition="_CUPET_ = 0 and _CUPPEN_ = 0 and _GDAGG_ &lt; 2" xml:lang="el">Η _CUPMATCHWINNER_ πρέπει να κάνει [άγαλμα|τάμα] στους _SCORERS_CUPMATCHWINNERN__ που την έστειλαν στον επόμενο γύρο.</subtitle>
+    <subtitle condition="_MULTIPLESCORERS_CUPMATCHWINNERN__ = 1 and _CUPET_ = 0 and _CUPPEN_ = 0 and _GDAGG_ &lt; 2" xml:lang="el">Οι _SCORERS_CUPMATCHWINNERN__ σκοράρουν στη δύσκολη επικράτηση της _CUPMATCHWINNER_ επί της _CUPMATCHLOSER_.</subtitle>
+    <subtitle condition="_GDAGG_ &gt; 2" xml:lang="el">Η _CUPMATCHWINNER_ δεν αντιμετώπισε σοβαρή αντίσταση σε αυτή τη σειρά και αξίζει την πρόκριση.</subtitle>
+    <subtitle condition="_GDAGG_ &gt; 2" xml:lang="el">Η _CUPMATCHLOSER_ δεν είχε καμία ευκαιρία σε αυτό το παιχνίδι και αποκλείεται.</subtitle>
+    <subtitle condition="_GDAGG_ &gt; 2" xml:lang="el">Η _CUPMATCHWINNER_ κυριαρχεί σε αυτή τη σειρά και είναι ακόμα ένα από τα φαβορί για τον τίτλο.</subtitle>
   </news_article>
 
 </news>
