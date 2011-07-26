@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bygfoot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-27 22:13+0200\n"
+"POT-Creation-Date: 2011-07-26 13:37+0200\n"
 "PO-Revision-Date: 2006-03-01 17:06+0200\n"
 "Last-Translator: Rostislav \"zbrox\" Raykov <nostalgiafed@gmail.com>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
@@ -25,37 +25,37 @@ msgstr "Нямате толкова пари!"
 msgid "The betting office doesn't allow you to wager more than %s."
 msgstr "Букмейкърът не Ви позволява да залагате повече от %s."
 
-#: ../src/callback_func.c:405
+#: ../src/callback_func.c:430
 msgid "The bank doesn't grant you more money."
 msgstr "Банката Ви не Ви отпуска повече пари."
 
-#: ../src/callback_func.c:411
+#: ../src/callback_func.c:436
 #, c-format
 msgid "You can take out at most %s."
 msgstr "Може да изтеглите максимум %s."
 
-#: ../src/callback_func.c:413
+#: ../src/callback_func.c:438
 msgid "Loan"
 msgstr "Заем"
 
-#: ../src/callback_func.c:429
+#: ../src/callback_func.c:454
 msgid "You are not indebted."
 msgstr "Нямате задължения."
 
-#: ../src/callback_func.c:435
+#: ../src/callback_func.c:460
 msgid "You don't have enough money to pay back."
 msgstr "Нямате достатъчно пари, за изплащането."
 
-#: ../src/callback_func.c:441
+#: ../src/callback_func.c:466
 #, c-format
 msgid "You can pay back at most %s"
 msgstr "Може да изплатите най-много %s."
 
-#: ../src/callback_func.c:443
+#: ../src/callback_func.c:468
 msgid "Payback"
 msgstr "Връщане"
 
-#: ../src/callback_func.c:471
+#: ../src/callback_func.c:496
 msgid ""
 "There are some offers for the player which you rejected or will see next "
 "week."
@@ -63,15 +63,15 @@ msgstr ""
 "Има някои предложения за играча, които сте отказали или ще прегледате "
 "другата седмица."
 
-#: ../src/callback_func.c:480
+#: ../src/callback_func.c:505
 msgid " more"
 msgstr "повече"
 
-#: ../src/callback_func.c:482
+#: ../src/callback_func.c:507
 msgid " less"
 msgstr " по-малко"
 
-#: ../src/callback_func.c:484
+#: ../src/callback_func.c:509
 #, c-format
 msgid ""
 "%s would like to buy %s. They offer %s for him, which is %s than the "
@@ -80,15 +80,15 @@ msgstr ""
 "%s искат да закупят %s. Предлагат %s за него, което е %s повече от цената на "
 "играча. Приемате ли?"
 
-#: ../src/callback_func.c:514 ../src/callbacks.c:429
+#: ../src/callback_func.c:539 ../src/callbacks.c:429
 msgid "Your offer has been removed."
 msgstr "Предложението Ви беше премахнато."
 
-#: ../src/callback_func.c:521
+#: ../src/callback_func.c:546
 msgid "Your roster is already full. You can't buy more players."
 msgstr "Съставът Ви е пълен. Не може да купувате още играчи."
 
-#: ../src/callback_func.c:528
+#: ../src/callback_func.c:553
 #, c-format
 msgid ""
 "You offered a transfer fee of %s and a wage of %s for %s. The owners and the "
@@ -97,22 +97,22 @@ msgstr ""
 "Предложихте трансферна такса от %s и заплата от %s за %s. Собствениците и "
 "играча са доволни от предложението Ви. Все още ли искате да закупите играча?"
 
-#: ../src/callback_func.c:561
+#: ../src/callback_func.c:586
 #, c-format
 msgid "User %s didn't consider your offer yet."
 msgstr "Потребителят %s не е обмислил предложението Ви все още."
 
-#: ../src/callback_func.c:568
+#: ../src/callback_func.c:593
 msgid ""
 "The player is locked (the team owners are considering an offer currently)."
 msgstr ""
 "Играчът е заключен (в момента собствениците на отбора обмислят предложение)."
 
-#: ../src/callback_func.c:575 ../src/callbacks.c:226 ../src/transfer.c:574
+#: ../src/callback_func.c:600 ../src/callbacks.c:226 ../src/transfer.c:574
 msgid "The transfer deadline is over."
 msgstr "Крайният срок за трансфери е преминал."
 
-#: ../src/callback_func.c:587
+#: ../src/callback_func.c:612
 #, c-format
 msgid ""
 "You are making an offer for %s. Your scout's recommendations for fee and "
@@ -121,16 +121,16 @@ msgstr ""
 "Правите предложение за %s. Препоръките на разузнавача Ви за такса и заплата "
 "са настроени."
 
-#: ../src/callback_func.c:590 ../src/callback_func.c:598
+#: ../src/callback_func.c:615 ../src/callback_func.c:623
 msgid "Fee"
 msgstr "Такса"
 
-#: ../src/callback_func.c:591 ../src/callback_func.c:598 ../src/treeview.c:329
-#: ../src/treeview.c:2173
+#: ../src/callback_func.c:616 ../src/callback_func.c:623 ../src/treeview.c:329
+#: ../src/treeview.c:2170
 msgid "Wage"
 msgstr "Заплата"
 
-#: ../src/callback_func.c:595
+#: ../src/callback_func.c:620
 #, c-format
 msgid ""
 "You are making an offer for %s again. Your previous values for fee and wage "
@@ -139,22 +139,22 @@ msgstr ""
 "Отново правите предложение за %s. Предишните Ви стойности за такса и заплата "
 "са настроени."
 
-#: ../src/callback_func.c:620
+#: ../src/callback_func.c:645
 msgid "You can't offer a new contract if the old one is still above 2 years."
 msgstr ""
 "Не можете да предлагате нов договор, ако стария е все още над 2 години."
 
-#: ../src/callback_func.c:625
+#: ../src/callback_func.c:650
 msgid "The player won't negotiate with you anymore."
 msgstr "Играчът няма да преговаря с Вас повече."
 
-#: ../src/callback_func.c:631
+#: ../src/callback_func.c:656
 msgid ""
 "The player feels he doesn't have a future in your star-studded team. He "
 "refuses to negotiate."
 msgstr ""
 
-#: ../src/callback_func.c:645
+#: ../src/callback_func.c:670
 #, c-format
 msgid ""
 "You are negotiating with %s about a new contract. Pay attention to what "
@@ -169,7 +169,7 @@ msgstr ""
 "само ПРЕДИ да направите първото предложение.\n"
 "Предложенията на разузнавача Ви са настроени:"
 
-#: ../src/callback_func.c:787
+#: ../src/callback_func.c:812
 #, c-format
 msgid ""
 "You want to fire %s. Since his contract expires in %.1f years, he demands a "
@@ -178,7 +178,7 @@ msgstr ""
 "Искате ад уволните %s. Тъй като договорът му изтича след %.1f години, той "
 "иска компенсации на стойност %s. Приемате ли?"
 
-#: ../src/callback_func.c:946
+#: ../src/callback_func.c:971
 msgid ""
 "Left click to move players to and from the youth academy; right click for "
 "context menu."
@@ -389,34 +389,34 @@ msgstr ""
 msgid "Stadium management is disabled in this country definition."
 msgstr "Управлението на стадиона е изключено в дефинициите за тази страна."
 
-#: ../src/cup.c:1094
+#: ../src/cup.c:1093
 msgid "Round robin"
 msgstr "Квалификации"
 
 #. A cup stage, e.g. Last 32 when there are only 32 teams left.
-#: ../src/cup.c:1102
+#: ../src/cup.c:1101
 #, c-format
 msgid "Last %d"
 msgstr "Последните %d"
 
-#: ../src/cup.c:1105
+#: ../src/cup.c:1104
 msgid "Final"
 msgstr "Финал"
 
-#: ../src/cup.c:1108
+#: ../src/cup.c:1107
 msgid "Semi-final"
 msgstr "Полуфинал"
 
-#: ../src/cup.c:1111
+#: ../src/cup.c:1110
 msgid "Quarter-final"
 msgstr "Четвъртфинал"
 
-#: ../src/file.c:384
+#: ../src/file.c:391
 #, c-format
 msgid "Copying %s"
 msgstr "Копиране на %s"
 
-#: ../src/file.c:396 ../support_files/bygfoot_misc3.glade.h:17
+#: ../src/file.c:403 ../support_files/bygfoot_misc3.glade.h:17
 msgid "Ready"
 msgstr "Готово"
 
@@ -620,87 +620,87 @@ msgstr "%d : %d след дузпи"
 msgid "%d : %d e.t."
 msgstr "%d : %d след продължения"
 
-#: ../src/load_save.c:79
+#: ../src/load_save.c:80
 msgid "Saving options..."
 msgstr "Запазване на настройките..."
 
-#: ../src/load_save.c:92
+#: ../src/load_save.c:93
 msgid "Saving leagues and cups..."
 msgstr "Запазване на първенствата и купите..."
 
-#: ../src/load_save.c:102
+#: ../src/load_save.c:103
 msgid "Saving users..."
 msgstr "Запазване на потребителите..."
 
-#: ../src/load_save.c:112
+#: ../src/load_save.c:113
 msgid "Saving transfer list..."
 msgstr "Запазване на списъка за трансфер..."
 
-#: ../src/load_save.c:122
+#: ../src/load_save.c:123
 msgid "Saving season stats..."
 msgstr "Запазване на сезонните статистики..."
 
 #. The 'job exchange' is a list of teams looking for a manager.
-#: ../src/load_save.c:133
+#: ../src/load_save.c:134
 msgid "Saving job exchange..."
 msgstr "Запазване на предложенията за работа..."
 
-#: ../src/load_save.c:143
+#: ../src/load_save.c:144
 #, fuzzy
 msgid "Saving newspaper..."
 msgstr "Запазване на потребителите..."
 
-#: ../src/load_save.c:153
+#: ../src/load_save.c:154
 msgid "Saving miscellaneous..."
 msgstr "Запазване на останалото..."
 
-#: ../src/load_save.c:160
+#: ../src/load_save.c:161
 msgid "Compressing savegame..."
 msgstr "Компресиране на запазената игра..."
 
-#: ../src/load_save.c:169 ../src/load_save.c:319
+#: ../src/load_save.c:170 ../src/load_save.c:321
 msgid "Done."
 msgstr "Готово."
 
-#: ../src/load_save.c:218
+#: ../src/load_save.c:220
 msgid "Last save file not found."
 msgstr "Последният запазен файл не бе открит."
 
-#: ../src/load_save.c:226
+#: ../src/load_save.c:228
 msgid "Uncompressing savegame..."
 msgstr "Разкомпресиране на запазената игра..."
 
-#: ../src/load_save.c:236
+#: ../src/load_save.c:238
 msgid "Loading options..."
 msgstr "Зареждане на настройките..."
 
-#: ../src/load_save.c:250
+#: ../src/load_save.c:252
 msgid "Loading leagues and cups..."
 msgstr "Зареждане на първенствата и купите..."
 
-#: ../src/load_save.c:260
+#: ../src/load_save.c:262
 msgid "Loading users..."
 msgstr "Зареждане на потребители..."
 
-#: ../src/load_save.c:270
+#: ../src/load_save.c:272
 msgid "Loading transfer list..."
 msgstr "Зареждане на списък за трансфер..."
 
-#: ../src/load_save.c:280
+#: ../src/load_save.c:282
 msgid "Loading season stats..."
 msgstr "Зареждане на сезонни статистики..."
 
 #. The 'job exchange' is a list of teams looking for a manager.
-#: ../src/load_save.c:291
+#: ../src/load_save.c:293
 msgid "Loading job exchange..."
 msgstr "Зареждане на предложенията за работа..."
 
-#: ../src/load_save.c:301
+#: ../src/load_save.c:303
 #, fuzzy
 msgid "Loading newspaper..."
 msgstr "Зареждане на потребители..."
 
-#: ../src/load_save.c:311
+#: ../src/load_save.c:313
 msgid "Loading miscellaneous..."
 msgstr "Зареждане на останалото..."
 
@@ -1103,8 +1103,8 @@ msgstr ""
 "Победа/Загуба"
 
 #: ../src/treeview2.c:513 ../src/treeview.c:161 ../src/treeview.c:331
-#: ../src/treeview.c:779 ../src/treeview.c:1384 ../src/treeview.c:1858
-#: ../src/treeview.c:2012 ../src/treeview.c:2350
+#: ../src/treeview.c:779 ../src/treeview.c:1381 ../src/treeview.c:1855
+#: ../src/treeview.c:2009 ../src/treeview.c:2347
 msgid "Team"
 msgstr "Отбор"
 
@@ -1131,11 +1131,11 @@ msgid "Week %d Round %d"
 msgstr "Седмица %d Кръг %d"
 
 #: ../src/treeview2.c:791 ../src/treeview.c:304 ../src/treeview.c:778
-#: ../src/treeview.c:2163 ../support_files/bygfoot_misc2.glade.h:24
+#: ../src/treeview.c:2160 ../support_files/bygfoot_misc2.glade.h:24
 msgid "Name"
 msgstr "Име"
 
-#: ../src/treeview2.c:792 ../src/treeview.c:328 ../src/treeview.c:2172
+#: ../src/treeview2.c:792 ../src/treeview.c:328 ../src/treeview.c:2169
 msgid "Value"
 msgstr "Стойност"
 
@@ -1181,7 +1181,7 @@ msgstr "Изстрели"
 
 #. Goals of a player.
 #. Goals.
-#: ../src/treeview.c:320 ../src/treeview.c:2480
+#: ../src/treeview.c:320 ../src/treeview.c:2477
 msgid "Go"
 msgstr "Голове"
 
@@ -1195,7 +1195,7 @@ msgstr "Статус"
 msgid "YC"
 msgstr "ЖК"
 
-#: ../src/treeview.c:325 ../src/treeview.c:2170
+#: ../src/treeview.c:325 ../src/treeview.c:2167
 msgid "Age"
 msgstr "Възраст"
 
@@ -1204,7 +1204,7 @@ msgstr "Възраст"
 msgid "Etal"
 msgstr "Изч. тал."
 
-#: ../src/treeview.c:330 ../src/treeview.c:2174
+#: ../src/treeview.c:330 ../src/treeview.c:2171
 msgid "Contract"
 msgstr "Договор"
 
@@ -1217,7 +1217,7 @@ msgstr "Голове (от игра)"
 msgid "Shots"
 msgstr "Изстрели"
 
-#: ../src/treeview.c:837 ../src/treeview.c:2422
+#: ../src/treeview.c:837 ../src/treeview.c:2419
 msgid "Shot %"
 msgstr "Изстрели %"
 
@@ -1289,67 +1289,67 @@ msgid ""
 msgstr "Седмица %d Кръг %d"
 
 #. A group of a round robin stage of a cup.
-#: ../src/treeview.c:1251
+#: ../src/treeview.c:1249
 #, c-format
 msgid "%s Group %d"
 msgstr "%s Група %d"
 
 #. Games played (a number).
-#: ../src/treeview.c:1386
+#: ../src/treeview.c:1383
 msgid "PL"
 msgstr "Мача"
 
 #. Games won.
 #. Won.
-#: ../src/treeview.c:1388 ../src/treeview_helper.c:1738
+#: ../src/treeview.c:1385 ../src/treeview_helper.c:1738
 msgid "W"
 msgstr "Поб"
 
 #. Games drawn.
 #. Draw.
-#: ../src/treeview.c:1390 ../src/treeview_helper.c:1756
+#: ../src/treeview.c:1387 ../src/treeview_helper.c:1756
 msgid "Dw"
 msgstr "Рав"
 
 #. Games lost.
 #. Lost.
-#: ../src/treeview.c:1392 ../src/treeview_helper.c:1749
+#: ../src/treeview.c:1389 ../src/treeview_helper.c:1749
 msgid "L"
 msgstr "Заг"
 
 #. Goals for.
-#: ../src/treeview.c:1394
+#: ../src/treeview.c:1391
 msgid "GF"
 msgstr "Вк. гол."
 
 #. Goals against.
-#: ../src/treeview.c:1396
+#: ../src/treeview.c:1393
 msgid "GA"
 msgstr "Доп. гол."
 
 #. Goal difference.
-#: ../src/treeview.c:1398
+#: ../src/treeview.c:1395
 msgid "GD"
 msgstr "Гол. разл."
 
 #. Points.
-#: ../src/treeview.c:1400
+#: ../src/treeview.c:1397
 msgid "PTS"
 msgstr "Точки"
 
-#: ../src/treeview.c:1477
+#: ../src/treeview.c:1474
 msgid "Stadium"
 msgstr "Стадион"
 
-#: ../src/treeview.c:1483 ../support_files/bygfoot_misc2.glade.h:36
+#: ../src/treeview.c:1480 ../support_files/bygfoot_misc2.glade.h:36
 msgid "Stadium capacity"
 msgstr "Капацитет на стадиона"
 
-#: ../src/treeview.c:1487 ../support_files/bygfoot_misc2.glade.h:37
+#: ../src/treeview.c:1484 ../support_files/bygfoot_misc2.glade.h:37
 msgid "Stadium safety"
 msgstr "Безопасност на стадиона"
 
-#: ../src/treeview.c:1493 ../src/window.c:648
+#: ../src/treeview.c:1490 ../src/window.c:648
 #, c-format
 msgid ""
 "Improvement in progress.\n"
@@ -1360,63 +1360,63 @@ msgstr ""
 "%d места и %d%% от безопасността не са готови.\n"
 "Очакван край: %d седмици."
 
-#: ../src/treeview.c:1501
+#: ../src/treeview.c:1498
 msgid "Stadium status"
 msgstr "Статус на стадиона"
 
-#: ../src/treeview.c:1517
+#: ../src/treeview.c:1514
 msgid "Prize money"
 msgstr "Пари от наградата"
 
-#: ../src/treeview.c:1518
+#: ../src/treeview.c:1515
 msgid "Ticket income"
 msgstr "Приходи от билети"
 
-#: ../src/treeview.c:1519
+#: ../src/treeview.c:1516
 msgid "Sponsorship"
 msgstr "Спонсорство"
 
-#: ../src/treeview.c:1520 ../src/treeview.c:1530 ../src/window.c:986
+#: ../src/treeview.c:1517 ../src/treeview.c:1527 ../src/window.c:986
 #: ../support_files/bygfoot.glade.h:20
 #: ../support_files/bygfoot_options.glade.h:12
 msgid "Betting"
 msgstr "Залагания"
 
-#: ../src/treeview.c:1522
+#: ../src/treeview.c:1519
 msgid "Wages"
 msgstr "Заплати"
 
-#: ../src/treeview.c:1523
+#: ../src/treeview.c:1520
 msgid "Physio"
 msgstr "Физиотерапевт"
 
-#: ../src/treeview.c:1524 ../support_files/bygfoot.glade.h:81
+#: ../src/treeview.c:1521 ../support_files/bygfoot.glade.h:81
 msgid "Scout"
 msgstr "Разузнавач"
 
-#: ../src/treeview.c:1525 ../support_files/bygfoot.glade.h:105
+#: ../src/treeview.c:1522 ../support_files/bygfoot.glade.h:105
 msgid "Youth coach"
 msgstr "Треньор на младежите"
 
-#: ../src/treeview.c:1526 ../support_files/bygfoot.glade.h:104
+#: ../src/treeview.c:1523 ../support_files/bygfoot.glade.h:104
 msgid "Youth academy"
 msgstr "Младежка академия"
 
-#: ../src/treeview.c:1527
+#: ../src/treeview.c:1524
 msgid "Journey costs"
 msgstr "Разходи по пътуването"
 
 #. Money paid to players a user fired.
-#: ../src/treeview.c:1529
+#: ../src/treeview.c:1526
 msgid "Compensations"
 msgstr "Компенсации"
 
 #. Applying boost costs money.
-#: ../src/treeview.c:1532
+#: ../src/treeview.c:1529
 msgid "Boost costs"
 msgstr "Разход по тласъка"
 
-#: ../src/treeview.c:1546 ../src/treeview.c:1549
+#: ../src/treeview.c:1543 ../src/treeview.c:1546
 #, c-format
 msgid ""
 "Bi-weekly balance\n"
@@ -1425,218 +1425,218 @@ msgstr ""
 "Двуседмичен баланс\n"
 "(Седмица·%d и %d)"
 
-#: ../src/treeview.c:1553
+#: ../src/treeview.c:1550
 msgid "Bi-weekly balance"
 msgstr "Двуседмичен баланс"
 
 #. Finances balance.
-#: ../src/treeview.c:1580
+#: ../src/treeview.c:1577
 msgid "Balance"
 msgstr "Баланс"
 
-#: ../src/treeview.c:1598
+#: ../src/treeview.c:1595
 msgid "Transfers"
 msgstr "Трансфери"
 
-#: ../src/treeview.c:1608
+#: ../src/treeview.c:1605
 msgid "Stadium expenses"
 msgstr "Разходи по стадиона"
 
-#: ../src/treeview.c:1616 ../src/window.c:1001
+#: ../src/treeview.c:1613 ../src/window.c:1001
 #: ../support_files/bygfoot.glade.h:101
 #: ../support_files/bygfoot_options.glade.h:94
 #: ../support_files/bygfoot_training.glade.h:9
 msgid "Training camp"
 msgstr ""
 
-#: ../src/treeview.c:1629
+#: ../src/treeview.c:1626
 msgid "Money"
 msgstr "Пари"
 
-#: ../src/treeview.c:1633
+#: ../src/treeview.c:1630
 msgid "Drawing credit"
 msgstr "Кредитен лимит"
 
-#: ../src/treeview.c:1637
+#: ../src/treeview.c:1634
 msgid "Current market interest"
 msgstr ""
 
-#: ../src/treeview.c:1644
+#: ../src/treeview.c:1641
 msgid "interest rate"
 msgstr ""
 
-#: ../src/treeview.c:1645
+#: ../src/treeview.c:1642
 #, c-format
 msgid "Debt (repay in %d weeks)"
 msgstr "Дълг (изплащане за %d седмици)"
 
-#: ../src/treeview.c:1653
+#: ../src/treeview.c:1650
 msgid "Automatic repayment"
 msgstr ""
 
-#: ../src/treeview.c:1658
+#: ../src/treeview.c:1655
 #, c-format
 msgid "(starting week %d)"
 msgstr ""
 
-#: ../src/treeview.c:1667
+#: ../src/treeview.c:1664
 msgid "Sponsor"
 msgstr "Спонсор"
 
 #. Contract time and money a sponsor pays.
-#: ../src/treeview.c:1672
+#: ../src/treeview.c:1669
 #, c-format
 msgid "%.1f months / %s"
 msgstr "%.1f месеца / %s"
 
-#: ../src/treeview.c:1674
+#: ../src/treeview.c:1671
 msgid "Contract / Money"
 msgstr "Договор/Пари"
 
-#: ../src/treeview.c:1681
+#: ../src/treeview.c:1678
 msgid "Youth acad. invest."
 msgstr "Инвест. в млад. академия"
 
-#: ../src/treeview.c:1703
+#: ../src/treeview.c:1700
 msgid "Income"
 msgstr "Приходи"
 
-#: ../src/treeview.c:1704
+#: ../src/treeview.c:1701
 msgid "Expenses"
 msgstr "Разходи"
 
-#: ../src/treeview.c:1775
+#: ../src/treeview.c:1772
 msgid "Goalie"
 msgstr "Вратар"
 
-#: ../src/treeview.c:1776 ../support_files/bygfoot.glade.h:26
+#: ../src/treeview.c:1773 ../support_files/bygfoot.glade.h:26
 msgid "Defend"
 msgstr "Защитен"
 
-#: ../src/treeview.c:1777
+#: ../src/treeview.c:1774
 msgid "Midfield"
 msgstr "Средата на терена"
 
-#: ../src/treeview.c:1778 ../support_files/bygfoot.glade.h:11
+#: ../src/treeview.c:1775 ../support_files/bygfoot.glade.h:11
 msgid "Attack"
 msgstr "Атакуващ"
 
-#: ../src/treeview.c:1830
+#: ../src/treeview.c:1827
 msgid "Your next opponent"
 msgstr "Вашият следващ противник"
 
-#: ../src/treeview.c:1836 ../src/treeview.c:1841
+#: ../src/treeview.c:1833 ../src/treeview.c:1838
 #, c-format
 msgid "<span foreground='%s' background='%s'>Week %d Round %d</span>"
 msgstr "<span foreground='%s' background='%s'>Седмица %d Кръг %d</span>"
 
-#: ../src/treeview.c:1847
+#: ../src/treeview.c:1844
 msgid "Neutral ground"
 msgstr "Неутрален стадион"
 
-#: ../src/treeview.c:1849
+#: ../src/treeview.c:1846
 msgid "Home"
 msgstr "Домакинство"
 
-#: ../src/treeview.c:1851
+#: ../src/treeview.c:1848
 msgid "Away"
 msgstr "Гостуване"
 
-#: ../src/treeview.c:1866 ../support_files/bygfoot_misc2.glade.h:28
+#: ../src/treeview.c:1863 ../support_files/bygfoot_misc2.glade.h:28
 msgid "Rank"
 msgstr "Класиране"
 
-#: ../src/treeview.c:1884
+#: ../src/treeview.c:1881
 msgid "Average skill"
 msgstr "Средно умение"
 
-#: ../src/treeview.c:1887 ../support_files/bygfoot.glade.h:62
+#: ../src/treeview.c:1884 ../support_files/bygfoot.glade.h:62
 msgid "Playing style"
 msgstr "Стил на игра"
 
-#: ../src/treeview.c:1892
+#: ../src/treeview.c:1889
 msgid "Team structure"
 msgstr "Структура на отбора"
 
-#: ../src/treeview.c:1898
+#: ../src/treeview.c:1895
 msgid "Latest results"
 msgstr "Най-новите резултати"
 
-#: ../src/treeview.c:1900 ../src/treeview.c:2446 ../src/treeview_helper.c:932
+#: ../src/treeview.c:1897 ../src/treeview.c:2443 ../src/treeview_helper.c:932
 msgid "Goals"
 msgstr "Голове"
 
-#: ../src/treeview.c:1904
+#: ../src/treeview.c:1901
 #, fuzzy
 msgid "Overall results"
 msgstr "Резултати от сезона"
 
 #. The user's results against a specific team.
-#: ../src/treeview.c:1909
+#: ../src/treeview.c:1906
 msgid "Your results"
 msgstr "Вашите резултати"
 
-#: ../src/treeview.c:1913
+#: ../src/treeview.c:1910
 #, fuzzy
 msgid "Your overall results"
 msgstr "Вашите резултати"
 
-#: ../src/treeview.c:2013
+#: ../src/treeview.c:2010
 msgid "Results"
 msgstr "Резултати"
 
-#: ../src/treeview.c:2164
+#: ../src/treeview.c:2161
 msgid "Position"
 msgstr "Позиция"
 
-#: ../src/treeview.c:2165
+#: ../src/treeview.c:2162
 msgid "Current position"
 msgstr "Текуща позиция"
 
-#: ../src/treeview.c:2166
+#: ../src/treeview.c:2163
 msgid "Skill"
 msgstr "Умение"
 
-#: ../src/treeview.c:2167
+#: ../src/treeview.c:2164
 msgid "Current skill"
 msgstr "Текущо умение"
 
-#: ../src/treeview.c:2168
+#: ../src/treeview.c:2165
 msgid "Fitness"
 msgstr "Тонус"
 
-#: ../src/treeview.c:2169
+#: ../src/treeview.c:2166
 msgid "Estimated talent"
 msgstr "Изчислен талант"
 
-#: ../src/treeview.c:2171
+#: ../src/treeview.c:2168
 msgid "Health"
 msgstr "Здраве"
 
-#: ../src/treeview.c:2175
+#: ../src/treeview.c:2172
 msgid "Games/Goals\n"
 msgstr "Мачове/Гола\n"
 
 #. 'Limit' is the number of yellow cards until a player gets
 #. banned automatically for a match.
-#: ../src/treeview.c:2178
+#: ../src/treeview.c:2175
 msgid "Yellow cards (limit)\n"
 msgstr "Жълти картони (лимит)\n"
 
-#: ../src/treeview.c:2179
+#: ../src/treeview.c:2176
 msgid "Banned\n"
 msgstr "Наказан\n"
 
 #. Hot streak or cold streak of a player.
-#: ../src/treeview.c:2181
+#: ../src/treeview.c:2178
 msgid "Streak"
 msgstr "Серия"
 
-#: ../src/treeview.c:2182
+#: ../src/treeview.c:2179
 msgid "Career values"
 msgstr "Стойности за кариера"
 
-#: ../src/treeview.c:2183
+#: ../src/treeview.c:2180
 msgid ""
 "New contract\n"
 "offers"
@@ -1645,87 +1645,87 @@ msgstr ""
 "нови договори"
 
 #. Season.
-#: ../src/treeview.c:2349
+#: ../src/treeview.c:2346
 msgid "Sea"
 msgstr "Сезон"
 
-#: ../src/treeview.c:2350
+#: ../src/treeview.c:2347
 msgid "Week"
 msgstr "Седмица"
 
-#: ../src/treeview.c:2378
+#: ../src/treeview.c:2375
 msgid "Event"
 msgstr "Събитие"
 
-#: ../src/treeview.c:2418
+#: ../src/treeview.c:2415
 msgid "Best offensive teams"
 msgstr "Най-добрите нападателни отбори"
 
-#: ../src/treeview.c:2419
+#: ../src/treeview.c:2416
 msgid "Best defensive teams"
 msgstr "Най-добрите защитни отбори"
 
-#: ../src/treeview.c:2422
+#: ../src/treeview.c:2419
 msgid "Best goal scorers"
 msgstr "Най-добри голмайстори"
 
-#: ../src/treeview.c:2423
+#: ../src/treeview.c:2420
 msgid "Best goalkeepers"
 msgstr "Най-добри вратари"
 
 #. % of saves for goalies (#goals / #shots)
-#: ../src/treeview.c:2425
+#: ../src/treeview.c:2422
 msgid "Save %"
 msgstr "Спасявания %"
 
 #. Goals per game.
-#: ../src/treeview.c:2482
+#: ../src/treeview.c:2479
 msgid "Go/Ga"
 msgstr "Гол/Мач"
 
-#: ../src/treeview.c:2590
+#: ../src/treeview.c:2587
 msgid "League champions"
 msgstr "Шампиони на лигата"
 
-#: ../src/treeview.c:2591
+#: ../src/treeview.c:2588
 msgid "Cup champions"
 msgstr "Носителите на купата"
 
-#: ../src/treeview.c:2641
+#: ../src/treeview.c:2638
 #, c-format
 msgid "Season %d"
 msgstr "Сезон %d"
 
-#: ../src/treeview.c:2769
+#: ../src/treeview.c:2766
 msgid "Didn't find file 'bygfoot_help'."
 msgstr "Не беше открит файла \"bygfoot_help\"."
 
-#: ../src/treeview.c:2829
+#: ../src/treeview.c:2826
 msgid "Current league"
 msgstr "Текуща лига"
 
 #. Language is system-set (not user chosen).
-#: ../src/treeview.c:2883
+#: ../src/treeview.c:2880
 msgid "System"
 msgstr "Система"
 
-#: ../src/treeview.c:2940 ../support_files/bygfoot_training.glade.h:4
+#: ../src/treeview.c:2937 ../support_files/bygfoot_training.glade.h:4
 msgid "Good Hotel"
 msgstr ""
 
-#: ../src/treeview.c:2943 ../support_files/bygfoot_training.glade.h:3
+#: ../src/treeview.c:2940 ../support_files/bygfoot_training.glade.h:3
 msgid "First-Class Hotel"
 msgstr ""
 
-#: ../src/treeview.c:2946 ../support_files/bygfoot_training.glade.h:5
+#: ../src/treeview.c:2943 ../support_files/bygfoot_training.glade.h:5
 msgid "Premium Hotel"
 msgstr ""
 
-#: ../src/treeview.c:3017
+#: ../src/treeview.c:3014
 msgid "Company"
 msgstr "Компания"
 
-#: ../src/treeview.c:3018
+#: ../src/treeview.c:3015
 msgid ""
 "Contract length\n"
 "(Months)"
@@ -1733,7 +1733,7 @@ msgstr ""
 "Срок на договора\n"
 "(Месеци)"
 
-#: ../src/treeview.c:3019
+#: ../src/treeview.c:3016
 msgid "Money / week"
 msgstr "Пари / седмица"
 
@@ -2180,7 +2180,7 @@ msgstr ""
 "Текущият Ви спонсор е доволен от резултатите Ви и би искал да поднови "
 "договора. В момента Ви плащат %d на седмица."
 
-#: ../src/user.c:1218
+#: ../src/user.c:1229
 msgid "Memorable match added."
 msgstr "Добавен е запомнящ се мач"
 
