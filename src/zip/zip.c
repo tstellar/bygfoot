@@ -155,13 +155,6 @@ static void init_linkedlist(linkedlist_data* ll)
     ll->first_block = ll->last_block = NULL;
 }
 
-static void free_linkedlist(linkedlist_data* ll)
-{
-    free_datablock(ll->first_block);
-    ll->first_block = ll->last_block = NULL;
-}
-
-
 static int add_data_in_datablock(linkedlist_data* ll, const void* buf, uLong len)
 {
     linkedlist_datablock_internal* ldi;
