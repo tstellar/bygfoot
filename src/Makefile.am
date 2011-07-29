@@ -1,10 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 AM_CFLAGS = -Wall #-fprofile-arcs -ftest-coverage -pg
 
-SUBDIRS = zip
-
-INCLUDES = -I$(srcdir)/zip \
-	-DPACKAGE_DATA_DIR=\""$(datadir)"\" \
+INCLUDES = -DPACKAGE_DATA_DIR=\""$(datadir)"\" \
 	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
 	@PACKAGE_CFLAGS@ @GST_CFLAGS@
 
@@ -89,10 +86,8 @@ bygfoot_SOURCES = \
 	xml_news.c file.h free.h news.h variables.h xml_news.h  \
 	xml_strategy.c file.h free.h main.h misc.h strategy_struct.h xml_strategy.h \
 	xml_team.c file.h free.h main.h misc.h option.h player.h team.h variables.h xml_team.h \
-	youth_academy.c free.h maths.h name.h option.h player.h team.h user.h youth_academy.h 
+	youth_academy.c free.h maths.h name.h option.h player.h team.h user.h youth_academy.h \
+        zip/zip.c zip/zip.h \
+	zip/unzip.c zip/unzip.h
 
-BYGFOOTLIBS = \
-zip/libminizip.la
-
-bygfoot_LDADD = @PACKAGE_LIBS@ @GST_LIBS@ $(INTLLIBS) $(BYGFOOTLIBS)
-
+bygfoot_LDADD = @PACKAGE_LIBS@ @GST_LIBS@ $(INTLLIBS)

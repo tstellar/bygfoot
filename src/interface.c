@@ -39,6 +39,7 @@ create_main_window (void)
   GTK_HOOKUP_OBJECT (main_window, builder, "menu_next_user");
   GTK_HOOKUP_OBJECT (main_window, builder, "menu_previous_user");
   GTK_HOOKUP_OBJECT (main_window, builder, "label29");
+  GTK_HOOKUP_OBJECT (main_window, builder, "label34");
   GTK_HOOKUP_OBJECT (main_window, builder, "label_av_skills");
   GTK_HOOKUP_OBJECT (main_window, builder, "menu_all_out_defend");
   GTK_HOOKUP_OBJECT (main_window, builder, "menu_defend");
