@@ -90,4 +90,15 @@ bygfoot_SOURCES = \
         zip/zip.c zip/zip.h \
 	zip/unzip.c zip/unzip.h
 
+if HAVE_WINDRES
+  @PROGRAM_PREFIX@doom_SOURCES=$(SOURCE_FILES) resource.rc
+else
+  @PROGRAM_PREFIX@doom_SOURCES=$(SOURCE_FILES)
+endif
+
+.rc.o:
+	$(WINDRES) $< -o $@
+%.o : %.rc
+	$(WINDRES) $< -o $@
+
 bygfoot_LDADD = @PACKAGE_LIBS@ @GST_LIBS@ $(INTLLIBS)
