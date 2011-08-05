@@ -8,7 +8,7 @@ INCLUDES = -DPACKAGE_DATA_DIR=\""$(datadir)"\" \
 
 bin_PROGRAMS = bygfoot
 
-bygfoot_SOURCES = \
+SOURCE_FILES = \
 	bet.c bet.h finance.h fixture.h game_gui.h league.h main.h maths.h misc.h option.h player.h support.h treeview2.h user.h \
 	callback_func.c bet.h callback_func.h callbacks.h cup.h finance.h fixture.h game_gui.h gui.h league.h live_game.h maths.h misc.h option.h player.h start_end.h team.h transfer.h treeview.h treeview_helper.h user.h window.h \
 	callbacks.c callback_func.h callbacks.h debug.h fixture.h free.h game_gui.h game.h gui.h job.h league.h load_save.h main.h misc2_callback_func.h option.h player.h table.h team.h transfer.h treeview2.h treeview.h treeview_helper.h user.h window.h \
@@ -91,9 +91,9 @@ bygfoot_SOURCES = \
 	zip/unzip.c zip/unzip.h
 
 if HAVE_WINDRES
-  @PROGRAM_PREFIX@doom_SOURCES=$(SOURCE_FILES) resource.rc
+  bygfoot_SOURCES=$(SOURCE_FILES) bygfoot_private.rc
 else
-  @PROGRAM_PREFIX@doom_SOURCES=$(SOURCE_FILES)
+  bygfoot_SOURCES=$(SOURCE_FILES)
 endif
 
 .rc.o:
@@ -101,4 +101,4 @@ endif
 %.o : %.rc
 	$(WINDRES) $< -o $@
 
-bygfoot_LDADD = @PACKAGE_LIBS@ @GST_LIBS@ $(INTLLIBS)
+bygfoot_LDADD = @PACKAGE_LIBS@ @GST_LIBS@ $(ZLIB_LIBS) $(INTLLIBS)
