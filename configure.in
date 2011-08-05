@@ -22,13 +22,14 @@ dnl else
 dnl 	echo "no"
 dnl 	AC_MSG_ERROR(gthread-2.0 not found)
 dnl fi
-
+AM_CONDITIONAL(HAVE_WINDRES, which windres > /dev/null)
 AC_CHECK_TOOL(WINDRES, windres, )
 AM_CONDITIONAL(HAVE_WINDRES, test "$WINDRES" != "")
 
 PKG_CHECK_MODULES(PACKAGE, [$pkg_modules])
 AC_SUBST(PACKAGE_CFLAGS)
 AC_SUBST(PACKAGE_LIBS)
+AC_SUBST(ZLIB_LIBS)
 
 GETTEXT_PACKAGE=bygfoot
 AC_SUBST(GETTEXT_PACKAGE)
