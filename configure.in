@@ -23,6 +23,9 @@ dnl 	echo "no"
 dnl 	AC_MSG_ERROR(gthread-2.0 not found)
 dnl fi
 
+AC_CHECK_TOOL(WINDRES, windres, )
+AM_CONDITIONAL(HAVE_WINDRES, test "$WINDRES" != "")
+
 PKG_CHECK_MODULES(PACKAGE, [$pkg_modules])
 AC_SUBST(PACKAGE_CFLAGS)
 AC_SUBST(PACKAGE_LIBS)

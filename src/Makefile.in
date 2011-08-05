@@ -195,6 +195,7 @@ SHELL = @SHELL@
 STRIP = @STRIP@
 USE_NLS = @USE_NLS@
 VERSION = @VERSION@
+WINDRES = @WINDRES@
 XGETTEXT = @XGETTEXT@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
@@ -335,11 +336,13 @@ bygfoot_SOURCES = \
         zip/zip.c zip/zip.h \
 	zip/unzip.c zip/unzip.h
 
+@HAVE_WINDRES_FALSE@@PROGRAM_PREFIX@doom_SOURCES = $(SOURCE_FILES)
+@HAVE_WINDRES_TRUE@@PROGRAM_PREFIX@doom_SOURCES = $(SOURCE_FILES) resource.rc
 bygfoot_LDADD = @PACKAGE_LIBS@ @GST_LIBS@ $(INTLLIBS)
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .lo .o .obj
+.SUFFIXES: .c .lo .o .obj .rc
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -759,6 +762,11 @@ uninstall-am: uninstall-binPROGRAMS
 	pdf pdf-am ps ps-am tags uninstall uninstall-am \
 	uninstall-binPROGRAMS
 
+
+.rc.o:
+	$(WINDRES) $< -o $@
+%.o : %.rc
+	$(WINDRES) $< -o $@
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
