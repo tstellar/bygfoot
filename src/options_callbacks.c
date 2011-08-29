@@ -35,7 +35,7 @@
 #include "variables.h"
 #include "window.h"
 
-void
+G_MODULE_EXPORT void
 on_button_options_ok_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -74,7 +74,7 @@ on_button_options_ok_clicked           (GtkButton       *button,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_button_options_cancel_clicked       (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -86,7 +86,7 @@ on_button_options_cancel_clicked       (GtkButton       *button,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_button_font_name_clicked            (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -98,7 +98,7 @@ on_button_font_name_clicked            (GtkButton       *button,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_button_reload_constants_clicked     (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -113,7 +113,7 @@ on_button_reload_constants_clicked     (GtkButton       *button,
 }
 
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_checkbutton_save_global_button_press_event
                                         (GtkWidget       *widget,
                                         GdkEventButton  *event,
@@ -138,7 +138,7 @@ on_checkbutton_save_global_button_press_event
 }
 
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_checkbutton_save_user_button_press_event
                                         (GtkWidget       *widget,
                                         GdkEventButton  *event,
@@ -160,7 +160,7 @@ on_checkbutton_save_user_button_press_event
 }
 
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_window_options_delete_event         (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
@@ -175,7 +175,7 @@ on_window_options_delete_event         (GtkWidget       *widget,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_spinbutton_recreation_value_changed (GtkSpinButton   *spinbutton,
                                         gpointer         user_data)
 {
@@ -190,7 +190,7 @@ on_spinbutton_recreation_value_changed (GtkSpinButton   *spinbutton,
     gtk_label_set_text(GTK_LABEL(lookup_widget(window.options, "label_training")), buf);
 }
 
-void
+G_MODULE_EXPORT void
 on_button_edit_constants_clicked       (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -198,7 +198,7 @@ on_button_edit_constants_clicked       (GtkButton       *button,
 }
 
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_window_constants_destroy_event      (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
@@ -208,7 +208,7 @@ on_window_constants_destroy_event      (GtkWidget       *widget,
 }
 
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_window_constants_delete_event       (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
@@ -218,7 +218,7 @@ on_window_constants_delete_event       (GtkWidget       *widget,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_button_constants_reload_clicked     (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -234,7 +234,7 @@ on_button_constants_reload_clicked     (GtkButton       *button,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_button_constants_close_clicked      (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -242,7 +242,7 @@ on_button_constants_close_clicked      (GtkButton       *button,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_button_constants_save_clicked       (GtkButton       *button,
                                         gpointer         user_data)
 {

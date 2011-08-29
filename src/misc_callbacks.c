@@ -40,7 +40,7 @@
 #include "window.h"
 #include "xml_country.h"
 
-void
+G_MODULE_EXPORT void
 on_button_add_player_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -52,7 +52,7 @@ on_button_add_player_clicked           (GtkButton       *button,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_entry_player_name_activate          (GtkEntry        *entry,
                                         gpointer         user_data)
 {
@@ -64,7 +64,7 @@ on_entry_player_name_activate          (GtkEntry        *entry,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_team_selection_ok_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -75,7 +75,7 @@ on_team_selection_ok_clicked           (GtkButton       *button,
     misc_callback_start_game();
 }
 
-void
+G_MODULE_EXPORT void
 on_team_selection_cancel_clicked       (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -86,7 +86,7 @@ on_team_selection_cancel_clicked       (GtkButton       *button,
     main_exit_program(EXIT_OK, NULL);
 }
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_button_font_sel_cancel_clicked      (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
@@ -101,7 +101,7 @@ on_button_font_sel_cancel_clicked      (GtkWidget       *widget,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_button_font_sel_ok_clicked          (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -122,7 +122,7 @@ on_button_font_sel_ok_clicked          (GtkButton       *button,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_button_font_sel_apply_clicked       (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -147,7 +147,7 @@ on_button_font_sel_apply_clicked       (GtkButton       *button,
 }
 
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_live_window_delete_event            (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
@@ -166,7 +166,7 @@ on_live_window_delete_event            (GtkWidget       *widget,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_button_live_close_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -187,7 +187,7 @@ on_button_live_close_clicked           (GtkButton       *button,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_button_pause_clicked                (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -199,7 +199,7 @@ on_button_pause_clicked                (GtkButton       *button,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_button_resume_clicked               (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -232,7 +232,7 @@ on_button_resume_clicked               (GtkButton       *button,
 	game_gui_show_warning(_("There were too many substitutions. Only 3 per game are allowed. Player list reset."));
 }
 
-void
+G_MODULE_EXPORT void
 on_spinbutton_speed_value_changed      (GtkSpinButton   *spinbutton,
                                         gpointer         user_data)
 {
@@ -245,7 +245,7 @@ on_spinbutton_speed_value_changed      (GtkSpinButton   *spinbutton,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_spinbutton_verbosity_value_changed  (GtkSpinButton   *spinbutton,
                                         gpointer         user_data)
 {
@@ -258,7 +258,7 @@ on_spinbutton_verbosity_value_changed  (GtkSpinButton   *spinbutton,
 }
 
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_treeview_users_button_press_event   (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data)
@@ -272,7 +272,7 @@ on_treeview_users_button_press_event   (GtkWidget       *widget,
     return FALSE;
 }
 
-void
+G_MODULE_EXPORT void
 on_spinbutton_capacity_value_changed   (GtkSpinButton   *spinbutton,
                                         gpointer         user_data)
 {
@@ -284,7 +284,7 @@ on_spinbutton_capacity_value_changed   (GtkSpinButton   *spinbutton,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_spinbutton_safety_value_changed     (GtkSpinButton   *spinbutton,
                                         gpointer         user_data)
 {
@@ -296,7 +296,7 @@ on_spinbutton_safety_value_changed     (GtkSpinButton   *spinbutton,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_button_stadium_ok_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -311,7 +311,7 @@ on_button_stadium_ok_clicked           (GtkButton       *button,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_button_stadium_cancel_clicked       (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -323,7 +323,7 @@ on_button_stadium_cancel_clicked       (GtkButton       *button,
 }
 
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_spinbutton_capacity_button_press_event  (GtkWidget       *widget,
 					    GdkEventButton  *event,
 					    gpointer         user_data)
@@ -341,7 +341,7 @@ on_spinbutton_capacity_button_press_event  (GtkWidget       *widget,
     return FALSE;
 }
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_window_stadium_delete_event         (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
@@ -355,7 +355,7 @@ on_window_stadium_delete_event         (GtkWidget       *widget,
     return TRUE;
 }
 
-void
+G_MODULE_EXPORT void
 on_combo_country_changed               (GtkComboBox     *combobox,
                                         gpointer         user_data)
 {
@@ -379,7 +379,7 @@ on_combo_country_changed               (GtkComboBox     *combobox,
     g_free(buf);
 }
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_spinbutton_speed_button_press_event (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data)
@@ -414,7 +414,7 @@ on_spinbutton_speed_button_press_event (GtkWidget       *widget,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_button_sponsors_clicked             (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -428,7 +428,7 @@ on_button_sponsors_clicked             (GtkButton       *button,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_treeview_sponsors_row_activated     (GtkTreeView     *treeview,
                                         GtkTreePath     *path,
                                         GtkTreeViewColumn *column,
@@ -442,7 +442,7 @@ on_treeview_sponsors_row_activated     (GtkTreeView     *treeview,
 }
 
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_window_sponsors_delete_event        (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
@@ -455,7 +455,7 @@ on_window_sponsors_delete_event        (GtkWidget       *widget,
     return TRUE;
 }
 
-void
+G_MODULE_EXPORT void
 on_button_sponsors_wait_clicked        (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -478,7 +478,7 @@ on_button_sponsors_wait_clicked        (GtkButton       *button,
     window_destroy(&window.sponsors);
 }
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_eventbox_lg_style_button_press_event (GtkWidget       *widget,
 					 GdkEventButton  *event,
 					 gpointer         user_data)
@@ -523,7 +523,7 @@ on_eventbox_lg_style_button_press_event (GtkWidget       *widget,
 }
 
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_eventbox_lg_boost_button_press_event (GtkWidget       *widget,
 					 GdkEventButton  *event,
 					 gpointer         user_data)
@@ -573,7 +573,7 @@ on_eventbox_lg_boost_button_press_event (GtkWidget       *widget,
     return FALSE;
 }
 
-void
+G_MODULE_EXPORT void
 on_button_team_selection_back_clicked  (GtkButton       *button,
                                         gpointer         user_data)
 {

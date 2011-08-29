@@ -8,7 +8,7 @@
 #include "support.h"
 
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_window_league_table_delete_event    (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
@@ -22,7 +22,7 @@ on_window_league_table_delete_event    (GtkWidget       *widget,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_lt_b_ok_clicked                     (GtkButton       *button,
                                         gpointer         user_data)
 {
