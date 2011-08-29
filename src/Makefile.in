@@ -47,7 +47,54 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_bygfoot_OBJECTS = bet.$(OBJEXT) callback_func.$(OBJEXT) \
+am__bygfoot_SOURCES_DIST = bet.c bet.h finance.h fixture.h game_gui.h \
+	league.h main.h maths.h misc.h option.h player.h support.h \
+	treeview2.h user.h callback_func.c callback_func.h callbacks.h \
+	cup.h gui.h live_game.h start_end.h team.h transfer.h \
+	treeview.h treeview_helper.h window.h callbacks.c debug.h \
+	free.h game.h job.h load_save.h misc2_callback_func.h table.h \
+	cup.c variables.h xml_league.h debug.c strategy.h file.c \
+	file.h language.h finance.c fixture.c free.c bet_struct.h \
+	lg_commentary_struct.h strategy_struct.h game.c game_gui.c \
+	gui.c interface.c interface.h job.c xml_country.h language.c \
+	lg_commentary.h lg_commentary.c xml_lg_commentary.h league.c \
+	stat.h live_game.c misc_callback_func.h load_save.c xml.h \
+	xml_loadsave_cup.h xml_loadsave_jobs.h xml_loadsave_league.h \
+	xml_loadsave_leagues_cups.h xml_loadsave_misc.h \
+	xml_loadsave_season_stats.h xml_loadsave_transfers.h \
+	xml_loadsave_users.h main.c job_struct.h misc_callbacks.h \
+	name_struct.h stat_struct.h transfer_struct.h xml_strategy.h \
+	maths.c misc.c misc_callbacks.c misc_callback_func.c \
+	xml_name.h misc2_callbacks.c misc2_callbacks.h \
+	misc2_interface.h misc3_callbacks.c misc3_callbacks.h \
+	misc3_interface.h misc2_callback_func.c misc_interface.c \
+	misc_interface.h misc2_interface.c misc3_interface.c name.c \
+	name.h news.c news.h xml_news.h option.c option_gui.c \
+	option_gui.h training.h options_callbacks.c \
+	options_callbacks.h options_interface.h options_interface.c \
+	player.c start_end.c youth_academy.h stat.c table_struct.h \
+	strategy.c support.c table.c team.c xml_team.h training.c \
+	enums.h glib.h training_callbacks.c bygfoot.h \
+	training_callbacks.h training_interface.h training_struct.h \
+	training_interface.c transfer.c treeview.c treeview2.c \
+	treeview_helper.c user.c xml_mmatches.h window.c xml.c \
+	xml_loadsave_fixtures.h xml_loadsave_league_stat.h \
+	xml_loadsave_live_game.h xml_loadsave_table.h \
+	xml_loadsave_teams.h xml_loadsave_cup.c \
+	xml_loadsave_fixtures.c xml_loadsave_jobs.c \
+	xml_loadsave_league.c xml_loadsave_leagues_cups.c \
+	league_struct.h xml_loadsave_league_stat.c \
+	xml_loadsave_live_game.c xml_loadsave_misc.c \
+	xml_loadsave_newspaper.c xml_loadsave_newspaper.h \
+	xml_loadsave_players.c xml_loadsave_players.h \
+	xml_loadsave_season_stats.c xml_loadsave_table.c \
+	xml_loadsave_teams.c xml_loadsave_transfers.c \
+	xml_loadsave_users.c xml_cup.c xml_cup.h xml_country.c \
+	xml_league.c cup_struct.h xml_lg_commentary.c xml_mmatches.c \
+	xml_name.c xml_news.c xml_strategy.c xml_team.c \
+	youth_academy.c zip/zip.c zip/zip.h zip/unzip.c zip/unzip.h \
+	bygfoot_private.rc
+am__objects_1 = bet.$(OBJEXT) callback_func.$(OBJEXT) \
 	callbacks.$(OBJEXT) cup.$(OBJEXT) debug.$(OBJEXT) \
 	file.$(OBJEXT) finance.$(OBJEXT) fixture.$(OBJEXT) \
 	free.$(OBJEXT) game.$(OBJEXT) game_gui.$(OBJEXT) gui.$(OBJEXT) \
@@ -83,9 +130,12 @@ am_bygfoot_OBJECTS = bet.$(OBJEXT) callback_func.$(OBJEXT) \
 	xml_name.$(OBJEXT) xml_news.$(OBJEXT) xml_strategy.$(OBJEXT) \
 	xml_team.$(OBJEXT) youth_academy.$(OBJEXT) zip.$(OBJEXT) \
 	unzip.$(OBJEXT)
+@HAVE_WINDRES_FALSE@am_bygfoot_OBJECTS = $(am__objects_1)
+@HAVE_WINDRES_TRUE@am_bygfoot_OBJECTS = $(am__objects_1) \
+@HAVE_WINDRES_TRUE@	bygfoot_private.$(OBJEXT)
 bygfoot_OBJECTS = $(am_bygfoot_OBJECTS)
 am__DEPENDENCIES_1 =
-bygfoot_DEPENDENCIES = $(am__DEPENDENCIES_1)
+bygfoot_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -100,7 +150,7 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(bygfoot_SOURCES)
-DIST_SOURCES = $(bygfoot_SOURCES)
+DIST_SOURCES = $(am__bygfoot_SOURCES_DIST)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -197,6 +247,7 @@ USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WINDRES = @WINDRES@
 XGETTEXT = @XGETTEXT@
+ZLIB_LIBS = @ZLIB_LIBS@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
@@ -254,7 +305,7 @@ INCLUDES = -DPACKAGE_DATA_DIR=\""$(datadir)"\" \
 	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
 	@PACKAGE_CFLAGS@ @GST_CFLAGS@
 
-bygfoot_SOURCES = \
+SOURCE_FILES = \
 	bet.c bet.h finance.h fixture.h game_gui.h league.h main.h maths.h misc.h option.h player.h support.h treeview2.h user.h \
 	callback_func.c bet.h callback_func.h callbacks.h cup.h finance.h fixture.h game_gui.h gui.h league.h live_game.h maths.h misc.h option.h player.h start_end.h team.h transfer.h treeview.h treeview_helper.h user.h window.h \
 	callbacks.c callback_func.h callbacks.h debug.h fixture.h free.h game_gui.h game.h gui.h job.h league.h load_save.h main.h misc2_callback_func.h option.h player.h table.h team.h transfer.h treeview2.h treeview.h treeview_helper.h user.h window.h \
@@ -336,9 +387,9 @@ bygfoot_SOURCES = \
         zip/zip.c zip/zip.h \
 	zip/unzip.c zip/unzip.h
 
-@HAVE_WINDRES_FALSE@@PROGRAM_PREFIX@doom_SOURCES = $(SOURCE_FILES)
-@HAVE_WINDRES_TRUE@@PROGRAM_PREFIX@doom_SOURCES = $(SOURCE_FILES) resource.rc
-bygfoot_LDADD = @PACKAGE_LIBS@ @GST_LIBS@ $(INTLLIBS)
+@HAVE_WINDRES_FALSE@bygfoot_SOURCES = $(SOURCE_FILES)
+@HAVE_WINDRES_TRUE@bygfoot_SOURCES = $(SOURCE_FILES) bygfoot_private.rc
+bygfoot_LDADD = @PACKAGE_LIBS@ @GST_LIBS@ $(ZLIB_LIBS) $(INTLLIBS)
 all: all-am
 
 .SUFFIXES:

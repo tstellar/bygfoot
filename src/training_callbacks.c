@@ -44,7 +44,7 @@
 #include "variables.h"
 #include "window.h"
 
-void
+G_MODULE_EXPORT void
 on_b_cancel_clicked                    (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -55,7 +55,7 @@ on_b_cancel_clicked                    (GtkButton       *button,
     window_destroy(&window.training_camp);
 }
 
-void
+G_MODULE_EXPORT void
 on_b_ok_clicked                        (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -122,7 +122,7 @@ on_b_ok_clicked                        (GtkButton       *button,
 			   current_user.counters[COUNT_USER_TRAININGS_LEFT_SEASON]);
 }
 
-void
+G_MODULE_EXPORT void
 on_rb_camp3_clicked                    (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -141,7 +141,7 @@ on_rb_camp3_clicked                    (GtkButton       *button,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_rb_camp2_clicked                    (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -160,7 +160,7 @@ on_rb_camp2_clicked                    (GtkButton       *button,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_rb_camp1_clicked                    (GtkButton       *button,
 					gpointer         user_data)
 {
@@ -178,7 +178,7 @@ on_rb_camp1_clicked                    (GtkButton       *button,
     gtk_entry_set_text (tfCosts, buf);
 }
 
-void
+G_MODULE_EXPORT void
 on_b_dec_recreation_clicked            (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -206,7 +206,7 @@ on_b_dec_recreation_clicked            (GtkButton       *button,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_b_inc_recreation_clicked            (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -234,7 +234,7 @@ on_b_inc_recreation_clicked            (GtkButton       *button,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_b_dec_training_clicked              (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -262,7 +262,7 @@ on_b_dec_training_clicked              (GtkButton       *button,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_b_inc_training_clicked              (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -290,7 +290,7 @@ on_b_inc_training_clicked              (GtkButton       *button,
 }
 
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_window_training_camp_delete_event   (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)

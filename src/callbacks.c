@@ -54,7 +54,7 @@
 ******************************************** TOOLBAR CALLBACKS *********************************************
 ***********************************************************************************************************/
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_button_quit_clicked                 (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
@@ -69,7 +69,7 @@ on_button_quit_clicked                 (GtkWidget       *widget,
 }
 
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_eventbox_style_button_press_event   (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data)
@@ -106,7 +106,7 @@ on_eventbox_style_button_press_event   (GtkWidget       *widget,
 }
 
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_eventbox_boost_button_press_event   (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data)
@@ -145,7 +145,7 @@ on_eventbox_boost_button_press_event   (GtkWidget       *widget,
     return FALSE;
 }
 
-void
+G_MODULE_EXPORT void
 on_button_load_clicked                 (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -157,7 +157,7 @@ on_button_load_clicked                 (GtkButton       *button,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_button_save_clicked                 (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -169,7 +169,7 @@ on_button_save_clicked                 (GtkButton       *button,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_button_back_to_main_clicked         (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -194,7 +194,7 @@ on_button_back_to_main_clicked         (GtkButton       *button,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_button_transfers_clicked            (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -227,7 +227,7 @@ on_button_transfers_clicked            (GtkButton       *button,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_button_new_week_clicked             (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -259,7 +259,7 @@ on_button_new_week_clicked             (GtkButton       *button,
 ******************************************** ARROW BUTTON CALLBACKS ****************************************
 ***********************************************************************************************************/
 
-void
+G_MODULE_EXPORT void
 on_button_browse_forward_clicked       (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -289,7 +289,7 @@ on_button_browse_forward_clicked       (GtkButton       *button,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_button_browse_back_clicked          (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -318,7 +318,7 @@ on_button_browse_back_clicked          (GtkButton       *button,
     }
 }
 
-void
+G_MODULE_EXPORT void
 on_button_cl_back_clicked              (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -349,7 +349,7 @@ on_button_cl_back_clicked              (GtkButton       *button,
     }
 }
 
-void
+G_MODULE_EXPORT void
 on_button_cl_forward_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -384,7 +384,7 @@ on_button_cl_forward_clicked           (GtkButton       *button,
 ******************************************** TREEVIEW CALLBACKS ********************************************
 ***********************************************************************************************************/
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_treeview_right_button_press_event   (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data)
@@ -489,7 +489,7 @@ on_treeview_right_button_press_event   (GtkWidget       *widget,
     return TRUE;
 }
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_player_list1_button_press_event     (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data)
@@ -526,7 +526,7 @@ on_player_list1_button_press_event     (GtkWidget       *widget,
 }
 
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_player_list1_key_press_event        (GtkWidget       *widget,
                                         GdkEventKey     *event,
                                         gpointer         user_data)
@@ -557,7 +557,7 @@ on_player_list1_key_press_event        (GtkWidget       *widget,
 ******************************************** FILE MENU CALLBACKS *******************************************
 ***********************************************************************************************************/
 
-void
+G_MODULE_EXPORT void
 on_menu_load_last_save_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -573,7 +573,7 @@ on_menu_load_last_save_activate        (GtkMenuItem     *menuitem,
     }
 }
 
-void
+G_MODULE_EXPORT void
 on_menu_new_activate                   (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -591,7 +591,7 @@ on_menu_new_activate                   (GtkMenuItem     *menuitem,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_menu_open_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -604,7 +604,7 @@ on_menu_open_activate                  (GtkMenuItem     *menuitem,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_menu_save_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -620,7 +620,7 @@ on_menu_save_activate                  (GtkMenuItem     *menuitem,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_menu_save_as_activate               (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -632,7 +632,7 @@ on_menu_save_as_activate               (GtkMenuItem     *menuitem,
     window_show_file_sel();
 }
 
-void
+G_MODULE_EXPORT void
 on_menu_quit_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -654,7 +654,7 @@ on_menu_quit_activate                  (GtkMenuItem     *menuitem,
 ******************************************** PREFERENCES MENU CALLBACKS ************************************
 ***********************************************************************************************************/
 
-void
+G_MODULE_EXPORT void
 on_menu_save_window_geometry_activate  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -665,7 +665,7 @@ on_menu_save_window_geometry_activate  (GtkMenuItem     *menuitem,
     window_main_save_geometry();
 }
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_menu_check_button_press_event       (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data)
@@ -681,7 +681,7 @@ on_menu_check_button_press_event       (GtkWidget       *widget,
     return FALSE;
 }
 
-void
+G_MODULE_EXPORT void
 on_menu_preferences_activate           (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -696,7 +696,7 @@ on_menu_preferences_activate           (GtkMenuItem     *menuitem,
 ******************************************** FIGURES CALLBACKS *********************************************
 ***********************************************************************************************************/
 
-void
+G_MODULE_EXPORT void
 on_menu_fixtures_activate              (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -713,7 +713,7 @@ on_menu_fixtures_activate              (GtkMenuItem     *menuitem,
     gui_set_arrows();
 }
 
-void
+G_MODULE_EXPORT void
 on_menu_fixtures_week_activate         (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -728,7 +728,7 @@ on_menu_fixtures_week_activate         (GtkMenuItem     *menuitem,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_menu_tables_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -755,7 +755,7 @@ on_menu_tables_activate                (GtkMenuItem     *menuitem,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_menu_league_stats_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -777,7 +777,7 @@ on_menu_league_stats_activate          (GtkMenuItem     *menuitem,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_menu_season_history_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -803,7 +803,7 @@ on_menu_season_history_activate        (GtkMenuItem     *menuitem,
 ******************************************** TEAM MENU CALLBACKS *******************************************
 ***********************************************************************************************************/
 
-void
+G_MODULE_EXPORT void
 on_menu_show_youth_academy_activate    (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -822,7 +822,7 @@ on_menu_show_youth_academy_activate    (GtkMenuItem     *menuitem,
     stat0 = STATUS_SHOW_YA;
 }
 
-void
+G_MODULE_EXPORT void
 on_menu_set_investment_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -843,7 +843,7 @@ on_menu_set_investment_activate        (GtkMenuItem     *menuitem,
 	NULL, -1, "%", current_user.youth_academy.percentage, FALSE);
 }
 
-void
+G_MODULE_EXPORT void
 on_menu_show_job_exchange_activate     (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -864,7 +864,7 @@ on_menu_show_job_exchange_activate     (GtkMenuItem     *menuitem,
 	const_int("int_job_update_interval"));
 }
 
-void
+G_MODULE_EXPORT void
 on_default_team1_activate              (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -872,7 +872,7 @@ on_default_team1_activate              (GtkMenuItem     *menuitem,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_default_team_store_activate         (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -883,7 +883,7 @@ store_default_team(&current_user);
 }
 
 
-void
+G_MODULE_EXPORT void
 on_default_team_restore_activate       (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -901,7 +901,7 @@ on_default_team_restore_activate       (GtkMenuItem     *menuitem,
     treeview_show_user_player_list();
 }
 
-void
+G_MODULE_EXPORT void
 on_training_camp_activate              (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -933,7 +933,7 @@ on_training_camp_activate              (GtkMenuItem     *menuitem,
    window_show_training_camp();
 }
 
-void
+G_MODULE_EXPORT void
 on_menu_rearrange_team_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -945,7 +945,7 @@ on_menu_rearrange_team_activate        (GtkMenuItem     *menuitem,
     treeview_show_user_player_list();
 }
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_menu_team_button_release_event        (GtkWidget       *widget,
 					  GdkEventButton  *event,
 					  gpointer         user_data)
@@ -960,7 +960,7 @@ on_menu_team_button_release_event        (GtkWidget       *widget,
     return FALSE;
 }
 
-void
+G_MODULE_EXPORT void
 on_menu_custom_structure_activate      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -973,7 +973,7 @@ on_menu_custom_structure_activate      (GtkMenuItem     *menuitem,
 		       NULL, -1, _("Structure"), current_user.tm->structure, FALSE);
 }
 
-void
+G_MODULE_EXPORT void
 on_menu_browse_teams_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -995,7 +995,7 @@ on_menu_browse_teams_activate          (GtkMenuItem     *menuitem,
 ******************************************** PLAYER MENU CALLBACKS *****************************************
 ***********************************************************************************************************/
 
-void
+G_MODULE_EXPORT void
 on_menu_edit_name_activate             (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1027,7 +1027,7 @@ on_menu_edit_name_activate             (GtkMenuItem     *menuitem,
     setsav0;
 }
 
-void
+G_MODULE_EXPORT void
 on_menu_browse_players_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1041,7 +1041,7 @@ on_menu_browse_players_activate        (GtkMenuItem     *menuitem,
     gui_set_arrows();
 }
 
-void
+G_MODULE_EXPORT void
 on_menu_offer_new_contract_activate    (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1067,7 +1067,7 @@ on_menu_offer_new_contract_activate    (GtkMenuItem     *menuitem,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_menu_show_info_activate      (GtkMenuItem     *menuitem,
 				 gpointer         user_data)
 {
@@ -1088,7 +1088,7 @@ on_menu_show_info_activate      (GtkMenuItem     *menuitem,
     gui_set_arrows();
 }
 
-void
+G_MODULE_EXPORT void
 on_menu_put_on_transfer_list_activate  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1110,7 +1110,7 @@ on_menu_put_on_transfer_list_activate  (GtkMenuItem     *menuitem,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_menu_remove_from_transfer_list_activate (GtkMenuItem     *menuitem,
 					    gpointer         user_data)
 {
@@ -1130,7 +1130,7 @@ on_menu_remove_from_transfer_list_activate (GtkMenuItem     *menuitem,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_menu_fire_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1150,7 +1150,7 @@ on_menu_fire_activate                  (GtkMenuItem     *menuitem,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_menu_shoots_penalties_activate      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1180,7 +1180,7 @@ on_menu_shoots_penalties_activate      (GtkMenuItem     *menuitem,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_menu_move_to_youth_academy_activate (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1227,14 +1227,14 @@ on_menu_move_to_youth_academy_activate (GtkMenuItem     *menuitem,
 
 
 
-void
+G_MODULE_EXPORT void
 on_player_menu_edit_name_activate      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
     on_menu_edit_name_activate(NULL, NULL);
 }
 
-void
+G_MODULE_EXPORT void
 on_player_menu_show_info_activate      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1245,7 +1245,7 @@ on_player_menu_show_info_activate      (GtkMenuItem     *menuitem,
     on_menu_show_info_activate(NULL, NULL);
 }
 
-void
+G_MODULE_EXPORT void
 on_player_menu_put_on_transfer_list_activate
                                         (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
@@ -1258,7 +1258,7 @@ on_player_menu_put_on_transfer_list_activate
 }
 
 
-void
+G_MODULE_EXPORT void
 on_player_menu_remove_from_transfer_list_activate
                                         (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
@@ -1271,7 +1271,7 @@ on_player_menu_remove_from_transfer_list_activate
 }
 
 
-void
+G_MODULE_EXPORT void
 on_player_menu_offer_new_contract_activate
                                         (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
@@ -1284,7 +1284,7 @@ on_player_menu_offer_new_contract_activate
 }
 
 
-void
+G_MODULE_EXPORT void
 on_player_menu_fire_activate           (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1296,7 +1296,7 @@ on_player_menu_fire_activate           (GtkMenuItem     *menuitem,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_player_menu_shoots_penalties_activate
                                         (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
@@ -1308,7 +1308,7 @@ on_player_menu_shoots_penalties_activate
     on_menu_shoots_penalties_activate(NULL, NULL);
 }
 
-void
+G_MODULE_EXPORT void
 on_player_menu_move_to_youth_academy_activate
                                         (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
@@ -1324,7 +1324,7 @@ on_player_menu_move_to_youth_academy_activate
 ******************************************** YOUTH CONTEXT MENU CALLBACKS **********************************
 ***********************************************************************************************************/
 
-void
+G_MODULE_EXPORT void
 on_menu_youth_move_to_team_activate    (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1352,7 +1352,7 @@ on_menu_youth_move_to_team_activate    (GtkMenuItem     *menuitem,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_menu_youth_kick_out_of_academy_activate
                                         (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
@@ -1379,7 +1379,7 @@ on_menu_youth_kick_out_of_academy_activate
 ******************************************** USER MENU CALLBACKS *******************************************
 ***********************************************************************************************************/
 
-void
+G_MODULE_EXPORT void
 on_menu_next_user_activate             (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1400,7 +1400,7 @@ on_menu_next_user_activate             (GtkMenuItem     *menuitem,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_menu_previous_user_activate         (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1420,7 +1420,7 @@ on_menu_previous_user_activate         (GtkMenuItem     *menuitem,
     on_button_back_to_main_clicked(NULL, NULL);
 }
 
-void
+G_MODULE_EXPORT void
 on_menu_manage_users_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1436,7 +1436,7 @@ on_menu_manage_users_activate          (GtkMenuItem     *menuitem,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_menu_user_show_last_match_activate  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1456,7 +1456,7 @@ on_menu_user_show_last_match_activate  (GtkMenuItem     *menuitem,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_menu_user_show_last_stats_activate  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1477,7 +1477,7 @@ on_menu_user_show_last_stats_activate  (GtkMenuItem     *menuitem,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_menu_user_show_coming_matches_activate
                                         (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
@@ -1497,7 +1497,7 @@ on_menu_user_show_coming_matches_activate
 ***********************************************************************************************************/
 
 
-void
+G_MODULE_EXPORT void
 on_menu_betting_activate               (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1509,7 +1509,7 @@ on_menu_betting_activate               (GtkMenuItem     *menuitem,
     window_show_bets();
 }
 
-void
+G_MODULE_EXPORT void
 on_automatic_loan_repayment_activate   (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1537,7 +1537,7 @@ on_automatic_loan_repayment_activate   (GtkMenuItem     *menuitem,
     window_show_alr();
 }
 
-void
+G_MODULE_EXPORT void
 on_menu_show_finances_activate         (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1560,7 +1560,7 @@ on_menu_show_finances_activate         (GtkMenuItem     *menuitem,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_menu_show_stadium_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1582,7 +1582,7 @@ on_menu_show_stadium_activate          (GtkMenuItem     *menuitem,
 ******************************************** STATS MENU CALLBACKS ******************************************
 ***********************************************************************************************************/
 
-void
+G_MODULE_EXPORT void
 on_menu_user_show_history_activate     (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1596,7 +1596,7 @@ on_menu_user_show_history_activate     (GtkMenuItem     *menuitem,
     gui_set_arrows();
 }
 
-void
+G_MODULE_EXPORT void
 on_mm_add_last_match_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1620,7 +1620,7 @@ on_mm_add_last_match_activate          (GtkMenuItem     *menuitem,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_mm_manage_matches_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1638,7 +1638,7 @@ on_mm_manage_matches_activate          (GtkMenuItem     *menuitem,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_menu_news_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1647,7 +1647,7 @@ on_menu_news_activate                  (GtkMenuItem     *menuitem,
     counters[COUNT_NEWS_SHOWN] = 1;
 }
 
-void
+G_MODULE_EXPORT void
 on_menu_my_league_results_activate     (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1663,7 +1663,7 @@ on_menu_my_league_results_activate     (GtkMenuItem     *menuitem,
 
 
 
-void
+G_MODULE_EXPORT void
 on_menu_season_results_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1681,7 +1681,7 @@ on_menu_season_results_activate        (GtkMenuItem     *menuitem,
 ***********************************************************************************************************/
 
 
-void
+G_MODULE_EXPORT void
 on_menu_help_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1693,7 +1693,7 @@ on_menu_help_activate                  (GtkMenuItem     *menuitem,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_menu_contributors_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1705,7 +1705,7 @@ on_menu_contributors_activate          (GtkMenuItem     *menuitem,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_menu_about_activate                 (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -1720,7 +1720,7 @@ on_menu_about_activate                 (GtkMenuItem     *menuitem,
 ******************************************** MISCELLANEOUS CALLBACKS ***************************************
 ***********************************************************************************************************/
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_hpaned2_button_release_event        (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data)
@@ -1735,7 +1735,7 @@ on_hpaned2_button_release_event        (GtkWidget       *widget,
     return FALSE;
 }
 
-gboolean
+G_MODULE_EXPORT gboolean
 on_button_quit_button_press_event      (GtkWidget       *widget,
                                         GdkEventButton  *event,
                                         gpointer         user_data)
@@ -1758,7 +1758,7 @@ on_button_quit_button_press_event      (GtkWidget       *widget,
     return FALSE;
 }
 
-void
+G_MODULE_EXPORT void
 on_button_reset_players_clicked        (GtkButton       *button,
                                         gpointer         user_data)
 {
@@ -1770,7 +1770,7 @@ on_button_reset_players_clicked        (GtkButton       *button,
 }
 
 
-void
+G_MODULE_EXPORT void
 on_menu_reset_players_activate         (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {

@@ -2,10 +2,10 @@
 #define BYGFOOT_PRIVATE_H
 
 /* VERSION DEFINITIONS */
-#define VER_STRING	"2.3.2"
+#define VER_STRING	"2.3.3"
 #define VER_MAJOR	2
 #define VER_MINOR	3
-#define VER_RELEASE	2
+#define VER_RELEASE	3
 #define VER_BUILD	0
 #define COMPANY_NAME	""
 #define FILE_VERSION	""
