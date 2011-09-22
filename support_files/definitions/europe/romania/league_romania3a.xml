@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>romania3a</sid>
+  <name>Liga III Seria 1</name>
+  <short_name>L3S1</short_name>
+  <symbol>flag_romania.png</symbol>
+  <first_week>5</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="9">23</break_in>
+  <average_talent>6000</average_talent>
+  <names_file>romania</names_file>
+  <yellow_red>5</yellow_red>
+  <layer>3</layer>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>1</rank_end>
+      <dest_sid>romania2a</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_games>
+      <prom_games_dest_sid>romania2a</prom_games_dest_sid>
+      <prom_games_cup_sid>romania_prom_games3</prom_games_cup_sid>
+      <prom_games_loser_sid>romania3a romania3b romania3c</prom_games_loser_sid>
+    </prom_games>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Ae. Bacău</team_name>
+    </team>
+    <team>
+      <team_name>W. Bacău</team_name>
+    </team>
+    <team>
+      <team_name>L. M. Eminescu</team_name>
+    </team>
+    <team>
+      <team_name>P. Iaşi II</team_name>
+    </team>
+    <team>
+      <team_name>R. Suceava</team_name>
+    </team>
+    <team>
+      <team_name>O. Galaţi II</team_name>
+    </team>
+    <team>
+      <team_name>C. Paşcani</team_name>
+    </team>
+    <team>
+      <team_name>F. Bârlad</team_name>
+    </team>
+    <team>
+      <team_name>F. Bacău II</team_name>
+    </team>
+    <team>
+      <team_name>C. Piatra Neamţ II</team_name>
+    </team>
+    <team>
+      <team_name>C. Panciu</team_name>
+    </team>
+    <team>
+      <team_name>C. Focşani</team_name>
+    </team>
+    <team>
+      <team_name>C. Târgu Neamţ</team_name>
+    </team>
+    <team>
+      <team_name>L. Roman</team_name>
+    </team>
+    <team>
+      <team_name>C. Moldovenesc</team_name>
+    </team>
+    <team>
+      <team_name>R. Sărat</team_name>
+    </team>
+    <team>
+      <team_name>P. Berca</team_name>
+    </team>
+  </teams>
+</league>

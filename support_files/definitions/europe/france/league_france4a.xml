@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>france4a</sid>
+  <name>CFA1 Groupe A</name>
+  <short_name>CFA1 A</short_name>
+  <symbol>flag_france.png</symbol>
+  <first_week>6</first_week>
+  <week_gap>1</week_gap>
+  <break>6</break>
+  <average_talent>5200</average_talent>
+  <names_file>france</names_file>
+  <yellow_red>5</yellow_red>
+  <layer>4</layer>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>1</rank_end>
+      <dest_sid>france3</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_rel_element>
+      <rank_start>17</rank_start>
+      <rank_end>18</rank_end>
+      <dest_sid>france5a france5b france5c france5d france5e france5f france5g france5h</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+     <team_name>Auxerre B</team_name>
+    </team>
+    <team>
+     <team_name>Besançon</team_name>
+    </team>
+    <team>
+     <team_name>Colmar</team_name>
+    </team>
+    <team>
+     <team_name>Compiègne</team_name>
+    </team>
+    <team>
+     <team_name>Dunkerque</team_name>
+    </team>
+    <team>
+     <team_name>Lens B</team_name>
+    </team>
+    <team>
+     <team_name>Lille B</team_name>
+    </team>
+    <team>
+     <team_name>Metz B</team_name>
+    </team>
+    <team>
+     <team_name>Moissy</team_name>
+    </team>
+    <team>
+     <team_name>Montceau</team_name>
+    </team>
+    <team>
+     <team_name>Mulhouse</team_name>
+    </team>
+    <team>
+     <team_name>Nancy B</team_name>
+    </team>
+    <team>
+     <team_name>Noisy-le-Sec</team_name>
+    </team>
+    <team>
+     <team_name>Raon-l'Étape</team_name>
+    </team>
+    <team>
+     <team_name>Sainte-Geneviève</team_name>
+    </team>
+    <team>
+     <team_name>Sochaux B</team_name>
+    </team>
+    <team>
+     <team_name>Strasbourg B</team_name>
+    </team>
+    <team>
+     <team_name>Vesoul</team_name>
+    </team>
+  </teams>
+</league>

@@ -1,0 +1,31 @@
+<cup>
+  <name>2. Bundesliga Promotion Games</name>
+  <short_name>2. BL Prom.</short_name>
+  <symbol>flag_germany.png</symbol>
+  <sid>germany_prom_games1</sid>
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>highlight2</property>
+  <yellow_red>3</yellow_red>
+
+  <cup_rounds>
+    <cup_round>
+      <choose_teams>
+	<choose_team>
+	  <choose_team_sid>germany2</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <start_idx>3</start_idx>
+	  <end_idx>3</end_idx>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>germany1</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <start_idx>16</start_idx>
+	  <end_idx>16</end_idx>
+	</choose_team>
+      </choose_teams>
+    </cup_round>
+  </cup_rounds>
+
+</cup>

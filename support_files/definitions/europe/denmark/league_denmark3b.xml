@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>denmark3b</sid>
+  <name>Second Division East</name>
+  <short_name>2. Div. E</short_name>
+  <symbol>flag_denmark.png</symbol>
+  <first_week>4</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="12">24</break_in>
+  <average_talent>6000</average_talent>
+  <yellow_red>5</yellow_red>  
+  <names_file>denmark</names_file>
+  <layer>3</layer>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>1</rank_end>
+      <dest_sid>denmark2</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_rel_element>
+      <rank_start>14</rank_start>
+      <rank_end>16</rank_end>
+      <dest_sid>denmark4a denmark4b denmark4c</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+  
+  <teams>
+    <team>
+      <team_name>Avarta</team_name>
+    </team>
+    <team>
+      <team_name>Søllerød Vedbæk</team_name>
+    </team>
+    <team>
+      <team_name>Boldklubben</team_name>
+    </team>
+    <team>
+      <team_name>B. København II</team_name>
+    </team>
+    <team>
+      <team_name>Brønshøj B.</team_name>
+    </team>
+    <team>
+      <team_name>Greve F.</team_name>
+    </team>
+    <team>
+      <team_name>Glostrup</team_name>
+    </team>
+    <team>
+      <team_name>Hellerup</team_name>
+    </team>
+    <team>
+      <team_name>København B.</team_name>
+    </team>
+    <team>
+      <team_name>Værløse</team_name>
+    </team>
+    <team>
+      <team_name>Ølstykke</team_name>
+    </team>
+    <team>
+      <team_name>Skjold</team_name>
+    </team>
+    <team>
+      <team_name>Skovlunde</team_name>
+    </team>
+    <team>
+      <team_name>Stenløse</team_name>
+    </team>
+    <team>
+      <team_name>Vanløse</team_name>
+    </team>
+    <team>
+      <team_name>Vestsjælland</team_name>
+    </team>
+  </teams>
+</league>

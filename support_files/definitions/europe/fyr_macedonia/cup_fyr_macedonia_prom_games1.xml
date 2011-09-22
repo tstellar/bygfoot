@@ -1,0 +1,32 @@
+<cup>
+  <name>FYR Macedonia Promotion</name>
+  <short_name>Mac. Prom.</short_name>
+  <symbol>flag_fyr_macedonia.png</symbol>
+  <sid>fyr_macedonia_prom_games1</sid>
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>highlight2</property>
+  <yellow_red>3</yellow_red>
+
+  <cup_rounds>
+    <cup_round>
+      <number_of_advance>2</number_of_advance>
+      <choose_teams>
+	<choose_team>
+	  <choose_team_sid>fyr_macedonia2</choose_team_sid>
+	  <number_of_teams>2</number_of_teams>
+	  <start_idx>3</start_idx>
+	  <end_idx>4</end_idx>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>fyr_macedonia1</choose_team_sid>
+	  <number_of_teams>2</number_of_teams>
+	  <start_idx>8</start_idx>
+	  <end_idx>9</end_idx>
+	</choose_team>
+      </choose_teams>
+    </cup_round>
+  </cup_rounds>
+
+</cup>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>poland1</sid>
+  <name>Ekstraklasa</name>
+  <symbol>ekstraklasa.png</symbol>
+  <first_week>6</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="1">10</break_in>
+  <break_in length="1">15</break_in>
+  <break_in length="12">24</break_in>
+  <break_in length="1">39</break_in> 
+  <average_talent>7200</average_talent>
+  <names_file>poland</names_file>
+  <yellow_red>5</yellow_red>
+  <two_match_week_start>13</two_match_week_start> 
+  <two_match_week_end>14</two_match_week_end>
+  <two_match_week_start>18</two_match_week_start> 
+  <two_match_week_end>19</two_match_week_end>
+
+  <prom_rel>
+     <prom_rel_element>
+      <rank_start>15</rank_start>
+      <rank_end>16</rank_end>
+      <dest_sid>poland2</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+   </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Lech Poznań</team_name>
+<def_file>poland_lech</def_file>
+    </team>
+    <team>
+      <team_name>Legia Warszawa</team_name>
+<def_file>poland_legia</def_file>
+    </team>
+    <team>
+      <team_name>Wisła Kraków</team_name>
+<def_file>poland_wisla</def_file>
+    </team>
+    <team>
+      <team_name>Polonia Warszawa</team_name>
+<def_file>poland_polonia</def_file>
+    </team>
+    <team>
+      <team_name>Śląsk Wrocław</team_name>
+<def_file>poland_slask</def_file>
+    </team>
+    <team>
+      <team_name>Zagłębie Lubin</team_name>
+<def_file>poland_zaglebie</def_file>
+    </team>
+    <team>
+      <team_name>Jagiellonia Białystok</team_name>
+<def_file>poland_jagiellonia</def_file>
+    </team>
+    <team>
+      <team_name>Cracovia Kraków</team_name>
+<def_file>poland_cracovia</def_file>
+    </team>
+    <team>
+      <team_name>Korona Kielce</team_name>
+<def_file>poland_korona</def_file>
+    </team>
+    <team>
+      <team_name>Widzew Łódź</team_name>
+<def_file>poland_widzew</def_file>
+    </team>
+    <team>
+      <team_name>Ruch Chorzów</team_name>
+<def_file>poland_ruch</def_file>
+    </team>
+    <team>
+      <team_name>GKS Bełchatów</team_name>
+<def_file>poland_belchatow</def_file>
+    </team>
+    <team>
+      <team_name>Górnik Zabrze</team_name>
+<def_file>poland_gornik</def_file>
+    </team>
+    <team>
+      <team_name>Polonia Bytom</team_name>
+<def_file>poland_poloniab</def_file>
+    </team>
+    <team>
+      <team_name>Lechia Gdańsk</team_name>
+<def_file>poland_lechia</def_file>
+    </team>
+   <team>
+      <team_name>Arka Gdynia</team_name>
+<def_file>poland_arka</def_file>
+    </team>
+  </teams>
+</league>

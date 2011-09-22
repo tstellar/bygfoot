@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>serbia1</sid>
+  <name>Super Liga Srbije</name>
+  <short_name>Superl.</short_name>
+  <symbol>flag_serbia.png</symbol>
+  <first_week>7</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="1">10</break_in>
+  <break_in length="1">15</break_in>
+  <break_in length="7">25</break_in>
+  <average_talent>7400</average_talent>
+  <round_robins>3</round_robins>
+  <names_file>serbia</names_file>
+  <yellow_red>5</yellow_red>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>3</rank_start>
+      <rank_end>4</rank_end>
+      <dest_sid>serbia2</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Partizan</team_name>
+<def_file>serbia_partizan</def_file>
+    </team>
+    <team>
+      <team_name>Crvena Zvezda</team_name>
+<def_file>serbia_crvena</def_file>
+    </team>
+    <team>
+      <team_name>Vojvodina</team_name>
+<def_file>serbia_vojvodina</def_file>
+    </team>
+    <team>
+      <team_name>OFK Belgrade</team_name>
+<def_file>serbia_ofk</def_file>
+    </team>
+  </teams>
+</league>

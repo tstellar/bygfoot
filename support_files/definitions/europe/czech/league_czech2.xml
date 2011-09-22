@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>czech2</sid>
+  <name>2. Gambrinus liga</name>
+  <short_name>2. Gam</short_name>
+  <symbol>flag_czech.png</symbol>
+  <first_week>6</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="11">23</break_in>
+  <average_talent>6600</average_talent>
+  <names_file>czech</names_file>
+  <yellow_red>5</yellow_red>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>2</rank_end>
+      <dest_sid>czech1</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_rel_element>
+      <rank_start>15</rank_start>
+      <rank_end>16</rank_end>
+      <dest_sid>czech3a czech3b</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Slovácko</team_name>
+    </team>
+    <team>
+      <team_name>Opava</team_name>
+    </team>
+    <team>
+      <team_name>Boh. Praha 1905</team_name>
+    </team>
+    <team>
+      <team_name>H. Králové</team_name>
+    </team>
+    <team>
+      <team_name>F. Fulnek</team_name>
+    </team>
+    <team>
+      <team_name>Z. Čáslav</team_name>
+    </team>
+    <team>
+      <team_name>B. Sokolov</team_name>
+    </team>
+    <team>
+      <team_name>V. Jihlava</team_name>
+    </team>
+    <team>
+      <team_name>H. Olomouc</team_name>
+    </team>
+    <team>
+      <team_name>Vítkovice</team_name>
+    </team>
+    <team>
+      <team_name>Ústí nad Labem</team_name>
+    </team>
+    <team>
+      <team_name>Duk. Praha</team_name>
+    </team>
+    <team>
+      <team_name>Most</team_name>
+    </team>
+    <team>
+      <team_name>F. Třinec</team_name>
+    </team>
+    <team>
+      <team_name>M. Karviná</team_name>
+    </team>
+    <team>
+      <team_name>Spa. Praha II</team_name>
+    </team>
+  </teams>
+</league>

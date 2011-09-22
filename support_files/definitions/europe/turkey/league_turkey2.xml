@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>turkey2</sid>
+  <name>TFF First League</name>
+  <short_name>1. Lig.</short_name>
+  <symbol>flag_turkey.png</symbol>
+  <first_week>8</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="4">26</break_in>
+  <break_in length="1">39</break_in>
+  <average_talent>6900</average_talent>
+  <names_file>turkey</names_file>
+  <yellow_red>5</yellow_red>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>2</rank_end>
+      <dest_sid>turkey1</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_games>
+      <prom_games_dest_sid>turkey1</prom_games_dest_sid>
+      <prom_games_cup_sid>turkey_prom_games1</prom_games_cup_sid>
+      <prom_games_loser_sid>turkey2</prom_games_loser_sid>
+    </prom_games>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Adana</team_name>
+    </team>
+    <team>
+      <team_name>A. İzmir</team_name>
+    </team>
+    <team>
+      <team_name>Bolu</team_name>
+    </team>
+    <team>
+      <team_name>Diyarbakır</team_name>
+    </team>
+    <team>
+      <team_name>Gaziantep B.</team_name>
+    </team>
+    <team>
+      <team_name>Giresun</team_name>
+    </team>
+    <team>
+      <team_name>Gü. İstanbul</team_name>
+    </team>
+    <team>
+      <team_name>Karabük</team_name>
+    </team>
+    <team>
+      <team_name>Ka. İzmir</team_name>
+    </team>
+    <team>
+      <team_name>Kar. İstanbul</team_name>
+    </team>
+    <team>
+      <team_name>Kas. İstanbul</team_name>
+    </team>
+    <team>
+      <team_name>Kayseri</team_name>
+    </team>
+    <team>
+      <team_name>Malatya</team_name>
+    </team>
+    <team>
+      <team_name>Manisa</team_name>
+    </team>
+    <team>
+      <team_name>Ordu</team_name>
+    </team>
+    <team>
+      <team_name>Rize</team_name>
+    </team>
+    <team>
+      <team_name>Sakarya</team_name>
+    </team>
+    <team>
+      <team_name>Samsun</team_name>
+    </team>
+  </teams>
+</league>

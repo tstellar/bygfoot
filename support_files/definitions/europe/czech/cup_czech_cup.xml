@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Pohár ČMFS</name>
+  <short_name>Pohár</short_name>
+  <symbol>flag_czech.png</symbol>
+  <sid>czech_cup</sid>
+  <last_week>48</last_week>
+  <week_gap>3</week_gap>
+  <property>national</property>
+
+  <cup_rounds>
+    <cup_round>
+    <home_away>0</home_away>
+
+      <choose_teams>
+        <choose_team>
+          <choose_team_sid>czech3a</choose_team_sid>
+        </choose_team>
+
+        <choose_team>
+          <choose_team_sid>czech3b</choose_team_sid>
+        </choose_team>
+      </choose_teams>
+      <byes>30</byes>
+      <delay>-20</delay>
+    </cup_round>
+
+    <cup_round>
+    <home_away>0</home_away>
+
+      <choose_teams>
+        <choose_team>
+          <choose_team_sid>czech2</choose_team_sid>
+        </choose_team>
+
+        <choose_team>
+          <choose_team_sid>czech1</choose_team_sid>
+        </choose_team>
+      </choose_teams>
+      <delay>-17</delay>
+    </cup_round>
+
+    <cup_round>
+    <home_away>0</home_away>
+      <delay>-17</delay>
+    </cup_round>
+
+    <cup_round>
+    <home_away>0</home_away>
+      <delay>-15</delay>
+    </cup_round>
+
+    <cup_round>
+      <delay>1</delay>
+    </cup_round>
+
+    <cup_round>
+    </cup_round>
+
+    <cup_round>
+    <home_away>0</home_away>
+    <neutral>1</neutral>
+    </cup_round>
+  </cup_rounds>
+</cup>

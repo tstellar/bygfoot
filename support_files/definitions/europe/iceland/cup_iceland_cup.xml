@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>VISA-bikar</name>
+  <short_name>V-b.</short_name>
+  <symbol>flag_iceland.png</symbol>
+  <sid>iceland_cup</sid>
+  <last_week>23</last_week>
+  <week_gap>3</week_gap>
+  <property>national</property>
+
+  <cup_rounds>
+    <cup_round>
+      <home_away>0</home_away>
+
+      <choose_teams>
+        <choose_team>
+          <choose_team_sid>iceland3</choose_team_sid>
+        </choose_team>
+
+        <choose_team>
+          <choose_team_sid>iceland2</choose_team_sid>
+        </choose_team>
+      </choose_teams>
+      <byes>16</byes>
+    </cup_round>
+
+    <cup_round>
+      <home_away>0</home_away>
+      <choose_teams>
+        <choose_team>
+          <choose_team_sid>iceland1</choose_team_sid>
+        </choose_team>
+      </choose_teams>
+      <delay>-1</delay>
+      <byes>0</byes>
+    </cup_round>
+
+    <cup_round>
+      <home_away>0</home_away>
+      <delay>-2</delay>
+    </cup_round>
+
+    <cup_round>
+      <home_away>0</home_away>
+      <delay>-2</delay>
+    </cup_round>
+
+    <cup_round>
+      <home_away>0</home_away>
+    </cup_round>
+
+    <cup_round>
+      <home_away>0</home_away>
+      <neutral>1</neutral>
+    </cup_round>
+  </cup_rounds>
+</cup>

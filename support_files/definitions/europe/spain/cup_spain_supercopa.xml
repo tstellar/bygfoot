@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<cup>
+  <name>Supercopa de España</name>
+  <short_name>Supercopa</short_name>
+  <symbol>flag_spain.png</symbol>
+  <sid>spain_supercopa</sid>
+  <last_week>7</last_week>
+  <week_gap>1</week_gap>
+  <property>national</property>
+  <group>172</group>
+
+  <cup_rounds>
+    <cup_round>
+
+      <choose_teams>	
+	<choose_team>
+	  <choose_team_sid>spain_cdr</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>1</end_idx>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>spain1</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>2</end_idx>
+	</choose_team>
+      </choose_teams>
+
+    </cup_round>
+  </cup_rounds>
+</cup>

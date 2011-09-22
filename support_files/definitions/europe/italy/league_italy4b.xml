@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>italy4b</sid>
+  <name>Pro Seconda Divisione Girone B</name>
+  <short_name>Seconda Div. B</short_name>
+  <symbol>flag_italy.png</symbol>
+  <first_week>9</first_week>
+  <week_gap>1</week_gap>
+  <break>3</break>
+  <average_talent>6300</average_talent>
+  <names_file>italy</names_file>
+  <yellow_red>5</yellow_red>
+  <layer>4</layer>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>1</rank_end>
+      <dest_sid>italy3a italy3b</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_games>
+      <prom_games_dest_sid>italy3a italy3b</prom_games_dest_sid>
+      <prom_games_cup_sid>italy_prom_games_4b_3</prom_games_cup_sid>
+    </prom_games>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Bassano</team_name>
+    </team>
+    <team>
+      <team_name>Bellaria</team_name>
+    </team>
+    <team>
+      <team_name>Carrara</team_name>
+    </team>
+    <team>
+      <team_name>Celano</team_name>
+    </team>
+    <team>
+      <team_name>C. Roma</team_name>
+    </team>
+    <team>
+      <team_name>Colligiana</team_name>
+    </team>
+    <team>
+      <team_name>C. Cappiano</team_name>
+    </team>
+    <team>
+      <team_name>Figline</team_name>
+    </team>
+    <team>
+      <team_name>Giacomense</team_name>
+    </team>
+    <team>
+      <team_name>Giulianova</team_name>
+    </team>
+    <team>
+      <team_name>Gubbio</team_name>
+    </team>
+    <team>
+      <team_name>Poggibonsi</team_name>
+    </team>
+    <team>
+      <team_name>Prato</team_name>
+    </team>
+    <team>
+      <team_name>Rovigo</team_name>
+    </team>
+    <team>
+      <team_name>San Giovanni</team_name>
+    </team>
+    <team>
+      <team_name>San Giusto</team_name>
+    </team>
+    <team>
+      <team_name>San Marino</team_name>
+    </team>
+    <team>
+      <team_name>Viareggio</team_name>
+    </team>
+  </teams>
+</league>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>germany1</sid>
+  <name>1.Bundesliga</name>
+  <short_name>BL</short_name>
+  <symbol>bundesliga.png</symbol>
+  <first_week>7</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="1">10</break_in>
+  <break_in length="1">15</break_in>
+  <break_in length="6">25</break_in>
+  <break_in length="1">39</break_in> 
+  <average_talent>8300</average_talent>
+  <names_file>germany</names_file>
+  <yellow_red>5</yellow_red>
+  <two_match_week_start>9</two_match_week_start>
+  <two_match_week_end>10</two_match_week_end>
+  <two_match_week_start>32</two_match_week_start>
+  <two_match_week_end>33</two_match_week_end>
+
+  <prom_rel>
+    <prom_games>
+      <prom_games_dest_sid>germany1</prom_games_dest_sid>
+      <prom_games_cup_sid>germany_prom_games1</prom_games_cup_sid>
+      <prom_games_loser_sid>germany2</prom_games_loser_sid>
+    </prom_games>
+
+    <prom_rel_element>
+      <rank_start>17</rank_start>
+      <rank_end>18</rank_end>
+      <dest_sid>germany2</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Bayern Munich</team_name>
+<def_file>germany_bayern</def_file>
+    </team>
+    <team>
+      <team_name>Borussia Dortmund</team_name>
+<def_file>germany_borussia</def_file>
+    </team>
+    <team>
+      <team_name>Bayer Leverkusen</team_name>
+<def_file>germany_bayer</def_file>
+    </team>
+    <team>
+      <team_name>Schalke 04</team_name>
+<def_file>germany_schalke</def_file>
+    </team>
+    <team>
+      <team_name>Hamburger SV</team_name>
+<def_file>germany_hamburger</def_file>
+    </team>
+    <team>
+      <team_name>VfL Wolfsburg</team_name>
+<def_file>germany_wolfsburg</def_file>
+    </team>
+    <team>
+      <team_name>Werder Bremen</team_name>
+<def_file>germany_werder</def_file>
+    </team>
+    <team>
+      <team_name>VfB Stuttgart</team_name>
+<def_file>germany_stuttgart</def_file>
+    </team>
+    <team>
+      <team_name>1899 Hoffenheim</team_name>
+<def_file>germany_hoffenheim</def_file>
+    </team>
+    <team>
+      <team_name>1.FC Köln</team_name>
+<def_file>germany_koln</def_file>
+    </team>
+    <team>
+      <team_name>1.FC Nürnberg</team_name>
+<def_file>germany_nurnberg</def_file>
+    </team>
+    <team>
+      <team_name>Hannover 96</team_name>
+<def_file>germany_hannover</def_file>
+    </team>
+<team>
+      <team_name>Eintracht Frankfurt</team_name>
+<def_file>germany_eintracht</def_file>
+    </team>
+    <team>
+     <team_name>SC Freiburg</team_name>
+<def_file>germany_freiburg</def_file>
+    </team>
+    <team>
+      <team_name>Borussia Mönchengladbach</team_name>
+<def_file>germany_gladbach</def_file>
+    </team>
+    <team>
+      <team_name>FSV Mainz 05</team_name>
+<def_file>germany_mainz</def_file>
+    </team>
+    <team>
+      <team_name>1.FC Kaiserslautern</team_name>
+<def_file>germany_kaiserslautern</def_file>
+    </team>
+    <team>
+      <team_name>St Pauli</team_name>
+<def_file>germany_stpauli</def_file>
+    </team>
+  </teams>
+</league>

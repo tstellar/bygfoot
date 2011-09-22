@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>italy4c</sid>
+  <name>Pro Seconda Divisione Girone C</name>
+  <short_name>Seconda Div. C</short_name>
+  <symbol>flag_italy.png</symbol>
+  <first_week>9</first_week>
+  <week_gap>1</week_gap>
+  <break>3</break>
+  <average_talent>6300</average_talent>
+  <names_file>italy</names_file>
+  <yellow_red>5</yellow_red>
+  <layer>4</layer>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>1</rank_end>
+      <dest_sid>italy3a italy3b</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_games>
+      <prom_games_dest_sid>italy3a italy3b</prom_games_dest_sid>
+      <prom_games_cup_sid>italy_prom_games_4c_3</prom_games_cup_sid>
+    </prom_games>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Andria</team_name>
+    </team>
+    <team>
+      <team_name>Aversa</team_name>
+    </team>
+    <team>
+      <team_name>Barletta</team_name>
+    </team>
+    <team>
+      <team_name>Cassino</team_name>
+    </team>
+    <team>
+      <team_name>Catanzaro</team_name>
+    </team>
+    <team>
+      <team_name>Cosenza</team_name>
+    </team>
+    <team>
+      <team_name>Gela</team_name>
+    </team>
+    <team>
+      <team_name>I. V. Barcellona</team_name>
+    </team>
+    <team>
+      <team_name>Isola del Liri</team_name>
+    </team>
+    <team>
+      <team_name>Manfredonia</team_name>
+    </team>
+    <team>
+      <team_name>Melfi</team_name>
+    </team>
+    <team>
+      <team_name>Monopoli</team_name>
+    </team>
+    <team>
+      <team_name>Noicattaro</team_name>
+    </team>
+    <team>
+      <team_name>Pescina</team_name>
+    </team>
+    <team>
+      <team_name>Scafati</team_name>
+    </team>
+    <team>
+      <team_name>Val di Sangro</team_name>
+    </team>
+    <team>
+      <team_name>Vibo Valentia</team_name>
+    </team>
+    <team>
+      <team_name>V. Lamezia</team_name>
+    </team>
+  </teams>
+</league>

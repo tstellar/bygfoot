@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>fyr_macedonia2</sid>
+  <name>Makedonska Vtora Liga</name>
+  <short_name>Vtora L.</short_name>
+  <symbol>flag_fyr_macedonia.png</symbol>
+  <first_week>6</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="11">25</break_in>
+  <average_talent>6000</average_talent>
+  <names_file>serbia</names_file>
+  <yellow_red>5</yellow_red>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>2</rank_end>
+      <dest_sid>fyr_macedonia1</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_games>
+      <prom_games_dest_sid>fyr_macedonia1</prom_games_dest_sid>
+      <prom_games_number_of_advance>2</prom_games_number_of_advance>
+      <prom_games_cup_sid>fyr_macedonia_prom_games1</prom_games_cup_sid>
+      <prom_games_loser_sid>fyr_macedonia2</prom_games_loser_sid>
+    </prom_games>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>B. Strumica</team_name>
+    </team>
+    <team>
+      <team_name>Bregalnica Štip</team_name>
+    </team>
+    <team>
+      <team_name>Ce. Skopje</team_name>
+    </team>
+    <team>
+      <team_name>F. Miravci</team_name>
+    </team>
+    <team>
+      <team_name>D. Bogovinje</team_name>
+    </team>
+    <team>
+      <team_name>L. Skopje</team_name>
+    </team>
+    <team>
+      <team_name>F. Ohrid</team_name>
+    </team>
+    <team>
+      <team_name>Š. Tetovo</team_name>
+    </team>
+    <team>
+      <team_name>S. J. Skopje</team_name>
+    </team>
+    <team>
+      <team_name>K. Gevgelija</team_name>
+    </team>
+    <team>
+      <team_name>F. Skopje</team_name>
+    </team>
+    <team>
+      <team_name>F. Novaci</team_name>
+    </team>
+    <team>
+      <team_name>N. M. Susica</team_name>
+    </team>
+    <team>
+      <team_name>V. Dekamel</team_name>
+    </team>
+    <team>
+      <team_name>T. Tetovo</team_name>
+    </team>
+    <team>
+      <team_name>M. Solidarnost</team_name>
+    </team>
+   </teams>
+</league>
