@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>israel3</sid>
+  <name>Liga Artzit</name>
+  <short_name>L. Artzit</short_name>
+  <symbol>flag_israel.png</symbol>
+  <first_week>9</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="2">26</break_in>
+  <average_talent>5600</average_talent>
+  <round_robins>3</round_robins>
+  <names_file>israel</names_file>
+  <yellow_red>5</yellow_red>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>2</rank_end>
+      <dest_sid>israel2</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_rel_element>
+      <rank_start>11</rank_start>
+      <rank_end>12</rank_end>
+      <dest_sid>israel4a israel4b</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>B./S. Tel Aviv</team_name>
+    </team>
+    <team>
+      <team_name>B. Tamra</team_name>
+    </team>
+    <team>
+      <team_name>H. Ashkelon</team_name>
+    </team>
+    <team>
+      <team_name>H. Bnei Jadeidi</team_name>
+    </team>
+    <team>
+      <team_name>H. Marmorek</team_name>
+    </team>
+    <team>
+      <team_name>H. Nazareth Illit</team_name>
+    </team>
+    <team>
+      <team_name>H. Umm al-Fahm</team_name>
+    </team>
+    <team>
+      <team_name>I. Bat Yam</team_name>
+    </team>
+    <team>
+      <team_name>I. Rishon LeZion</team_name>
+    </team>
+    <team>
+      <team_name>M. Kafr Kanna</team_name>
+    </team>
+    <team>
+      <team_name>M. Tirat HaCarmel</team_name>
+    </team>
+    <team>
+      <team_name>S. Nes Tziona</team_name>
+    </team>
+  </teams>
+</league>

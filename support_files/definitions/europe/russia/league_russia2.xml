@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>russia2</sid>
+  <name>First Division</name>
+  <short_name>1. Div.</short_name>
+  <symbol>flag_russia.png</symbol>
+  <first_week>1</first_week>
+  <week_gap>1</week_gap>
+  <average_talent>6900</average_talent>
+  <names_file>russia</names_file>
+  <yellow_red>5</yellow_red>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>2</rank_end>
+      <dest_sid>russia1</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_rel_element>
+      <rank_start>18</rank_start>
+      <rank_end>22</rank_end>
+      <dest_sid>russia3a russia3b russia3c russia3d russia3e</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>A. Vladikavkaz</team_name>
+    </team>
+    <team>
+      <team_name>A. Makhachkala</team_name>
+    </team>
+    <team>
+      <team_name>B. Kaliningrad</team_name>
+    </team>
+    <team>
+      <team_name>Chernomorets N.</team_name>
+    </team>
+    <team>
+      <team_name>D. Barnaul</team_name>
+    </team>
+    <team>
+      <team_name>D. Bryansk</team_name>
+    </team>
+    <team>
+      <team_name>K. N. Chelny</team_name>
+    </team>
+    <team>
+      <team_name>K. Krasnodar</team_name>
+    </team>
+    <team>
+      <team_name>M. Pyatigorsk</team_name>
+    </team>
+    <team>
+      <team_name>M. Novokuznetsk</team_name>
+    </team>
+    <team>
+      <team_name>N. Novotroitsk</team_name>
+    </team>
+    <team>
+      <team_name>Rostov</team_name>
+    </team>
+    <team>
+      <team_name>S. E. Belgorod</team_name>
+    </team>
+    <team>
+      <team_name>S. Novosibirsk</team_name>
+    </team>
+    <team>
+      <team_name>S. Rostov-on-Don</team_name>
+    </team>
+    <team>
+      <team_name>S. E. Khabarovsk</team_name>
+    </team>
+    <team>
+      <team_name>Spo. Moscow</team_name>
+    </team>
+   <team>
+      <team_name>Tor. Moscow</team_name>
+    </team>
+    <team>
+      <team_name>U. Sverdlovsk</team_name>
+    </team>
+    <team>
+      <team_name>V. Podolsk</team_name>
+    </team>
+    <team>
+      <team_name>V. Ulyanovsk</team_name>
+    </team>
+    <team>
+      <team_name>Z. Irkutsk</team_name>
+    </team>
+  </teams>
+</league>

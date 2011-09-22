@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>russia1</sid>
+  <name>Premier-Liga</name>
+  <short_name>Prem. L.</short_name>
+  <symbol>flag_russia.png</symbol>
+  <first_week>2</first_week>
+  <week_gap>1</week_gap>
+  <average_talent>7800</average_talent>
+  <names_file>russia</names_file>
+  <yellow_red>5</yellow_red>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>6</rank_start>
+      <rank_end>7</rank_end>
+      <dest_sid>russia2</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Zenit St. Petersburg</team_name>
+<def_file>russia_zenit</def_file>
+    </team>
+    <team>
+      <team_name>CSKA Moscow</team_name>
+<def_file>russia_cska</def_file>
+    </team>
+    <team>
+      <team_name>Rubin Kazan</team_name>
+<def_file>russia_rubin</def_file>
+    </team>
+    <team>
+      <team_name>Spartak Moscow</team_name>
+<def_file>russia_spartak</def_file>
+    </team>
+    <team>
+      <team_name>Dynamo Moscow</team_name>
+<def_file>russia_dynamo</def_file>
+    </team>
+    <team>
+      <team_name>Lokomotiv Moscow</team_name>
+<def_file>russia_lokomotiv</def_file>
+    </team>
+    <team>
+      <team_name>Anzhi Makhachkala</team_name>
+<def_file>russia_anzhi</def_file>
+    </team>
+  </teams>
+</league>

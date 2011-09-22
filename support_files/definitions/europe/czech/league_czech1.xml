@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>czech1</sid>
+  <name>1. Gambrinus liga</name>
+  <short_name>1. Gam.</short_name>
+  <symbol>flag_czech.png</symbol>
+  <first_week>6</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="1">10</break_in>
+  <break_in length="1">15</break_in>
+  <break_in length="11">23</break_in>
+  <break_in length="1">39</break_in> 
+  <average_talent>7400</average_talent>
+  <names_file>czech</names_file>
+  <yellow_red>5</yellow_red>
+  <two_match_week_start>3</two_match_week_start>
+  <two_match_week_end>4</two_match_week_end>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>4</rank_start>
+      <rank_end>5</rank_end>
+      <dest_sid>czech2</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+      <team>
+      <team_name>Slavia Prague</team_name>
+<def_file>czech_slavia</def_file>
+    </team>
+     <team>
+      <team_name>Sparta Prague</team_name>
+<def_file>czech_prague</def_file>
+    </team>
+    <team>
+      <team_name>Mladá Boleslav</team_name>
+<def_file>czech_mlada</def_file>
+    </team>
+    <team>
+      <team_name>Teplice</team_name>
+<def_file>czech_teplice</def_file>
+    </team>
+    <team>
+      <team_name>Viktoria Plzeň</team_name>
+<def_file>czech_plzen</def_file>
+    </team>
+  </teams>
+</league>

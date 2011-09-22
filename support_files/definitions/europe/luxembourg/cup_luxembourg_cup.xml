@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Coupe de Luxembourg</name>
+  <short_name>Coupe</short_name>
+  <symbol>flag_luxembourg.png</symbol>
+  <sid>luxembourg_cup</sid>
+  <last_week>48</last_week>
+  <week_gap>3</week_gap>
+  <property>national</property>
+
+  <cup_rounds>
+    <cup_round>
+      <home_away>0</home_away>
+
+      <choose_teams>
+        <choose_team>
+          <choose_team_sid>luxembourg3a</choose_team_sid>
+        </choose_team>
+
+        <choose_team>
+          <choose_team_sid>luxembourg3b</choose_team_sid>
+        </choose_team>
+      </choose_teams>
+      <byes>16</byes>
+      <delay>-11</delay>
+    </cup_round>
+
+    <cup_round>
+      <home_away>0</home_away>
+
+      <choose_teams>
+        <choose_team>
+          <choose_team_sid>luxembourg2</choose_team_sid>
+        </choose_team>
+      </choose_teams>
+      <byes>0</byes>
+      <delay>-10</delay>
+    </cup_round>
+
+    <cup_round>
+      <home_away>0</home_away>
+
+      <choose_teams>
+        <choose_team>
+          <choose_team_sid>luxembourg1</choose_team_sid>
+        </choose_team>
+      </choose_teams>
+      <byes>0</byes>
+      <delay>-2</delay>
+    </cup_round>
+
+    <cup_round>
+      <home_away>0</home_away>
+      <delay>2</delay>
+    </cup_round>
+
+    <cup_round>
+      <home_away>0</home_away>
+      <delay>2</delay>
+    </cup_round>
+
+    <cup_round>
+      <home_away>0</home_away>
+      <delay>2</delay>
+    </cup_round>
+
+    <cup_round>
+      <home_away>0</home_away>
+      <neutral>1</neutral>
+    </cup_round>
+  </cup_rounds>
+</cup>

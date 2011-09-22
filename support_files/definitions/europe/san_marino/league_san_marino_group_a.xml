@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>san_marino_group_a</sid>
+  <name>Campionato Gruppo A</name>
+  <short_name>A</short_name>
+  <symbol>flag_san_marino.png</symbol>
+  <first_week>1</first_week>
+  <week_gap>2</week_gap>
+  <average_talent>5300</average_talent>
+<!--   <break_in length="8">25</break_in> -->
+  <names_file>italy</names_file>
+  <yellow_red>5</yellow_red>
+  <layer>1</layer>
+  <joined_league rr="1">san_marino_group_b</joined_league>
+
+  <teams>
+    <team>
+      <team_name>Domagnano</team_name>
+<def_file>san_marino_domagnano</def_file>
+    </team>
+    <team>
+      <team_name>Murata</team_name>
+<def_file>san_marino_murata</def_file>
+    </team>
+    <team>
+      <team_name>Tre Fiori</team_name>
+<def_file>san_marino_trefiori</def_file>
+    </team>
+  </teams>
+</league>

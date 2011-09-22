@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>san_marino_group_b</sid>
+  <name>Campionato Gruppo B</name>
+  <short_name>B</short_name>
+  <symbol>flag_san_marino.png</symbol>
+  <first_week>2</first_week>
+  <week_gap>2</week_gap>
+<!--   <break_in length="8">25</break_in> -->
+  <average_talent>5300</average_talent>
+  <yellow_red>5</yellow_red>
+  <names_file>italy</names_file>
+  <layer>1</layer>
+
+      <teams>
+    <team>
+      <team_name>Folgore Falciano</team_name>
+<def_file>san_marino_folgore</def_file>
+    </team>
+    <team>
+      <team_name>Pennarossa</team_name>
+<def_file>san_marino_pennarossa</def_file>
+    </team>
+    <team>
+      <team_name>Cosmos</team_name>
+<def_file>san_marino_cosmos</def_file>
+    </team>
+  </teams>
+</league>

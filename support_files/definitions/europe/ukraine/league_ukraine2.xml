@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>ukraine2</sid>
+  <name>Persha Liha</name>
+  <short_name>Persha L.</short_name>
+  <symbol>flag_ukraine.png</symbol>
+  <first_week>3</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="12">23</break_in>
+  <average_talent>6700</average_talent>
+  <names_file>ukraine</names_file>
+  <yellow_red>5</yellow_red>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>2</rank_end>
+      <dest_sid>ukraine1</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_rel_element>
+      <rank_start>16</rank_start>
+      <rank_end>17</rank_end>
+      <dest_sid>ukraine3a ukraine3b</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>D. Chernihiv</team_name>
+    </team>
+    <team>
+      <team_name>D. Ovidiopol</team_name>
+    </team>
+    <team>
+      <team_name>D. Kyiv II</team_name>
+    </team>
+    <team>
+      <team_name>E. Burshtyn</team_name>
+    </team>
+    <team>
+      <team_name>F. I. Kalinine</team_name>
+    </team>
+    <team>
+      <team_name>H. Kharkiv</team_name>
+    </team>
+    <team>
+      <team_name>I. Simferopol</team_name>
+    </team>
+    <team>
+      <team_name>K. Schaslyve</team_name>
+    </team>
+    <team>
+      <team_name>K. Molodizhne</team_name>
+    </team>
+    <team>
+      <team_name>N. U. Okhtyrka</team_name>
+    </team>
+    <team>
+      <team_name>O. Kyiv</team_name>
+    </team>
+    <team>
+      <team_name>Oleksandria</team_name>
+    </team>
+    <team>
+      <team_name>P. Ivano-Frankivsk</team_name>
+    </team>
+    <team>
+      <team_name>S. Alchevsk</team_name>
+    </team>
+    <team>
+      <team_name>V. Lutsk</team_name>
+    </team>
+    <team>
+      <team_name>Z. Uzhhorod</team_name>
+    </team>
+    <team>
+      <team_name>Sevastopol</team_name>
+    </team>
+  </teams>
+</league>

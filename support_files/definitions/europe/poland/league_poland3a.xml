@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>poland3a</sid>
+  <name>2 Liga, grupa wschodnia</name>
+  <symbol>flag_poland.png</symbol>
+  <first_week>6</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="11">24</break_in>
+  <average_talent>4700</average_talent>
+  <names_file>poland</names_file>
+  <yellow_red>5</yellow_red>
+  <layer>3</layer>
+  <two_match_week_start>15</two_match_week_start> 
+  <two_match_week_end>16</two_match_week_end>
+  <two_match_week_start>20</two_match_week_start> 
+  <two_match_week_end>21</two_match_week_end>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>2</rank_end>
+      <dest_sid>poland2</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_games>
+      <prom_games_dest_sid>poland2</prom_games_dest_sid>
+      <prom_games_number_of_advance>2</prom_games_number_of_advance>
+      <prom_games_cup_sid>poland_prom_games2</prom_games_cup_sid>
+      <prom_games_loser_sid>poland3a poland3b</prom_games_loser_sid>
+    </prom_games>
+  </prom_rel>
+    
+  <teams>
+    <team>
+      <team_name>G. Królewska Wola</team_name>
+    </team>
+    <team>
+      <team_name>Kluczbork</team_name>
+    </team>
+    <team>
+      <team_name>U. Janikowo</team_name>
+    </team>
+    <team>
+      <team_name>K. Kołobrzeg</team_name>
+    </team>
+    <team>
+      <team_name>N. Wągrowiec</team_name>
+    </team>
+    <team>
+      <team_name>Tychy</team_name>
+    </team>
+    <team>
+      <team_name>L. Zielona Góra</team_name>
+    </team>
+    <team>
+      <team_name>Z. Bydgoszcz</team_name>
+    </team>
+    <team>
+      <team_name>Ch. Police</team_name>
+    </team>
+    <team>
+      <team_name>J. Jarocin</team_name>
+    </team>
+    <team>
+      <team_name>P. Szczecin</team_name>
+    </team>
+    <team>
+      <team_name>E. Toruń</team_name>
+    </team>
+    <team>
+      <team_name>V. Koronowo</team_name>
+    </team>
+    <team>
+      <team_name>R. Częstochowa</team_name>
+    </team>
+    <team>
+      <team_name>C. Żagań</team_name>
+    </team>
+    <team>
+      <team_name>Z. Sosnowiec</team_name>
+    </team>
+    <team>
+      <team_name>M. Legnica</team_name>
+    </team>
+    <team>
+      <team_name>P. Słubice</team_name>
+    </team>
+  </teams>
+</league>

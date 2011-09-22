@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>iceland2</sid>
+  <name>1. deild karla</name>
+  <short_name>1. d.</short_name>
+  <symbol>flag_iceland.png</symbol>
+  <first_week>1</first_week>
+  <week_gap>1</week_gap>
+  <average_talent>5500</average_talent>
+  <yellow_red>5</yellow_red>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>2</rank_end>
+      <dest_sid>iceland1</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_rel_element>
+      <rank_start>11</rank_start>
+      <rank_end>12</rank_end>
+      <dest_sid>iceland3</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Haukar</team_name>
+    </team>
+    <team>
+      <team_name>Vestmannaeyjar</team_name>
+    </team>
+    <team>
+      <team_name>K. Akureyri</team_name>
+    </team>
+    <team>
+      <team_name>Fjarðabyggð</team_name>
+    </team>
+    <team>
+      <team_name>Leiftur</team_name>
+    </team>
+    <team>
+      <team_name>Le. Reykjavík</team_name>
+    </team>
+    <team>
+      <team_name>Njarðvík</team_name>
+    </team>
+    <team>
+      <team_name>Selfoss</team_name>
+    </team>
+    <team>
+      <team_name>Stjarnan</team_name>
+    </team>
+    <team>
+      <team_name>V. Ólafsvík</team_name>
+    </team>
+    <team>
+      <team_name>Ví. Reykjavík</team_name>
+    </team>
+    <team>
+      <team_name>Þ. Akureyri</team_name>
+    </team>
+  </teams>
+</league>

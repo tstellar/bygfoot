@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>switzerland2</sid>
+  <name>Challenge League</name>
+  <short_name>Chal. L.</short_name>
+  <symbol>flag_switzerland.png</symbol>
+  <first_week>3</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="1">12</break_in>
+  <break_in length="10">25</break_in>
+  <average_talent>6500</average_talent>
+  <names_file>germany</names_file>
+  <yellow_red>5</yellow_red>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>1</rank_end>
+      <dest_sid>switzerland1</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_games>
+      <prom_games_dest_sid>switzerland1</prom_games_dest_sid>
+      <prom_games_cup_sid>switzerland_prom_games1</prom_games_cup_sid>
+      <prom_games_loser_sid>switzerland2</prom_games_loser_sid>
+    </prom_games>
+
+    <prom_rel_element>
+      <rank_start>15</rank_start>
+      <rank_end>16</rank_end>
+      <dest_sid>switzerland3a switzerland3b switzerland3c</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Biel</team_name>
+    </team>
+    <team>
+      <team_name>La Chaux-de-Fonds</team_name>
+    </team>
+    <team>
+      <team_name>C. Basel</team_name>
+    </team>
+    <team>
+      <team_name>Gossau</team_name>
+    </team>
+    <team>
+      <team_name>Lausanne</team_name>
+    </team>
+    <team>
+      <team_name>Locarno</team_name>
+    </team>
+    <team>
+      <team_name>Lugano</team_name>
+    </team>
+    <team>
+      <team_name>St. Gallen</team_name>
+    </team>
+    <team>
+      <team_name>Schaffhausen</team_name>
+    </team>
+    <team>
+      <team_name>S. Geneve</team_name>
+    </team>
+    <team>
+      <team_name>Nyon</team_name>
+    </team>
+    <team>
+      <team_name>Thun</team_name>
+    </team>
+    <team>
+      <team_name>Wil</team_name>
+    </team>
+    <team>
+      <team_name>Winterthur</team_name>
+    </team>
+    <team>
+      <team_name>Wohlen</team_name>
+    </team>
+    <team>
+      <team_name>Yverdon</team_name>
+    </team>
+  </teams>
+</league>

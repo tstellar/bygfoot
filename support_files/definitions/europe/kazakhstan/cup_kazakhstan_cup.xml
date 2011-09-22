@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Kazakhstan Cup</name>
+  <short_name>Cup</short_name>
+  <symbol>flag_kazakhstan.png</symbol>
+  <sid>kazakhstan_cup</sid>
+  <last_week>31</last_week>
+  <week_gap>3</week_gap>
+  <property>national</property>
+
+  <cup_rounds>
+    <cup_round>
+      <home_away>0</home_away>
+      <choose_teams>
+        <choose_team>
+          <choose_team_sid>kazakhstan2</choose_team_sid>
+        </choose_team>
+
+        <choose_team>
+          <choose_team_sid>kazakhstan1</choose_team_sid>
+        </choose_team>
+      </choose_teams>
+      <byes>2</byes>
+    <delay>-10</delay>
+    </cup_round>
+
+    <cup_round>
+      <home_away>0</home_away>
+    <delay>-11</delay>
+    </cup_round>
+
+    <cup_round>
+    <delay>-12</delay>
+    </cup_round>
+
+    <cup_round>
+    <delay>2</delay>
+    </cup_round>
+
+    <cup_round>
+      <home_away>0</home_away>
+      <neutral>1</neutral>
+    </cup_round>
+  </cup_rounds>
+</cup>

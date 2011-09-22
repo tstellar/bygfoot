@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>portugal3c</sid>
+  <name>II Divisão Serie C</name>
+  <short_name>II Div. C</short_name>
+  <symbol>flag_portugal.png</symbol>
+  <first_week>8</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="1">9</break_in>
+  <break_in length="1">11</break_in>
+  <break_in length="1">16</break_in>
+  <break_in length="1">26</break_in>
+  <average_talent>6400</average_talent>
+  <yellow_red>5</yellow_red>  
+  <names_file>portugal</names_file>
+  <layer>3</layer>
+
+  <prom_rel>
+    <prom_games>
+      <prom_games_dest_sid>portugal2</prom_games_dest_sid>
+      <prom_games_cup_sid>portugal_prom_games3</prom_games_cup_sid>
+      <prom_games_loser_sid>portugal3c portugal3d</prom_games_loser_sid>
+    </prom_games>
+
+    <prom_rel_element>
+      <rank_start>9</rank_start>
+      <rank_end>11</rank_end>
+      <dest_sid>portugal4a portugal4ac portugal4b portugal4c portugal4d portugal4e portugal4f</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+  
+  <teams>
+    <team>
+      <team_name>Fatima</team_name>
+    </team>
+    <team>
+      <team_name>Tourizense</team_name>
+    </team>
+    <team>
+      <team_name>Pampilhosa</team_name>
+    </team>
+    <team>
+      <team_name>da Serra</team_name>
+    </team>
+    <team>
+      <team_name>Operario</team_name>
+    </team>
+    <team>
+      <team_name>R. de Monsanto</team_name>
+    </team>
+    <team>
+      <team_name>Electrico</team_name>
+    </team>
+    <team>
+      <team_name>O. do Bairro</team_name>
+    </team>
+    <team>
+      <team_name>P. do Castelo</team_name>
+    </team>
+    <team>
+      <team_name>Nelas</team_name>
+    </team>
+    <team>
+      <team_name>Praiense</team_name>
+    </team>
+  </teams>
+</league>

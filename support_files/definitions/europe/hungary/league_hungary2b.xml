@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>hungary2b</sid>
+  <name>Nemzeti Bajnokság II-Keleti</name>
+  <short_name>NB2-K</short_name>
+  <symbol>flag_hungary.png</symbol>
+  <first_week>5</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="13">21</break_in>
+  <average_talent>6400</average_talent>
+  <names_file>hungary</names_file>
+  <yellow_red>5</yellow_red>
+  <layer>2</layer>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>1</rank_end>
+      <dest_sid>hungary1</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_rel_element>
+      <rank_start>14</rank_start>
+      <rank_end>16</rank_end>
+      <dest_sid>hungary3a hungary3b hungary3c hungary3d hungary3e hungary3f</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Baktalórántháza</team_name>
+    </team>
+    <team>
+      <team_name>Bőcs</team_name>
+    </team>
+    <team>
+      <team_name>B. E. Budapest</team_name>
+    </team>
+    <team>
+      <team_name>Cegléd</team_name>
+    </team>
+    <team>
+      <team_name>Vác</team_name>
+    </team>
+    <team>
+      <team_name>Fe. Budapest</team_name>
+    </team>
+    <team>
+      <team_name>Jászberény</team_name>
+    </team>
+    <team>
+      <team_name>Kazincbarcika</team_name>
+    </team>
+    <team>
+      <team_name>Makó</team_name>
+    </team>
+    <team>
+      <team_name>Békéscsaba</team_name>
+    </team>
+    <team>
+      <team_name>Debrecen II</team_name>
+    </team>
+    <team>
+      <team_name>Szolnok</team_name>
+    </team>
+    <team>
+      <team_name>E. Budapest</team_name>
+    </team>
+    <team>
+      <team_name>Tököl</team_name>
+    </team>
+    <team>
+      <team_name>M. Budapest II</team_name>
+    </team>
+    <team>
+      <team_name>Vecsés</team_name>
+    </team>
+  </teams>
+</league>

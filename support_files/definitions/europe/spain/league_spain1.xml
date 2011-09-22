@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>spain1</sid>
+  <name>Primera División</name>
+  <short_name>La Liga</short_name>
+  <symbol>la_liga.png</symbol>
+  <first_week>9</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="1">10</break_in>
+  <break_in length="1">15</break_in>
+  <break_in length="1">26</break_in>
+  <average_talent>8500</average_talent>
+  <names_file>spain</names_file>
+  <yellow_red>5</yellow_red>
+  <two_match_week_start>4</two_match_week_start>
+  <two_match_week_end>5</two_match_week_end>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>18</rank_start>
+      <rank_end>20</rank_end>
+      <dest_sid>spain2</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Barcelona</team_name>
+<def_file>spain_barcelona</def_file>
+    </team>
+    <team>
+      <team_name>Real Madrid</team_name>
+<def_file>spain_real</def_file>
+    </team>
+    <team>
+      <team_name>Atlético Madrid</team_name>
+<def_file>spain_atletico</def_file>
+    </team>
+    <team>
+      <team_name>Valencia</team_name>
+<def_file>spain_valencia</def_file>
+    </team>
+    <team>
+      <team_name>Sevilla</team_name>
+<def_file>spain_sevilla</def_file>
+    </team>
+    <team>
+      <team_name>Vilarreal</team_name>
+<def_file>spain_vilarreal</def_file>
+    </team>
+    <team>
+      <team_name>Athletic Bilbao</team_name>
+<def_file>spain_bilbao</def_file>
+    </team>
+    <team>
+      <team_name>Almería</team_name>
+<def_file>spain_almeria</def_file>
+    </team>
+    <team>
+      <team_name>Real Sociedad</team_name>
+<def_file>spain_sociedad</def_file>
+    </team>
+    <team>
+      <team_name>Getafe</team_name>
+<def_file>spain_getafe</def_file>
+    </team>
+    <team>
+      <team_name>Espanyol</team_name>
+<def_file>spain_espanyol</def_file>
+    </team>
+    <team>
+      <team_name>Málaga</team_name>
+<def_file>spain_malaga</def_file>
+    </team>
+    <team>
+      <team_name>Deportivo La Coruña</team_name>
+<def_file>spain_lacoruna</def_file>
+    </team>
+    <team>
+      <team_name>Zaragoza</team_name>
+<def_file>spain_zaragoza</def_file>
+    </team>
+    <team>
+      <team_name>Racing Santander</team_name>
+<def_file>spain_santander</def_file>
+    </team>
+    <team>
+      <team_name>Sporting Gijón</team_name>
+<def_file>spain_gijon</def_file>
+    </team>
+    <team>
+      <team_name>Mallorca</team_name>
+<def_file>spain_mallorca</def_file>
+    </team>
+    <team>
+      <team_name>Hércules</team_name>
+<def_file>spain_hercules</def_file>
+    </team>
+    <team>
+      <team_name>Osasuna</team_name>
+<def_file>spain_osasuna</def_file>
+    </team>
+    <team>
+      <team_name>Levante</team_name>
+<def_file>spain_levante</def_file>
+    </team>
+  </teams>
+</league>

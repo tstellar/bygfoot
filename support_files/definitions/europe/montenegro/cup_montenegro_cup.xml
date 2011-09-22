@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Crnogorski fudbalski kup</name>
+  <short_name>Cr. kup</short_name>
+  <symbol>flag_montenegro.png</symbol>
+  <sid>montenegro_cup</sid>
+  <last_week>44</last_week>
+  <week_gap>3</week_gap>
+  <property>national</property>
+
+  <cup_rounds>
+    <cup_round>
+      <home_away>0</home_away>
+
+      <choose_teams>
+        <choose_team>
+          <choose_team_sid>montenegro2</choose_team_sid>
+        </choose_team>
+
+        <choose_team>
+          <choose_team_sid>montenegro1</choose_team_sid>
+        </choose_team>
+      </choose_teams>
+      <byes>8</byes>
+      <delay>-12</delay>
+    </cup_round>
+
+    <cup_round>
+      <delay>-9</delay>
+    </cup_round>
+
+    <cup_round>
+      <delay>-10</delay>
+    </cup_round>
+
+    <cup_round>
+    </cup_round>
+
+    <cup_round>
+      <home_away>0</home_away>
+      <neutral>1</neutral>
+    </cup_round>
+  </cup_rounds>
+</cup>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Kupata na Balgariya</name>
+  <short_name>К. na Balgariya</short_name>
+  <symbol>flag_bulgaria.png</symbol>
+  <sid>bulgaria_national</sid>
+  <yellow_red>3</yellow_red>
+  <last_week>45</last_week>
+  <week_gap>3</week_gap>
+  <property>national</property>
+
+  <cup_rounds>
+    <cup_round>
+      <home_away>0</home_away>
+      <choose_teams>
+	<choose_team>
+	  <choose_team_sid>bulgaria3a</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>19</end_idx>
+	  <randomly>1</randomly>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>bulgaria3b</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>16</end_idx>
+	  <randomly>1</randomly>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>bulgaria3c</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>19</end_idx>
+	  <randomly>1</randomly>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>bulgaria3d</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>20</end_idx>
+	  <randomly>1</randomly>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>bulgaria2a</choose_team_sid>
+	  <number_of_teams>1</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>15</end_idx>
+	  <randomly>1</randomly>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>bulgaria2b</choose_team_sid>
+	  <number_of_teams>2</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>16</end_idx>
+	  <randomly>1</randomly>
+	</choose_team>
+      </choose_teams>
+      <byes>1</byes>
+      <delay>-5</delay>
+    </cup_round>
+
+    <cup_round>
+      <home_away>0</home_away>
+	<choose_team>
+	  <choose_team_sid>bulgaria2a</choose_team_sid>
+	  <number_of_teams>14</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>15</end_idx>
+	  <randomly>1</randomly>
+	</choose_team>
+
+	<choose_team>
+	  <choose_team_sid>bulgaria2b</choose_team_sid>
+	  <number_of_teams>14</number_of_teams>
+	  <start_idx>1</start_idx>
+	  <end_idx>16</end_idx>
+	  <randomly>1</randomly>
+	</choose_team>
+      <delay>-6</delay>
+    </cup_round>
+
+    <cup_round>
+      <home_away>0</home_away>
+      <choose_teams>
+	<choose_team>
+	  <choose_team_sid>bulgaria1</choose_team_sid>
+	</choose_team>
+      </choose_teams>
+      <delay>-7</delay>
+    </cup_round>
+
+    <cup_round>
+      <home_away>0</home_away>
+      <delay>-6</delay>
+    </cup_round>
+
+    <cup_round>
+    </cup_round>
+
+    <cup_round>
+    </cup_round>
+
+    <cup_round>
+      <neutral>1</neutral>
+      <home_away>0</home_away>
+    </cup_round>
+  </cup_rounds>
+</cup>

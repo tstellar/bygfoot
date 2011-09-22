@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>albania2</sid>
+  <name>Albania First Division</name>
+  <short_name>1st Div.</short_name>
+  <symbol>flag_albania.png</symbol>
+  <first_week>8</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="4">27</break_in> 
+  <average_talent>5900</average_talent>
+  <yellow_red>5</yellow_red>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>2</rank_end>
+      <dest_sid>albania1</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_games>
+      <prom_games_dest_sid>albania1</prom_games_dest_sid>
+      <prom_games_number_of_advance>2</prom_games_number_of_advance>
+      <prom_games_cup_sid>albania_prom_games1</prom_games_cup_sid>
+      <prom_games_loser_sid>albania2</prom_games_loser_sid>
+    </prom_games>
+
+    <prom_rel_element>
+      <rank_start>15</rank_start>
+      <rank_end>16</rank_end>
+      <dest_sid>albania3a albania3b</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>A. Velipojë</team_name>
+    </team>
+    <team>
+      <team_name>Burreli</team_name>
+    </team>
+    <team>
+      <team_name>B. Lezhë</team_name>
+    </team>
+    <team>
+      <team_name>Bilisht S.</team_name>
+    </team>
+    <team>
+      <team_name>D. Kamzë</team_name>
+    </team>
+    <team>
+      <team_name>G. Ersekë</team_name>
+    </team>
+    <team>
+      <team_name>Laci</team_name>
+    </team>
+    <team>
+      <team_name>S. Korcë</team_name>
+    </team>
+    <team>
+      <team_name>K. Krujë</team_name>
+    </team>
+    <team>
+      <team_name>L. Gjirokastër</team_name>
+    </team>
+    <team>
+      <team_name>Pogradeci</team_name>
+    </team>
+    <team>
+      <team_name>T. Pukë</team_name>
+    </team>
+    <team>
+      <team_name>S. Librazhd</team_name>
+    </team>
+    <team>
+      <team_name>T. Cërrik</team_name>
+    </team>
+    <team>
+      <team_name>N. Kucovë</team_name>
+    </team>
+    <team>
+      <team_name>Skrapari</team_name>
+    </team>
+  </teams>
+</league>

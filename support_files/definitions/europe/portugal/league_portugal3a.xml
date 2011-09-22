@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>portugal3a</sid>
+  <name>II Divisão Serie A</name>
+  <short_name>II Div. A</short_name>
+  <symbol>flag_portugal.png</symbol>
+  <first_week>8</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="1">9</break_in>
+  <break_in length="1">11</break_in>
+  <break_in length="1">16</break_in>
+  <break_in length="1">26</break_in>
+  <average_talent>6400</average_talent>
+  <yellow_red>5</yellow_red>  
+  <names_file>portugal</names_file>
+  <layer>3</layer>
+
+  <prom_rel>
+    <prom_games>
+      <prom_games_dest_sid>portugal2</prom_games_dest_sid>
+      <prom_games_cup_sid>portugal_prom_games2</prom_games_cup_sid>
+      <prom_games_loser_sid>portugal3a portugal3b</prom_games_loser_sid>
+    </prom_games>
+
+    <prom_rel_element>
+      <rank_start>10</rank_start>
+      <rank_end>12</rank_end>
+      <dest_sid>portugal4a portugal4ac portugal4b portugal4c portugal4d portugal4e portugal4f</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+  
+  <teams>
+    <team>
+      <team_name>Chaves</team_name>
+    </team>
+    <team>
+      <team_name>Maritimo II</team_name>
+    </team>
+    <team>
+      <team_name>Moreirense</team_name>
+    </team>
+    <team>
+      <team_name>Ribeirao</team_name>
+    </team>
+    <team>
+      <team_name>Ribeira B.</team_name>
+    </team>
+    <team>
+      <team_name>Tirsense</team_name>
+    </team>
+    <team>
+      <team_name>Valdevez</team_name>
+    </team>
+    <team>
+      <team_name>Pontassolense</team_name>
+    </team>
+    <team>
+      <team_name>Canical</team_name>
+    </team>
+    <team>
+      <team_name>Vianense</team_name>
+    </team>
+    <team>
+      <team_name>Maria da Fonte</team_name>
+    </team>
+    <team>
+      <team_name>Mirandela</team_name>
+    </team>
+  </teams>
+</league>

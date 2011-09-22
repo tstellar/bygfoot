@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>israel2</sid>
+  <name>Liga Leumit</name>
+  <short_name>L. Leumit</short_name>
+  <symbol>flag_israel.png</symbol>
+  <first_week>9</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="2">26</break_in>
+  <average_talent>6100</average_talent>
+  <round_robins>3</round_robins>
+  <names_file>israel</names_file>
+  <yellow_red>5</yellow_red>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>1</rank_end>
+      <dest_sid>israel1</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_games>
+      <prom_games_dest_sid>israel1</prom_games_dest_sid>
+      <prom_games_cup_sid>israel_prom_games1</prom_games_cup_sid>
+      <prom_games_loser_sid>israel2</prom_games_loser_sid>
+    </prom_games>
+
+    <prom_rel_element>
+      <rank_start>11</rank_start>
+      <rank_end>12</rank_end>
+      <dest_sid>israel3</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>H. Acre</team_name>
+    </team>
+    <team>
+      <team_name>H. Be'er Sheva</team_name>
+    </team>
+    <team>
+      <team_name>H. Bnei Lod</team_name>
+    </team>
+    <team>
+      <team_name>H. Haifa</team_name>
+    </team>
+    <team>
+      <team_name>H. Jerusalem</team_name>
+    </team>
+    <team>
+      <team_name>H. Kfar Saba</team_name>
+    </team>
+    <team>
+      <team_name>H. Ra'anana</team_name>
+    </team>
+    <team>
+      <team_name>H. Ramat Gan</team_name>
+    </team>
+    <team>
+      <team_name>I. Ramat HaSharon</team_name>
+    </team>
+    <team>
+      <team_name>M. Ahi Nazareth</team_name>
+    </team>
+    <team>
+      <team_name>M. Kiryat Ata</team_name>
+    </team>
+    <team>
+      <team_name>M. Herzliya</team_name>
+    </team>
+  </teams>
+</league>

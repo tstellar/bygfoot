@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>netherlands1</sid>
+  <name>Eredivisie</name>
+  <short_name>erediv.</short_name>
+  <symbol>flag_netherlands.png</symbol>
+  <first_week>9</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="1">10</break_in>
+  <break_in length="1">15</break_in>
+  <break_in length="2">27</break_in>
+  <break_in length="1">39</break_in> 
+  <average_talent>7600</average_talent>
+  <yellow_red>5</yellow_red>  
+  <names_file>netherlands</names_file>
+  <two_match_week_start>8</two_match_week_start> 
+  <two_match_week_end>9</two_match_week_end>
+  <two_match_week_start>21</two_match_week_start> 
+  <two_match_week_end>22</two_match_week_end>
+  
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>7</rank_start>
+      <rank_end>7</rank_end>
+      <dest_sid>netherlands2</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_games>
+      <prom_games_dest_sid>netherlands1</prom_games_dest_sid>
+      <prom_games_number_of_advance>2</prom_games_number_of_advance>
+      <prom_games_cup_sid>netherlands_nacompetitie2</prom_games_cup_sid>
+      <prom_games_loser_sid>netherlands2</prom_games_loser_sid>
+    </prom_games>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Ajax</team_name>
+<def_file>netherlands_ajax</def_file>
+    </team>
+    <team>
+      <team_name>PSV Eindhoven</team_name>
+<def_file>netherlands_psv</def_file>
+    </team>
+    <team>
+      <team_name>AZ Alkmaar</team_name>
+<def_file>netherlands_az</def_file>
+    </team>
+    <team>
+      <team_name>FC Twente</team_name>
+<def_file>netherlands_twente</def_file>
+    </team>
+   <team>
+      <team_name>Feyenoord</team_name>
+<def_file>netherlands_feyenoord</def_file>
+    </team>
+    <team>
+      <team_name>FC Utrecht</team_name>
+<def_file>netherlands_utrecht</def_file>
+    </team>
+    <team>
+      <team_name>Heerenveen</team_name>
+<def_file>netherlands_heeren</def_file>
+    </team>
+  </teams>
+</league>

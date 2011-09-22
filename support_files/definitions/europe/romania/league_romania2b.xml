@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>romania2b</sid>
+  <name>Liga II Seria 2</name>
+  <short_name>L2S2</short_name>
+  <symbol>flag_romania.png</symbol>
+  <first_week>5</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="9">23</break_in>
+  <average_talent>6700</average_talent>
+  <names_file>romania</names_file>
+  <yellow_red>5</yellow_red>
+  <layer>2</layer>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>2</rank_end>
+      <dest_sid>romania1</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_rel_element>
+      <rank_start>15</rank_start>
+      <rank_end>18</rank_end>
+      <dest_sid>romania3b romania3d romania3f</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>I. Curtea de Argeş</team_name>
+    </team>
+    <team>
+      <team_name>U. Alba Iulia</team_name>
+    </team>
+    <team>
+      <team_name>C. Râmnicu Vâlcea</team_name>
+    </team>
+    <team>
+      <team_name>D. Mioveni</team_name>
+    </team>
+    <team>
+      <team_name>Drobeta-Turnu Severin</team_name>
+    </team>
+    <team>
+      <team_name>M. Lupeni</team_name>
+    </team>
+    <team>
+      <team_name>M. Deva</team_name>
+    </team>
+    <team>
+      <team_name>L. Oradea</team_name>
+    </team>
+    <team>
+      <team_name>B. Oradea</team_name>
+    </team>
+    <team>
+      <team_name>Târgovişte</team_name>
+    </team>
+    <team>
+      <team_name>Târgu Mureş</team_name>
+    </team>
+    <team>
+      <team_name>J. Petroşani</team_name>
+    </team>
+    <team>
+      <team_name>U. Cluj</team_name>
+    </team>
+    <team>
+      <team_name>A. Turda</team_name>
+    </team>
+    <team>
+      <team_name>A. Arad</team_name>
+    </team>
+    <team>
+      <team_name>C. Timişoara</team_name>
+    </team>
+	<team>
+      <team_name>U. Arad</team_name>
+    </team>
+	<team>
+      <team_name>I. Câmpia Turzii</team_name>
+    </team>
+  </teams>
+</league>
