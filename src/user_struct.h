@@ -189,6 +189,10 @@ typedef struct
     GArray *default_team;
     // the default structure of a user team.
     gint default_structure;
+    // the default playing style of a user team.
+    gint default_style;
+    // the default boost of a user team.
+    gint default_boost;
 } User;
 
 enum EventType

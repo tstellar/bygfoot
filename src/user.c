@@ -81,6 +81,8 @@ user_new(void)
     new.bets[0] = g_array_new(FALSE, FALSE, sizeof(BetUser));
     new.bets[1] = g_array_new(FALSE, FALSE, sizeof(BetUser));
     new.default_team = g_array_new(FALSE, FALSE, sizeof(gint));
+    new.default_style = 0;
+    new.default_boost = 0;
     return new;
 }
 
@@ -1343,6 +1345,8 @@ store_default_team(User *user)
        g_array_append_val(user->default_team, g_array_index(user->tm->players, Player, i).id);
     }
     user->default_structure = user->tm->structure;
+    user->default_style = user->tm->style;
+    user->default_boost = user->tm->boost;
 }
 
 /**
@@ -1370,4 +1374,8 @@ restore_default_team(User *user)
         }
     }
     team_change_structure(user->tm, user->default_structure);
+    team_change_attribute_with_message(user->tm, TEAM_ATTRIBUTE_STYLE, user->default_style);
+    team_change_attribute_with_message(user->tm, TEAM_ATTRIBUTE_BOOST, user->default_boost);
+    game_gui_write_meters(current_user.tm);
+    game_gui_write_radio_items();
 }
