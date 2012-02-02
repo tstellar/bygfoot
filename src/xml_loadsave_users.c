@@ -78,6 +78,8 @@ enum
     TAG_USER_YA_PREFERENCE,
     TAG_USER_DEFAULT_TEAM,
     TAG_USER_DEFAULT_STRUCTURE,
+    TAG_USER_DEFAULT_STYLE,
+    TAG_USER_DEFAULT_BOOST,
     TAG_END
 };
 
@@ -199,7 +201,9 @@ xml_loadsave_users_end_element    (GMarkupParseContext *context,
 	    tag == TAG_USER_BET0 ||
 	    tag == TAG_USER_BET1 ||
             tag == TAG_USER_DEFAULT_TEAM ||
-            tag == TAG_USER_DEFAULT_STRUCTURE) 
+            tag == TAG_USER_DEFAULT_STRUCTURE ||
+            tag == TAG_USER_DEFAULT_STYLE ||
+            tag == TAG_USER_DEFAULT_BOOST) 
     {
 	state = TAG_USER;
 	if(tag == TAG_USER_COUNTER)
@@ -355,6 +359,10 @@ xml_loadsave_users_text         (GMarkupParseContext *context,
         g_array_append_val(new_user.default_team, int_value);
     else if(state == TAG_USER_DEFAULT_STRUCTURE)
         new_user.default_structure = int_value;
+    else if(state == TAG_USER_DEFAULT_STYLE)
+        new_user.default_style = int_value;
+    else if(state == TAG_USER_DEFAULT_BOOST)
+        new_user.default_boost = int_value;
     else if(state >= TAG_START_PLAYERS && state <= TAG_END_PLAYERS)
 	xml_loadsave_players_text(buf);
 }
@@ -478,6 +486,8 @@ xml_loadsave_users_write(const gchar *prefix)
             xml_write_int(fil, g_array_index(usr(i).default_team, gint, j), TAG_USER_DEFAULT_TEAM, I1);
         }
         xml_write_int(fil, usr(i).default_structure, TAG_USER_DEFAULT_STRUCTURE, I1);
+        xml_write_int(fil, usr(i).default_style, TAG_USER_DEFAULT_STYLE, I1);
+        xml_write_int(fil, usr(i).default_boost, TAG_USER_DEFAULT_BOOST, I1);
 	xml_loadsave_players_write(fil, usr(i).youth_academy.players);
 
 
