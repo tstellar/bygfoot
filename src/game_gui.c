@@ -534,6 +534,12 @@ game_gui_show_main(void)
 
     current_user.counters[COUNT_USER_TOOK_TURN] = 1;
 
+    if((opt_int("int_opt_news_popup") == 2 ||
+        (opt_int("int_opt_news_popup") == 1 &&
+         counters[COUNT_NEW_NEWS] == 1)) &&
+       counters[COUNT_NEWS_SHOWN] == 0 &&
+       counters[COUNT_NEW_NEWS] != 0)
+        on_menu_news_activate(NULL, NULL);
     if(current_user.counters[COUNT_USER_SHOW_RES] && stat0 != STATUS_LIVE_GAME_PAUSE)
     {
 	on_menu_user_show_last_stats_activate(NULL, NULL);
