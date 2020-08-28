@@ -1,0 +1,159 @@
+create repository bygfoot
+end repository
+
+# This revision accidentally checked in binaries
+match /
+  max revision 1732
+  min revision 1732
+end match
+
+# This revision accidentally added the trunk directory.
+match /
+  max revision 1733
+  min revision 1733
+end match
+
+# This revision undoes some of what was added in r1732
+match /
+  max revision 1734
+  min revision 1734
+end match
+
+# This revision undoes more of r1732
+match /
+  max revision 1735
+  min revision 1735
+end match
+
+# This revision undoes more of r1732
+match /
+  max revision 1736
+  min revision 1736
+end match
+
+# This revision removed the accidentally added trunk directory.
+match /
+  max revision 1737
+  min revision 1737
+end match
+
+# This revision accidentally added the /europe directory
+match /
+  max revision 1772
+  min revision 1772
+end match
+
+# These revisions move and then delete the bygfoot2-unstable directory
+# See next 2 rules for more information
+match /
+  max revision 1049
+  min revision 1049
+end match
+match /
+  max revision 1050
+  min revision 1050
+end match
+
+# Ignore some pictures that will be removed later
+match /trunk/bygfoot2-unstable/support_files/mmedia/pics/
+  max revision 534
+  min revision 534
+  action ignore
+end match
+
+# Skip revisions that modify these pictures:
+match /
+  max revision 726
+  min revision 726
+end match
+
+# Skip revisions that modify these pictures:
+match /
+  max revision 727
+  min revision 727
+end match
+
+# Skip revisions that modify these pictures:
+match /
+  max revision 743
+  min revision 743
+end match
+
+# Skip revisions that modify these pictures:
+match /
+  max revision 931
+  min revision 931
+end match
+
+# Skip revisions that modify these pictures:
+match /
+  max revision 933
+  min revision 933
+end match
+
+# bygfoot_2.0.1_stable directory was accidently added and then removed.
+match /
+  max revision 629
+  min revision 629
+end match
+match /
+  max revision 630
+  min revision 630
+end match
+
+
+# There were two versions of bygfoot developed in parallel in tree.
+# bygfoot-unstable and bygfoot2-unstable.  bygfoot-unsable was
+# eventually abandoned, so put it in a separate branch.
+match /trunk/bygfoot-unstable/
+  repository bygfoot
+  branch bygfoot-unstable
+end match
+
+# The code here was moved to the top level directory in
+# r1049 "Delete the obsolete directory"
+match /trunk/bygfoot2-unstable/
+  repository bygfoot
+  branch master
+end match
+
+match /trunk/
+  repository bygfoot
+  branch master
+end match
+
+match /bygfoot/trunk/
+  repository bygfoot
+  branch master
+end match
+
+match /branches/([^/]+)/
+  repository bygfoot
+  branch \1
+end match
+
+match /bygfoot/branches/([^/]+)/
+  repository bygfoot
+  branch \1
+end match
+
+match /tags/([^/]+)/
+  repository bygfoot
+  branch refs/tags/\1
+end match
+
+create repository bfscript
+end repository
+
+match /bfscript/trunk/
+  repository bfscript
+  branch master
+end match
+
+create repository bfweb
+end repository
+
+match /web/trunk/
+  repository bfweb
+  branch master
+end match
