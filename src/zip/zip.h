@@ -93,7 +93,7 @@ typedef struct
     uLong       external_fa;    /* external file attributes        4 bytes */
 } zip_fileinfo;
 
-extern zipFile ZEXPORT zipOpen OF((const char *pathname, int append));
+extern zipFile ZEXPORT zipOpen (const char *pathname, int append);
 /*
   Create a zipfile.
 	 pathname contain on Windows NT a filename like "c:\\zlib\\zlib111.zip" or on
@@ -107,7 +107,7 @@ extern zipFile ZEXPORT zipOpen OF((const char *pathname, int append));
 
 */
 
-extern int ZEXPORT zipOpenNewFileInZip OF((zipFile file,
+extern int ZEXPORT zipOpenNewFileInZip (zipFile file,
 					   const char* filename,
 					   const zip_fileinfo* zipfi,
 					   const void* extrafield_local,
@@ -116,7 +116,7 @@ extern int ZEXPORT zipOpenNewFileInZip OF((zipFile file,
 					   uInt size_extrafield_global,
 					   const char* comment,
 					   int method,
-					   int level));
+					   int level);
 /*
   Open a file in the ZIP for writing.
   filename : the filename in zip (if NULL, '-' without quote will be used
@@ -130,20 +130,20 @@ extern int ZEXPORT zipOpenNewFileInZip OF((zipFile file,
   level contain the level of compression (can be Z_DEFAULT_COMPRESSION)
 */
 
-extern int ZEXPORT zipWriteInFileInZip OF((zipFile file,
+extern int ZEXPORT zipWriteInFileInZip (zipFile file,
 					   const voidp buf,
-					   unsigned len));
+					   unsigned len);
 /*
   Write data in the zipfile
 */
 
-extern int ZEXPORT zipCloseFileInZip OF((zipFile file));
+extern int ZEXPORT zipCloseFileInZip (zipFile file);
 /*
   Close the current file in the zipfile
 */
 
-extern int ZEXPORT zipClose OF((zipFile file,
-				const char* global_comment));
+extern int ZEXPORT zipClose (zipFile file,
+				const char* global_comment);
 /*
   Close the zipfile
 */
