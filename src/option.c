@@ -44,7 +44,8 @@ option_string(const gchar *name, OptionList *optionlist)
     printf("option_string\n");
 #endif
 
-    gpointer element = g_datalist_get_data(&optionlist->datalist, name);
+    GQuark quark = g_quark_from_string(name);
+    gpointer element = g_datalist_id_get_data(&optionlist->datalist, quark);
     
     if(element != NULL)
 	return ((Option*)element)->string_value;
@@ -59,7 +60,8 @@ option_string(const gchar *name, OptionList *optionlist)
 gchar**
 option_string_pointer(const gchar *name, OptionList *optionlist)
 {
-    gpointer element = g_datalist_get_data(&optionlist->datalist, name);
+    GQuark quark = g_quark_from_string(name);
+    gpointer element = g_datalist_id_get_data(&optionlist->datalist, quark);
     
     if(element != NULL)
 	return &((Option*)element)->string_value;
@@ -82,7 +84,8 @@ option_int(const gchar *name, OptionList *optionlist)
     printf("option_int\n");
 #endif
 
-    gpointer element = g_datalist_get_data(&optionlist->datalist, name);
+    GQuark quark = g_quark_from_string(name);
+    gpointer element = g_datalist_id_get_data(&optionlist->datalist, quark);
     
     if(element != NULL)
 	return ((Option*)element)->value;
@@ -101,7 +104,8 @@ option_int_pointer(const gchar *name, OptionList *optionlist)
     printf("option_int_pointer\n");
 #endif
 
-    gpointer element = g_datalist_get_data(&optionlist->datalist, name);
+    GQuark quark = g_quark_from_string(name);
+    gpointer element = g_datalist_id_get_data(&optionlist->datalist, quark);
     
     if(element != NULL)
 	return &((Option*)element)->value;
@@ -120,7 +124,8 @@ option_int_pointer(const gchar *name, OptionList *optionlist)
 gfloat
 option_float(const gchar *name, OptionList *optionlist)
 {
-    gpointer element = g_datalist_get_data(&optionlist->datalist, name);
+    GQuark quark = g_quark_from_string(name);
+    gpointer element = g_datalist_id_get_data(&optionlist->datalist, quark);
     
     if(element != NULL)
 	return (gfloat)((Option*)element)->value / OPTION_FLOAT_DIVISOR;
@@ -142,7 +147,8 @@ option_set_string(const gchar *name, OptionList *optionlist, const gchar *new_va
     printf("option_set_string\n");
 #endif
 
-    gpointer element = g_datalist_get_data(&optionlist->datalist, name);
+    GQuark quark = g_quark_from_string(name);
+    gpointer element = g_datalist_id_get_data(&optionlist->datalist, quark);
     
     if(element == NULL)
 	debug_print_message("option_set_string: option named %s not found\nMaybe you should delete the .bygfoot directory from your home dir", name);
@@ -161,7 +167,8 @@ option_set_int(const gchar *name, OptionList *optionlist, gint new_value)
     printf("option_set_int\n");
 #endif
 
-    gpointer element = g_datalist_get_data(&optionlist->datalist, name);
+    GQuark quark = g_quark_from_string(name);
+    gpointer element = g_datalist_id_get_data(&optionlist->datalist, quark);
     
     if(element == NULL)
 	debug_print_message("option_set_int: option named %s not found\nMaybe you should delete the .bygfoot directory from your home dir", name);
@@ -183,8 +190,10 @@ option_add(OptionList *optionlist, const gchar *name,
     Option new;
     gpointer element = NULL;
 
-    if(optionlist->list != NULL)
-	element = g_datalist_get_data(&optionlist->datalist, name);
+    if(optionlist->list != NULL) {
+        GQuark quark = g_quark_from_string(name);
+        element = g_datalist_id_get_data(&optionlist->datalist, name);
+    }
     
     if(element != NULL)
     {
