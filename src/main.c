@@ -54,6 +54,7 @@
 #include "transfer_struct.h"
 #include "variables.h"
 #include "window.h"
+#include "xml_country.h"
 #include "xml_strategy.h"
 
 #define DEBUG_LEVEL_DEFAULT 0
@@ -319,6 +320,16 @@ main_init_variables(void)
 }
 
 /**
+  Callback to use with g_ptr_array_foreach() to validate country xml files.
+ */
+static void validate_country_file(gpointer country_file, gpointer user_data)
+{
+    Country country;
+    memset(&country, 0, sizeof(country));
+    xml_country_read(country_file, &country);
+}
+
+/**
   Process the command line arguments and do some things
   that have to be done at the beginning (like initializing the
   random number generator).
@@ -334,6 +345,7 @@ main_init(gint *argc, gchar ***argv)
 
     gchar buf[SMALL];
     gchar *dir;
+    GPtrArray *country_files = NULL;
 
     support_directories = NULL;
     rand_generator = g_rand_new();
@@ -368,6 +380,14 @@ main_init(gint *argc, gchar ***argv)
 
     load_last_save = FALSE;
     main_parse_cl_arguments(argc, argv);
+
+    /* Validate XML */
+    country_files = file_get_country_files();
+
+    if(country_files->len == 0)
+	main_exit_program(EXIT_NO_COUNTRY_FILES,
+			  "Didn't find any country definition files in the support directories.");
+    g_ptr_array_foreach(country_files, validate_country_file, NULL);
 }
 
 /**
