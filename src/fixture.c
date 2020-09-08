@@ -1170,7 +1170,7 @@ fixture_get_previous(gint clid, gint week_number, gint week_round_number)
     @param week_round_number The round we're showing.
     @param tm A team pointer (for the case SHOW_TEAM).
     @return A fixture pointer or NULL. */
-Fixture*
+const Fixture*
 fixture_get(gint type, gint clid, gint week_number, 
 	    gint week_round_number, const Team *tm)
 {
@@ -1178,7 +1178,7 @@ fixture_get(gint type, gint clid, gint week_number,
     printf("fixture_get\n");
 #endif
 
-    Fixture *fix = NULL;
+    const Fixture *fix = NULL;
     gint new_clid = -1;
 
     if(type == SHOW_TEAM)
