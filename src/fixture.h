@@ -117,7 +117,7 @@ fixture_result_to_buf(const Fixture *fix, gchar *buf, gboolean swap);
 gint
 fixture_get_number_of_matches(gint week_number, gint week_round_number);
 
-Fixture*
+const Fixture*
 fixture_get(gint type, gint clid, gint week_number, gint week_round_number, const Team *tm);
 
 Fixture*
