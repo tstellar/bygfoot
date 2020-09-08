@@ -145,6 +145,9 @@ team_write_own_results(const Team *tm, gchar *buf, gboolean sort, gboolean cup_m
 gboolean
 query_team_is_in_teams_array(const Team *tm, const GPtrArray *teams);
 
+gboolean
+query_team_id_is_in_teams_array(const Team *tm, const GArray *teams);
+
 gchar*
 team_has_def_file(const Team *tm);
 
