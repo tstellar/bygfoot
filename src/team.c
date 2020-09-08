@@ -279,15 +279,17 @@ team_get_fixture(const Team *tm, gboolean last_fixture)
 	    {
 		if(query_league_active(&lig(i)))
 		{
-		    for(j=0;j<lig(i).fixtures->len;j++)
-			if(g_array_index(lig(i).fixtures, Fixture, j).attendance == -1 &&
-			   query_fixture_team_involved((&g_array_index(lig(i).fixtures, Fixture, j)), tm->id) &&
+		    for(j=0;j<lig(i).fixtures->len;j++) {
+			const Fixture *current_fixture = &g_array_index(lig(i).fixtures, Fixture, j);
+			if(current_fixture->attendance == -1 &&
+			   query_fixture_team_involved(current_fixture, tm->id) &&
                            (fix == NULL ||
-                            query_fixture_is_earlier(&g_array_index(lig(i).fixtures, Fixture, j), fix)))
+                            query_fixture_is_earlier(current_fixture, fix)))
 			{                            
-                            fix = &g_array_index(lig(i).fixtures, Fixture, j);
+                            fix = current_fixture;
                             break;
 			}
+		    }
 		}
 	    }
 
