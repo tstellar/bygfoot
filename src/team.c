@@ -280,6 +280,9 @@ team_get_fixture(const Team *tm, gboolean last_fixture)
 		if(!query_league_active(&lig(i)))
 		    continue;
 
+		if (!query_team_id_is_in_teams_array(tm, lig(i).teams))
+		    continue;
+
 		for(j=0;j<lig(i).fixtures->len;j++) {
 		    const Fixture *current_fixture = &g_array_index(lig(i).fixtures, Fixture, j);
 		    if(current_fixture->attendance == -1 &&
@@ -1177,6 +1180,22 @@ query_team_is_in_teams_array(const Team *tm, const GPtrArray *teams)
 	if((Team*)g_ptr_array_index(teams, i) == tm)
 	    return TRUE;
 
+    return FALSE;
+}
+
+/** Same as query_team_is_in_teams_array, but it looks up based on the
+ * team id and not the pointer.  This is useful, because you can look
+ * for a team in a GArray without having to transform it into a GPtrArray.
+ */
+gboolean
+query_team_id_is_in_teams_array(const Team *tm, const GArray *teams)
+{
+    gint i;
+    for (i = 0; i< teams->len; i++) {
+        const Team *t = &g_array_index(teams, Team, i);
+        if (t->id == tm->id)
+            return TRUE;
+    }
     return FALSE;
 }
 
