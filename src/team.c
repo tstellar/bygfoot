@@ -255,7 +255,7 @@ team_of_id(gint id)
 /** Return a pointer to the next or last fixture the team participates in.
     @param tm The team we examine.
     @return The pointer to the fixture or NULL if none is found. */
-Fixture*
+const Fixture*
 team_get_fixture(const Team *tm, gboolean last_fixture)
 {
 #ifdef DEBUG
@@ -263,7 +263,7 @@ team_get_fixture(const Team *tm, gboolean last_fixture)
 #endif
 
     gint i, j;
-    Fixture *fix = NULL;
+    const Fixture *fix = NULL;
 
     if(!last_fixture && 
        (stat0 == STATUS_LIVE_GAME_PAUSE ||

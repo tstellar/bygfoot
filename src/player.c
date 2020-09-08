@@ -748,7 +748,7 @@ player_is_banned(const Player *pl)
     printf("player_is_banned\n");
 #endif
 
-    Fixture *fix = team_get_fixture(pl->team, FALSE);
+    const Fixture *fix = team_get_fixture(pl->team, FALSE);
     gint yellow_red = -1, yellow, red;
 
     if(fix == NULL)
