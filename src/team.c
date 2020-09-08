@@ -277,18 +277,18 @@ team_get_fixture(const Team *tm, gboolean last_fixture)
 	if(tm->clid < ID_CUP_START)
 	    for(i=0;i<ligs->len;i++)
 	    {
-		if(query_league_active(&lig(i)))
-		{
-		    for(j=0;j<lig(i).fixtures->len;j++) {
-			const Fixture *current_fixture = &g_array_index(lig(i).fixtures, Fixture, j);
-			if(current_fixture->attendance == -1 &&
-			   query_fixture_team_involved(current_fixture, tm->id) &&
-                           (fix == NULL ||
-                            query_fixture_is_earlier(current_fixture, fix)))
-			{                            
-                            fix = current_fixture;
-                            break;
-			}
+		if(!query_league_active(&lig(i)))
+		    continue;
+
+		for(j=0;j<lig(i).fixtures->len;j++) {
+		    const Fixture *current_fixture = &g_array_index(lig(i).fixtures, Fixture, j);
+		    if(current_fixture->attendance == -1 &&
+		       query_fixture_team_involved(current_fixture, tm->id) &&
+                       (fix == NULL ||
+                       query_fixture_is_earlier(current_fixture, fix)))
+		    {
+                        fix = current_fixture;
+                        break;
 		    }
 		}
 	    }
