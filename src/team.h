@@ -64,7 +64,7 @@ team_get_pointers_from_array(const GArray *teams, GPtrArray *team_ptrs);
 Team*
 team_of_id(gint id);
 
-Fixture*
+const Fixture*
 team_get_fixture(const Team *tm, gboolean last_fixture);
 
 gfloat

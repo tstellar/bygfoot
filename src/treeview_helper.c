@@ -1284,7 +1284,7 @@ treeview_helper_player_cards_to_cell(gchar *buf, const Player *pl)
 #endif
 
     gint yellow;
-    Fixture *fix =
+    const Fixture *fix =
 	team_get_fixture(pl->team, FALSE);
 
     if(fix == NULL)
@@ -1429,7 +1429,7 @@ treeview_helper_player_games_goals_to_cell(gchar *buf, const Player *pl, gint ty
     printf("treeview_helper_player_games_goals_to_cell\n");
 #endif
 
-    Fixture *fix = team_get_fixture(pl->team, FALSE);
+    const Fixture *fix = team_get_fixture(pl->team, FALSE);
     gint clid = pl->team->clid;
 
     if(pl->games_goals->len == 0)
