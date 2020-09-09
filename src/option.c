@@ -192,7 +192,7 @@ option_add(OptionList *optionlist, const gchar *name,
 
     if(optionlist->list != NULL) {
         GQuark quark = g_quark_from_string(name);
-        element = g_datalist_id_get_data(&optionlist->datalist, name);
+        element = g_datalist_id_get_data(&optionlist->datalist, quark);
     }
     
     if(element != NULL)
