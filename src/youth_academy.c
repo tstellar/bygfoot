@@ -145,7 +145,7 @@ youth_academy_add_new_player(YouthAcademy *youth_academy)
 	math_gauss_dist(const_float("float_player_peak_region_lower"),
 			const_float("float_player_peak_region_upper"));//2;
 
-    new.talent = CLAMP(new.talent, 0, const_float("float_player_max_skill"));
+    new.talent = CLAMP(new.talent, 0, const_float_fast(float_player_max_skill));
     new.skill = player_skill_from_talent(&new);
     new.cskill = new.skill;
     player_estimate_talent(&new);
