@@ -105,7 +105,7 @@ xml_team_read_start_element (GMarkupParseContext *context,
     {
 	state = STATE_PLAYER;
 	new_player = player_new(team, ((gfloat)team->average_talent / 10000) * 
-				const_float("float_player_max_skill"), TRUE);
+				const_float_fast(float_player_max_skill), TRUE);
     }
     else if(strcmp(element_name, TAG_PLAYER_NAME) == 0)
 	state = STATE_PLAYER_NAME;
@@ -211,7 +211,7 @@ xml_team_read_text         (GMarkupParseContext *context,
 	misc_string_assign(&team->symbol, buf);
     else if(state == STATE_AVERAGE_TALENT && opt_int("int_opt_load_defs") == 1)
 	team->average_talent = 
-	    (float_value / 10000) * const_float("float_player_max_skill");
+	    (float_value / 10000) * const_float_fast(float_player_max_skill);
     else if(state == STATE_FORMATION)
 	team->structure = int_value;
     else if(state == STATE_NAMES_FILE)
@@ -224,10 +224,10 @@ xml_team_read_text         (GMarkupParseContext *context,
 	new_player.age = misc_get_age_from_birth(birth_year, int_value);
     else if(state == STATE_PLAYER_SKILL && opt_int("int_opt_load_defs") == 1)
 	new_player.skill = ((gfloat)int_value / 10000) * 
-	    const_float("float_player_max_skill");
+	    const_float_fast(float_player_max_skill);
     else if(state == STATE_PLAYER_TALENT && opt_int("int_opt_load_defs") == 1)
 	new_player.talent = ((gfloat)int_value / 10000) * 
-	    const_float("float_player_max_skill");
+	    const_float_fast(float_player_max_skill);
     else if(state == STATE_PLAYER_POSITION)
 	new_player.pos = int_value;
 }

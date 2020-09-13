@@ -652,6 +652,48 @@ file_load_opt_file(const gchar *filename, OptionList *optionlist, gboolean sort)
       new.string_value = g_strdup(opt_value);
       g_array_append_val(optionlist->list, new);
     }
+
+    /* Cache some commonly used options, since datalist lookup can be slow. */
+    //printf("%s\n", new.name);
+    #define cache_option(option_name)  \
+    if (!strcmp(new.name, #option_name)) { \
+      if (!strncmp("float_", new.name, 6)) \
+        optionlist->option_name = (gfloat)new.value / OPTION_FLOAT_DIVISOR; \
+      else \
+        optionlist->option_name = new.value; \
+    }
+
+    cache_option(float_player_streak_influence_skill);
+    cache_option(float_player_fitness_exponent);
+    cache_option(float_player_boost_skill_effect);
+    cache_option(float_player_team_weight_forward_attack);
+    cache_option(float_player_team_weight_forward_midfield);
+    cache_option(float_player_team_weight_forward_defense);
+    cache_option(float_player_team_weight_midfielder_attack);
+    cache_option(float_player_team_weight_midfielder_midfield);
+    cache_option(float_player_team_weight_midfielder_defense);
+    cache_option(float_player_team_weight_defender_attack);
+    cache_option(float_player_team_weight_defender_midfield);
+    cache_option(float_player_team_weight_defender_defense);
+    cache_option(float_player_fitness_decrease_add);
+    cache_option(float_player_streak_influence_fitness_decrease);
+    cache_option(float_player_boost_fitness_effect);
+    cache_option(float_player_fitness_decrease_factor_goalie);
+    cache_option(float_player_lsu_update_limit);
+    cache_option(float_player_streak_prob_zero);
+    cache_option(float_player_fitness_increase_variance);
+    cache_option(float_player_fitness_decrease_younger_factor);
+    cache_option(float_player_max_skill);
+    cache_option(float_player_skill_update_younger_add);
+    cache_option(float_player_skill_update_younger_factor);
+    cache_option(float_player_streak_prob_max);
+    cache_option(float_player_streak_influence_fitness_increase);
+    cache_option(float_player_fitness_increase_add);
+    cache_option(float_player_streak_length_lower);
+    cache_option(float_player_streak_length_upper);
+    cache_option(float_player_etal_scout_factor);
+    cache_option(float_player_fitness_increase_younger_factor);
+    //printf("streak: %f\n", optionlist->float_player_streak_influence_skill);
   }
 
   if(sort)

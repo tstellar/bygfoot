@@ -109,15 +109,15 @@ game_get_player_contribution(const Player *pl, gint type, gboolean special)
     a match. Rows are player position, columns value type. 
     @see game_get_player_contribution() */
     gfloat player_weights[3][3] =
-	{{const_float("float_player_team_weight_defender_defense"), 
-	  const_float("float_player_team_weight_defender_midfield"),
-	  const_float("float_player_team_weight_defender_attack")},
-	 {const_float("float_player_team_weight_midfielder_defense"), 
-	  const_float("float_player_team_weight_midfielder_midfield"), 
-	  const_float("float_player_team_weight_midfielder_attack")},
-	 {const_float("float_player_team_weight_forward_defense"), 
-	  const_float("float_player_team_weight_forward_midfield"), 
-	  const_float("float_player_team_weight_forward_attack")}};
+	{{const_float_fast(float_player_team_weight_defender_defense),
+	  const_float_fast(float_player_team_weight_defender_midfield),
+	  const_float_fast(float_player_team_weight_defender_attack)},
+	 {const_float_fast(float_player_team_weight_midfielder_defense),
+	  const_float_fast(float_player_team_weight_midfielder_midfield),
+	  const_float_fast(float_player_team_weight_midfielder_attack)},
+	 {const_float_fast(float_player_team_weight_forward_defense),
+	  const_float_fast(float_player_team_weight_forward_midfield),
+	  const_float_fast(float_player_team_weight_forward_attack)}};
 
     return player_get_game_skill(pl, FALSE, special) *
 	player_weights[pl->cpos - 1][type - GAME_TEAM_VALUE_DEFEND];
@@ -228,7 +228,7 @@ game_get_player_probs(GArray *players, gfloat *probs, gfloat *weights, gboolean 
 	(g_array_index(players, Player, 1).cskill != 0);
 
     probs[0] *= (1 + (gfloat)g_array_index(players, Player, 1).streak *
-		 const_float("float_player_streak_influence_skill"));
+		 const_float_fast(float_player_streak_influence_skill));
 		 
 
     for(i=1;i<10;i++)
@@ -240,7 +240,7 @@ game_get_player_probs(GArray *players, gfloat *probs, gfloat *weights, gboolean 
 	     weights[g_array_index(players, Player, i + 1).cpos - 1] *
 	     (g_array_index(players, Player, i + 1).cskill != 0));
 	probs[i] *= (1 + (gfloat)g_array_index(players, Player, i + 1).streak *
-		     const_float("float_player_streak_influence_skill"));
+		     const_float_fast(float_player_streak_influence_skill));
     }
 }
 
@@ -1198,11 +1198,11 @@ game_get_max_values(gfloat max_values[4])
     gint i, j;
     Player pl;
 
-    pl.skill = pl.cskill = const_float("float_player_max_skill");
+    pl.skill = pl.cskill = const_float_fast(float_player_max_skill);
     pl.fitness = 1;
     pl.streak = 0;
 
-    max_values[0] = const_float("float_player_max_skill");
+    max_values[0] = const_float_fast(float_player_max_skill);
 
     for(i=1;i<4;i++)
     {

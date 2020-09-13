@@ -115,7 +115,7 @@ team_generate_players_stadium(Team *tm, gfloat av_talent)
         average_talent *= skill_factor;
     }
 	
-    average_talent = CLAMP(average_talent, 0, const_float("float_player_max_skill"));
+    average_talent = CLAMP(average_talent, 0, const_float_fast(float_player_max_skill));
     tm->average_talent = average_talent;
 
     if(def_file == NULL)

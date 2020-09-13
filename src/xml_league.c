@@ -396,7 +396,7 @@ xml_league_read_text         (GMarkupParseContext *context,
 	new_league.yellow_red = int_value;
     else if(state == STATE_AVERAGE_TALENT)
 	new_league.average_talent = 
-	    (float_value / 10000) * const_float("float_player_max_skill");
+	    (float_value / 10000) * const_float_fast(float_player_max_skill);
     else if(state == STATE_NAMES_FILE)
 	misc_string_assign(&new_league.names_file, buf);
     else if(state == STATE_BREAK)
@@ -465,7 +465,7 @@ xml_league_read_text         (GMarkupParseContext *context,
     else if(state == STATE_TEAM_AVERAGE_TALENT)
 	g_array_index(new_league.teams, Team,
 		      new_league.teams->len - 1).average_talent = 
-	    (float_value / 10000) * const_float("float_player_max_skill");
+	    (float_value / 10000) * const_float_fast(float_player_max_skill);
     else if(state == STATE_TEAM_DEF_FILE)
 	misc_string_assign(&g_array_index(new_league.teams, Team, new_league.teams->len - 1).def_file, buf);
 }

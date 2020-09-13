@@ -39,6 +39,42 @@ typedef struct
 {
     GArray *list;
     GData *datalist;
+    /* Some extra options for faster look up.
+     * FIXME: We could possibly have separate options types, since we have
+     * different options instances used in this program.
+     */
+    gfloat float_player_streak_influence_skill;
+    gfloat float_player_fitness_exponent;
+    gfloat float_player_boost_skill_effect;
+    gfloat float_player_team_weight_forward_attack;
+    gfloat float_player_team_weight_forward_midfield;
+    gfloat float_player_team_weight_forward_defense;
+    gfloat float_player_team_weight_midfielder_attack;
+    gfloat float_player_team_weight_midfielder_midfield;
+    gfloat float_player_team_weight_midfielder_defense;
+    gfloat float_player_team_weight_defender_attack;
+    gfloat float_player_team_weight_defender_midfield;
+    gfloat float_player_team_weight_defender_defense;
+    gfloat float_player_fitness_decrease_add;
+    gfloat float_player_streak_influence_fitness_decrease;
+    gfloat float_player_boost_fitness_effect;
+    gfloat float_player_fitness_decrease_factor_goalie;
+    gfloat float_player_lsu_update_limit;
+    gfloat float_player_streak_prob_zero;
+    gfloat float_player_fitness_increase_variance;
+    gfloat float_player_fitness_decrease_younger_factor;
+    gfloat float_player_max_skill;
+    gfloat float_player_skill_update_younger_add;
+    gfloat float_player_skill_update_younger_factor;
+    gfloat float_player_streak_prob_max;
+    gfloat float_player_streak_influence_fitness_increase;
+    gfloat float_player_fitness_increase_add;
+    gfloat float_player_streak_length_lower;
+    gfloat float_player_streak_length_upper;
+    gfloat float_player_etal_scout_factor;
+    gfloat float_player_fitness_increase_younger_factor;
+
+
 } OptionList;
 
 #endif

@@ -62,6 +62,7 @@
 #define const_str(name) option_string(name, &constants)
 #define const_int(name) option_int(name, &constants)
 #define const_float(name) option_float(name, &constants)
+#define const_float_fast(name) (constants.name)
 
 #define sett_int(name) option_int(name, &settings)
 #define sett_set_int(name, value) option_set_int(name, &settings, value)

@@ -77,7 +77,7 @@ player_new(Team *tm, gfloat average_talent, gboolean new_id)
 
     new.talent = 
 	CLAMP(average_talent * skill_factor, 0,
-	      const_float("float_player_max_skill"));;
+	      const_float_fast(float_player_max_skill));;
 
     new.skill = player_skill_from_talent(&new);
     new.cskill = new.skill;
@@ -147,7 +147,7 @@ player_complete_def(Player *pl, gfloat average_talent)
 			    const_float("float_player_peak_region_upper"));
 
 	pl->talent = CLAMP(average_talent * skill_factor, 0, 
-			   const_float("float_player_max_skill"));
+			   const_float_fast(float_player_max_skill));
 	pl->skill = player_skill_from_talent(pl);
     }
 
@@ -228,18 +228,18 @@ player_skill_from_talent(const Player *pl)
     {
 	while(cur_age > pl->age)
 	{
-	    cur_age -= ((const_float("float_player_lsu_update_limit") + 2) * 0.0192);
+	    cur_age -= ((const_float_fast(float_player_lsu_update_limit) + 2) * 0.0192);
 	    if(pl->peak_age - cur_age > pl->peak_region)
 		skill *= (1 - ((pl->peak_age - cur_age) * 
-			       const_float("float_player_skill_update_younger_factor") +
-			       const_float("float_player_skill_update_younger_add")));
+			       const_float_fast(float_player_skill_update_younger_factor) +
+			       const_float_fast(float_player_skill_update_younger_add)));
 	}
     }
     else
     {
 	while(cur_age < pl->age)
 	{
-	    cur_age += ((const_float("float_player_lsu_update_limit") + 2) * 0.0192);
+	    cur_age += ((const_float_fast(float_player_lsu_update_limit) + 2) * 0.0192);
 	    if(cur_age - pl->peak_age > pl->peak_region)
 		skill *= (1 - ((cur_age - pl->peak_age) * 
 			       const_float("float_player_skill_update_older_factor") +
@@ -267,12 +267,12 @@ player_estimate_talent(Player *pl)
 
     /* the maximal deviance in both directions */
     gfloat deviance_bound[2] =
-	{pl->talent - pl->skill, const_float("float_player_max_skill") - pl->talent};
+	{pl->talent - pl->skill, const_float_fast(float_player_max_skill) - pl->talent};
 
     for(i=0;i<QUALITY_END;i++)
     {
-	scout_deviance[i] = (i + 1) * const_float("float_player_max_skill") *
-	    (const_float("float_player_etal_scout_factor") / 100);
+	scout_deviance[i] = (i + 1) * const_float_fast(float_player_max_skill) *
+	    (const_float_fast(float_player_etal_scout_factor) / 100);
 	/* adjust deviance_bounds with regard to the scout's
 	   deviance */
 	for(j=0;j<2;j++)
@@ -541,9 +541,9 @@ player_compare_substitute_func(gconstpointer a, gconstpointer b, gpointer data)
     const Player *pl2 = *(const Player**)b;
     gint position = GPOINTER_TO_INT(data);
     gfloat skill_for_pos1 = player_get_cskill(pl1, position, FALSE) * 
-	powf(pl1->fitness, const_float("float_player_fitness_exponent")),
+	powf(pl1->fitness, const_float_fast(float_player_fitness_exponent)),
 	skill_for_pos2 = player_get_cskill(pl2, position, FALSE) * 
-	powf(pl2->fitness, const_float("float_player_fitness_exponent"));
+	powf(pl2->fitness, const_float_fast(float_player_fitness_exponent));
     gfloat game_skill1 = player_get_game_skill(pl1, FALSE, TRUE),
 	game_skill2 = player_get_game_skill(pl2, FALSE, TRUE);
     gboolean good_structure1 =
@@ -781,14 +781,14 @@ gfloat
 player_get_game_skill(const Player *pl, gboolean skill, gboolean count_special)
 {
     gfloat boost = (count_special) ? 
-	1 + const_float("float_player_boost_skill_effect") * pl->team->boost : 1;
+	1 + const_float_fast(float_player_boost_skill_effect) * pl->team->boost : 1;
     gfloat streak = (count_special) ?
-	1 + (gfloat)pl->streak * const_float("float_player_streak_influence_skill") : 1;
+	1 + (gfloat)pl->streak * const_float_fast(float_player_streak_influence_skill) : 1;
     
     return (skill) ? pl->skill * boost * streak *
-	powf(pl->fitness, const_float("float_player_fitness_exponent"))	:
+	powf(pl->fitness, const_float_fast(float_player_fitness_exponent))	:
 	pl->cskill * boost * streak *
-	powf(pl->fitness, const_float("float_player_fitness_exponent"));
+	powf(pl->fitness, const_float_fast(float_player_fitness_exponent));
 }
 
 /** Decrease a player's fitness during a match.
@@ -801,31 +801,31 @@ player_decrease_fitness(Player *pl)
 #endif
 
     gfloat goalie_factor = 
-	1 - const_float("float_player_fitness_decrease_factor_goalie") *
+	1 - const_float_fast(float_player_fitness_decrease_factor_goalie) *
 	(pl->cpos == 0);
     gfloat boost_factor = 
 	1 + (gfloat)pl->team->boost * 
-	const_float("float_player_boost_fitness_effect");
+	const_float_fast(float_player_boost_fitness_effect);
     gfloat streak_factor = 1 + (gfloat)pl->streak * 
-	const_float("float_player_streak_influence_fitness_decrease");
+	const_float_fast(float_player_streak_influence_fitness_decrease);
 
     if(pl->age < pl->peak_age - pl->peak_region)
     {
 	pl->fitness -= (((pl->peak_age - pl->peak_region - pl->age) *
-			 const_float("float_player_fitness_decrease_younger_factor") +
-			 const_float("float_player_fitness_decrease_add")) *
+			 const_float_fast(float_player_fitness_decrease_younger_factor) +
+			 const_float_fast(float_player_fitness_decrease_add)) *
 			goalie_factor * boost_factor * streak_factor);
     }
     else if(pl->age > pl->peak_age + pl->peak_region)
     {
 	pl->fitness -= (((pl->age - pl->peak_age - pl->peak_region) *
 			 const_float("float_player_fitness_decrease_older_factor") +
-			 const_float("float_player_fitness_decrease_add")) *
+			 const_float_fast(float_player_fitness_decrease_add)) *
 			goalie_factor * boost_factor * streak_factor);
     }
     else
     {
-	pl->fitness -= (const_float("float_player_fitness_decrease_add") *
+	pl->fitness -= (const_float_fast(float_player_fitness_decrease_add) *
 			goalie_factor * boost_factor * streak_factor);
     }
 
@@ -847,10 +847,10 @@ player_update_fitness(Player *pl)
 #endif
 
     gfloat variance = 
-	math_rnd(1 - const_float("float_player_fitness_increase_variance"),
-		 1 + const_float("float_player_fitness_increase_variance"));
+	math_rnd(1 - const_float_fast(float_player_fitness_increase_variance),
+		 1 + const_float_fast(float_player_fitness_increase_variance));
     gfloat streak_factor = 
-	1 + (pl->streak * const_float("float_player_streak_influence_fitness_increase"));
+	1 + (pl->streak * const_float_fast(float_player_streak_influence_fitness_increase));
 
     if(pl->participation)
     {
@@ -860,16 +860,16 @@ player_update_fitness(Player *pl)
 
     if(pl->age < pl->peak_age - pl->peak_region)
 	pl->fitness += (((pl->peak_age - pl->peak_region - pl->age) *
-			 const_float("float_player_fitness_increase_younger_factor") +
-			 const_float("float_player_fitness_increase_add")) *
+			 const_float_fast(float_player_fitness_increase_younger_factor) +
+			 const_float_fast(float_player_fitness_increase_add)) *
 			variance * streak_factor);
     else if(pl->age > pl->peak_age + pl->peak_region)
 	pl->fitness += (((pl->age - pl->peak_age - pl->peak_region) *
 			 const_float("float_player_fitness_increase_older_factor") +
-			 const_float("float_player_fitness_increase_add")) *
+			 const_float_fast(float_player_fitness_increase_add)) *
 			variance * streak_factor);
     else
-	pl->fitness += (const_float("float_player_fitness_increase_add") * 
+	pl->fitness += (const_float_fast(float_player_fitness_increase_add) * 
 			variance * streak_factor);
 
     pl->fitness = MIN(pl->fitness, 1);
@@ -1054,17 +1054,17 @@ player_update_skill(Player *pl)
 	    (user_from_team(pl->team)->youth_academy.av_coach *
 	     const_float("float_youth_academy_lsu_penalty"));
 
-    if(pl->lsu < const_float("float_player_lsu_update_limit") ||
+    if(pl->lsu < const_float_fast(float_player_lsu_update_limit) ||
        math_rnd(0, 1) < powf(const_float("float_player_lsu_update_base_prob"),
-			     pl->lsu - const_float("float_player_lsu_update_limit")))
+			     pl->lsu - const_float_fast(float_player_lsu_update_limit)))
 	return;
 	
     pl->lsu = 0;
 
     if(pl->age < pl->peak_age - pl->peak_region)
 	pl->skill *= (1 + ((pl->peak_age - pl->age) * 
-			   const_float("float_player_skill_update_younger_factor") +
-			   const_float("float_player_skill_update_younger_add")));
+			   const_float_fast(float_player_skill_update_younger_factor) +
+			   const_float_fast(float_player_skill_update_younger_add)));
     else if(pl->age > pl->peak_age + pl->peak_region)
 	pl->skill *= (1 - ((pl->age - pl->peak_age) * 
 			   const_float("float_player_skill_update_older_factor") +
@@ -1145,9 +1145,9 @@ player_update_streak(Player *pl)
     gfloat streak_type, streak_prob, 
 	streak_length, decrease_factor = 0;
     gfloat streak_prob_factor = 
-	const_float("float_player_streak_prob_max") - 
-	const_float("float_player_streak_prob_zero"),
-	streak_prob_add = const_float("float_player_streak_prob_zero");
+	const_float_fast(float_player_streak_prob_max) - 
+	const_float_fast(float_player_streak_prob_zero),
+	streak_prob_add = const_float_fast(float_player_streak_prob_zero);
 
     /** Player streak is locked. */
     if(pl->streak_count < 0)
@@ -1189,8 +1189,8 @@ player_update_streak(Player *pl)
     /** Now let's find out whether there's a new streak. */
     streak_type = math_rnd(-1, 1);
     streak_prob = math_rnd(0, 1);
-    streak_length = math_rnd(const_float("float_player_streak_length_lower"),
-			     const_float("float_player_streak_length_upper"));
+    streak_length = math_rnd(const_float_fast(float_player_streak_length_lower),
+			     const_float_fast(float_player_streak_length_upper));
 
     if(streak_type < pl->streak_prob &&
        ((pl->streak_prob > 0 &&  
@@ -1473,7 +1473,7 @@ player_season_start(Player *pl, gfloat skill_change)
     if(skill_change != 0)
     {
 	pl->talent *= (1 + skill_change);
-	pl->talent = CLAMP(pl->talent, 0, const_float("float_player_max_skill"));
+	pl->talent = CLAMP(pl->talent, 0, const_float_fast(float_player_max_skill));
 
 	pl->skill *= (1 + skill_change);
 	pl->skill = CLAMP(pl->skill, 0, pl->talent);
