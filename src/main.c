@@ -84,6 +84,7 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
           *country_sid = NULL;
     gint number_of_passes = 1,
          num_matches = 100, skilldiffmax = 20;
+    guint32 random_seed = 0;
     GError *error = NULL;
     GOptionContext *context = NULL;
     GOptionEntry entries[] =
@@ -121,6 +122,10 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 
         { "num-skilldiff", 'S', 0, G_OPTION_ARG_INT, &skilldiffmax,
             "[developer] How many skill diff steps to take", "N" },
+
+	{ "random-seed", 0, 0, G_OPTION_ARG_INT, &random_seed,
+	    "Seed to initialize random number generator.  Valid values are"
+	    " 32-bit unsigned integers > 0", "N"},
 
         {NULL}};
 
@@ -174,6 +179,9 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
         country.sid = g_strdup(country_sid);
         g_free(country_sid);
     }
+
+    if (random_seed)
+       g_rand_set_seed(rand_generator, random_seed);
 }
 
 /** Parse the command line arguments given by the user. */
