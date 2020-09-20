@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 2020 Season -->
 <league>
   <sid>faroe_islands2</sid>
   <name>1 Deild</name>
@@ -14,19 +15,41 @@
   <break_in length="1">25</break_in>
   <break_in length="1">30</break_in>
   <names_file>denmark</names_file>
-  <round_robins>4</round_robins>
+  <round_robins>3</round_robins>
   <yellow_red>5</yellow_red>
 
     <prom_rel>
         <prom_rel_element>
             <rank_start>1</rank_start>
-            <rank_end>2</rank_end>
+            <rank_end>3</rank_end>
+            <number_of_teams>2</number_of_teams>
             <dest_sid>faroe_islands1</dest_sid>
             <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+        <prom_rel_element>
+            <rank_start>9</rank_start>
+            <rank_end>10</rank_end>
+            <dest_sid>faroe_islands3</dest_sid>
+            <prom_rel_type>relegation</prom_rel_type>
         </prom_rel_element>
     </prom_rel>
 
     <teams>
+        <team>
+            <team_name>K. Klaksvik II</team_name>
+            <first_team>K. Klaksvík</first_team>
+            <reserve_level>2</reserve_level>
+        </team>
+        <team>
+            <team_name>V. Gotu II</team_name>
+            <first_team>V. Gotu</first_team>
+            <reserve_level>2</reserve_level>
+        </team>
+        <team>
+            <team_name>N. Runavík II</team_name>
+            <first_team>N. Runavík</first_team>
+            <reserve_level>2</reserve_level>
+        </team>
         <team>
             <team_name>V. Sorvagur</team_name>
         </team>
@@ -34,19 +57,25 @@
             <team_name>B. Toftir</team_name>
         </team>
         <team>
+            <team_name>B. Tórshavn II</team_name>
+            <first_team>B. Tórshavn</first_team>
+            <reserve_level>2</reserve_level>
+        </team>
+        <team>
             <team_name>B. Sandur</team_name>
+        </team>
+        <team>
+            <team_name>H. Tórshavn II</team_name>
+            <first_team>H. Tórshavn</first_team>
+            <reserve_level>2</reserve_level>
         </team>
         <team>
             <team_name>Hoyvík</team_name>
         </team>
         <team>
-            <team_name>Suðuroy</team_name>
-        </team>
-        <team>
-            <team_name>U. Tórshavn</team_name>
-        </team>
-        <team>
-            <team_name>R. Hvalba</team_name>
+            <team_name>A. Argir II</team_name>
+            <first_team>A. Argir</first_team>
+            <reserve_level>2</reserve_level>
         </team>
     </teams>
 </league>
