@@ -57,6 +57,7 @@
 #define TAG_PROM_REL_ELEMENT "prom_rel_element"
 #define TAG_PROM_REL_ELEMENT_RANK_START "rank_start"
 #define TAG_PROM_REL_ELEMENT_RANK_END "rank_end"
+#define TAG_PROM_REL_ELEMENT_NUMBER_OF_TEAMS "number_of_teams"
 #define TAG_PROM_REL_ELEMENT_DEST_SID "dest_sid"
 #define TAG_PROM_REL_ELEMENT_TYPE "prom_rel_type"
 #define TAG_PROM_REL_ELEMENT_FROM_TABLE "from_table"
@@ -101,6 +102,7 @@ enum XmlLeagueStates
     STATE_PROM_REL_ELEMENT,
     STATE_PROM_REL_ELEMENT_RANK_START,
     STATE_PROM_REL_ELEMENT_RANK_END,
+    STATE_PROM_REL_ELEMENT_NUMBER_OF_TEAMS,
     STATE_PROM_REL_ELEMENT_DEST_SID,
     STATE_PROM_REL_ELEMENT_TYPE,
     STATE_PROM_REL_ELEMENT_FROM_TABLE,
@@ -247,6 +249,8 @@ xml_league_read_start_element (GMarkupParseContext *context,
 	state = STATE_PROM_REL_ELEMENT_RANK_START;
     else if(strcmp(element_name, TAG_PROM_REL_ELEMENT_RANK_END) == 0)
 	state = STATE_PROM_REL_ELEMENT_RANK_END;
+    else if(strcmp(element_name, TAG_PROM_REL_ELEMENT_NUMBER_OF_TEAMS) == 0)
+	state = STATE_PROM_REL_ELEMENT_NUMBER_OF_TEAMS;
     else if(strcmp(element_name, TAG_PROM_REL_ELEMENT_DEST_SID) == 0)
 	state = STATE_PROM_REL_ELEMENT_DEST_SID;
     else if(strcmp(element_name, TAG_PROM_REL_ELEMENT_TYPE) == 0)
@@ -327,6 +331,7 @@ xml_league_read_end_element    (GMarkupParseContext *context,
 	state = STATE_PROM_GAMES;
     else if(strcmp(element_name, TAG_PROM_REL_ELEMENT_RANK_START) == 0 ||
 	    strcmp(element_name, TAG_PROM_REL_ELEMENT_RANK_END) == 0 ||
+	    strcmp(element_name, TAG_PROM_REL_ELEMENT_NUMBER_OF_TEAMS) == 0 ||
 	    strcmp(element_name, TAG_PROM_REL_ELEMENT_DEST_SID) == 0 ||
 	    strcmp(element_name, TAG_PROM_REL_ELEMENT_FROM_TABLE) == 0 ||
 	    strcmp(element_name, TAG_PROM_REL_ELEMENT_TYPE) == 0)
@@ -434,6 +439,10 @@ xml_league_read_text         (GMarkupParseContext *context,
 	g_array_index(new_league.prom_rel.elements,
 		      PromRelElement,
 		      new_league.prom_rel.elements->len - 1).ranks[1] = int_value;
+    else if(state == STATE_PROM_REL_ELEMENT_NUMBER_OF_TEAMS)
+	g_array_index(new_league.prom_rel.elements,
+		      PromRelElement,
+		      new_league.prom_rel.elements->len - 1).num_teams = int_value;
     else if(state == STATE_PROM_REL_ELEMENT_DEST_SID)
 	misc_string_assign(&g_array_index(new_league.prom_rel.elements,
 				      PromRelElement,
@@ -519,6 +528,7 @@ xml_league_read(const gchar *league_name, GArray *leagues)
 
     if(g_markup_parse_context_parse(context, file_contents, length, &error))
     {
+        gint i;
 	g_markup_parse_context_end_parse(context, NULL);	
 	g_markup_parse_context_free(context);
 	g_free(file_contents);
@@ -526,6 +536,18 @@ xml_league_read(const gchar *league_name, GArray *leagues)
         league_cup_adjust_rr_breaks(new_league.rr_breaks, new_league.round_robins, new_league.week_gap);
         league_cup_adjust_week_breaks(new_league.week_breaks, new_league.week_gap);
 	g_array_append_val(leagues, new_league);
+
+        for (i = 0; i < new_league.prom_rel.elements->len; i++) {
+            PromRelElement *elem = &g_array_index(new_league.prom_rel.elements,
+                                                  PromRelElement, i);
+            /* If this value was specified in the xml, then we shouldn't try
+             * to compute it. */
+            if (elem->num_teams != 0)
+                continue;
+
+            elem->num_teams = (elem->ranks[1] - elem->ranks[0]) + 1;
+        }
+
     }
     else
     {

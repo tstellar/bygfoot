@@ -49,6 +49,13 @@ typedef struct
     gint from_table; /**< From which table to pick the teams in case there are several. Default: 0. */
     gchar *dest_sid; /**< The id of the destination league. Default "" */
     gint type; /**< Type. Promotion or relegation or none. */
+    /** The maximum number of teams to promote/relegate.  This can be different the
+     * size of the range of teams, since some leagues have teams
+     * (e.g. reserve teams) that may be inelligible for promotion.  For example,
+     * a league could promote the top 2 elegible teams from positions 1-3.
+     * In that case ranks[0] = 1, ranks[1] = 3 and num_teams = 2.
+     */
+    gint num_teams;
 } PromRelElement;
 
 /**
