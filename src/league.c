@@ -101,7 +101,7 @@ prom_rel_element_new(void)
     PromRelElement new;
 
     new.ranks[0] = new.ranks[1] =
-        new.from_table = 0;
+        new.from_table = new.num_teams = 0;
     new.dest_sid = NULL;
     new.type = PROM_REL_NONE;
 

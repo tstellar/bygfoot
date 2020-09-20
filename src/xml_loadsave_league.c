@@ -53,6 +53,7 @@ enum
     TAG_LEAGUE_PROM_REL_ELEMENTS,
     TAG_LEAGUE_PROM_REL_ELEMENT,
     TAG_LEAGUE_PROM_REL_ELEMENT_RANK,
+    TAG_LEAGUE_PROM_REL_ELEMENT_NUMBER_OF_TEAMS,
     TAG_LEAGUE_PROM_REL_ELEMENT_DEST_SID,
     TAG_LEAGUE_PROM_REL_ELEMENT_TYPE,
     TAG_LEAGUE_PROM_REL_ELEMENT_FROM_TABLE,
@@ -187,6 +188,7 @@ xml_loadsave_league_end_element    (GMarkupParseContext *context,
     }
     else if(tag == TAG_LEAGUE_PROM_REL_ELEMENT_RANK ||
 	    tag == TAG_LEAGUE_PROM_REL_ELEMENT_DEST_SID ||
+	    tag == TAG_LEAGUE_PROM_REL_ELEMENT_NUMBER_OF_TEAMS ||
 	    tag == TAG_LEAGUE_PROM_REL_ELEMENT_FROM_TABLE ||
 	    tag == TAG_LEAGUE_PROM_REL_ELEMENT_TYPE)
     {
@@ -296,6 +298,8 @@ xml_loadsave_league_text         (GMarkupParseContext *context,
 	new_prom_games.loser_sid = g_strdup(buf);
     else if(state == TAG_LEAGUE_PROM_REL_ELEMENT_RANK)
 	new_element.ranks[promrankidx] = int_value;
+    else if(state == TAG_LEAGUE_PROM_REL_ELEMENT_NUMBER_OF_TEAMS)
+	new_element.num_teams = int_value;
     else if(state == TAG_LEAGUE_PROM_REL_ELEMENT_TYPE)
 	new_element.type = int_value;
     else if(state == TAG_LEAGUE_PROM_REL_ELEMENT_FROM_TABLE)
@@ -474,6 +478,8 @@ xml_loadsave_league_prom_rel_write(FILE *fil, const League *league)
 		      TAG_LEAGUE_PROM_REL_ELEMENT_RANK, I2);
 	xml_write_int(fil, g_array_index(league->prom_rel.elements, PromRelElement, i).ranks[1],
 		      TAG_LEAGUE_PROM_REL_ELEMENT_RANK, I2);
+	xml_write_int(fil, g_array_index(league->prom_rel.elements, PromRelElement, i).num_teams,
+		      TAG_LEAGUE_PROM_REL_ELEMENT_NUMBER_OF_TEAMS, I2);
 	xml_write_int(fil, g_array_index(league->prom_rel.elements, PromRelElement, i).type,
 		      TAG_LEAGUE_PROM_REL_ELEMENT_TYPE, I2);
 	xml_write_int(fil, g_array_index(league->prom_rel.elements, PromRelElement, i).from_table,
