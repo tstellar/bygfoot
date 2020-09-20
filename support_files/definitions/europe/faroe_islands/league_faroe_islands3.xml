@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>faroe_islands3</sid>
+  <name>2. Deild</name>
+  <short_name>2. Deild</short_name>
+  <symbol>flag_faroe_islands.png</symbol>
+  <first_week>3</first_week>
+  <week_gap>1</week_gap>
+  <average_talent>3100</average_talent>
+  <break_in length="1">5</break_in>
+  <break_in length="1">10</break_in>
+  <break_in length="1">15</break_in>
+  <break_in length="1">20</break_in>
+  <break_in length="1">25</break_in>
+  <break_in length="1">30</break_in>
+  <names_file>denmark</names_file>
+  <round_robins>2</round_robins>
+  <yellow_red>5</yellow_red>
+
+  <prom_rel>
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>3</rank_end>
+      <number_of_teams>2</number_of_teams>
+      <dest_sid>faroe_islands2</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+    <prom_rel_element>
+        <rank_start>9</rank_start>
+        <rank_end>10</rank_end>
+        <dest_sid>faroe_islands4</dest_sid>
+        <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>Skála II</team_name>
+      <first_team>Skála I.</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>Streymur II</team_name>
+      <first_team>Streymur</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>Suðuroy</team_name>
+    </team>
+    <team>
+      <team_name>N. Runavík III</team_name>
+      <first_team>N. Runavík</first_team>
+      <reserve_level>3</reserve_level>
+    </team>
+    <team>
+      <team_name>B. Toftir II</team_name>
+      <first_team>B. Toftir</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+    <team>
+      <team_name>K. Klaksvik III</team_name>
+      <first_team>K. Klaksvík</first_team>
+      <reserve_level>3</reserve_level>
+    </team>
+    <team>
+      <team_name>V. Gotu III</team_name>
+      <first_team>V. Gotu</first_team>
+      <reserve_level>3</reserve_level>
+    </team>
+    <team>
+      <team_name>U. Tórshavn</team_name>
+    </team>
+    <team>
+      <team_name>R. Hvalba</team_name>
+    </team>
+    <team>
+      <team_name>Tvoroyri II</team_name>
+      <first_team>Tvoroyri</first_team>
+      <reserve_level>2</reserve_level>
+    </team>
+  </teams>
+</league>
+
