@@ -479,12 +479,10 @@ cup_load_choose_team_from_league(Cup *cup, const League *league,
     {
         for(j=0;j<table->elements->len;j++)
         {
-            g_ptr_array_add(
-                teams, team_of_id(
-                    g_array_index(table->elements, TableElement, j).team_id));
-            g_ptr_array_add(
-                cup->team_names, 
-                g_strdup(team_of_id(g_array_index(table->elements, TableElement, j).team_id)->name));
+	    Team *team = team_of_id(
+                    g_array_index(table->elements, TableElement, j).team_id);
+            g_ptr_array_add(teams, team);
+            g_ptr_array_add(cup->team_names, g_strdup(team->name));
         }
     }
     else
@@ -501,6 +499,7 @@ cup_load_choose_team_from_league(Cup *cup, const League *league,
 
         for(j = 0; j < end; j++)
         {
+	    Team *team = team_of_id(g_array_index(table->elements, TableElement, order[j]).team_id);
             if(debug > 80)
                 g_print("j %d order %d team %s isinint %d numteams %d\n",
                         j, order[j],
@@ -512,15 +511,10 @@ cup_load_choose_team_from_league(Cup *cup, const League *league,
                             cup->group),
                         number_of_teams);
 
-            if(ct->skip_group_check ||
-               !query_team_is_in_cups(
-                   team_of_id(g_array_index(table->elements, TableElement, order[j]).team_id), cup->group))
+            if(ct->skip_group_check || !query_team_is_in_cups(team, cup->group))
             {
-                g_ptr_array_add(teams, 
-                                team_of_id(g_array_index(table->elements, TableElement, order[j]).team_id));
-                g_ptr_array_add(
-                    cup->team_names, 
-                    g_strdup(team_of_id(g_array_index(table->elements, TableElement, order[j]).team_id)->name));
+                g_ptr_array_add(teams, team);
+                g_ptr_array_add(cup->team_names, g_strdup(team->name));
                 number_of_teams++;
 
                 if(number_of_teams == ct->number_of_teams)
