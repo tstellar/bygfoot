@@ -481,6 +481,9 @@ cup_load_choose_team_from_league(Cup *cup, const League *league,
         {
 	    Team *team = team_of_id(
                     g_array_index(table->elements, TableElement, j).team_id);
+	    if (team_is_reserve_team(team) &&
+	        !query_league_cup_has_property(cup->id, "include_reserve_teams"))
+		continue;
             g_ptr_array_add(teams, team);
             g_ptr_array_add(cup->team_names, g_strdup(team->name));
         }
@@ -500,6 +503,9 @@ cup_load_choose_team_from_league(Cup *cup, const League *league,
         for(j = 0; j < end; j++)
         {
 	    Team *team = team_of_id(g_array_index(table->elements, TableElement, order[j]).team_id);
+	    if (team_is_reserve_team(team) &&
+	        !query_league_cup_has_property(cup->id, "include_reserve_teams"))
+		continue;
             if(debug > 80)
                 g_print("j %d order %d team %s isinint %d numteams %d\n",
                         j, order[j],
