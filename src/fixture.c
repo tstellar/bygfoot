@@ -145,7 +145,7 @@ fixture_update(Cup *cup)
     printf("fixture_update\n");
 #endif
 
-    gint i;
+    gint i, teams_in_cup;
     GArray *fixtures = cup->fixtures;
     gint round = g_array_index(fixtures, Fixture, fixtures->len - 1).round;
     gint replay = g_array_index(cup->rounds, CupRound, round).replay;
@@ -188,7 +188,8 @@ fixture_update(Cup *cup)
     for(i=0;i<new_round->team_ptrs->len;i++)
 	g_ptr_array_add(teams, g_ptr_array_index(new_round->team_ptrs, i));
     
-    if(teams->len < 2)
+	teams_in_cup = teams->len + (cup->bye ? cup->bye->len : 0);
+    if(teams_in_cup < 2)
     {
 	g_ptr_array_free(teams, TRUE);
 	return;
