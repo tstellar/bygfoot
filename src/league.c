@@ -581,6 +581,397 @@ query_league_matches_in_week(const League *league, gint week_number)
     return FALSE;
 }
 
+static gint
+league_get_max_movements(const League *league, enum PromRelType type)
+{
+    unsigned i;
+    const GArray *elements = league->prom_rel.elements;
+    unsigned max = 0;
+    for (i = 0; i < elements->len; i++) {
+        const PromRelElement *element = &g_array_index(elements,
+                                                       PromRelElement, i);
+        if (element->type != type)
+            continue;
+        max+= element->num_teams;
+    }
+
+    /* FIXME: What about promotion games? */
+    return max;
+}
+
+/**
+ * This function will handle the case were a reserve team needs to be
+ * relegated, because it's first team or a higher reserve team has been
+ * relegated into its division.  For Example:
+ *
+ * League 1:
+ * Blue
+ * Red
+ * ------
+ * Green [Relegated]
+ *
+ * League 2:
+ * Orange
+ * Green B [Needs to be relegated since first team is joining League 2]
+ * ------
+ * Red B
+ *
+ */
+static void
+handle_required_reserve_relegation(const TeamMove *move, GArray *team_movements)
+{
+    gint i, j;
+    for (i = 0; i < move->dest_idcs->len; i++) {
+        gint idx = g_array_index(move->dest_idcs, gint, i);
+        const League *dest_league = &g_array_index(country.leagues,
+                                                   League, idx);
+        /* If the destination league (league 2 in example above) allows
+         * multiple reserve teams than we don't need to relegate reserve
+         * teams (Green B in example above) that are already in it. */
+        if (league_allows_multiple_reserve_teams(dest_league))
+                continue;
+
+        /* Search through the destination league (League 2 in example above)
+         * to see if there are any teams with the same first team of the
+         * team (Green in the example above) we are relegating. */
+        for (j = 0; j < dest_league->teams->len; j++) {
+            gint k;
+            TeamMove new_move;
+            const Team *reserve_team = &g_array_index(dest_league->teams,
+                                                      Team, j);
+            if (move->tm.first_team_id != reserve_team->first_team_id)
+                continue; /* Teams do not share the same first team. */
+
+            /* We have found a reserve team (Green B in the example above)
+             * that shares a first team with the team we are relegating (Green
+             * in the example above).  So no we need to also relegate this
+             * reserve team. */
+            new_move.tm = *reserve_team;
+            new_move.prom_rel_type = PROM_REL_RELEGATION;
+            new_move.dest_assigned = FALSE;
+
+            /* Search for a place to insert the new relegation into
+             * team_movements, we want it to be added at the end of this
+             * leagues relegation list so it is preferred over the other
+             * relegations. Also, if we were already planning to relegate
+             * this team, delete the relegation. */
+            for (k = team_movements->len - 1; k >= 0; k--) {
+                const TeamMove *move = &g_array_index(team_movements, TeamMove, k);
+                if (move->prom_rel_type != PROM_REL_RELEGATION)
+                    continue;
+                if (move->tm.id == reserve_team->id) {
+                    /* Found another relegation for this team, so we need to
+                     * remove it. */
+                    g_array_remove_index(team_movements, k);
+                    continue;
+                }
+
+                if (move->tm.clid == reserve_team->clid) {
+                    /* We have found the last relegation for this league, so
+                     * insert the new_move here. */
+                    gint insert_index = k + 1;
+                    new_move.dest_idcs = g_array_copy(move->dest_idcs);
+
+                    if(debug > 70) {
+                        printf("Adding relegation of %s\n", reserve_team->name);
+                    }
+
+                    if (insert_index == team_movements->len)
+                        g_array_append_val(team_movements, new_move);
+                    else
+                        g_array_insert_val(team_movements, insert_index, new_move);
+                    break;
+                }
+            }
+
+            /* TODO: There is one case we aren't handling yet, and that is
+             * where a reserve team (Green B in the example above), needs to
+             * be relegated becasue its first team (Green in the example above)
+             * is relegated to its league *and* the league the reserve team
+             * (Green B) is being relegated to has no teams eligible for
+             * promotion for example:
+             *
+             * League 3:
+             * Green C
+             * Orange B
+             * Red C
+             *
+             * None of theses teams would be elegible, since they all have
+             * first teams in League 2.  So, if we were to relegated (Green B),
+             * then we'd end up with an extra team in League 3.
+             * I'm not sure how to handle this, so for now, when this scenario
+             * happens, we just league the reserve team (Green B) in the league
+             * with its first team (Green). */
+        }
+    }
+}
+
+static gboolean
+league_team_is_top_reserve_team(const League *league, const Team *team)
+{
+    gint reserve_level, i;
+
+    for (i = 0; i < league->teams->len; i++) {
+        gint other_level;
+        const Team *other_team = &g_array_index(league->teams, Team, i);
+        if (team->first_team_id != other_team->first_team_id)
+            continue;
+
+        if (team->reserve_level > other_team->reserve_level)
+            return FALSE;
+    }
+    return TRUE;
+}
+
+static void
+get_next_movement_search(gint *current_layer, enum PromRelType *type)
+{
+    if (*type == PROM_REL_PROMOTION) {
+        *current_layer = *current_layer - 1;
+        *type = PROM_REL_RELEGATION;
+    } else if (*type == PROM_REL_RELEGATION) {
+        *current_layer = *current_layer + 2;
+        *type = PROM_REL_PROMOTION;
+   }
+}
+
+static void
+country_filter_promotions(const Country *country, GArray *team_movements,
+                          GArray *move_summaries, gint current_layer)
+{
+    gint i = 0, j;
+    while (i < team_movements->len) {
+        gint additions = 0;
+        const TeamMove *move = &g_array_index(team_movements, TeamMove, i++);
+        const League *league = league_from_clid(move->tm.clid);
+        gint league_idx = league_index_from_sid(league->sid);
+        MoveSummary *summary = &g_array_index(move_summaries, MoveSummary, league_idx);
+        gint dest_idx;
+        gpointer hash_value;
+
+        if (move->prom_rel_type != PROM_REL_PROMOTION)
+            continue;
+
+        if (league->layer != current_layer)
+            continue;
+
+        if(debug > 70) {
+            gint dest_idx = g_array_index(move->dest_idcs, gint, 0);
+            const League *dest_league = &g_array_index(country->leagues,
+                                                       League, dest_idx);
+
+            printf("Looking at promotion of %s from %s to %s.\n", move->tm.name,
+                   league->name, dest_league->name);
+        }
+        if (summary->max_promotions && summary->num_promotions_from == summary->max_promotions)
+            goto remove_promotion;
+
+        /* If there are other reserve teams with the same first team that
+         * are a higher level, then we can't promote this team. */
+        if (!league_team_is_top_reserve_team(league, &move->tm))
+            goto remove_promotion;
+
+        for (j = 0; j < move->dest_idcs->len; j++) {
+            gint idx = g_array_index(move->dest_idcs, gint, j);
+            const League *dest_league = &g_array_index(country->leagues,
+                                                       League, idx);
+            if (!league_can_accept_promoted_team(dest_league, &move->tm, team_movements))
+                break;
+        }
+        if (j < move->dest_idcs->len) {
+            /* This means we found a destination league that we can't promote to,
+             * so we can't promote this team. */
+            goto remove_promotion;
+        }
+
+        /* We can promote this team */
+        /* FIXME: How to handle multiple dest_idcs */
+        dest_idx = g_array_index(move->dest_idcs, gint, 0);
+        summary->num_promotions_from++;
+        g_array_index(move_summaries, MoveSummary, dest_idx).num_promotions_to++;
+
+        continue;
+remove_promotion:
+        if(debug > 70) {
+	        printf("Removing the promotion.\n");
+        }
+        i--;
+        g_array_remove_index(team_movements, i);
+    }
+}
+static void
+country_filter_relegations(const Country *country, GArray *team_movements,
+                           GArray *move_summaries, gint current_layer)
+{
+    gint i = team_movements->len - 1;
+    while (i >= 0) {
+        const TeamMove *move = &g_array_index(team_movements, TeamMove, i--);
+        const League *league = league_from_clid(move->tm.clid);
+        gint league_idx = league_index_from_sid(league->sid);
+        MoveSummary *summary = &g_array_index(move_summaries, MoveSummary, league_idx);
+        const Team *first_team;
+        gint reserve_level;
+        gint j;
+
+        if (move->prom_rel_type != PROM_REL_RELEGATION)
+            continue;
+
+        if (league->layer != current_layer)
+            continue;
+
+        if(debug > 70) {
+            gint dest_idx = g_array_index(move->dest_idcs, gint, 0);
+            const League *dest_league = &g_array_index(country->leagues,
+                                                       League, dest_idx);
+
+            printf("Looking at relegation of %s from %s to %s.\n", move->tm.name,
+                   league->name, dest_league->name);
+        }
+        if (summary->num_relegations_from == summary->num_promotions_to) {
+            if(debug > 70)
+                printf("Removing the relegation.\n");
+            /* We can't relegate this team */
+            g_array_remove_index(team_movements, i + 1);
+            continue;
+        }
+
+        summary->num_relegations_from++;
+    }
+
+    /* Next check if any of our relegations would cause a lower level reserve
+     * team to also be relegated. */
+    for (i = 0; i < team_movements->len; i++) {
+        const TeamMove *move = &g_array_index(team_movements, TeamMove, i);
+        const League *league = league_from_clid(move->tm.clid);
+        if (move->prom_rel_type != PROM_REL_RELEGATION)
+            continue;
+        if (league->layer != current_layer)
+            continue;
+        handle_required_reserve_relegation(move, team_movements);
+    }
+}
+
+/**
+ * Return the maximum league layer for \p country.  This function does not
+ * assume that the last league has the  maximum layer even though this is
+ * usually the case.
+ */
+static gint
+country_get_max_layer(const Country *country)
+{
+    gint i;
+    gint max_layer = 0;
+
+    for (i = 0; i < country->leagues->len; i++) {
+        const League *league = &g_array_index(country->leagues, League, i);
+        max_layer = MAX(league->layer, max_layer);
+    }
+    return max_layer;
+}
+
+/** Filter out movemnts that may not be allowed due to league rules,
+  * e.g. promotion of reserve teams. */
+void
+country_apply_reserve_prom_rules(const Country *country, GArray *team_movements)
+{
+    gint num_promotions;
+    GArray *move_summaries;
+    gint i = 0, j = 0;
+    gint current_layer, max_layer;
+    enum PromRelType current_type;
+
+    if (country->reserve_promotion_rules != RESERVE_PROM_RULES_DEFAULT)
+        return;
+
+    move_summaries = g_array_sized_new(FALSE, TRUE, sizeof(MoveSummary),
+                                       country->leagues->len);
+    g_array_set_size(move_summaries, country->leagues->len);
+
+    /* Initialize the move summaries */
+    for (i = 0; i < move_summaries->len; i++) {
+        const League *league = &g_array_index(country->leagues, League, i);
+        MoveSummary *summary = &g_array_index(move_summaries, MoveSummary, i);
+        summary->max_promotions = league_get_max_movements(league, PROM_REL_PROMOTION);
+    }
+
+
+    /* We need to analyze the relegations and promotions in a specific order
+     * due to the dependencies between relegations in promotions in different
+     * leagues.  You can model the dependencies as a graph that looks like this:
+     *
+     *   -----1-- (2P) --3-----
+     *   |                    |
+     *  \/                   \/
+     * (1R) --4-----------> (3P)--3----> (4P)
+     *   |                    |          ^ |
+     *   |                    1   ---4---| 1
+     *   |                    |  /         |
+     *   |                   \/ /         \/
+     *   -----2-----------> (2R) --2---> (3R)
+     *
+     * Where the number is the league layer, and P stands for promotion and R
+     * stands for relegation.  The numbers describe why there is a dependeny:
+     *
+     * 1. Normal promotion / relegation dependency.  The number of relegations
+     *    depends on the number of promotions from the lower league.
+     *
+     * 2. Forced relegation of reserve team when first team is relegated into
+     *    its division.  This means that the relegations of a lower league
+     *    depend on the relegations of the higher league.
+     *
+     * 3. A first team being promoted out of a league that allows the reserve
+     *    team to be promoted into it.  This means that promotions from a lower
+     *    league depend on the promotions from the league abvoe it.
+     *
+     * 4. A first team being relegated to a lower league at the same time
+     *    a reserve team is being promoted into that league.  This means
+     *    that promotions from a league depend an relegations from a league
+     *    2 levels above it.
+     *
+     * This graph helps to illistrate the correct in order in which we should
+     * determine promotions and relegations in this country so that all
+     * dependencies are resolved before we start analyzing promotions and
+     * relegations for a specific league.
+     *
+     * In this case, the correct order is:
+     *
+     * 2P -> 1R -> 3P -> 2R -> 4P -> 3R
+     */
+
+    max_layer = country_get_max_layer(country);
+    current_layer = 2;
+    current_type = PROM_REL_PROMOTION;
+
+    /* Loop through the team_movements in the order from the comment above.
+     * We are making the following assumptions about the list of team_movements:
+     * 1. Movements from the same league are listed in order of the teams rank
+     *    in the fixtures.
+     * 2. The leagues have 'normal' promotions e.g. layer 2 promotes to layer 1
+     * and relegates to layer 3, etc.
+     *
+     * We are not making the assumption that the list is ordered based on the layer
+     * of the team's league (even though it likely is).
+     */
+    do {
+        if (current_type == PROM_REL_PROMOTION)
+            country_filter_promotions(country, team_movements,
+                                      move_summaries, current_layer);
+        else if (current_type == PROM_REL_RELEGATION)
+            country_filter_relegations(country, team_movements,
+                                       move_summaries, current_layer);
+
+        get_next_movement_search(&current_layer, &current_type);
+    } while(current_layer <= max_layer);
+
+
+    /* Next handle relegations. */
+
+    /* Iterate in reverse order to ensure that the lowest ranked teams are
+     * preferred for relegation. */
+
+    g_array_unref(move_summaries);
+}
+
 /** Add the teams to promote/relegate (from the prom_rel elements)
     from the league to the array. */
 void
@@ -1171,4 +1562,81 @@ country_lookup_first_team_ids(const Country *country)
             team->first_team_id = first_team->id;
         }
     }
+}
+
+gboolean
+league_can_accept_promoted_team(const League *league, const Team *tm,
+                                const GArray *team_movements)
+{
+    gint i, j;
+
+    /* Reserve teams are currently the only kind of teams that have restrictions
+     * around promotion. */
+    if (!team_is_reserve_team(tm))
+        return TRUE;
+
+    if (!league_allows_reserve_teams(league))
+        return FALSE;
+
+    /* If the first team or a higher reserve team is in the league, then we
+     * can't promote the reserve team.
+     */
+    for (i = 0; i < league->teams->len; i++) {
+        gboolean upper_team_promoted = FALSE;
+        const Team *upper_team = &g_array_index(league->teams, Team, i);
+        if (tm->first_team_id != upper_team->first_team_id)
+            continue;
+
+        /* If the upper team is going to be promoted, then it is ok to
+         * promote the reserve team.
+         * This code assumes than team_movements is ordered so that higher
+         * divisions come first and have already been filtered for
+         * ineligible promotions. */
+        for (j = 0; j < team_movements->len; j++) {
+            const TeamMove *move = &g_array_index(team_movements, TeamMove, j);
+            if (move->prom_rel_type != PROM_REL_PROMOTION)
+                continue;
+            if (move->tm.id == upper_team->id) {
+                upper_team_promoted = TRUE;
+                break;
+            }
+        }
+        /* The upper team has not been promoted. */
+        if (!upper_team_promoted)
+            return FALSE;
+    }
+
+    /* If the first team or a higher reserve team is going to be relegated into
+     * this league, then we can't promote this team. */
+    for (i = 0; i < team_movements->len; i++) {
+        const TeamMove *move = &g_array_index(team_movements, TeamMove, i);
+        if (move->prom_rel_type != PROM_REL_RELEGATION)
+            continue;
+
+        if (tm->first_team_id != move->tm.first_team_id)
+            continue;
+
+        for (j = 0; j < move->dest_idcs->len; j++) {
+            gint idx = g_array_index(move->dest_idcs, gint, j);
+            const League *dest_league = &g_array_index(country.leagues,
+                                                       League, idx);
+            if(dest_league->id == league->id)
+                return FALSE;
+        }
+    }
+
+    /* The league has no upper teams, so we can continue. */
+    return TRUE;
+}
+
+gboolean
+league_allows_reserve_teams(const League *league)
+{
+    return league->layer != 1;
+}
+
+gboolean
+league_allows_multiple_reserve_teams(const League *league)
+{
+    return lig(ligs->len - 1).layer == league->layer;
 }

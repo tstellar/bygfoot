@@ -53,6 +53,14 @@ typedef struct
 } TeamMove;
 
 
+typedef struct
+{
+    gint num_promotions_from;
+    gint num_promotions_to;
+    gint num_relegations_from;
+    gint max_promotions;
+} MoveSummary;
+
 League
 league_new(gboolean new_id);
 
@@ -103,6 +111,9 @@ query_league_prom_games_begin(const League *league);
 
 gboolean
 query_league_matches_in_week(const League *league, gint week_number);
+
+void
+country_apply_reserve_prom_rules(const Country *country, GArray *team_movements);
 
 void
 league_get_team_movements_prom_rel(const League *league, GArray *team_movements);
@@ -172,5 +183,15 @@ league_cup_get_week_with_break(gint clid, gint week_number);
 
 void
 country_lookup_first_team_ids(const Country *country);
+
+gboolean
+league_can_accept_promoted_team(const League *league, const Team *tm,
+                                const GArray *team_movements);
+
+gboolean
+league_allows_reserve_teams(const League *league);
+
+gboolean
+league_allows_multiple_reserve_teams(const League *league);
 
 #endif

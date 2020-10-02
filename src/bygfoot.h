@@ -134,6 +134,15 @@ enum ExitCodes
 };
 
 /**
+ * An enum representing a countries promotion rules for reserve teams.
+ */
+enum ReservePromRules
+{
+   RESERVE_PROM_RULES_NONE = 0,
+   RESERVE_PROM_RULES_DEFAULT
+};
+
+/**
  * A struct representing a country.
  */
 typedef struct
@@ -146,6 +155,8 @@ typedef struct
 	how good the first league of the country is.
 	Spain, for instance, has rating 10, whereas Ireland has only 5. */
     gint rating;
+
+    enum ReservePromRules reserve_promotion_rules;
 
     /** Leagues and cups arrays. */
     GArray *leagues, *cups;

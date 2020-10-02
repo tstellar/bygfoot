@@ -50,6 +50,7 @@ enum XmlLoadSaveCountryTags
     TAG_MISC_BET_ODD,
     TAG_MISC_VERSION,
     TAG_MISC_CURRENT_INTEREST,
+    TAG_MISC_RESERVE_PROMOTION_RULES,
     TAG_END
 };
 
@@ -116,6 +117,7 @@ xml_loadsave_misc_end_element    (GMarkupParseContext *context,
     if(tag == TAG_NAME ||
        tag == TAG_SYMBOL ||
        tag == TAG_SID ||
+       tag == TAG_MISC_RESERVE_PROMOTION_RULES ||
        tag == TAG_MISC_VERSION ||
        tag == TAG_MISC_CURRENT_INTEREST ||
        tag == TAG_MISC_RATING ||
@@ -175,6 +177,8 @@ xml_loadsave_misc_text         (GMarkupParseContext *context,
 	misc_string_assign(&country.symbol, buf);
     else if(state == TAG_SID)
 	misc_string_assign(&country.sid, buf);
+    else if (state == TAG_MISC_RESERVE_PROMOTION_RULES)
+        country.reserve_promotion_rules = int_value;
     else if(state == TAG_MISC_SEASON)
 	season = int_value;
     else if(state == TAG_MISC_WEEK)
@@ -263,6 +267,7 @@ xml_loadsave_misc_write(const gchar *prefix)
     xml_write_string(fil, country.name, TAG_NAME, I0);
     xml_write_string(fil, country.symbol, TAG_SYMBOL, I0);
     xml_write_string(fil, country.sid, TAG_SID, I0);
+    xml_write_int(fil, country.reserve_promotion_rules, TAG_MISC_RESERVE_PROMOTION_RULES, I0);
     xml_write_int(fil, country.rating, TAG_MISC_RATING, I0);
     xml_write_int(fil, season, TAG_MISC_SEASON, I0);
     xml_write_int(fil, week, TAG_MISC_WEEK, I0);
