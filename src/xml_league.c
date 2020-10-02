@@ -67,6 +67,8 @@
 #define TAG_TEAM_SYMBOL "team_symbol"
 #define TAG_TEAM_NAMES_FILE "team_names_file"
 #define TAG_TEAM_AVERAGE_TALENT "team_average_talent"
+#define TAG_TEAM_FIRST_TEAM "first_team"
+#define TAG_TEAM_RESERVE_LEVEL "reserve_level"
 #define TAG_TEAM_DEF_FILE "def_file"
 #define TAG_TWO_MATCH_WEEK_START "two_match_week_start"
 #define TAG_TWO_MATCH_WEEK_END "two_match_week_end"
@@ -112,6 +114,8 @@ enum XmlLeagueStates
     STATE_TEAM_SYMBOL,
     STATE_TEAM_NAMES_FILE,
     STATE_TEAM_AVERAGE_TALENT,
+    STATE_TEAM_FIRST_TEAM,
+    STATE_TEAM_RESERVE_LEVEL,
     STATE_TEAM_DEF_FILE,
     STATE_BREAK,
     STATE_JOINED_LEAGUE,
@@ -278,6 +282,10 @@ xml_league_read_start_element (GMarkupParseContext *context,
 	state = STATE_TEAM_AVERAGE_TALENT;
     else if(strcmp(element_name, TAG_TEAM_DEF_FILE) == 0)
 	state = STATE_TEAM_DEF_FILE;
+    else if(strcmp(element_name, TAG_TEAM_FIRST_TEAM) == 0)
+	state = STATE_TEAM_FIRST_TEAM;
+    else if(strcmp(element_name, TAG_TEAM_RESERVE_LEVEL) == 0)
+	state = STATE_TEAM_RESERVE_LEVEL;
     else
 	debug_print_message("xml_league_read_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
@@ -340,6 +348,8 @@ xml_league_read_end_element    (GMarkupParseContext *context,
 	state = STATE_TEAMS;
     else if(strcmp(element_name, TAG_TEAM_NAME) == 0 ||
 	    strcmp(element_name, TAG_TEAM_DEF_FILE) == 0 ||
+	    strcmp(element_name, TAG_TEAM_FIRST_TEAM) == 0 ||
+	    strcmp(element_name, TAG_TEAM_RESERVE_LEVEL) == 0 ||
 	    strcmp(element_name, TAG_TEAM_AVERAGE_TALENT) == 0 ||
 	    strcmp(element_name, TAG_TEAM_SYMBOL) == 0 ||
 	    strcmp(element_name, TAG_TEAM_NAMES_FILE) == 0)
@@ -477,6 +487,10 @@ xml_league_read_text         (GMarkupParseContext *context,
 	    (float_value / 10000) * const_float_fast(float_player_max_skill);
     else if(state == STATE_TEAM_DEF_FILE)
 	misc_string_assign(&g_array_index(new_league.teams, Team, new_league.teams->len - 1).def_file, buf);
+    else if(state == STATE_TEAM_FIRST_TEAM)
+	misc_string_assign(&g_array_index(new_league.teams, Team, new_league.teams->len - 1).first_team_sid, buf);
+    else if(state == STATE_TEAM_RESERVE_LEVEL)
+	g_array_index(new_league.teams, Team, new_league.teams->len - 1).reserve_level = int_value;
 }
 
 /**

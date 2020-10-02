@@ -319,6 +319,8 @@ cup_get_team_pointers(Cup *cup, gint round, GPtrArray *teams_sorted, gboolean pr
 	g_ptr_array_add(teams, &g_array_index(cup_round->teams, Team, i));
     }
 
+    country_lookup_first_team_ids(&country);
+
     if(debug > 70)
 	for(i=0;i<teams->len;i++)
 	    g_print("cup_get_team_pointers: %s round %d team %d %s (clid %d)\n", 

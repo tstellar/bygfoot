@@ -64,6 +64,9 @@ team_get_pointers_from_array(const GArray *teams, GPtrArray *team_ptrs);
 Team*
 team_of_id(gint id);
 
+Team*
+team_of_sid(const char *sid, const Country *country);
+
 const Fixture*
 team_get_fixture(const Team *tm, gboolean last_fixture);
 
@@ -159,5 +162,8 @@ team_complete_def_sort(Team *tm);
 
 gint
 team_get_table_clid(const Team *tm);
+
+gboolean
+team_is_reserve_team(const Team *tm);
 
 #endif

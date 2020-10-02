@@ -100,6 +100,23 @@ typedef struct
        Array of players.
     */
     GArray *players;
+
+    /** If this is a reserve team, then this will be the name of the the team's
+     * first team.  Otherwise, this will be NULL. It is preferred to use
+     * first_team_id to access the first team.  However, we need to keep a
+     * reference to the first team sid, because we do know the team ids yet
+     * for all teams when we parse team information in xml_league_read().
+     * The first_team_id will be computed later once all teams have been fully
+     * loaded from xml. */
+    gchar *first_team_sid;
+    /** id of the first team if this is a reserve team otherwise 0. */
+    gint first_team_id;
+    /** The level of an reserve team.  e.g. If you have teams: Green,
+     * Green II, and Green III.  Then the reserve_level will be 0, 2, and 3
+     * respectively. A value of 1 for this field is not valid.  The reason
+     * to have Green II be level 2 and not 1 is because it makes the xml
+     * definitions less confusing.*/
+    gint reserve_level;
 } Team;
 
 #endif

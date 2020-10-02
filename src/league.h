@@ -170,4 +170,7 @@ league_cup_adjust_week_breaks(GArray *week_breaks, gint week_gap);
 gint
 league_cup_get_week_with_break(gint clid, gint week_number);
 
+void
+country_lookup_first_team_ids(const Country *country);
+
 #endif
