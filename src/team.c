@@ -69,6 +69,9 @@ team_new(gboolean new_id)
     new.luck = 1;
 
     new.players = g_array_new(FALSE, FALSE, sizeof(Player));
+    new.first_team_sid = NULL;
+    new.first_team_id = 0;
+    new.reserve_level = 0;
 
     return new;
 }
@@ -248,6 +251,38 @@ team_of_id(gint id)
 
     main_exit_program(EXIT_POINTER_NOT_FOUND, 
 		      "team_of_id: team with id %d not found.", id);
+
+    return NULL;
+}
+
+/** Return the pointer to the team belonging to the sid. */
+Team *
+team_of_sid(const char *sid, const Country *country)
+{
+    gint i, j, k;
+    for (i = 0; i < country->leagues->len; i++) {
+        const League *league = &g_array_index(country->leagues, League, i);
+        for (j = 0; j < league->teams->len; j++ ) {
+            Team *team = &g_array_index(league->teams, Team, j);
+            if (!strcmp(team->name, sid))
+                return team;
+        }
+    }
+
+    for( i = 0; i < country->cups->len; i++) {
+        const Cup *cup = &g_array_index(country->cups, Cup, i);
+        for (j = 0; j < cup->rounds->len; j++) {
+            const CupRound *round = &g_array_index(cup->rounds, CupRound, j);
+            for (k = 0; k < round->teams->len; k++) {
+                Team * team = &g_array_index(round->teams, Team, k);
+                if (!strcmp(team->name, sid))
+                    return team;
+            }
+        }
+    }
+
+    main_exit_program(EXIT_POINTER_NOT_FOUND,
+		      "team_of_sid: team with sid %s not found.", sid);
 
     return NULL;
 }
@@ -1427,4 +1462,10 @@ team_write_overall_results(const Team *tm, gint clid, gchar *results)
     }
 
     sprintf(results, "%d-%d-%d, %d:%d", won, lost, drawn, gf, ga);
+}
+
+gboolean
+team_is_reserve_team(const Team *tm)
+{
+    return tm->first_team_sid != NULL;
 }

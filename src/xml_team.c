@@ -43,6 +43,8 @@
 #define TAG_AVERAGE_TALENT "average_talent"
 #define TAG_FORMATION "formation"
 #define TAG_NAMES_FILE "names_file"
+#define TAG_FIRST_TEAM "first_team"
+#define TAG_RESERVE_LEVEL "reserve_level"
 #define TAG_PLAYER "player"
 #define TAG_PLAYER_NAME "player_name"
 #define TAG_PLAYER_BIRTH_YEAR "birth_year"
@@ -60,6 +62,8 @@ enum XmlTeamStates
     STATE_AVERAGE_TALENT,
     STATE_FORMATION,
     STATE_NAMES_FILE,
+    STATE_FIRST_TEAM,
+    STATE_RESERVE_LEVEL,
     STATE_PLAYER,
     STATE_PLAYER_NAME,
     STATE_PLAYER_BIRTH_YEAR,
@@ -101,6 +105,10 @@ xml_team_read_start_element (GMarkupParseContext *context,
 	state = STATE_FORMATION;
     else if(strcmp(element_name, TAG_NAMES_FILE) == 0)
 	state = STATE_NAMES_FILE;
+    else if(strcmp(element_name, TAG_FIRST_TEAM) == 0)
+	state = STATE_FIRST_TEAM;
+    else if(strcmp(element_name, TAG_RESERVE_LEVEL) == 0)
+	state = STATE_RESERVE_LEVEL;
     else if(strcmp(element_name, TAG_PLAYER) == 0)
     {
 	state = STATE_PLAYER;
@@ -145,6 +153,8 @@ xml_team_read_end_element    (GMarkupParseContext *context,
        strcmp(element_name, TAG_AVERAGE_TALENT) == 0 ||
        strcmp(element_name, TAG_FORMATION) == 0 ||
        strcmp(element_name, TAG_NAMES_FILE) == 0 ||
+       strcmp(element_name, TAG_FIRST_TEAM) == 0 ||
+       strcmp(element_name, TAG_RESERVE_LEVEL) == 0 ||
        strcmp(element_name, TAG_PLAYER) == 0)
     {
 	state = STATE_TEAM;
@@ -216,6 +226,10 @@ xml_team_read_text         (GMarkupParseContext *context,
 	team->structure = int_value;
     else if(state == STATE_NAMES_FILE)
 	misc_string_assign(&team->names_file, buf);
+    else if(state == STATE_FIRST_TEAM)
+	misc_string_assign(&team->first_team_sid, buf);
+    else if(state == STATE_RESERVE_LEVEL)
+	team->reserve_level = int_value;
     else if(state == STATE_PLAYER_NAME)
 	misc_string_assign(&new_player.name, buf);
     else if(state == STATE_PLAYER_BIRTH_YEAR && opt_int("int_opt_load_defs") == 1)

@@ -1144,3 +1144,31 @@ league_cup_get_week_with_break(gint clid, gint week_number)
 
     return week_number;
 }
+
+/** Lookup the first_team_id from the first_team_sid for each team in the
+ * country.  This will allow faster lookups of the first team.  This needs to
+ * be called after both xml_country_read() and team_generate_players_stadium()
+ * have been called, since those functions are what complete loads all the teams
+ * in a country. */
+void
+country_lookup_first_team_ids(const Country *country)
+{
+    gint i,j;
+    for (i = 0; i < country->leagues->len; i++) {
+        const League *league = &g_array_index(country->leagues, League, i);
+        for (j = 0; j < league->teams->len; j++) {
+            Team *team = &g_array_index(league->teams, Team, j);
+            if (!team_is_reserve_team(team)) {
+                team->first_team_id = team->id;
+                continue;
+            }
+
+            /* Check if we have already computed the first_team ID */
+            if (team->first_team_id != 0)
+                continue;
+
+            const Team *first_team = team_of_sid(team->first_team_sid, country);
+            team->first_team_id = first_team->id;
+        }
+    }
+}

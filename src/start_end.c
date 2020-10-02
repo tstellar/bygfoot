@@ -251,6 +251,7 @@ start_generate_league_teams(void)
 	for(j=0;j<lig(i).teams->len;j++)
 	    team_generate_players_stadium(&g_array_index(lig(i).teams, Team, j), 0);
 
+    country_lookup_first_team_ids(&country);
     stat5 = -1;
 }
 
