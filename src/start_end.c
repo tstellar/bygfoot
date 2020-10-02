@@ -794,6 +794,9 @@ start_new_season_league_changes(void)
     for(i=0;i<ligs->len;i++)
 	league_get_team_movements(&lig(i), team_movements);
 
+    if (country.reserve_promotion_rules)
+        country_apply_reserve_prom_rules(&country, team_movements);
+
     for(i=0;i<ligs->len;i++)
 	league_size[i] = lig(i).teams->len;
 

@@ -43,6 +43,7 @@
 #define TAG_LEAGUE "league"
 #define TAG_CUPS "cups"
 #define TAG_CUP "cup"
+#define TAG_RESERVE_PROMOTION_RULES "reserve_promotion_rules"
 
 /**
  * Enum with the states used in the XML parser functions.
@@ -59,6 +60,7 @@ enum XmlCountryStates
     STATE_LEAGUE,
     STATE_CUPS,
     STATE_CUP,
+    STATE_RESERVE_PROMOTION_RULES,
     STATE_END
 };
 
@@ -112,6 +114,8 @@ xml_country_read_start_element (GMarkupParseContext *context,
     }
     else if(strcmp(element_name, TAG_CUP) == 0)
 	state = STATE_CUP;
+    else if(strcmp(element_name, TAG_RESERVE_PROMOTION_RULES) == 0)
+	state = STATE_RESERVE_PROMOTION_RULES;
     else if(strcmp(element_name, TAG_COUNTRY) != 0)
 	debug_print_message("xml_country_read_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
@@ -139,6 +143,7 @@ xml_country_read_end_element    (GMarkupParseContext *context,
        strcmp(element_name, TAG_DEF_SID) == 0 ||
        strcmp(element_name, TAG_SUPERNATIONAL) == 0 ||
        strcmp(element_name, TAG_LEAGUES) == 0 ||
+       strcmp(element_name, TAG_RESERVE_PROMOTION_RULES) == 0 ||
        strcmp(element_name, TAG_CUPS) == 0)
 	state = STATE_COUNTRY;
     else if(strcmp(element_name, TAG_LEAGUE) == 0)
@@ -198,6 +203,16 @@ xml_country_read_text         (GMarkupParseContext *context,
 	xml_league_read(buf, cntry->leagues);
     else if(state == STATE_CUP)
 	xml_cup_read(buf, cntry->cups);
+    else if(state == STATE_RESERVE_PROMOTION_RULES) {
+	if (!strcmp(buf, "none"))
+	    cntry->reserve_promotion_rules = RESERVE_PROM_RULES_NONE;
+	else if (!strcmp(buf, "default"))
+	    cntry->reserve_promotion_rules = RESERVE_PROM_RULES_DEFAULT;
+	else {
+	    g_warning("Unknown value for <reserve_promotion_rules>: %s\n", buf);
+	    cntry->reserve_promotion_rules = RESERVE_PROM_RULES_NONE;
+	}
+    }
 }
 
 
