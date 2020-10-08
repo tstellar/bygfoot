@@ -63,6 +63,8 @@ typedef struct
 */
 typedef struct
 {
+    gint ranks[2]; /**< The range of teams; default 0 and 0.  This is only valid
+                        loser_sid == NULL. */
     /** The id of the league the promotion games winner gets promoted to. Default "" */
     gchar *dest_sid;
     /** The id of the league the promotion games losers get moved to. Default "" */

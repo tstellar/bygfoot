@@ -101,6 +101,8 @@ enum XmlLeagueStates
     STATE_PROM_GAMES_LOSER_SID,
     STATE_PROM_GAMES_NUMBER_OF_ADVANCE,
     STATE_PROM_GAMES_CUP_SID,
+    STATE_PROM_GAMES_RANK_START,
+    STATE_PROM_GAMES_RANK_END,
     STATE_PROM_REL_ELEMENT,
     STATE_PROM_REL_ELEMENT_RANK_START,
     STATE_PROM_REL_ELEMENT_RANK_END,
@@ -249,11 +251,17 @@ xml_league_read_start_element (GMarkupParseContext *context,
 	g_array_append_val(new_league.prom_rel.elements, new_element);
 	state = STATE_PROM_REL_ELEMENT;	
     }
-    else if(strcmp(element_name, TAG_PROM_REL_ELEMENT_RANK_START) == 0)
-	state = STATE_PROM_REL_ELEMENT_RANK_START;
-    else if(strcmp(element_name, TAG_PROM_REL_ELEMENT_RANK_END) == 0)
-	state = STATE_PROM_REL_ELEMENT_RANK_END;
-    else if(strcmp(element_name, TAG_PROM_REL_ELEMENT_NUMBER_OF_TEAMS) == 0)
+    else if(strcmp(element_name, TAG_PROM_REL_ELEMENT_RANK_START) == 0) {
+	if (state == STATE_PROM_GAMES)
+	    state = STATE_PROM_GAMES_RANK_START;
+	else
+	    state = STATE_PROM_REL_ELEMENT_RANK_START;
+    } else if(strcmp(element_name, TAG_PROM_REL_ELEMENT_RANK_END) == 0) {
+	if (state == STATE_PROM_GAMES)
+	    state = STATE_PROM_GAMES_RANK_END;
+	else
+	    state = STATE_PROM_REL_ELEMENT_RANK_END;
+    } else if(strcmp(element_name, TAG_PROM_REL_ELEMENT_NUMBER_OF_TEAMS) == 0)
 	state = STATE_PROM_REL_ELEMENT_NUMBER_OF_TEAMS;
     else if(strcmp(element_name, TAG_PROM_REL_ELEMENT_DEST_SID) == 0)
 	state = STATE_PROM_REL_ELEMENT_DEST_SID;
@@ -338,8 +346,12 @@ xml_league_read_end_element    (GMarkupParseContext *context,
 	    strcmp(element_name, TAG_PROM_GAMES_CUP_SID) == 0)
 	state = STATE_PROM_GAMES;
     else if(strcmp(element_name, TAG_PROM_REL_ELEMENT_RANK_START) == 0 ||
-	    strcmp(element_name, TAG_PROM_REL_ELEMENT_RANK_END) == 0 ||
-	    strcmp(element_name, TAG_PROM_REL_ELEMENT_NUMBER_OF_TEAMS) == 0 ||
+	    strcmp(element_name, TAG_PROM_REL_ELEMENT_RANK_END) == 0) {
+	if (state == STATE_PROM_GAMES_RANK_START || state == STATE_PROM_GAMES_RANK_END)
+	    state = STATE_PROM_GAMES;
+	else
+	    state = STATE_PROM_REL_ELEMENT;
+    } else if(strcmp(element_name, TAG_PROM_REL_ELEMENT_NUMBER_OF_TEAMS) == 0 ||
 	    strcmp(element_name, TAG_PROM_REL_ELEMENT_DEST_SID) == 0 ||
 	    strcmp(element_name, TAG_PROM_REL_ELEMENT_FROM_TABLE) == 0 ||
 	    strcmp(element_name, TAG_PROM_REL_ELEMENT_TYPE) == 0)
@@ -441,6 +453,12 @@ xml_league_read_text         (GMarkupParseContext *context,
     else if(state == STATE_PROM_GAMES_CUP_SID)
 	g_array_index(new_league.prom_rel.prom_games, PromGames,
                       new_league.prom_rel.prom_games->len - 1).cup_sid = g_strdup(buf);
+    else if(state == STATE_PROM_GAMES_RANK_START)
+	g_array_index(new_league.prom_rel.prom_games, PromGames,
+                      new_league.prom_rel.prom_games->len - 1).ranks[0] = int_value;
+    else if(state == STATE_PROM_GAMES_RANK_END)
+	g_array_index(new_league.prom_rel.prom_games, PromGames,
+                      new_league.prom_rel.prom_games->len - 1).ranks[1] = int_value;
     else if(state == STATE_PROM_REL_ELEMENT_RANK_START)
 	g_array_index(new_league.prom_rel.elements,
 		      PromRelElement,
@@ -562,6 +580,23 @@ xml_league_read(const gchar *league_name, GArray *leagues)
             elem->num_teams = (elem->ranks[1] - elem->ranks[0]) + 1;
         }
 
+        for(i = 0; i < new_league.prom_rel.prom_games->len; i++) {
+	    PromGames *prom_games =
+	        &g_array_index(new_league.prom_rel.prom_games, PromGames, i);
+
+            /* Specifying ranks and loser_sid is not supported. */
+	    if (prom_games->loser_sid &&
+	        (prom_games->ranks[0] || prom_games->ranks[1]))
+		g_critical("%s: Cannot specify ranks (%d, %d) and loser_sid (%s)",
+		           buf, prom_games->ranks[0], prom_games->ranks[1],
+			   prom_games->loser_sid);
+		
+	    /* Compute the values for rank when it is not specified. */
+	    if (!prom_games->ranks[0] && !prom_games->ranks[1]) {
+                prom_games->ranks[0] = 1;
+		prom_games->ranks[1] = prom_games->number_of_advance;
+	    }
+	}
     }
     else
     {

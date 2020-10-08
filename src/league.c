@@ -125,6 +125,7 @@ prom_games_new(void)
     new.loser_sid = NULL;
     new.cup_sid = NULL;
     new.number_of_advance = 1;
+    new.ranks[0] = new.ranks[1] = 0;
 
     return new;
 }
@@ -1040,8 +1041,8 @@ league_get_team_movements_prom_games(const League *league, const PromGames *prom
     GArray *dest_idcs = NULL;
     gint dest_idcs_int[dest_sids->len];
     gint dest_idcs_order[dest_sids->len];
-    gint start_idx = 0, 
-    end_idx = prom_games->number_of_advance;
+    gint start_idx = prom_games->ranks[0] - 1,
+    end_idx = prom_games->ranks[1];
     gint prom_type = PROM_REL_PROMOTION;
 
     if(!up)
