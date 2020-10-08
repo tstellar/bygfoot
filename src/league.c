@@ -596,7 +596,22 @@ league_get_max_movements(const League *league, enum PromRelType type)
         max+= element->num_teams;
     }
 
-    /* FIXME: What about promotion games? */
+    for (i = 0; i < league->prom_rel.prom_games->len; i++) {
+        const PromGames *prom_games =
+            &g_array_index(league->prom_rel.prom_games, PromGames, i);
+        const Cup *cup;
+        const GPtrArray *teams;
+        if (type == PROM_REL_PROMOTION) {
+            max += prom_games->number_of_advance;
+            continue;
+        }
+
+        /* PROM_REL_RELEGATION */
+        cup = cup_from_sid(prom_games->cup_sid);
+        teams = cup_get_teams_sorted(cup);
+        max += (teams->len - prom_games->number_of_advance);
+    }
+
     return max;
 }
 
