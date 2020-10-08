@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Faroe Islands Delid 3a Innleiðandi</name>
+  <short_name>Delid 3a Innleiðandi</short_name>
+  <symbol>flag_faroe_islands.png</symbol>
+  <sid>faroe_islands4a_qualifying</sid>
+  <property>national</property>
+  <property>include_reserve_teams</property>
+  <group>2000</group>
+  <!-- last_week only gets generated when add_week == 1000, so we need to
+       specify it here.  6 teams with 2 round robins = 10 matches.  We want
+       to start in week 3, and there will be 2 breaks for the Faroe Islands
+       cup in week 5 and 10, so the last week will be week 14.  However,
+       the breaks are ignored when computing the start week, so we need
+       to specify last week of 12 to get the actual last week to be 14.-->
+  <last_week>12</last_week>
+  <cup_rounds>
+    <cup_round>
+      <break_in length="1">5</break_in>
+      <break_in length="1">10</break_in>
+      <number_of_groups>1</number_of_groups>
+      <choose_teams>
+        <choose_team>
+          <choose_team_sid>faroe_islands4</choose_team_sid>
+          <number_of_teams>6</number_of_teams>
+          <start_idx>1</start_idx>
+          <end_idx>18</end_idx>
+	  <randomly>1</randomly>
+        </choose_team>
+      </choose_teams>
+    </cup_round>
+    </cup_rounds>
+</cup>

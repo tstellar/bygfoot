@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Faroe Islands Delid 3b Endaspæl</name>
+  <short_name>Delid 3b Endaspæl</short_name>
+  <symbol>flag_faroe_islands.png</symbol>
+  <sid>faroe_islands4b_finals</sid>
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>include_reserve_teams</property>
+
+  <cup_rounds>
+    <cup_round>
+      <!-- The qualifying cups end on week 14, so this cup will start on week
+           15. -->
+      <break_in length="1">15</break_in>
+      <break_in length="1">20</break_in>
+      <break_in length="1">25</break_in>
+      <break_in length="1">30</break_in>
+      <number_of_groups>1</number_of_groups>
+      <choose_teams>
+        <choose_team>
+          <choose_team_sid>faroe_islands4a_qualifying</choose_team_sid>
+          <number_of_teams>2</number_of_teams>
+          <start_idx>3</start_idx>
+          <end_idx>4</end_idx>
+        </choose_team>
+        <choose_team>
+          <choose_team_sid>faroe_islands4b_qualifying</choose_team_sid>
+          <number_of_teams>2</number_of_teams>
+          <start_idx>3</start_idx>
+          <end_idx>4</end_idx>
+        </choose_team>
+        <choose_team>
+          <choose_team_sid>faroe_islands4c_qualifying</choose_team_sid>
+          <number_of_teams>2</number_of_teams>
+          <start_idx>3</start_idx>
+          <end_idx>4</end_idx>
+        </choose_team>
+      </choose_teams>
+    </cup_round>
+    </cup_rounds>
+</cup>
