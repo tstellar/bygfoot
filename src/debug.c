@@ -43,7 +43,11 @@ debug_print_message(gchar *format, ...)
     gchar buf[SMALL];
     const gchar *home;
     FILE *fil = NULL;
+#ifdef GLIB_VERSION_2_62
     GDateTime *logtime;
+#else
+    GTimeVal logtime;
+#endif
     gchar *logtime_string;
      
     if(format != NULL)
@@ -58,10 +62,15 @@ debug_print_message(gchar *format, ...)
 
     if(debug_output != DEBUG_OUT_STDOUT)
     {
+#ifdef GLIB_VERSION_2_62
         gint64 current_time = g_get_real_time();
         logtime = g_date_time_new_from_unix_utc(current_time);
         logtime_string = g_date_time_format_iso8601(logtime);
         g_date_time_unref(logtime);
+#else
+        g_get_current_time(&logtime);
+        logtime_string = g_time_val_to_iso8601(&logtime);
+#endif
 
         sprintf(text, "%s %s\n", logtime_string, buf);
         g_free(logtime_string);

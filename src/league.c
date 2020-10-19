@@ -686,7 +686,16 @@ handle_required_reserve_relegation(const TeamMove *move, GArray *team_movements)
                     /* We have found the last relegation for this league, so
                      * insert the new_move here. */
                     gint insert_index = k + 1;
+#ifdef GLIB_VERSION_2_62
                     new_move.dest_idcs = g_array_copy(move->dest_idcs);
+#else
+                    new_move.dest_idcs = g_array_sized_new(FALSE, FALSE,
+                                                           sizeof(gint),
+                                                           move->dest_idcs->len);
+                    g_array_append_vals(new_move.dest_idcs,
+                                        move->dest_idcs->data,
+                                        move->dest_idcs->len);
+#endif
 
                     if(debug > 70) {
                         printf("Adding relegation of %s\n", reserve_team->name);
