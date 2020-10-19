@@ -48,7 +48,9 @@
 /**
  * Program version number and year (copyright).
  */
+#ifndef VERS
 #define VERS "2.3.3"
+#endif
 #define YEAR "2005 - 2011"
 
 /** Home dir name */
