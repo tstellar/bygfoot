@@ -19,20 +19,22 @@ mkdir -p $installdir
 cmake -G Ninja  -B $builddir -S $srcdir -DCMAKE_INSTALL_PREFIX=$installdir -DCMAKE_C_FLAGS=-DVERS=\"\\\"$version\\\"\"
 ninja -v -C $builddir install
 
-# FIXME: This is a work-around for bygfoot not being able to find the
-# bygfoot_constants file when its packaged this way.
+# Fixup install dir so that bygfoot can find the support
+# files.
 
-mv $installdir/bin/bygfoot $installdir/bin/.bygfoot-bin
+mv $installdir/bin/bygfoot $installdir/
+rmdir $installdir/bin
 
+mv $installdir/share/bygfoot/support_files $installdir
 
-cat <<EOF > $installdir/bin/bygfoot
-#!/bin/bash
-cd \`dirname "\$0"\`
-cd ../share/bygfoot
-../../bin/.bygfoot-bin
-EOF
+mv $installdir/share/locale $installdir
+rmdir $installdir/share/bygfoot
+rmdir $installdir/share
 
-chmod a+x $installdir/bin/bygfoot
+# The original package script did this, so lets do it too.
+for f in AUTHORS COPYING ChangeLog INSTALL README TODO UPDATE ReleaseNotes; do
+    cp $srcdir/$f $installdir/
+done
 
 tar -cjf bygfoot-$version.tar.bz2 $installdir
 
