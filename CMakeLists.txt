@@ -39,3 +39,14 @@ install(TARGETS bygfoot)
 
 install(DIRECTORY support_files DESTINATION
 	${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME})
+
+find_package(Gettext)
+if (GETTEXT_FOUND)
+    set (languages bg da de el es fr it nl pl pt_BR pt_PT ro sv tr zh)
+    foreach (lang ${languages})
+        GETTEXT_PROCESS_PO_FILES(${lang} ALL PO_FILES po/${lang}.po)
+	install(FILES ${CMAKE_BINARY_DIR}/${lang}.gmo DESTINATION
+		${CMAKE_INSTALL_LOCALEDIR}/${lang}/LC_MESSAGES/ RENAME
+		bygfoot.mo)
+    endforeach()
+endif()
