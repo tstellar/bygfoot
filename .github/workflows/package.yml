@@ -17,10 +17,53 @@ jobs:
         run: sudo apt-get install libglib2.0-dev libgtk2.0-dev libpango1.0-dev libatk1.0-dev libfreetype6-dev ninja-build
 
       - name: Package Bygfoot
-        run: ./scripts/package-linux.sh .
+        run: ./scripts/package.sh .
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: "bygfoot-${{ env.BYGFOOT_VERSION }}"
+          name: "bygfoot-${{ env.BYGFOOT_VERSION }}-linux"
+          path: "*.bz2"
+
+  package-windows:
+    runs-on:
+      - windows-2016
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - name: Install ninja
+        run: pip install ninja
+
+      - name: Download dependencies
+        run: |
+          curl -O -L https://download.gnome.org/binaries/win64/gtk+/2.22/gtk+-bundle_2.22.1-20101229_win64.zip
+          unzip gtk+-bundle_2.22.1-20101229_win64.zip
+
+        shell: bash
+
+      - name: Copy dependencies intall package directory
+        shell: bash
+        run: |
+          mkdir -p bygfoot-$BYGFOOT_VERSION
+          cp bin/*.dll bygfoot-$BYGFOOT_VERSION
+          cp ./share/doc/gtk+-2.22.1/COPYING bygfoot-$BYGFOOT_VERSION/COPYING.gtk+
+          cp ./share/doc/glib-2.26.1/COPYING bygfoot-$BYGFOOT_VERSION/COPYING.glib
+
+      - name: Package Bygfoot
+        env:
+          CC: gcc
+          CXX: g++
+          PkgConfig_DIR: ./
+        run: |
+          # Set PATH so CMake can find pkg-config
+          export PATH=`pwd`/bin:$PATH
+          # export GTKMM_BASEPATH=`pwd`
+          ./scripts/package.sh .
+        shell: bash
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: "bygfoot-${{ env.BYGFOOT_VERSION }}-win64"
           path: "*.bz2"
