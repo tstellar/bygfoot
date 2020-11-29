@@ -24,6 +24,15 @@
 	  have to change xml files anymore
 	- Add the boost and style settings to the default team (ticket 2778645 )
 	- Always show news after a match (Bug 3257236)
+	- Performance improvements for game simulations.
+	- Added new xml tags to support creating reserve teams:
+	  first_team and reserve_level tags added to team xml definitions.
+	  reserve_promotion_rules tag to country xml definitions.
+	  number_of_teams tag added to prom_rel_element.
+	  rank_start, rank_end tags added to prom_games.
+	- Bug fix for cups with (N^2) + 1 teams.
+	- Updated Faroe Islands definitions for 2019.
+	- XML definitions are checked for errors at startup.
 
 05/07/2009: v2.3.2
 	- added Turkish translation, news and hints (thanks to Cem Uykun)
