@@ -58,7 +58,7 @@ jobs:
         run: |
           # Set PATH so CMake can find pkg-config
           export PATH=`pwd`/bin:$PATH
-          # export GTKMM_BASEPATH=`pwd`
+          export GTKMM_BASEPATH=`pwd`
           ./scripts/package.sh .
         shell: bash
 

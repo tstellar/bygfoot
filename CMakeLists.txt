@@ -1,17 +1,13 @@
 cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 set(CMAKE_LEGACY_CYGWIN_WIN32 0)
 
+# This is needed so that CMake will use the PkgConfig_ROOT environment variable which
+# we need to set for Windows builds with GitHub Actions.
+cmake_policy(SET CMP0074 NEW)
+
 project("bygfoot")
 
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(GLIB_PKG glib-2.0)
-
-if (GLIB_PKG_FOUND)
-    message(Found glib-2.0)
-    # include_directories(${GLIB_PKG_INCLUDE_DIRS})
-endif (GLIB_PKG_FOUND)
-
- pkg_check_modules (GTK2 REQUIRED gtk+-2.0)
+find_package(GTK2 REQUIRED)
  # Setup CMake to use GTK+, tell the compiler where to look for headers
  # and to the linker where to look for libraries
  # Setup CMake to use GTK+, tell the compiler where to look for headers
@@ -19,8 +15,9 @@ endif (GLIB_PKG_FOUND)
  link_directories (${GTK2_LIBRARY_DIRS})
  # Add other flags to the compiler
  add_definitions (${GTK2_CFLAGS_OTHER})
- pkg_check_modules (GETTEXT REQUIRED)
+ find_package(Gettext REQUIRED)
  add_definitions("-DGETTEXT_PACKAGE=\"${PROJECT_NAME}\"")
+ find_package(Intl REQUIRED)
  find_package(ZLIB)
  include(GNUInstallDirs)
  add_definitions("-DPACKAGE_DATA_DIR=\"${CMAKE_INSTALL_FULL_DATADIR}\"")
@@ -33,7 +30,7 @@ add_executable(bygfoot src/bet.c src/bet.h src/finance.h src/fixture.h src/game_
 target_compile_options(bygfoot PRIVATE -Wno-deprecated-declarations)
  # Link the target to the GTK+ libraries
  target_link_libraries (bygfoot ${GTK2_LIBRARIES} ${GLIB_LIBRARIES} m
-	 ${ZLIB_LIBRARIES})
+	 ${ZLIB_LIBRARIES} ${Intl_LIBRARIES})
 
 install(TARGETS bygfoot)
 
