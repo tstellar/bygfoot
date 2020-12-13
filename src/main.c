@@ -72,7 +72,7 @@ gboolean load_last_save;
 
 /** Parse the command line arguments given by the user. */
     void
-main_parse_cl_arguments(gint *argc, gchar ***argv)
+main_parse_cl_arguments(gint *argc, gchar ***argv, Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("main_parse_cl_arguments\n");
@@ -163,7 +163,7 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
         gchar *fullpath = (support_dir[strlen(support_dir)] == G_DIR_SEPARATOR) ?
             g_path_get_dirname(support_dir) :
             g_strdup_printf("%s%s", support_dir, G_DIR_SEPARATOR_S);
-        file_add_support_directory_recursive(fullpath);
+        file_add_support_directory_recursive(bygfoot, fullpath);
         g_free(fullpath);
         g_free(support_dir);
     }
@@ -346,7 +346,7 @@ static void validate_country_file(gpointer country_file, gpointer user_data)
   @param argv Command line arguments array.
  */
     void
-main_init(gint *argc, gchar ***argv)
+main_init(gint *argc, gchar ***argv, Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("main_init\n");
@@ -367,28 +367,28 @@ main_init(gint *argc, gchar ***argv)
 #endif
 
 #if defined(G_OS_UNIX) && !defined(MAC_BUILD)
-    file_add_support_directory_recursive(PACKAGE_DATA_DIR "/" PACKAGE "/support_files");
+    file_add_support_directory_recursive(bygfoot, PACKAGE_DATA_DIR "/" PACKAGE "/support_files");
     sprintf(buf, "%s%s%s", g_get_home_dir(), G_DIR_SEPARATOR_S, HOMEDIRNAME);
-    file_add_support_directory_recursive(buf);
+    file_add_support_directory_recursive(bygfoot, buf);
 #endif
 
 #ifndef MAC_BUILD
     dir = g_get_current_dir();
     sprintf(buf, "%s%ssupport_files", dir, G_DIR_SEPARATOR_S);
-    file_add_support_directory_recursive(buf);
+    file_add_support_directory_recursive(bygfoot, buf);
 
     sprintf(buf, "%s%ssaves", dir, G_DIR_SEPARATOR_S);
-    file_add_support_directory_recursive(buf);
+    file_add_support_directory_recursive(bygfoot, buf);
     g_free(dir);
 #else
     dir = file_get_mac_resource_path("support_files");
-    file_add_support_directory_recursive(dir);
+    file_add_support_directory_recursive(bygfoot, dir);
 #endif
 
     main_init_variables();
 
     load_last_save = FALSE;
-    main_parse_cl_arguments(argc, argv);
+    main_parse_cl_arguments(argc, argv, bygfoot);
 
     /* Validate XML */
     country_files = file_get_country_files();
@@ -427,7 +427,7 @@ main (gint argc, gchar *argv[])
     bygfoot_init(&bygfoot, BYGFOOT_FRONTEND_GTK2);
     gtk_init (&argc, &argv);
 
-    main_init(&argc, &argv);
+    main_init(&argc, &argv, &bygfoot);
 
     if((load_last_save && !load_game_from_command_line(&bygfoot, "last_save")) ||
             (!load_last_save && (argc == 1 ||

@@ -76,7 +76,7 @@ void add_definitions_directory(const gchar *directory)
   @see #support_directories  
  */
   void
-file_add_support_directory_recursive                   (const gchar     *directory)
+file_add_support_directory_recursive(Bygfoot *bygfoot, const gchar     *directory)
 {
 #ifdef DEBUG
   printf("file_add_support_directory_recursive\n");
@@ -98,7 +98,8 @@ file_add_support_directory_recursive                   (const gchar     *directo
   }
 
   add_definitions_directory(directory);
-  add_pixmap_directory(directory);
+  if (bygfoot->frontend == BYGFOOT_FRONTEND_GTK2)
+    add_pixmap_directory(directory);
   support_directories = g_list_prepend (support_directories,
       g_strdup (directory));
   while(TRUE)
@@ -112,7 +113,7 @@ file_add_support_directory_recursive                   (const gchar     *directo
         G_DIR_SEPARATOR_S, file);
 
     if(g_file_test(fullpath, G_FILE_TEST_IS_DIR))
-      file_add_support_directory_recursive(fullpath);            
+      file_add_support_directory_recursive(bygfoot, fullpath);
 
     g_free(fullpath);
   }

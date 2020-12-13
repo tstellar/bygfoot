@@ -579,6 +579,7 @@ G_MODULE_EXPORT void
 on_menu_new_activate                   (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_menu_new_activate\n");
 #endif
@@ -586,7 +587,7 @@ on_menu_new_activate                   (GtkMenuItem     *menuitem,
     window_destroy(&window.main);
     free_memory();
     
-    main_init(NULL, NULL);
+    main_init(NULL, NULL, bygfoot);
     window_show_startup(user_data);
     stat0 = STATUS_TEAM_SELECTION;
     statp = NULL;
