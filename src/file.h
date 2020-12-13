@@ -39,7 +39,7 @@
 #endif
 
 void
-file_add_support_directory_recursive                   (const gchar     *directory);
+file_add_support_directory_recursive(Bygfoot *bygfoot, const gchar     *directory);
 
 gchar*
 file_find_support_file                       (const gchar     *filename, gboolean warning);

@@ -29,7 +29,7 @@
 #include "bygfoot.h"
 
 void
-main_init(gint *argc, gchar ***argv);
+main_init(gint *argc, gchar ***argv, Bygfoot *bygfoot);
 
 void
 main_init_variables(void);
@@ -44,6 +44,6 @@ main_exit_program(gint exit_code, gchar *format, ...);
 #endif
 
 void
-main_parse_cl_arguments(gint *argc, gchar ***argv);
+main_parse_cl_arguments(gint *argc, gchar ***argv, Bygfoot *bygfoot);
 
 #endif
