@@ -75,7 +75,7 @@ on_spinbutton_speed_value_changed      (GtkSpinButton   *spinbutton,
 
 void
 on_button_add_player_clicked           (GtkButton       *button,
-                                        gpointer         user_data);
+                                        Bygfoot         *bygfoot);
 
 
 gboolean
@@ -85,7 +85,7 @@ on_treeview_users_button_press_event   (GtkWidget       *widget,
 
 void
 on_entry_player_name_activate          (GtkEntry        *entry,
-                                        gpointer         user_data);
+                                        Bygfoot         *bygfoot);
 
 void
 on_spinbutton_capacity_value_changed   (GtkSpinButton   *spinbutton,

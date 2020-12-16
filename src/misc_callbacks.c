@@ -42,25 +42,25 @@
 
 G_MODULE_EXPORT void
 on_button_add_player_clicked           (GtkButton       *button,
-                                        gpointer         user_data)
+                                        Bygfoot         *bygfoot)
 {
 #ifdef DEBUG
     printf("on_button_add_player_clicked\n");
 #endif
 
-    misc_callback_add_player();
+    misc_callback_add_player(bygfoot);
 }
 
 
 G_MODULE_EXPORT void
 on_entry_player_name_activate          (GtkEntry        *entry,
-                                        gpointer         user_data)
+                                        Bygfoot         *bygfoot)
 {
 #ifdef DEBUG
     printf("on_entry_player_name_activate\n");
 #endif
 
-    on_button_add_player_clicked(NULL, NULL);
+    on_button_add_player_clicked(NULL, bygfoot);
 }
 
 

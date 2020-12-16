@@ -585,7 +585,7 @@ on_menu_new_activate                   (GtkMenuItem     *menuitem,
     free_memory();
     
     main_init(NULL, NULL);
-    window_show_startup();
+    window_show_startup(user_data);
     stat0 = STATUS_TEAM_SELECTION;
     statp = NULL;
 }
