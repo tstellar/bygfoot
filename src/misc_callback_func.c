@@ -130,7 +130,7 @@ misc_callback_start_game(void)
 
 /** Add a user to the users array. */
 void
-misc_callback_add_player(void)
+misc_callback_add_player(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("misc_callback_add_player\n");
@@ -145,22 +145,15 @@ misc_callback_add_player(void)
     GtkComboBox *combo_leagues =
 	GTK_COMBO_BOX(lookup_widget(window.startup, "combobox_start_league"));
     const gchar *player_name = gtk_entry_get_text(entry_player_name);
-    User new_user = user_new();
     Team *tm = (Team*)treeview_helper_get_pointer(treeview_startup, 2);
+    User *new_user = bygfoot_add_user(bygfoot, player_name, tm);
     gint start_league = 
 	gtk_combo_box_get_active(combo_leagues);
     
-    if(strlen(player_name) > 0)
-	misc_string_assign(&new_user.name, player_name);
-    
     gtk_entry_set_text(entry_player_name, "");
     
-    new_user.tm = tm;
-    new_user.team_id = tm->id;
-
-    new_user.scout = (start_league == 0 || tm->clid == lig(start_league - 1).id) ? -1 : start_league - 1;
+    new_user->scout = (start_league == 0 || tm->clid == lig(start_league - 1).id) ? -1 : start_league - 1;
     
-    g_array_append_val(users, new_user);
 
     treeview_show_users(treeview_users);
 

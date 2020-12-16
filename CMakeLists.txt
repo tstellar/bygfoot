@@ -28,7 +28,7 @@ add_definitions("-DPACKAGE=\"${PROJECT_NAME}\"")
 
 add_executable(bygfoot WIN32
     src/bet.c src/bet.h src/bet_struct.h
-    src/bygfoot.h
+    src/bygfoot.c src/bygfoot.h
     src/callback_func.c src/callback_func.h
     src/callbacks.c src/callbacks.h
     src/cup.c src/cup.h src/cup_struct.h

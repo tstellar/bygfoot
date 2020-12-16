@@ -289,14 +289,14 @@ is_capital_sensitive (GtkCellLayout   *cell_layout,
    'country_' from $HOME/.bygfoot/definitions are appended to a combo box.
 */
 void
-window_show_startup(void)
+window_show_startup(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("window_show_startup\n");
 #endif
 
     GtkWidget *window_startup =
-	window_create(WINDOW_STARTUP);
+	window_create_with_userdata(WINDOW_STARTUP, bygfoot);
     GtkWidget *combo_country =
 	lookup_widget(window_startup, "combo_country");
     GPtrArray *country_files = NULL;
@@ -795,6 +795,12 @@ window_main_load_geometry(void)
 GtkWidget*
 window_create(gint window_type)
 {
+    return window_create_with_userdata(window_type, NULL);
+}
+
+GtkWidget*
+window_create_with_userdata(gint window_type, Bygfoot *bygfoot)
+{
     gchar buf[SMALL];
     GtkWidget *wind = NULL;
     
@@ -827,7 +833,7 @@ window_create(gint window_type)
 	    if(window.startup != NULL)
 		debug_print_message("window_create: called on already existing window\n");
 	    else
-		window.startup = create_window_startup();
+		window.startup = create_window_startup(bygfoot);
 	    wind = window.startup;
 	    break;
 	case WINDOW_LIVE:

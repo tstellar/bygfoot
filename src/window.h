@@ -27,6 +27,7 @@
 #define WINDOW_H
 
 #include "bygfoot.h"
+#include "bygfoot_struct.h"
 
 /**  These are used to keep track of open windows.
      @see window_create() */
@@ -64,10 +65,13 @@ void
 window_show_help(gint page);
 
 void
-window_show_startup(void);
+window_show_startup(Bygfoot *bygfoot);
 
 GtkWidget*
 window_create(gint window_type);
+
+GtkWidget*
+window_create_with_userdata(gint window_type, Bygfoot *bygfoot);
 
 void
 window_destroy(GtkWidget **wind);

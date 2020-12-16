@@ -36,17 +36,18 @@
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 
+#include "bygfoot_struct.h"
 #include "misc_callbacks.h"
 #include "misc_interface.h"
 #include "support.h"
 #include "file.h"
 
 GtkWidget*
-create_window_startup (void)
+create_window_startup (Bygfoot *bygfoot)
 {
   GtkWidget *window_startup;
   GtkBuilder *builder;
-  builder = load_ui(file_find_support_file("bygfoot_misc.glade", TRUE));
+  builder = load_ui_with_userdata(file_find_support_file("bygfoot_misc.glade", TRUE), bygfoot);
   window_startup = GTK_WIDGET (gtk_builder_get_object (builder, "window_startup"));
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
