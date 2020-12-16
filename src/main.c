@@ -33,6 +33,7 @@
 #endif
 
 #include "bet_struct.h"
+#include "bygfoot_struct.h"
 #include "debug.h"
 #include "file.h"
 #include "free.h"
@@ -407,6 +408,7 @@ main_init(gint *argc, gchar ***argv)
     gint
 main (gint argc, gchar *argv[])
 {
+    Bygfoot bygfoot;
 #ifdef DEBUG
     printf("main\n");
 #endif
@@ -440,7 +442,7 @@ main (gint argc, gchar *argv[])
         }
         else
         {
-            window_show_startup();
+            window_show_startup(&bygfoot);
             stat0 = STATUS_TEAM_SELECTION;
         }
     }

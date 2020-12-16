@@ -69,6 +69,12 @@ lookup_widget                          (GtkWidget       *widget,
 GtkBuilder*
 load_ui (const gchar *filename)
 {
+  return load_ui_with_userdata(filename, NULL);
+}
+
+GtkBuilder*
+load_ui_with_userdata (const gchar *filename, Bygfoot *bygfoot)
+{
   GtkBuilder *builder;
   GError *error = NULL;
 
@@ -80,7 +86,7 @@ load_ui (const gchar *filename)
       ": Problems found in the glade file: %s\n", error->message);
   }
 
-  gtk_builder_connect_signals (builder, NULL);
+  gtk_builder_connect_signals (builder, bygfoot);
 
   return builder;
 }

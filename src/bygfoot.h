@@ -44,6 +44,8 @@
 #include <gtk/gtk.h>
 #include "gettext_macros.h"
 #include "debug.h"
+#include "user_struct.h"
+#include "bygfoot_struct.h"
 
 /**
  * Program version number and year (copyright).
@@ -202,4 +204,6 @@ typedef struct
     /** The position of the horizontal divider is stored here. */
     gint paned_pos;
 } Windows;
+
+User *bygfoot_add_user(Bygfoot *bygfoot, const gchar *username, Team *tm);
 #endif

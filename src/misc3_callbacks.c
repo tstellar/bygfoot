@@ -213,7 +213,7 @@ on_button_splash_new_game_clicked      (GtkButton       *button,
     
     window_destroy(&window.splash);
 
-    window_show_startup();
+    window_show_startup(user_data);
     stat0 = STATUS_TEAM_SELECTION;
 }
 
