@@ -580,9 +580,6 @@ start_week_round(void)
     else
     {
         cur_user = 0;
-        game_gui_show_main();
-
-	user_event_show_next();
     }
 }
 

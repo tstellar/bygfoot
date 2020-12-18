@@ -152,6 +152,9 @@ callback_show_next_live_game(void)
     treeview_show_user_player_list();
     /* no more user games to show: end round. */
     end_week_round();
+    game_gui_show_main();
+
+    user_event_show_next();
 
     setsav0;
 }
