@@ -575,7 +575,6 @@ start_week_round(void)
 	(week_round > 1 && 
 	 !query_user_games_in_week_round(week, week_round - 1)))) 
     {
-	user_event_show_next();
 	end_week_round();
     }
     else
