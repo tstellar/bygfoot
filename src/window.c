@@ -202,16 +202,6 @@ window_show_progress(gint pictype)
 				     GTK_ICON_SIZE_DIALOG);
 	    break;
 	case PIC_TYPE_MATCHPIC:
-	    if(debug_egg_forwards_boost_style())
-	    {
-		buf2 = file_find_support_file("soccerbabes.jpg", FALSE);
-		if(buf2 != NULL)
-		{
-		    gtk_image_set_from_file(image, buf2);
-		    g_free(buf2);
-		}
-	    }
-
 	    if(buf2 == NULL)
 	    {
 		picdir = file_get_first_support_dir_suffix("pics");
