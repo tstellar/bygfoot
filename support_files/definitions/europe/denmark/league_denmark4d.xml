@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>denmark4d</sid>
+  <name>Denmarksserien Group 4</name>
+  <short_name>DS G1</short_name>
+  <symbol>flag_denmark.png</symbol>
+  <first_week>6</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="1">7</break_in>
+  <break_in length="1">14</break_in>
+  <break_in length="1">17</break_in>
+  <break_in length="1">22</break_in>
+  <break_in length="1">37</break_in>
+  <break_in length="1">40</break_in>
+  <break_in length="1">46</break_in>
+  <average_talent>4000</average_talent>
+  <round_robins>4</round_robins>
+  <yellow_red>5</yellow_red>  
+  <names_file>denmark</names_file>
+  <layer>4</layer>
+
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>1</rank_end>
+            <dest_sid>denmark3a denmark3b</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+            </prom_rel_element>
+    </prom_rel>
+  
+    <teams>
+        <team>
+            <team_name>Holstebro</team_name>
+        </team>
+        <team>
+            <team_name>Denmark 82</team_name>
+        </team>
+        <team>
+            <team_name>Denmark 83</team_name>
+        </team>
+        <team>
+            <team_name>Denmark 84</team_name>
+        </team>
+        <team>
+            <team_name>Denmark 85</team_name>
+        </team>
+        <team>
+            <team_name>Denmark 86</team_name>
+        </team>
+        <team>
+            <team_name>Denmark 87</team_name>
+        </team>
+        <team>
+            <team_name>Denmark 88</team_name>
+        </team>
+        <team>
+            <team_name>Denmark 89</team_name>
+        </team>
+        <team>
+            <team_name>Denmark 90</team_name>
+        </team>
+  </teams>
+</league>

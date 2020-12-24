@@ -1,74 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <league>
   <sid>belgium4c</sid>
-  <name>Vierde klasse C</name>
-  <short_name>4de kl. C</short_name>
+  <name>Second Division Amateur VFV B</name>
+  <short_name>2VFVB</short_name>
   <symbol>flag_belgium.png</symbol>
-  <first_week>7</first_week>
+  <first_week>6</first_week>
   <week_gap>1</week_gap>
-  <break>8</break>
-  <average_talent>5100</average_talent>
+  <break_in length="1">10</break_in>
+  <break_in length="1">15</break_in>
+  <break_in length="1">20</break_in>
+  <break_in length="1">26</break_in>
+  <break_in length="1">30</break_in>
+  <break_in length="1">36</break_in>
+  <break_in length="1">39</break_in> 
+  <average_talent>5200</average_talent>
   <yellow_red>3</yellow_red>
-  <layer>4</layer>
   <names_file>belgium</names_file>
+  <layer>4</layer>
   
-  <prom_rel>    
-    <prom_rel_element>
-      <rank_start>1</rank_start>
-      <rank_end>1</rank_end>
-      <dest_sid>belgium3b</dest_sid>
-      <prom_rel_type>promotion</prom_rel_type>
-    </prom_rel_element>
-  </prom_rel>
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>1</rank_end>
+            <dest_sid>belgium3</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+        
+        <prom_rel_element>
+            <rank_start>15</rank_start>
+            <rank_end>16</rank_end>
+            <dest_sid>belgium5d</dest_sid>
+            <prom_rel_type>relegation</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
   
-  <teams>
-    <team>
-      <team_name>Lyra</team_name>
-    </team>
-    <team>
-      <team_name>Hasselt</team_name>
-    </team>
-    <team>
-      <team_name>Leopoldsburg</team_name>
-    </team>
-    <team>
-      <team_name>St. Lenaarts</team_name>
-    </team>
-    <team>
-      <team_name>Geel-Meerhout</team_name>
-    </team>
-    <team>
-      <team_name>Witg. Des.</team_name>
-    </team>
-    <team>
-      <team_name>Neerpelt</team_name>
-    </team>
-    <team>
-      <team_name>Heist</team_name>
-    </team>
-    <team>
-      <team_name>V. Maasmechelen</team_name>
-    </team>
-    <team>
-      <team_name>Thes S.</team_name>
-    </team>
-    <team>
-      <team_name>Lille</team_name>
-    </team>
-    <team>
-      <team_name>Heusden-Zolder</team_name>
-    </team>
-    <team>
-      <team_name>Seraing</team_name>
-    </team>
-    <team>
-      <team_name>Spouwen Mopertingen</team_name>
-    </team>
-    <team>
-      <team_name>P.Maasmechelen</team_name>
-    </team>
-    <team>
-      <team_name>Wijgmaal</team_name>
-    </team>
-  </teams>
+    <teams>
+        <team>
+            <team_name>Belgium 89</team_name>
+        </team>
+        <team>
+            <team_name>Bocholt</team_name>
+        </team>
+        <team>
+            <team_name>Cappellen</team_name>
+        </team>
+        <team>
+            <team_name>Diegem</team_name>
+        </team>
+        <team>
+            <team_name>E. Aalst</team_name>
+        </team>
+        <team>
+            <team_name>Belgium 94</team_name>
+        </team>
+        <team>
+            <team_name>Belgium 95</team_name>
+        </team>
+        <team>
+            <team_name>Hoogstraten</team_name>
+        </team>
+        <team>
+            <team_name>Belgium 97</team_name>
+        </team>
+        <team>
+            <team_name>Belgium 98</team_name>
+        </team>
+        <team>
+            <team_name>Belgium 99</team_name>
+        </team>
+        <team>
+            <team_name>Belgium 100</team_name>
+        </team>
+        <team>
+            <team_name>Belgium 101</team_name>
+        </team>
+        <team>
+            <team_name>Belgium 102</team_name>
+        </team>
+        <team>
+            <team_name>Tienen</team_name>
+        </team>
+        <team>
+            <team_name>Belgium 104</team_name>
+        </team>
+        
+    </teams>
 </league>

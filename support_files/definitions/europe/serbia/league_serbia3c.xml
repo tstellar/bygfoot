@@ -1,74 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <league>
   <sid>serbia3c</sid>
-  <name>Srpska Liga Vojvodina</name>
-  <short_name>S. L. V.</short_name>
+  <name>Srpska liga Beograd</name>
+  <short_name>S.L.B</short_name>
   <symbol>flag_serbia.png</symbol>
-  <first_week>7</first_week>
+  <first_week>4</first_week>
   <week_gap>1</week_gap>
-  <break_in length="8">25</break_in>
-  <average_talent>6100</average_talent>
+  <break_in length="1">11</break_in>
+  <break_in length="1">15</break_in>
+  <break_in length="6">27</break_in>
+  <break_in length="1">39</break_in>
+  <average_talent>4700</average_talent>
   <names_file>serbia</names_file>
   <yellow_red>5</yellow_red>
   <layer>3</layer>
 
-  <prom_rel>
-    <prom_rel_element>
-      <rank_start>1</rank_start>
-      <rank_end>1</rank_end>
-      <dest_sid>serbia2</dest_sid>
-      <prom_rel_type>promotion</prom_rel_type>
-    </prom_rel_element>
-  </prom_rel>
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>1</rank_end>
+            <dest_sid>serbia2</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
 
-  <teams>
-    <team>
-      <team_name>Mladost Apatin</team_name>
-    </team>
-    <team>
-      <team_name>Pivara</team_name>
-    </team>
-    <team>
-      <team_name>Kikinda</team_name>
-    </team>
-    <team>
-      <team_name>Mladost Bački Jarak</team_name>
-    </team>
-    <team>
-      <team_name>Palić</team_name>
-    </team>
-    <team>
-      <team_name>Radnički Nova Pazova</team_name>
-    </team>
-    <team>
-      <team_name>Senta</team_name>
-    </team>
-    <team>
-      <team_name>Sloga Temerin</team_name>
-    </team>
-    <team>
-      <team_name>Tekstilac Ites</team_name>
-    </team>
-    <team>
-      <team_name>Cement Beočin</team_name>
-    </team>
-    <team>
-      <team_name>Vršac</team_name>
-    </team>
-    <team>
-      <team_name>Donji Srem Pećinci</team_name>
-    </team>
-    <team>
-      <team_name>Veternik</team_name>
-    </team>
-    <team>
-      <team_name>Dolina</team_name>
-    </team>
-    <team>
-      <team_name>Sloboda Novi Kozarci</team_name>
-    </team>
-    <team>
-      <team_name>Solunac Rastina</team_name>
-    </team>
-  </teams>
+    <teams>
+        <team>
+            <team_name>Serbia 83</team_name>
+        </team>
+        <team>
+            <team_name>Serbia 84</team_name>
+        </team>
+        <team>
+            <team_name>Serbia 85</team_name>
+        </team>
+        <team>
+            <team_name>Serbia 86</team_name>
+        </team>
+        <team>
+            <team_name>Serbia 87</team_name>
+        </team>
+        <team>
+            <team_name>Serbia 88</team_name>
+        </team>
+        <team>
+            <team_name>Serbia 89</team_name>
+        </team>
+        <team>
+            <team_name>O. Beograd</team_name>
+        </team>
+        <team>
+            <team_name>O. Mladenovac</team_name>
+        </team>
+        <team>
+            <team_name>Serbia 92</team_name>
+        </team>
+        <team>
+            <team_name>Serbia 93</team_name>
+        </team>
+        <team>
+            <team_name>Serbia 94</team_name>
+        </team>
+        <team>
+            <team_name>Serbia 95</team_name>
+        </team>
+        <team>
+            <team_name>Serbia 96</team_name>
+        </team>
+        <team>
+            <team_name>Teleoptik</team_name>
+        </team>
+        <team>
+            <team_name>Serbia 98</team_name>
+        </team>
+    </teams>
 </league>

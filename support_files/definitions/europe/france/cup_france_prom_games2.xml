@@ -1,0 +1,32 @@
+<cup>
+  <name>Ligue 2 Play Off</name>
+  <short_name>L2 Po</short_name>
+  <symbol>flag_france.png</symbol>
+  <sid>france_prom_games2</sid>
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>highlight2</property>
+  <yellow_red>3</yellow_red>
+
+    <cup_rounds>
+        <cup_round>
+			<round_name>Final</round_name>
+            <home_away>1</home_away>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>france3</choose_team_sid>
+                    <number_of_teams>1</number_of_teams>
+                    <start_idx>3</start_idx>
+                    <end_idx>3</end_idx>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>france2</choose_team_sid>
+                    <number_of_teams>1</number_of_teams>
+                    <start_idx>18</start_idx>
+                    <end_idx>18</end_idx>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
+    </cup_rounds>
+
+</cup>

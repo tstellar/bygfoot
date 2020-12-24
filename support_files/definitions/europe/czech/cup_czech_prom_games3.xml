@@ -1,0 +1,31 @@
+<cup>
+  <name>Bohemian League Play Off</name>
+  <short_name>Boh. PO</short_name>
+  <symbol>flag_czech.png</symbol>
+  <sid>czech_prom_games3</sid>
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>highlight2</property>
+  <yellow_red>3</yellow_red>
+
+    <cup_rounds>
+        <cup_round>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>czech3a</choose_team_sid>
+                    <number_of_teams>1</number_of_teams>
+                    <start_idx>1</start_idx>
+                    <end_idx>1</end_idx>
+                </choose_team>
+
+                <choose_team>
+                    <choose_team_sid>czech3b</choose_team_sid>
+                    <number_of_teams>1</number_of_teams>
+                    <start_idx>1</start_idx>
+                    <end_idx>1</end_idx>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
+    </cup_rounds>
+
+</cup>

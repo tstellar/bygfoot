@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Based on 2020-2021 UEFA Europa League qualifications and specifications -->
+
+<cup>
+	<name>UEFA Europa League</name>
+	<short_name>UEL</short_name>
+	<symbol>flag_eu.png</symbol>
+	<sid>uefa_el_cp</sid>
+	<yellow_red>3</yellow_red>
+	<add_week>1000</add_week>
+	<last_week>11</last_week>
+	<property>international</property>
+	<property>omit_from_history</property> 
+
+	<cup_rounds>
+		<cup_round>
+			<!-- Round 1 -->
+			<round_name>2nd Qualifying Round - Champions Path</round_name>
+			<byes>0</byes>
+			<choose_teams>
+
+				<!-- Losers from Champions League Preliminary round & 1st Qualifying round -->
+				<choose_team>
+					<choose_team_sid>uefa_cl_cp</choose_team_sid>
+					<number_of_teams>20</number_of_teams>
+					<start_idx>21</start_idx>
+					<end_idx>40</end_idx>
+					<wait_for_cup round="6">uefa_cl_cp</wait_for_cup>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+
+		<cup_round>
+			<!-- Round 2 -->
+			<round_name>3rd Qualifying Round - Champions Path</round_name>
+			<byes>0</byes>
+			<choose_teams>
+
+				<!-- Losers from Champions League second qualifying round (Champions Path) -->
+				<choose_team>
+					<choose_team_sid>uefa_cl_cp</choose_team_sid>
+					<preload>0</preload>
+					<number_of_teams>10</number_of_teams>
+					<start_idx>13</start_idx>
+					<end_idx>22</end_idx>
+					<wait_for_cup round="6">uefa_cl_cp</wait_for_cup>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+
+		<cup_round>
+			<!-- Round 3 -->
+			<round_name>Play-Off Round - Champions Path</round_name>
+			<byes>0</byes>
+			<choose_teams>
+
+				<!-- Losers from Champions League third qualifying round (Champions Path) -->
+				<choose_team>
+					<choose_team_sid>uefa_cl_cp</choose_team_sid>
+					<preload>0</preload>
+					<number_of_teams>6</number_of_teams>
+					<start_idx>9</start_idx>
+					<end_idx>14</end_idx>
+					<wait_for_cup round="6">uefa_cl_cp</wait_for_cup>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+	</cup_rounds>
+</cup>

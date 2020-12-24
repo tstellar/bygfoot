@@ -1,0 +1,33 @@
+<cup>
+  <name>4. deild karla Championship</name>
+  <short_name>4.d Prom.</short_name>
+  <symbol>flag_iceland.png</symbol>
+  <sid>iceland_prom_games4</sid>
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>highlight2</property>
+  <yellow_red>3</yellow_red>
+
+    <cup_rounds>
+        <cup_round>
+            <round_name>Final</round_name>
+            <home_away>0</home_away>
+            <neutral>1</neutral>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>iceland_prom_games4a</choose_team_sid>
+                    <number_of_teams>1</number_of_teams>
+                    <start_idx>1</start_idx>
+                    <end_idx>1</end_idx>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>iceland_prom_games4b</choose_team_sid>
+                    <number_of_teams>1</number_of_teams>
+                    <start_idx>1</start_idx>
+                    <end_idx>1</end_idx>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
+  </cup_rounds>
+
+</cup>

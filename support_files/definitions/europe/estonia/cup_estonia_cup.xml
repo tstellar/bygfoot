@@ -4,80 +4,72 @@
   <short_name>E. Karikas</short_name>
   <symbol>flag_estonia.png</symbol>
   <sid>estonia_cup</sid>
-  <last_week>45</last_week>
-  <week_gap>3</week_gap>
+  <last_week>39</last_week>
+  <week_gap>5</week_gap>
   <property>national</property>
 
-  <cup_rounds>
-    <cup_round>
-    <home_away>0</home_away>
+    <cup_rounds>
+        <cup_round>
+            <round_name>1st Round</round_name>
+            <home_away>0</home_away>
+            <byes>0</byes>
+            <delay>-9</delay>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>estonia4a</choose_team_sid>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>estonia4b</choose_team_sid>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>estonia3</choose_team_sid>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>estonia2</choose_team_sid>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>estonia1</choose_team_sid>
+                    <number_of_teams>4</number_of_teams>
+                    <start_idx>7</start_idx>
+                    <end_idx>10</end_idx>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
 
-      <choose_teams>
-        <choose_team>
-          <choose_team_sid>estonia4a</choose_team_sid>
-        </choose_team>
+        <cup_round>
+            <round_name>2nd Round</round_name>
+            <home_away>0</home_away>
+            <delay>-9</delay>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>estonia1</choose_team_sid>
+                    <number_of_teams>6</number_of_teams>
+                    <start_idx>1</start_idx>
+                    <end_idx>6</end_idx>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
 
-        <choose_team>
-          <choose_team_sid>estonia4b</choose_team_sid>
-        </choose_team>
+        <cup_round>
+            <round_name>3rd Round</round_name>
+            <home_away>0</home_away>
+            <delay>-9</delay>
+        </cup_round>
 
-        <choose_team>
-          <choose_team_sid>estonia4c</choose_team_sid>
-        </choose_team>
+        <cup_round>
+            <round_name>Quarter Final</round_name>
+            <home_away>0</home_away>>
+        </cup_round>
 
-        <choose_team>
-          <choose_team_sid>estonia4d</choose_team_sid>
-        </choose_team>
+        <cup_round>
+            <round_name>Semi Final</round_name>
+            <home_away>0</home_away>
+        </cup_round>
 
-        <choose_team>
-          <choose_team_sid>estonia3a</choose_team_sid>
-        </choose_team>
-
-        <choose_team>
-          <choose_team_sid>estonia3b</choose_team_sid>
-        </choose_team>
-      </choose_teams>
-      <byes>13</byes>
-    <delay>-23</delay>
-    </cup_round>
-
-    <cup_round>
-    <home_away>0</home_away>
-
-      <choose_teams>
-        <choose_team>
-          <choose_team_sid>estonia2</choose_team_sid>
-        </choose_team>
-
-        <choose_team>
-          <choose_team_sid>estonia1</choose_team_sid>
-        </choose_team>
-      </choose_teams>
-    <delay>-23</delay>
-    </cup_round>
-
-    <cup_round>
-    <home_away>0</home_away>
-    <delay>-23</delay>
-    </cup_round>
-
-    <cup_round>
-    <home_away>0</home_away>
-    <delay>-22</delay>
-    </cup_round>
-
-    <cup_round>
-    <home_away>0</home_away>
-    <delay>1</delay>
-    </cup_round>
-
-    <cup_round>
-    <home_away>0</home_away>
-    </cup_round>
-
-    <cup_round>
-      <home_away>0</home_away>
-      <neutral>1</neutral>
-    </cup_round>
-  </cup_rounds>
+        <cup_round>
+            <round_name>Final</round_name>
+            <home_away>0</home_away>
+            <neutral>1</neutral>
+        </cup_round>
+    </cup_rounds>
 </cup>

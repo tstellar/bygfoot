@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>n_ireland6c</sid>
+  <name>6. Amateur League Division 1B</name>
+  <short_name>6. NAL1B</short_name>
+  <symbol>flag_n_ireland.png</symbol>
+  <first_week>7</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="1">8</break_in>
+  <break_in length="1">11</break_in>
+  <break_in length="1">14</break_in>
+  <break_in length="1">19</break_in>
+  <break_in length="1">23</break_in>
+  <break_in length="1">27</break_in>
+  <break_in length="5">30</break_in>
+  <average_talent>1700</average_talent>
+  <names_file>england</names_file>
+  <yellow_red>5</yellow_red>
+  <layer>6</layer>
+
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>2</rank_end>
+            <dest_sid>n_ireland5c</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+        
+        <prom_rel_element>
+            <rank_start>13</rank_start>
+            <rank_end>14</rank_end>
+            <dest_sid>n_ireland7c</dest_sid>
+            <prom_rel_type>relegation</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
+
+    <teams>
+        <team>
+            <team_name>N_Ireland 60</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 61</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 62</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 63</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 64</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 65</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 66</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 67</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 68</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 69</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 70</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 71</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 72</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 73</team_name>
+        </team>
+    </teams>
+</league>

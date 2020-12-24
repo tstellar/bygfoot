@@ -5,46 +5,61 @@
   <name>First League</name>
   <short_name>1. L.</short_name>
   <symbol>flag_armenia.png</symbol>
-  <first_week>1</first_week>
+  <first_week>6</first_week>
   <week_gap>1</week_gap>
-  <average_talent>5600</average_talent>
-  <round_robins>4</round_robins>
+  <average_talent>4000</average_talent>
+  <break_in length="1">11</break_in>
+  <break_in length="1">18</break_in>
+  <break_in length="1">21</break_in>
+  <break_in length="1">27</break_in>
+  <break_in length="1">33</break_in>
+  <break_in length="1">39</break_in>
+  <round_robins>3</round_robins>
   <names_file>russia</names_file>
   <yellow_red>5</yellow_red>
 
-  <prom_rel>
-    <prom_rel_element>
-      <rank_start>1</rank_start>
-      <rank_end>1</rank_end>
-      <dest_sid>armenia1</dest_sid>
-      <prom_rel_type>promotion</prom_rel_type>
-    </prom_rel_element>
-  </prom_rel>
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>1</rank_end>
+            <dest_sid>armenia1</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+            </prom_rel_element>
+    </prom_rel>
 
   <teams>
     <team>
-      <team_name>A. Yerevan II</team_name>
+      <team_name>Armenia 1</team_name>
     </team>
     <team>
-      <team_name>B. Yerevan II</team_name>
+      <team_name>Armenia 2</team_name>
     </team>
     <team>
-      <team_name>G. Kapan II</team_name>
+      <team_name>Armenia 3</team_name>
     </team>
     <team>
-      <team_name>Pa. Yerevan</team_name>
+      <team_name>Armenia 4</team_name>
     </team>
     <team>
-      <team_name>M. Ashtarak II</team_name>
+      <team_name>Armenia 5</team_name>
     </team>
     <team>
-      <team_name>Py. Yerevan II</team_name>
+      <team_name>Armenia 6</team_name>
     </team>
     <team>
-      <team_name>S. Gyumri II</team_name>
+      <team_name>Armenia 7</team_name>
     </team>
     <team>
-      <team_name>Sh. Yerevan</team_name>
+      <team_name>Armenia 8</team_name>
+    </team>
+    <team>
+      <team_name>Armenia 9</team_name>
+    </team>
+    <team>
+      <team_name>Armenia 10</team_name>
+    </team>
+    <team>
+      <team_name>Armenia 11</team_name>
     </team>
   </teams>
 </league>

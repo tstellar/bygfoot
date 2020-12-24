@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>netherlands4a</sid>
+  <name>Zaterdag Derde Divisie</name>
+  <short_name>Zat. Derde</short_name>
+  <symbol>flag_netherlands.png</symbol>
+  <first_week>7</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="3">22</break_in>
+  <break_in length="1">38</break_in>
+  <average_talent>5400</average_talent>
+  <yellow_red>5</yellow_red>
+  <names_file>netherlands</names_file>
+  <layer>4</layer>
+
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>1</rank_end>
+            <dest_sid>netherlands3</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+        
+        <prom_games>
+            <prom_games_dest_sid>netherlands3</prom_games_dest_sid>
+            <prom_games_cup_sid>netherlands_prom_games4a</prom_games_cup_sid>
+            <prom_games_loser_sid>netherlands4a</prom_games_loser_sid>
+        </prom_games>
+        
+        <prom_rel_element>
+            <rank_start>15</rank_start>
+            <rank_end>16</rank_end>
+            <dest_sid>netherlands5a netherlands5b</dest_sid>
+            <prom_rel_type>relegation</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
+
+    <teams>
+        <team>
+            <team_name>Netherlands 99</team_name>
+        </team>
+        <team>
+            <team_name>Netherlands 100</team_name>
+        </team>
+        <team>
+            <team_name>A. Hendrik Ido Ambacht</team_name>
+        </team>
+        <team>
+            <team_name>Netherlands 102</team_name>
+        </team>
+        <team>
+            <team_name>D. Veenendaal</team_name>
+        </team>
+        <team>
+            <team_name>Netherlands 104</team_name>
+        </team>
+        <team>
+            <team_name>Netherlands 105</team_name>
+        </team>
+        <team>
+            <team_name>Lisse</team_name>
+        </team>
+        <team>
+            <team_name>Harkema B.</team_name>
+        </team>
+        <team>
+            <team_name>Hoek</team_name>
+        </team>
+        <team>
+            <team_name>Netherlands 109</team_name>
+        </team>
+        <team>
+            <team_name>Netherlands 110</team_name>
+        </team>
+        <team>
+            <team_name>Q. B. Katwijk</team_name>
+        </team>
+        <team>
+            <team_name>Netherlands 112</team_name>
+        </team>
+        <team>
+            <team_name>Netherlands 113</team_name>
+        </team>
+        <team>
+            <team_name>Netherlands 114</team_name>
+        </team>
+    </teams>
+</league>

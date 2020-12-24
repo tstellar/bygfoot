@@ -1,5 +1,5 @@
 <cup>
-  <name>Denmark 2nd Division Promotion</name>
+  <name>Denmark 2 Division Promotion</name>
   <short_name>2. Div. Prom.</short_name>
   <symbol>flag_denmark.png</symbol>
   <sid>denmark_prom_games2</sid>
@@ -8,26 +8,25 @@
   <property>highlight2</property>
   <yellow_red>3</yellow_red>
 
-  <cup_rounds>
+    <cup_rounds>
+        <cup_round>
+			<delay>1</delay>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>denmark1</choose_team_sid>
+                    <number_of_teams>1</number_of_teams>
+                    <start_idx>13</start_idx>
+                    <end_idx>13</end_idx>
+                </choose_team>
 
-    <cup_round>
-      <choose_teams>
-	<choose_team>
-	  <choose_team_sid>denmark3a</choose_team_sid>
-	  <number_of_teams>1</number_of_teams>
-	  <start_idx>2</start_idx>
-	  <end_idx>2</end_idx>
-	</choose_team>
-
-	<choose_team>
-	  <choose_team_sid>denmark3b</choose_team_sid>
-	  <number_of_teams>1</number_of_teams>
-	  <start_idx>2</start_idx>
-	  <end_idx>2</end_idx>
-	</choose_team>
-      </choose_teams>
-    </cup_round>
-
-  </cup_rounds>
+                <choose_team>
+                    <choose_team_sid>denmark2</choose_team_sid>
+                    <number_of_teams>1</number_of_teams>
+                    <start_idx>2</start_idx>
+                    <end_idx>2</end_idx>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
+    </cup_rounds>
 
 </cup>

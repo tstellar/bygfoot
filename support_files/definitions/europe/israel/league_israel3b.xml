@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>israel3b</sid>
+  <name>Liga Alef South</name>
+  <short_name>L. Alef S</short_name>
+  <symbol>flag_israel.png</symbol>
+  <first_week>6</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="1">7</break_in>
+  <break_in length="1">11</break_in>
+  <break_in length="1">15</break_in>
+  <break_in length="1">19</break_in>
+  <break_in length="1">23</break_in>
+  <break_in length="1">27</break_in>
+  <break_in length="1">30</break_in>
+  <average_talent>4100</average_talent>
+  <names_file>israel</names_file>
+  <yellow_red>5</yellow_red>
+  <layer>3</layer>
+
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>1</rank_end>
+            <dest_sid>israel2</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+
+        <prom_rel_element>
+            <rank_start>15</rank_start>
+            <rank_end>16</rank_end>
+            <dest_sid>israel4c israel4d</dest_sid>
+            <prom_rel_type>relegation</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
+
+    <teams>
+        <team>
+            <team_name>H. Kfar Shalem</team_name>
+        </team>
+        <team>
+            <team_name>H. Marmorek</team_name>
+        </team>
+        <team>
+            <team_name>Israel 180</team_name>
+        </team>
+        <team>
+            <team_name>Israel 181</team_name>
+        </team>
+        <team>
+            <team_name>Israel 182</team_name>
+        </team>
+        <team>
+            <team_name>Israel 183</team_name>
+        </team>
+        <team>
+            <team_name>Israel 184</team_name>
+        </team>
+        <team>
+            <team_name>M. Herzliya</team_name>
+        </team>
+        <team>
+            <team_name>Israel 186</team_name>
+        </team>
+        <team>
+            <team_name>Israel 187</team_name>
+        </team>
+        <team>
+            <team_name>M. Yavne</team_name>
+        </team>
+        <team>
+            <team_name>Israel 189</team_name>
+        </team>
+        <team>
+            <team_name>Israel 190</team_name>
+        </team>
+        <team>
+            <team_name>Israel 191</team_name>
+        </team>
+        <team>
+            <team_name>Israel 192</team_name>
+        </team>
+        <team>
+            <team_name>M. Kiryat Gat</team_name>
+        </team>
+    </teams>
+</league>

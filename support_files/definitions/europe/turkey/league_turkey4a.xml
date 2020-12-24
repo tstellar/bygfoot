@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>turkey4a</sid>
+  <name>TFF 3. Lig Group 1</name>
+  <short_name>3. Lig. G1</short_name>
+  <symbol>flag_turkey.png</symbol>
+  <first_week>6</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="3">24</break_in>
+  <average_talent>4500</average_talent>
+  <names_file>turkey</names_file>
+  <yellow_red>5</yellow_red>
+  <layer>4</layer>
+
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>1</rank_end>
+            <dest_sid>turkey3a turkey3b</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+
+        <prom_games>
+            <prom_games_dest_sid>turkey3a turkey3b</prom_games_dest_sid>
+            <prom_games_cup_sid>turkey_prom_games4a</prom_games_cup_sid>
+            <prom_games_loser_sid>turkey4a turkey4b turkey4c</prom_games_loser_sid>
+        </prom_games>
+    </prom_rel>
+
+    <teams>
+        <team>
+            <team_name>Turkey 54</team_name>
+        </team>
+        <team>
+            <team_name>Turkey 55</team_name>
+        </team>
+        <team>
+            <team_name>Turkey 56</team_name>
+        </team>
+        <team>
+            <team_name>Turkey 57</team_name>
+        </team>
+        <team>
+            <team_name>Turkey 58</team_name>
+        </team>
+        <team>
+            <team_name>Turkey 59</team_name>
+        </team>
+        <team>
+            <team_name>Turkey 60</team_name>
+        </team>
+        <team>
+            <team_name>Turkey 61</team_name>
+        </team>
+        <team>
+            <team_name>Turkey 62</team_name>
+        </team>
+        <team>
+            <team_name>Turkey 63</team_name>
+        </team>
+        <team>
+            <team_name>Manisa</team_name>
+        </team>
+        <team>
+            <team_name>Turkey 65</team_name>
+        </team>
+        <team>
+            <team_name>Turkey 66</team_name>
+        </team>
+        <team>
+            <team_name>Turkey 67</team_name>
+        </team>
+        <team>
+            <team_name>Turkey 68</team_name>
+        </team>
+        <team>
+            <team_name>Tokat</team_name>
+        </team>
+        <team>
+            <team_name>Turkey 70</team_name>
+        </team>
+        <team>
+            <team_name>Turkey 71</team_name>
+        </team>
+    </teams>
+</league>

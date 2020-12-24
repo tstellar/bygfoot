@@ -4,55 +4,69 @@
   <name>Liga I</name>
   <short_name>L1</short_name>
   <symbol>flag_romania.png</symbol>
-  <first_week>5</first_week>
+  <first_week>7</first_week>
   <week_gap>1</week_gap>
-  <break_in length="1">10</break_in>
-  <break_in length="9">23</break_in>
-  <average_talent>7500</average_talent>
+  <break_in length="1">8</break_in>
+  <break_in length="1">12</break_in>
+  <break_in length="1">15</break_in>
+  <break_in length="1">21</break_in>
+  <break_in length="6">24</break_in>
+  <break_in length="1">41</break_in>
+  <average_talent>6000</average_talent>
   <names_file>romania</names_file>
   <yellow_red>5</yellow_red>
 
-  <prom_rel>
-    <prom_rel_element>
-      <rank_start>5</rank_start>
-      <rank_end>8</rank_end>
-      <dest_sid>romania2a romania2b</dest_sid>
-      <prom_rel_type>relegation</prom_rel_type>
-    </prom_rel_element>
-  </prom_rel>
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>13</rank_start>
+            <rank_end>14</rank_end>
+            <dest_sid>romania2</dest_sid>
+            <prom_rel_type>relegation</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
 
-   <teams>
-     <team>
-      <team_name>Steaua Bucureşti</team_name>
-<def_file>romania_steaua</def_file>
-    </team>
-    <team>
-      <team_name>FC Timişoara</team_name>
-<def_file>romania_timisoara</def_file>
-    </team>
-    <team>
-      <team_name>Rapid Bucureşti</team_name>
-      <def_file>romania_rapid</def_file>
-    </team>
-    <team>
-      <team_name>CFR Cluj</team_name>
-      <def_file>romania_cluj</def_file>
-    </team>
-    <team>
-      <team_name>Dinamo Bucureşti</team_name>
-      <def_file>romania_dinamob</def_file>
-    </team>
-    <team>
-      <team_name>FC Vaslui</team_name>
-<def_file>romania_vaslui</def_file>
-    </team>
-    <team>
-      <team_name>Universitatea Craiova</team_name>
-<def_file>romania_craiova</def_file>
-    </team>
-    <team>
-      <team_name>Oţelul Galaţi</team_name>
-<def_file>romania_otelul</def_file>
-    </team>
-   </teams>
+    <teams>
+        <team>
+            <team_name>Romania 127</team_name>
+        </team>
+        <team>
+            <team_name>Romania 128</team_name>
+        </team>
+        <team>
+            <team_name>Romania 129</team_name>
+        </team>
+        <team>
+            <team_name>Romania 130</team_name>
+        </team>
+        <team>
+            <team_name>Romania 131</team_name>
+        </team>
+        <team>
+            <team_name>Romania 132</team_name>
+        </team>
+        <team>
+            <team_name>Romania 133</team_name>
+        </team>
+        <team>
+            <team_name>Romania 134</team_name>
+        </team>
+        <team>
+            <team_name>Romania 135</team_name>
+        </team>
+        <team>
+            <team_name>Romania 136</team_name>
+        </team>
+        <team>
+            <team_name>Romania 137</team_name>
+        </team>
+        <team>
+            <team_name>U. Craiova</team_name>
+        </team>
+        <team>
+            <team_name>Romania 139</team_name>
+        </team>
+        <team>
+            <team_name>Romania 140</team_name>
+        </team>
+    </teams>
 </league>

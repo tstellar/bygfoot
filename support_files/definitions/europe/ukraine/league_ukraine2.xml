@@ -6,78 +6,91 @@
   <symbol>flag_ukraine.png</symbol>
   <first_week>3</first_week>
   <week_gap>1</week_gap>
-  <break_in length="12">23</break_in>
-  <average_talent>6700</average_talent>
+  <break_in length="1">9</break_in>
+  <break_in length="1">14</break_in>
+  <break_in length="1">19</break_in>
+  <break_in length="7">25</break_in>
+  <break_in length="1">35</break_in>
+  <average_talent>6300</average_talent>
   <names_file>ukraine</names_file>
   <yellow_red>5</yellow_red>
 
-  <prom_rel>
-    <prom_rel_element>
-      <rank_start>1</rank_start>
-      <rank_end>2</rank_end>
-      <dest_sid>ukraine1</dest_sid>
-      <prom_rel_type>promotion</prom_rel_type>
-    </prom_rel_element>
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>1</rank_end>
+            <dest_sid>ukraine1</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
 
-    <prom_rel_element>
-      <rank_start>16</rank_start>
-      <rank_end>17</rank_end>
-      <dest_sid>ukraine3a ukraine3b</dest_sid>
-      <prom_rel_type>relegation</prom_rel_type>
-    </prom_rel_element>
-  </prom_rel>
+        <prom_games>
+            <prom_games_dest_sid>ukraine1</prom_games_dest_sid>
+            <prom_games_cup_sid>ukraine_prom_games2a</prom_games_cup_sid>
+            <prom_games_loser_sid>ukraine2</prom_games_loser_sid>
+        </prom_games>
+        
+        <prom_games>
+            <prom_games_dest_sid>ukraine1</prom_games_dest_sid>
+            <prom_games_cup_sid>ukraine_prom_games2b</prom_games_cup_sid>
+            <prom_games_loser_sid>ukraine2</prom_games_loser_sid>
+        </prom_games>
 
-  <teams>
-    <team>
-      <team_name>D. Chernihiv</team_name>
-    </team>
-    <team>
-      <team_name>D. Ovidiopol</team_name>
-    </team>
-    <team>
-      <team_name>D. Kyiv II</team_name>
-    </team>
-    <team>
-      <team_name>E. Burshtyn</team_name>
-    </team>
-    <team>
-      <team_name>F. I. Kalinine</team_name>
-    </team>
-    <team>
-      <team_name>H. Kharkiv</team_name>
-    </team>
-    <team>
-      <team_name>I. Simferopol</team_name>
-    </team>
-    <team>
-      <team_name>K. Schaslyve</team_name>
-    </team>
-    <team>
-      <team_name>K. Molodizhne</team_name>
-    </team>
-    <team>
-      <team_name>N. U. Okhtyrka</team_name>
-    </team>
-    <team>
-      <team_name>O. Kyiv</team_name>
-    </team>
-    <team>
-      <team_name>Oleksandria</team_name>
-    </team>
-    <team>
-      <team_name>P. Ivano-Frankivsk</team_name>
-    </team>
-    <team>
-      <team_name>S. Alchevsk</team_name>
-    </team>
-    <team>
-      <team_name>V. Lutsk</team_name>
-    </team>
-    <team>
-      <team_name>Z. Uzhhorod</team_name>
-    </team>
-    <team>
-      <team_name>Sevastopol</team_name>
-    </team>
-  </teams>
+        <prom_rel_element>
+            <rank_start>15</rank_start>
+            <rank_end>16</rank_end>
+            <dest_sid>ukraine3a ukraine3b</dest_sid>
+            <prom_rel_type>relegation</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
+
+    <teams>
+        <team>
+            <team_name>Ukraine 63</team_name>
+        </team>
+        <team>
+            <team_name>Ukraine 64</team_name>
+        </team>
+        <team>
+            <team_name>Ukraine 65</team_name>
+        </team>
+        <team>
+            <team_name>Ukraine 66</team_name>
+        </team>
+        <team>
+            <team_name>Ukraine 67</team_name>
+        </team>
+        <team>
+            <team_name>Ukraine 68</team_name>
+        </team>
+        <team>
+            <team_name>Ukraine 69</team_name>
+        </team>
+        <team>
+            <team_name>K. Kremenchuk</team_name>
+        </team>
+        <team>
+            <team_name>Ukraine 71</team_name>
+        </team>
+        <team>
+            <team_name>Ukraine 72</team_name>
+        </team>
+        <team>
+            <team_name>Ukraine 73</team_name>
+        </team>
+        <team>
+            <team_name>Ukraine 74</team_name>
+        </team>
+        <team>
+            <team_name>Ukraine 75</team_name>
+        </team>
+        <team>
+            <team_name>Ukraine 76</team_name>
+        </team>
+        <team>
+            <team_name>Ukraine 77</team_name>
+        </team>
+        <team>
+            <team_name>V. Lutsk</team_name>
+        </team>
+    </teams>
 </league>

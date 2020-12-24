@@ -4,176 +4,96 @@
 <short_name>DFB-Pokal</short_name>
 <symbol>flag_germany.png</symbol>
 <sid>germany_dfb</sid>
-<last_week>48</last_week>
-<week_gap>6</week_gap>
+<last_week>46</last_week>
+<week_gap>5</week_gap>
 <property>national</property>
+<property>weak_at_home</property>
 
 	<cup_rounds>
-	 <cup_round>
-	 <home_away>0</home_away>
+        <cup_round>
+            <round_name>1st Round</round_name>
+            <home_away>0</home_away>
+            <delay>-15</delay>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>germany1</choose_team_sid>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>germany2</choose_team_sid>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>germany3</choose_team_sid>
+                    <number_of_teams>13</number_of_teams>
+                    <start_idx>1</start_idx>
+                    <end_idx>17</end_idx>
+                    <randomly>1</randomly>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>germany4a</choose_team_sid>
+                    <number_of_teams>3</number_of_teams>
+                    <start_idx>1</start_idx>
+                    <end_idx>17</end_idx>
+                    <randomly>1</randomly>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>germany4b</choose_team_sid>
+                    <number_of_teams>3</number_of_teams>
+                    <start_idx>2</start_idx>
+                    <end_idx>18</end_idx>
+                    <randomly>1</randomly>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>germany4c</choose_team_sid>
+                    <number_of_teams>3</number_of_teams>
+                    <start_idx>2</start_idx>
+                    <end_idx>18</end_idx>
+                    <randomly>1</randomly>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>germany4d</choose_team_sid>
+                    <number_of_teams>3</number_of_teams>
+                    <start_idx>2</start_idx>
+                    <end_idx>18</end_idx>
+                    <randomly>1</randomly>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>germany4e</choose_team_sid>
+                    <number_of_teams>3</number_of_teams>
+                    <start_idx>2</start_idx>
+                    <end_idx>18</end_idx>
+                    <randomly>1</randomly>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
 
-         <choose_teams>
-	 <choose_team>
-	 <choose_team_sid>germany1</choose_team_sid>
-	 </choose_team>
-	 
-	 <choose_team>
-	 <choose_team_sid>germany2</choose_team_sid>
-	 </choose_team>
-	 
-	 <choose_team>
-	 <choose_team_sid>germany3</choose_team_sid>
-	  <number_of_teams>4</number_of_teams>
-	  <start_idx>1</start_idx>
-	  <end_idx>19</end_idx>
-	  <randomly>1</randomly>
-	 </choose_team>
-	
-	 <choose_team>
-	 <choose_team_sid>germany4a</choose_team_sid>
-	  <number_of_teams>4</number_of_teams>
-	  <start_idx>1</start_idx>
-	  <end_idx>17</end_idx>
-	  <randomly>1</randomly>
-	 </choose_team>
+        <cup_round>
+            <round_name>2nd Round</round_name>
+            <home_away>0</home_away>
+            <delay>-9</delay>
+        </cup_round>
 
-	 <choose_team>
-	 <choose_team_sid>germany4b</choose_team_sid>
-	  <number_of_teams>4</number_of_teams>
-	  <start_idx>2</start_idx>
-	  <end_idx>18</end_idx>
-	  <randomly>1</randomly>
-	 </choose_team>
+        <cup_round>
+            <round_name>3rd Round</round_name>
+            <home_away>0</home_away>
+            <delay>-1</delay>
+        </cup_round>
 
-	 <choose_team>
-	 <choose_team_sid>germany4c</choose_team_sid>
-	  <number_of_teams>4</number_of_teams>
-	  <start_idx>2</start_idx>
-	  <end_idx>18</end_idx>
-	  <randomly>1</randomly>
-	 </choose_team>
+        <cup_round>
+            <round_name>Quarter Final</round_name>
+            <home_away>0</home_away>
+            <delay>-2</delay>
+        </cup_round>
 
-	 <choose_team>
-	 <choose_team_sid>germany5_1</choose_team_sid>
-	  <number_of_teams>1</number_of_teams>
-	  <start_idx>1</start_idx>
-	  <end_idx>18</end_idx>
-	  <randomly>1</randomly>
-	 </choose_team>
+        <cup_round>
+            <round_name>Semi Final</round_name>
+            <home_away>0</home_away>
+            <delay>-11</delay>
+        </cup_round>
 
-	 <choose_team>
-	 <choose_team_sid>germany5_2</choose_team_sid>
-	  <number_of_teams>1</number_of_teams>
-	  <start_idx>1</start_idx>
-	  <end_idx>18</end_idx>
-	  <randomly>1</randomly>
-	 </choose_team>
-
-	 <choose_team>
-	 <choose_team_sid>germany5_3</choose_team_sid>
-	  <number_of_teams>1</number_of_teams>
-	  <start_idx>1</start_idx>
-	  <end_idx>18</end_idx>
-	  <randomly>1</randomly>
-	 </choose_team>
-
-	 <choose_team>
-	 <choose_team_sid>germany5_4</choose_team_sid>
-	  <number_of_teams>1</number_of_teams>
-	  <start_idx>1</start_idx>
-	  <end_idx>16</end_idx>
-	  <randomly>1</randomly>
-	 </choose_team>
-
-	 <choose_team>
-	 <choose_team_sid>germany5_5</choose_team_sid>
-	  <number_of_teams>1</number_of_teams>
-	  <start_idx>1</start_idx>
-	  <end_idx>16</end_idx>
-	  <randomly>1</randomly>
-	 </choose_team>
-
-	 <choose_team>
-	 <choose_team_sid>germany5_6</choose_team_sid>
-	  <number_of_teams>1</number_of_teams>
-	  <start_idx>1</start_idx>
-	  <end_idx>18</end_idx>
-	  <randomly>1</randomly>
-	 </choose_team>
-
-	 <choose_team>
-	 <choose_team_sid>germany5_7</choose_team_sid>
-	  <number_of_teams>1</number_of_teams>
-	  <start_idx>1</start_idx>
-	  <end_idx>16</end_idx>
-	  <randomly>1</randomly>
-	 </choose_team>
-
-	 <choose_team>
-	 <choose_team_sid>germany5_8</choose_team_sid>
-	  <number_of_teams>1</number_of_teams>
-	  <start_idx>1</start_idx>
-	  <end_idx>18</end_idx>
-	  <randomly>1</randomly>
-	 </choose_team>
-
-	 <choose_team>
-	 <choose_team_sid>germany5_9</choose_team_sid>
-	  <number_of_teams>1</number_of_teams>
-	  <start_idx>1</start_idx>
-	  <end_idx>18</end_idx>
-	  <randomly>1</randomly>
-	 </choose_team>
-
-	 <choose_team>
-	 <choose_team_sid>germany5_10</choose_team_sid>
-	  <number_of_teams>1</number_of_teams>
-	  <start_idx>1</start_idx>
-	  <end_idx>18</end_idx>
-	  <randomly>1</randomly>
-	 </choose_team>
-
-	 <choose_team>
-	 <choose_team_sid>germany5_11</choose_team_sid>
-	  <number_of_teams>1</number_of_teams>
-	  <start_idx>1</start_idx>
-	  <end_idx>18</end_idx>
-	  <randomly>1</randomly>
-	 </choose_team>
-
-	 <choose_team>
-	 <choose_team_sid>germany5_12</choose_team_sid>
-	  <number_of_teams>1</number_of_teams>
-	  <start_idx>1</start_idx>
-	  <end_idx>18</end_idx>
-	  <randomly>1</randomly>
-	 </choose_team>
-	 </choose_teams>
-         <byes>0</byes>
-	<delay>-11</delay>
-	</cup_round>
-
-	<cup_round>
-	<home_away>0</home_away>
-	<delay>-12</delay>
-	</cup_round>
-		
-	<cup_round>
-	<home_away>0</home_away>
-	<delay>1</delay>
-	</cup_round>
-
-	<cup_round>
-	<home_away>0</home_away>
-	</cup_round>
-
-	<cup_round>
-	<home_away>0</home_away>
-	</cup_round>
-
-	<cup_round>
-	<home_away>0</home_away>
-	<neutral>1</neutral>
-	</cup_round>
+        <cup_round>
+            <round_name>Final</round_name>
+            <home_away>0</home_away>
+            <neutral>1</neutral>
+        </cup_round>
 	</cup_rounds>
 </cup>

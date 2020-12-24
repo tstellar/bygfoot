@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Amateur Liha</name>
+  <short_name>Amateur Liha</short_name>
+  <symbol>flag_ukraine.png</symbol>
+  <sid>ukraine_prom_games4</sid>
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>highlight2</property>
+
+    <cup_rounds>
+        <cup_round>
+            <round_name>Quarter Final</round_name>
+            <home_away>0</home_away>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>ukraine4a</choose_team_sid>
+                    <number_of_teams>2</number_of_teams>
+                    <start_idx>1</start_idx>
+                    <end_idx>2</end_idx>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>ukraine4b</choose_team_sid>
+                    <number_of_teams>3</number_of_teams>
+                    <start_idx>1</start_idx>
+                    <end_idx>3</end_idx>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>ukraine4c</choose_team_sid>
+                    <number_of_teams>3</number_of_teams>
+                    <start_idx>1</start_idx>
+                    <end_idx>3</end_idx>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
+        
+        <cup_round>
+            <round_name>Semi Final</round_name>
+            <home_away>0</home_away>
+        </cup_round>
+    </cup_rounds>
+</cup>
