@@ -1,9 +1,12 @@
 
 #include "bygfoot.h"
+#include "file.h"
+#include "load_save.h"
 #include "gui.h"
 #include "misc.h"
 #include "start_end.h"
 #include "user.h"
+#include "start_end.h"
 #include "xml_country.h"
 
 void
@@ -17,6 +20,23 @@ bygfoot_init(Bygfoot *bygfoot, enum BygfootFrontend frontend)
         bygfoot->get_progress_bar_fraction;
         break;
     }
+}
+
+void
+bygfoot_load_bygfoot(Bygfoot *bygfoot, const gchar *id)
+{
+    char save_dir[256];
+    char save_path[256];
+    /* FIXME: This is not secure */
+    file_get_bygfoot_dir(save_dir);
+    /* FIXME: There should be a helper function for this */
+    sprintf(save_path, "%s%ssaves%s%s", save_dir, G_DIR_SEPARATOR_S, G_DIR_SEPARATOR_S, id);
+}
+
+Country *bygfoot_load_country(Bygfoot *bygfoot, const gchar *country_name)
+{
+    xml_country_read(country_name, NULL);
+    return &country;
 }
 
 User *bygfoot_add_user(Bygfoot *bygfoot, const gchar *username, Team *tm)

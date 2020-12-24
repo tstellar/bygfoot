@@ -1,8 +1,11 @@
 #ifndef BYGFOOT_STRUCT_H
 #define BYGFOOT_STRUCT_H
 
+#include <glib.h>
+
 enum BygfootFrontend {
-    BYGFOOT_FRONTEND_GTK2
+    BYGFOOT_FRONTEND_GTK2,
+    BYGFOOT_FRONTEND_CONSOLE,
 };
 
 /** This struct holds all of the global state for a bygfoot game.  The goal
@@ -19,5 +22,6 @@ typedef struct
     gdouble (*get_progress_bar_fraction)(void);
     /* @} */
 } Bygfoot;
+
 
 #endif
