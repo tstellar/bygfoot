@@ -70,11 +70,12 @@ G_MODULE_EXPORT void
 on_team_selection_ok_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_team_selection_ok_clicked\n");
 #endif
 
-    misc_callback_start_game();
+    misc_callback_start_game(bygfoot);
 }
 
 G_MODULE_EXPORT void

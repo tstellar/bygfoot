@@ -70,7 +70,7 @@ misc_callback_show_team_list(GtkWidget *widget, const gchar *country_file)
 
 /** Start a new game after users and teams are selected. */
 void
-misc_callback_start_game(void)
+misc_callback_start_game(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("misc_callback_start_game\n");
@@ -99,15 +99,13 @@ misc_callback_start_game(void)
     else
 	opt_set_int("int_opt_load_defs", 0);
 
-    start_new_game();
     window_destroy(&window.startup);
     file_store_text_in_saves("last_country", country.sid);
 
     if(!opt_int("int_opt_calodds"))
     {
-	for(i=0;i<users->len;i++)
-	    user_set_up_team_new_game(&usr(i));
-	
+        bygfoot_start_game(bygfoot);
+
 	window_create(WINDOW_MAIN);
 	
 	game_gui_show_main();
@@ -121,6 +119,7 @@ misc_callback_start_game(void)
     }
     else
     {
+       start_new_game();
 	free_users(TRUE);
 	debug_calibrate_betting_odds(opt_int("int_opt_calodds_skilldiffmax"),
 				     opt_int("int_opt_calodds_matches"));
