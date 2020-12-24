@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>luxembourg4b</sid>
+  <name>2 Division Serie 2</name>
+  <short_name>2D S2</short_name>
+  <symbol>flag_luxembourg.png</symbol>
+  <first_week>8</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="1">9</break_in>
+  <break_in length="1">11</break_in>
+  <break_in length="1">13</break_in>
+  <break_in length="1">17</break_in>
+  <break_in length="1">23</break_in>
+  <average_talent>2600</average_talent>
+  <two_match_week_start>15</two_match_week_start> 
+  <two_match_week_end>16</two_match_week_end>
+  <names_file>belgium</names_file>
+  <yellow_red>5</yellow_red>
+  <layer>4</layer>
+
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>2</rank_end>
+            <dest_sid>luxembourg3a luxembourg3b</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+        
+        <prom_games>
+          <prom_games_dest_sid>luxembourg3a luxembourg3b</prom_games_dest_sid>
+          <prom_games_loser_sid>luxembourg4a luxembourg4b</prom_games_loser_sid>
+          <prom_games_cup_sid>luxembourg_prom_games3b</prom_games_cup_sid>
+        </prom_games>
+        
+        <prom_rel_element>
+            <rank_start>13</rank_start>
+            <rank_end>14</rank_end>
+            <dest_sid>luxembourg5a luxembourg5b</dest_sid>
+            <prom_rel_type>relegation</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
+
+    <teams>
+        <team>
+            <team_name>Luxembourg 15</team_name>
+        </team>
+        <team>
+            <team_name>Luxembourg 16</team_name>
+        </team>
+        <team>
+            <team_name>Luxembourg 17</team_name>
+        </team>
+        <team>
+            <team_name>Luxembourg 18</team_name>
+        </team>
+        <team>
+            <team_name>Luxembourg 19</team_name>
+        </team>
+        <team>
+            <team_name>Luxembourg 20</team_name>
+        </team>
+        <team>
+            <team_name>Luxembourg 21</team_name>
+        </team>
+        <team>
+            <team_name>Ehlerange</team_name>
+        </team>
+        <team>
+            <team_name>Luxembourg 23</team_name>
+        </team>
+        <team>
+            <team_name>Luxembourg 24</team_name>
+        </team>
+        <team>
+            <team_name>Luxembourg 25</team_name>
+        </team>
+        <team>
+            <team_name>Luxembourg 26</team_name>
+        </team>
+        <team>
+            <team_name>Luxembourg 27</team_name>
+        </team>
+        <team>
+            <team_name>Luxembourg 28</team_name>
+        </team>
+    </teams>
+</league>

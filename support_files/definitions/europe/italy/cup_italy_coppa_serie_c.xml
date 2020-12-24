@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Coppa Italia Serie C</name>
+  <short_name>Coppa C</short_name>
+  <symbol>flag_italy.png</symbol>
+  <sid>italy_coppa_serie_c</sid>
+  <last_week>38</last_week>
+  <week_gap>2</week_gap>
+  <property>national</property>
+
+    <cup_rounds>
+        <cup_round>
+            <round_name>1st Round</round_name>
+            <byes>4</byes>
+            <delay>-13</delay>
+            <home_away>0</home_away>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>italy3a</choose_team_sid>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>italy3b</choose_team_sid>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>italy3c</choose_team_sid>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
+        
+        <cup_round>
+            <round_name>2nd Round</round_name>
+            <delay>-10</delay>
+            <home_away>0</home_away>
+        </cup_round>
+        
+        <cup_round>
+            <round_name>3rd Round</round_name>
+            <delay>-8</delay>
+            <home_away>0</home_away>
+        </cup_round>
+
+        <cup_round>
+            <round_name>Quarter Final</round_name>
+            <delay>-4</delay>
+            <home_away>0</home_away>
+        </cup_round>
+
+        <cup_round>
+            <round_name>Semi Final</round_name>
+            <delay>-2</delay>
+            <home_away>1</home_away>
+        </cup_round>
+
+        <cup_round>
+            <round_name>Final</round_name>
+            <home_away>1</home_away>
+        </cup_round>
+    </cup_rounds>
+</cup>

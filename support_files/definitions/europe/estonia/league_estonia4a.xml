@@ -1,60 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <league>
   <sid>estonia4a</sid>
-  <name>Third League North</name>
-  <short_name>3. L. N</short_name>
+  <name>II Liiga Edelast</name>
+  <short_name>IILEN</short_name>
   <symbol>flag_estonia.png</symbol>
-  <first_week>1</first_week>
+  <first_week>3</first_week>
   <week_gap>1</week_gap>
-  <average_talent>4300</average_talent>
+  <average_talent>2500</average_talent>
+  <break_in length="1">5</break_in>
+  <break_in length="1">8</break_in>
+  <break_in length="1">10</break_in>
+  <break_in length="1">13</break_in>
+  <break_in length="1">15</break_in>
+  <break_in length="1">17</break_in>
+  <break_in length="1">20</break_in>
+  <break_in length="1">22</break_in>
+  <break_in length="1">24</break_in>
+  <break_in length="1">27</break_in>
+  <break_in length="1">29</break_in>
+  <break_in length="1">32</break_in>
+  <break_in length="1">34</break_in>
+  <break_in length="1">37</break_in>
+  <break_in length="1">39</break_in>
+  <break_in length="1">40</break_in>
+  <break_in length="1">43</break_in>
   <yellow_red>5</yellow_red>
   <layer>4</layer>
 
-  <prom_rel>
-    <prom_rel_element>
-      <rank_start>1</rank_start>
-      <rank_end>1</rank_end>
-      <dest_sid>estonia3a estonia3b</dest_sid>
-      <prom_rel_type>promotion</prom_rel_type>
-    </prom_rel_element>
-  </prom_rel>
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>1</rank_end>
+            <dest_sid>estonia3</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+        
+        <prom_games>
+            <prom_games_dest_sid>estonia3</prom_games_dest_sid>
+            <prom_games_cup_sid>estonia_prom_games3</prom_games_cup_sid>
+            <prom_games_loser_sid>estonia4a estonia4b</prom_games_loser_sid>
+        </prom_games>
+    </prom_rel>
 
-  <teams>
-    <team>
-      <team_name>Keskerakond</team_name>
-    </team>
-    <team>
-      <team_name>Piraaja</team_name>
-    </team>
-    <team>
-      <team_name>Legion II</team_name>
-    </team>
-    <team>
-      <team_name>Ajax V.</team_name>
-    </team>
-    <team>
-      <team_name>Olympic</team_name>
-    </team>
-    <team>
-      <team_name>Tondi</team_name>
-    </team>
-    <team>
-      <team_name>LiVal Sport</team_name>
-    </team>
-    <team>
-      <team_name>Saue</team_name>
-    </team>
-    <team>
-      <team_name>EBS</team_name>
-    </team>
-    <team>
-      <team_name>Kuuse</team_name>
-    </team>
-    <team>
-      <team_name>Saku</team_name>
-    </team>
-    <team>
-      <team_name>Eurouniv</team_name>
-    </team>
-   </teams>
+    <teams>
+        <team>
+            <team_name>Estonia 35</team_name>
+        </team>
+        <team>
+            <team_name>Estonia 36</team_name>
+        </team>
+        <team>
+            <team_name>Estonia 37</team_name>
+        </team>
+        <team>
+            <team_name>Estonia 38</team_name>
+        </team>
+        <team>
+            <team_name>Estonia 39</team_name>
+        </team>
+        <team>
+            <team_name>Estonia 40</team_name>
+        </team>
+        <team>
+            <team_name>Estonia 41</team_name>
+        </team>
+        <team>
+            <team_name>Estonia 42</team_name>
+        </team>
+        <team>
+            <team_name>Estonia 43</team_name>
+        </team>
+        <team>
+            <team_name>Estonia 44</team_name>
+        </team>
+        <team>
+            <team_name>Estonia 45</team_name>
+        </team>
+        <team>
+            <team_name>Estonia 46</team_name>
+        </team>
+        <team>
+            <team_name>Estonia 47</team_name>
+        </team>
+        <team>
+            <team_name>Estonia 48</team_name>
+        </team>
+    </teams>
 </league>

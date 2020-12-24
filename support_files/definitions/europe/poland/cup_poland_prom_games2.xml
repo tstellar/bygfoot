@@ -7,33 +7,21 @@
   <property>national</property>
   <property>highlight2</property>
 
-  <cup_rounds>
-    <cup_round>
-      <home_away>1</home_away>
-
-      <choose_teams>
-        <choose_team>
-          <choose_team_sid>poland2</choose_team_sid>
-          <number_of_teams>2</number_of_teams>
-          <start_idx>13</start_idx>
-          <end_idx>14</end_idx>
-        </choose_team>
-
-        <choose_team>
-          <choose_team_sid>poland3a</choose_team_sid>
-          <number_of_teams>1</number_of_teams>
-          <start_idx>3</start_idx>
-          <end_idx>3</end_idx>
-        </choose_team>
-
-        <choose_team>
-          <choose_team_sid>poland3b</choose_team_sid>
-          <number_of_teams>1</number_of_teams>
-          <start_idx>3</start_idx>
-          <end_idx>3</end_idx>
-        </choose_team>
-      </choose_teams>
-    </cup_round>
-    
-  </cup_rounds>
+    <cup_rounds>
+        <cup_round>
+            <home_away>1</home_away>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>poland3</choose_team_sid>
+                    <number_of_teams>4</number_of_teams>
+                    <start_idx>3</start_idx>
+                    <end_idx>6</end_idx>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
+        
+        <cup_round>
+            <home_away>1</home_away>
+        </cup_round>
+    </cup_rounds>
 </cup>

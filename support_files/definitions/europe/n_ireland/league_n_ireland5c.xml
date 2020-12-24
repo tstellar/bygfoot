@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>n_ireland5c</sid>
+  <name>5. Amateur League Division 1A</name>
+  <short_name>5. NAL1A</short_name>
+  <symbol>flag_n_ireland.png</symbol>
+  <first_week>7</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="1">8</break_in>
+  <break_in length="1">11</break_in>
+  <break_in length="1">14</break_in>
+  <break_in length="1">19</break_in>
+  <break_in length="1">23</break_in>
+  <break_in length="1">27</break_in>
+  <break_in length="5">30</break_in>
+  <average_talent>2200</average_talent>
+  <names_file>england</names_file>
+  <yellow_red>5</yellow_red>
+  <layer>5</layer>
+
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>2</rank_end>
+            <dest_sid>n_ireland4c</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+        
+        <prom_rel_element>
+            <rank_start>13</rank_start>
+            <rank_end>14</rank_end>
+            <dest_sid>n_ireland6c</dest_sid>
+            <prom_rel_type>relegation</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
+
+    <teams>
+        <team>
+            <team_name>N_Ireland 88</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 89</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 90</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 91</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 92</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 93</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 94</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 95</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 96</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 97</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 98</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 99</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 100</team_name>
+        </team>
+        <team>
+            <team_name>N_Ireland 101</team_name>
+        </team>
+    </teams>
+</league>

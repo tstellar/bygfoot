@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Based on 2020-2021 UEFA Champions League qualifications and specifications -->
+
+<cup>
+	<name>UEFA Champions League</name>
+	<short_name>UCL</short_name>
+	<symbol>flag_eu.png</symbol>
+	<sid>uefa_cl</sid>
+	<group>1</group>
+	<yellow_red>3</yellow_red>
+	<last_week>43</last_week>
+	<break_in length="1">15</break_in>
+	<break_in length="1">17</break_in>
+	<break_in length="1">19</break_in>
+	<break_in length="2">21</break_in>
+	<break_in length="1">24</break_in>
+	<break_in length="2">37</break_in>
+	<property>international</property>
+	<property>league_talents</property>
+	<property>highlight1</property>
+	<property>omit_from_history</property> 
+
+<!-- Add 2 to end_idx value to account for Title Holders for the Champions League and Europa League -->
+
+	<cup_rounds>
+		<cup_round>
+			<!-- Round 1 -->
+			<round_name>2nd Qualifying Round - League Path</round_name>
+			<new_teams>6</new_teams>
+			<byes>0</byes>
+			<delay>-23</delay>
+			<choose_teams>
+
+				#UEFA Ranking 15
+				<!-- 2nd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>croatia1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>2</start_idx>
+					<end_idx>2</end_idx>
+                                        <optional>1</optional>
+				</choose_team>
+
+				#UEFA Ranking 14
+				<!-- 2nd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>greece1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>2</start_idx>
+					<end_idx>2</end_idx>
+                                        <optional>1</optional>
+				</choose_team>
+
+				#UEFA Ranking 13
+				<!-- 2nd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>czech1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>2</start_idx>
+					<end_idx>2</end_idx>
+                                        <optional>1</optional>
+				</choose_team>
+
+				#UEFA Ranking 12
+				<!-- 2nd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>austria1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>2</start_idx>
+					<end_idx>2</end_idx>
+                                        <optional>1</optional>
+				</choose_team>
+
+				#UEFA Ranking 11
+				<!-- 2nd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>netherlands1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>2</start_idx>
+					<end_idx>2</end_idx>
+                                        <optional>1</optional>
+				</choose_team>
+
+				#UEFA Ranking 10
+				<!-- 2nd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>turkey1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>2</start_idx>
+					<end_idx>2</end_idx>
+                                        <optional>1</optional>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+
+		<cup_round>
+			<!-- Round 2 -->
+			<round_name>3rd Qualifying Round - League Path</round_name>
+			<new_teams>5</new_teams>
+			<byes>0</byes>
+			<delay>-23</delay>
+			<choose_teams>
+
+				#UEFA Ranking 9
+				<!-- 2nd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>ukraine1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>2</start_idx>
+					<end_idx>2</end_idx>
+                                        <optional>1</optional>
+				</choose_team>
+
+				#UEFA Ranking 8
+				<!-- 2nd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>belgium1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>2</start_idx>
+					<end_idx>2</end_idx>
+                                        <optional>1</optional>
+				</choose_team>
+
+				#UEFA Ranking 7
+				<!-- 2nd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>portugal1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>2</start_idx>
+					<end_idx>2</end_idx>
+                                        <optional>1</optional>
+				</choose_team>
+
+				#UEFA Ranking 6
+				<!-- 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>russia1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>3</start_idx>
+					<end_idx>3</end_idx>
+                                        <optional>1</optional>
+				</choose_team>
+
+				#UEFA Ranking 5
+				<!-- 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>france1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>3</start_idx>
+					<end_idx>3</end_idx>
+                                        <optional>1</optional>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+
+		<cup_round>
+			<!-- Round 3 -->
+			<round_name>Play-Off Round - League Path</round_name>
+			<byes>0</byes>
+			<delay>-23</delay>
+		</cup_round>
+
+		<cup_round>
+			<!-- Round 4 -->
+			<round_name>Group Stage</round_name>
+			<new_teams>30</new_teams>
+			<number_of_groups>8</number_of_groups>
+			<number_of_advance>2</number_of_advance>
+			<delay>-20</delay>
+			<choose_teams>
+
+				<!-- 4 winners from the Play-Off Round (Champions Path) -->
+				<choose_team>
+					<choose_team_sid>uefa_cl_cp</choose_team_sid>
+					<wait_for_cup round="6">uefa_cl_cp</wait_for_cup>
+					<skip_group_check>1</skip_group_check>
+					<preload>0</preload>
+					<number_of_teams>4</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>4</end_idx>
+                                        <optional>1</optional>
+				</choose_team>
+
+				#UEFA Ranking 10
+				<choose_team>
+					<choose_team_sid>turkey1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>1</end_idx>
+                                        <optional>1</optional>
+				</choose_team>
+
+				#UEFA Ranking 9
+				<choose_team>
+					<choose_team_sid>ukraine1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>1</end_idx>
+                                        <optional>1</optional>
+				</choose_team>
+
+				#UEFA Ranking 8
+				<choose_team>
+					<choose_team_sid>belgium1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>1</end_idx>
+                                        <optional>1</optional>
+				</choose_team>
+
+				#UEFA Ranking 7
+				<choose_team>
+					<choose_team_sid>portugal1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>1</end_idx>
+                                        <optional>1</optional>
+				</choose_team>
+
+				#UEFA Ranking 6
+				<choose_team>
+					<choose_team_sid>russia1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>2</end_idx>
+                                        <optional>1</optional>
+				</choose_team>
+
+				#UEFA Ranking 5
+				<choose_team>
+					<choose_team_sid>france1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>2</end_idx>
+                                        <optional>1</optional>
+				</choose_team>
+
+				#UEFA Ranking 4
+				<choose_team>
+					<choose_team_sid>germany1</choose_team_sid>
+					<number_of_teams>4</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>4</end_idx>
+                                        <optional>1</optional>
+				</choose_team>
+
+				#UEFA Ranking 3
+				<choose_team>
+					<choose_team_sid>italy1</choose_team_sid>
+					<number_of_teams>4</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>4</end_idx>
+                                        <optional>1</optional>
+				</choose_team>
+
+				#UEFA Ranking 2
+				<choose_team>
+					<choose_team_sid>england1</choose_team_sid>
+					<number_of_teams>4</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>4</end_idx>
+                                        <optional>1</optional>
+				</choose_team>
+
+				#UEFA Ranking 1
+				<choose_team>
+					<choose_team_sid>spain1</choose_team_sid>
+					<number_of_teams>4</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>4</end_idx>
+                                        <optional>1</optional>
+				</choose_team>
+
+				<!-- UEFA Champions League Title Holder spot -->
+				<choose_team>
+					<choose_team_sid>spain1 england1 italy1 germany1 france1 russia1 portugal1 belgium1 ukraine1 turkey1 netherlands1  austria1 czech1 greece1 croatia1 denmark1 switzerland1 cyprus1 serbia1 scotland1 belarus1 sweden1 norway1 kazakhstan1 poland1 azerbaijan1 israel1 bulgaria1 romania1 slovakia1 slovenia1 hungary1 n_macedonia1 moldova1 albania1 ireland1 finland1 iceland1 bosnia_herzegovina1 lithuania1 latvia1 luxembourg1 armenia1 malta1 estonia1 georgia1 wales1 montenegro1 faroe_islands1 n_ireland1 andorra1 san_marino1 liechtenstein1 gibraltar1 kosovo1
+					</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				<!-- UEFA Europa League Title Holder spot -->
+				<choose_team>
+					<choose_team_sid>spain1 england1 italy1 germany1 france1 russia1 portugal1 belgium1 ukraine1 turkey1 netherlands1  austria1 czech1 greece1 croatia1 denmark1 switzerland1 cyprus1 serbia1 scotland1 belarus1 sweden1 norway1 kazakhstan1 poland1 azerbaijan1 israel1 bulgaria1 romania1 slovakia1 slovenia1 hungary1 n_macedonia1 moldova1 albania1 ireland1 finland1 iceland1 bosnia_herzegovina1 lithuania1 latvia1 luxembourg1 armenia1 malta1 estonia1 georgia1 wales1 montenegro1 faroe_islands1 n_ireland1 andorra1 san_marino1 liechtenstein1 gibraltar1 kosovo1
+					</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+
+		<cup_round>
+			<!-- Round 5 -->
+			<round_name>Round of 16</round_name>
+			<delay>-4</delay>
+		</cup_round>
+
+		<cup_round>
+			<!-- Round 6 -->
+			<round_name>Quarter-Final</round_name>
+		</cup_round>
+	</cup_rounds>
+</cup>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+	<name>Championship Group</name>
+	<short_name>Championship</short_name>
+	<symbol>flag_gibraltar.png</symbol>
+	<sid>gibraltar_championship_group</sid>
+	<yellow_red>5</yellow_red>  
+	<add_week>25</add_week>
+	<last_week>37</last_week>
+	<break_in length="2">31</break_in>
+	<property>national</property>
+
+	<cup_rounds>
+		<cup_round>
+			<number_of_groups>1</number_of_groups>
+			<delay>-2</delay>
+			<choose_teams>
+				<choose_team>
+					<choose_team_sid>gibraltar1</choose_team_sid>
+					<number_of_teams>6</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>6</end_idx>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+	</cup_rounds>
+</cup>

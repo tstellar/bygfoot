@@ -1,0 +1,48 @@
+<cup>
+  <name>4. deild karla Play Off</name>
+  <short_name>4.d Prom.</short_name>
+  <symbol>flag_iceland.png</symbol>
+  <sid>iceland_prom_games4b</sid>
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>highlight2</property>
+  <yellow_red>3</yellow_red>
+
+    <cup_rounds>
+        <cup_round>
+            <home_away>1</home_away>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>iceland5a</choose_team_sid>
+                    <number_of_teams>1</number_of_teams>
+                    <start_idx>2</start_idx>
+                    <end_idx>2</end_idx>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>iceland5b</choose_team_sid>
+                    <number_of_teams>1</number_of_teams>
+                    <start_idx>1</start_idx>
+                    <end_idx>1</end_idx>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>iceland5c</choose_team_sid>
+                    <number_of_teams>1</number_of_teams>
+                    <start_idx>2</start_idx>
+                    <end_idx>2</end_idx>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>iceland5d</choose_team_sid>
+                    <number_of_teams>1</number_of_teams>
+                    <start_idx>1</start_idx>
+                    <end_idx>1</end_idx>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
+
+        <cup_round>
+            <round_name>Promotion Final</round_name>
+            <home_away>1</home_away>
+        </cup_round>
+  </cup_rounds>
+
+</cup>

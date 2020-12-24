@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>netherlands5a</sid>
+  <name>Zaterdag Hoofdklasse A</name>
+  <short_name>Zat. hoofdkl A</short_name>
+  <symbol>flag_netherlands.png</symbol>
+  <first_week>7</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="3">22</break_in>
+  <break_in length="1">38</break_in>
+  <average_talent>4800</average_talent>
+  <yellow_red>5</yellow_red>
+  <names_file>netherlands</names_file>
+  <layer>5</layer>
+
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>1</rank_end>
+            <dest_sid>netherlands4a</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+        
+        <prom_games>
+            <prom_games_dest_sid>netherlands4a</prom_games_dest_sid>
+            <prom_games_cup_sid>netherlands_prom_games5a</prom_games_cup_sid>
+            <prom_games_loser_sid>netherlands5a</prom_games_loser_sid>
+        </prom_games>
+    </prom_rel>
+
+    <teams>
+        <team>
+            <team_name>Netherlands 1</team_name>
+        </team>
+        <team>
+            <team_name>Netherlands 2</team_name>
+        </team>
+        <team>
+            <team_name>Netherlands 3</team_name>
+        </team>
+        <team>
+            <team_name>Netherlands 4</team_name>
+        </team>
+        <team>
+            <team_name>Netherlands 5</team_name>
+        </team>
+        <team>
+            <team_name>J. B. Gouda</team_name>
+        </team>
+        <team>
+            <team_name>Netherlands 7</team_name>
+        </team>
+        <team>
+            <team_name>Netherlands 8</team_name>
+        </team>
+        <team>
+            <team_name>W. Naaldwijk</team_name>
+        </team>
+        <team>
+            <team_name>Netherlands 10</team_name>
+        </team>
+        <team>
+            <team_name>Netherlands 11</team_name>
+        </team>
+        <team>
+            <team_name>Netherlands 12</team_name>
+        </team>
+        <team>
+            <team_name>T. L. Sassenheim</team_name>
+        </team>
+        <team>
+            <team_name>R. Volendam</team_name>
+        </team>
+        <team>
+            <team_name>Netherlands 15</team_name>
+        </team>
+        <team>
+            <team_name>Netherlands 16</team_name>
+        </team>
+    </teams>
+</league>

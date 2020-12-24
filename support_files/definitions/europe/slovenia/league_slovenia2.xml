@@ -4,70 +4,83 @@
   <name>Druga Liga</name>
   <short_name>2. SNL</short_name>
   <symbol>flag_slovenia.png</symbol>
-  <first_week>4</first_week>
+  <first_week>5</first_week>
   <week_gap>1</week_gap>
-  <break_in length="10">24</break_in>
-  <average_talent>6400</average_talent>
-  <round_robins>4</round_robins>
+  <break_in length="11">23</break_in>
+  <average_talent>4300</average_talent>
   <names_file>serbia</names_file>
   <yellow_red>5</yellow_red>
-  <two_match_week_start>28</two_match_week_start>
-  <two_match_week_end>29</two_match_week_end>
-  <two_match_week_start>33</two_match_week_start>
-  <two_match_week_end>34</two_match_week_end>
 
-  <prom_rel>
-    <prom_rel_element>
-      <rank_start>1</rank_start>
-      <rank_end>1</rank_end>
-      <dest_sid>slovenia1</dest_sid>
-      <prom_rel_type>promotion</prom_rel_type>
-    </prom_rel_element>
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>1</rank_end>
+            <dest_sid>slovenia1</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
 
-    <prom_games>
-      <prom_games_dest_sid>slovenia1</prom_games_dest_sid>
-      <prom_games_cup_sid>slovenia_prom_games1</prom_games_cup_sid>
-      <prom_games_loser_sid>slovenia2</prom_games_loser_sid>
-    </prom_games>
+        <prom_games>
+            <prom_games_dest_sid>slovenia1</prom_games_dest_sid>
+            <prom_games_cup_sid>slovenia_prom_games1</prom_games_cup_sid>
+            <prom_games_loser_sid>slovenia2</prom_games_loser_sid>
+        </prom_games>
 
-    <prom_rel_element>
-      <rank_start>9</rank_start>
-      <rank_end>10</rank_end>
-      <dest_sid>slovenia3a slovenia3b</dest_sid>
-      <prom_rel_type>relegation</prom_rel_type>
-    </prom_rel_element>
-  </prom_rel>
+        <prom_rel_element>
+            <rank_start>15</rank_start>
+            <rank_end>16</rank_end>
+            <dest_sid>slovenia3a slovenia3b</dest_sid>
+            <prom_rel_type>relegation</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
 
-  <teams>
-    <team>
-      <team_name>Aluminij</team_name>
-    </team>
-    <team>
-      <team_name>B. Krajina</team_name>
-    </team>
-    <team>
-      <team_name>B. Izola</team_name>
-    </team>
-    <team>
-      <team_name>Krško</team_name>
-    </team>
-    <team>
-      <team_name>O. Ljubljana</team_name>
-    </team>
-    <team>
-      <team_name>I. Gorica</team_name>
-    </team>
-    <team>
-      <team_name>Mura</team_name>
-    </team>
-    <team>
-      <team_name>T. Kranj</team_name>
-    </team>
-    <team>
-      <team_name>Šentjur</team_name>
-    </team>
-    <team>
-      <team_name>Zagorje</team_name>
-    </team>
-  </teams>
+    <teams>
+        <team>
+            <team_name>Slovenia 1</team_name>
+        </team>
+        <team>
+            <team_name>Slovenia 2</team_name>
+        </team>
+        <team>
+            <team_name>Slovenia 3</team_name>
+        </team>
+        <team>
+            <team_name>Slovenia 4</team_name>
+        </team>
+        <team>
+            <team_name>Dob</team_name>
+        </team>
+        <team>
+            <team_name>Slovenia 6</team_name>
+        </team>
+        <team>
+            <team_name>Slovenia 7</team_name>
+        </team>
+        <team>
+            <team_name>Slovenia 8</team_name>
+        </team>
+        <team>
+            <team_name>Slovenia 9</team_name>
+        </team>
+        <team>
+            <team_name>J. Dekani</team_name>
+        </team>
+        <team>
+            <team_name>Koper</team_name>
+        </team>
+        <team>
+            <team_name>Krka</team_name>
+        </team>
+        <team>
+            <team_name>Krško</team_name>
+        </team>
+        <team>
+            <team_name>Slovenia 14</team_name>
+        </team>
+        <team>
+            <team_name>Radomlje</team_name>
+        </team>
+        <team>
+            <team_name>Slovenia 16</team_name>
+        </team>
+    </teams>
 </league>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Promotion Games Division 2</name>
+  <short_name>Prom. Gam.</short_name>
+  <symbol>flag_sweden.png</symbol>
+  <sid>sweden_prom_games4b</sid>
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>highlight2</property>
+
+    <cup_rounds>
+        <cup_round>
+            <round_name>Group B</round_name>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>sweden5c</choose_team_sid>
+                    <number_of_teams>1</number_of_teams>
+                    <start_idx>2</start_idx>
+                    <end_idx>2</end_idx>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>sweden5d</choose_team_sid>
+                    <number_of_teams>1</number_of_teams>
+                    <start_idx>2</start_idx>
+                    <end_idx>2</end_idx>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
+        
+        <cup_round>
+            <round_name>Group B Final</round_name>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>sweden4b</choose_team_sid>
+                    <number_of_teams>1</number_of_teams>
+                    <start_idx>12</start_idx>
+                    <end_idx>12</end_idx>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
+    </cup_rounds>
+</cup>

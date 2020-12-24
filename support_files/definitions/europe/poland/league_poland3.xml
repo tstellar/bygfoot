@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>poland3</sid>
+  <name>II Liga</name>
+  <short_name>2. L.</short_name>
+  <symbol>flag_poland.png</symbol>
+  <first_week>6</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="5">27</break_in>
+  <average_talent>4600</average_talent>
+  <names_file>poland</names_file>
+  <yellow_red>5</yellow_red>
+
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>2</rank_end>
+            <dest_sid>poland2</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+
+        <prom_games>
+            <prom_games_dest_sid>poland2</prom_games_dest_sid>
+            <prom_games_cup_sid>poland_prom_games2</prom_games_cup_sid>
+            <prom_games_loser_sid>poland3</prom_games_loser_sid>
+        </prom_games>
+        
+        <prom_rel_element>
+            <rank_start>15</rank_start>
+            <rank_end>18</rank_end>
+            <dest_sid>poland4a poland4b poland4c poland4d</dest_sid>
+            <prom_rel_type>relegation</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
+    
+    <teams>
+        <team>
+            <team_name>Poland 37</team_name>
+        </team>
+        <team>
+            <team_name>Poland 38</team_name>
+        </team>
+        <team>
+            <team_name>Poland 39</team_name>
+        </team>
+        <team>
+            <team_name>Poland 40</team_name>
+        </team>
+        <team>
+            <team_name>Katowice</team_name>
+        </team>
+        <team>
+            <team_name>G. Łęczna</team_name>
+        </team>
+        <team>
+            <team_name>Poland 43</team_name>
+        </team>
+        <team>
+            <team_name>Poland 44</team_name>
+        </team>
+        <team>
+            <team_name>Poland 45</team_name>
+        </team>
+        <team>
+            <team_name>Poland 46</team_name>
+        </team>
+        <team>
+            <team_name>Poland 47</team_name>
+        </team>
+        <team>
+            <team_name>Poland 48</team_name>
+        </team>
+        <team>
+            <team_name>Poland 49</team_name>
+        </team>
+        <team>
+            <team_name>Poland 50</team_name>
+        </team>
+        <team>
+            <team_name>S. Stalowa Wola</team_name>
+        </team>
+        <team>
+            <team_name>W. Łódź</team_name>
+        </team>
+        <team>
+            <team_name>Z. Pruszków</team_name>
+        </team>
+        <team>
+            <team_name>Poland 54</team_name>
+        </team>
+    </teams>
+</league>

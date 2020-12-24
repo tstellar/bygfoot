@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Lowland League Cup</name>
+  <short_name>LL Cup</short_name>
+  <symbol>flag_scotland.png</symbol>
+  <sid>scotland_lowland</sid>
+  <add_week>43</add_week>
+  <last_week>46</last_week>
+  <week_gap>1</week_gap>
+  <property>national</property>
+
+  <cup_rounds>	  
+    <cup_round>
+        <round_name>1st Round</round_name>
+        <home_away>0</home_away>
+        <choose_teams>
+            <choose_team>
+                <choose_team_sid>scotland5a</choose_team_sid>
+                <number_of_teams>15</number_of_teams>
+                <start_idx>2</start_idx>
+                <end_idx>16</end_idx>
+                <randomly>1</randomly>
+            </choose_team>
+        </choose_teams>
+    </cup_round>
+
+    <cup_round>
+        <round_name>Quarter Final</round_name>
+        <home_away>0</home_away>
+    </cup_round>
+
+    <cup_round>
+        <round_name>Semi Final</round_name>
+        <home_away>0</home_away>
+    </cup_round>
+
+    <cup_round>
+        <round_name>Final</round_name>
+        <neutral>1</neutral>
+        <home_away>0</home_away>
+    </cup_round>    
+  </cup_rounds>
+  
+</cup>

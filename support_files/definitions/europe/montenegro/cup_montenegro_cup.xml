@@ -1,44 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cup>
-  <name>Crnogorski fudbalski kup</name>
-  <short_name>Cr. kup</short_name>
+  <name>Kup Crne Gore</name>
+  <short_name>Cr. Kup</short_name>
   <symbol>flag_montenegro.png</symbol>
   <sid>montenegro_cup</sid>
-  <last_week>44</last_week>
-  <week_gap>3</week_gap>
+  <last_week>37</last_week>
+  <week_gap>2</week_gap>
   <property>national</property>
 
-  <cup_rounds>
-    <cup_round>
-      <home_away>0</home_away>
+    <cup_rounds>
+        <cup_round>
+            <round_name>1st Round</round_name>
+            <home_away>0</home_away>
+            <byes>0</byes>
+            <delay>-10</delay>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>montenegro3a</choose_team_sid>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>montenegro3b</choose_team_sid>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>montenegro3c</choose_team_sid>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>montenegro2</choose_team_sid>
+                    <number_of_teams>2</number_of_teams>
+                    <start_idx>9</start_idx>
+                    <end_idx>10</end_idx>
+                    <randomly>1</randomly>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
 
-      <choose_teams>
-        <choose_team>
-          <choose_team_sid>montenegro2</choose_team_sid>
-        </choose_team>
+        <cup_round>
+            <round_name>2nd Round</round_name>
+            <home_away>1</home_away>
+            <delay>-9</delay>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>montenegro1</choose_team_sid>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>montenegro2</choose_team_sid>
+                    <number_of_teams>8</number_of_teams>
+                    <start_idx>1</start_idx>
+                    <end_idx>8</end_idx>
+                    <randomly>1</randomly>
+                </choose_team>
+			</choose_teams>
+        </cup_round>
 
-        <choose_team>
-          <choose_team_sid>montenegro1</choose_team_sid>
-        </choose_team>
-      </choose_teams>
-      <byes>8</byes>
-      <delay>-12</delay>
-    </cup_round>
+        <cup_round>
+            <round_name>3rd Round</round_name>
+            <home_away>1</home_away>
+            <delay>-7</delay>
+        </cup_round>
 
-    <cup_round>
-      <delay>-9</delay>
-    </cup_round>
+        <cup_round>
+            <round_name>Quarter Final</round_name>
+            <home_away>1</home_away>
+            <delay>-5</delay>
+        </cup_round>
 
-    <cup_round>
-      <delay>-10</delay>
-    </cup_round>
+        <cup_round>
+            <round_name>Semi Final</round_name>
+            <home_away>1</home_away>
+            <delay>-2</delay>
+        </cup_round>
 
-    <cup_round>
-    </cup_round>
-
-    <cup_round>
-      <home_away>0</home_away>
-      <neutral>1</neutral>
-    </cup_round>
-  </cup_rounds>
+        <cup_round>
+            <round_name>Final</round_name>
+            <home_away>0</home_away>
+            <neutral>1</neutral>
+        </cup_round>
+    </cup_rounds>
 </cup>
