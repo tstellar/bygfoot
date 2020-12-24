@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>luxembourg4a</sid>
+  <name>2 Division Serie 1</name>
+  <short_name>2D S1</short_name>
+  <symbol>flag_luxembourg.png</symbol>
+  <first_week>8</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="1">9</break_in>
+  <break_in length="1">11</break_in>
+  <break_in length="1">13</break_in>
+  <break_in length="1">17</break_in>
+  <break_in length="1">23</break_in>
+  <average_talent>2600</average_talent>
+  <two_match_week_start>15</two_match_week_start> 
+  <two_match_week_end>16</two_match_week_end>
+  <names_file>belgium</names_file>
+  <yellow_red>5</yellow_red>
+  <layer>4</layer>
+
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>2</rank_end>
+            <dest_sid>luxembourg3a luxembourg3b</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+        
+        <prom_games>
+          <prom_games_dest_sid>luxembourg3a luxembourg3a</prom_games_dest_sid>
+          <prom_games_loser_sid>luxembourg4a luxembourg4b</prom_games_loser_sid>
+          <prom_games_cup_sid>luxembourg_prom_games3a</prom_games_cup_sid>
+        </prom_games>
+        
+        <prom_rel_element>
+            <rank_start>13</rank_start>
+            <rank_end>14</rank_end>
+            <dest_sid>luxembourg5a luxembourg5b</dest_sid>
+            <prom_rel_type>relegation</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
+
+    <teams>
+        <team>
+            <team_name>AS Hosingen</team_name>
+        </team>
+        <team>
+            <team_name>Les Ardoisiers Perlé</team_name>
+        </team>
+        <team>
+            <team_name>Préizerdaul-Réiden</team_name>
+        </team>
+        <team>
+            <team_name>Orania Vianden</team_name>
+        </team>
+        <team>
+            <team_name>Green Boys Harlange-Tarchamps</team_name>
+        </team>
+        <team>
+            <team_name>Excelsior Grevels</team_name>
+        </team>
+        <team>
+            <team_name>US Feulen</team_name>
+        </team>
+        <team>
+            <team_name>Jeunesse Gilsdorf</team_name>
+        </team>
+        <team>
+            <team_name>AS Wincrange</team_name>
+        </team>
+        <team>
+            <team_name>FCM Young Boys Diekirch</team_name>
+        </team>
+        <team>
+            <team_name>US Boevange-Attert</team_name>
+        </team>
+        <team>
+            <team_name>SC Ell</team_name>
+        </team>
+        <team>
+            <team_name>AS Rupensia Lusitanos Larochette</team_name>
+        </team>
+        <team>
+            <team_name>US Rambrouch</team_name>
+        </team>
+    </teams>
+</league>

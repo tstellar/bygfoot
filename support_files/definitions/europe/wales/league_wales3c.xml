@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>wales3c</sid>
+  <name>3. Mid Wales Division 1</name>
+  <short_name>3. Mid 1</short_name>
+  <symbol>flag_wales.png</symbol>
+  <first_week>6</first_week>
+  <week_gap>1</week_gap>
+  <average_talent>3100</average_talent>
+  <break_in length="1">11</break_in>
+  <break_in length="1">15</break_in>
+  <break_in length="1">19</break_in>
+  <break_in length="1">22</break_in>
+  <break_in length="1">25</break_in>
+  <break_in length="1">27</break_in>
+  <break_in length="2">31</break_in>
+  <break_in length="1">37</break_in>
+  <break_in length="1">41</break_in>
+  <names_file>england</names_file>
+  <yellow_red>5</yellow_red>
+  <layer>3</layer>
+
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>1</rank_end>
+            <dest_sid>wales2a</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+        
+        <prom_rel_element>
+            <rank_start>15</rank_start>
+            <rank_end>16</rank_end>
+            <dest_sid>wales4c</dest_sid>
+            <prom_rel_type>relegation</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
+
+    <teams>
+        <team>
+            <team_name>Aberaeron</team_name>
+        </team>
+        <team>
+            <team_name>Berriew</team_name>
+        </team>
+        <team>
+            <team_name>Bow Street</team_name>
+        </team>
+        <team>
+            <team_name>Builth Wells</team_name>
+        </team>
+        <team>
+            <team_name>Caersws</team_name>
+        </team>
+        <team>
+            <team_name>Carno</team_name>
+        </team>
+        <team>
+            <team_name>Four Crosses</team_name>
+        </team>
+        <team>
+            <team_name>Hay St Mary's</team_name>
+        </team>
+        <team>
+            <team_name>Kerry</team_name>
+        </team>
+        <team>
+            <team_name>Llandrindod Wells</team_name>
+        </team>
+        <team>
+            <team_name>Llanidloes Town</team_name>
+        </team>
+        <team>
+            <team_name>Llansantffraid Village</team_name>
+        </team>
+        <team>
+            <team_name>Montgomery</team_name>
+        </team>
+        <team>
+            <team_name>Radnor Valley</team_name>
+        </team>
+        <team>
+            <team_name>Tywyn Bryncrug</team_name>
+        </team>
+        <team>
+            <team_name>Welshpool</team_name>
+        </team>
+    </teams>
+</league>

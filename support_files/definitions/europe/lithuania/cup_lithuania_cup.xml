@@ -4,76 +4,72 @@
   <short_name>Cup</short_name>
   <symbol>flag_lithuania.png</symbol>
   <sid>lithuania_cup</sid>
-  <last_week>44</last_week>
+  <last_week>27</last_week>
   <week_gap>3</week_gap>
   <property>national</property>
 
-  <cup_rounds>
-    <cup_round>
-      <home_away>0</home_away>
+    <cup_rounds>
+        <cup_round>
+            <round_name>1st Round</round_name>
+            <home_away>0</home_away>
+            <byes>12</byes>
+            <delay>-4</delay>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>lithuania5</choose_team_sid>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>lithuania4</choose_team_sid>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
 
-      <choose_teams>
-        <choose_team>
-          <choose_team_sid>lithuania2</choose_team_sid>
-	  <number_of_teams>9</number_of_teams>
-	  <start_idx>5</start_idx>
-	  <end_idx>13</end_idx>
-        </choose_team>
-      </choose_teams>
-      <delay>-16</delay>
-    </cup_round>
+        <cup_round>
+            <round_name>2nd Round</round_name>
+            <home_away>0</home_away>
+            <byes>0</byes>
+            <delay>-3</delay>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>lithuania3</choose_team_sid>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>lithuania2</choose_team_sid>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
 
-    <cup_round>
-      <home_away>0</home_away>
+        <cup_round>
+            <round_name>3rd Round</round_name>
+            <home_away>0</home_away>
+            <delay>-2</delay>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>lithuania1</choose_team_sid>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
 
-      <choose_teams>
-        <choose_team>
-          <choose_team_sid>lithuania2</choose_team_sid>
-	  <number_of_teams>4</number_of_teams>
-	  <start_idx>1</start_idx>
-	  <end_idx>4</end_idx>
-        </choose_team>
+        <cup_round>
+            <round_name>4th Round</round_name>
+            <home_away>0</home_away>
+        </cup_round>
 
-        <choose_team>
-          <choose_team_sid>lithuania1</choose_team_sid>
-	  <number_of_teams>4</number_of_teams>
-	  <start_idx>5</start_idx>
-	  <end_idx>8</end_idx>
-        </choose_team>
-      </choose_teams>
-      <byes>0</byes>
-      <delay>-13</delay>
-    </cup_round>
+        <cup_round>
+            <round_name>Quarter Final</round_name>
+            <home_away>0</home_away>
+            <delay>-1</delay>
+        </cup_round>
 
-    <cup_round>
-      <home_away>0</home_away>
+        <cup_round>
+            <round_name>Semi Final</round_name>
+            <home_away>0</home_away>
+        </cup_round>
 
-      <byes>0</byes>
-      <delay>-13</delay>
-    </cup_round>
-
-    <cup_round>
-      <home_away>0</home_away>
-
-      <choose_teams>
-        <choose_team>
-          <choose_team_sid>lithuania1</choose_team_sid>
-	  <number_of_teams>4</number_of_teams>
-	  <start_idx>1</start_idx>
-	  <end_idx>4</end_idx>
-        </choose_team>
-      </choose_teams>
-      <delay>-14</delay>
-    </cup_round>
-
-    <cup_round>
-      <home_away>0</home_away>
-      <delay>-1</delay>
-    </cup_round>
-
-    <cup_round>
-      <home_away>0</home_away>
-      <neutral>1</neutral>
-    </cup_round>
-  </cup_rounds>
+        <cup_round>
+            <round_name>Final</round_name>
+            <home_away>0</home_away>
+            <neutral>1</neutral>
+        </cup_round>
+    </cup_rounds>
 </cup>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Liguilla de ascenso III</name>
+  <short_name>Lig. de asc. III</short_name>
+  <symbol>flag_spain.png</symbol>
+  <sid>spain_prom_games3c</sid>
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>highlight2</property>
+
+    <cup_rounds>
+        <cup_round>
+            <round_name>Quarter Final</round_name>
+            <home_away>1</home_away>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>spain3c</choose_team_sid>
+                    <number_of_teams>2</number_of_teams>
+                    <start_idx>3</start_idx>
+                    <end_idx>4</end_idx>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
+        
+        <cup_round>
+            <round_name>Semi Final</round_name>
+            <home_away>1</home_away>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>spain3c</choose_team_sid>
+                    <number_of_teams>1</number_of_teams>
+                    <start_idx>2</start_idx>
+                    <end_idx>2</end_idx>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
+        
+        <cup_round>
+            <round_name>Final</round_name>
+            <home_away>1</home_away>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>spain3c</choose_team_sid>
+                    <number_of_teams>1</number_of_teams>
+                    <start_idx>1</start_idx>
+                    <end_idx>1</end_idx>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
+    </cup_rounds>
+</cup>

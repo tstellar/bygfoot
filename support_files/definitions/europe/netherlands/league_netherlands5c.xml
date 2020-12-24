@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>netherlands5c</sid>
+  <name>Zondag Hoofdklasse A</name>
+  <short_name>Zon. hoofdkl A</short_name>
+  <symbol>flag_netherlands.png</symbol>
+  <first_week>7</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="3">22</break_in>
+  <break_in length="1">38</break_in>
+  <average_talent>4800</average_talent>
+  <yellow_red>5</yellow_red>
+  <names_file>netherlands</names_file>
+  <layer>5</layer>
+
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>1</rank_end>
+            <dest_sid>netherlands4b</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+        
+        <prom_games>
+            <prom_games_dest_sid>netherlands4b</prom_games_dest_sid>
+            <prom_games_cup_sid>netherlands_prom_games5c</prom_games_cup_sid>
+            <prom_games_loser_sid>netherlands5c</prom_games_loser_sid>
+        </prom_games>
+    </prom_rel>
+
+    <teams>
+        <team>
+            <team_name>Achilles 1894</team_name>
+        </team>
+        <team>
+            <team_name>Alcides</team_name>
+        </team>
+        <team>
+            <team_name>Alverna Wijchen Combinatie</team_name>
+        </team>
+        <team>
+            <team_name>De Bataven</team_name>
+        </team>
+        <team>
+            <team_name>Be Quick 1887</team_name>
+        </team>
+        <team>
+            <team_name>Door Eendracht Macht</team_name>
+        </team>
+        <team>
+            <team_name>Fortuna Wormerveer</team_name>
+        </team>
+        <team>
+            <team_name>HVV Hollandia</team_name>
+        </team>
+        <team>
+            <team_name>Hoogeveen</team_name>
+        </team>
+        <team>
+            <team_name>Hoogland</team_name>
+        </team>
+        <team>
+            <team_name>Meppeler</team_name>
+        </team>
+        <team>
+            <team_name>Purmersteijn</team_name>
+        </team>
+        <team>
+            <team_name>RKHVV</team_name>
+        </team>
+        <team>
+            <team_name>Rooms-Katholieke Zieuwentse</team_name>
+        </team>
+        <team>
+            <team_name>SDO Bussum</team_name>
+        </team>
+        <team>
+            <team_name>Silvolde</team_name>
+        </team>
+    </teams>
+</league>

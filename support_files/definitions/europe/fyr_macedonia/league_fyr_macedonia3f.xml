@@ -1,30 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <league>
   <sid>fyr_macedonia3f</sid>
-  <name>Makedonska Treta Liga Југозапад</name>
-  <short_name>Treta L. Jz.</short_name>
+  <name>Treta SouthWest</name>
+  <short_name>Treta SW</short_name>
   <symbol>flag_fyr_macedonia.png</symbol>
-  <first_week>1</first_week>
+  <first_week>5</first_week>
   <week_gap>1</week_gap>
-  <average_talent>5500</average_talent>
+  <break_in length="1">6</break_in>
+  <break_in length="1">10</break_in>
+  <break_in length="1">12</break_in>
+  <break_in length="1">17</break_in>
+  <break_in length="1">19</break_in>
+  <break_in length="6">23</break_in>
+  <break_in length="1">37</break_in>
+  <break_in length="1">39</break_in>
+  <average_talent>3700</average_talent>
   <names_file>serbia</names_file>
   <yellow_red>5</yellow_red>
   <layer>3</layer>
-  <property>inactive</property>
 
-#incomplete team list
-  <teams>
-    <team>
-      <team_name>Korab</team_name>
-    </team>
-    <team>
-      <team_name>P. G. Kruševo</team_name>
-    </team>
-    <team>
-      <team_name>Prespa</team_name>
-    </team>
-    <team>
-      <team_name>R. Bitola</team_name>
-    </team>
-   </teams>
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>1</rank_end>
+            <dest_sid>fyr_macedonia2a fyr_macedonia2b</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
+
+    <teams>
+        <team>
+            <team_name>Ohrid Lihnidos</team_name>
+        </team>
+        <team>
+            <team_name>Vlaznimi</team_name>
+        </team>
+        <team>
+            <team_name>Crno Buki ZL</team_name>
+        </team>
+        <team>
+            <team_name>Lirija Grnchari</team_name>
+        </team>
+        <team>
+            <team_name>Novaci</team_name>
+        </team>
+        <team>
+            <team_name>Karaorman</team_name>
+        </team>
+        <team>
+            <team_name>Veleshta</team_name>
+        </team>
+        <team>
+            <team_name>Sateska</team_name>
+        </team>
+        <team>
+            <team_name>Kravari</team_name>
+        </team>
+        <team>
+            <team_name>Flamurtari Radolishta</team_name>
+        </team>
+        <team>
+            <team_name>Lakocherej</team_name>
+        </team>
+        <team>
+            <team_name>Prespa</team_name>
+        </team>
+        <team>
+            <team_name>Liria Zagrachani</team_name>
+        </team>
+        <team>
+            <team_name>Oktisi Sport</team_name>
+        </team>
+    </teams>
 </league>

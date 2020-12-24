@@ -1,0 +1,26 @@
+<cup>
+  <name>Bet South A Relegation Games</name>
+  <short_name>Isr. Rel.</short_name>
+  <symbol>flag_israel.png</symbol>
+  <sid>israel_rel_games4c</sid>
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>highlight2</property>
+  <yellow_red>3</yellow_red>
+
+    <cup_rounds>
+        <cup_round>
+            <round_name>Relegation Play Off</round_name>
+            <home_away>1</home_away>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>israel4c</choose_team_sid>
+                    <number_of_teams>2</number_of_teams>
+                    <start_idx>13</start_idx>
+                    <end_idx>14</end_idx>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
+    </cup_rounds>
+
+</cup>

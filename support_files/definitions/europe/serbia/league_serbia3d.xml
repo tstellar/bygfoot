@@ -1,71 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <league>
   <sid>serbia3d</sid>
-  <name>Srpska Liga Zapad</name>
-  <short_name>S. L. Z.</short_name>
+  <name>Srpska liga Vojvodina</name>
+  <short_name>S.L.V</short_name>
   <symbol>flag_serbia.png</symbol>
-  <first_week>7</first_week>
+  <first_week>4</first_week>
   <week_gap>1</week_gap>
-  <break_in length="8">25</break_in>
-  <average_talent>6100</average_talent>
+  <break_in length="1">11</break_in>
+  <break_in length="1">15</break_in>
+  <break_in length="6">27</break_in>
+  <break_in length="1">39</break_in>
+  <average_talent>4700</average_talent>
   <names_file>serbia</names_file>
   <yellow_red>5</yellow_red>
   <layer>3</layer>
 
-  <prom_rel>
-    <prom_rel_element>
-      <rank_start>1</rank_start>
-      <rank_end>1</rank_end>
-      <dest_sid>serbia2</dest_sid>
-      <prom_rel_type>promotion</prom_rel_type>
-    </prom_rel_element>
-  </prom_rel>
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>1</rank_end>
+            <dest_sid>serbia2</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
 
-  <teams>
-    <team>
-      <team_name>Budućnost Valjevo</team_name>
-    </team>
-    <team>
-      <team_name>FAP</team_name>
-    </team>
-    <team>
-      <team_name>INON</team_name>
-    </team>
-    <team>
-      <team_name>Jedinstvo Ub</team_name>
-    </team>
-    <team>
-      <team_name>Loznica</team_name>
-    </team>
-    <team>
-      <team_name>Mačva Šabac</team_name>
-    </team>
-    <team>
-      <team_name>Metalac Kraljevo</team_name>
-    </team>
-    <team>
-      <team_name>Radnički Stobex</team_name>
-    </team>
-    <team>
-      <team_name>Sloboda Čačak</team_name>
-    </team>
-    <team>
-      <team_name>Sloboda Užice</team_name>
-    </team>
-    <team>
-      <team_name>Sloga Kraljevo</team_name>
-    </team>
-    <team>
-      <team_name>Sloga Požega</team_name>
-    </team>
-    <team>
-      <team_name>Sloga Petrovac na Mlavi</team_name>
-    </team>
-    <team>
-      <team_name>Vujić Voda</team_name>
-    </team>
-    <team>
-      <team_name>Železničar Lajkovac</team_name>
-    </team>
-  </teams>
+    <teams>
+        <team>
+            <team_name>1. Maj</team_name>
+        </team>
+        <team>
+            <team_name>Bačka 1901</team_name>
+        </team>
+        <team>
+            <team_name>Bečej 1918</team_name>
+        </team>
+        <team>
+            <team_name>Borac Sakule</team_name>
+        </team>
+        <team>
+            <team_name>Bratstvo 1946</team_name>
+        </team>
+        <team>
+            <team_name>Dinamo Pančevo</team_name>
+        </team>
+        <team>
+            <team_name>Dunav Stari Banovci</team_name>
+        </team>
+        <team>
+            <team_name>Hajduk Kula</team_name>
+        </team>
+        <team>
+            <team_name>Kozara B.V.S</team_name>
+        </team>
+        <team>
+            <team_name>OFK Vršac</team_name>
+        </team>
+        <team>
+            <team_name>Omladinac Novi Banovci</team_name>
+        </team>
+        <team>
+            <team_name>Radnički Sremska Mitrovica</team_name>
+        </team>
+        <team>
+            <team_name>Radnički Zrenjanin</team_name>
+        </team>
+        <team>
+            <team_name>Radnički Sombor</team_name>
+        </team>
+        <team>
+            <team_name>Vojvodina Perlez</team_name>
+        </team>
+        <team>
+            <team_name>Železničar Pančevo</team_name>
+        </team>
+    </teams>
 </league>

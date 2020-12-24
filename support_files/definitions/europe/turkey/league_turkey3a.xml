@@ -1,50 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <league>
   <sid>turkey3a</sid>
-  <name>TFF Second League Group 1</name>
-  <short_name>2. Lig. G1</short_name>
+  <name>TFF 2. Lig Kırmızı</name>
+  <short_name>2. Lig. K</short_name>
   <symbol>flag_turkey.png</symbol>
-  <first_week>8</first_week>
+  <first_week>6</first_week>
   <week_gap>1</week_gap>
-  <average_talent>6200</average_talent>
+  <break_in length="3">24</break_in>
+  <average_talent>5100</average_talent>
   <names_file>turkey</names_file>
   <yellow_red>5</yellow_red>
   <layer>3</layer>
-  <property>inactive</property>
 
-  <teams>
-    <team>
-      <team_name>Bey. İstanbul</team_name>
-    </team>
-    <team>
-      <team_name>B. Bilecik</team_name>
-    </team>
-    <team>
-      <team_name>Bu. Ankara</team_name>
-    </team>
-    <team>
-      <team_name>D. Çanakkale</team_name>
-    </team>
-    <team>
-      <team_name>D. G. Kocaeli</team_name>
-    </team>
-    <team>
-      <team_name>E. İstanbul</team_name>
-    </team>
-    <team>
-      <team_name>G.O.P. İstanbul</team_name>
-    </team>
-    <team>
-      <team_name>Ge. Kocaeli</team_name>
-    </team>
-    <team>
-      <team_name>Kö. Kocaeli</team_name>
-    </team>
-    <team>
-      <team_name>Pe. İstanbul</team_name>
-    </team>
-    <team>
-      <team_name>Sar. İstanbul</team_name>
-    </team>
-  </teams>
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>1</rank_end>
+            <dest_sid>turkey2</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+
+        <prom_games>
+            <prom_games_dest_sid>turkey2</prom_games_dest_sid>
+            <prom_games_cup_sid>turkey_prom_games3</prom_games_cup_sid>
+            <prom_games_loser_sid>turkey3a turkey3b</prom_games_loser_sid>
+        </prom_games>
+        
+        <prom_rel_element>
+            <rank_start>16</rank_start>
+            <rank_end>18</rank_end>
+            <dest_sid>turkey4a turkey4b turkey4c</dest_sid>
+            <prom_rel_type>relegation</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
+
+    <teams>
+        <team>
+            <team_name>Ankara Demirspor</team_name>
+        </team>
+        <team>
+            <team_name>Bayburt İÖİ</team_name>
+        </team>
+        <team>
+            <team_name>Bandırmaspor</team_name>
+        </team>
+        <team>
+            <team_name>BB Bodrumspor</team_name>
+        </team>
+        <team>
+            <team_name>Elazığspor</team_name>
+        </team>
+        <team>
+            <team_name>Ergene Velimeşe</team_name>
+        </team>
+        <team>
+            <team_name>Etimesgut Belediye</team_name>
+        </team>
+        <team>
+            <team_name>Eyüpspor</team_name>
+        </team>
+        <team>
+            <team_name>Kahramanmaraş</team_name>
+        </team>
+        <team>
+            <team_name>Kardemir Karabükspor</team_name>
+        </team>
+        <team>
+            <team_name>Kastamonuspor</team_name>
+        </team>
+        <team>
+            <team_name>Kırşehir Belediyesi</team_name>
+        </team>
+        <team>
+            <team_name>Niğde Anadolu</team_name>
+        </team>
+        <team>
+            <team_name>Sakaryaspor</team_name>
+        </team>
+        <team>
+            <team_name>Sivas Belediyespor</team_name>
+        </team>
+        <team>
+            <team_name>Tuzlaspor</team_name>
+        </team>
+        <team>
+            <team_name>Utaş Uşakspor</team_name>
+        </team>
+        <team>
+            <team_name>Vanspor FK</team_name>
+        </team>
+    </teams>
 </league>

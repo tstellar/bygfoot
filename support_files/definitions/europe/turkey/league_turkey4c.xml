@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>turkey4c</sid>
+  <name>TFF 3. Lig Group 3</name>
+  <short_name>2. Lig. G3</short_name>
+  <symbol>flag_turkey.png</symbol>
+  <first_week>6</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="3">24</break_in>
+  <average_talent>4500</average_talent>
+  <names_file>turkey</names_file>
+  <yellow_red>5</yellow_red>
+  <layer>4</layer>
+
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>1</rank_end>
+            <dest_sid>turkey3a turkey3b</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+
+        <prom_games>
+            <prom_games_dest_sid>turkey3a turkey3b</prom_games_dest_sid>
+            <prom_games_cup_sid>turkey_prom_games4c</prom_games_cup_sid>
+            <prom_games_loser_sid>turkey4a turkey4b turkey4c</prom_games_loser_sid>
+        </prom_games>
+    </prom_rel>
+
+    <teams>
+        <team>
+            <team_name>Altındağ Belediyesi</team_name>
+        </team>
+        <team>
+            <team_name>Batman Petrolspor</team_name>
+        </team>
+        <team>
+            <team_name>Bayrampaşaspor</team_name>
+        </team>
+        <team>
+            <team_name>Darıca Gençlerbirliği</team_name>
+        </team>
+        <team>
+            <team_name>Diyarbekirspor</team_name>
+        </team>
+        <team>
+            <team_name>Gölcükspor</team_name>
+        </team>
+        <team>
+            <team_name>Halide Edip Adıvar</team_name>
+        </team>
+        <team>
+            <team_name>Karacabey Belediyespor</team_name>
+        </team>
+        <team>
+            <team_name>Kelkit Belediyespor</team_name>
+        </team>
+        <team>
+            <team_name>Malatya Yeşilyurt Belediye</team_name>
+        </team>
+        <team>
+            <team_name>Modafen</team_name>
+        </team>
+        <team>
+            <team_name>Muğlaspor</team_name>
+        </team>
+        <team>
+            <team_name>Nazilli Belediye</team_name>
+        </team>
+        <team>
+            <team_name>Nevşehir Belediye</team_name>
+        </team>
+        <team>
+            <team_name>Osmaniyespor</team_name>
+        </team>
+        <team>
+            <team_name>Pazarspor</team_name>
+        </team>
+        <team>
+            <team_name>Somaspor</team_name>
+        </team>
+        <team>
+            <team_name>Yozgatspor</team_name>
+        </team>
+    </teams>
+</league>

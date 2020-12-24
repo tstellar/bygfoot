@@ -1,53 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <league>
   <sid>fyr_macedonia3c</sid>
-  <name>Makedonska Treta Liga Југ</name>
-  <short_name>Treta L. J.</short_name>
+  <name>Treta SouthEast</name>
+  <short_name>Treta SE</short_name>
   <symbol>flag_fyr_macedonia.png</symbol>
-  <first_week>1</first_week>
+  <first_week>7</first_week>
   <week_gap>1</week_gap>
-  <average_talent>5500</average_talent>
+  <break_in length="1">10</break_in>
+  <break_in length="1">12</break_in>
+  <break_in length="1">17</break_in>
+  <break_in length="1">19</break_in>
+  <break_in length="6">21</break_in>
+  <average_talent>3700</average_talent>
   <names_file>serbia</names_file>
   <yellow_red>5</yellow_red>
+  <round_robins>4</round_robins>
   <layer>3</layer>
-  <property>inactive</property>
 
-  <teams>
-    <team>
-      <team_name>11 Oktomvri</team_name>
-    </team>
-    <team>
-      <team_name>Babuna</team_name>
-    </team>
-    <team>
-      <team_name>Borec</team_name>
-    </team>
-    <team>
-      <team_name>D. Ezero</team_name>
-    </team>
-    <team>
-      <team_name>G. Konjari</team_name>
-    </team>
-    <team>
-      <team_name>I. Basino</team_name>
-    </team>
-    <team>
-      <team_name>M. Krivogaštani</team_name>
-    </team>
-    <team>
-      <team_name>Partizan</team_name>
-    </team>
-    <team>
-      <team_name>P. Valandovo</team_name>
-    </team>
-    <team>
-      <team_name>Prevalec</team_name>
-    </team>
-    <team>
-      <team_name>Tikveš</team_name>
-    </team>
-    <team>
-      <team_name>V. Tabak</team_name>
-    </team>
-   </teams>
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>1</rank_end>
+            <dest_sid>fyr_macedonia2a fyr_macedonia2b</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
+
+    <teams>
+        <team>
+            <team_name>Dojransko Ezero Nov Dojran</team_name>
+        </team>
+        <team>
+            <team_name>Tiverija</team_name>
+        </team>
+        <team>
+            <team_name>Mladost Udovo</team_name>
+        </team>
+        <team>
+            <team_name>Vasilevo</team_name>
+        </team>
+        <team>
+            <team_name>Spartmani</team_name>
+        </team>
+        <team>
+            <team_name>Horizont Turnovo</team_name>
+        </team>
+    </teams>
 </league>

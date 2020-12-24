@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Second Division Play-Off</name>
+  <short_name>2. Play-Off</short_name>
+  <symbol>flag_malta.png</symbol>
+  <sid>malta_prom_games3</sid>
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>highlight2</property>
+
+    <cup_rounds>            
+        <cup_round>
+            <round_name>Final</round_name>
+            <home_away>0</home_away>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>malta4</choose_team_sid>
+                    <number_of_teams>1</number_of_teams>
+                    <start_idx>3</start_idx>
+                    <end_idx>3</end_idx>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>malta3</choose_team_sid>
+                    <number_of_teams>1</number_of_teams>
+                    <start_idx>11</start_idx>
+                    <end_idx>11</end_idx>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
+    </cup_rounds>
+</cup>

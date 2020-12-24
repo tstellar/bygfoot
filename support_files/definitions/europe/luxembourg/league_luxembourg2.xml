@@ -4,71 +4,80 @@
   <name>Division Honour</name>
   <short_name>Div. Hon.</short_name>
   <symbol>flag_luxembourg.png</symbol>
-  <first_week>6</first_week>
+  <first_week>8</first_week>
   <week_gap>1</week_gap>
-  <break_in length="12">24</break_in>
-  <average_talent>5100</average_talent>
+  <break_in length="1">11</break_in>
+  <break_in length="1">13</break_in>
+  <break_in length="1">17</break_in>
+  <break_in length="1">23</break_in>
+  <average_talent>3800</average_talent>
   <names_file>belgium</names_file>
   <yellow_red>5</yellow_red>
 
-  <prom_rel>
-    <prom_rel_element>
-      <rank_start>1</rank_start>
-      <rank_end>3</rank_end>
-      <dest_sid>luxembourg1</dest_sid>
-      <prom_rel_type>promotion</prom_rel_type>
-    </prom_rel_element>
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>2</rank_end>
+            <dest_sid>luxembourg1</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+        
+        <prom_games>
+          <prom_games_dest_sid>luxembourg1</prom_games_dest_sid>
+          <prom_games_loser_sid>luxembourg2</prom_games_loser_sid>
+          <prom_games_cup_sid>luxembourg_prom_games1</prom_games_cup_sid>
+        </prom_games>
 
-    <prom_rel_element>
-      <rank_start>13</rank_start>
-      <rank_end>14</rank_end>
-      <dest_sid>luxembourg3a luxembourg3b</dest_sid>
-      <prom_rel_type>relegation</prom_rel_type>
-    </prom_rel_element>
-  </prom_rel>
+        <prom_rel_element>
+            <rank_start>13</rank_start>
+            <rank_end>14</rank_end>
+            <dest_sid>luxembourg3a luxembourg3b</dest_sid>
+            <prom_rel_type>relegation</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
 
-  <teams>
-    <team>
-      <team_name>A. Bissen</team_name>
-    </team>
-    <team>
-      <team_name>J. Canach</team_name>
-    </team>
-    <team>
-      <team_name>Colmarberg</team_name>
-    </team>
-    <team>
-      <team_name>Erpeldange</team_name>
-    </team>
-    <team>
-      <team_name>Hostert</team_name>
-    </team>
-    <team>
-      <team_name>M. Lintgen</team_name>
-    </team>
-    <team>
-      <team_name>U. Mertert-Wasserbillig</team_name>
-    </team>
-    <team>
-      <team_name>S. Mertzig</team_name>
-    </team>
-    <team>
-      <team_name>Mondercange</team_name>
-    </team>
-    <team>
-      <team_name>Pétange</team_name>
-    </team>
-    <team>
-      <team_name>V. Rosport</team_name>
-    </team>
-    <team>
-      <team_name>F. B. Udinesina</team_name>
-    </team>
-    <team>
-      <team_name>Wiltz</team_name>
-    </team>
-    <team>
-      <team_name>K. Wormeldange</team_name>
-    </team>
-  </teams>
+    <teams>
+        <team>
+            <team_name>FC 72 Erpeldange</team_name>
+        </team>
+        <team>
+            <team_name>Jeunesse Canach</team_name>
+        </team>
+        <team>
+            <team_name>Käerjeng</team_name>
+        </team>
+        <team>
+            <team_name>Mamer 32</team_name>
+        </team>
+        <team>
+            <team_name>Mertert-Wasserbillig</team_name>
+        </team>
+        <team>
+            <team_name>Muhlenbach Blue Boys</team_name>
+        </team>
+        <team>
+            <team_name>Sandweiler</team_name>
+        </team>
+        <team>
+            <team_name>Swift Hesperange</team_name>
+        </team>
+        <team>
+            <team_name>Wiltz</team_name>
+        </team>
+        <team>
+            <team_name>Atert Bissen</team_name>
+        </team>
+        <team>
+            <team_name>Rodange 91</team_name>
+        </team>
+        <team>
+            <team_name>Jeunesse Junglinster</team_name>
+        </team>
+        <team>
+            <team_name>Koeppchen Wormeldange</team_name>
+        </team>
+        <team>
+            <team_name>US Esch</team_name>
+        </team>
+    </teams>
 </league>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>netherlands5d</sid>
+  <name>Zondag Hoofdklasse B</name>
+  <short_name>Zon. hoofdkl B</short_name>
+  <symbol>flag_netherlands.png</symbol>
+  <first_week>7</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="3">22</break_in>
+  <break_in length="1">38</break_in>
+  <average_talent>4800</average_talent>
+  <yellow_red>5</yellow_red>
+  <names_file>netherlands</names_file>
+  <layer>5</layer>
+
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>1</rank_end>
+            <dest_sid>netherlands4b</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+        
+        <prom_games>
+            <prom_games_dest_sid>netherlands4b</prom_games_dest_sid>
+            <prom_games_cup_sid>netherlands_prom_games5d</prom_games_cup_sid>
+            <prom_games_loser_sid>netherlands5d</prom_games_loser_sid>
+        </prom_games>
+    </prom_rel>
+
+    <teams>
+        <team>
+            <team_name>Alphense Boys</team_name>
+        </team>
+        <team>
+            <team_name>Baronie</team_name>
+        </team>
+        <team>
+            <team_name>Gemert</team_name>
+        </team>
+        <team>
+            <team_name>Groene Ster</team_name>
+        </team>
+        <team>
+            <team_name>Halsteren</team_name>
+        </team>
+        <team>
+            <team_name>Ido's</team_name>
+        </team>
+        <team>
+            <team_name>Leonidas</team_name>
+        </team>
+        <team>
+            <team_name>De Meern</team_name>
+        </team>
+        <team>
+            <team_name>Meerssen</team_name>
+        </team>
+        <team>
+            <team_name>Minor</team_name>
+        </team>
+        <team>
+            <team_name>Nuenen</team_name>
+        </team>
+        <team>
+            <team_name>Papendorp</team_name>
+        </team>
+        <team>
+            <team_name>RKAVV</team_name>
+        </team>
+        <team>
+            <team_name>UDI</team_name>
+        </team>
+        <team>
+            <team_name>Unitas</team_name>
+        </team>
+        <team>
+            <team_name>Vlissingen</team_name>
+        </team>
+    </teams>
+</league>

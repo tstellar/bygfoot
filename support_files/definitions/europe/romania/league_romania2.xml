@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>romania2</sid>
+  <name>Liga II</name>
+  <short_name>L2</short_name>
+  <symbol>flag_romania.png</symbol>
+  <first_week>6</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="6">24</break_in>
+  <break_in length="1">41</break_in>
+  <average_talent>5300</average_talent>
+  <two_match_week_start>2</two_match_week_start> 
+  <two_match_week_end>3</two_match_week_end>
+  <two_match_week_start>6</two_match_week_start> 
+  <two_match_week_end>7</two_match_week_end>
+  <two_match_week_start>12</two_match_week_start> 
+  <two_match_week_end>13</two_match_week_end>
+  <two_match_week_start>18</two_match_week_start> 
+  <two_match_week_end>19</two_match_week_end>
+  <two_match_week_start>25</two_match_week_start> 
+  <two_match_week_end>26</two_match_week_end>
+  <two_match_week_start>30</two_match_week_start> 
+  <two_match_week_end>31</two_match_week_end>
+  <two_match_week_start>34</two_match_week_start> 
+  <two_match_week_end>35</two_match_week_end>
+  <names_file>romania</names_file>
+  <yellow_red>5</yellow_red>
+
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>2</rank_end>
+            <dest_sid>romania1</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+
+        <prom_games>
+            <prom_games_dest_sid>romania1</prom_games_dest_sid>
+            <prom_games_cup_sid>romania_prom_games1</prom_games_cup_sid>
+            <prom_games_loser_sid>romania2</prom_games_loser_sid>
+        </prom_games>
+
+        <prom_rel_element>
+            <rank_start>16</rank_start>
+            <rank_end>20</rank_end>
+            <dest_sid>romania3a romania3b romania3c romania3d romania3e</dest_sid>
+            <prom_rel_type>relegation</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
+
+    <teams>
+        <team>
+            <team_name>Argeș Pitești</team_name>
+        </team>
+        <team>
+            <team_name>ASU Politehnica Timișoara</team_name>
+        </team>
+        <team>
+            <team_name>Concordia Chiajna</team_name>
+        </team>
+        <team>
+            <team_name>CSM Reșița</team_name>
+        </team>
+        <team>
+            <team_name>Dacia Unirea Brăila</team_name>
+        </team>
+        <team>
+            <team_name>Dunărea Călărași</team_name>
+        </team>
+        <team>
+            <team_name>Farul Constanța</team_name>
+        </team>
+        <team>
+            <team_name>Metaloglobus București</team_name>
+        </team>
+        <team>
+            <team_name>Miercurea Ciuc</team_name>
+        </team>
+        <team>
+            <team_name>Mioveni</team_name>
+        </team>
+        <team>
+            <team_name>Pandurii Târgu Jiu</team_name>
+        </team>
+        <team>
+            <team_name>Petrolul Ploiești</team_name>
+        </team>
+        <team>
+            <team_name>Rapid București</team_name>
+        </team>
+        <team>
+            <team_name>Ripensia Timișoara</team_name>
+        </team>
+        <team>
+            <team_name>Sportul Snagov</team_name>
+        </team>
+        <team>
+            <team_name>SCM Gloria Buzău</team_name>
+        </team>
+        <team>
+            <team_name>Turris Turnu Măgurele</team_name>
+        </team>
+        <team>
+            <team_name>Universitatea Cluj</team_name>
+        </team>
+        <team>
+            <team_name>UTA Arad</team_name>
+        </team>
+        <team>
+            <team_name>Viitorul Târgu Jiu</team_name>
+        </team>
+    </teams>
+</league>

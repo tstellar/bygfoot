@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>ukraine4a</sid>
+  <name>Amateur League Group 1</name>
+  <short_name>UFAL1</short_name>
+  <symbol>flag_ukraine.png</symbol>
+  <first_week>3</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="7">25</break_in>
+  <average_talent>5000</average_talent>
+  <two_match_week_start>18</two_match_week_start> 
+  <two_match_week_end>19</two_match_week_end>
+  <two_match_week_start>26</two_match_week_start> 
+  <two_match_week_end>27</two_match_week_end>
+  <round_robins>4</round_robins>
+  <names_file>ukraine</names_file>
+  <yellow_red>5</yellow_red>
+  <layer>4</layer>
+
+    <prom_rel>
+        <prom_games>
+            <prom_games_number_of_advance>2</prom_games_number_of_advance>
+            <prom_games_dest_sid>ukraine3a ukraine3b</prom_games_dest_sid>
+            <prom_games_cup_sid>ukraine_prom_games4</prom_games_cup_sid>
+            <prom_games_loser_sid>ukraine4a ukraine4b ukraine4c</prom_games_loser_sid>
+        </prom_games>
+    </prom_rel>
+
+    <teams>
+        <team>
+            <team_name>Ahron Velyki Hayi</team_name>
+        </team>
+        <team>
+            <team_name>Epitsentr Dunayivtsi</team_name>
+        </team>
+        <team>
+            <team_name>Karpaty-Enerhetyk Halych</team_name>
+        </team>
+        <team>
+            <team_name>Kovel-Volyn Kovel</team_name>
+        </team>
+        <team>
+            <team_name>LSTM 536</team_name>
+        </team>
+        <team>
+            <team_name>Nyva Terebovlia</team_name>
+        </team>
+        <team>
+            <team_name>ODEK Orzhiv</team_name>
+        </team>
+        <team>
+            <team_name>Pokuttia Kolomyia</team_name>
+        </team>
+        <team>
+            <team_name>Svitanok-Ahrosvit Shlyakhova</team_name>
+        </team>
+        <team>
+            <team_name>Votrans Lutsk</team_name>
+        </team>
+    </teams>
+</league>

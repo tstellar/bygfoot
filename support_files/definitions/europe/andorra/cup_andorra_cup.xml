@@ -8,57 +8,35 @@
   <week_gap>4</week_gap>
   <property>national</property>
 
-  <cup_rounds>
-    <cup_round>
-      <home_away>0</home_away>
+    <cup_rounds>
+        <cup_round>
+            <round_name>1st round</round_name>
+            <home_away>0</home_away>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>andorra1</choose_team_sid>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>andorra2</choose_team_sid>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
 
-      <choose_teams>
-        <choose_team>
-          <choose_team_sid>andorra2</choose_team_sid>
-        </choose_team>
-      </choose_teams>
-      <byes>1</byes>
-      <delay>-2</delay>
-    </cup_round>
+        <cup_round>
+            <round_name>Quarter Final</round_name>
+            <home_away>0</home_away>
+        </cup_round>
 
-    <cup_round>
-      <home_away>0</home_away>
+        <cup_round>
+            <round_name>Semi Final</round_name>
+            <home_away>0</home_away>
+        </cup_round>
 
-      <choose_teams>
-        <choose_team>
-          <choose_team_sid>andorra1</choose_team_sid>
-	  <number_of_teams>4</number_of_teams>
-	  <start_idx>5</start_idx>
-	  <end_idx>8</end_idx>
-	  <randomly>1</randomly>
-        </choose_team>
-      </choose_teams>
-      <delay>-5</delay>
-    </cup_round>
-
-    <cup_round>
-      <home_away>0</home_away>
-
-      <choose_teams>
-        <choose_team>
-          <choose_team_sid>andorra1</choose_team_sid>
-	  <number_of_teams>4</number_of_teams>
-	  <start_idx>1</start_idx>
-	  <end_idx>4</end_idx>
-	  <randomly>1</randomly>
-        </choose_team>
-      </choose_teams>
-      <delay>-7</delay>
-    </cup_round>
-
-    <cup_round>
-      <home_away>0</home_away>
-      <delay>3</delay>
-    </cup_round>
-
-    <cup_round>
-      <home_away>0</home_away>
-      <neutral>1</neutral>
-    </cup_round>
-  </cup_rounds>
+        <cup_round>
+            <round_name>Final</round_name>
+            <home_away>0</home_away>
+            <neutral>1</neutral>
+        </cup_round>
+    </cup_rounds>
+  
 </cup>

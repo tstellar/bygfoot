@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>luxembourg5a</sid>
+  <name>3 Division Serie 1</name>
+  <short_name>3D S1</short_name>
+  <symbol>flag_luxembourg.png</symbol>
+  <first_week>8</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="1">9</break_in>
+  <break_in length="1">11</break_in>
+  <break_in length="1">13</break_in>
+  <break_in length="1">17</break_in>
+  <break_in length="6">21</break_in>
+  <break_in length="1">30</break_in>
+  <break_in length="1">34</break_in>
+  <average_talent>2100</average_talent>
+  <names_file>belgium</names_file>
+  <yellow_red>5</yellow_red>
+  <layer>5</layer>
+
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>2</rank_end>
+            <dest_sid>luxembourg4a luxembourg4b</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+        
+        <prom_games>
+          <prom_games_dest_sid>luxembourg4a luxembourg4b</prom_games_dest_sid>
+          <prom_games_loser_sid>luxembourg5a luxembourg5b</prom_games_loser_sid>
+          <prom_games_cup_sid>luxembourg_prom_games4a</prom_games_cup_sid>
+        </prom_games>
+    </prom_rel>
+
+    <teams>
+        <team>
+            <team_name>Biekerech</team_name>
+        </team>
+        <team>
+            <team_name>Claravallis Clervaux</team_name>
+        </team>
+        <team>
+            <team_name>US Reisdorf</team_name>
+        </team>
+        <team>
+            <team_name>Kiischpelt Wëlwerwolz</team_name>
+        </team>
+        <team>
+            <team_name>AS Colmar-Berg</team_name>
+        </team>
+        <team>
+            <team_name>FC Brouch</team_name>
+        </team>
+        <team>
+            <team_name>CS Bourscheid</team_name>
+        </team>
+        <team>
+            <team_name>Racing Heiderscheid–Eschdorf</team_name>
+        </team>
+        <team>
+            <team_name>US Folschette</team_name>
+        </team>
+        <team>
+            <team_name>Racing Troisvierges</team_name>
+        </team>
+    </teams>
+</league>

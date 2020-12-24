@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<league>
+  <sid>england8e</sid>
+  <name>8 Isthmian League North</name>
+  <short_name>ILN</short_name>
+  <symbol>flag_england.png</symbol>
+  <first_week>6</first_week>
+  <week_gap>1</week_gap>
+  <average_talent>3000</average_talent>
+  <names_file>england</names_file>
+  <yellow_red>5</yellow_red>
+  <break_in length="1">7</break_in>
+  <break_in length="1">11</break_in>
+  <break_in length="1">13</break_in>
+  <break_in length="1">16</break_in>
+  <break_in length="1">17</break_in>
+  <break_in length="1">18</break_in>
+  <break_in length="1">20</break_in>
+  <break_in length="1">22</break_in>
+  <break_in length="1">25</break_in>
+  <break_in length="1">29</break_in>
+  <two_match_week_start>6</two_match_week_start>
+  <two_match_week_end>7</two_match_week_end>
+  <two_match_week_start>8</two_match_week_start>
+  <two_match_week_end>9</two_match_week_end>
+  <two_match_week_start>9</two_match_week_start>
+  <two_match_week_end>10</two_match_week_end>
+  <two_match_week_start>12</two_match_week_start>
+  <two_match_week_end>13</two_match_week_end>
+  <two_match_week_start>14</two_match_week_start>
+  <two_match_week_end>15</two_match_week_end>
+  <two_match_week_start>23</two_match_week_start>
+  <two_match_week_end>24</two_match_week_end>
+  <two_match_week_start>27</two_match_week_start>
+  <two_match_week_end>28</two_match_week_end>
+  <two_match_week_start>30</two_match_week_start>
+  <two_match_week_end>31</two_match_week_end>
+  <two_match_week_start>37</two_match_week_start>
+  <two_match_week_end>38</two_match_week_end>
+  <two_match_week_start>40</two_match_week_start>
+  <two_match_week_end>41</two_match_week_end>
+  <layer>8</layer>
+
+
+  <prom_rel>
+
+    <prom_games>
+      <prom_games_dest_sid>england7c</prom_games_dest_sid>
+      <prom_games_cup_sid>england_prom_games8e_3</prom_games_cup_sid>
+    </prom_games>
+
+    <prom_rel_element>
+      <rank_start>1</rank_start>
+      <rank_end>1</rank_end>
+      <dest_sid>england7c</dest_sid>
+      <prom_rel_type>promotion</prom_rel_type>
+    </prom_rel_element>
+
+    <prom_rel_element>
+      <rank_start>17</rank_start>
+      <rank_end>20</rank_end>
+      <dest_sid>england9k england9l</dest_sid>
+      <prom_rel_type>relegation</prom_rel_type>
+    </prom_rel_element>
+
+  </prom_rel>
+
+  <teams>
+    <team>
+      <team_name>AFC Sudbury</team_name>
+    </team>
+    <team>
+      <team_name>Aveley</team_name>
+    </team>
+    <team>
+      <team_name>Basildon United</team_name>
+    </team>
+    <team>
+      <team_name>Brentwood Town</team_name>
+    </team>
+    <team>
+      <team_name>Bury Town</team_name>
+    </team>
+    <team>
+      <team_name>Cambridge City</team_name>
+    </team>
+    <team>
+      <team_name>Canvay Island</team_name>
+    </team>
+    <team>
+      <team_name>Coggeshall Town</team_name>
+    </team>
+    <team>
+      <team_name>Dereham Town</team_name>
+    </team>
+    <team>
+      <team_name>Felistowe-Walton United</team_name>
+    </team>
+    <team>
+      <team_name>Grays Athletic</team_name>
+    </team>
+    <team>
+      <team_name>Great Wakering Rovers</team_name>
+    </team>
+    <team>
+      <team_name>Heybridge Swift</team_name>
+    </team>
+    <team>
+      <team_name>Histon</team_name>
+    </team>
+    <team>
+      <team_name>Hullbridge Sports</team_name>
+    </team>
+    <team>
+      <team_name>Maldon-Tiptree</team_name>
+    </team>
+    <team>
+      <team_name>Romford</team_name>
+    </team>
+    <team>
+      <team_name>Soham Town Rangers</team_name>
+    </team>
+    <team>
+      <team_name>Tilbury</team_name>
+    </team>
+    <team>
+      <team_name>Witham Town</team_name>
+    </team>
+  </teams>
+</league>

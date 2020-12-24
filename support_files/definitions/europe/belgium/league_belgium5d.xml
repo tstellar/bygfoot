@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>belgium5d</sid>
+  <name>Third Division Amateur VFV B</name>
+  <short_name>3VFVB</short_name>
+  <symbol>flag_belgium.png</symbol>
+  <first_week>6</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="1">10</break_in>
+  <break_in length="1">15</break_in>
+  <break_in length="1">20</break_in>
+  <break_in length="1">26</break_in>
+  <break_in length="1">30</break_in>
+  <break_in length="1">36</break_in>
+  <break_in length="1">39</break_in> 
+  <average_talent>4500</average_talent>
+  <yellow_red>3</yellow_red>
+  <names_file>belgium</names_file>
+  <layer>5</layer>
+  
+    <prom_rel>    
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>2</rank_end>
+            <dest_sid>belgium4c</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+        
+        <prom_games>     
+            <prom_games_dest_sid>belgium4c</prom_games_dest_sid>
+            <prom_games_cup_sid>belgium_prom_games5d</prom_games_cup_sid>
+            <prom_games_loser_sid>belgium5d</prom_games_loser_sid>
+        </prom_games>
+    </prom_rel>
+  
+    <teams>
+        <team>
+            <team_name>Beringen</team_name>
+        </team>
+        <team>
+            <team_name>Betekom</team_name>
+        </team>
+        <team>
+            <team_name>Bilzerse Waltwilder</team_name>
+        </team>
+        <team>
+            <team_name>City Pirates Antwerpen</team_name>
+        </team>
+        <team>
+            <team_name>Eendracht Termien</team_name>
+        </team>
+        <team>
+            <team_name>Esperanza Pelt</team_name>
+        </team>
+        <team>
+            <team_name>Helson Helchteren</team_name>
+        </team>
+        <team>
+            <team_name>Heur Tongeren</team_name>
+        </team>
+        <team>
+            <team_name>Houtvenne</team_name>
+        </team>
+        <team>
+            <team_name>KFC Turnhout</team_name>
+        </team>
+        <team>
+            <team_name>Linden</team_name>
+        </team>
+        <team>
+            <team_name>Lyra-Lierse Berlaar</team_name>
+        </team>
+        <team>
+            <team_name>Sint-Lenaarts</team_name>
+        </team>
+        <team>
+            <team_name>Wellene</team_name>
+        </team>
+        <team>
+            <team_name>Witgoor Sport</team_name>
+        </team>
+        <team>
+            <team_name>Zwarte Leeuw</team_name>
+        </team>
+    </teams>
+</league>

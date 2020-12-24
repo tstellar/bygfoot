@@ -4,40 +4,60 @@
   <name>Divizia B Nord</name>
   <short_name>DivBNord</short_name>
   <symbol>flag_moldova.png</symbol>
-  <first_week>1</first_week>
+  <first_week>3</first_week>
   <week_gap>1</week_gap>
-  <average_talent>4900</average_talent>
+  <break_in length="1">6</break_in>
+  <break_in length="1">8</break_in>
+  <break_in length="1">11</break_in>
+  <break_in length="1">16</break_in>
+  <average_talent>3200</average_talent>
+  <two_match_week_start>12</two_match_week_start> 
+  <two_match_week_end>13</two_match_week_end>
+  <two_match_week_start>22</two_match_week_start> 
+  <two_match_week_end>23</two_match_week_end>
   <names_file>romania</names_file>
+  <round_robins>3</round_robins>
   <layer>3</layer>
-  <property>inactive</property>
+    
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>1</rank_end>
+            <dest_sid>moldova2</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
 
-  <teams>
-    <team>
-      <team_name>Podiş</team_name>
-    </team>
-    <team>
-      <team_name>Cricova</team_name>
-    </team>
-    <team>
-      <team_name>Flacăra</team_name>
-    </team>
-    <team>
-      <team_name>Floreşti</team_name>
-    </team>
-    <team>
-      <team_name>Teleneşti</team_name>
-    </team>
-    <team>
-      <team_name>Glodeni</team_name>
-    </team>
-    <team>
-      <team_name>Volna</team_name>
-    </team>
-    <team>
-      <team_name>Sculeni</team_name>
-    </team>
-    <team>
-      <team_name>Speranţa</team_name>
-    </team>
-  </teams>
+    <teams>
+        <team>
+            <team_name>Academia Viitorul</team_name>
+        </team>
+        <team>
+            <team_name>Cruiz Plus</team_name>
+        </team>
+        <team>
+            <team_name>Edineț</team_name>
+        </team>
+        <team>
+            <team_name>Fălești</team_name>
+        </team>
+        <team>
+            <team_name>Inter Soroca</team_name>
+        </team>
+        <team>
+            <team_name>Intersport Sănătăuca</team_name>
+        </team>
+        <team>
+            <team_name>Pepeni</team_name>
+        </team>
+        <team>
+            <team_name>Rezina</team_name>
+        </team>
+        <team>
+            <team_name>Rîșcani</team_name>
+        </team>
+        <team>
+            <team_name>Sporting Natalievca</team_name>
+        </team>
+    </teams>
 </league>

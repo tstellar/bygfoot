@@ -2,57 +2,81 @@
 <league>
   <sid>malta2</sid>
   <name>First Division</name>
-  <short_name>1. Div.</short_name>
+  <short_name>First</short_name>
   <symbol>flag_malta.png</symbol>
-  <first_week>8</first_week>
+  <first_week>6</first_week>
   <week_gap>1</week_gap>
-  <break_in length="1">10</break_in>
+  <break_in length="2">8</break_in>
   <break_in length="1">15</break_in>
+  <break_in length="1">19</break_in>
   <break_in length="1">26</break_in>
-  <break_in length="1">36</break_in>
-  <average_talent>5000</average_talent>
-  <round_robins>3</round_robins>
+  <average_talent>3900</average_talent>
   <yellow_red>5</yellow_red>
 
-  <prom_rel>
-    <prom_rel_element>
-      <rank_start>1</rank_start>
-      <rank_end>1</rank_end>
-      <dest_sid>malta1</dest_sid>
-      <prom_rel_type>promotion</prom_rel_type>
-    </prom_rel_element>
-  </prom_rel>
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>2</rank_end>
+            <dest_sid>malta1</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+        
+        <prom_games>
+          <prom_games_dest_sid>malta1</prom_games_dest_sid>
+          <prom_games_loser_sid>malta2</prom_games_loser_sid>
+          <prom_games_cup_sid>malta_prom_games1</prom_games_cup_sid>
+        </prom_games>
+        
+        <prom_rel_element>
+            <rank_start>13</rank_start>
+            <rank_end>14</rank_end>
+            <dest_sid>malta3</dest_sid>
+            <prom_rel_type>relegation</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
 
-  <teams>
-    <team>
-      <team_name>Mosta</team_name>
-    </team>
-    <team>
-      <team_name>Dingli S.</team_name>
-    </team>
-    <team>
-      <team_name>Mqabba</team_name>
-    </team>
-    <team>
-      <team_name>Pietà H.</team_name>
-    </team>
-    <team>
-      <team_name>Rabat A.</team_name>
-    </team>
-    <team>
-      <team_name>San Gwann</team_name>
-    </team>
-    <team>
-      <team_name>Senglea A.</team_name>
-    </team>
-    <team>
-      <team_name>S. G. Cospicua</team_name>
-    </team>
-    <team>
-      <team_name>S. P. Zabbar</team_name>
-    </team>
-    <team>
-      <team_name>V. S. Birgu</team_name>
-    </team>
-  </teams>
+    <teams>
+        <team>
+            <team_name>Lija Athletic</team_name>
+        </team>
+        <team>
+            <team_name>Pietà Hotspurs</team_name>
+        </team>
+        <team>
+            <team_name>Qrendi</team_name>
+        </team>
+        <team>
+            <team_name>Naxxar Lions</team_name>
+        </team>
+        <team>
+            <team_name>St Andrews</team_name>
+        </team>
+        <team>
+            <team_name>Zejtun Corinthians</team_name>
+        </team>
+        <team>
+            <team_name>Zebbug Rangers</team_name>
+        </team>
+        <team>
+            <team_name>Swieqi United</team_name>
+        </team>
+        <team>
+            <team_name>Pembroke Athleta</team_name>
+        </team>
+        <team>
+            <team_name>Qormi</team_name>
+        </team>
+        <team>
+            <team_name>St George's</team_name>
+        </team>
+        <team>
+            <team_name>Mqabba</team_name>
+        </team>
+        <team>
+            <team_name>Vittoriosa Stars</team_name>
+        </team>
+        <team>
+            <team_name>Fgura United</team_name>
+        </team>
+    </teams>
 </league>

@@ -1,86 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <league>
   <sid>greece2</sid>
-  <name>Beta Ethniki</name>
-  <short_name>B'</short_name>
+  <name>Super League 2</name>
+  <short_name>SL2</short_name>
   <symbol>flag_greece.png</symbol>
-  <first_week>9</first_week>
+  <first_week>11</first_week>
   <week_gap>1</week_gap>
+  <break_in length="1">13</break_in>
+  <break_in length="1">16</break_in>
+  <break_in length="1">19</break_in>
+  <break_in length="1">22</break_in>
+  <break_in length="1">25</break_in>
+  <break_in length="1">28</break_in>
+  <break_in length="1">31</break_in>
+  <break_in length="1">34</break_in>
+  <break_in length="1">37</break_in>
+  <break_in length="1">40</break_in>
+  <break_in length="1">43</break_in>
   <break>2</break>
-  <average_talent>7100</average_talent>
+  <average_talent>5800</average_talent>
   <names_file>greece</names_file>
   <yellow_red>5</yellow_red>
 
-  <prom_rel>
-    <prom_rel_element>
-      <rank_start>1</rank_start>
-      <rank_end>3</rank_end>
-      <dest_sid>greece1</dest_sid>
-      <prom_rel_type>promotion</prom_rel_type>
-    </prom_rel_element>
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>2</rank_end>
+            <dest_sid>greece1</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
 
-    <prom_rel_element>
-      <rank_start>16</rank_start>
-      <rank_end>18</rank_end>
-      <dest_sid>greece3a greece3b</dest_sid>
-      <prom_rel_type>relegation</prom_rel_type>
-    </prom_rel_element>
-  </prom_rel>
+        <prom_rel_element>
+            <rank_start>11</rank_start>
+            <rank_end>12</rank_end>
+            <dest_sid>greece3</dest_sid>
+            <prom_rel_type>relegation</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
 
-<teams>
-    <team>
-      <team_name>A. Asteras</team_name>
-    </team>
-    <team>
-      <team_name>A. Karditsa</team_name>
-    </team>
-    <team>
-      <team_name>A. Kalamaria</team_name>
-    </team>
-    <team>
-      <team_name>At. Athena</team_name>
-    </team>
-    <team>
-      <team_name>D. Rodos</team_name>
-    </team>
-    <team>
-      <team_name>E. Asteras</team_name>
-    </team>
-    <team>
-      <team_name>E. Piraeus</team_name>
-    </team>
-    <team>
-      <team_name>I. Zografou</team_name>
-    </team>
-    <team>
-      <team_name>I. Nikaias</team_name>
-    </team>
-    <team>
-      <team_name>Kalamata</team_name>
-    </team>
-    <team>
-      <team_name>Kallithea</team_name>
-    </team>
-    <team>
-      <team_name>Kastoria</team_name>
-    </team>
-    <team>
-      <team_name>Kavala</team_name>
-    </team>
-    <team>
-      <team_name>Kerkyra</team_name>
-    </team>
-    <team>
-      <team_name>O.Volou</team_name>
-    </team>
-    <team>
-      <team_name>P. Giannina</team_name>
-    </team>
-    <team>
-      <team_name>P. Katerini</team_name>
-    </team>
-    <team>
-      <team_name>Veria</team_name>
-    </team>
-  </teams>
+    <teams>
+        <team>
+            <team_name>Apollon Larissa</team_name>
+        </team>
+        <team>
+            <team_name>Apollon Pontus</team_name>
+        </team>
+        <team>
+            <team_name>Apollon Smyrnis</team_name>
+        </team>
+        <team>
+            <team_name>Doxa Drama</team_name>
+        </team>
+        <team>
+            <team_name>Ergotelis</team_name>
+        </team>
+        <team>
+            <team_name>AE Karaiskakis</team_name>
+        </team>
+        <team>
+            <team_name>Levadiakos</team_name>
+        </team>
+        <team>
+            <team_name>Panachaiki</team_name>
+        </team>
+        <team>
+            <team_name>Platanias</team_name>
+        </team>
+        <team>
+            <team_name>PAS Giannina</team_name>
+        </team>
+        <team>
+            <team_name>Chania</team_name>
+        </team>
+        <team>
+            <team_name>PAE AO Kerkyra</team_name>
+        </team>
+    </teams>
 </league>

@@ -1,84 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <league>
   <sid>spain3d</sid>
-  <name>Segunda División B G4</name>
-  <short_name>2ª Div. B G4</short_name>
+  <name>Segunda División B Gp4</name>
+  <short_name>2ª Div. B Gp4</short_name>
   <symbol>flag_spain.png</symbol>
-  <first_week>9</first_week>
+  <first_week>6</first_week>
   <week_gap>1</week_gap>
-  <break_in length="1">26</break_in>
-  <average_talent>5800</average_talent>
+  <average_talent>7100</average_talent>
   <names_file>spain</names_file>
   <yellow_red>5</yellow_red>
   <layer>3</layer>
 
-  <prom_rel>
-    <prom_games>
-      <prom_games_dest_sid>spain2</prom_games_dest_sid>
-      <prom_games_cup_sid>spain_prom_games_4</prom_games_cup_sid>
-    </prom_games>
-  </prom_rel>
+    <prom_rel>
+        <prom_games>
+            <prom_games_dest_sid>spain2</prom_games_dest_sid>
+            <prom_games_loser_sid>spain3d</prom_games_loser_sid>
+            <prom_games_cup_sid>spain_prom_games3d</prom_games_cup_sid>
+        </prom_games>
+    </prom_rel>
 
-  <teams>
-    <team>
-      <team_name>Antequera</team_name>
-    </team>
-    <team>
-      <team_name>Cádiz</team_name>
-    </team>
-    <team>
-      <team_name>Ceuta</team_name>
-    </team>
-    <team>
-      <team_name>Conquense</team_name>
-    </team>
-    <team>
-      <team_name>Écija</team_name>
-    </team>
-    <team>
-      <team_name>Granada</team_name>
-    </team>
-    <team>
-      <team_name>Granada 74</team_name>
-    </team>
-    <team>
-      <team_name>Guadalajara</team_name>
-    </team>
-    <team>
-      <team_name>Jaén</team_name>
-    </team>
-    <team>
-      <team_name>Linares</team_name>
-    </team>
-    <team>
-      <team_name>Linense</team_name>
-    </team>
-    <team>
-      <team_name>Lucena</team_name>
-    </team>
-    <team>
-      <team_name>Marbella</team_name>
-    </team>
-    <team>
-      <team_name>Melilla</team_name>
-    </team>
-    <team>
-      <team_name>Poli Ejido</team_name>
-    </team>
-    <team>
-      <team_name>Portuense</team_name>
-    </team>
-    <team>
-      <team_name>Puertollano</team_name>
-    </team>
-    <team>
-      <team_name>Roquetas</team_name>
-    </team>
-    <team>
-      <team_name>San Fernando</team_name>
-    </team>
-    <team>
-      <team_name>B. Sevilla B</team_name>
-    </team>
-  </teams>
+    <teams>
+        <team>
+            <team_name>Algeciras</team_name>
+        </team>
+        <team>
+            <team_name>Atlético Sanluqueño</team_name>
+        </team>
+        <team>
+            <team_name>Badajoz</team_name>
+        </team>
+        <team>
+            <team_name>Cartagena</team_name>
+        </team>
+        <team>
+            <team_name>Córdoba</team_name>
+        </team>
+        <team>
+            <team_name>Don Benito</team_name>
+        </team>
+        <team>
+            <team_name>Linense</team_name>
+        </team>
+        <team>
+            <team_name>Marbella</team_name>
+        </team>
+        <team>
+            <team_name>Mérida</team_name>
+        </team>
+        <team>
+            <team_name>Real Murcia</team_name>
+        </team>
+        <team>
+            <team_name>Recreativo</team_name>
+        </team>
+        <team>
+            <team_name>San Fernando</team_name>
+        </team>
+        <team>
+            <team_name>Talavera de la Reina</team_name>
+        </team>
+        <team>
+            <team_name>UCAM Murcia</team_name>
+        </team>
+        <team>
+            <team_name>Villarrobledo</team_name>
+        </team>
+        <team>
+            <team_name>Villarrubia</team_name>
+        </team>
+        <team>
+            <team_name>Yeclano</team_name>
+        </team>
+        <team>
+            <team_name>Toledo</team_name>
+        </team>
+        <team>
+            <team_name>Compostela</team_name>
+        </team>
+        <team>
+            <team_name>Tuilla</team_name>
+        </team>
+    </teams>
 </league>

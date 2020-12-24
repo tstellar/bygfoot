@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>cyprus3</sid>
+  <name>Third Division</name>
+  <short_name>Div3</short_name>
+  <symbol>flag_cyprus.png</symbol>
+  <first_week>6</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="1">9</break_in>
+  <break_in length="1">14</break_in>
+  <break_in length="1">18</break_in>
+  <break_in length="1">22</break_in>
+  <break_in length="1">26</break_in>
+  <break_in length="1">28</break_in>
+  <break_in length="1">32</break_in>
+  <break_in length="1">34</break_in>
+  <break_in length="1">38</break_in>
+  <break_in length="1">40</break_in>
+  <average_talent>4100</average_talent>
+  <names_file>greece</names_file>
+  <yellow_red>5</yellow_red>
+
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>3</rank_end>
+            <dest_sid>cyprus2</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+    
+        <prom_rel_element>
+            <rank_start>14</rank_start>
+            <rank_end>16</rank_end>
+            <dest_sid>cyprus4</dest_sid>
+            <prom_rel_type>relegation</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
+
+    <teams>
+        <team>
+            <team_name>APONA Anagias</team_name>
+        </team>
+        <team>
+            <team_name>Ahironas</team_name>
+        </team>
+        <team>
+            <team_name>Amathous</team_name>
+        </team>
+        <team>
+            <team_name>Digenis Oroklinis</team_name>
+        </team>
+        <team>
+            <team_name>EN THOI Lakatamia</team_name>
+        </team>
+        <team>
+            <team_name>ENAD</team_name>
+        </team>
+        <team>
+            <team_name>Elia Lythrodonta</team_name>
+        </team>
+        <team>
+            <team_name>Elpida Astromeritis</team_name>
+        </team>
+        <team>
+            <team_name>Ethnikos Assias</team_name>
+        </team>
+        <team>
+            <team_name>Halkanoras</team_name>
+        </team>
+        <team>
+            <team_name>raklis Yerolakkou</team_name>
+        </team>
+        <team>
+            <team_name>Kouris Erimi</team_name>
+        </team>
+        <team>
+            <team_name>MEAP Nisou</team_name>
+        </team>
+        <team>
+            <team_name>O Kormakitis</team_name>
+        </team>
+        <team>
+            <team_name>Ormideia</team_name>
+        </team>
+        <team>
+            <team_name>PAEEK</team_name>
+        </team>
+    </teams>
+</league>

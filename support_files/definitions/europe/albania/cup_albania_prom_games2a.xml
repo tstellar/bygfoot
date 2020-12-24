@@ -1,0 +1,32 @@
+<cup>
+  <name>Kategoria e parë A Play-Off</name>
+  <short_name>2A Playoff</short_name>
+  <symbol>flag_albania.png</symbol>
+  <sid>albania_prom_games2a</sid>
+  <add_week>1000</add_week>
+  <property>national</property>
+  <property>highlight2</property>
+  <yellow_red>3</yellow_red>
+
+    <cup_rounds>
+        <cup_round>
+            <home_away>1</home_away>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>albania2a</choose_team_sid>
+                    <number_of_teams>1</number_of_teams>
+                    <start_idx>9</start_idx>
+                    <end_idx>9</end_idx>
+                </choose_team>
+
+                <choose_team>
+                    <choose_team_sid>albania3a</choose_team_sid>
+                    <number_of_teams>1</number_of_teams>
+                    <start_idx>2</start_idx>
+                    <end_idx>2</end_idx>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
+    </cup_rounds>
+
+</cup>

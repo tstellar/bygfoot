@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<league>
+  <sid>israel5c</sid>
+  <name>Liga Gimel Jezreel</name>
+  <short_name>L.G. Jezreel</short_name>
+  <symbol>flag_israel.png</symbol>
+  <first_week>6</first_week>
+  <week_gap>1</week_gap>
+  <break_in length="1">7</break_in>
+  <break_in length="1">11</break_in>
+  <break_in length="1">15</break_in>
+  <break_in length="1">19</break_in>
+  <break_in length="1">21</break_in>
+  <break_in length="1">23</break_in>
+  <break_in length="1">27</break_in>
+  <break_in length="1">30</break_in>
+  <break_in length="3">34</break_in>
+  <average_talent>4000</average_talent>
+  <names_file>israel</names_file>
+  <yellow_red>5</yellow_red>
+  <layer>5</layer>
+
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>1</rank_end>
+            <dest_sid>israel4a israel4b</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+        
+        <prom_games>
+            <prom_games_dest_sid>israel4b</prom_games_dest_sid>
+            <prom_games_cup_sid>israel_prom_games5b</prom_games_cup_sid>
+            <prom_games_loser_sid>israel5c israel5d</prom_games_loser_sid>
+        </prom_games>
+    </prom_rel>
+
+    <teams>
+        <team>
+            <team_name>Ahi Bir al-Maksur</team_name>
+        </team>
+        <team>
+            <team_name>Beitar Afula</team_name>
+        </team>
+        <team>
+            <team_name>Beitar Ein Mahil</team_name>
+        </team>
+        <team>
+            <team_name>Beitar Umm al-Fahm</team_name>
+        </team>
+        <team>
+            <team_name>Bnei Musheirifa Baiada</team_name>
+        </team>
+        <team>
+            <team_name>Bnei Umm al-Fahm Al Halal</team_name>
+        </team>
+        <team>
+            <team_name>Bnei Yafa</team_name>
+        </team>
+        <team>
+            <team_name>Kfar Kama</team_name>
+        </team>
+        <team>
+            <team_name>Hapeol Al-Batuf</team_name>
+        </team>
+        <team>
+            <team_name>Hapoel al-Ittihad Nazareth</team_name>
+        </team>
+        <team>
+            <team_name>Hapoel Ein as-Sahla</team_name>
+        </team>
+        <team>
+            <team_name>Ihud Tzeiri Iksal</team_name>
+        </team>
+        <team>
+            <team_name>Maccabi Ahva Fureidis</team_name>
+        </team>
+        <team>
+            <team_name>Maccabi Ein Mahil Gamel</team_name>
+        </team>
+    </teams>
+</league>

@@ -1,39 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <league>
   <sid>wales1</sid>
-  <name>Welsh Premier League</name>
+  <name>Cymru Premier</name>
   <short_name>WPL</short_name>
   <symbol>flag_wales.png</symbol>
-  <first_week>7</first_week>
+  <first_week>5</first_week>
   <week_gap>1</week_gap>
-  <break_in length="1">10</break_in>
-  <break_in length="1">15</break_in>
+  <break_in length="1">12</break_in>
+  <break_in length="1">16</break_in>
+  <break_in length="1">22</break_in>
+  <break_in length="1">25</break_in>
+  <break_in length="1">27</break_in>
+  <break_in length="1">31</break_in>
+  <break_in length="1">36</break_in>
   <break_in length="1">39</break_in>
-  <average_talent>6000</average_talent>
+  <average_talent>4500</average_talent>
+  <round_robins>3</round_robins>
   <names_file>england</names_file>
   <yellow_red>5</yellow_red>
 
-  <prom_rel>
-    <prom_rel_element>
-      <rank_start>2</rank_start>
-      <rank_end>3</rank_end>
-      <dest_sid>wales2a wales2b</dest_sid>
-      <prom_rel_type>relegation</prom_rel_type>
-    </prom_rel_element>
-  </prom_rel>
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>11</rank_start>
+            <rank_end>12</rank_end>
+            <dest_sid>wales2a wales2b</dest_sid>
+            <prom_rel_type>relegation</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
 
-  <teams>
-    <team>
-      <team_name>The New Saints</team_name>
-<def_file>wales_saints</def_file>
-    </team>
-    <team>
-      <team_name>Bangor City</team_name>
-<def_file>wales_bangor</def_file>
-    </team>
-    <team>
-      <team_name>Neath</team_name>
-<def_file>wales_neath</def_file>
-    </team>
-  </teams>
+    <teams>
+        <team>
+            <team_name>The New Saints</team_name>
+        </team>
+        <team>
+            <team_name>Aberystwyth Town</team_name>
+        </team>
+        <team>
+            <team_name>Airbus UK Broughton</team_name>
+        </team>
+        <team>
+            <team_name>Bala Town</team_name>
+        </team>
+        <team>
+            <team_name>Barry Town United</team_name>
+        </team>
+        <team>
+            <team_name>Caernarfon Town</team_name>
+        </team>
+        <team>
+            <team_name>Cardiff Met Uni</team_name>
+        </team>
+        <team>
+            <team_name>Carmarthen Town</team_name>
+        </team>
+        <team>
+            <team_name>Cefn Druids</team_name>
+        </team>
+        <team>
+            <team_name>Connah's Quay Nomads</team_name>
+        </team>
+        <team>
+            <team_name>Newtown</team_name>
+        </team>
+        <team>
+            <team_name>Pen-y-Bont</team_name>
+        </team>
+    </teams>
 </league>

@@ -1,59 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <league>
   <sid>fyr_macedonia3e</sid>
-  <name>Makedonska Treta Liga Zapad</name>
-  <short_name>Treta L. Z.</short_name>
+  <name>Treta East</name>
+  <short_name>Treta E</short_name>
   <symbol>flag_fyr_macedonia.png</symbol>
-  <first_week>1</first_week>
+  <first_week>5</first_week>
   <week_gap>1</week_gap>
-  <average_talent>5500</average_talent>
+  <average_talent>3700</average_talent>
   <names_file>serbia</names_file>
+  <break_in length="1">6</break_in>
+  <break_in length="1">10</break_in>
+  <break_in length="1">12</break_in>
+  <break_in length="1">17</break_in>
+  <break_in length="1">19</break_in>
+  <break_in length="6">23</break_in>
+  <break_in length="1">37</break_in>
+  <break_in length="1">39</break_in>
   <yellow_red>5</yellow_red>
   <layer>3</layer>
-  <property>inactive</property>
 
-  <teams>
-    <team>
-      <team_name>Fljamurtari</team_name>
-    </team>
-    <team>
-      <team_name>Gostivar</team_name>
-    </team>
-    <team>
-      <team_name>Gradec</team_name>
-    </team>
-    <team>
-      <team_name>Kamenjane</team_name>
-    </team>
-    <team>
-      <team_name>Lirija</team_name>
-    </team>
-    <team>
-      <team_name>Ljuboten</team_name>
-    </team>
-    <team>
-      <team_name>Palčište</team_name>
-    </team>
-    <team>
-      <team_name>Pirok</team_name>
-    </team>
-    <team>
-      <team_name>Rinija</team_name>
-    </team>
-    <team>
-      <team_name>Rufeja</team_name>
-    </team>
-    <team>
-      <team_name>V. Brvenica</team_name>
-    </team>
-    <team>
-      <team_name>V. Forino</team_name>
-    </team>
-    <team>
-      <team_name>V. Slatino</team_name>
-    </team>
-    <team>
-      <team_name>Zajas</team_name>
-    </team>
-   </teams>
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>1</rank_end>
+            <dest_sid>fyr_macedonia2a fyr_macedonia2b</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
+
+    <teams>
+        <team>
+            <team_name>Drita Bogovinë</team_name>
+        </team>
+        <team>
+            <team_name>Vardari Forino</team_name>
+        </team>
+        <team>
+            <team_name>Besa Dobri Dol</team_name>
+        </team>
+        <team>
+            <team_name>Napredok Kichevo</team_name>
+        </team>
+        <team>
+            <team_name>Trabzonspor</team_name>
+        </team>
+        <team>
+            <team_name>Ljuboten</team_name>
+        </team>
+        <team>
+            <team_name>Zajazi</team_name>
+        </team>
+        <team>
+            <team_name>Nerashti</team_name>
+        </team>
+        <team>
+            <team_name>Reçica</team_name>
+        </team>
+        <team>
+            <team_name>Arsimi</team_name>
+        </team>
+        <team>
+            <team_name>Kamjani</team_name>
+        </team>
+        <team>
+            <team_name>Xixa</team_name>
+        </team>
+        <team>
+            <team_name>Flamurtari Debreshe</team_name>
+        </team>
+    </teams>
 </league>

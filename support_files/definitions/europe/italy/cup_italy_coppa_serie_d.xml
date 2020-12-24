@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+  <name>Coppa Italia Serie D</name>
+  <short_name>Coppa D</short_name>
+  <symbol>flag_italy.png</symbol>
+  <sid>italy_coppa_serie_c</sid>
+  <last_week>38</last_week>
+  <week_gap>1</week_gap>
+  <property>national</property>
+
+    <cup_rounds>
+        <cup_round>
+            <round_name>1st Round</round_name>
+            <byes>91</byes>
+            <delay>-17</delay>
+            <home_away>1</home_away>
+            <choose_teams>
+                <choose_team>
+                    <choose_team_sid>italy4a</choose_team_sid>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>italy4b</choose_team_sid>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>italy4c</choose_team_sid>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>italy4d</choose_team_sid>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>italy4e</choose_team_sid>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>italy4f</choose_team_sid>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>italy4g</choose_team_sid>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>italy4h</choose_team_sid>
+                </choose_team>
+                <choose_team>
+                    <choose_team_sid>italy4i</choose_team_sid>
+                </choose_team>
+            </choose_teams>
+        </cup_round>
+        
+        <cup_round>
+            <round_name>2nd Round</round_name>
+            <delay>-17</delay>
+            <home_away>1</home_away>
+        </cup_round>
+        
+        <cup_round>
+            <round_name>3rd Round</round_name>
+            <delay>-16</delay>
+            <home_away>1</home_away>
+        </cup_round>
+        
+        <cup_round>
+            <round_name>4th Round</round_name>
+            <delay>-14</delay>
+            <home_away>1</home_away>
+        </cup_round>
+        
+        <cup_round>
+            <round_name>5th Round</round_name>
+            <delay>-12</delay>
+            <home_away>1</home_away>
+        </cup_round>
+
+        <cup_round>
+            <round_name>Quarter Final</round_name>
+            <delay>-8</delay>
+            <home_away>1</home_away>
+        </cup_round>
+
+        <cup_round>
+            <round_name>Semi Final</round_name>
+            <delay>-5</delay>
+            <home_away>1</home_away>
+        </cup_round>
+
+        <cup_round>
+            <round_name>Final</round_name>
+            <home_away>1</home_away>
+        </cup_round>
+    </cup_rounds>
+</cup>

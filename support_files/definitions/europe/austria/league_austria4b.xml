@@ -4,65 +4,71 @@
   <name>Landesliga Salzburg</name>
   <short_name>LL S.</short_name>
   <symbol>flag_austria.png</symbol>
-  <first_week>2</first_week>
+  <first_week>6</first_week>
   <week_gap>1</week_gap>
-  <break_in length="13">23</break_in> 
-  <average_talent>5000</average_talent>
+  <break_in length="1">8</break_in>
+  <break_in length="1">13</break_in> 
+  <break_in length="2">16</break_in> 
+  <break_in length="2">19</break_in> 
+  <break_in length="2">25</break_in> 
+  <break_in length="2">31</break_in> 
+  <break_in length="1">37</break_in>  
+  <average_talent>4600</average_talent>
   <names_file>germany</names_file>
   <layer>4</layer>
   <yellow_red>5</yellow_red>
 
-  <prom_rel>
-    <prom_rel_element>
-      <rank_start>1</rank_start>
-      <rank_end>1</rank_end>
-      <dest_sid>austria3a austria3b austria3c</dest_sid>
-      <prom_rel_type>promotion</prom_rel_type>
-    </prom_rel_element>
-  </prom_rel>
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>1</rank_end>
+            <dest_sid>austria3a austria3b austria3c</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+            </prom_rel_element>
+    </prom_rel>
   
-  <teams>
-    <team>
-      <team_name>Neumarkt</team_name>
-    </team>
-    <team>
-      <team_name>Eugendorf</team_name>
-    </team>
-    <team>
-      <team_name>Hallein</team_name>
-    </team>
-    <team>
-      <team_name>Hallwang</team_name>
-    </team>
-    <team>
-      <team_name>Salzburg A.</team_name>
-    </team>
-    <team>
-      <team_name>Puch</team_name>
-    </team>
-    <team>
-      <team_name>P. Saalfelden</team_name>
-    </team>
-    <team>
-      <team_name>Straßwalchen</team_name>
-    </team>
-    <team>
-      <team_name>Zell am See</team_name>
-    </team>
-    <team>
-      <team_name>Bischofshofen</team_name>
-    </team>
-    <team>
-      <team_name>AS. Salzburg</team_name>
-    </team>
-    <team>
-      <team_name>Henndorf</team_name>
-    </team>
-    <team>
-      <team_name>Anthering</team_name>
-    </team>
-    <team>
-      <team_name>Piesendorf</team_name>
-    </team>
-   </teams>
+    <teams>
+        <team>
+            <team_name>Adnet</team_name>
+        </team>
+        <team>
+            <team_name>Neumarkt</team_name>
+        </team>
+        <team>
+            <team_name>Golling</team_name>
+        </team>
+        <team>
+            <team_name>Zell am See</team_name>
+        </team>
+        <team>
+            <team_name>Eugendorf</team_name>
+        </team>
+        <team>
+            <team_name>Straßwalchen</team_name>
+        </team>
+        <team>
+            <team_name>Bramberg</team_name>
+        </team>
+        <team>
+            <team_name>Altenmarkt</team_name>
+        </team>
+        <team>
+            <team_name>Bergheim</team_name>
+        </team>
+        <team>
+            <team_name>Bürmoos</team_name>
+        </team>
+        <team>
+            <team_name>ÖTSU Hallein</team_name>
+        </team>
+        <team>
+            <team_name>ÖTSU Hallein</team_name>
+        </team>
+        <team>
+            <team_name>Hallwang</team_name>
+        </team>
+        <team>
+            <team_name>Puch</team_name>
+        </team>
+    </teams>
 </league>

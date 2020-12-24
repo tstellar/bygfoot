@@ -1,29 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <league>
   <sid>latvia3d</sid>
-  <name>2. liga Ziemeļaustrumu zona</name>
-  <short_name>2. L. Zi.</short_name>
+  <name>2. liga Centra Zona</name>
+  <short_name>2. L. Cen</short_name>
   <symbol>flag_latvia.png</symbol>
-  <first_week>1</first_week>
+  <first_week>3</first_week>
   <week_gap>1</week_gap>
-  <average_talent>5100</average_talent>
+  <break_in length="1">10</break_in>
+  <break_in length="1">14</break_in>
+  <break_in length="1">16</break_in>
+  <break_in length="1">19</break_in>
+  <break_in length="1">25</break_in>
+  <average_talent>3100</average_talent>
   <yellow_red>5</yellow_red>
   <names_file>latvia</names_file>
-  <property>inactive</property>
   <layer>3</layer>
 
-  <teams>
-    <team>
-      <team_name>Madona/Kvarcs</team_name>
-    </team>
-    <team>
-      <team_name>Balvi</team_name>
-    </team>
-    <team>
-      <team_name>Pļaviņas D.</team_name>
-    </team>
-    <team>
-      <team_name>Aizkraukle</team_name>
-    </team>
-  </teams>
+    <teams>
+        <team>
+            <team_name>Ghetto FC</team_name>
+        </team>
+        <team>
+            <team_name>Caramba Rīga</team_name>
+        </team>
+        <team>
+            <team_name>FK Salaspils</team_name>
+        </team>
+        <team>
+            <team_name>SK Super Nova</team_name>
+        </team>
+        <team>
+            <team_name>Albatroz SC</team_name>
+        </team>
+        <team>
+            <team_name>Tente</team_name>
+        </team>
+        <team>
+            <team_name>FK Monarhs</team_name>
+        </team>
+        <team>
+            <team_name>FK Jaunība-SK Upesciems</team_name>
+        </team>
+        <team>
+            <team_name>FK Jūrnieks</team_name>
+        </team>
+        <team>
+            <team_name>FK Reinards-Ropaži</team_name>
+        </team>
+        <team>
+            <team_name>FK Kuivižu Spartaks</team_name>
+        </team>
+    </teams>
 </league>

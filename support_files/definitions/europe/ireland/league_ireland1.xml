@@ -4,34 +4,62 @@
   <name>FAI Premier Division</name>
   <short_name>Prem. D.</short_name>
   <symbol>flag_ireland.png</symbol>
-  <first_week>1</first_week>
+  <first_week>5</first_week>
   <week_gap>1</week_gap>
-  <round_robins>3</round_robins>
-  <average_talent>6200</average_talent>
+  <break_in length="1">25</break_in>
+  <break_in length="1">28</break_in>
+  <break_in length="1">31</break_in>
+  <break_in length="1">37</break_in>
+  <round_robins>4</round_robins>
+  <average_talent>4500</average_talent>
+  <two_match_week_start>14</two_match_week_start>
+  <two_match_week_end>15</two_match_week_end>
+  <two_match_week_start>17</two_match_week_start>
+  <two_match_week_end>18</two_match_week_end>
+  <two_match_week_start>24</two_match_week_start>
+  <two_match_week_end>25</two_match_week_end>
   <names_file>england</names_file>
   <yellow_red>5</yellow_red>
 
-  <prom_rel>
-    <prom_rel_element>
-      <rank_start>3</rank_start>
-      <rank_end>3</rank_end>
-      <dest_sid>ireland2</dest_sid>
-      <prom_rel_type>relegation</prom_rel_type>
-    </prom_rel_element>
-  </prom_rel>
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>10</rank_start>
+            <rank_end>10</rank_end>
+            <dest_sid>ireland2</dest_sid>
+            <prom_rel_type>relegation</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
 
-  <teams>
-    <team>
-      <team_name>Bray Wanderers</team_name>
-<def_file>ireland_bray</def_file>
-    </team>
-    <team>
-      <team_name>Shamrock Rovers</team_name>
-<def_file>ireland_shamrock</def_file>
-    </team>
-     <team>
-      <team_name>Derry City</team_name>
-<def_file>ireland_derry</def_file>
-    </team>
-  </teams>
+    <teams>
+        <team>
+            <team_name>Dundalk</team_name>
+        </team>
+        <team>
+            <team_name>Shamrock Rovers</team_name>
+        </team>
+        <team>
+            <team_name>Bohemians</team_name>
+        </team>
+        <team>
+            <team_name>Derry City</team_name>
+        </team>
+        <team>
+            <team_name>St Patrick's Athletic</team_name>
+        </team>
+        <team>
+            <team_name>Sligo Rovers</team_name>
+        </team>
+        <team>
+            <team_name>Waterford</team_name>
+        </team>
+        <team>
+            <team_name>Cork City</team_name>
+        </team>
+        <team>
+            <team_name>Finn Harps</team_name>
+        </team>
+        <team>
+            <team_name>UCD</team_name>
+        </team>
+    </teams>
 </league>

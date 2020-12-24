@@ -4,89 +4,92 @@
   <name>Prva Liga Srbija</name>
   <short_name>PLS</short_name>
   <symbol>flag_serbia.png</symbol>
-  <first_week>7</first_week>
+  <first_week>4</first_week>
   <week_gap>1</week_gap>
-  <break_in length="8">25</break_in>
-  <average_talent>6700</average_talent>
+  <break_in length="1">11</break_in>
+  <break_in length="1">15</break_in>
+  <break_in length="6">27</break_in>
+  <break_in length="1">39</break_in>
+  <average_talent>5300</average_talent>
   <names_file>serbia</names_file>
   <yellow_red>5</yellow_red>
 
-  <prom_rel>
-    <prom_rel_element>
-      <rank_start>1</rank_start>
-      <rank_end>2</rank_end>
-      <dest_sid>serbia1</dest_sid>
-      <prom_rel_type>promotion</prom_rel_type>
-    </prom_rel_element>
+    <prom_rel>
+        <prom_rel_element>
+            <rank_start>1</rank_start>
+            <rank_end>2</rank_end>
+            <dest_sid>serbia1</dest_sid>
+            <prom_rel_type>promotion</prom_rel_type>
+        </prom_rel_element>
 
-    <prom_rel_element>
-      <rank_start>15</rank_start>
-      <rank_end>18</rank_end>
-      <dest_sid>serbia3a serbia3b serbia3c serbia3d</dest_sid>
-      <prom_rel_type>relegation</prom_rel_type>
-    </prom_rel_element>
+        <prom_games>
+            <prom_games_dest_sid>serbia1</prom_games_dest_sid>
+            <prom_games_cup_sid>serbia_prom_games1</prom_games_cup_sid>
+            <prom_games_loser_sid>serbia2</prom_games_loser_sid>
+        </prom_games>
+        
+        <prom_games>
+            <prom_games_dest_sid>serbia1</prom_games_dest_sid>
+            <prom_games_cup_sid>serbia_prom_games2</prom_games_cup_sid>
+            <prom_games_loser_sid>serbia2</prom_games_loser_sid>
+        </prom_games>
 
-    <prom_games>
-      <prom_games_dest_sid>serbia1</prom_games_dest_sid>
-      <prom_games_cup_sid>serbia_prom_games1</prom_games_cup_sid>
-      <prom_games_loser_sid>serbia2</prom_games_loser_sid>
-    </prom_games>
-  </prom_rel>
+        <prom_rel_element>
+            <rank_start>13</rank_start>
+            <rank_end>16</rank_end>
+            <dest_sid>serbia3a serbia3b serbia3c serbia3d</dest_sid>
+            <prom_rel_type>relegation</prom_rel_type>
+        </prom_rel_element>
+    </prom_rel>
 
-  <teams>
-<team>
-      <team_name>Banat Zrenjanin</team_name>
-    </team>
-   <team>
-      <team_name>Bežanija</team_name>
-    </team>
-   <team>
-      <team_name>Čukarički Stankom</team_name>
-    </team>
-    <team>
-      <team_name>Donji Srem</team_name>
-    </team>
-    <team>
-      <team_name>Inđija</team_name>
-    </team>
-   <team>
-      <team_name>Kolubara</team_name>
-    </team>
-    <team>
-      <team_name>Mladenovac</team_name>
-    </team>
-    <team>
-      <team_name>Mladi Radnik</team_name>
-    </team>
-   <team>
-      <team_name>Mladost Lučani</team_name>
-    </team>
-    <team>
-      <team_name>Napredak Kruševac</team_name>
-    </team>
-    <team>
-      <team_name>Novi Sad</team_name>
-    </team>
-    <team>
-      <team_name>Proleter Novi Sad</team_name>
-    </team>
-    <team>
-      <team_name>Radnički Niš</team_name>
-    </team>
-    <team>
-      <team_name>Radnički Sombor</team_name>
-    </team>
-    <team>
-      <team_name>Sinđelić Niš</team_name>
-    </team>
-    <team>
-      <team_name>Sloga Kraljevo</team_name>
-    </team>
-    <team>
-      <team_name>Srem</team_name>
-    </team>
-    <team>
-      <team_name>Teleoptik</team_name>
-    </team>
-  </teams>
+    <teams>
+        <team>
+            <team_name>Bačka</team_name>
+        </team>
+        <team>
+            <team_name>Budućnost Dobanovci</team_name>
+        </team>
+        <team>
+            <team_name>Dinamo Vranje</team_name>
+        </team>
+        <team>
+            <team_name>Grafičar Beograd</team_name>
+        </team>
+        <team>
+            <team_name>Kabel</team_name>
+        </team>
+        <team>
+            <team_name>Kolubara</team_name>
+        </team>
+        <team>
+            <team_name>Metalac</team_name>
+        </team>
+        <team>
+            <team_name>Novi Pazar</team_name>
+        </team>
+        <team>
+            <team_name>Radnički 1923</team_name>
+        </team>
+        <team>
+            <team_name>Radnički Pirot</team_name>
+        </team>
+        <team>
+            <team_name>Sinđelić Beograd</team_name>
+        </team>
+        <team>
+            <team_name>Smederevo 1924</team_name>
+        </team>
+        <team>
+            <team_name>Trayal</team_name>
+        </team>
+        <team>
+            <team_name>Žarkovo</team_name>
+        </team>
+        <team>
+            <team_name>Zemun</team_name>
+        </team>
+        <team>
+            <team_name>Zlatibor Čajetina</team_name>
+        </team>
+    </teams>
 </league>
