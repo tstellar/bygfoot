@@ -29,7 +29,7 @@
 #include "bygfoot.h"
 
 void
-misc_callback_start_game(void);
+misc_callback_start_game(Bygfoot *bygfoot);
 
 void
 misc_callback_show_team_list(GtkWidget *widget, const gchar *country_file);

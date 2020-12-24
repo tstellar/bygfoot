@@ -205,6 +205,12 @@ typedef struct
     gint paned_pos;
 } Windows;
 
+typedef struct {
+    gchar *json_filename;
+} CommandLineArgs;
+
+
 Country *bygfoot_load_country(Bygfoot *bygfoot, const gchar *country_name);
 User *bygfoot_add_user(Bygfoot *bygfoot, const gchar *username, Team *tm);
+void bygfoot_start_game(Bygfoot *bygfoot);
 #endif

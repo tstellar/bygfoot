@@ -36,7 +36,7 @@ on_team_selection_cancel_clicked       (GtkButton       *button,
 
 void
 on_team_selection_ok_clicked           (GtkButton       *button,
-                                        gpointer         user_data);
+                                        Bygfoot         *bygfoot);
 
 gboolean
 on_button_font_sel_cancel_clicked      (GtkWidget       *widget,
