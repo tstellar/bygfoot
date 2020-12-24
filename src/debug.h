@@ -45,9 +45,6 @@ debug_reset_counter(gpointer data);
 void
 debug_calibrate_betting_odds(gint skilldiffmax, gint matches_per_skilldiff);
 
-gboolean
-debug_egg_forwards_boost_style(void);
-
 void
 debug_writer_out(const gchar *file_name,
 				 const gchar *method_name,
