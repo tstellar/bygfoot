@@ -83,6 +83,7 @@ user_new(void)
     new.default_team = g_array_new(FALSE, FALSE, sizeof(gint));
     new.default_style = 0;
     new.default_boost = 0;
+    new.scout = -1;
     return new;
 }
 

@@ -206,4 +206,5 @@ typedef struct
 } Windows;
 
 User *bygfoot_add_user(Bygfoot *bygfoot, const gchar *username, Team *tm);
+void bygfoot_start_game(Bygfoot *bygfoot);
 #endif

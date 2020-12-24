@@ -1,6 +1,7 @@
 
 #include "bygfoot.h"
 #include "misc.h"
+#include "start_end.h"
 #include "user.h"
 #include "xml_country.h"
 
@@ -16,4 +17,13 @@ User *bygfoot_add_user(Bygfoot *bygfoot, const gchar *username, Team *tm)
 
     g_array_append_val(users, new_user);
     return &g_array_index(users, User, users->len - 1);
+}
+
+void bygfoot_start_game(Bygfoot *bygfoot)
+{
+    unsigned i;
+
+    start_new_game();
+    for (i = 0; i < users->len; i++)
+        user_set_up_team_new_game(&usr(i));
 }
