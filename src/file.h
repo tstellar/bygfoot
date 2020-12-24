@@ -72,6 +72,9 @@ gboolean
 file_check_home_dir(void);
 
 void
+file_check_home_dir_create_dirs(void);
+
+void
 file_check_home_dir_get_conf_files(GPtrArray **files_to_copy);
 
 void

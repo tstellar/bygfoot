@@ -26,6 +26,31 @@ include(GNUInstallDirs)
 add_definitions("-DPACKAGE_DATA_DIR=\"${CMAKE_INSTALL_FULL_DATADIR}\"")
 add_definitions("-DPACKAGE=\"${PROJECT_NAME}\"")
 
+find_package(JSON-C)
+
+if (JSON-C_FOUND)
+    set(JSON-C_LIBRARIES json-c::json-c)
+else()
+    pkg_check_modules(JSON-C json-c)
+endif()
+
+if (JSON-C_FOUND)
+    set(JSON_FILES src/json_interface.c src/json_serialize.c)
+    add_definitions("-DENABLE_JSON")
+    include_directories (${JSON-C_INCLUDE_DIRS})
+    link_directories (${JSON-C_LIBRARY_DIRS})
+
+    include(CheckSymbolExists)
+    set(CMAKE_REQUIRED_LIBRARIES ${JSON-C_LIBRARIES})
+    check_symbol_exists(json_object_new_array_ext "json-c/json.h" 
+                        HAVE_JSON_OBJECT_NEW_ARRAY_EXT)
+    if (HAVE_JSON_OBJECT_NEW_ARRAY_EXT)
+        add_definitions("-DHAVE_JSON_OBJECT_NEW_ARRAY_EXT")
+    endif()
+
+
+endif()
+
 add_executable(bygfoot WIN32
     src/bet.c src/bet.h src/bet_struct.h
     src/bygfoot.c src/bygfoot.h
@@ -111,13 +136,14 @@ add_executable(bygfoot WIN32
     src/youth_academy.c src/youth_academy.h
     src/zip/unzip.c src/zip/unzip.h
     src/zip/zip.c src/zip/zip.h
+    ${JSON_FILES}
 )
 # Some gtk headers use deprecated glib features, so disable this warning
 # since we can't do anything about it.
 target_compile_options(bygfoot PRIVATE -Wno-deprecated-declarations)
 # Link the target to the GTK+ libraries
 target_link_libraries (bygfoot ${GTK2_LIBRARIES} ${GLIB_LIBRARIES} m
-                       ${ZLIB_LIBRARIES})
+                               ${ZLIB_LIBRARIES} ${JSON-C_LIBRARIES})
 
 install(TARGETS bygfoot)
 

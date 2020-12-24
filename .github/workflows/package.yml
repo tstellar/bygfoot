@@ -9,6 +9,20 @@ jobs:
   package-linux:
     runs-on:
       - ubuntu-16.04
+    strategy:
+      fail-fast: false
+      matrix:
+        build-type:
+          - full
+          - minimal
+        include:
+          - build-type: full
+            extra-deps: libjson-c-dev
+            build-suffix: ""
+          - build-type: minimal
+            extra-deps: ""
+            build-suffix: -minimal
+
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
@@ -16,13 +30,17 @@ jobs:
       - name: Install dependencies
         run: sudo apt-get install libglib2.0-dev libgtk2.0-dev libpango1.0-dev libatk1.0-dev libfreetype6-dev ninja-build
 
+      - name: Install extra dependencies
+        if: ${{ matrix.extra-deps != '' }}
+        run: sudo apt-get install ${{ matrix.extra-deps }}
+
       - name: Package Bygfoot
         run: ./scripts/package.sh .
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: "bygfoot-${{ env.BYGFOOT_VERSION }}-linux"
+          name: "bygfoot-${{ env.BYGFOOT_VERSION }}-linux${{ matrix.build-suffix }}"
           path: "*.bz2"
 
   package-windows:
