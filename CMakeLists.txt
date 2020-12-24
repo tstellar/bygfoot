@@ -26,6 +26,15 @@ endif (GLIB_PKG_FOUND)
  add_definitions("-DPACKAGE_DATA_DIR=\"${CMAKE_INSTALL_FULL_DATADIR}\"")
  add_definitions("-DPACKAGE=\"${PROJECT_NAME}\"")
 
+
+find_package(JSON-C)
+
+if (JSON-C_FOUND)
+    set(JSON_FILES src/json_interface.c)
+    include_directories (${JSON-C_INCLUDE_DIRS})
+    link_directories (${JSON-C_LIBRARY_DIRS})
+endif()
+
 add_executable(bygfoot src/bet.c src/bet.h src/finance.h src/fixture.h
 	src/game_gui.h src/league.h src/main.h src/maths.h src/misc.h
 	src/option.h src/player.h src/support.h src/treeview2.h src/user.h
@@ -78,14 +87,14 @@ add_executable(bygfoot src/bet.c src/bet.h src/finance.h src/fixture.h
 	src/xml_lg_commentary.c src/xml_mmatches.c src/xml_name.c
 	src/xml_news.c src/xml_strategy.c src/xml_team.c src/youth_academy.c
 	src/zip/zip.c src/zip/zip.h src/zip/unzip.c src/zip/unzip.h
-	src/bygfoot.c)
+	src/bygfoot.c src/backend_filesystem.c ${JSON_FILES})
 
 # Some gtk headers use deprecated glib features, so disable this warning
 # since we can't do anything about it.
 target_compile_options(bygfoot PRIVATE -Wno-deprecated-declarations)
  # Link the target to the GTK+ libraries
  target_link_libraries (bygfoot ${GTK2_LIBRARIES} ${GLIB_LIBRARIES} m
-	 ${ZLIB_LIBRARIES})
+	 ${ZLIB_LIBRARIES} json-c::json-c)
 
 install(TARGETS bygfoot)
 

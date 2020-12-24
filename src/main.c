@@ -38,6 +38,7 @@
 #include "file.h"
 #include "free.h"
 #include "job_struct.h"
+#include "json_interface.h"
 #include "language.h"
 #include "lg_commentary.h"
 #include "live_game.h"
@@ -69,6 +70,38 @@
 /** Whether the last save gets loaded at startup
   (cl switch -l). */
 gboolean load_last_save;
+
+/** Parse command line options used for selecting the frontend or backend to
+ * use with bygfoot.
+ */
+static void
+main_parse_frontend_backend_cl_arguments(gint *argc, gchar ***argv, CommandLineArgs *args)
+{
+    GError *error = NULL;
+    GOptionContext *context = NULL;
+    GOptionEntry entries[] = {
+	    { "json", 0, 0, G_OPTION_ARG_FILENAME, &args->json_filename,
+	    "JSON file containing commands to run.  bygfoot will run the "
+	    "commands in this file and then exit", "FILE"},
+        {NULL}
+    };
+
+    if(argc == NULL || argv == NULL)
+        return;
+
+    context = g_option_context_new(_("- a simple and addictive GTK2 football manager"));
+    g_option_context_add_main_entries(context, entries, GETTEXT_PACKAGE);
+    g_option_context_add_group(context, gtk_get_option_group (FALSE));
+    g_option_context_parse(context, argc, argv, &error);
+    g_option_context_free(context);
+
+    if(error != NULL)
+    {
+        misc_print_error(&error, FALSE);
+        return;
+    }
+
+}
 
 /** Parse the command line arguments given by the user. */
     void
@@ -411,6 +444,7 @@ main_init(gint *argc, gchar ***argv)
 main (gint argc, gchar *argv[])
 {
     Bygfoot bygfoot;
+    CommandLineArgs cl_args;
 #ifdef DEBUG
     printf("main\n");
 #endif
@@ -426,9 +460,16 @@ main (gint argc, gchar *argv[])
     int fd2 = open ("stderr.log", O_CREAT|O_WRONLY|O_TRUNC, 0666);
     dup2 (fd2, 2);
 #endif
-    bygfoot_init(&bygfoot, BYGFOOT_FRONTEND_GTK2, BYGFOOT_BACKEND_FILESYSTEM);
+    memset(&cl_args, 0, sizeof(cl_args));
+    main_parse_frontend_backend_cl_arguments(&argc, &argv, &cl_args);
     main_init(&argc, &argv);
 
+    if (cl_args.json_filename) {
+        bygfoot_init(&bygfoot, BYGFOOT_FRONTEND_CONSOLE, BYGFOOT_BACKEND_FILESYSTEM);
+        validate_country_files(&bygfoot);
+        return bygfoot_json_main(&bygfoot, &cl_args);
+    }
+    bygfoot_init(&bygfoot, BYGFOOT_FRONTEND_GTK2, BYGFOOT_BACKEND_FILESYSTEM);
     validate_country_files(&bygfoot);
 
     gtk_init (&argc, &argv);

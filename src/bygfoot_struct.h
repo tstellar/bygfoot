@@ -2,7 +2,9 @@
 #define BYGFOOT_STRUCT_H
 
 enum BygfootFrontend {
-    BYGFOOT_FRONTEND_GTK2
+
+    BYGFOOT_FRONTEND_GTK2,
+    BYGFOOT_FRONTEND_CONSOLE,
 };
 
 enum BygfootBackend {
@@ -15,6 +17,9 @@ enum BygfootBackend {
 typedef struct bygfoot
 {
     gchar *id;
+    gchar *save_dir;
+
+    enum BygfootFrontend frontend;
 
     /** @name Frontend functions */
     /* @{ */
@@ -28,7 +33,10 @@ typedef struct bygfoot
      * <Continent>/<...>/<country>
      */
     GPtrArray *(*get_country_list)(const struct bygfoot *);
+    void (*load_bygfoot)(const struct bygfoot *, const gchar *); 
+    gboolean (*is_bygfoot_id_unique)(struct bygfoot *, const gchar *);
     /* @} */
 } Bygfoot;
+
 
 #endif

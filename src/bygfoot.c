@@ -1,10 +1,13 @@
 
 #include "bygfoot.h"
 #include "file.h"
+#include "backend_filesystem.h"
+#include "load_save.h"
 #include "gui.h"
 #include "misc.h"
 #include "start_end.h"
 #include "user.h"
+#include "start_end.h"
 #include "xml_country.h"
 
 void
@@ -20,8 +23,56 @@ bygfoot_init(Bygfoot *bygfoot, enum BygfootFrontend frontend,
     switch (backend) {
     case BYGFOOT_BACKEND_FILESYSTEM:
         bygfoot->get_country_list = file_get_country_files;
+        bygfoot->load_bygfoot = bygfoot_filesystem_load_bygfoot;
         break;
     }
+}
+
+#if 0
+void
+bygfoot_set_save_dir(Bygfoot *bygfoot, const gchar *dir)
+{
+    if (!dir) {
+        /* FIXME: This is not safe */
+        bygfoot->save_dir = g_malloc0(256);
+        file_get_bygfoot_dir(bygfoot->save_dir);
+    }
+    /* FIXME: Should memcpy here since we will be freeing this. */
+    bygfoot->save_dir = dir;
+}
+#endif
+
+void
+bygfoot_load_bygfoot(Bygfoot *bygfoot, const gchar *id)
+{
+    bygfoot->load_bygfoot(bygfoot, id);
+}
+
+gboolean
+bygfoot_set_id(Bygfoot *bygfoot, const gchar *id)
+{
+    return FALSE;
+#if 0
+    const int generated_id_len = 8;
+    int i;
+    GRand *rand;
+    if (id) {
+    	if (!bygfoot->is_bygfoot_id_unique(bygfoot, id))
+            return FALSE;
+        bygfoot->id = id;
+        return TRUE;
+    }
+    bygfoot->id = g_malloc0(generated_id_len);
+    rand = g_rand_new();
+    do {
+        for (i = 0; i < generated_id_len - 1; i++) {
+            char a = g_rand_int(rand);
+            snprintf(bygfoot->id + i, "%x", a);
+        }
+    } while (bygfoot->backend->is_bygfoot_id_unique(bygfoot->id));
+    g_rand_free(rand);
+    return TRUE;
+#endif
 }
 
 Country *bygfoot_load_country(Bygfoot *bygfoot, const gchar *country_name)
