@@ -55,10 +55,11 @@
 /** Prototype of a function called at the start or
     end of a week round. */
 typedef void(*WeekFunc)(void);
+typedef void(*WeekFuncBygfoot)(Bygfoot *);
 
 /** Array of functions called when a week round
     is ended. */
-WeekFunc end_week_round_funcs[] =
+WeekFuncBygfoot end_week_round_funcs[] =
 {end_week_round_results, end_week_round_sort_tables,
  end_week_round_generate_news, end_week_round_update_fixtures, NULL};
 
@@ -284,7 +285,7 @@ start_new_season_reset_ids(void)
 
 /** End a week round. */
 void
-end_week_round(void)
+end_week_round(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("end_week_round\n");
@@ -292,14 +293,14 @@ end_week_round(void)
 
     gint i = 0;
     gboolean new_week = TRUE;
-    WeekFunc *end_func = end_week_round_funcs;
+    WeekFuncBygfoot *end_func = end_week_round_funcs;
 
     if(debug > 100)
 	g_print("End w %d r %d \n", week, week_round);
 
     while(*end_func != NULL)
     {
-	(*end_func)();
+	(*end_func)(bygfoot);
 	end_func++;
     }
 
@@ -339,12 +340,12 @@ end_week_round(void)
 	start_week();
     }
 
-    start_week_round();
+    start_week_round(bygfoot);
 }
 
 /** Calculate the match results of a week round. */
 void
-end_week_round_results(void)
+end_week_round_results(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("end_week_round_results\n");
@@ -376,11 +377,11 @@ end_week_round_results(void)
                 {
                     g_array_append_val(live_games, live_game);
                     live_game_calculate_fixture(&g_array_index(lig(i).fixtures, Fixture, j),
-                                                &g_array_index(live_games, LiveGame, live_games->len - 1));
+                                                &g_array_index(live_games, LiveGame, live_games->len - 1), bygfoot);
                 }
                 else
                     live_game_calculate_fixture(&g_array_index(lig(i).fixtures, Fixture, j),
-                                                &usr(usr_idx).live_game);
+                                                &usr(usr_idx).live_game, bygfoot);
 
 		done++;
 		fixture_result_to_buf(&g_array_index(lig(i).fixtures, Fixture, j),
@@ -389,7 +390,7 @@ end_week_round_results(void)
 			g_array_index(lig(i).fixtures, Fixture, j).teams[0]->name,
 			buf,
 			g_array_index(lig(i).fixtures, Fixture, j).teams[1]->name);
-		gui_show_progress((gfloat)done / num_matches, buf2,
+		bygfoot_show_progress(bygfoot, (gfloat)done / num_matches, buf2,
 				  PIC_TYPE_MATCHPIC);
 
 		if(debug > 120)
@@ -412,11 +413,11 @@ end_week_round_results(void)
                 {
                     g_array_append_val(live_games, live_game);
                     live_game_calculate_fixture(&g_array_index(acp(i)->fixtures, Fixture, j),
-                                                &g_array_index(live_games, LiveGame, live_games->len - 1));
+                                                &g_array_index(live_games, LiveGame, live_games->len - 1), bygfoot);
                 }
                 else
                     live_game_calculate_fixture(&g_array_index(acp(i)->fixtures, Fixture, j),
-                                                &usr(usr_idx).live_game);
+                                                &usr(usr_idx).live_game, bygfoot);
 
 		done++;
 		fixture_result_to_buf(&g_array_index(acp(i)->fixtures, Fixture, j), 
@@ -425,7 +426,7 @@ end_week_round_results(void)
 			g_array_index(acp(i)->fixtures, Fixture, j).teams[0]->name,
 			buf,
 			g_array_index(acp(i)->fixtures, Fixture, j).teams[1]->name);
-		gui_show_progress((gfloat)done / num_matches, buf2,
+		bygfoot_show_progress(bygfoot, (gfloat)done / num_matches, buf2,
 				  PIC_TYPE_MATCHPIC);
 		if(debug > 120)
 		    g_print("%s \n", buf2);
@@ -433,12 +434,12 @@ end_week_round_results(void)
 	}
     }
     
-    gui_show_progress(-1, "", PIC_TYPE_MATCHPIC);
+    bygfoot_show_progress(bygfoot, -1, "", PIC_TYPE_MATCHPIC);
 }
 
 /** Sort league and cup tables. */
 void
-end_week_round_sort_tables(void)
+end_week_round_sort_tables(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("end_week_round_sort_tables\n");
@@ -480,7 +481,7 @@ end_week_round_sort_tables(void)
 
 /** Update cup fixtures. */
 void
-end_week_round_update_fixtures(void)
+end_week_round_update_fixtures(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("end_week_round_update_fixtures\n");
@@ -522,7 +523,7 @@ end_week_round_update_fixtures(void)
 
 /** Write newspaper articles after week round. */
 void
-end_week_round_generate_news(void)
+end_week_round_generate_news(Bygfoot *bygfoot)
 {
     gint i;
 
@@ -549,7 +550,7 @@ end_week_round_generate_news(void)
 
 /** Start a new week round. */
 void
-start_week_round(void)
+start_week_round(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("start_week_round\n");
@@ -575,7 +576,7 @@ start_week_round(void)
 	(week_round > 1 && 
 	 !query_user_games_in_week_round(week, week_round - 1)))) 
     {
-	end_week_round();
+	end_week_round(bygfoot);
     }
     else
     {

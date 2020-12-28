@@ -30,10 +30,10 @@
 #include "live_game_struct.h"
 
 void
-live_game_calculate_fixture(Fixture *fix, LiveGame *live_game);
+live_game_calculate_fixture(Fixture *fix, LiveGame *live_game, Bygfoot *bygfoot);
 
 void
-live_game_initialize(Fixture *fix, LiveGame *live_game);
+live_game_initialize(Fixture *fix, LiveGame *live_game, Bygfoot *bygfoot);
 
 gboolean
 query_live_game_event_is_break(gint minute, gint time);
@@ -120,7 +120,7 @@ void
 live_game_injury_get_player(void);
 
 void
-live_game_resume(void);
+live_game_resume(Bygfoot *bygfoot);
 
 void
 live_game_event_substitution(gint team_number, gint sub_in, gint sub_out);

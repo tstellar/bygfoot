@@ -424,18 +424,19 @@ main (gint argc, gchar *argv[])
     int fd2 = open ("stderr.log", O_CREAT|O_WRONLY|O_TRUNC, 0666);
     dup2 (fd2, 2);
 #endif
+    bygfoot_init(&bygfoot, BYGFOOT_FRONTEND_GTK2);
     gtk_init (&argc, &argv);
 
     main_init(&argc, &argv);
 
-    if((load_last_save && !load_game_from_command_line("last_save")) ||
+    if((load_last_save && !load_game_from_command_line(&bygfoot, "last_save")) ||
             (!load_last_save && (argc == 1 ||
-                         (argc > 1 && !load_game_from_command_line(argv[1])))))
+                         (argc > 1 && !load_game_from_command_line(&bygfoot, argv[1])))))
     {
         if(country.sid == NULL)
         {
             stat0 = STATUS_SPLASH;
-            window_show_splash();
+            window_show_splash(&bygfoot);
 
             if(os_is_unix)
                 file_check_home_dir();

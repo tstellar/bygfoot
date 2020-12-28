@@ -81,7 +81,7 @@ window_show_digits(const gchar *text_main, const gchar* text1,
 		   gint value1, const gchar* text2, gint value2, gboolean show_alr);
 
 void
-window_show_file_sel(void);
+window_show_file_sel(Bygfoot *bygfoot);
 
 void
 window_show_stadium(void);
@@ -105,7 +105,7 @@ void
 window_show_transfer_dialog(const gchar *text);
 
 void
-window_show_mmatches(void);
+window_show_mmatches(Bygfoot *bygfoot);
 
 void
 window_main_save_geometry(void);
@@ -120,7 +120,7 @@ void
 window_show_progress(gint pictype);
 
 void
-window_show_splash(void);
+window_show_splash(Bygfoot *bygfoot);
 
 void
 window_load_hint_number(void);

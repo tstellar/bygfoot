@@ -234,6 +234,7 @@ G_MODULE_EXPORT void
 on_button_yesno_yes_clicked            (GtkButton       *button,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_button_yesno_yes_clicked\n");
 #endif
@@ -268,15 +269,15 @@ on_button_yesno_yes_clicked            (GtkButton       *button,
             FALSE, FALSE);
         break;
     case STATUS_QUERY_UNFIT:
-        load_save_autosave();
-        callback_show_next_live_game();
+        load_save_autosave(bygfoot);
+        callback_show_next_live_game(bygfoot);
         break;
     case STATUS_QUERY_QUIT:
         main_exit_program(EXIT_OK, NULL);
         break;
     case STATUS_QUERY_USER_NO_TURN:
-        load_save_autosave();
-        callback_show_next_live_game();
+        load_save_autosave(bygfoot);
+        callback_show_next_live_game(bygfoot);
         break;
     case STATUS_QUERY_KICK_YOUTH:
         free_player(&g_array_index(current_user.youth_academy.players, Player, selected_row));
@@ -671,6 +672,7 @@ on_treeview_mmatches_button_press_event (GtkWidget       *widget,
 					 GdkEventButton  *event,
 					 gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_treeview_mmatches_button_press_event\n");
 #endif
@@ -695,7 +697,7 @@ on_treeview_mmatches_button_press_event (GtkWidget       *widget,
 	return TRUE;
     }
 
-    misc2_callback_mmatches_button_press(widget, mmidx, col_num);
+    misc2_callback_mmatches_button_press(widget, mmidx, col_num, bygfoot);
     
     return TRUE;
 }
@@ -743,12 +745,13 @@ G_MODULE_EXPORT void
 on_button_mm_file_clicked              (GtkButton       *button,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_button_mm_file_clicked\n");
 #endif
 
     stat5 = STATUS_SELECT_MM_FILE_LOAD;
-    window_show_file_sel();
+    window_show_file_sel(bygfoot);
 }
 
 
@@ -786,12 +789,13 @@ G_MODULE_EXPORT void
 on_button_mm_import_clicked            (GtkButton       *button,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_button_mm_import_clicked\n");
 #endif
 
     stat5 = STATUS_SELECT_MM_FILE_IMPORT;
-    window_show_file_sel();
+    window_show_file_sel(bygfoot);
 }
 
 

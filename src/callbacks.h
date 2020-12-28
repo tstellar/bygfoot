@@ -26,7 +26,6 @@
 #ifndef CALLBACKS_H
 #define CALLBACKS_H
 
-#include "bygfoot.h"
 #include "interface.h"
 #include "support.h"
 

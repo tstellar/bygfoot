@@ -102,6 +102,7 @@ xml_loadsave_leagues_cups_text         (GMarkupParseContext *context,
 					gpointer             user_data,
 					GError             **error)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("xml_loadsave_leagues_cups_text\n");
 #endif
@@ -113,18 +114,18 @@ xml_loadsave_leagues_cups_text         (GMarkupParseContext *context,
     buf[text_len] = '\0';
 
     if(state == TAG_LEAGUE_FILE)
-	xml_load_league(dir, buf);
+	xml_load_league(bygfoot, dir, buf);
     else if(state == TAG_CUP_FILE)
     {
 	new_cup = cup_new(FALSE);
 	g_array_append_val(cps, new_cup);
-	xml_load_cup(&g_array_index(cps, Cup, cps->len - 1), dir, buf);	
+	xml_load_cup(bygfoot, &g_array_index(cps, Cup, cps->len - 1), dir, buf);
     }
 }
 
 /** Load the leagues and cups given in the leagues_cups.xml file. */
 void
-xml_loadsave_leagues_cups_read(const gchar *dirname, const gchar *prefix)
+xml_loadsave_leagues_cups_read(Bygfoot *bygfoot, const gchar *dirname, const gchar *prefix)
 {
 #ifdef DEBUG
     printf("xml_loadsave_leagues_cups_read\n");
@@ -142,7 +143,7 @@ xml_loadsave_leagues_cups_read(const gchar *dirname, const gchar *prefix)
     sprintf(file, "%s%s%s___leagues_cups.xml", dirname, G_DIR_SEPARATOR_S, prefix);
 
     context = 
-	g_markup_parse_context_new(&parser, 0, NULL, NULL);
+	g_markup_parse_context_new(&parser, 0, bygfoot, NULL);
 
     if(!g_file_get_contents(file, &file_contents, &length, &error))
     {

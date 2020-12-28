@@ -48,7 +48,7 @@
 
 /** Show the users' live games. */
 void
-callback_show_next_live_game(void)
+callback_show_next_live_game(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("callback_show_next_live_game\n");
@@ -92,7 +92,7 @@ callback_show_next_live_game(void)
                                    options))
                     {
                         live_game_calculate_fixture(&g_array_index(lig(i).fixtures, Fixture, j),
-                                                    &usr(fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j))).live_game);
+                                                    &usr(fixture_user_team_involved(&g_array_index(lig(i).fixtures, Fixture, j))).live_game, bygfoot);
                         return;
                     }
                 }
@@ -126,7 +126,7 @@ callback_show_next_live_game(void)
                                    options))
                     {
                         live_game_calculate_fixture(&g_array_index(acp(i)->fixtures, Fixture, j),
-                                                    &usr(fixture_user_team_involved(&g_array_index(acp(i)->fixtures, Fixture, j))).live_game);
+                                                    &usr(fixture_user_team_involved(&g_array_index(acp(i)->fixtures, Fixture, j))).live_game, bygfoot);
                         return;
                     }
                 }
@@ -151,7 +151,7 @@ callback_show_next_live_game(void)
     g_array_free (user_teams_played, TRUE);
     treeview_show_user_player_list();
     /* no more user games to show: end round. */
-    end_week_round();
+    end_week_round(bygfoot);
     game_gui_show_main();
 
     user_event_show_next();
@@ -244,7 +244,7 @@ callback_player_clicked(gint idx, GdkEventButton *event)
 /** Show the last match of the current user.
     @param start Whether we start the replay from the beginning or continue it. */
 void
-callback_show_last_match(gboolean start, LiveGame *lg)
+callback_show_last_match(gboolean start, LiveGame *lg, Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("callback_show_last_match\n");
@@ -259,7 +259,7 @@ callback_show_last_match(gboolean start, LiveGame *lg)
         stat2 = cur_user;
         statp = lg;
 
-        window_create(WINDOW_LIVE);
+        window_create_with_userdata(WINDOW_LIVE, bygfoot);
 
         gui_set_sensitive_lg_meters(FALSE);
 

@@ -104,10 +104,10 @@ void
 xml_load_users(const gchar *dirname, const gchar *basename);
 
 void
-xml_load_league(const gchar *dirname, const gchar *basename);
+xml_load_league(Bygfoot *bygfoot, const gchar *dirname, const gchar *basename);
 
 void
-xml_load_cup(Cup *cup, const gchar *dirname, const gchar *basename);
+xml_load_cup(Bygfoot *bygfoot, Cup *cup, const gchar *dirname, const gchar *basename);
 
 void
 xml_load_transfers(const gchar *dirname, const gchar *basename);

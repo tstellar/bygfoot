@@ -85,11 +85,11 @@ create_window_font_sel (void)
 }
 
 GtkWidget*
-create_window_live (void)
+create_window_live (Bygfoot *bygfoot)
 {
   GtkWidget *window_live;
   GtkBuilder *builder;
-  builder = load_ui(file_find_support_file("bygfoot_misc.glade", TRUE));
+  builder = load_ui_with_userdata(file_find_support_file("bygfoot_misc.glade", TRUE), bygfoot);
   window_live = GTK_WIDGET (gtk_builder_get_object (builder, "window_live"));
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
