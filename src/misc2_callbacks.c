@@ -232,7 +232,7 @@ on_window_yesno_delete_event           (GtkWidget       *widget,
 
 G_MODULE_EXPORT void
 on_button_yesno_yes_clicked            (GtkButton       *button,
-                                        gpointer         user_data)
+                                        Bygfoot         *bygfoot)
 {
 #ifdef DEBUG
     printf("on_button_yesno_yes_clicked\n");
@@ -269,14 +269,14 @@ on_button_yesno_yes_clicked            (GtkButton       *button,
         break;
     case STATUS_QUERY_UNFIT:
         load_save_autosave();
-        callback_show_next_live_game();
+        callback_show_next_live_game(bygfoot);
         break;
     case STATUS_QUERY_QUIT:
         main_exit_program(EXIT_OK, NULL);
         break;
     case STATUS_QUERY_USER_NO_TURN:
         load_save_autosave();
-        callback_show_next_live_game();
+        callback_show_next_live_game(bygfoot);
         break;
     case STATUS_QUERY_KICK_YOUTH:
         free_player(&g_array_index(current_user.youth_academy.players, Player, selected_row));

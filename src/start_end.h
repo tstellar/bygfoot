@@ -41,19 +41,19 @@ void
 start_generate_league_teams(void);
 
 void
-end_week_round(void);
+end_week_round(Bygfoot *bygfoot);
 
 void
-end_week_round_results(void);
+end_week_round_results(Bygfoot *bygfoot);
 
 void
-end_week_round_sort_tables(void);
+end_week_round_sort_tables(Bygfoot *bygfoot);
 
 void
-end_week_round_update_fixtures(void);
+end_week_round_update_fixtures(Bygfoot *bygfoot);
 
 void
-start_week_round(void);
+start_week_round(Bygfoot *bygfoot);
 
 void
 start_week(void);
@@ -95,6 +95,6 @@ void
 start_week_update_leagues(void);
 
 void
-end_week_round_generate_news(void);
+end_week_round_generate_news(Bygfoot *bygfoot);
 
 #endif

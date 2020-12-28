@@ -168,7 +168,7 @@ on_live_window_delete_event            (GtkWidget       *widget,
 
 G_MODULE_EXPORT void
 on_button_live_close_clicked           (GtkButton       *button,
-                                        gpointer         user_data)
+                                        Bygfoot         *bygfoot)
 {
 #ifdef DEBUG
     printf("on_button_live_close_clicked\n");
@@ -178,7 +178,7 @@ on_button_live_close_clicked           (GtkButton       *button,
        stat4 != STATUS_SHOW_LAST_MATCH_PAUSE)
 	stat4 = STATUS_SHOW_LAST_MATCH_ABORT;
     else if(stat1 != STATUS_SHOW_LAST_MATCH)
-	callback_show_next_live_game();
+	callback_show_next_live_game(bygfoot);
     else
     {
 	window_destroy(&window.live);

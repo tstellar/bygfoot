@@ -229,7 +229,7 @@ on_button_transfers_clicked            (GtkButton       *button,
 
 G_MODULE_EXPORT void
 on_button_new_week_clicked             (GtkButton       *button,
-                                        gpointer         user_data)
+                                        Bygfoot         *bygfoot)
 {
 #ifdef DEBUG
     printf("on_button_new_week_clicked\n");
@@ -251,7 +251,7 @@ on_button_new_week_clicked             (GtkButton       *button,
     else
     {
 	load_save_autosave();
-	callback_show_next_live_game();
+	callback_show_next_live_game(bygfoot);
     }
 }
 

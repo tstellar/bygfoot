@@ -815,7 +815,7 @@ window_create_with_userdata(gint window_type, Bygfoot *bygfoot)
 	case WINDOW_MAIN:
 	    if(window.main == NULL)
 	    {
-		window.main = create_main_window();
+		window.main = create_main_window(bygfoot);
 		wind = window.main;
 		window_main_load_geometry();
 		window.paned_pos = 
@@ -840,7 +840,7 @@ window_create_with_userdata(gint window_type, Bygfoot *bygfoot)
 	    if(window.live != NULL)
 		debug_print_message("window_create: called on already existing window\n");
 	    else
-		window.live = create_window_live();
+		window.live = create_window_live(bygfoot);
 	    if(((LiveGame*)statp)->fix != NULL)
 		strcpy(buf, league_cup_get_name_string(((LiveGame*)statp)->fix->clid));
 	    wind = window.live;
@@ -891,7 +891,7 @@ window_create_with_userdata(gint window_type, Bygfoot *bygfoot)
 	    if(window.yesno != NULL)
 		debug_print_message("window_create: called on already existing window\n");
 	    else
-		window.yesno = create_window_yesno();
+		window.yesno = create_window_yesno(bygfoot);
 	    wind = window.yesno;
 	    strcpy(buf, "???");
 	    break;

@@ -76,7 +76,7 @@ on_button_transfers_clicked            (GtkButton       *button,
 
 void
 on_button_new_week_clicked             (GtkButton       *button,
-                                        gpointer         user_data);
+                                        Bygfoot         *bygfoot);
 
 gboolean
 on_player_list2_button_press_event      (GtkWidget       *widget,

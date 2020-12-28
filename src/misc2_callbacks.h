@@ -57,7 +57,7 @@ on_window_yesno_delete_event           (GtkWidget       *widget,
 
 void
 on_button_yesno_yes_clicked            (GtkButton       *button,
-                                        gpointer         user_data);
+                                        Bygfoot         *bygfoot);
 
 void
 on_button_yesno_no_clicked             (GtkButton       *button,

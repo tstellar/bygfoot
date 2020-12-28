@@ -48,7 +48,7 @@
 
 /** Show the users' live games. */
 void
-callback_show_next_live_game(void)
+callback_show_next_live_game(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("callback_show_next_live_game\n");
@@ -151,7 +151,7 @@ callback_show_next_live_game(void)
     g_array_free (user_teams_played, TRUE);
     treeview_show_user_player_list();
     /* no more user games to show: end round. */
-    end_week_round();
+    end_week_round(bygfoot);
     game_gui_show_main();
 
     user_event_show_next();

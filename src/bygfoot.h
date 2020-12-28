@@ -210,7 +210,9 @@ typedef struct {
 } CommandLineArgs;
 
 
+void bygfoot_init(Bygfoot *bygfoot, enum BygfootFrontend frontend);
 Country *bygfoot_load_country(Bygfoot *bygfoot, const gchar *country_name);
 User *bygfoot_add_user(Bygfoot *bygfoot, const gchar *username, Team *tm);
 void bygfoot_start_game(Bygfoot *bygfoot);
+void bygfoot_show_progress(const Bygfoot *bygfoot, gfloat value, const gchar *text, gint pictype);
 #endif

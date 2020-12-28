@@ -30,7 +30,7 @@
 #include "live_game_struct.h"
 
 void
-callback_show_next_live_game(void);
+callback_show_next_live_game(Bygfoot *bygfoot);
 
 void
 callback_player_clicked(gint idx, GdkEventButton *event);

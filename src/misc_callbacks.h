@@ -58,7 +58,7 @@ on_live_window_delete_event            (GtkWidget       *widget,
 
 void
 on_button_live_close_clicked           (GtkButton       *button,
-                                        gpointer         user_data);
+                                        Bygfoot         *bygfoot);
 
 void
 on_button_pause_clicked                (GtkButton       *button,

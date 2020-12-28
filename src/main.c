@@ -424,6 +424,7 @@ main (gint argc, gchar *argv[])
     int fd2 = open ("stderr.log", O_CREAT|O_WRONLY|O_TRUNC, 0666);
     dup2 (fd2, 2);
 #endif
+    bygfoot_init(&bygfoot, BYGFOOT_FRONTEND_GTK2);
     main_init(&argc, &argv);
 
     gtk_init (&argc, &argv);
