@@ -65,7 +65,7 @@ gboolean show;
     @param live_game The live game used for calculation.
 */
 void
-live_game_calculate_fixture(Fixture *fix, LiveGame *live_game)
+live_game_calculate_fixture(Fixture *fix, LiveGame *live_game, Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("live_game_calculate_fixture\n");
@@ -74,7 +74,7 @@ live_game_calculate_fixture(Fixture *fix, LiveGame *live_game)
 
     if(stat0 != STATUS_LIVE_GAME_PAUSE && 
        stat0 != STATUS_LIVE_GAME_CHANGE)
-	live_game_initialize(fix, live_game);
+	live_game_initialize(fix, live_game, bygfoot);
     else
 	stat0 = STATUS_SHOW_LIVE_GAME;
 
@@ -103,12 +103,12 @@ live_game_calculate_fixture(Fixture *fix, LiveGame *live_game)
         stat0 = STATUS_NONE;
     }
     else if(stat0 == STATUS_LIVE_GAME_CHANGE)
-	live_game_resume();
+	live_game_resume(bygfoot);
 }
 
 /** Initialize a few things at the beginning of a live game. */
 void
-live_game_initialize(Fixture *fix, LiveGame *live_game)
+live_game_initialize(Fixture *fix, LiveGame *live_game, Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("live_game_initialize\n");
@@ -129,7 +129,7 @@ live_game_initialize(Fixture *fix, LiveGame *live_game)
 	on_button_back_to_main_clicked(NULL, NULL);
 
 	if(window.live == NULL)
-	    window.live = window_create(WINDOW_LIVE);
+	    window.live = window_create_with_userdata(WINDOW_LIVE, bygfoot);
 	else
 	    gtk_window_set_title(
 		GTK_WINDOW(window.live),
@@ -1753,7 +1753,7 @@ live_game_injury_get_player(void)
 
 /** Resume a live game. Show team changes. */
 void
-live_game_resume(void)
+live_game_resume(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("live_game_resume\n");
@@ -1786,7 +1786,7 @@ live_game_resume(void)
 					tms[i]->boost + 1);
     }
 
-    live_game_calculate_fixture(usr(stat2).live_game.fix, &usr(stat2).live_game);
+    live_game_calculate_fixture(usr(stat2).live_game.fix, &usr(stat2).live_game, bygfoot);
 }
 
 

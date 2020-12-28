@@ -252,7 +252,7 @@ debug_reset_counter(gpointer data)
 }
 
 void
-debug_calibrate_betting_odds(gint skilldiffmax, gint matches_per_skilldiff)
+debug_calibrate_betting_odds(gint skilldiffmax, gint matches_per_skilldiff, Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("debug_calibrate_betting_odds\n");
@@ -282,7 +282,7 @@ debug_calibrate_betting_odds(gint skilldiffmax, gint matches_per_skilldiff)
 		g_array_index(fix->teams[1]->players, Player, i).fitness = 0.9;
 	    }
 
-	    live_game_calculate_fixture(fix, &live_game);
+	    live_game_calculate_fixture(fix, &live_game, bygfoot);
 	    if(fix->result[0][0] < fix->result[1][0])
 		res[2]++;
 	    else

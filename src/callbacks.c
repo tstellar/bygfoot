@@ -231,6 +231,7 @@ G_MODULE_EXPORT void
 on_button_new_week_clicked             (GtkButton       *button,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_button_new_week_clicked\n");
 #endif
@@ -250,8 +251,8 @@ on_button_new_week_clicked             (GtkButton       *button,
     }
     else
     {
-	load_save_autosave();
-	callback_show_next_live_game();
+	load_save_autosave(bygfoot);
+	callback_show_next_live_game(bygfoot);
     }
 }
 
@@ -561,11 +562,12 @@ G_MODULE_EXPORT void
 on_menu_load_last_save_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_menu_load_last_save_activate\n");
 #endif
 
-    if(load_save_load_game("last_save", FALSE))
+    if(load_save_load_game(bygfoot, "last_save", FALSE))
     {
 	cur_user = 0;
 	on_button_back_to_main_clicked(NULL, NULL);
@@ -595,12 +597,13 @@ G_MODULE_EXPORT void
 on_menu_open_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_menu_open_activate\n");
 #endif
 
     stat5 = STATUS_LOAD_GAME;
-    window_show_file_sel();
+    window_show_file_sel(bygfoot);
 }
 
 
@@ -608,6 +611,7 @@ G_MODULE_EXPORT void
 on_menu_save_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot;
 #ifdef DEBUG
     printf("on_menu_save_activate\n");
 #endif
@@ -616,7 +620,7 @@ on_menu_save_activate                  (GtkMenuItem     *menuitem,
        save_file == NULL)
 	on_menu_save_as_activate(NULL, NULL);
     else
-	load_save_save_game(save_file);
+	load_save_save_game(bygfoot, save_file);
 }
 
 
@@ -624,12 +628,13 @@ G_MODULE_EXPORT void
 on_menu_save_as_activate               (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_menu_save_as_activate\n");
 #endif
 
     stat5 = STATUS_SAVE_GAME;
-    window_show_file_sel();
+    window_show_file_sel(bygfoot);
 }
 
 G_MODULE_EXPORT void
@@ -1440,6 +1445,7 @@ G_MODULE_EXPORT void
 on_menu_user_show_last_match_activate  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_menu_user_show_last_match_activate\n");
 #endif
@@ -1452,7 +1458,7 @@ on_menu_user_show_last_match_activate  (GtkMenuItem     *menuitem,
 
     stat1 = STATUS_SHOW_LAST_MATCH;
     stat3 = 0;
-    callback_show_last_match(TRUE, &current_user.live_game);
+    callback_show_last_match(TRUE, &current_user.live_game, bygfoot);
 }
 
 
@@ -1600,6 +1606,7 @@ G_MODULE_EXPORT void
 on_mm_add_last_match_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_mm_add_last_match_activate\n");
 #endif
@@ -1613,7 +1620,7 @@ on_mm_add_last_match_activate          (GtkMenuItem     *menuitem,
     if(current_user.mmatches_file == NULL)
     {
 	stat5 = STATUS_SELECT_MM_FILE_ADD;
-	window_show_file_sel();
+	window_show_file_sel(bygfoot);
     }
     else
 	user_mm_add_last_match(FALSE, TRUE);
@@ -1624,6 +1631,7 @@ G_MODULE_EXPORT void
 on_mm_manage_matches_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_mm_manage_matches_activate\n");
 #endif
@@ -1631,10 +1639,10 @@ on_mm_manage_matches_activate          (GtkMenuItem     *menuitem,
     if(current_user.mmatches_file == NULL)
     {
 	stat5 = STATUS_SELECT_MM_FILE_LOAD;
-	window_show_file_sel();
+	window_show_file_sel(bygfoot);
     }
     else
-	window_show_mmatches();
+	window_show_mmatches(bygfoot);
 }
 
 

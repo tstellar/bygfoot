@@ -27,6 +27,7 @@
 #define DEBUG_H
 
 #include <gtk/gtk.h>
+#include "bygfoot_struct.h"
 //#include "bygfoot.h"
 
 enum DebugOutput
@@ -43,7 +44,7 @@ gboolean
 debug_reset_counter(gpointer data);
 
 void
-debug_calibrate_betting_odds(gint skilldiffmax, gint matches_per_skilldiff);
+debug_calibrate_betting_odds(gint skilldiffmax, gint matches_per_skilldiff, Bygfoot *bygfoot);
 
 void
 debug_writer_out(const gchar *file_name,

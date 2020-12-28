@@ -73,7 +73,7 @@ xml_load_users(const gchar *dirname, const gchar *basename)
 }
 
 void
-xml_load_league(const gchar *dirname, const gchar *basename)
+xml_load_league(Bygfoot *bygfoot, const gchar *dirname, const gchar *basename)
 {
 #ifdef DEBUG
     printf("xml_load_league\n");
@@ -92,7 +92,7 @@ xml_load_league(const gchar *dirname, const gchar *basename)
     sprintf(buf, _("Loading league: %s"),
 	    lig(ligs->len - 1).name);
 
-    gui_show_progress(gui_get_progress_bar_fraction(), buf,
+    bygfoot_show_progress(bygfoot, bygfoot_get_progress_bar_fraction(bygfoot), buf,
                       PIC_TYPE_LOAD);
 
     if(debug > 80)
@@ -108,7 +108,7 @@ xml_load_league(const gchar *dirname, const gchar *basename)
 }
 
 void
-xml_load_cup(Cup *cup, const gchar *dirname, const gchar *basename)
+xml_load_cup(Bygfoot *bygfoot, Cup *cup, const gchar *dirname, const gchar *basename)
 {
 #ifdef DEBUG
     printf("xml_load_cup\n");
@@ -122,7 +122,7 @@ xml_load_cup(Cup *cup, const gchar *dirname, const gchar *basename)
 
     sprintf(buf, _("Loading cup: %s"),
 	    cup->name);
-    gui_show_progress(gui_get_progress_bar_fraction(), buf,
+    bygfoot_show_progress(bygfoot, bygfoot_get_progress_bar_fraction(bygfoot), buf,
                       PIC_TYPE_LOAD);
 
     if(debug > 80)

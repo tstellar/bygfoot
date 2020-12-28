@@ -155,13 +155,14 @@ on_live_window_delete_event            (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_live_window_delete_event\n");
 #endif
 
     if(GTK_WIDGET_IS_SENSITIVE(lookup_widget(widget, "button_live_close")))
     {
-	on_button_live_close_clicked(NULL, NULL);
+	on_button_live_close_clicked(NULL, bygfoot);
 	return FALSE;
     }
 
@@ -173,6 +174,7 @@ G_MODULE_EXPORT void
 on_button_live_close_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_button_live_close_clicked\n");
 #endif
@@ -181,7 +183,7 @@ on_button_live_close_clicked           (GtkButton       *button,
        stat4 != STATUS_SHOW_LAST_MATCH_PAUSE)
 	stat4 = STATUS_SHOW_LAST_MATCH_ABORT;
     else if(stat1 != STATUS_SHOW_LAST_MATCH)
-	callback_show_next_live_game();
+	callback_show_next_live_game(bygfoot);
     else
     {
 	window_destroy(&window.live);
@@ -206,6 +208,7 @@ G_MODULE_EXPORT void
 on_button_resume_clicked               (GtkButton       *button,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_button_resume_clicked\n");
 #endif
@@ -215,7 +218,7 @@ on_button_resume_clicked               (GtkButton       *button,
 
     if(stat1 == STATUS_SHOW_LAST_MATCH)
     {
-	callback_show_last_match(FALSE, &current_user.live_game);
+	callback_show_last_match(FALSE, &current_user.live_game, bygfoot);
 	return;
     }
     else if(game_check_live_game_resume_state())
@@ -229,7 +232,7 @@ on_button_resume_clicked               (GtkButton       *button,
 	    gtk_widget_grab_focus(button_pause);
 	}
 	game_gui_set_main_window_sensitivity(FALSE);
-	live_game_resume();
+	live_game_resume(bygfoot);
     }
     else
 	game_gui_show_warning(_("There were too many substitutions. Only 3 per game are allowed. Player list reset."));
@@ -580,11 +583,12 @@ G_MODULE_EXPORT void
 on_button_team_selection_back_clicked  (GtkButton       *button,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_button_team_selection_back_clicked\n");
 #endif
 
     window_destroy(&window.startup);
     stat0 = STATUS_SPLASH;
-    window_show_splash();
+    window_show_splash(bygfoot);
 }

@@ -222,12 +222,13 @@ G_MODULE_EXPORT void
 on_button_splash_load_game_clicked     (GtkButton       *button,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_button_splash_load_game_clicked\n");
 #endif
 
     stat5 = STATUS_LOAD_GAME_SPLASH;
-    window_show_file_sel();
+    window_show_file_sel(bygfoot);
 }
 
 
@@ -235,11 +236,12 @@ G_MODULE_EXPORT void
 on_button_splash_resume_game_clicked   (GtkButton       *button,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_button_splash_resume_game_clicked\n");
 #endif
 
-    misc_callback_startup_load("last_save");
+    misc_callback_startup_load(bygfoot, "last_save");
 }
 
 

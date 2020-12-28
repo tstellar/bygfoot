@@ -30,7 +30,7 @@
 #include "live_game_struct.h"
 
 void
-callback_show_next_live_game(void);
+callback_show_next_live_game(Bygfoot *bygfoot);
 
 void
 callback_player_clicked(gint idx, GdkEventButton *event);
@@ -39,7 +39,7 @@ void
 callback_player_activate(gint idx);
 
 void
-callback_show_last_match(gboolean start, LiveGame *lg);
+callback_show_last_match(gboolean start, LiveGame *lg, Bygfoot *bygfoot);
 
 void
 callback_show_fixtures(gint type);

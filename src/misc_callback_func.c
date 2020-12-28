@@ -106,7 +106,7 @@ misc_callback_start_game(Bygfoot *bygfoot)
     {
         bygfoot_start_game(bygfoot);
 
-	window_create(WINDOW_MAIN);
+	window_create_with_userdata(WINDOW_MAIN, bygfoot);
 	
 	game_gui_show_main();
 
@@ -122,7 +122,7 @@ misc_callback_start_game(Bygfoot *bygfoot)
        start_new_game();
 	free_users(TRUE);
 	debug_calibrate_betting_odds(opt_int("int_opt_calodds_skilldiffmax"),
-				     opt_int("int_opt_calodds_matches"));
+				     opt_int("int_opt_calodds_matches"), bygfoot);
 	main_exit_program(EXIT_OK, NULL);
     }
 }
@@ -325,7 +325,7 @@ misc_callback_improve_stadium(void)
 
 /** Load a savegame directly from the startup window. */
 void
-misc_callback_startup_load(const gchar *filename)
+misc_callback_startup_load(Bygfoot *bygfoot, const gchar *filename)
 {
 #ifdef DEBUG
     printf("misc_callback_startup_load\n");
@@ -333,7 +333,7 @@ misc_callback_startup_load(const gchar *filename)
 
     gtk_widget_hide(window.splash);
 
-    if(load_save_load_game(filename, TRUE))
+    if(load_save_load_game(bygfoot, filename, TRUE))
 	window_destroy(&window.splash);
     else
 	gtk_widget_show(window.splash);

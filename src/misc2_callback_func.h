@@ -44,7 +44,7 @@ void
 misc2_callback_add_user(void);
 
 void
-misc2_callback_mmatches_button_press(GtkWidget *widget, gint row_num, gint col_num);
+misc2_callback_mmatches_button_press(GtkWidget *widget, gint row_num, gint col_num, Bygfoot *bygfoot);
 
 gboolean
 misc2_callback_evaluate_job_application(Job *job, User *user);

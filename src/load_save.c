@@ -53,7 +53,7 @@
 
 /** Save the game to the specified file. */
 void
-load_save_save_game(const gchar *filename)
+load_save_save_game(Bygfoot *bygfoot, const gchar *filename)
 {
 #ifdef DEBUG
     printf("load_save_save_game\n");
@@ -77,7 +77,7 @@ load_save_save_game(const gchar *filename)
     if(debug > 60)
         g_print("load_save_save options\n");
 
-    gui_show_progress(0, _("Saving options..."),
+    bygfoot_show_progress(bygfoot, 0, _("Saving options..."),
                       PIC_TYPE_SAVE);
 
     sprintf(buf, "%s___options", prefix);
@@ -88,8 +88,8 @@ load_save_save_game(const gchar *filename)
     if(debug > 60)
         g_print("load_save_save leagues/cups \n");
 
-    gui_show_progress(
-        ((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
+    bygfoot_show_progress(bygfoot,
+        ((PROGRESS_MAX * bygfoot_get_progress_bar_fraction(bygfoot)) + 1) / PROGRESS_MAX,
         _("Saving leagues and cups..."),
         PIC_TYPE_SAVE);
 
@@ -98,8 +98,8 @@ load_save_save_game(const gchar *filename)
     if(debug > 60)
         g_print("load_save_save users \n");
 
-    gui_show_progress(
-        ((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
+    bygfoot_show_progress(bygfoot,
+        ((PROGRESS_MAX * bygfoot_get_progress_bar_fraction(bygfoot)) + 1) / PROGRESS_MAX,
         _("Saving users..."),
         PIC_TYPE_SAVE);
 
@@ -108,8 +108,8 @@ load_save_save_game(const gchar *filename)
     if(debug > 60)
         g_print("load_save_save transfers \n");
 
-    gui_show_progress(
-        ((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
+    bygfoot_show_progress(bygfoot,
+        ((PROGRESS_MAX * bygfoot_get_progress_bar_fraction(bygfoot)) + 1) / PROGRESS_MAX,
         _("Saving transfer list..."),
         PIC_TYPE_SAVE);
 
@@ -118,8 +118,8 @@ load_save_save_game(const gchar *filename)
     if(debug > 60)
         g_print("load_save_save stats \n");
 
-    gui_show_progress(
-        ((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
+    bygfoot_show_progress(bygfoot,
+        ((PROGRESS_MAX * bygfoot_get_progress_bar_fraction(bygfoot)) + 1) / PROGRESS_MAX,
         _("Saving season stats..."),
         PIC_TYPE_SAVE);
 
@@ -128,8 +128,8 @@ load_save_save_game(const gchar *filename)
     if(debug > 60)
         g_print("load_save_save jobs \n");
 
-    gui_show_progress(
-        ((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
+    bygfoot_show_progress(bygfoot,
+        ((PROGRESS_MAX * bygfoot_get_progress_bar_fraction(bygfoot)) + 1) / PROGRESS_MAX,
         /* The 'job exchange' is a list of teams looking for a manager. */
         _("Saving job exchange..."),
         PIC_TYPE_SAVE);
@@ -139,8 +139,8 @@ load_save_save_game(const gchar *filename)
     if(debug > 60)
         g_print("load_save_save newspaper \n");
 
-    gui_show_progress(
-        ((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
+    bygfoot_show_progress(bygfoot,
+        ((PROGRESS_MAX * bygfoot_get_progress_bar_fraction(bygfoot)) + 1) / PROGRESS_MAX,
         _("Saving newspaper..."),
         PIC_TYPE_SAVE);
 
@@ -149,15 +149,15 @@ load_save_save_game(const gchar *filename)
     if(debug > 60)
         g_print("load_save_save misc \n");
 
-    gui_show_progress(
-        ((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
+    bygfoot_show_progress(bygfoot,
+        ((PROGRESS_MAX * bygfoot_get_progress_bar_fraction(bygfoot)) + 1) / PROGRESS_MAX,
         _("Saving miscellaneous..."),
         PIC_TYPE_SAVE);
 
     xml_loadsave_misc_write(prefix);
 
-    gui_show_progress(
-        ((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
+    bygfoot_show_progress(bygfoot,
+        ((PROGRESS_MAX * bygfoot_get_progress_bar_fraction(bygfoot)) + 1) / PROGRESS_MAX,
         _("Compressing savegame..."),
         PIC_TYPE_SAVE);
 
@@ -167,7 +167,7 @@ load_save_save_game(const gchar *filename)
     if(debug > 60)
         g_print("load_save_save done \n");
 
-    gui_show_progress(1, _("Done."),
+    bygfoot_show_progress(bygfoot, 1, _("Done."),
                       PIC_TYPE_SAVE);
 
     file_store_text_in_saves("last_save", fullname->str);
@@ -175,15 +175,17 @@ load_save_save_game(const gchar *filename)
     g_free(prefix);
     g_string_free(fullname, TRUE);
 
-    gui_show_progress(-1, "",
+    bygfoot_show_progress(bygfoot, -1, "",
                       PIC_TYPE_SAVE);
-    setsav1;
+    if (bygfoot->frontend == BYGFOOT_FRONTEND_GTK2) {
+        setsav1;
+    }
 }
 
 /** Load the game from the specified file.
     @param create_main_window Whether to create and show the main window. */
 gboolean
-load_save_load_game(const gchar* filename, gboolean create_main_window)
+load_save_load_game(Bygfoot *bygfoot, const gchar* filename, gboolean create_main_window)
 {
 #ifdef DEBUG
     printf("load_save_load_game\n");
@@ -211,7 +213,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
 
         if(basename != NULL)
         {
-            load_save_load_game(basename, create_main_window);
+            load_save_load_game(bygfoot, basename, create_main_window);
             g_free(basename);
             return TRUE;
         }
@@ -225,7 +227,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     if(window.main != NULL)
         gtk_widget_hide(window.main);
 
-    gui_show_progress(0, _("Uncompressing savegame..."),
+    bygfoot_show_progress(bygfoot, 0, _("Uncompressing savegame..."),
                       PIC_TYPE_LOAD);
 
     file_decompress(fullname);
@@ -233,8 +235,8 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     if(debug > 60)
         g_print("load_save_load options\n");
 
-    gui_show_progress(
-        ((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
+    bygfoot_show_progress(bygfoot,
+        ((PROGRESS_MAX * bygfoot_get_progress_bar_fraction(bygfoot)) + 1) / PROGRESS_MAX,
         _("Loading options..."),
         PIC_TYPE_LOAD);
 
@@ -247,18 +249,18 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     if(debug > 60)
         g_print("load_save_load leagues \n");
 
-    gui_show_progress(
-        ((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
+    bygfoot_show_progress(bygfoot,
+        ((PROGRESS_MAX * bygfoot_get_progress_bar_fraction(bygfoot)) + 1) / PROGRESS_MAX,
         _("Loading leagues and cups..."),
         PIC_TYPE_LOAD);
 
-    xml_loadsave_leagues_cups_read(dirname, prefix);
+    xml_loadsave_leagues_cups_read(bygfoot, dirname, prefix);
 
     if(debug > 60)
         g_print("load_save_load users \n");
 
-    gui_show_progress(
-        ((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
+    bygfoot_show_progress(bygfoot,
+        ((PROGRESS_MAX * bygfoot_get_progress_bar_fraction(bygfoot)) + 1) / PROGRESS_MAX,
         _("Loading users..."),
         PIC_TYPE_LOAD);
 
@@ -267,8 +269,8 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     if(debug > 60)
         g_print("load_save_load transfers \n");
 
-    gui_show_progress(
-        ((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
+    bygfoot_show_progress(bygfoot,
+        ((PROGRESS_MAX * bygfoot_get_progress_bar_fraction(bygfoot)) + 1) / PROGRESS_MAX,
         _("Loading transfer list..."),
         PIC_TYPE_LOAD);
 
@@ -277,8 +279,8 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     if(debug > 60)
         g_print("load_save_load stats \n");
 
-    gui_show_progress(
-        ((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
+    bygfoot_show_progress(bygfoot,
+        ((PROGRESS_MAX * bygfoot_get_progress_bar_fraction(bygfoot)) + 1) / PROGRESS_MAX,
         _("Loading season stats..."),
         PIC_TYPE_LOAD);
 
@@ -287,8 +289,8 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     if(debug > 60)
         g_print("load_save_load jobs \n");
 
-    gui_show_progress(
-        ((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
+    bygfoot_show_progress(bygfoot,
+        ((PROGRESS_MAX * bygfoot_get_progress_bar_fraction(bygfoot)) + 1) / PROGRESS_MAX,
         /* The 'job exchange' is a list of teams looking for a manager. */
         _("Loading job exchange..."),
         PIC_TYPE_LOAD);
@@ -298,8 +300,8 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     if(debug > 60)
         g_print("load_save_load newspaper \n");
 
-    gui_show_progress(
-        ((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
+    bygfoot_show_progress(bygfoot,
+        ((PROGRESS_MAX * bygfoot_get_progress_bar_fraction(bygfoot)) + 1) / PROGRESS_MAX,
         _("Loading newspaper..."),
         PIC_TYPE_LOAD);
 
@@ -308,8 +310,8 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     if(debug > 60)
         g_print("load_save_load misc \n");
 
-    gui_show_progress(
-        ((PROGRESS_MAX * gui_get_progress_bar_fraction()) + 1) / PROGRESS_MAX,
+    bygfoot_show_progress(bygfoot,
+        ((PROGRESS_MAX * bygfoot_get_progress_bar_fraction(bygfoot)) + 1) / PROGRESS_MAX,
         _("Loading miscellaneous..."),
         PIC_TYPE_LOAD);
 
@@ -318,7 +320,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
     if(debug > 60)
         g_print("load_save_load done \n");
 
-    gui_show_progress(1, _("Done."),
+    bygfoot_show_progress(bygfoot, 1, _("Done."),
                       PIC_TYPE_LOAD);
 
     chdir(dirname);
@@ -342,7 +344,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
 
     file_store_text_in_saves("last_save", fullname);
 
-    gui_show_progress(-1, "",
+    bygfoot_show_progress(bygfoot, -1, "",
                       PIC_TYPE_LOAD);
 
     if(create_main_window)
@@ -369,7 +371,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
 
 /** Write an autosave. */
 void
-load_save_autosave(void)
+load_save_autosave(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("load_save_autosave\n");
@@ -405,7 +407,7 @@ load_save_autosave(void)
 
     fclose(fil);
     sprintf(prefix, "autosave_%02d_", counters[COUNT_AUTOSAVE_FILE]);
-    load_save_save_game(buf);
+    load_save_save_game(bygfoot, buf);
     chdir(directory);
     GPtrArray *files = file_dir_get_contents(directory, prefix, ".zip");
     // Remove the zipfile from the list
@@ -449,7 +451,7 @@ load_save_write_autosave_name(gchar *filename)
 
 /** Try to load a savegame given on the command line. */
 gboolean
-load_game_from_command_line(const gchar *filename)
+load_game_from_command_line(Bygfoot *bygfoot, const gchar *filename)
 {
 #ifdef DEBUG
     printf("load_game_from_command_line\n");
@@ -459,7 +461,7 @@ load_game_from_command_line(const gchar *filename)
                       *support_file_name = NULL;
 
     if(strcmp(filename, "last_save") == 0)
-        return load_save_load_game(filename, TRUE);
+        return load_save_load_game(bygfoot, filename, TRUE);
 
     fullname = (g_str_has_suffix(filename, const_str("string_fs_save_suffix"))) ?
                g_strdup(filename) :
@@ -467,7 +469,7 @@ load_game_from_command_line(const gchar *filename)
 
     if(g_file_test(fullname, G_FILE_TEST_EXISTS))
     {
-        if(load_save_load_game(fullname, TRUE))
+        if(load_save_load_game(bygfoot, fullname, TRUE))
         {
             g_free(fullname);
             return TRUE;
@@ -480,7 +482,7 @@ load_game_from_command_line(const gchar *filename)
 
     if(g_file_test(support_file_name, G_FILE_TEST_EXISTS))
     {
-        if(load_save_load_game(support_file_name, TRUE))
+        if(load_save_load_game(bygfoot, support_file_name, TRUE))
         {
             g_free(fullname);
             g_free(support_file_name);
