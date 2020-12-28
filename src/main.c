@@ -134,7 +134,7 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
 
     context = g_option_context_new(_("- a simple and addictive GTK2 football manager"));
     g_option_context_add_main_entries(context, entries, GETTEXT_PACKAGE);
-    g_option_context_add_group(context, gtk_get_option_group (TRUE));
+    g_option_context_add_group(context, gtk_get_option_group (FALSE));
     g_option_context_parse(context, argc, argv, &error);
     g_option_context_free(context);
 
@@ -213,7 +213,7 @@ main_parse_debug_cl_arguments(gint *argc, gchar ***argv)
     context = g_option_context_new(_("- a simple and addictive GTK2 football manager"));
     g_option_context_set_ignore_unknown_options(context, TRUE);
     g_option_context_add_main_entries(context, entries, GETTEXT_PACKAGE);
-    g_option_context_add_group(context, gtk_get_option_group (TRUE));
+    g_option_context_add_group(context, gtk_get_option_group (FALSE));
     g_option_context_parse(context, argc, argv, &error);
     g_option_context_free(context);
 
