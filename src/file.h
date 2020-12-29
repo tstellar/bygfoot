@@ -39,7 +39,7 @@
 #endif
 
 void
-file_add_support_directory_recursive                   (const gchar     *directory);
+file_add_support_directory_recursive                   (const gchar     *directory, gboolean add_pixmap_dir);
 
 gchar*
 file_find_support_file                       (const gchar     *filename, gboolean warning);

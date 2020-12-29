@@ -105,7 +105,7 @@ main_parse_frontend_backend_cl_arguments(gint *argc, gchar ***argv, CommandLineA
 
 /** Parse the command line arguments given by the user. */
     void
-main_parse_cl_arguments(gint *argc, gchar ***argv)
+main_parse_cl_arguments(gint *argc, gchar ***argv, Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("main_parse_cl_arguments\n");
@@ -196,7 +196,7 @@ main_parse_cl_arguments(gint *argc, gchar ***argv)
         gchar *fullpath = (support_dir[strlen(support_dir)] == G_DIR_SEPARATOR) ?
             g_path_get_dirname(support_dir) :
             g_strdup_printf("%s%s", support_dir, G_DIR_SEPARATOR_S);
-        file_add_support_directory_recursive(fullpath);
+        file_add_support_directory_recursive(fullpath, bygfoot->frontend == BYGFOOT_FRONTEND_GTK2);
         g_free(fullpath);
         g_free(support_dir);
     }
@@ -389,7 +389,7 @@ static void validate_country_files(const Bygfoot *bygfoot)
   @param argv Command line arguments array.
  */
     void
-main_init(gint *argc, gchar ***argv)
+main_init(gint *argc, gchar ***argv, Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("main_init\n");
@@ -398,6 +398,7 @@ main_init(gint *argc, gchar ***argv)
     gchar buf[SMALL];
     gchar *dir;
     GPtrArray *country_files = NULL;
+    gboolean add_pixmap_dir = bygfoot ? bygfoot->frontend == BYGFOOT_FRONTEND_GTK2 : TRUE;
 
     support_directories = NULL;
     rand_generator = g_rand_new();
@@ -410,28 +411,28 @@ main_init(gint *argc, gchar ***argv)
 #endif
 
 #if defined(G_OS_UNIX) && !defined(MAC_BUILD)
-    file_add_support_directory_recursive(PACKAGE_DATA_DIR "/" PACKAGE "/support_files");
+    file_add_support_directory_recursive(PACKAGE_DATA_DIR "/" PACKAGE "/support_files", add_pixmap_dir);
     sprintf(buf, "%s%s%s", g_get_home_dir(), G_DIR_SEPARATOR_S, HOMEDIRNAME);
-    file_add_support_directory_recursive(buf);
+    file_add_support_directory_recursive(buf, add_pixmap_dir);
 #endif
 
 #ifndef MAC_BUILD
     dir = g_get_current_dir();
     sprintf(buf, "%s%ssupport_files", dir, G_DIR_SEPARATOR_S);
-    file_add_support_directory_recursive(buf);
+    file_add_support_directory_recursive(buf, add_pixmap_dir);
 
     sprintf(buf, "%s%ssaves", dir, G_DIR_SEPARATOR_S);
-    file_add_support_directory_recursive(buf);
+    file_add_support_directory_recursive(buf, add_pixmap_dir);
     g_free(dir);
 #else
     dir = file_get_mac_resource_path("support_files");
-    file_add_support_directory_recursive(dir);
+    file_add_support_directory_recursive(dir, add_pixmap_dir);
 #endif
 
     main_init_variables();
 
     load_last_save = FALSE;
-    main_parse_cl_arguments(argc, argv);
+    main_parse_cl_arguments(argc, argv, bygfoot);
 }
 
 /**
@@ -462,14 +463,15 @@ main (gint argc, gchar *argv[])
 #endif
     memset(&cl_args, 0, sizeof(cl_args));
     main_parse_frontend_backend_cl_arguments(&argc, &argv, &cl_args);
-    main_init(&argc, &argv);
 
     if (cl_args.json_filename) {
         bygfoot_init(&bygfoot, BYGFOOT_FRONTEND_CONSOLE, BYGFOOT_BACKEND_FILESYSTEM);
+        main_init(&argc, &argv, &bygfoot);
         validate_country_files(&bygfoot);
         return bygfoot_json_main(&bygfoot, &cl_args);
     }
     bygfoot_init(&bygfoot, BYGFOOT_FRONTEND_GTK2, BYGFOOT_BACKEND_FILESYSTEM);
+    main_init(&argc, &argv, &bygfoot);
     validate_country_files(&bygfoot);
 
     gtk_init (&argc, &argv);

@@ -15,6 +15,9 @@ bygfoot_init(Bygfoot *bygfoot, enum BygfootFrontend frontend,
                                enum BygfootBackend backend)
 {
     memset(bygfoot, 0, sizeof(*bygfoot));
+
+    bygfoot->frontend = frontend;
+
     switch(frontend) {
     case BYGFOOT_FRONTEND_GTK2:
         bygfoot->show_progress = gui_show_progress;

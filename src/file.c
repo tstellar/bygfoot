@@ -72,11 +72,12 @@ void add_definitions_directory(const gchar *directory)
   searches for support files.
   Any subdirectories are added recursively.
   @param directory The full path of the directory to be added.
+  @param add_pixmap_dir GTK2 frontend needs this to be TRUE.
   @see file_find_support_file()
   @see #support_directories  
  */
   void
-file_add_support_directory_recursive                   (const gchar     *directory)
+file_add_support_directory_recursive                   (const gchar     *directory, gboolean add_pixmap_dir)
 {
 #ifdef DEBUG
   printf("file_add_support_directory_recursive\n");
@@ -98,7 +99,8 @@ file_add_support_directory_recursive                   (const gchar     *directo
   }
 
   add_definitions_directory(directory);
-  add_pixmap_directory(directory);
+  if (add_pixmap_dir)
+    add_pixmap_directory(directory);
   support_directories = g_list_prepend (support_directories,
       g_strdup (directory));
   while(TRUE)
@@ -112,7 +114,7 @@ file_add_support_directory_recursive                   (const gchar     *directo
         G_DIR_SEPARATOR_S, file);
 
     if(g_file_test(fullpath, G_FILE_TEST_IS_DIR))
-      file_add_support_directory_recursive(fullpath);            
+      file_add_support_directory_recursive(fullpath, add_pixmap_dir);            
 
     g_free(fullpath);
   }
