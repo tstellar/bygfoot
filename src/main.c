@@ -338,6 +338,16 @@ static void validate_country_file(gpointer country_file, gpointer user_data)
     xml_country_read(country_file, &country);
 }
 
+static void validate_country_files()
+{
+    GPtrArray *country_files = file_get_country_files();
+
+    if(country_files->len == 0)
+	main_exit_program(EXIT_NO_COUNTRY_FILES,
+			  "Didn't find any country definition files in the support directories.");
+    g_ptr_array_foreach(country_files, validate_country_file, NULL);
+}
+
 /**
   Process the command line arguments and do some things
   that have to be done at the beginning (like initializing the
@@ -389,14 +399,6 @@ main_init(gint *argc, gchar ***argv)
 
     load_last_save = FALSE;
     main_parse_cl_arguments(argc, argv);
-
-    /* Validate XML */
-    country_files = file_get_country_files();
-
-    if(country_files->len == 0)
-	main_exit_program(EXIT_NO_COUNTRY_FILES,
-			  "Didn't find any country definition files in the support directories.");
-    g_ptr_array_foreach(country_files, validate_country_file, NULL);
 }
 
 /**
@@ -426,6 +428,8 @@ main (gint argc, gchar *argv[])
 #endif
     bygfoot_init(&bygfoot, BYGFOOT_FRONTEND_GTK2);
     main_init(&argc, &argv);
+
+    validate_country_files();
 
     gtk_init (&argc, &argv);
 
