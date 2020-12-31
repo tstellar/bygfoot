@@ -207,6 +207,7 @@ typedef struct
 
 typedef struct {
     gchar *json_filename;
+    gboolean is_cgi;
 } CommandLineArgs;
 
 

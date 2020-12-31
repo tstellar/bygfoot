@@ -87,7 +87,7 @@ add_executable(bygfoot src/bet.c src/bet.h src/finance.h src/fixture.h
 	src/xml_lg_commentary.c src/xml_mmatches.c src/xml_name.c
 	src/xml_news.c src/xml_strategy.c src/xml_team.c src/youth_academy.c
 	src/zip/zip.c src/zip/zip.h src/zip/unzip.c src/zip/unzip.h
-	src/bygfoot.c src/backend_filesystem.c src/json_serialize.c ${JSON_FILES})
+	src/bygfoot.c src/backend_filesystem.c src/json_serialize.c src/cgi.c ${JSON_FILES})
 
 # Some gtk headers use deprecated glib features, so disable this warning
 # since we can't do anything about it.

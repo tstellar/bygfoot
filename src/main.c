@@ -34,6 +34,7 @@
 
 #include "bet_struct.h"
 #include "bygfoot_struct.h"
+#include "cgi.h"
 #include "debug.h"
 #include "file.h"
 #include "free.h"
@@ -83,6 +84,8 @@ main_parse_frontend_backend_cl_arguments(gint *argc, gchar ***argv, CommandLineA
 	    { "json", 0, 0, G_OPTION_ARG_FILENAME, &args->json_filename,
 	    "JSON file containing commands to run.  bygfoot will run the "
 	    "commands in this file and then exit", "FILE"},
+	    { "cgi", 0, 0, G_OPTION_ARG_NONE, &args->is_cgi,
+	    "Start bygfoot in cgi mode", NULL },
         {NULL}
     };
 
@@ -463,6 +466,13 @@ main (gint argc, gchar *argv[])
 #endif
     memset(&cl_args, 0, sizeof(cl_args));
     main_parse_frontend_backend_cl_arguments(&argc, &argv, &cl_args);
+
+    if (cl_args.is_cgi) {
+        bygfoot_init(&bygfoot, BYGFOOT_FRONTEND_CONSOLE, BYGFOOT_BACKEND_FILESYSTEM);
+        main_init(&argc, &argv, &bygfoot);
+        validate_country_files(&bygfoot);
+        return bygfoot_cgi_main(&bygfoot);
+    }
 
     if (cl_args.json_filename) {
         bygfoot_init(&bygfoot, BYGFOOT_FRONTEND_CONSOLE, BYGFOOT_BACKEND_FILESYSTEM);
