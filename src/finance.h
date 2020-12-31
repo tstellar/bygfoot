@@ -57,7 +57,7 @@ void
 finance_assign_game_money(const Fixture *fix);
 
 void
-finance_update_current_interest(void);
+finance_update_current_interest(Bygfoot *bygfoot);
 
 gint
 finance_calculate_alr_weekly_installment(gint start_week);

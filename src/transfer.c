@@ -42,7 +42,7 @@
 
 /** Weekly update of the transfer list. */
 void
-transfer_update(void)
+transfer_update(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("transfer_update\n");

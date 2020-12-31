@@ -419,7 +419,7 @@ finance_assign_game_money(const Fixture *fix)
 
 /** Change the current interest on the market (random walk with three possibilities). */
 void
-finance_update_current_interest(void)
+finance_update_current_interest(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("finance_update_current_interest\n");

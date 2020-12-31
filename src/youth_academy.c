@@ -177,7 +177,7 @@ youth_academy_add_new_player(YouthAcademy *youth_academy)
 
 /** Update the users' youth academies. */
 void
-youth_academy_update_weekly(void)
+youth_academy_update_weekly(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("youth_academy_update_weekly\n");
