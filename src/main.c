@@ -338,6 +338,16 @@ static void validate_country_file(gpointer country_file, gpointer user_data)
     xml_country_read(country_file, &country);
 }
 
+static void validate_country_files()
+{
+    GPtrArray *country_files = file_get_country_files();
+
+    if(country_files->len == 0)
+	main_exit_program(EXIT_NO_COUNTRY_FILES,
+			  "Didn't find any country definition files in the support directories.");
+    g_ptr_array_foreach(country_files, validate_country_file, NULL);
+}
+
 /**
   Process the command line arguments and do some things
   that have to be done at the beginning (like initializing the
@@ -389,14 +399,6 @@ main_init(gint *argc, gchar ***argv, Bygfoot *bygfoot)
 
     load_last_save = FALSE;
     main_parse_cl_arguments(argc, argv, bygfoot);
-
-    /* Validate XML */
-    country_files = file_get_country_files();
-
-    if(country_files->len == 0)
-	main_exit_program(EXIT_NO_COUNTRY_FILES,
-			  "Didn't find any country definition files in the support directories.");
-    g_ptr_array_foreach(country_files, validate_country_file, NULL);
 }
 
 /**
@@ -428,6 +430,8 @@ main (gint argc, gchar *argv[])
     gtk_init (&argc, &argv);
 
     main_init(&argc, &argv, &bygfoot);
+
+    validate_country_files();
 
     if((load_last_save && !load_game_from_command_line(&bygfoot, "last_save")) ||
             (!load_last_save && (argc == 1 ||
