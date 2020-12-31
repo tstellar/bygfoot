@@ -60,7 +60,7 @@ gboolean
 file_my_fopen(const gchar *filename, gchar *bits, FILE **fil, gboolean abort_program);
 
 GPtrArray*
-file_get_country_files(void);
+file_get_country_files(const Bygfoot *bygfoot);
 
 void
 file_load_conf_files(void);

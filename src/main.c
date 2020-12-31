@@ -338,9 +338,9 @@ static void validate_country_file(gpointer country_file, gpointer user_data)
     xml_country_read(country_file, &country);
 }
 
-static void validate_country_files()
+static void validate_country_files(const Bygfoot *bygfoot)
 {
-    GPtrArray *country_files = file_get_country_files();
+    GPtrArray *country_files = file_get_country_files(bygfoot);
 
     if(country_files->len == 0)
 	main_exit_program(EXIT_NO_COUNTRY_FILES,
@@ -426,10 +426,10 @@ main (gint argc, gchar *argv[])
     int fd2 = open ("stderr.log", O_CREAT|O_WRONLY|O_TRUNC, 0666);
     dup2 (fd2, 2);
 #endif
-    bygfoot_init(&bygfoot, BYGFOOT_FRONTEND_GTK2);
+    bygfoot_init(&bygfoot, BYGFOOT_FRONTEND_GTK2, BYGFOOT_BACKEND_FILESYSTEM);
     main_init(&argc, &argv);
 
-    validate_country_files();
+    validate_country_files(&bygfoot);
 
     gtk_init (&argc, &argv);
 

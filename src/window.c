@@ -304,7 +304,7 @@ window_show_startup(Bygfoot *bygfoot)
     GtkCellRenderer *renderer = NULL;
     gchar *last_country = file_load_text_from_saves("last_country");
     
-    country_files = file_get_country_files();
+    country_files = bygfoot_get_country_list(bygfoot);
 
     if(country_files->len == 0)
 	main_exit_program(EXIT_NO_COUNTRY_FILES, 

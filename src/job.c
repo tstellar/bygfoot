@@ -71,19 +71,19 @@ job_update(Bygfoot *bygfoot)
     for(i=0;i<new_offers - int_offers;i++)
 	job_add_new_national();
 
-    job_add_new_international(int_offers);
+    job_add_new_international(bygfoot, int_offers);
 }
 
 /** Add some new international job offers to the job exchange. */
 void
-job_add_new_international(gint num_of_new)
+job_add_new_international(const Bygfoot *bygfoot, gint num_of_new)
 {
 #ifdef DEBUG
     printf("job_add_new_international\n");
 #endif
 
     gint i, k, rndom, idx;
-    GPtrArray *country_files = file_get_country_files();
+    GPtrArray *country_files = bygfoot_get_country_list(bygfoot);
     Country countries[num_of_new];
     Team *tm = NULL;
     League *league = NULL;

@@ -1,5 +1,6 @@
 
 #include "bygfoot.h"
+#include "file.h"
 #include "gui.h"
 #include "misc.h"
 #include "start_end.h"
@@ -7,12 +8,18 @@
 #include "xml_country.h"
 
 void
-bygfoot_init(Bygfoot *bygfoot, enum BygfootFrontend frontend)
+bygfoot_init(Bygfoot *bygfoot, enum BygfootFrontend frontend,
+                               enum BygfootBackend backend)
 {
     memset(bygfoot, 0, sizeof(*bygfoot));
     switch(frontend) {
     case BYGFOOT_FRONTEND_GTK2:
         bygfoot->show_progress = gui_show_progress;
+        break;
+    }
+    switch (backend) {
+    case BYGFOOT_BACKEND_FILESYSTEM:
+        bygfoot->get_country_list = file_get_country_files;
         break;
     }
 }
@@ -50,4 +57,9 @@ void bygfoot_show_progress(const Bygfoot *bygfoot, gfloat value, const gchar *te
 {
     if (bygfoot->show_progress)
         bygfoot->show_progress(value, text, pictype);
+}
+
+GPtrArray *bygfoot_get_country_list(const Bygfoot *bygfoot)
+{
+    return bygfoot->get_country_list(bygfoot);
 }

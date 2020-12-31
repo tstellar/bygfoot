@@ -484,7 +484,7 @@ file_dir_get_contents(const gchar *dir_name, const gchar *prefix, const gchar *s
 /** Return the country definition files found in the support dirs.
  *  The files are appended with the directories*/
   GPtrArray*
-file_get_country_files(void)
+file_get_country_files(const Bygfoot *bygfoot)
 {
 #ifdef DEBUG
   printf("file_get_country_files\n");
