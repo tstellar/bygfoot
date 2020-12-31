@@ -3,6 +3,7 @@
 #include <json-c/json_tokener.h>
 #include <json-c/json_object.h>
 #include "json_interface.h"
+#include "json_serialize.h"
 #include "user.h"
 #include "league_struct.h"
 #include "misc.h"
@@ -79,7 +80,8 @@ static int bygfoot_json_do_commands(Bygfoot *bygfoot, const json_object *command
         json_object* (*func)(Bygfoot *, const json_object *);
     } json_funcs[] = {
     	{ "new_bygfoot", bygfoot_json_call_new_bygfoot },
-	{ "load_bygfoot", bygfoot_json_call_load_bygfoot },
+        { "load_bygfoot", bygfoot_json_call_load_bygfoot },
+        { "get_countries", bygfoot_json_call_get_countries },
         { "add_country", bygfoot_json_call_add_country },
         { "add_user", bygfoot_json_call_add_user },
         { "start_bygfoot", bygfoot_json_call_start_bygfoot },
@@ -181,6 +183,16 @@ bygfoot_json_call_new_bygfoot(Bygfoot *bygfoot, const json_object *args)
                            json_object_new_string(bygfoot->id));
     json_object_object_add(data, "bygfoot", bygfoot_obj);
     json_object_object_add(response, "success", data);
+    return response;
+}
+
+struct json_object *
+bygfoot_json_call_get_countries(Bygfoot *bygfoot, const json_object *args)
+{
+    struct json_object *response = json_object_new_object();
+    GPtrArray *country_list = bygfoot_get_country_list(bygfoot);
+    json_object_object_add(response, "success",
+                           bygfoot_json_serialize_country_list(country_list));
     return response;
 }
 

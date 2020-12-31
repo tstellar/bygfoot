@@ -1,6 +1,8 @@
 #ifndef BYGFOOT_STRUCT_H
 #define BYGFOOT_STRUCT_H
 
+#include <glib.h>
+
 enum BygfootFrontend {
 
     BYGFOOT_FRONTEND_GTK2,
