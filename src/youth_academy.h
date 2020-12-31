@@ -36,7 +36,7 @@ void
 youth_academy_add_new_player(YouthAcademy *youth_academy);
 
 void
-youth_academy_update_weekly(void);
+youth_academy_update_weekly(Bygfoot *bygfoot);
 
 #endif
 

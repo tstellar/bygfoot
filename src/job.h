@@ -33,7 +33,7 @@
 #include "user_struct.h"
 
 void
-job_update(void);
+job_update(Bygfoot *bygfoot);
 
 void
 job_add_new_international(gint num_of_new);
