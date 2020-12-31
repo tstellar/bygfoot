@@ -37,7 +37,7 @@
 #define transoff(i, j) g_array_index(g_array_index(transfer_list, Transfer, i).offers, TransferOffer, j)
 
 void
-transfer_update(void);
+transfer_update(Bygfoot *bygfoot);
 
 void
 transfer_add_cpu_offers(void);

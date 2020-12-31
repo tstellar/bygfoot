@@ -42,7 +42,7 @@
 
 /** Update the job exchange: remove expired offers and add new ones. */
 void
-job_update(void)
+job_update(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("job_update\n");

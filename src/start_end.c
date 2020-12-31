@@ -70,7 +70,7 @@ WeekFunc start_week_round_funcs[] =
 
 /** Array of functions called when a week
     is started. */
-WeekFunc start_week_funcs[] = 
+WeekFuncBygfoot start_week_funcs[] =
 {start_week_update_leagues, start_week_add_cups, start_week_update_users,
  start_week_update_teams, start_week_update_user_finances,
  youth_academy_update_weekly, transfer_update, job_update,
@@ -337,7 +337,7 @@ end_week_round(Bygfoot *bygfoot)
 	    week++;
 
 	week_round = 1;
-	start_week();
+	start_week(bygfoot);
     }
 
     start_week_round(bygfoot);
@@ -586,17 +586,17 @@ start_week_round(Bygfoot *bygfoot)
 
 /** Start a new week. */
 void
-start_week(void)
+start_week(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("start_week\n");
 #endif
 
-    WeekFunc *start_func = start_week_funcs;
+    WeekFuncBygfoot *start_func = start_week_funcs;
 
     while(*start_func != NULL)
     {
-	(*start_func)();
+	(*start_func)(bygfoot);
 	start_func++;
     }
 }
@@ -640,7 +640,7 @@ end_week_hide_cups(void)
 
 /** Add the cups that begin later in the season to the acps array. */
 void
-start_week_add_cups(void)
+start_week_add_cups(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("start_week_add_cups\n");
@@ -660,7 +660,7 @@ start_week_add_cups(void)
     CPU teams get updated at the end of their matches
     (to avoid cup teams getting updated too often). */
 void
-start_week_update_teams(void)
+start_week_update_teams(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("start_week_update_teams\n");
@@ -699,7 +699,7 @@ start_week_round_update_teams(void)
 
 /** Deduce wages etc. */
 void
-start_week_update_user_finances(void)
+start_week_update_user_finances(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("start_week_update_user_finances\n");
@@ -716,7 +716,7 @@ start_week_update_user_finances(void)
 
 /** Some general user update. */
 void
-start_week_update_users(void)
+start_week_update_users(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("start_week_update_users\n");
@@ -741,7 +741,7 @@ start_week_update_users(void)
 
 /** Create new tables if necessary etc. */
 void
-start_week_update_leagues(void)
+start_week_update_leagues(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("start_week_update_leagues\n");

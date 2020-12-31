@@ -56,19 +56,19 @@ void
 start_week_round(Bygfoot *bygfoot);
 
 void
-start_week(void);
+start_week(Bygfoot *bygfoot);
 
 void
-start_week_update_teams(void);
+start_week_update_teams(Bygfoot *bygfoot);
 
 void
 start_week_round_update_teams(void);
 
 void
-start_week_update_user_finances(void);
+start_week_update_user_finances(Bygfoot *bygfoot);
 
 void
-start_week_update_users(void);
+start_week_update_users(Bygfoot *bygfoot);
 
 gboolean
 query_start_end_season_end(void);
@@ -83,7 +83,7 @@ void
 end_season(void);
 
 void
-start_week_add_cups(void);
+start_week_add_cups(Bygfoot *bygfoot);
 
 void
 end_week_hide_cups(void);
@@ -92,7 +92,7 @@ void
 start_new_season_reset_ids(void);
 
 void
-start_week_update_leagues(void);
+start_week_update_leagues(Bygfoot *bygfoot);
 
 void
 end_week_round_generate_news(Bygfoot *bygfoot);
