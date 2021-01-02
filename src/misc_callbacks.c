@@ -575,7 +575,7 @@ on_eventbox_lg_boost_button_press_event (GtkWidget       *widget,
 
 G_MODULE_EXPORT void
 on_button_team_selection_back_clicked  (GtkButton       *button,
-                                        gpointer         user_data)
+                                        Bygfoot         *bygfoot)
 {
 #ifdef DEBUG
     printf("on_button_team_selection_back_clicked\n");
@@ -583,5 +583,5 @@ on_button_team_selection_back_clicked  (GtkButton       *button,
 
     window_destroy(&window.startup);
     stat0 = STATUS_SPLASH;
-    window_show_splash();
+    window_show_splash(bygfoot);
 }

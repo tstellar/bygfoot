@@ -58,13 +58,13 @@
 
 /** Show the splash screen window. */
 void
-window_show_splash(void)
+window_show_splash(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("window_show_splash\n");
 #endif
 
-    window_create(WINDOW_SPLASH);
+    window_create_with_userdata(WINDOW_SPLASH, bygfoot);
 
     treeview_show_contributors(
 	GTK_TREE_VIEW(lookup_widget(window.splash, "treeview_splash_contributors")));
@@ -985,7 +985,7 @@ window_create_with_userdata(gint window_type, Bygfoot *bygfoot)
 	    if(window.splash != NULL)
 		debug_print_message("window_create: called on already existing window\n");
 	    else
-		window.splash = create_window_splash();
+		window.splash = create_window_splash(bygfoot);
 	    wind = window.splash;
 	    break;
     case WINDOW_TRAINING_CAMP:

@@ -175,5 +175,5 @@ on_eventbox_lg_boost_button_press_event
 
 void
 on_button_team_selection_back_clicked  (GtkButton       *button,
-                                        gpointer         user_data);
+                                        Bygfoot         *bygfoot);
 #endif

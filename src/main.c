@@ -493,7 +493,7 @@ main (gint argc, gchar *argv[])
         if(country.sid == NULL)
         {
             stat0 = STATUS_SPLASH;
-            window_show_splash();
+            window_show_splash(&bygfoot);
 
             if(os_is_unix)
                 file_check_home_dir();

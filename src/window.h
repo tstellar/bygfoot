@@ -120,7 +120,7 @@ void
 window_show_progress(gint pictype);
 
 void
-window_show_splash(void);
+window_show_splash(Bygfoot *bygfoot);
 
 void
 window_load_hint_number(void);

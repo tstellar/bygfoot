@@ -38,11 +38,11 @@ create_window_bets (void)
 }
 
 GtkWidget*
-create_window_splash (void)
+create_window_splash (Bygfoot *bygfoot)
 {
   GtkWidget *window_splash;
   GtkBuilder *builder;
-  builder = load_ui(file_find_support_file("bygfoot_misc3.glade", TRUE));
+  builder = load_ui_with_userdata(file_find_support_file("bygfoot_misc3.glade", TRUE), bygfoot);
   window_splash = GTK_WIDGET (gtk_builder_get_object (builder, "window_splash"));
   gtk_widget_show (window_splash);
 
