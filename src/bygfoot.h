@@ -199,6 +199,7 @@ typedef struct
 	*splash,
 	*training_camp,
 	*news,
+  *network_select,
         *alr;
     
     /** The position of the horizontal divider is stored here. */
@@ -207,12 +208,16 @@ typedef struct
 
 typedef struct {
     gchar *json_filename;
+    gchar *server_name;
+    gint server_port;
     gboolean is_cgi;
 } CommandLineArgs;
 
 
 void bygfoot_init(Bygfoot *bygfoot, enum BygfootFrontend frontend,
                                     enum BygfootBackend backend);
+gboolean
+bygfoot_init_server_backend(Bygfoot *bygfoot, char *server, int port);
 void bygfoot_load_bygfoot(Bygfoot *bygfoot, const gchar *id);
 Country *bygfoot_load_country(Bygfoot *bygfoot, const gchar *country_name);
 User *bygfoot_add_user(Bygfoot *bygfoot, const gchar *username, Team *tm);

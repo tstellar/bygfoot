@@ -35,6 +35,14 @@ if (JSON-C_FOUND)
     link_directories (${JSON-C_LIBRARY_DIRS})
 endif()
 
+pkg_check_modules(LIBSOUP libsoup-2.4)
+
+if (LIBSOUP_FOUND)
+    include_directories (${LIBSOUP_INCLUDE_DIRS})
+    link_directories (${LIBSOUP_LIBRARY_DIRS})
+endif()
+
+
 add_executable(bygfoot src/bet.c src/bet.h src/finance.h src/fixture.h
 	src/game_gui.h src/league.h src/main.h src/maths.h src/misc.h
 	src/option.h src/player.h src/support.h src/treeview2.h src/user.h
@@ -87,14 +95,16 @@ add_executable(bygfoot src/bet.c src/bet.h src/finance.h src/fixture.h
 	src/xml_lg_commentary.c src/xml_mmatches.c src/xml_name.c
 	src/xml_news.c src/xml_strategy.c src/xml_team.c src/youth_academy.c
 	src/zip/zip.c src/zip/zip.h src/zip/unzip.c src/zip/unzip.h
-	src/bygfoot.c src/backend_filesystem.c src/json_serialize.c src/cgi.c ${JSON_FILES})
+	src/bygfoot.c src/backend_filesystem.c src/json_serialize.c src/cgi.c
+    src/json_deserialize.c
+    src/backend_server.c ${JSON_FILES})
 
 # Some gtk headers use deprecated glib features, so disable this warning
 # since we can't do anything about it.
 target_compile_options(bygfoot PRIVATE -Wno-deprecated-declarations)
  # Link the target to the GTK+ libraries
  target_link_libraries (bygfoot ${GTK2_LIBRARIES} ${GLIB_LIBRARIES} m
-	 ${ZLIB_LIBRARIES} json-c::json-c)
+         ${ZLIB_LIBRARIES} json-c::json-c ${LIBSOUP_LIBRARIES})
 
 install(TARGETS bygfoot)
 

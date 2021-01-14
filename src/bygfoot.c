@@ -2,6 +2,7 @@
 #include "bygfoot.h"
 #include "file.h"
 #include "backend_filesystem.h"
+#include "backend_server.h"
 #include "load_save.h"
 #include "gui.h"
 #include "misc.h"
@@ -29,6 +30,15 @@ bygfoot_init(Bygfoot *bygfoot, enum BygfootFrontend frontend,
         bygfoot->load_bygfoot = bygfoot_filesystem_load_bygfoot;
         break;
     }
+}
+
+gboolean
+bygfoot_init_server_backend(Bygfoot *bygfoot, char *server, int port)
+{
+    bygfoot->backend_server = server;
+    bygfoot->backend_port = port;
+    bygfoot->get_country_list = bygfoot_server_get_country_list;
+    return TRUE;
 }
 
 #if 0

@@ -5,12 +5,15 @@
 
 enum BygfootFrontend {
 
+    BYGFOOT_FRONTEND_NONE,
     BYGFOOT_FRONTEND_GTK2,
     BYGFOOT_FRONTEND_CONSOLE,
 };
 
 enum BygfootBackend {
-    BYGFOOT_BACKEND_FILESYSTEM
+    BYGFOOT_BACKEND_NONE,
+    BYGFOOT_BACKEND_FILESYSTEM,
+    BYGFOOT_BACKEND_SERVER
 };
 
 /** This struct holds all of the global state for a bygfoot game.  The goal
@@ -20,6 +23,9 @@ typedef struct bygfoot
 {
     gchar *id;
     gchar *save_dir;
+
+    gchar *backend_server;
+    gint   backend_port;
 
     enum BygfootFrontend frontend;
 

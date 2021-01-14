@@ -86,6 +86,9 @@ main_parse_frontend_backend_cl_arguments(gint *argc, gchar ***argv, CommandLineA
 	    "commands in this file and then exit", "FILE"},
 	    { "cgi", 0, 0, G_OPTION_ARG_NONE, &args->is_cgi,
 	    "Start bygfoot in cgi mode", NULL },
+	    { "server-name", 0, 0, G_OPTION_ARG_STRING, &args->server_name,
+	    "Name of bygfoot server to connect to", "uri"},
+	    { "server-port", 0, 0, G_OPTION_ARG_INT, &args->server_port},
         {NULL}
     };
 
@@ -467,6 +470,11 @@ main (gint argc, gchar *argv[])
     memset(&cl_args, 0, sizeof(cl_args));
     main_parse_frontend_backend_cl_arguments(&argc, &argv, &cl_args);
 
+    if (cl_args.server_name) {
+        bygfoot_init(&bygfoot, BYGFOOT_FRONTEND_CONSOLE, BYGFOOT_BACKEND_NONE);
+        bygfoot_init_server_backend(&bygfoot, cl_args.server_name, cl_args.server_port);
+    }
+
     if (cl_args.is_cgi) {
         bygfoot_init(&bygfoot, BYGFOOT_FRONTEND_CONSOLE, BYGFOOT_BACKEND_FILESYSTEM);
         main_init(&argc, &argv, &bygfoot);
@@ -480,7 +488,7 @@ main (gint argc, gchar *argv[])
         validate_country_files(&bygfoot);
         return bygfoot_json_main(&bygfoot, &cl_args);
     }
-    bygfoot_init(&bygfoot, BYGFOOT_FRONTEND_GTK2, BYGFOOT_BACKEND_FILESYSTEM);
+    //bygfoot_init(&bygfoot, BYGFOOT_FRONTEND_GTK2, BYGFOOT_BACKEND_FILESYSTEM);
     main_init(&argc, &argv, &bygfoot);
     validate_country_files(&bygfoot);
 
