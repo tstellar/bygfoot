@@ -189,11 +189,11 @@ bygfoot_json_call_new_bygfoot(Bygfoot *bygfoot, const json_object *args)
 struct json_object *
 bygfoot_json_call_get_countries(Bygfoot *bygfoot, const json_object *args)
 {
-    struct json_object *response = json_object_new_object();
     GPtrArray *country_list = bygfoot_get_country_list(bygfoot);
-    json_object_object_add(response, "success",
-                           bygfoot_json_serialize_country_list(country_list));
-    return response;
+    if (!country_list) {
+        return bygfoot_json_response_error(NULL, "No countries available");
+    }
+    return bygfoot_json_serialize_country_list(country_list);
 }
 
 static json_object *
@@ -590,7 +590,7 @@ static struct json_object *bygfoot_json_response_error(const char *command,
                                                        const char *error)
 {
     struct json_object *json = json_object_new_object();
-    json_object_object_add(json, "error", json_object_new_string(error));
+    json_object_object_add(json, "message", json_object_new_string(error));
     return json;
 }
 
