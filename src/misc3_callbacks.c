@@ -217,6 +217,12 @@ on_button_splash_new_game_clicked      (GtkButton       *button,
     stat0 = STATUS_TEAM_SELECTION;
 }
 
+G_MODULE_EXPORT void
+on_button_splash_new_network_game_clicked      (GtkButton       *button,
+                                                gpointer         user_data)
+{
+  window_show_network_select(user_data);
+}
 
 G_MODULE_EXPORT void
 on_button_splash_load_game_clicked     (GtkButton       *button,
@@ -396,4 +402,24 @@ on_button_news_close_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
     window_destroy(&window.news);
+}
+
+G_MODULE_EXPORT void
+on_button_network_select_ok_clicked(GtkButton       *button,
+                                    Bygfoot         *bygfoot)
+{
+    GtkEntry *entry_server = GTK_ENTRY(lookup_widget(window.network_select, "server_name"));
+    const gchar *server = gtk_entry_get_text(entry_server);
+    GtkEntry *entry_port = GTK_ENTRY(lookup_widget(window.network_select, "server_port"));
+    const gchar *port = gtk_entry_get_text(entry_port);
+    window_destroy(&window.network_select);
+    window_show_startup(bygfoot);
+    stat0 = STATUS_TEAM_SELECTION;
+}
+
+G_MODULE_EXPORT void
+on_button_network_select_cancel_clicked(GtkButton       *button,
+                                        Bygfoot         *bygfoot)
+{
+    window_destroy(&window.network_select);
 }

@@ -55,6 +55,7 @@ create_window_splash (Bygfoot *bygfoot)
   GTK_HOOKUP_OBJECT (window_splash, builder, "button_splash_hint_back");
   GTK_HOOKUP_OBJECT (window_splash, builder, "button_splash_hint_next");
   GTK_HOOKUP_OBJECT (window_splash, builder, "hbox3");
+  GTK_HOOKUP_OBJECT (window_splash, builder, "button_splash_new_network_game");
 
   /* free memory used by GtkBuilder object */
   g_object_unref (G_OBJECT (builder));
@@ -102,3 +103,21 @@ create_window_news (void)
   return window_news;
 }
 
+GtkWidget*
+create_window_network_select (Bygfoot *bygfoot)
+{
+  GtkWidget *window_network_select;
+  GtkBuilder *builder;
+  builder = load_ui_with_userdata(file_find_support_file("bygfoot_misc3.glade", TRUE),
+                                  bygfoot);
+  window_network_select = GTK_WIDGET (gtk_builder_get_object (builder, "window_network_select"));
+  gtk_widget_show (window_network_select);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GTK_HOOKUP_OBJECT (window_network_select, builder, "button_network_select_ok");
+
+  /* free memory used by GtkBuilder object */
+  g_object_unref (G_OBJECT (builder));
+
+  return window_network_select;
+}

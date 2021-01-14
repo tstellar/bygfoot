@@ -58,7 +58,8 @@ enum Windows
     WINDOW_END,
     WINDOW_TRAINING_CAMP,
     WINDOW_NEWS,
-    WINDOW_ALR
+    WINDOW_ALR,
+    WINDOW_NETWORK_SELECT
 };
 
 void
@@ -139,5 +140,8 @@ window_show_alr(void);
 
 void
 window_show_constants(void);
+
+void
+window_show_network_select(Bygfoot *bygfoot);
 
 #endif

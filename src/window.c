@@ -73,6 +73,12 @@ window_show_splash(Bygfoot *bygfoot)
     window_splash_show_hint();
 }
 
+void
+window_show_network_select(Bygfoot *bygfoot)
+{
+    window_create_with_userdata(WINDOW_NETWORK_SELECT, bygfoot);
+}
+
 /** Show the hint determined by the hint counter in the splash window. */
 void
 window_splash_show_hint(void)
@@ -988,6 +994,13 @@ window_create_with_userdata(gint window_type, Bygfoot *bygfoot)
 		window.splash = create_window_splash(bygfoot);
 	    wind = window.splash;
 	    break;
+    case WINDOW_NETWORK_SELECT:
+        if(window.network_select != NULL)
+            debug_print_message("window_create: called on already existing window\n");
+        else
+            window.network_select = create_window_network_select(bygfoot);
+	wind = window.network_select;
+        break;
     case WINDOW_TRAINING_CAMP:
         if(window.training_camp != NULL)
             debug_print_message("window_create: called on already existing window\n");

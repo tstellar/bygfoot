@@ -311,7 +311,7 @@ main_init_variables(void)
         window.file_chooser = window.contract =
         window.menu_player = window.user_management =
         window.mmatches = window.bets = window.splash =
-        window.training_camp = NULL;
+        window.network_select = window.training_camp = NULL;
 
     users = g_array_new(FALSE, FALSE, sizeof(User));
     transfer_list = g_array_new(FALSE, FALSE, sizeof(Transfer));
