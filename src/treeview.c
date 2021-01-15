@@ -55,7 +55,9 @@
    @return The model containing the team names.
 */
 GtkTreeModel*
-treeview_create_team_selection_list(gboolean show_cup_teams, gboolean show_user_teams)
+treeview_create_team_selection_list(const Country *country,
+                                    gboolean show_cup_teams,
+                                    gboolean show_user_teams)
 {
 #ifdef DEBUG
     printf("treeview_create_team_selection_list\n");
@@ -72,19 +74,21 @@ treeview_create_team_selection_list(gboolean show_cup_teams, gboolean show_user_
 			    G_TYPE_STRING,
 			    G_TYPE_POINTER);
 
-    for(i=0;i<ligs->len;i++)
+    for(i=0;i<country->leagues->len;i++)
     {
-        for(j=0;j<lig(i).teams->len;j++)
+        const League *league = &g_array_index(country->leagues, League, i);
+        for(j=0;j<league->teams->len;j++)
         {
-            if(team_is_user(&g_array_index(lig(i).teams, Team, j)) == -1)
+            const Team *team = &g_array_index(league->teams, Team, j);
+            if(team_is_user(team) == -1)
             {
                 gtk_list_store_append(ls, &iter);
-                treeview_helper_insert_icon((GtkTreeModel*)ls, &iter, 1, g_array_index(lig(i).teams, Team, j).symbol);
+                treeview_helper_insert_icon((GtkTreeModel*)ls, &iter, 1, team->symbol);
                 gtk_list_store_set(ls, &iter,
                                    0, cnt++,
-                                   2, (gpointer)&g_array_index(lig(i).teams, Team, j),
-                                   3, lig(i).name,
-                                   4, (gpointer)&g_array_index(lig(i).teams, Team, j),
+                                   2, (gpointer)team,
+                                   3, league->name,
+                                   4, (gpointer)team,
                                    -1);
             }
         }	
@@ -93,20 +97,22 @@ treeview_create_team_selection_list(gboolean show_cup_teams, gboolean show_user_
     if(!show_cup_teams)    
 	return GTK_TREE_MODEL(ls);
 
-    for(i=0;i<cps->len;i++)
-	if(cp(i).teams->len > 0)
-	    for(j=0;j<cp(i).teams->len;j++)
-	    {
-		gtk_list_store_append(ls, &iter);
-		treeview_helper_insert_icon((GtkTreeModel*)ls, &iter, 1, 
-					    ((Team*)g_ptr_array_index(cp(i).teams, j))->symbol);
-		gtk_list_store_set(ls, &iter,
-				   0, cnt++,
-				   2, g_ptr_array_index(cp(i).teams, j),
-				   3, cp(i).name,
-				   4, g_ptr_array_index(cp(i).teams, j),
-				   -1);
-	    }
+    for(i=0;i<country->cups->len;i++)
+    {
+    	const Cup *cup = &g_array_index(country->cups, Cup, i);
+	for(j=0;j<cup->teams->len;j++)
+	{
+	    const Team *team = g_ptr_array_index(cup->teams, j);
+	    gtk_list_store_append(ls, &iter);
+	    treeview_helper_insert_icon((GtkTreeModel*)ls, &iter, 1, team->symbol); 
+	    gtk_list_store_set(ls, &iter,
+	   		       0, cnt++,
+			       2, team,
+			       3, cup->name,
+			       4, team,
+			       -1);
+	}
+    }
 
     gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(ls), 4,
 				    treeview_helper_team_compare, GINT_TO_POINTER(TEAM_COMPARE_AV_SKILL), NULL);
@@ -204,7 +210,7 @@ treeview_show_team_list(GtkTreeView *treeview, gboolean show_cup_teams,
 #endif
 
     GtkTreeModel *team_list = 
-	treeview_create_team_selection_list(show_cup_teams, show_user_teams);
+	treeview_create_team_selection_list(&country, show_cup_teams, show_user_teams);
     GtkTreeSelection *selection;
     GtkTreePath *path = gtk_tree_path_new_from_string("0");
      
