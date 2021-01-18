@@ -337,11 +337,11 @@ window_show_startup(Bygfoot *bygfoot)
     g_object_unref(model);
 
     if(country.sid != NULL)
-        misc_callback_show_team_list(combo_country, country.sid);        
+        misc_callback_show_team_list(combo_country, bygfoot, country.sid);        
     else if(last_country != NULL)
-        misc_callback_show_team_list(combo_country, last_country);        
+        misc_callback_show_team_list(combo_country, bygfoot, last_country);        
     else
-        misc_callback_show_team_list(combo_country, (const gchar*)g_ptr_array_index(country_files, country_files->len - 1));
+        misc_callback_show_team_list(combo_country, bygfoot, (const gchar*)g_ptr_array_index(country_files, country_files->len - 1));
 
     if(last_country != NULL)
         g_free(last_country);

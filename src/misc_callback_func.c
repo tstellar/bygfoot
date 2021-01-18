@@ -50,7 +50,7 @@
 /* show the teams from the leagues in the country in
    the startup window */
 void
-misc_callback_show_team_list(GtkWidget *widget, const gchar *country_file)
+misc_callback_show_team_list(GtkWidget *widget, Bygfoot *bygfoot, const gchar *country_file)
 {
 #ifdef DEBUG
     printf("misc_callback_show_team_list\n");

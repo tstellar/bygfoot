@@ -32,7 +32,7 @@ void
 misc_callback_start_game(Bygfoot *bygfoot);
 
 void
-misc_callback_show_team_list(GtkWidget *widget, const gchar *country_file);
+misc_callback_show_team_list(GtkWidget *widget, Bygfoot *bygfoot, const gchar *country_file);
 
 void
 misc_callback_add_player(Bygfoot *bygfoot);

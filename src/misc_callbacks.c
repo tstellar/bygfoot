@@ -357,7 +357,7 @@ on_window_stadium_delete_event         (GtkWidget       *widget,
 
 G_MODULE_EXPORT void
 on_combo_country_changed               (GtkComboBox     *combobox,
-                                        gpointer         user_data)
+                                        Bygfoot         *bygfoot)
 {
 #ifdef DEBUG
     printf("on_combo_country_changed\n");
@@ -371,7 +371,7 @@ on_combo_country_changed               (GtkComboBox     *combobox,
         &iter))
     {
         gtk_tree_model_get(gtk_combo_box_get_model(combobox), &iter, 1, &buf, -1);
-        misc_callback_show_team_list(GTK_WIDGET(combobox), buf);
+        misc_callback_show_team_list(GTK_WIDGET(combobox), bygfoot, buf);
     } else {
 	gtk_widget_set_sensitive(lookup_widget(window.startup, "button_add_player"), FALSE);
     }
