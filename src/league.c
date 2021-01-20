@@ -1665,3 +1665,24 @@ league_allows_multiple_reserve_teams(const League *league)
 {
     return lig(ligs->len - 1).layer == league->layer;
 }
+
+/**
+ * This is a helper function to return a GPtrArray* of teams in the league.
+ * This is the recommended way to get the list of teams in the league, and
+ * should be stable across possible internal changes like creating a unique
+ * pointer for each team or implmenting alternative backends.
+ *
+ * @returns A GPtrArray* containing Team* for each team in the league.  The
+ *          caller should call g_ptr_array_unref() when done using the pointer.
+ */
+GPtrArray*
+league_get_teams(const League *league)
+{
+    GPtrArray *teams;
+    int i;
+    for (i = 0; i < league->teams->len; i++)
+    {
+        g_ptr_array_add(teams, &g_array_index(league->teams, Team, i));
+    }
+    return teams;
+}

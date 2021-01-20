@@ -194,4 +194,7 @@ league_allows_reserve_teams(const League *league);
 gboolean
 league_allows_multiple_reserve_teams(const League *league);
 
+GPtrArray*
+league_get_teams(const League *league);
+
 #endif
