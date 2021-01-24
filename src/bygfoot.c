@@ -28,6 +28,7 @@ bygfoot_init(Bygfoot *bygfoot, enum BygfootFrontend frontend,
     case BYGFOOT_BACKEND_FILESYSTEM:
         bygfoot->get_country_list = file_get_country_files;
         bygfoot->load_bygfoot = bygfoot_filesystem_load_bygfoot;
+        bygfoot->load_country = bygfoot_filesystem_load_country;
         break;
     }
 }
@@ -90,8 +91,7 @@ bygfoot_set_id(Bygfoot *bygfoot, const gchar *id)
 
 Country *bygfoot_load_country(Bygfoot *bygfoot, const gchar *country_name)
 {
-    xml_country_read(country_name, NULL);
-    return &country;
+    return bygfoot->load_country(bygfoot, country_name);
 }
 
 User *bygfoot_add_user(Bygfoot *bygfoot, const gchar *username, Team *tm)

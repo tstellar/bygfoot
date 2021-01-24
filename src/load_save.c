@@ -183,7 +183,8 @@ load_save_save_game(const gchar *filename)
 /** Load the game from the specified file.
     @param create_main_window Whether to create and show the main window. */
 gboolean
-load_save_load_game(const gchar* filename, gboolean create_main_window)
+load_save_load_game(const gchar* filename, gboolean create_main_window,
+                    Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("load_save_load_game\n");
@@ -211,7 +212,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
 
         if(basename != NULL)
         {
-            load_save_load_game(basename, create_main_window);
+            load_save_load_game(basename, create_main_window, bygfoot);
             g_free(basename);
             return TRUE;
         }
@@ -252,7 +253,7 @@ load_save_load_game(const gchar* filename, gboolean create_main_window)
         _("Loading leagues and cups..."),
         PIC_TYPE_LOAD);
 
-    xml_loadsave_leagues_cups_read(dirname, prefix);
+    xml_loadsave_leagues_cups_read(dirname, prefix, bygfoot);
 
     if(debug > 60)
         g_print("load_save_load users \n");
@@ -449,7 +450,7 @@ load_save_write_autosave_name(gchar *filename)
 
 /** Try to load a savegame given on the command line. */
 gboolean
-load_game_from_command_line(const gchar *filename)
+load_game_from_command_line(const gchar *filename, Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("load_game_from_command_line\n");
@@ -459,7 +460,7 @@ load_game_from_command_line(const gchar *filename)
                       *support_file_name = NULL;
 
     if(strcmp(filename, "last_save") == 0)
-        return load_save_load_game(filename, TRUE);
+        return load_save_load_game(filename, TRUE, bygfoot);
 
     fullname = (g_str_has_suffix(filename, const_str("string_fs_save_suffix"))) ?
                g_strdup(filename) :
@@ -467,7 +468,7 @@ load_game_from_command_line(const gchar *filename)
 
     if(g_file_test(fullname, G_FILE_TEST_EXISTS))
     {
-        if(load_save_load_game(fullname, TRUE))
+        if(load_save_load_game(fullname, TRUE, bygfoot))
         {
             g_free(fullname);
             return TRUE;
@@ -480,7 +481,7 @@ load_game_from_command_line(const gchar *filename)
 
     if(g_file_test(support_file_name, G_FILE_TEST_EXISTS))
     {
-        if(load_save_load_game(support_file_name, TRUE))
+        if(load_save_load_game(support_file_name, TRUE, bygfoot))
         {
             g_free(fullname);
             g_free(support_file_name);

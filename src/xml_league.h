@@ -50,6 +50,6 @@ xml_league_read_text         (GMarkupParseContext *context,
 			      GError             **error);
 
 void
-xml_league_read(const gchar *league_name, GArray *leagues);
+xml_league_read(const gchar *league_name, GArray *leagues, Bygfoot *bygfoot);
 
 #endif

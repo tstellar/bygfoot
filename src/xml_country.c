@@ -169,6 +169,8 @@ xml_country_read_text         (GMarkupParseContext *context,
 			       gpointer             user_data,
 			       GError             **error)
 {
+
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("xml_country_read_text\n");
 #endif
@@ -200,9 +202,9 @@ xml_country_read_text         (GMarkupParseContext *context,
 	sett_set_int("int_opt_disable_training_camp", 1);//***ML***
     }
     else if(state == STATE_LEAGUE)
-	xml_league_read(buf, cntry->leagues);
+	xml_league_read(buf, cntry->leagues, bygfoot);
     else if(state == STATE_CUP)
-	xml_cup_read(buf, cntry->cups);
+	xml_cup_read(buf, cntry->cups, bygfoot);
     else if(state == STATE_RESERVE_PROMOTION_RULES) {
 	if (!strcmp(buf, "none"))
 	    cntry->reserve_promotion_rules = RESERVE_PROM_RULES_NONE;
@@ -225,7 +227,7 @@ xml_country_read_text         (GMarkupParseContext *context,
   @param cntry The country variable to write.
  */
 void
-xml_country_read(const gchar *country_name, Country *cntry_arg)
+xml_country_read(const gchar *country_name, Country *cntry_arg, Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("xml_country_read\n");
@@ -243,7 +245,7 @@ xml_country_read(const gchar *country_name, Country *cntry_arg)
     gint i;
 
     context = 
-	g_markup_parse_context_new(&parser, 0, NULL, NULL);
+	g_markup_parse_context_new(&parser, 0, bygfoot, NULL);
 
     if(file_name == NULL)
     {

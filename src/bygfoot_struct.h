@@ -3,6 +3,8 @@
 
 #include <glib.h>
 
+struct country;
+
 enum BygfootFrontend {
 
     BYGFOOT_FRONTEND_NONE,
@@ -41,8 +43,9 @@ typedef struct bygfoot
      * <Continent>/<...>/<country>
      */
     GPtrArray *(*get_country_list)(const struct bygfoot *);
-    void (*load_bygfoot)(const struct bygfoot *, const gchar *); 
+    void (*load_bygfoot)(struct bygfoot *, const gchar *); 
     gboolean (*is_bygfoot_id_unique)(struct bygfoot *, const gchar *);
+    struct country *(*load_country)(struct bygfoot *, const gchar *);
     /* @} */
 } Bygfoot;
 

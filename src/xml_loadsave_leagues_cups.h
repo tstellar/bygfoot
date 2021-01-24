@@ -54,7 +54,8 @@ xml_loadsave_leagues_cups_text         (GMarkupParseContext *context,
 					GError             **error);
 
 void
-xml_loadsave_leagues_cups_read(const gchar *dirname, const gchar *prefix);
+xml_loadsave_leagues_cups_read(const gchar *dirname, const gchar *prefix,
+                               Bygfoot *bygfoot);
 
 
 void

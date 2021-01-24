@@ -353,7 +353,7 @@ window_show_startup(Bygfoot *bygfoot)
 
 /** Show the file selection window. */
 void
-window_show_file_sel(void)
+window_show_file_sel(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("window_show_file_sel\n");
@@ -426,9 +426,9 @@ window_show_file_sel(void)
 	filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(window.file_chooser));
 
 	if(stat5 == STATUS_LOAD_GAME)
-	    load_save_load_game(filename, FALSE);
+	    load_save_load_game(filename, FALSE, bygfoot);
 	else if(stat5 == STATUS_LOAD_GAME_SPLASH)
-	    misc_callback_startup_load(filename);
+	    misc_callback_startup_load(filename, bygfoot);
 	else if(stat5 == STATUS_SAVE_GAME)
 	    load_save_save_game(filename);
 	else if(stat5 == STATUS_SELECT_MM_FILE_LOAD)
@@ -441,7 +441,7 @@ window_show_file_sel(void)
 		    user_mm_load_file(filename, NULL);
 		else
 		    user_mm_set_filename(filename, NULL);
-		window_show_mmatches();
+		window_show_mmatches(bygfoot);
 	    }
 	    else
 		game_gui_show_warning(_("Not a valid Bygfoot Memorable Matches filename."));
@@ -456,7 +456,7 @@ window_show_file_sel(void)
 	else if(stat5 == STATUS_SELECT_MM_FILE_IMPORT)
 	{
 	    user_mm_import_file(filename);
-	    window_show_mmatches();
+	    window_show_mmatches(bygfoot);
 	}
 	else if(stat5 == STATUS_SELECT_MM_FILE_EXPORT)
 	    user_mm_export_file(filename);
@@ -477,14 +477,14 @@ window_show_file_sel(void)
 
 /** Show window with memorable matches list. */
 void
-window_show_mmatches(void)
+window_show_mmatches(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("window_show_mmatches\n");
 #endif
 
     if(window.mmatches == NULL)
-	window_create(WINDOW_MMATCHES);
+	window_create_with_userdata(WINDOW_MMATCHES, bygfoot);
     treeview2_show_mmatches();
 
     gtk_entry_set_text(GTK_ENTRY(lookup_widget(window.mmatches, "entry_mm_file")),
@@ -975,7 +975,7 @@ window_create_with_userdata(gint window_type, Bygfoot *bygfoot)
 	    if(window.mmatches != NULL)
 		debug_print_message("window_create: called on already existing window\n");
 	    else
-		window.mmatches = create_window_mmatches();
+		window.mmatches = create_window_mmatches(bygfoot);
 	    wind = window.mmatches;
 	    strcpy(buf, _("Memorable matches"));
 	    break;

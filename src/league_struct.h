@@ -193,6 +193,8 @@ typedef struct
         the fixtures of which should be avoided when scheduling
         the league fixtures. */
     GPtrArray *skip_weeks_with;
+
+    Bygfoot *bygfoot;
 } League;
 
 #endif

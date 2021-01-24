@@ -203,6 +203,8 @@ typedef struct
         the fixtures of which should be avoided when scheduling
         the cup fixtures. */
     GPtrArray *skip_weeks_with;
+
+    Bygfoot *bygfoot;
 } Cup;
 
 #endif

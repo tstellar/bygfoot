@@ -160,10 +160,11 @@ xml_league_read_start_element (GMarkupParseContext *context,
     JoinedLeague new_joined_league;
     NewTable new_table;
     WeekBreak new_week_break;
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 
     if(strcmp(element_name, TAG_LEAGUE) == 0)
     {
-	new_league = league_new(TRUE);
+	new_league = league_new(TRUE, bygfoot);
 	state = STATE_LEAGUE;
     }
     else if(strcmp(element_name, TAG_DEF_NAME) == 0)
@@ -522,7 +523,7 @@ xml_league_read_text         (GMarkupParseContext *context,
  * @param leagues The array we write the league into.
  */
 void
-xml_league_read(const gchar *league_name, GArray *leagues)
+xml_league_read(const gchar *league_name, GArray *leagues, Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("xml_league_read\n");
@@ -539,7 +540,7 @@ xml_league_read(const gchar *league_name, GArray *leagues)
     gchar buf[SMALL];
 
     context = 
-	g_markup_parse_context_new(&parser, 0, NULL, NULL);
+	g_markup_parse_context_new(&parser, 0, bygfoot, NULL);
 
     if(file_name == NULL)
     {

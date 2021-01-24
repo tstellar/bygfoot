@@ -50,7 +50,7 @@ void
 misc_callback_update_stadium_window(gboolean capacity);
 
 void
-misc_callback_startup_load(const gchar *filename);
+misc_callback_startup_load(const gchar *filename, Bygfoot *bygfoot);
 
 void
 misc_callback_new_sponsor(void);

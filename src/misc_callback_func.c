@@ -59,7 +59,7 @@ misc_callback_show_team_list(GtkWidget *widget, Bygfoot *bygfoot, const gchar *c
     GtkWidget *treeview_startup =
 	lookup_widget(widget, "treeview_startup");
 
-    xml_country_read(country_file, NULL);
+    bygfoot_load_country(bygfoot, country_file);
 
     treeview_show_team_list(GTK_TREE_VIEW(treeview_startup), FALSE, FALSE);
 
@@ -325,7 +325,7 @@ misc_callback_improve_stadium(void)
 
 /** Load a savegame directly from the startup window. */
 void
-misc_callback_startup_load(const gchar *filename)
+misc_callback_startup_load(const gchar *filename, Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("misc_callback_startup_load\n");
@@ -333,7 +333,7 @@ misc_callback_startup_load(const gchar *filename)
 
     gtk_widget_hide(window.splash);
 
-    if(load_save_load_game(filename, TRUE))
+    if(load_save_load_game(filename, TRUE, bygfoot))
 	window_destroy(&window.splash);
     else
 	gtk_widget_show(window.splash);

@@ -36,14 +36,14 @@ void
 job_update(Bygfoot *bygfoot);
 
 void
-job_add_new_international(const Bygfoot *bygfoot, gint num_of_new);
+job_add_new_international(Bygfoot *bygfoot, gint num_of_new);
 
 gint
 job_country_is_in_list(const gchar *country_file, 
 		       const Country *countries, gint len);
 
 void
-job_add_new_national(void);
+job_add_new_national(Bygfoot *bygfoot);
 
 gint
 job_team_is_on_list(gint team_id);

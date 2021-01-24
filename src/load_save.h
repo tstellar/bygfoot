@@ -32,13 +32,14 @@ void
 load_save_save_game(const gchar* filename);
 
 gboolean
-load_save_load_game(const gchar* filename, gboolean create_main_window);
+load_save_load_game(const gchar* filename, gboolean create_main_window,
+                    Bygfoot *bygfoot);
 
 void
 load_save_autosave(void);
 
 gboolean
-load_game_from_command_line(const gchar *filename);
+load_game_from_command_line(const gchar *filename, Bygfoot *bygfoot);
 
 void
 load_save_write_autosave_name(gchar *filename);

@@ -73,14 +73,14 @@ xml_load_users(const gchar *dirname, const gchar *basename)
 }
 
 void
-xml_load_league(const gchar *dirname, const gchar *basename)
+xml_load_league(const gchar *dirname, const gchar *basename, Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("xml_load_league\n");
 #endif
 
     gchar buf[SMALL], team_file[SMALL];
-    League new = league_new(FALSE);
+    League new = league_new(FALSE, bygfoot);
     gchar *prefix = g_strndup(basename, strlen(basename) - 4);
 
     g_array_append_val(ligs, new);

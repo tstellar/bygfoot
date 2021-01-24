@@ -69,14 +69,14 @@ job_update(Bygfoot *bygfoot)
 		   const_float("float_job_international_perc")) : 0;
 
     for(i=0;i<new_offers - int_offers;i++)
-	job_add_new_national();
+	job_add_new_national(bygfoot);
 
     job_add_new_international(bygfoot, int_offers);
 }
 
 /** Add some new international job offers to the job exchange. */
 void
-job_add_new_international(const Bygfoot *bygfoot, gint num_of_new)
+job_add_new_international(Bygfoot *bygfoot, gint num_of_new)
 {
 #ifdef DEBUG
     printf("job_add_new_international\n");
@@ -111,7 +111,7 @@ job_add_new_international(const Bygfoot *bygfoot, gint num_of_new)
 	{
 	    idx = k;
 	    xml_country_read((gchar*)g_ptr_array_index(country_files, rndom),
-			     &countries[k]);
+			     &countries[k], bygfoot);
 	    counters[COUNT_LEAGUE_ID] -= countries[k].leagues->len;
 	    k++;
 	}
@@ -147,6 +147,7 @@ job_add_new_international(const Bygfoot *bygfoot, gint num_of_new)
 	    (gint)rint((team_get_average_talent(tm) /
 			league->average_talent) * 100);
 
+        new_job.bygfoot = bygfoot;
 	g_array_append_val(jobs, new_job);
     }
 
@@ -179,7 +180,7 @@ job_country_is_in_list(const gchar *country_file,
 
 /** Add a new national job offer to the job exchange. */
 void
-job_add_new_national(void)
+job_add_new_national(Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("job_add_new_national\n");
@@ -204,6 +205,7 @@ job_add_new_national(void)
 	(gint)rint((team_get_average_talent(tm) /
 		    league->average_talent) * 100);
     new_job.team_id = tm->id;
+    new_job.bygfoot = bygfoot;
 
     g_array_append_val(jobs, new_job);
 }
@@ -405,7 +407,7 @@ job_change_country(Job *job)
 
     free_country(&country, TRUE);
 
-    xml_country_read(job->country_file, &country);
+    xml_country_read(job->country_file, &country, job->bygfoot);
 
     stat5 = STATUS_GENERATE_TEAMS;
     for(i=0;i<ligs->len;i++)

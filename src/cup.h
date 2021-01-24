@@ -35,7 +35,7 @@
 #define cup_get_last_tables(clid) g_array_index(cup_from_clid(clid)->rounds, CupRound, cup_has_tables(clid)).tables
 
 Cup
-cup_new(gboolean new_id);
+cup_new(gboolean new_id, Bygfoot *bygfoot);
 
 CupChooseTeam
 cup_choose_team_new(void);

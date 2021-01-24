@@ -149,11 +149,12 @@ G_MODULE_EXPORT void
 on_button_load_clicked                 (GtkButton       *button,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_button_load_clicked\n");
 #endif
 
-    on_menu_open_activate(NULL, NULL);
+    on_menu_open_activate(NULL, bygfoot);
 }
 
 
@@ -561,11 +562,12 @@ G_MODULE_EXPORT void
 on_menu_load_last_save_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_menu_load_last_save_activate\n");
 #endif
 
-    if(load_save_load_game("last_save", FALSE))
+    if(load_save_load_game("last_save", FALSE, bygfoot))
     {
 	cur_user = 0;
 	on_button_back_to_main_clicked(NULL, NULL);
@@ -595,12 +597,13 @@ G_MODULE_EXPORT void
 on_menu_open_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_menu_open_activate\n");
 #endif
 
     stat5 = STATUS_LOAD_GAME;
-    window_show_file_sel();
+    window_show_file_sel(bygfoot);
 }
 
 
@@ -624,12 +627,13 @@ G_MODULE_EXPORT void
 on_menu_save_as_activate               (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_menu_save_as_activate\n");
 #endif
 
     stat5 = STATUS_SAVE_GAME;
-    window_show_file_sel();
+    window_show_file_sel(bygfoot);
 }
 
 G_MODULE_EXPORT void
@@ -1600,6 +1604,7 @@ G_MODULE_EXPORT void
 on_mm_add_last_match_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_mm_add_last_match_activate\n");
 #endif
@@ -1613,7 +1618,7 @@ on_mm_add_last_match_activate          (GtkMenuItem     *menuitem,
     if(current_user.mmatches_file == NULL)
     {
 	stat5 = STATUS_SELECT_MM_FILE_ADD;
-	window_show_file_sel();
+	window_show_file_sel(bygfoot);
     }
     else
 	user_mm_add_last_match(FALSE, TRUE);
@@ -1624,6 +1629,7 @@ G_MODULE_EXPORT void
 on_mm_manage_matches_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_mm_manage_matches_activate\n");
 #endif
@@ -1631,10 +1637,10 @@ on_mm_manage_matches_activate          (GtkMenuItem     *menuitem,
     if(current_user.mmatches_file == NULL)
     {
 	stat5 = STATUS_SELECT_MM_FILE_LOAD;
-	window_show_file_sel();
+	window_show_file_sel(bygfoot);
     }
     else
-	window_show_mmatches();
+	window_show_mmatches(bygfoot);
 }
 
 

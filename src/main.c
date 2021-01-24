@@ -374,7 +374,7 @@ static void validate_country_file(gpointer country_file, gpointer user_data)
 {
     Country country;
     memset(&country, 0, sizeof(country));
-    xml_country_read(country_file, &country);
+    xml_country_read(country_file, &country, NULL);
 }
 
 static void validate_country_files(const Bygfoot *bygfoot)
@@ -494,9 +494,9 @@ main (gint argc, gchar *argv[])
 
     gtk_init (&argc, &argv);
 
-    if((load_last_save && !load_game_from_command_line("last_save")) ||
+    if((load_last_save && !load_game_from_command_line("last_save", &bygfoot)) ||
             (!load_last_save && (argc == 1 ||
-                         (argc > 1 && !load_game_from_command_line(argv[1])))))
+                         (argc > 1 && !load_game_from_command_line(argv[1], &bygfoot)))))
     {
         if(country.sid == NULL)
         {

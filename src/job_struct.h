@@ -59,6 +59,8 @@ typedef struct
     gint talent_percent;
     /** The id of the team the job describes. */
     gint team_id;
+
+    Bygfoot *bygfoot;
 } Job;
 
 #endif

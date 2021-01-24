@@ -149,7 +149,7 @@ enum ReservePromRules
 /**
  * A struct representing a country.
  */
-typedef struct
+typedef struct country
 {
     gchar *name, /**< Name of the country. */
 	*symbol, /**< Symbol of the country, eg a flag pixmap. */

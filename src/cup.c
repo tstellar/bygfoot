@@ -44,7 +44,7 @@
    @see #Cup
 */
 Cup
-cup_new(gboolean new_id)
+cup_new(gboolean new_id, Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("cup_new\n");
@@ -78,7 +78,8 @@ cup_new(gboolean new_id)
 
     new.next_fixture_update_week = -1;
     new.next_fixture_update_week_round = -1;
-    
+   
+    new.bygfoot = bygfoot;
     return new;
 }
 
@@ -568,7 +569,7 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
     {
 	if(!query_cup_choose_team_is_league((gchar*)g_ptr_array_index(sids, j)))
 	{
-	    xml_league_read((gchar*)g_ptr_array_index(sids, j), leagues);
+	    xml_league_read((gchar*)g_ptr_array_index(sids, j), leagues, cup->bygfoot);
 		    
 	    for(k=0; k < g_array_index(leagues, League, leagues->len - 1).teams->len; k++)
             {

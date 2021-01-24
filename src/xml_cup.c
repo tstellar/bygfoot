@@ -158,7 +158,7 @@ xml_cup_read_start_element (GMarkupParseContext *context,
 
     if(strcmp(element_name, TAG_CUP) == 0)
     {
-	new_cup = cup_new(FALSE);
+	new_cup = cup_new(FALSE, (Bygfoot*)user_data);
 	state = STATE_CUP;
     }
     else if(strcmp(element_name, TAG_DEF_NAME) == 0)
@@ -477,7 +477,7 @@ xml_cup_read_text         (GMarkupParseContext *context,
  * @param cups The array we append the new cup to.
  */
 void
-xml_cup_read(const gchar *cup_name, GArray *cups)
+xml_cup_read(const gchar *cup_name, GArray *cups, Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("xml_cup_read\n");
@@ -495,7 +495,7 @@ xml_cup_read(const gchar *cup_name, GArray *cups)
     gint i;
 
     context = 
-	g_markup_parse_context_new(&parser, 0, NULL, NULL);
+	g_markup_parse_context_new(&parser, 0, bygfoot, NULL);
 
     if(file_name == NULL)
     {

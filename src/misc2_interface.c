@@ -225,11 +225,11 @@ create_window_transfer_dialog (void)
 }
 
 GtkWidget*
-create_window_mmatches (void)
+create_window_mmatches (Bygfoot *bygfoot)
 {
   GtkWidget *window_mmatches;
   GtkBuilder *builder;
-  builder = load_ui(file_find_support_file("bygfoot_misc2.glade", TRUE));
+  builder = load_ui_with_userdata(file_find_support_file("bygfoot_misc2.glade", TRUE), bygfoot);
   window_mmatches = GTK_WIDGET (gtk_builder_get_object (builder, "window_mmatches"));
 
   /* Store pointers to all widgets, for use by lookup_widget(). */

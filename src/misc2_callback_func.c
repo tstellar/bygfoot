@@ -283,7 +283,7 @@ misc2_callback_add_user(void)
  @param row_num The row that's been clicked on.
  @param col_num The column number. */
 void
-misc2_callback_mmatches_button_press(GtkWidget *widget, gint row_num, gint col_num)
+misc2_callback_mmatches_button_press(GtkWidget *widget, gint row_num, gint col_num, Bygfoot *bygfoot)
 {
 #ifdef DEBUG
     printf("misc2_callback_mmatches_button_press\n");
@@ -316,7 +316,7 @@ misc2_callback_mmatches_button_press(GtkWidget *widget, gint row_num, gint col_n
 	{
 	    stat5 = STATUS_SELECT_MM_FILE_EXPORT;
 	    stat4 = row_num;
-	    window_show_file_sel();
+	    window_show_file_sel(bygfoot);
 	}
     }
     else if(row_num == current_user.mmatches->len && col_num == 1)
