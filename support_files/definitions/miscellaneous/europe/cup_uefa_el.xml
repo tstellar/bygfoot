@@ -1,0 +1,1285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Based on 2020-2021 UEFA Europa League qualifications and specifications -->
+
+<cup>
+	<name>UEFA Europa League</name>
+	<short_name>UEL</short_name>
+	<symbol>flag_eu.png</symbol>
+	<sid>uefa_el</sid>
+	<group>1</group>
+	<yellow_red>3</yellow_red>
+	<last_week>43</last_week>
+	<break_in length="1">2</break_in>
+	<break_in length="1">15</break_in>
+	<break_in length="2">17</break_in>
+	<break_in length="1">20</break_in>
+	<break_in length="2">22</break_in>
+	<break_in length="1">25</break_in>
+	<property>international</property>
+	<property>league_talents</property>
+	<property>highlight2</property>
+	<property>omit_from_history</property> 
+
+<!-- Add 2 to end_idx value to account for Title Holders for the Champions League and Europa League -->
+
+	<cup_rounds>
+		<cup_round>
+			<!-- Round 1 -->
+			<round_name>Preliminary Round</round_name>
+			<new_teams>16</new_teams>
+			<byes>0</byes>
+			<delay>-21</delay>
+			<choose_teams>
+
+				#UEFA Ranking 55
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>san_marino1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 55
+				<!-- 2nd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>san_marino1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 54
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>andorra1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 54
+				<!-- 2nd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>andorra1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 53
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>kosovo1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 53
+				<!-- 2nd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>kosovo1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 52
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>n_ireland1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 52
+				<!-- 2nd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>n_ireland1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 51
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>gibraltar1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 51
+				<!-- 2nd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>gibraltar1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 50
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>faroe_islands1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 50
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>faroe_islands1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 49
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>montenegro1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 48
+				<!-- 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>wales1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+
+		<cup_round>
+			<!-- Round 2 -->
+			<round_name>1st Qualifying Round</round_name>
+			<new_teams>86</new_teams>
+			<byes>0</byes>
+			<delay>-20</delay>
+			<choose_teams>
+
+				#UEFA Ranking 49
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>montenegro1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 48
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>wales1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 48
+				<!-- 2nd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>wales1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 47
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>georgia1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 47
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>georgia1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 46
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>estonia1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 46
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>estonia1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 45
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>malta1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 45
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>malta1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 44
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>armenia1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 44
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>armenia1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 43
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>luxembourg1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 43
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>luxembourg1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 42
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>latvia1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 42
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>latvia1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 41
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>lithuania1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 41
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>lithuania1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 40
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>bosnia_herzegovina1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 40
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>bosnia_herzegovina1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 39
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>iceland1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 39
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>iceland1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 38
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>finland1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 38
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>finland1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 37
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>ireland1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 37
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>ireland1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 36
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>albania1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 36
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>albania1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 35
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>moldova1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 35
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>moldova1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 34
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>n_macedonia1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 34
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>n_macedonia1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 33
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>hungary1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 33
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>hungary1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 32
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>liechtenstein1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 31
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>slovenia1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 31
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>slovenia1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 30
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>slovakia1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 30
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>slovakia1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 29
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>romania1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 29
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>romania1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 28
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>bulgaria1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 28
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>bulgaria1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 27
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>israel1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 27
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>israel1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 26
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>azerbaijan1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 26
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>azerbaijan1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 25
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>poland1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 25
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>poland1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 24
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>kazakhstan1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 23
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>norway1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 22
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>sweden1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 21
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>belarus1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 20
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>scotland1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 19
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>serbia1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 18
+				<!-- 2nd + 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>cyprus1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 17
+				<!-- 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>switzerland1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 16
+				<!-- 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>denmark1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+
+		<cup_round>
+			<!-- Round 3 -->
+			<round_name>2nd Qualifying Round - Main Path</round_name>
+			<new_teams>27</new_teams>
+			<byes>0</byes>
+			<delay>-20</delay>
+			<choose_teams>
+
+				#UEFA Ranking 24
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>kazakhstan1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 23
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>norway1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 22
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>sweden1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 21
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>belarus1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 20
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>scotland1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 19
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>serbia1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 18
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>cyprus1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 17
+				<!-- 2nd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>switzerland1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 16
+				<!-- 2nd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>denmark1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 15
+				<!-- 3rd + 4th ranked teams in league -->
+				<choose_team>
+					<choose_team_sid>croatia1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 14
+				<!-- 3rd + 4th ranked teams in league -->
+				<choose_team>
+					<choose_team_sid>greece1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 13
+				<!-- 3rd + 4th ranked teams in league -->
+				<choose_team>
+					<choose_team_sid>czech1</choose_team_sid>
+					<number_of_teams>2</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 12
+				<!-- 4th ranked team in league -->
+				<choose_team>
+					<choose_team_sid>austria1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 11
+				<!-- 4th ranked team in league -->
+				<choose_team>
+					<choose_team_sid>netherlands1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 10
+				<!-- 4th ranked team in league -->
+				<choose_team>
+					<choose_team_sid>turkey1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 9
+				<!-- 4th ranked team in league -->
+				<choose_team>
+					<choose_team_sid>ukraine1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 8
+				<!-- 4th ranked team in league -->
+				<choose_team>
+					<choose_team_sid>belgium1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 7
+				<!-- 4th ranked team in league -->
+				<choose_team>
+					<choose_team_sid>portugal1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 6
+				<!-- 5th ranked team in league -->
+				<choose_team>
+					<choose_team_sid>russia1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 5
+				<!-- 5th ranked team in league -->
+				<!-- League Cup winners for France -->
+				<choose_team>
+					<choose_team_sid>france1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 4
+				<!-- 6th ranked team in league -->
+				<choose_team>
+					<choose_team_sid>germany1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 3
+				<!-- 6th ranked team in league -->
+				<choose_team>
+					<choose_team_sid>italy1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 2
+				<!-- 6th ranked team in league -->
+				<!-- League Cup winners for England -->
+				<choose_team>
+					<choose_team_sid>england1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 1
+				<!-- 6th ranked team in league -->
+				<choose_team>
+					<choose_team_sid>spain1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+
+		<cup_round>
+			<!-- Round 4 -->
+			<round_name>3rd Qualifying Round - Main Path</round_name>
+			<new_teams>15</new_teams>
+			<byes>0</byes>
+			<delay>-20</delay>
+			<choose_teams>
+
+				<!-- Losers from Champions League second qualifying round (League Path) -->
+				<choose_team>
+					<choose_team_sid>uefa_cl_r*</choose_team_sid>
+					<skip_group_check>1</skip_group_check>
+					<preload>0</preload>
+					<number_of_teams>3</number_of_teams>
+					<start_idx>9</start_idx>
+					<end_idx>11</end_idx>
+				</choose_team>
+
+				#UEFA Ranking 17
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>switzerland1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 16
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>denmark1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 15
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>croatia1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 14
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>greece1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 13
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>czech1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 12
+				<!-- 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>austria1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 11
+				<!-- 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>netherlands1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 10
+				<!-- 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>turkey1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 9
+				<!-- 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>ukraine1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 8
+				<!-- 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>belgium1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 7
+				<!-- 3rd ranked team in league -->
+				<choose_team>
+					<choose_team_sid>portugal1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 6
+				<!-- 4th ranked team in league -->
+				<choose_team>
+					<choose_team_sid>russia1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+
+		<cup_round>
+			<!-- Round 5 -->
+			<round_name>Play-Off Round - Main Path</round_name>
+			<byes>0</byes>
+			<delay>-20</delay>
+		</cup_round>
+
+		<cup_round>
+			<!-- Round 6 -->
+			<round_name>Group Stage</round_name>
+			<number_of_groups>12</number_of_groups>
+			<number_of_advance>2</number_of_advance>
+			<new_teams>35</new_teams>
+			<byes>0</byes>
+			<delay>-18</delay>
+			<choose_teams>
+
+			<!-- Champions League - Champions Path  - 4 new teams -->
+
+				<!-- Losers from Champions League play-off round (Champions Path) -->
+				<choose_team>
+					<choose_team_sid>uefa_cl_cp*</choose_team_sid>
+					<skip_group_check>1</skip_group_check>
+					<preload>0</preload>
+					<number_of_teams>4</number_of_teams>
+					<start_idx>5</start_idx>
+					<end_idx>8</end_idx>
+				</choose_team>
+
+			<!-- Champions League - League Path - 6 new teams -->
+
+				<!-- Losers from Champions League play-off round (League Path) + Losers from Champions League third qualifying round (League Path) -->
+				<choose_team>
+					<choose_team_sid>uefa_cl_r*</choose_team_sid>
+					<skip_group_check>1</skip_group_check>
+					<preload>0</preload>
+					<number_of_teams>6</number_of_teams>
+					<start_idx>33</start_idx>
+					<end_idx>38</end_idx>
+				</choose_team>
+
+			<!-- Europa League - Champions Path  - 8 new teams -->
+
+				<!-- Winners from Europa League play-off round (Champions Path) -->
+				<choose_team>
+					<choose_team_sid>uefa_el_cp</choose_team_sid>
+					<wait_for_cup round="3">uefa_el_cp</wait_for_cup>
+					<skip_group_check>1</skip_group_check>
+					<preload>0</preload>
+					<number_of_teams>8</number_of_teams>
+					<start_idx>1</start_idx>
+					<end_idx>8</end_idx>
+				</choose_team>
+
+			<!-- Main Path - 17 new teams -->
+
+				#UEFA Ranking 12
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>austria1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 11
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>netherlands1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 10
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>turkey1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 9
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>ukraine1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 8
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>belgium1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 7
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>portugal1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 6
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>russia1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 5
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>france1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 5
+				<!-- 4th ranked team in league -->
+				<choose_team>
+					<choose_team_sid>france1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 4
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>germany1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 4
+				<!-- 5th ranked team in league -->
+				<choose_team>
+					<choose_team_sid>germany1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 3
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>italy1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 3
+				<!-- 5th ranked team in league -->
+				<choose_team>
+					<choose_team_sid>italy1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 2
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>england1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 2
+				<!-- 5th ranked team in league -->
+				<choose_team>
+					<choose_team_sid>england1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 1
+				#the cup winner here.
+				<choose_team>
+					<choose_team_sid>spain1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+
+				#UEFA Ranking 1
+				<!-- 5th ranked team in league -->
+				<choose_team>
+					<choose_team_sid>spain1</choose_team_sid>
+					<number_of_teams>1</number_of_teams>
+					<randomly>1</randomly>
+					<generate>1</generate>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+
+		<cup_round>
+			<!-- Round 7 -->
+			<round_name>Round of 32</round_name>
+			<new_teams>8</new_teams>
+			<byes>0</byes>
+			<delay>-3</delay>
+			<choose_teams>
+
+				<!-- 3rd-placed teams in the UCL group stage -->
+				<choose_team>
+					<choose_team_sid>uefa_cl_r*</choose_team_sid>
+					<skip_group_check>1</skip_group_check>
+					<preload>0</preload>
+					<number_of_teams>8</number_of_teams>
+					<start_idx>17</start_idx>
+					<end_idx>24</end_idx>
+				</choose_team>
+			</choose_teams>
+		</cup_round>
+
+		<cup_round>
+			<!-- Round 8 -->
+			<round_name>Round of 16</round_name>
+			<byes>0</byes>
+			<delay>-2</delay>
+		</cup_round>
+
+		<cup_round>
+			<!-- Round 9 -->
+			<round_name>Quarter-Final</round_name>
+		</cup_round>
+	</cup_rounds>
+</cup>
