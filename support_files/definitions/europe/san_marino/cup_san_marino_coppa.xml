@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cup>
+	<name>Coppa Titano</name>
+	<short_name>Coppa</short_name>
+	<symbol>flag_san_marino.png</symbol>
+	<sid>san_marino_coppa</sid>
+	<last_week>41</last_week>
+	<week_gap>1</week_gap>
+	<break_in length="3">15</break_in>
+	<break_in length="3">23</break_in>
+	<property>national</property>
+
+	<cup_rounds>
+		<cup_round>
+			<byes>1</byes>
+			<choose_teams>
+				<choose_team>
+					<choose_team_sid>san_marino1</choose_team_sid>
+				</choose_team>
+			</choose_teams>
+			<delay>-21</delay>
+		</cup_round>
+
+		<cup_round>
+			<delay>-15</delay>
+		</cup_round>
+
+		<cup_round>
+		</cup_round>
+
+		<cup_round>
+			<home_away>0</home_away>
+			<neutral>1</neutral>
+		</cup_round>
+	</cup_rounds>
+</cup>
