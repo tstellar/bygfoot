@@ -36,6 +36,8 @@
 #include "variables.h"
 #include "xml_league.h"
 
+#define debug 1000
+
 /**
    Create and return a new cup with default values.
    @return The new cup.
@@ -428,12 +430,15 @@ cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_temp, GPtrArray *teams, G
             end = ct->end_idx;
         }
 
+        printf("start = %d end = %d\n");
         for(i = start; i < end; i++)
         {
+	    printf("Skip group check: %d\n", ct->skip_group_check);
             if(ct->skip_group_check ||
                !query_team_is_in_cups(
                    (Team*)g_ptr_array_index(cup_teams_sorted, i), cup->group))
             {
+	        printf("i = %d\n", i);
                 g_ptr_array_add(teams, g_ptr_array_index(cup_teams_sorted, i));
                 g_ptr_array_add(cup->team_names, 
                                 g_strdup(((Team*)g_ptr_array_index(cup_teams_sorted, i))->name));

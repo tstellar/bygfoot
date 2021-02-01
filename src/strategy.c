@@ -357,6 +357,7 @@ strategy_set_tokens(const Team *tm, const Fixture *fixture)
     printf("strategy_set_tokens\n");
 #endif
 
+    printf("Team = %s\n", tm->name);
     const Fixture *fix = (fixture == NULL) ? 
 	team_get_fixture(tm, FALSE) : fixture;
     const Team *opp = (fix == NULL) ? NULL :
