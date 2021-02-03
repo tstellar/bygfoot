@@ -292,19 +292,18 @@ cup_get_team_pointers(Cup *cup, gint round, GPtrArray *teams_sorted, gboolean pr
 
     existing_teams = cup_round->teams->len;
     
-    for(i=0;i<cup_round->choose_teams->len;i++)
-        if(g_array_index(cup_round->choose_teams, CupChooseTeam, i).preload == preload)
-        {
-            if(g_array_index(cup_round->choose_teams, CupChooseTeam, i).generate)
-                cup_load_choose_team_generate(
-                    cup, cup_round,
-                    &g_array_index(cup_round->choose_teams, CupChooseTeam, i));
-            else
-                cup_load_choose_team(
-                    cup, teams, teams_sorted,
-                    &g_array_index(cup_round->choose_teams, CupChooseTeam, i));            
-        }        
+    for(i=0;i<cup_round->choose_teams->len;i++) {
+        const CupChooseTeam *choose_team =
+	    &g_array_index(cup_round->choose_teams, CupChooseTeam, i);
 
+        if(choose_team->preload == preload)
+        {
+            if(choose_team->generate)
+                cup_load_choose_team_generate(cup, cup_round, choose_team);
+            else
+                cup_load_choose_team(cup, teams, teams_sorted, choose_team);
+        }
+    }
     if(cup_round->teams->len - existing_teams > 0)
 	while(teams->len + cup_round->teams->len - existing_teams > cup_round->new_teams)
 	{		
