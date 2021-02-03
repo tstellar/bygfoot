@@ -380,6 +380,25 @@ league_cup_average_capacity(gint clid)
     return sum / (gfloat)cnt;
 }
 
+
+/** This is the same as @see league_index_from_sid, except it does not exit
+ *  the program if the sid is not found.
+ *  @returns The index of the league in the country's league array or -1 if
+ *  not found.
+ */
+gint
+country_get_index_from_sid(const Country *country, const gchar *sid)
+{
+    gint i;
+
+    for (i = 0; i < country->leagues->len; i++) {
+        const League *league = &g_array_index(country->leagues, League, i);
+        if (!strcmp(league->sid, sid))
+            return i;
+    }
+    return -1;
+}
+
 /** Get the index of the league with the specified string id. */
 gint
 league_index_from_sid(const gchar *sid)
@@ -398,6 +417,44 @@ league_index_from_sid(const gchar *sid)
               "league_index_from_sid: no index found for sid '%s'.\n", sid);
 
     return -1;
+}
+
+/** @returns TRUE if the league with \p sid is in \p country. */
+gboolean
+country_has_league_sid(const Country *country, const gchar *sid)
+{
+    return country_get_index_from_sid(country, sid) != -1;
+}
+
+
+/** @return A Cup object if the cup with \p sid belongs to \p country.
+ * NULL otherwise.
+ */
+Cup *
+country_get_cup_sid(const Country *country, const gchar *sid)
+{
+    int i;
+    for (i = 0; i < country->cups->len; i++) {
+        Cup *cup = &g_array_index(country->cups, Cup, i);
+        if (!strcmp(cup->sid, sid))
+            return cup;
+    }
+    return NULL;
+}
+
+/** @return A League object if the league with \p sid belongs to \p country.
+ * NULL otherwise.
+ */
+League *
+country_get_league_sid(Country *country, const gchar *sid)
+{
+    int i;
+    for (i = 0; i < country->leagues->len; i++) {
+        League *league = &g_array_index(country->leagues, League, i);
+        if (!strcmp(league->sid, sid))
+            return league;
+    }
+    return NULL;
 }
 
 /** Remove the team with the specified id from the teams
