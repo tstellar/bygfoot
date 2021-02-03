@@ -201,6 +201,19 @@ query_cup_choose_team_is_league(const gchar *sid)
     return FALSE;
 }
 
+/** @return TRUE if the team(s) referenced by \p sid need to be
+ *          generated.
+ */
+static gboolean
+cup_choose_team_should_generate(const CupChooseTeam *ct)
+{
+    if (g_str_has_prefix(ct->sid, "LEAGUE") || g_str_has_prefix(ct->sid, "CUP"))
+        return FALSE;
+
+    return !country_get_league_sid(&country, ct->sid) &&
+           !country_get_cup_sid(&country, ct->sid);
+}
+
 /** Write the cup or league of the chooseteam into the appropriate pointer
     and return TRUE; return FALSE if no cup/league is found. */
 void
@@ -298,7 +311,7 @@ cup_get_team_pointers(Cup *cup, gint round, GPtrArray *teams_sorted, gboolean pr
 
         if(choose_team->preload == preload)
         {
-            if(choose_team->generate)
+            if(cup_choose_team_should_generate(choose_team))
                 cup_load_choose_team_generate(cup, cup_round, choose_team);
             else
                 cup_load_choose_team(cup, teams, teams_sorted, choose_team);
@@ -1169,7 +1182,7 @@ query_cup_begins(const Cup *cup)
 	cup_round = &g_array_index(cup->rounds, CupRound, j);
 
 	for(i=0;i<cup_round->choose_teams->len;i++)
-	    if(!g_array_index(cup_round->choose_teams,CupChooseTeam, i).generate)
+	    if(!cup_choose_team_should_generate(&g_array_index(cup_round->choose_teams,CupChooseTeam, i)))
 	    {		
 		cup_get_choose_team_league_cup(
 		    &g_array_index(cup_round->choose_teams,

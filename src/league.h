@@ -95,7 +95,19 @@ void
 league_get_team_movements(League *league, GArray *team_movements);
 
 gint
+country_get_index_from_sid(const Country *country, const gchar *sid);
+
+gint
 league_index_from_sid(const gchar *sid);
+
+gboolean
+country_has_league_sid(const Country *country, const gchar *sid);
+
+Cup *
+country_get_cup_sid(const Country *country, const gchar *sid);
+
+League *
+country_get_league_sid(Country *country, const gchar *sid);
 
 void
 league_remove_team_with_id(League *league, gint id);
