@@ -573,24 +573,25 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
 
     for(j=0;j<sids->len;j++)
     {
-	if(!query_cup_choose_team_is_league((gchar*)g_ptr_array_index(sids, j)))
+	const gchar *sid = g_ptr_array_index(sids, j);
+	if(!query_cup_choose_team_is_league(sid))
 	{
-	    xml_league_read((gchar*)g_ptr_array_index(sids, j), leagues);
+            League *league;
+	    xml_league_read(sid, leagues);
+            league = &g_array_index(leagues, League, leagues->len -1);
 		    
-	    for(k=0; k < g_array_index(leagues, League, leagues->len - 1).teams->len; k++)
+	    for(k=0; k < league->teams->len; k++)
             {
+                Team *team = &g_array_index(league->teams, Team, k);
                 if(query_league_cup_has_property(cup->id, "league_talents"))
                 {        
-                    g_array_index(
-                        g_array_index(leagues, League, leagues->len - 1).teams, Team,  k).average_talent = 
-                        g_array_index(leagues, League, leagues->len - 1).average_talent;
+                    team->average_talent = league->average_talent;
                 }
-                g_array_append_val(teams_local, g_array_index(
-                                       g_array_index(leagues, League, leagues->len - 1).teams, Team,  k));
+                g_array_append_val(teams_local, *team);
             }
             
-	    free_g_array(&g_array_index(leagues, League, leagues->len - 1).teams);
-	    free_league(&g_array_index(leagues, League, leagues->len - 1));
+	    free_g_array(&league->teams);
+	    free_league(league);
 	}
     }
 
