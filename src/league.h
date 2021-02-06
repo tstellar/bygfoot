@@ -109,6 +109,9 @@ country_get_cup_sid(const Country *country, const gchar *sid);
 League *
 country_get_league_sid(Country *country, const gchar *sid);
 
+League *
+bygfoot_get_league_sid(const gchar *sid);
+
 void
 league_remove_team_with_id(League *league, gint id);
 

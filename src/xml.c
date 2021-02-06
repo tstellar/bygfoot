@@ -73,7 +73,7 @@ xml_load_users(const gchar *dirname, const gchar *basename)
 }
 
 void
-xml_load_league(Bygfoot *bygfoot, const gchar *dirname, const gchar *basename)
+xml_load_league(Bygfoot *bygfoot, GArray *league_list, const gchar *dirname, const gchar *basename)
 {
 #ifdef DEBUG
     printf("xml_load_league\n");
@@ -82,15 +82,16 @@ xml_load_league(Bygfoot *bygfoot, const gchar *dirname, const gchar *basename)
     gchar buf[SMALL], team_file[SMALL];
     League new = league_new(FALSE);
     gchar *prefix = g_strndup(basename, strlen(basename) - 4);
+    League *league = NULL;
 
-    g_array_append_val(ligs, new);
+    g_array_append_val(league_list, new);
+    league = &g_array_index(league_list, League, league_list->len - 1);
 
     sprintf(buf, "%s%s%s", dirname, G_DIR_SEPARATOR_S, basename);
     sprintf(team_file, "%s%s%s_teams.xml", dirname, G_DIR_SEPARATOR_S, prefix);
-    xml_loadsave_league_read(buf, team_file, &lig(ligs->len - 1));
+    xml_loadsave_league_read(buf, team_file, league);
 
-    sprintf(buf, _("Loading league: %s"),
-	    lig(ligs->len - 1).name);
+    sprintf(buf, _("Loading league: %s"), league->name);
 
     bygfoot_show_progress(bygfoot, bygfoot_get_progress_bar_fraction(bygfoot), buf,
                       PIC_TYPE_LOAD);
@@ -99,10 +100,10 @@ xml_load_league(Bygfoot *bygfoot, const gchar *dirname, const gchar *basename)
 	g_print("%s\n", buf);
 
     sprintf(buf, "%s%s%s_fixtures.xml", dirname, G_DIR_SEPARATOR_S, prefix);
-    xml_loadsave_fixtures_read(buf, lig(ligs->len - 1).fixtures);
+    xml_loadsave_fixtures_read(buf, league->fixtures);
 
     sprintf(buf, "%s%s%s_stat.xml", dirname, G_DIR_SEPARATOR_S, prefix);
-    xml_loadsave_league_stat_read(buf, &lig(ligs->len - 1).stats);
+    xml_loadsave_league_stat_read(buf, &league->stats);
 
     g_free(prefix);
 }

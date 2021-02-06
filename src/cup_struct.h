@@ -91,9 +91,6 @@ typedef struct
     /** Whether the two matches of a home/away round are
 	played in one week. */
     gboolean two_match_week;
-    /** The teams that got loaded for this cup round.
-	Mostly this only happens in the first round. */
-    GArray *teams;
     /** Pointers to all teams loaded in the cup round; these
 	teams get passed to the fixture generation function
 	together with the teams advancing from the previous round. */

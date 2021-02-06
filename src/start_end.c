@@ -89,7 +89,45 @@ start_new_game(void)
     start_write_variables();
 
     start_generate_league_teams();
+
+    start_load_other_countries();
+
     start_new_season();
+}
+
+/** callback function for start_load_other_countries to load countries and
+ * add them to the country_list.
+ */
+static load_country(gpointer country_file, gpointer user_data)
+{
+
+    GPtrArray *country_list = (GPtrArray*)user_data;
+    Country *new_country = g_malloc0(sizeof(Country));
+    gint i;
+
+    xml_country_read(country_file, new_country);
+    for (i = 0; i < new_country->leagues->len; i++) {
+        League *league = &g_array_index(new_country->leagues, League, i);
+        gint j;
+        for (j = 0; j < league->teams->len; j++) {
+            Team *team = &g_array_index(league->teams, Team, j);
+	    team_generate_players_stadium(team, league->average_talent);
+        }
+    }
+
+    g_ptr_array_add(country_list, new_country);
+}
+
+/** Load other countries that the user isn't playing, so we can easily reference
+ * the cups and leagues.
+ */
+void
+start_load_other_countries()
+{
+    GPtrArray *country_files = file_get_country_files();
+    country_list = g_ptr_array_new();
+
+    g_ptr_array_foreach(country_files, load_country, country_list);
 }
 
 /** Make new fixtures, nullify things etc. */
