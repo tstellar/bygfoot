@@ -457,6 +457,22 @@ country_get_league_sid(Country *country, const gchar *sid)
     return NULL;
 }
 
+/** Get the leauge with \p sid from the list of all countries.
+ *  @returns A pointer to a League object or NULL if the cup is not found.
+ */
+League *
+bygfoot_get_league_sid(const gchar *sid)
+{
+    int i;
+    for (i = 0; i < country_list->len; i++) {
+        Country *country = g_ptr_array_index(country_list, i);
+        League *league = country_get_league_sid(country, sid);
+        if (league)
+            return league;
+    }
+    return NULL;
+}
+
 /** Remove the team with the specified id from the teams
     array without freeing the memory (used in promotion/relegation). */
 void

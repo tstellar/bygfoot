@@ -243,11 +243,17 @@ team_of_id(gint id)
 	    if(g_array_index(lig(i).teams, Team, j).id == id)
 		return &g_array_index(lig(i).teams, Team, j);
 
-    for(i=0;i<cps->len;i++)
-        for(j = 0; j < cp(i).rounds->len; j++)
-            for(k = 0; k < g_array_index(cp(i).rounds, CupRound, j).teams->len; k++)
-                if(g_array_index(g_array_index(cp(i).rounds, CupRound, j).teams, Team, k).id == id)
-                    return &g_array_index(g_array_index(cp(i).rounds, CupRound, j).teams, Team, k);
+    for (i = 0; i < country_list->len; i++) {
+        Country *country = g_ptr_array_index(country_list, i);
+	for (j = 0; j < country->leagues->len; j++) {
+	    League *league = &g_array_index(country->leagues, League, j);
+	    for (k = 0; k < league->teams->len; k++) {
+                Team *team = &g_array_index(league->teams, Team, k);
+		if (team->id == id)
+		    return team;
+	    }
+        }
+    }
 
     main_exit_program(EXIT_POINTER_NOT_FOUND, 
 		      "team_of_id: team with id %d not found.", id);
@@ -273,8 +279,8 @@ team_of_sid(const char *sid, const Country *country)
         const Cup *cup = &g_array_index(country->cups, Cup, i);
         for (j = 0; j < cup->rounds->len; j++) {
             const CupRound *round = &g_array_index(cup->rounds, CupRound, j);
-            for (k = 0; k < round->teams->len; k++) {
-                Team * team = &g_array_index(round->teams, Team, k);
+            for (k = 0; k < round->team_ptrs->len; k++) {
+                Team * team = g_ptr_array_index(round->team_ptrs, k);
                 if (!strcmp(team->name, sid))
                     return team;
             }

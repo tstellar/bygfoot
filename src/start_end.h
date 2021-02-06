@@ -29,6 +29,9 @@
 #include "bygfoot.h"
 
 void
+start_load_other_countries(void);
+
+void
 start_new_game(void);
 
 void

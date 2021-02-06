@@ -688,7 +688,6 @@ free_cup_round(CupRound *cup_round)
                 &g_array_index(cup_round->choose_teams, CupChooseTeam, j));
 	    
         free_g_array(&cup_round->choose_teams);
-        free_teams_array(&cup_round->teams, FALSE);
         g_ptr_array_free(cup_round->team_ptrs, TRUE);
     }    
 }

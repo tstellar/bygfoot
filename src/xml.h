@@ -104,7 +104,7 @@ void
 xml_load_users(const gchar *dirname, const gchar *basename);
 
 void
-xml_load_league(Bygfoot *bygfoot, const gchar *dirname, const gchar *basename);
+xml_load_league(Bygfoot *bygfoot, GArray *league_list, const gchar *dirname, const gchar *basename);
 
 void
 xml_load_cup(Bygfoot *bygfoot, Cup *cup, const gchar *dirname, const gchar *basename);

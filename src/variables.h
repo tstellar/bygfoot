@@ -35,6 +35,12 @@
  */
 Country country;
 
+/**
+ * List of all non-user countries.
+ * @see Country
+ */
+GPtrArray *country_list;
+
 /** The array of human players. @see #User */
 GArray *users;
 

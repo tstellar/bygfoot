@@ -114,7 +114,7 @@ xml_loadsave_leagues_cups_text         (GMarkupParseContext *context,
     buf[text_len] = '\0';
 
     if(state == TAG_LEAGUE_FILE)
-	xml_load_league(bygfoot, dir, buf);
+	xml_load_league(bygfoot, ligs, dir, buf);
     else if(state == TAG_CUP_FILE)
     {
 	new_cup = cup_new(FALSE);
