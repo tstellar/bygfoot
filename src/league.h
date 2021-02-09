@@ -106,6 +106,9 @@ country_has_league_sid(const Country *country, const gchar *sid);
 Cup *
 country_get_cup_sid(const Country *country, const gchar *sid);
 
+Cup *
+bygfoot_get_cup_sid(const gchar *sid);
+
 League *
 country_get_league_sid(Country *country, const gchar *sid);
 

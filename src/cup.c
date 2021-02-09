@@ -537,6 +537,43 @@ cup_load_choose_team_from_league(Cup *cup, const League *league,
                           number_of_teams, cup->group);    
 }
 
+/** This function is used when a CupChooseTeam object references a cup
+ * that is outside of the users's league.  It returns a list of teamas
+ * that would participate in this cup.  This is a best effort
+ * function and the goal is to just get enough teams to satisfy the
+ * requirements of the CupChooseTeam object, so it may omit some
+ * teams especially if the cup definition is complex.
+ */
+static void
+cup_generate_team_list(const Cup *cup, GArray *teams, gboolean league_talents)
+{
+    int i;
+    const League *top_league = NULL;
+    for (i = 0; i < cup->rounds->len; i++) {
+        const CupRound *round = &g_array_index(cup->rounds, CupRound, i);
+        int j;
+        for (j = 0; j < round->choose_teams->len; j++) {
+            const CupChooseTeam *ct = &g_array_index(round->choose_teams, CupChooseTeam, j);
+            const League *league = bygfoot_get_league_sid(ct->sid);
+            if (!league)
+                continue;
+            if (!top_league || (league->layer < top_league->layer))
+                top_league = league;
+            if (league->layer == 1)
+                break;
+        }
+    }
+    if (!top_league)
+        return;
+
+    for (i = 0; i < top_league->teams->len; i++) {
+        Team *team = &g_array_index(top_league->teams, Team, i);
+	if (league_talents)
+            team->average_talent = top_league->average_talent;
+        g_ptr_array_add(teams, team);
+    }
+}
+
 /** Load the teams specified in the chooseteam from a non-country league. */
 void
 cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam *ct)
@@ -560,6 +597,13 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
     for(j=0;j<sids->len;j++)
     {
 	const gchar *sid = g_ptr_array_index(sids, j);
+        Cup *generate_cup = bygfoot_get_cup_sid(sid);
+        if (generate_cup) {
+            cup_generate_team_list(generate_cup, teams_local,
+                                   query_league_cup_has_property(cup->id, "league_talents"));
+            continue;
+        }
+
 	if(!query_cup_choose_team_is_league(sid))
 	{
             const League *league = bygfoot_get_league_sid(sid);
