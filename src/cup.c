@@ -102,6 +102,7 @@ cup_choose_team_new(void)
     new.skip_group_check = FALSE;
     new.from_table = 0;
     new.preload = TRUE;
+    new.next = NULL;
 
     return new;
 }
@@ -404,11 +405,15 @@ cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_temp, GPtrArray *teams, G
                 break;
         }
 	    
-        if(number_of_teams != ct->number_of_teams)
+        if(number_of_teams != ct->number_of_teams) {
+	    if (ct->next)
+	        return cup_load_choose_team(cup, teams, teams_sorted, ct->next);
+
             main_exit_program(EXIT_CHOOSE_TEAM_ERROR, 
                               "cup_load_choose_team_from_cup (2): not enough teams found in league 0 for chooseteam %s (%d; required: %d) in cup %s (group %d)\n",
                               ct->sid, number_of_teams, 
                               ct->number_of_teams, cup->name, cup->group);
+        }
     }
     else
     {
@@ -448,11 +453,14 @@ cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_temp, GPtrArray *teams, G
             g_ptr_array_free(cup_teams_sorted, TRUE);
 
         if(ct->number_of_teams != -1 &&
-           number_of_teams != ct->number_of_teams)
+           number_of_teams != ct->number_of_teams) {
+	    if (ct->next)
+	        return cup_load_choose_team(cup, teams, teams_sorted, ct->next);
             main_exit_program(EXIT_CHOOSE_TEAM_ERROR, 
                               "cup_load_choose_team_from_cup (3): not enough teams (that don't participate in international cups yet) found in chooseteam %s for cup %s (%d specified, %d found) cup group %d.\n ",
                               ct->sid, cup->name,
                               ct->number_of_teams, number_of_teams, cup->group);
+	}
     }
 }
 
@@ -545,7 +553,7 @@ cup_load_choose_team_from_league(Cup *cup, const League *league,
  * teams especially if the cup definition is complex.
  */
 static void
-cup_generate_team_list(const Cup *cup, GArray *teams, gboolean league_talents)
+cup_generate_team_list(const Cup *cup, GPtrArray *teams, gboolean league_talents)
 {
     int i;
     const League *top_league = NULL;
@@ -644,6 +652,14 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
 	    math_generate_permutation(permutation, 0, teams_local->len - 1);
 	else
 	    math_generate_permutation(permutation, ct->start_idx - 1, ct->end_idx - 1);
+    } else {
+        /* I'm doing this in the else here to avoid breaking other code
+         * paths, since I don't really understand well enough what they
+         * are doing.
+         */
+        for (j = 0; j < teams_local->len; j++) {
+            permutation[j] = ct->start_idx + j - 1;
+        }
     }
 
     number_of_teams = 0;
@@ -682,11 +698,16 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
 
     if(((ct->number_of_teams != -1 && number_of_teams != ct->number_of_teams) ||
 	(ct->number_of_teams == -1 && number_of_teams != teams_local->len)) &&
-       teams_local->len > 0)
+       teams_local->len > 0) {
+        /* TODO: handle number_of_teams > 0 */
+	g_ptr_array_free(teams_local, TRUE);
+	if (ct->next)
+            return cup_load_choose_team_generate(cup, cup_round, ct->next);
 	main_exit_program(EXIT_CHOOSE_TEAM_ERROR, 
 			  "cup_load_choose_team_generate: not enough teams (that don't participate in international cups yet) found in chooseteam %s for cup %s (%d specified, %d found).\n ", 
 			  ct->sid, cup->name, 
 			  ct->number_of_teams, number_of_teams);
+    }
     g_ptr_array_free(teams_local, teams_local->len > 0);
 }
 

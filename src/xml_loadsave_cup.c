@@ -77,16 +77,18 @@ enum
     TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK,
     TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK_ROUND,
     TAG_CUP_ROUND_DELAY,
+    TAG_CUP_CHOOSE_TEAM_ALTERNATIVES,
     TAG_END
 };
 
 gint state;
 Cup *new_cup;
-CupChooseTeam new_choose_team;
+CupChooseTeam *new_choose_team;
 CupRound new_round;
 gchar *dirname;
 WeekBreak new_week_break;
 CupRoundWait new_wait;
+gboolean alternatives;
 
 void
 xml_loadsave_cup_start_element (GMarkupParseContext *context,
@@ -119,9 +121,20 @@ xml_loadsave_cup_start_element (GMarkupParseContext *context,
 	}
 
     if(tag == TAG_CUP_CHOOSE_TEAM)
-	new_choose_team = cup_choose_team_new();
+        if (!alternatives) {
+            CupChooseTeam new = cup_choose_team_new();
+	    g_array_append_val(new_round.choose_teams, new);
+	    new_choose_team = &g_array_index(new_round.choose_teams, CupChooseTeam,
+	                                     new_round.choose_teams->len - 1);
+	} else {
+            new_choose_team->next = g_malloc(sizeof(CupChooseTeam));
+            *new_choose_team->next = cup_choose_team_new();
+            new_choose_team = new_choose_team->next;
+	}
     else if(tag == TAG_CUP_ROUND)
 	new_round = cup_round_new();
+    else if (tag == TAG_CUP_CHOOSE_TEAM_ALTERNATIVES)
+        alternatives = TRUE;
 
      if(!valid_tag)
 	debug_print_message("xml_loadsave_cup_start_element: unknown tag: %s; I'm in state %d\n",
@@ -168,7 +181,6 @@ xml_loadsave_cup_end_element    (GMarkupParseContext *context,
     else if(tag == TAG_CUP_CHOOSE_TEAM)
     {
 	state = TAG_CUP_ROUND;
-	g_array_append_val(new_round.choose_teams, new_choose_team);
     }
     else if(tag == TAG_CUP_CHOOSE_TEAM_NUMBER_OF_TEAMS ||
 	    tag == TAG_CUP_CHOOSE_TEAM_START_IDX ||
@@ -202,7 +214,10 @@ xml_loadsave_cup_end_element    (GMarkupParseContext *context,
 	    tag == TAG_CUP_ROUND_TWO_MATCH_WEEK_END ||
 	    tag == TAG_CUP_ROUND_TWO_MATCH_WEEK)
 	state = TAG_CUP_ROUND;
-    else if(tag != TAG_CUP)
+    else if (tag == TAG_CUP_CHOOSE_TEAM_ALTERNATIVES) {
+    	state = TAG_CUP_CHOOSE_TEAM;
+	alternatives = FALSE;
+    } else if(tag != TAG_CUP)
 	debug_print_message("xml_loadsave_cup_end_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
@@ -272,23 +287,23 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
     else if(state == TAG_CUP_TEAM_NAME)
 	g_ptr_array_add(new_cup->team_names, g_strdup(buf));
     else if(state == TAG_CUP_CHOOSE_TEAM_SID)
-	misc_string_assign(&new_choose_team.sid, buf);
+	misc_string_assign(&new_choose_team->sid, buf);
     else if(state == TAG_CUP_CHOOSE_TEAM_NUMBER_OF_TEAMS)
-	new_choose_team.number_of_teams = int_value;
+	new_choose_team->number_of_teams = int_value;
     else if(state == TAG_CUP_CHOOSE_TEAM_START_IDX)
-	new_choose_team.start_idx = int_value;
+	new_choose_team->start_idx = int_value;
     else if(state == TAG_CUP_CHOOSE_TEAM_END_IDX)
-	new_choose_team.end_idx = int_value;
+	new_choose_team->end_idx = int_value;
     else if(state == TAG_CUP_CHOOSE_TEAM_RANDOMLY)
-	new_choose_team.randomly = int_value;
+	new_choose_team->randomly = int_value;
     else if(state == TAG_CUP_CHOOSE_TEAM_GENERATE)
-	new_choose_team.generate = int_value;
+	new_choose_team->generate = int_value;
     else if(state == TAG_CUP_CHOOSE_TEAM_SKIP_GROUP_CHECK)
-	new_choose_team.skip_group_check = int_value;
+	new_choose_team->skip_group_check = int_value;
     else if(state == TAG_CUP_CHOOSE_TEAM_FROM_TABLE)
-	new_choose_team.from_table = int_value;
+	new_choose_team->from_table = int_value;
     else if(state == TAG_CUP_CHOOSE_TEAM_PRELOAD)
-	new_choose_team.preload = int_value;
+	new_choose_team->preload = int_value;
     else if(state == TAG_CUP_ROUND_HOME_AWAY)
 	new_round.home_away = int_value;
     else if(state == TAG_CUP_ROUND_NEW_TEAMS)
@@ -524,7 +539,7 @@ xml_loadsave_cup_write_round(FILE *fil, const gchar *prefix, const Cup *cup, gin
 
     for(i=0;i<cup_round->choose_teams->len;i++)
 	xml_loadsave_cup_write_choose_team(
-	    fil, &g_array_index(cup_round->choose_teams, CupChooseTeam, i));
+	    fil, &g_array_index(cup_round->choose_teams, CupChooseTeam, i), FALSE);
 
     for(i=0;i<cup_round->team_ptrs->len;i++)
 	xml_write_int(fil, ((Team*)g_ptr_array_index(cup_round->team_ptrs, i))->id,
@@ -537,7 +552,7 @@ xml_loadsave_cup_write_round(FILE *fil, const gchar *prefix, const Cup *cup, gin
 
 
 void
-xml_loadsave_cup_write_choose_team(FILE *fil, const CupChooseTeam *choose_team)
+xml_loadsave_cup_write_choose_team(FILE *fil, const CupChooseTeam *choose_team, gboolean is_alternative)
 {
 #ifdef DEBUG
     printf("xml_loadsave_cup_write_choose_team\n");
@@ -563,5 +578,15 @@ xml_loadsave_cup_write_choose_team(FILE *fil, const CupChooseTeam *choose_team)
     xml_write_int(fil, choose_team->preload, 
 		  TAG_CUP_CHOOSE_TEAM_PRELOAD, I2);
 
+
+    if (choose_team->next) {
+        if (!is_alternative)
+            fprintf(fil, "%s<_%d>\n", I1, TAG_CUP_CHOOSE_TEAM_ALTERNATIVES);
+
+        xml_loadsave_cup_write_choose_team(fil, choose_team->next, TRUE);
+
+        if (!is_alternative)
+            fprintf(fil, "%s</_%d>\n", I1, TAG_CUP_CHOOSE_TEAM_ALTERNATIVES);
+    }
     fprintf(fil, "%s</_%d>\n", I1, TAG_CUP_CHOOSE_TEAM);
 }
