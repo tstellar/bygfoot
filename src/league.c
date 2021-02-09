@@ -442,6 +442,23 @@ country_get_cup_sid(const Country *country, const gchar *sid)
     return NULL;
 }
 
+/** Get the cup with \p sid from the list of all countries.
+ *  @returns A pointer to a Cup object or NULL if the cup is not found.
+ */
+Cup *
+bygfoot_get_cup_sid(const gchar *sid)
+{
+    int i;
+    for (i = 0; i < country_list->len; i++) {
+        Country *country = g_ptr_array_index(country_list, i);
+        Cup *cup = country_get_cup_sid(country, sid);
+        if (cup)
+            return cup;
+    }
+    return NULL;
+}
+
+
 /** @return A League object if the league with \p sid belongs to \p country.
  * NULL otherwise.
  */
