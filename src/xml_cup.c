@@ -71,6 +71,7 @@
 #define TAG_CHOOSE_TEAM_SKIP_GROUP_CHECK "skip_group_check"
 #define TAG_CHOOSE_TEAM_FROM_TABLE "from_table"
 #define TAG_CHOOSE_TEAM_PRELOAD "preload"
+#define TAG_CHOOSE_TEAM_ALTERNATIVES "alternatives"
 
 #define ATT_NAME_CUP_ROUND_WAIT_ROUND "round"
 
@@ -123,6 +124,7 @@ enum XmlCupStates
     STATE_CHOOSE_TEAM_SKIP_GROUP_CHECK,
     STATE_CHOOSE_TEAM_FROM_TABLE,
     STATE_CHOOSE_TEAM_PRELOAD,
+    STATE_CHOOSE_TEAM_ALTERNATIVES,
     STATE_END
 };
 
@@ -134,9 +136,10 @@ gint state;
 /** The variable we will fill and append to an array. */
 Cup new_cup;
 CupRound new_round;
-CupChooseTeam new_choose_team;
+static CupChooseTeam *new_choose_team = NULL;
 WeekBreak new_week_break;
 CupRoundWait new_wait;
+gboolean alternatives = FALSE;
 
 /**
  * The function called by the parser when an opening tag is read.
@@ -247,7 +250,16 @@ xml_cup_read_start_element (GMarkupParseContext *context,
 	state = STATE_CHOOSE_TEAMS;
     else if(strcmp(element_name, TAG_CHOOSE_TEAM) == 0)
     {
-	new_choose_team = cup_choose_team_new();
+        if (!alternatives) {
+	    CupChooseTeam new = cup_choose_team_new();
+            g_array_append_val(new_round.choose_teams, new);
+            new_choose_team = &g_array_index(new_round.choose_teams, CupChooseTeam,
+	                                     new_round.choose_teams->len - 1);
+        } else {
+            new_choose_team->next = g_malloc(sizeof(CupChooseTeam ));
+            *new_choose_team->next = cup_choose_team_new();
+            new_choose_team = new_choose_team->next;
+        }
 	state = STATE_CHOOSE_TEAM;
     }
     else if(strcmp(element_name, TAG_CHOOSE_TEAM_SID) == 0)
@@ -268,7 +280,10 @@ xml_cup_read_start_element (GMarkupParseContext *context,
 	state = STATE_CHOOSE_TEAM_FROM_TABLE;
     else if(strcmp(element_name, TAG_CHOOSE_TEAM_PRELOAD) == 0)
 	state = STATE_CHOOSE_TEAM_PRELOAD;
-    else
+    else if(strcmp(element_name, TAG_CHOOSE_TEAM_ALTERNATIVES) == 0) {
+	state = STATE_CHOOSE_TEAM_ALTERNATIVES;
+	alternatives = TRUE;
+    } else
 	debug_print_message("xml_cup_read_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
@@ -343,7 +358,13 @@ xml_cup_read_end_element    (GMarkupParseContext *context,
     else if(strcmp(element_name, TAG_CHOOSE_TEAM) == 0)
     {
 	state = STATE_CHOOSE_TEAMS;
-	g_array_append_val(new_round.choose_teams, new_choose_team);
+    }
+    else if (strcmp(element_name, TAG_CHOOSE_TEAM_ALTERNATIVES) == 0)
+    {
+        new_choose_team = &g_array_index(new_round.choose_teams, CupChooseTeam,
+	                                 new_round.choose_teams->len - 1);
+	state = STATE_CHOOSE_TEAM;
+	alternatives = FALSE;
     }
     else if(strcmp(element_name, TAG_CHOOSE_TEAM_SID) == 0 ||
 	    strcmp(element_name, TAG_CHOOSE_TEAM_NUMBER_OF_TEAMS) == 0 ||
@@ -449,23 +470,23 @@ xml_cup_read_text         (GMarkupParseContext *context,
     else if(state == STATE_CUP_ROUND_TWO_MATCH_WEEK)
 	new_round.two_match_week = int_value;
     else if(state == STATE_CHOOSE_TEAM_SID)
-	misc_string_assign(&new_choose_team.sid, buf);
+	misc_string_assign(&new_choose_team->sid, buf);
     else if(state == STATE_CHOOSE_TEAM_NUMBER_OF_TEAMS)
-	new_choose_team.number_of_teams = int_value;
+	new_choose_team->number_of_teams = int_value;
     else if(state == STATE_CHOOSE_TEAM_START_IDX)
-	new_choose_team.start_idx = int_value;
+	new_choose_team->start_idx = int_value;
     else if(state == STATE_CHOOSE_TEAM_END_IDX)
-	new_choose_team.end_idx = int_value;
+	new_choose_team->end_idx = int_value;
     else if(state == STATE_CHOOSE_TEAM_RANDOMLY)
-	new_choose_team.randomly = int_value;
+	new_choose_team->randomly = int_value;
     else if(state == STATE_CHOOSE_TEAM_GENERATE)
-	new_choose_team.generate = int_value;
+	new_choose_team->generate = int_value;
     else if(state == STATE_CHOOSE_TEAM_SKIP_GROUP_CHECK)
-	new_choose_team.skip_group_check = int_value;
+	new_choose_team->skip_group_check = int_value;
     else if(state == STATE_CHOOSE_TEAM_FROM_TABLE)
-	new_choose_team.from_table = int_value;
+	new_choose_team->from_table = int_value;
     else if(state == STATE_CHOOSE_TEAM_PRELOAD)
-	new_choose_team.preload = int_value;
+	new_choose_team->preload = int_value;
 }
 
 /**

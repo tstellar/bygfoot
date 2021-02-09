@@ -108,7 +108,7 @@ typedef struct
    This could tell us to select the first three teams
    from the league 'Italy 1' to participate in the cup.
 */
-typedef struct
+typedef struct CupChooseTeam
 {
     /** The string id of the league we choose from.
 	Default: "". */
@@ -141,6 +141,14 @@ typedef struct
         first cup round are written or only when the cup round the choose_team
         belongs to is scheduled. Default: TRUE. */
     gboolean preload;
+
+    /** Whether to load the team from the results of the previous season. */
+    gboolean previous_season;
+
+    /** The alternate CupChooseTeam to use if we are unable to select any
+     *  teams using this one.
+     */
+    struct CupChooseTeam *next;
     
 } CupChooseTeam;
 
