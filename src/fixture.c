@@ -118,7 +118,12 @@ fixture_write_cup_fixtures(Cup *cup)
 
     cup_reset(cup);
 
-    for(i=0;i<cup->rounds->len;i++)
+    /* In some cups it's possible to qualify in multiple ways.  When this
+     * happens, the preference should be to qualify the team into the
+     * highest round possible, so in order to do this we need to load
+     * the higher rounds first.
+     */
+    for(i=cup->rounds->len - 1; i >=0;i--)
         cup_get_team_pointers(cup, i, teams_sorted, TRUE);
 
     if(teams_sorted != NULL)
