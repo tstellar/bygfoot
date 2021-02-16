@@ -167,18 +167,18 @@ cup_reset(Cup *cup)
 
     for(i=0;i<cup->rounds->len;i++)
     {
-	if(g_array_index(cup->rounds, CupRound, i).tables->len > 0)
+	CupRound *cup_round = &g_array_index(cup->rounds, CupRound, i);
+	if(cup_round->tables->len > 0)
 	{
-            free_tables(&g_array_index(cup->rounds, CupRound, i).tables);	
-	    g_array_index(cup->rounds, CupRound, i).tables = 
-		g_array_new(FALSE, FALSE, sizeof(Table));
+            free_tables(&cup_round->tables);
+            cup_round->tables = g_array_new(FALSE, FALSE, sizeof(Table));
 	}
 
-	if(g_array_index(cup->rounds, CupRound, i).teams->len > 0)
-	    free_teams_array(&g_array_index(cup->rounds, CupRound, i).teams, TRUE);
+	if(cup_round->teams->len> 0)
+	    free_teams_array(&cup_round->teams, TRUE);
 
-	g_ptr_array_free(g_array_index(cup->rounds, CupRound, i).team_ptrs, TRUE);
-	g_array_index(cup->rounds, CupRound, i).team_ptrs = g_ptr_array_new();
+	g_ptr_array_free(cup_round->team_ptrs, TRUE);
+	cup_round->team_ptrs = g_ptr_array_new();
     }
 }
 
