@@ -102,6 +102,7 @@ cup_choose_team_new(void)
     new.skip_group_check = FALSE;
     new.from_table = 0;
     new.preload = TRUE;
+    new.optional = FALSE;
     new.next = NULL;
 
     return new;
@@ -703,7 +704,9 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
 	g_ptr_array_free(teams_local, TRUE);
 	if (ct->next)
             return cup_load_choose_team_generate(cup, cup_round, ct->next);
-	main_exit_program(EXIT_CHOOSE_TEAM_ERROR, 
+	if (ct->optional)
+	    return;
+	main_exit_program(EXIT_CHOOSE_TEAM_ERROR,
 			  "cup_load_choose_team_generate: not enough teams (that don't participate in international cups yet) found in chooseteam %s for cup %s (%d specified, %d found).\n ", 
 			  ct->sid, cup->name, 
 			  ct->number_of_teams, number_of_teams);
