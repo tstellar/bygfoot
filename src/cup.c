@@ -324,8 +324,8 @@ cup_get_team_pointers(Cup *cup, gint round, GPtrArray *teams_sorted, gboolean pr
 
     if(debug > 70)
 	for(i=0;i<teams->len;i++)
-	    g_print("cup_get_team_pointers: %s round %d team %d %s (clid %d)\n", 
-                    cup->name, round, i,
+	    g_print("cup_get_team_pointers: %s (%s) round %d team %d %s (clid %d)\n", 
+                    cup->name, cup->sid, round, i,
                     ((Team*)g_ptr_array_index(teams, i))->name,
                     ((Team*)g_ptr_array_index(teams, i))->clid);
 }
@@ -596,7 +596,7 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
     GPtrArray *sids = NULL;
 
     if(debug > 60)
-	g_print("cup_load_choose_team_generate: %s, %s \n", cup->name,
+	g_print("cup_load_choose_team_generate: %s, (%s) %s \n", cup->name, cup->sid,
 	       ct->sid);
 
     teams_local = g_ptr_array_new();
