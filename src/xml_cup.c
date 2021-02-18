@@ -71,6 +71,7 @@
 #define TAG_CHOOSE_TEAM_SKIP_GROUP_CHECK "skip_group_check"
 #define TAG_CHOOSE_TEAM_FROM_TABLE "from_table"
 #define TAG_CHOOSE_TEAM_PRELOAD "preload"
+#define TAG_CHOOSE_TEAM_OPTIONAL "optional"
 #define TAG_CHOOSE_TEAM_ALTERNATIVES "alternatives"
 
 #define ATT_NAME_CUP_ROUND_WAIT_ROUND "round"
@@ -124,6 +125,7 @@ enum XmlCupStates
     STATE_CHOOSE_TEAM_SKIP_GROUP_CHECK,
     STATE_CHOOSE_TEAM_FROM_TABLE,
     STATE_CHOOSE_TEAM_PRELOAD,
+    STATE_CHOOSE_TEAM_OPTIONAL,
     STATE_CHOOSE_TEAM_ALTERNATIVES,
     STATE_END
 };
@@ -280,6 +282,8 @@ xml_cup_read_start_element (GMarkupParseContext *context,
 	state = STATE_CHOOSE_TEAM_FROM_TABLE;
     else if(strcmp(element_name, TAG_CHOOSE_TEAM_PRELOAD) == 0)
 	state = STATE_CHOOSE_TEAM_PRELOAD;
+    else if(strcmp(element_name, TAG_CHOOSE_TEAM_OPTIONAL) == 0)
+	state = STATE_CHOOSE_TEAM_OPTIONAL;
     else if(strcmp(element_name, TAG_CHOOSE_TEAM_ALTERNATIVES) == 0) {
 	state = STATE_CHOOSE_TEAM_ALTERNATIVES;
 	alternatives = TRUE;
@@ -374,6 +378,7 @@ xml_cup_read_end_element    (GMarkupParseContext *context,
 	    strcmp(element_name, TAG_CHOOSE_TEAM_SKIP_GROUP_CHECK) == 0 ||
 	    strcmp(element_name, TAG_CHOOSE_TEAM_FROM_TABLE) == 0 ||
 	    strcmp(element_name, TAG_CHOOSE_TEAM_PRELOAD) == 0 ||
+	    strcmp(element_name, TAG_CHOOSE_TEAM_OPTIONAL) == 0 ||
 	    strcmp(element_name, TAG_CHOOSE_TEAM_GENERATE) == 0)
 	    state = STATE_CHOOSE_TEAM;
     else if(strcmp(element_name, TAG_CUP) != 0)
@@ -487,6 +492,8 @@ xml_cup_read_text         (GMarkupParseContext *context,
 	new_choose_team->from_table = int_value;
     else if(state == STATE_CHOOSE_TEAM_PRELOAD)
 	new_choose_team->preload = int_value;
+    else if(state == STATE_CHOOSE_TEAM_OPTIONAL)
+	new_choose_team->optional = int_value;
 }
 
 /**

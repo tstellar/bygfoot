@@ -142,6 +142,12 @@ typedef struct CupChooseTeam
         belongs to is scheduled. Default: TRUE. */
     gboolean preload;
 
+    /** If this is FALSE, then bygfoot will exit with an error if it can't
+     * find a team that meets the criteria.  Set this to TRUE if a cup position
+     * will be vaccated if the team qualifies for a higher round in the cup.
+     * Default: FALSE. */
+    gboolean optional;
+
     /** Whether to load the team from the results of the previous season. */
     gboolean previous_season;
 
