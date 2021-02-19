@@ -50,6 +50,7 @@ job_update(Bygfoot *bygfoot)
 
     gint i;
     gint new_offers, int_offers;
+    gint national_teams = 0;
 
     for(i=jobs->len - 1; i >= 0; i--)
     {
@@ -62,8 +63,19 @@ job_update(Bygfoot *bygfoot)
     if(week % const_int("int_job_update_interval") != 2)
 	return;
 
+    for (i = 0; i < country.leagues->len; i++) {
+        national_teams += g_array_index(country.leagues, League, i).teams->len;
+    }
+
+    /* Limit the total number of jobs to the number of national teams.
+     * Otherwise, we risk hitting an infinite loop in
+     * job_pick_team_from_country();
+     */
+
     new_offers = math_rndi(const_int("int_job_new_offers_lower"),
 			   const_int("int_job_new_offers_upper"));
+
+    new_offers = MIN(new_offers, national_teams - jobs->len);
     int_offers = (users->len == 1) ? 
 	(gint)rint((gfloat)new_offers *
 		   const_float("float_job_international_perc")) : 0;
