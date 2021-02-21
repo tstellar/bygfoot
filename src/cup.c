@@ -1235,19 +1235,34 @@ query_cup_begins(const Cup *cup)
 	for(i=0;i<cup_round->choose_teams->len;i++)
 	    if(!cup_choose_team_should_generate(&g_array_index(cup_round->choose_teams,CupChooseTeam, i)))
 	    {		
+	        const Fixture *last_fixture;
 		cup_get_choose_team_league_cup(
 		    &g_array_index(cup_round->choose_teams,
 				   CupChooseTeam, i), &league, &cup_temp);
 		
-		if((cup_temp == NULL &&
+		if(cup_temp == NULL &&
 		    query_league_active(league) &&
 		    g_array_index(league->fixtures, Fixture,
-				  league->fixtures->len - 1).attendance == -1) ||
-		   (league == NULL &&
-		    ((cup_temp->fixtures->len > 0 &&
-		      g_array_index(cup_temp->fixtures, Fixture,
-				    cup_temp->fixtures->len - 1).attendance == -1) ||
-		     cup_temp->fixtures->len == 0)))
+				  league->fixtures->len - 1).attendance == -1)
+		    return FALSE;
+
+		/* Handle cups */
+		if (!cup_temp)
+		    continue;
+
+		if (!cup_temp->fixtures->len)
+		    return FALSE;
+
+		last_fixture = &g_array_index(cup_temp->fixtures, Fixture,
+				              cup_temp->fixtures->len - 1);
+
+		/* attendance == 1 means there are scheduled games that have
+		 * not been played yet.  If the last fixture is not for the
+		 * last round of the cup that means there are still games
+		 * that have not been scheduled yet.
+		 */
+		if (last_fixture->attendance == -1 ||
+		    last_fixture->round != cup_temp->rounds->len - 1)
 		    return FALSE;
 	    }
     }
