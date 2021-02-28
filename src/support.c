@@ -99,23 +99,3 @@ add_pixmap_directory                   (const gchar     *directory)
 
   gtk_icon_theme_append_search_path (icon_theme, g_strdup(directory));
 }
-
-/* This is an internally used function to find pixmap files. */
-static gchar*
-find_pixmap_file                       (const gchar     *filename)
-{
-  GList *elem;
-
-  /* We step through each of the pixmaps directory to find it. */
-  elem = pixmaps_directories;
-  while (elem)
-    {
-      gchar *pathname = g_strdup_printf ("%s%s%s", (gchar*)elem->data,
-                                         G_DIR_SEPARATOR_S, filename);
-      if (g_file_test (pathname, G_FILE_TEST_EXISTS))
-        return pathname;
-      g_free (pathname);
-      elem = elem->next;
-    }
-  return NULL;
-}
