@@ -74,9 +74,7 @@ jobs:
           CXX: g++
           PkgConfig_DIR: ./
         run: |
-          # Set PATH so CMake can find pkg-config
-          export PATH=`pwd`/bin:$PATH
-          # export GTKMM_BASEPATH=`pwd`
+          export PKG_CONFIG=`pwd`/bin/pkg-config.exe
           ./scripts/package.sh .
         shell: bash
 
