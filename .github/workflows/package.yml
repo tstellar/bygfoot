@@ -1,6 +1,8 @@
 name: Package bygfoot
 
-on: push
+on:
+  push:
+  pull_request:
 
 env:
   BYGFOOT_VERSION: "2.3.3-unofficial-git-${{ github.sha }}"
@@ -42,6 +44,29 @@ jobs:
         with:
           name: "bygfoot-${{ env.BYGFOOT_VERSION }}-linux${{ matrix.build-suffix }}"
           path: "*.bz2"
+
+  test-linux:
+    needs:
+      - package-linux
+    runs-on:
+      - ubuntu-16.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: "bygfoot-${{ env.BYGFOOT_VERSION }}-linux"
+
+      - name: Unpack binary package
+        run: |
+          ls
+          tar -xjf bygfoot-${{ env.BYGFOOT_VERSION }}.tar.bz2
+
+      - name: Run Tests
+        run: |
+          bash ./test/test-load-save.sh ./bygfoot-${{ env.BYGFOOT_VERSION }}/bygfoot
+          bash ./test/test-country-defs.sh ./bygfoot-${{ env.BYGFOOT_VERSION }}/bygfoot || true
+
 
   package-windows:
     runs-on:
