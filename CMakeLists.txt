@@ -160,3 +160,8 @@ if (GETTEXT_FOUND)
 		bygfoot.mo)
     endforeach()
 endif()
+
+add_custom_command(TARGET bygfoot POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+		   ${CMAKE_SOURCE_DIR}/support_files
+		   ${CMAKE_BINARY_DIR}/support_files)
