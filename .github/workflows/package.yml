@@ -100,6 +100,9 @@ jobs:
           PkgConfig_DIR: ./
         run: |
           export PKG_CONFIG=`pwd`/bin/pkg-config.exe
+          # Add gtk+ directory to PATH so that cmake can find the correct zlib
+          # library.
+          export PATH=`pwd`/bin:$PATH
           ./scripts/package.sh .
         shell: bash
 
