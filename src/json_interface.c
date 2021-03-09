@@ -16,6 +16,7 @@ static int bygfoot_json_do_commands(Bygfoot *bygfoot, const json_object *command
 static int bygfoot_json_do_add_user(Bygfoot *bygfoot, const json_object *args);
 static struct json_object *bygfoot_json_call_load_bygfoot(Bygfoot *bygfoot, const json_object *args);
 static struct json_object *bygfoot_json_call_save_bygfoot(Bygfoot *bygfoot, const json_object *args);
+static struct json_object *bygfoot_json_call_dump_bygfoot(Bygfoot *bygfoot, const json_object *args);
 static struct json_object *bygfoot_json_call_add_country(Bygfoot *bygfoot, const json_object *args);
 static struct json_object *bygfoot_json_call_add_user(Bygfoot *bygfoot, const json_object *args);
 static struct json_object *bygfoot_json_call_start_bygfoot(Bygfoot *bygfoot, const json_object *args);
@@ -104,6 +105,7 @@ static int bygfoot_json_do_commands(Bygfoot *bygfoot, const json_object *command
     } json_funcs[] = {
         { "load_bygfoot", bygfoot_json_call_load_bygfoot },
         { "save_bygfoot", bygfoot_json_call_save_bygfoot },
+        { "dump_bygfoot", bygfoot_json_call_dump_bygfoot },
         { "add_country", bygfoot_json_call_add_country },
         { "add_user", bygfoot_json_call_add_user },
         { "start_bygfoot", bygfoot_json_call_start_bygfoot },
@@ -213,6 +215,12 @@ bygfoot_json_call_save_bygfoot(Bygfoot *bygfoot, const json_object *args)
 
     load_save_save_game(bygfoot, filename);
     return json_object_new_object();
+}
+
+static json_object *
+bygfoot_json_call_dump_bygfoot(Bygfoot *bygfoot, const json_object *args)
+{
+    return bygfoot_json_serialize_bygfoot(bygfoot);
 }
 
 static json_object *
@@ -462,7 +470,7 @@ bygfoot_json_call_get_cups(Bygfoot *bygfoot, const json_object *args)
 
     for (i = 0; i < country.cups->len; i++) {
         const Cup *cup = &g_array_index(country.cups, Cup, i);
-        json_object_array_add(cups_obj, bygfoot_json_serialize_cup(cup, NULL));
+        json_object_array_add(cups_obj, bygfoot_json_serialize_cup(cup));
     }
 
     return cups_obj;
