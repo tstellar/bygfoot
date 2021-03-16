@@ -404,6 +404,8 @@ free_league(League *league)
     free_g_array(&league->two_match_weeks[1]);
 
     free_league_stats(&league->stats);
+
+    free_gchar_ptr(league->regions);
 }
 
 /** Free the promotion/relegation struct of a league. */
@@ -562,6 +564,7 @@ free_team(Team *tm)
     free_gchar_ptr(tm->def_file);
 
     free_player_array(&tm->players);
+    g_free(tm->region);
 }
 
 /** Free an array containing players. */

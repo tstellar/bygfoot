@@ -193,6 +193,9 @@ typedef struct
         the fixtures of which should be avoided when scheduling
         the league fixtures. */
     GPtrArray *skip_weeks_with;
+    /** Space delminted list of region names for this league.  Only Teams that
+     * belong to one of these regions may play in this league. */
+    gchar *regions;
 } League;
 
 #endif

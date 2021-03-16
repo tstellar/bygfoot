@@ -117,6 +117,10 @@ typedef struct
      * to have Green II be level 2 and not 1 is because it makes the xml
      * definitions less confusing.*/
     gint reserve_level;
+
+    /** The region this team belongs to.  This can be used to determine
+     * which leagues a team can play in. */
+    gchar *region;
 } Team;
 
 #endif

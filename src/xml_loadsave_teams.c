@@ -53,6 +53,7 @@ enum
     TAG_TEAM_FIRST_TEAM_SID,
     TAG_TEAM_FIRST_TEAM_ID,
     TAG_TEAM_RESERVE_LEVEL,
+    TAG_TEAM_REGION,
     TAG_END
 };
 
@@ -137,6 +138,7 @@ xml_loadsave_teams_end_element    (GMarkupParseContext *context,
         tag == TAG_TEAM_FIRST_TEAM_SID ||
         tag == TAG_TEAM_FIRST_TEAM_ID ||
         tag == TAG_TEAM_RESERVE_LEVEL ||
+	tag == TAG_TEAM_REGION ||
 	    tag == TAG_TEAM_LUCK)
 	state = TAG_TEAM;
     else if(tag == TAG_TEAM_STADIUM_NAME ||
@@ -219,6 +221,8 @@ xml_loadsave_teams_text         (GMarkupParseContext *context,
     new_team.first_team_id = int_value;
     else if(state == TAG_TEAM_RESERVE_LEVEL)
 	new_team.reserve_level = int_value;
+    else if(state == TAG_TEAM_REGION)
+	misc_string_assign(&new_team.region, buf);
     else if(state >= TAG_START_PLAYERS && state <= TAG_END_PLAYERS)
 	xml_loadsave_players_text(buf);
 }
@@ -303,6 +307,7 @@ xml_loadsave_teams_write_team(FILE *fil, const Team* team)
     xml_write_string(fil, team->names_file, TAG_TEAM_NAMES_FILE, I1);
     xml_write_string(fil, team->strategy_sid, TAG_TEAM_STRATEGY_SID, I1);
     xml_write_string(fil, team->first_team_sid, TAG_TEAM_FIRST_TEAM_SID, I1);
+    xml_write_string(fil, team->region, TAG_TEAM_REGION, I1);
        
     xml_write_int(fil, team->clid, TAG_TEAM_CLID, I1);
     xml_write_int(fil, team->id, TAG_TEAM_ID, I1);
