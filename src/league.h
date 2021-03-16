@@ -148,6 +148,12 @@ void
 league_team_movements_prune(GArray *team_movements, const gint *league_size,
 			    gint *league_cur_size);
 
+gboolean
+league_has_region(const League *league);
+
+gboolean
+league_team_is_in_region(const League *league, const Team *team);
+
 void
 league_team_movements_assign_dest(GArray *team_movements, gint idx,
 				  const gint *league_size, gint *league_cur_size);

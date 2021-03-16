@@ -82,6 +82,7 @@ league_new(gboolean new_id)
     new.yellow_red = 1000;
 
     new.stats = stat_league_new("", "");
+    new.regions = NULL;
     
     return new;
 }
@@ -1318,6 +1319,40 @@ league_team_movements_compare_dest_idcs(gconstpointer a, gconstpointer b,
     return 0;
 }
 
+gboolean
+league_has_region(const League *league)
+{
+    return league->regions != NULL;
+}
+
+/** Return TRUE if \p team is eligible for \p league baed on the regions
+ * of both.  Note: This function will return TRUE for if either \p league or
+ * \p team have no regions defined.
+ */
+gboolean
+league_team_is_in_region(const League *league, const Team *team)
+{
+    GPtrArray *regions;
+    gboolean result = FALSE;
+    gint i;
+
+    if (!league_has_region(league) || !team->region)
+        return TRUE;
+
+    regions = misc_separate_strings(league->regions);
+    for (i = 0; i < regions->len; i++) {
+        const gchar *region = g_ptr_array_index(regions, i);
+        if (!g_strcmp0(team->region, region)) {
+            result = TRUE;
+            goto done;
+        }
+    }
+done:
+    free_gchar_array(&regions);
+    return result;
+}
+
+
 /** Assign a random destination for the team move with given index
     and remove the destination from all other unassigned moves if
     the dest league is full. */
@@ -1335,6 +1370,19 @@ league_team_movements_assign_dest(GArray *team_movements, gint idx,
     if(debug > 60)
     g_print("league_team_movements_assign_dest %s\n", tmove->tm.name);
 
+    /* Filter out destination leagues that are in a different region */
+    if (tmove->tm.region) {
+        GArray* new_dest_idcs = g_array_new(FALSE, FALSE, sizeof(gint));
+        for (i = 0; i < tmove->dest_idcs->len; i++) {
+            gint dest_idx = g_array_index(tmove->dest_idcs, gint, i);
+            const League *league = &lig(dest_idx);
+            if (league_team_is_in_region(league, &tmove->tm))
+                g_array_append_val(new_dest_idcs, dest_idx);
+        }
+        g_array_unref(tmove->dest_idcs);
+        tmove->dest_idcs = new_dest_idcs;
+    }
+
     if(tmove->dest_idcs->len == 1)
     dest_idx = g_array_index(tmove->dest_idcs, gint, 0);
     else
@@ -1347,7 +1395,12 @@ league_team_movements_assign_dest(GArray *team_movements, gint idx,
 
     league_cur_size[dest_idx]++;
 
-    if(league_cur_size[dest_idx] > league_size[dest_idx])
+    /* The size of region based leagues can fluxute depending on when teams
+     * are relegated in a given year, so we skip the size check for those
+     * types of leagues.
+     */
+    if(league_cur_size[dest_idx] > league_size[dest_idx] &&
+       !league_has_region(&lig(dest_idx)))
     main_exit_program(EXIT_PROM_REL, 
               "league_team_movements_assign_dest: no room in league %s for team %s.",
               lig(dest_idx).name, tmove->tm.name);

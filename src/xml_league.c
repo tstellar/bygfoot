@@ -46,6 +46,7 @@
 #define TAG_AVERAGE_TALENT "average_talent"
 #define TAG_NAMES_FILE "names_file"
 #define TAG_BREAK "break"
+#define TAG_REGIONS "regions"
 #define TAG_JOINED_LEAGUE "joined_league"
 #define TAG_NEW_TABLE "new_table"
 #define TAG_PROM_REL "prom_rel"
@@ -70,6 +71,7 @@
 #define TAG_TEAM_FIRST_TEAM "first_team"
 #define TAG_TEAM_RESERVE_LEVEL "reserve_level"
 #define TAG_TEAM_DEF_FILE "def_file"
+#define TAG_TEAM_REGION "region"
 #define TAG_TWO_MATCH_WEEK_START "two_match_week_start"
 #define TAG_TWO_MATCH_WEEK_END "two_match_week_end"
 
@@ -119,12 +121,14 @@ enum XmlLeagueStates
     STATE_TEAM_FIRST_TEAM,
     STATE_TEAM_RESERVE_LEVEL,
     STATE_TEAM_DEF_FILE,
+    STATE_TEAM_REGION,
     STATE_BREAK,
     STATE_JOINED_LEAGUE,
     STATE_PROPERTY,
     STATE_NEW_TABLE,
     STATE_TWO_MATCH_WEEK_START,
     STATE_TWO_MATCH_WEEK_END,
+    STATE_REGIONS,
     STATE_END
 };
 
@@ -202,6 +206,8 @@ xml_league_read_start_element (GMarkupParseContext *context,
 	state = STATE_NAMES_FILE;
     else if(strcmp(element_name, TAG_BREAK) == 0)
 	state = STATE_BREAK;
+    else if(strcmp(element_name, TAG_REGIONS) == 0)
+	state = STATE_REGIONS;
     else if(strcmp(element_name, TAG_DEF_PROPERTY) == 0)
 	state = STATE_PROPERTY;
     else if(strcmp(element_name, TAG_JOINED_LEAGUE) == 0)
@@ -294,6 +300,8 @@ xml_league_read_start_element (GMarkupParseContext *context,
 	state = STATE_TEAM_FIRST_TEAM;
     else if(strcmp(element_name, TAG_TEAM_RESERVE_LEVEL) == 0)
 	state = STATE_TEAM_RESERVE_LEVEL;
+    else if(strcmp(element_name, TAG_TEAM_REGION) == 0)
+	state = STATE_TEAM_REGION;
     else
 	debug_print_message("xml_league_read_start_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
@@ -335,6 +343,7 @@ xml_league_read_end_element    (GMarkupParseContext *context,
        strcmp(element_name, TAG_TWO_MATCH_WEEK_START) == 0 ||
        strcmp(element_name, TAG_TWO_MATCH_WEEK_END) == 0 ||
        strcmp(element_name, TAG_PROM_REL) == 0 ||
+       strcmp(element_name, TAG_REGIONS) == 0 ||
        strcmp(element_name, TAG_TEAMS) == 0)
 	state = STATE_LEAGUE;
     else if(strcmp(element_name, TAG_PROM_GAMES) == 0 ||
@@ -362,6 +371,7 @@ xml_league_read_end_element    (GMarkupParseContext *context,
 	    strcmp(element_name, TAG_TEAM_DEF_FILE) == 0 ||
 	    strcmp(element_name, TAG_TEAM_FIRST_TEAM) == 0 ||
 	    strcmp(element_name, TAG_TEAM_RESERVE_LEVEL) == 0 ||
+	    strcmp(element_name, TAG_TEAM_REGION) == 0 ||
 	    strcmp(element_name, TAG_TEAM_AVERAGE_TALENT) == 0 ||
 	    strcmp(element_name, TAG_TEAM_SYMBOL) == 0 ||
 	    strcmp(element_name, TAG_TEAM_NAMES_FILE) == 0)
@@ -428,6 +438,8 @@ xml_league_read_text         (GMarkupParseContext *context,
 	misc_string_assign(&new_league.names_file, buf);
     else if(state == STATE_BREAK)
         league_cup_fill_rr_breaks(new_league.rr_breaks, buf);
+    else if (state == STATE_REGIONS)
+        misc_string_assign(&new_league.regions, buf);
     else if(state == STATE_PROPERTY)
 	g_ptr_array_add(new_league.properties, g_strdup(buf));
     else if(state == STATE_JOINED_LEAGUE)
@@ -509,6 +521,8 @@ xml_league_read_text         (GMarkupParseContext *context,
 	misc_string_assign(&g_array_index(new_league.teams, Team, new_league.teams->len - 1).first_team_sid, buf);
     else if(state == STATE_TEAM_RESERVE_LEVEL)
 	g_array_index(new_league.teams, Team, new_league.teams->len - 1).reserve_level = int_value;
+    else if(state == STATE_TEAM_REGION)
+	misc_string_assign(&g_array_index(new_league.teams, Team, new_league.teams->len - 1).region, buf);
 }
 
 /**

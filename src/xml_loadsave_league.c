@@ -66,6 +66,7 @@ enum
     TAG_LEAGUE_TWO_MATCH_WEEK_START,
     TAG_LEAGUE_TWO_MATCH_WEEK_END,
     TAG_LEAGUE_TABLE_FILE,
+    TAG_LEAGUE_REGIONS,
     TAG_END
 };
 
@@ -155,6 +156,7 @@ xml_loadsave_league_end_element    (GMarkupParseContext *context,
        tag == TAG_LEAGUE_TWO_MATCH_WEEK_START ||
        tag == TAG_LEAGUE_TWO_MATCH_WEEK_END ||
        tag == TAG_LEAGUE_TABLE_FILE ||
+       tag == TAG_LEAGUE_REGIONS ||
        tag == TAG_LEAGUE_AVERAGE_TALENT ||
        tag == TAG_LEAGUE_AVERAGE_TALENT ||
        tag == TAG_LEAGUE_ROUND_ROBINS ||
@@ -292,6 +294,8 @@ xml_loadsave_league_text         (GMarkupParseContext *context,
 	xml_loadsave_table_read(buf2, &new_table);
 	g_array_append_val(new_league->tables, new_table);
     }
+    else if(state == TAG_LEAGUE_REGIONS)
+        misc_string_assign(&new_league->regions, buf);
     else if(state == TAG_LEAGUE_AVERAGE_TALENT)
 	new_league->average_talent = float_value;
     else if(state == TAG_LEAGUE_PROM_REL_PROM_GAMES_DEST_SID)
@@ -391,6 +395,7 @@ xml_loadsave_league_write(const gchar *prefix, const League *league)
     xml_write_string(fil, league->names_file, TAG_NAMES_FILE, I0);
     xml_write_string(fil, league->sid, TAG_SID, I0);
     xml_write_string(fil, league->symbol, TAG_SYMBOL, I0);
+    xml_write_string(fil, league->regions, TAG_LEAGUE_REGIONS, I0);
 
     for(i=0;i<league->properties->len;i++)
 	xml_write_string(fil, (gchar*)g_ptr_array_index(league->properties, i),
