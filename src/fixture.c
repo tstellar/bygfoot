@@ -58,8 +58,9 @@ fixture_write_league_fixtures(League *league)
     /** Add all teams to the same pointer array. */
     for(i = 0; i < league->joined_leagues->len; i++)
     {
-        joined_rrs[i] = g_array_index(league->joined_leagues, JoinedLeague, i).rr;
-        joined_clids[i] = league_index_from_sid(g_array_index(league->joined_leagues, JoinedLeague, i).sid);
+        const JoinedLeague *joined_league = &g_array_index(league->joined_leagues, JoinedLeague, i);
+        joined_rrs[i] = joined_league->rr;
+        joined_clids[i] = league_index_from_sid(joined_league->sid);
         max_rr = MAX(joined_rrs[i], max_rr);
         teams = team_get_pointers_from_array(lig(joined_clids[i]).teams, teams);
     }
