@@ -407,16 +407,13 @@ cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_temp, GPtrArray *teams, G
 
         for(i = ct->start_idx - 1; i <= ct->end_idx - 1; i++)
         {
+            gint team_idx = permutation[i - ct->start_idx + 1];
+            const Team *team = &g_array_index(lig(0).teams, Team, team_idx);
             if(ct->skip_group_check ||
-               !query_team_is_in_cups(
-                   &g_array_index(lig(0).teams,
-                                  Team, permutation[i - ct->start_idx + 1]), cup->group))
+               !query_team_is_in_cups(team, cup->group))
             {
-                g_ptr_array_add(teams, &g_array_index(lig(0).teams,
-                                                      Team, permutation[i - ct->start_idx + 1]));
-                g_ptr_array_add(cup->team_names,
-                                g_strdup(g_array_index(lig(0).teams,
-                                                       Team, permutation[i - ct->start_idx + 1]).name));
+                g_ptr_array_add(teams, team);
+                g_ptr_array_add(cup->team_names, g_strdup(team->name));
                 number_of_teams++;
             }
 		
