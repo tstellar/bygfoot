@@ -866,11 +866,10 @@ start_new_season_league_changes(void)
     {
 	for(j=0;j<lig(i).teams->len;j++)
 	{
-	    g_array_index(lig(i).teams, Team, j).clid = lig(i).id;
-	    for(k=0;k<g_array_index(lig(i).teams, Team, j).players->len;k++)
-		g_array_index(g_array_index(lig(i).teams, Team, j).players, 
-			      Player, k).team =
-		    &g_array_index(lig(i).teams, Team, j);
+            Team *team = &g_array_index(lig(i).teams, Team, j);
+	    team->clid = lig(i).id;
+	    for(k=0;k<team->players->len;k++)
+		g_array_index(team->players, Player, k).team = team;
 	}
 
 	league_season_start(&lig(i));
