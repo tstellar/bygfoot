@@ -1030,13 +1030,15 @@ team_get_average_talents(const GArray *teams)
     if(teams->len == 0)
 	return 0;
 
-    for(i=0;i<teams->len;i++)
-	for(j=0;j<g_array_index(teams, Team, i).players->len;j++)
+    for(i=0;i<teams->len;i++) {
+        const Team *team = &g_array_index(teams, Team, i);
+	for(j=0;j<team->players->len;j++)
 	{
-	    sum += g_array_index(g_array_index(teams, Team, i).players,
-				 Player, j).talent;
+            const Player *player = &g_array_index(team->players, Player, j);
+	    sum += player->talent;
 	    cnt++;
 	}
+    }
 
     return sum / (gfloat)cnt;
 }
