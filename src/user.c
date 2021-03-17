@@ -112,17 +112,19 @@ user_set_up_team_new_game(User *user)
     }
     else
     {
+        Team *team = NULL;
 	rndom = math_rndi(0, lig(user->scout).teams->len - 1);
 	while(team_is_user(&g_array_index(lig(user->scout).teams, Team, rndom)) != -1)
 	    rndom = math_rndi(0, lig(user->scout).teams->len - 1);
       
-	sprintf(buf, "%s", g_array_index(lig(user->scout).teams, Team, rndom).name);
-	misc_string_assign(&g_array_index(lig(user->scout).teams, Team, rndom).name,
+        team = &g_array_index(lig(user->scout).teams, Team, rndom);
+	sprintf(buf, "%s", team->name);
+	misc_string_assign(&team->name,
 			   user->tm->name);
 	misc_string_assign(&user->tm->name, buf);
 
-	user->tm = &g_array_index(lig(user->scout).teams, Team, rndom);
-	user->team_id = g_array_index(lig(user->scout).teams, Team, rndom).id;
+	user->tm = team;
+	user->team_id = team->id;
 
 	user_history_add(user, USER_HISTORY_START_GAME, 
 			 user->tm->name, 
