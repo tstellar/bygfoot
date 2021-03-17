@@ -94,10 +94,11 @@ stat_update_league_players(League *league)
     gint maxlen = const_int("int_stat_players_len");
     Stat new_stat;
 
-    for(i=0;i<league->teams->len;i++)
-	for(j=0;j<g_array_index(league->teams, Team, i).players->len;j++)
+    for(i=0;i<league->teams->len;i++) {
+        Team *team = &g_array_index(league->teams, Team, i);
+	for(j=0;j<team->players->len;j++)
 	{
-	    pl = &g_array_index(g_array_index(league->teams, Team, i).players, Player, j);
+	    pl = &g_array_index(team->players, Player, j);
 	    if(pl->pos != PLAYER_POS_GOALIE)
 		g_ptr_array_add(players_sorted[0], pl);
 	    else if(player_games_goals_get(pl, pl->team->clid, PLAYER_VALUE_GAMES) >=
@@ -105,6 +106,7 @@ stat_update_league_players(League *league)
 		    (gfloat)team_get_table_value(pl->team, TABLE_PLAYED))
 		g_ptr_array_add(players_sorted[1], pl);
 	}
+    }
 
     g_ptr_array_sort_with_data(players_sorted[0], player_compare_func, 
 			       GINT_TO_POINTER(PLAYER_COMPARE_ATTRIBUTE_LEAGUE_GOALS));
