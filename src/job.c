@@ -394,23 +394,22 @@ job_change_country(Job *job)
 
     stat5 = STATUS_GENERATE_TEAMS;
     for(i=0;i<ligs->len;i++)
-	for(j=0;j<lig(i).teams->len;j++)
-	    if(strcmp(g_array_index(lig(i).teams, Team, j).name,
-		      tm.name) != 0)
-		team_generate_players_stadium(&g_array_index(lig(i).teams, Team, j), 0);
+	for(j=0;j<lig(i).teams->len;j++) {
+	    Team *new_team = &g_array_index(lig(i).teams, Team, j);
+	    if(strcmp(new_team->name, tm.name) != 0)
+		team_generate_players_stadium(new_team, 0);
 	    else
 	    {
-		tm.id = g_array_index(lig(i).teams, Team, j).id;
-		tm.clid = g_array_index(lig(i).teams, Team, j).clid;
+		tm.id = new_team->id;
+		tm.clid = new_team->clid;
 		job->team_id = tm.id;
-		free_team(&g_array_index(lig(i).teams, Team, j));
-		g_array_index(lig(i).teams, Team, j) = tm;
+		free_team(new_team);
+		*new_team = tm;
 
-		for(k=0;k<g_array_index(lig(i).teams, Team, j).players->len;k++)
-		    g_array_index(g_array_index(lig(i).teams, Team, j).players,
-				  Player, k).team = 
-			&g_array_index(lig(i).teams, Team, j);
+		for(k=0;k<new_team->players->len;k++)
+		    g_array_index(new_team->players, Player, k).team = new_team;
 	    }
+	}
     country_lookup_first_team_ids(&country);
     stat5 = -1;
 
