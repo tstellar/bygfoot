@@ -1697,11 +1697,14 @@ fixture_remove_rrs(GArray *fixtures, gint clid1, gint clid2, gint to_remove)
         for(j = start; j < league2->teams->len; j++)
         {
             removed = 0;
-            for(k = fixtures->len - 1; k >= 0; k--)
-                if((g_array_index(fixtures, Fixture, k).teams[0]->id == g_array_index(league1->teams, Team, i).id &&
-                    g_array_index(fixtures, Fixture, k).teams[1]->id == g_array_index(league2->teams, Team, j).id) ||
-                   (g_array_index(fixtures, Fixture, k).teams[1]->id == g_array_index(league1->teams, Team, i).id &&
-                    g_array_index(fixtures, Fixture, k).teams[0]->id == g_array_index(league2->teams, Team, j).id))
+            for(k = fixtures->len - 1; k >= 0; k--) {
+                const Fixture *fixture = &g_array_index(fixtures, Fixture, k);
+                const Team *league1_team = &g_array_index(league1->teams, Team, i);
+                const Team *league2_team = &g_array_index(league2->teams, Team, j);
+                if((fixture->teams[0]->id == league1_team->id &&
+                    fixture->teams[1]->id == league2_team->id) ||
+                   (fixture->teams[1]->id == league1_team->id &&
+                    fixture->teams[0]->id == league2_team->id))
                 {
                     g_array_remove_index(fixtures, k);
                     removed++;
@@ -1709,6 +1712,7 @@ fixture_remove_rrs(GArray *fixtures, gint clid1, gint clid2, gint to_remove)
                     if(removed == to_remove)
                         break;
                 }
+            }
         }
     }
 }
