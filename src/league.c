@@ -577,12 +577,14 @@ league_season_start(League *league)
 
     for(i=0;i<league->teams->len;i++)
     {
+
+    Team *team = &g_array_index(league->teams, Team, i);
     team_is_top = 
-        (team_get_league_rank(&g_array_index(league->teams, Team, i), -1) <= 
+        (team_get_league_rank(team, -1) <=
          user_champ_best_teams_limit && idx == 0 && user_champ);
 
     team_change_factor = 
-        (team_is_user(&g_array_index(league->teams, Team, i)) == -1) *
+        (team_is_user(team) == -1) *
         math_rnd(team_change_lower + user_champ * user_champ_addition +
              team_is_top * user_champ_best_teams_addition -
              league_above_talent * (user_champ_addition / 2),
@@ -590,15 +592,13 @@ league_season_start(League *league)
              team_is_top * user_champ_best_teams_addition -
              league_above_talent * (user_champ_addition / 2));
 
-    for(j=0;j<g_array_index(league->teams, Team, i).players->len;j++)
+    for(j=0;j<team->players->len;j++)
         player_season_start(
-        &g_array_index(
-            g_array_index(
-            league->teams, Team, i).players, Player, j), team_change_factor);
+        &g_array_index(team->players, Player, j), team_change_factor);
 
-    g_array_index(league->teams, Team, i).stadium.average_attendance =
-        g_array_index(league->teams, Team, i).stadium.games = 
-        g_array_index(league->teams, Team, i).stadium.possible_attendance = 0;
+    team->stadium.average_attendance =
+        team->stadium.games =
+        team->stadium.possible_attendance = 0;
     }
 
 /*     if(league == &lig(0)) */
