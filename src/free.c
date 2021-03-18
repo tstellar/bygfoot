@@ -1070,14 +1070,6 @@ free_job(Job *job, gboolean free_tm)
 	free_gchar_ptr(job->country_file);
 	free_gchar_ptr(job->country_name);
 	free_gchar_ptr(job->league_name);
-
-	for(i=0;i<job_teams->len;i++)
-	    if(g_array_index(job_teams, Team, i).id == job->team_id)
-	    {
-		if(free_tm)
-		    free_team(&g_array_index(job_teams, Team, i));
-		g_array_remove_index(job_teams, i);
-	    }
     }
 }
 
@@ -1096,7 +1088,6 @@ free_jobs(gboolean reset)
 	if(reset)
 	{
 	    jobs = g_array_new(FALSE, FALSE, sizeof(Job));
-	    job_teams = g_array_new(FALSE, FALSE, sizeof(Team));
 	}
 
 	return;
@@ -1106,11 +1097,9 @@ free_jobs(gboolean reset)
 	free_job(&g_array_index(jobs, Job, i), TRUE);
 
     free_g_array(&jobs);
-    free_g_array(&job_teams);
 
     if(reset)
     {
 	jobs = g_array_new(FALSE, FALSE, sizeof(Job));
-	job_teams = g_array_new(FALSE, FALSE, sizeof(Team));
     }
 }

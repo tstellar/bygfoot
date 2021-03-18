@@ -88,9 +88,8 @@ GArray *bets[2];
 /** Loan interest for the current week. */
 gfloat current_interest;
 
-/** Array of jobs in the job exchange and
-    teams going with the international jobs. */
-GArray *jobs, *job_teams;
+/** Array of jobs in the job exchange. */
+GArray *jobs;
 
 /** Some counters we use. */
 gint counters[COUNT_END];

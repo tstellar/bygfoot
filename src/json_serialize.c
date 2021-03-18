@@ -162,7 +162,6 @@ bygfoot_json_serialize_bygfoot(const Bygfoot *bygfoot)
     SERIALIZE_BYGFOOT_FIELD(bets, bygfoot_json_serialize_bets);
     SERIALIZE_BYGFOOT_FIELD(current_interest, json_object_new_double);
     SERIALIZE_BYGFOOT_FIELD(jobs, bygfoot_json_serialize_jobs);
-    SERIALIZE_BYGFOOT_FIELD(job_teams, bygfoot_json_serialize_teams);
     SERIALIZE_BYGFOOT_FIELD(cur_user, json_object_new_int64);
     
     return bygfoot_obj;
