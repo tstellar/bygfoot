@@ -128,6 +128,10 @@ enum XmlLeagueStates
     STATE_END
 };
 
+typedef struct {
+    Team *new_team;
+} LeagueUserData;
+
 /**
  * The state variable used in the XML parsing functions.
  */
@@ -160,6 +164,7 @@ xml_league_read_start_element (GMarkupParseContext *context,
     JoinedLeague new_joined_league;
     NewTable new_table;
     WeekBreak new_week_break;
+    LeagueUserData *league_user_data = (LeagueUserData*)user_data;
 
     if(strcmp(element_name, TAG_LEAGUE) == 0)
     {
@@ -277,7 +282,8 @@ xml_league_read_start_element (GMarkupParseContext *context,
 	misc_string_assign(&(new_team.symbol), new_league.symbol);
 	misc_string_assign(&(new_team.names_file), new_league.names_file);
 	new_team.clid = new_league.id;
-	g_array_append_val(new_league.teams, new_team);	
+	g_array_append_val(new_league.teams, new_team);
+	league_user_data->new_team = &g_array_index(new_league.teams, Team, new_league.teams->len - 1);
 	state = STATE_TEAM;
     }
     else if(strcmp(element_name, TAG_TEAM_NAME) == 0)
@@ -391,6 +397,7 @@ xml_league_read_text         (GMarkupParseContext *context,
     gchar buf[text_len + 1];
     gint int_value;
     gfloat float_value;
+    LeagueUserData *league_user_data = (LeagueUserData*)user_data;
 
     strncpy(buf, text, text_len);
     buf[text_len] = '\0';
@@ -491,24 +498,20 @@ xml_league_read_text         (GMarkupParseContext *context,
 			  new_league.prom_rel.elements->len - 1).type = PROM_REL_RELEGATION;
     }	
     else if(state == STATE_TEAM_NAME)
-	misc_string_assign(&g_array_index(new_league.teams, Team,
-				      new_league.teams->len - 1).name, buf);
+	misc_string_assign(&league_user_data->new_team->name, buf);
     else if(state == STATE_TEAM_SYMBOL)
-	misc_string_assign(&g_array_index(new_league.teams, Team,
-				      new_league.teams->len - 1).symbol, buf);
+	misc_string_assign(&league_user_data->new_team->symbol, buf);
     else if(state == STATE_TEAM_NAMES_FILE)
-	misc_string_assign(&g_array_index(new_league.teams, Team,
-				      new_league.teams->len - 1).names_file, buf);
+	misc_string_assign(&league_user_data->new_team->names_file, buf);
     else if(state == STATE_TEAM_AVERAGE_TALENT)
-	g_array_index(new_league.teams, Team,
-		      new_league.teams->len - 1).average_talent = 
+	league_user_data->new_team->average_talent = 
 	    (float_value / 10000) * const_float_fast(float_player_max_skill);
     else if(state == STATE_TEAM_DEF_FILE)
-	misc_string_assign(&g_array_index(new_league.teams, Team, new_league.teams->len - 1).def_file, buf);
+	misc_string_assign(&league_user_data->new_team->def_file, buf);
     else if(state == STATE_TEAM_FIRST_TEAM)
-	misc_string_assign(&g_array_index(new_league.teams, Team, new_league.teams->len - 1).first_team_sid, buf);
+	misc_string_assign(&league_user_data->new_team->first_team_sid, buf);
     else if(state == STATE_TEAM_RESERVE_LEVEL)
-	g_array_index(new_league.teams, Team, new_league.teams->len - 1).reserve_level = int_value;
+	league_user_data->new_team->reserve_level = int_value;
 }
 
 /**
@@ -537,9 +540,12 @@ xml_league_read(const gchar *league_name, GArray *leagues)
     gsize length;
     GError *error = NULL;
     gchar buf[SMALL];
+    LeagueUserData user_data;
+
+    memset(&user_data, 0, sizeof(user_data));
 
     context = 
-	g_markup_parse_context_new(&parser, 0, NULL, NULL);
+	g_markup_parse_context_new(&parser, 0, &user_data, NULL);
 
     if(file_name == NULL)
     {
