@@ -160,7 +160,6 @@ xml_league_read_start_element (GMarkupParseContext *context,
 
     PromRelElement new_element;
     PromGames new_prom_games;
-    Team new_team;
     JoinedLeague new_joined_league;
     NewTable new_table;
     WeekBreak new_week_break;
@@ -278,12 +277,12 @@ xml_league_read_start_element (GMarkupParseContext *context,
 	state = STATE_TEAMS;
     else if(strcmp(element_name, TAG_TEAM) == 0)
     {
-	new_team = team_new(TRUE);
-	misc_string_assign(&(new_team.symbol), new_league.symbol);
-	misc_string_assign(&(new_team.names_file), new_league.names_file);
-	new_team.clid = new_league.id;
-	g_array_append_val(new_league.teams, new_team);
-	league_user_data->new_team = &g_array_index(new_league.teams, Team, new_league.teams->len - 1);
+    	league_user_data->new_team = g_malloc0(sizeof(Team));
+	*league_user_data->new_team = team_new(TRUE);
+	misc_string_assign(&(league_user_data->new_team->symbol), new_league.symbol);
+	misc_string_assign(&(league_user_data->new_team->names_file), new_league.names_file);
+	league_user_data->new_team->clid = new_league.id;
+	g_ptr_array_add(new_league.teams, league_user_data->new_team);
 	state = STATE_TEAM;
     }
     else if(strcmp(element_name, TAG_TEAM_NAME) == 0)

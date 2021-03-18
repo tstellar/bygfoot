@@ -408,7 +408,7 @@ cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_temp, GPtrArray *teams, G
         for(i = ct->start_idx - 1; i <= ct->end_idx - 1; i++)
         {
             gint team_idx = permutation[i - ct->start_idx + 1];
-            const Team *team = &g_array_index(lig(0).teams, Team, team_idx);
+            Team *team = g_ptr_array_index(lig(0).teams, team_idx);
             if(ct->skip_group_check ||
                !query_team_is_in_cups(team, cup->group))
             {
@@ -585,7 +585,7 @@ cup_generate_team_list(const Cup *cup, GPtrArray *teams, gboolean league_talents
         return;
 
     for (i = 0; i < top_league->teams->len; i++) {
-        Team *team = &g_array_index(top_league->teams, Team, i);
+        Team *team = g_ptr_array_index(top_league->teams, i);
 	if (league_talents)
             team->average_talent = top_league->average_talent;
         g_ptr_array_add(teams, team);
@@ -633,7 +633,7 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
 
 	    for(k=0; k < league->teams->len; k++)
             {
-                Team *team = &g_array_index(league->teams, Team, k);
+                Team *team = g_ptr_array_index(league->teams, k);
                 if(query_league_cup_has_property(cup->id, "league_talents"))
                 {        
                     team->average_talent = league->average_talent;
