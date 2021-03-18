@@ -319,7 +319,6 @@ main_init_variables(void)
     bets[0] = g_array_new(FALSE, FALSE, sizeof(BetMatch));
     bets[1] = g_array_new(FALSE, FALSE, sizeof(BetMatch));
     jobs = g_array_new(FALSE, FALSE, sizeof(Job));
-    job_teams = g_array_new(FALSE, FALSE, sizeof(Team));
     save_file = NULL;
 
     constants_app.list = settings.list =

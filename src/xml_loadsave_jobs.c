@@ -174,9 +174,6 @@ xml_loadsave_jobs_read(const gchar *dirname, const gchar *basename)
 
     free_jobs(TRUE);
 
-    sprintf(file, "%s%s%s___job_teams.xml", dirname, G_DIR_SEPARATOR_S, basename);
-    xml_loadsave_teams_read(file, job_teams);
-
     sprintf(file, "%s%s%s___jobs.xml", dirname, G_DIR_SEPARATOR_S, basename);
 
     context = 
@@ -211,9 +208,6 @@ xml_loadsave_jobs_write(const gchar *prefix)
     gint i;
     gchar buf[SMALL];
     FILE *fil = NULL;
-
-    sprintf(buf, "%s___job_teams.xml", prefix);
-    xml_loadsave_teams_write(buf, job_teams);    
 
     sprintf(buf, "%s___jobs.xml", prefix);
     file_my_fopen(buf, "w", &fil, TRUE);

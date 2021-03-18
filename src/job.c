@@ -94,9 +94,7 @@ job_add_new_international(gint num_of_new)
     printf("job_add_new_international\n");
 #endif
 
-    gint i, k, rndom, idx;
-    GPtrArray *country_files = file_get_country_files();
-    Country countries[num_of_new];
+    gint i, k, rndom;
     Team *tm = NULL;
     League *league = NULL;
     gint team_id = -1;
@@ -105,37 +103,22 @@ job_add_new_international(gint num_of_new)
     k = 0;
     for(i=0;i<num_of_new;i++)
     {
-	countries[k].leagues = countries[k].cups = NULL;
-	countries[k].allcups = NULL;
-	countries[k].name = countries[k].symbol = 
-	    countries[k].sid = NULL;
-
+        Country *job_country = NULL;
 	do
-	    rndom = math_rndi(0, country_files->len - 1);
-	while(g_strrstr((gchar*)g_ptr_array_index(country_files, rndom),
+	    rndom = math_rndi(0, country_list->len - 1);
+	while(g_strrstr(((Country*)g_ptr_array_index(country_list, rndom))->sid,
 			country.sid));
 	
-	idx = job_country_is_in_list(
-	    (gchar*)g_ptr_array_index(country_files, rndom), 
-	    countries, num_of_new);
+	job_country = g_ptr_array_index(country_list, rndom);
 
-	if(idx == -1)
-	{
-	    idx = k;
-	    xml_country_read((gchar*)g_ptr_array_index(country_files, rndom),
-			     &countries[k]);
-	    counters[COUNT_LEAGUE_ID] -= countries[k].leagues->len;
-	    k++;
-	}
-
-	job_pick_team_from_country(&countries[idx], &tm, &league);
+	job_pick_team_from_country(job_country, &tm, &league);
 
 	new_job.country_file = 
-	    g_strdup_printf("country_%s.xml", countries[idx].sid);
+	    g_strdup_printf("country_%s.xml", job_country->sid);
 	new_job.time = math_rndi(const_int("int_job_update_interval") - 1,
 				 const_int("int_job_update_interval") + 1);
-	new_job.country_name = g_strdup(countries[idx].name);
-	new_job.country_rating = countries[idx].rating;
+	new_job.country_name = g_strdup(job_country->name);
+	new_job.country_rating = job_country->rating;
 	new_job.league_name = g_strdup(league->name);
 	new_job.league_layer = league->layer;
 
@@ -143,9 +126,6 @@ job_add_new_international(gint num_of_new)
 
 	if(team_id == -1)
 	{
-	    team_generate_players_stadium(tm, league->average_talent);
-	    g_array_append_val(job_teams, *tm);
-
 	    new_job.team_id = tm->id;
 	    new_job.type = JOB_TYPE_INTERNATIONAL;
 	}
@@ -161,8 +141,6 @@ job_add_new_international(gint num_of_new)
 
 	g_array_append_val(jobs, new_job);
     }
-
-    free_gchar_array(&country_files);
 }
 
 /** Find out whether the country file is already loaded and part
@@ -308,13 +286,8 @@ job_get_team(const Job *job)
 
     gint i, j;
 
-    if(job->type == JOB_TYPE_NATIONAL)
+    if(job->type == JOB_TYPE_NATIONAL || job->type == JOB_TYPE_INTERNATIONAL) {
 	return team_of_id(job->team_id);
-    else if(job->type == JOB_TYPE_INTERNATIONAL)
-    {
-	for(i=0;i<job_teams->len;i++)
-	    if(g_array_index(job_teams, Team, i).id == job->team_id)
-		return &g_array_index(job_teams, Team, i);
     }
     else
     {
