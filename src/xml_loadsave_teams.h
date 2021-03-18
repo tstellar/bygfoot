@@ -52,10 +52,10 @@ xml_loadsave_teams_text         (GMarkupParseContext *context,
 				  GError             **error);
 
 void
-xml_loadsave_teams_read(const gchar *filename, GArray *teams);
+xml_loadsave_teams_read(const gchar *filename, GPtrArray *teams);
 
 void
-xml_loadsave_teams_write(const gchar *filename, const GArray *teams);
+xml_loadsave_teams_write(const gchar *filename, const GPtrArray *teams);
 
 void
 xml_loadsave_teams_write_team(FILE *fil, const Team* team);

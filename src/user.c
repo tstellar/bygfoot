@@ -114,10 +114,10 @@ user_set_up_team_new_game(User *user)
     {
         Team *team = NULL;
 	rndom = math_rndi(0, lig(user->scout).teams->len - 1);
-	while(team_is_user(&g_array_index(lig(user->scout).teams, Team, rndom)) != -1)
+	while(team_is_user(g_ptr_array_index(lig(user->scout).teams, rndom)) != -1)
 	    rndom = math_rndi(0, lig(user->scout).teams->len - 1);
       
-        team = &g_array_index(lig(user->scout).teams, Team, rndom);
+        team = g_ptr_array_index(lig(user->scout).teams, rndom);
 	sprintf(buf, "%s", team->name);
 	misc_string_assign(&team->name,
 			   user->tm->name);

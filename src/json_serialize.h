@@ -109,7 +109,7 @@ bygfoot_json_serialize_bet_match(const BetMatch *bet_match);
 /** @name Team */
 /* @{ */
 json_object *
-bygfoot_json_serialize_teams(const GArray *teams);
+bygfoot_json_serialize_teams(const GPtrArray *teams);
 
 json_object *
 bygfoot_json_serialize_team_ptrs(GPtrArray *team_ptrs,

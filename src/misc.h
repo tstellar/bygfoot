@@ -99,6 +99,12 @@ GPtrArray*
 misc_copy_ptr_array(const GPtrArray *array);
 
 void
+misc_extend_ptr_array(GPtrArray *dest, GPtrArray *src);
+
+void
+misc_g_ptr_array_insert(GPtrArray *array, gint _index, gpointer data);
+
+void
 misc_string_assign(gchar **string, const gchar *contents);
 
 void
