@@ -169,9 +169,9 @@ typedef struct
     gint yellow_red;
     /** Average talent for the first season. Default: -1. */
     gfloat average_talent;
-    /** Array of teams in the league.
+    /** Array of pointers for teams in the league.
 	@see Team */
-    GArray *teams;
+    GPtrArray *teams;
     /** List of leagues joined fixture-wise to this one.
 	@see JoinedLeague */
     GArray *joined_leagues;

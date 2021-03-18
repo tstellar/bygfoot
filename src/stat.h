@@ -37,7 +37,7 @@ LeagueStat
 stat_league_new(const gchar *league_name, const gchar *league_symbol);
 
 GArray*
-stat_update_league_teams(const GArray *teams, gint compare_type);
+stat_update_league_teams(GPtrArray *teams, gint compare_type);
 
 void
 stat_update_leagues(void);

@@ -95,7 +95,7 @@ stat_update_league_players(League *league)
     Stat new_stat;
 
     for(i=0;i<league->teams->len;i++) {
-        Team *team = &g_array_index(league->teams, Team, i);
+        Team *team = g_ptr_array_index(league->teams, i);
 	for(j=0;j<team->players->len;j++)
 	{
 	    pl = &g_array_index(team->players, Player, j);
@@ -138,7 +138,7 @@ stat_update_league_players(League *league)
 
 /** Update the stats of the league. */
 GArray*
-stat_update_league_teams(const GArray *teams_array, gint compare_type)
+stat_update_league_teams(GPtrArray *teams, gint compare_type)
 {
 #ifdef DEBUG
     printf("stat_update_league_teams\n");
@@ -146,31 +146,30 @@ stat_update_league_teams(const GArray *teams_array, gint compare_type)
 
     gint i;
     GArray *stats = g_array_new(FALSE, FALSE, sizeof(Stat));
-    GPtrArray *teams = g_ptr_array_new();
+    GPtrArray *teams_temp;
     Stat new_stat;
     gint maxlen = const_int("int_stat_teams_len");
     
-    maxlen = MIN(maxlen, teams_array->len);
+    maxlen = MIN(maxlen, teams->len);
 
-    for(i=0;i<teams_array->len;i++)
-	g_ptr_array_add(teams, &g_array_index(teams_array, Team, i));
+    teams_temp = misc_copy_ptr_array(teams);
 
-    g_ptr_array_sort_with_data(teams, team_compare_func, GINT_TO_POINTER(compare_type));
+    g_ptr_array_sort_with_data(teams_temp, team_compare_func, GINT_TO_POINTER(compare_type));
 
     for(i=0;i<maxlen;i++)
     {
-	new_stat.team_name = g_strdup(((Team*)g_ptr_array_index(teams, i))->name);
+	new_stat.team_name = g_strdup(((Team*)g_ptr_array_index(teams_temp, i))->name);
 	new_stat.value1 = 
-	    team_get_table_value((Team*)g_ptr_array_index(teams, i), TABLE_GF);
+	    team_get_table_value((Team*)g_ptr_array_index(teams_temp, i), TABLE_GF);
 	new_stat.value2 = 
-	    team_get_table_value((Team*)g_ptr_array_index(teams, i), TABLE_GA);
+	    team_get_table_value((Team*)g_ptr_array_index(teams_temp, i), TABLE_GA);
 	new_stat.value3 = -1;
 	new_stat.value_string = NULL;
 
 	g_array_append_val(stats, new_stat);
     }
 
-    g_ptr_array_free(teams, TRUE);
+    g_ptr_array_free(teams_temp, TRUE);
 
     return stats;
 }

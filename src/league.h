@@ -45,7 +45,7 @@
     and relegations. */
 typedef struct
 {
-    Team tm; /**< The team we move. */
+    Team *tm; /**< The team we move. */
     GArray *dest_idcs;   /**< Array of possible destination indices. */
     gint prom_rel_type; /**< Promotion or relegation */
     gboolean dest_assigned; /**< Whether a destination league for the team

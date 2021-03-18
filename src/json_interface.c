@@ -447,7 +447,7 @@ bygfoot_json_call_get_players(Bygfoot *bygfoot, const json_object *args)
         const League *league = &g_array_index(country.leagues, League, i);
         int j;
         for (j = 0; j < league->teams->len; j++) {
-            const Team *team = &g_array_index(league->teams, Team, j);
+            const Team *team = g_ptr_array_index(league->teams, j);
             int k;
             for (k = 0; k < team->players->len; k++) {
                 const Player *player = &g_array_index(team->players, Player, k);

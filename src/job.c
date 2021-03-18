@@ -222,12 +222,12 @@ job_pick_team_from_country(const Country *cntry, Team **tm, League **league)
 	    if(rndom < team_lens[i])
 	    {
 		*tm = (i > 0) ?
-		    &g_array_index(g_array_index(
+		    g_ptr_array_index(g_array_index(
 				       cntry->leagues, League, i).teams, 
-				   Team, rndom - team_lens[i - 1]) :
-		    &g_array_index(g_array_index(
+				   rndom - team_lens[i - 1]) :
+		    g_ptr_array_index(g_array_index(
 				       cntry->leagues, League, i).teams, 
-				   Team, rndom);				
+				   rndom);				
 		*league = &g_array_index(cntry->leagues, League, i);
 		break;
 	    }
@@ -395,7 +395,7 @@ job_change_country(Job *job)
     stat5 = STATUS_GENERATE_TEAMS;
     for(i=0;i<ligs->len;i++)
 	for(j=0;j<lig(i).teams->len;j++) {
-	    Team *new_team = &g_array_index(lig(i).teams, Team, j);
+	    Team *new_team = g_ptr_array_index(lig(i).teams, j);
 	    if(strcmp(new_team->name, tm.name) != 0)
 		team_generate_players_stadium(new_team, 0);
 	    else

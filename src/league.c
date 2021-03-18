@@ -65,7 +65,7 @@ league_new(gboolean new_id)
     new.prom_rel.elements = g_array_new(FALSE, FALSE, sizeof(PromRelElement));
     new.prom_rel.prom_games = g_array_new(FALSE, FALSE, sizeof(PromGames));
 
-    new.teams = g_array_new(FALSE, FALSE, sizeof(Team));
+    new.teams = g_ptr_array_new();
     new.fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));
     new.joined_leagues = g_array_new(FALSE, FALSE, sizeof(JoinedLeague));
     new.new_tables = g_array_new(FALSE, FALSE, sizeof(NewTable));
@@ -359,19 +359,19 @@ league_cup_average_capacity(gint clid)
 
     gint i, cnt = 0;
     gfloat sum = 0;
-    const GArray *teams = NULL;
+    const GPtrArray *teams = NULL;
     const GPtrArray *teamsp = NULL;
 
     if(clid < ID_CUP_START)
     {    
-    teams = (GArray*)league_cup_get_teams(clid);
+    teams = league_cup_get_teams(clid);
     for(i=0;i<teams->len;i++)
-        sum += g_array_index(teams, Team, i).stadium.capacity;
+        sum += ((Team*)g_ptr_array_index(teams, i))->stadium.capacity;
         cnt++;
     }
     else
     {
-    teamsp = (GPtrArray*)league_cup_get_teams(clid);
+    teamsp = league_cup_get_teams(clid);
     for(i=0;i<teamsp->len;i++)
         sum += ((Team*)g_ptr_array_index(teamsp, i))->stadium.capacity;
         cnt++;
@@ -502,9 +502,9 @@ league_remove_team_with_id(League *league, gint id)
     gint i;
 
     for(i=0;i<league->teams->len;i++)
-    if(g_array_index(league->teams, Team, i).id == id)
+    if(((Team*)g_ptr_array_index(league->teams, i))->id == id)
     {
-        g_array_remove_index(league->teams, i);
+        g_ptr_array_remove_index(league->teams, i);
         return;
     }
 
@@ -578,7 +578,7 @@ league_season_start(League *league)
     for(i=0;i<league->teams->len;i++)
     {
 
-    Team *team = &g_array_index(league->teams, Team, i);
+    Team *team = g_ptr_array_index(league->teams, i);
     team_is_top = 
         (team_get_league_rank(team, -1) <=
          user_champ_best_teams_limit && idx == 0 && user_champ);
@@ -743,16 +743,15 @@ handle_required_reserve_relegation(const TeamMove *move, GArray *team_movements)
         for (j = 0; j < dest_league->teams->len; j++) {
             gint k;
             TeamMove new_move;
-            const Team *reserve_team = &g_array_index(dest_league->teams,
-                                                      Team, j);
-            if (move->tm.first_team_id != reserve_team->first_team_id)
+            Team *reserve_team = g_ptr_array_index(dest_league->teams, j);
+            if (move->tm->first_team_id != reserve_team->first_team_id)
                 continue; /* Teams do not share the same first team. */
 
             /* We have found a reserve team (Green B in the example above)
              * that shares a first team with the team we are relegating (Green
              * in the example above).  So no we need to also relegate this
              * reserve team. */
-            new_move.tm = *reserve_team;
+            new_move.tm = reserve_team;
             new_move.prom_rel_type = PROM_REL_RELEGATION;
             new_move.dest_assigned = FALSE;
 
@@ -765,14 +764,14 @@ handle_required_reserve_relegation(const TeamMove *move, GArray *team_movements)
                 const TeamMove *move = &g_array_index(team_movements, TeamMove, k);
                 if (move->prom_rel_type != PROM_REL_RELEGATION)
                     continue;
-                if (move->tm.id == reserve_team->id) {
+                if (move->tm->id == reserve_team->id) {
                     /* Found another relegation for this team, so we need to
                      * remove it. */
                     g_array_remove_index(team_movements, k);
                     continue;
                 }
 
-                if (move->tm.clid == reserve_team->clid) {
+                if (move->tm->clid == reserve_team->clid) {
                     /* We have found the last relegation for this league, so
                      * insert the new_move here. */
                     gint insert_index = k + 1;
@@ -828,7 +827,7 @@ league_team_is_top_reserve_team(const League *league, const Team *team)
 
     for (i = 0; i < league->teams->len; i++) {
         gint other_level;
-        const Team *other_team = &g_array_index(league->teams, Team, i);
+        const Team *other_team = g_ptr_array_index(league->teams, i);
         if (team->first_team_id != other_team->first_team_id)
             continue;
 
@@ -858,7 +857,7 @@ country_filter_promotions(const Country *country, GArray *team_movements,
     while (i < team_movements->len) {
         gint additions = 0;
         const TeamMove *move = &g_array_index(team_movements, TeamMove, i++);
-        const League *league = league_from_clid(move->tm.clid);
+        const League *league = league_from_clid(move->tm->clid);
         gint league_idx = league_index_from_sid(league->sid);
         MoveSummary *summary = &g_array_index(move_summaries, MoveSummary, league_idx);
         gint dest_idx;
@@ -875,7 +874,7 @@ country_filter_promotions(const Country *country, GArray *team_movements,
             const League *dest_league = &g_array_index(country->leagues,
                                                        League, dest_idx);
 
-            printf("Looking at promotion of %s from %s to %s.\n", move->tm.name,
+            printf("Looking at promotion of %s from %s to %s.\n", move->tm->name,
                    league->name, dest_league->name);
         }
         if (summary->max_promotions && summary->num_promotions_from == summary->max_promotions)
@@ -883,14 +882,14 @@ country_filter_promotions(const Country *country, GArray *team_movements,
 
         /* If there are other reserve teams with the same first team that
          * are a higher level, then we can't promote this team. */
-        if (!league_team_is_top_reserve_team(league, &move->tm))
+        if (!league_team_is_top_reserve_team(league, move->tm))
             goto remove_promotion;
 
         for (j = 0; j < move->dest_idcs->len; j++) {
             gint idx = g_array_index(move->dest_idcs, gint, j);
             const League *dest_league = &g_array_index(country->leagues,
                                                        League, idx);
-            if (!league_can_accept_promoted_team(dest_league, &move->tm, team_movements))
+            if (!league_can_accept_promoted_team(dest_league, move->tm, team_movements))
                 break;
         }
         if (j < move->dest_idcs->len) {
@@ -921,7 +920,7 @@ country_filter_relegations(const Country *country, GArray *team_movements,
     gint i = team_movements->len - 1;
     while (i >= 0) {
         const TeamMove *move = &g_array_index(team_movements, TeamMove, i--);
-        const League *league = league_from_clid(move->tm.clid);
+        const League *league = league_from_clid(move->tm->clid);
         gint league_idx = league_index_from_sid(league->sid);
         MoveSummary *summary = &g_array_index(move_summaries, MoveSummary, league_idx);
         const Team *first_team;
@@ -939,7 +938,7 @@ country_filter_relegations(const Country *country, GArray *team_movements,
             const League *dest_league = &g_array_index(country->leagues,
                                                        League, dest_idx);
 
-            printf("Looking at relegation of %s from %s to %s.\n", move->tm.name,
+            printf("Looking at relegation of %s from %s to %s.\n", move->tm->name,
                    league->name, dest_league->name);
         }
         if (summary->num_relegations_from == summary->num_promotions_to) {
@@ -957,7 +956,7 @@ country_filter_relegations(const Country *country, GArray *team_movements,
      * team to also be relegated. */
     for (i = 0; i < team_movements->len; i++) {
         const TeamMove *move = &g_array_index(team_movements, TeamMove, i);
-        const League *league = league_from_clid(move->tm.clid);
+        const League *league = league_from_clid(move->tm->clid);
         if (move->prom_rel_type != PROM_REL_RELEGATION)
             continue;
         if (league->layer != current_layer)
@@ -1124,7 +1123,7 @@ league_get_team_movements_prom_rel(const League *league, GArray *team_movements)
         for(k=0;k<dest_sids->len;k++)        
         g_array_append_val(dest_idcs, dest_idcs_int[dest_idcs_order[k]]);
         
-        new_move.tm = *(g_array_index(g_array_index(league->tables, Table, elem->from_table).elements, TableElement, j - 1).team);
+        new_move.tm = g_array_index(g_array_index(league->tables, Table, elem->from_table).elements, TableElement, j - 1).team;
         new_move.prom_rel_type = elem->type;
         new_move.dest_idcs = dest_idcs;
         new_move.dest_assigned = FALSE;
@@ -1177,7 +1176,7 @@ league_get_team_movements_prom_games(const League *league, const PromGames *prom
     for(j=0;j<dest_sids->len;j++)
         g_array_append_val(dest_idcs, dest_idcs_int[dest_idcs_order[j]]);
 
-    new_move.tm = *((Team*)g_ptr_array_index(prom_games_teams, i));
+    new_move.tm = g_ptr_array_index(prom_games_teams, i);
     new_move.prom_rel_type = prom_type;
     new_move.dest_idcs = dest_idcs;
     new_move.dest_assigned = FALSE;
@@ -1222,8 +1221,8 @@ league_get_team_movements(League *league, GArray *team_movements)
         }
     }
 
-    g_array_sort_with_data(league->teams, team_compare_func,
-               GINT_TO_POINTER(TEAM_COMPARE_LEAGUE_RANK + 100));
+    g_ptr_array_sort_with_data(league->teams, team_compare_func,
+               GINT_TO_POINTER(TEAM_COMPARE_LEAGUE_RANK));
 }
 
 /** Find out whether there are unassigned TeamMoves in the array. */
@@ -1279,12 +1278,12 @@ league_team_movements_print(const GArray *team_movements,
     {
     tmove = &g_array_index(team_movements, TeamMove, i);
     if(tmove->dest_assigned)
-        g_print("%-25s (%d) %s \t\t", tmove->tm.name,
-           league_from_clid(tmove->tm.clid)->layer,
+        g_print("%-25s (%d) %s \t\t", tmove->tm->name,
+           league_from_clid(tmove->tm->clid)->layer,
            lig(g_array_index(tmove->dest_idcs, gint, 0)).name);
     else
-        g_print("%-25s (%d) UNASSIGNED \t\t", tmove->tm.name,
-           league_from_clid(tmove->tm.clid)->layer);
+        g_print("%-25s (%d) UNASSIGNED \t\t", tmove->tm->name,
+           league_from_clid(tmove->tm->clid)->layer);
     for(j=0;j<tmove->dest_idcs->len;j++)
         g_print("%d ", g_array_index(tmove->dest_idcs, gint, j));
     g_print("\n");
@@ -1333,7 +1332,7 @@ league_team_movements_assign_dest(GArray *team_movements, gint idx,
     TeamMove *tmove = &g_array_index(team_movements, TeamMove, idx);
 
     if(debug > 60)
-    g_print("league_team_movements_assign_dest %s\n", tmove->tm.name);
+    g_print("league_team_movements_assign_dest %s\n", tmove->tm->name);
 
     if(tmove->dest_idcs->len == 1)
     dest_idx = g_array_index(tmove->dest_idcs, gint, 0);
@@ -1350,13 +1349,13 @@ league_team_movements_assign_dest(GArray *team_movements, gint idx,
     if(league_cur_size[dest_idx] > league_size[dest_idx])
     main_exit_program(EXIT_PROM_REL, 
               "league_team_movements_assign_dest: no room in league %s for team %s.",
-              lig(dest_idx).name, tmove->tm.name);
+              lig(dest_idx).name, tmove->tm->name);
 
     tmove->dest_assigned = TRUE;
 
     if(debug > 60)
-    g_print("%s  %d -> %d\n", tmove->tm.name,
-        league_from_clid(tmove->tm.clid)->layer,
+    g_print("%s  %d -> %d\n", tmove->tm->name,
+        league_from_clid(tmove->tm->clid)->layer,
         league_from_clid(lig(dest_idx).id)->layer);
 
     if(league_cur_size[dest_idx] == league_size[dest_idx])
@@ -1372,20 +1371,20 @@ league_team_movements_assign_dest(GArray *team_movements, gint idx,
         if(tmove->dest_idcs->len == 0)
             main_exit_program(EXIT_PROM_REL, 
                       "league_team_movements_assign_dest: no destinations left for team %s.",
-                      tmove->tm.name);
+                      tmove->tm->name);
         }
     }
 
-    if(team_is_user(&tmove->tm) != -1)
+    if(team_is_user(tmove->tm) != -1)
     {
     if(tmove->prom_rel_type == PROM_REL_PROMOTION)
-        user_history_add(&usr(team_is_user(&tmove->tm)),
-                 USER_HISTORY_PROMOTED, tmove->tm.name,
+        user_history_add(&usr(team_is_user(tmove->tm)),
+                 USER_HISTORY_PROMOTED, tmove->tm->name,
                  lig(g_array_index(tmove->dest_idcs, gint, 0)).name,
                  NULL, NULL);
     else
-        user_history_add(&usr(team_is_user(&tmove->tm)),
-                 USER_HISTORY_RELEGATED, tmove->tm.name,
+        user_history_add(&usr(team_is_user(tmove->tm)),
+                 USER_HISTORY_RELEGATED, tmove->tm->name,
                  lig(g_array_index(tmove->dest_idcs, gint, 0)).name,
                  NULL, NULL);
     }
@@ -1543,7 +1542,7 @@ league_add_table(League *league)
     {
         new_table_element = 
             table_element_new(
-                &g_array_index(league->teams, Team, i), i);
+                g_ptr_array_index(league->teams, i), i);
         g_array_append_val(new_table.elements, new_table_element);
     }
 
@@ -1663,7 +1662,7 @@ country_lookup_first_team_ids(const Country *country)
     for (i = 0; i < country->leagues->len; i++) {
         const League *league = &g_array_index(country->leagues, League, i);
         for (j = 0; j < league->teams->len; j++) {
-            Team *team = &g_array_index(league->teams, Team, j);
+            Team *team = g_ptr_array_index(league->teams, j);
             if (!team_is_reserve_team(team)) {
                 team->first_team_id = team->id;
                 continue;
@@ -1698,7 +1697,7 @@ league_can_accept_promoted_team(const League *league, const Team *tm,
      */
     for (i = 0; i < league->teams->len; i++) {
         gboolean upper_team_promoted = FALSE;
-        const Team *upper_team = &g_array_index(league->teams, Team, i);
+        const Team *upper_team = g_ptr_array_index(league->teams, i);
         if (tm->first_team_id != upper_team->first_team_id)
             continue;
 
@@ -1711,7 +1710,7 @@ league_can_accept_promoted_team(const League *league, const Team *tm,
             const TeamMove *move = &g_array_index(team_movements, TeamMove, j);
             if (move->prom_rel_type != PROM_REL_PROMOTION)
                 continue;
-            if (move->tm.id == upper_team->id) {
+            if (move->tm->id == upper_team->id) {
                 upper_team_promoted = TRUE;
                 break;
             }
@@ -1728,7 +1727,7 @@ league_can_accept_promoted_team(const League *league, const Team *tm,
         if (move->prom_rel_type != PROM_REL_RELEGATION)
             continue;
 
-        if (tm->first_team_id != move->tm.first_team_id)
+        if (tm->first_team_id != move->tm->first_team_id)
             continue;
 
         for (j = 0; j < move->dest_idcs->len; j++) {

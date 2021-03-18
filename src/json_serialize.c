@@ -417,6 +417,8 @@ bygfoot_json_serialize_league(const League *league)
 
     #define SERIALIZE(field, serialize_func) \
             SERIALIZE_OBJECT_FIELD(league_obj, league, field, serialize_func);
+    #define SERIALIZE_STRUCT(field, serialize_func) \
+            SERIALIZE_OBJECT_FIELD_STRUCT(league_obj, league, field, serialize_func, NULL);
 
     SERIALIZE(name, serialize_string);
     SERIALIZE(short_name, serialize_string);
@@ -596,13 +598,13 @@ bygfoot_json_serialize_stadium(Stadium stadium, GHashTable *fields)
 }
 
 json_object *
-bygfoot_json_serialize_teams(const GArray *teams)
+bygfoot_json_serialize_teams(const GPtrArray *teams)
 {
     json_object *teams_array = json_object_new_array_ext(teams->len);
     gint i;
 
     for (i = 0; i < teams->len; i++) {
-        Team *team = &g_array_index(teams, Team, i);
+        Team *team = g_ptr_array_index(teams, i);
         json_object_array_add(teams_array, bygfoot_json_serialize_team(team, NULL));
     }
     return teams_array;

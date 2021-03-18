@@ -50,20 +50,24 @@ fixture_write_league_fixtures(League *league)
     gint max_rr;
     gint joined_clids[league->joined_leagues->len];
     gint joined_rrs[league->joined_leagues->len];
-    GPtrArray *teams;
+    GPtrArray *teams = g_ptr_array_new();
     
     max_rr = league->round_robins;
-    teams = team_get_pointers_from_array(league->teams, NULL);
 
-    /** Add all teams to the same pointer array. */
-    for(i = 0; i < league->joined_leagues->len; i++)
+    /** Add all teams to the same pointer array.
+     * We iterate over the leagues in reverse order to maintain the same
+     * ordering of the teams list that we had prior to changing league->teams
+     * from a GArray to a GPtrArray.  Once we are confident there are no bugs
+     * with that change, it should be safe change this to forward iteration */
+    for(i = league->joined_leagues->len - 1; i >= 0; i--)
     {
         const JoinedLeague *joined_league = &g_array_index(league->joined_leagues, JoinedLeague, i);
         joined_rrs[i] = joined_league->rr;
         joined_clids[i] = league_index_from_sid(joined_league->sid);
         max_rr = MAX(joined_rrs[i], max_rr);
-        teams = team_get_pointers_from_array(lig(joined_clids[i]).teams, teams);
+        misc_extend_ptr_array(teams, lig(joined_clids[i]).teams);
     }
+    misc_extend_ptr_array(teams, league->teams);
         
     /** Write fixtures for as many round robins as required by the maximum number of rrs given. */
     for(i = 0; i < max_rr;)
@@ -1699,8 +1703,8 @@ fixture_remove_rrs(GArray *fixtures, gint clid1, gint clid2, gint to_remove)
             removed = 0;
             for(k = fixtures->len - 1; k >= 0; k--) {
                 const Fixture *fixture = &g_array_index(fixtures, Fixture, k);
-                const Team *league1_team = &g_array_index(league1->teams, Team, i);
-                const Team *league2_team = &g_array_index(league2->teams, Team, j);
+                const Team *league1_team = g_ptr_array_index(league1->teams, i);
+                const Team *league2_team = g_ptr_array_index(league2->teams, j);
                 if((fixture->teams[0]->id == league1_team->id &&
                     fixture->teams[1]->id == league2_team->id) ||
                    (fixture->teams[1]->id == league1_team->id &&

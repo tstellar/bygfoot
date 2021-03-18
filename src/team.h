@@ -128,7 +128,7 @@ gint
 team_get_index(const Team *tm);
 
 gfloat
-team_get_average_talents(const GArray *teams);
+team_get_average_talents(const GPtrArray *teams);
 
 gboolean
 query_team_plays(const Team *tm, gint week_number, gint week_round_number);
