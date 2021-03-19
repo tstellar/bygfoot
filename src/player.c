@@ -748,27 +748,56 @@ player_is_banned(const Player *pl)
     printf("player_is_banned\n");
 #endif
 
+
+    gint i, result = 0;
+    GPtrArray *cards = g_ptr_array_new();
+
+    /* Calling team_get_fixture() is expensive, so first check if a player is
+     * banned from any leagues.  If not, then we don't need to call
+     * team_get_fixture() */
+    for (i = 0; i < pl->cards->len; i++) {
+        PlayerCard *card = &g_array_index(pl->cards, PlayerCard, i);
+        gint yellow_red;
+
+        if (card->red) {
+            g_ptr_array_add(cards, card);
+            continue;
+        }
+        if(card->clid < ID_CUP_START)
+	    yellow_red = league_from_clid(card->clid)->yellow_red;
+        else
+	    yellow_red = cup_from_clid(card->clid)->yellow_red;
+        if(card->yellow == yellow_red - 1)
+            g_ptr_array_add(cards, card);
+    }
+
+    /* Player is not banned from any leagues. */
+    if (cards->len == 0)
+        goto done;
+
     const Fixture *fix = team_get_fixture(pl->team, FALSE);
-    gint yellow_red = -1, yellow, red;
 
     if(fix == NULL)
-	return 0;
+	goto done;
 
-    if(fix->clid < ID_CUP_START)
-	yellow_red = league_from_clid(fix->clid)->yellow_red;
-    else
-	yellow_red = cup_from_clid(fix->clid)->yellow_red;
-    
-    yellow = player_card_get(pl, fix->clid, PLAYER_VALUE_CARD_YELLOW);
-    red = player_card_get(pl, fix->clid, PLAYER_VALUE_CARD_RED);
+    /* Check if one of the leagues we are banned from is the next fixture
+     * for this player. */
+    for (i = 0; i < cards->len; i++) {
+        PlayerCard *card = g_ptr_array_index(cards, i);
+        if (card->clid != fix->clid)
+            continue;
+        if (card->red > 0) {
+            result = card->red;
+            goto done;
+        }
+        /* If it's not a red card then it must be one away from a red. */
+        result = -1;
+        goto done;
+    }
 
-    if(red > 0)
-	return red;
-
-    if(yellow == yellow_red - 1)
-	return -1;
-
-    return 0;
+done:
+    g_ptr_array_unref(cards);
+    return result;
 }
 
 /** Return the player's skill contribution to his team.
