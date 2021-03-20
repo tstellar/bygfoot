@@ -2,6 +2,10 @@ name: Package bygfoot
 
 on:
   push:
+    tags:
+      - '*'
+    branches:
+      - unofficial-trunk
   pull_request:
 
 env:
