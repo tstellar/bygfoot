@@ -1467,7 +1467,7 @@ player_season_start(Player *pl, gfloat skill_change)
     if(pl->cards->len > 0)
     {
 	g_array_free(pl->cards, TRUE);
-	pl->cards = g_array_new(FALSE, FALSE, sizeof(PlayerGamesGoals));
+	pl->cards = g_array_new(FALSE, FALSE, sizeof(PlayerCard));
     }    
 
     if(skill_change != 0)
