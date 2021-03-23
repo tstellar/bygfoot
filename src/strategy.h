@@ -93,5 +93,4 @@ gint
 strategy_compare_positions(gconstpointer a,
 			   gconstpointer b,
 			   gpointer user_data);
-
 #endif

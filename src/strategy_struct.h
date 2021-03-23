@@ -37,6 +37,31 @@ enum StratLineupType
     STRAT_LINEUP_END
 };
 
+/** Tokens that represent parts of a strategy condition. */
+enum StratCondToken {
+    STRAT_COND_NONE,
+    STRAT_COND_EQ,
+    STRAT_COND_NE,
+    STRAT_COND_GT,
+    STRAT_COND_GE,
+    STRAT_COND_LT,
+    STRAT_COND_LE,
+    STRAT_COND_INT,
+    STRAT_COND_VAR,
+    STRAT_COND_AND,
+    STRAT_COND_OR,
+    STRAT_COND_OPEN_PAREN,
+    STRAT_COND_CLOSE_PAREN,
+    STRAT_CON_LAST
+};
+
+typedef struct
+{
+    enum StratCondToken token;
+    const gchar *value;
+    gint len;
+} StratCondPart;
+
 /** A struct describing the pre-match strategy settings 
     of a CPU team. */
 typedef struct
@@ -56,6 +81,8 @@ typedef struct
 {
     /** A condition describing when the action should be taken. */
     gchar *condition, *sub_condition;
+    /** A lexed version of condition for faster processing. */
+    GArray *parsed_condition;
     /** New boost and style values. */
     gint boost, style;
     /** Substitution specifiers (position and property).

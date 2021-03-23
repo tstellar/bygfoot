@@ -28,6 +28,7 @@
 #include "main.h"
 #include "misc.h"
 #include "strategy_struct.h"
+#include "strategy.h"
 #include "xml_strategy.h"
 
 #define TAG_STRATEGY "strategy"
@@ -176,6 +177,7 @@ xml_strategy_read_start_element (GMarkupParseContext *context,
 	new_match_action.sub_condition = NULL;
 	
 	new_match_action.condition = NULL;
+        new_match_action.parsed_condition = NULL;
 	new_match_action.boost = 
 	    new_match_action.style = -100;
 	new_match_action.sub_in_pos = -1;
@@ -184,10 +186,12 @@ xml_strategy_read_start_element (GMarkupParseContext *context,
 	while(attribute_names[atidx] != NULL)
 	{
 	    if(strcmp(attribute_names[atidx], ATT_NAME_COND) == 0 &&
-	       new_match_action.condition == NULL)
+	       new_match_action.condition == NULL) {
 		new_match_action.condition = 
 		    g_strdup(attribute_values[atidx]);
-	    else
+                new_match_action.parsed_condition =
+                    misc_parse_condition_fast(new_match_action.condition);
+	   }  else
 		debug_print_message("xml_strategy_read_start_element: unknown attribute %s\n",
 			  attribute_names[atidx]);
 
