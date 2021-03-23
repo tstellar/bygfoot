@@ -138,4 +138,10 @@ misc_token_add_bool(GPtrArray **token_rep, gint token_idx,
 gint
 misc_alphabetic_compare(gconstpointer a, gconstpointer b);
 
+GArray *
+misc_parse_condition_fast(const gchar *condition);
+
+gboolean
+misc_evaluate_condition(const GArray *condition, GPtrArray **token_rep);
+
 #endif

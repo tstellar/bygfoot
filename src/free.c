@@ -1020,6 +1020,10 @@ free_strategies(void)
 		g_array_index(
 		    g_array_index(
 			strategies, Strategy, i).match_action, StrategyMatchAction, j).condition);
+	    g_array_free(
+		g_array_index(
+		    g_array_index(
+			strategies, Strategy, i).match_action, StrategyMatchAction, j).parsed_condition, TRUE);
 	    g_free(
 		g_array_index(
 		    g_array_index(

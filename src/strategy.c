@@ -691,7 +691,7 @@ strategy_live_game_check(LiveGame *match, gint team_idx)
 	if((match->subs_left[team_idx] > 0 || action->sub_in_pos == -1) &&
 	   !query_misc_integer_is_in_g_array(action->id, match->action_ids[team_idx]) &&
 	   (action->condition == NULL ||
-	    misc_parse_condition(action->condition, token_strat)))
+	    misc_evaluate_condition(action->parsed_condition, token_strat)))
 	{
 	    strategy_live_game_apply_action(match, team_idx, action); 
 	    break;

@@ -29,6 +29,7 @@
 #include "maths.h"
 #include "misc.h"
 #include "option.h"
+#include "strategy_struct.h"
 #include "variables.h"
 
 /**
@@ -811,4 +812,403 @@ misc_alphabetic_compare(gconstpointer a, gconstpointer b)
         return 1 - 2 * (len[0] < len[1]);
 
     return 0;
+}
+
+static gboolean
+misc_condition_evaluate_var(const StratCondPart *var, GArray *operands, GPtrArray **token_rep)
+{
+    gint i;
+    for (i = 0; i < token_rep[0]->len; i++) {
+        gint value;
+        const gchar *token_name = g_ptr_array_index(token_rep[0], i);
+        const gchar *token_value = g_ptr_array_index(token_rep[1], i);
+        if (strncmp(var->value, token_name, var->len))
+            continue;
+        value = g_ascii_strtoll(token_value, NULL, 0);
+        g_array_append_val(operands, value);
+        return TRUE;
+    }
+
+    /* I think it would be good to warn here that the variable was not found,
+     * however the the previous implementation considered the whole condition
+     * to be FALSE when a variable was not found, so for now we need to
+     * replicate the behavior.
+     */
+    return FALSE;
+}
+
+static gboolean
+misc_parse_condition_is_binary_op(const StratCondPart *part)
+{
+    switch (part->token) {
+    default:
+        return FALSE;
+    case STRAT_COND_EQ:
+    case STRAT_COND_NE:
+    case STRAT_COND_GT:
+    case STRAT_COND_GE:
+    case STRAT_COND_LT:
+    case STRAT_COND_LE:
+    case STRAT_COND_AND:
+    case STRAT_COND_OR:
+        return TRUE;
+    }
+}
+
+static gboolean
+misc_parse_condition_is_compare_op(const StratCondPart *part)
+{
+    switch (part->token) {
+    default:
+        return FALSE;
+    case STRAT_COND_EQ:
+    case STRAT_COND_NE:
+    case STRAT_COND_GT:
+    case STRAT_COND_GE:
+    case STRAT_COND_LT:
+    case STRAT_COND_LE:
+        return TRUE;
+    }
+}
+
+static gboolean
+misc_condition_evaluate(const StratCondPart *operation, GArray *operands)
+{
+    gint op0, op1, result;
+    if (operands->len < 2)
+        return FALSE;
+
+    op0 = g_array_index(operands, gint, operands->len - 2);
+    op1 = g_array_index(operands, gint, operands->len - 1);
+
+    switch (operation->token) {
+    default:
+        g_critical("Unknown token: %d\n", operation->token);
+        return FALSE;
+    case STRAT_COND_EQ:
+        result = op0 == op1;
+        break;
+    case STRAT_COND_NE:
+        result = op0 != op1;
+        break;
+    case STRAT_COND_GT:
+        result = op0 > op1;
+        break;
+    case STRAT_COND_GE:
+        result = op0 >= op1;
+        break;
+    case STRAT_COND_LT:
+        result = op0 < op1;
+        break;
+    case STRAT_COND_LE:
+        result = op0 <= op1;
+        break;
+    case STRAT_COND_AND:
+        result = op0 && op1;
+        break;
+    case STRAT_COND_OR:
+        result = op0 || op1;
+        break;
+    }
+
+    g_array_remove_range(operands, operands->len - 2, 2);
+    g_array_append_val(operands, result);
+    return TRUE;
+}
+
+static const StratCondPart *
+misc_parse_value_expression(GArray *stack, const StratCondPart *input)
+{
+    if (input->token == STRAT_COND_INT || input->token == STRAT_COND_VAR) {
+        g_array_append_val(stack, *input);
+        return input + 1;
+    }
+    return input;
+}
+
+static const StratCondPart *
+misc_parse_compare_expression(GArray *stack, const StratCondPart *input)
+{
+    input = misc_parse_value_expression(stack, input);
+    if (misc_parse_condition_is_compare_op(input)) {
+        const StratCondPart *compare_op = input;
+        input = misc_parse_value_expression(stack, input + 1);
+        g_array_append_val(stack, *compare_op);
+    }
+    return input;
+}
+
+static const StratCondPart *
+misc_parse_and_expression(GArray *stack, const StratCondPart *input)
+{
+    input = misc_parse_compare_expression(stack, input);
+    if (input->token == STRAT_COND_AND) {
+        const StratCondPart *and = input;
+        input = misc_parse_and_expression(stack, input + 1);
+        g_array_append_val(stack, *and);
+    }
+    return input;
+}
+
+static const StratCondPart *
+misc_parse_or_expression(GArray *stack, const StratCondPart *input)
+{
+    if (input->token == STRAT_COND_OPEN_PAREN) {
+       input = misc_parse_or_expression(stack, input + 1);
+       if (input->token != STRAT_COND_CLOSE_PAREN);
+           return NULL;
+       return input + 1;
+    }
+
+    input = misc_parse_and_expression(stack, input);
+    if (input->token == STRAT_COND_OR) {
+        const StratCondPart *or = input;
+        input = misc_parse_or_expression(stack, input + 1);
+        g_array_append_val(stack, *or);
+    }
+    return input;
+}
+
+static const StratCondPart *
+misc_parse_paren_expression(GArray *stack, const StratCondPart *input)
+{
+    if (input->token == STRAT_COND_OPEN_PAREN) {
+       input = misc_parse_or_expression(stack, input + 1);
+       if (input->token != STRAT_COND_CLOSE_PAREN) {
+            return NULL;
+       }
+       return input + 1;
+    }
+    return misc_parse_or_expression(stack, input);
+}
+
+/**
+ * This functions parses a condition into a stack of operations in postfix
+ * notation, where the operands preceeded the operation.
+ * Lexer Tokens:
+ *
+ * TOKEN = COND | INT | VARIABLE | LOGIC_OP | OPEN_PAREN | CLOSE_PAREN
+ * COND = '=' | '!=' | GT | GE | LT | LE
+ * GT = 'G' | '>'
+ * GE = 'GE' | '>='
+ * LT = 'L' | '<'
+ * LE = 'LE | '<='
+ * INT = [-]*[0-9]+
+ * VARIABLE = _[A-Z]+_
+ * LOGIC_OP = 'and' | 'or'
+ * OPEN_PAREN = '('
+ * CLOSE_PAREN = ')'
+ *
+ * BNF: 
+ *
+ * <Expression> ::= <Paren Expression>
+ *
+ * <Paren Expression> ::= ( <Or Expression> )
+ *                      | <Or Expression>
+ *
+ * <Or Expression> ::= <And Expression> or <Or Expression>
+ *                   | <And Expression>
+ *                   | ( And Expression )
+ * 
+ * <And Expression> ::= <Compare Expression> and <And Exp>
+ *                    | <Compare Expression>
+ *
+ * <Compare Expression> ::= <Value Expression> compare_op <Value Expresion>
+ *                        | <Value Expression>
+ * <Value Expression> ::= int
+ *                      | variable
+ */
+GArray *
+misc_parse_condition_fast(const gchar *condition)
+{
+    GError *error = NULL;
+
+    GRegex *int_regex = g_regex_new("-*[0-9]+", 0, 0, &error);
+    GRegex *var_regex = g_regex_new("_[A-Z]+_", 0, 0, &error);
+    const gchar *iter = condition;
+    GArray *tokens = g_array_new(TRUE, FALSE, sizeof(StratCondPart));
+    GMatchInfo *match_info = NULL;
+    GArray *stack;
+
+    /* Lexer */
+
+    while (*iter) {
+        StratCondPart part;
+        part.value = iter;
+        switch (*iter) {
+        case ' ':
+            iter++;
+            continue;
+        case '(':
+            part.token = STRAT_COND_OPEN_PAREN;
+            part.len = 1;
+            break;
+        case ')':
+            part.token = STRAT_COND_CLOSE_PAREN;
+            part.len = 1;
+            break;
+        case '=':
+            part.token = STRAT_COND_EQ;
+            part.len = 1;
+            break;
+        case '!':
+            if (iter[1] != '=')
+                goto lexer_done;
+            part.token = STRAT_COND_NE;
+            part.len = 2;
+            break;
+        case 'G':
+            if (iter[1] == 'E') {
+                part.token = STRAT_COND_GE;
+                part.len = 2;
+                break;
+            }
+            part.token = STRAT_COND_GT;
+            part.len = 1;
+            break;
+        case '>':
+            if (iter[1] == '=') {
+                part.token = STRAT_COND_GE;
+                part.len = 2;
+                break;
+            }
+            part.token = STRAT_COND_GT;
+            part.len = 1;
+            break;
+        case 'L':
+            if (iter[1] == 'E') {
+                part.token = STRAT_COND_LE;
+                part.len = 2;
+                break;
+            }
+            part.token = STRAT_COND_LT;
+            part.len = 1;
+            break;
+        case '<':
+            if (iter[1] == '=') {
+                part.token = STRAT_COND_LE;
+                part.len = 2;
+                break;
+            }
+            part.token = STRAT_COND_LT;
+            part.len = 1;
+            break;
+        case 'a':
+            if (!g_strrstr_len(iter, 3, "and"))
+                goto lexer_done;
+            part.token = STRAT_COND_AND;
+            part.len = 3;
+            break;
+        case 'o':
+            if (iter[1] != 'r')
+                goto lexer_done;
+            part.token = STRAT_COND_OR;
+            part.len = 2;
+            break;
+        case '_': {
+            gint start_pos = -1, end_pos = -1;
+            if (!g_regex_match(var_regex, iter, 0, &match_info))
+                goto lexer_done;
+            if (!g_match_info_fetch_pos(match_info, 0, &start_pos, &end_pos))
+                goto lexer_done;
+            if (start_pos != 0)
+                goto lexer_done;
+            part.token = STRAT_COND_VAR;
+            part.len = end_pos;
+            break;
+        }
+        case '-':
+        case '0':
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9': {
+            gint start_pos = -1, end_pos = -1;
+            if (!g_regex_match(int_regex, iter, 0, &match_info))
+                goto lexer_done;
+            if (!g_match_info_fetch_pos(match_info, 0, &start_pos, &end_pos))
+                goto lexer_done;
+            if (start_pos != 0)
+                goto lexer_done;
+            part.token = STRAT_COND_INT;
+            part.len = end_pos;
+            part.value = GINT_TO_POINTER(g_ascii_strtoll(part.value, NULL, 0));
+            break;
+        }
+        default:
+            goto lexer_done;
+        }
+
+        iter += part.len;
+        g_array_append_val(tokens, part);
+    }
+
+lexer_done:
+    g_regex_unref(int_regex);
+    g_regex_unref(var_regex);
+
+    if (match_info)
+        g_match_info_free(match_info);
+
+    if (*iter) {
+        /* Handle error */
+        g_array_unref(tokens);
+        g_critical("Failed to lex strategy condition %s at char %d (%c)\n",
+                   condition, (gint)(iter - condition), *iter);
+        return NULL;
+    }
+
+    /* Parser */
+    stack = g_array_new(FALSE, FALSE, sizeof(StratCondPart));
+    if (!misc_parse_paren_expression(stack, (StratCondPart*)tokens->data)) {
+    	g_critical("Failed to parse strategy condiiton %s\n", condition);
+        g_array_unref(stack);
+        stack = NULL;
+    }
+
+    g_array_unref(tokens);
+    return stack;
+}
+
+
+
+gboolean
+misc_evaluate_condition(const GArray *condition, GPtrArray **token_rep)
+{
+    GArray *operands = g_array_new(FALSE, FALSE, sizeof(gint));
+    gboolean result = FALSE;
+    gint i;
+    /* Execute the stack. */
+    for (i = 0; i < condition->len; i++) {
+        const StratCondPart *part = &g_array_index(condition, StratCondPart, i);
+        switch (part->token) {
+        case STRAT_COND_VAR:
+            if (!misc_condition_evaluate_var(part, operands, token_rep)) {
+                /* In order to match the behavior of the previous
+                 * implementation, we need to return FALSE if we
+                 * failed to replace a variable. */
+                goto done;
+            }
+	    break;
+        case STRAT_COND_INT: {
+	    int value = GPOINTER_TO_INT(part->value);
+            g_array_append_val(operands, value);
+            break;
+	}
+        default:
+            misc_condition_evaluate(part, operands);
+            break;
+        }
+    }
+
+    result = g_array_index(operands, gint, 0);
+
+    done:
+        g_array_free(operands, TRUE);
+        return result;
 }
