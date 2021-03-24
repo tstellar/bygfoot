@@ -686,20 +686,14 @@ strategy_live_game_check(LiveGame *match, gint team_idx)
 
     for(i=strat->match_action->len - 1; i >= 0; i--)
     {
-	if((match->subs_left[team_idx] > 0 ||
-	    g_array_index(strat->match_action, 
-			  StrategyMatchAction, i).sub_in_pos == -1) &&
-	   !query_misc_integer_is_in_g_array(
-	       g_array_index(strat->match_action, StrategyMatchAction, i).id,
-	       match->action_ids[team_idx]) &&
-	   (g_array_index(strat->match_action, StrategyMatchAction, i).condition == NULL ||
-	    misc_parse_condition(
-		g_array_index(strat->match_action, StrategyMatchAction, i).condition,
-		token_strat)))
+        const StrategyMatchAction *action =
+                &g_array_index(strat->match_action, StrategyMatchAction, i);
+	if((match->subs_left[team_idx] > 0 || action->sub_in_pos == -1) &&
+	   !query_misc_integer_is_in_g_array(action->id, match->action_ids[team_idx]) &&
+	   (action->condition == NULL ||
+	    misc_parse_condition(action->condition, token_strat)))
 	{
-	    strategy_live_game_apply_action(
-		match, team_idx, 
-		&g_array_index(strat->match_action, StrategyMatchAction, i));
+	    strategy_live_game_apply_action(match, team_idx, action); 
 	    break;
 	}
     }
