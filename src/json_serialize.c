@@ -640,31 +640,22 @@ bygfoot_json_serialize_team(const Team *team, GHashTable *fields)
     return team_obj;
 }
 
-static void
-serialize_team_pointers_callback(gpointer team, gpointer user_data)
-{
-    gchar *fields[] = {
-        "name",
-        "id"
-    };
-    GHashTable *hash_table = fields_to_hash_table(fields);
-    struct json_object *obj = (struct json_object*)user_data;
-    json_object_array_add(obj, bygfoot_json_serialize_team_ptr((Team*)team));
-}
-
 struct json_object *
 bygfoot_json_serialize_team_ptrs(GPtrArray *team_ptrs, GHashTable *fields)
 {
-    struct json_object *array_obj;
+    struct json_object *teams_array;
+    gint i;
 
     if (!team_ptrs)
         return NULL;
 
-    array_obj = json_object_new_array_ext(team_ptrs->len);
+    teams_array = json_object_new_array_ext(team_ptrs->len);
 
-    g_ptr_array_foreach(team_ptrs, serialize_team_pointers_callback, array_obj);
-
-    return array_obj;
+    for (i = 0; i < team_ptrs->len; i++) {
+        const Team *team = g_ptr_array_index(team_ptrs, i);
+        json_object_array_add(teams_array, bygfoot_json_serialize_team_ptr(team));
+    }
+    return teams_array;
 }
 
 
