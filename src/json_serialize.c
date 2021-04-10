@@ -99,9 +99,8 @@ fields_to_hash_table(gchar **fields)
 
     if (!fields)
         return NULL;
-
     hash_table = g_hash_table_new(g_str_hash, g_str_equal);
-    for (field = *fields; field; field++) {
+    for (field = *fields; field; field = *fields++) {
         g_hash_table_add(hash_table, field);
     }
     return hash_table;
@@ -674,7 +673,8 @@ bygfoot_json_serialize_team_ptr(const Team *team)
 {
     gchar *fields[] = {
         "name",
-        "id"
+        "id",
+	NULL
     };
     GHashTable *hash_table = fields_to_hash_table(fields);
     return bygfoot_json_serialize_team(team, hash_table);
