@@ -30,6 +30,8 @@ static struct json_object *bygfoot_json_call_get_fixtures(Bygfoot *bygfoot,
                                                           const json_object *args);
 static struct json_object *bygfoot_json_call_get_cups(Bygfoot *bygfoot,
                                                       const json_object *args);
+static struct json_object *bygfoot_json_call_get_leagues(Bygfoot *bygfoot,
+                                                         const json_object *args);
 static struct json_object *bygfoot_json_response_error(const char *command,
                                                const char *error);
 static json_object *
@@ -114,6 +116,7 @@ static int bygfoot_json_do_commands(Bygfoot *bygfoot, const json_object *command
         { "get_players", bygfoot_json_call_get_players },
         { "get_fixtures", bygfoot_json_call_get_fixtures },
         { "cups", bygfoot_json_call_get_cups },
+	{ "leagues", bygfoot_json_call_get_leagues },
         { NULL, NULL}
     };
 
@@ -476,6 +479,11 @@ bygfoot_json_call_get_cups(Bygfoot *bygfoot, const json_object *args)
     return cups_obj;
 }
 
+static json_object *
+bygfoot_json_call_get_leagues(Bygfoot *bygfoot, const json_object *args)
+{
+    return bygfoot_json_serialize_league_array(country.leagues);
+}
 
 static json_object *
 bygfoot_json_live_game_stats_to_json(const LiveGameStats *stats, gint team_index)
