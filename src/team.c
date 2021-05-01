@@ -524,7 +524,7 @@ team_get_league_rank(const Team *tm, gint clid)
     }
 
     for(i=0;i<elements->len;i++)
-	if(g_array_index(elements, TableElement, i).team_id == tm->id)
+	if(g_array_index(elements, TableElement, i).team == tm)
 	    return i + 1;
     
     main_exit_program(EXIT_INT_NOT_FOUND, 
@@ -548,7 +548,7 @@ team_get_cup_rank(const Team *tm, const CupRound *cupround, gboolean abort)
     for(i=0;i<cupround->tables->len;i++)
     {
 	for(j=0;j<g_array_index(cupround->tables, Table, i).elements->len;j++)
-	    if(g_array_index(g_array_index(cupround->tables, Table, i).elements, TableElement, j).team_id == tm->id)
+	    if(g_array_index(g_array_index(cupround->tables, Table, i).elements, TableElement, j).team == tm)
 		return j + 1;
     }
 
@@ -823,7 +823,7 @@ team_get_table_value(const Team *tm, gint type)
     elements = league_table(league_from_clid(tm->clid))->elements;
 
     for(i=0;i<elements->len;i++)
-	if(g_array_index(elements, TableElement, i).team_id == tm->id)
+	if(g_array_index(elements, TableElement, i).team == tm)
 	    break;
 
     if(i == elements->len)
