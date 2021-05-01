@@ -63,7 +63,6 @@ table_element_new(Team *team, gint old_rank)
     TableElement new;
 
     new.team = team;
-    new.team_id = team->id;
     new.old_rank = old_rank;
 
     for(i=0;i<TABLE_END;i++)
@@ -204,7 +203,7 @@ table_element_compare_func(gconstpointer a,
     GArray *fixtures;
     const Fixture *fix[2] = {NULL, NULL};
 
-    if(element1->team_id == element2->team_id)
+    if(element1->team == element2->team)
 	return 0;
 
     clid = GPOINTER_TO_INT(clid_pointer);
@@ -234,11 +233,11 @@ table_element_compare_func(gconstpointer a,
 	       g_array_index(fixtures, Fixture, i).week_number <= week &&
 	       g_array_index(fixtures, Fixture, i).week_round_number <= week_round)
 	    {
-		if(g_array_index(fixtures, Fixture, i).team_ids[0] == element1->team_id &&
-		   g_array_index(fixtures, Fixture, i).team_ids[1] == element2->team_id)
+		if(g_array_index(fixtures, Fixture, i).team_ids[0] == element1->team->id &&
+		   g_array_index(fixtures, Fixture, i).team_ids[1] == element2->team->id)
 		    fix[0] = &g_array_index(fixtures, Fixture, i);
-		else if(g_array_index(fixtures, Fixture, i).team_ids[1] == element1->team_id &&
-			g_array_index(fixtures, Fixture, i).team_ids[0] == element2->team_id)
+		else if(g_array_index(fixtures, Fixture, i).team_ids[1] == element1->team->id &&
+			g_array_index(fixtures, Fixture, i).team_ids[0] == element2->team->id)
 		    fix[1] = &g_array_index(fixtures, Fixture, i);
 	    }
 	}
@@ -307,7 +306,6 @@ table_copy(const Table *table)
     {
         elem = &g_array_index(table->elements, TableElement, i);
         new_table_element.team = elem->team;
-        new_table_element.team_id = elem->team_id;
         new_table_element.old_rank = elem->old_rank;
 
         for(j=0;j<TABLE_END;j++)
@@ -327,5 +325,5 @@ table_refresh_team_pointers(Table *table)
 
     for(i = 0; i < table->elements->len; i++)
         g_array_index(table->elements, TableElement, i).team =
-            team_of_id(g_array_index(table->elements, TableElement, i).team_id);
+            team_of_id(GPOINTER_TO_INT(g_array_index(table->elements, TableElement, i).team));
 }

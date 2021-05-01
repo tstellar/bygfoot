@@ -140,7 +140,7 @@ xml_loadsave_table_text         (GMarkupParseContext *context,
     else if(state == TAG_ROUND)
 	new_table->round = int_value;
     else if(state == TAG_TEAM_ID)
-	new_element.team_id = int_value;
+	new_element.team = GINT_TO_POINTER(int_value);
     else if(state == TAG_TABLE_ELEMENT_VALUE)
 	new_element.values[valueidx] = int_value;
     else if(state == TAG_TABLE_ELEMENT_OLD_RANK)

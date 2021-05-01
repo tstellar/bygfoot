@@ -497,8 +497,7 @@ cup_load_choose_team_from_league(Cup *cup, const League *league,
     {
         for(j=0;j<table->elements->len;j++)
         {
-	    Team *team = team_of_id(
-                    g_array_index(table->elements, TableElement, j).team_id);
+	    Team *team = g_array_index(table->elements, TableElement, j).team;
 	    if (team_is_reserve_team(team) &&
 	        !query_league_cup_has_property(cup->id, "include_reserve_teams"))
 		continue;
@@ -520,18 +519,18 @@ cup_load_choose_team_from_league(Cup *cup, const League *league,
 
         for(j = 0; j < end; j++)
         {
-	    Team *team = team_of_id(g_array_index(table->elements, TableElement, order[j]).team_id);
+	    Team *team = g_array_index(table->elements, TableElement, order[j]).team;
 	    if (team_is_reserve_team(team) &&
 	        !query_league_cup_has_property(cup->id, "include_reserve_teams"))
 		continue;
             if(debug > 80)
                 g_print("j %d order %d team %s isinint %d numteams %d\n",
                         j, order[j],
-                        team_of_id(g_array_index(table->elements, 
-                                                 TableElement, order[j]).team_id)->name,
+                        g_array_index(table->elements,
+                                      TableElement, order[j]).team->name,
                         query_team_is_in_cups(
-                            team_of_id(g_array_index(table->elements, 
-                                                     TableElement, order[j]).team_id),
+                            g_array_index(table->elements,
+                                          TableElement, order[j]).team,
                             cup->group),
                         number_of_teams);
 
@@ -853,9 +852,9 @@ cup_compare_success_tables(const Team *tm1, const Team *tm2, const Cup *cup, gin
     {
 	for(i=0;i<cupround->tables->len;i++)
 	    for(j=0;j<g_array_index(cupround->tables, Table, i).elements->len;j++)
-		if(g_array_index(g_array_index(cupround->tables, Table, i).elements, TableElement, j).team_id == tm1->id)
+		if(g_array_index(g_array_index(cupround->tables, Table, i).elements, TableElement, j).team == tm1)
 		    elem1 = &g_array_index(g_array_index(cupround->tables, Table, i).elements, TableElement, j);
-		else if(g_array_index(g_array_index(cupround->tables, Table, i).elements, TableElement, j).team_id == tm2->id)
+		else if(g_array_index(g_array_index(cupround->tables, Table, i).elements, TableElement, j).team == tm2)
 		    elem2 = &g_array_index(g_array_index(cupround->tables, Table, i).elements, TableElement, j);
 
 	return_value = table_element_compare_func(elem1, elem2, GINT_TO_POINTER(cup->id));

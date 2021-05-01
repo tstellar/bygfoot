@@ -1447,7 +1447,6 @@ bygfoot_json_serialize_table_element(const TableElement *element)
             SERIALIZE_OBJECT_FIELD(element_obj, element, field, serialize_func);
 
     SERIALIZE(team, bygfoot_json_serialize_team_ptr);
-    SERIALIZE(team_id, json_object_new_int64);
     SERIALIZE(old_rank, json_object_new_int64);
     json_object_object_add(element_obj, "played",
                            json_object_new_int64(element->values[TABLE_PLAYED]));
