@@ -527,8 +527,7 @@ league_season_start(League *league)
     gint idx = league_index_from_sid(league->sid);
     gboolean user_champ = 
     (team_is_user(
-        team_of_id(
-        g_array_index(league_table((&lig(0)))->elements, TableElement, 0).team_id)) != -1);
+        g_array_index(league_table((&lig(0)))->elements, TableElement, 0).team) != -1);
     gboolean league_above_talent =
     (team_get_average_talents(league->teams) > league->average_talent *
      const_float("float_season_end_league_above_talent_factor") && !user_champ);
@@ -551,8 +550,7 @@ league_season_start(League *league)
 
     if(user_champ)
     {
-    tm = team_of_id(
-        g_array_index(league_table((&lig(0)))->elements, TableElement, 0).team_id);
+    tm = g_array_index(league_table((&lig(0)))->elements, TableElement, 0).team;
     tm->luck = MAX(tm->luck * const_float("float_season_end_user_champ_luck_factor"),
                const_float("float_luck_limit"));
     }
