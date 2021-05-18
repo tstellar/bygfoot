@@ -415,7 +415,7 @@ team_is_user(const Team *tm)
     gint i;
 
     for(i=0;i<users->len;i++)
-	if(usr(i).team_id == tm->id)
+	if(usr(i).tm == tm)
 	    return i;
 
     return -1;

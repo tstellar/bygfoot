@@ -287,7 +287,6 @@ xml_loadsave_users_text         (GMarkupParseContext *context,
     else if(state == TAG_TEAM_ID)
     {
 	new_user.tm = team_of_id(int_value);
-	new_user.team_id = int_value;
 	new_user.youth_academy.tm = new_user.tm;
     }
     else if(state == TAG_USER_MONEY)
@@ -437,7 +436,7 @@ xml_loadsave_users_write(const gchar *prefix)
 	fprintf(fil, "<_%d>\n", TAG_USER);
 
 	xml_write_string(fil, usr(i).name, TAG_NAME, I1);
-	xml_write_int(fil, usr(i).team_id, TAG_TEAM_ID, I1);
+	xml_write_int(fil, usr(i).tm->id, TAG_TEAM_ID, I1);
 	xml_write_int(fil, usr(i).money, TAG_USER_MONEY, I1);
 	xml_write_int(fil, usr(i).debt, TAG_USER_DEBT, I1);
 	xml_write_float(fil, usr(i).debt_interest, TAG_USER_DEBT_INTEREST, I1);

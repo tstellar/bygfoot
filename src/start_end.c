@@ -192,8 +192,6 @@ start_new_season(void)
 
 	for(i=0;i<users->len;i++)
 	{
-	    usr(i).tm = team_of_id(usr(i).team_id);
-
 	    usr(i).youth_academy.tm = usr(i).tm;
 	    for(j=0;j<usr(i).youth_academy.players->len;j++)
 	    {
