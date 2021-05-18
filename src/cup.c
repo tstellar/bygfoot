@@ -723,10 +723,7 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
 }
 
 /** Return a pointer array of teams ordered corresponding to
-    their success in the cup. A bit tricky because we have to
-    fetch the team pointers corresponding to their name because
-    the team pointers in the fixtures are partially invalid because
-    of promotion relegation. */
+    their success in the cup. */
 GPtrArray*
 cup_get_teams_sorted(const Cup *cup)
 {
@@ -736,20 +733,17 @@ cup_get_teams_sorted(const Cup *cup)
 
     gint i, j;
     GPtrArray *teams = g_ptr_array_new();
-    GArray *team_ids = g_array_new(FALSE, FALSE, sizeof(gint));
     
-    for(i=0;i<cup->fixtures->len;i++)
-	for(j=0;j<2;j++)
-	    if(!query_misc_integer_is_in_g_array(
-		   g_array_index(cup->fixtures, Fixture, i).team_ids[j], team_ids))
-	    {
-		g_array_append_val(team_ids, g_array_index(cup->fixtures, Fixture, i).team_ids[j]);
-		g_ptr_array_add(teams, team_of_id(g_array_index(cup->fixtures, Fixture, i).team_ids[j]));
-	    }
-
+    for(i=0;i<cup->fixtures->len;i++) {
+        const Fixture *fixture = &g_array_index(cup->fixtures, Fixture, i);
+	for(j=0;j<2;j++) {
+            Team *team = fixture->teams[j];
+            if (misc_g_ptr_array_find(teams, team, NULL))
+                continue;
+            g_ptr_array_add(teams, team);
+        }
+    }
     g_ptr_array_sort_with_data(teams, cup_compare_success, (gpointer)cup);
-
-    g_array_free(team_ids, TRUE);
 
     return teams;
 }
@@ -876,8 +870,8 @@ cup_get_round_reached(const Team *tm, const GArray *fixtures)
     gint i;
 
     for(i=0;i<fixtures->len;i++)
-	if(g_array_index(fixtures, Fixture, i).team_ids[0] == tm->id ||
-	   g_array_index(fixtures, Fixture, i).team_ids[1] == tm->id)
+	if(g_array_index(fixtures, Fixture, i).teams[0] == tm ||
+	   g_array_index(fixtures, Fixture, i).teams[1] == tm)
 	    round = MAX(round, g_array_index(fixtures, Fixture, i).round);
 
     return round;

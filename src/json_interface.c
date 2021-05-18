@@ -548,12 +548,10 @@ bygfoot_json_fixture_to_json(const Fixture *fixture)
     json_object_object_add(fixture_obj, "week", json_object_new_int64(fixture->week_number));
     json_object_object_add(fixture_obj, "round", json_object_new_int64(fixture->week_round_number));
 
-    json_object_object_add(home_team_obj, "id", json_object_new_int64(fixture->team_ids[0]));
     json_object_object_add(home_team_obj, "stats",
                            bygfoot_json_fixture_stats_to_json(fixture, 0));
     json_object_object_add(fixture_obj, "home_team", home_team_obj);
 
-    json_object_object_add(away_team_obj, "id", json_object_new_int64(fixture->team_ids[1]));
     json_object_object_add(away_team_obj, "stats",
                            bygfoot_json_fixture_stats_to_json(fixture, 1));
     json_object_object_add(fixture_obj, "away_team", away_team_obj);
