@@ -233,11 +233,11 @@ table_element_compare_func(gconstpointer a,
 	       g_array_index(fixtures, Fixture, i).week_number <= week &&
 	       g_array_index(fixtures, Fixture, i).week_round_number <= week_round)
 	    {
-		if(g_array_index(fixtures, Fixture, i).team_ids[0] == element1->team->id &&
-		   g_array_index(fixtures, Fixture, i).team_ids[1] == element2->team->id)
+		if(g_array_index(fixtures, Fixture, i).teams[0] == element1->team &&
+		   g_array_index(fixtures, Fixture, i).teams[1] == element2->team)
 		    fix[0] = &g_array_index(fixtures, Fixture, i);
-		else if(g_array_index(fixtures, Fixture, i).team_ids[1] == element1->team->id &&
-			g_array_index(fixtures, Fixture, i).team_ids[0] == element2->team->id)
+		else if(g_array_index(fixtures, Fixture, i).teams[1] == element1->team &&
+			g_array_index(fixtures, Fixture, i).teams[0] == element2->team)
 		    fix[1] = &g_array_index(fixtures, Fixture, i);
 	    }
 	}

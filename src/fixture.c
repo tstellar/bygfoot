@@ -317,7 +317,7 @@ fixture_winner_of(const Fixture *fix, gboolean team_id)
     {
 	winner_idx = (fix->result[0][0] < fix->result[1][0]);
 	if(team_id)
-	    return GINT_TO_POINTER(fix->team_ids[winner_idx]);
+	    return GINT_TO_POINTER(fix->teams[winner_idx]->id);
 	else
 	    return (gpointer)fix->teams[winner_idx];
     }
@@ -350,7 +350,7 @@ fixture_winner_of(const Fixture *fix, gboolean team_id)
     }
 
     if(team_id)
-	return GINT_TO_POINTER(fix->team_ids[winner_idx]);
+	return GINT_TO_POINTER(fix->teams[winner_idx]->id);
     else
 	return (gpointer)fix->teams[winner_idx];
 }
@@ -521,7 +521,6 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round,
     gint len = teams->len;
     GArray *fixtures = NULL;
     GArray **two_match_weeks;
-    Team team_temp;
     gboolean odd_fixtures = FALSE;
 
     teams = misc_randomise_g_pointer_array(teams);
@@ -795,8 +794,6 @@ fixture_write(GArray *fixtures, Team *home_team, Team *away_team, gint week_numb
     new.week_round_number = week_round_number;
     new.teams[0] = home_team;
     new.teams[1] = away_team;
-    new.team_ids[0] = home_team->id;
-    new.team_ids[1] = away_team->id;
     new.live_game = NULL;
     
     for(i=0;i<3;i++)
@@ -999,8 +996,8 @@ fixture_get_first_leg(const Fixture *fix, gboolean silent)
     if(g_array_index(cup_from_clid(fix->clid)->rounds, CupRound, fix->round).round_robin_number_of_groups == 0)
         for(i=0;i<fixtures->len;i++)
             if(g_array_index(fixtures, Fixture, i).round == fix->round &&
-               g_array_index(fixtures, Fixture, i).team_ids[0] == fix->team_ids[1] &&
-               g_array_index(fixtures, Fixture, i).team_ids[1] == fix->team_ids[0])
+               g_array_index(fixtures, Fixture, i).teams[0] == fix->teams[1] &&
+               g_array_index(fixtures, Fixture, i).teams[1] == fix->teams[0])
                 first_leg = &g_array_index(fixtures, Fixture, i);
 
     if(first_leg == NULL && !silent)
@@ -1834,8 +1831,9 @@ fixture_refresh_team_pointers(GArray *fixtures)
 
     for(i = 0; i < fixtures->len; i++)
     {
-        for(j = 0; j < 2; j++)
-            g_array_index(fixtures, Fixture, i).teams[j] =
-                team_of_id(g_array_index(fixtures, Fixture, i).team_ids[j]);
+        Fixture *fixture = &g_array_index(fixtures, Fixture, i);
+        for(j = 0; j < 2; j++) {
+            fixture->teams[j] = team_of_id(GPOINTER_TO_INT(fixture->teams[j]));
+        }
     }
 }

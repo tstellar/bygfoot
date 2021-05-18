@@ -1488,7 +1488,6 @@ bygfoot_json_serialize_fixture(const Fixture *fixture)
     SERIALIZE(week_number, json_object_new_int64);
     SERIALIZE(week_round_number, json_object_new_int64);
     SERIALIZE(teams, bygfoot_json_serialize_fixture_teams);
-    json_object_object_add(fixture_obj, "team_ids", serialize_int_array(fixture->team_ids, 2));
     SERIALIZE(result, bygfoot_json_serialize_fixture_result);
     SERIALIZE(home_advantage, json_object_new_boolean);
     SERIALIZE(second_leg, json_object_new_boolean);

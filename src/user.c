@@ -1217,7 +1217,7 @@ user_mm_add_last_match(gboolean load_file, gboolean save_file)
 
     new.country_name = g_strdup(country.name);
     new.neutral = !(fix->home_advantage);
-    new.user_team = (fix->team_ids[0] != current_user.team_id);
+    new.user_team = (fix->teams[0]->id != current_user.team_id);
     new.lg = current_user.live_game;
     
     /** This will tell the free function NOT

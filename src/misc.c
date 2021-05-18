@@ -213,6 +213,26 @@ misc_g_ptr_array_insert(GPtrArray *array, gint _index, gpointer data)
 #endif
 }
 
+/** Search for \p needle in \p haystack.  If \p needle is found \p index is
+ * set to the index of \p neelde in \p haystack and TRUE is returned.
+ * Otherwise, \p index_ is undefined and this function returns FALSE.*/
+gboolean
+misc_g_ptr_array_find(GPtrArray *haystack, gconstpointer needle, guint *index_)
+{
+#ifdef GLIB_VERSION_2_54
+    return g_ptr_array_find(haystack, needle, index_);
+#else
+    gint i;
+    for (i = 0; i < haystack->len; i++) {
+        if (g_ptr_array_index(haystack, i) == needle) {
+            *index_ = i;
+            return TRUE;
+        }
+    }
+    return FALSE;
+#endif
+}
+
 /** Print a thousands-grouped output of 'number' into 'buf',
     like 2 234 345 instead of 2234345.
     @param number The number to print. 

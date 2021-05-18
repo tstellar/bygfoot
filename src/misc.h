@@ -101,6 +101,9 @@ misc_copy_ptr_array(const GPtrArray *array);
 void
 misc_extend_ptr_array(GPtrArray *dest, GPtrArray *src);
 
+gboolean
+misc_g_ptr_array_find(GPtrArray *haystack, gconstpointer needle, guint *index_);
+
 void
 misc_g_ptr_array_insert(GPtrArray *array, gint _index, gpointer data);
 
