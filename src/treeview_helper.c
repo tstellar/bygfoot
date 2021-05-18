@@ -1708,7 +1708,7 @@ treeview_helper_season_results(GtkTreeViewColumn *col,
     if(fix == NULL)
 	return;
 
-    user_idx = (fix->team_ids[1] == current_user.tm->id);
+    user_idx = (fix->teams[1] == current_user.tm);
 
     if(column == 3)
     {

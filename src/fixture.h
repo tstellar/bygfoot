@@ -38,7 +38,7 @@ enum FixtureCompare
 };
 
 /** Check whether the team with given id participates in the fixture. */
-#define query_fixture_team_involved(fix, team_id) (fix->team_ids[0] == team_id || fix->team_ids[1] == team_id)
+#define query_fixture_team_involved(fix, team_id) (fix->teams[0]->id == team_id || fix->teams[1]->id == team_id)
 
 void
 fixture_write_league_fixtures(League *league);
