@@ -189,7 +189,6 @@ bygfoot_json_serialize_user(const User *user)
 
     SERIALIZE_USER_FIELD(name, serialize_string);
     SERIALIZE_USER_FIELD(tm, bygfoot_json_serialize_team_ptr);
-    SERIALIZE_USER_FIELD(team_id, json_object_new_int64);
     /* options: I don't think we need to save these, because they appear to
      * be loaded from a file. */
     /* events: I don't think we need to save these, because they appear to

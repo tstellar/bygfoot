@@ -59,7 +59,6 @@ user_new(void)
 
     new.name = g_strdup("NONAME");
     new.tm = NULL;
-    new.team_id = -1;
     
     live_game_reset(&new.live_game, NULL, FALSE);
 
@@ -124,7 +123,6 @@ user_set_up_team_new_game(User *user)
 	misc_string_assign(&user->tm->name, buf);
 
 	user->tm = team;
-	user->team_id = team->id;
 
 	user_history_add(user, USER_HISTORY_START_GAME, 
 			 user->tm->name, 
@@ -666,7 +664,6 @@ user_change_team(User *user, Team *tm)
     user->tm->stadium.ticket_price = const_int("int_team_stadium_ticket_price");
 
     user->tm = tm;
-    user->team_id = tm->id;
 
     user_set_up_team(user, FALSE);
 
@@ -1217,7 +1214,7 @@ user_mm_add_last_match(gboolean load_file, gboolean save_file)
 
     new.country_name = g_strdup(country.name);
     new.neutral = !(fix->home_advantage);
-    new.user_team = (fix->teams[0]->id != current_user.team_id);
+    new.user_team = (fix->teams[0] != current_user.tm);
     new.lg = current_user.live_game;
     
     /** This will tell the free function NOT
