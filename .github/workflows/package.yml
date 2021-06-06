@@ -9,72 +9,117 @@ on:
   pull_request:
 
 env:
-  BYGFOOT_VERSION: "2.3.3-unofficial-git-${{ github.sha }}"
+  UBUNTU_BUILD_DEPENDENCIES: libglib2.0-dev libgtk2.0-dev libpango1.0-dev libatk1.0-dev libfreetype6-dev ninja-build cmake libjson-c-dev unzip
+  LINUX_BUILD_DEPENDENCIES: libglib2.0-dev libgtk2.0-dev libpango1.0-dev libatk1.0-dev libfreetype6-dev ninja-build cmake
 
 jobs:
-  package-linux:
+
+  set-variables:
     runs-on:
-      - ubuntu-16.04
+      - ubuntu-latest
+    outputs:
+      is-tag: ${{ steps.vars.outputs.is-tag }}
+      bygfoot-version: ${{ steps.vars.outputs.bygfoot-version }}
+    steps:
+      - id: vars
+        run: |
+          if echo ${{ github.ref }} | grep '^refs/tags'; then
+            is_tag=1
+            bygfoot_version=`echo ${{ github.ref }} | cut -d / -f 3`
+          else
+            is_tag=0
+            bygfoot_version=${{ github.head_ref }}-${{ github.sha }}
+          fi
+
+          tarname=bygfoot-$bygfoot_version-${{ matrix.name }}
+          echo "::set-output name=is-tag::$is_tag"
+          echo "::set-output name=bygfoot-version::$bygfoot_version"
+
+  package-linux:
+    needs:
+      - set-variables
+    runs-on:
+      - ubuntu-latest
+    container:
+      image: ${{ matrix.container-image }}
+    env:
+      BYGFOOT_VERSION: ${{ needs.set-variables.outputs.bygfoot-version }}
     strategy:
       fail-fast: false
       matrix:
-        build-type:
-          - full
-          - minimal
         include:
-          - build-type: full
-            extra-deps: libjson-c-dev
-            build-suffix: ""
-          - build-type: minimal
-            extra-deps: ""
-            build-suffix: -minimal
+          - name: ubuntu-16.04
+            container-image: docker.io/ubuntu:16.04
+            dependencies: "$UBUNTU_BUILD_DEPENDENCIES"
+            test: true
+          - name: ubuntu-18.04
+            container-image: docker.io/ubuntu:18.04
+            dependencies: "$UBUNTU_BUILD_DEPENDENCIES"
+            test: true
+          - name: ubuntu-20.04
+            container-image: docker.io/ubuntu:20.04
+            dependencies: "$UBUNTU_BUILD_DEPENDENCIES"
+            test: true
+          - name: ubuntu-20.10
+            container-image: docker.io/ubuntu:20.10
+            dependencies: "$UBUNTU_BUILD_DEPENDENCIES"
+            test: true
+          - name: ubuntu-21.04
+            container-image: docker.io/ubuntu:21.04
+            dependencies: "$UBUNTU_BUILD_DEPENDENCIES"
+            test: true
+          - name: linux
+            container-image: docker.io/ubuntu:16.04
+            dependencies: "$LINUX_BUILD_DEPENDENCIES"
+            test: false
 
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
 
       - name: Install dependencies
-        run: sudo apt-get install libglib2.0-dev libgtk2.0-dev libpango1.0-dev libatk1.0-dev libfreetype6-dev ninja-build
-
-      - name: Install extra dependencies
-        if: ${{ matrix.extra-deps != '' }}
-        run: sudo apt-get install ${{ matrix.extra-deps }}
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          apt-get update
+          apt-get -y install ${{ matrix.dependencies }}
 
       - name: Package Bygfoot
-        run: ./scripts/package.sh .
+        id: package
+        run: |
+              tarname=bygfoot-${{ env.BYGFOOT_VERSION }}-${{ matrix.name }}
+              echo "::set-output name=tardir::$tarname"
+              echo "::set-output name=tarfile::$tarname.tar.bz2"
+              ./scripts/package.sh . $tarname
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: "bygfoot-${{ env.BYGFOOT_VERSION }}-linux${{ matrix.build-suffix }}"
-          path: "*.bz2"
-
-  test-linux:
-    needs:
-      - package-linux
-    runs-on:
-      - ubuntu-16.04
-    steps:
-      - uses: actions/checkout@v2
+          name: "bygfoot-${{ env.BYGFOOT_VERSION }}-${{ matrix.name }}"
+          path: "${{ steps.package.outputs.tarfile }}"
 
       - uses: actions/download-artifact@v2
+        if: ${{ github.event_name == 'pull_request' && matrix.test }}
         with:
-          name: "bygfoot-${{ env.BYGFOOT_VERSION }}-linux"
-
-      - name: Unpack binary package
-        run: |
-          ls
-          tar -xjf bygfoot-${{ env.BYGFOOT_VERSION }}.tar.bz2
+          path: tests-${{ matrix.name }}
+          name: "bygfoot-${{ env.BYGFOOT_VERSION }}-${{ matrix.name }}"
 
       - name: Run Tests
+        if: ${{ github.event_name == 'pull_request' && matrix.test }}
+        working-directory: tests-${{ matrix.name }}
         run: |
-          bash ./test/test-load-save.sh ./bygfoot-${{ env.BYGFOOT_VERSION }}/bygfoot
-          bash ./test/test-country-defs.sh ./bygfoot-${{ env.BYGFOOT_VERSION }}/bygfoot || true
+          tar -xjf ${{ steps.package.outputs.tarfile }}
+          bash ../test/test-load-save.sh ${{ steps.package.outputs.tardir }}/bygfoot
+          bash ../test/test-country-defs.sh ${{ steps.package.outputs.tardir }}/bygfoot || true
 
 
   package-windows:
+    needs:
+      - set-variables
     runs-on:
       - windows-2016
+    env:
+      BYGFOOT_VERSION: ${{ needs.set-variables.outputs.bygfoot-version }}
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
@@ -107,7 +152,7 @@ jobs:
           # Add gtk+ directory to PATH so that cmake can find the correct zlib
           # library.
           export PATH=`pwd`/bin:$PATH
-          ./scripts/package.sh .
+          ./scripts/package.sh . bygfoot-${{ env.BYGFOOT_VERSION }}-win64
         shell: bash
 
       - name: Upload artifact
@@ -115,3 +160,38 @@ jobs:
         with:
           name: "bygfoot-${{ env.BYGFOOT_VERSION }}-win64"
           path: "*.bz2"
+
+  create_release:
+    if: ${{ startswith(github.ref, 'refs/tags') }}
+    needs:
+      - package-linux
+      - package-windows
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          path: 'artifacts'
+
+      - name: Install Dependencies
+        run:  pip install PyGithub
+
+      - name: Create Release
+        shell: python
+        run: |
+          import github
+          import os
+          prerelease = False
+          tag = '${{ github.ref }}'.split('/')[-1]
+          if 'alpha' in tag or 'beta' in tag or 'rc' in tag:
+            prerelease = True
+          context = github.Github('${{ github.token }}')
+          repo = context.get_repo('${{ github.repository }}')
+          release = repo.create_git_release(tag = tag, name = tag, message = tag,
+                                            prerelease = prerelease)
+          for dir in os.listdir('artifacts'):
+            print(dir)
+            for f in os.listdir('artifacts' + '/' + dir):
+              print(f)
+              release.upload_asset('artifacts' + '/' + dir + '/' + f)
