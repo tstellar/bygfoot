@@ -140,7 +140,11 @@ add_executable(bygfoot WIN32
 )
 # Some gtk headers use deprecated glib features, so disable this warning
 # since we can't do anything about it.
-target_compile_options(bygfoot PRIVATE -Wno-deprecated-declarations)
+# Newer versions of gcc and clang enable fno-common by default and
+# this won't work with the global variables in bygfoot.
+target_compile_options(bygfoot PRIVATE
+	               -Wno-deprecated-declarations
+		       -fcommon)
 # Link the target to the GTK+ libraries
 target_link_libraries (bygfoot ${GTK2_LIBRARIES} ${GLIB_LIBRARIES} m
                                ${ZLIB_LIBRARIES} ${JSON-C_LIBRARIES})
