@@ -2,7 +2,7 @@
 
 set -ex
 
-srcdir=$1
+srcdir=`realpath $1`
 
 version="2.3.3"
 
@@ -12,12 +12,19 @@ fi
 
 builddir=./build-$version
 installdir=./bygfoot-$version
+installdir_abs=`realpath $installdir`
 
 mkdir -p $builddir
 mkdir -p $installdir
 
-cmake -G Ninja  -B $builddir -S $srcdir -DCMAKE_INSTALL_PREFIX=$installdir -DCMAKE_C_FLAGS=-DVERS=\"\\\"$version\\\"\"
+# Don't use the -B option here, because some older versions of
+# cmake don't support it.
+pushd $builddir
+cmake -G Ninja  -S $srcdir -DCMAKE_INSTALL_PREFIX=$installdir_abs -DCMAKE_C_FLAGS=-DVERS=\"\\\"$version\\\"\"
+popd
+
 ninja -v -C $builddir install
+
 
 # Fixup install dir so that bygfoot can find the support
 # files.
