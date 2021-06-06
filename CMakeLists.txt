@@ -145,7 +145,7 @@ target_compile_options(bygfoot PRIVATE -Wno-deprecated-declarations)
 target_link_libraries (bygfoot ${GTK2_LIBRARIES} ${GLIB_LIBRARIES} m
                                ${ZLIB_LIBRARIES} ${JSON-C_LIBRARIES})
 
-install(TARGETS bygfoot)
+install(TARGETS bygfoot RUNTIME DESTINATION bin)
 
 install(DIRECTORY support_files DESTINATION
 	${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME})
