@@ -11,14 +11,12 @@ on:
 env:
   BYGFOOT_VERSION: "2.3.3-unofficial-git-${{ github.sha }}"
   UBUNTU_BUILD_DEPENDENCIES: libglib2.0-dev libgtk2.0-dev libpango1.0-dev libatk1.0-dev libfreetype6-dev ninja-build cmake libjson-c-dev unzip
-  # Install the libjson-c-dev package, because the ubuntu library packages are versioned.
-  UBUNTU_DEPENDENCIES: libglib2.0 libgtk2.0 libpango1.0 libatk1.0 libfreetype6 libjson-c-dev
   LINUX_BUILD_DEPENDENCIES: libglib2.0-dev libgtk2.0-dev libpango1.0-dev libatk1.0-dev libfreetype6-dev ninja-build cmake
 
 jobs:
   package-linux:
     runs-on:
-      - ubuntu-16.04
+      - ubuntu-latest
     container:
       image: ${{ matrix.container-image }}
     strategy:
@@ -128,3 +126,38 @@ jobs:
         with:
           name: "bygfoot-${{ env.BYGFOOT_VERSION }}-win64"
           path: "*.bz2"
+
+  create_release:
+    if: ${{ startswith(github.ref, 'refs/tags') }}
+    runs-on: ubuntu-latest
+    needs:
+      - package-linux
+      - package-windows
+
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          path: 'artifacts'
+
+      - name: Install Dependencies
+        run:  pip install PyGithub
+
+      - name: Create Release
+        shell: python
+        run: |
+          import github
+          import os
+          prerelease = False
+          tag = '${{ github.ref }}'.split('/')[-1]
+          if 'alpha' in tag or 'beta' in tag or 'rc' in tag:
+            prerelease = True
+          context = github.Github('${{ github.token }}')
+          repo = context.get_repo('${{ github.repository }}')
+          release = repo.create_git_release(tag = tag, name = tag, message = tag,
+                                            prerelease = prerelease)
+          for dir in os.listdir('artifacts'):
+            print(dir)
+            for f in os.listdir('artifacts' + '/' + dir):
+              print(f)
+              release.upload_asset('artifacts' + '/' + dir + '/' + f)
