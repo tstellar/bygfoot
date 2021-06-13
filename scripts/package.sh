@@ -11,7 +11,14 @@ if [ -n "$BYGFOOT_VERSION" ]; then
 fi
 
 builddir=./build-$version
-installdir=./bygfoot-$version
+tarname=bygfoot-$version
+
+if [ -n "$2" ]; then
+    installdir=$2
+    tarname=$2
+fi
+
+installdir=$tarname
 installdir_abs=`realpath $installdir`
 
 mkdir -p $builddir
@@ -43,5 +50,5 @@ for f in AUTHORS COPYING ChangeLog INSTALL README TODO UPDATE ReleaseNotes; do
     cp $srcdir/$f $installdir/
 done
 
-tar -cjf bygfoot-$version.tar.bz2 $installdir
+tar -cjf $tarname.tar.bz2 $installdir
 
