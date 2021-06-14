@@ -9,16 +9,41 @@ on:
   pull_request:
 
 env:
-  BYGFOOT_VERSION: "2.3.3-unofficial-git-${{ github.sha }}"
   UBUNTU_BUILD_DEPENDENCIES: libglib2.0-dev libgtk2.0-dev libpango1.0-dev libatk1.0-dev libfreetype6-dev ninja-build cmake libjson-c-dev unzip
   LINUX_BUILD_DEPENDENCIES: libglib2.0-dev libgtk2.0-dev libpango1.0-dev libatk1.0-dev libfreetype6-dev ninja-build cmake
 
 jobs:
+
+  set-variables:
+    runs-on:
+      - ubuntu-latest
+    outputs:
+      is-tag: ${{ steps.vars.outputs.is-tag }}
+      bygfoot-version: ${{ steps.vars.outputs.bygfoot-version }}
+    steps:
+      - id: vars
+        run: |
+          if echo ${{ github.ref }} | grep '^refs/tags'; then
+            is_tag=1
+            bygfoot_version=`echo ${{ github.ref }} | cut -d / -f 3`
+          else
+            is_tag=0
+            bygfoot_version=${{ github.head_ref }}-${{ github.sha }}
+          fi
+
+          tarname=bygfoot-$bygfoot_version-${{ matrix.name }}
+          echo "::set-output name=is-tag::$is_tag"
+          echo "::set-output name=bygfoot-version::$bygfoot_version"
+
   package-linux:
+    needs:
+      - set-variables
     runs-on:
       - ubuntu-latest
     container:
       image: ${{ matrix.container-image }}
+    env:
+      BYGFOOT_VERSION: ${{ needs.set-variables.outputs.bygfoot-version }}
     strategy:
       fail-fast: false
       matrix:
@@ -49,6 +74,7 @@ jobs:
             test: false
 
     steps:
+      
       - name: Checkout sources
         uses: actions/checkout@v2
 
@@ -60,13 +86,18 @@ jobs:
           apt-get -y install ${{ matrix.dependencies }}
 
       - name: Package Bygfoot
-        run: ./scripts/package.sh .
+        id: package
+        run: |
+              tarname=bygfoot-${{ env.BYGFOOT_VERSION }}-${{ matrix.name }}
+              echo "::set-output name=tardir::$tarname"
+              echo "::set-output name=tarfile::$tarname.tar.bz2"
+              ./scripts/package.sh . $tarname
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: "bygfoot-${{ env.BYGFOOT_VERSION }}-${{ matrix.name }}"
-          path: "*.bz2"
+          path: "${{ steps.package.outputs.tarfile }}"
 
       - uses: actions/download-artifact@v2
         if: ${{ github.event_name == 'pull_request' && matrix.test }}
@@ -78,14 +109,18 @@ jobs:
         if: ${{ github.event_name == 'pull_request' && matrix.test }}
         working-directory: tests-${{ matrix.name }}
         run: |
-          tar -xjf bygfoot-${{ env.BYGFOOT_VERSION }}.tar.bz2
-          bash ../test/test-load-save.sh ./bygfoot-${{ env.BYGFOOT_VERSION }}/bygfoot
-          bash ../test/test-country-defs.sh ./bygfoot-${{ env.BYGFOOT_VERSION }}/bygfoot || true
+          tar -xjf ${{ steps.package.outputs.tarfile }}
+          bash ../test/test-load-save.sh ${{ steps.package.outputs.tardir }}/bygfoot
+          bash ../test/test-country-defs.sh ${{ steps.package.outputs.tardir }}/bygfoot || true
 
 
   package-windows:
+    needs:
+      - set-variables
     runs-on:
       - windows-2016
+    env:
+      BYGFOOT_VERSION: ${{ needs.set-variables.outputs.bygfoot-version }}
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
@@ -118,7 +153,7 @@ jobs:
           # Add gtk+ directory to PATH so that cmake can find the correct zlib
           # library.
           export PATH=`pwd`/bin:$PATH
-          ./scripts/package.sh .
+          ./scripts/package.sh . bygfoot-${{ env.BYGFOOT_VERSION }}-win64
         shell: bash
 
       - name: Upload artifact
@@ -129,10 +164,10 @@ jobs:
 
   create_release:
     if: ${{ startswith(github.ref, 'refs/tags') }}
-    runs-on: ubuntu-latest
     needs:
       - package-linux
       - package-windows
+    runs-on: ubuntu-latest
 
     steps:
       - name: Download artifacts
