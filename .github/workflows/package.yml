@@ -57,16 +57,21 @@ jobs:
           DEBIAN_FRONTEND: noninteractive
         run: |
           apt-get update
-          apt-get -y install ${{ matrix.dependencies }}
+          apt-get -y install ${{ matrix.dependencies }} git
 
       - name: Package Bygfoot
-        run: ./scripts/package.sh .
+        id: package
+        run: |
+              bygfoot_version=`git describe --tags`
+              tarname=bygfoot-$bygfoot_version-${{ matrix.name }}
+              echo "::set-output name=tarname::$tarname.tar.bz2"
+              ./scripts/package.sh . $tarname
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: "bygfoot-${{ env.BYGFOOT_VERSION }}-${{ matrix.name }}"
-          path: "*.bz2"
+          path: "${{ steps.package.tarname }}"
 
       - uses: actions/download-artifact@v2
         if: ${{ github.event_name == 'pull_request' && matrix.test }}
@@ -78,7 +83,7 @@ jobs:
         if: ${{ github.event_name == 'pull_request' && matrix.test }}
         working-directory: tests-${{ matrix.name }}
         run: |
-          tar -xjf bygfoot-${{ env.BYGFOOT_VERSION }}.tar.bz2
+          tar -xjf ${{ steps.package.tarname }}
           bash ../test/test-load-save.sh ./bygfoot-${{ env.BYGFOOT_VERSION }}/bygfoot
           bash ../test/test-country-defs.sh ./bygfoot-${{ env.BYGFOOT_VERSION }}/bygfoot || true
 
