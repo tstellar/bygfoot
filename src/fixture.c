@@ -559,9 +559,9 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round,
     
     if(len % 2 != 0)
     {
-	team_temp = team_new(FALSE);
 	odd_fixtures = TRUE;
-	g_ptr_array_add(teams, &team_temp);
+        /* Add an extra NULL team to represent a bye. */
+	g_ptr_array_add(teams, NULL);
 	len++;
     }
 
@@ -583,6 +583,12 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round,
 
     if(!one_round)
     {
+        gint matches_per_round = len / 2;
+
+        /* With an odd number of teams, one of the 'matches' is actually a bye,
+         * so don't count that as a match. */
+        if (odd_fixtures)
+            matches_per_round--;
 	/* second half of fixtures */
         week_number = league_cup_get_week_with_break(clid, week_number + g_array_index(rr_breaks, gint, rr_break_idx + 1));
 
@@ -595,28 +601,21 @@ fixture_write_round_robin(gpointer league_cup, gint cup_round,
 	    week_round_number = 
 		fixture_get_free_round(week_number, teams, -1, -1);
 
-	    for(j = 0; j < len / 2; j++)
+	    for(j = 0; j < matches_per_round; j++) {
+                Fixture *fixture = &g_array_index(fixtures, Fixture, first_fixture + i * matches_per_round + j);
 		fixture_write(fixtures,
 			      g_array_index(fixtures, Fixture, 
-					    first_fixture + i * (len / 2) + j).teams[1],
+					    first_fixture + i * matches_per_round + j).teams[1],
 			      g_array_index(fixtures, Fixture, 
-					    first_fixture + i * (len / 2) + j).teams[0],
+					    first_fixture + i * matches_per_round + j).teams[0],
 			      week_number, week_round_number,
 			      clid, cup_round, 0, home_advantage, FALSE, FALSE);
+           }
 	}
     }
 
     g_ptr_array_free(teams, TRUE);
 
-    if(odd_fixtures)
-    {
-	for(i=fixtures->len - 1; i>=0; i--)
-	    if(g_array_index(fixtures, Fixture, i).team_ids[0] == -1 ||
-	       g_array_index(fixtures, Fixture, i).team_ids[1] == -1)
-		g_array_remove_index(fixtures, i);
-
-	free_team(&team_temp);
-    }
 }
 
 /** Write one matchday of round robin games.
@@ -659,10 +658,16 @@ fixture_write_round_robin_matchday(GArray *fixtures, gint cup_round, GPtrArray *
 	for(i=0;i<len;i++)
 	    misc_swap_gpointer(&(home[i]), &(away[i]));
 
-    for(i=0;i<len;i++)
-	fixture_write(fixtures, (Team*)home[i], (Team*)away[i], week_number, 
+    for(i=0;i<len;i++) {
+        Team *home_team = home[i];
+        Team* away_team = away[i];
+        /* Check for a bye. */
+        if (!home_team || !away_team)
+            continue;
+	fixture_write(fixtures, home_team, away_team, week_number, 
 		      week_round_number, clid, cup_round,
 		      0, home_advantage, FALSE, FALSE);
+    }
 }
 
 /** Write fixtures for a knockout round, e.g. home/away games.
