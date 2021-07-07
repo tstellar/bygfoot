@@ -1221,6 +1221,12 @@
 					<number_of_teams>3</number_of_teams>
 					<start_idx>9</start_idx>
 					<end_idx>11</end_idx>
+					<!-- It's possible for there to be less than 3 losers if one
+					     of the teams that is supposed to play in that round
+					     qualifies for Champions League by being the previous
+					     year's winner.
+					-->
+					<optional>1</optional>
 				</choose_team>
 
 				#UEFA Ranking 17

@@ -444,7 +444,7 @@ cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_temp, GPtrArray *teams, G
         start = cup_choose_team_compute_start_idx(ct);
         end = cup_choose_team_compute_end_idx(ct, cup_teams_sorted->len) + 1;
 
-        for(i = start; i < end; i++)
+        for(i = start; i < end && i < cup_teams_sorted->len; i++)
         {
             if(ct->skip_group_check ||
                !query_team_is_in_cups(
@@ -467,6 +467,8 @@ cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_temp, GPtrArray *teams, G
            number_of_teams != ct->number_of_teams) {
 	    if (ct->next)
 	        return cup_load_choose_team(cup, teams, teams_sorted, ct->next);
+	    if (ct->optional)
+	        return;
             main_exit_program(EXIT_CHOOSE_TEAM_ERROR, 
                               "cup_load_choose_team_from_cup (3): not enough teams (that don't participate in international cups yet) found in chooseteam %s for cup %s (%d specified, %d found) cup group %d.\n ",
                               ct->sid, cup->name,
