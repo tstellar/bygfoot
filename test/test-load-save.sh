@@ -15,6 +15,9 @@ cat <<EOF > $json_file
   { 'load_bygfoot' : {'filename' : '$save_dir/save0.zip'}},
   { 'save_bygfoot' : {'filename' : '$save_dir/save1.zip'}},
   { 'simulate_games' : {'years' : 1}},
+  { 'save_bygfoot' : {'filename' : '$save_dir/save2.zip'}},
+  { 'load_bygfoot' : {'filename' : '$save_dir/save2.zip'}},
+  { 'save_bygfoot' : {'filename' : '$save_dir/save3.zip'}},
 ]}
 EOF
 
@@ -23,7 +26,7 @@ tmphome=`mktemp -d`
 pushd $bygfoot_bindir
 HOME=$tmphome ./bygfoot --random-seed=1 --json=$json_file
 
-for f in save0 save1; do
+for f in save0 save1 save2 save3; do
 
     mkdir -p $save_dir/$f
     unzip -q $save_dir/$f.zip -d $save_dir/$f
@@ -34,3 +37,4 @@ for f in save0 save1; do
     done
 done
 diff -r $save_dir/save0 $save_dir/save1
+diff -r $save_dir/save2 $save_dir/save3
