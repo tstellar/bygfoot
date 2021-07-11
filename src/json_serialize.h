@@ -175,6 +175,10 @@ bygfoot_json_serialize_cup_round_waits(const GArray *garray);
 
 json_object *
 bygfoot_json_serialize_cup_round_wait(const CupRoundWait *wait);
+
+json_object *
+bygfoot_json_serialize_cup_history(const GPtrArray *garray);
+
 /* @} */
 
 /** @name Transfers */

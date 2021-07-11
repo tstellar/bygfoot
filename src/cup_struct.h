@@ -214,6 +214,10 @@ typedef struct
         the fixtures of which should be avoided when scheduling
         the cup fixtures. */
     GPtrArray *skip_weeks_with;
+
+    /* An GPtrrray containing a GPtrArray of Team pointers representing
+     * the resuilts of previous seasons of the cup. */
+    GPtrArray *history;
 } Cup;
 
 #endif

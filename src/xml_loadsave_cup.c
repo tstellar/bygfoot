@@ -79,6 +79,9 @@ enum
     TAG_CUP_ROUND_DELAY,
     TAG_CUP_CHOOSE_TEAM_ALTERNATIVES,
     TAG_CUP_CHOOSE_TEAM_OPTIONAL,
+    TAG_CUP_HISTORY,
+    TAG_CUP_HISTORY_SEASON,
+    TAG_CUP_HISTORY_TEAM_PTR_ID,
     TAG_END
 };
 
@@ -90,6 +93,7 @@ gchar *dirname;
 WeekBreak new_week_break;
 CupRoundWait new_wait;
 gboolean alternatives;
+GPtrArray *history_season;
 
 void
 xml_loadsave_cup_start_element (GMarkupParseContext *context,
@@ -136,6 +140,8 @@ xml_loadsave_cup_start_element (GMarkupParseContext *context,
 	new_round = cup_round_new();
     else if (tag == TAG_CUP_CHOOSE_TEAM_ALTERNATIVES)
         alternatives = TRUE;
+    else if (tag == TAG_CUP_HISTORY_SEASON)
+        history_season = g_ptr_array_new();
 
      if(!valid_tag)
 	debug_print_message("xml_loadsave_cup_start_element: unknown tag: %s; I'm in state %d\n",
@@ -173,6 +179,7 @@ xml_loadsave_cup_end_element    (GMarkupParseContext *context,
        tag == TAG_CUP_NEXT_FIXTURE_UPDATE_WEEK_ROUND ||
        tag == TAG_CUP_ROUND ||
        tag == TAG_CUP_TEAM_NAME ||
+       tag == TAG_CUP_HISTORY ||
        tag == TAG_CUP_TEAM_ID_BYE)
     {
 	state = TAG_CUP;
@@ -219,7 +226,13 @@ xml_loadsave_cup_end_element    (GMarkupParseContext *context,
     else if (tag == TAG_CUP_CHOOSE_TEAM_ALTERNATIVES) {
     	state = TAG_CUP_CHOOSE_TEAM;
 	alternatives = FALSE;
-    } else if(tag != TAG_CUP)
+    } else if (tag == TAG_CUP_HISTORY_SEASON) {
+        state = TAG_CUP_HISTORY;
+	g_ptr_array_add(new_cup->history, history_season);
+	history_season = NULL;
+    } else if (tag == TAG_CUP_HISTORY_TEAM_PTR_ID) {
+        state = TAG_CUP_HISTORY_SEASON;
+    }else if(tag != TAG_CUP)
 	debug_print_message("xml_loadsave_cup_end_element: unknown tag: %s; I'm in state %d\n",
 		  element_name, state);
 }
@@ -358,6 +371,8 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
 	g_array_append_val(new_round.two_match_weeks[1], int_value);
     else if(state == TAG_CUP_ROUND_TWO_MATCH_WEEK)
 	new_round.two_match_week = int_value;
+    else if (state == TAG_CUP_HISTORY_TEAM_PTR_ID)
+        g_ptr_array_add(history_season, GINT_TO_POINTER(int_value));
 }
 
 void
@@ -464,6 +479,19 @@ xml_loadsave_cup_write(const gchar *prefix, const Cup *cup)
     for(i=0;i<cup->team_names->len;i++)
 	xml_write_string(fil, (gchar*)g_ptr_array_index(cup->team_names, i),
 			   TAG_CUP_TEAM_NAME, I1);
+
+    fprintf(fil, "<_%d>\n", TAG_CUP_HISTORY);
+    for (i = 0; i < cup->history->len; i++) {
+        int j;
+        GPtrArray *season = g_ptr_array_index(cup->history, i);
+        fprintf(fil, "<_%d>\n", TAG_CUP_HISTORY_SEASON);
+        for (j = 0; j < season->len; j++) {
+            const Team *team = g_ptr_array_index(season, j);
+            xml_write_int(fil, team->id, TAG_CUP_HISTORY_TEAM_PTR_ID, I1);
+        }
+        fprintf(fil, "</_%d>\n", TAG_CUP_HISTORY_SEASON);
+    }
+    fprintf(fil, "</_%d>\n", TAG_CUP_HISTORY);
 
     fprintf(fil, "</_%d>\n", TAG_CUP);
 
