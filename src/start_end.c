@@ -168,13 +168,18 @@ start_new_season(void)
 	    g_ptr_array_remove_index(acps, i);
     }
 
-    /* Deal with cups that have to take place before promotion/relegation. */
-    for(i=cps->len - 1; i >= 0; i--)
-	if(cp(i).add_week == -1) {
-	    /* Reset cup to save its history. */
-	    cup_reset(&cp(i));
+    for(i=cps->len - 1; i >= 0; i--) {
+        /* Reset all cups.  We need to make sure all cups get reset
+	 * before the start of the next season.  Otherwise, the fixtures
+	 * from last year's cup will interfere with scheduling the league
+	 * fixtures.  Also, cup_reset() saves this season's results in the
+	 * history list. */
+	cup_reset(&cp(i));
+
+        /* Deal with cups that have to take place before promotion/relegation. */
+	if(cp(i).add_week == -1)
 	    fixture_write_cup_fixtures(&cp(i));
-	}
+    }
 
     if(season > 1)
     {

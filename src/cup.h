@@ -148,4 +148,7 @@ query_cup_hidden(const Cup *cup);
 GPtrArray *
 cup_get_last_season_results(const Cup *cup);
 
+GPtrArray *
+cup_get_most_recent_results(const Cup *cup);
+
 #endif
