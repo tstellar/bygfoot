@@ -901,6 +901,7 @@ bygfoot_json_serialize_cup(const Cup *cup)
     SERIALIZE_CUP_FIELD(fixtures, bygfoot_json_serialize_fixtures);
     SERIALIZE_CUP_FIELD(week_breaks, bygfoot_json_serialize_week_breaks);
     SERIALIZE_CUP_FIELD(skip_weeks_with, serialize_gchar_ptr_array);
+    SERIALIZE_CUP_FIELD(history, bygfoot_json_serialize_cup_history);
     return cup_obj;
 }
 
@@ -974,6 +975,20 @@ bygfoot_json_serialize_cup_round_wait(const CupRoundWait *wait)
     #undef SERIALIZE
 
     return wait_obj;
+}
+
+json_object *
+bygfoot_json_serialize_cup_history(const GPtrArray *history)
+{
+    json_object *history_array = json_object_new_array_ext(history->len);
+    gint i;
+
+    for (i = 0; i < history->len; i++) {
+        GPtrArray *teams = g_ptr_array_index(history, i);
+        json_object_array_add(history_array,
+                              bygfoot_json_serialize_team_ptrs(teams, NULL));
+    }
+    return history_array;
 }
 
 json_object *

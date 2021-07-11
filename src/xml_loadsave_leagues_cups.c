@@ -215,6 +215,7 @@ xml_loadsave_leagues_cups_adjust_team_ptrs(void)
 {
     gint i, j, k;
     GPtrArray *team_ptrs;
+    GPtrArray *history;
 
     for(i = 0; i < ligs->len; i++)
     {
@@ -240,5 +241,18 @@ xml_loadsave_leagues_cups_adjust_team_ptrs(void)
             for(k = 0; k < g_array_index(cp(i).rounds, CupRound, j).tables->len; k++)
                 table_refresh_team_pointers(&g_array_index(g_array_index(cp(i).rounds, CupRound, j).tables, Table, k));
         }
+
+        history = g_ptr_array_new();
+        for (j = 0; j < cp(i).history->len; j++) {
+           GPtrArray *season = g_ptr_array_index(cp(i).history, j);
+           team_ptrs = g_ptr_array_new();
+           for (k = 0; k < season->len; k++) {
+                g_ptr_array_add(team_ptrs, team_of_id(GPOINTER_TO_INT(g_ptr_array_index(season, k))));
+           }
+           g_ptr_array_add(history, team_ptrs);
+           g_ptr_array_unref(season);
+        }
+        g_ptr_array_unref(cp(i).history);
+        cp(i).history = history;
     }
 }

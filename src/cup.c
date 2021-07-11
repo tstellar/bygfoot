@@ -76,7 +76,8 @@ cup_new(gboolean new_id)
 
     new.next_fixture_update_week = -1;
     new.next_fixture_update_week_round = -1;
-    
+
+    new.history = g_ptr_array_new();
     return new;
 }
 
@@ -157,6 +158,9 @@ cup_reset(Cup *cup)
 
     if(cup->teams->len > 0)
     {
+        /* Save this season's results. */
+        GPtrArray *sorted_teams = cup_get_teams_sorted(cup);
+	g_ptr_array_add(cup->history, sorted_teams);
 	g_ptr_array_free(cup->teams, TRUE);
 	cup->teams = g_ptr_array_new();
     }
