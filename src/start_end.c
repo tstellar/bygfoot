@@ -170,8 +170,11 @@ start_new_season(void)
 
     /* Deal with cups that have to take place before promotion/relegation. */
     for(i=cps->len - 1; i >= 0; i--)
-	if(cp(i).add_week == -1)
+	if(cp(i).add_week == -1) {
+	    /* Reset cup to save its history. */
+	    cup_reset(&cp(i));
 	    fixture_write_cup_fixtures(&cp(i));
+	}
 
     if(season > 1)
     {

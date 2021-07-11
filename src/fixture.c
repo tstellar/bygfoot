@@ -114,12 +114,6 @@ fixture_write_cup_fixtures(Cup *cup)
 #endif
 
     gint i;
-    GPtrArray *teams_sorted = NULL;
-    
-    /* Store the order of teams in case the cup
-       uses teams from its previous incarnation (previous season). */
-    if(query_cup_self_referential(cup))
-        teams_sorted = cup_get_teams_sorted(cup);
 
     cup_reset(cup);
 
@@ -129,10 +123,7 @@ fixture_write_cup_fixtures(Cup *cup)
      * the higher rounds first.
      */
     for(i=cup->rounds->len - 1; i >=0;i--)
-        cup_get_team_pointers(cup, i, teams_sorted, TRUE);
-
-    if(teams_sorted != NULL)
-        g_ptr_array_free(teams_sorted, TRUE);
+        cup_get_team_pointers(cup, i, TRUE);
 
     if(g_array_index(cup->rounds, CupRound, 0).round_robin_number_of_groups > 0)
 	fixture_write_cup_round_robin(
@@ -193,7 +184,7 @@ fixture_update(Cup *cup)
     }
 
     new_round = &g_array_index(cup->rounds, CupRound, round + 1);
-    cup_get_team_pointers(cup, round + 1, NULL, FALSE);
+    cup_get_team_pointers(cup, round + 1, FALSE);
 
     for(i=0;i<new_round->team_ptrs->len;i++)
 	g_ptr_array_add(teams, g_ptr_array_index(new_round->team_ptrs, i));

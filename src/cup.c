@@ -292,7 +292,7 @@ cup_get_choose_team_league_cup(const CupChooseTeam *ct,
     cup round. If necessary, teams are generated and stored in the teams
     array of the cup round. */
 void
-cup_get_team_pointers(Cup *cup, gint round, GPtrArray *teams_sorted, gboolean preload)
+cup_get_team_pointers(Cup *cup, gint round, gboolean preload)
 {
 #ifdef DEBUG
     printf("cup_get_team_pointers\n");
@@ -316,7 +316,7 @@ cup_get_team_pointers(Cup *cup, gint round, GPtrArray *teams_sorted, gboolean pr
             if(cup_choose_team_should_generate(choose_team))
                 cup_load_choose_team_generate(cup, cup_round, choose_team);
             else
-                cup_load_choose_team(cup, teams, teams_sorted, choose_team);
+                cup_load_choose_team(cup, teams, choose_team);
         }
     }
 
@@ -339,7 +339,7 @@ cup_get_team_pointers(Cup *cup, gint round, GPtrArray *teams_sorted, gboolean pr
 /** Get the pointers to the teams (already generated, in one of the leagues or cups)
     specified in the chooseteam. Add them to the 'teams' pointer array. */
 void
-cup_load_choose_team(Cup *cup, GPtrArray *teams, GPtrArray *teams_sorted, const CupChooseTeam *ct)
+cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 {
 #ifdef DEBUG
     printf("cup_load_choose_team\n");
@@ -359,7 +359,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, GPtrArray *teams_sorted, const 
     if(cup_temp == NULL)
         cup_load_choose_team_from_league(cup, league, teams, ct);
     else
-        cup_load_choose_team_from_cup(cup, cup_temp, teams, teams_sorted, ct);
+        cup_load_choose_team_from_cup(cup, cup_temp, teams, ct);
 
     if(debug > 80)
 	for(i=debug_num;i<teams->len;i++)
@@ -367,7 +367,7 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, GPtrArray *teams_sorted, const 
 }
 
 void
-cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_temp, GPtrArray *teams, GPtrArray *teams_sorted, const CupChooseTeam *ct)
+cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_temp, GPtrArray *teams, const CupChooseTeam *ct)
 {
 #ifdef DEBUG
     printf("cup_load_choose_team_from_cup\n");
@@ -410,7 +410,7 @@ cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_temp, GPtrArray *teams, G
 	    
         if(number_of_teams != ct->number_of_teams) {
 	    if (ct->next)
-	        return cup_load_choose_team(cup, teams, teams_sorted, ct->next);
+	        return cup_load_choose_team(cup, teams, ct->next);
 
             main_exit_program(EXIT_CHOOSE_TEAM_ERROR, 
                               "cup_load_choose_team_from_cup (2): not enough teams found in league 0 for chooseteam %s (%d; required: %d) in cup %s (group %d)\n",
@@ -422,7 +422,7 @@ cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_temp, GPtrArray *teams, G
     {
         /* Self-referential cup or no? */
         cup_teams_sorted = (cup == cup_temp) ? 
-            teams_sorted : 
+            cup_get_last_season_results(cup) :
             cup_get_teams_sorted(cup_temp);
 
         if(ct->number_of_teams == -1)
@@ -458,7 +458,7 @@ cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_temp, GPtrArray *teams, G
         if(ct->number_of_teams != -1 &&
            number_of_teams != ct->number_of_teams) {
 	    if (ct->next)
-	        return cup_load_choose_team(cup, teams, teams_sorted, ct->next);
+	        return cup_load_choose_team(cup, teams, ct->next);
 	    if (ct->optional)
 	        return;
             main_exit_program(EXIT_CHOOSE_TEAM_ERROR, 
@@ -1412,4 +1412,12 @@ query_cup_hidden(const Cup *cup)
             return FALSE;
 
     return TRUE;
+}
+
+/** @return a GPtrArray with Team* sorted by their ranking in last seasons's
+ * cup. */
+GPtrArray *
+cup_get_last_season_results(const Cup *cup)
+{
+    return g_ptr_array_index(cup->history, cup->history->len - 1);
 }
