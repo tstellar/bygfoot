@@ -240,5 +240,17 @@ xml_loadsave_leagues_cups_adjust_team_ptrs(void)
             for(k = 0; k < g_array_index(cp(i).rounds, CupRound, j).tables->len; k++)
                 table_refresh_team_pointers(&g_array_index(g_array_index(cp(i).rounds, CupRound, j).tables, Table, k));
         }
+
+        for (j = 0; j < cp(i).history->len; j++) {
+           GPtrArray *season = g_ptr_array_index(cp(i).history, j);
+           GPtrArray *teams;
+           if (!j)
+               continue;
+           cp(i).history = g_ptr_array_new();
+           for (k = 0; k < season->len; k++) {
+                g_ptr_array_add(cp(i).history, team_of_id(GPOINTER_TO_INT(g_ptr_array_index(season, k))));
+           }
+           g_ptr_array_unref(season);
+        }
     }
 }
