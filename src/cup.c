@@ -440,7 +440,7 @@ cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_temp, GPtrArray *teams, c
         /* Self-referential cup or no? */
         cup_teams_sorted = (cup == cup_temp) ? 
             cup_get_last_season_results(cup) :
-            cup_get_teams_sorted(cup_temp);
+            cup_get_most_recent_results(cup_temp);
 
         start = cup_choose_team_compute_start_idx(ct);
         end = cup_choose_team_compute_end_idx(ct, cup_teams_sorted->len) + 1;
@@ -1429,4 +1429,18 @@ GPtrArray *
 cup_get_last_season_results(const Cup *cup)
 {
     return g_ptr_array_index(cup->history, cup->history->len - 1);
+}
+
+/** @return The most recent cup results.  If the cup has no fixtures scheduled
+ * for this year, this function returns last year's results.  If it does have
+ * fixtures schedule then this year's results are returned (even if the cup
+ * is not complete yet).  The caller is responsible for freeing the returned
+ * GPtrArray.
+ */
+GPtrArray *
+cup_get_most_recent_results(const Cup *cup)
+{
+    if (cup->fixtures->len == 0)
+        return misc_copy_ptr_array(cup_get_last_season_results(cup));
+    return cup_get_teams_sorted(cup);
 }

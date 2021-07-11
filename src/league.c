@@ -1206,7 +1206,7 @@ league_get_team_movements(League *league, GArray *team_movements)
         {
             prom_cup = cup_from_sid(g_array_index(league->prom_rel.prom_games, PromGames, i).cup_sid);
     
-            prom_games_teams = cup_get_teams_sorted(prom_cup);
+            prom_games_teams = cup_get_most_recent_results(prom_cup);
 
             league_get_team_movements_prom_games(league, &g_array_index(league->prom_rel.prom_games, PromGames, i),
                                                  team_movements, prom_games_teams, TRUE);
