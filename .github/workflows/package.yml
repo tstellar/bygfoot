@@ -106,7 +106,7 @@ jobs:
         run: |
           tar -xjf ${{ steps.package.outputs.tarfile }}
           bash ../test/test-load-save.sh ${{ steps.package.outputs.tardir }}/bygfoot
-          bash ../test/test-country-defs.sh ${{ steps.package.outputs.tardir }}/bygfoot || true
+          bash ../test/test-country-defs.sh ${{ steps.package.outputs.tardir }}/bygfoot
 
 
   package-windows:
