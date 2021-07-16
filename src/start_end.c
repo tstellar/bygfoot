@@ -145,6 +145,16 @@ start_new_season(void)
     free_names(TRUE);
     stat5 = STATUS_GENERATE_TEAMS;
 
+    /* Randomize league lists for non-user countries so we get different
+     * teams in the international cups. */
+    for (i = 0; i < country_list->len; i++) {
+        Country *country = g_ptr_array_index(country_list, i);
+        for (j = 0; j < country->leagues->len; j++) {
+            League *league = &g_array_index(country->leagues, League, j);
+            league->teams = misc_randomise_g_pointer_array(league->teams);
+        }
+    }
+
     if(season == 1)
     {
         for(i=0;i<ligs->len;i++)
