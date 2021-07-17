@@ -331,7 +331,7 @@ cup_get_team_pointers(Cup *cup, gint round, gboolean preload)
         if(choose_team->preload == preload)
         {
             if(cup_choose_team_should_generate(choose_team))
-                cup_load_choose_team_generate(cup, cup_round, choose_team);
+                cup_load_choose_team_generate(cup, teams, choose_team);
             else
                 cup_load_choose_team(cup, teams, choose_team);
         }
@@ -597,7 +597,7 @@ cup_generate_team_list(const Cup *cup, GPtrArray *teams, gboolean league_talents
 
 /** Load the teams specified in the chooseteam from a non-country league. */
 void
-cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam *ct)
+cup_load_choose_team_generate(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
 {
 #ifdef DEBUG
     printf("cup_load_choose_team_generate\n");
@@ -700,7 +700,7 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
 	    //g_array_index(cup_round->teams, Team, cup_round->teams->len - 1).clid = cup->id;
 	    team->clid = cup->id;
 	    g_ptr_array_add(cup->team_names, g_strdup(team->name));
-	    g_ptr_array_add(cup_round->team_ptrs, team);
+	    g_ptr_array_add(teams, team);
 
 	    number_of_teams++;
 	}
@@ -715,7 +715,7 @@ cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam
         /* TODO: handle number_of_teams > 0 */
 	g_ptr_array_free(teams_local, TRUE);
 	if (ct->next)
-            return cup_load_choose_team_generate(cup, cup_round, ct->next);
+            return cup_load_choose_team_generate(cup, teams, ct->next);
 	if (ct->optional)
 	    return;
 	main_exit_program(EXIT_CHOOSE_TEAM_ERROR,
