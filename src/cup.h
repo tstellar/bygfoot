@@ -50,7 +50,7 @@ void
 cup_get_team_pointers(Cup *cup, gint round, gboolean preload);
 
 void
-cup_load_choose_team_generate(Cup *cup, CupRound *cup_round, const CupChooseTeam *ct);
+cup_load_choose_team_generate(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct);
 
 void
 cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct);
