@@ -330,10 +330,7 @@ cup_get_team_pointers(Cup *cup, gint round, gboolean preload)
 
         if(choose_team->preload == preload)
         {
-            if(cup_choose_team_should_generate(choose_team))
-                cup_load_choose_team_generate(cup, teams, choose_team);
-            else
-                cup_load_choose_team(cup, teams, choose_team);
+            cup_load_choose_team(cup, teams, choose_team);
         }
     }
 
@@ -370,6 +367,11 @@ cup_load_choose_team(Cup *cup, GPtrArray *teams, const CupChooseTeam *ct)
     if(debug > 60)
 	g_print("cup_load_choose_team: %s, %s, teams %d to %d, random: %d \n", cup->name,
                 ct->sid, ct->start_idx, ct->end_idx, ct->randomly);
+
+    if(cup_choose_team_should_generate(ct)) {
+        cup_load_choose_team_generate(cup, teams, ct);
+        return;
+    }
 
     cup_get_choose_team_league_cup(ct, &league, &cup_temp);
 
@@ -715,7 +717,7 @@ cup_load_choose_team_generate(Cup *cup, GPtrArray *teams, const CupChooseTeam *c
         /* TODO: handle number_of_teams > 0 */
 	g_ptr_array_free(teams_local, TRUE);
 	if (ct->next)
-            return cup_load_choose_team_generate(cup, teams, ct->next);
+            return cup_load_choose_team(cup, teams, ct->next);
 	if (ct->optional)
 	    return;
 	main_exit_program(EXIT_CHOOSE_TEAM_ERROR,
