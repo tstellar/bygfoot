@@ -30,6 +30,8 @@ static struct json_object *bygfoot_json_call_get_fixtures(Bygfoot *bygfoot,
                                                           const json_object *args);
 static struct json_object *bygfoot_json_call_get_cups(Bygfoot *bygfoot,
                                                       const json_object *args);
+static struct json_object *bygfoot_json_call_get_leagues(Bygfoot *bygfoot,
+                                                         const json_object *args);
 static struct json_object *bygfoot_json_response_error(const char *command,
                                                const char *error);
 static json_object *
@@ -114,6 +116,7 @@ static int bygfoot_json_do_commands(Bygfoot *bygfoot, const json_object *command
         { "get_players", bygfoot_json_call_get_players },
         { "get_fixtures", bygfoot_json_call_get_fixtures },
         { "cups", bygfoot_json_call_get_cups },
+	{ "leagues", bygfoot_json_call_get_leagues },
         { NULL, NULL}
     };
 
@@ -444,7 +447,7 @@ bygfoot_json_call_get_players(Bygfoot *bygfoot, const json_object *args)
         const League *league = &g_array_index(country.leagues, League, i);
         int j;
         for (j = 0; j < league->teams->len; j++) {
-            const Team *team = &g_array_index(league->teams, Team, j);
+            const Team *team = g_ptr_array_index(league->teams, j);
             int k;
             for (k = 0; k < team->players->len; k++) {
                 const Player *player = &g_array_index(team->players, Player, k);
@@ -476,6 +479,11 @@ bygfoot_json_call_get_cups(Bygfoot *bygfoot, const json_object *args)
     return cups_obj;
 }
 
+static json_object *
+bygfoot_json_call_get_leagues(Bygfoot *bygfoot, const json_object *args)
+{
+    return bygfoot_json_serialize_league_array(country.leagues);
+}
 
 static json_object *
 bygfoot_json_live_game_stats_to_json(const LiveGameStats *stats, gint team_index)
@@ -540,12 +548,10 @@ bygfoot_json_fixture_to_json(const Fixture *fixture)
     json_object_object_add(fixture_obj, "week", json_object_new_int64(fixture->week_number));
     json_object_object_add(fixture_obj, "round", json_object_new_int64(fixture->week_round_number));
 
-    json_object_object_add(home_team_obj, "id", json_object_new_int64(fixture->team_ids[0]));
     json_object_object_add(home_team_obj, "stats",
                            bygfoot_json_fixture_stats_to_json(fixture, 0));
     json_object_object_add(fixture_obj, "home_team", home_team_obj);
 
-    json_object_object_add(away_team_obj, "id", json_object_new_int64(fixture->team_ids[1]));
     json_object_object_add(away_team_obj, "stats",
                            bygfoot_json_fixture_stats_to_json(fixture, 1));
     json_object_object_add(fixture_obj, "away_team", away_team_obj);

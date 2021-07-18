@@ -239,16 +239,18 @@ team_of_id(gint id)
     gint i, j, k;
 
     for(i=0;i<ligs->len;i++)
-	for(j=0;j<lig(i).teams->len;j++)
-	    if(g_array_index(lig(i).teams, Team, j).id == id)
-		return &g_array_index(lig(i).teams, Team, j);
+	for(j=0;j<lig(i).teams->len;j++) {
+	    Team *team = g_ptr_array_index(lig(i).teams, j);
+	    if(team->id == id)
+		return team;
+    }
 
     for (i = 0; i < country_list->len; i++) {
         Country *country = g_ptr_array_index(country_list, i);
 	for (j = 0; j < country->leagues->len; j++) {
 	    League *league = &g_array_index(country->leagues, League, j);
 	    for (k = 0; k < league->teams->len; k++) {
-                Team *team = &g_array_index(league->teams, Team, k);
+                Team *team = g_ptr_array_index(league->teams, k);
 		if (team->id == id)
 		    return team;
 	    }
@@ -269,7 +271,7 @@ team_of_sid(const char *sid, const Country *country)
     for (i = 0; i < country->leagues->len; i++) {
         const League *league = &g_array_index(country->leagues, League, i);
         for (j = 0; j < league->teams->len; j++ ) {
-            Team *team = &g_array_index(league->teams, Team, j);
+            Team *team = g_ptr_array_index(league->teams, j);
             if (!strcmp(team->name, sid))
                 return team;
         }
@@ -321,7 +323,7 @@ team_get_fixture(const Team *tm, gboolean last_fixture)
 		if(!query_league_active(&lig(i)))
 		    continue;
 
-		if (!query_team_id_is_in_teams_array(tm, lig(i).teams))
+		if (!query_team_is_in_teams_array(tm, lig(i).teams))
 		    continue;
 
 		for(j=0;j<lig(i).fixtures->len;j++) {
@@ -413,7 +415,7 @@ team_is_user(const Team *tm)
     gint i;
 
     for(i=0;i<users->len;i++)
-	if(usr(i).team_id == tm->id)
+	if(usr(i).tm == tm)
 	    return i;
 
     return -1;
@@ -522,7 +524,7 @@ team_get_league_rank(const Team *tm, gint clid)
     }
 
     for(i=0;i<elements->len;i++)
-	if(g_array_index(elements, TableElement, i).team_id == tm->id)
+	if(g_array_index(elements, TableElement, i).team == tm)
 	    return i + 1;
     
     main_exit_program(EXIT_INT_NOT_FOUND, 
@@ -546,7 +548,7 @@ team_get_cup_rank(const Team *tm, const CupRound *cupround, gboolean abort)
     for(i=0;i<cupround->tables->len;i++)
     {
 	for(j=0;j<g_array_index(cupround->tables, Table, i).elements->len;j++)
-	    if(g_array_index(g_array_index(cupround->tables, Table, i).elements, TableElement, j).team_id == tm->id)
+	    if(g_array_index(g_array_index(cupround->tables, Table, i).elements, TableElement, j).team == tm)
 		return j + 1;
     }
 
@@ -821,7 +823,7 @@ team_get_table_value(const Team *tm, gint type)
     elements = league_table(league_from_clid(tm->clid))->elements;
 
     for(i=0;i<elements->len;i++)
-	if(g_array_index(elements, TableElement, i).team_id == tm->id)
+	if(g_array_index(elements, TableElement, i).team == tm)
 	    break;
 
     if(i == elements->len)
@@ -925,7 +927,7 @@ team_get_sorted(GCompareDataFunc compare_function, gint type, gboolean cup)
     {
 	for(i=0;i<ligs->len;i++)
 	    for(j=0;j<lig(i).teams->len;j++)
-		g_ptr_array_add(teams, &g_array_index(lig(i).teams, Team, j));
+		g_ptr_array_add(teams, g_ptr_array_index(lig(i).teams, j));
     }
     else
     {
@@ -1018,7 +1020,7 @@ team_get_index(const Team *tm)
 
 /** Return the average of the average talents of the teams in the array. */
 gfloat
-team_get_average_talents(const GArray *teams)
+team_get_average_talents(const GPtrArray *teams)
 {
 #ifdef DEBUG
     printf("team_get_average_talents\n");
@@ -1030,13 +1032,15 @@ team_get_average_talents(const GArray *teams)
     if(teams->len == 0)
 	return 0;
 
-    for(i=0;i<teams->len;i++)
-	for(j=0;j<g_array_index(teams, Team, i).players->len;j++)
+    for(i=0;i<teams->len;i++) {
+        const Team *team = g_ptr_array_index(teams, i);
+	for(j=0;j<team->players->len;j++)
 	{
-	    sum += g_array_index(g_array_index(teams, Team, i).players,
-				 Player, j).talent;
+            const Player *player = &g_array_index(team->players, Player, j);
+	    sum += player->talent;
 	    cnt++;
 	}
+    }
 
     return sum / (gfloat)cnt;
 }

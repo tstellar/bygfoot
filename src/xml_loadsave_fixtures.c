@@ -176,7 +176,7 @@ xml_loadsave_fixtures_text         (GMarkupParseContext *context,
     else if(state == TAG_FIXTURE_RESULT)
 	new_fixture.result[residx1][residx2] = int_value;
     else if(state == TAG_TEAM_ID)
-	new_fixture.team_ids[teamidx] = int_value;
+	new_fixture.teams[teamidx] = GINT_TO_POINTER(int_value);
 }
 
 void
@@ -262,7 +262,7 @@ xml_loadsave_fixtures_write(const gchar *filename, const GArray *fixtures)
 			  TAG_FIXTURE_RESULT, I1);
 	    xml_write_int(fil, g_array_index(fixtures, Fixture, i).result[j][2],
 			  TAG_FIXTURE_RESULT, I1);
-            xml_write_int(fil, g_array_index(fixtures, Fixture, i).team_ids[j], 
+            xml_write_int(fil, g_array_index(fixtures, Fixture, i).teams[j]->id, 
                           TAG_TEAM_ID, I1);
 	}
 

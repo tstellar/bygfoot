@@ -103,6 +103,8 @@ xml_country_read_start_element (GMarkupParseContext *context,
 	state = STATE_LEAGUES;
 	if(cntry->leagues == NULL)
 	    cntry->leagues = g_array_new(FALSE, FALSE, sizeof(League));
+	//if(cntry->teams == NULL)
+	//    cntry->teams = g_array_new(FALSE, FALSE, sizeof(Country));
     }
     else if(strcmp(element_name, TAG_LEAGUE) == 0)
 	state = STATE_LEAGUE;

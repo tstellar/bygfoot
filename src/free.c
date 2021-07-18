@@ -386,12 +386,12 @@ free_league(League *league)
     free_gchar_array(&league->skip_weeks_with);
 
     if(league->teams != NULL)
-	free_teams_array(&league->teams, FALSE);
+	free_g_ptr_array(&league->teams);
 
     free_joined_leagues(&league->joined_leagues);
     free_prom_rel(&league->prom_rel);
 
-    free_g_array(&league->teams);
+    free_g_ptr_array(&league->teams);
     
     free_tables(&league->tables);
     free_new_tables(&league->new_tables);

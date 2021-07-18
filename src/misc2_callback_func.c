@@ -258,7 +258,6 @@ misc2_callback_add_user(void)
     }
 
     new_user.tm = tm;
-    new_user.team_id = tm->id;
 
     user_history_add(&new_user, USER_HISTORY_START_GAME,
 		     tm->name, league_cup_get_name_string(tm->clid),

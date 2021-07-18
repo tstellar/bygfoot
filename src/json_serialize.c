@@ -189,7 +189,6 @@ bygfoot_json_serialize_user(const User *user)
 
     SERIALIZE_USER_FIELD(name, serialize_string);
     SERIALIZE_USER_FIELD(tm, bygfoot_json_serialize_team_ptr);
-    SERIALIZE_USER_FIELD(team_id, json_object_new_int64);
     /* options: I don't think we need to save these, because they appear to
      * be loaded from a file. */
     /* events: I don't think we need to save these, because they appear to
@@ -417,6 +416,8 @@ bygfoot_json_serialize_league(const League *league)
 
     #define SERIALIZE(field, serialize_func) \
             SERIALIZE_OBJECT_FIELD(league_obj, league, field, serialize_func);
+    #define SERIALIZE_STRUCT(field, serialize_func) \
+            SERIALIZE_OBJECT_FIELD_STRUCT(league_obj, league, field, serialize_func, NULL);
 
     SERIALIZE(name, serialize_string);
     SERIALIZE(short_name, serialize_string);
@@ -596,13 +597,13 @@ bygfoot_json_serialize_stadium(Stadium stadium, GHashTable *fields)
 }
 
 json_object *
-bygfoot_json_serialize_teams(const GArray *teams)
+bygfoot_json_serialize_teams(const GPtrArray *teams)
 {
     json_object *teams_array = json_object_new_array_ext(teams->len);
     gint i;
 
     for (i = 0; i < teams->len; i++) {
-        Team *team = &g_array_index(teams, Team, i);
+        Team *team = g_ptr_array_index(teams, i);
         json_object_array_add(teams_array, bygfoot_json_serialize_team(team, NULL));
     }
     return teams_array;
@@ -900,6 +901,7 @@ bygfoot_json_serialize_cup(const Cup *cup)
     SERIALIZE_CUP_FIELD(fixtures, bygfoot_json_serialize_fixtures);
     SERIALIZE_CUP_FIELD(week_breaks, bygfoot_json_serialize_week_breaks);
     SERIALIZE_CUP_FIELD(skip_weeks_with, serialize_gchar_ptr_array);
+    SERIALIZE_CUP_FIELD(history, bygfoot_json_serialize_cup_history);
     return cup_obj;
 }
 
@@ -973,6 +975,20 @@ bygfoot_json_serialize_cup_round_wait(const CupRoundWait *wait)
     #undef SERIALIZE
 
     return wait_obj;
+}
+
+json_object *
+bygfoot_json_serialize_cup_history(const GPtrArray *history)
+{
+    json_object *history_array = json_object_new_array_ext(history->len);
+    gint i;
+
+    for (i = 0; i < history->len; i++) {
+        GPtrArray *teams = g_ptr_array_index(history, i);
+        json_object_array_add(history_array,
+                              bygfoot_json_serialize_team_ptrs(teams, NULL));
+    }
+    return history_array;
 }
 
 json_object *
@@ -1445,7 +1461,6 @@ bygfoot_json_serialize_table_element(const TableElement *element)
             SERIALIZE_OBJECT_FIELD(element_obj, element, field, serialize_func);
 
     SERIALIZE(team, bygfoot_json_serialize_team_ptr);
-    SERIALIZE(team_id, json_object_new_int64);
     SERIALIZE(old_rank, json_object_new_int64);
     json_object_object_add(element_obj, "played",
                            json_object_new_int64(element->values[TABLE_PLAYED]));
@@ -1487,7 +1502,6 @@ bygfoot_json_serialize_fixture(const Fixture *fixture)
     SERIALIZE(week_number, json_object_new_int64);
     SERIALIZE(week_round_number, json_object_new_int64);
     SERIALIZE(teams, bygfoot_json_serialize_fixture_teams);
-    json_object_object_add(fixture_obj, "team_ids", serialize_int_array(fixture->team_ids, 2));
     SERIALIZE(result, bygfoot_json_serialize_fixture_result);
     SERIALIZE(home_advantage, json_object_new_boolean);
     SERIALIZE(second_leg, json_object_new_boolean);

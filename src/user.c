@@ -59,7 +59,6 @@ user_new(void)
 
     new.name = g_strdup("NONAME");
     new.tm = NULL;
-    new.team_id = -1;
     
     live_game_reset(&new.live_game, NULL, FALSE);
 
@@ -112,17 +111,18 @@ user_set_up_team_new_game(User *user)
     }
     else
     {
+        Team *team = NULL;
 	rndom = math_rndi(0, lig(user->scout).teams->len - 1);
-	while(team_is_user(&g_array_index(lig(user->scout).teams, Team, rndom)) != -1)
+	while(team_is_user(g_ptr_array_index(lig(user->scout).teams, rndom)) != -1)
 	    rndom = math_rndi(0, lig(user->scout).teams->len - 1);
       
-	sprintf(buf, "%s", g_array_index(lig(user->scout).teams, Team, rndom).name);
-	misc_string_assign(&g_array_index(lig(user->scout).teams, Team, rndom).name,
+        team = g_ptr_array_index(lig(user->scout).teams, rndom);
+	sprintf(buf, "%s", team->name);
+	misc_string_assign(&team->name,
 			   user->tm->name);
 	misc_string_assign(&user->tm->name, buf);
 
-	user->tm = &g_array_index(lig(user->scout).teams, Team, rndom);
-	user->team_id = g_array_index(lig(user->scout).teams, Team, rndom).id;
+	user->tm = team;
 
 	user_history_add(user, USER_HISTORY_START_GAME, 
 			 user->tm->name, 
@@ -664,7 +664,6 @@ user_change_team(User *user, Team *tm)
     user->tm->stadium.ticket_price = const_int("int_team_stadium_ticket_price");
 
     user->tm = tm;
-    user->team_id = tm->id;
 
     user_set_up_team(user, FALSE);
 
@@ -1215,7 +1214,7 @@ user_mm_add_last_match(gboolean load_file, gboolean save_file)
 
     new.country_name = g_strdup(country.name);
     new.neutral = !(fix->home_advantage);
-    new.user_team = (fix->team_ids[0] != current_user.team_id);
+    new.user_team = (fix->teams[0] != current_user.tm);
     new.lg = current_user.live_game;
     
     /** This will tell the free function NOT

@@ -179,6 +179,60 @@ misc_copy_ptr_array(const GPtrArray *array)
     return copy;
 }
 
+/** Add all pointers of \p src to the end of \p dest */
+void
+misc_extend_ptr_array(GPtrArray *dest, GPtrArray *src)
+{
+#ifdef GLIB_VERSION_2_62
+    g_ptr_array_extend(dest, src, NULL, NULL);
+#else
+    gint i;
+    for (i = 0; i < src->len; i++) {
+        g_ptr_array_add(dest, g_ptr_array_index(src, i));
+    }
+#endif
+}
+
+/**
+ * Insert an item into the \p array at \p index_.
+ */
+void
+misc_g_ptr_array_insert(GPtrArray *array, gint _index, gpointer data)
+{
+#ifdef GLIB_VERSION_2_40
+    g_ptr_array_insert(array, _index, data);
+#else
+    gint i;
+    g_ptr_array_set_size(array, array->len + 1);
+    for (i = _index; i < array->len; i++) {
+        gpointer *insert_point = &g_ptr_array_index(array, i);
+        gpointer old_data = *insert_point;
+        *insert_point = data;
+        data = old_data;
+    }
+#endif
+}
+
+/** Search for \p needle in \p haystack.  If \p needle is found \p index is
+ * set to the index of \p neelde in \p haystack and TRUE is returned.
+ * Otherwise, \p index_ is undefined and this function returns FALSE.*/
+gboolean
+misc_g_ptr_array_find(GPtrArray *haystack, gconstpointer needle, guint *index_)
+{
+#ifdef GLIB_VERSION_2_54
+    return g_ptr_array_find(haystack, needle, index_);
+#else
+    gint i;
+    for (i = 0; i < haystack->len; i++) {
+        if (g_ptr_array_index(haystack, i) == needle) {
+            *index_ = i;
+            return TRUE;
+        }
+    }
+    return FALSE;
+#endif
+}
+
 /** Print a thousands-grouped output of 'number' into 'buf',
     like 2 234 345 instead of 2234345.
     @param number The number to print. 

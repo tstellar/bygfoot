@@ -110,7 +110,7 @@ static load_country(gpointer country_file, gpointer user_data)
         League *league = &g_array_index(new_country->leagues, League, i);
         gint j;
         for (j = 0; j < league->teams->len; j++) {
-            Team *team = &g_array_index(league->teams, Team, j);
+            Team *team = g_ptr_array_index(league->teams, j);
 	    team_generate_players_stadium(team, league->average_talent);
         }
     }
@@ -145,6 +145,16 @@ start_new_season(void)
     free_names(TRUE);
     stat5 = STATUS_GENERATE_TEAMS;
 
+    /* Randomize league lists for non-user countries so we get different
+     * teams in the international cups. */
+    for (i = 0; i < country_list->len; i++) {
+        Country *country = g_ptr_array_index(country_list, i);
+        for (j = 0; j < country->leagues->len; j++) {
+            League *league = &g_array_index(country->leagues, League, j);
+            league->teams = misc_randomise_g_pointer_array(league->teams);
+        }
+    }
+
     if(season == 1)
     {
         for(i=0;i<ligs->len;i++)
@@ -168,10 +178,18 @@ start_new_season(void)
 	    g_ptr_array_remove_index(acps, i);
     }
 
-    /* Deal with cups that have to take place before promotion/relegation. */
-    for(i=cps->len - 1; i >= 0; i--)
+    for(i=cps->len - 1; i >= 0; i--) {
+        /* Reset all cups.  We need to make sure all cups get reset
+	 * before the start of the next season.  Otherwise, the fixtures
+	 * from last year's cup will interfere with scheduling the league
+	 * fixtures.  Also, cup_reset() saves this season's results in the
+	 * history list. */
+	cup_reset(&cp(i));
+
+        /* Deal with cups that have to take place before promotion/relegation. */
 	if(cp(i).add_week == -1)
 	    fixture_write_cup_fixtures(&cp(i));
+    }
 
     if(season > 1)
     {
@@ -192,8 +210,6 @@ start_new_season(void)
 
 	for(i=0;i<users->len;i++)
 	{
-	    usr(i).tm = team_of_id(usr(i).team_id);
-
 	    usr(i).youth_academy.tm = usr(i).tm;
 	    for(j=0;j<usr(i).youth_academy.players->len;j++)
 	    {
@@ -228,10 +244,6 @@ start_new_season(void)
     {
         if(cp(i).add_week == 0)
             fixture_write_cup_fixtures(&cp(i));
-        /* Reset team pointers using the stored ids
-           (pointers might have changed because of prom/rel). */
-	else if(cp(i).add_week == -1)
-            fixture_refresh_team_pointers(cp(i).fixtures);
         else if(!query_cup_self_referential(&cp(i)))
             cup_reset(&cp(i));
     }
@@ -288,7 +300,7 @@ start_generate_league_teams(void)
 
     for(i=0;i<ligs->len;i++)
 	for(j=0;j<lig(i).teams->len;j++)
-	    team_generate_players_stadium(&g_array_index(lig(i).teams, Team, j), 0);
+	    team_generate_players_stadium(g_ptr_array_index(lig(i).teams, j), 0);
 
     country_lookup_first_team_ids(&country);
     stat5 = -1;
@@ -708,7 +720,7 @@ start_week_update_teams(Bygfoot *bygfoot)
     
     for(i=0;i<ligs->len;i++)
 	for(j=0;j<lig(i).teams->len;j++)
-	    team_update_team_weekly(&g_array_index(lig(i).teams, Team, j));
+	    team_update_team_weekly(g_ptr_array_index(lig(i).teams, j));
 
     for(i=0;i<cps->len;i++)
 	for(j=0;j<cp(i).teams->len;j++)
@@ -728,7 +740,7 @@ start_week_round_update_teams(void)
     
     for(i=0;i<ligs->len;i++)
 	for(j=0;j<lig(i).teams->len;j++)
-	    team_update_team_week_roundly(&g_array_index(lig(i).teams, Team, j));
+	    team_update_team_week_roundly(g_ptr_array_index(lig(i).teams, j));
 
     for(i=0;i<cps->len;i++)
 	for(j=0;j<cp(i).teams->len;j++)
@@ -837,22 +849,22 @@ start_new_season_league_changes(void)
 
     for(i=0;i<team_movements->len;i++)
 	league_remove_team_with_id(
-	    league_from_clid(g_array_index(team_movements, TeamMove, i).tm.clid),
-	    g_array_index(team_movements, TeamMove, i).tm.id);
+	    league_from_clid(g_array_index(team_movements, TeamMove, i).tm->clid),
+	    g_array_index(team_movements, TeamMove, i).tm->id);
 
     league_team_movements_destinations(team_movements, league_size);
 
     for(i = team_movements->len - 1; i >= 0; i--)
 	if(g_array_index(team_movements, TeamMove, i).prom_rel_type == PROM_REL_RELEGATION)
-	    g_array_prepend_val(
+	    misc_g_ptr_array_insert(
 		lig(g_array_index(
 			g_array_index(team_movements, TeamMove, i).dest_idcs, 
-			gint, 0)).teams,
+			gint, 0)).teams, 0,
 		g_array_index(team_movements, TeamMove, i).tm);
     
     for(i=1;i<team_movements->len;i++)
 	if(g_array_index(team_movements, TeamMove, i).prom_rel_type != PROM_REL_RELEGATION)
-	    g_array_append_val(
+	    g_ptr_array_add(
 		lig(g_array_index(
 			g_array_index(team_movements, TeamMove, i).dest_idcs, 
 			gint, 0)).teams,
@@ -866,11 +878,10 @@ start_new_season_league_changes(void)
     {
 	for(j=0;j<lig(i).teams->len;j++)
 	{
-	    g_array_index(lig(i).teams, Team, j).clid = lig(i).id;
-	    for(k=0;k<g_array_index(lig(i).teams, Team, j).players->len;k++)
-		g_array_index(g_array_index(lig(i).teams, Team, j).players, 
-			      Player, k).team =
-		    &g_array_index(lig(i).teams, Team, j);
+            Team *team = g_ptr_array_index(lig(i).teams, j);
+	    team->clid = lig(i).id;
+	    for(k=0;k<team->players->len;k++)
+		g_array_index(team->players, Player, k).team = team;
 	}
 
 	league_season_start(&lig(i));

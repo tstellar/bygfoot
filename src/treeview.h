@@ -34,7 +34,8 @@
 #include "table_struct.h"
 
 GtkTreeModel*
-treeview_create_team_selection_list(gboolean show_cup_teams,
+treeview_create_team_selection_list(const Country *country,
+                                    gboolean show_cup_teams,
 				    gboolean show_user_teams);
 
 void

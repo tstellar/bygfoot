@@ -57,8 +57,8 @@ enum
 };
 
 gint state, etalidx, careeridx;
-GArray *teams_array;
-Team new_team;
+GPtrArray *teams_array;
+Team *new_team;
 Player new_player;
 PlayerGamesGoals new_games_goals;
 PlayerCard new_card;
@@ -93,13 +93,14 @@ xml_loadsave_teams_start_element (GMarkupParseContext *context,
 	    valid_tag = TRUE;
 	}
 
-    if(tag == TAG_TEAM)
-	new_team = team_new(FALSE);
-    else if(tag >= TAG_START_PLAYERS && tag <= TAG_END_PLAYERS)
+    if(tag == TAG_TEAM) {
+        new_team = g_malloc0(sizeof(Team));
+	*new_team = team_new(FALSE);
+    } else if(tag >= TAG_START_PLAYERS && tag <= TAG_END_PLAYERS)
     {
 	valid_tag = TRUE;
 	state = TAG_START_PLAYERS;
-	xml_loadsave_players_start_element(tag, &new_team);
+	xml_loadsave_players_start_element(tag, new_team);
     }
 
     if(!valid_tag)
@@ -122,7 +123,7 @@ xml_loadsave_teams_end_element    (GMarkupParseContext *context,
     if(tag == TAG_TEAM)
     {
 	state = TAG_TEAMS;
-	g_array_append_val(teams_array, new_team);
+	g_ptr_array_add(teams_array, new_team);
     }
     else if(tag == TAG_NAME ||
 	    tag == TAG_SYMBOL ||
@@ -149,7 +150,7 @@ xml_loadsave_teams_end_element    (GMarkupParseContext *context,
 	state = TAG_TEAM_STADIUM;
     else if(tag >= TAG_START_PLAYERS && tag <= TAG_END_PLAYERS)
     {
-	xml_loadsave_players_end_element(tag, new_team.players);
+	xml_loadsave_players_end_element(tag, new_team->players);
 	if(tag == TAG_START_PLAYERS)
 	    state = TAG_TEAM;
     }
@@ -180,51 +181,51 @@ xml_loadsave_teams_text         (GMarkupParseContext *context,
     float_value = (gfloat)g_ascii_strtod(buf, NULL) / 10000;
 
     if(state == TAG_NAME)
-	misc_string_assign(&new_team.name, buf);
+	misc_string_assign(&new_team->name, buf);
     else if(state == TAG_SYMBOL)
-	misc_string_assign(&new_team.symbol, buf);
+	misc_string_assign(&new_team->symbol, buf);
     else if(state == TAG_TEAM_NAMES_FILE)
-	misc_string_assign(&new_team.names_file, buf);
+	misc_string_assign(&new_team->names_file, buf);
     else if(state == TAG_TEAM_CLID)
-	new_team.clid = int_value;
+	new_team->clid = int_value;
     else if(state == TAG_TEAM_STRATEGY_SID)
-	misc_string_assign(&new_team.strategy_sid, buf);
+	misc_string_assign(&new_team->strategy_sid, buf);
     else if(state == TAG_TEAM_ID)
-	new_team.id = int_value;
+	new_team->id = int_value;
     else if(state == TAG_TEAM_STRUCTURE)
-	new_team.structure = int_value;
+	new_team->structure = int_value;
     else if(state == TAG_TEAM_STYLE)
-	new_team.style = int_value;
+	new_team->style = int_value;
     else if(state == TAG_TEAM_BOOST)
-	new_team.boost = int_value;
+	new_team->boost = int_value;
     else if(state == TAG_TEAM_STADIUM_NAME)
-	misc_string_assign(&new_team.stadium.name, buf);
+	misc_string_assign(&new_team->stadium.name, buf);
     else if(state == TAG_TEAM_STADIUM_CAPACITY)
-	new_team.stadium.capacity = int_value;
+	new_team->stadium.capacity = int_value;
     else if(state == TAG_TEAM_STADIUM_AVERAGE_ATTENDANCE)
-	new_team.stadium.average_attendance = int_value;
+	new_team->stadium.average_attendance = int_value;
     else if(state == TAG_TEAM_STADIUM_POSSIBLE_ATTENDANCE)
-	new_team.stadium.possible_attendance = int_value;
+	new_team->stadium.possible_attendance = int_value;
     else if(state == TAG_TEAM_STADIUM_GAMES)
-	new_team.stadium.games = int_value;
+	new_team->stadium.games = int_value;
     else if(state == TAG_TEAM_STADIUM_SAFETY)
-	new_team.stadium.safety = float_value;
+	new_team->stadium.safety = float_value;
     else if(state == TAG_TEAM_STADIUM_TICKET_PRICE)
-        new_team.stadium.ticket_price = float_value;
+        new_team->stadium.ticket_price = float_value;
     else if(state == TAG_TEAM_LUCK)
-	new_team.luck = float_value;
+	new_team->luck = float_value;
     else if(state == TAG_TEAM_FIRST_TEAM_SID)
-	misc_string_assign(&new_team.first_team_sid, buf);
+	misc_string_assign(&new_team->first_team_sid, buf);
     else if(state == TAG_TEAM_FIRST_TEAM_ID)
-    new_team.first_team_id = int_value;
+    new_team->first_team_id = int_value;
     else if(state == TAG_TEAM_RESERVE_LEVEL)
-	new_team.reserve_level = int_value;
+	new_team->reserve_level = int_value;
     else if(state >= TAG_START_PLAYERS && state <= TAG_END_PLAYERS)
 	xml_loadsave_players_text(buf);
 }
 
 void
-xml_loadsave_teams_read(const gchar *filename, GArray *teams)
+xml_loadsave_teams_read(const gchar *filename, GPtrArray *teams)
 {
 #ifdef DEBUG
     printf("xml_loadsave_teams_read\n");
@@ -262,14 +263,15 @@ xml_loadsave_teams_read(const gchar *filename, GArray *teams)
 	misc_print_error(&error, TRUE);
     }
 
-    for(i=0;i<teams->len;i++)
-	for(j=0;j<g_array_index(teams, Team, i).players->len;j++)
-	    g_array_index(g_array_index(teams, Team, i).players, Player, j).team = 
-		&g_array_index(teams, Team, i);
+    for(i=0;i<teams->len;i++) {
+        Team *team = g_ptr_array_index(teams, i);
+	for(j=0;j<team->players->len;j++)
+	    g_array_index(team->players, Player, j).team = team;
+    }
 }
 
 void
-xml_loadsave_teams_write(const gchar *filename, const GArray *teams)
+xml_loadsave_teams_write(const gchar *filename, const GPtrArray *teams)
 {
 #ifdef DEBUG
     printf("xml_loadsave_teams_write\n");
@@ -282,7 +284,7 @@ xml_loadsave_teams_write(const gchar *filename, const GArray *teams)
 
     fprintf(fil, "<_%d>\n", TAG_TEAMS);
     for(i=0;i<teams->len;i++)
-	xml_loadsave_teams_write_team(fil, &g_array_index(teams, Team, i));
+	xml_loadsave_teams_write_team(fil, g_ptr_array_index(teams, i));
 
     fprintf(fil, "</_%d>\n", TAG_TEAMS);
 
