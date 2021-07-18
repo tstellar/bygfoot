@@ -299,9 +299,9 @@ xml_loadsave_cup_text         (GMarkupParseContext *context,
 	new_cup->next_fixture_update_week_round = int_value;
     else if(state == TAG_CUP_TEAM_ID_BYE)
 	g_ptr_array_add(new_cup->bye, team_of_id(int_value));
-    else if(state == TAG_CUP_TEAM_NAME)
-	g_ptr_array_add(new_cup->team_names, g_strdup(buf));
-    else if(state == TAG_CUP_CHOOSE_TEAM_SID)
+    else if(state == TAG_CUP_TEAM_NAME) {
+        /* Do nothing, this field was removed. */
+    } else if(state == TAG_CUP_CHOOSE_TEAM_SID)
 	misc_string_assign(&new_choose_team->sid, buf);
     else if(state == TAG_CUP_CHOOSE_TEAM_NUMBER_OF_TEAMS)
 	new_choose_team->number_of_teams = int_value;
@@ -475,10 +475,6 @@ xml_loadsave_cup_write(const gchar *prefix, const Cup *cup)
 	for(i=0;i<cup->bye->len;i++)
 	    xml_write_int(fil, ((Team*)g_ptr_array_index(cup->bye, i))->id,
 			  TAG_CUP_TEAM_ID_BYE, I1);
-
-    for(i=0;i<cup->team_names->len;i++)
-	xml_write_string(fil, (gchar*)g_ptr_array_index(cup->team_names, i),
-			   TAG_CUP_TEAM_NAME, I1);
 
     fprintf(fil, "<_%d>\n", TAG_CUP_HISTORY);
     for (i = 0; i < cup->history->len; i++) {

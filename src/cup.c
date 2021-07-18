@@ -66,7 +66,6 @@ cup_new(gboolean new_id)
 
     new.rounds = g_array_new(FALSE, FALSE, sizeof(CupRound));
     new.teams = g_ptr_array_new();
-    new.team_names = g_ptr_array_new();
     new.fixtures = g_array_new(FALSE, FALSE, sizeof(Fixture));
     new.week_breaks = g_array_new(FALSE, FALSE, sizeof(WeekBreak));
     new.skip_weeks_with = g_ptr_array_new();
@@ -153,9 +152,6 @@ cup_reset(Cup *cup)
 
     gint i;
     
-    free_gchar_array(&cup->team_names);
-    cup->team_names = g_ptr_array_new();
-
     if(cup->teams->len > 0)
     {
         /* Save this season's results. */
@@ -419,7 +415,6 @@ cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_temp, GPtrArray *teams, c
                !query_team_is_in_cups(team, cup->group))
             {
                 g_ptr_array_add(teams, team);
-                g_ptr_array_add(cup->team_names, g_strdup(team->name));
                 number_of_teams++;
             }
 		
@@ -454,8 +449,6 @@ cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_temp, GPtrArray *teams, c
                    (Team*)g_ptr_array_index(cup_teams_sorted, i), cup->group))
             {
                 g_ptr_array_add(teams, g_ptr_array_index(cup_teams_sorted, i));
-                g_ptr_array_add(cup->team_names, 
-                                g_strdup(((Team*)g_ptr_array_index(cup_teams_sorted, i))->name));
                 number_of_teams++;
 
                 if(number_of_teams == ct->number_of_teams)
@@ -508,7 +501,6 @@ cup_load_choose_team_from_league(Cup *cup, const League *league,
 	        !query_league_cup_has_property(cup->id, "include_reserve_teams"))
 		continue;
             g_ptr_array_add(teams, team);
-            g_ptr_array_add(cup->team_names, g_strdup(team->name));
         }
     }
     else
@@ -543,7 +535,6 @@ cup_load_choose_team_from_league(Cup *cup, const League *league,
             if(ct->skip_group_check || !query_team_is_in_cups(team, cup->group))
             {
                 g_ptr_array_add(teams, team);
-                g_ptr_array_add(cup->team_names, g_strdup(team->name));
                 number_of_teams++;
 
                 if(number_of_teams == ct->number_of_teams)
@@ -701,7 +692,6 @@ cup_load_choose_team_generate(Cup *cup, GPtrArray *teams, const CupChooseTeam *c
 	    //g_array_append_val(cup_round->teams, g_array_index(teams_local, Team, permutation[j]));
 	    //g_array_index(cup_round->teams, Team, cup_round->teams->len - 1).clid = cup->id;
 	    team->clid = cup->id;
-	    g_ptr_array_add(cup->team_names, g_strdup(team->name));
 	    g_ptr_array_add(teams, team);
 
 	    number_of_teams++;

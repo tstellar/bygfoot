@@ -897,7 +897,6 @@ bygfoot_json_serialize_cup(const Cup *cup)
     SERIALIZE_CUP_FIELD_STRUCT(rounds, bygfoot_json_serialize_cup_rounds);
     SERIALIZE_CUP_FIELD_STRUCT(bye, bygfoot_json_serialize_team_ptrs);
     SERIALIZE_CUP_FIELD_STRUCT(teams, bygfoot_json_serialize_team_ptrs);
-    SERIALIZE_CUP_FIELD(team_names, serialize_gchar_ptr_array);
     SERIALIZE_CUP_FIELD(fixtures, bygfoot_json_serialize_fixtures);
     SERIALIZE_CUP_FIELD(week_breaks, bygfoot_json_serialize_week_breaks);
     SERIALIZE_CUP_FIELD(skip_weeks_with, serialize_gchar_ptr_array);

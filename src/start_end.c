@@ -173,9 +173,6 @@ start_new_season(void)
     /* Remove cups that don't start at the beginning of season. */
     for(i = acps->len - 1; i >= 0; i--)
     {
-	g_ptr_array_free(acp(i)->team_names, TRUE);
-	acp(i)->team_names = g_ptr_array_new();
-
 	if(acp(i)->add_week > 0)
 	    g_ptr_array_remove_index(acps, i);
     }

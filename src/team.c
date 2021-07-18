@@ -162,18 +162,20 @@ query_team_is_in_cups(const Team *tm, gint group)
     if(group == -1)
 	return FALSE;
 
-    for(i=0;i<cps->len;i++)
-	if(cp(i).group == group)
-	    for(j=0;j<cp(i).team_names->len;j++)
-		if(strcmp(tm->name, 
-			  (gchar*)g_ptr_array_index(cp(i).team_names, j)) == 0)
-		{
-		    if(debug > 90)
-			g_print("team %s group %d found in %s (%s) \n", tm->name,
+    for(i=0;i<cps->len;i++) {
+        const Cup *cup = &cp(i);
+        if (cup->group != group)
+            continue;
+	for(j=0;j<cup->teams->len;j++) {
+            const Team *team = g_ptr_array_index(cup->teams, j);
+            if (team == tm) {
+                if(debug > 90)
+                        g_print("team %s group %d found in %s (%s) \n", tm->name,
 				group, cp(i).name, cp(i).sid);
-		    return TRUE;
-		}
-    
+		return TRUE;
+	    }
+        }
+    }
     return FALSE;
 }
 
@@ -190,9 +192,8 @@ query_team_is_in_cup(const Team *tm, const Cup *cup)
 
     gint i;
 
-    for(i=0;i<cup->team_names->len;i++)
-	if(strcmp(tm->name, 
-		  (gchar*)g_ptr_array_index(cup->team_names, i)) == 0)
+    for(i=0;i<cup->teams->len;i++)
+        if (tm == g_ptr_array_index(cup->teams, i))
 	    return TRUE;
 
     return FALSE;
