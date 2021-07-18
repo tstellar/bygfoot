@@ -203,9 +203,6 @@ typedef struct
 	these are only pointers).
 	Relevant only if it's an international one. */
     GPtrArray *teams;
-    /** Pointer array with the names of all the teams in the cup.
-	Also the teams from the country's leagues. */
-    GPtrArray *team_names;
     /** The fixtures of a season for the cup. */
     GArray *fixtures;
     /** Array of custom breaks in schedule. */

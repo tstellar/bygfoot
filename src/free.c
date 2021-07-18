@@ -655,7 +655,6 @@ free_cup(Cup *cup)
     free_g_array(&cup->week_breaks);
 
     free_g_ptr_array(&cup->bye);
-    free_gchar_array(&cup->team_names);
     free_g_ptr_array(&cup->teams);
     free_gchar_array(&cup->properties);
 }
