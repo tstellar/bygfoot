@@ -343,10 +343,6 @@ main_init_variables(void)
     file_load_conf_files();
     xml_strategy_load_strategies();
 
-    current_interest = rint(math_rnd(const_float("float_finance_interest_lower"),
-                const_float("float_finance_interest_upper")) /
-            const_float("float_finance_interest_step")) * const_float("float_finance_interest_step");
-
     language_set(language_get_code_index(opt_str("string_opt_language_code")) + 1);
 
     option_add(&options, "int_opt_calodds", 0, NULL);
@@ -434,6 +430,15 @@ main_init(gint *argc, gchar ***argv, Bygfoot *bygfoot)
 
     load_last_save = FALSE;
     main_parse_cl_arguments(argc, argv, bygfoot);
+
+    /* main_parse_cl_arguments may set the seed for the random number
+     * generator, so generate the interest after the seed is set.  This help
+     * keeps the value consistent when --seed is used.
+     */
+    current_interest = rint(math_rnd(const_float("float_finance_interest_lower"),
+                const_float("float_finance_interest_upper")) /
+            const_float("float_finance_interest_step")) * const_float("float_finance_interest_step");
+
 }
 
 /**
