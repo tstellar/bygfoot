@@ -51,7 +51,7 @@ set -x
 
 if [ -n "$verify" ]; then
     ./bygfoot --random-seed=1 --json=$input_dir/verify$input_suffix.json &> $output_dir/verify.log
-    gzip $output_dir/verify.log
+    gzip -n $output_dir/verify.log
 fi
 
 if [ -n "$benchmark" ]; then
