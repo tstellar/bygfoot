@@ -92,6 +92,8 @@ start_new_game(void)
 
     start_load_other_countries();
 
+    start_generate_cup_history();
+
     start_new_season();
 }
 
@@ -130,6 +132,85 @@ start_load_other_countries()
     country_list = g_ptr_array_new();
 
     g_ptr_array_foreach(country_files, load_country, country_list);
+}
+
+/** Generate cup results so that in the first season we can select the cup
+ * winners using the same method we do for the later seasons.
+ *
+ */
+void
+start_generate_cup_history()
+{
+    gint i, j, k, m, t;
+    gint number_of_teams;
+
+    /* First pass: Collect all the teams that qualify for a cup from a league. */
+    for (i = country.cups->len - 1; i >=0; i--) {
+        Cup *cup = &g_array_index(country.cups, Cup, i);
+        for(j = cup->rounds->len - 1; j  >= 0; j--) {
+            CupRound *round = &g_array_index(cup->rounds, CupRound, j);
+            for (k = 0; k < round->choose_teams->len; k++) {
+                gint start_idx, end_idx;
+                GPtrArray *teams = g_ptr_array_new();
+                CupChooseTeam *ct = &g_array_index(round->choose_teams, CupChooseTeam, k);
+                League *league = bygfoot_get_league_sid(ct->sid);
+                Cup *ct_cup;
+                gboolean update_clid = cup_choose_team_should_generate(ct);
+                if (!league)
+                    continue;
+                for (t = 0; t < league->teams->len; t++) {
+                    g_ptr_array_add(teams, g_ptr_array_index(league->teams, t));
+                }
+                number_of_teams = ct->number_of_teams == -1 ? teams->len : ct->number_of_teams;
+                t = 0;
+                start_idx = cup_choose_team_compute_start_idx(ct);
+                end_idx = cup_choose_team_compute_end_idx(ct, teams->len);
+                for (m = start_idx; m <= end_idx && m < teams->len && t < number_of_teams; m++) { 
+                    Team *team = g_ptr_array_index(teams, m);
+                    if(!ct->skip_group_check && query_team_is_in_cups(team, cup->group))
+                        continue;
+                    g_ptr_array_add(cup->teams, team);
+                    if (update_clid)
+                        team->clid = cup->id;
+                    t++;
+                }
+                g_ptr_array_free(teams, TRUE);
+            }
+        }
+    }
+
+    /* Second pass: Collect all the teams that qualify for a cup from another cup. */
+    for (i = country.cups->len - 1; i >=0; i--) {
+        Cup *cup = &g_array_index(country.cups, Cup, i);
+        for(j = cup->rounds->len - 1; j  >= 0; j--) {
+            CupRound *round = &g_array_index(cup->rounds, CupRound, j);
+            for (k = 0; k < round->choose_teams->len; k++) {
+                gint start_idx, end_idx;
+                GPtrArray *teams = g_ptr_array_new();
+                CupChooseTeam *ct = &g_array_index(round->choose_teams, CupChooseTeam, k);
+                Cup *ct_cup = country_get_cup_sid(&country, ct->sid);
+                if (!ct_cup)
+                    continue;
+                for (t = 0; t < ct_cup->teams->len; t++) {
+                    g_ptr_array_add(teams, g_ptr_array_index(ct_cup->teams, t));
+                }
+                number_of_teams = ct->number_of_teams == -1 ? teams->len : ct->number_of_teams;
+                t = 0;
+                start_idx = cup_choose_team_compute_start_idx(ct);
+                end_idx = cup_choose_team_compute_end_idx(ct, teams->len);
+                for (m = start_idx; m <= end_idx && m < teams->len && t < number_of_teams; m++) { 
+                    Team *team = g_ptr_array_index(teams, m);
+                    if(!ct->skip_group_check && query_team_is_in_cups(team, cup->group))
+                        continue;
+                    g_ptr_array_add(cup->teams, team);
+                    t++;
+                }
+                g_ptr_array_free(teams, TRUE);
+            }
+        }
+        cup->teams = misc_randomise_g_pointer_array(cup->teams);
+	g_ptr_array_add(cup->history, misc_copy_ptr_array(cup->teams));
+    }
 }
 
 /** Make new fixtures, nullify things etc. */

@@ -474,7 +474,8 @@ country_get_league_sid(Country *country, const gchar *sid)
     return NULL;
 }
 
-/** Get the leauge with \p sid from the list of all countries.
+/** Get the leauge with \p sid from the list of all countries (including the
+ * users' country).
  *  @returns A pointer to a League object or NULL if the cup is not found.
  */
 League *
@@ -487,7 +488,7 @@ bygfoot_get_league_sid(const gchar *sid)
         if (league)
             return league;
     }
-    return NULL;
+    return country_get_league_sid(&country, sid);
 }
 
 /** Remove the team with the specified id from the teams

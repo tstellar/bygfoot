@@ -105,6 +105,9 @@ cup_get_round_reached(const Team *tm, const GArray *fixtures);
 gboolean
 query_cup_begins(const Cup *cup);
 
+gboolean
+cup_choose_team_should_generate(const CupChooseTeam *ct);
+
 gint
 cup_choose_team_compute_start_idx(const CupChooseTeam *ct);
 
