@@ -32,6 +32,9 @@ void
 start_load_other_countries(void);
 
 void
+start_generate_cup_history(void);
+
+void
 start_new_game(void);
 
 void

@@ -154,9 +154,13 @@ cup_reset(Cup *cup)
     
     if(cup->teams->len > 0)
     {
-        /* Save this season's results. */
-        GPtrArray *sorted_teams = cup_get_teams_sorted(cup);
-	g_ptr_array_add(cup->history, sorted_teams);
+        /* Save this season's results.  If there are no fixtures then
+         * it means we have generated this cups results, so we have
+         * already saved the history. */
+        if (cup->fixtures->len > 0) {
+            GPtrArray *sorted_teams = cup_get_teams_sorted(cup);
+            g_ptr_array_add(cup->history, sorted_teams);
+        }
 	g_ptr_array_free(cup->teams, TRUE);
 	cup->teams = g_ptr_array_new();
     }
@@ -201,7 +205,7 @@ query_cup_choose_team_is_league(const gchar *sid)
 /** @return TRUE if the team(s) referenced by \p sid need to be
  *          generated.
  */
-static gboolean
+gboolean
 cup_choose_team_should_generate(const CupChooseTeam *ct)
 {
     if (g_str_has_prefix(ct->sid, "LEAGUE") || g_str_has_prefix(ct->sid, "CUP"))
@@ -396,43 +400,6 @@ cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_temp, GPtrArray *teams, c
     number_of_teams = 0;
     cup_teams_sorted = NULL;
 
-    if(season == 1 && week == 1 && cup->add_week == 0)
-    {
-        if(lig(0).teams->len < ct->number_of_teams)
-            main_exit_program(EXIT_CHOOSE_TEAM_ERROR, 
-                              "cup_load_choose_team_from_cup: not enough teams in league 0 for chooseteam %s (%d; required: %d) in cup %s\n",
-                              ct->sid, lig(0).teams->len, 
-                              ct->number_of_teams, cup->name);
-
-        gint permutation[lig(0).teams->len];
-        math_generate_permutation(permutation, 0, lig(0).teams->len - 1);
-
-        for(i = ct->start_idx - 1; i <= ct->end_idx - 1; i++)
-        {
-            gint team_idx = permutation[i - ct->start_idx + 1];
-            Team *team = g_ptr_array_index(lig(0).teams, team_idx);
-            if(ct->skip_group_check ||
-               !query_team_is_in_cups(team, cup->group))
-            {
-                g_ptr_array_add(teams, team);
-                number_of_teams++;
-            }
-		
-            if(number_of_teams == ct->number_of_teams)
-                break;
-        }
-	    
-        if(number_of_teams != ct->number_of_teams) {
-	    if (ct->next)
-	        return cup_load_choose_team(cup, teams, ct->next);
-
-            main_exit_program(EXIT_CHOOSE_TEAM_ERROR, 
-                              "cup_load_choose_team_from_cup (2): not enough teams found in league 0 for chooseteam %s (%d; required: %d) in cup %s (group %d)\n",
-                              ct->sid, number_of_teams, 
-                              ct->number_of_teams, cup->name, cup->group);
-        }
-    }
-    else
     {
         /* Self-referential cup or no? */
         cup_teams_sorted = (cup == cup_temp) ? 
@@ -1431,6 +1398,9 @@ query_cup_hidden(const Cup *cup)
 GPtrArray *
 cup_get_last_season_results(const Cup *cup)
 {
+    gint i, j, k;
+    GPtrArray *history;
+
     return g_ptr_array_index(cup->history, cup->history->len - 1);
 }
 
