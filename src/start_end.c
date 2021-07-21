@@ -106,6 +106,8 @@ static load_country(gpointer country_file, gpointer user_data)
     gint i;
 
     xml_country_read(country_file, new_country);
+    if (!strcmp(new_country->sid, country.sid))
+        return;
     for (i = 0; i < new_country->leagues->len; i++) {
         League *league = &g_array_index(new_country->leagues, League, i);
         gint j;
