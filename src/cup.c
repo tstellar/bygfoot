@@ -211,6 +211,24 @@ cup_choose_team_should_generate(const CupChooseTeam *ct)
            !country_get_cup_sid(&country, ct->sid);
 }
 
+gint
+cup_choose_team_compute_start_idx(const CupChooseTeam *ct)
+{
+    if (ct->number_of_teams == -1)
+        return 0;
+
+    return ct->start_idx - 1;
+}
+
+gint
+cup_choose_team_compute_end_idx(const CupChooseTeam *ct, gint num_teams)
+{
+    if (ct->number_of_teams == -1)
+        return num_teams - 1;
+
+    return ct->end_idx - 1;
+}
+
 /** Write the cup or league of the chooseteam into the appropriate pointer
     and return TRUE; return FALSE if no cup/league is found. */
 void
@@ -423,16 +441,8 @@ cup_load_choose_team_from_cup(Cup *cup, const Cup *cup_temp, GPtrArray *teams, G
             teams_sorted : 
             cup_get_teams_sorted(cup_temp);
 
-        if(ct->number_of_teams == -1)
-        {
-            start = 0;
-            end = cup_teams_sorted->len;
-        }
-        else
-        {
-            start = ct->start_idx - 1;
-            end = ct->end_idx;
-        }
+        start = cup_choose_team_compute_start_idx(ct);
+        end = cup_choose_team_compute_end_idx(ct, cup_teams_sorted->len) + 1;
 
         for(i = start; i < end; i++)
         {

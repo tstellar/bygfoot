@@ -105,6 +105,12 @@ cup_get_round_reached(const Team *tm, const GArray *fixtures);
 gboolean
 query_cup_begins(const Cup *cup);
 
+gint
+cup_choose_team_compute_start_idx(const CupChooseTeam *ct);
+
+gint
+cup_choose_team_compute_end_idx(const CupChooseTeam *ct, gint num_teams);
+
 void
 cup_get_choose_team_league_cup(const CupChooseTeam *ct, 
 			       const League **league, const Cup **cup);
