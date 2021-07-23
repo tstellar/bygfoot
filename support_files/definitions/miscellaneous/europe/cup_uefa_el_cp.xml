@@ -20,12 +20,16 @@
 			<byes>0</byes>
 			<choose_teams>
 
-				<!-- Losers from Champions League Preliminary round & 1st Qualifying round -->
+				<!-- Losers from Champions League Preliminary round & 1st Qualifying round.
+				     There will be 42-44 teams in uefa_cl_cp depending on who won
+				     the Champions League and Europa League the year before.  We
+				     want to choose the 'last 20 teams'-->
 				<choose_team>
 					<choose_team_sid>uefa_cl_cp</choose_team_sid>
 					<number_of_teams>20</number_of_teams>
-					<start_idx>21</start_idx>
-					<end_idx>40</end_idx>
+					<start_idx>25</start_idx>
+					<end_idx>44</end_idx>
+					<optional>1</optional>
 					<wait_for_cup round="6">uefa_cl_cp</wait_for_cup>
 				</choose_team>
 			</choose_teams>
@@ -42,8 +46,8 @@
 					<choose_team_sid>uefa_cl_cp</choose_team_sid>
 					<preload>0</preload>
 					<number_of_teams>10</number_of_teams>
-					<start_idx>13</start_idx>
-					<end_idx>22</end_idx>
+					<start_idx>15</start_idx>
+					<end_idx>24</end_idx>
 					<wait_for_cup round="6">uefa_cl_cp</wait_for_cup>
 				</choose_team>
 			</choose_teams>
