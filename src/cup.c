@@ -544,11 +544,16 @@ cup_load_choose_team_from_league(Cup *cup, const League *league,
     }
 
     if(ct->number_of_teams != -1 &&
-       number_of_teams != ct->number_of_teams)
+       number_of_teams != ct->number_of_teams) {
+	if (ct->next)
+            return cup_load_choose_team(cup, teams, ct->next);
+	if (ct->optional)
+	    return;
         main_exit_program(EXIT_CHOOSE_TEAM_ERROR, 
                           "cup_load_choose_team_from_league (1): not enough teams (that don't participate in international cups yet) found in chooseteam %s for cup %s (%d specified, %d found) cup group %d.\n ",
                           ct->sid, cup->name, ct->number_of_teams, 
                           number_of_teams, cup->group);    
+    }
 }
 
 /** This function is used when a CupChooseTeam object references a cup
