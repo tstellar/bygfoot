@@ -48,10 +48,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: ubuntu-16.04
-            container-image: docker.io/ubuntu:16.04
-            dependencies: "$UBUNTU_BUILD_DEPENDENCIES"
-            test: true
           - name: ubuntu-18.04
             container-image: docker.io/ubuntu:18.04
             dependencies: "$UBUNTU_BUILD_DEPENDENCIES"
@@ -69,7 +65,7 @@ jobs:
             dependencies: "$UBUNTU_BUILD_DEPENDENCIES"
             test: true
           - name: linux
-            container-image: docker.io/ubuntu:16.04
+            container-image: docker.io/ubuntu:18.04
             dependencies: "$LINUX_BUILD_DEPENDENCIES"
             test: false
 
