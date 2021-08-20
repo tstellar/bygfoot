@@ -1,0 +1,239 @@
+variables:
+  UBUNTU_GENERIC_BUILD_DEPENDENCIES: libglib2.0-dev libgtk2.0-dev libpango1.0-dev libatk1.0-dev libfreetype6-dev ninja-build cmake
+  UBUNTU_BUILD_DEPENDENCIES: libglib2.0-dev libgtk2.0-dev libpango1.0-dev libatk1.0-dev libfreetype6-dev ninja-build cmake libjson-c-dev
+  DEBIAN_FRONTEND: noninteractive
+
+stages:
+  - build
+  - test
+  - deploy
+  - release
+
+set-vars:
+  stage: .pre
+  rules:
+    - if: $CI_MERGE_REQUEST_IID
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH
+  script:
+    - |
+      echo "BYGFOOT_VERSION=`git describe --tags`" >> set-vars.env
+      # Use tilde versioning for the Debian and RPM packages (The gitlab generic
+      # package registry does not support tildes in versions).
+      echo "BYGFOOT_PKG_VERSION=`git describe --tags`" | sed 's/-/~/' >> set-vars.env
+  artifacts:
+    reports:
+      dotenv: set-vars.env
+
+.build-pkg:
+  stage: build
+  rules:
+    - if: $CI_MERGE_REQUEST_IID
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH
+  script:
+    - |
+      mkdir build
+      pushd build
+      cmake -G Ninja -S .. -DBYGFOOT_VERSION=$BYGFOOT_VERSION -DCPACK_PACKAGE_VERSION=$BYGFOOT_PKG_VERSION -DCMAKE_INSTALL_PREFIX=/usr/ -DCPACK_SYSTEM_NAME=$OS_NAME
+      ninja
+      cpack -G $PKG_TYPE
+      case "$PKG_TYPE" in
+        "DEB")
+          pkg_suffix=".deb"
+          ;;
+        "RPM")
+          pkg_suffix=".rpm"
+          ;;
+      esac
+      pkg_name=`ls *$pkg_suffix`
+      mv $pkg_name ..
+      popd
+      echo $pkg_name > $OS_NAME.pkg
+
+  artifacts:
+    name: $OS_NAME-package
+    # We can't use variables here or the artifacts won't appear in the
+    # merge request UI. https://docs.gitlab.com/ee/ci/yaml/#artifacts
+    paths:
+      - "*.deb"
+      - "*.rpm"
+      - "*.pkg"
+      - build/
+
+.build-ubuntu-deb:
+  extends: .build-pkg
+  variables:
+    BUILD_DEPENDENCIES: $UBUNTU_BUILD_DEPENDENCIES
+    PKG_TYPE: DEB
+    PKG_SUFFIX: .deb
+  before_script:
+    - |
+      apt-get update
+      apt-get -y install $BUILD_DEPENDENCIES
+
+build-ubuntu-18.04:
+  extends: .build-ubuntu-deb
+  image: docker.io/ubuntu:18.04
+  variables:
+    OS_NAME: ubuntu-18.04
+
+build-ubuntu-20.04:
+  extends: .build-ubuntu-deb
+  image: docker.io/ubuntu:20.04
+  variables:
+    OS_NAME: ubuntu-20.04
+
+build-ubuntu-21.04:
+  extends: .build-ubuntu-deb
+  image: docker.io/ubuntu:21.04
+  variables:
+    OS_NAME: ubuntu-21.04
+
+build-debian-stable:
+  extends: .build-ubuntu-deb
+  image: docker.io/debian:stable
+  variables:
+    OS_NAME: debian-stable
+
+build-generic-deb:
+  extends: .build-ubuntu-deb
+  image: docker.io/ubuntu:18.04
+  variables:
+    OS_NAME: Linux
+    BUILD_DEPENDENCIES: $UBUNTU_GENERIC_BUILD_DEPENDENCIES
+
+build-generic-rpm:
+  extends: .build-pkg
+  image: registry.fedoraproject.org/fedora:33
+  variables:
+    OS_NAME: Linux
+    PKG_TYPE: RPM
+    PKG_SUFFIX: .rpm
+  before_script:
+    - |
+      dnf install -y cmake ninja-build gtk2-devel gettext gcc rpm-build
+
+build-fedora-33:
+  extends: build-generic-rpm
+  image: registry.fedoraproject.org/fedora:33
+  variables:
+    OS_NAME: fedora-33
+  before_script:
+    - |
+      dnf install -y cmake ninja-build gtk2-devel gettext gcc rpm-build json-c-devel
+
+build-fedora-34:
+  extends: build-fedora-33
+  image: registry.fedoraproject.org/fedora:34
+  variables:
+    OS_NAME: fedora-34
+
+.test-ubuntu:
+  stage: test
+  only:
+    - merge_requests
+  before_script:
+    - |
+      apt-get update
+      apt-get -y install libgtk2.0-0 $LIBJSON_C_PKG unzip
+      dpkg -i *.deb
+  script:
+    - |
+      bash ./test/test-load-save.sh /usr/bin//bygfoot
+      bash ./test/test-country-defs.sh /usr/bin//bygfoot
+
+test-ubuntu-18.04:
+  extends: .test-ubuntu
+  image: docker.io/ubuntu:18.04
+  variables:
+    LIBJSON_C_PKG: libjson-c3
+  needs:
+    - build-ubuntu-18.04
+
+test-ubuntu-20.04:
+  extends: .test-ubuntu
+  image: docker.io/ubuntu:20.04
+  variables:
+    LIBJSON_C_PKG: libjson-c4
+  needs:
+    - build-ubuntu-20.04
+
+test-ubuntu-21.04:
+  extends: .test-ubuntu
+  image: docker.io/ubuntu:21.04
+  variables:
+    LIBJSON_C_PKG: libjson-c5
+  needs:
+   - build-ubuntu-21.04
+
+test-debian-stable:
+  extends: .test-ubuntu
+  image: docker.io/debian:stable
+  variables:
+    LIBJSON_C_PKG: libjson-c5
+  needs:
+    - build-debian-stable
+
+test-dev-build:
+  extends: test-ubuntu-21.04
+  script:
+    - |
+      bash ./test/test-load-save.sh ./build/bygfoot
+      bash ./test/test-country-defs.sh ./build/bygfoot
+  needs:
+    - build-ubuntu-21.04
+
+test-fedora-33:
+  extends: .test-ubuntu
+  image: registry.fedoraproject.org/fedora:33
+  before_script:
+    - |
+      dnf install -y json-c gtk2 unzip diffutils *.rpm
+  needs:
+    - build-fedora-33
+
+test-fedora-34:
+  extends: test-fedora-33
+  image: registry.fedoraproject.org/fedora:34
+  needs: 
+    - build-fedora-34
+
+upload-packages:
+  image: registry.fedoraproject.org/fedora:34
+  stage: deploy
+  variables:
+    PACKAGE_REGISTRY_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic"
+  rules:
+    - if: $CI_COMMIT_BRANCH
+    - if: $CI_COMMIT_TAG
+  script:
+    - |
+      for f in *.pkg; do
+        os=`echo $f | sed 's/.pkg//g'`
+        file=`cat $f`
+        # Tilde not supported in package name:
+        upload_name=`echo $file | sed 's/~/-/g'`
+        echo ${PACKAGE_REGISTRY_URL}/${os}/${BYGFOOT_VERSION}/${upload_name}
+        curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file $file ${PACKAGE_REGISTRY_URL}/${os}/${BYGFOOT_VERSION}/${upload_name}
+      done
+
+create-release:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  variables:
+    PACKAGE_REGISTRY_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/"
+  rules:
+    - if: $CI_COMMIT_TAG
+  script:
+    - |
+      echo 'release-cli create --name "Release $CI_COMMIT_TAG" --tag-name $CI_COMMIT_TAG \' >> create-release.sh
+      for f in *.pkg; do
+        os=`echo $f | sed 's/.pkg//g'`
+        # Tilde not supported in package name:
+        file=`cat $f | sed 's/~/-/g'`
+        echo --assets-link "'{\"name\":\"${file}\",\"url\":\"${PACKAGE_REGISTRY_URL}/${os}/${BYGFOOT_VERSION}/${file}\"}"\' \\ >> create-release.sh
+      done
+      echo " " >> create-release.sh
+      cat create-release.sh
+      /bin/sh create-release.sh
