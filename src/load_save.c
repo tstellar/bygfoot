@@ -257,6 +257,21 @@ load_save_load_game(Bygfoot *bygfoot, const gchar* filename, gboolean create_mai
     xml_loadsave_leagues_cups_read(bygfoot, dirname, prefix);
 
     if(debug > 60)
+        g_print("load_save_load misc \n");
+
+    bygfoot_show_progress(bygfoot,
+        ((PROGRESS_MAX * bygfoot_get_progress_bar_fraction(bygfoot)) + 1) / PROGRESS_MAX,
+        _("Loading miscellaneous..."),
+        PIC_TYPE_LOAD);
+
+    xml_loadsave_misc_read(bygfoot, dirname, prefix);
+
+    /* Now that all the teams have been loaded, replace the team ids with team ptrs
+     * where necessary. */
+    xml_loadsave_leagues_cups_adjust_team_ptrs();
+
+
+    if(debug > 60)
         g_print("load_save_load users \n");
 
     bygfoot_show_progress(bygfoot,
@@ -306,16 +321,6 @@ load_save_load_game(Bygfoot *bygfoot, const gchar* filename, gboolean create_mai
         PIC_TYPE_LOAD);
 
     xml_loadsave_newspaper_read(dirname, prefix);
-
-    if(debug > 60)
-        g_print("load_save_load misc \n");
-
-    bygfoot_show_progress(bygfoot,
-        ((PROGRESS_MAX * bygfoot_get_progress_bar_fraction(bygfoot)) + 1) / PROGRESS_MAX,
-        _("Loading miscellaneous..."),
-        PIC_TYPE_LOAD);
-
-    xml_loadsave_misc_read(bygfoot, dirname, prefix);
 
     if(debug > 60)
         g_print("load_save_load done \n");

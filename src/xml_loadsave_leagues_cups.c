@@ -167,8 +167,6 @@ xml_loadsave_leagues_cups_read(Bygfoot *bygfoot, const gchar *dirname, const gch
 	debug_print_message("xml_loadsave_misc_read: error parsing file %s\n", file);
 	misc_print_error(&error, TRUE);
     }
-
-    xml_loadsave_leagues_cups_adjust_team_ptrs();
 }
 
 /** Write the leagues into xml files with the given prefix. */

@@ -26,6 +26,7 @@ tmphome=`mktemp -d`
 pushd $bygfoot_bindir
 HOME=$tmphome ./bygfoot --random-seed=1 --json=$json_file
 
+# Verify that the save file are identical.
 for f in save0 save1 save2 save3; do
 
     mkdir -p $save_dir/$f
@@ -38,3 +39,13 @@ for f in save0 save1 save2 save3; do
 done
 diff -r $save_dir/save0 $save_dir/save1
 diff -r $save_dir/save2 $save_dir/save3
+
+# Test that we can load the saves on start up.
+cat << EOF > $json_file
+{ 'commands' : [
+  {'load_bygfoot' : {'filename' : '$save_dir/save0.zip'}},
+  {'load_bygfoot' : {'filename' : '$save_dir/save2.zip'}}
+]}
+EOF
+
+HOME=$tmphome ./bygfoot --random-seed=1 --json=$json_file

@@ -271,7 +271,8 @@ xml_loadsave_misc_read(Bygfoot *bygfoot, const gchar *dirname, const gchar *base
     g_ptr_array_free(acps, TRUE);
     acps = g_ptr_array_new();
 
-    g_ptr_array_free(country_list, TRUE);
+    if (country_list)
+        g_ptr_array_free(country_list, TRUE);
     country_list = g_ptr_array_new();
     free_bets(TRUE);
 
