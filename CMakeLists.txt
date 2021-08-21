@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 set(CMAKE_LEGACY_CYGWIN_WIN32 0)
 
+set(BYGFOOT_VERSION "2.3.3" CACHE STRING "Bygfoot version suffix")
+
 project("bygfoot")
 
 find_package(PkgConfig REQUIRED)
@@ -25,7 +27,7 @@ find_package(ZLIB)
 include(GNUInstallDirs)
 add_definitions("-DPACKAGE_DATA_DIR=\"${CMAKE_INSTALL_FULL_DATADIR}\"")
 add_definitions("-DPACKAGE=\"${PROJECT_NAME}\"")
-
+add_definitions("-DVERS=\"${BYGFOOT_VERSION}\"")
 find_package(JSON-C)
 
 if (JSON-C_FOUND)
