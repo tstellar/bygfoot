@@ -3,7 +3,7 @@ set(CMAKE_LEGACY_CYGWIN_WIN32 0)
 
 set(BYGFOOT_VERSION "2.3.3" CACHE STRING "Bygfoot version suffix")
 
-project("bygfoot")
+project("bygfoot" C)
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GLIB_PKG glib-2.0)
