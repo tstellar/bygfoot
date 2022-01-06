@@ -165,7 +165,7 @@ on_button_save_clicked                 (GtkButton       *button,
     printf("on_button_save_clicked\n");
 #endif
 
-    on_menu_save_activate(NULL, NULL);
+    on_menu_save_activate(NULL, user_data);
 }
 
 
@@ -612,14 +612,14 @@ G_MODULE_EXPORT void
 on_menu_save_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    Bygfoot *bygfoot;
+    Bygfoot *bygfoot = (Bygfoot*)user_data;
 #ifdef DEBUG
     printf("on_menu_save_activate\n");
 #endif
 
     if(!opt_int("int_opt_save_will_overwrite") ||
        save_file == NULL)
-	on_menu_save_as_activate(NULL, NULL);
+	on_menu_save_as_activate(NULL, user_data);
     else
 	load_save_save_game(bygfoot, save_file);
 }
