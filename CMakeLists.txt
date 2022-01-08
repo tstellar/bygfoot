@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 set(CMAKE_LEGACY_CYGWIN_WIN32 0)
 
-set(BYGFOOT_VERSION "2.3.3" CACHE STRING "Bygfoot version suffix")
+set(BYGFOOT_VERSION "2.3.4" CACHE STRING "Bygfoot version suffix")
 
 project("bygfoot" C)
 
@@ -173,6 +173,6 @@ add_custom_command(TARGET bygfoot POST_BUILD
 		   ${CMAKE_BINARY_DIR}/support_files)
 
 set(CPACK_PACKAGE_VERSION ${BYGFOOT_VERSION} CACHE STRING "cpack package vesion")
-set(BYGFOOT_VERSION "2.3.3" CACHE STRING "Bygfoot version suffix")
+set(BYGFOOT_VERSION "2.3.4" CACHE STRING "Bygfoot version suffix")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Bygfoot Developers")
 include(CPack)

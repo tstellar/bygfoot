@@ -51,7 +51,7 @@
  * Program version number and year (copyright).
  */
 #ifndef VERS
-#define VERS "2.3.3"
+#define VERS "2.3.4"
 #endif
 #define YEAR "2005 - 2011"
 
