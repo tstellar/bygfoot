@@ -418,6 +418,15 @@ window_show_file_sel(Bygfoot *bygfoot)
     if(gtk_dialog_run(GTK_DIALOG(window.file_chooser)) == GTK_RESPONSE_OK)
     {
 	filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(window.file_chooser));
+        /* When a game is saved, thousands of xml files are written and
+         * deleted in the current directory.  These filesystem changes
+         * generate new events that get processed when we update the
+         * progres bar.  It takes a very long time to process these events
+         * and it slows done the save process.  We can avoid this issue
+         * by destoying the file chooser window before we start saving
+         * the game.
+         */
+        window_destroy(&window.file_chooser);
 
 	if(stat5 == STATUS_LOAD_GAME)
 	    load_save_load_game(bygfoot, filename, FALSE);
