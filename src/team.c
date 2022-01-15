@@ -998,20 +998,11 @@ team_get_index(const Team *tm)
 #endif
 
     gint i;
-    gpointer *teams = (gpointer*)league_cup_get_teams(tm->clid);
+    GPtrArray *teams = league_cup_get_teams(tm->clid);
 
-    if(tm->clid < ID_CUP_START)
-    {
-	for(i=0;i<((GArray*)teams)->len;i++)
-	    if(&g_array_index((GArray*)teams, Team, i) == tm)
-		return i;
-    }
-    else
-    {
-	for(i=0;i<((GPtrArray*)teams)->len;i++)
-	    if((Team*)g_ptr_array_index((GPtrArray*)teams, i) == tm)
-		return i;
-    }
+    for(i=0;i<teams->len;i++)
+        if (g_ptr_array_index(teams, i) == tm)
+            return i;
 
     main_exit_program(EXIT_INT_NOT_FOUND, 
 		      "team_get_index: team %s not found.\n", tm->name);
