@@ -354,7 +354,7 @@ load_save_load_game(Bygfoot *bygfoot, const gchar* filename, gboolean create_mai
 
     if(create_main_window)
     {
-        window_create(WINDOW_MAIN);
+        window_create_with_userdata(WINDOW_MAIN, bygfoot);
         on_button_back_to_main_clicked(NULL, NULL);
     }
     else if(window.main != NULL)
