@@ -154,4 +154,7 @@ cup_get_last_season_results(const Cup *cup);
 GPtrArray *
 cup_get_most_recent_results(const Cup *cup);
 
+gboolean
+cup_is_international(const Cup *cup);
+
 #endif

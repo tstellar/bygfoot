@@ -786,6 +786,40 @@ start_week_add_cups(Bygfoot *bygfoot)
 	}
 }
 
+static void
+update_teams(void (*update_func)(Team*))
+{
+    gint i, j;
+    GHashTable *visited = g_hash_table_new(g_direct_hash, g_direct_equal);
+
+    for(i=0;i<ligs->len;i++) {
+        League *league = &lig(i);
+	for(j=0;j<league->teams->len;j++) {
+            Team *team = g_ptr_array_index(league->teams, j);
+	    update_func(team);
+            g_hash_table_insert(visited, team, team);
+        }
+    }
+
+    /* Update international teams participating in cups, but ignore teams
+     * in the user's country, because these have already been updated above.
+     */
+    for(i=0;i<cps->len;i++) {
+        Cup *cup = &cp(i);
+        if (!cup_is_international(cup))
+            continue;
+
+	for(j=0; j<cup->teams->len;j++) {
+            Team *team = g_ptr_array_index(cup->teams, j);
+            if (g_hash_table_lookup(visited, team))
+                continue;
+	    update_func(team);
+            g_hash_table_insert(visited, team, team);
+        }
+    }
+    g_hash_table_unref(visited);
+}
+
 /** Age increase etc. of players.
     CPU teams get updated at the end of their matches
     (to avoid cup teams getting updated too often). */
@@ -796,15 +830,7 @@ start_week_update_teams(Bygfoot *bygfoot)
     printf("start_week_update_teams\n");
 #endif
 
-    gint i, j;
-    
-    for(i=0;i<ligs->len;i++)
-	for(j=0;j<lig(i).teams->len;j++)
-	    team_update_team_weekly(g_ptr_array_index(lig(i).teams, j));
-
-    for(i=0;i<cps->len;i++)
-	for(j=0;j<cp(i).teams->len;j++)
-	    team_update_team_weekly((Team*)g_ptr_array_index(cp(i).teams, j));
+    update_teams(team_update_team_weekly);
 }
 
 /** Do some things at the beginning of each new round for
@@ -816,15 +842,7 @@ start_week_round_update_teams(void)
     printf("start_week_round_update_teams\n");
 #endif
 
-    gint i, j;
-    
-    for(i=0;i<ligs->len;i++)
-	for(j=0;j<lig(i).teams->len;j++)
-	    team_update_team_week_roundly(g_ptr_array_index(lig(i).teams, j));
-
-    for(i=0;i<cps->len;i++)
-	for(j=0;j<cp(i).teams->len;j++)
-	    team_update_team_week_roundly((Team*)g_ptr_array_index(cp(i).teams, j));
+    update_teams(team_update_team_week_roundly);
 }
 
 /** Deduce wages etc. */

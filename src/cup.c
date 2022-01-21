@@ -1417,3 +1417,9 @@ cup_get_most_recent_results(const Cup *cup)
         return misc_copy_ptr_array(cup_get_last_season_results(cup));
     return cup_get_teams_sorted(cup);
 }
+
+gboolean
+cup_is_international(const Cup *cup)
+{
+    return query_league_cup_has_property(cup->id, "international");
+}
