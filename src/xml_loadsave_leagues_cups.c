@@ -225,14 +225,19 @@ xml_loadsave_leagues_cups_adjust_team_ptrs(void)
 
     for(i = 0; i < cps->len; i++)
     {
-        fixture_refresh_team_pointers(cp(i).fixtures);
+        Cup *cup = &cp(i);
+        fixture_refresh_team_pointers(cup->fixtures);
 
-        for(j = 0; j < cp(i).rounds->len; j++)
+        for(j = 0; j < cup->rounds->len; j++)
         {
+            CupRound *round = &g_array_index(cp(i).rounds, CupRound, j);
             team_ptrs = g_ptr_array_new();
-            for(k = 0; k < g_array_index(cp(i).rounds, CupRound, j).team_ptrs->len; k++)
-                g_ptr_array_add(team_ptrs, team_of_id(GPOINTER_TO_INT(g_ptr_array_index(g_array_index(cp(i).rounds, CupRound, j).team_ptrs, k))));
-            
+            for(k = 0; k < round->team_ptrs->len; k++) {
+                Team *team = team_of_id(GPOINTER_TO_INT(g_ptr_array_index(round->team_ptrs, k)));
+                g_ptr_array_add(team_ptrs, team);
+                g_ptr_array_add(cup->teams, team);
+            }
+
             g_ptr_array_free(g_array_index(cp(i).rounds, CupRound, j).team_ptrs, TRUE);
             g_array_index(cp(i).rounds, CupRound, j).team_ptrs = team_ptrs;
 
