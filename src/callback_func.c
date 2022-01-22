@@ -701,7 +701,7 @@ callback_show_team(gint type)
     GtkTreeView *treeview_right =
         GTK_TREE_VIEW(lookup_widget(window.main, "treeview_right"));
     const Team *tm;
-    const GArray *teams = NULL;
+    const GPtrArray *teams = NULL;
     const GPtrArray *teamsp = NULL;
     gint len = -1;
 
@@ -745,7 +745,7 @@ callback_show_team(gint type)
             stat1 = 0;
 
         if(stat2 < ID_CUP_START)
-            tm = &g_array_index(teams, Team, stat1);
+            tm = g_ptr_array_index(teams, stat1);
         else
             tm = (Team*)g_ptr_array_index(teamsp, stat1);
     }

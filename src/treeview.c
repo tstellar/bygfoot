@@ -2063,17 +2063,19 @@ treeview_show_all_players(gint clid)
 
     gint i, j;
     GPtrArray *players = g_ptr_array_new();
-    const GArray *teams = NULL;
+    const GPtrArray *teams = NULL;
     const GPtrArray *teamsp = NULL;
     
     if(clid < ID_CUP_START)
     {
-	teams = (GArray*)league_cup_get_teams(clid);
-	for(i=0;i<teams->len;i++)
-	    if(&g_array_index(teams, Team, i) != current_user.tm)
-		for(j=0;j<g_array_index(teams, Team, i).players->len;j++)
-		    g_ptr_array_add(players, &g_array_index(g_array_index(teams, Team, i).players,
+	teams = league_cup_get_teams(clid);
+	for(i=0;i<teams->len;i++) {
+            Team *team = g_ptr_array_index(teams, i);
+	    if(team != current_user.tm)
+		for(j=0;j<team->players->len;j++)
+		    g_ptr_array_add(players, &g_array_index(team->players,
 							    Player, j));
+        }
     }
     else
     {
