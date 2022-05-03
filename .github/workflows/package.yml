@@ -37,6 +37,7 @@ jobs:
           echo "::set-output name=bygfoot-version::$bygfoot_version"
 
   package-linux:
+    if: ${{ !startswith(github.ref_name, 'windows-build')  }}
     needs:
       - set-variables
     runs-on:
