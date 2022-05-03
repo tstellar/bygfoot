@@ -139,10 +139,10 @@ jobs:
       - name: Copy dependencies intall package directory
         shell: bash
         run: |
-          mkdir -p bygfoot-$BYGFOOT_VERSION
-          cp bin/*.dll bygfoot-$BYGFOOT_VERSION
-          cp ./share/doc/gtk+-2.22.1/COPYING bygfoot-$BYGFOOT_VERSION/COPYING.gtk+
-          cp ./share/doc/glib-2.26.1/COPYING bygfoot-$BYGFOOT_VERSION/COPYING.glib
+          mkdir -p bygfoot-$BYGFOOT_VERSION-win64
+          cp bin/*.dll bygfoot-$BYGFOOT_VERSION-win64
+          cp ./share/doc/gtk+-2.22.1/COPYING bygfoot-$BYGFOOT_VERSION-win64/COPYING.gtk+
+          cp ./share/doc/glib-2.26.1/COPYING bygfoot-$BYGFOOT_VERSION-win64/COPYING.glib
 
       - name: Package Bygfoot
         env:
