@@ -32,6 +32,10 @@ jobs:
             bygfoot_version=${{ github.head_ref }}-${{ github.sha }}
           fi
 
+          if echo ${{ github.ref_name }} | grep 'windows-build'; then
+              bygfoot_version=`echo ${{ github.ref_name }} | sed 's/windows-build-//g'`
+          fi
+
           tarname=bygfoot-$bygfoot_version-${{ matrix.name }}
           echo "::set-output name=is-tag::$is_tag"
           echo "::set-output name=bygfoot-version::$bygfoot_version"
